@@ -3,7 +3,7 @@
 ## Phase 1: Foundation (Root Layout & Global Styles)
 
 - [x] Create `app/globals.css` with Tailwind directives and oklch CSS custom properties (a6a2a3a)
-- [ ] Create `app/layout.tsx` with provider hierarchy (ConvexClientProvider → AuthProvider → ThemeProvider) and chrome (header, footer)
+- [x] Create `app/layout.tsx` with provider hierarchy (ConvexClientProvider → AuthProvider → ThemeProvider) and chrome (header, footer) (397155a)
 
 ## Phase 2: Auth API Routes
 
