@@ -7,7 +7,7 @@
 
 ## Phase 2: Auth API Routes
 
-- [ ] Create `app/api/auth/login/route.ts` — POST endpoint for credential verification and JWT cookie setting
+- [x] Create `app/api/auth/login/route.ts` — POST endpoint for credential verification and JWT cookie setting (9163510)
 - [ ] Create `app/api/auth/session/route.ts` — GET endpoint returning current user + profile from JWT
 - [ ] Create `app/api/auth/logout/route.ts` — POST endpoint clearing JWT cookie
 - [ ] Create `app/api/auth/change-password/route.ts` — POST endpoint for password change with current password verification
