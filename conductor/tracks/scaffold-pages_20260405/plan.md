@@ -13,7 +13,7 @@
 - [x] Create `app/api/auth/change-password/route.ts` — POST endpoint for password change with current password verification (29e4f47)
 - [x] Create `app/api/phases/complete/route.ts` — POST endpoint for phase completion with idempotency (499a000)
 
-## Phase 3: Auth Pages
+## Phase 3: Auth Pages [checkpoint: 797a08b]
 
 - [x] Create `app/auth/layout.tsx` — Centered layout for auth pages (minimal chrome) (526125b)
 - [x] Create `app/auth/login/page.tsx` — Login form with username/password fields and demo account buttons (42a89f7)
