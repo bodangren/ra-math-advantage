@@ -16,7 +16,7 @@
 ## Phase 3: Auth Pages
 
 - [x] Create `app/auth/layout.tsx` — Centered layout for auth pages (minimal chrome) (526125b)
-- [ ] Create `app/auth/login/page.tsx` — Login form with username/password fields and demo account buttons
+- [x] Create `app/auth/login/page.tsx` — Login form with username/password fields and demo account buttons (42a89f7)
 - [ ] Create `app/auth/forgot-password/page.tsx` — Password reset request form
 - [ ] Create `app/auth/update-password/page.tsx` — New password entry form
 - [ ] Create `app/auth/confirm/page.tsx` — Confirmation/status page
