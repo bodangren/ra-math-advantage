@@ -10,7 +10,7 @@
 - [x] Create `app/api/auth/login/route.ts` — POST endpoint for credential verification and JWT cookie setting (9163510)
 - [x] Create `app/api/auth/session/route.ts` — GET endpoint returning current user + profile from JWT (5f7729c)
 - [x] Create `app/api/auth/logout/route.ts` — POST endpoint clearing JWT cookie (8d431cc)
-- [ ] Create `app/api/auth/change-password/route.ts` — POST endpoint for password change with current password verification
+- [x] Create `app/api/auth/change-password/route.ts` — POST endpoint for password change with current password verification (29e4f47)
 - [ ] Create `app/api/phases/complete/route.ts` — POST endpoint for phase completion with idempotency
 
 ## Phase 3: Auth Pages
