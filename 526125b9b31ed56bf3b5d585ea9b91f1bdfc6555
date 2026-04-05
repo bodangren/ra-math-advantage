@@ -1,0 +1,4 @@
+Task: Create auth layout
+Summary: Centered minimal layout for auth pages (login, forgot-password, etc.)
+Files: app/auth/layout.tsx, __tests__/app/auth/layout.test.tsx
+Why: Auth pages need a centered, minimal chrome layout distinct from the main content pages
