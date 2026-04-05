@@ -1,0 +1,4 @@
+Task: Create phases/complete route
+Summary: POST /api/phases/complete - requires student session, validates required fields, delegates to Convex internal mutation with idempotency key
+Files: app/api/phases/complete/route.ts, __tests__/app/api/phases/complete/route.test.ts
+Why: Student phase completion endpoint with idempotency to prevent duplicate progress records
