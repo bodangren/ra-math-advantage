@@ -1,0 +1,3 @@
+task: Create app/page.tsx — Public landing page
+files: app/page.tsx, __tests__/app/page.test.tsx
+why: Phase 4 task 1. Updated page to use orange brand theme (bg-primary, card-workbook, hero-gradient). Fixed test file syntax error.
