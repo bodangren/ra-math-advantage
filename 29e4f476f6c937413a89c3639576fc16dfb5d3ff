@@ -1,0 +1,4 @@
+Task: Create change-password route
+Summary: POST /api/auth/change-password - verifies current session + current password, validates new password against role policy, hashes and persists via Convex internal mutation
+Files: app/api/auth/change-password/route.ts
+Why: Self-service password change for authenticated users; teachers reset student passwords separately
