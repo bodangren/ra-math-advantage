@@ -1,0 +1,185 @@
+# Lesson 1-4 — Solving Quadratic Equations by Factoring
+
+## Today’s Goals
+
+* Solve quadratic equations by factoring
+* Use the Zero Product Property
+* Recognize special factor patterns (GCF, trinomials, difference of squares)
+
+---
+
+## Vocabulary
+
+* Zero Product Property
+* factor
+* factored form
+* difference of squares
+* perfect square trinomial
+
+---
+
+## Explore: Finding the Solutions by Factoring
+
+**Inquiry Question:**
+How does writing a quadratic expression as a product help you find its solutions?
+
+---
+
+# Learn: Zero Product Property
+
+If a·b = 0, then a = 0 or b = 0.
+
+This is the key idea behind solving quadratic equations by factoring.
+
+---
+
+# Learn: Solving by Factoring
+
+To solve a quadratic equation:
+
+1. Write the equation in standard form: ax^2 + bx + c = 0
+2. Factor the expression
+3. Set each factor equal to 0
+4. Solve each resulting linear equation
+
+---
+
+# Example 1 — Factor a Trinomial
+
+Solve:
+
+x^2 - x - 6 = 0
+
+Factor:
+
+(x - 3)(x + 2) = 0
+
+Set each factor equal to zero:
+
+x - 3 = 0 → x = 3
+x + 2 = 0 → x = -2
+
+Solution: {3, -2}
+
+---
+
+# Example 2 — Factor with Leading Coefficient ≠ 1
+
+Solve:
+
+2x^2 + 7x - 4 = 0
+
+Factor:
+
+(2x - 1)(x + 4) = 0
+
+Set equal to zero:
+
+2x - 1 = 0 → x = 1/2
+x + 4 = 0 → x = -4
+
+Solution: {1/2, -4}
+
+---
+
+# Example 3 — Factor Out GCF First
+
+Solve:
+
+3x^2 - 12x = 0
+
+Factor GCF:
+
+3x(x - 4) = 0
+
+Set equal to zero:
+
+3x = 0 → x = 0
+x - 4 = 0 → x = 4
+
+Solution: {0, 4}
+
+---
+
+# Example 4 — Difference of Squares
+
+Solve:
+
+x^2 - 25 = 0
+
+Factor:
+
+(x - 5)(x + 5) = 0
+
+Solutions: x = 5, x = -5
+
+---
+
+# Example 5 — Perfect Square Trinomial
+
+Solve:
+
+x^2 - 6x + 9 = 0
+
+Factor:
+
+(x - 3)^2 = 0
+
+Solution: x = 3
+
+---
+
+# Key Idea: When Factoring Works
+
+Factoring works best when:
+
+* The quadratic can be written as a product of binomials
+* Integer factors exist
+
+If factoring is difficult, other methods (graphing, completing the square, quadratic formula) may be more efficient.
+
+---
+
+# Example 6 — Check Your Solution
+
+Solve:
+
+x^2 + x - 2 = 0
+
+Factor:
+
+(x + 2)(x - 1) = 0
+
+Solutions: x = -2, x = 1
+
+Check by substitution:
+
+f(1) = 1 + 1 - 2 = 0 ✔
+f(-2) = 4 - 2 - 2 = 0 ✔
+
+---
+
+# Think About It (Discourse Prompts)
+
+* Why must the equation equal zero before factoring?
+* How do you decide which factoring method to use?
+* What does each factor represent graphically?
+
+---
+
+# In-Class Quick Check (Assessment)
+
+Solve by factoring:
+
+1. x^2 + 5x + 6 = 0
+2. 2x^2 - 3x - 2 = 0
+3. x^2 - 16 = 0
+4. 4x^2 - 12x = 0
+
+---
+
+# CAP Reflection
+
+* Courage: Did you attempt factoring even when unsure of the method?
+* Adaptability: How did you adjust when your first factorization didn’t work?
+* Persistence: How did you verify your solutions?

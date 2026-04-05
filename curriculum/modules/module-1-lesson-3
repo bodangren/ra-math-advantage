@@ -1,0 +1,165 @@
+# Lesson 1-3 — Complex Numbers
+
+## Today’s Goals
+
+* Understand and use the imaginary unit i
+* Perform operations with complex numbers
+* Solve quadratic equations with imaginary solutions
+
+---
+
+## Vocabulary
+
+* imaginary unit i
+* complex number
+* real part
+* imaginary part
+* pure imaginary number
+* complex conjugate
+
+---
+
+## Explore: Factoring the Sum of Two Squares
+
+**Inquiry Question:**
+Can you factor an expression of the form a² + b²?
+
+---
+
+# Learn: The Imaginary Unit
+
+The imaginary unit is defined as:
+
+i = √(-1)
+
+This allows us to rewrite square roots of negative numbers.
+
+Examples:
+
+* √(-9) = 3i
+* √(-16) = 4i
+
+---
+
+# Learn: Complex Numbers
+
+A **complex number** is written in the form:
+
+a + bi
+
+* a = real part
+* b = imaginary part
+
+---
+
+## Key Idea: Types of Numbers
+
+* Real numbers: b = 0
+* Pure imaginary numbers: a = 0
+* Complex numbers: a + bi
+
+---
+
+# Example 1 — Simplify Square Roots
+
+Simplify:
+
+√(-48)
+
+√(-48) = √(-1 · 16 · 3)
+= √(-1) · √16 · √3
+= i · 4 · √3
+= 4i√3
+
+---
+
+# Example 2 — Multiply Imaginary Numbers
+
+Simplify:
+
+√(-10) · √(-15)
+
+= i√10 · i√15
+= i² √150
+= -1 · √150
+= -5√6
+
+---
+
+# Example 3 — Solve Equations with Imaginary Solutions
+
+Solve:
+
+x² + 81 = 0
+
+x² = -81
+
+x = ±√(-81)
+= ±9i
+
+Solution: {9i, -9i}
+
+---
+
+# Learn: Operations with Complex Numbers
+
+## Addition and Subtraction
+
+Combine like terms:
+
+(a + bi) + (c + di) = (a + c) + (b + d)i
+
+---
+
+# Example 4 — Add and Subtract
+
+(6 + i) + (4 - 5i)
+
+= (6 + 4) + (1 - 5)i
+= 10 - 4i
+
+---
+
+# Example 5 — Multiply Complex Numbers
+
+(2 + i)(3 - i)
+
+= 6 - 2i + 3i - i²
+= 6 + i + 1
+= 7 + i
+
+---
+
+# Key Concept: Equality of Complex Numbers
+
+Two complex numbers are equal if:
+
+* their real parts are equal
+* their imaginary parts are equal
+
+---
+
+# Example 6 — Solve for Variables
+
+9 + 12i = 3x + 4yi
+
+Match parts:
+
+Real: 9 = 3x → x = 3
+Imaginary: 12 = 4y → y = 3
+
+---
+
+# Think About It (Discourse Prompts)
+
+* Why does i² = -1 change multiplication results?
+* How can a product of two imaginary numbers be real?
+* Why are complex numbers necessary for solving equations?
+
+---
+
+# CAP Reflection
+
+* Courage: Did you attempt problems with unfamiliar numbers?
+* Adaptability: How did you adjust your approach when i appeared?
+* Persistence: How did you check your work?

@@ -1,0 +1,181 @@
+# Lesson 1-6 — Using the Quadratic Formula and the Discriminant
+
+## Today’s Goals
+
+* Use the Quadratic Formula to solve equations
+* Use the discriminant to determine the number and type of solutions
+
+---
+
+## Vocabulary
+
+* quadratic formula
+* discriminant
+
+---
+
+## Explore: The Discriminant
+
+**Inquiry Question:**
+How can you predict the number and type of solutions of a quadratic equation without solving it?
+
+---
+
+# Learn: Quadratic Formula
+
+For a quadratic equation in standard form:
+
+ax^2 + bx + c = 0, where a ≠ 0
+
+The solutions are given by:
+
+x = (−b ± √(b^2 − 4ac)) / (2a)
+
+---
+
+# Example 1 — Use the Quadratic Formula
+
+Solve:
+
+x^2 + 5x + 6 = 0
+
+Identify coefficients:
+
+a = 1, b = 5, c = 6
+
+Substitute into the formula:
+
+x = (−5 ± √(5^2 − 4(1)(6))) / (2(1))
+
+Simplify:
+
+x = (−5 ± √(25 − 24)) / 2
+x = (−5 ± √1) / 2
+
+x = (−5 ± 1) / 2
+
+Solutions:
+
+x = −2, −3
+
+---
+
+# Example 2 — Non-Factorable Equation
+
+Solve:
+
+x^2 − 4x − 1 = 0
+
+x = (4 ± √((−4)^2 − 4(1)(−1))) / 2
+
+= (4 ± √(16 + 4)) / 2
+= (4 ± √20) / 2
+
+Simplify radical:
+
+= (4 ± 2√5) / 2
+= 2 ± √5
+
+---
+
+# Example 3 — Imaginary Solutions
+
+Solve:
+
+x^2 + 2x + 5 = 0
+
+x = (−2 ± √(2^2 − 4(1)(5))) / 2
+
+= (−2 ± √(4 − 20)) / 2
+= (−2 ± √(−16)) / 2
+
+= (−2 ± 4i) / 2
+
+= −1 ± 2i
+
+---
+
+# Learn: The Discriminant
+
+The expression under the square root:
+
+b^2 − 4ac
+
+is called the **discriminant**.
+
+---
+
+## Key Concept: Interpreting the Discriminant
+
+Let D = b^2 − 4ac
+
+* If D > 0 → two real solutions
+* If D = 0 → one real solution
+* If D < 0 → two imaginary solutions
+
+---
+
+# Example 4 — Use the Discriminant
+
+Determine the number and type of solutions:
+
+2x^2 − 3x + 5 = 0
+
+D = (−3)^2 − 4(2)(5)
+= 9 − 40
+= −31
+
+Since D < 0:
+
+There are two imaginary solutions
+
+---
+
+# Example 5 — Determine Without Solving
+
+x^2 − 6x + 9 = 0
+
+D = (−6)^2 − 4(1)(9)
+= 36 − 36
+= 0
+
+There is exactly one real solution
+
+---
+
+# Key Idea: Why the Formula Works
+
+The quadratic formula comes from completing the square on the general form:
+
+ax^2 + bx + c = 0
+
+---
+
+# In-Class Quick Check
+
+Use the quadratic formula to solve:
+
+1. x^2 + 3x − 4 = 0
+2. 2x^2 + x − 3 = 0
+3. x^2 + 4x + 8 = 0
+
+Determine the number and type of solutions:
+
+4. x^2 − 2x + 5 = 0
+5. 3x^2 + 6x + 3 = 0
+
+---
+
+# Think About It
+
+* Why is the discriminant useful before solving?
+* When is the quadratic formula more efficient than factoring?
+* How does this connect to completing the square?
+
+---
+
+# CAP Reflection
+
+* Courage: Did you attempt using the full formula independently?
+* Adaptability: How did you handle complex numbers in solutions?
+* Persistence: How did you check your algebra ca

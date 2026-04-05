@@ -24,15 +24,15 @@
 
 ## Phase 4: Public Pages
 
-- [ ] Create `app/page.tsx` — Public landing page with hero section and curriculum stats
-- [ ] Create `app/curriculum/page.tsx` — Public curriculum overview with unit cards
-- [ ] Create `app/preface/page.tsx` — Course preface/introduction page
+- [x] Create `app/page.tsx` — Public landing page with hero section and curriculum stats (419cabd)
+- [x] Create `app/curriculum/page.tsx` — Public curriculum overview with unit cards (2d12f5d)
+- [x] Create `app/preface/page.tsx` — Course preface/introduction page (bddd474)
 
 ## Phase 5: Student Pages (Protected)
 
-- [ ] Create `app/student/page.tsx` — Redirect to /student/dashboard
-- [ ] Create `app/student/dashboard/page.tsx` — Student dashboard fetching data via `internal.student.getDashboardData`, building view model via `buildStudentDashboardViewModel`
-- [ ] Create `app/student/lesson/[lessonSlug]/page.tsx` — Lesson viewer fetching lesson content and student progress, rendering phases with phase navigation
+- [x] Create `app/student/page.tsx` — Redirect to /student/dashboard (66581b2)
+- [x] Create `app/student/dashboard/page.tsx` — Student dashboard fetching data via `internal.student.getDashboardData`, building view model via `buildStudentDashboardViewModel` (66581b2)
+- [x] Create `app/student/lesson/[lessonSlug]/page.tsx` — Lesson viewer fetching lesson content and student progress, rendering phases with phase navigation (66581b2)
 
 ## Phase 6: Teacher Pages (Protected)
 

@@ -1,6 +1,6 @@
 import { describe, it, expect, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
-import React from 'react';
+
 
 vi.mock('@/lib/convex/server', () => ({
   fetchQuery: vi.fn().mockResolvedValue([

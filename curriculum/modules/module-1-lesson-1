@@ -1,0 +1,263 @@
+## 📘 Lesson 1-1: Graphing Quadratic Functions
+
+Source:  (Module 1, Lesson 1-1, pp. 3–7)
+
+---
+
+# **Lesson 1-1 — Graphing Quadratic Functions**
+
+## **Today’s Goals**
+
+* Graph quadratic functions
+* Find and interpret the average rate of change
+
+---
+
+## **Vocabulary**
+
+* quadratic function
+* axis of symmetry
+* vertex
+* maximum
+* minimum
+* rate of change
+* average rate of change
+
+---
+
+## **Explore: Transforming Quadratic Functions**
+
+Use graphing technology to explore how changes to (a), (b), and (c) affect the graph of
+[
+y = ax^2 + bx + c
+]
+
+**Inquiry Question:**
+How can you use the values of (a), (b), and (c) to visualize the graph?
+
+---
+
+# **Learn: Graphing Quadratic Functions**
+
+A **quadratic function** has the form:
+[
+y = ax^2 + bx + c, \quad a \ne 0
+]
+
+* The graph is a **parabola**
+* The **y-intercept** is (c)
+
+---
+
+## **Key Concept: Graph of a Quadratic Function**
+
+* Axis of symmetry:
+  [
+  x = -\frac{b}{2a}
+  ]
+
+* The axis of symmetry passes through the **vertex**
+
+---
+
+## **Key Concept: Maximum and Minimum**
+
+* If (a > 0): parabola opens **up** → vertex is a **minimum**
+* If (a < 0): parabola opens **down** → vertex is a **maximum**
+
+⚠️ Important:
+
+* A maximum is not necessarily above the x-axis
+* A minimum is not necessarily below the x-axis
+
+---
+
+# **Example 1 — Graph Using a Table**
+
+Graph:
+[
+f(x) = x^2 + 2x - 3
+]
+
+### Step 1: Analyze
+
+* (a = 1,\ b = 2,\ c = -3)
+* y-intercept: (-3)
+
+Axis of symmetry:
+[
+x = -\frac{2}{2(1)} = -1
+]
+
+Vertex x-value: (-1)
+Since (a > 0), vertex is a **minimum**
+
+---
+
+### Step 2: Table of Values
+
+| x  | f(x) | Point    |
+| -- | ---- | -------- |
+| -3 | 0    | (-3, 0)  |
+| -2 | -3   | (-2, -3) |
+| -1 | -4   | (-1, -4) |
+| 0  | -3   | (0, -3)  |
+| 1  | 0    | (1, 0)   |
+
+---
+
+### Step 3: Analyze Graph
+
+* Domain: all real numbers
+* Range: (y \ge -4)
+
+---
+
+# **Example 2 — Compare Quadratic Functions**
+
+* (f(x)) has a maximum of about 5 (from graph)
+* (g(x)): vertex (1, 2), y-intercept -1
+
+Since (5 > 2), **(f(x)) has the greater maximum**
+
+---
+
+# **Example 3 — Real-World Application (Modeling)**
+
+A ski resort sells:
+
+* 680 passes at $120
+* For every $5 increase → 20 fewer passes sold
+
+---
+
+### Step 1: Define Variables
+
+Let:
+
+* (x) = number of $5 increases
+* (P(x)) = total revenue
+
+[
+P(x) = (120 + 5x)(680 - 20x)
+]
+
+---
+
+### Step 2: Expand
+
+[
+P(x) = -100x^2 + 1000x + 81{,}600
+]
+
+---
+
+### Step 3: Find Maximum
+
+Axis of symmetry:
+[
+x = -\frac{1000}{2(-100)} = 5
+]
+
+---
+
+### Step 4: Interpret
+
+Best price:
+[
+120 + 5(5) = 145
+]
+
+✅ Maximum profit at **$145 per pass**
+
+---
+
+### Domain and Range (Context)
+
+* Domain: (0 \le x \le 34)
+* Range: (0 \le P(x) \le 84{,}100)
+
+---
+
+# **Learn: Average Rate of Change**
+
+## **Key Concept**
+
+[
+\text{Average Rate of Change} = \frac{f(b) - f(a)}{b - a}
+]
+
+---
+
+# **Example 4 — From an Equation**
+
+Find average rate of change of:
+[
+f(x) = -x^2 + 2x - 1 \quad \text{on } [-4, 4]
+]
+
+[
+f(4) = -9,\quad f(-4) = -25
+]
+
+[
+\frac{-9 - (-25)}{4 - (-4)} = \frac{16}{8} = 2
+]
+
+✅ Answer: **2**
+
+---
+
+# **Example 5 — From a Table**
+
+Given:
+
+| x  | f(x) |
+| -- | ---- |
+| -3 | 48   |
+| 3  | -24  |
+
+[
+\frac{-24 - 48}{3 - (-3)} = \frac{-72}{6} = -12
+]
+
+✅ Answer: **-12**
+
+---
+
+# **Example 6 — From a Graph (Estimation + Algebra)**
+
+* Change in y ≈ 5.5
+* Change in x = 10
+
+[
+\text{Rate} \approx 0.55
+]
+
+Exact:
+[
+\frac{20.99 - 15.72}{10} = 0.527
+]
+
+---
+
+### Interpretation
+
+Spending increased by about **$527 million per year**
+
+---
+
+# **Think About It (Discourse Prompts)**
+
+* Why does the vertex represent a maximum or minimum?
+* How can you tell a function is nonlinear without graphing?
+* Compare average rate of change over different intervals
+
+---
+
+# **CAP Reflection (Student Mindset)**
+
+* **Courage:** What part of graphing felt unfamiliar today?
+* **Adaptability:** How did you adjust when the graph didn’t look right?
+* **Persistence:** What strategy helped you finish the examples?
+

@@ -11,7 +11,7 @@ export default function PrefacePage() {
       <div className="prose prose-stone max-w-none space-y-6 text-foreground/90 leading-relaxed">
         <p className="text-lg">
           <strong>Integrated Math 3</strong> is the third course in a three-year integrated
-          mathematics sequence. This course deepens students' understanding of the algebraic and
+          mathematics sequence. This course deepens students&apos; understanding of the algebraic and
           analytical tools introduced in earlier years, connecting them to new topics in statistics,
           trigonometry, and mathematical modeling.
         </p>
@@ -55,7 +55,7 @@ export default function PrefacePage() {
         <p>
           At the end of each lesson you will reflect on three qualities: <strong>Courage</strong>
           {' '}— taking on challenges; <strong>Adaptability</strong> — adjusting your approach
-          when something isn't working; and <strong>Persistence</strong> — continuing through
+          when something isn&apos;t working; and <strong>Persistence</strong> — continuing through
           difficulty. Mathematics is as much about these habits of mind as it is about the content.
         </p>
       </div>
