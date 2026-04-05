@@ -1,0 +1,4 @@
+Task: Create app/api/auth/logout/route.ts
+Summary: POST handler clears bm_session cookie by setting empty value with past expiry.
+Files: app/api/auth/logout/route.ts, __tests__/app/api/auth/logout.test.ts
+Why: Required for clean session termination.
