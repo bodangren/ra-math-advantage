@@ -1,0 +1,11 @@
+{
+  "track_id": "module-1-seed_20260406",
+  "type": "feature",
+  "status": "new",
+  "created_at": "2026-04-06T10:00:00Z",
+  "updated_at": "2026-04-06T10:00:00Z",
+  "description": "Create the Convex seed script that populates all 8 Module 1 lessons with correct phase sequences, section content, activity records, competency standards, and demo org/users/classes",
+  "estimated_tasks": 13,
+  "actual_tasks": null,
+  "deviation_notes": ""
+}

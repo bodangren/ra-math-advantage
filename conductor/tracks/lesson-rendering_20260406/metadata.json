@@ -1,0 +1,11 @@
+{
+  "track_id": "lesson-rendering_20260406",
+  "type": "feature",
+  "status": "new",
+  "created_at": "2026-04-06T10:00:00Z",
+  "updated_at": "2026-04-06T10:00:00Z",
+  "description": "Port and adapt the lesson rendering engine (LessonStepper, PhaseRenderer, etc.) from bus-math-v2, integrating with the e-textbook design system and flexible phase model",
+  "estimated_tasks": 12,
+  "actual_tasks": null,
+  "deviation_notes": ""
+}

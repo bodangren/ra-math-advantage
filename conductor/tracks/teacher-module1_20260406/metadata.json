@@ -1,0 +1,11 @@
+{
+  "track_id": "teacher-module1_20260406",
+  "type": "feature",
+  "status": "new",
+  "created_at": "2026-04-06T10:00:00Z",
+  "updated_at": "2026-04-06T10:00:00Z",
+  "description": "Complete teacher experience for Module 1: dashboard, gradebook, student detail, lesson preview in teaching mode, and submission review with error analysis",
+  "estimated_tasks": 14,
+  "actual_tasks": null,
+  "deviation_notes": ""
+}

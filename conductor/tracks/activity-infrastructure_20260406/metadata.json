@@ -1,0 +1,11 @@
+{
+  "track_id": "activity-infrastructure_20260406",
+  "type": "feature",
+  "status": "new",
+  "created_at": "2026-04-06T10:00:00Z",
+  "updated_at": "2026-04-06T10:00:00Z",
+  "description": "Build the activity registry, mode system, submission pipeline, and Zod props schemas that all interactive components plug into",
+  "estimated_tasks": 12,
+  "actual_tasks": null,
+  "deviation_notes": ""
+}

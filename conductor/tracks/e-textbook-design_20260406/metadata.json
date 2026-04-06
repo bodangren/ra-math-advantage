@@ -1,0 +1,11 @@
+{
+  "track_id": "e-textbook-design_20260406",
+  "type": "feature",
+  "status": "new",
+  "created_at": "2026-04-06T10:00:00Z",
+  "updated_at": "2026-04-06T10:00:00Z",
+  "description": "Build a polished e-textbook design system with KaTeX math rendering, theorem/definition/callout boxes, step-reveal containers, vocabulary highlights, and responsive lesson layout",
+  "estimated_tasks": 14,
+  "actual_tasks": null,
+  "deviation_notes": ""
+}

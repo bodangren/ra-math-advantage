@@ -1,0 +1,11 @@
+{
+  "track_id": "flexible-phase-model_20260406",
+  "type": "feature",
+  "status": "new",
+  "created_at": "2026-04-06T10:00:00Z",
+  "updated_at": "2026-04-06T10:00:00Z",
+  "description": "Replace the hardcoded 6-phase lesson model with a flexible, typed phase system that supports variable-length lessons driven by curriculum content",
+  "estimated_tasks": 10,
+  "actual_tasks": null,
+  "deviation_notes": ""
+}

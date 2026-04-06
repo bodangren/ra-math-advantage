@@ -1,0 +1,11 @@
+{
+  "track_id": "algebraic-examples_20260406",
+  "type": "feature",
+  "status": "new",
+  "created_at": "2026-04-06T10:00:00Z",
+  "updated_at": "2026-04-06T10:00:00Z",
+  "description": "Build the step-by-step-solver activity component covering all algebraic worked example types in Module 1 (factoring, completing the square, quadratic formula, complex numbers, systems) in all three modes",
+  "estimated_tasks": 16,
+  "actual_tasks": null,
+  "deviation_notes": ""
+}

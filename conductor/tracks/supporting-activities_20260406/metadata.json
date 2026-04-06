@@ -1,0 +1,11 @@
+{
+  "track_id": "supporting-activities_20260406",
+  "type": "feature",
+  "status": "new",
+  "created_at": "2026-04-06T10:00:00Z",
+  "updated_at": "2026-04-06T10:00:00Z",
+  "description": "Build comprehension-quiz, fill-in-the-blank, rate-of-change-calculator, and discriminant-analyzer components for Module 1 assessments and practice phases — in all three modes",
+  "estimated_tasks": 14,
+  "actual_tasks": null,
+  "deviation_notes": ""
+}

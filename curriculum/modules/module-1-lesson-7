@@ -1,181 +1,286 @@
-# Lesson 1-6 — Using the Quadratic Formula and the Discriminant
+# Lesson 1-7 — Quadratic Inequalities
 
 ## Today’s Goals
 
-* Use the Quadratic Formula to solve equations
-* Use the discriminant to determine the number and type of solutions
+* Graph quadratic inequalities in two variables
+* Solve quadratic inequalities in one variable by graphing
+* Interpret solutions in context
 
 ---
 
 ## Vocabulary
 
-* quadratic formula
-* discriminant
+* quadratic inequality
 
 ---
 
-## Explore: The Discriminant
+## Explore: Graphing Quadratic Inequalities
+
+Use graphing technology to explore how the shaded region changes for inequalities such as:
+
+* y > ax^2 + bx + c
+* y ≥ ax^2 + bx + c
+* y < ax^2 + bx + c
+* y ≤ ax^2 + bx + c
 
 **Inquiry Question:**
-How can you predict the number and type of solutions of a quadratic equation without solving it?
+How can you represent a quadratic inequality graphically?
 
 ---
 
-# Learn: Quadratic Formula
+# Learn: Graphing Quadratic Inequalities
 
-For a quadratic equation in standard form:
+A **quadratic inequality** is an inequality of the form:
 
-ax^2 + bx + c = 0, where a ≠ 0
-
-The solutions are given by:
-
-x = (−b ± √(b^2 − 4ac)) / (2a)
-
----
-
-# Example 1 — Use the Quadratic Formula
-
-Solve:
-
-x^2 + 5x + 6 = 0
-
-Identify coefficients:
-
-a = 1, b = 5, c = 6
-
-Substitute into the formula:
-
-x = (−5 ± √(5^2 − 4(1)(6))) / (2(1))
-
-Simplify:
-
-x = (−5 ± √(25 − 24)) / 2
-x = (−5 ± √1) / 2
-
-x = (−5 ± 1) / 2
-
-Solutions:
-
-x = −2, −3
+* y > ax^2 + bx + c
+* y ≥ ax^2 + bx + c
+* y < ax^2 + bx + c
+* y ≤ ax^2 + bx + c
 
 ---
 
-# Example 2 — Non-Factorable Equation
+## Key Concept: Graphing Quadratic Inequalities
 
-Solve:
+### Step 1
 
-x^2 − 4x − 1 = 0
+Graph the related quadratic function.
 
-x = (4 ± √((−4)^2 − 4(1)(−1))) / 2
+### Step 2
 
-= (4 ± √(16 + 4)) / 2
-= (4 ± √20) / 2
+Decide whether the boundary is solid or dashed.
 
-Simplify radical:
+* Use a **solid parabola** for ≤ or ≥
+* Use a **dashed parabola** for < or >
 
-= (4 ± 2√5) / 2
-= 2 ± √5
+### Step 3
 
----
+Test a point not on the parabola.
 
-# Example 3 — Imaginary Solutions
+### Step 4
 
-Solve:
-
-x^2 + 2x + 5 = 0
-
-x = (−2 ± √(2^2 − 4(1)(5))) / 2
-
-= (−2 ± √(4 − 20)) / 2
-= (−2 ± √(−16)) / 2
-
-= (−2 ± 4i) / 2
-
-= −1 ± 2i
+Shade the region that makes the inequality true.
 
 ---
 
-# Learn: The Discriminant
+# Example 1 — Graph a Quadratic Inequality (≤)
 
-The expression under the square root:
+Graph:
 
-b^2 − 4ac
+y ≤ x^2 - 2x + 8
 
-is called the **discriminant**.
+### Step 1
 
----
+Graph the related function:
 
-## Key Concept: Interpreting the Discriminant
+y = x^2 - 2x + 8
 
-Let D = b^2 − 4ac
+Because the inequality is ≤, use a **solid** parabola.
 
-* If D > 0 → two real solutions
-* If D = 0 → one real solution
-* If D < 0 → two imaginary solutions
+### Step 2
 
----
+Test the point (0, 0):
 
-# Example 4 — Use the Discriminant
+0 ≤ (0)^2 - 2(0) + 8
+0 ≤ 8
 
-Determine the number and type of solutions:
+This is true.
 
-2x^2 − 3x + 5 = 0
+### Step 3
 
-D = (−3)^2 − 4(2)(5)
-= 9 − 40
-= −31
-
-Since D < 0:
-
-There are two imaginary solutions
+Shade the region containing (0, 0).
 
 ---
 
-# Example 5 — Determine Without Solving
+# Example 2 — Graph a Quadratic Inequality (>)
 
-x^2 − 6x + 9 = 0
+Graph:
 
-D = (−6)^2 − 4(1)(9)
-= 36 − 36
-= 0
+y > -5x^2 + 10x
 
-There is exactly one real solution
+### Step 1
+
+Graph the related function:
+
+y = -5x^2 + 10x
+
+Because the inequality is >, use a **dashed** parabola.
+
+### Step 2
+
+Since (0, 0) is on the parabola, test (1, 0):
+
+0 > -5(1)^2 + 10(1)
+0 > 5
+
+This is false.
+
+### Step 3
+
+Shade the region that does **not** contain (1, 0).
 
 ---
 
-# Key Idea: Why the Formula Works
+# Learn: Solving Quadratic Inequalities in One Variable
 
-The quadratic formula comes from completing the square on the general form:
+To solve inequalities like:
 
-ax^2 + bx + c = 0
+* ax^2 + bx + c < 0
+* ax^2 + bx + c ≤ 0
+* ax^2 + bx + c > 0
+* ax^2 + bx + c ≥ 0
+
+use the graph of:
+
+y = ax^2 + bx + c
+
+Then determine where the graph is above or below the x-axis.
+
+---
+
+## Key Concept: Solving by Graphing
+
+* For **ax^2 + bx + c < 0**, find where the graph lies **below** the x-axis
+* For **ax^2 + bx + c ≤ 0**, include the x-intercepts
+* For **ax^2 + bx + c > 0**, find where the graph lies **above** the x-axis
+* For **ax^2 + bx + c ≥ 0**, include the x-intercepts
+
+---
+
+# Example 3 — Solve x^2 + x - 6 < 0 by Graphing
+
+### Step 1
+
+Find the zeros of the related equation:
+
+x^2 + x - 6 = 0
+
+(x - 2)(x + 3) = 0
+
+x = 2 or x = -3
+
+### Step 2
+
+Sketch the parabola.
+
+Since a > 0, the parabola opens upward.
+
+### Step 3
+
+Identify where the graph is below the x-axis.
+
+The graph is below the x-axis between -3 and 2.
+
+### Solution
+
+{x | -3 < x < 2}
+
+Interval notation: (-3, 2)
+
+---
+
+# Example 4 — Solve x^2 - 3x - 4 ≥ 0 by Graphing
+
+### Step 1
+
+Find the zeros:
+
+x^2 - 3x - 4 = 0
+
+(x - 4)(x + 1) = 0
+
+x = 4 or x = -1
+
+### Step 2
+
+Sketch the parabola.
+
+Since a > 0, it opens upward.
+
+### Step 3
+
+Identify where the graph is on or above the x-axis.
+
+The graph is on or above the x-axis when:
+
+x ≤ -1 or x ≥ 4
+
+### Solution
+
+{x | x ≤ -1 or x ≥ 4}
+
+Interval notation: (-∞, -1] ∪ [4, ∞)
+
+---
+
+# Example 5 — Solve a Quadratic Inequality in Context
+
+Marcus wants to enlarge a 5 ft by 10 ft garden by increasing both dimensions by the same amount x. He has enough soil to cover at most 104 square feet.
+
+### Step 1
+
+Write an inequality for area:
+
+A = (x + 10)(x + 5)
+
+A = x^2 + 15x + 50
+
+Because the area must be at most 104:
+
+x^2 + 15x + 50 ≤ 104
+
+### Step 2
+
+Solve the related equation:
+
+x^2 + 15x - 54 = 0
+
+(x + 18)(x - 3) = 0
+
+x = -18 or x = 3
+
+### Step 3
+
+Use a number line or graph.
+
+The solution to the inequality is:
+
+-18 ≤ x ≤ 3
+
+### Step 4
+
+Interpret in context.
+
+Since Marcus is increasing the dimensions, only nonnegative values make sense.
+
+So the practical solution is:
+
+0 ≤ x ≤ 3
+
+Marcus can increase the dimensions by up to **3 feet**.
+
+---
+
+# Think About It (Discourse Prompts)
+
+* Why does the sign of a affect which intervals satisfy the inequality?
+* Why do strict inequalities use parentheses in interval notation?
+* How do you know whether to include the boundary values?
 
 ---
 
 # In-Class Quick Check
 
-Use the quadratic formula to solve:
+Solve each inequality.
 
-1. x^2 + 3x − 4 = 0
-2. 2x^2 + x − 3 = 0
-3. x^2 + 4x + 8 = 0
-
-Determine the number and type of solutions:
-
-4. x^2 − 2x + 5 = 0
-5. 3x^2 + 6x + 3 = 0
-
----
-
-# Think About It
-
-* Why is the discriminant useful before solving?
-* When is the quadratic formula more efficient than factoring?
-* How does this connect to completing the square?
+1. x^2 - 6x + 9 ≤ 0
+2. x^2 - x - 6 ≤ 0
+3. x^2 + 8x + 16 ≥ 0
+4. x^2 - 2x - 24 ≤ 0
 
 ---
 
 # CAP Reflection
 
-* Courage: Did you attempt using the full formula independently?
-* Adaptability: How did you handle complex numbers in solutions?
-* Persistence: How did you check your algebra ca
+* Courage: Did you attempt the graph even when the shading was unclear?
+* Adaptability: How did you change your strategy when a test point failed?
+* Persistence: How did you verify the interval you chose?

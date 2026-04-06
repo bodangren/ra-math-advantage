@@ -1,0 +1,11 @@
+{
+  "track_id": "student-lesson-flow_20260406",
+  "type": "feature",
+  "status": "new",
+  "created_at": "2026-04-06T10:00:00Z",
+  "updated_at": "2026-04-06T10:00:00Z",
+  "description": "End-to-end student experience: dashboard shows Module 1 progress, lesson navigation, phase-by-phase content rendering, activity interaction, phase completion, and progress persistence",
+  "estimated_tasks": 14,
+  "actual_tasks": null,
+  "deviation_notes": ""
+}
