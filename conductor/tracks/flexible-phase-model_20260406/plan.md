@@ -16,21 +16,24 @@
 
 ## Phase 2: Backend Query Updates [~] In Progress
 
-- [ ] Task: Update `convex/public.ts` to include `phaseType` in phase data
-    - [ ] Write test verifying public query returns `phaseType` for each phase
-    - [ ] Update query to include `phaseType` field in returned phase objects
+- [x] Task: Update `convex/public.ts` to include `phaseType` in phase data [N/A]
+    - [x] Write test verifying public query returns `phaseType` for each phase
+    - [x] Update query to include `phaseType` field in returned phase objects
+    - Note: No public queries return individual phase data; phase data is only returned via student queries
 
-- [ ] Task: Update `convex/student.ts` to include `phaseType` in phase/progress data
-    - [ ] Write test verifying student queries return `phaseType`
-    - [ ] Update `getLessonWithContent` and `getLessonProgress` to include `phaseType`
+- [x] Task: Update `convex/student.ts` to include `phaseType` in phase/progress data [790c012]
+    - [x] Write test verifying student queries return `phaseType`
+    - [x] Update `getLessonWithContent` and `getLessonProgress` to include `phaseType`
+    - Note: Updated buildLessonPhaseProgress in lib/progress/published-curriculum.ts which is used by student queries
 
-- [ ] Task: Verify `resolveLessonLandingPhase` in `lib/student/lesson-runtime.ts` handles variable phase counts
-    - [ ] Write test with 4-phase lesson, 8-phase lesson, and 10-phase lesson
-    - [ ] Fix any hardcoded phase count assumptions (if found)
+- [x] Task: Verify `resolveLessonLandingPhase` in `lib/student/lesson-runtime.ts` handles variable phase counts [8468e3a]
+    - [x] Write test with 4-phase lesson, 8-phase lesson, and 10-phase lesson
+    - [x] Fix any hardcoded phase count assumptions (if found)
+    - Note: No hardcoded assumptions found; function already handles variable phase counts correctly
 
-- [ ] Task: Conductor — Phase Completion Verification 'Backend Query Updates' (Protocol in workflow.md)
+- [x] Task: Conductor — Phase Completion Verification 'Backend Query Updates' (Protocol in workflow.md) [1e205e5]
 
-## Phase 3: Frontend Updates
+## Phase 3: Frontend Updates [~] In Progress
 
 - [ ] Task: Refactor `app/student/lesson/[lessonSlug]/page.tsx` to use dynamic phase display
     - [ ] Write test verifying lesson page renders N phases with correct labels from `phaseType`

@@ -15,10 +15,17 @@
   - Create `lib/curriculum/phase-types.ts` with type definitions and display utility — Completed [7e726d6]
   - Conductor phase completion verification — Completed [cb9c2bb]
 
-- Phase 2: Backend Query Updates — **In Progress**
-- Phase 3: Frontend Updates — Pending
+- Phase 2: Backend Query Updates — **Completed** [checkpoint: 1e205e5]
+  - Update `convex/public.ts` to include `phaseType` in phase data — N/A [no public queries return phase data]
+  - Update `convex/student.ts` to include `phaseType` in phase/progress data — Completed [790c012]
+  - Verify `resolveLessonLandingPhase` handles variable phase counts — Completed [8468e3a]
+  - Conductor phase completion verification — Completed [1e205e5]
+
+- Phase 3: Frontend Updates — **In Progress**
 - Phase 4: Documentation & Cleanup — Pending
 
 ## Notes
 
-Phase 1 completed successfully. All 18 phase-specific tests passing. Moving to Phase 2.
+Phase 1 completed successfully. All 18 phase-specific tests passing.
+Phase 2 completed successfully. All 97 tests passing. No hardcoded phase count assumptions found.
+Moving to Phase 3.
