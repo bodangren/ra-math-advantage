@@ -14,5 +14,4 @@
 | 2026-04-05 | setup | Legacy Supabase types in AuthProvider.tsx (snake_case profile fields) | Low | Open | Should migrate to camelCase matching Convex schema |
 | 2026-04-06 | scaffold-pages | convex/_generated/ is empty — requires running npx convex dev once to generate types | Critical | Open | Dev server fails without generated API types; run npx convex dev to initialize |
 | 2026-04-06 | scaffold-pages | Lesson page shows placeholder content — no LessonRenderer component yet | High | Open | app/student/lesson/[lessonSlug]/page.tsx renders stub; full phase content requires LessonRenderer |
-| 2026-04-07 | review | Missing `student_spreadsheet_responses` table in convex/schema.ts — 38 type errors in convex/activities.ts and convex/teacher.ts | Critical | Open | Table referenced in 2 convex function files but not defined in schema; ported from bus-math-v2 template |
 | 2026-04-07 | review | No `npm run typecheck` script in package.json — type errors only surfaced via manual `npx tsc --noEmit` | Medium | Open | Should add typecheck script to match AGENTS.md TDD workflow |

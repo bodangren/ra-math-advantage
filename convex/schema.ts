@@ -222,6 +222,22 @@ export default defineSchema({
     .index("by_activity", ["activityId"])
     .index("by_user_and_activity", ["userId", "activityId"]),
 
+  student_spreadsheet_responses: defineTable({
+    studentId: v.id("profiles"),
+    activityId: v.id("activities"),
+    spreadsheetData: v.any(),
+    isCompleted: v.boolean(),
+    attempts: v.number(),
+    lastValidationResult: v.optional(v.any()),
+    submittedAt: v.optional(v.number()),
+    draftData: v.optional(v.any()),
+    createdAt: v.number(),
+    updatedAt: v.number(),
+  })
+    .index("by_student", ["studentId"])
+    .index("by_activity", ["activityId"])
+    .index("by_student_and_activity", ["studentId", "activityId"]),
+
   activity_completions: defineTable({
     studentId: v.id("profiles"),
     activityId: v.id("activities"),

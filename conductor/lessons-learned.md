@@ -17,6 +17,7 @@
 - (2026-04-06, scaffold-pages) `convex/_generated/` is empty until `npx convex dev` is run — dev server fails with "Cannot find module '@/convex/_generated/api'" until initialized
 - (2026-04-06, scaffold-pages) Async RSC pages cannot be rendered with `React.createElement(Page)` in tests — await the component call first: `const jsx = await PageComponent(props); render(jsx)`
 - (2026-04-06, scaffold-pages) Test files do not need `import React from 'react'` with the new JSX transform — importing it causes `@typescript-eslint/no-unused-vars` lint errors; use JSX syntax directly
+- (2026-04-08, fix-spreadsheet-table) Schema porting from bus-math-v2 requires running `npx tsc --noEmit` to catch missing tables — TypeScript errors only surface when tables referenced in functions are not defined in schema
 
 ## Patterns That Worked Well
 <!-- Approaches worth repeating -->

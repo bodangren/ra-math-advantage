@@ -1,0 +1,11 @@
+{
+  "track_id": "fix-spreadsheet-table_20260408",
+  "type": "bugfix",
+  "status": "completed",
+  "created_at": "2026-04-08T00:00:00Z",
+  "updated_at": "2026-04-08T00:00:00Z",
+  "description": "Add missing student_spreadsheet_responses table to convex/schema.ts to resolve 38 TypeScript errors",
+  "estimated_tasks": 3,
+  "actual_tasks": 3,
+  "deviation_notes": ""
+}
