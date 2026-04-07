@@ -14,7 +14,11 @@ Tracks 1+4 unlock Track 8; Track 8 unlocks Tracks 9+10.
   *Add missing table to convex/schema.ts to resolve 38 TypeScript errors*
   *Link: [./conductor/tracks/fix-spreadsheet-table_20260408/](./conductor/tracks/fix-spreadsheet-table_20260408/)*
 
-- [ ] **Track 1: Flexible Phase Model**
+- [x] **Track 1: Flexible Phase Model** — **COMPLETED**
+  *Replace hardcoded 6-phase assumptions with a typed, variable-length phase system*
+  *Link: [./conductor/tracks/flexible-phase-model_20260406/](./conductor/tracks/flexible-phase-model_20260406/)*
+
+- [ ] **Track 2: E-Textbook Design System**
   *Replace hardcoded 6-phase assumptions with a typed, variable-length phase system*
   *Link: [./conductor/tracks/flexible-phase-model_20260406/](./conductor/tracks/flexible-phase-model_20260406/)*
 
