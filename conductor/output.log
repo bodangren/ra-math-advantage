@@ -10,19 +10,19 @@
 [0m
 [0m$ [0mgit status
 On branch master
+Your branch is ahead of 'origin/master' by 1 commit.
+  (use "git push" to publish your local commits)
+
 Changes not staged for commit:
   (use "git add <file>..." to update what will be committed)
   (use "git restore <file>..." to discard changes in working directory)
+	modified:   conductor/autonomous_prompt.md
 	modified:   conductor/output.log
-	modified:   conductor/tracks/flexible-phase-model_20260406/plan.md
-	modified:   convex/schema.ts
 
 Untracked files:
   (use "git add <file>..." to include in what will be committed)
-	__tests__/convex/
-	__tests__/lib/
-	lib/curriculum/
+	conductor/review-output.log
+	conductor/review-prompt.md
 
 no changes added to commit (use "git add" and/or "git commit -a")
 [0m
-[0m→ [0mRead conductor/tracks/flexible-phase-model_20260406/plan.md
