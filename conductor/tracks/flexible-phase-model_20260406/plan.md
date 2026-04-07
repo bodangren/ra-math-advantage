@@ -35,15 +35,15 @@
 
 ## Phase 3: Frontend Updates [~] In Progress
 
-- [ ] Task: Refactor `app/student/lesson/[lessonSlug]/page.tsx` to use dynamic phase display
-    - [ ] Write test verifying lesson page renders N phases with correct labels from `phaseType`
-    - [ ] Remove `PHASE_NAMES` constant
-    - [ ] Import and use `getPhaseDisplayInfo()` for phase labels, icons, colors
-    - [ ] Render phase list dynamically from query response (no hardcoded count)
+- [x] Task: Refactor `app/student/lesson/[lessonSlug]/page.tsx` to use dynamic phase display [32ec64f]
+    - [x] Write test verifying lesson page renders N phases with correct labels from `phaseType`
+    - [x] Remove `PHASE_NAMES` constant
+    - [x] Import and use `getPhaseDisplayInfo()` for phase labels, icons, colors
+    - [x] Render phase list dynamically from query response (no hardcoded count)
 
-- [ ] Task: Conductor — Phase Completion Verification 'Frontend Updates' (Protocol in workflow.md)
+- [x] Task: Conductor — Phase Completion Verification 'Frontend Updates' (Protocol in workflow.md) [99fd204]
 
-## Phase 4: Documentation & Cleanup
+## Phase 4: Documentation & Cleanup [~] In Progress
 
 - [ ] Task: Update `conductor/product.md` — replace "6-phase" references with flexible phase model
     - [ ] Update "Phase-Based Lesson System" feature description
