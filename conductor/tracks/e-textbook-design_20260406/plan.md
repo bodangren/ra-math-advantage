@@ -8,11 +8,11 @@
     - [x] Implement `components/textbook/MathBlock.tsx` and `components/textbook/MathInline.tsx`
     - [x] Add KaTeX CSS import to `globals.css` or layout
 
-- [ ] Task: Extend `MarkdownRenderer` to auto-detect and render math expressions
-    - [ ] Write test: markdown containing `$...$` renders inline math via KaTeX
-    - [ ] Write test: markdown containing `$$...$$` or `[...]` renders display math via KaTeX
-    - [ ] Implement remark/rehype plugin or post-processing to extract math and render via KaTeX components
-    - [ ] Verify existing markdown content still renders correctly
+- [x] Task: Extend `MarkdownRenderer` to auto-detect and render math expressions — **24094fe**
+    - [x] Write test: markdown containing `$...$` renders inline math via KaTeX
+    - [x] Write test: markdown containing `$$...$$` or `[...]` renders display math via KaTeX
+    - [x] Implement remark/rehype plugin or post-processing to extract math and render via KaTeX components
+    - [x] Verify existing markdown content still renders correctly
 
 - [ ] Task: Conductor — Phase Completion Verification 'Math Rendering Foundation' (Protocol in workflow.md)
 
