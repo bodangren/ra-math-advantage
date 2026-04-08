@@ -9,95 +9,15 @@
 [0m→ [0mRead conductor/tech-debt.md
 [0m→ [0mRead conductor/lessons-learned.md
 [0m
-[0m$ [0mgit diff --stat
-conductor/autonomous_prompt.md |    3 +-
- conductor/output.log           | 2535 +---------------------------------------
- 2 files changed, 3 insertions(+), 2535 deletions(-)
-[0m
 [0m$ [0mgit status
 On branch master
-Your branch is up to date with 'origin/master'.
+Your branch is ahead of 'origin/master' by 1 commit.
+  (use "git push" to publish your local commits)
 
 Changes not staged for commit:
   (use "git add <file>..." to update what will be committed)
   (use "git restore <file>..." to discard changes in working directory)
-	modified:   conductor/autonomous_prompt.md
 	modified:   conductor/output.log
 
 no changes added to commit (use "git add" and/or "git commit -a")
-[0m
-[0m$ [0mgit diff conductor/autonomous_prompt.md
-diff --git a/conductor/autonomous_prompt.md b/conductor/autonomous_prompt.md
-index efc5abb..8c6e619 100644
---- a/conductor/autonomous_prompt.md
-+++ b/conductor/autonomous_prompt.md
-@@ -1,6 +1,7 @@
- AUTONOMOUS CONDUCTOR — UNATTENDED RUN
- 
- 1. Load Context (skip any missing file silently):
-+   Use the conductor skill.
-    Read conductor/tracks.md, conductor/tech-debt.md, conductor/lessons-learned.md.
-    Try conductor/current_directive.md — if absent, skip it.
- 
-@@ -17,7 +18,7 @@ AUTONOMOUS CONDUCTOR — UNATTENDED RUN
- 
- 5. Finalize:
-    Update tech-debt.md and lessons-learned.md (≤50 lines each).
--   Commit checkpoint, push.
-+   Commit checkpoint with git note (include your model name in the commit title), push.
- 
- CRITICAL UNATTENDED RULES:
- - Any prompt asking "Proceed?", "Continue?", or "Shall I?" → answer yes.
-[0m
-[0m$ [0mgit diff conductor/output.log | head -50
-diff --git a/conductor/output.log b/conductor/output.log
-index fa39fc4..4a3953b 100644
---- a/conductor/output.log
-+++ b/conductor/output.log
-@@ -4,2531 +4,15 @@
- [0m→ [0mRead conductor/autonomous_prompt.md
- [0m✗ [0mread failed
- [91m[1mError: [0mFile not found: /home/daniel-bo/Desktop/integrated-math-3/conductor/current_directive.md
-+[0m→ [0mSkill "conductor"
- [0m→ [0mRead conductor/tracks.md
- [0m→ [0mRead conductor/tech-debt.md
- [0m→ [0mRead conductor/lessons-learned.md
- [0m
--[0m$ [0mgit status
--On branch master
--Your branch is ahead of 'origin/master' by 1 commit.
--  (use "git push" to publish your local commits)
--
--Changes not staged for commit:
--  (use "git add <file>..." to update what will be committed)
--  (use "git restore <file>..." to discard changes in working directory)
--	modified:   conductor/autonomous_prompt.md
--	modified:   conductor/output.log
--
--Untracked files:
--  (use "git add <file>..." to include in what will be committed)
--	conductor/review-output.log
--	conductor/review-prompt.md
--
--no changes added to commit (use "git add" and/or "git commit -a")
--[0m
--[0m$ [0mgit add conductor/autonomous_prompt.md conductor/output.log conductor/review-output.log conductor/review-prompt.md && git commit -m "Update conductor artifacts" && git push
--[master 0707eb7] Update conductor artifacts
-- 4 files changed, 701 insertions(+), 19 deletions(-)
-- create mode 100644 conductor/review-output.log
-- create mode 100644 conductor/review-prompt.md
--To https://github.com/bodangren/ra-integrated-math-3.git
--   7e726d6..0707eb7  master -> master
--[0m
--[0m$ [0mfind conductor/tracks -name "status.md" -exec cat {} \; 2>/dev/null | head -20
--[0m→ [0mRead convex/schema.ts
--[0m
--[0m$ [0mnpx tsc --noEmit 2>&1 | grep "student_spreadsheet_responses" | head -10
--convex/activities.ts(12,14): error TS2345: Argument of type '"student_spreadsheet_responses"' is not assignable to parameter of type 'TableNamesInDataModel<{ organizations: { document: { _id: Id<"organizations">; _creationTime: number; settings?: any; name: string; slug: string; createdAt: number; updatedAt: number; }; fieldPaths: ExtractFieldPaths<VObject<{ settings?: any; name: string; slug: string; createdAt: number; updatedAt: number; }, { ......'.
--convex/activities.ts(39,14): error TS2345: Argument of type '"student_spreadsheet_responses"' is not assignable to parameter of type 'TableNamesInDataModel<{ organizations: { document: { _id: Id<"organizations">; _creationTime: number; settings?: any; name: string; slug: string; createdAt: number; updatedAt: number; }; fieldPaths: ExtractFieldPaths<VObject<{ settings?: any; name: string; slug: string; createdAt: number; updatedAt: number; }, { ......'.
--convex/activities.ts(51,27): error TS2345: Argument of type '"student_spreadsheet_responses"' is not assignable to parameter of type 'TableNamesInDataModel<{ organizations: { document: { _id: Id<"organizations">; _creationTime: number; settings?: any; name: string; slug: string; createdAt: number; updatedAt: number; }; fieldPaths: ExtractFieldPaths<VObject<{ settings?: any; name: string; slug: string; createdAt: number; updatedAt: number; }, { ......'.
--convex/activities.ts(74,14): error TS2345: Argument of type '"student_spreadsheet_responses"' is not assignable to parameter of type 'TableNamesInDataModel<{ organizations: { document: { _id: Id<"organizations">; _creationTime: number; settings?: any; name: string; slug: string; createdAt: number; updatedAt: number; }; fieldPaths: ExtractFieldPaths<VObject<{ settings?: any; name: string; slug: string; createdAt: number; updatedAt: number; }, { ......'.
--convex/activities.ts(128,14): error TS2345: Argument of type '"student_spreadsheet_responses"' is not assignable to parameter of type 'TableNamesInDataModel<{ organizations: { document: { _id: Id<"organizations">; _creationTime: number; settings?: any; name: string; slug: string; createdAt: number; updatedAt: number; }; fieldPaths: ExtractFieldPaths<VObject<{ settings?: any; name: string; slug: string; createdAt: number; updatedAt: number; }, { ......'.
--convex/activities.ts(144,27): error TS2345: Argument of type '"student_spreadsheet_responses"' is not assignable to parameter of type 'TableNamesInDataModel<{ organizations: { document: { _id: Id<"organizations">; _creationTime: number; settings?: any; name: string; slug: string; createdAt: number; updatedAt: number; }; fieldPaths: ExtractFieldPaths<VObject<{ settings?: any; name: string; slug: string; createdAt: number; updatedAt: number; }, { ......'.
--convex/teacher.ts(616,18): error TS2345: Argument of type '"student_spreadsheet_responses"' is not assignable to parameter of type 'TableNamesInDataModel<{ organizations: { document: { _id: Id<"organizations">; _creationTime: number; settings?: any; name: string; slug: string; createdAt: number; updatedAt: number; }; fieldPaths: ExtractFieldPaths<VObject<{ settings?: any; name: string; slug: string; createdAt: number; updatedAt: number; }, { ......'.
 [0m
