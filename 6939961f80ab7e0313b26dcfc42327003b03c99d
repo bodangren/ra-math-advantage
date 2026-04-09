@@ -1,0 +1,5 @@
+Task: Port and enhance MarkdownRenderer
+Files created:
+  - components/lesson/MarkdownRenderer.tsx — LessonMarkdownRenderer wraps textbook MarkdownRenderer with .textbook-content scope
+  - __tests__/components/lesson/MarkdownRenderer.test.tsx — 10 tests covering markdown, math, typography scope, edge cases
+Why: Lesson content renderer needs the .textbook-content typography scope; KaTeX and GFM already handled by textbook layer.
