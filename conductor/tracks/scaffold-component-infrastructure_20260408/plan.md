@@ -33,9 +33,14 @@
 
 ## Phase 3: Teacher Components
 
-- [ ] Task: Create TeacherNavigation component
-    - [ ] Write tests: renders navigation links, collapses on mobile, highlights active route
-    - [ ] Implement `components/teacher/TeacherNavigation.tsx` with responsive sidebar
+- [x] Task: Create TeacherNavigation component — **Completed** [a2ee97d]
+    - [x] Write tests: renders navigation links, collapses on mobile, highlights active route — Completed [a2ee97d]
+    - [x] Implement `components/teacher/TeacherNavigation.tsx` with responsive sidebar — Completed [a2ee97d]
+    - [x] Export from `components/teacher/index.ts` — Completed [a2ee97d]
+
+- [~] Task: Create StudentRow component
+    - [ ] Write tests: renders student name, progress percentage, action buttons
+    - [ ] Implement `components/teacher/StudentRow.tsx` as table row
     - [ ] Export from `components/teacher/index.ts`
 
 - [ ] Task: Create StudentRow component
