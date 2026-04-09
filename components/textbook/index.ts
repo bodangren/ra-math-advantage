@@ -9,3 +9,4 @@ export { StepRevealContainer } from './StepRevealContainer';
 export { VocabularyHighlight } from './VocabularyHighlight';
 export { TableOfValues } from './TableOfValues';
 export { DiscoursePrompt } from './DiscoursePrompt';
+export { ReflectionCard } from './ReflectionCard';
