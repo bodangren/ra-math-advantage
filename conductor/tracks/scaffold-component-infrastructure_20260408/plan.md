@@ -38,9 +38,14 @@
     - [x] Implement `components/teacher/TeacherNavigation.tsx` with responsive sidebar — Completed [a2ee97d]
     - [x] Export from `components/teacher/index.ts` — Completed [a2ee97d]
 
-- [~] Task: Create StudentRow component
-    - [ ] Write tests: renders student name, progress percentage, action buttons
-    - [ ] Implement `components/teacher/StudentRow.tsx` as table row
+- [x] Task: Create StudentRow component — **Completed** [24bf64f]
+    - [x] Write tests: renders student name, progress percentage, action buttons — Completed [24bf64f]
+    - [x] Implement `components/teacher/StudentRow.tsx` as table row — Completed [24bf64f]
+    - [x] Export from `components/teacher/index.ts` — Completed [24bf64f]
+
+- [~] Task: Create ClassOverviewCard component
+    - [ ] Write tests: displays class statistics, shows key metrics
+    - [ ] Implement `components/teacher/ClassOverviewCard.tsx` with stats grid
     - [ ] Export from `components/teacher/index.ts`
 
 - [ ] Task: Create StudentRow component
