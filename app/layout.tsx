@@ -15,6 +15,10 @@ export const metadata: Metadata = {
   title: "Integrated Math 3",
   description: "An interactive textbook for Integrated Math 3.",
   authors: [{ name: "Daniel Bodanske" }],
+  icons: {
+    icon: '/favicon.svg',
+    apple: '/favicon.svg',
+  },
 };
 
 export default function RootLayout({

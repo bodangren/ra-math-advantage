@@ -1,9 +1,19 @@
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default function LandingPage() {
   return (
     <div className="space-y-16">
       <div className="hero-gradient text-center space-y-6 py-20 px-6 rounded-xl">
+        <div className="flex justify-center mb-4 animate-fade-up">
+          <Image
+            src="/im3-hero.png"
+            alt="Integrated Math 3 Hero"
+            width={200}
+            height={200}
+            className="rounded-lg shadow-2xl"
+          />
+        </div>
         <span className="section-label section-label-light">Integrated Math 3 Honors</span>
         <h1 className="text-4xl md:text-5xl font-display font-bold text-white tracking-tight animate-fade-up">
           Integrated Math 3
