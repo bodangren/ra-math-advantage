@@ -48,11 +48,11 @@
     - [x] Write tests: keyboard navigable (focus + Enter shows tooltip); aria attributes present
     - [x] Implement `components/textbook/VocabularyHighlight.tsx`
 
-- [~] Task: Create `TableOfValues` component
-    - [ ] Write tests: renders table with headers and rows; highlights specified cells; uses font-mono-num
-    - [ ] Implement `components/textbook/TableOfValues.tsx`
+- [x] Task: Create `TableOfValues` component — **83a9b74**
+    - [x] Write tests: renders table with headers and rows; highlights specified cells; uses font-mono-num
+    - [x] Implement `components/textbook/TableOfValues.tsx`
 
-- [ ] Task: Create `DiscoursePrompt` component
+- [~] Task: Create `DiscoursePrompt` component
     - [ ] Write tests: renders prompt text with distinct styling; optional expandable area
     - [ ] Implement `components/textbook/DiscoursePrompt.tsx`
 
