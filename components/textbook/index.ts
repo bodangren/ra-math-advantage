@@ -8,3 +8,4 @@ export { ExampleHeader } from './ExampleHeader';
 export { StepRevealContainer } from './StepRevealContainer';
 export { VocabularyHighlight } from './VocabularyHighlight';
 export { TableOfValues } from './TableOfValues';
+export { DiscoursePrompt } from './DiscoursePrompt';
