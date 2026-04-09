@@ -1,22 +1,22 @@
 # Implementation Plan — Lesson Rendering Engine
 
-## Phase 1: Core Rendering Components (Port from bus-math-v2)
+## Phase 1: Core Rendering Components (Port from bus-math-v2) [checkpoint: 9ada872]
 
-- [ ] Task: Port and enhance `MarkdownRenderer`
-    - [ ] Write tests: renders markdown, renders inline math, renders block math, renders GFM tables
-    - [ ] Port `components/lesson/MarkdownRenderer.tsx` from bus-math-v2
-    - [ ] Integrate KaTeX rendering (MathBlock/MathInline from design system)
-    - [ ] Wrap output in `.textbook-content` typography scope
+- [x] Task: Port and enhance `MarkdownRenderer` — **6939961**
+    - [x] Write tests: renders markdown, renders inline math, renders block math, renders GFM tables
+    - [x] Port `components/lesson/MarkdownRenderer.tsx` from bus-math-v2
+    - [x] Integrate KaTeX rendering (MathBlock/MathInline from design system)
+    - [x] Wrap output in `.textbook-content` typography scope
 
-- [ ] Task: Port `VideoPlayer` component
-    - [ ] Write tests: renders video embed responsively, handles missing URL gracefully
-    - [ ] Port `components/lesson/VideoPlayer.tsx` from bus-math-v2
+- [x] Task: Port `VideoPlayer` component — **fb0a7a2**
+    - [x] Write tests: renders video embed responsively, handles missing URL gracefully
+    - [x] Port `components/lesson/VideoPlayer.tsx` from bus-math-v2
 
-- [ ] Task: Port `ContentBlockErrorBoundary`
-    - [ ] Write tests: catches render error, shows fallback UI, does not crash parent
-    - [ ] Port `components/lesson/ContentBlockErrorBoundary.tsx` from bus-math-v2
+- [x] Task: Port `ContentBlockErrorBoundary` — **68d178c**
+    - [x] Write tests: catches render error, shows fallback UI, does not crash parent
+    - [x] Port `components/lesson/ContentBlockErrorBoundary.tsx` from bus-math-v2
 
-- [ ] Task: Conductor — Phase Completion Verification 'Core Rendering Components' (Protocol in workflow.md)
+- [x] Task: Conductor — Phase Completion Verification 'Core Rendering Components' (Protocol in workflow.md)
 
 ## Phase 2: Phase Rendering
 
