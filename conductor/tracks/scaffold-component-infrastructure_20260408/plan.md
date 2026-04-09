@@ -62,7 +62,7 @@
 
 - [ ] Task: Conductor — Phase Completion Verification 'Teacher Components' (Protocol in workflow.md)
 
-## Phase 4: Dashboard Components
+## Phase 4: Dashboard Components — **Completed** [checkpoint: 2ea6d68]
 
 - [x] Task: Create UnitProgressCard component — **Completed** [2fae932]
     - [x] Write tests: displays unit name, progress bar, lesson breakdown — Completed [2fae932]
@@ -79,7 +79,7 @@
     - [x] Implement `components/dashboard/StatsSummary.tsx` with stats grid — Completed [83688cd]
     - [x] Export from `components/dashboard/index.ts` — Completed [83688cd]
 
-- [~] Task: Conductor — Phase Completion Verification 'Dashboard Components' (Protocol in workflow.md)
+- [x] Task: Conductor — Phase Completion Verification 'Dashboard Components' — **Completed** [2ea6d68]
 
 - [ ] Task: Create NextLessonCard component
     - [ ] Write tests: displays lesson title, phase count, "Start Lesson" CTA
