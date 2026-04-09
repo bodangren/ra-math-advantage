@@ -69,9 +69,14 @@
     - [x] Implement `components/dashboard/UnitProgressCard.tsx` with unit stats — Completed [2fae932]
     - [x] Export from `components/dashboard/index.ts` — Completed [2fae932]
 
-- [~] Task: Create NextLessonCard component
-    - [ ] Write tests: displays lesson title, phase count, \"Start Lesson\" CTA
-    - [ ] Implement `components/dashboard/NextLessonCard.tsx` with prominent CTA
+- [x] Task: Create NextLessonCard component — **Completed** [08da0b2]
+    - [x] Write tests: displays lesson title, phase count, "Start Lesson" CTA — Completed [08da0b2]
+    - [x] Implement `components/dashboard/NextLessonCard.tsx` with prominent CTA — Completed [08da0b2]
+    - [x] Export from `components/dashboard/index.ts` — Completed [08da0b2]
+
+- [~] Task: Create StatsSummary component
+    - [ ] Write tests: renders grid of metrics, displays correct values
+    - [ ] Implement `components/dashboard/StatsSummary.tsx` with stats grid
     - [ ] Export from `components/dashboard/index.ts`
 
 - [ ] Task: Create NextLessonCard component
