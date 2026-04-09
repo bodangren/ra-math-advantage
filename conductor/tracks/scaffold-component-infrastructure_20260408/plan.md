@@ -12,7 +12,7 @@
 
 - [x] Task: Conductor — Phase Completion Verification 'Directory Structure & Setup' — **Completed** [3e51c8c]
 
-## Phase 2: Student Components
+## Phase 2: Student Components — **Completed** [checkpoint: 1ee4c8c]
 
 - [x] Task: Create StudentNavigation component — **Completed** [ca1935e]
     - [x] Write tests: renders navigation links, collapses on mobile, highlights active route — Completed [ca1935e]
@@ -29,7 +29,7 @@
     - [x] Implement `components/student/LessonCard.tsx` with lesson info — Completed [b8294aa]
     - [x] Export from `components/student/index.ts` — Completed [b8294aa]
 
-- [ ] Task: Conductor — Phase Completion Verification 'Student Components' (Protocol in workflow.md)
+- [x] Task: Conductor — Phase Completion Verification 'Student Components' — **Completed** [1ee4c8c]
 
 ## Phase 3: Teacher Components
 
