@@ -18,11 +18,11 @@
 
 ## Phase 2: Content Primitives — Structural
 
-- [ ] Task: Create `TheoremBox` component
-    - [ ] Write tests: renders title, body, icon; supports custom color variants
-    - [ ] Implement `components/textbook/TheoremBox.tsx` — bordered container with tinted bg, oklch tokens
+- [x] Task: Create `TheoremBox` component — **5b26db4**
+    - [x] Write tests: renders title, body, icon; supports custom color variants
+    - [x] Implement `components/textbook/TheoremBox.tsx` — bordered container with tinted bg, oklch tokens
 
-- [ ] Task: Create `DefinitionCard` component
+- [~] Task: Create `DefinitionCard` component
     - [ ] Write tests: renders term, definition, optional related terms
     - [ ] Implement `components/textbook/DefinitionCard.tsx`
 
