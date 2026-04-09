@@ -18,9 +18,9 @@ Tracks 1+4 unlock Track 8; Track 8 unlocks Tracks 9+10.
   *Replace hardcoded 6-phase assumptions with a typed, variable-length phase system*
   *Link: [./conductor/tracks/flexible-phase-model_20260406/](./conductor/tracks/flexible-phase-model_20260406/)*
 
-- [ ] **Track: Scaffold Component Infrastructure** — **PAUSED**
-   *Create student, teacher, and dashboard component directories with basic infrastructure*
-   *Link: [./conductor/tracks/scaffold-component-infrastructure_20260408/](./conductor/tracks/scaffold-component-infrastructure_20260408/)*
+ - [x] **Track: Scaffold Component Infrastructure** — **COMPLETED**
+    *Create student, teacher, and dashboard component directories with basic infrastructure*
+    *Link: [./conductor/tracks/scaffold-component-infrastructure_20260408/](./conductor/tracks/scaffold-component-infrastructure_20260408/)*
 
 
 - [x] **Track 3: Lesson Rendering Engine** — **COMPLETED**
