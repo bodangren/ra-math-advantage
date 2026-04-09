@@ -37,21 +37,21 @@
 
 - [x] Task: Conductor — Phase Completion Verification 'Phase Rendering' (Protocol in workflow.md)
 
-## Phase 3: Lesson-Level Components
+## Phase 3: Lesson-Level Components [checkpoint: 6270562]
 
-- [ ] Task: Create `LessonStepper` for N-phase navigation
-    - [ ] Write tests: renders N phases with labels from `getPhaseDisplayInfo()`
-    - [ ] Write tests: highlights current phase, shows completion icons
-    - [ ] Write tests: sidebar layout on desktop, horizontal scroll on mobile
-    - [ ] Implement `components/lesson/LessonStepper.tsx`
+- [x] Task: Create `LessonStepper` for N-phase navigation — **2b7455b**
+    - [x] Write tests: renders N phases with labels from `getPhaseDisplayInfo()`
+    - [x] Write tests: highlights current phase, shows completion icons
+    - [x] Write tests: sidebar layout on desktop, horizontal scroll on mobile
+    - [x] Implement `components/lesson/LessonStepper.tsx`
 
-- [ ] Task: Create `LessonRenderer` — top-level lesson orchestrator
-    - [ ] Write tests: renders LessonPageLayout with LessonStepper and PhaseRenderer
-    - [ ] Write tests: navigating phases updates rendered content
-    - [ ] Write tests: teacher mode renders all steps revealed, no completion buttons
-    - [ ] Implement `components/lesson/LessonRenderer.tsx`
+- [x] Task: Create `LessonRenderer` — top-level lesson orchestrator — **f33d371**
+    - [x] Write tests: renders LessonPageLayout with LessonStepper and PhaseRenderer
+    - [x] Write tests: navigating phases updates rendered content
+    - [x] Write tests: teacher mode renders all steps revealed, no completion buttons
+    - [x] Implement `components/lesson/LessonRenderer.tsx`
 
-- [ ] Task: Conductor — Phase Completion Verification 'Lesson-Level Components' (Protocol in workflow.md)
+- [x] Task: Conductor — Phase Completion Verification 'Lesson-Level Components' (Protocol in workflow.md)
 
 ## Phase 4: Page Integration & Polish
 
