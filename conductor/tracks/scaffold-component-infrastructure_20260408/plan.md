@@ -24,10 +24,10 @@
     - [x] Implement `components/student/ProgressCard.tsx` with progress visualization — Completed [81199a7]
     - [x] Export from `components/student/index.ts` — Completed [81199a7]
 
-- [ ] Task: Create LessonCard component
-    - [ ] Write tests: displays lesson metadata, shows completion status, renders link
-    - [ ] Implement `components/student/LessonCard.tsx` with lesson info
-    - [ ] Export from `components/student/index.ts`
+- [x] Task: Create LessonCard component — **Completed** [b8294aa]
+    - [x] Write tests: displays lesson metadata, shows completion status, renders link — Completed [b8294aa]
+    - [x] Implement `components/student/LessonCard.tsx` with lesson info — Completed [b8294aa]
+    - [x] Export from `components/student/index.ts` — Completed [b8294aa]
 
 - [ ] Task: Conductor — Phase Completion Verification 'Student Components' (Protocol in workflow.md)
 
