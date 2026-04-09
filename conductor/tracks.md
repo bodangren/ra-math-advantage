@@ -22,9 +22,6 @@ Tracks 1+4 unlock Track 8; Track 8 unlocks Tracks 9+10.
    *Create student, teacher, and dashboard component directories with basic infrastructure*
    *Link: [./conductor/tracks/scaffold-component-infrastructure_20260408/](./conductor/tracks/scaffold-component-infrastructure_20260408/)*
 
-- [x] **Track 2: E-Textbook Design System** — **COMPLETED**
-   *KaTeX math rendering, theorem/callout boxes, step-reveal containers, textbook layout*
-   *Link: [./conductor/tracks/e-textbook-design_20260406/](./conductor/tracks/e-textbook-design_20260406/)*
 
 - [ ] **Track 3: Lesson Rendering Engine**
   *Port + adapt LessonStepper, PhaseRenderer, PhaseCompleteButton from bus-math-v2*
@@ -69,3 +66,6 @@ Tracks 1+4 unlock Track 8; Track 8 unlocks Tracks 9+10.
 
 - [x] **Track: Scaffold App Pages & Layouts**
   *Link: [./conductor/archive/scaffold-pages_20260405/](./conductor/archive/scaffold-pages_20260405/)*
+
+- [x] **Track 2: E-Textbook Design System**
+  *Link: [./conductor/archive/e-textbook-design_20260406/](./conductor/archive/e-textbook-design_20260406/)*
