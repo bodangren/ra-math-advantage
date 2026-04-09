@@ -1,0 +1,3 @@
+Task: Create PhaseCompleteButton
+Files: components/lesson/PhaseCompleteButton.tsx, test
+Why: Built directly on lib/phase-completion/client instead of bus-math-v2's usePhaseCompletion hook (hook not needed — simpler)
