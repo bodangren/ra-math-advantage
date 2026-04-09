@@ -56,11 +56,11 @@
     - [x] Write tests: renders prompt text with distinct styling; optional expandable area
     - [x] Implement `components/textbook/DiscoursePrompt.tsx`
 
-- [~] Task: Create `ReflectionCard` component
-    - [ ] Write tests: renders three CAP dimensions with prompts
-    - [ ] Implement `components/textbook/ReflectionCard.tsx`
+- [x] Task: Create `ReflectionCard` component — **e93f2f2**
+    - [x] Write tests: renders three CAP dimensions with prompts
+    - [x] Implement `components/textbook/ReflectionCard.tsx`
 
-- [ ] Task: Conductor — Phase Completion Verification 'Content Primitives — Interactive' (Protocol in workflow.md)
+- [~] Task: Conductor — Phase Completion Verification 'Content Primitives — Interactive' (Protocol in workflow.md)
 
 ## Phase 4: Layout & Typography
 
