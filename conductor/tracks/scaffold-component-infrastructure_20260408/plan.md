@@ -19,10 +19,10 @@
     - [x] Implement `components/student/StudentNavigation.tsx` with responsive sidebar — Completed [ca1935e]
     - [x] Export from `components/student/index.ts` — Completed [ca1935e]
 
-- [ ] Task: Create ProgressCard component
-    - [ ] Write tests: displays progress bar, shows percentage, renders next lesson CTA
-    - [ ] Implement `components/student/ProgressCard.tsx` with progress visualization
-    - [ ] Export from `components/student/index.ts`
+- [x] Task: Create ProgressCard component — **Completed** [81199a7]
+    - [x] Write tests: displays progress bar, shows percentage, renders next lesson CTA — Completed [81199a7]
+    - [x] Implement `components/student/ProgressCard.tsx` with progress visualization — Completed [81199a7]
+    - [x] Export from `components/student/index.ts` — Completed [81199a7]
 
 - [ ] Task: Create LessonCard component
     - [ ] Write tests: displays lesson metadata, shows completion status, renders link
