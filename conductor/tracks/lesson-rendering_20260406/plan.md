@@ -18,24 +18,24 @@
 
 - [x] Task: Conductor — Phase Completion Verification 'Core Rendering Components' (Protocol in workflow.md)
 
-## Phase 2: Phase Rendering
+## Phase 2: Phase Rendering [checkpoint: 5e6b7d4]
 
-- [ ] Task: Create `PhaseRenderer` — renders sections for a single phase
-    - [ ] Write tests: maps `text` → MarkdownRenderer, `callout` → CalloutBox, `activity` → ActivityRenderer, `video` → VideoPlayer, `image` → image component
-    - [ ] Write tests: wraps phase in `PhaseContainer` with correct phaseType treatment
-    - [ ] Implement `components/lesson/PhaseRenderer.tsx`
+- [x] Task: Create `PhaseRenderer` — renders sections for a single phase — **8da2ef0**
+    - [x] Write tests: maps `text` → MarkdownRenderer, `callout` → CalloutBox, `activity` → ActivityRenderer, `video` → VideoPlayer, `image` → image component
+    - [x] Write tests: wraps phase in `PhaseContainer` with correct phaseType treatment
+    - [x] Implement `components/lesson/PhaseRenderer.tsx`
 
-- [ ] Task: Create `ActivityRenderer` — delegates to activity registry
-    - [ ] Write tests: registered component key renders component; unregistered key shows placeholder
-    - [ ] Write tests: passes activity props, mode, onSubmit, and onComplete
-    - [ ] Port and adapt `components/lesson/ActivityRenderer.tsx` from bus-math-v2
+- [x] Task: Create `ActivityRenderer` — delegates to activity registry — **3f70a20**
+    - [x] Write tests: registered component key renders component; unregistered key shows placeholder
+    - [x] Write tests: passes activity props, mode, onSubmit, and onComplete
+    - [x] Port and adapt `components/lesson/ActivityRenderer.tsx` from bus-math-v2
 
-- [ ] Task: Create `PhaseCompleteButton`
-    - [ ] Write tests: renders enabled when phase requirements met; disabled otherwise
-    - [ ] Write tests: posts to `/api/phases/complete` on click; shows success state
-    - [ ] Port and adapt `components/lesson/PhaseCompleteButton.tsx` from bus-math-v2
+- [x] Task: Create `PhaseCompleteButton` — **d973f86**
+    - [x] Write tests: renders enabled when phase requirements met; disabled otherwise
+    - [x] Write tests: posts to `/api/phases/complete` on click; shows success state
+    - [x] Port and adapt `components/lesson/PhaseCompleteButton.tsx` from bus-math-v2
 
-- [ ] Task: Conductor — Phase Completion Verification 'Phase Rendering' (Protocol in workflow.md)
+- [x] Task: Conductor — Phase Completion Verification 'Phase Rendering' (Protocol in workflow.md)
 
 ## Phase 3: Lesson-Level Components
 
