@@ -1,0 +1,5 @@
+Task: Port VideoPlayer component
+Files created:
+  - components/lesson/VideoPlayer.tsx — lazy-load YouTube/generic video, privacy-safe nocookie embed, collapsible transcript; uses plain divs (no Card component yet)
+  - __tests__/components/lesson/VideoPlayer.test.tsx — 9 tests
+Why: bus-math-v2 used Card component not present in IM3; adapted to Tailwind-only layout.
