@@ -38,12 +38,12 @@
 
 ## Phase 3: Content Primitives — Interactive
 
-- [ ] Task: Create `StepRevealContainer` component
-    - [ ] Write tests: all steps visible in teaching mode; steps hidden and revealable in guided/practice mode
-    - [ ] Write tests: animation triggers on reveal; keyboard accessible
-    - [ ] Implement `components/textbook/StepRevealContainer.tsx` with framer-motion or CSS transitions
+- [x] Task: Create `StepRevealContainer` component — **9f5d5cd**
+    - [x] Write tests: all steps visible in teaching mode; steps hidden and revealable in guided/practice mode
+    - [x] Write tests: animation triggers on reveal; keyboard accessible
+    - [x] Implement `components/textbook/StepRevealContainer.tsx` with framer-motion or CSS transitions
 
-- [ ] Task: Create `VocabularyHighlight` component
+- [~] Task: Create `VocabularyHighlight` component
     - [ ] Write tests: renders highlighted term inline; tooltip shows definition on hover
     - [ ] Write tests: keyboard navigable (focus + Enter shows tooltip); aria attributes present
     - [ ] Implement `components/textbook/VocabularyHighlight.tsx`
