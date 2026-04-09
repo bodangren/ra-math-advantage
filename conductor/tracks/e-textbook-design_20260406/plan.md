@@ -52,11 +52,11 @@
     - [x] Write tests: renders table with headers and rows; highlights specified cells; uses font-mono-num
     - [x] Implement `components/textbook/TableOfValues.tsx`
 
-- [~] Task: Create `DiscoursePrompt` component
-    - [ ] Write tests: renders prompt text with distinct styling; optional expandable area
-    - [ ] Implement `components/textbook/DiscoursePrompt.tsx`
+- [x] Task: Create `DiscoursePrompt` component — **28c5907**
+    - [x] Write tests: renders prompt text with distinct styling; optional expandable area
+    - [x] Implement `components/textbook/DiscoursePrompt.tsx`
 
-- [ ] Task: Create `ReflectionCard` component
+- [~] Task: Create `ReflectionCard` component
     - [ ] Write tests: renders three CAP dimensions with prompts
     - [ ] Implement `components/textbook/ReflectionCard.tsx`
 
