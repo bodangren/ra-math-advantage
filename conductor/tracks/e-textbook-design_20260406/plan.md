@@ -43,12 +43,12 @@
     - [x] Write tests: animation triggers on reveal; keyboard accessible
     - [x] Implement `components/textbook/StepRevealContainer.tsx` with framer-motion or CSS transitions
 
-- [~] Task: Create `VocabularyHighlight` component
-    - [ ] Write tests: renders highlighted term inline; tooltip shows definition on hover
-    - [ ] Write tests: keyboard navigable (focus + Enter shows tooltip); aria attributes present
-    - [ ] Implement `components/textbook/VocabularyHighlight.tsx`
+- [x] Task: Create `VocabularyHighlight` component — **b1a3921**
+    - [x] Write tests: renders highlighted term inline; tooltip shows definition on hover
+    - [x] Write tests: keyboard navigable (focus + Enter shows tooltip); aria attributes present
+    - [x] Implement `components/textbook/VocabularyHighlight.tsx`
 
-- [ ] Task: Create `TableOfValues` component
+- [~] Task: Create `TableOfValues` component
     - [ ] Write tests: renders table with headers and rows; highlights specified cells; uses font-mono-num
     - [ ] Implement `components/textbook/TableOfValues.tsx`
 
