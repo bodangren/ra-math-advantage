@@ -48,7 +48,7 @@
     - [x] Implement `components/teacher/ClassOverviewCard.tsx` with stats grid — Completed [10180db]
     - [x] Export from `components/teacher/index.ts` — Completed [10180db]
 
-- [ ] Task: Conductor — Phase Completion Verification 'Teacher Components' (Protocol in workflow.md)
+- [~] Task: Conductor — Phase Completion Verification 'Teacher Components' (Protocol in workflow.md)
 
 - [ ] Task: Create StudentRow component
     - [ ] Write tests: renders student name, progress percentage, action buttons
