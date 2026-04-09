@@ -26,11 +26,11 @@
     - [x] Write tests: renders term, definition, optional related terms
     - [x] Implement `components/textbook/DefinitionCard.tsx`
 
-- [~] Task: Create `CalloutBox` component with variants
-    - [ ] Write tests: each variant (important, tip, remember, caution) renders correct icon and color
-    - [ ] Implement `components/textbook/CalloutBox.tsx` replacing the basic `Callout.tsx`
+- [x] Task: Create `CalloutBox` component with variants — **44a6ee5**
+    - [x] Write tests: each variant (important, tip, remember, caution) renders correct icon and color
+    - [x] Implement `components/textbook/CalloutBox.tsx` replacing the basic `Callout.tsx`
 
-- [ ] Task: Create `ExampleHeader` component
+- [~] Task: Create `ExampleHeader` component
     - [ ] Write tests: renders example number, title, difficulty badge
     - [ ] Implement `components/textbook/ExampleHeader.tsx`
 
