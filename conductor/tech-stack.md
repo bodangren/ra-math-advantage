@@ -57,11 +57,28 @@ Custom JWT-based auth built on Convex. No third-party auth provider.
 |---------|---------|
 | `convex` | Database, real-time queries, internal functions |
 | `react-markdown` + `remark-gfm` | Markdown rendering in lesson content |
-| `recharts` | Data visualization (charts) |
+| `recharts` | Data visualization (charts) - NOT used for graphing activities |
 | `@hello-pangea/dnd` | Drag-and-drop activities |
 | `zod` ^4 | Schema validation |
 | `class-variance-authority` | Component variants |
 | `clsx` + `tailwind-merge` | Class name utilities |
+
+## Graphing Canvas (2026-04-10)
+
+**Decision:** Custom SVG-based coordinate plane for interactive graphing activities
+
+**Rationale:**
+- Recharts is designed for data visualization, not interactive coordinate planes
+- Custom SVG provides full control over: click detection, point placement, snap-to-grid, parameter sliders
+- Direct React + SVG implementation is simpler than extending Recharts for these use cases
+- Better performance for real-time updates in Explore mode (parameter sliders)
+- Easier to implement touch interaction for mobile devices
+
+**Implementation:**
+- `components/activities/graphing/GraphingCanvas.tsx` - Core coordinate plane with SVG
+- Event handlers for click/tap to place/remove points
+- Math utilities for function plotting and coordinate transformation
+- Recharts remains available for future data visualization needs (charts, graphs)
 
 ## Shared Business Logic (`lib/`)
 

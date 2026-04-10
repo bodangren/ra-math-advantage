@@ -1454,3 +1454,908 @@ Index: /home/daniel-bo/Desktop/integrated-math-3/conductor/tracks.md
  - [ ] **Track 5: Graphing Components**
 
 [0m
+[0m$ [0mgit add -A && git commit -m "conductor(tracks): Mark Track 4 as completed" && git push 2>&1
+[master 1eaabf1] conductor(tracks): Mark Track 4 as completed
+ 2 files changed, 61 insertions(+), 1 deletion(-)
+To https://github.com/bodangren/ra-integrated-math-3.git
+   719140c..1eaabf1  master -> master
+[0m
+[0m← [0mEdit conductor/tech-debt.md
+Index: /home/daniel-bo/Desktop/integrated-math-3/conductor/tech-debt.md
+===================================================================
+--- /home/daniel-bo/Desktop/integrated-math-3/conductor/tech-debt.md
++++ /home/daniel-bo/Desktop/integrated-math-3/conductor/tech-debt.md
+@@ -10,5 +10,5 @@
+ |------|-------|------|----------|--------|-------|
+ | 2026-04-05 | setup | No seed.ts in convex/ for demo data | Medium | Open | Need seeding script for development |
+ | 2026-04-05 | setup | Legacy Supabase types in AuthProvider.tsx (snake_case profile fields) | Low | Open | Should migrate to camelCase matching Convex schema |
+ | 2026-04-09 | lesson-rendering | TypeScript error in PhaseCompleteButton.test.tsx — Promise type mismatch | Medium | Open | Type '(value: CompletePhaseResponse | PromiseLike<CompletePhaseResponse>) => void' not assignable to '(v: unknown) => void' |
+-| 2026-04-10 | activity-infrastructure | activity_completions table requires lessonId/phaseNumber not available in submission | Medium | Open | Submission mutation can't create completions without lesson context; may need separate completion tracking flow |
++| 2026-04-10 | activity-infrastructure | activity_completions table requires lessonId/phaseNumber not available in submission | Medium | Open | Submission mutation can't create completions without lesson context; PhaseActivityTracker handles client-side tracking |
+
+[0m
+[0m← [0mEdit conductor/lessons-learned.md
+Index: /home/daniel-bo/Desktop/integrated-math-3/conductor/lessons-learned.md
+===================================================================
+--- /home/daniel-bo/Desktop/integrated-math-3/conductor/lessons-learned.md
++++ /home/daniel-bo/Desktop/integrated-math-3/conductor/lessons-learned.md
+@@ -42,5 +42,6 @@
+ <!-- Notes on where estimates were wrong and why -->
+ 
+ - (2026-04-10, activity-infrastructure) activity_completions schema requires lessonId/phaseNumber which aren't available in practice.v1 envelope — future work should either pass context separately or redesign completion tracking
+ - (2026-04-10, activity-infrastructure) Union types in TypeScript require type guards for safe property access — use if/else checks on discriminant (e.g., success boolean) before accessing variant-specific properties
++- (2026-04-10, activity-infrastructure) PhaseActivityTracker provides in-memory completion tracking for UI gating — persistence to Convex deferred until lesson context is available
+ 
+
+[0m
+[0m$ [0mwc -l /home/daniel-bo/Desktop/integrated-math-3/conductor/tech-debt.md /home/daniel-bo/Desktop/integrated-math-3/conductor/lessons-learned.md
+14 /home/daniel-bo/Desktop/integrated-math-3/conductor/tech-debt.md
+  47 /home/daniel-bo/Desktop/integrated-math-3/conductor/lessons-learned.md
+  61 total
+[0m
+[0m$ [0mgit add conductor/tech-debt.md conductor/lessons-learned.md && git commit -m "docs: Update tech-debt and lessons-learned after Track 4 completion
+
+- Note that PhaseActivityTracker provides client-side completion tracking
+- Track 4 complete: all 4 phases implemented and tested"
+[master b0d2b75] docs: Update tech-debt and lessons-learned after Track 4 completion
+ 2 files changed, 2 insertions(+), 1 deletion(-)
+[0m
+[0m$ [0mgit commit --allow-empty -m "conductor(checkpoint): Track 4 complete - Activity Infrastructure (zai-coding-plan/glm-4.7)
+
+Track 4: Activity Infrastructure is now complete. All 4 phases implemented:
+- Phase 1: Registry & Mode System
+- Phase 2: Props Schemas  
+- Phase 3: Submission Pipeline
+- Phase 4: Completion Tracking
+
+Total: 45 new tests across all phases, all passing."
+[master af14fcf] conductor(checkpoint): Track 4 complete - Activity Infrastructure (zai-coding-plan/glm-4.7)
+[0m
+[0m$ [0mgit notes add -m "Track 4: Activity Infrastructure - Complete
+
+Summary: Implemented the core activity infrastructure for Integrated Math 3, including registry, mode system, props schemas, submission pipeline, and completion tracking.
+
+Phases Completed:
+1. Registry & Mode System - activity registry with 6 Module 1 keys, mode resolution for teaching/guided/practice modes
+2. Props Schemas - Zod schemas for all 6 activity types (graphing-explorer, step-by-step-solver, comprehension-quiz, fill-in-the-blank, rate-of-change-calculator, discriminant-analyzer)
+3. Submission Pipeline - client-side submitActivity(), API route /api/activities/submit, Convex submitActivity mutation
+4. Completion Tracking - PhaseActivityTracker class for client-side completion state management
+
+Files Created:
+- lib/activities/registry.ts
+- lib/activities/modes.ts
+- lib/activities/schemas/ (6 schema files + index)
+- lib/activities/submission.ts
+- lib/activities/completion.ts
+- app/api/activities/submit/route.ts
+- Updated: convex/activities.ts (added submitActivity mutation)
+
+Tests Created: 45 tests across all phases
+
+Tech Debt Added:
+- activity_completions tracking requires lesson context not available in submission envelope
+
+Lessons Learned:
+- Union types require type guards for safe property access
+- PhaseActivityTracker provides in-memory completion tracking for UI gating
+
+Model: zai-coding-plan/glm-4.7" af14fcf
+[0m
+[0m$ [0mgit push && git push origin refs/notes/* 2>&1
+To https://github.com/bodangren/ra-integrated-math-3.git
+   1eaabf1..af14fcf  master -> master
+To https://github.com/bodangren/ra-integrated-math-3.git
+   e8f758c..fd23c39  refs/notes/commits -> refs/notes/commits
+[0m
+[0m→ [0mRead conductor/tracks.md[90m [limit=15, offset=30][0m
+[0m→ [0mRead conductor/tracks/graphing-components_20260406
+[0m→ [0mRead conductor/tracks/graphing-components_20260406/plan.md
+[0m→ [0mRead conductor/tracks/graphing-components_20260406/spec.md
+[0m→ [0mRead conductor/tech-stack.md[90m [limit=100][0m
+[0m→ [0mRead conductor/tech-stack.md[90m [offset=100][0m
+[0m
+[0m← [0mEdit conductor/tech-stack.md
+Index: /home/daniel-bo/Desktop/integrated-math-3/conductor/tech-stack.md
+===================================================================
+--- /home/daniel-bo/Desktop/integrated-math-3/conductor/tech-stack.md
++++ /home/daniel-bo/Desktop/integrated-math-3/conductor/tech-stack.md
+@@ -56,14 +56,31 @@
+ | Package | Purpose |
+ |---------|---------|
+ | `convex` | Database, real-time queries, internal functions |
+ | `react-markdown` + `remark-gfm` | Markdown rendering in lesson content |
+-| `recharts` | Data visualization (charts) |
++| `recharts` | Data visualization (charts) - NOT used for graphing activities |
+ | `@hello-pangea/dnd` | Drag-and-drop activities |
+ | `zod` ^4 | Schema validation |
+ | `class-variance-authority` | Component variants |
+ | `clsx` + `tailwind-merge` | Class name utilities |
+ 
++## Graphing Canvas (2026-04-10)
++
++**Decision:** Custom SVG-based coordinate plane for interactive graphing activities
++
++**Rationale:**
++- Recharts is designed for data visualization, not interactive coordinate planes
++- Custom SVG provides full control over: click detection, point placement, snap-to-grid, parameter sliders
++- Direct React + SVG implementation is simpler than extending Recharts for these use cases
++- Better performance for real-time updates in Explore mode (parameter sliders)
++- Easier to implement touch interaction for mobile devices
++
++**Implementation:**
++- `components/activities/graphing/GraphingCanvas.tsx` - Core coordinate plane with SVG
++- Event handlers for click/tap to place/remove points
++- Math utilities for function plotting and coordinate transformation
++- Recharts remains available for future data visualization needs (charts, graphs)
++
+ ## Shared Business Logic (`lib/`)
+ 
+ | Module | File | Purpose |
+ |--------|------|---------|
+
+[0m
+[0m$ [0mmkdir -p /home/daniel-bo/Desktop/integrated-math-3/components/activities/graphing && mkdir -p /home/daniel-bo/Desktop/integrated-math-3/__tests__/components/activities/graphing
+[0m
+[0m← [0mWrite __tests__/components/activities/graphing/GraphingCanvas.test.tsx
+Wrote file successfully.
+[0m
+[0m$ [0mnpm test -- components/activities/graphing/GraphingCanvas.test.tsx 2>&1
+> test
+> vitest run components/activities/graphing/GraphingCanvas.test.tsx
+
+
+ RUN  v4.1.2 /home/daniel-bo/Desktop/integrated-math-3
+
+ ❯ __tests__/components/activities/graphing/GraphingCanvas.test.tsx (0 test)
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  __tests__/components/activities/graphing/GraphingCanvas.test.tsx [ __tests__/components/activities/graphing/GraphingCanvas.test.tsx ]
+Error: Failed to resolve import "@/components/activities/graphing/GraphingCanvas" from "__tests__/components/activities/graphing/GraphingCanvas.test.tsx". Does the file exist?
+  Plugin: vite:import-analysis
+  File: /home/daniel-bo/Desktop/integrated-math-3/__tests__/components/activities/graphing/GraphingCanvas.test.tsx:3:31
+  2  |  import { describe, it, expect, vi } from "vitest";
+  3  |  import { render, screen, fireEvent } from "@testing-library/react";
+  4  |  import { GraphingCanvas } from "@/components/activities/graphing/GraphingCanvas";
+     |                                  ^
+  5  |  describe("GraphingCanvas", () => {
+  6  |    const defaultProps = {
+ ❯ TransformPluginContext._formatLog node_modules/vite/dist/node/chunks/config.js:28999:43
+ ❯ TransformPluginContext.error node_modules/vite/dist/node/chunks/config.js:28996:14
+ ❯ normalizeUrl node_modules/vite/dist/node/chunks/config.js:27119:18
+ ❯ node_modules/vite/dist/node/chunks/config.js:27177:32
+ ❯ TransformPluginContext.transform node_modules/vite/dist/node/chunks/config.js:27145:4
+ ❯ EnvironmentPluginContainer.transform node_modules/vite/dist/node/chunks/config.js:28797:14
+ ❯ loadAndTransform node_modules/vite/dist/node/chunks/config.js:22670:26
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  no tests
+   Start at  09:02:14
+   Duration  1.48s (transform 74ms, setup 317ms, import 0ms, tests 0ms, environment 761ms)
+[0m
+[0m← [0mWrite lib/activities/graphing/canvas-utils.ts
+Wrote file successfully.
+[0m
+[0m← [0mWrite components/activities/graphing/GraphingCanvas.tsx
+Wrote file successfully.
+[0m
+[0m$ [0mnpm test -- components/activities/graphing/GraphingCanvas.test.tsx 2>&1 | tail -50
+FAIL  __tests__/components/activities/graphing/GraphingCanvas.test.tsx > GraphingCanvas > interactive point placement > does not allow clicking when readonly
+AssertionError: expected "vi.fn()" to not be called at all, but actually been called 1 times
+
+Received:
+
+  1st vi.fn() call:
+
+    Array [
+      Object {
+        "x": Infinity,
+        "y": -Infinity,
+      },
+    ]
+
+
+Number of calls: 1
+
+ ❯ __tests__/components/activities/graphing/GraphingCanvas.test.tsx:142:43
+    140|       const svg = screen.getByRole('img');
+    141|       fireEvent.click(svg, { clientX: 200, clientY: 200 });
+    142|       expect(defaultProps.onPointAdd).not.toHaveBeenCalled();
+       |                                           ^
+    143|     });
+    144|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  __tests__/components/activities/graphing/GraphingCanvas.test.tsx > GraphingCanvas > responsive design > scales SVG for different screen sizes
+Error: [2mexpect([22m[31melement[39m[2m).toHaveStyle()[22m
+
+- Expected
+
+- width: 100%;
+ ❯ __tests__/components/activities/graphing/GraphingCanvas.test.tsx:172:19
+    170|       render(<GraphingCanvas {...defaultProps} />);
+    171|       const svg = screen.getByRole('img');
+    172|       expect(svg).toHaveStyle({ width: '100%' });
+       |                   ^
+    173|     });
+    174|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  2 failed | 17 passed (19)
+   Start at  09:06:25
+   Duration  2.17s (transform 172ms, setup 299ms, import 134ms, tests 697ms, environment 772ms)
+[0m
+[0m→ [0mRead components/activities/graphing/GraphingCanvas.tsx[90m [limit=50, offset=40][0m
+[0m
+[0m← [0mEdit components/activities/graphing/GraphingCanvas.tsx
+Index: /home/daniel-bo/Desktop/integrated-math-3/components/activities/graphing/GraphingCanvas.tsx
+===================================================================
+--- /home/daniel-bo/Desktop/integrated-math-3/components/activities/graphing/GraphingCanvas.tsx
++++ /home/daniel-bo/Desktop/integrated-math-3/components/activities/graphing/GraphingCanvas.tsx
+@@ -42,9 +42,9 @@
+ const handleClick = (event: React.MouseEvent<SVGSVGElement>) => {
+   if (readonly) return;
+ 
+   const svg = svgRef.current;
+-  if (!svg) return;
++  if (!svg || canvasSize.width === 0 || canvasSize.height === 0) return;
+ 
+   const rect = svg.getBoundingClientRect();
+   const clickX = event.clientX - rect.left;
+   const clickY = event.clientY - rect.top;
+@@ -60,9 +60,9 @@
+ 
+   const finalX = snapToGrid ? snapToGridValue(x) : x;
+   const finalY = snapToGrid ? snapToGridValue(y) : y;
+ 
+-  if (onPointAdd) {
++  if (onPointAdd && isFinite(finalX) && isFinite(finalY)) {
+     onPointAdd({ x: finalX, y: finalY });
+   }
+ };
+ 
+
+[0m
+[0m→ [0mRead components/activities/graphing/GraphingCanvas.tsx[90m [offset=250][0m
+[0m
+[0m← [0mEdit components/activities/graphing/GraphingCanvas.tsx
+Index: /home/daniel-bo/Desktop/integrated-math-3/components/activities/graphing/GraphingCanvas.tsx
+===================================================================
+--- /home/daniel-bo/Desktop/integrated-math-3/components/activities/graphing/GraphingCanvas.tsx
++++ /home/daniel-bo/Desktop/integrated-math-3/components/activities/graphing/GraphingCanvas.tsx
+@@ -276,9 +276,9 @@
+   ref={svgRef}
+   width="100%"
+   height="100%"
+   viewBox={`0 0 ${canvasSize.width} ${canvasSize.height}`}
+-  style={{ minHeight: '400px', backgroundColor: '#ffffff' }}
++  style={{ width: '100%', minHeight: '400px', backgroundColor: '#ffffff' }}
+   onClick={handleClick}
+   role="img"
+   aria-label="Coordinate plane for graphing"
+ >
+
+[0m
+[0m$ [0mnpm test -- components/activities/graphing/GraphingCanvas.test.tsx 2>&1 | tail -20
+AssertionError: expected "vi.fn()" to be called with arguments: [ ObjectContaining{…} ]
+
+Number of calls: 0
+
+ ❯ __tests__/components/activities/graphing/GraphingCanvas.test.tsx:149:39
+    147|       const svg = screen.getByRole('img');
+    148|       fireEvent.click(svg, { clientX: 205, clientY: 205 });
+    149|       expect(defaultProps.onPointAdd).toHaveBeenCalledWith(
+       |                                       ^
+    150|         expect.objectContaining({
+    151|           x: expect.any(Number),
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  2 failed | 17 passed (19)
+   Start at  09:08:00
+   Duration  2.16s (transform 156ms, setup 283ms, import 112ms, tests 707ms, environment 766ms)
+[0m
+[0m→ [0mRead __tests__/components/activities/graphing/GraphingCanvas.test.tsx[90m [limit=10, offset=140][0m
+[0m
+[0m← [0mEdit __tests__/components/activities/graphing/GraphingCanvas.test.tsx
+Index: /home/daniel-bo/Desktop/integrated-math-3/__tests__/components/activities/graphing/GraphingCanvas.test.tsx
+===================================================================
+--- /home/daniel-bo/Desktop/integrated-math-3/__tests__/components/activities/graphing/GraphingCanvas.test.tsx
++++ /home/daniel-bo/Desktop/integrated-math-3/__tests__/components/activities/graphing/GraphingCanvas.test.tsx
+@@ -141,11 +141,12 @@
+   fireEvent.click(svg, { clientX: 200, clientY: 200 });
+   expect(defaultProps.onPointAdd).not.toHaveBeenCalled();
+ });
+ 
+-it('snaps point to grid when snapToGrid is enabled', () => {
++it('snaps point to grid when snapToGrid is enabled', async () => {
+   render(<GraphingCanvas {...defaultProps} snapToGrid={true} />);
+   const svg = screen.getByRole('img');
++  await new Promise(resolve => setTimeout(resolve, 10));
+   fireEvent.click(svg, { clientX: 205, clientY: 205 });
+   expect(defaultProps.onPointAdd).toHaveBeenCalledWith(
+     expect.objectContaining({
+       x: expect.any(Number),
+
+[0m
+[0m← [0mEdit __tests__/components/activities/graphing/GraphingCanvas.test.tsx
+Index: /home/daniel-bo/Desktop/integrated-math-3/__tests__/components/activities/graphing/GraphingCanvas.test.tsx
+===================================================================
+--- /home/daniel-bo/Desktop/integrated-math-3/__tests__/components/activities/graphing/GraphingCanvas.test.tsx
++++ /home/daniel-bo/Desktop/integrated-math-3/__tests__/components/activities/graphing/GraphingCanvas.test.tsx
+@@ -127,18 +127,20 @@
+   });
+ });
+ 
+ describe('interactive point placement', () => {
+-  it('allows clicking to place a point when not readonly', () => {
++  it('allows clicking to place a point when not readonly', async () => {
+     render(<GraphingCanvas {...defaultProps} readonly={false} />);
+     const svg = screen.getByRole('img');
++    await new Promise(resolve => setTimeout(resolve, 10));
+     fireEvent.click(svg, { clientX: 200, clientY: 200 });
+     expect(defaultProps.onPointAdd).toHaveBeenCalled();
+   });
+ 
+-  it('does not allow clicking when readonly', () => {
++  it('does not allow clicking when readonly', async () => {
+     render(<GraphingCanvas {...defaultProps} readonly={true} />);
+     const svg = screen.getByRole('img');
++    await new Promise(resolve => setTimeout(resolve, 10));
+     fireEvent.click(svg, { clientX: 200, clientY: 200 });
+     expect(defaultProps.onPointAdd).not.toHaveBeenCalled();
+   });
+ 
+
+[0m
+[0m← [0mEdit __tests__/components/activities/graphing/GraphingCanvas.test.tsx
+Index: /home/daniel-bo/Desktop/integrated-math-3/__tests__/components/activities/graphing/GraphingCanvas.test.tsx
+===================================================================
+--- /home/daniel-bo/Desktop/integrated-math-3/__tests__/components/activities/graphing/GraphingCanvas.test.tsx
++++ /home/daniel-bo/Desktop/integrated-math-3/__tests__/components/activities/graphing/GraphingCanvas.test.tsx
+@@ -156,11 +156,12 @@
+     }),
+   );
+ });
+ 
+-it('removes point when clicking an existing point', () => {
++it('removes point when clicking an existing point', async () => {
+   const points = [{ x: 0, y: 0, label: 'test' }];
+   render(<GraphingCanvas {...defaultProps} points={points} readonly={false} />);
++  await new Promise(resolve => setTimeout(resolve, 10));
+   const marker = document.querySelector('.point-marker');
+   if (marker) {
+     fireEvent.click(marker);
+     expect(defaultProps.onPointRemove).toHaveBeenCalledWith('test');
+
+[0m
+[0m$ [0mnpm test -- components/activities/graphing/GraphingCanvas.test.tsx 2>&1 | tail -15
+150|       await new Promise(resolve => setTimeout(resolve, 10));
+    151|       fireEvent.click(svg, { clientX: 205, clientY: 205 });
+    152|       expect(defaultProps.onPointAdd).toHaveBeenCalledWith(
+       |                                       ^
+    153|         expect.objectContaining({
+    154|           x: expect.any(Number),
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  2 failed | 17 passed (19)
+   Start at  09:10:49
+   Duration  2.20s (transform 140ms, setup 293ms, import 102ms, tests 737ms, environment 774ms)
+[0m
+[0m← [0mEdit __tests__/components/activities/graphing/GraphingCanvas.test.tsx
+Index: /home/daniel-bo/Desktop/integrated-math-3/__tests__/components/activities/graphing/GraphingCanvas.test.tsx
+===================================================================
+--- /home/daniel-bo/Desktop/integrated-math-3/__tests__/components/activities/graphing/GraphingCanvas.test.tsx
++++ /home/daniel-bo/Desktop/integrated-math-3/__tests__/components/activities/graphing/GraphingCanvas.test.tsx
+@@ -10,8 +10,10 @@
+   points: [],
+   onPointAdd: vi.fn(),
+   onPointRemove: vi.fn(),
+   readonly: false,
++  width: 600,
++  height: 600,
+ };
+ 
+ describe('coordinate plane rendering', () => {
+   it('renders coordinate plane with correct domain and range', () => {
+
+[0m
+[0m← [0mEdit __tests__/components/activities/graphing/GraphingCanvas.test.tsx
+Index: /home/daniel-bo/Desktop/integrated-math-3/__tests__/components/activities/graphing/GraphingCanvas.test.tsx
+===================================================================
+--- /home/daniel-bo/Desktop/integrated-math-3/__tests__/components/activities/graphing/GraphingCanvas.test.tsx
++++ /home/daniel-bo/Desktop/integrated-math-3/__tests__/components/activities/graphing/GraphingCanvas.test.tsx
+@@ -129,28 +129,25 @@
+   });
+ });
+ 
+ describe('interactive point placement', () => {
+-  it('allows clicking to place a point when not readonly', async () => {
++  it('allows clicking to place a point when not readonly', () => {
+     render(<GraphingCanvas {...defaultProps} readonly={false} />);
+     const svg = screen.getByRole('img');
+-    await new Promise(resolve => setTimeout(resolve, 10));
+     fireEvent.click(svg, { clientX: 200, clientY: 200 });
+     expect(defaultProps.onPointAdd).toHaveBeenCalled();
+   });
+ 
+-  it('does not allow clicking when readonly', async () => {
++  it('does not allow clicking when readonly', () => {
+     render(<GraphingCanvas {...defaultProps} readonly={true} />);
+     const svg = screen.getByRole('img');
+-    await new Promise(resolve => setTimeout(resolve, 10));
+     fireEvent.click(svg, { clientX: 200, clientY: 200 });
+     expect(defaultProps.onPointAdd).not.toHaveBeenCalled();
+   });
+ 
+-  it('snaps point to grid when snapToGrid is enabled', async () => {
++  it('snaps point to grid when snapToGrid is enabled', () => {
+     render(<GraphingCanvas {...defaultProps} snapToGrid={true} />);
+     const svg = screen.getByRole('img');
+-    await new Promise(resolve => setTimeout(resolve, 10));
+     fireEvent.click(svg, { clientX: 205, clientY: 205 });
+     expect(defaultProps.onPointAdd).toHaveBeenCalledWith(
+       expect.objectContaining({
+         x: expect.any(Number),
+@@ -158,12 +155,11 @@
+       }),
+     );
+   });
+ 
+-  it('removes point when clicking an existing point', async () => {
++  it('removes point when clicking an existing point', () => {
+     const points = [{ x: 0, y: 0, label: 'test' }];
+     render(<GraphingCanvas {...defaultProps} points={points} readonly={false} />);
+-    await new Promise(resolve => setTimeout(resolve, 10));
+     const marker = document.querySelector('.point-marker');
+     if (marker) {
+       fireEvent.click(marker);
+       expect(defaultProps.onPointRemove).toHaveBeenCalledWith('test');
+
+[0m
+[0m$ [0mnpm test -- components/activities/graphing/GraphingCanvas.test.tsx 2>&1 | tail -10
+153|           x: expect.any(Number),
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  2 failed | 17 passed (19)
+   Start at  09:12:17
+   Duration  2.13s (transform 143ms, setup 296ms, import 100ms, tests 710ms, environment 769ms)
+[0m
+[0m$ [0mnpm test -- components/activities/graphing/GraphingCanvas.test.tsx 2>&1 | grep -A 10 "snaps point to grid"
+× snaps point to grid when snapToGrid is enabled 26ms
+       ✓ removes point when clicking an existing point 22ms
+       ✓ scales SVG for different screen sizes 22ms
+       ✓ maintains aspect ratio 21ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  __tests__/components/activities/graphing/GraphingCanvas.test.tsx > GraphingCanvas > interactive point placement > allows clicking to place a point when not readonly
+AssertionError: expected "vi.fn()" to be called at least once
+ ❯ __tests__/components/activities/graphing/GraphingCanvas.test.tsx:137:39
+    135|       const svg = screen.getByRole('img');
+--
+ FAIL  __tests__/components/activities/graphing/GraphingCanvas.test.tsx > GraphingCanvas > interactive point placement > snaps point to grid when snapToGrid is enabled
+AssertionError: expected "vi.fn()" to be called with arguments: [ ObjectContaining{…} ]
+
+Number of calls: 0
+
+ ❯ __tests__/components/activities/graphing/GraphingCanvas.test.tsx:151:39
+    149|       const svg = screen.getByRole('img');
+    150|       fireEvent.click(svg, { clientX: 205, clientY: 205 });
+    151|       expect(defaultProps.onPointAdd).toHaveBeenCalledWith(
+       |                                       ^
+    152|         expect.objectContaining({
+[0m
+[0m→ [0mRead components/activities/graphing/GraphingCanvas.tsx[90m [limit=45][0m
+[0m
+[0m← [0mEdit components/activities/graphing/GraphingCanvas.tsx
+Index: /home/daniel-bo/Desktop/integrated-math-3/components/activities/graphing/GraphingCanvas.tsx
+===================================================================
+--- /home/daniel-bo/Desktop/integrated-math-3/components/activities/graphing/GraphingCanvas.tsx
++++ /home/daniel-bo/Desktop/integrated-math-3/components/activities/graphing/GraphingCanvas.tsx
+@@ -29,15 +29,28 @@
+ useEffect(() => {
+   const handleResize = () => {
+     if (svgRef.current) {
+       const rect = svgRef.current.getBoundingClientRect();
+-      setCanvasSize({ width: rect.width, height: rect.height });
++      if (rect.width > 0 && rect.height > 0) {
++        setCanvasSize({ width: rect.width, height: rect.height });
++      }
+     }
+   };
+ 
+-  handleResize();
+-  window.addEventListener('resize', handleResize);
+-  return () => window.removeEventListener('resize', handleResize);
++  const resizeObserver = new ResizeObserver(() => {
++    if (svgRef.current) {
++      const rect = svgRef.current.getBoundingClientRect();
++      if (rect.width > 0 && rect.height > 0) {
++        setCanvasSize({ width: rect.width, height: rect.height });
++      }
++    }
++  });
++
++  if (svgRef.current) {
++    resizeObserver.observe(svgRef.current);
++  }
++
++  return () => resizeObserver.disconnect();
+ }, []);
+ 
+ const handleClick = (event: React.MouseEvent<SVGSVGElement>) => {
+   if (readonly) return;
+
+[0m
+[0m$ [0mnpm test -- components/activities/graphing/GraphingCanvas.test.tsx 2>&1 | tail -10
+146|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 18 passed (19)
+   Start at  09:13:18
+   Duration  2.00s (transform 141ms, setup 272ms, import 114ms, tests 580ms, environment 753ms)
+[0m
+[0m$ [0mnpm test -- components/activities/graphing/GraphingCanvas.test.tsx 2>&1 | grep "FAIL\|×"
+× does not allow clicking when readonly 44ms
+ FAIL  __tests__/components/activities/graphing/GraphingCanvas.test.tsx > GraphingCanvas > interactive point placement > does not allow clicking when readonly
+[0m
+[0m$ [0mnpm test -- components/activities/graphing/GraphingCanvas.test.tsx 2>&1 | grep -A 10 "does not allow clicking when readonly"
+× does not allow clicking when readonly 43ms
+       ✓ snaps point to grid when snapToGrid is enabled 20ms
+       ✓ removes point when clicking an existing point 16ms
+       ✓ scales SVG for different screen sizes 17ms
+       ✓ maintains aspect ratio 16ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  __tests__/components/activities/graphing/GraphingCanvas.test.tsx > GraphingCanvas > interactive point placement > does not allow clicking when readonly
+AssertionError: expected "vi.fn()" to not be called at all, but actually been called 1 times
+
+Received:
+
+  1st vi.fn() call:
+
+    Array [
+      Object {
+        "x": -3.333333333333334,
+        "y": 3.333333333333334,
+[0m
+[0m→ [0mRead components/activities/graphing/GraphingCanvas.tsx[90m [limit=30, offset=40][0m
+[0m→ [0mRead __tests__/components/activities/graphing/GraphingCanvas.test.tsx[90m [limit=10, offset=138][0m
+[0m
+[0m← [0mEdit components/activities/graphing/GraphingCanvas.tsx
+Index: /home/daniel-bo/Desktop/integrated-math-3/components/activities/graphing/GraphingCanvas.tsx
+===================================================================
+--- /home/daniel-bo/Desktop/integrated-math-3/components/activities/graphing/GraphingCanvas.tsx
++++ /home/daniel-bo/Desktop/integrated-math-3/components/activities/graphing/GraphingCanvas.tsx
+@@ -52,9 +52,13 @@
+   return () => resizeObserver.disconnect();
+ }, []);
+ 
+ const handleClick = (event: React.MouseEvent<SVGSVGElement>) => {
+-  if (readonly) return;
++  if (readonly) {
++    event.preventDefault();
++    event.stopPropagation();
++    return;
++  }
+ 
+   const svg = svgRef.current;
+   if (!svg || canvasSize.width === 0 || canvasSize.height === 0) return;
+ 
+
+[0m
+[0m← [0mEdit __tests__/components/activities/graphing/GraphingCanvas.test.tsx
+Index: /home/daniel-bo/Desktop/integrated-math-3/__tests__/components/activities/graphing/GraphingCanvas.test.tsx
+===================================================================
+--- /home/daniel-bo/Desktop/integrated-math-3/__tests__/components/activities/graphing/GraphingCanvas.test.tsx
++++ /home/daniel-bo/Desktop/integrated-math-3/__tests__/components/activities/graphing/GraphingCanvas.test.tsx
+@@ -1,5 +1,5 @@
+-import { describe, it, expect, vi } from 'vitest';
++import { describe, it, expect, vi, beforeEach } from 'vitest';
+ import { render, screen, fireEvent } from '@testing-library/react';
+ import { GraphingCanvas } from '@/components/activities/graphing/GraphingCanvas';
+ 
+ describe('GraphingCanvas', () => {
+@@ -14,8 +14,12 @@
+     width: 600,
+     height: 600,
+   };
+ 
++  beforeEach(() => {
++    vi.clearAllMocks();
++  });
++
+   describe('coordinate plane rendering', () => {
+     it('renders coordinate plane with correct domain and range', () => {
+       render(<GraphingCanvas {...defaultProps} />);
+       const svg = screen.getByRole('img');
+
+[0m
+[0m$ [0mnpm test -- components/activities/graphing/GraphingCanvas.test.tsx 2>&1 | tail -10
+RUN  v4.1.2 /home/daniel-bo/Desktop/integrated-math-3
+
+ ✓ __tests__/components/activities/graphing/GraphingCanvas.test.tsx (19 tests) 575ms
+
+ Test Files  1 passed (1)
+      Tests  19 passed (19)
+   Start at  09:15:21
+   Duration  1.99s (transform 140ms, setup 285ms, import 96ms, tests 575ms, environment 771ms)
+[0m
+[0m$ [0mnpm run lint 2>&1
+> lint
+> vinext lint
+
+
+  vinext lint
+
+  Using eslint (with existing config)
+
+
+/home/daniel-bo/Desktop/integrated-math-3/__tests__/components/activities/graphing/GraphingCanvas.test.tsx
+  186:16  error  'minX' is assigned a value but never used  @typescript-eslint/no-unused-vars
+  186:22  error  'minY' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+/home/daniel-bo/Desktop/integrated-math-3/components/activities/graphing/GraphingCanvas.tsx
+    6:3   error  'FunctionPlot' is defined but never used           @typescript-eslint/no-unused-vars
+   30:11  error  'handleResize' is assigned a value but never used  @typescript-eslint/no-unused-vars
+  143:12  error  'xMin' is assigned a value but never used          @typescript-eslint/no-unused-vars
+  143:18  error  'xMax' is assigned a value but never used          @typescript-eslint/no-unused-vars
+  144:12  error  'yMin' is assigned a value but never used          @typescript-eslint/no-unused-vars
+  144:18  error  'yMax' is assigned a value but never used          @typescript-eslint/no-unused-vars
+
+✖ 8 problems (8 errors, 0 warnings)
+[0m
+[0m← [0mEdit components/activities/graphing/GraphingCanvas.tsx
+Index: /home/daniel-bo/Desktop/integrated-math-3/components/activities/graphing/GraphingCanvas.tsx
+===================================================================
+--- /home/daniel-bo/Desktop/integrated-math-3/components/activities/graphing/GraphingCanvas.tsx
++++ /home/daniel-bo/Desktop/integrated-math-3/components/activities/graphing/GraphingCanvas.tsx
+@@ -2,9 +2,8 @@
+ 
+ import React, { useRef, useEffect, useState } from 'react';
+ import {
+   Point,
+-  FunctionPlot,
+   GraphingCanvasProps,
+   transformDataToCanvas,
+   transformCanvasToData,
+   snapToGridValue,
+
+[0m
+[0m← [0mEdit components/activities/graphing/GraphingCanvas.tsx
+Index: /home/daniel-bo/Desktop/integrated-math-3/components/activities/graphing/GraphingCanvas.tsx
+===================================================================
+--- /home/daniel-bo/Desktop/integrated-math-3/components/activities/graphing/GraphingCanvas.tsx
++++ /home/daniel-bo/Desktop/integrated-math-3/components/activities/graphing/GraphingCanvas.tsx
+@@ -25,17 +25,8 @@
+ const svgRef = useRef<SVGSVGElement>(null);
+ const [canvasSize, setCanvasSize] = useState({ width, height });
+ 
+ useEffect(() => {
+-  const handleResize = () => {
+-    if (svgRef.current) {
+-      const rect = svgRef.current.getBoundingClientRect();
+-      if (rect.width > 0 && rect.height > 0) {
+-        setCanvasSize({ width: rect.width, height: rect.height });
+-      }
+-    }
+-  };
+-
+   const resizeObserver = new ResizeObserver(() => {
+     if (svgRef.current) {
+       const rect = svgRef.current.getBoundingClientRect();
+       if (rect.width > 0 && rect.height > 0) {
+
+[0m
+[0m→ [0mRead components/activities/graphing/GraphingCanvas.tsx[90m [limit=30, offset=138][0m
+[0m✗ [0medit failed
+[91m[1mError: [0mNo changes to apply: oldString and newString are identical.
+[0m
+[0m$ [0mnpm run lint 2>&1 | grep "xMin\|xMax\|yMin\|yMax"
+133:12  error  'xMin' is assigned a value but never used  @typescript-eslint/no-unused-vars
+  133:18  error  'xMax' is assigned a value but never used  @typescript-eslint/no-unused-vars
+  134:12  error  'yMin' is assigned a value but never used  @typescript-eslint/no-unused-vars
+  134:18  error  'yMax' is assigned a value but never used  @typescript-eslint/no-unused-vars
+[0m
+[0m→ [0mRead components/activities/graphing/GraphingCanvas.tsx[90m [limit=10, offset=128][0m
+[0m
+[0m← [0mEdit components/activities/graphing/GraphingCanvas.tsx
+Index: /home/daniel-bo/Desktop/integrated-math-3/components/activities/graphing/GraphingCanvas.tsx
+===================================================================
+--- /home/daniel-bo/Desktop/integrated-math-3/components/activities/graphing/GraphingCanvas.tsx
++++ /home/daniel-bo/Desktop/integrated-math-3/components/activities/graphing/GraphingCanvas.tsx
+@@ -129,10 +129,8 @@
+ };
+ 
+ const renderAxes = () => {
+   const { width: w, height: h } = canvasSize;
+-  const [xMin, xMax] = domain;
+-  const [yMin, yMax] = range;
+ 
+   const { canvasX: originX } = transformDataToCanvas(0, 0, domain, range, w, h);
+   const { canvasY: originY } = transformDataToCanvas(0, 0, domain, range, w, h);
+ 
+
+[0m
+[0m→ [0mRead __tests__/components/activities/graphing/GraphingCanvas.test.tsx[90m [limit=10, offset=180][0m
+[0m
+[0m← [0mEdit __tests__/components/activities/graphing/GraphingCanvas.test.tsx
+Index: /home/daniel-bo/Desktop/integrated-math-3/__tests__/components/activities/graphing/GraphingCanvas.test.tsx
+===================================================================
+--- /home/daniel-bo/Desktop/integrated-math-3/__tests__/components/activities/graphing/GraphingCanvas.test.tsx
++++ /home/daniel-bo/Desktop/integrated-math-3/__tests__/components/activities/graphing/GraphingCanvas.test.tsx
+@@ -182,9 +182,9 @@
+     render(<GraphingCanvas {...defaultProps} />);
+     const svg = screen.getByRole('img');
+     const viewBox = svg.getAttribute('viewBox');
+     if (viewBox) {
+-      const [minX, minY, width, height] = viewBox.split(' ').map(Number);
++      const [, , width, height] = viewBox.split(' ').map(Number);
+       expect(width).toBe(height);
+     }
+   });
+ });
+
+[0m
+[0m$ [0mnpm run lint 2>&1
+> lint
+> vinext lint
+
+
+  vinext lint
+
+  Using eslint (with existing config)
+
+
+  Lint passed.
+[0m
+[0m$ [0mnpm run typecheck 2>&1 | grep -v "PhaseCompleteButton"
+> typecheck
+> tsc --noEmit
+
+__tests__/components/activities/graphing/GraphingCanvas.test.tsx(24,15): error TS2322: Type '{ domain: number[]; range: number[]; functions: never[]; points: never[]; onPointAdd: Mock<Procedure>; onPointRemove: Mock<Procedure>; readonly: boolean; width: number; height: number; }' is not assignable to type 'GraphingCanvasProps'.
+  Types of property 'domain' are incompatible.
+    Type 'number[]' is not assignable to type '[number, number]'.
+      Target requires 2 element(s) but source may have fewer.
+__tests__/components/activities/graphing/GraphingCanvas.test.tsx(31,15): error TS2322: Type '{ domain: number[]; range: number[]; functions: never[]; points: never[]; onPointAdd: Mock<Procedure>; onPointRemove: Mock<Procedure>; readonly: boolean; width: number; height: number; }' is not assignable to type 'GraphingCanvasProps'.
+  Types of property 'domain' are incompatible.
+    Type 'number[]' is not assignable to type '[number, number]'.
+      Target requires 2 element(s) but source may have fewer.
+__tests__/components/activities/graphing/GraphingCanvas.test.tsx(37,15): error TS2322: Type '{ domain: number[]; range: number[]; functions: never[]; points: never[]; onPointAdd: Mock<Procedure>; onPointRemove: Mock<Procedure>; readonly: boolean; width: number; height: number; }' is not assignable to type 'GraphingCanvasProps'.
+  Types of property 'domain' are incompatible.
+    Type 'number[]' is not assignable to type '[number, number]'.
+      Target requires 2 element(s) but source may have fewer.
+__tests__/components/activities/graphing/GraphingCanvas.test.tsx(45,15): error TS2322: Type '{ domain: number[]; range: number[]; functions: never[]; points: never[]; onPointAdd: Mock<Procedure>; onPointRemove: Mock<Procedure>; readonly: boolean; width: number; height: number; }' is not assignable to type 'GraphingCanvasProps'.
+  Types of property 'domain' are incompatible.
+    Type 'number[]' is not assignable to type '[number, number]'.
+      Target requires 2 element(s) but source may have fewer.
+__tests__/components/activities/graphing/GraphingCanvas.test.tsx(51,15): error TS2322: Type '{ domain: [number, number]; range: number[]; functions: never[]; points: never[]; onPointAdd: Mock<Procedure>; onPointRemove: Mock<Procedure>; readonly: boolean; width: number; height: number; }' is not assignable to type 'GraphingCanvasProps'.
+  Types of property 'range' are incompatible.
+    Type 'number[]' is not assignable to type '[number, number]'.
+      Target requires 2 element(s) but source may have fewer.
+__tests__/components/activities/graphing/GraphingCanvas.test.tsx(57,15): error TS2322: Type '{ range: [number, number]; domain: number[]; functions: never[]; points: never[]; onPointAdd: Mock<Procedure>; onPointRemove: Mock<Procedure>; readonly: boolean; width: number; height: number; }' is not assignable to type 'GraphingCanvasProps'.
+  Types of property 'domain' are incompatible.
+    Type 'number[]' is not assignable to type '[number, number]'.
+      Target requires 2 element(s) but source may have fewer.
+__tests__/components/activities/graphing/GraphingCanvas.test.tsx(68,15): error TS2322: Type '{ functions: { expression: string; color: string; }[]; domain: number[]; range: number[]; points: never[]; onPointAdd: Mock<Procedure>; onPointRemove: Mock<Procedure>; readonly: boolean; width: number; height: number; }' is not assignable to type 'GraphingCanvasProps'.
+  Types of property 'domain' are incompatible.
+    Type 'number[]' is not assignable to type '[number, number]'.
+      Target requires 2 element(s) but source may have fewer.
+__tests__/components/activities/graphing/GraphingCanvas.test.tsx(78,15): error TS2322: Type '{ functions: { expression: string; color: string; }[]; domain: number[]; range: number[]; points: never[]; onPointAdd: Mock<Procedure>; onPointRemove: Mock<Procedure>; readonly: boolean; width: number; height: number; }' is not assignable to type 'GraphingCanvasProps'.
+  Types of property 'domain' are incompatible.
+    Type 'number[]' is not assignable to type '[number, number]'.
+      Target requires 2 element(s) but source may have fewer.
+__tests__/components/activities/graphing/GraphingCanvas.test.tsx(88,15): error TS2322: Type '{ functions: { expression: string; color: string; }[]; domain: number[]; range: number[]; points: never[]; onPointAdd: Mock<Procedure>; onPointRemove: Mock<Procedure>; readonly: boolean; width: number; height: number; }' is not assignable to type 'GraphingCanvasProps'.
+  Types of property 'domain' are incompatible.
+    Type 'number[]' is not assignable to type '[number, number]'.
+      Target requires 2 element(s) but source may have fewer.
+__tests__/components/activities/graphing/GraphingCanvas.test.tsx(99,15): error TS2322: Type '{ functions: { expression: string; color: string; }[]; domain: number[]; range: number[]; points: never[]; onPointAdd: Mock<Procedure>; onPointRemove: Mock<Procedure>; readonly: boolean; width: number; height: number; }' is not assignable to type 'GraphingCanvasProps'.
+  Types of property 'domain' are incompatible.
+    Type 'number[]' is not assignable to type '[number, number]'.
+      Target requires 2 element(s) but source may have fewer.
+__tests__/components/activities/graphing/GraphingCanvas.test.tsx(112,15): error TS2322: Type '{ points: { x: number; y: number; label: string; }[]; domain: number[]; range: number[]; functions: never[]; onPointAdd: Mock<Procedure>; onPointRemove: Mock<Procedure>; readonly: boolean; width: number; height: number; }' is not assignable to type 'GraphingCanvasProps'.
+  Types of property 'domain' are incompatible.
+    Type 'number[]' is not assignable to type '[number, number]'.
+      Target requires 2 element(s) but source may have fewer.
+__tests__/components/activities/graphing/GraphingCanvas.test.tsx(121,48): error TS2322: Type '{ x: number; y: number; label: string; type: string; }[]' is not assignable to type 'Point[]'.
+  Type '{ x: number; y: number; label: string; type: string; }' is not assignable to type 'Point'.
+    Types of property 'type' are incompatible.
+      Type 'string' is not assignable to type '"vertex" | "intercept" | "intersection" | "custom" | undefined'.
+__tests__/components/activities/graphing/GraphingCanvas.test.tsx(130,15): error TS2322: Type '{ points: { x: number; y: number; label: string; }[]; domain: number[]; range: number[]; functions: never[]; onPointAdd: Mock<Procedure>; onPointRemove: Mock<Procedure>; readonly: boolean; width: number; height: number; }' is not assignable to type 'GraphingCanvasProps'.
+  Types of property 'domain' are incompatible.
+    Type 'number[]' is not assignable to type '[number, number]'.
+      Target requires 2 element(s) but source may have fewer.
+__tests__/components/activities/graphing/GraphingCanvas.test.tsx(138,15): error TS2322: Type '{ readonly: false; domain: number[]; range: number[]; functions: never[]; points: never[]; onPointAdd: Mock<Procedure>; onPointRemove: Mock<Procedure>; width: number; height: number; }' is not assignable to type 'GraphingCanvasProps'.
+  Types of property 'domain' are incompatible.
+    Type 'number[]' is not assignable to type '[number, number]'.
+      Target requires 2 element(s) but source may have fewer.
+__tests__/components/activities/graphing/GraphingCanvas.test.tsx(145,15): error TS2322: Type '{ readonly: true; domain: number[]; range: number[]; functions: never[]; points: never[]; onPointAdd: Mock<Procedure>; onPointRemove: Mock<Procedure>; width: number; height: number; }' is not assignable to type 'GraphingCanvasProps'.
+  Types of property 'domain' are incompatible.
+    Type 'number[]' is not assignable to type '[number, number]'.
+      Target requires 2 element(s) but source may have fewer.
+__tests__/components/activities/graphing/GraphingCanvas.test.tsx(152,15): error TS2322: Type '{ snapToGrid: true; domain: number[]; range: number[]; functions: never[]; points: never[]; onPointAdd: Mock<Procedure>; onPointRemove: Mock<Procedure>; readonly: boolean; width: number; height: number; }' is not assignable to type 'GraphingCanvasProps'.
+  Types of property 'domain' are incompatible.
+    Type 'number[]' is not assignable to type '[number, number]'.
+      Target requires 2 element(s) but source may have fewer.
+__tests__/components/activities/graphing/GraphingCanvas.test.tsx(165,15): error TS2322: Type '{ points: { x: number; y: number; label: string; }[]; readonly: false; domain: number[]; range: number[]; functions: never[]; onPointAdd: Mock<Procedure>; onPointRemove: Mock<Procedure>; width: number; height: number; }' is not assignable to type 'GraphingCanvasProps'.
+  Types of property 'domain' are incompatible.
+    Type 'number[]' is not assignable to type '[number, number]'.
+      Target requires 2 element(s) but source may have fewer.
+__tests__/components/activities/graphing/GraphingCanvas.test.tsx(176,15): error TS2322: Type '{ domain: number[]; range: number[]; functions: never[]; points: never[]; onPointAdd: Mock<Procedure>; onPointRemove: Mock<Procedure>; readonly: boolean; width: number; height: number; }' is not assignable to type 'GraphingCanvasProps'.
+  Types of property 'domain' are incompatible.
+    Type 'number[]' is not assignable to type '[number, number]'.
+      Target requires 2 element(s) but source may have fewer.
+__tests__/components/activities/graphing/GraphingCanvas.test.tsx(182,15): error TS2322: Type '{ domain: number[]; range: number[]; functions: never[]; points: never[]; onPointAdd: Mock<Procedure>; onPointRemove: Mock<Procedure>; readonly: boolean; width: number; height: number; }' is not assignable to type 'GraphingCanvasProps'.
+  Types of property 'domain' are incompatible.
+    Type 'number[]' is not assignable to type '[number, number]'.
+      Target requires 2 element(s) but source may have fewer.
+  Types of parameters 'value' and 'v' are incompatible.
+    Type 'unknown' is not assignable to type 'CompletePhaseResponse | PromiseLike<CompletePhaseResponse>'.
+[0m
+[0m← [0mEdit __tests__/components/activities/graphing/GraphingCanvas.test.tsx
+Index: /home/daniel-bo/Desktop/integrated-math-3/__tests__/components/activities/graphing/GraphingCanvas.test.tsx
+===================================================================
+--- /home/daniel-bo/Desktop/integrated-math-3/__tests__/components/activities/graphing/GraphingCanvas.test.tsx
++++ /home/daniel-bo/Desktop/integrated-math-3/__tests__/components/activities/graphing/GraphingCanvas.test.tsx
+@@ -3,10 +3,10 @@
+ import { GraphingCanvas } from '@/components/activities/graphing/GraphingCanvas';
+ 
+ describe('GraphingCanvas', () => {
+   const defaultProps = {
+-    domain: [-10, 10],
+-    range: [-10, 10],
++    domain: [-10, 10] as [number, number],
++    range: [-10, 10] as [number, number],
+     functions: [],
+     points: [],
+     onPointAdd: vi.fn(),
+     onPointRemove: vi.fn(),
+
+[0m
+[0m→ [0mRead __tests__/components/activities/graphing/GraphingCanvas.test.tsx[90m [limit=15, offset=115][0m
+[0m
+[0m← [0mEdit __tests__/components/activities/graphing/GraphingCanvas.test.tsx
+Index: /home/daniel-bo/Desktop/integrated-math-3/__tests__/components/activities/graphing/GraphingCanvas.test.tsx
+===================================================================
+--- /home/daniel-bo/Desktop/integrated-math-3/__tests__/components/activities/graphing/GraphingCanvas.test.tsx
++++ /home/daniel-bo/Desktop/integrated-math-3/__tests__/components/activities/graphing/GraphingCanvas.test.tsx
+@@ -115,9 +115,9 @@
+ });
+ 
+ it('renders vertex marker with special styling', () => {
+   const points = [
+-    { x: 0, y: -3, label: 'vertex', type: 'vertex' },
++    { x: 0, y: -3, label: 'vertex', type: 'vertex' as const },
+   ];
+   render(<GraphingCanvas {...defaultProps} points={points} />);
+   const vertexMarker = document.querySelector('.point-marker.vertex');
+   expect(vertexMarker).toBeInTheDocument();
+
+[0m
+[0m$ [0mnpm run typecheck 2>&1 | grep -v "PhaseCompleteButton"
+> typecheck
+> tsc --noEmit
+
+  Types of parameters 'value' and 'v' are incompatible.
+    Type 'unknown' is not assignable to type 'CompletePhaseResponse | PromiseLike<CompletePhaseResponse>'.
+[0m
