@@ -1,6 +1,6 @@
 # Implementation Plan — Graphing Components
 
-## Phase 1: Core Canvas
+## Phase 1: Core Canvas [checkpoint: 407d59c]
 
 - [x] Task: Evaluate and select graphing canvas approach; document in `tech-stack.md` [63b2a38]
     - [x] Spike: test Recharts for interactive point placement; evaluate custom SVG approach
