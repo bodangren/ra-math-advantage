@@ -1,0 +1,221 @@
+# Lesson 8-4 — Normal Distributions
+
+Source: (Module 8, Lesson 8-4, pp. 393–400)
+
+## Today's Goals
+
+* Classify variables and analyze probability distributions to determine expected outcomes
+* Analyze normally distributed variables by using the Empirical Rule
+* Analyze standardized data and distributions by using z-values
+
+---
+
+## Vocabulary
+
+* probability distribution
+* discrete random variable
+* continuous random variable
+* outcome
+* sample space
+* normal distribution
+* z-value
+* standard normal distribution
+
+---
+
+## Explore: Probability Distributions
+
+Use a simulation to complete the explore.
+
+**Inquiry Question:**
+What is the relationship between the expected value of a discrete random variable and the mean of the distribution of that variable as the sample size increases?
+
+---
+
+# Learn: Probability Distributions
+
+A **probability distribution** maps each outcome of a random variable to its probability.
+
+* a **discrete random variable** is countable
+* a **continuous random variable** can take on any value in an interval
+
+Conditions for a probability distribution:
+
+* each probability is between `0` and `1`
+* the probabilities of all outcomes add to `1`
+
+---
+
+# Example 1 — Classify Random Variables
+
+Classify each variable.
+
+* number of songs on smartphones: **discrete**
+* air pressure in basketballs: **continuous**
+
+---
+
+# Example 2 — Analyze a Probability Distribution
+
+A candy company records the number of prize-winning wrappers for each cash amount.
+
+Construct a relative frequency table by dividing each frequency by the total number of winning wrappers, `4000`.
+
+Sample probabilities:
+
+* `$5`: `0.3125`
+* `$10`: `0.2500`
+* `$20`: `0.1875`
+* `$50`: `0.1500`
+
+Graph the distribution with separated bars because the outcomes are discrete.
+
+---
+
+# Example 3 — Misleading Distributions
+
+A business publishes a salary probability distribution to suggest that most employees earn at least `$40,000`.
+
+Misleading features:
+
+* the x-axis bins are uneven, especially above `$70,000`
+* the y-axis scale uses very small increments that exaggerate differences
+
+Conclusion:
+
+The graph visually overstates how much more likely the `$40,000` to `$50,000` range is.
+
+---
+
+# Learn: Normal Distributions
+
+The **normal distribution** is a continuous, bell-shaped, symmetric distribution.
+
+## Key Concept: The Normal Distribution
+
+* the graph is bell-shaped and symmetric
+* the mean, median, and mode are equal
+* the curve approaches but never touches the x-axis
+* the total area under the curve is `1`
+
+## Key Concept: The Empirical Rule
+
+For a normal distribution with mean `mu` and standard deviation `sigma`:
+
+* about `68%` of the data lies within `1 sigma`
+* about `95%` lies within `2 sigma`
+* about `99.7%` lies within `3 sigma`
+
+---
+
+# Example 4 — Approximate Data by Using a Normal Distribution
+
+A histogram of goals scored by soccer players is skewed.
+
+Conclusion:
+
+The data cannot be approximated by a normal distribution because it is not symmetric.
+
+---
+
+# Example 5 — Use the Empirical Rule to Analyze Data
+
+A normal distribution has:
+
+* mean `= 42`
+* standard deviation `= 6`
+
+## a. Find the middle `95%`
+
+Use `mu ± 2sigma`:
+
+* `42 - 12 = 30`
+* `42 + 12 = 54`
+
+So the middle `95%` is from `30` to `54`.
+
+## b. What percent of the data is greater than `36`?
+
+`36` is one standard deviation below the mean.
+
+Area greater than `36`:
+
+* `50%` above the mean
+* `34%` between `36` and the mean
+
+Total:
+
+`84%`
+
+---
+
+# Learn: The Standard Normal Distribution
+
+Data can be standardized using **z-values**:
+
+`z = (X - mu) / sigma`
+
+The **standard normal distribution** has:
+
+* mean `0`
+* standard deviation `1`
+
+Areas under the curve correspond to probabilities.
+
+---
+
+# Example 6 — Use z-Values to Locate Position
+
+Find `z` if:
+
+* `X = 24`
+* `mu = 19`
+* `sigma = 3.8`
+
+`z = (24 - 19) / 3.8 = 5 / 3.8 ≈ 1.316`
+
+---
+
+# Example 7 — Find Area Under the Standard Normal Curve by Using a Table
+
+Find the area under the normal curve for:
+
+`z < -1.18`
+
+From the standard normal table:
+
+`P(z < -1.18) = 0.1190`
+
+So the area is:
+
+`0.1190`
+
+---
+
+# Example 8 — Find Area Under the Standard Normal Curve by Using a Calculator
+
+Daily hits to a website are normally distributed with:
+
+* `mu = 98,452`
+* `sigma = 10,325`
+
+Find:
+
+`P(X > 100,000)`
+
+## Step 1: Find the z-value
+
+`z = (100,000 - 98,452) / 10,325 ≈ 0.150`
+
+## Step 2: Use a calculator
+
+Use `normalcdf` to find the area from `z = 0.150` to a large upper bound.
+
+Probability:
+
+`≈ 0.44`
+
+So the probability is about:
+
+`44.0%`
+

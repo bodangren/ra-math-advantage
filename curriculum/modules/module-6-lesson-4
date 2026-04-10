@@ -1,0 +1,331 @@
+# Lesson 6-4 — Natural Logarithms
+
+Source: (Module 6, Lesson 6-4, pp. 285–290)
+
+## Today's Goals
+
+* Simplify expressions with natural logarithms
+* Solve exponential equations by using natural logarithms
+
+---
+
+## Vocabulary
+
+* natural base exponential function
+* natural logarithm
+
+---
+
+# Learn: Simplifying Expressions with Natural Logarithms
+
+An exponential function with base `e`, written as `y = e^x`, is called a **natural base exponential function**.
+
+The inverse of a natural base exponential function is a **natural logarithm**, written:
+
+`ln x`
+
+The same properties that apply to logarithms with base `b` also apply to natural logarithms.
+
+## Think About It
+
+Why do the same properties that apply to logarithms with base `b` also apply to natural logarithms?
+
+---
+
+# Example 1 — Write Equivalent Logarithmic Equations
+
+Write each exponential equation in logarithmic form.
+
+## a. `e^x = 14`
+
+`loge 14 = x`
+
+`ln 14 = x`
+
+## b. `e^7 = x`
+
+`loge x = 7`
+
+`ln x = 7`
+
+## Check
+
+Write each exponential equation in logarithmic form.
+
+* `e^3 = 4x`
+* `e^(4x) = 3`
+
+---
+
+# Example 2 — Write Equivalent Exponential Equations
+
+Write each logarithmic equation in exponential form.
+
+## a. `ln 9 = x`
+
+`9 = e^x`
+
+## b. `ln x ≈ 1.7347`
+
+`x ≈ e^1.7347`
+
+## Check
+
+Write each logarithmic equation in exponential form.
+
+* `ln(3x) = 4`
+* `ln 4 = 3x`
+
+---
+
+# Example 3 — Simplify Logarithmic Expressions
+
+Write
+
+`(1/3) ln 8 - ln 3 + ln 9`
+
+as a single logarithm.
+
+Use the Power Property:
+
+`= ln(8^(1/3)) - ln 3 + ln 9`
+
+`= ln 2 - ln 3 + ln 9`
+
+Use the Quotient Property:
+
+`= ln(2/3) + ln 9`
+
+Use the Product Property:
+
+`= ln 6`
+
+So:
+
+`(1/3) ln 8 - ln 3 + ln 9 = ln 6`
+
+## Think About It
+
+In what order should you apply the properties of logarithms to simplify a logarithmic expression?
+
+## Check
+
+Write `ln 7 - (1/3) ln 27 + ln 6` as a single logarithm.
+
+---
+
+# Learn: Solving Exponential Equations by Using Natural Logarithms
+
+Because an exponential function with base `e` is the inverse of the natural logarithm function:
+
+* `e^(ln x) = x`
+* `ln(e^x) = x`
+
+This allows exponential equations with base `e` to be solved using natural logarithms.
+
+---
+
+# Example 4 — Solve Exponential Equations with Base `e`
+
+Solve:
+
+`-2e^(x + 3) + 8 = -14`
+
+Round to the nearest ten-thousandth.
+
+Subtract `8`:
+
+`-2e^(x + 3) = -22`
+
+Divide by `-2`:
+
+`e^(x + 3) = 11`
+
+Take natural logarithms:
+
+`ln(e^(x + 3)) = ln 11`
+
+`x + 3 = ln 11`
+
+`x + 3 ≈ 2.3979`
+
+`x ≈ -0.6021`
+
+## Check
+
+Solve `6e^(0.25x + 3) = 26`. Round to the nearest ten-thousandth.
+
+---
+
+# Example 5 — Solve Natural Logarithmic Equations
+
+Solve:
+
+`(1/6) ln(5x) = 2`
+
+Round to the nearest ten-thousandth.
+
+Multiply both sides by `6`:
+
+`ln(5x) = 12`
+
+Rewrite exponentially:
+
+`e^(ln(5x)) = e^12`
+
+`5x = e^12`
+
+`x = e^12 / 5`
+
+`x ≈ 32,550.9583`
+
+## Think About It
+
+Elliott says that `ln(e^(3x))` equals `3x`. Is he correct? Explain.
+
+---
+
+# Example 6 — Apply Functions with Base `e`
+
+Newton’s Law of Cooling is modeled by:
+
+`T(t) = Ta + (T0 - Ta)e^(-0.032t)`
+
+where:
+
+* `T0` is the initial temperature
+* `Ta` is the ambient temperature
+* `t` is time in minutes
+
+## Part A: Evaluate the function
+
+Find the temperature of soup that is initially `200°F` in a room that is `72°F` after `30` minutes.
+
+Substitute:
+
+`T(t) = 72 + (200 - 72)e^(-0.032(30))`
+
+`≈ 121`
+
+After `30` minutes, the soup will be about `121°F`.
+
+## Part B: Evaluate the function for `t`
+
+If the soup must be at least `180°F` when served, and it starts at `200°F` in a `72°F` room, how long can the server wait?
+
+Set up the inequality:
+
+`180 <= 72 + (200 - 72)e^(-0.032t)`
+
+`108 <= 128e^(-0.032t)`
+
+`0.84375 <= e^(-0.032t)`
+
+Take natural logarithms:
+
+`ln 0.84375 <= -0.032t`
+
+Divide by `-0.032` and reverse the inequality:
+
+`t <= ln(0.84375) / (-0.032)`
+
+`t <= 5.3`
+
+The server should serve the soup within `5.3` minutes.
+
+## Part C: Evaluate the function for `T0`
+
+If the room is increased to `75°F` and the servers need at least `7` minutes while the soup stays `180°F` or warmer, what initial soup temperature is needed?
+
+Set up the inequality:
+
+`180 <= 75 + (T0 - 75)e^(-0.032(7))`
+
+`105 <= (T0 - 75)e^(-0.224)`
+
+Distribute:
+
+`105 <= T0(e^(-0.224)) - 75(e^(-0.224))`
+
+Add `75(e^(-0.224))`:
+
+`105 + 75(e^(-0.224)) <= T0(e^(-0.224))`
+
+Divide by `e^(-0.224)`:
+
+`T0 >= (105 + 75e^(-0.224)) / e^(-0.224)`
+
+`T0 >= 206.4`
+
+The soup must start at least `206.4°F`.
+
+## Think About It
+
+Will the soup ever become colder than the ambient temperature of the restaurant? Explain.
+
+---
+
+## Explore: Using a Scatter Plot to Analyze Data
+
+Use the video to complete the explore.
+
+**Inquiry Question:**
+How can you use a scatter plot to determine the type of function that best models a set of data?
+
+---
+
+# Example 7 — Examine Logarithmic Data
+
+The table shows the percentage of people in the U.S. who play games on mobile phones in the years since `2010`.
+
+| Years Since 2010 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 |
+| -- | -- | -- | -- | -- | -- | -- | -- | -- | -- | -- |
+| Population (%) | 25.9 | 33.9 | 40.9 | 46.3 | 51.3 | 55.7 | 58.9 | 61.6 | 63.1 | 63.7 |
+
+## Step 1: Enter the data
+
+Enter years into `L1` and percentages into `L2`.
+
+## Step 2: Make a scatter plot
+
+The scatter plot suggests a curved trend that approximates a natural logarithmic function.
+
+## Step 3: Determine the function of best fit
+
+Perform a natural logarithmic regression.
+
+The regression equation is:
+
+`y = 23.3237 + 17.7473 ln x`
+
+The coefficient of determination is:
+
+`r ≈ 0.9934`
+
+This is a very strong fit.
+
+## Step 4: Evaluate using the regression function
+
+Use the table to predict the percentage for `x = 15`, which corresponds to the year `2025`.
+
+Prediction:
+
+About `71.4%` of people in America will play games on a phone in `2025`.
+
+## Step 5: Analyze the graph
+
+Key features of the regression model:
+
+* domain: `{x | x > 0}`
+* range: `{y | y > 0}` in context
+* x-intercept: `0.2687`
+* y-intercept: none
+* increasing: `{x | x > 0}`
+* positive: `{x | x > 0.2687}`
+* negative: `{x | 0 < x < 0.2687}`
+* end behavior: as `x -> infinity`, `y -> infinity`
+
+## Watch Out
+
+The function has all real numbers as its range, but in context only values from `0` to `100` make sense because `y` represents a percent.
+

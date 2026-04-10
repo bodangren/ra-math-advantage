@@ -1,0 +1,124 @@
+# Lesson 8-3 — Analyzing Population Data
+
+Source: (Module 8, Lesson 8-3, pp. 387–390)
+
+## Today's Goal
+
+* Describe distributions by finding their mean and standard deviation
+
+---
+
+## Vocabulary
+
+* descriptive statistics
+* distribution
+* symmetric distribution
+* outlier
+* variance
+* standard deviation
+
+---
+
+# Learn: Describing Distributions
+
+Measures of center and measures of spread are called **descriptive statistics**.
+
+A **distribution** is a graph or table showing the frequency of possible data values.
+
+For symmetric distributions:
+
+* the mean and median are approximately equal
+* mean describes the center well
+* variance and standard deviation describe spread
+
+For skewed distributions or data with outliers:
+
+* the mean is less reliable
+
+## Key Concept: Finding the Standard Deviation
+
+1. Find the mean `mu`
+2. Find each squared difference `(x - mu)^2`
+3. Add those squared differences
+4. Divide by the number of data values to get variance
+5. Take the square root to get standard deviation
+
+Formula:
+
+`sigma = sqrt(sum((x - mu)^2) / n)`
+
+---
+
+# Example 1 — Find a Standard Deviation
+
+A coach records `400`-meter race times:
+
+`57.1, 59.3, 54.6, 55.2, 55.9, 54.9, 50.3, 53.5`
+
+## Step 1: Find the mean
+
+`mu = 55.1`
+
+## Step 2: Find the squared differences
+
+These sum to:
+
+`48.18`
+
+## Step 3: Find the variance
+
+`48.18 / 8 = 6.0225`
+
+## Step 4: Find the standard deviation
+
+`sqrt(6.0225) ≈ 2.45`
+
+Interpretation:
+
+The standard deviation is small compared with the running times, so most team times are close to the mean.
+
+The interval within `2` standard deviations is approximately:
+
+`50.2` to `60.0` seconds
+
+## Talk About It
+
+In what case would a standard deviation of `2.45` be considered large? Give a real-world example.
+
+---
+
+# Example 2 — Calculate Statistics
+
+Use a graphing calculator to find the mean and standard deviation of:
+
+`26, 12, 15, 20, 17, 19, 18, 16, 14, 23, 13, 18, 19, 20, 22`
+
+Calculator results:
+
+* mean `≈ 18.1`
+* standard deviation `≈ 3.7`
+
+## Pause and Reflect
+
+Did you struggle with anything so far in this lesson? If so, how did you deal with it?
+
+---
+
+# Example 3 — Compare Distributions
+
+Compare exam score distributions for two Algebra 2 classes using the mean and standard deviation.
+
+Results:
+
+* Mr. Jackson’s class:
+  * mean `= 93.2`
+  * standard deviation `= 2.3`
+* Ms. Hettrick’s class:
+  * mean `= 79.9`
+  * standard deviation `= 7.2`
+
+Interpretation:
+
+* Mr. Jackson’s class scored higher on average
+* Ms. Hettrick’s class scores are more spread out
+

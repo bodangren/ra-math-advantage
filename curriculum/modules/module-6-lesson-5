@@ -1,0 +1,284 @@
+# Lesson 6-5 — Using Exponential and Logarithmic Functions
+
+Source: (Module 6, Lesson 6-5, pp. 295–300)
+
+## Today's Goals
+
+* Write and solve exponential growth equations and inequalities
+* Write and solve exponential decay equations
+
+---
+
+# Learn: Using Logarithms to Solve Exponential Growth Problems
+
+Exponential functions with base `e` are frequently used to represent situations involving continuous growth.
+
+## Key Concept: Continuous Exponential Growth
+
+Exponential growth can be modeled by:
+
+`f(x) = ae^(kt)`
+
+where:
+
+* `a` is the initial value
+* `t` is time in years
+* `k` is the constant rate of continuous growth
+
+This is the same form as the continuously compounded interest formula:
+
+`A = Pe^(rt)`
+
+## Think About It
+
+Write an exponential growth equation to represent a population that grows at a rate of `6%` per year and has an initial population of `250`.
+
+---
+
+# Example 1 — Continuous Exponential Growth
+
+In `2016`, the population of Florida was `20.61` million people. In `2000`, it was `15.98` million.
+
+## Part A: Write an exponential growth equation
+
+Use:
+
+`y = ae^(kt)`
+
+Since `t` is years after `2000`:
+
+* `a = 15.98`
+* `y = 20.61` when `t = 16`
+
+Substitute:
+
+`20.61 = 15.98e^(16k)`
+
+Divide by `15.98`:
+
+`20.61 / 15.98 = e^(16k)`
+
+Take natural logarithms:
+
+`ln(20.61 / 15.98) = 16k`
+
+Solve:
+
+`k = ln(20.61 / 15.98) / 16`
+
+`k ≈ 0.0159`
+
+So the model is:
+
+`y = 15.98e^(0.0159t)`
+
+## Part B: Predict when the population will reach `25` million people
+
+Substitute `y = 25`:
+
+`25 = 15.98e^(0.0159t)`
+
+`1.564 = e^(0.0159t)`
+
+Take natural logarithms:
+
+`ln 1.564 = 0.0159t`
+
+`t = ln 1.564 / 0.0159`
+
+`t ≈ 28.129`
+
+Florida’s population reaches `25` million about `28.129` years after `2000`, or in `2028`.
+
+## Part C: Compare the populations of Florida and California
+
+California’s population in `2000` was `33.9` million and can be modeled by:
+
+`y = 33.9e^(0.0092t)`
+
+Determine when Florida’s population will surpass California’s.
+
+Set up the inequality:
+
+`15.98e^(0.0159t) > 33.9e^(0.0092t)`
+
+Take natural logarithms:
+
+`ln 15.98 + 0.0159t > ln 33.9 + 0.0092t`
+
+Subtract `0.0092t`:
+
+`ln 15.98 + 0.0067t > ln 33.9`
+
+Subtract `ln 15.98`:
+
+`0.0067t > ln 33.9 - ln 15.98`
+
+Solve:
+
+`t > (ln 33.9 - ln 15.98) / 0.0067`
+
+`t > 112.25`
+
+So, if the trend continues, Florida is on track to surpass California in `2112`.
+
+## Think About It
+
+Based on the given models, does it make sense that Florida’s population will eventually surpass California’s? Explain.
+
+## Check
+
+An experiment starts with `20` bacteria A cells. After `45` minutes, there are `710` bacteria A cells.
+
+* Write the equation that models the number of bacteria A cells after `t` minutes
+* Find when there will be `1000` bacteria A cells
+* Compare bacteria A with bacteria B, modeled by `y = 52e^(0.064t)`
+
+---
+
+# Learn: Using Logarithms to Solve Exponential Decay Problems
+
+Exponential functions with base `e` are also used to represent continuous decay.
+
+## Key Concept: Continuous Exponential Decay
+
+Exponential decay can be modeled by:
+
+`f(x) = ae^(-kt)`
+
+where:
+
+* `a` is the initial value
+* `t` is time
+* `k` is a positive constant representing the rate of continuous decay
+
+## Think About It
+
+Given time in months and a rate per year, how would you find the value of `t` to substitute into the continuous exponential decay function?
+
+---
+
+# Example 2 — Continuous Exponential Decay
+
+Thorium-230 has a half-life of `75,381` years.
+
+## Part A: Determine `k` and write the decay equation
+
+After one half-life period, the amount remaining is `0.5a`.
+
+Use:
+
+`y = ae^(-kt)`
+
+Substitute:
+
+`0.5a = ae^(-k(75,381))`
+
+Divide by `a`:
+
+`0.5 = e^(-75,381k)`
+
+Take natural logarithms:
+
+`ln 0.5 = -75,381k`
+
+Solve:
+
+`k = ln 0.5 / (-75,381)`
+
+`k ≈ 0.0000092`
+
+So the decay equation is:
+
+`y = ae^(-0.0000092t)`
+
+## Part B: How much of a `2`-gram sample remains after `1500` years?
+
+Substitute `a = 2` and `t = 1500`:
+
+`y = 2e^(-0.0000092(1500))`
+
+`= 2e^(-0.0138)`
+
+`≈ 1.97`
+
+After `1500` years, about `1.97` grams remain.
+
+## Watch Out
+
+Time units must match the rate. If the half-life is measured in days, then the decay constant is per day, not per year.
+
+## Check
+
+Iodine-131 has a half-life of `8.02` days.
+
+* Write the continuous exponential decay equation
+* Find how much of a `15`-gram sample remains after `20` days
+
+---
+
+# Apply Example 3 — Radiocarbon Dating
+
+Carbon-14 is used in radiocarbon dating. It has a half-life of `5730` years and a decay constant `k = 0.00012`.
+
+In `2016`, charcoal flakes from an excavation site in Canada were found to contain about `18.6%` as much Carbon-14 as they would have originally contained. How old are the charcoal flakes to the nearest year?
+
+## 1. What is the task?
+
+Use the Carbon-14 decay information to find the age of the charcoal flakes.
+
+## 2. How will you approach the task?
+
+Estimate the age using half-lives, then write and solve an exponential decay equation.
+
+## 3. What is your solution?
+
+### Estimate first
+
+After two half-lives, `25%` remains.
+
+After three half-lives, `12.5%` remains.
+
+Because `18.6%` lies between `25%` and `12.5%`, the sample is between:
+
+* `11,460` years old
+* `17,190` years old
+
+### Write the equation
+
+Because the sample has `18.6%` of its original Carbon-14:
+
+`0.186 = e^(-0.00012t)`
+
+Solving gives:
+
+`t ≈ 14,017`
+
+So the charcoal flakes are about `14,017` years old.
+
+## 4. How can you know that your solution is reasonable?
+
+The solution lies within the estimated interval.
+
+Checking the model:
+
+`y = e^(-0.00012(14,017))`
+
+`≈ 0.186`
+
+So the result is consistent with the given percent remaining.
+
+## Check
+
+An archaeologist estimates that a prehistoric painting contains about `2.34%` as much Carbon-14 as it would have contained when it was painted. Use
+
+`y = ae^(-0.00012t)`
+
+to determine how long ago the painting was created.
+
+---
+
+## Pause and Reflect
+
+Did you struggle with anything in this lesson? If so, how did you deal with it?
+

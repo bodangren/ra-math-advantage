@@ -1,0 +1,228 @@
+# Lesson 4-3 — nth Roots and Rational Exponents
+
+Source: (Module 4, Lesson 4-3, pp. 175–178)
+
+## Today's Goals
+
+* Simplify expressions involving radicals and rational exponents
+* Simplify expressions in exponential or radical form
+
+---
+
+## Vocabulary
+
+* nth root
+* index
+* radicand
+* principal root
+* rational exponent
+
+---
+
+## Explore: Inverses of Power Functions
+
+Use a calculator to complete the explore.
+
+**Inquiry Question:**
+What conjectures can you make about `f(x) = x^n` and `g(x) = nroot(x)` for all odd positive values of `n`?
+
+---
+
+# Learn: nth Roots
+
+Finding a square root and squaring are inverse operations.
+
+More generally, the inverse of raising a number to the `n`th power is finding the `n`th root.
+
+For any real numbers `a` and `b` and positive integer `n`:
+
+* if `a^n = b`, then `a` is an `n`th root of `b`
+
+Example:
+
+* `(-2)^6 = 64`, so `-2` is a sixth root of `64`
+* `2` is the **principal root**
+
+In `nroot(36)`:
+
+* `n` is the **index**
+* `36` is the **radicand**
+
+## Key Concept: Real nth Roots
+
+Suppose `n > 1` and `a` is a real number.
+
+* If `n` is even and `a > 0`, there is one positive and one negative real root: `+/- nroot(a)`
+* If `n` is even and `a < 0`, there are no real roots
+* If `n` is odd and `a > 0`, there is one positive real root
+* If `n` is odd and `a < 0`, there is one negative real root
+* If `a = 0`, then the root is `0`
+
+A radical expression is simplified when:
+
+* the radicand contains no fractions
+* no radicals appear in the denominator
+
+## Think About It
+
+Lorena says she can tell that `cuberoot(-64)` has a real root without graphing. Do you agree? Explain.
+
+---
+
+# Example 1 — Find Roots
+
+Simplify.
+
+## a. `+/- sqrt(25x^4)`
+
+`+/- sqrt((5x^2)^2) = +/- 5x^2`
+
+## b. `-sqrt((y^2 + 7)^12)`
+
+`= -sqrt([(y^2 + 7)^6]^2)`
+
+`= -(y^2 + 7)^6`
+
+## c. `cuberoot(343a^18b^6)`
+
+`= cuberoot((7a^6b^2)^3) = 7a^6b^2`
+
+## d. `sqrt(-289c^8d^4)`
+
+There are no real roots of `sqrt(-289)`, but the principal square root is imaginary:
+
+`sqrt(-289c^8d^4) = 17ic^4d^2`
+
+---
+
+# Example 2 — Simplify Using Absolute Value
+
+When you find an even root of an even power and the result is an odd power, use absolute value to keep the principal root nonnegative.
+
+## a. `fourthroot(81x^4)`
+
+`= fourthroot((3x)^4) = 3|x|`
+
+## b. `eighthroot(256(y^2 - 2)^24)`
+
+`= eighthroot(256) * eighthroot((y^2 - 2)^24)`
+
+`= 2 |(y^2 - 2)^3|`
+
+## Talk About It
+
+Compare these expressions with the previous example. Why are absolute value bars needed here?
+
+---
+
+# Learn: Rational Exponents
+
+You can translate between radical and exponential form using exponent properties.
+
+For any real number `b` and positive integer `n`:
+
+* `b^(1/n) = nroot(b)`
+
+except when `b < 0` and `n` is even.
+
+## Key Concept: Rational Exponents
+
+For nonzero `b` and integers `x`, `y` with `y > 1`:
+
+`b^(x/y) = nroot(b^x) = (nroot(b))^x`
+
+Examples:
+
+* `125^(2/3) = (cuberoot(125))^2 = 25`
+* `(-49)^(3/2) = (sqrt(-49))^3 = (7i)^3 = -343i`
+
+## Key Concept: Simplest Form of Expressions with Rational Exponents
+
+An expression is in simplest form when:
+
+* it has no negative exponents
+* it has no non-integer exponents in the denominator
+* it is not a complex fraction
+* any remaining radical has the least possible index
+
+---
+
+# Example 3 — Radical and Exponential Forms
+
+Simplify.
+
+## a. Write `x^(4/3)` in radical form
+
+`x^(4/3) = cuberoot(x^4)`
+
+## b. Write `fifthroot(x^2)` in exponential form
+
+`fifthroot(x^2) = x^(2/5)`
+
+## Think About It
+
+Write two equivalent expressions, one in radical form and one in exponential form.
+
+---
+
+# Example 4 — Use Rational Exponents
+
+The expression `c(1 + r)^t` estimates future cost due to inflation.
+
+Write the expression in radical form for an item `3` months from now if the annual inflation rate is `4.7%`.
+
+Since `3` months is `1/4` year:
+
+`c(1 + r)^t = c(1 + 0.047)^(1/4)`
+
+`= c(1.047)^(1/4)`
+
+`= c * fourthroot(1.047)`
+
+## Think About It
+
+Why did you set `t = 1/4`?
+
+---
+
+# Example 5 — Evaluate Expressions with Rational Exponents
+
+Evaluate:
+
+`32^(-2/5)`
+
+`= 1 / 32^(2/5)`
+
+`= 1 / (2^5)^(2/5)`
+
+`= 1 / 2^2`
+
+`= 1/4`
+
+---
+
+# Example 6 — Simplify Expressions with Rational Exponents
+
+## a. `x^(2/3) * x^(1/6)`
+
+`= x^(2/3 + 1/6)`
+
+`= x^(4/6 + 1/6)`
+
+`= x^(5/6)`
+
+## b. `y^(-2/3)`
+
+`= 1 / y^(2/3)`
+
+## c. `z^(-1/3) * z^(3/4)`
+
+`= z^(-1/3 + 3/4)`
+
+`= z^(-4/12 + 9/12)`
+
+`= z^(5/12)`
+
+## Think About It
+
+How can you tell if `x^(y/z)` will simplify to an integer?

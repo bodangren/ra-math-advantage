@@ -1,0 +1,176 @@
+# Lesson 5-3 — Special Exponential Functions
+
+Source: (Module 5, Lesson 5-3, pp. 233–236)
+
+## Today's Goals
+
+* Analyze expressions and functions involving the natural base `e`
+
+---
+
+## Vocabulary
+
+* `e`
+
+---
+
+## Explore: Finding the Value of e
+
+Use a table to complete the explore.
+
+**Inquiry Question:**
+How can you best approximate the value of `e`?
+
+---
+
+# Learn: Exponential Functions with Base e
+
+The constant `e` is an irrational number approached by:
+
+`(1 + 1/n)^n`
+
+as `n -> infinity`.
+
+Approximate value:
+
+`e ≈ 2.7182818...`
+
+Graphs of functions with base `e` behave like other exponential functions.
+
+For `f(x) = e^x`:
+
+* asymptote: `y = 0` as `x -> -infinity`
+* `f(x) -> infinity` as `x -> infinity`
+* y-intercept: `1`
+
+Continuously compounded interest is modeled by:
+
+`A = Pe^(rt)`
+
+where:
+
+* `A` is the amount after `t` years
+* `P` is the principal
+* `r` is the annual interest rate
+
+---
+
+# Example 1 — Expressions with Base e
+
+Simplify each expression.
+
+## a. `e^7 * e^-2`
+
+`= e^(7 + (-2)) = e^5`
+
+## b. `(-3e^(2x))^4`
+
+`= (-3)^4 (e^(2x))^4`
+
+`= 81e^(8x)`
+
+## c. `(42e^7) / (14e^5)`
+
+`= 3e^(7 - 5)`
+
+`= 3e^2`
+
+## Watch Out
+
+Use exponent properties before evaluating on a calculator so answers stay exact.
+
+---
+
+# Example 2 — Graph Functions with Base e
+
+Consider:
+
+`g(x) = -2e^(x - 3) + 2`
+
+## Part A: Graph the function
+
+This is a transformation of `f(x) = e^x`.
+
+* `a = -2`: reflect across the x-axis and stretch vertically
+* `h = 3`: shift `3` units right
+* `k = 2`: shift `2` units up
+
+## Part B: Determine the domain and range
+
+* domain: all real numbers
+* range: all real numbers less than `2`
+
+## Part C: Find the average rate of change
+
+### a. `[-4, -1]`
+
+Average rate of change is about:
+
+`-0.012`
+
+### b. `[0, 3]`
+
+Average rate of change is about:
+
+`-0.633`
+
+### c. `[4, 8]`
+
+Average rate of change is about:
+
+`-72.847`
+
+## Think About It
+
+Does a base-`e` exponential function behave in the same way as other exponential functions? Explain.
+
+---
+
+# Example 3 — Apply Functions with Base e
+
+LaShawndra deposits `$1500` in an account paying `2.5%` annual interest compounded continuously.
+
+Find the balance after `4` years.
+
+`A = Pe^(rt)`
+
+`= 1500e^(0.025 * 4)`
+
+`= 1657.76`
+
+So after `4` years, the account balance is:
+
+`$1657.76`
+
+## Think About It
+
+If another account offers `2.5%` annual interest compounded monthly, which should she choose?
+
+---
+
+# Example 4 — Solve an Exponential Equation by Using Technology
+
+Use a graphing calculator to solve:
+
+`5 = 2e^x`
+
+by using a system.
+
+## Step 1: Write a system
+
+* `y = 5`
+* `y = 2e^x`
+
+## Step 2: Graph the system
+
+Graph both.
+
+## Step 3: Find the intersection
+
+The solution is the x-coordinate:
+
+`x ≈ 0.916`
+
+## Step 4: Use a table
+
+Using a table near `x = 0.916` confirms the two y-values are nearly equal.

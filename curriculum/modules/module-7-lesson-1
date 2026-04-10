@@ -1,0 +1,188 @@
+# Lesson 7-1 — Multiplying and Dividing Rational Expressions
+
+Source: (Module 7, Lesson 7-1, pp. 311–314)
+
+## Today's Goals
+
+* Simplify rational expressions
+* Simplify rational expressions by multiplying and dividing
+
+---
+
+## Vocabulary
+
+* rational expression
+* complex fraction
+
+---
+
+## Think About It
+
+Are all rational expressions defined for all values of `x`? Justify your argument.
+
+---
+
+# Learn: Simplifying Rational Expressions
+
+A **rational expression** is a ratio of two polynomial expressions.
+
+To simplify a rational expression, factor the numerator and denominator and divide out common factors. The original denominator still determines excluded values.
+
+---
+
+# Example 1 — Simplify a Rational Expression
+
+Simplify
+
+`(x^2 - 2x - 24) / (2x^3 + 6x^2 - 8x)`
+
+and state when the original expression is undefined.
+
+## Part A: Simplify
+
+Factor:
+
+`2x^3 + 6x^2 - 8x = 2x(x^2 + 3x - 4) = 2x(x + 4)(x - 1)`
+
+`x^2 - 2x - 24 = (x + 4)(x - 6)`
+
+So:
+
+`((x + 4)(x - 6)) / (2x(x + 4)(x - 1)) = (x - 6) / (2x(x - 1))`
+
+## Part B: State when the expression is undefined
+
+The original denominator is `0` when:
+
+* `x = 0`
+* `x = -4`
+* `x = 1`
+
+## Check
+
+Simplify
+
+`(x^2 + 2x + 1) / (4x^2 + 3x - 1)`
+
+and state when the original expression is undefined.
+
+---
+
+# Example 2 — Simplify by Using `-1`
+
+Simplify
+
+`((6x^2 - 5xy)(x + 2y)) / ((x + y)(5y - 6x))`
+
+Factor:
+
+`6x^2 - 5xy = x(6x - 5y)`
+
+Since:
+
+`6x - 5y = -(5y - 6x)`
+
+rewrite and simplify:
+
+`(x(6x - 5y)(x + 2y)) / ((x + y)(5y - 6x)) = (-x)(x + 2y) / (x + y)`
+
+## Think About It
+
+How would your answer differ if you factored out `-1` in the denominator rather than the numerator? Would the expression be equivalent?
+
+---
+
+## Explore: Simplifying Complex Fractions
+
+Use the interactive tool to complete the explore.
+
+**Inquiry Question:**
+Can you simplify complex fractions that contain polynomials in the numerator or denominator?
+
+---
+
+# Learn: Multiplying and Dividing Rational Expressions
+
+## Key Concept: Multiplying Rational Expressions
+
+To multiply rational expressions, multiply the numerators and the denominators.
+
+`(a/b) * (c/d) = ac / bd`
+
+## Key Concept: Dividing Rational Expressions
+
+To divide rational expressions, multiply by the reciprocal of the divisor.
+
+`(a/b) / (c/d) = (a/b) * (d/c) = ad / bc`
+
+A **complex fraction** is a rational expression whose numerator and/or denominator is also a rational expression.
+
+---
+
+# Example 3 — Multiply and Divide Rational Expressions
+
+Simplify each expression.
+
+## a. `(3x / 8y) * (12x^2y / 9xy^3)`
+
+Factor and divide out common factors to get:
+
+`x^2 / (2y^3)`
+
+## b. `(10d^5 / 6cd) / (30c^3d^2 / 4c)`
+
+Rewrite as multiplication by the reciprocal and simplify:
+
+`2d^2 / (9c^3)`
+
+## Think About It
+
+Why do multiplying rational expressions require `b != 0` and `d != 0`, while dividing also requires `c != 0`?
+
+---
+
+# Example 4 — Multiply and Divide Polynomial Expressions
+
+A manufacturer compares the areas of two rectangular planters:
+
+`(x^2 + 15x + 50) / (x + 2)`
+
+and
+
+`(x^2 + 30x + 200) / (x + 2)`
+
+Write and simplify the ratio of the first area to the second.
+
+Set up the ratio:
+
+`((x^2 + 15x + 50)/(x + 2)) / ((x^2 + 30x + 200)/(x + 2))`
+
+Factor:
+
+* `x^2 + 15x + 50 = (x + 5)(x + 10)`
+* `x^2 + 30x + 200 = (x + 10)(x + 20)`
+
+Simplify:
+
+`(x + 5) / (x + 20)`
+
+---
+
+# Example 5 — Simplify Complex Fractions
+
+Simplify
+
+`(3x / (x - y)) / (6xy / (4x^2 - 4y^2))`
+
+Rewrite as division, multiply by the reciprocal, factor, and simplify:
+
+`(3x / (x - y)) * ((4x^2 - 4y^2) / 6xy)`
+
+`= (3x / (x - y)) * (4(x + y)(x - y) / 6xy)`
+
+`= 2(x + y) / y`
+
+## Talk About It
+
+If you simplify a ratio of two rational expressions that both contain polynomials in their numerators and denominators, will the simplified expression always, sometimes, or never still be a rational expression with polynomials? Explain.
+

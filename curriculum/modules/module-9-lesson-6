@@ -1,0 +1,172 @@
+# Lesson 9-6 — Translations of Trigonometric Graphs
+
+Source: (Module 9, Lesson 9-6, pp. 463–468)
+
+## Today's Goals
+
+* Graph horizontal translations of trigonometric functions
+* Graph vertical translations of trigonometric functions
+
+---
+
+## Vocabulary
+
+* phase shift
+* vertical shift
+
+---
+
+## Explore: Analyzing Trigonometric Functions by Using Technology
+
+Use the online activity to complete the explore.
+
+**Inquiry Question:**
+How does adding a constant to, subtracting a constant from, or multiplying a constant by a function affect the graph of a trigonometric function?
+
+---
+
+# Learn: Horizontal Translations of Trigonometric Functions
+
+A horizontal translation of a trigonometric graph is called a **phase shift**.
+
+## Key Concept: Phase Shift
+
+For:
+
+* `y = a sin b(x - h)`
+* `y = a cos b(x - h)`
+* `y = a tan b(x - h)`
+
+the phase shift is `h`.
+
+* if `h > 0`, shift right
+* if `h < 0`, shift left
+
+---
+
+# Example 1 — Graph a Phase Shift
+
+For:
+
+`y = cos(x - 270°)`
+
+* amplitude `= 1`
+* period `= 360°`
+* phase shift `= 270°` right
+
+The domain is all real numbers, and the range is `-1 <= y <= 1`.
+
+---
+
+# Example 2 — Graph a Transformation of a Trigonometric Function
+
+For:
+
+`y = 3 sin(x + pi/4)`
+
+* amplitude `= 3`
+* period `= 2pi`
+* phase shift `= pi/4` left
+
+The graph is stretched vertically and shifted left.
+
+Domain: all real numbers  
+Range: `-3 <= y <= 3`
+
+---
+
+# Learn: Vertical Translations of Trigonometric Functions
+
+A vertical translation is called a **vertical shift**.
+
+## Key Concept: Vertical Shift
+
+For:
+
+* `y = a sin(bx) + k`
+* `y = a cos(bx) + k`
+* `y = a tan(bx) + k`
+
+the vertical shift is `k`.
+
+The midline is:
+
+`y = k`
+
+---
+
+# Example 3 — Graph a Vertical Shift
+
+For:
+
+`y = tan(1/2 x) - 1`
+
+* period `= 180° / (1/2) = 360°`
+* vertical shift `= -1`
+* midline `= y = -1`
+
+The graph is shifted down `1` unit.
+
+Domain: all real numbers except `180n°`
+
+Range: all real numbers
+
+---
+
+# Example 4 — Model Translations of Trigonometric Functions
+
+A jump rope oscillates between heights `0` and `108` inches and hits the ground twice each second. It begins at height `0`.
+
+Use a cosine model.
+
+## Step 1: Find the midline and amplitude
+
+* midline `= (0 + 108)/2 = 54`
+* amplitude `= (108 - 0)/2 = 54`
+
+## Step 2: Find the period and `b`
+
+The rope completes one cycle in `0.5` second, so:
+
+`0.5 = 2pi / b`
+
+`b = 4pi`
+
+## Step 3: Find the phase shift
+
+Because cosine starts at a maximum and the rope starts at `0`, the graph is shifted to the right by `0.25`.
+
+## Step 4: Write the function
+
+`y = 54 cos(4pi(x - 0.25)) + 54`
+
+This models the jump rope height.
+
+---
+
+# Example 5 — Write a Trigonometric Function from a Graph
+
+From the graph:
+
+* maximum `= 5`
+* minimum `= -1`
+
+So:
+
+* midline `= 2`
+* amplitude `= 3`
+
+The maximum has shifted right by `pi`, so:
+
+* phase shift `= pi`
+
+The period is `4pi`, so:
+
+`4pi = 2pi/|b|`
+
+`b = 0.5`
+
+Function:
+
+`y = 3 cos(0.5(x - pi)) + 2`
+

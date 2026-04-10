@@ -1,0 +1,230 @@
+# Lesson 7-3 — Graphing Reciprocal Functions
+
+Source: (Module 7, Lesson 7-3, pp. 327–332)
+
+## Today's Goals
+
+* Graph reciprocal functions by making tables of values
+* Graph and write reciprocal functions by using transformations
+
+---
+
+## Vocabulary
+
+* reciprocal function
+* vertical asymptote
+* horizontal asymptote
+* hyperbola
+* excluded values
+
+---
+
+# Learn: Graphing Reciprocal Functions
+
+A reciprocal function has the form:
+
+`f(x) = n / b(x)`
+
+where `n` is a real number and `b(x)` is a linear expression that cannot equal `0`.
+
+The parent function is:
+
+`f(x) = 1/x`
+
+Its graph is a hyperbola.
+
+## Key Concept: Reciprocal Functions
+
+For `f(x) = 1/x`:
+
+* type of graph: hyperbola
+* domain: all nonzero real numbers
+* range: all nonzero real numbers
+* asymptotes: `x = 0` and `y = 0`
+* intercepts: none
+
+The vertical asymptote is determined by the excluded value of `x`. The horizontal asymptote is the value the function approaches but never reaches.
+
+---
+
+# Example 1 — Limitations on the Domains of Reciprocal Functions
+
+Determine the excluded value of `x` for each function.
+
+## a. `g(x) = 6/x`
+
+Undefined when `x = 0`
+
+## b. `g(x) = 2/(x - 7)`
+
+Set the denominator equal to `0`:
+
+`x - 7 = 0`
+
+`x = 7`
+
+## c. `g(x) = -5/(3x + 4)`
+
+Set the denominator equal to `0`:
+
+`3x + 4 = 0`
+
+`x = -4/3`
+
+## Think About It
+
+Explain why reciprocal functions have a restricted domain.
+
+---
+
+# Example 2 — Graph a Reciprocal Function by Using a Table
+
+Consider:
+
+`g(x) = 1/(2x - 5) + 2`
+
+## Part A: Identify key features
+
+Set the denominator equal to `0`:
+
+`2x - 5 = 0`
+
+`x = 5/2`
+
+So:
+
+* vertical asymptote: `x = 5/2`
+* horizontal asymptote: `y = 2`
+* domain: `{x | x != 5/2}`
+* range: `{g(x) | g(x) != 2}`
+
+## Part B: Find the intercepts
+
+For the x-intercept, set `g(x) = 0`:
+
+`0 = 1/(2x - 5) + 2`
+
+`-2 = 1/(2x - 5)`
+
+`-2(2x - 5) = 1`
+
+`-4x + 10 = 1`
+
+`x = 2.25`
+
+For the y-intercept, substitute `x = 0`:
+
+`g(0) = 1/(-5) + 2 = 1.8`
+
+So:
+
+* x-intercept: `2.25`
+* y-intercept: `1.8`
+
+---
+
+# Example 3 — Analyze a Reciprocal Function
+
+Ohm’s law is:
+
+`I = V/R`
+
+For a `110`-volt curling iron:
+
+`I = 110/R`
+
+## Part A: Write and graph a function
+
+The function is:
+
+`I = 110/R`
+
+with asymptotes:
+
+* `R = 0`
+* `I = 0`
+
+## Part B: Analyze the key features
+
+* domain: `{R | R != 0}`
+* range: `{I | I != 0}`
+* intercepts: none
+* positive when `R > 0`
+* negative when `R < 0`
+* symmetric about the origin
+* end behavior:
+  * as `R -> -infinity`, `I -> 0`
+  * as `R -> infinity`, `I -> 0`
+
+---
+
+## Explore: Transforming Reciprocal Functions
+
+Use graphing technology to complete the explore.
+
+**Inquiry Question:**
+How does performing an operation on a reciprocal function affect its graph?
+
+---
+
+# Learn: Transformations of Reciprocal Functions
+
+For:
+
+`g(x) = a/(x - h) + k`
+
+* `h` shifts the graph left or right and sets the vertical asymptote `x = h`
+* `k` shifts the graph up or down and sets the horizontal asymptote `y = k`
+* `a` controls orientation and stretch/compression
+
+---
+
+# Example 4 — Graph a Transformation of a Reciprocal Function
+
+Graph:
+
+`g(x) = -4/(x + 1) - 2`
+
+This is a transformation of `f(x) = 1/x`.
+
+* `a = -4`: reflect across the x-axis and stretch vertically
+* `h = -1`: translate left `1`
+* `k = -2`: translate down `2`
+
+So:
+
+* vertical asymptote: `x = -1`
+* horizontal asymptote: `y = -2`
+* domain: `{x | x != -1}`
+* range: `{g(x) | g(x) != -2}`
+
+---
+
+# Example 5 — Write a Reciprocal Function from a Graph
+
+Write a function in the form:
+
+`g(x) = a/(x - h) + k`
+
+The graph has asymptotes:
+
+* `x = -4`
+* `y = -2`
+
+So:
+
+* `h = -4`
+* `k = -2`
+
+Using the point `(-3, 3)`:
+
+`3 = a/((-3) - (-4)) - 2`
+
+`3 = a - 2`
+
+`a = 5`
+
+So the function is:
+
+`g(x) = 5/(x + 4) - 2`
+

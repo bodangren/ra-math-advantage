@@ -1,0 +1,349 @@
+# Lesson 4-4 — Graphing Radical Functions
+
+Source: (Module 4, Lesson 4-4, pp. 183–188)
+
+## Today's Goals
+
+* Graph and analyze square root functions
+* Graph and analyze cube root functions
+
+---
+
+## Vocabulary
+
+* radical function
+* square root function
+* cube root function
+
+---
+
+## Explore: Using Technology to Analyze Square Root Functions
+
+Use graphing technology to complete the explore.
+
+**Inquiry Question:**
+How does adding, subtracting, or multiplying a constant to a function affect the graph of the function?
+
+---
+
+# Learn: Graphing Square Root Functions
+
+A **radical function** contains radicals with variables in the radicand.
+
+A **square root function** contains the square root of a variable expression.
+
+## Key Concept: Parent Function of Square Root Functions
+
+Parent function:
+
+`f(x) = sqrt(x)`
+
+Key features:
+
+* domain: `{x | x >= 0}`
+* range: `{f(x) | f(x) >= 0}`
+* intercepts: `x = 0`, `f(x) = 0`
+* end behavior:
+  * as `x -> 0`, `f(x) -> 0`
+  * as `x -> infinity`, `f(x) -> infinity`
+* increasing for `x > 0`
+* positive for `x > 0`
+* no symmetry
+
+A square root function can be written:
+
+`g(x) = a sqrt(x - h) + k`
+
+Effects of constants:
+
+* `|a|` stretches or compresses the graph
+* if `a < 0`, the graph reflects across the x-axis
+* `h` shifts left or right
+* `k` shifts up or down
+
+## Think About It
+
+Why is the domain limited to `x >= 0` for the parent square root function?
+
+---
+
+# Example 1 — Identify Domain and Range Algebraically
+
+Identify the domain and range of:
+
+`f(x) = sqrt(2x - 6) + 1`
+
+For the domain, require the radicand to be nonnegative:
+
+`2x - 6 >= 0`
+
+`2x >= 6`
+
+`x >= 3`
+
+So:
+
+* domain: `{x | x >= 3}`
+
+Find the lower limit of the range by evaluating `f(3)`:
+
+`f(3) = sqrt(2(3) - 6) + 1 = 1`
+
+So:
+
+* range: `{f(x) | f(x) >= 1}`
+
+---
+
+# Example 2 — Graph a Transformed Square Root Function
+
+Graph:
+
+`g(x) = -3 sqrt(x + 1) + 2`
+
+Then identify the domain and range and describe how it is related to the parent graph.
+
+## Step 1: Determine the minimum domain value
+
+`x + 1 >= 0`
+
+`x >= -1`
+
+## Step 2: Make a table and graph
+
+| x  | g(x)   |
+| -- | ------ |
+| -1 | 2      |
+| 0  | -1     |
+| 1  | about -2.2 |
+| 2  | about -3.2 |
+| 3  | -4     |
+
+So:
+
+* domain: `{x | x >= -1}`
+* range: `{g(x) | g(x) <= 2}`
+
+## Step 3: Compare to the parent function
+
+* maximum point: `(-1, 2)`
+* `a = -3`, so reflect across the x-axis and stretch vertically by `3`
+* `h = -1`, so shift left `1`
+* `k = 2`, so shift up `2`
+
+## Think About It
+
+How are the values of `h` and `k` related to the domain and range?
+
+---
+
+# Example 3 — Analyze the Graph of a Square Root Function
+
+A centrifuge with radius `7.8 cm` has RPM setting:
+
+`r = 104.23 * sqrt(g)`
+
+where `g` is the required g-force.
+
+## Part A: Write and graph the function
+
+Use the function:
+
+`r = 104.23 sqrt(g)`
+
+Sample table:
+
+| g    | r    |
+| ---- | ---- |
+| 0    | 0    |
+| 400  | 2085 |
+| 800  | 2948 |
+| 1200 | 3611 |
+| 1600 | 4169 |
+
+## Part B: Describe key features
+
+* domain: `{g | g >= 0}`
+* range: `{r | r >= 0}`
+* x-intercept: `0`
+* y-intercept: `0`
+* increasing as `g -> infinity`
+* positive for `g > 0`
+* as `g -> infinity`, `r -> infinity`
+
+## Think About It
+
+What do the domain and range mean in the context of the situation?
+
+---
+
+# Example 4 — Graph a Square Root Inequality
+
+Graph:
+
+`y < sqrt(2x + 5)`
+
+## Step 1: Graph the related function
+
+Graph the boundary:
+
+`y = sqrt(2x + 5)`
+
+Use a dashed line because the inequality is `<`.
+
+## Step 2: Shade
+
+* domain: `{x | x > -2.5}`
+* shade below the boundary and within the domain
+* choose a test point within the shaded region to verify
+
+---
+
+# Learn: Graphing Cube Root Functions
+
+A **cube root function** contains the cube root of a variable expression.
+
+## Key Concept: Parent Function of Cube Root Functions
+
+Parent function:
+
+`f(x) = cuberoot(x)`
+
+Key features:
+
+* domain: all real numbers
+* range: all real numbers
+* intercepts: `x = 0`, `f(x) = 0`
+* end behavior:
+  * as `x -> -infinity`, `f(x) -> -infinity`
+  * as `x -> infinity`, `f(x) -> infinity`
+* increasing as `x -> infinity`
+* positive for `x > 0`
+* negative for `x < 0`
+* symmetric about the origin
+
+A cube root function can be written:
+
+`g(x) = a cuberoot(x - h) + k`
+
+## Talk About It
+
+Describe how the domain and range differ for radical functions with odd index versus even index.
+
+---
+
+# Example 5 — Graph Cube Root Functions
+
+Graph each function and state the domain and range.
+
+## a. `g(x) = (1/3) cuberoot(x)`
+
+This is a vertical compression of the parent function.
+
+Sample table:
+
+| x  | g(x) |
+| -- | ---- |
+| -2 | about -0.42 |
+| -1 | about -0.33 |
+| 0  | 0 |
+| 1  | about 0.33 |
+| 2  | about 0.42 |
+
+* domain: all real numbers
+* range: all real numbers
+
+## b. `p(x) = cuberoot(x + 5)`
+
+This is the parent graph shifted `5` units left.
+
+* domain: all real numbers
+* range: all real numbers
+
+## c. `q(x) = cuberoot(4 - x) + 1`
+
+Rewrite as:
+
+`q(x) = cuberoot(-(x - 4)) + 1`
+
+So the graph is reflected and translated right `4` and up `1`.
+
+* domain: all real numbers
+* range: all real numbers
+
+## Think About It
+
+Describe the end behavior of `y = cuberoot(4 - x) + 1`.
+
+---
+
+# Example 6 — Compare Radical Functions
+
+Examine:
+
+* `p(x) = -2 cuberoot(x - 6)`
+* `q(x)` shown in the graph
+
+## Part A: Graph `p(x)`
+
+Use a table.
+
+## Part B: Compare key features
+
+From the lesson table:
+
+* `p(x)`:
+  * domain: all real numbers
+  * range: all real numbers
+  * x-intercept: `6`
+  * y-intercept: about `3.63`
+  * decreasing as `x -> infinity`
+  * positive for `x < 6`, negative for `x > 6`
+* `q(x)`:
+  * domain: `{x | x >= 6}`
+  * range: `{q(x) | q(x) <= 0}`
+  * x-intercept: `6`
+  * no y-intercept
+  * decreasing as `x -> infinity`
+
+---
+
+# Example 7 — Write a Radical Function
+
+Write a radical function for the graph of `g(x)`.
+
+## Step 1: Identify the index
+
+Because the domain and range are all real numbers, the index is odd.
+
+Use:
+
+`g(x) = a cuberoot(x - h) + k`
+
+## Step 2: Identify transformations
+
+The graph is translated:
+
+* `3` units left
+* `4` units down
+
+So:
+
+* `h = -3`
+* `k = -4`
+
+Use point `(-2, -2)`:
+
+`-2 = a cuberoot(-2 - (-3)) + (-4)`
+
+`-2 = a * 1 - 4`
+
+`a = 2`
+
+## Step 3: Write the function
+
+`g(x) = 2 cuberoot(x + 3) - 4`
+
+## Think About It
+
+Write a cube root function reflected across the x-axis and translated `7` units right and `4` units down from the parent function.

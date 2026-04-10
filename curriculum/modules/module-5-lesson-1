@@ -1,0 +1,241 @@
+# Lesson 5-1 — Graphing Exponential Functions
+
+Source: (Module 5, Lesson 5-1, pp. 217–220)
+
+## Today's Goals
+
+* Graph exponential growth functions
+* Graph exponential decay functions
+
+---
+
+## Vocabulary
+
+* exponential function
+* exponential growth
+* asymptote
+* growth factor
+* exponential decay
+* decay factor
+
+---
+
+## Explore: Using Technology to Analyze Graphs of Exponential Functions
+
+Use graphing technology to complete the explore.
+
+**Inquiry Question:**
+How does performing an operation on an exponential function affect its graph?
+
+---
+
+# Learn: Graphing Exponential Growth Functions
+
+In an exponential function, the independent variable is an exponent.
+
+An exponential function has the form:
+
+`f(x) = b^x`
+
+where the base `b` is a constant and `x` is the exponent.
+
+For an **exponential growth** function, `b > 1`.
+
+Exponential growth occurs when an initial amount increases by the same percent over a given period of time.
+
+Graphs of exponential functions have **asymptotes**, which are lines the graph approaches.
+
+---
+
+# Example 1 — Graph Exponential Growth Functions
+
+Graph:
+
+`f(x) = 2^x`
+
+Find the domain, range, y-intercept, asymptote, and end behavior.
+
+Table of values:
+
+| x  | f(x) |
+| -- | ---- |
+| -3 | 0.125 |
+| -2 | 0.25 |
+| -1 | 0.5 |
+| 0  | 1 |
+| 1  | 2 |
+| 2  | 4 |
+| 3  | 8 |
+
+Key features:
+
+* domain: all real numbers
+* range: all positive real numbers
+* y-intercept: `(0, 1)`
+* asymptote: `y = 0`
+* end behavior:
+  * as `x -> -infinity`, `f(x) -> 0`
+  * as `x -> infinity`, `f(x) -> infinity`
+
+## Think About It
+
+Why is the range all positive real numbers instead of all real numbers?
+
+---
+
+# Example 2 — Graph Transformations of Exponential Growth Functions
+
+Graph:
+
+`g(x) = -(1/2) * 3^(x + 4) + 1`
+
+Transform the parent graph `f(x) = 3^x`.
+
+* `a = -1/2`: reflect across the x-axis and compress vertically
+* `h = -4`: translate `4` units left
+* `k = 1`: translate `1` unit up
+
+---
+
+# Example 3 — Analyze Graphs of Exponential Functions
+
+Identify `k` and write a function for the graph of:
+
+`j(x) = f(x) + k`
+
+as it relates to:
+
+`f(x) = 3.5^x`
+
+The graph is translated `2` units down, so:
+
+* `k = -2`
+* `j(x) = 3.5^x - 2`
+
+---
+
+# Example 4 — Use Exponential Growth Functions
+
+Mr. Lopez invests `$50 million` at `5%` annual interest.
+
+Use:
+
+`A(t) = a(1 + r)^t`
+
+So:
+
+`A(t) = 50(1.05)^t`
+
+Using technology, after `20` years there will be about:
+
+`$132,664,885.26`
+
+## Watch Out
+
+Keep units in mind. In this lesson, the account balance is measured in millions of dollars.
+
+---
+
+# Learn: Graphing Exponential Decay Functions
+
+**Exponential decay** occurs when an initial amount decreases by the same percent over a given period of time.
+
+For a function of the form `f(x) = b^x`, decay occurs when:
+
+`0 < b < 1`
+
+Exponential decay can be modeled by:
+
+`A(t) = a(1 - r)^t`
+
+The **decay factor** is:
+
+`1 - r`
+
+---
+
+# Example 5 — Interpret Exponential Functions
+
+Determine whether each function represents growth or decay.
+
+* `f(x) = 5^x` -> growth
+* `g(x) = (2/7)^x` -> decay
+* `h(x) = (4/3)^x` -> growth
+* `j(x) = 1.05^x` -> growth
+* `k(x) = 0.85^x` -> decay
+
+---
+
+# Example 6 — Graph Exponential Decay Functions
+
+Graph:
+
+`f(x) = (1/2)^x`
+
+Key features:
+
+* domain: all real numbers
+* range: all positive real numbers
+* y-intercept: `(0, 1)`
+* asymptote: `y = 0`
+* end behavior:
+  * as `x -> -infinity`, `f(x) -> infinity`
+  * as `x -> infinity`, `f(x) -> 0`
+
+## Talk About It
+
+Explain how you can use the end behavior of an exponential function to determine whether it represents growth or decay.
+
+---
+
+# Example 7 — Graph Transformations of Exponential Decay Functions
+
+Graph:
+
+`g(x) = -2(1/4)^(x - 4) + 3`
+
+This is a transformation of:
+
+`f(x) = (1/4)^x`
+
+* `a = -2`: reflect across the x-axis and stretch vertically
+* `h = 4`: translate `4` units right
+* `k = 3`: translate `3` units up
+
+---
+
+# Example 8 — Compare Exponential Functions
+
+Consider:
+
+`f(x) = { (1/2)^x for x < -1 ; 2x + 4 for x >= -1 }`
+
+and `g(x)` from the graph.
+
+## Part A: Graph `f(x)`
+
+Graph the exponential part and the linear part.
+
+## Part B: Compare key features
+
+* `f(x)` has a relative minimum of `2`
+* `g(x)` has no relative minimum
+* `g(x)` appears to have asymptote `y = 2`
+
+### y-intercepts
+
+* `f(x)`: `4`
+* `g(x)`: `3`
+
+### end behavior
+
+* `f(x)`:
+  * as `x -> -infinity`, `f(x) -> infinity`
+  * as `x -> infinity`, `f(x) -> infinity`
+* `g(x)`:
+  * as `x -> -infinity`, `g(x) -> 2`
+  * as `x -> infinity`, `g(x) -> infinity`
+
+## Think About It
+
+Find the domain and range of `f(x)`. Does `g(x)` have the same domain and range? Explain.

@@ -1,0 +1,169 @@
+# Lesson 4-5 — Operations with Radical Expressions
+
+Source: (Module 4, Lesson 4-5, pp. 193–198)
+
+## Today's Goals
+
+* Simplify radical expressions
+* Add, subtract, and multiply radicals
+* Divide and simplify radical expressions by rationalizing the denominator
+
+---
+
+## Vocabulary
+
+* like radical expressions
+* conjugates
+
+---
+
+# Learn: Properties of Radicals
+
+The properties used to simplify square roots extend to nth roots.
+
+## Key Concept: Product Property of Radicals
+
+For real numbers `a`, `b` and integer `n > 1`:
+
+`nroot(ab) = nroot(a) * nroot(b)`
+
+when the roots are defined.
+
+Examples:
+
+* `sqrt(12) * sqrt(3) = sqrt(36) = 6`
+* `cuberoot(4) * cuberoot(16) = cuberoot(64) = 4`
+
+## Key Concept: Quotient Property of Radicals
+
+For real numbers `a` and `b != 0`:
+
+`nroot(a/b) = nroot(a) / nroot(b)`
+
+when all roots are defined.
+
+Examples:
+
+* `sqrt(x^4 / 25) = x^2 / 5`
+* `cuberoot(27/8) = 3/2`
+
+## Key Concept: Simplest Form of Radical Expressions
+
+A radical expression is in simplest form when:
+
+* the index is as small as possible
+* the radicand contains no nth-power factors other than `1`
+* the radicand contains no fractions
+* no radicals appear in the denominator
+
+---
+
+# Example 1 — Simplify Expressions with the Product Property
+
+## a. `cuberoot(-27a^6b^14)`
+
+Factor into cubes:
+
+`= cuberoot((-3)^3 * (a^2)^3 * (b^4)^3 * b^2)`
+
+`= -3a^2b^4 cuberoot(b^2)`
+
+## b. `sqrt(75x^12y^7)`
+
+Factor into squares:
+
+`= sqrt(5^2 * 3 * (x^6)^2 * (y^3)^2 * y)`
+
+`= 5x^6y^3 sqrt(3y)`
+
+## Think About It
+
+Why are absolute value symbols not necessary around `y^3` in part `b`?
+
+---
+
+# Example 2 — Simplify Expressions with the Quotient Property
+
+## a. `cuberoot((24a^6)/125)`
+
+`= cuberoot(24a^6) / cuberoot(125)`
+
+`= cuberoot(2^3 * 3 * (a^2)^3) / cuberoot(5^3)`
+
+`= 2a^2 cuberoot(3) / 5`
+
+## b. `fourthroot((80y^14)/(256z^4))`
+
+`= fourthroot(80y^14) / fourthroot(256z^4)`
+
+Factor into fourth powers and simplify:
+
+`= |y^3| fourthroot(5y^2) / (2z)`
+
+## Think About It
+
+Jon says that `cuberoot(40)` and `6 cuberoot(5)` cannot be combined because they do not have the same radicand. Is he correct? Why?
+
+---
+
+# Learn: Adding and Subtracting Radical Expressions
+
+Radicals can be added or subtracted like monomials, but only if they are **like radical expressions**.
+
+Two radicals are like radicals if:
+
+* they have the same index
+* they have the same radicand
+
+Even if expressions do not initially look alike, simplify them first.
+
+Example:
+
+* `sqrt(18) = 3sqrt(2)`
+* `sqrt(32) = 4sqrt(2)`
+
+Then they can be combined.
+
+Radicals with the same index can also be multiplied using the Product Property of Radicals.
+
+For expressions with more than one term, use the Distributive Property or FOIL.
+
+---
+
+# Example 3 — Add and Subtract Radicals
+
+Simplify:
+
+`6sqrt(45x) + sqrt(12) - 3sqrt(20x)`
+
+Factor:
+
+`= 6sqrt(3^2 * 5x) + sqrt(2^2 * 3) - 3sqrt(2^2 * 5x)`
+
+Simplify radicals:
+
+`= 6(3sqrt(5x)) + 2sqrt(3) - 3(2sqrt(5x))`
+
+`= 18sqrt(5x) + 2sqrt(3) - 6sqrt(5x)`
+
+`= 12sqrt(5x) + 2sqrt(3)`
+
+---
+
+# Example 4 — Multiply Radicals
+
+Simplify:
+
+`4 fifthroot(-10x^2y^6) * 3 fifthroot(16x^4y^4)`
+
+Multiply coefficients and radicands:
+
+`= 12 fifthroot((-10x^2y^6)(16x^4y^4))`
+
+Factor and simplify:
+
+`= 12 fifthroot(-1 * 2^5 * 5 * x^5 * x * y^10)`
+
+`= 12(-1)xy^2 fifthroot(5x)`
+
+The lesson continues this unit with rationalizing denominators and multiplying by conjugates.

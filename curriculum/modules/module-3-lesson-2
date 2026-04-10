@@ -1,0 +1,286 @@
+# Lesson 3-2 — Solving Polynomial Equations Algebraically
+
+Source: (Module 3, Lesson 3-2, pp. 123–126)
+
+## Today's Goals
+
+* Solve polynomial equations by factoring
+* Solve polynomial equations by writing them in quadratic form and factoring
+
+---
+
+## Vocabulary
+
+* prime polynomial
+* quadratic form
+
+---
+
+# Learn: Solving Polynomial Equations by Factoring
+
+Like quadratics, some higher-degree polynomials can be factored.
+
+A **prime polynomial** is a polynomial that cannot be written as a product of two polynomials with integral coefficients.
+
+Like a prime real number, the only factors of a prime polynomial are `1` and itself.
+
+## Key Concept: Sum and Difference of Cubes
+
+* `a^3 + b^3 = (a + b)(a^2 - ab + b^2)`
+* `a^3 - b^3 = (a - b)(a^2 + ab + b^2)`
+
+## Concept Summary: Factoring Techniques
+
+Always look for a **greatest common factor** first.
+
+Common techniques:
+
+* GCF
+* difference of two squares
+* sum of two cubes
+* difference of two cubes
+* perfect square trinomials
+* general trinomials
+* grouping
+
+## Think About It
+
+Mateo says you could use the sum of two cubes to factor `x^15 + y^15`. Is he correct? Why or why not?
+
+How can you check that an expression has been factored correctly?
+
+---
+
+# Example 1 — Factor Sums and Differences of Cubes
+
+Factor each polynomial. If the polynomial cannot be factored, write prime.
+
+## a. `8x^3 + 125y^12`
+
+The GCF is `1`, and both terms are perfect cubes:
+
+* `8x^3 = (2x)^3`
+* `125y^12 = (5y^4)^3`
+
+So:
+
+`8x^3 + 125y^12`
+
+`= (2x)^3 + (5y^4)^3`
+
+`= (2x + 5y^4)(4x^2 - 10xy^4 + 25y^8)`
+
+## b. `54x^5 - 128x^2y^3`
+
+Factor out the GCF:
+
+`54x^5 - 128x^2y^3 = 2x^2(27x^3 - 64y^3)`
+
+Now factor the difference of cubes:
+
+`= 2x^2[(3x)^3 - (4y)^3]`
+
+`= 2x^2(3x - 4y)(9x^2 + 12xy + 16y^2)`
+
+---
+
+# Example 2 — Factor by Grouping
+
+Factor:
+
+`14ax^2 - 16by + 20cy + 28bx^2 - 35cx^2 - 8ay`
+
+Group terms:
+
+`(14ax^2 + 28bx^2 - 35cx^2) + (-8ay - 16by + 20cy)`
+
+Factor each group:
+
+`= 7x^2(2a + 4b - 5c) - 4y(2a + 4b - 5c)`
+
+Factor the common binomial:
+
+`= (7x^2 - 4y)(2a + 4b - 5c)`
+
+## Think About It
+
+When factoring by grouping, what must be true about the expressions inside parentheses after factoring out a GCF from each group?
+
+---
+
+# Example 3 — Combine Cubes and Squares
+
+Factor:
+
+`64x^6 - y^6`
+
+This can be viewed as a difference of squares first:
+
+`64x^6 - y^6 = (8x^3)^2 - (y^3)^2`
+
+`= (8x^3 + y^3)(8x^3 - y^3)`
+
+Now factor each expression as cubes:
+
+`= [(2x)^3 + y^3][(2x)^3 - y^3]`
+
+`= (2x + y)(4x^2 - 2xy + y^2)(2x - y)(4x^2 + 2xy + y^2)`
+
+---
+
+# Example 4 — Solve a Polynomial Equation by Factoring
+
+Solve:
+
+`4x^3 + 12x^2 - 9x - 27 = 0`
+
+Group terms:
+
+`(4x^3 + 12x^2) + (-9x - 27) = 0`
+
+Factor each group:
+
+`4x^2(x + 3) - 9(x + 3) = 0`
+
+Factor common binomial:
+
+`(4x^2 - 9)(x + 3) = 0`
+
+Factor the difference of squares:
+
+`(2x + 3)(2x - 3)(x + 3) = 0`
+
+Use the Zero Product Property:
+
+* `2x + 3 = 0` -> `x = -3/2`
+* `2x - 3 = 0` -> `x = 3/2`
+* `x + 3 = 0` -> `x = -3`
+
+Solutions:
+
+* `-3`
+* `-3/2`
+* `3/2`
+
+---
+
+# Example 5 — Write and Solve a Polynomial Equation by Factoring
+
+The small cube has side length `x`, and the larger cube has side length `4x`. The volume of the figure is `1701 cm^3`.
+
+Write and solve an equation.
+
+`(4x)^3 - x^3 = 1701`
+
+`64x^3 - x^3 = 1701`
+
+`63x^3 = 1701`
+
+`x^3 = 27`
+
+`x^3 - 27 = 0`
+
+Factor the difference of cubes:
+
+`(x - 3)(x^2 + 3x + 9) = 0`
+
+So:
+
+* `x = 3`
+* or the other two roots are complex
+
+Since `3` is the only real solution, the cube side lengths are:
+
+* small cube: `3 cm`
+* large cube: `12 cm`
+
+---
+
+# Learn: Solving Polynomial Equations in Quadratic Form
+
+Some polynomials in `x` can be rewritten in **quadratic form**.
+
+## Key Concept: Quadratic Form
+
+An expression in quadratic form can be written as:
+
+`au^2 + bu + c`
+
+for numbers `a`, `b`, and `c`, where `a != 0` and `u` is some expression in `x`.
+
+## Think About It
+
+What do you notice about the variable terms in these expressions?
+
+* `2x^10 + x^5 + 9`
+* `12x^6 - 20x^3 + 6`
+* `15x^2 + 9x^4 - 1`
+
+---
+
+# Example 6 — Write Expressions in Quadratic Form
+
+Write each expression in quadratic form, if possible.
+
+## a. `4x^20 + 6x^10 + 15`
+
+Let `u = 2x^10`.
+
+Then:
+
+`4x^20 + 6x^10 + 15 = (2x^10)^2 + 3(2x^10) + 15`
+
+## b. `18x^4 + 180x^8 - 28`
+
+Rewrite in standard form:
+
+`180x^8 + 18x^4 - 28`
+
+Let `u = 6x^4`.
+
+Then:
+
+`= 5(6x^4)^2 + 3(6x^4) - 28`
+
+## c. `9x^6 - 4x^2 - 12`
+
+This cannot be written in quadratic form because `x^6 != (x^2)^2`.
+
+---
+
+# Example 7 — Solve Equations in Quadratic Form
+
+Solve:
+
+`8x^4 + 10x^2 - 12 = 0`
+
+Rewrite:
+
+`2(2x^2)^2 + 5(2x^2) - 12 = 0`
+
+Let `u = 2x^2`.
+
+Then:
+
+`2u^2 + 5u - 12 = 0`
+
+Factor:
+
+`(2u - 3)(u + 4) = 0`
+
+So:
+
+* `u = 3/2`
+* `u = -4`
+
+Replace `u`:
+
+* `2x^2 = 3/2` -> `x^2 = 3/4` -> `x = +/- (sqrt(3))/2`
+* `2x^2 = -4` -> `x^2 = -2` -> `x = +/- i sqrt(2)`
+
+Solutions:
+
+* `sqrt(3)/2`
+* `-sqrt(3)/2`
+* `i sqrt(2)`
+* `-i sqrt(2)`

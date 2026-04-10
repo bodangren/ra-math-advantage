@@ -1,0 +1,148 @@
+# Lesson 8-2 — Using Statistical Experiments
+
+Source: (Module 8, Lesson 8-2, pp. 379–382)
+
+## Today's Goals
+
+* Compare theoretical and experimental probabilities
+* Determine whether models are consistent with results from simulations of real-life situations
+
+---
+
+## Vocabulary
+
+* theoretical probability
+* experimental probability
+* probability model
+* simulation
+
+---
+
+## Explore: Fair Decisions
+
+Use a real-world situation to complete the explore.
+
+**Inquiry Question:**
+How can you use probability to make a fair decision?
+
+---
+
+# Learn: Theoretical and Experimental Probability
+
+* **theoretical probability** is what is expected to happen
+* **experimental probability** is based on actual data from an experiment
+
+## Key Concept: Law of Large Numbers
+
+As sample size increases, variation decreases and experimental probability tends to approach theoretical probability.
+
+---
+
+# Example 1 — Find Probabilities
+
+A fair eight-sided die is rolled `200` times. The result `8` occurs `42` times.
+
+* theoretical probability of rolling `8`: `1/8 = 12.5%`
+* experimental probability of rolling `8`: `42/200 = 21%`
+
+## Talk About It
+
+Explain how the phrase "The house always wins" relates to experimental and theoretical probability.
+
+---
+
+## Explore: Simulations and Experiments
+
+Use the interactive tool to complete the explore.
+
+**Inquiry Question:**
+How can simulations help you analyze the results of an experiment?
+
+---
+
+# Learn: Simulations
+
+A **probability model** represents a random event using its sample space and the probability of each outcome.
+
+A **simulation** imitates a process or situation so it can be studied when real experimentation is difficult or impractical.
+
+## Key Concept: Conducting a Simulation
+
+1. Determine each possible outcome and its theoretical probability
+2. Describe a probability model
+3. Define a trial and choose the number of trials
+4. Conduct the simulation
+5. Analyze the results
+
+---
+
+# Example 2 — Design and Run a Simulation
+
+A water bottle company has a promotion where `1` out of every `8` bottle caps wins a free bottle.
+
+## Step 1: Describe the probability model
+
+* win: `1/8`
+* not win: `7/8`
+
+## Step 2: Define the trial and number of trials
+
+Use a random number generator from `1` to `8`.
+
+* `1` represents winning
+* `2` through `8` represent not winning
+
+Run `100` trials.
+
+## Step 3: Conduct the simulation
+
+Generate `100` random integers from `1` to `8`.
+
+## Step 4: Analyze the results
+
+Sample result:
+
+If `1` appears `12` times, then the experimental probability of winning is `12%`.
+
+---
+
+# Example 3 — Run and Evaluate a Simulation
+
+A health club sells tickets where `1` in `10` wins free training sessions. A customer buys `20` tickets in a row and wins nothing. Determine whether the complaint is legitimate.
+
+## Step 1: Describe the model
+
+* win: `1/10`
+* not win: `9/10`
+
+## Step 2: Define the simulation
+
+Use a spinner:
+
+* winning sector: `10%`
+* losing sector: `90%`
+
+Run `100` trials.
+
+## Step 3: Conduct the simulation
+
+Spin `100` times and record wins.
+
+## Step 4: Analyze and evaluate
+
+Sample result:
+
+If a simulation gives `11` wins in `100` trials, the experimental probability is `11%`.
+
+To address the customer’s concern, run the simulation multiple times and check whether there are long losing streaks of at least `20`.
+
+If that happens frequently, then the customer’s experience is not unusual.
+
+Sample conclusion:
+
+If `36` out of `50` simulations contain a losing streak of at least `20`, the complaint is not legitimate because the outcome is not unlikely.
+
+## Think About It
+
+Why do you think multiple simulations were needed to evaluate this model?
+

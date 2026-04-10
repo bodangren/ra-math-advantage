@@ -1,0 +1,95 @@
+# Lesson 5-5 — Modeling Data
+
+Source: (Module 5, Lesson 5-5, pp. 249–250)
+
+## Today's Goals
+
+* Choose the best function type to model sets of data
+
+---
+
+## Vocabulary
+
+* regression function
+* coefficient of determination
+
+---
+
+## Explore: Modeling Exponential Decay
+
+Use a concrete model to complete the explore.
+
+**Inquiry Question:**
+How can experimental data be used to predict outcomes?
+
+---
+
+# Learn: Choosing the Best Model
+
+Linear, quadratic, and exponential functions grow differently.
+
+* linear functions have linear graphs
+* quadratic and exponential functions are nonlinear
+* exponential functions grow faster than quadratic functions
+
+A graphing calculator can find a **regression function**, which is a function chosen to fit a set of data.
+
+Calculators may also compute `r^2`, the **coefficient of determination**, which measures how well the data are modeled by the regression function.
+
+* an `r^2` value close to `1` indicates a strong fit
+
+## Think About It
+
+Describe the reliability of using a regression function to make predictions for domain values much greater or much less than the values in the data set.
+
+---
+
+# Example 1 — Examine Scatter Plots
+
+Use a graphing calculator to make a scatter plot of the given data and determine whether it is best modeled by a linear, quadratic, or exponential function.
+
+After plotting the data, the scatter plot appears to have:
+
+* an asymptote at `y = -3`
+* rapid increase as `x -> infinity`
+
+So the data are likely best modeled by an **exponential function**.
+
+---
+
+# Example 2 — Model Data by Using Technology
+
+A coffee company grew to more than `17,000` shops over `40` years.
+
+Use the data table to determine a best-fit model, then make predictions.
+
+## Steps 1 and 2: Enter the data and make a scatter plot
+
+Plot years since opening against number of shops.
+
+## Step 3: Determine the function of best fit
+
+Compare quadratic and exponential regressions using `r^2`.
+
+The exponential regression has the stronger fit:
+
+* `r^2 ≈ 0.964`
+
+Regression equation, rounded to the nearest thousandth:
+
+`y ≈ (0.655)1.317^x`
+
+## Step 4: Evaluate the regression function
+
+Predictions from the model:
+
+* after `10` years: about `10` shops
+* after `42` years: about `70,116` shops
+
+## Talk About It
+
+Based on the scatter plot, is it reasonable that the data could be modeled by another function type? Justify your argument.
+
+## Think About It
+
+What approximations were made when determining the number of shops at a given year?

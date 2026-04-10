@@ -1,0 +1,110 @@
+# Lesson 3-3 — Proving Polynomial Identities
+
+Source: (Module 3, Lesson 3-3, pp. 131–132)
+
+## Today's Goal
+
+* Prove polynomial identities and use them to describe numerical relationships
+
+---
+
+## Vocabulary
+
+* identity
+* polynomial identity
+
+---
+
+## Explore: Polynomial Identities
+
+Use graphing technology to complete the explore.
+
+**Inquiry Question:**
+How can you prove that two polynomial expressions form a polynomial identity?
+
+---
+
+# Learn: Proving Polynomial Identities
+
+An **identity** is an equation that is satisfied by any numbers that replace the variables.
+
+A **polynomial identity** is a polynomial equation that is true for any values substituted for the variables.
+
+Unlike solving an equation, do not begin by assuming that an identity is true and then perform the same operation to both sides. Instead, verify it algebraically.
+
+## Key Concept: Verifying Identities by Transforming One Side
+
+* Simplify one side of the equation until the two sides are the same
+* It is often easier to transform the more complicated side
+* Factor or multiply expressions as needed
+* Combine like terms
+
+## Talk About It
+
+If you multiplied each side of the equation by a variable `z`, would the result still be a polynomial identity? Explain.
+
+---
+
+# Example 1 — Transform One Side
+
+Prove that:
+
+`x^3 - y^3 = (x - y)(x^2 + xy + y^2)`
+
+Start with the right side:
+
+`(x - y)(x^2 + xy + y^2)`
+
+Distribute:
+
+`= x(x^2) + x(xy) + x(y^2) - y(x^2) - y(xy) - y(y^2)`
+
+Simplify:
+
+`= x^3 + x^2y + xy^2 - x^2y - xy^2 - y^3`
+
+Combine like terms:
+
+`= x^3 - y^3`
+
+So the right side simplifies to the left side, which proves the identity.
+
+---
+
+# Example 2 — Use Polynomial Identities
+
+Pedro claims that for positive integers `x` and `y`, where `x > y`, you can form the sides of a right triangle using:
+
+* one leg: `x^2 - y^2`
+* other leg: `2xy`
+* hypotenuse: `x^2 + y^2`
+
+To check this, test the Pythagorean relationship:
+
+`(x^2 - y^2)^2 + (2xy)^2 = (x^2 + y^2)^2`
+
+Expand:
+
+`(x^2 - y^2)^2 + (2xy)^2`
+
+`= x^4 - 2x^2y^2 + y^4 + 4x^2y^2`
+
+`= x^4 + 2x^2y^2 + y^4`
+
+Right side:
+
+`(x^2 + y^2)^2 = x^4 + 2x^2y^2 + y^4`
+
+Both sides are equal, so the identity is true.
+
+Therefore, Pedro is correct.
+
+## Check
+
+Complete the proof that:
+
+`x^4 - y^4 = (x - y)(x + y)(x^2 + y^2)`
+
+## Use a Source
+
+Research an application of prime numbers. How could a polynomial identity for identifying prime numbers impact the application?

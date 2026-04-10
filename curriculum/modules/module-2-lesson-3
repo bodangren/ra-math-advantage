@@ -1,0 +1,250 @@
+# Lesson 2-3 — Operations with Polynomials
+
+Source: (Module 2, Lesson 2-3, pp. 93–96)
+
+## Today's Goals
+
+* Add and subtract polynomials
+* Multiply polynomials
+
+---
+
+## Vocabulary
+
+* binomial
+* trinomial
+* closed
+* FOIL method
+
+---
+
+# Learn: Adding and Subtracting Polynomials
+
+A polynomial is a monomial or the sum of two or more monomials.
+
+* A **binomial** is the sum of two monomials
+* A **trinomial** is the sum of three monomials
+* The **degree** of a polynomial is the greatest degree of any term
+
+Polynomials can be added or subtracted by performing the indicated operations and combining like terms.
+
+* To subtract a polynomial, add its additive inverse
+* The sum or difference of polynomials has the same variables and exponents as the original polynomials, but possibly different coefficients
+
+A set is **closed** under an operation if performing that operation on any two elements of the set produces another element of the same set.
+
+Because adding or subtracting polynomials results in a polynomial, the set of polynomials is closed under addition and subtraction.
+
+## Study Tip
+
+Constant terms have degree `0`, and variable terms with no exponent shown have degree `1`.
+
+---
+
+# Example 1 — Identify Polynomials
+
+Determine whether each expression is a polynomial. If it is a polynomial, state its degree.
+
+* `x^6 + cuberoot(x) - 4`
+  * not a polynomial because `cuberoot(x)` is not a monomial
+* `5a^4b + 3a^2b^7 - 9`
+  * polynomial
+  * degree of first term: `4 + 1 = 5`
+  * degree of second term: `2 + 7 = 9`
+  * degree of constant term: `0`
+  * degree of polynomial: `9`
+* `(2/3)x^-5 - 6x^-3 - x`
+  * not a polynomial because `x^-5` and `x^-3` are not monomials
+
+## Think About It
+
+Identify the like terms in `8x^5 + 3x^2 - 10` and `4x^3 - 7x^2 + 5`.
+
+---
+
+# Example 2 — Add Polynomials
+
+Find:
+
+`(6x^3 + 7x^2 - 2x + 5) + (x^3 - 4x^2 - 8x + 1)`
+
+## Method 1: Add horizontally
+
+`(6x^3 + x^3) + (7x^2 - 4x^2) + (-2x - 8x) + (5 + 1)`
+
+`= 7x^3 + 3x^2 - 10x + 6`
+
+## Method 2: Add vertically
+
+```
+  6x^3 + 7x^2 - 2x + 5
++   x^3 - 4x^2 - 8x + 1
+-----------------------
+  7x^3 + 3x^2 - 10x + 6
+```
+
+---
+
+# Example 3 — Subtract Polynomials
+
+Find:
+
+`(2x^5 + 11x^4 + 7x - 8) - (5x^4 + 9x^3 - 3x + 4)`
+
+## Method 1: Subtract horizontally
+
+`2x^5 + 11x^4 + 7x - 8 - 5x^4 - 9x^3 + 3x - 4`
+
+`= 2x^5 + 6x^4 - 9x^3 + 10x - 12`
+
+## Method 2: Subtract vertically
+
+```
+   2x^5 + 11x^4 + 0x^3 + 7x - 8
+-  0x^5 +  5x^4 + 9x^3 - 3x + 4
+--------------------------------
+   2x^5 +  6x^4 - 9x^3 + 10x - 12
+```
+
+## Talk About It
+
+Will the terms in a sum always have the same variables and exponents as the original expressions? Explain.
+
+## Think About It
+
+Why is it helpful to insert placeholders such as `0x^3` and `0x^5` terms?
+
+---
+
+## Explore: Multiplying Polynomials
+
+Use a table to complete the explore.
+
+**Inquiry Question:**
+How is using a table to multiply polynomials related to the Distributive Property?
+
+---
+
+# Learn: Multiplying Polynomials
+
+Polynomials can be multiplied by using the Distributive Property to multiply each term in one polynomial by each term in the other.
+
+* The product of polynomials is also a polynomial
+* So the set of polynomials is closed under multiplication
+
+To multiply two binomials, you can use the **FOIL method**.
+
+## Key Concept: FOIL Method
+
+Find the sum of the products of:
+
+* **F**irst terms
+* **O**uter terms
+* **I**nner terms
+* **L**ast terms
+
+Example:
+
+`(2x + 4)(x - 3)`
+
+`= (2x)(x) + (2x)(-3) + (4)(x) + (4)(-3)`
+
+`= 2x^2 - 6x + 4x - 12`
+
+`= 2x^2 - 2x - 12`
+
+---
+
+# Example 4 — Simplify by Using the Distributive Property
+
+Find:
+
+`2x(4x^3 + 5x^2 - x - 7)`
+
+Distribute `2x` to each term:
+
+`= 2x(4x^3) + 2x(5x^2) + 2x(-x) + 2x(-7)`
+
+`= 8x^4 + 10x^3 - 2x^2 - 14x`
+
+## Think About It
+
+Why are the exponents added when you multiply monomials?
+
+---
+
+# Example 5 — Multiply Binomials
+
+Find:
+
+`(3a + 5)(a - 7)(4a + 1)`
+
+### Step 1: Multiply two binomials
+
+`(3a + 5)(a - 7)`
+
+`= 3a(a) + 3a(-7) + 5(a) + 5(-7)`
+
+`= 3a^2 - 21a + 5a - 35`
+
+`= 3a^2 - 16a - 35`
+
+### Step 2: Multiply the result by the remaining binomial
+
+`(3a^2 - 16a - 35)(4a + 1)`
+
+`= 3a^2(4a + 1) + (-16a)(4a + 1) + (-35)(4a + 1)`
+
+`= 12a^3 + 3a^2 - 64a^2 - 16a - 140a - 35`
+
+`= 12a^3 - 61a^2 - 156a - 35`
+
+---
+
+# Apply Example 7 — Write and Simplify a Polynomial Expression
+
+Byron is baking a three-tier cake. Each tier has `1/2` the volume of the previous tier. The dimensions of the first tier are given.
+
+Find the total volume of the cake.
+
+## 1. What is the task?
+
+Describe the task in your own words and list any questions you have.
+
+Sample answer:
+
+I need to find the total volume of the cake, which is the sum of all 3 tiers. I need to determine how to represent the volume of each tier as a polynomial and which properties will help simplify the result.
+
+## 2. How will you approach the task?
+
+Sample answer:
+
+I will find and simplify the volume of each tier and then add them together. I will use the Distributive Property and the FOIL method.
+
+## 3. What is your solution?
+
+### Volume of each tier
+
+* Tier 1: `8x^3 - 2x^2 - 3x`
+* Tier 2: `4x^3 - x^2 - 1.5x`
+* Tier 3: `2x^3 - 0.5x^2 - 0.75x`
+
+### Total volume
+
+`14x^3 - 3.5x^2 - 5.25x`
+
+## 4. How can you know the solution is reasonable?
+
+Check the volume expression for Tier 1 by factoring:
+
+`8x^3 - 2x^2 - 3x`
+
+`= (8x^2 - 2x - 3)x`
+
+`= (4x - 3)(2x + 1)x`
+
+So the factored form matches the given dimensions.
+
+## Think About It
+
+What does `x` represent in the polynomial expression for the volume of the cake?

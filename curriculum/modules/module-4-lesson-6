@@ -1,0 +1,264 @@
+# Lesson 4-6 — Solving Radical Equations
+
+Source: (Module 4, Lesson 4-6, pp. 203–206)
+
+## Today's Goals
+
+* Solve radical equations in one variable and identify extraneous solutions
+* Solve radical equations by graphing systems of equations
+
+---
+
+## Vocabulary
+
+* radical equation
+
+---
+
+## Explore: Solutions of Radical Equations
+
+Use graphing technology to complete the explore.
+
+**Inquiry Question:**
+When will a radical equation have a solution? When will it have no solution?
+
+---
+
+# Learn: Solving Radical Equations Algebraically
+
+A **radical equation** has a variable in a radicand.
+
+When solving a radical equation, the result may be an **extraneous solution**.
+
+## Key Concept: Solving Radical Equations
+
+1. Isolate the radical on one side.
+2. Raise each side to a power equal to the index of the radical.
+3. Solve the resulting polynomial equation.
+4. Check all results.
+
+---
+
+# Example 1 — Solve a Square Root Equation
+
+Solve:
+
+`sqrt(3x - 5) + 2 = 6`
+
+Isolate the radical:
+
+`sqrt(3x - 5) = 4`
+
+Square both sides:
+
+`3x - 5 = 16`
+
+`3x = 21`
+
+`x = 7`
+
+Check the result in the original equation.
+
+---
+
+# Example 2 — Solve a Cube Root Equation
+
+Solve:
+
+`4(2x + 6)^(1/3) - 9 = 3`
+
+Isolate the cube root:
+
+`4(2x + 6)^(1/3) = 12`
+
+`(2x + 6)^(1/3) = 3`
+
+Cube both sides:
+
+`2x + 6 = 27`
+
+`2x = 21`
+
+`x = 21/2`
+
+## Think About It
+
+How could you change the equation so that there is no solution?
+
+---
+
+# Example 3 — Identify Extraneous Solutions
+
+Solve:
+
+`sqrt(x + 21) = 3 - sqrt(x)`
+
+Square both sides:
+
+`x + 21 = 9 - 6sqrt(x) + x`
+
+`12 = -6sqrt(x)`
+
+`-2 = sqrt(x)`
+
+Square both sides:
+
+`x = 4`
+
+Check:
+
+`sqrt(4 + 21) = 5`
+
+`3 - sqrt(4) = 1`
+
+These are not equal, so `x = 4` is an **extraneous solution**.
+
+Therefore, there is **no real solution**.
+
+## Talk About It
+
+In Example 3, could you tell that `4` was extraneous before checking? Explain.
+
+---
+
+# Example 4 — Solve a Radical Equation
+
+Solve:
+
+`(2/3)(11x + 14)^(1/6) + 8 = 10`
+
+Isolate the radical:
+
+`(2/3)(11x + 14)^(1/6) = 2`
+
+`(11x + 14)^(1/6) = 3`
+
+Raise both sides to the sixth power:
+
+`11x + 14 = 729`
+
+`11x = 715`
+
+`x = 65`
+
+This value makes the equation true.
+
+---
+
+# Learn: Solving Radical Equations by Graphing
+
+To solve a radical equation using a graph:
+
+* rewrite the equation with `0` on one side and graph the related function
+* or write a system by setting each side equal to `y`
+
+The zeros or intersections give the solution.
+
+Example:
+
+Equation:
+
+`sqrt(2x + 5) + 1 = 4`
+
+Related function:
+
+`f(x) = sqrt(2x + 5) - 3`
+
+System:
+
+* `y = sqrt(2x + 5) + 1`
+* `y = 4`
+
+---
+
+# Example 5 — Solve a Radical Equation by Graphing
+
+Use a graphing calculator to solve:
+
+`2 cuberoot(3x - 4) + 10 = 9`
+
+## Step 1: Find a related function
+
+Move everything to one side:
+
+`2 cuberoot(3x - 4) + 1 = 0`
+
+So the related function is:
+
+`f(x) = 2 cuberoot(3x - 4) + 1`
+
+## Step 2: Graph the function
+
+Graph in the calculator.
+
+## Step 3: Use a table
+
+The table shows the function changes sign between `x = 1` and `x = 2`.
+
+## Step 4: Find the zero
+
+Use the `zero` feature.
+
+The zero is about:
+
+`x ≈ 1.29`
+
+## Think About It
+
+What would the graph of a related function with no solution look like?
+
+---
+
+# Example 6 — Solve a Radical Equation by Using a System
+
+Use a graphing calculator to solve:
+
+`sqrt(x + 6) - 5 = -sqrt(2x) + 1`
+
+## Step 1: Write a system
+
+* `y = sqrt(x + 6) - 5`
+* `y = -sqrt(2x) + 1`
+
+## Step 2: Graph the system
+
+Enter both in the `Y=` list.
+
+## Step 3: Find the intersection
+
+Use the `intersect` feature.
+
+The x-coordinate of the intersection is about:
+
+`x ≈ 4.02`
+
+## Think About It
+
+How can you use the table feature on your calculator to find the intersection?
+
+---
+
+# Example 7 — Confirm Solutions by Using Technology
+
+The relationship for a planet orbiting the Sun is:
+
+`T = sqrt(a^3)`
+
+where:
+
+* `T` is measured in years
+* `a` is measured in astronomical units
+
+If Mars takes `1.88` years to orbit the Sun, find its mean distance from the Sun.
+
+`1.88 = sqrt(a^3)`
+
+Square both sides:
+
+`3.5344 = a^3`
+
+Take the cube root:
+
+`a ≈ 1.5233`
+
+So the mean distance from Mars to the Sun is about **1.5233 AU**.

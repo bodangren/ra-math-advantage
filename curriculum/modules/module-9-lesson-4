@@ -1,0 +1,186 @@
+# Lesson 9-4 — Graphing Sine and Cosine Functions
+
+Source: (Module 9, Lesson 9-4, pp. 445–450)
+
+## Today's Goals
+
+* Graph and analyze sine and cosine functions
+* Model periodic real-world situations with sine and cosine functions
+
+---
+
+## Vocabulary
+
+* oscillation
+* midline
+* amplitude
+* sinusoidal function
+* frequency
+
+---
+
+# Learn: Graphing Sine and Cosine Functions
+
+Sine and cosine are oscillating functions.
+
+* the **midline** is halfway between the maximum and minimum
+* the **amplitude** is half the distance between the maximum and minimum
+
+For `y = a sin bx` or `y = a cos bx`:
+
+* amplitude `= |a|`
+* period `= 360°/|b|` or `2pi/|b|`
+
+---
+
+# Example 1 — Identify the Amplitude and Period from a Graph
+
+From the graph:
+
+* maximum `= 4`
+* minimum `= -4`
+
+Amplitude:
+
+`(4 - (-4))/2 = 4`
+
+Midline:
+
+`y = 0`
+
+The graph repeats every `pi`, so the period is:
+
+`pi`
+
+---
+
+# Example 2 — Identify the Amplitude and Period from an Equation
+
+For `f(x) = 3 cos 5x`:
+
+* amplitude `= 3`
+* period `= 360°/5 = 72°`
+
+---
+
+# Example 3 — Graph a Sine Function
+
+Graph:
+
+`y = 0.5 sin 4x`
+
+## Step 1: Find the amplitude
+
+`|a| = 0.5`
+
+## Step 2: Find the period
+
+`360°/4 = 90°`
+
+## Step 3: Find key points
+
+x-intercepts:
+
+* `(0, 0)`
+* `(45°, 0)`
+* `(90°, 0)`
+
+Maximum:
+
+* `(22.5°, 0.5)`
+
+Minimum:
+
+* `(67.5°, -0.5)`
+
+Plot these points and draw the sine curve.
+
+---
+
+# Example 4 — Graph a Cosine Function
+
+Graph:
+
+`y = 2 cos 3x`
+
+## Step 1: Find the amplitude
+
+`|a| = 2`
+
+## Step 2: Find the period
+
+`360°/3 = 120°`
+
+## Step 3: Find key points
+
+* maximum at `(0, 2)`
+* x-intercepts at `(30°, 0)` and `(90°, 0)`
+* minimum at `(60°, -2)`
+
+Plot the points and sketch the curve.
+
+---
+
+# Learn: Modeling with Sine and Cosine Functions
+
+Sine and cosine functions are also called **sinusoidal functions**.
+
+The **frequency** is the number of cycles per unit time and is the reciprocal of the period.
+
+## Key Concept: Modeling with `y = a sin bx` and `y = a cos bx`
+
+1. Use the amplitude to find `a`
+2. Use the period or frequency to find `b`
+3. Write the function
+
+---
+
+# Example 5 — Characteristics of the Sine and Cosine Functions
+
+For:
+
+`y = 40 cos(pi t)`
+
+## Part A: Find period and frequency
+
+`period = 2pi/pi = 2`
+
+`frequency = 1/2`
+
+Interpretation:
+
+The object completes half a cycle per second and reaches its maximum every `2` seconds.
+
+## Part B: Identify domain and range in context
+
+* relevant domain: `[0, infinity)`
+* range: `[-40, 40]`
+
+---
+
+# Example 6 — Model Periodic Situations
+
+The voltage in an outlet oscillates between `-120` and `120` volts with frequency `50` cycles per second. Write a function for voltage `v` as a function of time `t`.
+
+## Step 1: Find the amplitude
+
+`a = 120`
+
+## Step 2: Find the period and `b`
+
+`period = 1/50`
+
+Use:
+
+`2pi/b = 1/50`
+
+So:
+
+`b = 100pi`
+
+## Step 3: Write the function
+
+`v = 120 sin(100pi t)`
+
+This models the voltage as a periodic sine function.
+

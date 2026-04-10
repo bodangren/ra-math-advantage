@@ -1,0 +1,124 @@
+# Lesson 2-5 — Powers of Binomials
+
+Source: (Module 2, Lesson 2-5, pp. 109–110)
+
+## Today's Goal
+
+* Expand powers of binomials by using Pascal's Triangle and the Binomial Theorem
+
+---
+
+## Vocabulary
+
+* Pascal's triangle
+
+---
+
+## Explore: Expanding Binomials
+
+Use the interactive tool to complete the explore.
+
+**Inquiry Question:**
+How can you use Pascal's triangle to write expansions of binomials?
+
+---
+
+# Learn: Powers of Binomials
+
+You can expand binomials by following patterns and rules.
+
+## Key Concept: Binomial Expansion
+
+In the binomial expansion of `(a + b)^n`:
+
+* there are `n + 1` terms
+* `n` is the exponent of `a` in the first term and of `b` in the last term
+* in successive terms, the exponent of `a` decreases by `1`
+* in successive terms, the exponent of `b` increases by `1`
+* the sum of the exponents in each term is `n`
+* the coefficients are symmetric
+
+**Pascal's triangle** is a triangle of numbers in which each row gives the coefficients of an expanded binomial `(a + b)^n`.
+
+* Each row begins and ends with `1`
+* Each interior number is the sum of the two numbers above it
+
+Instead of writing the triangle, you can use the **Binomial Theorem**.
+
+## Key Concept: Binomial Theorem
+
+If `n` is a natural number, then:
+
+`(a + b)^n = nC0 a^n b^0 + nC1 a^(n-1) b^1 + nC2 a^(n-2) b^2 + ... + nCn a^0 b^n`
+
+This can also be written using factorial notation for the coefficients.
+
+## Think About It
+
+Both `nC0` and `nCn` equal `1`. What does this mean for the terms of a binomial expansion? How does this relate to Pascal's triangle?
+
+---
+
+# Example 1 — Use Pascal's Triangle
+
+Use Pascal's triangle to expand `(x + y)^7`.
+
+Relevant row of Pascal's triangle:
+
+`1  7  21  35  35  21  7  1`
+
+So:
+
+`(x + y)^7 = x^7 + 7x^6y + 21x^5y^2 + 35x^4y^3 + 35x^3y^4 + 21x^2y^5 + 7xy^6 + y^7`
+
+---
+
+# Example 2 — Use the Binomial Theorem
+
+In 2016, the Chicago Cubs played the Atlanta Braves `6` times, winning `3` games and losing `3` games. If the Cubs were equally likely to win or lose, find the probability of this outcome by expanding `(w + l)^6`.
+
+Expand:
+
+`(w + l)^6`
+
+`= 6C0 w^6 + 6C1 w^5l + 6C2 w^4l^2 + 6C3 w^3l^3 + 6C4 w^2l^4 + 6C5 wl^5 + 6C6 l^6`
+
+`= w^6 + 6w^5l + 15w^4l^2 + 20w^3l^3 + 15w^2l^4 + 6wl^5 + l^6`
+
+The sum of the coefficients is:
+
+`1 + 6 + 15 + 20 + 15 + 6 + 1 = 64`
+
+So there are `64` possible win-loss combinations.
+
+The term `20w^3l^3` represents the number of ways to get `3` wins and `3` losses.
+
+Therefore, the probability is:
+
+`20 / 64`
+
+which is about **31%**.
+
+## Talk About It
+
+Describe a shortcut you could use to write rows of Pascal's triangle instead of adding to find every number in a row.
+
+---
+
+# Example 3 — Coefficients Other Than 1
+
+Expand:
+
+`(2c - 6d)^4`
+
+Use the Binomial Theorem:
+
+`= 4C0(2c)^4 + 4C1(2c)^3(-6d) + 4C2(2c)^2(-6d)^2 + 4C3(2c)(-6d)^3 + 4C4(-6d)^4`
+
+`= 16c^4 + 4(8c^3)(-6d) + 6(4c^2)(36d^2) + 4(2c)(-216d^3) + 1296d^4`
+
+`= 16c^4 - 192c^3d + 864c^2d^2 - 1728cd^3 + 1296d^4`
+
+## Study Tip
+
+When the coefficients in the binomial are not `1`, the coefficients in the expansion are no longer symmetric, so the Binomial Theorem is often easier to use.

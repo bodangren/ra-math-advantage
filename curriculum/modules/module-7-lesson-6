@@ -1,0 +1,251 @@
+# Lesson 7-6 — Solving Rational Equations and Inequalities
+
+Source: (Module 7, Lesson 7-6, pp. 355–360)
+
+## Today's Goals
+
+* Solve rational equations in one variable
+* Solve rational inequalities in one variable
+
+---
+
+## Vocabulary
+
+* rational equation
+* rational inequality
+
+---
+
+## Explore: Solving Rational Equations
+
+Use a real-world situation to complete the explore.
+
+**Inquiry Question:**
+How can you solve rational equations by graphing?
+
+---
+
+# Learn: Solving Rational Equations
+
+A **rational equation** contains at least one rational expression.
+
+These are usually solved by multiplying both sides by the least common denominator to eliminate fractions. This can create extraneous solutions, so answers must be checked against the original equation.
+
+Common contexts include:
+
+* mixture problems
+* uniform motion problems
+* work problems
+
+---
+
+# Example 1 — Solve a Rational Equation
+
+Solve:
+
+`7/12 + 9/(x - 4) = 55/48`
+
+The LCD is:
+
+`48(x - 4)`
+
+Multiply through and simplify:
+
+`28x - 112 + 432 = 55x - 220`
+
+`28x + 320 = 55x - 220`
+
+`540 = 27x`
+
+`x = 20`
+
+---
+
+# Example 2 — Solve a Rational Equation with an Extraneous Solution
+
+Solve:
+
+`2m/(m - 4) - (m^2 + 7m + 4)/(3m^2 - 18m + 24) = 4m/(3m - 6)`
+
+Use the LCD:
+
+`(m - 4)(3m - 6)`
+
+After simplifying:
+
+`m^2 - 3m - 4 = 0`
+
+`(m - 4)(m + 1) = 0`
+
+Possible solutions:
+
+* `m = 4`
+* `m = -1`
+
+But `m = 4` makes a denominator `0`, so it is extraneous.
+
+Final answer:
+
+`m = -1`
+
+## Talk About It
+
+How could you identify the extraneous solution without substituting every result back into the original equation?
+
+---
+
+# Example 3 — Mixture Problem
+
+You are adding a `50%` isopropyl alcohol liquid to `200` mL of a liquid that is `91%` isopropyl alcohol to create a `70%` solution. How much of the `50%` liquid should be added?
+
+Let `x` be the amount added.
+
+Set up the rational equation:
+
+`70/100 = (0.91(200) + 0.5x) / (200 + x)`
+
+Simplify:
+
+`0.70 = (182 + 0.5x) / (200 + x)`
+
+Multiply by `100(200 + x)` and solve:
+
+`14,000 + 70x = 18,200 + 50x`
+
+`x = 210`
+
+So `210` milliliters of the `50%` liquid should be added.
+
+---
+
+# Example 4 — Distance Problem
+
+A bat flies `121.8` miles round trip in `5` hours, with an average still-air speed of `25` mph. Determine the wind speed.
+
+Each leg is `60.9` miles.
+
+Let `w` be the wind speed. Then:
+
+`60.9/(25 + w) + 60.9/(25 - w) = 5`
+
+Solve:
+
+`w^2 = 16`
+
+`w = 4` or `w = -4`
+
+The viable solution is:
+
+`w = 4`
+
+So the wind speed is `4` mph.
+
+---
+
+# Example 5 — Work Problem
+
+If a `24`-row planter can plant a field in `10` hours and it takes `6` hours when a `16`-row planter is also used, how long would the `16`-row planter take by itself?
+
+Let `p` be the time for the `16`-row planter alone.
+
+Set up the equation:
+
+`1/10 + 1/p = 1/6`
+
+Multiply by `30p`:
+
+`3p + 30 = 5p`
+
+`30 = 2p`
+
+`p = 15`
+
+It would take the `16`-row planter `15` hours alone.
+
+---
+
+# Learn: Solving Rational Inequalities
+
+A **rational inequality** contains at least one rational expression.
+
+## Key Concept: Solving Rational Inequalities
+
+1. State the excluded values
+2. Solve the related equation
+3. Use those values to divide the number line into intervals
+4. Test a value in each interval
+
+---
+
+# Example 6 — Solve a Rational Inequality
+
+Solve:
+
+`x/2 - 5/(x + 1) > (x - 4)/3`
+
+## Step 1: Find the excluded value
+
+`x = -1`
+
+## Step 2: Solve the related equation
+
+`x/2 - 5/(x + 1) = (x - 4)/3`
+
+After clearing denominators and simplifying:
+
+`x^2 + 9x - 22 = 0`
+
+`(x - 2)(x + 11) = 0`
+
+Critical values:
+
+* `x = -11`
+* `x = -1` excluded
+* `x = 2`
+
+## Step 3: Test intervals
+
+The inequality is true on:
+
+* `-11 < x < -1`
+* `x > 2`
+
+---
+
+# Apply Example 7 — Write and Solve a Rational Inequality
+
+Jamila spends `$378` on an embroidery machine and `$1.85` per hat. How many hats must she make so that the average cost per hat is less than or equal to `$5`?
+
+## 1. What is the task?
+
+Find the number of hats needed so the average cost per hat is at most `$5`.
+
+## 2. How will you approach the task?
+
+Write an inequality for average cost, identify excluded values, solve the related equation, and test intervals.
+
+## 3. What is your solution?
+
+Average cost inequality:
+
+`(1.85h + 378) / h <= 5`
+
+Excluded value:
+
+* `h = 0`
+
+Solutions to the inequality:
+
+* `h < 0`
+* `h >= 120`
+
+Only the contextual solution is viable:
+
+`h >= 120`
+
+Jamila must make at least `120` hats.
+
+## 4. How can you know that your solution is reasonable?
+
+As more hats are made, the fixed machine cost is spread across more units, so the average cost falls. Reaching `$5` or less after a fairly large number of hats is reasonable.
+

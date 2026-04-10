@@ -1,0 +1,316 @@
+# Lesson 2-1 — Polynomial Functions
+
+Source: (Module 2, Lesson 2-1, pp. 73–78)
+
+## Today's Goals
+
+* Graph and analyze power functions
+* Graph and analyze polynomial functions
+
+---
+
+## Vocabulary
+
+* power function
+* leading coefficient
+* degree
+* monomial function
+* polynomial in one variable
+* standard form of a polynomial
+* degree of a polynomial
+* polynomial function
+* quartic function
+* quintic function
+
+---
+
+## Explore: Power Functions
+
+Use graphing technology to complete the explore.
+
+**Inquiry Question:**
+How do the coefficient and degree of a function of the form `f(x) = ax^n` affect its end behavior?
+
+---
+
+# Learn: Graphing Power Functions
+
+A **power function** is any function of the form `f(x) = ax^n`, where `a` and `n` are nonzero real numbers.
+
+* `a` is the **leading coefficient**
+* `n` is the **degree**
+* A power function with positive integer `n` is called a **monomial function**
+
+## Key Concept: End Behavior of a Monomial Function
+
+* Even degree, positive leading coefficient:
+  * as `x -> -infinity`, `f(x) -> infinity`
+  * as `x -> infinity`, `f(x) -> infinity`
+  * domain: all real numbers
+  * range: `y >= 0`
+* Odd degree, positive leading coefficient:
+  * as `x -> -infinity`, `f(x) -> -infinity`
+  * as `x -> infinity`, `f(x) -> infinity`
+  * domain: all real numbers
+  * range: all real numbers
+* Even degree, negative leading coefficient:
+  * as `x -> -infinity`, `f(x) -> -infinity`
+  * as `x -> infinity`, `f(x) -> -infinity`
+  * domain: all real numbers
+  * range: `y <= 0`
+* Odd degree, negative leading coefficient:
+  * as `x -> -infinity`, `f(x) -> infinity`
+  * as `x -> infinity`, `f(x) -> -infinity`
+  * domain: all real numbers
+  * range: all real numbers
+
+## Key Concept: Zeros of Even- and Odd-Degree Monomial Functions
+
+* Odd-degree functions always have at least one real zero
+* Even-degree functions may have any number of real zeros or no real zeros at all
+
+## Talk About It
+
+Is `f(x) = sqrt(x)` a power function? A monomial function? Explain your reasoning.
+
+---
+
+# Example 1 — End Behavior and Degree of a Monomial Function
+
+Describe the end behavior of `f(x) = -2x^3` using the leading coefficient and degree, and state the domain and range.
+
+* The leading coefficient is `-2`, which is negative
+* The degree is `3`, which is odd
+
+Because the leading coefficient is negative and the degree is odd:
+
+* as `x -> -infinity`, `f(x) -> infinity`
+* as `x -> infinity`, `f(x) -> -infinity`
+
+Because this is a monomial function:
+
+* domain: all real numbers
+* range: all real numbers
+
+---
+
+# Example 2 — Graph a Power Function by Using a Table
+
+Pressure in a garden hose can be modeled by:
+
+`P(F) = (3/2)F^2`
+
+where `F` is the flow rate in gallons per minute.
+
+Graph the function and state the domain and range.
+
+### Steps 1 and 2: Find `a` and `n`
+
+* `a = 3/2`
+* `n = 2`
+
+Because `a` is positive and `n` is even:
+
+* domain: all real numbers
+* range: `y >= 0`
+
+### Steps 3–5: Make a table and graph
+
+| F  | P(F) |
+| -- | ---- |
+| -2 | 6    |
+| -1 | 1.5  |
+| 0  | 0    |
+| 1  | 1.5  |
+| 2  | 6    |
+
+## Think About It
+
+Interpret the domain and range given the context of the situation.
+
+---
+
+## Explore: Polynomial Functions
+
+Use graphing technology to complete the explore.
+
+**Inquiry Question:**
+How is the degree of a function related to the number of times its graph intersects the x-axis?
+
+---
+
+# Learn: Graphing Polynomial Functions
+
+A **polynomial in one variable** has the form:
+
+`a_nx^n + a_(n-1)x^(n-1) + ... + a_2x^2 + a_1x + a_0`
+
+where:
+
+* `a_n != 0`
+* the coefficients are real numbers
+* `n` is a nonnegative integer
+
+When the terms are written from greatest degree to least degree, the polynomial is in **standard form**.
+
+* The **degree** is `n`
+* The **leading coefficient** is `a_n`
+
+A **polynomial function** is a continuous function described by a polynomial equation in one variable.
+
+* A fourth-degree polynomial is a **quartic** function
+* A fifth-degree polynomial is a **quintic** function
+* The degree tells the maximum number of times the graph can intersect the x-axis
+
+## Watch Out
+
+If the term with the greatest degree has no coefficient shown, the leading coefficient is `1`.
+
+---
+
+# Example 3 — Degrees and Leading Coefficients
+
+State the degree and leading coefficient of each expression. If it is not a polynomial in one variable, explain why.
+
+* `2x^4 - 3x^3 - 4x^2 - 5x + 6`
+  * degree: `4`
+  * leading coefficient: `2`
+* `7x^3 - 2`
+  * degree: `3`
+  * leading coefficient: `7`
+* `4x^2 - 2xy + 8y^2`
+  * not a polynomial in one variable because it has two variables
+* `x^5 + 12x^4 - 3x^3 + 2x^2 + 8x + 4`
+  * degree: `5`
+  * leading coefficient: `1`
+
+## Think About It
+
+Jamison says the leading coefficient of `4x^2 - 3 + 2x^3 - x` is `4`. Do you agree or disagree? Explain.
+
+If a polynomial function has a leading coefficient of `4`, can you determine its end behavior? Explain.
+
+---
+
+# Example 4 — Evaluate and Graph a Polynomial Function
+
+The density of the Sun can be modeled by:
+
+`f(x) = 519x^4 - 1630x^3 + 1844x^2 - 889x + 155`
+
+where `x` is the percent of the distance from the core to the surface, written as a decimal.
+
+## Part A: Evaluate the function
+
+Find the density at a radius `60%` of the way to the surface.
+
+Substitute `x = 0.6`:
+
+`f(0.6) = 519(0.6)^4 - 1630(0.6)^3 + 1844(0.6)^2 - 889(0.6) + 155`
+
+`= 67.2624 - 352.08 + 663.84 - 533.4 + 155`
+
+`= 0.6224`
+
+So the density is `0.6224 g/cm^3`.
+
+## Part B: Graph the function
+
+Create a table of values and connect the points with a smooth curve.
+
+| x   | f(x)    |
+| --- | ------- |
+| 0.1 | 82.9619 |
+| 0.2 | 38.7504 |
+| 0.3 | 14.4539 |
+| 0.4 | 3.4064  |
+| 0.5 | 0.1875  |
+| 0.7 | 1.7819  |
+| 0.8 | 1.9824  |
+| 0.9 | 0.7859  |
+
+## Think About It
+
+What values of `x` make sense in the context of the situation? Justify your reasoning.
+
+---
+
+# Example 5 — Zeros of a Polynomial Function
+
+Use the graph to state the number of real zeros of the function.
+
+The real zeros occur at:
+
+* `x = -2`
+* `x = 1`
+* `x = 4`
+
+So there are **three real zeros**.
+
+## Study Tip
+
+The real zeros occur where `f(x) = 0`, or where the polynomial intersects the x-axis.
+
+---
+
+# Example 6 — Compare Polynomial Functions
+
+Examine `f(x) = x^3 + 2x^2 - 3x` and `g(x)` shown in the graph.
+
+## Part A: Graph `f(x)`
+
+Use a table of values.
+
+| x  | f(x) |
+| -- | ---- |
+| -3 | 0    |
+| -2 | 6    |
+| -1 | 4    |
+| 0  | 0    |
+| 1  | 0    |
+| 2  | 10   |
+| 3  | 36   |
+
+## Part B: Analyze the extrema
+
+Which function has the greater relative maximum?
+
+* `f(x)` has a relative maximum at about `y = 6`
+* `g(x)` has a relative maximum between `y = 2` and `y = 3`
+
+So, **`f(x)` has the greater relative maximum**.
+
+## Part C: Compare key features
+
+### Zeros
+
+* `f(x)`: `-3, 0, 1`
+* `g(x)`: about `-1, -0.5, 1, 2`
+
+### Intercepts
+
+* `f(x)`:
+  * x-intercepts: `-3, 0, 1`
+  * y-intercept: `0`
+* `g(x)`:
+  * x-intercepts: about `-1, -0.5, 1, 2`
+  * y-intercept: `2`
+
+### End behavior
+
+* `f(x)`:
+  * as `x -> -infinity`, `f(x) -> -infinity`
+  * as `x -> infinity`, `f(x) -> infinity`
+* `g(x)`:
+  * as `x -> -infinity`, `g(x) -> infinity`
+  * as `x -> infinity`, `g(x) -> infinity`
+
+## Think About It
+
+Find the domain and range of `f(x)`. Does `g(x)` have the same domain and range? Explain.
+
+---
+
+# Pause and Reflect
+
+Did you struggle with anything in this lesson? If so, how did you deal with it?

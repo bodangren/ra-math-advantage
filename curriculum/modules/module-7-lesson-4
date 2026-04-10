@@ -1,0 +1,236 @@
+# Lesson 7-4 — Graphing Rational Functions
+
+Source: (Module 7, Lesson 7-4, pp. 337–342)
+
+## Today's Goals
+
+* Graph and analyze rational functions with vertical and horizontal asymptotes
+* Graph and analyze rational functions with oblique asymptotes
+
+---
+
+## Vocabulary
+
+* rational function
+* oblique asymptote
+* point discontinuity
+
+---
+
+## Explore: Analyzing Rational Functions
+
+Use graphing technology to complete the explore.
+
+**Inquiry Question:**
+How can you use a graphing calculator to analyze a rational function?
+
+---
+
+# Learn: Graphing Rational Functions with Vertical and Horizontal Asymptotes
+
+A rational function has the form:
+
+`f(x) = a(x)/b(x)`
+
+where `a(x)` and `b(x)` are polynomial functions and `b(x) != 0`.
+
+## Key Concept: Vertical and Horizontal Asymptotes
+
+If `a(x)` and `b(x)` have no common factors:
+
+* vertical asymptotes occur where `b(x) = 0`
+* there is at most one horizontal asymptote
+* if `deg a(x) > deg b(x)`, there is no horizontal asymptote
+* if `deg a(x) < deg b(x)`, the horizontal asymptote is `y = 0`
+* if `deg a(x) = deg b(x)`, the horizontal asymptote is the ratio of leading coefficients
+
+---
+
+# Example 1 — Graph with No Horizontal Asymptotes
+
+Graph:
+
+`f(x) = x^3 / (x + 2/3)`
+
+## Step 1: Find the zeros
+
+Set the numerator equal to `0`:
+
+`x^3 = 0`
+
+`x = 0`
+
+## Step 2: Find the asymptotes
+
+Set the denominator equal to `0`:
+
+`x + 2/3 = 0`
+
+`x = -2/3`
+
+So there is a vertical asymptote at `x = -2/3`.
+
+Because the degree of the numerator is greater than the degree of the denominator, there is no horizontal asymptote.
+
+## Step 3: Graph
+
+Use the asymptote and a table of values to sketch the graph.
+
+---
+
+# Example 2 — Use Graphs of Rational Functions
+
+Young’s Rule can be modeled by:
+
+`y = Ax/(x + 12)`
+
+where `A` is the adult dose and `x` is the child’s age.
+
+For `A = 200`:
+
+`y = 200x/(x + 12)`
+
+## Part A: Graph the function
+
+* vertical asymptote: `x = -12`
+* horizontal asymptote: `y = 200`
+
+## Part B: Find key features
+
+* x-intercept: `0`
+* y-intercept: `0`
+* end behavior:
+  * as `x -> infinity`, `y -> 200`
+  * as `x -> -infinity`, `y -> 200`
+
+## Part C: Use the graph
+
+For a `12`-year-old child:
+
+`y = 200(12)/(12 + 12) = 100`
+
+So the dosage is `100` milligrams.
+
+---
+
+# Example 3 — Compare Rational Functions
+
+Consider:
+
+`g(x) = (x - 2)/(2x + 2)`
+
+and another rational function `h(x)` from the graph.
+
+## Part A: Graph `g(x)`
+
+Set the numerator equal to `0`:
+
+`x - 2 = 0`
+
+`x = 2`
+
+So there is a zero at `x = 2`.
+
+Set the denominator equal to `0`:
+
+`2x + 2 = 0`
+
+`x = -1`
+
+So there is a vertical asymptote at `x = -1`.
+
+Since the numerator and denominator have the same degree, the horizontal asymptote is:
+
+`y = 1/2`
+
+## Part B: Compare y-intercepts
+
+`g(x)` has y-intercept `-1`. The graph of `h(x)` shows a lower y-intercept.
+
+## Part C: Compare the asymptotes
+
+* `g(x)`: vertical asymptote `x = -1`, horizontal asymptote `y = 1/2`
+* `h(x)`: vertical asymptote `x = 1`, horizontal asymptote `y = 1`
+
+---
+
+# Learn: Graphing Rational Functions with Oblique Asymptotes
+
+An **oblique asymptote** is neither vertical nor horizontal.
+
+## Key Concept: Oblique Asymptotes
+
+A rational function has an oblique asymptote when:
+
+`deg a(x) - deg b(x) = 1`
+
+The oblique asymptote is the quotient found by polynomial division, ignoring the remainder.
+
+In some cases, rational functions also have a **point discontinuity**, or hole, when a common factor cancels but the original denominator still excludes that value.
+
+## Key Concept: Point Discontinuity
+
+If `x - c` is a factor of both numerator and denominator, then there is a point discontinuity at `x = c`.
+
+---
+
+# Example 4 — Graph with Oblique Asymptotes
+
+Consider:
+
+`f(x) = (x^2 + 2x + 1)/(x + 4)`
+
+## Part A: Find the zeros
+
+`x^2 + 2x + 1 = 0`
+
+`(x + 1)^2 = 0`
+
+`x = -1`
+
+## Part B: Find the asymptotes
+
+Vertical asymptote:
+
+`x + 4 = 0`
+
+`x = -4`
+
+Because the degree difference is `1`, there is an oblique asymptote.
+
+Divide:
+
+`(x^2 + 2x + 1) / (x + 4) = x - 2` with remainder
+
+So the oblique asymptote is:
+
+`y = x - 2`
+
+## Part C: Graph the function
+
+Graph the vertical asymptote and the oblique asymptote, then plot the function.
+
+---
+
+# Example 5 — Graph with Point Discontinuity
+
+Graph:
+
+`f(x) = (x^2 - 4)/(x + 2)`
+
+Factor:
+
+`(x^2 - 4)/(x + 2) = ((x + 2)(x - 2))/(x + 2) = x - 2`
+
+But the original denominator is `0` when:
+
+`x + 2 = 0`
+
+`x = -2`
+
+So the graph is the line `y = x - 2` with a hole at `x = -2`.
+
+## Think About It
+
+Create a rational function with a hole at `x = 2`.
+

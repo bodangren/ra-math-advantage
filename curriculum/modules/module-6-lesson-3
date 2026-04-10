@@ -1,0 +1,233 @@
+# Lesson 6-3 — Common Logarithms
+
+Source: (Module 6, Lesson 6-3, pp. 277–280)
+
+## Today's Goals
+
+* Solve exponential equations by using common logarithms
+* Evaluate logarithmic expressions by using the Change of Base Formula
+
+---
+
+## Vocabulary
+
+* common logarithms
+
+---
+
+# Learn: Common Logarithms
+
+Base `10` logarithms are called **common logarithms** and are usually written without the subscript `10`.
+
+`log10 x = log x`, for `x > 0`
+
+The common logarithm function can be evaluated with a calculator.
+
+Common logarithms of numbers that differ by powers of ten are closely related:
+
+* `log 1 = 0` because `10^0 = 1`
+* `log 10 = 1` because `10^1 = 10`
+* `log 100 = 2` because `10^2 = 100`
+* `log 10^m = m`
+
+## Think About It
+
+Describe the meaning of `log 8 ≈ 0.9031` in the context of exponents and the definition of a common logarithm.
+
+---
+
+# Example 1 — Find Common Logarithms by Using Technology
+
+Use a calculator to evaluate `log 8` to the nearest ten-thousandth.
+
+`log 8 ≈ 0.9031`
+
+---
+
+# Example 2 — Solve a Logarithmic Equation by Using Exponential Form
+
+The amount of energy `E` in ergs released by an earthquake is related to its Richter scale magnitude `M` by:
+
+`log E = 11.8 + 1.5M`
+
+An earthquake in Cyprus in `1222` is estimated to have measured `7` on the Richter scale. How much energy was released?
+
+Substitute `M = 7`:
+
+`log E = 11.8 + 1.5(7)`
+
+`log E = 22.3`
+
+Write in exponential form:
+
+`E = 10^22.3`
+
+Use a calculator:
+
+`E ≈ 2 * 10^22`
+
+So the earthquake released approximately `2 * 10^22` ergs of energy.
+
+## Talk About It
+
+What approximations were made when determining the energy released by the Cyprus earthquake?
+
+---
+
+# Example 3 — Solve an Exponential Equation by Using Logarithms
+
+Solve:
+
+`11^x = 101`
+
+Round to the nearest ten-thousandth.
+
+Take the common logarithm of both sides:
+
+`log 11^x = log 101`
+
+Use the Power Property:
+
+`x log 11 = log 101`
+
+Solve for `x`:
+
+`x = log 101 / log 11`
+
+`x ≈ 1.9247`
+
+## Check
+
+The solution can also be checked graphically by comparing `y = 11^x` and `y = 101`.
+
+---
+
+# Example 4 — Solve an Exponential Inequality by Using Logarithms
+
+Solve:
+
+`6^(2y - 5) < 5^(3y)`
+
+Round to the nearest ten-thousandth.
+
+Take common logarithms:
+
+`log(6^(2y - 5)) < log(5^(3y))`
+
+Apply the Power Property:
+
+`(2y - 5) log 6 < 3y log 5`
+
+Distribute:
+
+`2y log 6 - 5 log 6 < 3y log 5`
+
+Move the `y`-terms:
+
+`-5 log 6 < y(3 log 5 - 2 log 6)`
+
+Solve:
+
+`(-5 log 6) / (3 log 5 - 2 log 6) < y`
+
+`y > -7.1970`
+
+## Check
+
+Test `y = 0`:
+
+`6^(2(0) - 5) < 5^(3(0))`
+
+`6^(-5) < 1`
+
+`1/7776 < 1`
+
+This is true.
+
+## Watch Out
+
+When multiplying or dividing an inequality by a negative value, the inequality sign reverses. Evaluate expressions if needed to confirm the sign.
+
+---
+
+# Learn: Change of Base Formula
+
+The Change of Base Formula allows you to write equivalent logarithmic expressions with different bases.
+
+## Key Concept: Change of Base Formula
+
+For positive numbers `a`, `b`, and `n`, where `a != 1` and `b != 1`:
+
+`loga n = logb n / logb a`
+
+A common choice is to rewrite in terms of common logarithms:
+
+`loga n = log n / log a`
+
+## Talk About It
+
+Is it possible to evaluate `logpi 5`? Explain.
+
+---
+
+# Example 5 — Change of Base Formula
+
+Evaluate `log2 11` by writing it in terms of common logarithms. Round to the nearest ten-thousandth.
+
+`log2 11 = log 11 / log 2`
+
+`≈ 3.4594`
+
+## Check
+
+Evaluate `log8 30`. Round to the nearest ten-thousandth.
+
+---
+
+# Example 6 — Use the Change of Base Formula
+
+The musical cent is a unit of relative pitch. One octave consists of `1200` cents. The formula for the difference `n` in cents between two notes with beginning frequency `a` and ending frequency `b` is:
+
+`n = 1200(log2(a/b))`
+
+Find the frequency of pitch `a` if pitch `b` is `1661.22` and the difference between the pitches is `1600` cents.
+
+## Step 1: Write the equation in terms of common logarithms
+
+Substitute the known values:
+
+`1600 = 1200(log2(a/1661.22))`
+
+Divide by `1200`:
+
+`4/3 = log2(a/1661.22)`
+
+Use Change of Base:
+
+`4/3 = log(a/1661.22) / log 2`
+
+## Step 2: Use a graphing calculator to solve for `a`
+
+Graph:
+
+* `y = 4/3`
+* `y = log(a/1661.22) / log 2`
+
+The functions intersect at approximately:
+
+`a = 4186.0121`
+
+So pitch `a` has a frequency of about `4186.01` hertz.
+
+## Think About It
+
+Describe how to solve
+
+`4/3 = log(a/1661.22) / log 2`
+
+algebraically.
+
+## Check
+
+The revenue of a company is `r = 227 + 44 log5 x`, where `r` is annual revenue in thousands and `x` is advertising spending in thousands. Use a graphing calculator to determine the amount spent on advertising if revenue is `$325,000`.
+

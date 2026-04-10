@@ -1,0 +1,175 @@
+# Lesson 3-4 — The Remainder and Factor Theorems
+
+Source: (Module 3, Lesson 3-4, pp. 135–137)
+
+## Today's Goals
+
+* Evaluate functions by using synthetic substitution
+* Use the Factor Theorem to determine factors of polynomials
+
+---
+
+## Vocabulary
+
+* synthetic substitution
+* depressed polynomial
+
+---
+
+## Explore: Remainders
+
+Use the interactive tool to complete the explore.
+
+**Inquiry Question:**
+How are the divisor and quotient of a polynomial related to its factors when the remainder is zero?
+
+---
+
+# Learn: The Remainder Theorem
+
+From the Division Algorithm:
+
+`f(x) / g(x) = q(x) + r(x)/g(x)`
+
+and
+
+`f(x) = q(x)g(x) + r(x)`
+
+Suppose the dividend is `p(x)` and the divisor is `x - a`. Then:
+
+`p(x) / (x - a) = q(x) + r/(x - a)`
+
+and
+
+`p(x) = q(x)(x - a) + r`
+
+Evaluate at `x = a`:
+
+`p(a) = q(a)(a - a) + r`
+
+`p(a) = q(a)(0) + r`
+
+`p(a) = r`
+
+So the remainder is the value of the polynomial at `a`.
+
+## Key Concept: Remainder Theorem
+
+For a polynomial `p(x)` and a number `a`, the remainder upon division by `x - a` is `p(a)`.
+
+Example:
+
+Evaluate `p(x) = x^2 - 4x + 7` when `x = 5`.
+
+* direct substitution gives `p(5) = 25 - 20 + 7 = 12`
+* synthetic substitution also gives remainder `12`
+
+Applying the Remainder Theorem to evaluate a function is called **synthetic substitution**.
+
+---
+
+# Example 1 — Synthetic Substitution
+
+Use synthetic substitution to find `f(-3)` if:
+
+`f(x) = -2x^4 + 3x^2 - 15x + 9`
+
+Use `-3` with coefficients:
+
+`-2, 0, 3, -15, 9`
+
+Synthetic substitution gives remainder:
+
+`-81`
+
+Therefore:
+
+`f(-3) = -81`
+
+Check with direct substitution:
+
+`f(-3) = -2(-3)^4 + 3(-3)^2 - 15(-3) + 9`
+
+`= -162 + 27 + 45 + 9`
+
+`= -81`
+
+## Study Tip
+
+Use `0` as a placeholder for any missing terms.
+
+---
+
+# Example 2 — Apply the Remainder Theorem
+
+Egg production in the United States can be modeled by:
+
+`f(x) = 0.007x^3 - 0.149x^2 + 1.534x + 84.755`
+
+where `x` is the number of years since `2000`.
+
+Predict egg production in `2025`.
+
+Since `2025 - 2000 = 25`, evaluate `f(25)` using synthetic substitution.
+
+The result is:
+
+`f(25) = 139.355`
+
+So in `2025`, approximately **139.355 billion eggs** will be produced.
+
+## Think About It
+
+How could you use the function and synthetic substitution to estimate the number of eggs produced in 1990? What assumption would you have to make?
+
+---
+
+# Learn: The Factor Theorem
+
+When a binomial evenly divides a polynomial, the binomial is a factor of the polynomial.
+
+The quotient from this division is called a **depressed polynomial**. It has degree one less than the original polynomial.
+
+## Key Concept: Factor Theorem
+
+The binomial `x - a` is a factor of the polynomial `p(x)` **if and only if** `p(a) = 0`.
+
+Example:
+
+If dividing `x^3 - x^2 - 30x + 72` by `x + 6` gives remainder `0`, then `x + 6` is a factor.
+
+---
+
+# Example 3 — Use the Factor Theorem
+
+Show that `x + 8` is a factor of:
+
+`2x^3 + 15x^2 - 11x - 24`
+
+Then find the remaining factors.
+
+Use synthetic substitution with `-8`:
+
+The remainder is `0`, so by the Factor Theorem, `x + 8` is a factor.
+
+The depressed polynomial is:
+
+`2x^2 - x - 3`
+
+Factor it:
+
+`2x^2 - x - 3 = (2x - 3)(x + 1)`
+
+So the full factorization is:
+
+`2x^3 + 15x^2 - 11x - 24 = (x + 8)(2x - 3)(x + 1)`
+
+## Talk About It
+
+Suppose you were asked to determine whether `3x + 4` is a factor of `3x^3 - 2x^2 - 8x`. Describe the steps necessary to find a solution.
+
+---
+
+# Pause and Reflect
+
+Did you struggle with anything in this lesson? If so, how did you deal with it?

@@ -1,0 +1,184 @@
+# Lesson 7-5 — Variation
+
+Source: (Module 7, Lesson 7-5, pp. 347–350)
+
+## Today's Goals
+
+* Recognize and solve direct and joint variation equations
+* Recognize and solve inverse and combined variation equations
+
+---
+
+## Vocabulary
+
+* direct variation
+* constant of variation
+* joint variation
+* inverse variation
+* combined variation
+
+---
+
+## Explore: Variation
+
+Use the interactive tool to complete the explore.
+
+**Inquiry Question:**
+How can you relate the dimensions of a rectangle with its area?
+
+---
+
+# Learn: Direct Variation and Joint Variation
+
+Two quantities `x` and `y` are related by a **direct variation** if:
+
+`y = kx`
+
+where `k` is the constant of variation.
+
+The graph of a direct variation is a line through the origin.
+
+In **joint variation**, one quantity varies directly as the product of two or more other quantities:
+
+`y = kxz`
+
+---
+
+# Example 1 — Direct Variation
+
+If `y` varies directly as `x` and `y = -3` when `x = 24`, find `y` when `x = -16`.
+
+Use a proportion:
+
+`y1/x1 = y2/x2`
+
+`-3/24 = y/(-16)`
+
+So:
+
+`y = 2`
+
+## Talk About It
+
+Explain why the graph of a direct variation function always passes through the origin.
+
+---
+
+# Example 2 — Joint Variation
+
+Suppose `y` varies jointly as `x` and `z`. Find `y` when `x = 4` and `z = -3`, if `y = -15` when `x = -6` and `z = 1`.
+
+Use:
+
+`y1/(x1z1) = y2/(x2z2)`
+
+`y/(4(-3)) = -15/(-6(1))`
+
+`y/(-12) = -15/(-6)`
+
+`y = -30`
+
+---
+
+# Learn: Inverse Variation and Combined Variation
+
+Two quantities vary inversely if:
+
+`xy = k`
+
+or
+
+`y = k/x`
+
+In **combined variation**, one quantity varies directly and/or inversely with multiple others.
+
+For example, if `y` varies directly as `x` and inversely as `z`, then:
+
+`y = kx/z`
+
+---
+
+# Example 3 — Inverse Variation
+
+If `m` varies inversely as `n`, and `m = -4` when `n = 6`, find `m` when `n = -10`.
+
+Use a proportion:
+
+`m1/n2 = m2/n1`
+
+`-4/(-10) = m/6`
+
+Cross multiply:
+
+`-24 = -10m`
+
+`m = 2.4`
+
+---
+
+# Example 4 — Combined Variation
+
+Suppose `a` varies directly as `b` and inversely as `c`. Find `b` when `a = 6` and `c = 28`, if `b = 7` when `a = -49` and `c = 3`.
+
+Because:
+
+`a = kb/c`
+
+set the two expressions for `k` equal:
+
+`a1c1/b1 = a2c2/b2`
+
+`6(28)/b = (-49)(3)/7`
+
+Solve:
+
+`b = -8`
+
+---
+
+# Example 5 — Write and Solve a Combined Variation
+
+A rider’s speed varies jointly with pedal RPM and front gear teeth, and inversely with rear gear teeth.
+
+Given:
+
+* speed `= 17.1` mph
+* front gear `= 50`
+* rear gear `= 16`
+* pedal rate `= 70` RPM
+
+Find the speed when:
+
+* front gear `= 34`
+* rear gear `= 23`
+* pedal rate `= 70` RPM
+
+Let:
+
+* `x = speed`
+* `p = pedal RPM`
+* `f = front gear teeth`
+* `r = rear gear teeth`
+
+Since speed varies jointly with `p` and `f` and inversely with `r`:
+
+`x = kpf/r`
+
+Set up the proportion:
+
+`x1r1/(p1f1) = x2r2/(p2f2)`
+
+Substitute:
+
+`17.1(16)/(70(50)) = x(23)/(70(34))`
+
+Solve:
+
+`x ≈ 8.1`
+
+So the uphill speed is about `8.1` mph.
+
+## Think About It
+
+What assumptions were made when determining the rider’s speed?
+

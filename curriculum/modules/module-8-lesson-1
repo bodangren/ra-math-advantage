@@ -1,0 +1,156 @@
+# Lesson 8-1 — Random Sampling
+
+Source: (Module 8, Lesson 8-1, pp. 371–374)
+
+## Today's Goals
+
+* Classify sampling methods and identify bias in samples and survey questions
+* Distinguish among sample surveys, experiments, and observational studies
+
+---
+
+## Vocabulary
+
+* parameter
+* statistic
+* population
+* bias
+* survey
+* experiment
+* observational study
+
+---
+
+# Learn: Randomness and Bias
+
+Statistics deals with collecting, analyzing, and interpreting data.
+
+* a **parameter** is a characteristic of a population
+* a **statistic** is a characteristic of a sample
+* a **population** is the full group of interest
+* **bias** is an error that misrepresents the population
+
+## Key Concept: Types of Samples
+
+* simple random: each member has an equal chance of selection
+* systematic: members are selected at a regular interval
+* self-selected: members volunteer
+* convenience: readily available members are selected
+* stratified: members are selected from similar, nonoverlapping groups
+
+---
+
+# Example 1 — Classify a Random Sample
+
+A school asks students to complete an online questionnaire about a school app.
+
+* population: the entire student body
+* sample: the students who responded
+* classification: **self-selected**
+
+---
+
+# Example 2 — Identify Sample Bias
+
+A traffic commission uses a random sample of travelers on Route 15 during rush hour and proposes a major road expansion.
+
+The sample is biased because:
+
+* the sample size is only `10`
+* it is too small to represent all drivers using the road
+
+Potential interest:
+
+The small sample could support contractors who benefit from road expansion.
+
+## Think About It
+
+How large a sample size do you think would be needed to accurately reflect the population?
+
+---
+
+# Example 3 — Identify Biased Questions
+
+A restaurant owner asks:
+
+"Do you prefer a plain salad or a delicious steak?"
+
+The question is biased because the wording favors the steak and is not neutral.
+
+## Talk About It
+
+Describe an example of a biased observational study. Explain how the study is biased.
+
+---
+
+# Learn: Types of Studies
+
+* In a **survey**, data are collected from responses about opinions, behaviors, or characteristics.
+* In an **experiment**, participants are divided into groups and the effect of a treatment is compared.
+* In an **observational study**, participants are observed without being affected by the study.
+
+---
+
+# Example 4 — Classify Study Types
+
+A research team shows football uniform designs to `100` young adults and records their reactions.
+
+* purpose: determine whether the uniforms appeal to young adults
+* study type: **observational study**
+* sample: the `100` young adults
+* population: all young adults
+
+---
+
+# Example 5 — Design a Survey
+
+A company owner wants to know whether employees would use an exercise room if a conference room were converted.
+
+## Step 1: State the objective
+
+Determine employee interest in converting the room.
+
+## Step 2: Identify the population
+
+All employees who work in the building.
+
+## Step 3: Write an unbiased question
+
+Sample question:
+
+"If available, would you use an exercise room in the building if it were created by converting a conference room?"
+
+---
+
+# Example 6 — Draw Conclusions from a Study
+
+Researchers test different virtual reality goggles.
+
+| Type | Number of People | Positive Reactions |
+| -- | -- | -- |
+| A | 11 | 45% |
+| B | 17 | 53% |
+| C | 45 | 91% |
+| D | 52 | 92% |
+| E | 6 | 33% |
+
+Conclusion:
+
+Types `C` and `D` appear to be preferred by the most people and have the highest positive reaction rates, so those goggles should be recommended for production.
+
+---
+
+# Example 7 — Identify Bias in Studies
+
+A teacher gives one class a test in silence and another class the same test with music playing, then concludes that music helps testing because the second class scored higher.
+
+Flaws:
+
+* the groups were not randomly selected
+* the classes differ in more than just the presence of music
+* the classes may have different skill levels
+
+Improved design:
+
+Use students with similar ability levels and randomly assign them to control and experimental groups.
+

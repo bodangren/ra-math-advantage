@@ -1,0 +1,265 @@
+# Lesson 6-2 — Properties of Logarithms
+
+Source: (Module 6, Lesson 6-2, pp. 269–272)
+
+## Today's Goals
+
+* Solve logarithmic equations using properties of equality
+* Simplify and evaluate expressions by using the properties of logarithms
+
+---
+
+## Vocabulary
+
+* logarithmic equation
+
+---
+
+## Explore: Logarithmic Expressions and Equations
+
+Use the interactive tool to complete the explore.
+
+**Inquiry Question:**
+How can you determine `logb(xy)` and `logb(x/y)` given `logb x` and `logb y`?
+
+---
+
+# Learn: Logarithmic Equations
+
+A **logarithmic equation** contains one or more logarithms.
+
+## Key Concept: Property of Equality for Logarithmic Equations
+
+If `b` is a positive number other than `1`, then:
+
+`logb x = logb y` if and only if `x = y`
+
+This property also holds true for inequalities.
+
+---
+
+# Example 1 — Solve a Logarithmic Equation by Using Definitions
+
+Solve:
+
+`log4 x = 5/2`
+
+Rewrite in exponential form:
+
+`x = 4^(5/2)`
+
+Because `4 = 2^2`,
+
+`x = (2^2)^(5/2)`
+
+`x = 2^5`
+
+`x = 32`
+
+---
+
+# Example 2 — Solve a Logarithmic Equation by Using Properties of Equality
+
+Solve:
+
+`log5(2x^2 - 6) = log5(4x)`
+
+## Step 1: Solve for `x`
+
+Because the bases are the same:
+
+`2x^2 - 6 = 4x`
+
+`2x^2 - 4x - 6 = 0`
+
+`x^2 - 2x - 3 = 0`
+
+`(x - 3)(x + 1) = 0`
+
+So:
+
+* `x = 3`
+* `x = -1`
+
+## Step 2: Check for extraneous solutions
+
+For `x = 3`:
+
+`log5(12) = log5(12)` so the solution is valid.
+
+For `x = -1`:
+
+`log5(-4)` is undefined.
+
+So `x = -1` is extraneous.
+
+Final answer:
+
+`x = 3`
+
+## Think About It
+
+Why does the property also include the statement "If `x = 7`, then `log3 x = log3 7`"?
+
+## Check
+
+Solve:
+
+`log13(-5x) = log13(-2x^2 + 3)`
+
+---
+
+# Learn: Properties of Logarithms
+
+Because logarithms are exponents, the properties of logarithms can be derived from the properties of exponents.
+
+## Key Concept: Product Property of Logarithms
+
+The logarithm of a product is the sum of the logarithms of its factors.
+
+`logb(mn) = logb m + logb n`
+
+## Key Concept: Quotient Property of Logarithms
+
+The logarithm of a quotient is the difference of the logarithms of the numerator and denominator.
+
+`logb(m/n) = logb m - logb n`
+
+## Key Concept: Power Property of Logarithms
+
+The logarithm of a power is the product of the logarithm and the exponent.
+
+`logb(m^n) = n logb m`
+
+---
+
+# Example 3 — Product Property of Logarithms
+
+Use `log3 5 ≈ 1.465` to approximate `log3 405`.
+
+Factor:
+
+`405 = 3^4 * 5`
+
+Then:
+
+`log3 405 = log3(3^4 * 5)`
+
+`= log3(3^4) + log3 5`
+
+`= 4 + log3 5`
+
+`≈ 4 + 1.465`
+
+`≈ 5.465`
+
+## Check
+
+Use `log8 5 ≈ 0.7740` to approximate `log8 320`.
+
+---
+
+# Example 4 — Quotient Property of Logarithms
+
+Use `log3 5 ≈ 1.465` to approximate `log3(9/5)`.
+
+Rewrite:
+
+`9/5 = 3^2 / 5`
+
+Then:
+
+`log3(9/5) = log3(3^2 / 5)`
+
+`= log3(3^2) - log3 5`
+
+`= 2 - log3 5`
+
+`≈ 2 - 1.465`
+
+`≈ 0.535`
+
+## Check
+
+Use `log6 5 ≈ 0.8982` to approximate `log6(5/1296)`.
+
+---
+
+# Example 5 — Power Property of Logarithms
+
+Use `log2 6 ≈ 2.585` to approximate `log2 1296`.
+
+Because:
+
+`1296 = 6^4`
+
+Then:
+
+`log2 1296 = log2(6^4)`
+
+`= 4 log2 6`
+
+`≈ 4(2.585)`
+
+`≈ 10.34`
+
+## Check
+
+Use `log2 3 ≈ 1.5850` to approximate `log2 243`.
+
+---
+
+# Apply Example 6 — Solve a Logarithmic Equation by Using Properties
+
+The loudness of a sound `L` in decibels is defined by:
+
+`L = 10 log10 R`
+
+where `R` is the relative intensity of the sound.
+
+A choir director wants to determine how many choir members could sing while maintaining a safe level of sound, about `80` decibels. If one person has a relative intensity of `10^6` when singing, then how many people could sing with the same relative intensity to achieve a loudness of `80` decibels?
+
+## 1. What is the task?
+
+Describe the task in your own words and identify the needed information.
+
+## 2. How will you approach the task?
+
+Represent the total relative intensity `R` in terms of the number of singers `x`, then solve the equation.
+
+## 3. What is your solution?
+
+If one singer has relative intensity `10^6`, then a choir with `x` members has:
+
+`R = x * 10^6`
+
+Substitute into the loudness formula:
+
+`80 = 10 log10(x * 10^6)`
+
+Divide by `10`:
+
+`8 = log10(x * 10^6)`
+
+Write in exponential form:
+
+`10^8 = x * 10^6`
+
+So:
+
+`x = 10^2 = 100`
+
+A choir of `100` members would reach `80` decibels.
+
+## 4. How can you know that your solution is reasonable?
+
+Check by substituting `x = 100`:
+
+`R = 100(10^6) = 10^8`
+
+`L = 10 log10(10^8) = 10(8) = 80`
+
+## Check
+
+Recall that the Richter scale magnitude is given by `m = log10 x`, where `x` is the amplitude of the seismic wave. Determine the reading of an earthquake that is `10` times less intense than an earthquake that measures `4.5` on the Richter scale.
+

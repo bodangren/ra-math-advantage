@@ -1,0 +1,322 @@
+# Lesson 5-4 — Geometric Sequences and Series
+
+Source: (Module 5, Lesson 5-4, pp. 239–244)
+
+## Today's Goals
+
+* Generate geometric sequences
+* Find sums of geometric series
+
+---
+
+## Vocabulary
+
+* sequence
+* term of a sequence
+* finite sequence
+* infinite sequence
+* geometric sequence
+* common ratio
+* explicit formula
+* recursive formula
+* geometric means
+* series
+* geometric series
+* sigma notation
+
+---
+
+## Explore: Explicit and Recursive Formulas
+
+Use a concrete model to complete the explore.
+
+**Inquiry Question:**
+How can a geometric sequence be defined?
+
+---
+
+# Learn: Sequences
+
+A **sequence** is a set of numbers in a particular order or pattern.
+
+* each number is a **term**
+* `a1` is the first term, `a2` the second, and so on
+* a **finite** sequence has a limited number of terms
+* an **infinite** sequence continues without end
+
+A sequence can be defined as a function.
+
+## Key Concept: Sequences as Functions
+
+* domain: natural numbers `1, 2, 3, ..., n`
+* range: sequence terms `a1, a2, a3, ..., an`
+
+In a **geometric sequence**, each term is found by multiplying the previous term by a nonzero constant called the **common ratio**.
+
+## Key Concept: nth Term of a Geometric Sequence
+
+If the first term is `a1` and the common ratio is `r`, then:
+
+`an = a1 r^(n - 1)`
+
+The recursive form is:
+
+`an = r * a(n - 1)`
+
+**Geometric means** are the terms between two nonconsecutive terms of a geometric sequence.
+
+---
+
+# Example 1 — Identify Geometric Sequences
+
+Determine whether:
+
+`2, 6, 15, 30, ...`
+
+is geometric.
+
+Ratios:
+
+* `6/2 = 3`
+* `15/6 = 2.5`
+* `30/15 = 2`
+
+The ratios are not the same, so the sequence is **not geometric**.
+
+---
+
+# Example 2 — Graph Geometric Sequences
+
+Find and graph the first six terms of:
+
+`-1, -2, -4, ...`
+
+## Step 1: Find the common ratio
+
+`(-2)/(-1) = 2`
+
+## Step 2: Find the next terms
+
+Continue multiplying by `2`:
+
+`-8, -16, -32`
+
+## Step 3: Graph the sequence
+
+* domain: `{1, 2, 3, 4, 5, 6}`
+* range: `{-1, -2, -4, -8, -16, -32}`
+
+## Talk About It
+
+Is `{1, 2, 3, 4, 5, 6}` also the domain of the original infinite sequence? Explain.
+
+---
+
+# Apply Example 3 — Find the nth Term
+
+Javier starts with a `50`-gram chocolate bar and eats half of what remains each day.
+
+If he starts on Monday, how much will he eat on Friday?
+
+The amount eaten each day forms a geometric sequence:
+
+* first day: `25 g`
+* common ratio: `1/2`
+
+Friday is the fifth day, so use:
+
+`an = 25(1/2)^(n - 1)`
+
+For Friday:
+
+`a5 = 25(1/2)^4 = 1.5625`
+
+So Javier eats about:
+
+`1.6 g`
+
+## Think About It
+
+If you let `a1 = 50`, what would `an` represent?
+
+---
+
+# Example 4 — Write an Equation for the nth Term
+
+Write an equation for the nth term of each geometric sequence.
+
+## a. `-1, 3, -9, 27, ...`
+
+Find `r`:
+
+`r = (-9)/3 = -3`
+
+So:
+
+`an = -1(-3)^(n - 1)`
+
+## b. `a8 = 5` and `r = 1/2`
+
+Use:
+
+`an = a1 r^(n - 1)`
+
+`5 = a1 (1/2)^7`
+
+`a1 = 640`
+
+So:
+
+`an = 640(1/2)^(n - 1)`
+
+---
+
+# Example 5 — Recursive and Explicit Formulas
+
+Translate between recursive and explicit form.
+
+## a. `a1 = 5, an = (1/5)a(n - 1), n >= 2`
+
+This is recursive, with:
+
+* `a1 = 5`
+* `r = 1/5`
+
+Explicit form:
+
+`an = 5(1/5)^(n - 1)`
+
+## b. `an = (2/3)(7)^(n - 1)`
+
+This is explicit, with:
+
+* `a1 = 2/3`
+* `r = 7`
+
+Recursive form:
+
+* `a1 = 2/3`
+* `an = 7a(n - 1), n >= 2`
+
+---
+
+# Example 6 — Find Geometric Means
+
+Find four geometric means between `243` and `32`.
+
+There are `6` total terms, so:
+
+* `a1 = 243`
+* `a6 = 32`
+* `n = 6`
+
+Use:
+
+`32 = 243r^5`
+
+`r^5 = 32/243`
+
+`r = 2/3`
+
+Now generate the sequence:
+
+`243, 162, 108, 72, 48, 32`
+
+So the geometric means are:
+
+* `162`
+* `108`
+* `72`
+* `48`
+
+---
+
+# Learn: Geometric Series
+
+A **series** is the sum of the terms of a sequence.
+
+The sum of the first `n` terms is `Sn`.
+
+A **geometric series** is the sum of the terms of a geometric sequence.
+
+## Key Concept: Partial Sums of a Geometric Series
+
+If `a1`, `r`, and `n` are known:
+
+`Sn = (a1 - a1 r^n) / (1 - r)`, for `r != 1`
+
+If `a1`, `r`, and `an` are known:
+
+`Sn = (a1 - an r) / (1 - r)`, for `r != 1`
+
+## Key Concept: Sigma Notation
+
+Sigma notation uses `Σ` to represent a sum.
+
+Example:
+
+`sum(k=1 to 6) (3k + 2)`
+
+and
+
+`sum(k=1 to 8) 5(3)^(k - 1)`
+
+---
+
+# Example 7 — Find the Sum of a Geometric Series
+
+Kateri sets up dominos so each domino knocks down `2` more, for `6` rows total.
+
+* `a1 = 1`
+* `r = 2`
+* `n = 6`
+
+Use:
+
+`Sn = (1 - 1*2^6) / (1 - 2)`
+
+`= (1 - 64)/(-1)`
+
+`= 63`
+
+So she needs:
+
+`63` dominos
+
+---
+
+# Example 8 — Find the First Term in a Series
+
+Find `a1` for a geometric series where:
+
+* `Sn = 21.3125`
+* `n = 5`
+* `r = 1/2`
+
+Use:
+
+`21.3125 = (a1 - a1(1/2)^5) / (1 - 1/2)`
+
+Solving gives:
+
+`a1 = 11`
+
+---
+
+# Example 9 — Sum in Sigma Notation
+
+Find:
+
+`sum(k=5 to 12) 3(-2)^(k - 1)`
+
+First identify:
+
+* `a1 = 3(-2)^(5 - 1) = 48`
+* `r = -2`
+* number of terms: `12 - 5 + 1 = 8`
+
+Then:
+
+`Sn = (48 - 48(-2)^8) / (1 - (-2))`
+
+`= -4080`

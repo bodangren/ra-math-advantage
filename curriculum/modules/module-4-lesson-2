@@ -1,0 +1,257 @@
+# Lesson 4-2 — Inverse Relations and Functions
+
+Source: (Module 4, Lesson 4-2, pp. 167–170)
+
+## Today's Goals
+
+* Find inverses of relations
+* Verify that two relations are inverses by using compositions
+
+---
+
+## Vocabulary
+
+* inverse relations
+* inverse functions
+
+---
+
+## Explore: Inverse Functions
+
+Use graphing technology to complete the explore.
+
+**Inquiry Question:**
+For what values of `n` will `f(x) = x^n` have an inverse that is also a function?
+
+---
+
+# Learn: Inverse Relations and Functions
+
+Two relations are **inverse relations** if one relation contains `(a, b)` whenever the other contains `(b, a)`.
+
+Two functions `f` and `g` are **inverse functions** if and only if both compositions are the identity function.
+
+## Key Concept: Inverse Functions
+
+If `f` and `f^-1` are inverses, then:
+
+* `f(a) = b` if and only if `f^-1(b) = a`
+
+Example:
+
+* `f(x) = x - 5`
+* `f^-1(x) = x + 5`
+
+Then:
+
+* `f(7) = 2`
+* `f^-1(2) = 7`
+
+Not all functions have inverses that are also functions.
+
+* If a function fails the **horizontal line test**, restrict the domain so that it becomes one-to-one
+
+## Think About It
+
+Write a function that does not pass the horizontal line test.
+
+---
+
+# Example 1 — Find an Inverse Relation
+
+The vertices of triangle `ABC` are:
+
+`{(2, 4), (-3, 2), (4, 1)}`
+
+Find the inverse relation.
+
+## Step 1: Graph the relation
+
+Graph the points and connect them.
+
+## Step 2: Find the inverse
+
+Exchange the coordinates of each ordered pair:
+
+`{(4, 2), (2, -3), (1, 4)}`
+
+## Step 3: Graph the inverse
+
+Graph the reflected points.
+
+## Think About It
+
+Describe the graph of the inverse relation.
+
+---
+
+# Example 2 — Inverse Functions
+
+Find the inverse of:
+
+`f(x) = 3x + 2`
+
+Then graph the function and its inverse.
+
+## Step 1: Rewrite the function
+
+`y = 3x + 2`
+
+## Step 2: Exchange `x` and `y`
+
+`x = 3y + 2`
+
+## Step 3: Solve for `y`
+
+`x - 2 = 3y`
+
+`y = (x - 2)/3`
+
+## Step 4: Replace `y` with `f^-1(x)`
+
+`f^-1(x) = (x - 2)/3`
+
+## Step 5: Graph both functions
+
+The graph of the inverse is a reflection of the original graph across the line `y = x`.
+
+## Study Tip
+
+If `f^-1(x)` is the inverse of `f(x)`, then the graphs are reflections across `y = x`.
+
+---
+
+# Example 3 — Inverses with Restricted Domains
+
+Examine:
+
+`f(x) = x^2 + 2x + 4`
+
+## Part A: Find the inverse
+
+`y = x^2 + 2x + 4`
+
+Exchange `x` and `y`:
+
+`x = y^2 + 2y + 4`
+
+Complete the square:
+
+`x - 4 = y^2 + 2y`
+
+`x - 3 = (y + 1)^2`
+
+`y = -1 +/- sqrt(x - 3)`
+
+So:
+
+`f^-1(x) = -1 +/- sqrt(x - 3)`
+
+## Part B: Restrict the domain if necessary
+
+Because `f(x)` fails the horizontal line test, `f^-1(x)` is not a function unless the domain of `f` is restricted.
+
+Possible restricted domains:
+
+* if domain of `f` is `[-1, infinity)`, then `f^-1(x) = -1 + sqrt(x - 3)`
+* if domain of `f` is `(-infinity, -1]`, then `f^-1(x) = -1 - sqrt(x - 3)`
+
+---
+
+# Example 4 — Interpret Inverse Functions
+
+The temperature conversion formula from Fahrenheit to Celsius is:
+
+`T(x) = (5/9)(x - 32)`
+
+Find the inverse and describe its meaning.
+
+`y = (5/9)(x - 32)`
+
+Exchange `x` and `y`:
+
+`x = (5/9)(y - 32)`
+
+Multiply by `9/5`:
+
+`(9x/5) = y - 32`
+
+`y = (9x/5) + 32`
+
+So:
+
+`T^-1(x) = (9x/5) + 32`
+
+This inverse converts temperature from **Celsius to Fahrenheit**.
+
+## Think About It
+
+Find the domain of `T(x)` and its inverse. Explain your reasoning.
+
+---
+
+# Learn: Verifying Inverses
+
+## Key Concept: Verifying Inverse Functions
+
+Two functions `f` and `g` are inverses if and only if:
+
+* `[f o g](x) = x`
+* `[g o f](x) = x`
+
+---
+
+# Example 5 — Use Compositions to Verify Inverses
+
+Determine whether:
+
+* `h(x) = sqrt(x + 13)`
+* `k(x) = (x - 13)^2`
+
+are inverse functions.
+
+Find `[h o k](x)`:
+
+`[h o k](x) = h[k(x)]`
+
+`= sqrt((x - 13)^2 + 13)`
+
+`= sqrt(x^2 - 26x + 182)`
+
+Because this is not the identity function, `h(x)` and `k(x)` are **not** inverses.
+
+## Watch Out
+
+You must check **both** compositions to verify inverse functions.
+
+---
+
+# Example 6 — Verify Inverse Functions
+
+The volume of a cylinder with height `5` inches is:
+
+`V = 5pi r^2`
+
+Determine whether:
+
+`r = sqrt(V / 5pi)`
+
+is the inverse of the original function.
+
+Find both compositions.
+
+Starting from:
+
+* `V = 5pi r^2`
+* `r = sqrt(V / 5pi)`
+
+Substituting one into the other gives:
+
+* `V o r = V`
+* `r o V = r`
+
+So the given `r` formula is the inverse of `V = 5pi r^2`.
+
+## Talk About It
+
+Find the domain of the inverse, and describe its meaning in the context of the situation.

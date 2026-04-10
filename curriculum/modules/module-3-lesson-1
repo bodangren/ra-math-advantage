@@ -1,0 +1,141 @@
+# Lesson 3-1 — Solving Polynomial Equations by Graphing
+
+Source: (Module 3, Lesson 3-1, pp. 119–120)
+
+## Today's Goals
+
+* Solve polynomial equations by graphing
+
+---
+
+## Explore: Solutions of Polynomial Equations
+
+Use graphing technology to complete the explore.
+
+**Inquiry Question:**
+How can you solve a polynomial equation by using the graph of a related polynomial function?
+
+---
+
+# Learn: Solving Polynomial Equations by Graphing
+
+A **related function** is found by rewriting the equation with `0` on one side and then replacing `0` with `f(x)`.
+
+* The values of `x` for which `f(x) = 0` are the **real zeros** of the function
+* These are also the **x-intercepts** of the graph
+
+Example relationship:
+
+* `x^3 + 2x^2 - 4x = x + 6`
+* related function: `f(x) = x^3 + 2x^2 - 5x - 6`
+* `-3`, `-1`, and `2` are:
+  * solutions
+  * roots
+  * zeros
+  * x-intercepts
+
+## Talk About It
+
+Explain how you could use the table feature to more accurately estimate the zeros of the related function. What are the limitations of the table feature?
+
+---
+
+# Example 1 — Solve a Polynomial Equation by Graphing
+
+Use a graphing calculator to solve:
+
+`x^4 + 3x^2 - 5 = -4x^3`
+
+## Step 1: Find a related function
+
+Write the equation with `0` on the right:
+
+`x^4 + 3x^2 - 5 = -4x^3`
+
+`x^4 + 3x^2 - 5 + 4x^3 = -4x^3 + 4x^3`
+
+`x^4 + 4x^3 + 3x^2 - 5 = 0`
+
+So the related function is:
+
+`f(x) = x^4 + 4x^3 + 3x^2 - 5`
+
+## Step 2: Graph the related function
+
+Enter the function in the graphing calculator and graph it.
+
+## Step 3: Find the zeros
+
+Use the `zero` feature from the `CALC` menu.
+
+The real zeros are about:
+
+* `x ≈ -3.22`
+* `x ≈ 0.84`
+
+## Think About It
+
+How can you use the structure of the related function to determine the number of real solutions of the equation?
+
+---
+
+# Example 2 — Solve a Polynomial Equation by Using a System
+
+For an exhibit with five Emperor penguins, a pool must have a minimum volume of `217 ft^3` per bird. The pool dimensions are shown as:
+
+* length: `2x + 3`
+* width: `5x - 2`
+* depth: `2x`
+
+What should the pool dimensions be to meet the minimum requirements?
+
+## Part A: Write a polynomial equation
+
+Since the minimum required volume is:
+
+`217 * 5 = 1085 ft^3`
+
+use the volume formula for a rectangular prism:
+
+`V = lwh`
+
+So:
+
+`(2x + 3)(5x - 2)(2x) = 1085`
+
+Simplify:
+
+`(2x + 3)(5x - 2)(2x) = 1085`
+
+`[2x(5x) + 2x(-2) + 3(5x) + 3(-2)](2x) = 1085`
+
+`(10x^2 - 4x + 15x - 6)(2x) = 1085`
+
+`(10x^2 + 11x - 6)(2x) = 1085`
+
+`20x^3 + 22x^2 - 12x = 1085`
+
+## Part B: Write and solve a system of equations
+
+Set each side equal to `y`:
+
+* `y = 20x^3 + 22x^2 - 12x`
+* `y = 1085`
+
+Graph both equations and use the `intersect` feature.
+
+The real solution is:
+
+`x = 3.5`
+
+## Part C: Find the dimensions
+
+Substitute `x = 3.5`:
+
+* length: `2x + 3 = 10 ft`
+* width: `5x - 2 = 15.5 ft`
+* depth: `2x = 7 ft`
+
+## Think About It
+
+Is your solution reasonable? Justify your conclusion.

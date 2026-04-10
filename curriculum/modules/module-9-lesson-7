@@ -1,0 +1,109 @@
+# Lesson 9-7 — Inverse Trigonometric Functions
+
+Source: (Module 9, Lesson 9-7, pp. 473–474)
+
+## Today's Goal
+
+* Find values of angle measures by using inverse trigonometric functions
+
+---
+
+## Vocabulary
+
+* inverse trigonometric functions
+* principal values
+
+---
+
+# Learn: Inverse Trigonometric Functions
+
+Inverse trigonometric functions return angle measures.
+
+Because sine, cosine, and tangent are not one-to-one over all real numbers, their domains must be restricted so the inverses are functions. These restricted outputs are called **principal values**.
+
+## Key Concept: Inverse Trigonometric Functions
+
+* `Arcsin x` or `Sin^-1 x`
+  * domain: `-1 <= x <= 1`
+  * range: `-pi/2 <= y <= pi/2`
+* `Arccos x` or `Cos^-1 x`
+  * domain: `-1 <= x <= 1`
+  * range: `0 <= y <= pi`
+* `Arctan x` or `Tan^-1 x`
+  * domain: all real numbers
+  * range: `-pi/2 <= y <= pi/2`
+
+---
+
+# Example 1 — Evaluate Inverse Trigonometric Functions
+
+Find:
+
+`Tan^-1(sqrt(3))`
+
+Use the principal range for tangent, `-90°` to `90°`.
+
+Since:
+
+`tan 60° = sqrt(3)`
+
+we have:
+
+`Tan^-1(sqrt(3)) = 60° = pi/3`
+
+---
+
+# Example 2 — Find a Trigonometric Value by Using a Calculator
+
+Find:
+
+`sin(Cos^-1(0.36))`
+
+Using a calculator:
+
+`sin(Cos^-1(0.36)) ≈ 0.93`
+
+---
+
+# Example 3 — Find an Angle Measure by Using a Graphing Calculator
+
+If:
+
+`Sin theta = -0.17`
+
+then:
+
+`theta = Arcsin(-0.17) ≈ -9.79°`
+
+---
+
+# Example 4 — Use Inverse Trigonometric Functions
+
+A plane has `30` miles to land from an elevation of `15,000` feet. Find the angle of descent.
+
+## Step 1: Draw the triangle
+
+Opposite side:
+
+`15,000` feet
+
+Adjacent side:
+
+`30` miles
+
+## Step 2: Write and solve the trig equation
+
+Convert miles to feet:
+
+`30 * 5280 = 158,400`
+
+Use tangent:
+
+`tan theta = 15,000 / 158,400`
+
+Take the inverse tangent:
+
+`theta = Tan^-1(15,000 / 158,400) ≈ 5.4°`
+
+So the angle of descent is about `5.4°`.
+

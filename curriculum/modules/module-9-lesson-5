@@ -1,0 +1,164 @@
+# Lesson 9-5 — Graphing Other Trigonometric Functions
+
+Source: (Module 9, Lesson 9-5, pp. 455–460)
+
+## Today's Goals
+
+* Graph and analyze tangent functions
+* Graph and analyze reciprocal trigonometric functions
+
+---
+
+## Vocabulary
+
+* reciprocal trigonometric functions
+
+---
+
+# Learn: Graphing Tangent Functions
+
+Because:
+
+`tan x = sin x / cos x`
+
+tangent is undefined where `cos x = 0`, so its graph has vertical asymptotes there.
+
+## Key Concept: Graphs of Tangent Functions
+
+For `y = tan x`:
+
+* domain: all real numbers except `(90 + 180n)°`
+* range: all real numbers
+* period: `180°`
+* midline: `y = 0`
+* one x-intercept per cycle
+
+For `y = a tan bx`:
+
+* period `= 180°/|b|`
+* asymptotes at `(90 + 180n)° / |b|`
+* `a` controls vertical stretch/compression and reflection
+* `b` controls horizontal stretch/compression
+
+---
+
+# Example 1 — Graph a Tangent Function with a Dilation
+
+Graph:
+
+`y = tan 3x`
+
+* period `= 180°/3 = 60°`
+* asymptotes at `(90 + 180n)° / 3 = 30° + 60n°`
+* x-intercepts at integer multiples of `60°`
+* midline: `y = 0`
+
+The graph is horizontally compressed relative to `y = tan x`.
+
+---
+
+# Example 2 — Graph a Tangent Function with a Dilation and a Reflection
+
+Graph:
+
+`y = -(1/3) tan 2x`
+
+* period `= pi/2`
+* asymptotes at `pi/4 + n(pi/2)`
+* x-intercepts at multiples of `pi/2`
+* midline: `y = 0`
+
+Transformations:
+
+* vertically compressed
+* horizontally compressed
+* reflected across the x-axis
+
+---
+
+# Learn: Graphing Reciprocal Trigonometric Functions
+
+The reciprocal trigonometric functions are:
+
+* `csc x = 1/sin x`
+* `sec x = 1/cos x`
+* `cot x = 1/tan x`
+
+Their asymptotes occur where the corresponding sine, cosine, or tangent value is `0`.
+
+## Key Concept: Graphs of Reciprocal Functions
+
+* `y = csc x`
+  * period `360°`
+  * range `y <= -1` or `y >= 1`
+* `y = sec x`
+  * period `360°`
+  * range `y <= -1` or `y >= 1`
+* `y = cot x`
+  * period `180°`
+  * range all real numbers
+
+---
+
+# Example 3 — Graph a Cosecant Function
+
+Graph:
+
+`y = csc 0.5x`
+
+Since it is the reciprocal of `sin 0.5x`:
+
+* period `= 2pi/0.5 = 4pi`
+* asymptotes occur where `sin 0.5x = 0`, so `x = 2pi n`
+* midline: `y = 0`
+
+Relative extrema occur at the same x-values as the corresponding maxima and minima of `sin 0.5x`.
+
+---
+
+# Example 4 — Graph a Cotangent Function
+
+Graph:
+
+`y = -4 cot 2x`
+
+Since cotangent is the reciprocal of tangent:
+
+* period `= 180°/2 = 90°`
+* asymptotes at `x = 90n°`
+* x-intercepts at odd multiples of `45°`
+* midline: `y = 0`
+
+---
+
+# Example 5 — Apply a Reciprocal Trigonometric Function
+
+A banner plane is `1200` feet above a festival. Let `d` be the distance from the crowd to the banner and `x` the angle of elevation.
+
+## Part A: Write a function
+
+Use:
+
+`sin x = 1200/d`
+
+So:
+
+`d = 1200/sin x = 1200 csc x`
+
+## Part B: Graph the function
+
+* period `= 360°`
+* asymptotes where `sin x = 0`, so `x = 180n°`
+
+## Part C: Analyze key features in context
+
+For `0° < x < 180°`:
+
+* domain: `0 < x < 180`
+* range: `d >= 1200`
+* x-intercept: none
+* y-intercept: none
+* relative minimum: `(90, 1200)`
+* decreasing on `(0, 90)`
+* increasing on `(90, 180)`
+

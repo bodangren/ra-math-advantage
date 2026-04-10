@@ -1,0 +1,206 @@
+# Lesson 5-2 — Solving Exponential Equations and Inequalities
+
+Source: (Module 5, Lesson 5-2, pp. 225–228)
+
+## Today's Goals
+
+* Solve exponential equations in one variable
+* Solve exponential inequalities in one variable
+
+---
+
+## Vocabulary
+
+* exponential equation
+* compound interest
+* exponential inequality
+
+---
+
+## Explore: Solving Exponential Equations
+
+Use the interactive tool to complete the explore.
+
+**Inquiry Question:**
+How can you rewrite expressions to solve exponential equations?
+
+---
+
+# Learn: Solving Exponential Equations
+
+In an **exponential equation**, the independent variable is an exponent.
+
+## Key Concept: Property of Equality for Exponential Equations
+
+If `b > 0` and `b != 1`, then:
+
+`b^x = b^y` if and only if `x = y`
+
+Exponential equations can be solved algebraically or by graphing a system.
+
+---
+
+## Key Concept: Compound Interest
+
+Compound interest is calculated with:
+
+`A = P(1 + r/n)^(nt)`
+
+where:
+
+* `A` is the amount after `t` years
+* `P` is the principal
+* `r` is the annual interest rate
+* `n` is the number of compounding periods per year
+
+---
+
+# Example 1 — Solve Exponential Equations Algebraically
+
+Solve each equation.
+
+## a. `4^(5x + 1) = 64^7`
+
+Rewrite:
+
+* `64 = 4^3`
+
+So:
+
+`4^(5x + 1) = (4^3)^7 = 4^21`
+
+Then:
+
+`5x + 1 = 21`
+
+`5x = 20`
+
+`x = 4`
+
+## b. `(1/2)^(4x - 16) = 16^(2x - 5)`
+
+Rewrite in base `2`:
+
+* `(1/2) = 2^-1`
+* `16 = 2^4`
+
+So:
+
+`(2^-1)^(4x - 16) = (2^4)^(2x - 5)`
+
+`2^(-4x + 16) = 2^(8x - 20)`
+
+Then:
+
+`-4x + 16 = 8x - 20`
+
+`-12x = -36`
+
+`x = 3`
+
+---
+
+# Example 2 — Solve an Exponential Equation by Graphing
+
+A Super Bowl ad cost can be modeled by:
+
+`C = 0.058(1.099)^x`
+
+where `C` is in millions of dollars and `x` is the Super Bowl number.
+
+Find when the cost first surpassed `$1 million`.
+
+## Part A: Write the model
+
+Initial cost:
+
+`$58,000 = 0.058 million`
+
+Growth rate:
+
+`9.9% = 0.099`
+
+So:
+
+`C = 0.058(1.099)^x`
+
+## Part B: Solve by graphing
+
+Set up the system:
+
+* `y = 1`
+* `y = 0.058(1.099)^x`
+
+The intersection is at about:
+
+`x ≈ 30.16`
+
+So the cost had not yet surpassed `$1 million` during Super Bowl `30`.
+
+It first surpassed `$1 million` during **Super Bowl 31**.
+
+## Study Tip
+
+This conclusion depends on treating the cost trend as a reasonable exponential model.
+
+---
+
+# Example 3 — Use the Compound Interest Formula
+
+Luciana deposits `$1700` into a savings account paying `1.8%` annual interest compounded monthly.
+
+Find the balance after `5` years.
+
+`A = P(1 + r/n)^(nt)`
+
+`= 1700(1 + 0.018/12)^(12*5)`
+
+`≈ 1859.97`
+
+So after `5` years, the balance is about:
+
+`$1859.97`
+
+---
+
+# Learn: Solving Exponential Inequalities
+
+An **exponential inequality** is an inequality in which the independent variable is an exponent.
+
+## Key Concept: Property of Inequality for Exponential Equations
+
+If `b > 1`, then:
+
+* `b^x > b^y` if and only if `x > y`
+* `b^x < b^y` if and only if `x < y`
+
+---
+
+# Example 4 — Solve Exponential Inequalities Algebraically
+
+Solve:
+
+`27^(2x + 6) >= 81^(x - 5)`
+
+Rewrite with base `3`:
+
+* `27 = 3^3`
+* `81 = 3^4`
+
+So:
+
+`(3^3)^(2x + 6) >= (3^4)^(x - 5)`
+
+`3^(6x + 18) >= 3^(4x - 20)`
+
+Thus:
+
+`6x + 18 >= 4x - 20`
+
+`2x >= -38`
+
+`x >= -19`
+
+Solution set:
+
+`{x | x >= -19}`

@@ -1,0 +1,164 @@
+# Lesson 9-3 — Circular and Periodic Functions
+
+Source: (Module 9, Lesson 9-3, pp. 435–440)
+
+## Today's Goals
+
+* Find values of trigonometric functions given a point on a unit circle or the measure of a special angle
+* Find values of trigonometric functions that model periodic events
+
+---
+
+## Vocabulary
+
+* unit circle
+* circular function
+* periodic function
+* cycle
+* period
+
+---
+
+## Explore: Trigonometric Functions of Special Angles
+
+Use the online activity to complete the explore.
+
+**Inquiry Question:**
+How can you use special right triangles and the unit circle to find the exact trigonometric values of special angles?
+
+---
+
+# Learn: Circular Functions
+
+A **unit circle** has radius `1` and center at the origin.
+
+If the terminal side of angle `theta` intersects the unit circle at `P(x, y)`, then:
+
+* `cos theta = x`
+* `sin theta = y`
+
+So:
+
+`P(x, y) = P(cos theta, sin theta)`
+
+These are **circular functions** because they describe points on the unit circle as functions of angle.
+
+---
+
+# Example 1 — Find Sine and Cosine Given a Point on the Unit Circle
+
+If the terminal side intersects the unit circle at
+
+`(-12/13, 5/13)`
+
+then:
+
+* `cos theta = -12/13`
+* `sin theta = 5/13`
+
+---
+
+# Example 2 — Find Trigonometric Values of Special Angles
+
+Find the six trigonometric functions for `5pi/4`.
+
+On the unit circle:
+
+`(cos theta, sin theta) = (-sqrt(2)/2, -sqrt(2)/2)`
+
+So:
+
+* `sin theta = -sqrt(2)/2`
+* `cos theta = -sqrt(2)/2`
+* `tan theta = 1`
+* `csc theta = -sqrt(2)`
+* `sec theta = -sqrt(2)`
+* `cot theta = 1`
+
+---
+
+# Learn: Periodic Functions
+
+A **periodic function** repeats its values at regular intervals.
+
+* one full repeating pattern is a **cycle**
+* the horizontal length of a cycle is the **period**
+
+For sine and cosine:
+
+* `sin(x + 2pi) = sin x`
+* `cos(x + 2pi) = cos x`
+
+so both have period `2pi`.
+
+---
+
+# Example 3 — Identify the Period of a Function
+
+From the graph, the pattern repeats every `3pi/2`.
+
+So the period is:
+
+`3pi/2`
+
+---
+
+# Apply Example 4 — Graph Periodic Functions
+
+A carousel rider starts at the point closest to a wall, `20` feet away. The carousel diameter is `50` feet and it completes `10` rotations per minute.
+
+## 1. What is the task?
+
+Identify the period of the rider’s distance from the wall and graph the function.
+
+## 2. How will you approach the task?
+
+Use the carousel’s rotation rate and geometry to determine one cycle and key points.
+
+## 3. What is your solution?
+
+* closest distance: `20` ft
+* farthest distance: `70` ft
+
+Since the carousel completes `10` rotations per minute:
+
+* `60` seconds / `10` rotations = `6` seconds per rotation
+
+So the period is:
+
+`6` seconds
+
+Key table:
+
+| Time (s) | Distance (ft) |
+| -- | -- |
+| 0 | 20 |
+| 1.5 | 45 |
+| 3 | 70 |
+| 4.5 | 45 |
+| 6 | 20 |
+
+The graph repeats every `6` seconds.
+
+## 4. How can you know that your solution is reasonable?
+
+The graph repeats as expected, and the minimum and maximum distances match the geometry of the carousel.
+
+---
+
+# Example 5 — Evaluate Trigonometric Expressions
+
+Find `cos(10pi/3)`.
+
+Use periodicity:
+
+`cos(10pi/3) = cos(4pi/3 + 2pi) = cos(4pi/3)`
+
+From the unit circle:
+
+`cos(4pi/3) = -1/2`
+
+So:
+
+`cos(10pi/3) = -1/2`
+

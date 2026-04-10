@@ -1,0 +1,369 @@
+# Lesson 6-1 — Logarithms and Logarithmic Functions
+
+Source: (Module 6, Lesson 6-1, pp. 259–264)
+
+## Today's Goals
+
+* Write logarithmic expressions in exponential form and write exponential expressions in logarithmic form
+* Graph and analyze logarithmic functions
+
+---
+
+## Vocabulary
+
+* logarithm
+* logarithmic function
+
+---
+
+## Think About It
+
+If `logz 16 = y`, find `z^y`.
+
+---
+
+# Learn: Logarithmic Functions
+
+Recall the exponential function `f(x) = 2^x`. You can graph its inverse by interchanging the `x`- and `y`-values and graphing the ordered pairs.
+
+For `y = 2^x`:
+
+| x  | y |
+| -- | -- |
+| -3 | `1/8` |
+| -2 | `1/4` |
+| -1 | `1/2` |
+| 0 | `1` |
+| 1 | `2` |
+| 2 | `4` |
+| 3 | `8` |
+
+For the inverse `x = 2^y`:
+
+| x | y |
+| -- | -- |
+| `1/8` | `-3` |
+| `1/4` | `-2` |
+| `1/2` | `-1` |
+| `1` | `0` |
+| `2` | `1` |
+| `4` | `2` |
+| `8` | `3` |
+
+The inverse of `y = b^x` is `x = b^y`. In `x = b^y`, `y` is called the logarithm, base `b`, of `x`. This is written as:
+
+`y = logb x`
+
+and is read as "log base `b` of `x`."
+
+## Key Concept: Logarithms with Base `b`
+
+Let `b` and `x` be positive numbers, with `b != 1`.
+
+`logb x = y` if and only if `b^y = x`
+
+In the expression `logb x`, `x` is called the **argument**.
+
+---
+
+# Example 1 — Logarithmic to Exponential Form
+
+Write each equation in exponential form.
+
+## a. `log4 64 = 3`
+
+`64 = 4^3`
+
+## b. `log3 (1/243) = -5`
+
+`1/243 = 3^(-5)`
+
+## c. `log9 3 = 1/2`
+
+`3 = 9^(1/2)`
+
+## Check
+
+Write `log125 5 = 1/3` in exponential form.
+
+---
+
+# Example 2 — Exponential to Logarithmic Form
+
+Write each equation in logarithmic form.
+
+## a. `7^6 = 117,649`
+
+`log7 117,649 = 6`
+
+## b. `8^(-3) = 1/512`
+
+`log8 (1/512) = -3`
+
+## c. `8^(2/3) = 4`
+
+`log8 4 = 2/3`
+
+## Check
+
+Write `2^9 = 512` in logarithmic form.
+
+---
+
+# Example 3 — Evaluate Logarithmic Expressions
+
+Evaluate `log216 6`.
+
+Let:
+
+`log216 6 = y`
+
+Then:
+
+`6 = 216^y`
+
+Because `216 = 6^3`,
+
+`6 = (6^3)^y`
+
+`6^1 = 6^(3y)`
+
+So:
+
+`1 = 3y`
+
+`y = 1/3`
+
+Therefore:
+
+`log216 6 = 1/3`
+
+## Think About It
+
+Without evaluating the expression, how can you determine that the value of `log512 8` will be less than `1`?
+
+---
+
+# Example 4 — Find Inverses of Exponential Functions
+
+The air pressure outside of an aircraft can be determined by:
+
+`P = B(10^(-9h/100))`
+
+where `B` is the air pressure at sea level and `h` is the altitude in miles. If the air pressure at sea level is `14.7` pounds per square inch, write an equation to find the height of an aircraft when the air pressure is known.
+
+Substitute `14.7` for `B`:
+
+`P = 14.7(10^(-9h/100))`
+
+Divide by `14.7`:
+
+`P/14.7 = 10^(-9h/100)`
+
+Write in logarithmic form:
+
+`log10(P/14.7) = -9h/100`
+
+Solve for `h`:
+
+`h = (-100/9) log10(P/14.7)`
+
+## Think About It
+
+How could you write `(2z + 5)^3 = 8` in logarithmic form?
+
+---
+
+## Explore: Transforming Logarithmic Functions
+
+Use graphing technology to complete the explore.
+
+**Inquiry Question:**
+How does performing an operation on a logarithmic function affect its graph?
+
+## Watch Out
+
+The `LOG` button on a graphing calculator allows you to enter logarithmic functions of base `10` only.
+
+---
+
+# Learn: Graphing Logarithmic Functions
+
+A function of the form `f(x) = logb x`, where `b > 0` and `b != 1`, is a **logarithmic function**.
+
+## Key Concept: Parent Function of Logarithmic Functions
+
+For `f(x) = logb x`:
+
+* type of graph: continuous, one-to-one
+* domain: `(0, infinity)`, or all positive real numbers
+* range: `(-infinity, infinity)`, or all real numbers
+* asymptote: the `y`-axis
+* x-intercept: `(1, 0)`
+* y-intercept: none
+* symmetry: none
+* extrema: none
+
+For the parent function when `b > 1`:
+
+* as `x -> 0+`, `f(x) -> -infinity`
+* as `x -> infinity`, `f(x) -> infinity`
+
+For the parent function when `0 < b < 1`:
+
+* as `x -> 0+`, `f(x) -> infinity`
+* as `x -> infinity`, `f(x) -> -infinity`
+
+## Key Concept: Transformations of Logarithmic Functions
+
+For:
+
+`g(x) = a logb (x - h) + k`
+
+* `h` controls horizontal translation
+* `k` controls vertical translation
+* `a` controls reflection and vertical stretch or compression
+
+If `a < 0`, the graph is reflected across the `x`-axis.
+
+If `|a| > 1`, the graph is stretched vertically.
+
+If `0 < |a| < 1`, the graph is compressed vertically.
+
+---
+
+# Example 5 — Graph Logarithmic Functions
+
+Graph each function. Then find the intercepts, domain, range, and end behavior.
+
+## a. `f(x) = log6 x`
+
+Use the points:
+
+* `(1/6, -1)`
+* `(1, 0)`
+* `(6, 1)`
+
+Key features:
+
+* x-intercept: `1`
+* y-intercept: none
+* domain: all positive real numbers
+* range: all real numbers
+* end behavior:
+  * as `x -> 0+`, `f(x) -> -infinity`
+  * as `x -> infinity`, `f(x) -> infinity`
+
+## b. `g(x) = log(1/4) x`
+
+Use the points:
+
+* `(4, -1)`
+* `(1, 0)`
+* `(1/4, 1)`
+
+Key features:
+
+* x-intercept: `1`
+* y-intercept: none
+* domain: all positive real numbers
+* range: all real numbers
+* end behavior:
+  * as `x -> 0+`, `g(x) -> infinity`
+  * as `x -> infinity`, `g(x) -> -infinity`
+
+## Think About It
+
+Compare the graphs in parts `a` and `b`.
+
+---
+
+# Example 6 — Graph Transformations of Logarithmic Functions
+
+Graph:
+
+`g(x) = 2 log10(x + 3) - 1`
+
+This is a transformation of:
+
+`f(x) = log10 x`
+
+Transformations:
+
+* `a = 2`: vertical stretch
+* `h = -3`: translate `3` units left
+* `k = -1`: translate `1` unit down
+
+Using parent points for `log10 x`:
+
+* `(1/10, -1)`
+* `(1, 0)`
+* `(10, 1)`
+
+After the vertical stretch:
+
+* `(1/10, -2)`
+* `(1, 0)`
+* `(10, 2)`
+
+After translating left `3` and down `1`:
+
+* `(-29/10, -3)`
+* `(-2, -1)`
+* `(7, 1)`
+
+Plot the transformed points and draw the curve.
+
+## Think About It
+
+Find the domain and range of `g(x)`.
+
+---
+
+# Example 7 — Compare Logarithmic Functions
+
+Consider:
+
+`g(x) = log10(x - 2)`
+
+and `j(x)` shown in the graph.
+
+## Part A: Graph `g(x)`
+
+`g(x)` is a transformation of `f(x) = log10 x`.
+
+Because `h = 2`, the parent graph is translated `2` units right.
+
+## Part B: Compare the end behavior of `g(x)` and `j(x)`
+
+For `g(x)`:
+
+* as `x -> 2+`, `g(x) -> -infinity`
+* as `x -> infinity`, `g(x) -> infinity`
+
+For `j(x)`:
+
+* as `x -> 0+`, `j(x) -> infinity`
+* as `x -> infinity`, `j(x) -> -infinity`
+
+## Think About It
+
+Find the domain and range of `g(x)`. Does `j(x)` have the same domain and range? Explain.
+
+---
+
+# Example 8 — Write Logarithmic Functions From Graphs
+
+Identify the value of `k`, and write a function for the graph as it relates to:
+
+`f(x) = log4 x`
+
+The graph is translated `5` units up, so:
+
+* `k = 5`
+* `g(x) = log4 x + 5`
+
+## Check
+
+Write a function for each graph as it relates to `f(x) = log3 x`.
+

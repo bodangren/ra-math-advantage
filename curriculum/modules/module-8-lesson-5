@@ -1,0 +1,171 @@
+# Lesson 8-5 — Estimating Population Parameters
+
+Source: (Module 8, Lesson 8-5, pp. 403–407)
+
+## Today's Goals
+
+* Use sample data to infer a population mean by using confidence intervals
+* Use sample data to infer a population proportion by using confidence intervals
+
+---
+
+## Vocabulary
+
+* inferential statistics
+* sampling error
+* standard error of the mean
+* confidence interval
+* maximum error of the estimate
+* population proportion
+
+---
+
+# Learn: Estimating the Population Mean
+
+Using sample data to make statements about a population is called **inferential statistics**.
+
+**Sampling error** is the random variation between samples of the same population.
+
+As sample size increases, sampling error decreases.
+
+The standard error of the mean is:
+
+`sigma_x = sigma / sqrt(n)`
+
+The maximum error of the estimate is:
+
+`E = z * s / sqrt(n)`
+
+Common confidence levels:
+
+* `90%`: `z = 1.645`
+* `95%`: `z = 1.960`
+* `99%`: `z = 2.576`
+
+## Key Concept: Estimating the Population Mean
+
+1. Find the sample mean `x-bar`
+2. Choose the confidence level
+3. Find the maximum error `E`
+4. Use the interval `(x-bar - E, x-bar + E)`
+
+---
+
+# Example 1 — Find the Maximum Error of the Estimate
+
+A poll of `315` chess club members gives:
+
+* sample mean `= 4.6` hours per week
+* sample standard deviation `= 1.2`
+
+Use a `90%` confidence interval.
+
+`E = 1.645 * 1.2 / sqrt(315) ≈ 0.11`
+
+So, with `90%` confidence, the population mean is within `0.11` hour of the sample mean.
+
+---
+
+# Example 2 — Estimate a Population Mean
+
+A survey of `50` students gives:
+
+* sample mean `= 8.61`
+* sample standard deviation `= 2.6`
+
+Use a `95%` confidence level.
+
+## Step 1: Find `E`
+
+`E = 1.960 * 2.6 / sqrt(50) ≈ 0.72`
+
+## Step 2: Form the interval
+
+* `8.61 - 0.72 = 7.89`
+* `8.61 + 0.72 = 9.33`
+
+Confidence interval:
+
+`7.89 <= mu <= 9.33`
+
+Interpretation:
+
+We are `95%` confident that the population mean lies between `7.89` and `9.33`.
+
+---
+
+# Learn: Estimating the Population Proportion
+
+The **population proportion** `p` is the proportion of the population with a given characteristic.
+
+The sample estimate is:
+
+`p-hat = x/n`
+
+and
+
+`q-hat = 1 - p-hat`
+
+The maximum error for a population proportion is:
+
+`E = z * sqrt((p-hat * q-hat) / n)`
+
+The confidence interval is:
+
+`p-hat ± E`
+
+---
+
+# Apply Example 3 — Estimate a Population Proportion
+
+A survey of `150` students asks whether they agree with a lunch-period change. `72` say yes.
+
+Use a `90%` confidence level.
+
+## 1. What is the task?
+
+Estimate the population proportion of students who agree.
+
+## 2. How will you approach the task?
+
+Find `p-hat` and `q-hat`, check sample size conditions, compute the maximum error, and form a confidence interval.
+
+## 3. What is your solution?
+
+`p-hat = 72/150 = 0.48`
+
+`q-hat = 0.52`
+
+Check sample size:
+
+* `np-hat = 72`
+* `nq-hat = 78`
+
+So the sample is large enough.
+
+The confidence interval is:
+
+`[0.413, 0.547]`
+
+Interpretation:
+
+With `90%` confidence, between `41.3%` and `54.7%` of students agree with the plan.
+
+## 4. How can you know that your solution is reasonable?
+
+The sample proportion lies inside the confidence interval, and the sample size is large enough for the estimate to be appropriate.
+
+---
+
+# Example 4 — Misleading Population Estimates
+
+A lobbying group claims that with `90%` confidence the proportion of people who support a ballot measure is `50%`, but could be as low as `40%` with a margin of error of `5%`.
+
+Given sample size:
+
+`n = 200`
+
+The misleading part is that the sample proportion is actually `0.45`, not `0.50`.
+
+So instead of honestly reporting `45% ± 5%`, the group reports the highest possible estimate to make support appear stronger than it is.
+
