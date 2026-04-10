@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useCallback, useRef } from 'react';
-import { evaluateFunction } from '@/lib/activities/graphing/canvas-utils';
+import { evaluateFunction, transformDataToCanvas } from '@/lib/activities/graphing/canvas-utils';
 
 export interface InterceptData {
   type: 'intercept' | 'no_intercepts';
@@ -69,7 +69,7 @@ export function InterceptIdentification({
     return intercepts.length > 0;
   }, [functionExpression, calculateXIntercepts]);
 
-  const findNearestIntercept = useCallback((clickX: number, clickY: number): { x: number; y: number } | null => {
+  const findNearestIntercept = useCallback((clickCanvasX: number, clickCanvasY: number): { x: number; y: number } | null => {
     const intercepts = calculateXIntercepts(functionExpression);
     if (intercepts.length === 0) return null;
 
@@ -78,30 +78,27 @@ export function InterceptIdentification({
     const canvasWidth = 600;
     const canvasHeight = 400;
 
-    const [xMin, xMax] = domain;
-    const [yMin, yMax] = range;
-
-    const xRange = xMax - xMin;
-    const yRange = yMax - yMin;
-
-    const canvasX = ((clickX - xMin) / xRange) * canvasWidth;
-    const canvasY = canvasHeight - ((clickY - yMin) / yRange) * canvasHeight;
-
     const actualIntercepts = intercepts.map(x => ({
       x,
       y: evaluateFunction(functionExpression, x),
     }));
 
     let nearest = null;
-    let minDistance = 50;
+    let minDistance = 250;
 
     actualIntercepts.forEach(intercept => {
-      const interceptCanvasX = ((intercept.x - xMin) / xRange) * canvasWidth;
-      const interceptCanvasY = canvasHeight - ((intercept.y - yMin) / yRange) * canvasHeight;
+      const { canvasX: interceptCanvasX, canvasY: interceptCanvasY } = transformDataToCanvas(
+        intercept.x,
+        intercept.y,
+        domain,
+        range,
+        canvasWidth,
+        canvasHeight
+      );
 
       const distance = Math.sqrt(
-        Math.pow(canvasX - interceptCanvasX, 2) +
-        Math.pow(canvasY - interceptCanvasY, 2)
+        Math.pow(clickCanvasX - interceptCanvasX, 2) +
+        Math.pow(clickCanvasY - interceptCanvasY, 2)
       );
 
       if (distance < minDistance) {
@@ -124,13 +121,7 @@ export function InterceptIdentification({
       const clickX = event.clientX - rect.left;
       const clickY = event.clientY - rect.top;
 
-      const [xMin, xMax] = [-10, 10];
-      const [yMin, yMax] = [-10, 10];
-
-      const x = (clickX / rect.width) * (xMax - xMin) + xMin;
-      const y = yMax - (clickY / rect.height) * (yMax - yMin);
-
-      const nearestIntercept = findNearestIntercept(x, y);
+      const nearestIntercept = findNearestIntercept(clickX, clickY);
 
       if (nearestIntercept) {
         const isAlreadyIdentified = identifiedIntercepts.some(
@@ -166,7 +157,7 @@ export function InterceptIdentification({
     });
   }, [readonly, hasRealIntercepts, onInterceptIdentified]);
 
-  const transformDataToCanvas = (x: number, y: number) => {
+  const localTransformDataToCanvas = (x: number, y: number) => {
     const domain = [-10, 10] as [number, number];
     const range = [-10, 10] as [number, number];
     const width = 600;
@@ -203,7 +194,7 @@ export function InterceptIdentification({
           <line x1="300" y1="0" x2="300" y2="400" stroke="#374151" strokeWidth={2} />
 
           {identifiedIntercepts.map((intercept, index) => {
-            const { canvasX, canvasY } = transformDataToCanvas(intercept.x, intercept.y);
+            const { canvasX, canvasY } = localTransformDataToCanvas(intercept.x, intercept.y);
             return (
               <g key={index}>
                 <circle
