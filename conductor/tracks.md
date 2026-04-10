@@ -28,7 +28,7 @@ Tracks 1+4 unlock Track 8; Track 8 unlocks Tracks 9+10.
   *Depends on: Tracks 1, 2*
   *Link: [./conductor/archive/lesson-rendering_20260406/](./conductor/archive/lesson-rendering_20260406/)*
 
-- [ ] **Track 4: Activity Infrastructure**
+- [~] **Track 4: Activity Infrastructure** — **IN PROGRESS**
   *Registry, mode system, props schemas, submission pipeline, completion tracking*
   *Link: [./conductor/tracks/activity-infrastructure_20260406/](./conductor/tracks/activity-infrastructure_20260406/)*
 

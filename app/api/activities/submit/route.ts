@@ -32,8 +32,8 @@ export async function POST(request: Request) {
     }
 
     const result = await fetchInternalMutation(internal.activities.submitActivity, {
-      userId: authResult.sub as any,
-      activityId: envelope.activityId as any,
+      userId: authResult.sub as `profiles:${string}`,
+      activityId: envelope.activityId as `activities:${string}`,
       submissionData: envelope,
     });
 

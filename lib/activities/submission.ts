@@ -1,4 +1,8 @@
-import { buildPracticeSubmissionEnvelope, PracticeMode, PracticeSubmissionStatus, type PracticeSubmissionEnvelope } from '@/lib/practice/contract';
+import { z } from 'zod';
+import { buildPracticeSubmissionEnvelope, practiceModeSchema, practiceSubmissionStatusSchema, type PracticeSubmissionEnvelope } from '@/lib/practice/contract';
+
+export type PracticeMode = z.infer<typeof practiceModeSchema>;
+export type PracticeSubmissionStatus = z.infer<typeof practiceSubmissionStatusSchema>;
 
 export interface SubmitActivityInput {
   activityId: string;

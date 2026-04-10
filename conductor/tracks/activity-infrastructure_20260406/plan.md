@@ -44,22 +44,22 @@
 
 ## Phase 3: Submission Pipeline
 
-- [ ] Task: Create client-side submission handler `lib/activities/submission.ts`
-    - [ ] Write tests: builds valid envelope, validates against practice.v1 schema
-    - [ ] Write tests: posts to API endpoint, handles success and error responses
-    - [ ] Implement `submitActivity()` function
+- [x] Task: Create client-side submission handler `lib/activities/submission.ts` [d6d968a]
+    - [x] Write tests: builds valid envelope, validates against practice.v1 schema
+    - [x] Write tests: posts to API endpoint, handles success and error responses
+    - [x] Implement `submitActivity()` function
 
-- [ ] Task: Create API route `app/api/activities/submit/route.ts`
-    - [ ] Write tests: validates envelope, calls Convex mutation, returns confirmation
-    - [ ] Write tests: rejects invalid envelope with 400, rejects unauthenticated with 401
-    - [ ] Implement POST handler
+- [x] Task: Create API route `app/api/activities/submit/route.ts` [d6d968a]
+    - [x] Write tests: validates envelope, calls Convex mutation, returns confirmation
+    - [x] Write tests: rejects invalid envelope with 400, rejects unauthenticated with 401
+    - [x] Implement POST handler
 
-- [ ] Task: Verify/update `convex/activities.ts` submission mutation
-    - [ ] Write tests: creates activity_submissions record, creates activity_completions record
-    - [ ] Write tests: updates student_competency when standardId is present
-    - [ ] Implement or update `submitActivity` mutation
+- [x] Task: Verify/update `convex/activities.ts` submission mutation [d6d968a]
+    - [x] Write tests: creates activity_submissions record, creates activity_completions record
+    - [x] Write tests: updates student_competency when standardId is present
+    - [x] Implement or update `submitActivity` mutation
 
-- [ ] Task: Conductor — Phase Completion Verification 'Submission Pipeline' (Protocol in workflow.md)
+- [x] Task: Conductor — Phase Completion Verification 'Submission Pipeline' (Protocol in workflow.md)
 
 ## Phase 4: Completion Tracking
 

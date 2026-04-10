@@ -2,7 +2,7 @@ import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { submitActivity } from '@/lib/activities/submission';
 import { practiceSubmissionEnvelopeSchema } from '@/lib/practice/contract';
 
-global.fetch = vi.fn() as any;
+global.fetch = vi.fn() as unknown as typeof fetch;
 
 describe('submitActivity', () => {
   beforeEach(() => {
@@ -24,7 +24,9 @@ describe('submitActivity', () => {
     });
 
     expect(result.success).toBe(true);
-    expect(result.submissionId).toBe('sub123');
+    if (result.success) {
+      expect(result.submissionId).toBe('sub123');
+    }
 
     const callArgs = mockFetch.mock.calls[0];
     const [url, options] = callArgs;
@@ -62,9 +64,11 @@ describe('submitActivity', () => {
     });
 
     expect(result.success).toBe(true);
-    expect(result.submissionId).toBe('sub456');
-    expect(result.score).toBe(85);
-    expect(result.maxScore).toBe(100);
+    if (result.success) {
+      expect(result.submissionId).toBe('sub456');
+      expect(result.score).toBe(85);
+      expect(result.maxScore).toBe(100);
+    }
   });
 
   it('posts to API endpoint and handles error response', async () => {
@@ -83,7 +87,9 @@ describe('submitActivity', () => {
     });
 
     expect(result.success).toBe(false);
-    expect(result.error).toBe('Invalid submission envelope');
+    if (!result.success) {
+      expect(result.error).toBe('Invalid submission envelope');
+    }
   });
 
   it('includes artifact when provided', async () => {
@@ -159,7 +165,9 @@ describe('submitActivity', () => {
     });
 
     expect(result.success).toBe(false);
-    expect(result.error).toContain('Network error');
+    if (!result.success) {
+      expect(result.error).toContain('Network error');
+    }
   });
 
   it('uses default status "submitted" when not provided', async () => {
