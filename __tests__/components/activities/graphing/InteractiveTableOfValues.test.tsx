@@ -38,7 +38,7 @@ describe('InteractiveTableOfValues', () => {
       expect(inputs.length).toBe(5);
 
       inputs.forEach(input => {
-        expect(input.value).toBe('');
+        expect((input as HTMLInputElement).value).toBe('');
       });
     });
 

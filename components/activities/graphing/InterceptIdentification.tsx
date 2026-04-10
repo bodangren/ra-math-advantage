@@ -76,7 +76,7 @@ export function InterceptIdentification({
     const domain = [-10, 10] as [number, number];
     const range = [-10, 10] as [number, number];
     const canvasWidth = 600;
-    const canvasHeight = 600;
+    const canvasHeight = 400;
 
     const [xMin, xMax] = domain;
     const [yMin, yMax] = range;
@@ -170,7 +170,7 @@ export function InterceptIdentification({
     const domain = [-10, 10] as [number, number];
     const range = [-10, 10] as [number, number];
     const width = 600;
-    const height = 600;
+    const height = 400;
 
     const [xMin, xMax] = domain;
     const [yMin, yMax] = range;
