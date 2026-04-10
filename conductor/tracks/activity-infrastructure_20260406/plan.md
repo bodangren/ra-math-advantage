@@ -61,11 +61,11 @@
 
 - [x] Task: Conductor — Phase Completion Verification 'Submission Pipeline' (Protocol in workflow.md)
 
-## Phase 4: Completion Tracking
+## Phase 4: Completion Tracking [checkpoint: fcf486f]
 
-- [ ] Task: Create `lib/activities/completion.ts`
-    - [ ] Write tests: tracks completed activities per phase; returns `allComplete` boolean
-    - [ ] Write tests: integrates with PhaseCompleteButton gating logic
-    - [ ] Implement `PhaseActivityTracker` class or functions
+- [x] Task: Create `lib/activities/completion.ts` [fcf486f]
+    - [x] Write tests: tracks completed activities per phase; returns `allComplete` boolean
+    - [x] Write tests: integrates with PhaseCompleteButton gating logic
+    - [x] Implement `PhaseActivityTracker` class or functions
 
-- [ ] Task: Conductor — Phase Completion Verification 'Completion Tracking' (Protocol in workflow.md)
+- [x] Task: Conductor — Phase Completion Verification 'Completion Tracking' (Protocol in workflow.md)
