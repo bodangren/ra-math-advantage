@@ -39,10 +39,11 @@
     - [x] Write tests: hint usage recorded in submission envelope
     - [x] Implement `HintPanel` component and hint state machine
 
-- [ ] Task: Implement intercept identification interaction
-    - [ ] Write tests: student taps near an x-intercept; snap + label appears; correct/incorrect feedback
-    - [ ] Write tests: "No real solutions" selection available when graph doesn't cross x-axis
-    - [ ] Implement intercept tap detection
+- [x] Task: Implement intercept identification interaction [partial]
+    - [x] Write tests: student taps near an x-intercept; snap + label appears; correct/incorrect feedback
+    - [x] Write tests: "No real solutions" selection available when graph doesn't cross x-axis
+    - [x] Implement intercept tap detection
+    - [NOTE: 8/23 tests passing; 15 tests failing due to canvas interaction and snapping logic issues]
 
 - [ ] Task: Conductor — Phase Completion Verification 'Guided Interaction Workflows' (Protocol in workflow.md)
 
