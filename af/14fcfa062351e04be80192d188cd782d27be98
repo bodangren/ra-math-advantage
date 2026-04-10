@@ -1,0 +1,29 @@
+Track 4: Activity Infrastructure - Complete
+
+Summary: Implemented the core activity infrastructure for Integrated Math 3, including registry, mode system, props schemas, submission pipeline, and completion tracking.
+
+Phases Completed:
+1. Registry & Mode System - activity registry with 6 Module 1 keys, mode resolution for teaching/guided/practice modes
+2. Props Schemas - Zod schemas for all 6 activity types (graphing-explorer, step-by-step-solver, comprehension-quiz, fill-in-the-blank, rate-of-change-calculator, discriminant-analyzer)
+3. Submission Pipeline - client-side submitActivity(), API route /api/activities/submit, Convex submitActivity mutation
+4. Completion Tracking - PhaseActivityTracker class for client-side completion state management
+
+Files Created:
+- lib/activities/registry.ts
+- lib/activities/modes.ts
+- lib/activities/schemas/ (6 schema files + index)
+- lib/activities/submission.ts
+- lib/activities/completion.ts
+- app/api/activities/submit/route.ts
+- Updated: convex/activities.ts (added submitActivity mutation)
+
+Tests Created: 45 tests across all phases
+
+Tech Debt Added:
+- activity_completions tracking requires lesson context not available in submission envelope
+
+Lessons Learned:
+- Union types require type guards for safe property access
+- PhaseActivityTracker provides in-memory completion tracking for UI gating
+
+Model: zai-coding-plan/glm-4.7
