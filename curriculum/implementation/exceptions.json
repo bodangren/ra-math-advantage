@@ -1,0 +1,55 @@
+{
+  "schemaVersion": "curriculum-exceptions.v1",
+  "aleksTopicGaps": [
+    {
+      "module": 2,
+      "declaredTopics": 23,
+      "listedTopics": 13,
+      "reason": "Source HTML exposes only 13 rendered topic rows for this module export.",
+      "replacementPlan": "Use worked-example-derived SRS for uncovered periods."
+    },
+    {
+      "module": 3,
+      "declaredTopics": 30,
+      "listedTopics": 4,
+      "reason": "Source HTML exposes only 4 rendered topic rows for this module export.",
+      "replacementPlan": "Use worked-example-derived SRS for uncovered polynomial-equation objectives."
+    },
+    {
+      "module": 4,
+      "declaredTopics": 92,
+      "listedTopics": 88,
+      "reason": "Source HTML exposes 88 rendered topic rows for this module export.",
+      "replacementPlan": "Use worked-example-derived SRS only where no direct topic aligns."
+    },
+    {
+      "module": 5,
+      "declaredTopics": 59,
+      "listedTopics": 43,
+      "reason": "Source HTML exposes 43 rendered topic rows for this module export.",
+      "replacementPlan": "Use worked-example-derived SRS for exponential inequalities and series gaps."
+    },
+    {
+      "module": 6,
+      "declaredTopics": 29,
+      "listedTopics": 21,
+      "reason": "Source HTML exposes 21 rendered topic rows and includes Module 5 carryover groups.",
+      "replacementPlan": "Use worked-example-derived SRS for natural-log notation and decay contexts."
+    },
+    {
+      "module": 7,
+      "declaredTopics": 86,
+      "listedTopics": 82,
+      "reason": "Source HTML exposes 82 rendered topic rows for this module export.",
+      "replacementPlan": "Use worked-example-derived SRS for reciprocal graphing gaps."
+    },
+    {
+      "module": 9,
+      "declaredTopics": 45,
+      "listedTopics": 31,
+      "reason": "Source HTML exposes 31 rendered topic rows for this module export.",
+      "replacementPlan": "Use worked-example-derived SRS for translation and inverse-trig gaps."
+    }
+  ],
+  "lessonSourceExceptions": []
+}

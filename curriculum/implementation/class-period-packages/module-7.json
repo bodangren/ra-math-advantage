@@ -1,0 +1,519 @@
+{
+  "schemaVersion": "class-period-package.v1",
+  "module": 7,
+  "generatedFrom": "curriculum/module-7-class-period-plan.md",
+  "periods": [
+    {
+      "periodId": "m07-p01",
+      "module": 7,
+      "period": 1,
+      "dayType": "instruction",
+      "sourceLesson": "7-1",
+      "objectiveCode": "7a",
+      "objective": "Simplify rational expressions.",
+      "workedExamples": "7-1, Examples 1-2 — Simplify a Rational Expression; Simplify by Using \\`-1\\`",
+      "embeddedObjectives": [],
+      "aleksSrsPractice": [
+        "ALEKS M7-L7-1.01",
+        "ALEKS M7-L7-1.02",
+        "ALEKS M7-L7-1.03",
+        "ALEKS M7-L7-1.04",
+        "ALEKS M7-L7-1.05",
+        "ALEKS M7-L7-1.06",
+        "ALEKS M7-L7-1.07",
+        "ALEKS M7-L7-1.08",
+        "ALEKS M7-L7-1.09"
+      ],
+      "notes": "Factor-and-cancel simplification, restrictions, and sign control.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 7a with one retrieval prompt tied to 7-1.",
+        "conceptDevelopment": "Use 7-1, Examples 1-2 — Simplify a Rational Expression; Simplify by Using \\`-1\\` to develop: Simplify rational expressions..",
+        "guidedPractice": "Students complete a scaffolded problem modeled on 7-1, Examples 1-2 — Simplify a Rational Expression; Simplify by Using \\`-1\\`; teacher checks notation and reasoning.",
+        "independentPractice": "Students complete aligned ALEKS/SRS practice: ALEKS M7-L7-1.01, ALEKS M7-L7-1.02, ALEKS M7-L7-1.03, ALEKS M7-L7-1.04, ALEKS M7-L7-1.05, ALEKS M7-L7-1.06, ALEKS M7-L7-1.07, ALEKS M7-L7-1.08, ALEKS M7-L7-1.09.",
+        "assessment": "Exit ticket: one fresh problem assessing 7a and one short explanation prompt.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with simplify rational expressions.."
+      }
+    },
+    {
+      "periodId": "m07-p02",
+      "module": 7,
+      "period": 2,
+      "dayType": "instruction",
+      "sourceLesson": "7-1",
+      "objectiveCode": "7b",
+      "objective": "Simplify rational expressions by multiplying and dividing.",
+      "workedExamples": "7-1, Examples 3-4 — Multiply and Divide Rational Expressions; Multiply and Divide Polynomial Expressions",
+      "embeddedObjectives": [],
+      "aleksSrsPractice": [
+        "ALEKS M7-L7-1.10",
+        "ALEKS M7-L7-1.11",
+        "ALEKS M7-L7-1.12",
+        "ALEKS M7-L7-1.13",
+        "ALEKS M7-L7-1.14",
+        "ALEKS M7-L7-1.15",
+        "ALEKS M7-L7-1.16",
+        "ALEKS M7-L7-1.17",
+        "ALEKS M7-L7-1.18",
+        "ALEKS M7-L7-1.19",
+        "ALEKS M7-L7-1.20"
+      ],
+      "notes": "Multiplication/division with factorization and reciprocal structure.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 7b with one retrieval prompt tied to 7-1.",
+        "conceptDevelopment": "Use 7-1, Examples 3-4 — Multiply and Divide Rational Expressions; Multiply and Divide Polynomial Expressions to develop: Simplify rational expressions by multiplying and dividing..",
+        "guidedPractice": "Students complete a scaffolded problem modeled on 7-1, Examples 3-4 — Multiply and Divide Rational Expressions; Multiply and Divide Polynomial Expressions; teacher checks notation and reasoning.",
+        "independentPractice": "Students complete aligned ALEKS/SRS practice: ALEKS M7-L7-1.10, ALEKS M7-L7-1.11, ALEKS M7-L7-1.12, ALEKS M7-L7-1.13, ALEKS M7-L7-1.14, ALEKS M7-L7-1.15, ALEKS M7-L7-1.16, ALEKS M7-L7-1.17, ALEKS M7-L7-1.18, ALEKS M7-L7-1.19, ALEKS M7-L7-1.20.",
+        "assessment": "Exit ticket: one fresh problem assessing 7b and one short explanation prompt.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with simplify rational expressions by multiplying and dividing.."
+      }
+    },
+    {
+      "periodId": "m07-p03",
+      "module": 7,
+      "period": 3,
+      "dayType": "mastery",
+      "notes": "Mastery cycle on `7a-7b`.",
+      "nonInstructionArtifact": {
+        "artifactType": "mastery",
+        "objectiveScope": "Mastery cycle on `7a-7b`.",
+        "srsSources": [
+          "worked-example-derived practice",
+          "ALEKS topic practice where available",
+          "prior-unit spiral review"
+        ],
+        "remediationGrouping": "Group students by recent objective evidence and misconception patterns.",
+        "extensionOptions": "Offer synthesis problems that combine current objectives with prior modules.",
+        "evidence": "Student completes due SRS items and submits one corrected-error reflection."
+      }
+    },
+    {
+      "periodId": "m07-p04",
+      "module": 7,
+      "period": 4,
+      "dayType": "instruction",
+      "sourceLesson": "7-2",
+      "objectiveCode": "7c",
+      "objective": "Simplify rational expressions by adding and subtracting.",
+      "workedExamples": "7-2, Examples 1-3 — Add and Subtract Rational Expressions with Monomial Denominators; Add and Subtract Rational Expressions with Polynomial Denominators; Use Addition and Subtraction of Rational Expressions",
+      "embeddedObjectives": [],
+      "aleksSrsPractice": [
+        "ALEKS M7-L7-2.01",
+        "ALEKS M7-L7-2.02",
+        "ALEKS M7-L7-2.03",
+        "ALEKS M7-L7-2.04",
+        "ALEKS M7-L7-2.05",
+        "ALEKS M7-L7-2.06",
+        "ALEKS M7-L7-2.07",
+        "ALEKS M7-L7-2.08",
+        "ALEKS M7-L7-2.09",
+        "ALEKS M7-L7-2.10",
+        "ALEKS M7-L7-2.11",
+        "ALEKS M7-L7-2.12",
+        "ALEKS M7-L7-2.13",
+        "ALEKS M7-L7-2.14",
+        "ALEKS M7-L7-2.15",
+        "ALEKS M7-L7-2.16",
+        "ALEKS M7-L7-2.17",
+        "ALEKS M7-L7-2.18"
+      ],
+      "notes": "LCD structure and addition/subtraction fluency.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 7c with one retrieval prompt tied to 7-2.",
+        "conceptDevelopment": "Use 7-2, Examples 1-3 — Add and Subtract Rational Expressions with Monomial Denominators; Add and Subtract Rational Expressions with Polynomial Denominators; Use Addition and Subtraction of Rational Expressions to develop: Simplify rational expressions by adding and subtracting..",
+        "guidedPractice": "Students complete a scaffolded problem modeled on 7-2, Examples 1-3 — Add and Subtract Rational Expressions with Monomial Denominators; Add and Subtract Rational Expressions with Polynomial Denominators; Use Addition and Subtraction of Rational Expressions; teacher checks notation and reasoning.",
+        "independentPractice": "Students complete aligned ALEKS/SRS practice: ALEKS M7-L7-2.01, ALEKS M7-L7-2.02, ALEKS M7-L7-2.03, ALEKS M7-L7-2.04, ALEKS M7-L7-2.05, ALEKS M7-L7-2.06, ALEKS M7-L7-2.07, ALEKS M7-L7-2.08, ALEKS M7-L7-2.09, ALEKS M7-L7-2.10, ALEKS M7-L7-2.11, ALEKS M7-L7-2.12, ALEKS M7-L7-2.13, ALEKS M7-L7-2.14, ALEKS M7-L7-2.15, ALEKS M7-L7-2.16, ALEKS M7-L7-2.17, ALEKS M7-L7-2.18.",
+        "assessment": "Exit ticket: one fresh problem assessing 7c and one short explanation prompt.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with simplify rational expressions by adding and subtracting.."
+      }
+    },
+    {
+      "periodId": "m07-p05",
+      "module": 7,
+      "period": 5,
+      "dayType": "instruction",
+      "sourceLesson": "7-2",
+      "objectiveCode": "7d",
+      "objective": "Simplify complex fractions.",
+      "workedExamples": "7-2, Examples 4-5 — Simplify Complex Fractions by Using Different LCDs; Simplify Complex Fractions by Using the Same LCD",
+      "embeddedObjectives": [],
+      "aleksSrsPractice": [
+        "ALEKS M7-L7-1.21",
+        "ALEKS M7-L7-1.22",
+        "ALEKS M7-L7-1.23",
+        "ALEKS M7-L7-1.24",
+        "ALEKS M7-L7-2.19",
+        "ALEKS M7-L7-2.20",
+        "ALEKS M7-L7-2.21",
+        "ALEKS M7-L7-2.22",
+        "ALEKS M7-L7-2.23"
+      ],
+      "notes": "Complex-fraction strategies with and without shared LCDs.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 7d with one retrieval prompt tied to 7-2.",
+        "conceptDevelopment": "Use 7-2, Examples 4-5 — Simplify Complex Fractions by Using Different LCDs; Simplify Complex Fractions by Using the Same LCD to develop: Simplify complex fractions..",
+        "guidedPractice": "Students complete a scaffolded problem modeled on 7-2, Examples 4-5 — Simplify Complex Fractions by Using Different LCDs; Simplify Complex Fractions by Using the Same LCD; teacher checks notation and reasoning.",
+        "independentPractice": "Students complete aligned ALEKS/SRS practice: ALEKS M7-L7-1.21, ALEKS M7-L7-1.22, ALEKS M7-L7-1.23, ALEKS M7-L7-1.24, ALEKS M7-L7-2.19, ALEKS M7-L7-2.20, ALEKS M7-L7-2.21, ALEKS M7-L7-2.22, ALEKS M7-L7-2.23.",
+        "assessment": "Exit ticket: one fresh problem assessing 7d and one short explanation prompt.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with simplify complex fractions.."
+      }
+    },
+    {
+      "periodId": "m07-p06",
+      "module": 7,
+      "period": 6,
+      "dayType": "jigsaw",
+      "notes": "Stretch-problem session built from rational-expression and complex-fraction examples.",
+      "nonInstructionArtifact": {
+        "artifactType": "jigsaw",
+        "groupTask": "Stretch-problem session built from rational-expression and complex-fraction examples.",
+        "sourceWorkedExamples": "Use the prior instruction periods named in the notes as the problem bank.",
+        "deliverable": "Group solution poster or shared explanation with one strategy comparison.",
+        "facilitationNotes": "Assign roles for graphing, algebra, checking, and explanation.",
+        "completionCriteria": "Correct method, accurate result, clear justification, and response to peer question."
+      }
+    },
+    {
+      "periodId": "m07-p07",
+      "module": 7,
+      "period": 7,
+      "dayType": "instruction",
+      "sourceLesson": "7-3",
+      "objectiveCode": "7e",
+      "objective": "Graph reciprocal functions by making tables of values.",
+      "workedExamples": "7-3, Examples 1-3 — Limitations on the Domains of Reciprocal Functions; Graph a Reciprocal Function by Using a Table; Analyze a Reciprocal Function",
+      "embeddedObjectives": [],
+      "aleksSrsPractice": [],
+      "srsSubstitute": "Generate worked-example-derived SRS items from 7-3, Examples 1-3 — Limitations on the Domains of Reciprocal Functions; Graph a Reciprocal Function by Using a Table; Analyze a Reciprocal Function.",
+      "notes": "Parent reciprocal behavior, tables, and feature analysis.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 7e with one retrieval prompt tied to 7-3.",
+        "conceptDevelopment": "Use 7-3, Examples 1-3 — Limitations on the Domains of Reciprocal Functions; Graph a Reciprocal Function by Using a Table; Analyze a Reciprocal Function to develop: Graph reciprocal functions by making tables of values..",
+        "guidedPractice": "Students complete a scaffolded problem modeled on 7-3, Examples 1-3 — Limitations on the Domains of Reciprocal Functions; Graph a Reciprocal Function by Using a Table; Analyze a Reciprocal Function; teacher checks notation and reasoning.",
+        "independentPractice": "Students complete worked-example-derived SRS practice because no direct ALEKS export is available.",
+        "assessment": "Exit ticket: one fresh problem assessing 7e and one short explanation prompt.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with graph reciprocal functions by making tables of values.."
+      }
+    },
+    {
+      "periodId": "m07-p08",
+      "module": 7,
+      "period": 8,
+      "dayType": "instruction",
+      "sourceLesson": "7-3",
+      "objectiveCode": "7f",
+      "objective": "Graph and write reciprocal functions by using transformations.",
+      "workedExamples": "7-3, Examples 4-5 — Graph a Transformation of a Reciprocal Function; Write a Reciprocal Function from a Graph",
+      "embeddedObjectives": [],
+      "aleksSrsPractice": [],
+      "srsSubstitute": "Generate worked-example-derived SRS items from 7-3, Examples 4-5 — Graph a Transformation of a Reciprocal Function; Write a Reciprocal Function from a Graph.",
+      "notes": "Transformations, asymptotes, and graph-to-equation writing.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 7f with one retrieval prompt tied to 7-3.",
+        "conceptDevelopment": "Use 7-3, Examples 4-5 — Graph a Transformation of a Reciprocal Function; Write a Reciprocal Function from a Graph to develop: Graph and write reciprocal functions by using transformations..",
+        "guidedPractice": "Students complete a scaffolded problem modeled on 7-3, Examples 4-5 — Graph a Transformation of a Reciprocal Function; Write a Reciprocal Function from a Graph; teacher checks notation and reasoning.",
+        "independentPractice": "Students complete worked-example-derived SRS practice because no direct ALEKS export is available.",
+        "assessment": "Exit ticket: one fresh problem assessing 7f and one short explanation prompt.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with graph and write reciprocal functions by using transformations.."
+      }
+    },
+    {
+      "periodId": "m07-p09",
+      "module": 7,
+      "period": 9,
+      "dayType": "mastery",
+      "notes": "Mastery cycle on `7c-7f`.",
+      "nonInstructionArtifact": {
+        "artifactType": "mastery",
+        "objectiveScope": "Mastery cycle on `7c-7f`.",
+        "srsSources": [
+          "worked-example-derived practice",
+          "ALEKS topic practice where available",
+          "prior-unit spiral review"
+        ],
+        "remediationGrouping": "Group students by recent objective evidence and misconception patterns.",
+        "extensionOptions": "Offer synthesis problems that combine current objectives with prior modules.",
+        "evidence": "Student completes due SRS items and submits one corrected-error reflection."
+      }
+    },
+    {
+      "periodId": "m07-p10",
+      "module": 7,
+      "period": 10,
+      "dayType": "instruction",
+      "sourceLesson": "7-4",
+      "objectiveCode": "7g",
+      "objective": "Graph and analyze rational functions with vertical and horizontal asymptotes.",
+      "workedExamples": "7-4, Examples 1-3 — Graph with No Horizontal Asymptotes; Use Graphs of Rational Functions; Compare Rational Functions",
+      "embeddedObjectives": [],
+      "aleksSrsPractice": [
+        "ALEKS M7-L7-4.01",
+        "ALEKS M7-L7-4.02",
+        "ALEKS M7-L7-4.03",
+        "ALEKS M7-L7-4.04",
+        "ALEKS M7-L7-4.05",
+        "ALEKS M7-L7-4.06",
+        "ALEKS M7-L7-4.08"
+      ],
+      "notes": "Rational-function features and vertical/horizontal asymptote analysis.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 7g with one retrieval prompt tied to 7-4.",
+        "conceptDevelopment": "Use 7-4, Examples 1-3 — Graph with No Horizontal Asymptotes; Use Graphs of Rational Functions; Compare Rational Functions to develop: Graph and analyze rational functions with vertical and horizontal asymptotes..",
+        "guidedPractice": "Students complete a scaffolded problem modeled on 7-4, Examples 1-3 — Graph with No Horizontal Asymptotes; Use Graphs of Rational Functions; Compare Rational Functions; teacher checks notation and reasoning.",
+        "independentPractice": "Students complete aligned ALEKS/SRS practice: ALEKS M7-L7-4.01, ALEKS M7-L7-4.02, ALEKS M7-L7-4.03, ALEKS M7-L7-4.04, ALEKS M7-L7-4.05, ALEKS M7-L7-4.06, ALEKS M7-L7-4.08.",
+        "assessment": "Exit ticket: one fresh problem assessing 7g and one short explanation prompt.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with graph and analyze rational functions with vertical and horizontal asymptotes.."
+      }
+    },
+    {
+      "periodId": "m07-p11",
+      "module": 7,
+      "period": 11,
+      "dayType": "instruction",
+      "sourceLesson": "7-4",
+      "objectiveCode": "7h",
+      "objective": "Graph and analyze rational functions with oblique asymptotes.",
+      "workedExamples": "7-4, Examples 4-5 — Graph with Oblique Asymptotes; Graph with Point Discontinuity",
+      "embeddedObjectives": [],
+      "aleksSrsPractice": [
+        "ALEKS M7-L7-4.03",
+        "ALEKS M7-L7-4.04",
+        "ALEKS M7-L7-4.07"
+      ],
+      "notes": "Oblique asymptotes plus related discontinuity behavior.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 7h with one retrieval prompt tied to 7-4.",
+        "conceptDevelopment": "Use 7-4, Examples 4-5 — Graph with Oblique Asymptotes; Graph with Point Discontinuity to develop: Graph and analyze rational functions with oblique asymptotes..",
+        "guidedPractice": "Students complete a scaffolded problem modeled on 7-4, Examples 4-5 — Graph with Oblique Asymptotes; Graph with Point Discontinuity; teacher checks notation and reasoning.",
+        "independentPractice": "Students complete aligned ALEKS/SRS practice: ALEKS M7-L7-4.03, ALEKS M7-L7-4.04, ALEKS M7-L7-4.07.",
+        "assessment": "Exit ticket: one fresh problem assessing 7h and one short explanation prompt.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with graph and analyze rational functions with oblique asymptotes.."
+      }
+    },
+    {
+      "periodId": "m07-p12",
+      "module": 7,
+      "period": 12,
+      "dayType": "mastery",
+      "notes": "Mastery cycle on `7g-7h`.",
+      "nonInstructionArtifact": {
+        "artifactType": "mastery",
+        "objectiveScope": "Mastery cycle on `7g-7h`.",
+        "srsSources": [
+          "worked-example-derived practice",
+          "ALEKS topic practice where available",
+          "prior-unit spiral review"
+        ],
+        "remediationGrouping": "Group students by recent objective evidence and misconception patterns.",
+        "extensionOptions": "Offer synthesis problems that combine current objectives with prior modules.",
+        "evidence": "Student completes due SRS items and submits one corrected-error reflection."
+      }
+    },
+    {
+      "periodId": "m07-p13",
+      "module": 7,
+      "period": 13,
+      "dayType": "instruction",
+      "sourceLesson": "7-5",
+      "objectiveCode": "7i",
+      "objective": "Recognize and solve direct and joint variation equations.",
+      "workedExamples": "7-5, Examples 1-2 — Direct Variation; Joint Variation",
+      "embeddedObjectives": [],
+      "aleksSrsPractice": [
+        "ALEKS M7-L7-5.01",
+        "ALEKS M7-L7-5.02",
+        "ALEKS M7-L7-5.03",
+        "ALEKS M7-L7-5.04"
+      ],
+      "notes": "Constant-of-variation structure and direct/joint models.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 7i with one retrieval prompt tied to 7-5.",
+        "conceptDevelopment": "Use 7-5, Examples 1-2 — Direct Variation; Joint Variation to develop: Recognize and solve direct and joint variation equations..",
+        "guidedPractice": "Students complete a scaffolded problem modeled on 7-5, Examples 1-2 — Direct Variation; Joint Variation; teacher checks notation and reasoning.",
+        "independentPractice": "Students complete aligned ALEKS/SRS practice: ALEKS M7-L7-5.01, ALEKS M7-L7-5.02, ALEKS M7-L7-5.03, ALEKS M7-L7-5.04.",
+        "assessment": "Exit ticket: one fresh problem assessing 7i and one short explanation prompt.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with recognize and solve direct and joint variation equations.."
+      }
+    },
+    {
+      "periodId": "m07-p14",
+      "module": 7,
+      "period": 14,
+      "dayType": "instruction",
+      "sourceLesson": "7-5",
+      "objectiveCode": "7j",
+      "objective": "Recognize and solve inverse and combined variation equations.",
+      "workedExamples": "7-5, Examples 3-5 — Inverse Variation; Combined Variation; Write and Solve a Combined Variation",
+      "embeddedObjectives": [],
+      "aleksSrsPractice": [
+        "ALEKS M7-L7-5.05",
+        "ALEKS M7-L7-5.06",
+        "ALEKS M7-L7-5.07",
+        "ALEKS M7-L7-5.08",
+        "ALEKS M7-L7-5.09",
+        "ALEKS M7-L7-5.10"
+      ],
+      "notes": "Inverse/combined models and contextual solving.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 7j with one retrieval prompt tied to 7-5.",
+        "conceptDevelopment": "Use 7-5, Examples 3-5 — Inverse Variation; Combined Variation; Write and Solve a Combined Variation to develop: Recognize and solve inverse and combined variation equations..",
+        "guidedPractice": "Students complete a scaffolded problem modeled on 7-5, Examples 3-5 — Inverse Variation; Combined Variation; Write and Solve a Combined Variation; teacher checks notation and reasoning.",
+        "independentPractice": "Students complete aligned ALEKS/SRS practice: ALEKS M7-L7-5.05, ALEKS M7-L7-5.06, ALEKS M7-L7-5.07, ALEKS M7-L7-5.08, ALEKS M7-L7-5.09, ALEKS M7-L7-5.10.",
+        "assessment": "Exit ticket: one fresh problem assessing 7j and one short explanation prompt.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with recognize and solve inverse and combined variation equations.."
+      }
+    },
+    {
+      "periodId": "m07-p15",
+      "module": 7,
+      "period": 15,
+      "dayType": "jigsaw",
+      "notes": "Stretch-problem session built from reciprocal, asymptote, and variation examples.",
+      "nonInstructionArtifact": {
+        "artifactType": "jigsaw",
+        "groupTask": "Stretch-problem session built from reciprocal, asymptote, and variation examples.",
+        "sourceWorkedExamples": "Use the prior instruction periods named in the notes as the problem bank.",
+        "deliverable": "Group solution poster or shared explanation with one strategy comparison.",
+        "facilitationNotes": "Assign roles for graphing, algebra, checking, and explanation.",
+        "completionCriteria": "Correct method, accurate result, clear justification, and response to peer question."
+      }
+    },
+    {
+      "periodId": "m07-p16",
+      "module": 7,
+      "period": 16,
+      "dayType": "instruction",
+      "sourceLesson": "7-6",
+      "objectiveCode": "7k",
+      "objective": "Solve rational equations in one variable.",
+      "workedExamples": "7-6, Examples 1-2 — Solve a Rational Equation; Solve a Rational Equation with an Extraneous Solution",
+      "embeddedObjectives": [],
+      "aleksSrsPractice": [
+        "ALEKS M7-L7-6.01",
+        "ALEKS M7-L7-6.02",
+        "ALEKS M7-L7-6.03",
+        "ALEKS M7-L7-6.04",
+        "ALEKS M7-L7-6.05",
+        "ALEKS M7-L7-6.06",
+        "ALEKS M7-L7-6.07",
+        "ALEKS M7-L7-6.08",
+        "ALEKS M7-L7-6.09",
+        "ALEKS M7-L7-6.10",
+        "ALEKS M7-L7-6.11",
+        "ALEKS M7-L7-6.12"
+      ],
+      "notes": "Core rational-equation solving and extraneous-solution checks.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 7k with one retrieval prompt tied to 7-6.",
+        "conceptDevelopment": "Use 7-6, Examples 1-2 — Solve a Rational Equation; Solve a Rational Equation with an Extraneous Solution to develop: Solve rational equations in one variable..",
+        "guidedPractice": "Students complete a scaffolded problem modeled on 7-6, Examples 1-2 — Solve a Rational Equation; Solve a Rational Equation with an Extraneous Solution; teacher checks notation and reasoning.",
+        "independentPractice": "Students complete aligned ALEKS/SRS practice: ALEKS M7-L7-6.01, ALEKS M7-L7-6.02, ALEKS M7-L7-6.03, ALEKS M7-L7-6.04, ALEKS M7-L7-6.05, ALEKS M7-L7-6.06, ALEKS M7-L7-6.07, ALEKS M7-L7-6.08, ALEKS M7-L7-6.09, ALEKS M7-L7-6.10, ALEKS M7-L7-6.11, ALEKS M7-L7-6.12.",
+        "assessment": "Exit ticket: one fresh problem assessing 7k and one short explanation prompt.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with solve rational equations in one variable.."
+      }
+    },
+    {
+      "periodId": "m07-p17",
+      "module": 7,
+      "period": 17,
+      "dayType": "instruction",
+      "sourceLesson": "7-6",
+      "objectiveCode": "7k",
+      "objective": "Solve rational equations in one variable.",
+      "workedExamples": "7-6, Examples 3-5 — Mixture Problem; Distance Problem; Work Problem",
+      "embeddedObjectives": [],
+      "aleksSrsPractice": [
+        "ALEKS M7-L7-6.13",
+        "ALEKS M7-L7-6.14",
+        "ALEKS M7-L7-6.15"
+      ],
+      "notes": "Application-heavy rational-equation day.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 7k with one retrieval prompt tied to 7-6.",
+        "conceptDevelopment": "Use 7-6, Examples 3-5 — Mixture Problem; Distance Problem; Work Problem to develop: Solve rational equations in one variable..",
+        "guidedPractice": "Students complete a scaffolded problem modeled on 7-6, Examples 3-5 — Mixture Problem; Distance Problem; Work Problem; teacher checks notation and reasoning.",
+        "independentPractice": "Students complete aligned ALEKS/SRS practice: ALEKS M7-L7-6.13, ALEKS M7-L7-6.14, ALEKS M7-L7-6.15.",
+        "assessment": "Exit ticket: one fresh problem assessing 7k and one short explanation prompt.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with solve rational equations in one variable.."
+      }
+    },
+    {
+      "periodId": "m07-p18",
+      "module": 7,
+      "period": 18,
+      "dayType": "instruction",
+      "sourceLesson": "7-6",
+      "objectiveCode": "7l",
+      "objective": "Solve rational inequalities in one variable.",
+      "workedExamples": "7-6, Example 6 and Apply Example 7 — Solve a Rational Inequality; Write and Solve a Rational Inequality",
+      "embeddedObjectives": [],
+      "aleksSrsPractice": [
+        "ALEKS M7-L7-6.16",
+        "ALEKS M7-L7-6.17"
+      ],
+      "notes": "Critical values, interval testing, and contextual inequality writing.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 7l with one retrieval prompt tied to 7-6.",
+        "conceptDevelopment": "Use 7-6, Example 6 and Apply Example 7 — Solve a Rational Inequality; Write and Solve a Rational Inequality to develop: Solve rational inequalities in one variable..",
+        "guidedPractice": "Students complete a scaffolded problem modeled on 7-6, Example 6 and Apply Example 7 — Solve a Rational Inequality; Write and Solve a Rational Inequality; teacher checks notation and reasoning.",
+        "independentPractice": "Students complete aligned ALEKS/SRS practice: ALEKS M7-L7-6.16, ALEKS M7-L7-6.17.",
+        "assessment": "Exit ticket: one fresh problem assessing 7l and one short explanation prompt.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with solve rational inequalities in one variable.."
+      }
+    },
+    {
+      "periodId": "m07-p19",
+      "module": 7,
+      "period": 19,
+      "dayType": "mastery",
+      "notes": "Module-wide differentiated SRS practice across Module 7 objectives.",
+      "nonInstructionArtifact": {
+        "artifactType": "mastery",
+        "objectiveScope": "Module-wide differentiated SRS practice across Module 7 objectives.",
+        "srsSources": [
+          "worked-example-derived practice",
+          "ALEKS topic practice where available",
+          "prior-unit spiral review"
+        ],
+        "remediationGrouping": "Group students by recent objective evidence and misconception patterns.",
+        "extensionOptions": "Offer synthesis problems that combine current objectives with prior modules.",
+        "evidence": "Student completes due SRS items and submits one corrected-error reflection."
+      }
+    },
+    {
+      "periodId": "m07-p20",
+      "module": 7,
+      "period": 20,
+      "dayType": "review",
+      "notes": "Module 7 review across `7a-7l`.",
+      "nonInstructionArtifact": {
+        "artifactType": "review",
+        "objectiveCoverage": "Module 7 review across `7a-7l`.",
+        "reviewActivities": [
+          "mixed retrieval set",
+          "misconception sort",
+          "student-selected retry set"
+        ],
+        "misconceptionTargets": "Use recent mastery and SRS evidence to select the highest-frequency errors.",
+        "readinessCheck": "Short diagnostic covering representative module objectives."
+      }
+    },
+    {
+      "periodId": "m07-p21",
+      "module": 7,
+      "period": 21,
+      "dayType": "test",
+      "notes": "Module 7 assessment.",
+      "nonInstructionArtifact": {
+        "artifactType": "test",
+        "objectiveCoverage": "Module 7 assessment.",
+        "assessmentStructure": [
+          "fluency section",
+          "conceptual reasoning section",
+          "modeling/application section"
+        ],
+        "gradingExpectations": "Grade against module objectives and record evidence for mastery updates.",
+        "retakeRelationship": "Retake eligibility follows the course mastery policy after targeted remediation."
+      }
+    }
+  ]
+}

@@ -1,0 +1,523 @@
+{
+  "schemaVersion": "class-period-package.v1",
+  "module": 4,
+  "generatedFrom": "curriculum/module-4-class-period-plan.md",
+  "periods": [
+    {
+      "periodId": "m04-p01",
+      "module": 4,
+      "period": 1,
+      "dayType": "instruction",
+      "sourceLesson": "4-1",
+      "objectiveCode": "4a",
+      "objective": "Find sums, differences, products, and quotients of functions.",
+      "workedExamples": "4-1, Examples 1-2 — Add and Subtract Functions; Multiply and Divide Functions",
+      "embeddedObjectives": [],
+      "aleksSrsPractice": [
+        "ALEKS M4-L4-1.01",
+        "ALEKS M4-L4-1.02",
+        "ALEKS M4-L4-1.03",
+        "ALEKS M4-L4-1.04",
+        "ALEKS M4-L4-1.05",
+        "ALEKS M4-L4-1.06",
+        "ALEKS M4-L4-1.07",
+        "ALEKS M4-L4-1.08",
+        "ALEKS M4-L4-1.09",
+        "ALEKS M4-L4-1.10"
+      ],
+      "notes": "Function operations and domain restriction in quotients.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 4a with one retrieval prompt tied to 4-1.",
+        "conceptDevelopment": "Use 4-1, Examples 1-2 — Add and Subtract Functions; Multiply and Divide Functions to develop: Find sums, differences, products, and quotients of functions..",
+        "guidedPractice": "Students complete a scaffolded problem modeled on 4-1, Examples 1-2 — Add and Subtract Functions; Multiply and Divide Functions; teacher checks notation and reasoning.",
+        "independentPractice": "Students complete aligned ALEKS/SRS practice: ALEKS M4-L4-1.01, ALEKS M4-L4-1.02, ALEKS M4-L4-1.03, ALEKS M4-L4-1.04, ALEKS M4-L4-1.05, ALEKS M4-L4-1.06, ALEKS M4-L4-1.07, ALEKS M4-L4-1.08, ALEKS M4-L4-1.09, ALEKS M4-L4-1.10.",
+        "assessment": "Exit ticket: one fresh problem assessing 4a and one short explanation prompt.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with find sums, differences, products, and quotients of functions.."
+      }
+    },
+    {
+      "periodId": "m04-p02",
+      "module": 4,
+      "period": 2,
+      "dayType": "instruction",
+      "sourceLesson": "4-1",
+      "objectiveCode": "4b",
+      "objective": "Find compositions of functions.",
+      "workedExamples": "4-1, Examples 4-5 and Apply Example 6 — Compose Functions by Using Ordered Pairs; Compose Functions; Use Composition of Functions",
+      "embeddedObjectives": [],
+      "aleksSrsPractice": [
+        "ALEKS M4-L4-1.11",
+        "ALEKS M4-L4-1.12",
+        "ALEKS M4-L4-1.13",
+        "ALEKS M4-L4-1.14",
+        "ALEKS M4-L4-1.15"
+      ],
+      "notes": "Composition through ordered pairs, formulas, and context.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 4b with one retrieval prompt tied to 4-1.",
+        "conceptDevelopment": "Use 4-1, Examples 4-5 and Apply Example 6 — Compose Functions by Using Ordered Pairs; Compose Functions; Use Composition of Functions to develop: Find compositions of functions..",
+        "guidedPractice": "Students complete a scaffolded problem modeled on 4-1, Examples 4-5 and Apply Example 6 — Compose Functions by Using Ordered Pairs; Compose Functions; Use Composition of Functions; teacher checks notation and reasoning.",
+        "independentPractice": "Students complete aligned ALEKS/SRS practice: ALEKS M4-L4-1.11, ALEKS M4-L4-1.12, ALEKS M4-L4-1.13, ALEKS M4-L4-1.14, ALEKS M4-L4-1.15.",
+        "assessment": "Exit ticket: one fresh problem assessing 4b and one short explanation prompt.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with find compositions of functions.."
+      }
+    },
+    {
+      "periodId": "m04-p03",
+      "module": 4,
+      "period": 3,
+      "dayType": "mastery",
+      "notes": "Mastery cycle on `4a-4b`.",
+      "nonInstructionArtifact": {
+        "artifactType": "mastery",
+        "objectiveScope": "Mastery cycle on `4a-4b`.",
+        "srsSources": [
+          "worked-example-derived practice",
+          "ALEKS topic practice where available",
+          "prior-unit spiral review"
+        ],
+        "remediationGrouping": "Group students by recent objective evidence and misconception patterns.",
+        "extensionOptions": "Offer synthesis problems that combine current objectives with prior modules.",
+        "evidence": "Student completes due SRS items and submits one corrected-error reflection."
+      }
+    },
+    {
+      "periodId": "m04-p04",
+      "module": 4,
+      "period": 4,
+      "dayType": "instruction",
+      "sourceLesson": "4-2",
+      "objectiveCode": "4c",
+      "objective": "Find inverses of relations.",
+      "workedExamples": "4-2, Examples 1-4 — Find an Inverse Relation; Inverse Functions; Inverses with Restricted Domains; Interpret Inverse Functions",
+      "embeddedObjectives": [],
+      "aleksSrsPractice": [
+        "ALEKS M4-L4-2.03",
+        "ALEKS M4-L4-2.04",
+        "ALEKS M4-L4-2.05",
+        "ALEKS M4-L4-2.06",
+        "ALEKS M4-L4-2.07"
+      ],
+      "notes": "Inverse relations, inverse functions, domain restriction, and contextual meaning.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 4c with one retrieval prompt tied to 4-2.",
+        "conceptDevelopment": "Use 4-2, Examples 1-4 — Find an Inverse Relation; Inverse Functions; Inverses with Restricted Domains; Interpret Inverse Functions to develop: Find inverses of relations..",
+        "guidedPractice": "Students complete a scaffolded problem modeled on 4-2, Examples 1-4 — Find an Inverse Relation; Inverse Functions; Inverses with Restricted Domains; Interpret Inverse Functions; teacher checks notation and reasoning.",
+        "independentPractice": "Students complete aligned ALEKS/SRS practice: ALEKS M4-L4-2.03, ALEKS M4-L4-2.04, ALEKS M4-L4-2.05, ALEKS M4-L4-2.06, ALEKS M4-L4-2.07.",
+        "assessment": "Exit ticket: one fresh problem assessing 4c and one short explanation prompt.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with find inverses of relations.."
+      }
+    },
+    {
+      "periodId": "m04-p05",
+      "module": 4,
+      "period": 5,
+      "dayType": "instruction",
+      "sourceLesson": "4-2",
+      "objectiveCode": "4d",
+      "objective": "Verify that two relations are inverses by using compositions.",
+      "workedExamples": "4-2, Examples 5-6 — Use Compositions to Verify Inverses; Verify Inverse Functions",
+      "embeddedObjectives": [],
+      "aleksSrsPractice": [
+        "ALEKS M4-L4-2.02"
+      ],
+      "notes": "Composition-based verification and inverse interpretation in context.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 4d with one retrieval prompt tied to 4-2.",
+        "conceptDevelopment": "Use 4-2, Examples 5-6 — Use Compositions to Verify Inverses; Verify Inverse Functions to develop: Verify that two relations are inverses by using compositions..",
+        "guidedPractice": "Students complete a scaffolded problem modeled on 4-2, Examples 5-6 — Use Compositions to Verify Inverses; Verify Inverse Functions; teacher checks notation and reasoning.",
+        "independentPractice": "Students complete aligned ALEKS/SRS practice: ALEKS M4-L4-2.02.",
+        "assessment": "Exit ticket: one fresh problem assessing 4d and one short explanation prompt.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with verify that two relations are inverses by using compositions.."
+      }
+    },
+    {
+      "periodId": "m04-p06",
+      "module": 4,
+      "period": 6,
+      "dayType": "jigsaw",
+      "notes": "Stretch-problem session built from function operations, composition, and inverse examples.",
+      "nonInstructionArtifact": {
+        "artifactType": "jigsaw",
+        "groupTask": "Stretch-problem session built from function operations, composition, and inverse examples.",
+        "sourceWorkedExamples": "Use the prior instruction periods named in the notes as the problem bank.",
+        "deliverable": "Group solution poster or shared explanation with one strategy comparison.",
+        "facilitationNotes": "Assign roles for graphing, algebra, checking, and explanation.",
+        "completionCriteria": "Correct method, accurate result, clear justification, and response to peer question."
+      }
+    },
+    {
+      "periodId": "m04-p07",
+      "module": 4,
+      "period": 7,
+      "dayType": "instruction",
+      "sourceLesson": "4-3",
+      "objectiveCode": "4e",
+      "objective": "Simplify expressions involving radicals and rational exponents.",
+      "workedExamples": "4-3, Examples 1-3 — Find Roots; Simplify Using Absolute Value; Radical and Exponential Forms",
+      "embeddedObjectives": [],
+      "aleksSrsPractice": [
+        "ALEKS M4-L4-3.01",
+        "ALEKS M4-L4-3.02",
+        "ALEKS M4-L4-3.03",
+        "ALEKS M4-L4-3.04",
+        "ALEKS M4-L4-3.05",
+        "ALEKS M4-L4-3.06",
+        "ALEKS M4-L4-3.07",
+        "ALEKS M4-L4-3.08",
+        "ALEKS M4-L4-3.09"
+      ],
+      "notes": "Root structure, absolute value cases, and switching between radical/exponential notation.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 4e with one retrieval prompt tied to 4-3.",
+        "conceptDevelopment": "Use 4-3, Examples 1-3 — Find Roots; Simplify Using Absolute Value; Radical and Exponential Forms to develop: Simplify expressions involving radicals and rational exponents..",
+        "guidedPractice": "Students complete a scaffolded problem modeled on 4-3, Examples 1-3 — Find Roots; Simplify Using Absolute Value; Radical and Exponential Forms; teacher checks notation and reasoning.",
+        "independentPractice": "Students complete aligned ALEKS/SRS practice: ALEKS M4-L4-3.01, ALEKS M4-L4-3.02, ALEKS M4-L4-3.03, ALEKS M4-L4-3.04, ALEKS M4-L4-3.05, ALEKS M4-L4-3.06, ALEKS M4-L4-3.07, ALEKS M4-L4-3.08, ALEKS M4-L4-3.09.",
+        "assessment": "Exit ticket: one fresh problem assessing 4e and one short explanation prompt.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with simplify expressions involving radicals and rational exponents.."
+      }
+    },
+    {
+      "periodId": "m04-p08",
+      "module": 4,
+      "period": 8,
+      "dayType": "instruction",
+      "sourceLesson": "4-3",
+      "objectiveCode": "4f",
+      "objective": "Simplify expressions in exponential or radical form.",
+      "workedExamples": "4-3, Examples 4-6 — Use Rational Exponents; Evaluate Expressions with Rational Exponents; Simplify Expressions with Rational Exponents",
+      "embeddedObjectives": [],
+      "aleksSrsPractice": [
+        "ALEKS M4-L4-3.10",
+        "ALEKS M4-L4-3.11",
+        "ALEKS M4-L4-3.12",
+        "ALEKS M4-L4-3.13",
+        "ALEKS M4-L4-3.14",
+        "ALEKS M4-L4-3.15",
+        "ALEKS M4-L4-3.16"
+      ],
+      "notes": "Expression simplification and evaluation in the preferred equivalent form.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 4f with one retrieval prompt tied to 4-3.",
+        "conceptDevelopment": "Use 4-3, Examples 4-6 — Use Rational Exponents; Evaluate Expressions with Rational Exponents; Simplify Expressions with Rational Exponents to develop: Simplify expressions in exponential or radical form..",
+        "guidedPractice": "Students complete a scaffolded problem modeled on 4-3, Examples 4-6 — Use Rational Exponents; Evaluate Expressions with Rational Exponents; Simplify Expressions with Rational Exponents; teacher checks notation and reasoning.",
+        "independentPractice": "Students complete aligned ALEKS/SRS practice: ALEKS M4-L4-3.10, ALEKS M4-L4-3.11, ALEKS M4-L4-3.12, ALEKS M4-L4-3.13, ALEKS M4-L4-3.14, ALEKS M4-L4-3.15, ALEKS M4-L4-3.16.",
+        "assessment": "Exit ticket: one fresh problem assessing 4f and one short explanation prompt.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with simplify expressions in exponential or radical form.."
+      }
+    },
+    {
+      "periodId": "m04-p09",
+      "module": 4,
+      "period": 9,
+      "dayType": "mastery",
+      "notes": "Mastery cycle on `4c-4f`.",
+      "nonInstructionArtifact": {
+        "artifactType": "mastery",
+        "objectiveScope": "Mastery cycle on `4c-4f`.",
+        "srsSources": [
+          "worked-example-derived practice",
+          "ALEKS topic practice where available",
+          "prior-unit spiral review"
+        ],
+        "remediationGrouping": "Group students by recent objective evidence and misconception patterns.",
+        "extensionOptions": "Offer synthesis problems that combine current objectives with prior modules.",
+        "evidence": "Student completes due SRS items and submits one corrected-error reflection."
+      }
+    },
+    {
+      "periodId": "m04-p10",
+      "module": 4,
+      "period": 10,
+      "dayType": "instruction",
+      "sourceLesson": "4-4",
+      "objectiveCode": "4g",
+      "objective": "Graph and analyze square root functions.",
+      "workedExamples": "4-4, Examples 1-4 — Identify Domain and Range Algebraically; Graph a Transformed Square Root Function; Analyze the Graph of a Square Root Function; Graph a Square Root Inequality",
+      "embeddedObjectives": [],
+      "aleksSrsPractice": [
+        "ALEKS M4-L4-4.05",
+        "ALEKS M4-L4-4.06",
+        "ALEKS M4-L4-4.07",
+        "ALEKS M4-L4-4.08",
+        "ALEKS M4-L4-4.09",
+        "ALEKS M4-L4-4.10",
+        "ALEKS M4-L4-4.02",
+        "ALEKS M4-L4-4.03"
+      ],
+      "notes": "Square-root graph features, transformations, domain/range, and inequality shading.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 4g with one retrieval prompt tied to 4-4.",
+        "conceptDevelopment": "Use 4-4, Examples 1-4 — Identify Domain and Range Algebraically; Graph a Transformed Square Root Function; Analyze the Graph of a Square Root Function; Graph a Square Root Inequality to develop: Graph and analyze square root functions..",
+        "guidedPractice": "Students complete a scaffolded problem modeled on 4-4, Examples 1-4 — Identify Domain and Range Algebraically; Graph a Transformed Square Root Function; Analyze the Graph of a Square Root Function; Graph a Square Root Inequality; teacher checks notation and reasoning.",
+        "independentPractice": "Students complete aligned ALEKS/SRS practice: ALEKS M4-L4-4.05, ALEKS M4-L4-4.06, ALEKS M4-L4-4.07, ALEKS M4-L4-4.08, ALEKS M4-L4-4.09, ALEKS M4-L4-4.10, ALEKS M4-L4-4.02, ALEKS M4-L4-4.03.",
+        "assessment": "Exit ticket: one fresh problem assessing 4g and one short explanation prompt.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with graph and analyze square root functions.."
+      }
+    },
+    {
+      "periodId": "m04-p11",
+      "module": 4,
+      "period": 11,
+      "dayType": "instruction",
+      "sourceLesson": "4-4",
+      "objectiveCode": "4h",
+      "objective": "Graph and analyze cube root functions.",
+      "workedExamples": "4-4, Examples 5-7 — Graph Cube Root Functions; Compare Radical Functions; Write a Radical Function",
+      "embeddedObjectives": [],
+      "aleksSrsPractice": [
+        "ALEKS M4-L4-4.01",
+        "ALEKS M4-L4-4.04",
+        "ALEKS M4-L4-4.11"
+      ],
+      "notes": "Cube-root behavior, comparisons, and equation-from-graph reasoning.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 4h with one retrieval prompt tied to 4-4.",
+        "conceptDevelopment": "Use 4-4, Examples 5-7 — Graph Cube Root Functions; Compare Radical Functions; Write a Radical Function to develop: Graph and analyze cube root functions..",
+        "guidedPractice": "Students complete a scaffolded problem modeled on 4-4, Examples 5-7 — Graph Cube Root Functions; Compare Radical Functions; Write a Radical Function; teacher checks notation and reasoning.",
+        "independentPractice": "Students complete aligned ALEKS/SRS practice: ALEKS M4-L4-4.01, ALEKS M4-L4-4.04, ALEKS M4-L4-4.11.",
+        "assessment": "Exit ticket: one fresh problem assessing 4h and one short explanation prompt.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with graph and analyze cube root functions.."
+      }
+    },
+    {
+      "periodId": "m04-p12",
+      "module": 4,
+      "period": 12,
+      "dayType": "mastery",
+      "notes": "Mastery cycle on `4g-4h`.",
+      "nonInstructionArtifact": {
+        "artifactType": "mastery",
+        "objectiveScope": "Mastery cycle on `4g-4h`.",
+        "srsSources": [
+          "worked-example-derived practice",
+          "ALEKS topic practice where available",
+          "prior-unit spiral review"
+        ],
+        "remediationGrouping": "Group students by recent objective evidence and misconception patterns.",
+        "extensionOptions": "Offer synthesis problems that combine current objectives with prior modules.",
+        "evidence": "Student completes due SRS items and submits one corrected-error reflection."
+      }
+    },
+    {
+      "periodId": "m04-p13",
+      "module": 4,
+      "period": 13,
+      "dayType": "instruction",
+      "sourceLesson": "4-5",
+      "objectiveCode": "4i",
+      "objective": "Simplify radical expressions.",
+      "workedExamples": "4-5, Examples 1-2 — Simplify Expressions with the Product Property; Simplify Expressions with the Quotient Property",
+      "embeddedObjectives": [],
+      "aleksSrsPractice": [
+        "ALEKS M4-L4-5.01",
+        "ALEKS M4-L4-5.02",
+        "ALEKS M4-L4-5.03",
+        "ALEKS M4-L4-5.04",
+        "ALEKS M4-L4-5.05",
+        "ALEKS M4-L4-5.06",
+        "ALEKS M4-L4-5.07"
+      ],
+      "notes": "Simplifying radicals by product and quotient structure.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 4i with one retrieval prompt tied to 4-5.",
+        "conceptDevelopment": "Use 4-5, Examples 1-2 — Simplify Expressions with the Product Property; Simplify Expressions with the Quotient Property to develop: Simplify radical expressions..",
+        "guidedPractice": "Students complete a scaffolded problem modeled on 4-5, Examples 1-2 — Simplify Expressions with the Product Property; Simplify Expressions with the Quotient Property; teacher checks notation and reasoning.",
+        "independentPractice": "Students complete aligned ALEKS/SRS practice: ALEKS M4-L4-5.01, ALEKS M4-L4-5.02, ALEKS M4-L4-5.03, ALEKS M4-L4-5.04, ALEKS M4-L4-5.05, ALEKS M4-L4-5.06, ALEKS M4-L4-5.07.",
+        "assessment": "Exit ticket: one fresh problem assessing 4i and one short explanation prompt.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with simplify radical expressions.."
+      }
+    },
+    {
+      "periodId": "m04-p14",
+      "module": 4,
+      "period": 14,
+      "dayType": "instruction",
+      "sourceLesson": "4-5",
+      "objectiveCode": "4j",
+      "objective": "Add, subtract, and multiply radicals.",
+      "workedExamples": "4-5, Examples 3-5 — Add and Subtract Radicals; Multiply Radicals; Use the Distributive Property to Multiply Radicals",
+      "embeddedObjectives": [],
+      "aleksSrsPractice": [
+        "ALEKS M4-L4-5.08",
+        "ALEKS M4-L4-5.09",
+        "ALEKS M4-L4-5.10",
+        "ALEKS M4-L4-5.11",
+        "ALEKS M4-L4-5.12",
+        "ALEKS M4-L4-5.13",
+        "ALEKS M4-L4-5.14",
+        "ALEKS M4-L4-5.15",
+        "ALEKS M4-L4-5.16",
+        "ALEKS M4-L4-5.17",
+        "ALEKS M4-L4-5.18"
+      ],
+      "notes": "Like radicals, distribution, and multiplication, including distributive expansion with radicals.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 4j with one retrieval prompt tied to 4-5.",
+        "conceptDevelopment": "Use 4-5, Examples 3-5 — Add and Subtract Radicals; Multiply Radicals; Use the Distributive Property to Multiply Radicals to develop: Add, subtract, and multiply radicals..",
+        "guidedPractice": "Students complete a scaffolded problem modeled on 4-5, Examples 3-5 — Add and Subtract Radicals; Multiply Radicals; Use the Distributive Property to Multiply Radicals; teacher checks notation and reasoning.",
+        "independentPractice": "Students complete aligned ALEKS/SRS practice: ALEKS M4-L4-5.08, ALEKS M4-L4-5.09, ALEKS M4-L4-5.10, ALEKS M4-L4-5.11, ALEKS M4-L4-5.12, ALEKS M4-L4-5.13, ALEKS M4-L4-5.14, ALEKS M4-L4-5.15, ALEKS M4-L4-5.16, ALEKS M4-L4-5.17, ALEKS M4-L4-5.18.",
+        "assessment": "Exit ticket: one fresh problem assessing 4j and one short explanation prompt.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with add, subtract, and multiply radicals.."
+      }
+    },
+    {
+      "periodId": "m04-p15",
+      "module": 4,
+      "period": 15,
+      "dayType": "instruction",
+      "sourceLesson": "4-5",
+      "objectiveCode": "4k",
+      "objective": "Divide and simplify radical expressions by rationalizing the denominator.",
+      "workedExamples": "4-5, Examples 6-7 — Rationalize the Denominator; Use Conjugates to Rationalize the Denominator",
+      "embeddedObjectives": [],
+      "aleksSrsPractice": [
+        "ALEKS M4-L4-5.19",
+        "ALEKS M4-L4-5.20",
+        "ALEKS M4-L4-5.21",
+        "ALEKS M4-L4-5.22",
+        "ALEKS M4-L4-5.23",
+        "ALEKS M4-L4-5.24",
+        "ALEKS M4-L4-5.25",
+        "ALEKS M4-L4-5.26"
+      ],
+      "notes": "Rationalizing monomial and binomial denominators, including conjugates.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 4k with one retrieval prompt tied to 4-5.",
+        "conceptDevelopment": "Use 4-5, Examples 6-7 — Rationalize the Denominator; Use Conjugates to Rationalize the Denominator to develop: Divide and simplify radical expressions by rationalizing the denominator..",
+        "guidedPractice": "Students complete a scaffolded problem modeled on 4-5, Examples 6-7 — Rationalize the Denominator; Use Conjugates to Rationalize the Denominator; teacher checks notation and reasoning.",
+        "independentPractice": "Students complete aligned ALEKS/SRS practice: ALEKS M4-L4-5.19, ALEKS M4-L4-5.20, ALEKS M4-L4-5.21, ALEKS M4-L4-5.22, ALEKS M4-L4-5.23, ALEKS M4-L4-5.24, ALEKS M4-L4-5.25, ALEKS M4-L4-5.26.",
+        "assessment": "Exit ticket: one fresh problem assessing 4k and one short explanation prompt.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with divide and simplify radical expressions by rationalizing the denominator.."
+      }
+    },
+    {
+      "periodId": "m04-p16",
+      "module": 4,
+      "period": 16,
+      "dayType": "jigsaw",
+      "notes": "Stretch-problem session built from radicals, transformations, and inverse reasoning.",
+      "nonInstructionArtifact": {
+        "artifactType": "jigsaw",
+        "groupTask": "Stretch-problem session built from radicals, transformations, and inverse reasoning.",
+        "sourceWorkedExamples": "Use the prior instruction periods named in the notes as the problem bank.",
+        "deliverable": "Group solution poster or shared explanation with one strategy comparison.",
+        "facilitationNotes": "Assign roles for graphing, algebra, checking, and explanation.",
+        "completionCriteria": "Correct method, accurate result, clear justification, and response to peer question."
+      }
+    },
+    {
+      "periodId": "m04-p17",
+      "module": 4,
+      "period": 17,
+      "dayType": "instruction",
+      "sourceLesson": "4-6",
+      "objectiveCode": "4l",
+      "objective": "Solve radical equations in one variable and identify extraneous solutions.",
+      "workedExamples": "4-6, Examples 1-4 — Solve a Square Root Equation; Solve a Cube Root Equation; Identify Extraneous Solutions; Solve a Radical Equation",
+      "embeddedObjectives": [],
+      "aleksSrsPractice": [
+        "ALEKS M4-L4-6.01",
+        "ALEKS M4-L4-6.02",
+        "ALEKS M4-L4-6.03",
+        "ALEKS M4-L4-6.04",
+        "ALEKS M4-L4-6.05",
+        "ALEKS M4-L4-6.06",
+        "ALEKS M4-L4-6.07",
+        "ALEKS M4-L4-6.08",
+        "ALEKS M4-L4-6.09",
+        "ALEKS M4-L4-6.10",
+        "ALEKS M4-L4-6.11",
+        "ALEKS M4-L4-6.12",
+        "ALEKS M4-L4-2.01",
+        "ALEKS M4-L4-3.17"
+      ],
+      "notes": "Algebraic solving and explicit checking for extraneous solutions.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 4l with one retrieval prompt tied to 4-6.",
+        "conceptDevelopment": "Use 4-6, Examples 1-4 — Solve a Square Root Equation; Solve a Cube Root Equation; Identify Extraneous Solutions; Solve a Radical Equation to develop: Solve radical equations in one variable and identify extraneous solutions..",
+        "guidedPractice": "Students complete a scaffolded problem modeled on 4-6, Examples 1-4 — Solve a Square Root Equation; Solve a Cube Root Equation; Identify Extraneous Solutions; Solve a Radical Equation; teacher checks notation and reasoning.",
+        "independentPractice": "Students complete aligned ALEKS/SRS practice: ALEKS M4-L4-6.01, ALEKS M4-L4-6.02, ALEKS M4-L4-6.03, ALEKS M4-L4-6.04, ALEKS M4-L4-6.05, ALEKS M4-L4-6.06, ALEKS M4-L4-6.07, ALEKS M4-L4-6.08, ALEKS M4-L4-6.09, ALEKS M4-L4-6.10, ALEKS M4-L4-6.11, ALEKS M4-L4-6.12, ALEKS M4-L4-2.01, ALEKS M4-L4-3.17.",
+        "assessment": "Exit ticket: one fresh problem assessing 4l and one short explanation prompt.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with solve radical equations in one variable and identify extraneous solutions.."
+      }
+    },
+    {
+      "periodId": "m04-p18",
+      "module": 4,
+      "period": 18,
+      "dayType": "instruction",
+      "sourceLesson": "4-6",
+      "objectiveCode": "4m",
+      "objective": "Solve radical equations by graphing systems of equations.",
+      "workedExamples": "4-6, Examples 5-7 — Solve a Radical Equation by Graphing; Solve a Radical Equation by Using a System; Confirm Solutions by Using Technology",
+      "embeddedObjectives": [],
+      "aleksSrsPractice": [],
+      "srsSubstitute": "Generate worked-example-derived SRS items from 4-6, Examples 5-7 — Solve a Radical Equation by Graphing; Solve a Radical Equation by Using a System; Confirm Solutions by Using Technology.",
+      "notes": "Graphing-based solution methods and technology-supported confirmation.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 4m with one retrieval prompt tied to 4-6.",
+        "conceptDevelopment": "Use 4-6, Examples 5-7 — Solve a Radical Equation by Graphing; Solve a Radical Equation by Using a System; Confirm Solutions by Using Technology to develop: Solve radical equations by graphing systems of equations..",
+        "guidedPractice": "Students complete a scaffolded problem modeled on 4-6, Examples 5-7 — Solve a Radical Equation by Graphing; Solve a Radical Equation by Using a System; Confirm Solutions by Using Technology; teacher checks notation and reasoning.",
+        "independentPractice": "Students complete worked-example-derived SRS practice because no direct ALEKS export is available.",
+        "assessment": "Exit ticket: one fresh problem assessing 4m and one short explanation prompt.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with solve radical equations by graphing systems of equations.."
+      }
+    },
+    {
+      "periodId": "m04-p19",
+      "module": 4,
+      "period": 19,
+      "dayType": "mastery",
+      "notes": "Module-wide differentiated SRS practice across Module 4 objectives.",
+      "nonInstructionArtifact": {
+        "artifactType": "mastery",
+        "objectiveScope": "Module-wide differentiated SRS practice across Module 4 objectives.",
+        "srsSources": [
+          "worked-example-derived practice",
+          "ALEKS topic practice where available",
+          "prior-unit spiral review"
+        ],
+        "remediationGrouping": "Group students by recent objective evidence and misconception patterns.",
+        "extensionOptions": "Offer synthesis problems that combine current objectives with prior modules.",
+        "evidence": "Student completes due SRS items and submits one corrected-error reflection."
+      }
+    },
+    {
+      "periodId": "m04-p20",
+      "module": 4,
+      "period": 20,
+      "dayType": "review",
+      "notes": "Module 4 review across `4a-4m`.",
+      "nonInstructionArtifact": {
+        "artifactType": "review",
+        "objectiveCoverage": "Module 4 review across `4a-4m`.",
+        "reviewActivities": [
+          "mixed retrieval set",
+          "misconception sort",
+          "student-selected retry set"
+        ],
+        "misconceptionTargets": "Use recent mastery and SRS evidence to select the highest-frequency errors.",
+        "readinessCheck": "Short diagnostic covering representative module objectives."
+      }
+    },
+    {
+      "periodId": "m04-p21",
+      "module": 4,
+      "period": 21,
+      "dayType": "test",
+      "notes": "Module 4 assessment.",
+      "nonInstructionArtifact": {
+        "artifactType": "test",
+        "objectiveCoverage": "Module 4 assessment.",
+        "assessmentStructure": [
+          "fluency section",
+          "conceptual reasoning section",
+          "modeling/application section"
+        ],
+        "gradingExpectations": "Grade against module objectives and record evidence for mastery updates.",
+        "retakeRelationship": "Retake eligibility follows the course mastery policy after targeted remediation."
+      }
+    }
+  ]
+}

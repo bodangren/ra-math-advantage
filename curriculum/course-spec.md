@@ -76,11 +76,38 @@ If a class period is labeled `instruction`, it must include:
 1. A **class objective** that matches an objective in `conductor/course-objectives.md`
 2. A reference to the **source textbook lesson** (`curriculum/modules/module-*-lesson-*`)
 3. The specific **worked examples** used in that class period
+4. ALEKS SRS practice references from `curriculum/aleks/` when aligned ALEKS topics are available
 
 This makes the planning structure deterministic:
 
 - `instruction` days are defined by **objective + worked examples**
 - `mastery`, `jigsaw`, `review`, and `test` days are defined primarily by **day type**
+
+### ALEKS/SRS Practice Integration
+
+ALEKS topics are treated as additional practice items, not as replacement instruction. Each listed ALEKS topic should become an SRS-tracked practice item with its own proficiency state, just like practice generated from worked examples.
+
+Planning documents should reference ALEKS topics by the stable IDs embedded in `curriculum/aleks/module-*.md`.
+
+Example:
+
+- `ALEKS M1-L1-1.01`
+
+The ID means:
+
+- `M1`: ALEKS module export file
+- `L1-1`: source ALEKS lesson group
+- `.01`: topic number within that lesson group
+
+Class-period plans may reference ranges when many ALEKS topics support the same instructional objective, such as `ALEKS M1-L1-1.01 through M1-L1-1.06`.
+
+Mastery periods should draw from all due SRS items available to the student, including:
+
+- worked-example-derived practice
+- ALEKS topic practice
+- prior-unit spiral review
+
+Jigsaw periods should use stretch problems built from prior worked examples. Those stretch problems can also enter the SRS/proficiency system, but they are distinct from the ALEKS topic inventory.
 
 ### Worked-Example Reference Format
 
@@ -122,6 +149,7 @@ Each planned class period should be representable with the following fields:
 - `class_objective` (required for `instruction`)
 - `worked_examples` (required for `instruction`)
 - `aleks_problem_types` (required for implementation planning once the period has been mapped)
+- `aleks_srs_practice` (required for `instruction` when aligned ALEKS topics are available)
 - `notes` (optional)
 
 ### ALEKS Problem-Type Integration
@@ -145,6 +173,30 @@ For implementation planning, the deterministic mapping is:
 - `familyKey` defines the reusable ALEKS-style practice or assessment pattern
 - `practice.v1 mode` defines how much scaffolding appears in the student experience
 
+### Implementation Artifact Layer
+
+The implementation bridge for this planning model lives in:
+
+- `curriculum/implementation/class-period-packages/module-*.json`
+- `curriculum/implementation/practice-v1/activity-map.json`
+- `curriculum/implementation/exceptions.json`
+- `curriculum/implementation/audit/latest.json`
+
+Each class-period package uses a stable `periodId` in the format `m##-p##`. Instruction packages include the class objective, source lesson, worked examples, ALEKS SRS references or a worked-example-derived SRS substitute, and daily routine fields:
+
+- `warmUp`
+- `conceptDevelopment`
+- `guidedPractice`
+- `independentPractice`
+- `assessment`
+- `capReflection`
+
+Non-instruction packages include a `nonInstructionArtifact` object for `mastery`, `jigsaw`, `review`, or `test` periods.
+
+The activity map translates package content into `practice.v1` activity candidates with stable activity IDs, source references, component keys, modes, objective codes, grading configuration, and SRS eligibility.
+
+Run `npm run curriculum:audit` to validate the source curriculum and implementation artifacts together.
+
 ### Canonical Planning Documents
 
 For module-level class-period planning, the canonical source of truth should be the audited files:
@@ -157,6 +209,7 @@ Those audited plan documents should be kept aligned with:
 - `conductor/course-objectives.md`
 - `curriculum/modules/module-*-lesson-*`
 - `curriculum/aleks/problem-type-registry.md`
+- `curriculum/aleks/module-*.md`
 
 If a lesson source file is repaired or renumbered, the corresponding audited module plan should be updated so the class-period plan remains the canonical planning layer for implementation work.
 

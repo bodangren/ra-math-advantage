@@ -47,7 +47,7 @@ It follows the planning model in `curriculum/course-spec.md`:
 | 11 | `instruction` | `1-4` | `1j. Recognize special factor patterns (GCF, trinomials, difference of squares).` | `1-4, Examples 5-7 — Factor a Difference of Squares; Factor a Perfect Square Trinomial; Complex Solutions` | `1g`, `1h`, `1i` | Special-product factoring plus the extension to complex solutions. |
 | 12 | `jigsaw` | — | — | — | — | Mathematical practices focus: method choice, justification, and error analysis in factoring. |
 | 13 | `instruction` | `1-5` | `1k. Solve quadratic equations by completing the square.` | `1-5, Examples 1-5 — Solve a Quadratic Equation with Rational Roots; Solve a Quadratic Equation with Irrational Roots; Solve a Quadratic Equation with Complex Solutions; Complete the Square; Solve by Completing the Square` | `1l` | Square Root Property and full completing-the-square workflow. |
-| 14 | `instruction` | `1-5` | `1m. Connect completing the square to vertex form.` | `1-5, Examples 7-11 — Solve When a Is Not 1; Solve Equations with Imaginary Solutions; Write Functions in Vertex Form; Determine the Vertex and Axis of Symmetry; Model with a Quadratic Function` | `1k`, `1l` | Vertex form, graph interpretation, and modeling after the online-only Example 6 placeholder. |
+| 14 | `instruction` | `1-5` | `1m. Connect completing the square to vertex form.` | `1-5, Examples 7-11 — Solve When a Is Not 1; Solve Equations with Imaginary Solutions; Write Functions in Vertex Form; Determine the Vertex and Axis of Symmetry; Model with a Quadratic Function` | `1k`, `1l` | Vertex form, graph interpretation, and modeling after the local replacement Example 6 bridge. |
 | 15 | `instruction` | `1-6` | `1n. Use the Quadratic Formula to solve equations.` | `1-6, Examples 1-3 — Use the Quadratic Formula; Non-Factorable Equation; Imaginary Solutions` | — | Routine, non-factorable, and imaginary-solution cases. |
 | 16 | `instruction` | `1-6` | `1o. Use the discriminant to determine the number and type of solutions.` | `1-6, Examples 4-5 — Use the Discriminant; Determine Without Solving` | — | Prediction and classification before solving. |
 | 17 | `mastery` | — | — | — | — | Mastery cycle on `1h-1o`. |
@@ -58,6 +58,29 @@ It follows the planning model in `curriculum/course-spec.md`:
 | 22 | `instruction` | `1-8` | `1t. Solve systems of two quadratic equations.` | `1-8, Examples 5-7 — Solve a Quadratic-Quadratic System Graphically; Solve a Quadratic-Quadratic System Algebraically; Use a System to Solve a Quadratic Equation` | `1u` | Systems of two quadratic relations and interpretation through intersection structure. |
 | 23 | `review` | — | — | — | — | Module 1 review across `1a-1u`. |
 | 24 | `test` | — | — | — | — | Module 1 assessment. |
+
+## ALEKS SRS Practice Map
+
+ALEKS topics are extra SRS-tracked practice items. The IDs below reference `curriculum/aleks/module-1-quadratic-functions.md`.
+
+| Period | ALEKS Practice Topics | Notes |
+|--------|-----------------------|-------|
+| 1 | `ALEKS M1-L1-1.01` through `ALEKS M1-L1-1.06`; `ALEKS M1-L1-1.10` through `ALEKS M1-L1-1.19` | Graphing, transformations, key features, modeling, and comparing quadratic functions. |
+| 2 | `ALEKS M1-L1-1.07` through `ALEKS M1-L1-1.09` | Average rate of change from equation, graph, and context. |
+| 4 | `ALEKS M1-L1-2.02` | Solving quadratics by graphing. |
+| 5 | `ALEKS M1-L1-2.01` | Technology-supported zero finding and numeric interpretation. |
+| 7 | `ALEKS M1-L1-3.01`, `ALEKS M1-L1-3.02`, `ALEKS M1-L1-3.06` | Imaginary unit, negative roots, products/quotients with imaginary values, and powers of `i`. |
+| 8 | `ALEKS M1-L1-3.03` through `ALEKS M1-L1-3.05` | Complex-number operations. |
+| 10 | `ALEKS M1-L1-4.01` through `ALEKS M1-L1-4.05`; `ALEKS M1-L1-4.07`, `ALEKS M1-L1-4.08` | Factoring-based solving, zeros from equations, and contextual quadratic solving. |
+| 11 | `ALEKS M1-L1-4.06`, `ALEKS M1-L1-4.09` | Writing quadratic equations/functions from roots or zeros. |
+| 13 | `ALEKS M1-L1-5.01` through `ALEKS M1-L1-5.08` | Square Root Property and completing-the-square practice. |
+| 14 | `ALEKS M1-L1-5.09`, `ALEKS M1-L1-5.10` | Vertex-form rewriting, maximum/minimum, and axis of symmetry. |
+| 15 | `ALEKS M1-L1-6.01` through `ALEKS M1-L1-6.03`; `ALEKS M1-L1-6.06` | Quadratic Formula practice, including exact, decimal, complex, and contextual cases. |
+| 16 | `ALEKS M1-L1-6.04`, `ALEKS M1-L1-6.05` | Discriminant practice, including parameter cases. |
+| 18 | `ALEKS M1-L1-7.03`, `ALEKS M1-L1-7.04` | Graphing quadratic inequalities. |
+| 19 | `ALEKS M1-L1-7.01`, `ALEKS M1-L1-7.02` | Solving quadratic inequalities. |
+| 21 | `ALEKS M1-L1-8.01`, `ALEKS M1-L1-8.02` | Linear-quadratic systems. |
+| 22 | `ALEKS M1-L1-8.03` | Nonlinear systems extension. |
 
 ## Objective Coverage Check
 

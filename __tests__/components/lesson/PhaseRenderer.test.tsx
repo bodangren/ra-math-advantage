@@ -6,10 +6,12 @@ import type { PhaseType } from '@/lib/curriculum/phase-types';
 import React from 'react';
 
 // Mock next/dynamic to return component synchronously for tests
+type DynamicComponentProps = Record<string, unknown>;
+
 vi.mock('next/dynamic', () => ({
-  default: (fn: () => Promise<{ default: React.ComponentType<unknown> }>) => {
-    const Component = ({ ...props }: Record<string, unknown>) => {
-      const [loadedModule, setLoadedModule] = React.useState<{ default: React.ComponentType<unknown> } | null>(null);
+  default: (fn: () => Promise<{ default: React.ComponentType<DynamicComponentProps> }>) => {
+    const Component = (props: DynamicComponentProps) => {
+      const [loadedModule, setLoadedModule] = React.useState<{ default: React.ComponentType<DynamicComponentProps> } | null>(null);
 
       React.useEffect(() => {
         fn().then(setLoadedModule);

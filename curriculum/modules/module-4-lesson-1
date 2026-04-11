@@ -114,11 +114,35 @@ Then:
 
 ---
 
-## Example 3 — Online Extra Example
+## Example 3 — Evaluate a Composition from Formulas
 
-The print source references an online-only Example 3 between the key concept on composition of functions and Example 4, but the example text is not present in the PDF pages stored in this repo.
+Local replacement example: the unavailable source example is replaced here with an original worked example that preserves the lesson numbering and introduces formula-based composition before ordered-pair composition.
 
-This placeholder preserves the lesson's original numbering.
+Let `f(x) = 2x - 3` and `g(x) = x^2 + 4`.
+
+Find `(f o g)(x)` and `(g o f)(x)`.
+
+For `(f o g)(x)`, substitute `g(x)` into `f`:
+
+`(f o g)(x) = f(g(x))`
+
+`= 2(x^2 + 4) - 3`
+
+`= 2x^2 + 8 - 3`
+
+`= 2x^2 + 5`
+
+For `(g o f)(x)`, substitute `f(x)` into `g`:
+
+`(g o f)(x) = g(f(x))`
+
+`= (2x - 3)^2 + 4`
+
+`= 4x^2 - 12x + 9 + 4`
+
+`= 4x^2 - 12x + 13`
+
+The two compositions are different, so the order of composition matters.
 
 ---
 
@@ -216,4 +240,4 @@ For functions `f(x)` and `g(x)`, `[f o g](x)` is not always equal to `[g o f](x)
 ## Objective Alignment
 
 - `Find sums, differences, products, and quotients of functions`: Primary worked examples: Examples 1-2.
-- `Find compositions of functions`: Primary worked examples: Examples 4-5 and Apply Example 6. Example 3 is an online-only placeholder in the current source.
+- `Find compositions of functions`: Primary worked examples: Examples 3-5 and Apply Example 6.

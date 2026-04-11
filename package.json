@@ -7,6 +7,8 @@
     "start": "vinext start",
     "lint": "vinext lint",
     "typecheck": "tsc --noEmit",
+    "curriculum:audit": "tsx scripts/curriculum-audit.ts",
+    "curriculum:generate": "tsx scripts/generate-curriculum-remediation-artifacts.ts",
     "test": "vitest run",
     "test:watch": "vitest watch"
   },

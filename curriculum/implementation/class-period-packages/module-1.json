@@ -1,0 +1,565 @@
+{
+  "schemaVersion": "class-period-package.v1",
+  "module": 1,
+  "generatedFrom": "curriculum/module-1-class-period-plan.md",
+  "periods": [
+    {
+      "periodId": "m01-p01",
+      "module": 1,
+      "period": 1,
+      "dayType": "instruction",
+      "sourceLesson": "1-1",
+      "objectiveCode": "1a",
+      "objective": "Graph quadratic functions.",
+      "workedExamples": "1-1, Examples 1-3 — Graph Using a Table; Compare Quadratic Functions; Real-World Application (Modeling)",
+      "embeddedObjectives": [],
+      "aleksSrsPractice": [
+        "ALEKS M1-L1-1.01",
+        "ALEKS M1-L1-1.02",
+        "ALEKS M1-L1-1.03",
+        "ALEKS M1-L1-1.04",
+        "ALEKS M1-L1-1.05",
+        "ALEKS M1-L1-1.06",
+        "ALEKS M1-L1-1.10",
+        "ALEKS M1-L1-1.11",
+        "ALEKS M1-L1-1.12",
+        "ALEKS M1-L1-1.13",
+        "ALEKS M1-L1-1.14",
+        "ALEKS M1-L1-1.15",
+        "ALEKS M1-L1-1.16",
+        "ALEKS M1-L1-1.17",
+        "ALEKS M1-L1-1.18",
+        "ALEKS M1-L1-1.19"
+      ],
+      "notes": "Graph from equation/table/context; key features and interpretation.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 1a with one retrieval prompt tied to 1-1.",
+        "conceptDevelopment": "Use 1-1, Examples 1-3 — Graph Using a Table; Compare Quadratic Functions; Real-World Application (Modeling) to develop: Graph quadratic functions..",
+        "guidedPractice": "Students complete a scaffolded problem modeled on 1-1, Examples 1-3 — Graph Using a Table; Compare Quadratic Functions; Real-World Application (Modeling); teacher checks notation and reasoning.",
+        "independentPractice": "Students complete aligned ALEKS/SRS practice: ALEKS M1-L1-1.01, ALEKS M1-L1-1.02, ALEKS M1-L1-1.03, ALEKS M1-L1-1.04, ALEKS M1-L1-1.05, ALEKS M1-L1-1.06, ALEKS M1-L1-1.10, ALEKS M1-L1-1.11, ALEKS M1-L1-1.12, ALEKS M1-L1-1.13, ALEKS M1-L1-1.14, ALEKS M1-L1-1.15, ALEKS M1-L1-1.16, ALEKS M1-L1-1.17, ALEKS M1-L1-1.18, ALEKS M1-L1-1.19.",
+        "assessment": "Exit ticket: one fresh problem assessing 1a and one short explanation prompt.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with graph quadratic functions.."
+      }
+    },
+    {
+      "periodId": "m01-p02",
+      "module": 1,
+      "period": 2,
+      "dayType": "instruction",
+      "sourceLesson": "1-1",
+      "objectiveCode": "1b",
+      "objective": "Find and interpret the average rate of change.",
+      "workedExamples": "1-1, Examples 4-6 — From an Equation; From a Table; From a Graph (Estimation + Algebra)",
+      "embeddedObjectives": [],
+      "aleksSrsPractice": [
+        "ALEKS M1-L1-1.07",
+        "ALEKS M1-L1-1.08",
+        "ALEKS M1-L1-1.09"
+      ],
+      "notes": "Average rate of change from equation, table, and graph.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 1b with one retrieval prompt tied to 1-1.",
+        "conceptDevelopment": "Use 1-1, Examples 4-6 — From an Equation; From a Table; From a Graph (Estimation + Algebra) to develop: Find and interpret the average rate of change..",
+        "guidedPractice": "Students complete a scaffolded problem modeled on 1-1, Examples 4-6 — From an Equation; From a Table; From a Graph (Estimation + Algebra); teacher checks notation and reasoning.",
+        "independentPractice": "Students complete aligned ALEKS/SRS practice: ALEKS M1-L1-1.07, ALEKS M1-L1-1.08, ALEKS M1-L1-1.09.",
+        "assessment": "Exit ticket: one fresh problem assessing 1b and one short explanation prompt.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with find and interpret the average rate of change.."
+      }
+    },
+    {
+      "periodId": "m01-p03",
+      "module": 1,
+      "period": 3,
+      "dayType": "mastery",
+      "notes": "Mastery cycle on `1a-1b`.",
+      "nonInstructionArtifact": {
+        "artifactType": "mastery",
+        "objectiveScope": "Mastery cycle on `1a-1b`.",
+        "srsSources": [
+          "worked-example-derived practice",
+          "ALEKS topic practice where available",
+          "prior-unit spiral review"
+        ],
+        "remediationGrouping": "Group students by recent objective evidence and misconception patterns.",
+        "extensionOptions": "Offer synthesis problems that combine current objectives with prior modules.",
+        "evidence": "Student completes due SRS items and submits one corrected-error reflection."
+      }
+    },
+    {
+      "periodId": "m01-p04",
+      "module": 1,
+      "period": 4,
+      "dayType": "instruction",
+      "sourceLesson": "1-2",
+      "objectiveCode": "1c",
+      "objective": "Solve quadratic equations by graphing.",
+      "workedExamples": "1-2, Examples 1-3 — One Real Solution; Two Real Solutions; Estimate Roots",
+      "embeddedObjectives": [],
+      "aleksSrsPractice": [
+        "ALEKS M1-L1-2.02"
+      ],
+      "notes": "Reading exact and estimated roots from graphs.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 1c with one retrieval prompt tied to 1-2.",
+        "conceptDevelopment": "Use 1-2, Examples 1-3 — One Real Solution; Two Real Solutions; Estimate Roots to develop: Solve quadratic equations by graphing..",
+        "guidedPractice": "Students complete a scaffolded problem modeled on 1-2, Examples 1-3 — One Real Solution; Two Real Solutions; Estimate Roots; teacher checks notation and reasoning.",
+        "independentPractice": "Students complete aligned ALEKS/SRS practice: ALEKS M1-L1-2.02.",
+        "assessment": "Exit ticket: one fresh problem assessing 1c and one short explanation prompt.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with solve quadratic equations by graphing.."
+      }
+    },
+    {
+      "periodId": "m01-p05",
+      "module": 1,
+      "period": 5,
+      "dayType": "instruction",
+      "sourceLesson": "1-2",
+      "objectiveCode": "1d",
+      "objective": "Interpret solutions (roots) in context.",
+      "workedExamples": "1-2, Examples 4-5 — Solve by Using a Table; Solve by Using a Calculator",
+      "embeddedObjectives": [],
+      "aleksSrsPractice": [
+        "ALEKS M1-L1-2.01"
+      ],
+      "notes": "Interpreting approximate solutions in numeric and modeling contexts.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 1d with one retrieval prompt tied to 1-2.",
+        "conceptDevelopment": "Use 1-2, Examples 4-5 — Solve by Using a Table; Solve by Using a Calculator to develop: Interpret solutions (roots) in context..",
+        "guidedPractice": "Students complete a scaffolded problem modeled on 1-2, Examples 4-5 — Solve by Using a Table; Solve by Using a Calculator; teacher checks notation and reasoning.",
+        "independentPractice": "Students complete aligned ALEKS/SRS practice: ALEKS M1-L1-2.01.",
+        "assessment": "Exit ticket: one fresh problem assessing 1d and one short explanation prompt.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with interpret solutions (roots) in context.."
+      }
+    },
+    {
+      "periodId": "m01-p06",
+      "module": 1,
+      "period": 6,
+      "dayType": "jigsaw",
+      "notes": "Mathematical practices focus: comparing graphical reasoning and contextual interpretation.",
+      "nonInstructionArtifact": {
+        "artifactType": "jigsaw",
+        "groupTask": "Mathematical practices focus: comparing graphical reasoning and contextual interpretation.",
+        "sourceWorkedExamples": "Use the prior instruction periods named in the notes as the problem bank.",
+        "deliverable": "Group solution poster or shared explanation with one strategy comparison.",
+        "facilitationNotes": "Assign roles for graphing, algebra, checking, and explanation.",
+        "completionCriteria": "Correct method, accurate result, clear justification, and response to peer question."
+      }
+    },
+    {
+      "periodId": "m01-p07",
+      "module": 1,
+      "period": 7,
+      "dayType": "instruction",
+      "sourceLesson": "1-3",
+      "objectiveCode": "1e",
+      "objective": "Understand and use the imaginary unit i.",
+      "workedExamples": "1-3, Examples 1-3 — Square Roots of Negative Numbers; Products of Pure Imaginary Numbers; Equation with Pure Imaginary Solutions",
+      "embeddedObjectives": [],
+      "aleksSrsPractice": [
+        "ALEKS M1-L1-3.01",
+        "ALEKS M1-L1-3.02",
+        "ALEKS M1-L1-3.06"
+      ],
+      "notes": "Introduces `i`, negative roots, and non-real quadratic solutions.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 1e with one retrieval prompt tied to 1-3.",
+        "conceptDevelopment": "Use 1-3, Examples 1-3 — Square Roots of Negative Numbers; Products of Pure Imaginary Numbers; Equation with Pure Imaginary Solutions to develop: Understand and use the imaginary unit i..",
+        "guidedPractice": "Students complete a scaffolded problem modeled on 1-3, Examples 1-3 — Square Roots of Negative Numbers; Products of Pure Imaginary Numbers; Equation with Pure Imaginary Solutions; teacher checks notation and reasoning.",
+        "independentPractice": "Students complete aligned ALEKS/SRS practice: ALEKS M1-L1-3.01, ALEKS M1-L1-3.02, ALEKS M1-L1-3.06.",
+        "assessment": "Exit ticket: one fresh problem assessing 1e and one short explanation prompt.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with understand and use the imaginary unit i.."
+      }
+    },
+    {
+      "periodId": "m01-p08",
+      "module": 1,
+      "period": 8,
+      "dayType": "instruction",
+      "sourceLesson": "1-3",
+      "objectiveCode": "1f",
+      "objective": "Perform operations with complex numbers.",
+      "workedExamples": "1-3, Examples 4-7 — Equate Complex Numbers; Add or Subtract Complex Numbers; Multiply Complex Numbers; Divide Complex Numbers",
+      "embeddedObjectives": [],
+      "aleksSrsPractice": [
+        "ALEKS M1-L1-3.03",
+        "ALEKS M1-L1-3.04",
+        "ALEKS M1-L1-3.05"
+      ],
+      "notes": "Full operations day on complex-number arithmetic and matching real/imaginary parts.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 1f with one retrieval prompt tied to 1-3.",
+        "conceptDevelopment": "Use 1-3, Examples 4-7 — Equate Complex Numbers; Add or Subtract Complex Numbers; Multiply Complex Numbers; Divide Complex Numbers to develop: Perform operations with complex numbers..",
+        "guidedPractice": "Students complete a scaffolded problem modeled on 1-3, Examples 4-7 — Equate Complex Numbers; Add or Subtract Complex Numbers; Multiply Complex Numbers; Divide Complex Numbers; teacher checks notation and reasoning.",
+        "independentPractice": "Students complete aligned ALEKS/SRS practice: ALEKS M1-L1-3.03, ALEKS M1-L1-3.04, ALEKS M1-L1-3.05.",
+        "assessment": "Exit ticket: one fresh problem assessing 1f and one short explanation prompt.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with perform operations with complex numbers.."
+      }
+    },
+    {
+      "periodId": "m01-p09",
+      "module": 1,
+      "period": 9,
+      "dayType": "mastery",
+      "notes": "Mastery cycle on `1c-1g`.",
+      "nonInstructionArtifact": {
+        "artifactType": "mastery",
+        "objectiveScope": "Mastery cycle on `1c-1g`.",
+        "srsSources": [
+          "worked-example-derived practice",
+          "ALEKS topic practice where available",
+          "prior-unit spiral review"
+        ],
+        "remediationGrouping": "Group students by recent objective evidence and misconception patterns.",
+        "extensionOptions": "Offer synthesis problems that combine current objectives with prior modules.",
+        "evidence": "Student completes due SRS items and submits one corrected-error reflection."
+      }
+    },
+    {
+      "periodId": "m01-p10",
+      "module": 1,
+      "period": 10,
+      "dayType": "instruction",
+      "sourceLesson": "1-4",
+      "objectiveCode": "1h",
+      "objective": "Solve quadratic equations by factoring.",
+      "workedExamples": "1-4, Examples 1-4 — Factor by Using the Distributive Property; Factor a Trinomial; Solve an Equation by Factoring; Factor a Trinomial Where a Is Not 1",
+      "embeddedObjectives": [],
+      "aleksSrsPractice": [
+        "ALEKS M1-L1-4.01",
+        "ALEKS M1-L1-4.02",
+        "ALEKS M1-L1-4.03",
+        "ALEKS M1-L1-4.04",
+        "ALEKS M1-L1-4.05",
+        "ALEKS M1-L1-4.07",
+        "ALEKS M1-L1-4.08"
+      ],
+      "notes": "Standard-form setup, factoring, and Zero Product Property in routine cases.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 1h with one retrieval prompt tied to 1-4.",
+        "conceptDevelopment": "Use 1-4, Examples 1-4 — Factor by Using the Distributive Property; Factor a Trinomial; Solve an Equation by Factoring; Factor a Trinomial Where a Is Not 1 to develop: Solve quadratic equations by factoring..",
+        "guidedPractice": "Students complete a scaffolded problem modeled on 1-4, Examples 1-4 — Factor by Using the Distributive Property; Factor a Trinomial; Solve an Equation by Factoring; Factor a Trinomial Where a Is Not 1; teacher checks notation and reasoning.",
+        "independentPractice": "Students complete aligned ALEKS/SRS practice: ALEKS M1-L1-4.01, ALEKS M1-L1-4.02, ALEKS M1-L1-4.03, ALEKS M1-L1-4.04, ALEKS M1-L1-4.05, ALEKS M1-L1-4.07, ALEKS M1-L1-4.08.",
+        "assessment": "Exit ticket: one fresh problem assessing 1h and one short explanation prompt.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with solve quadratic equations by factoring.."
+      }
+    },
+    {
+      "periodId": "m01-p11",
+      "module": 1,
+      "period": 11,
+      "dayType": "instruction",
+      "sourceLesson": "1-4",
+      "objectiveCode": "1j",
+      "objective": "Recognize special factor patterns (GCF, trinomials, difference of squares).",
+      "workedExamples": "1-4, Examples 5-7 — Factor a Difference of Squares; Factor a Perfect Square Trinomial; Complex Solutions",
+      "embeddedObjectives": [
+        ", ",
+        ", "
+      ],
+      "aleksSrsPractice": [
+        "ALEKS M1-L1-4.06",
+        "ALEKS M1-L1-4.09"
+      ],
+      "notes": "Special-product factoring plus the extension to complex solutions.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 1j with one retrieval prompt tied to 1-4.",
+        "conceptDevelopment": "Use 1-4, Examples 5-7 — Factor a Difference of Squares; Factor a Perfect Square Trinomial; Complex Solutions to develop: Recognize special factor patterns (GCF, trinomials, difference of squares)..",
+        "guidedPractice": "Students complete a scaffolded problem modeled on 1-4, Examples 5-7 — Factor a Difference of Squares; Factor a Perfect Square Trinomial; Complex Solutions; teacher checks notation and reasoning.",
+        "independentPractice": "Students complete aligned ALEKS/SRS practice: ALEKS M1-L1-4.06, ALEKS M1-L1-4.09.",
+        "assessment": "Exit ticket: one fresh problem assessing 1j and one short explanation prompt.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with recognize special factor patterns (gcf, trinomials, difference of squares).."
+      }
+    },
+    {
+      "periodId": "m01-p12",
+      "module": 1,
+      "period": 12,
+      "dayType": "jigsaw",
+      "notes": "Mathematical practices focus: method choice, justification, and error analysis in factoring.",
+      "nonInstructionArtifact": {
+        "artifactType": "jigsaw",
+        "groupTask": "Mathematical practices focus: method choice, justification, and error analysis in factoring.",
+        "sourceWorkedExamples": "Use the prior instruction periods named in the notes as the problem bank.",
+        "deliverable": "Group solution poster or shared explanation with one strategy comparison.",
+        "facilitationNotes": "Assign roles for graphing, algebra, checking, and explanation.",
+        "completionCriteria": "Correct method, accurate result, clear justification, and response to peer question."
+      }
+    },
+    {
+      "periodId": "m01-p13",
+      "module": 1,
+      "period": 13,
+      "dayType": "instruction",
+      "sourceLesson": "1-5",
+      "objectiveCode": "1k",
+      "objective": "Solve quadratic equations by completing the square.",
+      "workedExamples": "1-5, Examples 1-5 — Solve a Quadratic Equation with Rational Roots; Solve a Quadratic Equation with Irrational Roots; Solve a Quadratic Equation with Complex Solutions; Complete the Square; Solve by Completing the Square",
+      "embeddedObjectives": [],
+      "aleksSrsPractice": [
+        "ALEKS M1-L1-5.01",
+        "ALEKS M1-L1-5.02",
+        "ALEKS M1-L1-5.03",
+        "ALEKS M1-L1-5.04",
+        "ALEKS M1-L1-5.05",
+        "ALEKS M1-L1-5.06",
+        "ALEKS M1-L1-5.07",
+        "ALEKS M1-L1-5.08"
+      ],
+      "notes": "Square Root Property and full completing-the-square workflow.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 1k with one retrieval prompt tied to 1-5.",
+        "conceptDevelopment": "Use 1-5, Examples 1-5 — Solve a Quadratic Equation with Rational Roots; Solve a Quadratic Equation with Irrational Roots; Solve a Quadratic Equation with Complex Solutions; Complete the Square; Solve by Completing the Square to develop: Solve quadratic equations by completing the square..",
+        "guidedPractice": "Students complete a scaffolded problem modeled on 1-5, Examples 1-5 — Solve a Quadratic Equation with Rational Roots; Solve a Quadratic Equation with Irrational Roots; Solve a Quadratic Equation with Complex Solutions; Complete the Square; Solve by Completing the Square; teacher checks notation and reasoning.",
+        "independentPractice": "Students complete aligned ALEKS/SRS practice: ALEKS M1-L1-5.01, ALEKS M1-L1-5.02, ALEKS M1-L1-5.03, ALEKS M1-L1-5.04, ALEKS M1-L1-5.05, ALEKS M1-L1-5.06, ALEKS M1-L1-5.07, ALEKS M1-L1-5.08.",
+        "assessment": "Exit ticket: one fresh problem assessing 1k and one short explanation prompt.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with solve quadratic equations by completing the square.."
+      }
+    },
+    {
+      "periodId": "m01-p14",
+      "module": 1,
+      "period": 14,
+      "dayType": "instruction",
+      "sourceLesson": "1-5",
+      "objectiveCode": "1m",
+      "objective": "Connect completing the square to vertex form.",
+      "workedExamples": "1-5, Examples 7-11 — Solve When a Is Not 1; Solve Equations with Imaginary Solutions; Write Functions in Vertex Form; Determine the Vertex and Axis of Symmetry; Model with a Quadratic Function",
+      "embeddedObjectives": [
+        ", "
+      ],
+      "aleksSrsPractice": [
+        "ALEKS M1-L1-5.09",
+        "ALEKS M1-L1-5.10"
+      ],
+      "notes": "Vertex form, graph interpretation, and modeling after the online-only Example 6 placeholder.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 1m with one retrieval prompt tied to 1-5.",
+        "conceptDevelopment": "Use 1-5, Examples 7-11 — Solve When a Is Not 1; Solve Equations with Imaginary Solutions; Write Functions in Vertex Form; Determine the Vertex and Axis of Symmetry; Model with a Quadratic Function to develop: Connect completing the square to vertex form..",
+        "guidedPractice": "Students complete a scaffolded problem modeled on 1-5, Examples 7-11 — Solve When a Is Not 1; Solve Equations with Imaginary Solutions; Write Functions in Vertex Form; Determine the Vertex and Axis of Symmetry; Model with a Quadratic Function; teacher checks notation and reasoning.",
+        "independentPractice": "Students complete aligned ALEKS/SRS practice: ALEKS M1-L1-5.09, ALEKS M1-L1-5.10.",
+        "assessment": "Exit ticket: one fresh problem assessing 1m and one short explanation prompt.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with connect completing the square to vertex form.."
+      }
+    },
+    {
+      "periodId": "m01-p15",
+      "module": 1,
+      "period": 15,
+      "dayType": "instruction",
+      "sourceLesson": "1-6",
+      "objectiveCode": "1n",
+      "objective": "Use the Quadratic Formula to solve equations.",
+      "workedExamples": "1-6, Examples 1-3 — Use the Quadratic Formula; Non-Factorable Equation; Imaginary Solutions",
+      "embeddedObjectives": [],
+      "aleksSrsPractice": [
+        "ALEKS M1-L1-6.01",
+        "ALEKS M1-L1-6.02",
+        "ALEKS M1-L1-6.03",
+        "ALEKS M1-L1-6.06"
+      ],
+      "notes": "Routine, non-factorable, and imaginary-solution cases.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 1n with one retrieval prompt tied to 1-6.",
+        "conceptDevelopment": "Use 1-6, Examples 1-3 — Use the Quadratic Formula; Non-Factorable Equation; Imaginary Solutions to develop: Use the Quadratic Formula to solve equations..",
+        "guidedPractice": "Students complete a scaffolded problem modeled on 1-6, Examples 1-3 — Use the Quadratic Formula; Non-Factorable Equation; Imaginary Solutions; teacher checks notation and reasoning.",
+        "independentPractice": "Students complete aligned ALEKS/SRS practice: ALEKS M1-L1-6.01, ALEKS M1-L1-6.02, ALEKS M1-L1-6.03, ALEKS M1-L1-6.06.",
+        "assessment": "Exit ticket: one fresh problem assessing 1n and one short explanation prompt.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with use the quadratic formula to solve equations.."
+      }
+    },
+    {
+      "periodId": "m01-p16",
+      "module": 1,
+      "period": 16,
+      "dayType": "instruction",
+      "sourceLesson": "1-6",
+      "objectiveCode": "1o",
+      "objective": "Use the discriminant to determine the number and type of solutions.",
+      "workedExamples": "1-6, Examples 4-5 — Use the Discriminant; Determine Without Solving",
+      "embeddedObjectives": [],
+      "aleksSrsPractice": [
+        "ALEKS M1-L1-6.04",
+        "ALEKS M1-L1-6.05"
+      ],
+      "notes": "Prediction and classification before solving.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 1o with one retrieval prompt tied to 1-6.",
+        "conceptDevelopment": "Use 1-6, Examples 4-5 — Use the Discriminant; Determine Without Solving to develop: Use the discriminant to determine the number and type of solutions..",
+        "guidedPractice": "Students complete a scaffolded problem modeled on 1-6, Examples 4-5 — Use the Discriminant; Determine Without Solving; teacher checks notation and reasoning.",
+        "independentPractice": "Students complete aligned ALEKS/SRS practice: ALEKS M1-L1-6.04, ALEKS M1-L1-6.05.",
+        "assessment": "Exit ticket: one fresh problem assessing 1o and one short explanation prompt.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with use the discriminant to determine the number and type of solutions.."
+      }
+    },
+    {
+      "periodId": "m01-p17",
+      "module": 1,
+      "period": 17,
+      "dayType": "mastery",
+      "notes": "Mastery cycle on `1h-1o`.",
+      "nonInstructionArtifact": {
+        "artifactType": "mastery",
+        "objectiveScope": "Mastery cycle on `1h-1o`.",
+        "srsSources": [
+          "worked-example-derived practice",
+          "ALEKS topic practice where available",
+          "prior-unit spiral review"
+        ],
+        "remediationGrouping": "Group students by recent objective evidence and misconception patterns.",
+        "extensionOptions": "Offer synthesis problems that combine current objectives with prior modules.",
+        "evidence": "Student completes due SRS items and submits one corrected-error reflection."
+      }
+    },
+    {
+      "periodId": "m01-p18",
+      "module": 1,
+      "period": 18,
+      "dayType": "instruction",
+      "sourceLesson": "1-7",
+      "objectiveCode": "1p",
+      "objective": "Graph quadratic inequalities in two variables.",
+      "workedExamples": "1-7, Examples 1-2 — Graph a Quadratic Inequality (≤); Graph a Quadratic Inequality (>)",
+      "embeddedObjectives": [],
+      "aleksSrsPractice": [
+        "ALEKS M1-L1-7.03",
+        "ALEKS M1-L1-7.04"
+      ],
+      "notes": "Boundary, shading, and solid/dashed decisions.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 1p with one retrieval prompt tied to 1-7.",
+        "conceptDevelopment": "Use 1-7, Examples 1-2 — Graph a Quadratic Inequality (≤); Graph a Quadratic Inequality (>) to develop: Graph quadratic inequalities in two variables..",
+        "guidedPractice": "Students complete a scaffolded problem modeled on 1-7, Examples 1-2 — Graph a Quadratic Inequality (≤); Graph a Quadratic Inequality (>); teacher checks notation and reasoning.",
+        "independentPractice": "Students complete aligned ALEKS/SRS practice: ALEKS M1-L1-7.03, ALEKS M1-L1-7.04.",
+        "assessment": "Exit ticket: one fresh problem assessing 1p and one short explanation prompt.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with graph quadratic inequalities in two variables.."
+      }
+    },
+    {
+      "periodId": "m01-p19",
+      "module": 1,
+      "period": 19,
+      "dayType": "instruction",
+      "sourceLesson": "1-7",
+      "objectiveCode": "1q",
+      "objective": "Solve quadratic inequalities in one variable by graphing.",
+      "workedExamples": "1-7, Examples 3-5 — Solve x^2 + x - 6 < 0 by Graphing; Solve x^2 - 3x - 4 ≥ 0 by Graphing; Solve a Quadratic Inequality in Context",
+      "embeddedObjectives": [],
+      "aleksSrsPractice": [
+        "ALEKS M1-L1-7.01",
+        "ALEKS M1-L1-7.02"
+      ],
+      "notes": "Includes interval interpretation and contextual meaning of solution sets.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 1q with one retrieval prompt tied to 1-7.",
+        "conceptDevelopment": "Use 1-7, Examples 3-5 — Solve x^2 + x - 6 < 0 by Graphing; Solve x^2 - 3x - 4 ≥ 0 by Graphing; Solve a Quadratic Inequality in Context to develop: Solve quadratic inequalities in one variable by graphing..",
+        "guidedPractice": "Students complete a scaffolded problem modeled on 1-7, Examples 3-5 — Solve x^2 + x - 6 < 0 by Graphing; Solve x^2 - 3x - 4 ≥ 0 by Graphing; Solve a Quadratic Inequality in Context; teacher checks notation and reasoning.",
+        "independentPractice": "Students complete aligned ALEKS/SRS practice: ALEKS M1-L1-7.01, ALEKS M1-L1-7.02.",
+        "assessment": "Exit ticket: one fresh problem assessing 1q and one short explanation prompt.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with solve quadratic inequalities in one variable by graphing.."
+      }
+    },
+    {
+      "periodId": "m01-p20",
+      "module": 1,
+      "period": 20,
+      "dayType": "mastery",
+      "notes": "Mastery cycle on `1p-1r`.",
+      "nonInstructionArtifact": {
+        "artifactType": "mastery",
+        "objectiveScope": "Mastery cycle on `1p-1r`.",
+        "srsSources": [
+          "worked-example-derived practice",
+          "ALEKS topic practice where available",
+          "prior-unit spiral review"
+        ],
+        "remediationGrouping": "Group students by recent objective evidence and misconception patterns.",
+        "extensionOptions": "Offer synthesis problems that combine current objectives with prior modules.",
+        "evidence": "Student completes due SRS items and submits one corrected-error reflection."
+      }
+    },
+    {
+      "periodId": "m01-p21",
+      "module": 1,
+      "period": 21,
+      "dayType": "instruction",
+      "sourceLesson": "1-8",
+      "objectiveCode": "1s",
+      "objective": "Solve systems involving a linear and a quadratic equation.",
+      "workedExamples": "1-8, Examples 1-4 — Solve a Linear-Quadratic System by Using Substitution; Solve a Linear-Quadratic System by Using Elimination; Use a System to Solve a Quadratic Equation; Solve a Linear-Quadratic System by Graphing",
+      "embeddedObjectives": [],
+      "aleksSrsPractice": [
+        "ALEKS M1-L1-8.01",
+        "ALEKS M1-L1-8.02"
+      ],
+      "notes": "Linear-quadratic systems through algebraic and graphical methods.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 1s with one retrieval prompt tied to 1-8.",
+        "conceptDevelopment": "Use 1-8, Examples 1-4 — Solve a Linear-Quadratic System by Using Substitution; Solve a Linear-Quadratic System by Using Elimination; Use a System to Solve a Quadratic Equation; Solve a Linear-Quadratic System by Graphing to develop: Solve systems involving a linear and a quadratic equation..",
+        "guidedPractice": "Students complete a scaffolded problem modeled on 1-8, Examples 1-4 — Solve a Linear-Quadratic System by Using Substitution; Solve a Linear-Quadratic System by Using Elimination; Use a System to Solve a Quadratic Equation; Solve a Linear-Quadratic System by Graphing; teacher checks notation and reasoning.",
+        "independentPractice": "Students complete aligned ALEKS/SRS practice: ALEKS M1-L1-8.01, ALEKS M1-L1-8.02.",
+        "assessment": "Exit ticket: one fresh problem assessing 1s and one short explanation prompt.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with solve systems involving a linear and a quadratic equation.."
+      }
+    },
+    {
+      "periodId": "m01-p22",
+      "module": 1,
+      "period": 22,
+      "dayType": "instruction",
+      "sourceLesson": "1-8",
+      "objectiveCode": "1t",
+      "objective": "Solve systems of two quadratic equations.",
+      "workedExamples": "1-8, Examples 5-7 — Solve a Quadratic-Quadratic System Graphically; Solve a Quadratic-Quadratic System Algebraically; Use a System to Solve a Quadratic Equation",
+      "embeddedObjectives": [],
+      "aleksSrsPractice": [
+        "ALEKS M1-L1-8.03"
+      ],
+      "notes": "Systems of two quadratic relations and interpretation through intersection structure.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 1t with one retrieval prompt tied to 1-8.",
+        "conceptDevelopment": "Use 1-8, Examples 5-7 — Solve a Quadratic-Quadratic System Graphically; Solve a Quadratic-Quadratic System Algebraically; Use a System to Solve a Quadratic Equation to develop: Solve systems of two quadratic equations..",
+        "guidedPractice": "Students complete a scaffolded problem modeled on 1-8, Examples 5-7 — Solve a Quadratic-Quadratic System Graphically; Solve a Quadratic-Quadratic System Algebraically; Use a System to Solve a Quadratic Equation; teacher checks notation and reasoning.",
+        "independentPractice": "Students complete aligned ALEKS/SRS practice: ALEKS M1-L1-8.03.",
+        "assessment": "Exit ticket: one fresh problem assessing 1t and one short explanation prompt.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with solve systems of two quadratic equations.."
+      }
+    },
+    {
+      "periodId": "m01-p23",
+      "module": 1,
+      "period": 23,
+      "dayType": "review",
+      "notes": "Module 1 review across `1a-1u`.",
+      "nonInstructionArtifact": {
+        "artifactType": "review",
+        "objectiveCoverage": "Module 1 review across `1a-1u`.",
+        "reviewActivities": [
+          "mixed retrieval set",
+          "misconception sort",
+          "student-selected retry set"
+        ],
+        "misconceptionTargets": "Use recent mastery and SRS evidence to select the highest-frequency errors.",
+        "readinessCheck": "Short diagnostic covering representative module objectives."
+      }
+    },
+    {
+      "periodId": "m01-p24",
+      "module": 1,
+      "period": 24,
+      "dayType": "test",
+      "notes": "Module 1 assessment.",
+      "nonInstructionArtifact": {
+        "artifactType": "test",
+        "objectiveCoverage": "Module 1 assessment.",
+        "assessmentStructure": [
+          "fluency section",
+          "conceptual reasoning section",
+          "modeling/application section"
+        ],
+        "gradingExpectations": "Grade against module objectives and record evidence for mastery updates.",
+        "retakeRelationship": "Retake eligibility follows the course mastery policy after targeted remediation."
+      }
+    }
+  ]
+}

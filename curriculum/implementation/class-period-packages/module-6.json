@@ -1,0 +1,440 @@
+{
+  "schemaVersion": "class-period-package.v1",
+  "module": 6,
+  "generatedFrom": "curriculum/module-6-class-period-plan.md",
+  "periods": [
+    {
+      "periodId": "m06-p01",
+      "module": 6,
+      "period": 1,
+      "dayType": "instruction",
+      "sourceLesson": "6-1",
+      "objectiveCode": "6a",
+      "objective": "Write logarithmic expressions in exponential form and write exponential expressions in logarithmic form.",
+      "workedExamples": "6-1, Examples 1-4 — Logarithmic to Exponential Form; Exponential to Logarithmic Form; Evaluate Logarithmic Expressions; Find Inverses of Exponential Functions",
+      "embeddedObjectives": [],
+      "aleksSrsPractice": [
+        "ALEKS M6-L6-1.01",
+        "ALEKS M6-L6-1.02"
+      ],
+      "notes": "Form conversion and inverse-relationship groundwork.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 6a with one retrieval prompt tied to 6-1.",
+        "conceptDevelopment": "Use 6-1, Examples 1-4 — Logarithmic to Exponential Form; Exponential to Logarithmic Form; Evaluate Logarithmic Expressions; Find Inverses of Exponential Functions to develop: Write logarithmic expressions in exponential form and write exponential expressions in logarithmic form..",
+        "guidedPractice": "Students complete a scaffolded problem modeled on 6-1, Examples 1-4 — Logarithmic to Exponential Form; Exponential to Logarithmic Form; Evaluate Logarithmic Expressions; Find Inverses of Exponential Functions; teacher checks notation and reasoning.",
+        "independentPractice": "Students complete aligned ALEKS/SRS practice: ALEKS M6-L6-1.01, ALEKS M6-L6-1.02.",
+        "assessment": "Exit ticket: one fresh problem assessing 6a and one short explanation prompt.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with write logarithmic expressions in exponential form and write exponential expressions in logarithmic form.."
+      }
+    },
+    {
+      "periodId": "m06-p02",
+      "module": 6,
+      "period": 2,
+      "dayType": "instruction",
+      "sourceLesson": "6-1",
+      "objectiveCode": "6b",
+      "objective": "Graph and analyze logarithmic functions.",
+      "workedExamples": "6-1, Examples 5-8 — Graph Logarithmic Functions; Graph Transformations of Logarithmic Functions; Compare Logarithmic Functions; Write Logarithmic Functions From Graphs",
+      "embeddedObjectives": [],
+      "aleksSrsPractice": [
+        "ALEKS M6-L6-1.03",
+        "ALEKS M6-L6-1.04",
+        "ALEKS M6-L6-1.05",
+        "ALEKS M6-L6-1.06"
+      ],
+      "notes": "Graph features, transformations, comparisons, and graph-to-rule work.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 6b with one retrieval prompt tied to 6-1.",
+        "conceptDevelopment": "Use 6-1, Examples 5-8 — Graph Logarithmic Functions; Graph Transformations of Logarithmic Functions; Compare Logarithmic Functions; Write Logarithmic Functions From Graphs to develop: Graph and analyze logarithmic functions..",
+        "guidedPractice": "Students complete a scaffolded problem modeled on 6-1, Examples 5-8 — Graph Logarithmic Functions; Graph Transformations of Logarithmic Functions; Compare Logarithmic Functions; Write Logarithmic Functions From Graphs; teacher checks notation and reasoning.",
+        "independentPractice": "Students complete aligned ALEKS/SRS practice: ALEKS M6-L6-1.03, ALEKS M6-L6-1.04, ALEKS M6-L6-1.05, ALEKS M6-L6-1.06.",
+        "assessment": "Exit ticket: one fresh problem assessing 6b and one short explanation prompt.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with graph and analyze logarithmic functions.."
+      }
+    },
+    {
+      "periodId": "m06-p03",
+      "module": 6,
+      "period": 3,
+      "dayType": "mastery",
+      "notes": "Mastery cycle on `6a-6b`.",
+      "nonInstructionArtifact": {
+        "artifactType": "mastery",
+        "objectiveScope": "Mastery cycle on `6a-6b`.",
+        "srsSources": [
+          "worked-example-derived practice",
+          "ALEKS topic practice where available",
+          "prior-unit spiral review"
+        ],
+        "remediationGrouping": "Group students by recent objective evidence and misconception patterns.",
+        "extensionOptions": "Offer synthesis problems that combine current objectives with prior modules.",
+        "evidence": "Student completes due SRS items and submits one corrected-error reflection."
+      }
+    },
+    {
+      "periodId": "m06-p04",
+      "module": 6,
+      "period": 4,
+      "dayType": "instruction",
+      "sourceLesson": "6-2",
+      "objectiveCode": "6c",
+      "objective": "Solve logarithmic equations using properties of equality.",
+      "workedExamples": "6-2, Examples 1-2 and Apply Example 6 — Solve a Logarithmic Equation by Using Definitions; Solve a Logarithmic Equation by Using Properties of Equality; Solve a Logarithmic Equation by Using Properties",
+      "embeddedObjectives": [],
+      "aleksSrsPractice": [
+        "ALEKS M6-L6-2.04",
+        "ALEKS M6-L6-2.05",
+        "ALEKS M6-L6-2.06",
+        "ALEKS M6-L6-2.01"
+      ],
+      "notes": "Equation solving with checking for extraneous solutions.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 6c with one retrieval prompt tied to 6-2.",
+        "conceptDevelopment": "Use 6-2, Examples 1-2 and Apply Example 6 — Solve a Logarithmic Equation by Using Definitions; Solve a Logarithmic Equation by Using Properties of Equality; Solve a Logarithmic Equation by Using Properties to develop: Solve logarithmic equations using properties of equality..",
+        "guidedPractice": "Students complete a scaffolded problem modeled on 6-2, Examples 1-2 and Apply Example 6 — Solve a Logarithmic Equation by Using Definitions; Solve a Logarithmic Equation by Using Properties of Equality; Solve a Logarithmic Equation by Using Properties; teacher checks notation and reasoning.",
+        "independentPractice": "Students complete aligned ALEKS/SRS practice: ALEKS M6-L6-2.04, ALEKS M6-L6-2.05, ALEKS M6-L6-2.06, ALEKS M6-L6-2.01.",
+        "assessment": "Exit ticket: one fresh problem assessing 6c and one short explanation prompt.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with solve logarithmic equations using properties of equality.."
+      }
+    },
+    {
+      "periodId": "m06-p05",
+      "module": 6,
+      "period": 5,
+      "dayType": "instruction",
+      "sourceLesson": "6-2",
+      "objectiveCode": "6d",
+      "objective": "Simplify and evaluate expressions by using the properties of logarithms.",
+      "workedExamples": "6-2, Examples 3-5 — Product Property of Logarithms; Quotient Property of Logarithms; Power Property of Logarithms",
+      "embeddedObjectives": [],
+      "aleksSrsPractice": [
+        "ALEKS M6-L6-2.02",
+        "ALEKS M6-L6-2.03"
+      ],
+      "notes": "Property fluency through approximation and expression rewriting.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 6d with one retrieval prompt tied to 6-2.",
+        "conceptDevelopment": "Use 6-2, Examples 3-5 — Product Property of Logarithms; Quotient Property of Logarithms; Power Property of Logarithms to develop: Simplify and evaluate expressions by using the properties of logarithms..",
+        "guidedPractice": "Students complete a scaffolded problem modeled on 6-2, Examples 3-5 — Product Property of Logarithms; Quotient Property of Logarithms; Power Property of Logarithms; teacher checks notation and reasoning.",
+        "independentPractice": "Students complete aligned ALEKS/SRS practice: ALEKS M6-L6-2.02, ALEKS M6-L6-2.03.",
+        "assessment": "Exit ticket: one fresh problem assessing 6d and one short explanation prompt.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with simplify and evaluate expressions by using the properties of logarithms.."
+      }
+    },
+    {
+      "periodId": "m06-p06",
+      "module": 6,
+      "period": 6,
+      "dayType": "jigsaw",
+      "notes": "Stretch-problem session built from graphing, properties, and logarithmic-equation examples.",
+      "nonInstructionArtifact": {
+        "artifactType": "jigsaw",
+        "groupTask": "Stretch-problem session built from graphing, properties, and logarithmic-equation examples.",
+        "sourceWorkedExamples": "Use the prior instruction periods named in the notes as the problem bank.",
+        "deliverable": "Group solution poster or shared explanation with one strategy comparison.",
+        "facilitationNotes": "Assign roles for graphing, algebra, checking, and explanation.",
+        "completionCriteria": "Correct method, accurate result, clear justification, and response to peer question."
+      }
+    },
+    {
+      "periodId": "m06-p07",
+      "module": 6,
+      "period": 7,
+      "dayType": "instruction",
+      "sourceLesson": "6-3",
+      "objectiveCode": "6e",
+      "objective": "Solve exponential equations by using common logarithms.",
+      "workedExamples": "6-3, Examples 1-4 — Find Common Logarithms by Using Technology; Solve a Logarithmic Equation by Using Exponential Form; Solve an Exponential Equation by Using Logarithms; Solve an Exponential Inequality by Using Logarithms",
+      "embeddedObjectives": [],
+      "aleksSrsPractice": [
+        "ALEKS M6-L6-3.03",
+        "ALEKS M6-L6-3.04",
+        "ALEKS M6-L6-3.05",
+        "ALEKS M6-L6-3.01"
+      ],
+      "notes": "Common-log solving, technology, and inequality reasoning.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 6e with one retrieval prompt tied to 6-3.",
+        "conceptDevelopment": "Use 6-3, Examples 1-4 — Find Common Logarithms by Using Technology; Solve a Logarithmic Equation by Using Exponential Form; Solve an Exponential Equation by Using Logarithms; Solve an Exponential Inequality by Using Logarithms to develop: Solve exponential equations by using common logarithms..",
+        "guidedPractice": "Students complete a scaffolded problem modeled on 6-3, Examples 1-4 — Find Common Logarithms by Using Technology; Solve a Logarithmic Equation by Using Exponential Form; Solve an Exponential Equation by Using Logarithms; Solve an Exponential Inequality by Using Logarithms; teacher checks notation and reasoning.",
+        "independentPractice": "Students complete aligned ALEKS/SRS practice: ALEKS M6-L6-3.03, ALEKS M6-L6-3.04, ALEKS M6-L6-3.05, ALEKS M6-L6-3.01.",
+        "assessment": "Exit ticket: one fresh problem assessing 6e and one short explanation prompt.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with solve exponential equations by using common logarithms.."
+      }
+    },
+    {
+      "periodId": "m06-p08",
+      "module": 6,
+      "period": 8,
+      "dayType": "instruction",
+      "sourceLesson": "6-3",
+      "objectiveCode": "6f",
+      "objective": "Evaluate logarithmic expressions by using the Change of Base Formula.",
+      "workedExamples": "6-3, Examples 5-6 — Change of Base Formula; Use the Change of Base Formula",
+      "embeddedObjectives": [],
+      "aleksSrsPractice": [
+        "ALEKS M6-L6-3.02"
+      ],
+      "notes": "Change-of-base evaluation and application modeling.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 6f with one retrieval prompt tied to 6-3.",
+        "conceptDevelopment": "Use 6-3, Examples 5-6 — Change of Base Formula; Use the Change of Base Formula to develop: Evaluate logarithmic expressions by using the Change of Base Formula..",
+        "guidedPractice": "Students complete a scaffolded problem modeled on 6-3, Examples 5-6 — Change of Base Formula; Use the Change of Base Formula; teacher checks notation and reasoning.",
+        "independentPractice": "Students complete aligned ALEKS/SRS practice: ALEKS M6-L6-3.02.",
+        "assessment": "Exit ticket: one fresh problem assessing 6f and one short explanation prompt.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with evaluate logarithmic expressions by using the change of base formula.."
+      }
+    },
+    {
+      "periodId": "m06-p09",
+      "module": 6,
+      "period": 9,
+      "dayType": "mastery",
+      "notes": "Mastery cycle on `6c-6f`.",
+      "nonInstructionArtifact": {
+        "artifactType": "mastery",
+        "objectiveScope": "Mastery cycle on `6c-6f`.",
+        "srsSources": [
+          "worked-example-derived practice",
+          "ALEKS topic practice where available",
+          "prior-unit spiral review"
+        ],
+        "remediationGrouping": "Group students by recent objective evidence and misconception patterns.",
+        "extensionOptions": "Offer synthesis problems that combine current objectives with prior modules.",
+        "evidence": "Student completes due SRS items and submits one corrected-error reflection."
+      }
+    },
+    {
+      "periodId": "m06-p10",
+      "module": 6,
+      "period": 10,
+      "dayType": "instruction",
+      "sourceLesson": "6-4",
+      "objectiveCode": "6g",
+      "objective": "Simplify expressions with natural logarithms.",
+      "workedExamples": "6-4, Examples 1-3 — Write Equivalent Logarithmic Equations; Write Equivalent Exponential Equations; Simplify Logarithmic Expressions",
+      "embeddedObjectives": [],
+      "aleksSrsPractice": [],
+      "srsSubstitute": "Generate worked-example-derived SRS items from 6-4, Examples 1-3 — Write Equivalent Logarithmic Equations; Write Equivalent Exponential Equations; Simplify Logarithmic Expressions.",
+      "notes": "Natural-log notation and expression simplification.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 6g with one retrieval prompt tied to 6-4.",
+        "conceptDevelopment": "Use 6-4, Examples 1-3 — Write Equivalent Logarithmic Equations; Write Equivalent Exponential Equations; Simplify Logarithmic Expressions to develop: Simplify expressions with natural logarithms..",
+        "guidedPractice": "Students complete a scaffolded problem modeled on 6-4, Examples 1-3 — Write Equivalent Logarithmic Equations; Write Equivalent Exponential Equations; Simplify Logarithmic Expressions; teacher checks notation and reasoning.",
+        "independentPractice": "Students complete worked-example-derived SRS practice because no direct ALEKS export is available.",
+        "assessment": "Exit ticket: one fresh problem assessing 6g and one short explanation prompt.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with simplify expressions with natural logarithms.."
+      }
+    },
+    {
+      "periodId": "m06-p11",
+      "module": 6,
+      "period": 11,
+      "dayType": "instruction",
+      "sourceLesson": "6-4",
+      "objectiveCode": "6h",
+      "objective": "Solve exponential equations by using natural logarithms.",
+      "workedExamples": "6-4, Examples 4-5 — Solve Exponential Equations with Base \\`e\\`; Solve Natural Logarithmic Equations",
+      "embeddedObjectives": [],
+      "aleksSrsPractice": [
+        "ALEKS M6-L6-3.03",
+        "ALEKS M6-L6-3.04",
+        "ALEKS M6-L6-3.05"
+      ],
+      "notes": "Core natural-logarithm solving day.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 6h with one retrieval prompt tied to 6-4.",
+        "conceptDevelopment": "Use 6-4, Examples 4-5 — Solve Exponential Equations with Base \\`e\\`; Solve Natural Logarithmic Equations to develop: Solve exponential equations by using natural logarithms..",
+        "guidedPractice": "Students complete a scaffolded problem modeled on 6-4, Examples 4-5 — Solve Exponential Equations with Base \\`e\\`; Solve Natural Logarithmic Equations; teacher checks notation and reasoning.",
+        "independentPractice": "Students complete aligned ALEKS/SRS practice: ALEKS M6-L6-3.03, ALEKS M6-L6-3.04, ALEKS M6-L6-3.05.",
+        "assessment": "Exit ticket: one fresh problem assessing 6h and one short explanation prompt.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with solve exponential equations by using natural logarithms.."
+      }
+    },
+    {
+      "periodId": "m06-p12",
+      "module": 6,
+      "period": 12,
+      "dayType": "instruction",
+      "sourceLesson": "6-4",
+      "objectiveCode": "6h",
+      "objective": "Solve exponential equations by using natural logarithms.",
+      "workedExamples": "6-4, Examples 6-7 — Apply Functions with Base \\`e\\`; Examine Logarithmic Data",
+      "embeddedObjectives": [],
+      "aleksSrsPractice": [
+        "ALEKS M6-L5-3.01",
+        "ALEKS M6-L5-3.02"
+      ],
+      "notes": "Applied `ln` modeling and data analysis extension.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 6h with one retrieval prompt tied to 6-4.",
+        "conceptDevelopment": "Use 6-4, Examples 6-7 — Apply Functions with Base \\`e\\`; Examine Logarithmic Data to develop: Solve exponential equations by using natural logarithms..",
+        "guidedPractice": "Students complete a scaffolded problem modeled on 6-4, Examples 6-7 — Apply Functions with Base \\`e\\`; Examine Logarithmic Data; teacher checks notation and reasoning.",
+        "independentPractice": "Students complete aligned ALEKS/SRS practice: ALEKS M6-L5-3.01, ALEKS M6-L5-3.02.",
+        "assessment": "Exit ticket: one fresh problem assessing 6h and one short explanation prompt.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with solve exponential equations by using natural logarithms.."
+      }
+    },
+    {
+      "periodId": "m06-p13",
+      "module": 6,
+      "period": 13,
+      "dayType": "mastery",
+      "notes": "Mastery cycle on `6g-6h`.",
+      "nonInstructionArtifact": {
+        "artifactType": "mastery",
+        "objectiveScope": "Mastery cycle on `6g-6h`.",
+        "srsSources": [
+          "worked-example-derived practice",
+          "ALEKS topic practice where available",
+          "prior-unit spiral review"
+        ],
+        "remediationGrouping": "Group students by recent objective evidence and misconception patterns.",
+        "extensionOptions": "Offer synthesis problems that combine current objectives with prior modules.",
+        "evidence": "Student completes due SRS items and submits one corrected-error reflection."
+      }
+    },
+    {
+      "periodId": "m06-p14",
+      "module": 6,
+      "period": 14,
+      "dayType": "instruction",
+      "sourceLesson": "6-5",
+      "objectiveCode": "6i",
+      "objective": "Write and solve exponential growth equations and inequalities.",
+      "workedExamples": "6-5, Example 1 — Continuous Exponential Growth (Parts A-B)",
+      "embeddedObjectives": [],
+      "aleksSrsPractice": [
+        "ALEKS M6-L5-1.02",
+        "ALEKS M6-L5-3.02"
+      ],
+      "notes": "Build continuous growth models and solve for time.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 6i with one retrieval prompt tied to 6-5.",
+        "conceptDevelopment": "Use 6-5, Example 1 — Continuous Exponential Growth (Parts A-B) to develop: Write and solve exponential growth equations and inequalities..",
+        "guidedPractice": "Students complete a scaffolded problem modeled on 6-5, Example 1 — Continuous Exponential Growth (Parts A-B); teacher checks notation and reasoning.",
+        "independentPractice": "Students complete aligned ALEKS/SRS practice: ALEKS M6-L5-1.02, ALEKS M6-L5-3.02.",
+        "assessment": "Exit ticket: one fresh problem assessing 6i and one short explanation prompt.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with write and solve exponential growth equations and inequalities.."
+      }
+    },
+    {
+      "periodId": "m06-p15",
+      "module": 6,
+      "period": 15,
+      "dayType": "instruction",
+      "sourceLesson": "6-5",
+      "objectiveCode": "6i",
+      "objective": "Write and solve exponential growth equations and inequalities.",
+      "workedExamples": "6-5, Example 1 — Continuous Exponential Growth (Part C and Check)",
+      "embeddedObjectives": [],
+      "aleksSrsPractice": [
+        "ALEKS M6-L5-1.01",
+        "ALEKS M6-L5-1.02"
+      ],
+      "notes": "Growth comparisons and inequality-style modeling continuation.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 6i with one retrieval prompt tied to 6-5.",
+        "conceptDevelopment": "Use 6-5, Example 1 — Continuous Exponential Growth (Part C and Check) to develop: Write and solve exponential growth equations and inequalities..",
+        "guidedPractice": "Students complete a scaffolded problem modeled on 6-5, Example 1 — Continuous Exponential Growth (Part C and Check); teacher checks notation and reasoning.",
+        "independentPractice": "Students complete aligned ALEKS/SRS practice: ALEKS M6-L5-1.01, ALEKS M6-L5-1.02.",
+        "assessment": "Exit ticket: one fresh problem assessing 6i and one short explanation prompt.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with write and solve exponential growth equations and inequalities.."
+      }
+    },
+    {
+      "periodId": "m06-p16",
+      "module": 6,
+      "period": 16,
+      "dayType": "jigsaw",
+      "notes": "Stretch-problem session built from natural-log and continuous-growth examples.",
+      "nonInstructionArtifact": {
+        "artifactType": "jigsaw",
+        "groupTask": "Stretch-problem session built from natural-log and continuous-growth examples.",
+        "sourceWorkedExamples": "Use the prior instruction periods named in the notes as the problem bank.",
+        "deliverable": "Group solution poster or shared explanation with one strategy comparison.",
+        "facilitationNotes": "Assign roles for graphing, algebra, checking, and explanation.",
+        "completionCriteria": "Correct method, accurate result, clear justification, and response to peer question."
+      }
+    },
+    {
+      "periodId": "m06-p17",
+      "module": 6,
+      "period": 17,
+      "dayType": "instruction",
+      "sourceLesson": "6-5",
+      "objectiveCode": "6j",
+      "objective": "Write and solve exponential decay equations.",
+      "workedExamples": "6-5, Example 2 and Apply Example 3 — Continuous Exponential Decay; Radiocarbon Dating",
+      "embeddedObjectives": [],
+      "aleksSrsPractice": [
+        "ALEKS M6-L5-1.01"
+      ],
+      "notes": "Decay modeling, half-life interpretation, and dating applications.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 6j with one retrieval prompt tied to 6-5.",
+        "conceptDevelopment": "Use 6-5, Example 2 and Apply Example 3 — Continuous Exponential Decay; Radiocarbon Dating to develop: Write and solve exponential decay equations..",
+        "guidedPractice": "Students complete a scaffolded problem modeled on 6-5, Example 2 and Apply Example 3 — Continuous Exponential Decay; Radiocarbon Dating; teacher checks notation and reasoning.",
+        "independentPractice": "Students complete aligned ALEKS/SRS practice: ALEKS M6-L5-1.01.",
+        "assessment": "Exit ticket: one fresh problem assessing 6j and one short explanation prompt.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with write and solve exponential decay equations.."
+      }
+    },
+    {
+      "periodId": "m06-p18",
+      "module": 6,
+      "period": 18,
+      "dayType": "mastery",
+      "notes": "Module-wide differentiated SRS practice across Module 6 objectives.",
+      "nonInstructionArtifact": {
+        "artifactType": "mastery",
+        "objectiveScope": "Module-wide differentiated SRS practice across Module 6 objectives.",
+        "srsSources": [
+          "worked-example-derived practice",
+          "ALEKS topic practice where available",
+          "prior-unit spiral review"
+        ],
+        "remediationGrouping": "Group students by recent objective evidence and misconception patterns.",
+        "extensionOptions": "Offer synthesis problems that combine current objectives with prior modules.",
+        "evidence": "Student completes due SRS items and submits one corrected-error reflection."
+      }
+    },
+    {
+      "periodId": "m06-p19",
+      "module": 6,
+      "period": 19,
+      "dayType": "review",
+      "notes": "Module 6 review across `6a-6j`.",
+      "nonInstructionArtifact": {
+        "artifactType": "review",
+        "objectiveCoverage": "Module 6 review across `6a-6j`.",
+        "reviewActivities": [
+          "mixed retrieval set",
+          "misconception sort",
+          "student-selected retry set"
+        ],
+        "misconceptionTargets": "Use recent mastery and SRS evidence to select the highest-frequency errors.",
+        "readinessCheck": "Short diagnostic covering representative module objectives."
+      }
+    },
+    {
+      "periodId": "m06-p20",
+      "module": 6,
+      "period": 20,
+      "dayType": "test",
+      "notes": "Module 6 assessment.",
+      "nonInstructionArtifact": {
+        "artifactType": "test",
+        "objectiveCoverage": "Module 6 assessment.",
+        "assessmentStructure": [
+          "fluency section",
+          "conceptual reasoning section",
+          "modeling/application section"
+        ],
+        "gradingExpectations": "Grade against module objectives and record evidence for mastery updates.",
+        "retakeRelationship": "Retake eligibility follows the course mastery policy after targeted remediation."
+      }
+    }
+  ]
+}

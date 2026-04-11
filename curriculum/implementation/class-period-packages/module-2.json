@@ -1,0 +1,384 @@
+{
+  "schemaVersion": "class-period-package.v1",
+  "module": 2,
+  "generatedFrom": "curriculum/module-2-class-period-plan.md",
+  "periods": [
+    {
+      "periodId": "m02-p01",
+      "module": 2,
+      "period": 1,
+      "dayType": "instruction",
+      "sourceLesson": "2-1",
+      "objectiveCode": "2a",
+      "objective": "Graph and analyze power functions.",
+      "workedExamples": "2-1, Examples 1-2 — End Behavior and Degree of a Monomial Function; Graph a Power Function by Using a Table",
+      "embeddedObjectives": [],
+      "aleksSrsPractice": [
+        "ALEKS M2-L2-1.05"
+      ],
+      "notes": "Power functions, end behavior, tables, and domain/range.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 2a with one retrieval prompt tied to 2-1.",
+        "conceptDevelopment": "Use 2-1, Examples 1-2 — End Behavior and Degree of a Monomial Function; Graph a Power Function by Using a Table to develop: Graph and analyze power functions..",
+        "guidedPractice": "Students complete a scaffolded problem modeled on 2-1, Examples 1-2 — End Behavior and Degree of a Monomial Function; Graph a Power Function by Using a Table; teacher checks notation and reasoning.",
+        "independentPractice": "Students complete aligned ALEKS/SRS practice: ALEKS M2-L2-1.05.",
+        "assessment": "Exit ticket: one fresh problem assessing 2a and one short explanation prompt.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with graph and analyze power functions.."
+      }
+    },
+    {
+      "periodId": "m02-p02",
+      "module": 2,
+      "period": 2,
+      "dayType": "instruction",
+      "sourceLesson": "2-1",
+      "objectiveCode": "2b",
+      "objective": "Graph and analyze polynomial functions.",
+      "workedExamples": "2-1, Examples 3-6 — Degrees and Leading Coefficients; Evaluate and Graph a Polynomial Function; Zeros of a Polynomial Function; Compare Polynomial Functions",
+      "embeddedObjectives": [
+        ", "
+      ],
+      "aleksSrsPractice": [
+        "ALEKS M2-L2-1.01",
+        "ALEKS M2-L2-1.02",
+        "ALEKS M2-L2-1.03",
+        "ALEKS M2-L2-1.04"
+      ],
+      "notes": "Broader polynomial-feature day: degree, leading coefficient, graph shape, zeros, and extrema comparisons.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 2b with one retrieval prompt tied to 2-1.",
+        "conceptDevelopment": "Use 2-1, Examples 3-6 — Degrees and Leading Coefficients; Evaluate and Graph a Polynomial Function; Zeros of a Polynomial Function; Compare Polynomial Functions to develop: Graph and analyze polynomial functions..",
+        "guidedPractice": "Students complete a scaffolded problem modeled on 2-1, Examples 3-6 — Degrees and Leading Coefficients; Evaluate and Graph a Polynomial Function; Zeros of a Polynomial Function; Compare Polynomial Functions; teacher checks notation and reasoning.",
+        "independentPractice": "Students complete aligned ALEKS/SRS practice: ALEKS M2-L2-1.01, ALEKS M2-L2-1.02, ALEKS M2-L2-1.03, ALEKS M2-L2-1.04.",
+        "assessment": "Exit ticket: one fresh problem assessing 2b and one short explanation prompt.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with graph and analyze polynomial functions.."
+      }
+    },
+    {
+      "periodId": "m02-p03",
+      "module": 2,
+      "period": 3,
+      "dayType": "mastery",
+      "notes": "Mastery cycle on `2a-2b`.",
+      "nonInstructionArtifact": {
+        "artifactType": "mastery",
+        "objectiveScope": "Mastery cycle on `2a-2b`.",
+        "srsSources": [
+          "worked-example-derived practice",
+          "ALEKS topic practice where available",
+          "prior-unit spiral review"
+        ],
+        "remediationGrouping": "Group students by recent objective evidence and misconception patterns.",
+        "extensionOptions": "Offer synthesis problems that combine current objectives with prior modules.",
+        "evidence": "Student completes due SRS items and submits one corrected-error reflection."
+      }
+    },
+    {
+      "periodId": "m02-p04",
+      "module": 2,
+      "period": 4,
+      "dayType": "instruction",
+      "sourceLesson": "2-2",
+      "objectiveCode": "2c",
+      "objective": "Approximate zeros by graphing polynomial functions.",
+      "workedExamples": "2-2, Examples 1 and 4 — Locate Zeros of a Function; Use a Polynomial Function and Technology to Model",
+      "embeddedObjectives": [],
+      "aleksSrsPractice": [],
+      "srsSubstitute": "Generate worked-example-derived SRS items from 2-2, Examples 1 and 4 — Locate Zeros of a Function; Use a Polynomial Function and Technology to Model.",
+      "notes": "Approximate zeros from tables/graphs and use technology to inspect polynomial fit behavior.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 2c with one retrieval prompt tied to 2-2.",
+        "conceptDevelopment": "Use 2-2, Examples 1 and 4 — Locate Zeros of a Function; Use a Polynomial Function and Technology to Model to develop: Approximate zeros by graphing polynomial functions..",
+        "guidedPractice": "Students complete a scaffolded problem modeled on 2-2, Examples 1 and 4 — Locate Zeros of a Function; Use a Polynomial Function and Technology to Model; teacher checks notation and reasoning.",
+        "independentPractice": "Students complete worked-example-derived SRS practice because no direct ALEKS export is available.",
+        "assessment": "Exit ticket: one fresh problem assessing 2c and one short explanation prompt.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with approximate zeros by graphing polynomial functions.."
+      }
+    },
+    {
+      "periodId": "m02-p05",
+      "module": 2,
+      "period": 5,
+      "dayType": "instruction",
+      "sourceLesson": "2-2",
+      "objectiveCode": "2d",
+      "objective": "Find extrema of polynomial functions.",
+      "workedExamples": "2-2, Examples 2-3 — Identify Extrema; Analyze a Polynomial Function; support from Example 5 — Find Average Rate of Change",
+      "embeddedObjectives": [],
+      "aleksSrsPractice": [],
+      "srsSubstitute": "Generate worked-example-derived SRS items from 2-2, Examples 2-3 — Identify Extrema; Analyze a Polynomial Function; support from Example 5 — Find Average Rate of Change.",
+      "notes": "Extrema and key-feature analysis; Example 5 is included as supporting analysis, not as a separate objective code.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 2d with one retrieval prompt tied to 2-2.",
+        "conceptDevelopment": "Use 2-2, Examples 2-3 — Identify Extrema; Analyze a Polynomial Function; support from Example 5 — Find Average Rate of Change to develop: Find extrema of polynomial functions..",
+        "guidedPractice": "Students complete a scaffolded problem modeled on 2-2, Examples 2-3 — Identify Extrema; Analyze a Polynomial Function; support from Example 5 — Find Average Rate of Change; teacher checks notation and reasoning.",
+        "independentPractice": "Students complete worked-example-derived SRS practice because no direct ALEKS export is available.",
+        "assessment": "Exit ticket: one fresh problem assessing 2d and one short explanation prompt.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with find extrema of polynomial functions.."
+      }
+    },
+    {
+      "periodId": "m02-p06",
+      "module": 2,
+      "period": 6,
+      "dayType": "jigsaw",
+      "notes": "Stretch-problem session built from graphing, zeros, and extrema examples.",
+      "nonInstructionArtifact": {
+        "artifactType": "jigsaw",
+        "groupTask": "Stretch-problem session built from graphing, zeros, and extrema examples.",
+        "sourceWorkedExamples": "Use the prior instruction periods named in the notes as the problem bank.",
+        "deliverable": "Group solution poster or shared explanation with one strategy comparison.",
+        "facilitationNotes": "Assign roles for graphing, algebra, checking, and explanation.",
+        "completionCriteria": "Correct method, accurate result, clear justification, and response to peer question."
+      }
+    },
+    {
+      "periodId": "m02-p07",
+      "module": 2,
+      "period": 7,
+      "dayType": "instruction",
+      "sourceLesson": "2-3",
+      "objectiveCode": "2e",
+      "objective": "Add and subtract polynomials.",
+      "workedExamples": "2-3, Examples 2-3 — Add Polynomials; Subtract Polynomials; support from Example 1 — Identify Polynomials",
+      "embeddedObjectives": [],
+      "aleksSrsPractice": [],
+      "srsSubstitute": "Generate worked-example-derived SRS items from 2-3, Examples 2-3 — Add Polynomials; Subtract Polynomials; support from Example 1 — Identify Polynomials.",
+      "notes": "Addition and subtraction with degree/structure check as setup.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 2e with one retrieval prompt tied to 2-3.",
+        "conceptDevelopment": "Use 2-3, Examples 2-3 — Add Polynomials; Subtract Polynomials; support from Example 1 — Identify Polynomials to develop: Add and subtract polynomials..",
+        "guidedPractice": "Students complete a scaffolded problem modeled on 2-3, Examples 2-3 — Add Polynomials; Subtract Polynomials; support from Example 1 — Identify Polynomials; teacher checks notation and reasoning.",
+        "independentPractice": "Students complete worked-example-derived SRS practice because no direct ALEKS export is available.",
+        "assessment": "Exit ticket: one fresh problem assessing 2e and one short explanation prompt.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with add and subtract polynomials.."
+      }
+    },
+    {
+      "periodId": "m02-p08",
+      "module": 2,
+      "period": 8,
+      "dayType": "instruction",
+      "sourceLesson": "2-3",
+      "objectiveCode": "2f",
+      "objective": "Multiply polynomials.",
+      "workedExamples": "2-3, Examples 4-5 — Simplify by Using the Distributive Property; Multiply Binomials; support from Apply Example 7 — Write and Simplify a Polynomial Expression",
+      "embeddedObjectives": [],
+      "aleksSrsPractice": [],
+      "srsSubstitute": "Generate worked-example-derived SRS items from 2-3, Examples 4-5 — Simplify by Using the Distributive Property; Multiply Binomials; support from Apply Example 7 — Write and Simplify a Polynomial Expression.",
+      "notes": "Multiplication through distribution, FOIL, and applied volume modeling.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 2f with one retrieval prompt tied to 2-3.",
+        "conceptDevelopment": "Use 2-3, Examples 4-5 — Simplify by Using the Distributive Property; Multiply Binomials; support from Apply Example 7 — Write and Simplify a Polynomial Expression to develop: Multiply polynomials..",
+        "guidedPractice": "Students complete a scaffolded problem modeled on 2-3, Examples 4-5 — Simplify by Using the Distributive Property; Multiply Binomials; support from Apply Example 7 — Write and Simplify a Polynomial Expression; teacher checks notation and reasoning.",
+        "independentPractice": "Students complete worked-example-derived SRS practice because no direct ALEKS export is available.",
+        "assessment": "Exit ticket: one fresh problem assessing 2f and one short explanation prompt.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with multiply polynomials.."
+      }
+    },
+    {
+      "periodId": "m02-p09",
+      "module": 2,
+      "period": 9,
+      "dayType": "mastery",
+      "notes": "Mastery cycle on `2c-2f`.",
+      "nonInstructionArtifact": {
+        "artifactType": "mastery",
+        "objectiveScope": "Mastery cycle on `2c-2f`.",
+        "srsSources": [
+          "worked-example-derived practice",
+          "ALEKS topic practice where available",
+          "prior-unit spiral review"
+        ],
+        "remediationGrouping": "Group students by recent objective evidence and misconception patterns.",
+        "extensionOptions": "Offer synthesis problems that combine current objectives with prior modules.",
+        "evidence": "Student completes due SRS items and submits one corrected-error reflection."
+      }
+    },
+    {
+      "periodId": "m02-p10",
+      "module": 2,
+      "period": 10,
+      "dayType": "instruction",
+      "sourceLesson": "2-4",
+      "objectiveCode": "2g",
+      "objective": "Divide polynomials by using long division.",
+      "workedExamples": "2-4, Examples 1-3 — Divide a Polynomial by a Monomial; Divide a Polynomial by a Binomial; Find a Quotient with a Remainder",
+      "embeddedObjectives": [],
+      "aleksSrsPractice": [
+        "ALEKS M2-L2-4.01",
+        "ALEKS M2-L2-4.02",
+        "ALEKS M2-L2-4.03",
+        "ALEKS M2-L2-4.04"
+      ],
+      "notes": "Quotients, remainders, and division structure.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 2g with one retrieval prompt tied to 2-4.",
+        "conceptDevelopment": "Use 2-4, Examples 1-3 — Divide a Polynomial by a Monomial; Divide a Polynomial by a Binomial; Find a Quotient with a Remainder to develop: Divide polynomials by using long division..",
+        "guidedPractice": "Students complete a scaffolded problem modeled on 2-4, Examples 1-3 — Divide a Polynomial by a Monomial; Divide a Polynomial by a Binomial; Find a Quotient with a Remainder; teacher checks notation and reasoning.",
+        "independentPractice": "Students complete aligned ALEKS/SRS practice: ALEKS M2-L2-4.01, ALEKS M2-L2-4.02, ALEKS M2-L2-4.03, ALEKS M2-L2-4.04.",
+        "assessment": "Exit ticket: one fresh problem assessing 2g and one short explanation prompt.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with divide polynomials by using long division.."
+      }
+    },
+    {
+      "periodId": "m02-p11",
+      "module": 2,
+      "period": 11,
+      "dayType": "instruction",
+      "sourceLesson": "2-4",
+      "objectiveCode": "2h",
+      "objective": "Divide polynomials by using synthetic division.",
+      "workedExamples": "2-4, Examples 4-5 — Use Synthetic Division; Divisor with a Coefficient Other Than 1",
+      "embeddedObjectives": [],
+      "aleksSrsPractice": [
+        "ALEKS M2-L2-4.05"
+      ],
+      "notes": "Synthetic division, placeholders, and divisor normalization.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 2h with one retrieval prompt tied to 2-4.",
+        "conceptDevelopment": "Use 2-4, Examples 4-5 — Use Synthetic Division; Divisor with a Coefficient Other Than 1 to develop: Divide polynomials by using synthetic division..",
+        "guidedPractice": "Students complete a scaffolded problem modeled on 2-4, Examples 4-5 — Use Synthetic Division; Divisor with a Coefficient Other Than 1; teacher checks notation and reasoning.",
+        "independentPractice": "Students complete aligned ALEKS/SRS practice: ALEKS M2-L2-4.05.",
+        "assessment": "Exit ticket: one fresh problem assessing 2h and one short explanation prompt.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with divide polynomials by using synthetic division.."
+      }
+    },
+    {
+      "periodId": "m02-p12",
+      "module": 2,
+      "period": 12,
+      "dayType": "jigsaw",
+      "notes": "Stretch-problem session built from operations and division examples.",
+      "nonInstructionArtifact": {
+        "artifactType": "jigsaw",
+        "groupTask": "Stretch-problem session built from operations and division examples.",
+        "sourceWorkedExamples": "Use the prior instruction periods named in the notes as the problem bank.",
+        "deliverable": "Group solution poster or shared explanation with one strategy comparison.",
+        "facilitationNotes": "Assign roles for graphing, algebra, checking, and explanation.",
+        "completionCriteria": "Correct method, accurate result, clear justification, and response to peer question."
+      }
+    },
+    {
+      "periodId": "m02-p13",
+      "module": 2,
+      "period": 13,
+      "dayType": "instruction",
+      "sourceLesson": "2-5",
+      "objectiveCode": "2i",
+      "objective": "Expand powers of binomials by using Pascal's Triangle and the Binomial Theorem.",
+      "workedExamples": "2-5, Example 1 — Use Pascal's Triangle",
+      "embeddedObjectives": [],
+      "aleksSrsPractice": [
+        "ALEKS M2-L2-5.01"
+      ],
+      "notes": "Focus on row structure, coefficient patterns, and expansion mechanics.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 2i with one retrieval prompt tied to 2-5.",
+        "conceptDevelopment": "Use 2-5, Example 1 — Use Pascal's Triangle to develop: Expand powers of binomials by using Pascal's Triangle and the Binomial Theorem..",
+        "guidedPractice": "Students complete a scaffolded problem modeled on 2-5, Example 1 — Use Pascal's Triangle; teacher checks notation and reasoning.",
+        "independentPractice": "Students complete aligned ALEKS/SRS practice: ALEKS M2-L2-5.01.",
+        "assessment": "Exit ticket: one fresh problem assessing 2i and one short explanation prompt.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with expand powers of binomials by using pascal's triangle and the binomial theorem.."
+      }
+    },
+    {
+      "periodId": "m02-p14",
+      "module": 2,
+      "period": 14,
+      "dayType": "instruction",
+      "sourceLesson": "2-5",
+      "objectiveCode": "2i",
+      "objective": "Expand powers of binomials by using Pascal's Triangle and the Binomial Theorem.",
+      "workedExamples": "2-5, Examples 2-3 — Use the Binomial Theorem; Coefficients Other Than 1",
+      "embeddedObjectives": [],
+      "aleksSrsPractice": [
+        "ALEKS M2-L2-5.02",
+        "ALEKS M2-L2-5.03"
+      ],
+      "notes": "Application of the theorem in probability and non-unit coefficient cases.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 2i with one retrieval prompt tied to 2-5.",
+        "conceptDevelopment": "Use 2-5, Examples 2-3 — Use the Binomial Theorem; Coefficients Other Than 1 to develop: Expand powers of binomials by using Pascal's Triangle and the Binomial Theorem..",
+        "guidedPractice": "Students complete a scaffolded problem modeled on 2-5, Examples 2-3 — Use the Binomial Theorem; Coefficients Other Than 1; teacher checks notation and reasoning.",
+        "independentPractice": "Students complete aligned ALEKS/SRS practice: ALEKS M2-L2-5.02, ALEKS M2-L2-5.03.",
+        "assessment": "Exit ticket: one fresh problem assessing 2i and one short explanation prompt.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with expand powers of binomials by using pascal's triangle and the binomial theorem.."
+      }
+    },
+    {
+      "periodId": "m02-p15",
+      "module": 2,
+      "period": 15,
+      "dayType": "mastery",
+      "notes": "Mastery cycle on `2g-2i`.",
+      "nonInstructionArtifact": {
+        "artifactType": "mastery",
+        "objectiveScope": "Mastery cycle on `2g-2i`.",
+        "srsSources": [
+          "worked-example-derived practice",
+          "ALEKS topic practice where available",
+          "prior-unit spiral review"
+        ],
+        "remediationGrouping": "Group students by recent objective evidence and misconception patterns.",
+        "extensionOptions": "Offer synthesis problems that combine current objectives with prior modules.",
+        "evidence": "Student completes due SRS items and submits one corrected-error reflection."
+      }
+    },
+    {
+      "periodId": "m02-p16",
+      "module": 2,
+      "period": 16,
+      "dayType": "mastery",
+      "notes": "Module-wide differentiated SRS practice across Module 2 objectives.",
+      "nonInstructionArtifact": {
+        "artifactType": "mastery",
+        "objectiveScope": "Module-wide differentiated SRS practice across Module 2 objectives.",
+        "srsSources": [
+          "worked-example-derived practice",
+          "ALEKS topic practice where available",
+          "prior-unit spiral review"
+        ],
+        "remediationGrouping": "Group students by recent objective evidence and misconception patterns.",
+        "extensionOptions": "Offer synthesis problems that combine current objectives with prior modules.",
+        "evidence": "Student completes due SRS items and submits one corrected-error reflection."
+      }
+    },
+    {
+      "periodId": "m02-p17",
+      "module": 2,
+      "period": 17,
+      "dayType": "review",
+      "notes": "Module 2 review across `2a-2i`.",
+      "nonInstructionArtifact": {
+        "artifactType": "review",
+        "objectiveCoverage": "Module 2 review across `2a-2i`.",
+        "reviewActivities": [
+          "mixed retrieval set",
+          "misconception sort",
+          "student-selected retry set"
+        ],
+        "misconceptionTargets": "Use recent mastery and SRS evidence to select the highest-frequency errors.",
+        "readinessCheck": "Short diagnostic covering representative module objectives."
+      }
+    },
+    {
+      "periodId": "m02-p18",
+      "module": 2,
+      "period": 18,
+      "dayType": "test",
+      "notes": "Module 2 assessment.",
+      "nonInstructionArtifact": {
+        "artifactType": "test",
+        "objectiveCoverage": "Module 2 assessment.",
+        "assessmentStructure": [
+          "fluency section",
+          "conceptual reasoning section",
+          "modeling/application section"
+        ],
+        "gradingExpectations": "Grade against module objectives and record evidence for mastery updates.",
+        "retakeRelationship": "Retake eligibility follows the course mastery policy after targeted remediation."
+      }
+    }
+  ]
+}

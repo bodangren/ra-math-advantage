@@ -1,0 +1,401 @@
+{
+  "schemaVersion": "class-period-package.v1",
+  "module": 8,
+  "generatedFrom": "curriculum/module-8-class-period-plan.md",
+  "periods": [
+    {
+      "periodId": "m08-p01",
+      "module": 8,
+      "period": 1,
+      "dayType": "instruction",
+      "sourceLesson": "8-1",
+      "objectiveCode": "8a",
+      "objective": "Classify sampling methods and identify bias in samples and survey questions.",
+      "workedExamples": "8-1, Examples 1-3 — Classify a Random Sample; Identify Sample Bias; Identify Biased Questions",
+      "embeddedObjectives": [],
+      "aleksSrsPractice": [
+        "ALEKS M8-L8-1.01",
+        "ALEKS M8-L8-1.02",
+        "ALEKS M8-L8-1.04"
+      ],
+      "notes": "Sampling methods, bias, and survey-question quality.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 8a with one retrieval prompt tied to 8-1.",
+        "conceptDevelopment": "Use 8-1, Examples 1-3 — Classify a Random Sample; Identify Sample Bias; Identify Biased Questions to develop: Classify sampling methods and identify bias in samples and survey questions..",
+        "guidedPractice": "Students complete a scaffolded problem modeled on 8-1, Examples 1-3 — Classify a Random Sample; Identify Sample Bias; Identify Biased Questions; teacher checks notation and reasoning.",
+        "independentPractice": "Students complete aligned ALEKS/SRS practice: ALEKS M8-L8-1.01, ALEKS M8-L8-1.02, ALEKS M8-L8-1.04.",
+        "assessment": "Exit ticket: one fresh problem assessing 8a and one short explanation prompt.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with classify sampling methods and identify bias in samples and survey questions.."
+      }
+    },
+    {
+      "periodId": "m08-p02",
+      "module": 8,
+      "period": 2,
+      "dayType": "instruction",
+      "sourceLesson": "8-1",
+      "objectiveCode": "8b",
+      "objective": "Distinguish among sample surveys, experiments, and observational studies.",
+      "workedExamples": "8-1, Examples 4-7 — Classify Study Types; Design a Survey; Draw Conclusions from a Study; Identify Bias in Studies",
+      "embeddedObjectives": [],
+      "aleksSrsPractice": [
+        "ALEKS M8-L8-1.03",
+        "ALEKS M8-L8-1.05"
+      ],
+      "notes": "Study-type classification, conclusions, and design critique.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 8b with one retrieval prompt tied to 8-1.",
+        "conceptDevelopment": "Use 8-1, Examples 4-7 — Classify Study Types; Design a Survey; Draw Conclusions from a Study; Identify Bias in Studies to develop: Distinguish among sample surveys, experiments, and observational studies..",
+        "guidedPractice": "Students complete a scaffolded problem modeled on 8-1, Examples 4-7 — Classify Study Types; Design a Survey; Draw Conclusions from a Study; Identify Bias in Studies; teacher checks notation and reasoning.",
+        "independentPractice": "Students complete aligned ALEKS/SRS practice: ALEKS M8-L8-1.03, ALEKS M8-L8-1.05.",
+        "assessment": "Exit ticket: one fresh problem assessing 8b and one short explanation prompt.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with distinguish among sample surveys, experiments, and observational studies.."
+      }
+    },
+    {
+      "periodId": "m08-p03",
+      "module": 8,
+      "period": 3,
+      "dayType": "mastery",
+      "notes": "Mastery cycle on `8a-8b`.",
+      "nonInstructionArtifact": {
+        "artifactType": "mastery",
+        "objectiveScope": "Mastery cycle on `8a-8b`.",
+        "srsSources": [
+          "worked-example-derived practice",
+          "ALEKS topic practice where available",
+          "prior-unit spiral review"
+        ],
+        "remediationGrouping": "Group students by recent objective evidence and misconception patterns.",
+        "extensionOptions": "Offer synthesis problems that combine current objectives with prior modules.",
+        "evidence": "Student completes due SRS items and submits one corrected-error reflection."
+      }
+    },
+    {
+      "periodId": "m08-p04",
+      "module": 8,
+      "period": 4,
+      "dayType": "instruction",
+      "sourceLesson": "8-2",
+      "objectiveCode": "8c",
+      "objective": "Compare theoretical and experimental probabilities.",
+      "workedExamples": "8-2, Example 1 — Find Probabilities",
+      "embeddedObjectives": [],
+      "aleksSrsPractice": [
+        "ALEKS M8-L8-2.01",
+        "ALEKS M8-L8-2.02",
+        "ALEKS M8-L8-2.03",
+        "ALEKS M8-L8-2.04"
+      ],
+      "notes": "Theoretical vs. experimental probability in a direct comparison setting.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 8c with one retrieval prompt tied to 8-2.",
+        "conceptDevelopment": "Use 8-2, Example 1 — Find Probabilities to develop: Compare theoretical and experimental probabilities..",
+        "guidedPractice": "Students complete a scaffolded problem modeled on 8-2, Example 1 — Find Probabilities; teacher checks notation and reasoning.",
+        "independentPractice": "Students complete aligned ALEKS/SRS practice: ALEKS M8-L8-2.01, ALEKS M8-L8-2.02, ALEKS M8-L8-2.03, ALEKS M8-L8-2.04.",
+        "assessment": "Exit ticket: one fresh problem assessing 8c and one short explanation prompt.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with compare theoretical and experimental probabilities.."
+      }
+    },
+    {
+      "periodId": "m08-p05",
+      "module": 8,
+      "period": 5,
+      "dayType": "instruction",
+      "sourceLesson": "8-2",
+      "objectiveCode": "8d",
+      "objective": "Determine whether models are consistent with results from simulations of real-life situations.",
+      "workedExamples": "8-2, Examples 2-3 — Design and Run a Simulation; Run and Evaluate a Simulation",
+      "embeddedObjectives": [],
+      "aleksSrsPractice": [
+        "ALEKS M8-L8-2.05",
+        "ALEKS M8-L8-2.06"
+      ],
+      "notes": "Build, run, and evaluate simulations against expected models.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 8d with one retrieval prompt tied to 8-2.",
+        "conceptDevelopment": "Use 8-2, Examples 2-3 — Design and Run a Simulation; Run and Evaluate a Simulation to develop: Determine whether models are consistent with results from simulations of real-life situations..",
+        "guidedPractice": "Students complete a scaffolded problem modeled on 8-2, Examples 2-3 — Design and Run a Simulation; Run and Evaluate a Simulation; teacher checks notation and reasoning.",
+        "independentPractice": "Students complete aligned ALEKS/SRS practice: ALEKS M8-L8-2.05, ALEKS M8-L8-2.06.",
+        "assessment": "Exit ticket: one fresh problem assessing 8d and one short explanation prompt.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with determine whether models are consistent with results from simulations of real-life situations.."
+      }
+    },
+    {
+      "periodId": "m08-p06",
+      "module": 8,
+      "period": 6,
+      "dayType": "jigsaw",
+      "notes": "Stretch-problem session built from sampling and simulation examples.",
+      "nonInstructionArtifact": {
+        "artifactType": "jigsaw",
+        "groupTask": "Stretch-problem session built from sampling and simulation examples.",
+        "sourceWorkedExamples": "Use the prior instruction periods named in the notes as the problem bank.",
+        "deliverable": "Group solution poster or shared explanation with one strategy comparison.",
+        "facilitationNotes": "Assign roles for graphing, algebra, checking, and explanation.",
+        "completionCriteria": "Correct method, accurate result, clear justification, and response to peer question."
+      }
+    },
+    {
+      "periodId": "m08-p07",
+      "module": 8,
+      "period": 7,
+      "dayType": "instruction",
+      "sourceLesson": "8-3",
+      "objectiveCode": "8e",
+      "objective": "Describe distributions by finding their mean and standard deviation.",
+      "workedExamples": "8-3, Examples 1-3 — Find a Standard Deviation; Calculate Statistics; Compare Distributions",
+      "embeddedObjectives": [],
+      "aleksSrsPractice": [
+        "ALEKS M8-L8-3.01",
+        "ALEKS M8-L8-3.02",
+        "ALEKS M8-L8-3.03",
+        "ALEKS M8-L8-3.04",
+        "ALEKS M8-L8-3.05",
+        "ALEKS M8-L8-3.06",
+        "ALEKS M8-L8-3.07",
+        "ALEKS M8-L8-3.08",
+        "ALEKS M8-L8-3.09",
+        "ALEKS M8-L8-3.10",
+        "ALEKS M8-L8-3.11",
+        "ALEKS M8-L8-3.12"
+      ],
+      "notes": "Center and spread with comparison language.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 8e with one retrieval prompt tied to 8-3.",
+        "conceptDevelopment": "Use 8-3, Examples 1-3 — Find a Standard Deviation; Calculate Statistics; Compare Distributions to develop: Describe distributions by finding their mean and standard deviation..",
+        "guidedPractice": "Students complete a scaffolded problem modeled on 8-3, Examples 1-3 — Find a Standard Deviation; Calculate Statistics; Compare Distributions; teacher checks notation and reasoning.",
+        "independentPractice": "Students complete aligned ALEKS/SRS practice: ALEKS M8-L8-3.01, ALEKS M8-L8-3.02, ALEKS M8-L8-3.03, ALEKS M8-L8-3.04, ALEKS M8-L8-3.05, ALEKS M8-L8-3.06, ALEKS M8-L8-3.07, ALEKS M8-L8-3.08, ALEKS M8-L8-3.09, ALEKS M8-L8-3.10, ALEKS M8-L8-3.11, ALEKS M8-L8-3.12.",
+        "assessment": "Exit ticket: one fresh problem assessing 8e and one short explanation prompt.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with describe distributions by finding their mean and standard deviation.."
+      }
+    },
+    {
+      "periodId": "m08-p08",
+      "module": 8,
+      "period": 8,
+      "dayType": "mastery",
+      "notes": "Mastery cycle on `8c-8e`.",
+      "nonInstructionArtifact": {
+        "artifactType": "mastery",
+        "objectiveScope": "Mastery cycle on `8c-8e`.",
+        "srsSources": [
+          "worked-example-derived practice",
+          "ALEKS topic practice where available",
+          "prior-unit spiral review"
+        ],
+        "remediationGrouping": "Group students by recent objective evidence and misconception patterns.",
+        "extensionOptions": "Offer synthesis problems that combine current objectives with prior modules.",
+        "evidence": "Student completes due SRS items and submits one corrected-error reflection."
+      }
+    },
+    {
+      "periodId": "m08-p09",
+      "module": 8,
+      "period": 9,
+      "dayType": "instruction",
+      "sourceLesson": "8-4",
+      "objectiveCode": "8f",
+      "objective": "Classify variables and analyze probability distributions to determine expected outcomes.",
+      "workedExamples": "8-4, Examples 1-3 — Classify Random Variables; Analyze a Probability Distribution; Misleading Distributions",
+      "embeddedObjectives": [],
+      "aleksSrsPractice": [
+        "ALEKS M8-L8-4.01"
+      ],
+      "notes": "Variable type, valid distributions, and critique of misleading displays.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 8f with one retrieval prompt tied to 8-4.",
+        "conceptDevelopment": "Use 8-4, Examples 1-3 — Classify Random Variables; Analyze a Probability Distribution; Misleading Distributions to develop: Classify variables and analyze probability distributions to determine expected outcomes..",
+        "guidedPractice": "Students complete a scaffolded problem modeled on 8-4, Examples 1-3 — Classify Random Variables; Analyze a Probability Distribution; Misleading Distributions; teacher checks notation and reasoning.",
+        "independentPractice": "Students complete aligned ALEKS/SRS practice: ALEKS M8-L8-4.01.",
+        "assessment": "Exit ticket: one fresh problem assessing 8f and one short explanation prompt.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with classify variables and analyze probability distributions to determine expected outcomes.."
+      }
+    },
+    {
+      "periodId": "m08-p10",
+      "module": 8,
+      "period": 10,
+      "dayType": "instruction",
+      "sourceLesson": "8-4",
+      "objectiveCode": "8g",
+      "objective": "Analyze normally distributed variables by using the Empirical Rule.",
+      "workedExamples": "8-4, Examples 4-5 — Approximate Data by Using a Normal Distribution; Use the Empirical Rule to Analyze Data",
+      "embeddedObjectives": [],
+      "aleksSrsPractice": [
+        "ALEKS M8-L8-4.02",
+        "ALEKS M8-L8-4.03"
+      ],
+      "notes": "Bell-curve reasoning and 68-95-99.7 analysis.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 8g with one retrieval prompt tied to 8-4.",
+        "conceptDevelopment": "Use 8-4, Examples 4-5 — Approximate Data by Using a Normal Distribution; Use the Empirical Rule to Analyze Data to develop: Analyze normally distributed variables by using the Empirical Rule..",
+        "guidedPractice": "Students complete a scaffolded problem modeled on 8-4, Examples 4-5 — Approximate Data by Using a Normal Distribution; Use the Empirical Rule to Analyze Data; teacher checks notation and reasoning.",
+        "independentPractice": "Students complete aligned ALEKS/SRS practice: ALEKS M8-L8-4.02, ALEKS M8-L8-4.03.",
+        "assessment": "Exit ticket: one fresh problem assessing 8g and one short explanation prompt.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with analyze normally distributed variables by using the empirical rule.."
+      }
+    },
+    {
+      "periodId": "m08-p11",
+      "module": 8,
+      "period": 11,
+      "dayType": "instruction",
+      "sourceLesson": "8-4",
+      "objectiveCode": "8h",
+      "objective": "Analyze standardized data and distributions by using z-values.",
+      "workedExamples": "8-4, Examples 6-8 — Use z-Values to Locate Position; Find Area Under the Standard Normal Curve by Using a Table; Find Area Under the Standard Normal Curve by Using a Calculator",
+      "embeddedObjectives": [],
+      "aleksSrsPractice": [
+        "ALEKS M8-L8-4.04",
+        "ALEKS M8-L8-4.05",
+        "ALEKS M8-L8-4.06",
+        "ALEKS M8-L8-4.07",
+        "ALEKS M8-L8-4.08"
+      ],
+      "notes": "Standardization and area/probability interpretation.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 8h with one retrieval prompt tied to 8-4.",
+        "conceptDevelopment": "Use 8-4, Examples 6-8 — Use z-Values to Locate Position; Find Area Under the Standard Normal Curve by Using a Table; Find Area Under the Standard Normal Curve by Using a Calculator to develop: Analyze standardized data and distributions by using z-values..",
+        "guidedPractice": "Students complete a scaffolded problem modeled on 8-4, Examples 6-8 — Use z-Values to Locate Position; Find Area Under the Standard Normal Curve by Using a Table; Find Area Under the Standard Normal Curve by Using a Calculator; teacher checks notation and reasoning.",
+        "independentPractice": "Students complete aligned ALEKS/SRS practice: ALEKS M8-L8-4.04, ALEKS M8-L8-4.05, ALEKS M8-L8-4.06, ALEKS M8-L8-4.07, ALEKS M8-L8-4.08.",
+        "assessment": "Exit ticket: one fresh problem assessing 8h and one short explanation prompt.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with analyze standardized data and distributions by using z-values.."
+      }
+    },
+    {
+      "periodId": "m08-p12",
+      "module": 8,
+      "period": 12,
+      "dayType": "mastery",
+      "notes": "Mastery cycle on `8f-8h`.",
+      "nonInstructionArtifact": {
+        "artifactType": "mastery",
+        "objectiveScope": "Mastery cycle on `8f-8h`.",
+        "srsSources": [
+          "worked-example-derived practice",
+          "ALEKS topic practice where available",
+          "prior-unit spiral review"
+        ],
+        "remediationGrouping": "Group students by recent objective evidence and misconception patterns.",
+        "extensionOptions": "Offer synthesis problems that combine current objectives with prior modules.",
+        "evidence": "Student completes due SRS items and submits one corrected-error reflection."
+      }
+    },
+    {
+      "periodId": "m08-p13",
+      "module": 8,
+      "period": 13,
+      "dayType": "instruction",
+      "sourceLesson": "8-5",
+      "objectiveCode": "8i",
+      "objective": "Use sample data to infer a population mean by using confidence intervals.",
+      "workedExamples": "8-5, Examples 1-2 — Find the Maximum Error of the Estimate; Estimate a Population Mean",
+      "embeddedObjectives": [],
+      "aleksSrsPractice": [],
+      "srsSubstitute": "Generate worked-example-derived SRS items from 8-5, Examples 1-2 — Find the Maximum Error of the Estimate; Estimate a Population Mean.",
+      "notes": "Margin of error and mean confidence-interval construction.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 8i with one retrieval prompt tied to 8-5.",
+        "conceptDevelopment": "Use 8-5, Examples 1-2 — Find the Maximum Error of the Estimate; Estimate a Population Mean to develop: Use sample data to infer a population mean by using confidence intervals..",
+        "guidedPractice": "Students complete a scaffolded problem modeled on 8-5, Examples 1-2 — Find the Maximum Error of the Estimate; Estimate a Population Mean; teacher checks notation and reasoning.",
+        "independentPractice": "Students complete worked-example-derived SRS practice because no direct ALEKS export is available.",
+        "assessment": "Exit ticket: one fresh problem assessing 8i and one short explanation prompt.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with use sample data to infer a population mean by using confidence intervals.."
+      }
+    },
+    {
+      "periodId": "m08-p14",
+      "module": 8,
+      "period": 14,
+      "dayType": "instruction",
+      "sourceLesson": "8-5",
+      "objectiveCode": "8j",
+      "objective": "Use sample data to infer a population proportion by using confidence intervals.",
+      "workedExamples": "8-5, Apply Example 3 and Example 4 — Estimate a Population Proportion; Misleading Population Estimates",
+      "embeddedObjectives": [],
+      "aleksSrsPractice": [
+        "ALEKS M8-L8-1.05"
+      ],
+      "notes": "Proportion inference and critique of misleading interval claims.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 8j with one retrieval prompt tied to 8-5.",
+        "conceptDevelopment": "Use 8-5, Apply Example 3 and Example 4 — Estimate a Population Proportion; Misleading Population Estimates to develop: Use sample data to infer a population proportion by using confidence intervals..",
+        "guidedPractice": "Students complete a scaffolded problem modeled on 8-5, Apply Example 3 and Example 4 — Estimate a Population Proportion; Misleading Population Estimates; teacher checks notation and reasoning.",
+        "independentPractice": "Students complete aligned ALEKS/SRS practice: ALEKS M8-L8-1.05.",
+        "assessment": "Exit ticket: one fresh problem assessing 8j and one short explanation prompt.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with use sample data to infer a population proportion by using confidence intervals.."
+      }
+    },
+    {
+      "periodId": "m08-p15",
+      "module": 8,
+      "period": 15,
+      "dayType": "jigsaw",
+      "notes": "Stretch-problem session built from distribution, z-value, and confidence-interval examples.",
+      "nonInstructionArtifact": {
+        "artifactType": "jigsaw",
+        "groupTask": "Stretch-problem session built from distribution, z-value, and confidence-interval examples.",
+        "sourceWorkedExamples": "Use the prior instruction periods named in the notes as the problem bank.",
+        "deliverable": "Group solution poster or shared explanation with one strategy comparison.",
+        "facilitationNotes": "Assign roles for graphing, algebra, checking, and explanation.",
+        "completionCriteria": "Correct method, accurate result, clear justification, and response to peer question."
+      }
+    },
+    {
+      "periodId": "m08-p16",
+      "module": 8,
+      "period": 16,
+      "dayType": "mastery",
+      "notes": "Module-wide differentiated SRS practice across Module 8 objectives.",
+      "nonInstructionArtifact": {
+        "artifactType": "mastery",
+        "objectiveScope": "Module-wide differentiated SRS practice across Module 8 objectives.",
+        "srsSources": [
+          "worked-example-derived practice",
+          "ALEKS topic practice where available",
+          "prior-unit spiral review"
+        ],
+        "remediationGrouping": "Group students by recent objective evidence and misconception patterns.",
+        "extensionOptions": "Offer synthesis problems that combine current objectives with prior modules.",
+        "evidence": "Student completes due SRS items and submits one corrected-error reflection."
+      }
+    },
+    {
+      "periodId": "m08-p17",
+      "module": 8,
+      "period": 17,
+      "dayType": "review",
+      "notes": "Module 8 review across `8a-8j`.",
+      "nonInstructionArtifact": {
+        "artifactType": "review",
+        "objectiveCoverage": "Module 8 review across `8a-8j`.",
+        "reviewActivities": [
+          "mixed retrieval set",
+          "misconception sort",
+          "student-selected retry set"
+        ],
+        "misconceptionTargets": "Use recent mastery and SRS evidence to select the highest-frequency errors.",
+        "readinessCheck": "Short diagnostic covering representative module objectives."
+      }
+    },
+    {
+      "periodId": "m08-p18",
+      "module": 8,
+      "period": 18,
+      "dayType": "test",
+      "notes": "Module 8 assessment.",
+      "nonInstructionArtifact": {
+        "artifactType": "test",
+        "objectiveCoverage": "Module 8 assessment.",
+        "assessmentStructure": [
+          "fluency section",
+          "conceptual reasoning section",
+          "modeling/application section"
+        ],
+        "gradingExpectations": "Grade against module objectives and record evidence for mastery updates.",
+        "retakeRelationship": "Retake eligibility follows the course mastery policy after targeted remediation."
+      }
+    }
+  ]
+}

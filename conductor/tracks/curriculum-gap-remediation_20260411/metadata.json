@@ -1,0 +1,11 @@
+{
+  "track_id": "curriculum-gap-remediation_20260411",
+  "type": "chore",
+  "status": "completed",
+  "created_at": "2026-04-11T00:24:27Z",
+  "updated_at": "2026-04-11T12:38:12Z",
+  "description": "Remediate curriculum completeness gaps across ALEKS extraction, lesson source quality, daily phase packaging, non-instruction day authoring, and practice.v1 activity mapping.",
+  "estimated_tasks": 21,
+  "actual_tasks": 21,
+  "deviation_notes": "Implemented as an audit-backed curriculum implementation layer. ALEKS declared-vs-listed mismatches remain as documented source-export limitations in curriculum/implementation/exceptions.json; affected periods use worked-example-derived SRS substitutes where no direct ALEKS topic is available."
+}

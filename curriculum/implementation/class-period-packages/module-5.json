@@ -1,0 +1,412 @@
+{
+  "schemaVersion": "class-period-package.v1",
+  "module": 5,
+  "generatedFrom": "curriculum/module-5-class-period-plan.md",
+  "periods": [
+    {
+      "periodId": "m05-p01",
+      "module": 5,
+      "period": 1,
+      "dayType": "instruction",
+      "sourceLesson": "5-1",
+      "objectiveCode": "5a",
+      "objective": "Graph exponential growth functions.",
+      "workedExamples": "5-1, Examples 1-4 — Graph Exponential Growth Functions; Graph Transformations of Exponential Growth Functions; Analyze Graphs of Exponential Functions; Use Exponential Growth Functions",
+      "embeddedObjectives": [],
+      "aleksSrsPractice": [
+        "ALEKS M5-L5-1.02"
+      ],
+      "notes": "Growth graphs, transformations, and contextual growth models.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 5a with one retrieval prompt tied to 5-1.",
+        "conceptDevelopment": "Use 5-1, Examples 1-4 — Graph Exponential Growth Functions; Graph Transformations of Exponential Growth Functions; Analyze Graphs of Exponential Functions; Use Exponential Growth Functions to develop: Graph exponential growth functions..",
+        "guidedPractice": "Students complete a scaffolded problem modeled on 5-1, Examples 1-4 — Graph Exponential Growth Functions; Graph Transformations of Exponential Growth Functions; Analyze Graphs of Exponential Functions; Use Exponential Growth Functions; teacher checks notation and reasoning.",
+        "independentPractice": "Students complete aligned ALEKS/SRS practice: ALEKS M5-L5-1.02.",
+        "assessment": "Exit ticket: one fresh problem assessing 5a and one short explanation prompt.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with graph exponential growth functions.."
+      }
+    },
+    {
+      "periodId": "m05-p02",
+      "module": 5,
+      "period": 2,
+      "dayType": "instruction",
+      "sourceLesson": "5-1",
+      "objectiveCode": "5b",
+      "objective": "Graph exponential decay functions.",
+      "workedExamples": "5-1, Examples 5-8 — Interpret Exponential Functions; Graph Exponential Decay Functions; Graph Transformations of Exponential Decay Functions; Compare Exponential Functions",
+      "embeddedObjectives": [],
+      "aleksSrsPractice": [
+        "ALEKS M5-L5-1.01"
+      ],
+      "notes": "Distinguishing growth vs. decay, then graphing and comparing decay behavior.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 5b with one retrieval prompt tied to 5-1.",
+        "conceptDevelopment": "Use 5-1, Examples 5-8 — Interpret Exponential Functions; Graph Exponential Decay Functions; Graph Transformations of Exponential Decay Functions; Compare Exponential Functions to develop: Graph exponential decay functions..",
+        "guidedPractice": "Students complete a scaffolded problem modeled on 5-1, Examples 5-8 — Interpret Exponential Functions; Graph Exponential Decay Functions; Graph Transformations of Exponential Decay Functions; Compare Exponential Functions; teacher checks notation and reasoning.",
+        "independentPractice": "Students complete aligned ALEKS/SRS practice: ALEKS M5-L5-1.01.",
+        "assessment": "Exit ticket: one fresh problem assessing 5b and one short explanation prompt.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with graph exponential decay functions.."
+      }
+    },
+    {
+      "periodId": "m05-p03",
+      "module": 5,
+      "period": 3,
+      "dayType": "mastery",
+      "notes": "Mastery cycle on `5a-5b`.",
+      "nonInstructionArtifact": {
+        "artifactType": "mastery",
+        "objectiveScope": "Mastery cycle on `5a-5b`.",
+        "srsSources": [
+          "worked-example-derived practice",
+          "ALEKS topic practice where available",
+          "prior-unit spiral review"
+        ],
+        "remediationGrouping": "Group students by recent objective evidence and misconception patterns.",
+        "extensionOptions": "Offer synthesis problems that combine current objectives with prior modules.",
+        "evidence": "Student completes due SRS items and submits one corrected-error reflection."
+      }
+    },
+    {
+      "periodId": "m05-p04",
+      "module": 5,
+      "period": 4,
+      "dayType": "instruction",
+      "sourceLesson": "5-2",
+      "objectiveCode": "5c",
+      "objective": "Solve exponential equations in one variable.",
+      "workedExamples": "5-2, Examples 1-3 — Solve Exponential Equations Algebraically; Solve an Exponential Equation by Graphing; Use the Compound Interest Formula",
+      "embeddedObjectives": [],
+      "aleksSrsPractice": [
+        "ALEKS M5-L5-2.01",
+        "ALEKS M5-L5-2.02",
+        "ALEKS M5-L5-2.03"
+      ],
+      "notes": "Algebraic, graphical, and financial-model solving.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 5c with one retrieval prompt tied to 5-2.",
+        "conceptDevelopment": "Use 5-2, Examples 1-3 — Solve Exponential Equations Algebraically; Solve an Exponential Equation by Graphing; Use the Compound Interest Formula to develop: Solve exponential equations in one variable..",
+        "guidedPractice": "Students complete a scaffolded problem modeled on 5-2, Examples 1-3 — Solve Exponential Equations Algebraically; Solve an Exponential Equation by Graphing; Use the Compound Interest Formula; teacher checks notation and reasoning.",
+        "independentPractice": "Students complete aligned ALEKS/SRS practice: ALEKS M5-L5-2.01, ALEKS M5-L5-2.02, ALEKS M5-L5-2.03.",
+        "assessment": "Exit ticket: one fresh problem assessing 5c and one short explanation prompt.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with solve exponential equations in one variable.."
+      }
+    },
+    {
+      "periodId": "m05-p05",
+      "module": 5,
+      "period": 5,
+      "dayType": "instruction",
+      "sourceLesson": "5-2",
+      "objectiveCode": "5d",
+      "objective": "Solve exponential inequalities in one variable.",
+      "workedExamples": "5-2, Example 4 — Solve Exponential Inequalities Algebraically",
+      "embeddedObjectives": [],
+      "aleksSrsPractice": [],
+      "srsSubstitute": "Generate worked-example-derived SRS items from 5-2, Example 4 — Solve Exponential Inequalities Algebraically.",
+      "notes": "Single-anchor inequality day with guided comparison practice.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 5d with one retrieval prompt tied to 5-2.",
+        "conceptDevelopment": "Use 5-2, Example 4 — Solve Exponential Inequalities Algebraically to develop: Solve exponential inequalities in one variable..",
+        "guidedPractice": "Students complete a scaffolded problem modeled on 5-2, Example 4 — Solve Exponential Inequalities Algebraically; teacher checks notation and reasoning.",
+        "independentPractice": "Students complete worked-example-derived SRS practice because no direct ALEKS export is available.",
+        "assessment": "Exit ticket: one fresh problem assessing 5d and one short explanation prompt.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with solve exponential inequalities in one variable.."
+      }
+    },
+    {
+      "periodId": "m05-p06",
+      "module": 5,
+      "period": 6,
+      "dayType": "jigsaw",
+      "notes": "Stretch-problem session built from growth/decay graphs and equation-solving examples.",
+      "nonInstructionArtifact": {
+        "artifactType": "jigsaw",
+        "groupTask": "Stretch-problem session built from growth/decay graphs and equation-solving examples.",
+        "sourceWorkedExamples": "Use the prior instruction periods named in the notes as the problem bank.",
+        "deliverable": "Group solution poster or shared explanation with one strategy comparison.",
+        "facilitationNotes": "Assign roles for graphing, algebra, checking, and explanation.",
+        "completionCriteria": "Correct method, accurate result, clear justification, and response to peer question."
+      }
+    },
+    {
+      "periodId": "m05-p07",
+      "module": 5,
+      "period": 7,
+      "dayType": "instruction",
+      "sourceLesson": "5-3",
+      "objectiveCode": "5e",
+      "objective": "Analyze expressions and functions involving the natural base \\`e\\`.",
+      "workedExamples": "5-3, Examples 1-4 — Expressions with Base e; Graph Functions with Base e; Apply Functions with Base e; Solve an Exponential Equation by Using Technology",
+      "embeddedObjectives": [],
+      "aleksSrsPractice": [
+        "ALEKS M5-L5-3.01",
+        "ALEKS M5-L5-3.02"
+      ],
+      "notes": "Base-`e` expressions, graphs, applications, and technology-supported solving.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 5e with one retrieval prompt tied to 5-3.",
+        "conceptDevelopment": "Use 5-3, Examples 1-4 — Expressions with Base e; Graph Functions with Base e; Apply Functions with Base e; Solve an Exponential Equation by Using Technology to develop: Analyze expressions and functions involving the natural base \\`e\\`..",
+        "guidedPractice": "Students complete a scaffolded problem modeled on 5-3, Examples 1-4 — Expressions with Base e; Graph Functions with Base e; Apply Functions with Base e; Solve an Exponential Equation by Using Technology; teacher checks notation and reasoning.",
+        "independentPractice": "Students complete aligned ALEKS/SRS practice: ALEKS M5-L5-3.01, ALEKS M5-L5-3.02.",
+        "assessment": "Exit ticket: one fresh problem assessing 5e and one short explanation prompt.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with analyze expressions and functions involving the natural base \\`e\\`.."
+      }
+    },
+    {
+      "periodId": "m05-p08",
+      "module": 5,
+      "period": 8,
+      "dayType": "mastery",
+      "notes": "Mastery cycle on `5c-5e`.",
+      "nonInstructionArtifact": {
+        "artifactType": "mastery",
+        "objectiveScope": "Mastery cycle on `5c-5e`.",
+        "srsSources": [
+          "worked-example-derived practice",
+          "ALEKS topic practice where available",
+          "prior-unit spiral review"
+        ],
+        "remediationGrouping": "Group students by recent objective evidence and misconception patterns.",
+        "extensionOptions": "Offer synthesis problems that combine current objectives with prior modules.",
+        "evidence": "Student completes due SRS items and submits one corrected-error reflection."
+      }
+    },
+    {
+      "periodId": "m05-p09",
+      "module": 5,
+      "period": 9,
+      "dayType": "instruction",
+      "sourceLesson": "5-4",
+      "objectiveCode": "5f",
+      "objective": "Generate geometric sequences.",
+      "workedExamples": "5-4, Examples 1-3 — Identify Geometric Sequences; Graph Geometric Sequences; Find the nth Term",
+      "embeddedObjectives": [],
+      "aleksSrsPractice": [
+        "ALEKS M5-L5-4.01",
+        "ALEKS M5-L5-4.02",
+        "ALEKS M5-L5-4.03",
+        "ALEKS M5-L5-4.07",
+        "ALEKS M5-L5-4.08",
+        "ALEKS M5-L5-4.09",
+        "ALEKS M5-L5-4.10",
+        "ALEKS M5-L5-4.11",
+        "ALEKS M5-L5-4.12",
+        "ALEKS M5-L5-4.13",
+        "ALEKS M5-L5-4.14",
+        "ALEKS M5-L5-4.15",
+        "ALEKS M5-L5-4.16",
+        "ALEKS M5-L5-4.17"
+      ],
+      "notes": "Recognition, graphing, and explicit-term generation.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 5f with one retrieval prompt tied to 5-4.",
+        "conceptDevelopment": "Use 5-4, Examples 1-3 — Identify Geometric Sequences; Graph Geometric Sequences; Find the nth Term to develop: Generate geometric sequences..",
+        "guidedPractice": "Students complete a scaffolded problem modeled on 5-4, Examples 1-3 — Identify Geometric Sequences; Graph Geometric Sequences; Find the nth Term; teacher checks notation and reasoning.",
+        "independentPractice": "Students complete aligned ALEKS/SRS practice: ALEKS M5-L5-4.01, ALEKS M5-L5-4.02, ALEKS M5-L5-4.03, ALEKS M5-L5-4.07, ALEKS M5-L5-4.08, ALEKS M5-L5-4.09, ALEKS M5-L5-4.10, ALEKS M5-L5-4.11, ALEKS M5-L5-4.12, ALEKS M5-L5-4.13, ALEKS M5-L5-4.14, ALEKS M5-L5-4.15, ALEKS M5-L5-4.16, ALEKS M5-L5-4.17.",
+        "assessment": "Exit ticket: one fresh problem assessing 5f and one short explanation prompt.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with generate geometric sequences.."
+      }
+    },
+    {
+      "periodId": "m05-p10",
+      "module": 5,
+      "period": 10,
+      "dayType": "instruction",
+      "sourceLesson": "5-4",
+      "objectiveCode": "5f",
+      "objective": "Generate geometric sequences.",
+      "workedExamples": "5-4, Examples 4-6 — Write an Equation for the nth Term; Recursive and Explicit Formulas; Find Geometric Means",
+      "embeddedObjectives": [],
+      "aleksSrsPractice": [
+        "ALEKS M5-L5-4.04",
+        "ALEKS M5-L5-4.05",
+        "ALEKS M5-L5-4.06",
+        "ALEKS M5-L5-4.18",
+        "ALEKS M5-L5-4.19",
+        "ALEKS M5-L5-4.20",
+        "ALEKS M5-L5-4.21"
+      ],
+      "notes": "Recursive/explicit forms and geometric-mean structure.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 5f with one retrieval prompt tied to 5-4.",
+        "conceptDevelopment": "Use 5-4, Examples 4-6 — Write an Equation for the nth Term; Recursive and Explicit Formulas; Find Geometric Means to develop: Generate geometric sequences..",
+        "guidedPractice": "Students complete a scaffolded problem modeled on 5-4, Examples 4-6 — Write an Equation for the nth Term; Recursive and Explicit Formulas; Find Geometric Means; teacher checks notation and reasoning.",
+        "independentPractice": "Students complete aligned ALEKS/SRS practice: ALEKS M5-L5-4.04, ALEKS M5-L5-4.05, ALEKS M5-L5-4.06, ALEKS M5-L5-4.18, ALEKS M5-L5-4.19, ALEKS M5-L5-4.20, ALEKS M5-L5-4.21.",
+        "assessment": "Exit ticket: one fresh problem assessing 5f and one short explanation prompt.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with generate geometric sequences.."
+      }
+    },
+    {
+      "periodId": "m05-p11",
+      "module": 5,
+      "period": 11,
+      "dayType": "instruction",
+      "sourceLesson": "5-4",
+      "objectiveCode": "5g",
+      "objective": "Find sums of geometric series.",
+      "workedExamples": "5-4, Example 7 — Find the Sum of a Geometric Series",
+      "embeddedObjectives": [],
+      "aleksSrsPractice": [
+        "ALEKS M5-L5-4.22"
+      ],
+      "notes": "First dedicated series-summation day with formula structure and setup.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 5g with one retrieval prompt tied to 5-4.",
+        "conceptDevelopment": "Use 5-4, Example 7 — Find the Sum of a Geometric Series to develop: Find sums of geometric series..",
+        "guidedPractice": "Students complete a scaffolded problem modeled on 5-4, Example 7 — Find the Sum of a Geometric Series; teacher checks notation and reasoning.",
+        "independentPractice": "Students complete aligned ALEKS/SRS practice: ALEKS M5-L5-4.22.",
+        "assessment": "Exit ticket: one fresh problem assessing 5g and one short explanation prompt.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with find sums of geometric series.."
+      }
+    },
+    {
+      "periodId": "m05-p12",
+      "module": 5,
+      "period": 12,
+      "dayType": "instruction",
+      "sourceLesson": "5-4",
+      "objectiveCode": "5g",
+      "objective": "Find sums of geometric series.",
+      "workedExamples": "5-4, Examples 8-9 — Find the First Term in a Series; Sum in Sigma Notation",
+      "embeddedObjectives": [],
+      "aleksSrsPractice": [],
+      "srsSubstitute": "Generate worked-example-derived SRS items from 5-4, Examples 8-9 — Find the First Term in a Series; Sum in Sigma Notation.",
+      "notes": "Inverse series reasoning and sigma-notation summation.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 5g with one retrieval prompt tied to 5-4.",
+        "conceptDevelopment": "Use 5-4, Examples 8-9 — Find the First Term in a Series; Sum in Sigma Notation to develop: Find sums of geometric series..",
+        "guidedPractice": "Students complete a scaffolded problem modeled on 5-4, Examples 8-9 — Find the First Term in a Series; Sum in Sigma Notation; teacher checks notation and reasoning.",
+        "independentPractice": "Students complete worked-example-derived SRS practice because no direct ALEKS export is available.",
+        "assessment": "Exit ticket: one fresh problem assessing 5g and one short explanation prompt.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with find sums of geometric series.."
+      }
+    },
+    {
+      "periodId": "m05-p13",
+      "module": 5,
+      "period": 13,
+      "dayType": "mastery",
+      "notes": "Mastery cycle on `5f-5g`.",
+      "nonInstructionArtifact": {
+        "artifactType": "mastery",
+        "objectiveScope": "Mastery cycle on `5f-5g`.",
+        "srsSources": [
+          "worked-example-derived practice",
+          "ALEKS topic practice where available",
+          "prior-unit spiral review"
+        ],
+        "remediationGrouping": "Group students by recent objective evidence and misconception patterns.",
+        "extensionOptions": "Offer synthesis problems that combine current objectives with prior modules.",
+        "evidence": "Student completes due SRS items and submits one corrected-error reflection."
+      }
+    },
+    {
+      "periodId": "m05-p14",
+      "module": 5,
+      "period": 14,
+      "dayType": "instruction",
+      "sourceLesson": "5-5",
+      "objectiveCode": "5h",
+      "objective": "Choose the best function type to model sets of data.",
+      "workedExamples": "5-5, Examples 1-2 — Examine Scatter Plots; Model Data by Using Technology",
+      "embeddedObjectives": [],
+      "aleksSrsPractice": [
+        "ALEKS M5-L5-5.01",
+        "ALEKS M5-L5-5.02",
+        "ALEKS M5-L5-5.03",
+        "ALEKS M5-L5-5.04",
+        "ALEKS M5-L5-5.05",
+        "ALEKS M5-L5-5.06",
+        "ALEKS M5-L5-5.07",
+        "ALEKS M5-L5-5.08",
+        "ALEKS M5-L5-5.09",
+        "ALEKS M5-L5-5.10",
+        "ALEKS M5-L5-5.11",
+        "ALEKS M5-L5-5.12",
+        "ALEKS M5-L5-5.13",
+        "ALEKS M5-L5-5.14"
+      ],
+      "notes": "Model-family choice, regression fit, and interpretation of `r^2`.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 5h with one retrieval prompt tied to 5-5.",
+        "conceptDevelopment": "Use 5-5, Examples 1-2 — Examine Scatter Plots; Model Data by Using Technology to develop: Choose the best function type to model sets of data..",
+        "guidedPractice": "Students complete a scaffolded problem modeled on 5-5, Examples 1-2 — Examine Scatter Plots; Model Data by Using Technology; teacher checks notation and reasoning.",
+        "independentPractice": "Students complete aligned ALEKS/SRS practice: ALEKS M5-L5-5.01, ALEKS M5-L5-5.02, ALEKS M5-L5-5.03, ALEKS M5-L5-5.04, ALEKS M5-L5-5.05, ALEKS M5-L5-5.06, ALEKS M5-L5-5.07, ALEKS M5-L5-5.08, ALEKS M5-L5-5.09, ALEKS M5-L5-5.10, ALEKS M5-L5-5.11, ALEKS M5-L5-5.12, ALEKS M5-L5-5.13, ALEKS M5-L5-5.14.",
+        "assessment": "Exit ticket: one fresh problem assessing 5h and one short explanation prompt.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with choose the best function type to model sets of data.."
+      }
+    },
+    {
+      "periodId": "m05-p15",
+      "module": 5,
+      "period": 15,
+      "dayType": "jigsaw",
+      "notes": "Stretch-problem session built from geometric-series and modeling examples.",
+      "nonInstructionArtifact": {
+        "artifactType": "jigsaw",
+        "groupTask": "Stretch-problem session built from geometric-series and modeling examples.",
+        "sourceWorkedExamples": "Use the prior instruction periods named in the notes as the problem bank.",
+        "deliverable": "Group solution poster or shared explanation with one strategy comparison.",
+        "facilitationNotes": "Assign roles for graphing, algebra, checking, and explanation.",
+        "completionCriteria": "Correct method, accurate result, clear justification, and response to peer question."
+      }
+    },
+    {
+      "periodId": "m05-p16",
+      "module": 5,
+      "period": 16,
+      "dayType": "mastery",
+      "notes": "Module-wide differentiated SRS practice across Module 5 objectives.",
+      "nonInstructionArtifact": {
+        "artifactType": "mastery",
+        "objectiveScope": "Module-wide differentiated SRS practice across Module 5 objectives.",
+        "srsSources": [
+          "worked-example-derived practice",
+          "ALEKS topic practice where available",
+          "prior-unit spiral review"
+        ],
+        "remediationGrouping": "Group students by recent objective evidence and misconception patterns.",
+        "extensionOptions": "Offer synthesis problems that combine current objectives with prior modules.",
+        "evidence": "Student completes due SRS items and submits one corrected-error reflection."
+      }
+    },
+    {
+      "periodId": "m05-p17",
+      "module": 5,
+      "period": 17,
+      "dayType": "review",
+      "notes": "Module 5 review across `5a-5h`.",
+      "nonInstructionArtifact": {
+        "artifactType": "review",
+        "objectiveCoverage": "Module 5 review across `5a-5h`.",
+        "reviewActivities": [
+          "mixed retrieval set",
+          "misconception sort",
+          "student-selected retry set"
+        ],
+        "misconceptionTargets": "Use recent mastery and SRS evidence to select the highest-frequency errors.",
+        "readinessCheck": "Short diagnostic covering representative module objectives."
+      }
+    },
+    {
+      "periodId": "m05-p18",
+      "module": 5,
+      "period": 18,
+      "dayType": "test",
+      "notes": "Module 5 assessment.",
+      "nonInstructionArtifact": {
+        "artifactType": "test",
+        "objectiveCoverage": "Module 5 assessment.",
+        "assessmentStructure": [
+          "fluency section",
+          "conceptual reasoning section",
+          "modeling/application section"
+        ],
+        "gradingExpectations": "Grade against module objectives and record evidence for mastery updates.",
+        "retakeRelationship": "Retake eligibility follows the course mastery policy after targeted remediation."
+      }
+    }
+  ]
+}

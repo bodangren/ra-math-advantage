@@ -1,0 +1,547 @@
+{
+  "schemaVersion": "class-period-package.v1",
+  "module": 9,
+  "generatedFrom": "curriculum/module-9-class-period-plan.md",
+  "periods": [
+    {
+      "periodId": "m09-p01",
+      "module": 9,
+      "period": 1,
+      "dayType": "instruction",
+      "sourceLesson": "9-1",
+      "objectiveCode": "9a",
+      "objective": "Draw angles in standard position and identify coterminal angles.",
+      "workedExamples": "9-1, Examples 1-3 — Draw an Angle in Standard Position; Draw an Angle with More Than One Rotation; Identify Coterminal Angles",
+      "embeddedObjectives": [],
+      "aleksSrsPractice": [
+        "ALEKS M9-L9-1.02",
+        "ALEKS M9-L9-1.03"
+      ],
+      "notes": "Angle position, rotation, and coterminal structure.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 9a with one retrieval prompt tied to 9-1.",
+        "conceptDevelopment": "Use 9-1, Examples 1-3 — Draw an Angle in Standard Position; Draw an Angle with More Than One Rotation; Identify Coterminal Angles to develop: Draw angles in standard position and identify coterminal angles..",
+        "guidedPractice": "Students complete a scaffolded problem modeled on 9-1, Examples 1-3 — Draw an Angle in Standard Position; Draw an Angle with More Than One Rotation; Identify Coterminal Angles; teacher checks notation and reasoning.",
+        "independentPractice": "Students complete aligned ALEKS/SRS practice: ALEKS M9-L9-1.02, ALEKS M9-L9-1.03.",
+        "assessment": "Exit ticket: one fresh problem assessing 9a and one short explanation prompt.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with draw angles in standard position and identify coterminal angles.."
+      }
+    },
+    {
+      "periodId": "m09-p02",
+      "module": 9,
+      "period": 2,
+      "dayType": "instruction",
+      "sourceLesson": "9-1",
+      "objectiveCode": "9b",
+      "objective": "Convert between degree and radian measures and find arc lengths by using central angles.",
+      "workedExamples": "9-1, Examples 4-6 — Convert Degrees to Radians; Convert Radians to Degrees; Find Arc Length",
+      "embeddedObjectives": [],
+      "aleksSrsPractice": [
+        "ALEKS M9-L9-1.01",
+        "ALEKS M9-L9-1.04"
+      ],
+      "notes": "Degree/radian conversion and central-angle arc-length work.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 9b with one retrieval prompt tied to 9-1.",
+        "conceptDevelopment": "Use 9-1, Examples 4-6 — Convert Degrees to Radians; Convert Radians to Degrees; Find Arc Length to develop: Convert between degree and radian measures and find arc lengths by using central angles..",
+        "guidedPractice": "Students complete a scaffolded problem modeled on 9-1, Examples 4-6 — Convert Degrees to Radians; Convert Radians to Degrees; Find Arc Length; teacher checks notation and reasoning.",
+        "independentPractice": "Students complete aligned ALEKS/SRS practice: ALEKS M9-L9-1.01, ALEKS M9-L9-1.04.",
+        "assessment": "Exit ticket: one fresh problem assessing 9b and one short explanation prompt.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with convert between degree and radian measures and find arc lengths by using central angles.."
+      }
+    },
+    {
+      "periodId": "m09-p03",
+      "module": 9,
+      "period": 3,
+      "dayType": "mastery",
+      "notes": "Mastery cycle on `9a-9b`.",
+      "nonInstructionArtifact": {
+        "artifactType": "mastery",
+        "objectiveScope": "Mastery cycle on `9a-9b`.",
+        "srsSources": [
+          "worked-example-derived practice",
+          "ALEKS topic practice where available",
+          "prior-unit spiral review"
+        ],
+        "remediationGrouping": "Group students by recent objective evidence and misconception patterns.",
+        "extensionOptions": "Offer synthesis problems that combine current objectives with prior modules.",
+        "evidence": "Student completes due SRS items and submits one corrected-error reflection."
+      }
+    },
+    {
+      "periodId": "m09-p04",
+      "module": 9,
+      "period": 4,
+      "dayType": "instruction",
+      "sourceLesson": "9-2",
+      "objectiveCode": "9c",
+      "objective": "Find values of trigonometric functions for acute angles.",
+      "workedExamples": "9-2, Examples 1-2 — Evaluate Trigonometric Functions; Find Trigonometric Ratios",
+      "embeddedObjectives": [],
+      "aleksSrsPractice": [
+        "ALEKS M9-L9-2.01",
+        "ALEKS M9-L9-2.02",
+        "ALEKS M9-L9-2.03",
+        "ALEKS M9-L9-2.04",
+        "ALEKS M9-L9-2.05",
+        "ALEKS M9-L9-2.06",
+        "ALEKS M9-L9-2.07",
+        "ALEKS M9-L9-2.08",
+        "ALEKS M9-L9-2.09",
+        "ALEKS M9-L9-2.10"
+      ],
+      "notes": "Right-triangle trig for acute angles.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 9c with one retrieval prompt tied to 9-2.",
+        "conceptDevelopment": "Use 9-2, Examples 1-2 — Evaluate Trigonometric Functions; Find Trigonometric Ratios to develop: Find values of trigonometric functions for acute angles..",
+        "guidedPractice": "Students complete a scaffolded problem modeled on 9-2, Examples 1-2 — Evaluate Trigonometric Functions; Find Trigonometric Ratios; teacher checks notation and reasoning.",
+        "independentPractice": "Students complete aligned ALEKS/SRS practice: ALEKS M9-L9-2.01, ALEKS M9-L9-2.02, ALEKS M9-L9-2.03, ALEKS M9-L9-2.04, ALEKS M9-L9-2.05, ALEKS M9-L9-2.06, ALEKS M9-L9-2.07, ALEKS M9-L9-2.08, ALEKS M9-L9-2.09, ALEKS M9-L9-2.10.",
+        "assessment": "Exit ticket: one fresh problem assessing 9c and one short explanation prompt.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with find values of trigonometric functions for acute angles.."
+      }
+    },
+    {
+      "periodId": "m09-p05",
+      "module": 9,
+      "period": 5,
+      "dayType": "instruction",
+      "sourceLesson": "9-2",
+      "objectiveCode": "9d",
+      "objective": "Find values of trigonometric functions of general angles.",
+      "workedExamples": "9-2, Examples 3-4 — Evaluate Trigonometric Functions Given a Point; Evaluate Trigonometric Functions of Quadrantal Angles",
+      "embeddedObjectives": [],
+      "aleksSrsPractice": [
+        "ALEKS M9-L9-2.16"
+      ],
+      "notes": "General-angle evaluation using coordinates and quadrantal cases.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 9d with one retrieval prompt tied to 9-2.",
+        "conceptDevelopment": "Use 9-2, Examples 3-4 — Evaluate Trigonometric Functions Given a Point; Evaluate Trigonometric Functions of Quadrantal Angles to develop: Find values of trigonometric functions of general angles..",
+        "guidedPractice": "Students complete a scaffolded problem modeled on 9-2, Examples 3-4 — Evaluate Trigonometric Functions Given a Point; Evaluate Trigonometric Functions of Quadrantal Angles; teacher checks notation and reasoning.",
+        "independentPractice": "Students complete aligned ALEKS/SRS practice: ALEKS M9-L9-2.16.",
+        "assessment": "Exit ticket: one fresh problem assessing 9d and one short explanation prompt.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with find values of trigonometric functions of general angles.."
+      }
+    },
+    {
+      "periodId": "m09-p06",
+      "module": 9,
+      "period": 6,
+      "dayType": "instruction",
+      "sourceLesson": "9-2",
+      "objectiveCode": "9e",
+      "objective": "Find values of trigonometric functions by using reference angles.",
+      "workedExamples": "9-2, Examples 5-7 — Find Reference Angles; Use a Reference Angle to Find a Trigonometric Value; Use Trigonometric Functions",
+      "embeddedObjectives": [],
+      "aleksSrsPractice": [
+        "ALEKS M9-L9-2.11",
+        "ALEKS M9-L9-2.12",
+        "ALEKS M9-L9-2.13",
+        "ALEKS M9-L9-2.14",
+        "ALEKS M9-L9-2.15"
+      ],
+      "notes": "Reference-angle exact values and contextual trig application.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 9e with one retrieval prompt tied to 9-2.",
+        "conceptDevelopment": "Use 9-2, Examples 5-7 — Find Reference Angles; Use a Reference Angle to Find a Trigonometric Value; Use Trigonometric Functions to develop: Find values of trigonometric functions by using reference angles..",
+        "guidedPractice": "Students complete a scaffolded problem modeled on 9-2, Examples 5-7 — Find Reference Angles; Use a Reference Angle to Find a Trigonometric Value; Use Trigonometric Functions; teacher checks notation and reasoning.",
+        "independentPractice": "Students complete aligned ALEKS/SRS practice: ALEKS M9-L9-2.11, ALEKS M9-L9-2.12, ALEKS M9-L9-2.13, ALEKS M9-L9-2.14, ALEKS M9-L9-2.15.",
+        "assessment": "Exit ticket: one fresh problem assessing 9e and one short explanation prompt.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with find values of trigonometric functions by using reference angles.."
+      }
+    },
+    {
+      "periodId": "m09-p07",
+      "module": 9,
+      "period": 7,
+      "dayType": "jigsaw",
+      "notes": "Stretch-problem session built from angle-measure and reference-angle examples.",
+      "nonInstructionArtifact": {
+        "artifactType": "jigsaw",
+        "groupTask": "Stretch-problem session built from angle-measure and reference-angle examples.",
+        "sourceWorkedExamples": "Use the prior instruction periods named in the notes as the problem bank.",
+        "deliverable": "Group solution poster or shared explanation with one strategy comparison.",
+        "facilitationNotes": "Assign roles for graphing, algebra, checking, and explanation.",
+        "completionCriteria": "Correct method, accurate result, clear justification, and response to peer question."
+      }
+    },
+    {
+      "periodId": "m09-p08",
+      "module": 9,
+      "period": 8,
+      "dayType": "instruction",
+      "sourceLesson": "9-3",
+      "objectiveCode": "9f",
+      "objective": "Find values of trigonometric functions given a point on a unit circle or the measure of a special angle.",
+      "workedExamples": "9-3, Examples 1-2 and 5 — Find Sine and Cosine Given a Point on the Unit Circle; Find Trigonometric Values of Special Angles; Evaluate Trigonometric Expressions",
+      "embeddedObjectives": [],
+      "aleksSrsPractice": [
+        "ALEKS M9-L9-2.11",
+        "ALEKS M9-L9-2.12"
+      ],
+      "notes": "Unit-circle/special-angle values and periodic simplification.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 9f with one retrieval prompt tied to 9-3.",
+        "conceptDevelopment": "Use 9-3, Examples 1-2 and 5 — Find Sine and Cosine Given a Point on the Unit Circle; Find Trigonometric Values of Special Angles; Evaluate Trigonometric Expressions to develop: Find values of trigonometric functions given a point on a unit circle or the measure of a special angle..",
+        "guidedPractice": "Students complete a scaffolded problem modeled on 9-3, Examples 1-2 and 5 — Find Sine and Cosine Given a Point on the Unit Circle; Find Trigonometric Values of Special Angles; Evaluate Trigonometric Expressions; teacher checks notation and reasoning.",
+        "independentPractice": "Students complete aligned ALEKS/SRS practice: ALEKS M9-L9-2.11, ALEKS M9-L9-2.12.",
+        "assessment": "Exit ticket: one fresh problem assessing 9f and one short explanation prompt.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with find values of trigonometric functions given a point on a unit circle or the measure of a special angle.."
+      }
+    },
+    {
+      "periodId": "m09-p09",
+      "module": 9,
+      "period": 9,
+      "dayType": "instruction",
+      "sourceLesson": "9-3",
+      "objectiveCode": "9g",
+      "objective": "Find values of trigonometric functions that model periodic events.",
+      "workedExamples": "9-3, Example 3 and Apply Example 4 — Identify the Period of a Function; Graph Periodic Functions",
+      "embeddedObjectives": [],
+      "aleksSrsPractice": [
+        "ALEKS M9-L9-2.13"
+      ],
+      "notes": "Period identification and periodic-event modeling.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 9g with one retrieval prompt tied to 9-3.",
+        "conceptDevelopment": "Use 9-3, Example 3 and Apply Example 4 — Identify the Period of a Function; Graph Periodic Functions to develop: Find values of trigonometric functions that model periodic events..",
+        "guidedPractice": "Students complete a scaffolded problem modeled on 9-3, Example 3 and Apply Example 4 — Identify the Period of a Function; Graph Periodic Functions; teacher checks notation and reasoning.",
+        "independentPractice": "Students complete aligned ALEKS/SRS practice: ALEKS M9-L9-2.13.",
+        "assessment": "Exit ticket: one fresh problem assessing 9g and one short explanation prompt.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with find values of trigonometric functions that model periodic events.."
+      }
+    },
+    {
+      "periodId": "m09-p10",
+      "module": 9,
+      "period": 10,
+      "dayType": "mastery",
+      "notes": "Mastery cycle on `9c-9g`.",
+      "nonInstructionArtifact": {
+        "artifactType": "mastery",
+        "objectiveScope": "Mastery cycle on `9c-9g`.",
+        "srsSources": [
+          "worked-example-derived practice",
+          "ALEKS topic practice where available",
+          "prior-unit spiral review"
+        ],
+        "remediationGrouping": "Group students by recent objective evidence and misconception patterns.",
+        "extensionOptions": "Offer synthesis problems that combine current objectives with prior modules.",
+        "evidence": "Student completes due SRS items and submits one corrected-error reflection."
+      }
+    },
+    {
+      "periodId": "m09-p11",
+      "module": 9,
+      "period": 11,
+      "dayType": "instruction",
+      "sourceLesson": "9-4",
+      "objectiveCode": "9h",
+      "objective": "Graph and analyze sine and cosine functions.",
+      "workedExamples": "9-4, Examples 1-2 — Identify the Amplitude and Period from a Graph; Identify the Amplitude and Period from an Equation",
+      "embeddedObjectives": [],
+      "aleksSrsPractice": [
+        "ALEKS M9-L9-4.01",
+        "ALEKS M9-L9-4.02",
+        "ALEKS M9-L9-4.03",
+        "ALEKS M9-L9-4.04",
+        "ALEKS M9-L9-4.05"
+      ],
+      "notes": "First sine/cosine day focused on amplitude, period, and parameters.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 9h with one retrieval prompt tied to 9-4.",
+        "conceptDevelopment": "Use 9-4, Examples 1-2 — Identify the Amplitude and Period from a Graph; Identify the Amplitude and Period from an Equation to develop: Graph and analyze sine and cosine functions..",
+        "guidedPractice": "Students complete a scaffolded problem modeled on 9-4, Examples 1-2 — Identify the Amplitude and Period from a Graph; Identify the Amplitude and Period from an Equation; teacher checks notation and reasoning.",
+        "independentPractice": "Students complete aligned ALEKS/SRS practice: ALEKS M9-L9-4.01, ALEKS M9-L9-4.02, ALEKS M9-L9-4.03, ALEKS M9-L9-4.04, ALEKS M9-L9-4.05.",
+        "assessment": "Exit ticket: one fresh problem assessing 9h and one short explanation prompt.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with graph and analyze sine and cosine functions.."
+      }
+    },
+    {
+      "periodId": "m09-p12",
+      "module": 9,
+      "period": 12,
+      "dayType": "instruction",
+      "sourceLesson": "9-4",
+      "objectiveCode": "9h",
+      "objective": "Graph and analyze sine and cosine functions.",
+      "workedExamples": "9-4, Examples 3-5 — Graph a Sine Function; Graph a Cosine Function; Characteristics of the Sine and Cosine Functions",
+      "embeddedObjectives": [],
+      "aleksSrsPractice": [
+        "ALEKS M9-L9-4.01",
+        "ALEKS M9-L9-4.02",
+        "ALEKS M9-L9-4.03",
+        "ALEKS M9-L9-4.04",
+        "ALEKS M9-L9-4.05",
+        "ALEKS M9-L9-4.06"
+      ],
+      "notes": "Second sine/cosine day focused on graph construction and feature analysis.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 9h with one retrieval prompt tied to 9-4.",
+        "conceptDevelopment": "Use 9-4, Examples 3-5 — Graph a Sine Function; Graph a Cosine Function; Characteristics of the Sine and Cosine Functions to develop: Graph and analyze sine and cosine functions..",
+        "guidedPractice": "Students complete a scaffolded problem modeled on 9-4, Examples 3-5 — Graph a Sine Function; Graph a Cosine Function; Characteristics of the Sine and Cosine Functions; teacher checks notation and reasoning.",
+        "independentPractice": "Students complete aligned ALEKS/SRS practice: ALEKS M9-L9-4.01, ALEKS M9-L9-4.02, ALEKS M9-L9-4.03, ALEKS M9-L9-4.04, ALEKS M9-L9-4.05, ALEKS M9-L9-4.06.",
+        "assessment": "Exit ticket: one fresh problem assessing 9h and one short explanation prompt.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with graph and analyze sine and cosine functions.."
+      }
+    },
+    {
+      "periodId": "m09-p13",
+      "module": 9,
+      "period": 13,
+      "dayType": "instruction",
+      "sourceLesson": "9-4",
+      "objectiveCode": "9i",
+      "objective": "Model periodic real-world situations with sine and cosine functions.",
+      "workedExamples": "9-4, Example 6 — Model Periodic Situations",
+      "embeddedObjectives": [],
+      "aleksSrsPractice": [
+        "ALEKS M9-L9-4.07",
+        "ALEKS M9-L9-4.08"
+      ],
+      "notes": "Periodic modeling with amplitude/frequency/period interpretation.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 9i with one retrieval prompt tied to 9-4.",
+        "conceptDevelopment": "Use 9-4, Example 6 — Model Periodic Situations to develop: Model periodic real-world situations with sine and cosine functions..",
+        "guidedPractice": "Students complete a scaffolded problem modeled on 9-4, Example 6 — Model Periodic Situations; teacher checks notation and reasoning.",
+        "independentPractice": "Students complete aligned ALEKS/SRS practice: ALEKS M9-L9-4.07, ALEKS M9-L9-4.08.",
+        "assessment": "Exit ticket: one fresh problem assessing 9i and one short explanation prompt.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with model periodic real-world situations with sine and cosine functions.."
+      }
+    },
+    {
+      "periodId": "m09-p14",
+      "module": 9,
+      "period": 14,
+      "dayType": "mastery",
+      "notes": "Mastery cycle on `9h-9i`.",
+      "nonInstructionArtifact": {
+        "artifactType": "mastery",
+        "objectiveScope": "Mastery cycle on `9h-9i`.",
+        "srsSources": [
+          "worked-example-derived practice",
+          "ALEKS topic practice where available",
+          "prior-unit spiral review"
+        ],
+        "remediationGrouping": "Group students by recent objective evidence and misconception patterns.",
+        "extensionOptions": "Offer synthesis problems that combine current objectives with prior modules.",
+        "evidence": "Student completes due SRS items and submits one corrected-error reflection."
+      }
+    },
+    {
+      "periodId": "m09-p15",
+      "module": 9,
+      "period": 15,
+      "dayType": "instruction",
+      "sourceLesson": "9-5",
+      "objectiveCode": "9j",
+      "objective": "Graph and analyze tangent functions.",
+      "workedExamples": "9-5, Examples 1-2 — Graph a Tangent Function with a Dilation; Graph a Tangent Function with a Dilation and a Reflection",
+      "embeddedObjectives": [],
+      "aleksSrsPractice": [
+        "ALEKS M9-L9-5.01",
+        "ALEKS M9-L9-5.03"
+      ],
+      "notes": "Tangent period, asymptotes, and transformation behavior.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 9j with one retrieval prompt tied to 9-5.",
+        "conceptDevelopment": "Use 9-5, Examples 1-2 — Graph a Tangent Function with a Dilation; Graph a Tangent Function with a Dilation and a Reflection to develop: Graph and analyze tangent functions..",
+        "guidedPractice": "Students complete a scaffolded problem modeled on 9-5, Examples 1-2 — Graph a Tangent Function with a Dilation; Graph a Tangent Function with a Dilation and a Reflection; teacher checks notation and reasoning.",
+        "independentPractice": "Students complete aligned ALEKS/SRS practice: ALEKS M9-L9-5.01, ALEKS M9-L9-5.03.",
+        "assessment": "Exit ticket: one fresh problem assessing 9j and one short explanation prompt.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with graph and analyze tangent functions.."
+      }
+    },
+    {
+      "periodId": "m09-p16",
+      "module": 9,
+      "period": 16,
+      "dayType": "instruction",
+      "sourceLesson": "9-5",
+      "objectiveCode": "9k",
+      "objective": "Graph and analyze reciprocal trigonometric functions.",
+      "workedExamples": "9-5, Examples 3-5 — Graph a Cosecant Function; Graph a Cotangent Function; Apply a Reciprocal Trigonometric Function",
+      "embeddedObjectives": [],
+      "aleksSrsPractice": [
+        "ALEKS M9-L9-5.01",
+        "ALEKS M9-L9-5.02"
+      ],
+      "notes": "Reciprocal trig graphs and contextual feature analysis.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 9k with one retrieval prompt tied to 9-5.",
+        "conceptDevelopment": "Use 9-5, Examples 3-5 — Graph a Cosecant Function; Graph a Cotangent Function; Apply a Reciprocal Trigonometric Function to develop: Graph and analyze reciprocal trigonometric functions..",
+        "guidedPractice": "Students complete a scaffolded problem modeled on 9-5, Examples 3-5 — Graph a Cosecant Function; Graph a Cotangent Function; Apply a Reciprocal Trigonometric Function; teacher checks notation and reasoning.",
+        "independentPractice": "Students complete aligned ALEKS/SRS practice: ALEKS M9-L9-5.01, ALEKS M9-L9-5.02.",
+        "assessment": "Exit ticket: one fresh problem assessing 9k and one short explanation prompt.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with graph and analyze reciprocal trigonometric functions.."
+      }
+    },
+    {
+      "periodId": "m09-p17",
+      "module": 9,
+      "period": 17,
+      "dayType": "jigsaw",
+      "notes": "Stretch-problem session built from graphing, periodic-model, and reciprocal-trig examples.",
+      "nonInstructionArtifact": {
+        "artifactType": "jigsaw",
+        "groupTask": "Stretch-problem session built from graphing, periodic-model, and reciprocal-trig examples.",
+        "sourceWorkedExamples": "Use the prior instruction periods named in the notes as the problem bank.",
+        "deliverable": "Group solution poster or shared explanation with one strategy comparison.",
+        "facilitationNotes": "Assign roles for graphing, algebra, checking, and explanation.",
+        "completionCriteria": "Correct method, accurate result, clear justification, and response to peer question."
+      }
+    },
+    {
+      "periodId": "m09-p18",
+      "module": 9,
+      "period": 18,
+      "dayType": "instruction",
+      "sourceLesson": "9-6",
+      "objectiveCode": "9l",
+      "objective": "Graph horizontal translations of trigonometric functions.",
+      "workedExamples": "9-6, Examples 1-2 — Graph a Phase Shift; Graph a Transformation of a Trigonometric Function",
+      "embeddedObjectives": [],
+      "aleksSrsPractice": [],
+      "srsSubstitute": "Generate worked-example-derived SRS items from 9-6, Examples 1-2 — Graph a Phase Shift; Graph a Transformation of a Trigonometric Function.",
+      "notes": "Phase shift and horizontal-translation graphing.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 9l with one retrieval prompt tied to 9-6.",
+        "conceptDevelopment": "Use 9-6, Examples 1-2 — Graph a Phase Shift; Graph a Transformation of a Trigonometric Function to develop: Graph horizontal translations of trigonometric functions..",
+        "guidedPractice": "Students complete a scaffolded problem modeled on 9-6, Examples 1-2 — Graph a Phase Shift; Graph a Transformation of a Trigonometric Function; teacher checks notation and reasoning.",
+        "independentPractice": "Students complete worked-example-derived SRS practice because no direct ALEKS export is available.",
+        "assessment": "Exit ticket: one fresh problem assessing 9l and one short explanation prompt.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with graph horizontal translations of trigonometric functions.."
+      }
+    },
+    {
+      "periodId": "m09-p19",
+      "module": 9,
+      "period": 19,
+      "dayType": "instruction",
+      "sourceLesson": "9-6",
+      "objectiveCode": "9m",
+      "objective": "Graph vertical translations of trigonometric functions.",
+      "workedExamples": "9-6, Examples 3-5 — Graph a Vertical Shift; Model Translations of Trigonometric Functions; Write a Trigonometric Function from a Graph",
+      "embeddedObjectives": [],
+      "aleksSrsPractice": [
+        "ALEKS M9-L9-4.04",
+        "ALEKS M9-L9-4.06"
+      ],
+      "notes": "Vertical shifts, translated models, and graph-to-function writing.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 9m with one retrieval prompt tied to 9-6.",
+        "conceptDevelopment": "Use 9-6, Examples 3-5 — Graph a Vertical Shift; Model Translations of Trigonometric Functions; Write a Trigonometric Function from a Graph to develop: Graph vertical translations of trigonometric functions..",
+        "guidedPractice": "Students complete a scaffolded problem modeled on 9-6, Examples 3-5 — Graph a Vertical Shift; Model Translations of Trigonometric Functions; Write a Trigonometric Function from a Graph; teacher checks notation and reasoning.",
+        "independentPractice": "Students complete aligned ALEKS/SRS practice: ALEKS M9-L9-4.04, ALEKS M9-L9-4.06.",
+        "assessment": "Exit ticket: one fresh problem assessing 9m and one short explanation prompt.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with graph vertical translations of trigonometric functions.."
+      }
+    },
+    {
+      "periodId": "m09-p20",
+      "module": 9,
+      "period": 20,
+      "dayType": "mastery",
+      "notes": "Mastery cycle on `9j-9m`.",
+      "nonInstructionArtifact": {
+        "artifactType": "mastery",
+        "objectiveScope": "Mastery cycle on `9j-9m`.",
+        "srsSources": [
+          "worked-example-derived practice",
+          "ALEKS topic practice where available",
+          "prior-unit spiral review"
+        ],
+        "remediationGrouping": "Group students by recent objective evidence and misconception patterns.",
+        "extensionOptions": "Offer synthesis problems that combine current objectives with prior modules.",
+        "evidence": "Student completes due SRS items and submits one corrected-error reflection."
+      }
+    },
+    {
+      "periodId": "m09-p21",
+      "module": 9,
+      "period": 21,
+      "dayType": "instruction",
+      "sourceLesson": "9-7",
+      "objectiveCode": "9n",
+      "objective": "Find values of angle measures by using inverse trigonometric functions.",
+      "workedExamples": "9-7, Examples 1-2 — Evaluate Inverse Trigonometric Functions; Find a Trigonometric Value by Using a Calculator",
+      "embeddedObjectives": [],
+      "aleksSrsPractice": [
+        "ALEKS M9-L9-2.09",
+        "ALEKS M9-L9-2.10"
+      ],
+      "notes": "Inverse trig notation, principal values, and calculator use.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 9n with one retrieval prompt tied to 9-7.",
+        "conceptDevelopment": "Use 9-7, Examples 1-2 — Evaluate Inverse Trigonometric Functions; Find a Trigonometric Value by Using a Calculator to develop: Find values of angle measures by using inverse trigonometric functions..",
+        "guidedPractice": "Students complete a scaffolded problem modeled on 9-7, Examples 1-2 — Evaluate Inverse Trigonometric Functions; Find a Trigonometric Value by Using a Calculator; teacher checks notation and reasoning.",
+        "independentPractice": "Students complete aligned ALEKS/SRS practice: ALEKS M9-L9-2.09, ALEKS M9-L9-2.10.",
+        "assessment": "Exit ticket: one fresh problem assessing 9n and one short explanation prompt.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with find values of angle measures by using inverse trigonometric functions.."
+      }
+    },
+    {
+      "periodId": "m09-p22",
+      "module": 9,
+      "period": 22,
+      "dayType": "instruction",
+      "sourceLesson": "9-7",
+      "objectiveCode": "9n",
+      "objective": "Find values of angle measures by using inverse trigonometric functions.",
+      "workedExamples": "9-7, Examples 3-4 — Find an Angle Measure by Using a Graphing Calculator; Use Inverse Trigonometric Functions",
+      "embeddedObjectives": [],
+      "aleksSrsPractice": [
+        "ALEKS M9-L9-2.09",
+        "ALEKS M9-L9-2.10"
+      ],
+      "notes": "Angle-measure solving and applied inverse-trig interpretation.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 9n with one retrieval prompt tied to 9-7.",
+        "conceptDevelopment": "Use 9-7, Examples 3-4 — Find an Angle Measure by Using a Graphing Calculator; Use Inverse Trigonometric Functions to develop: Find values of angle measures by using inverse trigonometric functions..",
+        "guidedPractice": "Students complete a scaffolded problem modeled on 9-7, Examples 3-4 — Find an Angle Measure by Using a Graphing Calculator; Use Inverse Trigonometric Functions; teacher checks notation and reasoning.",
+        "independentPractice": "Students complete aligned ALEKS/SRS practice: ALEKS M9-L9-2.09, ALEKS M9-L9-2.10.",
+        "assessment": "Exit ticket: one fresh problem assessing 9n and one short explanation prompt.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with find values of angle measures by using inverse trigonometric functions.."
+      }
+    },
+    {
+      "periodId": "m09-p23",
+      "module": 9,
+      "period": 23,
+      "dayType": "review",
+      "notes": "Module 9 review across `9a-9n`.",
+      "nonInstructionArtifact": {
+        "artifactType": "review",
+        "objectiveCoverage": "Module 9 review across `9a-9n`.",
+        "reviewActivities": [
+          "mixed retrieval set",
+          "misconception sort",
+          "student-selected retry set"
+        ],
+        "misconceptionTargets": "Use recent mastery and SRS evidence to select the highest-frequency errors.",
+        "readinessCheck": "Short diagnostic covering representative module objectives."
+      }
+    },
+    {
+      "periodId": "m09-p24",
+      "module": 9,
+      "period": 24,
+      "dayType": "test",
+      "notes": "Module 9 assessment.",
+      "nonInstructionArtifact": {
+        "artifactType": "test",
+        "objectiveCoverage": "Module 9 assessment.",
+        "assessmentStructure": [
+          "fluency section",
+          "conceptual reasoning section",
+          "modeling/application section"
+        ],
+        "gradingExpectations": "Grade against module objectives and record evidence for mastery updates.",
+        "retakeRelationship": "Retake eligibility follows the course mastery policy after targeted remediation."
+      }
+    }
+  ]
+}

@@ -1,0 +1,235 @@
+{
+  "generatedAt": "2026-04-11T12:57:04.089Z",
+  "rootDir": "/Users/daniel.bodanske/Desktop/ra-integrated-math-3",
+  "summary": {
+    "moduleCount": 9,
+    "lessonCount": 52,
+    "objectiveCount": 105,
+    "plannedPeriods": {
+      "instruction": 108,
+      "mastery": 36,
+      "jigsaw": 18,
+      "review": 9,
+      "test": 9
+    },
+    "aleks": [
+      {
+        "module": 1,
+        "declaredTopics": 59,
+        "listedTopics": 59,
+        "documentedException": false
+      },
+      {
+        "module": 2,
+        "declaredTopics": 23,
+        "listedTopics": 13,
+        "documentedException": true
+      },
+      {
+        "module": 3,
+        "declaredTopics": 30,
+        "listedTopics": 4,
+        "documentedException": true
+      },
+      {
+        "module": 4,
+        "declaredTopics": 92,
+        "listedTopics": 88,
+        "documentedException": true
+      },
+      {
+        "module": 5,
+        "declaredTopics": 59,
+        "listedTopics": 43,
+        "documentedException": true
+      },
+      {
+        "module": 6,
+        "declaredTopics": 29,
+        "listedTopics": 21,
+        "documentedException": true
+      },
+      {
+        "module": 7,
+        "declaredTopics": 86,
+        "listedTopics": 82,
+        "documentedException": true
+      },
+      {
+        "module": 8,
+        "declaredTopics": 31,
+        "listedTopics": 31,
+        "documentedException": false
+      },
+      {
+        "module": 9,
+        "declaredTopics": 45,
+        "listedTopics": 31,
+        "documentedException": true
+      }
+    ],
+    "phasePackageCount": 180,
+    "activityMappingCount": 919
+  },
+  "checks": [
+    {
+      "id": "module-count",
+      "status": "pass",
+      "message": "Nine module overview files are present.",
+      "details": {
+        "expected": 9,
+        "actual": 9
+      }
+    },
+    {
+      "id": "lesson-count",
+      "status": "pass",
+      "message": "Fifty-two lesson source files are present.",
+      "details": {
+        "expected": 52,
+        "actual": 52
+      }
+    },
+    {
+      "id": "objective-count",
+      "status": "pass",
+      "message": "One hundred five course objectives are present.",
+      "details": {
+        "expected": 105,
+        "actual": 105
+      }
+    },
+    {
+      "id": "class-period-budget",
+      "status": "pass",
+      "message": "Class-period budget matches the 180-day planning target.",
+      "details": {
+        "expected": {
+          "instruction": 108,
+          "mastery": 36,
+          "jigsaw": 18,
+          "review": 9,
+          "test": 9
+        },
+        "actual": {
+          "instruction": 108,
+          "mastery": 36,
+          "jigsaw": 18,
+          "review": 9,
+          "test": 9
+        }
+      }
+    },
+    {
+      "id": "lesson-goals",
+      "status": "pass",
+      "message": "All lesson sources include Today’s Goal(s).",
+      "details": []
+    },
+    {
+      "id": "lesson-objective-alignment",
+      "status": "pass",
+      "message": "All lesson sources include Objective Alignment.",
+      "details": []
+    },
+    {
+      "id": "lesson-heading-hierarchy",
+      "status": "pass",
+      "message": "Lesson heading hierarchy is normalized.",
+      "details": []
+    },
+    {
+      "id": "lesson-placeholders",
+      "status": "pass",
+      "message": "No unresolved online-only placeholders remain.",
+      "details": []
+    },
+    {
+      "id": "lesson-truncations",
+      "status": "pass",
+      "message": "No known truncation patterns remain.",
+      "details": []
+    },
+    {
+      "id": "aleks-coverage",
+      "status": "pass",
+      "message": "ALEKS declared/listed topic mismatches are resolved or explicitly documented.",
+      "details": [
+        {
+          "module": 1,
+          "declaredTopics": 59,
+          "listedTopics": 59,
+          "documentedException": false
+        },
+        {
+          "module": 2,
+          "declaredTopics": 23,
+          "listedTopics": 13,
+          "documentedException": true
+        },
+        {
+          "module": 3,
+          "declaredTopics": 30,
+          "listedTopics": 4,
+          "documentedException": true
+        },
+        {
+          "module": 4,
+          "declaredTopics": 92,
+          "listedTopics": 88,
+          "documentedException": true
+        },
+        {
+          "module": 5,
+          "declaredTopics": 59,
+          "listedTopics": 43,
+          "documentedException": true
+        },
+        {
+          "module": 6,
+          "declaredTopics": 29,
+          "listedTopics": 21,
+          "documentedException": true
+        },
+        {
+          "module": 7,
+          "declaredTopics": 86,
+          "listedTopics": 82,
+          "documentedException": true
+        },
+        {
+          "module": 8,
+          "declaredTopics": 31,
+          "listedTopics": 31,
+          "documentedException": false
+        },
+        {
+          "module": 9,
+          "declaredTopics": 45,
+          "listedTopics": 31,
+          "documentedException": true
+        }
+      ]
+    },
+    {
+      "id": "class-period-packages",
+      "status": "pass",
+      "message": "All planned periods have valid class-period package artifacts.",
+      "details": {
+        "packageErrors": [],
+        "missingPackages": [],
+        "invalidInstructionPackages": []
+      }
+    },
+    {
+      "id": "practice-v1-activity-map",
+      "status": "pass",
+      "message": "All class-period packages have practice.v1 activity mappings.",
+      "details": {
+        "missingActivityPeriods": [],
+        "invalidActivities": []
+      }
+    }
+  ],
+  "pass": true
+}

@@ -281,11 +281,9 @@ So the result is consistent with the given percent remaining.
 
 ### Check
 
-An archaeologist estimates that a prehistoric painting contains about `2.34%` as much Carbon-14 as it would have contained when it was painted. Use
+An archaeologist estimates that a prehistoric painting contains about `2.34%` as much Carbon-14 as it would have contained when it was painted. Use the decay model below to determine how long ago the painting was created.
 
 `y = ae^(-0.00012t)`
-
-to determine how long ago the painting was created.
 
 ---
 

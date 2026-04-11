@@ -1,0 +1,329 @@
+{
+  "schemaVersion": "class-period-package.v1",
+  "module": 3,
+  "generatedFrom": "curriculum/module-3-class-period-plan.md",
+  "periods": [
+    {
+      "periodId": "m03-p01",
+      "module": 3,
+      "period": 1,
+      "dayType": "instruction",
+      "sourceLesson": "3-1",
+      "objectiveCode": "3a",
+      "objective": "Solve polynomial equations by graphing.",
+      "workedExamples": "3-1, Examples 1-2 — Solve a Polynomial Equation by Graphing; Solve a Polynomial Equation by Using a System",
+      "embeddedObjectives": [],
+      "aleksSrsPractice": [
+        "ALEKS M3-L3-1.01",
+        "ALEKS M3-L3-1.02",
+        "ALEKS M3-L3-1.03",
+        "ALEKS M3-L3-1.04"
+      ],
+      "notes": "Graphing-based solution work, including modeled/system interpretation.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 3a with one retrieval prompt tied to 3-1.",
+        "conceptDevelopment": "Use 3-1, Examples 1-2 — Solve a Polynomial Equation by Graphing; Solve a Polynomial Equation by Using a System to develop: Solve polynomial equations by graphing..",
+        "guidedPractice": "Students complete a scaffolded problem modeled on 3-1, Examples 1-2 — Solve a Polynomial Equation by Graphing; Solve a Polynomial Equation by Using a System; teacher checks notation and reasoning.",
+        "independentPractice": "Students complete aligned ALEKS/SRS practice: ALEKS M3-L3-1.01, ALEKS M3-L3-1.02, ALEKS M3-L3-1.03, ALEKS M3-L3-1.04.",
+        "assessment": "Exit ticket: one fresh problem assessing 3a and one short explanation prompt.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with solve polynomial equations by graphing.."
+      }
+    },
+    {
+      "periodId": "m03-p02",
+      "module": 3,
+      "period": 2,
+      "dayType": "mastery",
+      "notes": "Mastery cycle on `3a` and readiness for algebraic solution methods.",
+      "nonInstructionArtifact": {
+        "artifactType": "mastery",
+        "objectiveScope": "Mastery cycle on `3a` and readiness for algebraic solution methods.",
+        "srsSources": [
+          "worked-example-derived practice",
+          "ALEKS topic practice where available",
+          "prior-unit spiral review"
+        ],
+        "remediationGrouping": "Group students by recent objective evidence and misconception patterns.",
+        "extensionOptions": "Offer synthesis problems that combine current objectives with prior modules.",
+        "evidence": "Student completes due SRS items and submits one corrected-error reflection."
+      }
+    },
+    {
+      "periodId": "m03-p03",
+      "module": 3,
+      "period": 3,
+      "dayType": "instruction",
+      "sourceLesson": "3-2",
+      "objectiveCode": "3b",
+      "objective": "Solve polynomial equations by factoring.",
+      "workedExamples": "3-2, Examples 1-5 — Factor Sums and Differences of Cubes; Factor by Grouping; Combine Cubes and Squares; Solve a Polynomial Equation by Factoring; Write and Solve a Polynomial Equation by Factoring",
+      "embeddedObjectives": [],
+      "aleksSrsPractice": [],
+      "srsSubstitute": "Generate worked-example-derived SRS items from 3-2, Examples 1-5 — Factor Sums and Differences of Cubes; Factor by Grouping; Combine Cubes and Squares; Solve a Polynomial Equation by Factoring; Write and Solve a Polynomial Equation by Factoring.",
+      "notes": "Factoring structures and polynomial-equation solving.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 3b with one retrieval prompt tied to 3-2.",
+        "conceptDevelopment": "Use 3-2, Examples 1-5 — Factor Sums and Differences of Cubes; Factor by Grouping; Combine Cubes and Squares; Solve a Polynomial Equation by Factoring; Write and Solve a Polynomial Equation by Factoring to develop: Solve polynomial equations by factoring..",
+        "guidedPractice": "Students complete a scaffolded problem modeled on 3-2, Examples 1-5 — Factor Sums and Differences of Cubes; Factor by Grouping; Combine Cubes and Squares; Solve a Polynomial Equation by Factoring; Write and Solve a Polynomial Equation by Factoring; teacher checks notation and reasoning.",
+        "independentPractice": "Students complete worked-example-derived SRS practice because no direct ALEKS export is available.",
+        "assessment": "Exit ticket: one fresh problem assessing 3b and one short explanation prompt.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with solve polynomial equations by factoring.."
+      }
+    },
+    {
+      "periodId": "m03-p04",
+      "module": 3,
+      "period": 4,
+      "dayType": "instruction",
+      "sourceLesson": "3-2",
+      "objectiveCode": "3c",
+      "objective": "Solve polynomial equations by writing them in quadratic form and factoring.",
+      "workedExamples": "3-2, Examples 6-7 — Write Expressions in Quadratic Form; Solve Equations in Quadratic Form",
+      "embeddedObjectives": [],
+      "aleksSrsPractice": [],
+      "srsSubstitute": "Generate worked-example-derived SRS items from 3-2, Examples 6-7 — Write Expressions in Quadratic Form; Solve Equations in Quadratic Form.",
+      "notes": "Quadratic-form rewriting and solving, including non-real solutions.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 3c with one retrieval prompt tied to 3-2.",
+        "conceptDevelopment": "Use 3-2, Examples 6-7 — Write Expressions in Quadratic Form; Solve Equations in Quadratic Form to develop: Solve polynomial equations by writing them in quadratic form and factoring..",
+        "guidedPractice": "Students complete a scaffolded problem modeled on 3-2, Examples 6-7 — Write Expressions in Quadratic Form; Solve Equations in Quadratic Form; teacher checks notation and reasoning.",
+        "independentPractice": "Students complete worked-example-derived SRS practice because no direct ALEKS export is available.",
+        "assessment": "Exit ticket: one fresh problem assessing 3c and one short explanation prompt.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with solve polynomial equations by writing them in quadratic form and factoring.."
+      }
+    },
+    {
+      "periodId": "m03-p05",
+      "module": 3,
+      "period": 5,
+      "dayType": "jigsaw",
+      "notes": "Stretch-problem session built from factoring structures and quadratic-form examples.",
+      "nonInstructionArtifact": {
+        "artifactType": "jigsaw",
+        "groupTask": "Stretch-problem session built from factoring structures and quadratic-form examples.",
+        "sourceWorkedExamples": "Use the prior instruction periods named in the notes as the problem bank.",
+        "deliverable": "Group solution poster or shared explanation with one strategy comparison.",
+        "facilitationNotes": "Assign roles for graphing, algebra, checking, and explanation.",
+        "completionCriteria": "Correct method, accurate result, clear justification, and response to peer question."
+      }
+    },
+    {
+      "periodId": "m03-p06",
+      "module": 3,
+      "period": 6,
+      "dayType": "mastery",
+      "notes": "Mastery cycle on `3b-3c`.",
+      "nonInstructionArtifact": {
+        "artifactType": "mastery",
+        "objectiveScope": "Mastery cycle on `3b-3c`.",
+        "srsSources": [
+          "worked-example-derived practice",
+          "ALEKS topic practice where available",
+          "prior-unit spiral review"
+        ],
+        "remediationGrouping": "Group students by recent objective evidence and misconception patterns.",
+        "extensionOptions": "Offer synthesis problems that combine current objectives with prior modules.",
+        "evidence": "Student completes due SRS items and submits one corrected-error reflection."
+      }
+    },
+    {
+      "periodId": "m03-p07",
+      "module": 3,
+      "period": 7,
+      "dayType": "instruction",
+      "sourceLesson": "3-3",
+      "objectiveCode": "3d",
+      "objective": "Prove polynomial identities and use them to describe numerical relationships.",
+      "workedExamples": "3-3, Examples 1-2 — Transform One Side; Use Polynomial Identities",
+      "embeddedObjectives": [],
+      "aleksSrsPractice": [],
+      "srsSubstitute": "Generate worked-example-derived SRS items from 3-3, Examples 1-2 — Transform One Side; Use Polynomial Identities.",
+      "notes": "Proof, transformation, and interpretation day.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 3d with one retrieval prompt tied to 3-3.",
+        "conceptDevelopment": "Use 3-3, Examples 1-2 — Transform One Side; Use Polynomial Identities to develop: Prove polynomial identities and use them to describe numerical relationships..",
+        "guidedPractice": "Students complete a scaffolded problem modeled on 3-3, Examples 1-2 — Transform One Side; Use Polynomial Identities; teacher checks notation and reasoning.",
+        "independentPractice": "Students complete worked-example-derived SRS practice because no direct ALEKS export is available.",
+        "assessment": "Exit ticket: one fresh problem assessing 3d and one short explanation prompt.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with prove polynomial identities and use them to describe numerical relationships.."
+      }
+    },
+    {
+      "periodId": "m03-p08",
+      "module": 3,
+      "period": 8,
+      "dayType": "instruction",
+      "sourceLesson": "3-4",
+      "objectiveCode": "3e",
+      "objective": "Evaluate functions by using synthetic substitution.",
+      "workedExamples": "3-4, Examples 1-2 — Synthetic Substitution; Apply the Remainder Theorem",
+      "embeddedObjectives": [],
+      "aleksSrsPractice": [],
+      "srsSubstitute": "Generate worked-example-derived SRS items from 3-4, Examples 1-2 — Synthetic Substitution; Apply the Remainder Theorem.",
+      "notes": "Evaluate efficiently and interpret remainder-as-value.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 3e with one retrieval prompt tied to 3-4.",
+        "conceptDevelopment": "Use 3-4, Examples 1-2 — Synthetic Substitution; Apply the Remainder Theorem to develop: Evaluate functions by using synthetic substitution..",
+        "guidedPractice": "Students complete a scaffolded problem modeled on 3-4, Examples 1-2 — Synthetic Substitution; Apply the Remainder Theorem; teacher checks notation and reasoning.",
+        "independentPractice": "Students complete worked-example-derived SRS practice because no direct ALEKS export is available.",
+        "assessment": "Exit ticket: one fresh problem assessing 3e and one short explanation prompt.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with evaluate functions by using synthetic substitution.."
+      }
+    },
+    {
+      "periodId": "m03-p09",
+      "module": 3,
+      "period": 9,
+      "dayType": "instruction",
+      "sourceLesson": "3-4",
+      "objectiveCode": "3f",
+      "objective": "Use the Factor Theorem to determine factors of polynomials.",
+      "workedExamples": "3-4, Example 3 — Use the Factor Theorem",
+      "embeddedObjectives": [],
+      "aleksSrsPractice": [],
+      "srsSubstitute": "Generate worked-example-derived SRS items from 3-4, Example 3 — Use the Factor Theorem.",
+      "notes": "Factor testing and depressed-polynomial reasoning.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 3f with one retrieval prompt tied to 3-4.",
+        "conceptDevelopment": "Use 3-4, Example 3 — Use the Factor Theorem to develop: Use the Factor Theorem to determine factors of polynomials..",
+        "guidedPractice": "Students complete a scaffolded problem modeled on 3-4, Example 3 — Use the Factor Theorem; teacher checks notation and reasoning.",
+        "independentPractice": "Students complete worked-example-derived SRS practice because no direct ALEKS export is available.",
+        "assessment": "Exit ticket: one fresh problem assessing 3f and one short explanation prompt.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with use the factor theorem to determine factors of polynomials.."
+      }
+    },
+    {
+      "periodId": "m03-p10",
+      "module": 3,
+      "period": 10,
+      "dayType": "mastery",
+      "notes": "Mastery cycle on `3d-3f`.",
+      "nonInstructionArtifact": {
+        "artifactType": "mastery",
+        "objectiveScope": "Mastery cycle on `3d-3f`.",
+        "srsSources": [
+          "worked-example-derived practice",
+          "ALEKS topic practice where available",
+          "prior-unit spiral review"
+        ],
+        "remediationGrouping": "Group students by recent objective evidence and misconception patterns.",
+        "extensionOptions": "Offer synthesis problems that combine current objectives with prior modules.",
+        "evidence": "Student completes due SRS items and submits one corrected-error reflection."
+      }
+    },
+    {
+      "periodId": "m03-p11",
+      "module": 3,
+      "period": 11,
+      "dayType": "jigsaw",
+      "notes": "Stretch-problem session built from identity, remainder, and factor-theorem examples.",
+      "nonInstructionArtifact": {
+        "artifactType": "jigsaw",
+        "groupTask": "Stretch-problem session built from identity, remainder, and factor-theorem examples.",
+        "sourceWorkedExamples": "Use the prior instruction periods named in the notes as the problem bank.",
+        "deliverable": "Group solution poster or shared explanation with one strategy comparison.",
+        "facilitationNotes": "Assign roles for graphing, algebra, checking, and explanation.",
+        "completionCriteria": "Correct method, accurate result, clear justification, and response to peer question."
+      }
+    },
+    {
+      "periodId": "m03-p12",
+      "module": 3,
+      "period": 12,
+      "dayType": "instruction",
+      "sourceLesson": "3-5",
+      "objectiveCode": "3g",
+      "objective": "Use the Fundamental Theorem of Algebra to determine the number and type of roots of polynomial equations.",
+      "workedExamples": "3-5, Examples 1-2 — Determine the Number and Type of Roots; Find the Number of Positive and Negative Zeros",
+      "embeddedObjectives": [],
+      "aleksSrsPractice": [],
+      "srsSubstitute": "Generate worked-example-derived SRS items from 3-5, Examples 1-2 — Determine the Number and Type of Roots; Find the Number of Positive and Negative Zeros.",
+      "notes": "Degree, multiplicity, sign changes, and root-type reasoning.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 3g with one retrieval prompt tied to 3-5.",
+        "conceptDevelopment": "Use 3-5, Examples 1-2 — Determine the Number and Type of Roots; Find the Number of Positive and Negative Zeros to develop: Use the Fundamental Theorem of Algebra to determine the number and type of roots of polynomial equations..",
+        "guidedPractice": "Students complete a scaffolded problem modeled on 3-5, Examples 1-2 — Determine the Number and Type of Roots; Find the Number of Positive and Negative Zeros; teacher checks notation and reasoning.",
+        "independentPractice": "Students complete worked-example-derived SRS practice because no direct ALEKS export is available.",
+        "assessment": "Exit ticket: one fresh problem assessing 3g and one short explanation prompt.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with use the fundamental theorem of algebra to determine the number and type of roots of polynomial equations.."
+      }
+    },
+    {
+      "periodId": "m03-p13",
+      "module": 3,
+      "period": 13,
+      "dayType": "instruction",
+      "sourceLesson": "3-5",
+      "objectiveCode": "3h",
+      "objective": "Determine the number and type of roots of polynomial equations, find zeros, and use zeros to graph polynomial functions.",
+      "workedExamples": "3-5, Examples 3-4 and Apply Example 5 — Use Synthetic Substitution to Find Zeros; Use a Graph to Write a Polynomial Function; Use Zeros to Graph a Polynomial Function",
+      "embeddedObjectives": [],
+      "aleksSrsPractice": [],
+      "srsSubstitute": "Generate worked-example-derived SRS items from 3-5, Examples 3-4 and Apply Example 5 — Use Synthetic Substitution to Find Zeros; Use a Graph to Write a Polynomial Function; Use Zeros to Graph a Polynomial Function.",
+      "notes": "Full synthesis day: zeros, factors, graph behavior, and modeling reasonableness.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 3h with one retrieval prompt tied to 3-5.",
+        "conceptDevelopment": "Use 3-5, Examples 3-4 and Apply Example 5 — Use Synthetic Substitution to Find Zeros; Use a Graph to Write a Polynomial Function; Use Zeros to Graph a Polynomial Function to develop: Determine the number and type of roots of polynomial equations, find zeros, and use zeros to graph polynomial functions..",
+        "guidedPractice": "Students complete a scaffolded problem modeled on 3-5, Examples 3-4 and Apply Example 5 — Use Synthetic Substitution to Find Zeros; Use a Graph to Write a Polynomial Function; Use Zeros to Graph a Polynomial Function; teacher checks notation and reasoning.",
+        "independentPractice": "Students complete worked-example-derived SRS practice because no direct ALEKS export is available.",
+        "assessment": "Exit ticket: one fresh problem assessing 3h and one short explanation prompt.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with determine the number and type of roots of polynomial equations, find zeros, and use zeros to graph polynomial functions.."
+      }
+    },
+    {
+      "periodId": "m03-p14",
+      "module": 3,
+      "period": 14,
+      "dayType": "mastery",
+      "notes": "Module-wide differentiated SRS practice across Module 3 objectives.",
+      "nonInstructionArtifact": {
+        "artifactType": "mastery",
+        "objectiveScope": "Module-wide differentiated SRS practice across Module 3 objectives.",
+        "srsSources": [
+          "worked-example-derived practice",
+          "ALEKS topic practice where available",
+          "prior-unit spiral review"
+        ],
+        "remediationGrouping": "Group students by recent objective evidence and misconception patterns.",
+        "extensionOptions": "Offer synthesis problems that combine current objectives with prior modules.",
+        "evidence": "Student completes due SRS items and submits one corrected-error reflection."
+      }
+    },
+    {
+      "periodId": "m03-p15",
+      "module": 3,
+      "period": 15,
+      "dayType": "review",
+      "notes": "Module 3 review across `3a-3h`.",
+      "nonInstructionArtifact": {
+        "artifactType": "review",
+        "objectiveCoverage": "Module 3 review across `3a-3h`.",
+        "reviewActivities": [
+          "mixed retrieval set",
+          "misconception sort",
+          "student-selected retry set"
+        ],
+        "misconceptionTargets": "Use recent mastery and SRS evidence to select the highest-frequency errors.",
+        "readinessCheck": "Short diagnostic covering representative module objectives."
+      }
+    },
+    {
+      "periodId": "m03-p16",
+      "module": 3,
+      "period": 16,
+      "dayType": "test",
+      "notes": "Module 3 assessment.",
+      "nonInstructionArtifact": {
+        "artifactType": "test",
+        "objectiveCoverage": "Module 3 assessment.",
+        "assessmentStructure": [
+          "fluency section",
+          "conceptual reasoning section",
+          "modeling/application section"
+        ],
+        "gradingExpectations": "Grade against module objectives and record evidence for mastery updates.",
+        "retakeRelationship": "Retake eligibility follows the course mastery policy after targeted remediation."
+      }
+    }
+  ]
+}

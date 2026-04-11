@@ -201,11 +201,35 @@ Find:
 
 ---
 
-## Example 6 — Online Extra Example
+## Example 6 — Multiply Polynomial Expressions in Context
 
-The print source references an online-only Example 6 between Example 5 and Apply Example 7, but the example text is not present in the PDF pages stored in this repo.
+Local replacement example: the unavailable source example is replaced here with an original worked example that preserves the lesson numbering and connects polynomial multiplication to a geometric context.
 
-This placeholder preserves the lesson's original numbering.
+A rectangular sign has length `(3x + 4)` feet and width `(2x - 5)` feet.
+
+Write a polynomial expression for the area of the sign.
+
+Use the area formula:
+
+`A = length * width`
+
+Substitute:
+
+`A = (3x + 4)(2x - 5)`
+
+Multiply each term:
+
+`A = 3x(2x) + 3x(-5) + 4(2x) + 4(-5)`
+
+Simplify:
+
+`A = 6x^2 - 15x + 8x - 20`
+
+`A = 6x^2 - 7x - 20`
+
+So the area is:
+
+`6x^2 - 7x - 20` square feet.
 
 ---
 

@@ -148,11 +148,40 @@ Approximate solutions:
 
 ---
 
-## Example 6 - Online Extra Example
+## Example 6 - Complete the Square with a Leading Coefficient
 
-The print source references an online-only Example 6, but the example text is not present in the current PDF pages extracted into this repo.
+Local replacement example: the unavailable source example is replaced here with an original worked example that preserves the lesson numbering and prepares students for Example 7.
 
-This placeholder preserves the lesson's original numbering.
+Solve `2x^2 + 8x - 10 = 0` by completing the square.
+
+First divide every term by `2`:
+
+`x^2 + 4x - 5 = 0`
+
+Move the constant term:
+
+`x^2 + 4x = 5`
+
+Complete the square:
+
+`(4/2)^2 = 4`
+
+Add `4` to both sides:
+
+`x^2 + 4x + 4 = 9`
+
+Rewrite the left side as a square:
+
+`(x + 2)^2 = 9`
+
+Take square roots:
+
+`x + 2 = +-3`
+
+So:
+
+* `x = 1`
+* `x = -5`
 
 ---
 
