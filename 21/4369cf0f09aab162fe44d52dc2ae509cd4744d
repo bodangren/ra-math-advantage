@@ -1,0 +1,5 @@
+Task: sync master after remote bundle updates
+
+Summary: Fixed lint in the PhaseRenderer dynamic-import test mock introduced by the latest remote bundle-loading changes. Removed the unused act import, replaced any with typed dynamic component props, and avoided the unnecessary hook dependency warning.
+
+Verification: npm run lint; npm run test -- __tests__/components/lesson/PhaseRenderer.test.tsx __tests__/lib/curriculum/audit.test.ts.
