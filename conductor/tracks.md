@@ -10,6 +10,10 @@ Tracks 1+4 unlock Track 8; Track 8 unlocks Tracks 9+10.
 
 ## Active Tracks
 
+- [~] **[URGENT] Fix: Bundle Size - Reduce RSC Entry Chunk** — **IN PROGRESS**
+   *Reduce Facade RSC entry chunk from 687 KB to under 500 KB via code-splitting*
+   *Link: [./conductor/tracks/fix-bundle-size_20260411/](./conductor/tracks/fix-bundle-size_20260411/)*
+
 - [x] **[URGENT] Fix: InterceptIdentification Test Failures** — **COMPLETED**
    *Fix 13/23 failing tests in InterceptIdentification component*
    *Link: [./conductor/tracks/fix-intercept-tests_20260411/](./conductor/tracks/fix-intercept-tests_20260411/)*

@@ -1,0 +1,9 @@
+{
+  "track_id": "fix-bundle-size_20260411",
+  "title": "Fix: Bundle Size - Reduce RSC Entry Chunk",
+  "status": "in_progress",
+  "priority": "high",
+  "created": "2026-04-11",
+  "depends_on": ["lesson-rendering_20260406", "graphing-components_20260406"],
+  "phase": 5
+}
