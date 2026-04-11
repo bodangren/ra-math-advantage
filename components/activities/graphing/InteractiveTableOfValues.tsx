@@ -82,6 +82,7 @@ export function InteractiveTableOfValues({
 
   return (
     <div className="my-6 overflow-x-auto">
+      <h3 className="text-lg font-semibold text-foreground mb-3">Table of Values</h3>
       <table className="w-full border-collapse border border-border rounded-lg overflow-hidden">
         <thead>
           <tr className="bg-muted/50">

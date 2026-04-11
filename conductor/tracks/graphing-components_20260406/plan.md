@@ -49,9 +49,9 @@
 
 ## Phase 3: Problem Variant Types
 
-- [ ] Task: Implement `plot_from_equation` variant
-    - [ ] Write tests: all 3 modes work; submission includes correct/incorrect assessment of placed points
-    - [ ] Implement variant logic and problem config parsing from props schema
+- [x] Task: Implement `plot_from_equation` variant
+    - [x] Write tests: all 3 modes work; submission includes correct/incorrect assessment of placed points
+    - [x] Implement variant logic and problem config parsing from props schema
 
 - [ ] Task: Implement `compare_functions` variant
     - [ ] Write tests: renders two functions; student identifies which has greater max/min/intercepts

@@ -8,7 +8,10 @@ import {
   transformCanvasToData,
   snapToGridValue,
   generateFunctionPath,
+  FunctionPlot,
 } from '@/lib/activities/graphing/canvas-utils';
+
+export type { Point, FunctionPlot } from '@/lib/activities/graphing/canvas-utils';
 
 export function GraphingCanvas({
   domain = [-10, 10],
