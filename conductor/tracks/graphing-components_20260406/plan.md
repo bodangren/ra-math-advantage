@@ -49,7 +49,7 @@
 
 ## Phase 3: Problem Variant Types
 
-- [x] Task: Implement `plot_from_equation` variant
+- [x] Task: Implement `plot_from_equation` variant [bedbc83]
     - [x] Write tests: all 3 modes work; submission includes correct/incorrect assessment of placed points
     - [x] Implement variant logic and problem config parsing from props schema
 
