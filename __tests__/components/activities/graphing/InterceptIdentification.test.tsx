@@ -53,7 +53,7 @@ describe('InterceptIdentification', () => {
       render(<InterceptIdentification {...defaultProps} />);
 
       const canvas = screen.getByRole('img');
-      fireEvent.click(canvas, { clientX: 100, clientY: 200 });
+      fireEvent.click(canvas, { clientX: 210, clientY: 200 });
 
       expect(defaultProps.onInterceptIdentified).toHaveBeenCalled();
 
@@ -76,7 +76,7 @@ describe('InterceptIdentification', () => {
       render(<InterceptIdentification {...defaultProps} />);
 
       const canvas = screen.getByRole('img');
-      fireEvent.click(canvas, { clientX: 105, clientY: 300 });
+      fireEvent.click(canvas, { clientX: 210, clientY: 200 });
 
       expect(defaultProps.onInterceptIdentified).toHaveBeenCalledWith(
         expect.objectContaining({
@@ -106,7 +106,7 @@ describe('InterceptIdentification', () => {
       render(<InterceptIdentification {...defaultProps} />);
 
       const canvas = screen.getByRole('img');
-      fireEvent.click(canvas, { clientX: 100, clientY: 300 });
+      fireEvent.click(canvas, { clientX: 210, clientY: 200 });
 
       expect(screen.getByText(/correct!/i)).toBeInTheDocument();
 
@@ -152,9 +152,9 @@ describe('InterceptIdentification', () => {
       render(<InterceptIdentification {...defaultProps} />);
 
       const canvas = screen.getByRole('img');
-      fireEvent.click(canvas, { clientX: 100, clientY: 300 });
+      fireEvent.click(canvas, { clientX: 210, clientY: 200 });
 
-      expect(screen.getByText(/-3, 0/i)).toBeInTheDocument();
+      expect(screen.getByText(/-3\.0, 0/i)).toBeInTheDocument();
 
       getBoundingClientRectSpy.mockRestore();
     });
@@ -177,8 +177,8 @@ describe('InterceptIdentification', () => {
       render(<InterceptIdentification {...defaultProps} />);
 
       const canvas = screen.getByRole('img');
-      fireEvent.click(canvas, { clientX: 100, clientY: 300 });
-      fireEvent.click(canvas, { clientX: 500, clientY: 300 });
+      fireEvent.click(canvas, { clientX: 210, clientY: 200 });
+      fireEvent.click(canvas, { clientX: 330, clientY: 200 });
 
       expect(defaultProps.onInterceptIdentified).toHaveBeenCalledTimes(2);
 
@@ -201,8 +201,8 @@ describe('InterceptIdentification', () => {
       render(<InterceptIdentification {...defaultProps} />);
 
       const canvas = screen.getByRole('img');
-      fireEvent.click(canvas, { clientX: 100, clientY: 300 });
-      fireEvent.click(canvas, { clientX: 500, clientY: 300 });
+      fireEvent.click(canvas, { clientX: 210, clientY: 200 });
+      fireEvent.click(canvas, { clientX: 330, clientY: 200 });
 
       const markers = document.querySelectorAll('.intercept-marker');
       expect(markers.length).toBe(2);
@@ -257,7 +257,7 @@ describe('InterceptIdentification', () => {
       render(<InterceptIdentification {...defaultProps} functionExpression="x^2 - 4" />);
 
       const canvas = screen.getByRole('img');
-      fireEvent.click(canvas, { clientX: 100, clientY: 300 });
+      fireEvent.click(canvas, { clientX: 240, clientY: 200 });
 
       expect(defaultProps.onInterceptIdentified).toHaveBeenCalledWith(
         expect.objectContaining({
@@ -288,7 +288,7 @@ describe('InterceptIdentification', () => {
       render(<InterceptIdentification {...defaultProps} functionExpression="x^2" />);
 
       const canvas = screen.getByRole('img');
-      fireEvent.click(canvas, { clientX: 300, clientY: 300 });
+      fireEvent.click(canvas, { clientX: 300, clientY: 200 });
 
       expect(defaultProps.onInterceptIdentified).toHaveBeenCalledWith(
         expect.objectContaining({
@@ -321,7 +321,7 @@ describe('InterceptIdentification', () => {
       render(<InterceptIdentification {...defaultProps} />);
 
       const canvas = screen.getByRole('img');
-      fireEvent.click(canvas, { clientX: 100, clientY: 300 });
+      fireEvent.click(canvas, { clientX: 210, clientY: 200 });
 
       const feedback = screen.getByText(/correct!/i);
       expect(feedback).toHaveClass('text-green-800');
@@ -369,7 +369,7 @@ describe('InterceptIdentification', () => {
       render(<InterceptIdentification {...defaultProps} />);
 
       const canvas = screen.getByRole('img');
-      fireEvent.click(canvas, { clientX: 100, clientY: 300 });
+      fireEvent.click(canvas, { clientX: 210, clientY: 200 });
 
       const marker = document.querySelector('.intercept-marker');
       expect(marker).toBeInTheDocument();
@@ -396,8 +396,8 @@ describe('InterceptIdentification', () => {
       render(<InterceptIdentification {...defaultProps} />);
 
       const canvas = screen.getByRole('img');
-      fireEvent.click(canvas, { clientX: 100, clientY: 300 });
-      fireEvent.click(canvas, { clientX: 500, clientY: 300 });
+      fireEvent.click(canvas, { clientX: 210, clientY: 200 });
+      fireEvent.click(canvas, { clientX: 330, clientY: 200 });
 
       expect(defaultProps.onInterceptIdentified).toHaveBeenCalledTimes(2);
 
@@ -427,7 +427,7 @@ describe('InterceptIdentification', () => {
 
       const canvas = screen.getByRole('img');
       const beforeClick = Date.now();
-      fireEvent.click(canvas, { clientX: 100, clientY: 300 });
+      fireEvent.click(canvas, { clientX: 210, clientY: 200 });
       const afterClick = Date.now();
 
       const call = defaultProps.onInterceptIdentified.mock.calls[0][0];
@@ -455,7 +455,7 @@ describe('InterceptIdentification', () => {
       render(<InterceptIdentification {...defaultProps} functionExpression="2x - 4" />);
 
       const canvas = screen.getByRole('img');
-      fireEvent.click(canvas, { clientX: 400, clientY: 300 });
+      fireEvent.click(canvas, { clientX: 360, clientY: 200 });
 
       expect(defaultProps.onInterceptIdentified).toHaveBeenCalledWith(
         expect.objectContaining({

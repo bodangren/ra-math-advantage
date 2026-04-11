@@ -46,5 +46,6 @@
 - (2026-04-10, activity-infrastructure) Union types in TypeScript require type guards for safe property access — use if/else checks on discriminant (e.g., success boolean) before accessing variant-specific properties
 - (2026-04-10, activity-infrastructure) PhaseActivityTracker provides in-memory completion tracking for UI gating — persistence to Convex deferred until lesson context is available
 - (2026-04-10, graphing-components) Canvas coordinate mapping is complex — allocate more time for interactive components with SVG/canvas; test coordinate transformations thoroughly
-- (2026-04-11, graphing-components) Test coordinates may not match mathematical coordinates — verify coordinate transformations before writing tests; use snap thresholds that balance usability with precision
+- (2026-04-11, graphing-components) Test coordinates must match actual canvas coordinates — verify coordinate transformations before writing tests; component's transformDataToCanvas is the source of truth
+- (2026-04-11, fix-intercept-tests) Test failures were due to incorrect test coordinates, not component logic — always verify test assumptions match implementation before fixing component code
 
