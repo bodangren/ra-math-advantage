@@ -1,7 +1,33 @@
 import { describe, it, expect, vi } from 'vitest';
-import { render, screen } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import { PhaseRenderer, type PhaseSection } from '@/components/lesson/PhaseRenderer';
 import type { PhaseType } from '@/lib/curriculum/phase-types';
+
+import React from 'react';
+import { act } from '@testing-library/react';
+
+// Mock next/dynamic to return component synchronously for tests
+vi.mock('next/dynamic', () => ({
+  default: (fn: () => Promise<{ default: React.ComponentType<any> }>) => {
+    const Component = ({ ...props }: any) => {
+      const [loadedModule, setLoadedModule] = React.useState<{ default: React.ComponentType<any> } | null>(null);
+
+      React.useEffect(() => {
+        fn().then(setLoadedModule);
+      }, [fn]);
+
+      if (!loadedModule) {
+        return <div data-testid="dynamic-loading">Loading...</div>;
+      }
+
+      const LoadedComponent = loadedModule.default;
+      return <LoadedComponent {...props} />;
+    };
+
+    Component.displayName = 'DynamicMock';
+    return Component;
+  },
+}));
 
 // Mock sub-components to isolate PhaseRenderer logic
 vi.mock('@/components/lesson/MarkdownRenderer', () => ({
@@ -44,15 +70,17 @@ describe('PhaseRenderer', () => {
   const phaseType: PhaseType = 'learn';
 
   describe('section type mapping', () => {
-    it('renders text section via LessonMarkdownRenderer', () => {
+    it('renders text section via LessonMarkdownRenderer', async () => {
       render(
         <PhaseRenderer
           phaseType={phaseType}
           sections={[makeSection({ sectionType: 'text', content: { markdown: 'Hello world' } })]}
         />
       );
-      expect(screen.getByTestId('markdown-renderer')).toBeInTheDocument();
-      expect(screen.getByText('Hello world')).toBeInTheDocument();
+      await waitFor(() => {
+        expect(screen.getByTestId('markdown-renderer')).toBeInTheDocument();
+        expect(screen.getByText('Hello world')).toBeInTheDocument();
+      });
     });
 
     it('renders video section via VideoPlayer', () => {
@@ -147,7 +175,7 @@ describe('PhaseRenderer', () => {
   });
 
   describe('multiple sections', () => {
-    it('renders multiple sections in order', () => {
+    it('renders multiple sections in order', async () => {
       render(
         <PhaseRenderer
           phaseType={phaseType}
@@ -157,8 +185,10 @@ describe('PhaseRenderer', () => {
           ]}
         />
       );
-      expect(screen.getByText('First')).toBeInTheDocument();
-      expect(screen.getByText('Second')).toBeInTheDocument();
+      await waitFor(() => {
+        expect(screen.getByText('First')).toBeInTheDocument();
+        expect(screen.getByText('Second')).toBeInTheDocument();
+      });
     });
   });
 

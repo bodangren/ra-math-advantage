@@ -2,10 +2,15 @@ import Image from 'next/image';
 import type { PhaseType } from '@/lib/curriculum/phase-types';
 import { PhaseContainer } from '@/components/textbook/PhaseContainer';
 import { CalloutBox } from '@/components/textbook/CalloutBox';
-import { LessonMarkdownRenderer } from './MarkdownRenderer';
+import dynamic from 'next/dynamic';
 import { VideoPlayer } from './VideoPlayer';
 import { ActivityRenderer } from './ActivityRenderer';
 import { ContentBlockErrorBoundary } from './ContentBlockErrorBoundary';
+
+const LessonMarkdownRenderer = dynamic(() => import('./MarkdownRenderer').then(m => ({ default: m.LessonMarkdownRenderer })), {
+  ssr: true,
+  loading: () => <div className="animate-pulse bg-muted/50 h-24 rounded-md" />,
+});
 
 // ── Section type definitions ─────────────────────────────────────────────────
 
