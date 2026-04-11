@@ -578,3 +578,186 @@ Index: /home/daniel-bo/Desktop/integrated-math-3/lib/activities/graphing/canvas-
    Start at  23:42:40
    Duration  1.32s (transform 103ms, setup 260ms, import 51ms, tests 16ms, environment 748ms)
 [0m
+[0m← [0mEdit conductor/tracks/extract-quadratic-regex_20260411/plan.md
+Index: /home/daniel-bo/Desktop/integrated-math-3/conductor/tracks/extract-quadratic-regex_20260411/plan.md
+===================================================================
+--- /home/daniel-bo/Desktop/integrated-math-3/conductor/tracks/extract-quadratic-regex_20260411/plan.md
++++ /home/daniel-bo/Desktop/integrated-math-3/conductor/tracks/extract-quadratic-regex_20260411/plan.md
+@@ -14,13 +14,13 @@
+ ## Phase 2: Update canvas-utils.ts [in_progress]
+ 
+ ## Phase 2: Update canvas-utils.ts [in_progress]
+ 
+-- [ ] Task: Refactor `evaluateFunction()` to use shared parser [in_progress]
+-    - [ ] Write tests: verify `evaluateFunction()` still works with quadratic expressions
+-    - [ ] Import `parseQuadratic()` from new utility
+-    - [ ] Replace inline regex with call to shared parser
+-    - [ ] Verify coefficient extraction logic matches original
++- [x] Task: Refactor `evaluateFunction()` to use shared parser [checkpoint: <commit-hash>]
++    - [x] Write tests: verify `evaluateFunction()` still works with quadratic expressions
++    - [x] Import `parseQuadratic()` from new utility
++    - [x] Replace inline regex with call to shared parser
++    - [x] Verify coefficient extraction logic matches original
+ 
+ - [ ] Task: Conductor — Phase Completion Verification 'Update canvas-utils.ts' (Protocol in workflow.md)
+ 
+ ## Phase 3: Update HintPanel.tsx
+
+[0m
+[0m$ [0mgit add -A && git commit -m "Phase 2: Update canvas-utils.ts to use shared parser" && git log -1 --format='%H'
+[master 2ce56bd] Phase 2: Update canvas-utils.ts to use shared parser
+ 4 files changed, 356 insertions(+), 13 deletions(-)
+ create mode 100644 __tests__/lib/activities/graphing/canvas-utils.test.ts
+2ce56bd502a4de7caea3ca6afae94d9a1a6293a4
+[0m
+[0m← [0mEdit conductor/tracks/extract-quadratic-regex_20260411/plan.md
+Index: /home/daniel-bo/Desktop/integrated-math-3/conductor/tracks/extract-quadratic-regex_20260411/plan.md
+===================================================================
+--- /home/daniel-bo/Desktop/integrated-math-3/conductor/tracks/extract-quadratic-regex_20260411/plan.md
++++ /home/daniel-bo/Desktop/integrated-math-3/conductor/tracks/extract-quadratic-regex_20260411/plan.md
+@@ -14,9 +14,9 @@
+ ## Phase 2: Update canvas-utils.ts [in_progress]
+ 
+ ## Phase 2: Update canvas-utils.ts [in_progress]
+ 
+-- [x] Task: Refactor `evaluateFunction()` to use shared parser [checkpoint: <commit-hash>]
++- [x] Task: Refactor `evaluateFunction()` to use shared parser [checkpoint: 2ce56bd]
+     - [x] Write tests: verify `evaluateFunction()` still works with quadratic expressions
+     - [x] Import `parseQuadratic()` from new utility
+     - [x] Replace inline regex with call to shared parser
+     - [x] Verify coefficient extraction logic matches original
+
+[0m
+[0m← [0mEdit conductor/tracks/extract-quadratic-regex_20260411/plan.md
+Index: /home/daniel-bo/Desktop/integrated-math-3/conductor/tracks/extract-quadratic-regex_20260411/plan.md
+===================================================================
+--- /home/daniel-bo/Desktop/integrated-math-3/conductor/tracks/extract-quadratic-regex_20260411/plan.md
++++ /home/daniel-bo/Desktop/integrated-math-3/conductor/tracks/extract-quadratic-regex_20260411/plan.md
+@@ -20,10 +20,12 @@
+     - [x] Import `parseQuadratic()` from new utility
+     - [x] Replace inline regex with call to shared parser
+     - [x] Verify coefficient extraction logic matches original
+ 
+-- [ ] Task: Conductor — Phase Completion Verification 'Update canvas-utils.ts' (Protocol in workflow.md)
++- [x] Task: Conductor — Phase Completion Verification 'Update canvas-utils.ts' (Protocol in workflow.md) [2ce56bd]
+ 
++## Phase 3: Update HintPanel.tsx [in_progress]
++
+ ## Phase 3: Update HintPanel.tsx
+ 
+ - [ ] Task: Refactor `parseQuadratic()` to use shared parser
+     - [ ] Write tests: verify hint panel still correctly identifies vertex, axis, direction
+
+[0m
+[0m← [0mEdit conductor/tracks/extract-quadratic-regex_20260411/plan.md
+Index: /home/daniel-bo/Desktop/integrated-math-3/conductor/tracks/extract-quadratic-regex_20260411/plan.md
+===================================================================
+--- /home/daniel-bo/Desktop/integrated-math-3/conductor/tracks/extract-quadratic-regex_20260411/plan.md
++++ /home/daniel-bo/Desktop/integrated-math-3/conductor/tracks/extract-quadratic-regex_20260411/plan.md
+@@ -24,11 +24,11 @@
+ - [x] Task: Conductor — Phase Completion Verification 'Update canvas-utils.ts' (Protocol in workflow.md) [2ce56bd]
+ 
+ ## Phase 3: Update HintPanel.tsx [in_progress]
+ 
+-## Phase 3: Update HintPanel.tsx
++## Phase 3: Update HintPanel.tsx [in_progress]
+ 
+-- [ ] Task: Refactor `parseQuadratic()` to use shared parser
++- [ ] Task: Refactor `parseQuadratic()` to use shared parser [in_progress]
+     - [ ] Write tests: verify hint panel still correctly identifies vertex, axis, direction
+     - [ ] Import `parseQuadratic()` from new utility
+     - [ ] Remove local `parseQuadratic()` implementation
+     - [ ] Verify all hint types work correctly
+
+[0m
+[0m$ [0mgit add conductor/tracks/extract-quadratic-regex_20260411/plan.md && git commit --amend --no-edit && git push
+[master dd69b87] Phase 2: Update canvas-utils.ts to use shared parser
+ Date: Sat Apr 11 23:43:19 2026 +0800
+ 4 files changed, 359 insertions(+), 14 deletions(-)
+ create mode 100644 __tests__/lib/activities/graphing/canvas-utils.test.ts
+To https://github.com/bodangren/ra-integrated-math-3.git
+   e7e0fc6..dd69b87  master -> master
+[0m
+[0m← [0mEdit components/activities/graphing/HintPanel.tsx
+Index: /home/daniel-bo/Desktop/integrated-math-3/components/activities/graphing/HintPanel.tsx
+===================================================================
+--- /home/daniel-bo/Desktop/integrated-math-3/components/activities/graphing/HintPanel.tsx
++++ /home/daniel-bo/Desktop/integrated-math-3/components/activities/graphing/HintPanel.tsx
+@@ -1,7 +1,8 @@
+ 'use client';
+ 
+ import React, { useState, useCallback } from 'react';
++import { parseQuadratic } from '@/lib/activities/graphing/quadratic-parser';
+ 
+ export interface HintData {
+   type: 'axis_of_symmetry' | 'vertex' | 'direction';
+   data: { x?: number; y?: number; opens?: string } | null;
+@@ -13,32 +14,15 @@
+   onHintUsed: (hint: HintData) => void;
+   readonly?: boolean;
+ }
+ 
+-interface QuadraticCoefficients {
+-  a: number;
+-  b: number;
+-  c: number;
+-}
+-
+ export function HintPanel({
+   functionExpression,
+   onHintUsed,
+   readonly = false,
+ }: HintPanelProps) {
+   const [usedHints, setUsedHints] = useState<Set<string>>(new Set());
+ 
+-  const parseQuadratic = useCallback((expr: string): QuadraticCoefficients | null => {
+-    const match = expr.match(/(-?\d*\.?\d*)?x\^2(?:\s*([+-]\s*\d*\.?\d*)?x)?(?:\s*([+-]\s*\d*\.?\d*)?)?/);
+-    if (match) {
+-      const a = match[1] ? parseFloat(match[1]) : 1;
+-      const b = match[2] ? parseFloat(match[2].replace(/\s/g, '')) : 0;
+-      const c = match[3] ? parseFloat(match[3].replace(/\s/g, '')) : 0;
+-      return { a, b, c };
+-    }
+-    return null;
+-  }, []);
+-
+   const handleHintClick = useCallback(
+     (type: HintData['type']) => {
+       if (readonly || usedHints.has(type)) return;
+ 
+
+[0m
+[0m→ [0mRead components/activities/graphing/HintPanel.tsx[90m [limit=40, offset=40][0m
+[0m
+[0m← [0mEdit components/activities/graphing/HintPanel.tsx
+Index: /home/daniel-bo/Desktop/integrated-math-3/components/activities/graphing/HintPanel.tsx
+===================================================================
+--- /home/daniel-bo/Desktop/integrated-math-3/components/activities/graphing/HintPanel.tsx
++++ /home/daniel-bo/Desktop/integrated-math-3/components/activities/graphing/HintPanel.tsx
+@@ -60,9 +60,9 @@
+ 
+     setUsedHints(prev => new Set(prev).add(type));
+     onHintUsed(hint);
+   },
+-  [functionExpression, parseQuadratic, readonly, usedHints, onHintUsed]
++  [functionExpression, readonly, usedHints, onHintUsed]
+ );
+ 
+ const getButtonClass = (type: string) => {
+   const isUsed = usedHints.has(type);
+
+[0m
+[0m$ [0mnpm test -- HintPanel.test.tsx 2>&1 | tail -30
+> test
+> vitest run HintPanel.test.tsx
+
+
+ RUN  v4.1.2 /home/daniel-bo/Desktop/integrated-math-3
+
+ ✓ __tests__/components/activities/graphing/HintPanel.test.tsx (20 tests) 296ms
+
+ Test Files  1 passed (1)
+      Tests  20 passed (20)
+   Start at  23:45:04
+   Duration  1.64s (transform 133ms, setup 273ms, import 90ms, tests 296ms, environment 723ms)
+[0m

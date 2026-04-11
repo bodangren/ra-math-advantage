@@ -21,15 +21,17 @@
     - [x] Replace inline regex with call to shared parser
     - [x] Verify coefficient extraction logic matches original
 
-- [ ] Task: Conductor — Phase Completion Verification 'Update canvas-utils.ts' (Protocol in workflow.md)
+- [x] Task: Conductor — Phase Completion Verification 'Update canvas-utils.ts' (Protocol in workflow.md) [2ce56bd]
 
-## Phase 3: Update HintPanel.tsx
+## Phase 3: Update HintPanel.tsx [in_progress]
 
-- [ ] Task: Refactor `parseQuadratic()` to use shared parser
-    - [ ] Write tests: verify hint panel still correctly identifies vertex, axis, direction
-    - [ ] Import `parseQuadratic()` from new utility
-    - [ ] Remove local `parseQuadratic()` implementation
-    - [ ] Verify all hint types work correctly
+## Phase 3: Update HintPanel.tsx [in_progress]
+
+- [x] Task: Refactor `parseQuadratic()` to use shared parser [checkpoint: 6a869b6]
+    - [x] Write tests: verify hint panel still correctly identifies vertex, axis, direction
+    - [x] Import `parseQuadratic()` from new utility
+    - [x] Remove local `parseQuadratic()` implementation
+    - [x] Verify all hint types work correctly
 
 - [ ] Task: Conductor — Phase Completion Verification 'Update HintPanel.tsx' (Protocol in workflow.md)
 

@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useCallback } from 'react';
+import { parseQuadratic } from '@/lib/activities/graphing/quadratic-parser';
 
 export interface HintData {
   type: 'axis_of_symmetry' | 'vertex' | 'direction';
@@ -14,29 +15,12 @@ export interface HintPanelProps {
   readonly?: boolean;
 }
 
-interface QuadraticCoefficients {
-  a: number;
-  b: number;
-  c: number;
-}
-
 export function HintPanel({
   functionExpression,
   onHintUsed,
   readonly = false,
 }: HintPanelProps) {
   const [usedHints, setUsedHints] = useState<Set<string>>(new Set());
-
-  const parseQuadratic = useCallback((expr: string): QuadraticCoefficients | null => {
-    const match = expr.match(/(-?\d*\.?\d*)?x\^2(?:\s*([+-]\s*\d*\.?\d*)?x)?(?:\s*([+-]\s*\d*\.?\d*)?)?/);
-    if (match) {
-      const a = match[1] ? parseFloat(match[1]) : 1;
-      const b = match[2] ? parseFloat(match[2].replace(/\s/g, '')) : 0;
-      const c = match[3] ? parseFloat(match[3].replace(/\s/g, '')) : 0;
-      return { a, b, c };
-    }
-    return null;
-  }, []);
 
   const handleHintClick = useCallback(
     (type: HintData['type']) => {
@@ -77,7 +61,7 @@ export function HintPanel({
       setUsedHints(prev => new Set(prev).add(type));
       onHintUsed(hint);
     },
-    [functionExpression, parseQuadratic, readonly, usedHints, onHintUsed]
+    [functionExpression, readonly, usedHints, onHintUsed]
   );
 
   const getButtonClass = (type: string) => {
