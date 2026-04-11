@@ -1984,3 +1984,130 @@ index 149875d..6748e1c 100644
 The tool call succeeded but the output was truncated. Full output saved to: /home/daniel-bo/.local/share/opencode/tool-output/tool_d7dcfa945001kz66LF6G211zW4
 Use the Task tool to have explore agent process this file with Grep and Read (with offset/limit). Do NOT read the full file yourself - delegate to save context.
 [0m
+[0m$ [0mgit add conductor/output.log conductor/review-output.log && git commit -m "Update conductor logs after review" && git push
+[master 4e2c982] Update conductor logs after review
+ 2 files changed, 3455 insertions(+), 2194 deletions(-)
+To https://github.com/bodangren/ra-integrated-math-3.git
+   ad4d5a0..4e2c982  master -> master
+[0m
+[0m→ [0mRead conductor/tracks.md
+[0m→ [0mRead conductor/tracks/extract-quadratic-regex_20260411/spec.md
+[0m→ [0mRead conductor/tracks/extract-quadratic-regex_20260411/plan.md
+[0m→ [0mRead conductor/tracks/extract-quadratic-regex_20260411/metadata.json
+[0m
+[0m← [0mWrite conductor/tracks/extract-linear-regex_20260412/plan.md
+Wrote file successfully.
+[0m
+[0m← [0mWrite conductor/tracks/extract-linear-regex_20260412/spec.md
+Wrote file successfully.
+[0m
+[0m← [0mWrite conductor/tracks/extract-linear-regex_20260412/metadata.json
+Wrote file successfully.
+[0m
+[0m$ [0mmkdir -p /home/daniel-bo/Desktop/integrated-math-3/conductor/tracks/extract-linear-regex_20260412
+[0m
+[0m← [0mEdit conductor/tracks.md
+Index: /home/daniel-bo/Desktop/integrated-math-3/conductor/tracks.md
+===================================================================
+--- /home/daniel-bo/Desktop/integrated-math-3/conductor/tracks.md
++++ /home/daniel-bo/Desktop/integrated-math-3/conductor/tracks.md
+@@ -77,8 +77,12 @@
+  - [x] **Track: Refactor — Extract Quadratic Regex** — **COMPLETED**
+    *Extract duplicated quadratic regex from canvas-utils, HintPanel, InterceptIdentification to shared utility*
+    *Link: [./conductor/tracks/extract-quadratic-regex_20260411/](./conductor/tracks/extract-quadratic-regex_20260411/)*
+ 
++ - [ ] **Track: Refactor — Extract Linear Regex**
++   *Extract duplicated linear regex from canvas-utils, InterceptIdentification to shared utility*
++   *Link: [./conductor/tracks/extract-linear-regex_20260412/](./conductor/tracks/extract-linear-regex_20260412/)*
++
+ ## Archived Tracks
+ 
+ - [x] **Track: Scaffold App Pages & Layouts**
+   *Link: [./conductor/archive/scaffold-pages_20260405/](./conductor/archive/scaffold-pages_20260405/)*
+
+[0m
+[0m→ [0mRead lib/activities/graphing/canvas-utils.ts
+[0m✱ [0mGrep "(-?\d*\.?\d*)\?x"[90m in components/activities/graphing/InterceptIdentification.tsx · 1 match[0m
+[0m→ [0mRead components/activities/graphing/InterceptIdentification.tsx[90m [limit=30, offset=40][0m
+[0m→ [0mRead components/activities/graphing/InterceptIdentification.tsx[90m [limit=20, offset=68][0m
+[0m
+[0m← [0mWrite __tests__/lib/activities/graphing/linear-parser.test.ts
+Wrote file successfully.
+[0m
+[0m← [0mWrite lib/activities/graphing/linear-parser.ts
+Wrote file successfully.
+[0m
+[0m$ [0mnpm test -- linear-parser.test.ts 2>&1 | tail -40
+✓ parses 2x - 3 as m=2, b=-3 0ms
+       ✓ parses -2x - 5 as m=-2, b=-5 0ms
+       ✓ parses x - 1 as m=1, b=-1 1ms
+       ✓ parses 0.5x + 2 as m=0.5, b=2 0ms
+       ✓ parses -1.5x - 3.2 as m=-1.5, b=-3.2 0ms
+       × returns null for quadratic expressions 11ms
+       ✓ returns null for constants 0ms
+       ✓ returns null for empty string 0ms
+       ✓ parses 0x + 1 as m=0, b=1 0ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  __tests__/lib/activities/graphing/linear-parser.test.ts > parseLinear > edge cases > returns null for quadratic expressions
+AssertionError: expected { m: 1, b: +0 } to be null
+
+- Expected:
+null
+
++ Received:
+{
+  "b": 0,
+  "m": 1,
+}
+
+ ❯ __tests__/lib/activities/graphing/linear-parser.test.ts:63:43
+     61|   describe('edge cases', () => {
+     62|     it('returns null for quadratic expressions', () => {
+     63|       expect(parseLinear('x^2 + 2x + 1')).toBeNull();
+       |                                           ^
+     64|     });
+     65|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 15 passed (16)
+   Start at  02:33:43
+   Duration  1.30s (transform 91ms, setup 277ms, import 33ms, tests 27ms, environment 711ms)
+[0m
+[0m← [0mEdit lib/activities/graphing/linear-parser.ts
+Index: /home/daniel-bo/Desktop/integrated-math-3/lib/activities/graphing/linear-parser.ts
+===================================================================
+--- /home/daniel-bo/Desktop/integrated-math-3/lib/activities/graphing/linear-parser.ts
++++ /home/daniel-bo/Desktop/integrated-math-3/lib/activities/graphing/linear-parser.ts
+@@ -3,8 +3,11 @@
+   b: number;
+ }
+ 
+ export function parseLinear(expression: string): LinearCoefficients | null {
++  if (expression.includes('x^2')) {
++    return null;
++  }
+   const match = expression.match(/(-?\d*\.?\d*)?x(?:\s*([+-]\s*\d*\.?\d*)?)?/);
+   if (match) {
+     let m = 1;
+     if (match[1]) {
+
+[0m
+[0m$ [0mnpm test -- linear-parser.test.ts 2>&1 | tail -20
+> test
+> vitest run linear-parser.test.ts
+
+
+ RUN  v4.1.2 /home/daniel-bo/Desktop/integrated-math-3
+
+ ✓ __tests__/lib/activities/graphing/linear-parser.test.ts (16 tests) 15ms
+
+ Test Files  1 passed (1)
+      Tests  16 passed (16)
+   Start at  02:34:02
+   Duration  1.38s (transform 106ms, setup 280ms, import 54ms, tests 15ms, environment 781ms)
+[0m

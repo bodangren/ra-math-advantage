@@ -1,0 +1,10 @@
+{
+  "track_id": "extract-linear-regex_20260412",
+  "title": "Refactor: Extract Linear Regex to Shared Utility",
+  "status": "in_progress",
+  "priority": "medium",
+  "created": "2026-04-12",
+  "completed": null,
+  "depends_on": ["graphing-components_20260406"],
+  "phase": 0
+}
