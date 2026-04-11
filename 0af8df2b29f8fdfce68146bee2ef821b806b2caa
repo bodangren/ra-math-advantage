@@ -1,0 +1,7 @@
+Track: curriculum-gap-remediation_20260411
+
+Summary: Added a repeatable curriculum audit harness, generated 180 class-period packages, generated 919 practice.v1 mappings, documented ALEKS source-export exceptions, repaired known lesson placeholders/truncations, normalized lesson heading hierarchy, and closed out the Conductor remediation track.
+
+Files: lib/curriculum/audit.ts; scripts/curriculum-audit.ts; scripts/generate-curriculum-remediation-artifacts.ts; __tests__/lib/curriculum/audit.test.ts; curriculum/implementation/**; curriculum/docs and repaired lesson sources; graphing component/test fix required for full-suite verification.
+
+Verification: npm run curriculum:generate; npm run curriculum:audit; npm run test -- __tests__/lib/curriculum/audit.test.ts; npm run test -- __tests__/components/activities/graphing/InterceptIdentification.test.tsx __tests__/lib/curriculum/audit.test.ts; npm run lint; npm run test (85 files, 823 tests passed).
