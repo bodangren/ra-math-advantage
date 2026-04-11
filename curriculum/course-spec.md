@@ -121,20 +121,46 @@ Each planned class period should be representable with the following fields:
 - `class_objective_code` (required for `instruction`)
 - `class_objective` (required for `instruction`)
 - `worked_examples` (required for `instruction`)
+- `aleks_problem_types` (required for implementation planning once the period has been mapped)
 - `notes` (optional)
+
+### ALEKS Problem-Type Integration
+
+The course plan now includes a parallel ALEKS-style problem-type layer in `curriculum/aleks/`.
+
+This layer should be used to translate class-period objectives and worked examples into reusable problem families for guided practice, independent practice, mastery work, jigsaw tasks, review, and assessment.
+
+Key rules:
+
+- The textbook lesson and class-period sequence remain canonical.
+- ALEKS problem types are reusable `familyKey` values, not one-off copies of individual worked examples.
+- Each `instruction` period should map to one or more `familyKey` values in `curriculum/aleks/course-plan-map.md`.
+- Each `familyKey` should stay registered in `curriculum/aleks/problem-type-registry.md`.
+- Implemented families must follow the local `practice.v1` contract when they collect student work.
+- Business-domain problem families from the `bus-math-v2` template are reference-only and must not be ported into this math course.
+
+For implementation planning, the deterministic mapping is:
+
+- `class objective + worked examples` define the instructional target
+- `familyKey` defines the reusable ALEKS-style practice or assessment pattern
+- `practice.v1 mode` defines how much scaffolding appears in the student experience
 
 ### Canonical Planning Documents
 
 For module-level class-period planning, the canonical source of truth should be the audited files:
 
 - `curriculum/module-*-class-period-plan.md`
+- `curriculum/aleks/course-plan-map.md`
 
 Those audited plan documents should be kept aligned with:
 
 - `conductor/course-objectives.md`
 - `curriculum/modules/module-*-lesson-*`
+- `curriculum/aleks/problem-type-registry.md`
 
 If a lesson source file is repaired or renumbered, the corresponding audited module plan should be updated so the class-period plan remains the canonical planning layer for implementation work.
+
+If a problem family is added, renamed, merged, or split, update both `curriculum/aleks/problem-type-registry.md` and `curriculum/aleks/course-plan-map.md` in the same change.
 
 ### Year-Level Planning Budget
 
