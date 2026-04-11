@@ -23,7 +23,7 @@ How can you best approximate the value of `e`?
 
 ---
 
-# Learn: Exponential Functions with Base e
+## Learn: Exponential Functions with Base e
 
 The constant `e` is an irrational number approached by:
 
@@ -59,23 +59,23 @@ where:
 
 Simplify each expression.
 
-## a. `e^7 * e^-2`
+### a. `e^7 * e^-2`
 
 `= e^(7 + (-2)) = e^5`
 
-## b. `(-3e^(2x))^4`
+### b. `(-3e^(2x))^4`
 
 `= (-3)^4 (e^(2x))^4`
 
 `= 81e^(8x)`
 
-## c. `(42e^7) / (14e^5)`
+### c. `(42e^7) / (14e^5)`
 
 `= 3e^(7 - 5)`
 
 `= 3e^2`
 
-## Watch Out
+### Watch Out
 
 Use exponent properties before evaluating on a calculator so answers stay exact.
 
@@ -87,7 +87,7 @@ Consider:
 
 `g(x) = -2e^(x - 3) + 2`
 
-## Part A: Graph the function
+### Part A: Graph the function
 
 This is a transformation of `f(x) = e^x`.
 
@@ -95,12 +95,12 @@ This is a transformation of `f(x) = e^x`.
 * `h = 3`: shift `3` units right
 * `k = 2`: shift `2` units up
 
-## Part B: Determine the domain and range
+### Part B: Determine the domain and range
 
 * domain: all real numbers
 * range: all real numbers less than `2`
 
-## Part C: Find the average rate of change
+### Part C: Find the average rate of change
 
 ### a. `[-4, -1]`
 
@@ -156,22 +156,22 @@ Use a graphing calculator to solve:
 
 by using a system.
 
-## Step 1: Write a system
+### Step 1: Write a system
 
 * `y = 5`
 * `y = 2e^x`
 
-## Step 2: Graph the system
+### Step 2: Graph the system
 
 Graph both.
 
-## Step 3: Find the intersection
+### Step 3: Find the intersection
 
 The solution is the x-coordinate:
 
 `x ≈ 0.916`
 
-## Step 4: Use a table
+### Step 4: Use a table
 
 Using a table near `x = 0.916` confirms the two y-values are nearly equal.
 

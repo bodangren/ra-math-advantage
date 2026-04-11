@@ -26,11 +26,11 @@ How can you rewrite expressions to solve exponential equations?
 
 ---
 
-# Learn: Solving Exponential Equations
+## Learn: Solving Exponential Equations
 
 In an **exponential equation**, the independent variable is an exponent.
 
-## Key Concept: Property of Equality for Exponential Equations
+### Key Concept: Property of Equality for Exponential Equations
 
 If `b > 0` and `b != 1`, then:
 
@@ -40,7 +40,7 @@ Exponential equations can be solved algebraically or by graphing a system.
 
 ---
 
-## Key Concept: Compound Interest
+### Key Concept: Compound Interest
 
 Compound interest is calculated with:
 
@@ -59,7 +59,7 @@ where:
 
 Solve each equation.
 
-## a. `4^(5x + 1) = 64^7`
+### a. `4^(5x + 1) = 64^7`
 
 Rewrite:
 
@@ -77,7 +77,7 @@ Then:
 
 `x = 4`
 
-## b. `(1/2)^(4x - 16) = 16^(2x - 5)`
+### b. `(1/2)^(4x - 16) = 16^(2x - 5)`
 
 Rewrite in base `2`:
 
@@ -110,7 +110,7 @@ where `C` is in millions of dollars and `x` is the Super Bowl number.
 
 Find when the cost first surpassed `$1 million`.
 
-## Part A: Write the model
+### Part A: Write the model
 
 Initial cost:
 
@@ -124,7 +124,7 @@ So:
 
 `C = 0.058(1.099)^x`
 
-## Part B: Solve by graphing
+### Part B: Solve by graphing
 
 Set up the system:
 
@@ -139,7 +139,7 @@ So the cost had not yet surpassed `$1 million` during Super Bowl `30`.
 
 It first surpassed `$1 million` during **Super Bowl 31**.
 
-## Study Tip
+### Study Tip
 
 This conclusion depends on treating the cost trend as a reasonable exponential model.
 
@@ -163,11 +163,11 @@ So after `5` years, the balance is about:
 
 ---
 
-# Learn: Solving Exponential Inequalities
+## Learn: Solving Exponential Inequalities
 
 An **exponential inequality** is an inequality in which the independent variable is an exponent.
 
-## Key Concept: Property of Inequality for Exponential Equations
+### Key Concept: Property of Inequality for Exponential Equations
 
 If `b > 1`, then:
 

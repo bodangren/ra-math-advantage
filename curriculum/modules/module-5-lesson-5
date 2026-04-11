@@ -24,7 +24,7 @@ How can experimental data be used to predict outcomes?
 
 ---
 
-# Learn: Choosing the Best Model
+## Learn: Choosing the Best Model
 
 Linear, quadratic, and exponential functions grow differently.
 
@@ -67,7 +67,7 @@ Use the data table to determine a best-fit model, then make predictions.
 
 Plot years since opening against number of shops.
 
-## Step 3: Determine the function of best fit
+### Step 3: Determine the function of best fit
 
 Compare quadratic and exponential regressions using `r^2`.
 
@@ -79,7 +79,7 @@ Regression equation, rounded to the nearest thousandth:
 
 `y ≈ (0.655)1.317^x`
 
-## Step 4: Evaluate the regression function
+### Step 4: Evaluate the regression function
 
 Predictions from the model:
 

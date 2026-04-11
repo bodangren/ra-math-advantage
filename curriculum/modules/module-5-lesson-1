@@ -29,7 +29,7 @@ How does performing an operation on an exponential function affect its graph?
 
 ---
 
-# Learn: Graphing Exponential Growth Functions
+## Learn: Graphing Exponential Growth Functions
 
 In an exponential function, the independent variable is an exponent.
 
@@ -130,13 +130,13 @@ Using technology, after `20` years there will be about:
 
 `$132,664,885.26`
 
-## Watch Out
+### Watch Out
 
 Keep units in mind. In this lesson, the account balance is measured in millions of dollars.
 
 ---
 
-# Learn: Graphing Exponential Decay Functions
+## Learn: Graphing Exponential Decay Functions
 
 **Exponential decay** occurs when an initial amount decreases by the same percent over a given period of time.
 
@@ -212,11 +212,11 @@ Consider:
 
 and `g(x)` from the graph.
 
-## Part A: Graph `f(x)`
+### Part A: Graph `f(x)`
 
 Graph the exponential part and the linear part.
 
-## Part B: Compare key features
+### Part B: Compare key features
 
 * `f(x)` has a relative minimum of `2`
 * `g(x)` has no relative minimum
