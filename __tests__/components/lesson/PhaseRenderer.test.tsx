@@ -4,17 +4,18 @@ import { PhaseRenderer, type PhaseSection } from '@/components/lesson/PhaseRende
 import type { PhaseType } from '@/lib/curriculum/phase-types';
 
 import React from 'react';
-import { act } from '@testing-library/react';
 
 // Mock next/dynamic to return component synchronously for tests
+type DynamicComponentProps = Record<string, unknown>;
+
 vi.mock('next/dynamic', () => ({
-  default: (fn: () => Promise<{ default: React.ComponentType<any> }>) => {
-    const Component = ({ ...props }: any) => {
-      const [loadedModule, setLoadedModule] = React.useState<{ default: React.ComponentType<any> } | null>(null);
+  default: (fn: () => Promise<{ default: React.ComponentType<DynamicComponentProps> }>) => {
+    const Component = (props: DynamicComponentProps) => {
+      const [loadedModule, setLoadedModule] = React.useState<{ default: React.ComponentType<DynamicComponentProps> } | null>(null);
 
       React.useEffect(() => {
         fn().then(setLoadedModule);
-      }, [fn]);
+      }, []);
 
       if (!loadedModule) {
         return <div data-testid="dynamic-loading">Loading...</div>;
