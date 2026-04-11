@@ -1,0 +1,7 @@
+Track: curriculum-gap-remediation_20260411
+
+Summary: Rebasing onto origin/master preserved remote graphing fixes, merged ALEKS planning docs with local ALEKS syllabus exports, added the curriculum audit harness, generated 180 class-period packages, generated 919 practice.v1 mappings, documented ALEKS source-export exceptions, repaired lesson source gaps, and closed out the Conductor remediation track.
+
+Integration: Replayed origin/codex/curriculum-gap-remediation-20260411 onto origin/master after resolving curriculum/ALEKS documentation conflicts and preserving the newer origin/master InterceptIdentification behavior. Updated the audit parser to validate the committed visible ALEKS export format instead of relying on dirty local ALEKS files.
+
+Verification: npm run curriculum:audit; npm run test -- __tests__/components/activities/graphing/InterceptIdentification.test.tsx __tests__/lib/curriculum/audit.test.ts; npm run lint; npm run test (86 files, 827 tests passed before final remote rebase); final pass also included npm run curriculum:audit and targeted PhaseRenderer/audit tests.
