@@ -75,3 +75,251 @@ index b81f1bd..0c0b3a9 100644
 [0m→ [0mRead conductor/tracks/supporting-activities_20260406/plan.md
 [0m→ [0mRead conductor/tracks/algebraic-examples_20260406/plan.md
 [0m→ [0mRead conductor/tracks/graphing-components_20260406/plan.md
+[0m
+[0m$ [0mgit add conductor/output.log && git commit -m "Checkpoint: autonomous run start - glm-4.7"
+[master 15198e9] Checkpoint: autonomous run start - glm-4.7
+ 1 file changed, 43 insertions(+), 2665 deletions(-)
+[0m
+[0m$ [0mgit push
+Everything up-to-date
+[0m
+[0m✱ [0mGrep "/([-+]?\d*\.?\d*)x\²\s*([-+]?\s*\d*\.?\d*)x\s*([-+]?\s*\d*\.?\d*)/"[90m 0 matches[0m
+[0m✱ [0mGlob "**/canvas-utils*"[90m 1 match[0m
+[0m✱ [0mGlob "**/HintPanel*"[90m 2 matches[0m
+[0m→ [0mRead lib/activities/graphing/canvas-utils.ts
+[0m→ [0mRead components/activities/graphing/HintPanel.tsx
+[0m✱ [0mGlob "**/InterceptIdentification*"[90m 2 matches[0m
+[0m✱ [0mGrep "x\^2"[90m in components/activities/graphing/InterceptIdentification.tsx · 1 match[0m
+[0m→ [0mRead components/activities/graphing/InterceptIdentification.tsx
+[0m→ [0mRead conductor/tracks/fix-bundle-size_20260411/spec.md
+[0m→ [0mRead conductor/tracks/fix-bundle-size_20260411/metadata.json
+[0m→ [0mRead conductor/tracks/fix-bundle-size_20260411/plan.md
+[0m
+[0m← [0mWrite conductor/tracks/extract-quadratic-regex_20260411/plan.md
+Wrote file successfully.
+[0m
+[0m← [0mWrite conductor/tracks/extract-quadratic-regex_20260411/metadata.json
+Wrote file successfully.
+[0m
+[0m← [0mWrite conductor/tracks/extract-quadratic-regex_20260411/spec.md
+Wrote file successfully.
+[0m
+[0m$ [0mmkdir -p /home/daniel-bo/Desktop/integrated-math-3/conductor/tracks/extract-quadratic-regex_20260411
+[0m
+[0m← [0mEdit conductor/tracks.md
+Index: /home/daniel-bo/Desktop/integrated-math-3/conductor/tracks.md
+===================================================================
+--- /home/daniel-bo/Desktop/integrated-math-3/conductor/tracks.md
++++ /home/daniel-bo/Desktop/integrated-math-3/conductor/tracks.md
+@@ -69,12 +69,16 @@
+   *Dashboard, gradebook, student detail, submission review, lesson preview, course overview*
+   *Depends on: Tracks 3, 5, 6, 7, 8*
+   *Link: [./conductor/tracks/teacher-module1_20260406/](./conductor/tracks/teacher-module1_20260406/)*
+ 
+-- [x] **Track: Curriculum Gap Remediation** — **COMPLETED**
+-  *Remediate curriculum completeness gaps across ALEKS extraction, lesson source quality, daily phase packaging, non-instruction day authoring, and practice.v1 activity mapping*
+-  *Link: [./conductor/tracks/curriculum-gap-remediation_20260411/](./conductor/tracks/curriculum-gap-remediation_20260411/)*
++ - [x] **Track: Curriculum Gap Remediation** — **COMPLETED**
++   *Remediate curriculum completeness gaps across ALEKS extraction, lesson source quality, daily phase packaging, non-instruction day authoring, and practice.v1 activity mapping*
++   *Link: [./conductor/tracks/curriculum-gap-remediation_20260411/](./conductor/tracks/curriculum-gap-remediation_20260411/)*
+ 
++ - [ ] **Track: Refactor — Extract Quadratic Regex**
++   *Extract duplicated quadratic regex from canvas-utils, HintPanel, InterceptIdentification to shared utility*
++   *Link: [./conductor/tracks/extract-quadratic-regex_20260411/](./conductor/tracks/extract-quadratic-regex_20260411/)*
++
+ ## Archived Tracks
+ 
+ - [x] **Track: Scaffold App Pages & Layouts**
+   *Link: [./conductor/archive/scaffold-pages_20260405/](./conductor/archive/scaffold-pages_20260405/)*
+
+[0m
+[0m✱ [0mGlob "**/__tests__/**/canvas-utils*"[90m 0 matches[0m
+[0m✱ [0mGlob "**/__tests__/**/quadratic-parser*"[90m 0 matches[0m
+[0m
+[0m$ [0mmkdir -p /home/daniel-bo/Desktop/integrated-math-3/__tests__/lib/activities/graphing
+[0m
+[0m$ [0mls -la /home/daniel-bo/Desktop/integrated-math-3/__tests__/lib/activities/graphing/ 2>/dev/null || echo "Directory doesn't exist"
+Directory doesn't exist
+[0m
+[0m← [0mWrite __tests__/lib/activities/graphing/quadratic-parser.test.ts
+Wrote file successfully.
+[0m
+[0m← [0mWrite lib/activities/graphing/quadratic-parser.ts
+Wrote file successfully.
+[0m
+[0m$ [0mnpm test -- quadratic-parser.test.ts 2>&1 | tail -50
+- Expected
++ Received
+
+  {
+    "a": 1,
+-   "b": 1,
++   "b": NaN,
+    "c": 0,
+  }
+
+ ❯ __tests__/lib/activities/graphing/quadratic-parser.test.ts:28:41
+     26|
+     27|     it('parses x^2 + x as a=1, b=1, c=0', () => {
+     28|       expect(parseQuadratic('x^2 + x')).toEqual({ a: 1, b: 1, c: 0 });
+       |                                         ^
+     29|     });
+     30|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/3]⎯
+
+ FAIL  __tests__/lib/activities/graphing/quadratic-parser.test.ts > parseQuadratic > negative coefficients and signs with spaces > parses x^2 - x as a=1, b=-1, c=0
+AssertionError: expected { a: 1, b: NaN, c: +0 } to deeply equal { a: 1, b: -1, c: +0 }
+
+- Expected
++ Received
+
+  {
+    "a": 1,
+-   "b": -1,
++   "b": NaN,
+    "c": 0,
+  }
+
+ ❯ __tests__/lib/activities/graphing/quadratic-parser.test.ts:46:41
+     44|   describe('negative coefficients and signs with spaces', () => {
+     45|     it('parses x^2 - x as a=1, b=-1, c=0', () => {
+     46|       expect(parseQuadratic('x^2 - x')).toEqual({ a: 1, b: -1, c: 0 });
+       |                                         ^
+     47|     });
+     48|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/3]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  3 failed | 18 passed (21)
+   Start at  23:34:54
+   Duration  1.66s (transform 96ms, setup 353ms, import 34ms, tests 33ms, environment 958ms)
+[0m
+[0m← [0mEdit lib/activities/graphing/quadratic-parser.ts
+Index: /home/daniel-bo/Desktop/integrated-math-3/lib/activities/graphing/quadratic-parser.ts
+===================================================================
+--- /home/daniel-bo/Desktop/integrated-math-3/lib/activities/graphing/quadratic-parser.ts
++++ /home/daniel-bo/Desktop/integrated-math-3/lib/activities/graphing/quadratic-parser.ts
+@@ -7,10 +7,20 @@
+ export function parseQuadratic(expression: string): QuadraticCoefficients | null {
+   const match = expression.match(/(-?\d*\.?\d*)?x\^2(?:\s*([+-]\s*\d*\.?\d*)?x)?(?:\s*([+-]\s*\d*\.?\d*)?)?/);
+   if (match) {
+     const a = match[1] ? parseFloat(match[1]) : 1;
+-    const b = match[2] ? parseFloat(match[2].replace(/\s/g, '')) : 0;
+-    const c = match[3] ? parseFloat(match[3].replace(/\s/g, '')) : 0;
++    let b = 0;
++    if (match[2]) {
++      const bStr = match[2].replace(/\s/g, '');
++      const bVal = parseFloat(bStr);
++      b = isNaN(bVal) ? (bStr.startsWith('-') ? -1 : 1) : bVal;
++    }
++    let c = 0;
++    if (match[3]) {
++      const cStr = match[3].replace(/\s/g, '');
++      const cVal = parseFloat(cStr);
++      c = isNaN(cVal) ? (cStr.startsWith('-') ? -1 : 1) : cVal;
++    }
+     return { a, b, c };
+   }
+   return null;
+ }
+
+[0m
+[0m$ [0mnpm test -- quadratic-parser.test.ts 2>&1 | tail -30
+FAIL  __tests__/lib/activities/graphing/quadratic-parser.test.ts > parseQuadratic > standard quadratic expressions > parses -x^2 + 5x - 2 as a=-1, b=5, c=-2
+AssertionError: expected { a: NaN, b: 5, c: -2 } to deeply equal { a: -1, b: 5, c: -2 }
+
+- Expected
++ Received
+
+  {
+-   "a": -1,
++   "a": NaN,
+    "b": 5,
+    "c": -2,
+  }
+
+ ❯ __tests__/lib/activities/graphing/quadratic-parser.test.ts:14:47
+     12|
+     13|     it('parses -x^2 + 5x - 2 as a=-1, b=5, c=-2', () => {
+     14|       expect(parseQuadratic('-x^2 + 5x - 2')).toEqual({ a: -1, b: 5, c…
+       |                                               ^
+     15|     });
+     16|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 20 passed (21)
+   Start at  23:35:22
+   Duration  1.34s (transform 90ms, setup 275ms, import 34ms, tests 31ms, environment 743ms)
+[0m
+[0m← [0mEdit lib/activities/graphing/quadratic-parser.ts
+Index: /home/daniel-bo/Desktop/integrated-math-3/lib/activities/graphing/quadratic-parser.ts
+===================================================================
+--- /home/daniel-bo/Desktop/integrated-math-3/lib/activities/graphing/quadratic-parser.ts
++++ /home/daniel-bo/Desktop/integrated-math-3/lib/activities/graphing/quadratic-parser.ts
+@@ -6,9 +6,14 @@
+ 
+ export function parseQuadratic(expression: string): QuadraticCoefficients | null {
+   const match = expression.match(/(-?\d*\.?\d*)?x\^2(?:\s*([+-]\s*\d*\.?\d*)?x)?(?:\s*([+-]\s*\d*\.?\d*)?)?/);
+   if (match) {
+-    const a = match[1] ? parseFloat(match[1]) : 1;
++    let a = 1;
++    if (match[1]) {
++      const aStr = match[1];
++      const aVal = parseFloat(aStr);
++      a = isNaN(aVal) ? (aStr.startsWith('-') ? -1 : 1) : aVal;
++    }
+     let b = 0;
+     if (match[2]) {
+       const bStr = match[2].replace(/\s/g, '');
+       const bVal = parseFloat(bStr);
+
+[0m
+[0m$ [0mnpm test -- quadratic-parser.test.ts 2>&1 | tail -20
+> test
+> vitest run quadratic-parser.test.ts
+
+
+ RUN  v4.1.2 /home/daniel-bo/Desktop/integrated-math-3
+
+ ✓ __tests__/lib/activities/graphing/quadratic-parser.test.ts (21 tests) 23ms
+
+ Test Files  1 passed (1)
+      Tests  21 passed (21)
+   Start at  23:35:46
+   Duration  1.33s (transform 88ms, setup 274ms, import 35ms, tests 23ms, environment 739ms)
+[0m
+[0m← [0mEdit conductor/tracks/extract-quadratic-regex_20260411/plan.md
+Index: /home/daniel-bo/Desktop/integrated-math-3/conductor/tracks/extract-quadratic-regex_20260411/plan.md
+===================================================================
+--- /home/daniel-bo/Desktop/integrated-math-3/conductor/tracks/extract-quadratic-regex_20260411/plan.md
++++ /home/daniel-bo/Desktop/integrated-math-3/conductor/tracks/extract-quadratic-regex_20260411/plan.md
+@@ -1,14 +1,14 @@
+ # Implementation Plan — Extract Quadratic Regex to Shared Utility
+ 
+-## Phase 1: Create Shared Parser Utility
++## Phase 1: Create Shared Parser Utility [checkpoint: <commit-hash>]
+ 
+-- [ ] Task: Create `quadratic-parser.ts` utility module
+-    - [ ] Write tests: `parseQuadratic()` correctly extracts a, b, c coefficients
+-    - [ ] Write tests: handles implicit coefficients (e.g., "x^2 + x" → a=1, b=1, c=0)
+-    - [ ] Write tests: handles negative coefficients and signs with spaces
+-    - [ ] Write tests: returns null for non-quadratic expressions
+-    - [ ] Implement `lib/activities/graphing/quadratic-parser.ts`
++- [x] Task: Create `quadratic-parser.ts` utility module [<commit-hash>]
++    - [x] Write tests: `parseQuadratic()` correctly extracts a, b, c coefficients
++    - [x] Write tests: handles implicit coefficients (e.g., "x^2 + x" → a=1, b=1, c=0)
++    - [x] Write tests: handles negative coefficients and signs with spaces
++    - [x] Write tests: returns null for non-quadratic expressions
++    - [x] Implement `lib/activities/graphing/quadratic-parser.ts`
+ 
+ - [ ] Task: Conductor — Phase Completion Verification 'Create Shared Parser Utility' (Protocol in workflow.md)
+ 
+ ## Phase 2: Update canvas-utils.ts
+
+[0m
