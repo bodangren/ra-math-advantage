@@ -47,6 +47,9 @@
 - (2026-04-10, activity-infrastructure) Union types in TypeScript require type guards for safe property access — use if/else checks on discriminant (e.g., success boolean) before accessing variant-specific properties
 - (2026-04-10, activity-infrastructure) PhaseActivityTracker provides in-memory completion tracking for UI gating — persistence to Convex deferred until lesson context is available
 - (2026-04-10, graphing-components) Canvas coordinate mapping is complex — allocate more time for interactive components with SVG/canvas; test coordinate transformations thoroughly
-- (2026-04-11, graphing-components) Test coordinates must match actual canvas coordinates — verify coordinate transformations before writing tests; component's transformDataToCanvas is the source of truth
-- (2026-04-11, fix-intercept-tests) Test failures were due to incorrect test coordinates, not component logic — always verify test assumptions match implementation before fixing component code
+ - (2026-04-11, graphing-components) Test coordinates must match actual canvas coordinates — verify coordinate transformations before writing tests; component's transformDataToCanvas is the source of truth
+ - (2026-04-11, fix-intercept-tests) Test failures were due to incorrect test coordinates, not component logic — always verify test assumptions match implementation before fixing component code
+ - (2026-04-11, extract-quadratic-regex) Regex patterns with optional sign-only captures (e.g., `+` or `-`) cause `parseFloat()` to return `NaN` — handle by checking `isNaN()` and defaulting to ±1 based on sign
+ - (2026-04-11, extract-quadratic-regex) Extracting duplicated code to shared utilities improves maintainability and can reveal hidden bugs in original implementations
+
 
