@@ -74,7 +74,7 @@ Tracks 1+4 unlock Track 8; Track 8 unlocks Tracks 9+10.
    *Remediate curriculum completeness gaps across ALEKS extraction, lesson source quality, daily phase packaging, non-instruction day authoring, and practice.v1 activity mapping*
    *Link: [./conductor/tracks/curriculum-gap-remediation_20260411/](./conductor/tracks/curriculum-gap-remediation_20260411/)*
 
- - [ ] **Track: Refactor — Extract Quadratic Regex**
+ - [x] **Track: Refactor — Extract Quadratic Regex** — **COMPLETED**
    *Extract duplicated quadratic regex from canvas-utils, HintPanel, InterceptIdentification to shared utility*
    *Link: [./conductor/tracks/extract-quadratic-regex_20260411/](./conductor/tracks/extract-quadratic-regex_20260411/)*
 
