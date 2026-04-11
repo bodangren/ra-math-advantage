@@ -40,25 +40,37 @@ export function InterceptIdentification({
       return [];
     }
 
-    const match = expr.match(/(-?\d*\.?\d*)?x\^2(?:\s*([+-]\s*\d*\.?\d*)?x)?(?:\s*([+-]\s*\d*\.?\d*)?)?/);
-    if (match) {
-      const a = match[1] ? parseFloat(match[1]) : 1;
-      const b = match[2] ? parseFloat(match[2].replace(/\s/g, '')) : 0;
-      const c = match[3] ? parseFloat(match[3].replace(/\s/g, '')) : 0;
+    if (trimmedExpr.includes('x^2')) {
+      const match = expr.match(/(-?\d*\.?\d*)?x\^2(?:\s*([+-]\s*\d*\.?\d*)?x)?(?:\s*([+-]\s*\d*\.?\d*)?)?/);
+      if (match) {
+        const a = match[1] ? parseFloat(match[1]) : 1;
+        const b = match[2] ? parseFloat(match[2].replace(/\s/g, '')) : 0;
+        const c = match[3] ? parseFloat(match[3].replace(/\s/g, '')) : 0;
 
-      if (a !== 0) {
-        const discriminant = b * b - 4 * a * c;
-        if (discriminant > 0) {
-          const x1 = (-b + Math.sqrt(discriminant)) / (2 * a);
-          const x2 = (-b - Math.sqrt(discriminant)) / (2 * a);
-          return [x1, x2];
-        } else if (Math.abs(discriminant) < 0.0001) {
-          const x = -b / (2 * a);
+        if (a !== 0) {
+          const discriminant = b * b - 4 * a * c;
+          if (discriminant > 0) {
+            const x1 = (-b + Math.sqrt(discriminant)) / (2 * a);
+            const x2 = (-b - Math.sqrt(discriminant)) / (2 * a);
+            return [x1, x2];
+          } else if (Math.abs(discriminant) < 0.0001) {
+            const x = -b / (2 * a);
+            return [x];
+          }
+        } else if (b !== 0) {
+          const x = -c / b;
           return [x];
         }
-      } else if (b !== 0) {
-        const x = -c / b;
-        return [x];
+      }
+    } else {
+      const linearMatch = expr.match(/(-?\d*\.?\d*)?x(?:\s*([+-]\s*\d*\.?\d*)?)?/);
+      if (linearMatch) {
+        const m = linearMatch[1] ? parseFloat(linearMatch[1]) : 1;
+        const b = linearMatch[2] ? parseFloat(linearMatch[2].replace(/\s/g, '')) : 0;
+        if (m !== 0) {
+          const x = -b / m;
+          return [x];
+        }
       }
     }
     return [];
@@ -84,7 +96,7 @@ export function InterceptIdentification({
     }));
 
     let nearest = null;
-    let minDistance = 250;
+    let minDistance = 50;
 
     actualIntercepts.forEach(intercept => {
       const { canvasX: interceptCanvasX, canvasY: interceptCanvasY } = transformDataToCanvas(
