@@ -23,30 +23,22 @@
 
 ## Phase 3: Update InterceptIdentification.tsx [in_progress]
 
-- [ ] Task: Refactor `calculateXIntercepts()` to use shared parser [in_progress]
-    - [ ] Write tests: verify intercept identification still works correctly for linear functions
-    - [ ] Import `parseLinear()` from new utility
-    - [ ] Replace inline regex with call to shared parser
-    - [ ] Verify intercept calculation logic matches original
+- [x] Task: Refactor `calculateXIntercepts()` to use shared parser [checkpoint: d042a3e]
+    - [x] Write tests: verify intercept identification still works correctly for linear functions
+    - [x] Import `parseLinear()` from new utility
+    - [x] Replace inline regex with call to shared parser
+    - [x] Verify intercept calculation logic matches original
 
-- [ ] Task: Conductor — Phase Completion Verification 'Update InterceptIdentification.tsx' (Protocol in workflow.md)
+- [x] Task: Conductor — Phase Completion Verification 'Update InterceptIdentification.tsx' (Protocol in workflow.md) [d042a3e]
 
-- [ ] Task: Refactor `calculateXIntercepts()` to use shared parser
-    - [ ] Write tests: verify intercept identification still works correctly for linear functions
-    - [ ] Import `parseLinear()` from new utility
-    - [ ] Replace inline regex with call to shared parser
-    - [ ] Verify intercept calculation logic matches original
+## Phase 4: Final Verification [in_progress]
 
-- [ ] Task: Conductor — Phase Completion Verification 'Update InterceptIdentification.tsx' (Protocol in workflow.md)
+- [x] Task: Run full test suite [checkpoint: <commit-hash>]
+    - [x] Run `npm test` to ensure all tests pass (883/883)
+    - [x] Run `npm run lint` to ensure no lint errors (pass)
+    - [x] Run `npm run typecheck` to ensure no TypeScript errors (1 pre-existing error in PhaseCompleteButton.test.tsx, unrelated)
 
-## Phase 4: Final Verification
-
-- [ ] Task: Run full test suite
-    - [ ] Run `npm test` to ensure all tests pass
-    - [ ] Run `npm run lint` to ensure no lint errors
-    - [ ] Run `npm run typecheck` to ensure no TypeScript errors
-
-- [ ] Task: Verify no regressions
+- [ ] Task: Verify no regressions [in_progress]
     - [ ] Test graphing canvas with linear functions
     - [ ] Test intercept identification with linear functions
 

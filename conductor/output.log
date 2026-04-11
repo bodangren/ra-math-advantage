@@ -2384,3 +2384,126 @@ Index: /home/daniel-bo/Desktop/integrated-math-3/components/activities/graphing/
    Start at  02:38:23
    Duration  1.77s (transform 167ms, setup 262ms, import 131ms, tests 404ms, environment 719ms)
 [0m
+[0m$ [0mgit add -A && git commit -m "Phase 3: Update InterceptIdentification.tsx to use shared parser" && git log -1 --format='%H'
+[master d042a3e] Phase 3: Update InterceptIdentification.tsx to use shared parser
+ 3 files changed, 109 insertions(+), 6 deletions(-)
+d042a3ef08e638e4372aedcc95aef8789267d1b0
+[0m
+[0m← [0mEdit conductor/tracks/extract-linear-regex_20260412/plan.md
+Index: /home/daniel-bo/Desktop/integrated-math-3/conductor/tracks/extract-linear-regex_20260412/plan.md
+===================================================================
+--- /home/daniel-bo/Desktop/integrated-math-3/conductor/tracks/extract-linear-regex_20260412/plan.md
++++ /home/daniel-bo/Desktop/integrated-math-3/conductor/tracks/extract-linear-regex_20260412/plan.md
+@@ -22,26 +22,18 @@
+ - [x] Task: Conductor — Phase Completion Verification 'Update canvas-utils.ts' (Protocol in workflow.md) [95911de]
+ 
+ ## Phase 3: Update InterceptIdentification.tsx [in_progress]
+ 
+-- [ ] Task: Refactor `calculateXIntercepts()` to use shared parser [in_progress]
+-    - [ ] Write tests: verify intercept identification still works correctly for linear functions
+-    - [ ] Import `parseLinear()` from new utility
+-    - [ ] Replace inline regex with call to shared parser
+-    - [ ] Verify intercept calculation logic matches original
++- [x] Task: Refactor `calculateXIntercepts()` to use shared parser [checkpoint: d042a3e]
++    - [x] Write tests: verify intercept identification still works correctly for linear functions
++    - [x] Import `parseLinear()` from new utility
++    - [x] Replace inline regex with call to shared parser
++    - [x] Verify intercept calculation logic matches original
+ 
+-- [ ] Task: Conductor — Phase Completion Verification 'Update InterceptIdentification.tsx' (Protocol in workflow.md)
++- [x] Task: Conductor — Phase Completion Verification 'Update InterceptIdentification.tsx' (Protocol in workflow.md) [d042a3e]
+ 
+-- [ ] Task: Refactor `calculateXIntercepts()` to use shared parser
+-    - [ ] Write tests: verify intercept identification still works correctly for linear functions
+-    - [ ] Import `parseLinear()` from new utility
+-    - [ ] Replace inline regex with call to shared parser
+-    - [ ] Verify intercept calculation logic matches original
++## Phase 4: Final Verification [in_progress]
+ 
+-- [ ] Task: Conductor — Phase Completion Verification 'Update InterceptIdentification.tsx' (Protocol in workflow.md)
+-
+-## Phase 4: Final Verification
+-
+ - [ ] Task: Run full test suite
+     - [ ] Run `npm test` to ensure all tests pass
+     - [ ] Run `npm run lint` to ensure no lint errors
+     - [ ] Run `npm run typecheck` to ensure no TypeScript errors
+
+[0m
+[0m$ [0mnpm test 2>&1 | tail -30
+✓ __tests__/lib/activities/schemas/fill-in-the-blank.schema.test.ts (15 tests) 59ms
+ ✓ __tests__/lib/activities/schemas/rate-of-change-calculator.schema.test.ts (17 tests) 50ms
+ ✓ __tests__/lib/activities/schemas/graphing-explorer.schema.test.ts (20 tests) 42ms
+ ✓ __tests__/lib/activities/schemas/step-by-step-solver.schema.test.ts (19 tests) 71ms
+ ✓ __tests__/lib/activities/completion.test.ts (19 tests) 38ms
+ ✓ __tests__/lib/activities/schemas/comprehension-quiz.schema.test.ts (14 tests) 54ms
+ ✓ __tests__/lib/textbook/parse-math-segments.test.ts (25 tests) 44ms
+ ✓ __tests__/lib/curriculum/phase-types.test.ts (14 tests) 37ms
+ ✓ __tests__/types/activity.test.ts (11 tests) 30ms
+ ✓ __tests__/lib/activities/modes.test.ts (18 tests) 40ms
+ ✓ __tests__/lib/activities/graphing/quadratic-parser.test.ts (21 tests) 32ms
+ ✓ __tests__/app/student/student-redirect.test.tsx (1 test) 63ms
+ ✓ __tests__/lib/activities/registry.test.ts (8 tests) 34ms
+ ✓ __tests__/app/globals-css.test.ts (5 tests) 17ms
+ ✓ __tests__/convex/phase-versions-schema.test.ts (4 tests) 39ms
+ ✓ __tests__/components/dashboard/index.test.ts (1 test) 22ms
+ ✓ __tests__/convex/student-queries.test.ts (2 tests) 24ms
+ ✓ __tests__/lib/progress/published-curriculum.test.ts (3 tests) 23ms
+ ✓ __tests__/app/globals-css-textbook.test.ts (9 tests) 24ms
+ ✓ __tests__/lib/student/lesson-runtime.test.ts (12 tests) 24ms
+ ✓ __tests__/lib/activities/graphing/canvas-utils.test.ts (19 tests) 36ms
+ ✓ __tests__/lib/activities/graphing/linear-parser.test.ts (16 tests) 31ms
+ ✓ __tests__/components/student/index.test.ts (1 test) 13ms
+ ✓ __tests__/components/teacher/index.test.ts (1 test) 10ms
+
+ Test Files  89 passed (89)
+      Tests  883 passed (883)
+   Start at  02:39:31
+   Duration  80.59s (transform 4.58s, setup 36.00s, import 14.10s, tests 31.47s, environment 118.49s)
+[0m
+[0m$ [0mnpm run typecheck 2>&1 | tail -10
+> typecheck
+> tsc --noEmit
+
+__tests__/components/lesson/PhaseCompleteButton.test.tsx(125,64): error TS2322: Type '(value: CompletePhaseResponse | PromiseLike<CompletePhaseResponse>) => void' is not assignable to type '(v: unknown) => void'.
+  Types of parameters 'value' and 'v' are incompatible.
+    Type 'unknown' is not assignable to type 'CompletePhaseResponse | PromiseLike<CompletePhaseResponse>'.
+[0m
+[0m$ [0mnpm run lint 2>&1 | tail -10
+> vinext lint
+
+
+  vinext lint
+
+  Using eslint (with existing config)
+
+
+  Lint passed.
+[0m
+[0m← [0mEdit conductor/tracks/extract-linear-regex_20260412/plan.md
+Index: /home/daniel-bo/Desktop/integrated-math-3/conductor/tracks/extract-linear-regex_20260412/plan.md
+===================================================================
+--- /home/daniel-bo/Desktop/integrated-math-3/conductor/tracks/extract-linear-regex_20260412/plan.md
++++ /home/daniel-bo/Desktop/integrated-math-3/conductor/tracks/extract-linear-regex_20260412/plan.md
+@@ -32,14 +32,14 @@
+ - [x] Task: Conductor — Phase Completion Verification 'Update InterceptIdentification.tsx' (Protocol in workflow.md) [d042a3e]
+ 
+ ## Phase 4: Final Verification [in_progress]
+ 
+-- [ ] Task: Run full test suite
+-    - [ ] Run `npm test` to ensure all tests pass
+-    - [ ] Run `npm run lint` to ensure no lint errors
+-    - [ ] Run `npm run typecheck` to ensure no TypeScript errors
++- [x] Task: Run full test suite [checkpoint: <commit-hash>]
++    - [x] Run `npm test` to ensure all tests pass (883/883)
++    - [x] Run `npm run lint` to ensure no lint errors (pass)
++    - [x] Run `npm run typecheck` to ensure no TypeScript errors (1 pre-existing error in PhaseCompleteButton.test.tsx, unrelated)
+ 
+-- [ ] Task: Verify no regressions
++- [ ] Task: Verify no regressions [in_progress]
+     - [ ] Test graphing canvas with linear functions
+     - [ ] Test intercept identification with linear functions
+ 
+ - [ ] Task: Update tracks.md and tech-debt.md
+
+[0m
