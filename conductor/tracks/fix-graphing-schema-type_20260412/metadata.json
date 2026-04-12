@@ -1,0 +1,9 @@
+{
+  "id": "fix-graphing-schema-type_20260412",
+  "title": "[URGENT] Fix: Type Error in graphing-explorer.schema.ts",
+  "description": "Fix TypeScript error in lib/activities/schemas/graphing-explorer.schema.ts - rawAnswer type inference issue in parts array",
+  "type": "bug",
+  "priority": "high",
+  "createdAt": "2026-04-12",
+  "status": "active"
+}

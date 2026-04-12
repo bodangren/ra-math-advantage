@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import type { PracticeSubmissionPart } from '@/lib/practice/submission.schema';
 
 export const graphingExplorerSchema = z
   .object({
@@ -55,7 +56,7 @@ export function buildGraphingSubmission(input: GraphingSubmissionInput) {
     assessComparisonCorrectness,
   } = input;
 
-  const parts = [
+  const parts: PracticeSubmissionPart[] = [
     {
       partId: 'placed_points',
       rawAnswer: placedPoints,

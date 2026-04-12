@@ -10,6 +10,10 @@ Tracks 1+4 unlock Track 8; Track 8 unlocks Tracks 9+10.
 
 ## Active Tracks
 
+- [~] **[URGENT] Fix: Type Error in graphing-explorer.schema.ts** — **IN PROGRESS**
+   *Fix TypeScript error - parts array type inference issue*
+   *Link: [./conductor/tracks/fix-graphing-schema-type_20260412/](./conductor/tracks/fix-graphing-schema-type_20260412/)*
+
 - [x] **[URGENT] Fix: Zod Schema Type Errors in submission.schema.ts** — **COMPLETED**
    *Fix 3 TypeScript errors caused by incorrect z.record() usage in Zod 4.x*
    *Link: [./conductor/tracks/fix-submission-schema-types_20260412/](./conductor/tracks/fix-submission-schema-types_20260412/)*
