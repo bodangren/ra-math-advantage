@@ -527,6 +527,251 @@ describe('GraphingExplorer - find_intercepts variant', () => {
   });
 });
 
+describe('GraphingExplorer - graph_system variant', () => {
+  const defaultProps = {
+    activityId: 'test-activity-4',
+    variant: 'graph_system' as const,
+    equation: 'y = x^2 - 4',
+    linearEquation: 'y = x',
+    domain: [-10, 10] as [number, number],
+    range: [-10, 10] as [number, number],
+  };
+
+  describe('teaching mode', () => {
+    it('renders two functions (quadratic and linear) with different colors', () => {
+      const props = {
+        ...defaultProps,
+        points: [[-2, -2], [2, 2]] as [number, number][],
+      };
+      render(<GraphingExplorer {...props} mode="teaching" />);
+
+      expect(screen.getByText(/graph the system of equations/i)).toBeInTheDocument();
+      const equationContainer = screen.getByText(/y = x\^2 - 4/).parentElement;
+      expect(equationContainer?.textContent).toContain('y = x^2 - 4');
+      expect(equationContainer?.textContent).toContain('y = x');
+    });
+
+    it('shows intersection points labeled', () => {
+      const props = {
+        ...defaultProps,
+        points: [[-2, -2], [2, 2]] as [number, number][],
+      };
+      render(<GraphingExplorer {...props} mode="teaching" />);
+
+      const point1Labels = screen.queryAllByText(/-2\.0, -2\.0/i);
+      const point2Labels = screen.queryAllByText(/2\.0, 2\.0/i);
+      expect(point1Labels.length).toBeGreaterThan(0);
+      expect(point2Labels.length).toBeGreaterThan(0);
+    });
+
+    it('is read-only - no interaction allowed', () => {
+      render(<GraphingExplorer {...defaultProps} mode="teaching" />);
+
+      const canvas = screen.getByRole('img', { name: /coordinate plane/i });
+      expect(canvas).toBeInTheDocument();
+    });
+  });
+
+  describe('guided mode', () => {
+    it('shows instruction to find intersection points', () => {
+      render(<GraphingExplorer {...defaultProps} mode="guided" />);
+
+      expect(screen.getByText(/find the intersection points/i)).toBeInTheDocument();
+    });
+
+    it('allows student to identify intersection points by tapping on graph', async () => {
+      const onSubmit = vi.fn();
+      render(<GraphingExplorer {...defaultProps} mode="guided" onSubmit={onSubmit} />);
+
+      const inputs = screen.getAllByRole('spinbutton');
+      inputs.forEach((input, index) => {
+        const xValues = [-2, -1, 0, 1, 2];
+        fireEvent.change(input, { target: { value: String(xValues[index] ** 2 - 4) } });
+      });
+
+      await waitFor(() => {
+        expect(screen.getByText(/now plot the points/i)).toBeInTheDocument();
+      });
+
+      const canvas = screen.getByRole('img', { name: /coordinate plane/i });
+      fireEvent.click(canvas, { clientX: 240, clientY: 240 });
+      fireEvent.click(canvas, { clientX: 360, clientY: 360 });
+
+      await waitFor(() => {
+        const point1Labels = screen.queryAllByText(/-2\.0, -2\.0/i);
+        const point2Labels = screen.queryAllByText(/2\.0, 2\.0/i);
+        expect(point1Labels.length).toBeGreaterThan(0);
+        expect(point2Labels.length).toBeGreaterThan(0);
+      }, { timeout: 3000 });
+    });
+
+    it('provides feedback when intersection points are correctly identified', async () => {
+      const onSubmit = vi.fn();
+      const props = {
+        ...defaultProps,
+        points: [[-2, -2], [2, 2]] as [number, number][],
+        onSubmit,
+      };
+      render(<GraphingExplorer {...props} mode="guided" />);
+
+      const inputs = screen.getAllByRole('spinbutton');
+      inputs.forEach((input, index) => {
+        const xValues = [-2, -1, 0, 1, 2];
+        fireEvent.change(input, { target: { value: String(xValues[index] ** 2 - 4) } });
+      });
+
+      await waitFor(() => {
+        const submitButton = screen.queryByText(/submit/i);
+        expect(submitButton).toBeInTheDocument();
+      });
+
+      const canvas = screen.getByRole('img', { name: /coordinate plane/i });
+      fireEvent.click(canvas, { clientX: 240, clientY: 240 });
+      fireEvent.click(canvas, { clientX: 360, clientY: 360 });
+
+      const submitButton = screen.getByText(/submit/i);
+      fireEvent.click(submitButton);
+
+      await waitFor(() => {
+        expect(screen.getByText(/correct!/i)).toBeInTheDocument();
+      });
+    });
+
+    it('handles case of no real intersection points', async () => {
+      const props = {
+        ...defaultProps,
+        equation: 'y = x^2 + 4',
+        linearEquation: 'y = 0',
+        points: [] as [number, number][],
+      };
+      render(<GraphingExplorer {...props} mode="guided" />);
+
+      expect(screen.getByText(/this system has no real intersection points/i)).toBeInTheDocument();
+    });
+
+    it('records intersection point identification in submission', async () => {
+      const onSubmit = vi.fn();
+      const props = {
+        ...defaultProps,
+        points: [[-2, -2], [2, 2]] as [number, number][],
+        onSubmit,
+      };
+      render(<GraphingExplorer {...props} mode="guided" />);
+
+      const inputs = screen.getAllByRole('spinbutton');
+      inputs.forEach((input, index) => {
+        const xValues = [-2, -1, 0, 1, 2];
+        fireEvent.change(input, { target: { value: String(xValues[index] ** 2 - 4) } });
+      });
+
+      await waitFor(() => {
+        const submitButton = screen.queryByText(/submit/i);
+        expect(submitButton).toBeInTheDocument();
+      });
+
+      const canvas = screen.getByRole('img', { name: /coordinate plane/i });
+      fireEvent.click(canvas, { clientX: 240, clientY: 240 });
+      fireEvent.click(canvas, { clientX: 360, clientY: 360 });
+
+      const submitButton = screen.getByText(/submit/i);
+      fireEvent.click(submitButton);
+
+      await waitFor(() => {
+        expect(onSubmit).toHaveBeenCalled();
+        const submission = onSubmit.mock.calls[0][0];
+        expect(submission.answers.intersections).toBeDefined();
+        expect(submission.parts).toEqual(
+          expect.arrayContaining([
+            expect.objectContaining({
+              partId: 'intersections',
+              isCorrect: expect.any(Boolean),
+            }),
+          ])
+        );
+      });
+    });
+  });
+
+  describe('practice mode', () => {
+    it('shows instruction to find intersection points', () => {
+      render(<GraphingExplorer {...defaultProps} mode="practice" />);
+
+      expect(screen.getByText(/find the intersection points/i)).toBeInTheDocument();
+    });
+
+    it('allows direct plotting without table', async () => {
+      const onSubmit = vi.fn();
+      render(<GraphingExplorer {...defaultProps} mode="practice" onSubmit={onSubmit} />);
+
+      const canvas = screen.getByRole('img', { name: /coordinate plane/i });
+      fireEvent.click(canvas, { clientX: 240, clientY: 240 });
+      fireEvent.click(canvas, { clientX: 360, clientY: 360 });
+
+      await waitFor(() => {
+        const point1Labels = screen.queryAllByText(/-2\.0, -2\.0/i);
+        const point2Labels = screen.queryAllByText(/2\.0, 2\.0/i);
+        expect(point1Labels.length).toBeGreaterThan(0);
+        expect(point2Labels.length).toBeGreaterThan(0);
+      }, { timeout: 3000 });
+    });
+
+    it('overlays correct intersection points after submission', async () => {
+      const onSubmit = vi.fn();
+      const props = {
+        ...defaultProps,
+        points: [[-2, -2], [2, 2]] as [number, number][],
+        onSubmit,
+      };
+      render(<GraphingExplorer {...props} mode="practice" />);
+
+      const canvas = screen.getByRole('img', { name: /coordinate plane/i });
+      fireEvent.click(canvas, { clientX: 240, clientY: 240 });
+      fireEvent.click(canvas, { clientX: 360, clientY: 360 });
+
+      const submitButton = screen.getByText(/submit/i);
+      fireEvent.click(submitButton);
+
+      await waitFor(() => {
+        expect(screen.getByText(/correct solution/i)).toBeInTheDocument();
+        const point1Labels = screen.queryAllByText(/-2\.0, -2\.0/i);
+        const point2Labels = screen.queryAllByText(/2\.0, 2\.0/i);
+        expect(point1Labels.length).toBeGreaterThan(0);
+        expect(point2Labels.length).toBeGreaterThan(0);
+      });
+    });
+
+    it('assesses intersection point identification for correctness', async () => {
+      const onSubmit = vi.fn();
+      const props = {
+        ...defaultProps,
+        points: [[-2, -2], [2, 2]] as [number, number][],
+        onSubmit,
+      };
+      render(<GraphingExplorer {...props} mode="practice" />);
+
+      const canvas = screen.getByRole('img', { name: /coordinate plane/i });
+      fireEvent.click(canvas, { clientX: 240, clientY: 240 });
+      fireEvent.click(canvas, { clientX: 360, clientY: 360 });
+
+      const submitButton = screen.getByText(/submit/i);
+      fireEvent.click(submitButton);
+
+      await waitFor(() => {
+        expect(onSubmit).toHaveBeenCalled();
+        const submission = onSubmit.mock.calls[0][0];
+        expect(submission.parts).toEqual(
+          expect.arrayContaining([
+            expect.objectContaining({
+              partId: 'intersections',
+              isCorrect: true,
+            }),
+          ])
+        );
+      });
+    });
+  });
+});
+
 describe('GraphingExplorer - compare_functions variant', () => {
   const defaultProps = {
     activityId: 'test-activity-2',

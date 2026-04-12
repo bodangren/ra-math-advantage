@@ -18,6 +18,7 @@ export interface GraphingExplorerProps {
   comparisonEquation?: string;
   comparisonQuestion?: string;
   comparisonAnswer?: 'first' | 'second';
+  linearEquation?: string;
 }
 
 interface PracticeSubmissionEnvelope {
@@ -66,6 +67,7 @@ export function GraphingExplorer({
   comparisonEquation,
   comparisonQuestion,
   comparisonAnswer,
+  linearEquation,
 }: GraphingExplorerProps) {
   const [placedPoints, setPlacedPoints] = useState<Point[]>([]);
   const [tableComplete, setTableComplete] = useState(false);
@@ -75,6 +77,7 @@ export function GraphingExplorer({
   const [showSolution, setShowSolution] = useState(false);
   const [comparisonAnswerSelected, setComparisonAnswerSelected] = useState<'first' | 'second' | null>(null);
   const [showComparisonFeedback, setShowComparisonFeedback] = useState(false);
+  const [intersectionPoints, setIntersectionPoints] = useState<Point[]>([]);
 
   const addInteraction = useCallback((type: string, data?: unknown) => {
     setInteractionHistory(prev => [...prev, { type, timestamp: Date.now(), data }]);
@@ -92,6 +95,11 @@ export function GraphingExplorer({
       }]);
       addInteraction('intercept_identified', { x: point.x, y: 0 });
     }
+
+    if (variant === 'graph_system') {
+      setIntersectionPoints(prev => [...prev, point]);
+      addInteraction('intersection_identified', point);
+    }
   }, [addInteraction, variant]);
 
   const handlePointRemove = useCallback((label: string) => {
@@ -103,6 +111,9 @@ export function GraphingExplorer({
         }
         return true;
       }));
+    }
+    if (variant === 'graph_system') {
+      setIntersectionPoints(prev => prev.filter(p => p.label !== label));
     }
     addInteraction('point_removed', { label });
   }, [addInteraction, variant]);
@@ -157,6 +168,25 @@ export function GraphingExplorer({
     return discriminant >= 0;
   }, [equation]);
 
+  const hasRealIntersections = useCallback((): boolean => {
+    if (!linearEquation) return true;
+
+    const quadraticMatch = equation.match(/y\s*=\s*([+-]?\d*\.?\d*)\*?x\^2(?:\s*([+-]\s*\d*\.?\d*)\*?x)?\s*([+-]\s*\d*\.?\d*)/);
+    const linearMatch = linearEquation.match(/y\s*=\s*([+-]?\d*\.?\d*)\*?x(?:\s*([+-]\s*\d*\.?\d*))?/);
+
+    if (!quadraticMatch || !linearMatch) return true;
+
+    const a = parseFloat(quadraticMatch[1].replace(/\s/g, '')) || 1;
+    const b = quadraticMatch[2] ? parseFloat(quadraticMatch[2].replace(/\s/g, '')) : 0;
+    const c = parseFloat(quadraticMatch[3].replace(/\s/g, '')) || 0;
+
+    const m = parseFloat(linearMatch[1].replace(/\s/g, '')) || 1;
+    const k = linearMatch[2] ? parseFloat(linearMatch[2].replace(/\s/g, '')) : 0;
+
+    const discriminant = (b - m) ** 2 - 4 * a * (c - k);
+    return discriminant >= 0;
+  }, [equation, linearEquation]);
+
   const handleSubmit = useCallback(() => {
     if (!onSubmit) return;
 
@@ -188,6 +218,15 @@ export function GraphingExplorer({
       answers.comparisonAnswer = comparisonAnswerSelected;
     }
 
+    if (variant === 'graph_system') {
+      parts.push({
+        partId: 'intersections',
+        rawAnswer: intersectionPoints,
+        isCorrect: assessPointsCorrectness(),
+      });
+      answers.intersections = intersectionPoints;
+    }
+
     const envelope: PracticeSubmissionEnvelope = {
       contractVersion: 'practice.v1',
       activityId,
@@ -201,10 +240,12 @@ export function GraphingExplorer({
         graphState: {
           equation,
           comparisonEquation,
+          linearEquation,
           domain,
           range,
           placedPoints,
           intercepts,
+          intersectionPoints,
         },
       },
       interactionHistory,
@@ -213,7 +254,7 @@ export function GraphingExplorer({
     onSubmit(envelope);
     setShowSolution(true);
     setShowComparisonFeedback(true);
-  }, [activityId, mode, onSubmit, placedPoints, intercepts, hints, interactionHistory, equation, comparisonEquation, domain, range, assessPointsCorrectness, assessInterceptsCorrectness, variant, comparisonAnswerSelected, assessComparisonCorrectness]);
+  }, [activityId, mode, onSubmit, placedPoints, intercepts, hints, interactionHistory, equation, comparisonEquation, linearEquation, domain, range, assessPointsCorrectness, assessInterceptsCorrectness, variant, comparisonAnswerSelected, assessComparisonCorrectness, intersectionPoints]);
 
   const functions: FunctionPlot[] = [
     {
@@ -224,6 +265,12 @@ export function GraphingExplorer({
       ? [{
           expression: comparisonEquation,
           color: '#ef4444',
+        }]
+      : []),
+    ...(variant === 'graph_system' && linearEquation
+      ? [{
+          expression: linearEquation,
+          color: '#10b981',
         }]
       : []),
   ];
@@ -247,6 +294,8 @@ export function GraphingExplorer({
             ? 'Compare the Functions'
             : variant === 'find_intercepts'
             ? 'Find the X-Intercepts'
+            : variant === 'graph_system'
+            ? 'Graph the System of Equations'
             : 'Graph the Function'}
         </h2>
         <p className="text-muted-foreground">
@@ -257,8 +306,20 @@ export function GraphingExplorer({
               {comparisonEquation}
             </>
           )}
+          {variant === 'graph_system' && linearEquation && (
+            <>
+              <br />
+              {linearEquation}
+            </>
+          )}
         </p>
       </div>
+
+      {variant === 'graph_system' && (
+        <p className="text-sm text-muted-foreground">
+          Find the intersection points
+        </p>
+      )}
 
       {isGuided && !tableComplete && (
         <InteractiveTableOfValues
@@ -309,6 +370,17 @@ export function GraphingExplorer({
           </p>
           <p className="text-xs text-yellow-700 mt-1">
             The graph does not cross the x-axis.
+          </p>
+        </div>
+      )}
+
+      {variant === 'graph_system' && !hasRealIntersections() && (
+        <div className="bg-yellow-50 border border-yellow-200 rounded-md p-4">
+          <p className="text-sm text-yellow-800 font-medium">
+            This system has no real intersection points.
+          </p>
+          <p className="text-xs text-yellow-700 mt-1">
+            The quadratic and linear functions do not intersect.
           </p>
         </div>
       )}
@@ -367,6 +439,13 @@ export function GraphingExplorer({
             <div className={`border rounded-md p-4 ${assessInterceptsCorrectness() ? 'bg-green-50 border-green-200' : 'bg-red-50 border-red-200'}`}>
               <h3 className={`font-semibold mb-2 ${assessInterceptsCorrectness() ? 'text-green-900' : 'text-red-900'}`}>
                 {assessInterceptsCorrectness() ? 'Correct!' : 'Incorrect'}
+              </h3>
+            </div>
+          )}
+          {variant === 'graph_system' && (
+            <div className={`border rounded-md p-4 ${assessPointsCorrectness() ? 'bg-green-50 border-green-200' : 'bg-red-50 border-red-200'}`}>
+              <h3 className={`font-semibold mb-2 ${assessPointsCorrectness() ? 'text-green-900' : 'text-red-900'}`}>
+                {assessPointsCorrectness() ? 'Correct!' : 'Incorrect'}
               </h3>
             </div>
           )}

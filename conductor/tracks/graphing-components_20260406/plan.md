@@ -61,9 +61,9 @@
      - [x] Write tests: student identifies 0, 1, or 2 intercepts; submission graded correctly
      - [x] Implement variant; handles all three solution cases
 
-- [ ] Task: Implement `graph_system` variant (linear + quadratic)
-    - [ ] Write tests: student places intersection points; graded against computed intersections
-    - [ ] Implement variant; system solving validation logic
+ - [~] Task: Implement `graph_system` variant (linear + quadratic)
+     - [~] Write tests: student places intersection points; graded against computed intersections
+     - [ ] Implement variant; system solving validation logic
 
 - [ ] Task: Conductor — Phase Completion Verification 'Problem Variant Types' (Protocol in workflow.md)
 
