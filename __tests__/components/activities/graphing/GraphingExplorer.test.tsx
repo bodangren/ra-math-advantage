@@ -285,3 +285,248 @@ describe('GraphingExplorer - plot_from_equation variant', () => {
     });
   });
 });
+
+describe('GraphingExplorer - compare_functions variant', () => {
+  const defaultProps = {
+    activityId: 'test-activity-2',
+    variant: 'compare_functions' as const,
+    equation: 'y = x^2 - 4',
+    domain: [-10, 10] as [number, number],
+    range: [-10, 10] as [number, number],
+  };
+
+  describe('teaching mode', () => {
+    it('renders two functions with different colors', () => {
+      const props = {
+        ...defaultProps,
+        comparisonEquation: 'y = x^2',
+        comparisonQuestion: 'Which function has a greater y-intercept?',
+        comparisonAnswer: 'second',
+      };
+      render(<GraphingExplorer {...props} mode="teaching" />);
+
+      expect(screen.getByText(/compare the functions/i)).toBeInTheDocument();
+      const equationContainer = screen.getByText(/y = x\^2 - 4/).parentElement;
+      expect(equationContainer?.textContent).toContain('y = x^2 - 4');
+      expect(equationContainer?.textContent).toContain('y = x^2');
+    });
+
+    it('shows the correct answer for comparison question', () => {
+      const props = {
+        ...defaultProps,
+        comparisonEquation: 'y = x^2',
+        comparisonQuestion: 'Which function has a greater y-intercept?',
+        comparisonAnswer: 'second',
+      };
+      render(<GraphingExplorer {...props} mode="teaching" />);
+
+      expect(screen.getByText(/correct answer: second function/i)).toBeInTheDocument();
+    });
+
+    it('is read-only - no interaction allowed', () => {
+      const props = {
+        ...defaultProps,
+        comparisonEquation: 'y = x^2',
+        comparisonQuestion: 'Which function has a greater y-intercept?',
+        comparisonAnswer: 'second',
+      };
+      render(<GraphingExplorer {...props} mode="teaching" />);
+
+      const canvas = screen.getByRole('img', { name: /coordinate plane/i });
+      expect(canvas).toBeInTheDocument();
+    });
+  });
+
+  describe('guided mode', () => {
+    it('shows comparison question with radio button options', () => {
+      const props = {
+        ...defaultProps,
+        comparisonEquation: 'y = x^2',
+        comparisonQuestion: 'Which function has a greater y-intercept?',
+        comparisonAnswer: 'second',
+      };
+      render(<GraphingExplorer {...props} mode="guided" />);
+
+      expect(screen.getByText(/which function has a greater y-intercept\?/i)).toBeInTheDocument();
+      expect(screen.getByRole('radio', { name: /first function/i })).toBeInTheDocument();
+      expect(screen.getByRole('radio', { name: /second function/i })).toBeInTheDocument();
+    });
+
+    it('allows selecting an answer for comparison question', async () => {
+      const props = {
+        ...defaultProps,
+        comparisonEquation: 'y = x^2',
+        comparisonQuestion: 'Which function has a greater y-intercept?',
+        comparisonAnswer: 'second',
+      };
+      render(<GraphingExplorer {...props} mode="guided" />);
+
+      const firstRadio = screen.getByRole('radio', { name: /first function/i });
+      fireEvent.click(firstRadio);
+
+      await waitFor(() => {
+        expect(firstRadio).toBeChecked();
+      });
+    });
+
+    it('shows correct feedback when answer is correct', async () => {
+      const onSubmit = vi.fn();
+      const props = {
+        ...defaultProps,
+        comparisonEquation: 'y = x^2',
+        comparisonQuestion: 'Which function has a greater y-intercept?',
+        comparisonAnswer: 'second',
+        onSubmit,
+      };
+      render(<GraphingExplorer {...props} mode="guided" />);
+
+      const secondRadio = screen.getByRole('radio', { name: /second function/i });
+      fireEvent.click(secondRadio);
+
+      await waitFor(() => {
+        const submitButton = screen.queryByText(/submit/i);
+        expect(submitButton).toBeInTheDocument();
+      });
+
+      const submitButton = screen.getByText(/submit/i);
+      fireEvent.click(submitButton);
+
+      await waitFor(() => {
+        expect(screen.getByText(/correct!/i)).toBeInTheDocument();
+      });
+    });
+
+    it('shows incorrect feedback when answer is wrong', async () => {
+      const onSubmit = vi.fn();
+      const props = {
+        ...defaultProps,
+        comparisonEquation: 'y = x^2',
+        comparisonQuestion: 'Which function has a greater y-intercept?',
+        comparisonAnswer: 'second',
+        onSubmit,
+      };
+      render(<GraphingExplorer {...props} mode="guided" />);
+
+      const firstRadio = screen.getByRole('radio', { name: /first function/i });
+      fireEvent.click(firstRadio);
+
+      await waitFor(() => {
+        const submitButton = screen.queryByText(/submit/i);
+        expect(submitButton).toBeInTheDocument();
+      });
+
+      const submitButton = screen.getByText(/submit/i);
+      fireEvent.click(submitButton);
+
+      await waitFor(() => {
+        expect(screen.getByText(/incorrect/i)).toBeInTheDocument();
+      });
+    });
+
+    it('records comparison answer in submission', async () => {
+      const onSubmit = vi.fn();
+      const props = {
+        ...defaultProps,
+        comparisonEquation: 'y = x^2',
+        comparisonQuestion: 'Which function has a greater y-intercept?',
+        comparisonAnswer: 'second',
+        onSubmit,
+      };
+      render(<GraphingExplorer {...props} mode="guided" />);
+
+      const secondRadio = screen.getByRole('radio', { name: /second function/i });
+      fireEvent.click(secondRadio);
+
+      await waitFor(() => {
+        const submitButton = screen.queryByText(/submit/i);
+        expect(submitButton).toBeInTheDocument();
+      });
+
+      const submitButton = screen.getByText(/submit/i);
+      fireEvent.click(submitButton);
+
+      await waitFor(() => {
+        expect(onSubmit).toHaveBeenCalled();
+        const submission = onSubmit.mock.calls[0][0];
+        expect(submission.answers.comparisonAnswer).toBe('second');
+        expect(submission.parts).toEqual(
+          expect.arrayContaining([
+            expect.objectContaining({
+              partId: 'comparison',
+              isCorrect: true,
+            }),
+          ])
+        );
+      });
+    });
+  });
+
+  describe('practice mode', () => {
+    it('shows comparison question with radio button options', () => {
+      const props = {
+        ...defaultProps,
+        comparisonEquation: 'y = x^2',
+        comparisonQuestion: 'Which function has a greater y-intercept?',
+        comparisonAnswer: 'second',
+      };
+      render(<GraphingExplorer {...props} mode="practice" />);
+
+      expect(screen.getByText(/which function has a greater y-intercept\?/i)).toBeInTheDocument();
+      expect(screen.getByRole('radio', { name: /first function/i })).toBeInTheDocument();
+      expect(screen.getByRole('radio', { name: /second function/i })).toBeInTheDocument();
+    });
+
+    it('overlays correct solution after submission', async () => {
+      const onSubmit = vi.fn();
+      const props = {
+        ...defaultProps,
+        comparisonEquation: 'y = x^2',
+        comparisonQuestion: 'Which function has a greater y-intercept?',
+        comparisonAnswer: 'second',
+        onSubmit,
+      };
+      render(<GraphingExplorer {...props} mode="practice" />);
+
+      const firstRadio = screen.getByRole('radio', { name: /first function/i });
+      fireEvent.click(firstRadio);
+
+      const submitButton = screen.getByText(/submit/i);
+      fireEvent.click(submitButton);
+
+      await waitFor(() => {
+        expect(screen.getByText(/correct answer is: second function/i)).toBeInTheDocument();
+      });
+    });
+
+    it('assesses comparison answer for correctness', async () => {
+      const onSubmit = vi.fn();
+      const props = {
+        ...defaultProps,
+        comparisonEquation: 'y = x^2',
+        comparisonQuestion: 'Which function has a greater y-intercept?',
+        comparisonAnswer: 'second',
+        onSubmit,
+      };
+      render(<GraphingExplorer {...props} mode="practice" />);
+
+      const secondRadio = screen.getByRole('radio', { name: /second function/i });
+      fireEvent.click(secondRadio);
+
+      const submitButton = screen.getByText(/submit/i);
+      fireEvent.click(submitButton);
+
+      await waitFor(() => {
+        expect(onSubmit).toHaveBeenCalled();
+        const submission = onSubmit.mock.calls[0][0];
+        expect(submission.parts).toEqual(
+          expect.arrayContaining([
+            expect.objectContaining({
+              partId: 'comparison',
+              isCorrect: true,
+            }),
+          ])
+        );
+      });
+    });
+  });
+});
