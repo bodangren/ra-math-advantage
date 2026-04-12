@@ -54,18 +54,17 @@ function GuidedMode({ steps }: { steps: AlgebraicStep[] }) {
   const [, setHintUsed] = useState(false);
   const [showHint, setShowHint] = useState(false);
   const [hintCount, setHintCount] = useState(0);
+  const [showExplanation, setShowExplanation] = useState(false);
 
   const currentStep = steps[currentStepIndex];
-  const isComplete = currentStepIndex >= steps.length;
+  const isComplete = currentStepIndex >= steps.length || (showExplanation && currentStepIndex === steps.length - 1);
 
   const handleOptionClick = (expression: string) => {
     if (expression === currentStep.expression) {
-      // Correct selection
+      // Correct selection - show explanation first
       setShowHint(false);
       setHintUsed(false);
-      if (currentStepIndex < steps.length - 1) {
-        setCurrentStepIndex(prev => prev + 1);
-      }
+      setShowExplanation(true);
     } else {
       // Incorrect selection
       setShowHint(true);
@@ -79,6 +78,7 @@ function GuidedMode({ steps }: { steps: AlgebraicStep[] }) {
       setCurrentStepIndex(prev => prev + 1);
       setShowHint(false);
       setHintUsed(false);
+      setShowExplanation(false);
     }
   };
 
@@ -103,7 +103,7 @@ function GuidedMode({ steps }: { steps: AlgebraicStep[] }) {
   return (
     <div className="space-y-4">
       {/* Problem statement */}
-      {currentStepIndex === 0 && (
+      {currentStepIndex === 0 && !showExplanation && (
         <div className="p-4 bg-muted/30 rounded-lg">
           <div className="text-sm font-medium text-muted-foreground mb-2">
             Problem:
@@ -114,15 +114,27 @@ function GuidedMode({ steps }: { steps: AlgebraicStep[] }) {
         </div>
       )}
 
+      {/* Explanation shown after correct answer */}
+      {showExplanation && (
+        <div className="p-4 bg-green-50 border border-green-200 rounded-md">
+          <div className="text-lg font-medium mb-2">
+            <InlineMath math={currentStep.expression} />
+          </div>
+          <div className="text-sm text-green-700">
+            {currentStep.explanation}
+          </div>
+        </div>
+      )}
+
       {/* Prompt */}
-      {!showHint && (
+      {!showExplanation && (
         <div className="text-lg font-medium">
           What&apos;s the next step?
         </div>
       )}
 
       {/* Multiple choice options */}
-      {!showHint && (
+      {!showExplanation && (
         <div className="space-y-2">
           {options.map((option, index) => (
             <button
@@ -150,7 +162,7 @@ function GuidedMode({ steps }: { steps: AlgebraicStep[] }) {
       )}
 
       {/* Next button after correct answer */}
-      {!showHint && currentStepIndex > 0 && currentStepIndex < steps.length && (
+      {showExplanation && currentStepIndex < steps.length - 1 && (
         <button
           type="button"
           onClick={handleNext}
