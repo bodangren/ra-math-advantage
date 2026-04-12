@@ -53,9 +53,9 @@
     - [x] Write tests: all 3 modes work; submission includes correct/incorrect assessment of placed points
     - [x] Implement variant logic and problem config parsing from props schema
 
-- [ ] Task: Implement `compare_functions` variant
-    - [ ] Write tests: renders two functions; student identifies which has greater max/min/intercepts
-    - [ ] Implement variant; comparison question UI
+ - [x] Task: Implement `compare_functions` variant [429db7f]
+     - [x] Write tests: renders two functions; student identifies which has greater max/min/intercepts
+     - [x] Implement variant; comparison question UI
 
 - [ ] Task: Implement `find_intercepts` variant
     - [ ] Write tests: student identifies 0, 1, or 2 intercepts; submission graded correctly
