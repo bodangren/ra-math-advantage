@@ -13,10 +13,10 @@
     - [x] Write tests: handles complex numbers (`2 + 3i`), fractions, radicals
     - [x] Implement pattern-matching equivalence checker for Module 1 expression types
 
-- [ ] Task: Create `StepByStepper` base component (teaching mode only)
-    - [ ] Write tests: renders all steps with expression and explanation; uses StepRevealContainer in full-reveal state
-    - [ ] Write tests: `isKeyStep` flag applies visual emphasis
-    - [ ] Implement `components/activities/algebraic/StepByStepper.tsx` — teaching mode
+- [x] Task: Create `StepByStepper` base component (teaching mode only) [9f2a001]
+    - [x] Write tests: renders all steps with expression and explanation; uses StepRevealContainer in full-reveal state
+    - [x] Write tests: `isKeyStep` flag applies visual emphasis
+    - [x] Implement `components/activities/algebraic/StepByStepper.tsx` — teaching mode
 
 - [ ] Task: Conductor — Phase Completion Verification 'Foundation' (Protocol in workflow.md)
 

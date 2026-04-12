@@ -108,7 +108,17 @@ function checkPolynomialEquivalence(expr1: string, expr2: string): boolean {
   const factored1 = factorPolynomial(expr1);
   const factored2 = factorPolynomial(expr2);
 
-  return factored1 === factored2;
+  if (factored1 === factored2) return true;
+
+  // Check if expanding one matches the other
+  if (expanded1 === expr2) return true;
+  if (expanded2 === expr1) return true;
+
+  // Check if factoring one matches the other
+  if (factored1 === expr2) return true;
+  if (factored2 === expr1) return true;
+
+  return false;
 }
 
 /**
@@ -123,56 +133,31 @@ function checkPolynomialEquivalence(expr1: string, expr2: string): boolean {
  * For more complex polynomials, this returns the original expression.
  */
 function expandPolynomial(expr: string): string {
-  // Pattern: (x + a)(x + b)
-  const factoredPattern1 = /\(x\+([+-]?\d*\.?\d*)\)\(x\+([+-]?\d*\.?\d*)\)/;
-  const match1 = expr.match(factoredPattern1);
-  if (match1) {
-    const a = parseFloat(match1[1]) || 0;
-    const b = parseFloat(match1[2]) || 0;
-    const sum = a + b;
-    const product = a * b;
-    const sumStr = sum === 0 ? '' : sum >= 0 ? `+${sum}x` : `${sum}x`;
+  // Pattern: (x ± a)(x ± b) - handles all four sign combinations
+  const factoredPattern = /\(x([+-])(\d*\.?\d*)\)\(x([+-])(\d*\.?\d*)\)/;
+  const match = expr.match(factoredPattern);
+  if (match) {
+    const sign1 = match[1];
+    const a = parseFloat(match[2]) || 0;
+    const sign2 = match[3];
+    const b = parseFloat(match[4]) || 0;
+
+    // Convert to signed numbers
+    const num1 = sign1 === '-' ? -a : a;
+    const num2 = sign2 === '-' ? -b : b;
+
+    const sum = num1 + num2;
+    const product = num1 * num2;
+    
+    let sumStr = '';
+    if (sum !== 0) {
+      const absSum = Math.abs(sum);
+      const sign = sum >= 0 ? '+' : '-';
+      sumStr = sum === 1 ? '+x' : sum === -1 ? '-x' : `${sign}${absSum}x`;
+    }
+    
     const productStr = product === 0 ? '' : product >= 0 ? `+${product}` : `${product}`;
     return `x^2${sumStr}${productStr}`;
-  }
-
-  // Pattern: (x - a)(x - b)
-  const factoredPattern2 = /\(x-([+-]?\d*\.?\d*)\)\(x-([+-]?\d*\.?\d*)\)/;
-  const match2 = expr.match(factoredPattern2);
-  if (match2) {
-    const a = parseFloat(match2[1]) || 0;
-    const b = parseFloat(match2[2]) || 0;
-    const sum = -(a + b);
-    const product = a * b;
-    const sumStr = sum === 0 ? '' : sum >= 0 ? `+${sum}x` : `${sum}x`;
-    const productStr = product === 0 ? '' : product >= 0 ? `+${product}` : `${product}`;
-    return `x^2${sumStr}${productStr}`;
-  }
-
-  // Pattern: (x + a)(x - b)
-  const factoredPattern3 = /\(x\+([+-]?\d*\.?\d*)\)\(x-([+-]?\d*\.?\d*)\)/;
-  const match3 = expr.match(factoredPattern3);
-  if (match3) {
-    const a = parseFloat(match3[1]) || 0;
-    const b = parseFloat(match3[2]) || 0;
-    const diff = a - b;
-    const product = -a * b;
-    const diffStr = diff === 0 ? '' : diff >= 0 ? `+${diff}x` : `${diff}x`;
-    const productStr = product === 0 ? '' : product >= 0 ? `+${product}` : `${product}`;
-    return `x^2${diffStr}${productStr}`;
-  }
-
-  // Pattern: (x - a)(x + b)
-  const factoredPattern5 = /\(x-([+-]?\d*\.?\d*)\)\(x\+([+-]?\d*\.?\d*)\)/;
-  const match5 = expr.match(factoredPattern5);
-  if (match5) {
-    const a = parseFloat(match5[1]) || 0;
-    const b = parseFloat(match5[2]) || 0;
-    const diff = b - a;
-    const product = -a * b;
-    const diffStr = diff === 0 ? '' : diff >= 0 ? `+${diff}x` : `${diff}x`;
-    const productStr = product === 0 ? '' : product >= 0 ? `+${product}` : `${product}`;
-    return `x^2${diffStr}${productStr}`;
   }
 
   // Pattern: (ax + b)(cx + d)
