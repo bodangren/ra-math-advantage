@@ -1,0 +1,9 @@
+{
+  "id": "fix-submission-schema-types_20260412",
+  "title": "[URGENT] Fix: Zod Schema Type Errors in submission.schema.ts",
+  "description": "Fix 3 TypeScript errors in lib/practice/submission.schema.ts caused by incorrect z.record() usage in Zod 4.x",
+  "type": "bug",
+  "priority": "high",
+  "createdAt": "2026-04-12",
+  "status": "active"
+}

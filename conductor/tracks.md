@@ -10,6 +10,10 @@ Tracks 1+4 unlock Track 8; Track 8 unlocks Tracks 9+10.
 
 ## Active Tracks
 
+- [~] **[URGENT] Fix: Zod Schema Type Errors in submission.schema.ts** — **IN PROGRESS**
+   *Fix 3 TypeScript errors caused by incorrect z.record() usage in Zod 4.x*
+   *Link: [./conductor/tracks/fix-submission-schema-types_20260412/](./conductor/tracks/fix-submission-schema-types_20260412/)*
+
 - [x] **[URGENT] Fix: Bundle Size - Reduce RSC Entry Chunk** — **COMPLETED**
    *Reduce Facade RSC entry chunk from 687 KB to under 500 KB via code-splitting*
    *Link: [./conductor/tracks/fix-bundle-size_20260411/](./conductor/tracks/fix-bundle-size_20260411/)*

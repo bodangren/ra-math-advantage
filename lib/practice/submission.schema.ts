@@ -22,15 +22,15 @@ export const PracticeSubmissionEnvelopeSchema = z.object({
   status: z.enum(['draft', 'submitted', 'graded', 'returned']),
   attemptNumber: z.number().int().positive(),
   submittedAt: z.string(),
-  answers: z.record(z.unknown()),
+  answers: z.record(z.string(), z.unknown()),
   parts: z.array(PracticeSubmissionPartSchema),
-  artifact: z.record(z.unknown()).optional(),
+  artifact: z.record(z.string(), z.unknown()).optional(),
   interactionHistory: z.array(z.object({
     type: z.string(),
     timestamp: z.number(),
     data: z.unknown().optional(),
   })).optional(),
-  analytics: z.record(z.unknown()).optional(),
+  analytics: z.record(z.string(), z.unknown()).optional(),
   studentFeedback: z.string().optional(),
   teacherSummary: z.string().optional(),
 });
