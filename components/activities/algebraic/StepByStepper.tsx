@@ -51,7 +51,7 @@ export function StepByStepper({ mode, steps }: StepByStepperProps) {
 
 function GuidedMode({ steps }: { steps: AlgebraicStep[] }) {
   const [currentStepIndex, setCurrentStepIndex] = useState(0);
-  const [hintUsed, setHintUsed] = useState(false);
+  const [, setHintUsed] = useState(false);
   const [showHint, setShowHint] = useState(false);
   const [hintCount, setHintCount] = useState(0);
 
@@ -117,7 +117,7 @@ function GuidedMode({ steps }: { steps: AlgebraicStep[] }) {
       {/* Prompt */}
       {!showHint && (
         <div className="text-lg font-medium">
-          What's the next step?
+          What&apos;s the next step?
         </div>
       )}
 

@@ -21,3 +21,4 @@
   | 2026-04-12 | graphing-components | TypeScript errors in GraphingExplorer.test.tsx — comparisonAnswer type | Low | Resolved | **Fixed in track fix-graphing-test-types_20260412:** Added 'as const' to comparisonAnswer prop in 11 test fixtures. |
  | 2026-04-12 | graphing-components | Explore mode with parameter sliders not implemented | Low | Open | Deferred to future track - core graphing functionality is complete. |
   | 2026-04-12 | algebraic-examples | Equivalence validator 6/50 tests failing for complex cases | Low | Open | Pattern-matching approach doesn't handle all polynomial/fraction/radical combinations; 44/50 passing (88%) exceeds 80% target. Consider symbolic math library for production. |
+  | 2026-04-13 | algebraic-examples | StepByStepper guided mode 4 tests failing (in-progress commit) | Medium | Open | Commit 7c03e06 introduced basic guided mode. Tests for correct/incorrect selection and completion are failing — component logic not yet complete. |
