@@ -47,6 +47,7 @@
 - (2026-04-11, extract-quadratic-regex) Regex with optional sign-only captures causes `parseFloat()` to return `NaN` — handle with `isNaN()` check
 - (2026-04-12, extract-linear-regex) `parseLinear()` must reject expressions with `x^2` — use early return if `expression.includes('x^2')`
 - (2026-04-12, graphing-components) GraphingExplorer submission follows practice.v1 — include answers, parts, artifact, interactionHistory; variant field supports extensibility
-- (2026-04-12, graphing-system) Intersection point coordinates inverted in tests — (x, y) transforms to (canvasX, height - canvasY), not (canvasX, canvasY)
-- (2026-04-12, graphing-components) Zod schema imports can fail in test environment — validate structure manually when needed
+ - (2026-04-12, graphing-system) Intersection point coordinates inverted in tests — (x, y) transforms to (canvasX, height - canvasY), not (canvasX, canvasY)
+ - (2026-04-12, graphing-components) Zod schema imports can fail in test environment — validate structure manually when needed
+ - (2026-04-12, algebraic-examples) Pattern-matching equivalence works for Module 1 scope but has limits for complex cases — 84% test coverage acceptable; symbolic math library needed for full equivalence checking
 
