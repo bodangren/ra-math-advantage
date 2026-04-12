@@ -2,11 +2,11 @@
 
 ## Phase 1: Foundation — Math Input & Step Rendering
 
-- [ ] Task: Create `MathInputField` component
-    - [ ] Write tests: renders live KaTeX preview as user types
-    - [ ] Write tests: validates exact match (e.g., `3x + 2` == `3x + 2`)
-    - [ ] Write tests: validates structural equivalence for common forms (e.g., `(x-3)(x+2)` == `x^2-x-6`)
-    - [ ] Implement `components/activities/algebraic/MathInputField.tsx`
+- [x] Task: Create `MathInputField` component [64957ca]
+    - [x] Write tests: renders live KaTeX preview as user types
+    - [x] Write tests: validates exact match (e.g., `3x + 2` == `3x + 2`)
+    - [x] Write tests: validates structural equivalence for common forms (e.g., `(x-3)(x+2)` == `x^2-x-6`)
+    - [x] Implement `components/activities/algebraic/MathInputField.tsx`
 
 - [ ] Task: Create expression equivalence validator `lib/activities/algebraic/equivalence.ts`
     - [ ] Write tests: identical strings → true; algebraic equivalents → true; wrong answers → false
