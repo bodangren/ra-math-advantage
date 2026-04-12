@@ -83,12 +83,29 @@ export function GraphingExplorer({
   const handlePointAdd = useCallback((point: Point) => {
     setPlacedPoints(prev => [...prev, { ...point, label: `${point.x.toFixed(1)}, ${point.y.toFixed(1)}` }]);
     addInteraction('point_placed', point);
-  }, [addInteraction]);
+
+    if (variant === 'find_intercepts' && Math.abs(point.y) < 1.0) {
+      setIntercepts(prev => [...prev, {
+        type: 'intercept',
+        data: { x: point.x, y: 0 },
+        timestamp: Date.now(),
+      }]);
+      addInteraction('intercept_identified', { x: point.x, y: 0 });
+    }
+  }, [addInteraction, variant]);
 
   const handlePointRemove = useCallback((label: string) => {
     setPlacedPoints(prev => prev.filter(p => p.label !== label));
+    if (variant === 'find_intercepts') {
+      setIntercepts(prev => prev.filter(i => {
+        if (i.type === 'intercept' && i.data) {
+          return i.data.x.toFixed(1) !== label.split(', ')[0];
+        }
+        return true;
+      }));
+    }
     addInteraction('point_removed', { label });
-  }, [addInteraction]);
+  }, [addInteraction, variant]);
 
   const handleTableComplete = useCallback((points: Array<{ x: number; y: number }>) => {
     setTableComplete(true);
@@ -127,6 +144,18 @@ export function GraphingExplorer({
     if (!comparisonAnswer || !comparisonAnswerSelected) return false;
     return comparisonAnswerSelected === comparisonAnswer;
   }, [comparisonAnswer, comparisonAnswerSelected]);
+
+  const hasRealIntercepts = useCallback((): boolean => {
+    const match = equation.match(/y\s*=\s*([+-]?\d*\.?\d*)\*?x\^2(?:\s*([+-]\s*\d*\.?\d*)\*?x)?\s*([+-]\s*\d*\.?\d*)/);
+    if (!match) return true;
+
+    const a = parseFloat(match[1].replace(/\s/g, '')) || 1;
+    const b = match[2] ? parseFloat(match[2].replace(/\s/g, '')) : 0;
+    const c = parseFloat(match[3].replace(/\s/g, '')) || 0;
+
+    const discriminant = b * b - 4 * a * c;
+    return discriminant >= 0;
+  }, [equation]);
 
   const handleSubmit = useCallback(() => {
     if (!onSubmit) return;
@@ -214,7 +243,11 @@ export function GraphingExplorer({
     <div className="space-y-6">
       <div>
         <h2 className="text-xl font-semibold text-foreground mb-2">
-          {variant === 'compare_functions' ? 'Compare the Functions' : 'Graph the Function'}
+          {variant === 'compare_functions'
+            ? 'Compare the Functions'
+            : variant === 'find_intercepts'
+            ? 'Find the X-Intercepts'
+            : 'Graph the Function'}
         </h2>
         <p className="text-muted-foreground">
           {equation}
@@ -269,6 +302,17 @@ export function GraphingExplorer({
         />
       )}
 
+      {variant === 'find_intercepts' && !hasRealIntercepts() && (
+        <div className="bg-yellow-50 border border-yellow-200 rounded-md p-4">
+          <p className="text-sm text-yellow-800 font-medium">
+            This function has no real x-intercepts.
+          </p>
+          <p className="text-xs text-yellow-700 mt-1">
+            The graph does not cross the x-axis.
+          </p>
+        </div>
+      )}
+
       {variant === 'compare_functions' && comparisonQuestion && (
         <div className="bg-white border border-gray-200 rounded-md p-4">
           <p className="font-medium text-foreground mb-3">{comparisonQuestion}</p>
@@ -317,6 +361,13 @@ export function GraphingExplorer({
                   The correct answer is: {comparisonAnswer === 'first' ? 'First' : 'Second'} function
                 </p>
               )}
+            </div>
+          )}
+          {variant === 'find_intercepts' && (
+            <div className={`border rounded-md p-4 ${assessInterceptsCorrectness() ? 'bg-green-50 border-green-200' : 'bg-red-50 border-red-200'}`}>
+              <h3 className={`font-semibold mb-2 ${assessInterceptsCorrectness() ? 'text-green-900' : 'text-red-900'}`}>
+                {assessInterceptsCorrectness() ? 'Correct!' : 'Incorrect'}
+              </h3>
             </div>
           )}
           <div className="bg-blue-50 border border-blue-200 rounded-md p-4">
