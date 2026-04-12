@@ -46,5 +46,7 @@
 - (2026-04-12, extract-linear-regex) `parseLinear()` must reject expressions with `x^2` — use early return if `expression.includes('x^2')`
 - (2026-04-12, graphing-components) GraphingExplorer submission follows practice.v1 — include answers, parts, artifact, interactionHistory; variant field supports extensibility
 - (2026-04-12, graphing-system) Intersection point coordinates inverted in tests — (x, y) transforms to (canvasX, height - canvasY)
-- (2026-04-12, algebraic-examples) Pattern-matching equivalence works for Module 1 but has limits — 84% acceptable; symbolic math library needed for production
- 
+- (2026-04-12, algebraic-examples) Pattern-matching equivalence works for Module 1 but has limits — 88% acceptable; symbolic math library needed for production
+- (2026-04-12, algebraic-examples) Polynomial expansion regex patterns were too strict — consolidate multiple patterns into single unified pattern handling all sign combinations
+- (2026-04-12, algebraic-examples) Coefficient formatting must omit 1 (e.g., -1x -> -x) — add special case handling for ±1 coefficients
+  
