@@ -22,7 +22,7 @@
 
 ## Phase 2: Guided & Practice Modes
 
-- [ ] Task: Add guided mode to `StepByStepper`
+- [~] Task: Add guided mode to `StepByStepper`
     - [ ] Write tests: steps hidden on load; multiple-choice shows correct + 2 distractors
     - [ ] Write tests: correct selection reveals step and advances; incorrect shows hint
     - [ ] Write tests: hint usage count recorded in component state
