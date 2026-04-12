@@ -16,11 +16,10 @@
 - (2026-04-05, setup) vinext (Vite-backed Next.js) may have subtle differences from stock Next.js — test builds early
 - (2026-04-06, scaffold-pages) `convex/_generated/` is empty until `npx convex dev` is run — dev server fails until initialized
 - (2026-04-06, scaffold-pages) Async RSC pages cannot be rendered with `React.createElement(Page)` in tests — await the component call first
-- (2026-04-06, scaffold-pages) Test files do not need `import React from 'react'` with the new JSX transform — importing it causes lint errors
 - (2026-04-08, setup) Schema porting from bus-math-v2 requires running `npx tsc --noEmit` to catch missing tables
 - (2026-04-08, setup) Use `npx convex dev --once` for one-time type generation — faster for CI/autonomous workflows
 - (2026-04-10, graphing-components) JavaScript's -0 (negative zero) appears in calculations like -b/(2a) when b=0 — use `Object.is(val, -0)` to detect
-- (2026-04-12, graphing-components) Constant linear equations (e.g., 'y = 0') need special regex handling — check for constant pattern after variable pattern fails
+- (2026-04-12, submission-schema) Zod 4.x `z.record()` requires explicit key type — use `z.record(z.string(), z.unknown())`, not `z.record(z.unknown())`
 
 ## Patterns That Worked Well
 <!-- Approaches worth repeating -->
