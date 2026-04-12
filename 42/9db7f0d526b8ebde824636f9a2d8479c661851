@@ -1,0 +1,20 @@
+Task: Implement compare_functions variant
+
+Summary: Added support for the compare_functions variant in GraphingExplorer component. This variant allows students to compare two quadratic functions and answer comparison questions about their properties (e.g., which has greater y-intercept).
+
+Changes:
+- __tests__/components/activities/graphing/GraphingExplorer.test.tsx: Added comprehensive tests for compare_functions variant covering teaching, guided, and practice modes
+- components/activities/graphing/GraphingExplorer.tsx:
+  - Added comparisonEquation, comparisonQuestion, comparisonAnswer props to GraphingExplorerProps
+  - Added state for comparisonAnswerSelected and showComparisonFeedback
+  - Added handleComparisonAnswerSelect callback
+  - Added assessComparisonCorrectness callback
+  - Updated functions array to render second function in red when variant is compare_functions
+  - Updated handleSubmit to include comparison answer in submission envelope
+  - Updated UI to show comparison question with radio buttons
+  - Added feedback display after submission (correct/incorrect)
+  - Updated submit button logic to enable when comparison answer is selected
+
+Why: Module 1 lessons require students to compare quadratic functions and identify key differences. This variant provides the interactive UI and validation needed for this type of problem.
+
+Test Coverage: All 28 tests passing (18 existing + 10 new compare_functions tests)
