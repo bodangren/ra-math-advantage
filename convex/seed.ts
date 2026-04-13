@@ -7,6 +7,10 @@ import { seedLesson1 } from "./seed/seed-lesson-1-1";
 import { seedLesson2 } from "./seed/seed-lesson-1-2";
 import { seedLesson3 } from "./seed/seed-lesson-1-3";
 import { seedLesson4 } from "./seed/seed-lesson-1-4";
+import { seedLesson5 } from "./seed/seed-lesson-1-5";
+import { seedLesson6 } from "./seed/seed-lesson-1-6";
+import { seedLesson7 } from "./seed/seed-lesson-1-7";
+import { seedLesson8 } from "./seed/seed-lesson-1-8";
 
 export const seedAll = internalAction({
   args: {},
@@ -51,6 +55,18 @@ export const seedAll = internalAction({
             break;
           case "module-1-lesson-4":
             await ctx.runMutation(seedLesson4, {});
+            break;
+          case "module-1-lesson-5":
+            await ctx.runMutation(seedLesson5, {});
+            break;
+          case "module-1-lesson-6":
+            await ctx.runMutation(seedLesson6, {});
+            break;
+          case "module-1-lesson-7":
+            await ctx.runMutation(seedLesson7, {});
+            break;
+          case "module-1-lesson-8":
+            await ctx.runMutation(seedLesson8, {});
             break;
           default:
             break;
