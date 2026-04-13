@@ -13,8 +13,8 @@
 ## Recurring Gotchas
 <!-- Problems encountered repeatedly; save future tracks from the same pain -->
 
-- (2026-04-05, setup) vinext (Vite-backed Next.js) may have subtle differences from stock Next.js — test builds early
 - (2026-04-08, setup) Schema porting from bus-math-v2 requires `npx tsc --noEmit` to catch missing tables; use `npx convex dev --once` for one-time type generation (faster for CI)
+- (2026-04-13, review) Known-failing tests landed with tech-debt notes (equivalence 44/50, InterceptIdentification 8/23) accumulate risk — enforce green baseline or scope the API down to what passes
 - (2026-04-12, submission-schema) Zod 4.x `z.record()` requires explicit key type — use `z.record(z.string(), z.unknown())`, not `z.record(z.unknown())`
 - (2026-04-12, graphing-schema) TypeScript array type inference narrows from first elements — use explicit type annotation when pushing different types
 - (2026-04-10, graphing-components) JavaScript's -0 (negative zero) appears in calculations like -b/(2a) when b=0 — use `Object.is(val, -0)` to detect
@@ -48,5 +48,7 @@
 - (2026-04-13, algebraic-examples) Problem type implementation is configuration-driven — StepByStepper component handles all modes; problem types are just step configurations with expressions, explanations, hints, and distractors
 - (2026-04-13, algebraic-examples) Rate of change problems support multiple input types — equation, table, and graph readout all use same step sequence with different data sources
 - (2026-04-13, distractors) ESLint unused variable warnings for destructuring — use `,` instead of `_` to ignore elements, or use eslint-disable comments
+- (2026-04-13, review) Conductor autonomous runs produce ~60% bookkeeping commits (`Mark X complete`, output-log updates) — squash into phase-completion commits so `git log` stays navigable
+- (2026-04-13, review) Convex `internalMutation` args should not accept identity (e.g. `createdBy: v.id("profiles")`) — derive from auth context or clearly mark CLI-only to avoid a trust-boundary bug if ever exposed
 
 

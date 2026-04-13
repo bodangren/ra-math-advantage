@@ -1090,3 +1090,73 @@ Untracked files:
 
 no changes added to commit (use "git add" and/or "git commit -a")
 [0m
+[0m$ [0mgit add . && git commit -m "Phase 3: Implement simple problem types (graph_analysis, rate_of_change, simplify_imaginary, complex_operations) - glm-4.7" && git push
+[master 6d98432] Phase 3: Implement simple problem types (graph_analysis, rate_of_change, simplify_imaginary, complex_operations) - glm-4.7
+ 7 files changed, 2554 insertions(+), 18 deletions(-)
+ create mode 100644 __tests__/components/activities/algebraic/StepByStepper-complex-operations.test.tsx
+ create mode 100644 __tests__/components/activities/algebraic/StepByStepper-graph-analysis.test.tsx
+ create mode 100644 __tests__/components/activities/algebraic/StepByStepper-rate-of-change.test.tsx
+ create mode 100644 __tests__/components/activities/algebraic/StepByStepper-simplify-imaginary.test.tsx
+To https://github.com/bodangren/ra-integrated-math-3.git
+   3edd189..6d98432  master -> master
+[0m
+[0m← [0mEdit conductor/tech-debt.md
+Index: /home/daniel-bo/Desktop/integrated-math-3/conductor/tech-debt.md
+===================================================================
+--- /home/daniel-bo/Desktop/integrated-math-3/conductor/tech-debt.md
++++ /home/daniel-bo/Desktop/integrated-math-3/conductor/tech-debt.md
+@@ -16,9 +16,10 @@
+ | 2026-04-12 | submission-schema | TypeScript errors in submission.schema.ts — z.record() incorrect usage | High | Resolved | **Fixed in track fix-submission-schema-types_20260412:** Replaced `z.record(z.unknown())` with `z.record(z.string(), z.unknown())` on lines 25, 27, 33. |
+ | 2026-04-12 | graphing-schema | TypeScript error in graphing-explorer.schema.ts — parts array type inference | High | Resolved | **Fixed in track fix-graphing-schema-type_20260412:** Annotated parts array as `PracticeSubmissionPart[]` to fix inference issue. |
+ | 2026-04-11 | bundle | Facade RSC entry chunk 687 KB (limit 500 KB) — no code-splitting | High | Resolved | **Fixed in track fix-bundle-size_20260411:** Lazy-loaded MarkdownRenderer. Result: 262 KB (62% reduction). |
+ | 2026-04-12 | graphing-components | Linear regex duplicated in canvas-utils.ts and InterceptIdentification.tsx | Medium | Resolved | **Fixed in track extract-linear-regex_20260412:** Extracted to shared `parseLinear()` in `lib/activities/graphing/linear-parser.ts`. |
+- | 2026-04-12 | graphing-components | All graphing variants now fully implemented | Low | Resolved | **Fixed in track graphing-components_20260412:** All 4 variants (plot, compare, find_intercepts, graph_system) complete. |
++| 2026-04-12 | graphing-components | All graphing variants now fully implemented | Low | Resolved | **Fixed in track graphing-components_20260412:** All 4 variants (plot, compare, find_intercepts, graph_system) complete. |
+   | 2026-04-12 | graphing-components | TypeScript errors in GraphingExplorer.test.tsx — comparisonAnswer type | Low | Resolved | **Fixed in track fix-graphing-test-types_20260412:** Added 'as const' to comparisonAnswer prop in 11 test fixtures. |
+- | 2026-04-12 | graphing-components | Explore mode with parameter sliders not implemented | Low | Open | Deferred to future track - core graphing functionality is complete. |
++  | 2026-04-12 | graphing-components | Explore mode with parameter sliders not implemented | Low | Open | Deferred to future track - core graphing functionality is complete. |
+   | 2026-04-12 | algebraic-examples | Equivalence validator 6/50 tests failing for complex cases | Low | Open | Pattern-matching approach doesn't handle all polynomial/fraction/radical combinations; 44/50 passing (88%) exceeds 80% target. Consider symbolic math library for production. |
+   | 2026-04-13 | algebraic-examples | StepByStepper guided mode 4 tests failing (in-progress commit) | Medium | Resolved | **Fixed in commit 4cd3ee4:** Added showExplanation state, fixed completion logic, updated tests. All 13 guided mode tests passing. |
++  | 2026-04-13 | algebraic-examples | Linting errors in distractors.ts — unused variables from destructuring | Low | Resolved | **Fixed in commit 6d98432:** Replaced `_` with `,` to ignore first element in match arrays and removed unused variables. |
+
+[0m
+[0m← [0mEdit conductor/lessons-learned.md
+Index: /home/daniel-bo/Desktop/integrated-math-3/conductor/lessons-learned.md
+===================================================================
+--- /home/daniel-bo/Desktop/integrated-math-3/conductor/lessons-learned.md
++++ /home/daniel-bo/Desktop/integrated-math-3/conductor/lessons-learned.md
+@@ -44,6 +44,9 @@
+ - (2026-04-12, graphing-system) Intersection point coordinates inverted in tests — (x, y) transforms to (canvasX, height - canvasY)
+ - (2026-04-12, algebraic-examples) Pattern-matching equivalence works for Module 1 (88% passing) but has limits — consider symbolic math library for production
+ - (2026-04-12, algebraic-examples) Polynomial expansion patterns need unified handling of all sign combinations; coefficient formatting must omit 1 (e.g., -1x -> -x)
+ - (2026-04-13, algebraic-examples) Algebraic component testing requires KaTeX-aware assertions — text matching fails with KaTeX HTML; use specific assertions and avoid regex on rendered math
++- (2026-04-13, algebraic-examples) Problem type implementation is configuration-driven — StepByStepper component handles all modes; problem types are just step configurations with expressions, explanations, hints, and distractors
++- (2026-04-13, algebraic-examples) Rate of change problems support multiple input types — equation, table, and graph readout all use same step sequence with different data sources
++- (2026-04-13, distractors) ESLint unused variable warnings for destructuring — use `,` instead of `_` to ignore elements, or use eslint-disable comments
+ 
+ 
+
+[0m
+[0m$ [0mgit add conductor/tech-debt.md conductor/lessons-learned.md && git commit -m "Checkpoint: Phase 3 complete (simple problem types) - glm-4.7" && git push
+[master 6c5c8df] Checkpoint: Phase 3 complete (simple problem types) - glm-4.7
+ 2 files changed, 6 insertions(+), 2 deletions(-)
+To https://github.com/bodangren/ra-integrated-math-3.git
+   6d98432..6c5c8df  master -> master
+[0m
+**Phase 3 Complete: Simple Problem Types**
+
+Implemented 4 problem types with full TDD:
+- `graph_analysis` (13 tests): a/b/c → axis → vertex → max/min → domain/range
+- `rate_of_change` (15 tests): equation/table/graph inputs
+- `simplify_imaginary` (17 tests): √(-n), perfect square factors, multiplication
+- `complex_operations` (19 tests): add/subtract/multiply
+
+**Verification:**
+- 64 new tests, all passing
+- Full test suite: 1129 passing (6 pre-existing failures in equivalence)
+- Build: successful
+- Lint: passing (fixed 8 linting errors in distractors.ts)
+
+**Commits:**
+- 6d98432: Phase 3 implementation
+- 6c5c8df: Checkpoint with lessons learned
