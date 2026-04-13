@@ -2,6 +2,7 @@ import { internalAction } from "./_generated/server";
 import type { SeedLesson, SeedCompetencyStandard, SeedDemoEnvironment } from "./seed/types";
 import { seedDemoEnv } from "./seed/seed-demo-env";
 import { seedStandards } from "./seed/seed-standards";
+import { seedDemoProgress } from "./seed/seed-demo-progress";
 
 export const seedAll = internalAction({
   args: {},
@@ -10,10 +11,12 @@ export const seedAll = internalAction({
       lessons: { slug: string; success: boolean; error?: string }[];
       standards: { code: string; success: boolean; error?: string }[];
       demo: { success: boolean; error?: string };
+      progress: { success: boolean; error?: string };
     } = {
       lessons: [],
       standards: [],
       demo: { success: true },
+      progress: { success: true },
     };
 
     const standards = getStandards();
@@ -50,6 +53,16 @@ export const seedAll = internalAction({
         results.demo = { success: true };
       } catch (error) {
         results.demo = {
+          success: false,
+          error: error instanceof Error ? error.message : "Unknown error",
+        };
+      }
+
+      try {
+        await ctx.runMutation(seedDemoProgress, {});
+        results.progress = { success: true };
+      } catch (error) {
+        results.progress = {
           success: false,
           error: error instanceof Error ? error.message : "Unknown error",
         };

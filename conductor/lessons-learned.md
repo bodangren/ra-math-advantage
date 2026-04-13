@@ -48,3 +48,4 @@
 - (2026-04-14, code-review) Activity wrappers should inject activityId into submission payloads, not pass it to inner components — keeps inner components focused on domain logic
 - (2026-04-14, code-review) Always guard division by zero in score calculations; NaN propagates silently through analytics
 - (2026-04-14, code-review) Optional dependencies in vite.config need `@ts-expect-error` on dynamic import to avoid TS2307
+- (2026-04-14, module-1-seed) Progress seeding requires idempotency keys per student/lesson/phase to allow safe re-runs; use `${studentUsername}:${lessonSlug}:${phase}` format

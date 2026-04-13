@@ -41,9 +41,9 @@
     - [x] Write test: class "IM3 Period 1" created with all 5 students enrolled
     - [x] Implement `convex/seed/seed-demo-env.ts`
 
-- [ ] Task: Seed demo student progress for lesson 1-1
-    - [ ] Write test: student5 shows 100% completion on lesson 1-1 phases after seed
-    - [ ] Implement progress records for students 2-5 at 25/50/75/100%
+- [x] Task: Seed demo student progress for lesson 1-1
+    - [x] Write test: student5 shows 100% completion on lesson 1-1 phases after seed
+    - [x] Implement progress records for students 2-5 at 25/50/75/100%
 
 - [ ] Task: Conductor — Phase Completion Verification 'Standards & Demo Environment' (Protocol in workflow.md)
 
