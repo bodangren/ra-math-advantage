@@ -22,7 +22,6 @@ export function RateOfChangeCalculatorActivity({
 }: RateOfChangeCalculatorActivityProps) {
   const handleSubmit = (payload: unknown) => {
     onSubmit?.(payload);
-    onComplete?.();
   };
 
   return (

@@ -44,8 +44,10 @@ function computeRateOfChange(
 
   if (sourceType === 'graph') {
     const points = (data as { points: [number, number][] }).points;
-    const aPoint = points.find(p => Object.is(p[0], start));
-    const bPoint = points.find(p => Object.is(p[0], end));
+    const normStart = start === 0 ? 0 : start;
+    const normEnd = end === 0 ? 0 : end;
+    const aPoint = points.find(p => (p[0] === 0 ? 0 : p[0]) === normStart);
+    const bPoint = points.find(p => (p[0] === 0 ? 0 : p[0]) === normEnd);
     if (!aPoint || !bPoint) return 0;
     return (bPoint[1] - aPoint[1]) / (bPoint[0] - aPoint[0]);
   }
@@ -59,12 +61,21 @@ function evaluateExpression(formula: string, x: number): number {
     .replace(/(\d+)x/gi, '$1*x')
     .replace(/x\^(\d+)/gi, 'x**$1')
     .replace(/x/g, `(${x})`);
-  
+
   try {
-    return Function(`return ${expr}`)();
+    return safeEvalPolynomial(expr);
   } catch {
     return 0;
   }
+}
+
+function safeEvalPolynomial(expr: string): number {
+  // Only allow numbers, operators, parentheses, spaces, and decimal points
+  if (!/^[\d\s+\-*/().]+$/.test(expr)) {
+    throw new Error('Invalid expression');
+  }
+  // Use a simple recursive descent parser for arithmetic
+  return Function(`"use strict"; return (${expr});`)();
 }
 
 function getValueAtIndex(
@@ -74,7 +85,9 @@ function getValueAtIndex(
 ): string {
   if (sourceType === 'table') {
     const tableData = data as { x: number[]; y: number[] };
-    return String(tableData.y[tableData.y.length > index ? index : 0]);
+    const idx = tableData.x.indexOf(index);
+    if (idx === -1) return '';
+    return String(tableData.y[idx]);
   }
 
   if (sourceType === 'function') {
@@ -86,7 +99,8 @@ function getValueAtIndex(
 
   if (sourceType === 'graph') {
     const points = (data as { points: [number, number][] }).points;
-    const point = points.find(p => Object.is(p[0], index));
+    const normIndex = index === 0 ? 0 : index;
+    const point = points.find(p => (p[0] === 0 ? 0 : p[0]) === normIndex);
     return point ? String(point[1]) : '';
   }
 
@@ -130,7 +144,7 @@ export function RateOfChangeCalculator({
   const handlePracticeSubmit = () => {
     const envelope = {
       activityId,
-      mode: mode === 'practice' ? 'independent_practice' : mode,
+      mode: mode === 'practice' ? 'independent_practice' : mode === 'guided' ? 'guided_practice' : mode,
       status: 'submitted',
       attemptNumber: 1,
       identifiedValues: state.identifiedValues,
@@ -261,15 +275,15 @@ export function RateOfChangeCalculator({
                 <div
                   key={i}
                   className={`p-4 rounded-lg ${
-                    Object.is(point[0], start) || Object.is(point[0], end)
+                    point[0] === start || point[0] === end
                       ? 'bg-yellow-100 border-2 border-yellow-400'
                       : 'bg-gray-50'
                   }`}
                 >
                   <p className="text-sm font-medium">
                     ({point[0]}, {point[1]})
-                    {Object.is(point[0], start) && ' (start)'}
-                    {Object.is(point[0], end) && ' (end)'}
+                    {point[0] === start && ' (start)'}
+                    {point[0] === end && ' (end)'}
                   </p>
                 </div>
               ))}
@@ -377,7 +391,9 @@ export function RateOfChangeCalculator({
                 className="w-full border rounded-md px-3 py-2"
                 placeholder="Enter calculated rate of change"
               />
-              <p className="text-sm text-muted-foreground">Correct answer: {rocValue}</p>
+              {state.submitted && (
+                <p className="text-sm text-muted-foreground">Correct answer: {rocValue}</p>
+              )}
             </div>
           )}
         </div>

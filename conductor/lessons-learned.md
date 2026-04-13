@@ -45,7 +45,8 @@
 - (2026-04-13, review) Convex `internalMutation` args should not accept identity (e.g. `createdBy: v.id("profiles")`) — derive from auth context or clearly mark CLI-only to avoid a trust-boundary bug if ever exposed
 - (2026-04-13, component-approval) Convex queries must use `.withIndex()` not `.filter()` — always define an index in schema and use it
 - (2026-04-13, component-approval) Use `.take(n)` instead of `.collect()` to bound query results and avoid transaction size limits
-- (2026-04-13, test-infra) `vi.mock` factories are hoisted — variables used inside them must be declared with `vi.hoisted()`
 - (2026-04-13, content-hash) Node.js `crypto` module not available in V8/edge runtimes — use Web Crypto API (`crypto.subtle.digest`)
-- (2026-04-13, blanks) Template parsing with regex `\{\{blank:(\w+)\}\}` can extract blank IDs and preserve surrounding text for rendering
-- (2026-04-14, roc) RateOfChangeCalculator uses compute helper functions for ROC calculation that work across source types (function/table/graph)
+- (2026-04-14, supporting-activities) Activity wrapper pattern: wrapper calls onSubmit, inner component calls onComplete — never both in wrapper AND inner component (double-onComplete bug)
+- (2026-04-14, supporting-activities) Zod schemas must be written to match actual component props, not an idealized API — write component first, then schema, not vice versa
+- (2026-04-14, roc) Table data lookups must use indexOf for x-value matching, not direct array indexing — x-values aren't guaranteed sequential
+- (2026-04-14, roc) Normalize -0 to 0 before comparison; Object.is(-0, 0) returns false which breaks zero-boundary point matching

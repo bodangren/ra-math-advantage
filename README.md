@@ -112,7 +112,7 @@ integrated-math-3/
 │   ├── student/      # Student-facing components
 │   ├── teacher/      # Teacher-facing components
 │   ├── lesson/       # Lesson rendering (PhaseRenderer, LessonStepper, etc.)
-│   ├── activities/   # Interactive activity components (graphing, algebraic)
+│   ├── activities/   # Activity components (graphing, algebraic, quiz, blanks, roc)
 │   └── dev/          # Developer-only review queue and harnesses
 ├── convex/           # Convex schema, queries, mutations, seeds
 ├── lib/

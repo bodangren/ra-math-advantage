@@ -30,7 +30,6 @@ export function FillInTheBlankActivity({
 }: FillInTheBlankActivityProps) {
   const handleSubmit = (payload: unknown) => {
     onSubmit?.(payload);
-    onComplete?.();
   };
 
   return (

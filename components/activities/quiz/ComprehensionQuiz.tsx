@@ -114,7 +114,7 @@ export function ComprehensionQuiz({
 
     const envelope = buildPracticeSubmissionEnvelope({
       activityId,
-      mode: mode === 'practice' ? 'independent_practice' : mode,
+      mode: mode === 'practice' ? 'independent_practice' : mode === 'guided' ? 'guided_practice' : mode,
       status: 'submitted',
       attemptNumber: 1,
       answers,
@@ -227,7 +227,7 @@ export function ComprehensionQuiz({
                 </button>
               ) : (
                 <button
-                  onClick={onComplete}
+                  onClick={() => onComplete?.()}
                   className="px-4 py-2 bg-primary text-primary-foreground rounded-md"
                 >
                   Finish
@@ -252,7 +252,7 @@ export function ComprehensionQuiz({
                 </button>
               ) : (
                 <button
-                  onClick={onComplete}
+                  onClick={() => onComplete?.()}
                   className="px-4 py-2 bg-primary text-primary-foreground rounded-md"
                 >
                   Finish
@@ -266,9 +266,10 @@ export function ComprehensionQuiz({
               <span className="text-red-600">Incorrect. Try again!</span>
               <button
                 onClick={() => {
+                  const resetValue = Array.isArray(currentQuestion.correctAnswer) ? [] : '';
                   setState(prev => ({
                     ...prev,
-                    answers: { ...prev.answers, [currentQuestion.id]: '' },
+                    answers: { ...prev.answers, [currentQuestion.id]: resetValue },
                     feedbackShown: { ...prev.feedbackShown, [currentQuestion.id]: false },
                     retryCounts: { ...prev.retryCounts, [currentQuestion.id]: retryCount + 1 },
                   }));

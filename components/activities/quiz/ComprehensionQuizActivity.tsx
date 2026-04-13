@@ -17,7 +17,6 @@ export function ComprehensionQuizActivity({
 }: ActivityComponentProps) {
   const handleSubmit = (payload: unknown) => {
     onSubmit?.(payload);
-    onComplete?.();
   };
 
   const sampleQuestions = [

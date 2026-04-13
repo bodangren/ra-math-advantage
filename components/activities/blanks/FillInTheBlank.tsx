@@ -124,8 +124,13 @@ export function FillInTheBlank({
       if (item) {
         setState(prev => ({
           ...prev,
-          answers: { ...prev.answers, [destination.droppableId]: item.text },
-          wordBankAssignments: { ...prev.wordBankAssignments, [destination.droppableId]: item.id },
+          answers: { ...prev.answers, [source.droppableId]: '', [destination.droppableId]: item.text },
+          wordBankAssignments: (() => {
+            const newAssignments = { ...prev.wordBankAssignments };
+            delete newAssignments[source.droppableId];
+            newAssignments[destination.droppableId] = item.id;
+            return newAssignments;
+          })(),
         }));
       }
     }
@@ -168,7 +173,7 @@ export function FillInTheBlank({
 
     const envelope = buildPracticeSubmissionEnvelope({
       activityId,
-      mode: mode === 'practice' ? 'independent_practice' : mode,
+      mode: mode === 'practice' ? 'independent_practice' : mode === 'guided' ? 'guided_practice' : mode,
       status: 'submitted',
       attemptNumber: 1,
       answers,

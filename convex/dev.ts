@@ -42,7 +42,7 @@ export const listReviewQueue = internalQuery({
       const storedHash = activity.approval?.contentHash;
       const isStale = storedHash ? storedHash !== currentHash : false;
 
-      if (args.componentKind && args.componentKind !== "activity" && args.componentKind !== "practice") continue;
+      if (args.componentKind && args.componentKind !== "activity") continue;
       if (args.status && activity.approval?.status !== args.status) continue;
       if (args.onlyStale && !isStale) continue;
 
