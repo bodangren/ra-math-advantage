@@ -66,25 +66,25 @@
     - [x] Write test: correct phase sequence (explore, vocab, 2×learn, 6×worked_example, discourse, assessment, reflection)
     - [x] Implement `convex/seed/seed-lesson-1-4.ts`
 
-- [ ] Task: Conductor — Phase Completion Verification 'Lesson Seeds 1-1 through 1-4' (Protocol in workflow.md)
+- [x] Task: Conductor — Phase Completion Verification 'Lesson Seeds 1-1 through 1-4' (Protocol in workflow.md) [checkpoint: 0be28df]
 
-## Phase 5: Lesson Seeds — 1-5 through 1-8
+## Phase 5: Lesson Seeds — 1-5 through 1-8 [checkpoint: 0be28df]
 
-- [ ] Task: Seed lesson 1-5 — Completing the Square
-    - [ ] Write test: correct phase sequence (explore, vocab, 2×learn, 4×worked_example, learn, assessment, discourse, reflection)
-    - [ ] Implement `convex/seed/seed-lesson-1-5.ts`
+- [x] Task: Seed lesson 1-5 — Completing the Square
+    - [x] Write test: correct phase sequence (explore, vocab, 2×learn, 4×worked_example, learn, assessment, discourse, reflection)
+    - [x] Implement `convex/seed/seed-lesson-1-5.ts`
 
-- [ ] Task: Seed lesson 1-6 — Quadratic Formula and Discriminant
-    - [ ] Write test: correct phase sequence (explore, vocab, learn, 3×worked_example, learn, 2×worked_example, assessment, discourse, reflection)
-    - [ ] Implement `convex/seed/seed-lesson-1-6.ts`
+- [x] Task: Seed lesson 1-6 — Quadratic Formula and Discriminant
+    - [x] Write test: correct phase sequence (explore, vocab, learn, 3×worked_example, learn, 2×worked_example, assessment, discourse, reflection)
+    - [x] Implement `convex/seed/seed-lesson-1-6.ts`
 
-- [ ] Task: Seed lesson 1-7 — Quadratic Inequalities
-    - [ ] Write test: correct phase sequence (explore, vocab, learn, 4×worked_example, assessment, discourse, reflection)
-    - [ ] Implement `convex/seed/seed-lesson-1-7.ts` using authored content
+- [x] Task: Seed lesson 1-7 — Quadratic Inequalities
+    - [x] Write test: correct phase sequence (explore, vocab, learn, 4×worked_example, assessment, discourse, reflection)
+    - [x] Implement `convex/seed/seed-lesson-1-7.ts` using authored content
 
-- [ ] Task: Seed lesson 1-8 — Linear-Quadratic Systems
-    - [ ] Write test: correct phase sequence (explore, vocab, learn, 4×worked_example, assessment, discourse, reflection)
-    - [ ] Implement `convex/seed/seed-lesson-1-8.ts`
+- [x] Task: Seed lesson 1-8 — Linear-Quadratic Systems
+    - [x] Write test: correct phase sequence (explore, vocab, learn, 4×worked_example, assessment, discourse, reflection)
+    - [x] Implement `convex/seed/seed-lesson-1-8.ts`
 
 - [ ] Task: End-to-end seed verification
     - [ ] Run full seed; verify lesson count, phase count, activity count

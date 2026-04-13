@@ -83,6 +83,7 @@ Tracks 1+4 unlock Track 8; Track 8 unlocks Tracks 9+10.
    - Phase 2: Lesson 1-7 Content Authoring [COMPLETE]
    - Phase 3: Standards & Demo Environment [COMPLETE]
    - Phase 4: Lesson Seeds 1-1 through 1-4 [COMPLETE]
+   - Phase 5: Lesson Seeds 1-5 through 1-8 [COMPLETE]
 
 - [ ] **Track 9: Student Lesson Flow**
   *End-to-end: dashboard → lesson → phases → activities → completion → progress persistence*
