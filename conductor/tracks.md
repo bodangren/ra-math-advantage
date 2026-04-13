@@ -110,11 +110,17 @@ Tracks 1+4 unlock Track 8; Track 8 unlocks Tracks 9+10.
     - Phase 5: Component Review Harnesses [COMPLETE]
     - Phase 6: End-to-End Verification and Documentation [COMPLETE]
 
-- [ ] **Track: Reconcile Activity Schemas**
+- [x] **Track: Reconcile Activity Schemas** — **COMPLETED**
    *Align Zod schemas for comprehension-quiz and fill-in-the-blank with actual component props (Critical — blocks curriculum authoring)*
    *Link: [./conductor/tracks/reconcile-activity-schemas_20260414/](./conductor/tracks/reconcile-activity-schemas_20260414/)]
-   - Phase 1: ComprehensionQuiz Schema Reconciliation [IN PROGRESS]
-   - Phase 2: FillInTheBlank Schema Reconciliation [PENDING]
+   - Phase 1: ComprehensionQuiz Schema Reconciliation [COMPLETE]
+   - Phase 2: FillInTheBlank Schema Reconciliation [COMPLETE]
+
+- [~] **Track: Wire StepByStepSolverActivity to Real Props**
+   *Replace hardcoded steps with real props, wire onSubmit/onComplete, integrate distractors.ts (Priority 3)*
+   *Link: [./conductor/tracks/wire-step-by-step-solver_20260414/](./conductor/tracks/wire-step-by-step-solver_20260414/)]
+   - Phase 1: Prop Interface & Submission Wiring [IN PROGRESS]
+   - Phase 2: Integrate distractors.ts into StepByStepper [PENDING]
 
 ## Archived Tracks
 
