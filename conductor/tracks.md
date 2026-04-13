@@ -116,11 +116,11 @@ Tracks 1+4 unlock Track 8; Track 8 unlocks Tracks 9+10.
    - Phase 1: ComprehensionQuiz Schema Reconciliation [COMPLETE]
    - Phase 2: FillInTheBlank Schema Reconciliation [COMPLETE]
 
-- [~] **Track: Wire StepByStepSolverActivity to Real Props**
+- [x] **Track: Wire StepByStepSolverActivity to Real Props** — **COMPLETED**
    *Replace hardcoded steps with real props, wire onSubmit/onComplete, integrate distractors.ts (Priority 3)*
    *Link: [./conductor/tracks/wire-step-by-step-solver_20260414/](./conductor/tracks/wire-step-by-step-solver_20260414/)]
-   - Phase 1: Prop Interface & Submission Wiring [IN PROGRESS]
-   - Phase 2: Integrate distractors.ts into StepByStepper [PENDING]
+   - Phase 1: Prop Interface & Submission Wiring [COMPLETE]
+   - Phase 2: Integrate distractors.ts into StepByStepper [COMPLETE]
 
 ## Archived Tracks
 

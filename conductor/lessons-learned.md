@@ -18,7 +18,6 @@
 - (2026-04-13, review) Known-failing tests landed with tech-debt notes (equivalence 44/50, InterceptIdentification 8/23) accumulate risk — enforce green baseline or scope the API down to what passes
 - (2026-04-12, submission-schema) Zod 4.x `z.record()` requires explicit key type — use `z.record(z.string(), z.unknown())`, not `z.record(z.unknown())`
 - (2026-04-12, graphing-schema) TypeScript array type inference narrows from first elements — use explicit type annotation when pushing different types
-- (2026-04-10, graphing-components) JavaScript's -0 (negative zero) appears in calculations like -b/(2a) when b=0 — use `Object.is(val, -0)` to detect
 
 ## Patterns That Worked Well
 <!-- Approaches worth repeating -->
@@ -35,13 +34,10 @@
 
 - (2026-04-10, activity-infrastructure) activity_completions schema requires lessonId/phaseNumber not in practice.v1 — future work: pass context or redesign
 - (2026-04-11, fix-intercept-tests) Test failures were due to incorrect test coordinates — verify assumptions match implementation before fixing code
-- (2026-04-12, algebraic-examples) Pattern-matching equivalence works for Module 1 (88% passing) but has limits — consider symbolic math library for production
-- (2026-04-12, algebraic-examples) Polynomial expansion patterns need unified handling of all sign combinations; coefficient formatting must omit 1 (e.g., -1x -> -x)
+- (2026-04-12, algebraic-examples) Pattern-matching equivalence works for Module 1 (88% passing) but has limits; polynomial expansion patterns need unified sign handling
 - (2026-04-13, algebraic-examples) Algebraic component testing requires KaTeX-aware assertions — text matching fails with KaTeX HTML; use specific assertions and avoid regex on rendered math
-- (2026-04-13, algebraic-examples) Problem type implementation is configuration-driven — StepByStepper component handles all modes; problem types are just step configurations with expressions, explanations, hints, and distractors
-- (2026-04-13, algebraic-examples) Rate of change problems support multiple input types — equation, table, and graph readout all use same step sequence with different data sources
-- (2026-04-13, distractors) ESLint unused variable warnings for destructuring — use `,` instead of `_` to ignore elements, or use eslint-disable comments
-- (2026-04-13, review) Conductor autonomous runs produce ~60% bookkeeping commits (`Mark X complete`, output-log updates) — squash into phase-completion commits so `git log` stays navigable
+- (2026-04-13, algebraic-examples) Problem type implementation is configuration-driven — StepByStepper handles all modes; problem types are step configurations
+- (2026-04-13, review) Conductor autonomous runs produce ~60% bookkeeping commits — squash into phase-completion commits so `git log` stays navigable
 - (2026-04-13, review) Convex `internalMutation` args should not accept identity (e.g. `createdBy: v.id("profiles")`) — derive from auth context or clearly mark CLI-only to avoid a trust-boundary bug if ever exposed
 - (2026-04-13, component-approval) Convex queries must use `.withIndex()` not `.filter()` — always define an index in schema and use it
 - (2026-04-13, component-approval) Use `.take(n)` instead of `.collect()` to bound query results and avoid transaction size limits
@@ -51,3 +47,4 @@
 - (2026-04-14, roc) Table data lookups must use indexOf for x-value matching, not direct array indexing — x-values aren't guaranteed sequential
 - (2026-04-14, roc) Normalize -0 to 0 before comparison; Object.is(-0, 0) returns false which breaks zero-boundary point matching
 - (2026-04-14, discriminant) Discriminant classification: >0 = two real roots, =0 = one repeated root, <0 = two complex roots; keep UI explanation brief
+- (2026-04-14, step-by-step) Activity wrapper props should be optional when used in registry — provide sensible defaults so component works without all data

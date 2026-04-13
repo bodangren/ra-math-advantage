@@ -1,6 +1,10 @@
 'use client';
 
+import { useCallback, useRef } from 'react';
 import { StepByStepper } from '@/components/activities/algebraic/StepByStepper';
+import type { AlgebraicStep } from '@/components/activities/algebraic/StepByStepper';
+import type { ProblemType } from '@/lib/activities/schemas/step-by-step-solver.schema';
+import { buildAlgebraicSubmission } from '@/lib/activities/schemas/step-by-step-solver.schema';
 
 export interface ActivityComponentProps {
   activityId: string;
@@ -9,38 +13,69 @@ export interface ActivityComponentProps {
   onComplete?: () => void;
 }
 
+export interface StepByStepSolverActivityProps extends ActivityComponentProps {
+  steps?: AlgebraicStep[];
+  problemType?: ProblemType;
+  equation?: string;
+}
+
+const defaultSteps: AlgebraicStep[] = [
+  {
+    expression: 'x^2 + 5x + 6 = 0',
+    explanation: 'Start with the quadratic equation in standard form.',
+  },
+  {
+    expression: '(x + 2)(x + 3) = 0',
+    explanation: 'Factor the trinomial into two binomials.',
+  },
+  {
+    expression: 'x + 2 = 0 or x + 3 = 0',
+    explanation: 'Apply the Zero Product Property.',
+  },
+  {
+    expression: 'x = -2 or x = -3',
+    explanation: 'Solve each linear equation.',
+  },
+];
+
 export function StepByStepSolverActivity({
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   activityId,
   mode,
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  steps = defaultSteps,
+  problemType = 'factoring',
+  equation = 'x^2 + 5x + 6 = 0',
   onSubmit,
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   onComplete,
-}: ActivityComponentProps) {
-  const sampleSteps = [
-    {
-      expression: 'x^2 + 5x + 6 = 0',
-      explanation: 'Start with the quadratic equation in standard form.',
-    },
-    {
-      expression: '(x + 2)(x + 3) = 0',
-      explanation: 'Factor the trinomial into two binomials.',
-    },
-    {
-      expression: 'x + 2 = 0 or x + 3 = 0',
-      explanation: 'Apply the Zero Product Property.',
-    },
-    {
-      expression: 'x = -2 or x = -3',
-      explanation: 'Solve each linear equation.',
-    },
-  ];
+}: StepByStepSolverActivityProps) {
+  const interactionHistoryRef = useRef<Array<{ type: string; timestamp: number; data?: unknown }>>([]);
+
+  const handlePracticeComplete = useCallback(() => {
+    const stepsAttemptData = steps.map((step, index) => ({
+      stepIndex: index,
+      userAnswer: null,
+      isCorrect: true,
+    }));
+
+    const submission = buildAlgebraicSubmission({
+      activityId,
+      mode,
+      steps: stepsAttemptData,
+      hintsUsed: 0,
+      interactionHistory: interactionHistoryRef.current,
+      problemType,
+      equation,
+    });
+
+    onSubmit?.(submission);
+    onComplete?.();
+  }, [activityId, mode, steps, problemType, equation, onSubmit, onComplete]);
 
   return (
     <StepByStepper
       mode={mode}
-      steps={sampleSteps}
+      steps={steps}
+      problemType={problemType}
+      onPracticeComplete={mode === 'practice' ? handlePracticeComplete : undefined}
     />
   );
 }

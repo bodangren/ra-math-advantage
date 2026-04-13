@@ -5,6 +5,7 @@ import InlineMath from '@matejmazur/react-katex';
 import 'katex/dist/katex.min.css';
 import { StepRevealContainer, StepMode } from '@/components/textbook/StepRevealContainer';
 import { MathInputField } from './MathInputField';
+import { generateDistractors, type DistractorType } from '@/lib/activities/algebraic/distractors';
 
 export interface AlgebraicStep {
   expression: string;
@@ -18,9 +19,11 @@ export interface StepByStepperProps {
   mode: StepMode;
   steps: AlgebraicStep[];
   scaffoldLevel?: number;
+  problemType?: string;
+  onPracticeComplete?: () => void;
 }
 
-export function StepByStepper({ mode, steps, scaffoldLevel = 0 }: StepByStepperProps) {
+export function StepByStepper({ mode, steps, scaffoldLevel = 0, problemType, onPracticeComplete }: StepByStepperProps) {
   if (steps.length === 0) {
     return <StepRevealContainer mode={mode} steps={[]} />;
   }
@@ -45,17 +48,17 @@ export function StepByStepper({ mode, steps, scaffoldLevel = 0 }: StepByStepperP
   }
 
   if (mode === 'guided') {
-    return <GuidedMode steps={steps} />;
+    return <GuidedMode steps={steps} problemType={problemType} />;
   }
 
   if (mode === 'practice') {
-    return <PracticeMode steps={steps} scaffoldLevel={scaffoldLevel} />;
+    return <PracticeMode steps={steps} scaffoldLevel={scaffoldLevel} onComplete={onPracticeComplete} />;
   }
 
   return null;
 }
 
-function GuidedMode({ steps }: { steps: AlgebraicStep[] }) {
+function GuidedMode({ steps, problemType }: { steps: AlgebraicStep[]; problemType?: string }) {
   const [currentStepIndex, setCurrentStepIndex] = useState(0);
   const [, setHintUsed] = useState(false);
   const [showHint, setShowHint] = useState(false);
@@ -103,7 +106,10 @@ function GuidedMode({ steps }: { steps: AlgebraicStep[] }) {
 
   const options = [
     currentStep.expression,
-    ...(currentStep.distractors || generateDistractors(currentStep.expression)),
+    ...(currentStep.distractors || generateDistractors(
+      currentStep.expression,
+      (problemType as DistractorType) || 'factoring'
+    )),
   ].sort(() => Math.random() - 0.5);
 
   return (
@@ -188,24 +194,7 @@ function GuidedMode({ steps }: { steps: AlgebraicStep[] }) {
   );
 }
 
-function generateDistractors(correctAnswer: string): string[] {
-  // Simple distractor generation based on common misconceptions
-  // This is a placeholder - in a real implementation, this would be more sophisticated
-  const distractors: string[] = [];
-  
-  // For now, return generic distractors
-  if (correctAnswer.includes('x^2')) {
-    distractors.push('x + 5', '2x + 3');
-  } else if (correctAnswer.includes('(x')) {
-    distractors.push('x^2 + 5x + 5', 'x^2 + 5x - 6');
-  } else {
-    distractors.push('x + 1', 'x - 1');
-  }
-  
-  return distractors.slice(0, 2);
-}
-
-function PracticeMode({ steps, scaffoldLevel }: { steps: AlgebraicStep[]; scaffoldLevel: number }) {
+function PracticeMode({ steps, scaffoldLevel, onComplete }: { steps: AlgebraicStep[]; scaffoldLevel: number; onComplete?: () => void }) {
   const [currentStepIndex, setCurrentStepIndex] = useState(0);
   const [userAnswers, setUserAnswers] = useState<Record<number, string>>({});
   const [showSolution, setShowSolution] = useState<Record<number, boolean>>({});
@@ -221,6 +210,7 @@ function PracticeMode({ steps, scaffoldLevel }: { steps: AlgebraicStep[]; scaffo
     // Check if this is the last step
     if (stepIndex === steps.length - 1) {
       setIsComplete(true);
+      onComplete?.();
     }
   };
 
