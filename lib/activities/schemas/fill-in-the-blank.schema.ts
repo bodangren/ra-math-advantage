@@ -1,50 +1,42 @@
 import { z } from 'zod';
 
+const BLANK_PLACEHOLDER_REGEX = /\{\{blank:(\w+)\}\}/g;
+
 const blankSchema = z.object({
   id: z.string().min(1),
-  position: z.number().int().nonnegative(),
-  length: z.number().int().positive(),
-  hint: z.string().optional(),
+  correctAnswer: z.string().min(1),
+  isMath: z.boolean().optional(),
 });
 
 export const fillInTheBlankSchema = z
   .object({
+    activityId: z.string().min(1).optional(),
     template: z.string().min(1),
     blanks: z.array(blankSchema).min(1),
-    answers: z.record(z.string().min(1), z.array(z.string().min(1)).min(1)),
+    wordBank: z
+      .array(
+        z.object({
+          id: z.string().min(1),
+          text: z.string().min(1),
+        }),
+      )
+      .optional(),
   })
   .strict()
   .refine(
     data => {
-      // Ensure template contains at least one blank placeholder (___)
-      return data.template.includes('___');
-    },
-    {
-      message: 'Template must contain at least one blank placeholder (___)',
-      path: ['template'],
-    },
-  )
-  .refine(
-    data => {
-      // Ensure all blank positions are within template bounds
-      const templateLength = data.template.length;
-      return data.blanks.every(blank => blank.position < templateLength);
-    },
-    {
-      message: 'Blank position must be within template bounds',
-      path: ['blanks'],
-    },
-  )
-  .refine(
-    data => {
-      // Ensure all blanks have corresponding answers
+      const templateIds: string[] = [];
+      let match;
+      BLANK_PLACEHOLDER_REGEX.lastIndex = 0;
+      while ((match = BLANK_PLACEHOLDER_REGEX.exec(data.template)) !== null) {
+        templateIds.push(match[1]);
+      }
       const blankIds = data.blanks.map(b => b.id);
-      const answerIds = Object.keys(data.answers);
-      return blankIds.every(id => answerIds.includes(id));
+      return templateIds.length > 0 && templateIds.every(id => blankIds.includes(id));
     },
     {
-      message: 'All blanks must have corresponding answers',
-      path: ['answers'],
+      message: 'Template must contain {{blank:id}} markers matching all blank IDs',
+      path: ['template'],
     },
   );
 

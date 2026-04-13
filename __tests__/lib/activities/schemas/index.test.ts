@@ -47,17 +47,13 @@ describe('schemas index', () => {
       expect(schema).toBeDefined();
 
       const result = schema!.safeParse({
-        template: 'The form is ___',
+        template: 'The form is {{blank:blank1}}',
         blanks: [
           {
             id: 'blank1',
-            position: 10,
-            length: 3,
+            correctAnswer: 'vertex',
           },
         ],
-        answers: {
-          blank1: ['answer'],
-        },
       });
       expect(result.success).toBe(true);
     });
@@ -151,8 +147,12 @@ describe('schemas index', () => {
 
       const result = schema!.safeParse({
         template: 'The form is complete',
-        blanks: [],
-        answers: {},
+        blanks: [
+          {
+            id: 'blank1',
+            correctAnswer: 'vertex',
+          },
+        ],
       });
       expect(result.success).toBe(false);
     });

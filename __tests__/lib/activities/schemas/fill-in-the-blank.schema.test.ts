@@ -5,17 +5,13 @@ describe('fill-in-the-blank.schema', () => {
   describe('valid props', () => {
     it('accepts minimal valid props', () => {
       const props = {
-        template: 'The vertex form of a quadratic is ___',
+        template: 'The vertex form of a quadratic is {{blank:blank1}}',
         blanks: [
           {
             id: 'blank1',
-            position: 34,
-            length: 3,
+            correctAnswer: 'y = a(x-h)^2 + k',
           },
         ],
-        answers: {
-          blank1: ['a(x-h)^2+k', 'a(x-h)²+k'],
-        },
       };
 
       const result = fillInTheBlankSchema.safeParse(props);
@@ -27,23 +23,17 @@ describe('fill-in-the-blank.schema', () => {
 
     it('accepts multiple blanks', () => {
       const props = {
-        template: 'The ___ form of a quadratic is ___',
+        template: 'The {{blank:blank1}} form of a quadratic is {{blank:blank2}}',
         blanks: [
           {
             id: 'blank1',
-            position: 4,
-            length: 3,
+            correctAnswer: 'vertex',
           },
           {
             id: 'blank2',
-            position: 31,
-            length: 3,
+            correctAnswer: 'y = a(x-h)^2 + k',
           },
         ],
-        answers: {
-          blank1: ['vertex', 'standard', 'factored'],
-          blank2: ['a(x-h)^2+k', 'ax^2+bx+c'],
-        },
       };
 
       const result = fillInTheBlankSchema.safeParse(props);
@@ -53,49 +43,66 @@ describe('fill-in-the-blank.schema', () => {
       }
     });
 
-    it('accepts blanks with hints', () => {
+    it('accepts blanks with isMath flag', () => {
       const props = {
-        template: 'The vertex form is ___',
+        template: 'The vertex form is {{blank:blank1}}',
         blanks: [
           {
             id: 'blank1',
-            position: 19,
-            length: 3,
-            hint: 'Think about (h, k)',
+            correctAnswer: 'y = a(x-h)^2 + k',
+            isMath: true,
           },
         ],
-        answers: {
-          blank1: ['a(x-h)^2+k'],
-        },
       };
 
       const result = fillInTheBlankSchema.safeParse(props);
       expect(result.success).toBe(true);
       if (result.success) {
-        expect(result.data.blanks[0].hint).toBeDefined();
+        expect(result.data.blanks[0].isMath).toBe(true);
       }
     });
 
-    it('accepts multiple correct answers per blank', () => {
+    it('accepts props with wordBank', () => {
       const props = {
-        template: 'The vertex is ___',
+        template: 'The {{blank:blank1}} form is {{blank:blank2}}',
         blanks: [
           {
             id: 'blank1',
-            position: 15,
-            length: 3,
+            correctAnswer: 'vertex',
+          },
+          {
+            id: 'blank2',
+            correctAnswer: 'y = a(x-h)^2 + k',
           },
         ],
-        answers: {
-          blank1: ['(h,k)', '(h, k)', '<h,k>'],
-        },
+        wordBank: [
+          { id: 'word1', text: 'vertex' },
+          { id: 'word2', text: 'standard' },
+          { id: 'word3', text: 'factored' },
+        ],
       };
 
       const result = fillInTheBlankSchema.safeParse(props);
       expect(result.success).toBe(true);
       if (result.success) {
-        expect(result.data.answers.blank1).toHaveLength(3);
+        expect(result.data.wordBank).toHaveLength(3);
       }
+    });
+
+    it('accepts activityId', () => {
+      const props = {
+        activityId: 'activity-123',
+        template: 'The vertex form is {{blank:blank1}}',
+        blanks: [
+          {
+            id: 'blank1',
+            correctAnswer: 'y = a(x-h)^2 + k',
+          },
+        ],
+      };
+
+      const result = fillInTheBlankSchema.safeParse(props);
+      expect(result.success).toBe(true);
     });
   });
 
@@ -105,13 +112,34 @@ describe('fill-in-the-blank.schema', () => {
         blanks: [
           {
             id: 'blank1',
-            position: 0,
-            length: 3,
+            correctAnswer: 'answer',
           },
         ],
-        answers: {
-          blank1: ['answer'],
-        },
+      };
+
+      const result = fillInTheBlankSchema.safeParse(props);
+      expect(result.success).toBe(false);
+    });
+
+    it('rejects empty template', () => {
+      const props = {
+        template: '',
+        blanks: [],
+      };
+
+      const result = fillInTheBlankSchema.safeParse(props);
+      expect(result.success).toBe(false);
+    });
+
+    it('rejects template without blank placeholders', () => {
+      const props = {
+        template: 'The vertex form of a quadratic is complete',
+        blanks: [
+          {
+            id: 'blank1',
+            correctAnswer: 'answer',
+          },
+        ],
       };
 
       const result = fillInTheBlankSchema.safeParse(props);
@@ -123,22 +151,15 @@ describe('fill-in-the-blank.schema', () => {
       }
     });
 
-    it('rejects empty template', () => {
+    it('rejects template with mismatched blank IDs', () => {
       const props = {
-        template: '',
-        blanks: [],
-        answers: {},
-      };
-
-      const result = fillInTheBlankSchema.safeParse(props);
-      expect(result.success).toBe(false);
-    });
-
-    it('rejects template without blank placeholders', () => {
-      const props = {
-        template: 'The vertex form of a quadratic is a(x-h)^2+k',
-        blanks: [],
-        answers: {},
+        template: 'The vertex form is {{blank:blank1}}',
+        blanks: [
+          {
+            id: 'differentId',
+            correctAnswer: 'answer',
+          },
+        ],
       };
 
       const result = fillInTheBlankSchema.safeParse(props);
@@ -147,107 +168,51 @@ describe('fill-in-the-blank.schema', () => {
 
     it('rejects blank without id', () => {
       const props = {
-        template: 'The form is ___',
+        template: 'The form is {{blank:blank1}}',
         blanks: [
           {
-            position: 12,
-            length: 3,
+            correctAnswer: 'answer',
           },
         ],
-        answers: {
-          blank1: ['answer'],
-        },
       };
 
       const result = fillInTheBlankSchema.safeParse(props);
       expect(result.success).toBe(false);
     });
 
-    it('rejects blank without position', () => {
+    it('rejects blank without correctAnswer', () => {
       const props = {
-        template: 'The form is ___',
+        template: 'The form is {{blank:blank1}}',
         blanks: [
           {
             id: 'blank1',
-            length: 3,
           },
         ],
-        answers: {
-          blank1: ['answer'],
-        },
       };
 
       const result = fillInTheBlankSchema.safeParse(props);
       expect(result.success).toBe(false);
     });
 
-    it('rejects blank without length', () => {
+    it('rejects blank with empty correctAnswer', () => {
       const props = {
-        template: 'The form is ___',
+        template: 'The form is {{blank:blank1}}',
         blanks: [
           {
             id: 'blank1',
-            position: 12,
+            correctAnswer: '',
           },
         ],
-        answers: {
-          blank1: ['answer'],
-        },
       };
 
       const result = fillInTheBlankSchema.safeParse(props);
       expect(result.success).toBe(false);
     });
 
-    it('rejects blank position out of range', () => {
+    it('rejects empty blanks array', () => {
       const props = {
-        template: 'The form is ___',
-        blanks: [
-          {
-            id: 'blank1',
-            position: 100,
-            length: 3,
-          },
-        ],
-        answers: {
-          blank1: ['answer'],
-        },
-      };
-
-      const result = fillInTheBlankSchema.safeParse(props);
-      expect(result.success).toBe(false);
-    });
-
-    it('rejects missing answers for a blank', () => {
-      const props = {
-        template: 'The form is ___',
-        blanks: [
-          {
-            id: 'blank1',
-            position: 12,
-            length: 3,
-          },
-        ],
-        answers: {},
-      };
-
-      const result = fillInTheBlankSchema.safeParse(props);
-      expect(result.success).toBe(false);
-    });
-
-    it('rejects empty answers array for a blank', () => {
-      const props = {
-        template: 'The form is ___',
-        blanks: [
-          {
-            id: 'blank1',
-            position: 12,
-            length: 3,
-          },
-        ],
-        answers: {
-          blank1: [],
-        },
+        template: 'The form is {{blank:blank1}}',
+        blanks: [],
       };
 
       const result = fillInTheBlankSchema.safeParse(props);
@@ -256,18 +221,50 @@ describe('fill-in-the-blank.schema', () => {
 
     it('rejects extra properties', () => {
       const props = {
-        template: 'The form is ___',
+        template: 'The form is {{blank:blank1}}',
         blanks: [
           {
             id: 'blank1',
-            position: 12,
-            length: 3,
+            correctAnswer: 'answer',
           },
         ],
-        answers: {
-          blank1: ['answer'],
-        },
         extraProperty: 'should not be here',
+      };
+
+      const result = fillInTheBlankSchema.safeParse(props);
+      expect(result.success).toBe(false);
+    });
+
+    it('rejects wordBank item without id', () => {
+      const props = {
+        template: 'The form is {{blank:blank1}}',
+        blanks: [
+          {
+            id: 'blank1',
+            correctAnswer: 'answer',
+          },
+        ],
+        wordBank: [
+          { text: 'word' },
+        ],
+      };
+
+      const result = fillInTheBlankSchema.safeParse(props);
+      expect(result.success).toBe(false);
+    });
+
+    it('rejects wordBank item without text', () => {
+      const props = {
+        template: 'The form is {{blank:blank1}}',
+        blanks: [
+          {
+            id: 'blank1',
+            correctAnswer: 'answer',
+          },
+        ],
+        wordBank: [
+          { id: 'word1' },
+        ],
       };
 
       const result = fillInTheBlankSchema.safeParse(props);
@@ -278,30 +275,30 @@ describe('fill-in-the-blank.schema', () => {
   describe('type inference', () => {
     it('infers correct type from schema', () => {
       const props = {
-        template: 'The ___ form is ___',
+        template: 'The {{blank:blank1}} form is {{blank:blank2}}',
         blanks: [
           {
             id: 'blank1',
-            position: 4,
-            length: 3,
-            hint: 'Type of form',
+            correctAnswer: 'vertex',
+            isMath: false,
+          },
+          {
+            id: 'blank2',
+            correctAnswer: 'y = a(x-h)^2 + k',
+            isMath: true,
           },
         ],
-        answers: {
-          blank1: ['vertex', 'standard'],
-        },
       };
 
       const result = fillInTheBlankSchema.safeParse(props);
       expect(result.success).toBe(true);
       if (result.success) {
         const template: string = result.data.template;
-        const blanks: Array<{ id: string; position: number; length: number; hint?: string }> = result.data.blanks;
-        const answers: Record<string, string[]> = result.data.answers;
-
+        const blanks = result.data.blanks;
         expect(typeof template).toBe('string');
         expect(Array.isArray(blanks)).toBe(true);
-        expect(typeof answers).toBe('object');
+        expect(blanks[0].correctAnswer).toBe('vertex');
+        expect(blanks[1].isMath).toBe(true);
       }
     });
   });
