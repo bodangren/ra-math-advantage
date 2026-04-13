@@ -1,6 +1,8 @@
 'use client';
 
 import { useState, useEffect, useCallback } from 'react';
+import { ExampleReviewHarness, PracticeReviewHarness, ActivityReviewHarness } from '@/components/dev/review-harness';
+import type { AlgebraicStep } from '@/components/activities/algebraic/StepByStepper';
 
 interface ReviewQueueItem {
   componentKind: 'activity' | 'example' | 'practice';
@@ -361,6 +363,8 @@ export function ReviewDecisionPanel({
   );
 }
 
+type ReviewView = 'decision' | 'harness';
+
 export function ReviewQueueView() {
   const [selectedItem, setSelectedItem] = useState<ReviewQueueItem | null>(null);
   const [filters, setFilters] = useState<Filters>({
@@ -368,8 +372,14 @@ export function ReviewQueueView() {
     status: '',
     onlyStale: false,
   });
+  const [reviewView, setReviewView] = useState<ReviewView>('decision');
 
   const { items, loading, error, handleReviewSubmit } = ReviewQueueClient();
+
+  const handleItemSelect = useCallback((item: ReviewQueueItem) => {
+    setSelectedItem(item);
+    setReviewView('decision');
+  }, []);
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
@@ -381,31 +391,115 @@ export function ReviewQueueView() {
           error={error}
           filters={filters}
           setFilters={setFilters}
-          onSelectItem={setSelectedItem}
+          onSelectItem={handleItemSelect}
         />
       </div>
 
       <div className="card-workbook p-6">
-        <h2 className="text-lg font-semibold mb-4">Review Decision</h2>
         {selectedItem ? (
-          <ReviewDecisionPanel
-            item={selectedItem}
-            onSubmit={async (status, comment, issueTags, priority) => {
-              await handleReviewSubmit(
-                selectedItem.componentKind,
-                selectedItem.componentId,
-                status,
-                comment,
-                issueTags,
-                priority
-              );
-            }}
-            onCancel={() => setSelectedItem(null)}
-          />
+          <>
+            <div className="flex items-center justify-between mb-4">
+              <h2 className="text-lg font-semibold">
+                {reviewView === 'decision' ? 'Review Decision' : 'Component Harness'}
+              </h2>
+              <div className="flex gap-2">
+                <button
+                  type="button"
+                  onClick={() => setReviewView('decision')}
+                  className={`px-3 py-1 text-sm rounded transition-colors ${
+                    reviewView === 'decision'
+                      ? 'bg-primary text-primary-foreground'
+                      : 'bg-muted hover:bg-muted/80'
+                  }`}
+                >
+                  Decision
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setReviewView('harness')}
+                  className={`px-3 py-1 text-sm rounded transition-colors ${
+                    reviewView === 'harness'
+                      ? 'bg-primary text-primary-foreground'
+                      : 'bg-muted hover:bg-muted/80'
+                  }`}
+                >
+                  Harness
+                </button>
+              </div>
+            </div>
+            {reviewView === 'decision' ? (
+              <ReviewDecisionPanel
+                item={selectedItem}
+                onSubmit={async (status, comment, issueTags, priority) => {
+                  await handleReviewSubmit(
+                    selectedItem.componentKind,
+                    selectedItem.componentId,
+                    status,
+                    comment,
+                    issueTags,
+                    priority
+                  );
+                }}
+                onCancel={() => setSelectedItem(null)}
+              />
+            ) : (
+              <ComponentHarnessPanel item={selectedItem} />
+            )}
+          </>
         ) : (
           <p className="text-muted-foreground">Select an item from the queue to review.</p>
         )}
       </div>
     </div>
   );
+}
+
+function ComponentHarnessPanel({ item }: { item: ReviewQueueItem }) {
+  const sampleSteps: AlgebraicStep[] = [
+    {
+      expression: 'x^2 + 5x + 6 = 0',
+      explanation: 'Start with the quadratic equation in standard form.',
+    },
+    {
+      expression: '(x + 2)(x + 3) = 0',
+      explanation: 'Factor the trinomial into two binomials.',
+    },
+    {
+      expression: 'x = -2 or x = -3',
+      explanation: 'Apply the Zero Product Property.',
+    },
+  ];
+
+  const defaultActivityProps = {
+    activityId: item.componentId,
+    mode: 'teaching' as const,
+    variant: 'plot_from_equation',
+    equation: 'y = x^2',
+  };
+
+  switch (item.componentKind) {
+    case 'example':
+      return (
+        <ExampleReviewHarness
+          componentKey={item.componentKey || item.componentId}
+          steps={sampleSteps}
+        />
+      );
+    case 'practice':
+      return (
+        <PracticeReviewHarness
+          componentKey={item.componentKey || item.componentId}
+          componentProps={defaultActivityProps}
+        />
+      );
+    case 'activity':
+    default:
+      return (
+        <ActivityReviewHarness
+          componentKey={item.componentKey || item.componentId}
+          activityId={item.componentId}
+          storedProps={defaultActivityProps}
+        />
+      );
+  }
 }
