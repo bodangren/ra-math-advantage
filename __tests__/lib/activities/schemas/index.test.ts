@@ -33,15 +33,11 @@ describe('schemas index', () => {
         questions: [
           {
             id: 'q1',
-            text: 'What is the vertex form?',
+            prompt: 'What is the vertex form?',
+            options: ['Option A', 'Option B'],
+            correctAnswer: 'Option A',
           },
         ],
-        choices: {
-          q1: ['Option A', 'Option B'],
-        },
-        correctAnswers: {
-          q1: 0,
-        },
       });
       expect(result.success).toBe(true);
     });

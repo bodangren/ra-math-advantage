@@ -3,20 +3,16 @@ import { comprehensionQuizSchema } from '@/lib/activities/schemas/comprehension-
 
 describe('comprehension-quiz.schema', () => {
   describe('valid props', () => {
-    it('accepts minimal valid props', () => {
+    it('accepts minimal valid props with multiple choice', () => {
       const props = {
         questions: [
           {
             id: 'q1',
-            text: 'What is the vertex form of a quadratic equation?',
+            prompt: 'What is the vertex form of a quadratic equation?',
+            options: ['y = ax^2 + bx + c', 'y = a(x-h)^2 + k', 'y = a(x-r1)(x-r2)'],
+            correctAnswer: 'y = a(x-h)^2 + k',
           },
         ],
-        choices: {
-          q1: ['y = ax^2 + bx + c', 'y = a(x-h)^2 + k', 'y = a(x-r1)(x-r2)'],
-        },
-        correctAnswers: {
-          q1: 1,
-        },
       };
 
       const result = comprehensionQuizSchema.safeParse(props);
@@ -31,21 +27,17 @@ describe('comprehension-quiz.schema', () => {
         questions: [
           {
             id: 'q1',
-            text: 'What is the vertex form of a quadratic equation?',
+            prompt: 'What is the vertex form of a quadratic equation?',
+            options: ['y = ax^2 + bx + c', 'y = a(x-h)^2 + k', 'y = a(x-r1)(x-r2)'],
+            correctAnswer: 'y = a(x-h)^2 + k',
           },
           {
             id: 'q2',
-            text: 'What is the discriminant used for?',
+            prompt: 'What is the discriminant used for?',
+            options: ['Find x-intercepts', 'Determine number of solutions', 'Find the vertex'],
+            correctAnswer: 'Determine number of solutions',
           },
         ],
-        choices: {
-          q1: ['y = ax^2 + bx + c', 'y = a(x-h)^2 + k', 'y = a(x-r1)(x-r2)'],
-          q2: ['Find x-intercepts', 'Determine number of solutions', 'Find the vertex'],
-        },
-        correctAnswers: {
-          q1: 1,
-          q2: 1,
-        },
       };
 
       const result = comprehensionQuizSchema.safeParse(props);
@@ -60,16 +52,12 @@ describe('comprehension-quiz.schema', () => {
         questions: [
           {
             id: 'q1',
-            text: 'What is the vertex form of a quadratic equation?',
+            prompt: 'What is the vertex form of a quadratic equation?',
+            options: ['y = ax^2 + bx + c', 'y = a(x-h)^2 + k', 'y = a(x-r1)(x-r2)'],
+            correctAnswer: 'y = a(x-h)^2 + k',
             explanation: 'The vertex form shows the vertex (h, k) directly.',
           },
         ],
-        choices: {
-          q1: ['y = ax^2 + bx + c', 'y = a(x-h)^2 + k', 'y = a(x-r1)(x-r2)'],
-        },
-        correctAnswers: {
-          q1: 1,
-        },
       };
 
       const result = comprehensionQuizSchema.safeParse(props);
@@ -84,16 +72,62 @@ describe('comprehension-quiz.schema', () => {
         questions: [
           {
             id: 'q1',
-            text: 'The discriminant can be negative.',
             type: 'true_false',
+            prompt: 'The discriminant can be negative.',
+            options: ['True', 'False'],
+            correctAnswer: 'True',
           },
         ],
-        choices: {
-          q1: ['True', 'False'],
-        },
-        correctAnswers: {
-          q1: 0,
-        },
+      };
+
+      const result = comprehensionQuizSchema.safeParse(props);
+      expect(result.success).toBe(true);
+    });
+
+    it('accepts short_answer questions without options', () => {
+      const props = {
+        questions: [
+          {
+            id: 'q1',
+            type: 'short_answer',
+            prompt: 'What is the quadratic formula?',
+            correctAnswer: 'x = (-b ± √(b²-4ac)) / 2a',
+          },
+        ],
+      };
+
+      const result = comprehensionQuizSchema.safeParse(props);
+      expect(result.success).toBe(true);
+    });
+
+    it('accepts select_all questions with array correctAnswer', () => {
+      const props = {
+        questions: [
+          {
+            id: 'q1',
+            type: 'select_all',
+            prompt: 'Which of the following are quadratic functions?',
+            options: ['y = x^2', 'y = 2x + 1', 'y = x^3 - x', 'y = -x^2'],
+            correctAnswer: ['y = x^2', 'y = -x^2'],
+          },
+        ],
+      };
+
+      const result = comprehensionQuizSchema.safeParse(props);
+      expect(result.success).toBe(true);
+    });
+
+    it('accepts activityId', () => {
+      const props = {
+        activityId: 'activity-123',
+        questions: [
+          {
+            id: 'q1',
+            prompt: 'What is the vertex form?',
+            options: ['A', 'B', 'C'],
+            correctAnswer: 'B',
+          },
+        ],
       };
 
       const result = comprehensionQuizSchema.safeParse(props);
@@ -103,29 +137,15 @@ describe('comprehension-quiz.schema', () => {
 
   describe('invalid props', () => {
     it('rejects props without questions', () => {
-      const props = {
-        choices: {
-          q1: ['Option A', 'Option B'],
-        },
-        correctAnswers: {
-          q1: 0,
-        },
-      };
+      const props = {};
 
       const result = comprehensionQuizSchema.safeParse(props);
       expect(result.success).toBe(false);
-      if (!result.success) {
-        expect(result.error.issues.some((issue: { path: (string | number | symbol)[] }) => issue.path.includes('questions'))).toBe(
-          true,
-        );
-      }
     });
 
     it('rejects empty questions array', () => {
       const props = {
         questions: [],
-        choices: {},
-        correctAnswers: {},
       };
 
       const result = comprehensionQuizSchema.safeParse(props);
@@ -136,110 +156,75 @@ describe('comprehension-quiz.schema', () => {
       const props = {
         questions: [
           {
-            text: 'What is the vertex form?',
+            prompt: 'What is the vertex form?',
+            options: ['A', 'B'],
+            correctAnswer: 'A',
           },
         ],
-        choices: {
-          q1: ['Option A', 'Option B'],
-        },
-        correctAnswers: {
-          q1: 0,
-        },
       };
 
       const result = comprehensionQuizSchema.safeParse(props);
       expect(result.success).toBe(false);
     });
 
-    it('rejects question without text', () => {
+    it('rejects question without prompt', () => {
       const props = {
         questions: [
           {
             id: 'q1',
+            options: ['A', 'B'],
+            correctAnswer: 'A',
           },
         ],
-        choices: {
-          q1: ['Option A', 'Option B'],
-        },
-        correctAnswers: {
-          q1: 0,
-        },
       };
 
       const result = comprehensionQuizSchema.safeParse(props);
       expect(result.success).toBe(false);
     });
 
-    it('rejects missing choices for a question', () => {
+
+
+    it('rejects options with fewer than 2 choices', () => {
       const props = {
         questions: [
           {
             id: 'q1',
-            text: 'What is the vertex form?',
+            prompt: 'What is the vertex form?',
+            options: ['Only one'],
+            correctAnswer: 'Only one',
           },
         ],
-        choices: {},
-        correctAnswers: {
-          q1: 0,
-        },
       };
 
       const result = comprehensionQuizSchema.safeParse(props);
       expect(result.success).toBe(false);
     });
 
-    it('rejects empty choices array for a question', () => {
+    it('rejects question without correctAnswer', () => {
       const props = {
         questions: [
           {
             id: 'q1',
-            text: 'What is the vertex form?',
+            prompt: 'What is the vertex form?',
+            options: ['A', 'B'],
           },
         ],
-        choices: {
-          q1: [],
-        },
-        correctAnswers: {
-          q1: 0,
-        },
       };
 
       const result = comprehensionQuizSchema.safeParse(props);
       expect(result.success).toBe(false);
     });
 
-    it('rejects correct answer out of range', () => {
+    it('rejects empty string correctAnswer', () => {
       const props = {
         questions: [
           {
             id: 'q1',
-            text: 'What is the vertex form?',
+            prompt: 'What is the vertex form?',
+            options: ['A', 'B'],
+            correctAnswer: '',
           },
         ],
-        choices: {
-          q1: ['Option A', 'Option B'],
-        },
-        correctAnswers: {
-          q1: 5,
-        },
-      };
-
-      const result = comprehensionQuizSchema.safeParse(props);
-      expect(result.success).toBe(false);
-    });
-
-    it('rejects missing correct answer for a question', () => {
-      const props = {
-        questions: [
-          {
-            id: 'q1',
-            text: 'What is the vertex form?',
-          },
-        ],
-        choices: {
-          q1: ['Option A', 'Option B'],
-        },
-        correctAnswers: {},
       };
 
       const result = comprehensionQuizSchema.safeParse(props);
@@ -251,16 +236,29 @@ describe('comprehension-quiz.schema', () => {
         questions: [
           {
             id: 'q1',
-            text: 'What is the vertex form?',
+            prompt: 'What is the vertex form?',
+            options: ['A', 'B'],
+            correctAnswer: 'A',
           },
         ],
-        choices: {
-          q1: ['Option A', 'Option B'],
-        },
-        correctAnswers: {
-          q1: 0,
-        },
         extraProperty: 'should not be here',
+      };
+
+      const result = comprehensionQuizSchema.safeParse(props);
+      expect(result.success).toBe(false);
+    });
+
+    it('rejects invalid question type', () => {
+      const props = {
+        questions: [
+          {
+            id: 'q1',
+            type: 'invalid_type',
+            prompt: 'What is the vertex form?',
+            options: ['A', 'B'],
+            correctAnswer: 'A',
+          },
+        ],
       };
 
       const result = comprehensionQuizSchema.safeParse(props);
@@ -274,29 +272,21 @@ describe('comprehension-quiz.schema', () => {
         questions: [
           {
             id: 'q1',
-            text: 'What is the vertex form?',
+            type: 'multiple_choice',
+            prompt: 'What is the vertex form?',
+            options: ['A', 'B', 'C'],
+            correctAnswer: 'B',
             explanation: 'Shows vertex directly',
           },
         ],
-        choices: {
-          q1: ['Option A', 'Option B', 'Option C'],
-        },
-        correctAnswers: {
-          q1: 1,
-        },
       };
 
       const result = comprehensionQuizSchema.safeParse(props);
       expect(result.success).toBe(true);
       if (result.success) {
-        const questions: Array<{ id: string; text: string; explanation?: string; type?: string }> =
-          result.data.questions;
-        const choices: Record<string, string[]> = result.data.choices;
-        const correctAnswers: Record<string, number> = result.data.correctAnswers;
-
+        const questions = result.data.questions;
         expect(Array.isArray(questions)).toBe(true);
-        expect(typeof choices).toBe('object');
-        expect(typeof correctAnswers).toBe('object');
+        expect(questions[0].prompt).toBe('What is the vertex form?');
       }
     });
   });

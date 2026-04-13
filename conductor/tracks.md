@@ -102,13 +102,19 @@ Tracks 1+4 unlock Track 8; Track 8 unlocks Tracks 9+10.
    *Extract duplicated linear regex from canvas-utils, InterceptIdentification to shared utility*
    *Link: [./conductor/tracks/extract-linear-regex_20260412/](./conductor/tracks/extract-linear-regex_20260412/)*
 
-- [x] **Track: Component Approval**
-   *Developer-only approval workflow for example, activity, and practice components with structured review notes for later LLM audits*
-   *Link: [./conductor/tracks/component-approval_20260413/](./conductor/tracks/component-approval_20260413/)*
-   - Phase 3: Developer-Only Access Guard [COMPLETE]
-   - Phase 4: Review Queue UI [COMPLETE]
-   - Phase 5: Component Review Harnesses [COMPLETE]
-   - Phase 6: End-to-End Verification and Documentation [COMPLETE]
+  - [x] **Track: Component Approval**
+    *Developer-only approval workflow for example, activity, and practice components with structured review notes for later LLM audits*
+    *Link: [./conductor/tracks/component-approval_20260413/](./conductor/tracks/component-approval_20260413/)*
+    - Phase 3: Developer-Only Access Guard [COMPLETE]
+    - Phase 4: Review Queue UI [COMPLETE]
+    - Phase 5: Component Review Harnesses [COMPLETE]
+    - Phase 6: End-to-End Verification and Documentation [COMPLETE]
+
+- [ ] **Track: Reconcile Activity Schemas**
+   *Align Zod schemas for comprehension-quiz and fill-in-the-blank with actual component props (Critical — blocks curriculum authoring)*
+   *Link: [./conductor/tracks/reconcile-activity-schemas_20260414/](./conductor/tracks/reconcile-activity-schemas_20260414/)]
+   - Phase 1: ComprehensionQuiz Schema Reconciliation [IN PROGRESS]
+   - Phase 2: FillInTheBlank Schema Reconciliation [PENDING]
 
 ## Archived Tracks
 
