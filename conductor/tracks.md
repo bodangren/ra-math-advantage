@@ -75,10 +75,10 @@ Tracks 1+4 unlock Track 8; Track 8 unlocks Tracks 9+10.
    - Phase 3: Rate-of-Change Calculator [COMPLETE]
    - Phase 4: Discriminant Analyzer [COMPLETE]
 
-- [ ] **Track 8: Module 1 Curriculum Seed**
-  *All 8 lessons seeded with phases, sections, activities, standards, and demo environment*
-  *Depends on: Tracks 1, 4 (activity keys must be defined before seeding)*
-  *Link: [./conductor/tracks/module-1-seed_20260406/](./conductor/tracks/module-1-seed_20260406/)*
+- [~] **Track 8: Module 1 Curriculum Seed**
+   *All 8 lessons seeded with phases, sections, activities, standards, and demo environment*
+   *Depends on: Tracks 1, 4 (activity keys must be defined before seeding)*
+   *Link: [./conductor/tracks/module-1-seed_20260406/](./conductor/tracks/module-1-seed_20260406/)*
 
 - [ ] **Track 9: Student Lesson Flow**
   *End-to-end: dashboard → lesson → phases → activities → completion → progress persistence*

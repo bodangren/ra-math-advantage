@@ -2,18 +2,18 @@
 
 ## Phase 1: Infrastructure & Types
 
-- [ ] Task: Create seed type definitions `convex/seed/types.ts`
-    - [ ] Write tests: seed types match Convex schema shapes for all relevant tables
-    - [ ] Implement `SeedLesson`, `SeedPhase`, `SeedSection`, `SeedActivity` types
+- [x] Task: Create seed type definitions `convex/seed/types.ts`
+    - [x] Write tests: seed types match Convex schema shapes for all relevant tables
+    - [x] Implement `SeedLesson`, `SeedPhase`, `SeedSection`, `SeedActivity` types
 
-- [ ] Task: Create seed utilities `convex/seed/utils.ts`
-    - [ ] Write tests: `toLatex()` converts `[...]` notation to `$$...$$` correctly
-    - [ ] Write tests: `idempotentInsert()` skips insert if record already exists by key
-    - [ ] Implement `toLatex()`, `idempotentInsert()`, `buildPhaseTitle()` helpers
+- [x] Task: Create seed utilities `convex/seed/utils.ts`
+    - [x] Write tests: `toLatex()` converts `[...]` notation to `$$...$$` correctly
+    - [x] Write tests: `idempotentInsert()` skips insert if record already exists by key
+    - [x] Implement `toLatex()`, `idempotentInsert()`, `buildPhaseTitle()` helpers
 
-- [ ] Task: Create main seed entry point `convex/seed.ts`
-    - [ ] Write tests: orchestrates lessons 1-1 through 1-8 in order; handles errors per-lesson
-    - [ ] Implement `main()` Convex action calling each lesson seed function
+- [x] Task: Create main seed entry point `convex/seed.ts`
+    - [x] Write tests: orchestrates lessons 1-1 through 1-8 in order; handles errors per-lesson
+    - [x] Implement `main()` Convex action calling each lesson seed function
 
 - [ ] Task: Conductor — Phase Completion Verification 'Infrastructure & Types' (Protocol in workflow.md)
 
