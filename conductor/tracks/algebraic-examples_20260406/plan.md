@@ -42,23 +42,23 @@
 
 ## Phase 3: Problem Types — Simple Procedures
 
-- [ ] Task: Implement `graph_analysis` problem type
-    - [ ] Write tests: all 3 modes; steps cover a/b/c → axis → vertex → max/min → domain/range
-    - [ ] Implement step sequence and validation logic
+- [x] Task: Implement `graph_analysis` problem type
+    - [x] Write tests: all 3 modes; steps cover a/b/c → axis → vertex → max/min → domain/range
+    - [x] Implement step sequence and validation logic
 
-- [ ] Task: Implement `rate_of_change` problem type
-    - [ ] Write tests: all 3 modes; steps cover interval endpoints → f(a), f(b) → formula → interpret
-    - [ ] Implement step sequence; supports input from equation, table data, and graph readout
+- [x] Task: Implement `rate_of_change` problem type
+    - [x] Write tests: all 3 modes; steps cover interval endpoints → f(a), f(b) → formula → interpret
+    - [x] Implement step sequence; supports input from equation, table data, and graph readout
 
-- [ ] Task: Implement `simplify_imaginary` problem type
-    - [ ] Write tests: all 3 modes; validates i notation in answers
-    - [ ] Implement step sequence
+- [x] Task: Implement `simplify_imaginary` problem type
+    - [x] Write tests: all 3 modes; validates i notation in answers
+    - [x] Implement step sequence
 
-- [ ] Task: Implement `complex_operations` problem type (add/subtract/multiply)
-    - [ ] Write tests: all 3 modes; i² = -1 substitution step validated
-    - [ ] Implement step sequence with i² handling
+- [x] Task: Implement `complex_operations` problem type (add/subtract/multiply)
+    - [x] Write tests: all 3 modes; i² = -1 substitution step validated
+    - [x] Implement step sequence with i² handling
 
-- [ ] Task: Conductor — Phase Completion Verification 'Problem Types — Simple' (Protocol in workflow.md)
+- [x] Task: Conductor — Phase Completion Verification 'Problem Types — Simple' (Protocol in workflow.md)
 
 ## Phase 4: Problem Types — Multi-Step Procedures
 

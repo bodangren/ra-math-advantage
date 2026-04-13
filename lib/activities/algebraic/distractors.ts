@@ -65,7 +65,7 @@ function generateFactoringDistractors(correctAnswer: string): string[] {
   const factoredMatch = correctAnswer.match(/\(x\s*([+-])\s*(\d+)\)\(x\s*([+-])\s*(\d+)\)/);
   
   if (factoredMatch) {
-    const [_, sign1, num1, sign2, num2] = factoredMatch;
+    const [, sign1, num1, sign2, num2] = factoredMatch;
     const n1 = parseInt(num1, 10);
     const n2 = parseInt(num2, 10);
 
@@ -128,7 +128,7 @@ function generateQuadraticFormulaDistractors(correctAnswer: string): string[] {
   const solutionsMatch = correctAnswer.match(/x\s*=\s*(-?\d+(?:\.\d+)?).*x\s*=\s*(-?\d+(?:\.\d+)?)/);
   
   if (solutionsMatch) {
-    const [_, sol1, sol2] = solutionsMatch;
+    const [, sol1, sol2] = solutionsMatch;
     const s1 = parseFloat(sol1);
     const s2 = parseFloat(sol2);
 
@@ -159,7 +159,7 @@ function generateComplexDistractors(correctAnswer: string): string[] {
   const complexMatch = correctAnswer.match(/x\s*=\s*(-?\d+(?:\.\d+)?)\s*([+-])\s*(\d+(?:\.\d+)?)i.*x\s*=\s*(-?\d+(?:\.\d+)?)\s*([+-])\s*(\d+(?:\.\d+)?)i/);
   
   if (complexMatch) {
-    const [_, real1, sign1, imag1, real2, sign2, imag2] = complexMatch;
+    const [, real1, sign1, imag1] = complexMatch;
     const r1 = parseFloat(real1);
     const i1 = parseFloat(imag1);
 
@@ -188,7 +188,7 @@ function generateCompletingSquareDistractors(correctAnswer: string): string[] {
   const vertexMatch = correctAnswer.match(/\(x\s*([+-])\s*(\d+(?:\.\d+)?)\)\^2\s*=\s*(-?\d+(?:\.\d+)?)/);
   
   if (vertexMatch) {
-    const [_, sign, h, k] = vertexMatch;
+    const [, sign, h, k] = vertexMatch;
     const hVal = parseFloat(h);
     const kVal = parseFloat(k);
 
@@ -247,7 +247,7 @@ function generateSystemDistractors(correctAnswer: string): string[] {
   const solutionMatch = correctAnswer.match(/\(x,\s*y\)\s*=\s*\(([^,]+),\s*([^)]+)\)/);
   
   if (solutionMatch) {
-    const [_, xSol, ySol] = solutionMatch;
+    const [, xSol, ySol] = solutionMatch;
 
     // Distractor 1: Swapped solutions
     distractors.push(`(x, y) = (${ySol}, ${xSol})`);
