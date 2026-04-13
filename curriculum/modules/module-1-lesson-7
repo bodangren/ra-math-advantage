@@ -1,9 +1,8 @@
 # Lesson 1-7 — Quadratic Inequalities
 
-## Today’s Goals
+## Today's Goals
 
-* Graph quadratic inequalities in two variables
-* Solve quadratic inequalities in one variable by graphing
+* Solve quadratic inequalities in one variable using graphs and sign charts
 * Interpret solutions in context
 
 ---
@@ -11,260 +10,278 @@
 ## Vocabulary
 
 * quadratic inequality
+* sign chart
+* boundary values
+* test point
 
 ---
 
-## Explore: Graphing Quadratic Inequalities
+## Explore: Where Is the Parabola Above or Below the x-axis?
 
-Use graphing technology to explore how the shaded region changes for inequalities such as:
+Use graphing technology to explore how the sign of a quadratic expression changes.
 
-* y > ax^2 + bx + c
-* y ≥ ax^2 + bx + c
-* y < ax^2 + bx + c
-* y ≤ ax^2 + bx + c
+Consider:
+[
+y = x^2 - 5x + 6
+]
 
 Inquiry Question:
-How can you represent a quadratic inequality graphically?
+How can you determine where a parabola is above or below the x-axis without graphing?
 
 ---
 
-## Learn: Graphing Quadratic Inequalities
+## Learn: Solving Quadratic Inequalities
 
-A quadratic inequality is an inequality of the form:
-
-* y > ax^2 + bx + c
-* y ≥ ax^2 + bx + c
-* y < ax^2 + bx + c
-* y ≤ ax^2 + bx + c
-
----
-
-### Key Concept: Graphing Quadratic Inequalities
-
-### Step 1
-
-Graph the related quadratic function.
-
-### Step 2
-
-Decide whether the boundary is solid or dashed.
-
-* Use a solid parabola for ≤ or ≥
-* Use a dashed parabola for < or >
-
-### Step 3
-
-Test a point not on the parabola.
-
-### Step 4
-
-Shade the region that makes the inequality true.
-
----
-
-## Example 1 — Graph a Quadratic Inequality (≤)
-
-Graph:
-
-y ≤ x^2 - 2x + 8
-
-### Step 1
-
-Graph the related function:
-
-y = x^2 - 2x + 8
-
-Because the inequality is ≤, use a solid parabola.
-
-### Step 2
-
-Test the point (0, 0):
-
-0 ≤ (0)^2 - 2(0) + 8
-0 ≤ 8
-
-This is true.
-
-### Step 3
-
-Shade the region containing (0, 0).
-
----
-
-## Example 2 — Graph a Quadratic Inequality (>)
-
-Graph:
-
-y > -5x^2 + 10x
-
-### Step 1
-
-Graph the related function:
-
-y = -5x^2 + 10x
-
-Because the inequality is >, use a dashed parabola.
-
-### Step 2
-
-Since (0, 0) is on the parabola, test (1, 0):
-
-0 > -5(1)^2 + 10(1)
-0 > 5
-
-This is false.
-
-### Step 3
-
-Shade the region that does not contain (1, 0).
-
----
-
-## Learn: Solving Quadratic Inequalities in One Variable
+### Key Concept: Sign Chart Method
 
 To solve inequalities like:
 
-* ax^2 + bx + c < 0
-* ax^2 + bx + c ≤ 0
-* ax^2 + bx + c > 0
-* ax^2 + bx + c ≥ 0
+* [
+x^2 - 5x + 6 > 0
+]
+* [
+2x^2 + x - 3 \leq 0
+]
 
-use the graph of:
+follow these steps:
 
-y = ax^2 + bx + c
+**Step 1:** Find the boundary values by setting the quadratic expression equal to zero.
 
-Then determine where the graph is above or below the x-axis.
+**Step 2:** Plot the boundary values on a number line. These divide the number line into intervals.
 
----
+**Step 3:** Choose a test point in each interval and determine the sign of the expression.
 
-### Key Concept: Solving by Graphing
-
-* For ax^2 + bx + c < 0, find where the graph lies below the x-axis
-* For ax^2 + bx + c ≤ 0, include the x-intercepts
-* For ax^2 + bx + c > 0, find where the graph lies above the x-axis
-* For ax^2 + bx + c ≥ 0, include the x-intercepts
+**Step 4:** Determine which intervals satisfy the inequality.
 
 ---
 
-## Example 3 — Solve x^2 + x - 6 < 0 by Graphing
+## Example 1 — Solve x² - 5x + 6 > 0 Graphically
 
-### Step 1
+Solve:
+[
+x^2 - 5x + 6 > 0
+]
 
-Find the zeros of the related equation:
+### Step 1: Find zeros
 
-x^2 + x - 6 = 0
+[
+x^2 - 5x + 6 = 0
+]
 
-(x - 2)(x + 3) = 0
+[
+(x - 2)(x - 3) = 0
+]
 
-x = 2 or x = -3
+[
+x = 2 \quad \text{or} \quad x = 3
+]
 
-### Step 2
+### Step 2: Sketch the parabola
 
-Sketch the parabola.
+Since a = 1 > 0, the parabola opens upward.
 
-Since a > 0, the parabola opens upward.
+The x-intercepts are at x = 2 and x = 3.
 
-### Step 3
+### Step 3: Identify the regions
 
-Identify where the graph is below the x-axis.
-
-The graph is below the x-axis between -3 and 2.
+* The parabola is **above** the x-axis when x < 2 or x > 3
+* The parabola is **below** the x-axis when 2 < x < 3
 
 ### Solution
 
-{x | -3 < x < 2}
+Since we want > 0 (above the x-axis):
 
-Interval notation: (-3, 2)
+[
+x < 2 \quad \text{or} \quad x > 3
+]
+
+In interval notation: [
+(-\infty, 2) \cup (3, \infty)
+]
 
 ---
 
-## Example 4 — Solve x^2 - 3x - 4 ≥ 0 by Graphing
+## Example 2 — Solve x² - 5x + 6 > 0 Using a Sign Chart
 
-### Step 1
+Solve the same inequality algebraically:
 
-Find the zeros:
+[
+x^2 - 5x + 6 > 0
+]
 
-x^2 - 3x - 4 = 0
+### Step 1: Find boundary values
 
-(x - 4)(x + 1) = 0
+[
+x^2 - 5x + 6 = 0
+]
 
-x = 4 or x = -1
+[
+(x - 2)(x - 3) = 0
+]
 
-### Step 2
+Boundary values: x = 2 and x = 3
 
-Sketch the parabola.
+### Step 2: Draw sign chart
 
-Since a > 0, it opens upward.
+Plot x = 2 and x = 3 on a number line. This creates three intervals:
 
-### Step 3
+* Interval A: x < 2
+* Interval B: 2 < x < 3
+* Interval C: x > 3
 
-Identify where the graph is on or above the x-axis.
+### Step 3: Test each interval
 
-The graph is on or above the x-axis when:
+Choose test points:
 
-x ≤ -1 or x ≥ 4
+* Interval A (x < 2): Test x = 0
+  [
+  (0)^2 - 5(0) + 6 = 6 > 0 \quad \text{(positive)}
+  ]
+
+* Interval B (2 < x < 3): Test x = 2.5
+  [
+  (2.5)^2 - 5(2.5) + 6 = 6.25 - 12.5 + 6 = -0.25 < 0 \quad \text{(negative)}
+  ]
+
+* Interval C (x > 3): Test x = 4
+  [
+  (4)^2 - 5(4) + 6 = 16 - 20 + 6 = 2 > 0 \quad \text{(positive)}
+  ]
+
+### Step 4: Read the solution
+
+Since we want > 0, select the positive intervals:
+
+[
+x < 2 \quad \text{or} \quad x > 3
+]
+
+[
+(-\infty, 2) \cup (3, \infty)
+]
+
+---
+
+## Example 3 — Solve 2x² + x - 3 ≤ 0
+
+Solve:
+[
+2x^2 + x - 3 \leq 0
+]
+
+### Step 1: Find boundary values
+
+[
+2x^2 + x - 3 = 0
+]
+
+[
+(2x + 3)(x - 1) = 0
+]
+
+[
+x = -\frac{3}{2} \quad \text{or} \quad x = 1
+]
+
+### Step 2: Draw sign chart
+
+Boundary values: x = -1.5 and x = 1
+
+Three intervals:
+* Interval A: x < -1.5
+* Interval B: -1.5 < x < 1
+* Interval C: x > 1
+
+### Step 3: Test each interval
+
+* Interval A (x < -1.5): Test x = -2
+  [
+  2(-2)^2 + (-2) - 3 = 8 - 2 - 3 = 3 > 0 \quad \text{(positive)}
+  ]
+
+* Interval B (-1.5 < x < 1): Test x = 0
+  [
+  2(0)^2 + (0) - 3 = -3 < 0 \quad \text{(negative)}
+  ]
+
+* Interval C (x > 1): Test x = 2
+  [
+  2(2)^2 + (2) - 3 = 8 + 2 - 3 = 7 > 0 \quad \text{(positive)}
+  ]
+
+### Step 4: Read the solution
+
+Since we want ≤ 0, select the negative interval AND the boundary points:
+
+[
+-1.5 \leq x \leq 1
+]
+
+In interval notation: [
+\left[-\frac{3}{2}, 1\right]
+]
+
+---
+
+## Example 4 — Real-World: Height Above a Threshold
+
+A football is kicked into the air. Its height h (in feet) after t seconds is given by:
+
+[
+h(t) = -16t^2 + 64t
+]
+
+The height of the goal post crossbar is 10 feet. During which time intervals is the ball above the crossbar?
+
+### Step 1: Set up the inequality
+
+The ball is above 10 feet when:
+
+[
+-16t^2 + 64t > 10
+]
+
+### Step 2: Solve the related equation
+
+[
+-16t^2 + 64t - 10 = 0
+]
+
+Divide by -2:
+
+[
+8t^2 - 32t + 5 = 0
+]
+
+Using the quadratic formula:
+
+[
+t = \frac{32 \pm \sqrt{1024 - 160}}{16} = \frac{32 \pm \sqrt{864}}{16} = \frac{32 \pm 12\sqrt{6}}{16}
+]
+
+[
+t \approx 0.17 \quad \text{or} \quad t \approx 3.83
+]
+
+### Step 3: Determine the intervals
+
+Since the parabola opens downward (a = -16 < 0), the ball is above 10 feet between the two roots.
 
 ### Solution
 
-{x | x ≤ -1 or x ≥ 4}
+[
+0.17 < t < 3.83
+]
 
-Interval notation: (-∞, -1] ∪ [4, ∞)
-
----
-
-## Example 5 — Solve a Quadratic Inequality in Context
-
-Marcus wants to enlarge a 5 ft by 10 ft garden by increasing both dimensions by the same amount x. He has enough soil to cover at most 104 square feet.
-
-### Step 1
-
-Write an inequality for area:
-
-A = (x + 10)(x + 5)
-
-A = x^2 + 15x + 50
-
-Because the area must be at most 104:
-
-x^2 + 15x + 50 ≤ 104
-
-### Step 2
-
-Solve the related equation:
-
-x^2 + 15x - 54 = 0
-
-(x + 18)(x - 3) = 0
-
-x = -18 or x = 3
-
-### Step 3
-
-Use a number line or graph.
-
-The solution to the inequality is:
-
--18 ≤ x ≤ 3
-
-### Step 4
-
-Interpret in context.
-
-Since Marcus is increasing the dimensions, only nonnegative values make sense.
-
-So the practical solution is:
-
-0 ≤ x ≤ 3
-
-Marcus can increase the dimensions by up to 3 feet.
+The ball is above the crossbar for approximately 0.17 to 3.83 seconds after the kick.
 
 ---
 
 ## Think About It (Discourse Prompts)
 
-* Why does the sign of a affect which intervals satisfy the inequality?
-* Why do strict inequalities use parentheses in interval notation?
-* How do you know whether to include the boundary values?
+* Why does the sign of the leading coefficient affect which intervals satisfy the inequality?
+* When solving x² + x - 6 > 0, why can't we simply square both sides?
+* How does the sign chart method generalize to higher-degree polynomials?
 
 ---
 
@@ -272,23 +289,30 @@ Marcus can increase the dimensions by up to 3 feet.
 
 Solve each inequality.
 
-1. x^2 - 6x + 9 ≤ 0
-2. x^2 - x - 6 ≤ 0
-3. x^2 + 8x + 16 ≥ 0
-4. x^2 - 2x - 24 ≤ 0
+1. [
+x^2 - 5x + 6 \leq 0
+]
+2. [
+x^2 + x - 12 > 0
+]
+3. [
+2x^2 - 5x - 3 \geq 0
+]
+4. [
+-x^2 + 4x - 3 < 0
+]
 
 ---
 
 ## CAP Reflection
 
-* Courage: Did you attempt the graph even when the shading was unclear?
-* Adaptability: How did you change your strategy when a test point failed?
-* Persistence: How did you verify the interval you chose?
+* Courage: Did you attempt each problem even when the signs were confusing?
+* Adaptability: How did you adjust your approach when the sign chart didn't match your graph?
+* Persistence: How did you verify that your solution intervals were correct?
 
 ---
 
 ## Objective Alignment
 
-- `Graph quadratic inequalities in two variables`: Primary worked examples: Examples 1-2.
-- `Solve quadratic inequalities in one variable by graphing`: Primary worked examples: Examples 3-4.
-- `Interpret solutions in context`: Primary worked examples: Example 5.
+- `Solve quadratic inequalities in one variable`: Primary worked examples: Examples 1-3.
+- `Interpret solutions in context`: Primary worked examples: Example 4.

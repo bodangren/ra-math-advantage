@@ -19,14 +19,14 @@
 
 ## Phase 2: Lesson 1-7 Content Authoring
 
-- [ ] Task: Author corrected `curriculum/modules/module-1-lesson-7` — Quadratic Inequalities
-    - [ ] Write Explore phase: graphical inquiry on where parabola is above/below x-axis
-    - [ ] Write Learn phase: sign chart / number line method
-    - [ ] Write Example 1: solve `x^2 - 5x + 6 > 0` graphically
-    - [ ] Write Example 2: solve `x^2 - 5x + 6 > 0` algebraically (sign chart)
-    - [ ] Write Example 3: solve `2x^2 + x - 3 ≤ 0`
-    - [ ] Write Example 4: real-world height-above-threshold context problem
-    - [ ] Write Think About It, In-Class Quick Check, CAP Reflection sections
+- [x] Task: Author corrected `curriculum/modules/module-1-lesson-7` — Quadratic Inequalities
+    - [x] Write Explore phase: graphical inquiry on where parabola is above/below x-axis
+    - [x] Write Learn phase: sign chart / number line method
+    - [x] Write Example 1: solve `x^2 - 5x + 6 > 0` graphically
+    - [x] Write Example 2: solve `x^2 - 5x + 6 > 0` algebraically (sign chart)
+    - [x] Write Example 3: solve `2x^2 + x - 3 ≤ 0`
+    - [x] Write Example 4: real-world height-above-threshold context problem
+    - [x] Write Think About It, In-Class Quick Check, CAP Reflection sections
 
 - [ ] Task: Conductor — Phase Completion Verification 'Lesson 1-7 Content Authoring' (Protocol in workflow.md)
 
