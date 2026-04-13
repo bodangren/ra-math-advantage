@@ -66,9 +66,9 @@
     - [x] Write tests: a=1 trinomials, a≠1, GCF first, difference of squares, perfect square — all 3 modes
     - [x] Implement step sequences for each factoring pattern
 
-- [ ] Task: Implement `complete_the_square` problem type
-    - [ ] Write tests: a=1, a≠1, imaginary solutions — all 3 modes
-    - [ ] Implement step sequence; vertex form conversion variant
+- [x] Task: Implement `complete_the_square` problem type [395618c]
+    - [x] Write tests: a=1, a≠1, imaginary solutions — all 3 modes
+    - [x] Implement step sequence; vertex form conversion variant
 
 - [ ] Task: Implement `quadratic_formula` problem type
     - [ ] Write tests: real solutions (factorable), real solutions (non-factorable), imaginary solutions — all 3 modes
