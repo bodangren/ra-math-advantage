@@ -56,10 +56,19 @@ Tracks 1+4 unlock Track 8; Track 8 unlocks Tracks 9+10.
   *Registry, mode system, props schemas, submission pipeline, completion tracking*
   *Link: [./conductor/tracks/activity-infrastructure_20260406/](./conductor/tracks/activity-infrastructure_20260406/)*
 
-- [ ] **Track 5: Graphing Components**
-  *graphing-explorer component — interactive coordinate plane in teaching/guided/practice modes*
-  *Depends on: Tracks 2, 4*
-  *Link: [./conductor/tracks/graphing-components_20260406/](./conductor/tracks/graphing-components_20260406/)*
+- [x] **Track 5: Graphing Components**
+   *graphing-explorer component — interactive coordinate plane in teaching/guided/practice modes*
+   *Depends on: Tracks 2, 4*
+   *Link: [./conductor/tracks/graphing-components_20260406/](./conductor/tracks/graphing-components_20260406/)*
+   - Phase 1: Core Canvas [COMPLETE]
+   - Phase 2: Guided Interaction Workflows [COMPLETE]
+   - Phase 3: Problem Variant Types [COMPLETE]
+   - Phase 4: Explore Mode & Submission (partial - Explore mode deferred) [COMPLETE]
+
+- [ ] **Track 5b: Graphing Explorer Explore Mode** (continuation of Track 5)
+   *Implement Explore mode with parameter sliders for quadratic exploration in Explore phases*
+   *Link: [./conductor/tracks/graphing-explore-mode_20260414/](./conductor/tracks/graphing-explore-mode_20260414/)]
+   - Phase 1: Explore Mode with Parameter Sliders [IN PROGRESS]
 
 - [ ] **Track 6: Algebraic Worked-Example Components**
   *step-by-step-solver — all 11 algebraic problem types in teaching/guided/practice modes*
