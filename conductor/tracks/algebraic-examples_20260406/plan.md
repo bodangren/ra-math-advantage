@@ -38,7 +38,7 @@
     - [x] Write tests: common misconception distractors for each step type are plausible
     - [x] Implement distractor pool for Module 1 step types, falling back to prop-provided distractors
 
-- [ ] Task: Conductor — Phase Completion Verification 'Guided & Practice Modes' (Protocol in workflow.md)
+ - [~] Task: Conductor — Phase Completion Verification 'Guided & Practice Modes' (Protocol in workflow.md)
 
 ## Phase 3: Problem Types — Simple Procedures
 
