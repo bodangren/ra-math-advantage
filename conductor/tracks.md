@@ -94,10 +94,11 @@ Tracks 1+4 unlock Track 8; Track 8 unlocks Tracks 9+10.
    - Phase 4: Lesson Seeds 1-1 through 1-4 [COMPLETE]
    - Phase 5: Lesson Seeds 1-5 through 1-8 [COMPLETE]
 
-- [ ] **Track 9: Student Lesson Flow**
-  *End-to-end: dashboard → lesson → phases → activities → completion → progress persistence*
-  *Depends on: Tracks 3, 5, 6, 7, 8*
-  *Link: [./conductor/tracks/student-lesson-flow_20260406/](./conductor/tracks/student-lesson-flow_20260406/)*
+- [~] **Track 9: Student Lesson Flow** [Phase 1 Complete]
+   *End-to-end: dashboard → lesson → phases → activities → completion → progress persistence*
+   *Depends on: Tracks 3, 5, 6, 7, 8*
+   *Link: [./conductor/tracks/student-lesson-flow_20260406/](./conductor/tracks/student-lesson-flow_20260406/)*
+   - Phase 1: Dashboard Enhancements [COMPLETE]
 
 - [ ] **Track 10: Teacher Module 1 Experience**
   *Dashboard, gradebook, student detail, submission review, lesson preview, course overview*
