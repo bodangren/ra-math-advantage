@@ -65,10 +65,10 @@ Tracks 1+4 unlock Track 8; Track 8 unlocks Tracks 9+10.
    - Phase 3: Problem Variant Types [COMPLETE]
    - Phase 4: Explore Mode & Submission (partial - Explore mode deferred) [COMPLETE]
 
-- [ ] **Track 5b: Graphing Explorer Explore Mode** (continuation of Track 5)
+- [x] **Track 5b: Graphing Explorer Explore Mode** (continuation of Track 5)
    *Implement Explore mode with parameter sliders for quadratic exploration in Explore phases*
    *Link: [./conductor/tracks/graphing-explore-mode_20260414/](./conductor/tracks/graphing-explore-mode_20260414/)]
-   - Phase 1: Explore Mode with Parameter Sliders [IN PROGRESS]
+   - Phase 1: Explore Mode with Parameter Sliders [COMPLETE]
 
 - [ ] **Track 6: Algebraic Worked-Example Components**
   *step-by-step-solver — all 11 algebraic problem types in teaching/guided/practice modes*
