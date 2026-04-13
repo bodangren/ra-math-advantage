@@ -34,7 +34,7 @@
 
 ## Phase 2: Review Queries and Mutations
 
-- [ ] Task: Add developer-only review queue queries
+- [~] Task: Add developer-only review queue queries
     - [ ] Write tests for filtering by component kind, approval status, stale state, lesson/phase placement, issue tag, and priority
     - [ ] Implement queries that assemble review queue items without exposing student data
     - [ ] Include current content hash, stored approval hash, stale state, placement context, and unresolved review notes
