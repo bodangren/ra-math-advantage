@@ -21,7 +21,7 @@
 
 ## Phase 2: Fill-in-the-Blank
 
-- [ ] Task: Implement `fill-in-the-blank` base component
+- [~] Task: Implement `fill-in-the-blank` base component
     - [ ] Write tests: parses template string with `{{blank:id}}` markers; renders inline blanks
     - [ ] Write tests: teaching mode shows blanks pre-filled as highlighted labels
     - [ ] Implement `components/activities/blanks/FillInTheBlank.tsx` — teaching mode
