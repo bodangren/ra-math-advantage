@@ -11,9 +11,7 @@
 
 - [x] Task: Conductor — Phase Completion Verification 'Create Shared Parser Utility' (Protocol in workflow.md) [e7e0fc6]
 
-## Phase 2: Update canvas-utils.ts [in_progress]
-
-## Phase 2: Update canvas-utils.ts [in_progress]
+## Phase 2: Update canvas-utils.ts [completed]
 
 - [x] Task: Refactor `evaluateFunction()` to use shared parser [checkpoint: 2ce56bd]
     - [x] Write tests: verify `evaluateFunction()` still works with quadratic expressions
@@ -23,9 +21,7 @@
 
 - [x] Task: Conductor — Phase Completion Verification 'Update canvas-utils.ts' (Protocol in workflow.md) [2ce56bd]
 
-## Phase 3: Update HintPanel.tsx [in_progress]
-
-## Phase 3: Update HintPanel.tsx [in_progress]
+## Phase 3: Update HintPanel.tsx [completed]
 
 - [x] Task: Refactor `parseQuadratic()` to use shared parser [checkpoint: 6a869b6]
     - [x] Write tests: verify hint panel still correctly identifies vertex, axis, direction
@@ -35,7 +31,7 @@
 
 - [x] Task: Conductor — Phase Completion Verification 'Update HintPanel.tsx' (Protocol in workflow.md) [6a869b6]
 
-## Phase 4: Update InterceptIdentification.tsx [in_progress]
+## Phase 4: Update InterceptIdentification.tsx [completed]
 
 - [x] Task: Refactor `calculateXIntercepts()` to use shared parser [checkpoint: 9d09287]
     - [x] Write tests: verify intercept identification still works correctly
@@ -45,7 +41,7 @@
 
 - [x] Task: Conductor — Phase Completion Verification 'Update InterceptIdentification.tsx' (Protocol in workflow.md) [9d09287]
 
-## Phase 5: Final Verification [in_progress]
+## Phase 5: Final Verification [completed]
 
 - [x] Task: Run full test suite [checkpoint: 37d803a]
 
@@ -55,8 +51,4 @@
     - [x] Add new track to tracks.md
     - [x] Mark "Quadratic regex duplicated across 3 files" as Resolved in tech-debt.md
 
-- [ ] Task: Conductor — Phase Completion Verification 'Final Verification' (Protocol in workflow.md)
-    - [ ] Add new track to tracks.md
-    - [ ] Mark "Quadratic regex duplicated across 3 files" as Resolved in tech-debt.md
-
-- [ ] Task: Conductor — Phase Completion Verification 'Final Verification' (Protocol in workflow.md)
+- [x] Task: Conductor — Phase Completion Verification 'Final Verification' (Protocol in workflow.md)

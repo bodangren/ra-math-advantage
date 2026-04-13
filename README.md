@@ -82,20 +82,14 @@ Demo accounts are for local development and test environments only.
 
    `NEXT_PUBLIC_CONVEX_URL` is typically written by the Convex CLI during local setup. The local default is `http://127.0.0.1:3210`.
 
-6. Seed demo accounts and curriculum data:
-   ```bash
-   npx convex run seed:seedDemoAccounts
-   npx convex run seed:seedPublishedCurriculum
-   ```
-
-7. Start the local stack:
+6. Start the local stack:
    ```bash
    npm run dev:stack
    ```
 
    Use `npm run dev` only when Convex is already running separately.
 
-8. Open [http://localhost:3000](http://localhost:3000).
+7. Open [http://localhost:3000](http://localhost:3000).
 
 ### Environment Variables
 
@@ -118,7 +112,8 @@ integrated-math-3/
 │   ├── student/      # Student-facing components
 │   ├── teacher/      # Teacher-facing components
 │   ├── lesson/       # Lesson rendering (PhaseRenderer, LessonStepper, etc.)
-│   └── activities/   # Interactive activity components (graphing, algebraic)
+│   ├── activities/   # Interactive activity components (graphing, algebraic)
+│   └── dev/          # Developer-only review queue and harnesses
 ├── convex/           # Convex schema, queries, mutations, seeds
 ├── lib/
 │   ├── auth/         # JWT session helpers and role guards

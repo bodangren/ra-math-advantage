@@ -168,11 +168,18 @@ export const submitReview = internalMutation({
 export const getAuditContext = internalQuery({
   args: {},
   handler: async (ctx): Promise<Doc<"component_reviews">[]> => {
-    const unresolvedReviews = await ctx.db
+    const needsChanges = await ctx.db
       .query("component_reviews")
-      .withIndex("by_resolved", (q) => q.eq("resolvedAt", undefined))
-      .take(200);
+      .withIndex("by_status", (q) => q.eq("status", "needs_changes"))
+      .filter((q) => q.eq(q.field("resolvedAt"), undefined))
+      .take(100);
 
-    return unresolvedReviews;
+    const rejected = await ctx.db
+      .query("component_reviews")
+      .withIndex("by_status", (q) => q.eq("status", "rejected"))
+      .filter((q) => q.eq(q.field("resolvedAt"), undefined))
+      .take(100);
+
+    return [...needsChanges, ...rejected];
   },
 });

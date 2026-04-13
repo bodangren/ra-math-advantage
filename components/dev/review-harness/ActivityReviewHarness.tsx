@@ -188,9 +188,9 @@ export function ActivityReviewHarness({
           <CheckItem checked={isRendered && !renderError} label="Component renders without errors" />
           <CheckItem checked={callbacks.some(c => c.type === 'submit')} label="Submit callback triggered" />
           <CheckItem checked={callbacks.some(c => c.type === 'complete')} label="Complete callback triggered" />
-          <CheckItem 
-            checked={supportedModes.length > 1 ? supportedModes.every(m => m === activeMode) || true : true} 
-            label="Mode selector functional" 
+          <CheckItem
+            checked={supportedModes.length > 1}
+            label="Mode selector functional"
           />
         </div>
       </div>
