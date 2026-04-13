@@ -14,12 +14,10 @@
 <!-- Problems encountered repeatedly; save future tracks from the same pain -->
 
 - (2026-04-05, setup) vinext (Vite-backed Next.js) may have subtle differences from stock Next.js — test builds early
-- (2026-04-06, scaffold-pages) `convex/_generated/` is empty until `npx convex dev` is run — dev server fails until initialized
-- (2026-04-08, setup) Schema porting from bus-math-v2 requires running `npx tsc --noEmit` to catch missing tables
-- (2026-04-08, setup) Use `npx convex dev --once` for one-time type generation — faster for CI/autonomous workflows
-- (2026-04-10, graphing-components) JavaScript's -0 (negative zero) appears in calculations like -b/(2a) when b=0 — use `Object.is(val, -0)` to detect
+- (2026-04-08, setup) Schema porting from bus-math-v2 requires `npx tsc --noEmit` to catch missing tables; use `npx convex dev --once` for one-time type generation (faster for CI)
 - (2026-04-12, submission-schema) Zod 4.x `z.record()` requires explicit key type — use `z.record(z.string(), z.unknown())`, not `z.record(z.unknown())`
 - (2026-04-12, graphing-schema) TypeScript array type inference narrows from first elements — use explicit type annotation when pushing different types
+- (2026-04-10, graphing-components) JavaScript's -0 (negative zero) appears in calculations like -b/(2a) when b=0 — use `Object.is(val, -0)` to detect
 
 ## Patterns That Worked Well
 <!-- Approaches worth repeating -->
@@ -42,14 +40,10 @@
 - (2026-04-10, activity-infrastructure) activity_completions schema requires lessonId/phaseNumber not in practice.v1 — future work: pass context or redesign
 - (2026-04-10, graphing-components) Canvas coordinate mapping is complex — allocate more time; test transformations thoroughly; verify coordinates match transformDataToCanvas
 - (2026-04-11, fix-intercept-tests) Test failures were due to incorrect test coordinates — verify assumptions match implementation before fixing code
-- (2026-04-11, extract-quadratic-regex) Regex with optional sign-only captures causes `parseFloat()` to return `NaN` — handle with `isNaN()` check
-- (2026-04-12, extract-linear-regex) `parseLinear()` must reject expressions with `x^2` — use early return if `expression.includes('x^2')`
 - (2026-04-12, graphing-components) GraphingExplorer submission follows practice.v1 — include answers, parts, artifact, interactionHistory; variant field supports extensibility
 - (2026-04-12, graphing-system) Intersection point coordinates inverted in tests — (x, y) transforms to (canvasX, height - canvasY)
-- (2026-04-12, algebraic-examples) Pattern-matching equivalence works for Module 1 but has limits — 88% acceptable; symbolic math library needed for production
-- (2026-04-12, algebraic-examples) Polynomial expansion regex patterns were too strict — consolidate multiple patterns into single unified pattern handling all sign combinations
- - (2026-04-12, algebraic-examples) Coefficient formatting must omit 1 (e.g., -1x -> -x) — add special case handling for ±1 coefficients
-- (2026-04-13, algebraic-examples) Guided mode tests need explicit distractors in test data — KaTeX rendering makes text matching unreliable for identifying correct/incorrect answers
-- (2026-04-13, algebraic-examples) Completion state for guided mode triggers on last step + explanation shown — not just index >= length
-- (2026-04-13, algebraic-examples) Test isolation issues can occur with React state — tests may pass in isolation but fail when run together
+- (2026-04-12, algebraic-examples) Pattern-matching equivalence works for Module 1 (88% passing) but has limits — consider symbolic math library for production
+- (2026-04-12, algebraic-examples) Polynomial expansion patterns need unified handling of all sign combinations; coefficient formatting must omit 1 (e.g., -1x -> -x)
+- (2026-04-13, algebraic-examples) Algebraic component testing requires KaTeX-aware assertions — text matching fails with KaTeX HTML; use specific assertions and avoid regex on rendered math
+
 
