@@ -62,9 +62,9 @@
 
 ## Phase 4: Problem Types — Multi-Step Procedures
 
-- [ ] Task: Implement `factor_trinomial` problem type (all factoring patterns from 1-4)
-    - [ ] Write tests: a=1 trinomials, a≠1, GCF first, difference of squares, perfect square — all 3 modes
-    - [ ] Implement step sequences for each factoring pattern
+- [x] Task: Implement `factor_trinomial` problem type (all factoring patterns from 1-4) [new-sha]
+    - [x] Write tests: a=1 trinomials, a≠1, GCF first, difference of squares, perfect square — all 3 modes
+    - [x] Implement step sequences for each factoring pattern
 
 - [ ] Task: Implement `complete_the_square` problem type
     - [ ] Write tests: a=1, a≠1, imaginary solutions — all 3 modes
