@@ -1,0 +1,25 @@
+feat(graphing): Implement Explore mode with parameter sliders
+
+## Summary
+Added Explore mode to graphing-explorer component for Module 1 Explore phases. Students can manipulate a, b, c coefficients using sliders and observe real-time graph changes.
+
+## Files Created/Modified
+-  - Added explore mode with slider controls
+-  - 20 new tests
+
+## Key Changes
+- Added 'explore' to mode union type
+- Added exploreQuestion prop for inquiry questions
+- Added explorationPrompts prop for guiding questions
+- Added sliderDefaults prop for custom initial values
+- Slider controls for a (range -5 to 5), b and c (range -10 to 10)
+- Real-time equation display updates as sliders move
+- Reset button restores default values
+- No Submit button (completes via PhaseCompleteButton)
+- 20 new tests covering all explore mode functionality
+
+## Tests
+- All 20 explore mode tests pass
+- Lint passes
+- Build passes
+- 6 pre-existing algebraic equivalence failures (known pattern-matching limits)
