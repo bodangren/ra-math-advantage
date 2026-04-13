@@ -32,7 +32,7 @@
 
 - [x] Task: Conductor - Phase Completion Verification 'Data Model and Hashing' (Protocol in workflow.md) — Completed with tests passing
 
-## Phase 2: Review Queries and Mutations
+## Phase 2: Review Queries and Mutations [checkpoint: 17d7ad0]
 
 - [x] Task: Add developer-only review queue queries (0dea25f)
     - [x] Write tests for filtering by component kind, approval status, stale state, lesson/phase placement, issue tag, and priority
@@ -52,7 +52,7 @@
     - [x] Implement a query/helper returning component content, unresolved comments, tags, priority, and placement context
     - [x] Ensure the query excludes student submissions and personally identifying student data
 
-- [~] Task: Conductor - Phase Completion Verification 'Review Queries and Mutations' (Protocol in workflow.md)
+- [x] Task: Conductor - Phase Completion Verification 'Review Queries and Mutations' (Protocol in workflow.md)
 
 ## Phase 3: Developer-Only Access Guard
 
