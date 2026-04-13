@@ -67,9 +67,10 @@ Tracks 1+4 unlock Track 8; Track 8 unlocks Tracks 9+10.
   *Link: [./conductor/tracks/algebraic-examples_20260406/](./conductor/tracks/algebraic-examples_20260406/)*
 
 - [ ] **Track 7: Supporting Activity Components**
-  *comprehension-quiz, fill-in-the-blank, rate-of-change-calculator, discriminant-analyzer*
-  *Depends on: Tracks 2, 4*
-  *Link: [./conductor/tracks/supporting-activities_20260406/](./conductor/tracks/supporting-activities_20260406/)*
+   *comprehension-quiz, fill-in-the-blank, rate-of-change-calculator, discriminant-analyzer*
+   *Depends on: Tracks 2, 4*
+   *Link: [./conductor/tracks/supporting-activities_20260406/](./conductor/tracks/supporting-activities_20260406/)*
+   - Phase 1: Comprehension Quiz [COMPLETE]
 
 - [ ] **Track 8: Module 1 Curriculum Seed**
   *All 8 lessons seeded with phases, sections, activities, standards, and demo environment*
