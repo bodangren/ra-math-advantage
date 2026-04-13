@@ -2,6 +2,7 @@ import type { ComponentType } from 'react';
 import { GraphingExplorerActivity } from '@/components/activities/graphing/GraphingExplorerActivity';
 import { StepByStepSolverActivity } from '@/components/activities/algebraic/StepByStepSolverActivity';
 import { ComprehensionQuizActivity } from '@/components/activities/quiz/ComprehensionQuizActivity';
+import { FillInTheBlankActivity } from '@/components/activities/blanks/FillInTheBlankActivity';
 
 export interface ActivityComponentProps {
   activityId: string;
@@ -29,6 +30,9 @@ const MODULE_1_KEYS = [
 MODULE_1_KEYS.forEach(key => {
   registerActivity(key, PlaceholderComponent);
 });
+
+// Register fill-in-the-blank with actual implementation (replaces placeholder)
+registerActivity('fill-in-the-blank', FillInTheBlankActivity);
 
 // Register actual implementations
 registerActivity('graphing-explorer', GraphingExplorerActivity);
