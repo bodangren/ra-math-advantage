@@ -11,10 +11,12 @@
 
 ## Immediate Priorities
 
-1. **Component Approval — Phase 3: Developer-Only Access Guard**
-   - Create shared developer review access guard with auth checks
-   - Add guarded `/dev/component-approval` route (notFound() in production)
-   - Address tech-debt: no auth checks in `convex/dev.ts`
+1. **Component Approval — Phase 3: Developer-Only Access Guard [COMPLETE]**
+   - Created shared developer review access guard (`lib/auth/developer.ts`)
+   - Added guarded `/dev/component-approval` route (notFound() in production)
+   - Added auth checks in dev route
+
+2. **Component Approval — Phase 4: Review Queue UI**
 
 2. **Algebraic Examples — Phase 4 Completion**
    - Build submission envelope assembly and register `step-by-step-solver` in activity registry

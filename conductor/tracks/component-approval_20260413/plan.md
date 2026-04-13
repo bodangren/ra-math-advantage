@@ -56,19 +56,19 @@
 
 ## Phase 3: Developer-Only Access Guard
 
-- [ ] Task: Create shared developer review access guard
-    - [ ] Write tests for development access with authorized user
-    - [ ] Write tests that production is blocked by default
-    - [ ] Write tests that unauthenticated and non-developer users are blocked
-    - [ ] Implement a shared guard for pages, route handlers, and server actions/API calls
+- [x] Task: Create shared developer review access guard
+    - [x] Write tests for development access with authorized user
+    - [x] Write tests that production is blocked by default
+    - [x] Write tests that unauthenticated and non-developer users are blocked
+    - [x] Implement a shared guard for pages, route handlers, and server actions/API calls
 
-- [ ] Task: Add guarded development route shell
-    - [ ] Write tests or route-level checks that `/dev/component-approval` is inaccessible when disabled
-    - [ ] Create the developer route shell under `app/dev/component-approval`
-    - [ ] Keep the route out of public, student, teacher, and live production navigation
-    - [ ] Add a clear developer-only heading and queue loading state
+- [x] Task: Add guarded development route shell
+    - [x] Write tests or route-level checks that `/dev/component-approval` is inaccessible when disabled
+    - [x] Create the developer route shell under `app/dev/component-approval`
+    - [x] Keep the route out of public, student, teacher, and live production navigation
+    - [x] Add a clear developer-only heading and queue loading state
 
-- [ ] Task: Conductor - Phase Completion Verification 'Developer-Only Access Guard' (Protocol in workflow.md)
+- [x] Task: Conductor - Phase Completion Verification 'Developer-Only Access Guard' (Protocol in workflow.md)
 
 ## Phase 4: Review Queue UI
 
