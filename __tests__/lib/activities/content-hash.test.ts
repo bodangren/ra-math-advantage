@@ -58,3 +58,31 @@ test("hash changes when gradingConfig changes", () => {
     computeComponentContentHash(component2)
   );
 });
+
+test("hash ignores approval metadata and timestamps", () => {
+  const componentBase = {
+    componentKind: "activity" as const,
+    componentKey: "graphing-explorer",
+    props: { equation: "y = 2x + 3" },
+  };
+  const componentWithApproval = {
+    ...componentBase,
+    approval: {
+      status: "approved",
+      contentHash: "some-old-hash",
+      reviewedAt: Date.now(),
+      reviewedBy: "some-profile-id",
+    },
+  };
+  const componentWithTimestamps = {
+    ...componentBase,
+    createdAt: Date.now(),
+    updatedAt: Date.now(),
+  };
+  expect(computeComponentContentHash(componentBase)).toBe(
+    computeComponentContentHash(componentWithApproval)
+  );
+  expect(computeComponentContentHash(componentBase)).toBe(
+    computeComponentContentHash(componentWithTimestamps)
+  );
+});

@@ -19,18 +19,18 @@
     - [x] Verify existing seed and read paths tolerate missing approval fields during migration
 
 - [x] Task: Add review history table
-    - [ ] Write tests for review row validation, required comments, issue tags, and priority values
+    - [x] Write tests for review row validation, required comments, issue tags, and priority values
     - [x] Add `component_reviews` or equivalent table to `convex/schema.ts`
     - [x] Add indexes for component lookup, status/tag queue filters, created date, and unresolved reviews
     - [x] Ensure review rows capture component kind, component ID, content hash, reviewer, timestamp, and optional placement context
 
 - [x] Task: Implement deterministic component content hashing
     - [x] Write tests proving hash stability for equivalent content with different object key order
-    - [ ] Write tests proving approval metadata and timestamps do not affect the hash
+    - [x] Write tests proving approval metadata and timestamps do not affect the hash
     - [x] Write tests proving meaningful props/content/grading changes do affect the hash
     - [x] Implement shared hash utilities for example, activity, and practice review targets
 
-- [x] Task: Conductor - Phase Completion Verification 'Data Model and Hashing' (Protocol in workflow.md)
+- [x] Task: Conductor - Phase Completion Verification 'Data Model and Hashing' (Protocol in workflow.md) — Completed with tests passing
 
 ## Phase 2: Review Queries and Mutations
 
