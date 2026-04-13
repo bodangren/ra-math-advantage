@@ -44,11 +44,11 @@
 
 ## Phase 3: Rate-of-Change Calculator
 
-- [ ] Task: Implement `rate-of-change-calculator` teaching mode
-    - [ ] Write tests: `from_equation` — formula shown, f(a) and f(b) computed and labeled
-    - [ ] Write tests: `from_table` — table rows highlighted; formula applied
-    - [ ] Write tests: `from_graph` — graph data shown; estimation and exact value labeled
-    - [ ] Implement `components/activities/roc/RateOfChangeCalculator.tsx` — teaching mode
+- [x] Task: Implement `rate-of-change-calculator` teaching mode
+    - [x] Write tests: `from_equation` — formula shown, f(a) and f(b) computed and labeled
+    - [x] Write tests: `from_table` — table rows highlighted; formula applied
+    - [x] Write tests: `from_graph` — graph data shown; estimation and exact value labeled
+    - [x] Implement `components/activities/roc/RateOfChangeCalculator.tsx` — teaching mode [21d95a2]
 
 - [ ] Task: Add guided and practice modes
     - [ ] Write tests: guided — student identifies a, f(a), b, f(b) in sub-steps; each validated
