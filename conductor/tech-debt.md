@@ -8,7 +8,7 @@
 
 | Date | Track | Item | Severity | Status | Notes |
 |------|-------|------|----------|--------|-------|
-| 2026-04-05 | setup | No seed.ts in convex/ for demo data | Medium | Partial | **2026-04-14:** Seed Phase 1 infrastructure complete; full seed execution (DB writes) pending Phase 4-5 |
+| 2026-04-05 | setup | No seed.ts in convex/ for demo data | Medium | Partial | **2026-04-14:** Seed infrastructure complete (178 tests passing); full seed execution (DB writes) requires live Convex env |
 | 2026-04-05 | setup | Legacy Supabase types in AuthProvider.tsx (snake_case profile fields) | Low | Open | Should migrate to camelCase matching Convex schema |
 | 2026-04-10 | activity-infrastructure | activity_completions table requires lessonId/phaseNumber not available in submission | Medium | Open | Submission mutation can't create completions without lesson context |
 | 2026-04-12 | algebraic-examples | Equivalence validator 6/50 tests failing for complex cases | Low | Open | Pattern-matching limits; 88% passing exceeds 80% target. Consider symbolic math library for production. |

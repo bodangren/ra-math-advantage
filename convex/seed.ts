@@ -1,5 +1,5 @@
 import { internalAction } from "./_generated/server";
-import type { SeedLesson, SeedCompetencyStandard, SeedDemoEnvironment } from "./seed/types";
+import type { SeedLesson, SeedDemoEnvironment } from "./seed/types";
 import { seedDemoEnv } from "./seed/seed-demo-env";
 import { seedStandards } from "./seed/seed-standards";
 import { seedDemoProgress } from "./seed/seed-demo-progress";
@@ -107,53 +107,6 @@ export const seedAll = internalAction({
     return results;
   },
 });
-
-function getStandards(): SeedCompetencyStandard[] {
-  return [
-    {
-      code: "HSA-SSE.B.3",
-      description: "Choosing and producing equivalent forms of expressions",
-      studentFriendlyDescription: "I can rewrite expressions in different forms.",
-      category: "Algebra",
-      isActive: true,
-    },
-    {
-      code: "HSA-REI.B.4",
-      description: "Solving quadratic equations in one variable",
-      studentFriendlyDescription: "I can solve quadratic equations.",
-      category: "Algebra",
-      isActive: true,
-    },
-    {
-      code: "HSA-APR.B.3",
-      description: "Identifying zeros of polynomials",
-      studentFriendlyDescription: "I can find where polynomials equal zero.",
-      category: "Algebra",
-      isActive: true,
-    },
-    {
-      code: "HSA-CED.A.1",
-      description: "Creating equations in one variable",
-      studentFriendlyDescription: "I can create equations to solve problems.",
-      category: "Algebra",
-      isActive: true,
-    },
-    {
-      code: "N-CN.A.1",
-      description: "Knowing the definition of complex numbers",
-      studentFriendlyDescription: "I know what imaginary numbers are.",
-      category: "Number",
-      isActive: true,
-    },
-    {
-      code: "N-CN.C.7",
-      description: "Solving quadratics with complex solutions",
-      studentFriendlyDescription: "I can solve equations with complex answers.",
-      category: "Number",
-      isActive: true,
-    },
-  ];
-}
 
 function getLessons(): SeedLesson[] {
   return [
