@@ -28,3 +28,5 @@
 | 2026-04-14 | code-review | DiscriminantAnalyzer silent coefficient fallback showing wrong results | High | Resolved | **Fixed 2026-04-14:** Shows error message when equation can't be parsed |
 | 2026-04-14 | code-review | 16 TypeScript errors from prior tracks | High | Resolved | **Fixed 2026-04-14:** Registry types, activity props, seed imports, vite config |
 | 2026-04-14 | code-review | Activity components pass activityId to inner components that don't accept it | High | Resolved | **Fixed 2026-04-14:** Moved activityId injection to Activity wrapper level |
+| 2026-04-14 | code-review | seed.ts infinite loop calling seedStandards for each standard | High | Resolved | **Fixed 2026-04-14:** seedStandards now called once; it seeds all standards at once |
+| 2026-04-14 | code-review | Security risk using Function() constructor in RateOfChangeCalculator | High | Resolved | **Fixed 2026-04-14:** Replaced with recursive descent parser for expression evaluation |

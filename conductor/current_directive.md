@@ -1,28 +1,20 @@
 # Current Directive
 
-> Updated: 2026-04-14 (post-code-review)
+> Updated: 2026-04-14 (post-code-review, Phase 3-4 review)
 
 ## Status Summary
 
-- **Tests**: 1354 passing, 6 known equivalence failures (pattern-matching limits, 88% — exceeds 80% target), 1 flaky (StepByStepper-guided hint tracking — passes in isolation)
-- **Build**: passing (RSC chunk 708 KB — above 500 KB warning threshold; pre-existing)
+- **Tests**: 1389 passing, 6 known equivalence failures (pattern-matching limits, 88% — exceeds 80% target), 1 flaky (StepByStepper-guided hint tracking — passes in isolation)
+- **Build**: passing (RSC chunk 722 KB — above 500 KB warning threshold; pre-existing)
 - **Lint**: passing
-- **TypeScript**: passing (0 errors — resolved 16 TS errors from prior tracks)
-- **Completed Tracks**: supporting-activities Phase 1-4, component-approval (all 6 phases), algebraic-examples (all 4 phases), extract-linear-regex, extract-quadratic-regex, curriculum-gap-remediation, reconcile-activity-schemas, wire-step-by-step-solver (Phase 1-2), module-1-seed Phase 1
+- **TypeScript**: passing (0 errors)
+- **Completed Tracks**: supporting-activities Phase 1-4, component-approval (all 6 phases), algebraic-examples (all 4 phases), extract-linear-regex, extract-quadratic-regex, curriculum-gap-remediation, reconcile-activity-schemas, wire-step-by-step-solver (Phase 1-2), module-1-seed Phase 1-3
 
-## Code Review Findings (2026-04-14)
+## Code Review Findings (2026-04-14, Phase 3-4)
 
 ### Fixed (this review session)
-- **16 TypeScript errors** across seed tests, registry, activity components, discriminant-analyzer, rate-of-change-calculator, comprehension-quiz, vite config
-- **activityId prop type mismatch** — DiscriminantAnalyzer and RateOfChangeCalculator destructured `activityId` but schema-derived types didn't include it; moved `activityId` injection to Activity wrapper level
-- **ActivityComponent registry type** — widened to `ComponentType<any>` to accept components with varying required props
-- **ShortAnswerQuestion onChange** — added missing `onChange` type to function signature
-- **Seed test import path** — fixed `../../convex/seed/types` → `@/convex/seed/types`
-- **convex/seed.ts** — removed unused argument `demo` passed to `seedDemo()`
-- **vite.config.ts** — added `@ts-expect-error` for optional Cloudflare plugin import
-- **Division by zero NaN scores** — FillInTheBlank and ComprehensionQuiz now guard against empty arrays
-- **NaN from parseFloat** — ROC and DiscriminantAnalyzer now check `isNaN` before computing `isCorrect`
-- **DiscriminantAnalyzer silent fallback** — shows error message when equation can't be parsed and no coefficients provided
+- **seed.ts infinite loop** — `seedStandards` was called in a loop for each standard, but seeds ALL standards at once; now called once
+- **Security risk in RateOfChangeCalculator** — replaced `Function()` constructor with recursive descent parser for expression evaluation
 
 ### Pre-existing (from prior reviews, still open)
 - Placeholder hash for example/practice components (`convex/dev.ts:113`)
@@ -35,10 +27,8 @@
 
 ## Immediate Priorities
 
-1. **Track 8: Module 1 Curriculum Seed (Phase 2-5)**
-   - Phase 1 infrastructure complete (types, utils, entry point)
-   - Phase 2: Lesson 1-7 content authoring
-   - Phase 3: Competency standards and demo environment
+1. **Track 8: Module 1 Curriculum Seed (Phase 4-5)**
+   - Phase 1-3 complete (types, utils, entry point, standards, demo env, progress)
    - Phase 4-5: Lesson seeds 1-1 through 1-8
    - Depends on Tracks 1, 4 (both complete)
 
@@ -67,6 +57,8 @@
 - ~~NaN scores from division by zero~~ — **RESOLVED** (2026-04-14)
 - ~~NaN from parseFloat in submissions~~ — **RESOLVED** (2026-04-14)
 - ~~DiscriminantAnalyzer silent coefficient fallback~~ — **RESOLVED** (2026-04-14)
+- ~~seed.ts infinite loop~~ — **RESOLVED** (2026-04-14)
+- ~~Security risk in RateOfChangeCalculator~~ — **RESOLVED** (2026-04-14)
 - Placeholder hash for example/practice components
 - `createdBy` should be derived from auth at public API boundaries
 - Algebraic test coverage needs strengthening (88% but structural weakness)

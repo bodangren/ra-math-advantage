@@ -74,8 +74,86 @@ function safeEvalPolynomial(expr: string): number {
   if (!/^[\d\s+\-*/().]+$/.test(expr)) {
     throw new Error('Invalid expression');
   }
-  // Use a simple recursive descent parser for arithmetic
-  return Function(`"use strict"; return (${expr});`)();
+  
+  let pos = 0;
+  
+  function parseExpression(): number {
+    let result = parseTerm();
+    while (pos < expr.length) {
+      if (expr[pos] === '+') {
+        pos++;
+        result += parseTerm();
+      } else if (expr[pos] === '-') {
+        pos++;
+        result -= parseTerm();
+      } else {
+        break;
+      }
+    }
+    return result;
+  }
+  
+  function parseTerm(): number {
+    let result = parseFactor();
+    while (pos < expr.length) {
+      if (expr[pos] === '*') {
+        pos++;
+        result *= parseFactor();
+      } else if (expr[pos] === '/') {
+        pos++;
+        const divisor = parseFactor();
+        if (divisor === 0) throw new Error('Division by zero');
+        result /= divisor;
+      } else {
+        break;
+      }
+    }
+    return result;
+  }
+  
+  function parseFactor(): number {
+    // Handle leading +/-
+    let sign = 1;
+    while (pos < expr.length && (expr[pos] === '+' || expr[pos] === '-')) {
+      if (expr[pos] === '-') sign *= -1;
+      pos++;
+    }
+    
+    let result: number;
+    
+    if (pos < expr.length && expr[pos] === '(') {
+      pos++; // Skip '('
+      result = parseExpression();
+      if (pos < expr.length && expr[pos] === ')') {
+        pos++; // Skip ')'
+      }
+    } else {
+      // Parse number
+      const start = pos;
+      while (pos < expr.length && (expr[pos] >= '0' && expr[pos] <= '9' || expr[pos] === '.')) {
+        pos++;
+      }
+      if (pos === start) {
+        throw new Error('Expected number');
+      }
+      result = parseFloat(expr.substring(start, pos));
+    }
+    
+    return sign * result;
+  }
+  
+  // Skip leading whitespace
+  while (pos < expr.length && expr[pos] === ' ') pos++;
+  
+  const result = parseExpression();
+  
+  // Ensure we consumed the entire expression
+  while (pos < expr.length && expr[pos] === ' ') pos++;
+  if (pos < expr.length) {
+    throw new Error('Unexpected character');
+  }
+  
+  return result;
 }
 
 function getValueAtIndex(

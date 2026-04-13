@@ -19,18 +19,17 @@ export const seedAll = internalAction({
       progress: { success: true },
     };
 
-    const standards = getStandards();
-    for (const standard of standards) {
-      try {
-        await ctx.runMutation(seedStandards, {});
-        results.standards.push({ code: standard.code, success: true });
-      } catch (error) {
-        results.standards.push({
-          code: standard.code,
-          success: false,
-          error: error instanceof Error ? error.message : "Unknown error",
-        });
+    try {
+      const standardResults = await ctx.runMutation(seedStandards, {});
+      for (const result of standardResults) {
+        results.standards.push({ code: result.code, success: true });
       }
+    } catch (error) {
+      results.standards.push({
+        code: "ALL",
+        success: false,
+        error: error instanceof Error ? error.message : "Unknown error",
+      });
     }
 
     const lessons = getLessons();
