@@ -2,29 +2,33 @@
 
 ## Phase 1: Data Model and Hashing
 
-- [ ] Task: Inventory component storage and approval targets
-    - [ ] Read `convex/_generated/ai/guidelines.md` before Convex work if present
-    - [ ] Identify where examples, activities, and practice components are persisted
-    - [ ] Decide which source tables get direct approval summary fields and whether a fallback approval-summary table is needed for embedded components
-    - [ ] Document any implementation-specific mapping decisions in this plan before schema edits
+- [x] Task: Inventory component storage and approval targets
+    - [x] Read `convex/_generated/ai/guidelines.md` before Convex work if present
+    - [x] Identify where examples, activities, and practice components are persisted
+    - [x] Decide which source tables get direct approval summary fields and whether a fallback approval-summary table is needed for embedded components
+    - [x] Document any implementation-specific mapping decisions in this plan before schema edits
+    - **Implementation Decisions**:
+      - Add approval summary directly to `activities` table (for activity and practice components)
+      - Create a `component_approvals` fallback table for examples and embedded components without dedicated rows
+      - Create `component_reviews` table for review history as specified in spec
 
-- [ ] Task: Add approval summary validators and schema fields
-    - [ ] Write tests or type-level checks for `ComponentApprovalStatus` and approval summary shape
-    - [ ] Add approval summary storage for activities and relevant lesson/example/practice component sources
-    - [ ] Add indexes needed for review queue filtering by status where appropriate
-    - [ ] Verify existing seed and read paths tolerate missing approval fields during migration
+- [x] Task: Add approval summary validators and schema fields
+    - [x] Write tests or type-level checks for `ComponentApprovalStatus` and approval summary shape
+    - [x] Add approval summary storage for activities and relevant lesson/example/practice component sources
+    - [x] Add indexes needed for review queue filtering by status where appropriate
+    - [x] Verify existing seed and read paths tolerate missing approval fields during migration
 
-- [ ] Task: Add review history table
+- [~] Task: Add review history table
     - [ ] Write tests for review row validation, required comments, issue tags, and priority values
-    - [ ] Add `component_reviews` or equivalent table to `convex/schema.ts`
-    - [ ] Add indexes for component lookup, status/tag queue filters, created date, and unresolved reviews
-    - [ ] Ensure review rows capture component kind, component ID, content hash, reviewer, timestamp, and optional placement context
+    - [x] Add `component_reviews` or equivalent table to `convex/schema.ts`
+    - [x] Add indexes for component lookup, status/tag queue filters, created date, and unresolved reviews
+    - [x] Ensure review rows capture component kind, component ID, content hash, reviewer, timestamp, and optional placement context
 
 - [ ] Task: Implement deterministic component content hashing
-    - [ ] Write tests proving hash stability for equivalent content with different object key order
+    - [x] Write tests proving hash stability for equivalent content with different object key order
     - [ ] Write tests proving approval metadata and timestamps do not affect the hash
-    - [ ] Write tests proving meaningful props/content/grading changes do affect the hash
-    - [ ] Implement shared hash utilities for example, activity, and practice review targets
+    - [x] Write tests proving meaningful props/content/grading changes do affect the hash
+    - [x] Implement shared hash utilities for example, activity, and practice review targets
 
 - [ ] Task: Conductor - Phase Completion Verification 'Data Model and Hashing' (Protocol in workflow.md)
 

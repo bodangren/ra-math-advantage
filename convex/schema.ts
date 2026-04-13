@@ -152,6 +152,18 @@ export default defineSchema({
     props: v.any(),
     gradingConfig: v.optional(v.any()),
     standardId: v.optional(v.id("competency_standards")),
+    approval: v.optional(v.object({
+      status: v.union(
+        v.literal("unreviewed"),
+        v.literal("approved"),
+        v.literal("needs_changes"),
+        v.literal("rejected"),
+      ),
+      contentHash: v.optional(v.string()),
+      reviewedAt: v.optional(v.number()),
+      reviewedBy: v.optional(v.id("profiles")),
+      reviewId: v.optional(v.id("component_reviews")),
+    })),
     createdAt: v.number(),
     updatedAt: v.number(),
   }).index("by_standard", ["standardId"]),
@@ -254,4 +266,50 @@ export default defineSchema({
     .index("by_lesson", ["lessonId"])
     .index("by_idempotency_key", ["idempotencyKey"])
     .index("by_student_and_activity", ["studentId", "activityId"]),
+
+  component_reviews: defineTable({
+    componentKind: v.union(v.literal("example"), v.literal("activity"), v.literal("practice")),
+    componentId: v.string(),
+    componentKey: v.optional(v.string()),
+    componentContentHash: v.string(),
+    status: v.union(v.literal("approved"), v.literal("needs_changes"), v.literal("rejected")),
+    comment: v.optional(v.string()),
+    issueTags: v.optional(v.array(v.string())),
+    priority: v.optional(v.union(v.literal("low"), v.literal("medium"), v.literal("high"))),
+    placement: v.optional(v.object({
+      lessonId: v.optional(v.string()),
+      lessonVersionId: v.optional(v.string()),
+      phaseId: v.optional(v.string()),
+      phaseNumber: v.optional(v.number()),
+      sectionId: v.optional(v.string()),
+    })),
+    createdBy: v.id("profiles"),
+    createdAt: v.number(),
+    resolvedAt: v.optional(v.number()),
+    resolvedBy: v.optional(v.id("profiles")),
+    resolutionReviewId: v.optional(v.id("component_reviews")),
+  })
+    .index("by_component", ["componentKind", "componentId"])
+    .index("by_status", ["status"])
+    .index("by_created_at", ["createdAt"]),
+
+  component_approvals: defineTable({
+    componentKind: v.union(v.literal("example"), v.literal("activity"), v.literal("practice")),
+    componentId: v.string(),
+    componentKey: v.optional(v.string()),
+    status: v.union(
+      v.literal("unreviewed"),
+      v.literal("approved"),
+      v.literal("needs_changes"),
+      v.literal("rejected"),
+    ),
+    contentHash: v.optional(v.string()),
+    reviewedAt: v.optional(v.number()),
+    reviewedBy: v.optional(v.id("profiles")),
+    reviewId: v.optional(v.id("component_reviews")),
+    createdAt: v.number(),
+    updatedAt: v.number(),
+  })
+    .index("by_component", ["componentKind", "componentId"])
+    .index("by_status", ["status"]),
 });
