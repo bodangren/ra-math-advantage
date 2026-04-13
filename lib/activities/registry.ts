@@ -1,5 +1,6 @@
 import type { ComponentType } from 'react';
 import { GraphingExplorerActivity } from '@/components/activities/graphing/GraphingExplorerActivity';
+import { StepByStepSolverActivity } from '@/components/activities/algebraic/StepByStepSolverActivity';
 
 export interface ActivityComponentProps {
   activityId: string;
@@ -24,6 +25,7 @@ const MODULE_1_KEYS = [
   'equation-solver',
   'drag-drop-categorization',
   'discriminant-analyzer',
+  'step-by-step-solver',
 ] as const;
 
 MODULE_1_KEYS.forEach(key => {
@@ -32,6 +34,7 @@ MODULE_1_KEYS.forEach(key => {
 
 // Register actual implementations
 registerActivity('graphing-explorer', GraphingExplorerActivity);
+registerActivity('step-by-step-solver', StepByStepSolverActivity);
 
 /**
  * Register an activity component under a componentKey.
