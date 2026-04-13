@@ -32,9 +32,9 @@
 
 ## Phase 3: Competency Standards & Demo Environment
 
-- [~] Task: Seed `competency_standards` records for Module 1
-    - [ ] Write test: all 6 standards inserted with correct codes and descriptions
-    - [ ] Implement `convex/seed/seed-standards.ts`
+- [x] Task: Seed `competency_standards` records for Module 1 [3f6160c]
+    - [x] Write test: all 6 standards inserted with correct codes and descriptions
+    - [x] Implement `convex/seed/seed-standards.ts`
 
 - [ ] Task: Seed demo org, users, and class
     - [ ] Write test: teacher + 5 students created with correct credentials and roles
