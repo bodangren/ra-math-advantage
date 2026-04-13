@@ -40,7 +40,7 @@
     - [x] Write tests: envelope includes per-blank answer, correctness, word bank usage flag
     - [x] Implement `buildFillInSubmission()`; register in activity registry
 
-- [ ] Task: Conductor — Phase Completion Verification 'Fill-in-the-Blank' (Protocol in workflow.md)
+- [x] Task: Conductor — Phase Completion Verification 'Fill-in-the-Blank' (Protocol in workflow.md) [checkpoint: 8d11e71]
 
 ## Phase 3: Rate-of-Change Calculator
 

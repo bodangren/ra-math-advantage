@@ -3,6 +3,7 @@ import { GraphingExplorerActivity } from '@/components/activities/graphing/Graph
 import { StepByStepSolverActivity } from '@/components/activities/algebraic/StepByStepSolverActivity';
 import { ComprehensionQuizActivity } from '@/components/activities/quiz/ComprehensionQuizActivity';
 import { FillInTheBlankActivity } from '@/components/activities/blanks/FillInTheBlankActivity';
+import { RateOfChangeCalculatorActivity } from '@/components/activities/roc/RateOfChangeCalculatorActivity';
 
 export interface ActivityComponentProps {
   activityId: string;
@@ -25,6 +26,7 @@ const MODULE_1_KEYS = [
   'equation-solver',
   'drag-drop-categorization',
   'discriminant-analyzer',
+  'rate-of-change-calculator',
 ] as const;
 
 MODULE_1_KEYS.forEach(key => {
@@ -38,6 +40,7 @@ registerActivity('fill-in-the-blank', FillInTheBlankActivity);
 registerActivity('graphing-explorer', GraphingExplorerActivity);
 registerActivity('step-by-step-solver', StepByStepSolverActivity);
 registerActivity('comprehension-quiz', ComprehensionQuizActivity);
+registerActivity('rate-of-change-calculator', RateOfChangeCalculatorActivity);
 
 /**
  * Register an activity component under a componentKey.
