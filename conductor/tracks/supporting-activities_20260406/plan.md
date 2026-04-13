@@ -32,13 +32,13 @@
     - [x] Write tests: `MathInputField` used for expression blanks; plain text for word blanks
     - [x] Implement guided and practice modes
 
-- [ ] Task: Implement optional word bank drag-and-drop
-    - [ ] Write tests: word bank items drag into blanks; blank shows dragged term; can be cleared
-    - [ ] Implement word bank panel using `@hello-pangea/dnd` (already in dependencies)
+- [x] Task: Implement optional word bank drag-and-drop
+    - [x] Write tests: word bank items drag into blanks; blank shows dragged term; can be cleared
+    - [x] Implement word bank panel using `@hello-pangea/dnd` (already in dependencies) [44c2f06]
 
-- [ ] Task: Implement fill-in submission envelope
-    - [ ] Write tests: envelope includes per-blank answer, correctness, word bank usage flag
-    - [ ] Implement `buildFillInSubmission()`; register in activity registry
+- [x] Task: Implement fill-in submission envelope
+    - [x] Write tests: envelope includes per-blank answer, correctness, word bank usage flag
+    - [x] Implement `buildFillInSubmission()`; register in activity registry
 
 - [ ] Task: Conductor — Phase Completion Verification 'Fill-in-the-Blank' (Protocol in workflow.md)
 
