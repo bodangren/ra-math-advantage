@@ -1,6 +1,7 @@
 import { notFound } from 'next/navigation';
 
 import { isDevApprovalEnabledForRequest, requireDeveloperSessionClaims } from '@/lib/auth/developer';
+import { ReviewQueueView } from '@/components/dev/review-queue';
 
 export default async function ComponentApprovalPage() {
   if (!isDevApprovalEnabledForRequest()) {
@@ -16,9 +17,7 @@ export default async function ComponentApprovalPage() {
         <h1 className="text-3xl font-display font-bold text-foreground">Component Approval</h1>
       </div>
 
-      <div className="card-workbook p-6">
-        <p className="text-muted-foreground">Review queue loading...</p>
-      </div>
+      <ReviewQueueView />
     </div>
   );
 }

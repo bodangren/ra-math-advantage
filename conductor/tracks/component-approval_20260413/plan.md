@@ -72,7 +72,7 @@
 
 ## Phase 4: Review Queue UI
 
-- [ ] Task: Build review queue filters and list
+- [~] Task: Build review queue filters and list
     - [ ] Write component tests for status, kind, stale, tag, priority, and placement filters
     - [ ] Implement queue list using the developer-only review query
     - [ ] Show current status, stale indicator, last review, unresolved notes, and placement context

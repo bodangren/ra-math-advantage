@@ -135,6 +135,26 @@ export async function requireTeacherSessionClaims(
 }
 
 /**
+ * Requires a developer request session for internal dev-only APIs.
+ */
+export async function requireDeveloperRequestClaims(
+  request: Request,
+  unauthorizedMessage = 'Unauthorized',
+  forbiddenMessage = 'Forbidden',
+): Promise<SessionClaims | Response> {
+  const claimsOrResponse = await requireRequestSessionClaims(request, unauthorizedMessage);
+  if (claimsOrResponse instanceof Response) {
+    return claimsOrResponse;
+  }
+
+  if (claimsOrResponse.role !== 'admin') {
+    return buildRequestForbiddenResponse(forbiddenMessage);
+  }
+
+  return claimsOrResponse;
+}
+
+/**
  * Requires a student server session for student-facing dashboard routes.
  * Non-student sessions are redirected to the teacher surface.
  */
