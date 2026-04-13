@@ -50,14 +50,14 @@
     - [x] Write tests: `from_graph` — graph data shown; estimation and exact value labeled
     - [x] Implement `components/activities/roc/RateOfChangeCalculator.tsx` — teaching mode [21d95a2]
 
-- [ ] Task: Add guided and practice modes
-    - [ ] Write tests: guided — student identifies a, f(a), b, f(b) in sub-steps; each validated
-    - [ ] Write tests: practice — student enters full calculation and final answer
-    - [ ] Implement guided and practice modes; reuse `MathInputField` for value entry
+- [x] Task: Add guided and practice modes
+    - [x] Write tests: guided — student identifies a, f(a), b, f(b) in sub-steps; each validated
+    - [x] Write tests: practice — student enters full calculation and final answer
+    - [x] Implement guided and practice modes; reuse `MathInputField` for value entry
 
-- [ ] Task: Implement submission and register
-    - [ ] Write tests: envelope includes identified values, step correctness, final answer
-    - [ ] Register in activity registry
+- [x] Task: Implement submission and register
+    - [x] Write tests: envelope includes identified values, step correctness, final answer
+    - [x] Register in activity registry
 
 - [ ] Task: Conductor — Phase Completion Verification 'Rate-of-Change Calculator' (Protocol in workflow.md)
 
