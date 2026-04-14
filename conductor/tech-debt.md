@@ -22,7 +22,7 @@
 | 2026-04-14 | supporting-activities | Guided mode submissions not recorded | Medium | Open | Guided mode calls onComplete without onSubmit; no analytics/grading data produced |
 | 2026-04-13 | bundle | MarkdownRenderer lazy-load may affect TTI on lesson pages | Low | Open | Verify with lighthouse on a representative lesson page |
 | 2026-04-13 | content-hash | undefined values silently dropped by JSON.stringify | Low | Open | `{a: undefined}` hashes identically to `{}`; no regression test |
-| 2026-04-14 | student-lesson-flow | Phase skip infrastructure ready but UI not wired | Medium | Open | Schema has 'skipped' status; skipPhase mutation exists; isSkippable() helper added; PhaseCompleteButton skip UI pending |
+| 2026-04-14 | student-lesson-flow | Phase skip infrastructure ready but UI not wired | Medium | Resolved | **Fixed 2026-04-14:** PhaseCompleteButton now accepts phaseType prop and renders Skip button for explore/discourse phases |
 | 2026-04-14 | student-lesson-flow | Pre-existing dashboard.test.ts TypeScript errors | Low | Open | 12 tests missing `isLocked` property; existed before Phase 2 changes |
 | 2026-04-14 | code-review | Unbounded table scans in convex/student.ts getDashboardData | Medium-High | Open | `lessons`, `lesson_versions`, `phase_versions` all fetched with `.collect()` — doesn't scale past ~100 lessons |
 | 2026-04-14 | code-review | N+1 query loop for phase sections in getLessonProgress | High | Open | One DB query per phase inside loop; 10 phases = 10 sequential queries |
