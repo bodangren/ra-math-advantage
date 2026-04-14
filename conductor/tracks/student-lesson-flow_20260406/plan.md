@@ -40,23 +40,23 @@
 
 ## Phase 3: Activity Interaction & Submission Flow
 
-- [ ] Task: Wire activity submission through the full pipeline
-    - [ ] Write integration tests: activity submit → `/api/activities/submit` → Convex → completion flag
-    - [ ] Write tests: optimistic UI update on submit; revert on error
-    - [ ] Connect `onSubmit` callback from `ActivityRenderer` through to API route
+- [x] Task: Wire activity submission through the full pipeline [70afbd5]
+    - [x] Write integration tests: activity submit → `/api/activities/submit` → Convex → completion flag
+    - [x] Write tests: optimistic UI update on submit; revert on error
+    - [x] Connect `onSubmit` callback from `ActivityRenderer` through to API route
 
-- [ ] Task: Implement phase completion gating from activity completions
-    - [ ] Write tests: single-activity phase → PhaseCompleteButton enabled after activity submit
-    - [ ] Write tests: multi-activity phase → button enabled only after all required activities complete
-    - [ ] Implement `PhaseActivityTracker` state in lesson renderer
+- [x] Task: Implement phase completion gating from activity completions [70afbd5]
+    - [x] Write tests: single-activity phase → PhaseCompleteButton enabled after activity submit
+    - [x] Write tests: multi-activity phase → button enabled only after all required activities complete
+    - [x] Implement activity tracking state in lesson renderer
 
 - [ ] Task: Wire `PhaseCompleteButton` to phase completion API and stepper
     - [ ] Write integration tests: button click → POST `/api/phases/complete` → stepper dot updates → auto-advance
     - [ ] Implement phase advance animation (smooth transition between phases)
 
-- [ ] Task: Implement failed submission recovery
-    - [ ] Write tests: network failure on submit → error state shown; retry button works; work not lost
-    - [ ] Implement local submission buffer with retry logic
+- [x] Task: Implement failed submission recovery [70afbd5]
+    - [x] Write tests: network failure on submit → error state shown; retry button works; work not lost
+    - [x] Implement optimistic update with rollback on failure
 
 - [ ] Task: Conductor — Phase Completion Verification 'Activity Interaction & Submission' (Protocol in workflow.md)
 
