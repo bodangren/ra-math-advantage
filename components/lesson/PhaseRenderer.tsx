@@ -64,6 +64,8 @@ export interface PhaseRendererProps {
   lessonId?: string;
   phaseNumber?: number;
   mode?: 'teaching' | 'guided' | 'practice';
+  onActivitySubmit?: (activityId: string, payload: unknown) => void;
+  onActivityComplete?: (activityId: string) => void;
 }
 
 // ── Component ─────────────────────────────────────────────────────────────────
@@ -74,6 +76,8 @@ export function PhaseRenderer({
   lessonId,
   phaseNumber,
   mode = 'practice',
+  onActivitySubmit,
+  onActivityComplete,
 }: PhaseRendererProps) {
   if (sections.length === 0) {
     return (
@@ -93,6 +97,8 @@ export function PhaseRenderer({
               lessonId={lessonId}
               phaseNumber={phaseNumber}
               mode={mode}
+              onActivitySubmit={onActivitySubmit}
+              onActivityComplete={onActivityComplete}
             />
           </ContentBlockErrorBoundary>
         ))}
@@ -108,11 +114,15 @@ function SectionBlock({
   lessonId,
   phaseNumber,
   mode,
+  onActivitySubmit,
+  onActivityComplete,
 }: {
   section: PhaseSection;
   lessonId?: string;
   phaseNumber?: number;
   mode: 'teaching' | 'guided' | 'practice';
+  onActivitySubmit?: (activityId: string, payload: unknown) => void;
+  onActivityComplete?: (activityId: string) => void;
 }) {
   switch (section.sectionType) {
     case 'text':
@@ -135,16 +145,26 @@ function SectionBlock({
         />
       );
 
-    case 'activity':
+    case 'activity': {
+      const activityId = section.content.activityId as string;
+      const handleSubmit = (payload: unknown) => {
+        onActivitySubmit?.(activityId, payload);
+      };
+      const handleComplete = () => {
+        onActivityComplete?.(activityId);
+      };
       return (
         <ActivityRenderer
           componentKey={section.content.componentKey}
-          activityId={section.content.activityId}
+          activityId={activityId}
           lessonId={lessonId}
           phaseNumber={phaseNumber}
           mode={mode}
+          onSubmit={handleSubmit}
+          onComplete={handleComplete}
         />
       );
+    }
 
     case 'image':
       return (
