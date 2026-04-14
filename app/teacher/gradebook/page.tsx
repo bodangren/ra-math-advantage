@@ -78,7 +78,7 @@ export default async function GradebookPage({ searchParams }: PageProps) {
                 </td>
               </tr>
             ) : (
-              rows.map((row, rowIndex) => (
+              rows.map((row) => (
                 <tr key={row.studentId} className="hover:bg-muted/10 transition-colors">
                   <td className="px-4 py-2 font-medium text-foreground sticky left-0 bg-card">
                     <Link
@@ -88,7 +88,7 @@ export default async function GradebookPage({ searchParams }: PageProps) {
                       {row.displayName}
                     </Link>
                   </td>
-                  {row.cells.map((cell, cellIndex) => (
+                  {row.cells.map((cell) => (
                     <td
                       key={cell.lesson.lessonId}
                       className={`text-center px-2 py-2 ${cellBgClass(cell.color)}`}

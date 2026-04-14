@@ -38,10 +38,11 @@
 
 ## Phase 3: Student Detail View
 
-- [ ] Task: Implement per-lesson phase breakdown for student detail
-    - [ ] Write tests: shows all 8 lessons; each phase shows correct status (not_started/in_progress/completed/skipped)
-    - [ ] Write tests: pre-scroll to lesson from gradebook drill-down works
-    - [ ] Update `app/teacher/students/page.tsx` and student detail components
+- [x] Task: Implement per-lesson phase breakdown for student detail
+    - [x] Write tests: shows all 8 lessons; each phase shows correct status (not_started/in_progress/completed/skipped)
+    - [x] Write tests: pre-scroll to lesson from gradebook drill-down works
+    - [x] Update `app/teacher/students/page.tsx` and student detail components
+    - [checkpoint: 58f83c0]
 
 - [ ] Task: Implement activity submission review panel
     - [ ] Write tests: "Review" button appears for completed activity phases

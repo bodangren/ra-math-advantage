@@ -9,8 +9,6 @@ import {
   applyStudentRowUpdate,
   assembleGradebookRows,
   type PhaseProgressStatus,
-  type LessonCompletionStatus,
-  type CellColor,
   type GradebookLesson,
   type GradebookRow,
   type RawStudent,
