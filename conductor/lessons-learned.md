@@ -48,3 +48,4 @@
 - (2026-04-14, code-review) Progress counting must include "skipped" alongside "completed" — skipped phases are "done" for unlock gating; filter by `status === "completed" || status === "skipped"` when computing lesson readiness
 - (2026-04-14, student-lesson-flow) Lesson completion screens: LessonCompleteScreen for individual lessons, ModuleCompleteScreen for full module; wire via `showLessonComplete` state in LessonRenderer and `complete=module-1` query param on dashboard
 - (2026-04-14, teacher-dashboard) When adding new computed fields to a Convex query result (currentLesson, atGlanceStatus), build lookup maps in the handler and pass them to helper functions to avoid N+1 queries; chain: phaseId → lessonVersionId → lessonId → title
+- (2026-04-14, teacher-module1) Teacher lesson preview: use try/catch on ctx.db.get with Id cast, then fall back to slug-based index query. Set all phases to 'available' so LessonStepper allows free navigation in teaching mode.

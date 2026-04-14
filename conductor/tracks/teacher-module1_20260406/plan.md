@@ -62,21 +62,21 @@
 
 ## Phase 4: Lesson Preview & Course Overview
 
-- [ ] Task: Implement teacher lesson preview route
-    - [ ] Write tests: teacher navigating to lesson renders in teaching mode (all steps revealed)
-    - [ ] Write tests: "Teacher Preview" badge visible; no phase completion buttons
-    - [ ] Add teacher mode detection in `app/student/lesson/[lessonSlug]/page.tsx` or create dedicated `/teacher/lesson/[lessonSlug]/page.tsx`
+- [x] Task: Implement teacher lesson preview route [c294666]
+    - [x] Write tests: teacher navigating to lesson renders in teaching mode (all steps revealed)
+    - [x] Write tests: "Teacher Preview" badge visible; no phase completion buttons
+    - [x] Create dedicated `/teacher/lesson/[lessonSlug]/page.tsx` with `getTeacherLessonPreview` Convex query
 
-- [ ] Task: Implement free phase navigation for teacher preview
-    - [ ] Write tests: teacher can click any phase in stepper regardless of completion state
-    - [ ] Override sequential lock when role is teacher
+- [x] Task: Implement free phase navigation for teacher preview [c294666]
+    - [x] Write tests: teacher can click any phase in stepper regardless of completion state
+    - [x] All phases set to 'available' status in preview; LessonRenderer hides PhaseCompleteButton in teaching mode
 
-- [ ] Task: Implement standards coverage map
-    - [ ] Write tests: renders 6 standards × lesson linkage matrix
-    - [ ] Update `app/teacher/units/page.tsx` with `assembleCourseOverviewRows()` and standards map
+- [x] Task: Implement standards coverage map [c294666]
+    - [x] Write tests: renders standards × lesson linkage matrix
+    - [x] Add `getStandardsCoverage` Convex query; update `app/teacher/units/page.tsx` with standards map
 
-- [ ] Task: Implement lesson metadata panel
-    - [ ] Write tests: shows objectives, vocabulary, estimated time, standards, phase sequence summary
-    - [ ] Implement `LessonMetadataPanel` component; wire into units/course overview page
+- [x] Task: Implement lesson metadata panel [c294666]
+    - [x] Write tests: shows objectives, vocabulary, estimated time, standards, phase sequence summary
+    - [x] Implement `LessonMetadataPanel` component; wire into units/course overview page
 
 - [ ] Task: Conductor — Phase Completion Verification 'Lesson Preview & Course Overview' (Protocol in workflow.md)
