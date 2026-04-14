@@ -8,7 +8,6 @@
 
 - (2026-04-05, setup) Scaffolded from bus-math-v2; architecture.md preserved in conductor/ for reference
 - (2026-04-05, setup) Convex internal queries/mutations require server-side admin auth — all data fetching from pages goes through `lib/convex/server.ts` helpers
-- (2026-04-12, graphing-components) Activity registry requires wrapper components to adapt component-specific props to ActivityComponentProps
 
 ## Recurring Gotchas
 <!-- Problems encountered repeatedly; save future tracks from the same pain -->

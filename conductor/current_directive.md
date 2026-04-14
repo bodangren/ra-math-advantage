@@ -1,14 +1,14 @@
 # Current Directive
 
-> Updated: 2026-04-14 (code review — Tracks 9-10, 5b, schemas, solver)
+> Updated: 2026-04-15 (code review — phase-skip-ui, module-2-seed phases 1-2)
 
 ## Status Summary
 
-- **Tests**: 1635 passing, 6 known equivalence failures (pattern-matching limits, 88% — exceeds 80% target), 1 flaky (StepByStepper-guided hint tracking, passes in isolation)
-- **Build**: passing (RSC chunk 730 KB — above 500 KB warning threshold; pre-existing)
+- **Tests**: 1675 passing, 6 known equivalence failures (pattern-matching limits, 88% — exceeds 80% target), 1 flaky (StepByStepper-guided hint tracking, passes in isolation)
+- **Build**: passing (RSC chunk 733 KB — above 500 KB warning threshold; pre-existing)
 - **Lint**: passing
-- **TypeScript**: passing (0 errors)
-- **Completed Tracks**: All Module 1 roadmap tracks complete (Tracks 1-10), plus supporting-activities, component-approval, algebraic-examples, extract-linear-regex, extract-quadratic-regex, curriculum-gap-remediation, reconcile-activity-schemas, wire-step-by-step-solver, graphing-explore-mode
+- **TypeScript**: 27 errors in pre-existing test files (dashboard.test.ts isLocked, students.test.tsx mock types, SubmissionReviewPanel missing export, teacher/students page null checks) — not from recent work
+- **Completed Tracks**: All Module 1 roadmap tracks complete (Tracks 1-10), plus supporting-activities, component-approval, algebraic-examples, extract-linear-regex, extract-quadratic-regex, curriculum-gap-remediation, reconcile-activity-schemas, wire-step-by-step-solver, graphing-explore-mode, phase-skip-ui
 
 ## Module 1 Roadmap: COMPLETE
 
@@ -28,16 +28,16 @@ All 10 tracks delivering the complete Module 1 student and teacher experience ar
 | 9. Student Lesson Flow | COMPLETE (all 4 phases) |
 | 10. Teacher Module 1 | COMPLETE (all 4 phases) |
 
-## Code Review Findings (2026-04-14, Tracks 9-10 + 5b)
+## Code Review Findings (2026-04-15, phase-skip-ui + module-2-seed phases 1-2)
 
-### Issues Found
+### Issues Found and Fixed
 
-- **N+1 query in getTeacherLessonPreview** — `convex/teacher.ts:1014-1024` loops phases and queries sections per phase. Same pattern as the pre-existing getLessonProgress N+1. High severity for lessons with many phases.
-- **Bare catch block in getTeacherLessonPreview** — `convex/teacher.ts:979-981` `try { ctx.db.get(...) } catch {}` silently swallows all exceptions. Should catch specific ConvexError.
-- **getStandardsCoverage unbounded query** — `convex/teacher.ts:1074` fetches all lesson_standards with `.collect()` then filters in memory. Should use index.
-- **getTeacherLessonMonitoringData N+1** — `convex/teacher.ts:588-608` queries sections per phase inside Promise.all.
-- **Plan.md drift** — Track 10 Phase 4 tasks marked `[ ]` despite being implemented. Fixed this review.
-- **Flaky test** — `StepByStepper-guided` hint tracking test passes in isolation but intermittently fails in full suite. Likely shared mutable state.
+- **LessonRenderer ignored skipped initialStatus** — `LessonRenderer.tsx:220` only checked `completed || completedPhases.has()` when computing `initialStatus` for PhaseCompleteButton. Previously-skipped phases would render "Mark Complete" instead of "Skipped". Fixed: now checks `activePhase.status === 'skipped'` first.
+
+### Issues Found (Open)
+
+- **Seed tests are decoupled from seed implementations** — `seed-lesson-2-1.test.ts` and `seed-lesson-2-2.test.ts` define inline data objects instead of importing from the seed modules. Changes to seed files won't break tests. Medium severity.
+- **Module 2 standards incomplete** — `seed-standards.ts` has HSA-APR.B.3 and HSA-CED.A.1 but is missing HSA-APR.A.1 and HSA-APR.B.2 per the module-2-seed spec. Expected to be addressed in Phase 5.
 
 ### Pre-existing (still open from prior reviews)
 
@@ -54,14 +54,17 @@ All 10 tracks delivering the complete Module 1 student and teacher experience ar
 - nextPhaseUnlocked hardcoded to true
 - No error.tsx boundary for student routes
 - getPhaseDisplayInfo crashes on unknown phaseType
+- N+1 queries in getTeacherLessonPreview, getTeacherLessonMonitoringData, getLessonProgress
+- Unbounded table scans in convex/student.ts getDashboardData
+- TypeScript errors in dashboard.test.ts, students.test.tsx, SubmissionReviewPanel
 
 ## Next High-Level Priorities
 
 ### Immediate (next phase of work)
 
-1. **User acceptance testing of Module 1** — Full student flow (dashboard → lesson → phases → activities → completion) and teacher flow (dashboard → gradebook → student detail → lesson preview). Verify with seeded demo data.
-2. **Module 2+ curriculum authoring** — Extend curriculum beyond Module 1 (8 of 52 lessons done). Seed data and lesson content for remaining 8 modules.
-3. **Phase skip UI wiring** — Skip infrastructure exists (schema, mutation, isSkippable helper) but PhaseCompleteButton skip button not yet exposed in UI.
+1. **Complete Module 2 Seed** — Phases 3-5 remaining (lessons 2-3 through 2-5, standards, verification). Actively in progress.
+2. **User acceptance testing of Module 1** — Full student flow (dashboard → lesson → phases → activities → completion) and teacher flow (dashboard → gradebook → student detail → lesson preview). Verify with seeded demo data.
+3. **Module 3+ curriculum authoring** — Extend curriculum beyond Modules 1-2 (10 of 52 lessons will be done after Module 2 seed completes).
 
 ### Medium-Term Tech Debt
 
@@ -72,8 +75,9 @@ All 10 tracks delivering the complete Module 1 student and teacher experience ar
 8. **Add error.tsx boundary** — graceful degradation for student and teacher routes
 9. **Validate timeSpent >= 0** in completePhase
 10. **Fix nextPhaseUnlocked** — compute actual value
-11. **Reduce RSC bundle size** — currently 730 KB (target <500 KB)
+11. **Reduce RSC bundle size** — currently 733 KB (target <500 KB)
+12. **Fix pre-existing TypeScript errors** — dashboard.test.ts, students.test.tsx, SubmissionReviewPanel, teacher/students page
 
 ## Resolved This Session
 
-- Track 10 Phase 4 plan.md synced with implementation
+- LessonRenderer skipped-phase initialStatus bug fixed

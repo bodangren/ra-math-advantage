@@ -217,7 +217,13 @@ export function LessonRenderer({
             lessonId={lessonId}
             phaseNumber={activePhase.phaseNumber}
             phaseType={activePhase.phaseType}
-            initialStatus={activePhase.completed || completedPhases.has(activePhase.phaseNumber) ? 'completed' : 'not_started'}
+            initialStatus={
+              activePhase.status === 'skipped'
+                ? 'skipped'
+                : activePhase.completed || completedPhases.has(activePhase.phaseNumber)
+                  ? 'completed'
+                  : 'not_started'
+            }
             disabled={isPhaseGated}
             onStatusChange={handlePhaseStatusChange}
           />
