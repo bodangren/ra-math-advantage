@@ -270,7 +270,7 @@ export function buildPublishedUnitProgressRows<
   });
   const completedPhaseIds = new Set(
     progressRows
-      .filter((row) => row.status === "completed")
+      .filter((row) => row.status === "completed" || row.status === "skipped")
       .map((row) => row.phaseId),
   );
 

@@ -49,3 +49,4 @@
 - (2026-04-14, student-lesson-flow) Adding new Convex function requires regenerating types via `npx convex dev`; use `(internal.module as any).fn` workaround if types stale
 - (2026-04-14, student-lesson-flow) Use React state (not mutable class) for activity tracking — React must see state changes to re-render; optimistic updates need rollback on API failure
 - (2026-04-14, student-lesson-flow) PhaseCompleteButton onStatusChange callback wires parent state to component lifecycle — use to drive auto-advance and update stepper; useEffect syncs initialStatus only on mount, so parent must re-render with new prop
+- (2026-04-14, code-review) Progress counting must include "skipped" alongside "completed" — skipped phases are "done" for unlock gating; filter by `status === "completed" || status === "skipped"` when computing lesson readiness

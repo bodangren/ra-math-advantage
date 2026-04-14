@@ -101,7 +101,10 @@ export function LessonRenderer({
   }, [mode]);
 
   const handleActivityComplete = useCallback((activityId: string) => {
-    setCompletedActivities(prev => new Set([...prev, activityId]));
+    setCompletedActivities(prev => {
+      if (prev.has(activityId)) return prev;
+      return new Set([...prev, activityId]);
+    });
   }, []);
 
   const handlePhaseStatusChange = useCallback((status: 'not_started' | 'in_progress' | 'completed') => {

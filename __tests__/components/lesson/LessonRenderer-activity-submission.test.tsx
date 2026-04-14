@@ -67,7 +67,10 @@ vi.mock('@/components/lesson/PhaseRenderer', () => ({
           onClick={() => {
             const activityId = s.content?.activityId;
             if (activityId) {
-              onActivitySubmit?.(activityId);
+              const result = onActivitySubmit?.(activityId);
+              if (result && typeof (result as Promise<unknown>).catch === 'function') {
+                (result as Promise<unknown>).catch(() => {});
+              }
               onActivityComplete?.(activityId);
             }
           }}

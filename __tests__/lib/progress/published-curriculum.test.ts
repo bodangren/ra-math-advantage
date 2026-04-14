@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { buildLessonPhaseProgress } from '@/lib/progress/published-curriculum';
+import { buildLessonPhaseProgress, buildPublishedUnitProgressRows } from '@/lib/progress/published-curriculum';
 
 describe('buildLessonPhaseProgress', () => {
   it('includes phaseType in the returned phase data', () => {
@@ -96,5 +96,62 @@ describe('buildLessonPhaseProgress', () => {
     expect(result[1].phaseType).toBe('learn');
     expect(result[2].phaseNumber).toBe(3);
     expect(result[2].phaseType).toBe('independent_practice');
+  });
+});
+
+describe('buildPublishedUnitProgressRows', () => {
+  it('counts skipped phases toward completedPhases for lesson unlock', () => {
+    const lessons = [
+      { _id: 'l1', unitNumber: 1, orderIndex: 0, title: 'Lesson 1', slug: 'lesson-1' },
+      { _id: 'l2', unitNumber: 1, orderIndex: 1, title: 'Lesson 2', slug: 'lesson-2' },
+    ];
+    const lessonVersions = [
+      { _id: 'lv1', lessonId: 'l1', version: 1, status: 'published', title: 'Lesson 1', description: null },
+      { _id: 'lv2', lessonId: 'l2', version: 1, status: 'published', title: 'Lesson 2', description: null },
+    ];
+    const phaseVersions = [
+      { _id: 'pv1', lessonVersionId: 'lv1', phaseType: 'explore' },
+      { _id: 'pv2', lessonVersionId: 'lv1', phaseType: 'learn' },
+      { _id: 'pv3', lessonVersionId: 'lv1', phaseType: 'assessment' },
+      { _id: 'pv4', lessonVersionId: 'lv2', phaseType: 'explore' },
+    ];
+    // Student completed phase 1, skipped phase 2, completed phase 3
+    const progressRows = [
+      { phaseId: 'pv1', status: 'completed' as const },
+      { phaseId: 'pv2', status: 'skipped' as const },
+      { phaseId: 'pv3', status: 'completed' as const },
+    ];
+
+    const result = buildPublishedUnitProgressRows({ lessons, lessonVersions, phaseVersions, progressRows });
+
+    expect(result).toHaveLength(1);
+    expect(result[0].lessons).toHaveLength(2);
+    // Lesson 1: 3 phases, all completed or skipped → completedPhases = 3
+    expect(result[0].lessons[0].completedPhases).toBe(3);
+    expect(result[0].lessons[0].totalPhases).toBe(3);
+    expect(result[0].lessons[0].progressPercentage).toBe(100);
+  });
+
+  it('does not count in_progress phases toward completedPhases', () => {
+    const lessons = [
+      { _id: 'l1', unitNumber: 1, orderIndex: 0, title: 'Lesson 1', slug: 'lesson-1' },
+    ];
+    const lessonVersions = [
+      { _id: 'lv1', lessonId: 'l1', version: 1, status: 'published', title: 'Lesson 1', description: null },
+    ];
+    const phaseVersions = [
+      { _id: 'pv1', lessonVersionId: 'lv1', phaseType: 'explore' },
+      { _id: 'pv2', lessonVersionId: 'lv1', phaseType: 'learn' },
+    ];
+    const progressRows = [
+      { phaseId: 'pv1', status: 'completed' as const },
+      { phaseId: 'pv2', status: 'in_progress' as const },
+    ];
+
+    const result = buildPublishedUnitProgressRows({ lessons, lessonVersions, phaseVersions, progressRows });
+
+    expect(result[0].lessons[0].completedPhases).toBe(1);
+    expect(result[0].lessons[0].totalPhases).toBe(2);
+    expect(result[0].lessons[0].progressPercentage).toBe(50);
   });
 });
