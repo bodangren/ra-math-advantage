@@ -20,19 +20,19 @@
 
 ## Phase 2: Gradebook
 
-- [~] Task: Implement Module 1 gradebook grid
-    - [ ] Write tests: grid renders 5 student rows × 8 lesson columns; cells show correct percentages
-    - [ ] Write tests: cell color coding uses `lib/teacher/gradebook.ts` logic adapted for percentages
-    - [ ] Update `app/teacher/gradebook/page.tsx` with real data and grid component
+- [x] Task: Implement Module 1 gradebook grid [954ecf7]
+    - [x] Write tests: grid renders 5 student rows × 8 lesson columns; cells show correct percentages
+    - [x] Write tests: cell color coding uses `lib/teacher/gradebook.ts` logic adapted for percentages
+    - [x] Update `app/teacher/gradebook/page.tsx` with real data and grid component
 
-- [ ] Task: Implement gradebook cell drill-down navigation
-    - [ ] Write tests: clicking a cell navigates to student detail pre-scrolled to that lesson
-    - [ ] Implement cell link and URL params for pre-scroll target
+- [x] Task: Implement gradebook cell drill-down navigation [954ecf7]
+    - [x] Write tests: clicking a cell navigates to student detail pre-scrolled to that lesson
+    - [x] Implement cell link and URL params for pre-scroll target
 
-- [ ] Task: Implement CSV export for gradebook
-    - [ ] Write tests: CSV string contains correct headers and student data
-    - [ ] Implement `lib/teacher/gradebook-export.ts` `buildGradebookCsv()` function
-    - [ ] Add export button to gradebook page with download trigger
+- [x] Task: Implement CSV export for gradebook [954ecf7]
+    - [x] Write tests: CSV string contains correct headers and student data
+    - [x] Implement `lib/teacher/gradebook-export.ts` `buildGradebookCsv()` function
+    - [x] Add export button to gradebook page with download trigger
 
 - [ ] Task: Conductor — Phase Completion Verification 'Gradebook' (Protocol in workflow.md)
 
