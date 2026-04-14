@@ -1,0 +1,11 @@
+{
+  "track_id": "module-2-seed_20260415",
+  "type": "feature",
+  "status": "new",
+  "created_at": "2026-04-15T00:57:00Z",
+  "updated_at": "2026-04-15T00:57:00Z",
+  "description": "Seed Module 2 curriculum data (lessons 2-1 through 2-5) into Convex database",
+  "estimated_tasks": null,
+  "actual_tasks": null,
+  "deviation_notes": ""
+}
