@@ -2,15 +2,15 @@
 
 ## Phase 1: Seed Lesson 2-1 (Polynomial Functions)
 
-- [ ] Task: Author curriculum content for lesson 2-1 (if not complete)
-  - [ ] Verify curriculum/modules/module-2-lesson-1 has required sections
-  - [ ] Ensure Explore, Learn, Worked Examples, Discourse, Reflection phases have content
+- [x] Task: Author curriculum content for lesson 2-1 (if not complete)
+  - [x] Verify curriculum/modules/module-2-lesson-1 has required sections
+  - [x] Ensure Explore, Learn, Worked Examples, Discourse, Reflection phases have content
 
-- [ ] Task: Create seed function `convex/seed/seed-lesson-2-1.ts`
-  - [ ] Write test: correct phase sequence (explore, vocabulary, learn, worked_example ×2, learn, worked_example ×4, discourse, reflection)
-  - [ ] Write test: section content extracted correctly from curriculum markdown
-  - [ ] Write test: idempotent insert (skip if exists)
-  - [ ] Implement `seedLesson2_1()` following module-1-seed pattern
+- [x] Task: Create seed function `convex/seed/seed-lesson-2-1.ts`
+  - [x] Write test: correct phase sequence (explore, vocabulary, learn, worked_example ×2, learn, worked_example ×4, discourse, reflection)
+  - [x] Write test: section content extracted correctly from curriculum markdown
+  - [x] Write test: idempotent insert (skip if exists)
+  - [x] Implement `seedLesson2_1()` following module-1-seed pattern
 
 ## Phase 2: Seed Lesson 2-2 (Polynomials, Linear Factors, and Zeros)
 
