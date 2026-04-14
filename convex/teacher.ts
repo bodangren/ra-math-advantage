@@ -16,6 +16,16 @@ interface TeacherProgressSnapshot {
   totalPhases: number;
   progressPercentage: number;
   lastActive: string | null;
+  currentLesson: string | null;
+  atGlanceStatus: 'on-track' | 'behind' | 'not-started';
+}
+
+type AtGlanceStatus = 'on-track' | 'behind' | 'not-started';
+
+function computeAtGlanceStatus(progressPercentage: number): AtGlanceStatus {
+  if (progressPercentage === 0) return 'not-started';
+  if (progressPercentage >= 50) return 'on-track';
+  return 'behind';
 }
 
 interface TeacherStudentDetailUnitRow {
@@ -147,16 +157,47 @@ async function buildStudentProgressSnapshot(
   ctx: QueryCtx,
   studentId: Id<"profiles">,
   activePhaseIds: Set<Id<"phase_versions">>,
+  phaseVersionLessonMap?: Map<string, string>,
+  lessonVersionLessonMap?: Map<string, string>,
+  lessonTitleMap?: Map<string, string>,
 ): Promise<TeacherProgressSnapshot> {
   const progressRows = await ctx.db
     .query("student_progress")
     .withIndex("by_user", (q) => q.eq("userId", studentId))
     .collect();
 
-  return buildPublishedProgressSnapshot({
+  const snapshot = buildPublishedProgressSnapshot({
     activePhaseIds,
     progressRows,
   });
+
+  let currentLesson: string | null = null;
+  if (phaseVersionLessonMap && lessonVersionLessonMap && lessonTitleMap && progressRows.length > 0) {
+    let mostRecentRow = progressRows[0];
+    let mostRecentTime = progressRows[0].updatedAt ?? 0;
+
+    for (const row of progressRows) {
+      const rowTime = row.updatedAt ?? 0;
+      if (rowTime > mostRecentTime) {
+        mostRecentTime = rowTime;
+        mostRecentRow = row;
+      }
+    }
+
+    const lessonVersionId = phaseVersionLessonMap.get(mostRecentRow.phaseId);
+    if (lessonVersionId) {
+      const lessonId = lessonVersionLessonMap.get(lessonVersionId);
+      if (lessonId) {
+        currentLesson = lessonTitleMap.get(lessonId) ?? null;
+      }
+    }
+  }
+
+  return {
+    ...snapshot,
+    currentLesson,
+    atGlanceStatus: computeAtGlanceStatus(snapshot.progressPercentage),
+  };
 }
 
 async function listStudentDetailUnits(
@@ -197,9 +238,40 @@ export const getTeacherDashboardData = internalQuery({
     const studentIds = students.map((s) => s._id);
     const activePhaseIds = await listActivePhaseIds(ctx);
 
+    const lessonVersions = await ctx.db.query("lesson_versions").collect();
+    const phaseVersions = await ctx.db.query("phase_versions").collect();
+    const lessons = await ctx.db.query("lessons").collect();
+
+    const phaseVersionLessonMap = new Map<string, string>();
+    const lessonVersionLessonMap = new Map<string, string>();
+    const lessonTitleMap = new Map<string, string>();
+
+    for (const pv of phaseVersions) {
+      phaseVersionLessonMap.set(pv._id, pv.lessonVersionId);
+    }
+
+    const latestVersions = buildLatestPublishedLessonVersionMap(lessonVersions);
+    for (const [lessonId] of latestVersions) {
+      const lesson = lessons.find((l) => l._id === lessonId);
+      if (lesson) {
+        lessonTitleMap.set(lessonId, lesson.title);
+      }
+    }
+
+    for (const [, lv] of latestVersions) {
+      lessonVersionLessonMap.set(lv._id, lv.lessonId);
+    }
+
     const snapshots = new Map<string, TeacherProgressSnapshot>();
     for (const studentId of studentIds) {
-      const current = await buildStudentProgressSnapshot(ctx, studentId, activePhaseIds);
+      const current = await buildStudentProgressSnapshot(
+        ctx,
+        studentId,
+        activePhaseIds,
+        phaseVersionLessonMap,
+        lessonVersionLessonMap,
+        lessonTitleMap,
+      );
       snapshots.set(studentId, current);
     }
 
@@ -213,6 +285,8 @@ export const getTeacherDashboardData = internalQuery({
         totalPhases: snapshot?.totalPhases ?? 0,
         progressPercentage: snapshot?.progressPercentage ?? 0,
         lastActive: snapshot?.lastActive ?? null,
+        currentLesson: snapshot?.currentLesson ?? null,
+        atGlanceStatus: snapshot?.atGlanceStatus ?? 'not-started',
       };
     });
 

@@ -2,6 +2,8 @@ import Link from 'next/link';
 import { requireTeacherSessionClaims } from '@/lib/auth/server';
 import { fetchInternalQuery, internal } from '@/lib/convex/server';
 
+type AtGlanceStatus = 'on-track' | 'behind' | 'not-started';
+
 interface StudentRow {
   id: string;
   username: string;
@@ -10,6 +12,8 @@ interface StudentRow {
   totalPhases: number;
   progressPercentage: number;
   lastActive: string | null;
+  currentLesson: string | null;
+  atGlanceStatus: AtGlanceStatus;
 }
 
 interface TeacherDashboardData {
@@ -19,6 +23,17 @@ interface TeacherDashboardData {
     organizationId: string;
   };
   students: StudentRow[];
+}
+
+function statusBadgeClass(status: AtGlanceStatus): string {
+  switch (status) {
+    case 'on-track':
+      return 'bg-green-100 text-green-800';
+    case 'behind':
+      return 'bg-yellow-100 text-yellow-800';
+    case 'not-started':
+      return 'bg-muted/30 text-muted-foreground';
+  }
 }
 
 export default async function TeacherDashboardPage() {
@@ -32,6 +47,16 @@ export default async function TeacherDashboardPage() {
   const students = data?.students ?? [];
   const orgName = data?.teacher.organizationName ?? 'Your Organization';
 
+  const avgProgress = students.length > 0
+    ? Math.round(students.reduce((s, st) => s + st.progressPercentage, 0) / students.length)
+    : 0;
+
+  const activeToday = students.filter((s) => {
+    if (!s.lastActive) return false;
+    const diff = Date.now() - new Date(s.lastActive).getTime();
+    return diff < 86400000;
+  }).length;
+
   return (
     <div className="max-w-5xl mx-auto space-y-10 py-8">
       <div className="space-y-1">
@@ -41,24 +66,26 @@ export default async function TeacherDashboardPage() {
         <h1 className="text-3xl font-display font-bold text-foreground">Teacher Dashboard</h1>
       </div>
 
+      {/* Module filter */}
+      <div className="flex items-center gap-4">
+        <label htmlFor="module-filter" className="text-sm font-medium text-foreground">
+          Module
+        </label>
+        <select
+          id="module-filter"
+          className="rounded-md border border-border px-3 py-1.5 text-sm bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary"
+          defaultValue="1"
+        >
+          <option value="1">Module 1</option>
+        </select>
+      </div>
+
       {/* Summary */}
       <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
         {[
           { label: 'Students', value: students.length },
-          {
-            label: 'Avg Progress',
-            value: students.length > 0
-              ? `${Math.round(students.reduce((s, st) => s + st.progressPercentage, 0) / students.length)}%`
-              : '—',
-          },
-          {
-            label: 'Active Today',
-            value: students.filter((s) => {
-              if (!s.lastActive) return false;
-              const diff = Date.now() - new Date(s.lastActive).getTime();
-              return diff < 86400000;
-            }).length,
-          },
+          { label: 'Avg Progress', value: `${avgProgress}%` },
+          { label: 'Active Today', value: activeToday },
         ].map((stat) => (
           <div key={stat.label} className="card-workbook p-4 space-y-1 text-center">
             <p className="font-mono-num text-2xl font-bold text-primary">{stat.value}</p>
@@ -96,6 +123,8 @@ export default async function TeacherDashboardPage() {
             <tr>
               <th className="text-left px-4 py-3 font-medium text-muted-foreground">Student</th>
               <th className="text-left px-4 py-3 font-medium text-muted-foreground hidden md:table-cell">Progress</th>
+              <th className="text-left px-4 py-3 font-medium text-muted-foreground hidden lg:table-cell">Current Lesson</th>
+              <th className="text-center px-4 py-3 font-medium text-muted-foreground">Status</th>
               <th className="text-right px-4 py-3 font-medium text-muted-foreground">Phases</th>
               <th className="text-right px-4 py-3 font-medium text-muted-foreground hidden sm:table-cell">Last Active</th>
             </tr>
@@ -103,7 +132,7 @@ export default async function TeacherDashboardPage() {
           <tbody className="divide-y divide-border">
             {students.length === 0 ? (
               <tr>
-                <td colSpan={4} className="px-4 py-8 text-center text-muted-foreground">
+                <td colSpan={6} className="px-4 py-8 text-center text-muted-foreground">
                   No students enrolled.
                 </td>
               </tr>
@@ -131,6 +160,20 @@ export default async function TeacherDashboardPage() {
                         {student.progressPercentage}%
                       </span>
                     </div>
+                  </td>
+                  <td className="px-4 py-3 hidden lg:table-cell">
+                    {student.currentLesson ? (
+                      <span className="text-xs text-foreground">{student.currentLesson}</span>
+                    ) : (
+                      <span className="text-xs text-muted-foreground">—</span>
+                    )}
+                  </td>
+                  <td className="px-4 py-3 text-center">
+                    <span
+                      className={`inline-block px-2 py-0.5 rounded-full text-xs font-medium ${statusBadgeClass(student.atGlanceStatus)}`}
+                    >
+                      {student.atGlanceStatus}
+                    </span>
                   </td>
                   <td className="px-4 py-3 text-right font-mono-num text-xs text-muted-foreground">
                     {student.completedPhases}/{student.totalPhases}

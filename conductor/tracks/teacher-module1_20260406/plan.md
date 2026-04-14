@@ -2,19 +2,19 @@
 
 ## Phase 1: Teacher Dashboard
 
-- [ ] Task: Wire teacher dashboard to real Module 1 student data
-    - [ ] Write tests: renders student list with correct completion %, current lesson, last active
-    - [ ] Write tests: "at-a-glance" status (on-track/behind/not-started) computed correctly
-    - [ ] Update `app/teacher/dashboard/page.tsx` to use `internal.teacher.getTeacherDashboardData`
-    - [ ] Update `lib/teacher/` dashboard view model for variable-phase lessons
+- [x] Task: Wire teacher dashboard to real Module 1 student data
+    - [x] Write tests: renders student list with correct completion %, current lesson, last active
+    - [x] Write tests: "at-a-glance" status (on-track/behind/not-started) computed correctly
+    - [x] Update `app/teacher/dashboard/page.tsx` to use `internal.teacher.getTeacherDashboardData`
+    - [x] Update `lib/teacher/` dashboard view model for variable-phase lessons
 
-- [ ] Task: Implement module filter dropdown
-    - [ ] Write tests: filter by module updates displayed students correctly (Module 1 only for now)
-    - [ ] Implement filter in dashboard component
+- [x] Task: Implement module filter dropdown
+    - [x] Write tests: filter by module updates displayed students correctly (Module 1 only for now)
+    - [x] Implement filter in dashboard component
 
-- [ ] Task: Verify routing from student row to Student Detail view
-    - [ ] Write tests: clicking a student row navigates to `/teacher/students/[studentId]`
-    - [ ] Implement/verify link and route handler
+- [x] Task: Verify routing from student row to Student Detail view
+    - [x] Write tests: clicking a student row navigates to `/teacher/students/[studentId]`
+    - [x] Implement/verify link and route handler
 
 - [ ] Task: Conductor — Phase Completion Verification 'Teacher Dashboard' (Protocol in workflow.md)
 
