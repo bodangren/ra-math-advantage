@@ -144,6 +144,10 @@ Tracks 1+4 unlock Track 8; Track 8 unlocks Tracks 9+10.
    - Phase 1: Prop Interface & Submission Wiring [COMPLETE]
    - Phase 2: Integrate distractors.ts into StepByStepper [COMPLETE]
 
+- [ ] **Track: Phase Skip UI Wiring**
+   *Wire existing phase skip infrastructure to PhaseCompleteButton UI — show Skip button for explore and discourse phases*
+   *Link: [./conductor/tracks/phase-skip-ui_20260414/](./conductor/tracks/phase-skip-ui_20260414/)*
+
 ## Archived Tracks
 
 - [x] **Track: Scaffold App Pages & Layouts**

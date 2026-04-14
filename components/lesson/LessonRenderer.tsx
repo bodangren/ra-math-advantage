@@ -116,8 +116,8 @@ export function LessonRenderer({
     });
   }, []);
 
-  const handlePhaseStatusChange = useCallback((status: 'not_started' | 'in_progress' | 'completed') => {
-    if (status === 'completed' && activePhase) {
+  const handlePhaseStatusChange = useCallback((status: 'not_started' | 'in_progress' | 'completed' | 'skipped') => {
+    if ((status === 'completed' || status === 'skipped') && activePhase) {
       setCompletedPhases(prev => new Set([...prev, activePhase.phaseNumber]));
       const idx = phases.findIndex(p => p.phaseNumber === activePhase.phaseNumber);
       if (idx < phases.length - 1) {
@@ -216,6 +216,7 @@ export function LessonRenderer({
           <PhaseCompleteButton
             lessonId={lessonId}
             phaseNumber={activePhase.phaseNumber}
+            phaseType={activePhase.phaseType}
             initialStatus={activePhase.completed || completedPhases.has(activePhase.phaseNumber) ? 'completed' : 'not_started'}
             disabled={isPhaseGated}
             onStatusChange={handlePhaseStatusChange}
