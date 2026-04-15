@@ -77,9 +77,9 @@
   - [x] Update `conductor/current_directive.md` with the next priority
   - [x] Update `conductor/tracks.md` with final track status
 
-- [ ] Task: Final quality gates
-  - [ ] Run `npm run lint`
-  - [ ] Run relevant component/API/Convex tests
-  - [ ] Run `npm run build` if route, Convex, or generated types change
+- [x] Task: Final quality gates
+  - [x] Run `npm run lint`
+  - [x] Run relevant component/API/Convex tests
+  - [x] Run `npm run build` if route, Convex, or generated types change
 
 - [x] Task: Conductor - Phase Completion Verification 'Documentation and Status Reconciliation' (Protocol in workflow.md) [797fee0]
