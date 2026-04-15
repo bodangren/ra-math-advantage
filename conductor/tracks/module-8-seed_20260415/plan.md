@@ -12,13 +12,13 @@
 
 ## Phase 2: Seed Lesson 8-2
 
-- [ ] Task: Verify lesson 8-2 curriculum source
-  - [ ] Confirm title and phase sequence against `curriculum/modules/module-8-lesson-2`
-  - [ ] Confirm experiment and simulation examples preserve design logic
-- [ ] Task: Create seed function `convex/seed/seed-lesson-8-2.ts`
-  - [ ] Write tests for phase sequence and idempotency
-  - [ ] Implement lesson, phases, sections, and activities
-- [ ] Task: Conductor - Phase Completion Verification 'Seed Lesson 8-2' (Protocol in workflow.md)
+- [x] Task: Verify lesson 8-2 curriculum source
+  - [x] Confirm title and phase sequence against `curriculum/modules/module-8-lesson-2`
+  - [x] Confirm experiment and simulation examples preserve design logic
+- [x] Task: Create seed function `convex/seed/seed-lesson-8-2.ts`
+  - [x] Write tests for phase sequence and idempotency
+  - [x] Implement lesson, phases, sections, and activities
+- [x] Task: Conductor - Phase Completion Verification 'Seed Lesson 8-2' (Protocol in workflow.md)
 
 ## Phase 3: Seed Lesson 8-3
 

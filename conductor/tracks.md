@@ -222,7 +222,7 @@ Tracks 1+4 unlock Track 8; Track 8 unlocks Tracks 9+10.
      *Seed Module 8 inferential statistics lessons (8-1 through 8-5) into Convex database*
      *Link: [./conductor/tracks/module-8-seed_20260415/](./conductor/tracks/module-8-seed_20260415/)*
      - Phase 1: Seed Lesson 8-1 [COMPLETE]
-     - Phase 2: Seed Lesson 8-2 [PENDING]
+     - Phase 2: Seed Lesson 8-2 [COMPLETE]
      - Phase 3: Seed Lesson 8-3 [PENDING]
      - Phase 4: Seed Lesson 8-4 [PENDING]
      - Phase 5: Seed Lesson 8-5 [PENDING]
