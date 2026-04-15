@@ -28,8 +28,8 @@ export const seedStandards = internalMutation({
       },
       {
         code: "HSA-APR.B.2",
-        description: "Polynomial identities and the Binomial Theorem",
-        studentFriendlyDescription: "I can use the Binomial Theorem to expand powers of binomials.",
+        description: "Know and apply the Remainder Theorem: for a polynomial p(x) and a number a, the remainder on division by x - a is p(a)",
+        studentFriendlyDescription: "I can use the Remainder Theorem to evaluate polynomials.",
         category: "Algebra",
         isActive: true,
       },
@@ -122,6 +122,20 @@ export const seedStandards = internalMutation({
         description: "Graphing exponential and logarithmic functions, showing intercepts and end behavior",
         studentFriendlyDescription: "I can graph exponential and logarithmic functions and identify their key features.",
         category: "Functions",
+        isActive: true,
+      },
+      {
+        code: "HSF-LE.A.1",
+        description: "Distinguish between situations that can be modeled with linear functions and with exponential functions",
+        studentFriendlyDescription: "I can tell whether a situation is modeled by a linear or exponential function.",
+        category: "Functions",
+        isActive: true,
+      },
+      {
+        code: "HSA-CED.A.2",
+        description: "Create equations in two or more variables to represent relationships between quantities",
+        studentFriendlyDescription: "I can write equations that relate two or more quantities.",
+        category: "Algebra",
         isActive: true,
       },
       {
