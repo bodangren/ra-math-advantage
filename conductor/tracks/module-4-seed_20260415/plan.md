@@ -22,13 +22,13 @@
 
 ## Phase 3: Seed Lesson 4-3
 
-- [ ] Task: Verify lesson 4-3 curriculum source
-  - [ ] Confirm title and phase sequence against `curriculum/modules/module-4-lesson-3`
-  - [ ] Confirm rational exponent and nth-root notation renders correctly
-- [ ] Task: Create seed function `convex/seed/seed-lesson-4-3.ts`
-  - [ ] Write tests for phase sequence and idempotency
-  - [ ] Implement lesson, phases, sections, and activities
-- [ ] Task: Conductor - Phase Completion Verification 'Seed Lesson 4-3' (Protocol in workflow.md)
+- [x] Task: Verify lesson 4-3 curriculum source
+  - [x] Confirm title and phase sequence against `curriculum/modules/module-4-lesson-3`
+  - [x] Confirm rational exponent and nth-root notation renders correctly
+- [x] Task: Create seed function `convex/seed/seed-lesson-4-3.ts`
+  - [x] Write tests for phase sequence and idempotency
+  - [x] Implement lesson, phases, sections, and activities
+- [x] Task: Conductor - Phase Completion Verification 'Seed Lesson 4-3' (Protocol in workflow.md)
 
 ## Phase 4: Seed Lesson 4-4
 
