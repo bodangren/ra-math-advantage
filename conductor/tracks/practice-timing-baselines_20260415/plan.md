@@ -1,6 +1,6 @@
 # Practice Timing Baselines - Implementation Plan
 
-## Phase 1: Baseline and Feature Model
+## Phase 1: Baseline and Feature Model [checkpoint: 72e0c83]
 
 - [x] Task: Define timing baseline semantics [a56eff8]
   - [x] Confirm the stable identifier for a problem family or practice item
@@ -20,7 +20,7 @@
   - [x] Add developer docs explaining `timeRatio`, `speedBand`, and timing confidence
   - [x] Include examples for narrow/easy and broad/hard objectives
   - [x] Note that timing features are diagnostic inputs, not standalone grades
-- [ ] Task: Conductor - Phase Completion Verification 'Baseline and Feature Model' (Protocol in workflow.md)
+- [x] Task: Conductor - Phase Completion Verification 'Baseline and Feature Model' (Protocol in workflow.md) [72e0c83]
 
 ## Phase 2: Baseline Persistence and Aggregation
 
