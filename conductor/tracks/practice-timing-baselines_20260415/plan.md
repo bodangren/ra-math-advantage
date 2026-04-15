@@ -7,11 +7,11 @@
   - [x] Define minimum sample count before baselines affect scoring
   - [x] Define conservative speed bands and thresholds
   - [x] Document why median/percentiles are preferred over mean
-- [ ] Task: Write baseline unit tests
-  - [ ] Test median and percentile calculation
-  - [ ] Test outlier resistance
-  - [ ] Test low-confidence submissions are excluded
-  - [ ] Test below-minimum sample count returns inactive baseline
+- [x] Task: Write baseline unit tests [188b24d]
+  - [x] Test median and percentile calculation
+  - [x] Test outlier resistance
+  - [x] Test low-confidence submissions are excluded
+  - [x] Test below-minimum sample count returns inactive baseline
 - [ ] Task: Implement reusable baseline calculations
   - [ ] Add a course-agnostic baseline module
   - [ ] Keep Convex and React dependencies out of pure calculations
