@@ -1,0 +1,5 @@
+Phase 5 checkpoint: Seed Lesson 3-5 (Roots and Zeros).
+
+Created idempotent seed mutation with 11 phases: explore, vocab, learn, 2x worked_example, learn, 3x worked_example, discourse, reflection.
+
+Faithful to curriculum source module-3-lesson-5. All tests, lint, and build pass.
