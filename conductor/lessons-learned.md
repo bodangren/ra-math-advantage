@@ -39,3 +39,6 @@
 - (2026-04-15, code-review) Module seed tracks need CCSS standards added to seed-standards.ts alongside lesson content; track standards per-module to avoid accumulation of gaps
 - (2026-04-15, module-6-seed) Build focused lesson_standards seeders per module: query lesson + version + standard by natural keys, then insert idempotently via `by_lesson_version_and_standard` index
 - (2026-04-15, module-7-seed) When harness gating logic changes, update existing tests to simulate the full verification flow (variants + checkboxes)
+- (2026-04-15, code-review) Exported hooks must mirror component's approval logic exactly; divergent canApprove between hook and component defeats hardening purpose
+- (2026-04-15, code-review) Activity wrappers should receive step attempt data via callback, not fabricate submissions with hardcoded isCorrect:true
+- (2026-04-15, module-7-seed) Wire seed files into seed.ts orchestration immediately after creation; orphan seed files are dead code

@@ -270,7 +270,8 @@ export function useExampleReviewHarnessState() {
     setCoherentFeedbackVerified(true);
   }, []);
 
-  const canApprove = reviewedModes.teaching && reviewedModes.guided && reviewedModes.practice;
+  const canApprove = reviewedModes.teaching && reviewedModes.guided && reviewedModes.practice
+    && algorithmicVerified && coherentFeedbackVerified;
 
   return {
     reviewedModes,

@@ -141,6 +141,12 @@ export const seedAll = internalAction({
           case "module-6-lesson-5":
             await ctx.runMutation(seedInternal.seedLesson6_5, {});
             break;
+          case "module-7-lesson-1":
+            await ctx.runMutation(seedInternal.seedLesson7_1, {});
+            break;
+          case "module-7-lesson-2":
+            await ctx.runMutation(seedInternal.seedLesson7_2, {});
+            break;
           default:
             break;
         }
@@ -889,6 +895,40 @@ function getLessons(): SeedLesson[] {
         { phaseNumber: 6, title: "Worked Example 2", phaseType: "worked_example", sections: [] },
         { phaseNumber: 7, title: "Worked Example 3", phaseType: "worked_example", sections: [] },
         { phaseNumber: 8, title: "Pause and Reflect", phaseType: "reflection", sections: [] },
+      ],
+    },
+    {
+      unitNumber: 7,
+      title: "Multiplying and Dividing Rational Expressions",
+      slug: "module-7-lesson-1",
+      description: "Students simplify rational expressions and multiply and divide rational expressions.",
+      orderIndex: 1,
+      phases: [
+        { phaseNumber: 1, title: "Explore", phaseType: "explore", sections: [] },
+        { phaseNumber: 2, title: "Vocabulary", phaseType: "vocabulary", sections: [] },
+        { phaseNumber: 3, title: "Learn", phaseType: "learn", sections: [] },
+        { phaseNumber: 4, title: "Worked Example 1", phaseType: "worked_example", sections: [] },
+        { phaseNumber: 5, title: "Worked Example 2", phaseType: "worked_example", sections: [] },
+        { phaseNumber: 6, title: "Worked Example 3", phaseType: "worked_example", sections: [] },
+        { phaseNumber: 7, title: "Discourse", phaseType: "discourse", sections: [] },
+        { phaseNumber: 8, title: "Reflection", phaseType: "reflection", sections: [] },
+      ],
+    },
+    {
+      unitNumber: 7,
+      title: "Adding and Subtracting Rational Expressions",
+      slug: "module-7-lesson-2",
+      description: "Students add and subtract rational expressions with like and unlike denominators.",
+      orderIndex: 2,
+      phases: [
+        { phaseNumber: 1, title: "Explore", phaseType: "explore", sections: [] },
+        { phaseNumber: 2, title: "Vocabulary", phaseType: "vocabulary", sections: [] },
+        { phaseNumber: 3, title: "Learn", phaseType: "learn", sections: [] },
+        { phaseNumber: 4, title: "Worked Example 1", phaseType: "worked_example", sections: [] },
+        { phaseNumber: 5, title: "Worked Example 2", phaseType: "worked_example", sections: [] },
+        { phaseNumber: 6, title: "Worked Example 3", phaseType: "worked_example", sections: [] },
+        { phaseNumber: 7, title: "Discourse", phaseType: "discourse", sections: [] },
+        { phaseNumber: 8, title: "Reflection", phaseType: "reflection", sections: [] },
       ],
     },
   ];

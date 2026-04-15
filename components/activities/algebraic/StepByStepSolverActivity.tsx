@@ -2,7 +2,7 @@
 
 import { useCallback, useRef } from 'react';
 import { StepByStepper } from '@/components/activities/algebraic/StepByStepper';
-import type { AlgebraicStep } from '@/components/activities/algebraic/StepByStepper';
+import type { AlgebraicStep, StepAttempt } from '@/components/activities/algebraic/StepByStepper';
 import type { ProblemType } from '@/lib/activities/schemas/step-by-step-solver.schema';
 import { buildAlgebraicSubmission } from '@/lib/activities/schemas/step-by-step-solver.schema';
 
@@ -49,11 +49,11 @@ export function StepByStepSolverActivity({
 }: StepByStepSolverActivityProps) {
   const interactionHistoryRef = useRef<Array<{ type: string; timestamp: number; data?: unknown }>>([]);
 
-  const handlePracticeComplete = useCallback(() => {
-    const stepsAttemptData = steps.map((step, index) => ({
-      stepIndex: index,
-      userAnswer: null,
-      isCorrect: true,
+  const handlePracticeComplete = useCallback((attempts: StepAttempt[]) => {
+    const stepsAttemptData = attempts.map((attempt) => ({
+      stepIndex: attempt.stepIndex,
+      userAnswer: attempt.userAnswer,
+      isCorrect: attempt.isCorrect,
     }));
 
     const submission = buildAlgebraicSubmission({
@@ -68,7 +68,7 @@ export function StepByStepSolverActivity({
 
     onSubmit?.(submission);
     onComplete?.();
-  }, [activityId, mode, steps, problemType, equation, onSubmit, onComplete]);
+  }, [activityId, mode, problemType, equation, onSubmit, onComplete]);
 
   return (
     <StepByStepper

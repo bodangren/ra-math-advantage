@@ -15,12 +15,18 @@ export interface AlgebraicStep {
   distractors?: string[];
 }
 
+export interface StepAttempt {
+  stepIndex: number;
+  userAnswer: string | null;
+  isCorrect: boolean;
+}
+
 export interface StepByStepperProps {
   mode: StepMode;
   steps: AlgebraicStep[];
   scaffoldLevel?: number;
   problemType?: string;
-  onPracticeComplete?: () => void;
+  onPracticeComplete?: (attempts: StepAttempt[]) => void;
 }
 
 export function StepByStepper({ mode, steps, scaffoldLevel = 0, problemType, onPracticeComplete }: StepByStepperProps) {
@@ -54,8 +60,6 @@ export function StepByStepper({ mode, steps, scaffoldLevel = 0, problemType, onP
   if (mode === 'practice') {
     return <PracticeMode steps={steps} scaffoldLevel={scaffoldLevel} onComplete={onPracticeComplete} />;
   }
-
-  return null;
 }
 
 function GuidedMode({ steps, problemType }: { steps: AlgebraicStep[]; problemType?: string }) {
@@ -194,7 +198,7 @@ function GuidedMode({ steps, problemType }: { steps: AlgebraicStep[]; problemTyp
   );
 }
 
-function PracticeMode({ steps, scaffoldLevel, onComplete }: { steps: AlgebraicStep[]; scaffoldLevel: number; onComplete?: () => void }) {
+function PracticeMode({ steps, scaffoldLevel, onComplete }: { steps: AlgebraicStep[]; scaffoldLevel: number; onComplete?: (attempts: StepAttempt[]) => void }) {
   const [currentStepIndex, setCurrentStepIndex] = useState(0);
   const [userAnswers, setUserAnswers] = useState<Record<number, string>>({});
   const [showSolution, setShowSolution] = useState<Record<number, boolean>>({});
@@ -210,7 +214,12 @@ function PracticeMode({ steps, scaffoldLevel, onComplete }: { steps: AlgebraicSt
     // Check if this is the last step
     if (stepIndex === steps.length - 1) {
       setIsComplete(true);
-      onComplete?.();
+      const attempts: StepAttempt[] = steps.map((step, idx) => ({
+        stepIndex: idx,
+        userAnswer: userAnswers[idx] ?? null,
+        isCorrect: (userAnswers[idx] ?? '').trim() === step.expression.trim(),
+      }));
+      onComplete?.(attempts);
     }
   };
 

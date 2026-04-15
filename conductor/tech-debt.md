@@ -38,6 +38,19 @@
 | Silent catch blocks in convex/student.ts and convex/teacher.ts | Medium | Open | Swallows all exceptions including non-format errors |
 | RSC entry chunk 734 KB (pre-existing) | Medium | Open | Code-splitting needed to get under 500 KB |
 | Legacy Supabase types in AuthProvider.tsx | Low | Open | snake_case profile fields should match Convex schema |
-| Equivalence validator 8/50 tests failing | Low | Open | Pattern-matching limits; 84% passing exceeds 80% target |
+| Equivalence validator 6/50 tests failing | Low | Open | Pattern-matching limits; 88% passing exceeds 80% target |
 | dashboard.test.ts TypeScript errors (missing isLocked) | Low | Open | 12 tests; pre-existing |
 | Flaky tests: StepByStepper hint tracking, TeacherLessonPreview | Low | Open | Pass in isolation, flaky in full suite |
+| useExampleReviewHarnessState hook canApprove bypasses verification | Critical | Resolved | Fixed 2026-04-15; hook now includes algorithmicVerified + coherentFeedbackVerified |
+| StepByStepSolverActivity submissions always isCorrect:true | Critical | Resolved | Fixed 2026-04-15; PracticeMode passes real attempts via callback |
+| Module 7 lessons not wired into seed.ts | High | Resolved | Fixed 2026-04-15; added switch cases and getLessons() entries for 7-1, 7-2 |
+| ActivityReviewHarness handleError never reaches ActivityPreview | High | Open | onRenderError prop is dead code; render errors silently lost |
+| error-analysis studentIdMap uses activityId as key | High | Open | Wrong semantic key — should be student-specific, not activity-specific |
+| StepByStepSolver Zod schema vs component interface mismatch | Medium | Open | Schema step shape (id, description, expression) differs from AlgebraicStep (expression, explanation, hint) |
+| Two divergent submission schemas (contract.ts vs submission.schema.ts) | Medium | Open | Mode enums differ; interactionHistory shapes differ |
+| equation-solver and drag-drop-categorization are PlaceholderComponents | Medium | Open | Render null silently; no fallback UI |
+| ActivityRenderer does not forward section content props | Medium | Open | template, blanks etc. lost between PhaseRenderer and activity components |
+| Seed tests are tautological (inline data, not actual seed files) | Medium | Open | Zero regression protection; changes to seed files won't break tests |
+| No lesson-standards links for modules 1-5 and 7 | High | Open | Only module 6 has 8 links; 44+ lessons have no standards |
+| Missing CCSS standards for modules 2, 3, 5, 7-9 | High | Open | Only 17 of ~50+ standards defined in seed-standards.ts |
+| No seed-specific tests | Medium | Open | Zero test coverage for seed functions, consistency, or idempotency |
