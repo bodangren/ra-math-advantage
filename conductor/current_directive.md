@@ -51,13 +51,12 @@ Phases 1-4 complete. Phase 5 ready: Documentation and Status Reconciliation.
 
 ## Planned Upcoming Tracks
 
-1. **Complete harden-manual-approval Phase 5** — Documentation, status reconciliation, final quality gates.
-2. **Module 4 Curriculum Seed** — `module-4-seed_20260415` (6 lessons)
-3. **Module 5 Curriculum Seed** — `module-5-seed_20260415` (5 lessons)
-4. **Module 6 Curriculum Seed** — `module-6-seed_20260415` (5 lessons)
-5. **Module 7 Curriculum Seed** — `module-7-seed_20260415` (6 lessons)
-6. **Module 8 Curriculum Seed** — `module-8-seed_20260415` (5 lessons)
-7. **Module 9 Curriculum Seed** — `module-9-seed_20260415` (7 lessons)
+1. **Module 4 Curriculum Seed** — `module-4-seed_20260415` (6 lessons)
+2. **Module 5 Curriculum Seed** — `module-5-seed_20260415` (5 lessons)
+3. **Module 6 Curriculum Seed** — `module-6-seed_20260415` (5 lessons)
+4. **Module 7 Curriculum Seed** — `module-7-seed_20260415` (6 lessons)
+5. **Module 8 Curriculum Seed** — `module-8-seed_20260415` (5 lessons)
+6. **Module 9 Curriculum Seed** — `module-9-seed_20260415` (7 lessons)
 
 See `conductor/modules-3-9-roadmap.md` for the module inventory and repeated implementation pattern.
 

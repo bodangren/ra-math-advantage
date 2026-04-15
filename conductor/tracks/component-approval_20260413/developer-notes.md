@@ -95,7 +95,39 @@ Any repair proposed by an LLM must go through the same manual review queue for h
 - `component_approvals` table: Fallback approval storage for example and practice components
 - `component_reviews` table: Immutable-ish review history with comments, tags, and timestamps
 
+## Queue Coverage
+
+The review queue discovers targets from persisted curriculum data across all three component kinds:
+
+- **Activities**: Queried from the `activities` table. Placement context is resolved via `buildActivityPlacementMap` which maps `phase_sections.content.activityId` to lesson/phase/sequence order.
+- **Examples**: Derived from `phase_sections` where `phaseType === "worked_example"` and the section has an `activityId` reference. Component kind is `example`.
+- **Practice**: Derived from `phase_sections` where `phaseType` is one of `guided_practice`, `independent_practice`, or `assessment` and the section has an `activityId` reference. Component kind is `practice`.
+
+Queue filtering supports: `componentKind`, `status`, `onlyStale`, and all filters from the original spec. Orphaned `component_approvals` rows (for deleted curriculum) are preserved in the queue to maintain review history accessibility.
+
+## Content Hashing
+
+All three component kinds use deterministic content hashing via `computeComponentContentHash` (from `lib/activities/content-hash`). The hash is computed from:
+
+- `componentKind` (example | activity | practice)
+- `componentKey` (the registered activity key)
+- `props` (component-specific configuration)
+- `gradingConfig` (when present)
+
+Approval metadata, reviewer IDs, timestamps, and review history are **excluded** from the hash. This ensures that re-reviewing the same content produces the same hash, making stale detection reliable.
+
+A component's approval becomes stale when its current hash differs from the stored `approval.contentHash`. The stored status itself is not changed automatically — re-review is required.
+
+## LLM Audit Query
+
+The `internal.dev.getAuditContext` query returns all `needs_changes` and `rejected` reviews where `resolvedAt` is `undefined`. It does NOT return `approved` reviews. The query uses `.withIndex("by_status")` and `.filter()` on the `resolvedAt` field to efficiently bound results.
+
+LLMs may use this data to propose repairs but **may not**:
+1. Mark components as approved
+2. Resolve review notes without a new human review
+3. Automatically dismiss comments as resolved
+
 ## Tech Debt
 
-- Content hashing for example/practice components uses a placeholder string (`"todo-hash-for-example-practice"` in `convex/dev.ts:113`). When example/practice component data is available, this should be replaced with actual `computeComponentContentHash` calls.
+- ~~Content hashing for example/practice components uses a placeholder string (`"todo-hash-for-example-practice"` in `convex/dev.ts:113`)~~ — **Resolved in Phase 2**; `computeComponentContentHash` now used for all kinds
 - Convex function-level auth checks are not implemented for internal mutations. Route-level guards are in place via `requireDeveloperRequestClaims`.
