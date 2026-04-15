@@ -1,0 +1,1 @@
+Task: Document baseline feature contract\n\nSummary: Added lib/practice/timing-baseline.md with developer-facing documentation.\n- Explains timeRatio, speedBand, and timing confidence.\n- Documents why median/percentiles are preferred over mean.\n- Provides narrow/easy and broad/hard objective examples.\n- Reinforces that timing is a diagnostic input, not a standalone grade.
