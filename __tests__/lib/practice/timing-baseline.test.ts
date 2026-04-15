@@ -3,7 +3,6 @@ import {
   computeTimingBaseline,
   deriveTimingFeatures,
   TIMING_BASELINE_MIN_SAMPLES,
-  type ComputeBaselineInput,
   type PracticeTimingBaseline,
 } from '@/lib/practice/timing-baseline';
 import type { PracticeTimingSummary } from '@/lib/practice/contract';
