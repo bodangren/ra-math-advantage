@@ -127,7 +127,21 @@ LLMs may use this data to propose repairs but **may not**:
 2. Resolve review notes without a new human review
 3. Automatically dismiss comments as resolved
 
+## Remaining Limitations
+
+The following issues are known and tracked in `conductor/tech-debt.md`:
+
+1. **`submitReview` takes `createdBy` as an argument** — The mutation accepts a `createdBy` parameter rather than deriving the reviewer identity from the Convex auth context. This is mitigated by route-level `requireDeveloperRequestClaims` checks, but the internal function boundary remains trust-dependent.
+2. **Approval race condition** — Concurrent reviews of the same component can silently overwrite each other. There is no versioning or optimistic-concurrency control on the approval summary row.
+3. **N+1 hash computation in `listReviewQueue`** — The queue computes up to 500 SHA-256 hashes per query. This is functional but may become a Convex billing/performance concern at scale.
+4. **No Convex-layer authorization** — Auth guards live entirely in the Next.js server layer. The Convex internal functions do not independently verify the caller's identity or role.
+5. **Server-side `componentKind` validation is not enforced** — The client sends `componentKind` in the review payload, but the server does not verify it against the actual placement context in `phase_sections`.
+
 ## Tech Debt
 
 - ~~Content hashing for example/practice components uses a placeholder string (`"todo-hash-for-example-practice"` in `convex/dev.ts:113`)~~ — **Resolved in Phase 2**; `computeComponentContentHash` now used for all kinds
+- ~~Queue coverage missing for embedded examples/practice~~ — **Resolved in Phase 1**; `listReviewQueue` now discovers example and practice from `phase_sections` + `phase_versions`
+- ~~Review harnesses use hardcoded sample data~~ — **Resolved in Phase 3**; harnesses now render from stored props/steps
+- ~~Approval UI does not enforce harness checklist before approve~~ — **Resolved in Phase 3**; `harnessCanApprove` state gates the approve button
+- ~~Review queue filter state split between view/list/client hook~~ — **Resolved in code review 2026-04-15**; `ReviewQueueView` now uses the client's `filters`/`setFilters` directly
 - Convex function-level auth checks are not implemented for internal mutations. Route-level guards are in place via `requireDeveloperRequestClaims`.
