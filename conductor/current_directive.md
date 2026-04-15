@@ -9,7 +9,7 @@
 - **Lint**: Passing.
 - **TypeScript**: 25 pre-existing test-file errors remain (students.test.tsx, dashboard.test.ts). No new TS errors.
 - **Module 1-5 Roadmap**: Complete.
-- **Module 6 Seed**: In progress; Phase 1 (Lesson 6-1) complete. Phases 2-6 pending.
+- **Module 6 Seed**: In progress; Phases 1-3 (Lessons 6-1 through 6-3) complete. Phases 4-6 pending.
 - **Code Review**: Completed 2026-04-15. Fixed 3 critical + 2 high issues (dual state bug, approval gating, silent errors).
 
 ## Current In-Progress Track
@@ -22,7 +22,7 @@ Seed Module 6 logarithmic functions lessons (6-1 through 6-5) into Convex databa
 
 ## Planned Upcoming Tracks
 
-1. **Module 6 Curriculum Seed** — `module-6-seed_20260415` (3 lessons remaining: 6-3 through 6-5)
+1. **Module 6 Curriculum Seed** — `module-6-seed_20260415` (2 lessons remaining: 6-4 through 6-5)
 2. **Module 7 Curriculum Seed** — `module-7-seed_20260415` (6 lessons)
 3. **Module 8 Curriculum Seed** — `module-8-seed_20260415` (5 lessons)
 4. **Module 9 Curriculum Seed** — `module-9-seed_20260415` (7 lessons)
