@@ -27,7 +27,7 @@ interface Filters {
   onlyStale: boolean;
 }
 
-export function ReviewQueueClient() {
+export function useReviewQueueClient() {
   const [items, setItems] = useState<ReviewQueueItem[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -36,7 +36,6 @@ export function ReviewQueueClient() {
     status: '',
     onlyStale: false,
   });
-  const [selectedItem, setSelectedItem] = useState<ReviewQueueItem | null>(null);
 
   const fetchQueue = useCallback(async () => {
     setLoading(true);
@@ -62,14 +61,14 @@ export function ReviewQueueClient() {
     fetchQueue();
   }, [fetchQueue]);
 
-  async function handleReviewSubmit(
+  const handleReviewSubmit = useCallback(async (
     componentKind: string,
     componentId: string,
     status: string,
     comment?: string,
     issueTags?: string[],
     priority?: string
-  ) {
+  ) => {
     const res = await fetch('/api/dev/review-queue', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -88,11 +87,10 @@ export function ReviewQueueClient() {
       throw new Error(data.error || 'Failed to submit review');
     }
 
-    setSelectedItem(null);
     fetchQueue();
-  }
+  }, [fetchQueue]);
 
-  return { items, loading, error, filters, setFilters, selectedItem, setSelectedItem, handleReviewSubmit };
+  return { items, loading, error, filters, setFilters, handleReviewSubmit };
 }
 
 export function ReviewQueueList({
@@ -270,7 +268,7 @@ export function ReviewDecisionPanel({
             className={`px-4 py-2 rounded ${
               status === 'approved' ? 'bg-green-600 text-white' : 'bg-muted hover:bg-muted/80'
             }`}
-            disabled={!harnessCanApprove && status !== 'approved'}
+            disabled={!harnessCanApprove}
             title={!harnessCanApprove ? 'Complete harness review before approving' : undefined}
           >
             Approve {!harnessCanApprove && '(complete harness review first)'}
@@ -376,7 +374,7 @@ export function ReviewQueueView() {
   const [reviewView, setReviewView] = useState<ReviewView>('decision');
   const [harnessCanApprove, setHarnessCanApprove] = useState(false);
 
-  const { items, loading, error, filters, setFilters, handleReviewSubmit } = ReviewQueueClient();
+  const { items, loading, error, filters, setFilters, handleReviewSubmit } = useReviewQueueClient();
 
   const handleItemSelect = useCallback((item: ReviewQueueItem) => {
     setSelectedItem(item);
@@ -463,7 +461,7 @@ export function ReviewQueueView() {
   );
 }
 
-function ComponentHarnessPanel({ item, onCanApproveChange }: { item: ReviewQueueItem; onCanApproveChange?: (canApprove: boolean) => void }) {
+function ComponentHarnessPanel({ item, onCanApproveChange }: { item: ReviewQueueItem; onCanApproveChange: (canApprove: boolean) => void }) {
   const defaultActivityProps = {
     activityId: item.componentId,
     mode: 'teaching' as const,

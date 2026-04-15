@@ -8,43 +8,36 @@
 
 | Item | Sev | Status | Notes |
 |------|-----|--------|-------|
-| Placeholder hash for example/practice components (`convex/dev.ts:113`) | High | Resolved | Fixed 2026-04-15; computeComponentContentHash now used for all kinds |
 | `submitReview` takes `createdBy` as arg instead of deriving from auth | High | Open | Mitigated by route-level derivation; must remain internal-only |
-| No tests for Convex dev functions | High | Resolved | Added behavior tests for listReviewQueue, submitReview, getAuditContext in __tests__/convex/dev.test.ts |
 | Unbounded `take(500)` + N+1 hash in listReviewQueue | High | Open | 500 SHA-256 hashes/query; Convex billing concern |
 | Approval status race condition (no version/lock) | High | Open | Concurrent reviews silently overwrite |
-| N+1 query: phase sections in getLessonProgress, getTeacherLessonPreview, getTeacherLessonMonitoringData | High | Open | One DB query per phase inside loop |
+| N+1 query: phase sections in progress/preview/monitoring queries | High | Open | One DB query per phase inside loop |
 | Unbounded table scans in getDashboardData | Med-High | Open | `.collect()` on lessons, lesson_versions, phase_versions |
 | getLessonProgress fetches ALL user progress, not lesson-scoped | Med-High | Open | `.withIndex("by_user").collect()` returns all rows |
 | No Convex-layer authorization — admin token = full access | Med-High | Open | Auth boundary is entirely in Next.js server layer |
-| No auth checks in convex/dev.ts internal functions | Medium | Open | Route guard implemented; Convex function auth deferred |
-| Review harnesses use hardcoded sample data | Medium | Resolved | Fixed 2026-04-15; ComponentHarnessPanel now passes storedProps/steps from queue item |
-| Manual approval queue may miss embedded examples/practice placements | Medium | Resolved | Fixed 2026-04-15; listReviewQueue now discovers example/practice from phase_sections + phase_versions |
-| Approval UI does not enforce harness checklist before approve | Medium | Resolved | Fixed 2026-04-15; harnessCanApprove state gates approve button in ReviewDecisionPanel |
-| Review queue filter state may be split between view/list/client hook | Medium | Resolved | **Fixed 2026-04-15**: ReviewQueueView now uses client's filters/setFilters directly |
+| submitReviewHandler hashes with client-sent componentKind | High | Open | Hash may mismatch queue's resolved kind; permanent stale mismatch |
+| ReviewQueueClient had dual selectedItem state (dead state) | Critical | Resolved | Fixed 2026-04-15; renamed to useReviewQueueClient, removed dead state |
+| Approve button disabled logic had unreachable branch | Critical | Resolved | Fixed 2026-04-15; simplified to `disabled={!harnessCanApprove}` |
+| ExampleReviewHarness canApprove ignored verification checkboxes | High | Resolved | Fixed 2026-04-15; algorithmicChecked+coherentFeedbackChecked now gate approval |
+| generateAISummary silently swallowed all errors | High | Resolved | Fixed 2026-04-15; added console.error logging |
+| Missing CCSS standards for M5/M6 (HSF-LE.A.x, HSF-IF.C.7e, HSF-BF.B.5) | High | Open | seed-standards.ts lacks exponential/logarithmic standards |
+| No lesson_standards seeding pipeline | High | Open | Standards seeded but never linked to lessons; progress tracking broken |
+| Incorrect CCSS description for HSA-APR.B.2 (seed-standards.ts) | High | Open | Describes Binomial Theorem instead of Remainder Theorem |
+| Missing CCSS standards for M2/M3 (HSA-APR.C.4, HSA-APR.C.5, HSA-REI.D.11) | Medium | Open | Standards gap in seed-standards.ts |
+| Module 3/4 seed standards lack lesson-standard links | Medium | Open | lesson_standards table needs linking in seed functions |
+| Seed tests are tautological (inline data, not actual seed files) | Medium | Open | Zero regression protection; changes to seed files won't break tests |
+| No unit tests for error-analysis module (8 exported functions) | High | Open | Non-trivial aggregation logic untested |
+| PracticeReviewHarness SubmissionEnvelope diverges from practice.v1 contract | Medium | Open | Missing contractVersion, mode, status; wrong field names |
+| error-analysis parseAIResponse uses fragile line-based parsing | High | Open | Breaks on markdown, multi-paragraph AI responses |
+| ReviewQueueItem type duplicated between component and lib | Low | Open | Slightly different shapes cause type mismatch risk |
+| Content hash JSON.stringify treats `{a:undefined}` same as `{}` | Medium | Open | Potential hash collisions for undefined vs missing props |
+| N+1 phase reads in listReviewQueue (dev.ts:54-59) | Medium | Open | Sequential ctx.db.get per phase; batch-fetch needed |
+| No error.tsx boundary for student/teacher routes | Medium | Open | Convex outages produce raw 500 |
 | Algebraic test coverage structurally weak (20-50% step assertion) | Medium | Open | Tests named "all steps" check only fraction |
 | Guided mode submissions not recorded | Medium | Open | No onSubmit for guided practice; no analytics data |
-| activity_completions requires lessonId/phaseNumber not in submission | Medium | Open | Submission mutation can't create completions without lesson context |
 | Silent catch blocks in convex/student.ts and convex/teacher.ts | Medium | Open | Swallows all exceptions including non-format errors |
-| No validation timeSpent >= 0 in completePhase | Medium | Open | Negative time corrupts progress data |
-| nextPhaseUnlocked hardcoded to true | Medium | Open | Return value lies; client may depend on it for navigation |
-| No error.tsx boundary for student/teacher routes | Medium | Open | Convex outages produce raw 500 |
-| getPhaseDisplayInfo crashes on unknown phaseType | Medium | Open | Unchecked dict access; corrupted data → TypeError |
-| getStandardsCoverage unbounded query | Medium | Open | `.collect()` fetches all lesson_standards rows |
-| getTeacherCourseOverviewData N+1 for student_competency | Medium | Open | One query per student via Promise.all |
-| Seed tests decoupled from seed implementations (inline data) | Medium | Open | Changes to seed files won't break tests |
-| Module 3 seed implementation added MPM.3.x standards without lesson-standard links | Medium | Open | Track in future module seed; lesson_standards table needs linking in seed functions |
-| Module 4 seed implementation added N-RN.A.1/A.2, HSF-IF.B.4, HSF-BF.A.1/B.3/B.4 standards without lesson-standard links | Medium | Open | Track in future module seed; lesson_standards table needs linking in seed functions |
-| Module 1 seed implementation compresses current curriculum examples | Medium | Resolved | Fixed 2026-04-15; seed files now align counts/order with curriculum guardrail |
-| Module 2 standards incomplete (missing HSA-APR.A.1, HSA-APR.B.2) | Medium | Resolved | Fixed 2026-04-15; both added to seed-standards.ts |
+| RSC entry chunk 734 KB (pre-existing) | Medium | Open | Code-splitting needed to get under 500 KB |
 | Legacy Supabase types in AuthProvider.tsx | Low | Open | snake_case profile fields should match Convex schema |
-| Equivalence validator 6/50 tests failing | Low | Open | Pattern-matching limits; 88% passing exceeds 80% target |
-| StepByStepper-guided hint tracking test intermittently fails | Low | Open | Passes in isolation, flaky in full suite |
-| TeacherLessonPreview test intermittently fails in full suite | Low | Open | Renders preview badge/title pass in isolation, flaky in full suite |
+| Equivalence validator 8/50 tests failing | Low | Open | Pattern-matching limits; 84% passing exceeds 80% target |
 | dashboard.test.ts TypeScript errors (missing isLocked) | Low | Open | 12 tests; pre-existing |
-| LessonRenderer initialStatus ignored skipped phases | High | Resolved | **Fixed 2026-04-15** |
-| submitReviewHandler componentKind not validated server-side | Medium | Open | Client sends kind; server doesn't verify against actual placement |
-| Duplicate Date.now() in submitReviewHandler | Low | Resolved | **Fixed 2026-04-15**: single `now` timestamp reused |
-| Incorrect CCSS description for HSA-APR.B.2 (seed-standards.ts) | High | Open | Describes Binomial Theorem instead of Remainder Theorem |
-| No lesson_standards seeding pipeline | High | Open | Standards seeded but never linked to lessons; progress tracking broken |
-| Missing CCSS standards for M2/M3 (HSA-APR.C.4, HSA-APR.C.5, HSA-REI.D.11) | Medium | Open | Standards gap in seed-standards.ts |
+| Flaky tests: StepByStepper hint tracking, TeacherLessonPreview | Low | Open | Pass in isolation, flaky in full suite |

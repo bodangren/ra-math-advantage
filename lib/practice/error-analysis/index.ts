@@ -297,7 +297,8 @@ export async function generateAISummary(
     const prompt = buildAIPrompt(input);
     const response = await aiProvider(prompt);
     return parseAIResponse(response, input);
-  } catch {
+  } catch (err) {
+    console.error('[error-analysis] generateAISummary failed:', err);
     return null;
   }
 }

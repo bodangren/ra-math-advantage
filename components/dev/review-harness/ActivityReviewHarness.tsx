@@ -46,7 +46,7 @@ export function ActivityReviewHarness({
     }]);
   }, []);
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars -- used in exported hook, not component
   const handleError = useCallback((error: Error) => {
     setCallbacks(prev => [...prev, {
       type: 'error',

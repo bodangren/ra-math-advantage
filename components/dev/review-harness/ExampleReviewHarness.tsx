@@ -57,7 +57,8 @@ export function ExampleReviewHarness({
     onVariantGenerated?.();
   }, [onVariantGenerated]);
 
-  const canApprove = reviewedModes.teaching && reviewedModes.guided && reviewedModes.practice;
+  const canApprove = reviewedModes.teaching && reviewedModes.guided && reviewedModes.practice
+    && algorithmicChecked && coherentFeedbackChecked;
 
   useEffect(() => {
     onCanApproveChange?.(canApprove);
