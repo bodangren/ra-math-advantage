@@ -2,24 +2,24 @@
 
 ## Phase 1: Canonical Contract and Schema Reconciliation
 
-- [x] Task: Audit current practice submission schemas
-  - [x] Compare `lib/practice/contract.ts`, `lib/practice/submission.schema.ts`, and `convex/practice_submission.ts`
-  - [x] Identify enum, interactionHistory, and validator drift that would affect timing
-  - [x] Document any non-timing schema cleanup required before implementation
-- [x] Task: Write contract tests for timing fields
-  - [x] Test envelope validates with no timing fields for backward compatibility
-  - [x] Test envelope validates with a full timing summary
-  - [x] Test part-level timing validates when present
-  - [x] Test negative durations and impossible activeMs > wallClockMs are rejected
-- [x] Task: Add canonical timing types and validators
-  - [x] Add timing schemas/types to the canonical practice contract module
-  - [x] Update the Convex validator to match the canonical shape
-  - [x] Remove or deprecate divergent local typing where practical
-- [x] Task: Update documentation
-  - [x] Update `conductor/practice-component-contract.md` with timing fields
-  - [x] Add notes that timing belongs in canonical fields, not arbitrary `analytics`
-  - [x] Document timing as optional process evidence, not a standalone grade
-- [x] Task: Conductor - Phase Completion Verification 'Canonical Contract and Schema Reconciliation' (Protocol in workflow.md)
+- [x] Task: Audit current practice submission schemas [e64ead6]
+  - [x] Compare `lib/practice/contract.ts`, `lib/practice/submission.schema.ts`, and `convex/practice_submission.ts` [e64ead6]
+  - [x] Identify enum, interactionHistory, and validator drift that would affect timing [e64ead6]
+  - [x] Document any non-timing schema cleanup required before implementation [e64ead6]
+- [x] Task: Write contract tests for timing fields [e64ead6]
+  - [x] Test envelope validates with no timing fields for backward compatibility [e64ead6]
+  - [x] Test envelope validates with a full timing summary [e64ead6]
+  - [x] Test part-level timing validates when present [e64ead6]
+  - [x] Test negative durations and impossible activeMs > wallClockMs are rejected [e64ead6]
+- [x] Task: Add canonical timing types and validators [e64ead6]
+  - [x] Add timing schemas/types to the canonical practice contract module [e64ead6]
+  - [x] Update the Convex validator to match the canonical shape [e64ead6]
+  - [x] Remove or deprecate divergent local typing where practical [e64ead6]
+- [x] Task: Update documentation [e64ead6]
+  - [x] Update `conductor/practice-component-contract.md` with timing fields [e64ead6]
+  - [x] Add notes that timing belongs in canonical fields, not arbitrary `analytics` [e64ead6]
+  - [x] Document timing as optional process evidence, not a standalone grade [e64ead6]
+- [x] Task: Conductor - Phase Completion Verification 'Canonical Contract and Schema Reconciliation' (Protocol in workflow.md) [e64ead6]
 
 ## Phase 2: Reusable Timing Core and React Instrumentation
 
