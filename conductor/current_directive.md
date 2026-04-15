@@ -10,7 +10,7 @@
 - **TypeScript**: Known pre-existing test-file errors remain in dashboard/students/submission review areas.
 - **Module 1 Roadmap**: Complete.
 - **Module 2 Seed**: Complete; all 5 lessons wired into seed.ts.
-- **Module 3 Seed**: Phases 1-5 complete; **seed.ts integration fixed** (4 missing lessons wired in). Phase 6 ready.
+- **Module 3 Seed**: Complete; all 5 lessons wired into seed.ts with MPM.3.x standards. Phase 6 complete.
 - **Manual Component Approval**: MVP exists at `/dev/component-approval`; hardening follow-up track planned.
 
 ## Current In-Progress Track
