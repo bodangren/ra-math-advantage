@@ -1,0 +1,25 @@
+Task: Implement plot_from_equation variant
+
+Summary:
+- Created GraphingExplorer component supporting plot_from_equation variant
+- Implemented teaching mode: read-only with all key points labeled
+- Implemented guided mode: table-first workflow with hints panel
+- Implemented practice mode: direct plotting with solution overlay
+- Added submission envelope with placed points, intercepts, correctness assessment
+- Updated graphing-explorer schema to include variant field (optional)
+
+Files Created:
+- components/activities/graphing/GraphingExplorer.tsx (310 lines)
+- __tests__/components/activities/graphing/GraphingExplorer.test.tsx (277 lines)
+
+Files Modified:
+- lib/activities/schemas/graphing-explorer.schema.ts (added variant field)
+- components/activities/graphing/GraphingCanvas.tsx (exported types)
+- components/activities/graphing/InteractiveTableOfValues.tsx (added heading)
+
+Tests:
+- 17 tests covering all 3 modes and submission handling
+- All tests passing
+
+Why:
+This implements the first variant for the graphing-explorer component, enabling students to graph quadratic functions from equations in teaching, guided, and practice modes. The component follows the practice.v1 contract with proper submission envelopes.

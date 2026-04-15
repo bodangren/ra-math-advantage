@@ -1,0 +1,4 @@
+Track: fix-graphing-schema-type_20260412
+Model: glm-4.7
+Duration: ~10 minutes
+Result: TypeScript error resolved, no regressions
