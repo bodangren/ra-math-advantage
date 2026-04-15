@@ -41,11 +41,3 @@
 | totalFocusLossMs accumulated but never exposed | Low | Open | Dead code in timing.ts |
 | Flaky tests: StepByStepper hint tracking, TeacherLessonPreview | Low | Open | Pass in isolation, flaky in full suite |
 | M9 seed lesson 9-5 Learn section uses degrees, example uses radians | Low | Open | Unexplained unit switch |
-| Practice timing time base mixed (performance.now vs Date.now) | Critical | Resolved | Fixed 2026-04-16; all accumulator calls now use performance.now() |
-| Idle double-counting in timing.ts handleInteraction | Medium | Resolved | Fixed 2026-04-16; Block 1 now returns after processing explicit idle |
-| Wrong correctIndex in M9 lesson 9-2 discourse quiz | High | Resolved | Fixed 2026-04-16; Quadrant II reference angle answer corrected |
-| Wrong componentKey in M9 lesson 9-1 Explore phase | High | Resolved | Fixed 2026-04-16; replaced graphing-explorer with comprehension-quiz |
-| Two divergent submission schemas (contract.ts vs submission.schema.ts) | Medium | Resolved | Reconciled 2026-04-16; keep contract.ts canonical |
-| Hardened manual approval (6 items) | Critical | Resolved | Fixed 2026-04-15 |
-| Malformed dollar formatting in seed-lesson-8-4 | High | Resolved | Fixed 2026-04-16 |
-| Wrong componentKey in M8 lesson 8-2/8-3 Explore phases | High | Resolved | Fixed 2026-04-16 |
