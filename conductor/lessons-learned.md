@@ -17,6 +17,7 @@
 - (2026-04-15, code-review) `JSON.stringify` silently drops undefined keys — use explicit null or pre-filter for content hashing determinism
 - (2026-04-15, code-review) Seed test tautology: inline test data that never imports actual seed files provides zero regression protection
 - (2026-04-16, code-review) Standard codes referenced in lesson_standards links must exist in seed-standards.ts; missing standards cause silent link failures at seed time with no error visibility
+- (2026-04-16, practice-timing-telemetry) Add custom Zod refinements on timing schemas (e.g., activeMs <= wallClockMs) to catch impossible timing at the validation boundary rather than downstream
 
 ## Patterns That Worked Well
 

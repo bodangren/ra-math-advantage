@@ -25,7 +25,8 @@
 | error-analysis studentIdMap uses activityId as key | High | Open | Wrong semantic key |
 | ActivityReviewHarness handleError never reaches ActivityPreview | High | Open | onRenderError prop is dead code |
 | StepByStepSolver Zod schema vs component interface mismatch | Medium | Open | Schema step shape differs from AlgebraicStep |
-| Two divergent submission schemas (contract.ts vs submission.schema.ts) | Medium | Open | Mode enums and interactionHistory shapes differ |
+| Two divergent submission schemas (contract.ts vs submission.schema.ts) | Medium | Resolved | Timing and mode enums reconciled 2026-04-16; keep contract.ts canonical |
+| Algebraic/graphing submission builders use non-canonical mode strings | Medium | Open | `buildAlgebraicSubmission` and `buildGraphingSubmission` use `'guided'|'practice'` instead of `'guided_practice'|'independent_practice'` |
 | ActivityRenderer does not forward section content props | Medium | Open | template, blanks etc. lost between PhaseRenderer and activity |
 | Refactor seed-lesson-standards.ts duplication | Medium | Open | Module 6 and 7 seeders are 95% identical; extract shared function |
 | Content hash JSON.stringify treats `{a:undefined}` same as `{}` | Medium | Open | Potential hash collisions |

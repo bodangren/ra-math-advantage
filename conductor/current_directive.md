@@ -19,11 +19,17 @@
 
 ## Current In-Progress Track
 
-### Module 9 Curriculum Seed
+### Practice Timing Telemetry
 
-Track: `conductor/tracks/module-9-seed_20260415/`
+Track: `conductor/tracks/practice-timing-telemetry_20260415/`
 
-Seed Module 9 trigonometric functions lessons (9-1 through 9-7) into Convex database. **All phases (1-8) complete.**
+Add canonical wall-clock, active-time, idle-time, and timing-confidence evidence to practice.v1 submissions for future SRS scoring.
+
+- Phase 1: Canonical Contract and Schema Reconciliation — COMPLETE [checkpoint: 790e2f5]
+- Phase 2: Reusable Timing Core and React Instrumentation — pending
+- Phase 3: Activity Submission Integration — pending
+- Phase 4: Persistence and Review Surfaces — pending
+- Phase 5: Verification, Documentation, and Handoff — pending
 
 ## Planned Upcoming Tracks
 

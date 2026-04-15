@@ -1,6 +1,6 @@
 # Practice Timing Telemetry - Implementation Plan
 
-## Phase 1: Canonical Contract and Schema Reconciliation
+## Phase 1: Canonical Contract and Schema Reconciliation [checkpoint: 790e2f5]
 
 - [x] Task: Audit current practice submission schemas [e64ead6]
   - [x] Compare `lib/practice/contract.ts`, `lib/practice/submission.schema.ts`, and `convex/practice_submission.ts` [e64ead6]
