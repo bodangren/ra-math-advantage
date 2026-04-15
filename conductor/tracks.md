@@ -207,9 +207,15 @@ Tracks 1+4 unlock Track 8; Track 8 unlocks Tracks 9+10.
         - Phase 5: Seed Lesson 6-5 [COMPLETE]
         - Phase 6: Module Integration and Verification [COMPLETE]
 
-- [ ] **Track: Module 7 Curriculum Seed**
-     *Seed Module 7 rational functions and equations lessons (7-1 through 7-6) into Convex database*
-     *Link: [./conductor/tracks/module-7-seed_20260415/](./conductor/tracks/module-7-seed_20260415/)*
+- [~] **Track: Module 7 Curriculum Seed**
+      *Seed Module 7 rational functions and equations lessons (7-1 through 7-6) into Convex database*
+      *Link: [./conductor/tracks/module-7-seed_20260415/](./conductor/tracks/module-7-seed_20260415/)*
+      - Phase 1: Seed Lesson 7-1 [COMPLETE]
+      - Phase 2: Seed Lesson 7-2 [COMPLETE]
+      - Phase 3: Seed Lesson 7-3 [COMPLETE]
+      - Phase 4: Seed Lesson 7-4 [COMPLETE]
+      - Phase 5: Seed Lesson 7-5 [COMPLETE]
+      - Phase 6: Seed Lesson 7-6 [PENDING]
 
 - [ ] **Track: Module 8 Curriculum Seed**
      *Seed Module 8 inferential statistics lessons (8-1 through 8-5) into Convex database*

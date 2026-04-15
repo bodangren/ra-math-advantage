@@ -18,7 +18,7 @@
 
 Track: `conductor/tracks/module-7-seed_20260415/`
 
-Seed Module 7 rational functions and equations lessons (7-1 through 7-6) into Convex database. Phases 1-2 complete; Phases 3-7 pending.
+Seed Module 7 rational functions and equations lessons (7-1 through 7-6) into Convex database. Phases 1-5 complete; Phase 6 pending.
 
 ## Planned Upcoming Tracks
 
