@@ -1,0 +1,11 @@
+{
+  "track_id": "practice-timing-baselines_20260415",
+  "type": "feature",
+  "status": "new",
+  "created_at": "2026-04-15T14:14:35Z",
+  "updated_at": "2026-04-15T14:14:35Z",
+  "description": "Build timing baselines and time-aware SRS evidence features so practice duration can influence system-derived ratings and objective proficiency only after reliable average-time data exists.",
+  "estimated_tasks": 25,
+  "actual_tasks": null,
+  "deviation_notes": ""
+}

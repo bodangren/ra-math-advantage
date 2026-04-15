@@ -1,0 +1,11 @@
+{
+  "track_id": "practice-timing-telemetry_20260415",
+  "type": "feature",
+  "status": "new",
+  "created_at": "2026-04-15T14:14:35Z",
+  "updated_at": "2026-04-15T14:14:35Z",
+  "description": "Add canonical practice timing telemetry to practice.v1 submissions so future SRS scoring can use wall-clock time, active time, and timing confidence without relying on ad hoc analytics.",
+  "estimated_tasks": 24,
+  "actual_tasks": null,
+  "deviation_notes": ""
+}
