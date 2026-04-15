@@ -1,20 +1,20 @@
 # Harden Manual Component Approval - Implementation Plan
 
-## Phase 1: Queue Coverage and Real Review Targets [checkpoint: PENDING]
+## Phase 1: Queue Coverage and Real Review Targets [checkpoint: 08a5932]
 
-- [x] Task: Audit current approval target discovery [PENDING]
+- [x] Task: Audit current approval target discovery [08a5932]
   - [x] Read `convex/_generated/ai/guidelines.md` before Convex work
   - [x] Write tests proving the queue includes stored activities
   - [x] Write tests describing missing example and practice placement coverage
   - [x] Document the stable identity scheme for embedded examples and practice placements (activityId derived from phase_sections.content.activityId)
 
-- [x] Task: Enumerate example and practice targets from persisted lesson data [PENDING]
+- [x] Task: Enumerate example and practice targets from persisted lesson data [08a5932]
   - [x] Write tests for lesson section and activity placement discovery
   - [x] Implement real target assembly with lesson, phase, and section placement context
   - [x] Include unreviewed targets even when no `component_approvals` row exists yet
   - [x] Preserve existing filters for kind, status, stale state, tag, and priority
 
-- [x] Task: Conductor - Phase Completion Verification 'Queue Coverage and Real Review Targets' (Protocol in workflow.md) [PENDING]
+- [x] Task: Conductor - Phase Completion Verification 'Queue Coverage and Real Review Targets' (Protocol in workflow.md) [97a8fbd]
 
 ## Phase 2: Content Hashing and Stale Approval
 
