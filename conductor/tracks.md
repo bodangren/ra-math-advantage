@@ -234,6 +234,7 @@ Tracks 1+4 unlock Track 8; Track 8 unlocks Tracks 9+10.
        - Phase 1: Seed Lesson 9-1 [COMPLETE]
        - Phase 2: Seed Lesson 9-2 [COMPLETE]
        - Phase 3: Seed Lesson 9-3 [COMPLETE]
+       - Phase 4: Seed Lesson 9-4 [COMPLETE]
 
 - [ ] **Track: Practice Timing Telemetry**
      *Add canonical wall-clock, active-time, idle-time, and timing-confidence evidence to practice.v1 submissions for future SRS scoring*

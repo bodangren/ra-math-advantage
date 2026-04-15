@@ -30,15 +30,15 @@
   - [x] Implement lesson, phases, sections, and activities
 - [x] Task: Conductor - Phase Completion Verification 'Seed Lesson 9-3' (Protocol in workflow.md) [cfd278b]
 
-## Phase 4: Seed Lesson 9-4
+## Phase 4: Seed Lesson 9-4 [checkpoint: c86a487]
 
-- [ ] Task: Verify lesson 9-4 curriculum source
-  - [ ] Confirm title and phase sequence against `curriculum/modules/module-9-lesson-4`
-  - [ ] Confirm sine/cosine graph examples preserve amplitude, period, and midline
-- [ ] Task: Create seed function `convex/seed/seed-lesson-9-4.ts`
-  - [ ] Write tests for phase sequence and idempotency
-  - [ ] Implement lesson, phases, sections, and activities
-- [ ] Task: Conductor - Phase Completion Verification 'Seed Lesson 9-4' (Protocol in workflow.md)
+- [x] Task: Verify lesson 9-4 curriculum source [c86a487]
+  - [x] Confirm title and phase sequence against `curriculum/modules/module-9-lesson-4`
+  - [x] Confirm sine/cosine graph examples preserve amplitude, period, and midline
+- [x] Task: Create seed function `convex/seed/seed-lesson-9-4.ts` [c86a487]
+  - [x] Write tests for phase sequence and idempotency
+  - [x] Implement lesson, phases, sections, and activities
+- [x] Task: Conductor - Phase Completion Verification 'Seed Lesson 9-4' (Protocol in workflow.md) [c86a487]
 
 ## Phase 5: Seed Lesson 9-5
 
