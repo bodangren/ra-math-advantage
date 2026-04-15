@@ -1,0 +1,1 @@
+Module 3 Lesson 3-4 seed complete. Created seed-lesson-3-4.ts with 9 phases (explore, vocab, 2×learn, 3×worked_example, discourse, reflection). Uses graphing-explorer for explore, step-by-step-solver for all worked examples, comprehension-quiz for discourse. Seed function wired into convex/seed.ts switch and getLessons(). Tests: 14 passed.
