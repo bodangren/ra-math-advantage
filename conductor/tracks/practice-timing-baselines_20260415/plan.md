@@ -16,10 +16,10 @@
   - [x] Add a course-agnostic baseline module
   - [x] Keep Convex and React dependencies out of pure calculations
   - [x] Return serializable baseline objects
-- [ ] Task: Document baseline feature contract
-  - [ ] Add developer docs explaining `timeRatio`, `speedBand`, and timing confidence
-  - [ ] Include examples for narrow/easy and broad/hard objectives
-  - [ ] Note that timing features are diagnostic inputs, not standalone grades
+- [x] Task: Document baseline feature contract [43d5d06]
+  - [x] Add developer docs explaining `timeRatio`, `speedBand`, and timing confidence
+  - [x] Include examples for narrow/easy and broad/hard objectives
+  - [x] Note that timing features are diagnostic inputs, not standalone grades
 - [ ] Task: Conductor - Phase Completion Verification 'Baseline and Feature Model' (Protocol in workflow.md)
 
 ## Phase 2: Baseline Persistence and Aggregation
