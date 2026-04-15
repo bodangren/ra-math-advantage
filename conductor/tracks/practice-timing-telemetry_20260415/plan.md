@@ -92,10 +92,10 @@
   - [x] Run relevant activity submission tests (35 passed)
   - [x] Run `npm run lint` (passed)
   - [x] Run `npm run typecheck` or document known pre-existing failures (25 pre-existing errors in students.test.tsx and dashboard.test.ts)
-- [ ] Task: Update Conductor planning artifacts
-  - [ ] Mark completed tasks and phases in this plan
-  - [ ] Update `conductor/tracks.md`
-  - [ ] Update `conductor/current_directive.md` if this becomes active work
+- [x] Task: Update Conductor planning artifacts [e8f3c9a]
+  - [x] Mark completed tasks and phases in this plan
+  - [x] Update `conductor/tracks.md`
+  - [x] Update `conductor/current_directive.md` if this becomes active work
 - [ ] Task: Write junior developer handoff notes
   - [ ] Document how new activities should use timing
   - [ ] Document when timing confidence should be low

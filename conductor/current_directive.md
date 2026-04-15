@@ -23,7 +23,7 @@ Add canonical wall-clock, active-time, idle-time, and timing-confidence evidence
 - Phase 2: Reusable Timing Core and React Instrumentation — COMPLETE [checkpoint: a973651]
 - Phase 3: Activity Submission Integration — COMPLETE [checkpoint: 733bef3]
 - Phase 4: Persistence and Review Surfaces — COMPLETE [checkpoint: 7c3d8e1]
-- Phase 5: Verification, Documentation, and Handoff — pending
+- Phase 5: Verification, Documentation, and Handoff — IN PROGRESS
 
 ## Planned Upcoming Tracks
 
