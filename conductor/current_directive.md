@@ -1,18 +1,21 @@
 # Current Directive
 
-> Updated: 2026-04-16 (Code review complete — Module 8/9 seed phases audited)
+> Updated: 2026-04-16 (Code review — Module 9 Phases 5-7 audited; no critical/high findings)
 
 ## Status Summary
 
-- **Tests**: 2209 passing, 8 known failures (6 equivalence validator + 2 pre-existing test-file errors).
-- **Build**: Passing; RSC chunk warning remains pre-existing (735 KB).
+- **Tests**: 2295 passing, 6 known failures (equivalence validator — fraction/radical expressions).
+- **Build**: Passing; RSC chunk warning remains pre-existing (734 KB).
 - **Lint**: Passing.
 - **TypeScript**: 25 pre-existing test-file errors remain (students.test.tsx, dashboard.test.ts). No new TS errors.
-- **Module 1-8 Roadmap**: Complete.
-- **Module 8 Seed**: All phases complete (Lessons 8-1 through 8-5, Module Integration and Verification).
-- **Code Review**: Completed 2026-04-16. Fixed 4 issues across 2 reviews:
-  - Review 1 (2026-04-16): HSA-APR.B.2 incorrect description, missing HSF-LE.A.1 and HSA-CED.A.2 standards.
-  - Review 2 (2026-04-16): Malformed dollar formatting in seed-lesson-8-4, wrong graphing-explorer componentKey in lesson 8-2/8-3 Explore phases.
+- **Module 1-9 Roadmap**: Complete through Phase 7 (lesson seeds 9-1 through 9-7).
+- **Module 9 Seed**: Phases 1-7 complete (Lessons 9-1 through 9-7). Phase 8 (Module Integration and Verification) still pending.
+- **Code Review 3** (2026-04-16): Module 9 Phases 5-7 audited. No critical/high findings.
+  - Fixed Phase 5 `checkpoint: pending` → `eb337e4` in plan.md.
+  - Content accuracy verified against curriculum source for all 3 lessons.
+  - Seed.ts orchestration wiring confirmed for lessons 9-5, 9-6, 9-7.
+  - No malformed dollar formatting, no wrong componentKey issues.
+  - Known tautological test pattern persists (tracked in tech-debt.md).
 
 ## Current In-Progress Track
 
@@ -20,11 +23,11 @@
 
 Track: `conductor/tracks/module-9-seed_20260415/`
 
-Seed Module 9 trigonometric functions lessons (9-1 through 9-7) into Convex database. Lessons 9-1 through 9-7 complete.
+Seed Module 9 trigonometric functions lessons (9-1 through 9-7) into Convex database. Lessons 9-1 through 9-7 complete. **Phase 8 (Module Integration and Verification) remains.**
 
 ## Planned Upcoming Tracks
 
-1. **Module 9 Curriculum Seed** — `module-9-seed_20260415` (7 lessons)
+1. **Module 9 Phase 8: Module Integration and Verification** — wire lesson_standards, verify all 7 lessons, update conductor status
 2. **Practice Timing Telemetry** — `practice-timing-telemetry_20260415` (post-Module 9 SRS foundation)
 3. **Practice Timing Baselines** — `practice-timing-baselines_20260415` (depends on timing telemetry and stable practice problem-family identifiers)
 
