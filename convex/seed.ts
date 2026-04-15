@@ -192,6 +192,9 @@ export const seedAll = internalAction({
           case "module-9-lesson-6":
             await ctx.runMutation(seedInternal.seedLesson9_6, {});
             break;
+          case "module-9-lesson-7":
+            await ctx.runMutation(seedInternal.seedLesson9_7, {});
+            break;
           default:
             break;
         }
@@ -1319,6 +1322,24 @@ function getLessons(): SeedLesson[] {
         { phaseNumber: 9, title: "Worked Example 5", phaseType: "worked_example", sections: [] },
         { phaseNumber: 10, title: "Discourse", phaseType: "discourse", sections: [] },
         { phaseNumber: 11, title: "Reflection", phaseType: "reflection", sections: [] },
+      ],
+    },
+    {
+      unitNumber: 9,
+      title: "Inverse Trigonometric Functions",
+      slug: "module-9-lesson-7",
+      description: "Students find values of angle measures by using inverse trigonometric functions.",
+      orderIndex: 7,
+      phases: [
+        { phaseNumber: 1, title: "Explore", phaseType: "explore", sections: [] },
+        { phaseNumber: 2, title: "Vocabulary", phaseType: "vocabulary", sections: [] },
+        { phaseNumber: 3, title: "Learn: Inverse Trigonometric Functions", phaseType: "learn", sections: [] },
+        { phaseNumber: 4, title: "Worked Example 1", phaseType: "worked_example", sections: [] },
+        { phaseNumber: 5, title: "Worked Example 2", phaseType: "worked_example", sections: [] },
+        { phaseNumber: 6, title: "Worked Example 3", phaseType: "worked_example", sections: [] },
+        { phaseNumber: 7, title: "Worked Example 4", phaseType: "worked_example", sections: [] },
+        { phaseNumber: 8, title: "Discourse", phaseType: "discourse", sections: [] },
+        { phaseNumber: 9, title: "Reflection", phaseType: "reflection", sections: [] },
       ],
     },
   ];
