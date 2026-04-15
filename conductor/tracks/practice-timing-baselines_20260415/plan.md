@@ -43,26 +43,26 @@
   - [x] Document any remaining performance shortcuts as tech debt
 - [x] Task: Conductor - Phase Completion Verification 'Baseline Persistence and Aggregation' (Protocol in workflow.md)
 
-## Phase 3: Time-Aware SRS Rating Adapter
+## Phase 3: Time-Aware SRS Rating Adapter [COMPLETE]
 
-- [ ] Task: Write rating adapter tests for timing influence
-  - [ ] Correct plus fast plus clean evidence may become `Easy`
-  - [ ] Correct plus slow/high-confidence evidence becomes or remains `Hard`
-  - [ ] Incorrect plus fast evidence remains `Again`
-  - [ ] Missing, low-confidence, or below-baseline timing does not modify rating
-- [ ] Task: Implement timing feature derivation
-  - [ ] Join submission timing with the matching problem-family baseline
-  - [ ] Compute `timeRatio` and `speedBand`
-  - [ ] Return reasons for every timing-based adjustment
-- [ ] Task: Integrate timing with the deterministic rating mapper
-  - [ ] Ensure correctness, score, hints, reveal steps, and misconceptions remain primary
-  - [ ] Apply timing only as a conservative modifier
-  - [ ] Keep student self-assessment out of the rating path
-- [ ] Task: Add audit output
-  - [ ] Store or expose why timing affected the rating
-  - [ ] Include baseline sample count in debug/review output
-  - [ ] Ensure teachers can inspect "slow because timing was reliable" versus "timing ignored"
-- [ ] Task: Conductor - Phase Completion Verification 'Time-Aware SRS Rating Adapter' (Protocol in workflow.md)
+- [x] Task: Write rating adapter tests for timing influence
+  - [x] Correct plus fast plus clean evidence may become `Easy`
+  - [x] Correct plus slow/high-confidence evidence becomes or remains `Hard`
+  - [x] Incorrect plus fast evidence remains `Again`
+  - [x] Missing, low-confidence, or below-baseline timing does not modify rating
+- [x] Task: Implement timing feature derivation
+  - [x] Join submission timing with the matching problem-family baseline
+  - [x] Compute `timeRatio` and `speedBand`
+  - [x] Return reasons for every timing-based adjustment
+- [x] Task: Integrate timing with the deterministic rating mapper
+  - [x] Ensure correctness, score, hints, reveal steps, and misconceptions remain primary
+  - [x] Apply timing only as a conservative modifier
+  - [x] Keep student self-assessment out of the rating path
+- [x] Task: Add audit output
+  - [x] Store or expose why timing affected the rating
+  - [x] Include baseline sample count in debug/review output
+  - [x] Ensure teachers can inspect "slow because timing was reliable" versus "timing ignored"
+- [x] Task: Conductor - Phase Completion Verification 'Time-Aware SRS Rating Adapter' (Protocol in workflow.md)
 
 ## Phase 4: Objective Proficiency and Fluency Signals
 

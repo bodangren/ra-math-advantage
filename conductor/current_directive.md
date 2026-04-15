@@ -15,7 +15,7 @@
 ## Current In-Progress Track
 
 - **Track**: Practice Timing Baselines
-- **Phase**: 1 — Baseline and Feature Model
+- **Phase**: 4 — Objective Proficiency and Fluency Signals
 - **Goal**: Build timing baselines and time-aware SRS evidence features so practice duration can influence system-derived ratings and objective proficiency only after reliable average-time data exists.
 
 ## High-Priority Next Steps

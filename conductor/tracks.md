@@ -256,6 +256,7 @@ Tracks 1+4 unlock Track 8; Track 8 unlocks Tracks 9+10.
        *Link: [./conductor/tracks/practice-timing-baselines_20260415/](./conductor/tracks/practice-timing-baselines_20260415/)
        - Phase 1: Baseline and Feature Model [COMPLETE]
        - Phase 2: Baseline Persistence and Aggregation [COMPLETE]
+       - Phase 3: Time-Aware SRS Rating Adapter [COMPLETE]
 
 - [x] **Track: Fix submitReviewHandler componentKind Derivation**
       *Derive componentKind from placement.phaseType on write path to prevent permanent isStale mismatches*

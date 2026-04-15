@@ -26,6 +26,7 @@
 - (2026-04-12, graphing-components) Create wrapper components for activity registry to adapt component-specific props
 - (2026-04-16, practice-timing) Pure accumulator pattern: isolate timing logic in a browser-free module, inject timestamps from React hook — allows unit testing without DOM
 - (2026-04-16, practice-timing-baselines) Keep baseline calculations course-agnostic by accepting a generic `problemFamilyId: string`; defer Convex/React wiring to later phases
+- (2026-04-16, srs-rating-adapter) Two-step rating adapter pattern: compute base rating from correctness first, then apply timing as a conservative modifier; this keeps timing from ever overriding correctness and produces a clear audit trail
 
 ## Planning Improvements
 
