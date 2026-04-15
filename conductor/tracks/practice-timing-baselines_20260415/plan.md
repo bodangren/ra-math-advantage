@@ -2,11 +2,11 @@
 
 ## Phase 1: Baseline and Feature Model
 
-- [ ] Task: Define timing baseline semantics
-  - [ ] Confirm the stable identifier for a problem family or practice item
-  - [ ] Define minimum sample count before baselines affect scoring
-  - [ ] Define conservative speed bands and thresholds
-  - [ ] Document why median/percentiles are preferred over mean
+- [x] Task: Define timing baseline semantics [a56eff8]
+  - [x] Confirm the stable identifier for a problem family or practice item
+  - [x] Define minimum sample count before baselines affect scoring
+  - [x] Define conservative speed bands and thresholds
+  - [x] Document why median/percentiles are preferred over mean
 - [ ] Task: Write baseline unit tests
   - [ ] Test median and percentile calculation
   - [ ] Test outlier resistance
