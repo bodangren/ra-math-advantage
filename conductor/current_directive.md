@@ -19,7 +19,8 @@
 Track: `conductor/tracks/module-3-seed_20260415/`
 
 Phase 1 complete: Seed Lesson 3-1 (Solving Polynomial Equations by Graphing).
-Ready to begin Phase 2: Seed Lesson 3-2 (Solving Polynomial Equations Algebraically).
+Phase 2 complete: Seed Lesson 3-2 (Solving Polynomial Equations Algebraically).
+Ready to begin Phase 3: Seed Lesson 3-3 (Proving Polynomial Identities).
 
 ## Planned Upcoming Tracks
 

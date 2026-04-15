@@ -162,8 +162,10 @@ Tracks 1+4 unlock Track 8; Track 8 unlocks Tracks 9+10.
       - Phase 5: Update seed.ts and Verify [COMPLETE]
 
 - [ ] **Track: Module 3 Curriculum Seed**
-     *Seed Module 3 polynomial equations lessons (3-1 through 3-5) into Convex database*
-     *Link: [./conductor/tracks/module-3-seed_20260415/](./conductor/tracks/module-3-seed_20260415/)*
+      *Seed Module 3 polynomial equations lessons (3-1 through 3-5) into Convex database*
+      *Link: [./conductor/tracks/module-3-seed_20260415/](./conductor/tracks/module-3-seed_20260415/)*
+      - Phase 1: Seed Lesson 3-1 (Solving Polynomial Equations by Graphing) [COMPLETE]
+      - Phase 2: Seed Lesson 3-2 (Solving Polynomial Equations Algebraically) [COMPLETE]
 
 - [ ] **Track: Module 4 Curriculum Seed**
      *Seed Module 4 inverses and radical functions lessons (4-1 through 4-6) into Convex database*
