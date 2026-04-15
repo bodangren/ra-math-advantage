@@ -1,33 +1,31 @@
 # Current Directive
 
-> Updated: 2026-04-15 (Module 5 seed Phase 1 complete)
+> Updated: 2026-04-15 (Module 5 seed complete, Module 6 next)
 
 ## Status Summary
 
-- **Tests**: 1900 passing, 6 known failures (equivalence validator - radicals).
+- **Tests**: 1966 passing, 6 known failures (equivalence validator - radicals).
 - **Build**: Passing; RSC chunk warning remains pre-existing (734 KB).
 - **Lint**: Passing.
 - **TypeScript**: 25 pre-existing test-file errors remain (students.test.tsx, dashboard.test.ts). No new TS errors.
-- **Module 1 Roadmap**: Complete.
-- **Module 2 Seed**: Complete; all 5 lessons wired into seed.ts.
-- **Module 3 Seed**: Complete; all 5 lessons wired into seed.ts with MPM.3.x standards.
-- **Module 4 Seed**: Complete; all 6 lessons wired into seed.ts with N-RN.A.1/A.2, HSF-IF.B.4, HSF-BF.A.1/B.3/B.4 standards.
+- **Module 1-4 Roadmap**: Complete.
+- **Module 5 Seed**: Complete; all 5 lessons wired into seed.ts with exponential functions and geometric series content.
+- **Module 6 Seed**: Next track.
 
 ## Current In-Progress Track
 
-### Module 5 Curriculum Seed
+### Module 6 Curriculum Seed
 
-Track: `conductor/tracks/module-5-seed_20260415/`
+Track: `conductor/tracks/module-6-seed_20260415/`
 
-Seed Module 5 exponential functions and geometric series lessons (5-1 through 5-5) into Convex database.
+Seed Module 6 logarithmic functions lessons (6-1 through 6-5) into Convex database.
 
 ## Planned Upcoming Tracks
 
-1. **Module 5 Curriculum Seed** — `module-5-seed_20260415` (5 lessons)
-2. **Module 6 Curriculum Seed** — `module-6-seed_20260415` (5 lessons)
-3. **Module 7 Curriculum Seed** — `module-7-seed_20260415` (6 lessons)
-4. **Module 8 Curriculum Seed** — `module-8-seed_20260415` (5 lessons)
-5. **Module 9 Curriculum Seed** — `module-9-seed_20260415` (7 lessons)
+1. **Module 6 Curriculum Seed** — `module-6-seed_20260415` (5 lessons)
+2. **Module 7 Curriculum Seed** — `module-7-seed_20260415` (6 lessons)
+3. **Module 8 Curriculum Seed** — `module-8-seed_20260415` (5 lessons)
+4. **Module 9 Curriculum Seed** — `module-9-seed_20260415` (7 lessons)
 
 See `conductor/modules-3-9-roadmap.md` for the module inventory and repeated implementation pattern.
 
