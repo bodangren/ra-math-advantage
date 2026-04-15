@@ -32,13 +32,13 @@
 
 ## Phase 4: Seed Lesson 7-4
 
-- [ ] Task: Verify lesson 7-4 curriculum source
-  - [ ] Confirm title and phase sequence against `curriculum/modules/module-7-lesson-4`
-  - [ ] Confirm asymptote and hole examples are represented
-- [ ] Task: Create seed function `convex/seed/seed-lesson-7-4.ts`
-  - [ ] Write tests for phase sequence and idempotency
-  - [ ] Implement lesson, phases, sections, and activities
-- [ ] Task: Conductor - Phase Completion Verification 'Seed Lesson 7-4' (Protocol in workflow.md)
+- [x] Task: Verify lesson 7-4 curriculum source
+  - [x] Confirm title and phase sequence against `curriculum/modules/module-7-lesson-4`
+  - [x] Confirm asymptote and hole examples are represented
+- [x] Task: Create seed function `convex/seed/seed-lesson-7-4.ts`
+  - [x] Write tests for phase sequence and idempotency
+  - [x] Implement lesson, phases, sections, and activities
+- [x] Task: Conductor - Phase Completion Verification 'Seed Lesson 7-4' (Protocol in workflow.md)
 
 ## Phase 5: Seed Lesson 7-5
 
