@@ -187,9 +187,15 @@ Tracks 1+4 unlock Track 8; Track 8 unlocks Tracks 9+10.
       - Phase 6: Seed Lesson 4-6 [COMPLETE]
       - Phase 7: Module Integration and Verification [COMPLETE]
 
-- [ ] **Track: Module 5 Curriculum Seed**
-     *Seed Module 5 exponential functions and geometric series lessons (5-1 through 5-5) into Convex database*
-     *Link: [./conductor/tracks/module-5-seed_20260415/](./conductor/tracks/module-5-seed_20260415/)*
+- [~] **Track: Module 5 Curriculum Seed**
+      *Seed Module 5 exponential functions and geometric series lessons (5-1 through 5-5) into Convex database*
+      *Link: [./conductor/tracks/module-5-seed_20260415/](./conductor/tracks/module-5-seed_20260415/)*
+      - Phase 1: Seed Lesson 5-1 [COMPLETE]
+      - Phase 2: Seed Lesson 5-2 [PENDING]
+      - Phase 3: Seed Lesson 5-3 [PENDING]
+      - Phase 4: Seed Lesson 5-4 [PENDING]
+      - Phase 5: Seed Lesson 5-5 [PENDING]
+      - Phase 6: Module Integration and Verification [PENDING]
 
 - [ ] **Track: Module 6 Curriculum Seed**
      *Seed Module 6 logarithmic functions lessons (6-1 through 6-5) into Convex database*

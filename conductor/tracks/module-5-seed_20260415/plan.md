@@ -2,13 +2,13 @@
 
 ## Phase 1: Seed Lesson 5-1
 
-- [ ] Task: Verify lesson 5-1 curriculum source
-  - [ ] Confirm title and phase sequence against `curriculum/modules/module-5-lesson-1`
-  - [ ] Confirm exponential graphing examples map to available activities
-- [ ] Task: Create seed function `convex/seed/seed-lesson-5-1.ts`
-  - [ ] Write tests for phase sequence and idempotency
-  - [ ] Implement lesson, phases, sections, and activities
-- [ ] Task: Conductor - Phase Completion Verification 'Seed Lesson 5-1' (Protocol in workflow.md)
+- [x] Task: Verify lesson 5-1 curriculum source
+  - [x] Confirm title and phase sequence against `curriculum/modules/module-5-lesson-1`
+  - [x] Confirm exponential graphing examples map to available activities
+- [x] Task: Create seed function `convex/seed/seed-lesson-5-1.ts`
+  - [x] Write tests for phase sequence and idempotency
+  - [x] Implement lesson, phases, sections, and activities
+- [x] Task: Conductor - Phase Completion Verification 'Seed Lesson 5-1' (Protocol in workflow.md) [checkpoint: 255c893]
 
 ## Phase 2: Seed Lesson 5-2
 
