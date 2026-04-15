@@ -1,58 +1,84 @@
-# Code Review Report — 2026-04-13 (Phases 2–3 Audit)
+# Code Review Report — 2026-04-16 (Phases 4–5 Audit)
 
 ## Scope
-Commits since last review (~10 days): component-approval track Phases 1-2, algebraic-examples track Phases 3-4.
+Tracks reviewed since last audit (~3 days):
+- Practice Timing Telemetry (Phases 1-5)
+- Module 9 Curriculum Seed (Phases 1-8)
+- Harden Manual Component Approval (Phases 1-5)
+
+## Test/Lint/Build Baseline
+- **Tests**: 2394 passed, 6 failed (pre-existing equivalence validator — fraction/radical expressions)
+- **Lint**: Passing
+- **Build**: Passing (RSC chunk 750 KB, pre-existing sourcemap warnings)
 
 ## Files Reviewed
+
 | File | Verdict |
 |------|---------|
-| `convex/dev.ts` | **Fixed** — 3 issues corrected (see below) |
-| `convex/schema.ts` | **Fixed** — added missing index on component_reviews.resolvedAt |
-| `lib/activities/content-hash.ts` | Clean, known limitations documented |
-| `__tests__/lib/activities/content-hash.test.ts` | Passing (5/5) |
-| `__tests__/convex/component-reviews.test.ts` | Passing (7/7) |
-| `__tests__/components/lesson/PhaseRenderer.test.tsx` | **Fixed** — dynamic mock + hoisted variable |
-| `__tests__/lib/activities/algebraic/equivalence.test.ts` | 6 known failures (pattern-matching limits) |
-| `__tests__/components/activities/algebraic/StepByStepper-factor-trinomial.test.tsx` | Passing but weak (see below) |
-| `__tests__/components/activities/algebraic/StepByStepper-complete-the-square.test.tsx` | Passing but weak |
-| `__tests__/components/activities/algebraic/StepByStepper-quadratic-formula.test.tsx` | Passing but weak |
-| `__tests__/components/activities/algebraic/StepByStepper-discriminant-analyzer.test.tsx` | Passing but weak |
-| `__tests__/components/activities/algebraic/StepByStepper-system-substitution.test.tsx` | Passing but weak |
+| `components/practice-timing.tsx` | **Fixed** — CRITICAL mixed time base bug |
+| `lib/practice/timing.ts` | **Fixed** — idle double-counting bug |
+| `__tests__/lib/practice/timing.test.ts` | **Fixed** — corrected test expectations |
+| `lib/practice/contract.ts` | Clean, timing schemas properly structured |
+| `convex/practice_submission.ts` | Clean, known Convex V refinement gap documented |
+| `components/lesson/ActivityRenderer.tsx` | Clean, timing injection correct |
+| `components/teacher/SubmissionReviewPanel.tsx` | Minor: local type redefinition (noted) |
+| `convex/seed/seed-lesson-9-1.ts` | **Fixed** — wrong componentKey in Explore phase |
+| `convex/seed/seed-lesson-9-2.ts` | **Fixed** — wrong correctIndex in discourse quiz |
+| `convex/seed/seed-lesson-9-3.ts` through `seed-lesson-9-7.ts` | Clean |
+| `convex/seed/seed-standards.ts` | Clean, M9 standards added |
+| `convex/seed/seed-lesson-standards.ts` | Clean, M9 links complete |
+| `convex/dev.ts` | Known issues documented in tech-debt |
+| `lib/activities/review-queue.ts` | Clean, resolveComponentKind documented |
+| `components/dev/review-harness/ActivityReviewHarness.tsx` | Known handleError gap documented |
 
 ## Issues Found & Fixed
 
 ### Critical
-1. **`convex/dev.ts:171`** — `.filter()` used instead of index (Convex guideline violation).
-   Fix: Added `by_resolved` index to `component_reviews` schema, replaced `.filter().collect()` with `.withIndex().take()`.
+1. **`components/practice-timing.tsx:41,96`** — `performance.now()` vs `Date.now()` mixed time bases.
+   The hook initialized the accumulator with `Date.now()` (epoch) but fed events with `performance.now()` (page-relative). First delta ≈ -55 years, silently dropped. All intermediate idle/active/confidence tracking was broken; only `wallClockMs` was salvaged by `finalize()`.
+   Fix: Use `performance.now()` consistently for all accumulator calls.
 
-2. **`convex/dev.ts:33,60`** — Unbounded `.collect()` on full tables.
-   Fix: Replaced with `.take(500)` for bounded queries.
+2. **`lib/practice/timing.ts:155-198`** — Idle double-counting.
+   When an explicit `idle` event was followed by an `interaction`, both the explicit idle duration AND the gap from `lastActiveTime` contributed to `idleMs`, subtracting the threshold allowance twice.
+   Fix: After processing explicit idle in Block 1, set `lastActiveTime = currTime` and return early.
 
-3. **`__tests__/components/lesson/PhaseRenderer.test.tsx`** — `next/dynamic` mock used `vi.mock` with variable defined after hoisted mock factory. MarkdownRenderer mock lacked `default` export.
-   Fix: Used `vi.hoisted()` for shared component, added `default` export, improved async mock reliability.
+### High
+3. **`convex/seed/seed-lesson-9-2.ts:398`** — Wrong `correctIndex: 1` for Quadrant II reference angle.
+   "180° minus the angle" (correct) was at index 0; "90° minus the angle" (wrong) was marked correct.
+   Fix: Changed to `correctIndex: 0`.
 
-### Medium
-4. **`convex/dev.ts:42`** — `isStale` was `undefined` instead of `false` when no approval exists (type mismatch with `boolean` declaration).
-   Fix: `storedHash ? storedHash !== currentHash : false`.
+4. **`convex/seed/seed-lesson-9-1.ts:71`** — `graphing-explorer` with `y = x` in angle-measure lesson.
+   Same class of bug previously fixed in Module 8 (lessons 8-2/8-3). Domain mismatch.
+   Fix: Replaced with `comprehension-quiz` containing arc-length and radian conversion questions.
 
-5. **`convex/dev.ts:128-129`** — Unnecessarily complex ternary for approval status. Simplified to `args.status`.
+### Medium (Noted, Not Fixed)
+5. **`convex/dev.ts:165`** — `submitReviewHandler` derives `componentKind` from client args, not placement. Write-path hash may mismatch read-path hash (which correctly uses `resolveComponentKind`). Causes permanent `isStale: true` for misclassified components.
+6. **`convex/dev.ts:54-59`** — N+1 sequential `ctx.db.get()` in phase loop. Use `Promise.all`.
+7. **`ActivityReviewHarness.tsx:49-58`** — `handleError` is unreachable dead code. `ActivityPreview` has no error boundary; render errors crash the tree silently.
+8. **`ActivityReviewHarness.tsx:80`** and `PracticeReviewHarness.tsx:81`** — `canApprove` gate incomplete. Checklist items not gated: mode selector (Activity), variant inspection (Practice).
+9. **`__tests__/convex/seed/seed-lesson-9-*.test.ts`** — All seed tests are tautological: inline data, never import/execute actual seed functions. Zero regression protection (known pattern across all modules).
+10. **All Module 9 lesson seeds** — Activities table has no deduplication check. Phase insertion is idempotent but activity insertion is not. Re-seeding creates duplicate activity rows.
 
-6. **`content-hash.ts:21`** — `undefined` values silently dropped by `JSON.stringify`, producing identical hashes for `{a: undefined}` and `{}`. Low risk for current use but no regression test.
+### Low (Noted)
+11. **`timing.ts:34`** — `confidenceReasons` is `string[]` not a union type.
+12. **`SubmissionReviewPanel.tsx:206-212`** — Local `PracticeTimingEvidence` type redefines contract type, omitting fields.
+13. **`ActivityRenderer.tsx:16`** — Mode type `'teaching'|'guided'|'practice'` cast to `PracticeMode` with implicit mapping.
+14. **`timing.ts:63`** — `totalFocusLossMs` accumulated but never exposed (dead code).
+15. **`timing.test.ts:207,235`** — Test names contradict assertions ("keeps confidence at high" but asserts `medium`).
+16. **All M9 seeds** — `unit-circle-trainer` and `function-analyzer` components listed in contract for Module 9 but never used.
+17. **`seed-lesson-9-5.ts:108,160`** — Degrees in Learn section formula, radians in worked example without bridge.
+18. **All M9 seeds** — `as` cast on section content with no Zod validation against contract schemas.
 
-### Low (Noted, Not Fixed)
-7. **`convex/dev.ts:93`** — `createdBy` accepted as function argument rather than derived from auth context. Acceptable for internal mutations but should be verified at public call boundaries.
+## Architectural Observations
+- Practice timing telemetry is now functional but has weak integration tests (`practice-timing.test.tsx` fully mocks the accumulator).
+- Module 9 seed is complete but follows the same tautological test pattern as all other modules.
+- The `submitReviewHandler` componentKind derivation remains the most impactful unfixed issue — it corrupts stale detection permanently.
+- Convex V validators cannot enforce Zod-style refinements (negative durations accepted server-side). Client-side validation is the only guard.
 
-8. **`convex/dev.ts:111`** — Placeholder hash `"todo-hash-for-example-practice"` for non-activity components. Known incomplete item (Phase 3+ of component-approval track).
-
-9. **Algebraic test files** — Systematic anti-pattern: tests named "renders all X steps" but assert only 20-50% of steps. Guided/practice mode tests are near no-ops or missing entirely. `isKeyStep` flag, distractor rendering, and completion flow are untested.
-
-## Test Results
-- **1150 passed, 6 failed** across 109 test files
-- 6 failures: `equivalence.test.ts` — known pattern-matching limitations (88% passing, exceeds 80% target)
-- Build: passing
-- Lint: passing
-
-## Architectural Concerns
-- Algebraic component tests are structurally weak; they verify rendering without crashing but don't validate pedagogical behavior (step progression, distractor interaction, hint system)
-- `content-hash.ts` uses Node.js `crypto` which runs in V8 runtime for queries/mutations — works today because Convex V8 has polyfills but could break with runtime changes
-- No auth checks in `convex/dev.ts` — internal functions rely on callers for access control (Phase 3 will add developer-only guards)
+## Summary
+| Severity | Found | Fixed | Remaining |
+|----------|-------|-------|-----------|
+| Critical | 2 | 2 | 0 |
+| High | 2 | 2 | 0 |
+| Medium | 6 | 0 | 6 |
+| Low | 8 | 0 | 8 |

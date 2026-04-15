@@ -68,11 +68,20 @@ export const seedLesson9_1 = internalMutation({
             sequenceOrder: 2,
             sectionType: "activity" as const,
             content: {
-              componentKey: "graphing-explorer",
+              componentKey: "comprehension-quiz",
               props: {
-                variant: "explore",
-                equation: "y = x",
-                title: "Arc Length Explorer",
+                questions: [
+                  {
+                    question: "A circle has radius 5. What is the arc length subtended by a central angle of 2 radians?",
+                    options: ["10", "25", "5/2"],
+                    correctIndex: 0,
+                  },
+                  {
+                    question: "How many radians are in one full revolution?",
+                    options: ["π", "2π", "360"],
+                    correctIndex: 1,
+                  },
+                ],
               },
             },
           },

@@ -14,10 +14,9 @@
 - (2026-04-15, code-review) React components calling hooks must follow `use*` naming convention; dual state bugs arise when parent and child both track the same state — extract state to single owner
 - (2026-04-15, code-review) Approval gating must include ALL verification checkboxes in canApprove; mode review alone is insufficient for trustworthiness
 - (2026-04-15, code-review) Content hashing must use the same componentKind derivation on both write and read paths
-- (2026-04-15, code-review) `JSON.stringify` silently drops undefined keys — use explicit null or pre-filter for content hashing determinism
-- (2026-04-15, code-review) Seed test tautology: inline test data that never imports actual seed files provides zero regression protection
 - (2026-04-16, code-review) Standard codes referenced in lesson_standards links must exist in seed-standards.ts; missing standards cause silent link failures at seed time with no error visibility
-- (2026-04-16, practice-timing-telemetry) Add custom Zod refinements on timing schemas (e.g., activeMs <= wallClockMs) to catch impossible timing at the validation boundary rather than downstream
+- (2026-04-16, code-review) Explore phase activities must match lesson domain — copy-pasted graphing-explorer in non-graphing lessons is a silent content error
+- (2026-04-16, practice-timing) When mixing `performance.now()` and `Date.now()` in React hooks, all internal timing must use one base; serialization is the only safe place to convert
 
 ## Patterns That Worked Well
 
@@ -25,7 +24,7 @@
 - (2026-04-06, scaffold-pages) Mock `@/lib/convex/server` and `@/lib/auth/server` at the top of page tests — keeps tests fast and isolated
 - (2026-04-15, harden-manual-approval) Harness gating: expose canApprove via callback, track in parent, gate approve button
 - (2026-04-12, graphing-components) Create wrapper components for activity registry to adapt component-specific props
-- (2026-04-12, fix-graphing-test-types) Use `as const` on string literals in test props to preserve literal types
+- (2026-04-16, practice-timing) Pure accumulator pattern: isolate timing logic in a browser-free module, inject timestamps from React hook — allows unit testing without DOM
 
 ## Planning Improvements
 

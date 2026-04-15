@@ -167,6 +167,8 @@ export class TimingAccumulator {
         }
       }
       this.state.idleStartTime = null;
+      this.state.lastActiveTime = currTime;
+      return;
     }
 
     if (this.state.hiddenStartTime !== null) {
@@ -174,6 +176,7 @@ export class TimingAccumulator {
     }
 
     if (this.state.isPaused) {
+      this.state.lastActiveTime = currTime;
       return;
     }
 

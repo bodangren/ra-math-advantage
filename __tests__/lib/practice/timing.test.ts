@@ -122,7 +122,7 @@ describe('TimingAccumulator', () => {
       acc.addEvent(idle(5000));
       acc.addEvent(interaction(45000));
       const snap = acc.getSnapshot();
-      expect(snap.longestIdleMs).toBe(44000);
+      expect(snap.longestIdleMs).toBe(40000);
     });
 
     it('auto-detects long gap as idle', () => {
@@ -155,7 +155,10 @@ describe('TimingAccumulator', () => {
       acc.addEvent(idle(10000));
       acc.addEvent(interaction(120000));
       const snap = acc.getSnapshot();
-      expect(snap.idleMs).toBe(64000);
+      // idle@10000 is out-of-order (lastEventTime=40000) and dropped.
+      // First idle period (5000→40000): 35000-30000 = 5000ms via explicit idle.
+      // Second gap (40000→120000): 80000-30000 = 50000ms via gap detection.
+      expect(snap.idleMs).toBe(55000);
     });
   });
 

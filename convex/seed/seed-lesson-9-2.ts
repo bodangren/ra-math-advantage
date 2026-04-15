@@ -395,7 +395,7 @@ export const seedLesson9_2 = internalMutation({
                   {
                     question: "What is the reference angle for an angle in Quadrant II?",
                     options: ["180° minus the angle", "90° minus the angle", "the angle"],
-                    correctIndex: 1,
+                    correctIndex: 0,
                   },
                   {
                     question: "Which trigonometric functions are positive in Quadrant III?",

@@ -31,7 +31,7 @@ export function usePracticeTiming(
     if (!accumulatorRef.current || startTimeRef.current === null) {
       return null;
     }
-    return accumulatorRef.current.finalize(Date.now());
+    return accumulatorRef.current.finalize(performance.now());
   }, []);
 
   const recordInteraction = useCallback(() => {
@@ -83,7 +83,7 @@ export function usePracticeTiming(
       timestamp: performance.now(),
     });
 
-    const timing = accumulatorRef.current.finalize(Date.now());
+    const timing = accumulatorRef.current.finalize(performance.now());
     if (timing && onSubmit) {
       onSubmit(timing);
     }
@@ -93,7 +93,7 @@ export function usePracticeTiming(
   useEffect(() => {
     accumulatorRef.current = createTimingAccumulator({ idleThresholdMs });
     startTimeRef.current = Date.now();
-    accumulatorRef.current.start(Date.now());
+    accumulatorRef.current.start(performance.now());
     setIsTracking(true);
 
     document.addEventListener('visibilitychange', handleVisibilityChange);
@@ -108,7 +108,7 @@ export function usePracticeTiming(
       window.removeEventListener('pagehide', handlePageHide);
 
       if (accumulatorRef.current && accumulatorRef.current.isActive()) {
-        const timing = accumulatorRef.current.finalize(Date.now());
+        const timing = accumulatorRef.current.finalize(performance.now());
         if (timing && onSubmit) {
           onSubmit(timing);
         }
