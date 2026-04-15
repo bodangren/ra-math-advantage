@@ -153,6 +153,9 @@ export const seedAll = internalAction({
           case "module-7-lesson-4":
             await ctx.runMutation(seedInternal.seedLesson7_4, {});
             break;
+          case "module-7-lesson-5":
+            await ctx.runMutation(seedInternal.seedLesson7_5, {});
+            break;
           default:
             break;
         }
@@ -971,6 +974,26 @@ function getLessons(): SeedLesson[] {
         { phaseNumber: 5, title: "Worked Example 2", phaseType: "worked_example", sections: [] },
         { phaseNumber: 6, title: "Worked Example 3", phaseType: "worked_example", sections: [] },
         { phaseNumber: 7, title: "Learn: Graphing Rational Functions with Oblique Asymptotes", phaseType: "learn", sections: [] },
+        { phaseNumber: 8, title: "Worked Example 4", phaseType: "worked_example", sections: [] },
+        { phaseNumber: 9, title: "Worked Example 5", phaseType: "worked_example", sections: [] },
+        { phaseNumber: 10, title: "Discourse", phaseType: "discourse", sections: [] },
+        { phaseNumber: 11, title: "Reflection", phaseType: "reflection", sections: [] },
+      ],
+    },
+    {
+      unitNumber: 7,
+      title: "Variation",
+      slug: "module-7-lesson-5",
+      description: "Students recognize and solve direct, joint, inverse, and combined variation equations.",
+      orderIndex: 5,
+      phases: [
+        { phaseNumber: 1, title: "Explore", phaseType: "explore", sections: [] },
+        { phaseNumber: 2, title: "Vocabulary", phaseType: "vocabulary", sections: [] },
+        { phaseNumber: 3, title: "Learn: Direct Variation and Joint Variation", phaseType: "learn", sections: [] },
+        { phaseNumber: 4, title: "Worked Example 1", phaseType: "worked_example", sections: [] },
+        { phaseNumber: 5, title: "Worked Example 2", phaseType: "worked_example", sections: [] },
+        { phaseNumber: 6, title: "Learn: Inverse Variation and Combined Variation", phaseType: "learn", sections: [] },
+        { phaseNumber: 7, title: "Worked Example 3", phaseType: "worked_example", sections: [] },
         { phaseNumber: 8, title: "Worked Example 4", phaseType: "worked_example", sections: [] },
         { phaseNumber: 9, title: "Worked Example 5", phaseType: "worked_example", sections: [] },
         { phaseNumber: 10, title: "Discourse", phaseType: "discourse", sections: [] },
