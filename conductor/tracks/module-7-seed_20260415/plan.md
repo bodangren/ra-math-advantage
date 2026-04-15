@@ -10,7 +10,7 @@
   - [x] Implement lesson, phases, sections, and activities
 - [x] Task: Conductor - Phase Completion Verification 'Seed Lesson 7-1' (Protocol in workflow.md)
 
-## Phase 2: Seed Lesson 7-2
+## Phase 2: Seed Lesson 7-2 [checkpoint: 1a875b7]
 
 - [x] Task: Verify lesson 7-2 curriculum source (ac1e13c)
   - [x] Confirm title and phase sequence against `curriculum/modules/module-7-lesson-2`
