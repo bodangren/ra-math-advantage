@@ -22,13 +22,13 @@
 
 ## Phase 3: Seed Lesson 7-3
 
-- [ ] Task: Verify lesson 7-3 curriculum source
-  - [ ] Confirm title and phase sequence against `curriculum/modules/module-7-lesson-3`
-  - [ ] Confirm reciprocal graphing examples map to graphing activities
-- [ ] Task: Create seed function `convex/seed/seed-lesson-7-3.ts`
-  - [ ] Write tests for phase sequence and idempotency
-  - [ ] Implement lesson, phases, sections, and activities
-- [ ] Task: Conductor - Phase Completion Verification 'Seed Lesson 7-3' (Protocol in workflow.md)
+- [x] Task: Verify lesson 7-3 curriculum source
+  - [x] Confirm title and phase sequence against `curriculum/modules/module-7-lesson-3`
+  - [x] Confirm reciprocal graphing examples map to graphing activities
+- [x] Task: Create seed function `convex/seed/seed-lesson-7-3.ts`
+  - [x] Write tests for phase sequence and idempotency
+  - [x] Implement lesson, phases, sections, and activities
+- [x] Task: Conductor - Phase Completion Verification 'Seed Lesson 7-3' (Protocol in workflow.md)
 
 ## Phase 4: Seed Lesson 7-4
 
