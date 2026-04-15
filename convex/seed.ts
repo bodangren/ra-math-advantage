@@ -76,6 +76,9 @@ export const seedAll = internalAction({
           case "module-2-lesson-5":
             await ctx.runMutation(seedInternal.seedLesson2_5, {});
             break;
+          case "module-3-lesson-4":
+            await ctx.runMutation(seedInternal.seedLesson3_4, {});
+            break;
           default:
             break;
         }
@@ -364,7 +367,7 @@ function getLessons(): SeedLesson[] {
         { phaseNumber: 11, title: "Reflection", phaseType: "reflection", sections: [] },
       ],
     },
-    {
+      {
       unitNumber: 2,
       title: "Powers of Binomials",
       slug: "module-2-lesson-5",
@@ -379,6 +382,24 @@ function getLessons(): SeedLesson[] {
         { phaseNumber: 6, title: "Worked Example 3", phaseType: "worked_example", sections: [] },
         { phaseNumber: 7, title: "Discourse", phaseType: "discourse", sections: [] },
         { phaseNumber: 8, title: "Reflection", phaseType: "reflection", sections: [] },
+      ],
+    },
+    {
+      unitNumber: 3,
+      title: "The Remainder and Factor Theorems",
+      slug: "module-3-lesson-4",
+      description: "Students evaluate functions using synthetic substitution and use the Factor Theorem to determine factors of polynomials.",
+      orderIndex: 4,
+      phases: [
+        { phaseNumber: 1, title: "Explore", phaseType: "explore", sections: [] },
+        { phaseNumber: 2, title: "Vocabulary", phaseType: "vocabulary", sections: [] },
+        { phaseNumber: 3, title: "Learn: The Remainder Theorem", phaseType: "learn", sections: [] },
+        { phaseNumber: 4, title: "Worked Example 1", phaseType: "worked_example", sections: [] },
+        { phaseNumber: 5, title: "Worked Example 2", phaseType: "worked_example", sections: [] },
+        { phaseNumber: 6, title: "Learn: The Factor Theorem", phaseType: "learn", sections: [] },
+        { phaseNumber: 7, title: "Worked Example 3", phaseType: "worked_example", sections: [] },
+        { phaseNumber: 8, title: "Discourse", phaseType: "discourse", sections: [] },
+        { phaseNumber: 9, title: "Reflection", phaseType: "reflection", sections: [] },
       ],
     },
   ];
