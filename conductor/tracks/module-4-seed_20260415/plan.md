@@ -1,14 +1,14 @@
 # Module 4 Curriculum Seed - Implementation Plan
 
-## Phase 1: Seed Lesson 4-1 [checkpoint: pending]
+## Phase 1: Seed Lesson 4-1 [checkpoint: c173e0c]
 
-- [x] Task: Verify lesson 4-1 curriculum source [commit: pending]
+- [x] Task: Verify lesson 4-1 curriculum source [c173e0c]
   - [x] Confirm title and phase sequence against `curriculum/modules/module-4-lesson-1`
   - [x] Confirm function operations and composition examples map to available activities
-- [x] Task: Create seed function `convex/seed/seed-lesson-4-1.ts` [commit: pending]
+- [x] Task: Create seed function `convex/seed/seed-lesson-4-1.ts` [c173e0c]
   - [x] Write tests for phase sequence and idempotency
   - [x] Implement lesson, phases, sections, and activities
-- [x] Task: Conductor - Phase Completion Verification 'Seed Lesson 4-1' (Protocol in workflow.md) [commit: pending]
+- [x] Task: Conductor - Phase Completion Verification 'Seed Lesson 4-1' (Protocol in workflow.md) [c173e0c]
 
 ## Phase 2: Seed Lesson 4-2
 
