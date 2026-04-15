@@ -22,13 +22,13 @@
 
 ## Phase 3: Seed Lesson 5-3
 
-- [ ] Task: Verify lesson 5-3 curriculum source
-  - [ ] Confirm title and phase sequence against `curriculum/modules/module-5-lesson-3`
-  - [ ] Confirm special exponential function examples preserve context
-- [ ] Task: Create seed function `convex/seed/seed-lesson-5-3.ts`
-  - [ ] Write tests for phase sequence and idempotency
-  - [ ] Implement lesson, phases, sections, and activities
-- [ ] Task: Conductor - Phase Completion Verification 'Seed Lesson 5-3' (Protocol in workflow.md)
+- [x] Task: Verify lesson 5-3 curriculum source
+  - [x] Confirm title and phase sequence against `curriculum/modules/module-5-lesson-3`
+  - [x] Confirm special exponential function examples preserve context
+- [x] Task: Create seed function `convex/seed/seed-lesson-5-3.ts`
+  - [x] Write tests for phase sequence and idempotency
+  - [x] Implement lesson, phases, sections, and activities
+- [x] Task: Conductor - Phase Completion Verification 'Seed Lesson 5-3' (Protocol in workflow.md) [checkpoint: f052437]
 
 ## Phase 4: Seed Lesson 5-4
 
