@@ -1,15 +1,15 @@
 # Current Directive
 
-> Updated: 2026-04-16 (Code review: Module 7 Phases 6-7, Module 8 Phase 1, seed standards fixes)
+> Updated: 2026-04-16 (Module 8 Phase 4: Lesson 8-4 seed complete)
 
 ## Status Summary
 
-- **Tests**: 2140 passing, 6 known failures (equivalence validator - radicals/fractions, pre-existing).
+- **Tests**: 2181 passing, 7 known failures (equivalence validator - radicals/fractions, pre-existing).
 - **Build**: Passing; RSC chunk warning remains pre-existing (735 KB).
 - **Lint**: Passing.
 - **TypeScript**: 25 pre-existing test-file errors remain (students.test.tsx, dashboard.test.ts). No new TS errors.
 - **Module 1-7 Roadmap**: Complete.
-- **Module 8 Seed**: Phases 1-3 complete (Lessons 8-1 through 8-3). Phases 4-6 pending.
+- **Module 8 Seed**: Phases 1-4 complete (Lessons 8-1 through 8-4). Phases 5-6 pending.
 - **Code Review**: Completed 2026-04-16. Fixed 2 issues (HSA-APR.B.2 incorrect description, missing HSF-LE.A.1 and HSA-CED.A.2 standards).
 
 ## Current In-Progress Track
@@ -18,12 +18,12 @@
 
 Track: `conductor/tracks/module-8-seed_20260415/`
 
-Seed Module 8 inferential statistics lessons (8-1 through 8-5) into Convex database. Phase 1 complete.
+Seed Module 8 inferential statistics lessons (8-1 through 8-5) into Convex database. Phase 4 complete.
 
 ## Planned Upcoming Tracks
 
-1. **Module 8 Curriculum Seed** — Phase 2: Lesson 8-2
-2. **Module 8 Curriculum Seed** — Phases 3-6: Lessons 8-3 through 8-5 and integration
+1. **Module 8 Curriculum Seed** — Phase 5: Lesson 8-5
+2. **Module 8 Curriculum Seed** — Phase 6: Module Integration and Verification
 3. **Module 9 Curriculum Seed** — `module-9-seed_20260415` (7 lessons)
 4. **Practice Timing Telemetry** — `practice-timing-telemetry_20260415` (post-Module 9 SRS foundation)
 5. **Practice Timing Baselines** — `practice-timing-baselines_20260415` (depends on timing telemetry and stable practice problem-family identifiers)
