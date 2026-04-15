@@ -127,6 +127,9 @@ export const seedAll = internalAction({
           case "module-6-lesson-1":
             await ctx.runMutation(seedInternal.seedLesson6_1, {});
             break;
+          case "module-6-lesson-2":
+            await ctx.runMutation(seedInternal.seedLesson6_2, {});
+            break;
           default:
             break;
         }
@@ -775,6 +778,27 @@ function getLessons(): SeedLesson[] {
         { phaseNumber: 12, title: "Worked Example 8", phaseType: "worked_example", sections: [] },
         { phaseNumber: 13, title: "Discourse", phaseType: "discourse", sections: [] },
         { phaseNumber: 14, title: "Reflection", phaseType: "reflection", sections: [] },
+      ],
+    },
+    {
+      unitNumber: 6,
+      title: "Properties of Logarithms",
+      slug: "module-6-lesson-2",
+      description: "Students solve logarithmic equations using properties of equality, and simplify expressions using properties of logarithms.",
+      orderIndex: 2,
+      phases: [
+        { phaseNumber: 1, title: "Explore", phaseType: "explore", sections: [] },
+        { phaseNumber: 2, title: "Vocabulary", phaseType: "vocabulary", sections: [] },
+        { phaseNumber: 3, title: "Learn: Logarithmic Equations", phaseType: "learn", sections: [] },
+        { phaseNumber: 4, title: "Worked Example 1", phaseType: "worked_example", sections: [] },
+        { phaseNumber: 5, title: "Worked Example 2", phaseType: "worked_example", sections: [] },
+        { phaseNumber: 6, title: "Learn: Properties of Logarithms", phaseType: "learn", sections: [] },
+        { phaseNumber: 7, title: "Worked Example 3", phaseType: "worked_example", sections: [] },
+        { phaseNumber: 8, title: "Worked Example 4", phaseType: "worked_example", sections: [] },
+        { phaseNumber: 9, title: "Worked Example 5", phaseType: "worked_example", sections: [] },
+        { phaseNumber: 10, title: "Worked Example 6", phaseType: "worked_example", sections: [] },
+        { phaseNumber: 11, title: "Discourse", phaseType: "discourse", sections: [] },
+        { phaseNumber: 12, title: "Reflection", phaseType: "reflection", sections: [] },
       ],
     },
   ];
