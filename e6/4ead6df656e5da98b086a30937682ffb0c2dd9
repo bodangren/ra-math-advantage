@@ -1,0 +1,21 @@
+Task: Practice Timing Telemetry Phase 1 - Canonical Contract and Schema Reconciliation
+
+Summary: Added canonical timing types and validators to practice.v1 contract. Reconciled divergent submission schemas across lib/practice/contract.ts, lib/practice/submission.schema.ts, and convex/practice_submission.ts.
+
+Changes:
+- Added PracticeTimingSummary and PracticeTimingConfidence schemas with validation (activeMs <= wallClockMs, non-negative durations)
+- Added optional part-level timing fields (firstInteractionAt, answeredAt, wallClockMs, activeMs)
+- Added optional timing field to PracticeSubmissionEnvelope
+- Reconciled submission.schema.ts mode enum to match canonical contract
+- Added missing 'teaching' mode to convex/practice_submission.ts validator
+- Updated buildPracticeSubmissionEnvelope and normalizePracticeSubmissionInput to accept timing
+- Created comprehensive contract tests for backward compatibility and validation
+- Updated conductor/practice-component-contract.md with timing evidence documentation
+
+Files modified:
+- lib/practice/contract.ts
+- lib/practice/submission.schema.ts
+- convex/practice_submission.ts
+- conductor/practice-component-contract.md
+- conductor/tracks/practice-timing-telemetry_20260415/plan.md
+- __tests__/lib/practice/contract.test.ts (new)
