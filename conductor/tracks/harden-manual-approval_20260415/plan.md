@@ -66,10 +66,10 @@
 
 ## Phase 5: Documentation and Status Reconciliation
 
-- [ ] Task: Update developer documentation
-  - [ ] Update approval workflow notes with real queue coverage and hash behavior
-  - [ ] Document remaining manual-review limitations, if any
-  - [ ] Confirm LLM repair restrictions remain explicit
+- [x] Task: Update developer documentation [9c3052e]
+  - [x] Update approval workflow notes with real queue coverage and hash behavior
+  - [x] Document remaining manual-review limitations, if any
+  - [x] Confirm LLM repair restrictions remain explicit
 
 - [ ] Task: Reconcile Conductor records
   - [ ] Mark moved/deferred items in the original component-approval plan coherently
