@@ -9,7 +9,7 @@
 - **Lint**: Passing.
 - **TypeScript**: 25 pre-existing test-file errors remain (students.test.tsx, dashboard.test.ts). No new TS errors.
 - **Module 1-7 Roadmap**: Complete.
-- **Module 8 Seed**: Phase 1 complete (Lesson 8-1). Phases 2-6 pending.
+- **Module 8 Seed**: Phases 1-3 complete (Lessons 8-1 through 8-3). Phases 4-6 pending.
 - **Code Review**: Completed 2026-04-16. Fixed 2 issues (HSA-APR.B.2 incorrect description, missing HSF-LE.A.1 and HSA-CED.A.2 standards).
 
 ## Current In-Progress Track
