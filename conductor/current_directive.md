@@ -1,21 +1,15 @@
 # Current Directive
 
-> Updated: 2026-04-16 (Code review — Module 9 Phases 5-7 audited; no critical/high findings)
+> Updated: 2026-04-16 (Phase 4 — Persistence and Review Surfaces complete [7c3d8e1])
 
 ## Status Summary
 
-- **Tests**: 2295 passing, 6 known failures (equivalence validator — fraction/radical expressions).
+- **Tests**: 2400 passing, 6 known failures (equivalence validator — fraction/radical expressions).
 - **Build**: Passing; RSC chunk warning remains pre-existing (734 KB).
 - **Lint**: Passing.
 - **TypeScript**: 25 pre-existing test-file errors remain (students.test.tsx, dashboard.test.ts). No new TS errors.
 - **Module 1-9 Roadmap**: Complete through Phase 7 (lesson seeds 9-1 through 9-7).
 - **Module 9 Seed**: All phases 1-8 complete (Lessons 9-1 through 9-7 with standards and lesson-standard links).
-- **Code Review 3** (2026-04-16): Module 9 Phases 5-7 audited. No critical/high findings.
-  - Fixed Phase 5 `checkpoint: pending` → `eb337e4` in plan.md.
-  - Content accuracy verified against curriculum source for all 3 lessons.
-  - Seed.ts orchestration wiring confirmed for lessons 9-5, 9-6, 9-7.
-  - No malformed dollar formatting, no wrong componentKey issues.
-  - Known tautological test pattern persists (tracked in tech-debt.md).
 
 ## Current In-Progress Track
 
@@ -28,7 +22,7 @@ Add canonical wall-clock, active-time, idle-time, and timing-confidence evidence
 - Phase 1: Canonical Contract and Schema Reconciliation — COMPLETE [checkpoint: 790e2f5]
 - Phase 2: Reusable Timing Core and React Instrumentation — COMPLETE [checkpoint: a973651]
 - Phase 3: Activity Submission Integration — COMPLETE [checkpoint: 733bef3]
-- Phase 4: Persistence and Review Surfaces — pending
+- Phase 4: Persistence and Review Surfaces — COMPLETE [checkpoint: 7c3d8e1]
 - Phase 5: Verification, Documentation, and Handoff — pending
 
 ## Planned Upcoming Tracks
