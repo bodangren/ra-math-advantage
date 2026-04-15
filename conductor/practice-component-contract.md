@@ -81,8 +81,49 @@ type PracticeSubmissionPart = {
   hintsUsed?: number;
   revealStepsSeen?: number;
   changedCount?: number;
+  firstInteractionAt?: string;
+  answeredAt?: string;
+  wallClockMs?: number;
+  activeMs?: number;
+};
+
+### Timing Evidence
+
+> Timing is **optional process evidence**, not a standalone grade. It belongs in canonical fields, not arbitrary `analytics`.
+
+```typescript
+type PracticeTimingConfidence = "high" | "medium" | "low";
+
+type PracticeTimingSummary = {
+  startedAt: string;
+  submittedAt: string;
+  wallClockMs: number;
+  activeMs: number;
+  idleMs: number;
+  pauseCount: number;
+  focusLossCount: number;
+  visibilityHiddenCount: number;
+  longestIdleMs?: number;
+  confidence: PracticeTimingConfidence;
+  confidenceReasons?: string[];
 };
 ```
+
+The `timing` field is added to the `PracticeSubmissionEnvelope`:
+
+```typescript
+type PracticeSubmissionEnvelope = {
+  // ... existing fields
+  timing?: PracticeTimingSummary;
+};
+```
+
+Design notes:
+- `wallClockMs` is the total elapsed time from `startedAt` to `submittedAt`.
+- `activeMs` is the subset of wall-clock time when the student was actively engaged. Hidden tabs, blur/focus losses, and idle gaps do not count.
+- `confidence` is deterministic: `high` for clean sessions, `medium` for minor interruptions, `low` for significant idle gaps or focus losses.
+- `confidenceReasons` are machine-readable so future SRS adapters can down-weight timing when appropriate.
+- Backward compatibility: envelopes without `timing` remain valid.
 
 ---
 

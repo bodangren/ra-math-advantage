@@ -5,6 +5,7 @@ export const practiceModeValidator = v.union(
   v.literal('guided_practice'),
   v.literal('independent_practice'),
   v.literal('assessment'),
+  v.literal('teaching'),
 );
 
 export const practiceSubmissionStatusValidator = v.union(
@@ -13,6 +14,26 @@ export const practiceSubmissionStatusValidator = v.union(
   v.literal('graded'),
   v.literal('returned'),
 );
+
+export const practiceTimingConfidenceValidator = v.union(
+  v.literal('high'),
+  v.literal('medium'),
+  v.literal('low'),
+);
+
+export const practiceTimingSummaryValidator = v.object({
+  startedAt: v.string(),
+  submittedAt: v.string(),
+  wallClockMs: v.number(),
+  activeMs: v.number(),
+  idleMs: v.number(),
+  pauseCount: v.number(),
+  focusLossCount: v.number(),
+  visibilityHiddenCount: v.number(),
+  longestIdleMs: v.optional(v.number()),
+  confidence: practiceTimingConfidenceValidator,
+  confidenceReasons: v.optional(v.array(v.string())),
+});
 
 export const practiceSubmissionPartValidator = v.object({
   partId: v.string(),
@@ -25,6 +46,10 @@ export const practiceSubmissionPartValidator = v.object({
   hintsUsed: v.optional(v.number()),
   revealStepsSeen: v.optional(v.number()),
   changedCount: v.optional(v.number()),
+  firstInteractionAt: v.optional(v.string()),
+  answeredAt: v.optional(v.string()),
+  wallClockMs: v.optional(v.number()),
+  activeMs: v.optional(v.number()),
 });
 
 export const practiceSubmissionEnvelopeValidator = v.object({
@@ -41,4 +66,5 @@ export const practiceSubmissionEnvelopeValidator = v.object({
   analytics: v.optional(v.record(v.string(), v.any())),
   studentFeedback: v.optional(v.string()),
   teacherSummary: v.optional(v.string()),
+  timing: v.optional(practiceTimingSummaryValidator),
 });
