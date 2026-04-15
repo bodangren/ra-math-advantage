@@ -21,7 +21,8 @@ Track: `conductor/tracks/module-3-seed_20260415/`
 Phase 1 complete: Seed Lesson 3-1 (Solving Polynomial Equations by Graphing).
 Phase 2 complete: Seed Lesson 3-2 (Solving Polynomial Equations Algebraically).
 Phase 3 complete: Seed Lesson 3-3 (Proving Polynomial Identities).
-Ready to begin Phase 4: Seed Lesson 3-4 (The Remainder and Factor Theorems).
+Phase 4 complete: Seed Lesson 3-4 (The Remainder and Factor Theorems).
+Ready to begin Phase 5: Seed Lesson 3-5 (Roots, Zeros, and the Binomial Theorem).
 
 ## Planned Upcoming Tracks
 
