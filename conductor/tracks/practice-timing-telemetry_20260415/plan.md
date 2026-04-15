@@ -21,27 +21,27 @@
   - [x] Document timing as optional process evidence, not a standalone grade [e64ead6]
 - [x] Task: Conductor - Phase Completion Verification 'Canonical Contract and Schema Reconciliation' (Protocol in workflow.md) [e64ead6]
 
-## Phase 2: Reusable Timing Core and React Instrumentation
+## Phase 2: Reusable Timing Core and React Instrumentation [checkpoint: pending]
 
-- [ ] Task: Write unit tests for the pure timing accumulator
-  - [ ] Test wall-clock and active time accumulation
-  - [ ] Test idle threshold handling with a 30 second default
-  - [ ] Test pause/resume behavior
-  - [ ] Test confidence downgrade reasons
-- [ ] Task: Implement a course-agnostic timing accumulator
-  - [ ] Create a pure module for timing session state and transitions
-  - [ ] Use serializable timestamps and numeric durations
-  - [ ] Keep browser APIs out of the pure module
-- [ ] Task: Implement a React timing hook or wrapper
-  - [ ] Use `Date.now()` for persisted timestamps
-  - [ ] Use `performance.now()` for elapsed duration math
-  - [ ] Subscribe to `visibilitychange`, `focus`, `blur`, and `pagehide`
-  - [ ] Clean up all listeners on unmount
-- [ ] Task: Add browser-event tests
-  - [ ] Test hidden-tab intervals are not counted as active time
-  - [ ] Test blur/focus intervals affect confidence
-  - [ ] Test pagehide marks an interrupted or low-confidence session
-  - [ ] Test a long interaction gap is counted as idle time
+- [x] Task: Write unit tests for the pure timing accumulator [pending]
+  - [x] Test wall-clock and active time accumulation
+  - [x] Test idle threshold handling with a 30 second default
+  - [x] Test pause/resume behavior
+  - [x] Test confidence downgrade reasons
+- [x] Task: Implement a course-agnostic timing accumulator [pending]
+  - [x] Create a pure module for timing session state and transitions
+  - [x] Use serializable timestamps and numeric durations
+  - [x] Keep browser APIs out of the pure module
+- [x] Task: Implement a React timing hook or wrapper [pending]
+  - [x] Use `Date.now()` for persisted timestamps
+  - [x] Use `performance.now()` for elapsed duration math
+  - [x] Subscribe to `visibilitychange`, `focus`, `blur`, and `pagehide`
+  - [x] Clean up all listeners on unmount
+- [x] Task: Add browser-event tests [pending]
+  - [x] Test hidden-tab intervals are not counted as active time
+  - [x] Test blur/focus intervals affect confidence
+  - [x] Test pagehide marks an interrupted or low-confidence session
+  - [x] Test a long interaction gap is counted as idle time
 - [ ] Task: Conductor - Phase Completion Verification 'Reusable Timing Core and React Instrumentation' (Protocol in workflow.md)
 
 ## Phase 3: Activity Submission Integration
