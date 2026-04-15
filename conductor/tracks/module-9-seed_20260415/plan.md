@@ -60,15 +60,15 @@
   - [x] Implement lesson, phases, sections, and activities
 - [x] Task: Conductor - Phase Completion Verification 'Seed Lesson 9-6' (Protocol in workflow.md) [e481132]
 
-## Phase 7: Seed Lesson 9-7
+## Phase 7: Seed Lesson 9-7 [checkpoint: pending]
 
-- [ ] Task: Verify lesson 9-7 curriculum source
-  - [ ] Confirm title and phase sequence against `curriculum/modules/module-9-lesson-7`
-  - [ ] Confirm inverse trig domain restrictions and solution notation are preserved
-- [ ] Task: Create seed function `convex/seed/seed-lesson-9-7.ts`
-  - [ ] Write tests for phase sequence and idempotency
-  - [ ] Implement lesson, phases, sections, and activities
-- [ ] Task: Conductor - Phase Completion Verification 'Seed Lesson 9-7' (Protocol in workflow.md)
+- [x] Task: Verify lesson 9-7 curriculum source [7613463]
+  - [x] Confirm title and phase sequence against `curriculum/modules/module-9-lesson-7`
+  - [x] Confirm inverse trig domain restrictions and solution notation are preserved
+- [x] Task: Create seed function `convex/seed/seed-lesson-9-7.ts` [7613463]
+  - [x] Write tests for phase sequence and idempotency
+  - [x] Implement lesson, phases, sections, and activities
+- [x] Task: Conductor - Phase Completion Verification 'Seed Lesson 9-7' (Protocol in workflow.md) [7613463]
 
 ## Phase 8: Module Integration and Verification
 
