@@ -62,9 +62,9 @@
 
 ## Phase 6: Module Integration and Verification
 
-- [ ] Task: Update seed orchestration
-  - [ ] Add imports/cases for Module 3 lesson seeds
-  - [ ] Ensure `getLessons()` metadata matches canonical titles
+- [x] Task: Update seed orchestration
+  - [x] Add imports/cases for Module 3 lesson seeds
+  - [x] Ensure `getLessons()` metadata matches canonical titles
 
 - [ ] Task: Add Module 3 standards
   - [ ] Identify standard codes from curriculum/source mapping

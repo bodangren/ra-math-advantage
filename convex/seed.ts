@@ -76,8 +76,20 @@ export const seedAll = internalAction({
           case "module-2-lesson-5":
             await ctx.runMutation(seedInternal.seedLesson2_5, {});
             break;
+          case "module-3-lesson-1":
+            await ctx.runMutation(seedInternal.seedLesson3_1, {});
+            break;
+          case "module-3-lesson-2":
+            await ctx.runMutation(seedInternal.seedLesson3_2, {});
+            break;
+          case "module-3-lesson-3":
+            await ctx.runMutation(seedInternal.seedLesson3_3, {});
+            break;
           case "module-3-lesson-4":
             await ctx.runMutation(seedInternal.seedLesson3_4, {});
+            break;
+          case "module-3-lesson-5":
+            await ctx.runMutation(seedInternal.seedLesson3_5, {});
             break;
           default:
             break;
@@ -386,6 +398,60 @@ function getLessons(): SeedLesson[] {
     },
     {
       unitNumber: 3,
+      title: "Solving Polynomial Equations by Graphing",
+      slug: "module-3-lesson-1",
+      description: "Students use graphing to find solutions of polynomial equations.",
+      orderIndex: 1,
+      phases: [
+        { phaseNumber: 1, title: "Explore", phaseType: "explore", sections: [] },
+        { phaseNumber: 2, title: "Vocabulary", phaseType: "vocabulary", sections: [] },
+        { phaseNumber: 3, title: "Learn: Solving Polynomial Equations by Graphing", phaseType: "learn", sections: [] },
+        { phaseNumber: 4, title: "Worked Example 1", phaseType: "worked_example", sections: [] },
+        { phaseNumber: 5, title: "Worked Example 2", phaseType: "worked_example", sections: [] },
+        { phaseNumber: 6, title: "Discourse", phaseType: "discourse", sections: [] },
+        { phaseNumber: 7, title: "Reflection", phaseType: "reflection", sections: [] },
+      ],
+    },
+    {
+      unitNumber: 3,
+      title: "Solving Polynomial Equations Algebraically",
+      slug: "module-3-lesson-2",
+      description: "Students solve polynomial equations by factoring and using quadratic form.",
+      orderIndex: 2,
+      phases: [
+        { phaseNumber: 1, title: "Explore", phaseType: "explore", sections: [] },
+        { phaseNumber: 2, title: "Vocabulary", phaseType: "vocabulary", sections: [] },
+        { phaseNumber: 3, title: "Learn: Solving Polynomial Equations by Factoring", phaseType: "learn", sections: [] },
+        { phaseNumber: 4, title: "Worked Example 1", phaseType: "worked_example", sections: [] },
+        { phaseNumber: 5, title: "Worked Example 2", phaseType: "worked_example", sections: [] },
+        { phaseNumber: 6, title: "Worked Example 3", phaseType: "worked_example", sections: [] },
+        { phaseNumber: 7, title: "Worked Example 4", phaseType: "worked_example", sections: [] },
+        { phaseNumber: 8, title: "Worked Example 5", phaseType: "worked_example", sections: [] },
+        { phaseNumber: 9, title: "Learn: Solving Polynomial Equations in Quadratic Form", phaseType: "learn", sections: [] },
+        { phaseNumber: 10, title: "Worked Example 6", phaseType: "worked_example", sections: [] },
+        { phaseNumber: 11, title: "Worked Example 7", phaseType: "worked_example", sections: [] },
+        { phaseNumber: 12, title: "Discourse", phaseType: "discourse", sections: [] },
+        { phaseNumber: 13, title: "Reflection", phaseType: "reflection", sections: [] },
+      ],
+    },
+    {
+      unitNumber: 3,
+      title: "Proving Polynomial Identities",
+      slug: "module-3-lesson-3",
+      description: "Students prove polynomial identities and use them to describe relationships.",
+      orderIndex: 3,
+      phases: [
+        { phaseNumber: 1, title: "Explore", phaseType: "explore", sections: [] },
+        { phaseNumber: 2, title: "Vocabulary", phaseType: "vocabulary", sections: [] },
+        { phaseNumber: 3, title: "Learn: Proving Polynomial Identities", phaseType: "learn", sections: [] },
+        { phaseNumber: 4, title: "Worked Example 1", phaseType: "worked_example", sections: [] },
+        { phaseNumber: 5, title: "Worked Example 2", phaseType: "worked_example", sections: [] },
+        { phaseNumber: 6, title: "Discourse", phaseType: "discourse", sections: [] },
+        { phaseNumber: 7, title: "Reflection", phaseType: "reflection", sections: [] },
+      ],
+    },
+    {
+      unitNumber: 3,
       title: "The Remainder and Factor Theorems",
       slug: "module-3-lesson-4",
       description: "Students evaluate functions using synthetic substitution and use the Factor Theorem to determine factors of polynomials.",
@@ -400,6 +466,26 @@ function getLessons(): SeedLesson[] {
         { phaseNumber: 7, title: "Worked Example 3", phaseType: "worked_example", sections: [] },
         { phaseNumber: 8, title: "Discourse", phaseType: "discourse", sections: [] },
         { phaseNumber: 9, title: "Reflection", phaseType: "reflection", sections: [] },
+      ],
+    },
+    {
+      unitNumber: 3,
+      title: "Roots and Zeros",
+      slug: "module-3-lesson-5",
+      description: "Students apply the Fundamental Theorem of Algebra and find zeros of polynomial functions.",
+      orderIndex: 5,
+      phases: [
+        { phaseNumber: 1, title: "Explore", phaseType: "explore", sections: [] },
+        { phaseNumber: 2, title: "Vocabulary", phaseType: "vocabulary", sections: [] },
+        { phaseNumber: 3, title: "Learn: Fundamental Theorem of Algebra", phaseType: "learn", sections: [] },
+        { phaseNumber: 4, title: "Worked Example 1", phaseType: "worked_example", sections: [] },
+        { phaseNumber: 5, title: "Worked Example 2", phaseType: "worked_example", sections: [] },
+        { phaseNumber: 6, title: "Learn: Finding Zeros of Polynomial Functions", phaseType: "learn", sections: [] },
+        { phaseNumber: 7, title: "Worked Example 3", phaseType: "worked_example", sections: [] },
+        { phaseNumber: 8, title: "Worked Example 4", phaseType: "worked_example", sections: [] },
+        { phaseNumber: 9, title: "Worked Example 5", phaseType: "worked_example", sections: [] },
+        { phaseNumber: 10, title: "Discourse", phaseType: "discourse", sections: [] },
+        { phaseNumber: 11, title: "Reflection", phaseType: "reflection", sections: [] },
       ],
     },
   ];
