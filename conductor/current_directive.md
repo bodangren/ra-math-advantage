@@ -22,7 +22,8 @@ Phase 1 complete: Seed Lesson 3-1 (Solving Polynomial Equations by Graphing).
 Phase 2 complete: Seed Lesson 3-2 (Solving Polynomial Equations Algebraically).
 Phase 3 complete: Seed Lesson 3-3 (Proving Polynomial Identities).
 Phase 4 complete: Seed Lesson 3-4 (The Remainder and Factor Theorems).
-Ready to begin Phase 5: Seed Lesson 3-5 (Roots, Zeros, and the Binomial Theorem).
+Phase 5 complete: Seed Lesson 3-5 (Roots and Zeros).
+Ready to begin Phase 6: Module Integration and Verification.
 
 ## Planned Upcoming Tracks
 
