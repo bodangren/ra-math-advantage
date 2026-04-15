@@ -462,6 +462,123 @@ describe('submitReviewHandler', () => {
       ),
     ).rejects.toThrow('Comment is required');
   });
+
+  it('derives componentKind from placement.phaseType when provided', async () => {
+    const activity = {
+      _id: 'act1',
+      componentKey: 'step-by-step-solver',
+      displayName: 'Practice Problem',
+      props: {},
+      gradingConfig: undefined,
+      approval: undefined,
+      createdAt: 1,
+      updatedAt: 1,
+    };
+    const mockDb = createMockDb({
+      activities: [activity],
+      component_reviews: [],
+      component_approvals: [],
+    });
+
+    const result = await submitReviewHandler(
+      { db: mockDb } as unknown as Parameters<typeof submitReviewHandler>[0],
+      {
+        componentKind: 'example',
+        componentId: 'act1',
+        status: 'approved',
+        createdBy: 'profile1' as Id<'profiles'>,
+        placement: {
+          phaseType: 'guided_practice',
+          phaseId: 'phase1',
+          sectionId: 'section1',
+        },
+      },
+    );
+
+    expect(result.reviewId).toBeDefined();
+    expect(mockDb._tables.component_reviews).toHaveLength(1);
+    const review = mockDb._tables.component_reviews[0] as { componentKind: string; componentContentHash: string };
+    expect(review.componentKind).toBe('practice');
+    expect(mockDb._tables.component_approvals).toHaveLength(1);
+    const approval = mockDb._tables.component_approvals[0] as { status: string; contentHash: string; componentKind: string };
+    expect(approval.status).toBe('approved');
+    expect(approval.componentKind).toBe('practice');
+    expect(approval.contentHash).toBe(review.componentContentHash);
+  });
+
+  it('derives componentKind as example for worked_example phaseType', async () => {
+    const activity = {
+      _id: 'act1',
+      componentKey: 'step-by-step-solver',
+      displayName: 'Example',
+      props: {},
+      gradingConfig: undefined,
+      approval: undefined,
+      createdAt: 1,
+      updatedAt: 1,
+    };
+    const mockDb = createMockDb({
+      activities: [activity],
+      component_reviews: [],
+      component_approvals: [],
+    });
+
+    const result = await submitReviewHandler(
+      { db: mockDb } as unknown as Parameters<typeof submitReviewHandler>[0],
+      {
+        componentKind: 'activity',
+        componentId: 'act1',
+        status: 'approved',
+        createdBy: 'profile1' as Id<'profiles'>,
+        placement: {
+          phaseType: 'worked_example',
+          phaseId: 'phase1',
+          sectionId: 'section1',
+        },
+      },
+    );
+
+    expect(result.reviewId).toBeDefined();
+    expect(mockDb._tables.component_reviews).toHaveLength(1);
+    const review = mockDb._tables.component_reviews[0] as { componentKind: string };
+    expect(review.componentKind).toBe('example');
+    expect(mockDb._tables.component_approvals).toHaveLength(1);
+    const approval = mockDb._tables.component_approvals[0] as { componentKind: string };
+    expect(approval.componentKind).toBe('example');
+  });
+
+  it('falls back to args.componentKind when placement is absent', async () => {
+    const activity = {
+      _id: 'act1',
+      componentKey: 'graphing-explorer',
+      displayName: 'Graphing Explorer',
+      props: {},
+      gradingConfig: undefined,
+      approval: undefined,
+      createdAt: 1,
+      updatedAt: 1,
+    };
+    const mockDb = createMockDb({
+      activities: [activity],
+      component_reviews: [],
+      component_approvals: [],
+    });
+
+    const result = await submitReviewHandler(
+      { db: mockDb } as unknown as Parameters<typeof submitReviewHandler>[0],
+      {
+        componentKind: 'activity',
+        componentId: 'act1',
+        status: 'approved',
+        createdBy: 'profile1' as Id<'profiles'>,
+      },
+    );
+
+    expect(result.reviewId).toBeDefined();
+    expect(mockDb._tables.component_reviews).toHaveLength(1);
+    const review = mockDb._tables.component_reviews[0] as { componentKind: string };
+    expect(review.componentKind).toBe('activity');
+  });
 });
 
 describe('getAuditContextHandler', () => {

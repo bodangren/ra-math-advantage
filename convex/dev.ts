@@ -24,6 +24,7 @@ import { computeComponentContentHash } from "../lib/activities/content-hash";
 import {
   buildActivityPlacementMap,
   assembleReviewQueueItem,
+  resolveComponentKind,
   type ReviewQueueItem,
 } from "../lib/activities/review-queue";
 
@@ -152,8 +153,13 @@ export async function submitReviewHandler(ctx: MutationCtx, args: SubmitReviewAr
 
   const activity = await ctx.db.get(args.componentId as Id<"activities">);
   if (!activity) throw new Error("Activity not found");
+
+  const derivedComponentKind = args.placement?.phaseType
+    ? resolveComponentKind(args.placement.phaseType)
+    : args.componentKind;
+
   const componentContentHash = await computeComponentContentHash({
-    componentKind: args.componentKind,
+    componentKind: derivedComponentKind,
     componentKey: activity.componentKey,
     props: activity.props,
     gradingConfig: activity.gradingConfig,
@@ -162,7 +168,7 @@ export async function submitReviewHandler(ctx: MutationCtx, args: SubmitReviewAr
   const now = Date.now();
 
   const reviewId = await ctx.db.insert("component_reviews", {
-    componentKind: args.componentKind,
+    componentKind: derivedComponentKind,
     componentId: args.componentId,
     componentKey: args.componentKey,
     componentContentHash,
@@ -183,14 +189,14 @@ export async function submitReviewHandler(ctx: MutationCtx, args: SubmitReviewAr
     reviewId,
   };
 
-  if (args.componentKind === "activity") {
+  if (derivedComponentKind === "activity") {
     await ctx.db.patch(args.componentId as Id<"activities">, {
       approval: approvalSummary,
     });
   } else {
     const existingApproval = await ctx.db
       .query("component_approvals")
-      .withIndex("by_component", (q) => q.eq("componentKind", args.componentKind).eq("componentId", args.componentId))
+      .withIndex("by_component", (q) => q.eq("componentKind", derivedComponentKind).eq("componentId", args.componentId))
       .unique();
     if (existingApproval) {
       await ctx.db.patch(existingApproval._id, {
@@ -199,7 +205,7 @@ export async function submitReviewHandler(ctx: MutationCtx, args: SubmitReviewAr
       });
     } else {
       await ctx.db.insert("component_approvals", {
-        componentKind: args.componentKind,
+        componentKind: derivedComponentKind,
         componentId: args.componentId,
         componentKey: args.componentKey,
         ...approvalSummary,

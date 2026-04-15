@@ -8,7 +8,7 @@
 
 | Item | Sev | Status | Notes |
 |------|-----|--------|-------|
-| submitReviewHandler hashes with client-sent componentKind | High | Open | Write-path uses client arg; read-path derives from placement; hash mismatch causes permanent isStale |
+| submitReviewHandler hashes with client-sent componentKind | High | Resolved | Fixed 2026-04-16; write-path now derives componentKind from placement.phaseType using resolveComponentKind |
 | Approval status race condition (no version/lock) | High | Open | Convex serializes mutations (no lost update) but no "approve exact version" check |
 | N+1 query: phase sections in progress/preview/monitoring queries | High | Open | One DB query per phase inside loop |
 | No Convex-layer authorization | Med-High | Open | Auth boundary is entirely in Next.js server layer |
