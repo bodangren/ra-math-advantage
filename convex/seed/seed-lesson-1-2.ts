@@ -230,6 +230,33 @@ export const seedLesson2 = internalMutation({
       },
       {
         phaseNumber: 8,
+        title: "Worked Example 5",
+        phaseType: "worked_example" as const,
+        estimatedMinutes: 10,
+        sections: [
+          {
+            sequenceOrder: 1,
+            sectionType: "text" as const,
+            content: {
+              markdown: "## Example 5: Solve by Using a Calculator\n\nUse a graphing calculator to solve a quadratic equation when exact intercepts are difficult to read.\n\n**Step 1**: Enter the related function.\n\n**Step 2**: Graph the function and locate where it crosses the x-axis.\n\n**Step 3**: Use the calculator's zero feature to approximate each solution.",
+            },
+          },
+          {
+            sequenceOrder: 2,
+            sectionType: "activity" as const,
+            content: {
+              componentKey: "graphing-explorer",
+              props: {
+                variant: "find_zeros",
+                equation: "y = x^2 - 3x - 1",
+                title: "Use Technology to Approximate Zeros",
+              },
+            },
+          },
+        ],
+      },
+      {
+        phaseNumber: 9,
         title: "Discourse",
         phaseType: "discourse" as const,
         estimatedMinutes: 15,
@@ -265,7 +292,7 @@ export const seedLesson2 = internalMutation({
         ],
       },
       {
-        phaseNumber: 9,
+        phaseNumber: 10,
         title: "Reflection",
         phaseType: "reflection" as const,
         estimatedMinutes: 5,

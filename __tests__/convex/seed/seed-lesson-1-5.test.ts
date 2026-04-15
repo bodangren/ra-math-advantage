@@ -13,15 +13,21 @@ describe('seed-lesson-1-5', () => {
         { phaseNumber: 1, title: 'Explore', phaseType: 'explore', sections: [] },
         { phaseNumber: 2, title: 'Vocabulary', phaseType: 'vocabulary', sections: [] },
         { phaseNumber: 3, title: 'Learn', phaseType: 'learn', sections: [] },
-        { phaseNumber: 4, title: 'Learn', phaseType: 'learn', sections: [] },
-        { phaseNumber: 5, title: 'Worked Example 1', phaseType: 'worked_example', sections: [] },
-        { phaseNumber: 6, title: 'Worked Example 2', phaseType: 'worked_example', sections: [] },
-        { phaseNumber: 7, title: 'Worked Example 3', phaseType: 'worked_example', sections: [] },
+        { phaseNumber: 4, title: 'Worked Example 1', phaseType: 'worked_example', sections: [] },
+        { phaseNumber: 5, title: 'Worked Example 2', phaseType: 'worked_example', sections: [] },
+        { phaseNumber: 6, title: 'Worked Example 3', phaseType: 'worked_example', sections: [] },
+        { phaseNumber: 7, title: 'Learn', phaseType: 'learn', sections: [] },
         { phaseNumber: 8, title: 'Worked Example 4', phaseType: 'worked_example', sections: [] },
-        { phaseNumber: 9, title: 'Learn', phaseType: 'learn', sections: [] },
-        { phaseNumber: 10, title: 'Assessment', phaseType: 'assessment', sections: [] },
-        { phaseNumber: 11, title: 'Discourse', phaseType: 'discourse', sections: [] },
-        { phaseNumber: 12, title: 'Reflection', phaseType: 'reflection', sections: [] },
+        { phaseNumber: 9, title: 'Worked Example 5', phaseType: 'worked_example', sections: [] },
+        { phaseNumber: 10, title: 'Worked Example 6', phaseType: 'worked_example', sections: [] },
+        { phaseNumber: 11, title: 'Worked Example 7', phaseType: 'worked_example', sections: [] },
+        { phaseNumber: 12, title: 'Worked Example 8', phaseType: 'worked_example', sections: [] },
+        { phaseNumber: 13, title: 'Learn', phaseType: 'learn', sections: [] },
+        { phaseNumber: 14, title: 'Worked Example 9', phaseType: 'worked_example', sections: [] },
+        { phaseNumber: 15, title: 'Worked Example 10', phaseType: 'worked_example', sections: [] },
+        { phaseNumber: 16, title: 'Worked Example 11', phaseType: 'worked_example', sections: [] },
+        { phaseNumber: 17, title: 'Discourse', phaseType: 'discourse', sections: [] },
+        { phaseNumber: 18, title: 'Reflection', phaseType: 'reflection', sections: [] },
       ],
     };
 
@@ -32,22 +38,28 @@ describe('seed-lesson-1-5', () => {
       expect(lesson5Seed.orderIndex).toBe(5);
     });
 
-    it('has exactly 12 phases', () => {
-      expect(lesson5Seed.phases).toHaveLength(12);
+    it('has exactly 18 phases', () => {
+      expect(lesson5Seed.phases).toHaveLength(18);
     });
 
-    it('correct phase sequence: explore, vocab, 2×learn, 4×worked_example, learn, assessment, discourse, reflection', () => {
+    it('correct phase sequence: explore, vocab, learn, 3×worked_example, learn, 5×worked_example, learn, 3×worked_example, discourse, reflection', () => {
       const expectedSequence: SeedPhase['phaseType'][] = [
         'explore',
         'vocabulary',
         'learn',
+        'worked_example',
+        'worked_example',
+        'worked_example',
         'learn',
         'worked_example',
         'worked_example',
         'worked_example',
         'worked_example',
+        'worked_example',
         'learn',
-        'assessment',
+        'worked_example',
+        'worked_example',
+        'worked_example',
         'discourse',
         'reflection',
       ];
@@ -71,31 +83,31 @@ describe('seed-lesson-1-5', () => {
       expect(learnPhases).toHaveLength(3);
     });
 
-    it('has exactly 4 worked_example phases', () => {
+    it('has exactly 11 worked_example phases', () => {
       const workedExamples = lesson5Seed.phases.filter((p) => p.phaseType === 'worked_example');
-      expect(workedExamples).toHaveLength(4);
+      expect(workedExamples).toHaveLength(11);
     });
 
-    it('worked examples are numbered 1-4 in order', () => {
+    it('worked examples are numbered 1-11 in order', () => {
       const workedExamples = lesson5Seed.phases.filter((p) => p.phaseType === 'worked_example');
       workedExamples.forEach((we, idx) => {
         expect(we.title).toBe(`Worked Example ${idx + 1}`);
       });
     });
 
-    it('discourse phase exists', () => {
+    it('discourse phase is phase 17', () => {
       const discoursePhase = lesson5Seed.phases.find((p) => p.phaseType === 'discourse');
-      expect(discoursePhase).toBeDefined();
+      expect(discoursePhase?.phaseNumber).toBe(17);
     });
 
-    it('assessment phase exists', () => {
+    it('does not include an assessment phase', () => {
       const assessmentPhase = lesson5Seed.phases.find((p) => p.phaseType === 'assessment');
-      expect(assessmentPhase).toBeDefined();
+      expect(assessmentPhase).toBeUndefined();
     });
 
-    it('reflection phase exists', () => {
+    it('reflection phase is phase 18', () => {
       const reflectionPhase = lesson5Seed.phases.find((p) => p.phaseType === 'reflection');
-      expect(reflectionPhase).toBeDefined();
+      expect(reflectionPhase?.phaseNumber).toBe(18);
     });
   });
 
@@ -145,23 +157,26 @@ describe('seed-lesson-1-5', () => {
       expect(validComponentKeys).toContain(workedExampleSection.content.componentKey);
     });
 
-    it('assessment phase should have fill-in-the-blank activity', () => {
-      const assessmentSection = {
+    it('discourse phase should have comprehension-quiz activity', () => {
+      const discourseSection = {
         sequenceOrder: 1,
         sectionType: 'activity' as const,
         content: {
-          componentKey: 'fill-in-the-blank' as const,
+          componentKey: 'comprehension-quiz' as const,
           props: {
-            blanks: [
-              { id: '1', label: 'Complete x^2 + 8x + ___ to make a perfect square', correctAnswer: '16' },
-              { id: '2', label: 'Vertex form of x^2 + 6x + 5', correctAnswer: '(x+3)^2 - 4' },
+            questions: [
+              {
+                question: 'What value completes x^2 + 10x + ___ to make a perfect square?',
+                options: ['5', '20', '25', '100'],
+                correctIndex: 2,
+              },
             ],
           },
         },
       };
 
-      expect(assessmentSection.content.componentKey).toBe('fill-in-the-blank');
-      expect(validComponentKeys).toContain(assessmentSection.content.componentKey);
+      expect(discourseSection.content.componentKey).toBe('comprehension-quiz');
+      expect(validComponentKeys).toContain(discourseSection.content.componentKey);
     });
   });
 });

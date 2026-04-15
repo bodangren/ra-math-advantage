@@ -107,21 +107,6 @@ export const seedLesson3 = internalMutation({
       },
       {
         phaseNumber: 4,
-        title: "Learn",
-        phaseType: "learn" as const,
-        estimatedMinutes: 15,
-        sections: [
-          {
-            sequenceOrder: 1,
-            sectionType: "text" as const,
-            content: {
-              markdown: "## Powers of $i$\n\nThe powers of $i$ cycle every 4:\n\n- $i^1 = i$\n- $i^2 = -1$\n- $i^3 = -i$\n- $i^4 = 1$\n- $i^5 = i$ (cycle repeats!)\n\n### To find $i^n$:\n1. Divide $n$ by 4\n2. Use the remainder: $i^1 = i$, $i^2 = -1$, $i^3 = -i$, $i^4 = 1$",
-            },
-          },
-        ],
-      },
-      {
-        phaseNumber: 5,
         title: "Worked Example 1",
         phaseType: "worked_example" as const,
         estimatedMinutes: 10,
@@ -154,7 +139,7 @@ export const seedLesson3 = internalMutation({
         ],
       },
       {
-        phaseNumber: 6,
+        phaseNumber: 5,
         title: "Worked Example 2",
         phaseType: "worked_example" as const,
         estimatedMinutes: 10,
@@ -186,7 +171,7 @@ export const seedLesson3 = internalMutation({
         ],
       },
       {
-        phaseNumber: 7,
+        phaseNumber: 6,
         title: "Worked Example 3",
         phaseType: "worked_example" as const,
         estimatedMinutes: 10,
@@ -218,7 +203,7 @@ export const seedLesson3 = internalMutation({
         ],
       },
       {
-        phaseNumber: 8,
+        phaseNumber: 7,
         title: "Learn",
         phaseType: "learn" as const,
         estimatedMinutes: 15,
@@ -233,7 +218,7 @@ export const seedLesson3 = internalMutation({
         ],
       },
       {
-        phaseNumber: 9,
+        phaseNumber: 8,
         title: "Worked Example 4",
         phaseType: "worked_example" as const,
         estimatedMinutes: 10,
@@ -242,7 +227,39 @@ export const seedLesson3 = internalMutation({
             sequenceOrder: 1,
             sectionType: "text" as const,
             content: {
-              markdown: "## Example 4: Add and Subtract Complex Numbers\n\nSimplify $(3 + 2i) + (1 + 4i)$.\n\n**Step 1**: Group real and imaginary parts\n$$= (3 + 1) + (2 + 4)i$$\n\n**Step 2**: Combine like terms\n$$= 4 + 6i$$",
+              markdown: "## Example 4: Equate Complex Numbers\n\nSolve for $x$ and $y$ if $x + 2i = 5 + yi$.\n\n**Step 1**: Equate the real parts: $x = 5$.\n\n**Step 2**: Equate the imaginary parts: $2 = y$.\n\nSo $x = 5$ and $y = 2$.",
+            },
+          },
+          {
+            sequenceOrder: 2,
+            sectionType: "activity" as const,
+            content: {
+              componentKey: "step-by-step-solver",
+              props: {
+                problemType: "complex_operations",
+                equation: "x + 2i = 5 + yi",
+                steps: [
+                  { expression: "x + 2i = 5 + yi", explanation: "Original equation" },
+                  { expression: "x = 5", explanation: "Equate real parts" },
+                  { expression: "2 = y", explanation: "Equate imaginary parts" },
+                  { expression: "x = 5, y = 2", explanation: "State both values" },
+                ],
+              },
+            },
+          },
+        ],
+      },
+      {
+        phaseNumber: 9,
+        title: "Worked Example 5",
+        phaseType: "worked_example" as const,
+        estimatedMinutes: 10,
+        sections: [
+          {
+            sequenceOrder: 1,
+            sectionType: "text" as const,
+            content: {
+              markdown: "## Example 5: Add or Subtract Complex Numbers\n\nSimplify $(3 + 2i) + (1 + 4i)$.\n\n**Step 1**: Group real and imaginary parts\n$$= (3 + 1) + (2 + 4)i$$\n\n**Step 2**: Combine like terms\n$$= 4 + 6i$$",
             },
           },
           {
@@ -265,7 +282,7 @@ export const seedLesson3 = internalMutation({
       },
       {
         phaseNumber: 10,
-        title: "Worked Example 5",
+        title: "Worked Example 6",
         phaseType: "worked_example" as const,
         estimatedMinutes: 10,
         sections: [
@@ -273,7 +290,7 @@ export const seedLesson3 = internalMutation({
             sequenceOrder: 1,
             sectionType: "text" as const,
             content: {
-              markdown: "## Example 5: Multiply Complex Numbers\n\nSimplify $(2 + 3i)(1 - 4i)$.\n\n**Step 1**: Use FOIL\n$$= 2 \\cdot 1 + 2(-4i) + 3i \\cdot 1 + 3i(-4i)$$\n\n**Step 2**: Simplify each term\n$$= 2 - 8i + 3i - 12i^2$$\n\n**Step 3**: Combine (remember $i^2 = -1$)\n$$= 2 - 5i - 12(-1) = 2 - 5i + 12$$\n\n**Step 4**: Final answer\n$$= 14 - 5i$$",
+              markdown: "## Example 6: Multiply Complex Numbers\n\nSimplify $(2 + 3i)(1 - 4i)$.\n\n**Step 1**: Use FOIL\n$$= 2 \\cdot 1 + 2(-4i) + 3i \\cdot 1 + 3i(-4i)$$\n\n**Step 2**: Simplify each term\n$$= 2 - 8i + 3i - 12i^2$$\n\n**Step 3**: Combine (remember $i^2 = -1$)\n$$= 2 - 5i - 12(-1) = 2 - 5i + 12$$\n\n**Step 4**: Final answer\n$$= 14 - 5i$$",
             },
           },
           {
@@ -298,7 +315,7 @@ export const seedLesson3 = internalMutation({
       },
       {
         phaseNumber: 11,
-        title: "Worked Example 6",
+        title: "Worked Example 7",
         phaseType: "worked_example" as const,
         estimatedMinutes: 10,
         sections: [
@@ -306,7 +323,7 @@ export const seedLesson3 = internalMutation({
             sequenceOrder: 1,
             sectionType: "text" as const,
             content: {
-              markdown: "## Example 6: Divide Complex Numbers (Complex Conjugates)\n\nSimplify $\\frac{3 + 2i}{1 - i}$.\n\n**Step 1**: Multiply numerator and denominator by the conjugate of the denominator\n$$= \\frac{(3 + 2i)(1 + i)}{(1 - i)(1 + i)}$$\n\n**Step 2**: Simplify denominator\n$$(1 - i)(1 + i) = 1 - i^2 = 1 - (-1) = 2$$\n\n**Step 3**: Expand numerator\n$$(3 + 2i)(1 + i) = 3 + 3i + 2i + 2i^2 = 3 + 5i - 2 = 1 + 5i$$\n\n**Step 4**: Divide\n$$= \\frac{1 + 5i}{2} = \\frac{1}{2} + \\frac{5}{2}i$$",
+              markdown: "## Example 7: Divide Complex Numbers\n\nSimplify $\\frac{3 + 2i}{1 - i}$.\n\n**Step 1**: Multiply numerator and denominator by the conjugate of the denominator\n$$= \\frac{(3 + 2i)(1 + i)}{(1 - i)(1 + i)}$$\n\n**Step 2**: Simplify denominator\n$$(1 - i)(1 + i) = 1 - i^2 = 2$$\n\n**Step 3**: Expand numerator\n$$(3 + 2i)(1 + i) = 1 + 5i$$\n\n**Step 4**: Divide\n$$= \\frac{1}{2} + \\frac{5}{2}i$$",
             },
           },
           {

@@ -233,40 +233,6 @@ export const seedLesson7 = internalMutation({
       },
       {
         phaseNumber: 8,
-        title: "Assessment",
-        phaseType: "assessment" as const,
-        estimatedMinutes: 20,
-        sections: [
-          {
-            sequenceOrder: 1,
-            sectionType: "activity" as const,
-            content: {
-              componentKey: "fill-in-the-blank",
-              props: {
-                blanks: [
-                  { id: "1", label: "Solve x^2 - 5x + 6 ≤ 0", correctAnswer: "2 ≤ x ≤ 3" },
-                  { id: "2", label: "Solve x^2 + x - 12 > 0", correctAnswer: "x < -4 or x > 3" },
-                  { id: "3", label: "The boundary values come from solving the equation when it equals ___", correctAnswer: "0" },
-                ],
-              },
-            },
-          },
-          {
-            sequenceOrder: 2,
-            sectionType: "activity" as const,
-            content: {
-              componentKey: "step-by-step-solver",
-              props: {
-                problemType: "inequality",
-                equation: "x^2 - x - 6 > 0",
-                steps: [],
-              },
-            },
-          },
-        ],
-      },
-      {
-        phaseNumber: 9,
         title: "Discourse",
         phaseType: "discourse" as const,
         estimatedMinutes: 15,
@@ -302,7 +268,7 @@ export const seedLesson7 = internalMutation({
         ],
       },
       {
-        phaseNumber: 10,
+        phaseNumber: 9,
         title: "Reflection",
         phaseType: "reflection" as const,
         estimatedMinutes: 5,

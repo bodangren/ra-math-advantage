@@ -17,9 +17,8 @@ describe('seed-lesson-1-7', () => {
         { phaseNumber: 5, title: 'Worked Example 2', phaseType: 'worked_example', sections: [] },
         { phaseNumber: 6, title: 'Worked Example 3', phaseType: 'worked_example', sections: [] },
         { phaseNumber: 7, title: 'Worked Example 4', phaseType: 'worked_example', sections: [] },
-        { phaseNumber: 8, title: 'Assessment', phaseType: 'assessment', sections: [] },
-        { phaseNumber: 9, title: 'Discourse', phaseType: 'discourse', sections: [] },
-        { phaseNumber: 10, title: 'Reflection', phaseType: 'reflection', sections: [] },
+        { phaseNumber: 8, title: 'Discourse', phaseType: 'discourse', sections: [] },
+        { phaseNumber: 9, title: 'Reflection', phaseType: 'reflection', sections: [] },
       ],
     };
 
@@ -30,11 +29,11 @@ describe('seed-lesson-1-7', () => {
       expect(lesson7Seed.orderIndex).toBe(7);
     });
 
-    it('has exactly 10 phases', () => {
-      expect(lesson7Seed.phases).toHaveLength(10);
+    it('has exactly 9 phases', () => {
+      expect(lesson7Seed.phases).toHaveLength(9);
     });
 
-    it('correct phase sequence: explore, vocab, learn, 4×worked_example, assessment, discourse, reflection', () => {
+    it('correct phase sequence: explore, vocab, learn, 4×worked_example, discourse, reflection', () => {
       const expectedSequence: SeedPhase['phaseType'][] = [
         'explore',
         'vocabulary',
@@ -43,7 +42,6 @@ describe('seed-lesson-1-7', () => {
         'worked_example',
         'worked_example',
         'worked_example',
-        'assessment',
         'discourse',
         'reflection',
       ];
@@ -65,6 +63,11 @@ describe('seed-lesson-1-7', () => {
     it('has exactly 4 worked_example phases', () => {
       const workedExamples = lesson7Seed.phases.filter((p) => p.phaseType === 'worked_example');
       expect(workedExamples).toHaveLength(4);
+    });
+
+    it('does not include an assessment phase', () => {
+      const assessmentPhase = lesson7Seed.phases.find((p) => p.phaseType === 'assessment');
+      expect(assessmentPhase).toBeUndefined();
     });
   });
 
@@ -112,23 +115,26 @@ describe('seed-lesson-1-7', () => {
       expect(validComponentKeys).toContain(workedExampleSection.content.componentKey);
     });
 
-    it('assessment phase should have fill-in-the-blank activity', () => {
-      const assessmentSection = {
+    it('discourse phase should have comprehension-quiz activity', () => {
+      const discourseSection = {
         sequenceOrder: 1,
         sectionType: 'activity' as const,
         content: {
-          componentKey: 'fill-in-the-blank' as const,
+          componentKey: 'comprehension-quiz' as const,
           props: {
-            blanks: [
-              { id: '1', label: 'Solve x^2 - 5x + 6 > 0', correctAnswer: 'x < 2 or x > 3' },
-              { id: '2', label: 'Solve x^2 + x - 12 > 0', correctAnswer: 'x < -4 or x > 3' },
+            questions: [
+              {
+                question: 'What divides the number line into intervals for a quadratic inequality?',
+                options: ['The y-intercept', 'The boundary values', 'The vertex'],
+                correctIndex: 1,
+              },
             ],
           },
         },
       };
 
-      expect(assessmentSection.content.componentKey).toBe('fill-in-the-blank');
-      expect(validComponentKeys).toContain(assessmentSection.content.componentKey);
+      expect(discourseSection.content.componentKey).toBe('comprehension-quiz');
+      expect(validComponentKeys).toContain(discourseSection.content.componentKey);
     });
   });
 });

@@ -55,6 +55,24 @@ function curriculumPhaseCounts(lessonId: string) {
   };
 }
 
+function curriculumPhaseSequence(lessonId: string) {
+  const [moduleNumber, lessonNumber] = lessonId.split('-');
+  const source = read(`curriculum/modules/module-${moduleNumber}-lesson-${lessonNumber}`);
+  const sequence: Array<'learn' | 'worked_example' | 'assessment'> = [];
+
+  for (const line of source.split(/\r?\n/)) {
+    if (/^## Learn:/.test(line)) {
+      sequence.push('learn');
+    } else if (/^## (?:Apply )?Example \d+/.test(line)) {
+      sequence.push('worked_example');
+    } else if (/^## (?:Assessment|Quick Check)/.test(line)) {
+      sequence.push('assessment');
+    }
+  }
+
+  return sequence;
+}
+
 function specPhaseCounts(sequence: string) {
   const counts = {
     learn: 0,
@@ -70,6 +88,23 @@ function specPhaseCounts(sequence: string) {
   }
 
   return counts;
+}
+
+function seedImplementationPhaseCounts(relativePath: string) {
+  const source = read(relativePath);
+
+  return {
+    learn: (source.match(/phaseType: "learn"/g) ?? []).length,
+    worked_example: (source.match(/phaseType: "worked_example"/g) ?? []).length,
+    assessment: (source.match(/phaseType: "assessment"/g) ?? []).length,
+  };
+}
+
+function seedImplementationPhaseSequence(relativePath: string) {
+  return Array.from(
+    read(relativePath).matchAll(/phaseType: "(learn|worked_example|assessment)"/g),
+    (match) => match[1]
+  );
 }
 
 describe('curriculum lesson title consistency', () => {
@@ -160,6 +195,34 @@ describe('curriculum lesson title consistency', () => {
       if (!title) continue;
 
       expectCanonicalTitle(canonical, lessonId, title[1], relativePath);
+    }
+  });
+
+  it('keeps Convex seed implementation phase counts aligned to lesson source headings', () => {
+    for (const filename of readdirSync(join(repoRoot, 'convex/seed'))) {
+      const seedFile = filename.match(/^seed-lesson-(\d+)-(\d+)\.ts$/);
+      if (!seedFile) continue;
+
+      const lessonId = `${seedFile[1]}-${seedFile[2]}`;
+      const relativePath = `convex/seed/${filename}`;
+
+      expect(seedImplementationPhaseCounts(relativePath), relativePath).toEqual(
+        curriculumPhaseCounts(lessonId)
+      );
+    }
+  });
+
+  it('keeps Convex seed implementation phase order aligned to lesson source headings', () => {
+    for (const filename of readdirSync(join(repoRoot, 'convex/seed'))) {
+      const seedFile = filename.match(/^seed-lesson-(\d+)-(\d+)\.ts$/);
+      if (!seedFile) continue;
+
+      const lessonId = `${seedFile[1]}-${seedFile[2]}`;
+      const relativePath = `convex/seed/${filename}`;
+
+      expect(seedImplementationPhaseSequence(relativePath), relativePath).toEqual(
+        curriculumPhaseSequence(lessonId)
+      );
     }
   });
 

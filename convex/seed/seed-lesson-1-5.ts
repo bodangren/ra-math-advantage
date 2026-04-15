@@ -107,21 +107,6 @@ export const seedLesson5 = internalMutation({
       },
       {
         phaseNumber: 4,
-        title: "Learn",
-        phaseType: "learn" as const,
-        estimatedMinutes: 15,
-        sections: [
-          {
-            sequenceOrder: 1,
-            sectionType: "text" as const,
-            content: {
-              markdown: "## Completing the Square\n\nFor an expression of the form $x^2 + bx$:\n\n1. Find one half of $b$: $\\frac{b}{2}$\n2. Square that value: $(\\frac{b}{2})^2$\n3. Add the result to $x^2 + bx$\n\nSymbolically:\n\n$$x^2 + bx + (\\frac{b}{2})^2 = (x + \\frac{b}{2})^2$$\n\n### Example\n\nFor $x^2 + 6x$, half of 6 is 3, and $3^2 = 9$.\n\n$$x^2 + 6x + 9 = (x + 3)^2$$",
-            },
-          },
-        ],
-      },
-      {
-        phaseNumber: 5,
         title: "Worked Example 1",
         phaseType: "worked_example" as const,
         estimatedMinutes: 10,
@@ -152,7 +137,7 @@ export const seedLesson5 = internalMutation({
         ],
       },
       {
-        phaseNumber: 6,
+        phaseNumber: 5,
         title: "Worked Example 2",
         phaseType: "worked_example" as const,
         estimatedMinutes: 10,
@@ -184,7 +169,7 @@ export const seedLesson5 = internalMutation({
         ],
       },
       {
-        phaseNumber: 7,
+        phaseNumber: 6,
         title: "Worked Example 3",
         phaseType: "worked_example" as const,
         estimatedMinutes: 10,
@@ -211,6 +196,21 @@ export const seedLesson5 = internalMutation({
                   { expression: "x = 23 ± 6i", explanation: "Complex solutions" },
                 ],
               },
+            },
+          },
+        ],
+      },
+      {
+        phaseNumber: 7,
+        title: "Learn",
+        phaseType: "learn" as const,
+        estimatedMinutes: 15,
+        sections: [
+          {
+            sequenceOrder: 1,
+            sectionType: "text" as const,
+            content: {
+              markdown: "## Completing the Square\n\nFor an expression of the form $x^2 + bx$:\n\n1. Find one half of $b$: $\\frac{b}{2}$\n2. Square that value: $(\\frac{b}{2})^2$\n3. Add the result to $x^2 + bx$\n\nSymbolically:\n\n$$x^2 + bx + (\\frac{b}{2})^2 = (x + \\frac{b}{2})^2$$\n\n### Example\n\nFor $x^2 + 6x$, half of 6 is 3, and $3^2 = 9$.\n\n$$x^2 + 6x + 9 = (x + 3)^2$$",
             },
           },
         ],
@@ -249,6 +249,133 @@ export const seedLesson5 = internalMutation({
       },
       {
         phaseNumber: 9,
+        title: "Worked Example 5",
+        phaseType: "worked_example" as const,
+        estimatedMinutes: 10,
+        sections: [
+          {
+            sequenceOrder: 1,
+            sectionType: "text" as const,
+            content: {
+              markdown: "## Example 5: Solve by Completing the Square\n\nSolve $x^2 + 8x + 5 = 0$\n\n**Step 1**: Move the constant.\n$$x^2 + 8x = -5$$\n\n**Step 2**: Complete the square. Half of 8 is 4, and $4^2 = 16$.\n$$x^2 + 8x + 16 = -5 + 16$$\n\n**Step 3**: Write the left side as a square.\n$$(x + 4)^2 = 11$$\n\n**Step 4**: Apply the Square Root Property.\n$$x = -4 \\pm \\sqrt{11}$$",
+            },
+          },
+          {
+            sequenceOrder: 2,
+            sectionType: "activity" as const,
+            content: {
+              componentKey: "step-by-step-solver",
+              props: {
+                problemType: "completing-square",
+                equation: "x^2 + 8x + 5 = 0",
+                steps: [
+                  { expression: "x^2 + 8x = -5", explanation: "Move the constant" },
+                  { expression: "x^2 + 8x + 16 = 11", explanation: "Add (8/2)^2 to both sides" },
+                  { expression: "(x + 4)^2 = 11", explanation: "Write as a perfect square" },
+                  { expression: "x = -4 ± √11", explanation: "Use the Square Root Property" },
+                ],
+              },
+            },
+          },
+        ],
+      },
+      {
+        phaseNumber: 10,
+        title: "Worked Example 6",
+        phaseType: "worked_example" as const,
+        estimatedMinutes: 10,
+        sections: [
+          {
+            sequenceOrder: 1,
+            sectionType: "text" as const,
+            content: {
+              markdown: "## Example 6: Complete the Square with a Leading Coefficient\n\nRewrite $2x^2 + 12x + 7$ by completing the square.\n\n**Step 1**: Factor 2 from the quadratic and linear terms.\n$$2(x^2 + 6x) + 7$$\n\n**Step 2**: Complete the square inside the parentheses. Half of 6 is 3, and $3^2 = 9$.\n$$2(x^2 + 6x + 9 - 9) + 7$$\n\n**Step 3**: Simplify.\n$$2(x + 3)^2 - 18 + 7 = 2(x + 3)^2 - 11$$",
+            },
+          },
+          {
+            sequenceOrder: 2,
+            sectionType: "activity" as const,
+            content: {
+              componentKey: "step-by-step-solver",
+              props: {
+                problemType: "completing-square",
+                equation: "2x^2 + 12x + 7",
+                steps: [
+                  { expression: "2(x^2 + 6x) + 7", explanation: "Factor out the leading coefficient" },
+                  { expression: "2(x^2 + 6x + 9 - 9) + 7", explanation: "Complete the square inside" },
+                  { expression: "2(x + 3)^2 - 11", explanation: "Simplify" },
+                ],
+              },
+            },
+          },
+        ],
+      },
+      {
+        phaseNumber: 11,
+        title: "Worked Example 7",
+        phaseType: "worked_example" as const,
+        estimatedMinutes: 10,
+        sections: [
+          {
+            sequenceOrder: 1,
+            sectionType: "text" as const,
+            content: {
+              markdown: "## Example 7: Solve When $a$ Is Not 1\n\nSolve $2x^2 - 8x - 3 = 0$.\n\n**Step 1**: Move the constant and divide by 2.\n$$2x^2 - 8x = 3$$\n$$x^2 - 4x = \\frac{3}{2}$$\n\n**Step 2**: Complete the square. Half of $-4$ is $-2$, and $(-2)^2 = 4$.\n$$x^2 - 4x + 4 = \\frac{3}{2} + 4$$\n\n**Step 3**: Solve.\n$$(x - 2)^2 = \\frac{11}{2}$$\n$$x = 2 \\pm \\sqrt{\\frac{11}{2}} = 2 \\pm \\frac{\\sqrt{22}}{2}$$",
+            },
+          },
+          {
+            sequenceOrder: 2,
+            sectionType: "activity" as const,
+            content: {
+              componentKey: "step-by-step-solver",
+              props: {
+                problemType: "completing-square",
+                equation: "2x^2 - 8x - 3 = 0",
+                steps: [
+                  { expression: "x^2 - 4x = 3/2", explanation: "Move the constant and divide by 2" },
+                  { expression: "x^2 - 4x + 4 = 11/2", explanation: "Complete the square" },
+                  { expression: "(x - 2)^2 = 11/2", explanation: "Write as a square" },
+                  { expression: "x = 2 ± √22/2", explanation: "Solve" },
+                ],
+              },
+            },
+          },
+        ],
+      },
+      {
+        phaseNumber: 12,
+        title: "Worked Example 8",
+        phaseType: "worked_example" as const,
+        estimatedMinutes: 10,
+        sections: [
+          {
+            sequenceOrder: 1,
+            sectionType: "text" as const,
+            content: {
+              markdown: "## Example 8: Solve Equations with Imaginary Solutions\n\nSolve $x^2 + 6x + 13 = 0$ by completing the square.\n\n**Step 1**: Move the constant.\n$$x^2 + 6x = -13$$\n\n**Step 2**: Complete the square. Half of 6 is 3, and $3^2 = 9$.\n$$x^2 + 6x + 9 = -4$$\n\n**Step 3**: Use the Square Root Property.\n$$(x + 3)^2 = -4$$\n$$x + 3 = \\pm 2i$$\n\n**Solution**: $x = -3 \\pm 2i$",
+            },
+          },
+          {
+            sequenceOrder: 2,
+            sectionType: "activity" as const,
+            content: {
+              componentKey: "step-by-step-solver",
+              props: {
+                problemType: "completing-square",
+                equation: "x^2 + 6x + 13 = 0",
+                steps: [
+                  { expression: "x^2 + 6x = -13", explanation: "Move the constant" },
+                  { expression: "x^2 + 6x + 9 = -4", explanation: "Complete the square" },
+                  { expression: "(x + 3)^2 = -4", explanation: "Write as a square" },
+                  { expression: "x = -3 ± 2i", explanation: "Use imaginary roots" },
+                ],
+              },
+            },
+          },
+        ],
+      },
+      {
+        phaseNumber: 13,
         title: "Learn",
         phaseType: "learn" as const,
         estimatedMinutes: 15,
@@ -263,23 +390,16 @@ export const seedLesson5 = internalMutation({
         ],
       },
       {
-        phaseNumber: 10,
-        title: "Assessment",
-        phaseType: "assessment" as const,
-        estimatedMinutes: 20,
+        phaseNumber: 14,
+        title: "Worked Example 9",
+        phaseType: "worked_example" as const,
+        estimatedMinutes: 10,
         sections: [
           {
             sequenceOrder: 1,
-            sectionType: "activity" as const,
+            sectionType: "text" as const,
             content: {
-              componentKey: "fill-in-the-blank",
-              props: {
-                blanks: [
-                  { id: "1", label: "Complete x^2 + 8x + ___ to make a perfect square", correctAnswer: "16" },
-                  { id: "2", label: "Solve (x+3)^2 = 49", correctAnswer: "x = 4 or x = -10" },
-                  { id: "3", label: "Vertex form of x^2 + 6x + 5", correctAnswer: "(x+3)^2 - 4" },
-                ],
-              },
+              markdown: "## Example 9: Write Functions in Vertex Form\n\nWrite $y = x^2 + 10x + 21$ in vertex form.\n\n**Step 1**: Group the quadratic and linear terms.\n$$y = (x^2 + 10x) + 21$$\n\n**Step 2**: Complete the square. Half of 10 is 5, and $5^2 = 25$.\n$$y = (x^2 + 10x + 25) + 21 - 25$$\n\n**Step 3**: Simplify.\n$$y = (x + 5)^2 - 4$$\n\nThe vertex is $(-5, -4)$.",
             },
           },
           {
@@ -288,16 +408,72 @@ export const seedLesson5 = internalMutation({
             content: {
               componentKey: "step-by-step-solver",
               props: {
-                problemType: "completing-square",
-                equation: "x^2 + 6x + 5 = 0",
-                steps: [],
+                problemType: "vertex-form",
+                equation: "y = x^2 + 10x + 21",
+                steps: [
+                  { expression: "y = (x^2 + 10x) + 21", explanation: "Group x-terms" },
+                  { expression: "y = (x^2 + 10x + 25) + 21 - 25", explanation: "Complete the square" },
+                  { expression: "y = (x + 5)^2 - 4", explanation: "Write vertex form" },
+                ],
               },
             },
           },
         ],
       },
       {
-        phaseNumber: 11,
+        phaseNumber: 15,
+        title: "Worked Example 10",
+        phaseType: "worked_example" as const,
+        estimatedMinutes: 10,
+        sections: [
+          {
+            sequenceOrder: 1,
+            sectionType: "text" as const,
+            content: {
+              markdown: "## Example 10: Determine the Vertex and Axis of Symmetry\n\nFind the vertex and axis of symmetry for $y = 2(x - 3)^2 - 7$.\n\nThis function is already in vertex form:\n$$y = a(x - h)^2 + k$$\n\nSo $h = 3$ and $k = -7$.\n\n**Vertex**: $(3, -7)$\n\n**Axis of symmetry**: $x = 3$\n\nBecause $a = 2 > 0$, the parabola opens upward and has a minimum at the vertex.",
+            },
+          },
+          {
+            sequenceOrder: 2,
+            sectionType: "activity" as const,
+            content: {
+              componentKey: "graphing-explorer",
+              props: {
+                functions: ["2(x-3)^2 - 7"],
+                features: ["vertex", "axis of symmetry", "minimum"],
+              },
+            },
+          },
+        ],
+      },
+      {
+        phaseNumber: 16,
+        title: "Worked Example 11",
+        phaseType: "worked_example" as const,
+        estimatedMinutes: 10,
+        sections: [
+          {
+            sequenceOrder: 1,
+            sectionType: "text" as const,
+            content: {
+              markdown: "## Example 11: Model with a Quadratic Function\n\nA fountain stream reaches a maximum height of 12 feet after traveling 4 feet horizontally. The water hits the ground 8 feet from the nozzle. Write a quadratic model in vertex form.\n\n**Step 1**: Use the vertex $(4, 12)$.\n$$y = a(x - 4)^2 + 12$$\n\n**Step 2**: Use the point where the water lands, $(8, 0)$.\n$$0 = a(8 - 4)^2 + 12$$\n$$0 = 16a + 12$$\n$$a = -\\frac{3}{4}$$\n\n**Model**:\n$$y = -\\frac{3}{4}(x - 4)^2 + 12$$",
+            },
+          },
+          {
+            sequenceOrder: 2,
+            sectionType: "activity" as const,
+            content: {
+              componentKey: "graphing-explorer",
+              props: {
+                functions: ["-0.75(x-4)^2 + 12"],
+                features: ["vertex", "zeros", "model"],
+              },
+            },
+          },
+        ],
+      },
+      {
+        phaseNumber: 17,
         title: "Discourse",
         phaseType: "discourse" as const,
         estimatedMinutes: 15,
@@ -333,7 +509,7 @@ export const seedLesson5 = internalMutation({
         ],
       },
       {
-        phaseNumber: 12,
+        phaseNumber: 18,
         title: "Reflection",
         phaseType: "reflection" as const,
         estimatedMinutes: 5,

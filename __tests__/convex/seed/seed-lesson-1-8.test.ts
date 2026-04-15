@@ -17,9 +17,12 @@ describe('seed-lesson-1-8', () => {
         { phaseNumber: 5, title: 'Worked Example 2', phaseType: 'worked_example', sections: [] },
         { phaseNumber: 6, title: 'Worked Example 3', phaseType: 'worked_example', sections: [] },
         { phaseNumber: 7, title: 'Worked Example 4', phaseType: 'worked_example', sections: [] },
-        { phaseNumber: 8, title: 'Assessment', phaseType: 'assessment', sections: [] },
-        { phaseNumber: 9, title: 'Discourse', phaseType: 'discourse', sections: [] },
-        { phaseNumber: 10, title: 'Reflection', phaseType: 'reflection', sections: [] },
+        { phaseNumber: 8, title: 'Learn', phaseType: 'learn', sections: [] },
+        { phaseNumber: 9, title: 'Worked Example 5', phaseType: 'worked_example', sections: [] },
+        { phaseNumber: 10, title: 'Worked Example 6', phaseType: 'worked_example', sections: [] },
+        { phaseNumber: 11, title: 'Worked Example 7', phaseType: 'worked_example', sections: [] },
+        { phaseNumber: 12, title: 'Discourse', phaseType: 'discourse', sections: [] },
+        { phaseNumber: 13, title: 'Reflection', phaseType: 'reflection', sections: [] },
       ],
     };
 
@@ -30,11 +33,11 @@ describe('seed-lesson-1-8', () => {
       expect(lesson8Seed.orderIndex).toBe(8);
     });
 
-    it('has exactly 10 phases', () => {
-      expect(lesson8Seed.phases).toHaveLength(10);
+    it('has exactly 13 phases', () => {
+      expect(lesson8Seed.phases).toHaveLength(13);
     });
 
-    it('correct phase sequence: explore, vocab, learn, 4×worked_example, assessment, discourse, reflection', () => {
+    it('correct phase sequence: explore, vocab, learn, 4×worked_example, learn, 3×worked_example, discourse, reflection', () => {
       const expectedSequence: SeedPhase['phaseType'][] = [
         'explore',
         'vocabulary',
@@ -43,7 +46,10 @@ describe('seed-lesson-1-8', () => {
         'worked_example',
         'worked_example',
         'worked_example',
-        'assessment',
+        'learn',
+        'worked_example',
+        'worked_example',
+        'worked_example',
         'discourse',
         'reflection',
       ];
@@ -57,14 +63,19 @@ describe('seed-lesson-1-8', () => {
       expect(explorePhase?.phaseNumber).toBe(1);
     });
 
-    it('has exactly 1 learn phase', () => {
+    it('has exactly 2 learn phases', () => {
       const learnPhases = lesson8Seed.phases.filter((p) => p.phaseType === 'learn');
-      expect(learnPhases).toHaveLength(1);
+      expect(learnPhases).toHaveLength(2);
     });
 
-    it('has exactly 4 worked_example phases', () => {
+    it('has exactly 7 worked_example phases', () => {
       const workedExamples = lesson8Seed.phases.filter((p) => p.phaseType === 'worked_example');
-      expect(workedExamples).toHaveLength(4);
+      expect(workedExamples).toHaveLength(7);
+    });
+
+    it('does not include an assessment phase', () => {
+      const assessmentPhase = lesson8Seed.phases.find((p) => p.phaseType === 'assessment');
+      expect(assessmentPhase).toBeUndefined();
     });
   });
 
@@ -112,22 +123,26 @@ describe('seed-lesson-1-8', () => {
       expect(validComponentKeys).toContain(workedExampleSection.content.componentKey);
     });
 
-    it('assessment phase should have fill-in-the-blank activity', () => {
-      const assessmentSection = {
+    it('discourse phase should have comprehension-quiz activity', () => {
+      const discourseSection = {
         sequenceOrder: 1,
         sectionType: 'activity' as const,
         content: {
-          componentKey: 'fill-in-the-blank' as const,
+          componentKey: 'comprehension-quiz' as const,
           props: {
-            blanks: [
-              { id: '1', label: 'How many solutions can a linear-quadratic system have?', correctAnswer: '0, 1, or 2' },
+            questions: [
+              {
+                question: 'What is the maximum number of solutions for a linear-quadratic system?',
+                options: ['1', '2', '3'],
+                correctIndex: 1,
+              },
             ],
           },
         },
       };
 
-      expect(assessmentSection.content.componentKey).toBe('fill-in-the-blank');
-      expect(validComponentKeys).toContain(assessmentSection.content.componentKey);
+      expect(discourseSection.content.componentKey).toBe('comprehension-quiz');
+      expect(validComponentKeys).toContain(discourseSection.content.componentKey);
     });
   });
 });

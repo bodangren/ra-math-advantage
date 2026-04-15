@@ -19,9 +19,8 @@ describe('seed-lesson-1-6', () => {
         { phaseNumber: 7, title: 'Learn', phaseType: 'learn', sections: [] },
         { phaseNumber: 8, title: 'Worked Example 4', phaseType: 'worked_example', sections: [] },
         { phaseNumber: 9, title: 'Worked Example 5', phaseType: 'worked_example', sections: [] },
-        { phaseNumber: 10, title: 'Assessment', phaseType: 'assessment', sections: [] },
-        { phaseNumber: 11, title: 'Discourse', phaseType: 'discourse', sections: [] },
-        { phaseNumber: 12, title: 'Reflection', phaseType: 'reflection', sections: [] },
+        { phaseNumber: 10, title: 'Discourse', phaseType: 'discourse', sections: [] },
+        { phaseNumber: 11, title: 'Reflection', phaseType: 'reflection', sections: [] },
       ],
     };
 
@@ -32,11 +31,11 @@ describe('seed-lesson-1-6', () => {
       expect(lesson6Seed.orderIndex).toBe(6);
     });
 
-    it('has exactly 12 phases', () => {
-      expect(lesson6Seed.phases).toHaveLength(12);
+    it('has exactly 11 phases', () => {
+      expect(lesson6Seed.phases).toHaveLength(11);
     });
 
-    it('correct phase sequence: explore, vocab, learn, 3×worked_example, learn, 2×worked_example, assessment, discourse, reflection', () => {
+    it('correct phase sequence: explore, vocab, learn, 3×worked_example, learn, 2×worked_example, discourse, reflection', () => {
       const expectedSequence: SeedPhase['phaseType'][] = [
         'explore',
         'vocabulary',
@@ -47,7 +46,6 @@ describe('seed-lesson-1-6', () => {
         'learn',
         'worked_example',
         'worked_example',
-        'assessment',
         'discourse',
         'reflection',
       ];
@@ -71,14 +69,14 @@ describe('seed-lesson-1-6', () => {
       expect(workedExamples).toHaveLength(5);
     });
 
-    it('discourse phase exists', () => {
+    it('discourse phase is phase 10', () => {
       const discoursePhase = lesson6Seed.phases.find((p) => p.phaseType === 'discourse');
-      expect(discoursePhase).toBeDefined();
+      expect(discoursePhase?.phaseNumber).toBe(10);
     });
 
-    it('assessment phase exists', () => {
+    it('does not include an assessment phase', () => {
       const assessmentPhase = lesson6Seed.phases.find((p) => p.phaseType === 'assessment');
-      expect(assessmentPhase).toBeDefined();
+      expect(assessmentPhase).toBeUndefined();
     });
   });
 

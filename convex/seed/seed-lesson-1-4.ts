@@ -107,21 +107,6 @@ export const seedLesson4 = internalMutation({
       },
       {
         phaseNumber: 4,
-        title: "Learn",
-        phaseType: "learn" as const,
-        estimatedMinutes: 15,
-        sections: [
-          {
-            sequenceOrder: 1,
-            sectionType: "text" as const,
-            content: {
-              markdown: "## Factoring $x^2 + bx + c$\n\nWhen factoring $x^2 + bx + c$ (where $a = 1$):\n\nFind two numbers that:\n- **Multiply** to give $c$\n- **Add** to give $b$\n\n**Example**: Factor $x^2 + 5x + 6$\n- Need two numbers that multiply to 6 AND add to 5\n- $2 \\cdot 3 = 6$ and $2 + 3 = 5$\n- Answer: $(x + 2)(x + 3)$",
-            },
-          },
-        ],
-      },
-      {
-        phaseNumber: 5,
         title: "Worked Example 1",
         phaseType: "worked_example" as const,
         estimatedMinutes: 10,
@@ -152,7 +137,7 @@ export const seedLesson4 = internalMutation({
         ],
       },
       {
-        phaseNumber: 6,
+        phaseNumber: 5,
         title: "Worked Example 2",
         phaseType: "worked_example" as const,
         estimatedMinutes: 10,
@@ -184,7 +169,7 @@ export const seedLesson4 = internalMutation({
         ],
       },
       {
-        phaseNumber: 7,
+        phaseNumber: 6,
         title: "Worked Example 3",
         phaseType: "worked_example" as const,
         estimatedMinutes: 10,
@@ -216,7 +201,7 @@ export const seedLesson4 = internalMutation({
         ],
       },
       {
-        phaseNumber: 8,
+        phaseNumber: 7,
         title: "Worked Example 4",
         phaseType: "worked_example" as const,
         estimatedMinutes: 10,
@@ -244,6 +229,21 @@ export const seedLesson4 = internalMutation({
                   { expression: "x = 1/2  or  x = -3", explanation: "Solutions" },
                 ],
               },
+            },
+          },
+        ],
+      },
+      {
+        phaseNumber: 8,
+        title: "Learn",
+        phaseType: "learn" as const,
+        estimatedMinutes: 15,
+        sections: [
+          {
+            sequenceOrder: 1,
+            sectionType: "text" as const,
+            content: {
+              markdown: "## Factoring $x^2 + bx + c$\n\nWhen factoring $x^2 + bx + c$ (where $a = 1$):\n\nFind two numbers that:\n- **Multiply** to give $c$\n- **Add** to give $b$\n\n**Example**: Factor $x^2 + 5x + 6$\n- Need two numbers that multiply to 6 AND add to 5\n- $2 \\cdot 3 = 6$ and $2 + 3 = 5$\n- Answer: $(x + 2)(x + 3)$",
             },
           },
         ],
@@ -290,7 +290,38 @@ export const seedLesson4 = internalMutation({
             sequenceOrder: 1,
             sectionType: "text" as const,
             content: {
-              markdown: "## Example 6: Complex Solutions\n\nSolve $x^2 + 4 = 0$\n\n**Step 1**: Move terms\n$$x^2 = -4$$\n\n**Step 2**: Take square root of both sides\n$$x = \\pm \\sqrt{-4} = \\pm 2i$$\n\n**Check**: $(2i)^2 = -4$ and $(-2i)^2 = -4$ ✓",
+              markdown: "## Example 6: Factor a Perfect Square Trinomial\n\nFactor $x^2 + 10x + 25$.\n\n**Recognize**: This is $a^2 + 2ab + b^2$ where $a = x$ and $b = 5$.\n\n**Apply**: $a^2 + 2ab + b^2 = (a + b)^2$\n\n$$x^2 + 10x + 25 = (x + 5)^2$$",
+            },
+          },
+          {
+            sequenceOrder: 2,
+            sectionType: "activity" as const,
+            content: {
+              componentKey: "step-by-step-solver",
+              props: {
+                problemType: "factoring",
+                equation: "x^2 + 10x + 25",
+                steps: [
+                  { expression: "x^2 + 10x + 25", explanation: "Original trinomial" },
+                  { expression: "x^2 + 2(x)(5) + 5^2", explanation: "Recognize perfect square pattern" },
+                  { expression: "(x + 5)^2", explanation: "Factor as a perfect square trinomial" },
+                ],
+              },
+            },
+          },
+        ],
+      },
+      {
+        phaseNumber: 11,
+        title: "Worked Example 7",
+        phaseType: "worked_example" as const,
+        estimatedMinutes: 10,
+        sections: [
+          {
+            sequenceOrder: 1,
+            sectionType: "text" as const,
+            content: {
+              markdown: "## Example 7: Complex Solutions\n\nSolve $x^2 + 4 = 0$.\n\n**Step 1**: Move terms\n$$x^2 = -4$$\n\n**Step 2**: Take square root of both sides\n$$x = \\pm \\sqrt{-4} = \\pm 2i$$\n\n**Check**: $(2i)^2 = -4$ and $(-2i)^2 = -4$",
             },
           },
           {
@@ -313,7 +344,7 @@ export const seedLesson4 = internalMutation({
         ],
       },
       {
-        phaseNumber: 11,
+        phaseNumber: 12,
         title: "Discourse",
         phaseType: "discourse" as const,
         estimatedMinutes: 15,
@@ -343,40 +374,6 @@ export const seedLesson4 = internalMutation({
                     correctIndex: 0,
                   },
                 ],
-              },
-            },
-          },
-        ],
-      },
-      {
-        phaseNumber: 12,
-        title: "Assessment",
-        phaseType: "assessment" as const,
-        estimatedMinutes: 20,
-        sections: [
-          {
-            sequenceOrder: 1,
-            sectionType: "activity" as const,
-            content: {
-              componentKey: "fill-in-the-blank",
-              props: {
-                blanks: [
-                  { id: "1", label: "Factor x^2 + 7x + 10", correctAnswer: "(x+5)(x+2)" },
-                  { id: "2", label: "Solve x^2 - 4 = 0", correctAnswer: "x = -2, 2" },
-                  { id: "3", label: "Factor 2x^2 + 7x + 3", correctAnswer: "(2x+1)(x+3)" },
-                ],
-              },
-            },
-          },
-          {
-            sequenceOrder: 2,
-            sectionType: "activity" as const,
-            content: {
-              componentKey: "step-by-step-solver",
-              props: {
-                problemType: "factoring",
-                equation: "x^2 - x - 12 = 0",
-                steps: [],
               },
             },
           },

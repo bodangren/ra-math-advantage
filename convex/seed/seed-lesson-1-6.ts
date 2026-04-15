@@ -256,40 +256,6 @@ export const seedLesson6 = internalMutation({
       },
       {
         phaseNumber: 10,
-        title: "Assessment",
-        phaseType: "assessment" as const,
-        estimatedMinutes: 20,
-        sections: [
-          {
-            sequenceOrder: 1,
-            sectionType: "activity" as const,
-            content: {
-              componentKey: "fill-in-the-blank",
-              props: {
-                blanks: [
-                  { id: "1", label: "For x^2 + 3x - 4 = 0, the discriminant is", correctAnswer: "25" },
-                  { id: "2", label: "If D > 0, there are ___ real solutions", correctAnswer: "two" },
-                  { id: "3", label: "The discriminant of x^2 - 2x + 5 is", correctAnswer: "-16" },
-                ],
-              },
-            },
-          },
-          {
-            sequenceOrder: 2,
-            sectionType: "activity" as const,
-            content: {
-              componentKey: "step-by-step-solver",
-              props: {
-                problemType: "quadratic-formula",
-                equation: "x^2 + 4x + 8 = 0",
-                steps: [],
-              },
-            },
-          },
-        ],
-      },
-      {
-        phaseNumber: 11,
         title: "Discourse",
         phaseType: "discourse" as const,
         estimatedMinutes: 15,
@@ -325,7 +291,7 @@ export const seedLesson6 = internalMutation({
         ],
       },
       {
-        phaseNumber: 12,
+        phaseNumber: 11,
         title: "Reflection",
         phaseType: "reflection" as const,
         estimatedMinutes: 5,

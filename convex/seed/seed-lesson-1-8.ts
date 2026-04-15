@@ -235,22 +235,30 @@ export const seedLesson8 = internalMutation({
       },
       {
         phaseNumber: 8,
-        title: "Assessment",
-        phaseType: "assessment" as const,
-        estimatedMinutes: 20,
+        title: "Learn",
+        phaseType: "learn" as const,
+        estimatedMinutes: 15,
         sections: [
           {
             sequenceOrder: 1,
-            sectionType: "activity" as const,
+            sectionType: "text" as const,
             content: {
-              componentKey: "fill-in-the-blank",
-              props: {
-                blanks: [
-                  { id: "1", label: "A linear-quadratic system can have at most ___ solutions", correctAnswer: "2" },
-                  { id: "2", label: "If the line is tangent to the parabola, there is ___ solution(s)", correctAnswer: "1" },
-                  { id: "3", label: "Solve: y = x^2 and y = x + 2. The x-values are", correctAnswer: "x = -1 or x = 2" },
-                ],
-              },
+              markdown: "## Solving Quadratic-Quadratic Systems\n\nA quadratic-quadratic system contains two quadratic equations. To solve algebraically, set the two expressions equal to each other, move all terms to one side, and solve the resulting quadratic equation.\n\nThe solutions are the points where the parabolas intersect. A system may have two, one, or no real solutions.",
+            },
+          },
+        ],
+      },
+      {
+        phaseNumber: 9,
+        title: "Worked Example 5",
+        phaseType: "worked_example" as const,
+        estimatedMinutes: 10,
+        sections: [
+          {
+            sequenceOrder: 1,
+            sectionType: "text" as const,
+            content: {
+              markdown: "## Example 5: Solve a Quadratic-Quadratic System\n\nSolve the system:\n$$y = x^2 + 2x$$\n$$y = -x^2 + 4x + 6$$\n\n**Step 1**: Set the equations equal.\n$$x^2 + 2x = -x^2 + 4x + 6$$\n\n**Step 2**: Move all terms to one side.\n$$2x^2 - 2x - 6 = 0$$\n$$x^2 - x - 3 = 0$$\n\n**Step 3**: Solve using the quadratic formula.\n$$x = \\frac{1 \\pm \\sqrt{13}}{2}$$\n\nSubstitute each $x$-value into either equation to find the corresponding $y$-values.",
             },
           },
           {
@@ -260,15 +268,71 @@ export const seedLesson8 = internalMutation({
               componentKey: "step-by-step-solver",
               props: {
                 problemType: "system",
-                equations: ["y = x^2", "y = x + 2"],
-                steps: [],
+                equations: ["y = x^2 + 2x", "y = -x^2 + 4x + 6"],
+                steps: [
+                  { expression: "x^2 + 2x = -x^2 + 4x + 6", explanation: "Set equations equal" },
+                  { expression: "x^2 - x - 3 = 0", explanation: "Move terms and simplify" },
+                  { expression: "x = (1 ± √13)/2", explanation: "Solve the quadratic" },
+                ],
               },
             },
           },
         ],
       },
       {
-        phaseNumber: 9,
+        phaseNumber: 10,
+        title: "Worked Example 6",
+        phaseType: "worked_example" as const,
+        estimatedMinutes: 10,
+        sections: [
+          {
+            sequenceOrder: 1,
+            sectionType: "text" as const,
+            content: {
+              markdown: "## Example 6: One Intersection\n\nSolve the system:\n$$y = x^2 - 4x + 7$$\n$$y = x^2 - 2x + 3$$\n\n**Step 1**: Set the expressions equal.\n$$x^2 - 4x + 7 = x^2 - 2x + 3$$\n\n**Step 2**: Subtract $x^2$ from both sides and solve.\n$$-4x + 7 = -2x + 3$$\n$$4 = 2x$$\n$$x = 2$$\n\n**Step 3**: Substitute $x = 2$.\n$$y = 2^2 - 4(2) + 7 = 3$$\n\nThe parabolas intersect at $(2, 3)$.",
+            },
+          },
+          {
+            sequenceOrder: 2,
+            sectionType: "activity" as const,
+            content: {
+              componentKey: "graphing-explorer",
+              props: {
+                functions: ["x^2 - 4x + 7", "x^2 - 2x + 3"],
+                features: ["intersection"],
+              },
+            },
+          },
+        ],
+      },
+      {
+        phaseNumber: 11,
+        title: "Worked Example 7",
+        phaseType: "worked_example" as const,
+        estimatedMinutes: 10,
+        sections: [
+          {
+            sequenceOrder: 1,
+            sectionType: "text" as const,
+            content: {
+              markdown: "## Example 7: No Real Intersections\n\nSolve the system:\n$$y = x^2 + 1$$\n$$y = x^2 - 5$$\n\n**Step 1**: Set the expressions equal.\n$$x^2 + 1 = x^2 - 5$$\n\n**Step 2**: Subtract $x^2$ from both sides.\n$$1 = -5$$\n\nThis statement is never true, so the system has **no solution**. The parabolas have the same shape but different vertical positions.",
+            },
+          },
+          {
+            sequenceOrder: 2,
+            sectionType: "activity" as const,
+            content: {
+              componentKey: "graphing-explorer",
+              props: {
+                functions: ["x^2 + 1", "x^2 - 5"],
+                features: ["no intersection", "vertical shift"],
+              },
+            },
+          },
+        ],
+      },
+      {
+        phaseNumber: 12,
         title: "Discourse",
         phaseType: "discourse" as const,
         estimatedMinutes: 15,
@@ -304,7 +368,7 @@ export const seedLesson8 = internalMutation({
         ],
       },
       {
-        phaseNumber: 10,
+        phaseNumber: 13,
         title: "Reflection",
         phaseType: "reflection" as const,
         estimatedMinutes: 5,

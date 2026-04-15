@@ -13,14 +13,14 @@ describe('seed-lesson-1-3', () => {
         { phaseNumber: 1, title: 'Explore', phaseType: 'explore', sections: [] },
         { phaseNumber: 2, title: 'Vocabulary', phaseType: 'vocabulary', sections: [] },
         { phaseNumber: 3, title: 'Learn', phaseType: 'learn', sections: [] },
-        { phaseNumber: 4, title: 'Learn', phaseType: 'learn', sections: [] },
-        { phaseNumber: 5, title: 'Worked Example 1', phaseType: 'worked_example', sections: [] },
-        { phaseNumber: 6, title: 'Worked Example 2', phaseType: 'worked_example', sections: [] },
-        { phaseNumber: 7, title: 'Worked Example 3', phaseType: 'worked_example', sections: [] },
-        { phaseNumber: 8, title: 'Learn', phaseType: 'learn', sections: [] },
-        { phaseNumber: 9, title: 'Worked Example 4', phaseType: 'worked_example', sections: [] },
-        { phaseNumber: 10, title: 'Worked Example 5', phaseType: 'worked_example', sections: [] },
-        { phaseNumber: 11, title: 'Worked Example 6', phaseType: 'worked_example', sections: [] },
+        { phaseNumber: 4, title: 'Worked Example 1', phaseType: 'worked_example', sections: [] },
+        { phaseNumber: 5, title: 'Worked Example 2', phaseType: 'worked_example', sections: [] },
+        { phaseNumber: 6, title: 'Worked Example 3', phaseType: 'worked_example', sections: [] },
+        { phaseNumber: 7, title: 'Learn', phaseType: 'learn', sections: [] },
+        { phaseNumber: 8, title: 'Worked Example 4', phaseType: 'worked_example', sections: [] },
+        { phaseNumber: 9, title: 'Worked Example 5', phaseType: 'worked_example', sections: [] },
+        { phaseNumber: 10, title: 'Worked Example 6', phaseType: 'worked_example', sections: [] },
+        { phaseNumber: 11, title: 'Worked Example 7', phaseType: 'worked_example', sections: [] },
         { phaseNumber: 12, title: 'Discourse', phaseType: 'discourse', sections: [] },
         { phaseNumber: 13, title: 'Reflection', phaseType: 'reflection', sections: [] },
       ],
@@ -37,16 +37,16 @@ describe('seed-lesson-1-3', () => {
       expect(lesson3Seed.phases).toHaveLength(13);
     });
 
-    it('correct phase sequence: explore, vocab, 2×learn, 3×worked_example, learn, 3×worked_example, discourse, reflection', () => {
+    it('correct phase sequence: explore, vocab, learn, 3×worked_example, learn, 4×worked_example, discourse, reflection', () => {
       const expectedSequence: SeedPhase['phaseType'][] = [
         'explore',
         'vocabulary',
         'learn',
-        'learn',
         'worked_example',
         'worked_example',
         'worked_example',
         'learn',
+        'worked_example',
         'worked_example',
         'worked_example',
         'worked_example',
@@ -68,9 +68,9 @@ describe('seed-lesson-1-3', () => {
       expect(vocabPhase?.phaseNumber).toBe(2);
     });
 
-    it('has exactly 3 learn phases', () => {
+    it('has exactly 2 learn phases', () => {
       const learnPhases = lesson3Seed.phases.filter((p) => p.phaseType === 'learn');
-      expect(learnPhases).toHaveLength(3);
+      expect(learnPhases).toHaveLength(2);
     });
 
     it('first learn phase is phase 3', () => {
@@ -78,22 +78,17 @@ describe('seed-lesson-1-3', () => {
       expect(learnPhases[0]?.phaseNumber).toBe(3);
     });
 
-    it('second learn phase is phase 4', () => {
+    it('second learn phase is phase 7', () => {
       const learnPhases = lesson3Seed.phases.filter((p) => p.phaseType === 'learn');
-      expect(learnPhases[1]?.phaseNumber).toBe(4);
+      expect(learnPhases[1]?.phaseNumber).toBe(7);
     });
 
-    it('third learn phase is phase 8', () => {
-      const learnPhases = lesson3Seed.phases.filter((p) => p.phaseType === 'learn');
-      expect(learnPhases[2]?.phaseNumber).toBe(8);
-    });
-
-    it('has exactly 6 worked_example phases', () => {
+    it('has exactly 7 worked_example phases', () => {
       const workedExamples = lesson3Seed.phases.filter((p) => p.phaseType === 'worked_example');
-      expect(workedExamples).toHaveLength(6);
+      expect(workedExamples).toHaveLength(7);
     });
 
-    it('worked examples are numbered 1-6 in order', () => {
+    it('worked examples are numbered 1-7 in order', () => {
       const workedExamples = lesson3Seed.phases.filter((p) => p.phaseType === 'worked_example');
       workedExamples.forEach((we, idx) => {
         expect(we.title).toBe(`Worked Example ${idx + 1}`);
