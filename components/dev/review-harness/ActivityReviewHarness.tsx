@@ -14,6 +14,7 @@ interface ActivityReviewHarnessProps {
   storedProps?: Record<string, unknown>;
   supportedModes?: Array<'teaching' | 'guided' | 'practice'>;
   onRenderError?: (error: Error) => void;
+  onCanApproveChange?: (canApprove: boolean) => void;
 }
 
 export function ActivityReviewHarness({
@@ -22,6 +23,7 @@ export function ActivityReviewHarness({
   storedProps = {},
   supportedModes = ['teaching', 'guided', 'practice'],
   onRenderError,
+  onCanApproveChange,
 }: ActivityReviewHarnessProps) {
   const [activeMode, setActiveMode] = useState<'teaching' | 'guided' | 'practice'>('teaching');
   const [callbacks, setCallbacks] = useState<ActivityCallback[]>([]);
@@ -74,6 +76,14 @@ export function ActivityReviewHarness({
   const simulateComplete = useCallback(() => {
     handleComplete();
   }, [handleComplete]);
+
+  const canApprove = isRendered && !renderError && 
+                     callbacks.some(c => c.type === 'submit') && 
+                     callbacks.some(c => c.type === 'complete');
+
+  useEffect(() => {
+    onCanApproveChange?.(canApprove);
+  }, [canApprove, onCanApproveChange]);
 
   return (
     <div className="space-y-6">

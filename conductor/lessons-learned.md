@@ -20,7 +20,7 @@
 
 - (2026-04-05, setup) Existing `lib/` modules are pure functions with clear types — excellent for testing
 - (2026-04-06, scaffold-pages) Mock `@/lib/convex/server` and `@/lib/auth/server` at the top of page tests — keeps tests fast and isolated
-- (2026-04-09, e-textbook-design) Use Tailwind animate-in classes for smooth transitions — lighter weight than framer-motion
+- (2026-04-15, harden-manual-approval) Harness gating: expose canApprove via callback, track in parent, gate approve button. Review queue passes storedProps/steps to harnesses instead of hardcoded data.
 - (2026-04-12, graphing-components) Create wrapper components for activity registry to adapt component-specific props
 - (2026-04-12, fix-graphing-test-types) Use `as const` on string literals in test props to preserve literal types
 
@@ -47,4 +47,4 @@
 - (2026-04-14, student-lesson-flow) Lesson completion screens: LessonCompleteScreen for individual lessons, ModuleCompleteScreen for full module; wire via `showLessonComplete` state in LessonRenderer and `complete=module-1` query param on dashboard
 - (2026-04-14, teacher-dashboard) When adding new computed fields to a Convex query result (currentLesson, atGlanceStatus), build lookup maps in the handler and pass them to helper functions to avoid N+1 queries; chain: phaseId → lessonVersionId → lessonId → title
 - (2026-04-14, teacher-module1) Teacher lesson preview: use try/catch on ctx.db.get with Id cast, then fall back to slug-based index query. Set all phases to 'available' so LessonStepper allows free navigation in teaching mode.
-- (2026-04-15, harden-manual-approval) Review queue componentKind is derived from curriculum placement phaseType: worked_example → example, guided_practice/independent_practice/assessment → practice, all others → activity. Stable identity for embedded targets uses the activities row ID stored in phase_sections.content.activityId.
+- (2026-04-15, harden-manual-approval) Review queue componentKind derived from phaseType (worked_example→example, guided_practice/independent_practice/assessment→practice); harness gating via canApprove callback in parent gates decision panel approve button

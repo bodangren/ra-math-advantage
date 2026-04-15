@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 
 interface SubmissionEnvelope {
   activityId: string;
@@ -22,6 +22,7 @@ interface PracticeReviewHarnessProps {
   onCorrectAttempt?: (envelope: SubmissionEnvelope) => void;
   onIncorrectAttempt?: (envelope: SubmissionEnvelope) => void;
   onVariantChecked?: () => void;
+  onCanApproveChange?: (canApprove: boolean) => void;
 }
 
 export function PracticeReviewHarness({
@@ -30,6 +31,7 @@ export function PracticeReviewHarness({
   onCorrectAttempt,
   onIncorrectAttempt,
   onVariantChecked,
+  onCanApproveChange,
 }: PracticeReviewHarnessProps) {
   const [submissionHistory, setSubmissionHistory] = useState<SubmissionEnvelope[]>([]);
   const [selectedSubmission, setSelectedSubmission] = useState<SubmissionEnvelope | null>(null);
@@ -78,6 +80,10 @@ export function PracticeReviewHarness({
 
   const canApprove = submissionHistory.some(s => s.score === 100) && 
                      submissionHistory.some(s => s.score === 0);
+
+  useEffect(() => {
+    onCanApproveChange?.(canApprove);
+  }, [canApprove, onCanApproveChange]);
 
   return (
     <div className="space-y-6">

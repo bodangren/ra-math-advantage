@@ -196,4 +196,29 @@ describe('ActivityReviewHarness', () => {
       expect(screen.getByRole('button', { name: /practice/i })).toBeInTheDocument();
     });
   });
+
+  describe('onCanApproveChange callback', () => {
+    it('calls onCanApproveChange with false initially', () => {
+      const onCanApproveChange = vi.fn();
+      render(<ActivityReviewHarness {...defaultProps} onCanApproveChange={onCanApproveChange} />);
+
+      expect(onCanApproveChange).toHaveBeenCalledWith(false);
+    });
+
+    it('calls onCanApproveChange with true when all checks pass', async () => {
+      const onCanApproveChange = vi.fn();
+      render(<ActivityReviewHarness {...defaultProps} onCanApproveChange={onCanApproveChange} />);
+      onCanApproveChange.mockClear();
+
+      const submitButton = screen.getByRole('button', { name: /trigger submit callback/i });
+      fireEvent.click(submitButton);
+
+      const completeButton = screen.getByRole('button', { name: /trigger complete callback/i });
+      fireEvent.click(completeButton);
+
+      await waitFor(() => {
+        expect(onCanApproveChange).toHaveBeenCalledWith(true);
+      });
+    });
+  });
 });

@@ -60,6 +60,8 @@ export interface ReviewQueueItem {
     reviewedAt?: number;
     reviewedBy?: string;
   };
+  storedProps?: Record<string, unknown>;
+  steps?: Array<{ expression: string; explanation: string }>;
 }
 
 interface AssembleArgs {
@@ -155,5 +157,7 @@ export async function assembleReviewQueueItem({
     storedHash,
     isStale,
     approval,
+    storedProps: activity.props ?? undefined,
+    steps: (activity.props as { steps?: Array<{ expression: string; explanation: string }> })?.steps ?? undefined,
   };
 }

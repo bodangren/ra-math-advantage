@@ -18,9 +18,9 @@
 | getLessonProgress fetches ALL user progress, not lesson-scoped | Med-High | Open | `.withIndex("by_user").collect()` returns all rows |
 | No Convex-layer authorization — admin token = full access | Med-High | Open | Auth boundary is entirely in Next.js server layer |
 | No auth checks in convex/dev.ts internal functions | Medium | Open | Route guard implemented; Convex function auth deferred |
-| Review harnesses use hardcoded sample data | Medium | Open | ComponentHarnessPanel passes static data |
+| Review harnesses use hardcoded sample data | Medium | Resolved | Fixed 2026-04-15; ComponentHarnessPanel now passes storedProps/steps from queue item |
 | Manual approval queue may miss embedded examples/practice placements | Medium | Resolved | Fixed 2026-04-15; listReviewQueue now discovers example/practice from phase_sections + phase_versions |
-| Approval UI does not enforce harness checklist before approve | Medium | Open | Track in harden-manual-approval_20260415; decision panel can approve independently |
+| Approval UI does not enforce harness checklist before approve | Medium | Resolved | Fixed 2026-04-15; harnessCanApprove state gates approve button in ReviewDecisionPanel |
 | Review queue filter state may be split between view/list/client hook | Medium | Open | Track in harden-manual-approval_20260415; verify filters affect fetch query |
 | Algebraic test coverage structurally weak (20-50% step assertion) | Medium | Open | Tests named "all steps" check only fraction |
 | Guided mode submissions not recorded | Medium | Open | No onSubmit for guided practice; no analytics data |

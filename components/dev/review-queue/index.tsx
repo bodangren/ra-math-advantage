@@ -2,7 +2,6 @@
 
 import { useState, useEffect, useCallback } from 'react';
 import { ExampleReviewHarness, PracticeReviewHarness, ActivityReviewHarness } from '@/components/dev/review-harness';
-import type { AlgebraicStep } from '@/components/activities/algebraic/StepByStepper';
 
 interface ReviewQueueItem {
   componentKind: 'activity' | 'example' | 'practice';
@@ -18,6 +17,8 @@ interface ReviewQueueItem {
     reviewedAt?: number;
     reviewedBy?: string;
   };
+  storedProps?: Record<string, unknown>;
+  steps?: Array<{ expression: string; explanation: string }>;
 }
 
 interface Filters {
@@ -202,10 +203,12 @@ export function ReviewDecisionPanel({
   item,
   onSubmit,
   onCancel,
+  harnessCanApprove = false,
 }: {
   item: ReviewQueueItem;
   onSubmit: (status: string, comment?: string, issueTags?: string[], priority?: string) => Promise<void>;
   onCancel: () => void;
+  harnessCanApprove?: boolean;
 }) {
   const [status, setStatus] = useState<string>('');
   const [comment, setComment] = useState('');
@@ -266,8 +269,10 @@ export function ReviewDecisionPanel({
             className={`px-4 py-2 rounded ${
               status === 'approved' ? 'bg-green-600 text-white' : 'bg-muted hover:bg-muted/80'
             }`}
+            disabled={!harnessCanApprove && status !== 'approved'}
+            title={!harnessCanApprove ? 'Complete harness review before approving' : undefined}
           >
-            Approve
+            Approve {!harnessCanApprove && '(complete harness review first)'}
           </button>
           <button
             type="button"
@@ -354,7 +359,7 @@ export function ReviewDecisionPanel({
         <button
           type="submit"
           className="px-4 py-2 bg-primary text-primary-foreground rounded hover:bg-primary/90"
-          disabled={submitting || !status}
+          disabled={submitting || !status || (status === 'approved' && !harnessCanApprove)}
         >
           {submitting ? 'Submitting...' : 'Submit Review'}
         </button>
@@ -373,12 +378,18 @@ export function ReviewQueueView() {
     onlyStale: false,
   });
   const [reviewView, setReviewView] = useState<ReviewView>('decision');
+  const [harnessCanApprove, setHarnessCanApprove] = useState(false);
 
   const { items, loading, error, handleReviewSubmit } = ReviewQueueClient();
 
   const handleItemSelect = useCallback((item: ReviewQueueItem) => {
     setSelectedItem(item);
     setReviewView('decision');
+    setHarnessCanApprove(false);
+  }, []);
+
+  const handleHarnessCanApproveChange = useCallback((canApprove: boolean) => {
+    setHarnessCanApprove(canApprove);
   }, []);
 
   return (
@@ -430,6 +441,7 @@ export function ReviewQueueView() {
             {reviewView === 'decision' ? (
               <ReviewDecisionPanel
                 item={selectedItem}
+                harnessCanApprove={harnessCanApprove}
                 onSubmit={async (status, comment, issueTags, priority) => {
                   await handleReviewSubmit(
                     selectedItem.componentKind,
@@ -443,7 +455,7 @@ export function ReviewQueueView() {
                 onCancel={() => setSelectedItem(null)}
               />
             ) : (
-              <ComponentHarnessPanel item={selectedItem} />
+              <ComponentHarnessPanel item={selectedItem} onCanApproveChange={handleHarnessCanApproveChange} />
             )}
           </>
         ) : (
@@ -454,8 +466,13 @@ export function ReviewQueueView() {
   );
 }
 
-function ComponentHarnessPanel({ item }: { item: ReviewQueueItem }) {
-  const sampleSteps: AlgebraicStep[] = [
+function ComponentHarnessPanel({ item, onCanApproveChange }: { item: ReviewQueueItem; onCanApproveChange?: (canApprove: boolean) => void }) {
+  const defaultActivityProps = {
+    activityId: item.componentId,
+    mode: 'teaching' as const,
+  };
+
+  const effectiveSteps = item.steps && item.steps.length > 0 ? item.steps : [
     {
       expression: 'x^2 + 5x + 6 = 0',
       explanation: 'Start with the quadratic equation in standard form.',
@@ -470,26 +487,25 @@ function ComponentHarnessPanel({ item }: { item: ReviewQueueItem }) {
     },
   ];
 
-  const defaultActivityProps = {
-    activityId: item.componentId,
-    mode: 'teaching' as const,
-    variant: 'plot_from_equation',
-    equation: 'y = x^2',
-  };
+  const effectiveProps = item.storedProps && Object.keys(item.storedProps).length > 0
+    ? { ...defaultActivityProps, ...item.storedProps }
+    : defaultActivityProps;
 
   switch (item.componentKind) {
     case 'example':
       return (
         <ExampleReviewHarness
           componentKey={item.componentKey || item.componentId}
-          steps={sampleSteps}
+          steps={effectiveSteps}
+          onCanApproveChange={onCanApproveChange}
         />
       );
     case 'practice':
       return (
         <PracticeReviewHarness
           componentKey={item.componentKey || item.componentId}
-          componentProps={defaultActivityProps}
+          componentProps={effectiveProps}
+          onCanApproveChange={onCanApproveChange}
         />
       );
     case 'activity':
@@ -498,7 +514,8 @@ function ComponentHarnessPanel({ item }: { item: ReviewQueueItem }) {
         <ActivityReviewHarness
           componentKey={item.componentKey || item.componentId}
           activityId={item.componentId}
-          storedProps={defaultActivityProps}
+          storedProps={effectiveProps}
+          onCanApproveChange={onCanApproveChange}
         />
       );
   }

@@ -183,4 +183,27 @@ describe('PracticeReviewHarness', () => {
       expect(screen.getAllByText('step-by-step-solver')).toHaveLength(2);
     });
   });
+
+  describe('onCanApproveChange callback', () => {
+    it('calls onCanApproveChange with false initially', () => {
+      const onCanApproveChange = vi.fn();
+      render(<PracticeReviewHarness {...defaultProps} onCanApproveChange={onCanApproveChange} />);
+
+      expect(onCanApproveChange).toHaveBeenCalledWith(false);
+    });
+
+    it('calls onCanApproveChange with true when both attempts submitted', () => {
+      const onCanApproveChange = vi.fn();
+      render(<PracticeReviewHarness {...defaultProps} onCanApproveChange={onCanApproveChange} />);
+      onCanApproveChange.mockClear();
+
+      const correctButton = screen.getByRole('button', { name: /simulate correct attempt/i });
+      fireEvent.click(correctButton);
+
+      const incorrectButton = screen.getByRole('button', { name: /simulate incorrect attempt/i });
+      fireEvent.click(incorrectButton);
+
+      expect(onCanApproveChange).toHaveBeenCalledWith(true);
+    });
+  });
 });

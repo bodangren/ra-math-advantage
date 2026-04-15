@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import type { StepMode } from '@/components/textbook/StepRevealContainer';
 import type { AlgebraicStep } from '@/components/activities/algebraic/StepByStepper';
 
@@ -11,6 +11,7 @@ interface ExampleReviewHarnessProps {
   onVariantGenerated?: () => void;
   onAlgorithmicBehaviorChecked?: () => void;
   onCoherentFeedbackChecked?: () => void;
+  onCanApproveChange?: (canApprove: boolean) => void;
 }
 
 interface ReviewedModes {
@@ -26,6 +27,7 @@ export function ExampleReviewHarness({
   onVariantGenerated,
   onAlgorithmicBehaviorChecked,
   onCoherentFeedbackChecked,
+  onCanApproveChange,
 }: ExampleReviewHarnessProps) {
   const [activeMode, setActiveMode] = useState<StepMode>('teaching');
   const [reviewedModes, setReviewedModes] = useState<ReviewedModes>({
@@ -56,6 +58,10 @@ export function ExampleReviewHarness({
   }, [onVariantGenerated]);
 
   const canApprove = reviewedModes.teaching && reviewedModes.guided && reviewedModes.practice;
+
+  useEffect(() => {
+    onCanApproveChange?.(canApprove);
+  }, [canApprove, onCanApproveChange]);
 
   return (
     <div className="space-y-6">

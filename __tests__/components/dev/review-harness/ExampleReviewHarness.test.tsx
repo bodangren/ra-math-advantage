@@ -173,4 +173,27 @@ describe('ExampleReviewHarness', () => {
       expect(screen.getByText('factor-trinomial')).toBeInTheDocument();
     });
   });
+
+  describe('onCanApproveChange callback', () => {
+    it('calls onCanApproveChange with false initially', () => {
+      const onCanApproveChange = vi.fn();
+      render(<ExampleReviewHarness {...defaultProps} onCanApproveChange={onCanApproveChange} />);
+
+      expect(onCanApproveChange).toHaveBeenCalledWith(false);
+    });
+
+    it('calls onCanApproveChange with true when all modes reviewed', () => {
+      const onCanApproveChange = vi.fn();
+      render(<ExampleReviewHarness {...defaultProps} onCanApproveChange={onCanApproveChange} />);
+      onCanApproveChange.mockClear();
+
+      const guidedButton = screen.getByRole('button', { name: /guided/i });
+      fireEvent.click(guidedButton);
+
+      const practiceButton = screen.getByRole('button', { name: /practice/i });
+      fireEvent.click(practiceButton);
+
+      expect(onCanApproveChange).toHaveBeenCalledWith(true);
+    });
+  });
 });
