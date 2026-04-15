@@ -26,8 +26,8 @@ Track: `conductor/tracks/practice-timing-telemetry_20260415/`
 Add canonical wall-clock, active-time, idle-time, and timing-confidence evidence to practice.v1 submissions for future SRS scoring.
 
 - Phase 1: Canonical Contract and Schema Reconciliation — COMPLETE [checkpoint: 790e2f5]
-- Phase 2: Reusable Timing Core and React Instrumentation — pending
-- Phase 3: Activity Submission Integration — pending
+- Phase 2: Reusable Timing Core and React Instrumentation — COMPLETE [checkpoint: a973651]
+- Phase 3: Activity Submission Integration — COMPLETE [checkpoint: 733bef3]
 - Phase 4: Persistence and Review Surfaces — pending
 - Phase 5: Verification, Documentation, and Handoff — pending
 

@@ -44,7 +44,7 @@
   - [x] Test a long interaction gap is counted as idle time
 - [x] Task: Conductor - Phase Completion Verification 'Reusable Timing Core and React Instrumentation' (Protocol in workflow.md) [a973651]
 
-## Phase 3: Activity Submission Integration [checkpoint: TBD]
+## Phase 3: Activity Submission Integration [checkpoint: 733bef3]
 
 - [x] Task: Write integration tests for timed practice submission
   - [x] Test activity wrapper appends timing to a real `practice.v1` envelope
