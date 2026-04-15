@@ -183,6 +183,7 @@ Tracks 1+4 unlock Track 8; Track 8 unlocks Tracks 9+10.
       - Phase 2: Seed Lesson 4-2 [COMPLETE]
       - Phase 3: Seed Lesson 4-3 [COMPLETE]
       - Phase 4: Seed Lesson 4-4 [COMPLETE]
+      - Phase 5: Seed Lesson 4-5 [COMPLETE]
 
 - [ ] **Track: Module 5 Curriculum Seed**
      *Seed Module 5 exponential functions and geometric series lessons (5-1 through 5-5) into Convex database*

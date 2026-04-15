@@ -40,15 +40,15 @@
   - [x] Implement lesson, phases, sections, and activities
 - [x] Task: Conductor - Phase Completion Verification 'Seed Lesson 4-4' (Protocol in workflow.md)
 
-## Phase 5: Seed Lesson 4-5
+## Phase 5: Seed Lesson 4-5 [checkpoint: b840857]
 
-- [ ] Task: Verify lesson 4-5 curriculum source
-  - [ ] Confirm title and phase sequence against `curriculum/modules/module-4-lesson-5`
-  - [ ] Confirm radical expression operations preserve simplification steps
-- [ ] Task: Create seed function `convex/seed/seed-lesson-4-5.ts`
-  - [ ] Write tests for phase sequence and idempotency
-  - [ ] Implement lesson, phases, sections, and activities
-- [ ] Task: Conductor - Phase Completion Verification 'Seed Lesson 4-5' (Protocol in workflow.md)
+- [x] Task: Verify lesson 4-5 curriculum source
+  - [x] Confirm title and phase sequence against `curriculum/modules/module-4-lesson-5`
+  - [x] Confirm radical expression operations preserve simplification steps
+- [x] Task: Create seed function `convex/seed/seed-lesson-4-5.ts`
+  - [x] Write tests for phase sequence and idempotency
+  - [x] Implement lesson, phases, sections, and activities
+- [x] Task: Conductor - Phase Completion Verification 'Seed Lesson 4-5' (Protocol in workflow.md)
 
 ## Phase 6: Seed Lesson 4-6
 
