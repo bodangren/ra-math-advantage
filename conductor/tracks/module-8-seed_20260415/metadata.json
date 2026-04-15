@@ -1,11 +1,11 @@
 {
   "track_id": "module-8-seed_20260415",
   "type": "feature",
-  "status": "new",
+  "status": "completed",
   "created_at": "2026-04-15T00:00:00Z",
-  "updated_at": "2026-04-15T00:00:00Z",
+  "updated_at": "2026-04-16T00:00:00Z",
   "description": "Seed Module 8 inferential statistics curriculum data into Convex following the audited curriculum source.",
   "estimated_tasks": 20,
-  "actual_tasks": null,
-  "deviation_notes": ""
+  "actual_tasks": 31,
+  "deviation_notes": "Added 8 statistics CCSS standards (HSS-ID.A.1, HSS-ID.A.2, HSS-ID.A.3, HSS-ID.B.6, HSS-IC.A.1, HSS-IC.B.3, HSS-IC.B.4, HSS-IC.B.5, HSS-IC.B.6) and lesson-standard links for all 5 Module 8 lessons."
 }

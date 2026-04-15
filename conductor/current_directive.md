@@ -1,32 +1,30 @@
 # Current Directive
 
-> Updated: 2026-04-16 (Module 8 Phase 5: Lesson 8-5 seed complete)
+> Updated: 2026-04-16 (Module 8 Phase 6: Module 8 seed complete)
 
 ## Status Summary
 
-- **Tests**: 2196 passing, 7 known failures (equivalence validator - radicals/fractions, pre-existing).
+- **Tests**: 2194 passing, 9 known failures (equivalence validator - radicals/fractions, pre-existing).
 - **Build**: Passing; RSC chunk warning remains pre-existing (735 KB).
 - **Lint**: Passing.
 - **TypeScript**: 25 pre-existing test-file errors remain (students.test.tsx, dashboard.test.ts). No new TS errors.
-- **Module 1-7 Roadmap**: Complete.
-- **Module 8 Seed**: Phases 1-5 complete (Lessons 8-1 through 8-5). Phase 6 pending.
+- **Module 1-8 Roadmap**: Complete.
+- **Module 8 Seed**: All phases complete (Lessons 8-1 through 8-5, Module Integration and Verification).
 - **Code Review**: Completed 2026-04-16. Fixed 2 issues (HSA-APR.B.2 incorrect description, missing HSF-LE.A.1 and HSA-CED.A.2 standards).
 
 ## Current In-Progress Track
 
-### Module 8 Curriculum Seed
+### Module 9 Curriculum Seed
 
-Track: `conductor/tracks/module-8-seed_20260415/`
+Track: `conductor/tracks/module-9-seed_20260415/`
 
-Seed Module 8 inferential statistics lessons (8-1 through 8-5) into Convex database. Phase 5 complete.
+Seed Module 9 trigonometric functions lessons (9-1 through 9-7) into Convex database. Pending.
 
 ## Planned Upcoming Tracks
 
-1. **Module 8 Curriculum Seed** — Phase 5: Lesson 8-5
-2. **Module 8 Curriculum Seed** — Phase 6: Module Integration and Verification
-3. **Module 9 Curriculum Seed** — `module-9-seed_20260415` (7 lessons)
-4. **Practice Timing Telemetry** — `practice-timing-telemetry_20260415` (post-Module 9 SRS foundation)
-5. **Practice Timing Baselines** — `practice-timing-baselines_20260415` (depends on timing telemetry and stable practice problem-family identifiers)
+1. **Module 9 Curriculum Seed** — `module-9-seed_20260415` (7 lessons)
+2. **Practice Timing Telemetry** — `practice-timing-telemetry_20260415` (post-Module 9 SRS foundation)
+3. **Practice Timing Baselines** — `practice-timing-baselines_20260415` (depends on timing telemetry and stable practice problem-family identifiers)
 
 See `conductor/modules-3-9-roadmap.md` for the module inventory and repeated implementation pattern.
 See `conductor/daily-practice-srs-roadmap.md` for the post-Module-9 daily practice SRS sequence.

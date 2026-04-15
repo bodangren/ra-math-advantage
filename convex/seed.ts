@@ -225,6 +225,25 @@ export const seedAll = internalAction({
       });
     }
 
+    try {
+      const lessonStandardResults8 = await ctx.runMutation(seedInternal.seedModule8LessonStandards, {});
+      for (const result of lessonStandardResults8) {
+        results.lessonStandards.push({
+          lessonSlug: result.lessonSlug,
+          standardCode: result.standardCode,
+          success: result.success,
+          error: result.error,
+        });
+      }
+    } catch (error) {
+      results.lessonStandards.push({
+        lessonSlug: "module-8",
+        standardCode: "ALL",
+        success: false,
+        error: error instanceof Error ? error.message : "Unknown error",
+      });
+    }
+
     const demo = getDemoEnvironment();
     if (demo) {
       try {
