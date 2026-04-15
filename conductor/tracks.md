@@ -176,9 +176,10 @@ Tracks 1+4 unlock Track 8; Track 8 unlocks Tracks 9+10.
         - Phase 5: Seed Lesson 3-5 (Roots and Zeros) [COMPLETE]
         - Phase 6: Module Integration and Verification [COMPLETE]
 
-- [ ] **Track: Module 4 Curriculum Seed**
+- [~] **Track: Module 4 Curriculum Seed**
      *Seed Module 4 inverses and radical functions lessons (4-1 through 4-6) into Convex database*
      *Link: [./conductor/tracks/module-4-seed_20260415/](./conductor/tracks/module-4-seed_20260415/)*
+     - Phase 1: Seed Lesson 4-1 [IN PROGRESS]
 
 - [ ] **Track: Module 5 Curriculum Seed**
      *Seed Module 5 exponential functions and geometric series lessons (5-1 through 5-5) into Convex database*
