@@ -1,6 +1,6 @@
 # Module 9 Curriculum Seed - Implementation Plan
 
-## Phase 1: Seed Lesson 9-1
+## Phase 1: Seed Lesson 9-1 [checkpoint: 8f798f4]
 
 - [x] Task: Verify lesson 9-1 curriculum source [13f8649]
   - [x] Confirm title and phase sequence against `curriculum/modules/module-9-lesson-1`
