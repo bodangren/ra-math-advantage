@@ -133,6 +133,12 @@ export const seedAll = internalAction({
           case "module-6-lesson-3":
             await ctx.runMutation(seedInternal.seedLesson6_3, {});
             break;
+          case "module-6-lesson-4":
+            await ctx.runMutation(seedInternal.seedLesson6_4, {});
+            break;
+          case "module-6-lesson-5":
+            await ctx.runMutation(seedInternal.seedLesson6_5, {});
+            break;
           default:
             break;
         }
@@ -823,6 +829,45 @@ function getLessons(): SeedLesson[] {
         { phaseNumber: 10, title: "Worked Example 6", phaseType: "worked_example", sections: [] },
         { phaseNumber: 11, title: "Discourse", phaseType: "discourse", sections: [] },
         { phaseNumber: 12, title: "Reflection", phaseType: "reflection", sections: [] },
+      ],
+    },
+    {
+      unitNumber: 6,
+      title: "Natural Logarithms",
+      slug: "module-6-lesson-4",
+      description: "Students simplify expressions with natural logarithms and solve exponential equations by using natural logarithms.",
+      orderIndex: 4,
+      phases: [
+        { phaseNumber: 1, title: "Explore", phaseType: "explore", sections: [] },
+        { phaseNumber: 2, title: "Vocabulary", phaseType: "vocabulary", sections: [] },
+        { phaseNumber: 3, title: "Learn: Simplifying Expressions with Natural Logarithms", phaseType: "learn", sections: [] },
+        { phaseNumber: 4, title: "Worked Example 1", phaseType: "worked_example", sections: [] },
+        { phaseNumber: 5, title: "Worked Example 2", phaseType: "worked_example", sections: [] },
+        { phaseNumber: 6, title: "Worked Example 3", phaseType: "worked_example", sections: [] },
+        { phaseNumber: 7, title: "Learn: Solving Exponential Equations by Using Natural Logarithms", phaseType: "learn", sections: [] },
+        { phaseNumber: 8, title: "Worked Example 4", phaseType: "worked_example", sections: [] },
+        { phaseNumber: 9, title: "Worked Example 5", phaseType: "worked_example", sections: [] },
+        { phaseNumber: 10, title: "Worked Example 6", phaseType: "worked_example", sections: [] },
+        { phaseNumber: 11, title: "Worked Example 7", phaseType: "worked_example", sections: [] },
+        { phaseNumber: 12, title: "Discourse", phaseType: "discourse", sections: [] },
+        { phaseNumber: 13, title: "Reflection", phaseType: "reflection", sections: [] },
+      ],
+    },
+    {
+      unitNumber: 6,
+      title: "Using Exponential and Logarithmic Functions",
+      slug: "module-6-lesson-5",
+      description: "Students write and solve exponential growth equations and inequalities, and write and solve exponential decay equations.",
+      orderIndex: 5,
+      phases: [
+        { phaseNumber: 1, title: "Explore", phaseType: "explore", sections: [] },
+        { phaseNumber: 2, title: "Vocabulary", phaseType: "vocabulary", sections: [] },
+        { phaseNumber: 3, title: "Learn: Using Logarithms to Solve Exponential Growth Problems", phaseType: "learn", sections: [] },
+        { phaseNumber: 4, title: "Worked Example 1", phaseType: "worked_example", sections: [] },
+        { phaseNumber: 5, title: "Learn: Using Logarithms to Solve Exponential Decay Problems", phaseType: "learn", sections: [] },
+        { phaseNumber: 6, title: "Worked Example 2", phaseType: "worked_example", sections: [] },
+        { phaseNumber: 7, title: "Worked Example 3", phaseType: "worked_example", sections: [] },
+        { phaseNumber: 8, title: "Pause and Reflect", phaseType: "reflection", sections: [] },
       ],
     },
   ];

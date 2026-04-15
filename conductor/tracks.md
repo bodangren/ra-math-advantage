@@ -203,8 +203,8 @@ Tracks 1+4 unlock Track 8; Track 8 unlocks Tracks 9+10.
        - Phase 1: Seed Lesson 6-1 [COMPLETE]
        - Phase 2: Seed Lesson 6-2 [COMPLETE]
        - Phase 3: Seed Lesson 6-3 [COMPLETE]
-       - Phase 4: Seed Lesson 6-4 [PENDING]
-       - Phase 5: Seed Lesson 6-5 [PENDING]
+       - Phase 4: Seed Lesson 6-4 [COMPLETE]
+       - Phase 5: Seed Lesson 6-5 [COMPLETE]
        - Phase 6: Module Integration and Verification [PENDING]
 
 - [ ] **Track: Module 7 Curriculum Seed**

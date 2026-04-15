@@ -32,23 +32,23 @@
 
 ## Phase 4: Seed Lesson 6-4
 
-- [ ] Task: Verify lesson 6-4 curriculum source
-  - [ ] Confirm title and phase sequence against `curriculum/modules/module-6-lesson-4`
-  - [ ] Confirm natural logarithm and base-e contexts are represented
-- [ ] Task: Create seed function `convex/seed/seed-lesson-6-4.ts`
-  - [ ] Write tests for phase sequence and idempotency
-  - [ ] Implement lesson, phases, sections, and activities
-- [ ] Task: Conductor - Phase Completion Verification 'Seed Lesson 6-4' (Protocol in workflow.md)
+- [x] Task: Verify lesson 6-4 curriculum source
+  - [x] Confirm title and phase sequence against `curriculum/modules/module-6-lesson-4`
+  - [x] Confirm natural logarithm and base-e contexts are represented
+- [x] Task: Create seed function `convex/seed/seed-lesson-6-4.ts`
+  - [x] Write tests for phase sequence and idempotency
+  - [x] Implement lesson, phases, sections, and activities
+- [x] Task: Conductor - Phase Completion Verification 'Seed Lesson 6-4' (Protocol in workflow.md)
 
 ## Phase 5: Seed Lesson 6-5
 
-- [ ] Task: Verify lesson 6-5 curriculum source
-  - [ ] Confirm title and phase sequence against `curriculum/modules/module-6-lesson-5`
-  - [ ] Confirm applied exponential/logarithmic examples preserve interpretation
-- [ ] Task: Create seed function `convex/seed/seed-lesson-6-5.ts`
-  - [ ] Write tests for phase sequence and idempotency
-  - [ ] Implement lesson, phases, sections, and activities
-- [ ] Task: Conductor - Phase Completion Verification 'Seed Lesson 6-5' (Protocol in workflow.md)
+- [x] Task: Verify lesson 6-5 curriculum source
+  - [x] Confirm title and phase sequence against `curriculum/modules/module-6-lesson-5`
+  - [x] Confirm applied exponential/logarithmic examples preserve interpretation
+- [x] Task: Create seed function `convex/seed/seed-lesson-6-5.ts`
+  - [x] Write tests for phase sequence and idempotency
+  - [x] Implement lesson, phases, sections, and activities
+- [x] Task: Conductor - Phase Completion Verification 'Seed Lesson 6-5' (Protocol in workflow.md)
 
 ## Phase 6: Module Integration and Verification
 

@@ -9,7 +9,7 @@
 - **Lint**: Passing.
 - **TypeScript**: 25 pre-existing test-file errors remain (students.test.tsx, dashboard.test.ts). No new TS errors.
 - **Module 1-5 Roadmap**: Complete.
-- **Module 6 Seed**: In progress; Phases 1-3 (Lessons 6-1 through 6-3) complete. Phases 4-6 pending.
+- **Module 6 Seed**: Phases 1-5 (Lessons 6-1 through 6-5) complete. Phase 6 pending.
 - **Code Review**: Completed 2026-04-15. Fixed 3 critical + 2 high issues (dual state bug, approval gating, silent errors).
 
 ## Current In-Progress Track
