@@ -13,6 +13,7 @@ The implementation rule is the same for every module: curriculum source headings
 3. Seed modules in order: Module 3, Module 4, Module 5, Module 6, Module 7, Module 8, Module 9.
 4. Run module-level demo seed verification after each module.
 5. Run cross-curriculum guardrails before marking each module seed complete.
+6. After Module 9, begin the Daily Practice SRS roadmap in `conductor/daily-practice-srs-roadmap.md`.
 
 ## Module Inventory
 
@@ -47,3 +48,11 @@ Each module seed track should:
 | Standards mapping may be incomplete in source files | Add standards discovery task to each module integration phase |
 | Approval workflow may not review embedded examples/practice reliably yet | Use `harden-manual-approval_20260415` when manual approval reliability blocks curriculum review |
 
+## Post-Module-9 Follow-Up
+
+Daily practice and spaced repetition work should start only after Module 9 seed completion unless explicitly reprioritized. The first detailed follow-up tracks are:
+
+1. `conductor/tracks/practice-timing-telemetry_20260415/`
+2. `conductor/tracks/practice-timing-baselines_20260415/`
+
+See `conductor/daily-practice-srs-roadmap.md` for the broader reusable SRS sequence.

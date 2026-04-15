@@ -16,4 +16,5 @@
 | **Code Styleguides** | `./code_styleguides/` |
 | **Practice Component Contract** | `./practice-component-contract.md` |
 | **Modules 3-9 Roadmap** | `./modules-3-9-roadmap.md` |
+| **Daily Practice SRS Roadmap** | `./daily-practice-srs-roadmap.md` |
 | **Curriculum** | `../curriculum/` |

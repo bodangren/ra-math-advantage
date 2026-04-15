@@ -26,8 +26,11 @@ Seed Module 7 rational functions and equations lessons (7-1 through 7-6) into Co
 2. **Module 7 Curriculum Seed** — Phase 7: Module integration, CCSS standards, lesson-standard links
 3. **Module 8 Curriculum Seed** — `module-8-seed_20260415` (5 lessons)
 4. **Module 9 Curriculum Seed** — `module-9-seed_20260415` (7 lessons)
+5. **Practice Timing Telemetry** — `practice-timing-telemetry_20260415` (post-Module 9 SRS foundation)
+6. **Practice Timing Baselines** — `practice-timing-baselines_20260415` (depends on timing telemetry and stable practice problem-family identifiers)
 
 See `conductor/modules-3-9-roadmap.md` for the module inventory and repeated implementation pattern.
+See `conductor/daily-practice-srs-roadmap.md` for the post-Module-9 daily practice SRS sequence.
 
 ## High-Priority Tech Debt (from code review)
 

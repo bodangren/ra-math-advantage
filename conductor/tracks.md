@@ -219,6 +219,16 @@ Tracks 1+4 unlock Track 8; Track 8 unlocks Tracks 9+10.
      *Seed Module 9 trigonometric functions lessons (9-1 through 9-7) into Convex database*
      *Link: [./conductor/tracks/module-9-seed_20260415/](./conductor/tracks/module-9-seed_20260415/)*
 
+- [ ] **Track: Practice Timing Telemetry**
+     *Add canonical wall-clock, active-time, idle-time, and timing-confidence evidence to practice.v1 submissions for future SRS scoring*
+     *Depends on: Module 9 Curriculum Seed completion*
+     *Link: [./conductor/tracks/practice-timing-telemetry_20260415/](./conductor/tracks/practice-timing-telemetry_20260415/)*
+
+- [ ] **Track: Practice Timing Baselines**
+     *Build timing baselines and time-aware SRS evidence features after reliable practice timing telemetry exists*
+     *Depends on: Practice Timing Telemetry and stable practice problem-family identifiers*
+     *Link: [./conductor/tracks/practice-timing-baselines_20260415/](./conductor/tracks/practice-timing-baselines_20260415/)*
+
 ## Archived Tracks
 
 - [x] **Track: Scaffold App Pages & Layouts**
