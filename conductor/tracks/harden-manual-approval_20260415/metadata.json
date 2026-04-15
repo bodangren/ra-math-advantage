@@ -1,7 +1,7 @@
 {
   "track_id": "harden-manual-approval_20260415",
   "type": "feature",
-  "status": "new",
+  "status": "in_progress",
   "created_at": "2026-04-15T00:00:00Z",
   "updated_at": "2026-04-15T00:00:00Z",
   "description": "Harden the developer-only manual component approval workflow so activity, example, and practice approvals are complete, trustworthy, and test-covered.",

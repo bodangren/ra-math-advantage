@@ -8,7 +8,7 @@
 
 | Item | Sev | Status | Notes |
 |------|-----|--------|-------|
-| Placeholder hash for example/practice components (`convex/dev.ts:113`) | High | Open | Static string; blocks staleness detection for 2/3 component kinds |
+| Placeholder hash for example/practice components (`convex/dev.ts:113`) | High | Resolved | Fixed 2026-04-15; computeComponentContentHash now used for all kinds |
 | `submitReview` takes `createdBy` as arg instead of deriving from auth | High | Open | Mitigated by route-level derivation; must remain internal-only |
 | No tests for Convex dev functions | High | Open | Schema tests vacuous; no mutation/query behavior tested |
 | Unbounded `take(500)` + N+1 hash in listReviewQueue | High | Open | 500 SHA-256 hashes/query; Convex billing concern |

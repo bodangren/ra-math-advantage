@@ -16,19 +16,19 @@
 
 - [x] Task: Conductor - Phase Completion Verification 'Queue Coverage and Real Review Targets' (Protocol in workflow.md) [97a8fbd]
 
-## Phase 2: Content Hashing and Stale Approval
+## Phase 2: Content Hashing and Stale Approval [checkpoint: TBD]
 
-- [ ] Task: Replace placeholder example/practice hashes
-  - [ ] Write hash stability tests for embedded example and practice target content
-  - [ ] Include kind, key, props/content, grading config, and deterministic solution config
-  - [ ] Exclude approval metadata, reviewer IDs, timestamps, and review history
-  - [ ] Remove `"todo-hash-for-example-practice"` from `convex/dev.ts`
+- [x] Task: Replace placeholder example/practice hashes
+  - [x] Write hash stability tests for embedded example and practice target content
+  - [x] Include kind, key, props/content, grading config, and deterministic solution config
+  - [x] Exclude approval metadata, reviewer IDs, timestamps, and review history
+  - [x] Remove `"todo-hash-for-example-practice"` from `convex/dev.ts`
 
-- [ ] Task: Verify stale detection for all review kinds
-  - [ ] Write tests proving activity content changes become stale
-  - [ ] Write tests proving example content changes become stale
-  - [ ] Write tests proving practice props/config changes become stale
-  - [ ] Ensure unchanged content remains approved and not stale
+- [x] Task: Verify stale detection for all review kinds
+  - [x] Write tests proving activity content changes become stale
+  - [x] Write tests proving example content changes become stale
+  - [x] Write tests proving practice props/config changes become stale
+  - [x] Ensure unchanged content remains approved and not stale
 
 - [ ] Task: Conductor - Phase Completion Verification 'Content Hashing and Stale Approval' (Protocol in workflow.md)
 

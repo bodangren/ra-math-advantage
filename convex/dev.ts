@@ -120,19 +120,14 @@ export const submitReview = internalMutation({
       throw new Error("Comment is required for needs_changes or rejected status");
     }
 
-    let componentContentHash = "";
-    if (args.componentKind === "activity") {
-      const activity = await ctx.db.get(args.componentId as Id<"activities">);
-      if (!activity) throw new Error("Activity not found");
-      componentContentHash = await computeComponentContentHash({
-        componentKind: "activity",
-        componentKey: activity.componentKey,
-        props: activity.props,
-        gradingConfig: activity.gradingConfig,
-      });
-    } else {
-      componentContentHash = "todo-hash-for-example-practice";
-    }
+    const activity = await ctx.db.get(args.componentId as Id<"activities">);
+    if (!activity) throw new Error("Activity not found");
+    const componentContentHash = await computeComponentContentHash({
+      componentKind: args.componentKind,
+      componentKey: activity.componentKey,
+      props: activity.props,
+      gradingConfig: activity.gradingConfig,
+    });
 
     const reviewId = await ctx.db.insert("component_reviews", {
       componentKind: args.componentKind,

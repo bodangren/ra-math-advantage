@@ -263,4 +263,97 @@ describe('assembleReviewQueueItem', () => {
     expect(item).not.toBeNull();
     expect(item!.approval?.status).toBe('needs_changes');
   });
+
+  it('marks activity as stale when content hash changes', async () => {
+    const activity = {
+      _id: 'act1',
+      componentKey: 'graphing-explorer',
+      displayName: 'Graphing Explorer',
+      props: { equation: 'y = x^2' },
+      gradingConfig: undefined,
+      approval: { status: 'approved', contentHash: 'outdated-hash' },
+    };
+
+    const item = await assembleReviewQueueItem({
+      activity: activity as unknown as Parameters<typeof assembleReviewQueueItem>[0]['activity'],
+      placement: undefined,
+      approvalRecord: undefined,
+    });
+
+    expect(item).not.toBeNull();
+    expect(item!.isStale).toBe(true);
+  });
+
+  it('marks example as stale when content hash changes', async () => {
+    const activity = {
+      _id: 'act1',
+      componentKey: 'step-by-step-solver',
+      displayName: 'Example',
+      props: { problemType: 'factoring' },
+      approval: undefined,
+    };
+
+    const approvalRecord = {
+      status: 'approved',
+      contentHash: 'outdated-hash',
+      reviewedAt: 123456,
+      reviewedBy: 'profile1',
+    };
+
+    const item = await assembleReviewQueueItem({
+      activity: activity as unknown as Parameters<typeof assembleReviewQueueItem>[0]['activity'],
+      placement: { phaseType: 'worked_example', sectionId: 'sec1', phaseId: 'phase1' },
+      approvalRecord: approvalRecord as unknown as Parameters<typeof assembleReviewQueueItem>[0]['approvalRecord'],
+    });
+
+    expect(item).not.toBeNull();
+    expect(item!.isStale).toBe(true);
+  });
+
+  it('marks practice as stale when content hash changes', async () => {
+    const activity = {
+      _id: 'act1',
+      componentKey: 'comprehension-quiz',
+      displayName: 'Quiz Practice',
+      props: { questions: [] },
+      gradingConfig: { autoGrade: true },
+      approval: undefined,
+    };
+
+    const approvalRecord = {
+      status: 'approved',
+      contentHash: 'outdated-hash',
+      reviewedAt: 123456,
+      reviewedBy: 'profile1',
+    };
+
+    const item = await assembleReviewQueueItem({
+      activity: activity as unknown as Parameters<typeof assembleReviewQueueItem>[0]['activity'],
+      placement: { phaseType: 'guided_practice', sectionId: 'sec1', phaseId: 'phase1' },
+      approvalRecord: approvalRecord as unknown as Parameters<typeof assembleReviewQueueItem>[0]['approvalRecord'],
+    });
+
+    expect(item).not.toBeNull();
+    expect(item!.isStale).toBe(true);
+  });
+
+  it('does not mark item as stale when hash matches current content', async () => {
+    const activity = {
+      _id: 'act1',
+      componentKey: 'graphing-explorer',
+      displayName: 'Graphing Explorer',
+      props: {},
+      gradingConfig: undefined,
+      approval: undefined,
+    };
+
+    const item = await assembleReviewQueueItem({
+      activity: activity as unknown as Parameters<typeof assembleReviewQueueItem>[0]['activity'],
+      placement: undefined,
+      approvalRecord: undefined,
+    });
+
+    expect(item).not.toBeNull();
+    expect(item!.isStale).toBe(false);
+  });
 });
