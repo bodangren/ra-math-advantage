@@ -126,6 +126,7 @@ export async function processReviewHandler(
     cardId: cardDocId,
     studentId: reviewEntry.studentId as Id<"profiles">,
     rating: reviewEntry.rating,
+    reviewId: reviewEntry.reviewId || undefined,
     submissionId: reviewEntry.submissionId || undefined,
     evidence: reviewEntry.evidence,
     stateBefore: reviewEntry.stateBefore,

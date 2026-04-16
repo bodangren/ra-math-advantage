@@ -30,9 +30,9 @@ function isSameDay(a: number, b: number): boolean {
   const d1 = new Date(a);
   const d2 = new Date(b);
   return (
-    d1.getFullYear() === d2.getFullYear() &&
-    d1.getMonth() === d2.getMonth() &&
-    d1.getDate() === d2.getDate()
+    d1.getUTCFullYear() === d2.getUTCFullYear() &&
+    d1.getUTCMonth() === d2.getUTCMonth() &&
+    d1.getUTCDate() === d2.getUTCDate()
   );
 }
 
@@ -55,6 +55,11 @@ export async function startDailySessionHandler(
       asOfDate: args.asOfDate,
     });
     return { session: mapDbSessionToContract(active), queue };
+  }
+
+  // Close any stale active session from a prior day
+  if (active && active.completedAt === undefined) {
+    await ctx.db.patch(active._id, { completedAt: now });
   }
 
   const queue = await resolveDailyPracticeQueue(ctx, {

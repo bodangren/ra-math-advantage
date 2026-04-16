@@ -22,7 +22,7 @@ function mapDbCardToContract(
   }
 ) {
   return {
-    cardId: card.problemFamilyId,
+    cardId: card._id,
     studentId: card.studentId,
     objectiveId: card.objectiveId,
     problemFamilyId: card.problemFamilyId,

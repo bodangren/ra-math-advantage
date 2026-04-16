@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useCallback, useRef } from 'react';
+import { useState, useCallback, useRef, useEffect } from 'react';
 import type { SrsSession } from '@/lib/srs/contract';
 import { STUDENT_DAILY_PRACTICE_COPY } from '@/lib/srs/contract';
 import type { ResolvedQueueItem } from '@/convex/queue/queue';
@@ -19,7 +19,7 @@ const FEEDBACK_DELAY_MS = 2000;
 
 function isEnvelopeCorrect(envelope: PracticeSubmissionEnvelope): boolean {
   if (!envelope.parts || envelope.parts.length === 0) return true;
-  return envelope.parts.every((part) => part.isCorrect !== false);
+  return envelope.parts.every((part) => part.isCorrect === true);
 }
 
 export function PracticeSessionProvider({
@@ -33,6 +33,15 @@ export function PracticeSessionProvider({
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [completedCount, setCompletedCount] = useState(initialSession.completedCards);
   const hasSubmittedRef = useRef(false);
+  const feedbackTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  useEffect(() => {
+    return () => {
+      if (feedbackTimeoutRef.current) {
+        clearTimeout(feedbackTimeoutRef.current);
+      }
+    };
+  }, []);
 
   const handleCompleteSession = useCallback(async () => {
     try {
@@ -85,7 +94,7 @@ export function PracticeSessionProvider({
         console.error('Submission failed:', err);
       }
 
-      setTimeout(() => {
+      feedbackTimeoutRef.current = setTimeout(() => {
         advanceCard();
       }, FEEDBACK_DELAY_MS);
     },

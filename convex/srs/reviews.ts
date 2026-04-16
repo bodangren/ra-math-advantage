@@ -19,6 +19,7 @@ export const saveReview = internalMutation({
       cardId: args.cardId as Id<"srs_cards">,
       studentId: args.studentId as Id<"profiles">,
       rating: args.rating,
+      reviewId: args.reviewId || undefined,
       submissionId: args.submissionId || undefined,
       evidence: args.evidence,
       stateBefore: args.stateBefore,
@@ -41,7 +42,7 @@ export const getReviewsByCard = internalQuery({
     return reviews
       .sort((a, b) => a.reviewedAt - b.reviewedAt)
       .map((review) => ({
-        reviewId: review._id,
+        reviewId: review.reviewId ?? review._id,
         cardId: review.cardId,
         studentId: review.studentId,
         rating: review.rating,
@@ -70,7 +71,7 @@ export const getReviewsByStudent = internalQuery({
       )
       .sort((a, b) => a.reviewedAt - b.reviewedAt)
       .map((review) => ({
-        reviewId: review._id,
+        reviewId: review.reviewId ?? review._id,
         cardId: review.cardId,
         studentId: review.studentId,
         rating: review.rating,

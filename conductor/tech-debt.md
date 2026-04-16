@@ -17,13 +17,15 @@
 | Unbounded take(500) + N+1 hash in listReviewQueue | High | Open | 500 SHA-256 hashes/query |
 | error-analysis: studentIdMap code paths untested | High | Open | summarizePartOutcomes and buildDeterministicSummary accept studentIdMap but no test passes it |
 | SRS CardStore: studentId type mismatch (contract vs schema) | High | Open | SrsCardState uses string, Convex uses Id<"profiles">; type assertions at boundary |
-| Seed tests are tautological; ActivityRenderer loses section content props; seed-lesson-standards.ts has 9 identical handlers | Medium | Open | Zero regression protection; template/blanks lost; factory extraction needed |
-| SRS adapters: generated API missing srs module | Medium | Resolved | Manually added to api.d.ts (2026-04-16) |
-| SRS CardStore: saveCard by problemFamilyId alone | High | Resolved | Added by_student_and_problem_family index |
+| mapDbCardToContract returns problemFamilyId as cardId | Critical | Resolved | Fixed 2026-04-16: use card._id; updated test mock to validate distinct values |
+| reviewId silently discarded in saveReview | Critical | Resolved | Fixed 2026-04-16: added reviewId to srs_review_log schema; stored and returned by queries |
+| Stale active sessions create zombie sessions | High | Resolved | Fixed 2026-04-16: close stale session with completedAt before creating new one |
+| isSameDay uses local timezone instead of UTC | High | Resolved | Fixed 2026-04-16: use getUTCFullYear/getUTCMonth/getUTCDate |
+| Seed tests are tautological; ActivityRenderer loses section content props | Medium | Open | Zero regression protection; template/blanks lost; factory extraction needed |
 | Content hash JSON.stringify treats undefined same as absent | Medium | Open | Potential hash collisions |
 | N+1 phase reads in listReviewQueue (dev.ts) | Medium | Open | Sequential ctx.db.get per phase |
 | Silent catch blocks in convex/student.ts, teacher.ts; no error.tsx boundaries | Medium | Open | Swallows exceptions; Convex outages produce raw 500 |
-| RSC entry chunk 750 KB (pre-existing) | Medium | Open | Code-splitning needed to get under 500 KB |
+| RSC entry chunk 750 KB (pre-existing) | Medium | Open | Code-splitting needed to get under 500 KB |
 | Algebraic test coverage structurally weak | Medium | Open | Tests named "all steps" check only fraction |
 | Convex V validator does not enforce timing refinements | Medium | Open | Negative durations accepted server-side |
 | canApprove gate incomplete in Activity/Practice harnesses | Medium | Open | Checklist items not gated: mode selector, variant inspection |
@@ -33,18 +35,20 @@
 | PracticeTimingEvidence local type omits contract fields | Low | Open | SubmissionReviewPanel.tsx redefines contract type |
 | totalFocusLossMs accumulated but never exposed | Low | Open | Dead code in timing.ts |
 | Flaky tests: StepByStepper hint tracking, TeacherLessonPreview | Low | Open | Pass in isolation, flaky in full suite |
-| M9 seed lesson 9-5 Learn section uses degrees, example uses radians | Low | Open | Unexplained unit switch |
 | collectEligibleTimings N+1 in timing_baseline.ts | Medium | Open | Queries activity_submissions per activityId in loop; acceptable at ~3 activities/family |
 | getStaleBaselines doesn't use by_last_computed index | Medium | Open | take(1000) + in-memory filter; won't scale past 1000 families |
 | mastered proficiency label is dead code | Medium | Open | Union type includes mastered but no code path produces it |
 | Fragile type assertion on submissionData.timing | Medium | Open | collectEligibleTimings casts to local TimingSummary; no compile-time protection |
 | scheduler.test.ts fully mocks ts-fsrs | Medium | Open | Tests verify wrapper logic but don't exercise real FSRS algorithm |
-| error-analysis: studentIdMap code paths untested | High | Open | summarizePartOutcomes and buildDeterministicSummary accept studentIdMap but no test passes it |
 | error-analysis: isCorrect:undefined counted as incorrect | Medium | Open | Undocumented behavior when isCorrect is omitted from parts |
 | error-analysis: buildTeacherErrorView uses activityId as studentId | Medium | Open | Inconsistent with other functions that accept studentIdMap |
 | SRS queue: newCardsPerDay cap is shared across all priorities | Medium | Open | Essential/supporting/extension compete for same quota; update spec comment |
-| SRS CardStore: studentId type mismatch (contract vs schema) | High | Open | SrsCardState uses string, Convex uses Id<"profiles">; type assertions required at boundary |
-| SRS CardStore: saveCard by problemFamilyId alone | High | Resolved | Added by_student_and_problem_family index; updated saveCard/saveCards/processReview to query by (studentId, problemFamilyId) |
 | SRS: mapDbCardToContract duplicated in queue.ts and cards.ts | Medium | Open | Extract to shared utility |
 | SRS: N+1 standard lookups in getDailyPracticeQueue | Medium | Open | One ctx.db.get per policy record (~50-100/course) |
 | SRS: submissionId required in saveReview validator but optional in schema | Low | Open | Should be `v.optional(v.string())` |
+| SRS: objectiveId defaults to "" when family has no objectives | Medium | Open | Empty string persisted; should skip SRS or log warning |
+| SRS: SubmissionSrsAdapter reimplements processReview | Medium | Open | Two parallel pipelines risk divergence; delegate to processReview |
+| SRS: completeDailySessionHandler loads all review logs | Medium | Open | .collect() fetches entire history; needs indexed count query |
+| Session: duplicate hardcoded config in queue.ts and sessions.ts | Low | Open | Shared constant needed |
+| PracticeSessionProvider: submission failure silently swallowed | Medium | Open | No user-visible error, no retry; student loses work |
+| PracticeSessionProvider: session completion is fire-and-forget | Medium | Open | Failed completion leaves stale active session |

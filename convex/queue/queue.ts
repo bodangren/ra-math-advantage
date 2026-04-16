@@ -29,7 +29,7 @@ function mapDbCardToContract(
   }
 ): SrsCardState {
   return {
-    cardId: card.problemFamilyId,
+    cardId: card._id,
     studentId: card.studentId,
     objectiveId: card.objectiveId,
     problemFamilyId: card.problemFamilyId,

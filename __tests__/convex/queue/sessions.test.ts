@@ -142,12 +142,11 @@ describe('startDailySessionHandler', () => {
   });
 
   it('resumes existing active session when one exists for today', async () => {
-    const today = new Date();
-    today.setHours(0, 0, 0, 0);
+    const now = Date.now();
     const existingSession = {
       _id: 'session-existing' as Id<'srs_sessions'>,
       studentId: 'student-1' as Id<'profiles'>,
-      startedAt: today.getTime() + 1000,
+      startedAt: now - 3600000, // 1 hour ago, same UTC day
       plannedCards: 5,
       completedCards: 2,
       config: { newCardsPerDay: 5, maxReviewsPerDay: 20, prioritizeOverdue: true },
@@ -158,7 +157,7 @@ describe('startDailySessionHandler', () => {
 
     const result = await startDailySessionHandler(
       { db } as unknown as import('@/convex/_generated/server').MutationCtx,
-      { studentId: 'student-1' }
+      { studentId: 'student-1', asOfDate: new Date(now).toISOString() }
     );
 
     expect(mockInsert).not.toHaveBeenCalled();
@@ -167,12 +166,11 @@ describe('startDailySessionHandler', () => {
   });
 
   it('enforces daily session limit - cannot start second session on same day', async () => {
-    const today = new Date();
-    today.setHours(0, 0, 0, 0);
+    const now = Date.now();
     const existingSession = {
       _id: 'session-first' as Id<'srs_sessions'>,
       studentId: 'student-1' as Id<'profiles'>,
-      startedAt: today.getTime() + 1000,
+      startedAt: now - 3600000, // 1 hour ago, same UTC day
       plannedCards: 3,
       completedCards: 1,
       config: { newCardsPerDay: 5, maxReviewsPerDay: 20, prioritizeOverdue: true },
@@ -185,7 +183,7 @@ describe('startDailySessionHandler', () => {
 
     const result = await startDailySessionHandler(
       { db } as unknown as import('@/convex/_generated/server').MutationCtx,
-      { studentId: 'student-1' }
+      { studentId: 'student-1', asOfDate: new Date(now).toISOString() }
     );
 
     expect(mockInsert).not.toHaveBeenCalled();
@@ -196,12 +194,11 @@ describe('startDailySessionHandler', () => {
 
 describe('getActiveSessionHandler', () => {
   it('returns current day active session and queue', async () => {
-    const today = new Date();
-    today.setHours(0, 0, 0, 0);
+    const now = Date.now();
     const existingSession = {
       _id: 'session-active' as Id<'srs_sessions'>,
       studentId: 'student-1' as Id<'profiles'>,
-      startedAt: today.getTime() + 1000,
+      startedAt: now - 3600000, // 1 hour ago, same UTC day
       plannedCards: 3,
       completedCards: 1,
       config: { newCardsPerDay: 5, maxReviewsPerDay: 20, prioritizeOverdue: true },
@@ -212,7 +209,7 @@ describe('getActiveSessionHandler', () => {
 
     const result = await getActiveSessionHandler(
       { db } as unknown as import('@/convex/_generated/server').QueryCtx,
-      { studentId: 'student-1' }
+      { studentId: 'student-1', asOfDate: new Date(now).toISOString() }
     );
 
     expect(result).not.toBeNull();
@@ -232,9 +229,8 @@ describe('getActiveSessionHandler', () => {
   });
 
   it('returns null when active session is from a different day', async () => {
-    const yesterday = new Date();
-    yesterday.setDate(yesterday.getDate() - 1);
-    yesterday.setHours(12, 0, 0, 0);
+    const now = Date.now();
+    const yesterday = new Date(now - 86400000); // 24 hours ago
     const existingSession = {
       _id: 'session-yesterday' as Id<'srs_sessions'>,
       studentId: 'student-1' as Id<'profiles'>,
@@ -247,7 +243,7 @@ describe('getActiveSessionHandler', () => {
 
     const result = await getActiveSessionHandler(
       { db } as unknown as import('@/convex/_generated/server').QueryCtx,
-      { studentId: 'student-1' }
+      { studentId: 'student-1', asOfDate: new Date(now).toISOString() }
     );
 
     expect(result).toBeNull();

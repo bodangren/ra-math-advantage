@@ -177,7 +177,8 @@ describe('getDailyPracticeQueueHandler', () => {
     );
 
     expect(result).toHaveLength(1);
-    expect(result[0].card.cardId).toBe('m1-qf-factoring-1');
+    expect(result[0].card.cardId).toBe('card-1');
+    expect(result[0].card.problemFamilyId).toBe('m1-qf-factoring-1');
     expect(result[0].objectivePriority).toBe('essential');
     expect(result[0].isOverdue).toBe(false);
   });

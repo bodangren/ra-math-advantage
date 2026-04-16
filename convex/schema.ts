@@ -390,6 +390,7 @@ export default defineSchema({
     cardId: v.id("srs_cards"),
     studentId: v.id("profiles"),
     rating: v.string(),
+    reviewId: v.optional(v.string()),
     submissionId: v.optional(v.string()),
     evidence: v.any(),
     stateBefore: v.any(),
