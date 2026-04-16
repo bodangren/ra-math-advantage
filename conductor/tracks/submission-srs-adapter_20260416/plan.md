@@ -18,74 +18,74 @@
 
 ## Phase 2: Problem Family Resolution
 
-- [ ] Task: Implement problem family resolver
-  - [ ] Create `resolveProblemFamily(activityId, blueprintData)` in adapter module
-  - [ ] Map `componentKey` + `standardId` → `problemFamilyId` using blueprint lookup
-  - [ ] Return `null` when no blueprint entry exists (graceful skip)
-  - [ ] Return `null` when blueprint data is unavailable (not yet loaded)
-- [ ] Task: Write resolution tests
-  - [ ] Test matching activity returns correct `problemFamilyId`
-  - [ ] Test unknown activity returns `null`
-  - [ ] Test empty blueprint data returns `null`
-  - [ ] Test multiple activities mapping to same problem family
-  - [ ] Test activity with only `componentKey` match but different `standardId` returns `null`
-- [ ] Task: Conductor - Phase Completion Verification 'Problem Family Resolution' (Protocol in workflow.md)
+- [x] Task: Implement problem family resolver
+  - [x] Create `resolveProblemFamily(activityId, blueprintData)` in adapter module
+  - [x] Map `componentKey` + `standardId` → `problemFamilyId` using blueprint lookup
+  - [x] Return `null` when no blueprint entry exists (graceful skip)
+  - [x] Return `null` when blueprint data is unavailable (not yet loaded)
+- [x] Task: Write resolution tests
+  - [x] Test matching activity returns correct `problemFamilyId`
+  - [x] Test unknown activity returns `null`
+  - [x] Test empty blueprint data returns `null`
+  - [x] Test multiple activities mapping to same problem family
+  - [x] Test activity with only `componentKey` match but different `standardId` returns `null`
+- [x] Task: Conductor - Phase Completion Verification 'Problem Family Resolution' (Protocol in workflow.md)
 
 ## Phase 3: First-Seen Card Creation
 
-- [ ] Task: Implement first-seen card creation logic
-  - [ ] When `persistence.getCard(studentId, problemFamilyId)` returns `null`, call `scheduler.createCard`
-  - [ ] Set initial card state to `"new"` with `due` = now
-  - [ ] Persist new card via `persistence.saveCard`
-  - [ ] Proceed to review pipeline with the newly created card
-- [ ] Task: Write card creation tests
-  - [ ] Test first submission for problem family creates card with state `"new"`
-  - [ ] Test second submission finds existing card (no duplicate creation)
-  - [ ] Test created card has `reps = 0`, `lapses = 0`
-  - [ ] Test concurrent first-submissions for same problem family (idempotency)
-  - [ ] Test card creation failure is caught and reported in result
-- [ ] Task: Conductor - Phase Completion Verification 'First-Seen Card Creation' (Protocol in workflow.md)
+- [x] Task: Implement first-seen card creation logic
+  - [x] When `persistence.getCard(studentId, problemFamilyId)` returns `null`, call `scheduler.createCard`
+  - [x] Set initial card state to `"new"` with `due` = now
+  - [x] Persist new card via `persistence.saveCard`
+  - [x] Proceed to review pipeline with the newly created card
+- [x] Task: Write card creation tests
+  - [x] Test first submission for problem family creates card with state `"new"`
+  - [x] Test second submission finds existing card (no duplicate creation)
+  - [x] Test created card has `reps = 0`, `lapses = 0`
+  - [x] Test concurrent first-submissions for same problem family (idempotency)
+  - [x] Test card creation failure is caught and reported in result
+- [x] Task: Conductor - Phase Completion Verification 'First-Seen Card Creation' (Protocol in workflow.md)
 
 ## Phase 4: Review Processing Pipeline
 
-- [ ] Task: Implement full submission-to-review pipeline
-  - [ ] Extract submission parts (isCorrect, hintsUsed, revealStepsSeen, misconceptionTags)
-  - [ ] Look up timing baseline for problem family via persistence
-  - [ ] Derive timing features if baseline available, else pass undefined
-  - [ ] Call `mapPracticeToSrsRating` with correctness evidence + timing features
-  - [ ] Apply derived rating to card via `scheduler.reviewCard`
-  - [ ] Build review log entry from before/after card state + rating + evidence
-  - [ ] Persist updated card and review log atomically via persistence adapter
-  - [ ] Return `SubmissionSrsResult` with updated state
-- [ ] Task: Write end-to-end pipeline tests with in-memory stores
-  - [ ] Test full pipeline: submit correct answer → card transitions from `"new"` to `"learning"` or `"review"`
-  - [ ] Test full pipeline: submit incorrect answer → card transitions to `"relearning"` or increment lapses
-  - [ ] Test pipeline with hints → derived rating reflects hint penalty
-  - [ ] Test pipeline with timing baseline → rating adjusted by timing
-  - [ ] Test pipeline without timing baseline → rating derived from correctness only
-  - [ ] Test idempotency: same submission envelope processed twice → same card state
-  - [ ] Test SRS error mid-pipeline → result contains error, does not throw
-- [ ] Task: Conductor - Phase Completion Verification 'Review Processing Pipeline' (Protocol in workflow.md)
+- [x] Task: Implement full submission-to-review pipeline
+  - [x] Extract submission parts (isCorrect, hintsUsed, revealStepsSeen, misconceptionTags)
+  - [x] Look up timing baseline for problem family via persistence
+  - [x] Derive timing features if baseline available, else pass undefined
+  - [x] Call `mapPracticeToSrsRating` with correctness evidence + timing features
+  - [x] Apply derived rating to card via `scheduler.reviewCard`
+  - [x] Build review log entry from before/after card state + rating + evidence
+  - [x] Persist updated card and review log atomically via persistence adapter
+  - [x] Return `SubmissionSrsResult` with updated state
+- [x] Task: Write end-to-end pipeline tests with in-memory stores
+  - [x] Test full pipeline: submit correct answer → card transitions from `"new"` to `"learning"` or `"review"`
+  - [x] Test full pipeline: submit incorrect answer → card transitions to `"relearning"` or increment lapses
+  - [x] Test pipeline with hints → derived rating reflects hint penalty
+  - [x] Test pipeline with timing baseline → rating adjusted by timing
+  - [x] Test pipeline without timing baseline → rating derived from correctness only
+  - [x] Test idempotency: same submission envelope processed twice → same card state
+  - [x] Test SRS error mid-pipeline → result contains error, does not throw
+- [x] Task: Conductor - Phase Completion Verification 'Review Processing Pipeline' (Protocol in workflow.md)
 
 ## Phase 5: Convex Integration
 
-- [ ] Task: Implement Convex persistence adapter
-  - [ ] Create `convex/srs/submissionSrsAdapter.ts` (or similar Convex module)
-  - [ ] Implement `SrsPersistenceAdapter` using Convex table queries/mutations for `srs_cards` and `srs_review_log`
-  - [ ] Implement atomic card + review log write using Convex mutation
-  - [ ] Implement `ProblemFamilyResolver` using Track 4 blueprint query
-- [ ] Task: Wire adapter into submission flow
-  - [ ] Hook `processSubmission` into existing activity submission mutation/action
-  - [ ] Ensure SRS processing runs after submission is persisted (non-blocking)
-  - [ ] Add error boundary: catch and log SRS errors, never fail the submission mutation
-  - [ ] Use Convex internal action for async SRS processing if needed to avoid blocking
-- [ ] Task: Write integration tests
-  - [ ] Test Convex adapter reads/writes to correct tables
-  - [ ] Test submission mutation triggers SRS card update
-  - [ ] Test submission mutation succeeds even when SRS processing fails
-  - [ ] Test card state is queryable after submission
-  - [ ] Test review log is queryable after submission
-- [ ] Task: Conductor - Phase Completion Verification 'Convex Integration' (Protocol in workflow.md)
+- [x] Task: Implement Convex persistence adapter
+  - [x] Create `convex/srs/submissionSrs.ts` with `processSubmissionSrs` internalMutation
+  - [x] Use existing `ConvexCardStore` and `ConvexReviewLogStore` for SRS persistence
+  - [x] Implement `ProblemFamilyResolver` using direct `ctx.db.query` on `practice_items` and `problem_families`
+  - [x] Implement `TimingBaselineResolver` using direct `ctx.db.query` on `timing_baselines`
+  - [x] Fixed cross-student card collision bug: added `by_student_and_problem_family` index to `srs_cards` and updated `saveCard`/`saveCards`/`processReview` to query by `(studentId, problemFamilyId)`
+- [x] Task: Wire adapter into submission flow
+  - [x] Hook `processSubmissionSrs` into `submitActivity` via `ctx.scheduler.runAfter(0, ...)`
+  - [x] SRS processing runs asynchronously after submission persistence
+  - [x] Add error boundary: catch and log scheduler/SRS errors, never fail the submission mutation
+- [x] Task: Write integration tests
+  - [x] Test `processSubmissionSrsHandler` returns skipped when no practice item exists
+  - [x] Test `processSubmissionSrsHandler` returns skipped when problem family is missing
+  - [x] Test successful submission creates card and review log via Convex stores
+  - [x] Test SRS errors are caught and returned without throwing
+  - [x] Test timing baseline lookup when available
+- [x] Task: Conductor - Phase Completion Verification 'Convex Integration' (Protocol in workflow.md)
 
 ## Phase 6: Verification and Handoff
 

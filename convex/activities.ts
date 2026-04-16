@@ -1,5 +1,6 @@
 import { internalMutation, internalQuery } from "./_generated/server";
 import { v } from "convex/values";
+import { internal } from "./_generated/api";
 import { practiceSubmissionEnvelopeValidator } from "./practice_submission";
 
 export const getSpreadsheetDraft = internalQuery({
@@ -365,6 +366,16 @@ export const submitActivity = internalMutation({
           updatedBy: args.userId,
         });
       }
+    }
+
+    try {
+      await ctx.scheduler.runAfter(0, internal.srs.submissionSrs.processSubmissionSrs, {
+        studentId: args.userId,
+        activityId: args.activityId,
+        submission: args.submissionData,
+      });
+    } catch (err) {
+      console.error("Failed to schedule SRS processing:", err);
     }
 
     return { id: submissionId, score: submissionScore, maxScore };

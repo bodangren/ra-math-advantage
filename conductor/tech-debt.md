@@ -48,4 +48,4 @@
 | error-analysis: buildTeacherErrorView uses activityId as studentId | Medium | Open | Inconsistent with other functions that accept studentIdMap |
 | SRS queue: newCardsPerDay cap is shared across all priorities | Medium | Open | Essential/supporting/extension compete for same quota; update spec comment |
 | SRS CardStore: studentId type mismatch (contract vs schema) | High | Open | SrsCardState uses string, Convex uses Id<"profiles">; type assertions required at boundary |
-| SRS CardStore: saveCard by problemFamilyId alone | High | Open | Spec says studentId+problemFamilyId composite key but no such index; may cause cross-student collisions |
+| SRS CardStore: saveCard by problemFamilyId alone | High | Resolved | Added by_student_and_problem_family index; updated saveCard/saveCards/processReview to query by (studentId, problemFamilyId) |

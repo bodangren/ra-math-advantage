@@ -5,8 +5,9 @@
 
 ## Architecture & Design
 
-- (2026-04-12, zod4) Zod 4.x `z.record()` requires explicit key type; TS array inference narrows from first elements — use explicit annotations
 - (2026-04-16, srs-schema) Convex DB stores timestamps as `number` (ms epoch) but `SrsCardState` contract uses ISO strings — convert at adapter boundary; failing to do so causes validator/runtime mismatches
+- (2026-04-16, srs-integration) Always add `by_student_and_problem_family` index for SRS cards; querying by `problemFamilyId` alone causes cross-student card overwrites in multi-tenant tables
+- (2026-04-16, srs-integration) Use `ctx.scheduler.runAfter(0, internal.srs.processSubmissionSrs, ...)` for non-blocking SRS processing after submission persistence; keep error boundaries so SRS failures never block the primary submission flow
 - (2026-04-16, srs-schema) When `convex dev` is blocked by non-interactive prompts (e.g., backend upgrade), manually patch `convex/_generated/api.d.ts` with the module imports and `fullApi` entries as a temporary workaround
 
 ## Recurring Gotchas

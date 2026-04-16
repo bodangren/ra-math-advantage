@@ -327,11 +327,15 @@ Implementation order: **Wave 0 done → Wave 1 (parallel) → Wave 2 → Wave 3 
 
 ### Wave 3 — Integration (after Wave 2, 2 tracks in parallel)
 
-- [ ] **Track 6: Submission-to-SRS Rating Adapter**
-      *Wire practice.v1 submissions through srs-rating.ts to FSRS card state updates; handle first-seen items; integrate timing baselines*
-      *Depends on: Wave 2 (Track 5)*
-      *Link: [./conductor/tracks/submission-srs-adapter_20260416/](./conductor/tracks/submission-srs-adapter_20260416/)*
-      - Phase 1: Adapter Interface Design [COMPLETE]
+- [~] **Track 6: Submission-to-SRS Rating Adapter**
+       *Wire practice.v1 submissions through srs-rating.ts to FSRS card state updates; handle first-seen items; integrate timing baselines*
+       *Depends on: Wave 2 (Track 5)*
+       *Link: [./conductor/tracks/submission-srs-adapter_20260416/](./conductor/tracks/submission-srs-adapter_20260416/)*
+       - Phase 1: Adapter Interface Design [COMPLETE]
+       - Phase 2: Problem Family Resolution [COMPLETE]
+       - Phase 3: First-Seen Card Creation [COMPLETE]
+       - Phase 4: Review Processing Pipeline [COMPLETE]
+       - Phase 5: Convex Integration [COMPLETE]
 
 - [ ] **Track 8: Daily Practice Queue Engine**
      *Query SRS cards from Convex; apply queue ordering with session limits; resolve items to activities; manage session lifecycle*

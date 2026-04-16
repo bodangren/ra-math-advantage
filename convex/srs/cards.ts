@@ -66,8 +66,8 @@ export const saveCard = internalMutation({
   handler: async (ctx, args) => {
     const existing = await ctx.db
       .query("srs_cards")
-      .withIndex("by_problem_family", (q) =>
-        q.eq("problemFamilyId", args.problemFamilyId)
+      .withIndex("by_student_and_problem_family", (q) =>
+        q.eq("studentId", args.studentId as Id<"profiles">).eq("problemFamilyId", args.problemFamilyId)
       )
       .first();
 
@@ -142,8 +142,8 @@ export const saveCards = internalMutation({
     for (const card of args.cards) {
       const existing = await ctx.db
         .query("srs_cards")
-        .withIndex("by_problem_family", (q) =>
-          q.eq("problemFamilyId", card.problemFamilyId)
+        .withIndex("by_student_and_problem_family", (q) =>
+          q.eq("studentId", card.studentId as Id<"profiles">).eq("problemFamilyId", card.problemFamilyId)
         )
         .first();
 

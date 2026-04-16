@@ -77,8 +77,10 @@ export async function processReviewHandler(
 
   const existing = await ctx.db
     .query("srs_cards")
-    .withIndex("by_problem_family", (q) =>
-      q.eq("problemFamilyId", cardState.problemFamilyId)
+    .withIndex("by_student_and_problem_family", (q) =>
+      q
+        .eq("studentId", cardState.studentId as Id<"profiles">)
+        .eq("problemFamilyId", cardState.problemFamilyId)
     )
     .first();
 

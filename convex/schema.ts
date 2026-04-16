@@ -368,7 +368,7 @@ export default defineSchema({
       v.literal("new"),
       v.literal("learning"),
       v.literal("review"),
-      v.literal("relearning"),
+      v.literal("relearning")
     ),
     dueDate: v.string(),
     elapsedDays: v.number(),
@@ -383,7 +383,8 @@ export default defineSchema({
     .index("by_student_and_due", ["studentId", "dueDate"])
     .index("by_objective", ["objectiveId"])
     .index("by_student_and_objective", ["studentId", "objectiveId"])
-    .index("by_problem_family", ["problemFamilyId"]),
+    .index("by_problem_family", ["problemFamilyId"])
+    .index("by_student_and_problem_family", ["studentId", "problemFamilyId"]),
 
   srs_review_log: defineTable({
     cardId: v.id("srs_cards"),
