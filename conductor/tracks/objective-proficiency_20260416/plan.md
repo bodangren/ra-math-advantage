@@ -39,22 +39,22 @@
 - [x] Task: Run `npm run lint` and fix any issues
 - [x] Task: Conductor - Phase Completion Verification 'Card-to-Evidence Aggregation' (Protocol in workflow.md)
 
-## Phase 3: Objective Proficiency Query
+## Phase 3: Objective Proficiency Query [checkpoint: dc2ddf4]
 
-- [ ] Task: Write Convex query `getObjectiveProficiency` in `convex/objectiveProficiency.ts`
-  - [ ] Sub-task: Accept `studentId` (required) and `objectiveId` (optional) arguments
-  - [ ] Sub-task: Fetch SRS cards for the student filtered by objective's problem families (join through `problem_families` table)
-  - [ ] Sub-task: Fetch recent review log entries for timing data
-  - [ ] Sub-task: Call `aggregateCardsToEvidence` to produce `ProblemFamilyEvidence[]`
-  - [ ] Sub-task: Call `computeObjectiveProficiency` and return `ObjectiveProficiencyResult`
-- [ ] Task: Write integration tests in `convex/__tests__/objectiveProficiency.test.ts`
-  - [ ] Sub-task: Test with student who has reviewed cards — returns proficiency result
-  - [ ] Sub-task: Test with student who has no cards — returns zero proficiency
-  - [ ] Sub-task: Test with specific objectiveId filters correctly
-  - [ ] Sub-task: Test that existing `objective-proficiency.ts` tests still pass unchanged
-- [ ] Task: Run tests and verify all pass
-- [ ] Task: Run `npm run lint` and fix any issues
-- [ ] Task: Conductor - Phase Completion Verification 'Objective Proficiency Query' (Protocol in workflow.md)
+- [x] Task: Write Convex query `getObjectiveProficiency` in `convex/objectiveProficiency.ts` [dc2ddf4]
+  - [x] Sub-task: Accept `studentId` (required) and `objectiveId` (optional) arguments
+  - [x] Sub-task: Fetch SRS cards for the student filtered by objective's problem families (join through `problem_families` table)
+  - [x] Sub-task: Fetch recent review log entries for timing data
+  - [x] Sub-task: Call `aggregateCardsToEvidence` to produce `ProblemFamilyEvidence[]`
+  - [x] Sub-task: Call `computeObjectiveProficiency` and return `ObjectiveProficiencyResult`
+- [x] Task: Write integration tests in `convex/__tests__/objectiveProficiency.test.ts` [dc2ddf4]
+  - [x] Sub-task: Test with student who has reviewed cards — returns proficiency result
+  - [x] Sub-task: Test with student who has no cards — returns zero proficiency
+  - [x] Sub-task: Test with specific objectiveId filters correctly
+  - [x] Sub-task: Test that existing `objective-proficiency.ts` tests still pass unchanged
+- [x] Task: Run tests and verify all pass
+- [x] Task: Run `npm run lint` and fix any issues
+- [x] Task: Conductor - Phase Completion Verification 'Objective Proficiency Query' (Protocol in workflow.md)
 
 ## Phase 4: Student and Teacher Views
 
