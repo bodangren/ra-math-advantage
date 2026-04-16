@@ -1,6 +1,6 @@
-import { internalMutation, internalQuery } from "./_generated/server";
+import { internalMutation, internalQuery } from "../_generated/server";
 import { v } from "convex/values";
-import { Id } from "./_generated/dataModel";
+import { Id } from "../_generated/dataModel";
 
 export const saveCard = internalMutation({
   args: {
@@ -21,7 +21,7 @@ export const saveCard = internalMutation({
     scheduledDays: v.number(),
     reps: v.number(),
     lapses: v.number(),
-    lastReview: v.union(v.string(), v.null()),
+    lastReview: v.optional(v.string()),
     createdAt: v.string(),
     updatedAt: v.string(),
   },
@@ -46,7 +46,7 @@ export const saveCard = internalMutation({
         scheduledDays: args.scheduledDays,
         reps: args.reps,
         lapses: args.lapses,
-        lastReview: args.lastReview,
+        lastReview: args.lastReview ?? undefined,
         createdAt: existing.createdAt,
         updatedAt: Date.now(),
       });
@@ -64,7 +64,7 @@ export const saveCard = internalMutation({
         scheduledDays: args.scheduledDays,
         reps: args.reps,
         lapses: args.lapses,
-        lastReview: args.lastReview,
+        lastReview: args.lastReview ?? undefined,
         createdAt: Date.now(),
         updatedAt: Date.now(),
       });
@@ -94,7 +94,7 @@ export const saveCards = internalMutation({
         scheduledDays: v.number(),
         reps: v.number(),
         lapses: v.number(),
-        lastReview: v.union(v.string(), v.null()),
+        lastReview: v.optional(v.string()),
         createdAt: v.string(),
         updatedAt: v.string(),
       })
@@ -122,7 +122,7 @@ export const saveCards = internalMutation({
           scheduledDays: card.scheduledDays,
           reps: card.reps,
           lapses: card.lapses,
-          lastReview: card.lastReview,
+          lastReview: card.lastReview ?? undefined,
           createdAt: existing.createdAt,
           updatedAt: Date.now(),
         });
@@ -139,7 +139,7 @@ export const saveCards = internalMutation({
           scheduledDays: card.scheduledDays,
           reps: card.reps,
           lapses: card.lapses,
-          lastReview: card.lastReview,
+          lastReview: card.lastReview ?? undefined,
           createdAt: Date.now(),
           updatedAt: Date.now(),
         });
@@ -172,7 +172,7 @@ export const getCard = internalQuery({
       scheduledDays: card.scheduledDays,
       reps: card.reps,
       lapses: card.lapses,
-      lastReview: card.lastReview,
+      lastReview: card.lastReview ?? null,
       createdAt: card.createdAt,
       updatedAt: card.updatedAt,
     };
@@ -201,7 +201,7 @@ export const getCardsByStudent = internalQuery({
       scheduledDays: card.scheduledDays,
       reps: card.reps,
       lapses: card.lapses,
-      lastReview: card.lastReview,
+      lastReview: card.lastReview ?? null,
       createdAt: card.createdAt,
       updatedAt: card.updatedAt,
     }));
@@ -228,7 +228,7 @@ export const getCardsByObjective = internalQuery({
       scheduledDays: card.scheduledDays,
       reps: card.reps,
       lapses: card.lapses,
-      lastReview: card.lastReview,
+      lastReview: card.lastReview ?? null,
       createdAt: card.createdAt,
       updatedAt: card.updatedAt,
     }));
@@ -263,7 +263,7 @@ export const getDueCards = internalQuery({
         scheduledDays: card.scheduledDays,
         reps: card.reps,
         lapses: card.lapses,
-        lastReview: card.lastReview,
+        lastReview: card.lastReview ?? null,
         createdAt: card.createdAt,
         updatedAt: card.updatedAt,
       }));
