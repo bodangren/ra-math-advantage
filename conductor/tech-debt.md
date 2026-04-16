@@ -20,7 +20,7 @@
 | StepByStepSolver Zod schema vs component interface mismatch | Medium | Open | Schema step shape differs from AlgebraicStep |
 | ActivityRenderer does not forward section content props | Medium | Open | template, blanks etc. lost between PhaseRenderer and activity |
 | Refactor seed-lesson-standards.ts duplication | Medium | Open | 9 handlers are ~100% identical; extract factory function |
-| SRS adapters: generated API missing srs module | Medium | Resolved | Manually added srs/cards, srs/reviews, srs/processReview to api.d.ts (2026-04-16) |
+| SRS adapters: generated API missing srs module | Medium | Resolved | Manually added srs/cards, srs/reviews, srs/processReview, srs/sessions to api.d.ts (2026-04-16) |
 | Content hash JSON.stringify treats undefined same as absent | Medium | Open | Potential hash collisions |
 | N+1 phase reads in listReviewQueue (dev.ts) | Medium | Open | Sequential ctx.db.get per phase |
 | No error.tsx boundary for student/teacher routes | Medium | Open | Convex outages produce raw 500 |

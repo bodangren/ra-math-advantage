@@ -73,7 +73,7 @@ describe('InMemoryCardStore', () => {
   it('should update an existing card', async () => {
     const card = makeCard({ cardId: 'card-1', state: 'new' });
     await store.saveCard(card);
-    const updated = { ...card, state: 'review' };
+    const updated = { ...card, state: 'review' as const };
     await store.saveCard(updated);
     const retrieved = await store.getCard('card-1');
     expect(retrieved?.state).toBe('review');
