@@ -1,0 +1,14 @@
+Task: Track 8 Phase 3 - Session Lifecycle Implementation
+
+Summary: Implemented daily practice session lifecycle handlers in convex/queue/sessions.ts.
+- Extracted resolveDailyPracticeQueue from queue.ts so mutations can reuse queue resolution logic.
+- startDailySessionHandler: queries for active session, resumes if same day, else creates new srs_sessions record with plannedCards from queue length.
+- getActiveSessionHandler: returns active session + resolved queue if started today.
+- completeDailySessionHandler: finds active session, counts srs_review_log entries since session start, patches completedAt and completedCards.
+
+Files changed:
+- convex/queue/queue.ts (extract resolveDailyPracticeQueue)
+- convex/queue/sessions.ts (new)
+- __tests__/convex/queue/sessions.test.ts (new)
+
+All queue tests pass (15/15). Lint and build pass.
