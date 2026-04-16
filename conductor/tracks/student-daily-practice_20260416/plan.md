@@ -4,7 +4,7 @@
 
 ---
 
-## Phase 1: Daily Practice Page and Session Loading
+## Phase 1: Daily Practice Page and Session Loading [checkpoint: 6b5ab71]
 
 - [x] Task: Create `app/student/practice/page.tsx` server component
   - [x] Add auth guard using `requireStudentSessionClaims`
