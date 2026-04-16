@@ -37,7 +37,7 @@
   - [x] Add `SrsSession` with sessionId, studentId, startedAt, completedAt, plannedCards, completedCards, config
 - [x] Task: Conductor - Phase Completion Verification 'New Type Definitions' (Protocol in workflow.md) [d333936]
 
-## Phase 3: Instructional Language and Guidelines
+## Phase 3: Instructional Language and Guidelines [checkpoint: f2ebd09]
 
 - [x] Task: Define instructional language constants [8888bb7]
   - [x] Add `STUDENT_DAILY_PRACTICE_COPY` constants for session-level messaging
