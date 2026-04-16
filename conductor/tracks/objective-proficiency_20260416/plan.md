@@ -39,7 +39,7 @@
 - [x] Task: Run `npm run lint` and fix any issues
 - [x] Task: Conductor - Phase Completion Verification 'Card-to-Evidence Aggregation' (Protocol in workflow.md)
 
-## Phase 3: Objective Proficiency Query [checkpoint: dc2ddf4]
+## Phase 3: Objective Proficiency Query [checkpoint: 3092c86]
 
 - [x] Task: Write Convex query `getObjectiveProficiency` in `convex/objectiveProficiency.ts` [dc2ddf4]
   - [x] Sub-task: Accept `studentId` (required) and `objectiveId` (optional) arguments
