@@ -4,6 +4,7 @@ import { NextResponse } from 'next/server';
 
 import { SESSION_COOKIE_NAME, getAuthJwtSecret } from '@/lib/auth/constants';
 import { SessionClaims, verifySessionToken } from '@/lib/auth/session';
+import { fetchInternalQuery, internal } from '@/lib/convex/server';
 
 /**
  * Reads and verifies the authenticated session claims from the server cookie jar.
@@ -173,6 +174,38 @@ export async function requireDeveloperRequestClaims(
   }
 
   return claimsOrResponse;
+}
+
+function buildRequestServiceUnavailableResponse(message = 'Service unavailable') {
+  return NextResponse.json({ error: message }, { status: 503 });
+}
+
+/**
+ * Requires an authenticated request with an active credential in Convex.
+ * Fail-closed: returns 503 if Convex is unreachable.
+ */
+export async function requireActiveRequestSessionClaims(
+  request: Request,
+  unauthorizedMessage = 'Unauthorized',
+): Promise<SessionClaims | Response> {
+  const claimsOrResponse = await requireRequestSessionClaims(request, unauthorizedMessage);
+  if (claimsOrResponse instanceof Response) {
+    return claimsOrResponse;
+  }
+
+  try {
+    const credential = await fetchInternalQuery(internal.auth.getCredentialByUsername, {
+      username: claimsOrResponse.username,
+    });
+
+    if (!credential || !credential.isActive) {
+      return buildRequestUnauthorizedResponse(unauthorizedMessage);
+    }
+
+    return claimsOrResponse;
+  } catch {
+    return buildRequestServiceUnavailableResponse('Service unavailable. Please try again later.');
+  }
 }
 
 /**
