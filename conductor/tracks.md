@@ -410,7 +410,7 @@ Tracks ported from `bus-math-v2` per the BM2 Alignment Report. Ordered by recomm
 
 ### Wave A — Quick Wins (start now)
 
-- [ ] **Track: Security & Auth Hardening**
+- [~] **Track: Security & Auth Hardening**
      *Port fail-closed auth guards, Convex-layer authorization, credential revocation, middleware role checks from bus-math-v2*
      *Link: [./conductor/tracks/security-auth-hardening_20260416/](./conductor/tracks/security-auth-hardening_20260416/)*
 
