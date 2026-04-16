@@ -5,6 +5,10 @@ import { MODULE2_PROBLEM_FAMILIES } from "./problem-families/module-2";
 import { MODULE3_PROBLEM_FAMILIES } from "./problem-families/module-3";
 import { MODULE4_PROBLEM_FAMILIES } from "./problem-families/module-4";
 import { MODULE5_PROBLEM_FAMILIES } from "./problem-families/module-5";
+import { MODULE6_PROBLEM_FAMILIES } from "./problem-families/module-6";
+import { MODULE7_PROBLEM_FAMILIES } from "./problem-families/module-7";
+import { MODULE8_PROBLEM_FAMILIES } from "./problem-families/module-8";
+import { MODULE9_PROBLEM_FAMILIES } from "./problem-families/module-9";
 
 const ALL_PROBLEM_FAMILIES = [
   ...MODULE1_PROBLEM_FAMILIES,
@@ -12,6 +16,10 @@ const ALL_PROBLEM_FAMILIES = [
   ...MODULE3_PROBLEM_FAMILIES,
   ...MODULE4_PROBLEM_FAMILIES,
   ...MODULE5_PROBLEM_FAMILIES,
+  ...MODULE6_PROBLEM_FAMILIES,
+  ...MODULE7_PROBLEM_FAMILIES,
+  ...MODULE8_PROBLEM_FAMILIES,
+  ...MODULE9_PROBLEM_FAMILIES,
 ];
 
 export const seedProblemFamilies = internalMutation({

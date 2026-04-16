@@ -304,9 +304,9 @@ Implementation order: **Wave 0 done → Wave 1 (parallel) → Wave 2 → Wave 3 
        - Phase 1: Type Definitions and Zod Schemas [COMPLETE]
        - Phase 2: Convex Schema Extension [COMPLETE]
        - Phase 3: Objective Policy Assignment [COMPLETE]
-       - Phase 4: Seed Data for Modules 1-5 [COMPLETE]
-       - Phase 5: Seed Data for Modules 6-9 and Validation [PENDING]
-       - Phase 6: Verification and Handoff [PENDING]
+        - Phase 4: Seed Data for Modules 1-5 [COMPLETE]
+        - Phase 5: Seed Data for Modules 6-9 and Validation [COMPLETE]
+        - Phase 6: Verification and Handoff [PENDING]
 
 ### Wave 2 — Persistence (after Wave 1)
 

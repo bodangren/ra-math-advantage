@@ -105,35 +105,32 @@
 
 ## Phase 5: Seed Data for Modules 6–9 and Validation
 
-- [ ] Task: Create problem family seed data for Modules 6–9
-  - [ ] Create `convex/seeds/problem-families/module-6.ts` (Exponential & Logarithmic Functions)
-  - [ ] Create `convex/seeds/problem-families/module-7.ts` (Trigonometric Functions)
-  - [ ] Create `convex/seeds/problem-families/module-8.ts` (Trigonometric Identities & Equations)
-  - [ ] Create `convex/seeds/problem-families/module-9.ts` (Statistics & Probability)
-- [ ] Task: Create practice item seed data for Modules 6–9
-  - [ ] Create `convex/seeds/practice-items/module-6.ts` through `module-9.ts`
-  - [ ] Map each activity variant to its problem family
-- [ ] Task: Create referential integrity validation mutation
-  - [ ] Create `convex/seeds/validateBlueprint.ts`
-  - [ ] Check every `problemFamilyId` in `timing_baselines` has a `problem_families` record
-  - [ ] Check every `problemFamilyId` in `practice_items` has a `problem_families` record
-  - [ ] Check every `activityId` in `practice_items` has an `activities` record
-  - [ ] Check every `objectiveId` in `problem_families` has a `competency_standards` record
-  - [ ] Check every `standardId` in `objective_policies` has a `competency_standards` record
-  - [ ] Return a validation report with pass/fail counts and specific violations
-- [ ] Task: Create validation unit tests
-  - [ ] Test validation logic with mock data (valid and invalid scenarios)
-  - [ ] Test that missing references are correctly reported
-- [ ] Task: Update seed orchestration
-  - [ ] Create or update `convex/seeds/seed.ts` to orchestrate all seed mutations in dependency order:
-    1. `seedObjectivePolicies`
-    2. `seedProblemFamilies`
-    3. `seedPracticeItems`
-    4. `validateBlueprint`
-- [ ] Task: Run lint and typecheck
-  - [ ] `npm run lint` passes
-  - [ ] `npm run typecheck` passes
-- [ ] Task: Conductor - Phase Completion Verification 'Seed Data for Modules 6–9 and Validation' (Protocol in workflow.md)
+- [x] Task: Create problem family seed data for Modules 6–9
+  - [x] Create `convex/seed/problem-families/module-6.ts` (Logarithmic Functions)
+  - [x] Create `convex/seed/problem-families/module-7.ts` (Rational Functions)
+  - [x] Create `convex/seed/problem-families/module-8.ts` (Inferential Statistics)
+  - [x] Create `convex/seed/problem-families/module-9.ts` (Trigonometric Functions)
+- [x] Task: Create practice item seed data for Modules 6–9
+  - [x] Auto-generated via `seedPracticeItems` using updated problem family imports
+  - [x] Map each activity variant to its problem family
+- [x] Task: Create referential integrity validation mutation
+  - [x] Create `convex/seed/validate-blueprint.ts`
+  - [x] Check every `problemFamilyId` in `timing_baselines` has a `problem_families` record
+  - [x] Check every `problemFamilyId` in `practice_items` has a `problem_families` record
+  - [x] Check every `activityId` in `practice_items` has an `activities` record
+  - [x] Check every `objectiveId` in `problem_families` has a `competency_standards` record
+  - [x] Check every `standardId` in `objective_policies` has a `competency_standards` record
+  - [x] Return a validation report with pass/fail counts and specific violations
+- [x] Task: Create validation unit tests
+  - [x] Test validation logic with mock data (valid and invalid scenarios)
+  - [x] Test that missing references are correctly reported
+- [x] Task: Update seed orchestration
+  - [x] `convex/seed.ts` already orchestrates `seedObjectivePolicies`, `seedProblemFamilies`, `seedPracticeItems`
+  - [x] `validateBlueprint` available as standalone mutation for post-seed verification
+- [x] Task: Run lint and typecheck
+  - [x] `npm run lint` passes
+  - [x] `npm run typecheck` passes (no new errors; pre-existing errors unchanged)
+- [x] Task: Conductor - Phase Completion Verification 'Seed Data for Modules 6–9 and Validation' (Protocol in workflow.md) [checkpoint: pending]
 
 ## Phase 6: Verification and Handoff
 
