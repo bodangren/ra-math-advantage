@@ -70,7 +70,7 @@
 - [x] Task: Run lint and typecheck
   - [x] `npm run lint` passes
   - [x] `npm run typecheck` passes (no new errors; pre-existing errors unchanged)
-- [x] Task: Conductor - Phase Completion Verification 'Objective Policy Assignment' (Protocol in workflow.md)
+- [x] Task: Conductor - Phase Completion Verification 'Objective Policy Assignment' (Protocol in workflow.md) [checkpoint: b8df23e]
 
 ## Phase 4: Seed Data for Modules 1–5
 
