@@ -2,19 +2,19 @@
 
 ## Phase 1: Adapter Interface Design
 
-- [ ] Task: Define `SubmissionSrsAdapter` interface
-  - [ ] Create `lib/srs/submission-srs-adapter.ts` with interface definition
-  - [ ] Define `processSubmission(input: SubmissionSrsInput): Promise<SubmissionSrsResult>` method
-  - [ ] Define `SubmissionSrsInput` type (submission envelope + studentId + activityId)
-  - [ ] Define `SubmissionSrsResult` type (card state + review log + skipped flag + error)
-  - [ ] Define `ProblemFamilyResolver` interface for activity → problemFamilyId mapping
-  - [ ] Define `SrsPersistenceAdapter` interface for card + review log reads/writes
-- [ ] Task: Write adapter contract tests
-  - [ ] Test `processSubmission` returns `SubmissionSrsResult` for valid input
-  - [ ] Test `processSubmission` returns `skipped: true` when no blueprint exists
-  - [ ] Test `processSubmission` returns error result without throwing on SRS failure
-  - [ ] Test adapter accepts injected dependencies (resolver, persistence, scheduler)
-- [ ] Task: Conductor - Phase Completion Verification 'Adapter Interface Design' (Protocol in workflow.md)
+- [x] Task: Define `SubmissionSrsAdapter` interface
+  - [x] Create `lib/srs/submission-srs-adapter.ts` with interface definition
+  - [x] Define `processSubmission(input: SubmissionSrsInput): Promise<SubmissionSrsResult>` method
+  - [x] Define `SubmissionSrsInput` type (submission envelope + studentId + activityId)
+  - [x] Define `SubmissionSrsResult` type (card state + review log + skipped flag + error)
+  - [x] Define `ProblemFamilyResolver` interface for activity → problemFamilyId mapping
+  - [x] Define `SrsPersistenceAdapter` interface for card + review log reads/writes
+- [x] Task: Write adapter contract tests
+  - [x] Test `processSubmission` returns `SubmissionSrsResult` for valid input
+  - [x] Test `processSubmission` returns `skipped: true` when no blueprint exists
+  - [x] Test `processSubmission` returns error result without throwing on SRS failure
+  - [x] Test adapter accepts injected dependencies (resolver, persistence, scheduler)
+- [x] Task: Conductor - Phase Completion Verification 'Adapter Interface Design' (Protocol in workflow.md)
 
 ## Phase 2: Problem Family Resolution
 
