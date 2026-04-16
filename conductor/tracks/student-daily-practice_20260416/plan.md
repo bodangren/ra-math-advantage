@@ -23,22 +23,22 @@
 
 ---
 
-## Phase 2: Card Rendering and Activity Integration
+## Phase 2: Card Rendering and Activity Integration [checkpoint: xxxxxxx]
 
-- [ ] Task: Create `components/student/PracticeCardRenderer.tsx`
-  - [ ] Accept queue item and render via activity registry (`lib/activities/registry.ts`)
-  - [ ] Pass `ActivityComponentProps` (`activity`, `onSubmit`, `onComplete`)
-  - [ ] Wire `usePracticeTiming` hook for timing instrumentation
-  - [ ] Show card progress indicator (X of Y)
-- [ ] Task: Create `components/student/CardProgressBar.tsx`
-  - [ ] Display current card index and total count
-  - [ ] Accessible progress bar with `aria-valuenow`, `aria-valuemin`, `aria-valuemax`
-  - [ ] Responsive layout
-- [ ] Task: Write component tests
-  - [ ] Test card renders correct activity component from registry
-  - [ ] Test progress bar displays correct count
-  - [ ] Test timing accumulator starts on mount
-- [ ] Task: Conductor - Phase Completion Verification 'Card Rendering and Activity Integration' (Protocol in workflow.md)
+- [x] Task: Create `components/student/PracticeCardRenderer.tsx`
+  - [x] Accept queue item and render via activity registry (`lib/activities/registry.ts`)
+  - [x] Pass `ActivityComponentProps` (`activity`, `onSubmit`, `onComplete`)
+  - [x] Wire `usePracticeTiming` hook for timing instrumentation
+  - [x] Show card progress indicator (X of Y)
+- [x] Task: Create `components/student/CardProgressBar.tsx`
+  - [x] Display current card index and total count
+  - [x] Accessible progress bar with `aria-valuenow`, `aria-valuemin`, `aria-valuemax`
+  - [x] Responsive layout
+- [x] Task: Write component tests
+  - [x] Test card renders correct activity component from registry
+  - [x] Test progress bar displays correct count
+  - [x] Test timing accumulator starts on mount
+- [x] Task: Conductor - Phase Completion Verification 'Card Rendering and Activity Integration' (Protocol in workflow.md)
 
 ---
 
