@@ -42,7 +42,7 @@
 
 ---
 
-## Phase 3: Submission and SRS Update Flow [checkpoint: TBD]
+## Phase 3: Submission and SRS Update Flow [checkpoint: b41dcc5]
 
 - [x] Task: Implement `onSubmit` handler in `PracticeCardRenderer`
   - [x] Build `PracticeSubmissionEnvelope` with timing data from `TimingAccumulator`
