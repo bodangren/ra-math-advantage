@@ -51,21 +51,21 @@
    - [x] Update `completedCards` count from review log
 - [x] Task: Conductor - Phase Completion Verification 'Session Lifecycle' (Protocol in workflow.md) [a07e602]
 
-## Phase 4: Session Config and Limits
+## Phase 4: Session Config and Limits [checkpoint: dbc6179]
 
-- [ ] Task: Write failing tests for session config enforcement
-  - [ ] Test: applies `SrsSessionConfig` defaults (`newCardsPerDay: 5`, `maxReviewsPerDay: 20`, `prioritizeOverdue: true`)
-  - [ ] Test: enforces daily session limit — cannot start second session on same day
-  - [ ] Test: queue respects `maxReviewsPerDay` cap
-  - [ ] Test: queue respects `newCardsPerDay` cap
-- [ ] Task: Apply `SrsSessionConfig` defaults in queue query
-  - [ ] Wire config defaults into `buildDailyQueue` call
-  - [ ] Cap new cards and reviews per config limits
-  - [ ] Prioritize overdue cards when `prioritizeOverdue` is true
-- [ ] Task: Enforce daily session limit in `startDailySession`
-  - [ ] Query existing sessions for student today before creating new one
-  - [ ] Return existing session instead of creating duplicate
-- [ ] Task: Conductor - Phase Completion Verification 'Session Config and Limits' (Protocol in workflow.md)
+- [x] Task: Write failing tests for session config enforcement
+  - [x] Test: applies `SrsSessionConfig` defaults (`newCardsPerDay: 5`, `maxReviewsPerDay: 20`, `prioritizeOverdue: true`)
+  - [x] Test: enforces daily session limit — cannot start second session on same day
+  - [x] Test: queue respects `maxReviewsPerDay` cap (tested in lib/srs/queue.test.ts)
+  - [x] Test: queue respects `newCardsPerDay` cap (tested in lib/srs/queue.test.ts)
+- [x] Task: Apply `SrsSessionConfig` defaults in queue query
+  - [x] Wire config defaults into `buildDailyQueue` call
+  - [x] Cap new cards and reviews per config limits
+  - [x] Prioritize overdue cards when `prioritizeOverdue` is true
+- [x] Task: Enforce daily session limit in `startDailySession`
+  - [x] Query existing sessions for student today before creating new one
+  - [x] Return existing session instead of creating duplicate
+- [x] Task: Conductor - Phase Completion Verification 'Session Config and Limits' (Protocol in workflow.md)
 
 ## Phase 5: Verification and Handoff
 

@@ -122,6 +122,25 @@ describe('startDailySessionHandler', () => {
     expect(result.queue).toEqual(queue);
   });
 
+  it('applies SrsSessionConfig defaults (newCardsPerDay: 5, maxReviewsPerDay: 20, prioritizeOverdue: true)', async () => {
+    const { db, mockInsert } = makeMockCtx({ existingSession: null });
+    const queue: ResolvedQueueItem[] = [{ card: { cardId: 'c1' } as never, objectivePriority: 'essential', isOverdue: false, daysOverdue: 0, componentKey: 'step-by-step-solver', props: {} }];
+    vi.mocked(resolveDailyPracticeQueue).mockResolvedValue(queue);
+
+    await startDailySessionHandler(
+      { db } as unknown as import('@/convex/_generated/server').MutationCtx,
+      { studentId: 'student-1' }
+    );
+
+    expect(mockInsert).toHaveBeenCalledWith('srs_sessions', expect.objectContaining({
+      config: {
+        newCardsPerDay: 5,
+        maxReviewsPerDay: 20,
+        prioritizeOverdue: true,
+      },
+    }));
+  });
+
   it('resumes existing active session when one exists for today', async () => {
     const today = new Date();
     today.setHours(0, 0, 0, 0);
@@ -145,6 +164,33 @@ describe('startDailySessionHandler', () => {
     expect(mockInsert).not.toHaveBeenCalled();
     expect(result.session.sessionId).toBe('session-existing');
     expect(result.queue).toEqual(queue);
+  });
+
+  it('enforces daily session limit - cannot start second session on same day', async () => {
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    const existingSession = {
+      _id: 'session-first' as Id<'srs_sessions'>,
+      studentId: 'student-1' as Id<'profiles'>,
+      startedAt: today.getTime() + 1000,
+      plannedCards: 3,
+      completedCards: 1,
+      config: { newCardsPerDay: 5, maxReviewsPerDay: 20, prioritizeOverdue: true },
+    };
+    const { db, mockInsert } = makeMockCtx({ existingSession });
+    const queue: ResolvedQueueItem[] = [
+      { card: { cardId: 'c1' } as never, objectivePriority: 'essential', isOverdue: false, daysOverdue: 0, componentKey: 'step-by-step-solver', props: {} },
+    ];
+    vi.mocked(resolveDailyPracticeQueue).mockResolvedValue(queue);
+
+    const result = await startDailySessionHandler(
+      { db } as unknown as import('@/convex/_generated/server').MutationCtx,
+      { studentId: 'student-1' }
+    );
+
+    expect(mockInsert).not.toHaveBeenCalled();
+    expect(result.session.sessionId).toBe('session-first');
+    expect(result.session.plannedCards).toBe(3);
   });
 });
 
