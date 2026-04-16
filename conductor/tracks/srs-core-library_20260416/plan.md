@@ -72,7 +72,7 @@
   - [x] Keep pure — accept all data as parameters, no side effects
 - [x] Task: Conductor - Phase Completion Verification 'Queue Primitives' (Protocol in workflow.md)
 
-## Phase 4: Adapter Interfaces
+## Phase 4: Adapter Interfaces [checkpoint: 17018c8]
 
 - [x] Task: Write adapter tests [4096689]
   - [x] Test `InMemoryCardStore` implements `CardStore` interface
