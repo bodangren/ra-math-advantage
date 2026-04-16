@@ -2,22 +2,22 @@
 
 ## Phase 1: FSRS Stability Normalization
 
-- [ ] Task: Write `stabilityToRetention` function in `lib/practice/srs-proficiency.ts`
-  - [ ] Sub-task: Implement sigmoid normalization `1 - (1 / (1 + stability / scaleFactor))` with configurable `scaleFactor` (default 30)
-  - [ ] Sub-task: Handle edge cases: stability <= 0 returns 0, NaN returns 0, Infinity returns 1
-  - [ ] Sub-task: Export `STABILITY_SCALE_FACTOR` constant for configuration
-- [ ] Task: Write unit tests in `lib/practice/__tests__/srs-proficiency.test.ts`
-  - [ ] Sub-task: Test stability 0 → retention 0
-  - [ ] Sub-task: Test stability 30 → retention 0.5
-  - [ ] Sub-task: Test stability 90 → retention ~0.75
-  - [ ] Sub-task: Test stability 300 → retention ~0.909
-  - [ ] Sub-task: Test negative stability → retention 0
-  - [ ] Sub-task: Test very high stability (1000+) → retention approaching 1
-  - [ ] Sub-task: Test custom scaleFactor overrides default
-  - [ ] Sub-task: Test NaN and Infinity inputs
-- [ ] Task: Run tests and verify all pass
-- [ ] Task: Run `npm run lint` and fix any issues
-- [ ] Task: Conductor - Phase Completion Verification 'FSRS Stability Normalization' (Protocol in workflow.md)
+- [x] Task: Write `stabilityToRetention` function in `lib/practice/srs-proficiency.ts` [150eecd]
+  - [x] Sub-task: Implement sigmoid normalization `1 - (1 / (1 + stability / scaleFactor))` with configurable `scaleFactor` (default 30)
+  - [x] Sub-task: Handle edge cases: stability <= 0 returns 0, NaN returns 0, Infinity returns 1
+  - [x] Sub-task: Export `STABILITY_SCALE_FACTOR` constant for configuration
+- [x] Task: Write unit tests in `lib/practice/__tests__/srs-proficiency.test.ts` [150eecd]
+  - [x] Sub-task: Test stability 0 → retention 0
+  - [x] Sub-task: Test stability 30 → retention 0.5
+  - [x] Sub-task: Test stability 90 → retention ~0.75
+  - [x] Sub-task: Test stability 300 → retention ~0.909
+  - [x] Sub-task: Test negative stability → retention 0
+  - [x] Sub-task: Test very high stability (1000+) → retention approaching 1
+  - [x] Sub-task: Test custom scaleFactor overrides default
+  - [x] Sub-task: Test NaN and Infinity inputs
+- [x] Task: Run tests and verify all pass [150eecd]
+- [x] Task: Run `npm run lint` and fix any issues [150eecd]
+- [~] Task: Conductor - Phase Completion Verification 'FSRS Stability Normalization' (Protocol in workflow.md)
 
 ## Phase 2: Card-to-Evidence Aggregation
 
