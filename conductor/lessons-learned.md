@@ -43,8 +43,8 @@
 - (2026-04-13, component-approval) Convex queries: use `.withIndex()` not `.filter()`, and `.take(n)` instead of `.collect()` to bound results
 - (2026-04-16, code-review) New seed mutations must be wired into seed.ts immediately; orphan files silently skip data
 - (2026-04-16, code-review) Convex validators strip undeclared fields; mock tests bypass validation. Prefer server-side DB lookups.
-- (2026-04-16, test-design) Test mocks that conflate internal IDs with domain IDs mask real bugs; always use distinct values for `_id` vs `problemFamilyId`
 - (2026-04-17, code-review) Review N+1 patterns at design time: if a loop body makes a DB query, note it in the plan as a known trade-off
+- (2026-04-17, test-design) Vitest only discovers tests in `__tests__/**/*.test.ts`; place test files there even when stub implementations live in `lib/**/__tests__/`
 - (2026-04-17, test-design) Convex query mocks must filter by the actual query args (studentId, objectiveId) — returning unfiltered data causes incorrect proficiency calculations in multi-student scenarios
 - (2026-04-17, code-review) Handler return types with `as` casts for error branches should use discriminated unions; `as` hides type mismatches that callers silently accept
 - (2026-04-17, test-design) Test timing should use explicit yesterday/today boundaries, not relative offsets like `now - 2h`; midnight boundary bugs are invisible in local TZ
