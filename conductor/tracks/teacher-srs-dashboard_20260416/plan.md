@@ -113,69 +113,70 @@
 
 ## Phase 5: Dashboard UI Components
 
-- [ ] Task: Create `SrsDashboardPanel` component
-  - [ ] Create `components/teacher/srs/SrsDashboardPanel.tsx`
-  - [ ] Render class health overview metrics using shadcn/ui cards
-  - [ ] Show active students, avg retention, overdue load, practice streaks
-  - [ ] Use recharts for retention trend sparkline
-  - [ ] Responsive layout (grid on desktop, stack on tablet)
-  - [ ] Accessible labels and ARIA attributes
-- [ ] Task: Create `WeakObjectivesPanel` component
-  - [ ] Create `components/teacher/srs/WeakObjectivesPanel.tsx`
-  - [ ] Render table of weak objectives sorted by priority then proficiency
-  - [ ] Show standard code, description, % proficient (color-coded), avg retention, struggling count
-  - [ ] Allow click-through to misconception details
-  - [ ] Use shadcn/ui Table component
-- [ ] Task: Create `StrugglingStudentsPanel` component
-  - [ ] Create `components/teacher/srs/StrugglingStudentsPanel.tsx`
-  - [ ] Render ranked list of struggling students
-  - [ ] Show student name, overdue count (badge), avg retention, weakest objective
-  - [ ] Allow click-through to student detail SRS view
-  - [ ] Use shadcn/ui Badge and Card components
-- [ ] Task: Create `MisconceptionPanel` component
-  - [ ] Create `components/teacher/srs/MisconceptionPanel.tsx`
-  - [ ] Render bar chart of top misconceptions using recharts
-  - [ ] Show frequency count and linked objectives per tag
-  - [ ] Time window selector (7d, 14d, 30d)
-- [ ] Task: Create intervention action components
-  - [ ] Create `components/teacher/srs/InterventionActions.tsx`
-  - [ ] Priority toggle button (essential ↔ triaged) per objective
-  - [ ] Card reset dialog per student-objective pair
-  - [ ] Extra cards dialog with confirmation
-  - [ ] Use shadcn/ui Dialog, Button, and AlertDialog components
-- [ ] Task: Create student detail SRS section
-  - [ ] Create `components/teacher/srs/StudentSrsDetail.tsx`
-  - [ ] Show card states per objective in a status grid (new/learning/review/relearning)
-  - [ ] Show review history timeline (last 20 reviews)
-  - [ ] Show timing patterns per objective
-  - [ ] Show proficiency breakdown per objective
-  - [ ] Integrate into existing student detail page at `app/teacher/students/`
-- [ ] Task: Create SRS dashboard page
-  - [ ] Create `app/teacher/dashboard/srs/page.tsx` (or integrate into existing dashboard)
-  - [ ] Compose all SRS panels into dashboard layout
-  - [ ] Server component with data fetching via Convex queries
-  - [ ] Gate with `requireTeacherSessionClaims`
-- [ ] Task: Write component tests
-  - [ ] Test `SrsDashboardPanel` renders metrics from mock data
-  - [ ] Test `WeakObjectivesPanel` renders sorted objective list
-  - [ ] Test `StrugglingStudentsPanel` renders ranked students
-  - [ ] Test `MisconceptionPanel` renders chart with time window
-  - [ ] Test `InterventionActions` fires correct mutation on confirm
-  - [ ] Test `StudentSrsDetail` renders card states and review history
-- [ ] Task: Conductor - Phase Completion Verification 'Dashboard UI Components' (Protocol in workflow.md)
+- [x] Task: Create `SrsDashboardPanel` component
+  - [x] Create `components/teacher/srs/SrsDashboardPanel.tsx`
+  - [x] Render class health overview metrics using shadcn/ui cards
+  - [x] Show active students, avg retention, overdue load, practice streaks
+  - [x] Use recharts for retention trend sparkline
+  - [x] Responsive layout (grid on desktop, stack on tablet)
+  - [x] Accessible labels and ARIA attributes
+- [x] Task: Create `WeakObjectivesPanel` component
+  - [x] Create `components/teacher/srs/WeakObjectivesPanel.tsx`
+  - [x] Render table of weak objectives sorted by priority then proficiency
+  - [x] Show standard code, description, % proficient (color-coded), avg retention, struggling count
+  - [x] Allow click-through to misconception details
+  - [x] Use shadcn/ui Table component
+- [x] Task: Create `StrugglingStudentsPanel` component
+  - [x] Create `components/teacher/srs/StrugglingStudentsPanel.tsx`
+  - [x] Render ranked list of struggling students
+  - [x] Show student name, overdue count (badge), avg retention, weakest objective
+  - [x] Allow click-through to student detail SRS view
+  - [x] Use shadcn/ui Badge and Card components
+- [x] Task: Create `MisconceptionPanel` component
+  - [x] Create `components/teacher/srs/MisconceptionPanel.tsx`
+  - [x] Render bar chart of top misconceptions using recharts
+  - [x] Show frequency count and linked objectives per tag
+  - [x] Time window selector (7d, 14d, 30d)
+- [x] Task: Create intervention action components
+  - [x] Create `components/teacher/srs/InterventionActions.tsx`
+  - [x] Priority toggle button (essential ↔ triaged) per objective
+  - [x] Card reset dialog per student-objective pair
+  - [x] Extra cards dialog with confirmation
+  - [x] Use shadcn/ui Dialog, Button, and AlertDialog components
+- [x] Task: Create student detail SRS section
+  - [x] Create `components/teacher/srs/StudentSrsDetail.tsx`
+  - [x] Show card states per objective in a status grid (new/learning/review/relearning)
+  - [x] Show review history timeline (last 20 reviews)
+  - [x] Show timing patterns per objective
+  - [x] Show proficiency breakdown per objective
+  - [x] Integrate into existing student detail page at `app/teacher/students/`
+- [x] Task: Create SRS dashboard page
+  - [x] Create `app/teacher/dashboard/srs/page.tsx` (or integrate into existing dashboard)
+  - [x] Compose all SRS panels into dashboard layout
+  - [x] Server component with data fetching via Convex queries
+  - [x] Gate with `requireTeacherSessionClaims`
+- [x] Task: Write component tests
+  - [x] Test `SrsDashboardPanel` renders metrics from mock data
+  - [x] Test `WeakObjectivesPanel` renders sorted objective list
+  - [x] Test `StrugglingStudentsPanel` renders ranked students
+  - [x] Test `MisconceptionPanel` renders chart with time window
+  - [x] Test `InterventionActions` fires correct mutation on confirm
+  - [x] Test `StudentSrsDetail` renders card states and review history
+- [x] Task: Conductor - Phase Completion Verification 'Dashboard UI Components' (Protocol in workflow.md) [checkpoint: 3e975bc]
 
 ## Phase 6: Verification and Handoff
 
-- [ ] Task: Run validation commands
-  - [ ] Run focused teacher SRS dashboard tests
-  - [ ] Run `npm run lint`
-  - [ ] Run `npm run typecheck` or document known pre-existing failures
-- [ ] Task: Update Conductor planning artifacts
-  - [ ] Mark completed tasks and phases in this plan
-  - [ ] Update `conductor/tracks.md`
-- [ ] Task: Write junior developer handoff notes
-  - [ ] Document the Convex query/mutation API surface for teacher SRS
-  - [ ] Document component hierarchy and data flow
-  - [ ] Document how to extend interventions in future tracks
-  - [ ] Document known limitations and future considerations
-- [ ] Task: Conductor - Phase Completion Verification 'Verification and Handoff' (Protocol in workflow.md)
+- [x] Task: Run validation commands
+  - [x] Run focused teacher SRS dashboard tests (87 tests passing)
+  - [x] Run `npm run lint` (passing)
+  - [x] Run `npm run typecheck` (known pre-existing failures documented)
+  - [x] Run `npm run build` (passing)
+- [x] Task: Update Conductor planning artifacts
+  - [x] Mark completed tasks and phases in this plan
+  - [x] Update `conductor/tracks.md`
+- [x] Task: Write junior developer handoff notes
+  - [x] Document the Convex query/mutation API surface for teacher SRS
+  - [x] Document component hierarchy and data flow
+  - [x] Document how to extend interventions in future tracks
+  - [x] Document known limitations and future considerations
+- [x] Task: Conductor - Phase Completion Verification 'Verification and Handoff' (Protocol in workflow.md)
