@@ -1,0 +1,11 @@
+Phase 1 Checkpoint: FSRS Stability Normalization
+
+Verification Report:
+- All Phase 1 tasks completed following TDD (Red-Green-Refactor)
+- New files: lib/practice/srs-proficiency.ts, __tests__/lib/practice/srs-proficiency.test.ts
+- stabilityToRetention implements sigmoid normalization with configurable scaleFactor (default 30)
+- Edge cases handled: stability <= 0 -> 0, NaN -> 0, Infinity -> 1
+- Full test suite run: 10/10 new tests pass, no new failures introduced (7 pre-existing known failures)
+- Lint: passing
+- Build: passing
+- Coverage: all new code paths exercised by tests
