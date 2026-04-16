@@ -1,0 +1,12 @@
+Task: Write Convex query getObjectiveProficiency in convex/objectiveProficiency.ts
+
+Summary: Implements the Objective Proficiency Query phase by adding a Convex internalQuery that fetches SRS cards for a student, filters by objective problem families, fetches review logs and submission timings, resolves timing baselines, and aggregates everything into ProblemFamilyEvidence via aggregateCardsToEvidence before computing proficiency with computeObjectiveProficiency.
+
+Files created:
+- convex/objectiveProficiency.ts (query handler + internalQuery registration)
+- __tests__/convex/objectiveProficiency.test.ts (5 integration tests with mocked QueryCtx)
+
+Key design decisions:
+- Uses exported handler pattern for testability
+- Parses activityId from review log submissionId to look up activity_submissions timing
+- Falls back to essential priority when objectiveId not provided or no policy found
