@@ -1,0 +1,16 @@
+Phase 3: Objective Policy Assignment
+
+Summary: Added seed data and mutation for assigning objective practice policies to all 44 IM3 competency standards. Policies classify standards as essential (priority 1), supporting (priority 2), or extension (priority 3) based on their role in the curriculum.
+
+Files created:
+- convex/seed/objective-policies.ts (44 policy assignments)
+- convex/seed/seed-objective-policies.ts (idempotent upsert mutation with Zod validation)
+- __tests__/convex/seed/objective-policies.test.ts (10 test cases)
+
+Files modified:
+- conductor/tracks/practice-item-blueprint_20260416/plan.md
+
+Notes:
+- Placed seed files in convex/seed/ to match existing codebase convention.
+- Mutation validates each policy against objectivePolicySchema before insertion.
+- Skips insertion if a policy already exists for the given standard + courseKey.
