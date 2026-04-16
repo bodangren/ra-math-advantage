@@ -1,6 +1,7 @@
 import { internalQuery, type QueryCtx } from "./_generated/server";
-import type { Doc, Id } from "./_generated/dataModel";
+import type { Id } from "./_generated/dataModel";
 import { v } from "convex/values";
+import { getAuthorizedTeacher } from "./auth";
 import { assembleCourseOverviewRows } from "../lib/teacher/course-overview";
 import { assembleGradebookRows } from "../lib/teacher/gradebook";
 import {
@@ -95,17 +96,6 @@ function sortStudentsByName<
   return [...students].sort((a, b) =>
     (a.displayName ?? a.username).localeCompare(b.displayName ?? b.username),
   );
-}
-
-async function getAuthorizedTeacher(
-  ctx: QueryCtx,
-  userId: Id<"profiles">,
-): Promise<Doc<"profiles"> | null> {
-  const teacher = await ctx.db.get(userId);
-  if (!teacher || (teacher.role !== "teacher" && teacher.role !== "admin")) {
-    return null;
-  }
-  return teacher;
 }
 
 async function listOrganizationStudents(
@@ -635,11 +625,26 @@ export const getTeacherLessonMonitoringData = internalQuery({
 
 export const getSubmissionDetail = internalQuery({
   args: {
+    userId: v.id("profiles"),
     studentId: v.id("profiles"),
     lessonId: v.id("lessons"),
     studentName: v.string(),
   },
   handler: async (ctx, args) => {
+    const teacher = await getAuthorizedTeacher(ctx, args.userId);
+    if (!teacher) {
+      return null;
+    }
+
+    const student = await ctx.db.get(args.studentId);
+    if (
+      !student ||
+      student.role !== "student" ||
+      student.organizationId !== teacher.organizationId
+    ) {
+      return null;
+    }
+
     const lesson = await ctx.db.get(args.lessonId);
     if (!lesson) return null;
 
@@ -872,10 +877,15 @@ export const getProfileWithOrg = internalQuery({
 
 export const getLessonErrorSummary = internalQuery({
   args: {
+    userId: v.id("profiles"),
     lessonId: v.id("lessons"),
-    teacherOrgId: v.id("organizations"),
   },
   handler: async (ctx, args) => {
+    const teacher = await getAuthorizedTeacher(ctx, args.userId);
+    if (!teacher) {
+      return null;
+    }
+
     const lesson = await ctx.db.get(args.lessonId);
     if (!lesson) return null;
 
@@ -892,7 +902,7 @@ export const getLessonErrorSummary = internalQuery({
     await Promise.all(
       studentIds.map(async (sid) => {
         const profile = await ctx.db.get(sid as Id<"profiles">);
-        if (profile && profile.organizationId === args.teacherOrgId) {
+        if (profile && profile.organizationId === teacher.organizationId) {
           orgStudentIds.push(sid);
         }
       }),

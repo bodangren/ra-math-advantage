@@ -1,4 +1,4 @@
-import { internalMutation, internalQuery, type MutationCtx } from './_generated/server';
+import { internalMutation, internalQuery, type MutationCtx, type QueryCtx } from './_generated/server';
 import { v } from 'convex/values';
 import { type Doc, type Id } from './_generated/dataModel';
 
@@ -211,6 +211,35 @@ function asMetadataRecord(value: unknown): Record<string, unknown> {
   return value as Record<string, unknown>;
 }
 
+export async function getAuthorizedTeacher(
+  ctx: QueryCtx,
+  userId: Id<'profiles'>,
+) {
+  const teacher = await ctx.db.get(userId);
+  if (!teacher) {
+    return null;
+  }
+
+  if (teacher.role !== 'teacher' && teacher.role !== 'admin') {
+    return null;
+  }
+
+  return teacher;
+}
+
+export async function getStudentInTeacherOrg(
+  ctx: MutationCtx,
+  studentProfileId: Id<'profiles'>,
+  teacher: TeacherProfile,
+) {
+  const student = await ctx.db.get(studentProfileId);
+  if (!student || student.role !== 'student' || student.organizationId !== teacher.organizationId) {
+    return null;
+  }
+
+  return student;
+}
+
 async function getTeacherProfile(ctx: MutationCtx, teacherProfileId: Id<'profiles'>) {
   const teacher = await ctx.db.get(teacherProfileId);
   if (!teacher) {
@@ -224,7 +253,7 @@ async function getTeacherProfile(ctx: MutationCtx, teacherProfileId: Id<'profile
   return { ok: true as const, teacher };
 }
 
-async function getStudentInTeacherOrg(
+async function getStudentInTeacherOrgInternal(
   ctx: MutationCtx,
   studentProfileId: Id<'profiles'>,
   teacher: TeacherProfile,
@@ -452,7 +481,7 @@ export const updateStudentAccount = internalMutation({
     }
     const teacher = teacherResult.teacher;
 
-    const studentResult = await getStudentInTeacherOrg(ctx, args.studentProfileId, teacher);
+    const studentResult = await getStudentInTeacherOrgInternal(ctx, args.studentProfileId, teacher);
     if (!studentResult.ok) {
       return studentResult;
     }
@@ -530,7 +559,7 @@ export const resetStudentPassword = internalMutation({
     }
     const teacher = teacherResult.teacher;
 
-    const studentResult = await getStudentInTeacherOrg(ctx, args.studentProfileId, teacher);
+    const studentResult = await getStudentInTeacherOrgInternal(ctx, args.studentProfileId, teacher);
     if (!studentResult.ok) {
       return studentResult;
     }
