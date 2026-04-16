@@ -89,6 +89,27 @@ export async function requireStudentRequestClaims(
   return claimsOrResponse;
 }
 
+/**
+ * Requires a teacher request session for APIs that mutate teacher-facing data.
+ * Admin credentials are treated as teacher-compatible.
+ */
+export async function requireTeacherRequestClaims(
+  request: Request,
+  unauthorizedMessage = 'Unauthorized',
+  forbiddenMessage = 'Forbidden',
+): Promise<SessionClaims | Response> {
+  const claimsOrResponse = await requireRequestSessionClaims(request, unauthorizedMessage);
+  if (claimsOrResponse instanceof Response) {
+    return claimsOrResponse;
+  }
+
+  if (claimsOrResponse.role !== 'teacher' && claimsOrResponse.role !== 'admin') {
+    return buildRequestForbiddenResponse(forbiddenMessage);
+  }
+
+  return claimsOrResponse;
+}
+
 function buildLoginRedirect(loginRedirectPath: string): string {
   return `/auth/login?redirect=${loginRedirectPath}`;
 }
