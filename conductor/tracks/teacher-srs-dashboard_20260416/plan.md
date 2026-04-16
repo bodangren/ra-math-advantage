@@ -62,20 +62,20 @@
 
 ## Phase 3: Misconception Diagnostics
 
-- [ ] Task: Write `getMisconceptionSummary` query tests
-  - [ ] Test aggregates misconceptionTags from review logs in last 7 days
-  - [ ] Test returns tags with frequency count and affected objectives
-  - [ ] Test sorts by frequency descending
-  - [ ] Test handles no misconception tags
-  - [ ] Test respects configurable time window
-  - [ ] Test deduplicates tags across reviews for same objective
-- [ ] Task: Implement `getMisconceptionSummary` Convex query
-  - [ ] Query `srs_review_log` filtered by date range (indexed)
-  - [ ] Extract and aggregate `misconceptionTags` from log entries
-  - [ ] Group by tag, count frequency, collect affected objectives
-  - [ ] Sort by frequency descending
-  - [ ] Accept `sinceDays` parameter (default 7)
-- [ ] Task: Conductor - Phase Completion Verification 'Misconception Diagnostics' (Protocol in workflow.md)
+- [x] Task: Write `getMisconceptionSummary` query tests
+  - [x] Test aggregates misconceptionTags from review logs in last 7 days
+  - [x] Test returns tags with frequency count and affected objectives
+  - [x] Test sorts by frequency descending
+  - [x] Test handles no misconception tags
+  - [x] Test respects configurable time window
+  - [x] Test deduplicates tags across reviews for same objective
+- [x] Task: Implement `getMisconceptionSummary` Convex query
+  - [x] Query `srs_review_log` filtered by date range (indexed)
+  - [x] Extract and aggregate `misconceptionTags` from log entries
+  - [x] Group by tag, count frequency, collect affected objectives
+  - [x] Sort by frequency descending
+  - [x] Accept `sinceDays` parameter (default 7)
+- [x] Task: Conductor - Phase Completion Verification 'Misconception Diagnostics' (Protocol in workflow.md) [checkpoint: 7f8d2a1]
 
 ## Phase 4: Intervention Mutations
 

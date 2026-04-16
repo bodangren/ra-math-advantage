@@ -454,3 +454,103 @@ export const getStrugglingStudents = internalQuery({
     });
   },
 });
+
+export type MisconceptionView = {
+  tag: string;
+  count: number;
+  affectedObjectives: string[];
+};
+
+export async function getMisconceptionSummaryHandler(
+  ctx: QueryCtx,
+  args: { classId: string; sinceDays?: number }
+): Promise<MisconceptionView[]> {
+  const classDocId = args.classId as Id<"classes">;
+
+  const enrollments = await ctx.db
+    .query("class_enrollments")
+    .withIndex("by_class", (q) => q.eq("classId", classDocId))
+    .collect();
+
+  const activeStudents = enrollments.filter((e) => e.status === "active");
+
+  if (activeStudents.length === 0) {
+    return [];
+  }
+
+  const sinceDays = args.sinceDays ?? 7;
+  const sinceMs = Date.now() - sinceDays * 24 * 60 * 60 * 1000;
+
+  const tagMap = new Map<string, { count: number; objectives: Set<string> }>();
+
+  for (const enrollment of activeStudents) {
+    const reviews = await ctx.db
+      .query("srs_review_log")
+      .withIndex("by_student", (q) => q.eq("studentId", enrollment.studentId))
+      .collect();
+
+    for (const review of reviews) {
+      if (review.reviewedAt < sinceMs) {
+        continue;
+      }
+
+      const evidence = review.evidence as { misconceptionTags?: string[] };
+      const misconceptionTags = evidence?.misconceptionTags;
+
+      if (!misconceptionTags || !Array.isArray(misconceptionTags)) {
+        continue;
+      }
+
+      const card = await ctx.db.get("srs_cards", review.cardId);
+      const objectiveId = card?.objectiveId ?? "unknown";
+
+      for (const tag of misconceptionTags) {
+        const existing = tagMap.get(tag);
+        if (existing) {
+          existing.count++;
+          existing.objectives.add(objectiveId);
+        } else {
+          tagMap.set(tag, { count: 1, objectives: new Set([objectiveId]) });
+        }
+      }
+    }
+  }
+
+  const results: MisconceptionView[] = Array.from(tagMap.entries())
+    .map(([tag, data]) => ({
+      tag,
+      count: data.count,
+      affectedObjectives: Array.from(data.objectives),
+    }))
+    .sort((a, b) => b.count - a.count);
+
+  return results;
+}
+
+export const getMisconceptionSummary = internalQuery({
+  args: {
+    userId: v.id("profiles"),
+    classId: v.id("classes"),
+    sinceDays: v.optional(v.number()),
+  },
+  handler: async (ctx, args) => {
+    const teacher = await getAuthorizedTeacher(ctx, args.userId);
+    if (!teacher) {
+      return null;
+    }
+
+    const classDoc = await ctx.db.get(args.classId);
+    if (!classDoc) {
+      return null;
+    }
+
+    if (classDoc.teacherId !== teacher._id) {
+      return null;
+    }
+
+    return getMisconceptionSummaryHandler(ctx, {
+      classId: args.classId,
+      sinceDays: args.sinceDays,
+    });
+  },
+});

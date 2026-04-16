@@ -3,6 +3,7 @@ import type { Id } from '@/convex/_generated/dataModel';
 import {
   getWeakObjectivesHandler,
   getStrugglingStudentsHandler,
+  getMisconceptionSummaryHandler,
 } from '@/convex/teacher/srs-queries';
 import type {
   TeacherProficiencyView,
@@ -57,6 +58,14 @@ function makeTeacherSrsMockCtx(overrides: {
     name: string;
     teacherId: Id<'profiles'>;
   }>;
+  reviews?: Array<{
+    _id: Id<'srs_review_log'>;
+    cardId: Id<'srs_cards'>;
+    studentId: Id<'profiles'>;
+    rating: string;
+    reviewedAt: number;
+    evidence: { misconceptionTags?: string[]; [key: string]: unknown };
+  }>;
 } = {}) {
   const {
     enrollments = [],
@@ -64,6 +73,7 @@ function makeTeacherSrsMockCtx(overrides: {
     cards = [],
     sessions = [],
     classes = [],
+    reviews = [],
   } = overrides;
 
   const enrollmentQueryMock = {
@@ -186,12 +196,38 @@ function makeTeacherSrsMockCtx(overrides: {
     ),
   };
 
+  const reviewQueryMock = {
+    withIndex: vi.fn().mockImplementation(
+      (_indexName: string, fn?: (q: { eq: (field: string, value: unknown) => { eq: (field: string, value: unknown) => unknown } }) => void) => {
+        let capturedStudentId: Id<'profiles'> | null = null;
+        if (fn) {
+          const mockQ: { eq: (field: string, value: unknown) => { eq: (field: string, value: unknown) => unknown } } = {
+            eq: (field: string, value: unknown) => {
+              if (field === 'studentId') {
+                capturedStudentId = value as Id<'profiles'>;
+              }
+              return mockQ;
+            },
+          };
+          fn(mockQ);
+        }
+        return {
+          collect: vi.fn().mockResolvedValue(
+            reviews.filter((r) => !capturedStudentId || r.studentId === capturedStudentId)
+          ),
+          order: vi.fn().mockReturnThis(),
+        };
+      }
+    ),
+  };
+
   const mockQuery = vi.fn().mockImplementation((tableName: string) => {
     if (tableName === 'class_enrollments') return enrollmentQueryMock;
     if (tableName === 'profiles') return profileQueryMock;
     if (tableName === 'srs_cards') return cardQueryMock;
     if (tableName === 'srs_sessions') return sessionQueryMock;
     if (tableName === 'classes') return classQueryMock;
+    if (tableName === 'srs_review_log') return reviewQueryMock;
     return {
       withIndex: vi.fn().mockReturnValue({
         collect: vi.fn().mockResolvedValue([]),
@@ -206,6 +242,9 @@ function makeTeacherSrsMockCtx(overrides: {
     }
     if (tableName === 'classes') {
       return Promise.resolve(classes.find((c) => c._id === id) ?? null);
+    }
+    if (tableName === 'srs_cards') {
+      return Promise.resolve(cards.find((c) => c._id === id) ?? null);
     }
     return Promise.resolve(null);
   });
@@ -1114,5 +1153,258 @@ describe('getStrugglingStudentsHandler', () => {
 
     expect(result).toHaveLength(1);
     expect(result[0].weakestObjective).toBe('obj-b');
+  });
+});
+
+describe('getMisconceptionSummaryHandler', () => {
+  it('returns empty array when no students enrolled', async () => {
+    const { db } = makeTeacherSrsMockCtx({ enrollments: [] });
+
+    const result = await getMisconceptionSummaryHandler(
+      { db } as unknown as import('@/convex/_generated/server').QueryCtx,
+      { classId: 'class-1' }
+    );
+
+    expect(result).toEqual([]);
+  });
+
+  it('returns empty array when no review logs exist', async () => {
+    const classId = 'class-1' as Id<'classes'>;
+    const student1Id = 'student-1' as Id<'profiles'>;
+
+    const { db } = makeTeacherSrsMockCtx({
+      classes: [{ _id: classId, name: 'Math Class', teacherId: 'teacher-1' as Id<'profiles'> }],
+      enrollments: [
+        { _id: 'enr-1' as Id<'class_enrollments'>, classId, studentId: student1Id, status: 'active', enrolledAt: Date.now(), createdAt: Date.now(), updatedAt: Date.now() },
+      ],
+      cards: [
+        { _id: 'card-1' as Id<'srs_cards'>, studentId: student1Id, objectiveId: 'obj-1', problemFamilyId: 'pf-1', stability: 30, difficulty: 3, state: 'review', dueDate: '2030-01-01T00:00:00.000Z', elapsedDays: 0, scheduledDays: 7, reps: 1, lapses: 0, createdAt: Date.now(), updatedAt: Date.now() },
+      ],
+      reviews: [],
+    });
+
+    const result = await getMisconceptionSummaryHandler(
+      { db } as unknown as import('@/convex/_generated/server').QueryCtx,
+      { classId: 'class-1' }
+    );
+
+    expect(result).toEqual([]);
+  });
+
+  it('aggregates misconceptionTags from review logs in last 7 days', async () => {
+    const classId = 'class-1' as Id<'classes'>;
+    const student1Id = 'student-1' as Id<'profiles'>;
+    const card1Id = 'card-1' as Id<'srs_cards'>;
+
+    const now = Date.now();
+    const threeDaysAgo = now - 3 * 24 * 60 * 60 * 1000;
+    const tenDaysAgo = now - 10 * 24 * 60 * 60 * 1000;
+
+    const { db } = makeTeacherSrsMockCtx({
+      classes: [{ _id: classId, name: 'Math Class', teacherId: 'teacher-1' as Id<'profiles'> }],
+      enrollments: [
+        { _id: 'enr-1' as Id<'class_enrollments'>, classId, studentId: student1Id, status: 'active', enrolledAt: Date.now(), createdAt: Date.now(), updatedAt: Date.now() },
+      ],
+      cards: [
+        { _id: card1Id, studentId: student1Id, objectiveId: 'obj-1', problemFamilyId: 'pf-1', stability: 30, difficulty: 3, state: 'review', dueDate: '2030-01-01T00:00:00.000Z', elapsedDays: 0, scheduledDays: 7, reps: 1, lapses: 0, createdAt: Date.now(), updatedAt: Date.now() },
+      ],
+      reviews: [
+        { _id: 'rev-1' as Id<'srs_review_log'>, cardId: card1Id, studentId: student1Id, rating: 'again', reviewedAt: threeDaysAgo, evidence: { misconceptionTags: ['sign-error'] } },
+        { _id: 'rev-2' as Id<'srs_review_log'>, cardId: card1Id, studentId: student1Id, rating: 'again', reviewedAt: tenDaysAgo, evidence: { misconceptionTags: ['sign-error'] } },
+      ],
+    });
+
+    const result = await getMisconceptionSummaryHandler(
+      { db } as unknown as import('@/convex/_generated/server').QueryCtx,
+      { classId: 'class-1' }
+    );
+
+    expect(result).toHaveLength(1);
+    expect(result[0].tag).toBe('sign-error');
+    expect(result[0].count).toBe(1);
+  });
+
+  it('returns tags with frequency count and affected objectives', async () => {
+    const classId = 'class-1' as Id<'classes'>;
+    const student1Id = 'student-1' as Id<'profiles'>;
+    const card1Id = 'card-1' as Id<'srs_cards'>;
+    const card2Id = 'card-2' as Id<'srs_cards'>;
+
+    const now = Date.now();
+    const recentTime = now - 2 * 24 * 60 * 60 * 1000;
+
+    const { db } = makeTeacherSrsMockCtx({
+      classes: [{ _id: classId, name: 'Math Class', teacherId: 'teacher-1' as Id<'profiles'> }],
+      enrollments: [
+        { _id: 'enr-1' as Id<'class_enrollments'>, classId, studentId: student1Id, status: 'active', enrolledAt: Date.now(), createdAt: Date.now(), updatedAt: Date.now() },
+      ],
+      cards: [
+        { _id: card1Id, studentId: student1Id, objectiveId: 'obj-1', problemFamilyId: 'pf-1', stability: 30, difficulty: 3, state: 'review', dueDate: '2030-01-01T00:00:00.000Z', elapsedDays: 0, scheduledDays: 7, reps: 1, lapses: 0, createdAt: Date.now(), updatedAt: Date.now() },
+        { _id: card2Id, studentId: student1Id, objectiveId: 'obj-2', problemFamilyId: 'pf-2', stability: 30, difficulty: 3, state: 'review', dueDate: '2030-01-01T00:00:00.000Z', elapsedDays: 0, scheduledDays: 7, reps: 1, lapses: 0, createdAt: Date.now(), updatedAt: Date.now() },
+      ],
+      reviews: [
+        { _id: 'rev-1' as Id<'srs_review_log'>, cardId: card1Id, studentId: student1Id, rating: 'again', reviewedAt: recentTime, evidence: { misconceptionTags: ['sign-error', 'distribution-error'] } },
+        { _id: 'rev-2' as Id<'srs_review_log'>, cardId: card2Id, studentId: student1Id, rating: 'again', reviewedAt: recentTime, evidence: { misconceptionTags: ['sign-error'] } },
+      ],
+    });
+
+    const result = await getMisconceptionSummaryHandler(
+      { db } as unknown as import('@/convex/_generated/server').QueryCtx,
+      { classId: 'class-1' }
+    );
+
+    expect(result).toHaveLength(2);
+    expect(result[0].tag).toBe('sign-error');
+    expect(result[0].count).toBe(2);
+    expect(result[0].affectedObjectives).toContain('obj-1');
+    expect(result[0].affectedObjectives).toContain('obj-2');
+
+    expect(result[1].tag).toBe('distribution-error');
+    expect(result[1].count).toBe(1);
+    expect(result[1].affectedObjectives).toContain('obj-1');
+  });
+
+  it('sorts by frequency descending', async () => {
+    const classId = 'class-1' as Id<'classes'>;
+    const student1Id = 'student-1' as Id<'profiles'>;
+    const card1Id = 'card-1' as Id<'srs_cards'>;
+    const card2Id = 'card-2' as Id<'srs_cards'>;
+    const card3Id = 'card-3' as Id<'srs_cards'>;
+
+    const now = Date.now();
+    const recentTime = now - 2 * 24 * 60 * 60 * 1000;
+
+    const { db } = makeTeacherSrsMockCtx({
+      classes: [{ _id: classId, name: 'Math Class', teacherId: 'teacher-1' as Id<'profiles'> }],
+      enrollments: [
+        { _id: 'enr-1' as Id<'class_enrollments'>, classId, studentId: student1Id, status: 'active', enrolledAt: Date.now(), createdAt: Date.now(), updatedAt: Date.now() },
+      ],
+      cards: [
+        { _id: card1Id, studentId: student1Id, objectiveId: 'obj-1', problemFamilyId: 'pf-1', stability: 30, difficulty: 3, state: 'review', dueDate: '2030-01-01T00:00:00.000Z', elapsedDays: 0, scheduledDays: 7, reps: 1, lapses: 0, createdAt: Date.now(), updatedAt: Date.now() },
+        { _id: card2Id, studentId: student1Id, objectiveId: 'obj-2', problemFamilyId: 'pf-2', stability: 30, difficulty: 3, state: 'review', dueDate: '2030-01-01T00:00:00.000Z', elapsedDays: 0, scheduledDays: 7, reps: 1, lapses: 0, createdAt: Date.now(), updatedAt: Date.now() },
+        { _id: card3Id, studentId: student1Id, objectiveId: 'obj-3', problemFamilyId: 'pf-3', stability: 30, difficulty: 3, state: 'review', dueDate: '2030-01-01T00:00:00.000Z', elapsedDays: 0, scheduledDays: 7, reps: 1, lapses: 0, createdAt: Date.now(), updatedAt: Date.now() },
+      ],
+      reviews: [
+        { _id: 'rev-1' as Id<'srs_review_log'>, cardId: card1Id, studentId: student1Id, rating: 'again', reviewedAt: recentTime, evidence: { misconceptionTags: ['rare-error'] } },
+        { _id: 'rev-2' as Id<'srs_review_log'>, cardId: card2Id, studentId: student1Id, rating: 'again', reviewedAt: recentTime, evidence: { misconceptionTags: ['common-error', 'common-error'] } },
+        { _id: 'rev-3' as Id<'srs_review_log'>, cardId: card3Id, studentId: student1Id, rating: 'again', reviewedAt: recentTime, evidence: { misconceptionTags: ['common-error'] } },
+      ],
+    });
+
+    const result = await getMisconceptionSummaryHandler(
+      { db } as unknown as import('@/convex/_generated/server').QueryCtx,
+      { classId: 'class-1' }
+    );
+
+    expect(result).toHaveLength(2);
+    expect(result[0].tag).toBe('common-error');
+    expect(result[0].count).toBe(3);
+    expect(result[1].tag).toBe('rare-error');
+    expect(result[1].count).toBe(1);
+  });
+
+  it('respects configurable time window', async () => {
+    const classId = 'class-1' as Id<'classes'>;
+    const student1Id = 'student-1' as Id<'profiles'>;
+    const card1Id = 'card-1' as Id<'srs_cards'>;
+
+    const now = Date.now();
+    const fiveDaysAgo = now - 5 * 24 * 60 * 60 * 1000;
+    const tenDaysAgo = now - 10 * 24 * 60 * 60 * 1000;
+
+    const { db } = makeTeacherSrsMockCtx({
+      classes: [{ _id: classId, name: 'Math Class', teacherId: 'teacher-1' as Id<'profiles'> }],
+      enrollments: [
+        { _id: 'enr-1' as Id<'class_enrollments'>, classId, studentId: student1Id, status: 'active', enrolledAt: Date.now(), createdAt: Date.now(), updatedAt: Date.now() },
+      ],
+      cards: [
+        { _id: card1Id, studentId: student1Id, objectiveId: 'obj-1', problemFamilyId: 'pf-1', stability: 30, difficulty: 3, state: 'review', dueDate: '2030-01-01T00:00:00.000Z', elapsedDays: 0, scheduledDays: 7, reps: 1, lapses: 0, createdAt: Date.now(), updatedAt: Date.now() },
+      ],
+      reviews: [
+        { _id: 'rev-1' as Id<'srs_review_log'>, cardId: card1Id, studentId: student1Id, rating: 'again', reviewedAt: fiveDaysAgo, evidence: { misconceptionTags: ['recent-error'] } },
+        { _id: 'rev-2' as Id<'srs_review_log'>, cardId: card1Id, studentId: student1Id, rating: 'again', reviewedAt: tenDaysAgo, evidence: { misconceptionTags: ['old-error'] } },
+      ],
+    });
+
+    const result7Days = await getMisconceptionSummaryHandler(
+      { db } as unknown as import('@/convex/_generated/server').QueryCtx,
+      { classId: 'class-1' }
+    );
+    expect(result7Days).toHaveLength(1);
+    expect(result7Days[0].tag).toBe('recent-error');
+
+    const result14Days = await getMisconceptionSummaryHandler(
+      { db } as unknown as import('@/convex/_generated/server').QueryCtx,
+      { classId: 'class-1', sinceDays: 14 }
+    );
+    expect(result14Days).toHaveLength(2);
+  });
+
+  it('handles reviews with no misconceptionTags', async () => {
+    const classId = 'class-1' as Id<'classes'>;
+    const student1Id = 'student-1' as Id<'profiles'>;
+    const card1Id = 'card-1' as Id<'srs_cards'>;
+    const card2Id = 'card-2' as Id<'srs_cards'>;
+
+    const now = Date.now();
+    const recentTime = now - 2 * 24 * 60 * 60 * 1000;
+
+    const { db } = makeTeacherSrsMockCtx({
+      classes: [{ _id: classId, name: 'Math Class', teacherId: 'teacher-1' as Id<'profiles'> }],
+      enrollments: [
+        { _id: 'enr-1' as Id<'class_enrollments'>, classId, studentId: student1Id, status: 'active', enrolledAt: Date.now(), createdAt: Date.now(), updatedAt: Date.now() },
+      ],
+      cards: [
+        { _id: card1Id, studentId: student1Id, objectiveId: 'obj-1', problemFamilyId: 'pf-1', stability: 30, difficulty: 3, state: 'review', dueDate: '2030-01-01T00:00:00.000Z', elapsedDays: 0, scheduledDays: 7, reps: 1, lapses: 0, createdAt: Date.now(), updatedAt: Date.now() },
+        { _id: card2Id, studentId: student1Id, objectiveId: 'obj-2', problemFamilyId: 'pf-2', stability: 30, difficulty: 3, state: 'review', dueDate: '2030-01-01T00:00:00.000Z', elapsedDays: 0, scheduledDays: 7, reps: 1, lapses: 0, createdAt: Date.now(), updatedAt: Date.now() },
+      ],
+      reviews: [
+        { _id: 'rev-1' as Id<'srs_review_log'>, cardId: card1Id, studentId: student1Id, rating: 'good', reviewedAt: recentTime, evidence: {} },
+        { _id: 'rev-2' as Id<'srs_review_log'>, cardId: card2Id, studentId: student1Id, rating: 'again', reviewedAt: recentTime, evidence: { misconceptionTags: ['sign-error'] } },
+      ],
+    });
+
+    const result = await getMisconceptionSummaryHandler(
+      { db } as unknown as import('@/convex/_generated/server').QueryCtx,
+      { classId: 'class-1' }
+    );
+
+    expect(result).toHaveLength(1);
+    expect(result[0].tag).toBe('sign-error');
+    expect(result[0].count).toBe(1);
+  });
+
+  it('deduplicates tags across reviews for same objective', async () => {
+    const classId = 'class-1' as Id<'classes'>;
+    const student1Id = 'student-1' as Id<'profiles'>;
+    const card1Id = 'card-1' as Id<'srs_cards'>;
+
+    const now = Date.now();
+    const recentTime = now - 2 * 24 * 60 * 60 * 1000;
+
+    const { db } = makeTeacherSrsMockCtx({
+      classes: [{ _id: classId, name: 'Math Class', teacherId: 'teacher-1' as Id<'profiles'> }],
+      enrollments: [
+        { _id: 'enr-1' as Id<'class_enrollments'>, classId, studentId: student1Id, status: 'active', enrolledAt: Date.now(), createdAt: Date.now(), updatedAt: Date.now() },
+      ],
+      cards: [
+        { _id: card1Id, studentId: student1Id, objectiveId: 'obj-1', problemFamilyId: 'pf-1', stability: 30, difficulty: 3, state: 'review', dueDate: '2030-01-01T00:00:00.000Z', elapsedDays: 0, scheduledDays: 7, reps: 1, lapses: 0, createdAt: Date.now(), updatedAt: Date.now() },
+      ],
+      reviews: [
+        { _id: 'rev-1' as Id<'srs_review_log'>, cardId: card1Id, studentId: student1Id, rating: 'again', reviewedAt: recentTime, evidence: { misconceptionTags: ['sign-error'] } },
+        { _id: 'rev-2' as Id<'srs_review_log'>, cardId: card1Id, studentId: student1Id, rating: 'again', reviewedAt: recentTime + 1000, evidence: { misconceptionTags: ['sign-error'] } },
+        { _id: 'rev-3' as Id<'srs_review_log'>, cardId: card1Id, studentId: student1Id, rating: 'again', reviewedAt: recentTime + 2000, evidence: { misconceptionTags: ['sign-error'] } },
+      ],
+    });
+
+    const result = await getMisconceptionSummaryHandler(
+      { db } as unknown as import('@/convex/_generated/server').QueryCtx,
+      { classId: 'class-1' }
+    );
+
+    expect(result).toHaveLength(1);
+    expect(result[0].tag).toBe('sign-error');
+    expect(result[0].count).toBe(3);
+    expect(result[0].affectedObjectives).toEqual(['obj-1']);
   });
 });

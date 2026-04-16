@@ -47,3 +47,4 @@
 | PracticeCardRenderer: double timing instrumentation (renderer + ActivityRenderer) | Medium | Open | One hook's timing discarded; remove or consolidate |
 | SRS queue: newCardsPerDay cap shared across all priorities | Medium | Open | Essential/supporting/extension compete for same quota |
 | SRS sessions: by_student_and_status index relies on undefined sorting before defined | High | Open | No explicit filter for completedAt=undefined; fragile implicit ordering |
+| SRS review_log: misconceptionTags not stored in evidence (Medium) | Medium | Open | submission-srs-adapter only stores baseRating/timingAdjusted/reasons; misconceptionTags needed for getMisconceptionSummary query to work end-to-end |
