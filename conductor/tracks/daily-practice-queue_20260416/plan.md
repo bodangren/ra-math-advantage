@@ -28,28 +28,28 @@
   - [x] Attach resolved activity data to queue items
 - [x] Task: Conductor - Phase Completion Verification 'Queue Item Resolution' (Protocol in workflow.md) [3e56d7c]
 
-## Phase 3: Session Lifecycle
+## Phase 3: Session Lifecycle [checkpoint: a07e602]
 
-- [ ] Task: Write failing tests for session mutations
-  - [ ] Test: `startDailySession` creates `srs_session` record and returns queue
-  - [ ] Test: `startDailySession` resumes existing active session when one exists for today
-  - [ ] Test: `getActiveSession` returns current day's active session or null
-  - [ ] Test: `completeDailySession` marks session completed and updates `completedCards` count
-  - [ ] Test: `completeDailySession` throws if no active session exists
-- [ ] Task: Implement `startDailySession` mutation in `convex/queue/sessions.ts`
-  - [ ] Check for existing active session for student today
-  - [ ] If exists, return existing session and queue
-  - [ ] If not, create new `srs_session` record
-  - [ ] Fetch and resolve queue items
-  - [ ] Return session with ordered queue
-- [ ] Task: Implement `getActiveSession` query in `convex/queue/sessions.ts`
-  - [ ] Query `srs_sessions` by student ID and date, filtered to active status
-  - [ ] Return session with progress data or null
-- [ ] Task: Implement `completeDailySession` mutation in `convex/queue/sessions.ts`
-  - [ ] Validate active session exists
-  - [ ] Mark session as completed
-  - [ ] Update `completedCards` count from review log
-- [ ] Task: Conductor - Phase Completion Verification 'Session Lifecycle' (Protocol in workflow.md)
+- [x] Task: Write failing tests for session mutations [a07e602]
+   - [x] Test: `startDailySession` creates `srs_session` record and returns queue
+   - [x] Test: `startDailySession` resumes existing active session when one exists for today
+   - [x] Test: `getActiveSession` returns current day's active session or null
+   - [x] Test: `completeDailySession` marks session completed and updates `completedCards` count
+   - [x] Test: `completeDailySession` throws if no active session exists
+- [x] Task: Implement `startDailySession` mutation in `convex/queue/sessions.ts` [a07e602]
+   - [x] Check for existing active session for student today
+   - [x] If exists, return existing session and queue
+   - [x] If not, create new `srs_session` record
+   - [x] Fetch and resolve queue items
+   - [x] Return session with ordered queue
+- [x] Task: Implement `getActiveSession` query in `convex/queue/sessions.ts` [a07e602]
+   - [x] Query `srs_sessions` by student ID and date, filtered to active status
+   - [x] Return session with progress data or null
+- [x] Task: Implement `completeDailySession` mutation in `convex/queue/sessions.ts` [a07e602]
+   - [x] Validate active session exists
+   - [x] Mark session as completed
+   - [x] Update `completedCards` count from review log
+- [x] Task: Conductor - Phase Completion Verification 'Session Lifecycle' (Protocol in workflow.md) [a07e602]
 
 ## Phase 4: Session Config and Limits
 
