@@ -350,12 +350,13 @@ Implementation order: **Wave 0 done → Wave 1 (parallel) → Wave 2 → Wave 3 
 
 ### Wave 4 — User-Facing (after Wave 3, sequential order: 10 → 9 → 11)
 
-- [x] **Track 10: Objective Proficiency Measurement** [Phase 2 Complete]
-      *Upgrade objective-proficiency.ts to use FSRS stability from card states; build aggregation pipeline; student/teacher proficiency queries*
-      *Depends on: Wave 2 (Track 5)*
-      *Link: [./conductor/tracks/objective-proficiency_20260416/](./conductor/tracks/objective-proficiency_20260416/)*
-       - Phase 1: FSRS Stability Normalization [COMPLETE] [checkpoint: 2f6fe7b]
-       - Phase 2: Card-to-Evidence Aggregation [COMPLETE] [checkpoint: 6f8d690]
+- [x] **Track 10: Objective Proficiency Measurement** [Phase 3 Complete]
+       *Upgrade objective-proficiency.ts to use FSRS stability from card states; build aggregation pipeline; student/teacher proficiency queries*
+       *Depends on: Wave 2 (Track 5)*
+       *Link: [./conductor/tracks/objective-proficiency_20260416/](./conductor/tracks/objective-proficiency_20260416/)*
+        - Phase 1: FSRS Stability Normalization [COMPLETE] [checkpoint: 2f6fe7b]
+        - Phase 2: Card-to-Evidence Aggregation [COMPLETE] [checkpoint: 6f8d690]
+        - Phase 3: Objective Proficiency Query [COMPLETE] [checkpoint: 3092c86]
 
 
 - [x] **Track 9: Student Daily Practice Experience** — **COMPLETE**

@@ -29,7 +29,7 @@
 | Equivalence validator 6/50 tests failing; M9 uses degrees in Learn but radians in example | Low | Open | Pattern-matching limits; unexplained unit switch |
 | confidenceReasons is string[] not union type | Low | Open | Typos silently pass type checking |
 | PracticeTimingEvidence local type omits contract fields | Low | Open | SubmissionReviewPanel.tsx redefines contract type |
-| totalFocusLossMs accumulated but never exposed | Low | Open | Dead code in timing.ts |
+| SRS: reviewDurationMs not stored in review_log; looked up via submissionId parse | Medium | Open | Requires parsing synthetic submissionId and querying activity_submissions |
 | Flaky tests: StepByStepper hint tracking, TeacherLessonPreview | Low | Open | Pass in isolation, flaky in full suite |
 | collectEligibleTimings N+1 in timing_baseline.ts | Medium | Open | Queries activity_submissions per activityId in loop; acceptable at ~3 activities/family |
 | getStaleBaselines doesn't use by_last_computed index | Medium | Open | take(1000) + in-memory filter; won't scale past 1000 families |

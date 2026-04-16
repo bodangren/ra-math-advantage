@@ -13,7 +13,7 @@
 - (2026-04-16, srs-schema) Convex `v.optional(v.string())` produces `string | undefined`, but contract may use `string | null` — normalize at adapter boundary
 - (2026-04-16, sessions) Server-side day-boundary comparisons must use UTC methods (`getUTCFullYear`/`getUTCMonth`/`getUTCDate`), not local TZ methods
 - (2026-04-16, sessions) Stale active sessions from prior days must be explicitly closed (`completedAt` patch) before creating new sessions; otherwise index queries return wrong records
-- (2026-00-16, code-review) Adapter lookups should use targeted index queries (e.g. `by_student_and_problem_family`) instead of fetching all records + in-memory filter
+- (2026-04-17, srs-proficiency) Review log `submissionId` is synthetic (`activityId-attemptNumber`); parsing it to look up `activity_submissions` timing requires defensive handling of dashes in IDs
 
 ## Recurring Gotchas
 

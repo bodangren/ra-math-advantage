@@ -1,16 +1,16 @@
 # Current Directive
 
-> Updated: 2026-04-16 (Code Review — Track 9 Phase 3, Track 8, Track 6)
+> Updated: 2026-04-17 (Track 10 Phase 3 complete — Objective Proficiency Query)
 
 ## Status Summary
 
-- **Tests**: 2818 total, 6 known failures (equivalence validator — fraction/radical expressions). All others passing.
+- **Tests**: 2823 total, 6 known failures (equivalence validator — fraction/radical expressions). All others passing.
 - **Build**: Passing.
 - **Lint**: Passing.
 - **TypeScript**: No new TS errors.
 - **Module 1-9 Roadmap**: All modules seeded (M1-M9 complete). CCSS standards and lesson_standards links for M1-M5 seeded.
 - **SRS Wave 0-3**: Complete.
-- **SRS Wave 4**: Track 9 Phase 3 complete (submission + SRS update flow). Phase 4 (loading states, completion polish) next.
+- **SRS Wave 4**: Track 9 complete (all 6 phases). Track 10 Phase 3 complete (Objective Proficiency Query). Phase 4 (Student and Teacher Views) next.
 
 ## Fixes Applied This Review
 
@@ -30,21 +30,21 @@
 - `SubmissionSrsAdapter` reimplements `processReview()` instead of delegating
 - `confidenceReasons` is `string[]` not union type — typos silently pass
 - `mastered` proficiency label is dead code — no code path produces it
-- `totalFocusLossMs` accumulated but never exposed
 - `completeDailySessionHandler` loads ALL review logs to count completed cards
+- `reviewDurationMs` not stored in `srs_review_log`; looked up via synthetic `submissionId` parse
 
 ## Current In-Progress Track
 
-- **Track 9: Student Daily Practice Experience** — Phase 4 complete. Phase 5 (Dashboard Integration) next.
+- **Track 10: Objective Proficiency Measurement** — Phase 3 complete. Phase 4 (Student and Teacher Views) next.
 
 ## High-Priority Next Steps
 
-1. **Track 9 Phase 5: Dashboard Integration** — daily practice card on student dashboard with due count and streak
-2. **Track 10: Objective Proficiency Measurement** — upgrade objective-proficiency.ts to use FSRS stability; build aggregation pipeline
-3. **Security & Auth Hardening (BM2 Wave A)** — port fail-closed auth guards, Convex-layer authorization
-4. **Extract shared `mapDbCardToContract`** — duplicated in `convex/queue/queue.ts` and `convex/srs/cards.ts`
-5. **Error analysis: test `studentIdMap` code paths** — `summarizePartOutcomes` and `buildDeterministicSummary` untested with `studentIdMap`
-6. **Refactor `seed-lesson-standards.ts`** — 9 identical handlers (~700 lines) should be a factory function
+1. **Track 10 Phase 4: Student and Teacher Views** — `getStudentProficiencySummary` and `getTeacherClassProficiency` Convex queries with view builders
+2. **Track 10 Phase 5: Verification and Handoff** — full test suite, docs, and track completion
+3. **Track 11: Teacher SRS Dashboard and Interventions** — class health, weak objectives, struggling students, interventions
+4. **Security & Auth Hardening (BM2 Wave A)** — port fail-closed auth guards, Convex-layer authorization
+5. **Extract shared `mapDbCardToContract`** — duplicated in `convex/queue/queue.ts` and `convex/srs/cards.ts`
+6. **Error analysis: test `studentIdMap` code paths** — `summarizePartOutcomes` and `buildDeterministicSummary` untested with `studentIdMap`
 
 See `conductor/daily-practice-srs-roadmap.md` for the post-Module-9 daily practice SRS sequence.
 See `conductor/tech-debt.md` for full issue registry.
