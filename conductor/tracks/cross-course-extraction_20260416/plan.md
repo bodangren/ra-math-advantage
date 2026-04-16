@@ -66,7 +66,7 @@
 
 ## Phase 4: Adapter Verification [~]
 
-- [x] Task: Implement a non-Convex `CardStore` adapter stub (REST API-backed) [commit: pending]
+- [x] Task: Implement a non-Convex `CardStore` adapter stub (REST API-backed) [e3d9107]
   - [x] Sub-task: Create `lib/srs/__tests__/rest-adapter-stub.ts` implementing `CardStore` and `ReviewLogStore` interfaces
   - [x] Sub-task: Adapter should use in-memory maps to simulate REST round-trips
 - [ ] Task: Write tests proving the REST adapter works with the scheduler and review processor
