@@ -314,10 +314,11 @@ Implementation order: **Wave 0 done → Wave 1 (parallel) → Wave 2 → Wave 3 
 
 ### Wave 2 — Persistence (after Wave 1)
 
-- [ ] **Track 5: Convex SRS Schema and Review Log**
+- [~] **Track 5: Convex SRS Schema and Review Log**
      *Add srs_cards, srs_review_log, srs_sessions tables; implement CardStore/ReviewLogStore adapters backed by Convex*
      *Depends on: Wave 1 (Tracks 1, 2, 4)*
      *Link: [./conductor/tracks/convex-srs-schema_20260416/](./conductor/tracks/convex-srs-schema_20260416/)*
+     - Phase 1: Convex Schema Definitions [COMPLETE] [checkpoint: 3073154]
 
 ### Wave 3 — Integration (after Wave 2, 2 tracks in parallel)
 

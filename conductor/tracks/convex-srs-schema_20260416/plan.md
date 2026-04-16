@@ -1,21 +1,21 @@
 # Plan: convex-srs-schema_20260416
 
-## Phase 1: Convex Schema Definitions
+## Phase 1: Convex Schema Definitions [checkpoint: 3073154]
 
-- [ ] Task: Add `srs_cards` table to `convex/schema.ts`
-  - [ ] Sub-task: Define all fields matching `SrsCardState` from `lib/srs/contract.ts`
-  - [ ] Sub-task: Add indexes: `by_student`, `by_student_and_due`, `by_objective`, `by_student_and_objective`, `by_problem_family`
-- [ ] Task: Add `srs_review_log` table to `convex/schema.ts`
-  - [ ] Sub-task: Define all fields for immutable append-only log
-  - [ ] Sub-task: Add indexes: `by_card`, `by_student`, `by_reviewed_at`
-- [ ] Task: Add `srs_sessions` table to `convex/schema.ts`
-  - [ ] Sub-task: Define all fields including `config` as `any`
-  - [ ] Sub-task: Add indexes: `by_student`, `by_student_and_status`
-- [ ] Task: Write schema validation tests
-  - [ ] Sub-task: Test that all 3 tables export correct field types
-  - [ ] Sub-task: Test that all indexes are defined and reference correct fields
-  - [ ] Sub-task: Run `npm run lint` and typecheck
-- [ ] Task: Conductor - Phase Completion Verification 'Convex Schema Definitions' (Protocol in workflow.md)
+- [x] Task: Add `srs_cards` table to `convex/schema.ts`
+  - [x] Sub-task: Define all fields matching `SrsCardState` from `lib/srs/contract.ts`
+  - [x] Sub-task: Add indexes: `by_student`, `by_student_and_due`, `by_objective`, `by_student_and_objective`, `by_problem_family`
+- [x] Task: Add `srs_review_log` table to `convex/schema.ts`
+  - [x] Sub-task: Define all fields for immutable append-only log
+  - [x] Sub-task: Add indexes: `by_card`, `by_student`, `by_reviewed_at`
+- [x] Task: Add `srs_sessions` table to `convex/schema.ts`
+  - [x] Sub-task: Define all fields including `config` as `any`
+  - [x] Sub-task: Add indexes: `by_student`, `by_student_and_status`
+- [x] Task: Write schema validation tests
+  - [x] Sub-task: Test that all 3 tables export correct field types
+  - [x] Sub-task: Test that all indexes are defined and reference correct fields
+  - [x] Sub-task: Run `npm run lint` and typecheck
+- [x] Task: Conductor - Phase Completion Verification 'Convex Schema Definitions' (Protocol in workflow.md)
 
 ## Phase 2: CardStore Adapter
 
