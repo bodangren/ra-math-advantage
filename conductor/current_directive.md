@@ -4,13 +4,13 @@
 
 ## Status Summary
 
-- **Tests**: 2636 passing, 6 known failures (equivalence validator — fraction/radical expressions).
+- **Tests**: 2710 passing, 7 known failures (6 equivalence validator — fraction/radical expressions; 1 flaky StepByStepper hint tracking).
 - **Build**: Passing; RSC chunk 746 KB (pre-existing).
 - **Lint**: Passing.
 - **TypeScript**: Pre-existing test-file errors remain. No new TS errors.
 - **Module 1-9 Roadmap**: All modules seeded (M1-M9 complete).
 - **Practice Item Blueprint**: Phases 1-6 complete (types, Convex schema, objective policies, seed data M1-M9, validation, handoff).
-- **SRS Core Library**: Phase 1 complete (FSRS scheduler wrapper with ts-fsrs v4 API). Phase 2 complete (review processor).
+- **SRS Core Library**: Phases 1-4 complete (FSRS scheduler wrapper, review processor, queue primitives, adapter interfaces).
 - **ts-fsrs**: Installed and scheduler updated to v4 API (was a build blocker).
 - **seedObjectivePolicies**: Now wired into seed.ts orchestration.
 - **Code Review**: 2026-04-16 review found 0 critical, 3 high (all fixed), 1 medium (fixed), 2 low issues.
@@ -25,14 +25,13 @@
 
 ## Current In-Progress Track
 
-- **Track**: Reusable SRS Core Library — Phase 3 complete, Phase 4 (adapter interfaces) pending.
-- **Next**: Phase 4: Adapter Interfaces
+- **Track**: Reusable SRS Core Library — Phases 1-4 complete, Phase 5 (verification and handoff) pending.
+- **Next**: Phase 5: Verification and Handoff
 
 ## High-Priority Next Steps
 
-1. **SRS Core Library Phase 3: Queue Primitives** — build `buildDailyQueue` with priority ordering
-2. **SRS Core Library Phase 4: Adapter Interfaces** — define `CardStore`/`ReviewLogStore` with in-memory implementations
-3. **Build lesson_standards seeding pipeline for M1-M5** — only M6-M9 have links
+1. **SRS Core Library Phase 5: Verification and Handoff** — run full validation, write junior developer handoff notes
+2. **Build lesson_standards seeding pipeline for M1-M5** — only M6-M9 have links
 4. **Fix parseAIResponse fragile line-based parsing** — use structured JSON output
 5. **Refactor seed-lesson-standards.ts duplication** — extract shared seeder function
 6. **Add integration tests for practice-timing** — current hook tests fully mock the accumulator
