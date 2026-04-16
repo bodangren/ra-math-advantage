@@ -89,17 +89,17 @@
 
 ## Phase 6: Verification and Handoff
 
-- [ ] Task: Run validation commands
-  - [ ] Run focused submission-SRS adapter tests
-  - [ ] Run `npm run lint`
-  - [ ] Run `npm run typecheck` or document known pre-existing failures
-- [ ] Task: Update Conductor planning artifacts
-  - [ ] Mark completed tasks and phases in this plan
-  - [ ] Update `conductor/tracks.md`
-- [ ] Task: Write junior developer handoff notes
-  - [ ] Document the submission-to-SRS pipeline flow with diagram
-  - [ ] Document `SubmissionSrsAdapter` interface and how to use it
-  - [ ] Document error handling philosophy (SRS is additive, never blocks)
-  - [ ] Document how to add new problem family mappings
-  - [ ] Document idempotency guarantees and replay behavior
-- [ ] Task: Conductor - Phase Completion Verification 'Verification and Handoff' (Protocol in workflow.md)
+- [x] Task: Run validation commands
+  - [x] Run focused submission-SRS adapter tests (14 tests pass)
+  - [x] Run `npm run lint` (passes)
+  - [x] Run `npm run typecheck` or document known pre-existing failures (pre-existing test-file errors only)
+- [x] Task: Update Conductor planning artifacts
+  - [x] Mark completed tasks and phases in this plan
+  - [x] Update `conductor/tracks.md`
+- [x] Task: Write junior developer handoff notes
+  - [x] Document the submission-to-SRS pipeline flow with diagram
+  - [x] Document `SubmissionSrsAdapter` interface and how to use it
+  - [x] Document error handling philosophy (SRS is additive, never blocks)
+  - [x] Document how to add new problem family mappings
+  - [x] Document idempotency guarantees and replay behavior
+- [x] Task: Conductor - Phase Completion Verification 'Verification and Handoff' (Protocol in workflow.md) [checkpoint: c9e6f7a]

@@ -1,11 +1,11 @@
 {
   "track_id": "submission-srs-adapter_20260416",
   "type": "feature",
-  "status": "new",
+  "status": "completed",
   "created_at": "2026-04-16T10:00:00Z",
   "updated_at": "2026-04-16T10:00:00Z",
   "description": "Wire the existing srs-rating.ts rating derivation and timing baselines into the FSRS card state update pipeline. When a student submits practice work, derive a system rating and update their SRS card state.",
   "estimated_tasks": 16,
-  "actual_tasks": null,
-  "deviation_notes": ""
+  "actual_tasks": 16,
+  "deviation_notes": "All 5 implementation phases completed plus Phase 6 verification. No deviation from plan."
 }
