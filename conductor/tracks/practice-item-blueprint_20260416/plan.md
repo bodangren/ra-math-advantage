@@ -51,25 +51,26 @@
 
 ## Phase 3: Objective Policy Assignment
 
-- [ ] Task: Create seed data structure for objective policies
-  - [ ] Create `convex/seeds/objective-policies.ts`
-  - [ ] Define `OBJECTIVE_POLICIES` array mapping each IM3 competency standard to its policy
-  - [ ] Use `PRIORITY_DEFAULTS` from `objective-proficiency.ts` to assign priority values
-  - [ ] Assign `essential` to core algebraic manipulation and function analysis standards
-  - [ ] Assign `supporting` to modeling and application standards
-  - [ ] Assign `extension` to enrichment and advanced standards
-- [ ] Task: Create seed mutation for objective policies
-  - [ ] Create `convex/seeds/seedObjectivePolicies.ts` with idempotent upsert mutation
-  - [ ] Validate each policy against `objectivePolicySchema` before insertion
-  - [ ] Skip if `standardId` already has a policy for the given `courseKey`
-- [ ] Task: Write tests for policy seed data
-  - [ ] Test every standard in `competency_standards` has a policy assignment
-  - [ ] Test no duplicate standardIds in seed data
-  - [ ] Test policy values are valid `ObjectivePracticePolicy` values
-- [ ] Task: Run lint and typecheck
-  - [ ] `npm run lint` passes
-  - [ ] `npm run typecheck` passes
-- [ ] Task: Conductor - Phase Completion Verification 'Objective Policy Assignment' (Protocol in workflow.md)
+- [x] Task: Create seed data structure for objective policies
+  - [x] Create `convex/seed/objective-policies.ts` (deviation: existing codebase uses `convex/seed/`, not `convex/seeds/`)
+  - [x] Define `OBJECTIVE_POLICIES` array mapping each IM3 competency standard to its policy
+  - [x] Use priority categories derived from `PRIORITY_DEFAULTS` thresholds to assign numeric priority values
+  - [x] Assign `essential` to core algebraic manipulation and function analysis standards
+  - [x] Assign `supporting` to modeling and application standards
+  - [x] Assign `extension` to enrichment and advanced statistics standards
+- [x] Task: Create seed mutation for objective policies
+  - [x] Create `convex/seed/seed-objective-policies.ts` with idempotent upsert mutation
+  - [x] Validate each policy against `objectivePolicySchema` before insertion
+  - [x] Skip if `standardId` already has a policy for the given `courseKey`
+- [x] Task: Write tests for policy seed data
+  - [x] Test every standard in `competency_standards` has a policy assignment
+  - [x] Test no duplicate standardIds in seed data
+  - [x] Test policy values are valid `ObjectivePracticePolicy` values
+  - [x] Test Zod schema validation passes for all records
+- [x] Task: Run lint and typecheck
+  - [x] `npm run lint` passes
+  - [x] `npm run typecheck` passes (no new errors; pre-existing errors unchanged)
+- [x] Task: Conductor - Phase Completion Verification 'Objective Policy Assignment' (Protocol in workflow.md)
 
 ## Phase 4: Seed Data for Modules 1–5
 
