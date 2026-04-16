@@ -69,7 +69,7 @@
 - [x] Task: Implement a non-Convex `CardStore` adapter stub (REST API-backed) [e3d9107]
   - [x] Sub-task: Create `lib/srs/__tests__/rest-adapter-stub.ts` implementing `CardStore` and `ReviewLogStore` interfaces
   - [x] Sub-task: Adapter should use in-memory maps to simulate REST round-trips
-- [x] Task: Write tests proving the REST adapter works with the scheduler and review processor [commit: pending]
+- [x] Task: Write tests proving the REST adapter works with the scheduler and review processor [4139db9]
   - [x] Sub-task: Test scheduler produces a valid session using the REST adapter
   - [x] Sub-task: Test review processor updates cards through the REST adapter
   - [x] Sub-task: Test queue engine builds a practice session end-to-end with the REST adapter
