@@ -74,31 +74,34 @@
 
 ## Phase 4: Seed Data for Modules 1–5
 
-- [ ] Task: Create problem family seed data for Modules 1–3
-  - [ ] Create `convex/seeds/problem-families/module-1.ts` (Relations & Functions)
-  - [ ] Create `convex/seeds/problem-families/module-2.ts` (Linear Systems & Matrices)
-  - [ ] Create `convex/seeds/problem-families/module-3.ts` (Quadratic Functions)
-  - [ ] Each family references real componentKeys and objectiveIds from existing data
-- [ ] Task: Create problem family seed data for Modules 4–5
-  - [ ] Create `convex/seeds/problem-families/module-4.ts` (Polynomial Functions)
-  - [ ] Create `convex/seeds/problem-families/module-5.ts` (Rational & Radical Functions)
-- [ ] Task: Create practice item seed data for Modules 1–5
-  - [ ] Create `convex/seeds/practice-items/module-1.ts` through `module-5.ts`
-  - [ ] Map each activity variant to its problem family
-  - [ ] Assign variant labels ("Set A", "Set B", etc.)
-- [ ] Task: Create seed mutations for problem families and practice items
-  - [ ] Create `convex/seeds/seedProblemFamilies.ts` with idempotent upsert by `problemFamilyId`
-  - [ ] Create `convex/seeds/seedPracticeItems.ts` with idempotent upsert by `practiceItemId`
-  - [ ] Validate each record against its Zod schema before insertion
-- [ ] Task: Write seed data validation tests
-  - [ ] All problem family records pass `problemFamilySchema`
-  - [ ] All practice item records pass `practiceItemSchema`
-  - [ ] No duplicate `problemFamilyId` values within seed data
-  - [ ] All referenced `objectiveIds` exist in competency standards
-- [ ] Task: Run lint and typecheck
-  - [ ] `npm run lint` passes
-  - [ ] `npm run typecheck` passes
-- [ ] Task: Conductor - Phase Completion Verification 'Seed Data for Modules 1–5' (Protocol in workflow.md)
+- [x] Task: Create problem family seed data for Modules 1–3
+  - [x] Create `convex/seed/problem-families/module-1.ts` (Quadratic Functions)
+  - [x] Create `convex/seed/problem-families/module-2.ts` (Polynomial Functions)
+  - [x] Create `convex/seed/problem-families/module-3.ts` (Polynomial Equations)
+  - [x] Each family references real componentKeys and objectiveIds from existing data
+- [x] Task: Create problem family seed data for Modules 4–5
+  - [x] Create `convex/seed/problem-families/module-4.ts` (Inverses and Radical Functions)
+  - [x] Create `convex/seed/problem-families/module-5.ts` (Exponential Functions and Geometric Series)
+- [x] Task: Create practice item seed data for Modules 1–5
+  - [x] Create `convex/seed/practice-items/` directory structure
+  - [x] Seed mutation `seedPracticeItems.ts` auto-generates practice items by matching activities to problem families
+  - [x] Assign variant labels ("Set A", "Set B", etc.)
+- [x] Task: Create seed mutations for problem families and practice items
+  - [x] Create `convex/seed/seed-problem-families.ts` with idempotent upsert by `problemFamilyId`
+  - [x] Create `convex/seed/seed-practice-items.ts` with idempotent upsert by `practiceItemId`
+  - [x] Validate each record against its Zod schema before insertion
+- [x] Task: Write seed data validation tests
+  - [x] All problem family records pass `problemFamilySchema`
+  - [x] All practice item records pass `practiceItemSchema`
+  - [x] No duplicate `problemFamilyId` values within seed data
+  - [x] All referenced `objectiveIds` exist in competency standards
+- [x] Task: Run lint and typecheck
+  - [x] `npm run lint` passes
+  - [x] `npm run typecheck` passes (pre-existing test-file errors unchanged)
+- [x] Task: Wire seed mutations into seed.ts
+  - [x] `seedProblemFamilies` called after `seedObjectivePolicies`
+  - [x] `seedPracticeItems` called after `seedProblemFamilies`
+- [x] Task: Conductor - Phase Completion Verification 'Seed Data for Modules 1–5' (Protocol in workflow.md) [checkpoint: HEAD]
 
 ## Phase 5: Seed Data for Modules 6–9 and Validation
 

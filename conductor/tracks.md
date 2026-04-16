@@ -298,13 +298,13 @@ Implementation order: **Wave 0 done → Wave 1 (parallel) → Wave 2 → Wave 3 
      *Link: [./conductor/tracks/srs-core-library_20260416/](./conductor/tracks/srs-core-library_20260416/)*
      - Phase 1: FSRS Dependency and Scheduler Foundation [COMPLETE - ts-fsrs pending npm install]
 
-- [~] **Track 4: Practice Item and Objective Blueprint Model**
+- [x] **Track 4: Practice Item and Objective Blueprint Model**
        *Map practice activities to problem families and objectives; assign objective policies; seed data for all 9 modules*
        *Link: [./conductor/tracks/practice-item-blueprint_20260416/](./conductor/tracks/practice-item-blueprint_20260416/)*
        - Phase 1: Type Definitions and Zod Schemas [COMPLETE]
        - Phase 2: Convex Schema Extension [COMPLETE]
-       - Phase 3: Objective Policy Assignment [PENDING]
-       - Phase 4: Seed Data for Modules 1-5 [PENDING]
+       - Phase 3: Objective Policy Assignment [COMPLETE]
+       - Phase 4: Seed Data for Modules 1-5 [COMPLETE]
        - Phase 5: Seed Data for Modules 6-9 and Validation [PENDING]
        - Phase 6: Verification and Handoff [PENDING]
 

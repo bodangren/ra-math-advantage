@@ -385,6 +385,18 @@ export const seedAll = internalAction({
       // Objective policies seeding failure is non-fatal
     }
 
+    try {
+      await ctx.runMutation(seedInternal.seedProblemFamilies, {});
+    } catch {
+      // Problem families seeding failure is non-fatal
+    }
+
+    try {
+      await ctx.runMutation(seedInternal.seedPracticeItems, {});
+    } catch {
+      // Practice items seeding failure is non-fatal
+    }
+
     const demo = getDemoEnvironment();
     if (demo) {
       try {

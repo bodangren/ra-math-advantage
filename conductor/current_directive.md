@@ -25,8 +25,8 @@
 
 ## Current In-Progress Track
 
-- **Track**: Practice Item Blueprint — Phase 3 complete, Phases 4-6 (seed data for modules 1-9) pending.
-- **Next**: See High-Priority Next Steps below.
+- **Track**: Practice Item Blueprint — Phase 4 complete, Phase 5 (seed data for modules 6-9) pending.
+- **Next**: Phase 5: Seed Data for Modules 6-9 and Validation
 
 ## High-Priority Next Steps
 
