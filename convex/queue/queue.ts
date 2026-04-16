@@ -48,7 +48,7 @@ function mapDbCardToContract(
 }
 
 async function resolveQueueItem(
-  ctx: QueryCtx,
+  ctx: QueueDbContext,
   item: QueueItem
 ): Promise<ResolvedQueueItem | null> {
   const practiceItems = await ctx.db
@@ -74,8 +74,12 @@ async function resolveQueueItem(
   };
 }
 
-export async function getDailyPracticeQueueHandler(
-  ctx: QueryCtx,
+export interface QueueDbContext {
+  db: Pick<QueryCtx["db"], "query" | "get">;
+}
+
+export async function resolveDailyPracticeQueue(
+  ctx: QueueDbContext,
   args: { studentId: string; asOfDate?: string }
 ): Promise<ResolvedQueueItem[]> {
   const cards = await ctx.db
@@ -120,6 +124,13 @@ export async function getDailyPracticeQueueHandler(
   }
 
   return resolvedItems;
+}
+
+export async function getDailyPracticeQueueHandler(
+  ctx: QueryCtx,
+  args: { studentId: string; asOfDate?: string }
+): Promise<ResolvedQueueItem[]> {
+  return resolveDailyPracticeQueue(ctx, args);
 }
 
 export const getDailyPracticeQueue = internalQuery({
