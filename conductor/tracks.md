@@ -414,7 +414,7 @@ Tracks ported from `bus-math-v2` per the BM2 Alignment Report. Ordered by recomm
      *Port fail-closed auth guards, Convex-layer authorization, credential revocation, middleware role checks from bus-math-v2*
      *Link: [./conductor/tracks/security-auth-hardening_20260416/](./conductor/tracks/security-auth-hardening_20260416/)*
 
-- [ ] **Track: Cloudflare CI/CD Hardening**
+- [~] **Track: Cloudflare CI/CD Hardening**
      *Port GitHub Actions pipeline with lint/test/build gates, Cloudflare Workers deployment, concurrency control*
      *Link: [./conductor/tracks/ci-cd-hardening_20260416/](./conductor/tracks/ci-cd-hardening_20260416/)*
 

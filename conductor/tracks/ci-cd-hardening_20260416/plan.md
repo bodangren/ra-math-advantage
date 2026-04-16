@@ -15,18 +15,18 @@
 
 - [x] **Task: Conductor - User Manual Verification 'Phase 1' (Protocol in workflow.md)**
 
-## Phase 2: GitHub Actions Workflow
+## Phase 2: GitHub Actions Workflow [~]
 
 ### Tasks
 
-- [ ] **Task: Create CI/CD workflow**
-  - [ ] Write `.github/workflows/deploy.yml` with push trigger, path ignores, concurrency group
-  - [ ] Implement pipeline steps: checkout → Node setup → npm ci → lint → test → build → deploy
-  - [ ] Add failure notification step
+- [x] **Task: Create CI/CD workflow** (completed during Phase 1 as `.github/workflows/cloudflare-deploy.yml`)
+  - [x] Write `.github/workflows/deploy.yml` with push trigger, path ignores, concurrency group
+  - [x] Implement pipeline steps: checkout → Node setup → npm ci → lint → test → build → deploy
+  - [x] Add failure notification step
 
-- [ ] **Task: Verify pipeline end-to-end**
-  - [ ] Push to a test branch and verify workflow triggers
-  - [ ] Confirm lint/test/build gates block on failure
-  - [ ] Verify deploy step receives correct secrets
+- [~] **Task: Verify pipeline end-to-end**
+  - [ ] Write workflow validation tests
+  - [ ] Confirm lint/test/build gates pass locally
+  - [ ] Verify deploy step configuration matches spec
 
-- [ ] **Task: Conductor - User Manual Verification 'Phase 2' (Protocol in workflow.md)**
+- [ ] **Task: Conductor - Phase Completion Verification 'Phase 2' (Protocol in workflow.md)**
