@@ -1,9 +1,13 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useCallback, useRef } from 'react';
 import type { SrsSession } from '@/lib/srs/contract';
 import { STUDENT_DAILY_PRACTICE_COPY } from '@/lib/srs/contract';
 import type { ResolvedQueueItem } from '@/convex/queue/queue';
+import type { PracticeSubmissionEnvelope } from '@/lib/practice/contract';
+import { submitActivity } from '@/lib/activities/submission';
+import { PracticeCardRenderer } from './PracticeCardRenderer';
+import { SubmissionFeedback } from './SubmissionFeedback';
 
 interface PracticeSessionProviderProps {
   session: SrsSession;
@@ -11,14 +15,82 @@ interface PracticeSessionProviderProps {
   studentId: string;
 }
 
+const FEEDBACK_DELAY_MS = 2000;
+
+function isEnvelopeCorrect(envelope: PracticeSubmissionEnvelope): boolean {
+  if (!envelope.parts || envelope.parts.length === 0) return true;
+  return envelope.parts.every((part) => part.isCorrect !== false);
+}
+
 export function PracticeSessionProvider({
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  session,
+  session: initialSession,
   queue,
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   studentId,
 }: PracticeSessionProviderProps) {
   const [currentCardIndex, setCurrentCardIndex] = useState(0);
+  const [feedback, setFeedback] = useState<'correct' | 'incorrect' | null>(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [completedCount, setCompletedCount] = useState(initialSession.completedCards);
+  const hasSubmittedRef = useRef(false);
+
+  const handleCompleteSession = useCallback(async () => {
+    try {
+      await fetch('/api/practice/complete', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+      });
+    } catch (err) {
+      console.error('Failed to complete session:', err);
+    }
+  }, []);
+
+  const advanceCard = useCallback(() => {
+    const nextIndex = currentCardIndex + 1;
+    setCompletedCount((c) => c + 1);
+    if (nextIndex >= queue.length) {
+      void handleCompleteSession();
+    }
+    setCurrentCardIndex(nextIndex);
+    setFeedback(null);
+    setIsSubmitting(false);
+    hasSubmittedRef.current = false;
+  }, [currentCardIndex, queue.length, handleCompleteSession]);
+
+  const handleSubmit = useCallback(
+    async (envelope: PracticeSubmissionEnvelope) => {
+      if (isSubmitting) return;
+      setIsSubmitting(true);
+
+      const correct = isEnvelopeCorrect(envelope);
+      setFeedback(correct ? 'correct' : 'incorrect');
+      hasSubmittedRef.current = true;
+
+      try {
+        await submitActivity({
+          activityId: envelope.activityId,
+          mode: envelope.mode,
+          answers: envelope.answers,
+          attemptNumber: envelope.attemptNumber,
+          status: envelope.status,
+          parts: envelope.parts,
+          artifact: envelope.artifact,
+          interactionHistory: envelope.interactionHistory,
+          analytics: envelope.analytics,
+          studentFeedback: envelope.studentFeedback,
+          teacherSummary: envelope.teacherSummary,
+          timing: envelope.timing,
+        });
+      } catch (err) {
+        console.error('Submission failed:', err);
+      }
+
+      setTimeout(() => {
+        advanceCard();
+      }, FEEDBACK_DELAY_MS);
+    },
+    [isSubmitting, advanceCard],
+  );
 
   if (queue.length === 0) {
     return (
@@ -43,6 +115,9 @@ export function PracticeSessionProvider({
         </h1>
         <p className="text-muted-foreground">
           {STUDENT_DAILY_PRACTICE_COPY.allDone}
+        </p>
+        <p className="text-sm text-muted-foreground mt-2">
+          Completed {completedCount} of {queue.length} cards.
         </p>
       </div>
     );
@@ -69,33 +144,26 @@ export function PracticeSessionProvider({
           {STUDENT_DAILY_PRACTICE_COPY.queueSummary(queue.length)}
         </p>
 
-        <div className="rounded-xl border border-border bg-card p-6">
-          <div className="space-y-4">
-            <p className="text-sm text-muted-foreground">
-              Card {currentCardIndex + 1} of {queue.length}
-            </p>
-            <div className="text-foreground">
-              {/* Card rendering placeholder for Phase 2 */}
-              <p
-                className="text-sm text-muted-foreground"
-                data-testid="card-component-key"
-              >
-                Component: {currentCard.componentKey}
-              </p>
-            </div>
-          </div>
-        </div>
+        {feedback ? (
+          <SubmissionFeedback isCorrect={feedback === 'correct'} />
+        ) : (
+          <PracticeCardRenderer
+            queueItem={currentCard}
+            currentIndex={currentCardIndex}
+            totalCount={queue.length}
+            onSubmit={handleSubmit}
+            onComplete={() => {
+              // Ignore onComplete if it follows a submission; we advance via feedback flow.
+              if (!hasSubmittedRef.current) {
+                advanceCard();
+              }
+            }}
+          />
+        )}
 
-        {/* Temporary navigation for Phase 1 state verification */}
-        <div className="flex justify-end">
-          <button
-            type="button"
-            onClick={() => setCurrentCardIndex((i) => i + 1)}
-            className="inline-flex items-center rounded-md px-4 py-2 text-sm font-medium text-primary-foreground bg-primary hover:opacity-90 transition-opacity"
-            data-testid="next-card-button"
-          >
-            Next
-          </button>
+        <div className="text-sm text-muted-foreground text-center">
+          Card {currentCardIndex + 1} of {queue.length}
+          {isSubmitting && <span className="ml-2">Saving...</span>}
         </div>
       </div>
     </div>

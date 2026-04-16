@@ -27,11 +27,14 @@ vi.mock('@/components/practice-timing', () => ({
 }));
 
 const TestActivity = vi.fn(
-  ({ activityId, onSubmit }: { activityId: string; onSubmit?: (payload: unknown) => void }) => (
+  ({ activityId, onSubmit, onComplete }: { activityId: string; onSubmit?: (payload: unknown) => void; onComplete?: () => void }) => (
     <div data-testid="practice-card-activity" data-activity-id={activityId}>
       <button
         data-testid="submit-btn"
-        onClick={() => onSubmit?.({ answer: 'test' })}
+        onClick={() => {
+          onSubmit?.({ answer: 'test' });
+          onComplete?.();
+        }}
       >
         Submit
       </button>
@@ -211,7 +214,7 @@ describe('PracticeCardRenderer', () => {
       });
     });
 
-    it('calls onComplete after submission', async () => {
+    it('forwards onComplete to activity component', async () => {
       const onComplete = vi.fn();
       const queueItem = createMockQueueItem({
         componentKey: 'test-activity',

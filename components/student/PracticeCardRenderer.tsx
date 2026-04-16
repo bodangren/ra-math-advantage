@@ -36,9 +36,8 @@ export function PracticeCardRenderer({
         timing: getTiming() ?? undefined,
       });
       onSubmit(envelope);
-      onComplete();
     },
-    [queueItem.props, getTiming, onSubmit, onComplete],
+    [queueItem.props, getTiming, onSubmit],
   );
 
   return (

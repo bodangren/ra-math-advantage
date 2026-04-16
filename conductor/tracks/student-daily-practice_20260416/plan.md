@@ -42,23 +42,23 @@
 
 ---
 
-## Phase 3: Submission and SRS Update Flow
+## Phase 3: Submission and SRS Update Flow [checkpoint: TBD]
 
-- [ ] Task: Implement `onSubmit` handler in `PracticeCardRenderer`
-  - [ ] Build `PracticeSubmissionEnvelope` with timing data from `TimingAccumulator`
-  - [ ] Submit to `activity_submissions` via Convex mutation
-  - [ ] Trigger SRS adapter (Track 6) to update card state
-  - [ ] Show brief feedback state (correct/incorrect) before advancing
-- [ ] Task: Create `components/student/SubmissionFeedback.tsx`
-  - [ ] Show correct/incorrect indicator (2-second display)
-  - [ ] Use `STUDENT_DAILY_PRACTICE_COPY` language (no speed rankings, no punitive language)
-  - [ ] Auto-advance to next card after feedback
-- [ ] Task: Write flow tests
-  - [ ] Test envelope construction includes timing data
-  - [ ] Test SRS adapter is called with correct parameters
-  - [ ] Test feedback displays then advances
-  - [ ] Test final card triggers completion instead of advance
-- [ ] Task: Conductor - Phase Completion Verification 'Submission and SRS Update Flow' (Protocol in workflow.md)
+- [x] Task: Implement `onSubmit` handler in `PracticeCardRenderer`
+  - [x] Build `PracticeSubmissionEnvelope` with timing data from `TimingAccumulator`
+  - [x] Submit to `activity_submissions` via Convex mutation
+  - [x] Trigger SRS adapter (Track 6) to update card state
+  - [x] Show brief feedback state (correct/incorrect) before advancing
+- [x] Task: Create `components/student/SubmissionFeedback.tsx`
+  - [x] Show correct/incorrect indicator (2-second display)
+  - [x] Use `STUDENT_DAILY_PRACTICE_COPY` language (no speed rankings, no punitive language)
+  - [x] Auto-advance to next card after feedback
+- [x] Task: Write flow tests
+  - [x] Test envelope construction includes timing data
+  - [x] Test SRS adapter is called with correct parameters
+  - [x] Test feedback displays then advances
+  - [x] Test final card triggers completion instead of advance
+- [x] Task: Conductor - Phase Completion Verification 'Submission and SRS Update Flow' (Protocol in workflow.md)
 
 ---
 
