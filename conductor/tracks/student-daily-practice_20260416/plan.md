@@ -64,23 +64,23 @@
 
 ## Phase 4: Progress and Completion States
 
-- [ ] Task: Create `components/student/CompletionScreen.tsx`
-  - [ ] Show cards completed count
-  - [ ] Use `STUDENT_DAILY_PRACTICE_COPY` language ("All done for today! Come back tomorrow.")
-  - [ ] Include link back to student dashboard
-  - [ ] Responsive, accessible layout
-- [ ] Task: Create `components/student/EmptyPracticeState.tsx`
-  - [ ] Show "No practice due today. Come back tomorrow!"
-  - [ ] Include link back to student dashboard
-  - [ ] Use encouraging tone per Track 1 copy guidelines
-- [ ] Task: Update `PracticeSessionProvider` to handle completion and empty transitions
-  - [ ] Transition to completion state after last card
-  - [ ] Transition to empty state when queue returns zero items
-- [ ] Task: Write state tests
-  - [ ] Test completion screen renders after all cards answered
-  - [ ] Test empty state renders when no cards due
-  - [ ] Test copy text matches `STUDENT_DAILY_PRACTICE_COPY`
-- [ ] Task: Conductor - Phase Completion Verification 'Progress and Completion States' (Protocol in workflow.md)
+- [x] Task: Create `components/student/CompletionScreen.tsx`
+  - [x] Show cards completed count
+  - [x] Use `STUDENT_DAILY_PRACTICE_COPY` language ("All done for today! Come back tomorrow.")
+  - [x] Include link back to student dashboard
+  - [x] Responsive, accessible layout
+- [x] Task: Create `components/student/EmptyPracticeState.tsx`
+  - [x] Show "No practice due today. Come back tomorrow!"
+  - [x] Include link back to student dashboard
+  - [x] Use encouraging tone per Track 1 copy guidelines
+- [x] Task: Update `PracticeSessionProvider` to handle completion and empty transitions
+  - [x] Transition to completion state after last card
+  - [x] Transition to empty state when queue returns zero items
+- [x] Task: Write state tests
+  - [x] Test completion screen renders after all cards answered
+  - [x] Test empty state renders when no cards due
+  - [x] Test copy text matches `STUDENT_DAILY_PRACTICE_COPY`
+- [x] Task: Conductor - Phase Completion Verification 'Progress and Completion States' (Protocol in workflow.md)
 
 ---
 

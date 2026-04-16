@@ -8,6 +8,8 @@ import type { PracticeSubmissionEnvelope } from '@/lib/practice/contract';
 import { submitActivity } from '@/lib/activities/submission';
 import { PracticeCardRenderer } from './PracticeCardRenderer';
 import { SubmissionFeedback } from './SubmissionFeedback';
+import { CompletionScreen } from './CompletionScreen';
+import { EmptyPracticeState } from './EmptyPracticeState';
 
 interface PracticeSessionProviderProps {
   session: SrsSession;
@@ -102,33 +104,14 @@ export function PracticeSessionProvider({
   );
 
   if (queue.length === 0) {
-    return (
-      <div className="max-w-2xl mx-auto py-12 px-4 text-center">
-        <h1 className="text-2xl font-display font-bold text-foreground mb-4">
-          Daily Practice
-        </h1>
-        <p className="text-muted-foreground">
-          No practice due today. Come back tomorrow!
-        </p>
-      </div>
-    );
+    return <EmptyPracticeState />;
   }
 
   const isComplete = currentCardIndex >= queue.length;
 
   if (isComplete) {
     return (
-      <div className="max-w-2xl mx-auto py-12 px-4 text-center">
-        <h1 className="text-2xl font-display font-bold text-foreground mb-4">
-          Daily Practice
-        </h1>
-        <p className="text-muted-foreground">
-          {STUDENT_DAILY_PRACTICE_COPY.allDone}
-        </p>
-        <p className="text-sm text-muted-foreground mt-2">
-          Completed {completedCount} of {queue.length} cards.
-        </p>
-      </div>
+      <CompletionScreen completedCount={completedCount} totalCount={queue.length} />
     );
   }
 

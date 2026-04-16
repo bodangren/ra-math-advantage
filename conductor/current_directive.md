@@ -35,11 +35,11 @@
 
 ## Current In-Progress Track
 
-- **Track 9: Student Daily Practice Experience** — Phase 3 complete. Phase 4 (Loading States, Completion & Polish) next.
+- **Track 9: Student Daily Practice Experience** — Phase 4 complete. Phase 5 (Dashboard Integration) next.
 
 ## High-Priority Next Steps
 
-1. **Track 9 Phase 4: Loading States, Completion & Polish** — error boundaries, retry on submission failure, session completion UX
+1. **Track 9 Phase 5: Dashboard Integration** — daily practice card on student dashboard with due count and streak
 2. **Track 10: Objective Proficiency Measurement** — upgrade objective-proficiency.ts to use FSRS stability; build aggregation pipeline
 3. **Security & Auth Hardening (BM2 Wave A)** — port fail-closed auth guards, Convex-layer authorization
 4. **Extract shared `mapDbCardToContract`** — duplicated in `convex/queue/queue.ts` and `convex/srs/cards.ts`
