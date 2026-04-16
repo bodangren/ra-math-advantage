@@ -1,6 +1,6 @@
 # Daily Practice SRS Product Contract — Implementation Plan
 
-## Phase 1: Module Scaffolding and Re-exports
+## Phase 1: Module Scaffolding and Re-exports [checkpoint: d333936]
 
 - [x] Task: Create `lib/srs/contract.ts` module [8888bb7]
   - [x] Create directory `lib/srs/`
