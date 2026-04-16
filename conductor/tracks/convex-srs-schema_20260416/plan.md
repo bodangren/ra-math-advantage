@@ -54,7 +54,7 @@
   - [x] Sub-task: Run `npm run lint` and typecheck
 - [x] Task: Conductor - Phase Completion Verification 'ReviewLogStore Adapter' (Protocol in workflow.md)
 
-## Phase 4: Atomic Review Persistence [checkpoint: TBD]
+## Phase 4: Atomic Review Persistence [checkpoint: e1028c3]
 
 - [x] Task: Implement `convex/srs/processReview.ts` — atomic mutation
   - [x] Sub-task: Mutation receives card state + review entry as args
