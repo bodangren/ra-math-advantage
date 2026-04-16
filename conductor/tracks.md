@@ -289,7 +289,7 @@ Implementation order: **Wave 0 done → Wave 1 (parallel) → Wave 2 → Wave 3 
 
 ### Wave 1 — Foundations (start immediately, 3 tracks in parallel)
 
-- [~] **Track 1: Daily Practice SRS Product Contract**
+- [x] **Track 1: Daily Practice SRS Product Contract** — **COMPLETED**
      *Consolidate existing types into canonical lib/srs/contract.ts; define card state, review log, session types; version as srs.contract.v1*
      *Link: [./conductor/tracks/srs-product-contract_20260416/](./conductor/tracks/srs-product-contract_20260416/)*
 

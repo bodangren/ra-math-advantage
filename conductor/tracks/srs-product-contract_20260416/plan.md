@@ -56,16 +56,16 @@
 
 ## Phase 4: Verification and Handoff
 
-- [ ] Task: Run validation commands
-  - [ ] Run focused SRS contract tests
-  - [ ] Run `npm run lint`
-  - [ ] Run `npm run typecheck` or document known pre-existing failures
-- [ ] Task: Update Conductor planning artifacts
-  - [ ] Mark completed tasks and phases in this plan
-  - [ ] Update `conductor/tracks.md`
-- [ ] Task: Write junior developer handoff notes
-  - [ ] Document which types are re-exports vs new definitions
-  - [ ] Document how Track 2 (scheduler) uses `SrsCardState`
-  - [ ] Document how Track 5 (schema) maps `SrsCardState` to Convex tables
-  - [ ] Document triage handling contract for Track 5 and Track 8
-- [ ] Task: Conductor - Phase Completion Verification 'Verification and Handoff' (Protocol in workflow.md)
+- [~] Task: Run validation commands
+  - [~] Run focused SRS contract tests
+  - [~] Run `npm run lint`
+  - [~] Run `npm run typecheck` or document known pre-existing failures
+- [~] Task: Update Conductor planning artifacts
+  - [~] Mark completed tasks and phases in this plan
+  - [~] Update `conductor/tracks.md`
+- [~] Task: Write junior developer handoff notes
+  - [~] Document which types are re-exports vs new definitions
+  - [~] Document how Track 2 (scheduler) uses `SrsCardState`
+  - [~] Document how Track 5 (schema) maps `SrsCardState` to Convex tables
+  - [~] Document triage handling contract for Track 5 and Track 8
+- [~] Task: Conductor - Phase Completion Verification 'Verification and Handoff' (Protocol in workflow.md)

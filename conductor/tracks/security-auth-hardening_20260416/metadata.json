@@ -1,0 +1,11 @@
+{
+  "track_id": "security-auth-hardening_20260416",
+  "type": "chore",
+  "status": "new",
+  "created_at": "2026-04-16T10:00:00Z",
+  "updated_at": "2026-04-16T10:00:00Z",
+  "description": "Port security hardening from bus-math-v2: fail-closed auth guards for API routes, Convex-layer authorization, credential revocation, middleware role checks",
+  "estimated_tasks": 10,
+  "actual_tasks": null,
+  "deviation_notes": ""
+}
