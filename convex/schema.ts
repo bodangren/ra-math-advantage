@@ -357,4 +357,56 @@ export default defineSchema({
   })
     .index("by_standardId", ["standardId"])
     .index("by_courseKey", ["courseKey"]),
+
+  srs_cards: defineTable({
+    studentId: v.id("profiles"),
+    objectiveId: v.string(),
+    problemFamilyId: v.string(),
+    stability: v.number(),
+    difficulty: v.number(),
+    state: v.union(
+      v.literal("new"),
+      v.literal("learning"),
+      v.literal("review"),
+      v.literal("relearning"),
+    ),
+    dueDate: v.string(),
+    elapsedDays: v.number(),
+    scheduledDays: v.number(),
+    reps: v.number(),
+    lapses: v.number(),
+    lastReview: v.optional(v.string()),
+    createdAt: v.number(),
+    updatedAt: v.number(),
+  })
+    .index("by_student", ["studentId"])
+    .index("by_student_and_due", ["studentId", "dueDate"])
+    .index("by_objective", ["objectiveId"])
+    .index("by_student_and_objective", ["studentId", "objectiveId"])
+    .index("by_problem_family", ["problemFamilyId"]),
+
+  srs_review_log: defineTable({
+    cardId: v.id("srs_cards"),
+    studentId: v.id("profiles"),
+    rating: v.string(),
+    submissionId: v.optional(v.string()),
+    evidence: v.any(),
+    stateBefore: v.any(),
+    stateAfter: v.any(),
+    reviewedAt: v.number(),
+  })
+    .index("by_card", ["cardId"])
+    .index("by_student", ["studentId"])
+    .index("by_reviewed_at", ["reviewedAt"]),
+
+  srs_sessions: defineTable({
+    studentId: v.id("profiles"),
+    startedAt: v.number(),
+    completedAt: v.optional(v.number()),
+    plannedCards: v.number(),
+    completedCards: v.number(),
+    config: v.any(),
+  })
+    .index("by_student", ["studentId"])
+    .index("by_student_and_status", ["studentId", "completedAt"]),
 });
