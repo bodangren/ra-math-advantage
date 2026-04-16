@@ -1,0 +1,7 @@
+Task: Write tests proving the REST adapter works with scheduler and review processor
+
+Summary: Added integration tests demonstrating RestAdapterStub works end-to-end with createCard, reviewCard, getDueCards, processReview, and buildDailyQueue. Tests verify card persistence, review processing with submission envelopes, and queue construction with policy filtering and caps.
+
+Files changed:
+- __tests__/lib/srs/rest-adapter-integration.test.ts (new)
+- conductor/tracks/cross-course-extraction_20260416/plan.md
