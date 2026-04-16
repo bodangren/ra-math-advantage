@@ -1,0 +1,12 @@
+Track 9 Phase 5: Dashboard Integration
+
+- Added convex/srs/dashboard.ts with getPracticeStats internalQuery
+  Computes dueCount via resolveDailyPracticeQueue, streak from session
+  history using UTC day-boundary logic, and lastPracticedAt.
+- Added components/student/DailyPracticeCard.tsx widget
+  Shows due count, streak, last practiced date, and links to practice.
+- Integrated DailyPracticeCard into app/student/dashboard/page.tsx
+  Fetches stats via internal.srs.dashboard.getPracticeStats.
+- Added tests: DailyPracticeCard component tests and dashboard page
+  integration tests covering zero and non-zero due counts.
+- Updated convex/_generated/api.d.ts to include srs/dashboard module.
