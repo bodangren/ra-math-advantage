@@ -27,7 +27,7 @@
   - [x] Add JSDoc for `SchedulerConfig` and its defaults
   - [x] Document why default `requestRetention` is 0.9
   - [x] Document `maximumInterval` rationale (365 days = school year)
-- [ ] Task: Conductor - Phase Completion Verification 'FSRS Dependency and Scheduler Foundation' (Protocol in workflow.md)
+- [x] Task: Conductor - Phase Completion Verification 'FSRS Dependency and Scheduler Foundation' (Protocol in workflow.md) [checkpoint: 67fabdf]
 
 **Note:** ts-fsrs npm package installed during 2026-04-16 code review. Phase 1 implementation and tests are validated and passing.
 
@@ -51,7 +51,7 @@
   - [x] Add JSDoc showing the processing stages
   - [x] Include example of a typical correct answer review flow
   - [x] Include example of an incorrect answer review flow
-- [x] Task: Conductor - Phase Completion Verification 'Review Processor' (Protocol in workflow.md) [checkpoint: TBD]
+- [x] Task: Conductor - Phase Completion Verification 'Review Processor' (Protocol in workflow.md) [checkpoint: 67fabdf]
 
 ## Phase 3: Queue Primitives
 
