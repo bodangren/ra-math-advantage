@@ -28,6 +28,7 @@
 - (2026-04-16, practice-timing-baselines) Keep baseline calculations course-agnostic by accepting a generic `problemFamilyId: string`; defer Convex/React wiring to later phases
 - (2026-04-16, srs-rating-adapter) Two-step rating adapter pattern: compute base rating from correctness first, then apply timing as a conservative modifier; this keeps timing from ever overriding correctness and produces a clear audit trail
 - (2026-04-16, objective-proficiency) Separate evidenceConfidence (quality signal) from isProficient (policy compliance); this lets reporting surfaces show both the strength of evidence AND whether policy thresholds are met
+- (2026-04-16, srs-product-contract) Create a single canonical contract module (`lib/srs/contract.ts`) that re-exports existing types and defines new ones; downstream tracks import from one surface and version the contract explicitly
 
 ## Planning Improvements
 
