@@ -47,6 +47,6 @@
 - (2026-04-16, code-review) CCSS standard descriptions must match actual standard text, not cluster headings
 - (2026-04-16, srs-schema) SrsCardState contract uses `studentId: string` but Convex schema uses `Id<"profiles">`; type assertions needed at adapter boundary; runtime Convex IDs must be valid profile IDs
 - (2026-04-16, srs-schema) ConvexCardStore adapter cannot use QueryCtx for writes (no runMutation); separate MutationCtx needed for save operations
-- (2026-04-16, srs-schema) saveCard uses by_problem_family index alone; spec says "studentId+problemFamilyId composite key" but no such index exists; may cause cross-student card collisions
 - (2026-04-16, srs-schema) New Convex subdirectories must import `_generated` from the parent `convex/_generated` path, not a local `./_generated` that does not exist
 - (2026-04-16, srs-schema) Convex `v.optional(v.string())` produces `string | undefined`, but contract may use `string | null` — normalize at adapter boundary to prevent silent type errors
+- (2026-04-16, daily-practice-queue) Build daily queue by querying cards with `by_student`, then resolving objective policies via `by_courseKey` + `ctx.db.get(standardId)`; keep the pure `buildDailyQueue` call separate from data fetching for testability
