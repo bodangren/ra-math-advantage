@@ -4,6 +4,11 @@ import { Id } from "../_generated/dataModel";
 import { buildDailyQueue, type QueueItem } from "../../lib/srs/queue";
 import type { ObjectivePracticePolicy, SrsCardState } from "../../lib/srs/contract";
 
+export type ResolvedQueueItem = QueueItem & {
+  componentKey: string;
+  props: Record<string, unknown>;
+};
+
 function mapDbCardToContract(
   card: {
     _id: Id<"srs_cards">;
@@ -42,10 +47,37 @@ function mapDbCardToContract(
   };
 }
 
+async function resolveQueueItem(
+  ctx: QueryCtx,
+  item: QueueItem
+): Promise<ResolvedQueueItem | null> {
+  const practiceItems = await ctx.db
+    .query("practice_items")
+    .withIndex("by_problemFamilyId", (q) =>
+      q.eq("problemFamilyId", item.card.problemFamilyId)
+    )
+    .first();
+
+  if (!practiceItems) {
+    return null;
+  }
+
+  const activity = await ctx.db.get(practiceItems.activityId);
+  if (!activity) {
+    return null;
+  }
+
+  return {
+    ...item,
+    componentKey: activity.componentKey,
+    props: activity.props as Record<string, unknown>,
+  };
+}
+
 export async function getDailyPracticeQueueHandler(
   ctx: QueryCtx,
   args: { studentId: string; asOfDate?: string }
-): Promise<QueueItem[]> {
+): Promise<ResolvedQueueItem[]> {
   const cards = await ctx.db
     .query("srs_cards")
     .withIndex("by_student", (q) =>
@@ -77,7 +109,17 @@ export async function getDailyPracticeQueueHandler(
   const now = args.asOfDate ?? new Date().toISOString();
   const cardStates = cards.map(mapDbCardToContract);
 
-  return buildDailyQueue(cardStates, policies, config, now);
+  const queueItems = buildDailyQueue(cardStates, policies, config, now);
+
+  const resolvedItems: ResolvedQueueItem[] = [];
+  for (const item of queueItems) {
+    const resolved = await resolveQueueItem(ctx, item);
+    if (resolved !== null) {
+      resolvedItems.push(resolved);
+    }
+  }
+
+  return resolvedItems;
 }
 
 export const getDailyPracticeQueue = internalQuery({
