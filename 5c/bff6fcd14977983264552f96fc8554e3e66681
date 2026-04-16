@@ -1,0 +1,9 @@
+Task: Port requireActiveRequestSessionClaims (credential revocation)
+
+Summary: Added requireActiveRequestSessionClaims to lib/auth/server.ts that verifies JWT session claims and then checks credential status via Convex internal.auth.getCredentialByUsername. Implements fail-closed behavior: returns 401 for missing/inactive credentials and 503 when Convex is unreachable. Added 6 unit tests covering unauthenticated, invalid token, missing credential, deactivated credential, Convex-down, and active credential scenarios.
+
+Files changed:
+- lib/auth/server.ts
+- __tests__/lib/auth/server-guards.test.ts
+
+Why: Sensitive API routes need credential revocation checks to immediately lock out deactivated accounts.
