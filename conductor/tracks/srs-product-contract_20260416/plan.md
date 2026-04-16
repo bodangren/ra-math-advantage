@@ -2,18 +2,18 @@
 
 ## Phase 1: Module Scaffolding and Re-exports
 
-- [~] Task: Create `lib/srs/contract.ts` module
-  - [ ] Create directory `lib/srs/`
-  - [ ] Add `SRS_CONTRACT_VERSION = 'srs.contract.v1'` constant
-  - [ ] Re-export `SrsRating`, `SrsRatingInput`, `SrsRatingResult` from `lib/practice/srs-rating.ts`
-  - [ ] Re-export `ObjectivePriority`, `ObjectivePracticePolicy`, `PRIORITY_DEFAULTS`, `EvidenceConfidence`, `ObjectiveProficiencyResult`, `StudentProficiencyView`, `TeacherProficiencyView` from `lib/practice/objective-proficiency.ts`
-  - [ ] Re-export `PracticeTimingBaseline`, `PracticeTimingFeatures`, `TimingSpeedBand` from `lib/practice/timing-baseline.ts`
-  - [ ] Re-export `PracticeSubmissionEnvelope`, `PracticeSubmissionPart`, `PracticeTimingSummary` from `lib/practice/contract.ts`
-- [~] Task: Write re-export verification tests
-  - [ ] Test that imported types compile from `lib/srs/contract`
-  - [ ] Test that re-exported `SrsRating` matches source module values
-  - [ ] Test that re-exported `PRIORITY_DEFAULTS` matches source module values
-- [~] Task: Conductor - Phase Completion Verification 'Module Scaffolding and Re-exports' (Protocol in workflow.md)
+- [x] Task: Create `lib/srs/contract.ts` module [8888bb7]
+  - [x] Create directory `lib/srs/`
+  - [x] Add `SRS_CONTRACT_VERSION = 'srs.contract.v1'` constant
+  - [x] Re-export `SrsRating`, `SrsRatingInput`, `SrsRatingResult` from `lib/practice/srs-rating.ts`
+  - [x] Re-export `ObjectivePriority`, `ObjectivePracticePolicy`, `PRIORITY_DEFAULTS`, `EvidenceConfidence`, `ObjectiveProficiencyResult`, `StudentProficiencyView`, `TeacherProficiencyView` from `lib/practice/objective-proficiency.ts`
+  - [x] Re-export `PracticeTimingBaseline`, `PracticeTimingFeatures`, `TimingSpeedBand` from `lib/practice/timing-baseline.ts`
+  - [x] Re-export `PracticeSubmissionEnvelope`, `PracticeSubmissionPart`, `PracticeTimingSummary` from `lib/practice/contract.ts`
+- [x] Task: Write re-export verification tests [8888bb7]
+  - [x] Test that imported types compile from `lib/srs/contract`
+  - [x] Test that re-exported `SrsRating` matches source module values
+  - [x] Test that re-exported `PRIORITY_DEFAULTS` matches source module values
+- [x] Task: Conductor - Phase Completion Verification 'Module Scaffolding and Re-exports' (Protocol in workflow.md) [8888bb7]
 
 ## Phase 2: New Type Definitions
 
