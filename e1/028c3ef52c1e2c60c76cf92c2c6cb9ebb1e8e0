@@ -1,0 +1,14 @@
+Phase 4: Atomic Review Persistence (convex-srs-schema_20260416)
+
+Summary: Implemented atomic mutation convex/srs/processReview.ts that updates srs_cards and inserts srs_review_log entries within a single Convex transaction.
+
+Changes:
+- Created convex/srs/processReview.ts with processReview internalMutation and exported processReviewHandler for testability
+- Created __tests__/convex/srs/processReview.test.ts with 4 unit tests covering: existing card update, new card insert, error propagation (transactional rollback semantics), and sequential review state updates
+- Fixed convex/srs/cards.ts date mapping bug: convert ISO strings to ms epochs at DB boundary and vice versa on read; added mapDbCardToContract helper
+- Fixed lib/srs/convexCardStore.ts and lib/srs/convexReviewLogStore.ts type issues: require MutationCtx only, cast rating to SrsRating union
+- Updated convex/_generated/api.d.ts to include srs/cards, srs/reviews, srs/processReview modules (workaround for blocked codegen)
+- Updated conductor/tracks.md, plan.md, tech-debt.md, lessons-learned.md
+
+Lint: pass
+Tests: 2730 passed, 6 pre-existing equivalence validator failures
