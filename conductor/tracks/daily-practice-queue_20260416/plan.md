@@ -14,19 +14,19 @@
   - [x] Return ordered queue items
 - [x] Task: Conductor - Phase Completion Verification 'Queue Query Implementation' (Protocol in workflow.md) [69b013c]
 
-## Phase 2: Queue Item Resolution
+## Phase 2: Queue Item Resolution [checkpoint: 3e56d7c]
 
-- [ ] Task: Write failing tests for queue item resolution
-  - [ ] Test: resolves queue item to practice activity with `componentKey` and `props`
-  - [ ] Test: skips card when no practice item exists for its problem family
-  - [ ] Test: skips card gracefully when practice item has no activity
-  - [ ] Test: resolves multiple items with correct ordering preserved
-- [ ] Task: Implement queue item resolution logic
-  - [ ] Join `srs_cards` → `practice_items` by problem family ID
-  - [ ] Extract `componentKey` and `props` from resolved practice items
-  - [ ] Filter out cards with no matching practice item
-  - [ ] Attach resolved activity data to queue items
-- [ ] Task: Conductor - Phase Completion Verification 'Queue Item Resolution' (Protocol in workflow.md)
+- [x] Task: Write failing tests for queue item resolution [3e56d7c]
+  - [x] Test: resolves queue item to practice activity with `componentKey` and `props`
+  - [x] Test: skips card when no practice item exists for its problem family
+  - [x] Test: skips card gracefully when practice item has no activity
+  - [x] Test: resolves multiple items with correct ordering preserved
+- [x] Task: Implement queue item resolution logic [3e56d7c]
+  - [x] Join `srs_cards` → `practice_items` by problem family ID
+  - [x] Extract `componentKey` and `props` from resolved practice items
+  - [x] Filter out cards with no matching practice item
+  - [x] Attach resolved activity data to queue items
+- [x] Task: Conductor - Phase Completion Verification 'Queue Item Resolution' (Protocol in workflow.md) [3e56d7c]
 
 ## Phase 3: Session Lifecycle
 

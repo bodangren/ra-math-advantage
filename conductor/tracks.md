@@ -339,9 +339,12 @@ Implementation order: **Wave 0 done → Wave 1 (parallel) → Wave 2 → Wave 3 
        - Phase 6: Verification and Handoff [COMPLETE] [checkpoint: c9e6f7a]
 
 - [~] **Track 8: Daily Practice Queue Engine**
-      *Query SRS cards from Convex; apply queue ordering with session limits; resolve items to activities; manage session lifecycle*
-      *Depends on: Wave 2 (Track 5)*
-      *Link: [./conductor/tracks/daily-practice-queue_20260416/](./conductor/tracks/daily-practice-queue_20260416/)*
+       *Query SRS cards from Convex; apply queue ordering with session limits; resolve items to activities; manage session lifecycle*
+       *Depends on: Wave 2 (Track 5)*
+       *Link: [./conductor/tracks/daily-practice-queue_20260416/](./conductor/tracks/daily-practice-queue_20260416/)*
+       - Phase 1: Queue Query Implementation [COMPLETE]
+       - Phase 2: Queue Item Resolution [COMPLETE]
+       - Phase 3: Session Lifecycle [IN PROGRESS]
 
 ### Wave 4 — User-Facing (after Wave 3, sequential order: 10 → 9 → 11)
 
