@@ -1,13 +1,14 @@
 import { NextResponse } from 'next/server';
+import { z } from 'zod';
 
 import { requireStudentRequestClaims } from '@/lib/auth/server';
 import { fetchInternalMutation, internal } from '@/lib/convex/server';
 
-interface SkipPhaseBody {
-  lessonId?: string;
-  phaseNumber?: number;
-  idempotencyKey?: string;
-}
+const skipPhaseBodySchema = z.object({
+  lessonId: z.string().min(1, 'lessonId is required'),
+  phaseNumber: z.number({ message: 'phaseNumber must be a number' }),
+  idempotencyKey: z.string().min(1, 'idempotencyKey is required'),
+});
 
 export async function POST(request: Request) {
   const claimsOrResponse = await requireStudentRequestClaims(request);
@@ -15,21 +16,22 @@ export async function POST(request: Request) {
     return claimsOrResponse;
   }
 
-  let body: SkipPhaseBody;
+  let rawBody: unknown;
   try {
-    body = (await request.json()) as SkipPhaseBody;
+    rawBody = await request.json();
   } catch {
     return NextResponse.json({ error: 'Invalid request body' }, { status: 400 });
   }
 
-  const { lessonId, phaseNumber, idempotencyKey } = body;
-
-  if (!lessonId || phaseNumber == null || !idempotencyKey) {
+  const validation = skipPhaseBodySchema.safeParse(rawBody);
+  if (!validation.success) {
     return NextResponse.json(
-      { error: 'lessonId, phaseNumber, and idempotencyKey are required' },
+      { error: 'Invalid request body', details: validation.error.format() },
       { status: 400 },
     );
   }
+
+  const { lessonId, phaseNumber, idempotencyKey } = validation.data;
 
   try {
     const result = await fetchInternalMutation(

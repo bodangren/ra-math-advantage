@@ -1,37 +1,41 @@
 import { NextResponse } from 'next/server';
+import { z } from 'zod';
 
 import { PASSWORD_HASH_ITERATIONS } from '@/lib/auth/constants';
 import { validatePasswordForRole } from '@/lib/auth/password-policy';
-import { getRequestSessionClaims } from '@/lib/auth/server';
+import { requireActiveRequestSessionClaims } from '@/lib/auth/server';
 import { generatePasswordSalt, hashPassword, verifyPassword } from '@/lib/auth/session';
 import { fetchInternalMutation, fetchInternalQuery, internal } from '@/lib/convex/server';
 
-interface ChangePasswordBody {
-  currentPassword?: string;
-  newPassword?: string;
-  confirmPassword?: string;
-}
+const changePasswordBodySchema = z.object({
+  currentPassword: z.string().min(1, 'Current password is required'),
+  newPassword: z.string().min(1, 'New password is required'),
+  confirmPassword: z.string().min(1, 'Confirm password is required'),
+});
 
 export async function POST(request: Request) {
-  const claims = await getRequestSessionClaims(request);
-  if (!claims) {
-    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+  const claimsOrResponse = await requireActiveRequestSessionClaims(request);
+  if (claimsOrResponse instanceof Response) {
+    return claimsOrResponse;
   }
+  const claims = claimsOrResponse;
 
-  let body: ChangePasswordBody;
+  let rawBody: unknown;
   try {
-    body = (await request.json()) as ChangePasswordBody;
+    rawBody = await request.json();
   } catch {
     return NextResponse.json({ error: 'Invalid request body' }, { status: 400 });
   }
 
-  const currentPassword = body.currentPassword ?? '';
-  const newPassword = body.newPassword ?? '';
-  const confirmPassword = body.confirmPassword ?? '';
-
-  if (!currentPassword || !newPassword || !confirmPassword) {
-    return NextResponse.json({ error: 'All password fields are required' }, { status: 400 });
+  const validation = changePasswordBodySchema.safeParse(rawBody);
+  if (!validation.success) {
+    return NextResponse.json(
+      { error: 'Invalid request body', details: validation.error.format() },
+      { status: 400 },
+    );
   }
+
+  const { currentPassword, newPassword, confirmPassword } = validation.data;
 
   if (newPassword !== confirmPassword) {
     return NextResponse.json({ error: 'New passwords do not match' }, { status: 400 });

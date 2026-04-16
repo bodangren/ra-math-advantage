@@ -1,4 +1,6 @@
 import { NextResponse } from 'next/server';
+import { z } from 'zod';
+
 import { requireDeveloperRequestClaims } from '@/lib/auth/server';
 import { fetchInternalQuery, fetchInternalMutation, internal } from '@/lib/convex/server';
 
@@ -7,6 +9,25 @@ interface ReviewQueueQuery {
   status?: 'unreviewed' | 'approved' | 'needs_changes' | 'rejected';
   onlyStale?: boolean;
 }
+
+const submitReviewBodySchema = z.object({
+  componentKind: z.enum(['example', 'activity', 'practice']),
+  componentId: z.string().min(1, 'componentId is required'),
+  componentKey: z.string().optional(),
+  status: z.enum(['approved', 'needs_changes', 'rejected']),
+  comment: z.string().optional(),
+  issueTags: z.array(z.string()).optional(),
+  priority: z.enum(['low', 'medium', 'high']).optional(),
+  placement: z
+    .object({
+      lessonId: z.string().optional(),
+      lessonVersionId: z.string().optional(),
+      phaseId: z.string().optional(),
+      phaseNumber: z.number().optional(),
+      sectionId: z.string().optional(),
+    })
+    .optional(),
+});
 
 export async function GET(request: Request) {
   const claimsOrResponse = await requireDeveloperRequestClaims(request);
@@ -35,44 +56,28 @@ export async function GET(request: Request) {
   }
 }
 
-interface SubmitReviewBody {
-  componentKind: 'example' | 'activity' | 'practice';
-  componentId: string;
-  componentKey?: string;
-  status: 'approved' | 'needs_changes' | 'rejected';
-  comment?: string;
-  issueTags?: string[];
-  priority?: 'low' | 'medium' | 'high';
-  placement?: {
-    lessonId?: string;
-    lessonVersionId?: string;
-    phaseId?: string;
-    phaseNumber?: number;
-    sectionId?: string;
-  };
-}
-
 export async function POST(request: Request) {
   const claimsOrResponse = await requireDeveloperRequestClaims(request);
   if (claimsOrResponse instanceof Response) {
     return claimsOrResponse;
   }
 
-  let body: SubmitReviewBody;
+  let rawBody: unknown;
   try {
-    body = (await request.json()) as SubmitReviewBody;
+    rawBody = await request.json();
   } catch {
     return NextResponse.json({ error: 'Invalid request body' }, { status: 400 });
   }
 
-  const { componentKind, componentId, componentKey, status, comment, issueTags, priority, placement } = body;
-
-  if (!componentKind || !componentId || !status) {
+  const validation = submitReviewBodySchema.safeParse(rawBody);
+  if (!validation.success) {
     return NextResponse.json(
-      { error: 'componentKind, componentId, and status are required' },
+      { error: 'Invalid request body', details: validation.error.format() },
       { status: 400 },
     );
   }
+
+  const { componentKind, componentId, componentKey, status, comment, issueTags, priority, placement } = validation.data;
 
   if ((status === 'needs_changes' || status === 'rejected') && !comment) {
     return NextResponse.json({ error: 'Comment is required for needs_changes or rejected status' }, { status: 400 });

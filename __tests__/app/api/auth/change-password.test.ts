@@ -1,6 +1,6 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 
-const mockGetRequestSessionClaims = vi.fn();
+const mockRequireActiveRequestSessionClaims = vi.fn();
 const mockFetchInternalQuery = vi.fn();
 const mockFetchInternalMutation = vi.fn();
 const mockVerifyPassword = vi.fn();
@@ -8,7 +8,7 @@ const mockHashPassword = vi.fn();
 const mockGeneratePasswordSalt = vi.fn();
 
 vi.mock('@/lib/auth/server', () => ({
-  getRequestSessionClaims: mockGetRequestSessionClaims,
+  requireActiveRequestSessionClaims: mockRequireActiveRequestSessionClaims,
 }));
 vi.mock('@/lib/convex/server', () => ({
   fetchInternalQuery: mockFetchInternalQuery,
@@ -48,21 +48,23 @@ describe('POST /api/auth/change-password', () => {
   });
 
   it('returns 401 when not authenticated', async () => {
-    mockGetRequestSessionClaims.mockResolvedValue(null);
+    mockRequireActiveRequestSessionClaims.mockResolvedValue(
+      new Response(JSON.stringify({ error: 'Unauthorized' }), { status: 401 }),
+    );
     const { POST } = await import('@/app/api/auth/change-password/route');
     const res = await POST(makeRequest({ currentPassword: 'a', newPassword: 'b', confirmPassword: 'b' }));
     expect(res.status).toBe(401);
   });
 
   it('returns 400 when passwords do not match', async () => {
-    mockGetRequestSessionClaims.mockResolvedValue({ sub: 'p1', username: 'alice', role: 'student' });
+    mockRequireActiveRequestSessionClaims.mockResolvedValue({ sub: 'p1', username: 'alice', role: 'student' });
     const { POST } = await import('@/app/api/auth/change-password/route');
     const res = await POST(makeRequest({ currentPassword: 'old', newPassword: 'new1', confirmPassword: 'new2' }));
     expect(res.status).toBe(400);
   });
 
   it('returns 403 when current password is wrong', async () => {
-    mockGetRequestSessionClaims.mockResolvedValue({ sub: 'p1', username: 'alice', role: 'student' });
+    mockRequireActiveRequestSessionClaims.mockResolvedValue({ sub: 'p1', username: 'alice', role: 'student' });
     mockFetchInternalQuery.mockResolvedValue({
       profileId: 'p1',
       passwordHash: 'hash',
@@ -76,7 +78,7 @@ describe('POST /api/auth/change-password', () => {
   });
 
   it('returns 200 when password changed successfully', async () => {
-    mockGetRequestSessionClaims.mockResolvedValue({ sub: 'p1', username: 'alice', role: 'student' });
+    mockRequireActiveRequestSessionClaims.mockResolvedValue({ sub: 'p1', username: 'alice', role: 'student' });
     mockFetchInternalQuery.mockResolvedValue({
       profileId: 'p1',
       passwordHash: 'hash',
