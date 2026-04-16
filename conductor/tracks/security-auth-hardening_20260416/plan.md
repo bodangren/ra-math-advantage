@@ -4,10 +4,10 @@
 
 ### Tasks
 
-- [ ] **Task: Port requireRequestSessionClaims and role-variant guards**
-  - [ ] Write unit tests for `requireRequestSessionClaims`, `requireStudentRequestClaims`, `requireTeacherRequestClaims` in `lib/auth/__tests__/server-guards.test.ts`
-  - [ ] Implement guards in `lib/auth/server.ts` following BM2 pattern (return `SessionClaims | Response`)
-  - [ ] Verify TypeScript discrimination forces caller handling
+- [x] **Task: Port requireRequestSessionClaims and role-variant guards** [0411b33]
+  - [x] Write unit tests for `requireRequestSessionClaims`, `requireStudentRequestClaims`, `requireTeacherRequestClaims` in `lib/auth/__tests__/server-guards.test.ts`
+  - [x] Implement guards in `lib/auth/server.ts` following BM2 pattern (return `SessionClaims | Response`)
+  - [x] Verify TypeScript discrimination forces caller handling
 
 - [ ] **Task: Port requireActiveRequestSessionClaims (credential revocation)**
   - [ ] Write unit tests for credential revocation check (active, deactivated, Convex-down scenarios)
