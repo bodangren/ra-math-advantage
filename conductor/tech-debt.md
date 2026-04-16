@@ -46,4 +46,8 @@
 | mastered proficiency label is dead code | Medium | Open | Union type includes mastered but no code path produces it |
 | Fragile type assertion on submissionData.timing | Medium | Open | collectEligibleTimings casts to local TimingSummary; no compile-time protection |
 | Duplicate LABEL/FLUENCY_CLASSES in badge + diagnostic card | Low | Open | Should be shared constants |
-| problem_families/practice_items/objective_policies schema added | Low | Open | 2026-04-16 Phase 2; Phase 3-6 (seeding) pending |
+| problem_families/practice_items/objective_policies schema added | Low | Resolved | 2026-04-16 Phase 2-3 complete; Phase 4-6 (seed data) pending |
+| ts-fsrs not in package.json | High | Resolved | Installed 2026-04-16 code review; was pending approval since Phase 1 |
+| seedObjectivePolicies not wired into seed.ts | High | Resolved | Fixed 2026-04-16; added to seedAll orchestration after lesson standards |
+| Duplicate ObjectivePriority type in seed data | Medium | Resolved | Fixed 2026-04-16; seed file now imports from lib/practice/objective-proficiency |
+| scheduler.test.ts fully mocks ts-fsrs | Medium | Open | Tests verify wrapper logic but don't exercise real FSRS algorithm |

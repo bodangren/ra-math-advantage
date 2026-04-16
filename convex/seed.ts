@@ -379,6 +379,12 @@ export const seedAll = internalAction({
       });
     }
 
+    try {
+      await ctx.runMutation(seedInternal.seedObjectivePolicies, {});
+    } catch {
+      // Objective policies seeding failure is non-fatal
+    }
+
     const demo = getDemoEnvironment();
     if (demo) {
       try {

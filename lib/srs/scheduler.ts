@@ -137,16 +137,16 @@ function mapFsrsCardToSrsCardState(
     studentId: metadata.studentId,
     objectiveId: metadata.objectiveId,
     problemFamilyId: metadata.problemFamilyId,
-    stability: fsrsCard.s,
-    difficulty: fsrsCard.d,
+    stability: fsrsCard.stability,
+    difficulty: fsrsCard.difficulty,
     state: mapCardState(fsrsCard.state),
-    dueDate: fsrsCard.due,
-    elapsedDays: fsrsCard.elapsedDays,
-    scheduledDays: Math.round(fsrsCard.ivl),
+    dueDate: fsrsCard.due.toISOString(),
+    elapsedDays: fsrsCard.elapsed_days,
+    scheduledDays: fsrsCard.scheduled_days,
     reps: fsrsCard.reps,
     lapses: fsrsCard.lapses,
-    lastReview: fsrsCard.lastReview,
-    createdAt: fsrsCard.created,
+    lastReview: fsrsCard.last_review?.toISOString() ?? null,
+    createdAt: now,
     updatedAt: now,
   };
 }
@@ -205,6 +205,24 @@ export function createCard(params: {
 }
 
 /**
+ * Convert our internal card state to ts-fsrs Card format.
+ */
+function toFsrsCard(card: SrsCardState): Card {
+  return {
+    due: new Date(card.dueDate),
+    stability: card.stability,
+    difficulty: card.difficulty,
+    elapsed_days: card.elapsedDays,
+    scheduled_days: card.scheduledDays,
+    learning_steps: 0,
+    reps: card.reps,
+    lapses: card.lapses,
+    state: mapSrsStateToNumber(card.state),
+    last_review: card.lastReview ? new Date(card.lastReview) : undefined,
+  };
+}
+
+/**
  * Apply a review rating to a card and return the updated state.
  *
  * Uses ts-fsrs to compute optimal next interval based on:
@@ -227,28 +245,15 @@ export function reviewCard(
   const fullConfig = { ...DEFAULT_SCHEDULER_CONFIG, ...config };
 
   const params = generatorParameters({
-    requestRetention: fullConfig.requestRetention,
-    maximumInterval: fullConfig.maximumInterval,
-    enableShortTermPreview: fullConfig.enableShortTermPreview,
+    request_retention: fullConfig.requestRetention,
+    maximum_interval: fullConfig.maximumInterval,
+    enable_short_term: fullConfig.enableShortTermPreview,
   });
 
   const scheduler = fsrs(params);
-
-  const fsrsCard: Card = {
-    s: card.stability,
-    d: card.difficulty,
-    l: card.lapses,
-    reps: card.reps,
-    t: 0,
-    state: mapSrsStateToNumber(card.state),
-    due: card.dueDate,
-    lastReview: card.lastReview ?? currentTime,
-    created: card.createdAt,
-    elapsedDays: card.elapsedDays,
-  };
-
+  const fsrsCard = toFsrsCard(card);
   const grade = mapSrsRatingToGrade(rating);
-  const result = scheduler.next(fsrsCard, grade);
+  const result = scheduler.next(fsrsCard, currentTime, grade);
 
   return mapFsrsCardToSrsCardState(
     result.card,
@@ -293,30 +298,17 @@ export function previewInterval(
 ): number {
   const currentTime = now ?? new Date().toISOString();
   const params = generatorParameters({
-    requestRetention: DEFAULT_SCHEDULER_CONFIG.requestRetention,
-    maximumInterval: DEFAULT_SCHEDULER_CONFIG.maximumInterval,
-    enableShortTermPreview: DEFAULT_SCHEDULER_CONFIG.enableShortTermPreview,
+    request_retention: DEFAULT_SCHEDULER_CONFIG.requestRetention,
+    maximum_interval: DEFAULT_SCHEDULER_CONFIG.maximumInterval,
+    enable_short_term: DEFAULT_SCHEDULER_CONFIG.enableShortTermPreview,
   });
 
   const scheduler = fsrs(params);
-
-  const fsrsCard: Card = {
-    s: card.stability,
-    d: card.difficulty,
-    l: card.lapses,
-    reps: card.reps,
-    t: 0,
-    state: mapSrsStateToNumber(card.state),
-    due: card.dueDate,
-    lastReview: card.lastReview ?? currentTime,
-    created: card.createdAt,
-    elapsedDays: card.elapsedDays,
-  };
-
+  const fsrsCard = toFsrsCard(card);
   const grade = mapSrsRatingToGrade(rating);
-  const result = scheduler.next(fsrsCard, grade);
+  const result = scheduler.next(fsrsCard, currentTime, grade);
 
-  return result.interval;
+  return result.card.scheduled_days;
 }
 
 /**

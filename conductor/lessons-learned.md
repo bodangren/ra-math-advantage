@@ -47,3 +47,4 @@
 - (2026-04-16, timing-baselines) Double filtering (Convex layer + pure layer) is harmless but signals unclear responsibility boundaries; prefer single filtering point with documented contract
 - (2026-04-16, ccss-standards-seeding) When adding lesson_standards links, all referenced standards must exist in seed-standards.ts first — seed order matters; seedStandards before lessonStandards in seed.ts
 - (2026-04-16, blueprint-schema) Convex TableDefinition.indexes is private — test table existence via `schema.tables.TableName` and field access via type assertion to avoid internal API reliance
+- (2026-04-16, code-review) New seed mutations must be wired into seed.ts immediately; orphan seed files produce no visible error but silently skip data. Dependencies referenced in committed code must be in package.json before the code lands.

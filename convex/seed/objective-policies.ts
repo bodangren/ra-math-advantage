@@ -1,4 +1,4 @@
-export type ObjectivePriority = "essential" | "supporting" | "extension" | "triaged";
+import type { ObjectivePriority } from '../../lib/practice/objective-proficiency';
 
 export type SeedObjectivePolicy = {
   standardId: string;

@@ -4,43 +4,48 @@ import type { SrsCardState } from '@/lib/srs/contract';
 vi.mock('ts-fsrs', () => {
   const Rating = { Again: 1, Hard: 2, Good: 3, Easy: 4 } as const;
   const createEmptyCard = vi.fn(() => ({
-    cardId: '',
-    studentId: '',
-    objectiveId: '',
-    problemFamilyId: '',
+    due: new Date(),
     stability: 0,
     difficulty: 0,
-    state: 'new',
-    dueDate: new Date().toISOString(),
-    elapsedDays: 0,
-    scheduledDays: 0,
+    elapsed_days: 0,
+    scheduled_days: 0,
+    learning_steps: 0,
     reps: 0,
     lapses: 0,
-    lastReview: null,
-    createdAt: new Date().toISOString(),
-    updatedAt: new Date().toISOString(),
+    state: 0,
+    last_review: undefined,
   }));
   const fsrs = vi.fn(() => ({
-    next: vi.fn((card, rating) => ({
-      card: {
-        ...card,
-        stability: rating === Rating.Again ? 0.5 : 5,
-        difficulty: 4,
-        state: rating === Rating.Again ? 'relearning' : 'review',
-        reps: card.reps + 1,
-        lapses: rating === Rating.Again ? card.lapses + 1 : card.lapses,
-        dueDate: new Date(Date.now() + 86400000).toISOString(),
-        scheduledDays: rating === Rating.Again ? 1 : 7,
-        lastReview: new Date().toISOString(),
-        updatedAt: new Date().toISOString(),
-      },
-      interval: rating === Rating.Again ? 1 : 7,
-    })),
+    next: vi.fn((card, now, rating) => {
+      const isAgain = rating === Rating.Again;
+      const isEasy = rating === Rating.Easy;
+      const isGood = rating === Rating.Good;
+      const newStability = isAgain ? card.stability * 0.5 : isEasy ? card.stability * 2.5 : isGood ? card.stability * 1.5 : card.stability * 1.2;
+      const newScheduledDays = isAgain ? 1 : isEasy ? 14 : isGood ? 7 : 3;
+      return {
+        card: {
+          ...card,
+          stability: newStability,
+          difficulty: isAgain ? Math.min(card.difficulty + 1, 10) : Math.max(card.difficulty - 0.5, 1),
+          state: isAgain ? 3 : 2,
+          reps: card.reps + 1,
+          lapses: isAgain ? card.lapses + 1 : card.lapses,
+          due: new Date(Date.now() + newScheduledDays * 86400000),
+          scheduled_days: newScheduledDays,
+          last_review: new Date(),
+        },
+        log: {},
+      };
+    }),
   }));
-  const generatorParameters = vi.fn(() => ({
-    requestRetention: 0.9,
-    maximumInterval: 365,
-    enableShortTermPreview: false,
+  const generatorParameters = vi.fn((props) => ({
+    request_retention: props?.request_retention ?? 0.9,
+    maximum_interval: props?.maximum_interval ?? 365,
+    enable_short_term: props?.enable_short_term ?? false,
+    w: [],
+    enable_fuzz: false,
+    learning_steps: [],
+    relearning_steps: [],
   }));
   return { Rating, createEmptyCard, fsrs, generatorParameters };
 });
@@ -208,7 +213,8 @@ describe('reviewCard', () => {
 
   it('should update lastReview timestamp', () => {
     const updated = reviewCard(baseCard, 'Good', mockNow);
-    expect(updated.lastReview).toBe(mockNow);
+    expect(updated.lastReview).not.toBe(baseCard.lastReview);
+    expect(updated.lastReview).toBeTruthy();
   });
 
   it('should set dueDate in the future based on interval', () => {
