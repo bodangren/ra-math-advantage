@@ -23,7 +23,7 @@
 
 ---
 
-## Phase 2: Card Rendering and Activity Integration [checkpoint: xxxxxxx]
+## Phase 2: Card Rendering and Activity Integration [checkpoint: d9d842e]
 
 - [x] Task: Create `components/student/PracticeCardRenderer.tsx`
   - [x] Accept queue item and render via activity registry (`lib/activities/registry.ts`)
