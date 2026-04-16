@@ -54,10 +54,10 @@
 
 ### Tasks
 
-- [ ] **Task: Extend middleware.ts for dev-route admin guard**
-  - [ ] Write tests for middleware admin-only route protection
-  - [ ] Implement matcher for `/dev/component-review/:path*` with JWT extraction and admin role check
-  - [ ] Verify non-matching routes pass through unchanged
+- [x] **Task: Extend middleware.ts for dev-route admin guard** [d07a2e6]
+  - [x] Write tests for middleware admin-only route protection
+  - [x] Implement matcher for `/dev/component-approval/:path*` with JWT extraction and admin role check
+  - [x] Verify non-matching routes pass through unchanged
 
 - [ ] **Task: Verify no stack trace leaks in production**
   - [ ] Audit all API route error handlers for stack trace exposure
