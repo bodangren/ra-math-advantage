@@ -51,18 +51,18 @@
 
 ## Phase 3: Integration Guide
 
-- [ ] Task: Create `lib/srs/INTEGRATION.md` with step-by-step guide
-  - [ ] Sub-task: Write section 1 - Define activity components and register them
-  - [ ] Sub-task: Write section 2 - Create problem family seed data mapping activities to objectives
-  - [ ] Sub-task: Write section 3 - Assign objective practice policies
-  - [ ] Sub-task: Write section 4 - Implement CardStore and ReviewLogStore for your backend
-  - [ ] Sub-task: Write section 5 - Create daily practice page using queue engine
-  - [ ] Sub-task: Write section 6 - Wire submission adapter to update cards on practice completion
-  - [ ] Sub-task: Include complete code examples for each step
-- [ ] Task: Write a test that validates the integration guide examples compile and run
-  - [ ] Sub-task: Extract code examples from INTEGRATION.md into a test file
-  - [ ] Sub-task: Run test to confirm examples pass
-- [ ] Task: Conductor - Phase Completion Verification 'Integration Guide' (Protocol in workflow.md)
+- [x] Task: Create `lib/srs/INTEGRATION.md` with step-by-step guide
+  - [x] Sub-task: Write section 1 - Define activity components and register them
+  - [x] Sub-task: Write section 2 - Create problem family seed data mapping activities to objectives
+  - [x] Sub-task: Write section 3 - Assign objective practice policies
+  - [x] Sub-task: Write section 4 - Implement CardStore and ReviewLogStore for your backend
+  - [x] Sub-task: Write section 5 - Create daily practice page using queue engine
+  - [x] Sub-task: Write section 6 - Wire submission adapter to update cards on practice completion
+  - [x] Sub-task: Include complete code examples for each step
+- [x] Task: Write a test that validates the integration guide examples compile and run
+  - [x] Sub-task: Extract code examples from INTEGRATION.md into a test file
+  - [x] Sub-task: Run test to confirm examples pass
+- [x] Task: Conductor - Phase Completion Verification 'Integration Guide' (Protocol in workflow.md)
 
 ## Phase 4: Adapter Verification
 
