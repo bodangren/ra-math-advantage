@@ -16,7 +16,7 @@
 | PracticeSessionProvider: session completion sends no sessionId | High | Open | fetch('/api/practice/complete') has no body; wrong session risk |
 | Approval status race condition (no version/lock) | High | Open | No "approve exact version" check |
 | N+1 query: phase sections in progress/preview/monitoring queries | High | Open | One DB query per phase inside loop |
-| No Convex-layer authorization | Med-High | Open | Auth boundary is entirely in Next.js server layer |
+| No Convex-layer authorization | Med-High | Resolved | Added in Security & Auth Hardening track: convex/auth.ts helpers, org scoping |
 | error-analysis parseAIResponse uses fragile line-based parsing | High | Open | Breaks on markdown, multi-paragraph AI responses |
 | ActivityReviewHarness handleError never reaches ActivityPreview | High | Open | Render errors crash tree silently; canApprove not blocked |
 | SRS CardStore: studentId type mismatch (contract vs schema) | High | Open | SrsCardState uses string, Convex uses Id<"profiles"> |
@@ -40,3 +40,7 @@
 | Equivalence validator 6/50 tests failing | Low | Open | Pattern-matching limits on fraction/radical parsing |
 | Content hash JSON.stringify treats undefined same as absent | Low | Open | Potential hash collisions |
 | mastered proficiency label is dead code | Low | Open | Union type includes but no code path produces it |
+| Dev review queue POST: no input length limits on comment/componentId | High | Open | comment is z.string().optional() with no .max(); componentId z.string().min(1) with no .max() |
+| internal.student.skipPhase accessed via `as any` cast | Medium | Open | Suppresses type safety; may indicate stale generated API types |
+| Cloudflare worker deploys to production on every push | Medium | Open | No staging step, no canary, no approval gate |
+| teacher.ts: `as never` cast on userId index query | Medium | Open | Masks potential generated schema type mismatch |

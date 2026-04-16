@@ -7,7 +7,7 @@ import { fetchInternalMutation, internal } from '@/lib/convex/server';
 const phaseCompleteBodySchema = z.object({
   lessonId: z.string().min(1, 'lessonId is required'),
   phaseNumber: z.number({ message: 'phaseNumber must be a number' }),
-  timeSpent: z.number({ message: 'timeSpent must be a number' }),
+  timeSpent: z.number({ message: 'timeSpent must be a number' }).nonnegative(),
   idempotencyKey: z.string().min(1, 'idempotencyKey is required'),
   linkedStandardId: z.string().optional(),
 });

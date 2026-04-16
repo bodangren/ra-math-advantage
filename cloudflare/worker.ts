@@ -45,7 +45,8 @@ const worker: WorkerFetcher = {
     try {
       const handleRequest = await loadVinextHandler();
       return await handleRequest(request, env, ctx);
-    } catch {
+    } catch (error) {
+      console.error('Worker handler failed, falling back to static assets:', error);
       return env.ASSETS.fetch(request);
     }
   },

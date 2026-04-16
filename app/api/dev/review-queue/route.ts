@@ -4,11 +4,14 @@ import { z } from 'zod';
 import { requireDeveloperRequestClaims } from '@/lib/auth/server';
 import { fetchInternalQuery, fetchInternalMutation, internal } from '@/lib/convex/server';
 
-interface ReviewQueueQuery {
-  componentKind?: 'example' | 'activity' | 'practice';
-  status?: 'unreviewed' | 'approved' | 'needs_changes' | 'rejected';
-  onlyStale?: boolean;
-}
+const reviewQueueQuerySchema = z.object({
+  componentKind: z.enum(['example', 'activity', 'practice']).optional(),
+  status: z.enum(['unreviewed', 'approved', 'needs_changes', 'rejected']).optional(),
+  onlyStale: z
+    .enum(['true', 'false'])
+    .transform((v) => v === 'true')
+    .optional(),
+});
 
 const submitReviewBodySchema = z.object({
   componentKind: z.enum(['example', 'activity', 'practice']),
@@ -36,16 +39,21 @@ export async function GET(request: Request) {
   }
 
   const { searchParams } = new URL(request.url);
-  const query: ReviewQueueQuery = {};
 
-  const componentKind = searchParams.get('componentKind');
-  if (componentKind) query.componentKind = componentKind as ReviewQueueQuery['componentKind'];
+  const queryValidation = reviewQueueQuerySchema.safeParse({
+    componentKind: searchParams.get('componentKind') ?? undefined,
+    status: searchParams.get('status') ?? undefined,
+    onlyStale: searchParams.get('onlyStale') ?? undefined,
+  });
 
-  const status = searchParams.get('status');
-  if (status) query.status = status as ReviewQueueQuery['status'];
+  if (!queryValidation.success) {
+    return NextResponse.json(
+      { error: 'Invalid query parameters', details: queryValidation.error.format() },
+      { status: 400 },
+    );
+  }
 
-  const onlyStale = searchParams.get('onlyStale');
-  if (onlyStale === 'true') query.onlyStale = true;
+  const query = queryValidation.data;
 
   try {
     const items = await fetchInternalQuery(internal.dev.listReviewQueue, query as Record<string, unknown>);

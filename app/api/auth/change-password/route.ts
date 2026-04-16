@@ -68,12 +68,18 @@ export async function POST(request: Request) {
     const newSalt = generatePasswordSalt();
     const newHash = await hashPassword(newPassword, newSalt, PASSWORD_HASH_ITERATIONS);
 
-    await fetchInternalMutation(internal.auth.changeOwnPassword, {
+    const result = await fetchInternalMutation(internal.auth.changeOwnPassword, {
       profileId: claims.sub,
       passwordHash: newHash,
       passwordSalt: newSalt,
       passwordHashIterations: PASSWORD_HASH_ITERATIONS,
     });
+
+    if (result && typeof result === 'object' && 'ok' in result && !result.ok) {
+      const reason = 'reason' in result ? result.reason : 'unknown';
+      console.error('changeOwnPassword mutation failed:', reason);
+      return NextResponse.json({ error: 'Password change failed' }, { status: 500 });
+    }
 
     return NextResponse.json({ ok: true });
   } catch (error) {

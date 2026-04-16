@@ -5,6 +5,8 @@ import { SESSION_COOKIE_NAME, getAuthJwtSecret } from '@/lib/auth/constants';
 
 const DEV_COMPONENT_APPROVAL_PATTERN = /^\/dev\/component-approval/;
 
+// NOTE: This cookie parser is intentionally duplicated from lib/auth/server.ts
+// because middleware runs in Edge Runtime and cannot import Node.js modules.
 function getCookieValueFromHeader(cookieHeader: string | null, key: string): string | null {
   if (!cookieHeader) return null;
 
