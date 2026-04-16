@@ -21,23 +21,23 @@
 
 ## Phase 2: Card-to-Evidence Aggregation
 
-- [ ] Task: Write `aggregateCardsToEvidence` function in `lib/practice/srs-proficiency.ts`
-  - [ ] Sub-task: Define `SrsCardState` input type with stability, difficulty, reps, lapses, problemFamilyId, lastReviewMs, reviewDurationMs
-  - [ ] Sub-task: Group cards by `problemFamilyId`
-  - [ ] Sub-task: Per family: compute `retentionStrength` as average of `stabilityToRetention(card.stability)` across all cards
-  - [ ] Sub-task: Per family: compute `practiceCoverage` as proportion of cards with `reps > 0`
-  - [ ] Sub-task: Per family: compute `fluencyConfidence` from recent review timing (cards with duration under baseline get higher confidence)
-  - [ ] Sub-task: Return `ProblemFamilyEvidence[]` compatible with existing `computeObjectiveProficiency` input
-- [ ] Task: Write unit tests for `aggregateCardsToEvidence`
-  - [ ] Sub-task: Test single card with high stability produces high retentionStrength
-  - [ ] Sub-task: Test mix of cards averages correctly
-  - [ ] Sub-task: Test practiceCoverage with all/new cards (0 reps) vs reviewed cards
-  - [ ] Sub-task: Test empty card list returns empty evidence array
-  - [ ] Sub-task: Test cards from multiple families produce multiple evidence entries
-  - [ ] Sub-task: Test fluencyConfidence derivation from timing data
-- [ ] Task: Run tests and verify all pass
-- [ ] Task: Run `npm run lint` and fix any issues
-- [ ] Task: Conductor - Phase Completion Verification 'Card-to-Evidence Aggregation' (Protocol in workflow.md)
+- [x] Task: Write `aggregateCardsToEvidence` function in `lib/practice/srs-proficiency.ts`
+  - [x] Sub-task: Define `SrsCardState` input type with stability, difficulty, reps, lapses, problemFamilyId, lastReviewMs, reviewDurationMs
+  - [x] Sub-task: Group cards by `problemFamilyId`
+  - [x] Sub-task: Per family: compute `retentionStrength` as average of `stabilityToRetention(card.stability)` across all cards
+  - [x] Sub-task: Per family: compute `practiceCoverage` as proportion of cards with `reps > 0`
+  - [x] Sub-task: Per family: compute `fluencyConfidence` from recent review timing (cards with duration under baseline get higher confidence)
+  - [x] Sub-task: Return `ProblemFamilyEvidence[]` compatible with existing `computeObjectiveProficiency` input
+- [x] Task: Write unit tests for `aggregateCardsToEvidence`
+  - [x] Sub-task: Test single card with high stability produces high retentionStrength
+  - [x] Sub-task: Test mix of cards averages correctly
+  - [x] Sub-task: Test practiceCoverage with all/new cards (0 reps) vs reviewed cards
+  - [x] Sub-task: Test empty card list returns empty evidence array
+  - [x] Sub-task: Test cards from multiple families produce multiple evidence entries
+  - [x] Sub-task: Test fluencyConfidence derivation from timing data
+- [x] Task: Run tests and verify all pass
+- [x] Task: Run `npm run lint` and fix any issues
+- [x] Task: Conductor - Phase Completion Verification 'Card-to-Evidence Aggregation' (Protocol in workflow.md)
 
 ## Phase 3: Objective Proficiency Query
 
