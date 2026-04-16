@@ -1,0 +1,15 @@
+Task: Implement SRS Adapter Interfaces (Phase 4)
+
+Summary:
+- Defined CardStore and ReviewLogStore interfaces in lib/srs/adapters.ts
+- Implemented InMemoryCardStore with getCard, getCardsByStudent, getCardsByObjective, getDueCards, saveCard, saveCards
+- Implemented InMemoryReviewLogStore with saveReview, getReviewsByCard, getReviewsByStudent (with optional since filter)
+- Added comprehensive unit tests in __tests__/lib/srs/adapters.test.ts covering all store operations, end-to-end scheduler+processor+store integration, and getDueCards filtering
+- Documented interface contracts and guidance for Track 5 Convex adapter implementations
+
+Files changed:
+- lib/srs/adapters.ts (new)
+- __tests__/lib/srs/adapters.test.ts (new)
+
+Why:
+Provides replaceable persistence adapters so the SRS core library remains pure, testable, and ready for Convex integration in Track 5.
