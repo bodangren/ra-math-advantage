@@ -15,7 +15,7 @@
   - [x] Test that re-exported `PRIORITY_DEFAULTS` matches source module values
 - [x] Task: Conductor - Phase Completion Verification 'Module Scaffolding and Re-exports' (Protocol in workflow.md) [8888bb7]
 
-## Phase 2: New Type Definitions
+## Phase 2: New Type Definitions [checkpoint: 6352313]
 
 - [x] Task: Write card state type tests [8888bb7]
   - [x] Test `SrsCardState` accepts valid data for each card state: new, learning, review, relearning
