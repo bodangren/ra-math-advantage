@@ -1,25 +1,25 @@
 # Implementation Plan: Security & Auth Hardening
 
-## Phase 1: Fail-Closed API Route Guards
+## Phase 1: Fail-Closed API Route Guards [checkpoint: f6d315c]
 
 ### Tasks
 
 - [x] **Task: Port requireRequestSessionClaims and role-variant guards** [0411b33]
-  - [x] Write unit tests for `requireRequestSessionClaims`, `requireStudentRequestClaims`, `requireTeacherRequestClaims` in `lib/auth/__tests__/server-guards.test.ts`
-  - [x] Implement guards in `lib/auth/server.ts` following BM2 pattern (return `SessionClaims | Response`)
-  - [x] Verify TypeScript discrimination forces caller handling
+  - [x] Sub-task: Write unit tests for `requireRequestSessionClaims`, `requireStudentRequestClaims`, `requireTeacherRequestClaims` in `lib/auth/__tests__/server-guards.test.ts`
+  - [x] Sub-task: Implement guards in `lib/auth/server.ts` following BM2 pattern (return `SessionClaims | Response`)
+  - [x] Sub-task: Verify TypeScript discrimination forces caller handling
 
 - [x] **Task: Port requireActiveRequestSessionClaims (credential revocation)** [5cbff6f]
-  - [x] Write unit tests for credential revocation check (active, deactivated, Convex-down scenarios)
-  - [x] Implement `requireActiveRequestSessionClaims` calling Convex `internal.auth.getCredentialByUsername`
-  - [x] Verify fail-closed behavior when Convex is unreachable
+  - [x] Sub-task: Write unit tests for credential revocation check (active, deactivated, Convex-down scenarios)
+  - [x] Sub-task: Implement `requireActiveRequestSessionClaims` calling Convex `internal.auth.getCredentialByUsername`
+  - [x] Sub-task: Verify fail-closed behavior when Convex is unreachable
 
 - [x] **Task: Audit and update existing API routes** [e5d0b51]
-  - [x] Identify all routes in `app/api/` that lack fail-closed guards
-  - [x] Update each route to use appropriate guard function
-  - [x] Add Zod `safeParse` validation where missing
+  - [x] Sub-task: Identify all routes in `app/api/` that lack fail-closed guards
+  - [x] Sub-task: Update each route to use appropriate guard function
+  - [x] Sub-task: Add Zod `safeParse` validation where missing
 
-- [ ] **Task: Conductor - User Manual Verification 'Phase 1' (Protocol in workflow.md)**
+- [x] **Task: Conductor - Phase Completion Verification 'Phase 1' (Protocol in workflow.md)** [f6d315c]
 
 ## Phase 2: Convex-Layer Authorization
 
