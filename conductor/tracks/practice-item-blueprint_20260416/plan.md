@@ -28,26 +28,26 @@
 
 ## Phase 2: Convex Schema Extension
 
-- [ ] Task: Add `problem_families` table to `convex/schema.ts`
-  - [ ] Define table with fields: `problemFamilyId` (string), `componentKey` (string), `displayName` (string), `description` (string), `objectiveIds` (array of string), `difficulty` (string), `metadata` (any)
-  - [ ] Add index `by_problemFamilyId` on `problemFamilyId`
-  - [ ] Add index `by_componentKey` on `componentKey`
-  - [ ] Add index `by_objectiveId` on `objectiveIds`
-- [ ] Task: Add `practice_items` table to `convex/schema.ts`
-  - [ ] Define table with fields: `practiceItemId` (string), `activityId` (string), `problemFamilyId` (string), `variantLabel` (string)
-  - [ ] Add index `by_activityId` on `activityId`
-  - [ ] Add index `by_problemFamilyId` on `problemFamilyId`
-- [ ] Task: Add `objective_policies` table to `convex/schema.ts`
-  - [ ] Define table with fields: `standardId` (string), `policy` (string), `courseKey` (string), `priority` (number)
-  - [ ] Add index `by_standardId` on `standardId`
-  - [ ] Add index `by_courseKey` on `courseKey`
-- [ ] Task: Write schema tests
-  - [ ] Verify tables are defined with correct fields
-  - [ ] Verify indexes exist
-- [ ] Task: Run lint and typecheck
-  - [ ] `npm run lint` passes
-  - [ ] `npm run typecheck` passes
-- [ ] Task: Conductor - Phase Completion Verification 'Convex Schema Extension' (Protocol in workflow.md)
+- [x] Task: Add `problem_families` table to `convex/schema.ts`
+  - [x] Define table with fields: `problemFamilyId` (string), `componentKey` (string), `displayName` (string), `description` (string), `objectiveIds` (array of string), `difficulty` (string), `metadata` (any)
+  - [x] Add index `by_problemFamilyId` on `problemFamilyId`
+  - [x] Add index `by_componentKey` on `componentKey`
+  - [x] Add index `by_objectiveId` on `objectiveIds`
+- [x] Task: Add `practice_items` table to `convex/schema.ts`
+  - [x] Define table with fields: `practiceItemId` (string), `activityId` (string), `problemFamilyId` (string), `variantLabel` (string)
+  - [x] Add index `by_activityId` on `activityId`
+  - [x] Add index `by_problemFamilyId` on `problemFamilyId`
+- [x] Task: Add `objective_policies` table to `convex/schema.ts`
+  - [x] Define table with fields: `standardId` (string), `policy` (string), `courseKey` (string), `priority` (number)
+  - [x] Add index `by_standardId` on `standardId`
+  - [x] Add index `by_courseKey` on `courseKey`
+- [x] Task: Write schema tests
+  - [x] Verify tables are defined with correct fields
+  - [x] Verify indexes exist
+- [x] Task: Run lint and typecheck
+  - [x] `npm run lint` passes
+  - [x] `npm run typecheck` passes
+- [x] Task: Conductor - Phase Completion Verification 'Convex Schema Extension' (Protocol in workflow.md)
 
 ## Phase 3: Objective Policy Assignment
 
