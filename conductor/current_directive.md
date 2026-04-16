@@ -25,8 +25,8 @@
 
 ## Current In-Progress Track
 
-- **Track**: Reusable SRS Core Library — Phase 2 complete, Phase 3 (queue primitives) pending.
-- **Next**: Phase 3: Queue Primitives
+- **Track**: Reusable SRS Core Library — Phase 3 complete, Phase 4 (adapter interfaces) pending.
+- **Next**: Phase 4: Adapter Interfaces
 
 ## High-Priority Next Steps
 

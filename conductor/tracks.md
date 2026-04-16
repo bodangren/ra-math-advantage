@@ -294,11 +294,12 @@ Implementation order: **Wave 0 done → Wave 1 (parallel) → Wave 2 → Wave 3 
      *Link: [./conductor/tracks/srs-product-contract_20260416/](./conductor/tracks/srs-product-contract_20260416/)*
 
 - [~] **Track 2: Reusable SRS Core Library**
-      *FSRS scheduler wrapper, review processor bridging srs-rating.ts to card state, queue primitives, adapter interfaces*
-      *Link: [./conductor/tracks/srs-core-library_20260416/](./conductor/tracks/srs-core-library_20260416/)*
-      - Phase 1: FSRS Dependency and Scheduler Foundation [COMPLETE]
-      - Phase 2: Review Processor [COMPLETE]
-      - Phase 3: Queue Primitives [PENDING]
+       *FSRS scheduler wrapper, review processor bridging srs-rating.ts to card state, queue primitives, adapter interfaces*
+       *Link: [./conductor/tracks/srs-core-library_20260416/](./conductor/tracks/srs-core-library_20260416/)*
+       - Phase 1: FSRS Dependency and Scheduler Foundation [COMPLETE]
+       - Phase 2: Review Processor [COMPLETE]
+       - Phase 3: Queue Primitives [COMPLETE]
+       - Phase 4: Adapter Interfaces [PENDING]
 
 - [x] **Track 4: Practice Item and Objective Blueprint Model** — **COMPLETED**
        *Map practice activities to problem families and objectives; assign objective policies; seed data for all 9 modules*
