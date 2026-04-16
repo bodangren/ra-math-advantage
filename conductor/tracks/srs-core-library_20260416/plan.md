@@ -4,7 +4,7 @@
 
 - [x] Task: Install and validate `ts-fsrs` dependency
   - [x] Evaluate `ts-fsrs` npm package API and types
-  - [ ] Add dependency to package.json (requires user approval per AGENTS.md) **BLOCKED**
+  - [x] Add dependency to package.json (installed during 2026-04-16 code review)
   - [x] Verify license (MIT) and bundle size compatibility
   - [x] Create a smoke test that imports and exercises basic ts-fsrs functions
 - [x] Task: Write scheduler unit tests
@@ -29,29 +29,29 @@
   - [x] Document `maximumInterval` rationale (365 days = school year)
 - [ ] Task: Conductor - Phase Completion Verification 'FSRS Dependency and Scheduler Foundation' (Protocol in workflow.md)
 
-**Note:** ts-fsrs npm package not yet installed — requires user approval per AGENTS.md. Implementation and tests written and ready; will pass once package is installed.
+**Note:** ts-fsrs npm package installed during 2026-04-16 code review. Phase 1 implementation and tests are validated and passing.
 
 ## Phase 2: Review Processor
 
-- [ ] Task: Write review processor tests
-  - [ ] Test incorrect submission → card state enters relearning
-  - [ ] Test correct submission, no hints → card state advances with `Good` rating
-  - [ ] Test correct submission with hints → card state advances with `Hard` rating
-  - [ ] Test timing modifier: fast timing may upgrade to `Easy`
-  - [ ] Test missing timing does not block review processing
-  - [ ] Test review log captures correct before/after state
-  - [ ] Test review log captures evidence (baseRating, timingAdjusted, reasons)
-- [ ] Task: Implement review processor
-  - [ ] Create `lib/srs/review-processor.ts`
-  - [ ] Import `mapPracticeToSrsRating` from `lib/practice/srs-rating.ts`
-  - [ ] Import `deriveTimingFeatures` from `lib/practice/timing-baseline.ts`
-  - [ ] Import `reviewCard` from scheduler
-  - [ ] Implement full pipeline: submission → timing features → rating → card update → review log
-- [ ] Task: Document review processor pipeline
-  - [ ] Add JSDoc showing the processing stages
-  - [ ] Include example of a typical correct answer review flow
-  - [ ] Include example of an incorrect answer review flow
-- [ ] Task: Conductor - Phase Completion Verification 'Review Processor' (Protocol in workflow.md)
+- [x] Task: Write review processor tests
+  - [x] Test incorrect submission → card state enters relearning
+  - [x] Test correct submission, no hints → card state advances with `Good` rating
+  - [x] Test correct submission with hints → card state advances with `Hard` rating
+  - [x] Test timing modifier: fast timing may upgrade to `Easy`
+  - [x] Test missing timing does not block review processing
+  - [x] Test review log captures correct before/after state
+  - [x] Test review log captures evidence (baseRating, timingAdjusted, reasons)
+- [x] Task: Implement review processor
+  - [x] Create `lib/srs/review-processor.ts`
+  - [x] Import `mapPracticeToSrsRating` from `lib/practice/srs-rating.ts`
+  - [x] Import `deriveTimingFeatures` from `lib/practice/timing-baseline.ts`
+  - [x] Import `reviewCard` from scheduler
+  - [x] Implement full pipeline: submission → timing features → rating → card update → review log
+- [x] Task: Document review processor pipeline
+  - [x] Add JSDoc showing the processing stages
+  - [x] Include example of a typical correct answer review flow
+  - [x] Include example of an incorrect answer review flow
+- [x] Task: Conductor - Phase Completion Verification 'Review Processor' (Protocol in workflow.md) [checkpoint: TBD]
 
 ## Phase 3: Queue Primitives
 

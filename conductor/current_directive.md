@@ -9,8 +9,8 @@
 - **Lint**: Passing.
 - **TypeScript**: Pre-existing test-file errors remain. No new TS errors.
 - **Module 1-9 Roadmap**: All modules seeded (M1-M9 complete).
-- **Practice Item Blueprint**: Phases 1-3 complete (types, Convex schema, objective policies). Phases 4-6 (seed data) pending.
-- **SRS Core Library**: Phase 1 complete (FSRS scheduler wrapper with ts-fsrs v4 API).
+- **Practice Item Blueprint**: Phases 1-6 complete (types, Convex schema, objective policies, seed data M1-M9, validation, handoff).
+- **SRS Core Library**: Phase 1 complete (FSRS scheduler wrapper with ts-fsrs v4 API). Phase 2 complete (review processor).
 - **ts-fsrs**: Installed and scheduler updated to v4 API (was a build blocker).
 - **seedObjectivePolicies**: Now wired into seed.ts orchestration.
 - **Code Review**: 2026-04-16 review found 0 critical, 3 high (all fixed), 1 medium (fixed), 2 low issues.
@@ -25,13 +25,13 @@
 
 ## Current In-Progress Track
 
-- **Track**: Practice Item Blueprint — Phase 4 complete, Phase 5 (seed data for modules 6-9) pending.
-- **Next**: Phase 5: Seed Data for Modules 6-9 and Validation
+- **Track**: Reusable SRS Core Library — Phase 2 complete, Phase 3 (queue primitives) pending.
+- **Next**: Phase 3: Queue Primitives
 
 ## High-Priority Next Steps
 
-1. **Practice Item Blueprint Phases 4-5: Seed data for modules 1-9** — problem_families and practice_items tables are empty
-2. **SRS Core Library: npm install ts-fsrs now done** — Phase 2 (review processor, queue primitives) can proceed
+1. **SRS Core Library Phase 3: Queue Primitives** — build `buildDailyQueue` with priority ordering
+2. **SRS Core Library Phase 4: Adapter Interfaces** — define `CardStore`/`ReviewLogStore` with in-memory implementations
 3. **Build lesson_standards seeding pipeline for M1-M5** — only M6-M9 have links
 4. **Fix parseAIResponse fragile line-based parsing** — use structured JSON output
 5. **Refactor seed-lesson-standards.ts duplication** — extract shared seeder function
