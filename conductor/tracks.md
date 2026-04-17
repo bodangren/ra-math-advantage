@@ -427,12 +427,13 @@ Tracks ported from `bus-math-v2` per the BM2 Alignment Report. Ordered by recomm
       - Phase 2: Convex Schema and Persistence [COMPLETE]
       - Phase 3: Test Engine UI [COMPLETE] [checkpoint: fd61fbf]
 
-- [~] **Track: Teacher Gradebook & Competency Heatmaps**
-      *Port course overview grid, unit gradebook, competency heatmaps with CCSS standards, submission detail modal, reporting drill-down IA*
-      *Link: [./conductor/tracks/teacher-gradebook-heatmaps_20260416/](./conductor/tracks/teacher-gradebook-heatmaps_20260416/)*
-      - Phase 1: Pure Logic — Gradebook and Overview [COMPLETE] [checkpoint: 074cee1]
-      - Phase 2: Convex Queries for Reporting [COMPLETE] [checkpoint: e753143]
-      - Phase 3: UI Components [COMPLETE] [checkpoint: 47afac5]
+- [x] **Track: Teacher Gradebook & Competency Heatmaps**
+       *Port course overview grid, unit gradebook, competency heatmaps with CCSS standards, submission detail modal, reporting drill-down IA*
+       *Link: [./conductor/tracks/teacher-gradebook-heatmaps_20260416/](./conductor/tracks/teacher-gradebook-heatmaps_20260416/)*
+       - Phase 1: Pure Logic — Gradebook and Overview [COMPLETE] [checkpoint: 074cee1]
+       - Phase 2: Convex Queries for Reporting [COMPLETE] [checkpoint: e753143]
+       - Phase 3: UI Components [COMPLETE] [checkpoint: 47afac5]
+       - Phase 4: Competency Heatmaps [COMPLETE] [checkpoint: 33a9cf5]
 
 ### Wave C — Student Engagement (after SRS Wave 3)
 
