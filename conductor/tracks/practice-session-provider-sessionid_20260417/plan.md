@@ -1,6 +1,6 @@
 # Implementation Plan: PracticeSessionProvider sessionId Fix
 
-## Phase 1: Wire sessionId Through Completion Flow
+## Phase 1: Wire sessionId Through Completion Flow [checkpoint: 6635722]
 
 ### Tasks
 
