@@ -19,23 +19,23 @@
 
 - [x] **Task: Conductor - User Manual Verification 'Phase 1' (Protocol in workflow.md)** [checkpoint: 074cee1]
 
-## Phase 2: Convex Queries for Reporting
+## Phase 2: Convex Queries for Reporting [checkpoint: pending]
 
 ### Tasks
 
-- [ ] **Task: Implement course overview query**
-  - [ ] Write tests for `getTeacherCourseOverviewData` covering student list, progress aggregation, module mastery
-  - [ ] Implement in `convex/teacher.ts` using existing progress tables + lesson_standards
+- [x] **Task: Implement course overview query**
+  - [x] Write tests for `getTeacherCourseOverviewData` covering student list, progress aggregation, module mastery
+  - [x] Implement in `convex/teacher.ts` using existing progress tables + lesson_standards
 
-- [ ] **Task: Implement unit gradebook query**
-  - [ ] Write tests for `getTeacherGradebookData` covering per-lesson status, mastery, IP/assessment badges
-  - [ ] Implement query with phase-level → lesson-level status aggregation
+- [x] **Task: Implement unit gradebook query**
+  - [x] Write tests for `getTeacherGradebookData` covering per-lesson status, mastery, IP/assessment badges
+  - [x] Implement query with phase-level → lesson-level status aggregation
 
-- [ ] **Task: Implement submission detail query**
-  - [ ] Write tests for `getSubmissionDetail` covering phase evidence, practice evidence, score computation
-  - [ ] Implement query joining activity_submissions, activity_completions, and phase data
+- [x] **Task: Implement submission detail query**
+  - [x] Write tests for `getSubmissionDetail` covering phase evidence, practice evidence, score computation
+  - [x] Implement query joining activity_submissions, activity_completions, and phase data
 
-- [ ] **Task: Conductor - User Manual Verification 'Phase 2' (Protocol in workflow.md)**
+- [x] **Task: Conductor - User Manual Verification 'Phase 2' (Protocol in workflow.md)**
 
 ## Phase 3: UI Components
 
