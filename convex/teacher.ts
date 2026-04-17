@@ -5,6 +5,12 @@ import { getAuthorizedTeacher } from "./auth";
 import { assembleCourseOverviewRows, type CourseOverviewRow, type UnitColumn } from "../lib/teacher/course-overview";
 import { assembleGradebookRows, type GradebookRow, type GradebookLesson } from "../lib/teacher/gradebook";
 import {
+  assembleCompetencyHeatmapRows,
+  assembleStudentCompetencyDetail,
+  type CompetencyHeatmapResponse,
+  type StudentCompetencyDetail,
+} from "../lib/teacher/competency-heatmap";
+import {
   buildLatestPublishedLessonVersionMap,
   buildPublishedPhaseIdSet,
   buildPublishedProgressSnapshot,
@@ -501,6 +507,153 @@ export const getTeacherGradebookData = internalQuery({
     unitNumber: v.number(),
   },
   handler: async (ctx, args) => getTeacherGradebookDataHandler(ctx, args),
+});
+
+export async function getTeacherCompetencyHeatmapDataHandler(
+  ctx: QueryCtx,
+  args: { userId: Id<"profiles"> },
+): Promise<CompetencyHeatmapResponse | null> {
+  const teacher = await getAuthorizedTeacher(ctx, args.userId);
+  if (!teacher) {
+    return null;
+  }
+
+  const standards = (await ctx.db.query("competency_standards").collect()).map(
+    (standard) => ({
+      id: standard._id,
+      code: standard.code,
+      description: standard.description,
+      studentFriendlyDescription: standard.studentFriendlyDescription ?? null,
+      category: standard.category ?? null,
+      isActive: standard.isActive,
+    }),
+  );
+
+  const students = await listOrganizationStudents(ctx, teacher.organizationId);
+  const rawStudents = students.map((student) => ({
+    id: student._id,
+    username: student.username,
+    displayName: student.displayName ?? null,
+  }));
+
+  if (students.length === 0) {
+    return assembleCompetencyHeatmapRows([], standards, []);
+  }
+
+  const competencyRows = (
+    await Promise.all(
+      students.map((student) =>
+        ctx.db
+          .query("student_competency")
+          .withIndex("by_student", (q) => q.eq("studentId", student._id))
+          .collect(),
+      ),
+    )
+  )
+    .flat()
+    .map((row) => ({
+      studentId: row.studentId,
+      standardId: row.standardId,
+      masteryLevel: row.masteryLevel,
+      evidenceActivityId: row.evidenceActivityId ?? null,
+      lastUpdated: row.lastUpdated,
+      updatedBy: row.updatedBy ?? null,
+    }));
+
+  return assembleCompetencyHeatmapRows(rawStudents, standards, competencyRows);
+}
+
+export const getTeacherCompetencyHeatmapData = internalQuery({
+  args: { userId: v.id("profiles") },
+  handler: async (ctx, args) => getTeacherCompetencyHeatmapDataHandler(ctx, args),
+});
+
+export async function getTeacherStudentCompetencyDetailHandler(
+  ctx: QueryCtx,
+  args: { userId: Id<"profiles">; studentId: Id<"profiles"> },
+): Promise<StudentCompetencyDetail | null> {
+  const teacher = await getAuthorizedTeacher(ctx, args.userId);
+  if (!teacher) {
+    return null;
+  }
+
+  const student = await ctx.db.get(args.studentId);
+  if (
+    !student ||
+    student.role !== "student" ||
+    student.organizationId !== teacher.organizationId
+  ) {
+    return null;
+  }
+
+  const rawStudent = {
+    id: student._id,
+    username: student.username,
+    displayName: student.displayName ?? null,
+  };
+
+  const standards = (await ctx.db.query("competency_standards").collect()).map(
+    (standard) => ({
+      id: standard._id,
+      code: standard.code,
+      description: standard.description,
+      studentFriendlyDescription: standard.studentFriendlyDescription ?? null,
+      category: standard.category ?? null,
+      isActive: standard.isActive,
+    }),
+  );
+
+  const competencyRows = (
+    await ctx.db
+      .query("student_competency")
+      .withIndex("by_student", (q) => q.eq("studentId", student._id))
+      .collect()
+  ).map((row) => ({
+    studentId: row.studentId,
+    standardId: row.standardId,
+    masteryLevel: row.masteryLevel,
+    evidenceActivityId: row.evidenceActivityId ?? null,
+    lastUpdated: row.lastUpdated,
+    updatedBy: row.updatedBy ?? null,
+  }));
+
+  const rawLessonVersions = (await ctx.db.query("lesson_versions").collect()).map(
+    (version) => ({
+      id: version._id,
+      lessonId: version.lessonId,
+    }),
+  );
+
+  const rawLessons = (await ctx.db.query("lessons").collect()).map((lesson) => ({
+    id: lesson._id,
+    unitNumber: lesson.unitNumber,
+    title: lesson.title,
+  }));
+
+  const rawLessonStandards = (await ctx.db.query("lesson_standards").collect()).map(
+    (ls) => ({
+      standardId: ls.standardId,
+      lessonVersionId: ls.lessonVersionId,
+      isPrimary: ls.isPrimary,
+    }),
+  );
+
+  return assembleStudentCompetencyDetail(
+    rawStudent,
+    standards,
+    competencyRows,
+    rawLessonStandards,
+    rawLessonVersions,
+    rawLessons,
+  );
+}
+
+export const getTeacherStudentCompetencyDetail = internalQuery({
+  args: {
+    userId: v.id("profiles"),
+    studentId: v.id("profiles"),
+  },
+  handler: async (ctx, args) => getTeacherStudentCompetencyDetailHandler(ctx, args),
 });
 
 export const getTeacherStudentDetail = internalQuery({

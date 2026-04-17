@@ -5,6 +5,8 @@ import {
   getTeacherCourseOverviewDataHandler,
   getTeacherGradebookDataHandler,
   getSubmissionDetailHandler,
+  getTeacherCompetencyHeatmapDataHandler,
+  getTeacherStudentCompetencyDetailHandler,
 } from '@/convex/teacher';
 
 // ---------------------------------------------------------------------------
@@ -569,5 +571,176 @@ describe('getSubmissionDetailHandler', () => {
     expect(result?.phases[0].evidence).toHaveLength(1);
     expect(result?.phases[0].evidence[0].score).toBe(9);
     expect(result?.phases[0].evidence[0].attemptNumber).toBe(2);
+  });
+});
+
+// ---------------------------------------------------------------------------
+// getTeacherCompetencyHeatmapDataHandler
+// ---------------------------------------------------------------------------
+
+describe('getTeacherCompetencyHeatmapDataHandler', () => {
+  it('returns null for unauthorized user', async () => {
+    const mockDb = createMockDb({
+      profiles: [{ _id: 'bad', role: 'student', organizationId: mockOrgId } as unknown as Record<string, unknown>],
+    });
+    const ctx = { db: mockDb } as unknown as QueryCtx;
+
+    const result = await getTeacherCompetencyHeatmapDataHandler(ctx, { userId: 'bad' as Id<'profiles'> });
+    expect(result).toBeNull();
+  });
+
+  it('returns empty heatmap when no students exist', async () => {
+    const mockDb = createMockDb({
+      profiles: [teacherProfile],
+      competency_standards: [
+        { _id: mockStandardId, code: 'A.SSE.1', description: 'Description', isActive: true, createdAt: 1 },
+      ],
+    });
+    const ctx = { db: mockDb } as unknown as QueryCtx;
+
+    const result = await getTeacherCompetencyHeatmapDataHandler(ctx, { userId: mockTeacherId });
+    expect(result).not.toBeNull();
+    expect(result?.rows).toEqual([]);
+    expect(result?.standards).toHaveLength(1);
+  });
+
+  it('returns heatmap with student mastery by standard', async () => {
+    const mockDb = createMockDb({
+      profiles: [teacherProfile, studentProfile, otherStudentProfile],
+      competency_standards: [
+        { _id: mockStandardId, code: 'A.SSE.1', description: 'Description', isActive: true, createdAt: 1 },
+      ],
+      student_competency: [
+        { _id: 'sc1', studentId: mockStudentId, standardId: mockStandardId, masteryLevel: 85, lastUpdated: 1, createdAt: 1 },
+        { _id: 'sc2', studentId: mockOtherStudentId, standardId: mockStandardId, masteryLevel: 45, lastUpdated: 1, createdAt: 1 },
+      ],
+    });
+    const ctx = { db: mockDb } as unknown as QueryCtx;
+
+    const result = await getTeacherCompetencyHeatmapDataHandler(ctx, { userId: mockTeacherId });
+
+    expect(result).not.toBeNull();
+    expect(result?.rows).toHaveLength(2);
+
+    const studentOneRow = result?.rows.find((r) => r.studentId === mockStudentId);
+    expect(studentOneRow?.cells[0].masteryLevel).toBe(85);
+    expect(studentOneRow?.cells[0].color).toBe('green');
+
+    const studentTwoRow = result?.rows.find((r) => r.studentId === mockOtherStudentId);
+    expect(studentTwoRow?.cells[0].masteryLevel).toBe(45);
+    expect(studentTwoRow?.cells[0].color).toBe('red');
+  });
+
+  it('filters inactive standards', async () => {
+    const mockDb = createMockDb({
+      profiles: [teacherProfile, studentProfile],
+      competency_standards: [
+        { _id: mockStandardId, code: 'A.SSE.1', description: 'Description', isActive: true, createdAt: 1 },
+        { _id: 'std2', code: 'F.IF.1', description: 'Inactive', isActive: false, createdAt: 1 },
+      ],
+      student_competency: [
+        { _id: 'sc1', studentId: mockStudentId, standardId: mockStandardId, masteryLevel: 85, lastUpdated: 1, createdAt: 1 },
+      ],
+    });
+    const ctx = { db: mockDb } as unknown as QueryCtx;
+
+    const result = await getTeacherCompetencyHeatmapDataHandler(ctx, { userId: mockTeacherId });
+
+    expect(result?.standards).toHaveLength(1);
+    expect(result?.standards[0].code).toBe('A.SSE.1');
+    expect(result?.rows[0].cells).toHaveLength(1);
+  });
+});
+
+// ---------------------------------------------------------------------------
+// getTeacherStudentCompetencyDetailHandler
+// ---------------------------------------------------------------------------
+
+describe('getTeacherStudentCompetencyDetailHandler', () => {
+  it('returns null for unauthorized user', async () => {
+    const mockDb = createMockDb({
+      profiles: [{ _id: 'bad', role: 'student', organizationId: mockOrgId } as unknown as Record<string, unknown>],
+    });
+    const ctx = { db: mockDb } as unknown as QueryCtx;
+
+    const result = await getTeacherStudentCompetencyDetailHandler(ctx, {
+      userId: 'bad' as Id<'profiles'>,
+      studentId: mockStudentId,
+    });
+    expect(result).toBeNull();
+  });
+
+  it('returns null when student is not in teacher org', async () => {
+    const mockDb = createMockDb({
+      profiles: [
+        teacherProfile,
+        { ...studentProfile, organizationId: 'other-org' },
+      ],
+    });
+    const ctx = { db: mockDb } as unknown as QueryCtx;
+
+    const result = await getTeacherStudentCompetencyDetailHandler(ctx, {
+      userId: mockTeacherId,
+      studentId: mockStudentId,
+    });
+    expect(result).toBeNull();
+  });
+
+  it('returns detail with mastery and lesson context', async () => {
+    const mockDb = createMockDb({
+      profiles: [teacherProfile, studentProfile],
+      competency_standards: [
+        { _id: mockStandardId, code: 'A.SSE.1', description: 'Description', isActive: true, createdAt: 1 },
+      ],
+      student_competency: [
+        { _id: 'sc1', studentId: mockStudentId, standardId: mockStandardId, masteryLevel: 75, lastUpdated: 1, createdAt: 1 },
+      ],
+      lessons: [
+        { _id: mockLessonId, unitNumber: 1, orderIndex: 1, title: 'Lesson 1', slug: 'l1', createdAt: 1, updatedAt: 1 },
+      ],
+      lesson_versions: [
+        { _id: mockLessonVersionId, lessonId: mockLessonId, version: 1, status: 'published', createdAt: 1 },
+      ],
+      lesson_standards: [
+        { _id: 'ls1', lessonVersionId: mockLessonVersionId, standardId: mockStandardId, isPrimary: true, createdAt: 1 },
+      ],
+    });
+    const ctx = { db: mockDb } as unknown as QueryCtx;
+
+    const result = await getTeacherStudentCompetencyDetailHandler(ctx, {
+      userId: mockTeacherId,
+      studentId: mockStudentId,
+    });
+
+    expect(result).not.toBeNull();
+    expect(result?.studentId).toBe(mockStudentId);
+    expect(result?.displayName).toBe('Student One');
+    expect(result?.competencies).toHaveLength(1);
+    expect(result?.competencies[0].masteryLevel).toBe(75);
+    expect(result?.competencies[0].unitNumber).toBe(1);
+    expect(result?.competencies[0].lessonTitle).toBe('Lesson 1');
+  });
+
+  it('returns null for missing competency data', async () => {
+    const mockDb = createMockDb({
+      profiles: [teacherProfile, studentProfile],
+      competency_standards: [
+        { _id: mockStandardId, code: 'A.SSE.1', description: 'Description', isActive: true, createdAt: 1 },
+      ],
+      student_competency: [],
+      lessons: [],
+      lesson_versions: [],
+      lesson_standards: [],
+    });
+    const ctx = { db: mockDb } as unknown as QueryCtx;
+
+    const result = await getTeacherStudentCompetencyDetailHandler(ctx, {
+      userId: mockTeacherId,
+      studentId: mockStudentId,
+    });
+
+    expect(result?.competencies[0].masteryLevel).toBeNull();
+    expect(result?.competencies[0].unitNumber).toBeNull();
+    expect(result?.competencies[0].lessonTitle).toBeNull();
   });
 });
