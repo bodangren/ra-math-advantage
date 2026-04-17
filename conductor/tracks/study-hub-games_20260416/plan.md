@@ -15,18 +15,18 @@
 
 - [x] **Task: Conductor - User Manual Verification 'Phase 1' (Protocol in workflow.md)** [f88c7e3]
 
-## Phase 2: SpeedRoundGame
+## Phase 2: SpeedRoundGame [checkpoint: 49f194b]
 
 ### Tasks
 
-- [ ] **Task: Implement SpeedRoundGame component**
-  - [ ] Write component tests in `__tests__/components/student/SpeedRoundGame.test.tsx`: timer countdown, lives, streaks, question generation, feedback flash, game over screen
-  - [ ] Implement `SpeedRoundGame.tsx` with 90s timer, 3 lives, streak counter, multiple-choice questions
-  - [ ] Support `?module=N` search param with fallback
+- [x] **Task: Implement SpeedRoundGame component** [49f194b]
+  - [x] Write component tests in `__tests__/components/student/SpeedRoundGame.test.tsx`: timer countdown, lives, streaks, question generation, feedback flash, game over screen
+  - [x] Implement `SpeedRoundGame.tsx` with 90s timer, 3 lives, streak counter, multiple-choice questions
+  - [x] Support `?module=N` search param with fallback
 
-- [ ] **Task: Create SpeedRoundGame route**
-  - [ ] Create `app/student/study/speed-round/page.tsx` with auth guard
-  - [ ] Add speed round card to study hub home page
+- [x] **Task: Create SpeedRoundGame route** [49f194b]
+  - [x] Create `app/student/study/speed-round/page.tsx` with auth guard
+  - [x] Add speed round card to study hub home page
 
 - [ ] **Task: Conductor - User Manual Verification 'Phase 2' (Protocol in workflow.md)**
 
