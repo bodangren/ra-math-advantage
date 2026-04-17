@@ -410,10 +410,10 @@ Implementation order: **Wave 0 done → Wave 1 (parallel) → Wave 2 → Wave 3 
        - Phase 1: Batch Queue Resolution and Bound Card Queries [COMPLETE]
        - Phase 2: Verification and Handoff [COMPLETE]
 
-- [~] **Track: PracticeSessionProvider sessionId Fix**
+- [x] **Track: PracticeSessionProvider sessionId Fix** — **COMPLETED**
        *Fix PracticeSessionProvider to send sessionId with completion, preventing wrong-session completion race conditions*
        *Link: [./conductor/tracks/practice-session-provider-sessionid_20260417/](./conductor/tracks/practice-session-provider-sessionid_20260417/)*
-       - Phase 1: Wire sessionId Through Completion Flow [IN PROGRESS]
+       - Phase 1: Wire sessionId Through Completion Flow [COMPLETE]
 
 ## BM2 Alignment Tracks
 

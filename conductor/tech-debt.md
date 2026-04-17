@@ -13,7 +13,7 @@
 | Misconception summary query: N+1 card resolution depth | Critical | Open | 30 students x 100 reviews = 3k+ sequential reads; will timeout |
 | Teacher SRS dashboard: 3 panels return always-empty arrays | High | Open | Individual queries exist but combined dashboard stubs them out |
 | SRS sessions: by_student_and_status index relies on undefined sorting | High | Open | No explicit filter for completedAt=undefined; fragile implicit ordering |
-| PracticeSessionProvider: session completion sends no sessionId | High | Open | fetch('/api/practice/complete') has no body; wrong session risk |
+| PracticeSessionProvider: session completion sends no sessionId | High | Resolved | Fixed: POST body now includes sessionId; API route validates and forwards; Convex mutation verifies exact session (2026-04-17) |
 | Approval status race condition (no version/lock) | High | Open | No "approve exact version" check |
 | N+1 query: phase sections in progress/preview/monitoring queries | High | Open | One DB query per phase inside loop |
 | No Convex-layer authorization | Med-High | Resolved | Added in Security & Auth Hardening track: convex/auth.ts helpers, org scoping |

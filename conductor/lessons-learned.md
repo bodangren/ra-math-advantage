@@ -19,7 +19,7 @@
 - (2026-04-17, code-review) `internalQuery` handlers that accept resource IDs must also require `userId` and call `getAuthorizedTeacher`; missing auth = any-user-reads-any-data (fixed: getTeacherLessonPreview, getStandardsCoverage)
 - (2026-04-15, code-review) React components calling hooks must follow `use*` naming convention; dual state bugs arise when parent and child both track the same state
 - (2026-04-15, code-review) Content hashing must use the same componentKind derivation on both write and read paths
-- (2026-04-16, practice-timing) When mixing `performance.now()` and `Date.now()`, all internal timing must use one base; serialization is the only safe place to convert
+- (2026-04-17, session-completion) Always send explicit `sessionId` in completion API calls; looking up "active session by student" at completion time creates race conditions where the wrong session can be completed
 - (2026-04-17, code-review) `setCurrentIndex(currentIndex + 1)` captures stale closure; always use functional updater `setCurrentIndex((prev) => prev + 1)` in callbacks. Same for `onComplete` — compute final values as local variables before calling, not from closure
 - (2026-04-17, code-review) Union-type casts like `x as ObjectivePriority` must be runtime-validated against a set of valid values; DB corruption silently propagates otherwise
 - (2026-04-17, code-review) RSC page null checks: both `fetchInternalQuery` and `fetchInternalMutation` can return null; always guard the destructuring
