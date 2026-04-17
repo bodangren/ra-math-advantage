@@ -41,17 +41,17 @@
 
 ### Tasks
 
-- [ ] **Task: Implement CourseOverviewGrid component**
-  - [ ] Write component tests for grid rendering, cell coloring, sorting, navigation links
-  - [ ] Implement `CourseOverviewGrid.tsx` with sticky name column and sort controls
+- [x] **Task: Implement CourseOverviewGrid component**
+  - [x] Write component tests for grid rendering, cell coloring, sorting, navigation links
+  - [x] Implement `CourseOverviewGrid.tsx` with sticky name column and sort controls
 
-- [ ] **Task: Implement GradebookGrid component**
-  - [ ] Write component tests for cell rendering, badge overlays, click-to-modal, lesson navigation
-  - [ ] Implement `GradebookGrid.tsx` with cell click handler opening SubmissionDetailModal
+- [x] **Task: Implement GradebookGrid component**
+  - [x] Write component tests for cell rendering, badge overlays, click-to-modal, lesson navigation
+  - [x] Implement `GradebookGrid.tsx` with cell click handler opening SubmissionDetailModal
 
-- [ ] **Task: Implement SubmissionDetailModal component**
-  - [ ] Write component tests for modal open/close, evidence display, mode filter tabs
-  - [ ] Implement `SubmissionDetailModal.tsx` with phase-by-phase evidence cards, practice evidence rendering, misconception tags
+- [x] **Task: Implement SubmissionDetailModal component**
+  - [x] Write component tests for modal open/close, evidence display, mode filter tabs
+  - [x] Implement `SubmissionDetailModal.tsx` with phase-by-phase evidence cards, practice evidence rendering, misconception tags
 
 - [ ] **Task: Conductor - User Manual Verification 'Phase 3' (Protocol in workflow.md)**
 
