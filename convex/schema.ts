@@ -457,4 +457,43 @@ export default defineSchema({
     .index("by_user", ["userId"])
     .index("by_user_and_module", ["userId", "moduleNumber"])
     .index("by_user_and_completed", ["userId", "completedAt"]),
+
+  term_mastery: defineTable({
+    userId: v.id("profiles"),
+    termSlug: v.string(),
+    masteryScore: v.number(),
+    proficiencyBand: v.union(
+      v.literal("new"),
+      v.literal("learning"),
+      v.literal("familiar"),
+      v.literal("mastered")
+    ),
+    seenCount: v.number(),
+    correctCount: v.number(),
+    incorrectCount: v.number(),
+    createdAt: v.number(),
+    updatedAt: v.number(),
+  })
+    .index("by_user", ["userId"])
+    .index("by_user_and_term", ["userId", "termSlug"]),
+
+  due_reviews: defineTable({
+    userId: v.id("profiles"),
+    termSlug: v.string(),
+    scheduledFor: v.number(),
+    fsrsState: v.any(),
+    isDue: v.boolean(),
+    createdAt: v.number(),
+    updatedAt: v.number(),
+  })
+    .index("by_user", ["userId"])
+    .index("by_user_and_term", ["userId", "termSlug"])
+    .index("by_user_and_due", ["userId", "isDue", "scheduledFor"]),
+
+  study_preferences: defineTable({
+    userId: v.id("profiles"),
+    preferences: v.any(),
+    createdAt: v.number(),
+    updatedAt: v.number(),
+  }).index("by_user", ["userId"]),
 });

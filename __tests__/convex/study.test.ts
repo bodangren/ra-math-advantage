@@ -1,5 +1,13 @@
 import { describe, it, expect, vi } from 'vitest';
-import { savePracticeTestResultHandler, getPracticeTestResultsHandler, recordStudySessionHandler, getRecentStudySessionsHandler } from '@/convex/study';
+import {
+  savePracticeTestResultHandler,
+  getPracticeTestResultsHandler,
+  recordStudySessionHandler,
+  getRecentStudySessionsHandler,
+  processReviewHandler,
+  getDueTermsHandler,
+  getTermMasteryByUnitHandler,
+} from '@/convex/study';
 import type { Id } from '@/convex/_generated/dataModel';
 
 function makeMockCtx(overrides: {
@@ -37,10 +45,34 @@ function makeMockCtx(overrides: {
     endedAt: number;
     createdAt: number;
   }>;
+  termMastery?: Array<{
+    _id: Id<'term_mastery'>;
+    userId: Id<'profiles'>;
+    termSlug: string;
+    masteryScore: number;
+    proficiencyBand: 'new' | 'learning' | 'familiar' | 'mastered';
+    seenCount: number;
+    correctCount: number;
+    incorrectCount: number;
+    createdAt: number;
+    updatedAt: number;
+  }>;
+  dueReviews?: Array<{
+    _id: Id<'due_reviews'>;
+    userId: Id<'profiles'>;
+    termSlug: string;
+    scheduledFor: number;
+    fsrsState: unknown;
+    isDue: boolean;
+    createdAt: number;
+    updatedAt: number;
+  }>;
 } = {}) {
   const {
     practiceTestResults = [],
     studySessions = [],
+    termMastery = [],
+    dueReviews = [],
   } = overrides;
 
   const practiceTestResultsQueryMock = {
@@ -63,6 +95,24 @@ function makeMockCtx(overrides: {
     })),
   };
 
+  const termMasteryQueryMock = {
+    withIndex: vi.fn().mockImplementation(() => ({
+      first: vi.fn().mockResolvedValue(termMastery[0] ?? null),
+      collect: vi.fn().mockResolvedValue(termMastery),
+    })),
+  };
+
+  const dueReviewsQueryMock = {
+    withIndex: vi.fn().mockImplementation(() => ({
+      first: vi.fn().mockResolvedValue(dueReviews[0] ?? null),
+      collect: vi.fn().mockResolvedValue(dueReviews),
+      order: vi.fn().mockReturnThis(),
+    })),
+  };
+
+  const mockInsert = vi.fn().mockResolvedValue('test-id' as Id<'practice_test_results'>);
+  const mockPatch = vi.fn().mockResolvedValue(undefined);
+
   const mockCtx = {
     db: {
       query: vi.fn().mockImplementation((tableName: string) => {
@@ -72,12 +122,19 @@ function makeMockCtx(overrides: {
         if (tableName === 'study_sessions') {
           return studySessionsQueryMock;
         }
+        if (tableName === 'term_mastery') {
+          return termMasteryQueryMock;
+        }
+        if (tableName === 'due_reviews') {
+          return dueReviewsQueryMock;
+        }
         return {
           withIndex: vi.fn().mockReturnThis(),
           collect: vi.fn().mockResolvedValue([]),
         };
       }),
-      insert: vi.fn().mockResolvedValue('test-id' as Id<'practice_test_results'>),
+      insert: mockInsert,
+      patch: mockPatch,
       get: vi.fn().mockImplementation((id: Id<'practice_test_results'> | Id<'study_sessions'>) => {
         if (id === 'test-result-id') {
           return practiceTestResults[0] ?? null;
@@ -87,7 +144,7 @@ function makeMockCtx(overrides: {
     },
   };
 
-  return { mockCtx, practiceTestResultsQueryMock, studySessionsQueryMock };
+  return { mockCtx, practiceTestResultsQueryMock, studySessionsQueryMock, termMasteryQueryMock, dueReviewsQueryMock, mockInsert, mockPatch };
 }
 
 describe('Practice Test Results', () => {
@@ -416,6 +473,203 @@ describe('Study Sessions', () => {
       const returnedSessions = await getRecentStudySessionsHandler(mockCtx as any, args);
 
       expect(returnedSessions).toHaveLength(3);
+    });
+  });
+});
+
+describe('Flashcard SRS Handlers', () => {
+  describe('processReviewHandler', () => {
+    it('should insert new term_mastery and due_reviews for first review', async () => {
+      const { mockCtx, mockInsert } = makeMockCtx();
+
+      const args = {
+        userId: 'user-1' as Id<'profiles'>,
+        termSlug: 'quadratic-function',
+        rating: 'good' as const,
+        masteryDelta: 0.1,
+        fsrsState: { due: '2024-01-01' },
+        scheduledFor: 1700000000000,
+        now: 1699999999999,
+      };
+
+      const result = await processReviewHandler(mockCtx as unknown as import('@/convex/_generated/server').MutationCtx, args);
+
+      expect(result.success).toBe(true);
+      expect(mockInsert).toHaveBeenCalledWith('term_mastery', expect.objectContaining({
+        userId: args.userId,
+        termSlug: args.termSlug,
+        masteryScore: 0.1,
+        proficiencyBand: 'learning',
+        seenCount: 1,
+        correctCount: 1,
+        incorrectCount: 0,
+      }));
+      expect(mockInsert).toHaveBeenCalledWith('due_reviews', expect.objectContaining({
+        userId: args.userId,
+        termSlug: args.termSlug,
+        fsrsState: args.fsrsState,
+        scheduledFor: args.scheduledFor,
+        isDue: false,
+      }));
+    });
+
+    it('should patch existing term_mastery and due_reviews', async () => {
+      const existingMastery = {
+        _id: 'mastery-1' as Id<'term_mastery'>,
+        userId: 'user-1' as Id<'profiles'>,
+        termSlug: 'quadratic-function',
+        masteryScore: 0.2,
+        proficiencyBand: 'learning' as const,
+        seenCount: 2,
+        correctCount: 2,
+        incorrectCount: 0,
+        createdAt: 1699900000000,
+        updatedAt: 1699900000000,
+      };
+      const existingReview = {
+        _id: 'review-1' as Id<'due_reviews'>,
+        userId: 'user-1' as Id<'profiles'>,
+        termSlug: 'quadratic-function',
+        scheduledFor: 1699900000000,
+        fsrsState: {},
+        isDue: true,
+        createdAt: 1699900000000,
+        updatedAt: 1699900000000,
+      };
+      const { mockCtx, mockPatch, mockInsert } = makeMockCtx({ termMastery: [existingMastery], dueReviews: [existingReview] });
+
+      const args = {
+        userId: 'user-1' as Id<'profiles'>,
+        termSlug: 'quadratic-function',
+        rating: 'again' as const,
+        masteryDelta: -0.2,
+        fsrsState: { due: '2024-01-02' },
+        scheduledFor: 1700000000000,
+        now: 1699999999999,
+      };
+
+      const result = await processReviewHandler(mockCtx as unknown as import('@/convex/_generated/server').MutationCtx, args);
+
+      expect(result.success).toBe(true);
+      expect(mockPatch).toHaveBeenCalledWith(existingMastery._id, expect.objectContaining({
+        masteryScore: 0,
+        proficiencyBand: 'new',
+        seenCount: 3,
+        correctCount: 2,
+        incorrectCount: 1,
+      }));
+      expect(mockPatch).toHaveBeenCalledWith(existingReview._id, expect.objectContaining({
+        fsrsState: args.fsrsState,
+        scheduledFor: args.scheduledFor,
+        isDue: false,
+      }));
+      expect(mockInsert).not.toHaveBeenCalled();
+    });
+
+    it('should clamp mastery score between 0 and 1', async () => {
+      const existingMastery = {
+        _id: 'mastery-1' as Id<'term_mastery'>,
+        userId: 'user-1' as Id<'profiles'>,
+        termSlug: 'quadratic-function',
+        masteryScore: 0.95,
+        proficiencyBand: 'familiar' as const,
+        seenCount: 5,
+        correctCount: 4,
+        incorrectCount: 1,
+        createdAt: 1699900000000,
+        updatedAt: 1699900000000,
+      };
+      const { mockCtx, mockPatch } = makeMockCtx({ termMastery: [existingMastery] });
+
+      const args = {
+        userId: 'user-1' as Id<'profiles'>,
+        termSlug: 'quadratic-function',
+        rating: 'easy' as const,
+        masteryDelta: 0.2,
+        fsrsState: {},
+        scheduledFor: 1700000000000,
+      };
+
+      await processReviewHandler(mockCtx as unknown as import('@/convex/_generated/server').MutationCtx, args);
+
+      const masteryPatch = mockPatch.mock.calls.find((call: unknown[]) => call[0] === existingMastery._id)?.[1];
+      expect(masteryPatch.masteryScore).toBe(1);
+      expect(masteryPatch.proficiencyBand).toBe('mastered');
+    });
+  });
+
+  describe('getDueTermsHandler', () => {
+    it('should return due terms for a user', async () => {
+      const reviews = [
+        {
+          _id: 'review-1' as Id<'due_reviews'>,
+          userId: 'user-1' as Id<'profiles'>,
+          termSlug: 'quadratic-function',
+          scheduledFor: 1699900000000,
+          fsrsState: {},
+          isDue: true,
+          createdAt: 1699900000000,
+          updatedAt: 1699900000000,
+        },
+        {
+          _id: 'review-2' as Id<'due_reviews'>,
+          userId: 'user-1' as Id<'profiles'>,
+          termSlug: 'parabola',
+          scheduledFor: 1700100000000,
+          fsrsState: {},
+          isDue: false,
+          createdAt: 1699900000000,
+          updatedAt: 1699900000000,
+        },
+      ];
+      const { mockCtx } = makeMockCtx({ dueReviews: reviews });
+
+      const args = {
+        userId: 'user-1' as Id<'profiles'>,
+        now: 1700000000000,
+      };
+
+      const result = await getDueTermsHandler(mockCtx as unknown as import('@/convex/_generated/server').QueryCtx, args);
+
+      expect(result).toHaveLength(1);
+      expect(result[0].termSlug).toBe('quadratic-function');
+    });
+  });
+
+  describe('getTermMasteryByUnitHandler', () => {
+    it('should return mastery terms filtered by module', async () => {
+      const mastery = [
+        {
+          _id: 'mastery-1' as Id<'term_mastery'>,
+          userId: 'user-1' as Id<'profiles'>,
+          termSlug: 'quadratic-function',
+          masteryScore: 0.5,
+          proficiencyBand: 'familiar' as const,
+          seenCount: 3,
+          correctCount: 3,
+          incorrectCount: 0,
+          createdAt: 1699900000000,
+          updatedAt: 1699900000000,
+        },
+        {
+          _id: 'mastery-2' as Id<'term_mastery'>,
+          userId: 'user-1' as Id<'profiles'>,
+          termSlug: 'polynomial',
+          masteryScore: 0.2,
+          proficiencyBand: 'learning' as const,
+          seenCount: 2,
+          correctCount: 1,
+          incorrectCount: 1,
+          createdAt: 1699900000000,
+          updatedAt: 1699900000000,
+        },
+      ];
+      const { mockCtx } = makeMockCtx({ termMastery: mastery });
+
+      const result = await getTermMasteryByUnitHandler(mockCtx as unknown as import('@/convex/_generated/server').QueryCtx, { userId: 'user-1' as Id<'profiles'>, moduleNumber: 1 });
+
+      expect(result).toHaveLength(1);
+      expect(result[0].termSlug).toBe('quadratic-function');
     });
   });
 });

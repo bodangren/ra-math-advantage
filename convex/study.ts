@@ -2,6 +2,8 @@ import { internalMutation, internalQuery } from "./_generated/server";
 import { v } from "convex/values";
 import type { MutationCtx, QueryCtx } from "./_generated/server";
 import type { Id } from "./_generated/dataModel";
+import { proficiencyBand, updateMastery } from "../lib/study/srs";
+import { getGlossaryTermBySlug } from "../lib/study/glossary";
 
 type SavePracticeTestResultArgs = {
   userId: Id<"profiles">;
@@ -43,6 +45,139 @@ type GetRecentStudySessionsArgs = {
   userId: Id<"profiles">;
   limit?: number;
 };
+
+type ProcessReviewArgs = {
+  userId: Id<"profiles">;
+  termSlug: string;
+  rating: "again" | "hard" | "good" | "easy";
+  masteryDelta: number;
+  fsrsState: unknown;
+  scheduledFor: number;
+  now?: number;
+};
+
+type GetDueTermsArgs = {
+  userId: Id<"profiles">;
+  now?: number;
+};
+
+type GetTermMasteryByUnitArgs = {
+  userId: Id<"profiles">;
+  moduleNumber: number;
+};
+
+export async function processReviewHandler(
+  ctx: MutationCtx,
+  args: ProcessReviewArgs
+) {
+  const now = args.now ?? Date.now();
+  const isCorrect = args.rating !== "again";
+
+  const existingMastery = await ctx.db
+    .query("term_mastery")
+    .withIndex("by_user_and_term", (q) =>
+      q.eq("userId", args.userId).eq("termSlug", args.termSlug)
+    )
+    .first();
+
+  if (existingMastery) {
+    const newMasteryScore = updateMastery(
+      existingMastery.masteryScore,
+      args.masteryDelta
+    );
+    await ctx.db.patch(existingMastery._id, {
+      masteryScore: newMasteryScore,
+      proficiencyBand: proficiencyBand(newMasteryScore),
+      seenCount: existingMastery.seenCount + 1,
+      correctCount: existingMastery.correctCount + (isCorrect ? 1 : 0),
+      incorrectCount: existingMastery.incorrectCount + (isCorrect ? 0 : 1),
+      updatedAt: now,
+    });
+  } else {
+    const initialMasteryScore = updateMastery(0, args.masteryDelta);
+    await ctx.db.insert("term_mastery", {
+      userId: args.userId,
+      termSlug: args.termSlug,
+      masteryScore: initialMasteryScore,
+      proficiencyBand: proficiencyBand(initialMasteryScore),
+      seenCount: 1,
+      correctCount: isCorrect ? 1 : 0,
+      incorrectCount: isCorrect ? 0 : 1,
+      createdAt: now,
+      updatedAt: now,
+    });
+  }
+
+  const existingReview = await ctx.db
+    .query("due_reviews")
+    .withIndex("by_user_and_term", (q) =>
+      q.eq("userId", args.userId).eq("termSlug", args.termSlug)
+    )
+    .first();
+
+  const isDue = args.scheduledFor <= now;
+
+  if (existingReview) {
+    await ctx.db.patch(existingReview._id, {
+      fsrsState: args.fsrsState,
+      scheduledFor: args.scheduledFor,
+      isDue,
+      updatedAt: now,
+    });
+  } else {
+    await ctx.db.insert("due_reviews", {
+      userId: args.userId,
+      termSlug: args.termSlug,
+      fsrsState: args.fsrsState,
+      scheduledFor: args.scheduledFor,
+      isDue,
+      createdAt: now,
+      updatedAt: now,
+    });
+  }
+
+  return { success: true };
+}
+
+export async function getDueTermsHandler(
+  ctx: QueryCtx,
+  args: GetDueTermsArgs
+) {
+  const now = args.now ?? Date.now();
+
+  const reviews = await ctx.db
+    .query("due_reviews")
+    .withIndex("by_user", (q) => q.eq("userId", args.userId))
+    .order("asc")
+    .collect();
+
+  const dueTerms = reviews
+    .filter((review) => review.scheduledFor <= now)
+    .map((review) => ({
+      termSlug: review.termSlug,
+      fsrsState: review.fsrsState,
+      scheduledFor: review.scheduledFor,
+    }));
+
+  return dueTerms;
+}
+
+export async function getTermMasteryByUnitHandler(
+  ctx: QueryCtx,
+  args: GetTermMasteryByUnitArgs
+) {
+  const masteryRecords = await ctx.db
+    .query("term_mastery")
+    .withIndex("by_user", (q) => q.eq("userId", args.userId))
+    .collect();
+
+  const filtered = masteryRecords.filter((record) => {
+    const term = getGlossaryTermBySlug(record.termSlug);
+    return term && term.modules.includes(args.moduleNumber);
+  });
+
+  return filtered;
+}
 
 export async function getPracticeTestResultsHandler(
   ctx: QueryCtx,
@@ -286,4 +421,38 @@ export const getStudySessionsForTeacher = internalQuery({
     )),
   },
   handler: getStudySessionsForTeacherHandler,
+});
+
+export const processReview = internalMutation({
+  args: {
+    userId: v.id("profiles"),
+    termSlug: v.string(),
+    rating: v.union(
+      v.literal("again"),
+      v.literal("hard"),
+      v.literal("good"),
+      v.literal("easy")
+    ),
+    masteryDelta: v.number(),
+    fsrsState: v.any(),
+    scheduledFor: v.number(),
+    now: v.optional(v.number()),
+  },
+  handler: processReviewHandler,
+});
+
+export const getDueTerms = internalQuery({
+  args: {
+    userId: v.id("profiles"),
+    now: v.optional(v.number()),
+  },
+  handler: getDueTermsHandler,
+});
+
+export const getTermMasteryByUnit = internalQuery({
+  args: {
+    userId: v.id("profiles"),
+    moduleNumber: v.number(),
+  },
+  handler: getTermMasteryByUnitHandler,
 });

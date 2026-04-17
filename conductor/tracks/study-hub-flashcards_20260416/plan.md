@@ -20,11 +20,11 @@
 
 - [x] **Task: Conductor - User Manual Verification 'Phase 1' (Protocol in workflow.md)** [checkpoint: c47f8a1]
 
-## Phase 2: Convex Tables and Mutations
+## Phase 2: Convex Tables and Mutations [~]
 
 ### Tasks
 
-- [ ] **Task: Add Convex tables for term mastery and due reviews**
+- [~] **Task: Add Convex tables for term mastery and due reviews**
   - [ ] Add `term_mastery` table with indexes (by_user, by_user_and_term)
   - [ ] Add `due_reviews` table with indexes (by_user, by_user_and_term, by_user_and_due)
   - [ ] Add `study_preferences` table with index (by_user)
