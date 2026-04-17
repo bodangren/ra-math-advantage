@@ -1,0 +1,15 @@
+Phase 1 Checkpoint: PracticeSessionProvider sessionId fix
+
+Verification:
+- Full test suite: 3355 passed, 7 pre-existing failures (equivalence + flaky hint)
+- Lint: 35 pre-existing any errors in test files, no new errors
+- Build: passing
+
+Files changed:
+- components/student/PracticeSessionProvider.tsx
+- app/api/practice/complete/route.ts
+- convex/queue/sessions.ts
+- __tests__/components/student/PracticeSessionProvider.test.tsx
+- __tests__/app/api/practice/complete/route.test.ts
+- __tests__/convex/queue/sessions.test.ts
+- conductor/tech-debt.md, lessons-learned.md, tracks.md
