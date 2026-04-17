@@ -6,6 +6,10 @@ This file is the execution playbook for the monorepo migration. It is intentiona
 
 This playbook does not replace [Monorepo Plan](/Users/daniel.bodanske/Desktop/ra-integrated-math-3/conductor/monorepo-plan.md). It operationalizes it into track-sized implementation work.
 
+For exact junior implementation packets (file maps, import scans, command checklists, and per-track exit gates), use:
+
+- [Monorepo Junior Execution Spec](/Users/daniel.bodanske/Desktop/ra-integrated-math-3/conductor/monorepo-jr-execution-spec.md)
+
 ## Global Rules
 
 1. Do not start a track until all dependencies listed for that track are complete.
@@ -68,6 +72,14 @@ Do not skip step 3. The classification is what prevents accidental domain leakag
 3. Prefer package barrel exports from `src/index.ts` instead of deep package paths.
 4. Keep temporary app-local compatibility shims only if needed.
 5. Delete shims before closing the track if feasible.
+
+## Current Track ID Mapping (2026-04-17)
+
+Execute the Conductor track IDs in `conductor/tracks/` as the source of truth.
+
+- `TRK-MONO-06` (core-auth) and `TRK-MONO-07` (core-convex) are executed as one combined Conductor track: `extract-core-auth-convex_20260417`.
+- Legacy split track folders `extract-core-auth_20260417` and `extract-core-convex_20260417` are superseded and should not be run independently.
+- Use `conductor/monorepo-jr-execution-spec.md` for file-by-file packet details tied to active Conductor track IDs.
 
 ## Track Catalog
 

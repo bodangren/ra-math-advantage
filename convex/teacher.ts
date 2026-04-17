@@ -259,16 +259,25 @@ export const getTeacherDashboardData = internalQuery({
     }
 
     const snapshots = new Map<string, TeacherProgressSnapshot>();
-    for (const studentId of studentIds) {
-      const current = await buildStudentProgressSnapshot(
-        ctx,
-        studentId,
+    const progressRowsArrays = await Promise.all(
+      studentIds.map((studentId) =>
+        ctx.db
+          .query("student_progress")
+          .withIndex("by_user", (q) => q.eq("userId", studentId))
+          .collect()
+      )
+    );
+    for (let i = 0; i < studentIds.length; i++) {
+      const studentId = studentIds[i];
+      const progressRows = progressRowsArrays[i];
+      const snapshot = buildStudentProgressSnapshot(
+        progressRows,
         activePhaseIds,
         phaseVersionLessonMap,
         lessonVersionLessonMap,
         lessonTitleMap,
       );
-      snapshots.set(studentId, current);
+      snapshots.set(studentId, snapshot);
     }
 
     const studentsWithProgress = students.map((student) => {
@@ -1369,11 +1378,38 @@ export const getTeacherSrsDashboardData = internalQuery({
       .collect();
 
     const activeStudents = enrollments.filter((e) => e.status === "active");
+    const studentIds = activeStudents.map((e) => e.studentId);
     const now = Date.now();
     const todayStart = new Date(now);
     todayStart.setUTCHours(0, 0, 0, 0);
     const todayStartMs = todayStart.getTime();
     const yesterdayMs = todayStartMs - 24 * 60 * 60 * 1000;
+
+    const [cardsArrays, sessionsArrays, profilesResults] = await Promise.all([
+      Promise.all(
+        studentIds.map((studentId) =>
+          ctx.db
+            .query("srs_cards")
+            .withIndex("by_student", (q) => q.eq("studentId", studentId))
+            .collect()
+        )
+      ),
+      Promise.all(
+        studentIds.map((studentId) =>
+          ctx.db
+            .query("srs_sessions")
+            .withIndex("by_student", (q) => q.eq("studentId", studentId))
+            .collect()
+        )
+      ),
+      Promise.all(studentIds.map((studentId) => ctx.db.get("profiles", studentId))),
+    ]);
+
+    const profilesMap = new Map(
+      profilesResults
+        .filter((p): p is NonNullable<typeof p> => p !== null)
+        .map((p) => [p._id, p])
+    );
 
     let totalActiveStudents = 0;
     let practicedToday = 0;
@@ -1386,11 +1422,11 @@ export const getTeacherSrsDashboardData = internalQuery({
     const studentStreaks: Array<{ studentId: string; displayName: string; streak: number }> = [];
     const nowIso = new Date(now).toISOString();
 
-    for (const enrollment of activeStudents) {
-      const cards = await ctx.db
-        .query("srs_cards")
-        .withIndex("by_student", (q) => q.eq("studentId", enrollment.studentId))
-        .collect();
+    for (let i = 0; i < activeStudents.length; i++) {
+      const enrollment = activeStudents[i];
+      const cards = cardsArrays[i];
+      const sessions = sessionsArrays[i];
+      const profile = profilesMap.get(enrollment.studentId);
 
       if (cards.length > 0) {
         totalActiveStudents++;
@@ -1405,13 +1441,7 @@ export const getTeacherSrsDashboardData = internalQuery({
       totalOverdue += overdueCount;
       perStudentOverdue.push({ studentId: enrollment.studentId, overdueCount });
 
-      const profile = await ctx.db.get("profiles", enrollment.studentId);
       if (!profile) continue;
-
-      const sessions = await ctx.db
-        .query("srs_sessions")
-        .withIndex("by_student", (q) => q.eq("studentId", enrollment.studentId))
-        .collect();
 
       const completedSessions = sessions.filter((s) => s.completedAt !== undefined);
       if (completedSessions.length === 0) continue;
@@ -1438,12 +1468,12 @@ export const getTeacherSrsDashboardData = internalQuery({
       if (mostRecent === todayStartMs || mostRecent === yesterdayMs) {
         streak = 1;
         let checkDay = mostRecent;
-        for (let i = 1; i < uniqueDays.length; i++) {
+        for (let j = 1; j < uniqueDays.length; j++) {
           const expected = checkDay - 24 * 60 * 60 * 1000;
-          if (uniqueDays[i] === expected) {
+          if (uniqueDays[j] === expected) {
             streak++;
-            checkDay = uniqueDays[i];
-          } else if (uniqueDays[i] < expected) {
+            checkDay = uniqueDays[j];
+          } else if (uniqueDays[j] < expected) {
             break;
           }
         }

@@ -1,5 +1,7 @@
 # Implementation Plan: Monorepo Docs and Cleanup
 
+> Execution detail packet: see `conductor/monorepo-jr-execution-spec.md`, section `monorepo-docs-and-cleanup_20260417`.
+
 ## Phase 1: Author Final Documentation
 
 ### Tasks

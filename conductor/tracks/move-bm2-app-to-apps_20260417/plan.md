@@ -1,5 +1,7 @@
 # Implementation Plan: Move BM2 App to apps/bus-math-v2
 
+> Execution detail packet: see `conductor/monorepo-jr-execution-spec.md`, section `move-bm2-app-to-apps_20260417`.
+
 ## Phase 1: Mechanical BM2 Move
 
 ### Tasks

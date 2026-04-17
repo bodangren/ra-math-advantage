@@ -1,5 +1,7 @@
 # Specification: BM2 Consume Core Packages
 
+> Execution detail packet: see `conductor/monorepo-jr-execution-spec.md`, section `bm2-consume-core-packages_20260417`.
+
 ## Overview
 
 Adopt core packages in BM2 incrementally while keeping BM2-only domain logic local.

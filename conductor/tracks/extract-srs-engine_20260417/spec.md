@@ -1,5 +1,7 @@
 # Specification: Extract SRS Engine Package
 
+> Execution detail packet: see `conductor/monorepo-jr-execution-spec.md`, section `extract-srs-engine_20260417`.
+
 ## Overview
 
 Package SRS contract, scheduler, review processor, queue primitives, adapter interfaces, and integration docs from IM3 audited code.

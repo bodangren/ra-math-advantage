@@ -1,5 +1,7 @@
 # Implementation Plan: Extract Component Approval Package
 
+> Execution detail packet: see `conductor/monorepo-jr-execution-spec.md`, section `extract-component-approval_20260417`.
+
 ## Phase 1: Extract Core Primitives
 
 ### Tasks

@@ -1,5 +1,7 @@
 # Implementation Plan: Extract SRS Engine Package
 
+> Execution detail packet: see `conductor/monorepo-jr-execution-spec.md`, section `extract-srs-engine_20260417`.
+
 ## Phase 1: Scaffold and Extract
 
 ### Tasks

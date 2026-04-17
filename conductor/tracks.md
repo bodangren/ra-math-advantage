@@ -482,6 +482,7 @@ Tracks ported from `bus-math-v2` per the BM2 Alignment Report. Ordered by recomm
 ## Monorepo Migration Program (IM3 + BM2)
 
 Execution playbook for junior implementation: [./conductor/monorepo-track-playbook.md](./conductor/monorepo-track-playbook.md)
+Detailed junior track packets (exact files + commands + verification): [./conductor/monorepo-jr-execution-spec.md](./conductor/monorepo-jr-execution-spec.md)
 
 AI Tutoring and Workbook scope is explicitly **import/adopt from BM2**, not greenfield IM3 reimplementation.
 

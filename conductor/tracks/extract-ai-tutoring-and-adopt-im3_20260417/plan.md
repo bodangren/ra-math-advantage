@@ -1,5 +1,7 @@
 # Implementation Plan: Extract AI Tutoring Package and Adopt in IM3
 
+> Execution detail packet: see `conductor/monorepo-jr-execution-spec.md`, section `extract-ai-tutoring-and-adopt-im3_20260417`.
+
 ## Phase 1: Package Extraction from BM2
 
 ### Tasks

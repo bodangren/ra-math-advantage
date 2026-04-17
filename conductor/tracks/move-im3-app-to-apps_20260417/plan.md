@@ -1,5 +1,7 @@
 # Implementation Plan: Move IM3 App to apps/integrated-math-3
 
+> Execution detail packet: see `conductor/monorepo-jr-execution-spec.md`, section `move-im3-app-to-apps_20260417`.
+
 ## Phase 1: Mechanical Move
 
 ### Tasks

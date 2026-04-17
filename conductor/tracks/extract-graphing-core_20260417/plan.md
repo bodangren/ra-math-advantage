@@ -1,5 +1,7 @@
 # Implementation Plan: Extract Graphing Core Package
 
+> Execution detail packet: see `conductor/monorepo-jr-execution-spec.md`, section `extract-graphing-core_20260417`.
+
 ## Phase 1: Extract Utility Primitives
 
 ### Tasks

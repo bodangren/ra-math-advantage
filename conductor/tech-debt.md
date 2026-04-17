@@ -45,6 +45,6 @@
 | PracticeTestEngine closing: missing Back to Modules button | Low | Open | Spec defines backToModulesButton but component doesn't render it; parent has back nav |
 | StepByStepper-guided test: flaky hint tracking | Low | Open | Passes in isolation but fails intermittently in full suite; likely timing/timer issue |
 | New test files (study.test.ts, gradebook-queries.test.ts, timing-baseline.test.ts): 35 `any` lint errors | Medium | Open | @typescript-eslint/no-explicit-any violations in test mocks |
-| N+1 queries in getTeacherDashboardData and getTeacherSrsDashboardData | High | Open | 30 sequential DB round-trips per student in loops; should batch with single query |
+| N+1 queries in getTeacherDashboardData and getTeacherSrsDashboardData | High | Resolved | Fixed: batched per-student srs_cards, srs_sessions, and profiles queries via Promise.all (2026-04-17) |
 | Unbounded .collect() on lesson_versions, competency_standards, lesson_standards in teacher.ts | High | Open | Multiple handlers fetch entire tables; will grow expensive over time |
 | SubmissionDetailModal: array index used as React key for evidence list | Low | Open | Should use stable ID (e.g., evidence.activityId) |

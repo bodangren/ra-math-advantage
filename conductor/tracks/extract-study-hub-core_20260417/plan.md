@@ -1,5 +1,7 @@
 # Implementation Plan: Extract Study Hub Core Package
 
+> Execution detail packet: see `conductor/monorepo-jr-execution-spec.md`, section `extract-study-hub-core_20260417`.
+
 ## Phase 1: Extract Shared Study Primitives
 
 ### Tasks

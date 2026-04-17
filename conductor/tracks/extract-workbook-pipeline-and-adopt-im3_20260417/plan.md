@@ -1,5 +1,7 @@
 # Implementation Plan: Extract Workbook Pipeline Package and Adopt in IM3
 
+> Execution detail packet: see `conductor/monorepo-jr-execution-spec.md`, section `extract-workbook-pipeline-and-adopt-im3_20260417`.
+
 ## Phase 1: Extract BM2 Workbook Pipeline Primitives
 
 ### Tasks

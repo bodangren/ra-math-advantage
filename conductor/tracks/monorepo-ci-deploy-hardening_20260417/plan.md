@@ -1,5 +1,7 @@
 # Implementation Plan: Monorepo CI and Deploy Hardening
 
+> Execution detail packet: see `conductor/monorepo-jr-execution-spec.md`, section `monorepo-ci-deploy-hardening_20260417`.
+
 ## Phase 1: CI Pipeline Matrix
 
 ### Tasks

@@ -1,5 +1,7 @@
 # Implementation Plan: Extract Practice Core Package
 
+> Execution detail packet: see `conductor/monorepo-jr-execution-spec.md`, section `extract-practice-core_20260417`.
+
 ## Phase 1: Scaffold and Extract
 
 ### Tasks

@@ -1,5 +1,7 @@
 # Specification: Extract Workbook Pipeline Package and Adopt in IM3
 
+> Execution detail packet: see `conductor/monorepo-jr-execution-spec.md`, section `extract-workbook-pipeline-and-adopt-im3_20260417`.
+
 ## Overview
 
 Use BM2 workbook pipeline as canonical implementation and avoid duplicate IM3 local pipeline creation.

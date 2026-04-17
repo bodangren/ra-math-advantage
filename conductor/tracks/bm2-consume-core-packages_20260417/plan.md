@@ -1,5 +1,7 @@
 # Implementation Plan: BM2 Consume Core Packages
 
+> Execution detail packet: see `conductor/monorepo-jr-execution-spec.md`, section `bm2-consume-core-packages_20260417`.
+
 ## Phase 1: Practice and SRS Adoption
 
 ### Tasks

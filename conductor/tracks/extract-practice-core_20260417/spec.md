@@ -1,5 +1,7 @@
 # Specification: Extract Practice Core Package
 
+> Execution detail packet: see `conductor/monorepo-jr-execution-spec.md`, section `extract-practice-core_20260417`.
+
 ## Overview
 
 Create canonical `practice-core` package containing practice contract, submission schema, timing logic, timing baselines, SRS rating, and reusable error-analysis primitives.

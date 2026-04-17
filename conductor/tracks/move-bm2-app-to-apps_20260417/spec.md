@@ -1,5 +1,7 @@
 # Specification: Move BM2 App to apps/bus-math-v2
 
+> Execution detail packet: see `conductor/monorepo-jr-execution-spec.md`, section `move-bm2-app-to-apps_20260417`.
+
 ## Overview
 
 Move BM2 into monorepo once IM3 host and core package patterns are proven. Keep BM2 domain modules local.

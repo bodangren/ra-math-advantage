@@ -1,7 +1,6 @@
 # Lessons Learned
 
-> This file is curated working memory, not an append-only log. Keep it at or below **50 lines**.
-> Remove or condense entries that no longer influence near-term planning.
+> This file is curated working memory, not an append-only log. Keep it at or below **50 lines**; remove or condense entries that no longer influence near-term planning.
 
 ## Architecture & Design
 

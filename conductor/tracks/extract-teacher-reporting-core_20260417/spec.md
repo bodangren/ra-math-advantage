@@ -1,5 +1,7 @@
 # Specification: Extract Teacher Reporting Core Package
 
+> Execution detail packet: see `conductor/monorepo-jr-execution-spec.md`, section `extract-teacher-reporting-core_20260417`.
+
 ## Overview
 
 Share gradebook/course-overview/competency helper logic and reusable reporting UI primitives across apps.

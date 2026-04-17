@@ -1,5 +1,7 @@
 # Specification: Extract Study Hub Core Package
 
+> Execution detail packet: see `conductor/monorepo-jr-execution-spec.md`, section `extract-study-hub-core_20260417`.
+
 ## Overview
 
 Share study state machine and mode primitives while keeping glossary data and persistence local.

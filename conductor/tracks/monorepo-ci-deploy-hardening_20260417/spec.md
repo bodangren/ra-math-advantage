@@ -1,5 +1,7 @@
 # Specification: Monorepo CI and Deploy Hardening
 
+> Execution detail packet: see `conductor/monorepo-jr-execution-spec.md`, section `monorepo-ci-deploy-hardening_20260417`.
+
 ## Overview
 
 Harden CI and deploy processes so package and app validation is deterministic and independently deployable.

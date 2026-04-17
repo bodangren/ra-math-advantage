@@ -1,5 +1,7 @@
 # Specification: Extract Practice Test Engine Package
 
+> Execution detail packet: see `conductor/monorepo-jr-execution-spec.md`, section `extract-practice-test-engine_20260417`.
+
 ## Overview
 
 Share practice test engine behavior while keeping question banks app-local.

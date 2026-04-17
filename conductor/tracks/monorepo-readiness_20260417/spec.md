@@ -1,5 +1,7 @@
 # Specification: Monorepo Readiness Gate
 
+> Execution detail packet: see `conductor/monorepo-jr-execution-spec.md`, section `monorepo-readiness_20260417`.
+
 ## Overview
 
 Prepare both repos for safe monorepo work without moving source files. Capture explicit approvals and constraints so junior developers can execute subsequent tracks without guessing.

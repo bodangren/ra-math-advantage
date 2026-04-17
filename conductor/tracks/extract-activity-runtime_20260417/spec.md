@@ -1,5 +1,7 @@
 # Specification: Extract Activity Runtime Package
 
+> Execution detail packet: see `conductor/monorepo-jr-execution-spec.md`, section `extract-activity-runtime_20260417`.
+
 ## Overview
 
 Share lesson/activity runtime contracts and renderer primitives while keeping concrete course components app-local.

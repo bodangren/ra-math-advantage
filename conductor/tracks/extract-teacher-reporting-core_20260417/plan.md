@@ -1,5 +1,7 @@
 # Implementation Plan: Extract Teacher Reporting Core Package
 
+> Execution detail packet: see `conductor/monorepo-jr-execution-spec.md`, section `extract-teacher-reporting-core_20260417`.
+
 ## Phase 1: Pure Logic Extraction
 
 ### Tasks

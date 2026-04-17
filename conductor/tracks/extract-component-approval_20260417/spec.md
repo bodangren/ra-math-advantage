@@ -1,5 +1,7 @@
 # Specification: Extract Component Approval Package
 
+> Execution detail packet: see `conductor/monorepo-jr-execution-spec.md`, section `extract-component-approval_20260417`.
+
 ## Overview
 
 Package reusable approval mechanics while keeping app-specific review routes and targets local.

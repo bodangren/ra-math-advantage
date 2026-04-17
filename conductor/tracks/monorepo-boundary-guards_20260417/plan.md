@@ -1,5 +1,7 @@
 # Implementation Plan: Monorepo Boundary Guardrails
 
+> Execution detail packet: see `conductor/monorepo-jr-execution-spec.md`, section `monorepo-boundary-guards_20260417`.
+
 ## Phase 1: Define Guard Rules
 
 ### Tasks

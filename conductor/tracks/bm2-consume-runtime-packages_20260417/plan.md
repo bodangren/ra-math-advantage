@@ -1,5 +1,7 @@
 # Implementation Plan: BM2 Consume Runtime Packages
 
+> Execution detail packet: see `conductor/monorepo-jr-execution-spec.md`, section `bm2-consume-runtime-packages_20260417`.
+
 ## Phase 1: Activity Runtime Adoption
 
 ### Tasks

@@ -1,5 +1,7 @@
 # Specification: Move IM3 App to apps/integrated-math-3
 
+> Execution detail packet: see `conductor/monorepo-jr-execution-spec.md`, section `move-im3-app-to-apps_20260417`.
+
 ## Overview
 
 Perform IM3 directory migration with strict mechanical scope. No logic refactors allowed in this track except path-related fixes.

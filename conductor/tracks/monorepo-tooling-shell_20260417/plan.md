@@ -1,5 +1,7 @@
 # Implementation Plan: Monorepo Tooling Shell
 
+> Execution detail packet: see `conductor/monorepo-jr-execution-spec.md`, section `monorepo-tooling-shell_20260417`.
+
 ## Phase 1: Root Workspace Setup
 
 ### Tasks

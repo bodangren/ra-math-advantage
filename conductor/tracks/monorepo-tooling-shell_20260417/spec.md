@@ -1,5 +1,7 @@
 # Specification: Monorepo Tooling Shell
 
+> Execution detail packet: see `conductor/monorepo-jr-execution-spec.md`, section `monorepo-tooling-shell_20260417`.
+
 ## Overview
 
 Install monorepo control plane at repository root. Keep IM3 app in current location during this track so failures are isolated to tooling setup.

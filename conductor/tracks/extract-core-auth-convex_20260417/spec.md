@@ -1,5 +1,7 @@
 # Specification: Extract Core Auth + Convex Infrastructure
 
+> Execution detail packet: see `conductor/monorepo-jr-execution-spec.md`, section `extract-core-auth-convex_20260417`.
+
 ## Overview
 
 Extract shared authentication/session utilities and shared Convex server wrappers into monorepo packages while preserving app-level behavior and keeping generated Convex APIs app-local.

@@ -1,5 +1,7 @@
 # Specification: Extract AI Tutoring Package and Adopt in IM3
 
+> Execution detail packet: see `conductor/monorepo-jr-execution-spec.md`, section `extract-ai-tutoring-and-adopt-im3_20260417`.
+
 ## Overview
 
 Use BM2 as source of truth for AI tutoring primitives so IM3 does not create a duplicate local implementation.

@@ -1,5 +1,7 @@
 # Implementation Plan: Monorepo Readiness Gate
 
+> Execution detail packet: see `conductor/monorepo-jr-execution-spec.md`, section `monorepo-readiness_20260417`.
+
 ## Phase 1: Audit and Triage
 
 ### Tasks

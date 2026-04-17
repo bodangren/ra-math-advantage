@@ -1,5 +1,7 @@
 # Specification: Extract Graphing Core Package
 
+> Execution detail packet: see `conductor/monorepo-jr-execution-spec.md`, section `extract-graphing-core_20260417`.
+
 ## Overview
 
 Share graphing utility primitives across apps while keeping domain exploration configs app-specific.

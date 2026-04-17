@@ -1,5 +1,7 @@
 # Implementation Plan: Extract Practice Test Engine Package
 
+> Execution detail packet: see `conductor/monorepo-jr-execution-spec.md`, section `extract-practice-test-engine_20260417`.
+
 ## Phase 1: Package Extraction
 
 ### Tasks

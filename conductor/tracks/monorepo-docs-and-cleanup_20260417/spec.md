@@ -1,5 +1,7 @@
 # Specification: Monorepo Docs and Cleanup
 
+> Execution detail packet: see `conductor/monorepo-jr-execution-spec.md`, section `monorepo-docs-and-cleanup_20260417`.
+
 ## Overview
 
 Close migration with maintainable docs and minimal technical residue so future contributors can work safely.

@@ -1,5 +1,7 @@
 # Implementation Plan: Extract Activity Runtime Package
 
+> Execution detail packet: see `conductor/monorepo-jr-execution-spec.md`, section `extract-activity-runtime_20260417`.
+
 ## Phase 1: Package Extraction
 
 ### Tasks

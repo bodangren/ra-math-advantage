@@ -1,5 +1,7 @@
 # Specification: Monorepo Boundary Guardrails
 
+> Execution detail packet: see `conductor/monorepo-jr-execution-spec.md`, section `monorepo-boundary-guards_20260417`.
+
 ## Overview
 
 Prevent architecture drift by codifying forbidden import boundaries in scripts and CI.

@@ -1,5 +1,7 @@
 # Implementation Plan: Extract Core Auth + Convex Infrastructure
 
+> Execution detail packet: see `conductor/monorepo-jr-execution-spec.md`, section `extract-core-auth-convex_20260417`.
+
 ## Phase 1: Package Scaffolding and Baseline Extraction
 
 ### Tasks
