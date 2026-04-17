@@ -34,14 +34,14 @@
 
 ### Tasks
 
-- [ ] **Task: Verify shared infrastructure and session recording**
-  - [ ] Verify both games use shared `recordSession` mutation
-  - [ ] Verify both games use shared `shuffleArray` and glossary helpers
-  - [ ] Test that sessions appear in progress dashboard (if ProgressDashboard exists)
+- [x] **Task: Verify shared infrastructure and session recording** [phase3-verify]
+  - [x] Verify both games use shared `recordSession` mutation
+  - [x] Verify both games use shared `shuffleArray` and glossary helpers
+  - [x] Test that sessions appear in progress dashboard (if ProgressDashboard exists)
 
-- [ ] **Task: Final verification**
-  - [ ] Run full test suite
-  - [ ] Run lint and typecheck
-  - [ ] Manual walkthrough of all study hub routes
+- [x] **Task: Final verification** [phase3-verify]
+  - [x] Run full test suite
+  - [x] Run lint and typecheck
+  - [x] Manual walkthrough of all study hub routes
 
-- [ ] **Task: Conductor - User Manual Verification 'Phase 3' (Protocol in workflow.md)**
+- [x] **Task: Conductor - User Manual Verification 'Phase 3' (Protocol in workflow.md)** [phase3-verify]

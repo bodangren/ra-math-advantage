@@ -444,7 +444,7 @@ Tracks ported from `bus-math-v2` per the BM2 Alignment Report. Ordered by recomm
         - Phase 2: Convex Tables and Mutations [COMPLETE] [checkpoint: b3e8ccd]
         - Phase 3: UI Components and Routes [COMPLETE] [checkpoint: 47afac5]
 
-- [~] **Track: Student Study Hub — Matching & Speed Round Games**
+- [x] **Track: Student Study Hub — Matching & Speed Round Games**
       *Port click-based matching game and timed speed round game, reusing IM3 glossary*
       *Link: [./conductor/tracks/study-hub-games_20260416/](./conductor/tracks/study-hub-games_20260416/)*
 
