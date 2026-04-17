@@ -21,7 +21,7 @@
 
 ### Tasks
 
-- [~] **Task: Run full verification suite**
+- [x] **Task: Run full verification suite** [MiniMax-M2]
   - [x] Run `CI=true npm run test`
   - [x] Run `npm run lint`
   - [x] Run `npm run build`
@@ -31,4 +31,4 @@
   - [x] Mark resolved SRS queue N+1 items in `tech-debt.md`
   - [x] Add any discovered issues
 
-- [ ] **Task: Conductor - User Manual Verification 'Phase 2' (Protocol in workflow.md)**
+- [x] **Task: Conductor - User Manual Verification 'Phase 2' (Protocol in workflow.md)** [MiniMax-M2]
