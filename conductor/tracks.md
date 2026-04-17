@@ -438,8 +438,9 @@ Tracks ported from `bus-math-v2` per the BM2 Alignment Report. Ordered by recomm
 ### Wave C — Student Engagement (after SRS Wave 3)
 
 - [ ] **Track: Student Study Hub — Flashcards & SRS Review**
-     *Port BaseReviewSession, FlashcardPlayer, ReviewSession with FSRS scheduling, IM3 glossary, term mastery tracking*
-     *Link: [./conductor/tracks/study-hub-flashcards_20260416/](./conductor/tracks/study-hub-flashcards_20260416/)*
+      *Port BaseReviewSession, FlashcardPlayer, ReviewSession with FSRS scheduling, IM3 glossary, term mastery tracking*
+      *Link: [./conductor/tracks/study-hub-flashcards_20260416/](./conductor/tracks/study-hub-flashcards_20260416/)*
+       - Phase 1: Glossary and SRS Core [COMPLETE] [checkpoint: 7902acf]
 
 - [ ] **Track: Student Study Hub — Matching & Speed Round Games**
      *Port click-based matching game and timed speed round game, reusing IM3 glossary*
