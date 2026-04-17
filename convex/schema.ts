@@ -411,4 +411,50 @@ export default defineSchema({
   })
     .index("by_student", ["studentId"])
     .index("by_student_and_status", ["studentId", "completedAt"]),
+
+  study_sessions: defineTable({
+    userId: v.id("profiles"),
+    activityType: v.union(
+      v.literal("flashcards"),
+      v.literal("matching"),
+      v.literal("speed_round"),
+      v.literal("srs_review"),
+      v.literal("practice_test")
+    ),
+    curriculumScope: v.object({
+      type: v.union(v.literal("all_units"), v.literal("module")),
+      moduleNumber: v.optional(v.number()),
+    }),
+    results: v.object({
+      itemsSeen: v.number(),
+      itemsCorrect: v.number(),
+      itemsIncorrect: v.number(),
+      durationSeconds: v.number(),
+    }),
+    startedAt: v.number(),
+    endedAt: v.number(),
+    createdAt: v.number(),
+  })
+    .index("by_user", ["userId"])
+    .index("by_user_and_activity", ["userId", "activityType"])
+    .index("by_user_and_started", ["userId", "startedAt"]),
+
+  practice_test_results: defineTable({
+    userId: v.id("profiles"),
+    moduleNumber: v.number(),
+    lessonsTested: v.array(v.string()),
+    questionCount: v.number(),
+    score: v.number(),
+    perLessonBreakdown: v.array(v.object({
+      lessonId: v.string(),
+      lessonTitle: v.string(),
+      correct: v.number(),
+      total: v.number(),
+    })),
+    completedAt: v.number(),
+    createdAt: v.number(),
+  })
+    .index("by_user", ["userId"])
+    .index("by_user_and_module", ["userId", "moduleNumber"])
+    .index("by_user_and_completed", ["userId", "completedAt"]),
 });
