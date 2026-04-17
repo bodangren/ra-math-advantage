@@ -28,18 +28,18 @@
 
 ### Tasks
 
-- [ ] **Task: Add Convex tables for practice test results and study sessions**
-  - [ ] Write schema migration tests
-  - [ ] Add `practice_test_results` table with indexes (by_user, by_user_and_module, by_user_and_completed)
-  - [ ] Add `study_sessions` table with indexes (by_user, by_user_and_activity, by_user_and_started)
-  - [ ] Wire into `convex/schema.ts`
+- [x] **Task: Add Convex tables for practice test results and study sessions**
+  - [x] Write schema migration tests
+  - [x] Add `practice_test_results` table with indexes (by_user, by_user_and_module, by_user_and_completed)
+  - [x] Add `study_sessions` table with indexes (by_user, by_user_and_activity, by_user_and_started)
+  - [x] Wire into `convex/schema.ts`
 
-- [ ] **Task: Implement Convex queries and mutations**
-  - [ ] Write tests for `savePracticeTestResult` and `getPracticeTestResults` in `convex/__tests__/study.test.ts`
-  - [ ] Implement `convex/study.ts` with save, record session, and get results functions
-  - [ ] Add `activityType` union: `"flashcards" | "matching" | "speed_round" | "srs_review" | "practice_test"`
+- [x] **Task: Implement Convex queries and mutations**
+  - [x] Write tests for `savePracticeTestResult` and `getPracticeTestResults` in `__tests__/convex/study.test.ts`
+  - [x] Implement `convex/study.ts` with save, record session, and get results functions
+  - [x] Add `activityType` union: `"flashcards" | "matching" | "speed_round" | "srs_review" | "practice_test"`
 
-- [ ] **Task: Conductor - User Manual Verification 'Phase 2' (Protocol in workflow.md)**
+- [x] **Task: Conductor - User Manual Verification 'Phase 2' (Protocol in workflow.md)**
 
 ## Phase 3: Test Engine UI
 
