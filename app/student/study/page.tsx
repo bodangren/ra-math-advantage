@@ -79,6 +79,28 @@ export default async function StudyHubPage() {
             </span>
           </div>
         </Link>
+
+        <Link
+          href="/student/study/speed-round"
+          className="rounded-xl border border-border bg-card p-6 hover:border-primary/40 transition-colors group"
+        >
+          <div className="flex items-start justify-between">
+            <div className="space-y-2">
+              <h2 className="font-display text-xl font-semibold text-foreground group-hover:text-primary transition-colors">
+                Speed Round
+              </h2>
+              <p className="text-sm text-muted-foreground">
+                Race against the clock to match terms with definitions. Build streaks and test your knowledge across all modules.
+              </p>
+            </div>
+            <div className="text-3xl">⚡</div>
+          </div>
+          <div className="mt-4">
+            <span className="inline-flex items-center gap-2 rounded-md bg-primary/10 px-4 py-2 text-sm font-medium text-primary">
+              Start Speed Round →
+            </span>
+          </div>
+        </Link>
       </div>
     </div>
   );
