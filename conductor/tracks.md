@@ -461,13 +461,123 @@ Tracks ported from `bus-math-v2` per the BM2 Alignment Report. Ordered by recomm
 
 ### Wave D — Differentiators (after core features stable)
 
-- [ ] **Track: AI Tutoring — Lesson Chatbot**
-     *Port floating one-shot Q&A widget, OpenRouter integration, rate limiting, lesson context assembly*
+- [x] **Track: AI Tutoring — Lesson Chatbot** — **DEFERRED**
+     *Deferred: will be brought in from another repo during monorepo conversion*
      *Link: [./conductor/tracks/ai-chatbot_20260416/](./conductor/tracks/ai-chatbot_20260416/)*
 
-- [ ] **Track: Workbook System & Artifact Pipeline**
-     *Port build-time manifest generation, client/server workbook resolution, download routes with auth, UI integration*
+- [x] **Track: Workbook System & Artifact Pipeline** — **DEFERRED**
+     *Deferred: will be brought in from another repo during monorepo conversion*
      *Link: [./conductor/tracks/workbook-system_20260416/](./conductor/tracks/workbook-system_20260416/)*
+
+## Migration Prerequisite Cleanup (2026-04-17)
+
+- [x] **Track: Fix Teacher Dashboard N+1 Queries** — **COMPLETED**
+     *Batch per-student SRS dashboard queries to remove sequential N+1 behavior in teacher analytics.*
+     *Link: [./conductor/tracks/fix-teacher-dashboard-n1-queries_20260417/](./conductor/tracks/fix-teacher-dashboard-n1-queries_20260417/)*
+
+- [ ] **Track: CCSS Standards Seeding for M6-M9**
+     *Audit module 6-9 lesson-standard coverage and reconcile any missing competency standards/descriptions.*
+     *Link: [./conductor/tracks/ccss-standards-seeding-m6-m9_20260417/](./conductor/tracks/ccss-standards-seeding-m6-m9_20260417/)*
+
+## Monorepo Migration Program (IM3 + BM2)
+
+Execution playbook for junior implementation: [./conductor/monorepo-track-playbook.md](./conductor/monorepo-track-playbook.md)
+
+AI Tutoring and Workbook scope is explicitly **import/adopt from BM2**, not greenfield IM3 reimplementation.
+
+### Wave 0 — Readiness
+
+- [ ] **Track: Monorepo Readiness Gate**
+     *Lock migration prerequisites, ownership, rollback protocol, and tooling decision.*
+     *Link: [./conductor/tracks/monorepo-readiness_20260417/](./conductor/tracks/monorepo-readiness_20260417/)*
+
+### Wave 1 — Host Monorepo Shell
+
+- [ ] **Track: Monorepo Tooling Shell**
+     *Create root workspace shell, task fanout scripts, and package template without moving apps yet.*
+     *Link: [./conductor/tracks/monorepo-tooling-shell_20260417/](./conductor/tracks/monorepo-tooling-shell_20260417/)*
+
+- [ ] **Track: Move IM3 App to apps/integrated-math-3**
+     *Relocate IM3 app paths and update local scripts/config while preserving runtime behavior.*
+     *Link: [./conductor/tracks/move-im3-app-to-apps_20260417/](./conductor/tracks/move-im3-app-to-apps_20260417/)*
+
+- [ ] **Track: Monorepo Boundary Guardrails**
+     *Add automated checks preventing shared packages from depending on app-owned paths.*
+     *Link: [./conductor/tracks/monorepo-boundary-guards_20260417/](./conductor/tracks/monorepo-boundary-guards_20260417/)*
+
+### Wave 2 — Core Engine Packages From IM3
+
+- [ ] **Track: Extract Practice Core Package**
+     *Extract practice contract, timing, baseline, and rating primitives into package.*
+     *Link: [./conductor/tracks/extract-practice-core_20260417/](./conductor/tracks/extract-practice-core_20260417/)*
+
+- [ ] **Track: Extract SRS Engine Package**
+     *Extract scheduler/review/queue core, keeping app-specific persistence adapters local.*
+     *Link: [./conductor/tracks/extract-srs-engine_20260417/](./conductor/tracks/extract-srs-engine_20260417/)*
+
+- [ ] **Track: Extract Core Auth + Convex Infrastructure**
+     *Extract shared auth/session/password/guard helpers and shared Convex wrapper factories in one coordinated infra track.*
+     *Link: [./conductor/tracks/extract-core-auth-convex_20260417/](./conductor/tracks/extract-core-auth-convex_20260417/)*
+
+### Wave 3 — Runtime and Approval Packages
+
+- [ ] **Track: Extract Activity Runtime Package**
+     *Extract lesson/phase/runtime contracts while keeping activity implementations app-local.*
+     *Link: [./conductor/tracks/extract-activity-runtime_20260417/](./conductor/tracks/extract-activity-runtime_20260417/)*
+
+- [ ] **Track: Extract Component Approval Package**
+     *Extract review queue/hash/harness approval primitives to shared package.*
+     *Link: [./conductor/tracks/extract-component-approval_20260417/](./conductor/tracks/extract-component-approval_20260417/)*
+
+- [ ] **Track: Extract Graphing Core Package**
+     *Extract graphing math/parser primitives while preserving course-specific configs locally.*
+     *Link: [./conductor/tracks/extract-graphing-core_20260417/](./conductor/tracks/extract-graphing-core_20260417/)*
+
+### Wave 4 — Bring BM2 Into the Monorepo
+
+- [ ] **Track: Move BM2 App to apps/bus-math-v2**
+     *Relocate BM2 app while preserving business-domain modules and deployment behavior.*
+     *Link: [./conductor/tracks/move-bm2-app-to-apps_20260417/](./conductor/tracks/move-bm2-app-to-apps_20260417/)*
+
+- [ ] **Track: BM2 Consume Core Packages**
+     *Replace duplicated BM2 core imports with shared practice/srs/auth/convex packages.*
+     *Link: [./conductor/tracks/bm2-consume-core-packages_20260417/](./conductor/tracks/bm2-consume-core-packages_20260417/)*
+
+- [ ] **Track: BM2 Consume Runtime Packages**
+     *Adopt shared runtime/approval/graphing package APIs where boundaries are clean.*
+     *Link: [./conductor/tracks/bm2-consume-runtime-packages_20260417/](./conductor/tracks/bm2-consume-runtime-packages_20260417/)*
+
+### Wave 5 — Feature Packages and IM3 Pending Tracks
+
+- [ ] **Track: Extract Practice Test Engine Package**
+     *Extract test-runner primitives and adopt in both apps while keeping banks local.*
+     *Link: [./conductor/tracks/extract-practice-test-engine_20260417/](./conductor/tracks/extract-practice-test-engine_20260417/)*
+
+- [ ] **Track: Extract Study Hub Core Package**
+     *Extract flashcard/review/game core primitives while keeping glossary data local.*
+     *Link: [./conductor/tracks/extract-study-hub-core_20260417/](./conductor/tracks/extract-study-hub-core_20260417/)*
+
+- [ ] **Track: Extract Teacher Reporting Core Package**
+     *Extract pure gradebook/reporting logic while keeping Convex queries app-local.*
+     *Link: [./conductor/tracks/extract-teacher-reporting-core_20260417/](./conductor/tracks/extract-teacher-reporting-core_20260417/)*
+
+- [ ] **Track: Extract AI Tutoring Package and Adopt in IM3**
+     *Extract BM2 tutoring primitives and complete IM3 chatbot via package imports.*
+     *Link: [./conductor/tracks/extract-ai-tutoring-and-adopt-im3_20260417/](./conductor/tracks/extract-ai-tutoring-and-adopt-im3_20260417/)*
+
+- [ ] **Track: Extract Workbook Pipeline Package and Adopt in IM3**
+     *Extract BM2 workbook pipeline primitives and complete IM3 workbook via package imports.*
+     *Link: [./conductor/tracks/extract-workbook-pipeline-and-adopt-im3_20260417/](./conductor/tracks/extract-workbook-pipeline-and-adopt-im3_20260417/)*
+
+### Wave 6 — Monorepo Hardening
+
+- [ ] **Track: Monorepo CI and Deploy Hardening**
+     *Finalize root CI matrix, boundary checks, and per-app deploy path correctness.*
+     *Link: [./conductor/tracks/monorepo-ci-deploy-hardening_20260417/](./conductor/tracks/monorepo-ci-deploy-hardening_20260417/)*
+
+- [ ] **Track: Monorepo Docs and Cleanup**
+     *Finalize integration docs, remove shims, and reconcile stale path references.*
+     *Link: [./conductor/tracks/monorepo-docs-and-cleanup_20260417/](./conductor/tracks/monorepo-docs-and-cleanup_20260417/)*
 
 ## Archived Tracks
 

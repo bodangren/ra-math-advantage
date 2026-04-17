@@ -1,0 +1,11 @@
+{
+  "track_id": "extract-activity-runtime_20260417",
+  "type": "feature",
+  "status": "new",
+  "created_at": "2026-04-17T07:32:04Z",
+  "updated_at": "2026-04-17T07:32:04Z",
+  "description": "Extract flexible phase/activity runtime primitives into `packages/activity-runtime`.",
+  "estimated_tasks": 9,
+  "actual_tasks": null,
+  "deviation_notes": ""
+}

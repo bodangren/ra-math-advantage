@@ -1,0 +1,49 @@
+# Implementation Plan: Extract Teacher Reporting Core Package
+
+## Phase 1: Pure Logic Extraction
+
+### Tasks
+
+- [ ] **Task: Create `packages/teacher-reporting-core`**
+  - [ ] Scaffold package and exports.
+  - [ ] Define reporting helper interfaces.
+  - [ ] Add baseline helper tests.
+
+- [ ] **Task: Extract gradebook/overview/heatmap pure helpers**
+  - [ ] Port pure helper functions and transformers.
+  - [ ] Strip backend or app routing assumptions.
+  - [ ] Add regression tests for helper outputs.
+
+- [ ] **Task: Conductor - User Manual Verification 'Phase 1: Pure Logic Extraction' (Protocol in workflow.md)**
+
+## Phase 2: UI Primitive Extraction
+
+### Tasks
+
+- [ ] **Task: Extract reusable reporting UI primitives**
+  - [ ] Port reusable table/grid primitives that are domain-neutral.
+  - [ ] Parameterize labels/columns where needed.
+  - [ ] Add component tests for generic rendering behavior.
+
+- [ ] **Task: Keep app-specific query/render layers local**
+  - [ ] Retain query calls and route-specific wiring in each app.
+  - [ ] Introduce adapter layers for package inputs.
+  - [ ] Document boundaries in notes.
+
+- [ ] **Task: Conductor - User Manual Verification 'Phase 2: UI Primitive Extraction' (Protocol in workflow.md)**
+
+## Phase 3: Adoption and Verification
+
+### Tasks
+
+- [ ] **Task: Adopt package in IM3 and BM2**
+  - [ ] Replace shared reporting helper imports in both apps.
+  - [ ] Keep app query handlers local.
+  - [ ] Fix type mismatches.
+
+- [ ] **Task: Run reporting verification**
+  - [ ] Run reporting unit/component tests in both apps.
+  - [ ] Run full lint/test/build/typecheck in both apps.
+  - [ ] Publish parity and residual-risk summary.
+
+- [ ] **Task: Conductor - User Manual Verification 'Phase 3: Adoption and Verification' (Protocol in workflow.md)**

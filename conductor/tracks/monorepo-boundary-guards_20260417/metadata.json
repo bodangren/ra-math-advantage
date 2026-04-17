@@ -1,0 +1,11 @@
+{
+  "track_id": "monorepo-boundary-guards_20260417",
+  "type": "chore",
+  "status": "new",
+  "created_at": "2026-04-17T07:32:04Z",
+  "updated_at": "2026-04-17T07:32:04Z",
+  "description": "Add automated checks that prevent package-to-app imports and app-generated Convex API leakage into packages.",
+  "estimated_tasks": 9,
+  "actual_tasks": null,
+  "deviation_notes": ""
+}

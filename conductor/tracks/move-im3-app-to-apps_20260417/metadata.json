@@ -1,0 +1,11 @@
+{
+  "track_id": "move-im3-app-to-apps_20260417",
+  "type": "feature",
+  "status": "new",
+  "created_at": "2026-04-17T07:32:04Z",
+  "updated_at": "2026-04-17T07:32:04Z",
+  "description": "Relocate IM3 source tree into monorepo app path and update all configs, scripts, and CI references.",
+  "estimated_tasks": 9,
+  "actual_tasks": null,
+  "deviation_notes": ""
+}

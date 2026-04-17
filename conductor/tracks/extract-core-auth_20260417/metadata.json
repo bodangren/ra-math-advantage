@@ -1,0 +1,11 @@
+{
+  "track_id": "extract-core-auth_20260417",
+  "type": "feature",
+  "status": "new",
+  "created_at": "2026-04-17T07:32:04Z",
+  "updated_at": "2026-04-17T07:32:04Z",
+  "description": "Create `packages/core-auth` by reconciling IM3 and BM2 auth helpers including revocation safeguards.",
+  "estimated_tasks": 9,
+  "actual_tasks": null,
+  "deviation_notes": ""
+}

@@ -1,0 +1,11 @@
+{
+  "track_id": "extract-workbook-pipeline-and-adopt-im3_20260417",
+  "type": "feature",
+  "status": "new",
+  "created_at": "2026-04-17T07:32:04Z",
+  "updated_at": "2026-04-17T07:32:04Z",
+  "description": "Extract BM2 workbook pipeline primitives into `packages/workbook-pipeline` and complete IM3 workbook system via package consumption.",
+  "estimated_tasks": 9,
+  "actual_tasks": null,
+  "deviation_notes": ""
+}

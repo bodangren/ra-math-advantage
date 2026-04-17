@@ -1,0 +1,11 @@
+{
+  "track_id": "move-bm2-app-to-apps_20260417",
+  "type": "feature",
+  "status": "new",
+  "created_at": "2026-04-17T07:32:04Z",
+  "updated_at": "2026-04-17T07:32:04Z",
+  "description": "Relocate BM2 into monorepo app path while preserving BM2 domain assets and behavior.",
+  "estimated_tasks": 9,
+  "actual_tasks": null,
+  "deviation_notes": ""
+}

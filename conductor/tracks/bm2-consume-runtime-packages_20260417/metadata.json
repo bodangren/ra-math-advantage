@@ -1,0 +1,11 @@
+{
+  "track_id": "bm2-consume-runtime-packages_20260417",
+  "type": "feature",
+  "status": "new",
+  "created_at": "2026-04-17T07:32:04Z",
+  "updated_at": "2026-04-17T07:32:04Z",
+  "description": "Adopt runtime shared packages in BM2 (`activity-runtime`, `component-approval`, optional `graphing-core`).",
+  "estimated_tasks": 9,
+  "actual_tasks": null,
+  "deviation_notes": ""
+}

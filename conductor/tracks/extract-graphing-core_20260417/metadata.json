@@ -1,0 +1,11 @@
+{
+  "track_id": "extract-graphing-core_20260417",
+  "type": "feature",
+  "status": "new",
+  "created_at": "2026-04-17T07:32:04Z",
+  "updated_at": "2026-04-17T07:32:04Z",
+  "description": "Extract shared graphing parsers and canvas math primitives into `packages/graphing-core`.",
+  "estimated_tasks": 9,
+  "actual_tasks": null,
+  "deviation_notes": ""
+}

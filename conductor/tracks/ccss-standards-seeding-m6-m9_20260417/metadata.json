@@ -1,0 +1,11 @@
+{
+  "track_id": "ccss-standards-seeding-m6-m9_20260417",
+  "type": "feature",
+  "status": "new",
+  "created_at": "2026-04-17T07:39:40Z",
+  "updated_at": "2026-04-17T07:39:40Z",
+  "description": "Audit and reconcile CCSS standards coverage for modules 6-9 so all lesson-standard links resolve to seeded competency standards with clear student-facing descriptions.",
+  "estimated_tasks": 9,
+  "actual_tasks": null,
+  "deviation_notes": ""
+}

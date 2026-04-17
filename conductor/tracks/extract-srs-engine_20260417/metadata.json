@@ -1,0 +1,11 @@
+{
+  "track_id": "extract-srs-engine_20260417",
+  "type": "feature",
+  "status": "new",
+  "created_at": "2026-04-17T07:32:04Z",
+  "updated_at": "2026-04-17T07:32:04Z",
+  "description": "Extract reusable SRS engine from IM3 into `packages/srs-engine` with backend-agnostic interfaces.",
+  "estimated_tasks": 9,
+  "actual_tasks": null,
+  "deviation_notes": ""
+}

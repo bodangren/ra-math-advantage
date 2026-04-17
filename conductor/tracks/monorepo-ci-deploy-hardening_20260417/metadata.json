@@ -1,0 +1,11 @@
+{
+  "track_id": "monorepo-ci-deploy-hardening_20260417",
+  "type": "chore",
+  "status": "new",
+  "created_at": "2026-04-17T07:32:04Z",
+  "updated_at": "2026-04-17T07:32:04Z",
+  "description": "Finalize root CI matrix and deploy workflows for multi-app monorepo with package boundaries.",
+  "estimated_tasks": 9,
+  "actual_tasks": null,
+  "deviation_notes": ""
+}

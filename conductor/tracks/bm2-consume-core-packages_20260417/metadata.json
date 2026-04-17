@@ -1,0 +1,11 @@
+{
+  "track_id": "bm2-consume-core-packages_20260417",
+  "type": "feature",
+  "status": "new",
+  "created_at": "2026-04-17T07:32:04Z",
+  "updated_at": "2026-04-17T07:32:04Z",
+  "description": "Replace BM2 duplicated core imports with shared core packages (`practice-core`, `srs-engine`, `core-auth`, `core-convex`).",
+  "estimated_tasks": 9,
+  "actual_tasks": null,
+  "deviation_notes": ""
+}

@@ -1,0 +1,11 @@
+{
+  "track_id": "extract-practice-test-engine_20260417",
+  "type": "feature",
+  "status": "new",
+  "created_at": "2026-04-17T07:32:04Z",
+  "updated_at": "2026-04-17T07:32:04Z",
+  "description": "Extract reusable practice test runner/selection primitives into `packages/practice-test-engine` and adopt in both apps.",
+  "estimated_tasks": 9,
+  "actual_tasks": null,
+  "deviation_notes": ""
+}

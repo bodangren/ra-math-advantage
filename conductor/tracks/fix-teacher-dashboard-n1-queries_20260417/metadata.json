@@ -1,0 +1,11 @@
+{
+  "track_id": "fix-teacher-dashboard-n1-queries_20260417",
+  "type": "fix",
+  "status": "completed",
+  "created_at": "2026-04-17T00:00:00Z",
+  "updated_at": "2026-04-17T00:00:00Z",
+  "description": "Fix `getTeacherSrsDashboardData` N+1 query behavior by batching per-student card/session/profile fetches while preserving response shape.",
+  "estimated_tasks": 9,
+  "actual_tasks": 9,
+  "deviation_notes": "Batched profile lookups via Promise.all instead of removing them, because displayName is still needed for streak presentation."
+}

@@ -1,0 +1,11 @@
+{
+  "track_id": "extract-ai-tutoring-and-adopt-im3_20260417",
+  "type": "feature",
+  "status": "new",
+  "created_at": "2026-04-17T07:32:04Z",
+  "updated_at": "2026-04-17T07:32:04Z",
+  "description": "Extract BM2 AI tutoring primitives into `packages/ai-tutoring` and complete IM3 chatbot by consuming the package.",
+  "estimated_tasks": 9,
+  "actual_tasks": null,
+  "deviation_notes": ""
+}
