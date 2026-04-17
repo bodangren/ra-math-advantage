@@ -1,0 +1,13 @@
+Task: Phase 1 - MatchingGame Implementation
+
+Summary: Implemented click-based matching game for the study hub.
+
+Changes:
+- components/student/MatchingGame.tsx: Game component with 3x4 grid, 6 random term pairs, card state management (idle/selected/matched/wrong), 800ms wrong-flash feedback, timer-based completion
+- __tests__/components/student/MatchingGame.test.tsx: 7 tests covering grid rendering, selection, match detection, wrong flash reset, completion callback, disabled matched cards
+- app/student/study/matching/page.tsx: Server route with auth guard
+- app/student/study/matching/MatchingPageClient.tsx: Client page with module selector and recordStudySession integration
+- app/student/study/page.tsx: Added Matching Game card to study hub
+- conductor/tracks.md: Marked study-hub-games track as in-progress
+
+Why: Delivers Phase 1 of BM2 Wave C study hub games track, reusing existing glossary and session recording infrastructure.
