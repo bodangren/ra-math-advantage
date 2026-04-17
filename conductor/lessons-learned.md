@@ -29,6 +29,8 @@
 - (2026-04-17, code-review) Multi-card queries: a student can have multiple SRS cards per objective (different problemFamilies); always use `.collect()` not `.first()` when resetting or checking cards
 - (2026-04-17, code-review) Native `<dialog>.close()` throws InvalidStateError if already closed; guard with `if (dialog.open)` before calling
 - (2026-04-17, code-review) INTEGRATION.md example code must use actual type fields, not related-but-different type fields; verify examples compile against the real types
+- (2026-04-17, code-review) New Convex query functions should default to `internalQuery`; only use `query` if client-side Convex hooks need direct access. Unprotected `query` = any-user-reads-any-data
+- (2026-04-17, code-review) API route Zod schemas for score/count pairs must include `.refine(score <= questionCount)` — the Convex handler validates but edge validation prevents the round-trip
 
 ## Patterns That Worked Well
 

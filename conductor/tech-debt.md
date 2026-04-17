@@ -44,3 +44,8 @@
 | internal.student.skipPhase accessed via `as any` cast | Medium | Open | Suppresses type safety; may indicate stale generated API types |
 | Cloudflare worker deploys to production on every push | Medium | Open | No staging step, no canary, no approval gate |
 | teacher.ts: `as never` cast on userId index query | Medium | Open | Masks potential generated schema type mismatch |
+| study.ts: 4 public queries had no auth (now internalQuery) | Critical | Resolved | Converted query→internalQuery; no client code called api.study.* directly |
+| PracticeTestEngine closing: missing Back to Modules button | Low | Open | Spec defines backToModulesButton but component doesn't render it; parent has back nav |
+| StepByStepper-guided test: flaky hint tracking | Low | Open | Passes in isolation but fails intermittently in full suite; likely timing/timer issue |
+| PracticeTestEngine: lessonsTested includes all selected, not just tested | Low | Open | Sends all selectedLessonIds even if some had 0 questions drawn |
+| New test files (study.test.ts, gradebook-queries.test.ts): 25 `any` lint errors | Medium | Open | @typescript-eslint/no-explicit-any violations in test mocks |

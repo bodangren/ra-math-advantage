@@ -5,8 +5,8 @@ import { z } from 'zod';
 
 const completeSchema = z.object({
   moduleNumber: z.number().int().min(1).max(9),
-  lessonsTested: z.array(z.string().min(1).max(64)),
-  questionCount: z.number().int().positive(),
+  lessonsTested: z.array(z.string().min(1).max(64)).max(20),
+  questionCount: z.number().int().min(1).max(100),
   score: z.number().int().nonnegative(),
   perLessonBreakdown: z.array(
     z.object({
@@ -15,8 +15,11 @@ const completeSchema = z.object({
       correct: z.number().int().nonnegative(),
       total: z.number().int().nonnegative(),
     })
-  ),
-  durationSeconds: z.number().int().nonnegative(),
+  ).max(20),
+  durationSeconds: z.number().int().nonnegative().max(86400),
+}).refine((data) => data.score <= data.questionCount, {
+  message: 'Score cannot exceed question count',
+  path: ['score'],
 });
 
 export async function POST(request: Request) {

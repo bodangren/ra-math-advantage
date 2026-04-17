@@ -1,4 +1,4 @@
-import { internalMutation, internalQuery, query } from "./_generated/server";
+import { internalMutation, internalQuery } from "./_generated/server";
 import { v } from "convex/values";
 import type { MutationCtx, QueryCtx } from "./_generated/server";
 import type { Id } from "./_generated/dataModel";
@@ -191,7 +191,7 @@ export async function getStudySessionsForTeacherHandler(
   return sessions;
 }
 
-export const getPracticeTestResults = query({
+export const getPracticeTestResults = internalQuery({
   args: {
     userId: v.id("profiles"),
     moduleNumber: v.optional(v.number()),
@@ -199,7 +199,7 @@ export const getPracticeTestResults = query({
   handler: getPracticeTestResultsHandler,
 });
 
-export const getRecentStudySessions = query({
+export const getRecentStudySessions = internalQuery({
   args: {
     userId: v.id("profiles"),
     limit: v.optional(v.number()),
@@ -266,7 +266,7 @@ export const getPracticeTestResultById = internalQuery({
   handler: getPracticeTestResultByIdHandler,
 });
 
-export const getPracticeTestResultsForTeacher = query({
+export const getPracticeTestResultsForTeacher = internalQuery({
   args: {
     studentId: v.id("profiles"),
     moduleNumber: v.optional(v.number()),
@@ -274,7 +274,7 @@ export const getPracticeTestResultsForTeacher = query({
   handler: getPracticeTestResultsForTeacherHandler,
 });
 
-export const getStudySessionsForTeacher = query({
+export const getStudySessionsForTeacher = internalQuery({
   args: {
     studentId: v.id("profiles"),
     activityType: v.optional(v.union(

@@ -113,7 +113,7 @@ integrated-math-3/
 ├── components/       # React components
 │   ├── auth/         # AuthProvider (React context)
 │   ├── ui/           # shadcn/ui components
-│   ├── student/      # Student-facing components
+│   ├── student/      # Student-facing components (PracticeTestEngine, etc.)
 │   ├── teacher/      # Teacher-facing components
 │   ├── lesson/       # Lesson rendering (PhaseRenderer, LessonStepper, etc.)
 │   ├── activities/   # Activity components (graphing, algebraic, quiz, blanks, roc, discriminant)
@@ -124,6 +124,10 @@ integrated-math-3/
 │   ├── auth/         # JWT session helpers and role guards
 │   ├── convex/       # Convex client config and server helpers
 │   ├── activities/   # Activity registry, schemas, content hashing
+│   ├── practice/     # Practice contract, error analysis, timing telemetry
+│   ├── practice-tests/ # Practice test types, question banks, module configs
+│   ├── srs/          # SRS contract, FSRS scheduler, queue, adapters
+│   ├── teacher/      # Gradebook and course overview pure logic
 │   └── curriculum/   # Phase types, lesson helpers
 ├── hooks/            # Custom React hooks
 ├── types/            # Shared TypeScript types
