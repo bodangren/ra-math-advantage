@@ -10,7 +10,7 @@ OPENCODE_PATH="/Users/daniel.bodanske/.nvm/versions/node/v20.14.0/bin/opencode"
 PROMPT_FILE="$WORKING_DIR/conductor/autonomous-prompt.md"
 WORK_SLEEP_TIME=600
 REVIEW_SLEEP_TIME=120
-WORK_SESSIONS=6
+WORK_SESSIONS=4
 SESSION_TIMEOUT=3600  # 60 minutes in seconds
 
 WORK_PROMPT="/conductor @AGENTS.md Use the conductor skill to complete one entire phase of the current or next track. Always sync with remote and deal with conflicts intelligently. If workspace has some documentation updates or previous edits, simply commit those before starting work. Work autonomously without any guidance from the user until the phase is complete. Make sure to run tests, npm run build (fixing any blockers, whether your code or not), then commit with note and push."
