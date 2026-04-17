@@ -19,7 +19,7 @@
 
 - [x] **Task: Conductor - User Manual Verification 'Phase 1' (Protocol in workflow.md)** [checkpoint: 074cee1]
 
-## Phase 2: Convex Queries for Reporting [checkpoint: pending]
+## Phase 2: Convex Queries for Reporting [checkpoint: e753143]
 
 ### Tasks
 
