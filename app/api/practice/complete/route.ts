@@ -9,10 +9,27 @@ export async function POST(request: Request) {
     return authResult;
   }
 
+  let body: { sessionId?: string };
+  try {
+    body = await request.json();
+  } catch {
+    return NextResponse.json(
+      { error: 'Invalid JSON body' },
+      { status: 400 },
+    );
+  }
+
+  if (!body.sessionId) {
+    return NextResponse.json(
+      { error: 'Missing sessionId' },
+      { status: 400 },
+    );
+  }
+
   try {
     const sessionId = await fetchInternalMutation(
       internal.queue.sessions.completeDailySession,
-      { studentId: authResult.sub },
+      { studentId: authResult.sub, sessionId: body.sessionId },
     );
 
     return NextResponse.json({

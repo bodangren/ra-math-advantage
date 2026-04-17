@@ -17,10 +17,11 @@ vi.mock('@/lib/convex/server', () => ({
   },
 }));
 
-const makeRequest = () =>
+const makeRequest = (body?: object) =>
   new Request('http://localhost/api/practice/complete', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
+    body: body ? JSON.stringify(body) : undefined,
   });
 
 describe('POST /api/practice/complete', () => {
@@ -33,7 +34,7 @@ describe('POST /api/practice/complete', () => {
       new Response(JSON.stringify({ error: 'Unauthorized' }), { status: 401 }),
     );
     const { POST } = await import('@/app/api/practice/complete/route');
-    const res = await POST(makeRequest());
+    const res = await POST(makeRequest({ sessionId: 'session-123' }));
     expect(res.status).toBe(401);
   });
 
@@ -46,7 +47,7 @@ describe('POST /api/practice/complete', () => {
     mockFetchInternalMutation.mockResolvedValue('session-123');
 
     const { POST } = await import('@/app/api/practice/complete/route');
-    const res = await POST(makeRequest());
+    const res = await POST(makeRequest({ sessionId: 'session-123' }));
 
     expect(res.status).toBe(200);
     const body = await res.json();
@@ -54,8 +55,24 @@ describe('POST /api/practice/complete', () => {
     expect(body.sessionId).toBe('session-123');
     expect(mockFetchInternalMutation).toHaveBeenCalledWith(
       'queue:sessions:completeDailySession',
-      { studentId: 'p1' },
+      { studentId: 'p1', sessionId: 'session-123' },
     );
+  });
+
+  it('returns 400 when sessionId is missing', async () => {
+    mockRequireStudentRequestClaims.mockResolvedValue({
+      sub: 'p1',
+      username: 'alice',
+      role: 'student',
+    });
+
+    const { POST } = await import('@/app/api/practice/complete/route');
+    const res = await POST(makeRequest({}));
+
+    expect(res.status).toBe(400);
+    const body = await res.json();
+    expect(body.error).toBe('Missing sessionId');
+    expect(mockFetchInternalMutation).not.toHaveBeenCalled();
   });
 
   it('returns 500 when completeDailySession throws', async () => {
@@ -67,7 +84,7 @@ describe('POST /api/practice/complete', () => {
     mockFetchInternalMutation.mockRejectedValue(new Error('No active session'));
 
     const { POST } = await import('@/app/api/practice/complete/route');
-    const res = await POST(makeRequest());
+    const res = await POST(makeRequest({ sessionId: 'session-123' }));
 
     expect(res.status).toBe(500);
     const body = await res.json();

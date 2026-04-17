@@ -270,7 +270,7 @@ describe('completeDailySessionHandler', () => {
 
     const result = await completeDailySessionHandler(
       { db } as unknown as import('@/convex/_generated/server').MutationCtx,
-      { studentId: 'student-1' }
+      { studentId: 'student-1', sessionId: 'session-active' }
     );
 
     expect(result).toBe('session-active');
@@ -281,13 +281,54 @@ describe('completeDailySessionHandler', () => {
     }));
   });
 
-  it('throws if no active session exists', async () => {
+  it('throws if session does not exist', async () => {
     const { db } = makeMockCtx({ existingSession: null });
 
     await expect(
       completeDailySessionHandler(
         { db } as unknown as import('@/convex/_generated/server').MutationCtx,
-        { studentId: 'student-1' }
+        { studentId: 'student-1', sessionId: 'session-missing' }
+      )
+    ).rejects.toThrow('No active session found for student student-1');
+  });
+
+  it('throws if session belongs to a different student', async () => {
+    const now = Date.now();
+    const existingSession = {
+      _id: 'session-active' as Id<'srs_sessions'>,
+      studentId: 'student-2' as Id<'profiles'>,
+      startedAt: now - 3600000,
+      plannedCards: 5,
+      completedCards: 0,
+      config: { newCardsPerDay: 5, maxReviewsPerDay: 20, prioritizeOverdue: true },
+    };
+    const { db } = makeMockCtx({ existingSession });
+
+    await expect(
+      completeDailySessionHandler(
+        { db } as unknown as import('@/convex/_generated/server').MutationCtx,
+        { studentId: 'student-1', sessionId: 'session-active' }
+      )
+    ).rejects.toThrow('No active session found for student student-1');
+  });
+
+  it('throws if session is already completed', async () => {
+    const now = Date.now();
+    const existingSession = {
+      _id: 'session-active' as Id<'srs_sessions'>,
+      studentId: 'student-1' as Id<'profiles'>,
+      startedAt: now - 3600000,
+      completedAt: now - 1800000,
+      plannedCards: 5,
+      completedCards: 5,
+      config: { newCardsPerDay: 5, maxReviewsPerDay: 20, prioritizeOverdue: true },
+    };
+    const { db } = makeMockCtx({ existingSession });
+
+    await expect(
+      completeDailySessionHandler(
+        { db } as unknown as import('@/convex/_generated/server').MutationCtx,
+        { studentId: 'student-1', sessionId: 'session-active' }
       )
     ).rejects.toThrow('No active session found for student student-1');
   });

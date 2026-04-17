@@ -224,6 +224,7 @@ describe('PracticeSessionProvider - Submission Flow', () => {
     expect(global.fetch).toHaveBeenCalledWith('/api/practice/complete', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ sessionId: 's1' }),
     });
   });
 

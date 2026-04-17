@@ -133,16 +133,11 @@ export const getActiveSession = internalQuery({
 
 export async function completeDailySessionHandler(
   ctx: MutationCtx,
-  args: { studentId: string }
+  args: { studentId: string; sessionId: string }
 ): Promise<string> {
-  const active = await ctx.db
-    .query("srs_sessions")
-    .withIndex("by_student_and_status", (q) =>
-      q.eq("studentId", args.studentId as Id<"profiles">)
-    )
-    .first();
+  const active = await ctx.db.get(args.sessionId as Id<"srs_sessions">);
 
-  if (!active || active.completedAt !== undefined) {
+  if (!active || active.completedAt !== undefined || active.studentId !== args.studentId) {
     throw new Error(`No active session found for student ${args.studentId}`);
   }
 
@@ -166,6 +161,7 @@ export async function completeDailySessionHandler(
 export const completeDailySession = internalMutation({
   args: {
     studentId: v.string(),
+    sessionId: v.string(),
   },
   handler: completeDailySessionHandler,
 });

@@ -50,11 +50,12 @@ export function PracticeSessionProvider({
       await fetch('/api/practice/complete', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ sessionId: initialSession.sessionId }),
       });
     } catch (err) {
       console.error('Failed to complete session:', err);
     }
-  }, []);
+  }, [initialSession.sessionId]);
 
   const advanceCard = useCallback(() => {
     setCompletedCount((c) => c + 1);
