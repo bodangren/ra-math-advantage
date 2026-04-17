@@ -80,7 +80,7 @@ export function SpeedRoundGame({ terms, onComplete }: SpeedRoundGameProps) {
   }, [gameTerms]);
 
   useEffect(() => {
-    if (isComplete || timeLeft <= 0) return;
+    if (isComplete) return;
 
     const timer = setInterval(() => {
       setTimeLeft((prev) => {
@@ -93,7 +93,7 @@ export function SpeedRoundGame({ terms, onComplete }: SpeedRoundGameProps) {
     }, 1000);
 
     return () => clearInterval(timer);
-  }, [isComplete, timeLeft]);
+  }, [isComplete]);
 
   useEffect(() => {
     if (isComplete) {

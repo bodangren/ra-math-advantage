@@ -1,69 +1,74 @@
 # Current Directive
 
-> Updated: 2026-04-17 (Code review: Teacher Gradebook Phases 3-4, Study Hub Phases 1-3, Study Hub Games Phase 1)
+> Updated: 2026-04-17 (Code review: Study Hub Games Phases 2-3, SRS Queue Perf, PracticeSessionProvider sessionId fix)
 
 ## Status Summary
 
-- **Tests**: 3346 total, 7 known failures (6 equivalence validator + 1 flaky StepByStepper-guided). All others passing.
+- **Tests**: 3362 total, 7 known failures (6 equivalence validator + 1 flaky StepByStepper-guided). All others passing.
 - **Build**: Passing.
 - **Lint**: 35 `any` errors in test files (pre-existing, not new).
 - **TypeScript**: No new TS errors.
 - **Module 1-9 Roadmap**: All modules seeded (M1-M9 complete). CCSS standards for M1-M5 seeded.
 - **SRS Waves**: Waves 0-5 complete (all tracks done through Wave 5 Track 12).
-- **BM2 Alignment**: Wave A complete. Wave B complete (Practice Test Engine, Teacher Gradebook). Wave C: Study Hub Flashcards complete, Games Phase 1 complete.
+- **BM2 Alignment**: Wave A complete. Wave B complete (Practice Test Engine, Teacher Gradebook). Wave C complete (Flashcards, Matching, Speed Round). Wave D remaining: AI Chatbot, Workbook System.
 
-## Code Review: Teacher Gradebook Phases 3-4, Study Hub Phases 1-3, Games Phase 1 (2026-04-17)
+## Code Review: Study Hub Games Phases 2-3, SRS Queue Perf, SessionId Fix (2026-04-17)
 
 ### Scope
 
-Reviewed commits `9ab1e7b..973621f` covering ~6000 new lines across 48 files:
-- **Teacher Gradebook** Phase 3: UI Components (CourseOverviewGrid, GradebookGrid, SubmissionDetailModal)
-- **Teacher Gradebook** Phase 4: Competency Heatmaps (pure logic, Convex queries, heatmap UI, route pages)
-- **Study Hub** Phase 1: Glossary and SRS Core (708-term glossary, SRS utilities, types)
-- **Study Hub** Phase 2: Convex Tables and Mutations (term_mastery, due_reviews, study_preferences tables)
-- **Study Hub** Phase 3: UI Components and Routes (BaseReviewSession, FlashcardPlayer, ReviewSession, study hub home)
-- **Study Hub Games** Phase 1: MatchingGame component and route
+Reviewed commits `4a1c7f2..e1d62b1` covering ~1350 lines across 24 files:
+- **Study Hub Games** Phase 2: SpeedRoundGame (90s timer, 3 lives, streaks, multiple-choice, module filter)
+- **Study Hub Games** Phase 3: Polish (shared infrastructure, session recording, final verification)
+- **SRS Queue Performance Fixes**: Batch queue resolution, bound card queries, deduplicated lookups
+- **PracticeSessionProvider sessionId Fix**: Wire sessionId through completion flow
 
 ### Fixes Applied
 
-1. **CRITICAL: FlashcardsPage "All Modules" only loaded Module 1 terms** — `app/student/study/flashcards/page.tsx:146` used `getGlossaryTermsByModule(1)` instead of `GLOSSARY`. Fixed: restructured page into RSC parent + client component, passing full glossary.
-2. **CRITICAL: Flashcard session results never persisted** — `handleComplete` only `console.log`'d results. MatchingPageClient and ReviewPageClient both call `fetchInternalMutation(internal.study.recordStudySession)`. Fixed: added same persistence pattern to FlashcardsPageClient.
-3. **CRITICAL: `getTeacherLessonPreview` missing auth check** — `convex/teacher.ts:1166` was `internalQuery` with no `getAuthorizedTeacher` guard. Any authenticated user could enumerate lesson content. Fixed: added `userId` arg and auth guard.
-4. **CRITICAL: `getStandardsCoverage` missing auth check** — `convex/teacher.ts:1247` exposed all standards and lesson mappings without auth. Fixed: added `userId` arg and auth guard.
-5. **HIGH: BaseReviewSession stale closure in `onComplete`** — `itemsSeen`, `itemsCorrect`, `itemsIncorrect` read from closure after functional updater calls. In concurrent mode, closure values lag behind. Fixed: compute final values using local variables before calling `onComplete`.
-6. **HIGH: BaseReviewSession stale `currentIndex`** — `setCurrentIndex(nextIndex)` captured stale closure value. Fixed: use `setCurrentIndex((prev) => prev + 1)` per lessons-learned gotcha.
-7. **MEDIUM: MatchingGame wrong-answer timer orphaned** — Clicking wrong pair before 800ms timer fires left first timer orphaned. Fixed: clear previous timer before setting new one.
-8. **MEDIUM: Lint fix** — Removed unused `_activityType` destructuring from BaseReviewSession (1 lint error resolved).
+1. **MEDIUM: SpeedRoundGame timer effect recreated interval every second** — `useEffect` dependency on `[isComplete, timeLeft]` caused interval teardown/recreate on every tick. Fixed: removed `timeLeft` from deps; interval now runs continuously until `isComplete`.
 
 ### No Issues Found In
 
-- Gradebook pure logic (assembleGradebookRows, assembleCourseOverviewRows, assembleCompetencyHeatmapRows): well-structured, comprehensive test coverage
-- Competency heatmap pure logic: clean edge case handling (inactive standards, null displayName, empty inputs)
-- Convex handlers: correctly use `internalQuery`/`internalMutation` with auth guards
-- Glossary data: 708 terms across 9 modules, well-structured
-- MatchingGame: correct Fisher-Yates shuffle, proper cleanup in useEffect
-- Test coverage: 13 new test files with thorough edge case coverage
+- **SpeedRoundGame component**: Clean state management, proper feedback timer cleanup (clearTimeout before setTimeout), correct Fisher-Yates shuffle reuse, comprehensive test coverage (10 tests including game-over, timeout, streak tracking)
+- **SpeedRoundPageClient**: Module filter, session persistence via `fetchInternalMutation`, proper `useCallback` memoization of `handleComplete`
+- **SRS queue batch resolution**: Correct deduplication of problem family IDs, `Promise.all` over unique IDs, `.take(100)` bound on card queries, thorough batch verification tests
+- **sessionId fix (PracticeSessionProvider → API route → Convex mutation)**: Clean 3-layer wiring with proper validation at each layer (missing sessionId → 400, wrong student → error, already completed → error)
+- **Session tests**: New test cases for exact-session completion, mismatch errors, already-completed errors
+- **API route tests**: Missing sessionId, invalid body, auth failure coverage
+- **Tech debt updates**: Correctly marked resolved items, added new discovered issues
 
 ### Issues Logged (tracked in tech-debt.md)
 
-- N+1 queries in `getTeacherDashboardData`, `getTeacherSrsDashboardData` (Critical perf)
-- Unbounded `.collect()` on `lesson_versions`, `competency_standards`, `lesson_standards` tables (High)
-- `as never` casts in `convex/teacher.ts` suppressing type safety (Medium)
-- Array index used as React key in SubmissionDetailModal evidence list (Low)
-- `handleCellClick` discards `standardId` param in CompetencyHeatmapClient (Low)
-- Convex handlers executed sequentially that could use `Promise.all` (Medium)
-- `fetchInternalMutation` called from `'use client'` components (Medium — review for security)
+No new issues discovered during this review cycle. Previously tracked items remain:
+- Misconception summary query N+1 (Critical, Open)
+- Teacher SRS dashboard empty array stubs (High, Open)
+- SRS sessions index fragility (High, Open)
+- Approval status race condition (High, Open)
+- N+1 phase sections (High, Open)
+- N+1 getTeacherDashboardData/getTeacherSrsDashboardData (High, Open)
+
+### Previous Review Items Resolved
+
+Since the last review (2026-04-17 earlier):
+- [x] Study Hub Games Phase 2: SpeedRoundGame — DONE
+- [x] Study Hub Games Phase 3: Polish — DONE
+- [x] SRS queue: batch resolution — DONE (Critical perf fix)
+- [x] PracticeSessionProvider: send sessionId — DONE (High priority fix)
 
 ## High-Priority Next Steps
 
-1. **Complete Study Hub Games Phase 2: SpeedRoundGame** — Timer-based speed round with lives, streaks, multiple-choice (in-progress track)
-2. **Study Hub Games Phase 3: Polish** — Shared infrastructure verification, session recording, final walkthrough
-3. **SRS queue: batch resolution** — Replace N+1 per-card reads with bulk reads (Critical perf, tracked in tech-debt.md)
-4. **PracticeSessionProvider: send sessionId with completion** — Prevents wrong-session completion (High)
-5. **Wire combined dashboard query** — Replace empty array stubs in getTeacherSrsDashboardData with actual data
+1. **CCSS standards seeding for M6-M9** — M1-M5 standards done; M6-M9 still missing lesson_standards links
+2. **N+1 queries in getTeacherDashboardData/getTeacherSrsDashboardData** — 30 sequential DB round-trips per student; batch with single query (High)
+3. **Wire combined dashboard query** — Replace empty array stubs in getTeacherSrsDashboardData with actual data
+4. **Misconception summary query: N+1 card resolution** — Will timeout at scale (Critical perf)
+5. **SRS sessions: by_student_and_status index fragility** — Relies on undefined sorting; add explicit filter
 6. **Fix `stability` → `avgRetention` semantic mismatch** — Convert FSRS stability to actual retention percentage
-7. **Address lint `any` errors in test files** — 35 violations (pre-existing, primarily in study.test.ts, gradebook-queries.test.ts, timing-baseline.test.ts)
-8. **New Convex queries: use `.withIndex()` not `.filter()`** — Several handlers in teacher.ts use `.filter()` after index queries
+7. **Address lint `any` errors in test files** — 35 violations (pre-existing)
+8. **Unbounded .collect() on lesson_versions, competency_standards, lesson_standards** — Will grow expensive
+
+### Wave D (After core features stable)
+
+- AI Tutoring — Lesson Chatbot (BM2 alignment)
+- Workbook System & Artifact Pipeline (BM2 alignment)
 
 See `conductor/daily-practice-srs-roadmap.md` for the post-Module-9 daily practice SRS sequence.
 See `conductor/tech-debt.md` for full issue registry.
