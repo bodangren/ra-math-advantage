@@ -49,31 +49,65 @@ function mapDbCardToContract(
   };
 }
 
-async function resolveQueueItem(
+async function resolveQueueItems(
   ctx: QueueDbContext,
-  item: QueueItem
-): Promise<ResolvedQueueItem | null> {
-  const practiceItems = await ctx.db
-    .query("practice_items")
-    .withIndex("by_problemFamilyId", (q) =>
-      q.eq("problemFamilyId", item.card.problemFamilyId)
-    )
-    .first();
+  items: QueueItem[]
+): Promise<ResolvedQueueItem[]> {
+  const uniqueProblemFamilyIds = [...new Set(items.map((item) => item.card.problemFamilyId))];
 
-  if (!practiceItems) {
-    return null;
+  const practiceItemResults = await Promise.all(
+    uniqueProblemFamilyIds.map(async (problemFamilyId) => {
+      const practiceItem = await ctx.db
+        .query("practice_items")
+        .withIndex("by_problemFamilyId", (q) =>
+          q.eq("problemFamilyId", problemFamilyId)
+        )
+        .first();
+      return { problemFamilyId, practiceItem };
+    })
+  );
+
+  const practiceItemMap = new Map(
+    practiceItemResults
+      .filter((r): r is { problemFamilyId: string; practiceItem: NonNullable<typeof r.practiceItem> } => r.practiceItem !== null)
+      .map((r) => [r.problemFamilyId, r.practiceItem])
+  );
+
+  const activityIds = [...new Set(
+    practiceItemResults
+      .filter((r) => r.practiceItem !== null)
+      .map((r) => r.practiceItem!.activityId)
+  )];
+
+  const activityResults = await Promise.all(
+    activityIds.map(async (activityId) => {
+      const activity = await ctx.db.get(activityId);
+      return { activityId, activity };
+    })
+  );
+
+  const activityMap = new Map(
+    activityResults
+      .filter((r): r is { activityId: Id<"activities">; activity: NonNullable<typeof r.activity> } => r.activity !== null)
+      .map((r) => [r.activityId, r.activity])
+  );
+
+  const resolvedItems: ResolvedQueueItem[] = [];
+  for (const item of items) {
+    const practiceItem = practiceItemMap.get(item.card.problemFamilyId);
+    if (!practiceItem) continue;
+
+    const activity = activityMap.get(practiceItem.activityId);
+    if (!activity) continue;
+
+    resolvedItems.push({
+      ...item,
+      componentKey: activity.componentKey,
+      props: activity.props as Record<string, unknown>,
+    });
   }
 
-  const activity = await ctx.db.get(practiceItems.activityId);
-  if (!activity) {
-    return null;
-  }
-
-  return {
-    ...item,
-    componentKey: activity.componentKey,
-    props: activity.props as Record<string, unknown>,
-  };
+  return resolvedItems;
 }
 
 export interface QueueDbContext {
@@ -89,16 +123,30 @@ export async function resolveDailyPracticeQueue(
     .withIndex("by_student", (q) =>
       q.eq("studentId", args.studentId as Id<"profiles">)
     )
-    .collect();
+    .take(100);
 
   const policyRecords = await ctx.db
     .query("objective_policies")
     .withIndex("by_courseKey", (q) => q.eq("courseKey", "integrated-math-3"))
     .collect();
 
+  const uniqueStandardIds = [...new Set(policyRecords.map((r) => r.standardId))];
+  const standardResults = await Promise.all(
+    uniqueStandardIds.map(async (standardId) => {
+      const standard = await ctx.db.get(standardId);
+      return { standardId, standard };
+    })
+  );
+
+  const standardMap = new Map(
+    standardResults
+      .filter((r): r is { standardId: Id<"competency_standards">; standard: NonNullable<typeof r.standard> } => r.standard !== null)
+      .map((r) => [r.standardId, r.standard])
+  );
+
   const policies = new Map<string, ObjectivePracticePolicy>();
   for (const record of policyRecords) {
-    const standard = await ctx.db.get(record.standardId);
+    const standard = standardMap.get(record.standardId);
     if (!standard) continue;
     policies.set(standard.code, {
       objectiveId: standard.code,
@@ -119,15 +167,7 @@ export async function resolveDailyPracticeQueue(
 
   const queueItems = buildDailyQueue(cardStates, policies, config, now);
 
-  const resolvedItems: ResolvedQueueItem[] = [];
-  for (const item of queueItems) {
-    const resolved = await resolveQueueItem(ctx, item);
-    if (resolved !== null) {
-      resolvedItems.push(resolved);
-    }
-  }
-
-  return resolvedItems;
+  return resolveQueueItems(ctx, queueItems);
 }
 
 export async function getDailyPracticeQueueHandler(
