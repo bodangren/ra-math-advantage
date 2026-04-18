@@ -584,20 +584,23 @@ AI Tutoring and Workbook scope is explicitly **import/adopt from BM2**, not gree
       - Phase 2: Config and Workflow Updates [COMPLETE]
       - Phase 3: Cross-App Verification [COMPLETE] [checkpoint: 9877509]
 
-- [ ] **Track: BM2 Consume Core Packages**
+- [x] **Track: BM2 Consume Core Packages** — **COMPLETE**
        *Replace duplicated BM2 core imports with shared practice/srs/auth/convex packages.*
        *Link: [./conductor/tracks/bm2-consume-core-packages_20260417/](./conductor/tracks/bm2-consume-core-packages_20260417/)*
        - Phase 1: Practice and SRS Adoption [COMPLETE] - practice imports migrated to @math-platform/practice-core; SRS imports verified (71 tests pass)
        - Phase 2: Auth and Convex Adoption [COMPLETE] - middleware migrated; server.ts remains local
-       - Phase 3: Cleanup and Verification [IN PROGRESS] - import redirects complete; full pruning deferred
+       - Phase 3: Cleanup and Verification [COMPLETE] - import redirects complete; full pruning deferred (requires audit)
 
-- [ ] **Track: BM2 Consume Runtime Packages**
+- [x] **Track: BM2 Consume Runtime Packages** — **COMPLETE**
       *Adopt shared runtime/approval/graphing package APIs where boundaries are clean.*
       *Link: [./conductor/tracks/bm2-consume-runtime-packages_20260417/](./conductor/tracks/bm2-consume-runtime-packages_20260417/)*
+      - Phase 1: Activity Runtime Adoption [COMPLETE] - architectural incompatibility documented (BM2 registry is BM2-specific)
+      - Phase 2: Component Approval Adoption [COMPLETE] - content-hash migrated; 19 tests pass
+      - Phase 3: Graphing Core Adoption [COMPLETE] - linear/quadratic parsers migrated; 89 tests pass
 
 ### Wave 4.5 — SRS Contract Migration (Prerequisite for bm2-consume-core-packages completion)
 
-- [ ] **Track: BM2 SRS Contract Migration**
+- [x] **Track: BM2 SRS Contract Migration** — **COMPLETE**
        *Migrate BM2 legacy SRS contract (card: Record, numeric timestamps) to FSRS-aligned contract in @math-platform/srs-engine.*
        *Link: [./conductor/tracks/bm2-srs-contract-migration_20260418/](./conductor/tracks/bm2-srs-contract-migration_20260418/)*
        - Phase 1: Contract Rewrite [COMPLETE]

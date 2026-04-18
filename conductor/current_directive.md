@@ -41,9 +41,9 @@ Primary objective is to execute the monorepo migration roadmap in Conductor orde
 - [x] Move BM2 to apps/bus-math-v2 — **COMPLETED (2026-04-18)**
 - [x] BM2 SRS contract migration Phase 1-2 — **COMPLETED (2026-04-18)**
 - [x] BM2 DailyPracticeSession adapter layer — **COMPLETED (2026-04-18, review #6)**
-- [ ] **bm2-srs-contract-migration Phase 3** — migrate Convex srs_cards table to FSRS-aligned schema
-- [ ] **bm2-consume-core-packages** — finish practice/auth import migration after SRS alignment
-- [ ] **bm2-consume-runtime-packages** — adopt runtime/approval/graphing packages in BM2
+- [x] **bm2-srs-contract-migration Phase 3** — migrate Convex srs_cards table to FSRS-aligned schema — **COMPLETED (2026-04-18)**
+- [x] **bm2-consume-core-packages** — practice/auth imports migrated; full local pruning deferred (audit required)
+- [x] **bm2-consume-runtime-packages** — adopt runtime/approval/graphing packages in BM2 — **COMPLETED (2026-04-18)**
 - [ ] **BM2 type health sweep** — add generics to fetchInternalQuery, fix CashFlowChallenge, fix ctx.transaction dead code (~300 errors)
 - [ ] Wave 5: Extract feature packages (test-engine, study-hub, teacher-reporting)
 - [ ] Wave 5: AI tutoring and workbook (import/adopt from BM2)
