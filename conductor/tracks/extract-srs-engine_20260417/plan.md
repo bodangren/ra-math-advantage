@@ -6,15 +6,15 @@
 
 ### Tasks
 
-- [ ] **Task: Create `packages/srs-engine` structure**
-  - [ ] Add package config/scripts/tsconfig.
-  - [ ] Create barrel exports.
-  - [ ] Add baseline tests.
+- [x] **Task: Create `packages/srs-engine` structure**
+  - [x] Add package config/scripts/tsconfig.
+  - [x] Create barrel exports.
+  - [x] Add baseline tests.
 
-- [ ] **Task: Move canonical IM3 SRS modules**
-  - [ ] Port contract/scheduler/review-processor/queue/adapters/integration docs.
-  - [ ] Preserve public API signatures.
-  - [ ] Add tests for all public exports.
+- [x] **Task: Move canonical IM3 SRS modules**
+  - [x] Port contract/scheduler/review-processor/queue/adapters/integration docs.
+  - [x] Preserve public API signatures.
+  - [x] Add tests for all public exports.
 
 - [ ] **Task: Conductor - User Manual Verification 'Phase 1: Scaffold and Extract' (Protocol in workflow.md)**
 

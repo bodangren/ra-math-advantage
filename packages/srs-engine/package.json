@@ -1,0 +1,32 @@
+{
+  "name": "@math-platform/srs-engine",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "main": "src/index.ts",
+  "types": "src/index.ts",
+  "exports": {
+    ".": "./src/index.ts",
+    "./contract": "./src/srs/contract.ts",
+    "./scheduler": "./src/srs/scheduler.ts",
+    "./review-processor": "./src/srs/review-processor.ts",
+    "./queue": "./src/srs/queue.ts",
+    "./adapters": "./src/srs/adapters.ts",
+    "./submission-adapter": "./src/srs/submission-srs-adapter.ts"
+  },
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest watch",
+    "lint": "eslint src --max-warnings 0",
+    "typecheck": "tsc --noEmit",
+    "build": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@math-platform/practice-core": "*",
+    "ts-fsrs": "^5.0.0"
+  },
+  "devDependencies": {
+    "typescript": "^5",
+    "vitest": "^4.0.16"
+  }
+}
