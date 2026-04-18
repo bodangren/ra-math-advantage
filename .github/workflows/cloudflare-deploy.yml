@@ -32,6 +32,11 @@ jobs:
         run: |
           npm ci --prefix apps/integrated-math-3
 
+      - name: Run monorepo boundary check
+        run: node scripts/check-monorepo-boundaries.mjs
+        env:
+          CI: true
+
       - name: Run lint
         run: npm run lint --prefix apps/integrated-math-3
         env:

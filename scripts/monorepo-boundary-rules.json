@@ -1,0 +1,26 @@
+{
+  "forbiddenPatterns": [
+    {
+      "id": "package-to-app-import",
+      "description": "Packages may not import from apps/*",
+      "pattern": "from ['\"][^'\"]*apps/",
+      "searchIn": "packages",
+      "severity": "error"
+    },
+    {
+      "id": "convex-generated-import",
+      "description": "Packages may not import app-local convex/_generated modules",
+      "pattern": "convex/_generated",
+      "searchIn": "packages",
+      "severity": "error"
+    },
+    {
+      "id": "bm2-business-domain-leakage",
+      "description": "Packages may not import BM2 business-domain code",
+      "pattern": "practice/engine|activities/spreadsheet|activities/simulations|public/workbooks|resources/",
+      "searchIn": "packages",
+      "severity": "error"
+    }
+  ],
+  "allowedExceptions": []
+}
