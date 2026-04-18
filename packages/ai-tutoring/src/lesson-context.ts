@@ -57,7 +57,7 @@ export function assembleLessonChatbotContext(
     lessonTitle: sanitizeMarkdownForPrompt(lesson.title),
     unitTitle: sanitizeMarkdownForPrompt(lesson.unit.title),
     phaseTitle: sanitizeMarkdownForPrompt(phase.title),
-    learningObjectives: phase.learningObjectives,
+    learningObjectives: phase.learningObjectives.map(sanitizeMarkdownForPrompt),
     contentSummary,
   };
 }

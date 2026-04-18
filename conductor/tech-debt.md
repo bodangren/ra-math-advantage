@@ -32,7 +32,7 @@
 | practice-core dual schema files | Medium | Open | submission.schema.ts + contract.ts parallel surfaces; consolidate |
 | BM2 lib/auth ~250 lines duplicated from core-auth | High | Open | Diverges silently; needs package adoption |
 | BM2 lib/practice ~1305 lines duplicated from practice-core | High | Open | 73 local vs 12 package imports; engine/ subtree is BM2-specific |
-| teacher-reporting-core course-overview passes 'not_started' sentinel | Medium | Resolved | Replaced with computeMasteryColor — review #10 |
+| ai-tutoring: learningObjectives bypassed sanitizeMarkdownForPrompt | High | Resolved | Sanitized via .map() in assembleLessonChatbotContext (review #11) |
 | teacher-reporting-core .js import extension inconsistency | Low | Open | Uses .js extensions while other packages don't |
 | study-hub-core BaseReviewSession untested in-package | Low | Open | Tested from IM3 imports but not in package's own test suite |
 | IM3 lib/study local copy not wired to study-hub-core types | Medium | Open | GlossaryTerm is wider than StudyTerm; structural compatibility works but not explicitly adopted |
@@ -47,4 +47,5 @@
 | workbook-pipeline: capstone filename hardcoded to BM2 domain | Medium | Open | "investor_ready_workbook" is business-math-specific; parameterize |
 | workbook-pipeline: workbooks.client.ts double-cast bypasses types | Medium | Open | `as unknown as WorkbookManifest` — use zod validation |
 | teacher-reporting: versionByLessonId picks first version silently | Medium | Open | No guarantee first version is the active one |
-| IM3 chatbot: provider re-created on every request + no AbortSignal | Medium | Resolved | Memoized provider + AbortSignal support added (2026-04-19) |
+| ai-tutoring: abort listener leak + missed already-aborted signal | Medium | Resolved | Added {once:true} + aborted check (review #11) |
+| IM3 chatbot: enrollment check doesn't verify lesson-class membership | High | Open | isStudentActivelyEnrolled checks any enrollment, not lesson ownership |

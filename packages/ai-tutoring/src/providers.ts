@@ -30,7 +30,12 @@ export function createOpenRouterProvider(options: OpenRouterProviderOptions) {
       const timeout = setTimeout(() => controller.abort(), timeoutMs);
 
       if (abortSignal) {
-        abortSignal.addEventListener('abort', () => controller.abort());
+        if (abortSignal.aborted) {
+          controller.abort();
+        } else {
+          const onAbort = () => controller.abort();
+          abortSignal.addEventListener('abort', onAbort, { once: true });
+        }
       }
 
       try {

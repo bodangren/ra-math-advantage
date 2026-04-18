@@ -1,19 +1,17 @@
 # Current Directive
 
-> Updated: 2026-04-19 (Code review #10 — audit of AI tutoring adoption, teacher-reporting wiring, workbook pipeline, CI hardening)
+> Updated: 2026-04-19 (Code review #11 — post-phase audit of chatbot security, provider memoization, CI hardening, docs cleanup)
 
 ## Mission
 
-Primary objective is to complete Wave 6 (CI/CD hardening and docs cleanup) and address critical security issues found in review #10. BM2 type health sweep remains deferred.
+Primary objective is to address the high-severity chatbot enrollment authorization gap found in review #11, then begin new feature work. BM2 type health sweep remains deferred.
 
 ## Priority Order (Execute In This Order)
 
-1. **Waves 0-5 complete** — all packages extracted, BM2 consuming packages, AI tutoring + workbook adopted
-2. **Wave 6: Monorepo CI and Deploy Hardening** — Phase 3 complete; mark track as done
-3. **Wave 6: Monorepo Docs and Cleanup** — finalize integration docs, remove shims
-4. **Critical: IM3 chatbot authorization** — add lesson enrollment check to prevent students accessing any lesson
-5. **Critical: IM3 chatbot prompt injection** — sanitize teacher-authored content before injecting into AI prompt
-6. **BM2 type health sweep** — ~296 pre-existing errors; defer unless blocking migration gates
+1. **Waves 0-6 complete** — all packages extracted, BM2 consuming packages, AI tutoring + workbook adopted, CI/CD hardened, docs finalized
+2. **Review #11 fixes complete** — learningObjectives sanitization + abort listener leak resolved
+3. **High: IM3 chatbot enrollment gap** — isStudentActivelyEnrolled only checks any-class enrollment, not lesson-class ownership; a student in Class A can access any lesson in the system
+4. **BM2 type health sweep** — ~296 pre-existing errors; defer unless blocking migration gates
 
 ## Non-Negotiable Rules
 
@@ -48,7 +46,40 @@ Primary objective is to complete Wave 6 (CI/CD hardening and docs cleanup) and a
 - [x] Wave 6: Monorepo docs and cleanup — **COMPLETED (2026-04-19)**
 - [x] **Critical: IM3 chatbot lesson enrollment auth check** — **COMPLETED (2026-04-19)**
 - [x] **Critical: IM3 chatbot content sanitization before AI prompt** — **COMPLETED (2026-04-19)**
+- [x] **Review #11: learningObjectives sanitization bypass** — **FIXED (2026-04-19)**
+- [x] **Review #11: AbortSignal listener leak + already-aborted** — **FIXED (2026-04-19)**
+- [ ] **High: IM3 chatbot enrollment gap** — check lesson-class membership, not just any enrollment
 - [ ] BM2 type health sweep (~296 TS errors) — defer unless blocking
+
+## Code Review Summary (2026-04-19 — Review #11)
+
+Post-phase audit of 6 phases: IM3 chatbot security fixes, chatbot provider memoization, monorepo docs cleanup, CI deploy hardening, review #10 residual fixes, AI tutoring adoption.
+
+### Verification Results
+
+| Check | Result |
+|-------|--------|
+| Build (IM3) | PASS |
+| Tests (IM3) | 3256/3262 pass (6 aspirational .todo) |
+| Tests (ai-tutoring) | 32/32 pass |
+| Typecheck (IM3) | CLEAN |
+| Lint (IM3) | CLEAN |
+
+### Issues Fixed in This Review
+
+| Issue | Severity | Fix |
+|-------|----------|-----|
+| learningObjectives bypassed sanitizeMarkdownForPrompt | High | Added .map(sanitizeMarkdownForPrompt) in assembleLessonChatbotContext |
+| Abort listener leak in providers.ts | Medium | Added {once: true} + already-aborted check |
+
+### Issues Found (Deferred)
+
+| Issue | Severity | Notes |
+|-------|----------|-------|
+| Chatbot enrollment check doesn't verify lesson-class membership | High | isStudentActivelyEnrolled only checks any-class enrollment; student in Class A can access any lesson. Needs lesson→unit→class ownership chain check. |
+| Rate limiting after all Convex queries | Moderate | Defense-in-depth concern; 4 Convex calls before rate limit hit |
+| No AbortSignal propagation to provider in route.ts | Moderate | Client disconnect doesn't cancel AI provider call |
+| No request body size limit | Low | Large JSON body could cause memory issues |
 
 ## Code Review Summary (2026-04-19 — Review #10)
 
