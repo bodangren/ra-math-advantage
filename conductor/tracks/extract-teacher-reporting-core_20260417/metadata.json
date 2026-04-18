@@ -1,11 +1,11 @@
 {
   "track_id": "extract-teacher-reporting-core_20260417",
   "type": "feature",
-  "status": "new",
+  "status": "in_progress",
   "created_at": "2026-04-17T07:32:04Z",
-  "updated_at": "2026-04-17T07:32:04Z",
+  "updated_at": "2026-04-19T00:59:00Z",
   "description": "Extract pure reporting logic/UI primitives into `packages/teacher-reporting-core` while keeping backend queries app-local.",
   "estimated_tasks": 9,
-  "actual_tasks": null,
-  "deviation_notes": ""
+  "actual_tasks": 5,
+  "deviation_notes": "Phase 1 complete: package scaffolded with gradebook, course-overview, competency-heatmap, and gradebook-export pure helpers; 64 tests passing"
 }

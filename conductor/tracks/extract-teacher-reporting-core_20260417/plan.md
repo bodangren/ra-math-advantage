@@ -6,17 +6,17 @@
 
 ### Tasks
 
-- [ ] **Task: Create `packages/teacher-reporting-core`**
-  - [ ] Scaffold package and exports.
-  - [ ] Define reporting helper interfaces.
-  - [ ] Add baseline helper tests.
+- [x] **Task: Create `packages/teacher-reporting-core`**
+  - [x] Scaffold package and exports.
+  - [x] Define reporting helper interfaces.
+  - [x] Add baseline helper tests.
 
-- [ ] **Task: Extract gradebook/overview/heatmap pure helpers**
-  - [ ] Port pure helper functions and transformers.
-  - [ ] Strip backend or app routing assumptions.
-  - [ ] Add regression tests for helper outputs.
+- [x] **Task: Extract gradebook/overview/heatmap pure helpers**
+  - [x] Port pure helper functions and transformers.
+  - [x] Strip backend or app routing assumptions.
+  - [x] Add regression tests for helper outputs.
 
-- [ ] **Task: Conductor - User Manual Verification 'Phase 1: Pure Logic Extraction' (Protocol in workflow.md)**
+- [x] **Task: Conductor - User Manual Verification 'Phase 1: Pure Logic Extraction' (Protocol in workflow.md)****
 
 ## Phase 2: UI Primitive Extraction
 

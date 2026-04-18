@@ -171,7 +171,7 @@ git reset --hard checkpoint/pre-move-<track-id>
 |-------|----------|--------|------------|
 | 5.1 | `extract-practice-test-engine_20260417` | Pending | 4.1 |
 | 5.2 | `extract-study-hub-core_20260417` | Pending | 4.1 |
-| 5.3 | `extract-teacher-reporting-core_20260417` | Pending | 4.1 |
+| 5.3 | `extract-teacher-reporting-core_20260417` | Phase 1 Complete | 4.1 |
 | 5.4 | `extract-ai-tutoring-and-adopt-im3_20260417` | Pending | 4.1 |
 | 5.5 | `extract-workbook-pipeline-and-adopt-im3_20260417` | Pending | 4.1 |
 
