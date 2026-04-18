@@ -1,6 +1,6 @@
 import type { SpreadsheetData } from '@/components/activities/spreadsheet';
 import type { ValidationResult, TargetCell } from '@/lib/activities/spreadsheet-validation';
-import { resolveOpenRouterProviderFromEnv } from '@/lib/ai/providers';
+import { resolveOpenRouterProviderFromEnv } from '@math-platform/ai-tutoring';
 import { z } from 'zod';
 
 const AiFeedbackResponseSchema = z.object({

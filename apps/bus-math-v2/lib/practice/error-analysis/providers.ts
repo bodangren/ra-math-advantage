@@ -5,7 +5,7 @@
  * compatible with the injectable aiProvider parameter in generateAISummary.
  */
 
-import { withRetry } from '@/lib/ai/retry';
+import { withRetry } from '@math-platform/ai-tutoring';
 
 const OPENAI_API_BASE = 'https://api.openai.com/v1';
 

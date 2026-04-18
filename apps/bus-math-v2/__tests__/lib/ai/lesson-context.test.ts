@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import {
   assembleLessonChatbotContext,
-} from '@/lib/ai/lesson-context';
+} from '@math-platform/ai-tutoring';
 
 describe('lib/ai/lesson-context', () => {
   describe('assembleLessonChatbotContext', () => {

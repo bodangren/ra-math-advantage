@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@math-platform/activity-runtime": "*",
+    "@math-platform/ai-tutoring": "*",
     "@math-platform/component-approval": "*",
     "@math-platform/core-auth": "*",
     "@math-platform/core-convex": "*",

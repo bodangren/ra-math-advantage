@@ -1,7 +1,6 @@
 import { getRequestSessionClaims } from '@/lib/auth/server';
 import { NextRequest, NextResponse } from 'next/server';
-import { resolveOpenRouterProviderFromEnv } from '@/lib/ai/providers';
-import { assembleLessonChatbotContext } from '@/lib/ai/lesson-context';
+import { resolveOpenRouterProviderFromEnv, assembleLessonChatbotContext } from '@math-platform/ai-tutoring';
 import { buildPublishedCurriculumManifest } from '@/lib/curriculum/published-manifest';
 import { fetchInternalMutation, internal } from '@/lib/convex/server';
 

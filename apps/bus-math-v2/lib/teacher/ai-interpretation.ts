@@ -11,7 +11,7 @@
  */
 
 import type { LessonErrorSummary } from './error-summary';
-import { withRetry } from '@/lib/ai/retry';
+import { withRetry } from '@math-platform/ai-tutoring';
 
 // ---------------------------------------------------------------------------
 // Types

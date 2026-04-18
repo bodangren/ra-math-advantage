@@ -11,11 +11,8 @@ vi.mock('@/lib/auth/server', () => ({
   getRequestSessionClaims: mockGetRequestSessionClaims,
 }));
 
-vi.mock('@/lib/ai/providers', () => ({
+vi.mock('@math-platform/ai-tutoring', () => ({
   resolveOpenRouterProviderFromEnv: mockResolveOpenRouterProviderFromEnv,
-}));
-
-vi.mock('@/lib/ai/lesson-context', () => ({
   assembleLessonChatbotContext: mockAssembleLessonChatbotContext,
 }));
 

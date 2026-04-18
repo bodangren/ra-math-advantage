@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { createOpenRouterProvider } from '@/lib/ai/providers';
+import { createOpenRouterProvider } from '@math-platform/ai-tutoring';
 
 describe('lib/ai/providers', () => {
   beforeEach(() => {

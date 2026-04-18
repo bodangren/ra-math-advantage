@@ -639,8 +639,9 @@ AI Tutoring and Workbook scope is explicitly **import/adopt from BM2**, not gree
 
 - [ ] **Track: Extract AI Tutoring Package and Adopt in IM3**
       *Extract BM2 tutoring primitives and complete IM3 chatbot via package imports.*
-      *Link: [./conductor/tracks/extract-ai-tutoring-and-adopt-im3_20260417/](./conductor/tracks/extract-ai-tutoring-and-adopt-im3_20260417/)*
+      *Link: [./conductor/tracks/extract-ai-tutoring-and-adopt-im3_20260417/](./conductor/tracks/extract-ai-tutoring-and-adopt-im3_20260417/)]
       - Phase 1: Package Extraction from BM2 [COMPLETE]
+      - Phase 2: BM2 Adoption [COMPLETE]
 
 - [ ] **Track: Extract Workbook Pipeline Package and Adopt in IM3**
      *Extract BM2 workbook pipeline primitives and complete IM3 workbook via package imports.*

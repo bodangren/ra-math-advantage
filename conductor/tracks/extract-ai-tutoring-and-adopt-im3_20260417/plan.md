@@ -22,17 +22,17 @@
 
 ### Tasks
 
-- [ ] **Task: Replace BM2 AI primitive imports**
-  - [ ] Migrate BM2 AI module imports to package.
-  - [ ] Keep BM2 route wiring and storage local.
-  - [ ] Run BM2 chatbot and API tests.
+- [x] **Task: Replace BM2 AI primitive imports**
+  - [x] Migrate BM2 AI module imports to package.
+  - [x] Keep BM2 route wiring and storage local.
+  - [x] Run BM2 chatbot and API tests.
 
-- [ ] **Task: Validate BM2 behavioral parity**
-  - [ ] Compare key user-facing behavior pre/post migration.
-  - [ ] Fix regressions in package or BM2 adapter layer.
-  - [ ] Document parity verification results.
+- [x] **Task: Validate BM2 behavioral parity**
+  - [x] Compare key user-facing behavior pre/post migration.
+  - [x] Fix regressions in package or BM2 adapter layer.
+  - [x] Document parity verification results.
 
-- [ ] **Task: Conductor - User Manual Verification 'Phase 2: BM2 Adoption' (Protocol in workflow.md)**
+- [x] **Task: Conductor - User Manual Verification 'Phase 2: BM2 Adoption' (Protocol in workflow.md)**
 
 ## Phase 3: IM3 Adoption and Completion
 

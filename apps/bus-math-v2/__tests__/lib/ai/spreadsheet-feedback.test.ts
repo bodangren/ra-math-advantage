@@ -1,6 +1,6 @@
 import { describe, it, expect, vi } from 'vitest';
 import { generateAiFeedback, type AiFeedback } from '@/lib/ai/spreadsheet-feedback';
-import * as providers from '@/lib/ai/providers';
+import * as providers from '@math-platform/ai-tutoring';
 
 describe('spreadsheet-feedback', () => {
   describe('generateAiFeedback', () => {

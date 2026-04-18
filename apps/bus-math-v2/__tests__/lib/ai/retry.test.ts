@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
-import { withRetry, isRetryableStatus } from '@/lib/ai/retry';
+import { withRetry, isRetryableStatus } from '@math-platform/ai-tutoring';
 
 describe('isRetryableStatus', () => {
   it('returns true for 429', () => {
