@@ -47,4 +47,4 @@
 | workbook-pipeline: capstone filename hardcoded to BM2 domain | Medium | Open | "investor_ready_workbook" is business-math-specific; parameterize |
 | workbook-pipeline: workbooks.client.ts double-cast bypasses types | Medium | Open | `as unknown as WorkbookManifest` — use zod validation |
 | teacher-reporting: versionByLessonId picks first version silently | Medium | Open | No guarantee first version is the active one |
-| IM3 chatbot: provider re-created on every request + no AbortSignal | Medium | Open | resolveOpenRouterProviderFromEnv should be memoized; no client disconnect handling |
+| IM3 chatbot: provider re-created on every request + no AbortSignal | Medium | Resolved | Memoized provider + AbortSignal support added (2026-04-19) |

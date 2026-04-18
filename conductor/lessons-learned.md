@@ -43,3 +43,4 @@
 - (2026-04-19, review-9) When extracting shared packages, audit the full data flow path for auth — admin auth in Convex has no user identity; mutations must accept explicit user IDs
 - (2026-04-19, monorepo-ci) When building CI matrices for apps with pre-existing failures, use `continue-on-error: true` with `|| true` fallback to preserve test signal while preventing CI blockage; document the known failures clearly in the job comments
 - (2026-04-19, monorepo-docs) Validation scans (rg for stale imports, path references) should run before Phase 3 to confirm Phase 2 cleanup is unnecessary — clean scans mean no shims existed to remove
+- (2026-04-19, ai-tutoring) Memoize provider factory functions at module level to avoid recreating expensive objects on every request; AbortSignal chaining should pass through to internal AbortController

@@ -21,10 +21,17 @@ export function createOpenRouterProvider(options: OpenRouterProviderOptions) {
     timeoutMs = 15000,
   } = options;
 
-  return async function openRouterProvider(prompt: string): Promise<string> {
+  return async function openRouterProvider(
+    prompt: string,
+    abortSignal?: AbortSignal
+  ): Promise<string> {
     return withRetry(async () => {
       const controller = new AbortController();
       const timeout = setTimeout(() => controller.abort(), timeoutMs);
+
+      if (abortSignal) {
+        abortSignal.addEventListener('abort', () => controller.abort());
+      }
 
       try {
         const response = await fetch(`${baseUrl}/chat/completions`, {
@@ -71,15 +78,23 @@ export function getErrorStatus(error: Error): number | null {
   return match ? parseInt(match[1], 10) : null;
 }
 
-export function resolveOpenRouterProviderFromEnv(): ((prompt: string) => Promise<string>) | null {
+let cachedProvider: ((prompt: string, abortSignal?: AbortSignal) => Promise<string>) | null = null;
+
+export function resolveOpenRouterProviderFromEnv(): ((prompt: string, abortSignal?: AbortSignal) => Promise<string>) | null {
   const apiKey = process.env.OPENROUTER_API_KEY;
   if (!apiKey || apiKey.trim().length === 0) {
     return null;
   }
 
-  return createOpenRouterProvider({
+  if (cachedProvider) {
+    return cachedProvider;
+  }
+
+  cachedProvider = createOpenRouterProvider({
     apiKey,
     model: process.env.OPENROUTER_MODEL || 'openrouter/free',
     baseUrl: process.env.OPENROUTER_API_BASE || OPENROUTER_API_BASE,
   });
+
+  return cachedProvider;
 }

@@ -673,6 +673,11 @@ AI Tutoring and Workbook scope is explicitly **import/adopt from BM2**, not gree
       - Phase 1: Lesson Enrollment Authorization Check [COMPLETE]
       - Phase 2: Prompt Injection Sanitization [COMPLETE]
 
+- [x] **Track: IM3 Chatbot Provider Memoization** — **COMPLETED**
+      *Memoize resolveOpenRouterProviderFromEnv to reuse provider across requests and add AbortSignal support for client disconnect handling*
+      *Link: [./conductor/tracks/im3-chatbot-provider-memoization_20260419/](./conductor/tracks/im3-chatbot-provider-memoization_20260419/)*
+      - Phase 1: Memoize Provider and Add AbortSignal Support [COMPLETE]
+
 ## Archived Tracks
 
 - [x] **Track: Scaffold App Pages & Layouts**

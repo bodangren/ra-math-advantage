@@ -167,4 +167,35 @@ describe('createOpenRouterProvider', () => {
 
     await expect(provider('test')).rejects.toThrow();
   });
+
+  it('accepts external AbortSignal', async () => {
+    mockFetch.mockResolvedValueOnce({
+      ok: true,
+      json: async () => ({
+        choices: [{ message: { content: 'Response' } }],
+      }),
+    });
+
+    const provider = createOpenRouterProvider({ apiKey: 'test-key' });
+    const abortController = new AbortController();
+
+    const result = await provider('test', abortController.signal);
+    expect(result).toBe('Response');
+  });
+
+  it('aborts request when external AbortSignal is triggered', async () => {
+    mockFetch.mockImplementationOnce(() => new Promise((_, reject) => {
+      setTimeout(() => reject(new DOMException('Aborted', 'AbortError')), 100);
+    }));
+
+    const provider = createOpenRouterProvider({
+      apiKey: 'test-key',
+      timeoutMs: 10000,
+    });
+
+    const abortController = new AbortController();
+    setTimeout(() => abortController.abort(), 10);
+
+    await expect(provider('test', abortController.signal)).rejects.toThrow();
+  });
 });

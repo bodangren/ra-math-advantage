@@ -1,0 +1,12 @@
+{
+  "track_id": "im3-chatbot-provider-memoization_20260419",
+  "title": "IM3 Chatbot Provider Memoization",
+  "description": "Memoize resolveOpenRouterProviderFromEnv to reuse provider across requests and add AbortSignal support for client disconnect handling",
+  "status": "completed",
+  "created": "2026-04-19",
+  "completed": "2026-04-19",
+  "actual_tasks": 3,
+  "deviation_notes": "",
+  "phase_number": 1,
+  "total_phases": 1
+}
