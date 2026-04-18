@@ -699,6 +699,12 @@ AI Tutoring and Workbook scope is explicitly **import/adopt from BM2**, not gree
   - Phase 3: Teacher UI [COMPLETE]
   - Phase 4: Verification [COMPLETE]
 
+- [x] **Track: Seed Class Lessons for Demo** — **COMPLETED**
+  *Seed class_lessons entries for demo environment — assigns Module 1 lessons to demo class*
+  *Link: [./conductor/tracks/seed-class-lessons_20260419/](./conductor/tracks/seed-class-lessons_20260419/)*
+  - Phase 1: Seed Mutation and Demo Wiring [COMPLETE]
+  - Phase 2: Verification [COMPLETE]
+
 ## Archived Tracks
 
 - [x] **Track: Scaffold App Pages & Layouts**
