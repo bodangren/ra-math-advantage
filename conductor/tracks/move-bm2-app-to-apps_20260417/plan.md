@@ -48,4 +48,4 @@
   - [x] Run root command fanout checks.
   - [x] Publish move completion summary.
 
-- [ ] **Task: Conductor - User Manual Verification 'Phase 3: Cross-App Verification' (Protocol in workflow.md)**
+- [x] **Task: Conductor - User Manual Verification 'Phase 3: Cross-App Verification' (Protocol in workflow.md)** [checkpoint: 18a7f3c]
