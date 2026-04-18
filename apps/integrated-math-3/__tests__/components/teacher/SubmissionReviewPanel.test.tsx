@@ -1,7 +1,7 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import { SubmissionReviewPanel } from '@/components/teacher/SubmissionReviewPanel';
-import type { SubmissionEvidence, DeterministicErrorSummary } from '@/lib/practice/error-analysis';
+import type { SubmissionEvidence, DeterministicErrorSummary } from '@math-platform/practice-core/error-analysis';
 
 vi.mock('@/components/lesson/ActivityRenderer', () => ({
   ActivityRenderer: ({ componentKey, mode }: { componentKey: string; mode: string }) => (

@@ -3,7 +3,7 @@ import {
   createTimingAccumulator,
   DEFAULT_IDLE_THRESHOLD_MS,
   type TimingEvent,
-} from '@/lib/practice/timing';
+} from '@math-platform/practice-core/timing';
 
 describe('TimingAccumulator', () => {
   function interaction(offsetMs: number): TimingEvent {

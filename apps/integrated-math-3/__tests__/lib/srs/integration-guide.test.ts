@@ -16,8 +16,8 @@ import { processReview } from '@/lib/srs/review-processor';
 import {
   computeBaseRating,
   applyTimingToRating,
-} from '@/lib/practice/srs-rating';
-import { buildPracticeSubmissionEnvelope } from '@/lib/practice/contract';
+} from '@math-platform/practice-core/srs-rating';
+import { buildPracticeSubmissionEnvelope } from '@math-platform/practice-core/contract';
 import type {
   SrsCardState,
   SrsSessionConfig,

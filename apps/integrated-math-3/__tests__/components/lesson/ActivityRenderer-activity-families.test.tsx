@@ -4,7 +4,7 @@ import userEvent from '@testing-library/user-event';
 import { ActivityRenderer } from '@/components/lesson/ActivityRenderer';
 import { FillInTheBlank } from '@/components/activities/blanks/FillInTheBlank';
 import { registerActivity } from '@/lib/activities/registry';
-import type { PracticeSubmissionEnvelope, PracticeTimingSummary } from '@/lib/practice/contract';
+import type { PracticeSubmissionEnvelope, PracticeTimingSummary } from '@math-platform/practice-core/contract';
 
 const mockTiming: PracticeTimingSummary = {
   startedAt: '2026-01-01T00:00:01.000Z',

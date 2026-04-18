@@ -3,7 +3,7 @@ import type { SrsCardState } from '@/lib/srs/contract';
 import { RestAdapterStub } from '@/lib/srs/__tests__/rest-adapter-stub';
 import { processReview } from '@/lib/srs/review-processor';
 import { buildDailyQueue } from '@/lib/srs/queue';
-import { buildPracticeSubmissionEnvelope } from '@/lib/practice/contract';
+import { buildPracticeSubmissionEnvelope } from '@math-platform/practice-core/contract';
 
 vi.mock('ts-fsrs', () => {
   const Rating = { Again: 1, Hard: 2, Good: 3, Easy: 4 } as const;

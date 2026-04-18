@@ -4,8 +4,8 @@ import {
   computeBaseRating,
   applyTimingToRating,
   type SrsRatingInput,
-} from '@/lib/practice/srs-rating';
-import type { PracticeTimingFeatures } from '@/lib/practice/timing-baseline';
+} from '@math-platform/practice-core/srs-rating';
+import type { PracticeTimingFeatures } from '@math-platform/practice-core/timing-baseline';
 
 function makeTimingFeatures(
   overrides: Partial<PracticeTimingFeatures> = {}

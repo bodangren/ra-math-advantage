@@ -6,7 +6,7 @@ import {
   DEFAULT_IDLE_THRESHOLD_MS,
   type TimingAccumulator,
   type PracticeTimingSummary,
-} from '@/lib/practice/timing';
+} from '@math-platform/practice-core/timing';
 
 export interface UsePracticeTimingOptions {
   idleThresholdMs?: number;

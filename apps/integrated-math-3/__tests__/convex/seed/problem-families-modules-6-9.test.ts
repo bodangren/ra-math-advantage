@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { problemFamilySchema } from '@/lib/practice/problem-family';
+import { problemFamilySchema } from '@math-platform/practice-core/problem-family';
 import { MODULE6_PROBLEM_FAMILIES } from '@/convex/seed/problem-families/module-6';
 import { MODULE7_PROBLEM_FAMILIES } from '@/convex/seed/problem-families/module-7';
 import { MODULE8_PROBLEM_FAMILIES } from '@/convex/seed/problem-families/module-8';

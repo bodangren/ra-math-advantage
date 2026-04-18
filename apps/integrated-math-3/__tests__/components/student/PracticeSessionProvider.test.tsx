@@ -3,7 +3,7 @@ import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import { render, screen, waitFor, fireEvent, act } from '@testing-library/react';
 import { PracticeSessionProvider } from '@/components/student/PracticeSessionProvider';
 import { submitActivity } from '@/lib/activities/submission';
-import type { PracticeSubmissionEnvelope } from '@/lib/practice/contract';
+import type { PracticeSubmissionEnvelope } from '@math-platform/practice-core/contract';
 
 vi.mock('@/components/student/PracticeCardRenderer', () => ({
   PracticeCardRenderer: ({

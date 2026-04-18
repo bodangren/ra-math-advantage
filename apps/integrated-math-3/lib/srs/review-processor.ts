@@ -14,8 +14,8 @@
 import {
   mapPracticeToSrsRating,
   type SrsRatingResult,
-} from '@/lib/practice/srs-rating';
-import { deriveTimingFeatures } from '@/lib/practice/timing-baseline';
+} from '@math-platform/practice-core/srs-rating';
+import { deriveTimingFeatures } from '@math-platform/practice-core/timing-baseline';
 import { reviewCard } from '@/lib/srs/scheduler';
 import type {
   PracticeSubmissionEnvelope,

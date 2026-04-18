@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import { requireStudentRequestClaims } from '@/lib/auth/server';
 import { fetchInternalMutation, internal } from '@/lib/convex/server';
-import { practiceSubmissionEnvelopeSchema, PRACTICE_CONTRACT_VERSION } from '@/lib/practice/contract';
+import { practiceSubmissionEnvelopeSchema, PRACTICE_CONTRACT_VERSION } from '@math-platform/practice-core/contract';
 
 export async function POST(request: Request) {
   const authResult = await requireStudentRequestClaims(request);

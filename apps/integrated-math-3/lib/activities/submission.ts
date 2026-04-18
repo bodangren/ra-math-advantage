@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { buildPracticeSubmissionEnvelope, practiceModeSchema, practiceSubmissionStatusSchema, type PracticeSubmissionEnvelope, type PracticeTimingSummary } from '@/lib/practice/contract';
+import { buildPracticeSubmissionEnvelope, practiceModeSchema, practiceSubmissionStatusSchema, type PracticeSubmissionEnvelope, type PracticeTimingSummary } from '@math-platform/practice-core/contract';
 
 export type PracticeMode = z.infer<typeof practiceModeSchema>;
 export type PracticeSubmissionStatus = z.infer<typeof practiceSubmissionStatusSchema>;

@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { Dialog } from '@/components/ui/dialog';
-import type { SubmissionEvidence, DeterministicErrorSummary } from '@/lib/practice/error-analysis';
+import type { SubmissionEvidence, DeterministicErrorSummary } from '@math-platform/practice-core/error-analysis';
 
 interface PhaseData {
   phaseNumber: number;

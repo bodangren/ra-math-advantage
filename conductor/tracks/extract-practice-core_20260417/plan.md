@@ -38,14 +38,14 @@
 
 ### Tasks
 
-- [ ] **Task: Migrate IM3 imports to package**
-  - [ ] Replace `@/lib/practice/*` imports with `@math-platform/practice-core`.
-  - [ ] Avoid deep package internals in imports.
-  - [ ] Add temporary shims only if strictly needed.
+- [x] **Task: Migrate IM3 imports to package**
+  - [x] Replace `@/lib/practice/*` imports with `@math-platform/practice-core`.
+  - [x] Avoid deep package internals in imports.
+  - [x] Add temporary shims only if strictly needed.
 
-- [ ] **Task: Run verification suite**
-  - [ ] Run IM3 `npm run lint`.
-  - [ ] Run IM3 `npm run test`.
-  - [ ] Run IM3 `npm run build` and `npm run typecheck`.
+- [x] **Task: Run verification suite**
+  - [x] Run IM3 `npm run lint`.
+  - [x] Run IM3 `npm run test`.
+  - [x] Run IM3 `npm run build` and `npm run typecheck`.
 
-- [ ] **Task: Conductor - User Manual Verification 'Phase 3: IM3 Import Migration and Verification' (Protocol in workflow.md)**
+- [x] **Task: Conductor - User Manual Verification 'Phase 3: IM3 Import Migration and Verification' (Protocol in workflow.md)**

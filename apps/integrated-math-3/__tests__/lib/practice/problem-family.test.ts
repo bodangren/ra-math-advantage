@@ -3,7 +3,7 @@ import {
   problemFamilySchema,
   difficultySchema,
   type ProblemFamilyInput,
-} from '@/lib/practice/problem-family';
+} from '@math-platform/practice-core/problem-family';
 
 function makeValidInput(): ProblemFamilyInput {
   return {

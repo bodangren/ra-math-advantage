@@ -5,7 +5,7 @@ import { GraphingCanvas, Point, FunctionPlot } from './GraphingCanvas';
 import { InteractiveTableOfValues } from './InteractiveTableOfValues';
 import { HintPanel, HintData } from './HintPanel';
 import { InterceptIdentification, InterceptData } from './InterceptIdentification';
-import type { PracticeSubmissionEnvelope } from '@/lib/practice/contract';
+import type { PracticeSubmissionEnvelope } from '@math-platform/practice-core/contract';
 
 export interface GraphingExplorerProps {
   activityId: string;

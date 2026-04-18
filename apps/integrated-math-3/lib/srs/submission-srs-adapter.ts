@@ -21,8 +21,8 @@
  * A submission always succeeds even if SRS processing fails.
  */
 
-import { mapPracticeToSrsRating } from '@/lib/practice/srs-rating';
-import { deriveTimingFeatures } from '@/lib/practice/timing-baseline';
+import { mapPracticeToSrsRating } from '@math-platform/practice-core/srs-rating';
+import { deriveTimingFeatures } from '@math-platform/practice-core/timing-baseline';
 import { createCard, reviewCard } from '@/lib/srs/scheduler';
 import type {
   CardStore,

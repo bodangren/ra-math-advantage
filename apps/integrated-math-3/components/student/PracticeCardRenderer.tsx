@@ -7,7 +7,7 @@ import type { ResolvedQueueItem } from '@/convex/queue/queue';
 import {
   buildPracticeSubmissionEnvelope,
   type PracticeSubmissionEnvelope,
-} from '@/lib/practice/contract';
+} from '@math-platform/practice-core/contract';
 import { usePracticeTiming } from '@/components/practice-timing';
 
 export interface PracticeCardRendererProps {

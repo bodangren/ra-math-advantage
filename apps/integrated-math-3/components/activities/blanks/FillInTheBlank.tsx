@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import { DragDropContext, Droppable, Draggable, type DropResult } from '@hello-pangea/dnd';
 import { MathInputField } from '@/components/activities/algebraic/MathInputField';
-import { buildPracticeSubmissionEnvelope } from '@/lib/practice/contract';
+import { buildPracticeSubmissionEnvelope } from '@math-platform/practice-core/contract';
 
 interface Blank {
   id: string;

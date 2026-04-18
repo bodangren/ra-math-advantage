@@ -2,7 +2,7 @@ import { describe, it, expect } from 'vitest';
 import {
   practiceItemSchema,
   type PracticeItemInput,
-} from '@/lib/practice/practice-item';
+} from '@math-platform/practice-core/practice-item';
 
 function makeValidInput(): PracticeItemInput {
   return {

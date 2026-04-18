@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import type { PracticeSubmissionPart } from '@/lib/practice/submission.schema';
+import type { PracticeSubmissionPart } from '@math-platform/practice-core/submission-schema';
 
 const PROBLEM_TYPES = [
   'quadratic_formula',

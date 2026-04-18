@@ -2,7 +2,7 @@ import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { ActivityRenderer } from '@/components/lesson/ActivityRenderer';
 import { registerActivity } from '@/lib/activities/registry';
-import type { PracticeSubmissionEnvelope, PracticeTimingSummary } from '@/lib/practice/contract';
+import type { PracticeSubmissionEnvelope, PracticeTimingSummary } from '@math-platform/practice-core/contract';
 
 const mockTiming: PracticeTimingSummary = {
   startedAt: '2026-01-01T00:00:01.000Z',

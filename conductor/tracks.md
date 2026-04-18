@@ -527,6 +527,8 @@ AI Tutoring and Workbook scope is explicitly **import/adopt from BM2**, not gree
      *Extract practice contract, timing, baseline, and rating primitives into package.*
      *Link: [./conductor/tracks/extract-practice-core_20260417/](./conductor/tracks/extract-practice-core_20260417/)*
      - Phase 1: Scaffold and Extract [COMPLETE]
+     - Phase 2: Reconcile BM2 Deltas [COMPLETE]
+     - Phase 3: IM3 Import Migration and Verification [COMPLETE]
 
 - [ ] **Track: Extract SRS Engine Package**
      *Extract scheduler/review/queue core, keeping app-specific persistence adapters local.*

@@ -8,8 +8,8 @@ import {
   buildDeterministicSummary,
   generateAISummary,
   buildTeacherErrorView,
-} from '@/lib/practice/error-analysis';
-import type { PracticeSubmissionEnvelope } from '@/lib/practice/contract';
+} from '@math-platform/practice-core/error-analysis';
+import type { PracticeSubmissionEnvelope } from '@math-platform/practice-core/contract';
 
 function makeSubmission(overrides: Partial<PracticeSubmissionEnvelope> = {}): PracticeSubmissionEnvelope {
   return {

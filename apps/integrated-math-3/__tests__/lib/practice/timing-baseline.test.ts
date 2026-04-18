@@ -4,8 +4,8 @@ import {
   deriveTimingFeatures,
   TIMING_BASELINE_MIN_SAMPLES,
   type PracticeTimingBaseline,
-} from '@/lib/practice/timing-baseline';
-import type { PracticeTimingSummary } from '@/lib/practice/contract';
+} from '@math-platform/practice-core/timing-baseline';
+import type { PracticeTimingSummary } from '@math-platform/practice-core/contract';
 
 function makeTiming(activeMs: number, confidence: PracticeTimingSummary['confidence']): PracticeTimingSummary {
   return {

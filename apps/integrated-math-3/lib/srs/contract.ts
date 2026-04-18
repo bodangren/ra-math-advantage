@@ -49,7 +49,7 @@ export type {
   SrsRatingInput,
   /** Result of computing an SRS rating, including base and adjusted ratings. */
   SrsRatingResult,
-} from '@/lib/practice/srs-rating';
+} from '@math-platform/practice-core/srs-rating';
 
 // ============================================
 // Re-exports: Objective Proficiency
@@ -83,7 +83,7 @@ export type {
   PracticeTimingFeatures,
   /** Speed classification relative to a baseline. */
   TimingSpeedBand,
-} from '@/lib/practice/timing-baseline';
+} from '@math-platform/practice-core/timing-baseline';
 
 // ============================================
 // Re-exports: Practice Contract
@@ -96,7 +96,7 @@ export type {
   PracticeSubmissionPart,
   /** Aggregated timing summary for a practice session or attempt. */
   PracticeTimingSummary,
-} from '@/lib/practice/contract';
+} from '@math-platform/practice-core/contract';
 
 // ============================================
 // New Types: Card State
@@ -183,10 +183,10 @@ export type SrsReviewLogEntry = {
   reviewId: string;
   cardId: SrsCardId;
   studentId: string;
-  rating: import('@/lib/practice/srs-rating').SrsRating;
+  rating: import('@math-platform/practice-core/srs-rating').SrsRating;
   submissionId: string;
   evidence: {
-    baseRating: import('@/lib/practice/srs-rating').SrsRating;
+    baseRating: import('@math-platform/practice-core/srs-rating').SrsRating;
     timingAdjusted: boolean;
     reasons: string[];
   };

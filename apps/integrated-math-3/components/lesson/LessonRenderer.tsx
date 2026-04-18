@@ -8,7 +8,7 @@ import { PhaseCompleteButton } from './PhaseCompleteButton';
 import { LessonSkeleton } from './LessonSkeleton';
 import { LessonCompleteScreen } from './LessonCompleteScreen';
 import { submitActivity, type PracticeMode, type SubmitActivityInput } from '@/lib/activities/submission';
-import { isPracticeSubmissionEnvelope } from '@/lib/practice/contract';
+import { isPracticeSubmissionEnvelope } from '@math-platform/practice-core/contract';
 import type { PhaseType } from '@/lib/curriculum/phase-types';
 
 export interface LessonPhase {

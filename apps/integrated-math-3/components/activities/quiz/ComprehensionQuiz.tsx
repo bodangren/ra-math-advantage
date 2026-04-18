@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { MathInputField } from '@/components/activities/algebraic/MathInputField';
-import { buildPracticeSubmissionEnvelope } from '@/lib/practice/contract';
+import { buildPracticeSubmissionEnvelope } from '@math-platform/practice-core/contract';
 
 type QuestionType = 'multiple_choice' | 'true_false' | 'short_answer' | 'select_all';
 

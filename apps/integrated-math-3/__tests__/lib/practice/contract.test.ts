@@ -3,7 +3,7 @@ import {
   practiceSubmissionEnvelopeSchema,
   PRACTICE_CONTRACT_VERSION,
   buildPracticeSubmissionEnvelope,
-} from '@/lib/practice/contract';
+} from '@math-platform/practice-core/contract';
 
 describe('practice timing schema', () => {
   const baseEnvelope = {

@@ -6,7 +6,7 @@ import { usePracticeTiming } from '@/components/practice-timing';
 import {
   practiceSubmissionEnvelopeSchema,
   type PracticeSubmissionEnvelope,
-} from '@/lib/practice/contract';
+} from '@math-platform/practice-core/contract';
 
 export interface ActivityRendererProps {
   componentKey: string;

@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import type { SubmissionEvidence, DeterministicErrorSummary } from '@/lib/practice/error-analysis';
+import type { SubmissionEvidence, DeterministicErrorSummary } from '@math-platform/practice-core/error-analysis';
 import { ActivityRenderer } from '@/components/lesson/ActivityRenderer';
 
 interface SubmissionReviewPanelProps {

@@ -48,3 +48,4 @@
 - (2026-04-18, monorepo-package) Packages under `packages/` that extend `../../tsconfig.json` require a root tsconfig.json; create a minimal composite tsconfig.json at monorepo root before packages can typecheck
 - (2026-04-18, srs-engine) When creating shared packages, define types locally if practice-core doesn't export them yet — don't let package dependencies block extraction; track as tech debt
 - (2026-04-18, code-review) Shared packages must include ESLint dependencies and config at scaffold time; retrofitting is harder because lint scripts silently fail in CI
+- (2026-04-18, practice-core) `@/lib/practice/*` → `@math-platform/practice-core/*` path mapping: `contract`, `timing`, `timing-baseline`, `srs-rating`, `problem-family`, `practice-item`, `error-analysis`; `submission.schema` → `submission-schema`

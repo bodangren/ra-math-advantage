@@ -1,6 +1,6 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { submitActivity } from '@/lib/activities/submission';
-import { practiceSubmissionEnvelopeSchema } from '@/lib/practice/contract';
+import { practiceSubmissionEnvelopeSchema } from '@math-platform/practice-core/contract';
 
 global.fetch = vi.fn() as unknown as typeof fetch;
 

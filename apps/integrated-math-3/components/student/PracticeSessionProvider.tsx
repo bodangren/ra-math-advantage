@@ -4,7 +4,7 @@ import { useState, useCallback, useRef, useEffect } from 'react';
 import type { SrsSession } from '@/lib/srs/contract';
 import { STUDENT_DAILY_PRACTICE_COPY } from '@/lib/srs/contract';
 import type { ResolvedQueueItem } from '@/convex/queue/queue';
-import type { PracticeSubmissionEnvelope } from '@/lib/practice/contract';
+import type { PracticeSubmissionEnvelope } from '@math-platform/practice-core/contract';
 import { submitActivity } from '@/lib/activities/submission';
 import { PracticeCardRenderer } from './PracticeCardRenderer';
 import { SubmissionFeedback } from './SubmissionFeedback';
