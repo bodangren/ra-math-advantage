@@ -32,7 +32,7 @@
 | lib/practice/objective-proficiency.ts + objective-policy.ts unmigrated | High | Open | 520 lines of domain logic not extracted to package; PROFICIENCY_THRESHOLD_DEFAULTS and ObjectivePolicy are app-only |
 | lib/practice/srs-proficiency.ts: local ProficiencyCardInput type (was SrsCardState) | Medium | Open | Renamed to avoid collision with package SrsCardState; still app-local |
 | apps/integrated-math-3/package.json missing @math-platform/* deps | High | Resolved | Added @math-platform/* deps to app package.json - all 6 packages declared with * version (2026-04-18) |
-| ESLint config missing in 3 packages | Medium | Resolved | eslint.config.mjs added to activity-runtime, component-approval, srs-engine (2026-04-18) |
+| ESLint config in packages fails at package scope | Medium | Open | eslint.config.mjs added to activity-runtime, component-approval, srs-engine, graphing-core but `npm run lint` fails: typescript-eslint not resolvable at package level (only at root); pre-existing issue affects all 4 packages |
 | pnpm-workspace.yaml conflicts with npm workspaces | High | Resolved | Deleted dead pnpm config; npm is canonical (2026-04-18) |
 | SubmissionDetailModal: array index used as React key | Low | Open | Should use stable ID (e.g., evidence.activityId) |
 | StepByStepper-guided test: flaky hint tracking | Low | Open | Passes in isolation but fails intermittently in full suite |
