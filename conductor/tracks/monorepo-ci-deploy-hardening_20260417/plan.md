@@ -2,21 +2,21 @@
 
 > Execution detail packet: see `conductor/monorepo-jr-execution-spec.md`, section `monorepo-ci-deploy-hardening_20260417`.
 
-## Phase 1: CI Pipeline Matrix
+## Phase 1: CI Pipeline Matrix [COMPLETE]
 
 ### Tasks
 
-- [ ] **Task: Define and implement CI matrix**
-  - [ ] Add package validation jobs.
-  - [ ] Add per-app lint/test/build/typecheck jobs.
-  - [ ] Set ordering so package failures block app fanout.
+- [x] **Task: Define and implement CI matrix**
+  - [x] Add package validation jobs.
+  - [x] Add per-app lint/test/build/typecheck jobs.
+  - [x] Set ordering so package failures block app fanout.
 
-- [ ] **Task: Integrate boundary guards**
-  - [ ] Ensure boundary guard checks run in CI.
-  - [ ] Fail fast on boundary violations.
-  - [ ] Include script output in CI logs.
+- [x] **Task: Integrate boundary guards**
+  - [x] Ensure boundary guard checks run in CI.
+  - [x] Fail fast on boundary violations.
+  - [x] Include script output in CI logs.
 
-- [ ] **Task: Conductor - User Manual Verification 'Phase 1: CI Pipeline Matrix' (Protocol in workflow.md)**
+- [x] **Task: Conductor - User Manual Verification 'Phase 1: CI Pipeline Matrix' (Protocol in workflow.md)**
 
 ## Phase 2: Deploy and Convex Paths
 

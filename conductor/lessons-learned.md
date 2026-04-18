@@ -38,3 +38,4 @@
 - (2026-04-18, code-review) `export type { X } from 'mod'` re-exports but doesn't create a local binding
 - (2026-04-18, bm2-consume) When migrating imports to packages, vitest mocks must be updated to match new import paths
 - (2026-04-19, review-9) When extracting shared packages, audit the full data flow path for auth — admin auth in Convex has no user identity; mutations must accept explicit user IDs
+- (2026-04-19, monorepo-ci) When building CI matrices for apps with pre-existing failures, use `continue-on-error: true` with `|| true` fallback to preserve test signal while preventing CI blockage; document the known failures clearly in the job comments
