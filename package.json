@@ -14,7 +14,12 @@
     "curriculum:audit": "tsx scripts/curriculum-audit.ts",
     "curriculum:generate": "tsx scripts/generate-curriculum-remediation-artifacts.ts",
     "test": "vitest run",
-    "test:watch": "vitest watch"
+    "test:watch": "vitest watch",
+    "ws:run": "node scripts/run-workspace.mjs",
+    "ws:im3:lint": "npm run --workspace=apps/integrated-math-3 lint 2>/dev/null || npm run lint",
+    "ws:im3:test": "npm run --workspace=apps/integrated-math-3 test 2>/dev/null || npm run test",
+    "ws:im3:typecheck": "npm run --workspace=apps/integrated-math-3 typecheck 2>/dev/null || npm run typecheck",
+    "ws:im3:build": "npm run --workspace=apps/integrated-math-3 build 2>/dev/null || npm run build"
   },
   "dependencies": {
     "@hello-pangea/dnd": "^18.0.1",
