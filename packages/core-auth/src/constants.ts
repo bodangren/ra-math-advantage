@@ -10,6 +10,7 @@ export function getAuthJwtSecret(): string {
   }
 
   if (process.env.NODE_ENV !== 'production') {
+    console.warn('[core-auth] WARNING: Using insecure dev JWT secret. Set AUTH_JWT_SECRET for all non-local environments.');
     return 'dev-insecure-auth-secret-change-me';
   }
 

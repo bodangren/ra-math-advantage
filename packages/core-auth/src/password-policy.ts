@@ -9,21 +9,23 @@ export function getPasswordRequirementText(role: UserRole): string {
 }
 
 export function validatePasswordForRole(role: UserRole, password: string): string | null {
-  const trimmedPassword = password.trim();
+  if (password !== password.trim()) {
+    return 'Password must not start or end with spaces.';
+  }
 
   if (role === 'student') {
-    if (trimmedPassword.length < 6) {
+    if (password.length < 6) {
       return 'New password must be at least 6 characters long.';
     }
 
     return null;
   }
 
-  if (trimmedPassword.length < 8) {
+  if (password.length < 8) {
     return 'New password must be at least 8 characters long.';
   }
 
-  if (!/[A-Za-z]/.test(trimmedPassword) || !/[0-9]/.test(trimmedPassword)) {
+  if (!/[A-Za-z]/.test(password) || !/[0-9]/.test(password)) {
     return 'New password must include at least one letter and one number.';
   }
 

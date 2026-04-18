@@ -11,8 +11,10 @@ ra-integrated-math-3/          # Monorepo root
 ├── apps/
 │   └── integrated-math-3/     # The IM3 application
 ├── packages/
-│   ├── practice-core/         # Practice contract, timing, rating, error analysis
-│   └── srs-engine/            # FSRS scheduler, review processor, queue, adapters
+│   ├── core-auth/              # JWT session, password hashing, demo provisioning
+│   ├── core-convex/            # Convex client config, admin auth, query helpers
+│   ├── practice-core/          # Practice contract, timing, rating, error analysis
+│   └── srs-engine/             # FSRS scheduler, review processor, queue, adapters
 ├── conductor/                  # Spec-driven development docs
 └── README.md
 ```

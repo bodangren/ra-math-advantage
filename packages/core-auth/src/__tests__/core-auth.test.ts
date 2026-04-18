@@ -11,6 +11,8 @@ import {
   verifyPassword,
   generateRandomPassword,
   generatePasswordSalt,
+  isDemoProvisioningEnabled,
+  validatePasswordForRole,
 } from '../index.js';
 
 describe('core-auth constants', () => {
@@ -169,5 +171,62 @@ describe('salt generation', () => {
   it('generates unique salts', () => {
     const salts = new Set(Array.from({ length: 100 }, () => generatePasswordSalt()));
     expect(salts.size).toBe(100);
+  });
+});
+
+describe('isDemoProvisioningEnabled', () => {
+  it('returns false when NODE_ENV is production', () => {
+    expect(isDemoProvisioningEnabled({ NODE_ENV: 'production' })).toBe(false);
+  });
+
+  it('returns false when VERCEL_ENV is production', () => {
+    expect(isDemoProvisioningEnabled({ VERCEL_ENV: 'production', NODE_ENV: 'development' })).toBe(false);
+  });
+
+  it('returns false when VERCEL_ENV is preview', () => {
+    expect(isDemoProvisioningEnabled({ VERCEL_ENV: 'preview', NODE_ENV: 'development' })).toBe(false);
+  });
+
+  it('returns true when NODE_ENV is development', () => {
+    expect(isDemoProvisioningEnabled({ NODE_ENV: 'development' })).toBe(true);
+  });
+
+  it('returns true when NODE_ENV is test', () => {
+    expect(isDemoProvisioningEnabled({ NODE_ENV: 'test' })).toBe(true);
+  });
+
+  it('returns false when no env vars are set', () => {
+    expect(isDemoProvisioningEnabled({})).toBe(false);
+  });
+});
+
+describe('validatePasswordForRole', () => {
+  it('rejects passwords with leading/trailing spaces', () => {
+    expect(validatePasswordForRole('student', '  password  ')).not.toBeNull();
+    expect(validatePasswordForRole('teacher', '  password1  ')).not.toBeNull();
+  });
+
+  it('accepts valid student passwords (6+ chars)', () => {
+    expect(validatePasswordForRole('student', 'abcdef')).toBeNull();
+  });
+
+  it('rejects short student passwords', () => {
+    expect(validatePasswordForRole('student', 'abcde')).not.toBeNull();
+  });
+
+  it('accepts valid teacher passwords (8+ chars with letter and number)', () => {
+    expect(validatePasswordForRole('teacher', 'password1')).toBeNull();
+  });
+
+  it('rejects teacher passwords without a number', () => {
+    expect(validatePasswordForRole('teacher', 'password')).not.toBeNull();
+  });
+
+  it('rejects teacher passwords without a letter', () => {
+    expect(validatePasswordForRole('teacher', '12345678')).not.toBeNull();
+  });
+
+  it('rejects short teacher passwords', () => {
+    expect(validatePasswordForRole('teacher', 'pass12')).not.toBeNull();
   });
 });

@@ -1,6 +1,6 @@
 # Current Directive
 
-> Updated: 2026-04-18 (Code review — extract-practice-core and extract-srs-engine audited)
+> Updated: 2026-04-18 (Code review — 6-phase audit of extract-practice-core, extract-srs-engine, extract-core-auth, extract-core-convex)
 
 ## Mission
 
@@ -8,11 +8,10 @@ Primary objective is to execute the monorepo migration roadmap in Conductor orde
 
 ## Priority Order (Execute In This Order)
 
-1. **Waves 0-1 complete** — readiness gate and tooling shell done
-2. **Move IM3 App** (`move-im3-app-to-apps_20260417`) — **COMPLETE**
-3. **Next: Monorepo Boundary Guardrails** (`monorepo-boundary-guards_20260417`)
-4. **Then execute Waves 2-6 in order** — follow the Monorepo Migration Program in `conductor/tracks.md`
-5. **Defer non-migration feature expansion unless it blocks a migration gate**
+1. **Waves 0-2 complete** — readiness gate, tooling shell, move IM3, boundary guards, extract practice-core/srs-engine, extract core-auth-convex all done
+2. **Next: Wave 3 — Runtime and Approval Packages** — extract-activity-runtime, extract-component-approval, extract-graphing-core
+3. **Then execute Waves 4-6 in order** — follow the Monorepo Migration Program in `conductor/tracks.md`
+4. **Defer non-migration feature expansion unless it blocks a migration gate**
 
 ## Non-Negotiable Rules
 
@@ -58,37 +57,46 @@ Supporting references:
 - [x] Complete `monorepo-tooling-shell_20260417`. **COMPLETED (2026-04-18)**
 - [x] Complete `move-im3-app-to-apps_20260417`. **COMPLETED (2026-04-18)**
 - [x] Complete `monorepo-boundary-guards_20260417`. **COMPLETED (2026-04-18)**
-- [x] Fix remaining monorepo-move path issues: root `AGENTS.md` (stale `integrated-math-3/` ref), root `components.json` (wrong `app/globals.css`) — **COMPLETED (2026-04-18)**
-- [x] Complete `extract-practice-core_20260417` Phase 3: IM3 import migration — **COMPLETED (plan.md shows all phases complete)**
-- [x] Complete `extract-srs-engine_20260417` Phase 2: Reconcile BM2 deltas + Phase 3: IM3 migration — **COMPLETED (plan.md shows all phases complete)**
-- [x] Complete `extract-core-auth-convex_20260417` Phase 2: Generated-API-safe Convex adapters — **COMPLETED (2026-04-18)**
+- [x] Fix remaining monorepo-move path issues — **COMPLETED (2026-04-18)**
+- [x] Complete `extract-practice-core_20260417` — **COMPLETED (2026-04-18)**
+- [x] Complete `extract-srs-engine_20260417` — **COMPLETED (2026-04-18)**
+- [x] Complete `extract-core-auth-convex_20260417` — **COMPLETED (2026-04-18)**
+- [ ] **Next: Start Wave 3** — `extract-activity-runtime_20260417` first
+- [ ] Then `extract-component-approval_20260417`
+- [ ] Then `extract-graphing-core_20260417`
 
 ## Code Review Summary (2026-04-18)
 
-Audited extract-practice-core (Phases 1-2) and extract-srs-engine (Phase 1).
+Audited 6 phases covering extract-practice-core, extract-srs-engine, extract-core-auth, extract-core-convex, and monorepo-move fixes.
 
 ### Verification Results
 
-| Package | Tests | Typecheck | Lint | Build |
-|---------|-------|-----------|------|-------|
-| practice-core | ✅ 10/10 | ✅ Clean | ⚠️ Missing config | N/A (typecheck only) |
-| srs-engine | ✅ 18/18 | ✅ Clean | ⚠️ Missing config | N/A (typecheck only) |
-| Main app (IM3) | ✅ 3356/3362 (6 pre-existing) | ✅ Clean | ✅ Pass | ✅ Pass |
+| Check | Result |
+|-------|--------|
+| Build (vinext build) | PASS |
+| Tests (vitest run) | 3356/3362 pass (6 pre-existing equivalence failures) |
+| Typecheck (tsc --noEmit) | CLEAN |
+| Lint (eslint --max-warnings 0) | CLEAN |
 
-### New Issues Found
+### Issues Fixed in This Review
+
+| Issue | Severity | Fix |
+|-------|----------|-----|
+| Demo provisioning missing VERCEL_ENV=production guard | Critical | Added production check to isDemoProvisioningEnabled |
+| Timing-safe equals leaked signature length via early return | High | Iterate max(len) instead of early return on mismatch |
+| Password generation modulo bias (25% skew) | High | Rejection sampling eliminates bias |
+| Password validation silently trimmed spaces | High | Now rejects passwords with leading/trailing spaces |
+| Dev JWT secret used without any logging | Medium | Added console.warn when falling back |
+| SRS queue: no-policy cards passed triaged filter then wasted sort | Medium | Filter now uses `policy != null` |
+| .gitignore didn't cover subdirectory dist/ and node_modules/ | Medium | Changed to non-root-anchored patterns |
+| README.md missing new packages (core-auth, core-convex) | Low | Added to monorepo structure diagram |
+
+### New Issues Found (Deferred)
 
 | Issue | Severity | Notes |
 |-------|----------|-------|
-| srs-engine contract.ts duplicates types from practice-core | Medium | By design for package isolation, but creates drift risk |
-| srs-engine InMemoryTest stores duplicate InMemoryCardStore/ReviewLogStore | Medium | `submission-srs-adapter.ts` re-implements adapter classes |
-| Both packages missing ESLint devDependencies | Medium | eslint.config.mjs created but packages need `npm install` |
-| practice-core exports duplicate `*Alt` type aliases | Low | `PracticeTimingSummaryAlt`, `PracticeSubmissionPartAlt` — unclear purpose |
-
-### Known Issues Deferred (not blocking migration)
-
-- Equivalence checker: 6 test failures for advanced math patterns (needs symbolic math lib)
-- SRS studentId type mismatch (contract `string` vs Convex `Id<"profiles">`)
-- FSRS stability semantic mismatch (`avgRetention` label)
-- Misconception tags not persisted in review evidence
-- Teacher SRS N+1 queries with unbounded `.collect()` in per-student loops
-- srs-engine submission-srs-adapter.ts reimplements processReview (divergence risk)
+| Duplicate SRS types across packages (SrsRating, SrsRatingResult, Envelope) | High | practice-core and srs-engine define structurally different versions |
+| App lib/srs/ duplicates srs-engine package code verbatim | High | ~6 files copy-pasted; must be applied twice |
+| App lib/convex/admin.ts duplicates core-convex verbatim | Medium | Should import from @math-platform/core-convex |
+| Core-auth/core-convex: process.env defaults break browser imports | Medium | Functions crash if imported client-side |
+| Module-level singleton Convex clients not thread-safe | Medium | Race condition on concurrent initialization |

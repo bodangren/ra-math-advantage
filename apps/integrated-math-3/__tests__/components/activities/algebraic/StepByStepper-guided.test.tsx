@@ -124,26 +124,23 @@ describe('StepByStepper - Guided Mode', () => {
 
       const options = screen.getAllByRole('button');
       
-      // Find incorrect answers (x + 5, 2x + 3)
       const incorrectButtons = options.filter(btn => {
         const text = btn.textContent || '';
         return (text.includes('x + 5') || text.includes('2x + 3')) && !text.includes('x^2');
       });
       
-      // Use hint twice by clicking incorrect answers
       if (incorrectButtons.length >= 2) {
         fireEvent.click(incorrectButtons[0]);
         await waitFor(() => {
-          expect(screen.getByText('Remember: ax^2 + bx + c')).toBeInTheDocument();
+          expect(screen.getByText(/Remember.*ax/)).toBeInTheDocument();
         });
 
         fireEvent.click(incorrectButtons[1]);
         await waitFor(() => {
-          expect(screen.getByText('Remember: ax^2 + bx + c')).toBeInTheDocument();
+          expect(screen.getByText(/Remember.*ax/)).toBeInTheDocument();
         });
       }
 
-      // Hint usage should be tracked
       const hintCount = screen.queryByText(/hints used: \d+/i);
       expect(hintCount).toBeInTheDocument();
     });

@@ -118,7 +118,7 @@ export function buildDailyQueue(
 
   const nonTriaged = cards.filter((card) => {
     const policy = policies.get(card.objectiveId);
-    return policy?.priority !== 'triaged';
+    return policy != null && policy.priority !== 'triaged';
   });
 
   const newCards = nonTriaged.filter((card) => card.state === 'new');

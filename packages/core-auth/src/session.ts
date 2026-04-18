@@ -84,10 +84,10 @@ async function hmacSign(value: string, secret: string): Promise<Uint8Array> {
 }
 
 function timingSafeEquals(a: Uint8Array, b: Uint8Array): boolean {
-  if (a.length !== b.length) return false;
-  let result = 0;
-  for (let i = 0; i < a.length; i += 1) {
-    result |= a[i] ^ b[i];
+  const maxLen = Math.max(a.length, b.length);
+  let result = a.length ^ b.length;
+  for (let i = 0; i < maxLen; i += 1) {
+    result |= (a[i] ?? 0) ^ (b[i] ?? 0);
   }
   return result === 0;
 }
@@ -177,8 +177,17 @@ export async function verifyPassword(
 }
 
 export function generateRandomPassword(length = 12): string {
-  const bytes = crypto.getRandomValues(new Uint8Array(length));
-  return Array.from(bytes, (byte) => PASSWORD_ALPHABET[byte % PASSWORD_ALPHABET.length]).join('');
+  const maxByte = 256 - (256 % PASSWORD_ALPHABET.length);
+  const result: string[] = [];
+  while (result.length < length) {
+    const bytes = crypto.getRandomValues(new Uint8Array(length));
+    for (const byte of bytes) {
+      if (byte < maxByte && result.length < length) {
+        result.push(PASSWORD_ALPHABET[byte % PASSWORD_ALPHABET.length]);
+      }
+    }
+  }
+  return result.join('');
 }
 
 export function generatePasswordSalt(bytes = 16): string {

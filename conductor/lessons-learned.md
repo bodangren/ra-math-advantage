@@ -24,6 +24,11 @@
 - (2026-04-17, code-review) Union-type casts like `x as ObjectivePriority` must be runtime-validated; DB corruption silently propagates otherwise
 - (2026-04-17, code-review) RSC page null checks: both `fetchInternalQuery` and `fetchInternalMutation` can return null; always guard destructuring
 - (2026-04-18, code-review) When wiring dashboard aggregators to handler functions, the handlers may throw; use `.catch(() => [])` to prevent partial failures from breaking the whole dashboard
+- (2026-04-18, security) `timingSafeEquals` must never return early on length mismatch — always iterate max length to avoid timing side-channels
+- (2026-04-18, security) `byte % alphabet.length` introduces modulo bias; use rejection sampling when 256 is not divisible by alphabet length
+- (2026-04-18, security) Password `.trim()` silently modifies user input; reject passwords with leading/trailing spaces explicitly
+- (2026-04-18, security) Vercel production deployments must check `VERCEL_ENV === 'production'` explicitly; don't rely solely on `NODE_ENV`
+- (2026-04-18, packages) After extracting a package, delete the app-local copy immediately — duplicated code diverges silently and doubles maintenance
 
 ## Patterns That Worked Well
 
