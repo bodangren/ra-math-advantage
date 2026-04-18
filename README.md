@@ -19,6 +19,7 @@ ra-integrated-math-3/          # Monorepo root
 │   ├── core-convex/            # Convex client config, admin auth, query helpers
 │   ├── graphing-core/          # Quadratic/linear parsers, canvas utilities
 │   ├── practice-core/          # Practice contract, timing, rating, error analysis
+│   ├── practice-test-engine/   # Shared test types and question utilities
 │   └── srs-engine/             # FSRS scheduler, review processor, queue, adapters
 ├── conductor/                  # Spec-driven development docs
 └── README.md
@@ -208,7 +209,7 @@ Canonical project docs live in `conductor/`:
 
 ## Contributing
 
-This project uses the Conductor skill for spec-driven development. See `AGENTS.md` for AI agent guidelines and `CLAUDE.md` for the entry point.
+This project uses the Conductor skill for spec-driven development. See `AGENTS.md` for AI agent guidelines.
 
 ## License
 
