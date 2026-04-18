@@ -61,6 +61,7 @@ Supporting references:
 - [x] Fix remaining monorepo-move path issues: root `AGENTS.md` (stale `integrated-math-3/` ref), root `components.json` (wrong `app/globals.css`) — **COMPLETED (2026-04-18)**
 - [x] Complete `extract-practice-core_20260417` Phase 3: IM3 import migration — **COMPLETED (plan.md shows all phases complete)**
 - [x] Complete `extract-srs-engine_20260417` Phase 2: Reconcile BM2 deltas + Phase 3: IM3 migration — **COMPLETED (plan.md shows all phases complete)**
+- [~] Execute `extract-core-auth-convex_20260417` Phase 1: Package scaffolding and baseline extraction — **IN PROGRESS (2026-04-18)**
 
 ## Code Review Summary (2026-04-18)
 

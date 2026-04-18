@@ -6,17 +6,17 @@
 
 ### Tasks
 
-- [ ] **Task: Scaffold `packages/core-auth` and `packages/core-convex`**
-  - [ ] Create package manifests, tsconfig, export barrels, and test scaffolds for both packages.
-  - [ ] Add placeholder README sections listing public APIs and integration constraints.
-  - [ ] Confirm package workspace resolution works from root commands.
+- [x] **Task: Scaffold `packages/core-auth` and `packages/core-convex`**
+  - [x] Create package manifests, tsconfig, export barrels, and test scaffolds for both packages.
+  - [x] Add placeholder README sections listing public APIs and integration constraints.
+  - [x] Confirm package workspace resolution works from root commands.
 
-- [ ] **Task: Extract low-risk shared files first**
-  - [ ] Move/copy byte-identical auth helpers (constants/session/password-policy/demo provisioning) into `core-auth`.
-  - [ ] Move/copy shared Convex config/admin/client wrapper logic into `core-convex`.
-  - [ ] Add unit tests for extracted modules before import migration.
+- [x] **Task: Extract low-risk shared files first**
+  - [x] Move/copy byte-identical auth helpers (constants/session/password-policy/demo provisioning) into `core-auth`.
+  - [x] Move/copy shared Convex config/admin/client wrapper logic into `core-convex`.
+  - [x] Add unit tests for extracted modules before import migration.
 
-- [ ] **Task: Conductor - User Manual Verification 'Phase 1: Package Scaffolding and Baseline Extraction' (Protocol in workflow.md)**
+- [x] **Task: Conductor - User Manual Verification 'Phase 1: Package Scaffolding and Baseline Extraction' (Protocol in workflow.md)**
 
 ## Phase 2: Reconcile Divergent Auth/Convex Logic
 
