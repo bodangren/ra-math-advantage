@@ -56,8 +56,8 @@ Supporting references:
 ## Immediate Next Actions Checklist
 
 - [x] Complete `ccss-standards-seeding-m6-m9_20260417`. **COMPLETED (2026-04-18)**
-- [ ] Execute `monorepo-readiness_20260417` and produce migration index + rollback notes.
-- [ ] Confirm package-manager/workspace decision and approval in track notes.
+- [x] Execute `monorepo-readiness_20260417` and produce migration index + rollback notes. **COMPLETED (2026-04-18)**
+- [x] Confirm package-manager/workspace decision and approval in track notes. **APPROVED: npm workspaces**
 - [ ] Begin `monorepo-tooling-shell_20260417` only after readiness exit gate is met.
 
 ## Current Context Snapshot

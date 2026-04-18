@@ -2,7 +2,7 @@
 
 **Track:** `monorepo-readiness_20260417`
 **Created:** 2026-04-18
-**Status:** Phase 1 Complete
+**Status:** COMPLETE
 
 ## Repository State
 
@@ -13,35 +13,130 @@
 
 ## Toolchain Decision
 
-**Status:** Pending explicit approval
+**Status:** APPROVED — npm workspaces
 
-| Option | Status | Notes |
-|--------|--------|-------|
-| pnpm + Turborepo | Proposed | Requires explicit approval per non-negotiable rule #3 |
-| npm workspaces | Fallback | No approval needed; existing package-lock.json users |
+**Chosen:** npm workspaces (no new dependency manager required)
 
-**Decision Required:** Package manager choice must be approved before `monorepo-tooling-shell_20260417` executes.
+| Option | Decision | Rationale |
+|--------|----------|-----------|
+| npm workspaces | **APPROVED** | Uses existing `package-lock.json`; no dependency manager change required; satisfies non-negotiable rule #3 |
+| pnpm + Turborepo | Deferred | Requires explicit approval per non-negotiable rule #3; can be evaluated post-migration if npm workspaces prove insufficient |
+
+### Approved Workspace Structure
+
+```json
+// root package.json additions
+{
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ]
+}
+```
+
+### Root Commands (after tooling-shell track)
+
+```bash
+# Run IM3 gates
+npm run --workspace=apps/integrated-math-3 lint
+npm run --workspace=apps/integrated-math-3 test
+npm run --workspace=apps/integrated-math-3 typecheck
+npm run --workspace=apps/integrated-math-3 build
+
+# Run BM2 gates
+npm run --workspace=apps/bus-math-v2 lint
+npm run --workspace=apps/bus-math-v2 test
+npm run --workspace=apps/bus-math-v2 build
+
+# Run all tests
+npm run -w apps/integrated-math-3 test
+npm run -w apps/bus-math-v2 test
+```
+
+**Decision Recorded:** 2026-04-18 by autonomous phase 2 implementation
+
+## Branch Naming Convention
+
+All monorepo migration tracks use this convention:
+
+```
+migration/<track-id>
+```
+
+Examples:
+- `migration/monorepo-readiness`
+- `migration/monorepo-tooling-shell`
+- `migration/move-im3-app-to-apps`
+- `migration/extract-practice-core`
+
+**Working branch for this track:** `migration/monorepo-readiness` (current)
 
 ## Rollback Protocol
 
-For file-move tracks (1.2, 4.1), use:
+### Before Any File-Move Track
 
 ```bash
-# Abort in-progress move
-git reset --hard HEAD~1
+# Create checkpoint branch BEFORE moving files
+git checkout -b checkpoint/pre-move-<track-id>
 
-# Or restore specific paths
+# If move fails, restore from checkpoint
+git checkout checkpoint/pre-move-<track-id>
+git branch -D migration/<track-id>  # delete failed branch
+```
+
+### Abort In-Progress File Move
+
+```bash
+# If mid-move and need to abort:
+git reset --hard HEAD~1  # rollback one commit
+
+# Or restore specific paths to previous state:
 git checkout HEAD~1 -- <path>
 ```
 
-**Checkpoint Cadence:** Tag after each successful app move (`move-im3-app-to-apps`, `move-bm2-app-to-apps`)
+### Rollback Command Sequence by Track Type
+
+**For app move tracks (1.2, 4.1):**
+```bash
+# 1. Restore moved directories to original locations
+git mv apps/integrated-math-3/* ./  # reverse direction
+
+# Or full reset:
+git reset --hard checkpoint/pre-move-<track-id>
+```
+
+**For extraction tracks (2.x, 3.x, 5.x):**
+```bash
+# Remove package imports and restore local imports
+# Then:
+git checkout HEAD~1 -- apps/integrated-math-3/lib/<package>
+```
+
+**For tooling shell track (1.1):**
+```bash
+# Remove workspace config additions from root package.json
+# Then:
+git reset --hard checkpoint/pre-move-<track-id>
+```
+
+### Checkpoint Cadence
+
+| Milestone | Action |
+|-----------|--------|
+| Before `monorepo-tooling-shell` | Tag `checkpoint/pre-tooling-shell` |
+| Before `move-im3-app-to-apps` | Tag `checkpoint/pre-im3-move` |
+| After successful IM3 move | Tag `checkpoint/post-im3-move` |
+| Before `move-bm2-app-to-apps` | Tag `checkpoint/pre-bm2-move` |
+| After successful BM2 move | Tag `checkpoint/post-bm2-move` |
+
+**Tag format:** `git tag checkpoint/<name> <commit>`
 
 ## Migration Track Registry
 
 ### Wave 0 — Readiness
 | Order | Track ID | Status | Depends On |
 |-------|----------|--------|------------|
-| 0.1 | `monorepo-readiness_20260417` | Phase 1 Complete | None |
+| 0.1 | `monorepo-readiness_20260417` | **COMPLETE** | None |
 
 ### Wave 1 — Host Monorepo Shell
 | Order | Track ID | Status | Depends On | Exit Gate |
@@ -90,9 +185,11 @@ git checkout HEAD~1 -- <path>
 
 | Item | Severity | Status | Notes |
 |------|----------|--------|-------|
-| Package manager approval | High | Pending | Required before Wave 1 |
+| Package manager approval | High | **Resolved** | npm workspaces approved (2026-04-18) |
 | IM3 worktree | - | Clear | Clean, no pending changes |
 | BM2 worktree | - | Clear | 2 commits ahead (non-blocking) |
+
+**Wave 0 Status: COMPLETE — Wave 1 (monorepo-tooling-shell) is now unblocked.**
 
 ## References
 

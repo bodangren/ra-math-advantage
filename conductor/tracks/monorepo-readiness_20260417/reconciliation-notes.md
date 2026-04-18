@@ -1,6 +1,8 @@
 # Reconciliation Notes
 
-## Monorepo Readiness Gate - Phase 1: Audit and Triage
+## Monorepo Readiness Gate
+
+### Phase 1: Audit and Triage (Complete)
 
 ## Worktree State
 
@@ -51,3 +53,40 @@ BM2 local commits:
 - `npm run build`: not run (lint errors present)
 
 Exit gate assessment: Baseline is stable with known pre-existing issues documented in tech-debt.md. No structural migration blockers identified.
+
+### Phase 2: Tooling and Governance Decision (Complete)
+
+## Toolchain Decision
+
+**Approved:** npm workspaces
+
+| Option | Decision | Rationale |
+|--------|----------|-----------|
+| npm workspaces | **APPROVED** | Uses existing `package-lock.json`; no dependency manager change; satisfies non-negotiable rule #3 |
+| pnpm + Turborepo | Deferred | Requires explicit approval per non-negotiable rule #3 |
+
+## Branch Naming Convention
+
+All monorepo migration tracks use: `migration/<track-id>`
+
+Examples:
+- `migration/monorepo-tooling-shell`
+- `migration/move-im3-app-to-apps`
+- `migration/extract-practice-core`
+
+## Rollback Protocol
+
+**Checkpoint branches:** `checkpoint/pre-<track-name>` before any structural change
+
+**Abort in-progress move:**
+```bash
+git reset --hard HEAD~1
+git checkout HEAD~1 -- <path>
+```
+
+**Checkpoint cadence:**
+- `checkpoint/pre-tooling-shell` before Wave 1.1
+- `checkpoint/pre-im3-move` before Wave 1.2
+- `checkpoint/post-im3-move` after successful IM3 move
+- `checkpoint/pre-bm2-move` before Wave 4.1
+- `checkpoint/post-bm2-move` after successful BM2 move
