@@ -45,3 +45,4 @@
 - (2026-04-17, test-design) Convex query mocks must filter by the actual query args — returning unfiltered data causes incorrect calculations in multi-student scenarios
 - (2026-04-18, code-review) After a monorepo directory move, grep for all hardcoded `conductor/`, `curriculum/`, and `convex/` path references in both source and test code; the vinext build does not run tsc
 - (2026-04-18, code-review) CI/CD paths-ignore after a monorepo move must be audited — `apps/**` blocks deployment for all app code changes
+- (2026-04-18, monorepo-package) Packages under `packages/` that extend `../../tsconfig.json` require a root tsconfig.json; create a minimal composite tsconfig.json at monorepo root before packages can typecheck

@@ -6,17 +6,17 @@
 
 ### Tasks
 
-- [ ] **Task: Create package structure and config**
-  - [ ] Create `packages/practice-core/src` with package metadata and TS config.
-  - [ ] Add package scripts for lint/test/build/typecheck.
-  - [ ] Create `src/index.ts` barrel export.
+- [x] **Task: Create package structure and config**
+  - [x] Create `packages/practice-core/src` with package metadata and TS config.
+  - [x] Add package scripts for lint/test/build/typecheck.
+  - [x] Create `src/index.ts` barrel export.
 
-- [ ] **Task: Move canonical IM3 practice primitives**
-  - [ ] Move/port contract, submission schema, timing, timing baseline, SRS rating, and shared error-analysis modules.
-  - [ ] Keep module APIs stable.
-  - [ ] Add package-level unit tests for moved modules.
+- [x] **Task: Move canonical IM3 practice primitives**
+  - [x] Move/port contract, submission schema, timing, timing baseline, SRS rating, and shared error-analysis modules.
+  - [x] Keep module APIs stable.
+  - [x] Add package-level unit tests for moved modules.
 
-- [ ] **Task: Conductor - User Manual Verification 'Phase 1: Scaffold and Extract' (Protocol in workflow.md)**
+- [x] **Task: Conductor - User Manual Verification 'Phase 1: Scaffold and Extract' (Protocol in workflow.md)**
 
 ## Phase 2: Reconcile BM2 Deltas
 

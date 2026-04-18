@@ -1,0 +1,33 @@
+{
+  "name": "@math-platform/practice-core",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "main": "src/index.ts",
+  "types": "src/index.ts",
+  "exports": {
+    ".": "./src/index.ts",
+    "./contract": "./src/practice/contract.ts",
+    "./submission-schema": "./src/practice/submission.schema.ts",
+    "./timing": "./src/practice/timing.ts",
+    "./timing-baseline": "./src/practice/timing-baseline.ts",
+    "./srs-rating": "./src/practice/srs-rating.ts",
+    "./problem-family": "./src/practice/problem-family.ts",
+    "./practice-item": "./src/practice/practice-item.ts",
+    "./error-analysis": "./src/practice/error-analysis/index.ts"
+  },
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest watch",
+    "lint": "eslint src --max-warnings 0",
+    "typecheck": "tsc --noEmit",
+    "build": "tsc --noEmit"
+  },
+  "dependencies": {
+    "zod": "^4.1.12"
+  },
+  "devDependencies": {
+    "typescript": "^5",
+    "vitest": "^4.0.16"
+  }
+}
