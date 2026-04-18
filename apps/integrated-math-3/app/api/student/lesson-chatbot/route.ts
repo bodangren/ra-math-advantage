@@ -92,6 +92,18 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: 'Question must be between 1 and 1000 characters' }, { status: 400 });
   }
 
+  const isEnrolled = await fetchInternalQuery(
+    studentInternal.isStudentActivelyEnrolled,
+    { studentId: profile.id }
+  );
+
+  if (!isEnrolled) {
+    return NextResponse.json(
+      { error: 'Not enrolled in any active class' },
+      { status: 403 }
+    );
+  }
+
   try {
     const rateLimitResult = await fetchInternalMutation(
       rateLimitsInternal.checkAndIncrementRateLimit,

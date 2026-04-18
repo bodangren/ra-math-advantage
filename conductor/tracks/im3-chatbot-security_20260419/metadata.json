@@ -1,0 +1,11 @@
+{
+  "track_id": "im3-chatbot-security_20260419",
+  "type": "fix",
+  "status": "in_progress",
+  "created_at": "2026-04-19T00:00:00Z",
+  "updated_at": "2026-04-19T00:00:00Z",
+  "description": "Fix two critical security issues in IM3 chatbot: (1) lesson enrollment authorization check to prevent students accessing any lesson, (2) sanitize teacher-authored content before injecting into AI prompt to prevent prompt injection",
+  "estimated_tasks": 6,
+  "actual_tasks": null,
+  "deviation_notes": ""
+}

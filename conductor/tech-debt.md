@@ -38,10 +38,10 @@
 | IM3 lib/study local copy not wired to study-hub-core types | Medium | Open | GlossaryTerm is wider than StudyTerm; structural compatibility works but not explicitly adopted |
 | ai-tutoring: resolveOpenRouterProviderFromEnv untested | Medium | Open | Exported public API with zero test coverage |
 | ai-tutoring: as any cast in providers.ts response parsing | Medium | Open | Need typed interface for OpenRouterResponse |
-| IM3 chatbot: no tests for route.ts, rateLimits.ts, LessonChatbot.tsx | High | Open | Three new files with zero test coverage |
-| IM3 chatbot: prompt injection risk in buildPrompt | Medium | Open | User question interpolated directly; added triple-quote delimiters but no system-level guard |
+| IM3 chatbot: no tests for route.ts, rateLimits.ts, LessonChatbot.tsx | High | Open | Three new files with zero test coverage — route.ts now tested (2026-04-19) |
+| IM3 chatbot: prompt injection risk in buildPrompt | Medium | Resolved | Added sanitizeMarkdownForPrompt in lesson-context.ts (2026-04-19) |
 | IM3 Convex types stale: rateLimits + student.getLessonForChatbot | Medium | Open | Generated api.d.ts missing new handlers; must run npx convex dev to regenerate |
-| IM3 chatbot: no lesson enrollment auth + lesson content prompt injection | Critical | Open | Any student can query any lesson; teacher markdown injected raw into AI prompt |
+| IM3 chatbot: no lesson enrollment auth + lesson content prompt injection | Critical | Resolved | Added isStudentActivelyEnrolled check + sanitizeMarkdownForPrompt (2026-04-19) |
 | CI: package test/lint continue-on-error swallows failures | High | Open | Broken packages can merge without detection |
 | CI: BM2 redundant || true + continue-on-error | Low | Open | Both layers suppress failures; remove one |
 | workbook-pipeline: capstone filename hardcoded to BM2 domain | Medium | Open | "investor_ready_workbook" is business-math-specific; parameterize |

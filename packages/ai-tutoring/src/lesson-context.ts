@@ -21,6 +21,19 @@ interface MinimalPhase {
   content: string;
 }
 
+export function sanitizeMarkdownForPrompt(text: string): string {
+  return text
+    .replace(/`/g, '')
+    .replace(/\[/g, '(')
+    .replace(/\]/g, ')')
+    .replace(/>/g, '')
+    .replace(/^#{1,6}\s+/gm, '')
+    .replace(/^\s*[-*+]\s+/gm, '')
+    .replace(/^\s*>\s+/gm, '')
+    .replace(/(?:\n){3,}/g, '\n\n')
+    .trim();
+}
+
 function stripHtml(html: string): string {
   return html.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim();
 }
@@ -37,12 +50,13 @@ export function assembleLessonChatbotContext(
   phase: MinimalPhase,
 ): LessonChatbotContext {
   const strippedContent = stripHtml(phase.content);
-  const contentSummary = truncate(strippedContent, 2000);
+  const sanitizedContent = sanitizeMarkdownForPrompt(strippedContent);
+  const contentSummary = truncate(sanitizedContent, 2000);
 
   return {
-    lessonTitle: lesson.title,
-    unitTitle: lesson.unit.title,
-    phaseTitle: phase.title,
+    lessonTitle: sanitizeMarkdownForPrompt(lesson.title),
+    unitTitle: sanitizeMarkdownForPrompt(lesson.unit.title),
+    phaseTitle: sanitizeMarkdownForPrompt(phase.title),
     learningObjectives: phase.learningObjectives,
     contentSummary,
   };

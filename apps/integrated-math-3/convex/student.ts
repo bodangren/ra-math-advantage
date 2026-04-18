@@ -387,3 +387,16 @@ export const getLessonForChatbot = internalQuery({
     };
   },
 });
+
+export const isStudentActivelyEnrolled = internalQuery({
+  args: { studentId: v.id("profiles") },
+  handler: async (ctx, args): Promise<boolean> => {
+    const enrollments = await ctx.db
+      .query("class_enrollments")
+      .withIndex("by_student", (q) => q.eq("studentId", args.studentId))
+      .collect();
+
+    const hasActiveEnrollment = enrollments.some((e) => e.status === "active");
+    return hasActiveEnrollment;
+  },
+});

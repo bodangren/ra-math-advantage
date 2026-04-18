@@ -661,8 +661,14 @@ AI Tutoring and Workbook scope is explicitly **import/adopt from BM2**, not gree
       - Phase 3: Reliability Validation [COMPLETE]
 
 - [ ] **Track: Monorepo Docs and Cleanup**
-     *Finalize integration docs, remove shims, and reconcile stale path references.*
-     *Link: [./conductor/tracks/monorepo-docs-and-cleanup_20260417/](./conductor/tracks/monorepo-docs-and-cleanup_20260417/)*
+      *Finalize integration docs, remove shims, and reconcile stale path references.*
+      *Link: [./conductor/tracks/monorepo-docs-and-cleanup_20260417/](./conductor/tracks/monorepo-docs-and-cleanup_20260417/)*
+
+- [x] **Track: IM3 Chatbot Security Fixes** — **COMPLETED**
+      *Fix two critical security issues: (1) add lesson enrollment authorization check, (2) sanitize teacher-authored content before AI prompt injection.*
+      *Link: [./conductor/tracks/im3-chatbot-security_20260419/](./conductor/tracks/im3-chatbot-security_20260419/)*
+      - Phase 1: Lesson Enrollment Authorization Check [COMPLETE]
+      - Phase 2: Prompt Injection Sanitization [COMPLETE]
 
 ## Archived Tracks
 
