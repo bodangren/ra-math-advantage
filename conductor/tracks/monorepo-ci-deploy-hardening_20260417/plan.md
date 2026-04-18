@@ -38,14 +38,14 @@
 
 ### Tasks
 
-- [ ] **Task: Run end-to-end CI/deploy dry run**
-  - [ ] Execute full CI matrix on migration branch.
-  - [ ] Run deploy dry-run or staging deploy checks.
-  - [ ] Capture timing/flaky step observations.
+- [x] **Task: Run end-to-end CI/deploy dry run**
+  - [x] Execute full CI matrix on migration branch.
+  - [x] Run deploy dry-run or staging deploy checks.
+  - [x] Capture timing/flaky step observations.
 
-- [ ] **Task: Finalize hardening report**
-  - [ ] Document final pipeline graph and ownership.
-  - [ ] List unresolved non-blocking issues as follow-up tasks.
-  - [ ] Publish handoff notes for docs/cleanup track.
+- [x] **Task: Finalize hardening report**
+  - [x] Document final pipeline graph and ownership.
+  - [x] List unresolved non-blocking issues as follow-up tasks.
+  - [x] Publish handoff notes for docs/cleanup track.
 
-- [ ] **Task: Conductor - User Manual Verification 'Phase 3: Reliability Validation' (Protocol in workflow.md)**
+- [x] **Task: Conductor - User Manual Verification 'Phase 3: Reliability Validation' (Protocol in workflow.md)**

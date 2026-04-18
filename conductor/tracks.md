@@ -658,6 +658,7 @@ AI Tutoring and Workbook scope is explicitly **import/adopt from BM2**, not gree
       *Link: [./conductor/tracks/monorepo-ci-deploy-hardening_20260417/](./conductor/tracks/monorepo-ci-deploy-hardening_20260417/)*
       - Phase 1: CI Pipeline Matrix [COMPLETE]
       - Phase 2: Deploy and Convex Paths [COMPLETE]
+      - Phase 3: Reliability Validation [COMPLETE]
 
 - [ ] **Track: Monorepo Docs and Cleanup**
      *Finalize integration docs, remove shims, and reconcile stale path references.*
