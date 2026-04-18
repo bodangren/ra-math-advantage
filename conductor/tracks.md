@@ -619,10 +619,11 @@ AI Tutoring and Workbook scope is explicitly **import/adopt from BM2**, not gree
 
 ### Wave 5 — Feature Packages and IM3 Pending Tracks
 
-- [~] **Track: Extract Practice Test Engine Package**
+- [x] **Track: Extract Practice Test Engine Package**
       *Extract test-runner primitives and adopt in both apps while keeping banks local.*
       *Link: [./conductor/tracks/extract-practice-test-engine_20260417/](./conductor/tracks/extract-practice-test-engine_20260417/)*
       - Phase 1: Package Extraction [COMPLETE]
+      - Phase 2: App Adoption [COMPLETE] - reconciled package API to match IM3 format; updated BM2 component to use new shuffleAnswers signature
 
 - [ ] **Track: Extract Study Hub Core Package**
      *Extract flashcard/review/game core primitives while keeping glossary data local.*
