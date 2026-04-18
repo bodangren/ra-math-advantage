@@ -33,3 +33,4 @@
 | StepByStepper-guided test: flaky hint tracking | Low | Open | Passes in isolation but fails intermittently in full suite |
 | @testing-library/dom missing after monorepo move | Medium | Resolved | Installed as devDep in apps/integrated-math-3; all 270 test files now load (2026-04-18 review) |
 | Monorepo migration: app-local lib/auth, lib/practice, lib/srs wrappers | Medium | Open | lib/auth/server.ts (234 lines app-specific guards), lib/practice/ (520 lines objective-proficiency + policy), lib/srs/ (Convex adapters) remain app-local intentionally — domain logic vs adapter boundary is documented |
+| BM2 governance tests fail in monorepo context | Medium | Open | 27 BM2 config tests fail due to missing conductor/, docs/, README.md, proxy.ts, tests/e2e — these are repo-structure tests, not app functionality; should be removed or skipped in monorepo context |

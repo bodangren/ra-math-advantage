@@ -578,8 +578,11 @@ AI Tutoring and Workbook scope is explicitly **import/adopt from BM2**, not gree
 ### Wave 4 — Bring BM2 Into the Monorepo
 
 - [ ] **Track: Move BM2 App to apps/bus-math-v2**
-     *Relocate BM2 app while preserving business-domain modules and deployment behavior.*
-     *Link: [./conductor/tracks/move-bm2-app-to-apps_20260417/](./conductor/tracks/move-bm2-app-to-apps_20260417/)*
+      *Relocate BM2 app while preserving business-domain modules and deployment behavior.*
+      *Link: [./conductor/tracks/move-bm2-app-to-apps_20260417/](./conductor/tracks/move-bm2-app-to-apps_20260417/)*
+      - Phase 1: Mechanical BM2 Move [COMPLETE]
+      - Phase 2: Config and Workflow Updates [IN PROGRESS]
+      - Phase 3: Cross-App Verification [PENDING]
 
 - [ ] **Track: BM2 Consume Core Packages**
      *Replace duplicated BM2 core imports with shared practice/srs/auth/convex packages.*

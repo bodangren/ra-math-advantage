@@ -1,0 +1,92 @@
+import { describe, it, expect, vi, beforeEach } from "vitest";
+import { render, screen } from "@testing-library/react";
+
+import Home from "../../app/page";
+
+const mockQuery = vi.fn();
+vi.mock("convex/browser", () => ({
+  ConvexHttpClient: class {
+    constructor() {}
+    query = mockQuery;
+  },
+}));
+
+vi.mock("@/convex/_generated/api", () => ({
+  api: {
+    public: {
+      getCurriculumStats: "api.public.getCurriculumStats",
+      getUnits: "api.public.getUnits",
+    },
+  },
+}));
+
+vi.mock("@/components/hero", () => ({
+  Hero: ({
+    stats,
+  }: {
+    stats: { unitCount: number; lessonCount: number; activityCount: number } | null;
+  }) => (
+    <div data-testid="hero-stats">
+      {stats ? `${stats.unitCount}|${stats.lessonCount}|${stats.activityCount}` : "no-stats"}
+    </div>
+  ),
+}));
+
+vi.mock("@/components/ui/carousel", () => ({
+  Carousel: ({ children }: { children: React.ReactNode }) => <div>{children}</div>,
+}));
+
+describe("Home page", () => {
+  beforeEach(() => {
+    vi.clearAllMocks();
+  });
+
+  it("uses Convex query stats", async () => {
+    mockQuery.mockImplementation((apiRoute) => {
+      if (apiRoute === "api.public.getCurriculumStats") {
+        return Promise.resolve({
+          unitCount: 8,
+          lessonCount: 40,
+          activityCount: 120,
+        });
+      }
+      if (apiRoute === "api.public.getUnits") {
+        return Promise.resolve([
+          {
+            id: "unit-1",
+            unit_number: 1,
+            title: "Balance by Design",
+            slug: "balance-by-design",
+            description: "How do we keep the books balanced?",
+            order_index: 1,
+            metadata: {},
+          },
+        ]);
+      }
+      return Promise.resolve(null);
+    });
+
+    const page = await Home();
+    render(page);
+
+    expect(screen.getByTestId("hero-stats")).toHaveTextContent("8|40|120");
+    expect(screen.getAllByText("Balance by Design").length).toBeGreaterThan(0);
+  });
+
+  it("falls back to empty landing data when Convex is unavailable", async () => {
+    mockQuery.mockRejectedValue(new Error("connect ECONNREFUSED 127.0.0.1:3210"));
+
+    const consoleErrorSpy = vi.spyOn(console, "error").mockImplementation(() => {});
+
+    const page = await Home();
+    render(page);
+
+    expect(screen.getByTestId("hero-stats")).toHaveTextContent("no-stats");
+    expect(
+      screen.getByRole("heading", { name: /Ready to start building/i }),
+    ).toBeInTheDocument();
+    expect(consoleErrorSpy).toHaveBeenCalled();
+
+    consoleErrorSpy.mockRestore();
+  });
+});

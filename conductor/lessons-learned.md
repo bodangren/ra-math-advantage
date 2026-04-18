@@ -46,4 +46,5 @@
 - (2026-04-18, code-review) `export type { X } from 'mod'` re-exports but doesn't create a local binding; use `import type { X } from 'mod'; export type { X } from 'mod';` when the type is used locally in the same file
 - (2026-04-18, monorepo) Always run `npx tsc --noEmit` in each extracted package independently; root tsc with `include: []` catches nothing
 - (2026-04-18, graphing-core) When reconciling BM2 vs extracted package, different coordinate systems (data vs canvas) are valid deltas — don't force merge; document the boundary clearly
+- (2026-04-18, bm2-migration) BM2 governance tests (conductor/, docs/, README.md checks) don't apply in monorepo context; exclude these files from copy and skip/remove those tests
 

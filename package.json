@@ -8,6 +8,10 @@
     "ws:im3:lint": "npm run --workspace=apps/integrated-math-3 lint 2>/dev/null || npm run lint --prefix apps/integrated-math-3",
     "ws:im3:test": "npm run --workspace=apps/integrated-math-3 test 2>/dev/null || npm run test --prefix apps/integrated-math-3",
     "ws:im3:typecheck": "npm run --workspace=apps/integrated-math-3 typecheck 2>/dev/null || npx tsc --noEmit --prefix apps/integrated-math-3",
-    "ws:im3:build": "npm run --workspace=apps/integrated-math-3 build 2>/dev/null || npm run build --prefix apps/integrated-math-3"
+    "ws:im3:build": "npm run --workspace=apps/integrated-math-3 build 2>/dev/null || npm run build --prefix apps/integrated-math-3",
+    "ws:bm2:lint": "npm run --workspace=apps/bus-math-v2 lint 2>/dev/null || npm run lint --prefix apps/bus-math-v2",
+    "ws:bm2:test": "npm run --workspace=apps/bus-math-v2 test 2>/dev/null || npm run test --prefix apps/bus-math-v2",
+    "ws:bm2:typecheck": "npm run --workspace=apps/bus-math-v2 typecheck 2>/dev/null || npx tsc --noEmit --prefix apps/bus-math-v2",
+    "ws:bm2:build": "npm run --workspace=apps/bus-math-v2 build 2>/dev/null || npm run build --prefix apps/bus-math-v2"
   }
 }

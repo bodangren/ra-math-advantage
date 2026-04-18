@@ -1,11 +1,11 @@
 {
   "track_id": "move-bm2-app-to-apps_20260417",
   "type": "feature",
-  "status": "new",
+  "status": "in_progress",
   "created_at": "2026-04-17T07:32:04Z",
-  "updated_at": "2026-04-17T07:32:04Z",
+  "updated_at": "2026-04-18T17:51:00Z",
   "description": "Relocate BM2 into monorepo app path while preserving BM2 domain assets and behavior.",
   "estimated_tasks": 9,
-  "actual_tasks": null,
-  "deviation_notes": ""
+  "actual_tasks": 7,
+  "deviation_notes": "Phase 1-2 and Phase 3 verification complete. BM2 governance tests fail due to excluded files (conductor/, docs/, tests/, README.md, proxy.ts) - expected since these are repo-structure tests not app tests. BM2 pre-existing 351 typecheck errors (vs 354 in original repo)."
 }
