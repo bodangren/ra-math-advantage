@@ -48,3 +48,4 @@
 - (2026-04-17, test-design) Vitest only discovers tests in `__tests__/**/*.test.ts`; place test files there even when stub implementations live in `lib/**/__tests__/`
 - (2026-04-17, code-review) Handler return types with `as` casts for error branches should use discriminated unions; `as` hides type mismatches that callers silently accept
 - (2026-04-17, test-design) Convex query mocks must filter by the actual query args (studentId, objectiveId) — returning unfiltered data causes incorrect proficiency calculations in multi-student scenarios
+- (2026-04-18, code-review) When refactoring a function to accept pre-fetched data, all call sites must be updated in the same commit; the Vite/vinext build does not run tsc, so type mismatches silently pass `npm run build`

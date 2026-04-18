@@ -16,6 +16,7 @@ import {
   buildPublishedProgressSnapshot,
   buildPublishedUnitProgressRows,
   resolveLatestPublishedLessonVersion,
+  type ProgressRowLike,
 } from "../lib/progress/published-curriculum";
 
 interface TeacherProgressSnapshot {
@@ -150,18 +151,12 @@ async function listActivePhaseIds(
 }
 
 async function buildStudentProgressSnapshot(
-  ctx: QueryCtx,
-  studentId: Id<"profiles">,
-  activePhaseIds: Set<Id<"phase_versions">>,
+  progressRows: readonly ProgressRowLike[],
+  activePhaseIds: ReadonlySet<string>,
   phaseVersionLessonMap?: Map<string, string>,
   lessonVersionLessonMap?: Map<string, string>,
   lessonTitleMap?: Map<string, string>,
 ): Promise<TeacherProgressSnapshot> {
-  const progressRows = await ctx.db
-    .query("student_progress")
-    .withIndex("by_user", (q) => q.eq("userId", studentId))
-    .collect();
-
   const snapshot = buildPublishedProgressSnapshot({
     activePhaseIds,
     progressRows,
@@ -270,7 +265,7 @@ export const getTeacherDashboardData = internalQuery({
     for (let i = 0; i < studentIds.length; i++) {
       const studentId = studentIds[i];
       const progressRows = progressRowsArrays[i];
-      const snapshot = buildStudentProgressSnapshot(
+      const snapshot = await buildStudentProgressSnapshot(
         progressRows,
         activePhaseIds,
         phaseVersionLessonMap,
@@ -687,7 +682,11 @@ export const getTeacherStudentDetail = internalQuery({
 
     const organizationName = await getOrganizationName(ctx, teacher.organizationId);
     const activePhaseIds = await listActivePhaseIds(ctx);
-    const snapshot = await buildStudentProgressSnapshot(ctx, student._id, activePhaseIds);
+    const progressRows = await ctx.db
+      .query("student_progress")
+      .withIndex("by_user", (q) => q.eq("userId", student._id))
+      .collect();
+    const snapshot = await buildStudentProgressSnapshot(progressRows, activePhaseIds);
     const units = await listStudentDetailUnits(ctx, student._id);
 
     return {

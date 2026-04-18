@@ -1,22 +1,18 @@
 # Current Directive
 
-> Updated: 2026-04-17 (Monorepo migration execution alignment)
+> Updated: 2026-04-18 (Post code review, monorepo Wave 1 next)
 
 ## Mission
 
 Primary objective is to execute the monorepo migration roadmap in Conductor order, with strict package/app boundaries and no BM2 business-domain leakage.
 
-Secondary objective is to close the remaining migration prerequisite cleanup track before structural moves begin.
-
 ## Priority Order (Execute In This Order)
 
-1. **Finish migration prerequisite cleanup**
-   - `ccss-standards-seeding-m6-m9_20260417`
-2. **Start Wave 0**
-   - `monorepo-readiness_20260417`
-3. **Then execute Waves 1-6 in order**
-   - Follow the Monorepo Migration Program in `conductor/tracks.md`
-4. **Defer non-migration feature expansion unless it blocks a migration gate**
+1. **Waves 0-1 complete** — readiness gate and tooling shell done
+2. **Next: Move IM3 App** (`move-im3-app-to-apps_20260417`)
+3. **Then: Monorepo Boundary Guardrails** (`monorepo-boundary-guards_20260417`)
+4. **Then execute Waves 2-6 in order** — follow the Monorepo Migration Program in `conductor/tracks.md`
+5. **Defer non-migration feature expansion unless it blocks a migration gate**
 
 ## Non-Negotiable Rules
 
@@ -30,6 +26,7 @@ Secondary objective is to close the remaining migration prerequisite cleanup tra
 3. No dependency manager/install changes without explicit approval.
 4. Shared packages must not import from `apps/*` or app `convex/_generated/*`.
 5. BM2 business-domain code/assets remain app-local (`lib/practice/engine`, spreadsheet/simulation activities, `resources`, `public/workbooks`).
+6. Always run `npx tsc --noEmit` alongside `npm run build` — vinext build does not enforce TypeScript types.
 
 ## Required Source Documents
 
@@ -56,12 +53,14 @@ Supporting references:
 ## Immediate Next Actions Checklist
 
 - [x] Complete `ccss-standards-seeding-m6-m9_20260417`. **COMPLETED (2026-04-18)**
-- [x] Execute `monorepo-readiness_20260417` and produce migration index + rollback notes. **COMPLETED (2026-04-18)**
-- [x] Confirm package-manager/workspace decision and approval in track notes. **APPROVED: npm workspaces**
-- [ ] Begin `monorepo-tooling-shell_20260417` only after readiness exit gate is met.
+- [x] Execute `monorepo-readiness_20260417`. **COMPLETED (2026-04-18)**
+- [x] Confirm package-manager/workspace decision. **APPROVED: npm workspaces**
+- [x] Complete `monorepo-tooling-shell_20260417`. **COMPLETED (2026-04-18)**
+- [ ] Begin `move-im3-app-to-apps_20260417` — relocate IM3 app paths under `apps/integrated-math-3`
 
 ## Current Context Snapshot
 
-- SRS and BM2 alignment product tracks are largely complete.
-- AI chatbot/workbook product tracks are intentionally deferred pending package extraction/adoption in the monorepo program.
-- Monorepo planning artifacts and junior execution packets are now present and should be treated as the active implementation baseline.
+- SRS and BM2 alignment product tracks are complete.
+- Monorepo Wave 0 (readiness) and Wave 1 (tooling shell) are complete.
+- AI chatbot/workbook product tracks are deferred pending package extraction/adoption.
+- Code review (2026-04-18) found and fixed a critical type mismatch in `convex/teacher.ts` where `buildStudentProgressSnapshot` was not updated after the N+1 refactor. Always run `npx tsc --noEmit` in addition to `npm run build`.

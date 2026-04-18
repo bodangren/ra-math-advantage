@@ -46,5 +46,8 @@
 | StepByStepper-guided test: flaky hint tracking | Low | Open | Passes in isolation but fails intermittently in full suite; likely timing/timer issue |
 | New test files (study.test.ts, gradebook-queries.test.ts, timing-baseline.test.ts): 35 `any` lint errors | Medium | Open | @typescript-eslint/no-explicit-any violations in test mocks |
 | N+1 queries in getTeacherDashboardData and getTeacherSrsDashboardData | High | Resolved | Fixed: batched per-student srs_cards, srs_sessions, and profiles queries via Promise.all (2026-04-17) |
+| buildStudentProgressSnapshot: signature not updated after N+1 refactor | Critical | Resolved | Fixed: updated function to accept progressRows directly; updated both call sites (2026-04-18) |
 | Unbounded .collect() on lesson_versions, competency_standards, lesson_standards in teacher.ts | High | Open | Multiple handlers fetch entire tables; will grow expensive over time |
 | SubmissionDetailModal: array index used as React key for evidence list | Low | Open | Should use stable ID (e.g., evidence.activityId) |
+| Session day-boundary tests: 3 failures in sessions.test.ts | Medium | Open | isSameDay edge cases with active session resume; pre-existing |
+| lesson-title-consistency: 2 test failures | Low | Open | Conductor track titles/seed phase counts drift from lesson source headings |
