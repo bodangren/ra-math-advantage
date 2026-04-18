@@ -103,6 +103,7 @@ describe('assembleReviewQueueItem', () => {
       componentKey: 'comprehension-quiz',
       displayName: 'Comprehension Quiz',
       props: { questions: 5 },
+      gradingConfig: null,
     };
     const placement = {
       phaseType: 'explore',
@@ -127,6 +128,7 @@ describe('assembleReviewQueueItem', () => {
       _id: 'activity-1',
       componentKey: 'test',
       displayName: 'Test',
+      gradingConfig: null,
     };
     const placement = { phaseType: 'worked_example', sectionId: 's1', phaseId: 'p1' };
 
@@ -144,6 +146,7 @@ describe('assembleReviewQueueItem', () => {
       _id: 'activity-1',
       componentKey: 'test',
       displayName: 'Test',
+      gradingConfig: null,
       approval: { status: 'approved' },
     };
     const placement = { phaseType: 'explore', sectionId: 's1', phaseId: 'p1' };
@@ -163,6 +166,7 @@ describe('assembleReviewQueueItem', () => {
       componentKey: 'test',
       displayName: 'Test',
       props: { answer: 42 },
+      gradingConfig: null,
       approval: { status: 'approved', contentHash: 'oldhash' },
     };
     const placement = { phaseType: 'explore', sectionId: 's1', phaseId: 'p1' };
@@ -178,6 +182,7 @@ describe('assembleReviewQueueItem', () => {
       _id: 'activity-1',
       componentKey: 'test',
       displayName: 'Test',
+      gradingConfig: null,
     };
     const placement = { phaseType: 'explore', sectionId: 's1', phaseId: 'p1' };
 
@@ -191,6 +196,7 @@ describe('assembleReviewQueueItem', () => {
       _id: 'example-1',
       componentKey: 'example-key',
       displayName: 'Example',
+      gradingConfig: null,
     };
     const placement = { phaseType: 'worked_example', sectionId: 's1', phaseId: 'p1' };
     const approvalRecord: ApprovalRecord = {
@@ -222,6 +228,7 @@ describe('assembleReviewQueueItem', () => {
       componentKey: 'step-by-step',
       displayName: 'Step By Step',
       props: { steps },
+      gradingConfig: null,
     };
     const placement = { phaseType: 'independent_practice', sectionId: 's1', phaseId: 'p1' };
 

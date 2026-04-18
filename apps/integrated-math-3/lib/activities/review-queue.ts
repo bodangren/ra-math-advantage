@@ -1,85 +1,61 @@
 import type { Doc } from "@/convex/_generated/dataModel";
 import {
-  computeComponentContentHash,
-  type ComponentKind,
+  resolveComponentKind as _resolveComponentKind,
+  buildActivityPlacementMap as _buildActivityPlacementMap,
+  assembleReviewQueueItem as _assembleReviewQueueItem,
+  type ActivityPlacement,
+  type ReviewQueueItem,
 } from "@math-platform/component-approval";
 
-export interface ActivityPlacement {
-  phaseType: string;
-  sectionId: string;
-  phaseId: string;
-}
+export type { ActivityPlacement, ReviewQueueItem };
 
-export function resolveComponentKind(phaseType: string): ComponentKind {
-  if (phaseType === "worked_example") return "example";
-  if (
-    phaseType === "guided_practice" ||
-    phaseType === "independent_practice" ||
-    phaseType === "assessment"
-  ) {
-    return "practice";
-  }
-  return "activity";
-}
+export const resolveComponentKind = _resolveComponentKind;
 
+/**
+ * Thin adapter: Convex Doc<"phase_sections"> / Doc<"phase_versions"> are
+ * structurally compatible with the package's generic interfaces.
+ */
 export function buildActivityPlacementMap(
   sections: Array<Pick<Doc<"phase_sections">, "_id" | "phaseVersionId" | "content">>,
   phases: Array<Pick<Doc<"phase_versions">, "_id" | "phaseType">>
 ): Map<string, ActivityPlacement> {
-  const phaseMap = new Map(phases.map((p) => [p._id, p]));
-  const map = new Map<string, ActivityPlacement>();
-
-  for (const section of sections) {
-    const activityId = (section.content as { activityId?: string })?.activityId;
-    if (!activityId) continue;
-    if (map.has(activityId)) continue;
-
-    const phase = phaseMap.get(section.phaseVersionId);
-    if (!phase) continue;
-
-    map.set(activityId, {
-      phaseType: phase.phaseType,
-      sectionId: section._id,
-      phaseId: phase._id,
-    });
-  }
-
-  return map;
+  // Package uses generic Pick types that are structurally compatible
+  return _buildActivityPlacementMap(
+    sections as Array<Pick<{ _id: string; phaseVersionId: string; content: { activityId?: string } | null }, "_id" | "phaseVersionId" | "content">>,
+    phases as Array<Pick<{ _id: string; phaseType: string }, "_id" | "phaseType">>
+  );
 }
 
-export interface ReviewQueueItem {
-  componentKind: ComponentKind;
-  componentId: string;
-  componentKey: string;
-  displayName: string;
-  currentHash?: string;
-  storedHash?: string;
-  isStale?: boolean;
-  approval?: {
-    status: string;
+interface AssembleArgs {
+  activity: {
+    _id: string;
+    componentKey: string;
+    displayName: string;
+    props?: Record<string, unknown> | null;
+    gradingConfig?: Record<string, unknown> | null;
+    approval?: {
+      status?: string;
+      contentHash?: string;
+      reviewedAt?: number;
+      reviewedBy?: string;
+    } | null;
+  };
+  placement?: ActivityPlacement;
+  approvalRecord?: {
+    status?: string;
     contentHash?: string;
     reviewedAt?: number;
     reviewedBy?: string;
   };
-  storedProps?: Record<string, unknown>;
-  steps?: Array<{ expression: string; explanation: string }>;
-}
-
-interface AssembleArgs {
-  activity: Pick<
-    Doc<"activities">,
-    "_id" | "componentKey" | "displayName" | "props" | "gradingConfig" | "approval"
-  >;
-  placement?: ActivityPlacement;
-  approvalRecord?: Pick<
-    Doc<"component_approvals">,
-    "status" | "contentHash" | "reviewedAt" | "reviewedBy"
-  >;
-  filterKind?: ComponentKind;
+  filterKind?: "example" | "activity" | "practice";
   filterStatus?: "unreviewed" | "approved" | "needs_changes" | "rejected";
   onlyStale?: boolean;
 }
 
+/**
+ * Thin adapter: normalizes Convex-specific null/undefined conventions
+ * to match the package's ActivityDoc / ApprovalRecord interfaces.
+ */
 export async function assembleReviewQueueItem({
   activity,
   placement,
@@ -88,79 +64,33 @@ export async function assembleReviewQueueItem({
   filterStatus,
   onlyStale,
 }: AssembleArgs): Promise<ReviewQueueItem | null> {
-  const componentKind = placement
-    ? resolveComponentKind(placement.phaseType)
-    : "activity";
-
-  if (filterKind && filterKind !== componentKind) {
-    return null;
-  }
-
-  const currentHash = await computeComponentContentHash({
-    componentKind,
-    componentKey: activity.componentKey,
-    props: activity.props,
-    gradingConfig: activity.gradingConfig,
-  });
-
-  let storedHash: string | undefined;
-  let approvalStatus: string | undefined;
-  let approval:
-    | {
-        status: string;
-        contentHash?: string;
-        reviewedAt?: number;
-        reviewedBy?: string;
-      }
-    | undefined;
-
-  if (componentKind === "activity") {
-    storedHash = activity.approval?.contentHash;
-    approvalStatus = activity.approval?.status;
-    approval = activity.approval
+  return _assembleReviewQueueItem({
+    activity: {
+      _id: activity._id,
+      componentKey: activity.componentKey,
+      displayName: activity.displayName,
+      props: activity.props ?? null,
+      gradingConfig: activity.gradingConfig ?? null,
+      approval: activity.approval
+        ? {
+            status: activity.approval.status,
+            contentHash: activity.approval.contentHash ?? null,
+            reviewedAt: activity.approval.reviewedAt ?? null,
+            reviewedBy: activity.approval.reviewedBy ?? null,
+          }
+        : undefined,
+    },
+    placement,
+    approvalRecord: approvalRecord
       ? {
-          status: activity.approval.status,
-          contentHash: activity.approval.contentHash ?? undefined,
-          reviewedAt: activity.approval.reviewedAt ?? undefined,
-          reviewedBy: activity.approval.reviewedBy ?? undefined,
+          status: approvalRecord.status ?? "unreviewed",
+          contentHash: approvalRecord.contentHash ?? null,
+          reviewedAt: approvalRecord.reviewedAt ?? null,
+          reviewedBy: approvalRecord.reviewedBy ?? null,
         }
-      : undefined;
-  } else {
-    storedHash = approvalRecord?.contentHash;
-    approvalStatus = approvalRecord?.status;
-    approval = approvalRecord
-      ? {
-          status: approvalRecord.status,
-          contentHash: approvalRecord.contentHash ?? undefined,
-          reviewedAt: approvalRecord.reviewedAt ?? undefined,
-          reviewedBy: approvalRecord.reviewedBy ?? undefined,
-        }
-      : undefined;
-  }
-
-  const isStale = storedHash ? storedHash !== currentHash : false;
-  const effectiveStatus = approvalStatus || "unreviewed";
-
-  if (filterStatus && filterStatus !== effectiveStatus) {
-    return null;
-  }
-
-  if (onlyStale && !isStale) {
-    return null;
-  }
-
-  return {
-    componentKind,
-    componentId: activity._id,
-    componentKey: activity.componentKey,
-    displayName: activity.displayName,
-    currentHash,
-    storedHash,
-    isStale,
-    approval,
-    storedProps: activity.props ?? undefined,
-    steps: Array.isArray((activity.props as Record<string, unknown> | null)?.steps)
-      ? ((activity.props as Record<string, unknown>)?.steps as Array<{ expression: string; explanation: string }>)
       : undefined,
-  };
+    filterKind,
+    filterStatus,
+    onlyStale,
+  });
 }

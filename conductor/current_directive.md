@@ -1,6 +1,6 @@
 # Current Directive
 
-> Updated: 2026-04-18 (Code review — 6-phase audit #2 of monorepo extraction + app import migration)
+> Updated: 2026-04-18 (Code review — 6-phase audit #3 of monorepo extraction + app import migration)
 
 ## Mission
 
@@ -9,10 +9,10 @@ Primary objective is to execute the monorepo migration roadmap in Conductor orde
 ## Priority Order (Execute In This Order)
 
 1. **Waves 0-2 complete** — readiness gate, tooling shell, move IM3, boundary guards, extract practice-core/srs-engine, extract core-auth-convex all done
-2. **Wave 3 partially complete** — extract-activity-runtime DONE, extract-component-approval Phase 1 DONE
-3. **CRITICAL: Complete app import migration** — delete duplicate code in lib/auth/, lib/srs/, lib/practice/, lib/convex/ and rewire all imports to @math-platform/* packages (blocks all future extraction tracks)
-4. **Then: extract-component-approval Phase 2+**, extract-graphing-core
-5. **Then execute Waves 4-6 in order** — follow the Monorepo Migration Program in `conductor/tracks.md`
+2. **Wave 3 complete** — extract-activity-runtime DONE, extract-component-approval DONE, extract-graphing-core DONE
+3. **App import migration DONE** — duplicate code deleted, imports rewired to @math-platform/* packages
+4. **Next: extract-graphing-core cleanup** — refactor GraphingExplorer.tsx to use package parsers instead of inline re-implementations
+5. **Next: extract remaining BM2-derived packages** — Waves 4-5 in order (move BM2, consume packages, extract test-engine/study-hub/teacher-reporting/ai-tutoring/workbook)
 6. **Defer non-migration feature expansion unless it blocks a migration gate**
 
 ## Non-Negotiable Rules
@@ -65,21 +65,22 @@ Supporting references:
 - [x] Complete `extract-srs-engine_20260417` — **COMPLETED (2026-04-18)**
 - [x] Complete `extract-core-auth-convex_20260417` — **COMPLETED (2026-04-18)**
 - [x] **Wave 3 Start** — `extract-activity-runtime_20260417` — **COMPLETED (2026-04-18)**
-- [x] `extract-component-approval_20260417` Phase 1 — **COMPLETED (2026-04-18)**
-- [x] **CRITICAL: App import migration** — delete duplicates in lib/auth/, lib/srs/, lib/practice/, lib/convex/ and rewire to packages
-- [x] Complete `extract-component-approval_20260417` Phase 2+
-- [ ] Then `extract-graphing-core_20260417`
+- [x] `extract-component-approval_20260417` — **COMPLETED (2026-04-18)**
+- [x] **CRITICAL: App import migration** — delete duplicates in lib/auth/, lib/srs/, lib/practice/, lib/convex/ and rewire to packages — **COMPLETED (2026-04-18)**
+- [x] `extract-graphing-core_20260417` — **COMPLETED (2026-04-18)**
+- [ ] **Wave 4: Move BM2 App to apps/bus-math-v2**
+- [ ] Then `bm2-consume-core-packages`, `bm2-consume-runtime-packages`
 
-## Code Review Summary (2026-04-18 — 6-Phase Audit #2)
+## Code Review Summary (2026-04-18 — 6-Phase Audit #3)
 
-Audited app-import-migration, extract-activity-runtime, extract-component-approval Phase 1, and srs-engine/practice-core type alignment post-migration.
+Audited graphing-core extraction, component-approval Phase 2, app-import-migration completeness, activity-runtime, srs-engine, and core-auth-convex packages.
 
 ### Verification Results
 
 | Check | Result |
 |-------|--------|
 | Build (vinext build) | PASS |
-| Tests (vitest run) | 3305/3311 pass (6 equivalence, all pre-existing) |
+| Tests (vitest run) | 3249/3255 pass (6 pre-existing equivalence, all pre-existing) |
 | Typecheck (tsc --noEmit) | CLEAN |
 | Lint (eslint --max-warnings 0) | CLEAN |
 
@@ -87,21 +88,16 @@ Audited app-import-migration, extract-activity-runtime, extract-component-approv
 
 | Issue | Severity | Fix |
 |-------|----------|-----|
-| srs-engine contract.ts: 5 divergent type copies (TimingSpeedBand, PracticeTimingFeatures, PracticeSubmissionPart, PracticeTimingSummary, PracticeSubmissionEnvelope) | Critical | Re-exported canonical types from practice-core |
-| lib/practice/srs-proficiency.ts: SrsCardState naming collision with package | Critical | Renamed to ProficiencyCardInput |
-| lib/practice/objective-proficiency.ts: PRIORITY_DEFAULTS naming collision with package | Critical | Renamed to PROFICIENCY_THRESHOLD_DEFAULTS |
-| component-approval: duplicate ComponentKind type in 2 files | High | Import canonical type from content-hash.ts |
-| component-approval: unsafe type assertion on activity.props | High | Added Array.isArray runtime guard |
-| component-approval: confusing ReviewQueueComponentKind alias | Medium | Removed duplicate export |
-| lib/srs/ Convex adapters: @/ path alias may break Convex bundler | Medium | Changed to relative paths |
-| lib/auth/developer.ts: duplicated getServerSessionClaims + buildLoginRedirect | Medium | Import from server.ts instead |
-| lib/practice/objective-proficiency.ts: ObjectivePracticePolicy duplicated from package | Medium | Re-export from @math-platform/srs-engine |
-| INTEGRATION.md: 13+ stale import paths | Medium | Updated all to @math-platform/* package paths |
+| @testing-library/dom missing after monorepo move | Critical | Installed as devDep in apps/integrated-math-3 |
+| ESLint broken in all 7 packages (missing deps) | High | Added eslint, @eslint/js, typescript-eslint to devDeps |
+| component-approval: 7 test type errors (gradingConfig missing) | High | Added gradingConfig: null to all test activity objects |
+| component-approval: review-queue.ts near-duplicate in app | High | Converted to thin adapter wrapping package functions |
+| graphing-core: 3 duplicate test files in app | Medium | Deleted redundant tests (package suite covers same cases) |
+| README.md: graphing-core missing from package list | Low | Added graphing-core entry |
 
 ### New Issues Found (See tech-debt.md for full list)
 
 | Issue | Severity | Notes |
 |-------|----------|-------|
-| lib/practice/objective-proficiency.ts + objective-policy.ts unmigrated | High | 520 lines of domain logic still app-local |
-| lib/practice/srs-proficiency.ts app-local type | Medium | ProficiencyCardInput is app-local only |
-| component-approval: ActivityDoc.gradingConfig required but tests omit it | Medium | Tests pass due to esbuild stripping types |
+| GraphingExplorer inline parser re-implementations | Medium | hasRealIntercepts/hasRealIntersections duplicate package logic |
+| lib/practice/objective-proficiency.ts + objective-policy.ts unmigrated | High | 520 lines of domain logic still app-local (intentional — planned for future extraction) |

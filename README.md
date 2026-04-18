@@ -16,6 +16,7 @@ ra-integrated-math-3/          # Monorepo root
 │   ├── component-approval/     # Content hashing, review queue assembly
 │   ├── core-auth/              # JWT session, password hashing, demo provisioning
 │   ├── core-convex/            # Convex client config, admin auth, query helpers
+│   ├── graphing-core/          # Quadratic/linear parsers, canvas utilities
 │   ├── practice-core/          # Practice contract, timing, rating, error analysis
 │   └── srs-engine/             # FSRS scheduler, review processor, queue, adapters
 ├── conductor/                  # Spec-driven development docs
