@@ -18,6 +18,11 @@ import {
   resolveLatestPublishedLessonVersion,
   type ProgressRowLike,
 } from "../lib/progress/published-curriculum";
+import {
+  getWeakObjectivesHandler,
+  getStrugglingStudentsHandler,
+  getMisconceptionSummaryHandler,
+} from "./teacher/srs-queries";
 
 interface TeacherProgressSnapshot {
   completedPhases: number;
@@ -1491,6 +1496,12 @@ export const getTeacherSrsDashboardData = internalQuery({
 
     const avgRetention = cardCount > 0 ? totalRetention / cardCount : 0;
 
+    const [weakObjectives, strugglingStudents, misconceptions] = await Promise.all([
+      getWeakObjectivesHandler(ctx, { classId: currentClassId as unknown as string }).catch(() => []),
+      getStrugglingStudentsHandler(ctx, { classId: currentClassId as unknown as string }).catch(() => []),
+      getMisconceptionSummaryHandler(ctx, { classId: currentClassId as unknown as string }).catch(() => []),
+    ]);
+
     return {
       classes: activeClasses.map((c) => ({ id: c._id, name: c.name })),
       currentClassId,
@@ -1505,9 +1516,9 @@ export const getTeacherSrsDashboardData = internalQuery({
         perStudent: perStudentOverdue,
       },
       streaks: studentStreaks.slice(0, 5),
-      weakObjectives: [],
-      strugglingStudents: [],
-      misconceptions: [],
+      weakObjectives,
+      strugglingStudents,
+      misconceptions,
     };
   },
 });

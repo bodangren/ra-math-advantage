@@ -1,6 +1,6 @@
 # Current Directive
 
-> Updated: 2026-04-18 (Post code review, monorepo Wave 1 next)
+> Updated: 2026-04-18 (Code review — 6 phases audited, critical fixes applied)
 
 ## Mission
 
@@ -9,8 +9,8 @@ Primary objective is to execute the monorepo migration roadmap in Conductor orde
 ## Priority Order (Execute In This Order)
 
 1. **Waves 0-1 complete** — readiness gate and tooling shell done
-2. **Next: Move IM3 App** (`move-im3-app-to-apps_20260417`)
-3. **Then: Monorepo Boundary Guardrails** (`monorepo-boundary-guards_20260417`)
+2. **Move IM3 App** (`move-im3-app-to-apps_20260417`) — **COMPLETE**
+3. **Next: Monorepo Boundary Guardrails** (`monorepo-boundary-guards_20260417`)
 4. **Then execute Waves 2-6 in order** — follow the Monorepo Migration Program in `conductor/tracks.md`
 5. **Defer non-migration feature expansion unless it blocks a migration gate**
 
@@ -56,14 +56,27 @@ Supporting references:
 - [x] Execute `monorepo-readiness_20260417`. **COMPLETED (2026-04-18)**
 - [x] Confirm package-manager/workspace decision. **APPROVED: npm workspaces**
 - [x] Complete `monorepo-tooling-shell_20260417`. **COMPLETED (2026-04-18)**
-- [x] Begin `move-im3-app-to-apps_20260417` — Phase 1 COMPLETE (fc83018)
-- [x] Complete `move-im3-app-to-apps_20260417` — Phase 2: CI and Tooling Path Fixes
-- [x] Complete `move-im3-app-to-apps_20260417` — Phase 3: Post-Move Validation (typecheck+build pass; 10 test failures in equivalence.test.ts - pre-existing)
+- [x] Complete `move-im3-app-to-apps_20260417`. **COMPLETED (2026-04-18)**
 - [ ] Begin `monorepo-boundary-guards_20260417` — Next track per migration order
+- [ ] Fix remaining monorepo-move path issues: root `AGENTS.md` (stale `integrated-math-3/` ref), root `components.json` (wrong `app/globals.css`)
 
-## Current Context Snapshot
+## Code Review Summary (2026-04-18)
 
-- SRS and BM2 alignment product tracks are complete.
-- Monorepo Wave 0 (readiness) and Wave 1 (tooling shell) are complete.
-- AI chatbot/workbook product tracks are deferred pending package extraction/adoption.
-- Code review (2026-04-18) found and fixed a critical type mismatch in `convex/teacher.ts` where `buildStudentProgressSnapshot` was not updated after the N+1 refactor. Always run `npx tsc --noEmit` in addition to `npm run build`.
+Audited past 6 work phases covering: monorepo move Phases 1-3, tooling shell, readiness gate, CCSS M6-M9 seeding, SRS queue perf + session fix.
+
+### Fixes Applied
+
+| Fix | Severity | Files Changed |
+|-----|----------|---------------|
+| Curriculum audit `conductor/` path broken after monorepo move | Critical | `lib/curriculum/audit.ts` — added `resolveConductorDir()` |
+| Lesson-title-consistency test broken `conductor/` paths | High | `__tests__/curriculum/lesson-title-consistency.test.ts` — split monorepoRoot/appRoot, fixed archive/ paths |
+| CI/CD `paths-ignore: apps/**` blocks all deployments | Critical | `.github/workflows/cloudflare-deploy.yml` — removed `apps/**` and `packages/**` |
+| Teacher SRS dashboard 3 panels always empty | High | `convex/teacher.ts` — wired `getWeakObjectivesHandler`, `getStrugglingStudentsHandler`, `getMisconceptionSummaryHandler` |
+
+### Known Issues Deferred (not blocking migration)
+
+- Equivalence checker: 6 test failures for advanced math patterns (needs symbolic math lib)
+- SRS studentId type mismatch (contract `string` vs Convex `Id<"profiles">`)
+- FSRS stability semantic mismatch (`avgRetention` label)
+- Misconception tags not persisted in review evidence
+- Teacher SRS N+1 queries with unbounded `.collect()` in per-student loops

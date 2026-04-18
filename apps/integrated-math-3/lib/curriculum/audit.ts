@@ -176,8 +176,15 @@ function moduleNumberFromPath(filePath: string): number {
   return match ? Number(match[1]) : 0;
 }
 
+function resolveConductorDir(appRoot: string): string {
+  const candidate = path.join(appRoot, '..', '..', 'conductor');
+  if (fs.existsSync(path.join(candidate, 'course-objectives.md'))) return candidate;
+  return path.join(appRoot, 'conductor');
+}
+
 function parseObjectives(rootDir: string): number {
-  const filePath = path.join(rootDir, 'conductor', 'course-objectives.md');
+  const conductorDir = resolveConductorDir(rootDir);
+  const filePath = path.join(conductorDir, 'course-objectives.md');
   return (readText(filePath).match(/^\*\*\d+[a-z]\./gm) ?? []).length;
 }
 

@@ -5,7 +5,7 @@ Follow Conductor tracks and the workflow in `conductor/workflow.md`.
 
 ## Scope
 
-- Edit only `integrated-math-3/`. The sibling `bus-math-v2/` is reference-only.
+- Edit only `apps/integrated-math-3/`. The sibling `bus-math-v2/` is reference-only.
 - Do not port business-domain components (accounting, spreadsheets, simulations) from the template.
 
 ## Practice Contract
@@ -19,7 +19,7 @@ See `conductor/practice-component-contract.md` for the full spec.
 |------|-------|
 | Architecture, auth, routing | `conductor/architecture.md` |
 | Tech stack and dev commands | `conductor/tech-stack.md` |
-| Curriculum (9 modules, 52 lessons) | `curriculum/` |
+| Curriculum (9 modules, 52 lessons) | `apps/integrated-math-3/curriculum/` |
 | Product scope and features | `conductor/product.md` |
 | Active tracks and plans | `conductor/tracks.md` |
 | Practice/activity contract | `conductor/practice-component-contract.md` |
@@ -29,6 +29,7 @@ See `conductor/practice-component-contract.md` for the full spec.
 - No `npm install` or dependency changes without explicit approval.
 - No destructive git commands (`reset --hard`, `checkout -- <file>`, `push --force`).
 - TDD: write/adjust tests first, run `npm run lint` and relevant tests before each commit.
+- Always run `npx tsc --noEmit` in addition to `npm run build` — vinext build does not enforce TypeScript types.
 - Report discovered bugs/tech debt in Conductor planning artifacts.
 
 <!-- convex-ai-start -->

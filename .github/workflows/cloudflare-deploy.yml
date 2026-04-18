@@ -8,8 +8,6 @@ on:
       - '**.md'
       - 'conductor/**'
       - '.gitignore'
-      - 'apps/**'
-      - 'packages/**'
   workflow_dispatch:
 
 concurrency:

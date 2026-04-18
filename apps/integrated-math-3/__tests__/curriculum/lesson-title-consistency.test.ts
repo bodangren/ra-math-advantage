@@ -1,11 +1,18 @@
 import { describe, expect, it } from 'vitest';
-import { readdirSync, readFileSync } from 'node:fs';
+import { existsSync, readdirSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 
-const repoRoot = process.cwd();
+const appRoot = process.cwd();
+const monorepoRoot = existsSync(join(appRoot, '..', '..', 'conductor', 'tracks.md'))
+  ? join(appRoot, '..', '..')
+  : appRoot;
 
 function read(relativePath: string) {
-  return readFileSync(join(repoRoot, relativePath), 'utf8');
+  return readFileSync(join(monorepoRoot, relativePath), 'utf8');
+}
+
+function readApp(relativePath: string) {
+  return readFileSync(join(appRoot, relativePath), 'utf8');
 }
 
 function normalizeTitle(title: string) {
@@ -14,14 +21,14 @@ function normalizeTitle(title: string) {
 
 function canonicalLessonTitles() {
   const titles = new Map<string, string>();
-  const modulesDir = join(repoRoot, 'curriculum/modules');
+  const modulesDir = join(appRoot, 'curriculum/modules');
 
   for (const filename of readdirSync(modulesDir)) {
     const match = filename.match(/^module-(\d+)-lesson-(\d+)$/);
     if (!match) continue;
 
     const relativePath = `curriculum/modules/${filename}`;
-    const firstLine = read(relativePath).split(/\r?\n/)[0];
+    const firstLine = readApp(relativePath).split(/\r?\n/)[0];
     const heading = firstLine.match(/^# Lesson (\d+-\d+)\s+[\u2014-]\s+(.+)$/);
 
     expect(heading, `${relativePath} must start with a lesson heading`).not.toBeNull();
@@ -46,7 +53,7 @@ function expectCanonicalTitle(
 
 function curriculumPhaseCounts(lessonId: string) {
   const [moduleNumber, lessonNumber] = lessonId.split('-');
-  const source = read(`curriculum/modules/module-${moduleNumber}-lesson-${lessonNumber}`);
+  const source = readApp(`curriculum/modules/module-${moduleNumber}-lesson-${lessonNumber}`);
 
   return {
     learn: (source.match(/^## Learn:/gm) ?? []).length,
@@ -57,7 +64,7 @@ function curriculumPhaseCounts(lessonId: string) {
 
 function curriculumPhaseSequence(lessonId: string) {
   const [moduleNumber, lessonNumber] = lessonId.split('-');
-  const source = read(`curriculum/modules/module-${moduleNumber}-lesson-${lessonNumber}`);
+  const source = readApp(`curriculum/modules/module-${moduleNumber}-lesson-${lessonNumber}`);
   const sequence: Array<'learn' | 'worked_example' | 'assessment'> = [];
 
   for (const line of source.split(/\r?\n/)) {
@@ -91,7 +98,7 @@ function specPhaseCounts(sequence: string) {
 }
 
 function seedImplementationPhaseCounts(relativePath: string) {
-  const source = read(relativePath);
+  const source = readApp(relativePath);
 
   return {
     learn: (source.match(/phaseType: "learn"/g) ?? []).length,
@@ -102,7 +109,7 @@ function seedImplementationPhaseCounts(relativePath: string) {
 
 function seedImplementationPhaseSequence(relativePath: string) {
   return Array.from(
-    read(relativePath).matchAll(/phaseType: "(learn|worked_example|assessment)"/g),
+    readApp(relativePath).matchAll(/phaseType: "(learn|worked_example|assessment)"/g),
     (match) => match[1]
   );
 }
@@ -115,11 +122,11 @@ describe('curriculum lesson title consistency', () => {
   });
 
   it('keeps module overview titles aligned to lesson source headings', () => {
-    for (const filename of readdirSync(join(repoRoot, 'curriculum/modules'))) {
+    for (const filename of readdirSync(join(appRoot, 'curriculum/modules'))) {
       if (!/^module-\d+-.*\.md$/.test(filename)) continue;
 
       const relativePath = `curriculum/modules/${filename}`;
-      const lines = read(relativePath).split(/\r?\n/);
+      const lines = readApp(relativePath).split(/\r?\n/);
 
       lines.forEach((line, index) => {
         const overviewHeading = line.match(/^### (\d+-\d+)\s+(.+)$/);
@@ -138,10 +145,10 @@ describe('curriculum lesson title consistency', () => {
   it('keeps curriculum-bearing Conductor track titles aligned to lesson source headings', () => {
     const conductorFiles = [
       'conductor/tracks.md',
-      'conductor/tracks/module-1-seed_20260406/plan.md',
-      'conductor/tracks/module-1-seed_20260406/spec.md',
-      'conductor/tracks/module-2-seed_20260415/plan.md',
-      'conductor/tracks/module-2-seed_20260415/spec.md',
+      'conductor/archive/module-1-seed_20260406/plan.md',
+      'conductor/archive/module-1-seed_20260406/spec.md',
+      'conductor/archive/module-2-seed_20260415/plan.md',
+      'conductor/archive/module-2-seed_20260415/spec.md',
     ];
 
     for (const relativePath of conductorFiles) {
@@ -163,8 +170,8 @@ describe('curriculum lesson title consistency', () => {
 
   it('keeps seed-track phase counts aligned to lesson source headings', () => {
     const seedSpecFiles = [
-      'conductor/tracks/module-1-seed_20260406/spec.md',
-      'conductor/tracks/module-2-seed_20260415/spec.md',
+      'conductor/archive/module-1-seed_20260406/spec.md',
+      'conductor/archive/module-2-seed_20260415/spec.md',
     ];
 
     for (const relativePath of seedSpecFiles) {
@@ -183,13 +190,13 @@ describe('curriculum lesson title consistency', () => {
   });
 
   it('keeps Convex seed lesson titles aligned to lesson source headings', () => {
-    for (const filename of readdirSync(join(repoRoot, 'convex/seed'))) {
+    for (const filename of readdirSync(join(appRoot, 'convex/seed'))) {
       const seedFile = filename.match(/^seed-lesson-(\d+)-(\d+)\.ts$/);
       if (!seedFile) continue;
 
       const lessonId = `${seedFile[1]}-${seedFile[2]}`;
       const relativePath = `convex/seed/${filename}`;
-      const title = read(relativePath).match(/title: "([^"]+)"/);
+      const title = readApp(relativePath).match(/title: "([^"]+)"/);
 
       expect(title, `${relativePath} must define a lesson title`).not.toBeNull();
       if (!title) continue;
@@ -199,7 +206,7 @@ describe('curriculum lesson title consistency', () => {
   });
 
   it('keeps Convex seed implementation phase counts aligned to lesson source headings', () => {
-    for (const filename of readdirSync(join(repoRoot, 'convex/seed'))) {
+    for (const filename of readdirSync(join(appRoot, 'convex/seed'))) {
       const seedFile = filename.match(/^seed-lesson-(\d+)-(\d+)\.ts$/);
       if (!seedFile) continue;
 
@@ -213,7 +220,7 @@ describe('curriculum lesson title consistency', () => {
   });
 
   it('keeps Convex seed implementation phase order aligned to lesson source headings', () => {
-    for (const filename of readdirSync(join(repoRoot, 'convex/seed'))) {
+    for (const filename of readdirSync(join(appRoot, 'convex/seed'))) {
       const seedFile = filename.match(/^seed-lesson-(\d+)-(\d+)\.ts$/);
       if (!seedFile) continue;
 
@@ -227,13 +234,13 @@ describe('curriculum lesson title consistency', () => {
   });
 
   it('keeps seed test lesson titles aligned to lesson source headings', () => {
-    for (const filename of readdirSync(join(repoRoot, '__tests__/convex/seed'))) {
+    for (const filename of readdirSync(join(appRoot, '__tests__/convex/seed'))) {
       const testFile = filename.match(/^seed-lesson-(\d+)-(\d+)\.test\.ts$/);
       if (!testFile) continue;
 
       const lessonId = `${testFile[1]}-${testFile[2]}`;
       const relativePath = `__tests__/convex/seed/${filename}`;
-      const describeTitle = read(relativePath).match(/describe\('Lesson \d+-\d+: ([^']+)'/);
+      const describeTitle = readApp(relativePath).match(/describe\('Lesson \d+-\d+: ([^']+)'/);
 
       expect(describeTitle, `${relativePath} must describe the canonical lesson title`).not.toBeNull();
       if (!describeTitle) continue;

@@ -2,6 +2,19 @@
 
 A Convex-backed interactive digital textbook for high school Integrated Math 3. The app runs on Vinext/App Router with custom JWT username/password auth. Built as a reusable course template adapted from the [Bus Math v2](../bus-math-v2) codebase.
 
+## Monorepo Structure
+
+This repo uses npm workspaces. The IM3 app lives in `apps/integrated-math-3/` and shared packages will live in `packages/`. Conductor planning docs remain at the repo root in `conductor/`.
+
+```
+ra-integrated-math-3/          # Monorepo root
+├── apps/
+│   └── integrated-math-3/     # The IM3 application
+├── packages/                   # Shared packages (future)
+├── conductor/                  # Spec-driven development docs
+└── README.md
+```
+
 ## Template Intent
 
 This project doubles as a **course template**: Next.js App Router + Convex backend + simple username/password JWT auth. The curriculum, activities, and content are course-specific, but the platform scaffolding (auth, progress tracking, teacher tools, student dashboard) is designed to be reusable across courses.
@@ -64,7 +77,7 @@ Demo accounts are seeded via `convex/seed.ts`. Run the seed action to create dem
 1. Clone the repository:
    ```bash
    git clone <repository-url>
-   cd integrated-math-3
+   cd ra-integrated-math-3
    ```
 
 2. Install dependencies:
@@ -72,8 +85,9 @@ Demo accounts are seeded via `convex/seed.ts`. Run the seed action to create dem
    npm install
    ```
 
-3. Start Convex locally:
+3. Start Convex locally (from the app directory):
    ```bash
+   cd apps/integrated-math-3
    npx convex dev --local --once
    ```
 
@@ -89,7 +103,7 @@ Demo accounts are seeded via `convex/seed.ts`. Run the seed action to create dem
 
    `NEXT_PUBLIC_CONVEX_URL` is typically written by the Convex CLI during local setup. The local default is `http://127.0.0.1:3210`.
 
-6. Start the local stack:
+6. Start the local stack (from `apps/integrated-math-3/`):
    ```bash
    npm run dev:stack
    ```
@@ -111,7 +125,7 @@ Keep `CONVEX_DEPLOY_KEY` and `AUTH_JWT_SECRET` server-only. Never expose via `NE
 ## Project Structure
 
 ```
-integrated-math-3/
+apps/integrated-math-3/
 ├── app/              # Next.js App Router pages and API routes
 ├── components/       # React components
 │   ├── auth/         # AuthProvider (React context)
@@ -135,7 +149,6 @@ integrated-math-3/
 │   └── curriculum/   # Phase types, lesson helpers
 ├── hooks/            # Custom React hooks
 ├── types/            # Shared TypeScript types
-├── conductor/        # Spec-driven development docs (Conductor)
 └── public/           # Static assets
 ```
 
@@ -152,6 +165,8 @@ integrated-math-3/
 
 ## Scripts
 
+Run from `apps/integrated-math-3/`:
+
 | Command | Description |
 |---------|-------------|
 | `npm run dev` | Start Vinext dev server |
@@ -161,6 +176,14 @@ integrated-math-3/
 | `npm run lint` | Run ESLint |
 | `npm test` | Run Vitest suite |
 | `npm run test:watch` | Vitest in watch mode |
+
+Or from the monorepo root:
+
+| Command | Description |
+|---------|-------------|
+| `npm run ws:im3:dev` | Start IM3 dev server |
+| `npm run ws:im3:test` | Run IM3 tests |
+| `npm run ws:im3:build` | Build IM3 |
 
 ## Documentation
 
