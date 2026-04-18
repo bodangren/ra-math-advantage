@@ -8,6 +8,8 @@ on:
       - '**.md'
       - 'conductor/**'
       - '.gitignore'
+      - 'apps/**'
+      - 'packages/**'
   workflow_dispatch:
 
 concurrency:
@@ -29,20 +31,26 @@ jobs:
           cache: 'npm'
 
       - name: Install dependencies
-        run: npm ci
+        run: |
+          npm ci --prefix apps/integrated-math-3
 
       - name: Run lint
-        run: npm run lint
+        run: npm run lint --prefix apps/integrated-math-3
         env:
           CI: true
 
       - name: Run tests
-        run: npm test
+        run: npm test --prefix apps/integrated-math-3
+        env:
+          CI: true
+
+      - name: Run typecheck
+        run: npx tsc --noEmit --prefix apps/integrated-math-3
         env:
           CI: true
 
       - name: Run build
-        run: npm run build
+        run: npm run build --prefix apps/integrated-math-3
         env:
           CI: true
 
@@ -51,8 +59,9 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: deploy --config wrangler.jsonc
+          command: deploy --config apps/integrated-math-3/wrangler.jsonc
           env: production
+          workingDirectory: apps/integrated-math-3
 
       - name: Notify on failure
         if: failure()
