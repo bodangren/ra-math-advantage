@@ -11,13 +11,12 @@
 - (2026-04-16, srs-schema) `mapDbCardToContract` must use `card._id` as `cardId`, not `problemFamilyId` — domain IDs are not unique across students
 - (2026-04-17, auth-guards) Test request guards by mocking `verifySessionToken` and passing cookie headers directly on Request objects; avoids circular mocks
 - (2026-04-19, srs-queries) N+1 sequential loops in Convex queries cause timeouts at scale; use `Promise.all` to parallelize per-entity queries, then batch dependent lookups (e.g., card lookups) with a second `Promise.all` + Map for O(1) lookup
-
 ## Recurring Gotchas
 
 - (2026-04-17, code-review) Timer refs reused for wrong-answer flash: clear previous timer before setting new one
 - (2026-04-17, session-completion) Always send explicit `sessionId` in completion API calls
 - (2026-04-18, code-review) When wiring dashboard aggregators to handler functions, use `.catch(() => [])` to prevent partial failures
-- (2026-04-18, srs-contract) When migrating SRS contracts, always add adapter functions at component boundaries; DailyPracticeSession sits between Convex (legacy schema) and processPracticeSubmission (new contract) — both directions need mapping
+- (2026-04-18, srs-contract) When migrating SRS contracts, add adapter functions at component boundaries — both legacy schema and new contract need mapping
 - (2026-04-19, review-9) When Convex mutations are called via `fetchInternalMutation` (admin auth), `ctx.auth.getUserIdentity()` returns null — always pass userId as an explicit argument
 - (2026-04-19, review-9) Retry wrappers must default to non-retryable; only retry on explicit known patterns (HTTP 429/5xx, network errors). Default `return true` silently masks programming errors
 - (2026-04-19, review-9) Shared packages must not couple to CSS frameworks — Tailwind class strings in gradebook.ts prevent non-Tailwind consumers from using the package
@@ -27,7 +26,8 @@
 - (2026-04-19, review-11) When sanitizing LLM prompt inputs, apply sanitization to ALL user-controllable fields including arrays (e.g. learningObjectives.map(sanitize)) — missing one field bypasss the entire defense
 - (2026-04-19, auth-design) Authorization checks must verify specific resource ownership, not just general enrollment; use join tables (e.g. class_lessons) to establish ownership chains when resources are curriculum-global
 - (2026-04-19, review-12) When adding auth tables (class_lessons), ensure seeding or fallback exists — empty auth tables block all access silently
-- (2026-04-19, review-12) Input sanitization must preserve domain notation — stripping `*` and `_` breaks math questions like "x**2" or "x_1 + x_2"
+- (2026-04-19, review-12) Input sanitization must preserve domain notation — stripping `*` and `_` breaks math notation
+
 ## Patterns That Worked Well
 
 - (2026-04-05, setup) Existing `lib/` modules are pure functions with clear types — excellent for testing
@@ -43,8 +43,7 @@
 - (2026-04-17, srs-queue-performance) Replace N+1 sequential DB lookups with Promise.all over deduplicated IDs
 - (2026-04-17, test-design) Vitest only discovers tests in `__tests__/**/*.test.ts`; place test files there
 - (2026-04-18, monorepo-package) Packages under `packages/` need root tsconfig.json; CI/CD paths-ignore after monorepo move must audit `apps/**` blocks
-- (2026-04-18, code-review) `export type { X } from 'mod'` re-exports but doesn't create a local binding
-- (2026-04-18, bm2-consume) When migrating imports to packages, vitest mocks must be updated to match new import paths
+- (2026-04-18, code-review) `export type { X }` re-exports without local binding; vitest mocks must match new import paths when migrating to packages
 - (2026-04-19, review-9) When extracting shared packages, audit the full data flow path for auth — admin auth in Convex has no user identity; mutations must accept explicit user IDs
 - (2026-04-19, monorepo-ci) When building CI matrices for apps with pre-existing failures, use `continue-on-error: true` with `|| true` fallback to preserve test signal while preventing CI blockage; document the known failures clearly in the job comments
 - (2026-04-19, monorepo-docs) Validation scans (rg for stale imports, path references) should run before Phase 3 to confirm Phase 2 cleanup is unnecessary — clean scans mean no shims existed to remove

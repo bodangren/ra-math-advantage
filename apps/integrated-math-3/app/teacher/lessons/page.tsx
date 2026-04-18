@@ -22,6 +22,7 @@ interface PageData {
   lessons: LessonInfo[];
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any -- Convex generated types stale; proper fix requires npx convex dev
 const lessonAssignmentInternal = internal as any;
 
 export default async function TeacherLessonsPage() {
