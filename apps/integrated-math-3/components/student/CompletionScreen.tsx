@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { STUDENT_DAILY_PRACTICE_COPY } from '@/lib/srs/contract';
+import { STUDENT_DAILY_PRACTICE_COPY } from '@math-platform/srs-engine/contract';
 
 interface CompletionScreenProps {
   completedCount: number;

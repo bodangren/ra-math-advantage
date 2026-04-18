@@ -16,13 +16,13 @@ import {
   type SrsRatingResult,
 } from '@math-platform/practice-core/srs-rating';
 import { deriveTimingFeatures } from '@math-platform/practice-core/timing-baseline';
-import { reviewCard } from '@/lib/srs/scheduler';
+import { reviewCard } from '@math-platform/srs-engine/scheduler';
 import type {
   PracticeSubmissionEnvelope,
   PracticeTimingBaseline,
   SrsCardState,
   SrsReviewLogEntry,
-} from './contract';
+} from '@math-platform/srs-engine/contract';
 
 /**
  * Input payload for `processReview`.

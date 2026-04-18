@@ -16,36 +16,36 @@
   - [x] Preserve public API signatures.
   - [x] Add tests for all public exports.
 
-- [ ] **Task: Conductor - User Manual Verification 'Phase 1: Scaffold and Extract' (Protocol in workflow.md)**
+- [x] **Task: Conductor - User Manual Verification 'Phase 1: Scaffold and Extract' (Protocol in workflow.md)**
 
-## Phase 2: Reconcile and Harden
-
-### Tasks
-
-- [ ] **Task: Diff BM2 overlapping SRS modules**
-  - [ ] Diff shared files and classify deltas.
-  - [ ] Identify must-keep behavior/hardening changes.
-  - [ ] Document excluded domain-specific deltas.
-
-- [ ] **Task: Merge required deltas and retest**
-  - [ ] Apply required changes to package code.
-  - [ ] Update tests for merged behavior.
-  - [ ] Confirm no backend-specific assumptions were introduced.
-
-- [ ] **Task: Conductor - User Manual Verification 'Phase 2: Reconcile and Harden' (Protocol in workflow.md)**
-
-## Phase 3: IM3 Migration and Validation
+## Phase 2: Reconcile and Harden [COMPLETE]
 
 ### Tasks
 
-- [ ] **Task: Replace IM3 SRS imports**
-  - [ ] Swap `@/lib/srs/*` imports to `@math-platform/srs-engine`.
-  - [ ] Keep Convex store adapters local.
-  - [ ] Fix compile errors from import boundary changes.
+- [x] **Task: Diff BM2 overlapping SRS modules**
+  - [x] Diff shared files and classify deltas.
+  - [x] Identify must-keep behavior/hardening changes.
+  - [x] Document excluded domain-specific deltas.
 
-- [ ] **Task: Run SRS-focused verification**
-  - [ ] Run queue/session/scheduler tests.
-  - [ ] Run IM3 `npm run lint` and `npm run test`.
-  - [ ] Run IM3 `npm run build` and `npm run typecheck`.
+- [x] **Task: Merge required deltas and retest**
+  - [x] Apply required changes to package code.
+  - [x] Update tests for merged behavior.
+  - [x] Confirm no backend-specific assumptions were introduced.
 
-- [ ] **Task: Conductor - User Manual Verification 'Phase 3: IM3 Migration and Validation' (Protocol in workflow.md)**
+- [x] **Task: Conductor - User Manual Verification 'Phase 2: Reconcile and Harden' (Protocol in workflow.md)**
+
+## Phase 3: IM3 Migration and Validation [COMPLETE]
+
+### Tasks
+
+- [x] **Task: Replace IM3 SRS imports**
+  - [x] Swap `@/lib/srs/*` imports to `@math-platform/srs-engine`.
+  - [x] Keep Convex store adapters local.
+  - [x] Fix compile errors from import boundary changes.
+
+- [x] **Task: Run SRS-focused verification**
+  - [x] Run queue/session/scheduler tests.
+  - [x] Run IM3 `npm run lint` and `npm run test`.
+  - [x] Run IM3 `npm run build` and `npm run typecheck`.
+
+- [x] **Task: Conductor - User Manual Verification 'Phase 3: IM3 Migration and Validation' (Protocol in workflow.md)**

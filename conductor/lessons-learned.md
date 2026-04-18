@@ -44,8 +44,5 @@
 - (2026-04-17, test-design) Vitest only discovers tests in `__tests__/**/*.test.ts`; place test files there even when stub implementations live in `lib/**/__tests__/`
 - (2026-04-17, test-design) Convex query mocks must filter by the actual query args — returning unfiltered data causes incorrect calculations in multi-student scenarios
 - (2026-04-18, code-review) After a monorepo directory move, grep for all hardcoded `conductor/`, `curriculum/`, and `convex/` path references in both source and test code; the vinext build does not run tsc
-- (2026-04-18, code-review) CI/CD paths-ignore after a monorepo move must be audited — `apps/**` blocks deployment for all app code changes
-- (2026-04-18, monorepo-package) Packages under `packages/` that extend `../../tsconfig.json` require a root tsconfig.json; create a minimal composite tsconfig.json at monorepo root before packages can typecheck
-- (2026-04-18, srs-engine) When creating shared packages, define types locally if practice-core doesn't export them yet — don't let package dependencies block extraction; track as tech debt
-- (2026-04-18, code-review) Shared packages must include ESLint dependencies and config at scaffold time; retrofitting is harder because lint scripts silently fail in CI
-- (2026-04-18, practice-core) `@/lib/practice/*` → `@math-platform/practice-core/*` path mapping: `contract`, `timing`, `timing-baseline`, `srs-rating`, `problem-family`, `practice-item`, `error-analysis`; `submission.schema` → `submission-schema`
+- (2026-04-18, monorepo-package) Packages under `packages/` need root tsconfig.json; CI/CD paths-ignore after monorepo move must audit `apps/**` blocks
+- (2026-04-18, srs-engine) Define types locally in shared packages if dependencies don't export them; ESLint must be scaffolded; migrate local imports to package with updated vitest mocks

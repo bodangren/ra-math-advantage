@@ -23,17 +23,17 @@
 
 import { mapPracticeToSrsRating } from '@math-platform/practice-core/srs-rating';
 import { deriveTimingFeatures } from '@math-platform/practice-core/timing-baseline';
-import { createCard, reviewCard } from '@/lib/srs/scheduler';
+import { createCard, reviewCard } from '@math-platform/srs-engine/scheduler';
 import type {
   CardStore,
   ReviewLogStore,
-} from '@/lib/srs/adapters';
+} from '@math-platform/srs-engine/adapters';
 import type {
   PracticeSubmissionEnvelope,
   PracticeTimingBaseline,
   SrsCardState,
   SrsRating,
-} from '@/lib/srs/contract';
+} from '@math-platform/srs-engine/contract';
 
 export { mapPracticeToSrsRating };
 
@@ -263,7 +263,7 @@ function generateReviewId(): string {
 // In-Memory Adapter for Testing
 // ============================================
 
-import type { SrsReviewLogEntry } from '@/lib/srs/contract';
+import type { SrsReviewLogEntry } from '@math-platform/srs-engine/contract';
 
 export class InMemoryProblemFamilyResolver implements ProblemFamilyResolver {
   private map = new Map<string, ProblemFamilyInfo>();

@@ -1,8 +1,8 @@
 'use client';
 
 import { useState, useCallback, useRef, useEffect } from 'react';
-import type { SrsSession } from '@/lib/srs/contract';
-import { STUDENT_DAILY_PRACTICE_COPY } from '@/lib/srs/contract';
+import type { SrsSession } from '@math-platform/srs-engine/contract';
+import { STUDENT_DAILY_PRACTICE_COPY } from '@math-platform/srs-engine/contract';
 import type { ResolvedQueueItem } from '@/convex/queue/queue';
 import type { PracticeSubmissionEnvelope } from '@math-platform/practice-core/contract';
 import { submitActivity } from '@/lib/activities/submission';

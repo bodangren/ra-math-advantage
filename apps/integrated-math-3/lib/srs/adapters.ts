@@ -27,7 +27,7 @@
  * 5. Keep all date fields as ISO strings for serialization safety.
  */
 
-import type { SrsCardState, SrsReviewLogEntry } from './contract';
+import type { SrsCardState, SrsReviewLogEntry } from '@math-platform/srs-engine/contract';
 
 /**
  * Persistence adapter for SRS card state.

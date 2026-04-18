@@ -18,7 +18,7 @@ import type {
   ObjectivePriority,
   SrsCardState,
   SrsSessionConfig,
-} from './contract';
+} from '@math-platform/srs-engine/contract';
 
 /**
  * A single item in the daily practice queue.

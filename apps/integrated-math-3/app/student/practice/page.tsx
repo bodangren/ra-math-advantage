@@ -5,7 +5,7 @@ import {
   internal,
 } from '@/lib/convex/server';
 import { PracticeSessionProvider } from '@/components/student/PracticeSessionProvider';
-import type { SrsSession } from '@/lib/srs/contract';
+import type { SrsSession } from '@math-platform/srs-engine/contract';
 import type { ResolvedQueueItem } from '@/convex/queue/queue';
 
 interface SessionData {
