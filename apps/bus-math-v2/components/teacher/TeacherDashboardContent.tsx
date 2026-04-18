@@ -29,7 +29,7 @@ import { TeacherCsvExportButton } from "./TeacherCsvExportButton";
 import { TeacherCreateStudentDialog } from "./TeacherCreateStudentDialog";
 import { TeacherBulkImportDialog } from "./TeacherBulkImportDialog";
 import { CourseOverviewGrid } from "./CourseOverviewGrid";
-import type { CourseOverviewRow, UnitColumn } from "@/lib/teacher/course-overview";
+import type { CourseOverviewRow, UnitColumn } from "@math-platform/teacher-reporting-core";
 
 interface TeacherDashboardContentProps {
   teacher: {

@@ -18,7 +18,7 @@ import {
   type RawLessonStandard,
   type RawProgressRow,
   type RawCompetencyRow,
-} from '@/lib/teacher/gradebook';
+} from '@math-platform/teacher-reporting-core';
 
 describe('computeLessonStatus', () => {
   it('returns not_started for empty array', () => {

@@ -1,12 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { assembleCourseOverviewRows } from '@/lib/teacher/course-overview';
-import type {
-  RawCOStudent,
-  RawCOLesson,
-  RawCOLessonVersion,
-  RawCOLessonStandard,
-  RawCOCompetency,
-} from '@/lib/teacher/course-overview';
+import { assembleCourseOverviewRows, type RawCOStudent, type RawCOLesson, type RawCOLessonVersion, type RawCOLessonStandard, type RawCOCompetency } from '@math-platform/teacher-reporting-core';
 
 describe('assembleCourseOverviewRows', () => {
   const students: RawCOStudent[] = [

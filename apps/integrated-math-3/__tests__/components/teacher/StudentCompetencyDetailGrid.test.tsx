@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import { StudentCompetencyDetailGrid } from '@/components/teacher/StudentCompetencyDetailGrid';
-import type { StudentCompetencyDetail } from '@/lib/teacher/competency-heatmap';
+import type { StudentCompetencyDetail } from '@math-platform/teacher-reporting-core';
 
 const createMockDetail = (overrides = {}): StudentCompetencyDetail => ({
   studentId: 's1',

@@ -2,14 +2,14 @@ import { internalQuery, type QueryCtx } from "./_generated/server";
 import type { Id } from "./_generated/dataModel";
 import { v } from "convex/values";
 import { getAuthorizedTeacher } from "./auth";
-import { assembleCourseOverviewRows, type CourseOverviewRow, type UnitColumn } from "../lib/teacher/course-overview";
-import { assembleGradebookRows, type GradebookRow, type GradebookLesson } from "../lib/teacher/gradebook";
+import { assembleCourseOverviewRows, type CourseOverviewRow, type UnitColumn } from "@math-platform/teacher-reporting-core";
+import { assembleGradebookRows, type GradebookRow, type GradebookLesson } from "@math-platform/teacher-reporting-core";
 import {
   assembleCompetencyHeatmapRows,
   assembleStudentCompetencyDetail,
   type CompetencyHeatmapResponse,
   type StudentCompetencyDetail,
-} from "../lib/teacher/competency-heatmap";
+} from "@math-platform/teacher-reporting-core";
 import {
   buildLatestPublishedLessonVersionMap,
   buildPublishedPhaseIdSet,

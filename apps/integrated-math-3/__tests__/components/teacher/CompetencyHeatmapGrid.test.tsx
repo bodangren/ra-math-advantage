@@ -1,7 +1,7 @@
 import { describe, it, expect, vi } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { CompetencyHeatmapGrid } from '@/components/teacher/CompetencyHeatmapGrid';
-import type { CompetencyHeatmapRow, CompetencyStandard } from '@/lib/teacher/competency-heatmap';
+import type { CompetencyHeatmapRow, CompetencyStandard } from '@math-platform/teacher-reporting-core';
 
 const createMockHeatmapData = (overrides = {}): {
   rows: CompetencyHeatmapRow[];

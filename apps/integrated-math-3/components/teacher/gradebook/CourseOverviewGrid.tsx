@@ -1,8 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { cellBgClass } from '@/lib/teacher/gradebook';
-import type { CourseOverviewRow, UnitColumn } from '@/lib/teacher/course-overview';
+import { cellBgClass, type CourseOverviewRow, type UnitColumn } from '@math-platform/teacher-reporting-core';
 
 interface CourseOverviewGridProps {
   rows: CourseOverviewRow[];

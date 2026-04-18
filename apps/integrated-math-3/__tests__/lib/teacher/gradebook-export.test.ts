@@ -1,6 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { buildGradebookCsv, type GradebookCsvOptions } from '@/lib/teacher/gradebook-export';
-import type { GradebookRow, GradebookLesson } from '@/lib/teacher/gradebook';
+import { buildGradebookCsv, type GradebookCsvOptions, type GradebookRow, type GradebookLesson } from '@math-platform/teacher-reporting-core';
 
 describe('buildGradebookCsv', () => {
   const lessons: GradebookLesson[] = [

@@ -4,7 +4,7 @@ import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { ChevronLeft } from 'lucide-react';
 import { CompetencyHeatmapGrid } from '@/components/teacher/CompetencyHeatmapGrid';
-import type { CompetencyHeatmapResponse } from '@/lib/teacher/competency-heatmap';
+import type { CompetencyHeatmapResponse } from '@math-platform/teacher-reporting-core';
 
 interface CompetencyHeatmapClientProps {
   heatmapData: CompetencyHeatmapResponse;

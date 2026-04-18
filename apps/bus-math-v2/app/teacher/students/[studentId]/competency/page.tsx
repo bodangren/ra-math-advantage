@@ -4,7 +4,7 @@ import { ChevronLeft } from 'lucide-react';
 import { requireTeacherSessionClaims } from '@/lib/auth/server';
 import { fetchInternalQuery, internal } from '@/lib/convex/server';
 import { StudentCompetencyDetailGrid } from '@/components/teacher/StudentCompetencyDetailGrid';
-import type { StudentCompetencyDetail } from '@/lib/teacher/competency-heatmap';
+import type { StudentCompetencyDetail } from '@math-platform/teacher-reporting-core';
 
 export default async function TeacherStudentCompetencyPage({ params }: { params: { studentId: string } }) {
   const claims = await requireTeacherSessionClaims('/teacher/students/[studentId]/competency');

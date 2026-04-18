@@ -16,7 +16,7 @@ import {
   type RawCHLessonStandard,
   type RawCHLessonVersion,
   type RawCHLesson,
-} from '@/lib/teacher/competency-heatmap';
+} from '@math-platform/teacher-reporting-core';
 
 describe('competency heatmap assembly', () => {
   describe('computeCompetencyColor', () => {

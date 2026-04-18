@@ -4,7 +4,7 @@ import { ChevronLeft } from 'lucide-react';
 import { requireTeacherSessionClaims } from '@/lib/auth/server';
 import { fetchInternalQuery, internal } from '@/lib/convex/server';
 import { CourseOverviewGrid } from '@/components/teacher/CourseOverviewGrid';
-import type { CourseOverviewRow, UnitColumn } from '@/lib/teacher/course-overview';
+import type { CourseOverviewRow, UnitColumn } from '@math-platform/teacher-reporting-core';
 
 export default async function CourseGradebookPage() {
   const claims = await requireTeacherSessionClaims('/teacher/gradebook');

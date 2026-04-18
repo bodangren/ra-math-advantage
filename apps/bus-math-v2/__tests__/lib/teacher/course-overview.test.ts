@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { assembleCourseOverviewRows } from '@/lib/teacher/course-overview';
+import { assembleCourseOverviewRows } from '@math-platform/teacher-reporting-core';
 
 // ---------------------------------------------------------------------------
 // Fixtures

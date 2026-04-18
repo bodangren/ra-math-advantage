@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { cellBgClass, type GradebookRow, type GradebookLesson } from '@/lib/teacher/gradebook';
+import { cellBgClass, type GradebookRow, type GradebookLesson } from '@math-platform/teacher-reporting-core';
 
 interface GradebookGridProps {
   rows: GradebookRow[];

@@ -631,10 +631,11 @@ AI Tutoring and Workbook scope is explicitly **import/adopt from BM2**, not gree
       - Phase 1: Extract Shared Study Primitives [COMPLETE]
       - Phase 2: Adopt in IM3 [COMPLETE] - BaseReviewSession imports migrated to package; FlashcardPlayer/ReviewSession updated
 
-- [ ] **Track: Extract Teacher Reporting Core Package**
+- [x] **Track: Extract Teacher Reporting Core Package**
       *Extract pure gradebook/reporting logic while keeping Convex queries app-local.*
       *Link: [./conductor/tracks/extract-teacher-reporting-core_20260417/](./conductor/tracks/extract-teacher-reporting-core_20260417/)*
       - Phase 1: Pure Logic Extraction [COMPLETE]
+      - Phase 2: Adoption in IM3/BM2 [COMPLETE] - IM3 fully migrated; BM2 partial (gradebook has BM2-specific extensions)
 
 - [ ] **Track: Extract AI Tutoring Package and Adopt in IM3**
      *Extract BM2 tutoring primitives and complete IM3 chatbot via package imports.*

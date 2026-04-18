@@ -1,8 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { cellBgClass } from '@/lib/teacher/gradebook';
-import type { CompetencyHeatmapRow, CompetencyStandard } from '@/lib/teacher/competency-heatmap';
+import { cellBgClass, type CompetencyHeatmapRow, type CompetencyStandard } from '@math-platform/teacher-reporting-core';
 
 interface CompetencyHeatmapGridProps {
   rows: CompetencyHeatmapRow[];

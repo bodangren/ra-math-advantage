@@ -1,8 +1,7 @@
 'use client';
 
 import { useCallback } from 'react';
-import type { GradebookRow, GradebookLesson } from '@/lib/teacher/gradebook';
-import { buildGradebookCsv } from '@/lib/teacher/gradebook-export';
+import { buildGradebookCsv, type GradebookRow, type GradebookLesson } from '@math-platform/teacher-reporting-core';
 
 interface GradebookExportButtonProps {
   rows: GradebookRow[];

@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { requireTeacherSessionClaims } from '@/lib/auth/server';
 import { fetchInternalQuery, internal } from '@/lib/convex/server';
-import { cellBgClass, type GradebookRow, type GradebookLesson } from '@/lib/teacher/gradebook';
+import { cellBgClass, type GradebookRow, type GradebookLesson } from '@math-platform/teacher-reporting-core';
 import { GradebookExportButton } from '@/components/teacher/GradebookExportButton';
 
 const UNIT_COUNT = 9;

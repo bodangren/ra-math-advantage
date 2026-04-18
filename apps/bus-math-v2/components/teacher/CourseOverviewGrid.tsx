@@ -4,7 +4,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { ArrowUp, ArrowDown, ArrowUpDown } from 'lucide-react';
 import { cellBgClass, cellColorLabel, sortRowsByName, applyStudentRowUpdate } from '@/lib/teacher/gradebook';
-import type { CourseOverviewRow, UnitColumn } from '@/lib/teacher/course-overview';
+import type { CourseOverviewRow, UnitColumn } from '@math-platform/teacher-reporting-core';
 import {
   TeacherStudentActions,
   type StudentAccountUpdate,

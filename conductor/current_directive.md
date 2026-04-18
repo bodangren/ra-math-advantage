@@ -44,7 +44,7 @@ Primary objective is to execute the monorepo migration roadmap in Conductor orde
 - [x] Extract practice-test-engine — **COMPLETED (2026-04-19)**
 - [x] Extract study-hub-core — **COMPLETED (2026-04-19)**
 - [x] Extract teacher-reporting-core Phase 1 — **COMPLETED (2026-04-19)**
-- [ ] Wire teacher-reporting-core to IM3/BM2 (Phase 2)
+- [x] Wire teacher-reporting-core to IM3/BM2 (Phase 2) — **COMPLETED (2026-04-19)**
 - [ ] Wave 5: AI tutoring and workbook (import/adopt from BM2)
 - [ ] Wave 6: CI/CD hardening, docs cleanup
 - [ ] BM2 type health sweep (~296 TS errors) — defer unless blocking

@@ -1,7 +1,7 @@
 import { describe, it, expect, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import { GradebookGrid } from '@/components/teacher/gradebook/GradebookGrid';
-import type { GradebookRow, GradebookLesson } from '@/lib/teacher/gradebook';
+import type { GradebookRow, GradebookLesson } from '@math-platform/teacher-reporting-core';
 
 const createMockGradebookData = (overrides = {}): {
   rows: GradebookRow[];

@@ -1,7 +1,6 @@
 'use client';
 
-import { computeCompetencyColor, type StudentCompetencyDetail } from '@/lib/teacher/competency-heatmap';
-import { cellBgClass } from '@/lib/teacher/gradebook';
+import { computeCompetencyColor, type StudentCompetencyDetail, cellBgClass } from '@math-platform/teacher-reporting-core';
 
 interface StudentCompetencyDetailGridProps {
   detail: StudentCompetencyDetail;

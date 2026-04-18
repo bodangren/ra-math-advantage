@@ -2,7 +2,7 @@ import { describe, it, expect } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { CourseOverviewGrid } from '@/components/teacher/CourseOverviewGrid';
-import type { CourseOverviewRow, UnitColumn } from '@/lib/teacher/course-overview';
+import type { CourseOverviewRow, UnitColumn } from '@math-platform/teacher-reporting-core';
 
 const units: UnitColumn[] = [
   { unitNumber: 1 },

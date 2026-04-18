@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { ArrowUp, ArrowDown, ArrowUpDown } from 'lucide-react';
 import { cellBgClass, sortRowsByName } from '@/lib/teacher/gradebook';
-import type { CompetencyHeatmapRow, CompetencyStandard } from '@/lib/teacher/competency-heatmap';
+import type { CompetencyHeatmapRow, CompetencyStandard } from '@math-platform/teacher-reporting-core';
 
 interface CompetencyHeatmapGridProps {
   rows: CompetencyHeatmapRow[];

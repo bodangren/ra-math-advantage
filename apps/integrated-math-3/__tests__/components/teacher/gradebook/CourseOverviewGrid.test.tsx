@@ -1,7 +1,7 @@
 import { describe, it, expect, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import { CourseOverviewGrid } from '@/components/teacher/gradebook/CourseOverviewGrid';
-import type { CourseOverviewRow, UnitColumn } from '@/lib/teacher/course-overview';
+import type { CourseOverviewRow, UnitColumn } from '@math-platform/teacher-reporting-core';
 
 const createMockCourseOverviewData = (overrides = {}): {
   rows: CourseOverviewRow[];
