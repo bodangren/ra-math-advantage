@@ -1,4 +1,4 @@
-import type { PracticeTimingSummary, PracticeTimingConfidence } from './contract';
+import type { PracticeTimingSummary, PracticeTimingConfidence } from '@math-platform/practice-core';
 
 /**
  * Practice Timing Baselines

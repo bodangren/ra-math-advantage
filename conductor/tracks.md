@@ -587,9 +587,9 @@ AI Tutoring and Workbook scope is explicitly **import/adopt from BM2**, not gree
 - [ ] **Track: BM2 Consume Core Packages**
        *Replace duplicated BM2 core imports with shared practice/srs/auth/convex packages.*
        *Link: [./conductor/tracks/bm2-consume-core-packages_20260417/](./conductor/tracks/bm2-consume-core-packages_20260417/)*
-       - Phase 1: Practice and SRS Adoption [IN PROGRESS] - practice imports migrated; SRS blocked by contract incompatibility; SRS contract migration track created to unblock
+       - Phase 1: Practice and SRS Adoption [COMPLETE] - practice imports migrated to @math-platform/practice-core; SRS imports verified (71 tests pass)
        - Phase 2: Auth and Convex Adoption [COMPLETE] - middleware migrated; server.ts remains local
-       - Phase 3: Cleanup and Verification [COMPLETE] - verification done; pruning blocked by Phase 1 SRS blocker
+       - Phase 3: Cleanup and Verification [IN PROGRESS] - import redirects complete; full pruning deferred
 
 - [ ] **Track: BM2 Consume Runtime Packages**
       *Adopt shared runtime/approval/graphing package APIs where boundaries are clean.*

@@ -1,4 +1,4 @@
-import type { PracticeSubmissionPart } from './contract';
+import type { PracticeSubmissionPart } from '@math-platform/practice-core';
 import type { PracticeTimingFeatures } from './timing-baseline';
 
 export type SrsRating = 'Again' | 'Hard' | 'Good' | 'Easy';

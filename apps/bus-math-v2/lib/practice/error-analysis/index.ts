@@ -6,7 +6,7 @@
  * misconception tags from the grading layer.
  */
 
-import type { PracticeSubmissionEnvelope, PracticeSubmissionPart } from '../contract';
+import type { PracticeSubmissionEnvelope, PracticeSubmissionPart } from '@math-platform/practice-core';
 
 // ── Types ──────────────────────────────────────────────────────────────────
 

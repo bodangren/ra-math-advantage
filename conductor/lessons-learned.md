@@ -43,3 +43,4 @@
 - (2026-04-18, bm2-consume) When migrating imports to packages, vitest mocks must be updated to match new import paths
 - (2026-04-18, review-6) SRS contract migration must include component-layer adapters; DailyPracticeSession broke because Phase 1-2 migrated lib/ but not components — always audit the full data flow path (Convex → component → lib → Convex)
 - (2026-04-18, review-6) FSRS timestamp rounding can cause 1ms boundary flakiness in tests; capture both before/after timestamps and use after for upper bounds
+- (2026-04-18, bm2-consume-core) When migrating practice imports to package, update both the import source AND remove local re-exports; local contract.ts dups should stay until audit confirms they're truly local-specific
