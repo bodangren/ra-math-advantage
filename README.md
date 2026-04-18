@@ -148,9 +148,9 @@ apps/integrated-math-3/
 │   ├── auth/         # JWT session helpers and role guards
 │   ├── convex/       # Convex client config and server helpers
 │   ├── activities/   # Activity registry, schemas, content hashing
-│   ├── practice/     # Practice contract, error analysis, timing telemetry
+│   ├── practice/     # Proficiency logic, objective policy, error analysis re-exports
 │   ├── practice-tests/ # Practice test types, question banks, module configs
-│   ├── srs/          # SRS contract, FSRS scheduler, queue, adapters
+│   ├── srs/          # Convex-backed SRS adapters (card store, review log, session store)
 │   ├── teacher/      # Gradebook and course overview pure logic
 │   ├── study/        # Glossary, SRS utilities, types
 │   └── curriculum/   # Phase types, lesson helpers

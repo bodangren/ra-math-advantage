@@ -3,7 +3,7 @@ import {
   computeObjectiveProficiency,
   buildStudentProficiencyView,
   buildTeacherProficiencyView,
-  PRIORITY_DEFAULTS,
+  PROFICIENCY_THRESHOLD_DEFAULTS,
   type ProblemFamilyEvidence,
 } from '@/lib/practice/objective-proficiency';
 
@@ -292,27 +292,27 @@ describe('computeObjectiveProficiency', () => {
 
   describe('priority defaults', () => {
     it('essential has highest thresholds', () => {
-      expect(PRIORITY_DEFAULTS.essential.minProblemFamilies).toBe(3);
-      expect(PRIORITY_DEFAULTS.essential.minCoverageThreshold).toBe(0.7);
-      expect(PRIORITY_DEFAULTS.essential.minRetentionThreshold).toBe(0.8);
+      expect(PROFICIENCY_THRESHOLD_DEFAULTS.essential.minProblemFamilies).toBe(3);
+      expect(PROFICIENCY_THRESHOLD_DEFAULTS.essential.minCoverageThreshold).toBe(0.7);
+      expect(PROFICIENCY_THRESHOLD_DEFAULTS.essential.minRetentionThreshold).toBe(0.8);
     });
 
     it('supporting has moderate thresholds', () => {
-      expect(PRIORITY_DEFAULTS.supporting.minProblemFamilies).toBe(2);
-      expect(PRIORITY_DEFAULTS.supporting.minCoverageThreshold).toBe(0.5);
-      expect(PRIORITY_DEFAULTS.supporting.minRetentionThreshold).toBe(0.7);
+      expect(PROFICIENCY_THRESHOLD_DEFAULTS.supporting.minProblemFamilies).toBe(2);
+      expect(PROFICIENCY_THRESHOLD_DEFAULTS.supporting.minCoverageThreshold).toBe(0.5);
+      expect(PROFICIENCY_THRESHOLD_DEFAULTS.supporting.minRetentionThreshold).toBe(0.7);
     });
 
     it('extension has lowest thresholds', () => {
-      expect(PRIORITY_DEFAULTS.extension.minProblemFamilies).toBe(1);
-      expect(PRIORITY_DEFAULTS.extension.minCoverageThreshold).toBe(0.3);
-      expect(PRIORITY_DEFAULTS.extension.minRetentionThreshold).toBe(0.6);
+      expect(PROFICIENCY_THRESHOLD_DEFAULTS.extension.minProblemFamilies).toBe(1);
+      expect(PROFICIENCY_THRESHOLD_DEFAULTS.extension.minCoverageThreshold).toBe(0.3);
+      expect(PROFICIENCY_THRESHOLD_DEFAULTS.extension.minRetentionThreshold).toBe(0.6);
     });
 
     it('triaged has zero thresholds (never proficient)', () => {
-      expect(PRIORITY_DEFAULTS.triaged.minProblemFamilies).toBe(0);
-      expect(PRIORITY_DEFAULTS.triaged.minCoverageThreshold).toBe(0);
-      expect(PRIORITY_DEFAULTS.triaged.minRetentionThreshold).toBe(0);
+      expect(PROFICIENCY_THRESHOLD_DEFAULTS.triaged.minProblemFamilies).toBe(0);
+      expect(PROFICIENCY_THRESHOLD_DEFAULTS.triaged.minCoverageThreshold).toBe(0);
+      expect(PROFICIENCY_THRESHOLD_DEFAULTS.triaged.minRetentionThreshold).toBe(0);
     });
   });
 });

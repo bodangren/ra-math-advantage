@@ -11,11 +11,9 @@ vi.mock('@/lib/convex/server', () => ({
   fetchInternalQuery: mockFetchInternalQuery,
   internal: { auth: { getCredentialByUsername: 'auth:getCredentialByUsername' } },
 }));
-vi.mock('@/lib/auth/session', () => ({
+vi.mock('@math-platform/core-auth', () => ({
   signSessionToken: mockSignSessionToken,
   verifyPassword: mockVerifyPassword,
-}));
-vi.mock('@/lib/auth/constants', () => ({
   SESSION_COOKIE_NAME: 'bm_session',
   SESSION_TTL_SECONDS: 43200,
   PASSWORD_HASH_ITERATIONS: 120000,

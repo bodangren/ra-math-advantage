@@ -40,7 +40,7 @@ function validatePriority(value: string): ObjectivePriority {
 }
 
 import type {
-  SrsCardState as ProficiencyCardState,
+  ProficiencyCardInput as ProficiencyCardState,
   TimingBaselines,
 } from "../lib/practice/srs-proficiency";
 

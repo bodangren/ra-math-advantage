@@ -1,17 +1,7 @@
-import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
 
-import { SESSION_COOKIE_NAME, getAuthJwtSecret } from '@math-platform/core-auth';
+import { getServerSessionClaims } from '@/lib/auth/server';
 import type { SessionClaims } from '@math-platform/core-auth';
-import { verifySessionToken } from '@math-platform/core-auth';
-
-async function getServerSessionClaims(): Promise<SessionClaims | null> {
-  const cookieStore = await cookies();
-  const token = cookieStore.get(SESSION_COOKIE_NAME)?.value;
-  if (!token) return null;
-
-  return verifySessionToken(token, getAuthJwtSecret());
-}
 
 export function isDevApprovalEnabledForRequest(env: Record<string, string | undefined> = process.env): boolean {
   const nodeEnv = env.NODE_ENV?.trim();
@@ -56,6 +46,6 @@ export async function requireDeveloperSessionClaimsOrRedirect(): Promise<Session
   return claims;
 }
 
-export function buildLoginRedirect(loginRedirectPath: string): string {
+function buildLoginRedirect(loginRedirectPath: string): string {
   return `/auth/login?redirect=${loginRedirectPath}`;
 }

@@ -4,11 +4,8 @@ import { NextResponse } from 'next/server';
 const mockVerifySessionToken = vi.fn();
 const mockGetAuthJwtSecret = vi.fn(() => 'test-secret');
 
-vi.mock('@/lib/auth/session', () => ({
+vi.mock('@math-platform/core-auth', () => ({
   verifySessionToken: mockVerifySessionToken,
-}));
-
-vi.mock('@/lib/auth/constants', () => ({
   SESSION_COOKIE_NAME: 'bm_session',
   getAuthJwtSecret: mockGetAuthJwtSecret,
 }));

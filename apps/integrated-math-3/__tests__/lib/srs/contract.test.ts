@@ -19,7 +19,7 @@ import {
   TEACHER_DAILY_PRACTICE_COPY,
 } from '@math-platform/srs-engine';
 import {
-  PRIORITY_DEFAULTS,
+  PROFICIENCY_THRESHOLD_DEFAULTS,
 } from '@/lib/practice/objective-proficiency';
 import type {
   EvidenceConfidence,
@@ -75,11 +75,11 @@ describe('Re-exports from lib/practice/objective-proficiency.ts', () => {
     expect(priorities).toContain('triaged');
   });
 
-  it('PRIORITY_DEFAULTS should match source values', () => {
-    expect(PRIORITY_DEFAULTS.essential.minProblemFamilies).toBe(3);
-    expect(PRIORITY_DEFAULTS.supporting.minProblemFamilies).toBe(2);
-    expect(PRIORITY_DEFAULTS.extension.minProblemFamilies).toBe(1);
-    expect(PRIORITY_DEFAULTS.triaged.minProblemFamilies).toBe(0);
+  it('PROFICIENCY_THRESHOLD_DEFAULTS should match source values', () => {
+    expect(PROFICIENCY_THRESHOLD_DEFAULTS.essential.minProblemFamilies).toBe(3);
+    expect(PROFICIENCY_THRESHOLD_DEFAULTS.supporting.minProblemFamilies).toBe(2);
+    expect(PROFICIENCY_THRESHOLD_DEFAULTS.extension.minProblemFamilies).toBe(1);
+    expect(PROFICIENCY_THRESHOLD_DEFAULTS.triaged.minProblemFamilies).toBe(0);
   });
 
   it('EvidenceConfidence should include all values', () => {
@@ -167,6 +167,7 @@ describe('Re-exports from lib/practice/timing-baseline.ts', () => {
       hasReliableTiming: true,
       confidence: 'high',
       reasons: [],
+      speedBand: 'expected',
     };
     expect(features.hasReliableTiming).toBe(true);
   });
@@ -177,8 +178,11 @@ describe('Re-exports from lib/practice/contract.ts', () => {
     const envelope: PracticeSubmissionEnvelope = {
       contractVersion: 'practice.v1',
       activityId: 'act-1',
+      mode: 'independent_practice',
+      status: 'submitted',
       attemptNumber: 1,
       submittedAt: new Date().toISOString(),
+      answers: {},
       parts: [],
     };
     expect(envelope.contractVersion).toBe('practice.v1');

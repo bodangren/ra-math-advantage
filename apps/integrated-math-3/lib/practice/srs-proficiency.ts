@@ -9,7 +9,7 @@ import type { EvidenceConfidence, ProblemFamilyEvidence } from './objective-prof
 
 export const STABILITY_SCALE_FACTOR = 30;
 
-export type SrsCardState = {
+export type ProficiencyCardInput = {
   stability: number;
   difficulty: number;
   reps: number;
@@ -22,7 +22,7 @@ export type SrsCardState = {
 export type TimingBaselines = Record<string, PracticeTimingBaseline | undefined>;
 
 function deriveFluencyConfidence(
-  cards: SrsCardState[],
+  cards: ProficiencyCardInput[],
   baselines: TimingBaselines
 ): { confidence: EvidenceConfidence; timingReliable: boolean; baselineSampleCount: number } {
   const problemFamilyIds = [...new Set(cards.map((c) => c.problemFamilyId))];
@@ -90,12 +90,12 @@ export function stabilityToRetention(stability: number, scaleFactor: number = ST
  * - timingReliable: whether timing evidence is available and reliable
  */
 export function aggregateCardsToEvidence(
-  cards: SrsCardState[],
+  cards: ProficiencyCardInput[],
   baselines: TimingBaselines
 ): ProblemFamilyEvidence[] {
   if (cards.length === 0) return [];
 
-  const byFamily = new Map<string, SrsCardState[]>();
+  const byFamily = new Map<string, ProficiencyCardInput[]>();
   for (const card of cards) {
     const existing = byFamily.get(card.problemFamilyId) ?? [];
     existing.push(card);

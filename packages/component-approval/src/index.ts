@@ -8,7 +8,6 @@ export {
   resolveComponentKind,
   buildActivityPlacementMap,
   assembleReviewQueueItem,
-  type ComponentKind as ReviewQueueComponentKind,
   type ActivityPlacement,
   type ReviewQueueItem,
   type PhaseSection,

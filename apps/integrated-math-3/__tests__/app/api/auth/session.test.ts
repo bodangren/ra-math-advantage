@@ -11,10 +11,8 @@ vi.mock('@/lib/convex/server', () => ({
   fetchInternalQuery: mockFetchInternalQuery,
   internal: { auth: { getAccountSettingsContext: 'auth:getAccountSettingsContext' } },
 }));
-vi.mock('@/lib/auth/session', () => ({
+vi.mock('@math-platform/core-auth', () => ({
   verifySessionToken: mockVerifySessionToken,
-}));
-vi.mock('@/lib/auth/constants', () => ({
   SESSION_COOKIE_NAME: 'bm_session',
   getAuthJwtSecret: () => 'test-secret',
 }));

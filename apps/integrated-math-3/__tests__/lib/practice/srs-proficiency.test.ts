@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import { aggregateCardsToEvidence, stabilityToRetention, STABILITY_SCALE_FACTOR } from '@/lib/practice/srs-proficiency';
-import type { SrsCardState, TimingBaselines } from '@/lib/practice/srs-proficiency';
+import type { ProficiencyCardInput, TimingBaselines } from '@/lib/practice/srs-proficiency';
 
 describe('STABILITY_SCALE_FACTOR', () => {
   it('should default to 30', () => {
@@ -52,7 +52,7 @@ describe('stabilityToRetention', () => {
 describe('aggregateCardsToEvidence', () => {
   const emptyBaselines: TimingBaselines = {};
 
-  const makeCard = (overrides: Partial<SrsCardState> = {}): SrsCardState => ({
+  const makeCard = (overrides: Partial<ProficiencyCardInput> = {}): ProficiencyCardInput => ({
     stability: 30,
     difficulty: 3,
     reps: 0,

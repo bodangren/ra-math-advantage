@@ -29,7 +29,7 @@ Register each activity type in your practice system with a stable `componentKind
 
 ```tsx
 // components/practice/QuadraticExplorer.tsx
-import type { ActivityProps, PracticeSubmissionEnvelope } from '@/lib/practice/contract';
+import type { ActivityProps, PracticeSubmissionEnvelope } from '@math-platform/practice-core/contract';
 
 export function QuadraticExplorer({ onSubmit }: ActivityProps) {
   return (
@@ -141,7 +141,7 @@ Each objective needs a practice policy that controls SRS queue priority and dail
 
 ```ts
 // Imported from lib/srs/contract.ts
-import type { ObjectivePracticePolicy, ObjectivePriority } from '@/lib/srs/contract';
+import type { ObjectivePracticePolicy, ObjectivePriority } from '@math-platform/srs-engine';
 
 // Priority levels:
 // - essential:   Core skills, highest queue priority, included in proficiency
@@ -154,7 +154,7 @@ import type { ObjectivePracticePolicy, ObjectivePriority } from '@/lib/srs/contr
 
 ```ts
 // seed/data/objective-policies.ts
-import type { ObjectivePracticePolicy } from '@/lib/srs/contract';
+import type { ObjectivePracticePolicy } from '@math-platform/srs-engine';
 
 export const OBJECTIVE_POLICIES: ObjectivePracticePolicy[] = [
   {
@@ -219,7 +219,7 @@ The SRS core library is backend-agnostic. You provide implementations of two int
 
 ```ts
 // lib/srs/adapters.ts
-import type { SrsCardState, SrsReviewLogEntry } from './contract';
+import type { SrsCardState, SrsReviewLogEntry } from '@math-platform/srs-engine';
 
 export interface CardStore {
   getCard(id: string): Promise<SrsCardState | null>;
@@ -242,9 +242,9 @@ export interface ReviewLogStore {
 
 ```ts
 // convex/srs/adapters.ts
-import { InMemoryCardStore, InMemoryReviewLogStore } from '@/lib/srs/adapters';
-import type { CardStore, ReviewLogStore } from '@/lib/srs/adapters';
-import type { SrsCardState, SrsReviewLogEntry } from '@/lib/srs/contract';
+import { InMemoryCardStore, InMemoryReviewLogStore } from '@math-platform/srs-engine';
+import type { CardStore, ReviewLogStore } from '@math-platform/srs-engine';
+import type { SrsCardState, SrsReviewLogEntry } from '@math-platform/srs-engine';
 
 // Convex-backed CardStore — ctx is a MutationCtx or QueryCtx passed via constructor
 export class ConvexCardStore implements CardStore {
@@ -342,8 +342,8 @@ Use the queue engine to build daily practice sessions.
 
 ```tsx
 // app/student/practice/page.tsx (Server Component)
-import { buildDailyQueue } from '@/lib/srs/queue';
-import type { SrsSessionConfig } from '@/lib/srs/contract';
+import { buildDailyQueue } from '@math-platform/srs-engine';
+import type { SrsSessionConfig } from '@math-platform/srs-engine';
 
 export default async function DailyPracticePage({ params }: { params: { studentId: string } }) {
   const cardStore = new ConvexCardStore();
@@ -412,10 +412,10 @@ When a student completes a practice activity, process the submission through the
 
 ```ts
 // lib/practice/submission-srs-adapter.ts
-import { processReview } from '@/lib/srs/review-processor';
-import { createCard } from '@/lib/srs/scheduler';
-import type { CardStore, ReviewLogStore } from '@/lib/srs/adapters';
-import type { PracticeSubmissionEnvelope } from '@/lib/practice/contract';
+import { processReview } from '@math-platform/srs-engine';
+import { createCard } from '@math-platform/srs-engine';
+import type { CardStore, ReviewLogStore } from '@math-platform/srs-engine';
+import type { PracticeSubmissionEnvelope } from '@math-platform/practice-core/contract';
 
 export async function processPracticeSubmission(args: {
   submission: PracticeSubmissionEnvelope;
@@ -494,12 +494,12 @@ export const submitPracticeReview = mutation({
 
 | Module | Exports |
 |--------|---------|
-| `lib/srs/contract.ts` | `SrsCardState`, `SrsReviewLogEntry`, `SrsSession`, `SrsSessionConfig`, `ObjectivePracticePolicy`, `ObjectivePriority`, `SrsRating` |
-| `lib/srs/adapters.ts` | `CardStore`, `ReviewLogStore`, `InMemoryCardStore`, `InMemoryReviewLogStore` |
-| `lib/srs/scheduler.ts` | `createCard`, `reviewCard`, `getDueCards`, `previewInterval`, `mapSrsRatingToGrade` |
-| `lib/srs/queue.ts` | `buildDailyQueue`, `isOverdue`, `daysOverdue`, `QueueItem` |
-| `lib/srs/review-processor.ts` | `processReview`, `ReviewProcessorInput`, `ReviewProcessorResult` |
-| `lib/practice/srs-rating.ts` | `mapPracticeToSrsRating`, `computeBaseRating`, `applyTimingToRating`, `SrsRating` |
+| `@math-platform/srs-engine` | `SrsCardState`, `SrsReviewLogEntry`, `SrsSession`, `SrsSessionConfig`, `ObjectivePracticePolicy`, `ObjectivePriority`, `SrsRating` |
+| `@math-platform/srs-engine` | `CardStore`, `ReviewLogStore`, `InMemoryCardStore`, `InMemoryReviewLogStore` |
+| `@math-platform/srs-engine` | `createCard`, `reviewCard`, `getDueCards`, `previewInterval`, `mapSrsRatingToGrade` |
+| `@math-platform/srs-engine` | `buildDailyQueue`, `isOverdue`, `daysOverdue`, `QueueItem` |
+| `@math-platform/srs-engine` | `processReview`, `ReviewProcessorInput`, `ReviewProcessorResult` |
+| `@math-platform/practice-core/srs-rating` | `mapPracticeToSrsRating`, `computeBaseRating`, `applyTimingToRating`, `SrsRating` |
 
 ### FSRS Rating Scale
 

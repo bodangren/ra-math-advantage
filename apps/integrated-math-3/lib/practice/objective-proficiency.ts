@@ -49,28 +49,7 @@ export type ProblemFamilyEvidence = {
   timingReliable: boolean;
 };
 
-/**
- * Policy that governs how much evidence is required to declare proficiency
- * in an objective.
- *
- * @example
- * ```ts
- * const policy: ObjectivePracticePolicy = {
- *   objectiveId: 'obj_quadratic_roots',
- *   priority: 'essential',
- *   minProblemFamilies: 3,
- *   minCoverageThreshold: 0.7,
- *   minRetentionThreshold: 0.8,
- * };
- * ```
- */
-export type ObjectivePracticePolicy = {
-  objectiveId: string;
-  priority: ObjectivePriority;
-  minProblemFamilies?: number;
-  minCoverageThreshold?: number;
-  minRetentionThreshold?: number;
-};
+export type { ObjectivePracticePolicy } from '@math-platform/srs-engine';
 
 /**
  * Input payload for `computeObjectiveProficiency`.
@@ -197,7 +176,7 @@ export type TeacherProficiencyView = {
  * Callers can override individual thresholds via `ObjectivePracticePolicy`,
  * but these defaults provide a sensible baseline.
  */
-export const PRIORITY_DEFAULTS: Record<
+export const PROFICIENCY_THRESHOLD_DEFAULTS: Record<
   ObjectivePriority,
   { minProblemFamilies: number; minCoverageThreshold: number; minRetentionThreshold: number }
 > = {
@@ -262,7 +241,7 @@ export function computeObjectiveProficiency(input: ObjectiveProficiencyInput): O
     minRetentionThreshold,
   } = input;
 
-  const defaults = PRIORITY_DEFAULTS[priority];
+  const defaults = PROFICIENCY_THRESHOLD_DEFAULTS[priority];
   const effectiveMinFamilies = minProblemFamilies ?? defaults.minProblemFamilies;
   const effectiveMinCoverage = minCoverageThreshold ?? defaults.minCoverageThreshold;
   const effectiveMinRetention = minRetentionThreshold ?? defaults.minRetentionThreshold;

@@ -4,10 +4,8 @@ const mockVerifySessionToken = vi.fn();
 const mockGetAuthJwtSecret = vi.fn(() => 'test-secret');
 const mockFetchInternalQuery = vi.fn();
 
-vi.mock('@/lib/auth/session', () => ({
+vi.mock('@math-platform/core-auth', () => ({
   verifySessionToken: mockVerifySessionToken,
-}));
-vi.mock('@/lib/auth/constants', () => ({
   SESSION_COOKIE_NAME: 'session',
   getAuthJwtSecret: mockGetAuthJwtSecret,
 }));

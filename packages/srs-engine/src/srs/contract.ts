@@ -75,51 +75,18 @@ export type { SrsRating, SrsRatingInput, SrsRatingResult } from '@math-platform/
 // ============================================
 
 export type { PracticeTimingBaseline } from '@math-platform/practice-core/timing-baseline';
-
-export type TimingSpeedBand = 'very_slow' | 'slow' | 'expected' | 'fast' | 'very_fast';
-
-export type PracticeTimingFeatures = {
-  hasReliableTiming: boolean;
-  confidence: 'low' | 'medium' | 'high';
-  reasons: string[];
-};
+export type { TimingSpeedBand } from '@math-platform/practice-core/timing-baseline';
+export type { PracticeTimingFeatures } from '@math-platform/practice-core/timing-baseline';
 
 // ============================================
-// Types: Practice Contract
+// Types: Practice Contract (re-exported from practice-core)
 // ============================================
 
-export type PracticeSubmissionPart = {
-  partId: string;
-  rawAnswer: unknown;
-  normalizedAnswer?: string;
-  isCorrect?: boolean;
-  score?: number;
-  maxScore?: number;
-  misconceptionTags?: string[];
-  hintsUsed?: number;
-  revealStepsSeen?: number;
-};
-
-export type PracticeTimingSummary = {
-  startedAt: string;
-  submittedAt: string;
-  wallClockMs: number;
-  activeMs: number;
-  idleMs: number;
-  pauseCount: number;
-  focusLossCount: number;
-  visibilityHiddenCount: number;
-  confidence: 'low' | 'medium' | 'high';
-};
-
-export type PracticeSubmissionEnvelope = {
-  contractVersion: string;
-  activityId: string;
-  attemptNumber: number;
-  submittedAt: string;
-  parts: PracticeSubmissionPart[];
-  timing?: PracticeTimingSummary;
-};
+export type {
+  PracticeSubmissionPart,
+  PracticeTimingSummary,
+  PracticeSubmissionEnvelope,
+} from '@math-platform/practice-core/contract';
 
 // ============================================
 // New Types: Card State

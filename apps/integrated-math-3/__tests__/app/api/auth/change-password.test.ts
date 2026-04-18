@@ -20,17 +20,13 @@ vi.mock('@/lib/convex/server', () => ({
     },
   },
 }));
-vi.mock('@/lib/auth/session', () => ({
+vi.mock('@math-platform/core-auth', () => ({
   verifyPassword: mockVerifyPassword,
   hashPassword: mockHashPassword,
   generatePasswordSalt: mockGeneratePasswordSalt,
-}));
-vi.mock('@/lib/auth/password-policy', () => ({
+  PASSWORD_HASH_ITERATIONS: 120000,
   validatePasswordForRole: vi.fn(() => null),
   getPasswordRequirementText: vi.fn(() => 'At least 8 characters'),
-}));
-vi.mock('@/lib/auth/constants', () => ({
-  PASSWORD_HASH_ITERATIONS: 120000,
 }));
 
 const makeRequest = (body: unknown) =>

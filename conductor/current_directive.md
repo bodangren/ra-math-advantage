@@ -1,6 +1,6 @@
 # Current Directive
 
-> Updated: 2026-04-18 (Code review — 6-phase audit of Wave 3 extraction packages)
+> Updated: 2026-04-18 (Code review — 6-phase audit #2 of monorepo extraction + app import migration)
 
 ## Mission
 
@@ -70,16 +70,16 @@ Supporting references:
 - [ ] Complete `extract-component-approval_20260417` Phase 2+
 - [ ] Then `extract-graphing-core_20260417`
 
-## Code Review Summary (2026-04-18 — 6-Phase Audit)
+## Code Review Summary (2026-04-18 — 6-Phase Audit #2)
 
-Audited all Wave 3 extraction packages: extract-activity-runtime, extract-component-approval, extract-core-auth, extract-core-convex, extract-srs-engine, extract-practice-core, plus monorepo boundary guards and move-im3.
+Audited app-import-migration, extract-activity-runtime, extract-component-approval Phase 1, and srs-engine/practice-core type alignment post-migration.
 
 ### Verification Results
 
 | Check | Result |
 |-------|--------|
 | Build (vinext build) | PASS |
-| Tests (vitest run) | 3304/3311 pass (6 equivalence + 1 flaky, all pre-existing) |
+| Tests (vitest run) | 3305/3311 pass (6 equivalence, all pre-existing) |
 | Typecheck (tsc --noEmit) | CLEAN |
 | Lint (eslint --max-warnings 0) | CLEAN |
 
@@ -87,27 +87,21 @@ Audited all Wave 3 extraction packages: extract-activity-runtime, extract-compon
 
 | Issue | Severity | Fix |
 |-------|----------|-----|
-| ESLint configs missing in 3 packages | High | Added eslint.config.mjs to activity-runtime, component-approval, srs-engine |
-| pnpm-workspace.yaml conflicts with npm workspaces | High | Deleted dead config file |
-| srs-engine duplicate types (SrsRating, SrsRatingInput, SrsRatingResult, PracticeTimingBaseline) | High | Re-exported canonical types from practice-core instead of local copies |
-| Demo provisioning missing VERCEL_ENV=production guard | Critical | Fixed in prior review |
-| Timing-safe equals leaked length via early return | High | Fixed in prior review |
-| Password generation modulo bias (25% skew) | High | Fixed in prior review |
-| Password validation silently trimmed spaces | High | Fixed in prior review |
-| Dev JWT secret used without any logging | Medium | Fixed in prior review |
-| SRS queue: no-policy cards passed triaged filter | Medium | Fixed in prior review |
-| .gitignore didn't cover subdirectory dist/ | Medium | Fixed in prior review |
+| srs-engine contract.ts: 5 divergent type copies (TimingSpeedBand, PracticeTimingFeatures, PracticeSubmissionPart, PracticeTimingSummary, PracticeSubmissionEnvelope) | Critical | Re-exported canonical types from practice-core |
+| lib/practice/srs-proficiency.ts: SrsCardState naming collision with package | Critical | Renamed to ProficiencyCardInput |
+| lib/practice/objective-proficiency.ts: PRIORITY_DEFAULTS naming collision with package | Critical | Renamed to PROFICIENCY_THRESHOLD_DEFAULTS |
+| component-approval: duplicate ComponentKind type in 2 files | High | Import canonical type from content-hash.ts |
+| component-approval: unsafe type assertion on activity.props | High | Added Array.isArray runtime guard |
+| component-approval: confusing ReviewQueueComponentKind alias | Medium | Removed duplicate export |
+| lib/srs/ Convex adapters: @/ path alias may break Convex bundler | Medium | Changed to relative paths |
+| lib/auth/developer.ts: duplicated getServerSessionClaims + buildLoginRedirect | Medium | Import from server.ts instead |
+| lib/practice/objective-proficiency.ts: ObjectivePracticePolicy duplicated from package | Medium | Re-export from @math-platform/srs-engine |
+| INTEGRATION.md: 13+ stale import paths | Medium | Updated all to @math-platform/* package paths |
 
 ### New Issues Found (See tech-debt.md for full list)
 
 | Issue | Severity | Notes |
 |-------|----------|-------|
-| App lib/auth/ has 4 divergent bugs vs core-auth package | Critical | timingSafeEquals, generateRandomPassword, isDemoProvisioningEnabled, validatePasswordForRole |
-| App lib/practice/ has 8 duplicate files not importing from practice-core | Critical | Must delete and rewire |
-| App lib/srs/ has 6 duplicate files not importing from srs-engine | Critical | Must delete and rewire |
-| 15+ Convex/seed files import from old lib/practice/ paths | High | Must rewire to @math-platform/practice-core |
-| component-approval review-queue.ts near-duplicate in app | High | App shim re-implements instead of thin re-export |
-| apps/integrated-math-3/package.json missing @math-platform/* deps | High | 77+ imports but zero declared deps |
-| practice-core has only 1 test file in-package | Medium | contract.ts, srs-rating.ts, timing-baseline.ts untested |
-| Dual Zod schemas: contract.ts vs submission.schema.ts drift | Medium | submission.schema.ts strictly looser |
-| Core-auth/core-convex: process.env defaults break browser imports | Medium | Functions crash if imported client-side |
+| lib/practice/objective-proficiency.ts + objective-policy.ts unmigrated | High | 520 lines of domain logic still app-local |
+| lib/practice/srs-proficiency.ts app-local type | Medium | ProficiencyCardInput is app-local only |
+| component-approval: ActivityDoc.gradingConfig required but tests omit it | Medium | Tests pass due to esbuild stripping types |
