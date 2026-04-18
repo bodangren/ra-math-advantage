@@ -11,6 +11,9 @@ ra-integrated-math-3/          # Monorepo root
 ├── apps/
 │   └── integrated-math-3/     # The IM3 application
 ├── packages/
+│   ├── _template/              # Package scaffold template
+│   ├── activity-runtime/       # Phase types, activity modes, completion tracking
+│   ├── component-approval/     # Content hashing, review queue assembly
 │   ├── core-auth/              # JWT session, password hashing, demo provisioning
 │   ├── core-convex/            # Convex client config, admin auth, query helpers
 │   ├── practice-core/          # Practice contract, timing, rating, error analysis
@@ -185,8 +188,9 @@ Or from the monorepo root:
 
 | Command | Description |
 |---------|-------------|
-| `npm run ws:im3:dev` | Start IM3 dev server |
+| `npm run ws:im3:lint` | Lint IM3 |
 | `npm run ws:im3:test` | Run IM3 tests |
+| `npm run ws:im3:typecheck` | Typecheck IM3 |
 | `npm run ws:im3:build` | Build IM3 |
 
 ## Documentation

@@ -47,4 +47,6 @@
 - (2026-04-17, test-design) Convex query mocks must filter by the actual query args — returning unfiltered data causes incorrect calculations in multi-student scenarios
 - (2026-04-18, monorepo-package) Packages under `packages/` need root tsconfig.json; CI/CD paths-ignore after monorepo move must audit `apps/**` blocks
 - (2026-04-18, srs-engine) Define types locally in shared packages if dependencies don't export them; ESLint must be scaffolded; migrate local imports to package with updated vitest mocks
+- (2026-04-18, code-review) `export type { X } from 'mod'` re-exports but doesn't create a local binding; use `import type { X } from 'mod'; export type { X } from 'mod';` when the type is used locally in the same file
+- (2026-04-18, monorepo) Always run `npx tsc --noEmit` in each extracted package independently; root tsc with `include: []` catches nothing
 

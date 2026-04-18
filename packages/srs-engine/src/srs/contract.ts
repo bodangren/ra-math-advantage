@@ -34,7 +34,7 @@
 export const SRS_CONTRACT_VERSION = 'srs.contract.v1' as const;
 
 // ============================================
-// Objective Policy Types (from practice-core or local)
+// Objective Policy Types (SRS-specific)
 // ============================================
 
 /**
@@ -64,58 +64,19 @@ export const PRIORITY_DEFAULTS: Record<ObjectivePriority, ObjectivePracticePolic
 };
 
 // ============================================
-// Types: SRS Rating (duplicated from practice-core for package isolation)
+// Types: SRS Rating (re-exported from practice-core)
 // ============================================
 
-/**
- * FSRS-compatible rating for a practice attempt.
- */
-export type SrsRating = 'Again' | 'Hard' | 'Good' | 'Easy';
-
-/**
- * Input payload for computing an SRS rating from practice evidence.
- */
-export type SrsRatingInput = {
-  parts: Array<{
-    isCorrect?: boolean;
-    hintsUsed?: number;
-    revealStepsSeen?: number;
-    misconceptionTags?: string[];
-  }>;
-  timingFeatures: {
-    hasReliableTiming: boolean;
-    confidence: 'low' | 'medium' | 'high';
-    reasons: string[];
-  };
-  baselineSampleCount?: number;
-};
-
-/**
- * Result of computing a time-aware SRS rating.
- */
-export type SrsRatingResult = {
-  rating: SrsRating;
-  baseRating: SrsRating;
-  timingAdjusted: boolean;
-  reasons: string[];
-};
+import type { SrsRating, SrsRatingInput, SrsRatingResult } from '@math-platform/practice-core/srs-rating';
+export type { SrsRating, SrsRatingInput, SrsRatingResult } from '@math-platform/practice-core/srs-rating';
 
 // ============================================
-// Types: Timing Baseline
+// Types: Timing Baseline (re-exported from practice-core)
 // ============================================
+
+export type { PracticeTimingBaseline } from '@math-platform/practice-core/timing-baseline';
 
 export type TimingSpeedBand = 'very_slow' | 'slow' | 'expected' | 'fast' | 'very_fast';
-
-export type PracticeTimingBaseline = {
-  problemFamilyId: string;
-  sampleCount: number;
-  medianActiveMs: number;
-  p25ActiveMs?: number;
-  p75ActiveMs?: number;
-  p90ActiveMs?: number;
-  lastComputedAt: string;
-  minSamplesMet: boolean;
-};
 
 export type PracticeTimingFeatures = {
   hasReliableTiming: boolean;

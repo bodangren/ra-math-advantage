@@ -1,6 +1,6 @@
 # Current Directive
 
-> Updated: 2026-04-18 (Code review — 6-phase audit of extract-practice-core, extract-srs-engine, extract-core-auth, extract-core-convex)
+> Updated: 2026-04-18 (Code review — 6-phase audit of Wave 3 extraction packages)
 
 ## Mission
 
@@ -9,9 +9,11 @@ Primary objective is to execute the monorepo migration roadmap in Conductor orde
 ## Priority Order (Execute In This Order)
 
 1. **Waves 0-2 complete** — readiness gate, tooling shell, move IM3, boundary guards, extract practice-core/srs-engine, extract core-auth-convex all done
-2. **Next: Wave 3 — Runtime and Approval Packages** — extract-activity-runtime, extract-component-approval, extract-graphing-core
-3. **Then execute Waves 4-6 in order** — follow the Monorepo Migration Program in `conductor/tracks.md`
-4. **Defer non-migration feature expansion unless it blocks a migration gate**
+2. **Wave 3 partially complete** — extract-activity-runtime DONE, extract-component-approval Phase 1 DONE
+3. **CRITICAL: Complete app import migration** — delete duplicate code in lib/auth/, lib/srs/, lib/practice/, lib/convex/ and rewire all imports to @math-platform/* packages (blocks all future extraction tracks)
+4. **Then: extract-component-approval Phase 2+**, extract-graphing-core
+5. **Then execute Waves 4-6 in order** — follow the Monorepo Migration Program in `conductor/tracks.md`
+6. **Defer non-migration feature expansion unless it blocks a migration gate**
 
 ## Non-Negotiable Rules
 
@@ -26,6 +28,7 @@ Primary objective is to execute the monorepo migration roadmap in Conductor orde
 4. Shared packages must not import from `apps/*` or app `convex/_generated/*`.
 5. BM2 business-domain code/assets remain app-local (`lib/practice/engine`, spreadsheet/simulation activities, `resources`, `public/workbooks`).
 6. Always run `npx tsc --noEmit` alongside `npm run build` — vinext build does not enforce TypeScript types.
+7. After extracting a package, **delete the app-local copy immediately** and rewire imports — duplicated code diverges silently.
 
 ## Required Source Documents
 
@@ -61,20 +64,22 @@ Supporting references:
 - [x] Complete `extract-practice-core_20260417` — **COMPLETED (2026-04-18)**
 - [x] Complete `extract-srs-engine_20260417` — **COMPLETED (2026-04-18)**
 - [x] Complete `extract-core-auth-convex_20260417` — **COMPLETED (2026-04-18)**
-- [x] **Next: Start Wave 3** — `extract-activity-runtime_20260417` first — **COMPLETED (2026-04-18)**
-- [ ] **Next: Execute `extract-component-approval_20260417`**
+- [x] **Wave 3 Start** — `extract-activity-runtime_20260417` — **COMPLETED (2026-04-18)**
+- [x] `extract-component-approval_20260417` Phase 1 — **COMPLETED (2026-04-18)**
+- [ ] **CRITICAL: App import migration** — delete duplicates in lib/auth/, lib/srs/, lib/practice/, lib/convex/ and rewire to packages
+- [ ] Complete `extract-component-approval_20260417` Phase 2+
 - [ ] Then `extract-graphing-core_20260417`
 
-## Code Review Summary (2026-04-18)
+## Code Review Summary (2026-04-18 — 6-Phase Audit)
 
-Audited 6 phases covering extract-practice-core, extract-srs-engine, extract-core-auth, extract-core-convex, and monorepo-move fixes.
+Audited all Wave 3 extraction packages: extract-activity-runtime, extract-component-approval, extract-core-auth, extract-core-convex, extract-srs-engine, extract-practice-core, plus monorepo boundary guards and move-im3.
 
 ### Verification Results
 
 | Check | Result |
 |-------|--------|
 | Build (vinext build) | PASS |
-| Tests (vitest run) | 3356/3362 pass (6 pre-existing equivalence failures) |
+| Tests (vitest run) | 3304/3311 pass (6 equivalence + 1 flaky, all pre-existing) |
 | Typecheck (tsc --noEmit) | CLEAN |
 | Lint (eslint --max-warnings 0) | CLEAN |
 
@@ -82,21 +87,27 @@ Audited 6 phases covering extract-practice-core, extract-srs-engine, extract-cor
 
 | Issue | Severity | Fix |
 |-------|----------|-----|
-| Demo provisioning missing VERCEL_ENV=production guard | Critical | Added production check to isDemoProvisioningEnabled |
-| Timing-safe equals leaked signature length via early return | High | Iterate max(len) instead of early return on mismatch |
-| Password generation modulo bias (25% skew) | High | Rejection sampling eliminates bias |
-| Password validation silently trimmed spaces | High | Now rejects passwords with leading/trailing spaces |
-| Dev JWT secret used without any logging | Medium | Added console.warn when falling back |
-| SRS queue: no-policy cards passed triaged filter then wasted sort | Medium | Filter now uses `policy != null` |
-| .gitignore didn't cover subdirectory dist/ and node_modules/ | Medium | Changed to non-root-anchored patterns |
-| README.md missing new packages (core-auth, core-convex) | Low | Added to monorepo structure diagram |
+| ESLint configs missing in 3 packages | High | Added eslint.config.mjs to activity-runtime, component-approval, srs-engine |
+| pnpm-workspace.yaml conflicts with npm workspaces | High | Deleted dead config file |
+| srs-engine duplicate types (SrsRating, SrsRatingInput, SrsRatingResult, PracticeTimingBaseline) | High | Re-exported canonical types from practice-core instead of local copies |
+| Demo provisioning missing VERCEL_ENV=production guard | Critical | Fixed in prior review |
+| Timing-safe equals leaked length via early return | High | Fixed in prior review |
+| Password generation modulo bias (25% skew) | High | Fixed in prior review |
+| Password validation silently trimmed spaces | High | Fixed in prior review |
+| Dev JWT secret used without any logging | Medium | Fixed in prior review |
+| SRS queue: no-policy cards passed triaged filter | Medium | Fixed in prior review |
+| .gitignore didn't cover subdirectory dist/ | Medium | Fixed in prior review |
 
-### New Issues Found (Deferred)
+### New Issues Found (See tech-debt.md for full list)
 
 | Issue | Severity | Notes |
 |-------|----------|-------|
-| Duplicate SRS types across packages (SrsRating, SrsRatingResult, Envelope) | High | practice-core and srs-engine define structurally different versions |
-| App lib/srs/ duplicates srs-engine package code verbatim | High | ~6 files copy-pasted; must be applied twice |
-| App lib/convex/admin.ts duplicates core-convex verbatim | Medium | Should import from @math-platform/core-convex |
+| App lib/auth/ has 4 divergent bugs vs core-auth package | Critical | timingSafeEquals, generateRandomPassword, isDemoProvisioningEnabled, validatePasswordForRole |
+| App lib/practice/ has 8 duplicate files not importing from practice-core | Critical | Must delete and rewire |
+| App lib/srs/ has 6 duplicate files not importing from srs-engine | Critical | Must delete and rewire |
+| 15+ Convex/seed files import from old lib/practice/ paths | High | Must rewire to @math-platform/practice-core |
+| component-approval review-queue.ts near-duplicate in app | High | App shim re-implements instead of thin re-export |
+| apps/integrated-math-3/package.json missing @math-platform/* deps | High | 77+ imports but zero declared deps |
+| practice-core has only 1 test file in-package | Medium | contract.ts, srs-rating.ts, timing-baseline.ts untested |
+| Dual Zod schemas: contract.ts vs submission.schema.ts drift | Medium | submission.schema.ts strictly looser |
 | Core-auth/core-convex: process.env defaults break browser imports | Medium | Functions crash if imported client-side |
-| Module-level singleton Convex clients not thread-safe | Medium | Race condition on concurrent initialization |
