@@ -600,10 +600,14 @@ AI Tutoring and Workbook scope is explicitly **import/adopt from BM2**, not gree
 - [ ] **Track: BM2 SRS Contract Migration**
        *Migrate BM2 legacy SRS contract (card: Record, numeric timestamps) to FSRS-aligned contract in @math-platform/srs-engine.*
        *Link: [./conductor/tracks/bm2-srs-contract-migration_20260418/](./conductor/tracks/bm2-srs-contract-migration_20260418/)*
-       - Phase 1: Contract Rewrite [IN PROGRESS]
+       - Phase 1: Contract Rewrite [COMPLETE]
          - Contract types migrated to srs-engine package types
          - Build passes (verified)
-         - Tests need Phase 2 update (Convex schema migration)
+       - Phase 2: Test Fixture Updates [COMPLETE] (2026-04-18)
+         - queue.test.ts, review-processor.test.ts updated to SrsCardState format
+         - scheduler.test.ts boundary condition fixed
+         - SRS tests now pass
+       - Phase 3: Convex Schema Migration [DEFERRED]
 
 ### Wave 5 — Feature Packages and IM3 Pending Tracks
 

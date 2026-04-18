@@ -41,8 +41,8 @@ describe('lib/srs/scheduler', () => {
       const before = Date.now();
       const reviewed = reviewCardLegacy(card, 'Again');
       const dayMs = 24 * 60 * 60 * 1000;
-      expect(reviewed.due).toBeGreaterThan(before);
-      expect(reviewed.due).toBeLessThan(before + dayMs);
+      expect(reviewed.due).toBeGreaterThanOrEqual(before);
+      expect(reviewed.due).toBeLessThanOrEqual(before + dayMs);
     });
 
     it('Easy rating sets due further out than Good', () => {

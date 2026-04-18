@@ -48,3 +48,4 @@
 | 5 packages missing vitest.config files | Low | Open | core-auth, core-convex, activity-runtime, component-approval, graphing-core |
 | practice-core dual schema files (contract.ts + submission.schema.ts) | Medium | Open | submission.schema.ts defines parallel PascalCase schemas; consumers import from different surfaces; consolidate |
 | RSC entry chunk 750 KB (regressed from ~500 KB) | Medium | Open | Code-splitting regressed; need dynamic imports for heavy components |
+| BM2 Convex SRS schema migration deferred | Medium | Deferred | srs_cards table still uses legacy card:Record format; Phase 3 of bm2-srs-contract-migration deferred until Phase 2 complete |

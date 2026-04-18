@@ -40,11 +40,10 @@
 - (2026-04-18, code-review) `export type { X } from 'mod'` re-exports but doesn't create a local binding; use `import type { X } from 'mod'; export type { X } from 'mod';` when the type is used locally in the same file
 - (2026-04-18, monorepo) Always run `npx tsc --noEmit` in each extracted package independently; root tsc with `include: []` catches nothing
 - (2026-04-18, graphing-core) When reconciling BM2 vs extracted package, different coordinate systems (data vs canvas) are valid deltas — don't force merge; document the boundary clearly
-- (2026-04-18, bm2-migration) BM2 governance tests (conductor/, docs/, README.md checks) don't apply in monorepo context; exclude these files from copy and skip/remove those tests
-- (2026-04-18, bm2-consume) When migrating imports to packages, vitest mocks must be updated to match new import paths; mocks on `@/@lib/X` won't apply when X is imported from `@math-platform/X`
-- (2026-04-18, review-4) .gitignore patterns like `convex/_generated/` only match at repo root; use `**/convex/_generated/` to cover nested app directories in monorepos
-- (2026-04-18, review-4) Dynamic `expect(() => import(...)).not.toThrow()` doesn't catch async module errors — use `await import()` inside the test body and assert on exports
-- (2026-04-18, review-5) `timingSafeEquals` must XOR max-length with padding bytes and defer length comparison to end to avoid timing side-channels on signature verification
-- (2026-04-18, review-5) When extracting packages, always export intermediate types (e.g., `PracticeSubmissionInput`) used by normalization functions — downstream consumers need them for type annotations
-- (2026-04-18, review-5) Parallel schema files (submission.schema.ts vs contract.ts) drift silently; prefer a single source of truth and re-export if PascalCase aliases are needed
+- (2026-04-18, bm2-migration) BM2 governance tests don't apply in monorepo context; skip/remove those tests
+- (2026-04-18, bm2-consume) When migrating imports to packages, vitest mocks must be updated to match new import paths
+- (2026-04-18, review-5) `timingSafeEquals` must XOR max-length with padding bytes to avoid timing side-channels
+- (2026-04-18, review-5) When extracting packages, always export intermediate types used by normalization functions
+- (2026-04-18, review-5) Parallel schema files drift silently; prefer a single source of truth
+- (2026-04-18, srs-contract) When migrating to new contract format, update test fixtures to match new types; legacy backward-compat wrappers still return old format but new contract uses flat types with ISO dates
 

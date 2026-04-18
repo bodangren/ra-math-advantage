@@ -1,11 +1,27 @@
 import { describe, it, expect } from 'vitest';
 import { buildDailyQueue, getQueueSummary } from '../../../lib/srs/queue';
-import { createNewCard } from '../../../lib/srs/scheduler';
+import type { SrsCardState } from '@math-platform/srs-engine';
 
-function makeCard(problemFamilyId: string, studentId: string, dueOffsetMs: number) {
-  const card = createNewCard(problemFamilyId, studentId);
-  card.due = Date.now() + dueOffsetMs;
-  return card;
+function makeCard(problemFamilyId: string, studentId: string, dueOffsetMs: number): SrsCardState {
+  const now = new Date();
+  const dueDate = new Date(now.getTime() + dueOffsetMs).toISOString();
+  return {
+    cardId: `card_${problemFamilyId}_${studentId}`,
+    studentId,
+    objectiveId: problemFamilyId,
+    problemFamilyId,
+    stability: 0,
+    difficulty: 0,
+    state: 'review',
+    dueDate,
+    elapsedDays: 0,
+    scheduledDays: 0,
+    reps: 0,
+    lapses: 0,
+    lastReview: null,
+    createdAt: now.toISOString(),
+    updatedAt: now.toISOString(),
+  };
 }
 
 describe('lib/srs/queue', () => {
@@ -79,11 +95,9 @@ describe('lib/srs/queue', () => {
     });
 
     it('calculates average overdue time', () => {
-      const now = Date.now();
-      const card1 = createNewCard('accounting-equation', 'student-1');
-      card1.due = now - 10000;
-      const card2 = createNewCard('adjustment-effects', 'student-2');
-      card2.due = now - 20000;
+      const now = new Date();
+      const card1 = makeCard('accounting-equation', 'student-1', -10000);
+      const card2 = makeCard('adjustment-effects', 'student-2', -20000);
       const summary = getQueueSummary([card1, card2]);
       expect(summary.averageOverdue).toBe(15000);
     });

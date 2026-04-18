@@ -1,6 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import { processPracticeSubmission } from '../../../lib/srs/review-processor';
-import { createNewCard } from '../../../lib/srs/scheduler';
+import { createCard } from '../../../lib/srs/scheduler';
+import type { SrsCardState } from '@math-platform/srs-engine';
 import type { PracticeSubmissionEnvelope } from '../../../lib/practice/contract';
 import type { PracticeTimingSummary } from '../../../lib/practice/contract';
 
@@ -77,7 +78,7 @@ describe('lib/srs/review-processor', () => {
       const result = processPracticeSubmission(envelope, null, makeTiming('high'), undefined, 'student-42');
       expect(result.card.problemFamilyId).toBe('transaction-effects');
       expect(result.card.studentId).toBe('student-42');
-      expect(result.card.reviewCount).toBe(1);
+      expect(result.card.reps).toBe(1);
     });
 
     it('null cardState without studentId throws error', () => {
@@ -89,10 +90,14 @@ describe('lib/srs/review-processor', () => {
 
     it('existing cardState updates card', () => {
       const envelope = makeEnvelope([{ partId: 'p1', isCorrect: true }]);
-      const existingCard = createNewCard('transaction-effects', 'student-1');
-      existingCard.reviewCount = 3;
+      const existingCard = createCard({
+        studentId: 'student-1',
+        objectiveId: 'transaction-effects',
+        problemFamilyId: 'transaction-effects',
+      });
+      existingCard.reps = 3;
       const result = processPracticeSubmission(envelope, existingCard, makeTiming('high'));
-      expect(result.card.reviewCount).toBe(4);
+      expect(result.card.reps).toBe(4);
     });
 
 it('timing data with fast speed band can upgrade Good to Easy', () => {
