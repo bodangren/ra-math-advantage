@@ -1,5 +1,5 @@
 import { expect, test } from "vitest";
-import { computeComponentContentHash } from "@/lib/activities/content-hash";
+import { computeComponentContentHash } from "@math-platform/component-approval";
 
 test("hash is stable for equivalent content with different key order", async () => {
   const component1 = {

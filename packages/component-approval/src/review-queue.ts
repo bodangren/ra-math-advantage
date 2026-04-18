@@ -1,7 +1,40 @@
-import type { Doc } from "@/convex/_generated/dataModel";
-import { computeComponentContentHash } from "@math-platform/component-approval";
+import { computeComponentContentHash } from './content-hash';
 
 export type ComponentKind = "activity" | "example" | "practice";
+
+export interface PhaseSection {
+  _id: string;
+  phaseVersionId: string;
+  content: { activityId?: string } | null;
+}
+
+export interface PhaseVersion {
+  _id: string;
+  phaseType: string;
+}
+
+export interface ActivityDoc {
+  _id: string;
+  componentKey: string;
+  displayName: string;
+  props?: Record<string, unknown> | null;
+  gradingConfig: Record<string, unknown> | null;
+  approval?: ComponentApproval | null;
+}
+
+export interface ComponentApproval {
+  status?: string | null;
+  contentHash?: string | null;
+  reviewedAt?: number | null;
+  reviewedBy?: string | null;
+}
+
+export interface ApprovalRecord {
+  status: string;
+  contentHash: string | null;
+  reviewedAt?: number | null;
+  reviewedBy?: string | null;
+}
 
 export interface ActivityPlacement {
   phaseType: string;
@@ -22,14 +55,14 @@ export function resolveComponentKind(phaseType: string): ComponentKind {
 }
 
 export function buildActivityPlacementMap(
-  sections: Array<Pick<Doc<"phase_sections">, "_id" | "phaseVersionId" | "content">>,
-  phases: Array<Pick<Doc<"phase_versions">, "_id" | "phaseType">>
+  sections: Array<Pick<PhaseSection, "_id" | "phaseVersionId" | "content">>,
+  phases: Array<Pick<PhaseVersion, "_id" | "phaseType">>
 ): Map<string, ActivityPlacement> {
   const phaseMap = new Map(phases.map((p) => [p._id, p]));
   const map = new Map<string, ActivityPlacement>();
 
   for (const section of sections) {
-    const activityId = (section.content as { activityId?: string })?.activityId;
+    const activityId = section.content?.activityId;
     if (!activityId) continue;
     if (map.has(activityId)) continue;
 
@@ -65,15 +98,9 @@ export interface ReviewQueueItem {
 }
 
 interface AssembleArgs {
-  activity: Pick<
-    Doc<"activities">,
-    "_id" | "componentKey" | "displayName" | "props" | "gradingConfig" | "approval"
-  >;
+  activity: Pick<ActivityDoc, "_id" | "componentKey" | "displayName" | "props" | "gradingConfig" | "approval">;
   placement?: ActivityPlacement;
-  approvalRecord?: Pick<
-    Doc<"component_approvals">,
-    "status" | "contentHash" | "reviewedAt" | "reviewedBy"
-  >;
+  approvalRecord?: ApprovalRecord;
   filterKind?: ComponentKind;
   filterStatus?: "unreviewed" | "approved" | "needs_changes" | "rejected";
   onlyStale?: boolean;
@@ -98,8 +125,8 @@ export async function assembleReviewQueueItem({
   const currentHash = await computeComponentContentHash({
     componentKind,
     componentKey: activity.componentKey,
-    props: activity.props,
-    gradingConfig: activity.gradingConfig,
+    props: activity.props ?? undefined,
+    gradingConfig: activity.gradingConfig ?? undefined,
   });
 
   let storedHash: string | undefined;
@@ -114,18 +141,18 @@ export async function assembleReviewQueueItem({
     | undefined;
 
   if (componentKind === "activity") {
-    storedHash = activity.approval?.contentHash;
-    approvalStatus = activity.approval?.status;
+    storedHash = activity.approval?.contentHash ?? undefined;
+    approvalStatus = activity.approval?.status ?? undefined;
     approval = activity.approval
       ? {
-          status: activity.approval.status,
+          status: activity.approval.status ?? "",
           contentHash: activity.approval.contentHash ?? undefined,
           reviewedAt: activity.approval.reviewedAt ?? undefined,
           reviewedBy: activity.approval.reviewedBy ?? undefined,
         }
       : undefined;
   } else {
-    storedHash = approvalRecord?.contentHash;
+    storedHash = approvalRecord?.contentHash ?? undefined;
     approvalStatus = approvalRecord?.status;
     approval = approvalRecord
       ? {

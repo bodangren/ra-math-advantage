@@ -6,17 +6,17 @@
 
 ### Tasks
 
-- [ ] **Task: Scaffold `packages/component-approval`**
-  - [ ] Create package skeleton and export barrel.
-  - [ ] Add tests scaffold for hash and queue contracts.
-  - [ ] Define package API boundaries.
+- [x] **Task: Scaffold `packages/component-approval`**
+  - [x] Create package skeleton and export barrel.
+  - [x] Add tests scaffold for hash and queue contracts.
+  - [x] Define package API boundaries.
 
-- [ ] **Task: Port IM3 approval core modules**
-  - [ ] Move content hash/component ID/review queue contract modules.
-  - [ ] Move harness gating primitives.
-  - [ ] Add package tests for deterministic behavior.
+- [x] **Task: Port IM3 approval core modules**
+  - [x] Move content hash/component ID/review queue contract modules.
+  - [x] Move harness gating primitives.
+  - [x] Add package tests for deterministic behavior.
 
-- [ ] **Task: Conductor - User Manual Verification 'Phase 1: Extract Core Primitives' (Protocol in workflow.md)**
+- [x] **Task: Conductor - User Manual Verification 'Phase 1: Extract Core Primitives' (Protocol in workflow.md)**
 
 ## Phase 2: Reconcile and Integrate
 
