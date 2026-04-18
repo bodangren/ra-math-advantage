@@ -3,9 +3,9 @@ import { api, internal } from "@/convex/_generated/api";
 import {
   fetchInternalQuery as fetchInternalQueryBase,
   fetchInternalMutation as fetchInternalMutationBase,
+  resolveConvexAdminAuth,
+  getConvexUrl,
 } from "@math-platform/core-convex";
-import { resolveConvexAdminAuth } from "@/lib/convex/admin";
-import { getConvexUrl } from "@/lib/convex/config";
 
 export async function fetchQuery(ref: any, args: Record<string, unknown>): Promise<any> {
   const { fetchPublicQuery } = await import("@math-platform/core-convex");

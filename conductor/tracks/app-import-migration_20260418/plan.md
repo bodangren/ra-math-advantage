@@ -67,17 +67,17 @@
 
 ### Tasks
 
-- [ ] **Task: Audit lib/convex/ vs @math-platform/core-convex**
-  - [ ] List all files in `apps/integrated-math-3/lib/convex/`
-  - [ ] Compare with `packages/core-convex/src/`
-  - [ ] Identify duplicate admin.ts and config.ts
+- [x] **Task: Audit lib/convex/ vs @math-platform/core-convex**
+  - [x] List all files in `apps/integrated-math-3/lib/convex/`
+  - [x] Compare with `packages/core-convex/src/`
+  - [x] Identify duplicate admin.ts and config.ts
 
-- [ ] **Task: Delete duplicate convex files and rewire imports**
-  - [ ] Delete duplicate admin.ts and config.ts
-  - [ ] Rewire imports to `@math-platform/core-convex`
+- [x] **Task: Delete duplicate convex files and rewire imports**
+  - [x] Delete duplicate admin.ts and config.ts
+  - [x] Rewire server.ts imports to `@math-platform/core-convex`
 
-- [ ] **Task: Verify lib/convex/ migration**
-  - [ ] Run `npx tsc --noEmit`
+- [x] **Task: Verify lib/convex/ migration**
+  - [x] Run `npx tsc --noEmit` - PASS
 
 ## Phase 5: Fix package.json Dependencies
 

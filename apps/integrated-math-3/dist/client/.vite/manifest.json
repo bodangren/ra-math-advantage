@@ -236,43 +236,43 @@
     "src": "../../node_modules/katex/dist/fonts/KaTeX_Typewriter-Regular.woff2"
   },
   "../../node_modules/vinext/dist/shims/router.js": {
-    "file": "assets/router-DX-9pk3h.js",
+    "file": "assets/router-tRr8GIuY.js",
     "name": "router",
     "src": "../../node_modules/vinext/dist/shims/router.js",
     "isDynamicEntry": true,
     "imports": [
       "virtual:vinext-app-browser-entry",
-      "_framework-DBok8T5B.js"
+      "_framework-YVeeB6JR.js"
     ],
     "dynamicImports": [
-      "_framework-DBok8T5B.js"
+      "_framework-YVeeB6JR.js"
     ]
   },
-  "___vite-browser-external-DTUChQ1R.js": {
-    "file": "assets/__vite-browser-external-DTUChQ1R.js",
+  "___vite-browser-external-CRgqSluK.js": {
+    "file": "assets/__vite-browser-external-CRgqSluK.js",
     "name": "__vite-browser-external",
     "isDynamicEntry": true
   },
-  "_framework-DBok8T5B.js": {
-    "file": "assets/framework-DBok8T5B.js",
+  "_framework-YVeeB6JR.js": {
+    "file": "assets/framework-YVeeB6JR.js",
     "name": "framework",
     "isDynamicEntry": true
   },
-  "_page-FNzbHVmD.js": {
-    "file": "assets/page-FNzbHVmD.js",
+  "_page-nfu2wOWs.js": {
+    "file": "assets/page-nfu2wOWs.js",
     "name": "page",
     "isDynamicEntry": true,
     "imports": [
-      "_framework-DBok8T5B.js",
+      "_framework-YVeeB6JR.js",
       "virtual:vinext-app-browser-entry",
-      "___vite-browser-external-DTUChQ1R.js"
+      "___vite-browser-external-CRgqSluK.js"
     ],
     "dynamicImports": [
       "../../node_modules/vinext/dist/shims/router.js",
-      "___vite-browser-external-DTUChQ1R.js",
-      "___vite-browser-external-DTUChQ1R.js",
-      "___vite-browser-external-DTUChQ1R.js",
-      "___vite-browser-external-DTUChQ1R.js",
+      "___vite-browser-external-CRgqSluK.js",
+      "___vite-browser-external-CRgqSluK.js",
+      "___vite-browser-external-CRgqSluK.js",
+      "___vite-browser-external-CRgqSluK.js",
       "components/lesson/MarkdownRenderer.tsx"
     ],
     "css": [
@@ -345,65 +345,65 @@
     "src": "_page-wklAmtGL.css"
   },
   "components/lesson/MarkdownRenderer.tsx": {
-    "file": "assets/MarkdownRenderer-DZw534Lt.js",
+    "file": "assets/MarkdownRenderer-DnAp9kEH.js",
     "name": "MarkdownRenderer",
     "src": "components/lesson/MarkdownRenderer.tsx",
     "isDynamicEntry": true,
     "imports": [
-      "_framework-DBok8T5B.js",
-      "_page-FNzbHVmD.js",
+      "_framework-YVeeB6JR.js",
+      "_page-nfu2wOWs.js",
       "virtual:vinext-app-browser-entry",
-      "___vite-browser-external-DTUChQ1R.js"
+      "___vite-browser-external-CRgqSluK.js"
     ]
   },
   "virtual:vinext-app-browser-entry": {
-    "file": "assets/index-BVbPjuyF.js",
+    "file": "assets/index-CugCy2Q-.js",
     "name": "index",
     "src": "virtual:vinext-app-browser-entry",
     "isEntry": true,
     "imports": [
-      "_framework-DBok8T5B.js"
+      "_framework-YVeeB6JR.js"
     ],
     "dynamicImports": [
-      "_page-FNzbHVmD.js",
-      "_page-FNzbHVmD.js",
-      "_page-FNzbHVmD.js",
-      "_page-FNzbHVmD.js",
-      "_page-FNzbHVmD.js",
-      "_page-FNzbHVmD.js",
-      "_page-FNzbHVmD.js",
-      "_page-FNzbHVmD.js",
-      "_page-FNzbHVmD.js",
-      "_page-FNzbHVmD.js",
-      "_page-FNzbHVmD.js",
-      "_page-FNzbHVmD.js",
-      "_page-FNzbHVmD.js",
-      "_page-FNzbHVmD.js",
-      "_page-FNzbHVmD.js",
-      "_page-FNzbHVmD.js",
-      "_page-FNzbHVmD.js",
-      "_page-FNzbHVmD.js",
-      "_page-FNzbHVmD.js",
-      "_page-FNzbHVmD.js",
-      "_page-FNzbHVmD.js",
-      "_page-FNzbHVmD.js",
-      "_page-FNzbHVmD.js",
-      "_page-FNzbHVmD.js",
-      "_page-FNzbHVmD.js",
-      "_page-FNzbHVmD.js",
-      "_page-FNzbHVmD.js",
-      "_page-FNzbHVmD.js",
+      "_page-nfu2wOWs.js",
+      "_page-nfu2wOWs.js",
+      "_page-nfu2wOWs.js",
+      "_page-nfu2wOWs.js",
+      "_page-nfu2wOWs.js",
+      "_page-nfu2wOWs.js",
+      "_page-nfu2wOWs.js",
+      "_page-nfu2wOWs.js",
+      "_page-nfu2wOWs.js",
+      "_page-nfu2wOWs.js",
+      "_page-nfu2wOWs.js",
+      "_page-nfu2wOWs.js",
+      "_page-nfu2wOWs.js",
+      "_page-nfu2wOWs.js",
+      "_page-nfu2wOWs.js",
+      "_page-nfu2wOWs.js",
+      "_page-nfu2wOWs.js",
+      "_page-nfu2wOWs.js",
+      "_page-nfu2wOWs.js",
+      "_page-nfu2wOWs.js",
+      "_page-nfu2wOWs.js",
+      "_page-nfu2wOWs.js",
+      "_page-nfu2wOWs.js",
+      "_page-nfu2wOWs.js",
+      "_page-nfu2wOWs.js",
+      "_page-nfu2wOWs.js",
+      "_page-nfu2wOWs.js",
+      "_page-nfu2wOWs.js",
       "virtual:vite-rsc/client-references/group/facade:components/ConvexClientProvider.tsx"
     ]
   },
   "virtual:vite-rsc/client-references/group/facade:components/ConvexClientProvider.tsx": {
-    "file": "assets/ConvexClientProvider-Cn1Ci0L9.js",
+    "file": "assets/ConvexClientProvider-C4kduzvU.js",
     "name": "ConvexClientProvider",
     "src": "virtual:vite-rsc/client-references/group/facade:components/ConvexClientProvider.tsx",
     "isDynamicEntry": true,
     "imports": [
-      "_framework-DBok8T5B.js",
-      "___vite-browser-external-DTUChQ1R.js"
+      "_framework-YVeeB6JR.js",
+      "___vite-browser-external-CRgqSluK.js"
     ]
   }
 }

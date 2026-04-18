@@ -235,10 +235,20 @@
     "file": "assets/KaTeX_Typewriter-Regular-CO6r4hn1.woff2",
     "src": "../../node_modules/katex/dist/fonts/KaTeX_Typewriter-Regular.woff2"
   },
-  "_worker-entry-NZkHePcA.js": {
-    "file": "assets/worker-entry-NZkHePcA.js",
+  "../../packages/core-convex/src/index.ts": {
+    "file": "assets/index-Bj7ePhSc.js",
+    "name": "index",
+    "src": "../../packages/core-convex/src/index.ts",
+    "isDynamicEntry": true,
+    "imports": [
+      "_worker-entry-DvG8JxDD.js"
+    ]
+  },
+  "_worker-entry-DvG8JxDD.js": {
+    "file": "assets/worker-entry-DvG8JxDD.js",
     "name": "worker-entry",
     "dynamicImports": [
+      "../../packages/core-convex/src/index.ts",
       "components/ConvexClientProvider.tsx"
     ],
     "css": [
@@ -311,12 +321,12 @@
     "src": "_worker-entry-XoJrGInY.css"
   },
   "components/ConvexClientProvider.tsx": {
-    "file": "assets/ConvexClientProvider-DU1q6C02.js",
+    "file": "assets/ConvexClientProvider-Cmmj4S9M.js",
     "name": "ConvexClientProvider",
     "src": "components/ConvexClientProvider.tsx",
     "isDynamicEntry": true,
     "imports": [
-      "_worker-entry-NZkHePcA.js"
+      "_worker-entry-DvG8JxDD.js"
     ]
   },
   "virtual:cloudflare/worker-entry": {
@@ -325,7 +335,7 @@
     "src": "virtual:cloudflare/worker-entry",
     "isEntry": true,
     "imports": [
-      "_worker-entry-NZkHePcA.js"
+      "_worker-entry-DvG8JxDD.js"
     ]
   }
 }

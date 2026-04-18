@@ -34,13 +34,12 @@ function memoize(f, options) {
     return newValue;
   });
 }
-const SERVER_REFERENCE_PREFIX = "$$server:";
 function removeReferenceCacheTag(id) {
   return id.split("$$cache=")[0];
 }
 function setInternalRequire() {
   globalThis.__vite_rsc_require__ = (id) => {
-    if (id.startsWith(SERVER_REFERENCE_PREFIX)) {
+    if (id.startsWith("$$server:")) {
       id = id.slice(9);
       return globalThis.__vite_rsc_server_require__(id);
     }
@@ -490,7 +489,7 @@ function requireReact_production() {
   react_production.useTransition = function() {
     return ReactSharedInternals.H.useTransition();
   };
-  react_production.version = "19.2.4";
+  react_production.version = "19.2.5";
   return react_production;
 }
 var hasRequiredReact;
@@ -646,7 +645,7 @@ function requireReactDom_production() {
   reactDom_production.useFormStatus = function() {
     return ReactSharedInternals.H.useHostTransitionStatus();
   };
-  reactDom_production.version = "19.2.4";
+  reactDom_production.version = "19.2.5";
   return reactDom_production;
 }
 var hasRequiredReactDom;
@@ -2317,119 +2316,119 @@ function createFromReadableStream(stream, options = {}) {
 }
 const clientReferences = {
   "ce96385281e4": async () => {
-    const m = await import("./assets/page-zHZ-yfGO.js").then((n) => n.p);
+    const m = await import("./assets/page-Jj5VCgcM.js").then((n) => n.p);
     return m.export_ce96385281e4;
   },
   "afd2c853620e": async () => {
-    const m = await import("./assets/page-zHZ-yfGO.js").then((n) => n.p);
+    const m = await import("./assets/page-Jj5VCgcM.js").then((n) => n.p);
     return m.export_afd2c853620e;
   },
   "f11b9697bf8d": async () => {
-    const m = await import("./assets/page-zHZ-yfGO.js").then((n) => n.p);
+    const m = await import("./assets/page-Jj5VCgcM.js").then((n) => n.p);
     return m.export_f11b9697bf8d;
   },
   "a89e99f599ce": async () => {
-    const m = await import("./assets/page-zHZ-yfGO.js").then((n) => n.p);
+    const m = await import("./assets/page-Jj5VCgcM.js").then((n) => n.p);
     return m.export_a89e99f599ce;
   },
   "7e409082eb94": async () => {
-    const m = await import("./assets/page-zHZ-yfGO.js").then((n) => n.p);
+    const m = await import("./assets/page-Jj5VCgcM.js").then((n) => n.p);
     return m.export_7e409082eb94;
   },
   "8bcba45e609e": async () => {
-    const m = await import("./assets/page-zHZ-yfGO.js").then((n) => n.p);
+    const m = await import("./assets/page-Jj5VCgcM.js").then((n) => n.p);
     return m.export_8bcba45e609e;
   },
   "e6f8d052f3bb": async () => {
-    const m = await import("./assets/page-zHZ-yfGO.js").then((n) => n.p);
+    const m = await import("./assets/page-Jj5VCgcM.js").then((n) => n.p);
     return m.export_e6f8d052f3bb;
   },
   "0393ff029a08": async () => {
-    const m = await import("./assets/page-zHZ-yfGO.js").then((n) => n.p);
+    const m = await import("./assets/page-Jj5VCgcM.js").then((n) => n.p);
     return m.export_0393ff029a08;
   },
   "3cb731667909": async () => {
-    const m = await import("./assets/page-zHZ-yfGO.js").then((n) => n.p);
+    const m = await import("./assets/page-Jj5VCgcM.js").then((n) => n.p);
     return m.export_3cb731667909;
   },
   "3fcda75eace0": async () => {
-    const m = await import("./assets/page-zHZ-yfGO.js").then((n) => n.p);
+    const m = await import("./assets/page-Jj5VCgcM.js").then((n) => n.p);
     return m.export_3fcda75eace0;
   },
   "e96c03092851": async () => {
-    const m = await import("./assets/page-zHZ-yfGO.js").then((n) => n.p);
+    const m = await import("./assets/page-Jj5VCgcM.js").then((n) => n.p);
     return m.export_e96c03092851;
   },
   "f8d8a72d7013": async () => {
-    const m = await import("./assets/page-zHZ-yfGO.js").then((n) => n.p);
+    const m = await import("./assets/page-Jj5VCgcM.js").then((n) => n.p);
     return m.export_f8d8a72d7013;
   },
   "c71e93ed9475": async () => {
-    const m = await import("./assets/page-zHZ-yfGO.js").then((n) => n.p);
+    const m = await import("./assets/page-Jj5VCgcM.js").then((n) => n.p);
     return m.export_c71e93ed9475;
   },
   "60e6d0d5f6bd": async () => {
-    const m = await import("./assets/page-zHZ-yfGO.js").then((n) => n.p);
+    const m = await import("./assets/page-Jj5VCgcM.js").then((n) => n.p);
     return m.export_60e6d0d5f6bd;
   },
   "3b68446fd3e5": async () => {
-    const m = await import("./assets/page-zHZ-yfGO.js").then((n) => n.p);
+    const m = await import("./assets/page-Jj5VCgcM.js").then((n) => n.p);
     return m.export_3b68446fd3e5;
   },
   "d92d84e6a7e6": async () => {
-    const m = await import("./assets/page-zHZ-yfGO.js").then((n) => n.p);
+    const m = await import("./assets/page-Jj5VCgcM.js").then((n) => n.p);
     return m.export_d92d84e6a7e6;
   },
   "0e23a1771044": async () => {
-    const m = await import("./assets/page-zHZ-yfGO.js").then((n) => n.p);
+    const m = await import("./assets/page-Jj5VCgcM.js").then((n) => n.p);
     return m.export_0e23a1771044;
   },
   "f2151fed8798": async () => {
-    const m = await import("./assets/page-zHZ-yfGO.js").then((n) => n.p);
+    const m = await import("./assets/page-Jj5VCgcM.js").then((n) => n.p);
     return m.export_f2151fed8798;
   },
   "1cd334b83203": async () => {
-    const m = await import("./assets/page-zHZ-yfGO.js").then((n) => n.p);
+    const m = await import("./assets/page-Jj5VCgcM.js").then((n) => n.p);
     return m.export_1cd334b83203;
   },
   "e8012a776567": async () => {
-    const m = await import("./assets/page-zHZ-yfGO.js").then((n) => n.p);
+    const m = await import("./assets/page-Jj5VCgcM.js").then((n) => n.p);
     return m.export_e8012a776567;
   },
   "7f45795c51bd": async () => {
-    const m = await import("./assets/page-zHZ-yfGO.js").then((n) => n.p);
+    const m = await import("./assets/page-Jj5VCgcM.js").then((n) => n.p);
     return m.export_7f45795c51bd;
   },
   "6438574796db": async () => {
-    const m = await import("./assets/page-zHZ-yfGO.js").then((n) => n.p);
+    const m = await import("./assets/page-Jj5VCgcM.js").then((n) => n.p);
     return m.export_6438574796db;
   },
   "8ec9f9e098fa": async () => {
-    const m = await import("./assets/page-zHZ-yfGO.js").then((n) => n.p);
+    const m = await import("./assets/page-Jj5VCgcM.js").then((n) => n.p);
     return m.export_8ec9f9e098fa;
   },
   "7f0a5a9a62a4": async () => {
-    const m = await import("./assets/page-zHZ-yfGO.js").then((n) => n.p);
+    const m = await import("./assets/page-Jj5VCgcM.js").then((n) => n.p);
     return m.export_7f0a5a9a62a4;
   },
   "0f4c7adb6f4e": async () => {
-    const m = await import("./assets/page-zHZ-yfGO.js").then((n) => n.p);
+    const m = await import("./assets/page-Jj5VCgcM.js").then((n) => n.p);
     return m.export_0f4c7adb6f4e;
   },
   "f29e6e234fea": async () => {
-    const m = await import("./assets/page-zHZ-yfGO.js").then((n) => n.p);
+    const m = await import("./assets/page-Jj5VCgcM.js").then((n) => n.p);
     return m.export_f29e6e234fea;
   },
   "0deffcb8ffd7": async () => {
-    const m = await import("./assets/page-zHZ-yfGO.js").then((n) => n.p);
+    const m = await import("./assets/page-Jj5VCgcM.js").then((n) => n.p);
     return m.export_0deffcb8ffd7;
   },
   "c2747888630f": async () => {
-    const m = await import("./assets/page-zHZ-yfGO.js").then((n) => n.p);
+    const m = await import("./assets/page-Jj5VCgcM.js").then((n) => n.p);
     return m.export_c2747888630f;
   },
   "bb1c2a08e0a4": async () => {
-    const m = await import("./assets/ConvexClientProvider-Bjhmc8I-.js");
+    const m = await import("./assets/ConvexClientProvider-DxqZ99XN.js");
     return m.export_bb1c2a08e0a4;
   }
 };
@@ -7713,9 +7712,9 @@ performance.now();setTimeout(w,2300>q&&2E3<q?2300-q:500)})])},types:[]});z.ready
   }
   function ensureCorrectIsomorphicReactVersion() {
     var isomorphicReactPackageVersion = React2.version;
-    if ("19.2.4" !== isomorphicReactPackageVersion)
+    if ("19.2.5" !== isomorphicReactPackageVersion)
       throw Error(
-        'Incompatible React versions: The "react" and "react-dom" packages must have the exact same version. Instead got:\n  - react:      ' + (isomorphicReactPackageVersion + "\n  - react-dom:  19.2.4\nLearn more: https://react.dev/warnings/version-mismatch")
+        'Incompatible React versions: The "react" and "react-dom" packages must have the exact same version. Instead got:\n  - react:      ' + (isomorphicReactPackageVersion + "\n  - react-dom:  19.2.5\nLearn more: https://react.dev/warnings/version-mismatch")
       );
   }
   ensureCorrectIsomorphicReactVersion();
@@ -7959,7 +7958,7 @@ performance.now();setTimeout(w,2300>q&&2E3<q?2300-q:500)})])},types:[]});z.ready
       startWork(request);
     });
   };
-  reactDomServer_edge_production.version = "19.2.4";
+  reactDomServer_edge_production.version = "19.2.5";
   return reactDomServer_edge_production;
 }
 var reactDomServerLegacy_browser_production = {};
@@ -12755,7 +12754,7 @@ function requireReactDomServerLegacy_browser_production() {
       'The server used "renderToString" which does not support Suspense. If you intended for this Suspense boundary to render the fallback content on the server consider throwing an Error somewhere within the Suspense boundary. If you intended to have the server wait for the suspended component please switch to "renderToReadableStream" which supports Suspense on the server'
     );
   };
-  reactDomServerLegacy_browser_production.version = "19.2.4";
+  reactDomServerLegacy_browser_production.version = "19.2.5";
   return reactDomServerLegacy_browser_production;
 }
 var hasRequiredServer_edge;
