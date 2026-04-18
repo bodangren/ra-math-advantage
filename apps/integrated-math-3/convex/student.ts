@@ -301,9 +301,89 @@ export const skipPhase = internalMutation({
       });
     }
 
-    return { 
-      success: true, 
+    return {
+      success: true,
       nextPhaseUnlocked: true
     };
   }
+});
+
+interface ChatbotPhase {
+  phaseNumber: number;
+  title: string;
+  sections: Array<{
+    sectionType: string;
+    content: {
+      markdown?: string;
+    };
+  }>;
+}
+
+interface ChatbotLessonData {
+  lessonTitle: string;
+  unitTitle: string;
+  learningObjectives: string[];
+  phases: ChatbotPhase[];
+}
+
+export const getLessonForChatbot = internalQuery({
+  args: { lessonIdentifier: v.string() },
+  handler: async (ctx, args): Promise<ChatbotLessonData | null> => {
+    let lesson = null;
+    try {
+      lesson = await ctx.db.get(args.lessonIdentifier as Id<"lessons">);
+    } catch {}
+
+    if (!lesson) {
+      lesson = await ctx.db
+        .query("lessons")
+        .withIndex("by_slug", (q) => q.eq("slug", args.lessonIdentifier))
+        .unique();
+    }
+
+    if (!lesson) return null;
+
+    const versions = await ctx.db
+      .query("lesson_versions")
+      .withIndex("by_lesson", (q) => q.eq("lessonId", lesson._id))
+      .collect();
+
+    const latestVersion = resolveLatestPublishedLessonVersion(versions);
+    if (!latestVersion) return null;
+
+    const phases = await ctx.db
+      .query("phase_versions")
+      .withIndex("by_lesson_version", (q) => q.eq("lessonVersionId", latestVersion._id))
+      .collect();
+
+    phases.sort((a, b) => a.phaseNumber - b.phaseNumber);
+
+    const phasesWithSections: ChatbotPhase[] = [];
+    for (const phase of phases) {
+      const sections = await ctx.db
+        .query("phase_sections")
+        .withIndex("by_phase_version", (q) => q.eq("phaseVersionId", phase._id))
+        .collect();
+
+      sections.sort((a, b) => a.sequenceOrder - b.sequenceOrder);
+
+      phasesWithSections.push({
+        phaseNumber: phase.phaseNumber,
+        title: coerceNullableString(phase.title) ?? '',
+        sections: sections.map(s => ({
+          sectionType: s.sectionType,
+          content: s.content as { markdown?: string },
+        })),
+      });
+    }
+
+    const unitTitle = `Unit ${lesson.unitNumber}`;
+
+    return {
+      lessonTitle: lesson.title,
+      unitTitle,
+      learningObjectives: coerceNullableString(lesson.learningObjectives?.[0])?.split(',').map(s => s.trim()) ?? [],
+      phases: phasesWithSections,
+    };
+  },
 });

@@ -496,4 +496,13 @@ export default defineSchema({
     createdAt: v.number(),
     updatedAt: v.number(),
   }).index("by_user", ["userId"]),
+
+  chatbot_rate_limits: defineTable({
+    userId: v.id("profiles"),
+    requestCount: v.number(),
+    windowStart: v.number(),
+    createdAt: v.number(),
+    updatedAt: v.number(),
+  })
+    .index("by_user", ["userId"]),
 });

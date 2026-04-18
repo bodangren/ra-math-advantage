@@ -7,6 +7,7 @@ import { PhaseRenderer, type PhaseSection } from './PhaseRenderer';
 import { PhaseCompleteButton } from './PhaseCompleteButton';
 import { LessonSkeleton } from './LessonSkeleton';
 import { LessonCompleteScreen } from './LessonCompleteScreen';
+import { LessonChatbot } from '@/components/student/LessonChatbot';
 import { submitActivity, type PracticeMode, type SubmitActivityInput } from '@/lib/activities/submission';
 import { isPracticeSubmissionEnvelope } from '@math-platform/practice-core/contract';
 import type { PhaseType } from '@math-platform/activity-runtime/phase-types';
@@ -205,50 +206,55 @@ export function LessonRenderer({
   }
 
   return (
-    <LessonPageLayout
-      lessonTitle={lessonTitle}
-      moduleLabel={moduleLabel}
-      lessonNumber={lessonNumber}
-      goals={goals}
-      phases={navPhases}
-      showTeacherPreviewBadge={showTeacherPreviewBadge}
-    >
-      <div className="space-y-6">
-        <LessonStepper
-          phases={stepperPhases}
-          currentPhase={activePhaseNumber}
-          onPhaseClick={(phaseNumber) => setActivePhaseNumber(phaseNumber)}
-        />
-
-        {activePhase && (
-          <PhaseRenderer
-            phaseType={activePhase.phaseType}
-            sections={activePhase.sections}
-            lessonId={lessonId}
-            phaseNumber={activePhase.phaseNumber}
-            mode={mode}
-            onActivitySubmit={handleActivitySubmit}
-            onActivityComplete={handleActivityComplete}
+    <>
+      <LessonPageLayout
+        lessonTitle={lessonTitle}
+        moduleLabel={moduleLabel}
+        lessonNumber={lessonNumber}
+        goals={goals}
+        phases={navPhases}
+        showTeacherPreviewBadge={showTeacherPreviewBadge}
+      >
+        <div className="space-y-6">
+          <LessonStepper
+            phases={stepperPhases}
+            currentPhase={activePhaseNumber}
+            onPhaseClick={(phaseNumber) => setActivePhaseNumber(phaseNumber)}
           />
-        )}
 
-        {!isTeachingMode && activePhase && (
-          <PhaseCompleteButton
-            lessonId={lessonId}
-            phaseNumber={activePhase.phaseNumber}
-            phaseType={activePhase.phaseType}
-            initialStatus={
-              activePhase.status === 'skipped'
-                ? 'skipped'
-                : activePhase.completed || completedPhases.has(activePhase.phaseNumber)
-                  ? 'completed'
-                  : 'not_started'
-            }
-            disabled={isPhaseGated}
-            onStatusChange={handlePhaseStatusChange}
-          />
-        )}
-      </div>
-    </LessonPageLayout>
+          {activePhase && (
+            <PhaseRenderer
+              phaseType={activePhase.phaseType}
+              sections={activePhase.sections}
+              lessonId={lessonId}
+              phaseNumber={activePhase.phaseNumber}
+              mode={mode}
+              onActivitySubmit={handleActivitySubmit}
+              onActivityComplete={handleActivityComplete}
+            />
+          )}
+
+          {!isTeachingMode && activePhase && (
+            <PhaseCompleteButton
+              lessonId={lessonId}
+              phaseNumber={activePhase.phaseNumber}
+              phaseType={activePhase.phaseType}
+              initialStatus={
+                activePhase.status === 'skipped'
+                  ? 'skipped'
+                  : activePhase.completed || completedPhases.has(activePhase.phaseNumber)
+                    ? 'completed'
+                    : 'not_started'
+              }
+              disabled={isPhaseGated}
+              onStatusChange={handlePhaseStatusChange}
+            />
+          )}
+        </div>
+      </LessonPageLayout>
+      {mode === 'practice' && activePhase && (
+        <LessonChatbot lessonId={lessonId} phaseNumber={activePhase.phaseNumber} />
+      )}
+    </>
   );
 }
