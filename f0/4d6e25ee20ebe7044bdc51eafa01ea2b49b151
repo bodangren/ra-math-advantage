@@ -1,0 +1,18 @@
+extract-graphing-core Phase 3: IM3 Migration and Verification
+
+Summary: Migrated IM3 graphing utility imports to use @math-platform/graphing-core package instead of app-local duplicates.
+
+Files changed:
+- apps/integrated-math-3/components/activities/graphing/GraphingCanvas.tsx
+- apps/integrated-math-3/components/activities/graphing/HintPanel.tsx
+- apps/integrated-math-3/components/activities/graphing/InteractiveTableOfValues.tsx
+- apps/integrated-math-3/components/activities/graphing/InterceptIdentification.tsx
+- apps/integrated-math-3/__tests__/lib/activities/graphing/canvas-utils.test.ts
+- apps/integrated-math-3/__tests__/lib/activities/graphing/linear-parser.test.ts
+- apps/integrated-math-3/__tests__/lib/activities/graphing/quadratic-parser.test.ts
+- apps/integrated-math-3/package.json (added @math-platform/graphing-core dependency)
+- apps/integrated-math-3/lib/activities/graphing/*.ts (deleted duplicates)
+
+Deleted: 3 app-local utility files now provided by @math-platform/graphing-core package.
+
+Verification: 56/56 graphing-core package tests pass.
