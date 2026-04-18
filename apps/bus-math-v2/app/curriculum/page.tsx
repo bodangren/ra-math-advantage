@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { ConvexHttpClient } from "convex/browser";
 import { api } from "@/convex/_generated/api";
-import { getConvexUrl } from "@/lib/convex/config";
+import { getConvexUrl } from "@math-platform/core-convex";
 import { Carousel } from "@/components/ui/carousel";
 import { ArrowRight, ChevronRight } from "lucide-react";
 import type { UnitCurriculum } from "./types";

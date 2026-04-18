@@ -4,7 +4,7 @@ import { Carousel } from "@/components/ui/carousel";
 import { Hero } from "@/components/hero";
 import { ConvexHttpClient } from "convex/browser";
 import { api } from "@/convex/_generated/api";
-import { getConvexUrl } from "@/lib/convex/config";
+import { getConvexUrl } from "@math-platform/core-convex";
 
 interface LandingUnit {
   id: string;

@@ -2,7 +2,7 @@
 
 import { ReactNode } from "react";
 import { ConvexProvider, ConvexReactClient } from "convex/react";
-import { getConvexUrl } from "@/lib/convex/config";
+import { getConvexUrl } from "@math-platform/core-convex";
 
 const convex = new ConvexReactClient(getConvexUrl());
 
