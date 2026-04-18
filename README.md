@@ -20,7 +20,9 @@ ra-integrated-math-3/          # Monorepo root
 │   ├── graphing-core/          # Quadratic/linear parsers, canvas utilities
 │   ├── practice-core/          # Practice contract, timing, rating, error analysis
 │   ├── practice-test-engine/   # Shared test types and question utilities
-│   └── srs-engine/             # FSRS scheduler, review processor, queue, adapters
+│   ├── srs-engine/             # FSRS scheduler, review processor, queue, adapters
+│   ├── study-hub-core/         # Flashcard/review session primitives, shuffle utilities
+│   └── teacher-reporting-core/ # Gradebook, course overview, competency heatmap, CSV export
 ├── conductor/                  # Spec-driven development docs
 └── README.md
 ```

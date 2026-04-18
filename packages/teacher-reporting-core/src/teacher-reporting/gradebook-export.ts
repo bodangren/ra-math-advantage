@@ -21,7 +21,10 @@ export function buildGradebookCsv(
 ): string {
   const { includeMasteryLevel = true, includeColorCoding = false } = options;
 
-  const headers = ['Student', 'Username', ...lessons.map(l => escapeCsvValue(l.lessonTitle))];
+  const headers = ['Student', 'Username'];
+  if (includeMasteryLevel) {
+    headers.push(...lessons.map(l => escapeCsvValue(l.lessonTitle)));
+  }
   if (includeColorCoding) {
     headers.push(...lessons.map(l => escapeCsvValue(`${l.lessonTitle} (Status)`)));
   }

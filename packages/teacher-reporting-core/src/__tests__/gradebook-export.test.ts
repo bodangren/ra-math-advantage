@@ -83,11 +83,23 @@ describe('buildGradebookCsv', () => {
     expect(csv).toContain('"Alice ""Boss"" Johnson"');
   });
 
-  it('excludes mastery levels when option is false', () => {
+  it('excludes mastery levels and headers when option is false', () => {
     const options: GradebookCsvOptions = { includeMasteryLevel: false };
     const csv = buildGradebookCsv(rows, lessons, options);
+    const lines = csv.split('\n');
+    expect(lines[0]).toBe('Student,Username');
     expect(csv).not.toContain('95');
     expect(csv).not.toContain('70');
+  });
+
+  it('aligns headers and data when mastery off and color coding on', () => {
+    const options: GradebookCsvOptions = { includeMasteryLevel: false, includeColorCoding: true };
+    const csv = buildGradebookCsv(rows, lessons, options);
+    const lines = csv.split('\n');
+    const headerCols = lines[0].split(',').length;
+    const dataCols = lines[1].split(',').length;
+    expect(headerCols).toBe(dataCols);
+    expect(lines[0]).toBe('Student,Username,Intro to Quadratics (Status),Graphing Quadratics (Status)');
   });
 
   it('includes color coding status when option is true', () => {

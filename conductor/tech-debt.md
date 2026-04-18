@@ -38,3 +38,9 @@
 | practice-core dual schema files | Medium | Open | submission.schema.ts + contract.ts parallel surfaces; consolidate |
 | BM2 lib/auth ~250 lines duplicated from core-auth | High | Open | Diverges silently; needs package adoption |
 | BM2 lib/practice ~1305 lines duplicated from practice-core | High | Open | 73 local vs 12 package imports; engine/ subtree is BM2-specific; timing imports redirected to package (2026-04-18) |
+| teacher-reporting-core gradebook-export CSV header alignment | High | Resolved | Fixed in review #8 — mastery headers excluded when includeMasteryLevel=false (2026-04-19) |
+| teacher-reporting gradebook.ts hard-coded isUnitTest=orderIndex===11 | Medium | Open | Fragile assumption that tests are always at position 11 |
+| teacher-reporting-core course-overview passes 'not_started' to computeCellColor | Medium | Open | Semantically misleading sentinel; fragile if computeCellColor logic changes |
+| teacher-reporting-core .js import extension inconsistency | Low | Open | Uses .js extensions while other packages don't; works but inconsistent |
+| study-hub-core BaseReviewSession untested in-package | Low | Open | Tested from IM3 imports but not in package's own test suite |
+| IM3 lib/study local copy not wired to study-hub-core types | Medium | Open | GlossaryTerm is wider than StudyTerm; structural compatibility works but not explicitly adopted |
