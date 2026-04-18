@@ -57,7 +57,7 @@ Supporting references:
 - [x] Confirm package-manager/workspace decision. **APPROVED: npm workspaces**
 - [x] Complete `monorepo-tooling-shell_20260417`. **COMPLETED (2026-04-18)**
 - [x] Complete `move-im3-app-to-apps_20260417`. **COMPLETED (2026-04-18)**
-- [ ] Begin `monorepo-boundary-guards_20260417` — Next track per migration order
+- [x] Complete `monorepo-boundary-guards_20260417`. **COMPLETED (2026-04-18)**
 - [ ] Fix remaining monorepo-move path issues: root `AGENTS.md` (stale `integrated-math-3/` ref), root `components.json` (wrong `app/globals.css`)
 
 ## Code Review Summary (2026-04-18)

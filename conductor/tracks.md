@@ -514,9 +514,12 @@ AI Tutoring and Workbook scope is explicitly **import/adopt from BM2**, not gree
        - Phase 2: CI and Tooling Path Fixes [COMPLETE]
        - Phase 3: Post-Move Validation [COMPLETE] (2026-04-18)
 
-- [ ] **Track: Monorepo Boundary Guardrails**
+- [x] **Track: Monorepo Boundary Guardrails**
      *Add automated checks preventing shared packages from depending on app-owned paths.*
      *Link: [./conductor/tracks/monorepo-boundary-guards_20260417/](./conductor/tracks/monorepo-boundary-guards_20260417/)*
+     - Phase 1: Define Guard Rules [COMPLETE]
+     - Phase 2: CI Integration [COMPLETE]
+     - Phase 3: Proof and Handoff [COMPLETE]
 
 ### Wave 2 — Core Engine Packages From IM3
 
