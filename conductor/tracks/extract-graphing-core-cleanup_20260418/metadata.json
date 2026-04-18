@@ -1,0 +1,11 @@
+{
+  "track_id": "extract-graphing-core-cleanup_20260418",
+  "type": "refactor",
+  "status": "completed",
+  "created_at": "2026-04-18T10:46:00Z",
+  "updated_at": "2026-04-18T10:50:00Z",
+  "description": "Refactor GraphingExplorer.tsx to use @math-platform/graphing-core package parsers instead of inline re-implementations",
+  "estimated_tasks": 3,
+  "actual_tasks": 3,
+  "deviation_notes": "Completed: replaced inline hasRealIntercepts/hasRealIntersections with parseQuadratic/parseLinear package calls. All 52 GraphingExplorer tests pass."
+}

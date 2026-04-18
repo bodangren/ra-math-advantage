@@ -28,7 +28,7 @@
 | ESLint config in packages fails at package scope | Medium | Resolved | Added eslint, @eslint/js, typescript-eslint to devDeps in all 7 packages (2026-04-18 review) |
 | component-approval: test type errors (gradingConfig missing) | Medium | Resolved | Added gradingConfig: null to all 7 test activity objects in review-queue.test.ts (2026-04-18 review) |
 | graphing-core: duplicate test files in app | Medium | Resolved | Deleted 3 redundant test files from app __tests__/lib/activities/graphing/ (2026-04-18 review) |
-| GraphingExplorer inline re-implementation of parsers | Medium | Open | hasRealIntercepts/hasRealIntersections reimplement parseQuadratic/parseLinear inline; should use package functions |
+| GraphingExplorer inline re-implementation of parsers | Medium | Resolved | Refactored to use parseQuadratic/parseLinear from @math-platform/graphing-core (2026-04-18) |
 | SubmissionDetailModal: array index used as React key | Low | Open | Should use stable ID (e.g., evidence.activityId) |
 | StepByStepper-guided test: flaky hint tracking | Low | Open | Passes in isolation but fails intermittently in full suite |
 | @testing-library/dom missing after monorepo move | Medium | Resolved | Installed as devDep in apps/integrated-math-3; all 270 test files now load (2026-04-18 review) |

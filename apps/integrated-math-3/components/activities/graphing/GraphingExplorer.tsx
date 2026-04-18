@@ -6,6 +6,7 @@ import { InteractiveTableOfValues } from './InteractiveTableOfValues';
 import { HintPanel, HintData } from './HintPanel';
 import { InterceptIdentification, InterceptData } from './InterceptIdentification';
 import type { PracticeSubmissionEnvelope } from '@math-platform/practice-core/contract';
+import { parseQuadratic, parseLinear } from '@math-platform/graphing-core';
 
 export interface GraphingExplorerProps {
   activityId: string;
@@ -136,13 +137,10 @@ export function GraphingExplorer({
   }, [comparisonAnswer, comparisonAnswerSelected]);
 
   const hasRealIntercepts = useCallback((): boolean => {
-    const match = equation.match(/y\s*=\s*([+-]?\d*\.?\d*)\*?x\^2(?:\s*([+-]\s*\d*\.?\d*)\*?x)?\s*([+-]\s*\d*\.?\d*)/);
-    if (!match) return true;
+    const coeffs = parseQuadratic(equation);
+    if (!coeffs) return true;
 
-    const a = parseFloat(match[1].replace(/\s/g, '')) || 1;
-    const b = match[2] ? parseFloat(match[2].replace(/\s/g, '')) : 0;
-    const c = parseFloat(match[3].replace(/\s/g, '')) || 0;
-
+    const { a, b, c } = coeffs;
     const discriminant = b * b - 4 * a * c;
     return discriminant >= 0;
   }, [equation]);
@@ -150,21 +148,18 @@ export function GraphingExplorer({
   const hasRealIntersections = useCallback((): boolean => {
     if (!linearEquation) return true;
 
-    const quadraticMatch = equation.match(/y\s*=\s*([+-]?\d*\.?\d*)\*?x\^2(?:\s*([+-]\s*\d*\.?\d*)\*?x)?\s*([+-]\s*\d*\.?\d*)/);
-    const linearMatch = linearEquation.match(/y\s*=\s*([+-]?\d*\.?\d*)\*?x(?:\s*([+-]\s*\d*\.?\d*))?/);
+    const quadraticCoeffs = parseQuadratic(equation);
+    if (!quadraticCoeffs) return true;
 
-    if (!quadraticMatch) return true;
+    const { a, b, c } = quadraticCoeffs;
 
-    const a = parseFloat(quadraticMatch[1].replace(/\s/g, '')) || 1;
-    const b = quadraticMatch[2] ? parseFloat(quadraticMatch[2].replace(/\s/g, '')) : 0;
-    const c = parseFloat(quadraticMatch[3].replace(/\s/g, '')) || 0;
+    const linearCoeffs = parseLinear(linearEquation);
+    let m: number;
+    let k: number;
 
-    let m = 0;
-    let k = 0;
-
-    if (linearMatch) {
-      m = parseFloat(linearMatch[1].replace(/\s/g, '')) || 1;
-      k = linearMatch[2] ? parseFloat(linearMatch[2].replace(/\s/g, '')) : 0;
+    if (linearCoeffs) {
+      m = linearCoeffs.m;
+      k = linearCoeffs.b;
     } else {
       const constantMatch = linearEquation.match(/y\s*=\s*(-?\d+\.?\d*)/);
       if (constantMatch) {
