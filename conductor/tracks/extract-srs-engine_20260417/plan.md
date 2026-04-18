@@ -2,7 +2,7 @@
 
 > Execution detail packet: see `conductor/monorepo-jr-execution-spec.md`, section `extract-srs-engine_20260417`.
 
-## Phase 1: Scaffold and Extract
+## Phase 1: Scaffold and Extract [COMPLETE] [checkpoint: b586849]
 
 ### Tasks
 
