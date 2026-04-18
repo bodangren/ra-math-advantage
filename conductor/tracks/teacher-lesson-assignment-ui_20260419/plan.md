@@ -135,7 +135,7 @@ npm test
 
 ## Phase Status
 
-- [ ] Phase 1: Convex Queries
-- [ ] Phase 2: Convex Mutations
-- [ ] Phase 3: Teacher UI
-- [ ] Phase 4: Verification
+- [x] Phase 1: Convex Queries
+- [x] Phase 2: Convex Mutations
+- [x] Phase 3: Teacher UI
+- [x] Phase 4: Verification

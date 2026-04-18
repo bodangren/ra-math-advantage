@@ -24,8 +24,7 @@
 - (2026-04-19, review-10) Empty AI responses are transient — always retry them (EmptyResponseError); CSV exports must sanitize formula prefixes (`=`, `+`, `-`, `@`) to prevent injection (CWE-1236)
 - (2026-04-19, review-10) When shared functions accept completion status, never use a sentinel value like 'not_started' as a backdoor to bypass status logic — create a dedicated function (e.g. computeMasteryColor) instead
 - (2026-04-19, review-11) When sanitizing LLM prompt inputs, apply sanitization to ALL user-controllable fields including arrays (e.g. learningObjectives.map(sanitize)) — missing one field bypasss the entire defense
-- (2026-04-19, auth-design) Authorization checks must verify specific resource ownership, not just general enrollment; use join tables (e.g. class_lessons) to establish ownership chains when resources are curriculum-global
-- (2026-04-19, review-12) When adding auth tables (class_lessons), ensure seeding or fallback exists — empty auth tables block all access silently
+- (2026-04-19, auth-design) Authorization checks must verify specific resource ownership; use join tables (e.g. class_lessons) to establish ownership chains; ensure seeding or fallback exists — empty auth tables block all access silently
 - (2026-04-19, review-12) Input sanitization must preserve domain notation — stripping `*` and `_` breaks math notation
 
 ## Patterns That Worked Well
@@ -45,6 +44,7 @@
 - (2026-04-18, monorepo-package) Packages under `packages/` need root tsconfig.json; CI/CD paths-ignore after monorepo move must audit `apps/**` blocks
 - (2026-04-18, code-review) `export type { X }` re-exports without local binding; vitest mocks must match new import paths when migrating to packages
 - (2026-04-19, review-9) When extracting shared packages, audit the full data flow path for auth — admin auth in Convex has no user identity; mutations must accept explicit user IDs
-- (2026-04-19, monorepo-ci) When building CI matrices for apps with pre-existing failures, use `continue-on-error: true` with `|| true` fallback to preserve test signal while preventing CI blockage; document the known failures clearly in the job comments
-- (2026-04-19, monorepo-docs) Validation scans (rg for stale imports, path references) should run before Phase 3 to confirm Phase 2 cleanup is unnecessary — clean scans mean no shims existed to remove
-- (2026-04-19, ai-tutoring) Memoize provider factory functions at module level to avoid recreating expensive objects on every request; AbortSignal chaining should pass through to internal AbortController
+- (2026-04-19, monorepo-ci) CI matrices with pre-existing failures: use `continue-on-error: true` + `|| true` fallback; document known failures in job comments
+- (2026-04-19, monorepo-docs) Run validation scans (rg for stale imports/paths) before Phase 3 — clean scans mean no shims to remove
+- (2026-04-19, ai-tutoring) Memoize provider factories at module level; pass AbortSignal through to internal AbortController
+- (2026-04-19, seed-design) Integrate related seeding into same Convex mutation for atomicity; seed-class-lessons in seedDemoEnv

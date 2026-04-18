@@ -41,5 +41,5 @@
 | workbook-pipeline: capstone filename hardcoded to BM2 domain | Medium | Open | "investor_ready_workbook" is business-math-specific; parameterize |
 | workbook-pipeline: workbooks.client.ts double-cast bypasses types | Medium | Open | `as unknown as WorkbookManifest` — use zod validation |
 | teacher-reporting: versionByLessonId picks first version silently | Medium | Open | No guarantee first version is the active one |
-| class_lessons table empty — chatbot falls back to open enrollment | High | Open | Teacher assignment UI built; proper seeding still needed via /teacher/lessons page |
+| class_lessons table empty — chatbot falls back to open enrollment | High | Resolved | Seeded in seed-demo-env.ts — all Module 1 lessons assigned to demo class |
 | Misconception summary fetches ALL reviews before date filter | Medium | Open | Filters by sinceMs in-memory; should use range query when index supports it |

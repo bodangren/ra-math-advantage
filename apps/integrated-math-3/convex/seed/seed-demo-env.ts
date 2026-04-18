@@ -241,6 +241,29 @@ export const seedDemoEnv = internalMutation({
       }
     }
 
+    const lessons = await ctx.db
+      .query('lessons')
+      .withIndex('by_unit_and_order', (q) => q.eq('unitNumber', 1))
+      .collect();
+
+    for (const lesson of lessons) {
+      const existingClassLesson = await ctx.db
+        .query('class_lessons')
+        .withIndex('by_class_and_lesson', (q) =>
+          q.eq('classId', classId).eq('lessonId', lesson._id)
+        )
+        .unique();
+
+      if (!existingClassLesson) {
+        await ctx.db.insert('class_lessons', {
+          classId,
+          lessonId: lesson._id,
+          assignedAt: now,
+          createdAt: now,
+        });
+      }
+    }
+
     return {
       organizationId,
       teacher,

@@ -1,0 +1,18 @@
+{
+  "trackId": "seed-class-lessons_20260419",
+  "title": "Seed Class Lessons for Demo Environment",
+  "status": "in_progress",
+  "created": "2026-04-19",
+  "phases": [
+    {
+      "phase": 1,
+      "name": "Seed Mutation and Demo Wiring",
+      "status": "in_progress"
+    },
+    {
+      "phase": 2,
+      "name": "Verification",
+      "status": "pending"
+    }
+  ]
+}

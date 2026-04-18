@@ -210,6 +210,17 @@ describe('seed-demo-env', () => {
       expect(enrollmentDoc).toHaveProperty('status');
       expect(enrollmentDoc).toHaveProperty('createdAt');
       expect(enrollmentDoc).toHaveProperty('updatedAt');
+
+      const classLessonDoc = {
+        classId: 'class-id',
+        lessonId: 'lesson-id',
+        assignedAt: now,
+        createdAt: now,
+      };
+      expect(classLessonDoc).toHaveProperty('classId');
+      expect(classLessonDoc).toHaveProperty('lessonId');
+      expect(classLessonDoc).toHaveProperty('assignedAt');
+      expect(classLessonDoc).toHaveProperty('createdAt');
     });
   });
 });
