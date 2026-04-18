@@ -6,21 +6,22 @@
 
 ### Tasks
 
-- [ ] **Task: Audit lib/auth/ vs @math-platform/core-auth**
-  - [ ] List all files in `apps/integrated-math-3/lib/auth/`
-  - [ ] Compare with `packages/core-auth/src/`
-  - [ ] Identify which files are duplicates vs app-local
-  - [ ] Identify import usages in codebase
+- [x] **Task: Audit lib/auth/ vs @math-platform/core-auth**
+  - [x] List all files in `apps/integrated-math-3/lib/auth/`
+  - [x] Compare with `packages/core-auth/src/`
+  - [x] Identify which files are duplicates vs app-local
+  - [x] Identify import usages in codebase
 
-- [ ] **Task: Delete duplicate auth files and rewire imports**
-  - [ ] Delete files that exist in `@math-platform/core-auth`
-  - [ ] Create thin re-export shims for app-local files (if any app-specific auth code exists)
-  - [ ] Rewire all imports in `apps/integrated-math-3/` to `@math-platform/core-auth`
-  - [ ] Rewire Convex file imports
+- [x] **Task: Delete duplicate auth files and rewire imports**
+  - [x] Delete files that exist in `@math-platform/core-auth`
+  - [x] Keep app-local server.ts and developer.ts (Next.js-specific utilities)
+  - [x] Rewire all imports in `apps/integrated-math-3/` to `@math-platform/core-auth`
+  - [x] Rewire middleware and route imports
 
-- [ ] **Task: Verify lib/auth/ migration**
-  - [ ] Run `npx tsc --noEmit`
-  - [ ] Verify no remaining imports from local `lib/auth/`
+- [x] **Task: Verify lib/auth/ migration**
+  - [x] Run `npx tsc --noEmit` - PASS
+  - [x] Run `npm run lint -- --max-warnings 0` - PASS
+  - [x] Run `npm run build` - PASS
 
 ## Phase 2: Audit and Migrate lib/practice/
 

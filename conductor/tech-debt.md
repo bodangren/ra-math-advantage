@@ -8,7 +8,7 @@
 
 | Item | Sev | Status | Notes |
 |------|-----|--------|-------|
-| App lib/auth/ copies have divergent bugs vs core-auth package | Critical | Open | timingSafeEquals leaks length, generateRandomPassword has modulo bias, missing VERCEL_ENV guard, password trim behavior all differ between app copy and package |
+| App lib/auth/ copies have divergent bugs vs core-auth package | Critical | Resolved | Migrated lib/auth/ to @math-platform/core-auth - deleted buggy duplicates, rewired imports (2026-04-18) |
 | App lib/practice/ has 8 full duplicate files not importing from practice-core | Critical | Open | contract.ts, timing.ts, timing-baseline.ts, srs-rating.ts, etc. are byte-copies not re-exports; any fix must be applied twice |
 | App lib/srs/ has 6 duplicate files not importing from srs-engine | Critical | Open | contract.ts, scheduler.ts, adapters.ts, review-processor.ts, submission-srs-adapter.ts, queue.ts all duplicated |
 | 15+ Convex/seed files still import from old lib/practice/ paths | High | Open | seed-practice-items, seed-problem-families, timing_baseline, submissionSrs all use ../../lib/practice/ instead of @math-platform/practice-core |
