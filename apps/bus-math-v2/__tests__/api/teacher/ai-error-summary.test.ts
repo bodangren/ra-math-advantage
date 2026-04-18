@@ -24,12 +24,12 @@ vi.mock('@/lib/convex/server', () => ({
   },
 }));
 
-vi.mock('@/lib/practice/error-analysis', () => ({
+vi.mock('@math-platform/practice-core/error-analysis', () => ({
   generateAISummary: mockGenerateAISummary,
   buildDeterministicSummary: mockBuildDeterministicSummary,
 }));
 
-vi.mock('@/lib/practice/contract', () => ({
+vi.mock('@math-platform/practice-core/contract', () => ({
   isPracticeSubmissionEnvelope: mockIsPracticeSubmissionEnvelope,
 }));
 

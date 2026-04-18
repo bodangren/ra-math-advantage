@@ -47,4 +47,5 @@
 - (2026-04-18, monorepo) Always run `npx tsc --noEmit` in each extracted package independently; root tsc with `include: []` catches nothing
 - (2026-04-18, graphing-core) When reconciling BM2 vs extracted package, different coordinate systems (data vs canvas) are valid deltas — don't force merge; document the boundary clearly
 - (2026-04-18, bm2-migration) BM2 governance tests (conductor/, docs/, README.md checks) don't apply in monorepo context; exclude these files from copy and skip/remove those tests
+- (2026-04-18, bm2-consume) When migrating imports to packages, vitest mocks must be updated to match new import paths; mocks on `@/@lib/X` won't apply when X is imported from `@math-platform/X`
 
