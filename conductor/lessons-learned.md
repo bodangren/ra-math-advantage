@@ -9,42 +9,37 @@
 - (2026-04-16, srs-integration) Always add `by_student_and_problem_family` index for SRS cards; querying by `problemFamilyId` alone causes cross-student card overwrites
 - (2026-04-16, srs-integration) Use `ctx.scheduler.runAfter(0, ...)` for non-blocking SRS processing; keep error boundaries so SRS failures never block submission
 - (2026-04-16, srs-schema) `mapDbCardToContract` must use `card._id` as `cardId`, not `problemFamilyId` — domain IDs are not unique across students
-- (2026-04-17, auth-guards) Test request guards by mocking `verifySessionToken` and passing cookie headers directly on Request objects; avoids circular mocks of the module under test
+- (2026-04-17, auth-guards) Test request guards by mocking `verifySessionToken` and passing cookie headers directly on Request objects; avoids circular mocks
 - (2026-04-16, sessions) Server-side day-boundary comparisons must use UTC methods; stale sessions must be explicitly closed before creating new ones
 
 ## Recurring Gotchas
 
-- (2026-04-17, code-review) Timer refs reused for wrong-answer flash: clear previous timer with `clearTimeout(wrongTimerRef.current)` before setting new one; otherwise first timer fires and clears state prematurely
-- (2026-04-17, session-completion) Always send explicit `sessionId` in completion API calls; looking up "active session by student" at completion time creates race conditions
-- (2026-04-17, code-review) Union-type casts like `x as ObjectivePriority` must be runtime-validated; DB corruption silently propagates otherwise
-- (2026-04-18, code-review) When wiring dashboard aggregators to handler functions, the handlers may throw; use `.catch(() => [])` to prevent partial failures from breaking the whole dashboard
-- (2026-04-18, security) `timingSafeEquals` must never return early on length mismatch — always iterate max length to avoid timing side-channels
-- (2026-04-18, security) `byte % alphabet.length` introduces modulo bias; use rejection sampling when 256 is not divisible by alphabet length
+- (2026-04-17, code-review) Timer refs reused for wrong-answer flash: clear previous timer before setting new one
+- (2026-04-17, session-completion) Always send explicit `sessionId` in completion API calls
+- (2026-04-17, code-review) Union-type casts like `x as ObjectivePriority` must be runtime-validated
+- (2026-04-18, code-review) When wiring dashboard aggregators to handler functions, use `.catch(() => [])` to prevent partial failures
+- (2026-04-18, security) `timingSafeEquals` must never return early on length mismatch
+- (2026-04-18, security) `byte % alphabet.length` introduces modulo bias; use rejection sampling
+- (2026-04-18, srs-contract) When migrating SRS contracts, always add adapter functions at component boundaries; DailyPracticeSession sits between Convex (legacy schema) and processPracticeSubmission (new contract) — both directions need mapping
 ## Patterns That Worked Well
 
 - (2026-04-05, setup) Existing `lib/` modules are pure functions with clear types — excellent for testing
 - (2026-04-06, scaffold-pages) Mock `@/lib/convex/server` at top of page tests — keeps tests fast and isolated
 - (2026-04-15, harden-manual-approval) Harness gating: expose canApprove via callback, track in parent, gate approve button
 - (2026-04-16, srs-rating-adapter) Two-step rating: compute base rating from correctness first, then apply timing as conservative modifier
-- (2026-04-16, srs-product-contract) Single canonical contract module (`lib/srs/contract.ts`) with re-exports; downstream imports from one surface
+- (2026-04-16, srs-product-contract) Single canonical contract module with re-exports; downstream imports from one surface
 
 ## Planning Improvements
 
 - (2026-04-13, component-approval) Convex queries: use `.withIndex()` not `.filter()`, and `.take(n)` instead of `.collect()` to bound results
 - (2026-04-16, code-review) New seed mutations must be wired into seed.ts immediately; orphan files silently skip data
-- (2026-04-17, srs-queue-performance) Replace N+1 sequential DB lookups with Promise.all over deduplicated IDs; Convex automatically batches parallel independent reads
-- (2026-04-17, test-design) Vitest only discovers tests in `__tests__/**/*.test.ts`; place test files there even when stub implementations live in `lib/**/__tests__/`
-- (2026-04-17, test-design) Convex query mocks must filter by the actual query args — returning unfiltered data causes incorrect calculations in multi-student scenarios
+- (2026-04-17, srs-queue-performance) Replace N+1 sequential DB lookups with Promise.all over deduplicated IDs
+- (2026-04-17, test-design) Vitest only discovers tests in `__tests__/**/*.test.ts`; place test files there
 - (2026-04-18, monorepo-package) Packages under `packages/` need root tsconfig.json; CI/CD paths-ignore after monorepo move must audit `apps/**` blocks
-- (2026-04-18, srs-engine) Define types locally in shared packages if dependencies don't export them; ESLint must be scaffolded; migrate local imports to package with updated vitest mocks
-- (2026-04-18, code-review) `export type { X } from 'mod'` re-exports but doesn't create a local binding; use `import type { X } from 'mod'; export type { X } from 'mod';` when the type is used locally in the same file
-- (2026-04-18, monorepo) Always run `npx tsc --noEmit` in each extracted package independently; root tsc with `include: []` catches nothing
-- (2026-04-18, graphing-core) When reconciling BM2 vs extracted package, different coordinate systems (data vs canvas) are valid deltas — don't force merge; document the boundary clearly
-- (2026-04-18, bm2-migration) BM2 governance tests don't apply in monorepo context; skip/remove those tests
+- (2026-04-18, srs-engine) Define types locally in shared packages if dependencies don't export them
+- (2026-04-18, code-review) `export type { X } from 'mod'` re-exports but doesn't create a local binding
+- (2026-04-18, monorepo) Always run `npx tsc --noEmit` in each extracted package independently
+- (2026-04-18, graphing-core) Different coordinate systems (data vs canvas) are valid deltas — document the boundary clearly
 - (2026-04-18, bm2-consume) When migrating imports to packages, vitest mocks must be updated to match new import paths
-- (2026-04-18, review-5) `timingSafeEquals` must XOR max-length with padding bytes to avoid timing side-channels
-- (2026-04-18, review-5) When extracting packages, always export intermediate types used by normalization functions
-- (2026-04-18, review-5) Parallel schema files drift silently; prefer a single source of truth
-- (2026-04-18, srs-contract) When migrating to new contract format, update test fixtures to match new types; legacy backward-compat wrappers still return old format but new contract uses flat types with ISO dates
-- (2026-04-18, bm2-consume-runtime) When deleting local duplicate files, check if other local files import from them; update those imports to the package before deleting the source (e.g., BM2's canvas-utils.ts imported from deleted local parsers)
-
+- (2026-04-18, review-6) SRS contract migration must include component-layer adapters; DailyPracticeSession broke because Phase 1-2 migrated lib/ but not components — always audit the full data flow path (Convex → component → lib → Convex)
+- (2026-04-18, review-6) FSRS timestamp rounding can cause 1ms boundary flakiness in tests; capture both before/after timestamps and use after for upper bounds

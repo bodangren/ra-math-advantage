@@ -9,43 +9,31 @@
 | Item | Sev | Status | Notes |
 |------|-----|--------|-------|
 | Misconception summary query: N+1 card resolution depth | Critical | Open | 30 students x 100 reviews = 3k+ sequential reads; will timeout |
-| Misconception tags not persisted in review evidence | High | Open | getMisconceptionSummary always returns empty; tags influence rating but aren't stored in evidence |
-| SRS sessions: by_student_and_status index relies on undefined sorting | High | Open | No explicit filter for completedAt=undefined; fragile implicit ordering |
+| Misconception tags not persisted in review evidence | High | Open | getMisconceptionSummary always returns empty |
+| BM2 DailyPracticeSession SRS adapter gap | High | Resolved | Added legacyToSrsCardState/srsCardStateToLegacy adapters (2026-04-18 review #6) |
+| BM2 fetchInternalQuery returns untyped `unknown` (~130 TS errors) | High | Open | All BM2 API routes access properties on `{}` without type narrowing; needs generic param |
+| BM2 convex/activities.ts calls non-existent ctx.transaction() | High | Open | Dead code path — Convex doesn't have this API; will throw at runtime |
+| BM2 CashFlowChallenge component type drift (~31 TS errors) | High | Open | Component accesses activity.props fields at top level; needs destructuring |
+| SRS sessions: by_student_and_status index relies on undefined sorting | High | Open | No explicit filter for completedAt=undefined |
 | Approval status race condition (no version/lock) | High | Open | No "approve exact version" check |
 | N+1 query: phase sections in progress/preview/monitoring queries | High | Open | One DB query per phase inside loop |
-| SRS CardStore: studentId type mismatch (contract vs schema) | High | Open | SrsCardState uses string, Convex uses Id<"profiles">; unsafe casts at boundary |
 | Teacher SRS queries: N+1 per-student unbounded .collect() loops | High | Open | Multiple handlers iterate students + collect |
-| Equivalence checker: 6 aspirational tests marked .todo | High | Open | Pattern-matching can't handle perfect squares, GCF factoring, fraction addition, radical addition; needs symbolic math lib; tests marked .todo to unblock CI |
-| component-approval: review-queue.ts near-duplicate in app | High | Resolved | Thin adapter wrapping package functions (2026-04-18 review) |
-| lib/practice/objective-proficiency.ts + objective-policy.ts unmigrated | High | Open | 520 lines of domain logic not extracted to package; PROFICIENCY_THRESHOLD_DEFAULTS and ObjectivePolicy are app-only |
-| SRS: card + review log saved non-atomically via SubmissionSrsAdapter | Medium | Open | If second mutation fails, card state updated without audit trail |
-| SRS: submissionSrs accepts v.any() with unsafe cast | Medium | Open | No Zod validation on submission envelope in Convex mutation |
+| Equivalence checker: 6 aspirational tests marked .todo | High | Open | Needs symbolic math lib |
+| BM2 governance tests fail in monorepo context (27 tests) | Medium | Open | Repo-structure tests expect root paths; should be skipped/removed |
+| BM2 303 TypeScript errors (categories B-F) | Medium | Open | ~130 untyped queries, ~31 CashFlowChallenge, ~90 test mocks, ~15 teacher UI null safety |
+| BM2 ESLint not found by vinext lint | Medium | Open | vinext can't find eslint in BM2 workspace |
+| SRS CardStore: studentId type mismatch (contract vs schema) | High | Open | SrsCardState uses string, Convex uses Id<"profiles"> |
+| lib/practice/objective-proficiency.ts + objective-policy.ts unmigrated | High | Open | 520 lines of domain logic not extracted to package |
+| SRS: card + review log saved non-atomically | Medium | Open | If second mutation fails, card state updated without audit trail |
+| SRS: submissionSrs accepts v.any() with unsafe cast | Medium | Open | No Zod validation on submission envelope |
 | RSC entry chunk 750 KB | Medium | Open | Code-splitting needed to get under 500 KB |
 | Cloudflare worker deploys to production on every push | Medium | Open | No staging step, no canary, no approval gate |
-| practice-core has only 1 test file in-package | Medium | Open | contract.ts, srs-rating.ts, timing-baseline.ts, error-analysis all untested at package level |
-| Dual Zod schemas: contract.ts vs submission.schema.ts constraints aligned | Medium | Resolved | submission.schema.ts now matches contract.ts constraints (2026-04-18 review #5) |
-| lib/practice/srs-proficiency.ts: local ProficiencyCardInput type | Medium | Open | Renamed to avoid collision with package SrsCardState; still app-local |
-| ESLint config in packages fails at package scope | Medium | Resolved | Added eslint deps to all 7 packages (2026-04-18 review) |
-| component-approval: test type errors (gradingConfig missing) | Medium | Resolved | Added gradingConfig: null to test fixtures (2026-04-18 review) |
-| GraphingExplorer inline re-implementation of parsers | Medium | Resolved | Refactored to use graphing-core parsers (2026-04-18) |
-| SubmissionDetailModal: array index used as React key | Low | Open | Should use stable ID (e.g., evidence.activityId) |
-| StepByStepper-guided test: flaky hint tracking | Low | Open | Passes in isolation but fails intermittently in full suite |
-| @testing-library/dom missing after monorepo move | Medium | Resolved | Installed devDep (2026-04-18 review) |
-| Monorepo migration: app-local lib/auth, lib/practice, lib/srs wrappers | Medium | Open | lib/auth/server.ts (234 lines app-specific guards), lib/practice/ (520 lines objective-proficiency + policy), lib/srs/ (Convex adapters) remain app-local intentionally — domain logic vs adapter boundary is documented |
-| BM2 governance tests fail in monorepo context | Medium | Open | 27 BM2 config tests fail due to missing conductor/, docs/, README.md, proxy.ts, tests/e2e — these are repo-structure tests, not app functionality; should be removed or skipped in monorepo context |
-| BM2-package SRS contract incompatibility | High | Open | BM2 uses legacy card state (card:Record, numeric timestamps) while srs-engine package uses FSRS-aligned types (stability, difficulty, ISO strings); cannot swap imports without refactoring entire SRS pipeline |
-| BM2 missing @math-platform/* package.json declarations | Critical | Resolved | All 7 deps added (2026-04-18 review #4) |
-| BM2 lib/auth/ full duplication of packages/core-auth | High | Open | 4 files (~250 lines) near-identical to package; diverges silently (e.g., missing console.warn on dev JWT secret) |
-| BM2 lib/practice/ full duplication of packages/practice-core | High | Open | 5 files (~1305 lines) near-identical to package; partial migration (11 files migrated, 275+ imports remain) |
-| BM2 lib/srs/ complete architecture divergence from packages/srs-engine | High | Open | Different data models (card:Record vs FSRS-aligned types); 0 package imports; needs dedicated migration track |
-| convex/_generated/ tracked in git (12 files) | Medium | Resolved | Untracked, fixed .gitignore (2026-04-18 review #4) |
-| packages/_template missing type:module | Low | Resolved | Added "type": "module" (2026-04-18 review #4) |
-| BM2 timingSafeEquals timing side-channel | Critical | Resolved | Short-circuits on length mismatch; fixed to use Math.max + XOR padding (2026-04-18 review #5) |
-| BM2 generateRandomPassword modulo bias | High | Resolved | byte % alphabet.length biased; fixed with rejection sampling (2026-04-18 review #5) |
-| practice-core submission.schema.ts weaker than contract.ts | Medium | Resolved | partId missing .trim().min(1), hintsUsed/revealStepsSeen/changedCount missing .int().nonnegative(); aligned (2026-04-18 review #5) |
-| practice-core missing PracticeSubmissionInput type export | Medium | Resolved | Added to src/index.ts exports (2026-04-18 review #5) |
-| ObjectivePriority local type duplication in IM3 | Medium | Resolved | Replaced local definition with import from @math-platform/srs-engine (2026-04-18 review #5) |
+| practice-core has only 1 test file in-package | Medium | Open | contract.ts, srs-rating.ts, timing-baseline.ts untested at package level |
+| BM2 Convex SRS schema migration deferred | Medium | Deferred | srs_cards table still uses legacy card:Record format |
 | 5 packages missing vitest.config files | Low | Open | core-auth, core-convex, activity-runtime, component-approval, graphing-core |
-| practice-core dual schema files (contract.ts + submission.schema.ts) | Medium | Open | submission.schema.ts defines parallel PascalCase schemas; consumers import from different surfaces; consolidate |
-| RSC entry chunk 750 KB (regressed from ~500 KB) | Medium | Open | Code-splitting regressed; need dynamic imports for heavy components |
-| BM2 Convex SRS schema migration deferred | Medium | Deferred | srs_cards table still uses legacy card:Record format; Phase 3 of bm2-srs-contract-migration deferred until Phase 2 complete |
+| core-convex import extension inconsistency | Low | Resolved | Normalized to no-extension style (2026-04-18 review #6) |
+| BM2 scheduler test boundary flakiness | Low | Resolved | Used `after` timestamp for upper bound tolerance (2026-04-18 review #6) |
+| SubmissionDetailModal: array index used as React key | Low | Open | Should use stable ID |
+| practice-core dual schema files | Medium | Open | submission.schema.ts + contract.ts parallel surfaces; consolidate |
+| BM2 lib/auth ~250 lines duplicated from core-auth | High | Open | Diverges silently; needs package adoption |
+| BM2 lib/practice ~1305 lines duplicated from practice-core | High | Open | 73 local vs 12 package imports; engine/ subtree is BM2-specific |
