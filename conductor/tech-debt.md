@@ -25,8 +25,8 @@
 | Equivalence checker: 6 test failures for advanced patterns | High | Open | Pattern-matching can't handle perfect squares, GCF factoring, fraction addition, radical like terms; needs symbolic math lib |
 | Monorepo move: curriculum audit.ts looked for conductor/ in app dir | Critical | Resolved | Fixed: resolveConductorDir() checks ../../conductor/ (monorepo root) first (2026-04-18) |
 | Monorepo move: lesson-title-consistency test referenced stale conductor/ paths | High | Resolved | Fixed: split into monorepoRoot/appRoot; corrected archive/ paths for module-1/2 seed tracks (2026-04-18) |
-| Root AGENTS.md references stale integrated-math-3/ path | Medium | Open | App moved to apps/integrated-math-3/; path reference is outdated |
-| Root components.json points to wrong globals.css path | Medium | Open | shadcn config resolves app/globals.css at repo root, not apps/integrated-math-3/app/globals.css |
+| Root AGENTS.md references stale integrated-math-3/ path | Medium | Resolved | Fixed: path updated to apps/integrated-math-3/ (2026-04-18) |
+| Root components.json points to wrong globals.css path | Medium | Resolved | Fixed: css path updated to apps/integrated-math-3/app/globals.css (2026-04-18) |
 | SRS engine: objective-proficiency types not in practice-core | Medium | Open | SRS contract defines ObjectivePriority/ObjectivePracticePolicy locally; practice-core should export these for proper layering |
 | FSRS stability used as avgRetention — semantic mismatch | Medium | Open | Stability = days until 90% retrievability, not percentage |
 | mapGradeToSrsRating/mapCardState silently map unknown values | Medium | Open | Should exhaust switch or throw instead of silent default |

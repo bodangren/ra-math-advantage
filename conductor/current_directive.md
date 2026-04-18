@@ -58,9 +58,9 @@ Supporting references:
 - [x] Complete `monorepo-tooling-shell_20260417`. **COMPLETED (2026-04-18)**
 - [x] Complete `move-im3-app-to-apps_20260417`. **COMPLETED (2026-04-18)**
 - [x] Complete `monorepo-boundary-guards_20260417`. **COMPLETED (2026-04-18)**
-- [ ] Fix remaining monorepo-move path issues: root `AGENTS.md` (stale `integrated-math-3/` ref), root `components.json` (wrong `app/globals.css`)
-- [ ] Complete `extract-practice-core_20260417` Phase 3: IM3 import migration
-- [ ] Complete `extract-srs-engine_20260417` Phase 2: Reconcile BM2 deltas + Phase 3: IM3 migration
+- [x] Fix remaining monorepo-move path issues: root `AGENTS.md` (stale `integrated-math-3/` ref), root `components.json` (wrong `app/globals.css`) — **COMPLETED (2026-04-18)**
+- [x] Complete `extract-practice-core_20260417` Phase 3: IM3 import migration — **COMPLETED (plan.md shows all phases complete)**
+- [x] Complete `extract-srs-engine_20260417` Phase 2: Reconcile BM2 deltas + Phase 3: IM3 migration — **COMPLETED (plan.md shows all phases complete)**
 
 ## Code Review Summary (2026-04-18)
 
