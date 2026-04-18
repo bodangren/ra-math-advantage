@@ -19,8 +19,8 @@ export interface PracticeTestQuestion {
 }
 
 export interface ShuffledQuestion {
-  answer: string;
-  options: string[];
+  correctIndex: number;
+  choices: string[];
 }
 
 export interface PracticeTestAnswer {
@@ -72,19 +72,17 @@ export function drawRandomQuestions(
 }
 
 export function shuffleAnswers(question: PracticeTestQuestion): ShuffledQuestion {
-  const options = [question.correctAnswer, ...question.distractors];
-  for (let i = options.length - 1; i > 0; i--) {
+  const choices = [question.correctAnswer, ...question.distractors];
+  for (let i = choices.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
-    [options[i], options[j]] = [options[j], options[i]];
+    [choices[i], choices[j]] = [choices[j], choices[i]];
   }
-  return {
-    answer: question.correctAnswer,
-    options,
-  };
+  const correctIndex = choices.indexOf(question.correctAnswer);
+  return { correctIndex, choices };
 }
 
 export function isAnswerCorrect(shuffled: ShuffledQuestion, selectedAnswer: string): boolean {
-  return selectedAnswer === shuffled.answer;
+  return selectedAnswer === shuffled.choices[shuffled.correctIndex];
 }
 
 export function calculateScore(

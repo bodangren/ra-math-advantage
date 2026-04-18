@@ -38,17 +38,17 @@ describe('drawRandomQuestions', () => {
 });
 
 describe('shuffleAnswers', () => {
-  it('returns the correct answer and all options', () => {
+  it('returns the correct index and all choices', () => {
     const question = UNIT1_CONFIG.questions[0];
     const result = shuffleAnswers(question);
-    expect(result.answer).toBe(question.correctAnswer);
-    expect(result.options).toContain(question.correctAnswer);
+    expect(result.choices[result.correctIndex]).toBe(question.correctAnswer);
+    expect(result.choices).toContain(question.correctAnswer);
     question.distractors.forEach(distractor => {
-      expect(result.options).toContain(distractor);
+      expect(result.choices).toContain(distractor);
     });
   });
 
-  it('returns options in a different order than original', () => {
+  it('returns choices in a different order than original', () => {
     const question = UNIT1_CONFIG.questions[0];
     const originalOrder = [question.correctAnswer, ...question.distractors];
 
@@ -65,7 +65,7 @@ describe('shuffleAnswers', () => {
     const result = shuffleAnswers(question);
     Math.random = originalMathRandom;
 
-    expect(result.options).not.toEqual(originalOrder);
-    expect(result.options.sort()).toEqual(originalOrder.sort());
+    expect(result.choices).not.toEqual(originalOrder);
+    expect(result.choices.sort()).toEqual(originalOrder.sort());
   });
 });

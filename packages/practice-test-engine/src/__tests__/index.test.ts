@@ -91,32 +91,32 @@ describe('drawRandomQuestions', () => {
 });
 
 describe('shuffleAnswers', () => {
-  it('returns an object with answer and options', () => {
+  it('returns an object with correctIndex and choices', () => {
     const result = shuffleAnswers(mockQuestion);
-    expect(result).toHaveProperty('answer');
-    expect(result).toHaveProperty('options');
+    expect(result).toHaveProperty('correctIndex');
+    expect(result).toHaveProperty('choices');
   });
 
-  it('places the correct answer in the options array', () => {
+  it('places the correct answer in the choices array', () => {
     const result = shuffleAnswers(mockQuestion);
-    expect(result.options).toContain('4');
+    expect(result.choices).toContain('4');
   });
 
-  it('has correct answer equal to the question correctAnswer', () => {
+  it('has correctIndex pointing to the correct answer in choices', () => {
     const result = shuffleAnswers(mockQuestion);
-    expect(result.answer).toBe('4');
+    expect(result.choices[result.correctIndex]).toBe('4');
   });
 
-  it('has options array containing all distractors plus correct answer', () => {
+  it('has choices array containing all distractors plus correct answer', () => {
     const result = shuffleAnswers(mockQuestion);
-    expect(result.options).toHaveLength(4);
-    expect(result.options).toContain('3');
-    expect(result.options).toContain('5');
-    expect(result.options).toContain('6');
+    expect(result.choices).toHaveLength(4);
+    expect(result.choices).toContain('3');
+    expect(result.choices).toContain('5');
+    expect(result.choices).toContain('6');
   });
 
   it('produces varying order across multiple calls (Fisher-Yates)', () => {
-    const results = Array.from({ length: 10 }, () => shuffleAnswers(mockQuestion).options.join(','));
+    const results = Array.from({ length: 10 }, () => shuffleAnswers(mockQuestion).choices.join(','));
     const uniqueResults = new Set(results);
     expect(uniqueResults.size).toBeGreaterThan(1);
   });
@@ -131,6 +131,14 @@ describe('isAnswerCorrect', () => {
   it('returns false when selected answer does not match', () => {
     const shuffled = shuffleAnswers(mockQuestion);
     expect(isAnswerCorrect(shuffled, '3')).toBe(false);
+  });
+
+  it('returns false when selected answer is not at correct index', () => {
+    const shuffled = shuffleAnswers(mockQuestion);
+    const wrongAnswer = shuffled.choices[(shuffled.correctIndex + 1) % shuffled.choices.length];
+    if (wrongAnswer !== '4') {
+      expect(isAnswerCorrect(shuffled, wrongAnswer)).toBe(false);
+    }
   });
 });
 

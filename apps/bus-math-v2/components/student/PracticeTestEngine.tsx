@@ -7,7 +7,8 @@ import { Checkbox } from '@/components/ui/checkbox';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Badge } from '@/components/ui/badge';
-import { PracticeTestUnitConfig, filterQuestionsByLessonIds, drawRandomQuestions, shuffleAnswers } from '@/lib/practice-tests/question-banks';
+import type { PracticeTestUnitConfig } from '@/lib/practice-tests/types';
+import { filterQuestionsByLessonIds, drawRandomQuestions, shuffleAnswers } from '@/lib/practice-tests/question-banks';
 
 interface PracticeTestEngineProps {
   unitConfig: PracticeTestUnitConfig;
@@ -101,7 +102,7 @@ export default function PracticeTestEngine({ unitConfig, onComplete }: PracticeT
     const current = testQuestions[currentQuestionIndex];
     if (!current || hasSeenFeedback) return;
     const { question, original } = current;
-    const isCorrect = selectedAnswer === question.answer;
+    const isCorrect = selectedAnswer === question.choices[question.correctIndex];
     setLastAnswerCorrect(isCorrect);
     
     if (isCorrect) {
@@ -252,8 +253,8 @@ export default function PracticeTestEngine({ unitConfig, onComplete }: PracticeT
               </div>
               <h3 className="text-lg font-semibold mb-4">{testQuestions[currentQuestionIndex].original.prompt}</h3>
               <div className="space-y-3 mb-6">
-                {testQuestions[currentQuestionIndex].question.options.map((option, index) => {
-                  const isCorrectAnswer = option === testQuestions[currentQuestionIndex].question.answer;
+                {testQuestions[currentQuestionIndex].question.choices.map((option, index) => {
+                  const isCorrectAnswer = option === testQuestions[currentQuestionIndex].question.choices[testQuestions[currentQuestionIndex].question.correctIndex];
                   return (
                     <Button
                       key={index}

@@ -19,13 +19,11 @@ export function drawRandomQuestions(questions: PracticeTestQuestion[], count: nu
   return shuffled.slice(0, clampedCount);
 }
 
-export function shuffleAnswers(question: PracticeTestQuestion): { answer: string; options: string[] } {
-  const allAnswers = [question.correctAnswer, ...question.distractors];
-  const shuffled = fisherYatesShuffle(allAnswers);
-  return {
-    answer: question.correctAnswer,
-    options: shuffled,
-  };
+export function shuffleAnswers(question: PracticeTestQuestion): { correctIndex: number; choices: string[] } {
+  const choices = [question.correctAnswer, ...question.distractors];
+  const shuffled = fisherYatesShuffle(choices);
+  const correctIndex = shuffled.indexOf(question.correctAnswer);
+  return { correctIndex, choices: shuffled };
 }
 
 const UNIT1_QUESTIONS: PracticeTestQuestion[] = [
