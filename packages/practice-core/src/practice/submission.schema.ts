@@ -25,16 +25,16 @@ export const PracticeTimingSummarySchema = z
 export type PracticeTimingSummary = z.infer<typeof PracticeTimingSummarySchema>;
 
 export const PracticeSubmissionPartSchema = z.object({
-  partId: z.string(),
+  partId: z.string().trim().min(1),
   rawAnswer: z.unknown(),
   normalizedAnswer: z.string().optional(),
   isCorrect: z.boolean().optional(),
   score: z.number().optional(),
   maxScore: z.number().optional(),
   misconceptionTags: z.array(z.string()).optional(),
-  hintsUsed: z.number().optional(),
-  revealStepsSeen: z.number().optional(),
-  changedCount: z.number().optional(),
+  hintsUsed: z.number().int().nonnegative().optional(),
+  revealStepsSeen: z.number().int().nonnegative().optional(),
+  changedCount: z.number().int().nonnegative().optional(),
   firstInteractionAt: z.string().min(1).optional(),
   answeredAt: z.string().min(1).optional(),
   wallClockMs: z.number().nonnegative().optional(),

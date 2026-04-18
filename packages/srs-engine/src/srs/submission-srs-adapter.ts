@@ -16,6 +16,7 @@ import type {
   PracticeTimingBaseline,
   SrsCardState,
   SrsRating,
+  SrsReviewLogEntry,
 } from './contract';
 
 // ============================================
@@ -241,8 +242,6 @@ function generateReviewId(): string {
 // ============================================
 // In-Memory Adapter for Testing
 // ============================================
-
-import type { SrsReviewLogEntry } from './contract';
 
 export class InMemoryProblemFamilyResolver implements ProblemFamilyResolver {
   private map = new Map<string, ProblemFamilyInfo>();

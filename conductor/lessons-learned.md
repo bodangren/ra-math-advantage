@@ -11,7 +11,6 @@
 - (2026-04-16, srs-schema) `mapDbCardToContract` must use `card._id` as `cardId`, not `problemFamilyId` — domain IDs are not unique across students
 - (2026-04-17, auth-guards) Test request guards by mocking `verifySessionToken` and passing cookie headers directly on Request objects; avoids circular mocks of the module under test
 - (2026-04-16, sessions) Server-side day-boundary comparisons must use UTC methods; stale sessions must be explicitly closed before creating new ones
-- (2026-04-18, monorepo-move) After moving app to `apps/integrated-math-3/`, any code reading from `conductor/` must resolve to `../../conductor/` (monorepo root), not `./conductor/` (app-local). Add a fallback check.
 
 ## Recurring Gotchas
 
@@ -21,8 +20,6 @@
 - (2026-04-18, code-review) When wiring dashboard aggregators to handler functions, the handlers may throw; use `.catch(() => [])` to prevent partial failures from breaking the whole dashboard
 - (2026-04-18, security) `timingSafeEquals` must never return early on length mismatch — always iterate max length to avoid timing side-channels
 - (2026-04-18, security) `byte % alphabet.length` introduces modulo bias; use rejection sampling when 256 is not divisible by alphabet length
-- (2026-04-18, security) Password `.trim()` silently modifies user input; reject passwords with leading/trailing spaces explicitly
-- (2026-04-18, security) Vercel production deployments must check `VERCEL_ENV === 'production'` explicitly; don't rely solely on `NODE_ENV`
 ## Patterns That Worked Well
 
 - (2026-04-05, setup) Existing `lib/` modules are pure functions with clear types — excellent for testing
@@ -47,4 +44,7 @@
 - (2026-04-18, bm2-consume) When migrating imports to packages, vitest mocks must be updated to match new import paths; mocks on `@/@lib/X` won't apply when X is imported from `@math-platform/X`
 - (2026-04-18, review-4) .gitignore patterns like `convex/_generated/` only match at repo root; use `**/convex/_generated/` to cover nested app directories in monorepos
 - (2026-04-18, review-4) Dynamic `expect(() => import(...)).not.toThrow()` doesn't catch async module errors — use `await import()` inside the test body and assert on exports
+- (2026-04-18, review-5) `timingSafeEquals` must XOR max-length with padding bytes and defer length comparison to end to avoid timing side-channels on signature verification
+- (2026-04-18, review-5) When extracting packages, always export intermediate types (e.g., `PracticeSubmissionInput`) used by normalization functions — downstream consumers need them for type annotations
+- (2026-04-18, review-5) Parallel schema files (submission.schema.ts vs contract.ts) drift silently; prefer a single source of truth and re-export if PascalCase aliases are needed
 

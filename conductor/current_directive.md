@@ -1,6 +1,6 @@
 # Current Directive
 
-> Updated: 2026-04-18 (Code review #4 — full 6-phase audit of monorepo extraction Waves 2-4)
+> Updated: 2026-04-18 (Code review #5 — full 6-phase audit of monorepo extraction, post-#4 fixes)
 
 ## Mission
 
@@ -44,38 +44,45 @@ Primary objective is to execute the monorepo migration roadmap in Conductor orde
 - [ ] Wave 5: AI tutoring and workbook (import/adopt from BM2)
 - [ ] Wave 6: CI/CD hardening, docs cleanup
 
-## Code Review Summary (2026-04-18 — Review #4)
+## Code Review Summary (2026-04-18 — Review #5)
 
-Audited 6 work phases: BM2 consume core packages, graphing-core extraction, component-approval extraction, app import migration, activity-runtime extraction, core-auth-convex extraction.
+Comprehensive audit of all monorepo extraction phases (Waves 2-4), BM2 integration, shared packages, and IM3 import migration.
 
 ### Verification Results
 
 | Check | Result |
 |-------|--------|
 | Build (vinext build) | PASS |
-| Tests (vitest run) | 3255/3255 pass (6 aspirational tests marked .todo) |
-| Typecheck (tsc --noEmit) | CLEAN |
-| Lint (eslint --max-warnings 0) | CLEAN |
+| Tests (vitest run) | 3249/3255 pass (6 aspirational .todo tests) |
+| Typecheck (tsc — IM3 + packages) | CLEAN |
+| Lint (eslint —max-warnings 0) | CLEAN |
 
 ### Issues Fixed in This Review
 
 | Issue | Severity | Fix |
 |-------|----------|-----|
-| BM2 package.json missing all @math-platform/* deps | Critical | Added all 7 workspace dependencies |
-| BM2 password-policy silently .trim()s passwords | High | Backported explicit space rejection from core-auth package |
-| 12 convex/_generated/ files tracked in git | Medium | Untracked from git; fixed .gitignore to `**/convex/_generated/` |
-| 6 equivalence tests failing (aspirational) | Medium | Marked as `.todo` — pattern-matcher can't handle symbolic math |
-| Teacher index test unhandled rejection | Low | Replaced broken expect(() => import()) with proper async import |
-| packages/_template missing `"type": "module"` | Low | Added to template package.json |
-| README.md missing BM2 in monorepo structure | Low | Added `apps/bus-math-v2/` entry |
+| BM2 timingSafeEquals timing side-channel | Critical | Fixed to use Math.max + XOR padding (BM2 lib/auth/session.ts) |
+| BM2 generateRandomPassword modulo bias | High | Fixed with rejection sampling (BM2 lib/auth/session.ts) |
+| practice-core submission.schema.ts weaker than contract.ts | Medium | Aligned partId/hintsUsed/revealStepsSeen/changedCount constraints |
+| practice-core missing PracticeSubmissionInput type export | Medium | Added to src/index.ts |
+| srs-engine non-top-level import | Medium | Moved import type to file top (submission-srs-adapter.ts) |
+| ObjectivePriority local type duplication in IM3 | Medium | Replaced with import from @math-platform/srs-engine |
 
 ### Issues Found But Not Fixed (Tracked in tech-debt.md)
 
 | Issue | Severity | Notes |
 |-------|----------|-------|
-| BM2 lib/auth/ duplication of core-auth | High | 4 files ~250 lines; diverges (e.g., missing dev JWT warning) |
-| BM2 lib/practice/ duplication of practice-core | High | 5 files ~1305 lines; zero imports migrated |
-| BM2 lib/srs/ duplication of srs-engine | High | 3 files; blocked by contract incompatibility |
-| BM2 SRS contract type incompatibility | High | Blocks SRS package adoption; needs dedicated track |
-| IM3 lib/practice/ 631 lines unmigrated | High | objective-proficiency, objective-policy, srs-proficiency |
 | Misconception summary query N+1 | Critical | 30x100 sequential reads; will timeout at scale |
+| BM2 lib/auth/ ~250 lines duplicated | High | timingSafeEquals/generatePassword fixed but still diverges (JWT warning, demo-provisioning logic) |
+| BM2 lib/practice/ ~1305 lines duplicated | High | 73 local imports vs 12 package imports; engine/ subtree is BM2-specific |
+| BM2 lib/srs/ complete architecture divergence | High | Different data models; 0 package imports; needs dedicated migration track |
+| practice-core dual schema files | Medium | submission.schema.ts still exists as parallel surface; consolidate with contract.ts |
+| 5 packages missing vitest configs | Low | core-auth, core-convex, activity-runtime, component-approval, graphing-core |
+| RSC entry chunk 750 KB | Medium | Code-splitting regressed; need dynamic imports |
+
+### Key Architectural Findings
+
+1. **BM2 SRS is not duplicating the package** — it uses a fundamentally different data model (card:Record, numeric timestamps) vs the FSRS-aligned package types. A dedicated migration track is needed, not a simple import swap.
+2. **BM2 `lib/auth/server.ts` is app-specific** — it wraps package functions with Next.js cookie/redirect logic. This is correct; it should NOT be in the shared package.
+3. **BM2 `lib/practice/engine/` is BM2-domain logic** — 26 family files for accounting exercises. Not duplicated from the package; this is business-domain code that stays app-local per AGENTS.md scope.
+4. **IM3 `lib/practice/objective-proficiency.ts` is NOT duplicated from packages** — it contains 456 lines of original proficiency computation logic not in any package. Only the `ObjectivePriority` type was duplicated (fixed in this review).

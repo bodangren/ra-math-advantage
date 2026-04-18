@@ -16,6 +16,7 @@ export {
   isPracticeSubmissionEnvelope,
   buildPracticeSubmissionParts,
   buildPracticeSubmissionEnvelope,
+  type PracticeSubmissionInput,
   normalizePracticeSubmissionInput,
 } from './practice/contract';
 

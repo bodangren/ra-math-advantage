@@ -14,11 +14,8 @@
  * The mapping from problem families to objectives is provided by the caller.
  */
 
-/**
- * Priority level that controls how strictly an objective is evaluated
- * and whether it appears in daily practice queues.
- */
-export type ObjectivePriority = 'essential' | 'supporting' | 'extension' | 'triaged';
+import type { ObjectivePriority } from '@math-platform/srs-engine';
+export type { ObjectivePriority, ObjectivePracticePolicy } from '@math-platform/srs-engine';
 
 /**
  * Confidence level for aggregated evidence or timing features.
@@ -48,8 +45,6 @@ export type ProblemFamilyEvidence = {
   baselineSampleCount: number;
   timingReliable: boolean;
 };
-
-export type { ObjectivePracticePolicy } from '@math-platform/srs-engine';
 
 /**
  * Input payload for `computeObjectiveProficiency`.

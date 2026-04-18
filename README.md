@@ -1,6 +1,6 @@
 # Integrated Math 3 (Honors)
 
-A Convex-backed interactive digital textbook for high school Integrated Math 3. The app runs on Vinext/App Router with custom JWT username/password auth. Built as a reusable course template adapted from the [Bus Math v2](../bus-math-v2) codebase.
+A Convex-backed interactive digital textbook for high school Integrated Math 3. The app runs on Vinext/App Router with custom JWT username/password auth. Built as a reusable course template adapted from the [Bus Math v2](apps/bus-math-v2) codebase.
 
 ## Monorepo Structure
 
