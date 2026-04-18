@@ -48,4 +48,4 @@
 | workbook-pipeline: workbooks.client.ts double-cast bypasses types | Medium | Open | `as unknown as WorkbookManifest` — use zod validation |
 | teacher-reporting: versionByLessonId picks first version silently | Medium | Open | No guarantee first version is the active one |
 | ai-tutoring: abort listener leak + missed already-aborted signal | Medium | Resolved | Added {once:true} + aborted check (review #11) |
-| IM3 chatbot: enrollment check doesn't verify lesson-class membership | High | Open | isStudentActivelyEnrolled checks any enrollment, not lesson ownership |
+| IM3 chatbot: enrollment check doesn't verify lesson-class membership | High | Resolved | Added class_lessons table + isStudentEnrolledInClassForLesson query (2026-04-19) |

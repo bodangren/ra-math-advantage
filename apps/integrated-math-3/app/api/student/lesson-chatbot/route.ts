@@ -93,13 +93,13 @@ export async function POST(request: NextRequest) {
   }
 
   const isEnrolled = await fetchInternalQuery(
-    studentInternal.isStudentActivelyEnrolled,
-    { studentId: profile.id }
+    studentInternal.isStudentEnrolledInClassForLesson,
+    { studentId: profile.id, lessonId }
   );
 
   if (!isEnrolled) {
     return NextResponse.json(
-      { error: 'Not enrolled in any active class' },
+      { error: 'Not enrolled in a class that has access to this lesson' },
       { status: 403 }
     );
   }

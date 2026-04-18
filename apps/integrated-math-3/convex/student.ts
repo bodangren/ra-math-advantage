@@ -400,3 +400,36 @@ export const isStudentActivelyEnrolled = internalQuery({
     return hasActiveEnrollment;
   },
 });
+
+export const isStudentEnrolledInClassForLesson = internalQuery({
+  args: {
+    studentId: v.id("profiles"),
+    lessonId: v.id("lessons"),
+  },
+  handler: async (ctx, args): Promise<boolean> => {
+    const enrollments = await ctx.db
+      .query("class_enrollments")
+      .withIndex("by_student", (q) => q.eq("studentId", args.studentId))
+      .collect();
+
+    const activeEnrollments = enrollments.filter((e) => e.status === "active");
+    if (activeEnrollments.length === 0) {
+      return false;
+    }
+
+    for (const enrollment of activeEnrollments) {
+      const classLesson = await ctx.db
+        .query("class_lessons")
+        .withIndex("by_class_and_lesson", (q) =>
+          q.eq("classId", enrollment.classId).eq("lessonId", args.lessonId)
+        )
+        .first();
+
+      if (classLesson) {
+        return true;
+      }
+    }
+
+    return false;
+  },
+});

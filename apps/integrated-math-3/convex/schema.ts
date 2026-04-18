@@ -61,6 +61,15 @@ export default defineSchema({
     .index("by_student", ["studentId"])
     .index("by_class_and_student", ["classId", "studentId"]),
 
+  class_lessons: defineTable({
+    classId: v.id("classes"),
+    lessonId: v.id("lessons"),
+    assignedAt: v.number(),
+    createdAt: v.number(),
+  })
+    .index("by_class_and_lesson", ["classId", "lessonId"])
+    .index("by_lesson", ["lessonId"]),
+
   lessons: defineTable({
     unitNumber: v.number(),
     title: v.string(),

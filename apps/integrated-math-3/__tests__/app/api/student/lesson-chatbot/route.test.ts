@@ -19,6 +19,7 @@ vi.mock('@/lib/convex/server', () => ({
     },
     student: {
       isStudentActivelyEnrolled: 'student:isStudentActivelyEnrolled',
+      isStudentEnrolledInClassForLesson: 'student:isStudentEnrolledInClassForLesson',
       getLessonForChatbot: 'student:getLessonForChatbot',
     },
     rateLimits: {
@@ -85,14 +86,34 @@ describe('POST /api/student/lesson-chatbot', () => {
     const res = await POST(makeRequest({ lessonId: 'lesson-1', phaseNumber: 1, question: 'What is x?' }));
     expect(res.status).toBe(403);
     const body = await res.json();
-    expect(body.error).toBe('Not enrolled in any active class');
+    expect(body.error).toBe('Not enrolled in a class that has access to this lesson');
     expect(mockFetchInternalQuery).toHaveBeenCalledWith(
-      'student:isStudentActivelyEnrolled',
-      { studentId: 'p1' }
+      'student:isStudentEnrolledInClassForLesson',
+      { studentId: 'p1', lessonId: 'lesson-1' }
     );
   });
 
-  it('proceeds to rate limit check when student is enrolled', async () => {
+  it('returns 403 when student is enrolled but class does not own the lesson', async () => {
+    mockGetRequestSessionClaims.mockResolvedValue({
+      sub: 'p1',
+      username: 'student1',
+      role: 'student',
+    });
+    mockFetchInternalQuery.mockResolvedValueOnce({
+      id: 'p1',
+      organizationId: 'org1',
+      username: 'student1',
+      role: 'student',
+    });
+    mockFetchInternalQuery.mockResolvedValueOnce(false);
+    const { POST } = await import('@/app/api/student/lesson-chatbot/route');
+    const res = await POST(makeRequest({ lessonId: 'lesson-2', phaseNumber: 1, question: 'What is x?' }));
+    expect(res.status).toBe(403);
+    const body = await res.json();
+    expect(body.error).toBe('Not enrolled in a class that has access to this lesson');
+  });
+
+  it('proceeds to rate limit check when student is enrolled in class that owns the lesson', async () => {
     mockGetRequestSessionClaims.mockResolvedValue({
       sub: 'p1',
       username: 'student1',
@@ -141,7 +162,6 @@ describe('POST /api/student/lesson-chatbot', () => {
       username: 'student1',
       role: 'student',
     });
-    mockFetchInternalQuery.mockResolvedValueOnce(true);
     const { POST } = await import('@/app/api/student/lesson-chatbot/route');
     const res = await POST(makeRequest({ phaseNumber: 1, question: 'What is x?' }));
     expect(res.status).toBe(400);
