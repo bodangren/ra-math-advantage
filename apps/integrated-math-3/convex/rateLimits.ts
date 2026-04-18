@@ -1,19 +1,14 @@
 import { mutation, query } from "./_generated/server";
+import { v } from "convex/values";
 
 const RATE_LIMIT_WINDOW_MS = 60000;
 const MAX_REQUESTS_PER_WINDOW = 5;
 const STALE_ENTRY_THRESHOLD_MS = 24 * 60 * 60 * 1000;
 
 export const getRateLimitStatus = query({
-  args: {},
-  handler: async (ctx) => {
-    const identity = await ctx.auth.getUserIdentity();
-    if (!identity) throw new Error("Unauthenticated");
-
-    const profile = await ctx.db
-      .query("profiles")
-      .withIndex("by_username", (q) => q.eq("username", identity.email!))
-      .unique();
+  args: { userId: v.id("profiles") },
+  handler: async (ctx, args) => {
+    const profile = await ctx.db.get(args.userId);
     if (!profile) throw new Error("Profile not found");
 
     const rateLimit = await ctx.db
@@ -47,15 +42,9 @@ export const getRateLimitStatus = query({
 });
 
 export const checkAndIncrementRateLimit = mutation({
-  args: {},
-  handler: async (ctx) => {
-    const identity = await ctx.auth.getUserIdentity();
-    if (!identity) throw new Error("Unauthenticated");
-
-    const profile = await ctx.db
-      .query("profiles")
-      .withIndex("by_username", (q) => q.eq("username", identity.email!))
-      .unique();
+  args: { userId: v.id("profiles") },
+  handler: async (ctx, args) => {
+    const profile = await ctx.db.get(args.userId);
     if (!profile) throw new Error("Profile not found");
 
     const now = Date.now();
@@ -115,15 +104,9 @@ export const checkAndIncrementRateLimit = mutation({
 });
 
 export const cleanupStaleRateLimits = mutation({
-  args: {},
-  handler: async (ctx) => {
-    const identity = await ctx.auth.getUserIdentity();
-    if (!identity) throw new Error("Unauthenticated");
-
-    const profile = await ctx.db
-      .query("profiles")
-      .withIndex("by_username", (q) => q.eq("username", identity.email!))
-      .unique();
+  args: { adminProfileId: v.id("profiles") },
+  handler: async (ctx, args) => {
+    const profile = await ctx.db.get(args.adminProfileId);
     if (!profile || profile.role !== "admin") {
       throw new Error("Unauthorized: admin only");
     }
@@ -133,14 +116,13 @@ export const cleanupStaleRateLimits = mutation({
 
     const staleEntries = await ctx.db
       .query("chatbot_rate_limits")
-      .collect();
+      .filter((q) => q.lt(q.field("windowStart"), staleThreshold))
+      .take(100);
 
     let deletedCount = 0;
     for (const entry of staleEntries) {
-      if (entry.windowStart < staleThreshold) {
-        await ctx.db.delete(entry._id);
-        deletedCount++;
-      }
+      await ctx.db.delete(entry._id);
+      deletedCount++;
     }
 
     return { deletedCount };

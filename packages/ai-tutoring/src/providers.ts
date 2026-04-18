@@ -32,8 +32,8 @@ export function createOpenRouterProvider(options: OpenRouterProviderOptions) {
           headers: {
             'Content-Type': 'application/json',
             Authorization: `Bearer ${apiKey}`,
-            'HTTP-Referer': 'https://github.com/bodangren/ra-business-math',
-            'X-Title': 'Business Math v2',
+            'HTTP-Referer': 'https://github.com/bodangren/ra-integrated-math-3',
+            'X-Title': 'Integrated Math 3',
           },
           body: JSON.stringify({
             model,
@@ -50,7 +50,7 @@ export function createOpenRouterProvider(options: OpenRouterProviderOptions) {
         const data = await response.json() as any;
         const content = data.choices?.[0]?.message?.content;
         if (typeof content !== 'string' || content.trim().length === 0) {
-          throw new Error('Empty response from AI provider (400)');
+          throw new Error('Empty response from AI provider [EMPTY_RESPONSE]');
         }
         return content.trim();
       } finally {

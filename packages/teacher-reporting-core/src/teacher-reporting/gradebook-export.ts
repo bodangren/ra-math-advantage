@@ -39,16 +39,16 @@ export function buildGradebookCsv(
 
     if (includeMasteryLevel) {
       studentRow.push(...row.cells.map(cell =>
-        cell.masteryLevel !== null ? String(cell.masteryLevel) : '',
+        escapeCsvValue(cell.masteryLevel !== null ? String(cell.masteryLevel) : ''),
       ));
     }
 
     if (includeColorCoding) {
       studentRow.push(...row.cells.map(cell => {
-        if (cell.completionStatus === 'completed') return 'Completed';
-        if (cell.completionStatus === 'in_progress') return 'In Progress';
-        if (cell.completionStatus === 'not_started') return 'Not Started';
-        return 'Unknown';
+        if (cell.completionStatus === 'completed') return escapeCsvValue('Completed');
+        if (cell.completionStatus === 'in_progress') return escapeCsvValue('In Progress');
+        if (cell.completionStatus === 'not_started') return escapeCsvValue('Not Started');
+        return escapeCsvValue('Unknown');
       }));
     }
 

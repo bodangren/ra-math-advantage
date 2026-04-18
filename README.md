@@ -14,6 +14,7 @@ ra-integrated-math-3/          # Monorepo root
 ├── packages/
 │   ├── _template/              # Package scaffold template
 │   ├── activity-runtime/       # Phase types, activity modes, completion tracking
+│   ├── ai-tutoring/            # OpenRouter provider, retry wrapper, lesson context assembly
 │   ├── component-approval/     # Content hashing, review queue assembly
 │   ├── core-auth/              # JWT session, password hashing, demo provisioning
 │   ├── core-convex/            # Convex client config, admin auth, query helpers

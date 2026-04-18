@@ -39,8 +39,19 @@
 | BM2 lib/auth ~250 lines duplicated from core-auth | High | Open | Diverges silently; needs package adoption |
 | BM2 lib/practice ~1305 lines duplicated from practice-core | High | Open | 73 local vs 12 package imports; engine/ subtree is BM2-specific; timing imports redirected to package (2026-04-18) |
 | teacher-reporting-core gradebook-export CSV header alignment | High | Resolved | Fixed in review #8 — mastery headers excluded when includeMasteryLevel=false (2026-04-19) |
-| teacher-reporting gradebook.ts hard-coded isUnitTest=orderIndex===11 | Medium | Open | Fragile assumption that tests are always at position 11 |
+| teacher-reporting gradebook.ts hard-coded isUnitTest=orderIndex===11 | High | Resolved | Fixed in review #9 — RawLesson.isUnitTest now caller-controlled; default false (2026-04-19) |
+| teacher-reporting-core gradebook-export CSV cell escaping | Medium | Resolved | Fixed in review #9 — all cell values now pass through escapeCsvValue (2026-04-19) |
 | teacher-reporting-core course-overview passes 'not_started' to computeCellColor | Medium | Open | Semantically misleading sentinel; fragile if computeCellColor logic changes |
 | teacher-reporting-core .js import extension inconsistency | Low | Open | Uses .js extensions while other packages don't; works but inconsistent |
 | study-hub-core BaseReviewSession untested in-package | Low | Open | Tested from IM3 imports but not in package's own test suite |
 | IM3 lib/study local copy not wired to study-hub-core types | Medium | Open | GlossaryTerm is wider than StudyTerm; structural compatibility works but not explicitly adopted |
+| ai-tutoring: isRetryableError default was return true | Critical | Resolved | Fixed in review #9 — now defaults to false; network patterns are explicit allowlist (2026-04-19) |
+| ai-tutoring: HTTP headers reference wrong project | Medium | Resolved | Fixed in review #9 — updated to Integrated Math 3 (2026-04-19) |
+| ai-tutoring: resolveOpenRouterProviderFromEnv untested | Medium | Open | Exported public API with zero test coverage |
+| ai-tutoring: as any cast in providers.ts response parsing | Medium | Open | Need typed interface for OpenRouterResponse |
+| IM3 chatbot rate limiting: fetchInternalMutation has no user identity | Critical | Resolved | Fixed in review #9 — mutations accept userId/profileId args; API route resolves profile first (2026-04-19) |
+| IM3 chatbot: no tests for route.ts, rateLimits.ts, LessonChatbot.tsx | High | Open | Three new files with zero test coverage |
+| IM3 chatbot: prompt injection risk in buildPrompt | Medium | Open | User question interpolated directly; added triple-quote delimiters but no system-level guard |
+| IM3 getLessonForChatbot: learningObjectives parsing fragile | Medium | Resolved | Fixed in review #9 — now uses array directly instead of split(index[0]) (2026-04-19) |
+| IM3 rateLimits cleanupStaleRateLimits: unbounded .collect() | Medium | Resolved | Fixed in review #9 — now uses .filter().take(100) (2026-04-19) |
+| IM3 Convex types stale: rateLimits + student.getLessonForChatbot | Medium | Open | Generated api.d.ts missing new handlers; must run npx convex dev to regenerate |

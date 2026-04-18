@@ -42,7 +42,11 @@ function isRetryableError(error: unknown): boolean {
     if (altMatch) {
       return isRetryableStatus(parseInt(altMatch[1], 10));
     }
-    return true;
+    const networkPatterns = ['fetch failed', 'ECONNRESET', 'ECONNREFUSED', 'ETIMEDOUT', 'ENOTFOUND', 'network'];
+    if (networkPatterns.some(p => message.includes(p))) {
+      return true;
+    }
+    return false;
   }
 
   return false;

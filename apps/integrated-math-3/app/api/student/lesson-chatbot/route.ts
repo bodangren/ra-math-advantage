@@ -3,6 +3,11 @@ import { NextRequest, NextResponse } from 'next/server';
 import { resolveOpenRouterProviderFromEnv, assembleLessonChatbotContext } from '@math-platform/ai-tutoring';
 import { fetchInternalMutation, fetchInternalQuery, internal } from '@/lib/convex/server';
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const rateLimitsInternal = (internal as any).rateLimits;
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const studentInternal = (internal as any).student;
+
 interface ChatbotRequest {
   lessonId: string;
   phaseNumber: number;
@@ -34,7 +39,10 @@ Lesson context:
 - Learning objectives: ${context.learningObjectives.join(', ')}
 - Lesson content summary: ${context.contentSummary}
 
-Student question: ${question}
+Student question:
+"""
+${question}
+"""
 
 Answer concisely, using only the lesson context above.`;
 }
@@ -49,10 +57,19 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: 'Forbidden' }, { status: 403 });
   }
 
+  const profile = await fetchInternalQuery(
+    internal.activities.getProfileByUsername,
+    { username: session.username }
+  );
+
+  if (!profile) {
+    return NextResponse.json({ error: 'Profile not found' }, { status: 404 });
+  }
+
   try {
     const rateLimitResult = await fetchInternalMutation(
-      internal.rateLimits.checkAndIncrementRateLimit,
-      {}
+      rateLimitsInternal.checkAndIncrementRateLimit,
+      { userId: profile.id }
     );
 
     if (!rateLimitResult.allowed) {
@@ -97,7 +114,7 @@ export async function POST(request: NextRequest) {
 
   try {
     const lessonData = await fetchInternalQuery(
-      internal.student.getLessonForChatbot,
+      studentInternal.getLessonForChatbot,
       { lessonIdentifier: lessonId }
     );
 

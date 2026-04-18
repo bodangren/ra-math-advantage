@@ -382,7 +382,7 @@ export const getLessonForChatbot = internalQuery({
     return {
       lessonTitle: lesson.title,
       unitTitle,
-      learningObjectives: coerceNullableString(lesson.learningObjectives?.[0])?.split(',').map(s => s.trim()) ?? [],
+      learningObjectives: (lesson.learningObjectives ?? []).map(s => s.trim()).filter(Boolean),
       phases: phasesWithSections,
     };
   },

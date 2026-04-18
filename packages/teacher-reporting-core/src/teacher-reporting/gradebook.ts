@@ -101,6 +101,7 @@ export interface RawLesson {
   title: string;
   orderIndex: number;
   unitNumber: number;
+  isUnitTest?: boolean;
 }
 
 export interface RawLessonVersion {
@@ -185,7 +186,7 @@ export function assembleGradebookRows(
     lessonId: lesson.id,
     lessonTitle: lesson.title,
     orderIndex: lesson.orderIndex,
-    isUnitTest: lesson.orderIndex === 11,
+    isUnitTest: lesson.isUnitTest ?? false,
   }));
 
   const rows: GradebookRow[] = students.map(student => {
