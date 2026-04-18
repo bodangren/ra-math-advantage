@@ -141,7 +141,7 @@ git reset --hard checkpoint/pre-move-<track-id>
 ### Wave 1 — Host Monorepo Shell
 | Order | Track ID | Status | Depends On | Exit Gate |
 |-------|----------|--------|------------|-----------|
-| 1.1 | `monorepo-tooling-shell_20260417` | Pending | 0.1 | Tooling approved |
+| 1.1 | `monorepo-tooling-shell_20260417` | **COMPLETE** | 0.1 | Tooling approved |
 | 1.2 | `move-im3-app-to-apps_20260417` | Pending | 1.1 | IM3 runs from apps/ |
 | 1.3 | `monorepo-boundary-guards_20260417` | Pending | 1.2 | Guards operational |
 
