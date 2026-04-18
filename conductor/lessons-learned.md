@@ -45,3 +45,4 @@
 - (2026-04-18, review-6) FSRS timestamp rounding can cause 1ms boundary flakiness in tests; capture both before/after timestamps and use after for upper bounds
 - (2026-04-18, bm2-consume-core) When migrating practice imports to package, update both the import source AND remove local re-exports; local contract.ts dups should stay until audit confirms they're truly local-specific
 - (2026-04-18, practice-test-engine) When apps have incompatible phase models (e.g., 3-phase vs 6-phase), extract only shared types and pure utility functions; engine components with divergent state machines must stay app-local
+- (2026-04-19, study-hub-adoption) When adopting package components, remove unused props from wrapper components - the local `activityType` prop was accepted by `BaseReviewSession` but never used internally, so it was safely removed during package migration
