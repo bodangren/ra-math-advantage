@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import { PhaseContainer } from '@/components/textbook/PhaseContainer';
-import { PHASE_TYPES, type PhaseType } from '@/lib/curriculum/phase-types';
+import { PHASE_TYPES, type PhaseType } from '@math-platform/activity-runtime/phase-types';
 
 describe('PhaseContainer', () => {
   describe('renders all 10 phase types', () => {

@@ -3,8 +3,8 @@
 import { useState } from 'react';
 import { ChevronDown, ChevronUp, Clock, BookOpen, Target, Layers } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import type { PhaseType } from '@/lib/curriculum/phase-types';
-import { getPhaseDisplayInfo } from '@/lib/curriculum/phase-types';
+import type { PhaseType } from '@math-platform/activity-runtime/phase-types';
+import { getPhaseDisplayInfo } from '@math-platform/activity-runtime/phase-types';
 
 export interface LessonMetadata {
   id: string;

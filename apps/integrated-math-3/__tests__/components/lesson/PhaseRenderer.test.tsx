@@ -1,7 +1,7 @@
 import { describe, it, expect, vi } from 'vitest';
 import { render, screen, waitFor } from '@testing-library/react';
 import { PhaseRenderer, type PhaseSection } from '@/components/lesson/PhaseRenderer';
-import type { PhaseType } from '@/lib/curriculum/phase-types';
+import type { PhaseType } from '@math-platform/activity-runtime/phase-types';
 
 import React from 'react';
 

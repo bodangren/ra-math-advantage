@@ -2,7 +2,7 @@ import { notFound } from 'next/navigation';
 import { requireStudentSessionClaims } from '@/lib/auth/server';
 import { fetchInternalQuery, internal } from '@/lib/convex/server';
 import { LessonRenderer, type LessonPhase } from '@/components/lesson/LessonRenderer';
-import { getPhaseDisplayInfo, type PhaseType } from '@/lib/curriculum/phase-types';
+import { getPhaseDisplayInfo, type PhaseType } from '@math-platform/activity-runtime/phase-types';
 import type { PhaseSection } from '@/components/lesson/PhaseRenderer';
 
 interface PhaseProgressWithSections {

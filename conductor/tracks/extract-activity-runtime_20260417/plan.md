@@ -22,17 +22,17 @@
 
 ### Tasks
 
-- [ ] **Task: Replace runtime imports in IM3**
-  - [ ] Swap shared runtime imports to package.
-  - [ ] Keep activity components in IM3 app path.
-  - [ ] Fix breakages caused by import moves only.
+- [x] **Task: Replace runtime imports in IM3**
+  - [x] Swap shared runtime imports to package.
+  - [x] Keep activity components in IM3 app path.
+  - [x] Fix breakages caused by import moves only.
 
-- [ ] **Task: Stabilize runtime boundaries**
-  - [ ] Run boundary guard checks.
-  - [ ] Confirm no app-specific activity logic leaked into package.
-  - [ ] Document any temporary adapter shim.
+- [x] **Task: Stabilize runtime boundaries**
+  - [x] Run boundary guard checks.
+  - [x] Confirm no app-specific activity logic leaked into package.
+  - [x] Document any temporary adapter shim.
 
-- [ ] **Task: Conductor - User Manual Verification 'Phase 2: IM3 Migration' (Protocol in workflow.md)**
+- [x] **Task: Conductor - User Manual Verification 'Phase 2: IM3 Migration' (Protocol in workflow.md)**
 
 ## Phase 3: Verification and Handoff
 

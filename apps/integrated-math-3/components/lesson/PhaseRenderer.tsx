@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import type { PhaseType } from '@/lib/curriculum/phase-types';
+import type { PhaseType } from '@math-platform/activity-runtime/phase-types';
 import { PhaseContainer } from '@/components/textbook/PhaseContainer';
 import { CalloutBox } from '@/components/textbook/CalloutBox';
 import dynamic from 'next/dynamic';

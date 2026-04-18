@@ -5,7 +5,7 @@ import { CheckCircle2, Loader2, SkipForward } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { completePhaseRequest, skipPhaseRequest } from '@/lib/phase-completion/client';
 import { cn } from '@/lib/utils';
-import { isSkippable, type PhaseType } from '@/lib/curriculum/phase-types';
+import { isSkippable, type PhaseType } from '@math-platform/activity-runtime/phase-types';
 
 type ProgressStatus = 'not_started' | 'in_progress' | 'completed' | 'skipped';
 

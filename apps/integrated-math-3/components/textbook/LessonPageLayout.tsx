@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { Menu, X, CheckCircle2, Circle } from 'lucide-react';
-import type { PhaseType } from '@/lib/curriculum/phase-types';
+import type { PhaseType } from '@math-platform/activity-runtime/phase-types';
 
 export interface PhaseNavItem {
   phaseType: PhaseType;

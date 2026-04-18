@@ -9,7 +9,7 @@ import { LessonSkeleton } from './LessonSkeleton';
 import { LessonCompleteScreen } from './LessonCompleteScreen';
 import { submitActivity, type PracticeMode, type SubmitActivityInput } from '@/lib/activities/submission';
 import { isPracticeSubmissionEnvelope } from '@math-platform/practice-core/contract';
-import type { PhaseType } from '@/lib/curriculum/phase-types';
+import type { PhaseType } from '@math-platform/activity-runtime/phase-types';
 
 export interface LessonPhase {
   phaseId: string;

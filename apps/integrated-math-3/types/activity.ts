@@ -1,4 +1,4 @@
-import type { ActivityMode } from '@/lib/activities/modes';
+import type { ActivityMode } from '@math-platform/activity-runtime/modes';
 
 export type PracticeMode = 'worked_example' | 'guided_practice' | 'independent_practice' | 'assessment' | 'teaching';
 

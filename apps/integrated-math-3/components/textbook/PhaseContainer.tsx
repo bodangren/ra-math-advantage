@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
-import { getPhaseDisplayInfo, type PhaseType } from '@/lib/curriculum/phase-types';
+import { getPhaseDisplayInfo, type PhaseType } from '@math-platform/activity-runtime/phase-types';
 
 export interface PhaseContainerProps {
   phaseType: PhaseType;
