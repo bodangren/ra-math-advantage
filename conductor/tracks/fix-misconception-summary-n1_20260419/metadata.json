@@ -1,0 +1,11 @@
+{
+  "track_id": "fix-misconception-summary-n1_20260419",
+  "type": "bug",
+  "status": "completed",
+  "created_at": "2026-04-19T00:00:00Z",
+  "updated_at": "2026-04-19T00:00:00Z",
+  "description": "Fix critical N+1 sequential query in getMisconceptionSummaryHandler that causes timeout with 30+ students",
+  "estimated_tasks": 3,
+  "actual_tasks": 3,
+  "deviation_notes": ""
+}

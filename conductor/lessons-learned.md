@@ -10,6 +10,7 @@
 - (2026-04-16, srs-integration) Use `ctx.scheduler.runAfter(0, ...)` for non-blocking SRS processing; keep error boundaries so SRS failures never block submission
 - (2026-04-16, srs-schema) `mapDbCardToContract` must use `card._id` as `cardId`, not `problemFamilyId` — domain IDs are not unique across students
 - (2026-04-17, auth-guards) Test request guards by mocking `verifySessionToken` and passing cookie headers directly on Request objects; avoids circular mocks
+- (2026-04-19, srs-queries) N+1 sequential loops in Convex queries cause timeouts at scale; use `Promise.all` to parallelize per-entity queries, then batch dependent lookups (e.g., card lookups) with a second `Promise.all` + Map for O(1) lookup
 
 ## Recurring Gotchas
 

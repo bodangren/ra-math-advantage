@@ -8,7 +8,7 @@
 
 | Item | Sev | Status | Notes |
 |------|-----|--------|-------|
-| Misconception summary query: N+1 card resolution depth | Critical | Open | 30 students x 100 reviews = 3k+ sequential reads; will timeout |
+| Misconception summary query: N+1 card resolution depth | Critical | Resolved | Parallelized with Promise.all in getMisconceptionSummaryHandler (2026-04-19) |
 | Misconception tags not persisted in review evidence | High | Open | getMisconceptionSummary always returns empty |
 | BM2 fetchInternalQuery returns untyped `unknown` (~130 TS errors) | High | Open | All BM2 API routes access properties on `{}` without type narrowing; needs generic param |
 | BM2 convex/activities.ts calls non-existent ctx.transaction() | High | Open | Dead code path — Convex doesn't have this API; will throw at runtime |

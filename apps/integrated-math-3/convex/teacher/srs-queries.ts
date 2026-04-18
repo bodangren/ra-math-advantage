@@ -483,35 +483,45 @@ export async function getMisconceptionSummaryHandler(
 
   const tagMap = new Map<string, { count: number; objectives: Set<string> }>();
 
-  for (const enrollment of activeStudents) {
-    const reviews = await ctx.db
-      .query("srs_review_log")
-      .withIndex("by_student", (q) => q.eq("studentId", enrollment.studentId))
-      .collect();
+  const reviewArrays = await Promise.all(
+    activeStudents.map((enrollment) =>
+      ctx.db
+        .query("srs_review_log")
+        .withIndex("by_student", (q) => q.eq("studentId", enrollment.studentId))
+        .collect()
+    )
+  );
 
-    for (const review of reviews) {
-      if (review.reviewedAt < sinceMs) {
-        continue;
-      }
+  const allRecentReviews = reviewArrays
+    .flat()
+    .filter((review) => review.reviewedAt >= sinceMs);
 
-      const evidence = review.evidence as { misconceptionTags?: string[] };
-      const misconceptionTags = evidence?.misconceptionTags;
+  const cardIds = [...new Set(allRecentReviews.map((r) => r.cardId))];
+  const cards = await Promise.all(
+    cardIds.map((cardId) => ctx.db.get("srs_cards", cardId))
+  );
+  const cardMap = new Map(
+    cards.filter((c): c is NonNullable<typeof c> => c !== null).map((c) => [c._id, c])
+  );
 
-      if (!misconceptionTags || !Array.isArray(misconceptionTags)) {
-        continue;
-      }
+  for (const review of allRecentReviews) {
+    const evidence = review.evidence as { misconceptionTags?: string[] };
+    const misconceptionTags = evidence?.misconceptionTags;
 
-      const card = await ctx.db.get("srs_cards", review.cardId);
-      const objectiveId = card?.objectiveId ?? "unknown";
+    if (!misconceptionTags || !Array.isArray(misconceptionTags)) {
+      continue;
+    }
 
-      for (const tag of misconceptionTags) {
-        const existing = tagMap.get(tag);
-        if (existing) {
-          existing.count++;
-          existing.objectives.add(objectiveId);
-        } else {
-          tagMap.set(tag, { count: 1, objectives: new Set([objectiveId]) });
-        }
+    const card = cardMap.get(review.cardId);
+    const objectiveId = card?.objectiveId ?? "unknown";
+
+    for (const tag of misconceptionTags) {
+      const existing = tagMap.get(tag);
+      if (existing) {
+        existing.count++;
+        existing.objectives.add(objectiveId);
+      } else {
+        tagMap.set(tag, { count: 1, objectives: new Set([objectiveId]) });
       }
     }
   }

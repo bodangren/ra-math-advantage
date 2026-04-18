@@ -678,6 +678,10 @@ AI Tutoring and Workbook scope is explicitly **import/adopt from BM2**, not gree
       *Link: [./conductor/tracks/im3-chatbot-provider-memoization_20260419/](./conductor/tracks/im3-chatbot-provider-memoization_20260419/)*
       - Phase 1: Memoize Provider and Add AbortSignal Support [COMPLETE]
 
+- [x] **Track: Fix Misconception Summary N+1 Query** — **COMPLETED**
+  *Fix critical N+1 sequential query in getMisconceptionSummaryHandler using Promise.all parallelization*
+  *Link: [./conductor/tracks/fix-misconception-summary-n1_20260419/](./conductor/tracks/fix-misconception-summary-n1_20260419/)*
+
 ## Archived Tracks
 
 - [x] **Track: Scaffold App Pages & Layouts**
