@@ -6,17 +6,17 @@
 
 ### Tasks
 
-- [ ] **Task: Create `packages/practice-test-engine` scaffold**
-  - [ ] Create package config and exports.
-  - [ ] Define runner contracts and score models.
-  - [ ] Add baseline engine tests.
+- [x] **Task: Create `packages/practice-test-engine` scaffold**
+  - [x] Create package config and exports.
+  - [x] Define runner contracts and score models.
+  - [x] Add baseline engine tests.
 
-- [ ] **Task: Port generic engine modules**
-  - [ ] Extract reusable runner/selection logic from IM3/BM2.
-  - [ ] Remove course-specific references.
-  - [ ] Add regression tests for state transitions and scoring.
+- [x] **Task: Port generic engine modules**
+  - [x] Extract reusable runner/selection logic from IM3/BM2.
+  - [x] Remove course-specific references.
+  - [x] Add regression tests for state transitions and scoring.
 
-- [ ] **Task: Conductor - User Manual Verification 'Phase 1: Package Extraction' (Protocol in workflow.md)**
+- [x] **Task: Conductor - User Manual Verification 'Phase 1: Package Extraction' (Protocol in workflow.md)**
 
 ## Phase 2: App Adoption
 

@@ -619,7 +619,7 @@ AI Tutoring and Workbook scope is explicitly **import/adopt from BM2**, not gree
 
 ### Wave 5 — Feature Packages and IM3 Pending Tracks
 
-- [ ] **Track: Extract Practice Test Engine Package**
+- [~] **Track: Extract Practice Test Engine Package**
      *Extract test-runner primitives and adopt in both apps while keeping banks local.*
      *Link: [./conductor/tracks/extract-practice-test-engine_20260417/](./conductor/tracks/extract-practice-test-engine_20260417/)*
 
