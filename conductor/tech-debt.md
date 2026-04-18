@@ -26,7 +26,7 @@
 | SRS: card + review log saved non-atomically | Medium | Open | If second mutation fails, card state updated without audit trail |
 | RSC entry chunk 750 KB | Medium | Open | Code-splitting needed to get under 500 KB |
 | Cloudflare worker deploys to production on every push | Medium | Open | No staging step, no canary, no approval gate |
-| practice-core has only 1 test file in-package | Medium | Open | contract.ts, srs-rating.ts, timing-baseline.ts untested at package level |
+| practice-core has only 1 test file in-package | Medium | Resolved | Added contract.test.ts, srs-rating.test.ts, timing-baseline.test.ts with 91 tests (2026-04-19) |
 | 5 packages missing vitest.config files | Low | Open | core-auth, core-convex, activity-runtime, component-approval, graphing-core |
 | SubmissionDetailModal: array index used as React key | Low | Open | Should use stable ID |
 | practice-core dual schema files | Medium | Open | submission.schema.ts + contract.ts parallel surfaces; consolidate |
@@ -39,7 +39,6 @@
 | ai-tutoring: resolveOpenRouterProviderFromEnv untested | Medium | Open | Exported public API with zero test coverage |
 | ai-tutoring: as any cast in providers.ts response parsing | Medium | Open | Need typed interface for OpenRouterResponse |
 | IM3 chatbot: no tests for route.ts, rateLimits.ts, LessonChatbot.tsx | High | Open | Three new files with zero test coverage — route.ts now tested (2026-04-19) |
-| IM3 chatbot: prompt injection risk in buildPrompt | Medium | Resolved | Added sanitizeMarkdownForPrompt in lesson-context.ts (2026-04-19) |
 | IM3 Convex types stale: rateLimits + student.getLessonForChatbot | Medium | Open | Generated api.d.ts missing new handlers; must run npx convex dev to regenerate |
 | IM3 chatbot: no lesson enrollment auth + lesson content prompt injection | Critical | Resolved | Added isStudentActivelyEnrolled check + sanitizeMarkdownForPrompt (2026-04-19) |
 | CI: package test/lint continue-on-error swallows failures | High | Open | Broken packages can merge without detection |

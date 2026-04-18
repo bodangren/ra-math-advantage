@@ -682,6 +682,10 @@ AI Tutoring and Workbook scope is explicitly **import/adopt from BM2**, not gree
   *Fix critical N+1 sequential query in getMisconceptionSummaryHandler using Promise.all parallelization*
   *Link: [./conductor/tracks/fix-misconception-summary-n1_20260419/](./conductor/tracks/fix-misconception-summary-n1_20260419/)*
 
+- [x] **Track: practice-core Package Testing** — **COMPLETED**
+  *Add package-level unit tests to practice-core for contract.ts, srs-rating.ts, and timing-baseline.ts*
+  *Link: [./conductor/tracks/practice-core-testing_20260419/](./conductor/tracks/practice-core-testing_20260419/)*
+
 ## Archived Tracks
 
 - [x] **Track: Scaffold App Pages & Layouts**

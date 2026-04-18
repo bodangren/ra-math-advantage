@@ -1,0 +1,11 @@
+{
+  "track_id": "practice-core-testing_20260419",
+  "type": "chore",
+  "status": "completed",
+  "created_at": "2026-04-19T00:00:00Z",
+  "updated_at": "2026-04-19T06:10:00Z",
+  "description": "Add package-level unit tests to practice-core for contract.ts, srs-rating.ts, and timing-baseline.ts",
+  "estimated_tasks": 4,
+  "actual_tasks": 4,
+  "deviation_notes": "All 4 tasks completed: contract.test.ts (32 tests), srs-rating.test.ts (22 tests), timing-baseline.test.ts (37 tests) = 91 tests total passing"
+}
