@@ -727,7 +727,7 @@ AI Tutoring and Workbook scope is explicitly **import/adopt from BM2**, not gree
 
 ---
 
-- [ ] **Track: Monorepo Repair and Tooling Fixes**
+- [~] **Track: Monorepo Repair and Tooling Fixes**
 *Link: [./tracks/monorepo-repair_20260419/](./tracks/monorepo-repair_20260419/)*
 
 ---
