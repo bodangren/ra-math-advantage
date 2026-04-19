@@ -5,7 +5,6 @@ import {
   getPhaseDisplayInfo,
   isSkippable,
   isValidPhaseType,
-  type PhaseType,
 } from '../index';
 
 describe('phase-types', () => {
