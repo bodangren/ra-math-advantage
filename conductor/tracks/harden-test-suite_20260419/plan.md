@@ -1,10 +1,10 @@
 # Implementation Plan: Harden Test Suite
 
 ## Phase 1: Cleanup Trivial Tests (Integrated Math 3)
-- [ ] Task: Delete `apps/integrated-math-3/__tests__/components/dashboard/index.test.ts`
-- [ ] Task: Delete `apps/integrated-math-3/__tests__/components/student/index.test.ts`
-- [ ] Task: Delete `apps/integrated-math-3/__tests__/components/teacher/index.test.ts`
-- [ ] Task: Verify remaining component tests are robust.
+- [x] Task: Delete `apps/integrated-math-3/__tests__/components/dashboard/index.test.ts`
+- [x] Task: Delete `apps/integrated-math-3/__tests__/components/student/index.test.ts`
+- [x] Task: Delete `apps/integrated-math-3/__tests__/components/teacher/index.test.ts`
+- [x] Task: Verify remaining component tests are robust.
 
 ## Phase 2: Harden Deceptive Exercise Tests (Bus Math v2)
 - [ ] Task: Update `AdjustmentPractice.test.tsx` with interaction simulation.
