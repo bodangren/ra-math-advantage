@@ -730,7 +730,13 @@ AI Tutoring and Workbook scope is explicitly **import/adopt from BM2**, not gree
 - [x] **Track: Monorepo Repair and Tooling Fixes** — **COMPLETED**
 *Link: [./tracks/monorepo-repair_20260419/](./tracks/monorepo-repair_20260419/)*
 
----
-
 - [ ] **Track: High-Priority Tech Debt Resolution**
 *Link: [./tracks/high-priority-tech-debt_20260419/](./tracks/high-priority-tech-debt_20260419/)*
+
+---
+
+## Test Suite Maintenance
+
+- [ ] **Harden Test Suite**
+  *Audit and repair the test suite to ensure all tests are meaningful, non-trivial, and correctly verify behavior.*
+  *Link: [./conductor/tracks/harden-test-suite_20260419/](./conductor/tracks/harden-test-suite_20260419/)*
