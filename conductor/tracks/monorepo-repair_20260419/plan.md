@@ -8,7 +8,7 @@
 
 ## Phase 2: Package Dependency Alignment and Convex Codegen
 - [x] Task: Add `@math-platform/ai-tutoring`, `@math-platform/practice-test-engine`, `@math-platform/teacher-reporting-core`, `@math-platform/workbook-pipeline`, and `@math-platform/study-hub-core` to `apps/integrated-math-3/package.json` dependencies. (267fc05)
-- [ ] Task: Re-run root `npm install` to update the root `package-lock.json` with the new IM3 dependencies.
+- [x] Task: Re-run root `npm install` to update the root `package-lock.json` with the new IM3 dependencies. (a3a7cf5)
 - [ ] Task: Run `npx convex dev --until-success` or equivalent inside `apps/integrated-math-3` to generate `convex/_generated/`.
 - [ ] Task: Conductor - User Manual Verification 'Package Dependency Alignment and Convex Codegen' (Protocol in workflow.md)
 
