@@ -9,11 +9,11 @@
 ## Phase 2: Package Dependency Alignment and Convex Codegen
 - [x] Task: Add `@math-platform/ai-tutoring`, `@math-platform/practice-test-engine`, `@math-platform/teacher-reporting-core`, `@math-platform/workbook-pipeline`, and `@math-platform/study-hub-core` to `apps/integrated-math-3/package.json` dependencies. (267fc05)
 - [x] Task: Re-run root `npm install` to update the root `package-lock.json` with the new IM3 dependencies. (a3a7cf5)
-- [ ] Task: Run `npx convex dev --until-success` or equivalent inside `apps/integrated-math-3` to generate `convex/_generated/`.
+- [ ] Task: Run `npx convex dev --until-success` or equivalent inside `apps/integrated-math-3` to generate `convex/_generated/`. [REQUIRES USER: run `! cd apps/integrated-math-3 && npx convex dev --until-success` — needs Convex login]
 - [ ] Task: Conductor - User Manual Verification 'Package Dependency Alignment and Convex Codegen' (Protocol in workflow.md)
 
 ## Phase 3: Build Scripts and Test Configuration
-- [ ] Task: Modify root `package.json` `ws:im3:typecheck` and `ws:bm2:typecheck` scripts to use `--project` or `-p` instead of `--prefix`.
+- [x] Task: Modify root `package.json` `ws:im3:typecheck` and `ws:bm2:typecheck` scripts to use `--project` or `-p` instead of `--prefix`. (8b2ed76)
 - [ ] Task: Remove duplicate `ws:im3:*` workspace scripts from `apps/integrated-math-3/package.json`.
 - [ ] Task: Create a base `vitest.config.ts` file in `packages/core-auth`, `packages/core-convex`, `packages/activity-runtime`, `packages/component-approval`, and `packages/graphing-core`.
 - [ ] Task: Add `typecheck` and `lint` scripts to `packages/practice-test-engine/package.json`.
