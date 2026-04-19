@@ -724,3 +724,8 @@ AI Tutoring and Workbook scope is explicitly **import/adopt from BM2**, not gree
 
 - [x] **Track 2: E-Textbook Design System**
   *Link: [./conductor/archive/e-textbook-design_20260406/](./conductor/archive/e-textbook-design_20260406/)*
+
+---
+
+- [ ] **Track: Monorepo Repair and Tooling Fixes**
+*Link: [./tracks/monorepo-repair_20260419/](./tracks/monorepo-repair_20260419/)*
