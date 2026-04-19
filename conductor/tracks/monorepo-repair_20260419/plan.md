@@ -16,7 +16,7 @@
 - [x] Task: Modify root `package.json` `ws:im3:typecheck` and `ws:bm2:typecheck` scripts to use `--project` or `-p` instead of `--prefix`. (8b2ed76)
 - [x] Task: Remove duplicate `ws:im3:*` workspace scripts from `apps/integrated-math-3/package.json`. (d0ececa)
 - [x] Task: Create a base `vitest.config.ts` file in `packages/core-auth`, `packages/core-convex`, `packages/activity-runtime`, `packages/component-approval`, and `packages/graphing-core`. (dce551a)
-- [ ] Task: Add `typecheck` and `lint` scripts to `packages/practice-test-engine/package.json`.
+- [x] Task: Add `typecheck` and `lint` scripts to `packages/practice-test-engine/package.json`. (3189d6b)
 - [ ] Task: Conductor - User Manual Verification 'Build Scripts and Test Configuration' (Protocol in workflow.md)
 
 ## Phase 4: CI/CD Pipeline Hardening
