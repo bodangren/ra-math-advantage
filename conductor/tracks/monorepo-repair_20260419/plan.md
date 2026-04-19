@@ -4,10 +4,10 @@
 - [x] Task: Delete `apps/integrated-math-3/package-lock.json` and `apps/bus-math-v2/package-lock.json`. (94c228a)
 - [x] Task: Un-track `node_modules` inside `packages/srs-engine/` from Git (`git rm --cached -r packages/srs-engine/node_modules/`). (d219df8)
 - [x] Task: Run `npm install` at the root workspace to resolve all dependencies and create valid workspace symlinks. (525fe2a)
-- [ ] Task: Conductor - User Manual Verification 'Git Hygiene and Lockfile Unification' (Protocol in workflow.md)
+- [~] Task: Conductor - User Manual Verification 'Git Hygiene and Lockfile Unification' (Protocol in workflow.md)
 
 ## Phase 2: Package Dependency Alignment and Convex Codegen
-- [ ] Task: Add `@math-platform/ai-tutoring`, `@math-platform/practice-test-engine`, `@math-platform/teacher-reporting-core`, `@math-platform/workbook-pipeline`, and `@math-platform/study-hub-core` to `apps/integrated-math-3/package.json` dependencies.
+- [x] Task: Add `@math-platform/ai-tutoring`, `@math-platform/practice-test-engine`, `@math-platform/teacher-reporting-core`, `@math-platform/workbook-pipeline`, and `@math-platform/study-hub-core` to `apps/integrated-math-3/package.json` dependencies. (267fc05)
 - [ ] Task: Re-run root `npm install` to update the root `package-lock.json` with the new IM3 dependencies.
 - [ ] Task: Run `npx convex dev --until-success` or equivalent inside `apps/integrated-math-3` to generate `convex/_generated/`.
 - [ ] Task: Conductor - User Manual Verification 'Package Dependency Alignment and Convex Codegen' (Protocol in workflow.md)
