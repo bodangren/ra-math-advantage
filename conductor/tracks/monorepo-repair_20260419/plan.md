@@ -2,7 +2,7 @@
 
 ## Phase 1: Git Hygiene and Lockfile Unification
 - [x] Task: Delete `apps/integrated-math-3/package-lock.json` and `apps/bus-math-v2/package-lock.json`. (94c228a)
-- [ ] Task: Un-track `node_modules` inside `packages/srs-engine/` from Git (`git rm --cached -r packages/srs-engine/node_modules/`).
+- [x] Task: Un-track `node_modules` inside `packages/srs-engine/` from Git (`git rm --cached -r packages/srs-engine/node_modules/`). (d219df8)
 - [ ] Task: Run `npm install` at the root workspace to resolve all dependencies and create valid workspace symlinks.
 - [ ] Task: Conductor - User Manual Verification 'Git Hygiene and Lockfile Unification' (Protocol in workflow.md)
 
