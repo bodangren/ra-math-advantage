@@ -14,8 +14,13 @@ export default defineConfig({
     reporters: 'default'
   },
   resolve: {
-    alias: {
-      '@': path.resolve(__dirname, './')
-    }
+    alias: [
+      // Stubs for Convex generated types — not present until `npx convex dev` is run.
+      // Regex aliases match both absolute (@/convex/_generated/api) and relative
+      // (./_generated/api) import forms used inside convex/*.ts source files.
+      { find: /^.*\/_generated\/api$/, replacement: path.resolve(__dirname, './__stubs__/convex-generated-api.ts') },
+      { find: /^.*\/_generated\/server$/, replacement: path.resolve(__dirname, './__stubs__/convex-generated-server.ts') },
+      { find: '@', replacement: path.resolve(__dirname, './') },
+    ]
   }
 });

@@ -120,40 +120,38 @@ describe('ActivityRenderer - Representative Activity Families with Timing', () =
         />
       );
 
-      const user = userEvent.setup();
-      const mathInput = screen.getByLabelText(/your answer/i);
-      await user.type(mathInput, 'x^2 + 5x + 6 = 0');
-
+      // Step 1
+      fireEvent.change(screen.getByLabelText(/your answer/i), { target: { value: 'x^2 + 5x + 6 = 0' } });
       fireEvent.click(screen.getByRole('button', { name: /submit/i }));
 
       await waitFor(() => {
         expect(screen.getByText(/next step/i)).toBeInTheDocument();
       });
-
       fireEvent.click(screen.getByRole('button', { name: /next step/i }));
 
-      await waitFor(() => {
-        const input2 = screen.getByLabelText(/your answer/i);
-        expect(input2).toBeInTheDocument();
-      });
-
-      await user.type(screen.getByLabelText(/your answer/i), '(x + 2)(x + 3) = 0');
+      // Step 2
+      await waitFor(() => expect(screen.getByLabelText(/your answer/i)).toBeInTheDocument());
+      fireEvent.change(screen.getByLabelText(/your answer/i), { target: { value: '(x + 2)(x + 3) = 0' } });
       fireEvent.click(screen.getByRole('button', { name: /submit/i }));
 
       await waitFor(() => {
         expect(screen.getByText(/next step/i)).toBeInTheDocument();
       });
-
       fireEvent.click(screen.getByRole('button', { name: /next step/i }));
-      await user.type(screen.getByLabelText(/your answer/i), 'x + 2 = 0 or x + 3 = 0');
+
+      // Step 3
+      await waitFor(() => expect(screen.getByLabelText(/your answer/i)).toBeInTheDocument());
+      fireEvent.change(screen.getByLabelText(/your answer/i), { target: { value: 'x + 2 = 0 or x + 3 = 0' } });
       fireEvent.click(screen.getByRole('button', { name: /submit/i }));
 
       await waitFor(() => {
         expect(screen.getByText(/next step/i)).toBeInTheDocument();
       });
-
       fireEvent.click(screen.getByRole('button', { name: /next step/i }));
-      await user.type(screen.getByLabelText(/your answer/i), 'x = -2 or x = -3');
+
+      // Step 4 (final)
+      await waitFor(() => expect(screen.getByLabelText(/your answer/i)).toBeInTheDocument());
+      fireEvent.change(screen.getByLabelText(/your answer/i), { target: { value: 'x = -2 or x = -3' } });
       fireEvent.click(screen.getByRole('button', { name: /submit/i }));
 
       await waitFor(() => {

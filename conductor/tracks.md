@@ -737,6 +737,6 @@ AI Tutoring and Workbook scope is explicitly **import/adopt from BM2**, not gree
 
 ## Test Suite Maintenance
 
-- [ ] **Harden Test Suite**
+- [~] **Harden Test Suite**
   *Audit and repair the test suite to ensure all tests are meaningful, non-trivial, and correctly verify behavior.*
   *Link: [./conductor/tracks/harden-test-suite_20260419/](./conductor/tracks/harden-test-suite_20260419/)*
