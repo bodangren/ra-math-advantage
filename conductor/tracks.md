@@ -717,6 +717,8 @@ AI Tutoring and Workbook scope is explicitly **import/adopt from BM2**, not gree
      - Phase 7: UI & Minor Items [ ]
      - Phase 8: Tech Debt Registry Cleanup & Final Verification [ ]
 
+## Test Suite Maintenance
+
 ## Archived Tracks
 
 - [x] **Track: Scaffold App Pages & Layouts**
@@ -725,19 +727,7 @@ AI Tutoring and Workbook scope is explicitly **import/adopt from BM2**, not gree
 - [x] **Track 2: E-Textbook Design System**
   *Link: [./conductor/archive/e-textbook-design_20260406/](./conductor/archive/e-textbook-design_20260406/)*
 
----
-
-- [x] **Track: Monorepo Repair and Tooling Fixes** — **COMPLETED**
-*Link: [./tracks/monorepo-repair_20260419/](./tracks/monorepo-repair_20260419/)*
-
-- [ ] **Track: High-Priority Tech Debt Resolution**
-*Link: [./tracks/high-priority-tech-debt_20260419/](./tracks/high-priority-tech-debt_20260419/)*
-
----
-
-## Test Suite Maintenance
-
 - [x] **Harden Test Suite** — **COMPLETED**
   *Audit and repair the test suite to ensure all tests are meaningful, non-trivial, and correctly verify behavior.*
   *IM3: 267/267 pass. BM2: Convex generated type stubs added; 28 pre-existing infra failures remain (outside spec scope).*
-  *Link: [./conductor/tracks/harden-test-suite_20260419/](./conductor/tracks/harden-test-suite_20260419/)*
+  *Link: [./conductor/archive/harden-test-suite_20260419/](./conductor/archive/harden-test-suite_20260419/)*
