@@ -77,6 +77,14 @@ describe('core-convex query wrappers', () => {
       const result = await fetchInternalQuery(mockRef, {});
       expect(result).toBeDefined();
     });
+
+    it('accepts internal function references', async () => {
+      const { fetchInternalQuery } = await import('../query.js');
+      const mockRef = { _type: 'query', _visibility: 'internal', _args: { id: 'string' }, _returnType: { id: 'string' } } as any;
+
+      const result = await fetchInternalQuery(mockRef, { id: '123' });
+      expect(result).toBeDefined();
+    });
   });
 
   describe('fetchInternalMutation', () => {
@@ -85,6 +93,14 @@ describe('core-convex query wrappers', () => {
       const mockRef = { _type: 'mutation', _args: {}, _returnType: { count: 0 } } as any;
 
       const result = await fetchInternalMutation(mockRef, {});
+      expect(result).toBeDefined();
+    });
+
+    it('accepts internal function references', async () => {
+      const { fetchInternalMutation } = await import('../query.js');
+      const mockRef = { _type: 'mutation', _visibility: 'internal', _args: { name: 'string' }, _returnType: { success: true } } as any;
+
+      const result = await fetchInternalMutation(mockRef, { name: 'test' });
       expect(result).toBeDefined();
     });
   });

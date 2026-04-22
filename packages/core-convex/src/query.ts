@@ -50,7 +50,7 @@ export function resetInternalClient(): void {
   internalClientAuth = null;
 }
 
-export async function fetchPublicQuery<Query extends FunctionReference<'query'>>(
+export async function fetchPublicQuery<Query extends FunctionReference<'query', 'public'>>(
   ref: Query,
   args: FunctionArgs<Query>,
 ): Promise<FunctionReturnType<Query>> {
@@ -58,7 +58,7 @@ export async function fetchPublicQuery<Query extends FunctionReference<'query'>>
   return client.query(ref, args);
 }
 
-export async function fetchPublicMutation<Mutation extends FunctionReference<'mutation'>>(
+export async function fetchPublicMutation<Mutation extends FunctionReference<'mutation', 'public'>>(
   ref: Mutation,
   args: FunctionArgs<Mutation>,
 ): Promise<FunctionReturnType<Mutation>> {
@@ -66,7 +66,7 @@ export async function fetchPublicMutation<Mutation extends FunctionReference<'mu
   return client.mutation(ref, args);
 }
 
-export async function fetchInternalQuery<Query extends FunctionReference<'query'>>(
+export async function fetchInternalQuery<Query extends FunctionReference<'query', 'public' | 'internal'>>(
   ref: Query,
   args: FunctionArgs<Query>,
   options: CreateInternalClientOptions = {},
@@ -75,7 +75,7 @@ export async function fetchInternalQuery<Query extends FunctionReference<'query'
   return client.query(ref, args);
 }
 
-export async function fetchInternalMutation<Mutation extends FunctionReference<'mutation'>>(
+export async function fetchInternalMutation<Mutation extends FunctionReference<'mutation', 'public' | 'internal'>>(
   ref: Mutation,
   args: FunctionArgs<Mutation>,
   options: CreateInternalClientOptions = {},
