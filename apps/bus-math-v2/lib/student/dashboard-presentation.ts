@@ -5,7 +5,7 @@ export interface DashboardLessonActionLink {
   title: string;
   slug: string;
   description?: string | null;
-  actionLabel: 'Start Lesson' | 'Resume Lesson';
+  actionLabel: 'Start Lesson' | 'Resume Lesson' | 'Review Lesson';
 }
 
 export function dashboardStatusBadgeClassName(status: DashboardProgressStatus) {

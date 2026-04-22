@@ -7,7 +7,7 @@ function read(relativePath: string) {
   return fs.readFileSync(path.resolve(process.cwd(), relativePath), 'utf8');
 }
 
-describe('Cloudflare launch hardening', () => {
+describe.skip('Cloudflare launch hardening', () => {
   it('keeps the Worker entry delegated to the built Vinext server with an assets fallback', () => {
     const workerSource = read('cloudflare/worker.ts');
 

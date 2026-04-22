@@ -708,7 +708,7 @@ AI Tutoring and Workbook scope is explicitly **import/adopt from BM2**, not gree
 - [ ] **Track: Monorepo Tech Debt Triage & Resolution**
      *Investigate and resolve all 45 open tech debt items to solidify monorepo migration — triage, fix, or close each item*
      *Link: [./conductor/tracks/monorepo-tech-debt-triage_20260422/](./conductor/tracks/monorepo-tech-debt-triage_20260422/)*
-     - Phase 1: BM2 TypeScript & Runtime Correctness [ ]
+      - Phase 1: BM2 TypeScript & Runtime Correctness [~]
      - Phase 2: SRS & Practice Correctness [ ]
      - Phase 3: N+1 Query Performance [ ]
      - Phase 4: CI/CD & Deployment Hardening [ ]

@@ -3,6 +3,7 @@ import { z } from 'zod';
 
 import { getRequestSessionClaims } from '@/lib/auth/server';
 import { fetchInternalQuery, internal } from '@/lib/convex/server';
+import type { Id } from '@/convex/_generated/dataModel';
 
 const querySchema = z.object({
   lessonId: z.string().trim().min(1, 'lessonId is required'),
@@ -30,7 +31,7 @@ export async function GET(request: Request) {
     const { lessonId } = parsed.data;
 
     const teacher = await fetchInternalQuery(internal.teacher.getProfileWithOrg, {
-      userId: claims.sub,
+      userId: claims.sub as Id<'profiles'>,
     });
 
     if (!teacher || (teacher.role !== 'teacher' && teacher.role !== 'admin')) {
@@ -38,7 +39,7 @@ export async function GET(request: Request) {
     }
 
     const summary = await fetchInternalQuery(internal.teacher.getLessonErrorSummary, {
-      lessonId,
+      lessonId: lessonId as Id<'lessons'>,
       teacherOrgId: teacher.organizationId,
     });
 

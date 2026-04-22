@@ -2,6 +2,7 @@ import { notFound, redirect } from 'next/navigation';
 import { LessonRendererClient } from '@/components/lesson/LessonRendererClient';
 import { getServerSessionClaims } from '@/lib/auth/server';
 import { fetchInternalQuery, fetchQuery, api, internal } from '@/lib/convex/server';
+import type { Id } from '@/convex/_generated/dataModel';
 import { studentDashboardPath } from '@/lib/student/navigation';
 import {
   fallbackPublishedPhaseTitle,
@@ -78,7 +79,7 @@ export default async function LessonPage({ params, searchParams }: LessonPagePro
     redirect('/auth/login');
   }
 
-  const userId = claims.sub;
+  const userId = claims.sub as Id<"profiles">;
 
   // Fetch full lesson content (lesson + phases + sections) from Convex
   const data = await fetchQuery(apiAny.api.getLessonWithContent, { slug: lessonSlug });
@@ -158,6 +159,8 @@ export default async function LessonPage({ params, searchParams }: LessonPagePro
       console.error('Lesson was not found in Convex for slug:', lesson.slug);
       return <AccessCheckError lessonTitle={lesson.title} />;
     }
+
+    const convexLessonId = convexLesson._id as Id<"lessons">;
 
     if (!phaseParam) {
       let completedPhaseNumbers = new Set<number>();
@@ -240,7 +243,7 @@ export default async function LessonPage({ params, searchParams }: LessonPagePro
     try {
       canAccess = await fetchInternalQuery(internal.api.canAccessPhase, {
         userId,
-        lessonId: convexLesson._id,
+        lessonId: convexLessonId,
         phaseNumber: effectivePhaseNumber,
       });
     } catch (accessError) {
@@ -255,7 +258,7 @@ export default async function LessonPage({ params, searchParams }: LessonPagePro
         try {
           const phaseAccess = await fetchInternalQuery(internal.api.canAccessPhase, {
             userId,
-            lessonId: convexLesson._id,
+            lessonId: convexLessonId,
             phaseNumber: i,
           });
 

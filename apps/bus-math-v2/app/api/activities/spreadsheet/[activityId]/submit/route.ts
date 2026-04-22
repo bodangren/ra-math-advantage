@@ -237,7 +237,7 @@ export async function POST(
         spreadsheetData: payload.spreadsheetData,
         validationResult,
         targetCells: parsedEvaluatorProps.data.targetCells as TargetCell[],
-        activityName: activity.displayName || 'Business Math Spreadsheet Activity',
+        activityName: (activity as Record<string, unknown>)?.displayName as string || 'Business Math Spreadsheet Activity',
       });
     } catch {
       aiFeedback = null;

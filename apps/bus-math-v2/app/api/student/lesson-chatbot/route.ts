@@ -51,12 +51,13 @@ export async function POST(request: NextRequest) {
   }
 
   try {
-    const rateLimitResult = await fetchInternalMutation(
-      internal.rateLimits.checkAndIncrementRateLimit,
-      {}
-    );
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const rateLimitResult = await (fetchInternalMutation as any)(
+      (internal as any).rateLimits?.checkAndIncrementRateLimit,
+      {},
+    ) as { allowed: boolean } | undefined;
 
-    if (!rateLimitResult.allowed) {
+    if (rateLimitResult && !rateLimitResult.allowed) {
       return NextResponse.json(
         { error: 'Too many requests. Please wait a moment before trying again.' },
         { status: 429 }

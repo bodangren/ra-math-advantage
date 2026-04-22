@@ -187,7 +187,7 @@ export function GradebookGrid({ rows, lessons, unitNumber }: GradebookGridProps)
                       className={`px-2 py-1 text-center font-medium tabular-nums ${cellBgClass(color)}`}
                       aria-label={`${row.displayName} ${lesson.lessonTitle} — ${colorLabel}`}
                     >
-                      <button
+                        <button
                         type="button"
                         onClick={() =>
                           setSelectedCell({
@@ -195,8 +195,8 @@ export function GradebookGrid({ rows, lessons, unitNumber }: GradebookGridProps)
                             studentName: row.displayName,
                             lessonId: lesson.lessonId,
                             lessonTitle: lesson.lessonTitle,
-                            independentPractice: cell.independentPractice,
-                            assessment: cell.assessment,
+                            independentPractice: cell?.independentPractice ?? null,
+                            assessment: cell?.assessment ?? null,
                           })
                         }
                         tabIndex={0}
@@ -241,7 +241,7 @@ export function GradebookGrid({ rows, lessons, unitNumber }: GradebookGridProps)
                       className={`border-l-2 border-border px-2 py-1 text-center font-semibold tabular-nums ${cellBgClass(color)}`}
                       aria-label={`${row.displayName} ${unitTestLesson.lessonTitle} — ${colorLabel}`}
                     >
-                      <button
+                        <button
                         type="button"
                         onClick={() =>
                           setSelectedCell({
@@ -249,6 +249,8 @@ export function GradebookGrid({ rows, lessons, unitNumber }: GradebookGridProps)
                             studentName: row.displayName,
                             lessonId: unitTestLesson.lessonId,
                             lessonTitle: unitTestLesson.lessonTitle,
+                            independentPractice: cell?.independentPractice ?? null,
+                            assessment: cell?.assessment ?? null,
                           })
                         }
                         tabIndex={0}

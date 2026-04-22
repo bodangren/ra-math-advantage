@@ -25,6 +25,8 @@ const makeCell = (
   completionStatus,
   masteryLevel,
   color,
+  independentPractice: null,
+  assessment: null,
 });
 
 const makeRow = (

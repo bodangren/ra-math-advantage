@@ -44,7 +44,7 @@ function UnitProgressCard({ unitNumber }: { unitNumber: number }) {
     const mastered = termMastery.filter((t) => t.proficiencyBand === "mastered").length;
     const familiar = termMastery.filter((t) => t.proficiencyBand === "familiar").length;
     const learning = termMastery.filter((t) => t.proficiencyBand === "learning").length;
-    const averageMastery = termMastery.reduce((sum, t) => sum + t.mastery, 0) / studied;
+    const averageMastery = termMastery.reduce((sum, t) => sum + t.masteryScore, 0) / studied;
 
     return { total, studied, mastered, familiar, learning, averageMastery };
   }, [termMastery, unitNumber]);

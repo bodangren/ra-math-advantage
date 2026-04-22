@@ -72,7 +72,8 @@ export async function POST(request: Request) {
     await fetchInternalMutation(internal.activities.submitAssessment, {
       userId: userId as never,
       activityId: submission.activityId as never,
-      submissionData: submission,
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      submissionData: submission as any,
       score: score.score,
       maxScore: score.maxScore,
       feedback: score.feedback,

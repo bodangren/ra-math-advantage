@@ -4,6 +4,7 @@ import { NextResponse } from 'next/server';
 import { SESSION_COOKIE_NAME, getAuthJwtSecret } from '@/lib/auth/constants';
 import { verifySessionToken } from '@/lib/auth/session';
 import { fetchInternalQuery, internal } from '@/lib/convex/server';
+import type { Id } from '@/convex/_generated/dataModel';
 
 export async function GET() {
   const cookieStore = await cookies();
@@ -26,7 +27,7 @@ export async function GET() {
   }
 
   const profile = await fetchInternalQuery(internal.activities.getProfileById, {
-    profileId: claims.sub,
+    profileId: claims.sub as Id<'profiles'>,
   });
 
   if (!profile) {

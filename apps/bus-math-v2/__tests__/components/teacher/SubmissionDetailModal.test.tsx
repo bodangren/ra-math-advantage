@@ -38,6 +38,8 @@ const SELECTED: SelectedCell = {
   studentName: 'Alice Brown',
   lessonId:   '00000000-0000-0000-0000-000000000003',
   lessonTitle: 'Accounting Equation',
+  independentPractice: null,
+  assessment: null,
 };
 
 const MOCK_DETAIL: SubmissionDetail = {

@@ -12,8 +12,8 @@ import { SpreadsheetWrapper, type SpreadsheetData } from '@/components/activitie
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-
-import type {
+import type { Id } from '@/convex/_generated/dataModel';
+import {
   PhaseDetail,
   PhaseStatus,
   PracticeEvidence,
@@ -42,7 +42,7 @@ export interface SelectedCell {
     completed: boolean;
     score: number | null;
     maxScore: number | null;
-    gradedAt: number | null;
+    gradedAt?: number | null;
   } | null;
 }
 
@@ -608,14 +608,14 @@ export function SubmissionDetailModal({
       const result = await fetchInternalQuery(
         internal.teacher.getTeacherLessonMonitoringData,
         {
-          userId: selected.studentId,
+          userId: selected.studentId as Id<'profiles'>,
           unitNumber: 1,
-          lessonId: selected.lessonId,
+          lessonId: selected.lessonId as Id<'lessons'>,
         },
       );
 
-      if (result && 'detail' in result && result.detail) {
-        setDetail(result.detail);
+      if (result && typeof result === 'object' && 'detail' in result && result.detail) {
+        setDetail(result.detail as SubmissionDetail);
       } else {
         setError('No submission data found for this student');
       }
@@ -690,7 +690,7 @@ export function SubmissionDetailModal({
 
   const filteredSnapshot = useMemo(() => {
     if (!filteredDetail || activeTab === 'all') return snapshot;
-    return buildSnapshot(filteredDetail);
+    return buildSnapshot(filteredDetail as SubmissionDetail);
   }, [filteredDetail, activeTab, snapshot]);
 
   if (loading) {
@@ -771,8 +771,8 @@ export function SubmissionDetailModal({
                   <SummaryChip
                     label="Score"
                     value={
-                      filteredSnapshot?.overallScore !== null && filteredSnapshot?.overallMaxScore !== null
-                        ? `${filteredSnapshot.overallScore} / ${filteredSnapshot.overallMaxScore}`
+                      (filteredSnapshot?.overallScore ?? null) !== null && (filteredSnapshot?.overallMaxScore ?? null) !== null
+                        ? `${filteredSnapshot!.overallScore} / ${filteredSnapshot!.overallMaxScore}`
                         : 'No scored practice submission'
                     }
                   />
@@ -782,7 +782,7 @@ export function SubmissionDetailModal({
                   />
                   <SummaryChip
                     label="Attempt"
-                    value={filteredSnapshot?.attemptNumber !== null ? `Attempt ${filteredSnapshot.attemptNumber}` : 'No attempt'}
+                    value={(filteredSnapshot?.attemptNumber ?? null) !== null ? `Attempt ${filteredSnapshot!.attemptNumber}` : 'No attempt'}
                   />
                   <SummaryChip
                     label="Mode"
@@ -816,8 +816,8 @@ export function SubmissionDetailModal({
                         <div className="rounded-lg border border-border bg-background p-3">
                           <div className="text-xs uppercase tracking-wide text-muted-foreground">Score</div>
                           <div className="mt-2 text-lg font-semibold text-foreground">
-                            {filteredSnapshot?.overallScore !== null && filteredSnapshot?.overallMaxScore !== null
-                              ? `${filteredSnapshot.overallScore} / ${filteredSnapshot.overallMaxScore} correct`
+                            {(filteredSnapshot?.overallScore ?? null) !== null && (filteredSnapshot?.overallMaxScore ?? null) !== null
+                              ? `${filteredSnapshot!.overallScore} / ${filteredSnapshot!.overallMaxScore} correct`
                               : 'No scored practice submission'}
                           </div>
                           <div className="text-xs text-muted-foreground">

@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getRequestSessionClaims } from '@/lib/auth/server';
 import { fetchInternalQuery, internal } from '@/lib/convex/server';
+import type { Id } from '@/convex/_generated/dataModel';
 
 export async function GET(
   request: NextRequest,
@@ -12,7 +13,7 @@ export async function GET(
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
-    const userId = claims.sub;
+    const userId = claims.sub as Id<'profiles'>;
 
     const profile = await fetchInternalQuery(internal.api.getProfile, {
       userId: userId,
@@ -38,7 +39,7 @@ export async function GET(
     }
 
     const activity = await fetchInternalQuery(internal.activities.getActivityById, {
-      activityId: activityId,
+      activityId: activityId as Id<'activities'>,
     });
 
     if (!activity) {

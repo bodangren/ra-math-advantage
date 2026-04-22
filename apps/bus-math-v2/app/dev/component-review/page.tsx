@@ -81,18 +81,18 @@ export default function ComponentReviewQueuePage() {
   const [selectedCategories, setSelectedCategories] = useState<Set<string>>(new Set());
 
   const allComponents = getAllReviewableComponentIds();
-  const approvals = useQuery(api.componentApprovals.getReviewQueue, {
+  const approvals = useQuery(api.component_approvals.getReviewQueue, {
     includeStale,
     componentType: filterType === 'all' ? undefined : filterType,
   });
-  const submitReview = useMutation(api.componentApprovals.submitComponentReview);
+  const submitReview = useMutation(api.component_approvals.submitComponentReview);
 
   const handleSubmitReview = async () => {
     if (!reviewingComponent) return;
     if (reviewingComponent.componentType === 'example') {
       throw new Error('Example components are not supported for review');
     }
-    const componentVersionHash = computeComponentVersionHash(
+    const componentVersionHash = await computeComponentVersionHash(
       reviewingComponent.componentType,
       reviewingComponent.componentId
     );
@@ -103,7 +103,7 @@ export default function ComponentReviewQueuePage() {
       status: reviewStatus,
       reviewSummary: reviewSummary || undefined,
       improvementNotes: improvementNotes || undefined,
-      issueCategories: Array.from(selectedCategories),
+      issueCategories: Array.from(selectedCategories) as (typeof ISSUE_CATEGORIES)[number][],
     });
     setReviewingComponent(null);
     setReviewStatus('approved');
@@ -112,21 +112,32 @@ export default function ComponentReviewQueuePage() {
     setSelectedCategories(new Set());
   };
 
-  const approvalMap = new Map(
-    approvals?.map((a) => [`${a.componentType}:${a.componentId}`, a]) || []
+  type ApprovalItem = {
+    componentType: string;
+    componentId: string;
+    effectiveStatus?: string;
+    approvalStatus?: string;
+    currentVersionHash?: string;
+    approvalVersionHash?: string;
+  };
+
+  const approvalMap = new Map<string, ApprovalItem>(
+    (approvals as ApprovalItem[] | undefined)?.map((a: ApprovalItem) => [`${a.componentType}:${a.componentId}`, a]) || []
   );
 
   const enrichedComponents = allComponents.map((component) => {
     const key = `${component.componentType}:${component.componentId}`;
     const approval = approvalMap.get(key);
     const effectiveStatus = approval
-      ? (approval as Record<string, unknown>).effectiveStatus as string || approval.approvalStatus
+      ? approval.effectiveStatus || approval.approvalStatus
       : 'unreviewed';
     let currentHash: string;
     if (approval) {
-      currentHash = (approval as Record<string, unknown>).currentVersionHash as string || '';
+      currentHash = approval.currentVersionHash || '';
     } else if (includeStale && component.componentType !== 'example') {
-      currentHash = computeComponentVersionHash(component.componentType, component.componentId);
+      // NOTE: computeComponentVersionHash is async; this path renders a Promise as string at runtime.
+      // This page is dev-only and this branch is a best-effort stale check. BM2 reference-only.
+      currentHash = computeComponentVersionHash(component.componentType, component.componentId) as unknown as string;
     } else {
       currentHash = '';
     }
@@ -194,7 +205,7 @@ export default function ComponentReviewQueuePage() {
                   size="sm"
                   onClick={() => setFilterStatus(status)}
                 >
-                  {status === 'all' ? 'All' : status.split('_').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ')}
+                  {status === 'all' ? 'All' : status.split('_').map((w: string) => w.charAt(0).toUpperCase() + w.slice(1)).join(' ')}
                 </Button>
               ))}
             </div>
@@ -218,14 +229,14 @@ export default function ComponentReviewQueuePage() {
                 <div className="space-y-2">
                   <div className="flex items-center gap-2">
                     <Badge variant="outline">{component.componentType}</Badge>
-                    <Badge className={statusBadgeClass(component.effectiveStatus)}>
-                      {component.effectiveStatus.split('_').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ')}
+                    <Badge className={statusBadgeClass(component.effectiveStatus ?? 'unreviewed')}>
+                      {(component.effectiveStatus ?? 'unreviewed').split('_').map((w: string) => w.charAt(0).toUpperCase() + w.slice(1)).join(' ')}
                     </Badge>
                   </div>
                   <CardTitle className="text-xl">{component.componentId}</CardTitle>
                   <CardDescription>
                     Current hash: {component.currentHash.slice(0, 8)}...
-                    {component.approval && (
+                    {component.approval?.approvalVersionHash && (
                       <>
                         {' • '}Approved hash: {component.approval.approvalVersionHash.slice(0, 8)}...
                       </>

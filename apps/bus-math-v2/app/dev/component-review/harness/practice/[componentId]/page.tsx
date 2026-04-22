@@ -30,8 +30,10 @@ export default function PracticeHarnessPage({ params }: Props) {
   const versionHash = versionHashData ?? 'loading...';
 
   const [seed, setSeed] = useState(12345);
-  const [problem, setProblem] = useState<ReturnType<ProblemFamily<unknown, unknown, unknown>['generate']> | null>(null);
-  const [solution, setSolution] = useState<ReturnType<ProblemFamily<unknown, unknown, unknown>['solve']> | null>(null);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const [problem, setProblem] = useState<any | null>(null);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const [solution, setSolution] = useState<any | null>(null);
   const [gradeResult, setGradeResult] = useState<GradeResult | null>(null);
   const [envelope, setEnvelope] = useState<Record<string, unknown> | null>(null);
   const [showSolution, setShowSolution] = useState(false);

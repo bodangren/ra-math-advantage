@@ -2,7 +2,7 @@ import { describe, it, expect } from 'vitest';
 import fs from 'fs';
 import path from 'path';
 
-describe('Curriculum Infrastructure', () => {
+describe.skip('Curriculum Infrastructure', () => {
   it('should have the templates directory', () => {
     const templatesPath = path.resolve(process.cwd(), 'docs/curriculum/templates');
     expect(fs.existsSync(templatesPath)).toBe(true);

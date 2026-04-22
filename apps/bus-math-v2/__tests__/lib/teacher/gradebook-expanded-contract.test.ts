@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { describe, it, expect } from 'vitest';
 import { assembleGradebookRows, buildGradebookCell, computeLessonStatus } from '@/lib/teacher/gradebook';
 

@@ -26,7 +26,7 @@ async function loadVinextHandler(): Promise<VinextHandler> {
       );
     }
 
-    return module.default as VinextHandler;
+    return module.default as unknown as VinextHandler;
   });
 
   return cachedHandlerPromise;

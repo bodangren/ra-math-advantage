@@ -5,8 +5,8 @@ import { FileSpreadsheet, Download } from 'lucide-react';
 import { useAuth } from '@/components/auth/AuthProvider';
 
 export function CapstoneWorkbookDownloads() {
-  const { session } = useAuth();
-  const isTeacher = session?.role === 'teacher';
+  const { profile } = useAuth();
+  const isTeacher = profile?.role === 'teacher';
 
   return (
     <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-4">

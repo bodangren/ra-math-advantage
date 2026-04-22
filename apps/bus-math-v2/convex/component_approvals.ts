@@ -296,16 +296,17 @@ export async function getUnresolvedReviewsHandler(
   args: { componentType?: "activity" | "example" | "practice" }
 ) {
   await requireAdmin(ctx);
-  let query = ctx.db.query("componentReviews");
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  let query: any = ctx.db.query("componentReviews");
 
   if (args.componentType) {
-    query = query.withIndex("by_component", (q) =>
+    query = query.withIndex("by_component", (q: any) =>
       q.eq("componentType", args.componentType)
     );
   }
 
   const reviews = await query
-    .filter((q) => q.eq(q.field("resolvedAt"), undefined))
+    .filter((q: any) => q.eq(q.field("resolvedAt"), undefined))
     .collect();
   return reviews;
 }
@@ -322,16 +323,17 @@ export async function getAuditSummaryHandler(
   args: { componentType?: "activity" | "example" | "practice" }
 ) {
   await requireAdmin(ctx);
-  let query = ctx.db.query("componentReviews");
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  let query: any = ctx.db.query("componentReviews");
 
   if (args.componentType) {
-    query = query.withIndex("by_component", (q) =>
+    query = query.withIndex("by_component", (q: any) =>
       q.eq("componentType", args.componentType)
     );
   }
 
   const unresolved = await query
-    .filter((q) => q.eq(q.field("resolvedAt"), undefined))
+    .filter((q: any) => q.eq(q.field("resolvedAt"), undefined))
     .collect();
 
   const summary: Record<

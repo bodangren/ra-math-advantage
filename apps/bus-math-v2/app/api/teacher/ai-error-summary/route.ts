@@ -7,6 +7,7 @@ import { generateAISummary, buildDeterministicSummary } from '@math-platform/pra
 import type { PracticeSubmissionEnvelope } from '@math-platform/practice-core/contract';
 import { isPracticeSubmissionEnvelope } from '@math-platform/practice-core/contract';
 import { resolveAIProviderFromEnv } from '@/lib/practice/error-analysis/providers';
+import type { Id } from '@/convex/_generated/dataModel';
 
 const querySchema = z.object({
   lessonId: z.string().trim().min(1, 'lessonId is required'),
@@ -36,7 +37,7 @@ export async function GET(request: Request) {
     const { lessonId, studentId } = parsed.data;
 
     const teacher = await fetchInternalQuery(internal.teacher.getProfileWithOrg, {
-      userId: claims.sub,
+      userId: claims.sub as Id<'profiles'>,
     });
 
     if (!teacher || (teacher.role !== 'teacher' && teacher.role !== 'admin')) {
@@ -44,7 +45,7 @@ export async function GET(request: Request) {
     }
 
     const student = await fetchInternalQuery(internal.activities.getProfileById, {
-      profileId: studentId,
+      profileId: studentId as Id<'profiles'>,
     });
 
     if (!student || student.role !== 'student' || student.organizationId !== teacher.organizationId) {
@@ -52,8 +53,8 @@ export async function GET(request: Request) {
     }
 
     const detail = await fetchInternalQuery(internal.teacher.getSubmissionDetail, {
-      studentId,
-      lessonId,
+      studentId: studentId as Id<'profiles'>,
+      lessonId: lessonId as Id<'lessons'>,
       studentName: student.displayName ?? student.username ?? 'Unknown',
     });
 

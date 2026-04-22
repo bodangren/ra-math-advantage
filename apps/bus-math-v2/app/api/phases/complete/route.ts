@@ -3,6 +3,7 @@ import { z } from 'zod';
 import { requireActiveStudentRequestClaims } from '@/lib/auth/server';
 import { fetchInternalQuery, fetchInternalMutation, fetchQuery, api, internal } from '@/lib/convex/server';
 import { COMPETENCY_STANDARD_CODE_PATTERN } from '@/lib/curriculum/standards';
+import type { Id } from '@/convex/_generated/dataModel';
 import type { CompletePhaseRequest, CompletePhaseResponse } from '@/types/api';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -32,7 +33,7 @@ export async function POST(request: Request) {
       return claimsOrResponse;
     }
 
-    const userId = claimsOrResponse.sub;
+    const userId = claimsOrResponse.sub as Id<'profiles'>;
 
     const body = await request.json();
     const validationResult = CompletePhaseSchema.safeParse(body);
@@ -70,7 +71,7 @@ export async function POST(request: Request) {
 
     const canAccess = await fetchInternalQuery(internal.api.canAccessPhase, {
       userId: userId,
-      lessonId: lesson._id,
+      lessonId: lesson._id as Id<'lessons'>,
       phaseNumber,
     });
 
@@ -86,7 +87,7 @@ export async function POST(request: Request) {
     }
 
     const phaseContext = await fetchInternalQuery(internal.api.getPhaseContext, {
-      lessonId: lesson._id,
+      lessonId: lesson._id as Id<'lessons'>,
       phaseNumber,
     });
 
