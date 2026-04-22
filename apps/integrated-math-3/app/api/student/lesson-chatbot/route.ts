@@ -16,6 +16,9 @@ interface ChatbotRequest {
 
 function sanitizeInput(input: string): string {
   return input
+    .replace(/\r?\n/g, ' ')
+    .replace(/\b(Human|Assistant|System|User)\s*:/gi, '')
+    .replace(/[<>{}]/g, '')
     .replace(/`/g, '')
     .replace(/~/g, '')
     .replace(/"""/g, '\\"\\"\\"')

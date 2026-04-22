@@ -442,7 +442,7 @@ export const isStudentEnrolledInClassForLesson = internalQuery({
     }
 
     if (!anyClassLessonExists) {
-      return true;
+      return false;
     }
 
     return false;

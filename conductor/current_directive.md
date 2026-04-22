@@ -1,17 +1,17 @@
 # Current Directive
 
-> Updated: 2026-04-22 (Code review #13 — audit of chatbot security, teacher UI, practice core, study hub games, curriculum seeding)
+> Updated: 2026-04-23 (Code review #14 — audit of 6 recent work phases: BM2 triage Phase 1, chatbot security, provider memoization, misconception N+1, practice-core testing, teacher assignment UI)
 
 ## Mission
 
-Monorepo migration complete (Waves 0-6). All major feature tracks done. Current focus: addressing tech debt, hardening, and preparing for next feature development cycle.
+Monorepo migration complete (Waves 0-6). All major feature tracks done. Current focus: tech debt triage (Phase 1 complete), hardening remaining issues, and preparing for next feature development cycle.
 
 ## Priority Order (Execute In This Order)
 
-1. **Monorepo migration complete** — Waves 0-6 done, all packages extracted and adopted
-2. **BM2 type health sweep** — ~296 pre-existing errors; defer unless blocking migration gates
-3. **Teacher assignment UI** — class_lessons table exists but has no UI for populating; chatbot currently falls back to open enrollment
-4. **RSC bundle optimization** — 750 KB entry chunk needs code-splitting (target < 500 KB)
+1. **Monorepo tech debt triage** — Phase 1 (BM2 TypeScript) complete; Phases 2-8 remain
+2. **RSC bundle optimization** — 750 KB entry chunk needs code-splitting (target < 500 KB)
+3. **SRS & practice correctness** — misconception tags, atomic card saves, studentId type mismatch
+4. **CI/CD hardening** — remove continue-on-error swallowing failures, add staging gate
 
 ## Non-Negotiable Rules
 
@@ -37,36 +37,43 @@ Monorepo migration complete (Waves 0-6). All major feature tracks done. Current 
 - [x] Review #11 fixes (learningObjectives sanitization + abort listener leak)
 - [x] Review #12 fixes (chatbot enrollment fallback + game streak bug + math sanitization)
 - [x] Review #13 fixes (prompt injection via triple-quote delimiters + teacher UI revalidatePath)
-- [ ] Teacher assignment UI for class_lessons (needed for proper lesson-level access control)
+- [x] Teacher assignment UI for class_lessons (class selector using URL routing, assign/unassign working)
+- [x] BM2 Phase 1 triage complete (0 TS errors, re-export shims for auth/practice, governance skips)
+- [ ] Monorepo tech debt triage Phases 2-8 (SRS correctness, N+1, CI/CD, package quality)
 - [ ] RSC entry chunk code-splitting (750 KB → < 500 KB)
-- [ ] BM2 type health sweep (~296 TS errors) — defer unless blocking
-- [ ] LessonChatbot.tsx test coverage (route.ts and rateLimits.ts now tested)
+- [ ] LessonChatbot.tsx component test coverage
+- [ ] Seed mutation integration tests (current tests validate static types only)
 
-## Code Review Summary (2026-04-22 — Review #13)
+## Code Review Summary (2026-04-23 — Review #14)
 
-Audit of 6 work phases since Review #12: chatbot security fixes, provider memoization, misconception N+1 fix, practice-core testing, study hub games, teacher lesson assignment UI.
+Audit of 6 work phases since Review #13: BM2 TypeScript triage Phase 1, teacher lesson assignment UI, seed class lessons, practice-core testing, misconception N+1 fix, chatbot security/provider work.
 
 ### Verification Results
 
 | Check | Result |
 |-------|--------|
 | Build (IM3) | PASS |
-| Tests (IM3) | 3279/3286 pass (6 aspirational .todo, 1 flaky in full suite) |
+| Tests (IM3) | 3279/3286 pass (6 aspirational .todo, 1 pre-existing flaky in full suite) |
 | Typecheck (IM3) | CLEAN |
 | Lint (IM3) | CLEAN |
+| Chatbot route tests | 9/9 PASS |
+| Teacher query tests | 79/79 PASS |
 
 ### Issues Fixed in This Review
 
 | Issue | Severity | Fix |
 |-------|----------|-----|
-| Prompt injection via triple-quote delimiters in chatbot | High | Escaped `"""` sequences in sanitizeInput |
-| Teacher lessons page missing revalidatePath + error handling | High | Added revalidatePath('/teacher/lessons') and try/catch |
-| Type mismatch in fetchInternalQuery/fetchInternalMutation | Medium | Added type casts to FunctionReference<'query'/'mutation'> |
+| Enrollment fallback grants unrestricted access when no class_lessons | High | Changed to deny-by-default in student.ts:445 |
+| Prompt injection sanitization too weak | High | Added newline stripping, role-switch token removal, bracket stripping in sanitizeInput |
+| N+1 queries in 4 teacher SRS handlers | High | Parallelized with Promise.all in srs-queries.ts (getOverdueLoad, getPracticeStreaks, getStrugglingStudentsHandler, getClassSrsHealth) |
+| Test validates insecure enrollment behavior | Medium | Updated test to expect 403 for deny-by-default |
 
 ### Issues Found (Deferred)
 
 | Issue | Severity | Notes |
 |-------|----------|-------|
-| Teacher lessons class selector dropdown non-functional | Medium | Server component; needs client component or URL routing |
-| Demo seed only assigns Unit 1 lessons | Low | Blocks Units 2-9 chatbot access for demo class |
-| `internal as any` casts in 3 files | Medium | Generated types stale; run npx convex dev |
+| `internal as any` casts in chatbot route | Medium | Generated types stale; run npx convex dev |
+| practice-core: computeBaseRating([]) returns 'Good' | Medium | Empty parts array edge case untested |
+| practice-core: seed tests don't exercise mutation | Medium | Tests validate static type, not actual seedDemoEnv |
+| Misconception tags not persisted in review evidence | High | getMisconceptionSummary always returns empty |
+| SRS sessions index undefined sorting | High | by_student_and_status needs explicit completedAt filter |

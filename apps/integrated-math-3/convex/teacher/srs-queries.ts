@@ -55,12 +55,28 @@ export const getClassSrsHealth = internalQuery({
     let totalRetention = 0;
     let cardCount = 0;
 
-    for (const studentId of activeStudents.map((e) => e.studentId)) {
-      const cards = await ctx.db
-        .query("srs_cards")
-        .withIndex("by_student", (q) => q.eq("studentId", studentId))
-        .collect();
+    const studentIds = activeStudents.map((e) => e.studentId);
+    const [cardArrays, sessionArrays] = await Promise.all([
+      Promise.all(
+        studentIds.map((studentId) =>
+          ctx.db
+            .query("srs_cards")
+            .withIndex("by_student", (q) => q.eq("studentId", studentId))
+            .collect()
+        )
+      ),
+      Promise.all(
+        studentIds.map((studentId) =>
+          ctx.db
+            .query("srs_sessions")
+            .withIndex("by_student", (q) => q.eq("studentId", studentId))
+            .collect()
+        )
+      ),
+    ]);
 
+    for (let i = 0; i < studentIds.length; i++) {
+      const cards = cardArrays[i];
       if (cards.length > 0) {
         totalActiveStudents++;
         for (const card of cards) {
@@ -69,12 +85,7 @@ export const getClassSrsHealth = internalQuery({
         }
       }
 
-      const sessions = await ctx.db
-        .query("srs_sessions")
-        .withIndex("by_student", (q) => q.eq("studentId", studentId))
-        .collect();
-
-      const completedToday = sessions.some(
+      const completedToday = sessionArrays[i].some(
         (s) => s.completedAt && s.completedAt >= todayStartMs
       );
       if (completedToday) {
@@ -125,16 +136,20 @@ export const getOverdueLoad = internalQuery({
     const perStudent: Array<{ studentId: string; overdueCount: number }> = [];
     let totalOverdue = 0;
 
-    for (const enrollment of activeStudents) {
-      const cards = await ctx.db
-        .query("srs_cards")
-        .withIndex("by_student", (q) => q.eq("studentId", enrollment.studentId))
-        .collect();
+    const cardArrays = await Promise.all(
+      activeStudents.map((enrollment) =>
+        ctx.db
+          .query("srs_cards")
+          .withIndex("by_student", (q) => q.eq("studentId", enrollment.studentId))
+          .collect()
+      )
+    );
 
-      const overdueCards = cards.filter((c) => c.dueDate < now);
+    for (let i = 0; i < activeStudents.length; i++) {
+      const overdueCards = cardArrays[i].filter((c) => c.dueDate < now);
       const overdueCount = overdueCards.length;
       totalOverdue += overdueCount;
-      perStudent.push({ studentId: enrollment.studentId, overdueCount });
+      perStudent.push({ studentId: activeStudents[i].studentId, overdueCount });
     }
 
     return {
@@ -186,16 +201,25 @@ export const getPracticeStreaks = internalQuery({
       streak: number;
     }> = [];
 
-    for (const enrollment of activeStudents) {
-      const profile = await ctx.db.get("profiles", enrollment.studentId);
+    const [profiles, sessionArrays] = await Promise.all([
+      Promise.all(
+        activeStudents.map((enrollment) => ctx.db.get("profiles", enrollment.studentId))
+      ),
+      Promise.all(
+        activeStudents.map((enrollment) =>
+          ctx.db
+            .query("srs_sessions")
+            .withIndex("by_student", (q) => q.eq("studentId", enrollment.studentId))
+            .collect()
+        )
+      ),
+    ]);
+
+    for (let i = 0; i < activeStudents.length; i++) {
+      const profile = profiles[i];
       if (!profile) continue;
 
-      const sessions = await ctx.db
-        .query("srs_sessions")
-        .withIndex("by_student", (q) => q.eq("studentId", enrollment.studentId))
-        .collect();
-
-      const completedSessions = sessions.filter((s) => s.completedAt !== undefined);
+      const completedSessions = sessionArrays[i].filter((s) => s.completedAt !== undefined);
 
       if (completedSessions.length === 0) continue;
 
@@ -227,7 +251,7 @@ export const getPracticeStreaks = internalQuery({
 
       if (streak > 0) {
         studentStreaks.push({
-          studentId: enrollment.studentId,
+          studentId: activeStudents[i].studentId,
           displayName: profile.displayName ?? profile.username,
           streak,
         });
@@ -357,11 +381,22 @@ export async function getStrugglingStudentsHandler(
 
   const results: StrugglingStudentView[] = [];
 
-  for (const enrollment of activeStudents) {
-    const cards = await ctx.db
-      .query("srs_cards")
-      .withIndex("by_student", (q) => q.eq("studentId", enrollment.studentId))
-      .collect();
+  const [cardArrays, profiles] = await Promise.all([
+    Promise.all(
+      activeStudents.map((enrollment) =>
+        ctx.db
+          .query("srs_cards")
+          .withIndex("by_student", (q) => q.eq("studentId", enrollment.studentId))
+          .collect()
+      )
+    ),
+    Promise.all(
+      activeStudents.map((enrollment) => ctx.db.get("profiles", enrollment.studentId))
+    ),
+  ]);
+
+  for (let i = 0; i < activeStudents.length; i++) {
+    const cards = cardArrays[i];
 
     if (cards.length === 0) {
       continue;
@@ -406,10 +441,10 @@ export async function getStrugglingStudentsHandler(
       }
     }
 
-    const profile = await ctx.db.get("profiles", enrollment.studentId);
+    const profile = profiles[i];
 
     results.push({
-      studentId: enrollment.studentId,
+      studentId: activeStudents[i].studentId,
       displayName: profile?.displayName ?? profile?.username ?? "Unknown",
       overdueCount,
       avgRetention,
