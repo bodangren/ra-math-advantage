@@ -1,4 +1,5 @@
 import { ConvexHttpClient } from 'convex/browser';
+import type { FunctionReference, FunctionReturnType, FunctionArgs } from 'convex/server';
 import type { ResolveConvexAdminAuthOptions, ConvexAdminAuth } from './admin.js';
 import { resolveConvexAdminAuth } from './admin.js';
 import { getConvexUrl } from './config.js';
@@ -49,36 +50,36 @@ export function resetInternalClient(): void {
   internalClientAuth = null;
 }
 
-export async function fetchPublicQuery(
-  ref: unknown,
-  args: Record<string, unknown>,
-): Promise<unknown> {
+export async function fetchPublicQuery<Query extends FunctionReference<'query'>>(
+  ref: Query,
+  args: FunctionArgs<Query>,
+): Promise<FunctionReturnType<Query>> {
   const client = getPublicConvexClient();
-  return client.query(ref as Parameters<ConvexHttpClient['query']>[0], args);
+  return client.query(ref, args);
 }
 
-export async function fetchPublicMutation(
-  ref: unknown,
-  args: Record<string, unknown>,
-): Promise<unknown> {
+export async function fetchPublicMutation<Mutation extends FunctionReference<'mutation'>>(
+  ref: Mutation,
+  args: FunctionArgs<Mutation>,
+): Promise<FunctionReturnType<Mutation>> {
   const client = getPublicConvexClient();
-  return client.mutation(ref as Parameters<ConvexHttpClient['mutation']>[0], args);
+  return client.mutation(ref, args);
 }
 
-export async function fetchInternalQuery(
-  ref: unknown,
-  args: Record<string, unknown>,
+export async function fetchInternalQuery<Query extends FunctionReference<'query'>>(
+  ref: Query,
+  args: FunctionArgs<Query>,
   options: CreateInternalClientOptions = {},
-): Promise<unknown> {
+): Promise<FunctionReturnType<Query>> {
   const client = await getInternalConvexClient(options);
-  return client.query(ref as Parameters<ConvexHttpClient['query']>[0], args);
+  return client.query(ref, args);
 }
 
-export async function fetchInternalMutation(
-  ref: unknown,
-  args: Record<string, unknown>,
+export async function fetchInternalMutation<Mutation extends FunctionReference<'mutation'>>(
+  ref: Mutation,
+  args: FunctionArgs<Mutation>,
   options: CreateInternalClientOptions = {},
-): Promise<unknown> {
+): Promise<FunctionReturnType<Mutation>> {
   const client = await getInternalConvexClient(options);
-  return client.mutation(ref as Parameters<ConvexHttpClient['mutation']>[0], args);
+  return client.mutation(ref, args);
 }
