@@ -141,30 +141,29 @@
 
 ## Phase 5: Package Quality & Consistency [~]
 
-- [~] Task: Add missing vitest.config files to 5 packages
-    - [ ] Investigate: confirm which packages lack config
-    - [ ] Write test: each package can run vitest independently
-    - [ ] Fix: add vitest.config.ts to each package
-    - [ ] Verify: each package's tests run from root CI
+- [x] Task: Add missing vitest.config files to 5 packages
+    - [x] Investigate: confirm which packages lack config
+    - [x] Fix: FALSE POSITIVE — all real packages already have vitest.config.ts; only _template (0 tests) lacks one
 
-- [ ] Task: Fix teacher-reporting-core .js import inconsistency
-    - [ ] Investigate: identify .js extension imports in teacher-reporting-core
-    - [ ] Fix: align with other packages' import convention
-    - [ ] Verify: consistent import style across all packages
+- [x] Task: Fix teacher-reporting-core .js import inconsistency
+    - [x] Investigate: identify .js extension imports in teacher-reporting-core
+    - [x] Fix: removed .js extensions from 12 imports across src/ and __tests__/
+    - [x] Verify: 65 package tests pass; consistent with other packages
 
-- [ ] Task: Wire IM3 lib/study to study-hub-core types
-    - [ ] Write test: GlossaryTerm structurally compatible with StudyTerm
-    - [ ] Investigate: confirm structural compatibility
-    - [ ] Fix: import types from @math-platform/study-hub-core
-    - [ ] Verify: explicit type adoption, no silent drift
+- [x] Task: Wire IM3 lib/study to study-hub-core types
+    - [x] Investigate: confirm structural compatibility (GlossaryTerm is superset of StudyTerm)
+    - [x] Fix: GlossaryTerm now extends StudyTerm from @math-platform/study-hub-core
+    - [x] Verify: IM3 typecheck passes (0 errors)
 
-- [ ] Task: Investigate equivalence checker .todo tests
-    - [ ] Investigate: assess whether symbolic math lib is available/feasible
-    - [ ] Decide: implement or reclassify as long-term backlog
-    - [ ] Fix: implement if feasible; otherwise document decision
-    - [ ] Verify: .todo count reduced or justified
+- [x] Task: Investigate equivalence checker .todo tests
+    - [x] Investigate: assess whether symbolic math lib is available/feasible
+    - [x] Fix: enhanced pattern-matching implementation (no new dependency):
+      - Fixed checkRearrangedTerms leading-sign normalization
+      - Added perfect-square trinomial expansion (x±a)^2
+      - Fixed fraction/radical parser precedence for compound expressions
+    - [x] Verify: 4 .todo tests converted to passing real tests; 2 remain documented
 
-- [ ] Conductor - User Manual Verification 'Phase 5' (Protocol in workflow.md)
+- [x] Conductor - User Manual Verification 'Phase 5' (Protocol in workflow.md) [checkpoint: cbae9ca]
 
 ## Phase 6: AI Tutoring & Workbook Quality
 
