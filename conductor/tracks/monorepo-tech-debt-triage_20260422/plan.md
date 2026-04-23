@@ -113,7 +113,7 @@
 
 - [x] Conductor - User Manual Verification 'Phase 3' (Protocol in workflow.md)
 
-## Phase 4: CI/CD & Deployment Hardening
+## Phase 4: CI/CD & Deployment Hardening [~]
 
 - [ ] Task: Investigate CI continue-on-error swallowing failures
     - [ ] Write test: CI workflow YAML has no continue-on-error on test/lint steps

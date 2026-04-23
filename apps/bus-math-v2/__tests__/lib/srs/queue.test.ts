@@ -95,7 +95,6 @@ describe('lib/srs/queue', () => {
     });
 
     it('calculates average overdue time', () => {
-      const now = new Date();
       const card1 = makeCard('accounting-equation', 'student-1', -10000);
       const card2 = makeCard('adjustment-effects', 'student-2', -20000);
       const summary = getQueueSummary([card1, card2]);

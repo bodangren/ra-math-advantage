@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { describe, expect, it, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import { TeacherLessonPlanPageContent } from '@/components/teacher/TeacherLessonPlanPageContent';

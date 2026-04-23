@@ -201,8 +201,7 @@ describe('ActivityRenderer', () => {
       ok: true,
       json: async () =>
         buildActivity({
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          componentKey: 'invalid-component' as any,
+          componentKey: 'invalid-component' as unknown as string,
           displayName: 'Invalid Activity',
         }),
     });

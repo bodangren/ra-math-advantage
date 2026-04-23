@@ -85,7 +85,7 @@ export async function POST(
         );
       }
       payload = parsed.data;
-    } catch (_parseError) {
+    } catch {
       return NextResponse.json(
         {
           error: 'Unable to parse request body',
