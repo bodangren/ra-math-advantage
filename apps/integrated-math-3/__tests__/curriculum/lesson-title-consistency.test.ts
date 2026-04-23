@@ -191,7 +191,7 @@ describe('curriculum lesson title consistency', () => {
 
   it('keeps Convex seed lesson titles aligned to lesson source headings', () => {
     for (const filename of readdirSync(join(appRoot, 'convex/seed'))) {
-      const seedFile = filename.match(/^seed-lesson-(\d+)-(\d+)\.ts$/);
+      const seedFile = filename.match(/^seed_lesson_(\d+)_(\d+)\.ts$/);
       if (!seedFile) continue;
 
       const lessonId = `${seedFile[1]}-${seedFile[2]}`;
@@ -207,7 +207,7 @@ describe('curriculum lesson title consistency', () => {
 
   it('keeps Convex seed implementation phase counts aligned to lesson source headings', () => {
     for (const filename of readdirSync(join(appRoot, 'convex/seed'))) {
-      const seedFile = filename.match(/^seed-lesson-(\d+)-(\d+)\.ts$/);
+      const seedFile = filename.match(/^seed_lesson_(\d+)_(\d+)\.ts$/);
       if (!seedFile) continue;
 
       const lessonId = `${seedFile[1]}-${seedFile[2]}`;
@@ -221,7 +221,7 @@ describe('curriculum lesson title consistency', () => {
 
   it('keeps Convex seed implementation phase order aligned to lesson source headings', () => {
     for (const filename of readdirSync(join(appRoot, 'convex/seed'))) {
-      const seedFile = filename.match(/^seed-lesson-(\d+)-(\d+)\.ts$/);
+      const seedFile = filename.match(/^seed_lesson_(\d+)_(\d+)\.ts$/);
       if (!seedFile) continue;
 
       const lessonId = `${seedFile[1]}-${seedFile[2]}`;
