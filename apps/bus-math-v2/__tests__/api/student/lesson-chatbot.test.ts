@@ -1,4 +1,5 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest';
+import type { NextRequest } from 'next/server';
 
 const mockRequireActiveStudentRequestClaims = vi.fn();
 const mockFetchInternalMutation = vi.fn();
@@ -35,7 +36,7 @@ function buildRequest(body: Record<string, unknown>) {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(body),
-  });
+  }) as unknown as NextRequest;
 }
 
 describe('POST /api/student/lesson-chatbot', () => {
@@ -99,7 +100,7 @@ describe('POST /api/student/lesson-chatbot', () => {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: 'not-json',
-    }));
+    }) as unknown as NextRequest);
     expect(response.status).toBe(400);
   });
 

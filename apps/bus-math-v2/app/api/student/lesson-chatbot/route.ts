@@ -41,9 +41,9 @@ Answer concisely, using only the lesson context above.`;
 }
 
 export async function POST(request: NextRequest) {
-  const session = await getRequestSessionClaims(request);
-  if (!session) {
-    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+  const session = await requireActiveStudentRequestClaims(request);
+  if (session instanceof Response) {
+    return session;
   }
 
   if (session.role !== 'student') {

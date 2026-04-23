@@ -1,6 +1,6 @@
 # Current Directive
 
-> Updated: 2026-04-23 (Code review #16 — full monorepo audit: 6 work phases, build/test/lint health, tech-debt reconciliation)
+> Updated: 2026-04-23 (Code review #17 — post-extraction import audit, BM2 auth pattern fix, track metadata reconciliation)
 
 ## Mission
 
@@ -44,9 +44,10 @@ Monorepo migration complete (Waves 0-6). All major feature tracks done. Current 
 - [x] Review #14 fixes (seed all units, functional class selector, info leakage, error handling, rate limiting)
 - [x] Review #15 fixes (SrsRating type alignment in tests)
 - [x] Review #16 fixes (lesson-title-consistency.test.ts vacuous pass, tech-debt reconciliation)
+- [x] Review #17 fixes (SRS extraction dangling imports, BM2 auth instanceof Response pattern, studentId type casts)
 - [x] SRS misconception tag persistence + atomic saves + content hash guard
 - [x] BM2 TypeScript errors resolved (0 errors, down from 296)
-- [ ] BM2 deactivated-user access — swap getRequestSessionClaims for requireActive*SessionClaims on 7 endpoints
+- [x] BM2 deactivated-user access — swap getRequestSessionClaims for requireActive*SessionClaims on 7 endpoints (route swaps done; auth tests still pending)
 - [ ] BM2 rate limiting gaps — add rate limiting to 5 unprotected endpoints
 - [ ] BM2 chatbot prompt injection — add system prompt guard beyond sanitizeInput
 - [ ] N+1 queries: phase sections + teacher SRS per-student
@@ -74,6 +75,30 @@ Full monorepo audit covering the last 6 work phases (monorepo-repair, hyphenated
 | Issue | Severity | Fix |
 |-------|----------|-----|
 | lesson-title-consistency.test.ts regex matches old hyphenated filenames — passes vacuously | HIGH | Updated 3 regex patterns from `seed-lesson-` to `seed_lesson_` to match renamed Convex modules |
+
+### Code Review Summary (2026-04-23 — Review #17)
+
+Post-extraction import audit covering SRS module migration, BM2 auth hardening, and track metadata reconciliation.
+
+### Verification Results
+
+| Check | Result |
+|-------|--------|
+| Typecheck (IM3) | Pass (0 errors) |
+| Typecheck (BM2) | Pass (0 errors) |
+| Lint (IM3) | Pass (0 warnings) |
+| Tests (IM3) | 3223 passed, 6 todo (266 test files) |
+| Build (IM3) | Pass |
+
+### Issues Fixed in This Review (Review #17)
+
+| Issue | Severity | Fix |
+|-------|----------|-----|
+| SRS extraction left 14 dangling imports in Convex files and components | CRITICAL | Added exports to packages/srs-engine/src/index.ts; rewired all imports to @math-platform/srs-engine |
+| BM2 auth routes used `!claims` check but requireActive* returns `SessionClaims \| Response` | HIGH | Changed to `instanceof Response` pattern in all 8 BM2 API routes |
+| BM2 test files passed plain Request where NextRequest expected | MEDIUM | Added NextRequest type casts in test helpers |
+| SRS test files string studentId vs Id<"profiles"> type mismatch | MEDIUM | Added Id<"profiles"> casts in cards.test.ts and processReview.test.ts |
+| Track metadata drift (3/6 tracks had wrong status) | LOW | Updated bm2-deactivated-user-access and monorepo-tech-debt-triage metadata |
 
 ### Issues Found (Deferred)
 

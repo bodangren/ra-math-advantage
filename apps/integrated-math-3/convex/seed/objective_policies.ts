@@ -1,4 +1,4 @@
-import type { ObjectivePriority } from '../../lib/practice/objective-proficiency';
+import type { ObjectivePriority } from '@math-platform/srs-engine';
 
 export type SeedObjectivePolicy = {
   standardId: string;

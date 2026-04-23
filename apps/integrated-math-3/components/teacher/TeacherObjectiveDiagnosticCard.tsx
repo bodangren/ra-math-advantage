@@ -1,7 +1,7 @@
 'use client';
 
 import { cn } from '@/lib/utils';
-import type { TeacherProficiencyView } from '@/lib/practice/objective-proficiency';
+import type { TeacherProficiencyView } from '@math-platform/srs-engine';
 
 export interface TeacherObjectiveDiagnosticCardProps {
   view: TeacherProficiencyView;

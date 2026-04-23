@@ -1,6 +1,6 @@
 import { internalMutation } from "../_generated/server";
 import { OBJECTIVE_POLICIES } from "./objective_policies";
-import { objectivePolicySchema } from "../../lib/practice/objective-policy";
+import { objectivePolicySchema } from "@math-platform/srs-engine";
 
 export const seedObjectivePolicies = internalMutation({
   args: {},

@@ -51,8 +51,8 @@ export async function GET(
     }
 
     const claims = await requireActiveRequestSessionClaims(request);
-    if (!claims) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    if (claims instanceof Response) {
+      return claims;
     }
 
     const requesterId = claims.sub;

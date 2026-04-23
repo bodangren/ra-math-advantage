@@ -8,9 +8,9 @@ export async function GET(
   { params }: { params: Promise<{ activityId: string }> }
 ) {
   try {
-    const claims = await getRequestSessionClaims(request);
-    if (!claims) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    const claims = await requireActiveRequestSessionClaims(request);
+    if (claims instanceof Response) {
+      return claims;
     }
 
     const userId = claims.sub as Id<'profiles'>;

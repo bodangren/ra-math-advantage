@@ -1,4 +1,5 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest';
+import type { NextRequest } from 'next/server';
 
 const mockRequireActiveRequestSessionClaims = vi.fn();
 const mockFetchInternalQuery = vi.fn();
@@ -18,6 +19,10 @@ vi.mock('@/lib/convex/server', () => ({
 
 const { GET } = await import('@/app/api/activities/[activityId]/route');
 
+function buildRequest(url: string) {
+  return new Request(url) as unknown as NextRequest;
+}
+
 describe('GET /api/activities/[activityId]', () => {
   beforeEach(() => {
     vi.clearAllMocks();
@@ -36,7 +41,7 @@ describe('GET /api/activities/[activityId]', () => {
     );
 
     const response = await GET(
-      new Request('http://localhost/api/activities/activity_1'),
+      buildRequest('http://localhost/api/activities/activity_1'),
       { params: Promise.resolve({ activityId: 'activity_1' }) },
     );
     expect(response.status).toBe(401);
@@ -46,7 +51,7 @@ describe('GET /api/activities/[activityId]', () => {
     mockFetchInternalQuery.mockResolvedValueOnce(null);
 
     const response = await GET(
-      new Request('http://localhost/api/activities/activity_1'),
+      buildRequest('http://localhost/api/activities/activity_1'),
       { params: Promise.resolve({ activityId: 'activity_1' }) },
     );
     expect(response.status).toBe(403);
@@ -56,7 +61,7 @@ describe('GET /api/activities/[activityId]', () => {
     mockFetchInternalQuery.mockResolvedValueOnce({ role: 'guest' });
 
     const response = await GET(
-      new Request('http://localhost/api/activities/activity_1'),
+      buildRequest('http://localhost/api/activities/activity_1'),
       { params: Promise.resolve({ activityId: 'activity_1' }) },
     );
     expect(response.status).toBe(403);
@@ -66,7 +71,7 @@ describe('GET /api/activities/[activityId]', () => {
     mockFetchInternalQuery.mockResolvedValueOnce({ role: 'student' });
 
     const response = await GET(
-      new Request('http://localhost/api/activities/'),
+      buildRequest('http://localhost/api/activities/'),
       { params: Promise.resolve({ activityId: '' }) },
     );
     expect(response.status).toBe(400);
@@ -78,7 +83,7 @@ describe('GET /api/activities/[activityId]', () => {
       .mockResolvedValueOnce(null);
 
     const response = await GET(
-      new Request('http://localhost/api/activities/activity_1'),
+      buildRequest('http://localhost/api/activities/activity_1'),
       { params: Promise.resolve({ activityId: 'activity_1' }) },
     );
     expect(response.status).toBe(404);
@@ -94,7 +99,7 @@ describe('GET /api/activities/[activityId]', () => {
       });
 
     const response = await GET(
-      new Request('http://localhost/api/activities/activity_1'),
+      buildRequest('http://localhost/api/activities/activity_1'),
       { params: Promise.resolve({ activityId: 'activity_1' }) },
     );
     expect(response.status).toBe(200);
@@ -114,7 +119,7 @@ describe('GET /api/activities/[activityId]', () => {
       });
 
     const response = await GET(
-      new Request('http://localhost/api/activities/activity_1'),
+      buildRequest('http://localhost/api/activities/activity_1'),
       { params: Promise.resolve({ activityId: 'activity_1' }) },
     );
     expect(response.status).toBe(200);

@@ -72,3 +72,44 @@ export type {
   ProblemFamilyResolver,
   TimingBaselineResolver,
 } from './srs/submission-srs-adapter';
+
+// Objective Policy
+export type {
+  ObjectivePolicy,
+  ObjectivePolicyInput,
+} from './srs/objective-policy';
+
+export {
+  OBJECTIVE_PRIORITY_VALUES,
+  objectivePrioritySchema,
+  objectivePolicySchema,
+} from './srs/objective-policy';
+
+// Objective Proficiency
+export type {
+  EvidenceConfidence,
+  ProblemFamilyEvidence,
+  ObjectiveProficiencyInput,
+  ObjectiveProficiencyResult,
+  StudentProficiencyView,
+  TeacherProficiencyView,
+} from './srs/objective-proficiency';
+
+export {
+  PROFICIENCY_THRESHOLD_DEFAULTS,
+  computeObjectiveProficiency,
+  buildStudentProficiencyView,
+  buildTeacherProficiencyView,
+} from './srs/objective-proficiency';
+
+// SRS Proficiency Utilities
+export type {
+  ProficiencyCardInput,
+  TimingBaselines,
+} from './srs/srs-proficiency';
+
+export {
+  STABILITY_SCALE_FACTOR,
+  stabilityToRetention,
+  aggregateCardsToEvidence,
+} from './srs/srs-proficiency';

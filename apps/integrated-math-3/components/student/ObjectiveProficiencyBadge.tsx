@@ -1,7 +1,7 @@
 'use client';
 
 import { cn } from '@/lib/utils';
-import type { StudentProficiencyView } from '@/lib/practice/objective-proficiency';
+import type { StudentProficiencyView } from '@math-platform/srs-engine';
 
 export interface ObjectiveProficiencyBadgeProps {
   view: StudentProficiencyView;

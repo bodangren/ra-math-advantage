@@ -1,7 +1,7 @@
 import { internalMutation, type MutationCtx } from "../_generated/server";
 import { v } from "convex/values";
 import { Id, type Doc } from "../_generated/dataModel";
-import type { ObjectivePriority } from "../../lib/practice/objective-proficiency";
+import type { ObjectivePriority } from "@math-platform/srs-engine";
 
 export const VALID_PRIORITIES: ObjectivePriority[] = [
   "essential",

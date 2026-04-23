@@ -12,6 +12,8 @@
 
 ## Recurring Gotchas
 
+- (2026-04-23, review-17) `requireActive*SessionClaims` returns `SessionClaims | Response`, NOT `SessionClaims | null` — must use `instanceof Response` check, not `!claims` falsy check
+- (2026-04-23, review-17) When extracting modules to packages, grep for ALL import paths (including relative `../../` Convex paths) — not just `@/` app imports
 - (2026-04-23, review-14) Never return `error.message` in API error responses — leaks internal details (stack traces, schema, env). Return generic message + log server-side
 - (2026-04-23, review-14) Server components with `<select>` but no `onChange` are purely cosmetic; use client components with URL search params for stateful UI
 - (2026-04-23, review-14) Convex runtime cannot import npm packages — duplicate constants in convex/ files are unavoidable; document derivation with comments

@@ -1,7 +1,7 @@
 import { describe, it, expect, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import { WeakObjectivesPanel, type WeakObjectiveView } from '@/components/teacher/srs/WeakObjectivesPanel';
-import type { ObjectivePriority } from '@/lib/practice/objective-proficiency';
+import type { ObjectivePriority } from '@math-platform/srs-engine';
 
 const defaultObjectives: WeakObjectiveView[] = [
   {

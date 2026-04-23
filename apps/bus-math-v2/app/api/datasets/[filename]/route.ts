@@ -7,9 +7,9 @@ export async function GET(
   request: NextRequest,
   context: { params: Promise<{ filename: string }> }
 ) {
-  const session = await getRequestSessionClaims(request);
-  if (!session) {
-    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+  const session = await requireActiveRequestSessionClaims(request);
+  if (session instanceof Response) {
+    return session;
   }
 
   const params = await context.params;

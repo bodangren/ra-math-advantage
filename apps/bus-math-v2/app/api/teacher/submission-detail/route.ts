@@ -12,9 +12,9 @@ const querySchema = z.object({
 
 export async function GET(request: Request) {
   try {
-    const claims = await getRequestSessionClaims(request);
-    if (!claims) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    const claims = await requireActiveTeacherRequestClaims(request);
+    if (claims instanceof Response) {
+      return claims;
     }
 
     const { searchParams } = new URL(request.url);

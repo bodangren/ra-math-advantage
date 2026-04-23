@@ -59,7 +59,7 @@ function makeArgs(overrides: Partial<ProcessReviewArgs> = {}): ProcessReviewArgs
     reviewEntry: {
       reviewId: 'rev-1',
       cardId: 'card-1',
-      studentId: 'student-1',
+      studentId: 'student-1' as Id<'profiles'>,
       rating: 'Good',
       submissionId: 'sub-1',
       evidence: { baseRating: 'Good', timingAdjusted: false, reasons: ['correct'] },

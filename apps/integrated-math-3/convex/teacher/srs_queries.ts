@@ -5,7 +5,7 @@ import { getTeacherClassProficiencyHandler } from "../objectiveProficiency";
 import type {
   ObjectivePriority,
   TeacherProficiencyView,
-} from "../../lib/practice/objective-proficiency";
+} from "@math-platform/srs-engine";
 
 async function getAuthorizedTeacher(
   ctx: QueryCtx,

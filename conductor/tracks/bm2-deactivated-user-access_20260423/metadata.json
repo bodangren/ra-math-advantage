@@ -3,9 +3,9 @@
   "type": "security",
   "status": "in_progress",
   "created_at": "2026-04-23T00:00:00Z",
-  "updated_at": "2026-04-23T00:00:00Z",
+  "updated_at": "2026-04-23T14:00:00Z",
   "description": "Swap JWT-only auth for active-credential verification on 7 BM2 API endpoints to revoke access on deactivation",
-  "estimated_tasks": 3,
+  "estimated_tasks": 5,
   "actual_tasks": null,
-  "deviation_notes": ""
+  "deviation_notes": "Tasks 2-4 (route swaps) complete. Task 1 (auth tests) and Task 5 (verification) remain. Also fixed datasets route not in original spec. Auth check pattern changed from if (!claims) to if (claims instanceof Response) because requireActive* functions return SessionClaims | Response, not SessionClaims | null."
 }

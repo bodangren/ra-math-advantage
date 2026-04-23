@@ -23,15 +23,17 @@
 import { internalQuery, type QueryCtx } from "./_generated/server";
 import { v } from "convex/values";
 import { Id } from "./_generated/dataModel";
-import { aggregateCardsToEvidence } from "../lib/practice/srs-proficiency";
 import {
+  aggregateCardsToEvidence,
   computeObjectiveProficiency,
   buildStudentProficiencyView,
   buildTeacherProficiencyView,
+  type ProficiencyCardInput as ProficiencyCardState,
+  type TimingBaselines,
   type ObjectivePriority,
   type StudentProficiencyView,
   type TeacherProficiencyView,
-} from "../lib/practice/objective-proficiency";
+} from "@math-platform/srs-engine";
 
 const VALID_PRIORITIES = new Set<string>(['essential', 'supporting', 'extension', 'triaged']);
 
@@ -39,10 +41,7 @@ function validatePriority(value: string): ObjectivePriority {
   return VALID_PRIORITIES.has(value) ? (value as ObjectivePriority) : 'essential';
 }
 
-import type {
-  ProficiencyCardInput as ProficiencyCardState,
-  TimingBaselines,
-} from "../lib/practice/srs-proficiency";
+
 
 async function fetchTimingBaselines(
   ctx: QueryCtx,
