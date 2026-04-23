@@ -42,7 +42,7 @@ function mapDbCardToContract(
 
 export type SaveCardArgs = {
   cardId: string;
-  studentId: string;
+  studentId: Id<"profiles">;
   objectiveId: string;
   problemFamilyId: string;
   stability: number;
@@ -111,7 +111,7 @@ export async function saveCardHandler(
 export const saveCard = internalMutation({
   args: {
     cardId: v.string(),
-    studentId: v.string(),
+    studentId: v.id("profiles"),
     objectiveId: v.string(),
     problemFamilyId: v.string(),
     stability: v.number(),
@@ -139,7 +139,7 @@ export const saveCards = internalMutation({
     cards: v.array(
       v.object({
         cardId: v.string(),
-        studentId: v.string(),
+        studentId: v.id("profiles"),
         objectiveId: v.string(),
         problemFamilyId: v.string(),
         stability: v.number(),
@@ -231,37 +231,37 @@ export const getCard = internalQuery({
 
 export async function getCardsByStudentHandler(
   ctx: QueryCtx,
-  args: { studentId: string }
+  args: { studentId: Id<"profiles"> }
 ) {
   const cards = await ctx.db
     .query("srs_cards")
     .withIndex("by_student", (q) =>
-      q.eq("studentId", args.studentId as Id<"profiles">)
+      q.eq("studentId", args.studentId)
     )
     .collect();
   return cards.map(mapDbCardToContract);
 }
 
 export const getCardsByStudent = internalQuery({
-  args: { studentId: v.string() },
+  args: { studentId: v.id("profiles") },
   handler: getCardsByStudentHandler,
 });
 
 export async function getCardByStudentAndFamilyHandler(
   ctx: QueryCtx,
-  args: { studentId: string; problemFamilyId: string }
+  args: { studentId: Id<"profiles">; problemFamilyId: string }
 ) {
   const card = await ctx.db
     .query("srs_cards")
     .withIndex("by_student_and_problem_family", (q) =>
-      q.eq("studentId", args.studentId as Id<"profiles">).eq("problemFamilyId", args.problemFamilyId)
+      q.eq("studentId", args.studentId).eq("problemFamilyId", args.problemFamilyId)
     )
     .first();
   return card ? mapDbCardToContract(card) : null;
 }
 
 export const getCardByStudentAndFamily = internalQuery({
-  args: { studentId: v.string(), problemFamilyId: v.string() },
+  args: { studentId: v.id("profiles"), problemFamilyId: v.string() },
   handler: getCardByStudentAndFamilyHandler,
 });
 
@@ -278,7 +278,7 @@ export const getCardsByObjective = internalQuery({
 
 export const getDueCards = internalQuery({
   args: {
-    studentId: v.string(),
+    studentId: v.id("profiles"),
     asOfDate: v.string(),
   },
   handler: async (ctx, args) => {

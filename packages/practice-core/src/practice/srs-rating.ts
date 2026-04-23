@@ -86,6 +86,10 @@ export type SrsRatingResult = {
  * ```
  */
 export function computeBaseRating(parts: SrsRatingInput['parts']): SrsRating {
+  if (parts.length === 0) {
+    return 'Again';
+  }
+
   let allCorrect = true;
   let hasAid = false;
 

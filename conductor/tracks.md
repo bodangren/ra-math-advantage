@@ -10,6 +10,11 @@ Tracks 1+4 unlock Track 8; Track 8 unlocks Tracks 9+10.
 
 ## Active Tracks
 
+- [x] **Track: BM2 Deactivated-User Access**
+   *Swap JWT-only auth for active-credential verification on 7 BM2 API endpoints to revoke access on deactivation*
+   *Link: [./conductor/tracks/bm2-deactivated-user-access_20260423/](./conductor/tracks/bm2-deactivated-user-access_20260423/)*
+   - Phase 1: Swap Auth Helpers and Update Tests [x]
+
 - [x] **[URGENT] Fix: Promise Type Mismatch in PhaseCompleteButton.test.tsx** — **COMPLETED**
    *Verify TypeScript error resolved - no changes needed*
    *Link: [./conductor/tracks/fix-phase-complete-button-type_20260412/](./conductor/tracks/fix-phase-complete-button-type_20260412/)*
@@ -708,7 +713,7 @@ AI Tutoring and Workbook scope is explicitly **import/adopt from BM2**, not gree
 - [ ] **Track: Monorepo Tech Debt Triage & Resolution**
      *Investigate and resolve all 45 open tech debt items to solidify monorepo migration — triage, fix, or close each item*
      *Link: [./conductor/tracks/monorepo-tech-debt-triage_20260422/](./conductor/tracks/monorepo-tech-debt-triage_20260422/)*
-      - Phase 1: BM2 TypeScript & Runtime Correctness [x]
+      - Phase 1: BM2 TypeScript & Runtime Correctness [x] [checkpoint: e0d36db]
      - Phase 2: SRS & Practice Correctness [x]
      - Phase 3: N+1 Query Performance [x]
      - Phase 4: CI/CD & Deployment Hardening [ ]

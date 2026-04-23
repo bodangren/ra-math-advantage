@@ -1,11 +1,11 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 import type { NextRequest } from 'next/server';
 
-const mockGetRequestSessionClaims = vi.fn();
+const mockRequireActiveRequestSessionClaims = vi.fn();
 const mockFetchInternalQuery = vi.fn();
 
 vi.mock('@/lib/auth/server', () => ({
-  getRequestSessionClaims: mockGetRequestSessionClaims,
+  requireActiveRequestSessionClaims: mockRequireActiveRequestSessionClaims,
 }));
 
 vi.mock('@/lib/convex/server', () => ({
@@ -54,7 +54,7 @@ describe('GET /api/activities/[activityId]', () => {
   beforeEach(() => {
     vi.clearAllMocks();
 
-    mockGetRequestSessionClaims.mockResolvedValue({
+    mockRequireActiveRequestSessionClaims.mockResolvedValue({
       sub: 'profile_123',
       username: 'student',
       role: 'student',
@@ -67,8 +67,10 @@ describe('GET /api/activities/[activityId]', () => {
       .mockResolvedValueOnce(fullActivity);
   });
 
-  it('returns 401 when unauthenticated', async () => {
-    mockGetRequestSessionClaims.mockResolvedValue(null);
+  it('returns 401 when unauthenticated or deactivated', async () => {
+    mockRequireActiveRequestSessionClaims.mockResolvedValue(
+      new Response(JSON.stringify({ error: 'Unauthorized' }), { status: 401 }),
+    );
 
     const response = await GET(
       buildRequest('http://localhost/api/activities/7a0bfc56-4b5a-4c41-a90e-0e5cc2e7319b'),

@@ -31,7 +31,7 @@ import type {
   ObjectiveProficiencyResult,
   StudentProficiencyView,
   TeacherProficiencyView,
-} from '@/lib/practice/objective-proficiency';
+} from '@math-platform/srs-engine';
 
 // ============================================
 // 2. Import public interfaces from other SRS modules

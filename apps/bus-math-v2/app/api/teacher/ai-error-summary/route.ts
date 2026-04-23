@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import { z } from 'zod';
 
-import { getRequestSessionClaims } from '@/lib/auth/server';
+import { requireActiveTeacherRequestClaims } from '@/lib/auth/server';
 import { fetchInternalQuery, internal } from '@/lib/convex/server';
 import { generateAISummary, buildDeterministicSummary } from '@math-platform/practice-core/error-analysis';
 import type { PracticeSubmissionEnvelope } from '@math-platform/practice-core/contract';
@@ -16,9 +16,9 @@ const querySchema = z.object({
 
 export async function GET(request: Request) {
   try {
-    const claims = await getRequestSessionClaims(request);
-    if (!claims) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    const claims = await requireActiveTeacherRequestClaims(request);
+    if (claims instanceof Response) {
+      return claims;
     }
 
     const { searchParams } = new URL(request.url);

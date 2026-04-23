@@ -6,7 +6,7 @@ import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Dialog, AlertDialog } from '@/components/ui/dialog';
-import type { ObjectivePriority } from '@/lib/practice/objective-proficiency';
+import type { ObjectivePriority } from '@math-platform/srs-engine';
 
 export interface ObjectiveIntervention {
   objectiveId: string;

@@ -5,7 +5,7 @@ import {
   buildTeacherProficiencyView,
   PROFICIENCY_THRESHOLD_DEFAULTS,
   type ProblemFamilyEvidence,
-} from '@/lib/practice/objective-proficiency';
+} from '../srs/objective-proficiency';
 
 function makeEvidence(
   overrides: Partial<ProblemFamilyEvidence> = {}

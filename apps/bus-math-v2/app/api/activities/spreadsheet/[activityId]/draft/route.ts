@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import { z } from 'zod';
-import { requireActiveStudentRequestClaims, requireStudentRequestClaims } from '@/lib/auth/server';
+import { requireActiveStudentRequestClaims } from '@/lib/auth/server';
 import { fetchInternalQuery, fetchInternalMutation, internal } from '@/lib/convex/server';
 
 const draftSchema = z.object({
@@ -21,7 +21,7 @@ export async function GET(
       );
     }
 
-    const claimsOrResponse = await requireStudentRequestClaims(request);
+    const claimsOrResponse = await requireActiveStudentRequestClaims(request);
     if (claimsOrResponse instanceof Response) {
       return claimsOrResponse;
     }
@@ -44,9 +44,7 @@ export async function GET(
   } catch (error) {
     console.error('Draft retrieval error:', error);
     return NextResponse.json(
-      {
-        error: error instanceof Error ? error.message : 'Failed to retrieve draft',
-      },
+      { error: 'Internal server error' },
       { status: 500 }
     );
   }
@@ -90,7 +88,7 @@ export async function POST(
     } catch (parseError) {
       return NextResponse.json(
         {
-          error: parseError instanceof Error ? parseError.message : 'Unable to parse request body',
+          error: 'Unable to parse request body',
         },
         { status: 400 }
       );
@@ -109,9 +107,7 @@ export async function POST(
   } catch (error) {
     console.error('Draft save error:', error);
     return NextResponse.json(
-      {
-        error: error instanceof Error ? error.message : 'Failed to save draft',
-      },
+      { error: 'Internal server error' },
       { status: 500 }
     );
   }

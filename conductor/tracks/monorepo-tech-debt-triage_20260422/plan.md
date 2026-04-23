@@ -1,6 +1,6 @@
 # Plan: Monorepo Tech Debt Triage & Resolution
 
-## Phase 1: BM2 TypeScript & Runtime Correctness [x] [checkpoint: b7f0205]
+## Phase 1: BM2 TypeScript & Runtime Correctness [x] [checkpoint: e0d36db]
 
 - [x] Task: Investigate BM2 fetchInternalQuery untyped `unknown`
     - [x] Write test: typed generic wrapper returns narrowed type

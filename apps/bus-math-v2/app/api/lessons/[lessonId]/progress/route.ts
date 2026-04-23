@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import { z } from 'zod';
-import { getRequestSessionClaims } from '@/lib/auth/server';
+import { requireActiveStudentRequestClaims } from '@/lib/auth/server';
 import { fetchInternalQuery, internal } from '@/lib/convex/server';
 import type {
   LessonProgressResponse,
@@ -16,9 +16,9 @@ export async function GET(
   { params }: { params: Promise<{ lessonId: string }> }
 ) {
   try {
-    const claims = await getRequestSessionClaims(request);
-    if (!claims) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    const claims = await requireActiveStudentRequestClaims(request);
+    if (claims instanceof Response) {
+      return claims;
     }
 
     const userId = claims.sub;
@@ -57,10 +57,7 @@ export async function GET(
   } catch (error) {
     console.error('Unexpected error:', error);
     return NextResponse.json(
-      {
-        error:
-          error instanceof Error ? error.message : 'Unexpected error while fetching progress',
-      },
+      { error: 'Internal server error' },
       { status: 500 },
     );
   }

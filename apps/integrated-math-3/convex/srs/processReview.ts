@@ -5,7 +5,7 @@ import type { MutationCtx } from "../_generated/server";
 
 const cardStateValidator = v.object({
   cardId: v.string(),
-  studentId: v.string(),
+  studentId: v.id("profiles"),
   objectiveId: v.string(),
   problemFamilyId: v.string(),
   stability: v.number(),
@@ -29,7 +29,7 @@ const cardStateValidator = v.object({
 const reviewEntryValidator = v.object({
   reviewId: v.string(),
   cardId: v.string(),
-  studentId: v.string(),
+  studentId: v.id("profiles"),
   rating: v.string(),
   submissionId: v.string(),
   evidence: v.any(),
@@ -41,7 +41,7 @@ const reviewEntryValidator = v.object({
 export type ProcessReviewArgs = {
   cardState: {
     cardId: string;
-    studentId: string;
+    studentId: Id<"profiles">;
     objectiveId: string;
     problemFamilyId: string;
     stability: number;
@@ -59,7 +59,7 @@ export type ProcessReviewArgs = {
   reviewEntry: {
     reviewId: string;
     cardId: string;
-    studentId: string;
+    studentId: Id<"profiles">;
     rating: string;
     submissionId: string;
     evidence: unknown;
@@ -79,7 +79,7 @@ export async function processReviewHandler(
     .query("srs_cards")
     .withIndex("by_student_and_problem_family", (q) =>
       q
-        .eq("studentId", cardState.studentId as Id<"profiles">)
+        .eq("studentId", cardState.studentId)
         .eq("problemFamilyId", cardState.problemFamilyId)
     )
     .first();
@@ -105,7 +105,7 @@ export async function processReviewHandler(
     cardDocId = existing._id;
   } else {
     cardDocId = await ctx.db.insert("srs_cards", {
-      studentId: cardState.studentId as Id<"profiles">,
+      studentId: cardState.studentId,
       objectiveId: cardState.objectiveId,
       problemFamilyId: cardState.problemFamilyId,
       stability: cardState.stability,
@@ -124,7 +124,7 @@ export async function processReviewHandler(
 
   const logEntryId = await ctx.db.insert("srs_review_log", {
     cardId: cardDocId,
-    studentId: reviewEntry.studentId as Id<"profiles">,
+    studentId: reviewEntry.studentId,
     rating: reviewEntry.rating,
     reviewId: reviewEntry.reviewId || undefined,
     submissionId: reviewEntry.submissionId || undefined,

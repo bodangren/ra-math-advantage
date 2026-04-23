@@ -2,6 +2,7 @@ import type { SrsCardState, CardStore, SrsReviewLogEntry } from "@math-platform/
 import { internal } from "../../convex/_generated/api";
 import { type MutationCtx } from "../../convex/_generated/server";
 import { processReviewHandler } from "../../convex/srs/processReview";
+import type { Id } from "../../convex/_generated/dataModel";
 
 export class ConvexCardStore implements CardStore {
   private ctx: MutationCtx;
@@ -17,14 +18,14 @@ export class ConvexCardStore implements CardStore {
 
   async getCardsByStudent(studentId: string): Promise<SrsCardState[]> {
     const result = await this.ctx.runQuery(internal.srs.cards.getCardsByStudent, {
-      studentId,
+      studentId: studentId as Id<"profiles">,
     });
     return result;
   }
 
   async getCardByStudentAndFamily(studentId: string, problemFamilyId: string): Promise<SrsCardState | null> {
     const result = await this.ctx.runQuery(internal.srs.cards.getCardByStudentAndFamily, {
-      studentId,
+      studentId: studentId as Id<"profiles">,
       problemFamilyId,
     });
     return result;
@@ -39,7 +40,7 @@ export class ConvexCardStore implements CardStore {
 
   async getDueCards(studentId: string, now: string): Promise<SrsCardState[]> {
     const result = await this.ctx.runQuery(internal.srs.cards.getDueCards, {
-      studentId,
+      studentId: studentId as Id<"profiles">,
       asOfDate: now,
     });
     return result;
@@ -48,7 +49,7 @@ export class ConvexCardStore implements CardStore {
   async saveCard(card: SrsCardState): Promise<void> {
     await this.ctx.runMutation(internal.srs.cards.saveCard, {
       cardId: card.cardId,
-      studentId: card.studentId,
+      studentId: card.studentId as Id<"profiles">,
       objectiveId: card.objectiveId,
       problemFamilyId: card.problemFamilyId,
       stability: card.stability,
@@ -69,7 +70,7 @@ export class ConvexCardStore implements CardStore {
     await this.ctx.runMutation(internal.srs.cards.saveCards, {
       cards: cards.map((card) => ({
         cardId: card.cardId,
-        studentId: card.studentId,
+        studentId: card.studentId as Id<"profiles">,
         objectiveId: card.objectiveId,
         problemFamilyId: card.problemFamilyId,
         stability: card.stability,
@@ -94,11 +95,14 @@ export class ConvexCardStore implements CardStore {
    */
   async saveCardAndReview(card: SrsCardState, reviewLog: SrsReviewLogEntry): Promise<void> {
     await processReviewHandler(this.ctx, {
-      cardState: card,
+      cardState: {
+        ...card,
+        studentId: card.studentId as Id<"profiles">,
+      },
       reviewEntry: {
         reviewId: reviewLog.reviewId,
         cardId: reviewLog.cardId,
-        studentId: reviewLog.studentId,
+        studentId: reviewLog.studentId as Id<"profiles">,
         rating: reviewLog.rating,
         submissionId: reviewLog.submissionId,
         evidence: reviewLog.evidence,

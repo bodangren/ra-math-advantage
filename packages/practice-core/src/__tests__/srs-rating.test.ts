@@ -66,6 +66,10 @@ describe('computeBaseRating (package)', () => {
     expect(computeBaseRating(parts)).toBe('Again');
   });
 
+  it('returns Again when parts array is empty', () => {
+    expect(computeBaseRating([])).toBe('Again');
+  });
+
   it('treats hintsUsed undefined as 0', () => {
     const parts = [
       { isCorrect: true, hintsUsed: undefined, revealStepsSeen: 0, misconceptionTags: [] },

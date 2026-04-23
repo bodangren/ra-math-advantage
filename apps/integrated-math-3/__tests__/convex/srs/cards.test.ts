@@ -157,7 +157,7 @@ describe('mapDbCardToContract studentId type alignment', () => {
 
     await saveCardHandler(
       { db } as unknown as import('@/convex/_generated/server').MutationCtx,
-      card
+      card as unknown as Parameters<typeof saveCardHandler>[1]
     );
 
     expect(mockInsert).toHaveBeenCalledTimes(1);

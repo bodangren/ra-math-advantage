@@ -1,14 +1,14 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 import type { NextRequest } from 'next/server';
 
-const mockGetRequestSessionClaims = vi.fn();
+const mockRequireActiveStudentRequestClaims = vi.fn();
 const mockResolveOpenRouterProviderFromEnv = vi.fn();
 const mockAssembleLessonChatbotContext = vi.fn();
 const mockBuildPublishedCurriculumManifest = vi.fn();
 const mockFetchInternalMutation = vi.fn();
 
 vi.mock('@/lib/auth/server', () => ({
-  getRequestSessionClaims: mockGetRequestSessionClaims,
+  requireActiveStudentRequestClaims: mockRequireActiveStudentRequestClaims,
 }));
 
 vi.mock('@math-platform/ai-tutoring', () => ({
@@ -45,8 +45,10 @@ describe('POST /api/student/lesson-chatbot', () => {
     POST = routeModule.POST;
   });
 
-  it('returns 401 when unauthenticated', async () => {
-    mockGetRequestSessionClaims.mockResolvedValue(null);
+  it('returns 401 when unauthenticated or deactivated', async () => {
+    mockRequireActiveStudentRequestClaims.mockResolvedValue(
+      new Response(JSON.stringify({ error: 'Unauthorized' }), { status: 401 }),
+    );
 
     const response = await POST(buildRequest({
       lessonId: 'lesson_01_01',
@@ -58,13 +60,9 @@ describe('POST /api/student/lesson-chatbot', () => {
   });
 
   it('returns 403 when user is not a student', async () => {
-    mockGetRequestSessionClaims.mockResolvedValue({
-      sub: 'profile_123',
-      username: 'teacher',
-      role: 'teacher',
-      iat: 1,
-      exp: 2,
-    });
+    mockRequireActiveStudentRequestClaims.mockResolvedValue(
+      new Response(JSON.stringify({ error: 'Forbidden' }), { status: 403 }),
+    );
 
     const response = await POST(buildRequest({
       lessonId: 'lesson_01_01',
@@ -76,7 +74,7 @@ describe('POST /api/student/lesson-chatbot', () => {
   });
 
   it('returns 400 when required fields are missing', async () => {
-    mockGetRequestSessionClaims.mockResolvedValue({
+    mockRequireActiveStudentRequestClaims.mockResolvedValue({
       sub: 'profile_123',
       username: 'student',
       role: 'student',
@@ -90,7 +88,7 @@ describe('POST /api/student/lesson-chatbot', () => {
   });
 
   it('returns 400 when question is too long', async () => {
-    mockGetRequestSessionClaims.mockResolvedValue({
+    mockRequireActiveStudentRequestClaims.mockResolvedValue({
       sub: 'profile_123',
       username: 'student',
       role: 'student',
@@ -110,7 +108,7 @@ describe('POST /api/student/lesson-chatbot', () => {
   });
 
   it('returns 200 with AI response when valid request', async () => {
-    mockGetRequestSessionClaims.mockResolvedValue({
+    mockRequireActiveStudentRequestClaims.mockResolvedValue({
       sub: 'profile_123',
       username: 'student',
       role: 'student',

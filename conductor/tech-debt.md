@@ -10,11 +10,11 @@
 |------|-----|--------|-------|
 | Approval status race condition (no version/lock) | High | Resolved | Content hash mismatch check added (review-15); stale approval rejected |
 | N+1 query: phase sections in progress/preview/monitoring queries | High | Resolved | Batched via Promise.all in student.ts and teacher.ts |
-| Deactivated users can access BM2 API routes | High | Open | 7 endpoints use JWT-only verification; need requireActive*SessionClaims |
+| Deactivated users can access BM2 API routes | High | Resolved | All 7 endpoints now use requireActive*SessionClaims; auth check uses instanceof Response pattern |
 | Teacher SRS queries: N+1 per-student unbounded .collect() loops | High | Resolved | Batched via Promise.all in objectiveProficiency.ts |
 | Equivalence checker: 6 aspirational tests marked .todo | High | Open | Needs symbolic math lib |
-| SRS CardStore: studentId type mismatch (contract vs schema) | High | Resolved | By design: SRS engine uses string for storage-agnosticism; Convex adapter handles conversion |
-| lib/practice/objective-proficiency.ts + objective-policy.ts unmigrated | High | Resolved | Foundational types (ObjectivePriority, ObjectivePracticePolicy) extracted to srs-engine; app-level logic is Convex-specific |
+| SRS CardStore: studentId type mismatch (contract vs schema) | High | Resolved | Test files updated with Id<"profiles"> casts in review-17 |
+| lib/practice/objective-proficiency.ts + objective-policy.ts unmigrated | High | Resolved | Extracted to packages/srs-engine/src/srs/; all imports rewired to @math-platform/srs-engine |
 | BM2 lib/auth ~250 lines duplicated from core-auth | High | Open | Diverges silently; needs package adoption |
 | BM2 lib/practice ~1305 lines duplicated from practice-core | High | Open | 73 local vs 12 package imports; engine/ subtree is BM2-specific |
 | BM2 chatbot prompt injection defense still weak | Medium | Open | sanitizeInput only strips markdown chars; no system prompt guard or LLM-based filter |

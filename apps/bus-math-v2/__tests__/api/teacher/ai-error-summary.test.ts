@@ -1,6 +1,6 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
-const mockGetRequestSessionClaims = vi.fn();
+const mockRequireActiveTeacherRequestClaims = vi.fn();
 const mockFetchInternalQuery = vi.fn();
 const mockGenerateAISummary = vi.fn();
 const mockBuildDeterministicSummary = vi.fn();
@@ -8,7 +8,7 @@ const mockResolveAIProviderFromEnv = vi.fn();
 const mockIsPracticeSubmissionEnvelope = vi.fn();
 
 vi.mock('@/lib/auth/server', () => ({
-  getRequestSessionClaims: mockGetRequestSessionClaims,
+  requireActiveTeacherRequestClaims: mockRequireActiveTeacherRequestClaims,
 }));
 
 vi.mock('@/lib/convex/server', () => ({
@@ -83,7 +83,7 @@ const DET_SUMMARY = {
 describe('GET /api/teacher/ai-error-summary', () => {
   beforeEach(() => {
     vi.clearAllMocks();
-    mockGetRequestSessionClaims.mockResolvedValue({
+    mockRequireActiveTeacherRequestClaims.mockResolvedValue({
       sub: 'teacher_profile_1',
       username: 'teacher',
       role: 'teacher',
@@ -95,8 +95,10 @@ describe('GET /api/teacher/ai-error-summary', () => {
     mockIsPracticeSubmissionEnvelope.mockReturnValue(true);
   });
 
-  it('returns 401 when unauthenticated', async () => {
-    mockGetRequestSessionClaims.mockResolvedValue(null);
+  it('returns 401 when unauthenticated or deactivated', async () => {
+    mockRequireActiveTeacherRequestClaims.mockResolvedValue(
+      new Response(JSON.stringify({ error: 'Unauthorized' }), { status: 401 }),
+    );
 
     const response = await GET(
       buildRequest({ lessonId: 'lesson_1', studentId: 'student_1' }),

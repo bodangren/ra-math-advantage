@@ -8,7 +8,7 @@ import {
 import type {
   TeacherProficiencyView,
   ObjectivePriority,
-} from '@/lib/practice/objective-proficiency';
+} from '@math-platform/srs-engine';
 
 function makeTeacherSrsMockCtx(overrides: {
   enrollments?: Array<{

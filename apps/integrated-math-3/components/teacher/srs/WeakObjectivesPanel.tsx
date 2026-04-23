@@ -2,7 +2,7 @@
 
 import { Target, AlertTriangle } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import type { ObjectivePriority } from '@/lib/practice/objective-proficiency';
+import type { ObjectivePriority } from '@math-platform/srs-engine';
 
 export interface WeakObjectiveView {
   objectiveId: string;

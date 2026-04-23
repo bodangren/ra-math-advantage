@@ -1,4 +1,4 @@
-import { getRequestSessionClaims } from '@/lib/auth/server';
+import { requireActiveRequestSessionClaims } from '@/lib/auth/server';
 import { NextRequest, NextResponse } from 'next/server';
 import path from 'path';
 import * as fs from 'fs';
@@ -7,9 +7,9 @@ export async function GET(
   request: NextRequest,
   context: { params: Promise<{ type: 'student' | 'teacher' }> }
 ) {
-  const session = await getRequestSessionClaims(request);
-  if (!session) {
-    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+  const session = await requireActiveRequestSessionClaims(request);
+  if (session instanceof Response) {
+    return session;
   }
 
   const params = await context.params;

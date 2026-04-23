@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import { OBJECTIVE_POLICIES } from '@/convex/seed/objective_policies';
-import { objectivePolicySchema } from '@/lib/practice/objective-policy';
+import { objectivePolicySchema } from '@math-platform/srs-engine';
 
 const ALL_STANDARD_CODES = [
   'HSA-SSE.B.3',
