@@ -12,6 +12,7 @@
 
 ## Recurring Gotchas
 
+- (2026-04-23, bm2-deactivated-user-access) Swapping an auth helper in a route requires updating EVERY test file that mocks it — including duplicate `__tests__/api/` and `__tests__/app/api/` test suites
 - (2026-04-23, review-17) `requireActive*SessionClaims` returns `SessionClaims | Response`, NOT `SessionClaims | null` — must use `instanceof Response` check, not `!claims` falsy check
 - (2026-04-23, review-17) When extracting modules to packages, grep for ALL import paths (including relative `../../` Convex paths) — not just `@/` app imports
 - (2026-04-23, review-14) Never return `error.message` in API error responses — leaks internal details (stack traces, schema, env). Return generic message + log server-side
@@ -37,3 +38,4 @@
 - (2026-04-19, monorepo-ci) CI matrices with pre-existing failures: use `continue-on-error: true` + `|| true` fallback; document known failures
 - (2026-04-23, review-14) Always wrap API route handlers in try/catch — unhandled errors may leak stack traces or hang connections
 - (2026-04-23, review-14) Seed data must cover all modules, not just first — otherwise features silently break for unseeded content
+- (2026-04-23, bm2-type-sweep) When `fetchInternalQuery` gains generic type params, all app call sites passing `string` for `Id<"profiles">` break. Batch-fix: cast once at variable assignment, not per-call

@@ -1,6 +1,6 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
-const mockGetRequestSessionClaims = vi.fn();
+const mockRequireActiveRequestSessionClaims = vi.fn();
 const mockRequireActiveStudentRequestClaims = vi.fn();
 const mockFetchInternalQuery = vi.fn();
 const mockFetchInternalMutation = vi.fn();
@@ -8,7 +8,7 @@ const mockValidateSpreadsheetData = vi.fn();
 const mockValidateSubmission = vi.fn();
 
 vi.mock('@/lib/auth/server', () => ({
-  getRequestSessionClaims: mockGetRequestSessionClaims,
+  requireActiveRequestSessionClaims: mockRequireActiveRequestSessionClaims,
   requireActiveStudentRequestClaims: mockRequireActiveStudentRequestClaims,
 }));
 
@@ -128,22 +128,14 @@ describe('POST /api/activities/spreadsheet/[activityId]/submit', () => {
   beforeEach(() => {
     vi.clearAllMocks();
 
-    mockGetRequestSessionClaims.mockResolvedValue({
-      sub: 'profile_student',
-      username: 'student',
-      role: 'student',
-      iat: 1,
-      exp: 2,
-    });
     mockRequireActiveStudentRequestClaims.mockImplementation(async () => {
-      const claims = await mockGetRequestSessionClaims();
-      if (!claims) {
-        return Response.json({ error: 'Unauthorized' }, { status: 401 });
-      }
-      if (claims.role !== 'student') {
-        return Response.json({ error: 'Forbidden' }, { status: 403 });
-      }
-      return claims;
+      return {
+        sub: 'profile_student',
+        username: 'student',
+        role: 'student',
+        iat: 1,
+        exp: 2,
+      };
     });
 
     setDefaultFetchQueryMocks();
@@ -164,8 +156,10 @@ describe('POST /api/activities/spreadsheet/[activityId]/submit', () => {
     });
   });
 
-  it('returns 401 when unauthenticated', async () => {
-    mockGetRequestSessionClaims.mockResolvedValue(null);
+  it('returns 401 when unauthenticated or deactivated', async () => {
+    mockRequireActiveStudentRequestClaims.mockResolvedValue(
+      Response.json({ error: 'Unauthorized' }, { status: 401 }),
+    );
 
     const response = await POST(
       buildPostRequest({
@@ -176,6 +170,7 @@ describe('POST /api/activities/spreadsheet/[activityId]/submit', () => {
 
     expect(response.status).toBe(401);
     expect(mockFetchInternalQuery).not.toHaveBeenCalled();
+    expect(mockFetchInternalMutation).not.toHaveBeenCalled();
   });
 
   it('returns 401 when student session is deactivated', async () => {
@@ -196,12 +191,8 @@ describe('POST /api/activities/spreadsheet/[activityId]/submit', () => {
   });
 
   it('returns 403 when a teacher session attempts to submit spreadsheet work', async () => {
-    mockGetRequestSessionClaims.mockResolvedValue({
-      sub: 'profile_teacher',
-      username: 'teacher',
-      role: 'teacher',
-      iat: 1,
-      exp: 2,
+    mockRequireActiveStudentRequestClaims.mockImplementation(async () => {
+      return Response.json({ error: 'Forbidden' }, { status: 403 });
     });
 
     const response = await POST(
@@ -281,7 +272,7 @@ describe('GET /api/activities/spreadsheet/[activityId]/submit', () => {
   beforeEach(() => {
     vi.clearAllMocks();
 
-    mockGetRequestSessionClaims.mockResolvedValue({
+    mockRequireActiveRequestSessionClaims.mockResolvedValue({
       sub: 'profile_student',
       username: 'student',
       role: 'student',
@@ -303,7 +294,7 @@ describe('GET /api/activities/spreadsheet/[activityId]/submit', () => {
   });
 
   it('allows teacher replay for a student in the same organization', async () => {
-    mockGetRequestSessionClaims.mockResolvedValue({
+    mockRequireActiveRequestSessionClaims.mockResolvedValue({
       sub: 'profile_teacher',
       username: 'teacher',
       role: 'teacher',
@@ -351,7 +342,7 @@ describe('GET /api/activities/spreadsheet/[activityId]/submit', () => {
   });
 
   it('rejects teacher replay requests for students outside the teacher organization', async () => {
-    mockGetRequestSessionClaims.mockResolvedValue({
+    mockRequireActiveRequestSessionClaims.mockResolvedValue({
       sub: 'profile_teacher',
       username: 'teacher',
       role: 'teacher',

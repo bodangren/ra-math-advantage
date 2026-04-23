@@ -11,6 +11,9 @@ vi.mock('@/lib/auth/server', () => ({
 vi.mock('@/lib/convex/server', () => ({
   fetchInternalQuery: mockFetchInternalQuery,
   internal: {
+    api: {
+      getProfile: 'internal.api.getProfile',
+    },
     activities: {
       getActivityById: 'internal.activities.getActivityById',
     },

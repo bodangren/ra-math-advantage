@@ -1,10 +1,10 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
-const mockGetRequestSessionClaims = vi.fn();
+const mockRequireActiveTeacherRequestClaims = vi.fn();
 const mockFetchInternalQuery = vi.fn();
 
 vi.mock('@/lib/auth/server', () => ({
-  getRequestSessionClaims: mockGetRequestSessionClaims,
+  requireActiveTeacherRequestClaims: mockRequireActiveTeacherRequestClaims,
 }));
 
 vi.mock('@/lib/convex/server', () => ({
@@ -33,7 +33,7 @@ function buildRequest(params: Record<string, string>) {
 describe('GET /api/teacher/submission-detail', () => {
   beforeEach(() => {
     vi.clearAllMocks();
-    mockGetRequestSessionClaims.mockResolvedValue({
+    mockRequireActiveTeacherRequestClaims.mockResolvedValue({
       sub: 'teacher_profile_1',
       username: 'teacher',
       role: 'teacher',
@@ -42,8 +42,10 @@ describe('GET /api/teacher/submission-detail', () => {
     });
   });
 
-  it('returns 401 when the requester is unauthenticated', async () => {
-    mockGetRequestSessionClaims.mockResolvedValue(null);
+  it('returns 401 when the requester is unauthenticated or deactivated', async () => {
+    mockRequireActiveTeacherRequestClaims.mockResolvedValue(
+      new Response(JSON.stringify({ error: 'Unauthorized' }), { status: 401 }),
+    );
 
     const response = await GET(
       buildRequest({

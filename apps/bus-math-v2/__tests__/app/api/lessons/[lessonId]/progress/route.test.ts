@@ -1,10 +1,10 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
-const mockGetRequestSessionClaims = vi.fn();
+const mockRequireActiveStudentRequestClaims = vi.fn();
 const mockFetchInternalQuery = vi.fn();
 
 vi.mock('@/lib/auth/server', () => ({
-  getRequestSessionClaims: mockGetRequestSessionClaims,
+  requireActiveStudentRequestClaims: mockRequireActiveStudentRequestClaims,
 }));
 
 vi.mock('@/lib/convex/server', () => ({
@@ -25,7 +25,7 @@ function buildContext(lessonId: string) {
 describe('GET /api/lessons/[lessonId]/progress', () => {
   beforeEach(() => {
     vi.clearAllMocks();
-    mockGetRequestSessionClaims.mockResolvedValue({
+    mockRequireActiveStudentRequestClaims.mockResolvedValue({
       sub: 'profile_123',
       username: 'student',
       role: 'student',
@@ -34,8 +34,10 @@ describe('GET /api/lessons/[lessonId]/progress', () => {
     });
   });
 
-  it('returns 401 when unauthenticated', async () => {
-    mockGetRequestSessionClaims.mockResolvedValue(null);
+  it('returns 401 when unauthenticated or deactivated', async () => {
+    mockRequireActiveStudentRequestClaims.mockResolvedValue(
+      new Response(JSON.stringify({ error: 'Unauthorized' }), { status: 401 }),
+    );
 
     const response = await GET(
       new Request('http://localhost/api/lessons/lesson-1/progress'),

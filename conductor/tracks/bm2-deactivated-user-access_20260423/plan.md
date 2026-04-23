@@ -3,9 +3,9 @@
 ## Phase 1: Swap Auth Helpers and Update Tests
 
 ### Task 1: Add active-auth tests for `lib/auth/server`
-- [ ] Write tests for `requireActiveRequestSessionClaims` returning 401 when credential is missing/deactivated
-- [ ] Write tests for `requireActiveStudentRequestClaims` returning 401/403 appropriately
-- [ ] Write tests for `requireActiveTeacherRequestClaims` returning 401/403 appropriately
+- [x] Write tests for `requireActiveRequestSessionClaims` returning 401 when credential is missing/deactivated
+- [x] Write tests for `requireActiveStudentRequestClaims` returning 401/403 appropriately
+- [x] Write tests for `requireActiveTeacherRequestClaims` returning 401/403 appropriately
 
 ### Task 2: Update Student-Facing Routes
 - [x] `GET /api/lessons/[lessonId]/progress` — swap to `requireActiveStudentRequestClaims`, update test mocks
@@ -22,6 +22,6 @@
 - [x] `GET /api/datasets/[filename]` — swap to `requireActiveRequestSessionClaims`
 
 ### Task 5: Verification
-- [ ] Run BM2 test suite (`CI=true npm run test` in BM2 app context)
-- [ ] Run BM2 typecheck (`npx tsc --noEmit`)
-- [ ] Run BM2 lint (`npm run lint`)
+- [x] Run BM2 test suite (`CI=true npm run test` in BM2 app context) — auth-related failures resolved; 27 pre-existing failures remain (convex-auth-boundary, component-approvals-auth, dev-stack-script, progress/assessment 422)
+- [x] Run BM2 typecheck (`npx tsc --noEmit`) — 0 errors
+- [x] Run BM2 lint (`npm run lint`) — no linter configured (pre-existing tooling gap)
