@@ -1,6 +1,6 @@
 # Current Directive
 
-> Updated: 2026-04-24 (Code review #19 — post-Phase-4 audit, bundle-splitting verification, dead code cleanup)
+> Updated: 2026-04-24 (Code review #20 — audit of past 6 phases, BM2 workbook/PDF auth fix, cards.ts redundant cast cleanup)
 
 ## Mission
 
@@ -14,7 +14,8 @@ Monorepo migration complete (Waves 0-6). All major feature tracks done. Current 
 4. **SRS dashboard.ts + reviews.ts test coverage** — streak calculation and review persistence have zero tests
 5. **Convex generated types stale** — 5 production `as any` casts; run `npx convex dev` to regenerate
 6. **RSC bundle optimization** — page chunk 785 KB; vendor-charts 830 KB; needs further code-splitting (target page < 500 KB)
-7. **Monorepo tech-debt triage Phase 6–8** — AI tutoring quality, UI fixes, tech-debt cleanup
+7. **SRS engine studentId type alignment** — Package defines `studentId: string` but Convex uses `Id<"profiles">`; 7 bridging casts in convexCardStore.ts
+8. **Monorepo tech-debt triage Phase 6–8** — AI tutoring quality, UI fixes, tech-debt cleanup
 
 ## Non-Negotiable Rules
 
@@ -42,6 +43,7 @@ Monorepo migration complete (Waves 0-6). All major feature tracks done. Current 
 - [x] Bundle-size CI audit step added to workflow
 - [ ] Monorepo tech-debt triage Phase 5 (Package Quality)
 - [ ] N+1 queries: public.ts lesson_versions per-lesson fetch
+- [ ] SRS engine studentId type alignment (string → branded type)
 - [ ] Convex generated types regeneration
 - [ ] RSC bundle: page chunk 785 KB → < 500 KB
 - [ ] Monorepo tech-debt triage Phase 6-8
@@ -166,3 +168,35 @@ Post-Phase-4 audit covering tech debt triage Phases 1-4 (BM2 TS fix, SRS correct
 | error.message returned from seed.ts internal mutations | Low | 13 locations; internal-only risk |
 | Page chunk 785 KB, vendor-charts 830 KB | Medium | Further code-splitting needed |
 | CI: inconsistent --prefix vs --workspace vs cd && patterns | Low | Cosmetic; works but confusing |
+
+### Code Review Summary (2026-04-24 — Review #20)
+
+Full audit of past 6 work phases: security hardening pre-work, SRS type alignment, deactivated-user access, SRS extraction imports, BM2 auth patterns, and plan tracking.
+
+### Verification Results
+
+| Check | Result |
+|-------|--------|
+| Typecheck (IM3) | Pass (0 errors) |
+| Typecheck (BM2) | Pass (0 errors in app code; pre-existing readonly-array test errors unrelated) |
+| Lint (IM3) | Pass (0 warnings) |
+| Tests (IM3) | 3226 passed, 6 todo (266 test files) |
+| Tests (BM2 workbook/pdf) | 19 passed (3 test files) |
+| Build (IM3) | Pass (6.53s; page 785 KB, vendor-charts 830 KB) |
+
+### Issues Fixed in This Review (Review #20)
+
+| Issue | Severity | Fix |
+|-------|----------|-----|
+| 3 BM2 routes (workbooks/capstone, workbooks/[unit]/[lesson], pdfs/[pdfName]) still use `getRequestSessionClaims` — deactivated users can access | CRITICAL | Swapped to `requireActiveRequestSessionClaims` with `instanceof Response` check pattern |
+| 3 BM2 route test files mock `getRequestSessionClaims` instead of `requireActiveRequestSessionClaims` | HIGH | Updated all 3 test files to mock `requireActiveRequestSessionClaims` and return `new Response(...)` for unauthenticated tests |
+| 5 redundant `as Id<"profiles">` casts in cards.ts (args/fields already typed) | MEDIUM | Removed all 5 redundant casts from saveCardHandler, saveCards, and getDueCards |
+| Stale describe block references old path `lib/practice/objective-proficiency.ts` | LOW | Updated to `@math-platform/srs-engine` in contract.test.ts |
+
+### Issues Found (Deferred)
+
+| Issue | Severity | Notes |
+|-------|----------|-------|
+| BM2 activities/complete/route.ts proxies `errorPayload.details` from internal API | Low | Could expose internal info; sanitize upstream response |
+| SRS engine `studentId: string` vs Convex `Id<"profiles">` type mismatch | Medium | 7 bridging casts in convexCardStore.ts; package types need branded string |
+| JSDoc `@example` blocks silently dropped during SRS extraction | Low | 6 symbols lost documentation; restore in package version |

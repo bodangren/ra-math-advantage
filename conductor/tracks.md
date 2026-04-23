@@ -11,9 +11,9 @@ Tracks 1+4 unlock Track 8; Track 8 unlocks Tracks 9+10.
 ## Active Tracks
 
 - [x] **Track: BM2 Deactivated-User Access**
-   *Swap JWT-only auth for active-credential verification on 7 BM2 API endpoints to revoke access on deactivation*
+   *Swap JWT-only auth for active-credential verification on all 10 BM2 API endpoints to revoke access on deactivation*
    *Link: [./conductor/tracks/bm2-deactivated-user-access_20260423/](./conductor/tracks/bm2-deactivated-user-access_20260423/)*
-   - Phase 1: Swap Auth Helpers and Update Tests [x]
+    - Phase 1: Swap Auth Helpers and Update Tests [x] (review-20: added workbooks + pdfs routes missed in initial sweep)
 
 - [x] **[URGENT] Fix: Promise Type Mismatch in PhaseCompleteButton.test.tsx** — **COMPLETED**
    *Verify TypeScript error resolved - no changes needed*

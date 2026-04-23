@@ -10,7 +10,7 @@
 |------|-----|--------|-------|
 | Approval status race condition (no version/lock) | High | Resolved | Content hash mismatch check added (review-15); stale approval rejected |
 | N+1 query: phase sections in progress/preview/monitoring queries | High | Resolved | Batched via Promise.all in student.ts and teacher.ts |
-| Deactivated users can access BM2 API routes | High | Resolved | All 7 endpoints now use requireActive*SessionClaims; auth check uses instanceof Response pattern |
+| Deactivated users can access BM2 API routes | High | Resolved | All 10 endpoints now use requireActive*SessionClaims; workbooks + pdfs routes fixed in review-18 |
 | Teacher SRS queries: N+1 per-student unbounded .collect() loops | High | Resolved | Batched via Promise.all in objectiveProficiency.ts |
 | Equivalence checker: 6 aspirational tests marked .todo | High | Partial | 4 converted to real tests (pattern-matching); 2 remain .todo (need symbolic math lib) |
 | SRS CardStore: studentId type mismatch (contract vs schema) | High | Resolved | Test files updated with Id<"profiles"> casts in review-17 |
@@ -18,7 +18,7 @@
 | BM2 lib/auth ~250 lines duplicated from core-auth | High | Open | Diverges silently; needs package adoption |
 | BM2 lib/practice ~1305 lines duplicated from practice-core | High | Open | 73 local vs 12 package imports; engine/ subtree is BM2-specific |
 | BM2 chatbot prompt injection defense still weak | Medium | Open | sanitizeInput only strips markdown chars; no system prompt guard or LLM-based filter |
-| 5 production `as any` casts on Convex `internal` (IM3) | Medium | Open | Stale generated types; run npx convex dev to regenerate |
+| 5 production `as any` casts on Convex `internal` (IM3) | Medium | Open | Stale generated types; run npx convex dev to regenerate; seed.ts `(internal as any).seed` confirmed in review-18 |
 | 21 `v.any()` fields in IM3 Convex schema | Medium | Open | Zero runtime validation on content, props, submissionData, evidence, fsrsState |
 | No rate limiting on 5 BM2 API endpoints | Medium | Open | phases/complete, assessment, activities, error-summary, ai-error-summary |
 | BM2 login endpoint has no input length limits | Medium | Open | Multi-MB payloads could exhaust memory/slow hashing |
@@ -44,3 +44,5 @@
 | 40+ seed lesson tests vacuous | Low | Open | Test hardcoded data against itself; convert to data-driven validator |
 | N+1: lesson_versions per-lesson in public.ts | Medium | Open | getCurriculum + getUnitSummaries query per lesson; fetch once, build map |
 | internal Convex fns rely on action wrapper for auth | Medium | Open | activities.ts, study.ts, srs/cards.ts, student.ts have no defense-in-depth |
+| BM2 activities/complete/route.ts proxies errorPayload.details | Low | Open | Internal API details exposed to client; sanitize upstream response |
+| SRS engine studentId:string vs Convex Id<"profiles"> | Medium | Open | 7 bridging casts in convexCardStore.ts; type mismatch in @math-platform/srs-engine package |

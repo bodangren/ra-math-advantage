@@ -47,3 +47,4 @@
 - (2026-04-24, registry-cleanup) When replacing placeholder registrations with real implementations, remove keys from the placeholder list — duplicate registrations silently overwrite but confuse future readers
 - (2026-04-24, equivalence-checker) Parser precedence matters: compound patterns (fraction addition, radical addition) must be tried BEFORE simple single-term parsers to avoid partial-match false negatives
 - (2026-04-24, package-types) Make local type extensions explicit (`extends PackageType`) rather than relying on structural compatibility — prevents silent drift when package types change
+- (2026-04-24, review-18) When auditing auth patterns, search ALL route files — not just recently-modified ones; workbooks/pdfs had 3 routes missed in the initial deactivated-user-access sweep

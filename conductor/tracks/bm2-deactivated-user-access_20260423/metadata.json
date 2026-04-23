@@ -3,9 +3,9 @@
   "type": "security",
   "status": "completed",
   "created_at": "2026-04-23T00:00:00Z",
-  "updated_at": "2026-04-23T15:45:00Z",
-  "description": "Swap JWT-only auth for active-credential verification on 7 BM2 API endpoints to revoke access on deactivation",
+  "updated_at": "2026-04-24T01:50:00Z",
+  "description": "Swap JWT-only auth for active-credential verification on all BM2 API endpoints to revoke access on deactivation",
   "estimated_tasks": 5,
   "actual_tasks": 5,
-  "deviation_notes": "Also fixed datasets route not in original spec. Auth check pattern changed from if (!claims) to if (claims instanceof Response) because requireActive* functions return SessionClaims | Response, not SessionClaims | null. Fixed duplicate test suites in __tests__/app/api/ alongside __tests__/api/."
+  "deviation_notes": "Review #20 found 3 additional routes (workbooks/capstone, workbooks/[unit]/[lesson], pdfs/[pdfName]) still using getRequestSessionClaims. Fixed to requireActiveRequestSessionClaims with instanceof Response pattern. Total endpoints migrated: 10."
 }
