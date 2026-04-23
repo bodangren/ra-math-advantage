@@ -85,18 +85,23 @@ export const getLessonProgress = internalQuery({
       .withIndex("by_user", (q) => q.eq("userId", args.userId))
       .collect();
 
-    // 5. Fetch sections for each phase
+    // 5. Fetch sections for each phase (batched via Promise.all)
+    const phaseIds = phases.map(p => p._id);
+    const allSections = await Promise.all(
+      phaseIds.map(phaseId =>
+        ctx.db
+          .query("phase_sections")
+          .withIndex("by_phase_version", (q) => q.eq("phaseVersionId", phaseId))
+          .collect()
+      )
+    );
     const sectionsByPhaseId = new Map<string, { id: string; sequenceOrder: number; sectionType: string; content: unknown }[]>();
-    for (const phase of phases) {
-      const sections = await ctx.db
-        .query("phase_sections")
-        .withIndex("by_phase_version", (q) => q.eq("phaseVersionId", phase._id))
-        .collect();
-      sectionsByPhaseId.set(phase._id, sections
+    phaseIds.forEach((phaseId, i) => {
+      sectionsByPhaseId.set(phaseId, allSections[i]
         .sort((a, b) => a.sequenceOrder - b.sequenceOrder)
         .map(s => ({ id: s._id, sequenceOrder: s.sequenceOrder, sectionType: s.sectionType, content: s.content }))
       );
-    }
+    });
 
     const progressRows = buildLessonPhaseProgress({ phases, progressRows: userProgress });
 
@@ -359,12 +364,17 @@ export const getLessonForChatbot = internalQuery({
     phases.sort((a, b) => a.phaseNumber - b.phaseNumber);
 
     const phasesWithSections: ChatbotPhase[] = [];
-    for (const phase of phases) {
-      const sections = await ctx.db
-        .query("phase_sections")
-        .withIndex("by_phase_version", (q) => q.eq("phaseVersionId", phase._id))
-        .collect();
-
+    const phaseIds = phases.map(p => p._id);
+    const allSections = await Promise.all(
+      phaseIds.map(phaseId =>
+        ctx.db
+          .query("phase_sections")
+          .withIndex("by_phase_version", (q) => q.eq("phaseVersionId", phaseId))
+          .collect()
+      )
+    );
+    phases.forEach((phase, i) => {
+      const sections = allSections[i];
       sections.sort((a, b) => a.sequenceOrder - b.sequenceOrder);
 
       phasesWithSections.push({
@@ -375,7 +385,7 @@ export const getLessonForChatbot = internalQuery({
           content: s.content as { markdown?: string },
         })),
       });
-    }
+    });
 
     const unitTitle = `Unit ${lesson.unitNumber}`;
 

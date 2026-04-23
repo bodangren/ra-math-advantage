@@ -1221,16 +1221,21 @@ export const getTeacherLessonPreview = internalQuery({
     phases.sort((a, b) => a.phaseNumber - b.phaseNumber);
 
     const sectionsByPhaseId = new Map<string, { id: string; sequenceOrder: number; sectionType: string; content: unknown }[]>();
-    for (const phase of phases) {
-      const sections = await ctx.db
-        .query("phase_sections")
-        .withIndex("by_phase_version", (q) => q.eq("phaseVersionId", phase._id))
-        .collect();
-      sectionsByPhaseId.set(phase._id, sections
+    const phaseIds = phases.map(p => p._id);
+    const allSections = await Promise.all(
+      phaseIds.map(phaseId =>
+        ctx.db
+          .query("phase_sections")
+          .withIndex("by_phase_version", (q) => q.eq("phaseVersionId", phaseId))
+          .collect()
+      )
+    );
+    phaseIds.forEach((phaseId, i) => {
+      sectionsByPhaseId.set(phaseId, allSections[i]
         .sort((a, b) => a.sequenceOrder - b.sequenceOrder)
         .map(s => ({ id: s._id, sequenceOrder: s.sequenceOrder, sectionType: s.sectionType, content: s.content }))
       );
-    }
+    });
 
     return {
       lessonTitle: lesson.title,

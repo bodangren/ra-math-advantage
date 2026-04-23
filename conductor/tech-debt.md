@@ -9,9 +9,9 @@
 | Item | Sev | Status | Notes |
 |------|-----|--------|-------|
 | Approval status race condition (no version/lock) | High | Resolved | Content hash mismatch check added (review-15); stale approval rejected |
-| N+1 query: phase sections in progress/preview/monitoring queries | High | Open | One DB query per phase inside loop |
+| N+1 query: phase sections in progress/preview/monitoring queries | High | Resolved | Batched via Promise.all in student.ts and teacher.ts |
 | Deactivated users can access BM2 API routes | High | Open | 7 endpoints use JWT-only verification; need requireActive*SessionClaims |
-| Teacher SRS queries: N+1 per-student unbounded .collect() loops | High | Open | Multiple handlers iterate students + collect |
+| Teacher SRS queries: N+1 per-student unbounded .collect() loops | High | Resolved | Batched via Promise.all in objectiveProficiency.ts |
 | Equivalence checker: 6 aspirational tests marked .todo | High | Open | Needs symbolic math lib |
 | SRS CardStore: studentId type mismatch (contract vs schema) | High | Resolved | By design: SRS engine uses string for storage-agnosticism; Convex adapter handles conversion |
 | lib/practice/objective-proficiency.ts + objective-policy.ts unmigrated | High | Resolved | Foundational types (ObjectivePriority, ObjectivePracticePolicy) extracted to srs-engine; app-level logic is Convex-specific |

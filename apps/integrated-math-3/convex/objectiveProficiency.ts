@@ -48,14 +48,20 @@ async function fetchTimingBaselines(
   ctx: QueryCtx,
   familyIds: Set<string>
 ): Promise<TimingBaselines> {
+  const familyIdArray = Array.from(familyIds);
+  const allBaselines = await Promise.all(
+    familyIdArray.map(pfId =>
+      ctx.db
+        .query("timing_baselines")
+        .withIndex("by_problem_family", (q) =>
+          q.eq("problemFamilyId", pfId)
+        )
+        .first()
+    )
+  );
   const baselines: TimingBaselines = {};
-  for (const pfId of familyIds) {
-    const baseline = await ctx.db
-      .query("timing_baselines")
-      .withIndex("by_problem_family", (q) =>
-        q.eq("problemFamilyId", pfId)
-      )
-      .first();
+  familyIdArray.forEach((pfId, i) => {
+    const baseline = allBaselines[i];
     if (baseline) {
       baselines[pfId] = {
         problemFamilyId: baseline.problemFamilyId,
@@ -68,7 +74,7 @@ async function fetchTimingBaselines(
         minSamplesMet: baseline.minSamplesMet,
       };
     }
-  }
+  });
   return baselines;
 }
 
@@ -90,16 +96,23 @@ async function fetchSubmissionTimings(
     }
   }
 
+  const activityIdArray = Array.from(uniqueActivityIds);
+  const allSubmissions = await Promise.all(
+    activityIdArray.map(activityId =>
+      ctx.db
+        .query("activity_submissions")
+        .withIndex("by_user_and_activity", (q) =>
+          q
+            .eq("userId", studentId)
+            .eq("activityId", activityId as Id<"activities">)
+        )
+        .collect()
+    )
+  );
+
   const submissionTimings = new Map<string, number>();
-  for (const activityId of uniqueActivityIds) {
-    const submissions = await ctx.db
-      .query("activity_submissions")
-      .withIndex("by_user_and_activity", (q) =>
-        q
-          .eq("userId", studentId)
-          .eq("activityId", activityId as Id<"activities">)
-      )
-      .collect();
+  allSubmissions.forEach((submissions, i) => {
+    const activityId = activityIdArray[i];
     for (const sub of submissions) {
       const submissionData = sub.submissionData as
         | {
@@ -114,7 +127,7 @@ async function fetchSubmissionTimings(
         submissionTimings.set(sid, activeMs);
       }
     }
-  }
+  });
   return submissionTimings;
 }
 
@@ -153,7 +166,7 @@ export async function getObjectiveProficiencyHandler(
     .collect();
   const relevantReviews = allReviews.filter((r) => cardDocIds.has(r.cardId));
 
-  // 4. Fetch submission timings for review logs
+  // 4. Fetch submission timings for review logs (batched)
   const uniqueActivityIds = new Set<string>();
   for (const review of relevantReviews) {
     if (review.submissionId) {
@@ -164,16 +177,23 @@ export async function getObjectiveProficiencyHandler(
     }
   }
 
+  const activityIdArray = Array.from(uniqueActivityIds);
+  const allSubmissions = await Promise.all(
+    activityIdArray.map(activityId =>
+      ctx.db
+        .query("activity_submissions")
+        .withIndex("by_user_and_activity", (q) =>
+          q
+            .eq("userId", args.studentId as Id<"profiles">)
+            .eq("activityId", activityId as Id<"activities">)
+        )
+        .collect()
+    )
+  );
+
   const submissionTimings = new Map<string, number>();
-  for (const activityId of uniqueActivityIds) {
-    const submissions = await ctx.db
-      .query("activity_submissions")
-      .withIndex("by_user_and_activity", (q) =>
-        q
-          .eq("userId", args.studentId as Id<"profiles">)
-          .eq("activityId", activityId as Id<"activities">)
-      )
-      .collect();
+  allSubmissions.forEach((submissions, i) => {
+    const activityId = activityIdArray[i];
     for (const sub of submissions) {
       const submissionData = sub.submissionData as
         | {
@@ -188,18 +208,24 @@ export async function getObjectiveProficiencyHandler(
         submissionTimings.set(sid, activeMs);
       }
     }
-  }
+  });
 
-  // 5. Fetch timing baselines for problem families
+  // 5. Fetch timing baselines for problem families (batched)
   const baselines: TimingBaselines = {};
   const familyIds = new Set(filteredCards.map((c) => c.problemFamilyId));
-  for (const pfId of familyIds) {
-    const baseline = await ctx.db
-      .query("timing_baselines")
-      .withIndex("by_problem_family", (q) =>
-        q.eq("problemFamilyId", pfId)
-      )
-      .first();
+  const familyIdArray = Array.from(familyIds);
+  const allBaselines = await Promise.all(
+    familyIdArray.map(pfId =>
+      ctx.db
+        .query("timing_baselines")
+        .withIndex("by_problem_family", (q) =>
+          q.eq("problemFamilyId", pfId)
+        )
+        .first()
+    )
+  );
+  familyIdArray.forEach((pfId, i) => {
+    const baseline = allBaselines[i];
     if (baseline) {
       baselines[pfId] = {
         problemFamilyId: baseline.problemFamilyId,
@@ -212,7 +238,7 @@ export async function getObjectiveProficiencyHandler(
         minSamplesMet: baseline.minSamplesMet,
       };
     }
-  }
+  });
 
   // 6. Build card states for aggregation
   const cardStates: ProficiencyCardState[] = [];
@@ -417,14 +443,12 @@ export async function getStudentProficiencySummaryHandler(
   const objectiveIds = await getStudentObjectiveIds(ctx, sid);
 
   const views: StudentProficiencyView[] = [];
-  for (const objectiveId of objectiveIds) {
-    const result = await computeProficiencyForObjective(
-      ctx,
-      sid,
-      objectiveId,
-      cards,
-      reviews
-    );
+  const results = await Promise.all(
+    objectiveIds.map(objectiveId =>
+      computeProficiencyForObjective(ctx, sid, objectiveId, cards, reviews)
+    )
+  );
+  for (const result of results) {
     views.push(buildStudentProficiencyView(result));
   }
 
@@ -488,17 +512,23 @@ export async function getTeacherClassProficiencyHandler(
   const allStudentCards = new Map<string, SrsCard[]>();
   const allStudentReviews = new Map<string, SrsReview[]>();
 
-  for (const studentId of studentIds) {
-    const cards = await ctx.db
-      .query("srs_cards")
-      .withIndex("by_student", (q) => q.eq("studentId", studentId))
-      .collect();
+  const studentDataResults = await Promise.all(
+    studentIds.map(async (studentId) => {
+      const [cards, reviews] = await Promise.all([
+        ctx.db
+          .query("srs_cards")
+          .withIndex("by_student", (q) => q.eq("studentId", studentId))
+          .collect(),
+        ctx.db
+          .query("srs_review_log")
+          .withIndex("by_student", (q) => q.eq("studentId", studentId))
+          .collect(),
+      ]);
+      return { studentId, cards, reviews };
+    })
+  );
+  for (const { studentId, cards, reviews } of studentDataResults) {
     allStudentCards.set(studentId, cards);
-
-    const reviews = await ctx.db
-      .query("srs_review_log")
-      .withIndex("by_student", (q) => q.eq("studentId", studentId))
-      .collect();
     allStudentReviews.set(studentId, reviews);
   }
 
@@ -511,6 +541,23 @@ export async function getTeacherClassProficiencyHandler(
     }
   }
 
+  const objectiveIdArray = Array.from(allObjectiveIds);
+  const allStandards = await Promise.all(
+    objectiveIdArray.map(objectiveId =>
+      ctx.db
+        .query("competency_standards")
+        .withIndex("by_code", (q) => q.eq("code", objectiveId))
+        .first()
+    )
+  );
+  const standardsByObjective = new Map<string, { code: string; description: string }>();
+  objectiveIdArray.forEach((objectiveId, i) => {
+    const standard = allStandards[i];
+    if (standard) {
+      standardsByObjective.set(objectiveId, { code: standard.code, description: standard.description });
+    }
+  });
+
   const teacherViews: TeacherProficiencyView[] = [];
 
   for (const objectiveId of allObjectiveIds) {
@@ -519,19 +566,21 @@ export async function getTeacherClassProficiencyHandler(
       result: ReturnType<typeof computeObjectiveProficiency>;
     }> = [];
 
-    for (const studentId of studentIds) {
-      const cards = allStudentCards.get(studentId) ?? [];
-      const reviews = allStudentReviews.get(studentId) ?? [];
-
-      const result = await computeProficiencyForObjective(
-        ctx,
-        studentId,
-        objectiveId,
-        cards,
-        reviews
-      );
-      studentProficiencies.push({ studentId, result });
-    }
+    const results = await Promise.all(
+      studentIds.map(async (studentId) => {
+        const cards = allStudentCards.get(studentId) ?? [];
+        const reviews = allStudentReviews.get(studentId) ?? [];
+        const result = await computeProficiencyForObjective(
+          ctx,
+          studentId,
+          objectiveId,
+          cards,
+          reviews
+        );
+        return { studentId, result };
+      })
+    );
+    studentProficiencies.push(...results);
 
     const proficientCount = studentProficiencies.filter((sp) => sp.result.isProficient).length;
     const avgRetention =
@@ -549,13 +598,10 @@ export async function getTeacherClassProficiencyHandler(
 
     let standardCode = objectiveId;
     let standardDescription = "";
-    const standard = await ctx.db
-      .query("competency_standards")
-      .withIndex("by_code", (q) => q.eq("code", objectiveId))
-      .first();
-    if (standard) {
-      standardCode = standard.code;
-      standardDescription = standard.description;
+    const standardInfo = standardsByObjective.get(objectiveId);
+    if (standardInfo) {
+      standardCode = standardInfo.code;
+      standardDescription = standardInfo.description;
     }
 
     const teacherResult = buildTeacherProficiencyView(

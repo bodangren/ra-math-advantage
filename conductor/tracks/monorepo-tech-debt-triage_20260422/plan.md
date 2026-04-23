@@ -97,21 +97,21 @@
 
 - [x] Conductor - User Manual Verification 'Phase 2' (Protocol in workflow.md)
 
-## Phase 3: N+1 Query Performance
+## Phase 3: N+1 Query Performance [x]
 
-- [ ] Task: Investigate phase sections N+1 queries
-    - [ ] Write test: phase section lookup is bounded (single query or batch)
-    - [ ] Investigate: identify query loops in progress/preview/monitoring handlers
-    - [ ] Fix: batch section lookups with Promise.all or single collection query
-    - [ ] Verify: no per-phase sequential DB calls in affected handlers
+- [x] Task: Investigate phase sections N+1 queries
+    - [x] Write test: phase section lookup is bounded (single query or batch)
+    - [x] Investigate: identify query loops in progress/preview/monitoring handlers
+    - [x] Fix: batch section lookups with Promise.all or single collection query
+    - [x] Verify: no per-phase sequential DB calls in affected handlers
 
-- [ ] Task: Investigate teacher SRS N+1 per-student queries
-    - [ ] Write test: student SRS data fetched in bounded queries
-    - [ ] Investigate: identify unbounded .collect() loops in teacher handlers
-    - [ ] Fix: batch student lookups, bound .collect() with .take()
-    - [ ] Verify: teacher dashboard queries scale sub-linearly with student count
+- [x] Task: Investigate teacher SRS N+1 per-student queries
+    - [x] Write test: student SRS data fetched in bounded queries
+    - [x] Investigate: identify unbounded .collect() loops in teacher handlers
+    - [x] Fix: batch student lookups, bound .collect() with .take()
+    - [x] Verify: teacher dashboard queries scale sub-linearly with student count
 
-- [ ] Conductor - User Manual Verification 'Phase 3' (Protocol in workflow.md)
+- [x] Conductor - User Manual Verification 'Phase 3' (Protocol in workflow.md)
 
 ## Phase 4: CI/CD & Deployment Hardening
 
