@@ -45,3 +45,5 @@
 - (2026-04-24, ci-cd-hardening) Removing `|| true` from CI steps while keeping job-level `continue-on-error: true` preserves failure visibility without breaking CI for known issues
 - (2026-04-24, bundle-splitting) Vinext manualChunks with function syntax handles external modules; use `id.includes()` checks instead of module name arrays to avoid EXTERNAL_MODULES errors
 - (2026-04-24, registry-cleanup) When replacing placeholder registrations with real implementations, remove keys from the placeholder list — duplicate registrations silently overwrite but confuse future readers
+- (2026-04-24, equivalence-checker) Parser precedence matters: compound patterns (fraction addition, radical addition) must be tried BEFORE simple single-term parsers to avoid partial-match false negatives
+- (2026-04-24, package-types) Make local type extensions explicit (`extends PackageType`) rather than relying on structural compatibility — prevents silent drift when package types change
