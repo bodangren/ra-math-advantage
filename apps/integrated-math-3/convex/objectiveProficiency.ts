@@ -148,7 +148,8 @@ export async function getObjectiveProficiencyHandler(
     const families = await ctx.db
       .query("problem_families")
       .withIndex("by_objectiveId", (q) =>
-        q.eq("objectiveIds", args.objectiveId! as unknown as string[])
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any -- Convex multi-entry array index expects element, not array
+        (q as any).eq("objectiveIds", args.objectiveId!)
       )
       .collect();
     const familyIds = new Set(families.map((f) => f.problemFamilyId));
@@ -340,9 +341,10 @@ async function computeProficiencyForObjective(
 ) {
   const families = await ctx.db
     .query("problem_families")
-    .withIndex("by_objectiveId", (q) =>
-      q.eq("objectiveIds", objectiveId as unknown as string[])
-    )
+      .withIndex("by_objectiveId", (q) =>
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any -- Convex multi-entry array index expects element, not array
+        (q as any).eq("objectiveIds", objectiveId)
+      )
     .collect();
   const familyIds = new Set(families.map((f) => f.problemFamilyId));
   const filteredCards = allCards.filter((c) => familyIds.has(c.problemFamilyId));

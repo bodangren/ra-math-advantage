@@ -245,9 +245,10 @@ export async function addExtraCardsHandler(
 
   const problemFamily = await ctx.db
     .query("problem_families")
-    .withIndex("by_objectiveId", (q) =>
-      q.eq("objectiveIds", args.objectiveId as unknown as string[])
-    )
+      .withIndex("by_objectiveId", (q) =>
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any -- Convex multi-entry array index expects element, not array
+        (q as any).eq("objectiveIds", args.objectiveId)
+      )
     .first();
 
   if (!problemFamily) {

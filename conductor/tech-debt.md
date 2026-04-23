@@ -46,3 +46,8 @@
 | class_lessons table empty | High | Resolved | seed_demo_env.ts inserts class_lessons entries for demo class |
 | lesson-title-consistency test vacuous pass | High | Resolved | Regex updated to match underscored filenames after rename |
 | CI: package test/lint continue-on-error | High | Resolved | Removed from package matrix (monorepo-repair_20260419) |
+| objectiveIds array index query: eq() passed array instead of element | Critical | Resolved | `as unknown as string[]` cast was wrong; Convex multi-entry array index expects single element; fixed in 3 locations (review-18) |
+| SRS dashboard.ts streak calc untested | High | Open | Non-trivial logic with zero test coverage |
+| SRS reviews.ts untested | Medium | Open | saveReview, getReviewsByCard, getReviewsByStudent — no tests |
+| isStudentEnrolledInClassForLesson N+1 | Medium | Open | 2 sequential queries per enrollment in loop; batch with Promise.all |
+| 40+ seed lesson tests vacuous | Low | Open | Test hardcoded data against itself; convert to data-driven validator |
