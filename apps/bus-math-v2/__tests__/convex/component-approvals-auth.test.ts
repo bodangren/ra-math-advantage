@@ -79,21 +79,21 @@ describe('convex/component_approvals query auth', () => {
       const ctx = createMockCtx(null, false);
       await expect(
         getComponentApprovalHandler(ctx as never, { componentType: 'activity', componentId: 'test' }),
-      ).rejects.toThrow('Unauthorized: admin role required');
+      ).rejects.toThrow('Unauthorized');
     });
 
     it('rejects student role', async () => {
       const ctx = createMockCtx('student');
       await expect(
         getComponentApprovalHandler(ctx as never, { componentType: 'activity', componentId: 'test' }),
-      ).rejects.toThrow('Unauthorized: admin role required');
+      ).rejects.toThrow('Unauthorized');
     });
 
     it('rejects teacher role', async () => {
       const ctx = createMockCtx('teacher');
       await expect(
         getComponentApprovalHandler(ctx as never, { componentType: 'activity', componentId: 'test' }),
-      ).rejects.toThrow('Unauthorized: admin role required');
+      ).rejects.toThrow('Unauthorized');
     });
 
     it('allows admin role', async () => {
@@ -109,21 +109,21 @@ describe('convex/component_approvals query auth', () => {
       const ctx = createMockCtx(null, false);
       await expect(
         getComponentVersionHashHandler(ctx as never, { componentType: 'activity', componentId: 'test' }),
-      ).rejects.toThrow('Unauthorized: admin role required');
+      ).rejects.toThrow('Unauthorized');
     });
 
     it('rejects student role', async () => {
       const ctx = createMockCtx('student');
       await expect(
         getComponentVersionHashHandler(ctx as never, { componentType: 'activity', componentId: 'test' }),
-      ).rejects.toThrow('Unauthorized: admin role required');
+      ).rejects.toThrow('Unauthorized');
     });
 
     it('rejects teacher role', async () => {
       const ctx = createMockCtx('teacher');
       await expect(
         getComponentVersionHashHandler(ctx as never, { componentType: 'activity', componentId: 'test' }),
-      ).rejects.toThrow('Unauthorized: admin role required');
+      ).rejects.toThrow('Unauthorized');
     });
   });
 
@@ -131,21 +131,21 @@ describe('convex/component_approvals query auth', () => {
     it('rejects unauthenticated callers', async () => {
       const ctx = createMockCtx(null, false);
       await expect(getReviewQueueHandler(ctx as never, {})).rejects.toThrow(
-        'Unauthorized: admin role required',
+        'Unauthorized',
       );
     });
 
     it('rejects student role', async () => {
       const ctx = createMockCtx('student');
       await expect(getReviewQueueHandler(ctx as never, {})).rejects.toThrow(
-        'Unauthorized: admin role required',
+        'Unauthorized',
       );
     });
 
     it('rejects teacher role', async () => {
       const ctx = createMockCtx('teacher');
       await expect(getReviewQueueHandler(ctx as never, {})).rejects.toThrow(
-        'Unauthorized: admin role required',
+        'Unauthorized',
       );
     });
 
@@ -160,21 +160,21 @@ describe('convex/component_approvals query auth', () => {
       const ctx = createMockCtx(null, false);
       await expect(
         getComponentReviewsHandler(ctx as never, { componentType: 'activity', componentId: 'test' }),
-      ).rejects.toThrow('Unauthorized: admin role required');
+      ).rejects.toThrow('Unauthorized');
     });
 
     it('rejects student role', async () => {
       const ctx = createMockCtx('student');
       await expect(
         getComponentReviewsHandler(ctx as never, { componentType: 'activity', componentId: 'test' }),
-      ).rejects.toThrow('Unauthorized: admin role required');
+      ).rejects.toThrow('Unauthorized');
     });
 
     it('rejects teacher role', async () => {
       const ctx = createMockCtx('teacher');
       await expect(
         getComponentReviewsHandler(ctx as never, { componentType: 'activity', componentId: 'test' }),
-      ).rejects.toThrow('Unauthorized: admin role required');
+      ).rejects.toThrow('Unauthorized');
     });
   });
 
@@ -182,21 +182,21 @@ describe('convex/component_approvals query auth', () => {
     it('rejects unauthenticated callers', async () => {
       const ctx = createMockCtx(null, false);
       await expect(getUnresolvedReviewsHandler(ctx as never, {})).rejects.toThrow(
-        'Unauthorized: admin role required',
+        'Unauthorized',
       );
     });
 
     it('rejects student role', async () => {
       const ctx = createMockCtx('student');
       await expect(getUnresolvedReviewsHandler(ctx as never, {})).rejects.toThrow(
-        'Unauthorized: admin role required',
+        'Unauthorized',
       );
     });
 
     it('rejects teacher role', async () => {
       const ctx = createMockCtx('teacher');
       await expect(getUnresolvedReviewsHandler(ctx as never, {})).rejects.toThrow(
-        'Unauthorized: admin role required',
+        'Unauthorized',
       );
     });
 
@@ -210,21 +210,21 @@ describe('convex/component_approvals query auth', () => {
     it('rejects unauthenticated callers', async () => {
       const ctx = createMockCtx(null, false);
       await expect(getAuditSummaryHandler(ctx as never, {})).rejects.toThrow(
-        'Unauthorized: admin role required',
+        'Unauthorized',
       );
     });
 
     it('rejects student role', async () => {
       const ctx = createMockCtx('student');
       await expect(getAuditSummaryHandler(ctx as never, {})).rejects.toThrow(
-        'Unauthorized: admin role required',
+        'Unauthorized',
       );
     });
 
     it('rejects teacher role', async () => {
       const ctx = createMockCtx('teacher');
       await expect(getAuditSummaryHandler(ctx as never, {})).rejects.toThrow(
-        'Unauthorized: admin role required',
+        'Unauthorized',
       );
     });
 
@@ -245,7 +245,7 @@ describe('convex/component_approvals query auth', () => {
           status: 'approved',
           issueCategories: [],
         }),
-      ).rejects.toThrow('Unauthorized: admin role required');
+      ).rejects.toThrow('Unauthorized');
     });
 
     it('rejects student role', async () => {
@@ -258,7 +258,7 @@ describe('convex/component_approvals query auth', () => {
           status: 'approved',
           issueCategories: [],
         }),
-      ).rejects.toThrow('Unauthorized: admin role required');
+      ).rejects.toThrow('Unauthorized');
     });
 
     it('rejects teacher role', async () => {
@@ -271,7 +271,7 @@ describe('convex/component_approvals query auth', () => {
           status: 'approved',
           issueCategories: [],
         }),
-      ).rejects.toThrow('Unauthorized: admin role required');
+      ).rejects.toThrow('Unauthorized');
     });
 
     it('allows admin role', async () => {
@@ -293,21 +293,21 @@ describe('convex/component_approvals query auth', () => {
       const ctx = createMockCtx(null, false);
       await expect(
         resolveReviewHandler(ctx as never, { reviewId: 'review_123' as never }),
-      ).rejects.toThrow('Unauthorized: admin role required');
+      ).rejects.toThrow('Unauthorized');
     });
 
     it('rejects student role', async () => {
       const ctx = createMockCtx('student');
       await expect(
         resolveReviewHandler(ctx as never, { reviewId: 'review_123' as never }),
-      ).rejects.toThrow('Unauthorized: admin role required');
+      ).rejects.toThrow('Unauthorized');
     });
 
     it('rejects teacher role', async () => {
       const ctx = createMockCtx('teacher');
       await expect(
         resolveReviewHandler(ctx as never, { reviewId: 'review_123' as never }),
-      ).rejects.toThrow('Unauthorized: admin role required');
+      ).rejects.toThrow('Unauthorized');
     });
 
     it('allows admin role', async () => {

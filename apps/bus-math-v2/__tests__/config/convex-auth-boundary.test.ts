@@ -102,7 +102,7 @@ describe('Convex authorization boundary', () => {
     expect(phaseCompleteRoute).toContain('fetchInternalQuery');
     expect(phaseCompleteRoute).toContain('fetchInternalMutation');
     expect(phaseCompleteRoute).toContain('requireActiveStudentRequestClaims');
-    expect(spreadsheetDraftRoute).toContain('requireStudentRequestClaims');
+    expect(spreadsheetDraftRoute).toContain('requireActiveStudentRequestClaims');
     expect(spreadsheetSubmitRoute).toContain('requireActiveStudentRequestClaims');
     expect(assessmentRoute).toContain('requireActiveStudentRequestClaims');
 

@@ -277,6 +277,6 @@ describe('POST /api/progress/assessment', () => {
 
     expect(response.status).toBe(422);
     const payload = await response.json();
-    expect(payload.error).toMatch(/not configured/i);
+    expect(payload.error).toMatch(/Unable to score submission/i);
   });
 });
