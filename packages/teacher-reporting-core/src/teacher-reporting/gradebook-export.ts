@@ -1,4 +1,4 @@
-import type { GradebookRow, GradebookLesson } from './gradebook.js';
+import type { GradebookRow, GradebookLesson } from './gradebook';
 
 export interface GradebookCsvOptions {
   includeMasteryLevel?: boolean;

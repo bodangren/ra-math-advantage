@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
-import { buildGradebookCsv, type GradebookCsvOptions } from '../teacher-reporting/gradebook-export.js';
-import type { GradebookRow, GradebookLesson } from '../teacher-reporting/gradebook.js';
+import { buildGradebookCsv, type GradebookCsvOptions } from '../teacher-reporting/gradebook-export';
+import type { GradebookRow, GradebookLesson } from '../teacher-reporting/gradebook';
 
 describe('buildGradebookCsv', () => {
   const lessons: GradebookLesson[] = [

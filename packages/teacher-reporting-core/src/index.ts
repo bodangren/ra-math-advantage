@@ -21,7 +21,7 @@ export {
   type RawProgressRow,
   type RawCompetencyRow,
   assembleGradebookRows,
-} from './teacher-reporting/gradebook.js';
+} from './teacher-reporting/gradebook';
 
 export {
   type UnitColumn,
@@ -33,7 +33,7 @@ export {
   type RawCOStudent,
   type RawCOCompetency,
   assembleCourseOverviewRows,
-} from './teacher-reporting/course-overview.js';
+} from './teacher-reporting/course-overview';
 
 export {
   type CompetencyHeatmapRow,
@@ -52,9 +52,9 @@ export {
   computeCompetencyColor,
   assembleCompetencyHeatmapRows,
   assembleStudentCompetencyDetail,
-} from './teacher-reporting/competency-heatmap.js';
+} from './teacher-reporting/competency-heatmap';
 
 export {
   type GradebookCsvOptions,
   buildGradebookCsv,
-} from './teacher-reporting/gradebook-export.js';
+} from './teacher-reporting/gradebook-export';

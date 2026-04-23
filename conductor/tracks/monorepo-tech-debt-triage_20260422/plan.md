@@ -139,9 +139,9 @@
 
 - [x] Conductor - User Manual Verification 'Phase 4' (Protocol in workflow.md)
 
-## Phase 5: Package Quality & Consistency
+## Phase 5: Package Quality & Consistency [~]
 
-- [ ] Task: Add missing vitest.config files to 5 packages
+- [~] Task: Add missing vitest.config files to 5 packages
     - [ ] Investigate: confirm which packages lack config
     - [ ] Write test: each package can run vitest independently
     - [ ] Fix: add vitest.config.ts to each package

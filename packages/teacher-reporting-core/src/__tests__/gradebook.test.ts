@@ -18,7 +18,7 @@ import {
   type RawLessonStandard,
   type RawProgressRow,
   type RawCompetencyRow,
-} from '../teacher-reporting/gradebook.js';
+} from '../teacher-reporting/gradebook';
 
 describe('computeLessonStatus', () => {
   it('returns not_started for empty array', () => {

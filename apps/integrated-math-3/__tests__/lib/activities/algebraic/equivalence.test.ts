@@ -29,7 +29,7 @@ describe('Expression Equivalence Validator', () => {
       expect(checkEquivalence('x^2 + 5x + 6', '(x+2)(x+3)')).toBe(true);
     });
 
-    it.todo('returns true for perfect square trinomials — needs symbolic math lib', () => {
+    it('returns true for perfect square trinomials', () => {
       expect(checkEquivalence('(x+4)^2', 'x^2 + 8x + 16')).toBe(true);
     });
 
@@ -37,11 +37,11 @@ describe('Expression Equivalence Validator', () => {
       expect(checkEquivalence('x^2 - 9', '(x-3)(x+3)')).toBe(true);
     });
 
-    it.todo('returns true for expressions with GCF factored out — needs symbolic math lib', () => {
+    it.todo('returns true for expressions with GCF factored out — needs symbolic math lib (full GCF-to-distributed form requires polynomial multiplication with leading coefficient)', () => {
       expect(checkEquivalence('2x^2 + 4x', '2x(x+2)')).toBe(true);
     });
 
-    it.todo('returns true for rearranged terms — needs symbolic math lib', () => {
+    it('returns true for rearranged terms', () => {
       expect(checkEquivalence('x^2 + 2x + 1', '1 + 2x + x^2')).toBe(true);
     });
   });
@@ -111,7 +111,7 @@ describe('Expression Equivalence Validator', () => {
       expect(checkEquivalence('1/2', '2/4')).toBe(true);
     });
 
-    it.todo('returns true for fractions with common denominators — needs symbolic math lib', () => {
+    it('returns true for fractions with common denominators', () => {
       expect(checkEquivalence('1/2 + 1/3', '5/6')).toBe(true);
     });
 
@@ -123,7 +123,7 @@ describe('Expression Equivalence Validator', () => {
       expect(checkEquivalence('1 1/2', '3/2')).toBe(true);
     });
 
-    it.todo('handles fractions in algebraic expressions — needs symbolic math lib', () => {
+    it.todo('handles fractions in algebraic expressions — needs symbolic math lib (decimal-fraction equivalence in polynomial terms)', () => {
       expect(checkEquivalence('(1/2)x^2 + x', 'x + 0.5x^2')).toBe(true);
     });
   });
@@ -141,7 +141,7 @@ describe('Expression Equivalence Validator', () => {
       expect(checkEquivalence('2', '√4')).toBe(true);
     });
 
-    it.todo('returns true for radical expressions with like terms — needs symbolic math lib', () => {
+    it('returns true for radical expressions with like terms', () => {
       expect(checkEquivalence('2√3 + √3', '3√3')).toBe(true);
     });
 

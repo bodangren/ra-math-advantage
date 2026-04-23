@@ -9,7 +9,7 @@ import {
   type RawCHLessonStandard,
   type RawCHLessonVersion,
   type RawCHLesson,
-} from '../teacher-reporting/competency-heatmap.js';
+} from '../teacher-reporting/competency-heatmap';
 
 describe('competency heatmap assembly', () => {
   describe('computeCompetencyColor', () => {

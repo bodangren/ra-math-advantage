@@ -1,4 +1,4 @@
-import { computeMasteryColor, type CellColor } from './gradebook.js';
+import { computeMasteryColor, type CellColor } from './gradebook';
 
 export type { CellColor };
 

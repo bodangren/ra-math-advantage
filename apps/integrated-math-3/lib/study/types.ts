@@ -1,7 +1,6 @@
-export interface GlossaryTerm {
-  slug: string;
-  term: string;
-  definition: string;
+import type { StudyTerm } from '@math-platform/study-hub-core';
+
+export interface GlossaryTerm extends StudyTerm {
   modules: number[];
   topics: string[];
   synonyms: string[];

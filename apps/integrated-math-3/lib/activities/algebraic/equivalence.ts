@@ -82,14 +82,18 @@ function checkRearrangedTerms(expr1: string, expr2: string): boolean {
   // Split expressions by + or - and compare the sets of terms
   const splitTerms = (expr: string) => {
     const terms = expr.split(/(?=[+-])/).filter(t => t.trim() !== '');
-    return terms.map(t => t.trim()).sort();
+    return terms.map(t => {
+      t = t.trim();
+      // Normalize leading term to have an explicit + sign for consistent sorting
+      return t.startsWith('+') || t.startsWith('-') ? t : '+' + t;
+    }).sort();
   };
-  
+
   const terms1 = splitTerms(expr1);
   const terms2 = splitTerms(expr2);
-  
+
   if (terms1.length !== terms2.length) return false;
-  
+
   return JSON.stringify(terms1) === JSON.stringify(terms2);
 }
 
@@ -133,6 +137,28 @@ function checkPolynomialEquivalence(expr1: string, expr2: string): boolean {
  * For more complex polynomials, this returns the original expression.
  */
 function expandPolynomial(expr: string): string {
+  // Pattern: (x ± a)^2 - perfect square trinomial
+  const perfectSquarePattern = /\(x([+-])(\d*\.?\d*)\)\^2/;
+  const psMatch = expr.match(perfectSquarePattern);
+  if (psMatch) {
+    const sign = psMatch[1];
+    const a = parseFloat(psMatch[2]) || 0;
+    const num = sign === '-' ? -a : a;
+
+    const sum = 2 * num; // 2a for x coefficient
+    const product = num * num; // a^2 for constant
+
+    let sumStr = '';
+    if (sum !== 0) {
+      const absSum = Math.abs(sum);
+      const signStr = sum >= 0 ? '+' : '-';
+      sumStr = sum === 1 ? '+x' : sum === -1 ? '-x' : `${signStr}${absSum}x`;
+    }
+
+    const productStr = product === 0 ? '' : product >= 0 ? `+${product}` : `${product}`;
+    return `x^2${sumStr}${productStr}`;
+  }
+
   // Pattern: (x ± a)(x ± b) - handles all four sign combinations
   const factoredPattern = /\(x([+-])(\d*\.?\d*)\)\(x([+-])(\d*\.?\d*)\)/;
   const match = expr.match(factoredPattern);
@@ -327,11 +353,11 @@ function checkComplexNumberEquivalence(expr1: string, expr2: string): boolean {
  */
 function checkFractionEquivalence(expr1: string, expr2: string): boolean {
   const fractionPattern = /(\d+)\s*(\d+\/\d+)|(\d+)\/(\d+)/;
-  
+
   const parseFraction = (expr: string) => {
     const match = expr.match(fractionPattern);
     if (!match) return null;
-    
+
     if (match[1] !== undefined && match[2] !== undefined) {
       const whole = parseInt(match[1], 10);
       const [num, den] = match[2].split('/').map(Number);
@@ -341,24 +367,24 @@ function checkFractionEquivalence(expr1: string, expr2: string): boolean {
       const den = parseInt(match[4], 10);
       return { value: num / den, numerator: num, denominator: den };
     }
-    
+
     return null;
   };
-  
+
   // Check for fraction addition: a/b + c/d
   const fractionAdditionPattern = /(\d+)\/(\d+)\+(\d+)\/(\d+)/;
   const parseFractionAddition = (expr: string) => {
     const match = expr.match(fractionAdditionPattern);
     if (!match) return null;
-    
+
     const num1 = parseInt(match[1], 10);
     const den1 = parseInt(match[2], 10);
     const num2 = parseInt(match[3], 10);
     const den2 = parseInt(match[4], 10);
-    
+
     const commonDen = den1 * den2;
     const newNum = num1 * den2 + num2 * den1;
-    
+
     return { value: newNum / commonDen, numerator: newNum, denominator: commonDen };
   };
   
@@ -375,19 +401,19 @@ function checkFractionEquivalence(expr1: string, expr2: string): boolean {
     return { value: (num / den) + constant, isAlgebraic: true };
   };
   
-  const f1 = parseFraction(expr1) || parseFractionAddition(expr1) || parseAlgebraicFraction(expr1);
-  const f2 = parseFraction(expr2) || parseFractionAddition(expr2) || parseAlgebraicFraction(expr2);
-  
+  const f1 = parseFractionAddition(expr1) || parseAlgebraicFraction(expr1) || parseFraction(expr1);
+  const f2 = parseFractionAddition(expr2) || parseAlgebraicFraction(expr2) || parseFraction(expr2);
+
   if (!f1 || !f2) return false;
-  
+
   // For algebraic expressions, we need a different comparison
   const f1IsAlgebraic = 'isAlgebraic' in f1 && f1.isAlgebraic;
   const f2IsAlgebraic = 'isAlgebraic' in f2 && f2.isAlgebraic;
-  
+
   if (f1IsAlgebraic || f2IsAlgebraic) {
     return Math.abs(f1.value - f2.value) < 0.0001;
   }
-  
+
   return Math.abs(f1.value - f2.value) < 0.0001;
 }
 
@@ -452,8 +478,8 @@ function checkRadicalEquivalence(expr1: string, expr2: string): boolean {
     return { value: totalCoeff * Math.sqrt(rad1) };
   };
   
-  const r1 = parseCubeRoot(expr1) || parseRadical(expr1) || parseRadicalAddition(expr1);
-  const r2 = parseCubeRoot(expr2) || parseRadical(expr2) || parseRadicalAddition(expr2);
+  const r1 = parseCubeRoot(expr1) || parseRadicalAddition(expr1) || parseRadical(expr1);
+  const r2 = parseCubeRoot(expr2) || parseRadicalAddition(expr2) || parseRadical(expr2);
   
   if (!r1 || !r2) {
     // Try cross-checking integer vs radical

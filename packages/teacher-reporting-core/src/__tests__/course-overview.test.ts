@@ -1,12 +1,12 @@
 import { describe, it, expect } from 'vitest';
-import { assembleCourseOverviewRows } from '../teacher-reporting/course-overview.js';
+import { assembleCourseOverviewRows } from '../teacher-reporting/course-overview';
 import type {
   RawCOStudent,
   RawCOLesson,
   RawCOLessonVersion,
   RawCOLessonStandard,
   RawCOCompetency,
-} from '../teacher-reporting/course-overview.js';
+} from '../teacher-reporting/course-overview';
 
 describe('assembleCourseOverviewRows', () => {
   const students: RawCOStudent[] = [
