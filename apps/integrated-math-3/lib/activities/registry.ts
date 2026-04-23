@@ -1,10 +1,4 @@
-import type { ComponentType } from 'react';
-import { GraphingExplorerActivity } from '@/components/activities/graphing/GraphingExplorerActivity';
-import { StepByStepSolverActivity } from '@/components/activities/algebraic/StepByStepSolverActivity';
-import { ComprehensionQuizActivity } from '@/components/activities/quiz/ComprehensionQuizActivity';
-import { FillInTheBlankActivity } from '@/components/activities/blanks/FillInTheBlankActivity';
-import { RateOfChangeCalculatorActivity } from '@/components/activities/roc/RateOfChangeCalculatorActivity';
-import { DiscriminantAnalyzerActivity } from '@/components/activities/discriminant/DiscriminantAnalyzerActivity';
+import { lazy, type ComponentType } from 'react';
 
 export interface ActivityComponentProps {
   activityId: string;
@@ -33,6 +27,27 @@ const MODULE_1_KEYS = [
 MODULE_1_KEYS.forEach(key => {
   registerActivity(key, PlaceholderComponent);
 });
+
+// Lazy-loaded activity implementations to keep the client entry chunk small.
+// Each activity is split into its own chunk and only fetched when used.
+const FillInTheBlankActivity = lazy(() =>
+  import('@/components/activities/blanks/FillInTheBlankActivity').then(m => ({ default: m.FillInTheBlankActivity }))
+);
+const GraphingExplorerActivity = lazy(() =>
+  import('@/components/activities/graphing/GraphingExplorerActivity').then(m => ({ default: m.GraphingExplorerActivity }))
+);
+const StepByStepSolverActivity = lazy(() =>
+  import('@/components/activities/algebraic/StepByStepSolverActivity').then(m => ({ default: m.StepByStepSolverActivity }))
+);
+const ComprehensionQuizActivity = lazy(() =>
+  import('@/components/activities/quiz/ComprehensionQuizActivity').then(m => ({ default: m.ComprehensionQuizActivity }))
+);
+const RateOfChangeCalculatorActivity = lazy(() =>
+  import('@/components/activities/roc/RateOfChangeCalculatorActivity').then(m => ({ default: m.RateOfChangeCalculatorActivity }))
+);
+const DiscriminantAnalyzerActivity = lazy(() =>
+  import('@/components/activities/discriminant/DiscriminantAnalyzerActivity').then(m => ({ default: m.DiscriminantAnalyzerActivity }))
+);
 
 // Register fill-in-the-blank with actual implementation (replaces placeholder)
 registerActivity('fill-in-the-blank', FillInTheBlankActivity);

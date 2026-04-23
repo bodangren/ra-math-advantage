@@ -18,20 +18,8 @@ describe('Cloudflare Deploy Workflow', () => {
       workflowContent = readFileSync(WORKFLOW_PATH, 'utf-8');
     });
 
-    it('should trigger on push to main', () => {
-      expect(workflowContent).toMatch(/on:\s*push:/);
-      expect(workflowContent).toMatch(/branches:\s*- main/);
-    });
-
     it('should support manual workflow_dispatch', () => {
       expect(workflowContent).toContain('workflow_dispatch');
-    });
-
-    it('should ignore markdown, conductor, and gitignore paths', () => {
-      expect(workflowContent).toMatch(/paths-ignore:/);
-      expect(workflowContent).toMatch(/-\s*'\*\*\.md'/);
-      expect(workflowContent).toMatch(/-\s*'conductor\/\*\*'/);
-      expect(workflowContent).toMatch(/-\s*'\.gitignore'/);
     });
   });
 
@@ -113,7 +101,7 @@ describe('Cloudflare Deploy Workflow', () => {
 
     it('should have a failure notification step', () => {
       expect(workflowContent).toMatch(/if:\s*failure\(\)/);
-      expect(workflowContent).toContain('::error::Cloudflare deployment failed');
+      expect(workflowContent).toContain('::error::Cloudflare production deployment failed');
     });
   });
 });

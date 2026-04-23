@@ -1,6 +1,6 @@
 'use client';
 
-import { useCallback } from 'react';
+import { useCallback, Suspense } from 'react';
 import { getActivityComponent } from '@/lib/activities/registry';
 import { usePracticeTiming } from '@/components/practice-timing';
 import {
@@ -67,12 +67,14 @@ export function ActivityRenderer({
 
   return (
     <div className="my-4">
-      <ActivityComponent
-        activityId={activityId}
-        mode={mode}
-        onSubmit={handleSubmit}
-        onComplete={onComplete}
-      />
+      <Suspense fallback={<div className="p-4 text-sm text-muted-foreground">Loading activity…</div>}>
+        <ActivityComponent
+          activityId={activityId}
+          mode={mode}
+          onSubmit={handleSubmit}
+          onComplete={onComplete}
+        />
+      </Suspense>
     </div>
   );
 }

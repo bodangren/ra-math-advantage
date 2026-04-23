@@ -11,6 +11,7 @@
     "curriculum:generate": "tsx scripts/generate-curriculum-remediation-artifacts.ts",
     "test": "vitest run",
     "test:watch": "vitest watch",
+    "bundle-size:audit": "node scripts/bundle-size-audit.mjs",
     "ws:run": "node scripts/run-workspace.mjs"
   },
   "dependencies": {

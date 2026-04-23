@@ -1,12 +1,20 @@
 import Link from 'next/link';
+import dynamic from 'next/dynamic';
 import { requireTeacherSessionClaims } from '@/lib/auth/server';
 import { fetchInternalQuery, internal } from '@/lib/convex/server';
 import {
   SrsDashboardPanel,
   WeakObjectivesPanel,
   StrugglingStudentsPanel,
-  MisconceptionPanel,
 } from '@/components/teacher/srs';
+
+const MisconceptionPanel = dynamic(
+  () => import('@/components/teacher/srs').then((m) => ({ default: m.MisconceptionPanel })),
+  {
+    ssr: false,
+    loading: () => <div className="h-64 bg-muted/50 rounded-lg animate-pulse" />,
+  }
+);
 
 interface ClassOption {
   id: string;

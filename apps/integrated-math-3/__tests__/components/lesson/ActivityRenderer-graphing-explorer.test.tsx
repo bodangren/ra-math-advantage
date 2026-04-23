@@ -1,5 +1,5 @@
 import { describe, it, expect, vi } from 'vitest';
-import { render, screen } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import { ActivityRenderer } from '@/components/lesson/ActivityRenderer';
 
 describe('ActivityRenderer - graphing-explorer', () => {
@@ -11,17 +11,17 @@ describe('ActivityRenderer - graphing-explorer', () => {
     onComplete: vi.fn(),
   };
 
-  it('renders GraphingExplorer when componentKey is graphing-explorer', () => {
+  it('renders GraphingExplorer when componentKey is graphing-explorer', async () => {
     render(<ActivityRenderer {...defaultProps} />);
 
-    expect(screen.getByText(/graph the function/i)).toBeInTheDocument();
+    expect(await screen.findByText(/graph the function/i)).toBeInTheDocument();
     expect(screen.getByText('y = x^2')).toBeInTheDocument();
   });
 
-  it('passes activityId and mode to GraphingExplorer', () => {
+  it('passes activityId and mode to GraphingExplorer', async () => {
     render(<ActivityRenderer {...defaultProps} mode="teaching" />);
 
-    expect(screen.getByText(/graph the function/i)).toBeInTheDocument();
+    expect(await screen.findByText(/graph the function/i)).toBeInTheDocument();
   });
 
   it('calls onSubmit when GraphingExplorer submits', async () => {
@@ -35,11 +35,13 @@ describe('ActivityRenderer - graphing-explorer', () => {
       />
     );
 
-    const submitButton = screen.getByText(/submit/i);
+    const submitButton = await screen.findByText(/submit/i);
     submitButton.click();
 
-    expect(onSubmit).toHaveBeenCalled();
-    expect(onComplete).toHaveBeenCalled();
+    await waitFor(() => {
+      expect(onSubmit).toHaveBeenCalled();
+      expect(onComplete).toHaveBeenCalled();
+    });
   });
 
   it('shows placeholder for unregistered component', () => {

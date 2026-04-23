@@ -123,6 +123,11 @@ jobs:
         env:
           CI: true
 
+      - name: Run IM3 bundle size audit
+        run: npm run bundle-size:audit --prefix apps/integrated-math-3
+        env:
+          CI: true
+
   # Phase 4: BM2 app gates
   # BM2 TypeScript errors and governance test failures resolved (review-18).
   # All BM2 gates now block CI on failure.
