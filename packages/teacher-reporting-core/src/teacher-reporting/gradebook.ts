@@ -114,6 +114,7 @@ export interface RawLesson {
 export interface RawLessonVersion {
   id: string;
   lessonId: string;
+  status?: 'draft' | 'review' | 'published' | 'archived';
 }
 
 export interface RawPhaseVersion {
@@ -158,9 +159,18 @@ export function assembleGradebookRows(
   const sortedLessons = [...rawLessons].sort((a, b) => a.orderIndex - b.orderIndex);
 
   const versionByLessonId = new Map<string, string>();
+  const statusPriority: Record<string, number> = { published: 0, review: 1, draft: 2, archived: 3 };
   for (const lv of rawLessonVersions) {
-    if (!versionByLessonId.has(lv.lessonId)) {
+    const existing = versionByLessonId.get(lv.lessonId);
+    if (!existing) {
       versionByLessonId.set(lv.lessonId, lv.id);
+    } else if (lv.status) {
+      const existingVersion = rawLessonVersions.find(v => v.id === existing);
+      const existingPriority = existingVersion?.status ? (statusPriority[existingVersion.status] ?? 4) : 4;
+      const newPriority = statusPriority[lv.status] ?? 4;
+      if (newPriority < existingPriority) {
+        versionByLessonId.set(lv.lessonId, lv.id);
+      }
     }
   }
 

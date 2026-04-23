@@ -161,8 +161,8 @@ export function SubmissionDetailModal({ open, onOpenChange, data }: SubmissionDe
 
                     {isExpanded && hasEvidence && (
                       <div className="p-4 space-y-4 border-t border-border">
-                        {phase.evidence.map((evidence, idx) => (
-                          <div key={idx} className="space-y-2">
+                        {phase.evidence.map((evidence) => (
+                          <div key={`${evidence.componentKey}-${evidence.submittedAt}`} className="space-y-2">
                             <div className="flex items-center justify-between">
                               <div>
                                 <span className="font-medium text-foreground">

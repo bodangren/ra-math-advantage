@@ -252,6 +252,7 @@ export const getTeacherCourseOverviewData = internalQuery({
     )).map((version) => ({
       id: version._id,
       lessonId: version.lessonId,
+      status: version.status,
     }));
 
     const rawStudents = students.map((student) => ({
@@ -481,6 +482,7 @@ export const getTeacherGradebookData = internalQuery({
     )).map((version) => ({
       id: version._id,
       lessonId: version.lessonId,
+      status: version.status,
     }));
 
     if (rawLessonVersions.length === 0) {
