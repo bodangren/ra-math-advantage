@@ -48,6 +48,7 @@ export async function POST(request: Request) {
   try {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const rateLimitResult = await (fetchInternalMutation as any)(
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       (internal as any).loginRateLimits?.checkAndIncrementLoginRateLimit,
       { ipHash },
     ) as { allowed: boolean; windowExpiresAt: number } | undefined;

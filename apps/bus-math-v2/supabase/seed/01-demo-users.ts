@@ -1,4 +1,3 @@
-// @ts-nocheck
 /**
  * Demo User Seeding Script
  *

@@ -8,8 +8,6 @@ export type {
 } from '@math-platform/srs-engine';
 
 import { z } from 'zod';
-import type { SrsRating } from '@math-platform/srs-engine';
-
 export const srsRatingSchema = z.enum(['Again', 'Hard', 'Good', 'Easy']);
 export type LocalSrsRating = z.infer<typeof srsRatingSchema>;
 

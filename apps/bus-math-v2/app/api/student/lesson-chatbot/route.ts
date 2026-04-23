@@ -56,6 +56,7 @@ export async function POST(request: NextRequest) {
     if (!rateLimitFn) {
       console.warn('[lesson-chatbot] Rate limit function not found in Convex API; skipping rate limit check');
     } else {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const rateLimitResult = await (fetchInternalMutation as any)(
         rateLimitFn,
         {},

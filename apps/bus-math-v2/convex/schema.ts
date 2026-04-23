@@ -11,7 +11,7 @@ import {
   submissionStatusValidator,
   issueCategoryValidator,
 } from "./component_approval_validators";
-import { srsCardStateValidator, srsRatingValidator } from "./srs-validators";
+import { srsRatingValidator } from "./srs-validators";
 
 const fsrsStateValidator = v.record(v.string(), v.any());
 

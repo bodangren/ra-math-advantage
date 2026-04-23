@@ -296,7 +296,7 @@ export async function getUnresolvedReviewsHandler(
   args: { componentType?: "activity" | "example" | "practice" }
 ) {
   await requireAdmin(ctx);
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  /* eslint-disable @typescript-eslint/no-explicit-any */
   let query: any = ctx.db.query("componentReviews");
 
   if (args.componentType) {
@@ -308,6 +308,7 @@ export async function getUnresolvedReviewsHandler(
   const reviews = await query
     .filter((q: any) => q.eq(q.field("resolvedAt"), undefined))
     .collect();
+  /* eslint-enable @typescript-eslint/no-explicit-any */
   return reviews;
 }
 
@@ -323,7 +324,7 @@ export async function getAuditSummaryHandler(
   args: { componentType?: "activity" | "example" | "practice" }
 ) {
   await requireAdmin(ctx);
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  /* eslint-disable @typescript-eslint/no-explicit-any */
   let query: any = ctx.db.query("componentReviews");
 
   if (args.componentType) {
@@ -335,6 +336,7 @@ export async function getAuditSummaryHandler(
   const unresolved = await query
     .filter((q: any) => q.eq(q.field("resolvedAt"), undefined))
     .collect();
+  /* eslint-enable @typescript-eslint/no-explicit-any */
 
   const summary: Record<
     string,

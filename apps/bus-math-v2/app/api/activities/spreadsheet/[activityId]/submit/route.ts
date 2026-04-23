@@ -170,7 +170,7 @@ export async function POST(
         );
       }
       payload = parsed.data;
-    } catch (parseError) {
+    } catch (_parseError) {
       return NextResponse.json(
         { error: 'Unable to parse request body' },
         { status: 400 }

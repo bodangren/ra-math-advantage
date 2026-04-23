@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import { processPracticeSubmission } from '../../../lib/srs/review-processor';
 import { createCard } from '../../../lib/srs/scheduler';
-import type { SrsCardState } from '@math-platform/srs-engine';
+
 import type { PracticeSubmissionEnvelope } from '../../../lib/practice/contract';
 import type { PracticeTimingSummary } from '../../../lib/practice/contract';
 

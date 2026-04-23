@@ -16,10 +16,16 @@ const eslintConfig = [
       "node_modules/**",
       "dist/**",
       "convex/_generated/**",
-      "playwright-report/**"
-    ]
+      "playwright-report/**",
+    ],
   },
   ...compat.extends("next/core-web-vitals", "next/typescript"),
+  {
+    files: ["**/__tests__/**/*.ts", "**/__tests__/**/*.tsx"],
+    rules: {
+      "@typescript-eslint/no-explicit-any": "off",
+    },
+  },
 ];
 
 export default eslintConfig;

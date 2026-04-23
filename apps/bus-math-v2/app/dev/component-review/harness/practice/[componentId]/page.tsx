@@ -9,7 +9,7 @@ import { Badge } from '@/components/ui/badge';
 import { getPracticeFamily } from '@/lib/practice/engine/family-registry';
 import { useQuery } from 'convex/react';
 import { api } from '@/convex/_generated/api';
-import type { ProblemFamily, GradeResult } from '@/lib/practice/engine/types';
+import type { GradeResult } from '@/lib/practice/engine/types';
 
 interface Props {
   params: Promise<{ componentId: string }>;

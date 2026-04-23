@@ -7,7 +7,7 @@
     "build": "tsx scripts/generate-workbook-manifest.ts && vinext build",
     "generate:workbook-manifest": "tsx scripts/generate-workbook-manifest.ts",
     "start": "vinext start",
-    "lint": "vinext lint",
+    "lint": "eslint . --max-warnings 0",
     "test": "vitest run",
     "test:watch": "vitest watch"
   },

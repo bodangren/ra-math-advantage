@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { describe, expect, it } from 'vitest';
 import { LESSON_02_SEED_DATA } from '../../../supabase/seed/unit1/lesson-02';
 
