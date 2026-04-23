@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import type { ObjectivePriority } from './objective-proficiency';
+import type { ObjectivePriority } from './contract';
 
 /**
  * An objective policy assigns a practice priority to a competency standard

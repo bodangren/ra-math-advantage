@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
-import { aggregateCardsToEvidence, stabilityToRetention, STABILITY_SCALE_FACTOR } from '@/lib/practice/srs-proficiency';
-import type { ProficiencyCardInput, TimingBaselines } from '@/lib/practice/srs-proficiency';
+import { aggregateCardsToEvidence, stabilityToRetention, STABILITY_SCALE_FACTOR } from '../srs/srs-proficiency';
+import type { ProficiencyCardInput, TimingBaselines } from '../srs/srs-proficiency';
 
 describe('STABILITY_SCALE_FACTOR', () => {
   it('should default to 30', () => {

@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import { z } from 'zod';
 
-import { getRequestSessionClaims } from '@/lib/auth/server';
+import { requireActiveTeacherRequestClaims } from '@/lib/auth/server';
 import { fetchInternalQuery, internal } from '@/lib/convex/server';
 import { generateAISummary, buildDeterministicSummary } from '@math-platform/practice-core/error-analysis';
 import type { PracticeSubmissionEnvelope } from '@math-platform/practice-core/contract';

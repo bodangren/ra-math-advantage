@@ -1,4 +1,4 @@
-import { getRequestSessionClaims } from '@/lib/auth/server';
+import { requireActiveStudentRequestClaims } from '@/lib/auth/server';
 import { NextRequest, NextResponse } from 'next/server';
 import { resolveOpenRouterProviderFromEnv, assembleLessonChatbotContext } from '@math-platform/ai-tutoring';
 import { buildPublishedCurriculumManifest } from '@/lib/curriculum/published-manifest';

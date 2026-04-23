@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import { z } from 'zod';
-import { getRequestSessionClaims, requireActiveStudentRequestClaims } from '@/lib/auth/server';
+import { requireActiveRequestSessionClaims, requireActiveStudentRequestClaims } from '@/lib/auth/server';
 import { fetchInternalQuery, fetchInternalMutation, internal } from '@/lib/convex/server';
 import {
   validateSpreadsheetData,
@@ -50,7 +50,7 @@ export async function GET(
       );
     }
 
-    const claims = await getRequestSessionClaims(request);
+    const claims = await requireActiveRequestSessionClaims(request);
     if (!claims) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }

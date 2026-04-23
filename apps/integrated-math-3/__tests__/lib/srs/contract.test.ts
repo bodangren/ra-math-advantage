@@ -20,13 +20,13 @@ import {
 } from '@math-platform/srs-engine';
 import {
   PROFICIENCY_THRESHOLD_DEFAULTS,
-} from '@/lib/practice/objective-proficiency';
+} from '@math-platform/srs-engine';
 import type {
   EvidenceConfidence,
   ObjectiveProficiencyResult,
   StudentProficiencyView,
   TeacherProficiencyView,
-} from '@/lib/practice/objective-proficiency';
+} from '@math-platform/srs-engine';
 
 describe('SRS_CONTRACT_VERSION', () => {
   it('should be srs.contract.v1', () => {

@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import { z } from 'zod';
-import { requireActiveRequestSessionClaims } from '@/lib/auth/server';
+import { requireActiveStudentRequestClaims } from '@/lib/auth/server';
 import { fetchInternalQuery, internal } from '@/lib/convex/server';
 import type {
   LessonProgressResponse,

@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { getRequestSessionClaims } from '@/lib/auth/server';
+import { requireActiveRequestSessionClaims } from '@/lib/auth/server';
 import { fetchInternalQuery, internal } from '@/lib/convex/server';
 import type { Id } from '@/convex/_generated/dataModel';
 

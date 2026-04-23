@@ -3,7 +3,7 @@ import {
   objectivePolicySchema,
   objectivePrioritySchema,
   type ObjectivePolicyInput,
-} from '@/lib/practice/objective-policy';
+} from '../srs/objective-policy';
 
 describe('objectivePrioritySchema', () => {
   it('accepts essential', () => {

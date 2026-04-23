@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import { z } from 'zod';
 
-import { getRequestSessionClaims } from '@/lib/auth/server';
+import { requireActiveTeacherRequestClaims } from '@/lib/auth/server';
 import { fetchInternalQuery, internal } from '@/lib/convex/server';
 import type { Id } from '@/convex/_generated/dataModel';
 
