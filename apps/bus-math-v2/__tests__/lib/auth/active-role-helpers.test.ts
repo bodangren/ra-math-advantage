@@ -1,5 +1,6 @@
 import { describe, expect, it, vi, beforeEach } from 'vitest';
 import {
+  requireActiveRequestSessionClaims,
   requireActiveStudentRequestClaims,
   requireActiveTeacherRequestClaims,
 } from '@/lib/auth/server';
@@ -43,6 +44,52 @@ async function makeToken(overrides: Partial<{ username: string; sub: string; rol
     3600,
   );
 }
+
+describe('requireActiveRequestSessionClaims', () => {
+  beforeEach(() => {
+    vi.clearAllMocks();
+  });
+
+  it('returns claims when credential is active', async () => {
+    mockFetchInternalQuery.mockResolvedValue({ id: 'cred_123', username: 'test_user', role: 'student' });
+
+    const token = await makeToken({ role: 'student', username: 'test_user' });
+    const request = buildRequestWithCookie(token);
+    const result = await requireActiveRequestSessionClaims(request);
+
+    expect(result).not.toBeInstanceOf(Response);
+    if (!(result instanceof Response)) {
+      expect(result.role).toBe('student');
+      expect(result.username).toBe('test_user');
+    }
+  });
+
+  it('returns 401 when credential is deactivated', async () => {
+    mockFetchInternalQuery.mockResolvedValue(null);
+
+    const token = await makeToken({ role: 'student' });
+    const request = buildRequestWithCookie(token);
+    const result = await requireActiveRequestSessionClaims(request);
+
+    expect(result).toBeInstanceOf(Response);
+    if (result instanceof Response) {
+      expect(result.status).toBe(401);
+    }
+  });
+
+  it('returns 503 when Convex query throws', async () => {
+    mockFetchInternalQuery.mockRejectedValue(new Error('Convex network error'));
+
+    const token = await makeToken({ role: 'teacher' });
+    const request = buildRequestWithCookie(token);
+    const result = await requireActiveRequestSessionClaims(request);
+
+    expect(result).toBeInstanceOf(Response);
+    if (result instanceof Response) {
+      expect(result.status).toBe(503);
+    }
+  });
+});
 
 describe('requireActiveStudentRequestClaims', () => {
   beforeEach(() => {

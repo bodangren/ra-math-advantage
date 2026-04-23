@@ -40,7 +40,7 @@ function makeArgs(overrides: Partial<ProcessReviewArgs> = {}): ProcessReviewArgs
   return {
     cardState: {
       cardId: 'card-1',
-      studentId: 'student-1',
+      studentId: 'student-1' as Id<'profiles'>,
       objectiveId: 'obj-1',
       problemFamilyId: 'family-1',
       stability: 2.5,

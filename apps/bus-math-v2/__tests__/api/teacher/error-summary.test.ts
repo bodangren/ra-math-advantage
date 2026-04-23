@@ -1,10 +1,10 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
-const mockGetRequestSessionClaims = vi.fn();
+const mockRequireActiveTeacherRequestClaims = vi.fn();
 const mockFetchInternalQuery = vi.fn();
 
 vi.mock('@/lib/auth/server', () => ({
-  getRequestSessionClaims: mockGetRequestSessionClaims,
+  requireActiveTeacherRequestClaims: mockRequireActiveTeacherRequestClaims,
 }));
 
 vi.mock('@/lib/convex/server', () => ({
@@ -33,7 +33,7 @@ function buildRequest(params: Record<string, string>) {
 describe('GET /api/teacher/error-summary', () => {
   beforeEach(() => {
     vi.clearAllMocks();
-    mockGetRequestSessionClaims.mockResolvedValue({
+    mockRequireActiveTeacherRequestClaims.mockResolvedValue({
       sub: 'teacher_profile_1',
       username: 'teacher',
       role: 'teacher',
@@ -42,8 +42,10 @@ describe('GET /api/teacher/error-summary', () => {
     });
   });
 
-  it('returns 401 when the requester is unauthenticated', async () => {
-    mockGetRequestSessionClaims.mockResolvedValue(null);
+  it('returns 401 when the requester is unauthenticated or deactivated', async () => {
+    mockRequireActiveTeacherRequestClaims.mockResolvedValue(
+      new Response(JSON.stringify({ error: 'Unauthorized' }), { status: 401 }),
+    );
 
     const response = await GET(
       buildRequest({ lessonId: 'lesson_1' }),
@@ -52,26 +54,25 @@ describe('GET /api/teacher/error-summary', () => {
     expect(response.status).toBe(401);
   });
 
-  it('returns 400 when lessonId is missing', async () => {
-    const response = await GET(buildRequest({}));
-
-    expect(response.status).toBe(400);
-    const payload = await response.json();
-    expect(payload.error).toBe('Invalid parameters');
-  });
-
   it('returns 403 when caller is not teacher/admin', async () => {
-    mockFetchInternalQuery.mockResolvedValueOnce({
-      id: 'teacher_profile_1',
-      role: 'student',
-      organizationId: 'org_1',
-    });
+    mockRequireActiveTeacherRequestClaims.mockResolvedValue(
+      new Response(JSON.stringify({ error: 'Forbidden' }), { status: 403 }),
+    );
 
     const response = await GET(
       buildRequest({ lessonId: 'lesson_1' }),
     );
 
     expect(response.status).toBe(403);
+    expect(mockFetchInternalQuery).not.toHaveBeenCalled();
+  });
+
+  it('returns 400 when lessonId is missing', async () => {
+    const response = await GET(buildRequest({}));
+
+    expect(response.status).toBe(400);
+    const payload = await response.json();
+    expect(payload.error).toBe('Invalid parameters');
   });
 
   it('returns deterministic error summary for a lesson', async () => {

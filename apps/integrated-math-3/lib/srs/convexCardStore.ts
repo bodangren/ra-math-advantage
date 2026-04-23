@@ -18,14 +18,14 @@ export class ConvexCardStore implements CardStore {
 
   async getCardsByStudent(studentId: string): Promise<SrsCardState[]> {
     const result = await this.ctx.runQuery(internal.srs.cards.getCardsByStudent, {
-      studentId,
+      studentId: studentId as Id<"profiles">,
     });
     return result;
   }
 
   async getCardByStudentAndFamily(studentId: string, problemFamilyId: string): Promise<SrsCardState | null> {
     const result = await this.ctx.runQuery(internal.srs.cards.getCardByStudentAndFamily, {
-      studentId,
+      studentId: studentId as Id<"profiles">,
       problemFamilyId,
     });
     return result;
@@ -40,7 +40,7 @@ export class ConvexCardStore implements CardStore {
 
   async getDueCards(studentId: string, now: string): Promise<SrsCardState[]> {
     const result = await this.ctx.runQuery(internal.srs.cards.getDueCards, {
-      studentId,
+      studentId: studentId as Id<"profiles">,
       asOfDate: now,
     });
     return result;

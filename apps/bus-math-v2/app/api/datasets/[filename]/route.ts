@@ -1,4 +1,4 @@
-import { getRequestSessionClaims } from '@/lib/auth/server';
+import { requireActiveRequestSessionClaims } from '@/lib/auth/server';
 import { NextRequest, NextResponse } from 'next/server';
 import path from 'path';
 import * as fs from 'fs';
