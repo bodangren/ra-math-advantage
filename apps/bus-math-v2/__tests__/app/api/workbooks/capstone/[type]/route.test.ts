@@ -23,7 +23,7 @@ const { GET } = await import(
   '@/app/api/workbooks/capstone/[type]/route'
 );
 
-function buildContext(type: string) {
+function buildContext(type: 'student' | 'teacher') {
   return {
     params: Promise.resolve({ type }),
   };

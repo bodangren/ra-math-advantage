@@ -68,6 +68,8 @@ export function validateWorkbookManifest(value: unknown): WorkbookManifest {
   if (typeof obj.byUnitAndLesson !== 'object' || obj.byUnitAndLesson === null) {
     throw new TypeError('WorkbookManifest.byUnitAndLesson must be an object');
   }
+
+  const byUnitAndLesson: Record<string, { student: boolean; teacher: boolean }> = {};
   for (const [key, entry] of Object.entries(obj.byUnitAndLesson)) {
     if (
       typeof entry !== 'object' ||
@@ -79,7 +81,12 @@ export function validateWorkbookManifest(value: unknown): WorkbookManifest {
         `WorkbookManifest.byUnitAndLesson["${key}"] must have boolean student and teacher properties`
       );
     }
+    byUnitAndLesson[key] = {
+      student: (entry as Record<string, unknown>).student as boolean,
+      teacher: (entry as Record<string, unknown>).teacher as boolean,
+    };
   }
+
   if (
     typeof obj.byCapstone !== 'object' ||
     obj.byCapstone === null ||
@@ -89,5 +96,14 @@ export function validateWorkbookManifest(value: unknown): WorkbookManifest {
     throw new TypeError('WorkbookManifest.byCapstone must have boolean student and teacher properties');
   }
 
-  return obj as unknown as WorkbookManifest;
+  return {
+    version: obj.version,
+    generatedAt: obj.generatedAt,
+    files: obj.files as string[],
+    byUnitAndLesson,
+    byCapstone: {
+      student: (obj.byCapstone as Record<string, unknown>).student as boolean,
+      teacher: (obj.byCapstone as Record<string, unknown>).teacher as boolean,
+    },
+  };
 }

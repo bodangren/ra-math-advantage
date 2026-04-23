@@ -4,7 +4,7 @@ const mockCookiesSet = vi.fn();
 const mockCookies = vi.fn(() => Promise.resolve({ set: mockCookiesSet }));
 
 vi.mock('next/headers', () => ({ cookies: mockCookies }));
-vi.mock('@/lib/auth/constants', () => ({
+vi.mock('@math-platform/core-auth', () => ({
   SESSION_COOKIE_NAME: 'bm_session',
 }));
 
