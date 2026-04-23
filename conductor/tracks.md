@@ -719,7 +719,7 @@ AI Tutoring and Workbook scope is explicitly **import/adopt from BM2**, not gree
       - Phase 4: CI/CD & Deployment Hardening [x]
        - Phase 5: Package Quality & Consistency [x] [checkpoint: cbae9ca]
        - Phase 6: AI Tutoring & Workbook Quality [x] [checkpoint: a6b2a11]
-       - Phase 7: UI & Minor Items [ ]
+        - Phase 7: UI & Minor Items [~]
        - Phase 8: Tech Debt Registry Cleanup & Final Verification [ ]
 
 ## Test Suite Maintenance
