@@ -57,10 +57,7 @@ export async function GET(
   } catch (error) {
     console.error('Unexpected error:', error);
     return NextResponse.json(
-      {
-        error:
-          error instanceof Error ? error.message : 'Unexpected error while fetching progress',
-      },
+      { error: 'Internal server error' },
       { status: 500 },
     );
   }

@@ -111,7 +111,7 @@ export async function saveCardHandler(
 export const saveCard = internalMutation({
   args: {
     cardId: v.string(),
-    studentId: v.string(),
+    studentId: v.id("profiles"),
     objectiveId: v.string(),
     problemFamilyId: v.string(),
     stability: v.number(),
