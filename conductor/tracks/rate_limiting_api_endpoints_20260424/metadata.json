@@ -1,0 +1,11 @@
+{
+  "track_id": "rate_limiting_api_endpoints_20260424",
+  "type": "feature",
+  "status": "pending",
+  "created_at": "2026-04-24T00:00:00Z",
+  "updated_at": "2026-04-24T00:00:00Z",
+  "description": "Add rate limiting to 5 BM2 API endpoints that currently have no protection: phases/complete, assessment, activities, error-summary, ai-error-summary",
+  "estimated_tasks": 6,
+  "actual_tasks": null,
+  "deviation_notes": ""
+}

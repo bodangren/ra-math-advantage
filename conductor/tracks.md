@@ -722,6 +722,18 @@ AI Tutoring and Workbook scope is explicitly **import/adopt from BM2**, not gree
         - Phase 7: UI & Minor Items [~]
        - Phase 8: Tech Debt Registry Cleanup & Final Verification [ ]
 
+- [ ] **Track: Convex Schema Strict Validation**
+      *Replace 21 v.any() fields in IM3 Convex schema with typed validators and eliminate 5 production as any casts on Convex internal*
+      *Link: [./conductor/tracks/convex_schema_strict_validation_20260424/](./conductor/tracks/convex_schema_strict_validation_20260424/)*
+
+- [ ] **Track: Rate Limiting API Endpoints**
+      *Add per-user rate limiting to 5 unprotected BM2 API endpoints: phases/complete, assessment, activities, error-summary, ai-error-summary*
+      *Link: [./conductor/tracks/rate_limiting_api_endpoints_20260424/](./conductor/tracks/rate_limiting_api_endpoints_20260424/)*
+
+- [ ] **Track: Lesson Version Query Optimization**
+      *Fix N+1 query patterns in public.ts getCurriculum/getUnitSummaries and isStudentEnrolledInClassForLesson via batched parallel queries*
+      *Link: [./conductor/tracks/lesson_version_query_optimization_20260424/](./conductor/tracks/lesson_version_query_optimization_20260424/)*
+
 ## Test Suite Maintenance
 
 ## Archived Tracks
