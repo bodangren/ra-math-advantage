@@ -139,7 +139,7 @@ export const saveCards = internalMutation({
     cards: v.array(
       v.object({
         cardId: v.string(),
-        studentId: v.string(),
+        studentId: v.id("profiles"),
         objectiveId: v.string(),
         problemFamilyId: v.string(),
         stability: v.number(),
