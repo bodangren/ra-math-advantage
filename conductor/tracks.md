@@ -755,3 +755,10 @@ AI Tutoring and Workbook scope is explicitly **import/adopt from BM2**, not gree
   *Audit and repair the test suite to ensure all tests are meaningful, non-trivial, and correctly verify behavior.*
   *IM3: 267/267 pass. BM2: Convex generated type stubs added; 28 pre-existing infra failures remain (outside spec scope).*
   *Link: [./conductor/archive/harden-test-suite_20260419/](./conductor/archive/harden-test-suite_20260419/)*
+
+## Upcoming Tracks
+
+- [ ] **Track: Rate Limiting API Endpoints** *Link: [./tracks/rate_limiting_api_20260425/](./tracks/rate_limiting_api_20260425/)*
+- [ ] **Track: SRS Dashboard Streak Test Coverage** *Link: [./tracks/srs_dashboard_streak_test_20260425/](./tracks/srs_dashboard_streak_test_20260425/)*
+- [ ] **Track: Convex Schema Strict Validation** *Link: [./tracks/convex_schema_validation_20260425/](./tracks/convex_schema_validation_20260425/)*
+- [ ] **Track: Chatbot Prompt Injection Defense** *Link: [./tracks/chatbot_prompt_guard_20260425/](./tracks/chatbot_prompt_guard_20260425/)*
