@@ -115,6 +115,7 @@ export interface RawLessonVersion {
   id: string;
   lessonId: string;
   status?: 'draft' | 'review' | 'published' | 'archived';
+  version?: number;
 }
 
 export interface RawPhaseVersion {

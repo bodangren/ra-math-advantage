@@ -3,10 +3,8 @@ import { NextRequest, NextResponse } from 'next/server';
 import { resolveOpenRouterProviderFromEnv, assembleLessonChatbotContext } from '@math-platform/ai-tutoring';
 import { fetchInternalMutation, fetchInternalQuery, internal } from '@/lib/convex/server';
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const rateLimitsInternal = (internal as any).rateLimits;
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const studentInternal = (internal as any).student;
+const rateLimitsInternal = internal.rateLimits;
+const studentInternal = internal.student;
 
 interface ChatbotRequest {
   lessonId: string;

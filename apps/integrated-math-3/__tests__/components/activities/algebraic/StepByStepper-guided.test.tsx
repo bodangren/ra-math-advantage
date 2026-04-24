@@ -119,11 +119,17 @@ describe('StepByStepper - Guided Mode', () => {
   });
 
   describe('hint usage tracking', () => {
-    it('records hint usage count in component state', async () => {
+    beforeEach(() => {
       // Mock Math.random so options sort comparator always returns 0 (stable order):
       // insertion order is [correct, distractor0, distractor1], so buttons[1] and [2] are incorrect
       vi.spyOn(Math, 'random').mockReturnValue(0.5);
+    });
 
+    afterEach(() => {
+      vi.restoreAllMocks();
+    });
+
+    it('records hint usage count in component state', async () => {
       render(<StepByStepper {...defaultProps} />);
 
       const options = screen.getAllByRole('button');
@@ -142,8 +148,6 @@ describe('StepByStepper - Guided Mode', () => {
       });
 
       expect(screen.getByText(/Hints used: 2/i)).toBeInTheDocument();
-
-      vi.restoreAllMocks();
     });
   });
 

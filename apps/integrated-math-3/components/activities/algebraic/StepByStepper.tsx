@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import InlineMath from '@matejmazur/react-katex';
 import 'katex/dist/katex.min.css';
 import { StepRevealContainer, StepMode } from '@/components/textbook/StepRevealContainer';
@@ -72,6 +72,17 @@ function GuidedMode({ steps, problemType }: { steps: AlgebraicStep[]; problemTyp
   const currentStep = steps[currentStepIndex];
   const isComplete = currentStepIndex >= steps.length || (showExplanation && currentStepIndex === steps.length - 1);
 
+  const options = useMemo(() => {
+    if (!currentStep) return [];
+    return [
+      currentStep.expression,
+      ...(currentStep.distractors || generateDistractors(
+        currentStep.expression,
+        (problemType as DistractorType) || 'factoring'
+      )),
+    ].sort(() => Math.random() - 0.5);
+  }, [currentStep, problemType]);
+
   const handleOptionClick = (expression: string) => {
     if (expression === currentStep.expression) {
       // Correct selection - show explanation first
@@ -107,14 +118,6 @@ function GuidedMode({ steps, problemType }: { steps: AlgebraicStep[]; problemTyp
       </div>
     );
   }
-
-  const options = [
-    currentStep.expression,
-    ...(currentStep.distractors || generateDistractors(
-      currentStep.expression,
-      (problemType as DistractorType) || 'factoring'
-    )),
-  ].sort(() => Math.random() - 0.5);
 
   return (
     <div className="space-y-4">

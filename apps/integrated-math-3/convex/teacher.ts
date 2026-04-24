@@ -334,6 +334,7 @@ export async function getTeacherCourseOverviewDataHandler(
     id: version._id,
     lessonId: version.lessonId,
     status: version.status,
+    version: version.version,
   }));
 
   const rawStudents = students.map((student) => ({
@@ -425,6 +426,7 @@ export async function getTeacherGradebookDataHandler(
     id: version._id,
     lessonId: version.lessonId,
     status: version.status,
+    version: version.version,
   }));
 
   if (rawLessonVersions.length === 0) {
@@ -632,6 +634,7 @@ export async function getTeacherStudentCompetencyDetailHandler(
     (version) => ({
       id: version._id,
       lessonId: version.lessonId,
+      version: version.version,
     }),
   );
 

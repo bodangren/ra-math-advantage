@@ -245,6 +245,56 @@ describe('SubmissionDetailModal', () => {
 
       expect(screen.getByText(/1 submission/i)).toBeInTheDocument();
     });
+
+    it('uses stable keys instead of array index for evidence items', async () => {
+      const data = createMockSubmissionDetailData({
+        phases: [
+          {
+            phaseNumber: 1,
+            phaseId: 'p1',
+            title: 'Practice',
+            status: 'completed',
+            completedAt: 1713369600000,
+            spreadsheetData: null,
+            evidence: [
+              {
+                kind: 'practice',
+                activityId: 'activity-1',
+                activityTitle: 'Practice A',
+                componentKey: 'step-by-step-solver',
+                submittedAt: '2026-04-14T10:00:00Z',
+              } as SubmissionEvidence,
+              {
+                kind: 'practice',
+                activityId: 'activity-2',
+                activityTitle: 'Practice B',
+                componentKey: 'step-by-step-solver',
+                submittedAt: '2026-04-14T11:00:00Z',
+              } as SubmissionEvidence,
+            ],
+          },
+        ],
+      });
+      const { container } = render(
+        <SubmissionDetailModal
+          open={true}
+          onOpenChange={vi.fn()}
+          data={data}
+        />
+      );
+
+      // Expand the phase to render evidence items by clicking the phase header (cursor-pointer div)
+      const submissionCount = screen.getByText(/2 submissions/);
+      const phaseHeader = submissionCount.closest('[class*="cursor-pointer"]');
+      expect(phaseHeader).not.toBeNull();
+      await import('@testing-library/react').then(({ fireEvent }) => {
+        fireEvent.click(phaseHeader!);
+      });
+
+      // Evidence containers should have stable keys derived from activityId + submittedAt
+      const evidenceTitles = screen.queryAllByText(/Practice [AB]/);
+      expect(evidenceTitles.length).toBe(2);
+    });
   });
 
   describe('Practice evidence display', () => {

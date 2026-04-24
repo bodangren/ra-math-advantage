@@ -308,4 +308,61 @@ describe('assembleGradebookRows', () => {
     expect(aliceRow.cells[0].completionStatus).toBe('not_started');
     expect(aliceRow.cells[0].color).toBe('gray');
   });
+
+  it('selects the highest version number when multiple versions exist for a lesson', () => {
+    const multiVersionLessons: RawLesson[] = [
+      { id: 'l1', title: 'Lesson 1', orderIndex: 1, unitNumber: 1 },
+    ];
+    const multiVersionVersions: RawLessonVersion[] = [
+      { id: 'lv1-v1', lessonId: 'l1', version: 1 },
+      { id: 'lv1-v3', lessonId: 'l1', version: 3 },
+      { id: 'lv1-v2', lessonId: 'l1', version: 2 },
+    ];
+    const multiVersionPhases: RawPhaseVersion[] = [
+      { id: 'p1', lessonVersionId: 'lv1-v3', phaseNumber: 1 },
+    ];
+    const multiVersionStandards: RawLessonStandard[] = [
+      { lessonVersionId: 'lv1-v3', standardId: 'std1', isPrimary: true },
+    ];
+
+    const result = assembleGradebookRows(
+      students,
+      multiVersionLessons,
+      multiVersionVersions,
+      multiVersionPhases,
+      multiVersionStandards,
+      [{ userId: 's1', phaseId: 'p1', status: 'completed' }],
+      [{ studentId: 's1', standardId: 'std1', masteryLevel: 90 }],
+    );
+
+    const aliceRow = result.rows.find(r => r.studentId === 's1')!;
+    expect(aliceRow.cells[0].completionStatus).toBe('completed');
+    expect(aliceRow.cells[0].masteryLevel).toBe(90);
+  });
+
+  it('falls back to first encountered when no version numbers are provided', () => {
+    const fallbackLessons: RawLesson[] = [
+      { id: 'l1', title: 'Lesson 1', orderIndex: 1, unitNumber: 1 },
+    ];
+    const fallbackVersions: RawLessonVersion[] = [
+      { id: 'lv1-first', lessonId: 'l1' },
+      { id: 'lv1-second', lessonId: 'l1' },
+    ];
+    const fallbackPhases: RawPhaseVersion[] = [
+      { id: 'p1', lessonVersionId: 'lv1-first', phaseNumber: 1 },
+    ];
+
+    const result = assembleGradebookRows(
+      [{ id: 's1', username: 'alice', displayName: 'Alice' }],
+      fallbackLessons,
+      fallbackVersions,
+      fallbackPhases,
+      [],
+      [{ userId: 's1', phaseId: 'p1', status: 'completed' }],
+      [],
+    );
+
+    const aliceRow = result.rows.find(r => r.studentId === 's1')!;
+    expect(aliceRow.cells[0].completionStatus).toBe('completed');
+  });
 });
