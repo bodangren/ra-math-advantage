@@ -1,0 +1,11 @@
+{
+  "track_id": "scaffold-pre-calculus_20260425",
+  "type": "feature",
+  "status": "new",
+  "created_at": "2026-04-25T12:00:00Z",
+  "updated_at": "2026-04-25T12:00:00Z",
+  "description": "Scaffold the AP Precalculus course application (apps/pre-calculus/) as a minimal runnable shell with Convex schema, design system, auth wiring, layout, landing page, and seed data",
+  "estimated_tasks": 24,
+  "actual_tasks": null,
+  "deviation_notes": ""
+}
