@@ -819,4 +819,8 @@ Parallel tracks delivering complete curriculum for all three new apps. Tracks 1 
 - [ ] **Track: Demo Environment & Verification — All Apps**
      *Seed demo environments and run end-to-end verification for IM1, IM2, and PreCalculus*
      *Depends on: Tracks 6, 7*
-     *Link: [./tracks/demo-verification-multi-app_20260425/](./tracks/demo-verification-multi-app_20260425/)*
+      *Link: [./tracks/demo-verification-multi-app_20260425/](./tracks/demo-verification-multi-app_20260425/)*
+
+- [ ] **Track: Convex Best Practices Audit**
+     *Systematic audit of all Convex backend code across 5 apps against Convex best practices — 10 categories, document findings and fix inline*
+     *Link: [./tracks/convex-best-practices-audit_20260425/](./tracks/convex-best-practices-audit_20260425/)*
