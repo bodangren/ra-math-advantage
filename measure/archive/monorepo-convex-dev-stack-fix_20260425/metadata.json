@@ -1,0 +1,9 @@
+{
+  "id": "monorepo-convex-dev-stack-fix_20260425",
+  "name": "Monorepo Convex Dev Stack Startup Fix",
+  "status": "complete",
+  "created": "2026-04-25",
+  "priority": "high",
+  "actual_tasks": 9,
+  "deviation_notes": "Full IM3 workspace lint/typecheck remain blocked by pre-existing untracked __tests__/convex/srs/dashboard.test.ts failures, so verification used focused lint/typecheck on touched files plus passing smoke checks and builds. During manual verification, BM2 surfaced a related Convex module-path issue (srs-validators.ts) which was fixed in this track."
+}

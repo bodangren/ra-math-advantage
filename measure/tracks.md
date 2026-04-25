@@ -10,13 +10,6 @@ Tracks 1+4 unlock Track 8; Track 8 unlocks Tracks 9+10.
 
 ## Active Tracks
 
-- [x] **Track: Monorepo Convex Dev Stack Startup Fix**
-   *Fix app-scoped Convex startup failures after monorepo migration (IM3 + AP Precalculus): readiness checks, per-app working directory, and client URL resolution*
-   *Link: [./measure/tracks/monorepo-convex-dev-stack-fix_20260425/](./measure/tracks/monorepo-convex-dev-stack-fix_20260425/)*
-    - Phase 1: Diagnose startup failures [x]
-    - Phase 2: Patch scripts/providers [x]
-    - Phase 3: Verify and close [x]
-
 - [x] **Track: BM2 Deactivated-User Access**
    *Swap JWT-only auth for active-credential verification on all 10 BM2 API endpoints to revoke access on deactivation*
    *Link: [./measure/tracks/bm2-deactivated-user-access_20260423/](./measure/tracks/bm2-deactivated-user-access_20260423/)*
