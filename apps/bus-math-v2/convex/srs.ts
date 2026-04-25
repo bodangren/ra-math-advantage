@@ -7,7 +7,7 @@ import {
   computeStrugglingStudents,
   formatFamilyDisplayName,
 } from '../lib/srs/teacher-analytics';
-import { srsCardStateValidator, srsRatingValidator } from './srs-validators';
+import { srsCardStateValidator, srsRatingValidator } from './srs_validators';
 import { createCard } from '@math-platform/srs-engine';
 
 async function verifyStudentIdentity(

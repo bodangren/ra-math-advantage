@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
-import { srsCardValidator, srsRatingValidator } from '../../../convex/srs-validators';
+import { srsCardValidator, srsRatingValidator } from '../../../convex/srs_validators';
 
-describe('srs-validators', () => {
+describe('srs_validators', () => {
   describe('srsRatingValidator', () => {
     it('is a union validator', () => {
       expect(srsRatingValidator.isConvexValidator).toBe(true);

@@ -1,6 +1,8 @@
 import { describe, it, expect, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import type { ReactNode } from 'react';
+import fs from 'node:fs';
+import path from 'node:path';
 
 // Mock providers that wrap children
 vi.mock('@/components/ConvexClientProvider', () => ({
@@ -46,6 +48,15 @@ describe('Footer', () => {
 });
 
 describe('provider nesting order', () => {
+  it('imports ConvexClientProvider directly instead of using next/dynamic in the server layout', () => {
+    const layoutPath = path.resolve(process.cwd(), 'app/layout.tsx');
+    const layout = fs.readFileSync(layoutPath, 'utf8');
+
+    expect(layout).toContain('import { ConvexClientProvider } from "@/components/ConvexClientProvider"');
+    expect(layout).not.toContain('next/dynamic');
+    expect(layout).not.toContain('ssr: false');
+  });
+
   it('nests ConvexClientProvider > AuthProvider > ThemeProvider', async () => {
     const { ConvexClientProvider } = await import('@/components/ConvexClientProvider');
     const { AuthProvider } = await import('@/components/auth/AuthProvider');
