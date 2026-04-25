@@ -1,11 +1,11 @@
 {
   "track_id": "scaffold-im2_20260425",
   "type": "feature",
-  "status": "new",
+  "status": "complete",
   "created_at": "2026-04-25T12:00:00Z",
-  "updated_at": "2026-04-25T12:00:00Z",
+  "updated_at": "2026-04-25T17:30:00Z",
   "description": "Scaffold the Integrated Math 2 course application (apps/integrated-math-2/) as a minimal runnable shell with Convex schema, design system, auth wiring, layout, landing page, and seed data",
   "estimated_tasks": 24,
-  "actual_tasks": null,
+  "actual_tasks": 24,
   "deviation_notes": ""
 }

@@ -1,0 +1,17 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "integrated-math-2",
+  "main": "vinext/server/app-router-entry",
+  "compatibility_date": "2026-04-11",
+  "compatibility_flags": ["nodejs_compat"],
+  "assets": {
+    "not_found_handling": "none",
+    "binding": "ASSETS"
+  },
+  "vars": {
+    "NEXT_PUBLIC_CONVEX_URL": "http://127.0.0.1:3210"
+  }
+  // Required secrets via `wrangler secret put`:
+  // - CONVEX_DEPLOY_KEY
+  // - AUTH_JWT_SECRET
+}
