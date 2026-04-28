@@ -1,11 +1,11 @@
 # Plan: Rate Limiting API Endpoints
 
-## Phase 1: Rate Limiter Core
+## Phase 1: Rate Limiter Core [COMPLETE]
 
-- [ ] Task: Build reusable rate limiter
-    - [ ] Write tests for token bucket rate limiter (allow/deny/retry-after)
-    - [ ] Implement rate limiter using Convex rate limit table or action-based tracking
-    - [ ] Create middleware wrapper for route handlers
+- [x] Task: Build reusable rate limiter
+    - [x] Write tests for token bucket rate limiter (allow/deny/retry-after)
+    - [x] Implement rate limiter using Convex rate limit table or action-based tracking
+    - [x] Create middleware wrapper for route handlers
 
 ## Phase 2: Endpoint Integration
 

@@ -480,6 +480,16 @@ export default defineSchema({
   })
     .index("by_ip", ["ipHash"]),
 
+  api_rate_limits: defineTable({
+    userId: v.id("profiles"),
+    endpoint: v.string(),
+    requestCount: v.number(),
+    windowStart: v.number(),
+    createdAt: v.number(),
+    updatedAt: v.number(),
+  })
+    .index("by_user_and_endpoint", ["userId", "endpoint"]),
+
   srs_cards: defineTable({
     cardId: v.string(),
     studentId: v.id("profiles"),
