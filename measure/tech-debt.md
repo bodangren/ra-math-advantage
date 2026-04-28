@@ -8,12 +8,13 @@
 
 | Item | Sev | Status | Notes |
 |------|-----|--------|-------|
+| BM2 apiRateLimits and rateLimits auth failure on API routes | Critical | Resolved | Mutations used ctx.auth.getUserIdentity() but were called via unauthenticated fetchPublicMutation/fetchInternalMutation; converted to internalMutation with explicit userId arg (review-25) |
 | BM2 apiRateLimits duplicate-insert race condition | High | Resolved | Fixed via try/catch upsert pattern in checkAndIncrementApiRateLimitHandler |
-| BM2 Convex generated types stale after internalMutation migration | High | Open | apiRateLimits manually added to api.d.ts; rateLimits still shows as public; full regen needed via `npx convex dev` |
-| BM2 chatbot route uses `as any` for rateLimits internal ref | Medium | Open | `(internal as any).rateLimits` cast needed because generated types don't reflect internal conversion |
+| IM3 rateLimits duplicate-insert race condition | High | Resolved | Fixed via try/catch upsert pattern in checkAndIncrementRateLimit (review-26) |
+| BM2 rateLimits duplicate-insert race condition | High | Resolved | Fixed via try/catch upsert pattern in checkAndIncrementRateLimit (review-26) |
 | apiRateLimits no stale entry cleanup | Medium | Open | Table grows unbounded; rateLimits.ts and loginRateLimits.ts both have cleanup mutations |
 | SRS CardStore: studentId type mismatch (contract vs schema) | High | Open | 7 bridging casts in convexCardStore.ts; package types need branded string |
-| 21 `v.any()` fields in IM3 Convex schema | Medium | Partial | SRS review_log fields (evidence, stateBefore, stateAfter) now typed; remaining: submissionData, props, content, fsrsState, and 12 metadata fields |
+| 18 `v.any()` fields in IM3 Convex schema | Medium | Partial | Down from 21; SRS review_log fields typed + shared validators extracted (review-26); remaining: submissionData, props, content, fsrsState, and 12 metadata fields |
 | BM2 chatbot prompt injection defense still weak | Medium | Open | sanitizeInput only strips markdown chars; no system prompt guard or LLM-based filter |
 | BM2 login endpoint has no input length limits | Medium | Open | Multi-MB payloads could exhaust memory/slow hashing |
 | RSC page chunk 891 KB, vendor-charts 830 KB | Medium | Open | Activity lazy-loading done; further code-splitting needed to get under 500 KB |
@@ -26,8 +27,10 @@
 | N+1: teacher.ts getTeacherDashboardData 3 sequential .collect() | Medium | Resolved | Batched via Promise.all (review-23) |
 | apiRateLimits remaining could go negative | Medium | Resolved | Added Math.max(0, ...) clamp (review-23) |
 | IM1 missing DESIGN.md and product.md | High | Resolved | Both files created (minimax-m2) |
-| Scaffolded apps missing .env.example | Medium | Open | No env reference for any app including IM3 |
+| Scaffolded apps missing .env.example | Medium | Resolved | .env.example created for IM3, IM1, IM2, PreCalc; BM2 already had one (review-26) |
 | BM2 9 governance test suites permanently skipped | Medium | Open | TODO(monorepo) comments added; all need monorepo-aware path fixes |
+| SRS validator DRY violation | Low | Resolved | Extracted srsCardStatePickValidator and srsEvidenceValidator to convex/srs/validators.ts (review-26) |
+| IM3/BM2 rateLimits remaining could go negative | Medium | Resolved | Added Math.max(0, ...) clamp in checkAndIncrementRateLimit (review-26) |
 | Equivalence checker: 2 aspirational .todo tests | Low | Open | Need symbolic math lib |
 | 40+ seed lesson tests vacuous | Low | Open | Test hardcoded data against itself; convert to data-driven validator |
 | StepByStepper-guided hint tracking test flaky | Low | Open | Passes in isolation; timing/ordering issue in full run |

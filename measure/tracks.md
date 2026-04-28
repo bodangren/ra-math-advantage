@@ -722,9 +722,13 @@ AI Tutoring and Workbook scope is explicitly **import/adopt from BM2**, not gree
         - Phase 7: UI & Minor Items [x]
        - Phase 8: Tech Debt Registry Cleanup & Final Verification [x]
 
-- [ ] **Track: Convex Schema Strict Validation**
-      *Replace 21 v.any() fields in IM3 Convex schema with typed validators and eliminate 5 production as any casts on Convex internal*
-      *Link: [./measure/tracks/convex_schema_strict_validation_20260424/](./measure/tracks/convex_schema_strict_validation_20260424/)*
+- [~] **Track: Convex Schema Strict Validation**
+       *Replace 21 v.any() fields in IM3 Convex schema with typed validators and eliminate 5 production as any casts on Convex internal*
+       *Link: [./measure/tracks/convex_schema_strict_validation_20260424/](./measure/tracks/convex_schema_strict_validation_20260424/)*
+       - Phase 1: Audit and Type Discovery [COMPLETE]
+       - Phase 2: SRS review_log typed validators [COMPLETE] (review-26: extracted shared validators to srs/validators.ts)
+       - Phase 3: Eliminate as any casts [DEFERRED]
+       - Phase 4: Verification [COMPLETE]
 
 - [x] **Track: Rate Limiting API Endpoints** — **COMPLETED**
       *Add per-user rate limiting to 5 unprotected BM2 API endpoints: phases/complete, assessment, activities, error-summary, ai-error-summary*
@@ -735,10 +739,17 @@ AI Tutoring and Workbook scope is explicitly **import/adopt from BM2**, not gree
       - Phase 4: Verification [COMPLETE] (minimax-m2)
 
 - [x] **Track: Fix apiRateLimits Race Condition** — **COMPLETED**
-      *Fix concurrent inserts for same user+endpoint creating duplicate records that break .unique() via try/catch upsert pattern*
-      *Link: [./measure/tracks/fix-apiratelimits-race-condition_20260428/](./measure/tracks/fix-apiratelimits-race-condition_20260428/)*
-      - Phase 1: Race Condition Fix [COMPLETE] - 14 tests including concurrent request simulation
-      - Phase 2: Documentation [COMPLETE]
+       *Fix concurrent inserts for same user+endpoint creating duplicate records that break .unique() via try/catch upsert pattern*
+       *Link: [./measure/tracks/fix-apiratelimits-race-condition_20260428/](./measure/tracks/fix-apiratelimits-race-condition_20260428/)*
+       - Phase 1: Race Condition Fix [COMPLETE] - 14 tests including concurrent request simulation
+       - Phase 2: Documentation [COMPLETE]
+
+- [x] **Track: Add .env.example to All Apps** — **COMPLETED**
+       *Add `.env.example` files to all apps (IM3, BM2, IM1, IM2, PreCalc) providing reference for required environment variables*
+       *Link: [./measure/tracks/add_env_example_all_apps_20260428/](./measure/tracks/add_env_example_all_apps_20260428/)*
+       - Phase 1: Audit Existing Environment Variables [COMPLETE]
+       - Phase 2: Create .env.example for Each App [COMPLETE]
+       - Phase 3: Verification [COMPLETE]
 
 - [x] **Track: Fix getTeacherClassProficiencyHandler N+1 Queries** — **COMPLETED**
       *Pre-fetch problem_families, timing_baselines, activity_submissions, competency_standards, objective_policies outside S×O loop to reduce ~1800 queries to O(1) pre-fetches*
@@ -768,9 +779,7 @@ AI Tutoring and Workbook scope is explicitly **import/adopt from BM2**, not gree
 
 ## Upcoming Tracks
 
-- [ ] **Track: Rate Limiting API Endpoints** *Link: [./tracks/rate_limiting_api_20260425/](./tracks/rate_limiting_api_20260425/)*
 - [ ] **Track: SRS Dashboard Streak Test Coverage** *Link: [./tracks/srs_dashboard_streak_test_20260425/](./tracks/srs_dashboard_streak_test_20260425/)*
-- [ ] **Track: Convex Schema Strict Validation** *Link: [./tracks/convex_schema_validation_20260425/](./tracks/convex_schema_validation_20260425/)*
 - [ ] **Track: Chatbot Prompt Injection Defense** *Link: [./tracks/chatbot_prompt_guard_20260425/](./tracks/chatbot_prompt_guard_20260425/)*
 
 ## AP Precalculus

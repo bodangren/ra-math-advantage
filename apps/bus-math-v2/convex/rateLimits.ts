@@ -47,24 +47,38 @@ export const checkAndIncrementRateLimit = internalMutation({
   handler: async (ctx, args) => {
     const now = Date.now();
 
-    const existing = await ctx.db
+    let existing = await ctx.db
       .query("chatbot_rate_limits")
       .withIndex("by_user", (q) => q.eq("userId", args.userId))
       .unique();
 
     if (!existing) {
-      await ctx.db.insert("chatbot_rate_limits", {
-        userId: args.userId,
-        requestCount: 1,
-        windowStart: now,
-        createdAt: now,
-        updatedAt: now,
-      });
-      return {
-        allowed: true,
-        remaining: MAX_REQUESTS_PER_WINDOW - 1,
-        windowExpiresAt: now + RATE_LIMIT_WINDOW_MS,
-      };
+      try {
+        await ctx.db.insert("chatbot_rate_limits", {
+          userId: args.userId,
+          requestCount: 1,
+          windowStart: now,
+          createdAt: now,
+          updatedAt: now,
+        });
+        return {
+          allowed: true,
+          remaining: MAX_REQUESTS_PER_WINDOW - 1,
+          windowExpiresAt: now + RATE_LIMIT_WINDOW_MS,
+        };
+      } catch (e) {
+        const message = e instanceof Error ? e.message : String(e);
+        if (!message.includes("duplicate") && !message.includes("unique")) {
+          throw e;
+        }
+        existing = await ctx.db
+          .query("chatbot_rate_limits")
+          .withIndex("by_user", (q) => q.eq("userId", args.userId))
+          .unique();
+        if (!existing) {
+          throw new Error("Rate limit record disappeared after concurrent insert");
+        }
+      }
     }
 
     if (now - existing.windowStart >= RATE_LIMIT_WINDOW_MS) {
@@ -95,7 +109,7 @@ export const checkAndIncrementRateLimit = internalMutation({
 
     return {
       allowed: true,
-      remaining: MAX_REQUESTS_PER_WINDOW - existing.requestCount - 1,
+      remaining: Math.max(0, MAX_REQUESTS_PER_WINDOW - existing.requestCount - 1),
       windowExpiresAt: existing.windowStart + RATE_LIMIT_WINDOW_MS,
     };
   },

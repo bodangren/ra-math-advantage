@@ -46,5 +46,8 @@
 - (2026-04-28, review-23) `Math.max(0, ...)` clamp on `remaining` in rate limit handlers prevents negative values when count exceeds max
 - (2026-04-28, review-23) Convex `.unique()` query on non-unique index can throw when concurrent inserts create duplicates — design rate limit upserts defensively
 - (2026-04-28, rate-limiting-race) Fix race condition via try/catch upsert: if insert throws duplicate key error, re-query existing record and patch/increment; check error message for "duplicate" or "unique" keywords
-- (2026-04-29, review-25) WIP commits that change Convex function visibility (public→internal) MUST also update `_generated/api.d.ts` or the entire downstream type tree breaks — always run typecheck after visibility changes
-- (2026-04-29, schema-validation) When adding typed validators for discriminated union fields (e.g., evidence: teacher_reset | standard), update BOTH the schema validators AND the package types (SrsReviewLogEntry) to match — type mismatches cascade through the entire call stack
+- (2026-04-29, review-25) `fetchPublicMutation` uses an unauthenticated Convex client — public mutations requiring `ctx.auth.getUserIdentity()` will ALWAYS throw "Unauthenticated" from Next.js API routes. Use `internalMutation` with explicit `userId` arg instead
+- (2026-04-29, review-25) Deprecated shim routes (e.g., `activities/complete`) that proxy to canonical endpoints must forward the original `Cookie` header or auth will fail silently in the downstream route
+- (2026-04-29, review-26) The try/catch upsert race condition fix applied to apiRateLimits MUST also be applied to rateLimits.ts — identical `.unique()` + `ctx.db.insert` patterns have identical vulnerability
+- (2026-04-29, review-26) Convex validators duplicated across schema.ts and handler files create maintenance risk — extract shared validators to a common file in convex/ (e.g., `convex/srs/validators.ts`) and import from schema and handlers
+- (2026-04-29, review-26) IM3 and BM2 rate limiters diverged in visibility (public vs internal) despite identical behavior — keep rate limiters as internalMutation/internalQuery since they are infrastructure, not client-facing
