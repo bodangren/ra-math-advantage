@@ -18,7 +18,7 @@
 | BM2 chatbot prompt injection defense still weak | Medium | Open | sanitizeInput only strips markdown chars; no system prompt guard or LLM-based filter |
 | BM2 login endpoint has no input length limits | Medium | Open | Multi-MB payloads could exhaust memory/slow hashing |
 | RSC page chunk 891 KB, vendor-charts 830 KB | Medium | Open | Activity lazy-loading done; further code-splitting needed to get under 500 KB |
-| SRS reviews.ts untested | Medium | Open | saveReview, getReviewsByCard, getReviewsByStudent — no tests |
+| SRS reviews.ts untested | Medium | Resolved | saveReview, getReviewsByCard, getReviewsByStudent — 10 tests added (minimax-m2) |
 | internal Convex fns rely on action wrapper for auth | Medium | Open | activities.ts, study.ts, srs/cards.ts, student.ts have no defense-in-depth |
 | getDueCards fetches all cards then filters by date in-memory | Medium | Open | by_student_and_due index has dueDate but no range query used |
 | Session history pagination fetches all then slices client-side | Medium | Open | Use Convex cursor pagination instead |

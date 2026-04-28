@@ -50,7 +50,7 @@ Monorepo migration complete (Waves 0-6). All major feature tracks done. Three ne
 - [x] Fix IM3 rateLimits.ts race condition — added try/catch upsert pattern + Math.max(0, ...) clamp; converted to internalMutation/internalQuery for consistency with BM2 (review-26)
 - [x] Fix BM2 rateLimits.ts race condition — added try/catch upsert pattern + Math.max(0, ...) clamp (review-26)
 - [x] Add .env.example to all apps — IM3, IM1, IM2, PreCalc created; BM2 already existed (review-26)
-- [ ] SRS reviews.ts test coverage
+- [x] SRS reviews.ts test coverage
 - [ ] RSC bundle: page chunk 891 KB → < 500 KB
 - [ ] srs/cards.ts saveCards: sequential await → batch
 - [ ] teacher/srs_queries.ts: N+1 parallel fan → broader batched queries

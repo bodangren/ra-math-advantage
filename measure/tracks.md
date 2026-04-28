@@ -722,7 +722,7 @@ AI Tutoring and Workbook scope is explicitly **import/adopt from BM2**, not gree
         - Phase 7: UI & Minor Items [x]
        - Phase 8: Tech Debt Registry Cleanup & Final Verification [x]
 
-- [~] **Track: Convex Schema Strict Validation**
+- [x] **Track: Convex Schema Strict Validation**
        *Replace 21 v.any() fields in IM3 Convex schema with typed validators and eliminate 5 production as any casts on Convex internal*
        *Link: [./measure/tracks/convex_schema_strict_validation_20260424/](./measure/tracks/convex_schema_strict_validation_20260424/)*
        - Phase 1: Audit and Type Discovery [COMPLETE]
@@ -779,6 +779,10 @@ AI Tutoring and Workbook scope is explicitly **import/adopt from BM2**, not gree
 
 ## Upcoming Tracks
 
+- [x] **Track: SRS reviews.ts Test Coverage** — **COMPLETED**
+     *Add unit tests for saveReview, getReviewsByCard, and getReviewsByStudent in convex/srs/reviews.ts*
+     *Link: [./tracks/srs_reviews_test_coverage_20260429/](./tracks/srs_reviews_test_coverage_20260429/)*
+     - Phase 1: Unit Tests for saveReview, getReviewsByCard, getReviewsByStudent [COMPLETE]
 - [ ] **Track: SRS Dashboard Streak Test Coverage** *Link: [./tracks/srs_dashboard_streak_test_20260425/](./tracks/srs_dashboard_streak_test_20260425/)*
 - [ ] **Track: Chatbot Prompt Injection Defense** *Link: [./tracks/chatbot_prompt_guard_20260425/](./tracks/chatbot_prompt_guard_20260425/)*
 

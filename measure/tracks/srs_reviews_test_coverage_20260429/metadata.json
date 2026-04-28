@@ -1,0 +1,11 @@
+{
+  "track_id": "srs_reviews_test_coverage_20260429",
+  "type": "chore",
+  "status": "complete",
+  "created_at": "2026-04-29T00:00:00Z",
+  "updated_at": "2026-04-29T04:35:00Z",
+  "description": "Add unit tests for saveReview, getReviewsByCard, and getReviewsByStudent in convex/srs/reviews.ts",
+  "estimated_tasks": 5,
+  "actual_tasks": 5,
+  "deviation_notes": "All 10 tests pass. Uses as any type assertion due to Convex RegisteredMutation/RegisteredQuery types not being directly callable."
+}
