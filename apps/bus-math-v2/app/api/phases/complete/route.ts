@@ -1,8 +1,9 @@
 import { NextResponse } from 'next/server';
 import { z } from 'zod';
 import { requireActiveStudentRequestClaims } from '@/lib/auth/server';
-import { fetchInternalQuery, fetchInternalMutation, fetchQuery, api, internal } from '@/lib/convex/server';
+import { fetchInternalQuery, fetchInternalMutation, fetchQuery, fetchMutation, api, internal } from '@/lib/convex/server';
 import { COMPETENCY_STANDARD_CODE_PATTERN } from '@/lib/curriculum/standards';
+import { formatRateLimitError } from '@/convex/apiRateLimits';
 import type { Id } from '@/convex/_generated/dataModel';
 import type { CompletePhaseRequest, CompletePhaseResponse } from '@/types/api';
 
@@ -34,6 +35,13 @@ export async function POST(request: Request) {
     }
 
     const userId = claimsOrResponse.sub as Id<'profiles'>;
+
+    const rateLimitResult = await fetchMutation(apiAny.apiRateLimits.checkAndIncrementApiRateLimit, {
+      endpoint: 'phases/complete',
+    });
+    if (!rateLimitResult.allowed) {
+      return formatRateLimitError(rateLimitResult.windowExpiresAt);
+    }
 
     const body = await request.json();
     const validationResult = CompletePhaseSchema.safeParse(body);

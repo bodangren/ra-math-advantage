@@ -2,6 +2,7 @@ import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 const mockRequireActiveTeacherRequestClaims = vi.fn();
 const mockFetchInternalQuery = vi.fn();
+const mockFetchMutation = vi.fn();
 const mockGenerateAISummary = vi.fn();
 const mockBuildDeterministicSummary = vi.fn();
 const mockResolveAIProviderFromEnv = vi.fn();
@@ -13,6 +14,12 @@ vi.mock('@/lib/auth/server', () => ({
 
 vi.mock('@/lib/convex/server', () => ({
   fetchInternalQuery: mockFetchInternalQuery,
+  fetchMutation: mockFetchMutation,
+  api: {
+    apiRateLimits: {
+      checkAndIncrementApiRateLimit: 'api.apiRateLimits.checkAndIncrementApiRateLimit',
+    },
+  },
   internal: {
     teacher: {
       getProfileWithOrg: 'internal.teacher.getProfileWithOrg',
@@ -93,6 +100,12 @@ describe('GET /api/teacher/ai-error-summary', () => {
     mockResolveAIProviderFromEnv.mockReturnValue(null);
     mockBuildDeterministicSummary.mockReturnValue(DET_SUMMARY);
     mockIsPracticeSubmissionEnvelope.mockReturnValue(true);
+    mockFetchMutation.mockImplementation(async (name: string) => {
+      if (name === 'api.apiRateLimits.checkAndIncrementApiRateLimit') {
+        return { allowed: true, remaining: 29, windowExpiresAt: Date.now() + 60000 };
+      }
+      return null;
+    });
   });
 
   it('returns 401 when unauthenticated or deactivated', async () => {

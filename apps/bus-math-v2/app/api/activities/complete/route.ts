@@ -2,12 +2,17 @@ import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
 import { POST as completePhasePOST } from '@/app/api/phases/complete/route';
 import { COMPETENCY_STANDARD_CODE_PATTERN } from '@/lib/curriculum/standards';
+import { fetchMutation, api } from '@/lib/convex/server';
+import { formatRateLimitError } from '@/convex/apiRateLimits';
 import type {
   CompleteActivityRequest,
   CompleteActivityResponse,
   CompletePhaseRequest,
   CompletePhaseResponse,
 } from '@/types/api';
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const apiAny = api as any;
 
 /**
  * Request schema for activity completion
@@ -66,6 +71,13 @@ function deriveTimeSpent(
  */
 export async function POST(request: NextRequest) {
   try {
+    const rateLimitResult = await fetchMutation(apiAny.apiRateLimits.checkAndIncrementApiRateLimit, {
+      endpoint: 'activities/complete',
+    });
+    if (!rateLimitResult.allowed) {
+      return formatRateLimitError(rateLimitResult.windowExpiresAt);
+    }
+
     let body: unknown;
     try {
       body = await request.json();

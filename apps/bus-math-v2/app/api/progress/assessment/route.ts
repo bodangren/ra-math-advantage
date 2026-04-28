@@ -4,8 +4,12 @@ import { calculateScore } from '@/lib/assessments/scoring';
 import { requireActiveStudentRequestClaims } from '@/lib/auth/server';
 import { submissionDataSchema } from '@/lib/db/schema/activity-submissions';
 import { selectActivitySchema } from '@/lib/db/schema/validators';
-import { fetchInternalQuery, fetchInternalMutation, internal } from '@/lib/convex/server';
+import { fetchInternalQuery, fetchInternalMutation, fetchMutation, api, internal } from '@/lib/convex/server';
+import { formatRateLimitError } from '@/convex/apiRateLimits';
 import { normalizePracticeSubmissionInput } from '@math-platform/practice-core/contract';
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const apiAny = api as any;
 
 function buildBadRequest(details: Record<string, unknown> | string) {
   return NextResponse.json(
@@ -24,6 +28,13 @@ export async function POST(request: Request) {
     const claimsOrResponse = await requireActiveStudentRequestClaims(request);
     if (claimsOrResponse instanceof Response) {
       return claimsOrResponse;
+    }
+
+    const rateLimitResult = await fetchMutation(apiAny.apiRateLimits.checkAndIncrementApiRateLimit, {
+      endpoint: 'assessment',
+    });
+    if (!rateLimitResult.allowed) {
+      return formatRateLimitError(rateLimitResult.windowExpiresAt);
     }
 
     let submission;

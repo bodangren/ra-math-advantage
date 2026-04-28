@@ -2,9 +2,19 @@ import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { NextRequest } from 'next/server';
 
 const mockCompletePhasePost = vi.fn();
+const mockFetchMutation = vi.fn();
 
 vi.mock('@/app/api/phases/complete/route', () => ({
   POST: (request: Request) => mockCompletePhasePost(request),
+}));
+
+vi.mock('@/lib/convex/server', () => ({
+  fetchMutation: mockFetchMutation,
+  api: {
+    apiRateLimits: {
+      checkAndIncrementApiRateLimit: 'api.apiRateLimits.checkAndIncrementApiRateLimit',
+    },
+  },
 }));
 
 const { POST } = await import('@/app/api/activities/complete/route');
@@ -16,6 +26,13 @@ const VALID_IDEMPOTENCY_KEY = '123e4567-e89b-12d3-a456-426614174002';
 describe('POST /api/activities/complete', () => {
   beforeEach(() => {
     mockCompletePhasePost.mockReset();
+    mockFetchMutation.mockReset();
+    mockFetchMutation.mockImplementation(async (name: string) => {
+      if (name === 'api.apiRateLimits.checkAndIncrementApiRateLimit') {
+        return { allowed: true, remaining: 59, windowExpiresAt: Date.now() + 60000 };
+      }
+      return null;
+    });
   });
 
   it('returns 400 for invalid request payloads and does not forward', async () => {

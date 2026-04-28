@@ -5,6 +5,7 @@ const mockRequireActiveStudentRequestClaims = vi.fn();
 const mockFetchQuery = vi.fn();
 const mockFetchInternalQuery = vi.fn();
 const mockFetchInternalMutation = vi.fn();
+const mockFetchMutation = vi.fn();
 
 vi.mock('@/lib/auth/server', () => ({
   getRequestSessionClaims: mockGetRequestSessionClaims,
@@ -15,9 +16,13 @@ vi.mock('@/lib/convex/server', () => ({
   fetchQuery: mockFetchQuery,
   fetchInternalQuery: mockFetchInternalQuery,
   fetchInternalMutation: mockFetchInternalMutation,
+  fetchMutation: mockFetchMutation,
   api: {
     api: {
       getLessonBySlugOrId: 'api.getLessonBySlugOrId',
+    },
+    apiRateLimits: {
+      checkAndIncrementApiRateLimit: 'api.apiRateLimits.checkAndIncrementApiRateLimit',
     },
   },
   internal: {
@@ -114,6 +119,13 @@ describe('POST /api/phases/complete', () => {
 
     mockFetchInternalMutation.mockResolvedValue({
       completedAt: '2026-02-26T10:00:00.000Z',
+    });
+
+    mockFetchMutation.mockImplementation(async (name: string) => {
+      if (name === 'api.apiRateLimits.checkAndIncrementApiRateLimit') {
+        return { allowed: true, remaining: 59, windowExpiresAt: Date.now() + 60000 };
+      }
+      return null;
     });
   });
 

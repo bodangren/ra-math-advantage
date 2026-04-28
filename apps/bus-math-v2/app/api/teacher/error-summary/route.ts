@@ -2,8 +2,12 @@ import { NextResponse } from 'next/server';
 import { z } from 'zod';
 
 import { requireActiveTeacherRequestClaims } from '@/lib/auth/server';
-import { fetchInternalQuery, internal } from '@/lib/convex/server';
+import { fetchInternalQuery, fetchMutation, api, internal } from '@/lib/convex/server';
+import { formatRateLimitError } from '@/convex/apiRateLimits';
 import type { Id } from '@/convex/_generated/dataModel';
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const apiAny = api as any;
 
 const querySchema = z.object({
   lessonId: z.string().trim().min(1, 'lessonId is required'),
@@ -14,6 +18,13 @@ export async function GET(request: Request) {
     const claims = await requireActiveTeacherRequestClaims(request);
     if (claims instanceof Response) {
       return claims;
+    }
+
+    const rateLimitResult = await fetchMutation(apiAny.apiRateLimits.checkAndIncrementApiRateLimit, {
+      endpoint: 'teacher/error-summary',
+    });
+    if (!rateLimitResult.allowed) {
+      return formatRateLimitError(rateLimitResult.windowExpiresAt);
     }
 
     const { searchParams } = new URL(request.url);
