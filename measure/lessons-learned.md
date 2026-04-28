@@ -24,7 +24,7 @@
 - (2026-04-19, review-10) Always validate + parse request body BEFORE consuming rate limits — malformed requests burn quota
 - (2026-04-19, review-11) When sanitizing LLM prompt inputs, apply sanitization to ALL user-controllable fields including arrays
 - (2026-04-19, auth-design) Authorization checks must verify specific resource ownership; ensure seeding or fallback exists — empty auth tables block all access silently
-- (2026-04-28, review-23) Rate limiting code that isn't wired to routes is dead code — always verify end-to-end integration exists, not just handler implementation
+- (2026-04-28, review-23) Rate limiting mutation args must match what routes actually pass — unused required args cause runtime validation failures even when the handler derives the value from auth context
 
 ## Patterns That Worked Well
 
@@ -36,7 +36,7 @@
 ## Planning Improvements
 
 - (2026-04-17, srs-queue-performance) Replace N+1 sequential DB lookups with Promise.all over deduplicated IDs
-- (2026-04-19, monorepo-ci) CI matrices with pre-existing failures: use `continue-on-error: true` + `|| true` fallback; document known failures
+- (2026-04-28, review-24) BM2 test files had 26 pre-existing TypeScript errors from monorepo migration — fixing them required literal type casts (`as const`) and aligning mock data with actual component types
 - (2026-04-23, review-14) Always wrap API route handlers in try/catch — unhandled errors may leak stack traces or hang connections
 - (2026-04-24, phase-6) Runtime validation beats double-casting: `validateWorkbookManifest` replaces `as unknown as WorkbookManifest` with explicit shape checks
 - (2026-04-24, ci-cd-hardening) Removing `|| true` from CI steps while keeping job-level `continue-on-error: true` preserves failure visibility

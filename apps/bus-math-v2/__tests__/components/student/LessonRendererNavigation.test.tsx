@@ -112,14 +112,14 @@ describe('LessonRenderer', () => {
         ],
       };
 
-      const explorePhases: Phase[] = [
+      const explorePhases = [
         {
           id: 'phase-explore',
           phaseNumber: 1,
           title: 'Explore Phase',
           contentBlocks: [{ type: 'markdown', id: 'block-1', content: 'Explore this concept' }],
           estimatedMinutes: 10,
-          metadata: { phaseType: 'intro' },
+          metadata: { phaseType: 'explore' },
         },
         {
           id: 'phase-2',
@@ -136,7 +136,7 @@ describe('LessonRenderer', () => {
       render(
         <LessonRenderer
           lesson={mockLesson}
-          phases={explorePhases as Phase[]}
+          phases={explorePhases as unknown as Phase[]}
           currentPhaseNumber={1}
           lessonSlug={mockLesson.slug}
         />
@@ -155,7 +155,7 @@ describe('LessonRenderer', () => {
         ],
       };
 
-      const nonSkippablePhases: Phase[] = [
+      const nonSkippablePhases = [
         {
           id: 'phase-1',
           phaseNumber: 1,
@@ -181,7 +181,7 @@ describe('LessonRenderer', () => {
       render(
         <LessonRenderer
           lesson={mockLesson}
-          phases={nonSkippablePhases as Phase[]}
+          phases={nonSkippablePhases as unknown as Phase[]}
           currentPhaseNumber={1}
           lessonSlug={mockLesson.slug}
         />
@@ -200,14 +200,14 @@ describe('LessonRenderer', () => {
         ],
       };
 
-      const discoursePhases: Phase[] = [
+      const discoursePhases = [
         {
           id: 'phase-discourse',
           phaseNumber: 1,
           title: 'Discourse Phase',
           contentBlocks: [{ type: 'markdown', id: 'block-1', content: 'Discuss this concept' }],
           estimatedMinutes: 10,
-          metadata: { phaseType: 'reflection' },
+          metadata: { phaseType: 'discourse' },
         },
         {
           id: 'phase-2',
@@ -224,7 +224,7 @@ describe('LessonRenderer', () => {
       render(
         <LessonRenderer
           lesson={mockLesson}
-          phases={discoursePhases as Phase[]}
+          phases={discoursePhases as unknown as Phase[]}
           currentPhaseNumber={1}
           lessonSlug={mockLesson.slug}
         />

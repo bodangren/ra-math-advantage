@@ -108,12 +108,7 @@ Demo accounts are seeded via `convex/seed.ts`. Run the seed action to create dem
    npx convex dev --local --once
    ```
 
-4. Copy the environment template:
-   ```bash
-   cp .env.example .env.local
-   ```
-
-5. Configure `.env.local`:
+4. Create `.env.local` in `apps/integrated-math-3/`:
    ```env
    AUTH_JWT_SECRET=<long-random-secret>
    ```

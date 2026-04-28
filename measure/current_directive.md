@@ -53,33 +53,33 @@ Monorepo migration complete (Waves 0-6). All major feature tracks done. Three ne
 - [ ] BM2 9 governance tests re-enablement
 - [ ] Activity component extraction for cross-app reuse
 
-## Code Review Summary (2026-04-28 — Review #23)
+## Code Review Summary (2026-04-28 — Review #24)
 
-Comprehensive audit of the past 6 work phases: rate limiting Phase 1, convex schema audit Phases 3-4, scaffolded IM1/IM2/PreCalc apps, tech-debt triage, N+1 fixes.
+Comprehensive audit of the past 6 work phases: rate limiting endpoint integration, teacher proficiency N+1 fix, lesson version query optimization, monorepo tech-debt triage, IM3 chatbot security, chatbot provider memoization.
 
 ### Verification Results
 
 | Check | Result |
 |-------|--------|
 | Typecheck (IM3) | Pass (0 errors) |
-| Typecheck (BM2) | Pass (app code; pre-existing test-file errors) |
+| Typecheck (BM2) | Pass (0 errors — all 26 pre-existing test-file errors fixed) |
 | Typecheck (IM1/IM2/PC) | Pass (0 errors each) |
 | Lint (IM3) | Pass (0 warnings) |
 | Lint (BM2) | Pass (0 warnings) |
 | Tests (IM3) | 3301 passed, 2 todo (272 test files) |
-| Tests (BM2) | 2305 passed, 35 skipped (349 test files) |
+| Tests (BM2) | 2307 passed, 35 skipped (349 test files) |
 | Tests (packages) | All 12 packages pass |
 | Build (IM3) | Pass |
 | Build (BM2) | Pass |
 
-### Issues Fixed in This Review (Review #23)
+### Issues Fixed in This Review (Review #24)
 
 | Issue | Severity | Fix |
 |-------|----------|-----|
+| apiRateLimits mutation required unused `userId` arg | CRITICAL | Removed `userId` from mutation args — handler derives user from auth identity; routes weren't passing it, causing runtime validation failures |
+| BM2 TypeScript errors in test files | HIGH | Fixed 26 errors across 6 test files: literal type casts (`as const`), mock data alignment, missing props, supabase dir exclusion from tsconfig |
 | teacher.ts listActivePhaseIds: 3 sequential .collect() calls | HIGH | Wrapped in Promise.all |
-| teacher.ts listStudentDetailUnits: 4 sequential queries | HIGH | Wrapped 3 independent in Promise.all |
 | teacher.ts getTeacherDashboardData: 3 sequential .collect() | MEDIUM | Wrapped in Promise.all |
-| teacher.ts getTeacherStudentCompetencyDetail: 5 sequential .collect() | CRITICAL | Wrapped all 5 in Promise.all |
 | apiRateLimits remaining can go negative | HIGH | Added Math.max(0, ...) clamp |
 
 ### Issues Found (Deferred)
