@@ -1,6 +1,37 @@
 import { defineSchema, defineTable } from "convex/server";
 import { v } from "convex/values";
 
+const srsCardStatePickValidator = v.object({
+  stability: v.number(),
+  difficulty: v.number(),
+  state: v.union(
+    v.literal("new"),
+    v.literal("learning"),
+    v.literal("review"),
+    v.literal("relearning")
+  ),
+  reps: v.number(),
+  lapses: v.number(),
+});
+
+const srsEvidenceValidator = v.union(
+  v.object({
+    action: v.literal("teacher_reset"),
+    objectiveId: v.string(),
+  }),
+  v.object({
+    baseRating: v.union(
+      v.literal("Again"),
+      v.literal("Hard"),
+      v.literal("Good"),
+      v.literal("Easy")
+    ),
+    timingAdjusted: v.boolean(),
+    reasons: v.array(v.string()),
+    misconceptionTags: v.optional(v.array(v.string())),
+  })
+);
+
 export default defineSchema({
   organizations: defineTable({
     name: v.string(),
@@ -401,9 +432,9 @@ export default defineSchema({
     rating: v.string(),
     reviewId: v.optional(v.string()),
     submissionId: v.optional(v.string()),
-    evidence: v.any(),
-    stateBefore: v.any(),
-    stateAfter: v.any(),
+    evidence: srsEvidenceValidator,
+    stateBefore: srsCardStatePickValidator,
+    stateAfter: srsCardStatePickValidator,
     reviewedAt: v.number(),
   })
     .index("by_card", ["cardId"])

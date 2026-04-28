@@ -132,12 +132,17 @@ export type SrsReviewLogEntry = {
   studentId: string;
   rating: SrsRating;
   submissionId: string;
-  evidence: {
-    baseRating: SrsRating;
-    timingAdjusted: boolean;
-    reasons: string[];
-    misconceptionTags?: string[];
-  };
+  evidence:
+    | {
+        action: 'teacher_reset';
+        objectiveId: string;
+      }
+    | {
+        baseRating: SrsRating;
+        timingAdjusted: boolean;
+        reasons: string[];
+        misconceptionTags?: string[];
+      };
   stateBefore: Pick<
     SrsCardState,
     'stability' | 'difficulty' | 'state' | 'reps' | 'lapses'

@@ -13,7 +13,7 @@
 | BM2 chatbot route uses `as any` for rateLimits internal ref | Medium | Open | `(internal as any).rateLimits` cast needed because generated types don't reflect internal conversion |
 | apiRateLimits no stale entry cleanup | Medium | Open | Table grows unbounded; rateLimits.ts and loginRateLimits.ts both have cleanup mutations |
 | SRS CardStore: studentId type mismatch (contract vs schema) | High | Open | 7 bridging casts in convexCardStore.ts; package types need branded string |
-| 21 `v.any()` fields in IM3 Convex schema | Medium | Open | submissionData, props, content, evidence, fsrsState have zero runtime validation |
+| 21 `v.any()` fields in IM3 Convex schema | Medium | Partial | SRS review_log fields (evidence, stateBefore, stateAfter) now typed; remaining: submissionData, props, content, fsrsState, and 12 metadata fields |
 | BM2 chatbot prompt injection defense still weak | Medium | Open | sanitizeInput only strips markdown chars; no system prompt guard or LLM-based filter |
 | BM2 login endpoint has no input length limits | Medium | Open | Multi-MB payloads could exhaust memory/slow hashing |
 | RSC page chunk 891 KB, vendor-charts 830 KB | Medium | Open | Activity lazy-loading done; further code-splitting needed to get under 500 KB |

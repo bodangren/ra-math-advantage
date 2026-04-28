@@ -175,7 +175,9 @@ describe('REST Adapter Integration', () => {
       const reviews = await adapter.getReviewsByCard(card.cardId);
       expect(reviews).toHaveLength(1);
       expect(reviews[0].rating).toBe(result.rating);
-      expect(reviews[0].evidence.baseRating).toBe(result.reviewLog.evidence.baseRating);
+      const reviewEvidence = reviews[0].evidence as { baseRating: string };
+      const resultEvidence = result.reviewLog.evidence as { baseRating: string };
+      expect(reviewEvidence.baseRating).toBe(resultEvidence.baseRating);
     });
 
     it('should load card from adapter, process review, and save back', async () => {

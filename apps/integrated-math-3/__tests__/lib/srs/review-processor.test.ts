@@ -130,9 +130,10 @@ describe('processReview', () => {
     const result = processReview({ card, submission, baseline, now: mockNow });
 
     expect(result.rating).toBe('Easy');
-    expect(result.reviewLog.evidence.baseRating).toBe('Good');
-    expect(result.reviewLog.evidence.timingAdjusted).toBe(true);
-    expect(result.reviewLog.evidence.reasons).toContain('timing_upgraded_easy');
+    const standardEvidence = result.reviewLog.evidence as { baseRating: string; timingAdjusted: boolean; reasons: string[] };
+    expect(standardEvidence.baseRating).toBe('Good');
+    expect(standardEvidence.timingAdjusted).toBe(true);
+    expect(standardEvidence.reasons).toContain('timing_upgraded_easy');
   });
 
   it('missing timing does not block review processing', () => {
@@ -145,8 +146,9 @@ describe('processReview', () => {
     const result = processReview({ card, submission, now: mockNow });
 
     expect(result.rating).toBe('Good');
-    expect(result.reviewLog.evidence.timingAdjusted).toBe(false);
-    expect(result.reviewLog.evidence.reasons).toContain('timing_missing');
+    const evidence1 = result.reviewLog.evidence as { timingAdjusted: boolean; reasons: string[] };
+    expect(evidence1.timingAdjusted).toBe(false);
+    expect(evidence1.reasons).toContain('timing_missing');
   });
 
   it('review log captures before and after state', () => {
@@ -181,9 +183,10 @@ describe('processReview', () => {
 
     const result = processReview({ card, submission, now: mockNow });
 
-    expect(result.reviewLog.evidence.baseRating).toBe('Again');
-    expect(result.reviewLog.evidence.timingAdjusted).toBe(false);
-    expect(result.reviewLog.evidence.reasons.length).toBeGreaterThan(0);
+    const evidence2 = result.reviewLog.evidence as { baseRating: string; timingAdjusted: boolean; reasons: string[] };
+    expect(evidence2.baseRating).toBe('Again');
+    expect(evidence2.timingAdjusted).toBe(false);
+    expect(evidence2.reasons.length).toBeGreaterThan(0);
   });
 
   it('uses activityId and attemptNumber as submissionId', () => {

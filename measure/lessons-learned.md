@@ -36,17 +36,15 @@
 
 ## Planning Improvements
 
-- (2026-04-17, srs-queue-performance) Replace N+1 sequential DB lookups with Promise.all over deduplicated IDs
-- (2026-04-28, review-24) BM2 test files had 26 pre-existing TypeScript errors from monorepo migration — fixing them required literal type casts (`as const`) and aligning mock data with actual component types
 - (2026-04-23, review-14) Always wrap API route handlers in try/catch — unhandled errors may leak stack traces or hang connections
 - (2026-04-24, phase-6) Runtime validation beats double-casting: `validateWorkbookManifest` replaces `as unknown as WorkbookManifest` with explicit shape checks
 - (2026-04-24, ci-cd-hardening) Removing `|| true` from CI steps while keeping job-level `continue-on-error: true` preserves failure visibility
 - (2026-04-24, bundle-splitting) Vinext manualChunks with function syntax handles external modules; use `id.includes()` checks instead of module name arrays
 - (2026-04-24, registry-cleanup) When replacing placeholder registrations with real implementations, remove keys from the placeholder list — duplicate registrations silently overwrite
-- (2026-04-24, equivalence-checker) Parser precedence matters: compound patterns must be tried BEFORE simple single-term parsers to avoid partial-match false negatives
 - (2026-04-24, package-types) Make local type extensions explicit (`extends PackageType`) rather than relying on structural compatibility
 - (2026-04-28, rate-limiting) Use composite index `[userId, endpoint]` for API rate limiting table; allows per-user-per-endpoint tracking without cross-contamination
 - (2026-04-28, review-23) `Math.max(0, ...)` clamp on `remaining` in rate limit handlers prevents negative values when count exceeds max
 - (2026-04-28, review-23) Convex `.unique()` query on non-unique index can throw when concurrent inserts create duplicates — design rate limit upserts defensively
 - (2026-04-28, rate-limiting-race) Fix race condition via try/catch upsert: if insert throws duplicate key error, re-query existing record and patch/increment; check error message for "duplicate" or "unique" keywords
 - (2026-04-29, review-25) WIP commits that change Convex function visibility (public→internal) MUST also update `_generated/api.d.ts` or the entire downstream type tree breaks — always run typecheck after visibility changes
+- (2026-04-29, schema-validation) When adding typed validators for discriminated union fields (e.g., evidence: teacher_reset | standard), update BOTH the schema validators AND the package types (SrsReviewLogEntry) to match — type mismatches cascade through the entire call stack

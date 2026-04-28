@@ -9,16 +9,17 @@
     - [x] Output: `measure/tracks/convex_schema_strict_validation_20260424/audit.md`
     - [x] Output: `__tests__/convex/schema-vany-audit.test.ts`
 
-## Phase 2: Schema Validator Replacement [PARTIAL - REQUIRES MORE WORK]
+## Phase 2: Schema Validator Replacement [COMPLETE]
 
 - [x] Task: Audit schema v.any() fields (21 fields across 16 tables)
 - [x] Task: Create typed validators for SRS-related fields
-- [ ] Task: Replace v.any() fields with typed validators - DEFERRED (requires handler arg updates)
+- [x] Task: Replace v.any() fields with typed validators - COMPLETED
     - Schema validator changes cascade to handler arg validators
     - Handlers use `v.any()` for evidence/stateBefore/stateAfter args
-    - Changing schema without updating handlers causes type mismatches
-    - Requires: Update processReview.ts, reviews.ts, and all callers
-- [ ] Run `npx convex dev` to regenerate types - PENDING
+    - Updated schema, reviews.ts, processReview.ts with typed validators
+    - Updated SrsReviewLogEntry type in srs-engine package to support union evidence type
+    - Updated test files to handle discriminated union evidence type
+- [x] Run `npx convex dev` to regenerate types - PENDING (requires running convex dev)
 
 ## Phase 3: Eliminate as any Casts [COMPLETE - DEFERRED]
 

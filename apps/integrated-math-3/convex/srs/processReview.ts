@@ -3,6 +3,37 @@ import { v } from "convex/values";
 import { Id } from "../_generated/dataModel";
 import type { MutationCtx } from "../_generated/server";
 
+const srsCardStatePickValidator = v.object({
+  stability: v.number(),
+  difficulty: v.number(),
+  state: v.union(
+    v.literal("new"),
+    v.literal("learning"),
+    v.literal("review"),
+    v.literal("relearning")
+  ),
+  reps: v.number(),
+  lapses: v.number(),
+});
+
+const srsEvidenceValidator = v.union(
+  v.object({
+    action: v.literal("teacher_reset"),
+    objectiveId: v.string(),
+  }),
+  v.object({
+    baseRating: v.union(
+      v.literal("Again"),
+      v.literal("Hard"),
+      v.literal("Good"),
+      v.literal("Easy")
+    ),
+    timingAdjusted: v.boolean(),
+    reasons: v.array(v.string()),
+    misconceptionTags: v.optional(v.array(v.string())),
+  })
+);
+
 const cardStateValidator = v.object({
   cardId: v.string(),
   studentId: v.id("profiles"),
@@ -32,11 +63,31 @@ const reviewEntryValidator = v.object({
   studentId: v.id("profiles"),
   rating: v.string(),
   submissionId: v.string(),
-  evidence: v.any(),
-  stateBefore: v.any(),
-  stateAfter: v.any(),
+  evidence: srsEvidenceValidator,
+  stateBefore: srsCardStatePickValidator,
+  stateAfter: srsCardStatePickValidator,
   reviewedAt: v.string(),
 });
+
+type SrsEvidence =
+  | {
+      action: 'teacher_reset';
+      objectiveId: string;
+    }
+  | {
+      baseRating: 'Again' | 'Hard' | 'Good' | 'Easy';
+      timingAdjusted: boolean;
+      reasons: string[];
+      misconceptionTags?: string[];
+    };
+
+type SrsStatePick = {
+  stability: number;
+  difficulty: number;
+  state: "new" | "learning" | "review" | "relearning";
+  reps: number;
+  lapses: number;
+};
 
 export type ProcessReviewArgs = {
   cardState: {
@@ -62,9 +113,9 @@ export type ProcessReviewArgs = {
     studentId: Id<"profiles">;
     rating: string;
     submissionId: string;
-    evidence: unknown;
-    stateBefore: unknown;
-    stateAfter: unknown;
+    evidence: SrsEvidence;
+    stateBefore: SrsStatePick;
+    stateAfter: SrsStatePick;
     reviewedAt: string;
   };
 };
