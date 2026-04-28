@@ -785,6 +785,12 @@ AI Tutoring and Workbook scope is explicitly **import/adopt from BM2**, not gree
      - Phase 1: Unit Tests for saveReview, getReviewsByCard, getReviewsByStudent [COMPLETE]
 - [ ] **Track: SRS Dashboard Streak Test Coverage** *Link: [./tracks/srs_dashboard_streak_test_20260425/](./tracks/srs_dashboard_streak_test_20260425/)*
 - [ ] **Track: Chatbot Prompt Injection Defense** *Link: [./tracks/chatbot_prompt_guard_20260425/](./tracks/chatbot_prompt_guard_20260425/)*
+- [x] **Track: RSC Bundle Optimization** — **COMPLETED**
+     *Reduce RSC entry page chunk from 891 KB to 354 KB via vendor chunking (lucide-react, zod, @radix-ui, clsx, monorepo packages)*
+     *Link: [./tracks/rsc_bundle_optimization_20260429/](./tracks/rsc_bundle_optimization_20260429/)*
+     - Phase 1: Analyze and Document [COMPLETE]
+     - Phase 2: Apply Code-Splitting [COMPLETE]
+     - Phase 3: Verify (354 KB < 500 KB target) [COMPLETE]
 
 ## AP Precalculus
 

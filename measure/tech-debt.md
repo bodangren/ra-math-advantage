@@ -17,7 +17,7 @@
 | 18 `v.any()` fields in IM3 Convex schema | Medium | Partial | Down from 21; SRS review_log fields typed + shared validators extracted (review-26); remaining: submissionData, props, content, fsrsState, and 12 metadata fields |
 | BM2 chatbot prompt injection defense still weak | Medium | Open | sanitizeInput only strips markdown chars; no system prompt guard or LLM-based filter |
 | BM2 login endpoint has no input length limits | Medium | Open | Multi-MB payloads could exhaust memory/slow hashing |
-| RSC page chunk 891 KB, vendor-charts 830 KB | Medium | Open | Activity lazy-loading done; further code-splitting needed to get under 500 KB |
+| RSC page chunk 891 KB, vendor-charts 830 KB | Medium | Resolved | Extracted vendor-icons, vendor-zod, vendor-radix, vendor-utils, and monorepo packages; reduced page chunk from 891 KB to 354 KB (minimax-m2) |
 | SRS reviews.ts untested | Medium | Resolved | saveReview, getReviewsByCard, getReviewsByStudent — 10 tests added (minimax-m2) |
 | internal Convex fns rely on action wrapper for auth | Medium | Open | activities.ts, study.ts, srs/cards.ts, student.ts have no defense-in-depth |
 | getDueCards fetches all cards then filters by date in-memory | Medium | Open | by_student_and_due index has dueDate but no range query used |

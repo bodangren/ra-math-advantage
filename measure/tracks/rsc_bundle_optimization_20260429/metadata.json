@@ -1,0 +1,8 @@
+{
+  "id": "rsc_bundle_optimization_20260429",
+  "title": "RSC Bundle Optimization",
+  "status": "in_progress",
+  "priority": 2,
+  "created": "2026-04-29",
+  "description": "Reduce RSC entry page chunk from 891 KB to under 500 KB via further code-splitting"
+}

@@ -37,6 +37,32 @@ export default defineConfig(async () => ({
             if (id.includes('convex')) {
               return 'vendor-convex';
             }
+            if (id.includes('lucide-react')) {
+              return 'vendor-icons';
+            }
+            if (id.includes('zod')) {
+              return 'vendor-zod';
+            }
+            if (id.includes('@radix-ui/')) {
+              return 'vendor-radix';
+            }
+            if (id.includes('clsx') || id.includes('tailwind-merge')) {
+              return 'vendor-utils';
+            }
+          }
+          if (id.includes('/packages/')) {
+            if (id.includes('srs-engine')) return 'vendor-srs';
+            if (id.includes('practice-core')) return 'vendor-practice';
+            if (id.includes('teacher-reporting')) return 'vendor-teacher';
+            if (id.includes('study-hub')) return 'vendor-study';
+            if (id.includes('graphing-core')) return 'vendor-graphing';
+            if (id.includes('activity-runtime')) return 'vendor-activity';
+            if (id.includes('ai-tutoring')) return 'vendor-ai';
+            if (id.includes('workbook-pipeline')) return 'vendor-workbook';
+            if (id.includes('component-approval')) return 'vendor-approval';
+            if (id.includes('core-auth')) return 'vendor-auth';
+            if (id.includes('core-convex')) return 'vendor-convex-core';
+            return 'vendor-monorepo';
           }
         },
       },
