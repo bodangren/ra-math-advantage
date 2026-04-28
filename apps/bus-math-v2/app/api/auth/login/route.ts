@@ -46,14 +46,12 @@ export async function POST(request: Request) {
   const ipHash = hashIpAddress(clientIp);
 
   try {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const rateLimitResult = await (fetchInternalMutation as any)(
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      (internal as any).loginRateLimits?.checkAndIncrementLoginRateLimit,
+    const rateLimitResult = await fetchInternalMutation(
+      internal.loginRateLimits.checkAndIncrementLoginRateLimit,
       { ipHash },
-    ) as { allowed: boolean; windowExpiresAt: number } | undefined;
+    );
 
-    if (rateLimitResult && !rateLimitResult.allowed) {
+    if (!rateLimitResult.allowed) {
       const retryAfter = Math.max(1, Math.ceil((rateLimitResult.windowExpiresAt - Date.now()) / 1000));
       return NextResponse.json(
         { error: 'Too many login attempts. Please try again later.' },

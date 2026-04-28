@@ -2,7 +2,9 @@ import { defineSchema, defineTable } from "convex/server";
 import { v } from "convex/values";
 import {
   srsCardStatePickValidator,
+  srsCardStateLiteralValidator,
   srsEvidenceValidator,
+  srsRatingValidator,
 } from "./srs/validators";
 
 export default defineSchema({
@@ -377,12 +379,7 @@ export default defineSchema({
     problemFamilyId: v.string(),
     stability: v.number(),
     difficulty: v.number(),
-    state: v.union(
-      v.literal("new"),
-      v.literal("learning"),
-      v.literal("review"),
-      v.literal("relearning")
-    ),
+    state: srsCardStateLiteralValidator,
     dueDate: v.string(),
     elapsedDays: v.number(),
     scheduledDays: v.number(),
@@ -402,7 +399,7 @@ export default defineSchema({
   srs_review_log: defineTable({
     cardId: v.id("srs_cards"),
     studentId: v.id("profiles"),
-    rating: v.string(),
+    rating: srsRatingValidator,
     reviewId: v.optional(v.string()),
     submissionId: v.optional(v.string()),
     evidence: srsEvidenceValidator,

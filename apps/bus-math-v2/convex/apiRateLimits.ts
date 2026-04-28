@@ -44,7 +44,7 @@ export async function checkAndIncrementApiRateLimitHandler(
       });
       return {
         allowed: true,
-        remaining: maxRequests - 1,
+        remaining: Math.max(0, maxRequests - 1),
         windowExpiresAt: now + windowMs,
       };
     } catch (e) {
@@ -72,7 +72,7 @@ export async function checkAndIncrementApiRateLimitHandler(
     });
     return {
       allowed: true,
-      remaining: maxRequests - 1,
+      remaining: Math.max(0, maxRequests - 1),
       windowExpiresAt: now + windowMs,
     };
   }

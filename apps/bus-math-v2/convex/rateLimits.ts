@@ -63,7 +63,7 @@ export const checkAndIncrementRateLimit = internalMutation({
         });
         return {
           allowed: true,
-          remaining: MAX_REQUESTS_PER_WINDOW - 1,
+          remaining: Math.max(0, MAX_REQUESTS_PER_WINDOW - 1),
           windowExpiresAt: now + RATE_LIMIT_WINDOW_MS,
         };
       } catch (e) {
@@ -89,7 +89,7 @@ export const checkAndIncrementRateLimit = internalMutation({
       });
       return {
         allowed: true,
-        remaining: MAX_REQUESTS_PER_WINDOW - 1,
+        remaining: Math.max(0, MAX_REQUESTS_PER_WINDOW - 1),
         windowExpiresAt: now + RATE_LIMIT_WINDOW_MS,
       };
     }
@@ -130,7 +130,8 @@ export const cleanupStaleRateLimits = internalMutation({
 
     const staleEntries = await ctx.db
       .query("chatbot_rate_limits")
-      .collect();
+      .filter((q) => q.lt(q.field("windowStart"), staleThreshold))
+      .take(100);
 
     let deletedCount = 0;
     for (const entry of staleEntries) {

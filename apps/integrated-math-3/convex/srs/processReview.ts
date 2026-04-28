@@ -4,7 +4,9 @@ import { Id } from "../_generated/dataModel";
 import type { MutationCtx } from "../_generated/server";
 import {
   srsCardStatePickValidator,
+  srsCardStateLiteralValidator,
   srsEvidenceValidator,
+  srsRatingValidator,
 } from "./validators";
 
 const cardStateValidator = v.object({
@@ -14,12 +16,7 @@ const cardStateValidator = v.object({
   problemFamilyId: v.string(),
   stability: v.number(),
   difficulty: v.number(),
-  state: v.union(
-    v.literal("new"),
-    v.literal("learning"),
-    v.literal("review"),
-    v.literal("relearning")
-  ),
+  state: srsCardStateLiteralValidator,
   dueDate: v.string(),
   elapsedDays: v.number(),
   scheduledDays: v.number(),
@@ -31,11 +28,11 @@ const cardStateValidator = v.object({
 });
 
 const reviewEntryValidator = v.object({
-  reviewId: v.string(),
+  reviewId: v.optional(v.string()),
   cardId: v.string(),
   studentId: v.id("profiles"),
-  rating: v.string(),
-  submissionId: v.string(),
+  rating: srsRatingValidator,
+  submissionId: v.optional(v.string()),
   evidence: srsEvidenceValidator,
   stateBefore: srsCardStatePickValidator,
   stateAfter: srsCardStatePickValidator,
@@ -81,11 +78,11 @@ export type ProcessReviewArgs = {
     updatedAt: string;
   };
   reviewEntry: {
-    reviewId: string;
+    reviewId?: string;
     cardId: string;
     studentId: Id<"profiles">;
-    rating: string;
-    submissionId: string;
+    rating: 'Again' | 'Hard' | 'Good' | 'Easy';
+    submissionId?: string;
     evidence: SrsEvidence;
     stateBefore: SrsStatePick;
     stateAfter: SrsStatePick;
@@ -150,8 +147,8 @@ export async function processReviewHandler(
     cardId: cardDocId,
     studentId: reviewEntry.studentId,
     rating: reviewEntry.rating,
-    reviewId: reviewEntry.reviewId || undefined,
-    submissionId: reviewEntry.submissionId || undefined,
+    reviewId: reviewEntry.reviewId,
+    submissionId: reviewEntry.submissionId,
     evidence: reviewEntry.evidence,
     stateBefore: reviewEntry.stateBefore,
     stateAfter: reviewEntry.stateAfter,

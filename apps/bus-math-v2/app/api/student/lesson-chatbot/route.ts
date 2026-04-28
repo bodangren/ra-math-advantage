@@ -53,23 +53,16 @@ export async function POST(request: NextRequest) {
   const userId = session.sub;
 
   try {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const rateLimitFn = (internal as any).rateLimits?.checkAndIncrementRateLimit;
-    if (!rateLimitFn) {
-      console.warn('[lesson-chatbot] Rate limit function not found in Convex API; skipping rate limit check');
-    } else {
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      const rateLimitResult = await (fetchInternalMutation as any)(
-        rateLimitFn,
-        { userId },
-      ) as { allowed: boolean };
+    const rateLimitResult = await fetchInternalMutation(
+      internal.rateLimits.checkAndIncrementRateLimit,
+      { userId },
+    );
 
-      if (!rateLimitResult.allowed) {
-        return NextResponse.json(
-          { error: 'Too many requests. Please wait a moment before trying again.' },
-          { status: 429 }
-        );
-      }
+    if (!rateLimitResult.allowed) {
+      return NextResponse.json(
+        { error: 'Too many requests. Please wait a moment before trying again.' },
+        { status: 429 }
+      );
     }
   } catch (error) {
     console.error('[lesson-chatbot] Rate limit check failed:', error);

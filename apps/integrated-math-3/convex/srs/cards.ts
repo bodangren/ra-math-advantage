@@ -1,6 +1,7 @@
 import { internalMutation, internalQuery, type MutationCtx, type QueryCtx } from "../_generated/server";
 import { v } from "convex/values";
 import { Id } from "../_generated/dataModel";
+import { srsCardStateLiteralValidator } from "./validators";
 
 function mapDbCardToContract(
   card: {
@@ -116,12 +117,7 @@ export const saveCard = internalMutation({
     problemFamilyId: v.string(),
     stability: v.number(),
     difficulty: v.number(),
-    state: v.union(
-      v.literal("new"),
-      v.literal("learning"),
-      v.literal("review"),
-      v.literal("relearning"),
-    ),
+    state: srsCardStateLiteralValidator,
     dueDate: v.string(),
     elapsedDays: v.number(),
     scheduledDays: v.number(),
@@ -144,12 +140,7 @@ export const saveCards = internalMutation({
         problemFamilyId: v.string(),
         stability: v.number(),
         difficulty: v.number(),
-        state: v.union(
-          v.literal("new"),
-          v.literal("learning"),
-          v.literal("review"),
-          v.literal("relearning"),
-        ),
+        state: srsCardStateLiteralValidator,
         dueDate: v.string(),
         elapsedDays: v.number(),
         scheduledDays: v.number(),

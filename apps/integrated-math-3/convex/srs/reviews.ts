@@ -1,18 +1,18 @@
 import { internalMutation, internalQuery } from "../_generated/server";
 import { v } from "convex/values";
-import { Id } from "../_generated/dataModel";
 import {
   srsCardStatePickValidator,
   srsEvidenceValidator,
+  srsRatingValidator,
 } from "./validators";
 
 export const saveReview = internalMutation({
   args: {
-    reviewId: v.string(),
-    cardId: v.string(),
-    studentId: v.string(),
-    rating: v.string(),
-    submissionId: v.string(),
+    reviewId: v.optional(v.string()),
+    cardId: v.id("srs_cards"),
+    studentId: v.id("profiles"),
+    rating: srsRatingValidator,
+    submissionId: v.optional(v.string()),
     evidence: srsEvidenceValidator,
     stateBefore: srsCardStatePickValidator,
     stateAfter: srsCardStatePickValidator,
@@ -20,11 +20,11 @@ export const saveReview = internalMutation({
   },
   handler: async (ctx, args) => {
     const id = await ctx.db.insert("srs_review_log", {
-      cardId: args.cardId as Id<"srs_cards">,
-      studentId: args.studentId as Id<"profiles">,
+      cardId: args.cardId,
+      studentId: args.studentId,
       rating: args.rating,
-      reviewId: args.reviewId || undefined,
-      submissionId: args.submissionId || undefined,
+      reviewId: args.reviewId,
+      submissionId: args.submissionId,
       evidence: args.evidence,
       stateBefore: args.stateBefore,
       stateAfter: args.stateAfter,
@@ -35,12 +35,12 @@ export const saveReview = internalMutation({
 });
 
 export const getReviewsByCard = internalQuery({
-  args: { cardId: v.string() },
+  args: { cardId: v.id("srs_cards") },
   handler: async (ctx, args) => {
     const reviews = await ctx.db
       .query("srs_review_log")
       .withIndex("by_card", (q) =>
-        q.eq("cardId", args.cardId as Id<"srs_cards">)
+        q.eq("cardId", args.cardId)
       )
       .collect();
     return reviews
@@ -60,13 +60,13 @@ export const getReviewsByCard = internalQuery({
 });
 
 export const getReviewsByStudent = internalQuery({
-  args: { studentId: v.string(), since: v.optional(v.string()) },
+  args: { studentId: v.id("profiles"), since: v.optional(v.string()) },
   handler: async (ctx, args) => {
     const sinceMs = args.since ? new Date(args.since).getTime() : undefined;
     const reviews = await ctx.db
       .query("srs_review_log")
       .withIndex("by_student", (q) =>
-        q.eq("studentId", args.studentId as Id<"profiles">)
+        q.eq("studentId", args.studentId)
       )
       .collect();
     return reviews

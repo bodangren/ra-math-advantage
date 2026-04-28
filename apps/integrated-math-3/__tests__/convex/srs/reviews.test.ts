@@ -108,6 +108,20 @@ describe('saveReview', () => {
       timingAdjusted: false,
       reasons: ['correct'],
     });
+    expect(inserted.stateBefore).toEqual({
+      stability: 5,
+      difficulty: 4,
+      state: 'review',
+      reps: 5,
+      lapses: 0,
+    });
+    expect(inserted.stateAfter).toEqual({
+      stability: 6,
+      difficulty: 4,
+      state: 'review',
+      reps: 6,
+      lapses: 0,
+    });
     expect(inserted.reviewedAt).toBe(new Date('2026-04-29T12:00:00.000Z').getTime());
   });
 
@@ -116,11 +130,9 @@ describe('saveReview', () => {
     const ctx = { db } as unknown as MutationCtx;
 
     const reviewData = {
-      reviewId: '',
       cardId: 'card-1',
       studentId: 'student-1',
       rating: 'Hard',
-      submissionId: '',
       evidence: {
         baseRating: 'Hard' as const,
         timingAdjusted: true,
@@ -150,6 +162,20 @@ describe('saveReview', () => {
     const inserted = call[1];
     expect(inserted.reviewId).toBeUndefined();
     expect(inserted.submissionId).toBeUndefined();
+    expect(inserted.stateBefore).toEqual({
+      stability: 5,
+      difficulty: 4,
+      state: 'review',
+      reps: 5,
+      lapses: 0,
+    });
+    expect(inserted.stateAfter).toEqual({
+      stability: 4,
+      difficulty: 4,
+      state: 'review',
+      reps: 6,
+      lapses: 1,
+    });
   });
 
   it('should handle teacher_reset evidence type', async () => {
@@ -161,7 +187,6 @@ describe('saveReview', () => {
       cardId: 'card-2',
       studentId: 'student-2',
       rating: 'Again',
-      submissionId: '',
       evidence: {
         action: 'teacher_reset' as const,
         objectiveId: 'obj-123',
@@ -191,6 +216,20 @@ describe('saveReview', () => {
     expect(inserted.evidence).toEqual({
       action: 'teacher_reset',
       objectiveId: 'obj-123',
+    });
+    expect(inserted.stateBefore).toEqual({
+      stability: 1,
+      difficulty: 5,
+      state: 'learning',
+      reps: 1,
+      lapses: 0,
+    });
+    expect(inserted.stateAfter).toEqual({
+      stability: 1,
+      difficulty: 5,
+      state: 'new',
+      reps: 0,
+      lapses: 0,
     });
   });
 });

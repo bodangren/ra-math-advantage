@@ -8,12 +8,9 @@ const STALE_ENTRY_THRESHOLD_MS = 24 * 60 * 60 * 1000;
 export const getRateLimitStatus = internalQuery({
   args: { userId: v.id("profiles") },
   handler: async (ctx, args) => {
-    const profile = await ctx.db.get(args.userId);
-    if (!profile) throw new Error("Profile not found");
-
     const rateLimit = await ctx.db
       .query("chatbot_rate_limits")
-      .withIndex("by_user", (q) => q.eq("userId", profile._id))
+      .withIndex("by_user", (q) => q.eq("userId", args.userId))
       .unique();
 
     if (!rateLimit) {
@@ -44,20 +41,17 @@ export const getRateLimitStatus = internalQuery({
 export const checkAndIncrementRateLimit = internalMutation({
   args: { userId: v.id("profiles") },
   handler: async (ctx, args) => {
-    const profile = await ctx.db.get(args.userId);
-    if (!profile) throw new Error("Profile not found");
-
     const now = Date.now();
 
     let existing = await ctx.db
       .query("chatbot_rate_limits")
-      .withIndex("by_user", (q) => q.eq("userId", profile._id))
+      .withIndex("by_user", (q) => q.eq("userId", args.userId))
       .unique();
 
     if (!existing) {
       try {
         await ctx.db.insert("chatbot_rate_limits", {
-          userId: profile._id,
+          userId: args.userId,
           requestCount: 1,
           windowStart: now,
           createdAt: now,
@@ -65,7 +59,7 @@ export const checkAndIncrementRateLimit = internalMutation({
         });
         return {
           allowed: true,
-          remaining: MAX_REQUESTS_PER_WINDOW - 1,
+          remaining: Math.max(0, MAX_REQUESTS_PER_WINDOW - 1),
           windowExpiresAt: now + RATE_LIMIT_WINDOW_MS,
         };
       } catch (e) {
@@ -75,7 +69,7 @@ export const checkAndIncrementRateLimit = internalMutation({
         }
         existing = await ctx.db
           .query("chatbot_rate_limits")
-          .withIndex("by_user", (q) => q.eq("userId", profile._id))
+          .withIndex("by_user", (q) => q.eq("userId", args.userId))
           .unique();
         if (!existing) {
           throw new Error("Rate limit record disappeared after concurrent insert");
@@ -91,7 +85,7 @@ export const checkAndIncrementRateLimit = internalMutation({
       });
       return {
         allowed: true,
-        remaining: MAX_REQUESTS_PER_WINDOW - 1,
+        remaining: Math.max(0, MAX_REQUESTS_PER_WINDOW - 1),
         windowExpiresAt: now + RATE_LIMIT_WINDOW_MS,
       };
     }
