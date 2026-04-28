@@ -1,14 +1,11 @@
 import { NextResponse } from 'next/server';
 import { z } from 'zod';
 import { requireActiveStudentRequestClaims } from '@/lib/auth/server';
-import { fetchInternalQuery, fetchInternalMutation, fetchQuery, fetchMutation, api, internal } from '@/lib/convex/server';
+import { fetchInternalQuery, fetchInternalMutation, fetchQuery, api, internal } from '@/lib/convex/server';
 import { COMPETENCY_STANDARD_CODE_PATTERN } from '@/lib/curriculum/standards';
 import { formatRateLimitError } from '@/convex/apiRateLimits';
 import type { Id } from '@/convex/_generated/dataModel';
 import type { CompletePhaseRequest, CompletePhaseResponse } from '@/types/api';
-
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const apiAny = api as any;
 
 const CompletePhaseSchema = z.object({
   lessonId: z.string().trim().min(1, 'Lesson identifier is required'),
@@ -36,13 +33,6 @@ export async function POST(request: Request) {
 
     const userId = claimsOrResponse.sub as Id<'profiles'>;
 
-    const rateLimitResult = await fetchMutation(apiAny.apiRateLimits.checkAndIncrementApiRateLimit, {
-      endpoint: 'phases/complete',
-    });
-    if (!rateLimitResult.allowed) {
-      return formatRateLimitError(rateLimitResult.windowExpiresAt);
-    }
-
     const body = await request.json();
     const validationResult = CompletePhaseSchema.safeParse(body);
 
@@ -64,8 +54,18 @@ export async function POST(request: Request) {
       linkedStandardId,
     }: CompletePhasePayload = validationResult.data;
 
+    const rateLimitResult = await fetchInternalMutation(internal.apiRateLimits.checkAndIncrementApiRateLimit, {
+      userId,
+      endpoint: 'phases/complete',
+    });
+    if (!rateLimitResult.allowed) {
+      return formatRateLimitError(rateLimitResult.windowExpiresAt);
+    }
+
     const serverTimestamp = new Date().toISOString();
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const apiAny = api as any;
     const lesson = await fetchQuery(apiAny.api.getLessonBySlugOrId, { identifier: lessonIdentifier });
     if (!lesson) {
       return NextResponse.json(

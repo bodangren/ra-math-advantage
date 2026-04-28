@@ -1,4 +1,4 @@
-import { mutation, query } from "./_generated/server";
+import { internalMutation, internalQuery } from "./_generated/server";
 import { v } from "convex/values";
 import type { MutationCtx } from "./_generated/server";
 import type { Id } from "./_generated/dataModel";
@@ -103,41 +103,25 @@ export async function checkAndIncrementApiRateLimitHandler(
   };
 }
 
-export const checkAndIncrementApiRateLimit = mutation({
+export const checkAndIncrementApiRateLimit = internalMutation({
   args: {
+    userId: v.id("profiles"),
     endpoint: v.string(),
   },
   handler: async (ctx, args) => {
-    const identity = await ctx.auth.getUserIdentity();
-    if (!identity) throw new Error("Unauthenticated");
-
-    const profile = await ctx.db
-      .query("profiles")
-      .withIndex("by_username", (q) => q.eq("username", identity.email!))
-      .unique();
-    if (!profile) throw new Error("Profile not found");
-
     return checkAndIncrementApiRateLimitHandler(ctx, {
-      userId: profile._id,
+      userId: args.userId,
       endpoint: args.endpoint as ApiEndpoint,
     });
   },
 });
 
-export const getApiRateLimitStatus = query({
+export const getApiRateLimitStatus = internalQuery({
   args: {
+    userId: v.id("profiles"),
     endpoint: v.string(),
   },
   handler: async (ctx, args) => {
-    const identity = await ctx.auth.getUserIdentity();
-    if (!identity) throw new Error("Unauthenticated");
-
-    const profile = await ctx.db
-      .query("profiles")
-      .withIndex("by_username", (q) => q.eq("username", identity.email!))
-      .unique();
-    if (!profile) throw new Error("Profile not found");
-
     const config = RATE_LIMIT_CONFIG[args.endpoint as ApiEndpoint];
     if (!config) {
       return { remaining: Infinity, windowExpiresAt: 0, isLimited: false };
@@ -149,7 +133,7 @@ export const getApiRateLimitStatus = query({
     const rateLimit = await ctx.db
       .query("api_rate_limits")
       .withIndex("by_user_and_endpoint", (q) =>
-        q.eq("userId", profile._id).eq("endpoint", args.endpoint)
+        q.eq("userId", args.userId).eq("endpoint", args.endpoint)
       )
       .unique();
 

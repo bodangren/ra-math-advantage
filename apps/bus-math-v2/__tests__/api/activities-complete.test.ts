@@ -2,19 +2,9 @@ import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { NextRequest } from 'next/server';
 
 const mockCompletePhasePost = vi.fn();
-const mockFetchMutation = vi.fn();
 
 vi.mock('@/app/api/phases/complete/route', () => ({
   POST: (request: Request) => mockCompletePhasePost(request),
-}));
-
-vi.mock('@/lib/convex/server', () => ({
-  fetchMutation: mockFetchMutation,
-  api: {
-    apiRateLimits: {
-      checkAndIncrementApiRateLimit: 'api.apiRateLimits.checkAndIncrementApiRateLimit',
-    },
-  },
 }));
 
 const { POST } = await import('@/app/api/activities/complete/route');

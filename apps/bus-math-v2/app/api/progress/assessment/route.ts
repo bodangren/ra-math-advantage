@@ -4,12 +4,9 @@ import { calculateScore } from '@/lib/assessments/scoring';
 import { requireActiveStudentRequestClaims } from '@/lib/auth/server';
 import { submissionDataSchema } from '@/lib/db/schema/activity-submissions';
 import { selectActivitySchema } from '@/lib/db/schema/validators';
-import { fetchInternalQuery, fetchInternalMutation, fetchMutation, api, internal } from '@/lib/convex/server';
+import { fetchInternalQuery, fetchInternalMutation, internal } from '@/lib/convex/server';
 import { formatRateLimitError } from '@/convex/apiRateLimits';
 import { normalizePracticeSubmissionInput } from '@math-platform/practice-core/contract';
-
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const apiAny = api as any;
 
 function buildBadRequest(details: Record<string, unknown> | string) {
   return NextResponse.json(
@@ -30,12 +27,7 @@ export async function POST(request: Request) {
       return claimsOrResponse;
     }
 
-    const rateLimitResult = await fetchMutation(apiAny.apiRateLimits.checkAndIncrementApiRateLimit, {
-      endpoint: 'assessment',
-    });
-    if (!rateLimitResult.allowed) {
-      return formatRateLimitError(rateLimitResult.windowExpiresAt);
-    }
+    const userId = claimsOrResponse.sub;
 
     let submission;
     try {
@@ -48,6 +40,14 @@ export async function POST(request: Request) {
 
     if (Object.keys(submission.answers).length === 0) {
       return buildBadRequest('answers must include at least one entry.');
+    }
+
+    const rateLimitResult = await fetchInternalMutation(internal.apiRateLimits.checkAndIncrementApiRateLimit, {
+      userId,
+      endpoint: 'assessment',
+    });
+    if (!rateLimitResult.allowed) {
+      return formatRateLimitError(rateLimitResult.windowExpiresAt);
     }
 
     const activityRecord = await fetchInternalQuery(internal.activities.getActivityById, {
@@ -77,8 +77,6 @@ export async function POST(request: Request) {
       console.error('[assessment] Scoring error:', error);
       return NextResponse.json({ error: 'Unable to score submission' }, { status: 422 });
     }
-
-    const userId = claimsOrResponse.sub;
 
     await fetchInternalMutation(internal.activities.submitAssessment, {
       userId: userId as never,

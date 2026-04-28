@@ -1,24 +1,19 @@
-import { mutation, query } from "./_generated/server";
+import { internalMutation, internalQuery } from "./_generated/server";
+import { v } from "convex/values";
+import type { Id } from "./_generated/dataModel";
 
 const RATE_LIMIT_WINDOW_MS = 60000;
 const MAX_REQUESTS_PER_WINDOW = 5;
 const STALE_ENTRY_THRESHOLD_MS = 24 * 60 * 60 * 1000;
 
-export const getRateLimitStatus = query({
-  args: {},
-  handler: async (ctx) => {
-    const identity = await ctx.auth.getUserIdentity();
-    if (!identity) throw new Error("Unauthenticated");
-
-    const profile = await ctx.db
-      .query("profiles")
-      .withIndex("by_username", (q) => q.eq("username", identity.email!))
-      .unique();
-    if (!profile) throw new Error("Profile not found");
-
+export const getRateLimitStatus = internalQuery({
+  args: {
+    userId: v.id("profiles"),
+  },
+  handler: async (ctx, args) => {
     const rateLimit = await ctx.db
       .query("chatbot_rate_limits")
-      .withIndex("by_user", (q) => q.eq("userId", profile._id))
+      .withIndex("by_user", (q) => q.eq("userId", args.userId))
       .unique();
 
     if (!rateLimit) {
@@ -46,28 +41,21 @@ export const getRateLimitStatus = query({
   },
 });
 
-export const checkAndIncrementRateLimit = mutation({
-  args: {},
-  handler: async (ctx) => {
-    const identity = await ctx.auth.getUserIdentity();
-    if (!identity) throw new Error("Unauthenticated");
-
-    const profile = await ctx.db
-      .query("profiles")
-      .withIndex("by_username", (q) => q.eq("username", identity.email!))
-      .unique();
-    if (!profile) throw new Error("Profile not found");
-
+export const checkAndIncrementRateLimit = internalMutation({
+  args: {
+    userId: v.id("profiles"),
+  },
+  handler: async (ctx, args) => {
     const now = Date.now();
 
     const existing = await ctx.db
       .query("chatbot_rate_limits")
-      .withIndex("by_user", (q) => q.eq("userId", profile._id))
+      .withIndex("by_user", (q) => q.eq("userId", args.userId))
       .unique();
 
     if (!existing) {
       await ctx.db.insert("chatbot_rate_limits", {
-        userId: profile._id,
+        userId: args.userId,
         requestCount: 1,
         windowStart: now,
         createdAt: now,
@@ -114,16 +102,12 @@ export const checkAndIncrementRateLimit = mutation({
   },
 });
 
-export const cleanupStaleRateLimits = mutation({
-  args: {},
-  handler: async (ctx) => {
-    const identity = await ctx.auth.getUserIdentity();
-    if (!identity) throw new Error("Unauthenticated");
-
-    const profile = await ctx.db
-      .query("profiles")
-      .withIndex("by_username", (q) => q.eq("username", identity.email!))
-      .unique();
+export const cleanupStaleRateLimits = internalMutation({
+  args: {
+    userId: v.id("profiles"),
+  },
+  handler: async (ctx, args) => {
+    const profile = await ctx.db.get(args.userId);
     if (!profile || profile.role !== "admin") {
       throw new Error("Unauthorized: admin only");
     }

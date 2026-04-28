@@ -2,16 +2,13 @@ import { NextResponse } from 'next/server';
 import { z } from 'zod';
 
 import { requireActiveTeacherRequestClaims } from '@/lib/auth/server';
-import { fetchInternalQuery, fetchMutation, api, internal } from '@/lib/convex/server';
+import { fetchInternalQuery, fetchInternalMutation, internal } from '@/lib/convex/server';
 import { formatRateLimitError } from '@/convex/apiRateLimits';
 import { generateAISummary, buildDeterministicSummary } from '@math-platform/practice-core/error-analysis';
 import type { PracticeSubmissionEnvelope } from '@math-platform/practice-core/contract';
 import { isPracticeSubmissionEnvelope } from '@math-platform/practice-core/contract';
 import { resolveAIProviderFromEnv } from '@/lib/practice/error-analysis/providers';
 import type { Id } from '@/convex/_generated/dataModel';
-
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const apiAny = api as any;
 
 const querySchema = z.object({
   lessonId: z.string().trim().min(1, 'lessonId is required'),
@@ -25,12 +22,7 @@ export async function GET(request: Request) {
       return claims;
     }
 
-    const rateLimitResult = await fetchMutation(apiAny.apiRateLimits.checkAndIncrementApiRateLimit, {
-      endpoint: 'teacher/ai-error-summary',
-    });
-    if (!rateLimitResult.allowed) {
-      return formatRateLimitError(rateLimitResult.windowExpiresAt);
-    }
+    const userId = claims.sub as Id<'profiles'>;
 
     const { searchParams } = new URL(request.url);
     const parsed = querySchema.safeParse({
@@ -47,8 +39,16 @@ export async function GET(request: Request) {
 
     const { lessonId, studentId } = parsed.data;
 
+    const rateLimitResult = await fetchInternalMutation(internal.apiRateLimits.checkAndIncrementApiRateLimit, {
+      userId,
+      endpoint: 'teacher/ai-error-summary',
+    });
+    if (!rateLimitResult.allowed) {
+      return formatRateLimitError(rateLimitResult.windowExpiresAt);
+    }
+
     const teacher = await fetchInternalQuery(internal.teacher.getProfileWithOrg, {
-      userId: claims.sub as Id<'profiles'>,
+      userId,
     });
 
     if (!teacher || (teacher.role !== 'teacher' && teacher.role !== 'admin')) {

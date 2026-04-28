@@ -50,6 +50,8 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: 'Forbidden' }, { status: 403 });
   }
 
+  const userId = session.sub;
+
   try {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const rateLimitFn = (internal as any).rateLimits?.checkAndIncrementRateLimit;
@@ -59,7 +61,7 @@ export async function POST(request: NextRequest) {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const rateLimitResult = await (fetchInternalMutation as any)(
         rateLimitFn,
-        {},
+        { userId },
       ) as { allowed: boolean };
 
       if (!rateLimitResult.allowed) {
