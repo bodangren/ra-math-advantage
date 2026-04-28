@@ -3,9 +3,39 @@ import { v } from "convex/values";
 import { Id } from "../_generated/dataModel";
 import { resolveDailyPracticeQueue } from "../queue/queue";
 
-function getDayStart(timestamp: number): number {
+export function getDayStart(timestamp: number): number {
   const d = new Date(timestamp);
   return Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate());
+}
+
+export function calculateStreak(
+  completedSessionTimestamps: number[],
+  now: number
+): number {
+  if (completedSessionTimestamps.length === 0) return 0;
+
+  const uniqueDays = Array.from(
+    new Set(completedSessionTimestamps.map((ts) => getDayStart(ts)))
+  ).sort((a, b) => b - a);
+
+  const mostRecent = uniqueDays[0];
+  const today = getDayStart(now);
+  const yesterday = today - 24 * 60 * 60 * 1000;
+
+  if (mostRecent !== today && mostRecent !== yesterday) return 0;
+
+  let streak = 1;
+  let checkDay = mostRecent;
+  for (let i = 1; i < uniqueDays.length; i++) {
+    const expected = checkDay - 24 * 60 * 60 * 1000;
+    if (uniqueDays[i] === expected) {
+      streak++;
+      checkDay = uniqueDays[i];
+    } else if (uniqueDays[i] < expected) {
+      break;
+    }
+  }
+  return streak;
 }
 
 export async function getPracticeStatsHandler(
@@ -32,35 +62,16 @@ export async function getPracticeStatsHandler(
     (s) => s.completedAt !== undefined
   );
 
-  let streak = 0;
   let lastPracticedAt: string | null = null;
+  let streak = 0;
 
   if (completedSessions.length > 0) {
     lastPracticedAt = new Date(
       completedSessions[0].completedAt!
     ).toISOString();
 
-    const uniqueDays = Array.from(
-      new Set(completedSessions.map((s) => getDayStart(s.completedAt!)))
-    ).sort((a, b) => b - a);
-
-    const mostRecent = uniqueDays[0];
-    const today = getDayStart(now);
-    const yesterday = today - 24 * 60 * 60 * 1000;
-
-    if (mostRecent === today || mostRecent === yesterday) {
-      streak = 1;
-      let checkDay = mostRecent;
-      for (let i = 1; i < uniqueDays.length; i++) {
-        const expected = checkDay - 24 * 60 * 60 * 1000;
-        if (uniqueDays[i] === expected) {
-          streak++;
-          checkDay = uniqueDays[i];
-        } else if (uniqueDays[i] < expected) {
-          break;
-        }
-      }
-    }
+    const completedTimestamps = completedSessions.map((s) => s.completedAt!);
+    streak = calculateStreak(completedTimestamps, now);
   }
 
   return {

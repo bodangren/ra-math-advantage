@@ -117,7 +117,7 @@ function makeDashboardMockCtx(overrides: {
   }>;
   queueItems?: Array<{ _id: string }>;
 } = {}) {
-  const { sessions = [], queueItems = [] } = overrides;
+  const { sessions = [] } = overrides;
 
   const sessionQueryMock = {
     withIndex: vi.fn().mockImplementation(

@@ -1,11 +1,11 @@
 # SRS Dashboard Streak Test Coverage - Implementation Plan
 
 ## Phase 1: Extract and Test Streak Logic (TDD)
-- [ ] Write failing tests for `getDayStart` pure function
-- [ ] Write failing tests for `calculateStreak` pure function
-- [ ] Write failing tests for `getPracticeStatsHandler` with mocked DB
-- [ ] Export `getDayStart` and extract streak calc to `calculateStreak` in dashboard.ts
-- [ ] Verify all tests pass
+- [x] Write failing tests for `getDayStart` pure function (pre-existing, broken imports)
+- [x] Write failing tests for `calculateStreak` pure function (pre-existing, broken imports)
+- [x] Write failing tests for `getPracticeStatsHandler` with mocked DB (pre-existing)
+- [x] Export `getDayStart` and extract streak calc to `calculateStreak` in dashboard.ts
+- [x] Verify all tests pass
 
 ## Phase 2: Test Reviews Module
 - [ ] Write failing tests for `saveReview` handler with mocked mutation ctx
