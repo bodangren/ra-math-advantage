@@ -45,7 +45,7 @@ Monorepo migration complete (Waves 0-6). All major feature tracks done. Three ne
 - [x] apiRateLimits remaining negative clamp — Math.max(0, ...) added (review-23)
 - [x] Wire BM2 apiRateLimits to 5 API routes (complete — all 5 endpoints enforce rate limits)
 - [ ] Fix apiRateLimits race condition (High — duplicate inserts break .unique())
-- [ ] Add DESIGN.md + product.md to IM1
+- [x] Add DESIGN.md + product.md to IM1
 - [ ] Add .env.example to all apps
 - [ ] Convex schema strict validation (21 v.any() fields)
 - [ ] SRS reviews.ts test coverage

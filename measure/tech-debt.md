@@ -23,7 +23,7 @@
 | N+1: teacher.ts listActivePhaseIds 3 sequential .collect() | Medium | Resolved | Batched via Promise.all (review-23) |
 | N+1: teacher.ts getTeacherDashboardData 3 sequential .collect() | Medium | Resolved | Batched via Promise.all (review-23) |
 | apiRateLimits remaining could go negative | Medium | Resolved | Added Math.max(0, ...) clamp (review-23) |
-| IM1 missing DESIGN.md and product.md | High | Open | IM2/PreCalc have both; IM1 has neither |
+| IM1 missing DESIGN.md and product.md | High | Resolved | Both files created (minimax-m2) |
 | Scaffolded apps missing .env.example | Medium | Open | No env reference for any app including IM3 |
 | BM2 9 governance test suites permanently skipped | Medium | Open | TODO(monorepo) comments added; all need monorepo-aware path fixes |
 | Equivalence checker: 2 aspirational .todo tests | Low | Open | Need symbolic math lib |
