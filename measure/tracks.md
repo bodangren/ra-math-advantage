@@ -807,11 +807,11 @@ AI Tutoring and Workbook scope is explicitly **import/adopt from BM2**, not gree
       *Link: [./tracks/srs-cards-batch-mutation_20260429/](./tracks/srs-cards-batch-mutation_20260429/)*
       - Phase 1: Fix saveCards Sequential Await → Promise.all Batching [COMPLETE]
 
-- [ ] **Track: Teacher SRS Queries N+1 Batch Fix**
+- [x] **Track: Teacher SRS Queries N+1 Batch Fix** — **COMPLETED**
       *Batch 2N+ per-student queries in getTeacherClassProficiencyHandler to O(1) broad queries*
       *Link: [./tracks/teacher-srs-queries-batch_20260429/](./tracks/teacher-srs-queries-batch_20260429/)*
-      - Phase 1: Batch srs_cards and srs_review_log Queries [ ]
-      - Phase 2: Batch competency_standards Query [ ]
+      - Phase 1: Batch srs_cards and srs_review_log Queries [COMPLETE]
+      - Phase 2: Batch competency_standards Query [COMPLETE]
 
 ## AP Precalculus
 
