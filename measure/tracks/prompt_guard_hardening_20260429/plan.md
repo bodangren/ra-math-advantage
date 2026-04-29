@@ -2,11 +2,15 @@
 
 ## Phase 1: Unicode Normalization [~]
 
-- [~] 1.1 Create `normalizeInput` with NFC normalization, zero-width char stripping, Cyrillic/fullwidth mapping
+- [x] 1.1 Create `normalizeInput` with NFC normalization, zero-width char stripping, Cyrillic/fullwidth mapping [COMPLETE]
+- [x] 1.2 Add unit tests for Unicode normalization (Cyrillic, fullwidth, zero-width, mixed scripts) [COMPLETE]
+- [x] 1.3 Integrate into IM3 chatbot prompt guard [COMPLETE] - automatic via package update
+- [x] 1.4 Integrate into BM2 chatbot prompt guard [COMPLETE] - automatic via package update
+- [ ] 1.5 Verify all existing tests pass
 - [ ] 1.2 Add unit tests for Unicode normalization (Cyrillic, fullwidth, zero-width, mixed scripts)
 - [ ] 1.3 Integrate into IM3 chatbot prompt guard
 - [ ] 1.4 Integrate into BM2 chatbot prompt guard
-- [ ] 1.5 Verify all existing tests pass
+- [x] 1.5 Verify all existing tests pass [COMPLETE]
 
 ## Phase 2: Regex Restructuring [ ]
 
