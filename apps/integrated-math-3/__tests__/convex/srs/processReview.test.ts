@@ -188,4 +188,19 @@ describe('processReviewHandler', () => {
       expect.objectContaining({ reps: 4, stability: 3.5 }),
     );
   });
+
+  it('should throw error when cardState.studentId does not match reviewEntry.studentId', async () => {
+    const { db } = makeMockCtx();
+    const baseArgs = makeArgs();
+    const args = makeArgs({
+      reviewEntry: {
+        ...baseArgs.reviewEntry,
+        studentId: 'student-2' as Id<'profiles'>,
+      },
+    });
+
+    await expect(
+      processReviewHandler({ db } as unknown as import('@/convex/_generated/server').MutationCtx, args),
+    ).rejects.toThrow('studentId mismatch');
+  });
 });

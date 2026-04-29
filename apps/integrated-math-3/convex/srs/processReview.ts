@@ -96,6 +96,10 @@ export async function processReviewHandler(
 ): Promise<{ cardId: string; logEntryId: Id<"srs_review_log"> }> {
   const { cardState, reviewEntry } = args;
 
+  if (cardState.studentId !== reviewEntry.studentId) {
+    throw new Error("studentId mismatch: cardState and reviewEntry must refer to the same student");
+  }
+
   const existing = await ctx.db
     .query("srs_cards")
     .withIndex("by_student_and_problem_family", (q) =>
