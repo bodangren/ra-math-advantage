@@ -8,20 +8,18 @@ Monorepo migration complete (Waves 0-6). All major feature tracks done. Three ne
 
 ## Priority Order (Execute In This Order)
 
-1. **Prompt guard Unicode normalization** — `normalizeInput` is only `trim()`; Cyrillic/fullwidth/zero-width bypass all regexes (High)
-2. **Prompt guard regex false positives** — Optional trailing group matches common English sentences; restructure patterns (High)
-3. **processReview.ts studentId cross-validation** — cardState.studentId and reviewEntry.studentId accepted independently; mismatch creates corrupt data (High)
-4. **teacher/srs_queries.ts: N+1 parallel fan** — Each fires 30+ parallel queries per class; batch via broader queries (High)
-5. **RSC bundle optimization** — page chunk still large; needs further code-splitting
-6. **SRS engine studentId type alignment** — Package defines `studentId: string` but Convex uses `Id<"profiles">`; bridging casts needed in convexReviewLogStore.ts
-7. **BM2 governance test re-enablement** — 9 skipped suites need monorepo-aware path fixes
-8. **objectiveProficiency.ts: sequential outer loop** — Flatten to single Promise.all over all (objective, student) pairs
-9. **Rate limiter test coverage** — No tests for IM3 rateLimits.ts or BM2 rateLimits.ts (chatbot)
-10. **Rate limiter duplication** — IM3/BM2 chatbot rate limiters diverge; should extract to shared package
-11. **Convex unique index alternatives** — No unique constraints on rate limit tables; duplicates can still occur
-12. **Curriculum content authoring — IM1, IM2, PreCalc** — Seed complete curriculum for all three new apps
-13. **Activity component extraction** — Extract generic IM3 activity components to shared package for cross-app reuse
-14. **Convex schema strict validation** — 16 v.any() fields remain; priority: submissionData, props, content, config
+1. **processReview.ts studentId cross-validation** — cardState.studentId and reviewEntry.studentId accepted independently; mismatch creates corrupt data (High)
+2. **teacher/srs_queries.ts: N+1 parallel fan** — Each fires 30+ parallel queries per class; batch via broader queries (High)
+3. **RSC bundle optimization** — page chunk still large; needs further code-splitting
+4. **SRS engine studentId type alignment** — Package defines `studentId: string` but Convex uses `Id<"profiles">`; bridging casts needed in convexReviewLogStore.ts
+5. **BM2 governance test re-enablement** — 9 skipped suites need monorepo-aware path fixes
+6. **objectiveProficiency.ts: sequential outer loop** — Flatten to single Promise.all over all (objective, student) pairs
+7. **Rate limiter test coverage** — No tests for IM3 rateLimits.ts or BM2 rateLimits.ts (chatbot)
+8. **Rate limiter duplication** — IM3/BM2 chatbot rate limiters diverge; should extract to shared package
+9. **Convex unique index alternatives** — No unique constraints on rate limit tables; duplicates can still occur
+10. **Curriculum content authoring — IM1, IM2, PreCalc** — Seed complete curriculum for all three new apps
+11. **Activity component extraction** — Extract generic IM3 activity components to shared package for cross-app reuse
+12. **Convex schema strict validation** — 16 v.any() fields remain; priority: submissionData, props, content, config
 
 ## Non-Negotiable Rules
 
@@ -72,7 +70,8 @@ Monorepo migration complete (Waves 0-6). All major feature tracks done. Three ne
 - [x] srs/cards.ts getDueCards: use index range query `.lte("dueDate", ...)` instead of in-memory filter (review-29)
 - [x] BM2 apiRateLimits: endpoint arg `v.string()` → `v.union(v.literal(...))`, deny-by-default (review-29)
 - [x] reviews.ts: extract and export handler functions for direct testing without `as any` (review-29)
-- [ ] Prompt guard Unicode normalization and regex restructuring
+- [x] Prompt guard Unicode normalization and regex restructuring (prompt_guard_hardening_20260429)
+- [ ] processReview.ts studentId cross-validation
 - [ ] processReview.ts studentId cross-validation
 - [ ] teacher/srs_queries.ts: N+1 parallel fan → broader batched queries
 - [ ] BM2 9 governance tests re-enablement

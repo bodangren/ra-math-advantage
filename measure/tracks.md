@@ -802,10 +802,12 @@ AI Tutoring and Workbook scope is explicitly **import/adopt from BM2**, not gree
       - Phase 2: Apply Code-Splitting [COMPLETE]
       - Phase 3: Verify (354 KB < 500 KB target) [COMPLETE]
 
-- [~] **Track: Prompt Guard Hardening**
+- [x] **Track: Prompt Guard Hardening** — **COMPLETED**
      *Fix critical prompt injection defense vulnerabilities: Unicode/homoglyph normalization and regex false positive restructuring*
      *Link: [./tracks/prompt_guard_hardening_20260429/](./tracks/prompt_guard_hardening_20260429/)*
-      - Phase 1: Unicode Normalization
+      - Phase 1: Unicode Normalization [COMPLETE]
+      - Phase 2: Regex Restructuring [COMPLETE]
+      - Phase 3: Verification and Handoff [COMPLETE]
 
 - [x] **Track: SRS saveCards Batch Mutation** — **COMPLETED**
       *Batch saveCards lookups and writes via Promise.all to eliminate 2N sequential DB operations*
