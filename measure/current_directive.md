@@ -1,6 +1,6 @@
 # Current Directive
 
-> Updated: 2026-04-29 (Phase 2 complete — Activity Component Extraction: all 6 activity types extracted to @math-platform/activity-components package)
+> Updated: 2026-04-29 (Review #31 — fixed objectiveProficiency full table scans, updated docs)
 
 ## Mission
 
@@ -76,16 +76,16 @@ Monorepo migration complete (Waves 0-6). All major feature tracks done. Three ne
 - [x] processReview.ts return value fix — returns actual DB document ID not caller cardId (review-30)
 - [x] BM2 getApiRateLimitStatus deny-by-default consistency fix (review-30)
 - [x] objectiveProficiency dead code removal (unused submissionMap) (review-30)
-- [ ] BM2 worker-entry bundle optimization (5.1 MB → target <3 MB)
-- [ ] Prompt guard punctuation bypass hardening
-- [ ] BM2 9 governance tests re-enablement
-- [x] Activity component extraction for cross-app reuse (Phase 2 complete — 6 activity types extracted, 36 tests passing)
-- [ ] Convex schema strict validation (16 v.any() fields remain)
-- [ ] objectiveProficiency student-scoped queries (replace full table scan)
+  - [ ] BM2 worker-entry bundle optimization (5.1 MB → target <3 MB)
+  - [ ] Prompt guard punctuation bypass hardening
+  - [ ] BM2 9 governance tests re-enablement
+  - [x] Activity component extraction for cross-app reuse (Phase 2 complete — 6 activity types extracted, 36 tests passing)
+  - [ ] Convex schema strict validation (16 v.any() fields remain)
+  - [x] objectiveProficiency student-scoped queries (replaced full table scans with indexed per-student queries — review-31)
 
-## Code Review Summary (2026-04-29 — Review #30)
+## Code Review Summary (2026-04-29 — Review #31)
 
-Audit of the past 6 work phases: review-29 (endpoint validation, handler extraction), Prompt Guard Hardening, Process Review studentId Cross-Validation, Teacher SRS Queries N+1 Batch Fix, SRS saveCards Batch Mutation, and Rate Limiter Test Coverage.
+Audit of the past 6 work phases: Activity Component Extraction (Phase 1+2), Review #30 fixes, Rate Limiter Test Coverage, Process Review studentId Cross-Validation, Teacher SRS Queries N+1 Batch Fix, and Prompt Guard Hardening.
 
 ### Verification Results
 
@@ -100,14 +100,13 @@ Audit of the past 6 work phases: review-29 (endpoint validation, handler extract
 | Build (IM3) | Pass (354 KB page chunk) |
 | Build (BM2) | Pass (5.1 MB worker-entry — needs optimization) |
 
-### Issues Fixed in This Review (Review #30)
+### Issues Fixed in This Review (Review #31)
 
 | Issue | Severity | Fix |
 |-------|----------|-----|
-| BM2 apiRateLimits test: expected allow=true for unknown endpoint | Critical | Updated test to expect allowed=false; handler was changed to deny-by-default in review-29 |
-| processReview returns caller-provided cardId not DB document ID | High | Changed return value to `cardDocId as string` — the actual Convex document ID used for DB writes |
-| BM2 getApiRateLimitStatus returned isLimited=false for unknown endpoints | High | Changed to deny-by-default (isLimited=true, remaining=0) to match mutation behavior |
-| objectiveProficiency deriveSubmissionTimingsFromPreFetched: dead submissionMap | Medium | Removed unused Map that was populated but never read |
+| objectiveProficiency full table scan on activity_submissions | High | Replaced `.collect()` with per-student `.withIndex("by_user")` queries via `Promise.all`; `Array.includes()` → `Set.has()` for O(1) lookup |
+| objectiveProficiency full table scan on srs_cards/srs_review_log | High | Replaced `.collect()` with per-student `.withIndex("by_student")` queries via `Promise.all` |
+| rateLimits.test.ts double-cast `((x as any) as any)` typo | Low | Removed redundant cast |
 
 ### Issues Found (Deferred)
 
@@ -115,7 +114,7 @@ Audit of the past 6 work phases: review-29 (endpoint validation, handler extract
 |-------|----------|-------|
 | BM2 worker-entry bundle 5.1 MB | Critical | 49% of Cloudflare 10 MB limit; needs tree-shaking/code-splitting |
 | Prompt guard bypass via punctuation without whitespace | High | `bypass.the.system` evades proximity detection after non-word char stripping |
-| objectiveProficiency full table scan of activity_submissions | Medium | O(total_submissions) regardless of class size |
+| Activity component extraction incomplete | High | Package exists but IM3 still uses local copies; 37 imports need migration; missing peerDependencies |
 | cards.ts updatedAt inconsistent (Date.now vs caller) | Medium | Updates use Date.now() but inserts use caller-provided timestamp |
 | srs_reviews by_student index unused for date range | Low | getReviewsByStudent filters in JS; needs by_student_and_reviewed_at index |
 | No unique constraints on any rate limit table | High | Convex indexes aren't unique; duplicates can still be created |

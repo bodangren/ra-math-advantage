@@ -16,6 +16,7 @@ ra-integrated-math-3/          # Monorepo root
 │   └── bus-math-v2/           # Business Math v2 (reference and migration source)
 ├── packages/
 │   ├── _template/              # Package scaffold template
+│   ├── activity-components/    # Shared activity components (quiz, blanks, graphing, algebraic, roc, discriminant)
 │   ├── activity-runtime/       # Phase types, activity modes, completion tracking
 │   ├── ai-tutoring/            # OpenRouter provider, retry wrapper, lesson context assembly
 │   ├── component-approval/     # Content hashing, review queue assembly

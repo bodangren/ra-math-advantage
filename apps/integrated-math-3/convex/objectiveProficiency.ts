@@ -252,13 +252,20 @@ async function preFetchTeacherClassData(
   }
   const baselines = await fetchTimingBaselines(ctx, allFamilyIds);
 
-  const allSubmissions = await ctx.db.query("activity_submissions").collect();
+  const studentIdSet = new Set(studentIds);
   const submissionsByStudent = new Map<string, ActivitySubmissionDoc[]>();
-  for (const sub of allSubmissions) {
-    if (studentIds.includes(sub.userId)) {
-      const existing = submissionsByStudent.get(sub.userId) ?? [];
-      existing.push(sub);
-      submissionsByStudent.set(sub.userId, existing);
+  const submissionsArrays = await Promise.all(
+    studentIds.map((sid) =>
+      ctx.db.query("activity_submissions").withIndex("by_user", (q) => q.eq("userId", sid)).collect()
+    )
+  );
+  for (const subs of submissionsArrays) {
+    for (const sub of subs) {
+      if (studentIdSet.has(sub.userId)) {
+        const existing = submissionsByStudent.get(sub.userId) ?? [];
+        existing.push(sub);
+        submissionsByStudent.set(sub.userId, existing);
+      }
     }
   }
 
@@ -730,19 +737,31 @@ export async function getTeacherClassProficiencyHandler(
   const allStudentCards = new Map<string, SrsCard[]>();
   const allStudentReviews = new Map<string, SrsReview[]>();
 
-  const [allCards, allReviews] = await Promise.all([
-    ctx.db.query("srs_cards").collect(),
-    ctx.db.query("srs_review_log").collect(),
+  const [allCardsArrays, allReviewsArrays] = await Promise.all([
+    Promise.all(
+      studentIds.map((sid) =>
+        ctx.db.query("srs_cards").withIndex("by_student", (q) => q.eq("studentId", sid)).collect()
+      )
+    ),
+    Promise.all(
+      studentIds.map((sid) =>
+        ctx.db.query("srs_review_log").withIndex("by_student", (q) => q.eq("studentId", sid)).collect()
+      )
+    ),
   ]);
-  for (const card of allCards) {
-    const existing = allStudentCards.get(card.studentId) ?? [];
-    existing.push(card);
-    allStudentCards.set(card.studentId, existing);
+  for (const cards of allCardsArrays) {
+    for (const card of cards) {
+      const existing = allStudentCards.get(card.studentId) ?? [];
+      existing.push(card);
+      allStudentCards.set(card.studentId, existing);
+    }
   }
-  for (const review of allReviews) {
-    const existing = allStudentReviews.get(review.studentId) ?? [];
-    existing.push(review);
-    allStudentReviews.set(review.studentId, existing);
+  for (const reviews of allReviewsArrays) {
+    for (const review of reviews) {
+      const existing = allStudentReviews.get(review.studentId) ?? [];
+      existing.push(review);
+      allStudentReviews.set(review.studentId, existing);
+    }
   }
 
   const allObjectiveIds = new Set<string>();

@@ -46,5 +46,6 @@
 | Prompt guard bypass via punctuation without whitespace | High | Open | `bypass.the.system` splits to single token after strip; neither proximity nor regex catches it |
 | getApiRateLimitStatus had deny-by-default inconsistency | High | Resolved | Was returning isLimited=false for unknown endpoints while mutation returned allowed=false (review-30) |
 | BM2 rate limiter handler test coverage still missing | Medium | Open | BM2 apiRateLimits handlers tested but rateLimits.ts (login/chatbot) still untested |
-| objectiveProficiency full table scan of activity_submissions | Medium | Open | O(total_submissions) regardless of class size; needs index or batched per-student queries |
+| objectiveProficiency full table scan of activity_submissions | Medium | Resolved | Replaced with per-student indexed queries via Promise.all + Set lookup (review-31) |
+| objectiveProficiency full table scan of srs_cards/srs_review_log | Medium | Resolved | Replaced with per-student indexed queries via Promise.all (review-31) |
 | IM3 still uses local activity component imports | Medium | Open | @math-platform/activity-components package has all 6 types; IM3 migration pending Phase 4 |

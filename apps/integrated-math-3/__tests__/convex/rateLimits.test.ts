@@ -264,7 +264,7 @@ describe('(checkAndIncrementRateLimit as any)', () => {
       updatedAt: now,
     });
 
-    const result = await ((checkAndIncrementRateLimit as any) as any)({ db } as never, {
+    const result = await (checkAndIncrementRateLimit as any)({ db } as never, {
       userId: 'user-1' as Id<'profiles'>,
     });
 
@@ -282,7 +282,7 @@ describe('(checkAndIncrementRateLimit as any)', () => {
     mockInsert.mockRejectedValueOnce(new Error('Database connection lost'));
 
     await expect(
-      ((checkAndIncrementRateLimit as any) as any)({ db } as never, {
+      (checkAndIncrementRateLimit as any)({ db } as never, {
         userId: 'user-1' as Id<'profiles'>,
       }),
     ).rejects.toThrow('Database connection lost');
