@@ -1,25 +1,23 @@
 # Current Directive
 
-> Updated: 2026-04-29 (Code review #29 — dead code removal, index range query, endpoint validation, handler extraction)
+> Updated: 2026-04-29 (Code review #30 — BM2 test fix, processReview cardId fix, deny-by-default consistency, dead code removal)
 
 ## Mission
 
-Monorepo migration complete (Waves 0-6). All major feature tracks done. Three new course apps scaffolded (IM1, IM2, PreCalc). All rate limiters now use internalMutation with race condition handling. SRS validators fully centralized with typed rating union and card state literal. Current focus: remaining Convex schema type safety, test coverage gaps, performance hardening, curriculum authoring for new apps.
+Monorepo migration complete (Waves 0-6). All major feature tracks done. Three new course apps scaffolded (IM1, IM2, PreCalc). All rate limiters use internalMutation with deny-by-default validation. SRS validators centralized. Current focus: BM2 worker bundle optimization, prompt guard hardening, Convex schema type safety, curriculum authoring for new apps.
 
 ## Priority Order (Execute In This Order)
 
-1. **processReview.ts studentId cross-validation** — cardState.studentId and reviewEntry.studentId accepted independently; mismatch creates corrupt data (High)
-2. **teacher/srs_queries.ts: N+1 parallel fan** — Each fires 30+ parallel queries per class; batch via broader queries (High)
-3. **RSC bundle optimization** — page chunk still large; needs further code-splitting
-4. **SRS engine studentId type alignment** — Package defines `studentId: string` but Convex uses `Id<"profiles">`; bridging casts needed in convexReviewLogStore.ts
-5. **BM2 governance test re-enablement** — 9 skipped suites need monorepo-aware path fixes
-6. **objectiveProficiency.ts: sequential outer loop** — Flatten to single Promise.all over all (objective, student) pairs
-7. **Rate limiter test coverage** — No tests for IM3 rateLimits.ts or BM2 rateLimits.ts (chatbot)
+1. **BM2 worker-entry bundle optimization** — 5.1 MB is 49% of Cloudflare 10 MB limit; needs tree-shaking audit and code-splitting (Critical)
+2. **Prompt guard punctuation bypass** — `bypass.the.system` evades both regex and proximity detection after non-word char stripping (High)
+3. **objectiveProficiency full table scan** — O(total_submissions) regardless of class size; needs student-scoped queries (Medium)
+4. **Convex schema strict validation** — 16 v.any() fields remain; priority: submissionData, props, content, config
+5. **Curriculum content authoring — IM1, IM2, PreCalc** — Seed complete curriculum for all three new apps
+6. **Activity component extraction** — Extract generic IM3 activity components to shared package for cross-app reuse
+7. **BM2 governance test re-enablement** — 9 skipped suites need monorepo-aware path fixes
 8. **Rate limiter duplication** — IM3/BM2 chatbot rate limiters diverge; should extract to shared package
-9. **Convex unique index alternatives** — No unique constraints on rate limit tables; duplicates can still occur
-10. **Curriculum content authoring — IM1, IM2, PreCalc** — Seed complete curriculum for all three new apps
-11. **Activity component extraction** — Extract generic IM3 activity components to shared package for cross-app reuse
-12. **Convex schema strict validation** — 16 v.any() fields remain; priority: submissionData, props, content, config
+9. **SRS engine studentId type alignment** — Package defines `studentId: string` but Convex uses `Id<"profiles">`; bridging casts needed
+10. **Convex unique index alternatives** — No unique constraints on rate limit tables; duplicates can still occur
 
 ## Non-Negotiable Rules
 
@@ -72,15 +70,22 @@ Monorepo migration complete (Waves 0-6). All major feature tracks done. Three ne
 - [x] reviews.ts: extract and export handler functions for direct testing without `as any` (review-29)
 - [x] Prompt guard Unicode normalization and regex restructuring (prompt_guard_hardening_20260429)
 - [x] processReview.ts studentId cross-validation (added validation, mismatch throws error)
-- [ ] teacher/srs_queries.ts: N+1 parallel fan → broader batched queries
-- [ ] BM2 9 governance tests re-enablement
+- [x] Teacher SRS Queries N+1 batch fix (batched srs_cards, srs_review_log, competency_standards)
 - [x] Rate limiter test coverage (IM3 rateLimits.ts — 15 tests)
+- [x] BM2 apiRateLimits test fix — unknown endpoint now denied-by-default (review-30)
+- [x] processReview.ts return value fix — returns actual DB document ID not caller cardId (review-30)
+- [x] BM2 getApiRateLimitStatus deny-by-default consistency fix (review-30)
+- [x] objectiveProficiency dead code removal (unused submissionMap) (review-30)
+- [ ] BM2 worker-entry bundle optimization (5.1 MB → target <3 MB)
+- [ ] Prompt guard punctuation bypass hardening
+- [ ] BM2 9 governance tests re-enablement
 - [ ] Activity component extraction for cross-app reuse
 - [ ] Convex schema strict validation (16 v.any() fields remain)
+- [ ] objectiveProficiency student-scoped queries (replace full table scan)
 
-## Code Review Summary (2026-04-29 — Review #29)
+## Code Review Summary (2026-04-29 — Review #30)
 
-Audit of the past 6 work phases: Teacher SRS Queries N+1 Batch Fix, SRS reviews.ts Test Coverage, SRS saveCards Batch Mutation, SRS Dashboard Streak Test Coverage, Chatbot Prompt Injection Defense, and RSC Bundle Optimization.
+Audit of the past 6 work phases: review-29 (endpoint validation, handler extraction), Prompt Guard Hardening, Process Review studentId Cross-Validation, Teacher SRS Queries N+1 Batch Fix, SRS saveCards Batch Mutation, and Rate Limiter Test Coverage.
 
 ### Verification Results
 
@@ -90,32 +95,30 @@ Audit of the past 6 work phases: Teacher SRS Queries N+1 Batch Fix, SRS reviews.
 | Typecheck (BM2) | Pass (0 errors) |
 | Lint (IM3) | Pass (0 warnings) |
 | Lint (BM2) | Pass (0 warnings) |
-| Tests (IM3) | 3317 passed, 2 todo |
+| Tests (IM3) | 3333 passed, 2 todo |
 | Tests (BM2) | 2308 passed, 35 skipped |
 | Build (IM3) | Pass (354 KB page chunk) |
-| Build (BM2) | Pass |
+| Build (BM2) | Pass (5.1 MB worker-entry — needs optimization) |
 
-### Issues Fixed in This Review (Review #29)
+### Issues Fixed in This Review (Review #30)
 
 | Issue | Severity | Fix |
 |-------|----------|-----|
-| srs/cards.ts getCardHandler: dead try/catch around `as` cast | Critical | Removed — `as` is compile-time only, never throws; `db.get()` returns null for invalid IDs |
-| srs/cards.ts getDueCards: fetches all cards then filters in-memory | Medium | Now uses `.lte("dueDate", args.asOfDate)` index range query — O(1) DB round trip |
-| BM2 apiRateLimits: endpoint arg `v.string()` with unsafe `as` cast | High | Changed to `v.union(v.literal(...))` for all 5 endpoints; deny-by-default on unknown |
-| reviews.test.ts: `as any` casts bypass all type checking | Medium | Extracted and exported handler functions; test imports handlers directly with proper types |
-| reviews.ts: handler functions not exported for testing | Medium | Extracted `saveReviewHandler`, `getReviewsByCardHandler`, `getReviewsByStudentHandler` |
+| BM2 apiRateLimits test: expected allow=true for unknown endpoint | Critical | Updated test to expect allowed=false; handler was changed to deny-by-default in review-29 |
+| processReview returns caller-provided cardId not DB document ID | High | Changed return value to `cardDocId as string` — the actual Convex document ID used for DB writes |
+| BM2 getApiRateLimitStatus returned isLimited=false for unknown endpoints | High | Changed to deny-by-default (isLimited=true, remaining=0) to match mutation behavior |
+| objectiveProficiency deriveSubmissionTimingsFromPreFetched: dead submissionMap | Medium | Removed unused Map that was populated but never read |
 
 ### Issues Found (Deferred)
 
 | Issue | Severity | Notes |
 |-------|----------|-------|
-| Prompt guard no Unicode/homoglyph normalization | High | `normalizeInput` is only `trim()`; Cyrillic/fullwidth/zero-width bypass all regexes |
-| Prompt guard regex false positives on common English | High | Optional trailing group matches sentences with just "ignore" or "forget" |
-| processReview.ts no studentId cross-validation | High | cardState.studentId and reviewEntry.studentId accepted independently |
-| cards.ts updatedAt inconsistent (Date.now vs caller) | Medium | Updates use Date.now() but inserts use caller-provided timestamp |
+| BM2 worker-entry bundle 5.1 MB | Critical | 49% of Cloudflare 10 MB limit; needs tree-shaking/code-splitting |
+| Prompt guard bypass via punctuation without whitespace | High | `bypass.the.system` evades proximity detection after non-word char stripping |
 | objectiveProficiency full table scan of activity_submissions | Medium | O(total_submissions) regardless of class size |
+| cards.ts updatedAt inconsistent (Date.now vs caller) | Medium | Updates use Date.now() but inserts use caller-provided timestamp |
 | srs_reviews by_student index unused for date range | Low | getReviewsByStudent filters in JS; needs by_student_and_reviewed_at index |
 | No unique constraints on any rate limit table | High | Convex indexes aren't unique; duplicates can still be created |
 | Rate limiters duplicated across IM3 and BM2 | Medium | Same logic diverges; should extract to shared package |
-| No test coverage for IM3 rateLimits.ts or BM2 rateLimits.ts (chatbot) | Medium | Only apiRateLimits.ts and loginRateLimits.ts have tests |
+| BM2 rateLimits.ts (login/chatbot) still untested | Medium | Only apiRateLimits.ts and loginRateLimits.ts have tests |
 | 16 v.any() fields remain in IM3 schema | Medium | Priority: submissionData, props, content, config |

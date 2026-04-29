@@ -157,7 +157,7 @@ describe("apiRateLimits handler", () => {
       });
     });
 
-    it("returns true allowed for unknown endpoint", async () => {
+    it("returns false allowed for unknown endpoint (deny-by-default)", async () => {
       const ctx = createMockCtx();
 
       const result = await checkAndIncrementApiRateLimitHandler(ctx as never, {
@@ -165,8 +165,9 @@ describe("apiRateLimits handler", () => {
         endpoint: "unknown/endpoint" as any,
       });
 
-      expect(result.allowed).toBe(true);
-      expect(result.remaining).toBe(Infinity);
+      expect(result.allowed).toBe(false);
+      expect(result.remaining).toBe(0);
+      expect(result.windowExpiresAt).toBe(0);
       expect(mockInsert).not.toHaveBeenCalled();
     });
 

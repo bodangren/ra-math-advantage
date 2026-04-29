@@ -8,10 +8,10 @@
 
 | Item | Sev | Status | Notes |
 |------|-----|--------|-------|
-| BM2 loginRateLimits was public mutation (security) | Critical | Resolved | Converted to internalMutation; added race condition handling, Math.max clamp, violation logging (review-27) |
-| apiRateLimits no stale entry cleanup | Medium | Open | Table grows unbounded; rateLimits.ts and loginRateLimits.ts both have cleanup mutations |
-| SRS CardStore: studentId type mismatch (contract vs schema) | High | Partial | Package uses `string` but Convex uses `Id<...>`; bridging casts in convexReviewLogStore.ts still needed (review-27) |
-| 16 `v.any()` fields in IM3 Convex schema | Medium | Partial | Down from 21; srs_review_log fully typed; srs_cards state + rating now use shared validators; remaining: submissionData, props, content, fsrsState, config, and 10 metadata fields |
+| BM2 loginRateLimits was public mutation (security) | Critical | Resolved | Converted to internalMutation (review-27) |
+| apiRateLimits no stale entry cleanup | Medium | Open | Table grows unbounded; cleanup mutations exist but not scheduled |
+| SRS CardStore: studentId type mismatch (contract vs schema) | High | Partial | Package uses `string` but Convex uses `Id<...>`; bridging casts still needed |
+| 16 `v.any()` fields in IM3 Convex schema | Medium | Partial | srs_review_log and srs_cards fully typed; remaining: submissionData, props, content, config, metadata |
 | BM2 chatbot prompt injection defense still weak | Medium | Resolved | Added detectPromptInjection with 6 pattern categories; system/user message separation; comprehensive tests (chatbot_prompt_guard_20260425) |
 | BM2 login endpoint has no input length limits | Medium | Open | Multi-MB payloads could exhaust memory/slow hashing |
 | No unique constraints on rate limit tables | High | Open | Convex indexes aren't unique; try/catch upsert handles concurrent inserts but duplicates can still be created |
@@ -32,12 +32,18 @@
 | IM3 lesson-chatbot/skip routes use `as any` for internal refs | Medium | Resolved | Removed unnecessary `as any` casts; `internal.rateLimits`, `internal.student` are fully typed (review-28) |
 | IM3/BM2 .env.example missing NEXT_PUBLIC_SITE_URL | Medium | Resolved | Added to both apps (review-28) |
 | apiRateLimits endpoint arg was v.string() with unsafe cast | High | Resolved | Changed to v.union of 5 v.literal types; deny-by-default on unknown endpoints (review-29) |
-| srs/cards.ts getCardHandler dead try/catch on `as` cast | High | Resolved | Removed dead try/catch — `as` is compile-time only, never throws (review-29) |
+| srs/cards.ts getCardHandler dead try/catch on `as` cast | High | Resolved | Removed dead try/catch (review-29) |
 | srs/cards.ts getDueCards fetches all then filters in-memory | Medium | Resolved | Now uses `.lte("dueDate", args.asOfDate)` index range query (review-29) |
 | reviews.ts handler functions not exported for testing | Medium | Resolved | Extracted and exported saveReviewHandler, getReviewsByCardHandler, getReviewsByStudentHandler (review-29) |
-| Prompt guard regex false positives on common English | High | Resolved | Removed optional trailing group from pattern 1, added plural forms, changed .* to .+, added keyword proximity detection (prompt_guard_hardening_20260429) |
-| Prompt guard no Unicode/homoglyph normalization | High | Resolved | Added normalizeInput() with NFC normalization, zero-width char stripping, Cyrillic/fullwidth mapping (prompt_guard_hardening_20260429) |
+| Prompt guard regex false positives / no Unicode normalization | High | Resolved | Restructured regex; added NFC normalization, Cyrillic/fullwidth mapping (prompt_guard_hardening_20260429) |
 | processReview.ts no studentId cross-validation | High | Resolved | Added validation at handler start; throws error on mismatch (2026-04-29) |
 | cards.ts updatedAt inconsistent (Date.now vs caller) | Medium | Open | Updates use Date.now() but inserts use caller-provided timestamp |
 | srs_reviews by_student index unused for date range | Low | Open | getReviewsByStudent filters in JS; needs by_student_and_reviewed_at index |
+| BM2 apiRateLimits test mismatched deny-by-default | High | Resolved | Updated test to expect allowed=false for unknown endpoints; fixed getApiRateLimitStatus inconsistency (review-30) |
+| processReview returned caller cardId not DB doc ID | High | Resolved | Changed return to cardDocId (actual Convex document ID used for DB operations) (review-30) |
+| objectiveProficiency deriveSubmissionTimingsFromPreFetched dead Map | Medium | Resolved | Removed unused submissionMap that was populated but never read (review-30) |
+| BM2 worker-entry bundle 5.1 MB | Critical | Open | 49% of Cloudflare 10 MB limit; no code-splitting; needs tree-shaking audit |
+| Prompt guard bypass via punctuation without whitespace | High | Open | `bypass.the.system` splits to single token after strip; neither proximity nor regex catches it |
+| getApiRateLimitStatus had deny-by-default inconsistency | High | Resolved | Was returning isLimited=false for unknown endpoints while mutation returned allowed=false (review-30) |
+| BM2 rate limiter handler test coverage still missing | Medium | Open | BM2 apiRateLimits handlers tested but rateLimits.ts (login/chatbot) still untested |
 | objectiveProficiency full table scan of activity_submissions | Medium | Open | O(total_submissions) regardless of class size; needs index or batched per-student queries |

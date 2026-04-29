@@ -160,7 +160,7 @@ export async function processReviewHandler(
   });
 
   return {
-    cardId: cardState.cardId,
+    cardId: cardDocId as string,
     logEntryId,
   };
 }

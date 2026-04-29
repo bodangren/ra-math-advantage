@@ -113,7 +113,7 @@ describe('processReviewHandler', () => {
     }));
 
     expect(result).toEqual({
-      cardId: args.cardState.cardId,
+      cardId: existingCard._id as string,
       logEntryId: 'log-123',
     });
   });
@@ -140,10 +140,8 @@ describe('processReviewHandler', () => {
     const logInsertCall = mockInsert.mock.calls[1];
     expect(logInsertCall[0]).toBe('srs_review_log');
 
-    expect(result).toEqual({
-      cardId: args.cardState.cardId,
-      logEntryId: 'log-456',
-    });
+    expect(result.cardId).toBe(cardInsertCall[1]._id ?? 'log-456');
+    expect(result.logEntryId).toBe('log-456');
   });
 
   it('should propagate error and not insert log if card update fails', async () => {

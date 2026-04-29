@@ -136,7 +136,7 @@ export const getApiRateLimitStatus = internalQuery({
   handler: async (ctx, args) => {
     const config = RATE_LIMIT_CONFIG[args.endpoint];
     if (!config) {
-      return { remaining: Infinity, windowExpiresAt: 0, isLimited: false };
+      return { remaining: 0, windowExpiresAt: 0, isLimited: true };
     }
 
     const { windowMs, maxRequests } = config;

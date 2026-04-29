@@ -40,3 +40,5 @@
 - (2026-04-29) Convex `internalMutation`/`internalQuery` exports typed as `RegisteredMutation`/`RegisteredQuery` — use `as any` in unit tests. After migration, remove stale `as any` casts on `internal.*` references; generated `api.d.ts` provides full typing
 - (2026-04-29, review-29) TypeScript `as` casts are compile-time only — dead code in try/catch. Use `v.id()` validators at arg level. Export handler functions for testing to avoid `as any`. Use `v.union(v.literal(...))` for endpoint names — deny-by-default
 - (2026-04-29, prompt-guard) Regex with optional trailing groups (`?`) cause false positives — require both action and target keywords with `.+` between them
+- (2026-04-29, review-30) When handler stores via DB document ID but returns caller-provided ID, downstream consumers get wrong reference. Always return the actual DB ID used for writes
+- (2026-04-29, review-30) After changing handler deny-by-default behavior, update BOTH the mutation AND the status query, AND all tests — test was the only thing catching the inconsistency

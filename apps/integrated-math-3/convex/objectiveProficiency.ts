@@ -181,10 +181,6 @@ function deriveSubmissionTimingsFromPreFetched(
   preFetched: PreFetchedData
 ): Map<string, number> {
   const submissions = preFetched.submissionsByStudent.get(studentId) ?? [];
-  const submissionMap = new Map<string, ActivitySubmissionDoc>();
-  for (const sub of submissions) {
-    submissionMap.set(`${sub.activityId}-${sub._id}`, sub);
-  }
 
   const uniqueActivityIds = new Set<string>();
   for (const review of relevantReviews) {
