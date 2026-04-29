@@ -21,7 +21,8 @@
     "./components/discriminant": "./src/components/discriminant/DiscriminantAnalyzer.tsx",
     "./components/roc": "./src/components/roc/RateOfChangeCalculator.tsx",
     "./components/algebraic": "./src/components/algebraic/StepByStepper.tsx",
-    "./components/graphing": "./src/components/graphing/GraphingExplorer.tsx"
+    "./components/graphing": "./src/components/graphing/GraphingExplorer.tsx",
+    "./renderer": "./src/renderer/ActivityRenderer.tsx"
   },
   "scripts": {
     "test": "vitest run",

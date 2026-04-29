@@ -42,12 +42,12 @@
     - [x] Move Zod schema to `src/schemas/graphing-explorer.schema.ts`
     - [x] Write tests
 
-## Phase 3: Extract ActivityRenderer
+## Phase 3: Extract ActivityRenderer [checkpoint: pending]
 
-- [ ] Task: Extract ActivityRenderer to package
-    - [ ] Move `ActivityRenderer.tsx` to `src/renderer/ActivityRenderer.tsx`
-    - [ ] Ensure Suspense wrapping and timing injection logic is generic
-    - [ ] Write tests for renderer lookup and fallback behavior
+- [x] Task: Extract ActivityRenderer to package
+    - [x] Move `ActivityRenderer.tsx` to `src/renderer/ActivityRenderer.tsx`
+    - [x] Ensure Suspense wrapping and timing injection logic is generic (optional `useTiming` hook)
+    - [x] Write tests for renderer lookup and fallback behavior (14 tests covering registered/unregistered components and timing injection)
 
 ## Phase 4: Package Exports and IM3 Migration
 

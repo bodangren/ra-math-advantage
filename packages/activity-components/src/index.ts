@@ -62,3 +62,10 @@ export type { GraphingExplorerActivityProps } from './components/graphing/Graphi
 export type { Point, FunctionPlot } from './components/graphing/GraphingCanvas';
 export type { HintData } from './components/graphing/HintPanel';
 export type { InterceptData } from './components/graphing/InterceptIdentification';
+
+// ActivityRenderer
+export { ActivityRenderer } from './renderer/ActivityRenderer';
+export type {
+  ActivityRendererProps,
+  UseActivityTimingReturn,
+} from './renderer/ActivityRenderer';
