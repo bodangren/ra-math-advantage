@@ -740,13 +740,13 @@ AI Tutoring and Workbook scope is explicitly **import/adopt from BM2**, not gree
 
 - [x] **Track: Fix apiRateLimits Race Condition** — **COMPLETED**
        *Fix concurrent inserts for same user+endpoint creating duplicate records that break .unique() via try/catch upsert pattern*
-       *Link: [./measure/tracks/fix-apiratelimits-race-condition_20260428/](./measure/tracks/fix-apiratelimits-race-condition_20260428/)*
+       *Link: [./measure/archive/fix-apiratelimits-race-condition_20260428/](./measure/archive/fix-apiratelimits-race-condition_20260428/)*
        - Phase 1: Race Condition Fix [COMPLETE] - 14 tests including concurrent request simulation
        - Phase 2: Documentation [COMPLETE]
 
 - [x] **Track: Add .env.example to All Apps** — **COMPLETED**
        *Add `.env.example` files to all apps (IM3, BM2, IM1, IM2, PreCalc) providing reference for required environment variables*
-       *Link: [./measure/tracks/add_env_example_all_apps_20260428/](./measure/tracks/add_env_example_all_apps_20260428/)*
+       *Link: [./measure/archive/add_env_example_all_apps_20260428/](./measure/archive/add_env_example_all_apps_20260428/)*
        - Phase 1: Audit Existing Environment Variables [COMPLETE]
        - Phase 2: Create .env.example for Each App [COMPLETE]
        - Phase 3: Verification [COMPLETE]
@@ -787,52 +787,52 @@ AI Tutoring and Workbook scope is explicitly **import/adopt from BM2**, not gree
 
 - [x] **Track: SRS reviews.ts Test Coverage** — **COMPLETED**
      *Add unit tests for saveReview, getReviewsByCard, and getReviewsByStudent in convex/srs/reviews.ts*
-     *Link: [./tracks/srs_reviews_test_coverage_20260429/](./tracks/srs_reviews_test_coverage_20260429/)*
+     *Link: [./archive/srs_reviews_test_coverage_20260429/](./archive/srs_reviews_test_coverage_20260429/)*
      - Phase 1: Unit Tests for saveReview, getReviewsByCard, getReviewsByStudent [COMPLETE]
 - [x] **Track: SRS saveCards Batch Mutation** — **COMPLETED**
      *Fix sequential await in saveCards by batching lookups and writes via Promise.all (2N → 2 DB round trips)*
-     *Link: [./tracks/srs-cards-batch-mutation_20260429/](./tracks/srs-cards-batch-mutation_20260429/)*
+     *Link: [./archive/srs-cards-batch-mutation_20260429/](./archive/srs-cards-batch-mutation_20260429/)*
      - Phase 1: Promise.all Batching [COMPLETE] (minimax-m2)
-- [x] **Track: SRS Dashboard Streak Test Coverage** *Link: [./tracks/srs_dashboard_streak_test_20260425/](./tracks/srs_dashboard_streak_test_20260425/)*
+- [x] **Track: SRS Dashboard Streak Test Coverage** *Link: [./archive/srs_dashboard_streak_test_20260425/](./archive/srs_dashboard_streak_test_20260425/)*
 - [x] **Track: Chatbot Prompt Injection Defense** — **COMPLETED**
      *Strengthen BM2/IM3 chatbot prompt injection defense with system prompt guard and pattern-based detection*
-     *Link: [./tracks/chatbot_prompt_guard_20260425/](./tracks/chatbot_prompt_guard_20260425/)*
+     *Link: [./archive/chatbot_prompt_guard_20260425/](./archive/chatbot_prompt_guard_20260425/)*
      - Phase 1: Core Injection Detection [COMPLETE]
      - Phase 2: BM2 Integration [COMPLETE]
      - Phase 3: IM3 Integration [COMPLETE]
      - Phase 4: Polish [COMPLETE]
 - [x] **Track: RSC Bundle Optimization** — **COMPLETED**
      *Reduce RSC entry page chunk from 891 KB to 354 KB via vendor chunking (lucide-react, zod, @radix-ui, clsx, monorepo packages)*
-     *Link: [./tracks/rsc_bundle_optimization_20260429/](./tracks/rsc_bundle_optimization_20260429/)*
+     *Link: [./archive/rsc_bundle_optimization_20260429/](./archive/rsc_bundle_optimization_20260429/)*
       - Phase 1: Analyze and Document [COMPLETE]
       - Phase 2: Apply Code-Splitting [COMPLETE]
       - Phase 3: Verify (354 KB < 500 KB target) [COMPLETE]
 
 - [x] **Track: Prompt Guard Hardening** — **COMPLETED**
      *Fix critical prompt injection defense vulnerabilities: Unicode/homoglyph normalization and regex false positive restructuring*
-     *Link: [./tracks/prompt_guard_hardening_20260429/](./tracks/prompt_guard_hardening_20260429/)*
+     *Link: [./archive/prompt_guard_hardening_20260429/](./archive/prompt_guard_hardening_20260429/)*
       - Phase 1: Unicode Normalization [COMPLETE]
       - Phase 2: Regex Restructuring [COMPLETE]
       - Phase 3: Verification and Handoff [COMPLETE]
 
 - [x] **Track: SRS saveCards Batch Mutation** — **COMPLETED**
       *Batch saveCards lookups and writes via Promise.all to eliminate 2N sequential DB operations*
-      *Link: [./tracks/srs-cards-batch-mutation_20260429/](./tracks/srs-cards-batch-mutation_20260429/)*
+*Link: [./archive/srs-cards-batch-mutation_20260429/](./archive/srs-cards-batch-mutation_20260429/)*
       - Phase 1: Fix saveCards Sequential Await → Promise.all Batching [COMPLETE]
 
 - [x] **Track: Teacher SRS Queries N+1 Batch Fix** — **COMPLETED**
       *Batch 2N+ per-student queries in getTeacherClassProficiencyHandler to O(1) broad queries*
-      *Link: [./tracks/teacher-srs-queries-batch_20260429/](./tracks/teacher-srs-queries-batch_20260429/)*
+      *Link: [./archive/teacher-srs-queries-batch_20260429/](./archive/teacher-srs-queries-batch_20260429/)*
       - Phase 1: Batch srs_cards and srs_review_log Queries [COMPLETE]
       - Phase 2: Batch competency_standards Query [COMPLETE]
 
 - [x] **Track: Process Review studentId Cross-Validation** — **COMPLETED**
      *Add validation to processReviewHandler ensuring cardState.studentId matches reviewEntry.studentId*
-     *Link: [./tracks/process-review-student-cross-validation_20260429/](./tracks/process-review-student-cross-validation_20260429/)*
+     *Link: [./archive/process-review-student-cross-validation_20260429/](./archive/process-review-student-cross-validation_20260429/)*
 
 - [x] **Track: Rate Limiter Test Coverage** — **COMPLETED**
      *Add unit tests for IM3 chatbot rateLimits.ts — getRateLimitStatus, checkAndIncrementRateLimit, cleanupStaleRateLimits*
-     *Link: [./tracks/rate-limiter-test-coverage_20260429/](./tracks/rate-limiter-test-coverage_20260429/)*
+     *Link: [./archive/rate-limiter-test-coverage_20260429/](./archive/rate-limiter-test-coverage_20260429/)*
 
 ## AP Precalculus
 
@@ -854,7 +854,7 @@ AI Tutoring and Workbook scope is explicitly **import/adopt from BM2**, not gree
 
 - [x] **Track: IM1 DESIGN.md and product.md** — **COMPLETED**
      *Add missing DESIGN.md and product.md to IM1 for parity with IM2 and PreCalc*
-     *Link: [./tracks/im1_design_and_product_docs_20260428/](./tracks/im1_design_and_product_docs_20260428/)*
+     *Link: [./archive/im1_design_and_product_docs_20260428/](./archive/im1_design_and_product_docs_20260428/)*
      - Phase 1: Author DESIGN.md [COMPLETE]
      - Phase 2: Author product.md [COMPLETE]
      - Phase 3: Verification [COMPLETE]
