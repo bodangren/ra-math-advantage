@@ -35,8 +35,8 @@
 | srs/cards.ts getCardHandler dead try/catch on `as` cast | High | Resolved | Removed dead try/catch — `as` is compile-time only, never throws (review-29) |
 | srs/cards.ts getDueCards fetches all then filters in-memory | Medium | Resolved | Now uses `.lte("dueDate", args.asOfDate)` index range query (review-29) |
 | reviews.ts handler functions not exported for testing | Medium | Resolved | Extracted and exported saveReviewHandler, getReviewsByCardHandler, getReviewsByStudentHandler (review-29) |
-| Prompt guard regex false positives on common English | High | Open | Optional trailing group matches sentences with just "ignore" or "forget" — needs restructuring |
-| Prompt guard no Unicode/homoglyph normalization | High | Open | `normalizeInput` is only `trim()`; Cyrillic/fullwidth/zero-width bypass all regexes |
+| Prompt guard regex false positives on common English | High | Resolved | Removed optional trailing group from pattern 1, added plural forms, changed .* to .+, added keyword proximity detection (prompt_guard_hardening_20260429) |
+| Prompt guard no Unicode/homoglyph normalization | High | Resolved | Added normalizeInput() with NFC normalization, zero-width char stripping, Cyrillic/fullwidth mapping (prompt_guard_hardening_20260429) |
 | processReview.ts no studentId cross-validation | High | Open | cardState.studentId and reviewEntry.studentId accepted independently; mismatch creates corrupt data |
 | cards.ts updatedAt inconsistent (Date.now vs caller) | Medium | Open | Updates use Date.now() but inserts use caller-provided timestamp |
 | srs_reviews by_student index unused for date range | Low | Open | getReviewsByStudent filters in JS; needs by_student_and_reviewed_at index |
