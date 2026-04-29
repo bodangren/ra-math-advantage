@@ -1,7 +1,6 @@
 {
   "id": "srs_dashboard_streak_test_20260425",
   "name": "SRS Dashboard Streak Test Coverage",
-  "status": "pending",
-  "created": "2026-04-25",
-  "priority": "medium"
+  "status": "completed",
+  "created": "2026-04-25"
 }
