@@ -35,8 +35,7 @@ export async function POST(request: Request) {
 
   try {
     const result = await fetchInternalMutation(
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      (internal.student as any).skipPhase,
+      internal.student.skipPhase,
       {
         userId: claimsOrResponse.sub,
         lessonId,

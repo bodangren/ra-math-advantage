@@ -4,10 +4,7 @@ import { resolveOpenRouterProviderFromEnv, assembleLessonChatbotContext } from '
 import { fetchInternalMutation, fetchInternalQuery } from '@/lib/convex/server';
 import { internal } from '@/convex/_generated/api';
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const rateLimitsInternal = (internal as any).rateLimits;
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const studentInternal = (internal as any).student;
+
 
 interface ChatbotRequest {
   lessonId: string;
@@ -99,7 +96,7 @@ export async function POST(request: NextRequest) {
   }
 
   const isEnrolled = await fetchInternalQuery(
-    studentInternal.isStudentEnrolledInClassForLesson,
+    internal.student.isStudentEnrolledInClassForLesson,
     { studentId: profile.id, lessonId }
   );
 
@@ -112,7 +109,7 @@ export async function POST(request: NextRequest) {
 
   try {
     const rateLimitResult = await fetchInternalMutation(
-      rateLimitsInternal.checkAndIncrementRateLimit,
+      internal.rateLimits.checkAndIncrementRateLimit,
       { userId: profile.id }
     );
 
@@ -132,7 +129,7 @@ export async function POST(request: NextRequest) {
 
   try {
     const lessonData = await fetchInternalQuery(
-      studentInternal.getLessonForChatbot,
+      internal.student.getLessonForChatbot,
       { lessonIdentifier: lessonId }
     );
 

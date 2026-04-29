@@ -19,6 +19,10 @@ export const saveReview = internalMutation({
     reviewedAt: v.string(),
   },
   handler: async (ctx, args) => {
+    const reviewedAtMs = new Date(args.reviewedAt).getTime();
+    if (Number.isNaN(reviewedAtMs)) {
+      throw new Error(`Invalid reviewedAt date: ${args.reviewedAt}`);
+    }
     const id = await ctx.db.insert("srs_review_log", {
       cardId: args.cardId,
       studentId: args.studentId,
@@ -28,7 +32,7 @@ export const saveReview = internalMutation({
       evidence: args.evidence,
       stateBefore: args.stateBefore,
       stateAfter: args.stateAfter,
-      reviewedAt: new Date(args.reviewedAt).getTime(),
+      reviewedAt: reviewedAtMs,
     });
     return id;
   },
@@ -62,7 +66,13 @@ export const getReviewsByCard = internalQuery({
 export const getReviewsByStudent = internalQuery({
   args: { studentId: v.id("profiles"), since: v.optional(v.string()) },
   handler: async (ctx, args) => {
-    const sinceMs = args.since ? new Date(args.since).getTime() : undefined;
+    let sinceMs: number | undefined;
+    if (args.since) {
+      sinceMs = new Date(args.since).getTime();
+      if (Number.isNaN(sinceMs)) {
+        throw new Error(`Invalid since date: ${args.since}`);
+      }
+    }
     const reviews = await ctx.db
       .query("srs_review_log")
       .withIndex("by_student", (q) =>
