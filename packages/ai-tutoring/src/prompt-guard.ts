@@ -87,9 +87,42 @@ export function normalizeInput(input: string): string {
   return result;
 }
 
+/**
+ * Keywords that indicate potential injection when combined.
+ * Only includes high-signal keywords that rarely appear in legitimate math questions.
+ */
+const INJECTION_ACTION_KEYWORDS = ['ignore', 'disregard', 'forget', 'override', 'bypass', 'skip'];
+const INJECTION_TARGET_KEYWORDS = ['instruction', 'instructions', 'prompt', 'prompts', 'system', 'configuration'];
+
+/**
+ * Context-aware detection: checks if injection action and target keywords
+ * appear within a short word window (5 words), indicating suspicious proximity.
+ */
+function detectKeywordProximity(input: string): InjectionDetection | null {
+  const words = input.toLowerCase().split(/\s+/);
+
+  for (let i = 0; i < words.length; i++) {
+    const word = words[i].replace(/[^\w]/g, '');
+    if (INJECTION_ACTION_KEYWORDS.includes(word)) {
+      const window = words.slice(i, i + 6).join(' ');
+      for (const target of INJECTION_TARGET_KEYWORDS) {
+        if (window.includes(target)) {
+          return {
+            detected: true,
+            reason: 'proximity: injection keywords in suspicious proximity',
+            pattern: `action:"${word}" near target:"${target}"`,
+          };
+        }
+      }
+    }
+  }
+
+  return null;
+}
+
 const INJECTION_PATTERNS: Array<{ regex: RegExp; reason: string }> = [
   {
-    regex: /\b(ignore|disregard|forget|override)\b.*(instruction|rule|prompt|context|system|previous)?\b/i,
+    regex: /\b(ignore|disregard|forget|override)\b.+\b(instruction|instructions|rule|rules|prompt|prompts|context|system|previous)\b/i,
     reason: 'role-play: attempts to ignore or override instructions',
   },
   {
@@ -97,11 +130,11 @@ const INJECTION_PATTERNS: Array<{ regex: RegExp; reason: string }> = [
     reason: 'role-play: attempts to change AI role or mode',
   },
   {
-    regex: /\b(reveal|show|repeat|output|print|tell me)\b.*\b(system prompt|instruction|context|rule|configuration|full context)\b/i,
+    regex: /\b(reveal|show|repeat|output|print|tell me)\b.+\b(system prompt|instructions?|context|rules?|configuration|full context)\b/i,
     reason: 'extraction: attempts to extract system prompt or instructions',
   },
   {
-    regex: /\b(what are your (exact )?(instruction|rule|prompt|guideline))/i,
+    regex: /\b(what are your (exact )?(instructions?|rules?|prompts?|guidelines?))/i,
     reason: 'extraction: direct request for internal instructions',
   },
   {
@@ -131,7 +164,7 @@ export function detectPromptInjection(input: string): InjectionDetection | null 
     }
   }
 
-  return null;
+  return detectKeywordProximity(normalizedInput);
 }
 
 /**
