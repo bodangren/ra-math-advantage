@@ -47,3 +47,4 @@
 | getApiRateLimitStatus had deny-by-default inconsistency | High | Resolved | Was returning isLimited=false for unknown endpoints while mutation returned allowed=false (review-30) |
 | BM2 rate limiter handler test coverage still missing | Medium | Open | BM2 apiRateLimits handlers tested but rateLimits.ts (login/chatbot) still untested |
 | objectiveProficiency full table scan of activity_submissions | Medium | Open | O(total_submissions) regardless of class size; needs index or batched per-student queries |
+| IM3 still uses local activity component imports | Medium | Open | @math-platform/activity-components package has all 6 types; IM3 migration pending Phase 4 |
