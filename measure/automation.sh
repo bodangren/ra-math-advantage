@@ -1,10 +1,10 @@
 #!/bin/zsh
 
 # Configuration variables
-OPENCODE_WORK_MODEL="volcengine-coding/minimax-m2.7"
-KIMI_WORK_MODEL="volcengine-coding/kimi-k2.6"
-REVIEW_MODEL_A="volcengine-coding/kimi-k2.6"
-REVIEW_MODEL_B="volcengine-coding/glm-5.1"
+OPENCODE_WORK_MODEL="opencode-go/qwen3.6-plus"
+KIMI_WORK_MODEL="kimi-for-coding/kimi-k2.6"
+REVIEW_MODEL_A="xiaomi/mimo-v2.5-pro"
+REVIEW_MODEL_B="zai-coding-plan/glm-5.1"
 WORKING_DIR="/Users/daniel.bodanske/Desktop/ra-integrated-math-3"
 OPENCODE_PATH="/Users/daniel.bodanske/.nvm/versions/node/v20.14.0/bin/opencode"
 PROMPT_FILE="$WORKING_DIR/measure/autonomous-prompt.md"

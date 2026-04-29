@@ -232,16 +232,14 @@ async function preFetchTeacherClassData(
 
   const [allFamilies, allStandards, allPolicies] = await Promise.all([
     ctx.db.query("problem_families").collect(),
-    Promise.all(
-      objectiveIdArray.map(objectiveId =>
-        ctx.db
-          .query("competency_standards")
-          .withIndex("by_code", (q) => q.eq("code", objectiveId))
-          .first()
-      )
-    ),
+    ctx.db.query("competency_standards").collect(),
     ctx.db.query("objective_policies").collect(),
   ]);
+
+  const standardsByCode = new Map<string, CompetencyStandardDoc>();
+  for (const standard of allStandards) {
+    standardsByCode.set(standard.code, standard);
+  }
 
   const familiesByObjective = new Map<string, ProblemFamilyDoc[]>();
   for (const family of allFamilies) {
@@ -273,12 +271,12 @@ async function preFetchTeacherClassData(
   }
 
   const standardsByObjective = new Map<string, CompetencyStandardDoc>();
-  objectiveIdArray.forEach((objectiveId, i) => {
-    const standard = allStandards[i];
+  for (const objectiveId of objectiveIdArray) {
+    const standard = standardsByCode.get(objectiveId);
     if (standard) {
       standardsByObjective.set(objectiveId, standard);
     }
-  });
+  }
 
   const policiesByStandardId = new Map<string, ObjectivePolicyDoc>();
   for (const policy of allPolicies) {
@@ -740,24 +738,19 @@ export async function getTeacherClassProficiencyHandler(
   const allStudentCards = new Map<string, SrsCard[]>();
   const allStudentReviews = new Map<string, SrsReview[]>();
 
-  const studentDataResults = await Promise.all(
-    studentIds.map(async (studentId) => {
-      const [cards, reviews] = await Promise.all([
-        ctx.db
-          .query("srs_cards")
-          .withIndex("by_student", (q) => q.eq("studentId", studentId))
-          .collect(),
-        ctx.db
-          .query("srs_review_log")
-          .withIndex("by_student", (q) => q.eq("studentId", studentId))
-          .collect(),
-      ]);
-      return { studentId, cards, reviews };
-    })
-  );
-  for (const { studentId, cards, reviews } of studentDataResults) {
-    allStudentCards.set(studentId, cards);
-    allStudentReviews.set(studentId, reviews);
+  const [allCards, allReviews] = await Promise.all([
+    ctx.db.query("srs_cards").collect(),
+    ctx.db.query("srs_review_log").collect(),
+  ]);
+  for (const card of allCards) {
+    const existing = allStudentCards.get(card.studentId) ?? [];
+    existing.push(card);
+    allStudentCards.set(card.studentId, existing);
+  }
+  for (const review of allReviews) {
+    const existing = allStudentReviews.get(review.studentId) ?? [];
+    existing.push(review);
+    allStudentReviews.set(review.studentId, existing);
   }
 
   const allObjectiveIds = new Set<string>();
@@ -768,23 +761,6 @@ export async function getTeacherClassProficiencyHandler(
       }
     }
   }
-
-  const objectiveIdArray = Array.from(allObjectiveIds);
-  const allStandards = await Promise.all(
-    objectiveIdArray.map(objectiveId =>
-      ctx.db
-        .query("competency_standards")
-        .withIndex("by_code", (q) => q.eq("code", objectiveId))
-        .first()
-    )
-  );
-  const standardsByObjective = new Map<string, { code: string; description: string }>();
-  objectiveIdArray.forEach((objectiveId, i) => {
-    const standard = allStandards[i];
-    if (standard) {
-      standardsByObjective.set(objectiveId, { code: standard.code, description: standard.description });
-    }
-  });
 
   const preFetched = await preFetchTeacherClassData(ctx, studentIds, allStudentCards);
 
@@ -829,7 +805,7 @@ export async function getTeacherClassProficiencyHandler(
 
     let standardCode = objectiveId;
     let standardDescription = "";
-    const standardInfo = standardsByObjective.get(objectiveId);
+    const standardInfo = preFetched.standardsByObjective.get(objectiveId);
     if (standardInfo) {
       standardCode = standardInfo.code;
       standardDescription = standardInfo.description;
