@@ -16,7 +16,7 @@
 | BM2 login endpoint has no input length limits | Medium | Open | Multi-MB payloads could exhaust memory/slow hashing |
 | No unique constraints on rate limit tables | High | Open | Convex indexes aren't unique; try/catch upsert handles concurrent inserts but duplicates can still be created |
 | Rate limiters duplicated across IM3/BM2 | Medium | Open | Same logic diverges; should extract to shared package |
-| IM3/BM2 rate limiter test coverage missing | Medium | Open | No test files for IM3 rateLimits.ts or BM2 rateLimits.ts (chatbot) |
+| IM3/BM2 rate limiter test coverage missing | Medium | Partial | IM3 rateLimits.ts now has 15 tests; BM2 rateLimits.ts still untested |
 | internal Convex fns rely on action wrapper for auth | Medium | Open | activities.ts, study.ts, srs/cards.ts, student.ts have no defense-in-depth |
 | getDueCards fetches all cards then filters by date in-memory | Medium | Open | by_student_and_due index has dueDate but no range query used |
 | srs_review_log by_reviewed_at index unused (dead) | Low | Open | Index defined but no query uses it; getReviewsByStudent filters in JS instead |

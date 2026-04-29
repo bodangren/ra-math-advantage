@@ -74,7 +74,7 @@ Monorepo migration complete (Waves 0-6). All major feature tracks done. Three ne
 - [x] processReview.ts studentId cross-validation (added validation, mismatch throws error)
 - [ ] teacher/srs_queries.ts: N+1 parallel fan → broader batched queries
 - [ ] BM2 9 governance tests re-enablement
-- [ ] Rate limiter test coverage (IM3 + BM2 chatbot)
+- [x] Rate limiter test coverage (IM3 rateLimits.ts — 15 tests)
 - [ ] Activity component extraction for cross-app reuse
 - [ ] Convex schema strict validation (16 v.any() fields remain)
 
