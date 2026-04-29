@@ -1,6 +1,7 @@
 import { describe, it, expect, vi } from 'vitest';
 import {
   saveCardHandler,
+  saveCardsHandler,
   getCardHandler,
   getCardsByStudentHandler,
   getCardByStudentAndFamilyHandler,
@@ -244,5 +245,312 @@ describe('mapDbCardToContract studentId type alignment', () => {
     expect(result).not.toBeNull();
     expect(typeof result!.studentId).toBe('string');
     expect(result!.studentId).toBe(convexStudentId);
+  });
+});
+
+describe('saveCardsHandler batch operations', () => {
+  function makeSaveCardsMockCtx() {
+    const mockInsert = vi.fn().mockResolvedValue('card-new-id' as Id<'srs_cards'>);
+    const mockReplace = vi.fn().mockResolvedValue(undefined);
+
+    const mockFirst = vi.fn().mockImplementation(() => {
+      return Promise.resolve(null);
+    });
+
+    const mockQuery = {
+      withIndex: vi.fn().mockReturnValue({
+        first: mockFirst,
+        collect: vi.fn().mockResolvedValue([]),
+      }),
+    };
+
+    return {
+      db: {
+        query: vi.fn().mockReturnValue(mockQuery),
+        insert: mockInsert,
+        replace: mockReplace,
+      },
+      mockInsert,
+      mockReplace,
+      mockFirst,
+      mockQuery,
+    };
+  }
+
+  it('should handle empty array with no db operations', async () => {
+    const { db, mockInsert, mockReplace, mockFirst } = makeSaveCardsMockCtx();
+
+    await saveCardsHandler(
+      { db } as unknown as import('@/convex/_generated/server').MutationCtx,
+      { cards: [] }
+    );
+
+    expect(mockInsert).not.toHaveBeenCalled();
+    expect(mockReplace).not.toHaveBeenCalled();
+    expect(mockFirst).not.toHaveBeenCalled();
+  });
+
+  it('should insert all cards when none exist (parallel inserts)', async () => {
+    const studentId = 'student-1' as Id<'profiles'>;
+    const studentId2 = 'student-2' as Id<'profiles'>;
+
+    const { db, mockInsert, mockReplace, mockFirst } = makeSaveCardsMockCtx();
+
+    mockFirst.mockResolvedValue(null);
+
+    const cards = [
+      {
+        cardId: 'card-1',
+        studentId,
+        objectiveId: 'obj-1',
+        problemFamilyId: 'pf-1',
+        stability: 5,
+        difficulty: 4,
+        state: 'review' as const,
+        dueDate: '2026-04-16T12:00:00.000Z',
+        elapsedDays: 5,
+        scheduledDays: 5,
+        reps: 5,
+        lapses: 0,
+        createdAt: '2026-04-16T12:00:00.000Z',
+        updatedAt: '2026-04-16T12:00:00.000Z',
+      },
+      {
+        cardId: 'card-2',
+        studentId: studentId2,
+        objectiveId: 'obj-2',
+        problemFamilyId: 'pf-2',
+        stability: 3,
+        difficulty: 5,
+        state: 'learning' as const,
+        dueDate: '2026-04-17T12:00:00.000Z',
+        elapsedDays: 1,
+        scheduledDays: 2,
+        reps: 2,
+        lapses: 1,
+        createdAt: '2026-04-16T12:00:00.000Z',
+        updatedAt: '2026-04-16T12:00:00.000Z',
+      },
+    ];
+
+    await saveCardsHandler(
+      { db } as unknown as import('@/convex/_generated/server').MutationCtx,
+      { cards }
+    );
+
+    expect(mockInsert).toHaveBeenCalledTimes(2);
+    expect(mockReplace).not.toHaveBeenCalled();
+  });
+
+  it('should replace all cards when all exist (parallel replaces)', async () => {
+    const existingId1 = 'card-existing-1' as Id<'srs_cards'>;
+    const existingId2 = 'card-existing-2' as Id<'srs_cards'>;
+    const studentId = 'student-1' as Id<'profiles'>;
+    const studentId2 = 'student-2' as Id<'profiles'>;
+
+    const { db, mockInsert, mockReplace, mockFirst } = makeSaveCardsMockCtx();
+
+    mockFirst
+      .mockResolvedValueOnce({
+        _id: existingId1,
+        studentId,
+        problemFamilyId: 'pf-1',
+        createdAt: 1713264000000,
+      })
+      .mockResolvedValueOnce({
+        _id: existingId2,
+        studentId: studentId2,
+        problemFamilyId: 'pf-2',
+        createdAt: 1713264000000,
+      });
+
+    const cards = [
+      {
+        cardId: 'card-1',
+        studentId,
+        objectiveId: 'obj-1',
+        problemFamilyId: 'pf-1',
+        stability: 5,
+        difficulty: 4,
+        state: 'review' as const,
+        dueDate: '2026-04-16T12:00:00.000Z',
+        elapsedDays: 5,
+        scheduledDays: 5,
+        reps: 5,
+        lapses: 0,
+        createdAt: '2026-04-16T12:00:00.000Z',
+        updatedAt: '2026-04-16T12:00:00.000Z',
+      },
+      {
+        cardId: 'card-2',
+        studentId: studentId2,
+        objectiveId: 'obj-2',
+        problemFamilyId: 'pf-2',
+        stability: 3,
+        difficulty: 5,
+        state: 'learning' as const,
+        dueDate: '2026-04-17T12:00:00.000Z',
+        elapsedDays: 1,
+        scheduledDays: 2,
+        reps: 2,
+        lapses: 1,
+        createdAt: '2026-04-16T12:00:00.000Z',
+        updatedAt: '2026-04-16T12:00:00.000Z',
+      },
+    ];
+
+    await saveCardsHandler(
+      { db } as unknown as import('@/convex/_generated/server').MutationCtx,
+      { cards }
+    );
+
+    expect(mockReplace).toHaveBeenCalledTimes(2);
+    expect(mockInsert).not.toHaveBeenCalled();
+    expect(mockReplace).toHaveBeenCalledWith(existingId1, expect.objectContaining({
+      studentId,
+      problemFamilyId: 'pf-1',
+      stability: 5,
+    }));
+    expect(mockReplace).toHaveBeenCalledWith(existingId2, expect.objectContaining({
+      studentId: studentId2,
+      problemFamilyId: 'pf-2',
+      stability: 3,
+    }));
+  });
+
+  it('should mix inserts and replaces when some cards exist', async () => {
+    const existingId = 'card-existing-1' as Id<'srs_cards'>;
+    const studentId = 'student-1' as Id<'profiles'>;
+    const studentId2 = 'student-2' as Id<'profiles'>;
+
+    const { db, mockInsert, mockReplace, mockFirst } = makeSaveCardsMockCtx();
+
+    mockFirst
+      .mockResolvedValueOnce({
+        _id: existingId,
+        studentId,
+        problemFamilyId: 'pf-1',
+        createdAt: 1713264000000,
+      })
+      .mockResolvedValueOnce(null);
+
+    const cards = [
+      {
+        cardId: 'card-1',
+        studentId,
+        objectiveId: 'obj-1',
+        problemFamilyId: 'pf-1',
+        stability: 5,
+        difficulty: 4,
+        state: 'review' as const,
+        dueDate: '2026-04-16T12:00:00.000Z',
+        elapsedDays: 5,
+        scheduledDays: 5,
+        reps: 5,
+        lapses: 0,
+        createdAt: '2026-04-16T12:00:00.000Z',
+        updatedAt: '2026-04-16T12:00:00.000Z',
+      },
+      {
+        cardId: 'card-2',
+        studentId: studentId2,
+        objectiveId: 'obj-2',
+        problemFamilyId: 'pf-2',
+        stability: 3,
+        difficulty: 5,
+        state: 'learning' as const,
+        dueDate: '2026-04-17T12:00:00.000Z',
+        elapsedDays: 1,
+        scheduledDays: 2,
+        reps: 2,
+        lapses: 1,
+        createdAt: '2026-04-16T12:00:00.000Z',
+        updatedAt: '2026-04-16T12:00:00.000Z',
+      },
+    ];
+
+    await saveCardsHandler(
+      { db } as unknown as import('@/convex/_generated/server').MutationCtx,
+      { cards }
+    );
+
+    expect(mockReplace).toHaveBeenCalledTimes(1);
+    expect(mockReplace).toHaveBeenCalledWith(existingId, expect.objectContaining({
+      studentId,
+      problemFamilyId: 'pf-1',
+    }));
+    expect(mockInsert).toHaveBeenCalledTimes(1);
+  });
+
+  it('should use Promise.all for parallel lookups and writes', async () => {
+    const studentId = 'student-1' as Id<'profiles'>;
+    const studentId2 = 'student-2' as Id<'profiles'>;
+    const studentId3 = 'student-3' as Id<'profiles'>;
+
+    const { db, mockInsert, mockReplace, mockFirst } = makeSaveCardsMockCtx();
+
+    mockFirst
+      .mockResolvedValueOnce(null)
+      .mockResolvedValueOnce(null)
+      .mockResolvedValueOnce(null);
+
+    const cards = [
+      {
+        cardId: 'card-1',
+        studentId,
+        objectiveId: 'obj-1',
+        problemFamilyId: 'pf-1',
+        stability: 5,
+        difficulty: 4,
+        state: 'review' as const,
+        dueDate: '2026-04-16T12:00:00.000Z',
+        elapsedDays: 5,
+        scheduledDays: 5,
+        reps: 5,
+        lapses: 0,
+        createdAt: '2026-04-16T12:00:00.000Z',
+        updatedAt: '2026-04-16T12:00:00.000Z',
+      },
+      {
+        cardId: 'card-2',
+        studentId: studentId2,
+        objectiveId: 'obj-2',
+        problemFamilyId: 'pf-2',
+        stability: 3,
+        difficulty: 5,
+        state: 'learning' as const,
+        dueDate: '2026-04-17T12:00:00.000Z',
+        elapsedDays: 1,
+        scheduledDays: 2,
+        reps: 2,
+        lapses: 1,
+        createdAt: '2026-04-16T12:00:00.000Z',
+        updatedAt: '2026-04-16T12:00:00.000Z',
+      },
+      {
+        cardId: 'card-3',
+        studentId: studentId3,
+        objectiveId: 'obj-3',
+        problemFamilyId: 'pf-3',
+        stability: 4,
+        difficulty: 3,
+        state: 'new' as const,
+        dueDate: '2026-04-18T12:00:00.000Z',
+        elapsedDays: 0,
+        scheduledDays: 1,
+        reps: 0,
+        lapses: 0,
+        createdAt: '2026-04-16T12:00:00.000Z',
+        updatedAt: '2026-04-16T12:00:00.000Z',
+      },
+    ];
+
+    await saveCardsHandler(
+      { db } as unknown as import('@/convex/_generated/server').MutationCtx,
+      { cards }
+    );
+
+    expect(mockInsert).toHaveBeenCalledTimes(3);
+    expect(mockReplace).not.toHaveBeenCalled();
   });
 });

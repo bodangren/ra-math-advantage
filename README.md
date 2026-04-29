@@ -4,7 +4,7 @@ A Convex-backed interactive digital textbook for high school Integrated Math 3. 
 
 ## Monorepo Structure
 
-This repo uses npm workspaces. The IM3 app lives in `apps/integrated-math-3/` and shared packages will live in `packages/`. Measure planning docs remain at the repo root in `measure/`.
+This repo uses npm workspaces. The IM3 app lives in `apps/integrated-math-3/` and shared packages live in `packages/`. Measure planning docs remain at the repo root in `measure/`.
 
 ```
 ra-integrated-math-3/          # Monorepo root

@@ -27,5 +27,8 @@
 | StepByStepper-guided hint tracking test flaky | Low | Open | Passes in isolation; timing/ordering issue in full run |
 | BM2 activities/complete proxies errorPayload.details | Low | Open | Internal API details exposed to client |
 | practice-core: computeBaseRating([]) untested edge case | Low | Open | Empty parts array returns 'Good' — may be unintended |
-| srs_reviews.ts: NaN on invalid reviewedAt string | High | Open | new Date(invalid).getTime() returns NaN — silently stored in DB |
+| srs_reviews.ts: NaN on invalid reviewedAt string | High | Resolved | Added explicit NaN check with descriptive error in saveReview and getReviewsByStudent (review-28) |
+| srs/cards.ts saveCards sequential N+1 lookups | Critical | Resolved | Batched lookups via Promise.all; writes remain sequential (review-28) |
+| IM3 lesson-chatbot/skip routes use `as any` for internal refs | Medium | Resolved | Removed unnecessary `as any` casts; `internal.rateLimits`, `internal.student` are fully typed (review-28) |
+| IM3/BM2 .env.example missing NEXT_PUBLIC_SITE_URL | Medium | Resolved | Added to both apps (review-28) |
 | BM2 .env.example was missing 13+ env vars | Critical | Resolved | Added all missing vars with documentation (review-27) |

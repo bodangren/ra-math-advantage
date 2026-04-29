@@ -130,6 +130,79 @@ export const saveCard = internalMutation({
   handler: saveCardHandler,
 });
 
+export async function saveCardsHandler(
+  ctx: MutationCtx,
+  args: { cards: Array<{
+    cardId: string;
+    studentId: Id<"profiles">;
+    objectiveId: string;
+    problemFamilyId: string;
+    stability: number;
+    difficulty: number;
+    state: "new" | "learning" | "review" | "relearning";
+    dueDate: string;
+    elapsedDays: number;
+    scheduledDays: number;
+    reps: number;
+    lapses: number;
+    lastReview?: string | null;
+    createdAt: string;
+    updatedAt: string;
+  }> }
+): Promise<void> {
+  const lookups = await Promise.all(
+    args.cards.map((card) =>
+      ctx.db
+        .query("srs_cards")
+        .withIndex("by_student_and_problem_family", (q) =>
+          q.eq("studentId", card.studentId).eq("problemFamilyId", card.problemFamilyId)
+        )
+        .first()
+    )
+  );
+
+  await Promise.all(
+    args.cards.map((card, i) => {
+      const existing = lookups[i];
+      if (existing) {
+        return ctx.db.replace(existing._id, {
+          studentId: existing.studentId,
+          objectiveId: card.objectiveId,
+          problemFamilyId: card.problemFamilyId,
+          stability: card.stability,
+          difficulty: card.difficulty,
+          state: card.state,
+          dueDate: card.dueDate,
+          elapsedDays: card.elapsedDays,
+          scheduledDays: card.scheduledDays,
+          reps: card.reps,
+          lapses: card.lapses,
+          lastReview: card.lastReview ?? undefined,
+          createdAt: existing.createdAt,
+          updatedAt: Date.now(),
+        });
+      } else {
+        return ctx.db.insert("srs_cards", {
+          studentId: card.studentId,
+          objectiveId: card.objectiveId,
+          problemFamilyId: card.problemFamilyId,
+          stability: card.stability,
+          difficulty: card.difficulty,
+          state: card.state,
+          dueDate: card.dueDate,
+          elapsedDays: card.elapsedDays,
+          scheduledDays: card.scheduledDays,
+          reps: card.reps,
+          lapses: card.lapses,
+          lastReview: card.lastReview ?? undefined,
+          createdAt: new Date(card.createdAt).getTime(),
+          updatedAt: new Date(card.updatedAt).getTime(),
+        });
+      }
+    })
+  );
+}
+
 export const saveCards = internalMutation({
   args: {
     cards: v.array(
@@ -152,52 +225,7 @@ export const saveCards = internalMutation({
       })
     ),
   },
-  handler: async (ctx, args) => {
-    for (const card of args.cards) {
-      const existing = await ctx.db
-        .query("srs_cards")
-        .withIndex("by_student_and_problem_family", (q) =>
-          q.eq("studentId", card.studentId).eq("problemFamilyId", card.problemFamilyId)
-        )
-        .first();
-
-      if (existing) {
-        await ctx.db.replace(existing._id, {
-          studentId: existing.studentId,
-          objectiveId: card.objectiveId,
-          problemFamilyId: card.problemFamilyId,
-          stability: card.stability,
-          difficulty: card.difficulty,
-          state: card.state,
-          dueDate: card.dueDate,
-          elapsedDays: card.elapsedDays,
-          scheduledDays: card.scheduledDays,
-          reps: card.reps,
-          lapses: card.lapses,
-          lastReview: card.lastReview ?? undefined,
-          createdAt: existing.createdAt,
-          updatedAt: Date.now(),
-        });
-      } else {
-        await ctx.db.insert("srs_cards", {
-          studentId: card.studentId,
-          objectiveId: card.objectiveId,
-          problemFamilyId: card.problemFamilyId,
-          stability: card.stability,
-          difficulty: card.difficulty,
-          state: card.state,
-          dueDate: card.dueDate,
-          elapsedDays: card.elapsedDays,
-          scheduledDays: card.scheduledDays,
-          reps: card.reps,
-          lapses: card.lapses,
-          lastReview: card.lastReview ?? undefined,
-          createdAt: new Date(card.createdAt).getTime(),
-          updatedAt: new Date(card.updatedAt).getTime(),
-        });
-      }
-    }
-  },
+  handler: saveCardsHandler,
 });
 
 export async function getCardHandler(

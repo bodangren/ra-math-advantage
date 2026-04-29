@@ -783,6 +783,10 @@ AI Tutoring and Workbook scope is explicitly **import/adopt from BM2**, not gree
      *Add unit tests for saveReview, getReviewsByCard, and getReviewsByStudent in convex/srs/reviews.ts*
      *Link: [./tracks/srs_reviews_test_coverage_20260429/](./tracks/srs_reviews_test_coverage_20260429/)*
      - Phase 1: Unit Tests for saveReview, getReviewsByCard, getReviewsByStudent [COMPLETE]
+- [x] **Track: SRS saveCards Batch Mutation** — **COMPLETED**
+     *Fix sequential await in saveCards by batching lookups and writes via Promise.all (2N → 2 DB round trips)*
+     *Link: [./tracks/srs-cards-batch-mutation_20260429/](./tracks/srs-cards-batch-mutation_20260429/)*
+     - Phase 1: Promise.all Batching [COMPLETE] (minimax-m2)
 - [ ] **Track: SRS Dashboard Streak Test Coverage** *Link: [./tracks/srs_dashboard_streak_test_20260425/](./tracks/srs_dashboard_streak_test_20260425/)*
 - [ ] **Track: Chatbot Prompt Injection Defense** *Link: [./tracks/chatbot_prompt_guard_20260425/](./tracks/chatbot_prompt_guard_20260425/)*
 - [x] **Track: RSC Bundle Optimization** — **COMPLETED**
@@ -791,6 +795,11 @@ AI Tutoring and Workbook scope is explicitly **import/adopt from BM2**, not gree
      - Phase 1: Analyze and Document [COMPLETE]
      - Phase 2: Apply Code-Splitting [COMPLETE]
      - Phase 3: Verify (354 KB < 500 KB target) [COMPLETE]
+
+- [x] **Track: SRS saveCards Batch Mutation** — **COMPLETED**
+     *Batch saveCards lookups and writes via Promise.all to eliminate 2N sequential DB operations*
+     *Link: [./tracks/srs-cards-batch-mutation_20260429/](./tracks/srs-cards-batch-mutation_20260429/)*
+     - Phase 1: Fix saveCards Sequential Await → Promise.all Batching [COMPLETE]
 
 ## AP Precalculus
 
