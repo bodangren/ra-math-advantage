@@ -857,7 +857,7 @@ AI Tutoring and Workbook scope is explicitly **import/adopt from BM2**, not gree
 
 Parallel tracks delivering complete curriculum for all three new apps. Tracks 1 and 2-4 can run in parallel; Tracks 5-8 are sequential dependencies.
 
-- [ ] **Track: Activity Component Extraction**
+- [~] **Track: Activity Component Extraction**
      *Extract generic activity components from IM3 to shared package for IM2 and PreCalculus adoption*
      *Link: [./tracks/extract-activity-components_20260425/](./tracks/extract-activity-components_20260425/)*
 

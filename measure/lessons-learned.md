@@ -42,3 +42,4 @@
 - (2026-04-29, prompt-guard) Regex with optional trailing groups (`?`) cause false positives — require both action and target keywords with `.+` between them
 - (2026-04-29, review-30) When handler stores via DB document ID but returns caller-provided ID, downstream consumers get wrong reference. Always return the actual DB ID used for writes
 - (2026-04-29, review-30) After changing handler deny-by-default behavior, update BOTH the mutation AND the status query, AND all tests — test was the only thing catching the inconsistency
+- (2026-04-29, activity-components-extract) When extracting React components to shared packages: use relative imports within package, declare external deps (KaTeX, graphing-core) as peerDependencies, keep app-specific code (equivalence.ts, distractors.ts) local. Package follows @math-platform/ scope with subpath exports, tsc --noEmit build, vitest + jsdom tests.
