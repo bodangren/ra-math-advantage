@@ -788,7 +788,13 @@ AI Tutoring and Workbook scope is explicitly **import/adopt from BM2**, not gree
      *Link: [./tracks/srs-cards-batch-mutation_20260429/](./tracks/srs-cards-batch-mutation_20260429/)*
      - Phase 1: Promise.all Batching [COMPLETE] (minimax-m2)
 - [x] **Track: SRS Dashboard Streak Test Coverage** *Link: [./tracks/srs_dashboard_streak_test_20260425/](./tracks/srs_dashboard_streak_test_20260425/)*
-- [ ] **Track: Chatbot Prompt Injection Defense** *Link: [./tracks/chatbot_prompt_guard_20260425/](./tracks/chatbot_prompt_guard_20260425/)*
+- [x] **Track: Chatbot Prompt Injection Defense** — **COMPLETED**
+     *Strengthen BM2/IM3 chatbot prompt injection defense with system prompt guard and pattern-based detection*
+     *Link: [./tracks/chatbot_prompt_guard_20260425/](./tracks/chatbot_prompt_guard_20260425/)*
+     - Phase 1: Core Injection Detection [COMPLETE]
+     - Phase 2: BM2 Integration [COMPLETE]
+     - Phase 3: IM3 Integration [COMPLETE]
+     - Phase 4: Polish [COMPLETE]
 - [x] **Track: RSC Bundle Optimization** — **COMPLETED**
      *Reduce RSC entry page chunk from 891 KB to 354 KB via vendor chunking (lucide-react, zod, @radix-ui, clsx, monorepo packages)*
      *Link: [./tracks/rsc_bundle_optimization_20260429/](./tracks/rsc_bundle_optimization_20260429/)*
@@ -797,9 +803,15 @@ AI Tutoring and Workbook scope is explicitly **import/adopt from BM2**, not gree
      - Phase 3: Verify (354 KB < 500 KB target) [COMPLETE]
 
 - [x] **Track: SRS saveCards Batch Mutation** — **COMPLETED**
-     *Batch saveCards lookups and writes via Promise.all to eliminate 2N sequential DB operations*
-     *Link: [./tracks/srs-cards-batch-mutation_20260429/](./tracks/srs-cards-batch-mutation_20260429/)*
-     - Phase 1: Fix saveCards Sequential Await → Promise.all Batching [COMPLETE]
+      *Batch saveCards lookups and writes via Promise.all to eliminate 2N sequential DB operations*
+      *Link: [./tracks/srs-cards-batch-mutation_20260429/](./tracks/srs-cards-batch-mutation_20260429/)*
+      - Phase 1: Fix saveCards Sequential Await → Promise.all Batching [COMPLETE]
+
+- [ ] **Track: Teacher SRS Queries N+1 Batch Fix**
+      *Batch 2N+ per-student queries in getTeacherClassProficiencyHandler to O(1) broad queries*
+      *Link: [./tracks/teacher-srs-queries-batch_20260429/](./tracks/teacher-srs-queries-batch_20260429/)*
+      - Phase 1: Batch srs_cards and srs_review_log Queries [ ]
+      - Phase 2: Batch competency_standards Query [ ]
 
 ## AP Precalculus
 
