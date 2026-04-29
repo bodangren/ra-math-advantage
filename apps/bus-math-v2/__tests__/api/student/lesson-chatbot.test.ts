@@ -3,9 +3,10 @@ import type { NextRequest } from 'next/server';
 
 const mockRequireActiveStudentRequestClaims = vi.fn();
 const mockFetchInternalMutation = vi.fn();
-const mockResolveOpenRouterProviderFromEnv = vi.fn();
+const mockResolveOpenRouterProviderWithMessagesFromEnv = vi.fn();
 const mockAssembleLessonChatbotContext = vi.fn();
 const mockBuildPublishedCurriculumManifest = vi.fn();
+const mockDetectPromptInjection = vi.fn();
 
 vi.mock('@/lib/auth/server', () => ({
   requireActiveStudentRequestClaims: mockRequireActiveStudentRequestClaims,
@@ -21,8 +22,9 @@ vi.mock('@/lib/convex/server', () => ({
 }));
 
 vi.mock('@math-platform/ai-tutoring', () => ({
-  resolveOpenRouterProviderFromEnv: mockResolveOpenRouterProviderFromEnv,
+  resolveOpenRouterProviderWithMessagesFromEnv: mockResolveOpenRouterProviderWithMessagesFromEnv,
   assembleLessonChatbotContext: mockAssembleLessonChatbotContext,
+  detectPromptInjection: (...args: unknown[]) => mockDetectPromptInjection(...args),
 }));
 
 vi.mock('@/lib/curriculum/published-manifest', () => ({
@@ -74,7 +76,8 @@ describe('POST /api/student/lesson-chatbot', () => {
       contentSummary: 'Content',
     });
     mockFetchInternalMutation.mockResolvedValue({ allowed: true });
-    mockResolveOpenRouterProviderFromEnv.mockReturnValue(() => Promise.resolve('AI response'));
+    mockResolveOpenRouterProviderWithMessagesFromEnv.mockReturnValue(() => Promise.resolve('AI response'));
+    mockDetectPromptInjection.mockReturnValue(null);
   });
 
   it('returns 401 when unauthenticated or deactivated', async () => {

@@ -79,6 +79,77 @@ export function createOpenRouterProvider(options: OpenRouterProviderOptions) {
   };
 }
 
+export interface ChatMessage {
+  role: 'system' | 'user' | 'assistant';
+  content: string;
+}
+
+export function createOpenRouterProviderWithMessages(options: OpenRouterProviderOptions) {
+  const {
+    apiKey,
+    model = 'openrouter/free',
+    baseUrl = OPENROUTER_API_BASE,
+    timeoutMs = 15000,
+  } = options;
+
+  return async function openRouterProviderWithMessages(
+    messages: ChatMessage[],
+    abortSignal?: AbortSignal
+  ): Promise<string> {
+    return withRetry(async () => {
+      const controller = new AbortController();
+      const timeout = setTimeout(() => controller.abort(), timeoutMs);
+
+      if (abortSignal) {
+        if (abortSignal.aborted) {
+          controller.abort();
+        } else {
+          const onAbort = () => controller.abort();
+          abortSignal.addEventListener('abort', onAbort, { once: true });
+        }
+      }
+
+      try {
+        const response = await fetch(`${baseUrl}/chat/completions`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${apiKey}`,
+            'HTTP-Referer': 'https://github.com/bodangren/ra-integrated-math-3',
+            'X-Title': 'Integrated Math 3',
+          },
+          body: JSON.stringify({
+            model,
+            messages,
+          }),
+          signal: controller.signal,
+        });
+
+        if (!response.ok) {
+          throw new Error(`OpenRouter API error: ${response.status} ${response.statusText}`);
+        }
+
+        interface OpenRouterResponse {
+          choices?: Array<{
+            message?: {
+              content?: string;
+            };
+          }>;
+        }
+
+        const data = (await response.json()) as OpenRouterResponse;
+        const content = data.choices?.[0]?.message?.content;
+        if (typeof content !== 'string' || content.trim().length === 0) {
+          throw new EmptyResponseError();
+        }
+        return content.trim();
+      } finally {
+        clearTimeout(timeout);
+      }
+    });
+  };
+}
+
 export { EmptyResponseError } from './retry';
 
 export function isOpenRouterError(error: unknown): error is Error & { status?: number } {
@@ -92,8 +163,11 @@ export function getErrorStatus(error: Error): number | null {
 
 let cachedProvider: ((prompt: string, abortSignal?: AbortSignal) => Promise<string>) | null = null;
 
+let cachedMessagesProvider: ((messages: ChatMessage[], abortSignal?: AbortSignal) => Promise<string>) | null = null;
+
 export function clearProviderCache(): void {
   cachedProvider = null;
+  cachedMessagesProvider = null;
 }
 
 export function resolveOpenRouterProviderFromEnv(): ((prompt: string, abortSignal?: AbortSignal) => Promise<string>) | null {
@@ -113,4 +187,23 @@ export function resolveOpenRouterProviderFromEnv(): ((prompt: string, abortSigna
   });
 
   return cachedProvider;
+}
+
+export function resolveOpenRouterProviderWithMessagesFromEnv(): ((messages: ChatMessage[], abortSignal?: AbortSignal) => Promise<string>) | null {
+  const apiKey = process.env.OPENROUTER_API_KEY;
+  if (!apiKey || apiKey.trim().length === 0) {
+    return null;
+  }
+
+  if (cachedMessagesProvider) {
+    return cachedMessagesProvider;
+  }
+
+  cachedMessagesProvider = createOpenRouterProviderWithMessages({
+    apiKey,
+    model: process.env.OPENROUTER_MODEL || 'openrouter/free',
+    baseUrl: process.env.OPENROUTER_API_BASE || OPENROUTER_API_BASE,
+  });
+
+  return cachedMessagesProvider;
 }

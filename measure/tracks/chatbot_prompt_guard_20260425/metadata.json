@@ -1,7 +1,7 @@
 {
   "id": "chatbot_prompt_guard_20260425",
   "name": "Chatbot Prompt Injection Defense",
-  "status": "pending",
+  "status": "in_progress",
   "created": "2026-04-25",
   "priority": "medium"
 }
