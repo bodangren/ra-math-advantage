@@ -1,6 +1,6 @@
 # Current Directive
 
-> Updated: 2026-04-29 (Code review #30 — BM2 test fix, processReview cardId fix, deny-by-default consistency, dead code removal)
+> Updated: 2026-04-29 (Phase 2 complete — Activity Component Extraction: all 6 activity types extracted to @math-platform/activity-components package)
 
 ## Mission
 
@@ -79,7 +79,7 @@ Monorepo migration complete (Waves 0-6). All major feature tracks done. Three ne
 - [ ] BM2 worker-entry bundle optimization (5.1 MB → target <3 MB)
 - [ ] Prompt guard punctuation bypass hardening
 - [ ] BM2 9 governance tests re-enablement
-- [ ] Activity component extraction for cross-app reuse
+- [x] Activity component extraction for cross-app reuse (Phase 2 complete — 6 activity types extracted, 36 tests passing)
 - [ ] Convex schema strict validation (16 v.any() fields remain)
 - [ ] objectiveProficiency student-scoped queries (replace full table scan)
 
