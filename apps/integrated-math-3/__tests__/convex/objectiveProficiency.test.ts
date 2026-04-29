@@ -1193,6 +1193,7 @@ describe('getTeacherClassProficiencyHandler', () => {
     const cardQueryMock = (() => {
       let capturedStudentId: Id<'profiles'> | null = null;
       return {
+        collect: vi.fn().mockResolvedValue(cards),
         withIndex: (_indexName: string, fn?: (q: { eq: (field: string, value: unknown) => unknown }) => void) => {
           if (fn) {
             const mockQ: { eq: (field: string, value: unknown) => { eq: (field: string, value: unknown) => unknown } } = {
@@ -1215,6 +1216,7 @@ describe('getTeacherClassProficiencyHandler', () => {
     const reviewQueryMock = (() => {
       let capturedStudentId: Id<'profiles'> | null = null;
       return {
+        collect: vi.fn().mockResolvedValue(reviews),
         withIndex: (_indexName: string, fn?: (q: { eq: (field: string, value: unknown) => unknown }) => void) => {
           if (fn) {
             const mockQ: { eq: (field: string, value: unknown) => { eq: (field: string, value: unknown) => unknown } } = {
@@ -1299,6 +1301,7 @@ describe('getTeacherClassProficiencyHandler', () => {
     };
 
     const standardQueryMock = {
+      collect: vi.fn().mockResolvedValue(standards),
       withIndex: vi.fn().mockReturnValue({
         first: vi.fn().mockImplementation(() => {
           return Promise.resolve(standards[0] ?? null);

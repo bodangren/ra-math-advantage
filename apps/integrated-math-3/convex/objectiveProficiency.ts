@@ -256,18 +256,14 @@ async function preFetchTeacherClassData(
   }
   const baselines = await fetchTimingBaselines(ctx, allFamilyIds);
 
+  const allSubmissions = await ctx.db.query("activity_submissions").collect();
   const submissionsByStudent = new Map<string, ActivitySubmissionDoc[]>();
-  const studentSubmissionResults = await Promise.all(
-    studentIds.map(async (studentId) => {
-      const subs = await ctx.db
-        .query("activity_submissions")
-        .withIndex("by_user", (q) => q.eq("userId", studentId))
-        .collect();
-      return { studentId, subs };
-    })
-  );
-  for (const { studentId, subs } of studentSubmissionResults) {
-    submissionsByStudent.set(studentId, subs);
+  for (const sub of allSubmissions) {
+    if (studentIds.includes(sub.userId)) {
+      const existing = submissionsByStudent.get(sub.userId) ?? [];
+      existing.push(sub);
+      submissionsByStudent.set(sub.userId, existing);
+    }
   }
 
   const standardsByObjective = new Map<string, CompetencyStandardDoc>();
