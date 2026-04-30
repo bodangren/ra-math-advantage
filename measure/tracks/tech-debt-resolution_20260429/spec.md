@@ -60,6 +60,5 @@ Resolve all 24 open/partial tech debt items in the registry, add missing test co
 - [ ] All test suites pass; no new CI failures
 
 ## Out of Scope
-- Replacing Convex as the database
 - Architecture redesigns not flagged in tech debt
 - New features unrelated to existing tech debt items
