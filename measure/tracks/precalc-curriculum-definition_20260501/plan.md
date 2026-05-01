@@ -2,7 +2,7 @@
 
 ## Phase 1: Source Inventory and Canonical Contract
 
-- [x] Task: Write source inventory tests and checks
+- [x] Task: Write source inventory tests and checks [79b01de]
     - [x] Add validation coverage for the official College Board AP Precalculus Course and Exam Description source reference
     - [x] Add validation coverage for the College Board CED Clarification and Guidance source reference
     - [x] Add or update validation coverage for expected Precalculus source files and documented missing sources
@@ -10,7 +10,7 @@
     - [x] Confirm Unit 4 Passwater source absence is represented as an expected documented exception
     - [x] Confirm Unit 4 is represented as CED-defined and not assessed on the AP Exam
     - [x] Confirm the `~54` lesson-count language versus 58 listed topics is either reconciled or documented as a source mismatch
-- [x] Task: Define Precalculus curriculum contract
+- [x] Task: Define Precalculus curriculum contract [79b01de]
     - [x] Create `apps/pre-calculus/curriculum/README.md`
     - [x] Create `apps/pre-calculus/curriculum/course-spec.md`
     - [x] Define official-source precedence: CED first, CED clarification/guidance second, local Passwater PDFs third, local overview/product/runtime pages fourth
