@@ -5,6 +5,7 @@
     "dev:stack": "node scripts/dev-stack.mjs",
     "build": "vinext build",
     "curriculum:extract": "node scripts/extract-curriculum-sources.mjs",
+    "curriculum:implementation": "node scripts/generate-curriculum-implementation.mjs",
     "curriculum:plan": "node scripts/generate-curriculum-planning.mjs",
     "start": "vinext start",
     "lint": "eslint . --max-warnings 0",

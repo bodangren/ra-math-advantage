@@ -1,0 +1,583 @@
+{
+  "schemaVersion": "class-period-package.v1",
+  "unit": 1,
+  "generatedFrom": "curriculum/unit-1-class-period-plan.md",
+  "sourcePriority": [
+    "curriculum/source/college-board/ced-topic-index.json",
+    "curriculum/source/college-board/clarification-guidance.md",
+    "curriculum/source/passwater/unit-1.md"
+  ],
+  "periods": [
+    {
+      "periodId": "u01-p01",
+      "unit": 1,
+      "period": 1,
+      "dayType": "instruction",
+      "cedTopic": {
+        "id": "1.1",
+        "title": "Change in Tandem",
+        "source": "curriculum/source/college-board/ced-topic-index.json",
+        "errata": "curriculum/source/college-board/clarification-guidance.md",
+        "examStatus": "assessed-on-ap-exam"
+      },
+      "competencyTarget": {
+        "learningObjectiveFamily": "1.1.A",
+        "essentialKnowledgeFamily": "1.1.A.*",
+        "mathematicalPractices": [
+          "1.A",
+          "1.B",
+          "1.C",
+          "2.A",
+          "2.B",
+          "3.A",
+          "3.B",
+          "3.C"
+        ]
+      },
+      "passwaterSource": "curriculum/source/passwater/unit-1.md",
+      "problemFamily": "apc_1_1",
+      "dailyPhases": {
+        "warmUp": "Retrieve prerequisite representations connected to Topic 1.1.",
+        "topicIntroduction": "Use Passwater notes to introduce Change in Tandem.",
+        "scaffoldedExamples": "Model worked examples from the Unit 1 Passwater source.",
+        "guidedPractice": "Students complete scaffolded examples aligned to CED Topic 1.1.",
+        "independentPractice": "Students complete AP-style practice mapped to apc_1_1.",
+        "exitEvidence": "Short competency evidence for 1.1.A and 1.1.A.*.",
+        "capReflection": "Students identify a courage, adaptability, or persistence move from the period."
+      }
+    },
+    {
+      "periodId": "u01-p02",
+      "unit": 1,
+      "period": 2,
+      "dayType": "instruction",
+      "cedTopic": {
+        "id": "1.2",
+        "title": "Rates of Change",
+        "source": "curriculum/source/college-board/ced-topic-index.json",
+        "errata": "curriculum/source/college-board/clarification-guidance.md",
+        "examStatus": "assessed-on-ap-exam"
+      },
+      "competencyTarget": {
+        "learningObjectiveFamily": "1.2.A",
+        "essentialKnowledgeFamily": "1.2.A.*",
+        "mathematicalPractices": [
+          "1.A",
+          "1.B",
+          "1.C",
+          "2.A",
+          "2.B",
+          "3.A",
+          "3.B",
+          "3.C"
+        ]
+      },
+      "passwaterSource": "curriculum/source/passwater/unit-1.md",
+      "problemFamily": "apc_1_2",
+      "dailyPhases": {
+        "warmUp": "Retrieve prerequisite representations connected to Topic 1.2.",
+        "topicIntroduction": "Use Passwater notes to introduce Rates of Change.",
+        "scaffoldedExamples": "Model worked examples from the Unit 1 Passwater source.",
+        "guidedPractice": "Students complete scaffolded examples aligned to CED Topic 1.2.",
+        "independentPractice": "Students complete AP-style practice mapped to apc_1_2.",
+        "exitEvidence": "Short competency evidence for 1.2.A and 1.2.A.*.",
+        "capReflection": "Students identify a courage, adaptability, or persistence move from the period."
+      }
+    },
+    {
+      "periodId": "u01-p03",
+      "unit": 1,
+      "period": 3,
+      "dayType": "instruction",
+      "cedTopic": {
+        "id": "1.3",
+        "title": "Rates of Change in Linear and Quadratic Functions",
+        "source": "curriculum/source/college-board/ced-topic-index.json",
+        "errata": "curriculum/source/college-board/clarification-guidance.md",
+        "examStatus": "assessed-on-ap-exam"
+      },
+      "competencyTarget": {
+        "learningObjectiveFamily": "1.3.A",
+        "essentialKnowledgeFamily": "1.3.A.*",
+        "mathematicalPractices": [
+          "1.A",
+          "1.B",
+          "1.C",
+          "2.A",
+          "2.B",
+          "3.A",
+          "3.B",
+          "3.C"
+        ]
+      },
+      "passwaterSource": "curriculum/source/passwater/unit-1.md",
+      "problemFamily": "apc_1_3",
+      "dailyPhases": {
+        "warmUp": "Retrieve prerequisite representations connected to Topic 1.3.",
+        "topicIntroduction": "Use Passwater notes to introduce Rates of Change in Linear and Quadratic Functions.",
+        "scaffoldedExamples": "Model worked examples from the Unit 1 Passwater source.",
+        "guidedPractice": "Students complete scaffolded examples aligned to CED Topic 1.3.",
+        "independentPractice": "Students complete AP-style practice mapped to apc_1_3.",
+        "exitEvidence": "Short competency evidence for 1.3.A and 1.3.A.*.",
+        "capReflection": "Students identify a courage, adaptability, or persistence move from the period."
+      }
+    },
+    {
+      "periodId": "u01-p04",
+      "unit": 1,
+      "period": 4,
+      "dayType": "instruction",
+      "cedTopic": {
+        "id": "1.4",
+        "title": "Polynomial Functions and Rates of Change",
+        "source": "curriculum/source/college-board/ced-topic-index.json",
+        "errata": "curriculum/source/college-board/clarification-guidance.md",
+        "examStatus": "assessed-on-ap-exam"
+      },
+      "competencyTarget": {
+        "learningObjectiveFamily": "1.4.A",
+        "essentialKnowledgeFamily": "1.4.A.*",
+        "mathematicalPractices": [
+          "1.A",
+          "1.B",
+          "1.C",
+          "2.A",
+          "2.B",
+          "3.A",
+          "3.B",
+          "3.C"
+        ]
+      },
+      "passwaterSource": "curriculum/source/passwater/unit-1.md",
+      "problemFamily": "apc_1_4",
+      "dailyPhases": {
+        "warmUp": "Retrieve prerequisite representations connected to Topic 1.4.",
+        "topicIntroduction": "Use Passwater notes to introduce Polynomial Functions and Rates of Change.",
+        "scaffoldedExamples": "Model worked examples from the Unit 1 Passwater source.",
+        "guidedPractice": "Students complete scaffolded examples aligned to CED Topic 1.4.",
+        "independentPractice": "Students complete AP-style practice mapped to apc_1_4.",
+        "exitEvidence": "Short competency evidence for 1.4.A and 1.4.A.*.",
+        "capReflection": "Students identify a courage, adaptability, or persistence move from the period."
+      }
+    },
+    {
+      "periodId": "u01-p05",
+      "unit": 1,
+      "period": 5,
+      "dayType": "instruction",
+      "cedTopic": {
+        "id": "1.5",
+        "title": "Polynomial Functions and Complex Zeros",
+        "source": "curriculum/source/college-board/ced-topic-index.json",
+        "errata": "curriculum/source/college-board/clarification-guidance.md",
+        "examStatus": "assessed-on-ap-exam"
+      },
+      "competencyTarget": {
+        "learningObjectiveFamily": "1.5.A",
+        "essentialKnowledgeFamily": "1.5.A.*",
+        "mathematicalPractices": [
+          "1.A",
+          "1.B",
+          "1.C",
+          "2.A",
+          "2.B",
+          "3.A",
+          "3.B",
+          "3.C"
+        ]
+      },
+      "passwaterSource": "curriculum/source/passwater/unit-1.md",
+      "problemFamily": "apc_1_5",
+      "dailyPhases": {
+        "warmUp": "Retrieve prerequisite representations connected to Topic 1.5.",
+        "topicIntroduction": "Use Passwater notes to introduce Polynomial Functions and Complex Zeros.",
+        "scaffoldedExamples": "Model worked examples from the Unit 1 Passwater source.",
+        "guidedPractice": "Students complete scaffolded examples aligned to CED Topic 1.5.",
+        "independentPractice": "Students complete AP-style practice mapped to apc_1_5.",
+        "exitEvidence": "Short competency evidence for 1.5.A and 1.5.A.*.",
+        "capReflection": "Students identify a courage, adaptability, or persistence move from the period."
+      }
+    },
+    {
+      "periodId": "u01-p06",
+      "unit": 1,
+      "period": 6,
+      "dayType": "instruction",
+      "cedTopic": {
+        "id": "1.6",
+        "title": "Polynomial Functions and End Behavior",
+        "source": "curriculum/source/college-board/ced-topic-index.json",
+        "errata": "curriculum/source/college-board/clarification-guidance.md",
+        "examStatus": "assessed-on-ap-exam"
+      },
+      "competencyTarget": {
+        "learningObjectiveFamily": "1.6.A",
+        "essentialKnowledgeFamily": "1.6.A.*",
+        "mathematicalPractices": [
+          "1.A",
+          "1.B",
+          "1.C",
+          "2.A",
+          "2.B",
+          "3.A",
+          "3.B",
+          "3.C"
+        ]
+      },
+      "passwaterSource": "curriculum/source/passwater/unit-1.md",
+      "problemFamily": "apc_1_6",
+      "dailyPhases": {
+        "warmUp": "Retrieve prerequisite representations connected to Topic 1.6.",
+        "topicIntroduction": "Use Passwater notes to introduce Polynomial Functions and End Behavior.",
+        "scaffoldedExamples": "Model worked examples from the Unit 1 Passwater source.",
+        "guidedPractice": "Students complete scaffolded examples aligned to CED Topic 1.6.",
+        "independentPractice": "Students complete AP-style practice mapped to apc_1_6.",
+        "exitEvidence": "Short competency evidence for 1.6.A and 1.6.A.*.",
+        "capReflection": "Students identify a courage, adaptability, or persistence move from the period."
+      }
+    },
+    {
+      "periodId": "u01-p07",
+      "unit": 1,
+      "period": 7,
+      "dayType": "instruction",
+      "cedTopic": {
+        "id": "1.7",
+        "title": "Rational Functions and End Behavior",
+        "source": "curriculum/source/college-board/ced-topic-index.json",
+        "errata": "curriculum/source/college-board/clarification-guidance.md",
+        "examStatus": "assessed-on-ap-exam"
+      },
+      "competencyTarget": {
+        "learningObjectiveFamily": "1.7.A",
+        "essentialKnowledgeFamily": "1.7.A.*",
+        "mathematicalPractices": [
+          "1.A",
+          "1.B",
+          "1.C",
+          "2.A",
+          "2.B",
+          "3.A",
+          "3.B",
+          "3.C"
+        ]
+      },
+      "passwaterSource": "curriculum/source/passwater/unit-1.md",
+      "problemFamily": "apc_1_7",
+      "dailyPhases": {
+        "warmUp": "Retrieve prerequisite representations connected to Topic 1.7.",
+        "topicIntroduction": "Use Passwater notes to introduce Rational Functions and End Behavior.",
+        "scaffoldedExamples": "Model worked examples from the Unit 1 Passwater source.",
+        "guidedPractice": "Students complete scaffolded examples aligned to CED Topic 1.7.",
+        "independentPractice": "Students complete AP-style practice mapped to apc_1_7.",
+        "exitEvidence": "Short competency evidence for 1.7.A and 1.7.A.*.",
+        "capReflection": "Students identify a courage, adaptability, or persistence move from the period."
+      }
+    },
+    {
+      "periodId": "u01-p08",
+      "unit": 1,
+      "period": 8,
+      "dayType": "instruction",
+      "cedTopic": {
+        "id": "1.8",
+        "title": "Rational Functions and Zeros",
+        "source": "curriculum/source/college-board/ced-topic-index.json",
+        "errata": "curriculum/source/college-board/clarification-guidance.md",
+        "examStatus": "assessed-on-ap-exam"
+      },
+      "competencyTarget": {
+        "learningObjectiveFamily": "1.8.A",
+        "essentialKnowledgeFamily": "1.8.A.*",
+        "mathematicalPractices": [
+          "1.A",
+          "1.B",
+          "1.C",
+          "2.A",
+          "2.B",
+          "3.A",
+          "3.B",
+          "3.C"
+        ]
+      },
+      "passwaterSource": "curriculum/source/passwater/unit-1.md",
+      "problemFamily": "apc_1_8",
+      "dailyPhases": {
+        "warmUp": "Retrieve prerequisite representations connected to Topic 1.8.",
+        "topicIntroduction": "Use Passwater notes to introduce Rational Functions and Zeros.",
+        "scaffoldedExamples": "Model worked examples from the Unit 1 Passwater source.",
+        "guidedPractice": "Students complete scaffolded examples aligned to CED Topic 1.8.",
+        "independentPractice": "Students complete AP-style practice mapped to apc_1_8.",
+        "exitEvidence": "Short competency evidence for 1.8.A and 1.8.A.*.",
+        "capReflection": "Students identify a courage, adaptability, or persistence move from the period."
+      }
+    },
+    {
+      "periodId": "u01-p09",
+      "unit": 1,
+      "period": 9,
+      "dayType": "instruction",
+      "cedTopic": {
+        "id": "1.9",
+        "title": "Rational Functions and Vertical Asymptotes",
+        "source": "curriculum/source/college-board/ced-topic-index.json",
+        "errata": "curriculum/source/college-board/clarification-guidance.md",
+        "examStatus": "assessed-on-ap-exam"
+      },
+      "competencyTarget": {
+        "learningObjectiveFamily": "1.9.A",
+        "essentialKnowledgeFamily": "1.9.A.*",
+        "mathematicalPractices": [
+          "1.A",
+          "1.B",
+          "1.C",
+          "2.A",
+          "2.B",
+          "3.A",
+          "3.B",
+          "3.C"
+        ]
+      },
+      "passwaterSource": "curriculum/source/passwater/unit-1.md",
+      "problemFamily": "apc_1_9",
+      "dailyPhases": {
+        "warmUp": "Retrieve prerequisite representations connected to Topic 1.9.",
+        "topicIntroduction": "Use Passwater notes to introduce Rational Functions and Vertical Asymptotes.",
+        "scaffoldedExamples": "Model worked examples from the Unit 1 Passwater source.",
+        "guidedPractice": "Students complete scaffolded examples aligned to CED Topic 1.9.",
+        "independentPractice": "Students complete AP-style practice mapped to apc_1_9.",
+        "exitEvidence": "Short competency evidence for 1.9.A and 1.9.A.*.",
+        "capReflection": "Students identify a courage, adaptability, or persistence move from the period."
+      }
+    },
+    {
+      "periodId": "u01-p10",
+      "unit": 1,
+      "period": 10,
+      "dayType": "instruction",
+      "cedTopic": {
+        "id": "1.10",
+        "title": "Rational Functions and Holes",
+        "source": "curriculum/source/college-board/ced-topic-index.json",
+        "errata": "curriculum/source/college-board/clarification-guidance.md",
+        "examStatus": "assessed-on-ap-exam"
+      },
+      "competencyTarget": {
+        "learningObjectiveFamily": "1.10.A",
+        "essentialKnowledgeFamily": "1.10.A.*",
+        "mathematicalPractices": [
+          "1.A",
+          "1.B",
+          "1.C",
+          "2.A",
+          "2.B",
+          "3.A",
+          "3.B",
+          "3.C"
+        ]
+      },
+      "passwaterSource": "curriculum/source/passwater/unit-1.md",
+      "problemFamily": "apc_1_10",
+      "dailyPhases": {
+        "warmUp": "Retrieve prerequisite representations connected to Topic 1.10.",
+        "topicIntroduction": "Use Passwater notes to introduce Rational Functions and Holes.",
+        "scaffoldedExamples": "Model worked examples from the Unit 1 Passwater source.",
+        "guidedPractice": "Students complete scaffolded examples aligned to CED Topic 1.10.",
+        "independentPractice": "Students complete AP-style practice mapped to apc_1_10.",
+        "exitEvidence": "Short competency evidence for 1.10.A and 1.10.A.*.",
+        "capReflection": "Students identify a courage, adaptability, or persistence move from the period."
+      }
+    },
+    {
+      "periodId": "u01-p11",
+      "unit": 1,
+      "period": 11,
+      "dayType": "instruction",
+      "cedTopic": {
+        "id": "1.11",
+        "title": "Equivalent Representations of Polynomial and Rational Expressions",
+        "source": "curriculum/source/college-board/ced-topic-index.json",
+        "errata": "curriculum/source/college-board/clarification-guidance.md",
+        "examStatus": "assessed-on-ap-exam"
+      },
+      "competencyTarget": {
+        "learningObjectiveFamily": "1.11.A",
+        "essentialKnowledgeFamily": "1.11.A.*",
+        "mathematicalPractices": [
+          "1.A",
+          "1.B",
+          "1.C",
+          "2.A",
+          "2.B",
+          "3.A",
+          "3.B",
+          "3.C"
+        ]
+      },
+      "passwaterSource": "curriculum/source/passwater/unit-1.md",
+      "problemFamily": "apc_1_11",
+      "dailyPhases": {
+        "warmUp": "Retrieve prerequisite representations connected to Topic 1.11.",
+        "topicIntroduction": "Use Passwater notes to introduce Equivalent Representations of Polynomial and Rational Expressions.",
+        "scaffoldedExamples": "Model worked examples from the Unit 1 Passwater source.",
+        "guidedPractice": "Students complete scaffolded examples aligned to CED Topic 1.11.",
+        "independentPractice": "Students complete AP-style practice mapped to apc_1_11.",
+        "exitEvidence": "Short competency evidence for 1.11.A and 1.11.A.*.",
+        "capReflection": "Students identify a courage, adaptability, or persistence move from the period."
+      }
+    },
+    {
+      "periodId": "u01-p12",
+      "unit": 1,
+      "period": 12,
+      "dayType": "instruction",
+      "cedTopic": {
+        "id": "1.12",
+        "title": "Transformations of Functions",
+        "source": "curriculum/source/college-board/ced-topic-index.json",
+        "errata": "curriculum/source/college-board/clarification-guidance.md",
+        "examStatus": "assessed-on-ap-exam"
+      },
+      "competencyTarget": {
+        "learningObjectiveFamily": "1.12.A",
+        "essentialKnowledgeFamily": "1.12.A.*",
+        "mathematicalPractices": [
+          "1.A",
+          "1.B",
+          "1.C",
+          "2.A",
+          "2.B",
+          "3.A",
+          "3.B",
+          "3.C"
+        ]
+      },
+      "passwaterSource": "curriculum/source/passwater/unit-1.md",
+      "problemFamily": "apc_1_12",
+      "dailyPhases": {
+        "warmUp": "Retrieve prerequisite representations connected to Topic 1.12.",
+        "topicIntroduction": "Use Passwater notes to introduce Transformations of Functions.",
+        "scaffoldedExamples": "Model worked examples from the Unit 1 Passwater source.",
+        "guidedPractice": "Students complete scaffolded examples aligned to CED Topic 1.12.",
+        "independentPractice": "Students complete AP-style practice mapped to apc_1_12.",
+        "exitEvidence": "Short competency evidence for 1.12.A and 1.12.A.*.",
+        "capReflection": "Students identify a courage, adaptability, or persistence move from the period."
+      }
+    },
+    {
+      "periodId": "u01-p13",
+      "unit": 1,
+      "period": 13,
+      "dayType": "instruction",
+      "cedTopic": {
+        "id": "1.13",
+        "title": "Function Model Selection and Assumption Articulation",
+        "source": "curriculum/source/college-board/ced-topic-index.json",
+        "errata": "curriculum/source/college-board/clarification-guidance.md",
+        "examStatus": "assessed-on-ap-exam"
+      },
+      "competencyTarget": {
+        "learningObjectiveFamily": "1.13.A",
+        "essentialKnowledgeFamily": "1.13.A.*",
+        "mathematicalPractices": [
+          "1.A",
+          "1.B",
+          "1.C",
+          "2.A",
+          "2.B",
+          "3.A",
+          "3.B",
+          "3.C"
+        ]
+      },
+      "passwaterSource": "curriculum/source/passwater/unit-1.md",
+      "problemFamily": "apc_1_13",
+      "dailyPhases": {
+        "warmUp": "Retrieve prerequisite representations connected to Topic 1.13.",
+        "topicIntroduction": "Use Passwater notes to introduce Function Model Selection and Assumption Articulation.",
+        "scaffoldedExamples": "Model worked examples from the Unit 1 Passwater source.",
+        "guidedPractice": "Students complete scaffolded examples aligned to CED Topic 1.13.",
+        "independentPractice": "Students complete AP-style practice mapped to apc_1_13.",
+        "exitEvidence": "Short competency evidence for 1.13.A and 1.13.A.*.",
+        "capReflection": "Students identify a courage, adaptability, or persistence move from the period."
+      }
+    },
+    {
+      "periodId": "u01-p14",
+      "unit": 1,
+      "period": 14,
+      "dayType": "instruction",
+      "cedTopic": {
+        "id": "1.14",
+        "title": "Function Model Construction and Application",
+        "source": "curriculum/source/college-board/ced-topic-index.json",
+        "errata": "curriculum/source/college-board/clarification-guidance.md",
+        "examStatus": "assessed-on-ap-exam"
+      },
+      "competencyTarget": {
+        "learningObjectiveFamily": "1.14.A",
+        "essentialKnowledgeFamily": "1.14.A.*",
+        "mathematicalPractices": [
+          "1.A",
+          "1.B",
+          "1.C",
+          "2.A",
+          "2.B",
+          "3.A",
+          "3.B",
+          "3.C"
+        ]
+      },
+      "passwaterSource": "curriculum/source/passwater/unit-1.md",
+      "problemFamily": "apc_1_14",
+      "dailyPhases": {
+        "warmUp": "Retrieve prerequisite representations connected to Topic 1.14.",
+        "topicIntroduction": "Use Passwater notes to introduce Function Model Construction and Application.",
+        "scaffoldedExamples": "Model worked examples from the Unit 1 Passwater source.",
+        "guidedPractice": "Students complete scaffolded examples aligned to CED Topic 1.14.",
+        "independentPractice": "Students complete AP-style practice mapped to apc_1_14.",
+        "exitEvidence": "Short competency evidence for 1.14.A and 1.14.A.*.",
+        "capReflection": "Students identify a courage, adaptability, or persistence move from the period."
+      }
+    },
+    {
+      "periodId": "u01-p15",
+      "unit": 1,
+      "period": 15,
+      "dayType": "ap_task_model",
+      "notes": "FRQ task-model transfer day",
+      "nonInstructionArtifact": {
+        "artifactType": "ap_task_model",
+        "source": "curriculum/source/passwater/unit-1.md",
+        "cedScope": "Unit 1",
+        "evidence": "FRQ task-model transfer day"
+      }
+    },
+    {
+      "periodId": "u01-p16",
+      "unit": 1,
+      "period": 16,
+      "dayType": "review",
+      "notes": "Unit review across CED topic families",
+      "nonInstructionArtifact": {
+        "artifactType": "review",
+        "source": "curriculum/source/passwater/unit-1.md",
+        "cedScope": "Unit 1",
+        "evidence": "Unit review across CED topic families"
+      }
+    },
+    {
+      "periodId": "u01-p17",
+      "unit": 1,
+      "period": 17,
+      "dayType": "test",
+      "notes": "Local unit assessment aligned to CED competency evidence",
+      "nonInstructionArtifact": {
+        "artifactType": "test",
+        "source": "curriculum/source/passwater/unit-1.md",
+        "cedScope": "Unit 1",
+        "evidence": "Local unit assessment aligned to CED competency evidence"
+      }
+    }
+  ]
+}

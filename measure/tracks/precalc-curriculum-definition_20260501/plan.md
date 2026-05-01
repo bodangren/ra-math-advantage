@@ -65,24 +65,24 @@
 
 ## Phase 4: Implementation Bridge and Audit
 
-- [ ] Task: Write implementation artifact validation tests
-    - [ ] Validate `class-period-package.v1` shape for Precalculus unit packages
-    - [ ] Validate package and activity-map references point back to CED topic IDs and local source references where available
-    - [ ] Validate practice activity map entries reference known units, periods, and problem families
-    - [ ] Validate documented exceptions are consumed by the audit
-- [ ] Task: Create implementation bridge artifacts
-    - [ ] Create `apps/pre-calculus/curriculum/implementation/README.md`
-    - [ ] Create `implementation/class-period-packages/unit-*.json`
-    - [ ] Create `implementation/practice-v1/activity-map.json`
-    - [ ] Create `implementation/audit/latest.json`
-- [ ] Task: Create AP Precalculus problem-family planning layer
-    - [ ] Create `apps/pre-calculus/curriculum/practice/README.md`
-    - [ ] Create `practice/problem-family-registry.md`
-    - [ ] Create `practice/course-plan-map.md`
-    - [ ] Use source-backed AP topic families and mark implementation status conservatively
-- [ ] Task: Run verification and update downstream planning
-    - [ ] Run relevant tests and validation scripts
-    - [ ] Update `measure/tracks.md` so downstream Precalculus authoring/seeding tracks depend on this track where appropriate
-    - [ ] Update downstream Precalculus authoring scope to distinguish CED-defined topics from local Passwater implementation evidence
-    - [ ] Record any discovered tech debt or unresolved source questions
+- [x] Task: Write implementation artifact validation tests
+    - [x] Validate `class-period-package.v1` shape for Precalculus unit packages
+    - [x] Validate package and activity-map references point back to CED topic IDs and local source references where available
+    - [x] Validate practice activity map entries reference known units, periods, and problem families
+    - [x] Validate documented exceptions are consumed by the audit
+- [x] Task: Create implementation bridge artifacts
+    - [x] Create `apps/pre-calculus/curriculum/implementation/README.md`
+    - [x] Create `implementation/class-period-packages/unit-*.json`
+    - [x] Create `implementation/practice-v1/activity-map.json`
+    - [x] Create `implementation/audit/latest.json`
+- [x] Task: Create AP Precalculus problem-family planning layer
+    - [x] Create `apps/pre-calculus/curriculum/practice/README.md`
+    - [x] Create `practice/problem-family-registry.md`
+    - [x] Create `practice/course-plan-map.md`
+    - [x] Use source-backed AP topic families and mark implementation status conservatively
+- [x] Task: Run verification and update downstream planning
+    - [x] Run relevant tests and validation scripts
+    - [x] Update `measure/tracks.md` so downstream Precalculus authoring/seeding tracks depend on this track where appropriate
+    - [x] Update downstream Precalculus authoring scope to distinguish CED-defined topics from local Passwater implementation evidence
+    - [x] Record any discovered tech debt or unresolved source questions
 - [ ] Task: Measure - User Manual Verification 'Implementation Bridge and Audit' (Protocol in workflow.md)

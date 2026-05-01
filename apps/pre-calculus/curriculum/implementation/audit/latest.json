@@ -1,0 +1,49 @@
+{
+  "schemaVersion": "precalculus-curriculum-audit.v1",
+  "generatedBy": "scripts/generate-curriculum-implementation.mjs",
+  "sourceCoverage": {
+    "units": 4,
+    "topics": 58,
+    "passwaterBackedUnits": 3,
+    "unit4ExamStatus": "not-assessed-on-ap-exam"
+  },
+  "packageCoverage": {
+    "classPeriodPackageUnits": 3,
+    "unit4PackageDeferred": 1,
+    "classPeriods": 53
+  },
+  "practiceCoverage": {
+    "activityCandidates": 44,
+    "problemFamilies": 44,
+    "srsEligibleCandidates": 44
+  },
+  "exceptionsConsumed": [
+    "unit-4-passwater-source-missing",
+    "topic-count-language-mismatch",
+    "ced-extraction-not-yet-normalized",
+    "ced-learning-objective-ek-detail-deferred",
+    "passwater-extraction-quality-limitations"
+  ],
+  "checks": [
+    {
+      "id": "ced-topic-count",
+      "status": "pass"
+    },
+    {
+      "id": "source-backed-package-count",
+      "status": "pass"
+    },
+    {
+      "id": "unit-4-deferred",
+      "status": "pass"
+    },
+    {
+      "id": "practice-map-coverage",
+      "status": "pass"
+    },
+    {
+      "id": "exceptions-consumed",
+      "status": "pass"
+    }
+  ]
+}

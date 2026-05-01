@@ -884,7 +884,8 @@ Parallel tracks delivering complete curriculum for all three new apps. Tracks 1 
      *Link: [./tracks/curriculum-authoring-im2_20260425/](./tracks/curriculum-authoring-im2_20260425/)*
 
 - [ ] **Track: Curriculum Content Authoring — PreCalc**
-     *Author complete curriculum content for AP Precalculus: 4 units, ~54 lessons*
+     *Author AP Precalculus lesson phases from the CED/Passwater planning layer: 4 units, 58 CED topics; Unit 4 locally unsourced and not AP-exam-assessed*
+     *Depends on: AP Precalculus Curriculum Definition*
      *Link: [./tracks/curriculum-authoring-precalc_20260425/](./tracks/curriculum-authoring-precalc_20260425/)*
 
 - [ ] **Track: Standards & Objective Seeding — All Apps**

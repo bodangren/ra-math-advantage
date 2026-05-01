@@ -1,0 +1,621 @@
+{
+  "schemaVersion": "class-period-package.v1",
+  "unit": 2,
+  "generatedFrom": "curriculum/unit-2-class-period-plan.md",
+  "sourcePriority": [
+    "curriculum/source/college-board/ced-topic-index.json",
+    "curriculum/source/college-board/clarification-guidance.md",
+    "curriculum/source/passwater/unit-2.md"
+  ],
+  "periods": [
+    {
+      "periodId": "u02-p01",
+      "unit": 2,
+      "period": 1,
+      "dayType": "instruction",
+      "cedTopic": {
+        "id": "2.1",
+        "title": "Change in Arithmetic and Geometric Sequences",
+        "source": "curriculum/source/college-board/ced-topic-index.json",
+        "errata": "curriculum/source/college-board/clarification-guidance.md",
+        "examStatus": "assessed-on-ap-exam"
+      },
+      "competencyTarget": {
+        "learningObjectiveFamily": "2.1.A",
+        "essentialKnowledgeFamily": "2.1.A.*",
+        "mathematicalPractices": [
+          "1.A",
+          "1.B",
+          "1.C",
+          "2.A",
+          "2.B",
+          "3.A",
+          "3.B",
+          "3.C"
+        ]
+      },
+      "passwaterSource": "curriculum/source/passwater/unit-2.md",
+      "problemFamily": "apc_2_1",
+      "dailyPhases": {
+        "warmUp": "Retrieve prerequisite representations connected to Topic 2.1.",
+        "topicIntroduction": "Use Passwater notes to introduce Change in Arithmetic and Geometric Sequences.",
+        "scaffoldedExamples": "Model worked examples from the Unit 2 Passwater source.",
+        "guidedPractice": "Students complete scaffolded examples aligned to CED Topic 2.1.",
+        "independentPractice": "Students complete AP-style practice mapped to apc_2_1.",
+        "exitEvidence": "Short competency evidence for 2.1.A and 2.1.A.*.",
+        "capReflection": "Students identify a courage, adaptability, or persistence move from the period."
+      }
+    },
+    {
+      "periodId": "u02-p02",
+      "unit": 2,
+      "period": 2,
+      "dayType": "instruction",
+      "cedTopic": {
+        "id": "2.2",
+        "title": "Change in Linear and Exponential Functions",
+        "source": "curriculum/source/college-board/ced-topic-index.json",
+        "errata": "curriculum/source/college-board/clarification-guidance.md",
+        "examStatus": "assessed-on-ap-exam"
+      },
+      "competencyTarget": {
+        "learningObjectiveFamily": "2.2.A",
+        "essentialKnowledgeFamily": "2.2.A.*",
+        "mathematicalPractices": [
+          "1.A",
+          "1.B",
+          "1.C",
+          "2.A",
+          "2.B",
+          "3.A",
+          "3.B",
+          "3.C"
+        ]
+      },
+      "passwaterSource": "curriculum/source/passwater/unit-2.md",
+      "problemFamily": "apc_2_2",
+      "dailyPhases": {
+        "warmUp": "Retrieve prerequisite representations connected to Topic 2.2.",
+        "topicIntroduction": "Use Passwater notes to introduce Change in Linear and Exponential Functions.",
+        "scaffoldedExamples": "Model worked examples from the Unit 2 Passwater source.",
+        "guidedPractice": "Students complete scaffolded examples aligned to CED Topic 2.2.",
+        "independentPractice": "Students complete AP-style practice mapped to apc_2_2.",
+        "exitEvidence": "Short competency evidence for 2.2.A and 2.2.A.*.",
+        "capReflection": "Students identify a courage, adaptability, or persistence move from the period."
+      }
+    },
+    {
+      "periodId": "u02-p03",
+      "unit": 2,
+      "period": 3,
+      "dayType": "instruction",
+      "cedTopic": {
+        "id": "2.3",
+        "title": "Exponential Functions",
+        "source": "curriculum/source/college-board/ced-topic-index.json",
+        "errata": "curriculum/source/college-board/clarification-guidance.md",
+        "examStatus": "assessed-on-ap-exam"
+      },
+      "competencyTarget": {
+        "learningObjectiveFamily": "2.3.A",
+        "essentialKnowledgeFamily": "2.3.A.*",
+        "mathematicalPractices": [
+          "1.A",
+          "1.B",
+          "1.C",
+          "2.A",
+          "2.B",
+          "3.A",
+          "3.B",
+          "3.C"
+        ]
+      },
+      "passwaterSource": "curriculum/source/passwater/unit-2.md",
+      "problemFamily": "apc_2_3",
+      "dailyPhases": {
+        "warmUp": "Retrieve prerequisite representations connected to Topic 2.3.",
+        "topicIntroduction": "Use Passwater notes to introduce Exponential Functions.",
+        "scaffoldedExamples": "Model worked examples from the Unit 2 Passwater source.",
+        "guidedPractice": "Students complete scaffolded examples aligned to CED Topic 2.3.",
+        "independentPractice": "Students complete AP-style practice mapped to apc_2_3.",
+        "exitEvidence": "Short competency evidence for 2.3.A and 2.3.A.*.",
+        "capReflection": "Students identify a courage, adaptability, or persistence move from the period."
+      }
+    },
+    {
+      "periodId": "u02-p04",
+      "unit": 2,
+      "period": 4,
+      "dayType": "instruction",
+      "cedTopic": {
+        "id": "2.4",
+        "title": "Exponential Function Manipulation",
+        "source": "curriculum/source/college-board/ced-topic-index.json",
+        "errata": "curriculum/source/college-board/clarification-guidance.md",
+        "examStatus": "assessed-on-ap-exam"
+      },
+      "competencyTarget": {
+        "learningObjectiveFamily": "2.4.A",
+        "essentialKnowledgeFamily": "2.4.A.*",
+        "mathematicalPractices": [
+          "1.A",
+          "1.B",
+          "1.C",
+          "2.A",
+          "2.B",
+          "3.A",
+          "3.B",
+          "3.C"
+        ]
+      },
+      "passwaterSource": "curriculum/source/passwater/unit-2.md",
+      "problemFamily": "apc_2_4",
+      "dailyPhases": {
+        "warmUp": "Retrieve prerequisite representations connected to Topic 2.4.",
+        "topicIntroduction": "Use Passwater notes to introduce Exponential Function Manipulation.",
+        "scaffoldedExamples": "Model worked examples from the Unit 2 Passwater source.",
+        "guidedPractice": "Students complete scaffolded examples aligned to CED Topic 2.4.",
+        "independentPractice": "Students complete AP-style practice mapped to apc_2_4.",
+        "exitEvidence": "Short competency evidence for 2.4.A and 2.4.A.*.",
+        "capReflection": "Students identify a courage, adaptability, or persistence move from the period."
+      }
+    },
+    {
+      "periodId": "u02-p05",
+      "unit": 2,
+      "period": 5,
+      "dayType": "instruction",
+      "cedTopic": {
+        "id": "2.5",
+        "title": "Exponential Function Context and Data Modeling",
+        "source": "curriculum/source/college-board/ced-topic-index.json",
+        "errata": "curriculum/source/college-board/clarification-guidance.md",
+        "examStatus": "assessed-on-ap-exam"
+      },
+      "competencyTarget": {
+        "learningObjectiveFamily": "2.5.A",
+        "essentialKnowledgeFamily": "2.5.A.*",
+        "mathematicalPractices": [
+          "1.A",
+          "1.B",
+          "1.C",
+          "2.A",
+          "2.B",
+          "3.A",
+          "3.B",
+          "3.C"
+        ]
+      },
+      "passwaterSource": "curriculum/source/passwater/unit-2.md",
+      "problemFamily": "apc_2_5",
+      "dailyPhases": {
+        "warmUp": "Retrieve prerequisite representations connected to Topic 2.5.",
+        "topicIntroduction": "Use Passwater notes to introduce Exponential Function Context and Data Modeling.",
+        "scaffoldedExamples": "Model worked examples from the Unit 2 Passwater source.",
+        "guidedPractice": "Students complete scaffolded examples aligned to CED Topic 2.5.",
+        "independentPractice": "Students complete AP-style practice mapped to apc_2_5.",
+        "exitEvidence": "Short competency evidence for 2.5.A and 2.5.A.*.",
+        "capReflection": "Students identify a courage, adaptability, or persistence move from the period."
+      }
+    },
+    {
+      "periodId": "u02-p06",
+      "unit": 2,
+      "period": 6,
+      "dayType": "instruction",
+      "cedTopic": {
+        "id": "2.6",
+        "title": "Competing Function Model Validation",
+        "source": "curriculum/source/college-board/ced-topic-index.json",
+        "errata": "curriculum/source/college-board/clarification-guidance.md",
+        "examStatus": "assessed-on-ap-exam"
+      },
+      "competencyTarget": {
+        "learningObjectiveFamily": "2.6.A",
+        "essentialKnowledgeFamily": "2.6.A.*",
+        "mathematicalPractices": [
+          "1.A",
+          "1.B",
+          "1.C",
+          "2.A",
+          "2.B",
+          "3.A",
+          "3.B",
+          "3.C"
+        ]
+      },
+      "passwaterSource": "curriculum/source/passwater/unit-2.md",
+      "problemFamily": "apc_2_6",
+      "dailyPhases": {
+        "warmUp": "Retrieve prerequisite representations connected to Topic 2.6.",
+        "topicIntroduction": "Use Passwater notes to introduce Competing Function Model Validation.",
+        "scaffoldedExamples": "Model worked examples from the Unit 2 Passwater source.",
+        "guidedPractice": "Students complete scaffolded examples aligned to CED Topic 2.6.",
+        "independentPractice": "Students complete AP-style practice mapped to apc_2_6.",
+        "exitEvidence": "Short competency evidence for 2.6.A and 2.6.A.*.",
+        "capReflection": "Students identify a courage, adaptability, or persistence move from the period."
+      }
+    },
+    {
+      "periodId": "u02-p07",
+      "unit": 2,
+      "period": 7,
+      "dayType": "instruction",
+      "cedTopic": {
+        "id": "2.7",
+        "title": "Function Composition",
+        "source": "curriculum/source/college-board/ced-topic-index.json",
+        "errata": "curriculum/source/college-board/clarification-guidance.md",
+        "examStatus": "assessed-on-ap-exam"
+      },
+      "competencyTarget": {
+        "learningObjectiveFamily": "2.7.A",
+        "essentialKnowledgeFamily": "2.7.A.*",
+        "mathematicalPractices": [
+          "1.A",
+          "1.B",
+          "1.C",
+          "2.A",
+          "2.B",
+          "3.A",
+          "3.B",
+          "3.C"
+        ]
+      },
+      "passwaterSource": "curriculum/source/passwater/unit-2.md",
+      "problemFamily": "apc_2_7",
+      "dailyPhases": {
+        "warmUp": "Retrieve prerequisite representations connected to Topic 2.7.",
+        "topicIntroduction": "Use Passwater notes to introduce Function Composition.",
+        "scaffoldedExamples": "Model worked examples from the Unit 2 Passwater source.",
+        "guidedPractice": "Students complete scaffolded examples aligned to CED Topic 2.7.",
+        "independentPractice": "Students complete AP-style practice mapped to apc_2_7.",
+        "exitEvidence": "Short competency evidence for 2.7.A and 2.7.A.*.",
+        "capReflection": "Students identify a courage, adaptability, or persistence move from the period."
+      }
+    },
+    {
+      "periodId": "u02-p08",
+      "unit": 2,
+      "period": 8,
+      "dayType": "instruction",
+      "cedTopic": {
+        "id": "2.8",
+        "title": "Inverse Functions",
+        "source": "curriculum/source/college-board/ced-topic-index.json",
+        "errata": "curriculum/source/college-board/clarification-guidance.md",
+        "examStatus": "assessed-on-ap-exam"
+      },
+      "competencyTarget": {
+        "learningObjectiveFamily": "2.8.A",
+        "essentialKnowledgeFamily": "2.8.A.*",
+        "mathematicalPractices": [
+          "1.A",
+          "1.B",
+          "1.C",
+          "2.A",
+          "2.B",
+          "3.A",
+          "3.B",
+          "3.C"
+        ]
+      },
+      "passwaterSource": "curriculum/source/passwater/unit-2.md",
+      "problemFamily": "apc_2_8",
+      "dailyPhases": {
+        "warmUp": "Retrieve prerequisite representations connected to Topic 2.8.",
+        "topicIntroduction": "Use Passwater notes to introduce Inverse Functions.",
+        "scaffoldedExamples": "Model worked examples from the Unit 2 Passwater source.",
+        "guidedPractice": "Students complete scaffolded examples aligned to CED Topic 2.8.",
+        "independentPractice": "Students complete AP-style practice mapped to apc_2_8.",
+        "exitEvidence": "Short competency evidence for 2.8.A and 2.8.A.*.",
+        "capReflection": "Students identify a courage, adaptability, or persistence move from the period."
+      }
+    },
+    {
+      "periodId": "u02-p09",
+      "unit": 2,
+      "period": 9,
+      "dayType": "instruction",
+      "cedTopic": {
+        "id": "2.9",
+        "title": "Logarithmic Expressions",
+        "source": "curriculum/source/college-board/ced-topic-index.json",
+        "errata": "curriculum/source/college-board/clarification-guidance.md",
+        "examStatus": "assessed-on-ap-exam"
+      },
+      "competencyTarget": {
+        "learningObjectiveFamily": "2.9.A",
+        "essentialKnowledgeFamily": "2.9.A.*",
+        "mathematicalPractices": [
+          "1.A",
+          "1.B",
+          "1.C",
+          "2.A",
+          "2.B",
+          "3.A",
+          "3.B",
+          "3.C"
+        ]
+      },
+      "passwaterSource": "curriculum/source/passwater/unit-2.md",
+      "problemFamily": "apc_2_9",
+      "dailyPhases": {
+        "warmUp": "Retrieve prerequisite representations connected to Topic 2.9.",
+        "topicIntroduction": "Use Passwater notes to introduce Logarithmic Expressions.",
+        "scaffoldedExamples": "Model worked examples from the Unit 2 Passwater source.",
+        "guidedPractice": "Students complete scaffolded examples aligned to CED Topic 2.9.",
+        "independentPractice": "Students complete AP-style practice mapped to apc_2_9.",
+        "exitEvidence": "Short competency evidence for 2.9.A and 2.9.A.*.",
+        "capReflection": "Students identify a courage, adaptability, or persistence move from the period."
+      }
+    },
+    {
+      "periodId": "u02-p10",
+      "unit": 2,
+      "period": 10,
+      "dayType": "instruction",
+      "cedTopic": {
+        "id": "2.10",
+        "title": "Inverses of Exponential Functions",
+        "source": "curriculum/source/college-board/ced-topic-index.json",
+        "errata": "curriculum/source/college-board/clarification-guidance.md",
+        "examStatus": "assessed-on-ap-exam"
+      },
+      "competencyTarget": {
+        "learningObjectiveFamily": "2.10.A",
+        "essentialKnowledgeFamily": "2.10.A.*",
+        "mathematicalPractices": [
+          "1.A",
+          "1.B",
+          "1.C",
+          "2.A",
+          "2.B",
+          "3.A",
+          "3.B",
+          "3.C"
+        ]
+      },
+      "passwaterSource": "curriculum/source/passwater/unit-2.md",
+      "problemFamily": "apc_2_10",
+      "dailyPhases": {
+        "warmUp": "Retrieve prerequisite representations connected to Topic 2.10.",
+        "topicIntroduction": "Use Passwater notes to introduce Inverses of Exponential Functions.",
+        "scaffoldedExamples": "Model worked examples from the Unit 2 Passwater source.",
+        "guidedPractice": "Students complete scaffolded examples aligned to CED Topic 2.10.",
+        "independentPractice": "Students complete AP-style practice mapped to apc_2_10.",
+        "exitEvidence": "Short competency evidence for 2.10.A and 2.10.A.*.",
+        "capReflection": "Students identify a courage, adaptability, or persistence move from the period."
+      }
+    },
+    {
+      "periodId": "u02-p11",
+      "unit": 2,
+      "period": 11,
+      "dayType": "instruction",
+      "cedTopic": {
+        "id": "2.11",
+        "title": "Logarithmic Functions",
+        "source": "curriculum/source/college-board/ced-topic-index.json",
+        "errata": "curriculum/source/college-board/clarification-guidance.md",
+        "examStatus": "assessed-on-ap-exam"
+      },
+      "competencyTarget": {
+        "learningObjectiveFamily": "2.11.A",
+        "essentialKnowledgeFamily": "2.11.A.*",
+        "mathematicalPractices": [
+          "1.A",
+          "1.B",
+          "1.C",
+          "2.A",
+          "2.B",
+          "3.A",
+          "3.B",
+          "3.C"
+        ]
+      },
+      "passwaterSource": "curriculum/source/passwater/unit-2.md",
+      "problemFamily": "apc_2_11",
+      "dailyPhases": {
+        "warmUp": "Retrieve prerequisite representations connected to Topic 2.11.",
+        "topicIntroduction": "Use Passwater notes to introduce Logarithmic Functions.",
+        "scaffoldedExamples": "Model worked examples from the Unit 2 Passwater source.",
+        "guidedPractice": "Students complete scaffolded examples aligned to CED Topic 2.11.",
+        "independentPractice": "Students complete AP-style practice mapped to apc_2_11.",
+        "exitEvidence": "Short competency evidence for 2.11.A and 2.11.A.*.",
+        "capReflection": "Students identify a courage, adaptability, or persistence move from the period."
+      }
+    },
+    {
+      "periodId": "u02-p12",
+      "unit": 2,
+      "period": 12,
+      "dayType": "instruction",
+      "cedTopic": {
+        "id": "2.12",
+        "title": "Logarithmic Function Manipulation",
+        "source": "curriculum/source/college-board/ced-topic-index.json",
+        "errata": "curriculum/source/college-board/clarification-guidance.md",
+        "examStatus": "assessed-on-ap-exam"
+      },
+      "competencyTarget": {
+        "learningObjectiveFamily": "2.12.A",
+        "essentialKnowledgeFamily": "2.12.A.*",
+        "mathematicalPractices": [
+          "1.A",
+          "1.B",
+          "1.C",
+          "2.A",
+          "2.B",
+          "3.A",
+          "3.B",
+          "3.C"
+        ]
+      },
+      "passwaterSource": "curriculum/source/passwater/unit-2.md",
+      "problemFamily": "apc_2_12",
+      "dailyPhases": {
+        "warmUp": "Retrieve prerequisite representations connected to Topic 2.12.",
+        "topicIntroduction": "Use Passwater notes to introduce Logarithmic Function Manipulation.",
+        "scaffoldedExamples": "Model worked examples from the Unit 2 Passwater source.",
+        "guidedPractice": "Students complete scaffolded examples aligned to CED Topic 2.12.",
+        "independentPractice": "Students complete AP-style practice mapped to apc_2_12.",
+        "exitEvidence": "Short competency evidence for 2.12.A and 2.12.A.*.",
+        "capReflection": "Students identify a courage, adaptability, or persistence move from the period."
+      }
+    },
+    {
+      "periodId": "u02-p13",
+      "unit": 2,
+      "period": 13,
+      "dayType": "instruction",
+      "cedTopic": {
+        "id": "2.13",
+        "title": "Exponential and Logarithmic Equations and Inequalities",
+        "source": "curriculum/source/college-board/ced-topic-index.json",
+        "errata": "curriculum/source/college-board/clarification-guidance.md",
+        "examStatus": "assessed-on-ap-exam"
+      },
+      "competencyTarget": {
+        "learningObjectiveFamily": "2.13.A",
+        "essentialKnowledgeFamily": "2.13.A.*",
+        "mathematicalPractices": [
+          "1.A",
+          "1.B",
+          "1.C",
+          "2.A",
+          "2.B",
+          "3.A",
+          "3.B",
+          "3.C"
+        ]
+      },
+      "passwaterSource": "curriculum/source/passwater/unit-2.md",
+      "problemFamily": "apc_2_13",
+      "dailyPhases": {
+        "warmUp": "Retrieve prerequisite representations connected to Topic 2.13.",
+        "topicIntroduction": "Use Passwater notes to introduce Exponential and Logarithmic Equations and Inequalities.",
+        "scaffoldedExamples": "Model worked examples from the Unit 2 Passwater source.",
+        "guidedPractice": "Students complete scaffolded examples aligned to CED Topic 2.13.",
+        "independentPractice": "Students complete AP-style practice mapped to apc_2_13.",
+        "exitEvidence": "Short competency evidence for 2.13.A and 2.13.A.*.",
+        "capReflection": "Students identify a courage, adaptability, or persistence move from the period."
+      }
+    },
+    {
+      "periodId": "u02-p14",
+      "unit": 2,
+      "period": 14,
+      "dayType": "instruction",
+      "cedTopic": {
+        "id": "2.14",
+        "title": "Logarithmic Function Context and Data Modeling",
+        "source": "curriculum/source/college-board/ced-topic-index.json",
+        "errata": "curriculum/source/college-board/clarification-guidance.md",
+        "examStatus": "assessed-on-ap-exam"
+      },
+      "competencyTarget": {
+        "learningObjectiveFamily": "2.14.A",
+        "essentialKnowledgeFamily": "2.14.A.*",
+        "mathematicalPractices": [
+          "1.A",
+          "1.B",
+          "1.C",
+          "2.A",
+          "2.B",
+          "3.A",
+          "3.B",
+          "3.C"
+        ]
+      },
+      "passwaterSource": "curriculum/source/passwater/unit-2.md",
+      "problemFamily": "apc_2_14",
+      "dailyPhases": {
+        "warmUp": "Retrieve prerequisite representations connected to Topic 2.14.",
+        "topicIntroduction": "Use Passwater notes to introduce Logarithmic Function Context and Data Modeling.",
+        "scaffoldedExamples": "Model worked examples from the Unit 2 Passwater source.",
+        "guidedPractice": "Students complete scaffolded examples aligned to CED Topic 2.14.",
+        "independentPractice": "Students complete AP-style practice mapped to apc_2_14.",
+        "exitEvidence": "Short competency evidence for 2.14.A and 2.14.A.*.",
+        "capReflection": "Students identify a courage, adaptability, or persistence move from the period."
+      }
+    },
+    {
+      "periodId": "u02-p15",
+      "unit": 2,
+      "period": 15,
+      "dayType": "instruction",
+      "cedTopic": {
+        "id": "2.15",
+        "title": "Semi-log Plots",
+        "source": "curriculum/source/college-board/ced-topic-index.json",
+        "errata": "curriculum/source/college-board/clarification-guidance.md",
+        "examStatus": "assessed-on-ap-exam"
+      },
+      "competencyTarget": {
+        "learningObjectiveFamily": "2.15.A",
+        "essentialKnowledgeFamily": "2.15.A.*",
+        "mathematicalPractices": [
+          "1.A",
+          "1.B",
+          "1.C",
+          "2.A",
+          "2.B",
+          "3.A",
+          "3.B",
+          "3.C"
+        ]
+      },
+      "passwaterSource": "curriculum/source/passwater/unit-2.md",
+      "problemFamily": "apc_2_15",
+      "dailyPhases": {
+        "warmUp": "Retrieve prerequisite representations connected to Topic 2.15.",
+        "topicIntroduction": "Use Passwater notes to introduce Semi-log Plots.",
+        "scaffoldedExamples": "Model worked examples from the Unit 2 Passwater source.",
+        "guidedPractice": "Students complete scaffolded examples aligned to CED Topic 2.15.",
+        "independentPractice": "Students complete AP-style practice mapped to apc_2_15.",
+        "exitEvidence": "Short competency evidence for 2.15.A and 2.15.A.*.",
+        "capReflection": "Students identify a courage, adaptability, or persistence move from the period."
+      }
+    },
+    {
+      "periodId": "u02-p16",
+      "unit": 2,
+      "period": 16,
+      "dayType": "ap_task_model",
+      "notes": "FRQ task-model transfer day",
+      "nonInstructionArtifact": {
+        "artifactType": "ap_task_model",
+        "source": "curriculum/source/passwater/unit-2.md",
+        "cedScope": "Unit 2",
+        "evidence": "FRQ task-model transfer day"
+      }
+    },
+    {
+      "periodId": "u02-p17",
+      "unit": 2,
+      "period": 17,
+      "dayType": "review",
+      "notes": "Unit review across CED topic families",
+      "nonInstructionArtifact": {
+        "artifactType": "review",
+        "source": "curriculum/source/passwater/unit-2.md",
+        "cedScope": "Unit 2",
+        "evidence": "Unit review across CED topic families"
+      }
+    },
+    {
+      "periodId": "u02-p18",
+      "unit": 2,
+      "period": 18,
+      "dayType": "test",
+      "notes": "Local unit assessment aligned to CED competency evidence",
+      "nonInstructionArtifact": {
+        "artifactType": "test",
+        "source": "curriculum/source/passwater/unit-2.md",
+        "cedScope": "Unit 2",
+        "evidence": "Local unit assessment aligned to CED competency evidence"
+      }
+    }
+  ]
+}

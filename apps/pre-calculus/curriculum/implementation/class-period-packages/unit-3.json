@@ -1,0 +1,621 @@
+{
+  "schemaVersion": "class-period-package.v1",
+  "unit": 3,
+  "generatedFrom": "curriculum/unit-3-class-period-plan.md",
+  "sourcePriority": [
+    "curriculum/source/college-board/ced-topic-index.json",
+    "curriculum/source/college-board/clarification-guidance.md",
+    "curriculum/source/passwater/unit-3.md"
+  ],
+  "periods": [
+    {
+      "periodId": "u03-p01",
+      "unit": 3,
+      "period": 1,
+      "dayType": "instruction",
+      "cedTopic": {
+        "id": "3.1",
+        "title": "Periodic Phenomena",
+        "source": "curriculum/source/college-board/ced-topic-index.json",
+        "errata": "curriculum/source/college-board/clarification-guidance.md",
+        "examStatus": "assessed-on-ap-exam"
+      },
+      "competencyTarget": {
+        "learningObjectiveFamily": "3.1.A",
+        "essentialKnowledgeFamily": "3.1.A.*",
+        "mathematicalPractices": [
+          "1.A",
+          "1.B",
+          "1.C",
+          "2.A",
+          "2.B",
+          "3.A",
+          "3.B",
+          "3.C"
+        ]
+      },
+      "passwaterSource": "curriculum/source/passwater/unit-3.md",
+      "problemFamily": "apc_3_1",
+      "dailyPhases": {
+        "warmUp": "Retrieve prerequisite representations connected to Topic 3.1.",
+        "topicIntroduction": "Use Passwater notes to introduce Periodic Phenomena.",
+        "scaffoldedExamples": "Model worked examples from the Unit 3 Passwater source.",
+        "guidedPractice": "Students complete scaffolded examples aligned to CED Topic 3.1.",
+        "independentPractice": "Students complete AP-style practice mapped to apc_3_1.",
+        "exitEvidence": "Short competency evidence for 3.1.A and 3.1.A.*.",
+        "capReflection": "Students identify a courage, adaptability, or persistence move from the period."
+      }
+    },
+    {
+      "periodId": "u03-p02",
+      "unit": 3,
+      "period": 2,
+      "dayType": "instruction",
+      "cedTopic": {
+        "id": "3.2",
+        "title": "Sine, Cosine, and Tangent",
+        "source": "curriculum/source/college-board/ced-topic-index.json",
+        "errata": "curriculum/source/college-board/clarification-guidance.md",
+        "examStatus": "assessed-on-ap-exam"
+      },
+      "competencyTarget": {
+        "learningObjectiveFamily": "3.2.A",
+        "essentialKnowledgeFamily": "3.2.A.*",
+        "mathematicalPractices": [
+          "1.A",
+          "1.B",
+          "1.C",
+          "2.A",
+          "2.B",
+          "3.A",
+          "3.B",
+          "3.C"
+        ]
+      },
+      "passwaterSource": "curriculum/source/passwater/unit-3.md",
+      "problemFamily": "apc_3_2",
+      "dailyPhases": {
+        "warmUp": "Retrieve prerequisite representations connected to Topic 3.2.",
+        "topicIntroduction": "Use Passwater notes to introduce Sine, Cosine, and Tangent.",
+        "scaffoldedExamples": "Model worked examples from the Unit 3 Passwater source.",
+        "guidedPractice": "Students complete scaffolded examples aligned to CED Topic 3.2.",
+        "independentPractice": "Students complete AP-style practice mapped to apc_3_2.",
+        "exitEvidence": "Short competency evidence for 3.2.A and 3.2.A.*.",
+        "capReflection": "Students identify a courage, adaptability, or persistence move from the period."
+      }
+    },
+    {
+      "periodId": "u03-p03",
+      "unit": 3,
+      "period": 3,
+      "dayType": "instruction",
+      "cedTopic": {
+        "id": "3.3",
+        "title": "Sine and Cosine Function Values",
+        "source": "curriculum/source/college-board/ced-topic-index.json",
+        "errata": "curriculum/source/college-board/clarification-guidance.md",
+        "examStatus": "assessed-on-ap-exam"
+      },
+      "competencyTarget": {
+        "learningObjectiveFamily": "3.3.A",
+        "essentialKnowledgeFamily": "3.3.A.*",
+        "mathematicalPractices": [
+          "1.A",
+          "1.B",
+          "1.C",
+          "2.A",
+          "2.B",
+          "3.A",
+          "3.B",
+          "3.C"
+        ]
+      },
+      "passwaterSource": "curriculum/source/passwater/unit-3.md",
+      "problemFamily": "apc_3_3",
+      "dailyPhases": {
+        "warmUp": "Retrieve prerequisite representations connected to Topic 3.3.",
+        "topicIntroduction": "Use Passwater notes to introduce Sine and Cosine Function Values.",
+        "scaffoldedExamples": "Model worked examples from the Unit 3 Passwater source.",
+        "guidedPractice": "Students complete scaffolded examples aligned to CED Topic 3.3.",
+        "independentPractice": "Students complete AP-style practice mapped to apc_3_3.",
+        "exitEvidence": "Short competency evidence for 3.3.A and 3.3.A.*.",
+        "capReflection": "Students identify a courage, adaptability, or persistence move from the period."
+      }
+    },
+    {
+      "periodId": "u03-p04",
+      "unit": 3,
+      "period": 4,
+      "dayType": "instruction",
+      "cedTopic": {
+        "id": "3.4",
+        "title": "Sine and Cosine Function Graphs",
+        "source": "curriculum/source/college-board/ced-topic-index.json",
+        "errata": "curriculum/source/college-board/clarification-guidance.md",
+        "examStatus": "assessed-on-ap-exam"
+      },
+      "competencyTarget": {
+        "learningObjectiveFamily": "3.4.A",
+        "essentialKnowledgeFamily": "3.4.A.*",
+        "mathematicalPractices": [
+          "1.A",
+          "1.B",
+          "1.C",
+          "2.A",
+          "2.B",
+          "3.A",
+          "3.B",
+          "3.C"
+        ]
+      },
+      "passwaterSource": "curriculum/source/passwater/unit-3.md",
+      "problemFamily": "apc_3_4",
+      "dailyPhases": {
+        "warmUp": "Retrieve prerequisite representations connected to Topic 3.4.",
+        "topicIntroduction": "Use Passwater notes to introduce Sine and Cosine Function Graphs.",
+        "scaffoldedExamples": "Model worked examples from the Unit 3 Passwater source.",
+        "guidedPractice": "Students complete scaffolded examples aligned to CED Topic 3.4.",
+        "independentPractice": "Students complete AP-style practice mapped to apc_3_4.",
+        "exitEvidence": "Short competency evidence for 3.4.A and 3.4.A.*.",
+        "capReflection": "Students identify a courage, adaptability, or persistence move from the period."
+      }
+    },
+    {
+      "periodId": "u03-p05",
+      "unit": 3,
+      "period": 5,
+      "dayType": "instruction",
+      "cedTopic": {
+        "id": "3.5",
+        "title": "Sinusoidal Functions",
+        "source": "curriculum/source/college-board/ced-topic-index.json",
+        "errata": "curriculum/source/college-board/clarification-guidance.md",
+        "examStatus": "assessed-on-ap-exam"
+      },
+      "competencyTarget": {
+        "learningObjectiveFamily": "3.5.A",
+        "essentialKnowledgeFamily": "3.5.A.*",
+        "mathematicalPractices": [
+          "1.A",
+          "1.B",
+          "1.C",
+          "2.A",
+          "2.B",
+          "3.A",
+          "3.B",
+          "3.C"
+        ]
+      },
+      "passwaterSource": "curriculum/source/passwater/unit-3.md",
+      "problemFamily": "apc_3_5",
+      "dailyPhases": {
+        "warmUp": "Retrieve prerequisite representations connected to Topic 3.5.",
+        "topicIntroduction": "Use Passwater notes to introduce Sinusoidal Functions.",
+        "scaffoldedExamples": "Model worked examples from the Unit 3 Passwater source.",
+        "guidedPractice": "Students complete scaffolded examples aligned to CED Topic 3.5.",
+        "independentPractice": "Students complete AP-style practice mapped to apc_3_5.",
+        "exitEvidence": "Short competency evidence for 3.5.A and 3.5.A.*.",
+        "capReflection": "Students identify a courage, adaptability, or persistence move from the period."
+      }
+    },
+    {
+      "periodId": "u03-p06",
+      "unit": 3,
+      "period": 6,
+      "dayType": "instruction",
+      "cedTopic": {
+        "id": "3.6",
+        "title": "Sinusoidal Function Transformations",
+        "source": "curriculum/source/college-board/ced-topic-index.json",
+        "errata": "curriculum/source/college-board/clarification-guidance.md",
+        "examStatus": "assessed-on-ap-exam"
+      },
+      "competencyTarget": {
+        "learningObjectiveFamily": "3.6.A",
+        "essentialKnowledgeFamily": "3.6.A.*",
+        "mathematicalPractices": [
+          "1.A",
+          "1.B",
+          "1.C",
+          "2.A",
+          "2.B",
+          "3.A",
+          "3.B",
+          "3.C"
+        ]
+      },
+      "passwaterSource": "curriculum/source/passwater/unit-3.md",
+      "problemFamily": "apc_3_6",
+      "dailyPhases": {
+        "warmUp": "Retrieve prerequisite representations connected to Topic 3.6.",
+        "topicIntroduction": "Use Passwater notes to introduce Sinusoidal Function Transformations.",
+        "scaffoldedExamples": "Model worked examples from the Unit 3 Passwater source.",
+        "guidedPractice": "Students complete scaffolded examples aligned to CED Topic 3.6.",
+        "independentPractice": "Students complete AP-style practice mapped to apc_3_6.",
+        "exitEvidence": "Short competency evidence for 3.6.A and 3.6.A.*.",
+        "capReflection": "Students identify a courage, adaptability, or persistence move from the period."
+      }
+    },
+    {
+      "periodId": "u03-p07",
+      "unit": 3,
+      "period": 7,
+      "dayType": "instruction",
+      "cedTopic": {
+        "id": "3.7",
+        "title": "Sinusoidal Function Context and Data Modeling",
+        "source": "curriculum/source/college-board/ced-topic-index.json",
+        "errata": "curriculum/source/college-board/clarification-guidance.md",
+        "examStatus": "assessed-on-ap-exam"
+      },
+      "competencyTarget": {
+        "learningObjectiveFamily": "3.7.A",
+        "essentialKnowledgeFamily": "3.7.A.*",
+        "mathematicalPractices": [
+          "1.A",
+          "1.B",
+          "1.C",
+          "2.A",
+          "2.B",
+          "3.A",
+          "3.B",
+          "3.C"
+        ]
+      },
+      "passwaterSource": "curriculum/source/passwater/unit-3.md",
+      "problemFamily": "apc_3_7",
+      "dailyPhases": {
+        "warmUp": "Retrieve prerequisite representations connected to Topic 3.7.",
+        "topicIntroduction": "Use Passwater notes to introduce Sinusoidal Function Context and Data Modeling.",
+        "scaffoldedExamples": "Model worked examples from the Unit 3 Passwater source.",
+        "guidedPractice": "Students complete scaffolded examples aligned to CED Topic 3.7.",
+        "independentPractice": "Students complete AP-style practice mapped to apc_3_7.",
+        "exitEvidence": "Short competency evidence for 3.7.A and 3.7.A.*.",
+        "capReflection": "Students identify a courage, adaptability, or persistence move from the period."
+      }
+    },
+    {
+      "periodId": "u03-p08",
+      "unit": 3,
+      "period": 8,
+      "dayType": "instruction",
+      "cedTopic": {
+        "id": "3.8",
+        "title": "The Tangent Function",
+        "source": "curriculum/source/college-board/ced-topic-index.json",
+        "errata": "curriculum/source/college-board/clarification-guidance.md",
+        "examStatus": "assessed-on-ap-exam"
+      },
+      "competencyTarget": {
+        "learningObjectiveFamily": "3.8.A",
+        "essentialKnowledgeFamily": "3.8.A.*",
+        "mathematicalPractices": [
+          "1.A",
+          "1.B",
+          "1.C",
+          "2.A",
+          "2.B",
+          "3.A",
+          "3.B",
+          "3.C"
+        ]
+      },
+      "passwaterSource": "curriculum/source/passwater/unit-3.md",
+      "problemFamily": "apc_3_8",
+      "dailyPhases": {
+        "warmUp": "Retrieve prerequisite representations connected to Topic 3.8.",
+        "topicIntroduction": "Use Passwater notes to introduce The Tangent Function.",
+        "scaffoldedExamples": "Model worked examples from the Unit 3 Passwater source.",
+        "guidedPractice": "Students complete scaffolded examples aligned to CED Topic 3.8.",
+        "independentPractice": "Students complete AP-style practice mapped to apc_3_8.",
+        "exitEvidence": "Short competency evidence for 3.8.A and 3.8.A.*.",
+        "capReflection": "Students identify a courage, adaptability, or persistence move from the period."
+      }
+    },
+    {
+      "periodId": "u03-p09",
+      "unit": 3,
+      "period": 9,
+      "dayType": "instruction",
+      "cedTopic": {
+        "id": "3.9",
+        "title": "Inverse Trigonometric Functions",
+        "source": "curriculum/source/college-board/ced-topic-index.json",
+        "errata": "curriculum/source/college-board/clarification-guidance.md",
+        "examStatus": "assessed-on-ap-exam"
+      },
+      "competencyTarget": {
+        "learningObjectiveFamily": "3.9.A",
+        "essentialKnowledgeFamily": "3.9.A.*",
+        "mathematicalPractices": [
+          "1.A",
+          "1.B",
+          "1.C",
+          "2.A",
+          "2.B",
+          "3.A",
+          "3.B",
+          "3.C"
+        ]
+      },
+      "passwaterSource": "curriculum/source/passwater/unit-3.md",
+      "problemFamily": "apc_3_9",
+      "dailyPhases": {
+        "warmUp": "Retrieve prerequisite representations connected to Topic 3.9.",
+        "topicIntroduction": "Use Passwater notes to introduce Inverse Trigonometric Functions.",
+        "scaffoldedExamples": "Model worked examples from the Unit 3 Passwater source.",
+        "guidedPractice": "Students complete scaffolded examples aligned to CED Topic 3.9.",
+        "independentPractice": "Students complete AP-style practice mapped to apc_3_9.",
+        "exitEvidence": "Short competency evidence for 3.9.A and 3.9.A.*.",
+        "capReflection": "Students identify a courage, adaptability, or persistence move from the period."
+      }
+    },
+    {
+      "periodId": "u03-p10",
+      "unit": 3,
+      "period": 10,
+      "dayType": "instruction",
+      "cedTopic": {
+        "id": "3.10",
+        "title": "Trigonometric Equations and Inequalities",
+        "source": "curriculum/source/college-board/ced-topic-index.json",
+        "errata": "curriculum/source/college-board/clarification-guidance.md",
+        "examStatus": "assessed-on-ap-exam"
+      },
+      "competencyTarget": {
+        "learningObjectiveFamily": "3.10.A",
+        "essentialKnowledgeFamily": "3.10.A.*",
+        "mathematicalPractices": [
+          "1.A",
+          "1.B",
+          "1.C",
+          "2.A",
+          "2.B",
+          "3.A",
+          "3.B",
+          "3.C"
+        ]
+      },
+      "passwaterSource": "curriculum/source/passwater/unit-3.md",
+      "problemFamily": "apc_3_10",
+      "dailyPhases": {
+        "warmUp": "Retrieve prerequisite representations connected to Topic 3.10.",
+        "topicIntroduction": "Use Passwater notes to introduce Trigonometric Equations and Inequalities.",
+        "scaffoldedExamples": "Model worked examples from the Unit 3 Passwater source.",
+        "guidedPractice": "Students complete scaffolded examples aligned to CED Topic 3.10.",
+        "independentPractice": "Students complete AP-style practice mapped to apc_3_10.",
+        "exitEvidence": "Short competency evidence for 3.10.A and 3.10.A.*.",
+        "capReflection": "Students identify a courage, adaptability, or persistence move from the period."
+      }
+    },
+    {
+      "periodId": "u03-p11",
+      "unit": 3,
+      "period": 11,
+      "dayType": "instruction",
+      "cedTopic": {
+        "id": "3.11",
+        "title": "The Secant, Cosecant, and Cotangent Functions",
+        "source": "curriculum/source/college-board/ced-topic-index.json",
+        "errata": "curriculum/source/college-board/clarification-guidance.md",
+        "examStatus": "assessed-on-ap-exam"
+      },
+      "competencyTarget": {
+        "learningObjectiveFamily": "3.11.A",
+        "essentialKnowledgeFamily": "3.11.A.*",
+        "mathematicalPractices": [
+          "1.A",
+          "1.B",
+          "1.C",
+          "2.A",
+          "2.B",
+          "3.A",
+          "3.B",
+          "3.C"
+        ]
+      },
+      "passwaterSource": "curriculum/source/passwater/unit-3.md",
+      "problemFamily": "apc_3_11",
+      "dailyPhases": {
+        "warmUp": "Retrieve prerequisite representations connected to Topic 3.11.",
+        "topicIntroduction": "Use Passwater notes to introduce The Secant, Cosecant, and Cotangent Functions.",
+        "scaffoldedExamples": "Model worked examples from the Unit 3 Passwater source.",
+        "guidedPractice": "Students complete scaffolded examples aligned to CED Topic 3.11.",
+        "independentPractice": "Students complete AP-style practice mapped to apc_3_11.",
+        "exitEvidence": "Short competency evidence for 3.11.A and 3.11.A.*.",
+        "capReflection": "Students identify a courage, adaptability, or persistence move from the period."
+      }
+    },
+    {
+      "periodId": "u03-p12",
+      "unit": 3,
+      "period": 12,
+      "dayType": "instruction",
+      "cedTopic": {
+        "id": "3.12",
+        "title": "Equivalent Representations of Trigonometric Functions",
+        "source": "curriculum/source/college-board/ced-topic-index.json",
+        "errata": "curriculum/source/college-board/clarification-guidance.md",
+        "examStatus": "assessed-on-ap-exam"
+      },
+      "competencyTarget": {
+        "learningObjectiveFamily": "3.12.A",
+        "essentialKnowledgeFamily": "3.12.A.*",
+        "mathematicalPractices": [
+          "1.A",
+          "1.B",
+          "1.C",
+          "2.A",
+          "2.B",
+          "3.A",
+          "3.B",
+          "3.C"
+        ]
+      },
+      "passwaterSource": "curriculum/source/passwater/unit-3.md",
+      "problemFamily": "apc_3_12",
+      "dailyPhases": {
+        "warmUp": "Retrieve prerequisite representations connected to Topic 3.12.",
+        "topicIntroduction": "Use Passwater notes to introduce Equivalent Representations of Trigonometric Functions.",
+        "scaffoldedExamples": "Model worked examples from the Unit 3 Passwater source.",
+        "guidedPractice": "Students complete scaffolded examples aligned to CED Topic 3.12.",
+        "independentPractice": "Students complete AP-style practice mapped to apc_3_12.",
+        "exitEvidence": "Short competency evidence for 3.12.A and 3.12.A.*.",
+        "capReflection": "Students identify a courage, adaptability, or persistence move from the period."
+      }
+    },
+    {
+      "periodId": "u03-p13",
+      "unit": 3,
+      "period": 13,
+      "dayType": "instruction",
+      "cedTopic": {
+        "id": "3.13",
+        "title": "Trigonometry and Polar Coordinates",
+        "source": "curriculum/source/college-board/ced-topic-index.json",
+        "errata": "curriculum/source/college-board/clarification-guidance.md",
+        "examStatus": "assessed-on-ap-exam"
+      },
+      "competencyTarget": {
+        "learningObjectiveFamily": "3.13.A",
+        "essentialKnowledgeFamily": "3.13.A.*",
+        "mathematicalPractices": [
+          "1.A",
+          "1.B",
+          "1.C",
+          "2.A",
+          "2.B",
+          "3.A",
+          "3.B",
+          "3.C"
+        ]
+      },
+      "passwaterSource": "curriculum/source/passwater/unit-3.md",
+      "problemFamily": "apc_3_13",
+      "dailyPhases": {
+        "warmUp": "Retrieve prerequisite representations connected to Topic 3.13.",
+        "topicIntroduction": "Use Passwater notes to introduce Trigonometry and Polar Coordinates.",
+        "scaffoldedExamples": "Model worked examples from the Unit 3 Passwater source.",
+        "guidedPractice": "Students complete scaffolded examples aligned to CED Topic 3.13.",
+        "independentPractice": "Students complete AP-style practice mapped to apc_3_13.",
+        "exitEvidence": "Short competency evidence for 3.13.A and 3.13.A.*.",
+        "capReflection": "Students identify a courage, adaptability, or persistence move from the period."
+      }
+    },
+    {
+      "periodId": "u03-p14",
+      "unit": 3,
+      "period": 14,
+      "dayType": "instruction",
+      "cedTopic": {
+        "id": "3.14",
+        "title": "Polar Function Graphs",
+        "source": "curriculum/source/college-board/ced-topic-index.json",
+        "errata": "curriculum/source/college-board/clarification-guidance.md",
+        "examStatus": "assessed-on-ap-exam"
+      },
+      "competencyTarget": {
+        "learningObjectiveFamily": "3.14.A",
+        "essentialKnowledgeFamily": "3.14.A.*",
+        "mathematicalPractices": [
+          "1.A",
+          "1.B",
+          "1.C",
+          "2.A",
+          "2.B",
+          "3.A",
+          "3.B",
+          "3.C"
+        ]
+      },
+      "passwaterSource": "curriculum/source/passwater/unit-3.md",
+      "problemFamily": "apc_3_14",
+      "dailyPhases": {
+        "warmUp": "Retrieve prerequisite representations connected to Topic 3.14.",
+        "topicIntroduction": "Use Passwater notes to introduce Polar Function Graphs.",
+        "scaffoldedExamples": "Model worked examples from the Unit 3 Passwater source.",
+        "guidedPractice": "Students complete scaffolded examples aligned to CED Topic 3.14.",
+        "independentPractice": "Students complete AP-style practice mapped to apc_3_14.",
+        "exitEvidence": "Short competency evidence for 3.14.A and 3.14.A.*.",
+        "capReflection": "Students identify a courage, adaptability, or persistence move from the period."
+      }
+    },
+    {
+      "periodId": "u03-p15",
+      "unit": 3,
+      "period": 15,
+      "dayType": "instruction",
+      "cedTopic": {
+        "id": "3.15",
+        "title": "Rates of Change in Polar Functions",
+        "source": "curriculum/source/college-board/ced-topic-index.json",
+        "errata": "curriculum/source/college-board/clarification-guidance.md",
+        "examStatus": "assessed-on-ap-exam"
+      },
+      "competencyTarget": {
+        "learningObjectiveFamily": "3.15.A",
+        "essentialKnowledgeFamily": "3.15.A.*",
+        "mathematicalPractices": [
+          "1.A",
+          "1.B",
+          "1.C",
+          "2.A",
+          "2.B",
+          "3.A",
+          "3.B",
+          "3.C"
+        ]
+      },
+      "passwaterSource": "curriculum/source/passwater/unit-3.md",
+      "problemFamily": "apc_3_15",
+      "dailyPhases": {
+        "warmUp": "Retrieve prerequisite representations connected to Topic 3.15.",
+        "topicIntroduction": "Use Passwater notes to introduce Rates of Change in Polar Functions.",
+        "scaffoldedExamples": "Model worked examples from the Unit 3 Passwater source.",
+        "guidedPractice": "Students complete scaffolded examples aligned to CED Topic 3.15.",
+        "independentPractice": "Students complete AP-style practice mapped to apc_3_15.",
+        "exitEvidence": "Short competency evidence for 3.15.A and 3.15.A.*.",
+        "capReflection": "Students identify a courage, adaptability, or persistence move from the period."
+      }
+    },
+    {
+      "periodId": "u03-p16",
+      "unit": 3,
+      "period": 16,
+      "dayType": "ap_task_model",
+      "notes": "FRQ task-model transfer day",
+      "nonInstructionArtifact": {
+        "artifactType": "ap_task_model",
+        "source": "curriculum/source/passwater/unit-3.md",
+        "cedScope": "Unit 3",
+        "evidence": "FRQ task-model transfer day"
+      }
+    },
+    {
+      "periodId": "u03-p17",
+      "unit": 3,
+      "period": 17,
+      "dayType": "review",
+      "notes": "Unit review across CED topic families",
+      "nonInstructionArtifact": {
+        "artifactType": "review",
+        "source": "curriculum/source/passwater/unit-3.md",
+        "cedScope": "Unit 3",
+        "evidence": "Unit review across CED topic families"
+      }
+    },
+    {
+      "periodId": "u03-p18",
+      "unit": 3,
+      "period": 18,
+      "dayType": "test",
+      "notes": "Local unit assessment aligned to CED competency evidence",
+      "nonInstructionArtifact": {
+        "artifactType": "test",
+        "source": "curriculum/source/passwater/unit-3.md",
+        "cedScope": "Unit 3",
+        "evidence": "Local unit assessment aligned to CED competency evidence"
+      }
+    }
+  ]
+}

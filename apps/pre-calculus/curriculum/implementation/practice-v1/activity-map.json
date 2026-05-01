@@ -1,0 +1,847 @@
+{
+  "schemaVersion": "curriculum-activity-map.v1",
+  "generatedFrom": [
+    "curriculum/source/college-board/ced-topic-index.json",
+    "curriculum/source/college-board/clarification-guidance.md",
+    "curriculum/source/passwater/unit-*.md",
+    "curriculum/unit-*-class-period-plan.md"
+  ],
+  "activities": [
+    {
+      "activityId": "apc-1-1-independent-practice",
+      "familyKey": "apc_1_1",
+      "cedTopicId": "1.1",
+      "unit": 1,
+      "title": "Change in Tandem independent practice",
+      "componentKey": "comprehension-quiz",
+      "mode": "practice",
+      "sourceReferences": [
+        "curriculum/source/college-board/ced-topic-index.json",
+        "curriculum/source/passwater/unit-1.md"
+      ],
+      "gradingConfig": {
+        "evidenceType": "competency-check",
+        "learningObjectiveFamily": "1.1.A",
+        "essentialKnowledgeFamily": "1.1.A.*"
+      },
+      "srsEligible": true
+    },
+    {
+      "activityId": "apc-1-2-independent-practice",
+      "familyKey": "apc_1_2",
+      "cedTopicId": "1.2",
+      "unit": 1,
+      "title": "Rates of Change independent practice",
+      "componentKey": "comprehension-quiz",
+      "mode": "practice",
+      "sourceReferences": [
+        "curriculum/source/college-board/ced-topic-index.json",
+        "curriculum/source/passwater/unit-1.md"
+      ],
+      "gradingConfig": {
+        "evidenceType": "competency-check",
+        "learningObjectiveFamily": "1.2.A",
+        "essentialKnowledgeFamily": "1.2.A.*"
+      },
+      "srsEligible": true
+    },
+    {
+      "activityId": "apc-1-3-independent-practice",
+      "familyKey": "apc_1_3",
+      "cedTopicId": "1.3",
+      "unit": 1,
+      "title": "Rates of Change in Linear and Quadratic Functions independent practice",
+      "componentKey": "comprehension-quiz",
+      "mode": "practice",
+      "sourceReferences": [
+        "curriculum/source/college-board/ced-topic-index.json",
+        "curriculum/source/passwater/unit-1.md"
+      ],
+      "gradingConfig": {
+        "evidenceType": "competency-check",
+        "learningObjectiveFamily": "1.3.A",
+        "essentialKnowledgeFamily": "1.3.A.*"
+      },
+      "srsEligible": true
+    },
+    {
+      "activityId": "apc-1-4-independent-practice",
+      "familyKey": "apc_1_4",
+      "cedTopicId": "1.4",
+      "unit": 1,
+      "title": "Polynomial Functions and Rates of Change independent practice",
+      "componentKey": "comprehension-quiz",
+      "mode": "practice",
+      "sourceReferences": [
+        "curriculum/source/college-board/ced-topic-index.json",
+        "curriculum/source/passwater/unit-1.md"
+      ],
+      "gradingConfig": {
+        "evidenceType": "competency-check",
+        "learningObjectiveFamily": "1.4.A",
+        "essentialKnowledgeFamily": "1.4.A.*"
+      },
+      "srsEligible": true
+    },
+    {
+      "activityId": "apc-1-5-independent-practice",
+      "familyKey": "apc_1_5",
+      "cedTopicId": "1.5",
+      "unit": 1,
+      "title": "Polynomial Functions and Complex Zeros independent practice",
+      "componentKey": "comprehension-quiz",
+      "mode": "practice",
+      "sourceReferences": [
+        "curriculum/source/college-board/ced-topic-index.json",
+        "curriculum/source/passwater/unit-1.md"
+      ],
+      "gradingConfig": {
+        "evidenceType": "competency-check",
+        "learningObjectiveFamily": "1.5.A",
+        "essentialKnowledgeFamily": "1.5.A.*"
+      },
+      "srsEligible": true
+    },
+    {
+      "activityId": "apc-1-6-independent-practice",
+      "familyKey": "apc_1_6",
+      "cedTopicId": "1.6",
+      "unit": 1,
+      "title": "Polynomial Functions and End Behavior independent practice",
+      "componentKey": "comprehension-quiz",
+      "mode": "practice",
+      "sourceReferences": [
+        "curriculum/source/college-board/ced-topic-index.json",
+        "curriculum/source/passwater/unit-1.md"
+      ],
+      "gradingConfig": {
+        "evidenceType": "competency-check",
+        "learningObjectiveFamily": "1.6.A",
+        "essentialKnowledgeFamily": "1.6.A.*"
+      },
+      "srsEligible": true
+    },
+    {
+      "activityId": "apc-1-7-independent-practice",
+      "familyKey": "apc_1_7",
+      "cedTopicId": "1.7",
+      "unit": 1,
+      "title": "Rational Functions and End Behavior independent practice",
+      "componentKey": "comprehension-quiz",
+      "mode": "practice",
+      "sourceReferences": [
+        "curriculum/source/college-board/ced-topic-index.json",
+        "curriculum/source/passwater/unit-1.md"
+      ],
+      "gradingConfig": {
+        "evidenceType": "competency-check",
+        "learningObjectiveFamily": "1.7.A",
+        "essentialKnowledgeFamily": "1.7.A.*"
+      },
+      "srsEligible": true
+    },
+    {
+      "activityId": "apc-1-8-independent-practice",
+      "familyKey": "apc_1_8",
+      "cedTopicId": "1.8",
+      "unit": 1,
+      "title": "Rational Functions and Zeros independent practice",
+      "componentKey": "comprehension-quiz",
+      "mode": "practice",
+      "sourceReferences": [
+        "curriculum/source/college-board/ced-topic-index.json",
+        "curriculum/source/passwater/unit-1.md"
+      ],
+      "gradingConfig": {
+        "evidenceType": "competency-check",
+        "learningObjectiveFamily": "1.8.A",
+        "essentialKnowledgeFamily": "1.8.A.*"
+      },
+      "srsEligible": true
+    },
+    {
+      "activityId": "apc-1-9-independent-practice",
+      "familyKey": "apc_1_9",
+      "cedTopicId": "1.9",
+      "unit": 1,
+      "title": "Rational Functions and Vertical Asymptotes independent practice",
+      "componentKey": "comprehension-quiz",
+      "mode": "practice",
+      "sourceReferences": [
+        "curriculum/source/college-board/ced-topic-index.json",
+        "curriculum/source/passwater/unit-1.md"
+      ],
+      "gradingConfig": {
+        "evidenceType": "competency-check",
+        "learningObjectiveFamily": "1.9.A",
+        "essentialKnowledgeFamily": "1.9.A.*"
+      },
+      "srsEligible": true
+    },
+    {
+      "activityId": "apc-1-10-independent-practice",
+      "familyKey": "apc_1_10",
+      "cedTopicId": "1.10",
+      "unit": 1,
+      "title": "Rational Functions and Holes independent practice",
+      "componentKey": "comprehension-quiz",
+      "mode": "practice",
+      "sourceReferences": [
+        "curriculum/source/college-board/ced-topic-index.json",
+        "curriculum/source/passwater/unit-1.md"
+      ],
+      "gradingConfig": {
+        "evidenceType": "competency-check",
+        "learningObjectiveFamily": "1.10.A",
+        "essentialKnowledgeFamily": "1.10.A.*"
+      },
+      "srsEligible": true
+    },
+    {
+      "activityId": "apc-1-11-independent-practice",
+      "familyKey": "apc_1_11",
+      "cedTopicId": "1.11",
+      "unit": 1,
+      "title": "Equivalent Representations of Polynomial and Rational Expressions independent practice",
+      "componentKey": "comprehension-quiz",
+      "mode": "practice",
+      "sourceReferences": [
+        "curriculum/source/college-board/ced-topic-index.json",
+        "curriculum/source/passwater/unit-1.md"
+      ],
+      "gradingConfig": {
+        "evidenceType": "competency-check",
+        "learningObjectiveFamily": "1.11.A",
+        "essentialKnowledgeFamily": "1.11.A.*"
+      },
+      "srsEligible": true
+    },
+    {
+      "activityId": "apc-1-12-independent-practice",
+      "familyKey": "apc_1_12",
+      "cedTopicId": "1.12",
+      "unit": 1,
+      "title": "Transformations of Functions independent practice",
+      "componentKey": "comprehension-quiz",
+      "mode": "practice",
+      "sourceReferences": [
+        "curriculum/source/college-board/ced-topic-index.json",
+        "curriculum/source/passwater/unit-1.md"
+      ],
+      "gradingConfig": {
+        "evidenceType": "competency-check",
+        "learningObjectiveFamily": "1.12.A",
+        "essentialKnowledgeFamily": "1.12.A.*"
+      },
+      "srsEligible": true
+    },
+    {
+      "activityId": "apc-1-13-independent-practice",
+      "familyKey": "apc_1_13",
+      "cedTopicId": "1.13",
+      "unit": 1,
+      "title": "Function Model Selection and Assumption Articulation independent practice",
+      "componentKey": "comprehension-quiz",
+      "mode": "practice",
+      "sourceReferences": [
+        "curriculum/source/college-board/ced-topic-index.json",
+        "curriculum/source/passwater/unit-1.md"
+      ],
+      "gradingConfig": {
+        "evidenceType": "competency-check",
+        "learningObjectiveFamily": "1.13.A",
+        "essentialKnowledgeFamily": "1.13.A.*"
+      },
+      "srsEligible": true
+    },
+    {
+      "activityId": "apc-1-14-independent-practice",
+      "familyKey": "apc_1_14",
+      "cedTopicId": "1.14",
+      "unit": 1,
+      "title": "Function Model Construction and Application independent practice",
+      "componentKey": "comprehension-quiz",
+      "mode": "practice",
+      "sourceReferences": [
+        "curriculum/source/college-board/ced-topic-index.json",
+        "curriculum/source/passwater/unit-1.md"
+      ],
+      "gradingConfig": {
+        "evidenceType": "competency-check",
+        "learningObjectiveFamily": "1.14.A",
+        "essentialKnowledgeFamily": "1.14.A.*"
+      },
+      "srsEligible": true
+    },
+    {
+      "activityId": "apc-2-1-independent-practice",
+      "familyKey": "apc_2_1",
+      "cedTopicId": "2.1",
+      "unit": 2,
+      "title": "Change in Arithmetic and Geometric Sequences independent practice",
+      "componentKey": "comprehension-quiz",
+      "mode": "practice",
+      "sourceReferences": [
+        "curriculum/source/college-board/ced-topic-index.json",
+        "curriculum/source/passwater/unit-2.md"
+      ],
+      "gradingConfig": {
+        "evidenceType": "competency-check",
+        "learningObjectiveFamily": "2.1.A",
+        "essentialKnowledgeFamily": "2.1.A.*"
+      },
+      "srsEligible": true
+    },
+    {
+      "activityId": "apc-2-2-independent-practice",
+      "familyKey": "apc_2_2",
+      "cedTopicId": "2.2",
+      "unit": 2,
+      "title": "Change in Linear and Exponential Functions independent practice",
+      "componentKey": "comprehension-quiz",
+      "mode": "practice",
+      "sourceReferences": [
+        "curriculum/source/college-board/ced-topic-index.json",
+        "curriculum/source/passwater/unit-2.md"
+      ],
+      "gradingConfig": {
+        "evidenceType": "competency-check",
+        "learningObjectiveFamily": "2.2.A",
+        "essentialKnowledgeFamily": "2.2.A.*"
+      },
+      "srsEligible": true
+    },
+    {
+      "activityId": "apc-2-3-independent-practice",
+      "familyKey": "apc_2_3",
+      "cedTopicId": "2.3",
+      "unit": 2,
+      "title": "Exponential Functions independent practice",
+      "componentKey": "comprehension-quiz",
+      "mode": "practice",
+      "sourceReferences": [
+        "curriculum/source/college-board/ced-topic-index.json",
+        "curriculum/source/passwater/unit-2.md"
+      ],
+      "gradingConfig": {
+        "evidenceType": "competency-check",
+        "learningObjectiveFamily": "2.3.A",
+        "essentialKnowledgeFamily": "2.3.A.*"
+      },
+      "srsEligible": true
+    },
+    {
+      "activityId": "apc-2-4-independent-practice",
+      "familyKey": "apc_2_4",
+      "cedTopicId": "2.4",
+      "unit": 2,
+      "title": "Exponential Function Manipulation independent practice",
+      "componentKey": "comprehension-quiz",
+      "mode": "practice",
+      "sourceReferences": [
+        "curriculum/source/college-board/ced-topic-index.json",
+        "curriculum/source/passwater/unit-2.md"
+      ],
+      "gradingConfig": {
+        "evidenceType": "competency-check",
+        "learningObjectiveFamily": "2.4.A",
+        "essentialKnowledgeFamily": "2.4.A.*"
+      },
+      "srsEligible": true
+    },
+    {
+      "activityId": "apc-2-5-independent-practice",
+      "familyKey": "apc_2_5",
+      "cedTopicId": "2.5",
+      "unit": 2,
+      "title": "Exponential Function Context and Data Modeling independent practice",
+      "componentKey": "comprehension-quiz",
+      "mode": "practice",
+      "sourceReferences": [
+        "curriculum/source/college-board/ced-topic-index.json",
+        "curriculum/source/passwater/unit-2.md"
+      ],
+      "gradingConfig": {
+        "evidenceType": "competency-check",
+        "learningObjectiveFamily": "2.5.A",
+        "essentialKnowledgeFamily": "2.5.A.*"
+      },
+      "srsEligible": true
+    },
+    {
+      "activityId": "apc-2-6-independent-practice",
+      "familyKey": "apc_2_6",
+      "cedTopicId": "2.6",
+      "unit": 2,
+      "title": "Competing Function Model Validation independent practice",
+      "componentKey": "comprehension-quiz",
+      "mode": "practice",
+      "sourceReferences": [
+        "curriculum/source/college-board/ced-topic-index.json",
+        "curriculum/source/passwater/unit-2.md"
+      ],
+      "gradingConfig": {
+        "evidenceType": "competency-check",
+        "learningObjectiveFamily": "2.6.A",
+        "essentialKnowledgeFamily": "2.6.A.*"
+      },
+      "srsEligible": true
+    },
+    {
+      "activityId": "apc-2-7-independent-practice",
+      "familyKey": "apc_2_7",
+      "cedTopicId": "2.7",
+      "unit": 2,
+      "title": "Function Composition independent practice",
+      "componentKey": "comprehension-quiz",
+      "mode": "practice",
+      "sourceReferences": [
+        "curriculum/source/college-board/ced-topic-index.json",
+        "curriculum/source/passwater/unit-2.md"
+      ],
+      "gradingConfig": {
+        "evidenceType": "competency-check",
+        "learningObjectiveFamily": "2.7.A",
+        "essentialKnowledgeFamily": "2.7.A.*"
+      },
+      "srsEligible": true
+    },
+    {
+      "activityId": "apc-2-8-independent-practice",
+      "familyKey": "apc_2_8",
+      "cedTopicId": "2.8",
+      "unit": 2,
+      "title": "Inverse Functions independent practice",
+      "componentKey": "comprehension-quiz",
+      "mode": "practice",
+      "sourceReferences": [
+        "curriculum/source/college-board/ced-topic-index.json",
+        "curriculum/source/passwater/unit-2.md"
+      ],
+      "gradingConfig": {
+        "evidenceType": "competency-check",
+        "learningObjectiveFamily": "2.8.A",
+        "essentialKnowledgeFamily": "2.8.A.*"
+      },
+      "srsEligible": true
+    },
+    {
+      "activityId": "apc-2-9-independent-practice",
+      "familyKey": "apc_2_9",
+      "cedTopicId": "2.9",
+      "unit": 2,
+      "title": "Logarithmic Expressions independent practice",
+      "componentKey": "comprehension-quiz",
+      "mode": "practice",
+      "sourceReferences": [
+        "curriculum/source/college-board/ced-topic-index.json",
+        "curriculum/source/passwater/unit-2.md"
+      ],
+      "gradingConfig": {
+        "evidenceType": "competency-check",
+        "learningObjectiveFamily": "2.9.A",
+        "essentialKnowledgeFamily": "2.9.A.*"
+      },
+      "srsEligible": true
+    },
+    {
+      "activityId": "apc-2-10-independent-practice",
+      "familyKey": "apc_2_10",
+      "cedTopicId": "2.10",
+      "unit": 2,
+      "title": "Inverses of Exponential Functions independent practice",
+      "componentKey": "comprehension-quiz",
+      "mode": "practice",
+      "sourceReferences": [
+        "curriculum/source/college-board/ced-topic-index.json",
+        "curriculum/source/passwater/unit-2.md"
+      ],
+      "gradingConfig": {
+        "evidenceType": "competency-check",
+        "learningObjectiveFamily": "2.10.A",
+        "essentialKnowledgeFamily": "2.10.A.*"
+      },
+      "srsEligible": true
+    },
+    {
+      "activityId": "apc-2-11-independent-practice",
+      "familyKey": "apc_2_11",
+      "cedTopicId": "2.11",
+      "unit": 2,
+      "title": "Logarithmic Functions independent practice",
+      "componentKey": "comprehension-quiz",
+      "mode": "practice",
+      "sourceReferences": [
+        "curriculum/source/college-board/ced-topic-index.json",
+        "curriculum/source/passwater/unit-2.md"
+      ],
+      "gradingConfig": {
+        "evidenceType": "competency-check",
+        "learningObjectiveFamily": "2.11.A",
+        "essentialKnowledgeFamily": "2.11.A.*"
+      },
+      "srsEligible": true
+    },
+    {
+      "activityId": "apc-2-12-independent-practice",
+      "familyKey": "apc_2_12",
+      "cedTopicId": "2.12",
+      "unit": 2,
+      "title": "Logarithmic Function Manipulation independent practice",
+      "componentKey": "comprehension-quiz",
+      "mode": "practice",
+      "sourceReferences": [
+        "curriculum/source/college-board/ced-topic-index.json",
+        "curriculum/source/passwater/unit-2.md"
+      ],
+      "gradingConfig": {
+        "evidenceType": "competency-check",
+        "learningObjectiveFamily": "2.12.A",
+        "essentialKnowledgeFamily": "2.12.A.*"
+      },
+      "srsEligible": true
+    },
+    {
+      "activityId": "apc-2-13-independent-practice",
+      "familyKey": "apc_2_13",
+      "cedTopicId": "2.13",
+      "unit": 2,
+      "title": "Exponential and Logarithmic Equations and Inequalities independent practice",
+      "componentKey": "comprehension-quiz",
+      "mode": "practice",
+      "sourceReferences": [
+        "curriculum/source/college-board/ced-topic-index.json",
+        "curriculum/source/passwater/unit-2.md"
+      ],
+      "gradingConfig": {
+        "evidenceType": "competency-check",
+        "learningObjectiveFamily": "2.13.A",
+        "essentialKnowledgeFamily": "2.13.A.*"
+      },
+      "srsEligible": true
+    },
+    {
+      "activityId": "apc-2-14-independent-practice",
+      "familyKey": "apc_2_14",
+      "cedTopicId": "2.14",
+      "unit": 2,
+      "title": "Logarithmic Function Context and Data Modeling independent practice",
+      "componentKey": "comprehension-quiz",
+      "mode": "practice",
+      "sourceReferences": [
+        "curriculum/source/college-board/ced-topic-index.json",
+        "curriculum/source/passwater/unit-2.md"
+      ],
+      "gradingConfig": {
+        "evidenceType": "competency-check",
+        "learningObjectiveFamily": "2.14.A",
+        "essentialKnowledgeFamily": "2.14.A.*"
+      },
+      "srsEligible": true
+    },
+    {
+      "activityId": "apc-2-15-independent-practice",
+      "familyKey": "apc_2_15",
+      "cedTopicId": "2.15",
+      "unit": 2,
+      "title": "Semi-log Plots independent practice",
+      "componentKey": "comprehension-quiz",
+      "mode": "practice",
+      "sourceReferences": [
+        "curriculum/source/college-board/ced-topic-index.json",
+        "curriculum/source/passwater/unit-2.md"
+      ],
+      "gradingConfig": {
+        "evidenceType": "competency-check",
+        "learningObjectiveFamily": "2.15.A",
+        "essentialKnowledgeFamily": "2.15.A.*"
+      },
+      "srsEligible": true
+    },
+    {
+      "activityId": "apc-3-1-independent-practice",
+      "familyKey": "apc_3_1",
+      "cedTopicId": "3.1",
+      "unit": 3,
+      "title": "Periodic Phenomena independent practice",
+      "componentKey": "comprehension-quiz",
+      "mode": "practice",
+      "sourceReferences": [
+        "curriculum/source/college-board/ced-topic-index.json",
+        "curriculum/source/passwater/unit-3.md"
+      ],
+      "gradingConfig": {
+        "evidenceType": "competency-check",
+        "learningObjectiveFamily": "3.1.A",
+        "essentialKnowledgeFamily": "3.1.A.*"
+      },
+      "srsEligible": true
+    },
+    {
+      "activityId": "apc-3-2-independent-practice",
+      "familyKey": "apc_3_2",
+      "cedTopicId": "3.2",
+      "unit": 3,
+      "title": "Sine, Cosine, and Tangent independent practice",
+      "componentKey": "comprehension-quiz",
+      "mode": "practice",
+      "sourceReferences": [
+        "curriculum/source/college-board/ced-topic-index.json",
+        "curriculum/source/passwater/unit-3.md"
+      ],
+      "gradingConfig": {
+        "evidenceType": "competency-check",
+        "learningObjectiveFamily": "3.2.A",
+        "essentialKnowledgeFamily": "3.2.A.*"
+      },
+      "srsEligible": true
+    },
+    {
+      "activityId": "apc-3-3-independent-practice",
+      "familyKey": "apc_3_3",
+      "cedTopicId": "3.3",
+      "unit": 3,
+      "title": "Sine and Cosine Function Values independent practice",
+      "componentKey": "comprehension-quiz",
+      "mode": "practice",
+      "sourceReferences": [
+        "curriculum/source/college-board/ced-topic-index.json",
+        "curriculum/source/passwater/unit-3.md"
+      ],
+      "gradingConfig": {
+        "evidenceType": "competency-check",
+        "learningObjectiveFamily": "3.3.A",
+        "essentialKnowledgeFamily": "3.3.A.*"
+      },
+      "srsEligible": true
+    },
+    {
+      "activityId": "apc-3-4-independent-practice",
+      "familyKey": "apc_3_4",
+      "cedTopicId": "3.4",
+      "unit": 3,
+      "title": "Sine and Cosine Function Graphs independent practice",
+      "componentKey": "comprehension-quiz",
+      "mode": "practice",
+      "sourceReferences": [
+        "curriculum/source/college-board/ced-topic-index.json",
+        "curriculum/source/passwater/unit-3.md"
+      ],
+      "gradingConfig": {
+        "evidenceType": "competency-check",
+        "learningObjectiveFamily": "3.4.A",
+        "essentialKnowledgeFamily": "3.4.A.*"
+      },
+      "srsEligible": true
+    },
+    {
+      "activityId": "apc-3-5-independent-practice",
+      "familyKey": "apc_3_5",
+      "cedTopicId": "3.5",
+      "unit": 3,
+      "title": "Sinusoidal Functions independent practice",
+      "componentKey": "comprehension-quiz",
+      "mode": "practice",
+      "sourceReferences": [
+        "curriculum/source/college-board/ced-topic-index.json",
+        "curriculum/source/passwater/unit-3.md"
+      ],
+      "gradingConfig": {
+        "evidenceType": "competency-check",
+        "learningObjectiveFamily": "3.5.A",
+        "essentialKnowledgeFamily": "3.5.A.*"
+      },
+      "srsEligible": true
+    },
+    {
+      "activityId": "apc-3-6-independent-practice",
+      "familyKey": "apc_3_6",
+      "cedTopicId": "3.6",
+      "unit": 3,
+      "title": "Sinusoidal Function Transformations independent practice",
+      "componentKey": "comprehension-quiz",
+      "mode": "practice",
+      "sourceReferences": [
+        "curriculum/source/college-board/ced-topic-index.json",
+        "curriculum/source/passwater/unit-3.md"
+      ],
+      "gradingConfig": {
+        "evidenceType": "competency-check",
+        "learningObjectiveFamily": "3.6.A",
+        "essentialKnowledgeFamily": "3.6.A.*"
+      },
+      "srsEligible": true
+    },
+    {
+      "activityId": "apc-3-7-independent-practice",
+      "familyKey": "apc_3_7",
+      "cedTopicId": "3.7",
+      "unit": 3,
+      "title": "Sinusoidal Function Context and Data Modeling independent practice",
+      "componentKey": "comprehension-quiz",
+      "mode": "practice",
+      "sourceReferences": [
+        "curriculum/source/college-board/ced-topic-index.json",
+        "curriculum/source/passwater/unit-3.md"
+      ],
+      "gradingConfig": {
+        "evidenceType": "competency-check",
+        "learningObjectiveFamily": "3.7.A",
+        "essentialKnowledgeFamily": "3.7.A.*"
+      },
+      "srsEligible": true
+    },
+    {
+      "activityId": "apc-3-8-independent-practice",
+      "familyKey": "apc_3_8",
+      "cedTopicId": "3.8",
+      "unit": 3,
+      "title": "The Tangent Function independent practice",
+      "componentKey": "comprehension-quiz",
+      "mode": "practice",
+      "sourceReferences": [
+        "curriculum/source/college-board/ced-topic-index.json",
+        "curriculum/source/passwater/unit-3.md"
+      ],
+      "gradingConfig": {
+        "evidenceType": "competency-check",
+        "learningObjectiveFamily": "3.8.A",
+        "essentialKnowledgeFamily": "3.8.A.*"
+      },
+      "srsEligible": true
+    },
+    {
+      "activityId": "apc-3-9-independent-practice",
+      "familyKey": "apc_3_9",
+      "cedTopicId": "3.9",
+      "unit": 3,
+      "title": "Inverse Trigonometric Functions independent practice",
+      "componentKey": "comprehension-quiz",
+      "mode": "practice",
+      "sourceReferences": [
+        "curriculum/source/college-board/ced-topic-index.json",
+        "curriculum/source/passwater/unit-3.md"
+      ],
+      "gradingConfig": {
+        "evidenceType": "competency-check",
+        "learningObjectiveFamily": "3.9.A",
+        "essentialKnowledgeFamily": "3.9.A.*"
+      },
+      "srsEligible": true
+    },
+    {
+      "activityId": "apc-3-10-independent-practice",
+      "familyKey": "apc_3_10",
+      "cedTopicId": "3.10",
+      "unit": 3,
+      "title": "Trigonometric Equations and Inequalities independent practice",
+      "componentKey": "comprehension-quiz",
+      "mode": "practice",
+      "sourceReferences": [
+        "curriculum/source/college-board/ced-topic-index.json",
+        "curriculum/source/passwater/unit-3.md"
+      ],
+      "gradingConfig": {
+        "evidenceType": "competency-check",
+        "learningObjectiveFamily": "3.10.A",
+        "essentialKnowledgeFamily": "3.10.A.*"
+      },
+      "srsEligible": true
+    },
+    {
+      "activityId": "apc-3-11-independent-practice",
+      "familyKey": "apc_3_11",
+      "cedTopicId": "3.11",
+      "unit": 3,
+      "title": "The Secant, Cosecant, and Cotangent Functions independent practice",
+      "componentKey": "comprehension-quiz",
+      "mode": "practice",
+      "sourceReferences": [
+        "curriculum/source/college-board/ced-topic-index.json",
+        "curriculum/source/passwater/unit-3.md"
+      ],
+      "gradingConfig": {
+        "evidenceType": "competency-check",
+        "learningObjectiveFamily": "3.11.A",
+        "essentialKnowledgeFamily": "3.11.A.*"
+      },
+      "srsEligible": true
+    },
+    {
+      "activityId": "apc-3-12-independent-practice",
+      "familyKey": "apc_3_12",
+      "cedTopicId": "3.12",
+      "unit": 3,
+      "title": "Equivalent Representations of Trigonometric Functions independent practice",
+      "componentKey": "comprehension-quiz",
+      "mode": "practice",
+      "sourceReferences": [
+        "curriculum/source/college-board/ced-topic-index.json",
+        "curriculum/source/passwater/unit-3.md"
+      ],
+      "gradingConfig": {
+        "evidenceType": "competency-check",
+        "learningObjectiveFamily": "3.12.A",
+        "essentialKnowledgeFamily": "3.12.A.*"
+      },
+      "srsEligible": true
+    },
+    {
+      "activityId": "apc-3-13-independent-practice",
+      "familyKey": "apc_3_13",
+      "cedTopicId": "3.13",
+      "unit": 3,
+      "title": "Trigonometry and Polar Coordinates independent practice",
+      "componentKey": "comprehension-quiz",
+      "mode": "practice",
+      "sourceReferences": [
+        "curriculum/source/college-board/ced-topic-index.json",
+        "curriculum/source/passwater/unit-3.md"
+      ],
+      "gradingConfig": {
+        "evidenceType": "competency-check",
+        "learningObjectiveFamily": "3.13.A",
+        "essentialKnowledgeFamily": "3.13.A.*"
+      },
+      "srsEligible": true
+    },
+    {
+      "activityId": "apc-3-14-independent-practice",
+      "familyKey": "apc_3_14",
+      "cedTopicId": "3.14",
+      "unit": 3,
+      "title": "Polar Function Graphs independent practice",
+      "componentKey": "comprehension-quiz",
+      "mode": "practice",
+      "sourceReferences": [
+        "curriculum/source/college-board/ced-topic-index.json",
+        "curriculum/source/passwater/unit-3.md"
+      ],
+      "gradingConfig": {
+        "evidenceType": "competency-check",
+        "learningObjectiveFamily": "3.14.A",
+        "essentialKnowledgeFamily": "3.14.A.*"
+      },
+      "srsEligible": true
+    },
+    {
+      "activityId": "apc-3-15-independent-practice",
+      "familyKey": "apc_3_15",
+      "cedTopicId": "3.15",
+      "unit": 3,
+      "title": "Rates of Change in Polar Functions independent practice",
+      "componentKey": "comprehension-quiz",
+      "mode": "practice",
+      "sourceReferences": [
+        "curriculum/source/college-board/ced-topic-index.json",
+        "curriculum/source/passwater/unit-3.md"
+      ],
+      "gradingConfig": {
+        "evidenceType": "competency-check",
+        "learningObjectiveFamily": "3.15.A",
+        "essentialKnowledgeFamily": "3.15.A.*"
+      },
+      "srsEligible": true
+    }
+  ]
+}
