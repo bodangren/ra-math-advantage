@@ -1,0 +1,45 @@
+{
+  "schemaVersion": "precalculus-curriculum-exceptions.v1",
+  "updatedAt": "2026-05-01T02:34:24Z",
+  "sources": {
+    "ced": "https://apcentral.collegeboard.org/media/pdf/ap-precalculus-course-and-exam-description.pdf",
+    "cedClarificationGuidance": "https://apcentral.collegeboard.org/media/pdf/ap-precalculus-ced-clarification-and-guidance.pdf",
+    "localOverview": "curriculum/overview.md",
+    "localProduct": "product.md",
+    "localRuntimePage": "app/curriculum/page.tsx"
+  },
+  "exceptions": [
+    {
+      "id": "unit-4-passwater-source-missing",
+      "status": "open",
+      "severity": "source-gap",
+      "unit": 4,
+      "sourceStatus": "ced-defined-local-passwater-missing",
+      "examStatus": "not-assessed-on-ap-exam",
+      "summary": "Unit 4 is defined in the College Board CED and appears in local product/overview materials, but this repository currently has no local Passwater Unit 4 PDF.",
+      "plannedHandling": "Preserve Unit 4 CED metadata and app-facing labels, mark Unit 4 as locally unsourced for instructional implementation, and do not generate Passwater-derived class-period packages until a local source is provided."
+    },
+    {
+      "id": "topic-count-language-mismatch",
+      "status": "open",
+      "severity": "documentation-mismatch",
+      "sourceStatus": "documented-mismatch",
+      "summary": "Local product and overview language says approximately 54 lessons, while the listed AP topic sequence contains 58 topics.",
+      "values": {
+        "productApproxLessons": "~54",
+        "overviewApproxLessons": "~54",
+        "listedTopics": 58,
+        "cedTopics": 58
+      },
+      "plannedHandling": "Use 58 CED topics as the canonical planning count for curriculum-definition artifacts. Update product/runtime wording in a later app-facing cleanup if the team decides to present AP topics as lessons."
+    },
+    {
+      "id": "ced-extraction-not-yet-normalized",
+      "status": "open",
+      "severity": "phase-2-pending",
+      "sourceStatus": "official-source-reference-known",
+      "summary": "The official CED and clarification URLs are identified, but normalized source artifacts have not yet been generated under curriculum/source/.",
+      "plannedHandling": "Phase 2 should create deterministic normalized source artifacts before unit/topic source files or implementation packages are generated."
+    }
+  ]
+}

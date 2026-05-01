@@ -840,8 +840,8 @@ AI Tutoring and Workbook scope is explicitly **import/adopt from BM2**, not gree
      *Create minimal runnable shell for apps/pre-calculus/ — config, Convex schema, design system, auth, layout, landing page, seed data*
      *Link: [./archive/scaffold-pre-calculus_20260425/](./archive/scaffold-pre-calculus_20260425/)*
 
-- [ ] **Track: AP Precalculus Curriculum Definition**
-     *Define the canonical AP Precalculus curriculum pipeline from new source PDFs, matching IM3's course/unit/lesson/class-period planning model*
+- [~] **Track: AP Precalculus Curriculum Definition**
+     *Define the canonical AP Precalculus curriculum pipeline from the College Board CED, clarification guidance, and local Passwater PDFs, matching IM3's course/unit/lesson/class-period planning model*
      *Link: [./tracks/precalc-curriculum-definition_20260501/](./tracks/precalc-curriculum-definition_20260501/)*
 
 ## Integrated Math 2
