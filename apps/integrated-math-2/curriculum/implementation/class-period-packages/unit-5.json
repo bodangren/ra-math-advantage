@@ -1,0 +1,365 @@
+{
+  "schemaVersion": "class-period-package.v1",
+  "unit": 5,
+  "generatedFrom": "curriculum/unit-5-class-period-plan.md",
+  "periods": [
+    {
+      "periodId": "u05-p01",
+      "unit": 5,
+      "period": 1,
+      "dayType": "instruction",
+      "sourceLesson": "5-1",
+      "objectiveCode": "5a",
+      "objective": "Identify and name the parts of a circle.",
+      "workedExamples": "5-1, Examples 1-3 — Identify Parts of a Circle from a Diagram; Find Arc Length Given Radius and Central Angle; Find Sector Area",
+      "embeddedObjectives": [],
+      "problemTypes": ["circle_parts_arc_sector"],
+      "notes": "Core circle vocabulary: parts identification, arc length, and sector area.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 5a with one retrieval prompt naming parts of a circle from a labeled diagram.",
+        "conceptDevelopment": "Use 5-1, Examples 1-3 to develop: identify radius, diameter, chord, arc, and sector from a diagram, compute arc length from radius and central angle using (θ/360) · 2πr, and find sector area using (θ/360) · πr².",
+        "guidedPractice": "Students complete scaffolded problems modeled on 5-1, Examples 1-3: label circle parts and compute arc lengths and sector areas; teacher checks vocabulary and formula application.",
+        "independentPractice": "Students complete aligned practice on circle_parts_arc_sector: identification, arc length, and sector area problems.",
+        "assessment": "Exit ticket: one arc length calculation and one sector area calculation.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with identifying circle parts and computing arcs and sectors."
+      }
+    },
+    {
+      "periodId": "u05-p02",
+      "unit": 5,
+      "period": 2,
+      "dayType": "instruction",
+      "sourceLesson": "5-1",
+      "objectiveCode": "5b",
+      "objective": "Apply circle vocabulary and arc/sector formulas to real-world problems.",
+      "workedExamples": "5-1, Examples 4-5 — Relationship Between Radius and Diameter; Real-World: Clock Face Arc Measurements",
+      "embeddedObjectives": ["5a", "5c"],
+      "problemTypes": ["circle_parts_arc_sector"],
+      "notes": "Radius-diameter relationship and real-world clock face arc application.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 5b with one retrieval prompt on the relationship between radius, diameter, and circumference.",
+        "conceptDevelopment": "Use 5-1, Examples 4-5 to develop: compute radius, circumference, and area from a given diameter, and apply arc length and sector area formulas to a clock face where the minute hand sweeps from 12 to 4, recognizing the 120° central angle.",
+        "guidedPractice": "Students complete scaffolded problems modeled on 5-1, Examples 4-5: convert between radius and diameter and solve real-world arc/sector problems; teacher checks formula selection and unit consistency.",
+        "independentPractice": "Students complete aligned practice on circle_parts_arc_sector: radius-diameter conversions and real-world arc measurement problems.",
+        "assessment": "Exit ticket: one radius-diameter-circumference computation and one clock face arc problem.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with applying circle formulas to real-world contexts."
+      }
+    },
+    {
+      "periodId": "u05-p03",
+      "unit": 5,
+      "period": 3,
+      "dayType": "instruction",
+      "sourceLesson": "5-2",
+      "objectiveCode": "5d",
+      "objective": "State and apply the inscribed angle theorem.",
+      "workedExamples": "5-2, Examples 1-3 — Find Inscribed Angle Given Intercepted Arc; Find Central Angle Given Intercepted Arc; Inscribed Angle in a Semicircle = 90°",
+      "embeddedObjectives": [],
+      "problemTypes": ["inscribed_angle_theorem"],
+      "notes": "Inscribed angle theorem, central angle relationships, and semicircle right-angle property.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 5d with one retrieval prompt on the relationship between an inscribed angle and its intercepted arc.",
+        "conceptDevelopment": "Use 5-2, Examples 1-3 to develop: the inscribed angle is half the intercepted arc, find inscribed and central angles from arc measures, and apply the special case that an inscribed angle in a semicircle is 90°.",
+        "guidedPractice": "Students complete scaffolded problems modeled on 5-2, Examples 1-3: compute inscribed and central angles from arcs and verify the half-angle relationship; teacher checks theorem application.",
+        "independentPractice": "Students complete aligned practice on inscribed_angle_theorem: inscribed angle, central angle, and semicircle problems.",
+        "assessment": "Exit ticket: one inscribed angle calculation and one semicircle right-angle identification.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with the inscribed angle theorem."
+      }
+    },
+    {
+      "periodId": "u05-p04",
+      "unit": 5,
+      "period": 4,
+      "dayType": "instruction",
+      "sourceLesson": "5-2",
+      "objectiveCode": "5e",
+      "objective": "Solve for missing angle measures in circles with multiple inscribed angles.",
+      "workedExamples": "5-2, Examples 4-5 — Find Missing Angle Measures with Multiple Inscribed Angles; Inscribed Angle Theorem Application",
+      "embeddedObjectives": ["5d"],
+      "problemTypes": ["inscribed_angle_theorem"],
+      "notes": "Multi-inscribed-angle problems and complex inscribed angle theorem applications.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 5e with one retrieval prompt on how two inscribed angles that intercept the same arc are related.",
+        "conceptDevelopment": "Use 5-2, Examples 4-5 to develop: solve for missing angles when multiple inscribed angles share arcs, apply the inscribed angle theorem in layered configurations, and chain multiple angle relationships in a single figure.",
+        "guidedPractice": "Students complete scaffolded problems modeled on 5-2, Examples 4-5: trace intercepted arcs and compute multiple inscribed angles in one figure; teacher checks arc-angle tracing.",
+        "independentPractice": "Students complete aligned practice on inscribed_angle_theorem: complex multi-angle problems within circle figures.",
+        "assessment": "Exit ticket: one multi-inscribed-angle problem requiring two steps of reasoning.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with multi-inscribed-angle problems."
+      }
+    },
+    {
+      "periodId": "u05-p05",
+      "unit": 5,
+      "period": 5,
+      "dayType": "mastery",
+      "notes": "Mastery cycle on 5a-5e.",
+      "nonInstructionArtifact": {
+        "artifactType": "mastery",
+        "objectiveScope": "Mastery cycle on 5a-5e.",
+        "srsSources": [
+          "worked-example-derived practice",
+          "problem-type practice where available",
+          "prior-unit spiral review"
+        ],
+        "remediationGrouping": "Group students by recent objective evidence and misconception patterns.",
+        "extensionOptions": "Offer synthesis problems that combine current objectives with prior units.",
+        "evidence": "Student completes due SRS items and submits one corrected-error reflection."
+      }
+    },
+    {
+      "periodId": "u05-p06",
+      "unit": 5,
+      "period": 6,
+      "dayType": "instruction",
+      "sourceLesson": "5-3",
+      "objectiveCode": "5f",
+      "objective": "Find chord length given distance from center and radius.",
+      "workedExamples": "5-3, Examples 1-3 — Find Chord Length Given Distance from Center and Radius; Congruent Chords Are Equidistant from Center; Find Arc Measure Given Chord",
+      "embeddedObjectives": [],
+      "problemTypes": ["chord_properties"],
+      "notes": "Core chord properties: chord length from Pythagorean theorem, congruent chord equidistance, and arc-chord relationships.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 5f with one retrieval prompt on the perpendicular distance from a chord to the center and the right triangle it forms.",
+        "conceptDevelopment": "Use 5-3, Examples 1-3 to develop: compute chord length from the distance to center and radius using (c/2)² + d² = r², apply the congruent-chord equidistant property, and relate arc measure to chord properties.",
+        "guidedPractice": "Students complete scaffolded problems modeled on 5-3, Examples 1-3: draw radius-to-chord diagrams and compute lengths; teacher checks diagram setup and Pythagorean application.",
+        "independentPractice": "Students complete aligned practice on chord_properties: chord length and congruent chord problems.",
+        "assessment": "Exit ticket: one chord length calculation and one congruent chord reasoning problem.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with chord properties."
+      }
+    },
+    {
+      "periodId": "u05-p07",
+      "unit": 5,
+      "period": 7,
+      "dayType": "instruction",
+      "sourceLesson": "5-3",
+      "objectiveCode": "5g",
+      "objective": "Apply chord properties including perpendicular bisector and real-world problems.",
+      "workedExamples": "5-3, Examples 4-5 — Perpendicular Bisector of Chord Passes Through Center; Real-World: Finding Width of a Circular Pond",
+      "embeddedObjectives": ["5f"],
+      "problemTypes": ["chord_properties"],
+      "notes": "Perpendicular bisector property and real-world circular pond width application.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 5g with one retrieval prompt on what the perpendicular bisector of a chord tells us about the center of the circle.",
+        "conceptDevelopment": "Use 5-3, Examples 4-5 to develop: verify that the perpendicular bisector of a chord passes through the center by finding midpoints and checking center coordinates, and apply the chord-distance-radius relationship to find the radius of a circular pond given a bridge chord.",
+        "guidedPractice": "Students complete scaffolded problems modeled on 5-3, Examples 4-5: use perpendicular bisector reasoning and chord-distance formulas in real-world contexts; teacher checks geometric reasoning.",
+        "independentPractice": "Students complete aligned practice on chord_properties: perpendicular bisector and real-world chord problems.",
+        "assessment": "Exit ticket: one perpendicular bisector reasoning problem and one real-world chord application.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with the perpendicular bisector property and real-world chord problems."
+      }
+    },
+    {
+      "periodId": "u05-p08",
+      "unit": 5,
+      "period": 8,
+      "dayType": "jigsaw",
+      "notes": "Mathematical practices focus: choosing between arc, chord, tangent, and secant relationships; error analysis in circle theorems.",
+      "nonInstructionArtifact": {
+        "artifactType": "jigsaw",
+        "groupTask": "Mathematical practices focus: choosing between arc, chord, tangent, and secant relationships; error analysis in circle theorems.",
+        "sourceWorkedExamples": "Use the prior instruction periods named in the notes as the problem bank.",
+        "deliverable": "Group solution poster or shared explanation with one strategy comparison.",
+        "facilitationNotes": "Assign roles for theorem identification, diagram analysis, computation, and explanation.",
+        "completionCriteria": "Correct method, accurate result, clear justification, and response to peer question."
+      }
+    },
+    {
+      "periodId": "u05-p09",
+      "unit": 5,
+      "period": 9,
+      "dayType": "review",
+      "notes": "Mid-unit review across 5a-5g. Covers circle vocabulary, arc/sector, inscribed angle theorem, and chord properties.",
+      "nonInstructionArtifact": {
+        "artifactType": "review",
+        "objectiveScope": "Mid-unit review across 5a-5g.",
+        "srsSources": [
+          "worked-example-derived practice",
+          "problem-type practice where available",
+          "prior-unit spiral review"
+        ],
+        "remediationGrouping": "Group students by recent objective evidence and misconception patterns.",
+        "extensionOptions": "Offer synthesis problems that combine inscribed angle theorem with chord properties.",
+        "evidence": "Student completes review problem set and submits one self-identified area for improvement."
+      }
+    },
+    {
+      "periodId": "u05-p10",
+      "unit": 5,
+      "period": 10,
+      "dayType": "instruction",
+      "sourceLesson": "5-4",
+      "objectiveCode": "5h",
+      "objective": "Prove that a tangent line is perpendicular to the radius at the point of tangency.",
+      "workedExamples": "5-4, Examples 1-2 — Prove Tangent Is Perpendicular to Radius; Find Segment Length Using Tangent from External Point",
+      "embeddedObjectives": [],
+      "problemTypes": ["tangent_secant_properties"],
+      "notes": "Tangent perpendicularity proof and tangent segment lengths from external points.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 5h with one retrieval prompt defining what a tangent line is and how it relates to a circle.",
+        "conceptDevelopment": "Use 5-4, Examples 1-2 to develop: prove the tangent is perpendicular to the radius at the point of tangency by contradiction, and find segment lengths when a tangent from an external point is drawn using the Pythagorean theorem.",
+        "guidedPractice": "Students complete scaffolded problems modeled on 5-4, Examples 1-2: apply tangent-radius perpendicularity and compute segment lengths; teacher checks perpendicularity reasoning.",
+        "independentPractice": "Students complete aligned practice on tangent_secant_properties: perpendicularity proofs and segment length problems.",
+        "assessment": "Exit ticket: one tangent perpendicularity reasoning problem and one segment length calculation.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with tangent perpendicularity and segment lengths."
+      }
+    },
+    {
+      "periodId": "u05-p11",
+      "unit": 5,
+      "period": 11,
+      "dayType": "instruction",
+      "sourceLesson": "5-4",
+      "objectiveCode": "5i",
+      "objective": "Apply tangent-tangent angles and secant-secant segment relationships.",
+      "workedExamples": "5-4, Examples 3-4 — Tangent-Tangent Angle from Intercepted Arcs; Secant-Secant Segment Length Relationship",
+      "embeddedObjectives": ["5h"],
+      "problemTypes": ["tangent_secant_properties"],
+      "notes": "Tangent-tangent angle formula and secant-secant product relationship.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 5i with one retrieval prompt on how to find the angle formed by two tangent lines from an external point.",
+        "conceptDevelopment": "Use 5-4, Examples 3-4 to develop: compute tangent-tangent angles from the difference of intercepted arcs, and apply the secant-secant segment length relationship (external × whole = external × whole).",
+        "guidedPractice": "Students complete scaffolded problems modeled on 5-4, Examples 3-4: compute tangent-tangent angles and set up secant-secant equations; teacher checks arc identification and equation setup.",
+        "independentPractice": "Students complete aligned practice on tangent_secant_properties: tangent-tangent angle and secant-secant segment problems.",
+        "assessment": "Exit ticket: one tangent-tangent angle calculation and one secant-secant segment problem.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with tangent angles and secant relationships."
+      }
+    },
+    {
+      "periodId": "u05-p12",
+      "unit": 5,
+      "period": 12,
+      "dayType": "instruction",
+      "sourceLesson": "5-4",
+      "objectiveCode": "5j",
+      "objective": "Apply tangent-secant power of a point to real-world problems.",
+      "workedExamples": "5-4, Examples 5-6 — Tangent-Secant Power of a Point; Real-World: Satellite Tangent to Earth's Surface",
+      "embeddedObjectives": ["5h", "5i"],
+      "problemTypes": ["tangent_secant_properties"],
+      "notes": "Power of a point for tangent-secant configurations and satellite real-world application.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 5j with one retrieval prompt on the power of a point theorem for tangent-secant configurations.",
+        "conceptDevelopment": "Use 5-4, Examples 5-6 to develop: apply the tangent-secant power of a point theorem (tangent² = external × full secant), and model a satellite tangent to Earth's surface using the Pythagorean theorem with tangent-radius perpendicularity.",
+        "guidedPractice": "Students complete scaffolded problems modeled on 5-4, Examples 5-6: set up and solve power-of-a-point equations and satellite geometry problems; teacher checks segment identification.",
+        "independentPractice": "Students complete aligned practice on tangent_secant_properties: tangent-secant power of a point and real-world problems.",
+        "assessment": "Exit ticket: one power-of-a-point calculation and one real-world tangent problem.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with power of a point and real-world tangent applications."
+      }
+    },
+    {
+      "periodId": "u05-p13",
+      "unit": 5,
+      "period": 13,
+      "dayType": "instruction",
+      "sourceLesson": "5-5",
+      "objectiveCode": "5k",
+      "objective": "Write and graph equations of circles in standard form.",
+      "workedExamples": "5-5, Examples 1-2 — Write Equation of Circle Given Center and Radius; Identify Center and Radius from Equation",
+      "embeddedObjectives": [],
+      "problemTypes": ["circle_equations"],
+      "notes": "Core standard form: writing equations and identifying center/radius.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 5k with one retrieval prompt on the standard form of a circle equation (x − h)² + (y − k)² = r².",
+        "conceptDevelopment": "Use 5-5, Examples 1-2 to develop: write a circle equation from a given center and radius, and identify center and radius from a given equation by matching to standard form.",
+        "guidedPractice": "Students complete scaffolded problems modeled on 5-5, Examples 1-2: write and interpret circle equations in standard form; teacher checks center-radius identification and equation structure.",
+        "independentPractice": "Students complete aligned practice on circle_equations: writing and identifying circle equations in standard form.",
+        "assessment": "Exit ticket: one write-the-equation problem and one identify-center-and-radius problem.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with circle equations in standard form."
+      }
+    },
+    {
+      "periodId": "u05-p14",
+      "unit": 5,
+      "period": 14,
+      "dayType": "instruction",
+      "sourceLesson": "5-5",
+      "objectiveCode": "5l",
+      "objective": "Write circle equations from graphs and complete the square to convert forms.",
+      "workedExamples": "5-5, Examples 3-4 — Write Equation from Graph; Complete the Square to Convert General Form",
+      "embeddedObjectives": ["5k"],
+      "problemTypes": ["circle_equations"],
+      "notes": "Writing equations from graphs and completing the square for form conversion.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 5l with one retrieval prompt on completing the square for a single-variable quadratic expression.",
+        "conceptDevelopment": "Use 5-5, Examples 3-4 to develop: write a circle equation from a graph by reading the center and radius, and complete the square in both x and y to convert a general-form circle equation to standard form.",
+        "guidedPractice": "Students complete scaffolded problems modeled on 5-5, Examples 3-4: write equations from graphs and complete the square for x and y terms; teacher checks algebraic steps.",
+        "independentPractice": "Students complete aligned practice on circle_equations: graph-to-equation conversion and completing the square.",
+        "assessment": "Exit ticket: one write-from-graph problem and one completing-the-square conversion.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with writing circle equations from graphs and completing the square."
+      }
+    },
+    {
+      "periodId": "u05-p15",
+      "unit": 5,
+      "period": 15,
+      "dayType": "instruction",
+      "sourceLesson": "5-5",
+      "objectiveCode": "5m",
+      "objective": "Find circle equations through points and graph from general form.",
+      "workedExamples": "5-5, Examples 5-6 — Find Equation of Circle Through Three Points; Graph a Circle from Its Equation",
+      "embeddedObjectives": ["5k", "5l"],
+      "problemTypes": ["circle_equations"],
+      "notes": "Three-point circle equations and graphing from general form.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 5m with one retrieval prompt on how substituting a point into the general form x² + y² + Dx + Ey + F = 0 produces one equation in three unknowns.",
+        "conceptDevelopment": "Use 5-5, Examples 5-6 to develop: find the equation of a circle passing through three points by setting up and solving a system of three equations, and graph a circle from its equation by identifying center and radius and plotting key points.",
+        "guidedPractice": "Students complete scaffolded problems modeled on 5-5, Examples 5-6: substitute points into the general form and solve the resulting system, then graph circles; teacher checks system setup and graphing accuracy.",
+        "independentPractice": "Students complete aligned practice on circle_equations: three-point circle problems and graphing from equations.",
+        "assessment": "Exit ticket: one three-point circle equation problem and one graph-from-equation problem.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with three-point circle equations and graphing."
+      }
+    },
+    {
+      "periodId": "u05-p16",
+      "unit": 5,
+      "period": 16,
+      "dayType": "mastery",
+      "notes": "Mastery cycle on 5f-5m.",
+      "nonInstructionArtifact": {
+        "artifactType": "mastery",
+        "objectiveScope": "Mastery cycle on 5f-5m.",
+        "srsSources": [
+          "worked-example-derived practice",
+          "problem-type practice where available",
+          "prior-unit spiral review"
+        ],
+        "remediationGrouping": "Group students by recent objective evidence and misconception patterns.",
+        "extensionOptions": "Offer synthesis problems that combine current objectives with prior units.",
+        "evidence": "Student completes due SRS items and submits one corrected-error reflection."
+      }
+    },
+    {
+      "periodId": "u05-p17",
+      "unit": 5,
+      "period": 17,
+      "dayType": "review",
+      "notes": "Unit 5 review across 5a-5m.",
+      "nonInstructionArtifact": {
+        "artifactType": "review",
+        "objectiveScope": "Unit 5 review across 5a-5m.",
+        "srsSources": [
+          "worked-example-derived practice",
+          "problem-type practice where available",
+          "prior-unit spiral review"
+        ],
+        "remediationGrouping": "Group students by recent objective evidence and misconception patterns.",
+        "extensionOptions": "Offer synthesis problems that combine current objectives with prior units.",
+        "evidence": "Student completes review problem set and submits one self-identified area for improvement."
+      }
+    },
+    {
+      "periodId": "u05-p18",
+      "unit": 5,
+      "period": 18,
+      "dayType": "test",
+      "notes": "Unit 5 assessment.",
+      "nonInstructionArtifact": {
+        "artifactType": "test",
+        "objectiveScope": "Unit 5 assessment covering 5a-5m.",
+        "srsSources": [],
+        "remediationGrouping": "N/A — summative assessment day.",
+        "extensionOptions": "N/A — summative assessment day.",
+        "evidence": "Student completes unit test."
+      }
+    }
+  ]
+}

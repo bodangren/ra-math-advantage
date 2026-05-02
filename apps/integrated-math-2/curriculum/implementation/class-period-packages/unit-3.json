@@ -1,0 +1,344 @@
+{
+  "schemaVersion": "class-period-package.v1",
+  "unit": 3,
+  "generatedFrom": "curriculum/unit-3-class-period-plan.md",
+  "periods": [
+    {
+      "periodId": "u03-p01a",
+      "unit": 3,
+      "period": 1,
+      "dayType": "instruction",
+      "sourceLesson": "3-1",
+      "objectiveCode": "3a",
+      "objective": "Define similarity and calculate scale factors between similar figures.",
+      "workedExamples": "3-1, Examples 1-3 — Find the Scale Factor Between Two Rectangles; Find a Missing Side Using the Scale Factor; Determine If Two Figures Are Similar",
+      "embeddedObjectives": ["3b", "3c"],
+      "problemTypes": ["similar_figures"],
+      "notes": "Core similar figures: scale factor calculation, missing sides, and similarity determination.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 3a with one retrieval prompt on proportional relationships and equivalent ratios.",
+        "conceptDevelopment": "Use 3-1, Examples 1-3 to develop: define similarity as same shape with proportional sides, find scale factors between rectangles, use scale factors to find missing sides, and determine similarity from side ratios and angle congruence.",
+        "guidedPractice": "Students complete scaffolded problems modeled on 3-1, Examples 1-3: compute scale factors, find missing sides, and verify similarity; teacher checks proportional reasoning and ratio setup.",
+        "independentPractice": "Students complete aligned practice on similar_figures: scale factor calculations, missing-side problems, and similarity verification.",
+        "assessment": "Exit ticket: one scale factor computation and one missing-side problem using similarity.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with defining similarity and calculating scale factors."
+      }
+    },
+    {
+      "periodId": "u03-p01b",
+      "unit": 3,
+      "period": 2,
+      "dayType": "instruction",
+      "sourceLesson": "3-1",
+      "objectiveCode": "3b",
+      "objective": "Apply similarity to dilations and real-world scale problems.",
+      "workedExamples": "3-1, Examples 4-5 — Enlarge a Figure by a Given Scale Factor; Real-World: Map Scale Calculation",
+      "embeddedObjectives": ["3a", "3c"],
+      "problemTypes": ["similar_figures"],
+      "notes": "Coordinate dilation with scale factor and map-scale real-world application.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 3b with one retrieval prompt on how multiplying coordinates by a constant scales a figure.",
+        "conceptDevelopment": "Use 3-1, Examples 4-5 to develop: enlarge a triangle by multiplying each coordinate by a scale factor, verify side proportions are preserved, and apply scale factors to convert map distances to real-world distances in kilometers.",
+        "guidedPractice": "Students complete scaffolded problems modeled on 3-1, Examples 4-5: perform coordinate dilations and solve map-scale proportion problems; teacher checks coordinate multiplication and unit conversion.",
+        "independentPractice": "Students complete aligned practice on similar_figures: dilation problems and real-world scale applications.",
+        "assessment": "Exit ticket: one coordinate dilation problem and one map-scale distance calculation.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with dilations and map scale applications."
+      }
+    },
+    {
+      "periodId": "u03-p02",
+      "unit": 3,
+      "period": 3,
+      "dayType": "instruction",
+      "sourceLesson": "3-2",
+      "objectiveCode": "3d",
+      "objective": "Use the AA and SAS Similarity Postulates to prove two triangles are similar.",
+      "workedExamples": "3-2, Examples 1-2 — Prove Triangles Similar by AA; Prove Similar by SAS",
+      "embeddedObjectives": ["3e"],
+      "problemTypes": ["similarity_criteria"],
+      "notes": "AA similarity with parallel lines/transversals and SAS similarity with proportional sides.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 3d with one retrieval prompt on identifying angle relationships formed by parallel lines and a transversal.",
+        "conceptDevelopment": "Use 3-2, Examples 1-2 to develop: prove two triangles are similar by showing two pairs of congruent angles (AA postulate) using parallel-line angle pairs, and prove similarity by SAS when two sides are proportional and the included angle is congruent.",
+        "guidedPractice": "Students complete scaffolded problems modeled on 3-2, Examples 1-2: identify angle pairs and write AA similarity proofs; teacher checks correct identification of corresponding angles.",
+        "independentPractice": "Students complete aligned practice on similarity_criteria: AA and SAS similarity proofs with parallel-line reasoning.",
+        "assessment": "Exit ticket: one AA similarity proof and one SAS similarity identification.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with using the AA Similarity Postulate."
+      }
+    },
+    {
+      "periodId": "u03-p03",
+      "unit": 3,
+      "period": 4,
+      "dayType": "instruction",
+      "sourceLesson": "3-2",
+      "objectiveCode": "3f",
+      "objective": "Use the SSS Similarity Theorem and determine which criterion applies.",
+      "workedExamples": "3-2, Examples 3-5 — Prove Similar by SSS; Determine Which Similarity Criterion Applies; Find Missing Measures Using Similar Triangles",
+      "embeddedObjectives": ["3d", "3e"],
+      "problemTypes": ["similarity_criteria"],
+      "notes": "SSS similarity, criterion selection, and missing-measure proportions.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 3f with one retrieval prompt comparing the three similarity criteria (AA, SAS, SSS) and what information each requires.",
+        "conceptDevelopment": "Use 3-2, Examples 3-5 to develop: prove SSS similarity by showing all three pairs of sides are proportional, choose the appropriate criterion based on given information, and use established similarity to find missing side lengths via proportions.",
+        "guidedPractice": "Students complete scaffolded problems modeled on 3-2, Examples 3-5: check proportionality of sides and select the right criterion; teacher checks criterion justification and proportion setup.",
+        "independentPractice": "Students complete aligned practice on similarity_criteria: SSS proofs, criterion selection, and missing-measure proportion problems.",
+        "assessment": "Exit ticket: one SSS similarity verification and one missing-measure problem.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with the SSS Similarity Theorem."
+      }
+    },
+    {
+      "periodId": "u03-p04",
+      "unit": 3,
+      "period": 5,
+      "dayType": "mastery",
+      "notes": "Mastery cycle on 3a-3f.",
+      "nonInstructionArtifact": {
+        "artifactType": "mastery",
+        "objectiveScope": "Mastery cycle on 3a-3f.",
+        "srsSources": [
+          "worked-example-derived practice",
+          "problem-type practice where available",
+          "prior-unit spiral review"
+        ],
+        "remediationGrouping": "Group students by recent objective evidence and misconception patterns.",
+        "extensionOptions": "Offer synthesis problems that combine current objectives with prior units.",
+        "evidence": "Student completes due SRS items and submits one corrected-error reflection."
+      }
+    },
+    {
+      "periodId": "u03-p06",
+      "unit": 3,
+      "period": 6,
+      "dayType": "review",
+      "notes": "Mid-unit review across 3a-3f. Checkpoint before transitioning to indirect measurement and proofs.",
+      "nonInstructionArtifact": {
+        "artifactType": "review",
+        "objectiveScope": "Mid-unit review across 3a-3f.",
+        "srsSources": [
+          "worked-example-derived practice",
+          "problem-type practice where available",
+          "prior-unit spiral review"
+        ],
+        "remediationGrouping": "Group students by recent objective evidence and misconception patterns.",
+        "extensionOptions": "Offer synthesis problems that combine scale factor calculations with similarity criterion selection.",
+        "evidence": "Student completes review problem set and submits one self-identified area for improvement."
+      }
+    },
+    {
+      "periodId": "u03-p05a",
+      "unit": 3,
+      "period": 7,
+      "dayType": "instruction",
+      "sourceLesson": "3-3",
+      "objectiveCode": "3g",
+      "objective": "Use similar triangles and proportions for indirect measurement.",
+      "workedExamples": "3-3, Examples 1-3 — Find the Height of a Building Using the Shadow Method; Find Distance Across a River Using Similar Triangles; Scale Drawing Problem",
+      "embeddedObjectives": ["3h"],
+      "problemTypes": ["indirect_measurement"],
+      "notes": "Shadow method, river-width measurement, and scale drawing applications.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 3g with one retrieval prompt on setting up a proportion from two similar triangles.",
+        "conceptDevelopment": "Use 3-3, Examples 1-3 to develop: use shadow-method similar triangles to find building height, set up proportions for river-width measurement using similar triangles, and solve scale drawing problems with actual-area verification.",
+        "guidedPractice": "Students complete scaffolded problems modeled on 3-3, Examples 1-3: draw the similar triangle diagram and set up the correct proportion for each method; teacher checks diagram accuracy and ratio correspondence.",
+        "independentPractice": "Students complete aligned practice on indirect_measurement: shadow and scale drawing problems.",
+        "assessment": "Exit ticket: one indirect measurement problem requiring a proportion setup with similar triangles.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with indirect measurement using similar triangles."
+      }
+    },
+    {
+      "periodId": "u03-p05b",
+      "unit": 3,
+      "period": 8,
+      "dayType": "instruction",
+      "sourceLesson": "3-3",
+      "objectiveCode": "3h",
+      "objective": "Apply the mirror method and the triangle proportionality theorem.",
+      "workedExamples": "3-3, Examples 4-5 — Mirror Method for Finding Height; Proportional Relationships in Similar Triangles",
+      "embeddedObjectives": ["3g"],
+      "problemTypes": ["indirect_measurement"],
+      "notes": "Mirror method for indirect height measurement and triangle proportionality theorem with parallel transversals.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 3h with one retrieval prompt on how the angle of incidence equals the angle of reflection creating similar right triangles.",
+        "conceptDevelopment": "Use 3-3, Examples 4-5 to develop: apply the mirror method by setting up proportions from similar right triangles formed by the observer and the object, and apply the triangle proportionality theorem to find segment lengths when a line is parallel to one side of a triangle.",
+        "guidedPractice": "Students complete scaffolded problems modeled on 3-3, Examples 4-5: set up mirror-method proportions and verify the triangle proportionality theorem; teacher checks the similar-triangle identification.",
+        "independentPractice": "Students complete aligned practice on indirect_measurement: mirror method and triangle proportionality theorem problems.",
+        "assessment": "Exit ticket: one mirror-method proportion problem and one triangle proportionality calculation.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with the mirror method and triangle proportionality theorem."
+      }
+    },
+    {
+      "periodId": "u03-p06a",
+      "unit": 3,
+      "period": 9,
+      "dayType": "instruction",
+      "sourceLesson": "3-4",
+      "objectiveCode": "3i",
+      "objective": "Write two-column proofs that establish triangle similarity.",
+      "workedExamples": "3-4, Examples 1-2 — Two-Column Proof Showing AA Similarity; Prove Similar and Use Proportion to Find a Missing Side",
+      "embeddedObjectives": ["3j"],
+      "problemTypes": ["similarity_proofs"],
+      "notes": "Similarity proof structure and proportion-within-proof.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 3i with one retrieval prompt on the structure of a two-column proof applied to similarity.",
+        "conceptDevelopment": "Use 3-4, Examples 1-2 to develop: write a two-column proof establishing AA similarity with parallel-line angle pairs, and extend the proof to use proportions for finding missing sides within the proof.",
+        "guidedPractice": "Students complete scaffolded proofs modeled on 3-4, Examples 1-2: fill in missing statements and reasons in AA similarity proofs with proportion steps; teacher checks proof logic and proportion integration.",
+        "independentPractice": "Students complete aligned practice on similarity_proofs: write two-column similarity proofs with AA and proportion steps.",
+        "assessment": "Exit ticket: one similarity proof with key blanks to fill and one proportion step to justify.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with writing similarity proofs."
+      }
+    },
+    {
+      "periodId": "u03-p06b",
+      "unit": 3,
+      "period": 10,
+      "dayType": "instruction",
+      "sourceLesson": "3-4",
+      "objectiveCode": "3i",
+      "objective": "Construct multi-step similarity proofs with parallel lines and transversals.",
+      "workedExamples": "3-4, Example 3 — Multi-Step Proof with Parallel Lines and Transversals",
+      "embeddedObjectives": ["3j"],
+      "problemTypes": ["similarity_proofs"],
+      "notes": "Multi-step parallel-line similarity proof building on AA and proportion integration.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 3i with one retrieval prompt on identifying alternate interior and corresponding angles formed by parallel lines.",
+        "conceptDevelopment": "Use 3-4, Example 3 to develop: chain multiple angle-pair justifications in a multi-step proof using parallel lines and transversals to establish AA similarity, then use the resulting proportion to find a missing measure.",
+        "guidedPractice": "Students complete scaffolded multi-step proofs modeled on 3-4, Example 3: identify the sequence of angle relationships and fill in the proof; teacher checks logical flow and parallel-line reasoning.",
+        "independentPractice": "Students complete aligned practice on similarity_proofs: multi-step parallel-line similarity proofs with proportion applications.",
+        "assessment": "Exit ticket: one multi-step similarity proof with a key angle-pair justification missing.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with multi-step parallel-line similarity proofs."
+      }
+    },
+    {
+      "periodId": "u03-p07",
+      "unit": 3,
+      "period": 11,
+      "dayType": "instruction",
+      "sourceLesson": "3-4",
+      "objectiveCode": "3k",
+      "objective": "Construct multi-step proofs involving overlapping triangles and coordinate planes.",
+      "workedExamples": "3-4, Examples 4-5 — Prove Similarity in Overlapping Triangles; Proof Involving Similar Triangles in the Coordinate Plane",
+      "embeddedObjectives": ["3i", "3j"],
+      "problemTypes": ["similarity_proofs"],
+      "notes": "Overlapping triangle similarity and coordinate-plane similarity proofs.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 3k with one retrieval prompt on identifying overlapping similar triangles in a shared-angle configuration.",
+        "conceptDevelopment": "Use 3-4, Examples 4-5 to develop: identify shared angles in overlapping triangles to establish similarity, chain multiple similarity statements in a proof, and transfer similarity proof techniques to the coordinate plane.",
+        "guidedPractice": "Students complete scaffolded problems modeled on 3-4, Examples 4-5: separate overlapping triangles and write multi-step similarity proofs; teacher checks triangle identification and proof chain.",
+        "independentPractice": "Students complete aligned practice on similarity_proofs: overlapping triangle proofs and coordinate-plane similarity proofs.",
+        "assessment": "Exit ticket: one overlapping triangle similarity identification and one coordinate proof step.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with multi-step similarity proofs."
+      }
+    },
+    {
+      "periodId": "u03-p08",
+      "unit": 3,
+      "period": 12,
+      "dayType": "jigsaw",
+      "notes": "Mathematical practices focus: comparing similarity criteria, choosing proof strategies, and error analysis in proportions.",
+      "nonInstructionArtifact": {
+        "artifactType": "jigsaw",
+        "groupTask": "Mathematical practices focus: comparing similarity criteria, choosing proof strategies, and error analysis in proportions.",
+        "sourceWorkedExamples": "Use the prior instruction periods named in the notes as the problem bank.",
+        "deliverable": "Group solution poster or shared explanation with one strategy comparison.",
+        "facilitationNotes": "Assign roles for criterion selection, proportion setup, proof writing, and explanation.",
+        "completionCriteria": "Correct method, accurate result, clear justification, and response to peer question."
+      }
+    },
+    {
+      "periodId": "u03-p09",
+      "unit": 3,
+      "period": 13,
+      "dayType": "instruction",
+      "sourceLesson": "3-5",
+      "objectiveCode": "3l",
+      "objective": "Apply similarity to real-world problems involving scale models and enlargements.",
+      "workedExamples": "3-5, Examples 1-3 — Scale Model Dimensions; Photography Enlargement; Blueprint Reading",
+      "embeddedObjectives": ["3m"],
+      "problemTypes": ["scale_model_applications"],
+      "notes": "Scale models, photography enlargements, and blueprint reading with area scale factor.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 3l with one retrieval prompt on how linear scale factor relates to dimensions.",
+        "conceptDevelopment": "Use 3-5, Examples 1-3 to develop: compute dimensions from a scale model using linear scale factor, calculate enlargement dimensions in photography, and interpret blueprint measurements including area scale factor relationships.",
+        "guidedPractice": "Students complete scaffolded problems modeled on 3-5, Examples 1-3: convert between model and actual dimensions using scale factors; teacher checks scale factor application and area relationship.",
+        "independentPractice": "Students complete aligned practice on scale_model_applications: scale model, enlargement, and blueprint problems.",
+        "assessment": "Exit ticket: one scale model dimension problem and one area scale factor question.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with scale model applications."
+      }
+    },
+    {
+      "periodId": "u03-p10",
+      "unit": 3,
+      "period": 14,
+      "dayType": "instruction",
+      "sourceLesson": "3-5",
+      "objectiveCode": "3n",
+      "objective": "Recognize self-similarity in fractal patterns and apply similarity in engineering.",
+      "workedExamples": "3-5, Examples 4-5 — Fractal Patterns and Self-Similarity; Engineering Application: Similar Triangles in Bridge Design",
+      "embeddedObjectives": ["3l", "3m"],
+      "problemTypes": ["scale_model_applications"],
+      "notes": "Sierpinski triangle, self-similarity, and bridge-truss scale factor/area application.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 3n with one retrieval prompt on what self-similarity means in a pattern.",
+        "conceptDevelopment": "Use 3-5, Examples 4-5 to develop: identify self-similar patterns in fractals like the Sierpinski triangle and compute scale factors between iterations, and apply similar triangle reasoning to compute scale factors and areas in bridge truss design.",
+        "guidedPractice": "Students complete scaffolded problems modeled on 3-5, Examples 4-5: find scale factors in fractal iterations and in engineering diagrams; teacher checks self-similarity identification.",
+        "independentPractice": "Students complete aligned practice on scale_model_applications: fractal scale factor computation and engineering similarity problems.",
+        "assessment": "Exit ticket: one fractal scale factor problem and one engineering similarity application.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with self-similarity and engineering applications."
+      }
+    },
+    {
+      "periodId": "u03-p11",
+      "unit": 3,
+      "period": 15,
+      "dayType": "mastery",
+      "notes": "Mastery cycle on 3g-3n.",
+      "nonInstructionArtifact": {
+        "artifactType": "mastery",
+        "objectiveScope": "Mastery cycle on 3g-3n.",
+        "srsSources": [
+          "worked-example-derived practice",
+          "problem-type practice where available",
+          "prior-unit spiral review"
+        ],
+        "remediationGrouping": "Group students by recent objective evidence and misconception patterns.",
+        "extensionOptions": "Offer synthesis problems that combine current objectives with prior units.",
+        "evidence": "Student completes due SRS items and submits one corrected-error reflection."
+      }
+    },
+    {
+      "periodId": "u03-p12",
+      "unit": 3,
+      "period": 16,
+      "dayType": "review",
+      "notes": "Unit 3 review across 3a-3n.",
+      "nonInstructionArtifact": {
+        "artifactType": "review",
+        "objectiveScope": "Unit 3 review across 3a-3n.",
+        "srsSources": [
+          "worked-example-derived practice",
+          "problem-type practice where available",
+          "prior-unit spiral review"
+        ],
+        "remediationGrouping": "Group students by recent objective evidence and misconception patterns.",
+        "extensionOptions": "Offer synthesis problems that combine current objectives with prior units.",
+        "evidence": "Student completes review problem set and submits one self-identified area for improvement."
+      }
+    },
+    {
+      "periodId": "u03-p13",
+      "unit": 3,
+      "period": 17,
+      "dayType": "test",
+      "notes": "Unit 3 assessment.",
+      "nonInstructionArtifact": {
+        "artifactType": "test",
+        "objectiveScope": "Unit 3 assessment covering 3a-3n.",
+        "srsSources": [],
+        "remediationGrouping": "N/A — summative assessment day.",
+        "extensionOptions": "N/A — summative assessment day.",
+        "evidence": "Student completes unit test."
+      }
+    }
+  ]
+}

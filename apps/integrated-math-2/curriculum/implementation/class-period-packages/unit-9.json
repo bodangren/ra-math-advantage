@@ -1,0 +1,400 @@
+{
+  "schemaVersion": "class-period-package.v1",
+  "unit": 9,
+  "generatedFrom": "curriculum/unit-9-class-period-plan.md",
+  "periods": [
+    {
+      "periodId": "u09-p01",
+      "unit": 9,
+      "period": 1,
+      "dayType": "instruction",
+      "sourceLesson": "9-1",
+      "objectiveCode": "9a",
+      "objective": "Solve multi-step linear equations using the distributive property and variables on both sides.",
+      "workedExamples": "9-1, Examples 1-3 — Solve 3(x + 4) = 2x + 15; Solve 5x − 3 = 2x + 9; Solve Equation with Fractions",
+      "embeddedObjectives": [],
+      "problemTypes": ["linear_equations"],
+      "notes": "Distributive property, variables on both sides, and clearing fractions by multiplying by the LCD.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 9a with one retrieval prompt solving a two-step equation.",
+        "conceptDevelopment": "Use 9-1, Examples 1-3 to develop: solve equations using the distributive property to remove parentheses, combine like terms with variables on both sides, and clear fractions by multiplying every term by the LCD.",
+        "guidedPractice": "Students complete scaffolded problems modeled on 9-1, Examples 1-3: solve multi-step equations with distribution, variable movement, and fraction clearing; teacher checks algebraic steps.",
+        "independentPractice": "Students complete aligned practice on linear_equations: multi-step and fraction equations.",
+        "assessment": "Exit ticket: one distributive-property equation and one fraction equation.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with multi-step linear equations."
+      }
+    },
+    {
+      "periodId": "u09-p02",
+      "unit": 9,
+      "period": 2,
+      "dayType": "instruction",
+      "sourceLesson": "9-1",
+      "objectiveCode": "9b",
+      "objective": "Identify equations with no solution or infinitely many solutions and apply to break-even problems.",
+      "workedExamples": "9-1, Examples 4-5 — No Solution vs. Infinite Solutions; Real-World Break-Even Point",
+      "embeddedObjectives": ["9a"],
+      "problemTypes": ["linear_equations"],
+      "notes": "Special cases (no solution, infinite solutions) and real-world break-even modeling.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 9b with one retrieval prompt on what happens when an equation simplifies to a false statement like 0 = 5.",
+        "conceptDevelopment": "Use 9-1, Examples 4-5 to develop: classify equations as having no solution (false statement), infinitely many solutions (true identity), or exactly one solution, and model a real-world break-even scenario by setting revenue equal to cost.",
+        "guidedPractice": "Students complete scaffolded problems modeled on 9-1, Examples 4-5: classify solution types and set up break-even equations; teacher checks special-case identification.",
+        "independentPractice": "Students complete aligned practice on linear_equations: special-case classification and break-even problems.",
+        "assessment": "Exit ticket: one special-case identification and one break-even setup.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with special-case equations."
+      }
+    },
+    {
+      "periodId": "u09-p03",
+      "unit": 9,
+      "period": 3,
+      "dayType": "instruction",
+      "sourceLesson": "9-2",
+      "objectiveCode": "9c",
+      "objective": "Graph linear equations using slope-intercept and standard form; write equations from two points.",
+      "workedExamples": "9-2, Examples 1-3 — Graph from Slope-Intercept Form y = mx + b; Convert Standard Form to Slope-Intercept; Write Equation from Two Points",
+      "embeddedObjectives": ["9d"],
+      "problemTypes": ["graphing_linear_equations"],
+      "notes": "Core graphing from slope-intercept and standard form; equation writing from two points.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 9c with one retrieval prompt identifying slope and y-intercept from the equation y = 3x − 2.",
+        "conceptDevelopment": "Use 9-2, Examples 1-3 to develop: graph a line directly from slope-intercept form by plotting the y-intercept and using the slope, convert standard form Ax + By = C to slope-intercept form, and write the equation of a line from two given points.",
+        "guidedPractice": "Students complete scaffolded problems modeled on 9-2, Examples 1-3: graph lines, convert forms, and write equations from points; teacher checks slope calculation and graphing accuracy.",
+        "independentPractice": "Students complete aligned practice on graphing_linear_equations: graphing, form conversion, and equation writing from points.",
+        "assessment": "Exit ticket: one graph-from-slope-intercept and one write-equation-from-two-points problem.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with graphing linear equations."
+      }
+    },
+    {
+      "periodId": "u09-p04",
+      "unit": 9,
+      "period": 4,
+      "dayType": "instruction",
+      "sourceLesson": "9-2",
+      "objectiveCode": "9d",
+      "objective": "Graph from point-slope form; identify parallel and perpendicular lines.",
+      "workedExamples": "9-2, Examples 4-5 — Graph from Point-Slope Form; Parallel and Perpendicular Lines",
+      "embeddedObjectives": ["9c"],
+      "problemTypes": ["graphing_linear_equations"],
+      "notes": "Point-slope graphing and parallel/perpendicular relationships.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 9d with one retrieval prompt on the point-slope form y − y₁ = m(x − x₁).",
+        "conceptDevelopment": "Use 9-2, Examples 4-5 to develop: graph from point-slope form by identifying the point and slope, and identify parallel lines (equal slopes) and perpendicular lines (negative reciprocal slopes).",
+        "guidedPractice": "Students complete scaffolded problems modeled on 9-2, Examples 4-5: graph from point-slope form and classify parallel/perpendicular; teacher checks slope-relationship reasoning.",
+        "independentPractice": "Students complete aligned practice on graphing_linear_equations: point-slope graphing and parallel/perpendicular identification.",
+        "assessment": "Exit ticket: one point-slope graphing problem and one parallel/perpendicular classification.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with point-slope form and line relationships."
+      }
+    },
+    {
+      "periodId": "u09-p05",
+      "unit": 9,
+      "period": 5,
+      "dayType": "instruction",
+      "sourceLesson": "9-2",
+      "objectiveCode": "9d",
+      "objective": "Apply linear equations to real-world modeling.",
+      "workedExamples": "9-2, Example 6 — Real-World Distance-Time Model",
+      "embeddedObjectives": ["9c"],
+      "problemTypes": ["graphing_linear_equations"],
+      "notes": "Real-world distance-time modeling from two data points. Split from Period 4 to separate form-based graphing from contextual application and to give the real-world modeling example focused treatment.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 9d with one retrieval prompt on how slope represents rate of change in a real-world context.",
+        "conceptDevelopment": "Use 9-2, Example 6 to develop: model a cyclist's distance from home over time using two data points, compute slope as speed, identify y-intercept as initial distance, and interpret the equation in context.",
+        "guidedPractice": "Students complete scaffolded problems modeled on 9-2, Example 6: set up and interpret linear models from real-world scenarios; teacher checks contextual interpretation of slope and y-intercept.",
+        "independentPractice": "Students complete aligned practice on graphing_linear_equations: real-world linear modeling problems.",
+        "assessment": "Exit ticket: one real-world linear modeling problem requiring slope and y-intercept interpretation.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with real-world linear modeling."
+      }
+    },
+    {
+      "periodId": "u09-p06",
+      "unit": 9,
+      "period": 6,
+      "dayType": "instruction",
+      "sourceLesson": "9-3",
+      "objectiveCode": "9e",
+      "objective": "Solve one-variable linear inequalities and apply the sign-flip rule.",
+      "workedExamples": "9-3, Examples 1-2 — Solve and Graph One-Variable Inequality; Flip Inequality When Multiplying/Dividing by Negative",
+      "embeddedObjectives": [],
+      "problemTypes": ["linear_inequalities"],
+      "notes": "One-variable inequality solving, number-line graphing, and the sign-flip rule.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 9e with one retrieval prompt on the difference between solving an equation and solving an inequality.",
+        "conceptDevelopment": "Use 9-3, Examples 1-2 to develop: solve one-variable inequalities using the same steps as equations, graph solutions on a number line with open/closed circles, and apply the sign-flip rule when multiplying or dividing by a negative number.",
+        "guidedPractice": "Students complete scaffolded problems modeled on 9-3, Examples 1-2: solve inequalities and graph on number lines; teacher checks sign-flip application.",
+        "independentPractice": "Students complete aligned practice on linear_inequalities: one-variable solving and number-line graphing.",
+        "assessment": "Exit ticket: one inequality problem requiring the sign-flip rule and one number-line graph.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with the sign-flip rule."
+      }
+    },
+    {
+      "periodId": "u09-p07",
+      "unit": 9,
+      "period": 7,
+      "dayType": "instruction",
+      "sourceLesson": "9-3",
+      "objectiveCode": "9f",
+      "objective": "Solve compound inequalities (AND/OR) and graph solutions on a number line.",
+      "workedExamples": "9-3, Examples 3-4 — Compound Inequality (AND); Compound Inequality (OR)",
+      "embeddedObjectives": ["9e"],
+      "problemTypes": ["compound_inequalities"],
+      "notes": "Compound AND/OR inequalities and number-line graphing of solution sets.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 9f with one retrieval prompt distinguishing AND (intersection) from OR (union) in compound inequalities.",
+        "conceptDevelopment": "Use 9-3, Examples 3-4 to develop: solve AND compound inequalities (intersection of two solution sets) and represent on a number line, and solve OR compound inequalities (union of two solution sets) and graph the combined solution.",
+        "guidedPractice": "Students complete scaffolded problems modeled on 9-3, Examples 3-4: solve and graph compound inequalities; teacher checks AND vs. OR identification.",
+        "independentPractice": "Students complete aligned practice on compound_inequalities: AND and OR solving with number-line graphing.",
+        "assessment": "Exit ticket: one AND compound inequality and one OR compound inequality problem.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with compound inequalities."
+      }
+    },
+    {
+      "periodId": "u09-p08",
+      "unit": 9,
+      "period": 8,
+      "dayType": "instruction",
+      "sourceLesson": "9-3",
+      "objectiveCode": "9f",
+      "objective": "Graph linear inequalities in two variables and apply to real-world constraints.",
+      "workedExamples": "9-3, Examples 5-6 — Graph Linear Inequality in Two Variables; Real-World Budget Constraint",
+      "embeddedObjectives": ["9e"],
+      "problemTypes": ["compound_inequalities"],
+      "notes": "Two-variable inequality graphing with solid/dashed boundaries and real-world constraint modeling. Split from Period 7 to separate compound one-variable inequalities from two-variable graphing and applications.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 9f with one retrieval prompt on how to determine which side of a boundary line to shade.",
+        "conceptDevelopment": "Use 9-3, Examples 5-6 to develop: graph linear inequalities in two variables with solid boundary lines (≤, ≥) or dashed boundary lines (<, >), determine shading by testing a point, and model a real-world budget constraint with a two-variable inequality.",
+        "guidedPractice": "Students complete scaffolded problems modeled on 9-3, Examples 5-6: graph two-variable inequalities and interpret constraint problems; teacher checks shading direction and boundary line selection.",
+        "independentPractice": "Students complete aligned practice on compound_inequalities: two-variable graphing and constraint problems.",
+        "assessment": "Exit ticket: one two-variable inequality graph and one constraint interpretation.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with two-variable inequality graphing."
+      }
+    },
+    {
+      "periodId": "u09-p09",
+      "unit": 9,
+      "period": 9,
+      "dayType": "mastery",
+      "notes": "Mastery cycle on 9a-9f.",
+      "nonInstructionArtifact": {
+        "artifactType": "mastery",
+        "objectiveScope": "Mastery cycle on 9a-9f.",
+        "srsSources": ["worked-example-derived practice", "problem-type practice where available", "prior-unit spiral review"],
+        "remediationGrouping": "Group students by recent objective evidence and misconception patterns.",
+        "extensionOptions": "Offer synthesis problems that combine current objectives with prior units.",
+        "evidence": "Student completes due SRS items and submits one corrected-error reflection."
+      }
+    },
+    {
+      "periodId": "u09-p10",
+      "unit": 9,
+      "period": 10,
+      "dayType": "review",
+      "notes": "Mid-unit review across 9a-9f: equations, graphing, and inequalities.",
+      "nonInstructionArtifact": {
+        "artifactType": "review",
+        "objectiveScope": "Mid-unit review across 9a-9f.",
+        "srsSources": ["worked-example-derived practice", "problem-type practice where available", "prior-unit spiral review"],
+        "remediationGrouping": "Group students by recent objective evidence and misconception patterns.",
+        "extensionOptions": "Offer synthesis problems combining equation solving, graphing, and inequalities.",
+        "evidence": "Student completes review problem set and submits one self-identified area for improvement."
+      }
+    },
+    {
+      "periodId": "u09-p11",
+      "unit": 9,
+      "period": 11,
+      "dayType": "test",
+      "notes": "Mid-unit assessment on 9a-9f.",
+      "nonInstructionArtifact": {
+        "artifactType": "test",
+        "objectiveScope": "Mid-unit assessment covering 9a-9f.",
+        "srsSources": [],
+        "remediationGrouping": "N/A — summative assessment day.",
+        "extensionOptions": "N/A — summative assessment day.",
+        "evidence": "Student completes mid-unit test."
+      }
+    },
+    {
+      "periodId": "u09-p12",
+      "unit": 9,
+      "period": 12,
+      "dayType": "instruction",
+      "sourceLesson": "9-4",
+      "objectiveCode": "9g",
+      "objective": "Solve systems of equations by graphing and substitution.",
+      "workedExamples": "9-4, Examples 1-2 — Solve by Graphing; Solve by Substitution",
+      "embeddedObjectives": ["9h"],
+      "problemTypes": ["systems_of_equations"],
+      "notes": "System solving by graphing (finding intersection) and substitution (isolating and substituting).",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 9g with one retrieval prompt listing two methods for solving systems of equations.",
+        "conceptDevelopment": "Use 9-4, Examples 1-2 to develop: solve a system by graphing both lines and finding the intersection point, and solve by substitution by isolating one variable and substituting into the other equation.",
+        "guidedPractice": "Students complete scaffolded problems modeled on 9-4, Examples 1-2: apply graphing and substitution to systems; teacher checks method selection and algebraic accuracy.",
+        "independentPractice": "Students complete aligned practice on systems_of_equations: graphing and substitution problems.",
+        "assessment": "Exit ticket: one system solved by graphing and one solved by substitution.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with solving systems of equations."
+      }
+    },
+    {
+      "periodId": "u09-p13",
+      "unit": 9,
+      "period": 13,
+      "dayType": "instruction",
+      "sourceLesson": "9-4",
+      "objectiveCode": "9h",
+      "objective": "Solve systems by elimination.",
+      "workedExamples": "9-4, Examples 3-4 — Solve by Elimination (Add); Solve by Elimination (Multiply First)",
+      "embeddedObjectives": ["9g"],
+      "problemTypes": ["systems_of_equations"],
+      "notes": "Elimination with and without multiplication to create opposite coefficients.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 9h with one retrieval prompt on how adding two equations can eliminate a variable.",
+        "conceptDevelopment": "Use 9-4, Examples 3-4 to develop: solve a system by elimination when coefficients are already opposites (add directly), and solve by elimination after multiplying one or both equations to create opposite coefficients.",
+        "guidedPractice": "Students complete scaffolded problems modeled on 9-4, Examples 3-4: apply elimination with and without multiplication; teacher checks coefficient setup and addition accuracy.",
+        "independentPractice": "Students complete aligned practice on systems_of_equations: elimination problems with varying complexity.",
+        "assessment": "Exit ticket: one elimination-by-addition and one elimination-with-multiplication problem.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with elimination."
+      }
+    },
+    {
+      "periodId": "u09-p14",
+      "unit": 9,
+      "period": 14,
+      "dayType": "instruction",
+      "sourceLesson": "9-4",
+      "objectiveCode": "9i",
+      "objective": "Classify systems and apply systems to real-world mixture problems.",
+      "workedExamples": "9-4, Examples 5-6 — No Solution and Infinitely Many Solutions; Real-World Mixture Problem",
+      "embeddedObjectives": [],
+      "problemTypes": ["systems_of_equations"],
+      "notes": "System classification (parallel/same-line) and mixture-problem modeling.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 9i with one retrieval prompt on how to classify a system as consistent/inconsistent or dependent/independent.",
+        "conceptDevelopment": "Use 9-4, Examples 5-6 to develop: identify systems with no solution (parallel lines with equal slopes but different y-intercepts) and infinitely many solutions (same line), and solve a real-world mixture problem using a system of equations.",
+        "guidedPractice": "Students complete scaffolded problems modeled on 9-4, Examples 5-6: classify systems and solve mixture problems; teacher checks classification reasoning.",
+        "independentPractice": "Students complete aligned practice on systems_of_equations: classification and mixture problems.",
+        "assessment": "Exit ticket: one system classification and one mixture problem setup.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with system classification."
+      }
+    },
+    {
+      "periodId": "u09-p15",
+      "unit": 9,
+      "period": 15,
+      "dayType": "instruction",
+      "sourceLesson": "9-5",
+      "objectiveCode": "9j",
+      "objective": "Graph systems of linear inequalities and identify solution regions.",
+      "workedExamples": "9-5, Examples 1-2 — Graph System of Two Linear Inequalities; Identify Solution Region",
+      "embeddedObjectives": ["9i"],
+      "problemTypes": ["systems_of_equations"],
+      "notes": "Introduction to systems of inequalities: graphing two linear inequalities and identifying overlapping solution regions. Split from Period 14 to separate system classification/mixture from inequality-system introduction.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 9j with one retrieval prompt on how to graph a single linear inequality in two variables.",
+        "conceptDevelopment": "Use 9-5, Examples 1-2 to develop: graph a system of two linear inequalities on the same coordinate plane, shade each inequality's solution half-plane, and identify the overlapping solution region where both inequalities are satisfied.",
+        "guidedPractice": "Students complete scaffolded problems modeled on 9-5, Examples 1-2: graph inequality systems and identify solution regions; teacher checks shading accuracy and boundary line type.",
+        "independentPractice": "Students complete aligned practice on systems_of_equations: graphing systems of inequalities and identifying solution regions.",
+        "assessment": "Exit ticket: one system of inequalities graph with solution region identified.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with graphing systems of inequalities."
+      }
+    },
+    {
+      "periodId": "u09-p16",
+      "unit": 9,
+      "period": 16,
+      "dayType": "instruction",
+      "sourceLesson": "9-5",
+      "objectiveCode": "9j",
+      "objective": "Determine feasible regions and apply systems of inequalities to linear programming.",
+      "workedExamples": "9-5, Examples 3-5 — System with No Solution; Determine if a Point Is in the Solution Region; Real-World Linear Programming Feasible Region",
+      "embeddedObjectives": ["9i"],
+      "problemTypes": ["linear_programming"],
+      "notes": "No-solution systems, point testing, corner points, and linear programming.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 9j with one retrieval prompt on how to test whether a point lies in the solution region of an inequality system.",
+        "conceptDevelopment": "Use 9-5, Examples 3-5 to develop: identify a system of inequalities with no solution, test whether a point satisfies all inequalities in a system, and find the feasible region and corner points for a real-world linear programming problem.",
+        "guidedPractice": "Students complete scaffolded problems modeled on 9-5, Examples 3-5: graph systems, find feasible regions, and identify corner points; teacher checks corner-point identification.",
+        "independentPractice": "Students complete aligned practice on linear_programming: feasible region identification, point testing, and optimization problems.",
+        "assessment": "Exit ticket: one feasible region identification and one corner-point computation.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with feasible regions and linear programming."
+      }
+    },
+    {
+      "periodId": "u09-p17",
+      "unit": 9,
+      "period": 17,
+      "dayType": "jigsaw",
+      "notes": "Mathematical practices focus: method selection for systems, graphical reasoning for inequalities, and error analysis.",
+      "nonInstructionArtifact": {
+        "artifactType": "jigsaw",
+        "groupTask": "Mathematical practices focus: method selection for systems, graphical reasoning for inequalities, and error analysis.",
+        "sourceWorkedExamples": "Use the prior instruction periods named in the notes as the problem bank.",
+        "deliverable": "Group solution poster or shared explanation with one strategy comparison.",
+        "facilitationNotes": "Assign roles for method selection, graphing, algebraic solving, and explanation.",
+        "completionCriteria": "Correct method, accurate result, clear justification, and response to peer question."
+      }
+    },
+    {
+      "periodId": "u09-p18",
+      "unit": 9,
+      "period": 18,
+      "dayType": "mastery",
+      "notes": "Mastery cycle on 9g-9j.",
+      "nonInstructionArtifact": {
+        "artifactType": "mastery",
+        "objectiveScope": "Mastery cycle on 9g-9j.",
+        "srsSources": ["worked-example-derived practice", "problem-type practice where available", "prior-unit spiral review"],
+        "remediationGrouping": "Group students by recent objective evidence and misconception patterns.",
+        "extensionOptions": "Offer synthesis problems that combine current objectives with prior units.",
+        "evidence": "Student completes due SRS items and submits one corrected-error reflection."
+      }
+    },
+    {
+      "periodId": "u09-p19",
+      "unit": 9,
+      "period": 19,
+      "dayType": "review",
+      "notes": "Unit 9 review across 9a-9j.",
+      "nonInstructionArtifact": {
+        "artifactType": "review",
+        "objectiveScope": "Unit 9 review across 9a-9j.",
+        "srsSources": ["worked-example-derived practice", "problem-type practice where available", "prior-unit spiral review"],
+        "remediationGrouping": "Group students by recent objective evidence and misconception patterns.",
+        "extensionOptions": "Offer synthesis problems that combine current objectives with prior units.",
+        "evidence": "Student completes review problem set and submits one self-identified area for improvement."
+      }
+    },
+    {
+      "periodId": "u09-p20",
+      "unit": 9,
+      "period": 20,
+      "dayType": "review",
+      "notes": "Unit 9 final review and targeted remediation across 9a-9j.",
+      "nonInstructionArtifact": {
+        "artifactType": "review",
+        "objectiveScope": "Unit 9 final review across 9a-9j with targeted remediation.",
+        "srsSources": ["worked-example-derived practice", "problem-type practice where available", "prior-unit spiral review"],
+        "remediationGrouping": "Group students by mid-unit and end-of-unit evidence; target weakest objective clusters.",
+        "extensionOptions": "Offer synthesis problems combining systems, inequalities, and linear programming.",
+        "evidence": "Student completes final review problem set and submits reflection on growth areas."
+      }
+    },
+    {
+      "periodId": "u09-p21",
+      "unit": 9,
+      "period": 21,
+      "dayType": "test",
+      "notes": "Unit 9 assessment.",
+      "nonInstructionArtifact": {
+        "artifactType": "test",
+        "objectiveScope": "Unit 9 assessment covering 9a-9j.",
+        "srsSources": [],
+        "remediationGrouping": "N/A — summative assessment day.",
+        "extensionOptions": "N/A — summative assessment day.",
+        "evidence": "Student completes unit test."
+      }
+    }
+  ]
+}

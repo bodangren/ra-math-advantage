@@ -1,0 +1,400 @@
+{
+  "schemaVersion": "class-period-package.v1",
+  "unit": 8,
+  "generatedFrom": "curriculum/unit-8-class-period-plan.md",
+  "periods": [
+    {
+      "periodId": "u08-p01",
+      "unit": 8,
+      "period": 1,
+      "dayType": "instruction",
+      "sourceLesson": "8-1",
+      "objectiveCode": "8a",
+      "objective": "Distinguish functions from non-functions using tables, graphs, and mappings.",
+      "workedExamples": "8-1, Examples 1-3 — Determine if a Relation Is a Function from a Table; Vertical Line Test on a Graph; Determine if a Mapping Diagram Is a Function",
+      "embeddedObjectives": ["8c"],
+      "problemTypes": ["function_definition"],
+      "notes": "Function definition, vertical line test, and mapping diagrams.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 8a with one retrieval prompt defining a function as a relation where each input has exactly one output.",
+        "conceptDevelopment": "Use 8-1, Examples 1-3 to develop: determine if a table represents a function by checking for repeated inputs, apply the vertical line test on a graph, and analyze mapping diagrams for one-to-one or one-to-many relationships.",
+        "guidedPractice": "Students complete scaffolded problems modeled on 8-1, Examples 1-3: test tables, graphs, and mappings for function status; teacher checks one-output-per-input reasoning.",
+        "independentPractice": "Students complete aligned practice on function_definition: function identification from tables, graphs, and mapping diagrams.",
+        "assessment": "Exit ticket: one function identification from a table and one from a graph.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with distinguishing functions from non-functions."
+      }
+    },
+    {
+      "periodId": "u08-p02",
+      "unit": 8,
+      "period": 2,
+      "dayType": "instruction",
+      "sourceLesson": "8-1, 8-2",
+      "objectiveCode": "8b",
+      "objective": "Find domain and range from various representations.",
+      "workedExamples": "8-1, Examples 4-5 — Find the Domain and Range of a Relation; Real-World Input-Output Machine; 8-2, Examples 1-2 — Domain and Range from a Continuous Graph; Domain and Range from a Discrete Graph",
+      "embeddedObjectives": ["8a", "8c"],
+      "problemTypes": ["domain_range"],
+      "notes": "Domain and range from ordered pairs, continuous/discrete graphs; real-world input-output.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 8b with one retrieval prompt defining domain (all inputs) and range (all outputs).",
+        "conceptDevelopment": "Use 8-1, Examples 4-5 and 8-2, Examples 1-2 to develop: find domain and range from ordered pairs and relation tables, interpret a real-world input-output machine, and distinguish domain/range from continuous vs. discrete graphs.",
+        "guidedPractice": "Students complete scaffolded problems modeled on the worked examples: identify domain and range from different representations; teacher checks interval notation and set notation.",
+        "independentPractice": "Students complete aligned practice on domain_range: domain and range from tables, graphs, and ordered pairs.",
+        "assessment": "Exit ticket: one domain-and-range problem from a graph and one from a table.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with finding domain and range."
+      }
+    },
+    {
+      "periodId": "u08-p03",
+      "unit": 8,
+      "period": 3,
+      "dayType": "instruction",
+      "sourceLesson": "8-2",
+      "objectiveCode": "8c",
+      "objective": "Determine domain restrictions from algebraic expressions.",
+      "workedExamples": "8-2, Examples 3-4 — Domain Restrictions (Square Root and Denominator); Domain and Range from a Mapping",
+      "embeddedObjectives": [],
+      "problemTypes": ["domain_range"],
+      "notes": "Focus on identifying values that make square roots undefined or denominators zero, and domain/range from mapping diagrams.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 8c with one retrieval prompt on what values make a square root undefined or a denominator zero.",
+        "conceptDevelopment": "Use 8-2, Examples 3-4 to develop: identify domain restrictions from square root expressions (radicand must be non-negative) and denominator expressions (denominator cannot be zero), and determine domain and range from a mapping diagram.",
+        "guidedPractice": "Students complete scaffolded problems modeled on 8-2, Examples 3-4: find restricted domains from algebraic expressions; teacher checks restriction identification.",
+        "independentPractice": "Students complete aligned practice on domain_range: domain restriction problems from square roots and denominators.",
+        "assessment": "Exit ticket: one square-root domain restriction and one denominator domain restriction problem.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with domain restrictions."
+      }
+    },
+    {
+      "periodId": "u08-p04",
+      "unit": 8,
+      "period": 4,
+      "dayType": "instruction",
+      "sourceLesson": "8-2, 8-3",
+      "objectiveCode": "8c",
+      "objective": "Apply domain and range to real-world contexts; evaluate functions using function notation.",
+      "workedExamples": "8-2, Example 5 — Real-World Projectile Domain and Range; 8-3, Examples 1-2 — Evaluate f(3) for f(x) = 2x² − 1; Find x When f(x) = 7",
+      "embeddedObjectives": ["8d"],
+      "problemTypes": ["function_evaluation"],
+      "notes": "Contextual domain/range from projectile motion and introduction to function evaluation. Split from Period 3 to separate algebraic restriction identification from function-evaluation practice.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 8c with one retrieval prompt on how domain and range apply to a projectile's height over time.",
+        "conceptDevelopment": "Use 8-2, Example 5 and 8-3, Examples 1-2 to develop: determine domain and range from a real-world projectile context (time and height constraints), evaluate functions at specific inputs using f(x) notation, and solve for x given a function value.",
+        "guidedPractice": "Students complete scaffolded problems modeled on the worked examples: find contextual domain/range and evaluate functions at specific inputs; teacher checks substitution and contextual reasoning.",
+        "independentPractice": "Students complete aligned practice on function_evaluation: contextual domain/range and function notation evaluation.",
+        "assessment": "Exit ticket: one contextual domain/range problem and one function evaluation problem.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with contextual domain/range and function notation."
+      }
+    },
+    {
+      "periodId": "u08-p05",
+      "unit": 8,
+      "period": 5,
+      "dayType": "mastery",
+      "notes": "Mastery cycle on 8a-8c.",
+      "nonInstructionArtifact": {
+        "artifactType": "mastery",
+        "objectiveScope": "Mastery cycle on 8a-8c.",
+        "srsSources": ["worked-example-derived practice", "problem-type practice where available", "prior-unit spiral review"],
+        "remediationGrouping": "Group students by recent objective evidence and misconception patterns.",
+        "extensionOptions": "Offer synthesis problems that combine current objectives with prior units.",
+        "evidence": "Student completes due SRS items and submits one corrected-error reflection."
+      }
+    },
+    {
+      "periodId": "u08-p06",
+      "unit": 8,
+      "period": 6,
+      "dayType": "instruction",
+      "sourceLesson": "8-3",
+      "objectiveCode": "8d",
+      "objective": "Evaluate composite expressions and interpret function values in context.",
+      "workedExamples": "8-3, Examples 3-4 — Evaluate Composite Expressions f(a + b); Interpret f(5) = 12 in Context",
+      "embeddedObjectives": ["8e"],
+      "problemTypes": ["function_evaluation"],
+      "notes": "Composite expression evaluation and contextual interpretation of function values.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 8d with one retrieval prompt on evaluating f(a + b) for a given function.",
+        "conceptDevelopment": "Use 8-3, Examples 3-4 to develop: evaluate composite expressions like f(a + b) by substituting the entire expression and expanding, and interpret f(5) = 12 in a real-world distance-time context.",
+        "guidedPractice": "Students complete scaffolded problems modeled on 8-3, Examples 3-4: evaluate composite expressions and interpret function values in context; teacher checks substitution and contextual reasoning.",
+        "independentPractice": "Students complete aligned practice on function_evaluation: composite evaluation and contextual interpretation problems.",
+        "assessment": "Exit ticket: one composite expression evaluation and one contextual interpretation problem.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with composite function evaluation."
+      }
+    },
+    {
+      "periodId": "u08-p07",
+      "unit": 8,
+      "period": 7,
+      "dayType": "instruction",
+      "sourceLesson": "8-3",
+      "objectiveCode": "8d",
+      "objective": "Evaluate functions with piecewise definitions.",
+      "workedExamples": "8-3, Example 5 — Function Notation with Piecewise Definitions",
+      "embeddedObjectives": ["8e"],
+      "problemTypes": ["function_evaluation"],
+      "notes": "Piecewise function evaluation: selecting the correct piece for each input. Split from Period 6 to separate composite expression evaluation from the distinct piecewise concept.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 8d with one retrieval prompt on how to determine which rule to use for a piecewise function at a given input.",
+        "conceptDevelopment": "Use 8-3, Example 5 to develop: work with piecewise function definitions by selecting the correct piece for each input based on the domain condition, and evaluate piecewise functions at boundary points.",
+        "guidedPractice": "Students complete scaffolded problems modeled on 8-3, Example 5: evaluate piecewise functions at various inputs; teacher checks correct piece selection.",
+        "independentPractice": "Students complete aligned practice on function_evaluation: piecewise function evaluation problems.",
+        "assessment": "Exit ticket: one piecewise function evaluation problem.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with piecewise function evaluation."
+      }
+    },
+    {
+      "periodId": "u08-p08",
+      "unit": 8,
+      "period": 8,
+      "dayType": "instruction",
+      "sourceLesson": "8-4",
+      "objectiveCode": "8e",
+      "objective": "Distinguish linear from nonlinear functions and identify linearity from representations.",
+      "workedExamples": "8-4, Examples 1-2 — Identify Linear Function from Table; Identify Nonlinear Function from Graph",
+      "embeddedObjectives": ["8f"],
+      "problemTypes": ["rate_of_change"],
+      "notes": "Identify linear functions by constant rate of change in tables and nonlinear functions from curved graphs.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 8e with one retrieval prompt on computing rate of change (slope) between two points.",
+        "conceptDevelopment": "Use 8-4, Examples 1-2 to develop: determine if a table represents a linear function by checking whether the rate of change is constant between all pairs of consecutive points, and identify a nonlinear function from a parabolic graph by checking varying rates of change.",
+        "guidedPractice": "Students complete scaffolded problems modeled on 8-4, Examples 1-2: compute rates of change from tables and determine linearity; teacher checks rate-of-change computation and constancy verification.",
+        "independentPractice": "Students complete aligned practice on rate_of_change: linearity identification from tables and graphs.",
+        "assessment": "Exit ticket: one linear-vs-nonlinear identification from a table and one from a graph.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with identifying linear and nonlinear functions."
+      }
+    },
+    {
+      "periodId": "u08-p09",
+      "unit": 8,
+      "period": 9,
+      "dayType": "instruction",
+      "sourceLesson": "8-4",
+      "objectiveCode": "8f",
+      "objective": "Calculate rate of change; compare linear and exponential growth; select function models.",
+      "workedExamples": "8-4, Examples 3-5 — Rate of Change Calculation; Compare Linear and Exponential Growth; Real-World Function Model Selection",
+      "embeddedObjectives": [],
+      "problemTypes": ["rate_of_change"],
+      "notes": "Rate of change interpretation, linear vs. exponential comparison, and data modeling.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 8f with one retrieval prompt on the difference between a constant rate of change (linear) and a constant ratio (exponential).",
+        "conceptDevelopment": "Use 8-4, Examples 3-5 to develop: calculate and interpret rate of change from a temperature table over time, compare linear growth (constant additive increase) with exponential growth (constant multiplicative ratio) using two bank account scenarios, and select the best function model for a bacterial population data set.",
+        "guidedPractice": "Students complete scaffolded problems modeled on 8-4, Examples 3-5: compute rates of change and distinguish growth types; teacher checks rate vs. ratio reasoning.",
+        "independentPractice": "Students complete aligned practice on rate_of_change: rate calculations, growth comparison, and model selection problems.",
+        "assessment": "Exit ticket: one rate-of-change calculation and one linear-vs-exponential comparison.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with rate of change and function modeling."
+      }
+    },
+    {
+      "periodId": "u08-p10",
+      "unit": 8,
+      "period": 10,
+      "dayType": "instruction",
+      "sourceLesson": "8-5",
+      "objectiveCode": "8g",
+      "objective": "Graph vertical shifts and horizontal shifts of parent functions.",
+      "workedExamples": "8-5, Examples 1-2 — Graph f(x) + 3 (Vertical Shift Up); Graph f(x − 2) (Horizontal Shift Right)",
+      "embeddedObjectives": [],
+      "problemTypes": ["function_transformations"],
+      "notes": "Core shift transformations: vertical and horizontal translations applied to parent functions.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 8g with one retrieval prompt on what vertical and horizontal shifts do to a graph.",
+        "conceptDevelopment": "Use 8-5, Examples 1-2 to develop: graph a vertical shift up by adding a constant to f(x), and graph a horizontal shift right by replacing x with x − h, emphasizing the sign convention for horizontal shifts.",
+        "guidedPractice": "Students complete scaffolded problems modeled on 8-5, Examples 1-2: apply vertical and horizontal shifts to parent functions and sketch the result; teacher checks shift direction.",
+        "independentPractice": "Students complete aligned practice on function_transformations: graphing vertical and horizontal shifts.",
+        "assessment": "Exit ticket: one vertical shift graphing problem and one horizontal shift graphing problem.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with graphing shifts."
+      }
+    },
+    {
+      "periodId": "u08-p11",
+      "unit": 8,
+      "period": 11,
+      "dayType": "instruction",
+      "sourceLesson": "8-5",
+      "objectiveCode": "8g",
+      "objective": "Graph reflections and vertical stretches of parent functions.",
+      "workedExamples": "8-5, Examples 3-4 — Graph −f(x) (Reflection over x-axis); Graph 2f(x) (Vertical Stretch)",
+      "embeddedObjectives": ["8h"],
+      "problemTypes": ["function_transformations"],
+      "notes": "Reflection and stretch transformations applied to parent functions. Split from Period 10 to separate shift concepts from reflection and stretch concepts.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 8g with one retrieval prompt on what reflection over the x-axis does to the graph of a parent function.",
+        "conceptDevelopment": "Use 8-5, Examples 3-4 to develop: graph a reflection over the x-axis by negating the function (flipping y-values), and graph a vertical stretch by multiplying by a factor greater than 1 (making the graph taller/narrower).",
+        "guidedPractice": "Students complete scaffolded problems modeled on 8-5, Examples 3-4: apply reflections and stretches to parent functions and sketch the result; teacher checks transformation type and magnitude.",
+        "independentPractice": "Students complete aligned practice on function_transformations: graphing reflections and vertical stretches.",
+        "assessment": "Exit ticket: one reflection graphing problem and one vertical stretch graphing problem.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with reflections and stretches."
+      }
+    },
+    {
+      "periodId": "u08-p12",
+      "unit": 8,
+      "period": 12,
+      "dayType": "instruction",
+      "sourceLesson": "8-5",
+      "objectiveCode": "8h",
+      "objective": "Describe transformations from equations and apply transformations to real-world contexts.",
+      "workedExamples": "8-5, Examples 5-6 — Describe Transformation from Parent Function; Real-World Profit Function",
+      "embeddedObjectives": ["8g"],
+      "problemTypes": ["function_transformations"],
+      "notes": "Multi-step transformation description from equations and real-world profit-function application.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 8h with one retrieval prompt on describing the transformations in f(x) = −2(x − 1)² + 3.",
+        "conceptDevelopment": "Use 8-5, Examples 5-6 to develop: describe multiple transformations applied to a parent function from a complex equation (shift, reflect, stretch), and apply a vertical shift to a real-world profit function to model the effect of a marketing campaign.",
+        "guidedPractice": "Students complete scaffolded problems modeled on 8-5, Examples 5-6: decompose transformation equations and apply shifts to contextual functions; teacher checks transformation ordering.",
+        "independentPractice": "Students complete aligned practice on function_transformations: multi-step transformation description and real-world application.",
+        "assessment": "Exit ticket: one transformation description from an equation and one real-world shift application.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with describing transformations."
+      }
+    },
+    {
+      "periodId": "u08-p13",
+      "unit": 8,
+      "period": 13,
+      "dayType": "instruction",
+      "sourceLesson": "8-6",
+      "objectiveCode": "8i",
+      "objective": "Compare rates of change and y-intercepts from tables and graphs.",
+      "workedExamples": "8-6, Examples 1-2 — Compare Rate of Change from Two Tables; Compare y-Intercepts from Two Graphs",
+      "embeddedObjectives": [],
+      "problemTypes": ["comparing_functions"],
+      "notes": "Function comparison from tables and graphs: rate of change and y-intercepts.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 8i with one retrieval prompt on how to compute rate of change from a table and compare two functions.",
+        "conceptDevelopment": "Use 8-6, Examples 1-2 to develop: compute and compare rates of change from two function tables, and compare y-intercepts by reading where each graph crosses the y-axis.",
+        "guidedPractice": "Students complete scaffolded problems modeled on 8-6, Examples 1-2: compare rates and y-intercepts from tables and graphs; teacher checks comparison reasoning.",
+        "independentPractice": "Students complete aligned practice on comparing_functions: table-based and graph-based function comparison.",
+        "assessment": "Exit ticket: one rate-of-change comparison from tables and one y-intercept comparison from graphs.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with comparing functions from representations."
+      }
+    },
+    {
+      "periodId": "u08-p14",
+      "unit": 8,
+      "period": 14,
+      "dayType": "instruction",
+      "sourceLesson": "8-6",
+      "objectiveCode": "8i",
+      "objective": "Compare maximum values; convert between representations; apply function comparison to real-world decisions.",
+      "workedExamples": "8-6, Examples 3-5 — Which Function Has Greater Maximum; Convert Between Representations; Real-World Phone Plan Comparison",
+      "embeddedObjectives": ["8j"],
+      "problemTypes": ["comparing_functions"],
+      "notes": "Graph-based comparison (maximum values), representation conversion, and real-world phone plan comparison. Split from Period 13 to separate table-based comparison from graph-based and real-world comparison.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 8i with one retrieval prompt on how to find the maximum value of a downward-opening parabola from its graph.",
+        "conceptDevelopment": "Use 8-6, Examples 3-5 to develop: determine which of two parabolas has a greater maximum value from their graphs, convert a function from graph form to equation form by reading two points, and compare two phone plans described in different representations (verbal and table) by converting both to equations.",
+        "guidedPractice": "Students complete scaffolded problems modeled on 8-6, Examples 3-5: compare maxima, convert representations, and solve real-world comparison problems; teacher checks conversion accuracy.",
+        "independentPractice": "Students complete aligned practice on comparing_functions: maximum comparison, representation conversion, and real-world problems.",
+        "assessment": "Exit ticket: one maximum comparison and one representation conversion problem.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with comparing functions and converting representations."
+      }
+    },
+    {
+      "periodId": "u08-p15",
+      "unit": 8,
+      "period": 15,
+      "dayType": "jigsaw",
+      "notes": "Mathematical practices focus: transformation reasoning, function comparison across representations, and error analysis.",
+      "nonInstructionArtifact": {
+        "artifactType": "jigsaw",
+        "groupTask": "Mathematical practices focus: transformation reasoning, function comparison across representations, and error analysis.",
+        "sourceWorkedExamples": "Use the prior instruction periods named in the notes as the problem bank.",
+        "deliverable": "Group solution poster or shared explanation with one strategy comparison.",
+        "facilitationNotes": "Assign roles for transformation identification, comparison setup, graphing, and explanation.",
+        "completionCriteria": "Correct method, accurate result, clear justification, and response to peer question."
+      }
+    },
+    {
+      "periodId": "u08-p16",
+      "unit": 8,
+      "period": 16,
+      "dayType": "review",
+      "notes": "Mid-unit review across 8a-8f: functions, domain/range, evaluation, and linearity.",
+      "nonInstructionArtifact": {
+        "artifactType": "review",
+        "objectiveScope": "Mid-unit review across 8a-8f.",
+        "srsSources": ["worked-example-derived practice", "problem-type practice where available", "prior-unit spiral review"],
+        "remediationGrouping": "Group students by recent objective evidence and misconception patterns.",
+        "extensionOptions": "Offer synthesis problems combining function identification, domain/range, and linearity.",
+        "evidence": "Student completes review problem set and submits one self-identified area for improvement."
+      }
+    },
+    {
+      "periodId": "u08-p17",
+      "unit": 8,
+      "period": 17,
+      "dayType": "test",
+      "notes": "Mid-unit assessment on 8a-8f.",
+      "nonInstructionArtifact": {
+        "artifactType": "test",
+        "objectiveScope": "Mid-unit assessment covering 8a-8f.",
+        "srsSources": [],
+        "remediationGrouping": "N/A — summative assessment day.",
+        "extensionOptions": "N/A — summative assessment day.",
+        "evidence": "Student completes mid-unit test."
+      }
+    },
+    {
+      "periodId": "u08-p18",
+      "unit": 8,
+      "period": 18,
+      "dayType": "mastery",
+      "notes": "Mastery cycle on 8g-8j.",
+      "nonInstructionArtifact": {
+        "artifactType": "mastery",
+        "objectiveScope": "Mastery cycle on 8g-8j.",
+        "srsSources": ["worked-example-derived practice", "problem-type practice where available", "prior-unit spiral review"],
+        "remediationGrouping": "Group students by recent objective evidence and misconception patterns.",
+        "extensionOptions": "Offer synthesis problems that combine current objectives with prior units.",
+        "evidence": "Student completes due SRS items and submits one corrected-error reflection."
+      }
+    },
+    {
+      "periodId": "u08-p19",
+      "unit": 8,
+      "period": 19,
+      "dayType": "review",
+      "notes": "Unit 8 review across 8a-8j.",
+      "nonInstructionArtifact": {
+        "artifactType": "review",
+        "objectiveScope": "Unit 8 review across 8a-8j.",
+        "srsSources": ["worked-example-derived practice", "problem-type practice where available", "prior-unit spiral review"],
+        "remediationGrouping": "Group students by recent objective evidence and misconception patterns.",
+        "extensionOptions": "Offer synthesis problems that combine current objectives with prior units.",
+        "evidence": "Student completes review problem set and submits one self-identified area for improvement."
+      }
+    },
+    {
+      "periodId": "u08-p20",
+      "unit": 8,
+      "period": 20,
+      "dayType": "review",
+      "notes": "Unit 8 final review and targeted remediation across 8a-8j.",
+      "nonInstructionArtifact": {
+        "artifactType": "review",
+        "objectiveScope": "Unit 8 final review across 8a-8j with targeted remediation.",
+        "srsSources": ["worked-example-derived practice", "problem-type practice where available", "prior-unit spiral review"],
+        "remediationGrouping": "Group students by mid-unit and end-of-unit evidence; target weakest objective clusters.",
+        "extensionOptions": "Offer synthesis problems combining transformations, comparisons, and real-world modeling.",
+        "evidence": "Student completes final review problem set and submits reflection on growth areas."
+      }
+    },
+    {
+      "periodId": "u08-p21",
+      "unit": 8,
+      "period": 21,
+      "dayType": "test",
+      "notes": "Unit 8 assessment.",
+      "nonInstructionArtifact": {
+        "artifactType": "test",
+        "objectiveScope": "Unit 8 assessment covering 8a-8j.",
+        "srsSources": [],
+        "remediationGrouping": "N/A — summative assessment day.",
+        "extensionOptions": "N/A — summative assessment day.",
+        "evidence": "Student completes unit test."
+      }
+    }
+  ]
+}

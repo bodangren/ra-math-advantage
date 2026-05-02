@@ -1,0 +1,344 @@
+{
+  "schemaVersion": "class-period-package.v1",
+  "unit": 2,
+  "generatedFrom": "curriculum/unit-2-class-period-plan.md",
+  "periods": [
+    {
+      "periodId": "u02-p01",
+      "unit": 2,
+      "period": 1,
+      "dayType": "instruction",
+      "sourceLesson": "2-1",
+      "objectiveCode": "2a",
+      "objective": "Use the polygon angle sum theorem to find the sum of interior angles.",
+      "workedExamples": "2-1, Examples 1-3 — Sum of Interior Angles of an Octagon; Each Interior Angle of a Regular Hexagon; Find a Missing Angle in a Pentagon",
+      "embeddedObjectives": ["2b"],
+      "problemTypes": ["polygon_angle_sum"],
+      "notes": "Interior angle sum formula and regular-polygon angle calculations.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 2a with one retrieval prompt on the angle sum of a triangle and quadrilateral.",
+        "conceptDevelopment": "Use 2-1, Examples 1-3 to develop: apply the interior angle sum formula (n−2)·180° to find the total for an octagon, divide to find each interior angle of a regular hexagon, and solve for a missing angle in a pentagon.",
+        "guidedPractice": "Students complete scaffolded problems modeled on 2-1, Examples 1-3: compute angle sums for various polygons and find individual angles in regular polygons; teacher checks formula application.",
+        "independentPractice": "Students complete aligned practice on polygon_angle_sum: angle sum calculations and individual angle measures for regular and irregular polygons.",
+        "assessment": "Exit ticket: one interior angle sum calculation and one missing-angle problem.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with the polygon angle sum theorem."
+      }
+    },
+    {
+      "periodId": "u02-p02",
+      "unit": 2,
+      "period": 2,
+      "dayType": "instruction",
+      "sourceLesson": "2-1",
+      "objectiveCode": "2c",
+      "objective": "Apply the exterior angle theorem for polygons.",
+      "workedExamples": "2-1, Examples 4-5 — Exterior Angle Theorem for Polygons; Real-World: Floor Tile Pattern Angles",
+      "embeddedObjectives": ["2a", "2b"],
+      "problemTypes": ["polygon_angle_sum"],
+      "notes": "Exterior angle sum, finding n from exterior angle, and tessellation.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 2c with one retrieval prompt on the relationship between interior and exterior angles at a vertex.",
+        "conceptDevelopment": "Use 2-1, Examples 4-5 to develop: the sum of exterior angles is always 360°, use this to find n or individual exterior angles, and apply to a real-world tessellation pattern.",
+        "guidedPractice": "Students complete scaffolded problems modeled on 2-1, Examples 4-5: compute exterior angles and determine polygon types from angle measures; teacher checks the 360° relationship reasoning.",
+        "independentPractice": "Students complete aligned practice on polygon_angle_sum: exterior angle calculations and tessellation angle problems.",
+        "assessment": "Exit ticket: one exterior angle problem and one tessellation angle identification.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with the exterior angle theorem for polygons."
+      }
+    },
+    {
+      "periodId": "u02-p03",
+      "unit": 2,
+      "period": 3,
+      "dayType": "mastery",
+      "notes": "Mastery cycle on 2a-2c.",
+      "nonInstructionArtifact": {
+        "artifactType": "mastery",
+        "objectiveScope": "Mastery cycle on 2a-2c.",
+        "srsSources": [
+          "worked-example-derived practice",
+          "problem-type practice where available",
+          "prior-unit spiral review"
+        ],
+        "remediationGrouping": "Group students by recent objective evidence and misconception patterns.",
+        "extensionOptions": "Offer synthesis problems that combine current objectives with prior units.",
+        "evidence": "Student completes due SRS items and submits one corrected-error reflection."
+      }
+    },
+    {
+      "periodId": "u02-p04a",
+      "unit": 2,
+      "period": 4,
+      "dayType": "instruction",
+      "sourceLesson": "2-2",
+      "objectiveCode": "2d",
+      "objective": "Identify and apply properties of parallelograms.",
+      "workedExamples": "2-2, Examples 1-3 — Find Missing Measures Using Parallelogram Properties; Prove a Quadrilateral Is a Parallelogram; Find Diagonal Lengths Using the Bisecting Property",
+      "embeddedObjectives": ["2e"],
+      "problemTypes": ["parallelogram_properties"],
+      "notes": "Core parallelogram properties: opposite sides/angles, consecutive angles, diagonal bisecting, and slope-based proof.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 2d with one retrieval prompt listing properties of a parallelogram (opposite sides, opposite angles, diagonals bisect).",
+        "conceptDevelopment": "Use 2-2, Examples 1-3 to develop: find missing side lengths and angles using parallelogram properties, prove a quadrilateral is a parallelogram from given conditions, and use diagonal bisecting to find lengths.",
+        "guidedPractice": "Students complete scaffolded problems modeled on 2-2, Examples 1-3: apply parallelogram properties to find measures and verify classifications; teacher checks property identification.",
+        "independentPractice": "Students complete aligned practice on parallelogram_properties: measure-finding and proof of parallelogram from slopes.",
+        "assessment": "Exit ticket: one parallelogram measure problem and one short proof that a quadrilateral is a parallelogram.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with parallelogram properties."
+      }
+    },
+    {
+      "periodId": "u02-p04b",
+      "unit": 2,
+      "period": 5,
+      "dayType": "instruction",
+      "sourceLesson": "2-2",
+      "objectiveCode": "2e",
+      "objective": "Solve algebraic and coordinate-geometry problems with parallelograms.",
+      "workedExamples": "2-2, Examples 4-5 — Algebraic Problem with Parallelogram Angles; Coordinate Geometry: Verify a Parallelogram with the Distance Formula",
+      "embeddedObjectives": ["2d"],
+      "problemTypes": ["parallelogram_properties"],
+      "notes": "Algebraic angle equations in parallelograms and coordinate verification using distance formula.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 2e with one retrieval prompt on consecutive angles being supplementary in a parallelogram.",
+        "conceptDevelopment": "Use 2-2, Examples 4-5 to develop: set up and solve algebraic equations using consecutive-angle supplementary relationships, and verify a quadrilateral is a parallelogram using the distance formula to check opposite-side congruence, including identifying a rhombus.",
+        "guidedPractice": "Students complete scaffolded problems modeled on 2-2, Examples 4-5: write algebraic expressions for parallelogram angles and compute distances on the coordinate plane; teacher checks equation setup and formula accuracy.",
+        "independentPractice": "Students complete aligned practice on parallelogram_properties: algebraic angle problems and coordinate verification using distance and midpoint.",
+        "assessment": "Exit ticket: one algebraic parallelogram angle problem and one coordinate verification step.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with algebraic and coordinate parallelogram problems."
+      }
+    },
+    {
+      "periodId": "u02-p05",
+      "unit": 2,
+      "period": 6,
+      "dayType": "instruction",
+      "sourceLesson": "2-3",
+      "objectiveCode": "2f",
+      "objective": "Distinguish between rectangles, rhombuses, and squares using their defining properties.",
+      "workedExamples": "2-3, Examples 1-3 — Distinguish Rectangle from Parallelogram; Properties of a Rhombus: Diagonals Are Perpendicular; Find the Diagonal of a Rectangle Using the Pythagorean Theorem",
+      "embeddedObjectives": ["2g"],
+      "problemTypes": ["special_quadrilateral_properties"],
+      "notes": "Rectangle, rhombus, and square property distinctions with diagonal and Pythagorean applications.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 2f with one retrieval prompt distinguishing which parallelogram properties apply to rectangles, rhombuses, and squares.",
+        "conceptDevelopment": "Use 2-3, Examples 1-3 to develop: distinguish rectangles from general parallelograms using right angles and equal diagonals, apply rhombus diagonal perpendicularity, and use the Pythagorean theorem to find rectangle diagonals.",
+        "guidedPractice": "Students complete scaffolded problems modeled on 2-3, Examples 1-3: identify which special quadrilateral a figure is and apply its unique properties; teacher checks distinguishing property usage.",
+        "independentPractice": "Students complete aligned practice on special_quadrilateral_properties: classify quadrilaterals and find measures using specific diagonal and angle properties.",
+        "assessment": "Exit ticket: one problem identifying a special quadrilateral type and one computing a diagonal length.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with distinguishing rectangle, rhombus, and square properties."
+      }
+    },
+    {
+      "periodId": "u02-p06",
+      "unit": 2,
+      "period": 7,
+      "dayType": "instruction",
+      "sourceLesson": "2-3",
+      "objectiveCode": "2h",
+      "objective": "Prove that a quadrilateral is a rectangle, rhombus, or square.",
+      "workedExamples": "2-3, Examples 4-5 — Prove a Quadrilateral Is a Square; Real-World: Design a Square Garden from a Rhombus Plot",
+      "embeddedObjectives": ["2f", "2g"],
+      "problemTypes": ["special_quadrilateral_properties"],
+      "notes": "Coordinate proof of square and rhombus area application.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 2h with one retrieval prompt on how coordinate distance, slope, and midpoint formulas can verify quadrilateral properties.",
+        "conceptDevelopment": "Use 2-3, Examples 4-5 to develop: write a coordinate proof that a quadrilateral is a square by verifying four equal sides and perpendicular diagonals, and apply rhombus properties to design a square garden from a rhombus plot.",
+        "guidedPractice": "Students complete scaffolded coordinate proofs modeled on 2-3, Examples 4-5: use coordinates to verify the defining properties of a square or rhombus; teacher checks formula use and logical structure.",
+        "independentPractice": "Students complete aligned practice on special_quadrilateral_properties: coordinate proofs for rectangles, rhombuses, and squares.",
+        "assessment": "Exit ticket: one coordinate proof identifying a quadrilateral type from four given vertices.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with proving quadrilateral types on the coordinate plane."
+      }
+    },
+    {
+      "periodId": "u02-p07",
+      "unit": 2,
+      "period": 8,
+      "dayType": "jigsaw",
+      "notes": "Mathematical practices focus: comparing parallelogram hierarchy, method choice in proofs, and error analysis.",
+      "nonInstructionArtifact": {
+        "artifactType": "jigsaw",
+        "groupTask": "Mathematical practices focus: comparing parallelogram hierarchy, method choice in proofs, and error analysis.",
+        "sourceWorkedExamples": "Use the prior instruction periods named in the notes as the problem bank.",
+        "deliverable": "Group solution poster or shared explanation with one strategy comparison.",
+        "facilitationNotes": "Assign roles for property identification, proof strategy, calculation, and explanation.",
+        "completionCriteria": "Correct method, accurate result, clear justification, and response to peer question."
+      }
+    },
+    {
+      "periodId": "u02-p09",
+      "unit": 2,
+      "period": 9,
+      "dayType": "review",
+      "notes": "Mid-unit review across 2a-2h. Checkpoint before transitioning to trapezoids and coordinate proofs.",
+      "nonInstructionArtifact": {
+        "artifactType": "review",
+        "objectiveScope": "Mid-unit review across 2a-2h.",
+        "srsSources": [
+          "worked-example-derived practice",
+          "problem-type practice where available",
+          "prior-unit spiral review"
+        ],
+        "remediationGrouping": "Group students by recent objective evidence and misconception patterns.",
+        "extensionOptions": "Offer synthesis problems that combine polygon angle sums with parallelogram hierarchy classification.",
+        "evidence": "Student completes review problem set and submits one self-identified area for improvement."
+      }
+    },
+    {
+      "periodId": "u02-p08a",
+      "unit": 2,
+      "period": 10,
+      "dayType": "instruction",
+      "sourceLesson": "2-4",
+      "objectiveCode": "2j",
+      "objective": "Identify properties of trapezoids and isosceles trapezoids.",
+      "workedExamples": "2-4, Examples 1-2 — Find Base Angles of an Isosceles Trapezoid; Midsegment Length = Average of Bases; 2-4, Example 3 — Find Missing Angles in a Trapezoid",
+      "embeddedObjectives": ["2k"],
+      "problemTypes": ["trapezoid_properties"],
+      "notes": "Core trapezoid properties: isosceles base angles, midsegment theorem, and general trapezoid angle sums.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 2j with one retrieval prompt on the definition of a trapezoid and what makes one isosceles.",
+        "conceptDevelopment": "Use 2-4, Examples 1-3 to develop: find base angles of isosceles trapezoids using the congruent-base-angles property, compute midsegment length as the average of the two bases, and find missing angles in general trapezoids using the consecutive-angle supplementary property.",
+        "guidedPractice": "Students complete scaffolded problems modeled on 2-4, Examples 1-3: apply trapezoid and isosceles trapezoid properties to find angles and midsegment lengths; teacher checks property identification.",
+        "independentPractice": "Students complete aligned practice on trapezoid_properties: angle and midsegment calculations for trapezoids and isosceles trapezoids.",
+        "assessment": "Exit ticket: one isosceles trapezoid angle problem and one midsegment calculation.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with trapezoid properties."
+      }
+    },
+    {
+      "periodId": "u02-p08b",
+      "unit": 2,
+      "period": 11,
+      "dayType": "instruction",
+      "sourceLesson": "2-4",
+      "objectiveCode": "2l",
+      "objective": "Prove trapezoid properties and apply them to real-world problems.",
+      "workedExamples": "2-4, Examples 4-5 — Prove a Trapezoid Is Isosceles Using Diagonals; Real-World: Trapezoidal Table Top Measurements",
+      "embeddedObjectives": ["2j", "2k"],
+      "problemTypes": ["trapezoid_properties"],
+      "notes": "Isosceles trapezoid proof using congruent diagonals and multi-step real-world trapezoid measurements.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 2l with one retrieval prompt on the relationship between congruent diagonals and isosceles trapezoids.",
+        "conceptDevelopment": "Use 2-4, Examples 4-5 to develop: prove a trapezoid is isosceles by showing its diagonals are congruent (using perpendicular heights and HL), and solve a multi-step real-world problem computing midsegment, height, base angles, and area of a trapezoidal table top.",
+        "guidedPractice": "Students complete scaffolded problems modeled on 2-4, Examples 4-5: construct the isosceles trapezoid proof and work through the table-top measurement sequence; teacher checks proof logic and computation accuracy.",
+        "independentPractice": "Students complete aligned practice on trapezoid_properties: isosceles proofs and multi-step real-world trapezoid applications.",
+        "assessment": "Exit ticket: one isosceles trapezoid proof justification step and one real-world trapezoid measurement calculation.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with trapezoid proofs and real-world applications."
+      }
+    },
+    {
+      "periodId": "u02-p09a",
+      "unit": 2,
+      "period": 12,
+      "dayType": "instruction",
+      "sourceLesson": "2-5",
+      "objectiveCode": "2m",
+      "objective": "Use the distance formula, slope formula, and midpoint formula to classify quadrilaterals on the coordinate plane.",
+      "workedExamples": "2-5, Examples 1-2 — Prove a Quadrilateral Is a Parallelogram Using Slope and Distance; Prove a Rectangle Using Coordinates",
+      "embeddedObjectives": ["2n"],
+      "problemTypes": ["coordinate_quadrilaterals"],
+      "notes": "Coordinate proofs for parallelogram and rectangle using slope and distance.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 2m with one retrieval prompt on the distance, slope, and midpoint formulas.",
+        "conceptDevelopment": "Use 2-5, Examples 1-2 to develop: use slope to check parallel opposite sides and distance to check equal opposite sides to prove a parallelogram, then extend to proving a rectangle by verifying four right angles via perpendicular slopes.",
+        "guidedPractice": "Students complete scaffolded coordinate proofs modeled on 2-5, Examples 1-2: compute slopes and distances for four vertices and identify the quadrilateral as a parallelogram or rectangle; teacher checks formula accuracy and reasoning.",
+        "independentPractice": "Students complete aligned practice on coordinate_quadrilaterals: classify parallelograms and rectangles from coordinate vertices using multiple formulas.",
+        "assessment": "Exit ticket: one coordinate proof problem proving a quadrilateral is a parallelogram from given vertices.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with coordinate proofs for parallelograms and rectangles."
+      }
+    },
+    {
+      "periodId": "u02-p09b",
+      "unit": 2,
+      "period": 13,
+      "dayType": "instruction",
+      "sourceLesson": "2-5",
+      "objectiveCode": "2m",
+      "objective": "Prove a quadrilateral is a rhombus using coordinate methods.",
+      "workedExamples": "2-5, Example 3 — Prove a Rhombus Using the Distance Formula for All Sides",
+      "embeddedObjectives": ["2n"],
+      "problemTypes": ["coordinate_quadrilaterals"],
+      "notes": "Rhombus coordinate proof: verifying all four sides are equal using the distance formula.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 2m with one retrieval prompt on how the distance formula confirms equal side lengths.",
+        "conceptDevelopment": "Use 2-5, Example 3 to develop: compute all four side lengths using the distance formula, verify they are all equal, and conclude the quadrilateral is a rhombus; discuss how this differs from proving a parallelogram (opposite sides equal vs. all sides equal).",
+        "guidedPractice": "Students complete scaffolded problems modeled on 2-5, Example 3: compute all side lengths and verify rhombus properties; teacher checks the distinction between parallelogram and rhombus verification.",
+        "independentPractice": "Students complete aligned practice on coordinate_quadrilaterals: rhombus classification from coordinate vertices.",
+        "assessment": "Exit ticket: one coordinate proof verifying all four sides are equal to identify a rhombus.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with rhombus coordinate proofs."
+      }
+    },
+    {
+      "periodId": "u02-p09c",
+      "unit": 2,
+      "period": 14,
+      "dayType": "instruction",
+      "sourceLesson": "2-5",
+      "objectiveCode": "2o",
+      "objective": "Write coordinate proofs to verify quadrilateral properties.",
+      "workedExamples": "2-5, Examples 4-5 — Prove a Quadrilateral Is a Trapezoid Using Slopes; Multi-Step: Identify and Prove the Type of Quadrilateral",
+      "embeddedObjectives": ["2m", "2n"],
+      "problemTypes": ["coordinate_quadrilaterals"],
+      "notes": "Trapezoid coordinate proof and comprehensive multi-step identification.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 2o with one retrieval prompt on how to verify exactly one pair of parallel sides using slopes.",
+        "conceptDevelopment": "Use 2-5, Examples 4-5 to develop: prove a quadrilateral is a trapezoid by showing exactly one pair of parallel sides with slopes, and execute a multi-step process to identify and prove the type of quadrilateral from coordinates.",
+        "guidedPractice": "Students complete scaffolded problems modeled on 2-5, Examples 4-5: write full coordinate proofs for trapezoids and complete multi-step quadrilateral identification; teacher checks proof completeness.",
+        "independentPractice": "Students complete aligned practice on coordinate_quadrilaterals: multi-step coordinate proof problems requiring multiple formula applications.",
+        "assessment": "Exit ticket: one multi-step coordinate proof identifying and justifying a quadrilateral type.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with writing coordinate proofs."
+      }
+    },
+    {
+      "periodId": "u02-p11",
+      "unit": 2,
+      "period": 15,
+      "dayType": "mastery",
+      "notes": "Mastery cycle on 2d-2o.",
+      "nonInstructionArtifact": {
+        "artifactType": "mastery",
+        "objectiveScope": "Mastery cycle on 2d-2o.",
+        "srsSources": [
+          "worked-example-derived practice",
+          "problem-type practice where available",
+          "prior-unit spiral review"
+        ],
+        "remediationGrouping": "Group students by recent objective evidence and misconception patterns.",
+        "extensionOptions": "Offer synthesis problems that combine current objectives with prior units.",
+        "evidence": "Student completes due SRS items and submits one corrected-error reflection."
+      }
+    },
+    {
+      "periodId": "u02-p12",
+      "unit": 2,
+      "period": 16,
+      "dayType": "review",
+      "notes": "Unit 2 review across 2a-2o.",
+      "nonInstructionArtifact": {
+        "artifactType": "review",
+        "objectiveScope": "Unit 2 review across 2a-2o.",
+        "srsSources": [
+          "worked-example-derived practice",
+          "problem-type practice where available",
+          "prior-unit spiral review"
+        ],
+        "remediationGrouping": "Group students by recent objective evidence and misconception patterns.",
+        "extensionOptions": "Offer synthesis problems that combine current objectives with prior units.",
+        "evidence": "Student completes review problem set and submits one self-identified area for improvement."
+      }
+    },
+    {
+      "periodId": "u02-p13",
+      "unit": 2,
+      "period": 17,
+      "dayType": "test",
+      "notes": "Unit 2 assessment.",
+      "nonInstructionArtifact": {
+        "artifactType": "test",
+        "objectiveScope": "Unit 2 assessment covering 2a-2o.",
+        "srsSources": [],
+        "remediationGrouping": "N/A — summative assessment day.",
+        "extensionOptions": "N/A — summative assessment day.",
+        "evidence": "Student completes unit test."
+      }
+    }
+  ]
+}

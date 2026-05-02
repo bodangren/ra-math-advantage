@@ -1,0 +1,386 @@
+{
+  "schemaVersion": "class-period-package.v1",
+  "unit": 1,
+  "generatedFrom": "curriculum/unit-1-class-period-plan.md",
+  "periods": [
+    {
+      "periodId": "u01-p01",
+      "unit": 1,
+      "period": 1,
+      "dayType": "instruction",
+      "sourceLesson": "1-1",
+      "objectiveCode": "1a",
+      "objective": "Classify triangles by sides and angles.",
+      "workedExamples": "1-1, Examples 1-3 — Classify by Sides; Classify by Angles; Find a Missing Angle Using Angle Sum",
+      "embeddedObjectives": ["1b", "1c"],
+      "problemTypes": ["triangle_classification"],
+      "notes": "Side/angle classification and angle sum introduction.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 1a with one retrieval prompt on naming types of triangles by side length.",
+        "conceptDevelopment": "Use 1-1, Examples 1-3 to develop: Classify triangles by sides (scalene, isosceles, equilateral) and by angles (acute, right, obtuse, equiangular), and find a missing angle using the angle sum theorem.",
+        "guidedPractice": "Students complete scaffolded problems modeled on 1-1, Examples 1-3: classify a given triangle by both sides and angles, then solve for a missing angle; teacher checks vocabulary use and reasoning.",
+        "independentPractice": "Students complete aligned practice on triangle_classification: classify triangles from diagrams and find missing angles using angle sum.",
+        "assessment": "Exit ticket: one fresh triangle to classify by sides and angles, plus find one missing angle measure.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with classifying triangles by sides and angles."
+      }
+    },
+    {
+      "periodId": "u01-p02a",
+      "unit": 1,
+      "period": 2,
+      "dayType": "instruction",
+      "sourceLesson": "1-1",
+      "objectiveCode": "1d",
+      "objective": "Apply the exterior angle theorem to find unknown angles.",
+      "workedExamples": "1-1, Examples 4-6 — Exterior Angle Theorem; Real-World Application; Combining Classifications",
+      "embeddedObjectives": ["1a", "1b", "1c"],
+      "problemTypes": ["exterior_angle_theorem"],
+      "notes": "Split from former Period 2 (5 examples → 3 + 2). Exterior angle theorem introduction, real-world application, and combined classification within 1-1.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 1d with one retrieval prompt on angle sum of a triangle and remote interior angles.",
+        "conceptDevelopment": "Use 1-1, Examples 4-6 to develop: the exterior angle equals the sum of the two remote interior angles, apply this to a real-world scenario, and combine classification with angle relationships.",
+        "guidedPractice": "Students complete scaffolded problems modeled on 1-1, Examples 4-6: apply the exterior angle theorem to find missing angles and verify using angle sum; teacher checks that students articulate which angles are remote interior.",
+        "independentPractice": "Students complete aligned practice on exterior_angle_theorem: angle problems using the exterior angle theorem in classification and real-world contexts.",
+        "assessment": "Exit ticket: one diagram with an exterior angle and two missing remote interior angles to find.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with applying the exterior angle theorem."
+      }
+    },
+    {
+      "periodId": "u01-p02b",
+      "unit": 1,
+      "period": 3,
+      "dayType": "instruction",
+      "sourceLesson": "1-2",
+      "objectiveCode": "1d",
+      "objective": "Apply the triangle angle sum and exterior angle theorem to find unknown angles.",
+      "workedExamples": "1-2, Examples 1-2 — Triangle Angle Sum; Exterior Angle Theorem",
+      "embeddedObjectives": ["1a", "1b", "1c"],
+      "problemTypes": ["exterior_angle_theorem"],
+      "notes": "Split from former Period 2 (5 examples → 3 + 2). Triangle angle sum theorem and exterior angle theorem bridging from 1-1 into 1-2.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 1d with one retrieval prompt on the exterior angle theorem from the previous day.",
+        "conceptDevelopment": "Use 1-2, Examples 1-2 to develop: apply the triangle angle sum theorem to find unknown angles, and reinforce the exterior angle theorem in the context of lesson 1-2's notation and diagrams.",
+        "guidedPractice": "Students complete scaffolded problems modeled on 1-2, Examples 1-2: apply angle sum and exterior angle theorem to find missing angles; teacher checks that students connect to prior day's exterior angle reasoning.",
+        "independentPractice": "Students complete aligned practice on exterior_angle_theorem: multi-step angle problems requiring both angle sum and exterior angle theorem.",
+        "assessment": "Exit ticket: one angle-sum problem and one exterior angle problem requiring theorem identification.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with applying the angle sum and exterior angle theorems."
+      }
+    },
+    {
+      "periodId": "u01-p03",
+      "unit": 1,
+      "period": 4,
+      "dayType": "instruction",
+      "sourceLesson": "1-2",
+      "objectiveCode": "1e",
+      "objective": "Apply the triangle angle sum theorem to algebraic angle problems.",
+      "workedExamples": "1-2, Examples 3-5 — Algebraic Angle Problem; Relate Side Lengths to Angle Measures; Multi-Step Proof Involving Angle Sum and Exterior Angle",
+      "embeddedObjectives": ["1f"],
+      "problemTypes": ["angle_sum_theorem"],
+      "notes": "Algebraic angle problems, side-angle ordering, and multi-step proof.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 1e with one retrieval prompt on writing and solving a one-variable equation from angle measures.",
+        "conceptDevelopment": "Use 1-2, Examples 3-5 to develop: set up algebraic expressions for angle measures in a triangle, solve using angle sum, relate longest side to largest angle, and follow a multi-step proof combining angle sum and exterior angle theorem.",
+        "guidedPractice": "Students complete scaffolded algebraic angle problems modeled on 1-2, Examples 3-5: write expressions for angles, solve the equation, and verify; teacher checks equation setup and side-angle reasoning.",
+        "independentPractice": "Students complete aligned practice on angle_sum_theorem: algebraic angle problems with varying complexity including side-angle ordering.",
+        "assessment": "Exit ticket: one algebraic angle problem requiring setup and solving, plus one short justification of side-angle ordering.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with applying the triangle angle sum theorem to algebraic problems."
+      }
+    },
+    {
+      "periodId": "u01-p04",
+      "unit": 1,
+      "period": 5,
+      "dayType": "mastery",
+      "notes": "Mastery cycle on 1a-1f.",
+      "nonInstructionArtifact": {
+        "artifactType": "mastery",
+        "objectiveScope": "Mastery cycle on 1a-1f.",
+        "srsSources": [
+          "worked-example-derived practice",
+          "problem-type practice where available",
+          "prior-unit spiral review"
+        ],
+        "remediationGrouping": "Group students by recent objective evidence and misconception patterns.",
+        "extensionOptions": "Offer synthesis problems that combine current objectives with prior units.",
+        "evidence": "Student completes due SRS items and submits one corrected-error reflection."
+      }
+    },
+    {
+      "periodId": "u01-p05a",
+      "unit": 1,
+      "period": 6,
+      "dayType": "instruction",
+      "sourceLesson": "1-3",
+      "objectiveCode": "1g",
+      "objective": "Use the triangle inequality theorem to determine whether three lengths can form a triangle.",
+      "workedExamples": "1-3, Examples 1-2 — Cannot Form a Triangle; Can Form a Triangle; 1-3, Example 5 — Real-World Application",
+      "embeddedObjectives": ["1h"],
+      "problemTypes": ["triangle_inequality"],
+      "notes": "Core triangle inequality: validity test and real-world verification.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 1g with one retrieval prompt on comparing sums of two side lengths to the third.",
+        "conceptDevelopment": "Use 1-3, Examples 1-2 and Example 5 to develop: test whether three lengths satisfy the triangle inequality by ordering sides and checking the critical inequality, and apply the test to a real-world carpentry scenario.",
+        "guidedPractice": "Students complete scaffolded problems modeled on 1-3, Examples 1-2, 5: verify the triangle inequality for given lengths and determine if a frame can be built; teacher checks the inequality reasoning.",
+        "independentPractice": "Students complete aligned practice on triangle_inequality: validity tests with numeric and real-world contexts.",
+        "assessment": "Exit ticket: one triangle inequality check problem and one real-world application question.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with the triangle inequality theorem."
+      }
+    },
+    {
+      "periodId": "u01-p05b",
+      "unit": 1,
+      "period": 7,
+      "dayType": "instruction",
+      "sourceLesson": "1-3",
+      "objectiveCode": "1h",
+      "objective": "Find the range of the third side and order sides and angles of a triangle.",
+      "workedExamples": "1-3, Examples 3-4 — Find the Range of the Third Side; Order Sides and Angles; 1-3, Example 6 — Find Possible Integer Values",
+      "embeddedObjectives": ["1f"],
+      "problemTypes": ["triangle_inequality"],
+      "notes": "Third-side range, integer constraints, and side-angle ordering.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 1h with one retrieval prompt on the triangle inequality shortcut (sum of two shorter sides > longest side).",
+        "conceptDevelopment": "Use 1-3, Examples 3-4 and Example 6 to develop: set up compound inequalities to find the valid range for a third side given two sides, order sides from shortest to longest using angle measures, and list all possible integer values within the range.",
+        "guidedPractice": "Students complete scaffolded problems modeled on 1-3, Examples 3-4, 6: compute the third-side range, order sides by corresponding angles, and enumerate integer solutions; teacher checks inequality setup.",
+        "independentPractice": "Students complete aligned practice on triangle_inequality: range calculations, integer constraint problems, and side-angle ordering.",
+        "assessment": "Exit ticket: one find-the-range-of-the-third-side problem and one list-integer-values problem.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with finding ranges and ordering sides and angles."
+      }
+    },
+    {
+      "periodId": "u01-p06a",
+      "unit": 1,
+      "period": 8,
+      "dayType": "instruction",
+      "sourceLesson": "1-4",
+      "objectiveCode": "1j",
+      "objective": "Identify and apply triangle congruence criteria (SSS, SAS, ASA).",
+      "workedExamples": "1-4, Examples 1-3 — SSS Congruence; SAS Congruence; ASA Congruence",
+      "embeddedObjectives": [],
+      "problemTypes": ["congruence_criteria"],
+      "notes": "Core congruence criteria: SSS, SAS, and ASA with included-side/included-angle reasoning.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 1j with one retrieval prompt matching pairs of corresponding parts in two triangles.",
+        "conceptDevelopment": "Use 1-4, Examples 1-3 to develop: identify and apply SSS (three pairs of sides), SAS (two sides and the included angle), and ASA (two angles and the included side), emphasizing why the included part matters for SAS and ASA.",
+        "guidedPractice": "Students complete scaffolded problems modeled on 1-4, Examples 1-3: name the congruence criterion from given information and write the congruence statement; teacher checks criterion selection and corresponding-part matching.",
+        "independentPractice": "Students complete aligned practice on congruence_criteria: identify SSS, SAS, and ASA from diagrams, verify congruence, and write congruence statements.",
+        "assessment": "Exit ticket: one problem naming the congruence criterion from a marked diagram (SSS or SAS or ASA) and one writing a correct congruence statement.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with identifying SSS, SAS, and ASA congruence criteria."
+      }
+    },
+    {
+      "periodId": "u01-p06b",
+      "unit": 1,
+      "period": 9,
+      "dayType": "instruction",
+      "sourceLesson": "1-4",
+      "objectiveCode": "1j",
+      "objective": "Apply AAS, HL congruence and determine the criterion from a diagram.",
+      "workedExamples": "1-4, Examples 4-6 — AAS Congruence; HL Congruence (Right Triangles); Determine the Criterion from a Diagram",
+      "embeddedObjectives": [],
+      "problemTypes": ["congruence_criteria"],
+      "notes": "Extended criteria: AAS, HL, and criterion identification from diagram markings.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 1j with one retrieval prompt distinguishing included vs. non-included sides in congruence criteria.",
+        "conceptDevelopment": "Use 1-4, Examples 4-6 to develop: apply AAS (two angles and a non-included side), apply HL (hypotenuse and leg of right triangles), and determine which of the five criteria is shown by the markings in a diagram.",
+        "guidedPractice": "Students complete scaffolded problems modeled on 1-4, Examples 4-6: identify AAS vs. ASA from side position, apply HL to right triangles, and read diagram markings to select the correct criterion; teacher checks the distinction between AAS and ASA.",
+        "independentPractice": "Students complete aligned practice on congruence_criteria: AAS, HL, and mixed criterion identification from varied diagram markings.",
+        "assessment": "Exit ticket: one AAS or HL identification problem and one diagram-reading problem requiring criterion selection from all five options.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with AAS, HL, and diagram-based criterion identification."
+      }
+    },
+    {
+      "periodId": "u01-p07",
+      "unit": 1,
+      "period": 10,
+      "dayType": "jigsaw",
+      "notes": "Mathematical practices focus: triangle inequality reasoning, congruence criterion selection, and error analysis.",
+      "nonInstructionArtifact": {
+        "artifactType": "jigsaw",
+        "groupTask": "Mathematical practices focus: triangle inequality reasoning, congruence criterion selection, and error analysis.",
+        "sourceWorkedExamples": "Use the prior instruction periods named in the notes as the problem bank.",
+        "deliverable": "Group solution poster or shared explanation with one strategy comparison.",
+        "facilitationNotes": "Assign roles for diagram analysis, criterion selection, verification, and explanation.",
+        "completionCriteria": "Correct method, accurate result, clear justification, and response to peer question."
+      }
+    },
+    {
+      "periodId": "u01-p10",
+      "unit": 1,
+      "period": 11,
+      "dayType": "review",
+      "notes": "Mid-unit review across 1a-1j. Checkpoint before transitioning to proofs.",
+      "nonInstructionArtifact": {
+        "artifactType": "review",
+        "objectiveScope": "Mid-unit review across 1a-1j.",
+        "srsSources": [
+          "worked-example-derived practice",
+          "problem-type practice where available",
+          "prior-unit spiral review"
+        ],
+        "remediationGrouping": "Group students by recent objective evidence and misconception patterns.",
+        "extensionOptions": "Offer synthesis problems that combine triangle inequality with congruence criterion selection.",
+        "evidence": "Student completes review problem set and submits one self-identified area for improvement."
+      }
+    },
+    {
+      "periodId": "u01-p08",
+      "unit": 1,
+      "period": 12,
+      "dayType": "instruction",
+      "sourceLesson": "1-5",
+      "objectiveCode": "1k",
+      "objective": "Write two-column proofs to prove triangles congruent.",
+      "workedExamples": "1-5, Examples 1-3 — Two-Column Proof Using SAS; Two-Column Proof Using ASA; Use CPCTC to Prove Angles Congruent",
+      "embeddedObjectives": ["1l"],
+      "problemTypes": ["two_column_proof"],
+      "notes": "Two-column proof structure, SAS/ASA proofs, and CPCTC introduction.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 1k with one retrieval prompt listing the parts of a two-column proof (statements and reasons columns).",
+        "conceptDevelopment": "Use 1-5, Examples 1-3 to develop: organize a two-column proof with given information, prove triangle congruence using SAS or ASA, and use CPCTC to conclude corresponding parts are congruent.",
+        "guidedPractice": "Students complete scaffolded proofs modeled on 1-5, Examples 1-3: fill in missing statements and reasons in a two-column proof template; teacher checks proof structure and CPCTC application.",
+        "independentPractice": "Students complete aligned practice on two_column_proof: write complete two-column proofs for SAS and ASA congruence and apply CPCTC.",
+        "assessment": "Exit ticket: one two-column proof with two blanks to fill and one short prompt to identify the congruence criterion used.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with writing two-column proofs."
+      }
+    },
+    {
+      "periodId": "u01-p09",
+      "unit": 1,
+      "period": 13,
+      "dayType": "instruction",
+      "sourceLesson": "1-5",
+      "objectiveCode": "1m",
+      "objective": "Construct multi-step proofs involving triangle congruence.",
+      "workedExamples": "1-5, Examples 4-5 — Multi-Step Proof: Prove Segments Congruent; Real-World Proof",
+      "embeddedObjectives": ["1k", "1l"],
+      "problemTypes": ["two_column_proof"],
+      "notes": "Parallel-line angle relationships, multi-step proofs, and real-world applications.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 1m with one retrieval prompt on identifying parallel-line angle relationships (alternate interior, corresponding) used in congruence proofs.",
+        "conceptDevelopment": "Use 1-5, Examples 4-5 to develop: chain multiple congruence steps in a two-column proof, use parallel-line angle pairs to establish triangle congruence, then apply CPCTC to prove segments congruent, including a real-world proof scenario.",
+        "guidedPractice": "Students complete scaffolded multi-step proofs modeled on 1-5, Examples 4-5: identify the sequence of congruence criteria and fill in the proof; teacher checks logical flow and use of parallel-line relationships.",
+        "independentPractice": "Students complete aligned practice on two_column_proof: construct full multi-step proofs involving parallel lines and triangle congruence.",
+        "assessment": "Exit ticket: one multi-step proof with a key step missing for students to identify and justify.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with constructing multi-step proofs."
+      }
+    },
+    {
+      "periodId": "u01-p14a",
+      "unit": 1,
+      "period": 14,
+      "dayType": "instruction",
+      "sourceLesson": "1-6",
+      "objectiveCode": "1n",
+      "objective": "Apply the Base Angles Theorem and its converse.",
+      "workedExamples": "1-6, Examples 1-3 — Find Base Angles of an Isosceles Triangle; Find the Vertex Angle; Equilateral Triangle Properties",
+      "embeddedObjectives": ["1o"],
+      "problemTypes": ["isosceles_equilateral_theorems"],
+      "notes": "Split from former Period 13 (4 examples → 3 + 1). Base angles theorem, vertex angle, and equilateral triangle properties.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 1n with one retrieval prompt on the definition of isosceles triangle and which sides/angles are congruent.",
+        "conceptDevelopment": "Use 1-6, Examples 1-3 to develop: find base angles given the vertex angle, find the vertex angle given base angles, and apply the equilateral triangle property (all angles 60°).",
+        "guidedPractice": "Students complete scaffolded problems modeled on 1-6, Examples 1-3: find missing angles in isosceles and equilateral triangles; teacher checks theorem identification and calculation accuracy.",
+        "independentPractice": "Students complete aligned practice on isosceles_equilateral_theorems: angle calculations for isosceles and equilateral triangles.",
+        "assessment": "Exit ticket: one isosceles triangle angle problem and one equilateral triangle property question.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with applying the Base Angles Theorem."
+      }
+    },
+    {
+      "periodId": "u01-p14b",
+      "unit": 1,
+      "period": 15,
+      "dayType": "instruction",
+      "sourceLesson": "1-6",
+      "objectiveCode": "1n",
+      "objective": "Prove the Base Angles Theorem using congruent triangles.",
+      "workedExamples": "1-6, Example 4 — Prove Base Angles Are Congruent",
+      "embeddedObjectives": ["1o"],
+      "problemTypes": ["isosceles_equilateral_theorems"],
+      "notes": "Split from former Period 13 (4 examples → 3 + 1). Proof of base angles using angle bisector and SAS congruence.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 1n with one retrieval prompt on the definition of isosceles triangle and which sides/angles are congruent.",
+        "conceptDevelopment": "Use 1-6, Example 4 to develop: prove base angles are congruent by constructing an angle bisector to create two triangles and applying SAS congruence.",
+        "guidedPractice": "Students complete scaffolded problems modeled on 1-6, Example 4: follow the base-angles proof, identifying the angle bisector construction and the SAS congruence step; teacher checks proof structure and reasoning.",
+        "independentPractice": "Students complete aligned practice on isosceles_equilateral_theorems: proof steps for base angles and related isosceles properties.",
+        "assessment": "Exit ticket: one step from the base angles proof to identify the reason.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with proving the Base Angles Theorem."
+      }
+    },
+    {
+      "periodId": "u01-p10b",
+      "unit": 1,
+      "period": 16,
+      "dayType": "instruction",
+      "sourceLesson": "1-6",
+      "objectiveCode": "1o",
+      "objective": "Solve multi-step problems involving isosceles and equilateral triangles.",
+      "workedExamples": "1-6, Examples 5-6 — Multi-Step Problem: Isosceles Triangle Inscribed in a Circle; Real-World Application: Equilateral Roof Truss",
+      "embeddedObjectives": ["1n", "1p"],
+      "problemTypes": ["isosceles_equilateral_theorems"],
+      "notes": "Inscribed-circle multi-step problem and real-world equilateral application.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 1o with one retrieval prompt on inscribed angles and the relationship between an inscribed angle and its intercepted arc.",
+        "conceptDevelopment": "Use 1-6, Examples 5-6 to develop: combine inscribed angle theorem with isosceles triangle properties to find all three angles of a triangle inscribed in a circle, and apply equilateral triangle properties and the Pythagorean theorem to compute the height of a roof truss.",
+        "guidedPractice": "Students complete scaffolded problems modeled on 1-6, Examples 5-6: solve the inscribed-isosceles problem step by step and compute the truss height; teacher checks the integration of multiple theorems.",
+        "independentPractice": "Students complete aligned practice on isosceles_equilateral_theorems: multi-step applications combining circle geometry, isosceles properties, and real-world modeling.",
+        "assessment": "Exit ticket: one multi-step isosceles triangle problem requiring at least two theorems and one equilateral height calculation.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with multi-step isosceles and equilateral problems."
+      }
+    },
+    {
+      "periodId": "u01-p11",
+      "unit": 1,
+      "period": 17,
+      "dayType": "mastery",
+      "notes": "Mastery cycle on 1g-1p.",
+      "nonInstructionArtifact": {
+        "artifactType": "mastery",
+        "objectiveScope": "Mastery cycle on 1g-1p.",
+        "srsSources": [
+          "worked-example-derived practice",
+          "problem-type practice where available",
+          "prior-unit spiral review"
+        ],
+        "remediationGrouping": "Group students by recent objective evidence and misconception patterns.",
+        "extensionOptions": "Offer synthesis problems that combine current objectives with prior units.",
+        "evidence": "Student completes due SRS items and submits one corrected-error reflection."
+      }
+    },
+    {
+      "periodId": "u01-p12",
+      "unit": 1,
+      "period": 18,
+      "dayType": "review",
+      "notes": "Unit 1 review across 1a-1p.",
+      "nonInstructionArtifact": {
+        "artifactType": "review",
+        "objectiveScope": "Unit 1 review across 1a-1p.",
+        "srsSources": [
+          "worked-example-derived practice",
+          "problem-type practice where available",
+          "prior-unit spiral review"
+        ],
+        "remediationGrouping": "Group students by recent objective evidence and misconception patterns.",
+        "extensionOptions": "Offer synthesis problems that combine current objectives with prior units.",
+        "evidence": "Student completes review problem set and submits one self-identified area for improvement."
+      }
+    },
+    {
+      "periodId": "u01-p13",
+      "unit": 1,
+      "period": 19,
+      "dayType": "test",
+      "notes": "Unit 1 assessment.",
+      "nonInstructionArtifact": {
+        "artifactType": "test",
+        "objectiveScope": "Unit 1 assessment covering 1a-1p.",
+        "srsSources": [],
+        "remediationGrouping": "N/A — summative assessment day.",
+        "extensionOptions": "N/A — summative assessment day.",
+        "evidence": "Student completes unit test."
+      }
+    }
+  ]
+}

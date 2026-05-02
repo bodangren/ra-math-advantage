@@ -1,0 +1,422 @@
+{
+  "schemaVersion": "class-period-package.v1",
+  "unit": 11,
+  "generatedFrom": "curriculum/unit-11-class-period-plan.md",
+  "periods": [
+    {
+      "periodId": "u11-p01",
+      "unit": 11,
+      "period": 1,
+      "dayType": "instruction",
+      "sourceLesson": "11-1",
+      "objectiveCode": "11a",
+      "objective": "Classify polynomials by degree and number of terms; write in standard form.",
+      "workedExamples": "11-1, Examples 1-3 — Identify Degree and Leading Coefficient; Classify by Degree and Number of Terms; Write in Standard Form",
+      "embeddedObjectives": [],
+      "problemTypes": ["polynomial_classification"],
+      "notes": "Core classification: degree, leading coefficient, and standard form.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 11a with one retrieval prompt defining degree and leading coefficient of a polynomial.",
+        "conceptDevelopment": "Use 11-1, Examples 1-3 to develop: identify the degree and leading coefficient of a polynomial, classify by degree name and number of terms, and write in standard form with descending powers.",
+        "guidedPractice": "Students complete scaffolded problems modeled on 11-1, Examples 1-3: classify polynomials and write in standard form; teacher checks degree identification.",
+        "independentPractice": "Students complete aligned practice on polynomial_classification: classification and standard form writing.",
+        "assessment": "Exit ticket: one polynomial classification and one standard form writing problem.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with polynomial classification."
+      }
+    },
+    {
+      "periodId": "u11-p02",
+      "unit": 11,
+      "period": 2,
+      "dayType": "instruction",
+      "sourceLesson": "11-1",
+      "objectiveCode": "11a",
+      "objective": "Determine if an expression is a polynomial; apply polynomial models to real-world volume problems.",
+      "workedExamples": "11-1, Examples 4-5 — Determine if an Expression Is a Polynomial; Real-World Polynomial Model for Volume",
+      "embeddedObjectives": [],
+      "problemTypes": ["polynomial_classification"],
+      "notes": "Polynomial test and volume modeling with polynomial expressions.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 11a with one retrieval prompt checking whether 3x² + 5/x is a polynomial.",
+        "conceptDevelopment": "Use 11-1, Examples 4-5 to develop: determine if an expression qualifies as a polynomial by checking for non-negative integer exponents and no division by a variable, and model the volume of a box with polynomial expressions.",
+        "guidedPractice": "Students complete scaffolded problems modeled on 11-1, Examples 4-5: test expressions and build volume models; teacher checks the polynomial criteria.",
+        "independentPractice": "Students complete aligned practice on polynomial_classification: polynomial test and volume modeling.",
+        "assessment": "Exit ticket: one polynomial test and one volume modeling problem.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with determining polynomial validity."
+      }
+    },
+    {
+      "periodId": "u11-p03",
+      "unit": 11,
+      "period": 3,
+      "dayType": "instruction",
+      "sourceLesson": "11-2",
+      "objectiveCode": "11b",
+      "objective": "Add and subtract polynomials by combining like terms.",
+      "workedExamples": "11-2, Examples 1-3 — Add Two Polynomials; Subtract Polynomials (Distribute the Negative); Add Three Polynomials",
+      "embeddedObjectives": [],
+      "problemTypes": ["add_subtract_polynomials"],
+      "notes": "Core addition/subtraction: combining like terms, distributing negatives, and adding three polynomials.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 11b with one retrieval prompt identifying like terms in 3x² + 5x − 2x² + 7.",
+        "conceptDevelopment": "Use 11-2, Examples 1-3 to develop: add two polynomials by combining like terms, subtract polynomials by distributing the negative sign, and add three polynomials simultaneously.",
+        "guidedPractice": "Students complete scaffolded problems modeled on 11-2, Examples 1-3: combine like terms for addition and subtraction; teacher checks sign distribution.",
+        "independentPractice": "Students complete aligned practice on add_subtract_polynomials: addition, subtraction, and multi-polynomial problems.",
+        "assessment": "Exit ticket: one polynomial addition and one polynomial subtraction problem.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with adding and subtracting polynomials."
+      }
+    },
+    {
+      "periodId": "u11-p04",
+      "unit": 11,
+      "period": 4,
+      "dayType": "instruction",
+      "sourceLesson": "11-2",
+      "objectiveCode": "11b",
+      "objective": "Subtract polynomials with nested parentheses; apply polynomial addition to area problems.",
+      "workedExamples": "11-2, Examples 4-5 — Subtract with Nested Parentheses; Application: Add Polynomial Areas",
+      "embeddedObjectives": [],
+      "problemTypes": ["add_subtract_polynomials"],
+      "notes": "Nested-parentheses subtraction and area applications of polynomial addition.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 11b with one retrieval prompt simplifying (5x³ − 2x² + 4) − (3x³ − x² + 2x − 1).",
+        "conceptDevelopment": "Use 11-2, Examples 4-5 to develop: subtract polynomials with nested parentheses requiring two rounds of sign distribution, and add polynomial area expressions to find total planting area.",
+        "guidedPractice": "Students complete scaffolded problems modeled on 11-2, Examples 4-5: handle nested subtraction and area setup; teacher checks sign accuracy.",
+        "independentPractice": "Students complete aligned practice on add_subtract_polynomials: nested parentheses and area problems.",
+        "assessment": "Exit ticket: one nested subtraction problem and one area application.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with nested parentheses subtraction."
+      }
+    },
+    {
+      "periodId": "u11-p05",
+      "unit": 11,
+      "period": 5,
+      "dayType": "mastery",
+      "notes": "Mastery cycle on 11a-11b.",
+      "nonInstructionArtifact": {
+        "artifactType": "mastery",
+        "objectiveScope": "Mastery cycle on 11a-11b.",
+        "srsSources": [
+          "worked-example-derived practice",
+          "problem-type practice where available",
+          "prior-unit spiral review"
+        ],
+        "remediationGrouping": "Group students by recent objective evidence and misconception patterns.",
+        "extensionOptions": "Offer synthesis problems that combine current objectives with prior units.",
+        "evidence": "Student completes due SRS items and submits one corrected-error reflection."
+      }
+    },
+    {
+      "periodId": "u11-p06",
+      "unit": 11,
+      "period": 6,
+      "dayType": "review",
+      "notes": "Mid-unit review on 11a-11b.",
+      "nonInstructionArtifact": {
+        "artifactType": "review",
+        "objectiveScope": "Mid-unit review on 11a-11b.",
+        "srsSources": [
+          "worked-example-derived practice",
+          "problem-type practice where available",
+          "prior-unit spiral review"
+        ],
+        "remediationGrouping": "Group students by recent objective evidence and misconception patterns.",
+        "extensionOptions": "Offer synthesis problems that combine current objectives with prior units.",
+        "evidence": "Student completes review problem set and submits one self-identified area for improvement."
+      }
+    },
+    {
+      "periodId": "u11-p07",
+      "unit": 11,
+      "period": 7,
+      "dayType": "instruction",
+      "sourceLesson": "11-3",
+      "objectiveCode": "11c",
+      "objective": "Multiply polynomials using the distributive property and FOIL.",
+      "workedExamples": "11-3, Examples 1-3 — Multiply Monomial × Polynomial; FOIL: Multiply (x + 3)(x − 5); Multiply Binomial × Trinomial",
+      "embeddedObjectives": [],
+      "problemTypes": ["multiply_polynomials"],
+      "notes": "Core multiplication: monomial distribution, FOIL, and binomial × trinomial.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 11c with one retrieval prompt multiplying 3x(x² − 4x + 1) using distribution.",
+        "conceptDevelopment": "Use 11-3, Examples 1-3 to develop: multiply a monomial by a polynomial using distribution, apply FOIL for binomial × binomial, and extend distribution for binomial × trinomial.",
+        "guidedPractice": "Students complete scaffolded problems modeled on 11-3, Examples 1-3: multiply polynomial pairs and combine like terms; teacher checks distribution completeness.",
+        "independentPractice": "Students complete aligned practice on multiply_polynomials: monomial, FOIL, and extended multiplication.",
+        "assessment": "Exit ticket: one FOIL problem and one binomial × trinomial problem.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with multiplying polynomials."
+      }
+    },
+    {
+      "periodId": "u11-p08",
+      "unit": 11,
+      "period": 8,
+      "dayType": "instruction",
+      "sourceLesson": "11-3",
+      "objectiveCode": "11c",
+      "objective": "Multiply two trinomials; apply polynomial multiplication to area.",
+      "workedExamples": "11-3, Examples 4-5 — Multiply Two Trinomials; Application: Multiply for Area",
+      "embeddedObjectives": [],
+      "problemTypes": ["multiply_polynomials"],
+      "notes": "Extended multiplication products and area applications.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 11c with one retrieval prompt on multiplying every term of the first polynomial by every term of the second.",
+        "conceptDevelopment": "Use 11-3, Examples 4-5 to develop: multiply two trinomials systematically by distributing each term and combining like terms, and multiply polynomial expressions to find area.",
+        "guidedPractice": "Students complete scaffolded problems modeled on 11-3, Examples 4-5: execute extended products and area setup; teacher checks term tracking.",
+        "independentPractice": "Students complete aligned practice on multiply_polynomials: two-trinomial products and area problems.",
+        "assessment": "Exit ticket: one two-trinomial multiplication and one area problem.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with extended polynomial multiplication."
+      }
+    },
+    {
+      "periodId": "u11-p09",
+      "unit": 11,
+      "period": 9,
+      "dayType": "instruction",
+      "sourceLesson": "11-4",
+      "objectiveCode": "11d",
+      "objective": "Recognize and apply perfect square trinomial and difference of squares patterns.",
+      "workedExamples": "11-4, Examples 1-3 — Expand (x + 5)²; Expand (x − 3)²; Difference of Squares: (x + 4)(x − 4)",
+      "embeddedObjectives": ["11e"],
+      "problemTypes": ["special_products"],
+      "notes": "Core special product patterns: perfect square trinomials and difference of squares. Split from original dense day to separate foundational patterns from extension activities.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 11d with one retrieval prompt expanding (x + 2)² and noting the resulting pattern.",
+        "conceptDevelopment": "Use 11-4, Examples 1-3 to develop: recognize the perfect square trinomial pattern by expanding (x + 5)² and (x − 3)², and apply the difference of squares pattern to (x + 4)(x − 4).",
+        "guidedPractice": "Students complete scaffolded problems modeled on 11-4, Examples 1-3: expand PSTs and factor difference of squares; teacher checks pattern recognition.",
+        "independentPractice": "Students complete aligned practice on special_products: PST expansion and difference of squares.",
+        "assessment": "Exit ticket: one PST expansion and one difference of squares factoring.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with special product patterns."
+      }
+    },
+    {
+      "periodId": "u11-p10",
+      "unit": 11,
+      "period": 10,
+      "dayType": "instruction",
+      "sourceLesson": "11-4",
+      "objectiveCode": "11d",
+      "objective": "Recognize special product patterns; apply special products for mental math; expand composite perfect square trinomials.",
+      "workedExamples": "11-4, Examples 4-6 — Recognize Special Product Patterns; Mental Math; Expand (2x + 3)²",
+      "embeddedObjectives": ["11e"],
+      "problemTypes": ["special_products"],
+      "notes": "Pattern recognition across mixed types, mental math shortcuts, and composite PST expansion.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 11d with one retrieval prompt on the difference of squares pattern a² − b² = (a + b)(a − b).",
+        "conceptDevelopment": "Use 11-4, Examples 4-6 to develop: identify special product patterns in mixed expressions, use special products for mental math computation, and expand composite perfect square trinomials like (2x + 3)² where the coefficient must be squared.",
+        "guidedPractice": "Students complete scaffolded problems modeled on 11-4, Examples 4-6: recognize patterns and expand composites; teacher checks pattern identification.",
+        "independentPractice": "Students complete aligned practice on special_products: pattern recognition, mental math, and composite PST.",
+        "assessment": "Exit ticket: one pattern recognition problem and one composite PST expansion.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with pattern recognition and composite PST."
+      }
+    },
+    {
+      "periodId": "u11-p11",
+      "unit": 11,
+      "period": 11,
+      "dayType": "instruction",
+      "sourceLesson": "11-5",
+      "objectiveCode": "11e",
+      "objective": "Factor out the GCF and factor by grouping.",
+      "workedExamples": "11-5, Examples 1-2 — Factor Out the GCF: 6x³ + 9x²; Factor by Grouping: x³ + 2x² + 3x + 6",
+      "embeddedObjectives": ["11f", "11g"],
+      "problemTypes": ["special_products"],
+      "notes": "GCF extraction and grouping technique introduction.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 11e with one retrieval prompt on finding the GCF of 6x³ and 9x².",
+        "conceptDevelopment": "Use 11-5, Examples 1-2 to develop: factor out the GCF from a polynomial, and factor by grouping four-term polynomials.",
+        "guidedPractice": "Students complete scaffolded problems modeled on 11-5, Examples 1-2: extract GCFs and group terms; teacher checks GCF identification.",
+        "independentPractice": "Students complete aligned practice on special_products: GCF extraction and factoring by grouping.",
+        "assessment": "Exit ticket: one GCF extraction and one factor-by-grouping problem.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with GCF and grouping."
+      }
+    },
+    {
+      "periodId": "u11-p12",
+      "unit": 11,
+      "period": 12,
+      "dayType": "instruction",
+      "sourceLesson": "11-5",
+      "objectiveCode": "11f",
+      "objective": "Factor trinomials with leading coefficient 1 and ≠ 1.",
+      "workedExamples": "11-5, Examples 3-4 — Factor x² + 7x + 12 (Leading Coefficient 1); Factor 2x² + 7x + 3 (Leading Coefficient ≠ 1)",
+      "embeddedObjectives": ["11g"],
+      "problemTypes": ["factoring_trinomials"],
+      "notes": "Trinomial factoring: multiply-to-c method and AC method with grouping.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 11f with one retrieval prompt on finding two numbers that multiply to 12 and add to 7.",
+        "conceptDevelopment": "Use 11-5, Examples 3-4 to develop: factor x² + bx + c by finding two numbers that multiply to c and add to b, and factor ax² + bx + c with leading coefficient ≠ 1 using the AC method.",
+        "guidedPractice": "Students complete scaffolded problems modeled on 11-5, Examples 3-4: set up and execute trinomial factoring for both cases; teacher checks factor-pair identification.",
+        "independentPractice": "Students complete aligned practice on factoring_trinomials: leading-coefficient-1 and leading-coefficient-not-1 problems.",
+        "assessment": "Exit ticket: one trinomial factoring problem with leading coefficient 1 and one with ≠ 1.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with factoring trinomials."
+      }
+    },
+    {
+      "periodId": "u11-p13",
+      "unit": 11,
+      "period": 13,
+      "dayType": "instruction",
+      "sourceLesson": "11-5",
+      "objectiveCode": "11g",
+      "objective": "Factor difference of squares and factor completely.",
+      "workedExamples": "11-5, Examples 5-6 — Factor x² − 25 (Difference of Squares); Factor Completely: 2x³ − 8x",
+      "embeddedObjectives": [],
+      "problemTypes": ["factoring_trinomials"],
+      "notes": "Difference-of-squares factoring and complete factoring with GCF + pattern. Split from original dense day to separate factoring techniques from zero product property solving.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 11g with one retrieval prompt factoring x² − 16 as a difference of squares.",
+        "conceptDevelopment": "Use 11-5, Examples 5-6 to develop: factor x² − 25 as a difference of squares, and factor completely by extracting GCF first then applying a pattern.",
+        "guidedPractice": "Students complete scaffolded problems modeled on 11-5, Examples 5-6: factor difference of squares and factor completely; teacher checks factoring sequence.",
+        "independentPractice": "Students complete aligned practice on factoring_trinomials: difference of squares and complete factoring.",
+        "assessment": "Exit ticket: one difference-of-squares problem and one factor-completely problem.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with difference of squares and factoring completely."
+      }
+    },
+    {
+      "periodId": "u11-p14",
+      "unit": 11,
+      "period": 14,
+      "dayType": "instruction",
+      "sourceLesson": "11-6",
+      "objectiveCode": "11g",
+      "objective": "Solve polynomial equations using the zero product property.",
+      "workedExamples": "11-6, Examples 1-3 — Solve x² − 5x = 0; Solve x² + 3x − 10 = 0; Solve 2x² − 8 = 0 (GCF First)",
+      "embeddedObjectives": ["11h"],
+      "problemTypes": ["zero_product_property"],
+      "notes": "Zero product property solving: factoring then setting each factor to zero.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 11g with one retrieval prompt on the zero product property: if AB = 0 then A = 0 or B = 0.",
+        "conceptDevelopment": "Use 11-6, Examples 1-3 to develop: solve polynomial equations by factoring and applying the zero product property, always checking for a GCF before other factoring methods.",
+        "guidedPractice": "Students complete scaffolded problems modeled on 11-6, Examples 1-3: factor and solve using zero product property; teacher checks factoring sequence.",
+        "independentPractice": "Students complete aligned practice on zero_product_property: solving polynomial equations by factoring.",
+        "assessment": "Exit ticket: one solve-by-factoring problem.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with the zero product property."
+      }
+    },
+    {
+      "periodId": "u11-p15",
+      "unit": 11,
+      "period": 15,
+      "dayType": "instruction",
+      "sourceLesson": "11-6",
+      "objectiveCode": "11h",
+      "objective": "Solve cubic polynomial equations.",
+      "workedExamples": "11-6, Example 4 — Solve x³ − x = 0 (Cubic)",
+      "embeddedObjectives": [],
+      "problemTypes": ["zero_product_property"],
+      "notes": "Higher-degree polynomial solving by extracting GCF and applying difference of squares.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 11h with one retrieval prompt on factoring x³ − x by first extracting the GCF x.",
+        "conceptDevelopment": "Use 11-6, Example 4 to develop: solve a cubic equation by factoring out the GCF and then applying difference of squares to find all three roots.",
+        "guidedPractice": "Students complete scaffolded problems modeled on 11-6, Example 4: factor cubic expressions and apply zero product property; teacher checks factoring steps.",
+        "independentPractice": "Students complete aligned practice on zero_product_property: cubic equation solving.",
+        "assessment": "Exit ticket: one cubic equation to solve.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with solving cubic polynomial equations."
+      }
+    },
+    {
+      "periodId": "u11-p16",
+      "unit": 11,
+      "period": 16,
+      "dayType": "instruction",
+      "sourceLesson": "11-6",
+      "objectiveCode": "11h",
+      "objective": "Find zeros of real-world polynomial models.",
+      "workedExamples": "11-6, Example 5 — Real-World: Find Zeros of a Polynomial Model",
+      "embeddedObjectives": [],
+      "problemTypes": ["zero_product_property"],
+      "notes": "Applying factoring and zero product property to find and interpret zeros of real-world polynomial models.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 11h with one retrieval prompt on interpreting what a zero of a function means in context.",
+        "conceptDevelopment": "Use 11-6, Example 5 to develop: find the zeros of a real-world polynomial model by factoring and interpreting the solutions in context (e.g., when a ball hits the ground).",
+        "guidedPractice": "Students complete scaffolded problems modeled on 11-6, Example 5: set up, factor, solve, and interpret zeros; teacher checks contextual interpretation.",
+        "independentPractice": "Students complete aligned practice on zero_product_property: real-world zero-finding and interpretation.",
+        "assessment": "Exit ticket: one real-world polynomial zero problem with interpretation.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with finding zeros of real-world models."
+      }
+    },
+    {
+      "periodId": "u11-p17",
+      "unit": 11,
+      "period": 17,
+      "dayType": "jigsaw",
+      "notes": "Mathematical practices focus: factoring strategy selection, error analysis in sign distribution, and method justification.",
+      "nonInstructionArtifact": {
+        "artifactType": "jigsaw",
+        "groupTask": "Mathematical practices focus: factoring strategy selection, error analysis in sign distribution, and method justification.",
+        "sourceWorkedExamples": "Use the prior instruction periods named in the notes as the problem bank.",
+        "deliverable": "Group solution poster or shared explanation with one strategy comparison.",
+        "facilitationNotes": "Assign roles for strategy selection, factoring execution, sign checking, and explanation.",
+        "completionCriteria": "Correct method, accurate result, clear justification, and response to peer question."
+      }
+    },
+    {
+      "periodId": "u11-p18",
+      "unit": 11,
+      "period": 18,
+      "dayType": "mastery",
+      "notes": "Mastery cycle on 11c-11h.",
+      "nonInstructionArtifact": {
+        "artifactType": "mastery",
+        "objectiveScope": "Mastery cycle on 11c-11h.",
+        "srsSources": [
+          "worked-example-derived practice",
+          "problem-type practice where available",
+          "prior-unit spiral review"
+        ],
+        "remediationGrouping": "Group students by recent objective evidence and misconception patterns.",
+        "extensionOptions": "Offer synthesis problems that combine current objectives with prior units.",
+        "evidence": "Student completes due SRS items and submits one corrected-error reflection."
+      }
+    },
+    {
+      "periodId": "u11-p19",
+      "unit": 11,
+      "period": 19,
+      "dayType": "review",
+      "notes": "Unit 11 review across 11a-11h.",
+      "nonInstructionArtifact": {
+        "artifactType": "review",
+        "objectiveScope": "Unit 11 review across 11a-11h.",
+        "srsSources": [
+          "worked-example-derived practice",
+          "problem-type practice where available",
+          "prior-unit spiral review"
+        ],
+        "remediationGrouping": "Group students by recent objective evidence and misconception patterns.",
+        "extensionOptions": "Offer synthesis problems that combine current objectives with prior units.",
+        "evidence": "Student completes review problem set and submits one self-identified area for improvement."
+      }
+    },
+    {
+      "periodId": "u11-p20",
+      "unit": 11,
+      "period": 20,
+      "dayType": "test",
+      "notes": "Unit 11 assessment.",
+      "nonInstructionArtifact": {
+        "artifactType": "test",
+        "objectiveScope": "Unit 11 assessment covering 11a-11h.",
+        "srsSources": [],
+        "remediationGrouping": "N/A — summative assessment day.",
+        "extensionOptions": "N/A — summative assessment day.",
+        "evidence": "Student completes unit test."
+      }
+    },
+    {
+      "periodId": "u11-p21",
+      "unit": 11,
+      "period": 21,
+      "dayType": "test",
+      "notes": "Unit 11 assessment — retake or extended time.",
+      "nonInstructionArtifact": {
+        "artifactType": "test",
+        "objectiveScope": "Unit 11 assessment covering 11a-11h.",
+        "srsSources": [],
+        "remediationGrouping": "N/A — summative assessment day.",
+        "extensionOptions": "N/A — summative assessment day.",
+        "evidence": "Student completes unit test."
+      }
+    }
+  ]
+}

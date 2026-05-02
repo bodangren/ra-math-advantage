@@ -1,0 +1,421 @@
+{
+  "schemaVersion": "class-period-package.v1",
+  "unit": 7,
+  "generatedFrom": "curriculum/unit-7-class-period-plan.md",
+  "periods": [
+    {
+      "periodId": "u07-p01",
+      "unit": 7,
+      "period": 1,
+      "dayType": "instruction",
+      "sourceLesson": "7-1",
+      "objectiveCode": "7a",
+      "objective": "Calculate basic probabilities.",
+      "workedExamples": "7-1, Examples 1-3 — Probability of Rolling a 3 on a Die; Probability of Drawing a Red Card from a Deck; Complementary Events",
+      "embeddedObjectives": ["7b"],
+      "problemTypes": ["basic_probability"],
+      "notes": "Core basic probability: theoretical probability using sample spaces and complementary events.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 7a with one retrieval prompt defining probability as a ratio of favorable outcomes to total outcomes.",
+        "conceptDevelopment": "Use 7-1, Examples 1-3 to develop: compute probability of rolling a specific number on a die by defining the sample space and counting favorable outcomes, compute probability of drawing a red card from a standard deck, and find complementary event probabilities using P(not A) = 1 − P(A).",
+        "guidedPractice": "Students complete scaffolded problems modeled on 7-1, Examples 1-3: compute theoretical and complementary probabilities from dice and card scenarios; teacher checks ratio setup and complement identification.",
+        "independentPractice": "Students complete aligned practice on basic_probability: die, card, and complementary event problems.",
+        "assessment": "Exit ticket: one theoretical probability calculation and one complementary event problem.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with basic probability."
+      }
+    },
+    {
+      "periodId": "u07-p02",
+      "unit": 7,
+      "period": 2,
+      "dayType": "instruction",
+      "sourceLesson": "7-1",
+      "objectiveCode": "7b",
+      "objective": "Interpret probability from frequency tables and solve real-world probability problems.",
+      "workedExamples": "7-1, Examples 4-5 — Probability from a Frequency Table; Real-World: Weather Forecast Probability",
+      "embeddedObjectives": ["7a"],
+      "problemTypes": ["basic_probability"],
+      "notes": "Frequency-table probability, complement calculations from data, and multi-step weather-forecast application with independence preview.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 7b with one retrieval prompt on computing probability from a frequency table by dividing favorable frequency by total.",
+        "conceptDevelopment": "Use 7-1, Examples 4-5 to develop: calculate probability from a survey frequency table and verify all probabilities sum to 1, then analyze a 10-day weather forecast to find the most likely rain day, compute complementary probabilities, and preview independent-event multiplication for consecutive days.",
+        "guidedPractice": "Students complete scaffolded problems modeled on 7-1, Examples 4-5: read frequency tables for probability calculations and interpret multi-part weather scenarios; teacher checks complement and data-setup reasoning.",
+        "independentPractice": "Students complete aligned practice on basic_probability: frequency table and real-world probability problems.",
+        "assessment": "Exit ticket: one frequency-table probability problem and one real-world complement calculation.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with probability from data."
+      }
+    },
+    {
+      "periodId": "u07-p03",
+      "unit": 7,
+      "period": 3,
+      "dayType": "mastery",
+      "notes": "Mastery cycle on 7a-7b.",
+      "nonInstructionArtifact": {
+        "artifactType": "mastery",
+        "objectiveScope": "Mastery cycle on 7a-7b.",
+        "srsSources": ["worked-example-derived practice", "problem-type practice where available", "prior-unit spiral review"],
+        "remediationGrouping": "Group students by recent objective evidence and misconception patterns.",
+        "extensionOptions": "Offer synthesis problems that combine current objectives with prior units.",
+        "evidence": "Student completes due SRS items and submits one corrected-error reflection."
+      }
+    },
+    {
+      "periodId": "u07-p04",
+      "unit": 7,
+      "period": 4,
+      "dayType": "instruction",
+      "sourceLesson": "7-2",
+      "objectiveCode": "7c",
+      "objective": "Apply the fundamental counting principle.",
+      "workedExamples": "7-2, Examples 1-3 — Number of Outcomes for 3 Coin Flips; Outfit Combinations; Password Possibilities",
+      "embeddedObjectives": [],
+      "problemTypes": ["counting_principle"],
+      "notes": "Foundational counting principle: independent events, multiple stages, and real-world counting.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 7c with one retrieval prompt on multiplying the number of choices for independent events.",
+        "conceptDevelopment": "Use 7-2, Examples 1-3 to develop: count outcomes for three coin flips using 2³, compute outfit combinations from shirt/pant/shoe options, and find password possibilities with repeated-character rules.",
+        "guidedPractice": "Students complete scaffolded problems modeled on 7-2, Examples 1-3: apply the multiplication principle to independent event counting; teacher checks event independence identification.",
+        "independentPractice": "Students complete aligned practice on counting_principle: independent event counts and real-world counting problems.",
+        "assessment": "Exit ticket: one counting principle problem with three stages.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with the fundamental counting principle."
+      }
+    },
+    {
+      "periodId": "u07-p05",
+      "unit": 7,
+      "period": 5,
+      "dayType": "instruction",
+      "sourceLesson": "7-2",
+      "objectiveCode": "7d",
+      "objective": "Construct and interpret tree diagrams for dependent events and solve counting problems with restrictions.",
+      "workedExamples": "7-2, Examples 4-5 — Tree Diagram for Dependent Events; Counting Principle with Restrictions",
+      "embeddedObjectives": ["7c"],
+      "problemTypes": ["counting_principle"],
+      "notes": "Advanced counting: tree diagrams for dependent events (without replacement) and counting with restrictions. Split from Period 4 to separate foundational counting principle from advanced tree-diagram and restriction applications.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 7d with one retrieval prompt on how dependent events change the number of available choices.",
+        "conceptDevelopment": "Use 7-2, Examples 4-5 to develop: draw a tree diagram for dependent events (marble drawing without replacement) where the second event's outcomes depend on the first, and apply the counting principle with restrictions (PIN cannot start with 0, no repeated digits).",
+        "guidedPractice": "Students complete scaffolded problems modeled on 7-2, Examples 4-5: draw tree diagrams for dependent scenarios and set up restricted counts; teacher checks dependent-event identification and restriction handling.",
+        "independentPractice": "Students complete aligned practice on counting_principle: tree diagrams, dependent events, and restriction problems.",
+        "assessment": "Exit ticket: one tree diagram completion and one restricted counting problem.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with tree diagrams and counting restrictions."
+      }
+    },
+    {
+      "periodId": "u07-p06",
+      "unit": 7,
+      "period": 6,
+      "dayType": "instruction",
+      "sourceLesson": "7-3",
+      "objectiveCode": "7e",
+      "objective": "Distinguish and calculate permutations.",
+      "workedExamples": "7-3, Examples 1-2 — Arrange 4 Books on a Shelf; Choose and Arrange 2 of 5 Students for Offices",
+      "embeddedObjectives": ["7f"],
+      "problemTypes": ["permutations"],
+      "notes": "Permutation foundations: factorial arrangements and nPr formula introduction.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 7e with one retrieval prompt distinguishing arrangements (order matters) from groups (order does not matter).",
+        "conceptDevelopment": "Use 7-3, Examples 1-2 to develop: arrange 4 distinct books using 4!, and apply nPr to choose and arrange 2 of 5 students for distinct offices.",
+        "guidedPractice": "Students complete scaffolded problems modeled on 7-3, Examples 1-2: set up and compute permutations for distinct arrangements and nPr; teacher checks formula setup.",
+        "independentPractice": "Students complete aligned practice on permutations: distinct arrangements and nPr calculations.",
+        "assessment": "Exit ticket: one factorial permutation and one nPr calculation.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with permutations."
+      }
+    },
+    {
+      "periodId": "u07-p07",
+      "unit": 7,
+      "period": 7,
+      "dayType": "instruction",
+      "sourceLesson": "7-3",
+      "objectiveCode": "7e",
+      "objective": "Calculate permutations with repeated elements.",
+      "workedExamples": "7-3, Example 3 — Permutations with Repeated Elements",
+      "embeddedObjectives": ["7f"],
+      "problemTypes": ["permutations"],
+      "notes": "Permutations with repeated elements: dividing by factorial of repeat counts. Split from Period 6 to separate factorial/nPr basics from the distinct repeated-element concept.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 7e with one retrieval prompt on why repeated letters reduce the number of distinct arrangements.",
+        "conceptDevelopment": "Use 7-3, Example 3 to develop: count distinct arrangements of letters in MISSISSIPPI by dividing 11! by the product of factorials of each repeated letter count.",
+        "guidedPractice": "Students complete scaffolded problems modeled on 7-3, Example 3: compute permutations with repeated elements; teacher checks when to divide for repeated elements.",
+        "independentPractice": "Students complete aligned practice on permutations: repeated-element permutation problems.",
+        "assessment": "Exit ticket: one repeated-element permutation problem.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with repeated-element permutations."
+      }
+    },
+    {
+      "periodId": "u07-p08",
+      "unit": 7,
+      "period": 8,
+      "dayType": "instruction",
+      "sourceLesson": "7-3",
+      "objectiveCode": "7f",
+      "objective": "Apply permutations to ordering and scheduling problems.",
+      "workedExamples": "7-3, Examples 4-5 — Race Finish Orders; Real-World: Scheduling Tournament Matches",
+      "embeddedObjectives": ["7e"],
+      "problemTypes": ["permutations"],
+      "notes": "Deeper permutation applications: race finish orders using nPr and large-scale tournament scheduling with counting principle.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 7f with one retrieval prompt on computing nPr for selecting and arranging a subset from a group.",
+        "conceptDevelopment": "Use 7-3, Examples 4-5 to develop: compute the number of ways to award 1st, 2nd, and 3rd place among 8 runners using 8P3, and determine how many different schedule orderings are possible for a 6-team round-robin tournament by first counting total games (combinations) then arranging them (permutations).",
+        "guidedPractice": "Students complete scaffolded problems modeled on 7-3, Examples 4-5: apply permutations to race and tournament scenarios; teacher checks multi-step counting setup.",
+        "independentPractice": "Students complete aligned practice on permutations: race finish orders, scheduling, and multi-step arrangement problems.",
+        "assessment": "Exit ticket: one real-world permutation problem requiring two-step setup.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with real-world permutation applications."
+      }
+    },
+    {
+      "periodId": "u07-p09",
+      "unit": 7,
+      "period": 9,
+      "dayType": "instruction",
+      "sourceLesson": "7-4",
+      "objectiveCode": "7g",
+      "objective": "Calculate combinations using nCr.",
+      "workedExamples": "7-4, Examples 1-2 — Choose 3 Pizza Toppings from 8; Distinguish Permutation from Combination",
+      "embeddedObjectives": ["7h"],
+      "problemTypes": ["combinations"],
+      "notes": "Combination calculations and permutation-vs-combination distinction.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 7g with one retrieval prompt on the difference between permutations and combinations.",
+        "conceptDevelopment": "Use 7-4, Examples 1-2 to develop: compute nCr for choosing 3 toppings from 8, and identify when a problem is a permutation vs. combination.",
+        "guidedPractice": "Students complete scaffolded problems modeled on 7-4, Examples 1-2: set up nCr calculations and justify why order does not matter; teacher checks formula selection.",
+        "independentPractice": "Students complete aligned practice on combinations: nCr calculations and permutation-combination distinction.",
+        "assessment": "Exit ticket: one combination calculation and one permutation-vs-combination identification.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with combinations."
+      }
+    },
+    {
+      "periodId": "u07-p10",
+      "unit": 7,
+      "period": 10,
+      "dayType": "instruction",
+      "sourceLesson": "7-4",
+      "objectiveCode": "7g",
+      "objective": "Apply combinations to committee selection and restricted problems.",
+      "workedExamples": "7-4, Example 3 — Committee Selection",
+      "embeddedObjectives": ["7h"],
+      "problemTypes": ["combinations"],
+      "notes": "Committee selection applications of combinations. Split from Period 9 to separate nCr calculation basics from applied committee problems.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 7g with one retrieval prompt on setting up a combination for selecting a committee from a group.",
+        "conceptDevelopment": "Use 7-4, Example 3 to develop: solve committee selection problems where order does not matter, using nCr and verifying with symmetry and permutation comparison.",
+        "guidedPractice": "Students complete scaffolded problems modeled on 7-4, Example 3: set up and compute combination problems for committee selections; teacher checks formula justification.",
+        "independentPractice": "Students complete aligned practice on combinations: committee and selection problems.",
+        "assessment": "Exit ticket: one committee selection problem.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with committee selection problems."
+      }
+    },
+    {
+      "periodId": "u07-p11",
+      "unit": 7,
+      "period": 11,
+      "dayType": "instruction",
+      "sourceLesson": "7-4",
+      "objectiveCode": "7i",
+      "objective": "Apply combinations to problems with restrictions and connect to Pascal's Triangle.",
+      "workedExamples": "7-4, Examples 4-6 — Combination with Restrictions; Hand of Cards Problems; Pascal's Triangle Connection",
+      "embeddedObjectives": ["7g", "7h"],
+      "problemTypes": ["combinations"],
+      "notes": "Restricted combinations, card problems, and Pascal's Triangle connection.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 7i with one retrieval prompt on how Pascal's Triangle entries relate to nCr values.",
+        "conceptDevelopment": "Use 7-4, Examples 4-6 to develop: solve combination problems with restrictions (e.g., must include or exclude certain elements), compute card-hand probabilities using combinations, and connect binomial coefficients to Pascal's Triangle rows.",
+        "guidedPractice": "Students complete scaffolded problems modeled on 7-4, Examples 4-6: apply restriction strategies and verify with Pascal's Triangle; teacher checks restriction handling.",
+        "independentPractice": "Students complete aligned practice on combinations: restricted combinations, card problems, and Pascal's Triangle connections.",
+        "assessment": "Exit ticket: one restricted combination problem and one Pascal's Triangle identification.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with restricted combinations and Pascal's Triangle."
+      }
+    },
+    {
+      "periodId": "u07-p12",
+      "unit": 7,
+      "period": 12,
+      "dayType": "jigsaw",
+      "notes": "Mathematical practices focus: choosing between permutation and combination, counting strategy selection, and error analysis.",
+      "nonInstructionArtifact": {
+        "artifactType": "jigsaw",
+        "groupTask": "Mathematical practices focus: choosing between permutation and combination, counting strategy selection, and error analysis.",
+        "sourceWorkedExamples": "Use the prior instruction periods named in the notes as the problem bank.",
+        "deliverable": "Group solution poster or shared explanation with one strategy comparison.",
+        "facilitationNotes": "Assign roles for strategy identification, formula setup, computation, and explanation.",
+        "completionCriteria": "Correct method, accurate result, clear justification, and response to peer question."
+      }
+    },
+    {
+      "periodId": "u07-p13",
+      "unit": 7,
+      "period": 13,
+      "dayType": "review",
+      "notes": "Mid-unit review across 7a-7i: counting methods, permutations, and combinations.",
+      "nonInstructionArtifact": {
+        "artifactType": "review",
+        "objectiveScope": "Mid-unit review across 7a-7i.",
+        "srsSources": ["worked-example-derived practice", "problem-type practice where available", "prior-unit spiral review"],
+        "remediationGrouping": "Group students by recent objective evidence and misconception patterns.",
+        "extensionOptions": "Offer synthesis problems that combine counting methods with permutations and combinations.",
+        "evidence": "Student completes review problem set and submits one self-identified area for improvement."
+      }
+    },
+    {
+      "periodId": "u07-p14",
+      "unit": 7,
+      "period": 14,
+      "dayType": "test",
+      "notes": "Mid-unit assessment on 7a-7i.",
+      "nonInstructionArtifact": {
+        "artifactType": "test",
+        "objectiveScope": "Mid-unit assessment covering 7a-7i.",
+        "srsSources": [],
+        "remediationGrouping": "N/A — summative assessment day.",
+        "extensionOptions": "N/A — summative assessment day.",
+        "evidence": "Student completes mid-unit test."
+      }
+    },
+    {
+      "periodId": "u07-p15",
+      "unit": 7,
+      "period": 15,
+      "dayType": "instruction",
+      "sourceLesson": "7-5",
+      "objectiveCode": "7j",
+      "objective": "Calculate compound probabilities for independent and dependent events.",
+      "workedExamples": "7-5, Examples 1-2 — Independent Events: Coin and Die; Dependent Events: Drawing Without Replacement",
+      "embeddedObjectives": [],
+      "problemTypes": ["compound_probability"],
+      "notes": "P(A and B) for independent and dependent events.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 7j with one retrieval prompt on the difference between independent and dependent events.",
+        "conceptDevelopment": "Use 7-5, Examples 1-2 to develop: compute P(A and B) for independent events by multiplying individual probabilities, and compute P(A and B) for dependent events where the second probability changes after the first outcome.",
+        "guidedPractice": "Students complete scaffolded problems modeled on 7-5, Examples 1-2: identify independence and multiply probabilities; teacher checks whether events are independent or dependent.",
+        "independentPractice": "Students complete aligned practice on compound_probability: independent and dependent compound probability problems.",
+        "assessment": "Exit ticket: one independent compound probability and one dependent compound probability problem.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with compound probability."
+      }
+    },
+    {
+      "periodId": "u07-p16",
+      "unit": 7,
+      "period": 16,
+      "dayType": "instruction",
+      "sourceLesson": "7-5",
+      "objectiveCode": "7k",
+      "objective": "Calculate P(A or B) for mutually exclusive and overlapping events.",
+      "workedExamples": "7-5, Examples 3-5 — P(A or B) with Mutually Exclusive Events; P(A or B) with Overlapping Events (Inclusion-Exclusion); Real-World: Medical Test Probability",
+      "embeddedObjectives": ["7j"],
+      "problemTypes": ["compound_probability"],
+      "notes": "Mutually exclusive, inclusion-exclusion, and medical-test application.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 7k with one retrieval prompt on the addition rule P(A or B) = P(A) + P(B) − P(A and B).",
+        "conceptDevelopment": "Use 7-5, Examples 3-5 to develop: compute P(A or B) for mutually exclusive events (where P(A and B) = 0), apply the inclusion-exclusion formula for overlapping events, and analyze a medical test probability scenario using conditional probability.",
+        "guidedPractice": "Students complete scaffolded problems modeled on 7-5, Examples 3-5: determine if events are mutually exclusive and apply the correct formula; teacher checks overlap identification.",
+        "independentPractice": "Students complete aligned practice on compound_probability: mutually exclusive, overlapping, and real-world P(A or B) problems.",
+        "assessment": "Exit ticket: one mutually exclusive P(A or B) problem and one inclusion-exclusion problem.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with P(A or B) calculations."
+      }
+    },
+    {
+      "periodId": "u07-p17",
+      "unit": 7,
+      "period": 17,
+      "dayType": "instruction",
+      "sourceLesson": "7-6",
+      "objectiveCode": "7l",
+      "objective": "Compute expected value and determine whether a game is fair.",
+      "workedExamples": "7-6, Examples 1-2 — Expected Value of a Dice Game; Is a Game Fair?",
+      "embeddedObjectives": [],
+      "problemTypes": ["expected_value"],
+      "notes": "Expected value calculation and fairness determination.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 7l with one retrieval prompt defining expected value as the sum of each outcome's value times its probability.",
+        "conceptDevelopment": "Use 7-6, Examples 1-2 to develop: compute the expected value of a dice game by multiplying each payoff by its probability and summing, and determine whether a game is fair by checking if expected value equals zero.",
+        "guidedPractice": "Students complete scaffolded problems modeled on 7-6, Examples 1-2: set up and compute expected value tables; teacher checks probability-weighted sum setup.",
+        "independentPractice": "Students complete aligned practice on expected_value: expected value computations and fairness determinations.",
+        "assessment": "Exit ticket: one expected value calculation and one fairness determination.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with expected value."
+      }
+    },
+    {
+      "periodId": "u07-p18",
+      "unit": 7,
+      "period": 18,
+      "dayType": "instruction",
+      "sourceLesson": "7-6",
+      "objectiveCode": "7m",
+      "objective": "Apply expected value to real-world decisions.",
+      "workedExamples": "7-6, Examples 3-5 — Expected Value in Insurance; Expected Value for Raffle; Decision-Making Using Expected Value",
+      "embeddedObjectives": ["7l"],
+      "problemTypes": ["expected_value"],
+      "notes": "Insurance, raffle, and decision-making applications of expected value.",
+      "dailyPhases": {
+        "warmUp": "Activate prior knowledge for 7m with one retrieval prompt on how expected value informs a rational decision.",
+        "conceptDevelopment": "Use 7-6, Examples 3-5 to develop: compute expected value for an insurance policy to determine if it is worth purchasing, compute expected value for a raffle ticket, and use expected value to compare two choices and make a decision.",
+        "guidedPractice": "Students complete scaffolded problems modeled on 7-6, Examples 3-5: set up expected value scenarios for real-world decisions; teacher checks scenario modeling.",
+        "independentPractice": "Students complete aligned practice on expected_value: insurance, raffle, and decision-making expected value problems.",
+        "assessment": "Exit ticket: one real-world expected value problem requiring a recommendation.",
+        "capReflection": "CAP reflection: Name the strategy that helped you persist with real-world expected value applications."
+      }
+    },
+    {
+      "periodId": "u07-p19",
+      "unit": 7,
+      "period": 19,
+      "dayType": "mastery",
+      "notes": "Mastery cycle on 7j-7m.",
+      "nonInstructionArtifact": {
+        "artifactType": "mastery",
+        "objectiveScope": "Mastery cycle on 7j-7m.",
+        "srsSources": ["worked-example-derived practice", "problem-type practice where available", "prior-unit spiral review"],
+        "remediationGrouping": "Group students by recent objective evidence and misconception patterns.",
+        "extensionOptions": "Offer synthesis problems that combine current objectives with prior units.",
+        "evidence": "Student completes due SRS items and submits one corrected-error reflection."
+      }
+    },
+    {
+      "periodId": "u07-p20",
+      "unit": 7,
+      "period": 20,
+      "dayType": "review",
+      "notes": "Unit 7 review across 7a-7m.",
+      "nonInstructionArtifact": {
+        "artifactType": "review",
+        "objectiveScope": "Unit 7 review across 7a-7m.",
+        "srsSources": ["worked-example-derived practice", "problem-type practice where available", "prior-unit spiral review"],
+        "remediationGrouping": "Group students by recent objective evidence and misconception patterns.",
+        "extensionOptions": "Offer synthesis problems that combine current objectives with prior units.",
+        "evidence": "Student completes review problem set and submits one self-identified area for improvement."
+      }
+    },
+    {
+      "periodId": "u07-p21",
+      "unit": 7,
+      "period": 21,
+      "dayType": "review",
+      "notes": "Unit 7 final review and targeted remediation across 7a-7m.",
+      "nonInstructionArtifact": {
+        "artifactType": "review",
+        "objectiveScope": "Unit 7 final review across 7a-7m with targeted remediation.",
+        "srsSources": ["worked-example-derived practice", "problem-type practice where available", "prior-unit spiral review"],
+        "remediationGrouping": "Group students by mid-unit and end-of-unit evidence; target weakest objective clusters.",
+        "extensionOptions": "Offer synthesis problems combining counting, probability, and expected value.",
+        "evidence": "Student completes final review problem set and submits reflection on growth areas."
+      }
+    },
+    {
+      "periodId": "u07-p22",
+      "unit": 7,
+      "period": 22,
+      "dayType": "test",
+      "notes": "Unit 7 assessment.",
+      "nonInstructionArtifact": {
+        "artifactType": "test",
+        "objectiveScope": "Unit 7 assessment covering 7a-7m.",
+        "srsSources": [],
+        "remediationGrouping": "N/A — summative assessment day.",
+        "extensionOptions": "N/A — summative assessment day.",
+        "evidence": "Student completes unit test."
+      }
+    }
+  ]
+}
