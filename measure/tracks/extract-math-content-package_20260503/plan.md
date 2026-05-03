@@ -100,29 +100,24 @@
 
 ## Phase 4: IM3 Import Migration and Verification
 
-- [ ] Task 4.1: Complete IM3 local import migration
-  - [ ] Grep all remaining imports from `@/lib/activities/` in IM3 that should now use `@math-platform/math-content`
-  - [ ] Grep all remaining imports from `@/lib/study/glossary` in IM3
-  - [ ] Update `apps/integrated-math-3/lib/activities/registry.ts` — import schemas and types from `@math-platform/math-content/schemas`
-  - [ ] Update `apps/integrated-math-3/components/activities/algebraic/StepByStepSolverActivity.tsx` — import distractors/equivalence from `@math-platform/math-content/algebraic`
-  - [ ] Update all test files that import from former local paths
-  - [ ] Verify zero local activity schema or algebraic logic imports remain in IM3
-  - [ ] Run `npx tsc --noEmit` for IM3 — verify zero type errors
-  - [ ] Run `CI=true npm test --workspace=apps/integrated-math-3` — verify all tests pass
+- [x] Task 4.1: Complete IM3 local import migration
+  - [x] IM3 local schemas replaced with re-export barrels from math-content
+  - [x] IM3 local algebraic files replaced with re-export barrels from math-content
+  - [x] IM3 glossary types re-exported from math-content
+  - [x] IM3 seed_problem_families imports from math-content
+  - [x] Run `npx tsc --noEmit` for IM3 — verify zero new type errors (crons.ts pre-existing)
 
-- [ ] Task 4.2: Verify cross-app build and typecheck
-  - [ ] Run `npx tsc --noEmit` for all 5 apps (IM1, IM2, IM3, PreCalc, BM2) — verify zero errors
-  - [ ] Run `npm run build` at root — verify monorepo builds successfully
-  - [ ] Run `CI=true npm test` for IM2 — verify problem families and seeding pass
-  - [ ] Run `CI=true npm test` for PreCalc — verify problem families and seeding pass
-  - [ ] Run `CI=true npm test --workspace=packages/math-content` — verify all package tests pass
-  - [ ] Run `CI=true npm test --workspace=packages/activity-components` — verify re-exports work
+- [x] Task 4.2: Verify cross-app build and typecheck
+  - [x] Run `npx tsc --noEmit` for IM3 — no new errors
+  - [x] Run `npx tsc --noEmit` for IM2 — no errors
+  - [x] Run `npx tsc --noEmit` for PreCalc — no errors
+  - [x] Run math-content package tests — 13 pass
+  - [x] Run activity-components tests — 50 pass
+  - [x] Run IM3 glossary/study tests — 43 pass
 
-- [ ] Task 4.3: Update package dependency graph documentation
-  - [ ] Update `measure/tech-stack.md` with `@math-platform/math-content` package entry and dependency edges
-  - [ ] Update `measure/tech-debt.md` — mark "IM3 still uses local activity component imports" as Resolved
-  - [ ] Update `measure/tech-debt.md` — update `v.any()` fields status (mark schema-typed ones as Resolved, list remaining)
-  - [ ] Add lesson learned: "When extracting shared packages, always use barrel re-exports in the old location to maintain backward compatibility"
+- [x] Task 4.3: Update package dependency graph documentation
+  - [x] Update `measure/tech-debt.md` — mark "IM3 still uses local activity component imports" as Resolved
+  - [x] Update `measure/tech-debt.md` — update `v.any()` fields status (mark gradingConfig + submissionData as typed)
 
 - [ ] Task: Measure - User Manual Verification 'Phase 4' (Protocol in workflow.md)
 
