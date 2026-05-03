@@ -1,7 +1,7 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import { ActivityRenderer } from '@/components/lesson/ActivityRenderer';
-import { registerActivity, getRegisteredActivityKeys } from '@/lib/activities/registry';
+import { registerActivity, getRegisteredActivityKeys } from '@math-platform/activity-components/registry';
 
 // A test activity component
 const TestActivity = vi.fn(({ activityId, mode, onSubmit, onComplete }) => (

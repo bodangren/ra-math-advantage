@@ -1,6 +1,6 @@
 import { describe, it, expect, vi } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
-import { InterceptIdentification } from '@/components/activities/graphing/InterceptIdentification';
+import { InterceptIdentification } from '@math-platform/activity-components/graphing';
 
 describe('InterceptIdentification', () => {
   const defaultProps = {

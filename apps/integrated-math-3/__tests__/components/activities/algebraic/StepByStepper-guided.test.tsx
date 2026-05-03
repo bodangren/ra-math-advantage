@@ -1,6 +1,6 @@
 import { describe, it, expect, vi } from 'vitest';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
-import { StepByStepper } from '@/components/activities/algebraic/StepByStepper';
+import { StepByStepper } from '@math-platform/activity-components/algebraic';
 import 'katex/dist/katex.min.css';
 
 describe('StepByStepper - Guided Mode', () => {

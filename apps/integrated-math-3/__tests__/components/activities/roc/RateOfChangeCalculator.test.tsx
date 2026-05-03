@@ -3,7 +3,7 @@
 import React from 'react';
 import { describe, it, expect, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
-import { RateOfChangeCalculator } from '@/components/activities/roc/RateOfChangeCalculator';
+import { RateOfChangeCalculator } from '@math-platform/activity-components/roc';
 
 const defaultProps = {
   activityId: 'test-activity',

@@ -1,6 +1,6 @@
 import { describe, it, expect, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
-import { FillInTheBlank } from '@/components/activities/blanks/FillInTheBlank';
+import { FillInTheBlank } from '@math-platform/activity-components/blanks';
 
 interface Blank {
   id: string;

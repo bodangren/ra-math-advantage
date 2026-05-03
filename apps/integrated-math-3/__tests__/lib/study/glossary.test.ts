@@ -114,7 +114,7 @@ describe('glossary', () => {
 
     it('all module numbers are between 1 and 9', () => {
       GLOSSARY.forEach((term) => {
-        term.modules.forEach((mod) => {
+        term.modules?.forEach((mod) => {
           expect(mod).toBeGreaterThanOrEqual(1);
           expect(mod).toBeLessThanOrEqual(9);
         });

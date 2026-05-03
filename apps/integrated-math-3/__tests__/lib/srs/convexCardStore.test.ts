@@ -1,7 +1,33 @@
 import { describe, it, expect, vi } from 'vitest';
-import { ConvexCardStore } from '@/lib/srs/convexCardStore';
+import { ConvexCardStore, toProfileId } from '@/lib/srs/convexCardStore';
 import type { Id } from '@/convex/_generated/dataModel';
 import type { SrsCardState, SrsReviewLogEntry } from '@math-platform/srs-engine';
+
+describe('toProfileId', () => {
+  it('passes through a valid string as Id<"profiles">', () => {
+    const result = toProfileId('student-abc-123');
+    expect(result).toBe('student-abc-123');
+  });
+
+  it('rejects empty string', () => {
+    expect(() => toProfileId('')).toThrow('studentId must be a non-empty string');
+  });
+
+  it('rejects whitespace-only string', () => {
+    expect(() => toProfileId('   ')).toThrow('studentId must be a non-empty string');
+  });
+
+  it('trims whitespace from valid IDs', () => {
+    const result = toProfileId('  student-1  ');
+    expect(result).toBe('student-1');
+  });
+
+  it('type-narrows string to Id<"profiles"> at compile time', () => {
+    // Compile-time assertion: toProfileId output is assignable to Id<"profiles">
+    const id: Id<'profiles'> = toProfileId('test-id');
+    expect(id).toBe('test-id');
+  });
+});
 
 describe('ConvexCardStore.saveCardAndReview', () => {
   it('calls processReviewHandler directly instead of runMutation', async () => {

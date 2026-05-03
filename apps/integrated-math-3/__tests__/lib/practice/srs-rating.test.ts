@@ -72,6 +72,10 @@ describe('computeBaseRating', () => {
     const result = computeBaseRating([{}]);
     expect(result).toBe('Again');
   });
+
+  it('returns Again when parts array is empty', () => {
+    expect(computeBaseRating([])).toBe('Again');
+  });
 });
 
 describe('applyTimingToRating', () => {

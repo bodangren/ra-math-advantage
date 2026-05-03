@@ -4,7 +4,7 @@ import { usePracticeTiming } from '@/components/practice-timing';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { PracticeCardRenderer } from '@/components/student/PracticeCardRenderer';
 import type { ResolvedQueueItem } from '@/convex/queue/queue';
-import { registerActivity, clearActivityRegistry } from '@/lib/activities/registry';
+import { registerActivity, clearActivityRegistry } from '@math-platform/activity-components/registry';
 
 const mockTiming = {
   startedAt: '2026-01-01T00:00:01.000Z',

@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
-import { GraphingExplorer } from '@/components/activities/graphing/GraphingExplorer';
+import { GraphingExplorer } from '@math-platform/activity-components/graphing';
 
 describe('GraphingExplorer - explore mode', () => {
   const defaultExploreProps = {

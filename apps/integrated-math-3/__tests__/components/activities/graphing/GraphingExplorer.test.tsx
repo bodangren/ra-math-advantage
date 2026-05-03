@@ -1,6 +1,6 @@
 import { describe, it, expect, vi } from 'vitest';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
-import { GraphingExplorer } from '@/components/activities/graphing/GraphingExplorer';
+import { GraphingExplorer } from '@math-platform/activity-components/graphing';
 
 describe('GraphingExplorer - plot_from_equation variant', () => {
   const defaultProps = {

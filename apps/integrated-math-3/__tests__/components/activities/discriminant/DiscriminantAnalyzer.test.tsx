@@ -3,7 +3,7 @@
 import React from 'react';
 import { describe, it, expect, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
-import { DiscriminantAnalyzer } from '@/components/activities/discriminant/DiscriminantAnalyzer';
+import { DiscriminantAnalyzer } from '@math-platform/activity-components/discriminant';
 
 const defaultProps = {
   activityId: 'test-activity',

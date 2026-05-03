@@ -1,7 +1,7 @@
 import { describe, it, expect, vi } from 'vitest';
 import { render, screen, waitFor } from '@testing-library/react';
 import { StepByStepSolverActivity } from '@/components/activities/algebraic/StepByStepSolverActivity';
-import type { AlgebraicStep } from '@/components/activities/algebraic/StepByStepper';
+import type { AlgebraicStep } from '@math-platform/activity-components/algebraic';
 import 'katex/dist/katex.min.css';
 
 describe('StepByStepSolverActivity', () => {

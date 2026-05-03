@@ -173,7 +173,7 @@ export async function getTermMasteryByUnitHandler(
 
   const filtered = masteryRecords.filter((record) => {
     const term = getGlossaryTermBySlug(record.termSlug);
-    return term && term.modules.includes(args.moduleNumber);
+    return term && term.modules?.includes(args.moduleNumber);
   });
 
   return filtered;

@@ -1,6 +1,6 @@
 import { describe, it, expect, vi } from 'vitest';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
-import { InteractiveTableOfValues } from '@/components/activities/graphing/InteractiveTableOfValues';
+import { InteractiveTableOfValues } from '@math-platform/activity-components/graphing';
 
 describe('InteractiveTableOfValues', () => {
   const defaultProps = {

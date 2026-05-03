@@ -1,5 +1,5 @@
 import { describe, it, expect, beforeEach } from 'vitest';
-import { getActivityComponent, getRegisteredActivityKeys, registerActivity, clearActivityRegistry } from '@/lib/activities/registry';
+import { getActivityComponent, getRegisteredActivityKeys, registerActivity, clearActivityRegistry } from '@math-platform/activity-components/registry';
 
 describe('registry', () => {
   const mockComponent = () => null;

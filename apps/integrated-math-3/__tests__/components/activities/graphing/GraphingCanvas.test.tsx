@@ -1,6 +1,6 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
-import { GraphingCanvas } from '@/components/activities/graphing/GraphingCanvas';
+import { GraphingCanvas } from '@math-platform/activity-components/graphing';
 
 describe('GraphingCanvas', () => {
   const defaultProps = {

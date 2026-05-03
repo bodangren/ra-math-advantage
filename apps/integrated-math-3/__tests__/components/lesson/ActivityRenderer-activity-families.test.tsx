@@ -2,8 +2,8 @@ import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { ActivityRenderer } from '@/components/lesson/ActivityRenderer';
-import { FillInTheBlank } from '@/components/activities/blanks/FillInTheBlank';
-import { registerActivity } from '@/lib/activities/registry';
+import { FillInTheBlank } from '@math-platform/activity-components/blanks';
+import { registerActivity } from '@math-platform/activity-components/registry';
 import type { PracticeSubmissionEnvelope, PracticeTimingSummary } from '@math-platform/practice-core/contract';
 
 const mockTiming: PracticeTimingSummary = {

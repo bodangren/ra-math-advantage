@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import { render, screen } from '@testing-library/react';
-import { StepByStepper } from '@/components/activities/algebraic/StepByStepper';
+import { StepByStepper } from '@math-platform/activity-components/algebraic';
 import 'katex/dist/katex.min.css';
 
 describe('StepByStepper - Complete the Square Problem Type', () => {

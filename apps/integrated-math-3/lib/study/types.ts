@@ -1,11 +1,4 @@
-import type { StudyTerm } from '@math-platform/study-hub-core';
-
-export interface GlossaryTerm extends StudyTerm {
-  modules: number[];
-  topics: string[];
-  synonyms: string[];
-  related: string[];
-}
+export type { GlossaryTerm } from '@math-platform/math-content/glossary';
 
 export interface ScheduledTerm {
   termSlug: string;

@@ -1,7 +1,7 @@
 import { describe, it, expect, vi } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { ExampleReviewHarness } from '@/components/dev/review-harness/ExampleReviewHarness';
-import type { AlgebraicStep } from '@/components/activities/algebraic/StepByStepper';
+import type { AlgebraicStep } from '@math-platform/activity-components/algebraic';
 
 vi.mock('@/components/textbook/StepRevealContainer', () => ({
   StepRevealContainer: ({ children }: { children: React.ReactNode }) => (

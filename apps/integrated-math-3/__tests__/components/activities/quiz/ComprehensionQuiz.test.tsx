@@ -1,7 +1,7 @@
 import { describe, it, expect, vi } from 'vitest';
 import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { ComprehensionQuiz } from '@/components/activities/quiz/ComprehensionQuiz';
+import { ComprehensionQuiz } from '@math-platform/activity-components/quiz';
 
 type QuestionType = 'multiple_choice' | 'true_false' | 'short_answer' | 'select_all';
 

@@ -1,6 +1,6 @@
 import { describe, it, expect, vi } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
-import { HintPanel } from '@/components/activities/graphing/HintPanel';
+import { HintPanel } from '@math-platform/activity-components/graphing';
 
 describe('HintPanel', () => {
   const defaultProps = {

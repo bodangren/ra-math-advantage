@@ -554,3 +554,150 @@ describe('saveCardsHandler batch operations', () => {
     expect(mockReplace).not.toHaveBeenCalled();
   });
 });
+
+describe('updatedAt consistency (caller-provided timestamp)', () => {
+  it('saveCardHandler insert uses caller-provided updatedAt, not Date.now()', async () => {
+    const callerTimestamp = '2026-01-15T10:00:00.000Z';
+    const expectedMs = new Date(callerTimestamp).getTime();
+
+    const { db, mockInsert } = makeMockCtx({ existingCard: null });
+
+    await saveCardHandler(
+      { db } as unknown as import('@/convex/_generated/server').MutationCtx,
+      {
+        cardId: 'card-1',
+        studentId: 'student-1' as Id<'profiles'>,
+        objectiveId: 'obj-1',
+        problemFamilyId: 'pf-1',
+        stability: 5,
+        difficulty: 4,
+        state: 'review',
+        dueDate: '2026-04-16T12:00:00.000Z',
+        elapsedDays: 5,
+        scheduledDays: 5,
+        reps: 5,
+        lapses: 0,
+        createdAt: callerTimestamp,
+        updatedAt: callerTimestamp,
+      }
+    );
+
+    expect(mockInsert).toHaveBeenCalledTimes(1);
+    const inserted = mockInsert.mock.calls[0][1];
+    expect(inserted.updatedAt).toBe(expectedMs);
+  });
+
+  it('saveCardHandler update uses caller-provided updatedAt, not Date.now()', async () => {
+    const callerTimestamp = '2026-01-15T10:00:00.000Z';
+    const expectedMs = new Date(callerTimestamp).getTime();
+    const existingCreatedAt = 1700000000000;
+
+    const existingCard = {
+      _id: 'card-existing-1' as Id<'srs_cards'>,
+      studentId: 'student-1' as Id<'profiles'>,
+      objectiveId: 'obj-1',
+      problemFamilyId: 'pf-1',
+      stability: 3,
+      difficulty: 5,
+      state: 'learning' as const,
+      dueDate: '2026-04-15T12:00:00.000Z',
+      elapsedDays: 2,
+      scheduledDays: 3,
+      reps: 2,
+      lapses: 1,
+      createdAt: existingCreatedAt,
+      updatedAt: existingCreatedAt,
+    };
+
+    const { db, mockReplace } = makeMockCtx({ existingCard });
+
+    await saveCardHandler(
+      { db } as unknown as import('@/convex/_generated/server').MutationCtx,
+      {
+        cardId: 'card-1',
+        studentId: 'student-1' as Id<'profiles'>,
+        objectiveId: 'obj-1',
+        problemFamilyId: 'pf-1',
+        stability: 5,
+        difficulty: 4,
+        state: 'review',
+        dueDate: '2026-04-16T12:00:00.000Z',
+        elapsedDays: 5,
+        scheduledDays: 5,
+        reps: 5,
+        lapses: 0,
+        createdAt: callerTimestamp,
+        updatedAt: callerTimestamp,
+      }
+    );
+
+    expect(mockReplace).toHaveBeenCalledTimes(1);
+    const replaced = mockReplace.mock.calls[0][1];
+    // updatedAt should come from caller, not Date.now()
+    expect(replaced.updatedAt).toBe(expectedMs);
+    // createdAt should be preserved from existing record
+    expect(replaced.createdAt).toBe(existingCreatedAt);
+  });
+
+  it('saveCardsHandler update uses caller-provided updatedAt consistently', async () => {
+    const callerTimestamp = '2026-01-15T10:00:00.000Z';
+    const expectedMs = new Date(callerTimestamp).getTime();
+
+    const existingCard = {
+      _id: 'card-existing-1' as Id<'srs_cards'>,
+      studentId: 'student-1' as Id<'profiles'>,
+      objectiveId: 'obj-1',
+      problemFamilyId: 'pf-1',
+      stability: 3,
+      difficulty: 5,
+      state: 'learning' as const,
+      dueDate: '2026-04-15T12:00:00.000Z',
+      elapsedDays: 2,
+      scheduledDays: 3,
+      reps: 2,
+      lapses: 1,
+      createdAt: 1700000000000,
+      updatedAt: 1700000000000,
+    };
+
+    const mockReplace = vi.fn().mockResolvedValue(undefined);
+    const mockFirst = vi.fn().mockResolvedValueOnce(existingCard);
+    const mockQuery = {
+      withIndex: vi.fn().mockReturnValue({
+        first: mockFirst,
+        collect: vi.fn().mockResolvedValue([]),
+      }),
+    };
+    const db = {
+      query: vi.fn().mockReturnValue(mockQuery),
+      insert: vi.fn().mockResolvedValue('new-id' as Id<'srs_cards'>),
+      replace: mockReplace,
+    };
+
+    await saveCardsHandler(
+      { db } as unknown as import('@/convex/_generated/server').MutationCtx,
+      {
+        cards: [{
+          cardId: 'card-1',
+          studentId: 'student-1' as Id<'profiles'>,
+          objectiveId: 'obj-1',
+          problemFamilyId: 'pf-1',
+          stability: 5,
+          difficulty: 4,
+          state: 'review',
+          dueDate: '2026-04-16T12:00:00.000Z',
+          elapsedDays: 5,
+          scheduledDays: 5,
+          reps: 5,
+          lapses: 0,
+          createdAt: callerTimestamp,
+          updatedAt: callerTimestamp,
+        }]
+      }
+    );
+
+    expect(mockReplace).toHaveBeenCalledTimes(1);
+    const replaced = mockReplace.mock.calls[0][1];
+    expect(replaced.updatedAt).toBe(expectedMs);
+  });
+});
