@@ -8,37 +8,32 @@
 - (2026-04-19, srs-queries) N+1 sequential loops in Convex queries cause timeouts; use Promise.all + Map for O(1) lookup. For teacher-class queries, fetch ALL cards/reviews/submissions broadly then group by studentId in memory — never query per-student in a loop.
 - (2026-04-23, review-18) Convex `.eq()` on multi-entry array index expects single element, NOT array — `q.eq("objectiveIds", string)` not `q.eq("objectiveIds", string[])`. The `as unknown as string[]` cast silently breaks queries returning 0 results
 - (2026-04-28, review-23) Independent `.collect()` calls should always be wrapped in `Promise.all` — sequential awaits on independent queries add unnecessary round-trip latency in Convex
+- (2026-05-03, session-pagination) Convex `.paginate()` returns `{ page, isDone, continueCursor }` — use opaque cursors, not integer offsets. Filter results post-pagination when index can't express the constraint (e.g., completedAt !== undefined).
 
 ## Recurring Gotchas
 
 - (2026-04-23, bm2-deactivated-user-access) Swapping an auth helper in a route requires updating EVERY test file that mocks it — including duplicate `__tests__/api/` and `__tests__/app/api/` test suites
-- (2026-04-23, review-17) `requireActive*SessionClaims` returns `SessionClaims | Response`, NOT `SessionClaims | null` — must use `instanceof Response` check
-- (2026-04-23, review-17) When extracting modules to packages, grep for ALL import paths (including relative `../../` Convex paths) — not just `@/` app imports
 - (2026-04-23, review-14) Never return `error.message` in API error responses — leaks internal details. Return generic message + log server-side
-- (2026-04-23, review-14) Server components with `<select>` but no `onChange` are purely cosmetic; use client components with URL search params for stateful UI
 - (2026-04-23, review-14) Convex runtime cannot import npm packages — duplicate constants in convex/ files are unavoidable
 - (2026-04-19, review-10) Always validate + parse request body BEFORE consuming rate limits — malformed requests burn quota
-- (2026-04-19, review-11) When sanitizing LLM prompt inputs, apply sanitization to ALL user-controllable fields including arrays
-- (2026-04-19, auth-design) Authorization checks must verify specific resource ownership; ensure seeding or fallback exists — empty auth tables block all access silently
-- (2026-04-28, review-23) Rate limiting mutation args must match what routes actually pass — unused required args cause runtime validation failures even when the handler derives the value from auth context
-- (2026-04-29, review-25) Converting Convex public mutations to `internalMutation` requires: (1) updating generated `api.d.ts` with new module import, (2) updating ALL test mock setups from `fetchMutation` + `api.*` to `fetchInternalMutation` + `internal.*`, (3) removing stale `Id` imports from modules that no longer use them
+- (2026-04-29, review-25) Converting Convex public mutations to `internalMutation` requires: (1) updating generated `api.d.ts`, (2) updating ALL test mock setups from `fetchMutation` + `api.*` to `fetchInternalMutation` + `internal.*`, (3) removing stale `Id` imports
+- (2026-05-03, vitest-aliases) New monorepo packages need vitest `resolve.alias` entries in each app until `npm install` creates workspace symlinks. Without aliases, imports resolve to nothing and tests fail with opaque transform errors.
 
 ## Patterns That Worked Well
 
 - (2026-04-05, setup) Existing `lib/` modules are pure functions with clear types — excellent for testing
 - (2026-04-16, srs-product-contract) Single canonical contract module with re-exports; downstream imports from one surface
-- (2026-04-28, review-23) `Promise.all` for independent Convex `.collect()` calls reduces sequential round-trips to single parallel batch
 - (2026-04-29, saveCards-batch) Two-phase Promise.all: lookups in parallel first, then writes in parallel. Sequential await = 2N DB round trips; two-phase = 2 round trips
+- (2026-05-03, rate-limiter-extraction) Extract pure algorithm logic (sliding window check, config constants) to packages; keep Convex-specific handlers thin in apps. 15 package-level tests + per-app handler tests = high confidence without mocking Convex.
+- (2026-05-03, governance-tests) BM2 governance tests using `process.cwd()` broke in monorepo. Fix: `const REPO_ROOT = path.resolve(__dirname, '../../..')` for monorepo-root paths, keep `path.resolve(__dirname, '..')` for app-local paths.
 
 ## Planning Improvements
 
-- (2026-04-23, review-14) Always wrap API route handlers in try/catch; never return `error.message` — leaks internal details
-- (2026-04-24, bundle-splitting) Vinext manualChunks with function syntax; use `id.includes()` checks instead of module name arrays
-- (2026-04-28, review-23) `Math.max(0, ...)` clamp on rate limit `remaining`; Convex `.unique()` on non-unique index throws on concurrent inserts — use try/catch upsert
-- (2026-04-29, review-25) `fetchPublicMutation` uses unauthenticated client — use `internalMutation` with explicit `userId` arg instead
-- (2026-04-29, review-27) Convex indexes are NOT unique; concurrent inserts create duplicates. Always grep for ALL `mutation`/`query` exports when migrating to internal. SRS `rating` must be typed union of 4 FSRS literals
-- (2026-04-29) Convex `internalMutation`/`internalQuery` exports typed as `RegisteredMutation`/`RegisteredQuery` — use `as any` in unit tests. After migration, remove stale `as any` casts on `internal.*` references; generated `api.d.ts` provides full typing
 - (2026-04-29, review-30) When handler stores via DB document ID but returns caller-provided ID, downstream consumers get wrong reference. Always return the actual DB ID used for writes
-- (2026-04-29, review-30) After changing handler deny-by-default behavior, update BOTH the mutation AND the status query, AND all tests — test was the only thing catching the inconsistency
 - (2026-04-29, review-31) Reverting N+1 "fix" — full table scans (`.collect()`) replace N indexed queries but are worse for large tables. Use `Promise.all` with per-student `.withIndex()` queries instead. `Array.includes()` → `Set.has()` for O(1) lookup in hot loops
-- (2026-04-29, activity-components-phase3) When extracting ActivityRenderer to shared package: make timing injection optional via `useTiming` hook parameter so apps can provide their own timing implementation. IM3 keeps local registry with lazy-loaded components; package version uses direct imports for simpler apps (IM2/PreCalc).
+- (2026-05-03, tech-debt-cleanup) After a tech-debt resolution track, prune tech-debt.md aggressively — remove all Resolved items, keep only Open. Historical record lives in git history, not working memory.
+
+## Curriculum Authoring
+
+- (2026-05-01, precalc-depth-remediation) Curriculum artifacts from generic generation are NOT equivalent to source-grounded authoring. Always extract from primary sources (PDFs) before writing curriculum.
+- (2026-05-01, precalc-depth-remediation) When spinning up subagents for content extraction, explicitly instruct them to use the Write tool for output files.

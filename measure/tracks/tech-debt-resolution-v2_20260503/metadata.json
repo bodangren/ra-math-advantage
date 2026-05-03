@@ -1,0 +1,11 @@
+{
+  "track_id": "tech-debt-resolution-v2_20260503",
+  "type": "chore",
+  "status": "new",
+  "created_at": "2026-05-03T18:00:00Z",
+  "updated_at": "2026-05-03T18:00:00Z",
+  "description": "Resolve 11 remaining open tech debt items — auth hardening, schema typing, CI integration, test coverage, and cleanup",
+  "estimated_tasks": 12,
+  "actual_tasks": null,
+  "deviation_notes": ""
+}

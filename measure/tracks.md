@@ -789,6 +789,10 @@ AI Tutoring and Workbook scope is explicitly **import/adopt from BM2**, not gree
   - Phase 5: Tasks 5.1 ✅, 5.2 ✅, 5.3 ✅, 5.4 ✅, 5.5 ✅, 5.6 ✅, 5.7 ✅
   - Phase 6: Tasks 6.1 ✅, 6.2 ✅, 6.3 ✅, 6.4 ✅
 
+- [ ] **Track: Tech Debt Resolution v2**
+  *Resolve 11 remaining open tech debt items — auth hardening, schema typing, CI integration, test coverage, and cleanup*
+  *Link: [./tracks/tech-debt-resolution-v2_20260503/](./tracks/tech-debt-resolution-v2_20260503/)*
+
 ## Upcoming Tracks
 
 - [x] **Track: SRS reviews.ts Test Coverage** — **COMPLETED**
