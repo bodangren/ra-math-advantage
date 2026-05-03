@@ -1,5 +1,5 @@
 import { resolveActivityComponentKey } from '../activities/component-keys';
-import { activityPropsSchemas } from '../db/schema/activities-core';
+import { activityPropsSchemas } from '../db/schema/activity-props';
 import type { LessonMetadata, UnitContent } from '../../types/curriculum';
 import { AUTHORED_UNIT_1_LESSONS } from './generated/unit1-authored';
 import {

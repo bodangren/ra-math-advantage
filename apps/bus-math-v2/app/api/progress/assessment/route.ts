@@ -2,8 +2,8 @@ import { NextResponse } from 'next/server';
 
 import { calculateScore } from '@/lib/assessments/scoring';
 import { requireActiveStudentRequestClaims } from '@/lib/auth/server';
-import { submissionDataSchema } from '@/lib/db/schema/activity-submissions';
-import { selectActivitySchema } from '@/lib/db/schema/validators';
+import { practiceSubmissionEnvelopeSchema as submissionDataSchema } from '@/lib/practice/contract';
+import { selectActivitySchema } from '@/lib/db/schema/activity-schemas';
 import { fetchInternalQuery, fetchInternalMutation, internal } from '@/lib/convex/server';
 import { formatRateLimitError } from '@/convex/apiRateLimits';
 import type { Id } from '@/convex/_generated/dataModel';
