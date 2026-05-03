@@ -133,19 +133,18 @@ export async function getSessionHistoryHandler(
 ) {
   const limit = args.limit ?? 50;
 
-  const result = await ctx.db
+  const paginated = await ctx.db
     .query("srs_sessions")
-    .withIndex("by_student", (q) =>
+    .withIndex("by_student_and_status", (q) =>
       q.eq("studentId", args.studentId as Id<"profiles">)
     )
     .order("desc")
+    .filter((q) => q.neq(q.field("completedAt"), undefined))
     .paginate({ cursor: args.cursor ?? null, numItems: limit });
 
-  const completed = result.page.filter((s) => s.completedAt !== undefined);
-
   return {
-    sessions: completed.map(mapDbSessionToContract),
-    nextCursor: result.isDone ? null : result.continueCursor,
+    sessions: paginated.page.map(mapDbSessionToContract),
+    nextCursor: paginated.isDone ? null : paginated.continueCursor,
   };
 }
 

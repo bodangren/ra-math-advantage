@@ -45,7 +45,10 @@
   - [ ] Replace generic metadata/config bags where the domain shape is known
   - [ ] If Convex cannot express a Zod-derived union directly, document the limitation and reopen the deferred acceptance criteria instead of marking it resolved
 
-- [ ] Task 2.3: Fix SRS session-history pagination semantics
+- [x] Task 2.3: Fix SRS session-history pagination semantics
+  - [x] Add failing test — active/incomplete sessions interleaved with completed sessions causing underfilled pages
+  - [x] Change query/loop logic — use by_student_and_status index with neq filter BEFORE paginate
+  - [x] Re-run SRS session tests (11 pass) and IM3 typecheck (pass)
   - [ ] Add a failing test where active/incomplete sessions appear before completed sessions and `limit` completed sessions are still available later
   - [ ] Change query/loop logic so the returned page contract is correct
   - [ ] Re-run SRS session tests and IM3 typecheck
