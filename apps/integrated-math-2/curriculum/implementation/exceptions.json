@@ -1,0 +1,80 @@
+{
+  "schemaVersion": "curriculum-exceptions.v1",
+  "pdfFilenameAnomalies": [
+    {
+      "module": 2,
+      "filename": "Module 2 PRoblem Types.pdf",
+      "issue": "Typo: 'PRoblem' instead of 'Problem'",
+      "resolution": "Use correct spelling in normalized references; original filename preserved in source/"
+    },
+    {
+      "module": 12,
+      "filename": "Module 12-15 to 12-10 Problem Types.pdf",
+      "issue": "Reversed range: '12-15 to 12-10' — likely means '12-5 to 12-10'",
+      "resolution": "Interpret as lessons 12-5 through 12-10 based on overview unit structure"
+    }
+  ],
+  "splitModulePdfs": [
+    {
+      "module": 6,
+      "files": ["Module 6-1 to 6-5 Problem Types.pdf", "Module 6-6 to 6-9 Problem Types.pdf"],
+      "lessonRangeInPdfs": "6-1 to 6-9",
+      "overviewLessonCount": 5,
+      "issue": "PDF covers 9 lesson ranges but overview Unit 6 has 5 lessons",
+      "resolution": "PDF lesson ranges reflect ALEKS internal numbering; map problem types to overview lesson objectives"
+    },
+    {
+      "module": 8,
+      "files": ["Module 8-1 to 8-4 Problem Types.pdf", "Module 8-5 to 8-7 Problem Types.pdf"],
+      "lessonRangeInPdfs": "8-1 to 8-7",
+      "overviewLessonCount": 6,
+      "issue": "PDF covers 7 lesson ranges but overview Unit 8 has 6 lessons",
+      "resolution": "PDF lesson ranges reflect ALEKS internal numbering; map problem types to overview lesson objectives"
+    },
+    {
+      "module": 9,
+      "files": ["Module 9-1 to 9-2 Problem Types.pdf", "Module 9-3 to 9-8 Problem Types.pdf"],
+      "lessonRangeInPdfs": "9-1 to 9-8",
+      "overviewLessonCount": 5,
+      "issue": "PDF covers 8 lesson ranges but overview Unit 9 has 5 lessons",
+      "resolution": "PDF lesson ranges reflect ALEKS internal numbering; map problem types to overview lesson objectives"
+    },
+    {
+      "module": 10,
+      "files": ["Module 10-1 to 10-4 Problem Types.pdf", "Module 10-5 to 10-7 Problem Types.pdf"],
+      "lessonRangeInPdfs": "10-1 to 10-7",
+      "overviewLessonCount": 5,
+      "issue": "PDF covers 7 lesson ranges but overview Unit 10 has 5 lessons",
+      "resolution": "PDF lesson ranges reflect ALEKS internal numbering; map problem types to overview lesson objectives"
+    },
+    {
+      "module": 12,
+      "files": ["Module 12-1 to 12-4 Problem Types.pdf", "Module 12-15 to 12-10 Problem Types.pdf"],
+      "lessonRangeInPdfs": "12-1 to 12-10",
+      "overviewLessonCount": 5,
+      "issue": "PDF covers 10 lesson ranges but overview Unit 12 has 5 lessons",
+      "resolution": "PDF lesson ranges reflect ALEKS internal numbering; map problem types to overview lesson objectives"
+    }
+  ],
+  "extractionQualityLimitations": [
+    {
+      "type": "diagrams",
+      "description": "PDF text extraction cannot capture geometric diagrams, constructions, or visual proofs",
+      "affectedModules": [1, 2, 3, 4, 5],
+      "replacementPlan": "Describe construction steps in text; reference compass-and-ruler tasks by question number"
+    },
+    {
+      "type": "graphs",
+      "description": "PDF text extraction cannot capture coordinate-plane graphs or function plots",
+      "affectedModules": [7, 8, 9, 10, 11, 12, 13],
+      "replacementPlan": "Describe graph features in text; reference graphing tasks by question number"
+    },
+    {
+      "type": "formulas",
+      "description": "Mathematical notation may not extract cleanly from PDFs",
+      "affectedModules": "all",
+      "replacementPlan": "Manually verify and correct formula notation in source extraction files"
+    }
+  ],
+  "lessonSourceExceptions": []
+}

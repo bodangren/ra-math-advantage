@@ -1,0 +1,56 @@
+{
+  "generatedAt": "2026-05-01T09:37:45.000Z",
+  "rootDir": "apps/integrated-math-2",
+  "summary": {
+    "unitCount": 13,
+    "lessonCount": 70,
+    "objectiveCount": 103,
+    "plannedPeriods": {
+      "instruction": 103,
+      "mastery": 23,
+      "jigsaw": 13,
+      "review": 13,
+      "test": 13
+    },
+    "phasePackageCount": 165,
+    "activityMappingCount": 412
+  },
+  "checks": [
+    {
+      "id": "unit-count",
+      "status": "pass",
+      "message": "Thirteen unit summary files are present."
+    },
+    {
+      "id": "lesson-count",
+      "status": "pass",
+      "message": "Lesson files match overview (70+ lessons)."
+    },
+    {
+      "id": "class-period-plan-count",
+      "status": "pass",
+      "message": "Thirteen unit class-period plan files are present."
+    },
+    {
+      "id": "package-count",
+      "status": "pass",
+      "message": "All class-period packages generated."
+    },
+    {
+      "id": "activity-map-coverage",
+      "status": "pass",
+      "message": "All instruction periods have activity entries."
+    },
+    {
+      "id": "component-key-diversity",
+      "status": "pass",
+      "message": "No single componentKey exceeds 40% of activity entries."
+    },
+    {
+      "id": "exceptions-documented",
+      "status": "pass",
+      "message": "Source exceptions are documented in exceptions.json."
+    }
+  ],
+  "pass": true
+}

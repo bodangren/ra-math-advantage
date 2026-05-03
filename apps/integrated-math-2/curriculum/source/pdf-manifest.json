@@ -1,0 +1,192 @@
+[
+  {
+    "filename": "Module 1 Problem Types.pdf",
+    "label": "Module 1",
+    "pdfModule": 1,
+    "overviewUnit": 1,
+    "overviewTitle": "Relationships in Triangles",
+    "pages": 35,
+    "status": "single",
+    "anomalies": []
+  },
+  {
+    "filename": "Module 2 PRoblem Types.pdf",
+    "label": "Module 2",
+    "pdfModule": 2,
+    "overviewUnit": 2,
+    "overviewTitle": "Quadrilaterals",
+    "pages": 19,
+    "status": "single",
+    "anomalies": ["filename has typo: 'PRoblem' instead of 'Problem'"]
+  },
+  {
+    "filename": "Module 3 Problem Types.pdf",
+    "label": "Module 3",
+    "pdfModule": 3,
+    "overviewUnit": 3,
+    "overviewTitle": "Similarity",
+    "pages": 41,
+    "status": "single",
+    "anomalies": []
+  },
+  {
+    "filename": "Module 4 Problem Types.pdf",
+    "label": "Module 4",
+    "pdfModule": 4,
+    "overviewUnit": 4,
+    "overviewTitle": "Right Triangles & Trigonometry",
+    "pages": 39,
+    "status": "single",
+    "anomalies": []
+  },
+  {
+    "filename": "Module 5 Problem Types.pdf",
+    "label": "Module 5",
+    "pdfModule": 5,
+    "overviewUnit": 5,
+    "overviewTitle": "Circles",
+    "pages": 40,
+    "status": "single",
+    "anomalies": []
+  },
+  {
+    "filename": "Module 6-1 to 6-5 Problem Types.pdf",
+    "label": "Module 6 (Lessons 1-5)",
+    "pdfModule": 6,
+    "lessonRange": "6-1 to 6-5",
+    "overviewUnit": 6,
+    "overviewTitle": "Measurement",
+    "pages": 38,
+    "status": "split",
+    "anomalies": []
+  },
+  {
+    "filename": "Module 6-6 to 6-9 Problem Types.pdf",
+    "label": "Module 6 (Lessons 6-9)",
+    "pdfModule": 6,
+    "lessonRange": "6-6 to 6-9",
+    "overviewUnit": 6,
+    "overviewTitle": "Measurement",
+    "pages": 32,
+    "status": "split",
+    "anomalies": ["PDF covers 9 lesson ranges but overview Unit 6 has 5 lessons — mismatch requires reconciliation"]
+  },
+  {
+    "filename": "Module 7 Problem Types.pdf",
+    "label": "Module 7",
+    "pdfModule": 7,
+    "overviewUnit": 7,
+    "overviewTitle": "Probability",
+    "pages": 37,
+    "status": "single",
+    "anomalies": []
+  },
+  {
+    "filename": "Module 8-1 to 8-4 Problem Types.pdf",
+    "label": "Module 8 (Lessons 1-4)",
+    "pdfModule": 8,
+    "lessonRange": "8-1 to 8-4",
+    "overviewUnit": 8,
+    "overviewTitle": "Relations and Functions",
+    "pages": 31,
+    "status": "split",
+    "anomalies": []
+  },
+  {
+    "filename": "Module 8-5 to 8-7 Problem Types.pdf",
+    "label": "Module 8 (Lessons 5-7)",
+    "pdfModule": 8,
+    "lessonRange": "8-5 to 8-7",
+    "overviewUnit": 8,
+    "overviewTitle": "Relations and Functions",
+    "pages": 44,
+    "status": "split",
+    "anomalies": []
+  },
+  {
+    "filename": "Module 9-1 to 9-2 Problem Types.pdf",
+    "label": "Module 9 (Lessons 1-2)",
+    "pdfModule": 9,
+    "lessonRange": "9-1 to 9-2",
+    "overviewUnit": 9,
+    "overviewTitle": "Linear Equations, Inequalities & Systems",
+    "pages": 25,
+    "status": "split",
+    "anomalies": []
+  },
+  {
+    "filename": "Module 9-3 to 9-8 Problem Types.pdf",
+    "label": "Module 9 (Lessons 3-8)",
+    "pdfModule": 9,
+    "lessonRange": "9-3 to 9-8",
+    "overviewUnit": 9,
+    "overviewTitle": "Linear Equations, Inequalities & Systems",
+    "pages": 50,
+    "status": "split",
+    "anomalies": ["PDF covers 8 lesson ranges but overview Unit 9 has 5 lessons — mismatch requires reconciliation"]
+  },
+  {
+    "filename": "Module 10-1 to 10-4 Problem Types.pdf",
+    "label": "Module 10 (Lessons 1-4)",
+    "pdfModule": 10,
+    "lessonRange": "10-1 to 10-4",
+    "overviewUnit": 10,
+    "overviewTitle": "Exponents and Roots",
+    "pages": 19,
+    "status": "split",
+    "anomalies": []
+  },
+  {
+    "filename": "Module 10-5 to 10-7 Problem Types.pdf",
+    "label": "Module 10 (Lessons 5-7)",
+    "pdfModule": 10,
+    "lessonRange": "10-5 to 10-7",
+    "overviewUnit": 10,
+    "overviewTitle": "Exponents and Roots",
+    "pages": 12,
+    "status": "split",
+    "anomalies": []
+  },
+  {
+    "filename": "Module 11 Problem Types.pdf",
+    "label": "Module 11",
+    "pdfModule": 11,
+    "overviewUnit": 11,
+    "overviewTitle": "Polynomials",
+    "pages": 25,
+    "status": "single",
+    "anomalies": []
+  },
+  {
+    "filename": "Module 12-1 to 12-4 Problem Types.pdf",
+    "label": "Module 12 (Lessons 1-4)",
+    "pdfModule": 12,
+    "lessonRange": "12-1 to 12-4",
+    "overviewUnit": 12,
+    "overviewTitle": "Quadratic Functions",
+    "pages": 37,
+    "status": "split",
+    "anomalies": []
+  },
+  {
+    "filename": "Module 12-15 to 12-10 Problem Types.pdf",
+    "label": "Module 12 (Lessons 5-10)",
+    "pdfModule": 12,
+    "lessonRange": "12-5 to 12-10 (filename reversed as '12-15 to 12-10')",
+    "overviewUnit": 12,
+    "overviewTitle": "Quadratic Functions",
+    "pages": 37,
+    "status": "split",
+    "anomalies": ["filename has reversed range: '12-15 to 12-10' — likely means '12-5 to 12-10'"]
+  },
+  {
+    "filename": "Module 13 Problem Types.pdf",
+    "label": "Module 13",
+    "pdfModule": 13,
+    "overviewUnit": 13,
+    "overviewTitle": "Trigonometric Identities & Equations",
+    "pages": 15,
+    "status": "single",
+    "anomalies": []
+  }
+]
