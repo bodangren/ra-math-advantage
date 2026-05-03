@@ -1,0 +1,11 @@
+{
+  "track_id": "extract-math-content-package_20260503",
+  "type": "feature",
+  "status": "new",
+  "created_at": "2026-05-03T00:00:00Z",
+  "updated_at": "2026-05-03T00:00:00Z",
+  "description": "Extract practice problems, worked examples, algebraic logic, glossaries, and lesson seed patterns from IM2/IM3/PreCalc into shared @math-platform/math-content package for maximum cross-app code reuse",
+  "estimated_tasks": 20,
+  "actual_tasks": null,
+  "deviation_notes": ""
+}

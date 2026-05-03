@@ -942,5 +942,10 @@ Parallel tracks delivering complete curriculum for all three new apps. Tracks 1 
      *Link: [./tracks/e2e-student-flows_20260502/](./tracks/e2e-student-flows_20260502/)*
 
 - [x] **Track: Student Progress Data Export API** — **BACKEND COMPLETE** (Convex queries + CSV util + 12 tests; UI pending)
-     *Add Convex queries and teacher UI for exporting student progress, class gradebook, and submission data as CSV/JSON*
-     *Link: [./tracks/data-export-api_20260502/](./tracks/data-export-api_20260502/)*
+      *Add Convex queries and teacher UI for exporting student progress, class gradebook, and submission data as CSV/JSON*
+      *Link: [./tracks/data-export-api_20260502/](./tracks/data-export-api_20260502/)*
+
+- [ ] **Track: Extract Shared Math Content Package**
+     *Extract practice problems, worked examples, algebraic logic, glossaries, and lesson seed patterns from IM2/IM3/PreCalc into shared @math-platform/math-content package; resolve v.any() schema fields and IM3 local import tech debt*
+     *Depends on: Cross-App Component Extraction (complete)*
+     *Link: [./tracks/extract-math-content-package_20260503/](./tracks/extract-math-content-package_20260503/)*
