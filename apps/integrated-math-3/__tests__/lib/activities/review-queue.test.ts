@@ -68,10 +68,10 @@ describe('buildActivityPlacementMap', () => {
     ];
 
     const map = buildActivityPlacementMap(
-      sections as Array<Pick<Doc<"phase_sections">, "_id" | "phaseVersionId" | "content">>,
+      sections as unknown as Array<Pick<Doc<"phase_sections">, "_id" | "phaseVersionId" | "content">>,
       phases as unknown as Array<Pick<Doc<"phase_versions">, "_id" | "phaseType">>,
     );
-
+    
     expect(map.get('act1')).toEqual({
       phaseType: 'worked_example',
       sectionId: 'sec1',
@@ -97,7 +97,7 @@ describe('buildActivityPlacementMap', () => {
     ];
 
     const map = buildActivityPlacementMap(
-      sections as Array<Pick<Doc<"phase_sections">, "_id" | "phaseVersionId" | "content">>,
+      sections as unknown as Array<Pick<Doc<"phase_sections">, "_id" | "phaseVersionId" | "content">>,
       phases as unknown as Array<Pick<Doc<"phase_versions">, "_id" | "phaseType">>,
     );
 
@@ -123,7 +123,7 @@ describe('buildActivityPlacementMap', () => {
     ];
 
     const map = buildActivityPlacementMap(
-      sections as Array<Pick<Doc<"phase_sections">, "_id" | "phaseVersionId" | "content">>,
+      sections as unknown as Array<Pick<Doc<"phase_sections">, "_id" | "phaseVersionId" | "content">>,
       phases as unknown as Array<Pick<Doc<"phase_versions">, "_id" | "phaseType">>,
     );
 

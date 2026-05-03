@@ -51,7 +51,7 @@ type ProcessReviewArgs = {
   termSlug: string;
   rating: "again" | "hard" | "good" | "easy";
   masteryDelta: number;
-  fsrsState: unknown;
+  fsrsState: Record<string, any>;
   scheduledFor: number;
   now?: number;
 };

@@ -1,4 +1,4 @@
-import { internalMutation, internalQuery } from "./_generated/server";
+import { internalMutation, internalQuery, type MutationCtx } from "./_generated/server";
 import { v, ConvexError } from "convex/values";
 import {
   checkAndIncrement,
@@ -94,4 +94,25 @@ export const cleanupStaleRateLimits = internalMutation({
 
     return { deletedCount };
   },
+});
+
+export async function cleanupStaleRateLimitsCronHandler(ctx: MutationCtx) {
+  const now = Date.now();
+  const staleThreshold = now - STALE_ENTRY_THRESHOLD_MS;
+
+  const staleEntries = await ctx.db
+    .query("chatbot_rate_limits")
+    .filter((q) => q.lt(q.field("windowStart"), staleThreshold))
+    .take(100);
+
+  for (const entry of staleEntries) {
+    await ctx.db.delete(entry._id);
+  }
+
+  return { deletedCount: staleEntries.length };
+}
+
+export const cleanupStaleRateLimitsCron = internalMutation({
+  args: {},
+  handler: cleanupStaleRateLimitsCronHandler,
 });

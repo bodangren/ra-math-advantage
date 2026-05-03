@@ -1,9 +1,9 @@
 import { describe, expect, it, vi, beforeEach } from 'vitest';
 import type { Id } from '../../convex/_generated/dataModel';
 import {
-  getRateLimitStatus,
-  checkAndIncrementRateLimit,
-  cleanupStaleRateLimits,
+  getRateLimitStatusHandler,
+  checkAndIncrementRateLimitHandler,
+  cleanupStaleRateLimitsHandler,
 } from '../../convex/rateLimits';
 
 const RATE_LIMIT_WINDOW_MS = 60000;
@@ -54,12 +54,12 @@ describe('rateLimits handler', () => {
     mockDelete.mockResolvedValue(undefined);
   });
 
-  describe('getRateLimitStatus', () => {
+  describe('getRateLimitStatusHandler', () => {
     it('returns full remaining when no rate limit record exists', async () => {
       const ctx = createMockCtx();
       mockUnique.mockResolvedValue(null);
 
-      const result = await getRateLimitStatus(ctx as never, {
+      const result = await getRateLimitStatusHandler(ctx as never, {
         userId: 'user-1' as unknown as Id<'profiles'>,
       });
 
@@ -78,7 +78,7 @@ describe('rateLimits handler', () => {
         windowStart: expiredWindowStart,
       });
 
-      const result = await getRateLimitStatus(ctx as never, {
+      const result = await getRateLimitStatusHandler(ctx as never, {
         userId: 'user-1' as unknown as Id<'profiles'>,
       });
 
@@ -95,7 +95,7 @@ describe('rateLimits handler', () => {
         windowStart: Date.now(),
       });
 
-      const result = await getRateLimitStatus(ctx as never, {
+      const result = await getRateLimitStatusHandler(ctx as never, {
         userId: 'user-1' as unknown as Id<'profiles'>,
       });
 
@@ -113,7 +113,7 @@ describe('rateLimits handler', () => {
         windowStart,
       });
 
-      const result = await getRateLimitStatus(ctx as never, {
+      const result = await getRateLimitStatusHandler(ctx as never, {
         userId: 'user-1' as unknown as Id<'profiles'>,
       });
 
@@ -131,7 +131,7 @@ describe('rateLimits handler', () => {
         windowStart: Date.now(),
       });
 
-      const result = await getRateLimitStatus(ctx as never, {
+      const result = await getRateLimitStatusHandler(ctx as never, {
         userId: 'user-1' as unknown as Id<'profiles'>,
       });
 
@@ -140,12 +140,12 @@ describe('rateLimits handler', () => {
     });
   });
 
-  describe('checkAndIncrementRateLimit', () => {
+  describe('checkAndIncrementRateLimitHandler', () => {
     it('creates new record with count=1 for first request', async () => {
       const ctx = createMockCtx();
       mockUnique.mockResolvedValue(null);
 
-      const result = await checkAndIncrementRateLimit(ctx as never, {
+      const result = await checkAndIncrementRateLimitHandler(ctx as never, {
         userId: 'user-1' as unknown as Id<'profiles'>,
       });
 
@@ -171,7 +171,7 @@ describe('rateLimits handler', () => {
         windowStart,
       });
 
-      const result = await checkAndIncrementRateLimit(ctx as never, {
+      const result = await checkAndIncrementRateLimitHandler(ctx as never, {
         userId: 'user-1' as unknown as Id<'profiles'>,
       });
 
@@ -193,7 +193,7 @@ describe('rateLimits handler', () => {
         windowStart,
       });
 
-      const result = await checkAndIncrementRateLimit(ctx as never, {
+      const result = await checkAndIncrementRateLimitHandler(ctx as never, {
         userId: 'user-1' as unknown as Id<'profiles'>,
       });
 
@@ -212,7 +212,7 @@ describe('rateLimits handler', () => {
         windowStart: expiredWindowStart,
       });
 
-      const result = await checkAndIncrementRateLimit(ctx as never, {
+      const result = await checkAndIncrementRateLimitHandler(ctx as never, {
         userId: 'user-1' as unknown as Id<'profiles'>,
       });
 
@@ -242,7 +242,7 @@ describe('rateLimits handler', () => {
         new Error('duplicate key value violates unique constraint')
       );
 
-      const result = await checkAndIncrementRateLimit(ctx as never, {
+      const result = await checkAndIncrementRateLimitHandler(ctx as never, {
         userId: 'user-1' as unknown as Id<'profiles'>,
       });
 
@@ -271,7 +271,7 @@ describe('rateLimits handler', () => {
         new Error('duplicate key value violates unique constraint')
       );
 
-      const result = await checkAndIncrementRateLimit(ctx as never, {
+      const result = await checkAndIncrementRateLimitHandler(ctx as never, {
         userId: 'user-1' as unknown as Id<'profiles'>,
       });
 
@@ -291,7 +291,7 @@ describe('rateLimits handler', () => {
       );
 
       await expect(
-        checkAndIncrementRateLimit(ctx as never, {
+        checkAndIncrementRateLimitHandler(ctx as never, {
           userId: 'user-1' as unknown as Id<'profiles'>,
         })
       ).rejects.toThrow('Rate limit record disappeared after concurrent insert');
@@ -303,14 +303,14 @@ describe('rateLimits handler', () => {
       mockInsert.mockRejectedValueOnce(new Error('database connection lost'));
 
       await expect(
-        checkAndIncrementRateLimit(ctx as never, {
+        checkAndIncrementRateLimitHandler(ctx as never, {
           userId: 'user-1' as unknown as Id<'profiles'>,
         })
       ).rejects.toThrow('database connection lost');
     });
   });
 
-  describe('cleanupStaleRateLimits', () => {
+  describe('cleanupStaleRateLimitsHandler', () => {
     it('throws Unauthorized for non-admin users', async () => {
       const ctx = createMockCtx();
       mockGet.mockResolvedValue({
@@ -319,7 +319,7 @@ describe('rateLimits handler', () => {
       });
 
       await expect(
-        cleanupStaleRateLimits(ctx as never, {
+        cleanupStaleRateLimitsHandler(ctx as never, {
           userId: 'user-1' as unknown as Id<'profiles'>,
         })
       ).rejects.toThrow('Unauthorized: admin only');
@@ -330,7 +330,7 @@ describe('rateLimits handler', () => {
       mockGet.mockResolvedValue(null);
 
       await expect(
-        cleanupStaleRateLimits(ctx as never, {
+        cleanupStaleRateLimitsHandler(ctx as never, {
           userId: 'user-1' as unknown as Id<'profiles'>,
         })
       ).rejects.toThrow('Unauthorized: admin only');
@@ -351,7 +351,7 @@ describe('rateLimits handler', () => {
         { _id: 'stale-2', windowStart: staleThreshold - 2000 },
       ]);
 
-      const result = await cleanupStaleRateLimits(ctx as never, {
+      const result = await cleanupStaleRateLimitsHandler(ctx as never, {
         userId: 'admin-1' as unknown as Id<'profiles'>,
       });
 
@@ -369,7 +369,7 @@ describe('rateLimits handler', () => {
 
       mockTake.mockResolvedValue([]);
 
-      const result = await cleanupStaleRateLimits(ctx as never, {
+      const result = await cleanupStaleRateLimitsHandler(ctx as never, {
         userId: 'admin-1' as unknown as Id<'profiles'>,
       });
 
@@ -392,7 +392,7 @@ describe('rateLimits handler', () => {
         { _id: 'recent-1', windowStart: now - 1000 },
       ]);
 
-      const result = await cleanupStaleRateLimits(ctx as never, {
+      const result = await cleanupStaleRateLimitsHandler(ctx as never, {
         userId: 'admin-1' as unknown as Id<'profiles'>,
       });
 

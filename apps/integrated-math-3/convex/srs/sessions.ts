@@ -139,7 +139,7 @@ export async function getSessionHistoryHandler(
       q.eq("studentId", args.studentId as Id<"profiles">)
     )
     .order("desc")
-    .paginate(args.cursor ? { cursor: args.cursor, numItems: limit } : { numItems: limit });
+    .paginate({ cursor: args.cursor ?? null, numItems: limit });
 
   const completed = result.page.filter((s) => s.completedAt !== undefined);
 

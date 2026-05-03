@@ -1,5 +1,6 @@
-import { internalMutation, internalQuery } from "./_generated/server";
+import { internalMutation, internalQuery, type MutationCtx, type QueryCtx } from "./_generated/server";
 import { v, ConvexError } from "convex/values";
+import type { Id } from "./_generated/dataModel";
 import {
   checkAndIncrement,
   getStatus,
@@ -8,91 +9,106 @@ import {
   STALE_ENTRY_THRESHOLD_MS,
 } from "@math-platform/rate-limiter";
 
+export async function getRateLimitStatusHandler(
+  ctx: { db: QueryCtx["db"] },
+  args: { userId: Id<"profiles"> },
+) {
+  const rateLimit = await ctx.db
+    .query("chatbot_rate_limits")
+    .withIndex("by_user", (q) => q.eq("userId", args.userId))
+    .unique();
+
+  return getStatus(rateLimit, CHATBOT_RATE_LIMIT);
+}
+
 export const getRateLimitStatus = internalQuery({
   args: { userId: v.id("profiles") },
-  handler: async (ctx, args) => {
-    const rateLimit = await ctx.db
-      .query("chatbot_rate_limits")
-      .withIndex("by_user", (q) => q.eq("userId", args.userId))
-      .unique();
-
-    return getStatus(rateLimit, CHATBOT_RATE_LIMIT);
-  },
+  handler: getRateLimitStatusHandler,
 });
+
+export async function checkAndIncrementRateLimitHandler(
+  ctx: { db: MutationCtx["db"] },
+  args: { userId: Id<"profiles"> },
+) {
+  const now = Date.now();
+
+  let existing = await ctx.db
+    .query("chatbot_rate_limits")
+    .withIndex("by_user", (q) => q.eq("userId", args.userId))
+    .unique();
+
+  const check = checkAndIncrement(existing, CHATBOT_RATE_LIMIT, now);
+
+  if (check.action === 'insert') {
+    try {
+      await ctx.db.insert("chatbot_rate_limits", {
+        userId: args.userId,
+        requestCount: 1,
+        windowStart: now,
+        createdAt: now,
+        updatedAt: now,
+      });
+      return check.result;
+    } catch (e) {
+      if (!isDuplicateInsertError(e)) throw e;
+      existing = await ctx.db
+        .query("chatbot_rate_limits")
+        .withIndex("by_user", (q) => q.eq("userId", args.userId))
+        .unique();
+      if (!existing) throw new Error("Rate limit record disappeared after concurrent insert");
+      const retry = checkAndIncrement(existing, CHATBOT_RATE_LIMIT, now);
+      if (retry.action === 'reset') {
+        await ctx.db.patch(existing._id, { requestCount: 1, windowStart: now, updatedAt: now });
+      } else if (retry.action === 'increment') {
+        await ctx.db.patch(existing._id, { requestCount: existing.requestCount + 1, updatedAt: now });
+      }
+      return retry.result;
+    }
+  }
+
+  if (check.action === 'reset') {
+    await ctx.db.patch(existing!._id, { requestCount: 1, windowStart: now, updatedAt: now });
+  } else if (check.action === 'increment') {
+    await ctx.db.patch(existing!._id, { requestCount: existing!.requestCount + 1, updatedAt: now });
+  }
+
+  return check.result;
+}
 
 export const checkAndIncrementRateLimit = internalMutation({
   args: { userId: v.id("profiles") },
-  handler: async (ctx, args) => {
-    const now = Date.now();
-
-    let existing = await ctx.db
-      .query("chatbot_rate_limits")
-      .withIndex("by_user", (q) => q.eq("userId", args.userId))
-      .unique();
-
-    const check = checkAndIncrement(existing, CHATBOT_RATE_LIMIT, now);
-
-    if (check.action === 'insert') {
-      try {
-        await ctx.db.insert("chatbot_rate_limits", {
-          userId: args.userId,
-          requestCount: 1,
-          windowStart: now,
-          createdAt: now,
-          updatedAt: now,
-        });
-        return check.result;
-      } catch (e) {
-        if (!isDuplicateInsertError(e)) throw e;
-        existing = await ctx.db
-          .query("chatbot_rate_limits")
-          .withIndex("by_user", (q) => q.eq("userId", args.userId))
-          .unique();
-        if (!existing) throw new Error("Rate limit record disappeared after concurrent insert");
-        const retry = checkAndIncrement(existing, CHATBOT_RATE_LIMIT, now);
-        if (retry.action === 'reset') {
-          await ctx.db.patch(existing._id, { requestCount: 1, windowStart: now, updatedAt: now });
-        } else if (retry.action === 'increment') {
-          await ctx.db.patch(existing._id, { requestCount: existing.requestCount + 1, updatedAt: now });
-        }
-        return retry.result;
-      }
-    }
-
-    if (check.action === 'reset') {
-      await ctx.db.patch(existing!._id, { requestCount: 1, windowStart: now, updatedAt: now });
-    } else if (check.action === 'increment') {
-      await ctx.db.patch(existing!._id, { requestCount: existing!.requestCount + 1, updatedAt: now });
-    }
-
-    return check.result;
-  },
+  handler: checkAndIncrementRateLimitHandler,
 });
+
+export async function cleanupStaleRateLimitsHandler(
+  ctx: { db: MutationCtx["db"] },
+  args: { userId: Id<"profiles"> },
+) {
+  const profile = await ctx.db.get(args.userId);
+  if (!profile || profile.role !== "admin") {
+    throw new ConvexError("Unauthorized: admin only");
+  }
+
+  const now = Date.now();
+  const staleThreshold = now - STALE_ENTRY_THRESHOLD_MS;
+
+  const staleEntries = await ctx.db
+    .query("chatbot_rate_limits")
+    .filter((q) => q.lt(q.field("windowStart"), staleThreshold))
+    .take(100);
+
+  let deletedCount = 0;
+  for (const entry of staleEntries) {
+    if (entry.windowStart < staleThreshold) {
+      await ctx.db.delete(entry._id);
+      deletedCount++;
+    }
+  }
+
+  return { deletedCount };
+}
 
 export const cleanupStaleRateLimits = internalMutation({
   args: { userId: v.id("profiles") },
-  handler: async (ctx, args) => {
-    const profile = await ctx.db.get(args.userId);
-    if (!profile || profile.role !== "admin") {
-      throw new ConvexError("Unauthorized: admin only");
-    }
-
-    const now = Date.now();
-    const staleThreshold = now - STALE_ENTRY_THRESHOLD_MS;
-
-    const staleEntries = await ctx.db
-      .query("chatbot_rate_limits")
-      .filter((q) => q.lt(q.field("windowStart"), staleThreshold))
-      .take(100);
-
-    let deletedCount = 0;
-    for (const entry of staleEntries) {
-      if (entry.windowStart < staleThreshold) {
-        await ctx.db.delete(entry._id);
-        deletedCount++;
-      }
-    }
-
-    return { deletedCount };
-  },
+  handler: cleanupStaleRateLimitsHandler,
 });
