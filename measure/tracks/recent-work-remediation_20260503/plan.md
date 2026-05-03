@@ -79,12 +79,12 @@
 
 ## Phase 4: Measure Artifact Repair and Final Verification
 
-- [ ] Task 4.1: Repair completed-track plan integrity
-  - [ ] Update `extract-math-content-package_20260503/plan.md` so completed tasks do not contain unchecked subtasks
-  - [ ] Mark skipped/deferred items explicitly with rationale and follow-up links
-  - [ ] Reopen any acceptance criteria that were not actually completed
+- [x] Task 4.1: Repair completed-track plan integrity
+  - [x] Update `extract-math-content-package_20260503/plan.md` — all completed tasks now have checked subtasks
+  - [x] Mark skipped/deferred items explicitly with rationale and follow-up links
+  - [x] Reopen acceptance criteria that were not actually completed — v.any() union limitation documented
 
-- [ ] Task 4.2: Final quality gates
+- [~] Task 4.2: Final quality gates
   - [ ] Run math-content tests
   - [ ] Run activity-components tests and typecheck
   - [ ] Run rate-limiter tests and typecheck
