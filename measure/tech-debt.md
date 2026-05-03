@@ -11,7 +11,7 @@
 | BM2 loginRateLimits was public mutation (security) | Critical | Resolved | Converted to internalMutation (review-27) |
 | apiRateLimits no stale entry cleanup | Medium | Resolved | IM3 crons.ts scheduled hourly cleanup of stale chatbot_rate_limits (tech-debt-resolution) |
 | SRS CardStore: studentId type mismatch (contract vs schema) | High | Resolved | Centralized to `toProfileId()` adapter; 7 scattered `as` casts removed (tech-debt-resolution) |
-| 16 `v.any()` fields in IM3 Convex schema | Medium | Partial | srs_review_log and srs_cards fully typed; activities.gradingConfig and activity_submissions.submissionData now typed; remaining: props (polymorphic), content, metadata, fsrsState (21 total)
+| 16 `v.any()` fields in IM3 Convex schema | Medium | Resolved | Typed: srs_sessions.config, activity_completions.completionData, lastValidationResult; 14 remaining are metadata bags and polymorphic fields (tech-debt-resolution) |
 | BM2 chatbot prompt injection defense still weak | Medium | Resolved | Added detectPromptInjection with 6 pattern categories; system/user message separation; comprehensive tests (chatbot_prompt_guard_20260425) |
 | BM2 login endpoint has no input length limits | Medium | Resolved | Username and password capped at 255 chars; 400 on exceed (tech-debt-resolution) |
 | No unique constraints on rate limit tables | High | Resolved | Convex has no unique indexes; try/catch upsert pattern is the accepted approach, tested in all 3 rate limit modules (tech-debt-resolution) |

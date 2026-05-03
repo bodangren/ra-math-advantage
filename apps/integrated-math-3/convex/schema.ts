@@ -6,6 +6,7 @@ import {
   srsEvidenceValidator,
   srsRatingValidator,
 } from "./srs/validators";
+import { sessionConfigValidator } from "./srs/sessions";
 
 const gradingConfigValidator = v.object({
   autoGrade: v.boolean(),
@@ -324,7 +325,10 @@ export default defineSchema({
     spreadsheetData: v.any(),
     isCompleted: v.boolean(),
     attempts: v.number(),
-    lastValidationResult: v.optional(v.any()),
+    lastValidationResult: v.optional(v.object({
+      isValid: v.boolean(),
+      errors: v.optional(v.array(v.string())),
+    })),
     submittedAt: v.optional(v.number()),
     draftData: v.optional(v.any()),
     createdAt: v.number(),
@@ -341,7 +345,10 @@ export default defineSchema({
     phaseNumber: v.number(),
     completedAt: v.number(),
     idempotencyKey: v.string(),
-    completionData: v.optional(v.any()),
+    completionData: v.optional(v.object({
+      type: v.optional(v.string()),
+      phaseType: v.optional(v.string()),
+    })),
     createdAt: v.number(),
     updatedAt: v.number(),
   })
@@ -485,7 +492,7 @@ export default defineSchema({
     completedAt: v.optional(v.number()),
     plannedCards: v.number(),
     completedCards: v.number(),
-    config: v.any(),
+    config: sessionConfigValidator,
   })
     .index("by_student", ["studentId"])
     .index("by_student_and_status", ["studentId", "completedAt"]),

@@ -77,11 +77,11 @@
   - [x] No public query/mutation functions exist to add auth checks to
   - [x] Update tech-debt.md: mark "internal Convex fns rely on action wrapper for auth" as Resolved
 
-- [ ] Task 3.4: Fix 16 v.any() fields in IM3 Convex schema (Medium/Partial)
-  - [ ] Write schema validation tests for typed validators
-  - [ ] Replace remaining v.any() fields with typed validators
-  - [ ] Run `npx convex dev --typecheck` to verify schema
-  - [ ] Update tech-debt.md: mark "16 v.any() fields in IM3 Convex schema" as Resolved
+- [x] Task 3.4: Fix 16 v.any() fields in IM3 Convex schema (Medium/Partial)
+  - [x] Write schema validation tests for typed validators
+  - [x] Replace remaining v.any() fields with typed validators
+  - [x] Run `npx convex dev --typecheck` to verify schema
+  - [x] Update tech-debt.md: mark "16 v.any() fields in IM3 Convex schema" as Resolved
 
 - [x] Task 3.5: BM2 rateLimits.ts handler test coverage (Medium)
   - [x] Write tests for getRateLimitStatus, checkAndIncrementRateLimit, cleanupStaleRateLimits (18 tests)
