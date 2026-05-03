@@ -951,7 +951,12 @@ Parallel tracks delivering complete curriculum for all three new apps. Tracks 1 
       *Add Convex queries and teacher UI for exporting student progress, class gradebook, and submission data as CSV/JSON*
       *Link: [./tracks/data-export-api_20260502/](./tracks/data-export-api_20260502/)*
 
-- [ ] **Track: Extract Shared Math Content Package**
+- [x] **Track: Extract Shared Math Content Package** — **COMPLETED**
      *Extract practice problems, worked examples, algebraic logic, glossaries, and lesson seed patterns from IM2/IM3/PreCalc into shared @math-platform/math-content package; resolve v.any() schema fields and IM3 local import tech debt*
      *Depends on: Cross-App Component Extraction (complete)*
      *Link: [./tracks/extract-math-content-package_20260503/](./tracks/extract-math-content-package_20260503/)*
+     - Phase 1: Package Scaffold & Schema Consolidation [x] (vite.config skipped — tsc-only pattern; schemas consolidated; v.any() reduced)
+     - Phase 2: Algebraic Logic & Problem Families [x] (199 families + distractors + equivalence extracted)
+     - Phase 3: Glossary & Seed Patterns [x] (76 terms, 6 helpers, seed types; app seed.ts imports skipped — type incompatibility)
+     - Phase 4: IM3 Import Migration [x] (re-export barrels; 0 new type errors)
+     - Phase 5: Package Quality & Documentation [x] [checkpoint: bd141ea] (43 tests, build verified, README done)
