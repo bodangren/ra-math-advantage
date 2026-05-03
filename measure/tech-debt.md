@@ -19,7 +19,7 @@
 | IM3/BM2 rate limiter test coverage missing | Medium | Partial | IM3 rateLimits.ts now has 15 tests; BM2 rateLimits.ts still untested |
 | internal Convex fns rely on action wrapper for auth | Medium | Open | activities.ts, study.ts, srs/cards.ts, student.ts have no defense-in-depth |
 | srs_review_log by_reviewed_at index unused (dead) | Low | Resolved | Removed unused index from IM3 schema (tech-debt-resolution) |
-| Session history pagination fetches all then slices client-side | Medium | Open | Use Convex cursor pagination instead |
+| Session history pagination fetches all then slices client-side | Medium | Resolved | Replaced .collect()+slice with Convex .paginate() using real cursors; 4 new tests (tech-debt-resolution) |
 | BM2 9 governance test suites permanently skipped | Medium | Open | TODO(monorepo) comments added; all need monorepo-aware path fixes |
 | Equivalence checker: 2 aspirational .todo tests | Low | Open | Need symbolic math lib |
 | 40+ seed lesson tests vacuous | Low | Open | Test hardcoded data against itself; convert to data-driven validator |

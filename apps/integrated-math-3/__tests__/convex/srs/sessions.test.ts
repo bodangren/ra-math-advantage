@@ -219,18 +219,91 @@ describe('getActiveSessionHandler', () => {
 });
 
 describe('getSessionHistoryHandler', () => {
-  it('should return sessions sorted by completedAt descending with pagination', async () => {
+  it('should return completed sessions with real cursor pagination', async () => {
     const sessions = [
       { _id: 's1' as Id<'srs_sessions'>, studentId: 'student-1' as Id<'profiles'>, startedAt: 1713264000000, completedAt: 1713350400000, plannedCards: 20, completedCards: 18, config: { newCardsPerDay: 10, maxReviewsPerDay: 100, prioritizeOverdue: true } },
       { _id: 's2' as Id<'srs_sessions'>, studentId: 'student-1' as Id<'profiles'>, startedAt: 1713177600000, completedAt: 1713264000000, plannedCards: 20, completedCards: 20, config: { newCardsPerDay: 10, maxReviewsPerDay: 100, prioritizeOverdue: true } },
     ];
-    const { db } = makeMockCtx({ sessions });
 
+    const mockPaginate = vi.fn().mockResolvedValue({
+      page: sessions,
+      isDone: true,
+      continueCursor: 'cursor-end',
+    });
+
+    const mockOrder = vi.fn().mockReturnValue({ paginate: mockPaginate });
+    const mockWithIndex = vi.fn().mockReturnValue({ order: mockOrder });
+    const mockQuery = vi.fn().mockReturnValue({ withIndex: mockWithIndex });
+
+    const db = { query: mockQuery };
     const result = await getSessionHistoryHandler({ db } as unknown as import('@/convex/_generated/server').QueryCtx, { studentId: 'student-1', limit: 10 });
 
     expect(result.sessions).toHaveLength(2);
     expect(result.sessions[0].sessionId).toBe('s1');
     expect(result.sessions[1].sessionId).toBe('s2');
     expect(result.nextCursor).toBeNull();
+    expect(mockPaginate).toHaveBeenCalledWith({ numItems: 10 });
+  });
+
+  it('should return nextCursor when more results exist', async () => {
+    const sessions = [
+      { _id: 's1' as Id<'srs_sessions'>, studentId: 'student-1' as Id<'profiles'>, startedAt: 1713264000000, completedAt: 1713350400000, plannedCards: 20, completedCards: 18, config: { newCardsPerDay: 10, maxReviewsPerDay: 100, prioritizeOverdue: true } },
+    ];
+
+    const mockPaginate = vi.fn().mockResolvedValue({
+      page: sessions,
+      isDone: false,
+      continueCursor: 'next-page-cursor',
+    });
+
+    const mockOrder = vi.fn().mockReturnValue({ paginate: mockPaginate });
+    const mockWithIndex = vi.fn().mockReturnValue({ order: mockOrder });
+    const mockQuery = vi.fn().mockReturnValue({ withIndex: mockWithIndex });
+
+    const db = { query: mockQuery };
+    const result = await getSessionHistoryHandler({ db } as unknown as import('@/convex/_generated/server').QueryCtx, { studentId: 'student-1', limit: 1 });
+
+    expect(result.sessions).toHaveLength(1);
+    expect(result.nextCursor).toBe('next-page-cursor');
+  });
+
+  it('should filter out incomplete sessions from paginated results', async () => {
+    const sessions = [
+      { _id: 's1' as Id<'srs_sessions'>, studentId: 'student-1' as Id<'profiles'>, startedAt: 1713264000000, completedAt: 1713350400000, plannedCards: 20, completedCards: 18, config: { newCardsPerDay: 10, maxReviewsPerDay: 100, prioritizeOverdue: true } },
+      { _id: 's-active' as Id<'srs_sessions'>, studentId: 'student-1' as Id<'profiles'>, startedAt: Date.now(), plannedCards: 10, completedCards: 0, config: { newCardsPerDay: 5, maxReviewsPerDay: 50, prioritizeOverdue: false } },
+    ];
+
+    const mockPaginate = vi.fn().mockResolvedValue({
+      page: sessions,
+      isDone: true,
+      continueCursor: 'end',
+    });
+
+    const mockOrder = vi.fn().mockReturnValue({ paginate: mockPaginate });
+    const mockWithIndex = vi.fn().mockReturnValue({ order: mockOrder });
+    const mockQuery = vi.fn().mockReturnValue({ withIndex: mockWithIndex });
+
+    const db = { query: mockQuery };
+    const result = await getSessionHistoryHandler({ db } as unknown as import('@/convex/_generated/server').QueryCtx, { studentId: 'student-1', limit: 10 });
+
+    expect(result.sessions).toHaveLength(1);
+    expect(result.sessions[0].sessionId).toBe('s1');
+  });
+
+  it('should pass cursor to paginate when provided', async () => {
+    const mockPaginate = vi.fn().mockResolvedValue({
+      page: [],
+      isDone: true,
+      continueCursor: 'end',
+    });
+
+    const mockOrder = vi.fn().mockReturnValue({ paginate: mockPaginate });
+    const mockWithIndex = vi.fn().mockReturnValue({ order: mockOrder });
+    const mockQuery = vi.fn().mockReturnValue({ withIndex: mockWithIndex });
+
+    const db = { query: mockQuery };
+    await getSessionHistoryHandler({ db } as unknown as import('@/convex/_generated/server').QueryCtx, { studentId: 'student-1', limit: 10, cursor: 'some-cursor' });
+
+    expect(mockPaginate).toHaveBeenCalledWith({ cursor: 'some-cursor', numItems: 10 });
   });
 });

@@ -43,11 +43,11 @@
   - [x] Verify query returns correct results and performance improvement
   - [x] Update tech-debt.md: mark "getDueCards fetches all then filters in-memory" as Resolved
 
-- [ ] Task 2.3: Cursor pagination for session history (Medium)
-  - [ ] Write pagination tests: first page, next page, empty page
-  - [ ] Implement Convex cursor pagination using `paginate()` or manual cursor
-  - [ ] Update session history UI to use paginated queries
-  - [ ] Update tech-debt.md: mark "Session history pagination fetches all then slices" as Resolved
+- [x] Task 2.3: Cursor pagination for session history (Medium)
+  - [x] Write pagination tests: first page, next page, empty page
+  - [x] Implement Convex cursor pagination using `paginate()` or manual cursor
+  - [x] Update session history UI to use paginated queries
+  - [x] Update tech-debt.md: mark "Session history pagination fetches all then slices" as Resolved
 
 - [x] Task 2.4: Fix cards.ts updatedAt inconsistency (Medium)
   - [x] Write test confirming updatedAt uses consistent timestamp source

@@ -132,26 +132,20 @@ export async function getSessionHistoryHandler(
   args: GetSessionHistoryArgs
 ) {
   const limit = args.limit ?? 50;
-  const startCursor = args.cursor ? parseInt(args.cursor, 10) : 0;
 
-  const sessions = await ctx.db
+  const result = await ctx.db
     .query("srs_sessions")
     .withIndex("by_student", (q) =>
       q.eq("studentId", args.studentId as Id<"profiles">)
     )
     .order("desc")
-    .collect();
+    .paginate(args.cursor ? { cursor: args.cursor, numItems: limit } : { numItems: limit });
 
-  const completed = sessions.filter((s) => s.completedAt !== undefined);
-  const page = completed.slice(startCursor, startCursor + limit);
-  const nextCursor =
-    startCursor + limit < completed.length
-      ? String(startCursor + limit)
-      : null;
+  const completed = result.page.filter((s) => s.completedAt !== undefined);
 
   return {
-    sessions: page.map(mapDbSessionToContract),
-    nextCursor,
+    sessions: completed.map(mapDbSessionToContract),
+    nextCursor: result.isDone ? null : result.continueCursor,
   };
 }
 
