@@ -19,7 +19,11 @@
   - [x] Fix BM2 rate-limit tests — export handler functions, import them instead of registered objects
   - [x] Re-run IM3 and BM2 typechecks — both PASS
 
-- [ ] Task 1.3: Repair committed workspace dependency graph
+- [x] Task 1.3: Repair committed workspace dependency graph [252ae50]
+  - [x] Commit `packages/app-shell/` with source — actively imported by BM2
+  - [x] Remove @math-platform/lesson-renderer from BM2 package.json (not imported; BM2 uses local LessonRenderer)
+  - [x] Verify git ls-tree shows app-shell files in HEAD
+  - [x] Verify BM2 package.json no longer depends on lesson-renderer
   - [ ] Either commit `packages/app-shell/` and `packages/lesson-renderer/` with their source/tests or remove their package references from BM2 manifests and lockfile
   - [ ] Verify `git ls-tree -r --name-only HEAD packages/app-shell packages/lesson-renderer` shows the expected committed files before marking complete
   - [ ] Run dependency/install/build validation appropriate for a clean checkout
