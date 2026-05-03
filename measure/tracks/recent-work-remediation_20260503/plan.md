@@ -55,7 +55,18 @@
 
 ## Phase 3: Strengthen Package and Migration Tests
 
-- [ ] Task 3.1: Add dedicated math-content schema tests
+- [x] Task 3.1: Add dedicated math-content schema tests [fb99c01]
+  - [x] Create `packages/math-content/src/__tests__/schemas.test.ts` — 26 tests
+  - [x] Cover all six schemas with valid round trips (12 tests)
+  - [x] Cover representative invalid inputs (10 tests)
+  - [x] Verify `SCHEMA_REGISTRY` dispatch matches every `ActivityComponentKey` (4 tests)
+  - [x] All math-content tests pass (69 total: 43 prior + 26 new)
+
+- [~] Task 3.2: Add export and migration invariants [14 tests pass]
+  - [x] Verify all documented export-map entry points resolve (6 entry points)
+  - [x] Verify problem family IDs are unique within IM3/IM2; PreCalc has known duplicates (logged)
+  - [x] Verify IM3 seed family imports use @math-platform/math-content
+  - [x] IM3 local schema re-export shims are intentionally retained for backward compatibility
   - [ ] Create `packages/math-content/src/__tests__/schemas.test.ts`
   - [ ] Cover all six schemas with valid round trips and representative invalid inputs
   - [ ] Verify `SCHEMA_REGISTRY` dispatch matches every `ActivityComponentKey`
