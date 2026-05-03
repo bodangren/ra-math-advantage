@@ -1,10 +1,12 @@
 import { internalMutation } from './_generated/server';
 import { v } from 'convex/values';
 import type { MutationCtx } from './_generated/server';
-
-const LOGIN_RATE_LIMIT_WINDOW_MS = 15 * 60 * 1000;
-const LOGIN_MAX_REQUESTS_PER_WINDOW = 5;
-const LOGIN_STALE_ENTRY_THRESHOLD_MS = 24 * 60 * 60 * 1000;
+import {
+  checkAndIncrement,
+  isDuplicateInsertError,
+  LOGIN_RATE_LIMIT,
+  STALE_ENTRY_THRESHOLD_MS,
+} from '@math-platform/rate-limiter';
 
 export async function checkAndIncrementLoginRateLimitHandler(
   ctx: MutationCtx,
@@ -18,9 +20,10 @@ export async function checkAndIncrementLoginRateLimitHandler(
     .withIndex('by_ip', (q) => q.eq('ipHash', ipHash))
     .unique();
 
-  if (!existing) {
+  const check = checkAndIncrement(existing, LOGIN_RATE_LIMIT, now);
+
+  if (check.action === 'insert') {
     try {
-      const windowExpiresAt = now + LOGIN_RATE_LIMIT_WINDOW_MS;
       await ctx.db.insert('login_rate_limits', {
         ipHash,
         requestCount: 1,
@@ -28,65 +31,39 @@ export async function checkAndIncrementLoginRateLimitHandler(
         createdAt: now,
         updatedAt: now,
       });
-      return {
-        allowed: true,
-        remaining: Math.max(0, LOGIN_MAX_REQUESTS_PER_WINDOW - 1),
-        windowExpiresAt,
-      };
+      return check.result;
     } catch (e) {
-      const message = e instanceof Error ? e.message : String(e);
-      if (!message.includes('duplicate') && !message.includes('unique')) {
-        throw e;
-      }
+      if (!isDuplicateInsertError(e)) throw e;
       existing = await ctx.db
         .query('login_rate_limits')
         .withIndex('by_ip', (q) => q.eq('ipHash', ipHash))
         .unique();
-      if (!existing) {
-        throw new Error('Rate limit record disappeared after concurrent insert');
+      if (!existing) throw new Error('Rate limit record disappeared after concurrent insert');
+      const retry = checkAndIncrement(existing, LOGIN_RATE_LIMIT, now);
+      if (retry.action === 'reset') {
+        await ctx.db.patch(existing._id, { requestCount: 1, windowStart: now, updatedAt: now });
+      } else if (retry.action === 'increment') {
+        await ctx.db.patch(existing._id, { requestCount: existing.requestCount + 1, updatedAt: now });
       }
+      return retry.result;
     }
   }
 
-  if (now - existing.windowStart >= LOGIN_RATE_LIMIT_WINDOW_MS) {
-    const windowExpiresAt = now + LOGIN_RATE_LIMIT_WINDOW_MS;
-    await ctx.db.patch(existing._id, {
-      requestCount: 1,
-      windowStart: now,
-      updatedAt: now,
-    });
-    return {
-      allowed: true,
-      remaining: Math.max(0, LOGIN_MAX_REQUESTS_PER_WINDOW - 1),
-      windowExpiresAt,
-    };
-  }
-
-  if (existing.requestCount >= LOGIN_MAX_REQUESTS_PER_WINDOW) {
+  if (check.action === 'reset') {
+    await ctx.db.patch(existing!._id, { requestCount: 1, windowStart: now, updatedAt: now });
+  } else if (check.action === 'deny') {
     console.error(JSON.stringify({
       event: 'login_rate_limit_exceeded',
       ipHash,
-      requestCount: existing.requestCount,
-      maxRequests: LOGIN_MAX_REQUESTS_PER_WINDOW,
-      windowExpiresAt: existing.windowStart + LOGIN_RATE_LIMIT_WINDOW_MS,
+      requestCount: existing!.requestCount,
+      maxRequests: LOGIN_RATE_LIMIT.maxRequests,
+      windowExpiresAt: check.result.windowExpiresAt,
     }));
-    return {
-      allowed: false,
-      remaining: 0,
-      windowExpiresAt: existing.windowStart + LOGIN_RATE_LIMIT_WINDOW_MS,
-    };
+  } else if (check.action === 'increment') {
+    await ctx.db.patch(existing!._id, { requestCount: existing!.requestCount + 1, updatedAt: now });
   }
 
-  await ctx.db.patch(existing._id, {
-    requestCount: existing.requestCount + 1,
-    updatedAt: now,
-  });
-
-  return {
-    allowed: true,
-    remaining: Math.max(0, LOGIN_MAX_REQUESTS_PER_WINDOW - existing.requestCount - 1),
-    windowExpiresAt: existing.windowStart + LOGIN_RATE_LIMIT_WINDOW_MS,
-  };
+  return check.result;
 }
 
 export const checkAndIncrementLoginRateLimit = internalMutation({
@@ -109,7 +86,7 @@ export async function cleanupStaleLoginRateLimitsHandler(ctx: MutationCtx) {
   }
 
   const now = Date.now();
-  const staleThreshold = now - LOGIN_STALE_ENTRY_THRESHOLD_MS;
+  const staleThreshold = now - STALE_ENTRY_THRESHOLD_MS;
 
   const staleEntries = await ctx.db
     .query('login_rate_limits')

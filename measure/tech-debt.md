@@ -15,8 +15,8 @@
 | BM2 chatbot prompt injection defense still weak | Medium | Resolved | Added detectPromptInjection with 6 pattern categories; system/user message separation; comprehensive tests (chatbot_prompt_guard_20260425) |
 | BM2 login endpoint has no input length limits | Medium | Resolved | Username and password capped at 255 chars; 400 on exceed (tech-debt-resolution) |
 | No unique constraints on rate limit tables | High | Resolved | Convex has no unique indexes; try/catch upsert pattern is the accepted approach, tested in all 3 rate limit modules (tech-debt-resolution) |
-| Rate limiters duplicated across IM3/BM2 | Medium | Open | Same logic diverges; should extract to shared package |
-| IM3/BM2 rate limiter test coverage missing | Medium | Partial | IM3 rateLimits.ts now has 15 tests; BM2 rateLimits.ts still untested |
+| Rate limiters duplicated across IM3/BM2 | Medium | Resolved | Extracted to @math-platform/rate-limiter package; IM3+BM2 refactored to use shared sliding-window (tech-debt-resolution) |
+| IM3/BM2 rate limiter test coverage missing | Medium | Resolved | 15 package-level tests; IM3 15+10 pass; BM2 45 pass (tech-debt-resolution) |
 | internal Convex fns rely on action wrapper for auth | Medium | Open | activities.ts, study.ts, srs/cards.ts, student.ts have no defense-in-depth |
 | srs_review_log by_reviewed_at index unused (dead) | Low | Resolved | Removed unused index from IM3 schema (tech-debt-resolution) |
 | Session history pagination fetches all then slices client-side | Medium | Resolved | Replaced .collect()+slice with Convex .paginate() using real cursors; 4 new tests (tech-debt-resolution) |

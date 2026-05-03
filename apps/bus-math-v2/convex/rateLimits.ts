@@ -1,49 +1,27 @@
 import { internalMutation, internalQuery } from "./_generated/server";
-import { v } from "convex/values";
-
-const RATE_LIMIT_WINDOW_MS = 60000;
-const MAX_REQUESTS_PER_WINDOW = 5;
-const STALE_ENTRY_THRESHOLD_MS = 24 * 60 * 60 * 1000;
+import { v, ConvexError } from "convex/values";
+import {
+  checkAndIncrement,
+  getStatus,
+  isDuplicateInsertError,
+  CHATBOT_RATE_LIMIT,
+  STALE_ENTRY_THRESHOLD_MS,
+} from "@math-platform/rate-limiter";
 
 export const getRateLimitStatus = internalQuery({
-  args: {
-    userId: v.id("profiles"),
-  },
+  args: { userId: v.id("profiles") },
   handler: async (ctx, args) => {
     const rateLimit = await ctx.db
       .query("chatbot_rate_limits")
       .withIndex("by_user", (q) => q.eq("userId", args.userId))
       .unique();
 
-    if (!rateLimit) {
-      return {
-        remaining: MAX_REQUESTS_PER_WINDOW,
-        windowExpiresAt: Date.now() + RATE_LIMIT_WINDOW_MS,
-        isLimited: false,
-      };
-    }
-
-    const now = Date.now();
-    if (now - rateLimit.windowStart >= RATE_LIMIT_WINDOW_MS) {
-      return {
-        remaining: MAX_REQUESTS_PER_WINDOW,
-        windowExpiresAt: now + RATE_LIMIT_WINDOW_MS,
-        isLimited: false,
-      };
-    }
-
-    return {
-      remaining: Math.max(0, MAX_REQUESTS_PER_WINDOW - rateLimit.requestCount),
-      windowExpiresAt: rateLimit.windowStart + RATE_LIMIT_WINDOW_MS,
-      isLimited: rateLimit.requestCount >= MAX_REQUESTS_PER_WINDOW,
-    };
+    return getStatus(rateLimit, CHATBOT_RATE_LIMIT);
   },
 });
 
 export const checkAndIncrementRateLimit = internalMutation({
-  args: {
-    userId: v.id("profiles"),
-  },
+  args: { userId: v.id("profiles") },
   handler: async (ctx, args) => {
     const now = Date.now();
 
@@ -52,7 +30,9 @@ export const checkAndIncrementRateLimit = internalMutation({
       .withIndex("by_user", (q) => q.eq("userId", args.userId))
       .unique();
 
-    if (!existing) {
+    const check = checkAndIncrement(existing, CHATBOT_RATE_LIMIT, now);
+
+    if (check.action === 'insert') {
       try {
         await ctx.db.insert("chatbot_rate_limits", {
           userId: args.userId,
@@ -61,68 +41,40 @@ export const checkAndIncrementRateLimit = internalMutation({
           createdAt: now,
           updatedAt: now,
         });
-        return {
-          allowed: true,
-          remaining: Math.max(0, MAX_REQUESTS_PER_WINDOW - 1),
-          windowExpiresAt: now + RATE_LIMIT_WINDOW_MS,
-        };
+        return check.result;
       } catch (e) {
-        const message = e instanceof Error ? e.message : String(e);
-        if (!message.includes("duplicate") && !message.includes("unique")) {
-          throw e;
-        }
+        if (!isDuplicateInsertError(e)) throw e;
         existing = await ctx.db
           .query("chatbot_rate_limits")
           .withIndex("by_user", (q) => q.eq("userId", args.userId))
           .unique();
-        if (!existing) {
-          throw new Error("Rate limit record disappeared after concurrent insert");
+        if (!existing) throw new Error("Rate limit record disappeared after concurrent insert");
+        const retry = checkAndIncrement(existing, CHATBOT_RATE_LIMIT, now);
+        if (retry.action === 'reset') {
+          await ctx.db.patch(existing._id, { requestCount: 1, windowStart: now, updatedAt: now });
+        } else if (retry.action === 'increment') {
+          await ctx.db.patch(existing._id, { requestCount: existing.requestCount + 1, updatedAt: now });
         }
+        return retry.result;
       }
     }
 
-    if (now - existing.windowStart >= RATE_LIMIT_WINDOW_MS) {
-      await ctx.db.patch(existing._id, {
-        requestCount: 1,
-        windowStart: now,
-        updatedAt: now,
-      });
-      return {
-        allowed: true,
-        remaining: Math.max(0, MAX_REQUESTS_PER_WINDOW - 1),
-        windowExpiresAt: now + RATE_LIMIT_WINDOW_MS,
-      };
+    if (check.action === 'reset') {
+      await ctx.db.patch(existing!._id, { requestCount: 1, windowStart: now, updatedAt: now });
+    } else if (check.action === 'increment') {
+      await ctx.db.patch(existing!._id, { requestCount: existing!.requestCount + 1, updatedAt: now });
     }
 
-    if (existing.requestCount >= MAX_REQUESTS_PER_WINDOW) {
-      return {
-        allowed: false,
-        remaining: 0,
-        windowExpiresAt: existing.windowStart + RATE_LIMIT_WINDOW_MS,
-      };
-    }
-
-    await ctx.db.patch(existing._id, {
-      requestCount: existing.requestCount + 1,
-      updatedAt: now,
-    });
-
-    return {
-      allowed: true,
-      remaining: Math.max(0, MAX_REQUESTS_PER_WINDOW - existing.requestCount - 1),
-      windowExpiresAt: existing.windowStart + RATE_LIMIT_WINDOW_MS,
-    };
+    return check.result;
   },
 });
 
 export const cleanupStaleRateLimits = internalMutation({
-  args: {
-    userId: v.id("profiles"),
-  },
+  args: { userId: v.id("profiles") },
   handler: async (ctx, args) => {
     const profile = await ctx.db.get(args.userId);
     if (!profile || profile.role !== "admin") {
-      throw new Error("Unauthorized: admin only");
+      throw new ConvexError("Unauthorized: admin only");
     }
 
     const now = Date.now();

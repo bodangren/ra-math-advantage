@@ -65,12 +65,12 @@
   - [x] Verify rejections return 400 with safe error message
   - [x] Update tech-debt.md: mark "BM2 login endpoint has no input length limits" as Resolved
 
-- [ ] Task 3.2: Extract shared rate limiter package (Medium)
-  - [ ] Write package-level tests for @math-platform/rate-limiter
-  - [ ] Extract common rate limiter logic to `packages/rate-limiter/`
-  - [ ] Adopt in IM3 and BM2; remove duplicated code
-  - [ ] Update tech-debt.md: mark "Rate limiters duplicated across IM3/BM2" as Resolved
-  - [ ] Update tech-debt.md: mark "IM3/BM2 rate limiter test coverage missing" as Resolved
+- [x] Task 3.2: Extract shared rate limiter package (Medium)
+  - [x] Write package-level tests for @math-platform/rate-limiter
+  - [x] Extract common rate limiter logic to `packages/rate-limiter/`
+  - [x] Adopt in IM3 and BM2; remove duplicated code
+  - [x] Update tech-debt.md: mark "Rate limiters duplicated across IM3/BM2" as Resolved
+  - [x] Update tech-debt.md: mark "IM3/BM2 rate limiter test coverage missing" as Resolved
 
 - [x] Task 3.3: Defense-in-depth auth for internal Convex functions (Medium)
   - [x] Audited activities.ts, student.ts, srs/cards.ts — all functions are internalQuery/internalMutation (not exposed to client)

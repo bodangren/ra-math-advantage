@@ -15,7 +15,8 @@ export default defineConfig({
   },
   resolve: {
     alias: {
-      '@': path.resolve(__dirname, './')
+      '@': path.resolve(__dirname, './'),
+      '@math-platform/rate-limiter': path.resolve(__dirname, '../../packages/rate-limiter/src/index.ts'),
     }
   }
 });
