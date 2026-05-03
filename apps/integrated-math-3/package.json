@@ -16,7 +16,8 @@
     "bundle-size:audit": "node scripts/bundle-size-audit.mjs",
     "ws:run": "node scripts/run-workspace.mjs",
     "test:e2e": "npx playwright test",
-    "test:e2e:ui": "npx playwright test --ui"
+    "test:e2e:ui": "npx playwright test --ui",
+    "validate:seeds": "node scripts/validate-seed-integrity.mjs"
   },
   "dependencies": {
     "@hello-pangea/dnd": "^18.0.1",

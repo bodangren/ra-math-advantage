@@ -21,7 +21,6 @@ export default defineConfig({
         { find: /^.*\/_generated\/api$/, replacement: path.resolve(__dirname, './__stubs__/convex-generated-api.ts') },
         { find: /^.*\/_generated\/server$/, replacement: path.resolve(__dirname, './__stubs__/convex-generated-server.ts') },
         { find: '@', replacement: path.resolve(__dirname, './') },
-        { find: '@math-platform/rate-limiter', replacement: path.resolve(__dirname, '../../packages/rate-limiter/src/index.ts') },
       ]
   }
 });

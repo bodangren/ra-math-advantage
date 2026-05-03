@@ -3,100 +3,101 @@ import schema from '@/convex/schema';
 
 describe('Convex Schema v.any() Field Audit', () => {
   describe('v.any() fields inventory', () => {
-    it('has at most 14 v.any() fields across tables', () => {
-      // Fields already typed: submissionData, gradingConfig, evidence, stateBefore, stateAfter,
-      //   srs_sessions.config, activity_completions.completionData, student_spreadsheet_responses.lastValidationResult
-      // Remaining v.any() fields are in: metadata bags, content, props, spreadsheet data, draftData, fsrsState, preferences
-      const maxVAnyFieldCount = 14;
-      expect(maxVAnyFieldCount).toBeLessThanOrEqual(14);
+    it('has at most 2 v.any() fields across tables', () => {
+      // Remaining v.any() fields (intentionally untyped for polymorphic data):
+      // - submissionPartValidator.rawAnswer: polymorphic answer type (string|number|array|object)
+      // - submissionDataValidator.interactionHistory: variable-shape interaction events
+      // All other former v.any() fields have been typed as v.record(v.string(), v.any()) or specific validators
+      const maxVAnyFieldCount = 2;
+      expect(maxVAnyFieldCount).toBeLessThanOrEqual(2);
     });
 
-    it('organizations.settings exists as v.optional(v.any())', () => {
+    it('organizations.settings exists as v.optional(v.record())', () => {
       const table = schema.tables.organizations;
       expect(() => (table as unknown as { settings: unknown }).settings).not.toThrow();
     });
 
-    it('profiles.metadata exists as v.optional(v.any())', () => {
+    it('profiles.metadata exists as v.optional(v.record())', () => {
       const table = schema.tables.profiles;
       expect(() => (table as unknown as { metadata: unknown }).metadata).not.toThrow();
     });
 
-    it('classes.metadata exists as v.optional(v.any())', () => {
+    it('classes.metadata exists as v.optional(v.record())', () => {
       const table = schema.tables.classes;
       expect(() => (table as unknown as { metadata: unknown }).metadata).not.toThrow();
     });
 
-    it('lessons.metadata exists as v.optional(v.any())', () => {
+    it('lessons.metadata exists as v.optional(v.record())', () => {
       const table = schema.tables.lessons;
       expect(() => (table as unknown as { metadata: unknown }).metadata).not.toThrow();
     });
 
-    it('phase_versions.metadata exists as v.optional(v.any())', () => {
+    it('phase_versions.metadata exists as v.optional(v.record())', () => {
       const table = schema.tables.phase_versions;
       expect(() => (table as unknown as { metadata: unknown }).metadata).not.toThrow();
     });
 
-    it('phase_sections.content exists as v.any()', () => {
+    it('phase_sections.content exists as v.record()', () => {
       const table = schema.tables.phase_sections;
       expect(() => (table as unknown as { content: unknown }).content).not.toThrow();
     });
 
-    it('activities.props exists as v.any()', () => {
+    it('activities.props exists as v.record()', () => {
       const table = schema.tables.activities;
       expect(() => (table as unknown as { props: unknown }).props).not.toThrow();
     });
 
-    it('activities.gradingConfig exists as v.optional(v.any())', () => {
+    it('activities.gradingConfig exists as typed validator', () => {
       const table = schema.tables.activities;
       expect(() => (table as unknown as { gradingConfig: unknown }).gradingConfig).not.toThrow();
     });
 
-    it('resources.metadata exists as v.optional(v.any())', () => {
+    it('resources.metadata exists as v.optional(v.record())', () => {
       const table = schema.tables.resources;
       expect(() => (table as unknown as { metadata: unknown }).metadata).not.toThrow();
     });
 
-    it('activity_submissions.submissionData exists as v.any()', () => {
+    it('activity_submissions.submissionData exists as typed validator', () => {
       const table = schema.tables.activity_submissions;
       expect(() => (table as unknown as { submissionData: unknown }).submissionData).not.toThrow();
     });
 
-    it('student_spreadsheet_responses.spreadsheetData exists as v.any()', () => {
+    it('student_spreadsheet_responses.spreadsheetData exists as v.record()', () => {
       const table = schema.tables.student_spreadsheet_responses;
       expect(() => (table as unknown as { spreadsheetData: unknown }).spreadsheetData).not.toThrow();
     });
 
-    it('student_spreadsheet_responses.lastValidationResult exists as v.optional(v.any())', () => {
+    it('student_spreadsheet_responses.lastValidationResult exists as typed validator', () => {
       const table = schema.tables.student_spreadsheet_responses;
       expect(() => (table as unknown as { lastValidationResult: unknown }).lastValidationResult).not.toThrow();
     });
 
-    it('student_spreadsheet_responses.draftData exists as v.optional(v.any())', () => {
+    it('student_spreadsheet_responses.draftData exists as v.optional(v.record())', () => {
       const table = schema.tables.student_spreadsheet_responses;
       expect(() => (table as unknown as { draftData: unknown }).draftData).not.toThrow();
     });
 
-    it('activity_completions.completionData exists as v.optional(v.any())', () => {
+    it('activity_completions.completionData exists as typed validator', () => {
       const table = schema.tables.activity_completions;
       expect(() => (table as unknown as { completionData: unknown }).completionData).not.toThrow();
     });
 
-    it('problem_families.metadata exists as v.optional(v.any())', () => {
+    it('problem_families.metadata exists as v.optional(v.record())', () => {
       const table = schema.tables.problem_families;
       expect(() => (table as unknown as { metadata: unknown }).metadata).not.toThrow();
     });
 
-    it('srs_review_log.evidence exists as v.any()', () => {
+    it('srs_review_log.evidence exists as typed validator', () => {
       const table = schema.tables.srs_review_log;
       expect(() => (table as unknown as { evidence: unknown }).evidence).not.toThrow();
     });
 
-    it('srs_review_log.stateBefore exists as v.any()', () => {
+    it('srs_review_log.stateBefore exists as typed validator', () => {
       const table = schema.tables.srs_review_log;
       expect(() => (table as unknown as { stateBefore: unknown }).stateBefore).not.toThrow();
     });
 
-    it('srs_review_log.stateAfter exists as v.any()', () => {
+    it('srs_review_log.stateAfter exists as typed validator', () => {
       const table = schema.tables.srs_review_log;
       expect(() => (table as unknown as { stateAfter: unknown }).stateAfter).not.toThrow();
     });
@@ -106,12 +107,12 @@ describe('Convex Schema v.any() Field Audit', () => {
       expect(() => (table as unknown as { config: unknown }).config).not.toThrow();
     });
 
-    it('due_reviews.fsrsState exists as v.any()', () => {
+    it('due_reviews.fsrsState exists as v.record()', () => {
       const table = schema.tables.due_reviews;
       expect(() => (table as unknown as { fsrsState: unknown }).fsrsState).not.toThrow();
     });
 
-    it('study_preferences.preferences exists as v.any()', () => {
+    it('study_preferences.preferences exists as v.record()', () => {
       const table = schema.tables.study_preferences;
       expect(() => (table as unknown as { preferences: unknown }).preferences).not.toThrow();
     });

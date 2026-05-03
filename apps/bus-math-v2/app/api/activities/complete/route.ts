@@ -87,7 +87,6 @@ export async function POST(request: NextRequest) {
       return NextResponse.json(
         {
           error: 'Invalid request data',
-          details: validationResult.error.flatten().fieldErrors,
           replacement: REPLACEMENT_ENDPOINT,
           deprecated: true,
         },
@@ -144,7 +143,6 @@ export async function POST(request: NextRequest) {
               ? errorPayload.error
               : 'Activity completion failed',
           message: errorMessage,
-          details: errorPayload.details,
           replacement: REPLACEMENT_ENDPOINT,
           deprecated: true,
         },

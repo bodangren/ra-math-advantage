@@ -37,7 +37,7 @@ describe('Expression Equivalence Validator', () => {
       expect(checkEquivalence('x^2 - 9', '(x-3)(x+3)')).toBe(true);
     });
 
-    it.todo('returns true for expressions with GCF factored out — needs symbolic math lib (full GCF-to-distributed form requires polynomial multiplication with leading coefficient)', () => {
+    it.skip('returns true for expressions with GCF factored out — requires symbolic math lib to verify polynomial multiplication equivalence (2x^2+4x vs 2x(x+2))', () => {
       expect(checkEquivalence('2x^2 + 4x', '2x(x+2)')).toBe(true);
     });
 
@@ -123,7 +123,7 @@ describe('Expression Equivalence Validator', () => {
       expect(checkEquivalence('1 1/2', '3/2')).toBe(true);
     });
 
-    it.todo('handles fractions in algebraic expressions — needs symbolic math lib (decimal-fraction equivalence in polynomial terms)', () => {
+    it.skip('handles fractions in algebraic expressions — requires symbolic math lib to verify decimal-fraction equivalence in polynomial terms ((1/2)x²+x vs x+0.5x²)', () => {
       expect(checkEquivalence('(1/2)x^2 + x', 'x + 0.5x^2')).toBe(true);
     });
   });

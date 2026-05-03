@@ -66,7 +66,9 @@ describe('computeBaseRating (package)', () => {
     expect(computeBaseRating(parts)).toBe('Again');
   });
 
-  it('returns Again when parts array is empty', () => {
+  it('returns Again when parts array is empty (expected: conservative default)', () => {
+    // Empty parts means no evidence of correctness — conservative default is 'Again'.
+    // This matches the "no correctness data" rule from the function contract.
     expect(computeBaseRating([])).toBe('Again');
   });
 

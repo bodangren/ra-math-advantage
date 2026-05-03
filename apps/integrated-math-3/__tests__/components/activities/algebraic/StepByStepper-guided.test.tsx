@@ -1,4 +1,4 @@
-import { describe, it, expect, vi } from 'vitest';
+import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { StepByStepper } from '@math-platform/activity-components/algebraic';
 import 'katex/dist/katex.min.css';
@@ -132,22 +132,41 @@ describe('StepByStepper - Guided Mode', () => {
     it('records hint usage count in component state', async () => {
       render(<StepByStepper {...defaultProps} />);
 
-      const options = screen.getAllByRole('button');
-      expect(options.length).toBe(3);
+      // With Math.random mocked to 0.5, sort preserves insertion order:
+      // [correct, distractor0, distractor1]. Select incorrect options by
+      // filtering on distractor text rather than relying on array index.
+      await waitFor(() => {
+        expect(screen.getAllByRole('button')).toHaveLength(3);
+      });
 
-      // buttons[0] = correct (x^2 + 5x + 6), buttons[1] and [2] are distractors
-      fireEvent.click(options[1]);
+      const allButtons = screen.getAllByRole('button');
+      const firstIncorrect = allButtons.find(btn => {
+        const text = btn.textContent || '';
+        return (text.includes('x + 5') || text.includes('2x + 3')) && !text.includes('x^2');
+      });
+      expect(firstIncorrect).toBeDefined();
+      fireEvent.click(firstIncorrect!);
+
       await waitFor(() => {
         expect(screen.getByText(/Remember.*ax/)).toBeInTheDocument();
       });
 
-      const updatedOptions = screen.getAllByRole('button');
-      fireEvent.click(updatedOptions[2]);
+      // Re-query buttons after re-render; pick the OTHER incorrect option
+      const buttonsAfterFirst = screen.getAllByRole('button');
+      const secondIncorrect = buttonsAfterFirst.find(btn => {
+        const text = btn.textContent || '';
+        return (text.includes('x + 5') || text.includes('2x + 3')) && !text.includes('x^2');
+      });
+      expect(secondIncorrect).toBeDefined();
+      fireEvent.click(secondIncorrect!);
+
       await waitFor(() => {
         expect(screen.getByText(/Remember.*ax/)).toBeInTheDocument();
       });
 
-      expect(screen.getByText(/Hints used: 2/i)).toBeInTheDocument();
+      await waitFor(() => {
+        expect(screen.getByText(/Hints used: 2/i)).toBeInTheDocument();
+      });
     });
   });
 

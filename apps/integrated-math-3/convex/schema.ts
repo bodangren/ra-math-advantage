@@ -81,7 +81,7 @@ export default defineSchema({
   organizations: defineTable({
     name: v.string(),
     slug: v.string(),
-    settings: v.optional(v.any()),
+    settings: v.optional(v.record(v.string(), v.any())),
     createdAt: v.number(),
     updatedAt: v.number(),
   }).index("by_slug", ["slug"]),
@@ -92,7 +92,7 @@ export default defineSchema({
     role: v.union(v.literal("student"), v.literal("teacher"), v.literal("admin")),
     displayName: v.optional(v.string()),
     avatarUrl: v.optional(v.string()),
-    metadata: v.optional(v.any()),
+    metadata: v.optional(v.record(v.string(), v.any())),
     createdAt: v.number(),
     updatedAt: v.number(),
   })
@@ -120,7 +120,7 @@ export default defineSchema({
     description: v.optional(v.string()),
     academicYear: v.optional(v.string()),
     archived: v.boolean(),
-    metadata: v.optional(v.any()),
+    metadata: v.optional(v.record(v.string(), v.any())),
     createdAt: v.number(),
     updatedAt: v.number(),
   }).index("by_teacher", ["teacherId"]),
@@ -153,7 +153,7 @@ export default defineSchema({
     description: v.optional(v.string()),
     learningObjectives: v.optional(v.array(v.string())),
     orderIndex: v.number(),
-    metadata: v.optional(v.any()),
+    metadata: v.optional(v.record(v.string(), v.any())),
     createdAt: v.number(),
     updatedAt: v.number(),
   })
@@ -189,7 +189,7 @@ export default defineSchema({
       v.literal("discourse"),
       v.literal("reflection"),
     ),
-    metadata: v.optional(v.any()),
+    metadata: v.optional(v.record(v.string(), v.any())),
     createdAt: v.number(),
   })
     .index("by_lesson_version", ["lessonVersionId"])
@@ -205,7 +205,7 @@ export default defineSchema({
       v.literal("video"),
       v.literal("image"),
     ),
-    content: v.any(),
+    content: v.record(v.string(), v.any()),
     createdAt: v.number(),
   })
     .index("by_phase_version", ["phaseVersionId"])
@@ -234,7 +234,7 @@ export default defineSchema({
     componentKey: v.string(),
     displayName: v.string(),
     description: v.optional(v.string()),
-    props: v.any(),
+    props: v.record(v.string(), v.any()),
     gradingConfig: v.optional(gradingConfigValidator),
     standardId: v.optional(v.id("competency_standards")),
     approval: v.optional(v.object({
@@ -280,7 +280,7 @@ export default defineSchema({
     ),
     filePath: v.optional(v.string()),
     externalUrl: v.optional(v.string()),
-    metadata: v.optional(v.any()),
+    metadata: v.optional(v.record(v.string(), v.any())),
     createdAt: v.number(),
     updatedAt: v.number(),
   })
@@ -322,7 +322,7 @@ export default defineSchema({
   student_spreadsheet_responses: defineTable({
     studentId: v.id("profiles"),
     activityId: v.id("activities"),
-    spreadsheetData: v.any(),
+    spreadsheetData: v.record(v.string(), v.any()),
     isCompleted: v.boolean(),
     attempts: v.number(),
     lastValidationResult: v.optional(v.object({
@@ -330,7 +330,7 @@ export default defineSchema({
       errors: v.optional(v.array(v.string())),
     })),
     submittedAt: v.optional(v.number()),
-    draftData: v.optional(v.any()),
+    draftData: v.optional(v.record(v.string(), v.any())),
     createdAt: v.number(),
     updatedAt: v.number(),
   })
@@ -425,7 +425,7 @@ export default defineSchema({
     description: v.string(),
     objectiveIds: v.array(v.string()),
     difficulty: v.string(),
-    metadata: v.optional(v.any()),
+    metadata: v.optional(v.record(v.string(), v.any())),
   })
     .index("by_problemFamilyId", ["problemFamilyId"])
     .index("by_componentKey", ["componentKey"])
@@ -567,7 +567,7 @@ export default defineSchema({
     userId: v.id("profiles"),
     termSlug: v.string(),
     scheduledFor: v.number(),
-    fsrsState: v.any(),
+    fsrsState: v.record(v.string(), v.any()),
     isDue: v.boolean(),
     createdAt: v.number(),
     updatedAt: v.number(),
@@ -578,7 +578,7 @@ export default defineSchema({
 
   study_preferences: defineTable({
     userId: v.id("profiles"),
-    preferences: v.any(),
+    preferences: v.record(v.string(), v.any()),
     createdAt: v.number(),
     updatedAt: v.number(),
   }).index("by_user", ["userId"]),

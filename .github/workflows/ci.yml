@@ -168,6 +168,11 @@ jobs:
         env:
           CI: true
 
+      - name: Run BM2 bundle size audit
+        run: npm run bundle:audit --workspace=apps/bus-math-v2
+        env:
+          CI: true
+
   # Phase 5: Deploy (only on main/master push, after all gates pass)
   deploy:
     name: Deploy to Cloudflare
