@@ -1,0 +1,112 @@
+'use client';
+
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import type { ReactNode } from 'react';
+
+export interface NavItem {
+  href: string;
+  label: string;
+}
+
+export interface HeaderSimpleProps {
+  /** Navigation items */
+  navItems: NavItem[];
+  /** Brand display: short label for mobile, full label for desktop */
+  brandShort: string;
+  brandFull: string;
+  /** Brand icon element (rendered in the icon box) */
+  brandIcon?: ReactNode;
+  /** Optional subtitle below brand name */
+  brandSubtitle?: string;
+  /** Accent color for active nav indicator (CSS oklch value) */
+  accentColor?: string;
+  /** Background class for header */
+  bgClassName?: string;
+  /** User menu component slot */
+  userMenu?: ReactNode;
+}
+
+export function HeaderSimple({
+  navItems,
+  brandShort,
+  brandFull,
+  brandIcon,
+  brandSubtitle,
+  accentColor = 'oklch(0.62 0.18 264)',
+  bgClassName = 'bg-slate-dark',
+  userMenu,
+}: HeaderSimpleProps) {
+  const pathname = usePathname();
+
+  return (
+    <header
+      role="banner"
+      className={`sticky top-0 z-50 w-full ${bgClassName} shadow-[0_1px_0_oklch(1_0_0/0.08)]`}
+    >
+      <div className="container mx-auto px-4">
+        <div className="flex h-16 items-center gap-4 md:gap-6">
+          <Link
+            href="/"
+            className="flex items-center gap-3 shrink-0 rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent"
+          >
+            {brandIcon && (
+              <div
+                className="flex items-center justify-center w-8 h-8 rounded font-mono-num text-base font-bold text-white shrink-0"
+                style={{ backgroundColor: accentColor.replace('0.62', '0.46') }}
+                aria-hidden="true"
+              >
+                {brandIcon}
+              </div>
+            )}
+            <div className="flex flex-col leading-tight">
+              <span className="font-display font-semibold text-white text-base leading-tight">
+                <span className="hidden sm:inline">{brandFull}</span>
+                <span className="sm:hidden">{brandShort}</span>
+              </span>
+              {brandSubtitle && (
+                <span className="hidden md:block font-mono-num text-[10px] tracking-wider text-white/40 mt-0.5">
+                  {brandSubtitle}
+                </span>
+              )}
+            </div>
+          </Link>
+
+          <nav
+            className="hidden md:flex items-center gap-0.5 flex-1"
+            aria-label="Main navigation"
+          >
+            {navItems.map((item) => {
+              const isActive = pathname === item.href;
+              return (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className={`relative px-3 py-2 text-sm font-body font-medium rounded-md transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40 ${
+                    isActive
+                      ? 'text-white'
+                      : 'text-white/55 hover:text-white hover:bg-white/[0.07]'
+                  }`}
+                >
+                  {item.label}
+                  {isActive && (
+                    <span
+                      className="absolute bottom-1.5 left-3 right-3 h-0.5 rounded-full"
+                      style={{ backgroundColor: accentColor }}
+                    />
+                  )}
+                </Link>
+              );
+            })}
+          </nav>
+
+          {userMenu && (
+            <div className="ml-auto md:ml-0 flex items-center shrink-0">
+              {userMenu}
+            </div>
+          )}
+        </div>
+      </div>
+    </header>
+  );
+}
