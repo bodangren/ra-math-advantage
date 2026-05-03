@@ -1,13 +1,13 @@
 import { internalMutation } from "../_generated/server";
 import { problemFamilySchema } from "@math-platform/practice-core";
-import { IM3_PROBLEM_FAMILIES } from "@math-platform/math-content/problem-families/im3";
+import { IM2_PROBLEM_FAMILIES } from "@math-platform/math-content/problem-families/im2";
 
 export const seedProblemFamilies = internalMutation({
   args: {},
   handler: async (ctx) => {
     const results: { problemFamilyId: string; success: boolean; error?: string }[] = [];
 
-    for (const family of IM3_PROBLEM_FAMILIES) {
+    for (const family of IM2_PROBLEM_FAMILIES) {
       const parseResult = problemFamilySchema.safeParse(family);
       if (!parseResult.success) {
         results.push({
