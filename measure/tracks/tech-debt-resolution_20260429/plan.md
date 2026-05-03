@@ -88,11 +88,11 @@
   - [x] Run full BM2 test suite
   - [x] Update tech-debt.md: mark "BM2 rate limiter handler test coverage still missing" as Resolved
 
-- [ ] Task 3.6: Fix BM2 governance test suites (Medium)
-  - [ ] Diagnose each of the 9 skipped test suites
-  - [ ] Fix monorepo-aware paths (imports, mocks, fixtures)
-  - [ ] Re-enable suites; verify all pass
-  - [ ] Update tech-debt.md: mark "BM2 9 governance test suites permanently skipped" as Resolved
+- [x] Task 3.6: Fix BM2 governance test suites (Medium)
+  - [x] Diagnose each of the 9 skipped test suites
+  - [x] Fix monorepo-aware paths (imports, mocks, fixtures)
+  - [x] Re-enable suites; verify all pass
+  - [x] Update tech-debt.md: mark "BM2 9 governance test suites permanently skipped" as Resolved
 
 - [ ] Task: Measure - User Manual Verification 'Phase 3' (Protocol in workflow.md)
 

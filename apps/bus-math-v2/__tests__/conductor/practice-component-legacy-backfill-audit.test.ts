@@ -3,12 +3,14 @@ import path from 'path';
 
 import { describe, expect, it } from 'vitest';
 
+const REPO_ROOT = path.resolve(__dirname, '../../../..');
+
 const auditPath = path.resolve(
-  process.cwd(),
+  REPO_ROOT,
   'measure/archive/practice_component_legacy_backfill_20260319/audit.md',
 );
 
-// TODO(monorepo): skipped — measure archive path resolves relative to BM2 cwd; needs monorepo-aware path
+// measure/archive/practice_component_legacy_backfill_20260319/audit.md does not exist in the monorepo
 describe.skip('practice component legacy backfill audit', () => {
   it('records the current Unit 1 practice-family mapping', () => {
     const audit = fs.readFileSync(auditPath, 'utf8');

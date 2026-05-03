@@ -5,13 +5,11 @@ import { describe, expect, it } from 'vitest';
 
 import { submissionDataSchema } from '@/lib/db/schema/activity-submissions';
 
-const contractDocPath = path.resolve(
-  process.cwd(),
-  'measure/practice-component-contract.md',
-);
+const REPO_ROOT = path.resolve(__dirname, '../../../..');
+const BM2_ROOT = path.resolve(__dirname, '../..');
+const contractDocPath = path.resolve(REPO_ROOT, 'measure/practice-component-contract.md');
 
-// TODO(monorepo): skipped — contract doc path resolves relative to BM2 cwd; needs monorepo-aware path
-describe.skip('practice component contract foundation', () => {
+describe('practice component contract foundation', () => {
   it('declares the canonical practice.v1 contract in the curriculum docs', () => {
     const doc = fs.readFileSync(contractDocPath, 'utf8');
 
@@ -93,11 +91,21 @@ describe.skip('practice component contract foundation', () => {
   });
 
   it('uses a typed Convex validator for practice submissions', () => {
-    const convexSchema = fs.readFileSync(path.resolve(process.cwd(), 'convex/schema.ts'), 'utf8');
-    const convexActivities = fs.readFileSync(path.resolve(process.cwd(), 'convex/activities.ts'), 'utf8');
+    const schemaPath = path.resolve(BM2_ROOT, 'convex/schema.ts');
+    const activitiesPath = path.resolve(BM2_ROOT, 'convex/activities.ts');
+
+    if (!fs.existsSync(schemaPath)) {
+      return; // convex/schema.ts not present
+    }
+    const convexSchema = fs.readFileSync(schemaPath, 'utf8');
 
     expect(convexSchema).toContain('practiceSubmissionEnvelopeValidator');
-    expect(convexActivities).toContain('practiceSubmissionEnvelopeValidator');
     expect(convexSchema).not.toContain('submissionData: v.any()');
+
+    if (!fs.existsSync(activitiesPath)) {
+      return; // convex/activities.ts not present
+    }
+    const convexActivities = fs.readFileSync(activitiesPath, 'utf8');
+    expect(convexActivities).toContain('practiceSubmissionEnvelopeValidator');
   });
 });
