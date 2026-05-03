@@ -119,7 +119,7 @@
 
 - [ ] Task: Measure - User Manual Verification 'Phase 4' (Protocol in workflow.md)
 
-## Phase 5: Package Quality and Documentation
+## Phase 5: Package Quality and Documentation [checkpoint: bd141ea]
 
 - [x] Task 5.1: Package-level test coverage
   - [x] Write integration test verifying all 199 problem families (87 + 71 + 41) load and validate against `ProblemFamilyInput` schema
