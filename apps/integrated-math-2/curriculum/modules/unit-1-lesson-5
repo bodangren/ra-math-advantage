@@ -1,0 +1,212 @@
+# Lesson 1-5 — Proving Triangle Congruence
+
+## Today's Goals
+
+* Write two-column proofs to prove triangles congruent
+* Use CPCTC (Corresponding Parts of Congruent Triangles are Congruent) to prove segment or angle congruence
+* Apply triangle congruence to multi-step and real-world proofs
+
+---
+
+## Vocabulary
+
+* **two-column proof** — a proof format with statements in one column and reasons in the next
+* **CPCTC** — "Corresponding Parts of Congruent Triangles are Congruent"
+* **given** — information assumed to be true at the start of a proof
+* **prove** — the statement to be shown true at the end of a proof
+
+---
+
+## Explore: Why Prove Congruence?
+
+Engineers, architects, and surveyors rely on congruent triangles to verify that structures are stable and measurements are accurate. The ability to construct a logical argument about congruence is foundational to geometric reasoning.
+
+Inquiry Question:
+Once you know two triangles are congruent, what else can you conclude?
+
+---
+
+## Learn: Structure of a Two-Column Proof
+
+### Key Concept
+
+A two-column proof has two parts:
+
+| Statement | Reason |
+|-----------|--------|
+| Given information | Given |
+| Logical deductions | Definitions, postulates, theorems |
+| Conclusion | What we wanted to prove |
+
+### Key Concept: CPCTC
+
+After proving two triangles congruent, you can state that any pair of corresponding sides or corresponding angles are also congruent.
+
+---
+
+## Example 1 — Two-Column Proof Using SAS
+
+**Given:** In the figure, \(\overline{AB} \cong \overline{AD}\) and \(\overline{AC}\) bisects \(\angle BAD\).
+
+**Prove:** \(\overline{BC} \cong \overline{DC}\).
+
+### Step 1: Identify the Strategy
+
+We have two sides and the angle between them. To prove the sides BC and DC congruent, first prove △ABC ≅ △ADC, then use CPCTC.
+
+### Step 2: Two-Column Proof
+
+| Statement | Reason |
+|-----------|--------|
+| 1. \(\overline{AB} \cong \overline{AD}\) | 1. Given |
+| 2. \(\overline{AC}\) bisects \(\angle BAD\) | 2. Given |
+| 3. \(\angle BAC \cong \(\angle DAC\) | 3. Definition of angle bisector |
+| 4. \(\overline{AC} \cong \overline{AC}\) | 4. Reflexive Property |
+| 5. △ABC ≅ △ADC | 5. SAS (steps 1, 3, 4) |
+| 6. \(\overline{BC} \cong \overline{DC}\) | 6. CPCTC |
+
+### Step 3: Interpretation
+
+The SAS criterion applies because we identified two pairs of congruent sides (AB ≅ AD and AC ≅ AC) with the included angle congruent (∠BAC ≅ ∠DAC). Once the triangles are congruent, CPCTC gives us the desired conclusion.
+
+✅ Answer: \(\overline{BC} \cong \overline{DC}\) proved by SAS and CPCTC.
+
+---
+
+## Example 2 — Two-Column Proof Using ASA
+
+**Given:** \(\angle L \cong \angle N\), \(\overline{LM} \cong \overline{NM}\), and \(M\) is between \(L\) and \(P\) and between \(N\) and \(Q\) such that \(\angle LMP\) and \(\angle NMQ\) are right angles.
+
+**Prove:** \(\overline{LP} \cong \overline{NQ}\).
+
+### Step 1: Identify the Strategy
+
+We have two angles and the side between them. Prove △LMP ≅ △NMQ by ASA, then use CPCTC.
+
+### Step 2: Two-Column Proof
+
+| Statement | Reason |
+|-----------|--------|
+| 1. \(\angle L \cong \angle N\) | 1. Given |
+| 2. \(\overline{LM} \cong \overline{NM}\) | 2. Given |
+| 3. \(\angle LMP\) and \(\angle NMQ\) are right angles | 3. Given |
+| 4. \(\angle LMP \cong \angle NMQ\) | 4. All right angles are congruent |
+| 5. △LMP ≅ △NMQ | 5. ASA (steps 1, 2, 4) |
+| 6. \(\overline{LP} \cong \overline{NQ}\) | 6. CPCTC |
+
+### Step 3: Interpretation
+
+The included side LM ≅ NM sits between the congruent angles ∠L ≅ ∠N and ∠LMP ≅ ∠NMQ, satisfying ASA.
+
+✅ Answer: \(\overline{LP} \cong \overline{NQ}\) proved by ASA and CPCTC.
+
+---
+
+## Example 3 — Use CPCTC to Prove Angles Congruent
+
+**Given:** \(\overline{WX} \cong \overline{YZ}\), \(\overline{XV} \cong \overline{ZV}\), and \(V\) is the midpoint of both \(\overline{WY}\) and \(\overline{XZ}\).
+
+**Prove:** \(\angle W \cong \angle Y\).
+
+### Step 1: Unpack the Given Information
+
+* WV ≅ YV (V is the midpoint of WY)
+* XV ≅ ZV (V is the midpoint of XZ)
+* WX ≅ YZ (given)
+
+### Step 2: Two-Column Proof
+
+| Statement | Reason |
+|-----------|--------|
+| 1. \(\overline{WX} \cong \overline{YZ}\) | 1. Given |
+| 2. \(\overline{XV} \cong \overline{ZV}\) | 2. Given |
+| 3. \(\overline{WV} \cong \overline{YV}\) | 3. Definition of midpoint |
+| 4. △WXV ≅ △YZV | 4. SSS (steps 1, 2, 3) |
+| 5. \(\angle W \cong \angle Y\) | 5. CPCTC |
+
+### Step 3: Interpretation
+
+Three pairs of corresponding sides are congruent, so SSS applies. CPCTC then gives us the congruent angles.
+
+✅ Answer: \(\angle W \cong \angle Y\) proved by SSS and CPCTC.
+
+---
+
+## Example 4 — Multi-Step Proof: Prove Segments Congruent
+
+**Given:** \(\overline{AB} \parallel \overline{CD}\), \(\overline{AB} \cong \overline{CD}\), and \(E\) is the intersection of \(\overline{AC}\) and \(\overline{BD}\).
+
+**Prove:** \(\overline{AE} \cong \overline{CE}\).
+
+### Step 1: Identify Parallel Line Angle Relationships
+
+Since \(\overline{AB} \parallel \overline{CD}\):
+
+* \(\angle ABE \cong \angle CDE\) (alternate interior angles)
+* \(\angle BAE \cong \angle DCE\) (alternate interior angles)
+
+### Step 2: Two-Column Proof
+
+| Statement | Reason |
+|-----------|--------|
+| 1. \(\overline{AB} \parallel \overline{CD}\) | 1. Given |
+| 2. \(\overline{AB} \cong \overline{CD}\) | 2. Given |
+| 3. \(\angle ABE \cong \angle CDE\) | 3. Alternate interior angles |
+| 4. \(\angle BAE \cong \angle DCE\) | 4. Alternate interior angles |
+| 5. △ABE ≅ △CDE | 5. ASA (steps 4, 2, 3) |
+| 6. \(\overline{AE} \cong \overline{CE}\) | 6. CPCTC |
+
+### Step 3: Interpretation
+
+The parallel lines give us angle congruences, and the given side congruence is the included side. ASA applies, and CPCTC delivers the result.
+
+✅ Answer: \(\overline{AE} \cong \overline{CE}\) proved by ASA and CPCTC.
+
+---
+
+## Example 5 — Real-World Proof
+
+An engineer needs to verify that two structural support beams (\(\overline{PR}\) and \(\overline{QS}\)) are equal in length. The supports form triangles with a shared horizontal beam, and measurements show:
+
+* \(\overline{PQ} \cong \overline{RS}\) (equal horizontal segments)
+* \(\angle P \cong \angle R\) (each support meets the horizontal beam at the same angle)
+* \(\angle Q \cong \angle S\) (each support meets the horizontal beam at the same angle)
+
+**Prove:** \(\overline{PR} \cong \overline{QS}\).
+
+### Step 1: Identify the Triangles
+
+Triangle PQR and triangle RSP share the structure. We have two pairs of congruent angles and the included side.
+
+### Step 2: Two-Column Proof
+
+| Statement | Reason |
+|-----------|--------|
+| 1. \(\angle P \cong \angle R\) | 1. Given |
+| 2. \(\overline{PQ} \cong \overline{RS}\) | 2. Given |
+| 3. \(\angle Q \cong \angle S\) | 3. Given |
+| 4. △PQR ≅ △RSP | 4. ASA (steps 1, 2, 3) |
+| 5. \(\overline{PR} \cong \overline{QS}\) | 5. CPCTC |
+
+### Step 3: Interpretation
+
+The engineer can confirm both support beams are equal in length based on the congruent triangles formed with the horizontal beam.
+
+✅ Answer: \(\overline{PR} \cong \overline{QS}\) — the structural supports are equal in length.
+
+---
+
+## Think About It
+
+* Why must you prove triangles congruent before using CPCTC?
+* In a two-column proof, why is every statement required to have a reason?
+* Can you use CPCTC to prove the triangles are congruent? (Hint: no — that would be circular reasoning.)
+
+---
+
+## Objective Alignment
+
+- `Write two-column proofs using SAS`: Primary worked examples: Example 1.
+- `Write two-column proofs using ASA`: Primary worked examples: Examples 2, 4, 5.
+- `Use CPCTC to prove corresponding parts are congruent`: Primary worked examples: Examples 1–5.
+- `Construct multi-step proofs involving triangle congruence`: Primary worked examples: Examples 4, 5.

@@ -1,0 +1,236 @@
+# Lesson 4-3 — Introduction to Sine, Cosine, Tangent
+
+## Today's Goals
+
+* Define the three primary trigonometric ratios (sine, cosine, tangent)
+* Use trig ratios to find missing sides in right triangles
+* Use inverse trig functions to find missing angles
+
+---
+
+## Vocabulary
+
+* **sine** — $\sin(\theta) = \frac{\text{opposite}}{\text{hypotenuse}}$
+* **cosine** — $\cos(\theta) = \frac{\text{adjacent}}{\text{hypotenuse}}$
+* **tangent** — $\tan(\theta) = \frac{\text{opposite}}{\text{adjacent}}$
+* **SOH-CAH-TOA** — mnemonic for remembering the trig ratios
+* **inverse trig function** — $\sin^{-1}$, $\cos^{-1}$, $\tan^{-1}$; used to find an angle given a ratio
+* **angle of elevation** — the angle above the horizontal when looking up at an object
+* **angle of depression** — the angle below the horizontal when looking down at an object
+
+---
+
+## Explore: How Can Ratios of Sides Relate to Angles?
+
+In any right triangle with a 30° angle, the ratio of the opposite leg to the hypotenuse is always $\frac{1}{2}$, regardless of the triangle's size. These fixed ratios are the foundation of trigonometry.
+
+Inquiry Question:
+Why do the ratios of sides depend only on the angle and not on the size of the triangle?
+
+---
+
+## Learn: Trigonometric Ratios
+
+### Key Concept: SOH-CAH-TOA
+
+For an acute angle $\theta$ in a right triangle:
+
+$$\sin(\theta) = \frac{\text{opposite}}{\text{hypotenuse}} \qquad \cos(\theta) = \frac{\text{adjacent}}{\text{hypotenuse}} \qquad \tan(\theta) = \frac{\text{opposite}}{\text{adjacent}}$$
+
+### Key Concept: Finding Angles
+
+If you know a ratio, use the inverse function:
+
+$$\theta = \sin^{-1}\left(\frac{\text{opp}}{\text{hyp}}\right) = \cos^{-1}\left(\frac{\text{adj}}{\text{hyp}}\right) = \tan^{-1}\left(\frac{\text{opp}}{\text{adj}}\right)$$
+
+---
+
+## Example 1 — Find sin, cos, tan Given a Right Triangle
+
+A right triangle has legs of length 5 and 12, with the right angle between them. Find the six trigonometric ratios for the angle opposite the side of length 5.
+
+### Step 1: Find the Hypotenuse
+
+$$c = \sqrt{5^2 + 12^2} = \sqrt{25 + 144} = \sqrt{169} = 13$$
+
+### Step 2: Label the Sides Relative to Angle $\theta$
+
+* Opposite to $\theta$: $5$
+* Adjacent to $\theta$: $12$
+* Hypotenuse: $13$
+
+### Step 3: Compute the Ratios
+
+$$\sin(\theta) = \frac{5}{13} \approx 0.385$$
+
+$$\cos(\theta) = \frac{12}{13} \approx 0.923$$
+
+$$\tan(\theta) = \frac{5}{12} \approx 0.417$$
+
+### Step 4: Verify
+
+$$\sin^2(\theta) + \cos^2(\theta) = \frac{25}{169} + \frac{144}{169} = \frac{169}{169} = 1 \checkmark$$
+
+This confirms the Pythagorean identity.
+
+✅ Answer: $\sin(\theta) = \frac{5}{13}$, $\cos(\theta) = \frac{12}{13}$, $\tan(\theta) = \frac{5}{12}$.
+
+---
+
+## Example 2 — Find a Side Using the Sine Ratio
+
+In right triangle $ABC$ with right angle at $C$, $\angle A = 35°$ and the hypotenuse $AB = 20$. Find $BC$ (the side opposite $\angle A$).
+
+### Step 1: Identify the Appropriate Ratio
+
+$BC$ is opposite $\angle A$, and $AB$ is the hypotenuse. We need sine:
+
+$$\sin(35°) = \frac{BC}{AB}$$
+
+### Step 2: Substitute and Solve
+
+$$\sin(35°) = \frac{BC}{20}$$
+
+$$BC = 20 \times \sin(35°) = 20 \times 0.5736 = 11.47$$
+
+### Step 3: Verify
+
+Find $AC$ using cosine:
+
+$$AC = 20 \times \cos(35°) = 20 \times 0.8192 = 16.38$$
+
+Check: $BC^2 + AC^2 = 11.47^2 + 16.38^2 = 131.5 + 268.4 = 399.9 \approx 400 = 20^2 \checkmark$
+
+✅ Answer: $BC \approx 11.47$.
+
+---
+
+## Example 3 — Find a Side Using the Tangent Ratio
+
+From the base of a cliff, the angle of elevation to the top is 40°. The observer is 150 meters from the base. Find the height of the cliff.
+
+### Step 1: Set Up the Triangle
+
+* Angle of elevation: $40°$
+* Adjacent side (distance from base): $150$ m
+* Opposite side (height): $h$
+
+### Step 2: Choose the Right Ratio
+
+We have the adjacent side and need the opposite side: use tangent.
+
+$$\tan(40°) = \frac{h}{150}$$
+
+### Step 3: Solve for h
+
+$$h = 150 \times \tan(40°) = 150 \times 0.8391 = 125.87 \text{ m}$$
+
+### Step 4: Verify
+
+Using sine: $\sin(40°) = \frac{h}{\text{hypotenuse}}$, so hypotenuse $= \frac{125.87}{0.6428} = 195.8$ m.
+
+Check with Pythagorean theorem: $\sqrt{150^2 + 125.87^2} = \sqrt{22500 + 15843} = \sqrt{38343} = 195.8$ m.
+
+✅ Answer: The cliff is approximately **125.87 meters** tall.
+
+---
+
+## Example 4 — Find an Angle Using Inverse Trig
+
+A right triangle has an opposite side of 7 and an adjacent side of 24. Find the angle.
+
+### Step 1: Choose the Appropriate Ratio
+
+We have the opposite and adjacent sides: use tangent.
+
+$$\tan(\theta) = \frac{7}{24} = 0.2917$$
+
+### Step 2: Apply the Inverse
+
+$$\theta = \tan^{-1}(0.2917) \approx 16.26°$$
+
+### Step 3: Verify
+
+$$\tan(16.26°) \approx 0.2917 \checkmark$$
+
+Check the angle sum: $16.26° + 90° + 73.74° = 180°$.
+
+### Step 4: Find All Sides
+
+$$\text{Hypotenuse} = \sqrt{7^2 + 24^2} = \sqrt{49 + 576} = \sqrt{625} = 25$$
+
+$7, 24, 25$ is a Pythagorean triple.
+
+✅ Answer: The angle is approximately **16.26°**.
+
+---
+
+## Example 5 — Real-World: Angle of Elevation to the Top of a Building
+
+A person stands 80 feet from a building and measures the angle of elevation to the top as 52°. The person's eyes are 5.5 feet above the ground. Find the total height of the building.
+
+### Step 1: Find the Height Above Eye Level
+
+$$\tan(52°) = \frac{h}{80}$$
+
+$$h = 80 \times \tan(52°) = 80 \times 1.2799 = 102.39 \text{ ft}$$
+
+### Step 2: Add Eye Height
+
+$$\text{Total height} = 102.39 + 5.5 = 107.89 \text{ ft}$$
+
+### Step 3: Verify
+
+The angle of elevation is measured from eye level, so the 5.5 ft must be added at the end. The calculation correctly accounts for this.
+
+### Step 4: Interpret
+
+The building is approximately 108 feet tall, which is about a 10-story building.
+
+✅ Answer: The building is approximately **107.89 feet** tall.
+
+---
+
+## Example 6 — Trig Ratio from a Coordinate Point on the Terminal Side
+
+The terminal side of angle $\theta$ in standard position passes through the point $(8, -15)$. Find $\sin(\theta)$, $\cos(\theta)$, and $\tan(\theta)$.
+
+### Step 1: Find the Distance from the Origin
+
+$$r = \sqrt{8^2 + (-15)^2} = \sqrt{64 + 225} = \sqrt{289} = 17$$
+
+### Step 2: Compute the Ratios
+
+$$\sin(\theta) = \frac{y}{r} = \frac{-15}{17}$$
+
+$$\cos(\theta) = \frac{x}{r} = \frac{8}{17}$$
+
+$$\tan(\theta) = \frac{y}{x} = \frac{-15}{8}$$
+
+### Step 3: Verify the Pythagorean Identity
+
+$$\sin^2(\theta) + \cos^2(\theta) = \frac{225}{289} + \frac{64}{289} = \frac{289}{289} = 1 \checkmark$$
+
+### Step 4: Determine the Quadrant
+
+Since $x = 8 > 0$ and $y = -15 < 0$, the point is in Quadrant IV. In QIV, sine is negative and cosine is positive, which matches our results.
+
+✅ Answer: $\sin(\theta) = -\frac{15}{17}$, $\cos(\theta) = \frac{8}{17}$, $\tan(\theta) = -\frac{15}{8}$.
+
+---
+
+## Think About It
+
+* Why does $\tan(\theta) = \frac{\sin(\theta)}{\cos(\theta)}$?
+* What happens to the tangent ratio as the angle approaches 90°?
+* How do the signs of trig functions change across the four quadrants?
+
+---
+
+## Objective Alignment
+
+- `Define and compute sin, cos, tan from a right triangle`: Primary worked examples: Example 1.
+- `Find a side using sine or tangent`: Primary worked examples: Examples 2, 3.
+- `Find an angle using inverse trig`: Primary worked examples: Example 4.
+- `Apply trig to real-world elevation problems`: Primary worked examples: Example 5.
+- `Find trig ratios from a terminal side point`: Primary worked examples: Example 6.

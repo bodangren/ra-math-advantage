@@ -1,0 +1,235 @@
+# Lesson 1-4 — Congruence Criteria (SSS, SAS, ASA, AAS, HL)
+
+## Today's Goals
+
+* Identify and apply the five triangle congruence criteria
+* Determine whether two triangles are congruent based on given information
+* Distinguish between valid and invalid congruence shortcuts
+
+---
+
+## Vocabulary
+
+* **congruent triangles** — triangles with the same size and shape; all corresponding sides and angles are equal
+* **SSS (Side-Side-Side)** — three pairs of corresponding sides are congruent
+* **SAS (Side-Angle-Side)** — two pairs of sides and the included angle are congruent
+* **ASA (Angle-Side-Angle)** — two pairs of angles and the included side are congruent
+* **AAS (Angle-Angle-Side)** — two pairs of angles and a non-included side are congruent
+* **HL (Hypotenuse-Leg)** — right triangles with congruent hypotenuses and one pair of congruent legs
+* **included angle** — the angle formed between two sides
+* **included side** — the side between two angles
+
+---
+
+## Explore: How Much Information Do You Need?
+
+Draw a triangle with sides 3, 4, and 5. Now have a partner draw a triangle using only those measurements. Are the triangles identical?
+
+Inquiry Question:
+What is the minimum information needed to guarantee two triangles are congruent?
+
+---
+
+## Learn: Triangle Congruence Criteria
+
+### Key Concept: SSS (Side-Side-Side)
+
+If three sides of one triangle are congruent to three sides of another triangle, the triangles are congruent.
+
+### Key Concept: SAS (Side-Angle-Side)
+
+If two sides and the **included** angle of one triangle are congruent to two sides and the included angle of another triangle, the triangles are congruent.
+
+⚠️ The angle must be **between** the two sides. SSA (two sides and a non-included angle) does **not** guarantee congruence.
+
+### Key Concept: ASA (Angle-Side-Angle)
+
+If two angles and the **included** side of one triangle are congruent to two angles and the included side of another triangle, the triangles are congruent.
+
+### Key Concept: AAS (Angle-Angle-Side)
+
+If two angles and a **non-included** side of one triangle are congruent to the corresponding two angles and non-included side of another triangle, the triangles are congruent.
+
+### Key Concept: HL (Hypotenuse-Leg)
+
+If the hypotenuse and a leg of one right triangle are congruent to the hypotenuse and a leg of another right triangle, the triangles are congruent. This criterion applies **only** to right triangles.
+
+---
+
+## Example 1 — SSS Congruence
+
+Triangle ABC has sides AB = 7, BC = 9, AC = 5. Triangle DEF has sides DE = 7, EF = 9, DF = 5. Are the triangles congruent?
+
+### Step 1: Identify Corresponding Parts
+
+| △ABC | △DEF | Relationship |
+|------|------|-------------|
+| AB = 7 | DE = 7 | AB ≅ DE |
+| BC = 9 | EF = 9 | BC ≅ EF |
+| AC = 5 | DF = 5 | AC ≅ DF |
+
+### Step 2: Check the Criterion
+
+All three pairs of corresponding sides are congruent.
+
+### Step 3: Conclusion
+
+By **SSS**, △ABC ≅ △DEF.
+
+✅ Answer: Yes — the triangles are congruent by SSS.
+
+---
+
+## Example 2 — SAS Congruence
+
+Triangle PQR has PQ = 6, ∠P = 50°, PR = 8. Triangle STU has ST = 6, ∠S = 50°, SU = 8. Are the triangles congruent?
+
+### Step 1: Identify Corresponding Parts
+
+| △PQR | △STU | Relationship |
+|-------|------|-------------|
+| PQ = 6 | ST = 6 | PQ ≅ ST |
+| ∠P = 50° | ∠S = 50° | ∠P ≅ ∠S |
+| PR = 8 | SU = 8 | PR ≅ SU |
+
+### Step 2: Check the Included Angle
+
+In △PQR, ∠P is between sides PQ and PR. In △STU, ∠S is between sides ST and SU. The angle is included between the two sides in both triangles.
+
+### Step 3: Conclusion
+
+By **SAS**, △PQR ≅ △STU.
+
+✅ Answer: Yes — the triangles are congruent by SAS.
+
+---
+
+## Example 3 — ASA Congruence
+
+Triangle GHI has ∠G = 40°, GH = 10, ∠H = 70°. Triangle JKL has ∠J = 40°, JK = 10, ∠K = 70°. Are the triangles congruent?
+
+### Step 1: Identify Corresponding Parts
+
+| △GHI | △JKL | Relationship |
+|------|------|-------------|
+| ∠G = 40° | ∠J = 40° | ∠G ≅ ∠J |
+| GH = 10 | JK = 10 | GH ≅ JK |
+| ∠H = 70° | ∠K = 70° | ∠H ≅ ∠K |
+
+### Step 2: Check the Included Side
+
+Side GH is between ∠G and ∠H. Side JK is between ∠J and ∠K. The side is included between the two angles in both triangles.
+
+### Step 3: Conclusion
+
+By **ASA**, △GHI ≅ △JKL.
+
+✅ Answer: Yes — the triangles are congruent by ASA.
+
+---
+
+## Example 4 — AAS Congruence
+
+Triangle MNO has ∠M = 35°, ∠N = 65°, and NO = 12. Triangle PQR has ∠P = 35°, ∠Q = 65°, and QR = 12. Are the triangles congruent?
+
+### Step 1: Identify Corresponding Parts
+
+| △MNO | △PQR | Relationship |
+|------|------|-------------|
+| ∠M = 35° | ∠P = 35° | ∠M ≅ ∠P |
+| ∠N = 65° | ∠Q = 65° | ∠N ≅ ∠Q |
+| NO = 12 | QR = 12 | NO ≅ QR |
+
+### Step 2: Check Whether the Side Is Included
+
+Side NO is **not** between ∠M and ∠N (it is opposite ∠M). Similarly, QR is not between ∠P and ∠Q. This is a non-included side.
+
+Since we have two angles and a non-included side, this matches the **AAS** criterion.
+
+### Step 3: Verify the Third Angle
+
+[
+\angle O = 180° - 35° - 65° = 80°
+]
+[
+\angle R = 180° - 35° - 65° = 80°
+]
+
+The third angles are also congruent, confirming the triangles are determined.
+
+### Step 4: Conclusion
+
+By **AAS**, △MNO ≅ △PQR.
+
+✅ Answer: Yes — the triangles are congruent by AAS.
+
+---
+
+## Example 5 — HL Congruence (Right Triangles)
+
+Right triangle ABC has hypotenuse AB = 13 and leg BC = 5. Right triangle DEF has hypotenuse DE = 13 and leg EF = 5. Are the triangles congruent?
+
+### Step 1: Confirm Both Are Right Triangles
+
+∠C = 90° in △ABC and ∠F = 90° in △DEF.
+
+### Step 2: Identify Corresponding Parts
+
+| △ABC | △DEF | Relationship |
+|------|------|-------------|
+| AB = 13 (hyp.) | DE = 13 (hyp.) | AB ≅ DE |
+| BC = 5 (leg) | EF = 5 (leg) | BC ≅ EF |
+| ∠C = 90° | ∠F = 90° | ∠C ≅ ∠F |
+
+### Step 3: Apply HL
+
+The hypotenuses are congruent and one pair of legs are congruent. Both triangles are right triangles.
+
+By **HL**, △ABC ≅ △DEF.
+
+✅ Answer: Yes — the right triangles are congruent by HL.
+
+---
+
+## Example 6 — Determine the Criterion from a Diagram
+
+Suppose a diagram shows two triangles sharing a side. The following markings are given:
+
+* Two angles in each triangle are marked with single and double arcs (showing angle congruence)
+* The shared side has tick marks (showing side congruence)
+* The shared side is between the two marked angles in both triangles
+
+Which congruence criterion applies?
+
+### Step 1: Count the Known Pairs
+
+* Two pairs of congruent angles (marked with arcs)
+* One pair of congruent sides (the shared side)
+
+### Step 2: Check the Position of the Side
+
+The shared side is between the two marked angles in both triangles, making it the **included** side.
+
+### Step 3: Conclusion
+
+Two angles and the included side → **ASA**.
+
+✅ Answer: The triangles are congruent by ASA.
+
+---
+
+## Think About It
+
+* Why does SSA not guarantee congruence? (Hint: think about the "ambiguous case.")
+* How is HL related to SAS?
+* Can two triangles be congruent by more than one criterion?
+
+---
+
+## Objective Alignment
+
+- `Identify SSS congruence`: Primary worked examples: Example 1.
+- `Identify SAS congruence`: Primary worked examples: Example 2.
+- `Identify ASA congruence`: Primary worked examples: Examples 3, 6.
+- `Identify AAS congruence`: Primary worked examples: Example 4.
+- `Apply HL congruence to right triangles`: Primary worked examples: Example 5.

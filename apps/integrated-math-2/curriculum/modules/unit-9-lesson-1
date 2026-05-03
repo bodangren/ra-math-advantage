@@ -1,0 +1,234 @@
+# Lesson 9-1 — Solving Multi-Step Linear Equations
+
+## Today's Goals
+
+* Solve equations using the distributive property
+* Combine like terms to simplify before solving
+* Solve equations with variables on both sides
+* Identify equations with no solution or infinitely many solutions
+* Apply multi-step equations to real-world break-even problems
+
+---
+
+## Vocabulary
+
+* **distributive property** — $a(b + c) = ab + ac$; used to remove parentheses
+* **like terms** — terms with the same variable raised to the same power (e.g., $3x$ and $-5x$)
+* **no solution** — an equation that simplifies to a false statement (e.g., $0 = 5$); no value of $x$ works
+* **infinitely many solutions** — an equation that simplifies to a true identity (e.g., $3 = 3$); every value of $x$ works
+* **break-even point** — the value where revenue equals cost (profit = 0)
+
+---
+
+## Explore: Undoing Operations
+
+Solving an equation means isolating the variable by "undoing" operations in reverse order. Multi-step equations require applying several properties in sequence.
+
+Inquiry Question:
+Why do we perform the same operation on both sides of an equation? What would happen if we didn't?
+
+---
+
+## Learn: Solving Multi-Step Equations
+
+### Key Concept: Order of Reverse Operations
+
+1. Simplify each side (distribute, combine like terms)
+2. Move variable terms to one side
+3. Move constants to the other side
+4. Divide to isolate the variable
+
+### Key Concept: Special Cases
+
+| Simplification | Conclusion |
+|----------------|------------|
+| $a = b$ where $a \neq b$ (e.g., $0 = 5$) | **No solution** |
+| $a = a$ (e.g., $3 = 3$) | **Infinitely many solutions** |
+
+---
+
+## Example 1 — Solve $3(x + 4) = 2x + 15$
+
+### Step 1: Distribute
+
+$$3x + 12 = 2x + 15$$
+
+### Step 2: Move Variable Terms to One Side
+
+Subtract $2x$ from both sides:
+
+$$3x - 2x + 12 = 15$$
+
+$$x + 12 = 15$$
+
+### Step 3: Move Constants to the Other Side
+
+Subtract 12 from both sides:
+
+$$x = 3$$
+
+### Step 4: Verify
+
+$$3(3 + 4) = 3(7) = 21$$
+
+$$2(3) + 15 = 6 + 15 = 21 \checkmark$$
+
+✅ Answer: $x = 3$.
+
+---
+
+## Example 2 — Solve $5x - 3 = 2x + 9$
+
+### Step 1: Move Variable Terms to One Side
+
+Subtract $2x$ from both sides:
+
+$$5x - 2x - 3 = 9$$
+
+$$3x - 3 = 9$$
+
+### Step 2: Move Constants to the Other Side
+
+Add 3 to both sides:
+
+$$3x = 12$$
+
+### Step 3: Divide
+
+$$x = \frac{12}{3} = 4$$
+
+### Step 4: Verify
+
+$$5(4) - 3 = 20 - 3 = 17$$
+
+$$2(4) + 9 = 8 + 9 = 17 \checkmark$$
+
+✅ Answer: $x = 4$.
+
+---
+
+## Example 3 — Solve Equation with Fractions
+
+Solve $\frac{2}{3}x + 5 = \frac{1}{2}x + 7$.
+
+### Step 1: Clear Fractions by Multiplying by the LCD
+
+The LCD of 3 and 2 is 6. Multiply every term by 6:
+
+$$6 \cdot \frac{2}{3}x + 6 \cdot 5 = 6 \cdot \frac{1}{2}x + 6 \cdot 7$$
+
+$$4x + 30 = 3x + 42$$
+
+### Step 2: Move Variable Terms
+
+Subtract $3x$ from both sides:
+
+$$x + 30 = 42$$
+
+### Step 3: Solve
+
+$$x = 42 - 30 = 12$$
+
+### Step 4: Verify
+
+$$\frac{2}{3}(12) + 5 = 8 + 5 = 13$$
+
+$$\frac{1}{2}(12) + 7 = 6 + 7 = 13 \checkmark$$
+
+✅ Answer: $x = 12$.
+
+---
+
+## Example 4 — No Solution vs. Infinite Solutions
+
+Solve each equation and classify.
+
+**(a)** $2(x + 3) = 2x + 7$
+
+**(b)** $4(x - 1) + 2 = 4x - 2$
+
+### Step 1: Solve (a)
+
+$$2x + 6 = 2x + 7$$
+
+Subtract $2x$ from both sides:
+
+$$6 = 7$$
+
+This is **false** for all $x$. **No solution.**
+
+### Step 2: Solve (b)
+
+$$4x - 4 + 2 = 4x - 2$$
+
+$$4x - 2 = 4x - 2$$
+
+Subtract $4x$ from both sides:
+
+$$-2 = -2$$
+
+This is **true** for all $x$. **Infinitely many solutions.**
+
+### Step 3: Verify (a)
+
+No value of $x$ makes $2(x + 3) = 2x + 7$ true, since $2x + 6$ is always 1 less than $2x + 7$.
+
+### Step 4: Verify (b)
+
+For any value of $x$, both sides equal $4x - 2$. Every real number is a solution.
+
+✅ Answer: (a) **No solution**; (b) **Infinitely many solutions**.
+
+---
+
+## Example 5 — Real-World: Solve for Break-Even Point
+
+A company sells widgets for \$15 each. The cost to produce $x$ widgets is $C(x) = 5x + 200$. Find the break-even point.
+
+### Step 1: Write the Revenue Function
+
+$$R(x) = 15x$$
+
+### Step 2: Set Revenue Equal to Cost
+
+$$15x = 5x + 200$$
+
+### Step 3: Solve
+
+$$15x - 5x = 200$$
+
+$$10x = 200$$
+
+$$x = 20$$
+
+### Step 4: Verify
+
+$$R(20) = 15(20) = 300$$
+
+$$C(20) = 5(20) + 200 = 100 + 200 = 300 \checkmark$$
+
+Revenue equals cost at $x = 20$.
+
+### Step 5: Interpret
+
+The company must sell **20 widgets** to break even. At that point, both revenue and cost are \$300. Selling more than 20 generates profit; selling fewer results in a loss.
+
+✅ Answer: Break-even at **$x = 20$ widgets** (revenue = cost = \$300).
+
+---
+
+## Think About It
+
+* Why do we need to perform the same operation on both sides of an equation?
+* How can you tell before solving whether an equation might have no solution?
+* What does "break-even" mean in business terms?
+
+---
+
+## Objective Alignment
+
+- `Solve using distributive property`: Primary worked examples: Example 1.
+- `Solve with variables on both sides`: Primary worked examples: Example 2.
+- `Solve equations with fractions`: Primary worked examples: Example 3.
+- `Identify no solution and infinite solutions`: Primary worked examples: Example 4.
+- `Apply to break-even problems`: Primary worked examples: Example 5.

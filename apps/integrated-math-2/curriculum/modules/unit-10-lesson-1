@@ -1,0 +1,218 @@
+# Lesson 10-1 — Laws of Exponents
+
+## Today's Goals
+
+* Apply the product rule: $x^a \cdot x^b = x^{a+b}$
+* Apply the quotient rule: $\frac{x^a}{x^b} = x^{a-b}$
+* Apply the power rule: $(x^a)^b = x^{ab}$
+* Simplify expressions with products raised to powers: $(ab)^n = a^n b^n$
+* Combine multiple exponent rules in a single expression
+* Apply exponent laws to scientific notation problems
+
+---
+
+## Vocabulary
+
+* **exponent** — indicates how many times the base is multiplied by itself
+* **base** — the number or variable being raised to a power
+* **product rule** — when multiplying like bases, add the exponents
+* **quotient rule** — when dividing like bases, subtract the exponents
+* **power rule** — when raising a power to a power, multiply the exponents
+
+---
+
+## Explore: Patterns in Powers
+
+$2^3 \cdot 2^4 = 8 \cdot 16 = 128 = 2^7$. Notice that $3 + 4 = 7$. The exponents add because we are multiplying seven 2's together. This pattern generalizes to all exponent laws.
+
+Inquiry Question:
+Why can't you use the product rule to simplify $2^3 \cdot 3^4$? What makes the bases important?
+
+---
+
+## Learn: Exponent Laws
+
+### Key Concept: Product Rule
+
+$$x^a \cdot x^b = x^{a+b}$$
+
+Same base, multiply: add exponents.
+
+### Key Concept: Quotient Rule
+
+$$\frac{x^a}{x^b} = x^{a-b}$$
+
+Same base, divide: subtract exponents.
+
+### Key Concept: Power Rule
+
+$$(x^a)^b = x^{ab}$$
+
+Power of a power: multiply exponents.
+
+### Key Concept: Power of a Product
+
+$$(ab)^n = a^n \cdot b^n$$
+
+### Key Concept: Power of a Quotient
+
+$$\left(\frac{a}{b}\right)^n = \frac{a^n}{b^n}$$
+
+---
+
+## Example 1 — Simplify $x^3 \cdot x^5$ Using Product Rule
+
+### Step 1: Check the Bases
+
+Both terms have base $x$.
+
+### Step 2: Apply the Product Rule
+
+$$x^3 \cdot x^5 = x^{3+5} = x^8$$
+
+### Step 3: Verify by Expansion
+
+$$x^3 \cdot x^5 = (x \cdot x \cdot x)(x \cdot x \cdot x \cdot x \cdot x) = x^8 \checkmark$$
+
+✅ Answer: $x^3 \cdot x^5 = x^8$.
+
+---
+
+## Example 2 — Simplify $\frac{x^8}{x^3}$ Using Quotient Rule
+
+### Step 1: Check the Bases
+
+Both terms have base $x$.
+
+### Step 2: Apply the Quotient Rule
+
+$$\frac{x^8}{x^3} = x^{8-3} = x^5$$
+
+### Step 3: Verify by Cancellation
+
+$$\frac{x \cdot x \cdot x \cdot x \cdot x \cdot x \cdot x \cdot x}{x \cdot x \cdot x} = x^5 \checkmark$$
+
+✅ Answer: $\frac{x^8}{x^3} = x^5$.
+
+---
+
+## Example 3 — Simplify $(x^2)^4$ Using Power Rule
+
+### Step 1: Apply the Power Rule
+
+$$(x^2)^4 = x^{2 \cdot 4} = x^8$$
+
+### Step 2: Verify by Expansion
+
+$$(x^2)^4 = x^2 \cdot x^2 \cdot x^2 \cdot x^2 = x^{2+2+2+2} = x^8 \checkmark$$
+
+### Step 3: Generalize
+
+The power rule works because raising $x^2$ to the 4th power means multiplying $x^2$ by itself four times.
+
+✅ Answer: $(x^2)^4 = x^8$.
+
+---
+
+## Example 4 — Simplify $(2x^3)^2$
+
+### Step 1: Apply the Power of a Product Rule
+
+$$(2x^3)^2 = 2^2 \cdot (x^3)^2$$
+
+### Step 2: Simplify Each Factor
+
+$$2^2 = 4$$
+
+$$(x^3)^2 = x^{3 \cdot 2} = x^6$$
+
+### Step 3: Combine
+
+$$(2x^3)^2 = 4x^6$$
+
+### Step 4: Verify
+
+$$(2x^3)(2x^3) = 4x^6 \checkmark$$
+
+✅ Answer: $(2x^3)^2 = 4x^6$.
+
+---
+
+## Example 5 — Combine Multiple Rules in One Expression
+
+Simplify $\frac{(3x^2y)^3}{9x^4y^2}$.
+
+### Step 1: Simplify the Numerator
+
+$$(3x^2y)^3 = 3^3 \cdot (x^2)^3 \cdot y^3 = 27x^6y^3$$
+
+### Step 2: Set Up the Fraction
+
+$$\frac{27x^6y^3}{9x^4y^2}$$
+
+### Step 3: Simplify the Coefficient
+
+$$\frac{27}{9} = 3$$
+
+### Step 4: Apply the Quotient Rule to Each Variable
+
+$$x^{6-4} = x^2$$
+
+$$y^{3-2} = y^1 = y$$
+
+### Step 5: Combine
+
+$$\frac{(3x^2y)^3}{9x^4y^2} = 3x^2y$$
+
+### Step 6: Verify
+
+Numerator: $27x^6y^3$. Denominator: $9x^4y^2$. Result: $3x^2y$. ✓
+
+✅ Answer: $\frac{(3x^2y)^3}{9x^4y^2} = 3x^2y$.
+
+---
+
+## Example 6 — Real-World: Simplify Scientific Notation Expression
+
+A star is $4.2 \times 10^{13}$ km away. A probe travels at $3 \times 10^5$ km per year. How many years to reach the star?
+
+### Step 1: Set Up the Division
+
+$$\text{Time} = \frac{4.2 \times 10^{13}}{3 \times 10^5}$$
+
+### Step 2: Divide the Coefficients
+
+$$\frac{4.2}{3} = 1.4$$
+
+### Step 3: Apply the Quotient Rule to the Powers of 10
+
+$$\frac{10^{13}}{10^5} = 10^{13-5} = 10^8$$
+
+### Step 4: Combine
+
+$$\text{Time} = 1.4 \times 10^8 \text{ years}$$
+
+### Step 5: Interpret
+
+$1.4 \times 10^8 = 140{,}000{,}000$ years. This is 140 million years — far too long for a practical mission. This illustrates why interstellar travel is so challenging.
+
+✅ Answer: $1.4 \times 10^8$ years (140 million years).
+
+---
+
+## Think About It
+
+* Why does the product rule add exponents rather than multiply them?
+* Can you use the quotient rule when the bases are different? Why or why not?
+* What happens to the power rule if the exponent is zero? (Hint: $x^0 = ?$)
+
+---
+
+## Objective Alignment
+
+- `Apply the product rule`: Primary worked examples: Example 1.
+- `Apply the quotient rule`: Primary worked examples: Example 2.
+- `Apply the power rule`: Primary worked examples: Example 3.
+- `Simplify products raised to powers`: Primary worked examples: Example 4.
+- `Combine multiple exponent rules`: Primary worked examples: Example 5.
+- `Apply to scientific notation`: Primary worked examples: Example 6.

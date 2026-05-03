@@ -1,0 +1,278 @@
+# Lesson 12-1 — Graphing Quadratics in Vertex Form
+
+## Today's Goals
+
+* Graph $y = a(x - h)^2 + k$ and identify the vertex $(h, k)$
+* Determine the axis of symmetry $x = h$
+* Identify the direction of opening (up or down) from the sign of $a$
+* Describe transformations from the parent function $y = x^2$
+* Find the maximum or minimum value of a quadratic function
+
+---
+
+## Vocabulary
+
+* **vertex form** — $y = a(x - h)^2 + k$; reveals the vertex directly
+* **vertex** — the highest or lowest point of a parabola, at $(h, k)$
+* **axis of symmetry** — the vertical line $x = h$ that divides the parabola into mirror images
+* **parent function** — the basic function $y = x^2$ before any transformations
+* **maximum** — the highest point (vertex) when $a < 0$ (parabola opens downward)
+* **minimum** — the lowest point (vertex) when $a > 0$ (parabola opens upward)
+
+---
+
+## Explore: Shifting and Stretching Parabolas
+
+Start with $y = x^2$ (vertex at the origin, opens up). Changing to $y = (x - 2)^2$ shifts the vertex right 2. Adding 3 gives $y = (x - 2)^2 + 3$, shifting up 3. Multiplying by $-2$ gives $y = -2(x - 2)^2 + 3$, flipping and stretching.
+
+Inquiry Question:
+Why does $(x - h)$ shift the graph **right** by $h$ rather than left? What is counterintuitive about this?
+
+---
+
+## Learn: Vertex Form Analysis
+
+### Key Concept: Reading Vertex Form
+
+For $y = a(x - h)^2 + k$:
+
+| Feature | How to Find It |
+|---------|---------------|
+| Vertex | $(h, k)$ |
+| Axis of symmetry | $x = h$ |
+| Opens | Up if $a > 0$, down if $a < 0$ |
+| Width | Narrower if $|a| > 1$, wider if $|a| < 1$ |
+| Min/Max value | $k$ (minimum if $a > 0$, maximum if $a < 0$) |
+
+### Key Concept: Transformations from $y = x^2$
+
+1. **Horizontal shift**: $h$ units right (if $h > 0$) or $|h|$ units left (if $h < 0$)
+2. **Vertical shift**: $k$ units up (if $k > 0$) or $|k|$ units down (if $k < 0$)
+3. **Reflection**: over $x$-axis if $a < 0$
+4. **Vertical stretch/compression**: by factor $|a|$
+
+---
+
+## Example 1 — Graph $y = (x - 2)^2 + 3$
+
+### Step 1: Identify Parameters
+
+$a = 1$, $h = 2$, $k = 3$.
+
+### Step 2: Find the Vertex
+
+Vertex: $(2, 3)$.
+
+### Step 3: Determine the Axis of Symmetry
+
+$x = 2$.
+
+### Step 4: Determine Direction and Width
+
+$a = 1 > 0$: opens **upward**. Same width as parent function.
+
+### Step 5: Plot Key Points
+
+Use symmetry around $x = 2$:
+
+| $x$ | $y = (x-2)^2 + 3$ |
+|-----|-------------------|
+| 0 | $(−2)^2 + 3 = 7$ |
+| 1 | $(−1)^2 + 3 = 4$ |
+| **2** | **3** (vertex) |
+| 3 | $1^2 + 3 = 4$ |
+| 4 | $2^2 + 3 = 7$ |
+
+### Step 6: Identify the Minimum
+
+Since the parabola opens upward, the vertex is the **minimum** point: $y = 3$.
+
+✅ Answer: Vertex $(2, 3)$, axis $x = 2$, opens up, minimum value = 3.
+
+---
+
+## Example 2 — Graph $y = -2(x + 1)^2 + 4$
+
+### Step 1: Identify Parameters
+
+Rewrite: $y = -2(x - (-1))^2 + 4$. So $a = -2$, $h = -1$, $k = 4$.
+
+### Step 2: Find the Vertex
+
+Vertex: $(-1, 4)$.
+
+### Step 3: Determine the Axis of Symmetry
+
+$x = -1$.
+
+### Step 4: Determine Direction and Width
+
+$a = -2 < 0$: opens **downward**. $|a| = 2 > 1$: narrower than parent (stretched).
+
+### Step 5: Plot Key Points
+
+| $x$ | $y = -2(x+1)^2 + 4$ |
+|-----|---------------------|
+| $-3$ | $-2(4) + 4 = -4$ |
+| $-2$ | $-2(1) + 4 = 2$ |
+| **$-1$** | **4** (vertex) |
+| $0$ | $-2(1) + 4 = 2$ |
+| $1$ | $-2(4) + 4 = -4$ |
+
+### Step 6: Identify the Maximum
+
+The parabola opens downward, so the vertex is the **maximum** point: $y = 4$.
+
+✅ Answer: Vertex $(-1, 4)$, axis $x = -1$, opens down, maximum value = 4.
+
+---
+
+## Example 3 — Write Vertex Form Given Vertex and Point
+
+A parabola has vertex $(3, -2)$ and passes through $(5, 6)$. Write its equation.
+
+### Step 1: Start with Vertex Form
+
+$$y = a(x - 3)^2 + (-2)$$
+
+### Step 2: Substitute the Point $(5, 6)$
+
+$$6 = a(5 - 3)^2 - 2$$
+
+$$6 = a(4) - 2$$
+
+$$8 = 4a$$
+
+$$a = 2$$
+
+### Step 3: Write the Equation
+
+$$y = 2(x - 3)^2 - 2$$
+
+### Step 4: Verify
+
+$y(5) = 2(4) - 2 = 8 - 2 = 6$ ✓
+
+$y(3) = 2(0) - 2 = -2$ ✓ (vertex)
+
+✅ Answer: $y = 2(x - 3)^2 - 2$.
+
+---
+
+## Example 4 — Identify Transformations from Parent Function
+
+Describe the transformations from $y = x^2$ to $y = -\frac{1}{2}(x + 3)^2 - 4$.
+
+### Step 1: Identify the Parameters
+
+$a = -\frac{1}{2}$, $h = -3$, $k = -4$.
+
+### Step 2: List Each Transformation
+
+1. **Horizontal shift**: $(x + 3) = (x - (-3))$ → shift **left 3 units**
+2. **Reflection**: $a = -\frac{1}{2} < 0$ → **reflect over the $x$-axis**
+3. **Vertical compression**: $|a| = \frac{1}{2} < 1$ → **compress vertically** by factor $\frac{1}{2}$
+4. **Vertical shift**: $k = -4$ → shift **down 4 units**
+
+### Step 3: Order of Transformations
+
+Apply in this order to the parent function: horizontal shift → reflection and compression → vertical shift.
+
+### Step 4: Identify the Resulting Vertex
+
+Vertex: $(-3, -4)$. Opens downward. Maximum value = $-4$.
+
+✅ Answer: Left 3, reflect over $x$-axis, compress by $\frac{1}{2}$, down 4. Vertex $(-3, -4)$.
+
+---
+
+## Example 5 — Find Maximum or Minimum Value
+
+Find the vertex, direction, and max/min value of $y = 3(x - 1)^2 + 7$.
+
+### Step 1: Read the Parameters
+
+$a = 3$, $h = 1$, $k = 7$.
+
+### Step 2: Determine Direction
+
+$a = 3 > 0$: opens **upward**.
+
+### Step 3: Identify the Minimum
+
+Since it opens upward, the vertex is the lowest point. The **minimum value** is $k = 7$, occurring at $x = 1$.
+
+### Step 4: State the Range
+
+All output values satisfy $y \geq 7$. Range: $[7, \infty)$.
+
+### Step 5: Compare with Maximum Case
+
+If $y = -3(x - 1)^2 + 7$, then $a < 0$ and the **maximum** value would be 7. The same $k$ value but opposite extremum type.
+
+✅ Answer: Vertex $(1, 7)$, opens up, minimum value = 7.
+
+---
+
+## Example 6 — Real-World: Projectile Height Model
+
+A rocket's height in feet after $t$ seconds is $h(t) = -16(t - 3)^2 + 144$. Find the maximum height, when it occurs, and when the rocket hits the ground.
+
+### Step 1: Identify the Vertex
+
+$h(t) = -16(t - 3)^2 + 144$.
+
+Vertex: $(3, 144)$.
+
+### Step 2: Interpret the Vertex
+
+$a = -16 < 0$: opens downward.
+
+Maximum height = **144 feet**, occurring at $t = 3$ seconds.
+
+### Step 3: Find When the Rocket Hits the Ground
+
+Set $h(t) = 0$:
+
+$$-16(t - 3)^2 + 144 = 0$$
+
+$$-16(t - 3)^2 = -144$$
+
+$$(t - 3)^2 = 9$$
+
+$$t - 3 = \pm 3$$
+
+$$t = 6 \quad \text{or} \quad t = 0$$
+
+### Step 4: Interpret
+
+- $t = 0$: rocket is on the ground at launch (starting height = $-16(9) + 144 = 0$)
+- $t = 6$: rocket lands after **6 seconds**
+
+### Step 5: Verify
+
+$h(0) = -16(9) + 144 = -144 + 144 = 0$ ✓
+
+$h(6) = -16(9) + 144 = 0$ ✓
+
+$h(3) = 144$ ✓
+
+✅ Answer: Max height = 144 ft at $t = 3$ s. Hits ground at $t = 0$ s (start) and $t = 6$ s (landing).
+
+---
+
+## Think About It
+
+* Why does $(x - h)$ shift the parabola right when $h > 0$? How does this differ from $y = x - h$ for linear functions?
+* Can a parabola in vertex form have its vertex at the origin? What values of $h$ and $k$ achieve this?
+* How does the value of $|a|$ affect the "width" of a parabola? Why?
+
+---
+
+## Objective Alignment
+
+- `Graph and identify vertex`: Primary worked examples: Examples 1, 2.
+- `Write vertex form from vertex and point`: Primary worked examples: Example 3.
+- `Identify transformations`: Primary worked examples: Example 4.
+- `Find maximum/minimum values`: Primary worked examples: Example 5.
+- `Apply to projectile model`: Primary worked examples: Example 6.

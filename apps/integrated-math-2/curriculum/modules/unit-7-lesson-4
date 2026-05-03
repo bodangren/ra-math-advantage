@@ -1,0 +1,243 @@
+# Lesson 7-4 — Combinations
+
+## Today's Goals
+
+* Define combinations as selections where order does not matter
+* Compute combinations using $nCr = \frac{n!}{r!(n-r)!}$
+* Distinguish permutations from combinations
+* Apply combinations to selection, committee, and card problems
+* Explore connections to Pascal's Triangle
+
+---
+
+## Vocabulary
+
+* **combination** — a selection of objects where order does not matter
+* **$nCr$** or $\binom{n}{r}$ — the number of ways to choose $r$ objects from $n$ distinct objects
+* **"choose"** — the language of combinations: "$n$ choose $r$"
+
+---
+
+## Explore: When Does Order Not Matter?
+
+Selecting 3 students for a committee produces the same group regardless of the order you pick them. {Alice, Bob, Carol} = {Carol, Alice, Bob}. This is a combination, not a permutation.
+
+Inquiry Question:
+Why is $\binom{n}{r} = \binom{n}{n-r}$?
+
+---
+
+## Learn: Combination Formula
+
+### Key Concept: Combination Formula
+
+$$\binom{n}{r} = nCr = \frac{n!}{r!(n-r)!}$$
+
+### Key Concept: Relationship to Permutations
+
+$$nCr = \frac{nPr}{r!}$$
+
+Each combination corresponds to $r!$ permutations (the number of ways to arrange the $r$ chosen objects).
+
+### Key Concept: Symmetry
+
+$$\binom{n}{r} = \binom{n}{n-r}$$
+
+Choosing $r$ to include is the same as choosing $n-r$ to exclude.
+
+---
+
+## Example 1 — Choose 3 Pizza Toppings from 8
+
+A pizza shop offers 8 toppings. How many ways can you choose 3 toppings?
+
+### Step 1: Identify the Problem
+
+Order does not matter (pepperoni-mushroom-olive = olive-pepperoni-mushroom), so use combinations.
+
+$$n = 8, \quad r = 3$$
+
+### Step 2: Apply the Formula
+
+$$\binom{8}{3} = \frac{8!}{3! \cdot 5!} = \frac{8 \times 7 \times 6}{3 \times 2 \times 1} = \frac{336}{6} = 56$$
+
+### Step 3: Verify with Permutation
+
+$$8P3 = 8 \times 7 \times 6 = 336$$
+
+Each group of 3 can be arranged $3! = 6$ ways, so:
+
+$$\binom{8}{3} = \frac{336}{6} = 56 \checkmark$$
+
+✅ Answer: There are **56** ways to choose 3 toppings.
+
+---
+
+## Example 2 — Distinguish Permutation from Combination
+
+Determine whether each scenario is a permutation or combination:
+(a) Choosing 2 co-captains from 10 players
+(b) Choosing a president and vice president from 10 players
+
+### Step 1: Scenario (a) — Co-Captains
+
+Two co-captains have equal roles, so order does not matter.
+
+**Combination:**
+
+$$\binom{10}{2} = \frac{10!}{2! \cdot 8!} = \frac{10 \times 9}{2} = 45$$
+
+### Step 2: Scenario (b) — President and Vice President
+
+The roles are distinct, so order matters.
+
+**Permutation:**
+
+$$10P2 = \frac{10!}{8!} = 10 \times 9 = 90$$
+
+### Step 3: Compare
+
+The permutation (90) is exactly $2! = 2$ times the combination (45). Each pair can serve in two orders (president-VP or VP-president). ✓
+
+✅ Answer: (a) 45 combinations; (b) 90 permutations.
+
+---
+
+## Example 3 — Committee Selection
+
+A committee of 4 is chosen from 7 people. How many committees are possible?
+
+### Step 1: Apply the Combination Formula
+
+$$\binom{7}{4} = \frac{7!}{4! \cdot 3!} = \frac{7 \times 6 \times 5}{3 \times 2 \times 1} = \frac{210}{6} = 35$$
+
+### Step 2: Verify with Symmetry
+
+$$\binom{7}{4} = \binom{7}{3} = \frac{7!}{3! \cdot 4!} = 35 \checkmark$$
+
+### Step 3: Compare to Permutation
+
+$$7P4 = 7 \times 6 \times 5 \times 4 = 840$$
+
+$$\frac{840}{4!} = \frac{840}{24} = 35 \checkmark$$
+
+✅ Answer: There are **35** possible committees.
+
+---
+
+## Example 4 — Combination with Restrictions
+
+A committee of 3 is chosen from 5 men and 4 women. How many committees have exactly 2 women?
+
+### Step 1: Choose the Women
+
+Choose 2 from 4 women:
+
+$$\binom{4}{2} = \frac{4!}{2! \cdot 2!} = 6$$
+
+### Step 2: Choose the Men
+
+Choose 1 from 5 men:
+
+$$\binom{5}{1} = 5$$
+
+### Step 3: Apply the Counting Principle
+
+The two selections are independent:
+
+$$\text{Total} = 6 \times 5 = 30$$
+
+### Step 4: Verify
+
+The total committees of 3 from 9 people:
+
+$$\binom{9}{3} = 84$$
+
+Committees with exactly 2 women = 30, which is a subset of 84. ✓
+
+✅ Answer: There are **30** committees with exactly 2 women.
+
+---
+
+## Example 5 — Hand of Cards Problems
+
+A 5-card hand is dealt from a standard 52-card deck. How many hands contain exactly 3 hearts?
+
+### Step 1: Count the Cards
+
+- Hearts in deck: 13
+- Non-hearts in deck: $52 - 13 = 39$
+
+### Step 2: Choose 3 Hearts from 13
+
+$$\binom{13}{3} = \frac{13!}{3! \cdot 10!} = \frac{13 \times 12 \times 11}{6} = 286$$
+
+### Step 3: Choose 2 Non-Hearts from 39
+
+$$\binom{39}{2} = \frac{39!}{2! \cdot 37!} = \frac{39 \times 38}{2} = 741$$
+
+### Step 4: Apply the Counting Principle
+
+$$\text{Total} = 286 \times 741 = 211{,}926$$
+
+### Step 5: Verify
+
+Total 5-card hands: $\binom{52}{5} = 2{,}598{,}960$. Our answer is a fraction of this. ✓
+
+✅ Answer: There are **211,926** hands with exactly 3 hearts.
+
+---
+
+## Example 6 — Pascal's Triangle Connection
+
+Pascal's Triangle gives binomial coefficients $\binom{n}{r}$:
+
+```
+Row 0:           1
+Row 1:         1   1
+Row 2:       1   2   1
+Row 3:     1   3   3   1
+Row 4:   1   4   6   4   1
+Row 5: 1   5  10  10   5   1
+```
+
+Verify that $\binom{5}{2} = 10$ and $\binom{5}{3} = 10$ using the triangle.
+
+### Step 1: Read from Row 5
+
+Row 5 entries: 1, 5, 10, 10, 5, 1 (positions 0 through 5).
+
+### Step 2: Identify $\binom{5}{2}$ and $\binom{5}{3}$
+
+- $\binom{5}{2}$ = position 2 = **10**
+- $\binom{5}{3}$ = position 3 = **10**
+
+### Step 3: Verify with Formula
+
+$$\binom{5}{2} = \frac{5!}{2! \cdot 3!} = \frac{120}{12} = 10 \checkmark$$
+
+$$\binom{5}{3} = \frac{5!}{3! \cdot 2!} = \frac{120}{12} = 10 \checkmark$$
+
+### Step 4: Confirm Symmetry
+
+$\binom{5}{2} = \binom{5}{3}$ — Pascal's Triangle is symmetric. ✓
+
+✅ Answer: Both $\binom{5}{2}$ and $\binom{5}{3}$ equal **10**, confirmed by Pascal's Triangle.
+
+---
+
+## Think About It
+
+* Why does dividing by $r!$ convert permutations to combinations?
+* What does $\binom{n}{0} = 1$ mean in context?
+* How does Pascal's Triangle relate to the binomial theorem?
+
+---
+
+## Objective Alignment
+
+- `Compute combinations using nCr`: Primary worked examples: Examples 1, 3.
+- `Distinguish permutation from combination`: Primary worked examples: Example 2.
+- `Apply combinations to committee problems`: Primary worked examples: Examples 3, 4.
+- `Solve card problems with combinations`: Primary worked examples: Example 5.
+- `Connect combinations to Pascal's Triangle`: Primary worked examples: Example 6.

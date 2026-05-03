@@ -1,0 +1,209 @@
+# Lesson 3-2 — Triangle Similarity (AA, SAS, SSS)
+
+## Today's Goals
+
+* Use the AA Similarity Postulate to prove two triangles are similar
+* Use the SAS Similarity Theorem to prove two triangles are similar
+* Use the SSS Similarity Theorem to prove two triangles are similar
+
+---
+
+## Vocabulary
+
+* **AA Similarity** — if two angles of one triangle are congruent to two angles of another triangle, the triangles are similar
+* **SAS Similarity** — if an angle of one triangle is congruent to an angle of a second triangle and the sides including the angles are proportional, the triangles are similar
+* **SSS Similarity** — if all three pairs of corresponding sides of two triangles are proportional, the triangles are similar
+
+---
+
+## Explore: How Little Information Do You Need?
+
+For congruence, we needed three pieces of information (SSS, SAS, ASA, AAS, HL). For similarity, the requirements are different because we only need the same shape, not the same size.
+
+Inquiry Question:
+Why is AA sufficient for similarity but not for congruence?
+
+---
+
+## Learn: Triangle Similarity Criteria
+
+### Key Concept: AA Similarity Postulate
+
+If two angles of one triangle are congruent to two angles of another triangle, then the triangles are similar.
+
+$$\angle A \cong \angle D \text{ and } \angle B \cong \angle E \implies \triangle ABC \sim \triangle DEF$$
+
+Since the angles of a triangle sum to 180°, if two pairs match, the third pair must also match.
+
+### Key Concept: SAS Similarity Theorem
+
+If one angle of a triangle is congruent to one angle of another triangle and the sides including those angles are proportional, then the triangles are similar.
+
+$$\angle A \cong \angle D \text{ and } \frac{AB}{DE} = \frac{AC}{DF} \implies \triangle ABC \sim \triangle DEF$$
+
+### Key Concept: SSS Similarity Theorem
+
+If all three pairs of corresponding sides are proportional, then the triangles are similar.
+
+$$\frac{AB}{DE} = \frac{BC}{EF} = \frac{AC}{DF} \implies \triangle ABC \sim \triangle DEF$$
+
+---
+
+## Example 1 — Prove Triangles Similar by AA
+
+In the figure, $\overline{AB} \parallel \overline{DE}$. Prove $\triangle ABC \sim \triangle DEC$.
+
+### Step 1: Identify Congruent Angles
+
+Since $\overline{AB} \parallel \overline{DE}$ and $\overline{BC}$ is a transversal:
+
+$$\angle ABC \cong \angle DEC \quad (\text{alternate interior angles})$$
+
+Similarly, with transversal $\overline{AC}$:
+
+$$\angle BAC \cong \angle EDC \quad (\text{alternate interior angles})$$
+
+### Step 2: Apply AA
+
+Two pairs of congruent angles are established, so by AA Similarity:
+
+$$\triangle ABC \sim \triangle DEC$$
+
+### Step 3: Verify
+
+The third pair of angles is automatically congruent:
+
+$$\angle ACB = 180° - \angle ABC - \angle BAC = 180° - \angle DEC - \angle EDC = \angle DCE$$
+
+✅ Answer: $\triangle ABC \sim \triangle DEC$ by AA Similarity (two pairs of alternate interior angles are congruent).
+
+---
+
+## Example 2 — Prove Similar by SAS
+
+$\triangle PQR$ has $\angle P = 50°$, $PQ = 12$, $PR = 18$. $\triangle XYZ$ has $\angle X = 50°$, $XY = 8$, $XZ = 12$. Prove the triangles are similar.
+
+### Step 1: Check the Included Angle
+
+$$\angle P = \angle X = 50° \checkmark$$
+
+### Step 2: Check the Proportions of the Including Sides
+
+$$\frac{PQ}{XY} = \frac{12}{8} = \frac{3}{2}$$
+
+$$\frac{PR}{XZ} = \frac{18}{12} = \frac{3}{2}$$
+
+$$\frac{PQ}{XY} = \frac{PR}{XZ} = \frac{3}{2} \checkmark$$
+
+### Step 3: Apply SAS Similarity
+
+The included angles are congruent and the sides including those angles are proportional, so:
+
+$$\triangle PQR \sim \triangle XYZ \text{ by SAS Similarity}$$
+
+✅ Answer: The triangles are similar by SAS Similarity with a scale factor of $\frac{3}{2}$.
+
+---
+
+## Example 3 — Prove Similar by SSS
+
+$\triangle ABC$ has sides 6, 8, 10. $\triangle DEF$ has sides 9, 12, 15. Prove the triangles are similar.
+
+### Step 1: Set Up All Three Ratios
+
+Order the sides from smallest to largest for each triangle:
+
+$$\triangle ABC: 6, 8, 10 \qquad \triangle DEF: 9, 12, 15$$
+
+$$\frac{6}{9} = \frac{2}{3} \qquad \frac{8}{12} = \frac{2}{3} \qquad \frac{10}{15} = \frac{2}{3}$$
+
+### Step 2: Verify All Ratios Are Equal
+
+$$\frac{AB}{DE} = \frac{BC}{EF} = \frac{AC}{DF} = \frac{2}{3} \checkmark$$
+
+### Step 3: Apply SSS Similarity
+
+Since all three pairs of corresponding sides are proportional:
+
+$$\triangle ABC \sim \triangle DEF \text{ by SSS Similarity}$$
+
+### Step 4: Confirm with a Check
+
+Both triangles have sides in the ratio 3:4:5 (scaled by 2 and 3 respectively), so both are right triangles. This is consistent with the similarity.
+
+✅ Answer: $\triangle ABC \sim \triangle DEF$ by SSS Similarity with a scale factor of $\frac{2}{3}$.
+
+---
+
+## Example 4 — Determine Which Similarity Criterion Applies
+
+$\triangle JKL$ has $\angle J = 72°$, $\angle K = 48°$, and $JK = 10$. $\triangle MNP$ has $\angle M = 72°$, $\angle N = 60°$, and $MN = 15$. Are the triangles similar?
+
+### Step 1: Find the Third Angle of Each Triangle
+
+$$\triangle JKL: \angle L = 180° - 72° - 48° = 60°$$
+
+$$\triangle MNP: \angle P = 180° - 72° - 60° = 48°$$
+
+### Step 2: Match Corresponding Angles
+
+$$\angle J = 72° = \angle M$$
+
+$$\angle K = 48° = \angle P$$
+
+$$\angle L = 60° = \angle N$$
+
+Two pairs of congruent angles exist ($\angle J \cong \angle M$ and $\angle K \cong \angle P$).
+
+### Step 3: Apply AA Similarity
+
+$$\triangle JKL \sim \triangle MNP \text{ by AA Similarity}$$
+
+The correspondence is $J \leftrightarrow M$, $K \leftrightarrow P$, $L \leftrightarrow N$.
+
+✅ Answer: The triangles are similar by **AA Similarity**.
+
+---
+
+## Example 5 — Find Missing Measures Using Similar Triangles
+
+$\triangle ABC \sim \triangle DEF$. If $AB = 10$, $BC = 15$, $AC = 12$, and $DE = 6$, find $EF$ and $DF$.
+
+### Step 1: Find the Scale Factor
+
+$$k = \frac{DE}{AB} = \frac{6}{10} = \frac{3}{5}$$
+
+### Step 2: Find EF
+
+$$\frac{EF}{BC} = k = \frac{3}{5}$$
+
+$$EF = \frac{3}{5} \times 15 = 9$$
+
+### Step 3: Find DF
+
+$$\frac{DF}{AC} = k = \frac{3}{5}$$
+
+$$DF = \frac{3}{5} \times 12 = \frac{36}{5} = 7.2$$
+
+### Step 4: Verify
+
+$$\frac{6}{10} = \frac{9}{15} = \frac{7.2}{12} = \frac{3}{5} \checkmark$$
+
+✅ Answer: $EF = 9$ and $DF = 7.2$.
+
+---
+
+## Think About It
+
+* Why is AAA not listed as a separate criterion? How does it relate to AA?
+* Can two triangles have all three sides proportional but not be similar? Why or why not?
+* If you know SAS similarity, what does that tell you about the third pair of sides?
+
+---
+
+## Objective Alignment
+
+- `Prove triangles similar by AA`: Primary worked examples: Examples 1, 4.
+- `Prove triangles similar by SAS`: Primary worked examples: Example 2.
+- `Prove triangles similar by SSS`: Primary worked examples: Example 3.
+- `Find missing measures using similar triangles`: Primary worked examples: Example 5.

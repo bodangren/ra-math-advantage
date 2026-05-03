@@ -1,0 +1,267 @@
+# Lesson 13-5 — Solving Trigonometric Equations
+
+## Today's Goals
+
+* Solve basic trig equations on restricted domains ($0 \leq \theta < 2\pi$)
+* Solve quadratic-type trig equations by substitution
+* Solve equations involving double-angle expressions
+* Find all solutions using general form ($+ 2\pi n$)
+* Verify solutions graphically by finding intersections
+
+---
+
+## Vocabulary
+
+* **principal solutions** — solutions within one period ($0 \leq \theta < 2\pi$ or $0° \leq \theta < 360°$)
+* **general solution** — all solutions, expressed with $+ 2\pi n$ (or $+ 360°n$) for integer $n$
+* **periodic** — repeating every $2\pi$ radians (for $\sin$ and $\cos$) or $\pi$ radians (for $\tan$)
+
+---
+
+## Explore: Infinite Solutions
+
+The equation $\sin\theta = \frac{1}{2}$ has infinitely many solutions because sine repeats every $2\pi$. Within $[0, 2\pi)$, the solutions are $\frac{\pi}{6}$ and $\frac{5\pi}{6}$. The general solution is $\theta = \frac{\pi}{6} + 2\pi n$ or $\theta = \frac{5\pi}{6} + 2\pi n$.
+
+Inquiry Question:
+Why do $\sin\theta = \frac{1}{2}$ and $\cos\theta = \frac{1}{2}$ have different numbers of solutions in $[0, 2\pi)$? What about $\tan\theta = \frac{1}{2}$?
+
+---
+
+## Learn: Solving Trig Equations
+
+### Key Concept: Strategy
+
+1. Isolate the trig function (or rewrite as a quadratic in the trig function).
+2. Find all angles in $[0, 2\pi)$ that satisfy the equation.
+3. Write the general solution if needed.
+4. Check for extraneous solutions.
+
+### Key Concept: Reference Values
+
+| $\theta$ | $\sin\theta$ | $\cos\theta$ | $\tan\theta$ |
+|-----------|-------------|-------------|-------------|
+| $0$ | $0$ | $1$ | $0$ |
+| $\frac{\pi}{6}$ | $\frac{1}{2}$ | $\frac{\sqrt{3}}{2}$ | $\frac{\sqrt{3}}{3}$ |
+| $\frac{\pi}{4}$ | $\frac{\sqrt{2}}{2}$ | $\frac{\sqrt{2}}{2}$ | $1$ |
+| $\frac{\pi}{3}$ | $\frac{\sqrt{3}}{2}$ | $\frac{1}{2}$ | $\sqrt{3}$ |
+| $\frac{\pi}{2}$ | $1$ | $0$ | undef. |
+
+---
+
+## Example 1 — Solve $\sin\theta = \frac{1}{2}$ for $0 \leq \theta < 2\pi$
+
+### Step 1: Find the Reference Angle
+
+$\sin\theta = \frac{1}{2}$ corresponds to $\theta = \frac{\pi}{6}$ (the angle in Q1 where sine equals $\frac{1}{2}$).
+
+### Step 2: Determine Which Quadrants
+
+Sine is positive in Q1 and Q2.
+
+### Step 3: Find Both Solutions
+
+- Q1: $\theta = \frac{\pi}{6}$
+- Q2: $\theta = \pi - \frac{\pi}{6} = \frac{5\pi}{6}$
+
+### Step 4: Verify
+
+$\sin\frac{\pi}{6} = \frac{1}{2}$ ✓
+
+$\sin\frac{5\pi}{6} = \frac{1}{2}$ ✓
+
+### Step 5: Write the General Solution
+
+$$\theta = \frac{\pi}{6} + 2\pi n \quad \text{or} \quad \theta = \frac{5\pi}{6} + 2\pi n, \quad n \in \mathbb{Z}$$
+
+✅ Answer: $\theta = \frac{\pi}{6}$ or $\theta = \frac{5\pi}{6}$ (in $[0, 2\pi)$).
+
+---
+
+## Example 2 — Solve $2\cos^2 x - \cos x - 1 = 0$
+
+### Step 1: Factor (Treat as a Quadratic in $\cos x$)
+
+Let $u = \cos x$:
+
+$$2u^2 - u - 1 = 0$$
+
+$$(2u + 1)(u - 1) = 0$$
+
+### Step 2: Solve for $u$
+
+$$u = -\frac{1}{2} \quad \text{or} \quad u = 1$$
+
+### Step 3: Solve $\cos x = -\frac{1}{2}$
+
+$\cos x = -\frac{1}{2}$: reference angle $\frac{\pi}{3}$, cosine negative in Q2 and Q3.
+
+$$x = \frac{2\pi}{3} \quad \text{or} \quad x = \frac{4\pi}{3}$$
+
+### Step 4: Solve $\cos x = 1$
+
+$$x = 0$$
+
+### Step 5: List All Solutions in $[0, 2\pi)$
+
+$$x = 0, \quad x = \frac{2\pi}{3}, \quad x = \frac{4\pi}{3}$$
+
+### Step 6: Verify
+
+- $x = 0$: $2(1) - 1 - 1 = 0$ ✓
+- $x = \frac{2\pi}{3}$: $2(\frac{1}{4}) - (-\frac{1}{2}) - 1 = \frac{1}{2} + \frac{1}{2} - 1 = 0$ ✓
+- $x = \frac{4\pi}{3}$: same as $\frac{2\pi}{3}$ by symmetry ✓
+
+✅ Answer: $x = 0, \frac{2\pi}{3}, \frac{4\pi}{3}$.
+
+---
+
+## Example 3 — Solve $\tan^2\theta - 3 = 0$
+
+### Step 1: Isolate $\tan^2\theta$
+
+$$\tan^2\theta = 3$$
+
+### Step 2: Take the Square Root
+
+$$\tan\theta = \pm\sqrt{3}$$
+
+### Step 3: Solve $\tan\theta = \sqrt{3}$
+
+$\tan\theta = \sqrt{3}$ when $\theta = \frac{\pi}{3}$ (Q1) and $\theta = \frac{\pi}{3} + \pi = \frac{4\pi}{3}$ (Q3).
+
+### Step 4: Solve $\tan\theta = -\sqrt{3}$
+
+$\tan\theta = -\sqrt{3}$ when $\theta = \frac{2\pi}{3}$ (Q2) and $\theta = \frac{2\pi}{3} + \pi = \frac{5\pi}{3}$ (Q4).
+
+### Step 5: List All Solutions in $[0, 2\pi)$
+
+$$\theta = \frac{\pi}{3}, \frac{2\pi}{3}, \frac{4\pi}{3}, \frac{5\pi}{3}$$
+
+### Step 6: General Solution
+
+$$\theta = \frac{\pi}{3} + \pi n \quad \text{or} \quad \theta = \frac{2\pi}{3} + \pi n, \quad n \in \mathbb{Z}$$
+
+(Tangent has period $\pi$, not $2\pi$.)
+
+✅ Answer: $\theta = \frac{\pi}{3}, \frac{2\pi}{3}, \frac{4\pi}{3}, \frac{5\pi}{3}$.
+
+---
+
+## Example 4 — Solve $\sin(2\theta) = \frac{\sqrt{3}}{2}$
+
+### Step 1: Let $u = 2\theta$
+
+$$\sin u = \frac{\sqrt{3}}{2}$$
+
+### Step 2: Find Solutions for $u$ in $[0, 2\pi)$
+
+$u = \frac{\pi}{3}$ or $u = \frac{2\pi}{3}$
+
+### Step 3: General Solutions for $u$
+
+$$u = \frac{\pi}{3} + 2\pi n \quad \text{or} \quad u = \frac{2\pi}{3} + 2\pi n$$
+
+### Step 4: Substitute Back $u = 2\theta$
+
+$$2\theta = \frac{\pi}{3} + 2\pi n \quad \text{or} \quad 2\theta = \frac{2\pi}{3} + 2\pi n$$
+
+### Step 5: Solve for $\theta$
+
+$$\theta = \frac{\pi}{6} + \pi n \quad \text{or} \quad \theta = \frac{\pi}{3} + \pi n$$
+
+### Step 6: List Solutions in $[0, 2\pi)$
+
+For $n = 0$: $\theta = \frac{\pi}{6}, \frac{\pi}{3}$
+
+For $n = 1$: $\theta = \frac{7\pi}{6}, \frac{4\pi}{3}$
+
+$$\theta = \frac{\pi}{6}, \frac{\pi}{3}, \frac{7\pi}{6}, \frac{4\pi}{3}$$
+
+### Step 7: Verify
+
+$\sin(2 \cdot \frac{\pi}{6}) = \sin\frac{\pi}{3} = \frac{\sqrt{3}}{2}$ ✓
+
+$\sin(2 \cdot \frac{7\pi}{6}) = \sin\frac{7\pi}{3} = \sin\frac{\pi}{3} = \frac{\sqrt{3}}{2}$ ✓
+
+✅ Answer: $\theta = \frac{\pi}{6}, \frac{\pi}{3}, \frac{7\pi}{6}, \frac{4\pi}{3}$.
+
+---
+
+## Example 5 — Find All Solutions (General Form)
+
+Find all solutions of $\cos\theta = -\frac{\sqrt{2}}{2}$.
+
+### Step 1: Find Reference Angle
+
+$\cos\theta = \frac{\sqrt{2}}{2}$ at $\theta = \frac{\pi}{4}$.
+
+### Step 2: Determine Quadrants
+
+Cosine is negative in Q2 and Q3.
+
+### Step 3: Find Solutions in $[0, 2\pi)$
+
+$$\theta = \pi - \frac{\pi}{4} = \frac{3\pi}{4} \qquad \theta = \pi + \frac{\pi}{4} = \frac{5\pi}{4}$$
+
+### Step 4: Write the General Solution
+
+$$\theta = \frac{3\pi}{4} + 2\pi n \quad \text{or} \quad \theta = \frac{5\pi}{4} + 2\pi n, \quad n \in \mathbb{Z}$$
+
+### Step 5: First Five Positive Solutions
+
+$n = 0$: $\frac{3\pi}{4}, \frac{5\pi}{4}$
+
+$n = 1$: $\frac{11\pi}{4}, \frac{13\pi}{4}$
+
+$n = 2$: $\frac{19\pi}{4}, \ldots$
+
+✅ Answer: $\theta = \frac{3\pi}{4} + 2\pi n$ or $\theta = \frac{5\pi}{4} + 2\pi n$.
+
+---
+
+## Example 6 — Graphical Solution: Find Intersection of $y = \sin x$ and $y = \frac{1}{2}$
+
+### Step 1: Set Up the Equations
+
+We want the $x$-values where $\sin x = \frac{1}{2}$, i.e., where the graphs of $y = \sin x$ and $y = \frac{1}{2}$ intersect.
+
+### Step 2: Sketch the Graphs
+
+- $y = \sin x$: oscillates between $-1$ and $1$ with period $2\pi$.
+- $y = \frac{1}{2}$: a horizontal line.
+
+### Step 3: Identify Intersections in $[0, 2\pi)$
+
+The sine curve crosses $y = \frac{1}{2}$ at:
+- $x = \frac{\pi}{6}$ (sine is rising through $\frac{1}{2}$)
+- $x = \frac{5\pi}{6}$ (sine is falling through $\frac{1}{2}$)
+
+### Step 4: Confirm Algebraically
+
+$\sin\frac{\pi}{6} = \frac{1}{2}$ ✓
+
+$\sin\frac{5\pi}{6} = \frac{1}{2}$ ✓
+
+### Step 5: Note All Intersections
+
+Every period adds two more intersections. The graphical method confirms the algebraic solution and provides a visual check.
+
+✅ Answer: $x = \frac{\pi}{6}$ and $x = \frac{5\pi}{6}$ in $[0, 2\pi)$, repeating every $2\pi$.
+
+---
+
+## Think About It
+
+* Why does solving $\sin(2\theta) = k$ give twice as many solutions in $[0, 2\pi)$ as $\sin\theta = k$?
+* How does the period of tangent affect the general solution compared to sine and cosine?
+* What advantages does the graphical method offer over the algebraic method?
+
+---
+
+## Objective Alignment
+
+- `Solve basic trig equations`: Primary worked examples: Example 1.
+- `Solve quadratic-type trig equations`: Primary worked examples: Examples 2, 3.
+- `Solve double-angle equations`: Primary worked examples: Example 4.
+- `Find general solutions`: Primary worked examples: Example 5.
+- `Use graphical methods`: Primary worked examples: Example 6.

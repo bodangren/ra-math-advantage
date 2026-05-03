@@ -1,0 +1,236 @@
+# Lesson 11-3 — Multiplying Polynomials
+
+## Today's Goals
+
+* Multiply a monomial by a polynomial using the distributive property
+* Use FOIL to multiply two binomials
+* Multiply a binomial by a trinomial (extended distributive property)
+* Multiply any two polynomials term by term
+* Apply polynomial multiplication to area problems
+
+---
+
+## Vocabulary
+
+* **distributive property** — $a(b + c) = ab + ac$; multiply each term inside the parentheses by the outside term
+* **FOIL** — a method for multiplying two binomials: First, Outer, Inner, Last
+* **product of polynomials** — result of multiplying two polynomials; the degree of the product equals the sum of the degrees of the factors
+
+---
+
+## Explore: Why FOIL Works
+
+FOIL is just the distributive property applied twice. For $(a + b)(c + d)$:
+
+$$(a + b)(c + d) = a(c + d) + b(c + d) = ac + ad + bc + bd$$
+
+"First" = $ac$, "Outer" = $ad$, "Inner" = $bc$, "Last" = $bd$. FOIL is a shortcut for this general pattern.
+
+Inquiry Question:
+Why does the degree of a product equal the sum of the degrees? What happens to the leading terms when you multiply?
+
+---
+
+## Learn: Multiplying Polynomials
+
+### Key Concept: Monomial × Polynomial
+
+Distribute the monomial to every term:
+
+$$3x(2x^2 - x + 4) = 6x^3 - 3x^2 + 12x$$
+
+### Key Concept: FOIL (Binomial × Binomial)
+
+$$(x + 3)(x - 5)$$
+- **F**irst: $x \cdot x = x^2$
+- **O**uter: $x \cdot (-5) = -5x$
+- **I**nner: $3 \cdot x = 3x$
+- **L**ast: $3 \cdot (-5) = -15$
+
+Combine: $x^2 - 5x + 3x - 15 = x^2 - 2x - 15$
+
+### Key Concept: General Polynomial Multiplication
+
+Multiply every term of the first polynomial by every term of the second, then combine like terms.
+
+---
+
+## Example 1 — Multiply Monomial × Polynomial
+
+Multiply $3x(2x^2 - x + 4)$.
+
+### Step 1: Distribute $3x$ to Each Term
+
+$$3x \cdot 2x^2 = 6x^3$$
+
+$$3x \cdot (-x) = -3x^2$$
+
+$$3x \cdot 4 = 12x$$
+
+### Step 2: Write the Product
+
+$$6x^3 - 3x^2 + 12x$$
+
+### Step 3: Verify
+
+Check degrees: monomial has degree 1, trinomial has degree 2. Product should have degree $1 + 2 = 3$. ✓
+
+Check leading coefficients: $3 \cdot 2 = 6$. Leading term is $6x^3$. ✓
+
+✅ Answer: $3x(2x^2 - x + 4) = 6x^3 - 3x^2 + 12x$.
+
+---
+
+## Example 2 — FOIL: Multiply $(x + 3)(x - 5)$
+
+### Step 1: Apply FOIL
+
+| Part | Multiplication | Result |
+|------|---------------|--------|
+| **F**irst | $x \cdot x$ | $x^2$ |
+| **O**uter | $x \cdot (-5)$ | $-5x$ |
+| **I**nner | $3 \cdot x$ | $3x$ |
+| **L**ast | $3 \cdot (-5)$ | $-15$ |
+
+### Step 2: Combine Like Terms
+
+$$x^2 - 5x + 3x - 15 = x^2 - 2x - 15$$
+
+### Step 3: Verify
+
+Let $x = 2$: $(2 + 3)(2 - 5) = 5 \cdot (-3) = -15$
+
+Result: $4 - 4 - 15 = -15$ ✓
+
+✅ Answer: $(x + 3)(x - 5) = x^2 - 2x - 15$.
+
+---
+
+## Example 3 — Multiply Binomial × Trinomial
+
+Multiply $(x + 2)(x^2 - x + 3)$.
+
+### Step 1: Distribute $x$ to the Trinomial
+
+$$x \cdot x^2 = x^3$$
+$$x \cdot (-x) = -x^2$$
+$$x \cdot 3 = 3x$$
+
+### Step 2: Distribute $2$ to the Trinomial
+
+$$2 \cdot x^2 = 2x^2$$
+$$2 \cdot (-x) = -2x$$
+$$2 \cdot 3 = 6$$
+
+### Step 3: Write All Terms
+
+$$x^3 - x^2 + 3x + 2x^2 - 2x + 6$$
+
+### Step 4: Combine Like Terms
+
+$$x^3 + (-x^2 + 2x^2) + (3x - 2x) + 6 = x^3 + x^2 + x + 6$$
+
+### Step 5: Verify Degree
+
+Degree: $1 + 2 = 3$. ✓ Leading coefficient: $1 \cdot 1 = 1$. ✓
+
+✅ Answer: $(x + 2)(x^2 - x + 3) = x^3 + x^2 + x + 6$.
+
+---
+
+## Example 4 — Multiply Two Trinomials
+
+Multiply $(x^2 + x - 1)(x^2 - 2x + 3)$.
+
+### Step 1: Distribute $x^2$
+
+$$x^2 \cdot x^2 = x^4$$
+$$x^2 \cdot (-2x) = -2x^3$$
+$$x^2 \cdot 3 = 3x^2$$
+
+### Step 2: Distribute $x$
+
+$$x \cdot x^2 = x^3$$
+$$x \cdot (-2x) = -2x^2$$
+$$x \cdot 3 = 3x$$
+
+### Step 3: Distribute $-1$
+
+$$(-1) \cdot x^2 = -x^2$$
+$$(-1) \cdot (-2x) = 2x$$
+$$(-1) \cdot 3 = -3$$
+
+### Step 4: Write All Nine Terms
+
+$$x^4 - 2x^3 + 3x^2 + x^3 - 2x^2 + 3x - x^2 + 2x - 3$$
+
+### Step 5: Combine Like Terms
+
+| Degree | Terms | Sum |
+|--------|-------|-----|
+| 4 | $x^4$ | $x^4$ |
+| 3 | $-2x^3 + x^3$ | $-x^3$ |
+| 2 | $3x^2 - 2x^2 - x^2$ | $0$ |
+| 1 | $3x + 2x$ | $5x$ |
+| 0 | $-3$ | $-3$ |
+
+$$x^4 - x^3 + 5x - 3$$
+
+### Step 6: Verify Degree
+
+Degree: $2 + 2 = 4$. ✓
+
+✅ Answer: $(x^2 + x - 1)(x^2 - 2x + 3) = x^4 - x^3 + 5x - 3$.
+
+---
+
+## Example 5 — Application: Multiply Polynomial Expressions for Area
+
+A rectangle has length $(x + 4)$ and width $(x + 2)$. Write the area as a polynomial.
+
+### Step 1: Set Up the Product
+
+$$A = (x + 4)(x + 2)$$
+
+### Step 2: Apply FOIL
+
+| Part | Multiplication | Result |
+|------|---------------|--------|
+| First | $x \cdot x$ | $x^2$ |
+| Outer | $x \cdot 2$ | $2x$ |
+| Inner | $4 \cdot x$ | $4x$ |
+| Last | $4 \cdot 2$ | $8$ |
+
+### Step 3: Combine
+
+$$A = x^2 + 2x + 4x + 8 = x^2 + 6x + 8$$
+
+### Step 4: Interpret
+
+For $x = 3$: Length = 7, Width = 5, Area = 35.
+
+Polynomial: $9 + 18 + 8 = 35$ ✓
+
+### Step 5: Verify Graphically
+
+The expression $x^2 + 6x + 8$ is a quadratic that equals 0 when $x = -2$ or $x = -4$ (the lengths would be zero at those values).
+
+✅ Answer: $A = x^2 + 6x + 8$ square units.
+
+---
+
+## Think About It
+
+* Why does FOIL only work for two binomials? How do you handle more complex products?
+* If you multiply a degree-3 polynomial by a degree-2 polynomial, what degree is the product? Why?
+* Can the product of two polynomials have fewer terms than either factor? Give an example.
+
+---
+
+## Objective Alignment
+
+- `Multiply monomial × polynomial`: Primary worked examples: Example 1.
+- `Use FOIL for binomial × binomial`: Primary worked examples: Example 2.
+- `Multiply binomial × trinomial`: Primary worked examples: Example 3.
+- `Multiply two trinomials`: Primary worked examples: Example 4.
+- `Apply to area problems`: Primary worked examples: Example 5.

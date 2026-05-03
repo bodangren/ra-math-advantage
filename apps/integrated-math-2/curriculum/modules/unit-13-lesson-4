@@ -1,0 +1,207 @@
+# Lesson 13-4 — Double-Angle and Half-Angle Identities
+
+## Today's Goals
+
+* Apply the double-angle formula for sine: $\sin(2\theta) = 2\sin\theta\cos\theta$
+* Apply all three forms of $\cos(2\theta)$
+* Apply half-angle identities for $\sin\frac{\theta}{2}$ and $\cos\frac{\theta}{2}$
+* Simplify expressions using double-angle identities
+* Verify double-angle identities from sum formulas
+
+---
+
+## Vocabulary
+
+* **double-angle identity** — a formula expressing $\sin(2\theta)$, $\cos(2\theta)$, or $\tan(2\theta)$ in terms of functions of $\theta$
+* **half-angle identity** — a formula expressing $\sin\frac{\theta}{2}$, $\cos\frac{\theta}{2}$, or $\tan\frac{\theta}{2}$ in terms of functions of $\theta$
+* **power-reducing identity** — the form $\cos(2\theta) = 1 - 2\sin^2\theta = 2\cos^2\theta - 1$ used to reduce powers
+
+---
+
+## Explore: Special Cases of Sum Formulas
+
+The double-angle formulas are just the sum formulas with $A = B = \theta$:
+
+$$\sin(\theta + \theta) = \sin\theta\cos\theta + \cos\theta\sin\theta = 2\sin\theta\cos\theta$$
+
+This connection means you only need to memorize the sum formulas — the double-angle formulas follow automatically.
+
+Inquiry Question:
+Why are there three forms of $\cos(2\theta)$? When is each form most useful?
+
+---
+
+## Learn: Double-Angle and Half-Angle Formulas
+
+### Key Concept: Double-Angle Identities
+
+$$\sin(2\theta) = 2\sin\theta\cos\theta$$
+
+$$\cos(2\theta) = \cos^2\theta - \sin^2\theta = 2\cos^2\theta - 1 = 1 - 2\sin^2\theta$$
+
+$$\tan(2\theta) = \frac{2\tan\theta}{1 - \tan^2\theta}$$
+
+### Key Concept: Half-Angle Identities
+
+$$\sin\frac{\theta}{2} = \pm\sqrt{\frac{1 - \cos\theta}{2}}$$
+
+$$\cos\frac{\theta}{2} = \pm\sqrt{\frac{1 + \cos\theta}{2}}$$
+
+The sign depends on the quadrant of $\frac{\theta}{2}$.
+
+---
+
+## Example 1 — Find $\sin(2\theta)$ Given $\sin\theta = \frac{3}{5}$ (Q1)
+
+### Step 1: Find $\cos\theta$
+
+$$\cos^2\theta = 1 - \frac{9}{25} = \frac{16}{25} \implies \cos\theta = \frac{4}{5} \quad \text{(Q1, positive)}$$
+
+### Step 2: Apply the Double-Angle Formula
+
+$$\sin(2\theta) = 2\sin\theta\cos\theta$$
+
+### Step 3: Substitute
+
+$$\sin(2\theta) = 2 \cdot \frac{3}{5} \cdot \frac{4}{5} = \frac{24}{25}$$
+
+### Step 4: Verify
+
+$\theta \approx 36.87°$, so $2\theta \approx 73.74°$. $\sin 73.74° \approx 0.96 = \frac{24}{25}$. ✓
+
+✅ Answer: $\sin(2\theta) = \frac{24}{25}$.
+
+---
+
+## Example 2 — Find $\cos(2\theta)$ Using All Three Forms
+
+Given $\sin\theta = \frac{3}{5}$, $\cos\theta = \frac{4}{5}$ (Q1), verify all three forms give the same result.
+
+### Step 1: Form 1 — $\cos^2\theta - \sin^2\theta$
+
+$$\cos(2\theta) = \frac{16}{25} - \frac{9}{25} = \frac{7}{25}$$
+
+### Step 2: Form 2 — $2\cos^2\theta - 1$
+
+$$\cos(2\theta) = 2 \cdot \frac{16}{25} - 1 = \frac{32}{25} - \frac{25}{25} = \frac{7}{25}$$
+
+### Step 3: Form 3 — $1 - 2\sin^2\theta$
+
+$$\cos(2\theta) = 1 - 2 \cdot \frac{9}{25} = \frac{25}{25} - \frac{18}{25} = \frac{7}{25}$$
+
+### Step 4: All Three Forms Agree ✓
+
+Each form gives $\frac{7}{25}$.
+
+### Step 5: When to Use Each Form
+
+- **Form 1**: when you know both $\sin\theta$ and $\cos\theta$
+- **Form 2**: when you only need $\cos\theta$ (or want to express in terms of $\cos$)
+- **Form 3**: when you only need $\sin\theta$ (or want to express in terms of $\sin$)
+
+✅ Answer: $\cos(2\theta) = \frac{7}{25}$ (all three forms agree).
+
+---
+
+## Example 3 — Find $\sin\frac{\theta}{2}$ Given $\cos\theta = \frac{1}{3}$ ($0 < \theta < \pi$)
+
+### Step 1: Apply the Half-Angle Formula
+
+$$\sin\frac{\theta}{2} = \sqrt{\frac{1 - \cos\theta}{2}}$$
+
+### Step 2: Determine the Sign
+
+Since $0 < \theta < \pi$, we have $0 < \frac{\theta}{2} < \frac{\pi}{2}$ (Q1). Sine is positive.
+
+### Step 3: Substitute
+
+$$\sin\frac{\theta}{2} = \sqrt{\frac{1 - \frac{1}{3}}{2}} = \sqrt{\frac{\frac{2}{3}}{2}} = \sqrt{\frac{2}{6}} = \sqrt{\frac{1}{3}}$$
+
+### Step 4: Rationalize
+
+$$\sin\frac{\theta}{2} = \frac{1}{\sqrt{3}} = \frac{\sqrt{3}}{3}$$
+
+### Step 5: Verify
+
+$\cos\theta = \frac{1}{3}$ implies $\theta \approx 70.53°$. Half is $\approx 35.26°$.
+
+$\sin 35.26° \approx 0.577 = \frac{\sqrt{3}}{3}$ ✓
+
+✅ Answer: $\sin\frac{\theta}{2} = \frac{\sqrt{3}}{3}$.
+
+---
+
+## Example 4 — Simplify Expression Using Double-Angle Identity
+
+Simplify $\cos^2 x - \sin^2 x$.
+
+### Step 1: Recognize the Double-Angle Pattern
+
+$$\cos^2 x - \sin^2 x = \cos(2x)$$
+
+### Step 2: Verify
+
+From the double-angle formula: $\cos(2x) = \cos^2 x - \sin^2 x$. ✓
+
+### Step 3: Application
+
+This simplification is useful in calculus and signal processing, where $\cos^2 x - \sin^2 x$ appears in integration and Fourier analysis.
+
+### Step 4: Related Simplifications
+
+Using the other forms:
+
+$$2\cos^2 x - 1 = \cos(2x)$$
+$$1 - 2\sin^2 x = \cos(2x)$$
+
+These are power-reducing identities: they convert squared trig functions to linear trig functions of double the angle.
+
+✅ Answer: $\cos^2 x - \sin^2 x = \cos(2x)$.
+
+---
+
+## Example 5 — Verify Double-Angle Identity from Sum Formula
+
+Verify $\sin(2\theta) = 2\sin\theta\cos\theta$ using $\sin(A+B)$.
+
+### Step 1: Start with the Sum Formula
+
+$$\sin(A + B) = \sin A \cos B + \cos A \sin B$$
+
+### Step 2: Set $A = B = \theta$
+
+$$\sin(\theta + \theta) = \sin\theta\cos\theta + \cos\theta\sin\theta$$
+
+### Step 3: Combine Like Terms
+
+$$\sin(2\theta) = 2\sin\theta\cos\theta$$
+
+### Step 4: Verify Numerically
+
+At $\theta = \frac{\pi}{6}$: $\sin\frac{\pi}{3} = \frac{\sqrt{3}}{2}$.
+
+$2 \cdot \frac{1}{2} \cdot \frac{\sqrt{3}}{2} = \frac{\sqrt{3}}{2}$ ✓
+
+### Step 5: Derive $\cos(2\theta)$ Similarly
+
+$$\cos(\theta + \theta) = \cos\theta\cos\theta - \sin\theta\sin\theta = \cos^2\theta - \sin^2\theta$$
+
+✅ Answer: Double-angle formulas verified as special cases of sum formulas.
+
+---
+
+## Think About It
+
+* Why does $\cos(2\theta)$ have three equivalent forms but $\sin(2\theta)$ has only one?
+* How are half-angle identities useful for finding exact values of $\sin 22.5°$ or $\cos 15°$?
+* What happens to $\cos(2\theta)$ when $\theta = 45°$? What does this tell you?
+
+---
+
+## Objective Alignment
+
+- `Find sin(2θ)`: Primary worked examples: Example 1.
+- `Use all three forms of cos(2θ)`: Primary worked examples: Example 2.
+- `Find sin(θ/2)`: Primary worked examples: Example 3.
+- `Simplify using double-angle`: Primary worked examples: Example 4.
+- `Verify double-angle from sum formula`: Primary worked examples: Example 5.

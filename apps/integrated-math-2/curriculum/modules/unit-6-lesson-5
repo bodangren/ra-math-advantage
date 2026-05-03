@@ -1,0 +1,227 @@
+# Lesson 6-5 — Cross-Sections and Composite Solids
+
+## Today's Goals
+
+* Identify the shape of cross-sections produced by slicing 3D figures
+* Understand how the orientation of a cut affects the cross-section
+* Compute volumes of composite solids
+* Apply Cavalieri's principle to compare volumes
+* Connect cross-sections to real-world applications like 3D printing
+
+---
+
+## Vocabulary
+
+* **cross-section** — the 2D shape formed when a plane intersects a 3D solid
+* **parallel cross-section** — a cross-section made by a plane parallel to the base
+* **perpendicular cross-section** — a cross-section made by a plane perpendicular to the base
+* **Cavalieri's principle** — if two solids have equal height and equal cross-sectional areas at every level, they have equal volume
+* **composite solid** — a 3D figure formed by combining basic solids
+
+---
+
+## Explore: What Shape Do You See When You Slice?
+
+Cut a cylindrical loaf of bread straight across — you get a circle. Cut it lengthwise — you get a rectangle. The shape of the cross-section depends on how you slice.
+
+Inquiry Question:
+Can a cube produce a hexagonal cross-section? Under what conditions?
+
+---
+
+## Learn: Cross-Sections of 3D Figures
+
+### Key Concept: Cross-Sections of a Cube
+
+| Slice Direction | Cross-Section |
+|----------------|---------------|
+| Parallel to a face | Square |
+| Perpendicular to a face through midpoints | Rectangle |
+| Diagonal through four vertices | Rectangle |
+| Through six edges at equal angles | Regular hexagon |
+| Through three vertices | Triangle (equilateral if cut properly) |
+
+### Key Concept: Cross-Sections of a Cylinder
+
+| Slice Direction | Cross-Section |
+|----------------|---------------|
+| Parallel to base | Circle |
+| Perpendicular to base | Rectangle |
+| At an angle (not parallel or perpendicular) | Ellipse |
+
+### Key Concept: Cross-Sections of a Cone
+
+| Slice Direction | Cross-Section |
+|----------------|---------------|
+| Parallel to base | Circle |
+| Perpendicular to base through apex | Triangle |
+| At an angle | Ellipse, parabola, or hyperbola (conic sections) |
+
+### Key Concept: Cavalieri's Principle
+
+If two solids have the same height and the same cross-sectional area at every level, then they have the same volume, even if the shapes are different.
+
+---
+
+## Example 1 — Cross-Sections of a Cube
+
+A cube has side length 6 cm. Describe the cross-section for each cut:
+(a) parallel to a face
+(b) perpendicular to a face through the center
+(c) through six edges to form a regular hexagon
+
+### Step 1: Parallel to a Face
+
+A plane parallel to a face of a cube slices a **square** with side length 6 cm.
+
+$$\text{Area} = 6 \times 6 = 36 \text{ cm}^2$$
+
+### Step 2: Perpendicular Through the Center
+
+A vertical plane cutting through the center, perpendicular to a face, produces a **rectangle** with dimensions 6 cm × 6 cm (a square — same as the face).
+
+If the cut is perpendicular but offset from center, the rectangle dimensions change but it remains a rectangle.
+
+### Step 3: Regular Hexagonal Cross-Section
+
+Cutting through all six edges symmetrically (at equal angles) produces a **regular hexagon**.
+
+The side length of this hexagon is:
+
+$$s = \frac{6\sqrt{2}}{2} = 3\sqrt{2} \approx 4.24 \text{ cm}$$
+
+✅ Answer: (a) Square, 36 cm²; (b) Rectangle (square), 36 cm²; (c) Regular hexagon with side $3\sqrt{2}$ cm.
+
+---
+
+## Example 2 — Cross-Sections of a Cylinder
+
+A cylinder has radius 4 in and height 10 in. Describe and compute the area of each cross-section:
+(a) parallel to the base
+(b) perpendicular to the base
+(c) at a 45° angle
+
+### Step 1: Parallel to the Base
+
+A horizontal plane slices a **circle** with radius 4 in.
+
+$$\text{Area} = \pi(4)^2 = 16\pi \approx 50.27 \text{ in}^2$$
+
+### Step 2: Perpendicular to the Base
+
+A vertical plane through the center slices a **rectangle** with width = diameter = 8 in and height = 10 in.
+
+$$\text{Area} = 8 \times 10 = 80 \text{ in}^2$$
+
+### Step 3: At a 45° Angle
+
+A plane at 45° slices an **ellipse**. The minor axis equals the diameter (8 in), and the major axis is stretched by the angle:
+
+$$\text{Major axis} = \frac{8}{\cos(45°)} = \frac{8}{\frac{\sqrt{2}}{2}} = 8\sqrt{2} \approx 11.31 \text{ in}$$
+
+$$\text{Area of ellipse} = \pi \cdot \frac{8}{2} \cdot \frac{8\sqrt{2}}{2} = \pi \cdot 4 \cdot 4\sqrt{2} = 16\sqrt{2}\pi \approx 71.09 \text{ in}^2$$
+
+✅ Answer: (a) Circle, $16\pi \approx 50.27$ in²; (b) Rectangle, 80 in²; (c) Ellipse, $16\sqrt{2}\pi \approx 71.09$ in².
+
+---
+
+## Example 3 — Volume of Composite Solid (Cylinder + Hemisphere)
+
+A capsule-shaped solid consists of a cylinder of radius 3 cm and height 10 cm with a hemisphere on each end. Find the total volume.
+
+### Step 1: Volume of the Cylinder
+
+$$V_{\text{cyl}} = \pi r^2 h = \pi(3)^2(10) = 90\pi$$
+
+### Step 2: Volume of the Two Hemispheres
+
+Two hemispheres = one full sphere:
+
+$$V_{\text{sphere}} = \frac{4}{3}\pi r^3 = \frac{4}{3}\pi(27) = 36\pi$$
+
+### Step 3: Total Volume
+
+$$V_{\text{total}} = 90\pi + 36\pi = 126\pi \approx 395.84 \text{ cm}^3$$
+
+### Step 4: Verify
+
+The capsule shape is a common pharmaceutical design. The cylindrical middle holds $90\pi$ cm³ and the two rounded ends hold $36\pi$ cm³ combined. ✓
+
+✅ Answer: Total volume is $126\pi \approx$ **395.84 cm³**.
+
+---
+
+## Example 4 — Cavalieri's Principle Application
+
+A slanted (oblique) cylinder has the same base radius 5 m and the same height 12 m as a right cylinder. Do they have the same volume?
+
+### Step 1: Volume of the Right Cylinder
+
+$$V_{\text{right}} = \pi(5)^2(12) = 300\pi \approx 942.48 \text{ m}^3$$
+
+### Step 2: Apply Cavalieri's Principle
+
+At every level (measured perpendicular to the bases), the cross-section of the oblique cylinder is a circle with the same radius as the right cylinder. Since the cross-sectional areas are equal at every height, the volumes are equal.
+
+$$V_{\text{oblique}} = V_{\text{right}} = 300\pi$$
+
+### Step 3: Verify with Formula
+
+For any cylinder (right or oblique):
+
+$$V = B \times h = \pi r^2 \times h_{\perp}$$
+
+where $h_{\perp}$ is the perpendicular distance between the bases, not the slant height. ✓
+
+✅ Answer: Yes — both cylinders have volume $300\pi \approx$ **942.48 m³**.
+
+---
+
+## Example 5 — Real-World: 3D Printing Cross-Sections
+
+A 3D printer builds objects layer by layer. A model of a sphere with radius 6 cm is printed with layers 0.2 mm thick. Describe the cross-section of each layer.
+
+### Step 1: Cross-Section at Height $z$
+
+A sphere centered at the origin with radius 6 satisfies $x^2 + y^2 + z^2 = 36$. At height $z$, the cross-section is a circle with radius:
+
+$$r(z) = \sqrt{36 - z^2}$$
+
+### Step 2: Varying Cross-Sections
+
+| Height $z$ (cm) | Radius $r(z)$ (cm) | Area (cm²) |
+|-----------------|-------------------|------------|
+| 0 (equator) | $\sqrt{36} = 6$ | $36\pi \approx 113.10$ |
+| 3 | $\sqrt{36 - 9} = \sqrt{27} \approx 5.20$ | $27\pi \approx 84.82$ |
+| 5 | $\sqrt{36 - 25} = \sqrt{11} \approx 3.32$ | $11\pi \approx 34.56$ |
+| 6 (top) | $\sqrt{36 - 36} = 0$ | $0$ |
+
+### Step 3: Interpret
+
+The layers start large at the equator and shrink toward the poles. The printer deposits material proportional to the cross-sectional area at each layer.
+
+### Step 4: Volume from Layers
+
+With 0.2 mm = 0.02 cm layers, there are $\frac{12}{0.02} = 600$ layers. Summing the cross-sectional areas times thickness approximates the volume:
+
+$$V \approx \sum_{i=1}^{600} A(z_i) \cdot 0.02 \approx \frac{4}{3}\pi(6)^3 \approx 904.78 \text{ cm}^3$$
+
+✅ Answer: Each layer is a circle whose radius decreases from 6 cm (equator) to 0 cm (poles). The printer approximates the sphere's volume of $\frac{4}{3}\pi(216) = 288\pi \approx$ **904.78 cm³**.
+
+---
+
+## Think About It
+
+* Can a rectangular prism have a triangular cross-section? Under what cut?
+* How does Cavalieri's principle help us derive the volume formula for a cone?
+* Why do 3D printers often use infill patterns rather than solid fill?
+
+---
+
+## Objective Alignment
+
+- `Identify cross-sections of a cube`: Primary worked examples: Example 1.
+- `Identify cross-sections of a cylinder`: Primary worked examples: Example 2.
+- `Compute composite solid volume`: Primary worked examples: Example 3.
+- `Apply Cavalieri's principle`: Primary worked examples: Example 4.
+- `Connect cross-sections to real-world applications`: Primary worked examples: Example 5.

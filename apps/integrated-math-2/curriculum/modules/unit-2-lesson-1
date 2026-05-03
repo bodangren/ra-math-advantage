@@ -1,0 +1,197 @@
+# Lesson 2-1 — Polygon Basics & Angle Sums
+
+## Today's Goals
+
+* Use the polygon angle sum theorem to find the sum of interior angles of any polygon
+* Find each interior angle of a regular polygon
+* Relate exterior angles of polygons to their sum and individual measures
+
+---
+
+## Vocabulary
+
+* **polygon** — a closed figure formed by three or more line segments that intersect only at their endpoints
+* **regular polygon** — a polygon with all sides congruent and all angles congruent
+* **interior angle** — an angle formed inside a polygon by two adjacent sides
+* **exterior angle** — an angle formed outside a polygon by one side and the extension of an adjacent side
+* **polygon angle sum theorem** — the sum of the interior angles of an n-gon is $(n - 2) \times 180°$
+* **exterior angle sum theorem** — the sum of the exterior angles of any convex polygon is 360°
+
+---
+
+## Explore: How Do Angles Change as Sides Increase?
+
+A triangle (3 sides) has angles that sum to 180°. A quadrilateral (4 sides) can be split into two triangles, so its angles sum to 360°. What happens as the number of sides grows?
+
+Inquiry Question:
+Is there a pattern that connects the number of sides to the total angle sum?
+
+---
+
+## Learn: Polygon Angle Sum Theorem
+
+### Key Concept
+
+An $n$-sided polygon can be divided into $(n - 2)$ triangles by drawing diagonals from one vertex. Since each triangle contributes 180°, the sum of interior angles is:
+
+$$S = (n - 2) \times 180°$$
+
+| Polygon | Sides ($n$) | Triangles ($n-2$) | Angle Sum |
+|---------|-------------|-------------------|-----------|
+| Triangle | 3 | 1 | 180° |
+| Quadrilateral | 4 | 2 | 360° |
+| Pentagon | 5 | 3 | 540° |
+| Hexagon | 6 | 4 | 720° |
+| Octagon | 8 | 6 | 1080° |
+
+### Key Concept: Exterior Angles
+
+For any convex polygon, the sum of the exterior angles (one at each vertex) is always 360°. For a regular polygon, each exterior angle is:
+
+$$\text{Each exterior angle} = \frac{360°}{n}$$
+
+Since interior and exterior angles at each vertex are supplementary:
+
+$$\text{Each interior angle} = 180° - \frac{360°}{n}$$
+
+---
+
+## Example 1 — Sum of Interior Angles of an Octagon
+
+Find the sum of the interior angles of an octagon.
+
+### Step 1: Identify the Number of Sides
+
+An octagon has $n = 8$ sides.
+
+### Step 2: Apply the Angle Sum Theorem
+
+$$S = (n - 2) \times 180° = (8 - 2) \times 180° = 6 \times 180° = 1080°$$
+
+### Step 3: Verify by Counting Triangles
+
+Drawing diagonals from one vertex of an octagon divides it into $8 - 2 = 6$ triangles. Each triangle contributes 180°, so $6 \times 180° = 1080°$.
+
+✅ Answer: The sum of the interior angles of an octagon is **1080°**.
+
+---
+
+## Example 2 — Each Interior Angle of a Regular Hexagon
+
+Find the measure of each interior angle of a regular hexagon.
+
+### Step 1: Find the Angle Sum
+
+A hexagon has $n = 6$ sides.
+
+$$S = (6 - 2) \times 180° = 4 \times 180° = 720°$$
+
+### Step 2: Divide by the Number of Angles
+
+In a regular hexagon, all six interior angles are equal.
+
+$$\text{Each interior angle} = \frac{720°}{6} = 120°$$
+
+### Step 3: Verify Using Exterior Angles
+
+Each exterior angle of a regular hexagon is $\frac{360°}{6} = 60°$.
+
+Each interior angle $= 180° - 60° = 120°$.
+
+✅ Answer: Each interior angle of a regular hexagon measures **120°**.
+
+---
+
+## Example 3 — Find a Missing Angle in a Pentagon
+
+A pentagon has four of its interior angles measuring 100°, 110°, 95°, and 120°. Find the measure of the fifth angle.
+
+### Step 1: Find the Total Angle Sum
+
+A pentagon has $n = 5$ sides.
+
+$$S = (5 - 2) \times 180° = 3 \times 180° = 540°$$
+
+### Step 2: Add the Known Angles
+
+$$100° + 110° + 95° + 120° = 425°$$
+
+### Step 3: Find the Missing Angle
+
+$$x = 540° - 425° = 115°$$
+
+### Step 4: Verify
+
+$$100° + 110° + 95° + 120° + 115° = 540° \checkmark$$
+
+✅ Answer: The fifth angle measures **115°**.
+
+---
+
+## Example 4 — Exterior Angle Theorem for Polygons
+
+A regular polygon has each exterior angle measuring 24°. How many sides does the polygon have?
+
+### Step 1: Use the Exterior Angle Sum
+
+The sum of exterior angles of any convex polygon is 360°. For a regular polygon, each exterior angle is:
+
+$$\text{Each exterior angle} = \frac{360°}{n}$$
+
+### Step 2: Solve for n
+
+$$24° = \frac{360°}{n}$$
+
+$$n = \frac{360°}{24°} = 15$$
+
+### Step 3: Verify
+
+A regular 15-gon has exterior angles of $\frac{360°}{15} = 24°$ each. The interior angles are $180° - 24° = 156°$ each. The angle sum is $(15 - 2) \times 180° = 2340°$, and $15 \times 156° = 2340°$.
+
+✅ Answer: The polygon is a **regular 15-gon**.
+
+---
+
+## Example 5 — Real-World: Floor Tile Pattern Angles
+
+A designer creates a floor pattern using regular octagonal tiles surrounded by square tiles. Find the interior angle of the regular octagon tile and explain how it fits with square tiles.
+
+### Step 1: Find the Interior Angle of the Regular Octagon
+
+$$\text{Each exterior angle} = \frac{360°}{8} = 45°$$
+
+$$\text{Each interior angle} = 180° - 45° = 135°$$
+
+### Step 2: Find the Interior Angle of the Square
+
+Each interior angle of a square is 90°.
+
+### Step 3: Check the Fit
+
+At a vertex where two octagonal tiles and one square tile meet:
+
+$$135° + 135° + 90° = 360°$$
+
+The three tiles fill the space around the point perfectly with no gap.
+
+### Step 4: Generalize
+
+For tiles meeting at a point to tessellate, their angles must sum to exactly 360°.
+
+✅ Answer: Each octagonal tile has interior angles of **135°**. Two octagons and one square (135° + 135° + 90° = 360°) fit perfectly around each vertex.
+
+---
+
+## Think About It
+
+* Why is the sum of exterior angles always 360° regardless of the number of sides?
+* Can a polygon have an interior angle greater than 180°? What does that look like?
+* What happens to each interior angle of a regular polygon as the number of sides approaches infinity?
+
+---
+
+## Objective Alignment
+
+- `Use the polygon angle sum theorem to find the sum of interior angles`: Primary worked examples: Examples 1, 3.
+- `Find each interior angle of a regular polygon`: Primary worked examples: Examples 2, 5.
+- `Use the exterior angle theorem for polygons`: Primary worked examples: Examples 2, 4.

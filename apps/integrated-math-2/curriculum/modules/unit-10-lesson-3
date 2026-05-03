@@ -1,0 +1,218 @@
+# Lesson 10-3 — Scientific Notation
+
+## Today's Goals
+
+* Convert numbers between standard form and scientific notation
+* Multiply numbers in scientific notation
+* Divide numbers in scientific notation
+* Add and subtract numbers in scientific notation (adjusting exponents first)
+* Apply scientific notation to real-world calculations
+
+---
+
+## Vocabulary
+
+* **scientific notation** — a number written as $a \times 10^n$ where $1 \leq |a| < 10$ and $n$ is an integer
+* **standard form** — the usual way of writing numbers (e.g., 350000)
+* **coefficient** — the $a$ in $a \times 10^n$; must satisfy $1 \leq |a| < 10$
+* **order of magnitude** — the power of 10; describes the scale of a number
+
+---
+
+## Explore: Very Large and Very Small
+
+The mass of Earth is about $5{,}972{,}000{,}000{,}000{,}000{,}000{,}000$ kg. An electron's mass is about $0.000000000000000000000000000000911$ kg. Scientific notation makes these numbers manageable: $5.972 \times 10^{24}$ and $9.11 \times 10^{-31}$.
+
+Inquiry Question:
+Why must the coefficient in scientific notation be between 1 and 10? What would go wrong with $35 \times 10^3$?
+
+---
+
+## Learn: Operations in Scientific Notation
+
+### Key Concept: Converting to Scientific Notation
+
+1. Move the decimal point until the coefficient is between 1 and 10
+2. Count the places moved: the exponent is positive if you moved left, negative if right
+
+### Key Concept: Multiplying
+
+$$(a \times 10^m)(b \times 10^n) = (a \cdot b) \times 10^{m+n}$$
+
+Multiply coefficients; add exponents.
+
+### Key Concept: Dividing
+
+$$\frac{a \times 10^m}{b \times 10^n} = \frac{a}{b} \times 10^{m-n}$$
+
+Divide coefficients; subtract exponents.
+
+### Key Concept: Adding/Subtracting
+
+Adjust so both numbers have the **same exponent**, then add or subtract the coefficients.
+
+---
+
+## Example 1 — Convert Standard to Scientific Notation
+
+Convert $4{,}530{,}000$ to scientific notation.
+
+### Step 1: Place the Decimal After the First Non-Zero Digit
+
+$$4{,}530{,}000 = 4.53\_ \_ \_ \_$$
+
+### Step 2: Count the Places Moved
+
+The decimal moved **6 places to the left**.
+
+### Step 3: Write in Scientific Notation
+
+$$4{,}530{,}000 = 4.53 \times 10^6$$
+
+### Step 4: Verify
+
+$$4.53 \times 10^6 = 4.53 \times 1{,}000{,}000 = 4{,}530{,}000 \checkmark$$
+
+### Step 5: Convert a Small Number
+
+Convert $0.00072$ to scientific notation.
+
+Move the decimal 4 places right: $0.00072 = 7.2 \times 10^{-4}$
+
+✅ Answer: $4{,}530{,}000 = 4.53 \times 10^6$; $0.00072 = 7.2 \times 10^{-4}$.
+
+---
+
+## Example 2 — Multiply Numbers in Scientific Notation
+
+Compute $(3 \times 10^4)(2.5 \times 10^3)$.
+
+### Step 1: Multiply the Coefficients
+
+$$3 \times 2.5 = 7.5$$
+
+### Step 2: Add the Exponents
+
+$$10^4 \times 10^3 = 10^{4+3} = 10^7$$
+
+### Step 3: Combine
+
+$$(3 \times 10^4)(2.5 \times 10^3) = 7.5 \times 10^7$$
+
+### Step 4: Verify the Coefficient Is Valid
+
+$7.5$ is between 1 and 10. ✓ No adjustment needed.
+
+### Step 5: Convert to Standard Form
+
+$$7.5 \times 10^7 = 75{,}000{,}000$$
+
+✅ Answer: $7.5 \times 10^7$.
+
+---
+
+## Example 3 — Divide Numbers in Scientific Notation
+
+Compute $\frac{8.4 \times 10^9}{2 \times 10^3}$.
+
+### Step 1: Divide the Coefficients
+
+$$\frac{8.4}{2} = 4.2$$
+
+### Step 2: Subtract the Exponents
+
+$$\frac{10^9}{10^3} = 10^{9-3} = 10^6$$
+
+### Step 3: Combine
+
+$$\frac{8.4 \times 10^9}{2 \times 10^3} = 4.2 \times 10^6$$
+
+### Step 4: Convert to Standard Form
+
+$$4.2 \times 10^6 = 4{,}200{,}000$$
+
+### Step 5: Verify
+
+$$4.2 \times 10^6 \times 2 \times 10^3 = 8.4 \times 10^9 \checkmark$$
+
+✅ Answer: $4.2 \times 10^6$.
+
+---
+
+## Example 4 — Add/Subtract (Adjust Exponents First)
+
+Compute $(5.2 \times 10^6) + (3.4 \times 10^5)$.
+
+### Step 1: Adjust to the Same Exponent
+
+Convert $3.4 \times 10^5$ to use exponent $10^6$:
+
+$$3.4 \times 10^5 = 0.34 \times 10^6$$
+
+### Step 2: Add the Coefficients
+
+$$5.2 + 0.34 = 5.54$$
+
+### Step 3: Keep the Common Exponent
+
+$$(5.2 \times 10^6) + (0.34 \times 10^6) = 5.54 \times 10^6$$
+
+### Step 4: Verify in Standard Form
+
+$$5{,}200{,}000 + 340{,}000 = 5{,}540{,}000 = 5.54 \times 10^6 \checkmark$$
+
+### Step 5: Subtraction Example
+
+$$(5.2 \times 10^6) - (3.4 \times 10^5) = 5.2 \times 10^6 - 0.34 \times 10^6 = 4.86 \times 10^6$$
+
+✅ Answer: $(5.2 \times 10^6) + (3.4 \times 10^5) = 5.54 \times 10^6$.
+
+---
+
+## Example 5 — Real-World: Speed of Light Calculation
+
+The speed of light is $3.0 \times 10^8$ m/s. The distance from the Sun to Earth is $1.5 \times 10^{11}$ m. How long does sunlight take to reach Earth?
+
+### Step 1: Set Up the Division
+
+$$\text{Time} = \frac{\text{Distance}}{\text{Speed}} = \frac{1.5 \times 10^{11}}{3.0 \times 10^8}$$
+
+### Step 2: Divide the Coefficients
+
+$$\frac{1.5}{3.0} = 0.5$$
+
+### Step 3: Subtract the Exponents
+
+$$10^{11-8} = 10^3$$
+
+### Step 4: Combine
+
+$$\text{Time} = 0.5 \times 10^3 = 5.0 \times 10^2 \text{ seconds}$$
+
+### Step 5: Convert to Meaningful Units
+
+$$500 \text{ seconds} = 8 \text{ minutes and } 20 \text{ seconds}$$
+
+### Step 6: Verify
+
+$$5.0 \times 10^2 \times 3.0 \times 10^8 = 15.0 \times 10^{10} = 1.5 \times 10^{11} \checkmark$$
+
+✅ Answer: Sunlight takes $5.0 \times 10^2$ seconds (about 8 minutes 20 seconds) to reach Earth.
+
+---
+
+## Think About It
+
+* Why is $53 \times 10^3$ not in proper scientific notation? How would you fix it?
+* When adding numbers in scientific notation, why must the exponents be the same?
+* How does scientific notation help compare the sizes of very different quantities?
+
+---
+
+## Objective Alignment
+
+- `Convert to scientific notation`: Primary worked examples: Example 1.
+- `Multiply in scientific notation`: Primary worked examples: Example 2.
+- `Divide in scientific notation`: Primary worked examples: Example 3.
+- `Add and subtract in scientific notation`: Primary worked examples: Example 4.
+- `Apply to real-world calculations`: Primary worked examples: Example 5.

@@ -1,0 +1,235 @@
+# Lesson 8-1 — Relations vs Functions
+
+## Today's Goals
+
+* Distinguish between relations and functions
+* Apply the vertical line test to determine if a graph represents a function
+* Determine if a mapping diagram represents a function
+* Find the domain and range of a relation from tables and mappings
+* Connect the concept of functions to real-world input-output situations
+
+---
+
+## Vocabulary
+
+* **relation** — a set of ordered pairs that links inputs to outputs
+* **function** — a relation where each input has exactly one output
+* **domain** — the set of all input values (x-values)
+* **range** — the set of all output values (y-values)
+* **vertical line test** — a graph represents a function if every vertical line crosses it at most once
+* **mapping diagram** — a visual showing how each input connects to output(s)
+
+---
+
+## Explore: One-to-One Matching
+
+A vending machine is a function: each button (input) gives exactly one item (output). But if pressing one button sometimes gives chips and sometimes gives candy, the machine is not a function. Mathematics formalizes this idea.
+
+Inquiry Question:
+Can a function have two different inputs that produce the same output? Can a function have one input that produces two different outputs?
+
+---
+
+## Learn: What Makes a Relation a Function?
+
+### Key Concept: Function Definition
+
+A relation is a **function** if every input (x-value) corresponds to **exactly one** output (y-value).
+
+- **Function:** Each x appears once. $(1, 2), (3, 4), (5, 6)$ ✓
+- **Not a function:** An x appears more than once with different y. $(1, 2), (1, 5)$ ✗
+
+### Key Concept: Vertical Line Test
+
+If any vertical line drawn on a graph crosses the graph **more than once**, the graph does **not** represent a function.
+
+### Key Concept: Domain and Range
+
+For a relation given as ordered pairs:
+
+$$\text{Domain} = \{\text{all } x\text{-values}\}$$
+
+$$\text{Range} = \{\text{all } y\text{-values}\}$$
+
+---
+
+## Example 1 — Determine if a Relation Is a Function from a Table
+
+Determine whether the relation in the table is a function. Find the domain and range.
+
+| x | y |
+|---|---|
+| 2 | 5 |
+| 4 | 8 |
+| 6 | 11 |
+| 8 | 14 |
+
+### Step 1: Check the Input Values
+
+Each x-value (2, 4, 6, 8) appears exactly once in the table. No x-value is repeated with different y-values.
+
+### Step 2: Apply the Function Test
+
+Since every input has exactly one output, this relation **is a function**.
+
+### Step 3: Identify the Domain
+
+$$\text{Domain} = \{2, 4, 6, 8\}$$
+
+### Step 4: Identify the Range
+
+$$\text{Range} = \{5, 8, 11, 14\}$$
+
+✅ Answer: **Function.** Domain = $\{2, 4, 6, 8\}$, Range = $\{5, 8, 11, 14\}$.
+
+---
+
+## Example 2 — Vertical Line Test on a Graph
+
+A graph shows a parabola opening upward with vertex at the origin. Does the graph represent a function?
+
+### Step 1: Understand the Vertical Line Test
+
+Draw vertical lines at various x-values across the graph. If any vertical line touches the graph at two or more points, the relation is not a function.
+
+### Step 2: Apply the Test to the Parabola
+
+A parabola opening upward (like $y = x^2$) is symmetric about the y-axis. A vertical line at $x = a$ (where $a \neq 0$) touches the parabola at exactly **one** point.
+
+### Step 3: Verify at Multiple Points
+
+- At $x = 0$: the line touches the vertex — one point. ✓
+- At $x = 2$: the line touches at $(2, 4)$ — one point. ✓
+- At $x = -3$: the line touches at $(-3, 9)$ — one point. ✓
+
+Every vertical line crosses the graph at most once.
+
+### Step 4: Conclusion
+
+The parabola **passes** the vertical line test, so it **is a function**.
+
+✅ Answer: **Yes**, the parabola is a function — every vertical line meets the graph at most once.
+
+---
+
+## Example 3 — Determine if a Mapping Diagram Is a Function
+
+A mapping diagram shows:
+
+$$2 \longrightarrow 7$$
+$$3 \longrightarrow 7$$
+$$5 \longrightarrow 11$$
+$$7 \longrightarrow 13$$
+
+Is this relation a function?
+
+### Step 1: List the Inputs
+
+The inputs are: 2, 3, 5, 7. Each input appears exactly once.
+
+### Step 2: Check the Outputs
+
+- Input 2 → Output 7
+- Input 3 → Output 7
+- Input 5 → Output 11
+- Input 7 → Output 13
+
+Two different inputs (2 and 3) both map to output 7. This is allowed — a function can have multiple inputs sharing the same output.
+
+### Step 3: Apply the Function Test
+
+Every input has exactly one output. Therefore, this **is a function**.
+
+### Step 4: Counterexample for Contrast
+
+If the diagram also showed $2 \longrightarrow 9$, then input 2 would map to both 7 and 9. That would violate the function definition.
+
+✅ Answer: **Function.** Domain = $\{2, 3, 5, 7\}$, Range = $\{7, 11, 13\}$.
+
+---
+
+## Example 4 — Find the Domain and Range of a Relation
+
+Find the domain and range of the relation $\{(−3, 4), (0, −2), (2, 4), (5, 0), (7, −2)\}$.
+
+### Step 1: List All Inputs (Domain)
+
+Collect the x-values from each ordered pair:
+
+$$\text{Domain} = \{-3, 0, 2, 5, 7\}$$
+
+### Step 2: List All Outputs (Range)
+
+Collect the y-values from each ordered pair:
+
+$$\text{Range} = \{4, -2, 0\}$$
+
+Note that 4 and $-2$ each appear twice, but we list them only once in the range.
+
+### Step 3: Check if It Is a Function
+
+Each x-value appears exactly once: $-3, 0, 2, 5, 7$. No x is repeated, so this **is a function**.
+
+### Step 4: Ordered Pair Interpretation
+
+The pair $(2, 4)$ means input 2 produces output 4. The pair $(0, -2)$ means input 0 produces output $-2$.
+
+✅ Answer: Domain = $\{-3, 0, 2, 5, 7\}$, Range = $\{-2, 0, 4\}$. **Function.**
+
+---
+
+## Example 5 — Real-World: Input-Output Machine
+
+A machine doubles any input and then subtracts 1. Complete the table, determine if it is a function, and find the domain and range for inputs $\{0, 1, 2, 3, 4\}$.
+
+| Input (x) | Output (y) |
+|-----------|------------|
+| 0 | ? |
+| 1 | ? |
+| 2 | ? |
+| 3 | ? |
+| 4 | ? |
+
+### Step 1: Apply the Rule $y = 2x - 1$
+
+| Input (x) | Output (y) |
+|-----------|------------|
+| 0 | $2(0) - 1 = -1$ |
+| 1 | $2(1) - 1 = 1$ |
+| 2 | $2(2) - 1 = 3$ |
+| 3 | $2(3) - 1 = 5$ |
+| 4 | $2(4) - 1 = 7$ |
+
+### Step 2: Check if It Is a Function
+
+Each input produces exactly one output. **This is a function.**
+
+### Step 3: Find Domain and Range
+
+$$\text{Domain} = \{0, 1, 2, 3, 4\}$$
+
+$$\text{Range} = \{-1, 1, 3, 5, 7\}$$
+
+### Step 4: Interpret
+
+Every input has one and only one output. This is the defining property of a function. Machines, calculators, and formulas all produce functions when they give a single output for each input.
+
+✅ Answer: **Function.** Domain = $\{0, 1, 2, 3, 4\}$, Range = $\{-1, 1, 3, 5, 7\}$.
+
+---
+
+## Think About It
+
+* Can a function have the same output for two different inputs? Give an example.
+* Why does the vertical line test work? What does it mean geometrically?
+* Is every function a relation? Is every relation a function? Explain.
+
+---
+
+## Objective Alignment
+
+- `Distinguish functions from non-functions`: Primary worked examples: Examples 1, 2, 3.
+- `Apply the vertical line test`: Primary worked examples: Example 2.
+- `Use mapping diagrams`: Primary worked examples: Example 3.
+- `Find domain and range`: Primary worked examples: Examples 1, 4.
+- `Connect functions to real-world input-output`: Primary worked examples: Example 5.

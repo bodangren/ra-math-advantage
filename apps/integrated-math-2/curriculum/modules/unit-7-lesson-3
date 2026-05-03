@@ -1,0 +1,191 @@
+# Lesson 7-3 — Permutations
+
+## Today's Goals
+
+* Define permutations as ordered arrangements
+* Compute permutations using $nPr = \frac{n!}{(n-r)!}$
+* Handle permutations with repeated elements
+* Apply permutations to ordering and scheduling problems
+
+---
+
+## Vocabulary
+
+* **permutation** — an arrangement of objects in a specific order
+* **factorial** — $n! = n \times (n-1) \times \cdots \times 2 \times 1$, with $0! = 1$
+* **$nPr$** — the number of permutations of $r$ objects chosen from $n$ distinct objects
+* **distinguish** — to recognize that order matters (AB ≠ BA in permutations)
+
+---
+
+## Explore: Does Order Matter?
+
+When choosing a president, vice president, and secretary from a group, the order matters — being president is different from being secretary. When choosing 3 people for a committee with equal roles, order does not matter. Permutations count arrangements where order matters.
+
+Inquiry Question:
+How many ways can you arrange 4 books on a shelf? What if two books are identical?
+
+---
+
+## Learn: Permutation Formulas
+
+### Key Concept: Permutation of $n$ Distinct Objects
+
+$$P(n) = n!$$
+
+### Key Concept: Permutation of $r$ from $n$
+
+$$nPr = \frac{n!}{(n-r)!}$$
+
+### Key Concept: Permutations with Repeated Elements
+
+If there are $n$ objects with $n_1$ identical of one type, $n_2$ identical of another type, etc.:
+
+$$\text{Permutations} = \frac{n!}{n_1! \cdot n_2! \cdot \ldots \cdot n_k!}$$
+
+---
+
+## Example 1 — Arrange 4 Books on a Shelf
+
+How many ways can 4 distinct books be arranged on a shelf?
+
+### Step 1: Apply the Factorial Formula
+
+$$P(4) = 4!$$
+
+### Step 2: Compute
+
+$$4! = 4 \times 3 \times 2 \times 1 = 24$$
+
+### Step 3: Verify by Listing (Partial)
+
+Position 1: 4 choices. Position 2: 3 remaining. Position 3: 2 remaining. Position 4: 1 remaining.
+
+$$4 \times 3 \times 2 \times 1 = 24 \checkmark$$
+
+✅ Answer: There are **24** arrangements.
+
+---
+
+## Example 2 — Choose and Arrange 2 of 5 Students for Offices
+
+Five students are available for two offices: president and vice president. How many ways can the offices be filled?
+
+### Step 1: Identify the Permutation
+
+Order matters (president ≠ vice president), so we use $nPr$.
+
+$$n = 5, \quad r = 2$$
+
+### Step 2: Apply the Formula
+
+$$5P2 = \frac{5!}{(5-2)!} = \frac{5!}{3!} = \frac{120}{6} = 20$$
+
+### Step 3: Verify
+
+President: 5 choices. Vice president: 4 remaining choices.
+
+$$5 \times 4 = 20 \checkmark$$
+
+✅ Answer: There are **20** ways.
+
+---
+
+## Example 3 — Permutations with Repeated Elements
+
+How many distinct arrangements of the letters in MISSISSIPPI are there?
+
+### Step 1: Count the Letters
+
+| Letter | Count |
+|--------|-------|
+| M | 1 |
+| I | 4 |
+| S | 4 |
+| P | 2 |
+| **Total** | **11** |
+
+### Step 2: Apply the Formula
+
+$$\text{Permutations} = \frac{11!}{1! \cdot 4! \cdot 4! \cdot 2!}$$
+
+### Step 3: Compute
+
+$$11! = 39{,}916{,}800$$
+
+$$4! = 24, \quad 2! = 2$$
+
+$$\text{Permutations} = \frac{39{,}916{,}800}{1 \times 24 \times 24 \times 2} = \frac{39{,}916{,}800}{1152} = 34{,}650$$
+
+### Step 4: Verify
+
+Without repeated letters: $11! = 39{,}916{,}800$. With repeats, we divide out the duplicates. ✓
+
+✅ Answer: There are **34,650** distinct arrangements.
+
+---
+
+## Example 4 — Race Finish Orders
+
+Eight runners compete in a race. How many ways can 1st, 2nd, and 3rd place be awarded?
+
+### Step 1: Identify the Permutation
+
+$$n = 8, \quad r = 3$$
+
+### Step 2: Apply the Formula
+
+$$8P3 = \frac{8!}{5!} = 8 \times 7 \times 6 = 336$$
+
+### Step 3: Verify
+
+1st place: 8 choices. 2nd: 7 choices. 3rd: 6 choices.
+
+$$8 \times 7 \times 6 = 336 \checkmark$$
+
+✅ Answer: There are **336** possible award outcomes.
+
+---
+
+## Example 5 — Real-World: Scheduling Tournament Matches
+
+Six teams must each play every other team exactly once in a round-robin tournament. The games are played in sequence (Game 1, Game 2, etc.). In how many different orders can the games be scheduled?
+
+### Step 1: Count Total Games
+
+Each pair of teams plays once:
+
+$$\text{Games} = \binom{6}{2} = \frac{6!}{2! \cdot 4!} = 15$$
+
+### Step 2: Schedule Order
+
+The 15 games can be arranged in any order:
+
+$$15! = 1{,}307{,}674{,}368{,}000$$
+
+### Step 3: With Constraints
+
+In practice, each team needs rest between games, and venue availability restricts scheduling. But without constraints, over 1.3 trillion orderings are possible.
+
+### Step 4: Verify
+
+15 games, each a distinct slot: $15!$ permutations. ✓
+
+✅ Answer: There are $15! = 1{,}307{,}674{,}368{,}000$ possible schedule orderings.
+
+---
+
+## Think About It
+
+* When does order matter (permutation) vs. not matter (combination)?
+* Why is $0! = 1$?
+* How does the permutation formula handle choosing all $n$ objects?
+
+---
+
+## Objective Alignment
+
+- `Compute permutations of distinct objects`: Primary worked examples: Example 1.
+- `Apply nPr formula`: Primary worked examples: Examples 2, 4.
+- `Handle permutations with repeated elements`: Primary worked examples: Example 3.
+- `Solve real-world permutation problems`: Primary worked examples: Examples 4, 5.

@@ -1,0 +1,255 @@
+# Lesson 8-6 — Comparing Functions
+
+## Today's Goals
+
+* Compare rates of change from two tables
+* Compare y-intercepts and key features from two graphs
+* Determine which function has a greater maximum or minimum
+* Convert between representations (graph, table, equation, verbal) to make comparisons
+* Apply function comparison to real-world decision-making
+
+---
+
+## Vocabulary
+
+* **rate of change** — the slope or constant change in output per unit input
+* **y-intercept** — the output value when the input is zero; where the graph crosses the y-axis
+* **maximum** — the greatest output value of a function
+* **minimum** — the least output value of a function
+* **representation** — the form in which a function is expressed: table, graph, equation, or verbal description
+
+---
+
+## Explore: Which Is Better?
+
+Two cell phone plans are described differently — one as a graph, one as a table. Which plan is cheaper? To compare functions, you often need to convert between representations so both are in the same form.
+
+Inquiry Question:
+If one function has a higher rate of change but a lower y-intercept, at what point does it overtake the other?
+
+---
+
+## Learn: Comparing Across Representations
+
+### Key Concept: Comparing from Tables
+
+Compute the rate of change for each table. The function with the greater rate of change increases faster.
+
+### Key Concept: Comparing from Graphs
+
+Look at the steepness (slope), y-intercept, and any maxima or minima. Read values directly from the graph.
+
+### Key Concept: Comparing from Equations
+
+Put both functions in the same form (usually slope-intercept $y = mx + b$) and compare slopes and y-intercepts algebraically.
+
+---
+
+## Example 1 — Compare Rate of Change from Two Tables
+
+Two functions are given by tables. Which has the greater rate of change?
+
+**Function A:**
+
+| x | y |
+|---|---|
+| 0 | 3 |
+| 2 | 7 |
+| 4 | 11 |
+| 6 | 15 |
+
+**Function B:**
+
+| x | y |
+|---|---|
+| 0 | 5 |
+| 2 | 10 |
+| 4 | 15 |
+| 6 | 20 |
+
+### Step 1: Compute Rate of Change for Function A
+
+$$\text{Rate}_A = \frac{7 - 3}{2 - 0} = \frac{4}{2} = 2$$
+
+Verify: $\frac{11 - 7}{4 - 2} = \frac{4}{2} = 2$ ✓ (constant)
+
+### Step 2: Compute Rate of Change for Function B
+
+$$\text{Rate}_B = \frac{10 - 5}{2 - 0} = \frac{5}{2} = 2.5$$
+
+Verify: $\frac{15 - 10}{4 - 2} = \frac{5}{2} = 2.5$ ✓ (constant)
+
+### Step 3: Compare
+
+$$\text{Rate}_B = 2.5 > \text{Rate}_A = 2$$
+
+Function B increases faster.
+
+### Step 4: Write Equations
+
+- Function A: $y = 2x + 3$
+- Function B: $y = 2.5x + 5$
+
+Function B has both a greater rate of change and a greater y-intercept.
+
+✅ Answer: **Function B** has the greater rate of change (2.5 vs. 2).
+
+---
+
+## Example 2 — Compare y-Intercepts from Two Graphs
+
+Graph A crosses the y-axis at $(0, -2)$. Graph B crosses the y-axis at $(0, 5)$. Compare the y-intercepts.
+
+### Step 1: Identify the y-Intercepts
+
+- Function A: $b_A = -2$
+- Function B: $b_B = 5$
+
+### Step 2: Compare
+
+$$b_B = 5 > b_A = -2$$
+
+### Step 3: Interpret
+
+At $x = 0$, Function B has a higher output than Function A. Function B starts higher.
+
+### Step 4: Determine Intersection
+
+If Function A has a greater slope, it will eventually overtake Function B. The intersection point is where $2x - 2 = -0.5x + 5$ (assuming slopes of 2 and $-0.5$), but the graphs alone determine the comparison.
+
+✅ Answer: Function B has the greater y-intercept ($5 > -2$). Function B starts higher on the y-axis.
+
+---
+
+## Example 3 — Which Function Has Greater Maximum from Graph?
+
+Two functions are graphed:
+
+- Function A is a downward-opening parabola with vertex at $(3, 10)$.
+- Function B is a downward-opening parabola with vertex at $(1, 7)$.
+
+Which function has the greater maximum value?
+
+### Step 1: Identify the Maximum of Each
+
+The vertex of a downward-opening parabola is its maximum point.
+
+- Function A: maximum value = $10$ at $x = 3$
+- Function B: maximum value = $7$ at $x = 1$
+
+### Step 2: Compare
+
+$$10 > 7$$
+
+### Step 3: Interpret
+
+Function A reaches a higher peak than Function B, but at a later x-value.
+
+### Step 4: Note
+
+"Greater maximum" refers to the output value (height), not the x-value at which it occurs.
+
+✅ Answer: **Function A** has the greater maximum value ($10 > 7$).
+
+---
+
+## Example 4 — Convert Between Representations to Compare
+
+Function A is given as a graph (a line through $(0, 1)$ and $(4, 5)$). Function B is given as the equation $y = \frac{3}{2}x - 1$. Which has the greater rate of change?
+
+### Step 1: Find the Equation of Function A from the Graph
+
+Two points on Function A: $(0, 1)$ and $(4, 5)$.
+
+$$\text{Slope} = \frac{5 - 1}{4 - 0} = \frac{4}{4} = 1$$
+
+The y-intercept is $1$ (from the point $(0, 1)$).
+
+Function A: $y = x + 1$
+
+### Step 2: Identify the Rate of Change of Function B
+
+Function B: $y = \frac{3}{2}x - 1$, so slope = $\frac{3}{2} = 1.5$.
+
+### Step 3: Compare
+
+$$\text{Rate}_B = 1.5 > \text{Rate}_A = 1$$
+
+### Step 4: Find the Intersection Point
+
+$$x + 1 = \frac{3}{2}x - 1$$
+
+$$1 + 1 = \frac{3}{2}x - x$$
+
+$$2 = \frac{1}{2}x$$
+
+$$x = 4, \quad y = 4 + 1 = 5$$
+
+The functions intersect at $(4, 5)$. Before $x = 4$, Function A is higher; after $x = 4$, Function B is higher.
+
+✅ Answer: **Function B** has the greater rate of change ($1.5 > 1$). They intersect at $(4, 5)$.
+
+---
+
+## Example 5 — Real-World: Compare Two Phone Plans Represented Differently
+
+**Plan A** is described verbally: "A flat fee of \$30 per month plus \$0.10 per text message."
+
+**Plan B** is given by a table:
+
+| Texts | Monthly Cost |
+|-------|-------------|
+| 0 | 20 |
+| 100 | 30 |
+| 200 | 40 |
+| 300 | 50 |
+
+Which plan is cheaper for 150 texts?
+
+### Step 1: Write Plan A as an Equation
+
+$$C_A(x) = 30 + 0.10x$$
+
+where $x$ is the number of texts.
+
+### Step 2: Determine Plan B's Equation from the Table
+
+Rate of change: $\frac{30 - 20}{100 - 0} = \frac{10}{100} = 0.10$ per text.
+
+y-intercept: \$20 (from $x = 0$).
+
+$$C_B(x) = 20 + 0.10x$$
+
+### Step 3: Evaluate Both at $x = 150$
+
+$$C_A(150) = 30 + 0.10(150) = 30 + 15 = \$45$$
+
+$$C_B(150) = 20 + 0.10(150) = 20 + 15 = \$35$$
+
+### Step 4: Compare
+
+$$C_B(150) = \$35 < C_A(150) = \$45$$
+
+### Step 5: General Comparison
+
+Both plans charge \$0.10 per text (same rate of change). The difference is entirely in the flat fee: Plan A charges \$30, Plan B charges \$20. Plan B is always \$10 cheaper.
+
+✅ Answer: **Plan B** is cheaper. At 150 texts, Plan B costs **\$35** vs. Plan A's **\$45**. Plan B is always \$10 less regardless of the number of texts.
+
+---
+
+## Think About It
+
+* If two functions have the same rate of change, what determines which is "greater"?
+* Can a function with a lower rate of change ever have a higher value than the other function? For how long?
+* Why is it useful to convert between representations when comparing functions?
+
+---
+
+## Objective Alignment
+
+- `Compare rates of change from tables`: Primary worked examples: Example 1.
+- `Compare y-intercepts from graphs`: Primary worked examples: Example 2.
+- `Compare maximum values`: Primary worked examples: Example 3.
+- `Convert between representations`: Primary worked examples: Example 4.
+- `Apply comparisons to real-world problems`: Primary worked examples: Example 5.

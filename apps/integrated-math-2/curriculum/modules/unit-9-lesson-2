@@ -1,0 +1,273 @@
+# Lesson 9-2 — Graphing Linear Equations
+
+## Today's Goals
+
+* Graph linear equations using slope-intercept form $y = mx + b$
+* Convert standard form $Ax + By = C$ to slope-intercept form
+* Write equations of lines given two points
+* Graph using point-slope form $y - y_1 = m(x - x_1)$
+* Identify and write equations of parallel and perpendicular lines
+
+---
+
+## Vocabulary
+
+* **slope-intercept form** — $y = mx + b$, where $m$ is the slope and $b$ is the y-intercept
+* **standard form** — $Ax + By = C$, where $A$, $B$, $C$ are integers and $A \geq 0$
+* **point-slope form** — $y - y_1 = m(x - x_1)$, where $(x_1, y_1)$ is a known point and $m$ is the slope
+* **slope** — the ratio $\frac{\Delta y}{\Delta x} = \frac{\text{rise}}{\text{run}}$; describes steepness and direction
+* **parallel lines** — same slope, different y-intercepts; never intersect
+* **perpendicular lines** — slopes are negative reciprocals ($m_1 \cdot m_2 = -1$); intersect at 90°
+
+---
+
+## Explore: Three Ways to Describe a Line
+
+A line can be described by its slope and y-intercept, by a point and its slope, or by its intercepts. Each form is useful in different situations. Converting between forms is a key algebraic skill.
+
+Inquiry Question:
+Why might standard form be useful for finding intercepts, but slope-intercept form be better for graphing?
+
+---
+
+## Learn: Forms of Linear Equations
+
+### Key Concept: Slope-Intercept Form
+
+$$y = mx + b$$
+
+- $m$ = slope (rate of change)
+- $b$ = y-intercept (starting value)
+- Graph by plotting $(0, b)$ and using the slope to find the next point
+
+### Key Concept: Converting Standard to Slope-Intercept
+
+$$Ax + By = C \implies y = -\frac{A}{B}x + \frac{C}{B}$$
+
+### Key Concept: Point-Slope Form
+
+Given a point $(x_1, y_1)$ and slope $m$:
+
+$$y - y_1 = m(x - x_1)$$
+
+---
+
+## Example 1 — Graph from Slope-Intercept Form $y = mx + b$
+
+Graph $y = \frac{2}{3}x - 1$.
+
+### Step 1: Identify Slope and y-Intercept
+
+$$m = \frac{2}{3}, \quad b = -1$$
+
+### Step 2: Plot the y-Intercept
+
+Plot $(0, -1)$ on the y-axis.
+
+### Step 3: Use the Slope to Find a Second Point
+
+From $(0, -1)$, rise 2 and run 3:
+
+$$(0 + 3, -1 + 2) = (3, 1)$$
+
+### Step 4: Draw the Line
+
+Connect $(0, -1)$ and $(3, 1)$ with a straight line extending in both directions.
+
+### Step 5: Find a Third Point for Verification
+
+From $(3, 1)$, rise 2 and run 3: $(6, 3)$.
+
+Check: $y = \frac{2}{3}(6) - 1 = 4 - 1 = 3$ ✓
+
+✅ Answer: Line through $(0, -1)$ with slope $\frac{2}{3}$. Points: $(0, -1)$, $(3, 1)$, $(6, 3)$.
+
+---
+
+## Example 2 — Convert Standard Form to Slope-Intercept
+
+Convert $4x + 2y = 10$ to slope-intercept form. Then graph.
+
+### Step 1: Isolate $y$
+
+$$2y = -4x + 10$$
+
+### Step 2: Divide by 2
+
+$$y = -2x + 5$$
+
+### Step 3: Identify Features
+
+- Slope: $m = -2 = \frac{-2}{1}$
+- y-intercept: $b = 5$
+
+### Step 4: Graph
+
+- Plot $(0, 5)$
+- From $(0, 5)$, go down 2 and right 1: $(1, 3)$
+- Continue: $(2, 1)$, $(3, -1)$
+
+### Step 5: Find x-Intercept
+
+Set $y = 0$: $0 = -2x + 5 \implies x = 2.5$. The x-intercept is $(2.5, 0)$.
+
+✅ Answer: $y = -2x + 5$. Slope = $-2$, y-intercept = $5$. Points: $(0, 5)$, $(1, 3)$, $(2.5, 0)$.
+
+---
+
+## Example 3 — Write Equation from Two Points
+
+Write the equation of the line through $(-1, 4)$ and $(3, -2)$.
+
+### Step 1: Compute the Slope
+
+$$m = \frac{-2 - 4}{3 - (-1)} = \frac{-6}{4} = -\frac{3}{2}$$
+
+### Step 2: Use Point-Slope Form with $(-1, 4)$
+
+$$y - 4 = -\frac{3}{2}(x - (-1))$$
+
+$$y - 4 = -\frac{3}{2}(x + 1)$$
+
+### Step 3: Convert to Slope-Intercept Form
+
+$$y - 4 = -\frac{3}{2}x - \frac{3}{2}$$
+
+$$y = -\frac{3}{2}x - \frac{3}{2} + 4$$
+
+$$y = -\frac{3}{2}x + \frac{5}{2}$$
+
+### Step 4: Verify with the Second Point
+
+At $x = 3$: $y = -\frac{3}{2}(3) + \frac{5}{2} = -\frac{9}{2} + \frac{5}{2} = -\frac{4}{2} = -2$ ✓
+
+✅ Answer: $y = -\frac{3}{2}x + \frac{5}{2}$ or in standard form: $3x + 2y = 5$.
+
+---
+
+## Example 4 — Graph from Point-Slope Form
+
+Graph the line $y - 1 = 3(x + 2)$.
+
+### Step 1: Identify the Point and Slope
+
+The point-slope form $y - y_1 = m(x - x_1)$ tells us:
+
+- Point: $(-2, 1)$ (note: $x - (-2) = x + 2$)
+- Slope: $m = 3$
+
+### Step 2: Plot the Point
+
+Plot $(-2, 1)$.
+
+### Step 3: Use the Slope
+
+From $(-2, 1)$, rise 3 and run 1: $(-1, 4)$.
+
+Continue: $(0, 7)$, $(1, 10)$.
+
+### Step 4: Convert to Slope-Intercept for Verification
+
+$$y - 1 = 3x + 6$$
+
+$$y = 3x + 7$$
+
+At $x = 0$: $y = 7$ ✓. At $x = -2$: $y = 3(-2) + 7 = 1$ ✓.
+
+✅ Answer: Line through $(-2, 1)$ with slope $3$. Equation: $y = 3x + 7$. Points: $(-2, 1)$, $(-1, 4)$, $(0, 7)$.
+
+---
+
+## Example 5 — Parallel and Perpendicular Lines
+
+Line $L_1$ has equation $y = 2x + 3$. Write equations for:
+
+(a) A line parallel to $L_1$ passing through $(1, 5)$
+
+(b) A line perpendicular to $L_1$ passing through $(1, 5)$
+
+### Step 1: Identify the Slope of $L_1$
+
+$$m_1 = 2$$
+
+### Step 2: Parallel Line (Same Slope)
+
+A parallel line has $m = 2$.
+
+$$y - 5 = 2(x - 1)$$
+
+$$y = 2x - 2 + 5$$
+
+$$y = 2x + 3$$
+
+Wait — this gives the same equation as $L_1$ because $(1, 5)$ is on $L_1$: $5 = 2(1) + 3$. ✓
+
+Choose a different point, say $(1, 1)$:
+
+$$y - 1 = 2(x - 1) \implies y = 2x - 1$$
+
+### Step 3: Perpendicular Line (Negative Reciprocal Slope)
+
+$$m_{\perp} = -\frac{1}{m_1} = -\frac{1}{2}$$
+
+$$y - 5 = -\frac{1}{2}(x - 1)$$
+
+$$y = -\frac{1}{2}x + \frac{1}{2} + 5$$
+
+$$y = -\frac{1}{2}x + \frac{11}{2}$$
+
+### Step 4: Verify
+
+- Parallel: slopes are both 2. ✓
+- Perpendicular: $2 \cdot (-\frac{1}{2}) = -1$ ✓
+
+✅ Answer: (a) Parallel: $y = 2x - 1$; (b) Perpendicular: $y = -\frac{1}{2}x + \frac{11}{2}$.
+
+---
+
+## Example 6 — Real-World: Model Distance-Time Relationship
+
+A cyclist travels at a constant speed. At $t = 0$ hours, the cyclist is 5 miles from home. After 3 hours, the cyclist is 20 miles from home. Write a linear equation and interpret the slope and y-intercept.
+
+### Step 1: Identify Two Points
+
+$(0, 5)$ and $(3, 20)$.
+
+### Step 2: Find the Slope
+
+$$m = \frac{20 - 5}{3 - 0} = \frac{15}{3} = 5 \text{ mph}$$
+
+### Step 3: Write the Equation
+
+$$d(t) = 5t + 5$$
+
+### Step 4: Interpret
+
+- **Slope (5 mph):** The cyclist travels at 5 miles per hour.
+- **y-intercept (5 miles):** The cyclist started 5 miles from home.
+- At $t = 6$: $d(6) = 5(6) + 5 = 35$ miles from home.
+
+### Step 5: Practical Check
+
+A cycling speed of 5 mph is a relaxed pace. The model is reasonable for a casual ride.
+
+✅ Answer: $d(t) = 5t + 5$. Slope = 5 mph (speed), y-intercept = 5 miles (initial distance from home).
+
+---
+
+## Think About It
+
+* Why is the slope the same regardless of which two points you use to calculate it?
+* What does a negative slope look like on a graph? What does it mean in context?
+* Why are parallel lines said to have "no intersection"? Can you prove this algebraically?
+
+---
+
+## Objective Alignment
+
+- `Graph from slope-intercept form`: Primary worked examples: Example 1.
+- `Convert standard to slope-intercept form`: Primary worked examples: Example 2.
+- `Write equation from two points`: Primary worked examples: Example 3.
+- `Graph from point-slope form`: Primary worked examples: Example 4.
+- `Identify parallel and perpendicular lines`: Primary worked examples: Example 5.
+- `Model real-world linear relationships`: Primary worked examples: Example 6.

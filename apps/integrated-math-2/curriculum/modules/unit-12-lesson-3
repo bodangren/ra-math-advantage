@@ -1,0 +1,233 @@
+# Lesson 12-3 — Completing the Square
+
+## Today's Goals
+
+* Complete the square for expressions of the form $x^2 + bx$
+* Convert quadratic functions from standard form to vertex form
+* Solve quadratic equations by completing the square
+* Complete the square when the leading coefficient $a \neq 1$
+* Find the vertex of a quadratic by completing the square
+
+---
+
+## Vocabulary
+
+* **complete the square** — rewrite $x^2 + bx$ as $(x + \frac{b}{2})^2 - (\frac{b}{2})^2$
+* **vertex form** — $y = a(x - h)^2 + k$, obtained by completing the square on standard form
+* **perfect square trinomial** — a trinomial of the form $x^2 + bx + (\frac{b}{2})^2 = (x + \frac{b}{2})^2$
+
+---
+
+## Explore: Why Does Completing the Square Work?
+
+Consider $x^2 + 6x$. If we add $(\frac{6}{2})^2 = 9$, we get $x^2 + 6x + 9 = (x + 3)^2$. The number 9 "completes" the square. Geometrically, $x^2 + 6x$ represents an L-shaped figure; adding a $3 \times 3$ square completes it into a perfect square.
+
+Inquiry Question:
+Why do we take half of $b$ and square it? What is the geometric interpretation?
+
+---
+
+## Learn: Completing the Square
+
+### Key Concept: The Process
+
+For $x^2 + bx$:
+1. Take half of $b$: $\frac{b}{2}$
+2. Square it: $(\frac{b}{2})^2$
+3. Add and subtract: $x^2 + bx + (\frac{b}{2})^2 - (\frac{b}{2})^2 = (x + \frac{b}{2})^2 - (\frac{b}{2})^2$
+
+### Key Concept: When $a \neq 1$
+
+Factor out $a$ from the first two terms first:
+
+$$2x^2 + 12x - 3 = 2(x^2 + 6x) - 3 = 2(x + 3)^2 - 18 - 3 = 2(x + 3)^2 - 21$$
+
+---
+
+## Example 1 — Complete the Square: $x^2 + 6x + \_ = (x + 3)^2$
+
+### Step 1: Take Half of the Coefficient of $x$
+
+$$\frac{6}{2} = 3$$
+
+### Step 2: Square It
+
+$$3^2 = 9$$
+
+### Step 3: Write the Perfect Square
+
+$$x^2 + 6x + 9 = (x + 3)^2$$
+
+### Step 4: Verify by Expanding
+
+$$(x + 3)^2 = x^2 + 6x + 9 \checkmark$$
+
+### Step 5: What Number Must Be Added?
+
+To complete the square for $x^2 + 6x$, add **9**.
+
+$$x^2 + 6x + 9 = (x + 3)^2$$
+
+✅ Answer: Add 9. $x^2 + 6x + 9 = (x + 3)^2$.
+
+---
+
+## Example 2 — Solve $x^2 + 8x + 5 = 0$ by Completing the Square
+
+### Step 1: Move the Constant to the Right Side
+
+$$x^2 + 8x = -5$$
+
+### Step 2: Complete the Square
+
+Half of 8 is 4. Square it: $4^2 = 16$. Add 16 to both sides:
+
+$$x^2 + 8x + 16 = -5 + 16$$
+
+### Step 3: Factor the Left Side
+
+$$(x + 4)^2 = 11$$
+
+### Step 4: Take the Square Root of Both Sides
+
+$$x + 4 = \pm\sqrt{11}$$
+
+### Step 5: Solve for $x$
+
+$$x = -4 \pm \sqrt{11}$$
+
+### Step 6: Verify
+
+$x = -4 + \sqrt{11} \approx -0.683$: $(-0.683)^2 + 8(-0.683) + 5 \approx 0.466 - 5.464 + 5 \approx 0.002 \approx 0$ ✓
+
+✅ Answer: $x = -4 + \sqrt{11}$ or $x = -4 - \sqrt{11}$.
+
+---
+
+## Example 3 — Convert $y = x^2 - 4x + 1$ to Vertex Form
+
+### Step 1: Group the $x$-Terms
+
+$$y = (x^2 - 4x) + 1$$
+
+### Step 2: Complete the Square Inside the Parentheses
+
+Half of $-4$ is $-2$. Square it: $(-2)^2 = 4$.
+
+Add and subtract 4:
+
+$$y = (x^2 - 4x + 4 - 4) + 1$$
+
+### Step 3: Factor and Simplify
+
+$$y = (x - 2)^2 - 4 + 1$$
+
+$$y = (x - 2)^2 - 3$$
+
+### Step 4: Identify the Vertex
+
+Vertex: $(2, -3)$. Opens upward ($a = 1 > 0$). Minimum value = $-3$.
+
+### Step 5: Verify
+
+Expand $(x - 2)^2 - 3 = x^2 - 4x + 4 - 3 = x^2 - 4x + 1$ ✓
+
+✅ Answer: $y = (x - 2)^2 - 3$, vertex $(2, -3)$.
+
+---
+
+## Example 4 — Complete the Square When $a \neq 1$
+
+Convert $y = 3x^2 + 12x + 7$ to vertex form.
+
+### Step 1: Factor Out the Leading Coefficient from the First Two Terms
+
+$$y = 3(x^2 + 4x) + 7$$
+
+### Step 2: Complete the Square Inside the Parentheses
+
+Half of 4 is 2. Square it: $2^2 = 4$.
+
+Add and subtract 4 inside:
+
+$$y = 3(x^2 + 4x + 4 - 4) + 7$$
+
+### Step 3: Account for the Factored-Out Coefficient
+
+$$y = 3[(x + 2)^2 - 4] + 7$$
+
+$$y = 3(x + 2)^2 - 12 + 7$$
+
+Note: $3 \times (-4) = -12$.
+
+### Step 4: Simplify
+
+$$y = 3(x + 2)^2 - 5$$
+
+### Step 5: Identify the Vertex
+
+Vertex: $(-2, -5)$. Opens upward ($a = 3 > 0$). Minimum value = $-5$.
+
+### Step 6: Verify
+
+$3(x+2)^2 - 5 = 3(x^2 + 4x + 4) - 5 = 3x^2 + 12x + 12 - 5 = 3x^2 + 12x + 7$ ✓
+
+✅ Answer: $y = 3(x + 2)^2 - 5$, vertex $(-2, -5)$.
+
+---
+
+## Example 5 — Find Vertex of $y = 2x^2 + 12x - 3$ by Completing the Square
+
+### Step 1: Factor Out 2
+
+$$y = 2(x^2 + 6x) - 3$$
+
+### Step 2: Complete the Square
+
+Half of 6 is 3. Square it: 9.
+
+$$y = 2(x^2 + 6x + 9 - 9) - 3$$
+
+### Step 3: Simplify
+
+$$y = 2[(x + 3)^2 - 9] - 3$$
+
+$$y = 2(x + 3)^2 - 18 - 3$$
+
+$$y = 2(x + 3)^2 - 21$$
+
+### Step 4: Read the Vertex
+
+Vertex: $(-3, -21)$.
+
+### Step 5: Verify the Minimum Value
+
+Since $a = 2 > 0$, the minimum value is $-21$ at $x = -3$.
+
+Check: $y(-3) = 2(9) + 12(-3) - 3 = 18 - 36 - 3 = -21$ ✓
+
+### Step 6: Compare with Vertex Formula
+
+Vertex $x$-coordinate: $x = -\frac{b}{2a} = -\frac{12}{4} = -3$. ✓
+
+$y(-3) = -21$. ✓
+
+✅ Answer: $y = 2(x + 3)^2 - 21$, vertex $(-3, -21)$.
+
+---
+
+## Think About It
+
+* Why must you add the same value to both sides when completing the square to solve an equation?
+* What happens if $b$ is odd? Can you still complete the square? (Hint: yes, you get fractions.)
+* How is completing the square related to the quadratic formula?
+
+---
+
+## Objective Alignment
+
+- `Complete the square for simple expressions`: Primary worked examples: Example 1.
+- `Solve by completing the square`: Primary worked examples: Example 2.
+- `Convert to vertex form (a=1)`: Primary worked examples: Example 3.
+- `Complete the square when a≠1`: Primary worked examples: Example 4.
+- `Find vertex by completing the square`: Primary worked examples: Example 5.

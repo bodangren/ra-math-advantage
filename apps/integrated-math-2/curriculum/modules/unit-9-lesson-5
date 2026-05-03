@@ -1,0 +1,252 @@
+# Lesson 9-5 — Systems of Inequalities
+
+## Today's Goals
+
+* Graph a system of two linear inequalities on the same coordinate plane
+* Identify the solution region as the overlap of individual shaded regions
+* Recognize when a system of inequalities has no solution
+* Determine whether a point lies within the solution region
+* Apply systems of inequalities to linear programming and feasible regions
+
+---
+
+## Vocabulary
+
+* **system of inequalities** — two or more inequalities with the same variables, solved simultaneously
+* **solution region** — the set of all points that satisfy every inequality in the system (the overlapping shaded area)
+* **feasible region** — in linear programming, the solution region that satisfies all constraints
+* **constraint** — one inequality in a system representing a limitation or condition
+* **corner point** — a vertex of the feasible region where two boundary lines intersect
+
+---
+
+## Explore: Overlapping Constraints
+
+A factory has limits on labor and materials. Each constraint is an inequality. The feasible region — where all constraints overlap — shows all possible production levels. Linear programming finds the best option within this region.
+
+Inquiry Question:
+Can a system of inequalities have a solution region that is a single point? A line segment? An unbounded region?
+
+---
+
+## Learn: Graphing Systems of Inequalities
+
+### Key Concept: Steps to Graph a System
+
+1. Graph each inequality's boundary line (solid for $\leq/\geq$, dashed for $</>$)
+2. Shade the correct side of each boundary (use a test point)
+3. The solution region is where all shaded areas **overlap**
+
+### Key Concept: Special Cases
+
+- **No overlap**: the system has no solution
+- **Unbounded region**: the solution extends infinitely in one or more directions
+- **Bounded region**: the solution is enclosed (a polygon)
+
+---
+
+## Example 1 — Graph System of Two Linear Inequalities
+
+Graph the system:
+
+$$y \leq x + 2$$
+
+$$y > -x + 1$$
+
+### Step 1: Graph the First Boundary Line
+
+$y = x + 2$ with slope $1$ and y-intercept $(0, 2)$.
+
+Since the inequality is $\leq$, draw a **solid line**.
+
+Test $(0, 0)$: $0 \leq 0 + 2 = 2$ ✓. Shade **below** the line.
+
+### Step 2: Graph the Second Boundary Line
+
+$y = -x + 1$ with slope $-1$ and y-intercept $(0, 1)$.
+
+Since the inequality is $>$, draw a **dashed line**.
+
+Test $(0, 0)$: $0 > -0 + 1 = 1$ ✗. Shade **above** the line (the side not containing the origin).
+
+### Step 3: Identify the Overlap
+
+The solution region is where the shading from both inequalities overlaps — the area between the two lines, below the solid line and above the dashed line.
+
+### Step 4: Find the Intersection of the Boundary Lines
+
+$$x + 2 = -x + 1 \implies 2x = -1 \implies x = -\frac{1}{2}$$
+
+$$y = -\frac{1}{2} + 2 = \frac{3}{2}$$
+
+The boundaries intersect at $\left(-\frac{1}{2}, \frac{3}{2}\right)$.
+
+✅ Answer: Solution region is the overlap below $y = x + 2$ (solid) and above $y = -x + 1$ (dashed). Intersection at $\left(-\frac{1}{2}, \frac{3}{2}\right)$.
+
+---
+
+## Example 2 — Identify Solution Region
+
+A system has boundary lines $y = 2$ (horizontal) and $x = 3$ (vertical) with inequalities $y \leq 2$ and $x \leq 3$. Describe and graph the solution region.
+
+### Step 1: Graph $y \leq 2$
+
+Horizontal solid line at $y = 2$. Shade **below** (where $y < 2$).
+
+### Step 2: Graph $x \leq 3$
+
+Vertical solid line at $x = 3$. Shade **to the left** (where $x < 3$).
+
+### Step 3: Find the Overlap
+
+The solution region is the lower-left quadrant created by the two lines: all points with $x \leq 3$ **and** $y \leq 2$.
+
+### Step 4: Key Features
+
+- Corner point where boundaries meet: $(3, 2)$
+- The region extends infinitely to the left and downward
+- The region is **unbounded**
+
+### Step 5: Test Points
+
+- $(0, 0)$: $0 \leq 2$ ✓ and $0 \leq 3$ ✓ → in the region
+- $(4, 1)$: $4 \leq 3$ ✗ → not in the region
+- $(2, 3)$: $3 \leq 2$ ✗ → not in the region
+
+✅ Answer: Solution region is the lower-left area with corner at $(3, 2)$, unbounded extending left and down.
+
+---
+
+## Example 3 — System with No Solution
+
+Graph the system:
+
+$$y > x + 5$$
+
+$$y < x - 2$$
+
+### Step 1: Analyze the Boundary Lines
+
+Both lines have slope $1$ (parallel).
+
+- Line 1: $y = x + 5$, shade **above**
+- Line 2: $y = x - 2$, shade **below**
+
+### Step 2: Determine Overlap
+
+Line 2 is always 7 units below Line 1. Shading above Line 1 and below Line 2 creates **no overlap**.
+
+### Step 3: Verify Algebraically
+
+For a point to satisfy both:
+
+$$x + 5 < y < x - 2$$
+
+$$x + 5 < x - 2 \implies 5 < -2 \quad \text{FALSE}$$
+
+No value of $x$ makes this possible.
+
+### Step 4: Conclusion
+
+The system has **no solution**. The parallel boundary lines are too far apart for the shaded regions to overlap.
+
+✅ Answer: **No solution.** The regions above $y = x + 5$ and below $y = x - 2$ do not overlap.
+
+---
+
+## Example 4 — Determine if a Point Is in the Solution Region
+
+Is the point $(2, 3)$ in the solution region of the system?
+
+$$x + y \leq 7$$
+
+$$2x - y \geq 1$$
+
+$$x \geq 0$$
+
+### Step 1: Test Inequality 1
+
+$$2 + 3 \leq 7 \implies 5 \leq 7 \quad \text{TRUE} \checkmark$$
+
+### Step 2: Test Inequality 2
+
+$$2(2) - 3 \geq 1 \implies 4 - 3 \geq 1 \implies 1 \geq 1 \quad \text{TRUE} \checkmark$$
+
+### Step 3: Test Inequality 3
+
+$$2 \geq 0 \quad \text{TRUE} \checkmark$$
+
+### Step 4: Conclusion
+
+$(2, 3)$ satisfies all three inequalities. It is **in the solution region**.
+
+### Step 5: Test a Counterexample
+
+Test $(5, 5)$: Inequality 1: $5 + 5 = 10 \leq 7$ ✗. Not in the region.
+
+✅ Answer: **Yes**, $(2, 3)$ is in the solution region — it satisfies all three inequalities.
+
+---
+
+## Example 5 — Real-World: Linear Programming Feasible Region
+
+A factory produces tables ($x$) and chairs ($y$). The constraints are:
+
+$$x + y \leq 50 \quad \text{(labor hours)}$$
+
+$$2x + y \leq 80 \quad \text{(materials)}$$
+
+$$x \geq 0, \quad y \geq 0$$
+
+Graph the feasible region and find the corner points.
+
+### Step 1: Graph Each Constraint
+
+**Constraint 1:** $x + y = 50$ passes through $(50, 0)$ and $(0, 50)$. Shade below (solid line).
+
+**Constraint 2:** $2x + y = 80$ passes through $(40, 0)$ and $(0, 80)$. Shade below (solid line).
+
+**Constraints 3 & 4:** $x \geq 0$ and $y \geq0$ restrict to the first quadrant.
+
+### Step 2: Identify the Feasible Region
+
+The feasible region is the polygon bounded by the axes and the two constraint lines in the first quadrant.
+
+### Step 3: Find the Corner Points
+
+| Corner | Intersection of | Calculation | Point |
+|--------|----------------|-------------|-------|
+| A | $x = 0$, $y = 0$ | Origin | $(0, 0)$ |
+| B | $y = 0$, $2x + y = 80$ | $x = 40$ | $(40, 0)$ |
+| C | $x + y = 50$, $2x + y = 80$ | $x = 30$, $y = 20$ | $(30, 20)$ |
+| D | $x = 0$, $x + y = 50$ | $y = 50$ | $(0, 50)$ |
+
+### Step 4: Verify Corner C
+
+Subtract $x + y = 50$ from $2x + y = 80$:
+
+$$x = 30, \quad y = 50 - 30 = 20 \quad \checkmark$$
+
+### Step 5: Interpret
+
+In linear programming, the optimal solution (maximum or minimum of an objective function) always occurs at a corner point of the feasible region. The four corners are $(0, 0)$, $(40, 0)$, $(30, 20)$, and $(0, 50)$.
+
+✅ Answer: Feasible region is a quadrilateral with corner points: $(0, 0)$, $(40, 0)$, $(30, 20)$, $(0, 50)$.
+
+---
+
+## Think About It
+
+* Why is the solution region always the overlap of individual shaded areas?
+* Why does the optimal answer in linear programming always occur at a corner point?
+* What happens to the feasible region if you add more constraints?
+
+---
+
+## Objective Alignment
+
+- `Graph systems of two inequalities`: Primary worked examples: Example 1.
+- `Identify the solution region`: Primary worked examples: Example 2.
+- `Recognize systems with no solution`: Primary worked examples: Example 3.
+- `Test points in solution regions`: Primary worked examples: Example 4.
+- `Apply to linear programming feasible regions`: Primary worked examples: Example 5.

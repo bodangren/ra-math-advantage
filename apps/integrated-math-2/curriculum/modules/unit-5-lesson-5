@@ -1,0 +1,259 @@
+# Lesson 5-5 — Equations of Circles
+
+## Today's Goals
+
+* Write the equation of a circle given its center and radius
+* Identify center and radius from a circle equation in standard form
+* Write a circle equation from a graph
+* Complete the square to convert general form to standard form
+* Find the equation of a circle through three points
+* Graph a circle from its equation
+
+---
+
+## Vocabulary
+
+* **standard form of a circle** — $(x - h)^2 + (y - k)^2 = r^2$, where $(h, k)$ is the center and $r$ is the radius
+* **general form of a circle** — $x^2 + y^2 + Dx + Ey + F = 0$
+* **completing the square** — algebraic technique to rewrite a quadratic expression as a perfect square plus a constant
+
+---
+
+## Explore: How Does Algebra Describe a Circle?
+
+A circle is defined as all points a fixed distance $r$ from a center $(h, k)$. If $(x, y)$ is any point on the circle, the distance formula gives us an equation connecting $x$, $y$, $h$, $k$, and $r$.
+
+Inquiry Question:
+How does the distance formula become the standard form of a circle equation?
+
+---
+
+## Learn: The Equation of a Circle
+
+### Key Concept: Standard Form
+
+Using the distance formula, a circle with center $(h, k)$ and radius $r$ satisfies:
+
+$$(x - h)^2 + (y - k)^2 = r^2$$
+
+### Key Concept: From Standard Form
+
+Given $(x - h)^2 + (y - k)^2 = r^2$:
+- Center $= (h, k)$
+- Radius $= r$
+
+### Key Concept: General Form
+
+Expanding the standard form gives:
+
+$$x^2 + y^2 + Dx + Ey + F = 0$$
+
+where $D = -2h$, $E = -2k$, $F = h^2 + k^2 - r^2$.
+
+### Key Concept: Completing the Square
+
+To convert from general form to standard form, group $x$-terms and $y$-terms, then complete the square for each variable.
+
+---
+
+## Example 1 — Write Equation of Circle Given Center and Radius
+
+Write the equation of a circle with center $(3, -2)$ and radius 5.
+
+### Step 1: Identify $h$, $k$, and $r$
+
+$$h = 3, \quad k = -2, \quad r = 5$$
+
+### Step 2: Substitute into Standard Form
+
+$$(x - h)^2 + (y - k)^2 = r^2$$
+
+$$(x - 3)^2 + (y - (-2))^2 = 5^2$$
+
+$$(x - 3)^2 + (y + 2)^2 = 25$$
+
+### Step 3: Verify
+
+The center $(3, -2)$ and radius 5 produce the correct equation. ✓
+
+✅ Answer: $(x - 3)^2 + (y + 2)^2 = 25$
+
+---
+
+## Example 2 — Identify Center and Radius from Equation
+
+Find the center and radius of the circle $(x + 4)^2 + (y - 1)^2 = 36$.
+
+### Step 1: Rewrite to Match Standard Form
+
+$(x + 4)^2 = (x - (-4))^2$
+
+So: $(x - (-4))^2 + (y - 1)^2 = 36$
+
+### Step 2: Identify the Components
+
+$$h = -4, \quad k = 1, \quad r^2 = 36$$
+
+### Step 3: Find the Radius
+
+$$r = \sqrt{36} = 6$$
+
+✅ Answer: Center $= (-4, 1)$; radius $= 6$.
+
+---
+
+## Example 3 — Write Equation from Graph
+
+A graph shows a circle centered at $(0, 0)$ that passes through the point $(6, 8)$. Write the equation.
+
+### Step 1: Identify the Center
+
+The center is $(h, k) = (0, 0)$.
+
+### Step 2: Find the Radius
+
+The radius is the distance from the center to the point $(6, 8)$:
+
+$$r = \sqrt{(6 - 0)^2 + (8 - 0)^2} = \sqrt{36 + 64} = \sqrt{100} = 10$$
+
+### Step 3: Write the Equation
+
+$$(x - 0)^2 + (y - 0)^2 = 10^2$$
+
+$$x^2 + y^2 = 100$$
+
+✅ Answer: $x^2 + y^2 = 100$
+
+---
+
+## Example 4 — Complete the Square to Convert General Form
+
+Convert $x^2 + y^2 - 6x + 4y - 12 = 0$ to standard form. Identify the center and radius.
+
+### Step 1: Group $x$ and $y$ Terms
+
+$$(x^2 - 6x) + (y^2 + 4y) = 12$$
+
+### Step 2: Complete the Square for $x$
+
+Take half of $-6$: $\frac{-6}{2} = -3$. Square it: $(-3)^2 = 9$.
+
+$$(x^2 - 6x + 9) + (y^2 + 4y) = 12 + 9$$
+
+### Step 3: Complete the Square for $y$
+
+Take half of $4$: $\frac{4}{2} = 2$. Square it: $2^2 = 4$.
+
+$$(x^2 - 6x + 9) + (y^2 + 4y + 4) = 12 + 9 + 4$$
+
+### Step 4: Factor
+
+$$(x - 3)^2 + (y + 2)^2 = 25$$
+
+### Step 5: Identify Center and Radius
+
+$$\text{Center} = (3, -2), \quad r = \sqrt{25} = 5$$
+
+### Step 6: Verify
+
+Expand: $(x - 3)^2 + (y + 2)^2 = x^2 - 6x + 9 + y^2 + 4y + 4 = x^2 + y^2 - 6x + 4y + 13$
+
+Set equal to 25: $x^2 + y^2 - 6x + 4y + 13 = 25$, so $x^2 + y^2 - 6x + 4y - 12 = 0$ ✓
+
+✅ Answer: Standard form: $(x - 3)^2 + (y + 2)^2 = 25$; center $= (3, -2)$; radius $= 5$.
+
+---
+
+## Example 5 — Find Equation of Circle Through Three Points
+
+Find the equation of the circle passing through $A(0, 0)$, $B(6, 0)$, and $C(0, 8)$.
+
+### Step 1: Set Up the General Form
+
+Substitute each point into $x^2 + y^2 + Dx + Ey + F = 0$.
+
+**Point $A(0, 0)$:**
+
+$$0 + 0 + 0 + 0 + F = 0 \implies F = 0$$
+
+**Point $B(6, 0)$:**
+
+$$36 + 0 + 6D + 0 + 0 = 0 \implies 6D = -36 \implies D = -6$$
+
+**Point $C(0, 8)$:**
+
+$$0 + 64 + 0 + 8E + 0 = 0 \implies 8E = -64 \implies E = -8$$
+
+### Step 2: Write the General Form
+
+$$x^2 + y^2 - 6x - 8y = 0$$
+
+### Step 3: Complete the Square
+
+$$(x^2 - 6x + 9) + (y^2 - 8y + 16) = 9 + 16$$
+
+$$(x - 3)^2 + (y - 4)^2 = 25$$
+
+### Step 4: Identify Center and Radius
+
+$$\text{Center} = (3, 4), \quad r = 5$$
+
+### Step 5: Verify with All Three Points
+
+- $A(0, 0)$: $(0-3)^2 + (0-4)^2 = 9 + 16 = 25$ ✓
+- $B(6, 0)$: $(6-3)^2 + (0-4)^2 = 9 + 16 = 25$ ✓
+- $C(0, 8)$: $(0-3)^2 + (8-4)^2 = 9 + 16 = 25$ ✓
+
+✅ Answer: $(x - 3)^2 + (y - 4)^2 = 25$; center $= (3, 4)$; radius $= 5$.
+
+---
+
+## Example 6 — Graph a Circle from Its Equation
+
+Graph the circle $(x - 2)^2 + (y + 3)^2 = 16$.
+
+### Step 1: Identify Center and Radius
+
+$$\text{Center} = (2, -3), \quad r = \sqrt{16} = 4$$
+
+### Step 2: Plot Key Points
+
+Starting from the center $(2, -3)$, move 4 units in each direction:
+
+| Direction | Point |
+|-----------|-------|
+| Right | $(2 + 4, -3) = (6, -3)$ |
+| Left | $(2 - 4, -3) = (-2, -3)$ |
+| Up | $(2, -3 + 4) = (2, 1)$ |
+| Down | $(2, -3 - 4) = (2, -7)$ |
+
+### Step 3: Draw the Circle
+
+Plot the center $(2, -3)$ and the four cardinal points. Sketch a smooth curve through them to form the circle.
+
+### Step 4: Verify
+
+Check one point: Is $(6, -3)$ on the circle?
+
+$$(6 - 2)^2 + (-3 + 3)^2 = 16 + 0 = 16 \checkmark$$
+
+✅ Answer: Circle centered at $(2, -3)$ with radius 4, passing through $(6, -3)$, $(-2, -3)$, $(2, 1)$, and $(2, -7)$.
+
+---
+
+## Think About It
+
+* What happens to the circle equation when the center is at the origin?
+* Can a circle equation have a negative right side? What does that mean geometrically?
+* Why must we add the same value to both sides when completing the square?
+
+---
+
+## Objective Alignment
+
+- `Write equation of circle given center and radius`: Primary worked examples: Example 1.
+- `Identify center and radius from equation`: Primary worked examples: Example 2.
+- `Write equation from graph`: Primary worked examples: Example 3.
+- `Complete the square to convert forms`: Primary worked examples: Example 4.
+- `Find equation through three points`: Primary worked examples: Example 5.
+- `Graph a circle from its equation`: Primary worked examples: Example 6.

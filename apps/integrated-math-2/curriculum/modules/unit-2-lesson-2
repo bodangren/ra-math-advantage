@@ -1,0 +1,214 @@
+# Lesson 2-2 — Parallelogram Properties
+
+## Today's Goals
+
+* Identify and apply properties of parallelograms (opposite sides, opposite angles, diagonals)
+* Use properties to find missing measures in parallelograms
+* Prove that a quadrilateral is a parallelogram
+
+---
+
+## Vocabulary
+
+* **parallelogram** — a quadrilateral with both pairs of opposite sides parallel
+* **opposite sides** — sides that do not share a vertex
+* **consecutive angles** — angles that share a side
+* **diagonal** — a segment connecting two non-consecutive vertices
+
+---
+
+## Explore: What Makes a Parallelogram Special?
+
+Draw any parallelogram and measure its sides, angles, and diagonals. What patterns do you notice?
+
+Inquiry Question:
+If you know only that both pairs of opposite sides are parallel, what else must be true?
+
+---
+
+## Learn: Properties of Parallelograms
+
+### Key Concept
+
+If a quadrilateral is a parallelogram, then:
+
+1. **Opposite sides are congruent.** $AB \cong DC$ and $AD \cong BC$
+2. **Opposite angles are congruent.** $\angle A \cong \angle C$ and $\angle B \cong \angle D$
+3. **Consecutive angles are supplementary.** $\angle A + \angle B = 180°$
+4. **Diagonals bisect each other.** The diagonals intersect at their midpoints.
+
+### Key Concept: Proving a Parallelogram
+
+A quadrilateral is a parallelogram if **any** one of these is true:
+
+* Both pairs of opposite sides are parallel (definition)
+* Both pairs of opposite sides are congruent
+* Both pairs of opposite angles are congruent
+* One pair of opposite sides is both parallel and congruent
+* The diagonals bisect each other
+
+---
+
+## Example 1 — Find Missing Measures Using Parallelogram Properties
+
+In parallelogram $ABCD$, $\angle A = 65°$ and $AB = 12$. Find $\angle B$, $\angle C$, $\angle D$, and $CD$.
+
+### Step 1: Find Opposite Angles
+
+Opposite angles of a parallelogram are congruent.
+
+$$\angle C = \angle A = 65°$$
+
+### Step 2: Find Consecutive Angles
+
+Consecutive angles are supplementary.
+
+$$\angle B = 180° - \angle A = 180° - 65° = 115°$$
+
+$$\angle D = \angle B = 115°$$
+
+### Step 3: Find the Opposite Side
+
+Opposite sides of a parallelogram are congruent.
+
+$$CD = AB = 12$$
+
+### Step 4: Verify
+
+Angle sum: $65° + 115° + 65° + 115° = 360° \checkmark$
+
+✅ Answer: $\angle B = 115°$, $\angle C = 65°$, $\angle D = 115°$, $CD = 12$.
+
+---
+
+## Example 2 — Prove a Quadrilateral Is a Parallelogram
+
+A quadrilateral has vertices $A(1, 1)$, $B(5, 1)$, $C(7, 4)$, $D(3, 4)$. Prove it is a parallelogram.
+
+### Step 1: Find the Slopes of Opposite Sides
+
+$$\text{slope of } AB = \frac{1 - 1}{5 - 1} = \frac{0}{4} = 0$$
+
+$$\text{slope of } DC = \frac{4 - 4}{7 - 3} = \frac{0}{4} = 0$$
+
+$$AB \parallel DC \quad (\text{both have slope } 0)$$
+
+$$\text{slope of } AD = \frac{4 - 1}{3 - 1} = \frac{3}{2}$$
+
+$$\text{slope of } BC = \frac{4 - 1}{7 - 5} = \frac{3}{2}$$
+
+$$AD \parallel BC \quad (\text{both have slope } \frac{3}{2})$$
+
+### Step 2: Conclude
+
+Both pairs of opposite sides are parallel, so $ABCD$ is a parallelogram.
+
+✅ Answer: $ABCD$ is a parallelogram because both pairs of opposite sides have equal slopes.
+
+---
+
+## Example 3 — Find Diagonal Lengths Using the Bisecting Property
+
+The diagonals of parallelogram $PQRS$ intersect at point $M$. If $PM = 9$ and $QM = 6$, find the full lengths of the diagonals.
+
+### Step 1: Apply the Diagonal Bisecting Property
+
+The diagonals of a parallelogram bisect each other, so $M$ is the midpoint of both diagonals.
+
+$$PM = MR = 9 \quad \text{so} \quad PR = PM + MR = 9 + 9 = 18$$
+
+$$QM = MS = 6 \quad \text{so} \quad QS = QM + MS = 6 + 6 = 12$$
+
+### Step 2: State the Answer
+
+✅ Answer: $PR = 18$ and $QS = 12$.
+
+---
+
+## Example 4 — Algebraic Problem with Parallelogram Angles
+
+In parallelogram $JKLM$, $\angle J = (3x + 10)°$ and $\angle K = (5x - 30)°$. Find all angle measures.
+
+### Step 1: Use Consecutive Angles Are Supplementary
+
+$\angle J$ and $\angle K$ are consecutive angles, so they sum to 180°.
+
+$$(3x + 10) + (5x - 30) = 180$$
+
+### Step 2: Solve for x
+
+$$8x - 20 = 180$$
+
+$$8x = 200$$
+
+$$x = 25$$
+
+### Step 3: Find Each Angle
+
+$$\angle J = 3(25) + 10 = 75 + 10 = 85°$$
+
+$$\angle K = 5(25) - 30 = 125 - 30 = 95°$$
+
+$$\angle L = \angle J = 85°$$
+
+$$\angle M = \angle K = 95°$$
+
+### Step 4: Verify
+
+$$85° + 95° + 85° + 95° = 360° \checkmark$$
+
+Consecutive pairs: $85° + 95° = 180°$.
+
+✅ Answer: The angles are $\angle J = 85°$, $\angle K = 95°$, $\angle L = 85°$, $\angle M = 95°$.
+
+---
+
+## Example 5 — Coordinate Geometry: Verify a Parallelogram with the Distance Formula
+
+Quadrilateral $EFGH$ has vertices $E(-2, 3)$, $F(2, 5)$, $G(6, 3)$, $H(2, 1)$. Verify it is a parallelogram using the distance formula.
+
+### Step 1: Compute All Side Lengths
+
+$$EF = \sqrt{(2-(-2))^2 + (5-3)^2} = \sqrt{16 + 4} = \sqrt{20}$$
+
+$$FG = \sqrt{(6-2)^2 + (3-5)^2} = \sqrt{16 + 4} = \sqrt{20}$$
+
+$$GH = \sqrt{(2-6)^2 + (1-3)^2} = \sqrt{16 + 4} = \sqrt{20}$$
+
+$$HE = \sqrt{(-2-2)^2 + (3-1)^2} = \sqrt{16 + 4} = \sqrt{20}$$
+
+### Step 2: Check Opposite Sides
+
+$$EF = GH = \sqrt{20} \checkmark$$
+
+$$FG = HE = \sqrt{20} \checkmark$$
+
+Both pairs of opposite sides are congruent.
+
+### Step 3: Additional Observation
+
+Since all four sides are equal, $EFGH$ is actually a **rhombus** (a special parallelogram). We can verify by checking that the diagonals bisect each other:
+
+Midpoint of $EG$: $\left(\frac{-2+6}{2}, \frac{3+3}{2}\right) = (2, 3)$
+
+Midpoint of $FH$: $\left(\frac{2+2}{2}, \frac{5+1}{2}\right) = (2, 3)$
+
+The midpoints match, confirming the diagonals bisect each other.
+
+✅ Answer: $EFGH$ is a parallelogram (specifically a rhombus) because both pairs of opposite sides are congruent and the diagonals bisect each other.
+
+---
+
+## Think About It
+
+* If one angle of a parallelogram is 90°, what can you conclude about all the other angles?
+* Can a parallelogram have sides of length 3, 7, 3, 7 and angles of 50°, 130°, 50°, 130°? Why or why not?
+* Why do the diagonals of a parallelogram bisect each other?
+
+---
+
+## Objective Alignment
+
+- `Use parallelogram properties to find missing measures`: Primary worked examples: Examples 1, 3, 4.
+- `Prove that a quadrilateral is a parallelogram`: Primary worked examples: Examples 2, 5.
+- `Apply the bisecting diagonal property`: Primary worked examples: Examples 3, 5.

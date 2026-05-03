@@ -1,0 +1,222 @@
+# Lesson 3-5 — Applications of Similarity
+
+## Today's Goals
+
+* Apply similarity to solve real-world problems involving scale models and enlargements
+* Use similarity in blueprint reading and photography
+* Recognize self-similarity in fractal patterns
+
+---
+
+## Vocabulary
+
+* **scale model** — a proportional replica of an object, built at a different (usually smaller) size
+* **blueprint** — a technical drawing showing dimensions of a structure at a reduced scale
+* **enlargement** — increasing the size of a figure by a scale factor greater than 1
+* **fractal** — a geometric pattern that is self-similar at every level of magnification
+* **self-similarity** — the property of a shape that looks the same at different scales
+
+---
+
+## Explore: Where Does Similarity Show Up in the Real World?
+
+Maps, models, photographs, blueprints, and even nature use the principle of similarity. Understanding proportional relationships lets us work with real objects through their scaled representations.
+
+Inquiry Question:
+If a photograph is enlarged by a factor of 3, what happens to the area of the image?
+
+---
+
+## Learn: Real-World Applications of Similarity
+
+### Key Concept: Scale Factor and Area
+
+If two similar figures have a scale factor of $k$, then:
+
+$$\frac{\text{Area of figure 2}}{\text{Area of figure 1}} = k^2$$
+
+### Key Concept: Scale Factor and Volume
+
+For three-dimensional similar figures:
+
+$$\frac{\text{Volume of figure 2}}{\text{Volume of figure 1}} = k^3$$
+
+---
+
+## Example 1 — Scale Model Dimensions
+
+An architect builds a scale model of a building at a ratio of 1 : 100. The real building is 45 meters tall and 30 meters wide. Find the dimensions of the model.
+
+### Step 1: Apply the Scale Factor
+
+The scale factor from real to model is $\frac{1}{100}$.
+
+$$\text{Model height} = \frac{45}{100} = 0.45 \text{ m} = 45 \text{ cm}$$
+
+$$\text{Model width} = \frac{30}{100} = 0.30 \text{ m} = 30 \text{ cm}$$
+
+### Step 2: Find the Model's Surface Area Ratio
+
+The real building's front face area:
+
+$$A_{\text{real}} = 45 \times 30 = 1350 \text{ m}^2$$
+
+The model's front face area:
+
+$$A_{\text{model}} = 0.45 \times 0.30 = 0.135 \text{ m}^2$$
+
+$$\frac{A_{\text{model}}}{A_{\text{real}}} = \frac{0.135}{1350} = \frac{1}{10{,}000} = \left(\frac{1}{100}\right)^2 \checkmark$$
+
+### Step 3: Interpret
+
+The area scales by $k^2 = \frac{1}{10{,}000}$, and the volume would scale by $k^3 = \frac{1}{1{,}000{,}000}$.
+
+✅ Answer: The model is **45 cm tall** and **30 cm wide**. Its area is $\frac{1}{10{,}000}$ of the real building's area.
+
+---
+
+## Example 2 — Photography Enlargement
+
+A photograph measures 4 inches by 6 inches. It is enlarged so that the shorter side becomes 10 inches. Find the length of the longer side and the ratio of the new area to the original area.
+
+### Step 1: Find the Scale Factor
+
+$$k = \frac{10}{4} = \frac{5}{2} = 2.5$$
+
+### Step 2: Find the New Longer Side
+
+$$\text{New longer side} = 6 \times 2.5 = 15 \text{ inches}$$
+
+### Step 3: Find the Area Ratio
+
+$$\text{Original area} = 4 \times 6 = 24 \text{ in}^2$$
+
+$$\text{New area} = 10 \times 15 = 150 \text{ in}^2$$
+
+$$\frac{\text{New area}}{\text{Original area}} = \frac{150}{24} = \frac{25}{4} = (2.5)^2 = k^2 \checkmark$$
+
+### Step 4: Verify Proportionality
+
+$$\frac{10}{4} = \frac{15}{6} = \frac{5}{2} \checkmark$$
+
+The enlarged photo has the same proportions as the original.
+
+✅ Answer: The longer side is **15 inches**. The new area is $\frac{25}{4}$ (or 6.25 times) the original area.
+
+---
+
+## Example 3 — Blueprint Reading
+
+A blueprint uses a scale of $\frac{1}{4}$ inch = 1 foot. On the blueprint, a room measures $3\frac{1}{2}$ inches by $2\frac{3}{4}$ inches. Find the actual dimensions of the room.
+
+### Step 1: Convert the Scale
+
+$\frac{1}{4}$ inch on the blueprint represents 1 foot in reality, so 1 inch represents 4 feet.
+
+### Step 2: Convert the Blueprint Dimensions
+
+$$\text{Actual length} = 3.5 \times 4 = 14 \text{ feet}$$
+
+$$\text{Actual width} = 2.75 \times 4 = 11 \text{ feet}$$
+
+### Step 3: Find the Actual Area
+
+$$A = 14 \times 11 = 154 \text{ square feet}$$
+
+### Step 4: Verify with the Blueprint Area
+
+$$\text{Blueprint area} = 3.5 \times 2.75 = 9.625 \text{ square inches}$$
+
+The area scale factor is $4^2 = 16$:
+
+$$9.625 \times 16 = 154 \text{ square feet} \checkmark$$
+
+✅ Answer: The room is **14 feet by 11 feet** with an area of **154 square feet**.
+
+---
+
+## Example 4 — Fractal Patterns and Self-Similarity
+
+The Sierpinski triangle starts with an equilateral triangle. At each step, the middle triangle is removed. If the original triangle has a side length of 27 cm, find the side length of each small triangle after 3 iterations.
+
+### Step 1: Understand the Self-Similarity
+
+At each iteration, every remaining triangle is divided into 4 smaller triangles, and the middle one is removed. Each small triangle has a side length that is $\frac{1}{2}$ of the previous iteration.
+
+### Step 2: Apply the Scale Factor Repeatedly
+
+| Iteration | Side length |
+|-----------|-------------|
+| 0 (original) | 27 cm |
+| 1 | $27 \times \frac{1}{2} = 13.5$ cm |
+| 2 | $13.5 \times \frac{1}{2} = 6.75$ cm |
+| 3 | $6.75 \times \frac{1}{2} = 3.375$ cm |
+
+### Step 3: Count the Triangles
+
+After iteration 3, the number of small triangles is $3^3 = 27$.
+
+### Step 4: Verify the Total Area
+
+The area of the original triangle:
+
+$$A_0 = \frac{\sqrt{3}}{4}(27)^2 = \frac{729\sqrt{3}}{4}$$
+
+At each step, $\frac{3}{4}$ of the area remains. After 3 steps:
+
+$$A_3 = A_0 \times \left(\frac{3}{4}\right)^3 = \frac{729\sqrt{3}}{4} \times \frac{27}{64} = \frac{19{,}683\sqrt{3}}{256}$$
+
+Each of the 27 small triangles has area:
+
+$$\frac{\sqrt{3}}{4}(3.375)^2 = \frac{\sqrt{3}}{4}(11.390625) = \frac{11.390625\sqrt{3}}{4}$$
+
+Total: $27 \times \frac{11.390625\sqrt{3}}{4} = \frac{307.546875\sqrt{3}}{4} = \frac{19{,}683\sqrt{3}}{256}$
+
+✅ Answer: After 3 iterations, each small triangle has a side length of **3.375 cm**, and there are **27** such triangles.
+
+---
+
+## Example 5 — Engineering Application: Similar Triangles in Bridge Design
+
+A bridge truss uses similar triangular sections for structural strength. The largest triangular section has a base of 12 m and a height of 8 m. A smaller similar triangular brace has a height of 3 m. Find the base of the brace and the ratio of their areas.
+
+### Step 1: Find the Scale Factor
+
+$$k = \frac{\text{brace height}}{\text{large triangle height}} = \frac{3}{8}$$
+
+### Step 2: Find the Base of the Brace
+
+$$\text{brace base} = 12 \times \frac{3}{8} = \frac{36}{8} = 4.5 \text{ m}$$
+
+### Step 3: Find the Area of Each Triangle
+
+$$A_{\text{large}} = \frac{1}{2}(12)(8) = 48 \text{ m}^2$$
+
+$$A_{\text{brace}} = \frac{1}{2}(4.5)(3) = 6.75 \text{ m}^2$$
+
+### Step 4: Verify the Area Ratio
+
+$$\frac{A_{\text{brace}}}{A_{\text{large}}} = \frac{6.75}{48} = \frac{9}{64} = \left(\frac{3}{8}\right)^2 = k^2 \checkmark$$
+
+### Step 5: Interpret
+
+The brace uses only $\frac{9}{64}$ (about 14%) of the material of the large triangle while maintaining structural similarity.
+
+✅ Answer: The brace has a base of **4.5 m**. Its area is $\frac{9}{64}$ of the large triangle's area.
+
+---
+
+## Think About It
+
+* Why does area scale by $k^2$ but volume by $k^3$?
+* How do engineers use similarity to test designs before building full-scale structures?
+* What real-world objects exhibit fractal-like self-similarity?
+
+---
+
+## Objective Alignment
+
+- `Apply similarity to scale models`: Primary worked examples: Examples 1, 5.
+- `Use similarity in photography and blueprint reading`: Primary worked examples: Examples 2, 3.
+- `Recognize self-similarity in fractal patterns`: Primary worked examples: Example 4.
+- `Understand the relationship between scale factor and area/volume`: Primary worked examples: Examples 1, 2, 5.

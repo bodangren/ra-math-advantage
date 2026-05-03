@@ -1,0 +1,233 @@
+# Lesson 4-4 — Solving Right Triangles
+
+## Today's Goals
+
+* Find all missing sides and angles in a right triangle given partial information
+* Apply right triangle solving to angle of depression and navigation problems
+* Combine multiple right triangles to solve composite figures
+
+---
+
+## Vocabulary
+
+* **solving a triangle** — finding all unknown side lengths and angle measures
+* **angle of depression** — the angle measured downward from the horizontal to a line of sight
+* **bearing** — a direction measured as an angle from north or south
+* **complementary angles** — two angles that sum to 90°; in a right triangle, the two acute angles are complementary
+
+---
+
+## Explore: How Much Information Do You Need?
+
+To solve a right triangle, you already know one angle (90°). You need at least one more piece — either an angle or a side — to determine the rest.
+
+Inquiry Question:
+What is the minimum information needed to find all sides and angles of a right triangle?
+
+---
+
+## Learn: Solving Right Triangles
+
+### Key Concept
+
+Given a right triangle, you can find all unknowns if you know:
+
+* One acute angle and one side, OR
+* Two sides
+
+Use:
+* **Trig ratios** (sin, cos, tan) when you have an angle and need a side (or vice versa)
+* **Pythagorean theorem** when you have two sides and need the third
+* **Complementary angles** ($\angle A + \angle B = 90°$) to find the other acute angle
+
+---
+
+## Example 1 — Solve a Right Triangle Given One Angle and One Side
+
+In right triangle $ABC$ with right angle at $C$, $\angle A = 28°$ and $AC = 15$. Find all remaining sides and angles.
+
+### Step 1: Find the Other Acute Angle
+
+$$\angle B = 90° - 28° = 62°$$
+
+### Step 2: Find BC (Opposite $\angle A$)
+
+$$\tan(28°) = \frac{BC}{AC} = \frac{BC}{15}$$
+
+$$BC = 15 \times \tan(28°) = 15 \times 0.5317 = 7.98$$
+
+### Step 3: Find the Hypotenuse AB
+
+$$\cos(28°) = \frac{AC}{AB} = \frac{15}{AB}$$
+
+$$AB = \frac{15}{\cos(28°)} = \frac{15}{0.8829} = 16.99$$
+
+### Step 4: Verify with the Pythagorean Theorem
+
+$$7.98^2 + 15^2 = 63.68 + 225 = 288.68$$
+
+$$16.99^2 = 288.66 \approx 288.68 \checkmark$$
+
+✅ Answer: $\angle B = 62°$, $BC \approx 7.98$, $AB \approx 16.99$.
+
+---
+
+## Example 2 — Solve a Right Triangle Given Two Sides
+
+In right triangle $PQR$ with right angle at $Q$, $PQ = 9$ and $QR = 12$. Find all remaining sides and angles.
+
+### Step 1: Find the Hypotenuse
+
+$$PR = \sqrt{PQ^2 + QR^2} = \sqrt{81 + 144} = \sqrt{225} = 15$$
+
+### Step 2: Find $\angle P$
+
+$$\tan(\angle P) = \frac{QR}{PQ} = \frac{12}{9} = \frac{4}{3}$$
+
+$$\angle P = \tan^{-1}\left(\frac{4}{3}\right) \approx 53.13°$$
+
+### Step 3: Find $\angle R$
+
+$$\angle R = 90° - 53.13° = 36.87°$$
+
+### Step 4: Verify with Trig Ratios
+
+$$\sin(53.13°) = \frac{12}{15} = 0.8 \checkmark$$
+
+$$\cos(53.13°) = \frac{9}{15} = 0.6 \checkmark$$
+
+$9, 12, 15$ is a Pythagorean triple (3 times $3, 4, 5$).
+
+✅ Answer: $PR = 15$, $\angle P \approx 53.13°$, $\angle R \approx 36.87°$.
+
+---
+
+## Example 3 — Angle of Depression Problem
+
+A lighthouse keeper is 120 feet above sea level and spots a boat. The angle of depression to the boat is 18°. Find the horizontal distance from the base of the lighthouse to the boat.
+
+### Step 1: Understand the Angle of Depression
+
+The angle of depression is measured from the horizontal down to the line of sight. By alternate interior angles, the angle of elevation from the boat to the keeper is also 18°.
+
+### Step 2: Set Up the Triangle
+
+* Opposite side (height of lighthouse): $120$ ft
+* Adjacent side (horizontal distance): $d$
+* Angle: $18°$
+
+### Step 3: Solve
+
+$$\tan(18°) = \frac{120}{d}$$
+
+$$d = \frac{120}{\tan(18°)} = \frac{120}{0.3249} = 369.34 \text{ ft}$$
+
+### Step 4: Verify
+
+The straight-line distance to the boat:
+
+$$\text{Hypotenuse} = \frac{120}{\sin(18°)} = \frac{120}{0.3090} = 388.35 \text{ ft}$$
+
+Check: $\sqrt{120^2 + 369.34^2} = \sqrt{14400 + 136407} = \sqrt{150807} = 388.34 \checkmark$
+
+✅ Answer: The boat is approximately **369.34 feet** from the base of the lighthouse.
+
+---
+
+## Example 4 — Navigation/Bearing Problem Using Trig
+
+A ship sails 200 km on a bearing of N35°E, then turns and sails 150 km on a bearing of N70°E. How far is the ship from its starting point?
+
+### Step 1: Break Each Leg into Components
+
+**First leg (200 km, N35°E):**
+
+$$x_1 = 200 \sin(35°) = 200 \times 0.5736 = 114.72 \text{ km (east)}$$
+
+$$y_1 = 200 \cos(35°) = 200 \times 0.8192 = 163.83 \text{ km (north)}$$
+
+**Second leg (150 km, N70°E):**
+
+$$x_2 = 150 \sin(70°) = 150 \times 0.9397 = 140.95 \text{ km (east)}$$
+
+$$y_2 = 150 \cos(70°) = 150 \times 0.3420 = 51.30 \text{ km (north)}$$
+
+### Step 2: Find Total Displacement
+
+$$x_{\text{total}} = 114.72 + 140.95 = 255.67 \text{ km east}$$
+
+$$y_{\text{total}} = 163.83 + 51.30 = 215.13 \text{ km north}$$
+
+### Step 3: Find the Distance
+
+$$d = \sqrt{255.67^2 + 215.13^2} = \sqrt{65367 + 46281} = \sqrt{111648} \approx 334.14 \text{ km}$$
+
+### Step 4: Find the Bearing
+
+$$\theta = \tan^{-1}\left(\frac{255.67}{215.13}\right) = \tan^{-1}(1.1884) \approx 49.94°$$
+
+The bearing is approximately N50°E.
+
+✅ Answer: The ship is approximately **334.14 km** from its starting point, on a bearing of approximately **N50°E**.
+
+---
+
+## Example 5 — Multi-Step: Solve a Composite Right Triangle Figure
+
+A surveyor stands at point $A$ and measures the angle of elevation to the top of a hill as 32°. She walks 500 meters directly toward the hill to point $B$ and measures the angle of elevation as 48°. Find the height of the hill.
+
+### Step 1: Set Up the Equations
+
+Let $h$ be the height of the hill and $d$ be the horizontal distance from $B$ to the base of the hill.
+
+From point $B$:
+
+$$\tan(48°) = \frac{h}{d} \implies h = d \times \tan(48°)$$
+
+From point $A$ (which is 500 m farther):
+
+$$\tan(32°) = \frac{h}{d + 500} \implies h = (d + 500) \times \tan(32°)$$
+
+### Step 2: Set the Two Expressions Equal
+
+$$d \times \tan(48°) = (d + 500) \times \tan(32°)$$
+
+$$d \times 1.1106 = (d + 500) \times 0.6249$$
+
+### Step 3: Solve for d
+
+$$1.1106d = 0.6249d + 312.45$$
+
+$$1.1106d - 0.6249d = 312.45$$
+
+$$0.4857d = 312.45$$
+
+$$d = \frac{312.45}{0.4857} = 643.29 \text{ m}$$
+
+### Step 4: Find h
+
+$$h = d \times \tan(48°) = 643.29 \times 1.1106 = 714.44 \text{ m}$$
+
+### Step 5: Verify
+
+From $A$: $h = (643.29 + 500) \times \tan(32°) = 1143.29 \times 0.6249 = 714.44 \checkmark$
+
+✅ Answer: The hill is approximately **714.44 meters** tall.
+
+---
+
+## Think About It
+
+* Why do you only need two pieces of information (one side and one non-right angle, or two sides) to solve a right triangle?
+* How does the angle of depression relate to the angle of elevation?
+* In the navigation problem, why do we break bearings into north and east components?
+
+---
+
+## Objective Alignment
+
+- `Solve a right triangle given one angle and one side`: Primary worked examples: Example 1.
+- `Solve a right triangle given two sides`: Primary worked examples: Example 2.
+- `Solve angle of depression problems`: Primary worked examples: Example 3.
+- `Solve navigation/bearing problems`: Primary worked examples: Example 4.
+- `Solve composite right triangle figures`: Primary worked examples: Example 5.

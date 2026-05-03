@@ -1,0 +1,217 @@
+# Lesson 6-1 — Area of Polygons
+
+## Today's Goals
+
+* Compute the area of triangles using $\frac{1}{2} \times \text{base} \times \text{height}$
+* Compute the area of parallelograms and trapezoids
+* Compute the area of regular polygons using the apothem
+* Find the area of composite figures
+* Apply area formulas to real-world problems
+
+---
+
+## Vocabulary
+
+* **area** — the number of square units needed to cover a flat surface
+* **base** — any side of a polygon used as a reference for area computation
+* **height** — the perpendicular distance from the base to the opposite vertex or side
+* **apothem** — the perpendicular distance from the center of a regular polygon to a side
+* **composite figure** — a shape made by combining two or more simple polygons
+
+---
+
+## Explore: How Do We Measure Flat Surfaces?
+
+Every polygon can be decomposed into triangles. If we can find the area of a triangle, we can find the area of any polygon.
+
+Inquiry Question:
+Why does the area of a triangle use $\frac{1}{2}$ while the area of a rectangle does not?
+
+---
+
+## Learn: Area Formulas
+
+### Key Concept: Triangle
+
+$$A = \frac{1}{2} \times b \times h$$
+
+### Key Concept: Parallelogram
+
+$$A = b \times h$$
+
+### Key Concept: Trapezoid
+
+$$A = \frac{1}{2}(b_1 + b_2) \times h$$
+
+### Key Concept: Regular Polygon
+
+$$A = \frac{1}{2} \times \text{apothem} \times \text{perimeter}$$
+
+$$A = \frac{1}{2} \cdot a \cdot P$$
+
+---
+
+## Example 1 — Area of Triangle
+
+Find the area of a triangle with base 12 cm and height 8 cm.
+
+### Step 1: Write the Formula
+
+$$A = \frac{1}{2} \times b \times h$$
+
+### Step 2: Substitute
+
+$$A = \frac{1}{2} \times 12 \times 8$$
+
+$$A = \frac{1}{2} \times 96 = 48 \text{ cm}^2$$
+
+### Step 3: Verify
+
+A rectangle with the same base and height would have area $12 \times 8 = 96$ cm². The triangle is exactly half. ✓
+
+✅ Answer: The area is **48 cm²**.
+
+---
+
+## Example 2 — Area of Parallelogram
+
+Find the area of a parallelogram with base 15 m and height 9 m.
+
+### Step 1: Write the Formula
+
+$$A = b \times h$$
+
+### Step 2: Substitute
+
+$$A = 15 \times 9 = 135 \text{ m}^2$$
+
+### Step 3: Verify
+
+A parallelogram can be rearranged into a rectangle with the same base and height, so the formula $A = bh$ is consistent. ✓
+
+✅ Answer: The area is **135 m²**.
+
+---
+
+## Example 3 — Area of Trapezoid
+
+Find the area of a trapezoid with parallel sides (bases) of 10 cm and 16 cm, and height 7 cm.
+
+### Step 1: Write the Formula
+
+$$A = \frac{1}{2}(b_1 + b_2) \times h$$
+
+### Step 2: Substitute
+
+$$A = \frac{1}{2}(10 + 16) \times 7$$
+
+$$A = \frac{1}{2}(26) \times 7$$
+
+$$A = 13 \times 7 = 91 \text{ cm}^2$$
+
+### Step 3: Verify
+
+The average of the bases is $\frac{10 + 16}{2} = 13$ cm. The trapezoid area is the same as a rectangle with width 13 and height 7. ✓
+
+✅ Answer: The area is **91 cm²**.
+
+---
+
+## Example 4 — Area of Regular Hexagon Using Apothem
+
+A regular hexagon has side length 10 cm and apothem $5\sqrt{3} \approx 8.66$ cm. Find the area.
+
+### Step 1: Find the Perimeter
+
+A regular hexagon has 6 equal sides:
+
+$$P = 6 \times 10 = 60 \text{ cm}$$
+
+### Step 2: Apply the Regular Polygon Area Formula
+
+$$A = \frac{1}{2} \cdot a \cdot P = \frac{1}{2} \cdot 5\sqrt{3} \cdot 60$$
+
+$$A = 30 \cdot 5\sqrt{3} = 150\sqrt{3}$$
+
+### Step 3: Compute the Approximate Value
+
+$$150\sqrt{3} \approx 150 \times 1.732 = 259.81 \text{ cm}^2$$
+
+### Step 4: Verify with an Alternative Method
+
+A regular hexagon can be divided into 6 equilateral triangles, each with side 10:
+
+$$A_{\text{triangle}} = \frac{\sqrt{3}}{4} \cdot 10^2 = 25\sqrt{3}$$
+
+$$A_{\text{hexagon}} = 6 \times 25\sqrt{3} = 150\sqrt{3} \checkmark$$
+
+✅ Answer: The area is $150\sqrt{3} \approx$ **259.81 cm²**.
+
+---
+
+## Example 5 — Composite Figure Area
+
+A figure consists of a rectangle (12 m × 8 m) with a triangle (base 12 m, height 5 m) on top. Find the total area.
+
+### Step 1: Find the Area of the Rectangle
+
+$$A_{\text{rect}} = 12 \times 8 = 96 \text{ m}^2$$
+
+### Step 2: Find the Area of the Triangle
+
+$$A_{\text{tri}} = \frac{1}{2} \times 12 \times 5 = 30 \text{ m}^2$$
+
+### Step 3: Add the Areas
+
+$$A_{\text{total}} = 96 + 30 = 126 \text{ m}^2$$
+
+✅ Answer: The total area is **126 m²**.
+
+---
+
+## Example 6 — Real-World: Carpeting a Room with Irregular Shape
+
+A room has an L-shape: one rectangle is 15 ft × 10 ft, and an adjoining rectangle is 8 ft × 6 ft (the 8 ft side connects along the 10 ft side). How much carpet is needed?
+
+### Step 1: Find the Area of the Larger Rectangle
+
+$$A_1 = 15 \times 10 = 150 \text{ ft}^2$$
+
+### Step 2: Find the Area of the Smaller Rectangle
+
+$$A_2 = 8 \times 6 = 48 \text{ ft}^2$$
+
+### Step 3: Compute the Total Area
+
+$$A_{\text{total}} = 150 + 48 = 198 \text{ ft}^2$$
+
+### Step 4: Account for Waste
+
+Carpet installers typically add 10% for waste and cutting:
+
+$$A_{\text{with waste}} = 198 \times 1.10 = 217.8 \text{ ft}^2$$
+
+### Step 5: Determine Carpet Needed
+
+Round up to **218 square feet** of carpet.
+
+✅ Answer: **198 ft²** of floor area; order at least **218 ft²** of carpet (including 10% waste).
+
+---
+
+## Think About It
+
+* Why does the parallelogram area formula not include $\frac{1}{2}$, while the triangle formula does?
+* How does the trapepezoid formula relate to the average of the two bases?
+* Can every polygon be decomposed into triangles? How many triangles for an $n$-sided polygon?
+
+---
+
+## Objective Alignment
+
+- `Compute area of triangle`: Primary worked examples: Example 1.
+- `Compute area of parallelogram`: Primary worked examples: Example 2.
+- `Compute area of trapezoid`: Primary worked examples: Example 3.
+- `Compute area of regular polygon using apothem`: Primary worked examples: Example 4.
+- `Find area of composite figures`: Primary worked examples: Examples 5, 6.
+- `Apply area to real-world problems`: Primary worked examples: Example 6.

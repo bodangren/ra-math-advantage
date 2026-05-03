@@ -1,0 +1,196 @@
+# Lesson 7-2 — Fundamental Counting Principle and Tree Diagrams
+
+## Today's Goals
+
+* Apply the fundamental counting principle to determine the number of outcomes
+* Construct and interpret tree diagrams
+* Solve counting problems involving multiple stages
+* Handle counting with restrictions
+
+---
+
+## Vocabulary
+
+* **fundamental counting principle** — if one event can occur in $m$ ways and a second independent event can occur in $n$ ways, the total number of combined outcomes is $m \times n$
+* **tree diagram** — a branching diagram used to list all possible outcomes systematically
+* **outcome** — one possible result of an experiment
+* **sample space** — the set of all possible outcomes
+
+---
+
+## Explore: How Many Ways Can Things Combine?
+
+A restaurant offers 3 appetizers, 5 main courses, and 4 desserts. How many different meals are possible? The counting principle gives us a shortcut instead of listing every combination.
+
+Inquiry Question:
+If you add a restriction (e.g., one appetizer only pairs with certain mains), how does the count change?
+
+---
+
+## Learn: The Fundamental Counting Principle
+
+### Key Concept: Two Events
+
+If Event $A$ has $m$ outcomes and Event $B$ has $n$ outcomes, the total number of combined outcomes is:
+
+$$\text{Total} = m \times n$$
+
+### Key Concept: Extended Counting Principle
+
+For $k$ sequential events with $n_1, n_2, \ldots, n_k$ outcomes:
+
+$$\text{Total} = n_1 \times n_2 \times \cdots \times n_k$$
+
+### Key Concept: Tree Diagrams
+
+A tree diagram shows all possible outcomes by branching at each decision point. Count the endpoints for the total.
+
+---
+
+## Example 1 — Number of Outcomes for 3 Coin Flips
+
+A coin is flipped 3 times. How many possible outcomes are there?
+
+### Step 1: Count Choices per Flip
+
+Each flip has 2 outcomes: Heads ($H$) or Tails ($T$).
+
+### Step 2: Apply the Counting Principle
+
+$$\text{Total} = 2 \times 2 \times 2 = 2^3 = 8$$
+
+### Step 3: List All Outcomes (Verify)
+
+$$\{HHH, HHT, HTH, HTT, THH, THT, TTH, TTT\}$$
+
+Count: 8 outcomes. ✓
+
+✅ Answer: There are **8** possible outcomes.
+
+---
+
+## Example 2 — Outfit Combinations
+
+A person has 4 shirts, 3 pairs of pants, and 2 pairs of shoes. How many different outfits are possible?
+
+### Step 1: Count Choices for Each Item
+
+- Shirts: 4 options
+- Pants: 3 options
+- Shoes: 2 options
+
+### Step 2: Apply the Counting Principle
+
+$$\text{Total} = 4 \times 3 \times 2 = 24$$
+
+### Step 3: Verify with a Partial Tree
+
+Choose shirt first (4 branches), then pants (3 branches each), then shoes (2 branches each):
+
+$$4 \times 3 \times 2 = 24 \text{ endpoints} \checkmark$$
+
+✅ Answer: There are **24** different outfits.
+
+---
+
+## Example 3 — Password Possibilities
+
+A 3-character password uses one uppercase letter (A–Z) followed by two digits (0–9). How many passwords are possible?
+
+### Step 1: Count Choices per Position
+
+- First character (letter): 26 choices
+- Second character (digit): 10 choices
+- Third character (digit): 10 choices
+
+### Step 2: Apply the Counting Principle
+
+$$\text{Total} = 26 \times 10 \times 10 = 2600$$
+
+### Step 3: Context
+
+With 2600 possible passwords, this is a small keyspace. Real passwords need more characters for security.
+
+✅ Answer: There are **2600** possible passwords.
+
+---
+
+## Example 4 — Tree Diagram for Dependent Events
+
+A jar contains 3 red and 2 blue marbles. Two marbles are drawn without replacement. Use a tree diagram to count the outcomes.
+
+### Step 1: First Draw
+
+- Red ($R$): 3 out of 5 → $P(R) = \frac{3}{5}$
+- Blue ($B$): 2 out of 5 → $P(B) = \frac{2}{5}$
+
+### Step 2: Second Draw (Depends on First)
+
+**If first was Red** (4 marbles left: 2R, 2B):
+- $RR$: $P = \frac{3}{5} \times \frac{2}{4} = \frac{6}{20}$
+- $RB$: $P = \frac{3}{5} \times \frac{2}{4} = \frac{6}{20}$
+
+**If first was Blue** (4 marbles left: 3R, 1B):
+- $BR$: $P = \frac{2}{5} \times \frac{3}{4} = \frac{6}{20}$
+- $BB$: $P = \frac{2}{5} \times \frac{1}{4} = \frac{2}{20}$
+
+### Step 3: Count the Outcomes
+
+There are 4 possible ordered outcomes: $RR$, $RB$, $BR$, $BB$.
+
+### Step 4: Verify Probabilities Sum to 1
+
+$$\frac{6}{20} + \frac{6}{20} + \frac{6}{20} + \frac{2}{20} = \frac{20}{20} = 1 \checkmark$$
+
+✅ Answer: 4 outcomes: $RR$ (30%), $RB$ (30%), $BR$ (30%), $BB$ (10%).
+
+---
+
+## Example 5 — Counting Principle with Restrictions
+
+A 4-digit PIN cannot start with 0 and cannot have repeated digits. How many such PINs are possible?
+
+### Step 1: First Digit
+
+Cannot be 0: 9 choices (1–9).
+
+### Step 2: Second Digit
+
+Can be any digit except the first: 9 choices (0–9 minus the first digit).
+
+### Step 3: Third Digit
+
+Cannot repeat the first two: 8 choices.
+
+### Step 4: Fourth Digit
+
+Cannot repeat any of the first three: 7 choices.
+
+### Step 5: Apply the Counting Principle
+
+$$\text{Total} = 9 \times 9 \times 8 \times 7 = 4536$$
+
+### Step 6: Compare to Unrestricted
+
+Without restrictions: $10^4 = 10{,}000$ PINs.
+
+With restrictions: 4536 PINs — less than half. ✓
+
+✅ Answer: There are **4536** valid PINs.
+
+---
+
+## Think About It
+
+* Why does the counting principle multiply instead of add?
+* When would you use a tree diagram instead of just the counting principle?
+* How does the count change when items cannot be repeated vs. when they can?
+
+---
+
+## Objective Alignment
+
+- `Apply the counting principle for multiple events`: Primary worked examples: Examples 1, 2, 3.
+- `Construct and interpret tree diagrams`: Primary worked examples: Example 4.
+- `Handle counting with restrictions`: Primary worked examples: Example 5.
+- `Solve real-world counting problems`: Primary worked examples: Examples 2, 3, 5.

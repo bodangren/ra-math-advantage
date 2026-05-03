@@ -1,0 +1,300 @@
+# Lesson 9-4 — Systems of Equations
+
+## Today's Goals
+
+* Solve systems of linear equations by graphing (find the intersection point)
+* Solve systems by substitution
+* Solve systems by elimination (adding or subtracting equations)
+* Classify systems as having one solution, no solution, or infinitely many solutions
+* Apply systems of equations to real-world mixture and rate problems
+
+---
+
+## Vocabulary
+
+* **system of equations** — two or more equations with the same variables, solved simultaneously
+* **solution of a system** — the ordered pair $(x, y)$ that satisfies both equations
+* **substitution** — solve one equation for a variable, then substitute into the other
+* **elimination** — add or subtract equations to eliminate one variable
+* **consistent system** — has at least one solution (intersecting or identical lines)
+* **inconsistent system** — has no solution (parallel lines)
+
+---
+
+## Explore: Two Unknowns, Two Clues
+
+Each equation has infinitely many solutions (a line). A system of two equations narrows it down to the point where both lines meet — the single $(x, y)$ pair that satisfies both.
+
+Inquiry Question:
+Can two lines on a plane intersect at more than one point? What does that tell you about the system?
+
+---
+
+## Learn: Three Methods for Solving Systems
+
+### Key Concept: Graphing
+
+Graph both lines. The intersection point is the solution.
+
+### Key Concept: Substitution
+
+1. Solve one equation for one variable
+2. Substitute into the other equation
+3. Solve for the remaining variable
+4. Back-substitute to find the other variable
+
+### Key Concept: Elimination
+
+1. Align equations in standard form
+2. Multiply one or both equations to create opposite coefficients for one variable
+3. Add the equations to eliminate that variable
+4. Solve and back-substitute
+
+### Key Concept: Classifying Systems
+
+| Lines | System Type | Solutions |
+|-------|------------|-----------|
+| Intersect | Consistent and independent | Exactly one |
+| Parallel | Inconsistent | None |
+| Same line | Consistent and dependent | Infinitely many |
+
+---
+
+## Example 1 — Solve by Graphing (Find Intersection)
+
+Solve the system:
+
+$$y = 2x + 1$$
+
+$$y = -x + 4$$
+
+### Step 1: Graph the First Line
+
+$y = 2x + 1$: y-intercept $(0, 1)$, slope $2$. Points: $(0, 1)$, $(1, 3)$, $(2, 5)$.
+
+### Step 2: Graph the Second Line
+
+$y = -x + 4$: y-intercept $(0, 4)$, slope $-1$. Points: $(0, 4)$, $(1, 3)$, $(2, 2)$.
+
+### Step 3: Find the Intersection
+
+Both lines pass through $(1, 3)$.
+
+### Step 4: Verify
+
+- Equation 1: $3 = 2(1) + 1 = 3$ ✓
+- Equation 2: $3 = -(1) + 4 = 3$ ✓
+
+✅ Answer: The solution is $(1, 3)$.
+
+---
+
+## Example 2 — Solve by Substitution
+
+Solve the system:
+
+$$y = 3x - 5$$
+
+$$2x + y = 10$$
+
+### Step 1: Substitute
+
+The first equation gives $y = 3x - 5$. Substitute into the second:
+
+$$2x + (3x - 5) = 10$$
+
+### Step 2: Solve for $x$
+
+$$5x - 5 = 10$$
+
+$$5x = 15$$
+
+$$x = 3$$
+
+### Step 3: Solve for $y$
+
+$$y = 3(3) - 5 = 9 - 5 = 4$$
+
+### Step 4: Verify
+
+- Equation 1: $4 = 3(3) - 5 = 4$ ✓
+- Equation 2: $2(3) + 4 = 10$ ✓
+
+✅ Answer: The solution is $(3, 4)$.
+
+---
+
+## Example 3 — Solve by Elimination (Add Equations)
+
+Solve the system:
+
+$$3x + 2y = 12$$
+
+$$5x - 2y = 8$$
+
+### Step 1: Notice Opposite Coefficients
+
+The $y$-terms have coefficients $+2$ and $-2$.
+
+### Step 2: Add the Equations
+
+$$\begin{aligned} 3x + 2y &= 12 \\ +\quad 5x - 2y &= 8 \\ \hline 8x &= 20 \end{aligned}$$
+
+### Step 3: Solve for $x$
+
+$$x = \frac{20}{8} = \frac{5}{2}$$
+
+### Step 4: Back-Substitute for $y$
+
+$$3\left(\frac{5}{2}\right) + 2y = 12$$
+
+$$\frac{15}{2} + 2y = 12$$
+
+$$2y = 12 - \frac{15}{2} = \frac{24 - 15}{2} = \frac{9}{2}$$
+
+$$y = \frac{9}{4}$$
+
+### Step 5: Verify
+
+- Equation 1: $3(\frac{5}{2}) + 2(\frac{9}{4}) = \frac{15}{2} + \frac{9}{2} = \frac{24}{2} = 12$ ✓
+- Equation 2: $5(\frac{5}{2}) - 2(\frac{9}{4}) = \frac{25}{2} - \frac{9}{2} = \frac{16}{2} = 8$ ✓
+
+✅ Answer: The solution is $\left(\frac{5}{2}, \frac{9}{4}\right)$.
+
+---
+
+## Example 4 — Solve by Elimination (Multiply First)
+
+Solve the system:
+
+$$2x + 3y = 7$$
+
+$$4x - 5y = -1$$
+
+### Step 1: Multiply to Create Opposite Coefficients for $x$
+
+Multiply the first equation by $-2$:
+
+$$-4x - 6y = -14$$
+
+### Step 2: Add to the Second Equation
+
+$$\begin{aligned} -4x - 6y &= -14 \\ +\quad 4x - 5y &= -1 \\ \hline -11y &= -15 \end{aligned}$$
+
+### Step 3: Solve for $y$
+
+$$y = \frac{15}{11}$$
+
+### Step 4: Back-Substitute for $x$
+
+$$2x + 3\left(\frac{15}{11}\right) = 7$$
+
+$$2x + \frac{45}{11} = 7$$
+
+$$2x = 7 - \frac{45}{11} = \frac{77 - 45}{11} = \frac{32}{11}$$
+
+$$x = \frac{16}{11}$$
+
+### Step 5: Verify
+
+- Equation 1: $2(\frac{16}{11}) + 3(\frac{15}{11}) = \frac{32}{11} + \frac{45}{11} = \frac{77}{11} = 7$ ✓
+- Equation 2: $4(\frac{16}{11}) - 5(\frac{15}{11}) = \frac{64}{11} - \frac{75}{11} = \frac{-11}{11} = -1$ ✓
+
+✅ Answer: The solution is $\left(\frac{16}{11}, \frac{15}{11}\right)$.
+
+---
+
+## Example 5 — No Solution and Infinitely Many Solutions
+
+Classify each system.
+
+**(a)** $y = 2x + 3$ and $y = 2x - 1$
+
+**(b)** $3x - 6y = 12$ and $x - 2y = 4$
+
+### Step 1: Analyze System (a)
+
+Both lines have slope $2$ but different y-intercepts ($3$ and $-1$).
+
+Since the slopes are equal and the y-intercepts differ, the lines are **parallel**.
+
+**No solution** (inconsistent system).
+
+### Step 2: Verify by Substitution
+
+$$2x + 3 = 2x - 1 \implies 3 = -1 \quad \text{FALSE}$$
+
+### Step 3: Analyze System (b)
+
+Divide the first equation by 3: $x - 2y = 4$.
+
+This is the same as the second equation. The two equations represent the **same line**.
+
+**Infinitely many solutions** (consistent and dependent system).
+
+### Step 4: Verify by Substitution
+
+$$3(4 + 2y) - 6y = 12 \implies 12 + 6y - 6y = 12 \implies 12 = 12 \quad \text{TRUE}$$
+
+✅ Answer: (a) **No solution** (parallel lines); (b) **Infinitely many solutions** (same line).
+
+---
+
+## Example 6 — Real-World: Mixture or Rate Problem
+
+A chemist mixes a 30% acid solution with a 50% acid solution to get 200 mL of a 35% acid solution. How much of each solution is needed?
+
+### Step 1: Define Variables
+
+- $x$ = mL of 30% solution
+- $y$ = mL of 50% solution
+
+### Step 2: Write the System
+
+**Volume equation:** $x + y = 200$
+
+**Acid equation:** $0.30x + 0.50y = 0.35(200) = 70$
+
+### Step 3: Solve by Substitution
+
+From equation 1: $y = 200 - x$.
+
+Substitute into equation 2:
+
+$$0.30x + 0.50(200 - x) = 70$$
+
+$$0.30x + 100 - 0.50x = 70$$
+
+$$-0.20x = -30$$
+
+$$x = 150$$
+
+### Step 4: Find $y$
+
+$$y = 200 - 150 = 50$$
+
+### Step 5: Verify
+
+- Volume: $150 + 50 = 200$ mL ✓
+- Acid: $0.30(150) + 0.50(50) = 45 + 25 = 70$ mL of acid = $\frac{70}{200} = 35\%$ ✓
+
+✅ Answer: **150 mL of 30% solution** and **50 mL of 50% solution**.
+
+---
+
+## Think About It
+
+* Which method (graphing, substitution, elimination) is best for each type of system? Why?
+* What does it mean geometrically when a system has no solution?
+* Why does multiplying an equation by a constant not change the system's solution?
+
+---
+
+## Objective Alignment
+
+- `Solve systems by graphing`: Primary worked examples: Example 1.
+- `Solve systems by substitution`: Primary worked examples: Example 2.
+- `Solve systems by elimination (add)`: Primary worked examples: Example 3.
+- `Solve systems by elimination (multiply first)`: Primary worked examples: Example 4.
+- `Classify systems (no solution / infinite solutions)`: Primary worked examples: Example 5.
+- `Apply systems to mixture problems`: Primary worked examples: Example 6.

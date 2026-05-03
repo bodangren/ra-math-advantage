@@ -1,0 +1,201 @@
+# Lesson 7-5 — Compound Probability
+
+## Today's Goals
+
+* Distinguish between independent and dependent events
+* Compute $P(A \text{ and } B)$ for independent and dependent events
+* Compute $P(A \text{ or } B)$ for mutually exclusive and overlapping events
+* Apply the inclusion-exclusion principle
+* Solve real-world probability problems involving compound events
+
+---
+
+## Vocabulary
+
+* **independent events** — the outcome of one event does not affect the outcome of another
+* **dependent events** — the outcome of one event affects the probability of another
+* **mutually exclusive events** — events that cannot occur at the same time
+* **inclusive events** — events that can occur simultaneously
+* **inclusion-exclusion principle** — $P(A \text{ or } B) = P(A) + P(B) - P(A \text{ and } B)$
+
+---
+
+## Explore: Combining Probabilities
+
+If you flip a coin and roll a die, the two events are independent. If you draw two cards without replacement, the events are dependent. How do we combine these probabilities?
+
+Inquiry Question:
+Why do we multiply for "and" but add for "or"?
+
+---
+
+## Learn: Compound Probability Rules
+
+### Key Concept: Independent Events — $P(A \text{ and } B)$
+
+$$P(A \text{ and } B) = P(A) \times P(B)$$
+
+### Key Concept: Dependent Events — $P(A \text{ and } B)$
+
+$$P(A \text{ and } B) = P(A) \times P(B \mid A)$$
+
+where $P(B \mid A)$ is the probability of $B$ given that $A$ has occurred.
+
+### Key Concept: Mutually Exclusive Events — $P(A \text{ or } B)$
+
+If $A$ and $B$ cannot both occur:
+
+$$P(A \text{ or } B) = P(A) + P(B)$$
+
+### Key Concept: Overlapping Events — $P(A \text{ or } B)$
+
+Inclusion-exclusion:
+
+$$P(A \text{ or } B) = P(A) + P(B) - P(A \text{ and } B)$$
+
+---
+
+## Example 1 — Independent Events: Coin and Die
+
+A coin is flipped and a standard die is rolled. Find the probability of getting heads and a 5.
+
+### Step 1: Identify the Events
+
+- $P(H) = \frac{1}{2}$ (independent)
+- $P(5) = \frac{1}{6}$ (independent)
+
+### Step 2: Apply the Independent Events Formula
+
+$$P(H \text{ and } 5) = P(H) \times P(5) = \frac{1}{2} \times \frac{1}{6} = \frac{1}{12}$$
+
+### Step 3: Verify
+
+Sample space: 2 × 6 = 12 equally likely outcomes. Only one is (H, 5). ✓
+
+✅ Answer: $P(H \text{ and } 5) = \frac{1}{12} \approx 8.33\%$
+
+---
+
+## Example 2 — Dependent Events: Drawing Without Replacement
+
+Two cards are drawn without replacement from a standard deck. Find the probability both are hearts.
+
+### Step 1: First Card
+
+$$P(\text{1st heart}) = \frac{13}{52} = \frac{1}{4}$$
+
+### Step 2: Second Card (Given First Was a Heart)
+
+After drawing one heart, 12 hearts remain out of 51 cards:
+
+$$P(\text{2nd heart} \mid \text{1st heart}) = \frac{12}{51}$$
+
+### Step 3: Apply the Dependent Events Formula
+
+$$P(\text{both hearts}) = \frac{13}{52} \times \frac{12}{51} = \frac{1}{4} \times \frac{4}{17} = \frac{1}{17}$$
+
+### Step 4: Compare to Independent Case
+
+With replacement: $\frac{1}{4} \times \frac{1}{4} = \frac{1}{16}$. The dependent probability ($\frac{1}{17}$) is slightly lower because one heart is removed. ✓
+
+✅ Answer: $P(\text{both hearts}) = \frac{1}{17} \approx 5.88\%$
+
+---
+
+## Example 3 — $P(A \text{ or } B)$ with Mutually Exclusive Events
+
+A card is drawn from a standard deck. Find the probability it is a king or a queen.
+
+### Step 1: Check for Mutual Exclusivity
+
+A card cannot be both a king and a queen. These events are mutually exclusive.
+
+### Step 2: Apply the Formula
+
+$$P(K \text{ or } Q) = P(K) + P(Q)$$
+
+$$= \frac{4}{52} + \frac{4}{52} = \frac{8}{52} = \frac{2}{13}$$
+
+### Step 3: Verify
+
+8 favorable outcomes (4 kings + 4 queens) out of 52. ✓
+
+✅ Answer: $P(K \text{ or } Q) = \frac{2}{13} \approx 15.38\%$
+
+---
+
+## Example 4 — $P(A \text{ or } B)$ with Overlapping Events (Inclusion-Exclusion)
+
+A card is drawn from a standard deck. Find the probability it is a heart or a face card (J, Q, K).
+
+### Step 1: Compute Individual Probabilities
+
+$$P(\text{heart}) = \frac{13}{52}, \quad P(\text{face}) = \frac{12}{52}$$
+
+### Step 2: Find the Overlap
+
+Face cards that are hearts: J♥, Q♥, K♥ = 3 cards.
+
+$$P(\text{heart and face}) = \frac{3}{52}$$
+
+### Step 3: Apply Inclusion-Exclusion
+
+$$P(\text{heart or face}) = \frac{13}{52} + \frac{12}{52} - \frac{3}{52} = \frac{22}{52} = \frac{11}{26}$$
+
+### Step 4: Verify by Counting
+
+Hearts (13) + other face cards (J♠, Q♠, K♠, J♦, Q♦, K♦, J♣, Q♣, K♣ = 9) = 22 cards.
+
+$$\frac{22}{52} = \frac{11}{26} \checkmark$$
+
+✅ Answer: $P(\text{heart or face}) = \frac{11}{26} \approx 42.31\%$
+
+---
+
+## Example 5 — Real-World: Medical Test Probability
+
+A disease affects 1% of the population. A test has 95% accuracy (true positive rate) and a 3% false positive rate. If a person tests positive, what is the probability they have the disease?
+
+### Step 1: Define Events
+
+- $D$: person has disease, $P(D) = 0.01$
+- $D'$: person does not have disease, $P(D') = 0.99$
+- $T^+$: test is positive
+- $P(T^+ \mid D) = 0.95$ (true positive)
+- $P(T^+ \mid D') = 0.03$ (false positive)
+
+### Step 2: Compute $P(T^+)$
+
+$$P(T^+) = P(T^+ \mid D) \cdot P(D) + P(T^+ \mid D') \cdot P(D')$$
+
+$$P(T^+) = (0.95)(0.01) + (0.03)(0.99)$$
+
+$$= 0.0095 + 0.0297 = 0.0392$$
+
+### Step 3: Apply Bayes' Theorem (Simplified)
+
+$$P(D \mid T^+) = \frac{P(T^+ \mid D) \cdot P(D)}{P(T^+)} = \frac{0.0095}{0.0392} \approx 0.242$$
+
+### Step 4: Interpret
+
+Even with a positive test, there is only about a **24.2%** chance the person actually has the disease. This is because the false positive rate applied to the large healthy population produces many false alarms.
+
+✅ Answer: $P(\text{disease} \mid \text{positive test}) \approx 24.2\%$
+
+---
+
+## Think About It
+
+* Why do independent events use multiplication for "and"?
+* Why must we subtract the overlap in inclusion-exclusion?
+* How does base rate affect the reliability of a medical test?
+
+---
+
+## Objective Alignment
+
+- `Compute P(A and B) for independent events`: Primary worked examples: Example 1.
+- `Compute P(A and B) for dependent events`: Primary worked examples: Example 2.
+- `Compute P(A or B) for mutually exclusive events`: Primary worked examples: Example 3.
+- `Apply inclusion-exclusion for overlapping events`: Primary worked examples: Example 4.
+- `Solve real-world compound probability problems`: Primary worked examples: Example 5.

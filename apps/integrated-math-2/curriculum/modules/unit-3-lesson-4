@@ -1,0 +1,220 @@
+# Lesson 3-4 — Similarity Proofs
+
+## Today's Goals
+
+* Write two-column proofs that establish triangle similarity
+* Use similarity to find missing side lengths within proofs
+* Construct multi-step proofs involving parallel lines, transversals, and overlapping triangles
+
+---
+
+## Vocabulary
+
+* **similarity statement** — a statement like $\triangle ABC \sim \triangle DEF$ with vertices in corresponding order
+* **two-column proof** — a proof format with statements in one column and reasons in the other
+* **correspondence** — the matching of vertices between similar figures
+
+---
+
+## Explore: How Do You Prove Two Triangles Are Similar?
+
+Just as we proved congruence using SSS, SAS, ASA, AAS, and HL, we prove similarity using AA, SAS, and SSS. The proof structure is the same — identify given information, apply a criterion, and write the similarity statement.
+
+Inquiry Question:
+How does proving similarity differ from proving congruence in terms of the information you need?
+
+---
+
+## Learn: Writing Similarity Proofs
+
+### Key Concept
+
+A similarity proof follows the same structure as a congruence proof:
+
+1. Mark the given information on the diagram.
+2. Identify shared angles, parallel lines (giving alternate interior angles), or proportional sides.
+3. Apply AA, SAS, or SSS to conclude similarity.
+4. Use the similarity to set up proportions and find missing measures.
+
+---
+
+## Example 1 — Two-Column Proof Showing AA Similarity
+
+**Given:** $\overline{AB} \parallel \overline{DE}$
+
+**Prove:** $\triangle ABC \sim \triangle DEC$
+
+| Statement | Reason |
+|-----------|--------|
+| 1. $\overline{AB} \parallel \overline{DE}$ | 1. Given |
+| 2. $\angle ABC \cong \angle DEC$ | 2. Alternate interior angles ($\overline{AB} \parallel \overline{DE}$, transversal $\overline{BC}$) |
+| 3. $\angle ACB \cong \angle DCE$ | 3. Vertical angles are congruent |
+| 4. $\triangle ABC \sim \triangle DEC$ | 4. AA Similarity (steps 2, 3) |
+
+### Verification
+
+Two pairs of congruent angles are sufficient for AA Similarity. The third pair is automatically congruent because the angle sum of a triangle is 180°.
+
+✅ Answer: $\triangle ABC \sim \triangle DEC$ by AA Similarity.
+
+---
+
+## Example 2 — Prove Similar and Use Proportion to Find a Missing Side
+
+**Given:** In the figure, $\angle A = \angle D = 55°$, $\angle B = \angle E = 70°$, $AB = 12$, $DE = 8$, $BC = 15$.
+
+**Find:** $EF$
+
+### Step 1: Establish Similarity
+
+$$\angle A = \angle D = 55° \quad \text{and} \quad \angle B = \angle E = 70°$$
+
+By AA Similarity: $\triangle ABC \sim \triangle DEF$
+
+### Step 2: Write the Proportion
+
+Since $\triangle ABC \sim \triangle DEF$ with correspondence $A \leftrightarrow D$, $B \leftrightarrow E$, $C \leftrightarrow F$:
+
+$$\frac{BC}{EF} = \frac{AB}{DE}$$
+
+### Step 3: Solve
+
+$$\frac{15}{EF} = \frac{12}{8} = \frac{3}{2}$$
+
+$$EF = \frac{15 \times 2}{3} = 10$$
+
+### Step 4: Verify
+
+$$\frac{AB}{DE} = \frac{12}{8} = \frac{3}{2} \qquad \frac{BC}{EF} = \frac{15}{10} = \frac{3}{2} \checkmark$$
+
+✅ Answer: $EF = 10$.
+
+---
+
+## Example 3 — Multi-Step Proof with Parallel Lines and Transversals
+
+**Given:** In $\triangle PQR$, $\overline{ST} \parallel \overline{QR}$, with $S$ on $\overline{PQ}$ and $T$ on $\overline{PR}$. If $PS = 6$, $SQ = 3$, and $PT = 8$, find $TR$.
+
+### Step 1: Prove Triangle Similarity
+
+$\overline{ST} \parallel \overline{QR}$ (given)
+
+$$\angle PST \cong \angle PQR \quad (\text{corresponding angles — } \overline{ST} \parallel \overline{QR}, \text{ transversal } \overline{PQ})$$
+
+$$\angle PTS \cong \angle PRQ \quad (\text{corresponding angles — } \overline{ST} \parallel \overline{QR}, \text{ transversal } \overline{PR})$$
+
+By AA Similarity: $\triangle PST \sim \triangle PQR$
+
+### Step 2: Find the Scale Factor
+
+$$\frac{PS}{PQ} = \frac{PS}{PS + SQ} = \frac{6}{6 + 3} = \frac{6}{9} = \frac{2}{3}$$
+
+### Step 3: Set Up the Proportion
+
+$$\frac{PT}{PR} = \frac{2}{3}$$
+
+$$\frac{8}{PR} = \frac{2}{3}$$
+
+$$PR = \frac{8 \times 3}{2} = 12$$
+
+### Step 4: Find TR
+
+$$TR = PR - PT = 12 - 8 = 4$$
+
+### Step 5: Verify
+
+$$\frac{PS}{PQ} = \frac{6}{9} = \frac{2}{3} \qquad \frac{PT}{PR} = \frac{8}{12} = \frac{2}{3} \checkmark$$
+
+✅ Answer: $TR = 4$.
+
+---
+
+## Example 4 — Prove Similarity in Overlapping Triangles
+
+**Given:** $\angle ABE = \angle DBC$ and $\angle BAE = \angle BDC$.
+
+**Prove:** $\triangle ABE \sim \triangle DBC$
+
+### Step 1: Identify the Given Angle Congruences
+
+$$\angle ABE \cong \angle DBC \quad (\text{given})$$
+
+$$\angle BAE \cong \angle BDC \quad (\text{given})$$
+
+### Step 2: Apply AA Similarity
+
+Two pairs of congruent angles are identified. By AA:
+
+$$\triangle ABE \sim \triangle DBC$$
+
+### Step 3: Confirm the Correspondence
+
+The correspondence is:
+
+* $A \leftrightarrow D$ (angles at $A$ and $D$ are congruent)
+* $B \leftrightarrow B$ (shared vertex, angles are congruent)
+* $E \leftrightarrow C$ (third vertex)
+
+### Step 4: Write the Proportion from Similarity
+
+$$\frac{AB}{DB} = \frac{BE}{BC} = \frac{AE}{DC}$$
+
+These proportions can be used to find any missing side if three of the six lengths are known.
+
+✅ Answer: $\triangle ABE \sim \triangle DBC$ by AA Similarity.
+
+---
+
+## Example 5 — Proof Involving Similar Triangles in the Coordinate Plane
+
+**Given:** Triangle with vertices $A(0, 0)$, $B(6, 0)$, $C(6, 4)$. Point $D$ lies on $\overline{AB}$ at $(3, 0)$. Point $E$ lies on $\overline{BC}$ such that $\overline{DE} \parallel \overline{AC}$. Find the coordinates of $E$ and prove $\triangle BDE \sim \triangle BCA$.
+
+### Step 1: Prove the Triangles Are Similar
+
+$$\overline{DE} \parallel \overline{AC} \quad (\text{given})$$
+
+$$\angle BDE \cong \angle BCA \quad (\text{corresponding angles — } \overline{DE} \parallel \overline{AC}, \text{ transversal } \overline{BC})$$
+
+$$\angle B \cong \angle B \quad (\text{shared angle})$$
+
+By AA Similarity: $\triangle BDE \sim \triangle BCA$
+
+### Step 2: Find the Scale Factor
+
+$$BD = \sqrt{(3-6)^2 + (0-0)^2} = 3$$
+
+$$BA = \sqrt{(0-6)^2 + (0-0)^2} = 6$$
+
+$$k = \frac{BD}{BA} = \frac{3}{6} = \frac{1}{2}$$
+
+### Step 3: Find the Coordinates of E
+
+$E$ is on $\overline{BC}$, so it divides $\overline{BC}$ in the ratio $k = \frac{1}{2}$ from $B$:
+
+$$E = B + k(C - B) = (6, 0) + \frac{1}{2}((6, 4) - (6, 0)) = (6, 0) + \frac{1}{2}(0, 4) = (6, 2)$$
+
+### Step 4: Verify
+
+$$DE = \sqrt{(6-3)^2 + (2-0)^2} = \sqrt{9 + 4} = \sqrt{13}$$
+
+$$CA = \sqrt{(0-6)^2 + (0-4)^2} = \sqrt{36 + 16} = \sqrt{52} = 2\sqrt{13}$$
+
+$$\frac{DE}{CA} = \frac{\sqrt{13}}{2\sqrt{13}} = \frac{1}{2} = k \checkmark$$
+
+✅ Answer: $E = (6, 2)$ and $\triangle BDE \sim \triangle BCA$ by AA Similarity with a scale factor of $\frac{1}{2}$.
+
+---
+
+## Think About It
+
+* Why must the vertices be listed in corresponding order in a similarity statement?
+* In a two-column proof, how do you decide which similarity criterion to use?
+* Can you prove similarity using only side information (SSS), or do you always need angle information?
+
+---
+
+## Objective Alignment
+
+- `Write two-column proofs of AA similarity`: Primary worked examples: Examples 1, 3.
+- `Use similarity to find missing sides within proofs`: Primary worked examples: Examples 2, 3, 5.
+- `Prove similarity in overlapping or coordinate-plane triangles`: Primary worked examples: Examples 4, 5.

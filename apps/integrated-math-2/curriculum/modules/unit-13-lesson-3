@@ -1,0 +1,212 @@
+# Lesson 13-3 — Sum and Difference Identities
+
+## Today's Goals
+
+* Apply $\sin(A \pm B)$ to find exact values at non-standard angles
+* Apply $\cos(A \pm B)$ to find exact values
+* Apply $\tan(A \pm B)$ when tangent values are given
+* Verify sum/difference identities using known angles
+* Simplify expressions like $\cos(x + \frac{\pi}{4})$
+
+---
+
+## Vocabulary
+
+* **sum identity** — a formula expressing $\sin(A+B)$, $\cos(A+B)$, or $\tan(A+B)$ in terms of functions of $A$ and $B$ separately
+* **difference identity** — a formula for $\sin(A-B)$, $\cos(A-B)$, or $\tan(A-B)$
+* **compound angle** — an angle expressed as the sum or difference of two other angles
+
+---
+
+## Explore: Beyond Standard Angles
+
+We know $\sin 30° = \frac{1}{2}$ and $\sin 45° = \frac{\sqrt{2}}{2}$, but what is $\sin 75°$? It is NOT $\sin 30° + \sin 45°$. Instead, $\sin 75° = \sin(45° + 30°) = \sin 45°\cos 30° + \cos 45°\sin 30°$. The sum identity gives us exact values for compound angles.
+
+Inquiry Question:
+Why doesn't $\sin(A+B) = \sin A + \sin B$? Can you find a counterexample?
+
+---
+
+## Learn: Sum and Difference Identities
+
+### Key Concept: Sine Sum and Difference
+
+$$\sin(A + B) = \sin A \cos B + \cos A \sin B$$
+
+$$\sin(A - B) = \sin A \cos B - \cos A \sin B$$
+
+### Key Concept: Cosine Sum and Difference
+
+$$\cos(A + B) = \cos A \cos B - \sin A \sin B$$
+
+$$\cos(A - B) = \cos A \cos B + \sin A \sin B$$
+
+### Key Concept: Tangent Sum and Difference
+
+$$\tan(A + B) = \frac{\tan A + \tan B}{1 - \tan A \tan B}$$
+
+$$\tan(A - B) = \frac{\tan A - \tan B}{1 + \tan A \tan B}$$
+
+---
+
+## Example 1 — Find $\sin 75°$ Using $\sin(45° + 30°)$
+
+### Step 1: Identify $A$ and $B$
+
+$A = 45°$, $B = 30°$.
+
+### Step 2: Apply the Sine Sum Identity
+
+$$\sin(45° + 30°) = \sin 45° \cos 30° + \cos 45° \sin 30°$$
+
+### Step 3: Substitute Known Values
+
+$$= \frac{\sqrt{2}}{2} \cdot \frac{\sqrt{3}}{2} + \frac{\sqrt{2}}{2} \cdot \frac{1}{2}$$
+
+### Step 4: Simplify
+
+$$= \frac{\sqrt{6}}{4} + \frac{\sqrt{2}}{4} = \frac{\sqrt{6} + \sqrt{2}}{4}$$
+
+### Step 5: Verify Numerically
+
+$\frac{\sqrt{6} + \sqrt{2}}{4} \approx \frac{2.449 + 1.414}{4} \approx \frac{3.863}{4} \approx 0.966$
+
+$\sin 75° \approx 0.966$ ✓
+
+✅ Answer: $\sin 75° = \frac{\sqrt{6} + \sqrt{2}}{4}$.
+
+---
+
+## Example 2 — Find $\cos 15°$ Using $\cos(45° - 30°)$
+
+### Step 1: Identify $A$ and $B$
+
+$A = 45°$, $B = 30°$.
+
+### Step 2: Apply the Cosine Difference Identity
+
+$$\cos(45° - 30°) = \cos 45° \cos 30° + \sin 45° \sin 30°$$
+
+### Step 3: Substitute Known Values
+
+$$= \frac{\sqrt{2}}{2} \cdot \frac{\sqrt{3}}{2} + \frac{\sqrt{2}}{2} \cdot \frac{1}{2}$$
+
+### Step 4: Simplify
+
+$$= \frac{\sqrt{6}}{4} + \frac{\sqrt{2}}{4} = \frac{\sqrt{6} + \sqrt{2}}{4}$$
+
+### Step 5: Note
+
+$\cos 15° = \sin 75°$. This makes sense because $\cos\theta = \sin(90° - \theta)$.
+
+### Step 6: Verify Numerically
+
+$\cos 15° \approx 0.966$ ✓
+
+✅ Answer: $\cos 15° = \frac{\sqrt{6} + \sqrt{2}}{4}$.
+
+---
+
+## Example 3 — Find $\tan(A + B)$ Given $\tan A = 2$ and $\tan B = 3$
+
+### Step 1: Apply the Tangent Sum Identity
+
+$$\tan(A + B) = \frac{\tan A + \tan B}{1 - \tan A \tan B}$$
+
+### Step 2: Substitute
+
+$$\tan(A + B) = \frac{2 + 3}{1 - (2)(3)} = \frac{5}{1 - 6}$$
+
+### Step 3: Simplify
+
+$$= \frac{5}{-5} = -1$$
+
+### Step 4: Interpret
+
+$\tan(A + B) = -1$ means $A + B = 135°$ or $-45°$ (plus multiples of $180°$).
+
+### Step 5: Verify
+
+If $\tan A = 2$, then $A \approx 63.43°$. If $\tan B = 3$, then $B \approx 71.57°$.
+
+$A + B \approx 135°$, and $\tan 135° = -1$. ✓
+
+✅ Answer: $\tan(A + B) = -1$.
+
+---
+
+## Example 4 — Verify Sum Identity with Known Angles
+
+Verify $\sin(60° + 45°) = \sin 60° \cos 45° + \cos 60° \sin 45°$.
+
+### Step 1: Compute the Left Side
+
+$\sin 105° \approx 0.9659$
+
+### Step 2: Compute the Right Side
+
+$$\sin 60° \cos 45° + \cos 60° \sin 45°$$
+
+$$= \frac{\sqrt{3}}{2} \cdot \frac{\sqrt{2}}{2} + \frac{1}{2} \cdot \frac{\sqrt{2}}{2}$$
+
+$$= \frac{\sqrt{6}}{4} + \frac{\sqrt{2}}{4} = \frac{\sqrt{6} + \sqrt{2}}{4}$$
+
+### Step 3: Verify Numerically
+
+$\frac{\sqrt{6} + \sqrt{2}}{4} \approx \frac{2.449 + 1.414}{4} \approx 0.966$ ✓
+
+### Step 4: Confirm Algebraically
+
+Both sides equal $\frac{\sqrt{6} + \sqrt{2}}{4}$. ✓
+
+✅ Answer: Identity verified — both sides equal $\frac{\sqrt{6} + \sqrt{2}}{4}$.
+
+---
+
+## Example 5 — Simplify $\cos\left(x + \frac{\pi}{4}\right)$
+
+### Step 1: Apply the Cosine Sum Identity
+
+$$\cos\left(x + \frac{\pi}{4}\right) = \cos x \cos\frac{\pi}{4} - \sin x \sin\frac{\pi}{4}$$
+
+### Step 2: Substitute Known Values
+
+$$\cos\frac{\pi}{4} = \sin\frac{\pi}{4} = \frac{\sqrt{2}}{2}$$
+
+### Step 3: Simplify
+
+$$= \cos x \cdot \frac{\sqrt{2}}{2} - \sin x \cdot \frac{\sqrt{2}}{2}$$
+
+$$= \frac{\sqrt{2}}{2}(\cos x - \sin x)$$
+
+### Step 4: Verify at $x = 0$
+
+Left side: $\cos\frac{\pi}{4} = \frac{\sqrt{2}}{2}$.
+
+Right side: $\frac{\sqrt{2}}{2}(1 - 0) = \frac{\sqrt{2}}{2}$ ✓
+
+### Step 5: Verify at $x = \frac{\pi}{4}$
+
+Left side: $\cos\frac{\pi}{2} = 0$.
+
+Right side: $\frac{\sqrt{2}}{2}\left(\frac{\sqrt{2}}{2} - \frac{\sqrt{2}}{2}\right) = 0$ ✓
+
+✅ Answer: $\cos\left(x + \frac{\pi}{4}\right) = \frac{\sqrt{2}}{2}(\cos x - \sin x)$.
+
+---
+
+## Think About It
+
+* Why does the cosine sum identity have a minus sign while the cosine difference has a plus sign?
+* How can you use $\cos(A - B)$ to prove that $\cos$ is an even function?
+* Can you derive the double-angle formulas from the sum formulas? (Preview of Lesson 13-4.)
+
+---
+
+## Objective Alignment
+
+- `Find sin of compound angle`: Primary worked examples: Example 1.
+- `Find cos of compound angle`: Primary worked examples: Example 2.
+- `Find tan of compound angle`: Primary worked examples: Example 3.
+- `Verify sum identity`: Primary worked examples: Example 4.
+- `Simplify compound angle expressions`: Primary worked examples: Example 5.

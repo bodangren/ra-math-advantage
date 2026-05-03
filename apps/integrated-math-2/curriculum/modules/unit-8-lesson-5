@@ -1,0 +1,277 @@
+# Lesson 8-5 — Function Transformations
+
+## Today's Goals
+
+* Graph vertical and horizontal shifts of parent functions
+* Graph reflections over the x-axis and y-axis
+* Graph vertical stretches and compressions
+* Describe the transformation applied to a parent function from its equation
+* Apply transformations to model real-world situations
+
+---
+
+## Vocabulary
+
+* **parent function** — the simplest form of a function family (e.g., $f(x) = x^2$, $f(x) = |x|$, $f(x) = x$)
+* **vertical shift** — $f(x) + k$ moves the graph up ($k > 0$) or down ($k < 0$)
+* **horizontal shift** — $f(x - h)$ moves the graph right ($h > 0$) or left ($h < 0$)
+* **reflection** — $-f(x)$ reflects over the x-axis; $f(-x)$ reflects over the y-axis
+* **vertical stretch/compression** — $a \cdot f(x)$ stretches ($|a| > 1$) or compresses ($0 < |a| < 1$) the graph vertically
+
+---
+
+## Explore: Shifting and Flipping Shapes
+
+Take the graph of $y = x^2$. Move it up 3 units. Flip it upside down. Stretch it tall. Each change to the equation creates a predictable change in the graph. Mastering transformations lets you graph complex functions from simple parent functions.
+
+Inquiry Question:
+Does $f(x) + 3$ shift the graph left or right? How can you remember the direction of horizontal shifts?
+
+---
+
+## Learn: Transformation Rules
+
+### Key Concept: Vertical Shift
+
+$$g(x) = f(x) + k$$
+
+- $k > 0$: shift **up** by $k$ units
+- $k < 0$: shift **down** by $|k|$ units
+
+### Key Concept: Horizontal Shift
+
+$$g(x) = f(x - h)$$
+
+- $h > 0$: shift **right** by $h$ units
+- $h < 0$: shift **left** by $|h|$ units
+
+(Mnemonic: the sign inside the parentheses is **opposite** to the direction.)
+
+### Key Concept: Reflection
+
+- $g(x) = -f(x)$: reflect over the **x-axis** (flip vertically)
+- $g(x) = f(-x)$: reflect over the **y-axis** (flip horizontally)
+
+### Key Concept: Vertical Stretch/Compression
+
+$$g(x) = a \cdot f(x)$$
+
+- $|a| > 1$: vertical **stretch** (taller)
+- $0 < |a| < 1$: vertical **compression** (shorter)
+
+---
+
+## Example 1 — Graph $f(x) + 3$ (Vertical Shift Up)
+
+The parent function is $f(x) = x^2$. Graph $g(x) = x^2 + 3$.
+
+### Step 1: Identify the Transformation
+
+$g(x) = f(x) + 3$ is a vertical shift **up** by 3 units.
+
+### Step 2: Create a Table of Values
+
+| $x$ | $f(x) = x^2$ | $g(x) = x^2 + 3$ |
+|-----|--------------|-------------------|
+| $-2$ | 4 | 7 |
+| $-1$ | 1 | 4 |
+| 0 | 0 | 3 |
+| 1 | 1 | 4 |
+| 2 | 4 | 7 |
+
+### Step 3: Analyze Key Features
+
+- **Vertex** moves from $(0, 0)$ to $(0, 3)$
+- The parabola opens upward (same as parent)
+- Every point shifts up by 3 units
+
+### Step 4: Verify
+
+At $x = 0$: $g(0) = 0 + 3 = 3$. The vertex is at $(0, 3)$. ✓
+
+✅ Answer: The graph of $x^2 + 3$ is the parabola $x^2$ shifted **up 3 units**. Vertex at $(0, 3)$.
+
+---
+
+## Example 2 — Graph $f(x - 2)$ (Horizontal Shift Right)
+
+The parent function is $f(x) = |x|$. Graph $g(x) = |x - 2|$.
+
+### Step 1: Identify the Transformation
+
+$g(x) = f(x - 2)$ is a horizontal shift **right** by 2 units.
+
+### Step 2: Create a Table of Values
+
+| $x$ | $f(x) = |x|$ | $g(x) = |x - 2|$ |
+|-----|-------------|-------------------|
+| 0 | 0 | 2 |
+| 1 | 1 | 1 |
+| 2 | 2 | 0 |
+| 3 | 3 | 1 |
+| 4 | 4 | 2 |
+
+### Step 3: Analyze Key Features
+
+- **Vertex** moves from $(0, 0)$ to $(2, 0)$
+- The V-shape opens upward (same as parent)
+- Every point shifts right by 2 units
+
+### Step 4: Verify
+
+At $x = 2$: $g(2) = |2 - 2| = 0$. The vertex is at $(2, 0)$. ✓
+
+✅ Answer: The graph of $|x - 2|$ is the V-shape of $|x|$ shifted **right 2 units**. Vertex at $(2, 0)$.
+
+---
+
+## Example 3 — Graph $-f(x)$ (Reflection over x-axis)
+
+The parent function is $f(x) = x^2$. Graph $g(x) = -x^2$.
+
+### Step 1: Identify the Transformation
+
+$g(x) = -f(x)$ is a reflection over the **x-axis**. Every y-value changes sign.
+
+### Step 2: Create a Table of Values
+
+| $x$ | $f(x) = x^2$ | $g(x) = -x^2$ |
+|-----|--------------|----------------|
+| $-2$ | 4 | $-4$ |
+| $-1$ | 1 | $-1$ |
+| 0 | 0 | 0 |
+| 1 | 1 | $-1$ |
+| 2 | 4 | $-4$ |
+
+### Step 3: Analyze Key Features
+
+- The parabola now opens **downward**
+- The vertex stays at the origin $(0, 0)$
+- Maximum value is 0 (previously the minimum)
+
+### Step 4: Verify
+
+At $x = 1$: $f(1) = 1$ and $g(1) = -1$. The point $(1, 1)$ reflects to $(1, -1)$. ✓
+
+✅ Answer: The graph of $-x^2$ is the parabola $x^2$ **reflected over the x-axis**. Opens downward with vertex at $(0, 0)$.
+
+---
+
+## Example 4 — Graph $2f(x)$ (Vertical Stretch)
+
+The parent function is $f(x) = |x|$. Graph $g(x) = 2|x|$.
+
+### Step 1: Identify the Transformation
+
+$g(x) = 2 \cdot f(x)$ is a vertical **stretch** by a factor of 2. Every y-value is doubled.
+
+### Step 2: Create a Table of Values
+
+| $x$ | $f(x) = |x|$ | $g(x) = 2|x|$ |
+|-----|-------------|----------------|
+| $-3$ | 3 | 6 |
+| $-1$ | 1 | 2 |
+| 0 | 0 | 0 |
+| 1 | 1 | 2 |
+| 3 | 3 | 6 |
+
+### Step 3: Analyze Key Features
+
+- The vertex stays at $(0, 0)$
+- The V-shape is **narrower** (steeper sides)
+- The slope of each arm changes from $\pm 1$ to $\pm 2$
+
+### Step 4: Verify
+
+At $x = 3$: $f(3) = 3$ and $g(3) = 2(3) = 6$. Every y-value is doubled. ✓
+
+✅ Answer: The graph of $2|x|$ is the V-shape of $|x|$ **vertically stretched** by factor 2. Steeper arms with slope $\pm 2$.
+
+---
+
+## Example 5 — Describe Transformation from Parent Function
+
+The function $g(x) = -(x + 1)^2 + 4$ is a transformation of $f(x) = x^2$. Describe all transformations.
+
+### Step 1: Identify Each Transformation
+
+Write $g(x)$ in transformation form:
+
+$$g(x) = -1 \cdot f(x + 1) + 4$$
+
+### Step 2: List Each Change
+
+| Transformation | Effect |
+|----------------|--------|
+| $f(x + 1)$ | Horizontal shift **left** 1 unit |
+| $-f(x)$ | Reflection over the **x-axis** |
+| $+ 4$ | Vertical shift **up** 4 units |
+
+### Step 3: Determine the New Vertex
+
+Starting vertex: $(0, 0)$
+
+- Shift left 1: $(-1, 0)$
+- Reflect (vertex stays on axis): $(-1, 0)$
+- Shift up 4: $(-1, 4)$
+
+### Step 4: Verify
+
+$g(-1) = -(-1 + 1)^2 + 4 = -(0)^2 + 4 = 4$. Vertex is at $(-1, 4)$. ✓
+
+The parabola opens downward (reflected), vertex at $(-1, 4)$.
+
+✅ Answer: $g(x)$ is $f(x) = x^2$ shifted **left 1**, reflected over the **x-axis**, and shifted **up 4**. Vertex at $(-1, 4)$, opens downward.
+
+---
+
+## Example 6 — Real-World: Transform a Profit Function
+
+A company's profit function is $P(x) = -2x^2 + 40x - 100$, where $x$ is thousands of units sold. After a marketing campaign, the profit shifts up by \$15 thousand. Write the new function and find the new maximum profit.
+
+### Step 1: Identify the Parent Function
+
+Rewrite $P(x)$ in vertex form:
+
+$$P(x) = -2(x^2 - 20x) - 100 = -2(x^2 - 20x + 100 - 100) - 100$$
+
+$$P(x) = -2(x - 10)^2 + 200 - 100 = -2(x - 10)^2 + 100$$
+
+The vertex is at $(10, 100)$ — maximum profit of \$100 thousand at 10 thousand units.
+
+### Step 2: Apply the Vertical Shift
+
+The new function is:
+
+$$P_{\text{new}}(x) = P(x) + 15 = -2(x - 10)^2 + 100 + 15 = -2(x - 10)^2 + 115$$
+
+### Step 3: Find the New Maximum
+
+The vertex shifts from $(10, 100)$ to $(10, 115)$.
+
+New maximum profit: **\$115 thousand** at 10 thousand units.
+
+### Step 4: Interpret
+
+The marketing campaign does not change the optimal number of units to sell (still 10 thousand). It simply increases the profit by \$15 thousand at every level of production.
+
+✅ Answer: New function: $P_{\text{new}}(x) = -2x^2 + 40x - 85$. Maximum profit increases from \$100 thousand to **\$115 thousand**.
+
+---
+
+## Think About It
+
+* Why does $f(x - 3)$ shift the graph **right**, not left?
+* If you reflect a function over the x-axis and then shift it up, does the order matter?
+* Can a vertical stretch change the x-intercepts of a function?
+
+---
+
+## Objective Alignment
+
+- `Graph vertical shifts`: Primary worked examples: Example 1.
+- `Graph horizontal shifts`: Primary worked examples: Example 2.
+- `Graph reflections`: Primary worked examples: Example 3.
+- `Graph vertical stretches`: Primary worked examples: Example 4.
+- `Describe transformations from equations`: Primary worked examples: Example 5.
+- `Apply transformations in context`: Primary worked examples: Example 6.

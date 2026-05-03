@@ -1,0 +1,197 @@
+# Lesson 4-2 — Special Right Triangles (30-60-90, 45-45-90)
+
+## Today's Goals
+
+* Use the side ratios in 30-60-90 triangles to find missing sides
+* Use the side ratios in 45-45-90 triangles to find missing sides
+* Apply special right triangle relationships to geometric and real-world problems
+
+---
+
+## Vocabulary
+
+* **30-60-90 triangle** — a right triangle with angles 30°, 60°, and 90°; sides in ratio $1 : \sqrt{3} : 2$
+* **45-45-90 triangle** — an isosceles right triangle with angles 45°, 45°, and 90°; sides in ratio $1 : 1 : \sqrt{2}$
+* **short leg** — the leg opposite the 30° angle in a 30-60-90 triangle
+* **long leg** — the leg opposite the 60° angle in a 30-60-90 triangle
+
+---
+
+## Explore: Why Do These Triangles Always Have the Same Ratios?
+
+If you cut an equilateral triangle in half, you get a 30-60-90 triangle. If you cut a square along its diagonal, you get a 45-45-90 triangle. These constructions force fixed side ratios.
+
+Inquiry Question:
+How can you derive the exact side ratios for these special triangles?
+
+---
+
+## Learn: Special Right Triangle Ratios
+
+### Key Concept: 30-60-90 Triangle
+
+If the short leg (opposite 30°) has length $x$:
+
+$$\text{Short leg} = x, \quad \text{Long leg} = x\sqrt{3}, \quad \text{Hypotenuse} = 2x$$
+
+### Key Concept: 45-45-90 Triangle
+
+If each leg has length $x$:
+
+$$\text{Leg} = x, \quad \text{Hypotenuse} = x\sqrt{2}$$
+
+---
+
+## Example 1 — Find All Sides of a 30-60-90 Triangle Given the Short Leg
+
+A 30-60-90 triangle has a short leg of length 4. Find the long leg and the hypotenuse.
+
+### Step 1: Identify the Short Leg
+
+The short leg (opposite the 30° angle) is $x = 4$.
+
+### Step 2: Apply the Ratios
+
+$$\text{Long leg} = x\sqrt{3} = 4\sqrt{3}$$
+
+$$\text{Hypotenuse} = 2x = 8$$
+
+### Step 3: Verify with the Pythagorean Theorem
+
+$$4^2 + (4\sqrt{3})^2 = 16 + 48 = 64 = 8^2 \checkmark$$
+
+✅ Answer: The long leg is $4\sqrt{3} \approx 6.93$ and the hypotenuse is **8**.
+
+---
+
+## Example 2 — Find All Sides of a 45-45-90 Triangle Given the Hypotenuse
+
+A 45-45-90 triangle has a hypotenuse of $10\sqrt{2}$. Find the length of each leg.
+
+### Step 1: Set Up the Equation
+
+In a 45-45-90 triangle, hypotenuse $= x\sqrt{2}$, where $x$ is the leg length.
+
+$$x\sqrt{2} = 10\sqrt{2}$$
+
+### Step 2: Solve for x
+
+$$x = 10$$
+
+### Step 3: Verify
+
+$$10^2 + 10^2 = 100 + 100 = 200 = (10\sqrt{2})^2 \checkmark$$
+
+✅ Answer: Each leg has length **10**.
+
+---
+
+## Example 3 — Find the Altitude of an Equilateral Triangle
+
+An equilateral triangle has side length 10. Find its altitude.
+
+### Step 1: Draw the Altitude
+
+The altitude from one vertex to the opposite side bisects that side and creates two 30-60-90 triangles.
+
+### Step 2: Identify the Parts
+
+In each 30-60-90 triangle:
+
+* The hypotenuse is the side of the equilateral triangle: $2x = 10$, so $x = 5$.
+* The short leg (half the base) is $x = 5$.
+* The long leg (the altitude) is $x\sqrt{3} = 5\sqrt{3}$.
+
+### Step 3: Compute the Numerical Value
+
+$$h = 5\sqrt{3} \approx 5 \times 1.732 = 8.66$$
+
+### Step 4: Verify with the Pythagorean Theorem
+
+$$5^2 + (5\sqrt{3})^2 = 25 + 75 = 100 = 10^2 \checkmark$$
+
+✅ Answer: The altitude is $5\sqrt{3} \approx 8.66$.
+
+---
+
+## Example 4 — Use Special Right Triangles to Find Coordinates on the Unit Circle
+
+Find the coordinates of the point on the unit circle at 60° from the positive $x$-axis.
+
+### Step 1: Set Up the Triangle
+
+The radius of the unit circle is 1. At 60°, we form a right triangle with:
+
+* Hypotenuse $= 1$ (the radius)
+* Angle at the origin $= 60°$
+* The other acute angle $= 30°$
+
+This is a 30-60-90 triangle.
+
+### Step 2: Find the Coordinates
+
+In a 30-60-90 triangle with hypotenuse $2x = 1$, so $x = \frac{1}{2}$:
+
+$$\text{x-coordinate (adjacent to 60°)} = \text{short leg} = \frac{1}{2}$$
+
+$$\text{y-coordinate (opposite 60°)} = \text{long leg} = \frac{\sqrt{3}}{2}$$
+
+### Step 3: Write the Point
+
+$$\left(\cos 60°, \sin 60°\right) = \left(\frac{1}{2}, \frac{\sqrt{3}}{2}\right)$$
+
+### Step 4: Verify on the Unit Circle
+
+$$\left(\frac{1}{2}\right)^2 + \left(\frac{\sqrt{3}}{2}\right)^2 = \frac{1}{4} + \frac{3}{4} = 1 \checkmark$$
+
+The point lies on the unit circle.
+
+✅ Answer: The coordinates at 60° are $\left(\frac{1}{2}, \frac{\sqrt{3}}{2}\right)$.
+
+---
+
+## Example 5 — Real-World: Diagonal of a Square Table
+
+A square table has a side length of 30 inches. Find the length of the diagonal.
+
+### Step 1: Identify the Triangle Type
+
+The diagonal of a square divides it into two 45-45-90 triangles. Each leg is 30 inches.
+
+### Step 2: Apply the 45-45-90 Ratio
+
+$$\text{Diagonal} = x\sqrt{2} = 30\sqrt{2}$$
+
+### Step 3: Compute the Numerical Value
+
+$$30\sqrt{2} \approx 30 \times 1.414 = 42.43 \text{ inches}$$
+
+### Step 4: Verify with the Pythagorean Theorem
+
+$$30^2 + 30^2 = 900 + 900 = 1800$$
+
+$$\sqrt{1800} = \sqrt{900 \times 2} = 30\sqrt{2} \checkmark$$
+
+### Step 5: Practical Interpretation
+
+If you need to ship the table, the longest dimension to fit through a door is the diagonal: about 42.4 inches. A standard door is 36 inches wide, so the table must be tilted or the legs removed to fit through.
+
+✅ Answer: The diagonal is $30\sqrt{2} \approx 42.43$ inches.
+
+---
+
+## Think About It
+
+* How does cutting an equilateral triangle in half produce a 30-60-90 triangle?
+* Why is the hypotenuse of a 45-45-90 triangle always $x\sqrt{2}$?
+* Can a right triangle have angles other than 30-60-90 or 45-45-90 and still have "nice" side ratios?
+
+---
+
+## Objective Alignment
+
+- `Find all sides of a 30-60-90 triangle given one side`: Primary worked examples: Examples 1, 3.
+- `Find all sides of a 45-45-90 triangle given one side`: Primary worked examples: Examples 2, 5.
+- `Find the altitude of an equilateral triangle`: Primary worked examples: Example 3.
+- `Use special right triangles with the unit circle`: Primary worked examples: Example 4.
+- `Apply special right triangles to real-world problems`: Primary worked examples: Example 5.
