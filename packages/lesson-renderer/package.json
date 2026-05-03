@@ -1,0 +1,46 @@
+{
+  "name": "@math-platform/lesson-renderer",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "main": "src/index.ts",
+  "types": "src/index.ts",
+  "exports": {
+    ".": "./src/index.ts",
+    "./textbook": "./src/textbook/index.ts",
+    "./components": "./src/components/index.ts",
+    "./video": "./src/components/VideoPlayer.tsx",
+    "./markdown": "./src/components/MarkdownRenderer.tsx",
+    "./error-boundary": "./src/components/ContentBlockErrorBoundary.tsx",
+    "./skeletons": "./src/components/Skeletons.tsx"
+  },
+  "scripts": {
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit",
+    "build": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@matejmazur/react-katex": "^3.1.3",
+    "clsx": "^2.1.1",
+    "katex": "^0.16.21",
+    "lucide-react": "^0.475.0",
+    "react-markdown": "^10.1.0",
+    "remark-gfm": "^4.0.1",
+    "rehype-katex": "^7.0.1",
+    "remark-math": "^6.0.0",
+    "tailwind-merge": "^3.0.2"
+  },
+  "peerDependencies": {
+    "react": "^19"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9",
+    "@types/node": "^22",
+    "@types/react": "^19",
+    "eslint": "^9",
+    "react": "^19",
+    "typescript": "^5",
+    "typescript-eslint": "^8",
+    "vitest": "^4.0.16"
+  }
+}
