@@ -30,10 +30,10 @@
 
 ## Phase 2: Make Schema Type-Safety Claims Real
 
-- [ ] Task 2.1: Replace superficial `v.any()` audit coverage
-  - [ ] Remove hardcoded counter assertions
-  - [ ] Add source-level or schema-definition checks that fail on disallowed `v.any()` use
-  - [ ] Explicitly whitelist only truly polymorphic fields with rationale
+- [x] Task 2.1: Replace superficial `v.any()` audit coverage
+  - [x] Remove hardcoded counter assertions — rewrote test as source-level audit
+  - [x] Add source-level schema-definition checks that fail on disallowed `v.any()` use
+  - [x] Explicitly whitelist only truly polymorphic fields (rawAnswer, interactionHistory) with rationale
 
 - [ ] Task 2.2: Align Convex validators with the math-content extraction spec
   - [ ] Implement typed validators for `activities.props` using the six activity component schemas where feasible

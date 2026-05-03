@@ -1,193 +1,178 @@
 import { describe, it, expect } from 'vitest';
-import schema from '@/convex/schema';
+import fs from 'fs';
+import path from 'path';
 
-describe('Convex Schema v.any() Field Audit', () => {
-  describe('v.any() fields inventory', () => {
-    it('has at most 2 v.any() fields across tables', () => {
-      // Remaining v.any() fields (intentionally untyped for polymorphic data):
-      // - submissionPartValidator.rawAnswer: polymorphic answer type (string|number|array|object)
-      // - submissionDataValidator.interactionHistory: variable-shape interaction events
-      // All other former v.any() fields have been typed as v.record(v.string(), v.any()) or specific validators
-      const maxVAnyFieldCount = 2;
-      expect(maxVAnyFieldCount).toBeLessThanOrEqual(2);
+const schemaPath = path.resolve(__dirname, '../../convex/schema.ts');
+const schemaSource = fs.readFileSync(schemaPath, 'utf-8');
+
+function findRawVAnyMatches(source: string): string[] {
+  const lines = source.split('\n');
+  const matches: string[] = [];
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i];
+    if (line.includes('v.any()') && !line.includes('v.record')) {
+      matches.push(`${i + 1}: ${line.trim()}`);
+    }
+  }
+  return matches;
+}
+
+function findVRecordStringVAny(source: string): { line: number; snippet: string; table: string; field: string }[] {
+  const lines = source.split('\n');
+  const results: { line: number; snippet: string; table: string; field: string }[] = [];
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i];
+    if (line.includes('v.record(v.string(), v.any())')) {
+      const snippet = line.trim();
+      const fieldMatch = snippet.match(/^(\w+):\s*v\./);
+      const field = fieldMatch ? fieldMatch[1] : 'unknown';
+      let table = 'unknown';
+      for (let j = i - 1; j >= 0 && j >= i - 40; j--) {
+        const prevLine = lines[j].trim();
+        const tableMatch = prevLine.match(/^(\w+):\s*defineTable/);
+        if (tableMatch) {
+          table = tableMatch[1];
+          break;
+        }
+      }
+      results.push({ line: i + 1, snippet, table, field });
+    }
+  }
+  return results;
+}
+
+describe('Convex Schema v.any() Field Audit (source-level)', () => {
+  describe('bare v.any() fields — must be explicitly whitelisted', () => {
+    const whitelistedVAnyLines = [
+      /rawAnswer:\s*v\.any\(\)/,
+      /interactionHistory.*v\.any\(\)/,
+    ];
+
+    const rawVAnyMatches = findRawVAnyMatches(schemaSource);
+
+    it('only whitelisted bare v.any() fields exist', () => {
+      const violations = rawVAnyMatches.filter((match) =>
+        !whitelistedVAnyLines.some((pattern) => pattern.test(match))
+      );
+      const whitelisted = rawVAnyMatches.filter((match) =>
+        whitelistedVAnyLines.some((pattern) => pattern.test(match))
+      );
+
+      if (violations.length > 0) {
+        console.error(
+          `\nUNWHITELISTED v.any() fields found:\n${violations.join('\n')}` +
+          `\nWhitelisted (intentionally polymorphic):\n${whitelisted.join('\n')}`
+        );
+      }
+
+      expect(violations).toEqual([]);
     });
 
-    it('organizations.settings exists as v.optional(v.record())', () => {
-      const table = schema.tables.organizations;
-      expect(() => (table as unknown as { settings: unknown }).settings).not.toThrow();
+    it('rawAnswer is whitelisted (polymorphic answer type)', () => {
+      const hasRawAnswer = rawVAnyMatches.some((m) => /rawAnswer/.test(m));
+      expect(hasRawAnswer).toBe(true);
     });
 
-    it('profiles.metadata exists as v.optional(v.record())', () => {
-      const table = schema.tables.profiles;
-      expect(() => (table as unknown as { metadata: unknown }).metadata).not.toThrow();
+    it('interactionHistory is whitelisted (variable-shape interaction events)', () => {
+      const hasInteractionHistory = rawVAnyMatches.some((m) => /interactionHistory/.test(m));
+      expect(hasInteractionHistory).toBe(true);
+    });
+  });
+
+  describe('v.record(v.string(), v.any()) fields — bounded records', () => {
+    const vRecordFields = findVRecordStringVAny(schemaSource);
+
+    it('general-purpose metadata fields use v.record() not bare v.any()', () => {
+      const metadataFields = vRecordFields.filter((f) => f.field === 'metadata');
+      const metadataTables = metadataFields.map((f) => f.table);
+      expect(metadataTables).toContain('profiles');
+      expect(metadataTables).toContain('classes');
+      expect(metadataTables).toContain('lessons');
+      expect(metadataTables).toContain('phase_versions');
+      expect(metadataTables).toContain('resources');
+      expect(metadataTables).toContain('problem_families');
     });
 
-    it('classes.metadata exists as v.optional(v.record())', () => {
-      const table = schema.tables.classes;
-      expect(() => (table as unknown as { metadata: unknown }).metadata).not.toThrow();
+    it('organizations.settings uses v.record() not bare v.any()', () => {
+      const settingsField = vRecordFields.find((f) => f.table === 'organizations' && f.field === 'settings');
+      expect(settingsField).toBeDefined();
     });
 
-    it('lessons.metadata exists as v.optional(v.record())', () => {
-      const table = schema.tables.lessons;
-      expect(() => (table as unknown as { metadata: unknown }).metadata).not.toThrow();
+    it('phase_sections.content uses v.record() not bare v.any()', () => {
+      const contentField = vRecordFields.find((f) => f.table === 'phase_sections' && f.field === 'content');
+      expect(contentField).toBeDefined();
     });
 
-    it('phase_versions.metadata exists as v.optional(v.record())', () => {
-      const table = schema.tables.phase_versions;
-      expect(() => (table as unknown as { metadata: unknown }).metadata).not.toThrow();
+    it('activities.props uses v.record() not bare v.any()', () => {
+      const propsField = vRecordFields.find((f) => f.table === 'activities' && f.field === 'props');
+      expect(propsField).toBeDefined();
     });
 
-    it('phase_sections.content exists as v.record()', () => {
-      const table = schema.tables.phase_sections;
-      expect(() => (table as unknown as { content: unknown }).content).not.toThrow();
+    it('activity_submissions uses submissionDataValidator (typed)', () => {
+      expect(schemaSource).toMatch(/submissionData:\s*submissionDataValidator/);
     });
 
-    it('activities.props exists as v.record()', () => {
-      const table = schema.tables.activities;
-      expect(() => (table as unknown as { props: unknown }).props).not.toThrow();
+    it('student_spreadsheet_responses fields use record validators', () => {
+      const ssFields = vRecordFields.filter((f) => f.table === 'student_spreadsheet_responses');
+      const fieldNames = ssFields.map((f) => f.field);
+      expect(fieldNames).toContain('spreadsheetData');
+      expect(fieldNames).toContain('draftData');
     });
 
-    it('activities.gradingConfig exists as typed validator', () => {
-      const table = schema.tables.activities;
-      expect(() => (table as unknown as { gradingConfig: unknown }).gradingConfig).not.toThrow();
+    it('srs_sessions.config is typed (has sessionConfigValidator)', () => {
+      expect(schemaSource).toMatch(/config:\s*sessionConfigValidator/);
     });
 
-    it('resources.metadata exists as v.optional(v.record())', () => {
-      const table = schema.tables.resources;
-      expect(() => (table as unknown as { metadata: unknown }).metadata).not.toThrow();
+    it('srs_review_log.evidence uses srsEvidenceValidator', () => {
+      expect(schemaSource).toMatch(/evidence:\s*srsEvidenceValidator/);
     });
 
-    it('activity_submissions.submissionData exists as typed validator', () => {
-      const table = schema.tables.activity_submissions;
-      expect(() => (table as unknown as { submissionData: unknown }).submissionData).not.toThrow();
+    it('srs_review_log stateBefore/stateAfter use srsCardStatePickValidator', () => {
+      expect(schemaSource).toMatch(/stateBefore:\s*srsCardStatePickValidator/);
+      expect(schemaSource).toMatch(/stateAfter:\s*srsCardStatePickValidator/);
     });
 
-    it('student_spreadsheet_responses.spreadsheetData exists as v.record()', () => {
-      const table = schema.tables.student_spreadsheet_responses;
-      expect(() => (table as unknown as { spreadsheetData: unknown }).spreadsheetData).not.toThrow();
+    it('srs_cards.state uses srsCardStateLiteralValidator', () => {
+      expect(schemaSource).toMatch(/state:\s*srsCardStateLiteralValidator/);
     });
 
-    it('student_spreadsheet_responses.lastValidationResult exists as typed validator', () => {
-      const table = schema.tables.student_spreadsheet_responses;
-      expect(() => (table as unknown as { lastValidationResult: unknown }).lastValidationResult).not.toThrow();
+    it('srs_cards fields are individually typed (no generic record)', () => {
+      const cardsFields = vRecordFields.filter((f) => f.table === 'srs_cards');
+      expect(cardsFields).toHaveLength(0);
     });
 
-    it('student_spreadsheet_responses.draftData exists as v.optional(v.record())', () => {
-      const table = schema.tables.student_spreadsheet_responses;
-      expect(() => (table as unknown as { draftData: unknown }).draftData).not.toThrow();
+    it('due_reviews.fsrsState uses v.record() not bare v.any()', () => {
+      const fsrsField = vRecordFields.find((f) => f.table === 'due_reviews' && f.field === 'fsrsState');
+      expect(fsrsField).toBeDefined();
+    });
+
+    it('study_preferences.preferences uses v.record() not bare v.any()', () => {
+      const prefsField = vRecordFields.find((f) => f.table === 'study_preferences' && f.field === 'preferences');
+      expect(prefsField).toBeDefined();
+    });
+
+    it('submissionPartValidator exists as validator', () => {
+      expect(schemaSource).toMatch(/submissionPartValidator/);
+    });
+
+    it('submissionDataValidator exists as validator', () => {
+      expect(schemaSource).toMatch(/submissionDataValidator/);
+    });
+
+    it('gradingConfigValidator exists as validator', () => {
+      expect(schemaSource).toMatch(/gradingConfigValidator/);
     });
 
     it('activity_completions.completionData exists as typed validator', () => {
-      const table = schema.tables.activity_completions;
-      expect(() => (table as unknown as { completionData: unknown }).completionData).not.toThrow();
+      expect(schemaSource).toMatch(/completionData:\s*v\.optional\(\s*v\.object/);
     });
 
-    it('problem_families.metadata exists as v.optional(v.record())', () => {
-      const table = schema.tables.problem_families;
-      expect(() => (table as unknown as { metadata: unknown }).metadata).not.toThrow();
+    it('student_spreadsheet_responses.lastValidationResult is typed', () => {
+      expect(schemaSource).toMatch(/lastValidationResult:\s*v\.optional\(\s*v\.object/);
     });
 
-    it('srs_review_log.evidence exists as typed validator', () => {
-      const table = schema.tables.srs_review_log;
-      expect(() => (table as unknown as { evidence: unknown }).evidence).not.toThrow();
-    });
-
-    it('srs_review_log.stateBefore exists as typed validator', () => {
-      const table = schema.tables.srs_review_log;
-      expect(() => (table as unknown as { stateBefore: unknown }).stateBefore).not.toThrow();
-    });
-
-    it('srs_review_log.stateAfter exists as typed validator', () => {
-      const table = schema.tables.srs_review_log;
-      expect(() => (table as unknown as { stateAfter: unknown }).stateAfter).not.toThrow();
-    });
-
-    it('srs_sessions.config exists as typed validator', () => {
-      const table = schema.tables.srs_sessions;
-      expect(() => (table as unknown as { config: unknown }).config).not.toThrow();
-    });
-
-    it('due_reviews.fsrsState exists as v.record()', () => {
-      const table = schema.tables.due_reviews;
-      expect(() => (table as unknown as { fsrsState: unknown }).fsrsState).not.toThrow();
-    });
-
-    it('study_preferences.preferences exists as v.record()', () => {
-      const table = schema.tables.study_preferences;
-      expect(() => (table as unknown as { preferences: unknown }).preferences).not.toThrow();
-    });
-  });
-
-  describe('critical typed validators exist', () => {
-    it('practiceSubmissionEnvelopeValidator is imported from practice_submission', async () => {
-      const mod = await import('@/convex/practice_submission');
-      expect(mod.practiceSubmissionEnvelopeValidator).toBeDefined();
-    });
-  });
-
-  describe('schema tables exist', () => {
-    it('organizations table exists', () => {
-      expect(schema.tables).toHaveProperty('organizations');
-    });
-
-    it('profiles table exists', () => {
-      expect(schema.tables).toHaveProperty('profiles');
-    });
-
-    it('classes table exists', () => {
-      expect(schema.tables).toHaveProperty('classes');
-    });
-
-    it('lessons table exists', () => {
-      expect(schema.tables).toHaveProperty('lessons');
-    });
-
-    it('phase_versions table exists', () => {
-      expect(schema.tables).toHaveProperty('phase_versions');
-    });
-
-    it('phase_sections table exists', () => {
-      expect(schema.tables).toHaveProperty('phase_sections');
-    });
-
-    it('activities table exists', () => {
-      expect(schema.tables).toHaveProperty('activities');
-    });
-
-    it('activity_submissions table exists', () => {
-      expect(schema.tables).toHaveProperty('activity_submissions');
-    });
-
-    it('student_spreadsheet_responses table exists', () => {
-      expect(schema.tables).toHaveProperty('student_spreadsheet_responses');
-    });
-
-    it('activity_completions table exists', () => {
-      expect(schema.tables).toHaveProperty('activity_completions');
-    });
-
-    it('problem_families table exists', () => {
-      expect(schema.tables).toHaveProperty('problem_families');
-    });
-
-    it('srs_review_log table exists', () => {
-      expect(schema.tables).toHaveProperty('srs_review_log');
-    });
-
-    it('srs_sessions table exists', () => {
-      expect(schema.tables).toHaveProperty('srs_sessions');
-    });
-
-    it('due_reviews table exists', () => {
-      expect(schema.tables).toHaveProperty('due_reviews');
-    });
-
-    it('study_preferences table exists', () => {
-      expect(schema.tables).toHaveProperty('study_preferences');
-    });
-
-    it('resources table exists', () => {
-      expect(schema.tables).toHaveProperty('resources');
+    it('srs_review_log.rating uses srsRatingValidator', () => {
+      expect(schemaSource).toMatch(/rating:\s*srsRatingValidator/);
     });
   });
 });
