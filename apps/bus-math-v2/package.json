@@ -14,7 +14,6 @@
   },
   "dependencies": {
     "@math-platform/app-shell": "*",
-    "@math-platform/lesson-renderer": "*",
     "@math-platform/activity-runtime": "*",
     "@math-platform/ai-tutoring": "*",
     "@math-platform/component-approval": "*",
