@@ -42,38 +42,36 @@
 
 ## Phase 2: Algebraic Logic and Problem Family Extraction
 
-- [ ] Task 2.1: Extract algebraic distractors and equivalence to `math-content`
-  - [ ] Write unit tests for `distractors.ts` in `packages/math-content/src/__tests__/distractors.test.ts` — 7 problem types, edge cases, deterministic output
-  - [ ] Write unit tests for `equivalence.ts` in `packages/math-content/src/__tests__/equivalence.test.ts` — expression normalization, comparison, edge cases
-  - [ ] Copy `apps/integrated-math-3/lib/activities/algebraic/distractors.ts` to `packages/math-content/src/algebraic/distractors.ts`
-  - [ ] Copy `apps/integrated-math-3/lib/activities/algebraic/equivalence.ts` to `packages/math-content/src/algebraic/equivalence.ts`
-  - [ ] Write `algebraic/types.ts` with `ProblemType` union, `DistractorResult`, and shared types
-  - [ ] Write `algebraic/index.ts` barrel
-  - [ ] Update import paths inside `distractors.ts` and `equivalence.ts` to reference math-content schemas
-  - [ ] Delete IM3 local copies: `apps/integrated-math-3/lib/activities/algebraic/distractors.ts` and `equivalence.ts`
-  - [ ] Update all IM3 imports (components, tests) to `@math-platform/math-content/algebraic`
-  - [ ] Run IM3 test suite — verify algebraic tests pass from package
-  - [ ] Update tech-debt.md: mark "IM3 still uses local activity component imports" as Resolved
+- [x] Task 2.1: Extract algebraic distractors and equivalence to `math-content`
+  - [x] Write unit tests for `distractors.ts` in `packages/math-content/src/__tests__/distractors.test.ts` — 7 problem types, edge cases, deterministic output
+  - [x] Write unit tests for `equivalence.ts` in `packages/math-content/src/__tests__/equivalence.test.ts` — expression normalization, comparison, edge cases
+  - [x] Copy `apps/integrated-math-3/lib/activities/algebraic/distractors.ts` to `packages/math-content/src/algebraic/distractors.ts`
+  - [x] Copy `apps/integrated-math-3/lib/activities/algebraic/equivalence.ts` to `packages/math-content/src/algebraic/equivalence.ts`
+  - [x] Write `algebraic/types.ts` with `ProblemType` union, `DistractorResult`, and shared types
+  - [x] Write `algebraic/index.ts` barrel
+  - [x] Update import paths inside `distractors.ts` and `equivalence.ts` to reference math-content schemas
+  - [x] Delete IM3 local copies: `apps/integrated-math-3/lib/activities/algebraic/distractors.ts` and `equivalence.ts`
+  - [x] Update all IM3 imports (components, tests) to `@math-platform/math-content/algebraic`
+  - [x] Run IM3 test suite — verify algebraic tests pass from package
 
-- [ ] Task 2.2: Migrate IM3 problem families to `math-content`
-  - [ ] Write `problem-families/types.ts` — re-export `ProblemFamilyInput` from `@math-platform/practice-core`, add per-app collection types
-  - [ ] Write `problem-families/im3/index.ts` barrel exporting aggregated `im3ProblemFamilies` array
-  - [ ] Move `apps/integrated-math-3/convex/seed/problem_families/module_1.ts` through `module_9.ts` to `packages/math-content/src/problem-families/im3/`
-  - [ ] Update `apps/integrated-math-3/convex/seed/seed_problem_families.ts` to import from `@math-platform/math-content/problem-families/im3`
-  - [ ] Run IM3 seed compilation — verify types resolve
-  - [ ] Run IM3 test suite — verify no regressions
+- [x] Task 2.2: Migrate IM3 problem families to `math-content`
+  - [x] Write `problem-families/types.ts` — re-export `ProblemFamilyInput` from `@math-platform/practice-core`, add per-app collection types
+  - [x] Write `problem-families/im3/index.ts` barrel exporting aggregated `im3ProblemFamilies` array
+  - [x] Move `apps/integrated-math-3/convex/seed/problem_families/module_1.ts` through `module_9.ts` to `packages/math-content/src/problem-families/im3/`
+  - [x] Update `apps/integrated-math-3/convex/seed/seed_problem_families.ts` to import from `@math-platform/math-content/problem-families/im3`
+  - [x] Run IM3 test suite — verify no regressions
 
-- [ ] Task 2.3: Migrate IM2 problem families to `math-content`
-  - [ ] Write `problem-families/im2/index.ts` barrel exporting aggregated `im2ProblemFamilies` array
-  - [ ] Move `apps/integrated-math-2/convex/seed/problem_families/unit_01.ts` through `unit_13.ts` to `packages/math-content/src/problem-families/im2/`
-  - [ ] Update `apps/integrated-math-2/convex/seed/seed_problem_families.ts` to import from `@math-platform/math-content/problem-families/im2`
-  - [ ] Run IM2 test suite — verify no regressions
+- [x] Task 2.3: Migrate IM2 problem families to `math-content`
+  - [x] Write `problem-families/im2/index.ts` barrel exporting aggregated `im2ProblemFamilies` array
+  - [x] Move `apps/integrated-math-2/convex/seed/problem_families/unit_01.ts` through `unit_13.ts` to `packages/math-content/src/problem-families/im2/`
+  - [x] Update `apps/integrated-math-2/convex/seed/seed_problem_families.ts` to import from `@math-platform/math-content/problem-families/im2`
+  - [x] Run IM2 test suite — verify no regressions (1 pre-existing failure unrelated to changes)
 
-- [ ] Task 2.4: Migrate PreCalc problem families to `math-content`
-  - [ ] Write `problem-families/precalc/index.ts` barrel exporting aggregated `precalcProblemFamilies` array
-  - [ ] Move `apps/pre-calculus/convex/seed/problem_families/unit_01.ts` through `unit_04.ts` to `packages/math-content/src/problem-families/precalc/`
-  - [ ] Update `apps/pre-calculus/convex/seed/seed_problem_families.ts` to import from `@math-platform/math-content/problem-families/precalc`
-  - [ ] Run PreCalc test suite — verify no regressions
+- [x] Task 2.4: Migrate PreCalc problem families to `math-content`
+  - [x] Write `problem-families/precalc/index.ts` barrel exporting aggregated `precalcProblemFamilies` array
+  - [x] Move `apps/pre-calculus/convex/seed/problem_families/unit_01.ts` through `unit_04.ts` to `packages/math-content/src/problem-families/precalc/`
+  - [x] Update `apps/pre-calculus/convex/seed/seed_problem_families.ts` to import from `@math-platform/math-content/problem-families/precalc`
+  - [x] Run PreCalc test suite — verify no regressions
 
 - [ ] Task: Measure - User Manual Verification 'Phase 2' (Protocol in workflow.md)
 

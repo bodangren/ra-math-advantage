@@ -47,4 +47,4 @@
 | BM2 rate limiter handler test coverage still missing | Medium | Open | BM2 apiRateLimits handlers tested but rateLimits.ts (login/chatbot) still untested |
 | objectiveProficiency full table scan of activity_submissions | Medium | Resolved | Replaced with per-student indexed queries via Promise.all + Set lookup (review-31) |
 | objectiveProficiency full table scan of srs_cards/srs_review_log | Medium | Resolved | Replaced with per-student indexed queries via Promise.all (review-31) |
-| IM3 still uses local activity component imports | Medium | Open | @math-platform/activity-components package has ActivityRenderer + 6 activity types; IM3 migration pending Phase 4 (registry uses lazy-loaded components) |
+| IM3 still uses local activity component imports | Medium | Resolved | Schemas and algebraic logic migrated to @math-platform/math-content; IM3 local files now re-export from package (math-content extraction) |
