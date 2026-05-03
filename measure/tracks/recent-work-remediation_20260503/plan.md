@@ -35,7 +35,11 @@
   - [x] Add source-level schema-definition checks that fail on disallowed `v.any()` use
   - [x] Explicitly whitelist only truly polymorphic fields (rawAnswer, interactionHistory) with rationale
 
-- [ ] Task 2.2: Align Convex validators with the math-content extraction spec
+- [x] Task 2.2: Align Convex validators with the math-content extraction spec
+  - [x] Implement typed validators for `activities.props` — six per-component validators (graphingExplorer, stepByStepSolver, comprehensionQuiz, fillInTheBlank, rateOfChange, discriminantAnalyzer)
+  - [x] Implement typed validators for `phase_sections.content` — by `sectionType` (text, callout, activity, video, image)
+  - [x] Replace generic metadata/config bags where the domain shape is known — proper validators for gradingConfig, submissionData, srs* fields
+  - [x] Document Convex union limitation — v.union() cannot discriminate by adjacent field; schema-level uses v.record() with per-type validators for mutation-level validation
   - [ ] Implement typed validators for `activities.props` using the six activity component schemas where feasible
   - [ ] Implement typed validators for `phase_sections.content` by `sectionType` where feasible
   - [ ] Replace generic metadata/config bags where the domain shape is known

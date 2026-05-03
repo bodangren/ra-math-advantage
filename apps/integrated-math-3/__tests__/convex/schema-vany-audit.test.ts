@@ -175,4 +175,55 @@ describe('Convex Schema v.any() Field Audit (source-level)', () => {
       expect(schemaSource).toMatch(/rating:\s*srsRatingValidator/);
     });
   });
+
+  describe('section-type content validators exist', () => {
+    it('textContentValidator is defined', () => {
+      expect(schemaSource).toMatch(/export const textContentValidator/);
+    });
+    it('calloutContentValidator is defined', () => {
+      expect(schemaSource).toMatch(/export const calloutContentValidator/);
+    });
+    it('activityContentValidator is defined', () => {
+      expect(schemaSource).toMatch(/export const activityContentValidator/);
+    });
+    it('videoContentValidator is defined', () => {
+      expect(schemaSource).toMatch(/export const videoContentValidator/);
+    });
+    it('imageContentValidator is defined', () => {
+      expect(schemaSource).toMatch(/export const imageContentValidator/);
+    });
+    it('mathContentSectionValidators index is defined', () => {
+      expect(schemaSource).toMatch(/export const mathContentSectionValidators/);
+    });
+  });
+
+  describe('activity props validators exist', () => {
+    it('graphingExplorerPropsValidator is defined', () => {
+      expect(schemaSource).toMatch(/graphingExplorerPropsValidator/);
+    });
+    it('stepByStepSolverPropsValidator is defined', () => {
+      expect(schemaSource).toMatch(/stepByStepSolverPropsValidator/);
+    });
+    it('comprehensionQuizPropsValidator is defined', () => {
+      expect(schemaSource).toMatch(/comprehensionQuizPropsValidator/);
+    });
+    it('fillInTheBlankPropsValidator is defined', () => {
+      expect(schemaSource).toMatch(/fillInTheBlankPropsValidator/);
+    });
+    it('rateOfChangeCalculatorPropsValidator is defined', () => {
+      expect(schemaSource).toMatch(/rateOfChangeCalculatorPropsValidator/);
+    });
+    it('discriminantAnalyzerPropsValidator is defined', () => {
+      expect(schemaSource).toMatch(/discriminantAnalyzerPropsValidator/);
+    });
+  });
+
+  describe('Convex union limitation documented', () => {
+    it('phase_sections.content has limitation comment', () => {
+      expect(schemaSource).toMatch(/Convex limitation[\s\S]*?sectionType/);
+    });
+    it('activities.props has limitation comment', () => {
+      expect(schemaSource).toMatch(/Convex limitation[\s\S]*?componentKey/);
+    });
+  });
 });

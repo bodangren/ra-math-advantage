@@ -8,6 +8,104 @@ import {
 } from "./srs/validators";
 import { sessionConfigValidator } from "./srs/sessions";
 
+export const textContentValidator = v.object({
+  markdown: v.string(),
+});
+
+export const calloutContentValidator = v.object({
+  markdown: v.string(),
+  calloutType: v.optional(v.string()),
+});
+
+export const activityContentValidator = v.object({
+  activityId: v.string(),
+  componentKey: v.string(),
+});
+
+export const videoContentValidator = v.object({
+  videoUrl: v.string(),
+  title: v.optional(v.string()),
+});
+
+export const imageContentValidator = v.object({
+  imageUrl: v.string(),
+  altText: v.optional(v.string()),
+  caption: v.optional(v.string()),
+});
+
+export const mathContentSectionValidators = {
+  text: textContentValidator,
+  callout: calloutContentValidator,
+  activity: activityContentValidator,
+  video: videoContentValidator,
+  image: imageContentValidator,
+};
+
+const graphingExplorerPropsValidator = v.object({
+  variant: v.optional(v.union(
+    v.literal("plot_from_equation"), v.literal("compare_functions"),
+    v.literal("find_intercepts"), v.literal("graph_system"),
+  )),
+  equation: v.string(),
+  domain: v.optional(v.array(v.number())),
+  range: v.optional(v.array(v.number())),
+  points: v.optional(v.array(v.array(v.number()))),
+  comparisonEquation: v.optional(v.string()),
+  comparisonQuestion: v.optional(v.string()),
+  comparisonAnswer: v.optional(v.union(v.literal("first"), v.literal("second"))),
+  linearEquation: v.optional(v.string()),
+});
+
+const stepByStepSolverPropsValidator = v.object({
+  problemType: v.union(
+    v.literal("quadratic_formula"), v.literal("factoring"),
+    v.literal("completing_the_square"), v.literal("square_root_property"),
+    v.literal("graphing"),
+  ),
+  equation: v.string(),
+  steps: v.optional(v.array(v.object({
+    id: v.string(), description: v.string(), expression: v.string(),
+    explanation: v.optional(v.string()),
+  }))),
+  hints: v.optional(v.array(v.string())),
+});
+
+const comprehensionQuizPropsValidator = v.object({
+  activityId: v.optional(v.string()),
+  questions: v.array(v.object({
+    id: v.string(),
+    type: v.optional(v.union(
+      v.literal("multiple_choice"), v.literal("true_false"),
+      v.literal("short_answer"), v.literal("select_all"),
+    )),
+    prompt: v.string(),
+    options: v.optional(v.array(v.string())),
+    correctAnswer: v.union(v.string(), v.array(v.string())),
+    explanation: v.optional(v.string()),
+  })),
+});
+
+const fillInTheBlankPropsValidator = v.object({
+  activityId: v.optional(v.string()),
+  template: v.string(),
+  blanks: v.array(v.object({
+    id: v.string(), correctAnswer: v.string(),
+    isMath: v.optional(v.boolean()),
+  })),
+  wordBank: v.optional(v.array(v.object({ id: v.string(), text: v.string() }))),
+});
+
+const rateOfChangeCalculatorPropsValidator = v.object({
+  sourceType: v.union(v.literal("table"), v.literal("function"), v.literal("graph")),
+  data: v.record(v.string(), v.any()),
+  interval: v.object({ start: v.number(), end: v.number() }),
+});
+
+const discriminantAnalyzerPropsValidator = v.object({
+  equation: v.string(),
+  coefficients: v.optional(v.object({ a: v.number(), b: v.number(), c: v.number() })),
+});
+
 const gradingConfigValidator = v.object({
   autoGrade: v.boolean(),
   passingScore: v.optional(v.number()),
@@ -206,6 +304,9 @@ export default defineSchema({
       v.literal("image"),
     ),
     content: v.record(v.string(), v.any()),
+    // Convex limitation: v.union() cannot discriminate by adjacent sectionType field.
+    // Per-sectionType validators are defined above (textContentValidator, etc.)
+    // for use in mutation-level validation. See math-content package for Zod-level schemas.
     createdAt: v.number(),
   })
     .index("by_phase_version", ["phaseVersionId"])
@@ -235,6 +336,9 @@ export default defineSchema({
     displayName: v.string(),
     description: v.optional(v.string()),
     props: v.record(v.string(), v.any()),
+    // Convex limitation: v.union() cannot discriminate by adjacent componentKey field.
+    // Per-component validators are defined above (graphingExplorerPropsValidator, etc.)
+    // for use in mutation-level validation. See math-content package for Zod-level schemas.
     gradingConfig: v.optional(gradingConfigValidator),
     standardId: v.optional(v.id("competency_standards")),
     approval: v.optional(v.object({
