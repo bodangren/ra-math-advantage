@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { DiscriminantAnalyzer } from '@/components/activities/discriminant/DiscriminantAnalyzer';
+import { DiscriminantAnalyzer } from '@math-platform/activity-components/discriminant';
 import type { DiscriminantAnalyzerProps } from '@/lib/activities/schemas/discriminant-analyzer.schema';
 
 export interface DiscriminantAnalyzerActivityProps extends DiscriminantAnalyzerProps {

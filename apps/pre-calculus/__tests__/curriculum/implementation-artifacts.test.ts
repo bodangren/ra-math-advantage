@@ -70,7 +70,7 @@ describe('AP Precalculus implementation bridge artifacts', () => {
       activityId: 'apc-1-1-independent-practice',
       familyKey: 'apc_1_1',
       cedTopicId: '1.1',
-      componentKey: 'comprehension-quiz',
+      componentKey: 'fill-in-the-blank',
       mode: 'practice',
       srsEligible: true,
     });

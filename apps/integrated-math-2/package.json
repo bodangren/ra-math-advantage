@@ -12,6 +12,8 @@
     "ws:run": "node scripts/run-workspace.mjs"
   },
   "dependencies": {
+    "@math-platform/app-shell": "*",
+    "@math-platform/lesson-renderer": "*",
     "@math-platform/activity-runtime": "*",
     "@math-platform/core-auth": "*",
     "@math-platform/core-convex": "*",

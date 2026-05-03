@@ -1,5 +1,5 @@
 import { internalMutation, internalQuery } from "./_generated/server";
-import { v } from "convex/values";
+import { v, ConvexError } from "convex/values";
 import { Id } from "./_generated/dataModel";
 import { coerceNullableString } from "./dashboardHelpers";
 import {
@@ -139,7 +139,7 @@ export const completePhase = internalMutation({
         .withIndex("by_slug", (q) => q.eq("slug", args.lessonId))
         .unique();
     }
-    if (!lesson) throw new Error("Lesson not found");
+    if (!lesson) throw new ConvexError("Lesson not found");
 
     // 2. Get latest published version
     const versions = await ctx.db
@@ -147,21 +147,21 @@ export const completePhase = internalMutation({
       .withIndex("by_lesson", (q) => q.eq("lessonId", lesson._id))
       .collect();
     const latestVersion = resolveLatestPublishedLessonVersion(versions);
-    if (!latestVersion) throw new Error("Published lesson version not found");
+    if (!latestVersion) throw new ConvexError("Published lesson version not found");
 
     // 3. Find specific phase
     const phase = await ctx.db
       .query("phase_versions")
-      .withIndex("by_lesson_version_and_phase", (q) => 
+      .withIndex("by_lesson_version_and_phase", (q) =>
         q.eq("lessonVersionId", latestVersion._id).eq("phaseNumber", args.phaseNumber)
       )
       .unique();
-    if (!phase) throw new Error("Phase not found");
+    if (!phase) throw new ConvexError("Phase not found");
 
     // 4. Check idempotency
     const existing = await ctx.db
       .query("student_progress")
-      .withIndex("by_user_and_phase", (q) => 
+      .withIndex("by_user_and_phase", (q) =>
         q.eq("userId", args.userId).eq("phaseId", phase._id)
       )
       .unique();
@@ -201,15 +201,15 @@ export const completePhase = internalMutation({
         .query("competency_standards")
         .withIndex("by_code", (q) => q.eq("code", args.linkedStandardId!))
         .unique();
-      
+
       if (standard) {
         const existingComp = await ctx.db
           .query("student_competency")
-          .withIndex("by_student_and_standard", (q) => 
+          .withIndex("by_student_and_standard", (q) =>
             q.eq("studentId", args.userId).eq("standardId", standard._id)
           )
           .unique();
-        
+
         if (existingComp) {
           await ctx.db.patch(existingComp._id, {
             masteryLevel: Math.max(existingComp.masteryLevel, 1), // Basic completion = level 1
@@ -227,8 +227,8 @@ export const completePhase = internalMutation({
       }
     }
 
-    return { 
-      success: true, 
+    return {
+      success: true,
       nextPhaseUnlocked: true // Simplified for now
     };
   }
@@ -254,7 +254,7 @@ export const skipPhase = internalMutation({
         .withIndex("by_slug", (q) => q.eq("slug", args.lessonId))
         .unique();
     }
-    if (!lesson) throw new Error("Lesson not found");
+    if (!lesson) throw new ConvexError("Lesson not found");
 
     // 2. Get latest published version
     const versions = await ctx.db
@@ -262,16 +262,16 @@ export const skipPhase = internalMutation({
       .withIndex("by_lesson", (q) => q.eq("lessonId", lesson._id))
       .collect();
     const latestVersion = resolveLatestPublishedLessonVersion(versions);
-    if (!latestVersion) throw new Error("Published lesson version not found");
+    if (!latestVersion) throw new ConvexError("Published lesson version not found");
 
     // 3. Find specific phase
     const phase = await ctx.db
       .query("phase_versions")
-      .withIndex("by_lesson_version_and_phase", (q) => 
+      .withIndex("by_lesson_version_and_phase", (q) =>
         q.eq("lessonVersionId", latestVersion._id).eq("phaseNumber", args.phaseNumber)
       )
       .unique();
-    if (!phase) throw new Error("Phase not found");
+    if (!phase) throw new ConvexError("Phase not found");
 
     // 4. Check idempotency
     const existing = await ctx.db

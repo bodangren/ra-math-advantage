@@ -85,7 +85,7 @@ export async function saveCardHandler(
       lapses: args.lapses,
       lastReview: args.lastReview ?? undefined,
       createdAt: existing.createdAt,
-      updatedAt: Date.now(),
+      updatedAt: new Date(args.updatedAt).getTime(),
     });
     return existing._id;
   } else {
@@ -179,7 +179,7 @@ export async function saveCardsHandler(
           lapses: card.lapses,
           lastReview: card.lastReview ?? undefined,
           createdAt: existing.createdAt,
-          updatedAt: Date.now(),
+          updatedAt: new Date(card.updatedAt).getTime(),
         });
       } else {
         return ctx.db.insert("srs_cards", {

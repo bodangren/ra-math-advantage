@@ -1,10 +1,11 @@
 'use client';
 
 import { useCallback, useRef } from 'react';
-import { StepByStepper } from '@/components/activities/algebraic/StepByStepper';
-import type { AlgebraicStep, StepAttempt } from '@/components/activities/algebraic/StepByStepper';
+import { StepByStepper } from '@math-platform/activity-components/algebraic';
+import type { AlgebraicStep, StepAttempt } from '@math-platform/activity-components/algebraic';
 import type { ProblemType } from '@/lib/activities/schemas/step-by-step-solver.schema';
 import { buildAlgebraicSubmission } from '@/lib/activities/schemas/step-by-step-solver.schema';
+import { generateDistractors, type DistractorType } from '@/lib/activities/algebraic/distractors';
 
 export interface ActivityComponentProps {
   activityId: string;
@@ -70,11 +71,18 @@ export function StepByStepSolverActivity({
     onComplete?.();
   }, [activityId, mode, problemType, equation, onSubmit, onComplete]);
 
+  const handleGenerateDistractors = useCallback(
+    (expression: string, problemType: string) =>
+      generateDistractors(expression, problemType as DistractorType),
+    [],
+  );
+
   return (
     <StepByStepper
       mode={mode}
       steps={steps}
       problemType={problemType}
+      generateDistractors={handleGenerateDistractors}
       onPracticeComplete={mode === 'practice' ? handlePracticeComplete : undefined}
     />
   );

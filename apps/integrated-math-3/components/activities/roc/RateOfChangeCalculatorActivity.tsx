@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { RateOfChangeCalculator } from '@/components/activities/roc/RateOfChangeCalculator';
+import { RateOfChangeCalculator } from '@math-platform/activity-components/roc';
 import type { RateOfChangeCalculatorProps } from '@/lib/activities/schemas/rate-of-change-calculator.schema';
 
 export interface RateOfChangeCalculatorActivityProps extends RateOfChangeCalculatorProps {

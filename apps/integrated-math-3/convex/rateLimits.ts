@@ -1,5 +1,5 @@
 import { internalMutation, internalQuery } from "./_generated/server";
-import { v } from "convex/values";
+import { v, ConvexError } from "convex/values";
 
 const RATE_LIMIT_WINDOW_MS = 60000;
 const MAX_REQUESTS_PER_WINDOW = 5;
@@ -116,7 +116,7 @@ export const cleanupStaleRateLimits = internalMutation({
   handler: async (ctx, args) => {
     const profile = await ctx.db.get(args.adminProfileId);
     if (!profile || profile.role !== "admin") {
-      throw new Error("Unauthorized: admin only");
+      throw new ConvexError("Unauthorized: admin only");
     }
 
     const now = Date.now();

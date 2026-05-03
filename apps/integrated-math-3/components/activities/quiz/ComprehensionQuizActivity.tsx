@@ -1,6 +1,6 @@
 'use client';
 
-import { ComprehensionQuiz } from '@/components/activities/quiz/ComprehensionQuiz';
+import { ComprehensionQuiz } from '@math-platform/activity-components/quiz';
 
 export interface ActivityComponentProps {
   activityId: string;

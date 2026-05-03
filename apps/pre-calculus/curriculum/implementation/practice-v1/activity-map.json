@@ -13,11 +13,12 @@
       "cedTopicId": "1.1",
       "unit": 1,
       "title": "Change in Tandem independent practice",
-      "componentKey": "comprehension-quiz",
+      "componentKey": "fill-in-the-blank",
       "mode": "practice",
       "sourceReferences": [
         "curriculum/source/college-board/ced-topic-index.json",
-        "curriculum/source/passwater/unit-1.md"
+        "curriculum/source/passwater/unit-1.md",
+        "curriculum/source/passwater/unit-1.md#topic-1.1"
       ],
       "gradingConfig": {
         "evidenceType": "competency-check",
@@ -32,11 +33,12 @@
       "cedTopicId": "1.2",
       "unit": 1,
       "title": "Rates of Change independent practice",
-      "componentKey": "comprehension-quiz",
+      "componentKey": "rate-of-change-calculator",
       "mode": "practice",
       "sourceReferences": [
         "curriculum/source/college-board/ced-topic-index.json",
-        "curriculum/source/passwater/unit-1.md"
+        "curriculum/source/passwater/unit-1.md",
+        "curriculum/source/passwater/unit-1.md#topic-1.2"
       ],
       "gradingConfig": {
         "evidenceType": "competency-check",
@@ -51,11 +53,12 @@
       "cedTopicId": "1.3",
       "unit": 1,
       "title": "Rates of Change in Linear and Quadratic Functions independent practice",
-      "componentKey": "comprehension-quiz",
+      "componentKey": "rate-of-change-calculator",
       "mode": "practice",
       "sourceReferences": [
         "curriculum/source/college-board/ced-topic-index.json",
-        "curriculum/source/passwater/unit-1.md"
+        "curriculum/source/passwater/unit-1.md",
+        "curriculum/source/passwater/unit-1.md#topic-1.3"
       ],
       "gradingConfig": {
         "evidenceType": "competency-check",
@@ -70,11 +73,12 @@
       "cedTopicId": "1.4",
       "unit": 1,
       "title": "Polynomial Functions and Rates of Change independent practice",
-      "componentKey": "comprehension-quiz",
+      "componentKey": "graphing-explorer",
       "mode": "practice",
       "sourceReferences": [
         "curriculum/source/college-board/ced-topic-index.json",
-        "curriculum/source/passwater/unit-1.md"
+        "curriculum/source/passwater/unit-1.md",
+        "curriculum/source/passwater/unit-1.md#topic-1.4"
       ],
       "gradingConfig": {
         "evidenceType": "competency-check",
@@ -89,11 +93,12 @@
       "cedTopicId": "1.5",
       "unit": 1,
       "title": "Polynomial Functions and Complex Zeros independent practice",
-      "componentKey": "comprehension-quiz",
+      "componentKey": "discriminant-analyzer",
       "mode": "practice",
       "sourceReferences": [
         "curriculum/source/college-board/ced-topic-index.json",
-        "curriculum/source/passwater/unit-1.md"
+        "curriculum/source/passwater/unit-1.md",
+        "curriculum/source/passwater/unit-1.md#topic-1.5"
       ],
       "gradingConfig": {
         "evidenceType": "competency-check",
@@ -108,11 +113,12 @@
       "cedTopicId": "1.6",
       "unit": 1,
       "title": "Polynomial Functions and End Behavior independent practice",
-      "componentKey": "comprehension-quiz",
+      "componentKey": "graphing-explorer",
       "mode": "practice",
       "sourceReferences": [
         "curriculum/source/college-board/ced-topic-index.json",
-        "curriculum/source/passwater/unit-1.md"
+        "curriculum/source/passwater/unit-1.md",
+        "curriculum/source/passwater/unit-1.md#topic-1.6"
       ],
       "gradingConfig": {
         "evidenceType": "competency-check",
@@ -127,11 +133,12 @@
       "cedTopicId": "1.7",
       "unit": 1,
       "title": "Rational Functions and End Behavior independent practice",
-      "componentKey": "comprehension-quiz",
+      "componentKey": "graphing-explorer",
       "mode": "practice",
       "sourceReferences": [
         "curriculum/source/college-board/ced-topic-index.json",
-        "curriculum/source/passwater/unit-1.md"
+        "curriculum/source/passwater/unit-1.md",
+        "curriculum/source/passwater/unit-1.md#topic-1.7"
       ],
       "gradingConfig": {
         "evidenceType": "competency-check",
@@ -146,11 +153,12 @@
       "cedTopicId": "1.8",
       "unit": 1,
       "title": "Rational Functions and Zeros independent practice",
-      "componentKey": "comprehension-quiz",
+      "componentKey": "step-by-step-solver",
       "mode": "practice",
       "sourceReferences": [
         "curriculum/source/college-board/ced-topic-index.json",
-        "curriculum/source/passwater/unit-1.md"
+        "curriculum/source/passwater/unit-1.md",
+        "curriculum/source/passwater/unit-1.md#topic-1.8"
       ],
       "gradingConfig": {
         "evidenceType": "competency-check",
@@ -165,11 +173,12 @@
       "cedTopicId": "1.9",
       "unit": 1,
       "title": "Rational Functions and Vertical Asymptotes independent practice",
-      "componentKey": "comprehension-quiz",
+      "componentKey": "graphing-explorer",
       "mode": "practice",
       "sourceReferences": [
         "curriculum/source/college-board/ced-topic-index.json",
-        "curriculum/source/passwater/unit-1.md"
+        "curriculum/source/passwater/unit-1.md",
+        "curriculum/source/passwater/unit-1.md#topic-1.9"
       ],
       "gradingConfig": {
         "evidenceType": "competency-check",
@@ -184,11 +193,12 @@
       "cedTopicId": "1.10",
       "unit": 1,
       "title": "Rational Functions and Holes independent practice",
-      "componentKey": "comprehension-quiz",
+      "componentKey": "graphing-explorer",
       "mode": "practice",
       "sourceReferences": [
         "curriculum/source/college-board/ced-topic-index.json",
-        "curriculum/source/passwater/unit-1.md"
+        "curriculum/source/passwater/unit-1.md",
+        "curriculum/source/passwater/unit-1.md#topic-1.10"
       ],
       "gradingConfig": {
         "evidenceType": "competency-check",
@@ -203,11 +213,12 @@
       "cedTopicId": "1.11",
       "unit": 1,
       "title": "Equivalent Representations of Polynomial and Rational Expressions independent practice",
-      "componentKey": "comprehension-quiz",
+      "componentKey": "step-by-step-solver",
       "mode": "practice",
       "sourceReferences": [
         "curriculum/source/college-board/ced-topic-index.json",
-        "curriculum/source/passwater/unit-1.md"
+        "curriculum/source/passwater/unit-1.md",
+        "curriculum/source/passwater/unit-1.md#topic-1.11"
       ],
       "gradingConfig": {
         "evidenceType": "competency-check",
@@ -222,11 +233,12 @@
       "cedTopicId": "1.12",
       "unit": 1,
       "title": "Transformations of Functions independent practice",
-      "componentKey": "comprehension-quiz",
+      "componentKey": "graphing-explorer",
       "mode": "practice",
       "sourceReferences": [
         "curriculum/source/college-board/ced-topic-index.json",
-        "curriculum/source/passwater/unit-1.md"
+        "curriculum/source/passwater/unit-1.md",
+        "curriculum/source/passwater/unit-1.md#topic-1.12"
       ],
       "gradingConfig": {
         "evidenceType": "competency-check",
@@ -245,7 +257,8 @@
       "mode": "practice",
       "sourceReferences": [
         "curriculum/source/college-board/ced-topic-index.json",
-        "curriculum/source/passwater/unit-1.md"
+        "curriculum/source/passwater/unit-1.md",
+        "curriculum/source/passwater/unit-1.md#topic-1.13"
       ],
       "gradingConfig": {
         "evidenceType": "competency-check",
@@ -264,7 +277,8 @@
       "mode": "practice",
       "sourceReferences": [
         "curriculum/source/college-board/ced-topic-index.json",
-        "curriculum/source/passwater/unit-1.md"
+        "curriculum/source/passwater/unit-1.md",
+        "curriculum/source/passwater/unit-1.md#topic-1.14"
       ],
       "gradingConfig": {
         "evidenceType": "competency-check",
@@ -279,11 +293,12 @@
       "cedTopicId": "2.1",
       "unit": 2,
       "title": "Change in Arithmetic and Geometric Sequences independent practice",
-      "componentKey": "comprehension-quiz",
+      "componentKey": "fill-in-the-blank",
       "mode": "practice",
       "sourceReferences": [
         "curriculum/source/college-board/ced-topic-index.json",
-        "curriculum/source/passwater/unit-2.md"
+        "curriculum/source/passwater/unit-2.md",
+        "curriculum/source/passwater/unit-2.md#topic-2.1"
       ],
       "gradingConfig": {
         "evidenceType": "competency-check",
@@ -298,11 +313,12 @@
       "cedTopicId": "2.2",
       "unit": 2,
       "title": "Change in Linear and Exponential Functions independent practice",
-      "componentKey": "comprehension-quiz",
+      "componentKey": "rate-of-change-calculator",
       "mode": "practice",
       "sourceReferences": [
         "curriculum/source/college-board/ced-topic-index.json",
-        "curriculum/source/passwater/unit-2.md"
+        "curriculum/source/passwater/unit-2.md",
+        "curriculum/source/passwater/unit-2.md#topic-2.2"
       ],
       "gradingConfig": {
         "evidenceType": "competency-check",
@@ -321,7 +337,8 @@
       "mode": "practice",
       "sourceReferences": [
         "curriculum/source/college-board/ced-topic-index.json",
-        "curriculum/source/passwater/unit-2.md"
+        "curriculum/source/passwater/unit-2.md",
+        "curriculum/source/passwater/unit-2.md#topic-2.3"
       ],
       "gradingConfig": {
         "evidenceType": "competency-check",
@@ -336,11 +353,12 @@
       "cedTopicId": "2.4",
       "unit": 2,
       "title": "Exponential Function Manipulation independent practice",
-      "componentKey": "comprehension-quiz",
+      "componentKey": "step-by-step-solver",
       "mode": "practice",
       "sourceReferences": [
         "curriculum/source/college-board/ced-topic-index.json",
-        "curriculum/source/passwater/unit-2.md"
+        "curriculum/source/passwater/unit-2.md",
+        "curriculum/source/passwater/unit-2.md#topic-2.4"
       ],
       "gradingConfig": {
         "evidenceType": "competency-check",
@@ -359,7 +377,8 @@
       "mode": "practice",
       "sourceReferences": [
         "curriculum/source/college-board/ced-topic-index.json",
-        "curriculum/source/passwater/unit-2.md"
+        "curriculum/source/passwater/unit-2.md",
+        "curriculum/source/passwater/unit-2.md#topic-2.5"
       ],
       "gradingConfig": {
         "evidenceType": "competency-check",
@@ -378,7 +397,8 @@
       "mode": "practice",
       "sourceReferences": [
         "curriculum/source/college-board/ced-topic-index.json",
-        "curriculum/source/passwater/unit-2.md"
+        "curriculum/source/passwater/unit-2.md",
+        "curriculum/source/passwater/unit-2.md#topic-2.6"
       ],
       "gradingConfig": {
         "evidenceType": "competency-check",
@@ -397,7 +417,8 @@
       "mode": "practice",
       "sourceReferences": [
         "curriculum/source/college-board/ced-topic-index.json",
-        "curriculum/source/passwater/unit-2.md"
+        "curriculum/source/passwater/unit-2.md",
+        "curriculum/source/passwater/unit-2.md#topic-2.7"
       ],
       "gradingConfig": {
         "evidenceType": "competency-check",
@@ -416,7 +437,8 @@
       "mode": "practice",
       "sourceReferences": [
         "curriculum/source/college-board/ced-topic-index.json",
-        "curriculum/source/passwater/unit-2.md"
+        "curriculum/source/passwater/unit-2.md",
+        "curriculum/source/passwater/unit-2.md#topic-2.8"
       ],
       "gradingConfig": {
         "evidenceType": "competency-check",
@@ -431,11 +453,12 @@
       "cedTopicId": "2.9",
       "unit": 2,
       "title": "Logarithmic Expressions independent practice",
-      "componentKey": "comprehension-quiz",
+      "componentKey": "fill-in-the-blank",
       "mode": "practice",
       "sourceReferences": [
         "curriculum/source/college-board/ced-topic-index.json",
-        "curriculum/source/passwater/unit-2.md"
+        "curriculum/source/passwater/unit-2.md",
+        "curriculum/source/passwater/unit-2.md#topic-2.9"
       ],
       "gradingConfig": {
         "evidenceType": "competency-check",
@@ -454,7 +477,8 @@
       "mode": "practice",
       "sourceReferences": [
         "curriculum/source/college-board/ced-topic-index.json",
-        "curriculum/source/passwater/unit-2.md"
+        "curriculum/source/passwater/unit-2.md",
+        "curriculum/source/passwater/unit-2.md#topic-2.10"
       ],
       "gradingConfig": {
         "evidenceType": "competency-check",
@@ -473,7 +497,8 @@
       "mode": "practice",
       "sourceReferences": [
         "curriculum/source/college-board/ced-topic-index.json",
-        "curriculum/source/passwater/unit-2.md"
+        "curriculum/source/passwater/unit-2.md",
+        "curriculum/source/passwater/unit-2.md#topic-2.11"
       ],
       "gradingConfig": {
         "evidenceType": "competency-check",
@@ -488,11 +513,12 @@
       "cedTopicId": "2.12",
       "unit": 2,
       "title": "Logarithmic Function Manipulation independent practice",
-      "componentKey": "comprehension-quiz",
+      "componentKey": "step-by-step-solver",
       "mode": "practice",
       "sourceReferences": [
         "curriculum/source/college-board/ced-topic-index.json",
-        "curriculum/source/passwater/unit-2.md"
+        "curriculum/source/passwater/unit-2.md",
+        "curriculum/source/passwater/unit-2.md#topic-2.12"
       ],
       "gradingConfig": {
         "evidenceType": "competency-check",
@@ -507,11 +533,12 @@
       "cedTopicId": "2.13",
       "unit": 2,
       "title": "Exponential and Logarithmic Equations and Inequalities independent practice",
-      "componentKey": "comprehension-quiz",
+      "componentKey": "step-by-step-solver",
       "mode": "practice",
       "sourceReferences": [
         "curriculum/source/college-board/ced-topic-index.json",
-        "curriculum/source/passwater/unit-2.md"
+        "curriculum/source/passwater/unit-2.md",
+        "curriculum/source/passwater/unit-2.md#topic-2.13"
       ],
       "gradingConfig": {
         "evidenceType": "competency-check",
@@ -530,7 +557,8 @@
       "mode": "practice",
       "sourceReferences": [
         "curriculum/source/college-board/ced-topic-index.json",
-        "curriculum/source/passwater/unit-2.md"
+        "curriculum/source/passwater/unit-2.md",
+        "curriculum/source/passwater/unit-2.md#topic-2.14"
       ],
       "gradingConfig": {
         "evidenceType": "competency-check",
@@ -545,11 +573,12 @@
       "cedTopicId": "2.15",
       "unit": 2,
       "title": "Semi-log Plots independent practice",
-      "componentKey": "comprehension-quiz",
+      "componentKey": "fill-in-the-blank",
       "mode": "practice",
       "sourceReferences": [
         "curriculum/source/college-board/ced-topic-index.json",
-        "curriculum/source/passwater/unit-2.md"
+        "curriculum/source/passwater/unit-2.md",
+        "curriculum/source/passwater/unit-2.md#topic-2.15"
       ],
       "gradingConfig": {
         "evidenceType": "competency-check",
@@ -564,11 +593,12 @@
       "cedTopicId": "3.1",
       "unit": 3,
       "title": "Periodic Phenomena independent practice",
-      "componentKey": "comprehension-quiz",
+      "componentKey": "fill-in-the-blank",
       "mode": "practice",
       "sourceReferences": [
         "curriculum/source/college-board/ced-topic-index.json",
-        "curriculum/source/passwater/unit-3.md"
+        "curriculum/source/passwater/unit-3.md",
+        "curriculum/source/passwater/unit-3.md#topic-3.1"
       ],
       "gradingConfig": {
         "evidenceType": "competency-check",
@@ -583,11 +613,12 @@
       "cedTopicId": "3.2",
       "unit": 3,
       "title": "Sine, Cosine, and Tangent independent practice",
-      "componentKey": "comprehension-quiz",
+      "componentKey": "fill-in-the-blank",
       "mode": "practice",
       "sourceReferences": [
         "curriculum/source/college-board/ced-topic-index.json",
-        "curriculum/source/passwater/unit-3.md"
+        "curriculum/source/passwater/unit-3.md",
+        "curriculum/source/passwater/unit-3.md#topic-3.2"
       ],
       "gradingConfig": {
         "evidenceType": "competency-check",
@@ -606,7 +637,8 @@
       "mode": "practice",
       "sourceReferences": [
         "curriculum/source/college-board/ced-topic-index.json",
-        "curriculum/source/passwater/unit-3.md"
+        "curriculum/source/passwater/unit-3.md",
+        "curriculum/source/passwater/unit-3.md#topic-3.3"
       ],
       "gradingConfig": {
         "evidenceType": "competency-check",
@@ -621,11 +653,12 @@
       "cedTopicId": "3.4",
       "unit": 3,
       "title": "Sine and Cosine Function Graphs independent practice",
-      "componentKey": "comprehension-quiz",
+      "componentKey": "graphing-explorer",
       "mode": "practice",
       "sourceReferences": [
         "curriculum/source/college-board/ced-topic-index.json",
-        "curriculum/source/passwater/unit-3.md"
+        "curriculum/source/passwater/unit-3.md",
+        "curriculum/source/passwater/unit-3.md#topic-3.4"
       ],
       "gradingConfig": {
         "evidenceType": "competency-check",
@@ -640,11 +673,12 @@
       "cedTopicId": "3.5",
       "unit": 3,
       "title": "Sinusoidal Functions independent practice",
-      "componentKey": "comprehension-quiz",
+      "componentKey": "graphing-explorer",
       "mode": "practice",
       "sourceReferences": [
         "curriculum/source/college-board/ced-topic-index.json",
-        "curriculum/source/passwater/unit-3.md"
+        "curriculum/source/passwater/unit-3.md",
+        "curriculum/source/passwater/unit-3.md#topic-3.5"
       ],
       "gradingConfig": {
         "evidenceType": "competency-check",
@@ -659,11 +693,12 @@
       "cedTopicId": "3.6",
       "unit": 3,
       "title": "Sinusoidal Function Transformations independent practice",
-      "componentKey": "comprehension-quiz",
+      "componentKey": "graphing-explorer",
       "mode": "practice",
       "sourceReferences": [
         "curriculum/source/college-board/ced-topic-index.json",
-        "curriculum/source/passwater/unit-3.md"
+        "curriculum/source/passwater/unit-3.md",
+        "curriculum/source/passwater/unit-3.md#topic-3.6"
       ],
       "gradingConfig": {
         "evidenceType": "competency-check",
@@ -682,7 +717,8 @@
       "mode": "practice",
       "sourceReferences": [
         "curriculum/source/college-board/ced-topic-index.json",
-        "curriculum/source/passwater/unit-3.md"
+        "curriculum/source/passwater/unit-3.md",
+        "curriculum/source/passwater/unit-3.md#topic-3.7"
       ],
       "gradingConfig": {
         "evidenceType": "competency-check",
@@ -697,11 +733,12 @@
       "cedTopicId": "3.8",
       "unit": 3,
       "title": "The Tangent Function independent practice",
-      "componentKey": "comprehension-quiz",
+      "componentKey": "fill-in-the-blank",
       "mode": "practice",
       "sourceReferences": [
         "curriculum/source/college-board/ced-topic-index.json",
-        "curriculum/source/passwater/unit-3.md"
+        "curriculum/source/passwater/unit-3.md",
+        "curriculum/source/passwater/unit-3.md#topic-3.8"
       ],
       "gradingConfig": {
         "evidenceType": "competency-check",
@@ -720,7 +757,8 @@
       "mode": "practice",
       "sourceReferences": [
         "curriculum/source/college-board/ced-topic-index.json",
-        "curriculum/source/passwater/unit-3.md"
+        "curriculum/source/passwater/unit-3.md",
+        "curriculum/source/passwater/unit-3.md#topic-3.9"
       ],
       "gradingConfig": {
         "evidenceType": "competency-check",
@@ -735,11 +773,12 @@
       "cedTopicId": "3.10",
       "unit": 3,
       "title": "Trigonometric Equations and Inequalities independent practice",
-      "componentKey": "comprehension-quiz",
+      "componentKey": "step-by-step-solver",
       "mode": "practice",
       "sourceReferences": [
         "curriculum/source/college-board/ced-topic-index.json",
-        "curriculum/source/passwater/unit-3.md"
+        "curriculum/source/passwater/unit-3.md",
+        "curriculum/source/passwater/unit-3.md#topic-3.10"
       ],
       "gradingConfig": {
         "evidenceType": "competency-check",
@@ -754,11 +793,12 @@
       "cedTopicId": "3.11",
       "unit": 3,
       "title": "The Secant, Cosecant, and Cotangent Functions independent practice",
-      "componentKey": "comprehension-quiz",
+      "componentKey": "fill-in-the-blank",
       "mode": "practice",
       "sourceReferences": [
         "curriculum/source/college-board/ced-topic-index.json",
-        "curriculum/source/passwater/unit-3.md"
+        "curriculum/source/passwater/unit-3.md",
+        "curriculum/source/passwater/unit-3.md#topic-3.11"
       ],
       "gradingConfig": {
         "evidenceType": "competency-check",
@@ -773,11 +813,12 @@
       "cedTopicId": "3.12",
       "unit": 3,
       "title": "Equivalent Representations of Trigonometric Functions independent practice",
-      "componentKey": "comprehension-quiz",
+      "componentKey": "step-by-step-solver",
       "mode": "practice",
       "sourceReferences": [
         "curriculum/source/college-board/ced-topic-index.json",
-        "curriculum/source/passwater/unit-3.md"
+        "curriculum/source/passwater/unit-3.md",
+        "curriculum/source/passwater/unit-3.md#topic-3.12"
       ],
       "gradingConfig": {
         "evidenceType": "competency-check",
@@ -792,11 +833,12 @@
       "cedTopicId": "3.13",
       "unit": 3,
       "title": "Trigonometry and Polar Coordinates independent practice",
-      "componentKey": "comprehension-quiz",
+      "componentKey": "fill-in-the-blank",
       "mode": "practice",
       "sourceReferences": [
         "curriculum/source/college-board/ced-topic-index.json",
-        "curriculum/source/passwater/unit-3.md"
+        "curriculum/source/passwater/unit-3.md",
+        "curriculum/source/passwater/unit-3.md#topic-3.13"
       ],
       "gradingConfig": {
         "evidenceType": "competency-check",
@@ -811,11 +853,12 @@
       "cedTopicId": "3.14",
       "unit": 3,
       "title": "Polar Function Graphs independent practice",
-      "componentKey": "comprehension-quiz",
+      "componentKey": "graphing-explorer",
       "mode": "practice",
       "sourceReferences": [
         "curriculum/source/college-board/ced-topic-index.json",
-        "curriculum/source/passwater/unit-3.md"
+        "curriculum/source/passwater/unit-3.md",
+        "curriculum/source/passwater/unit-3.md#topic-3.14"
       ],
       "gradingConfig": {
         "evidenceType": "competency-check",
@@ -830,11 +873,12 @@
       "cedTopicId": "3.15",
       "unit": 3,
       "title": "Rates of Change in Polar Functions independent practice",
-      "componentKey": "comprehension-quiz",
+      "componentKey": "rate-of-change-calculator",
       "mode": "practice",
       "sourceReferences": [
         "curriculum/source/college-board/ced-topic-index.json",
-        "curriculum/source/passwater/unit-3.md"
+        "curriculum/source/passwater/unit-3.md",
+        "curriculum/source/passwater/unit-3.md#topic-3.15"
       ],
       "gradingConfig": {
         "evidenceType": "competency-check",

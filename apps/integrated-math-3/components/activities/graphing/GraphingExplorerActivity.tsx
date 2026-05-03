@@ -1,6 +1,6 @@
 'use client';
 
-import { GraphingExplorer } from '@/components/activities/graphing/GraphingExplorer';
+import { GraphingExplorer } from '@math-platform/activity-components/graphing';
 
 export interface ActivityComponentProps {
   activityId: string;

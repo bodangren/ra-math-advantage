@@ -2,7 +2,7 @@
 
 import { useState, useCallback, useEffect } from 'react';
 import type { StepMode } from '@/components/textbook/StepRevealContainer';
-import type { AlgebraicStep } from '@/components/activities/algebraic/StepByStepper';
+import type { AlgebraicStep } from '@math-platform/activity-components/algebraic';
 
 interface ExampleReviewHarnessProps {
   componentKey: string;

@@ -1,29 +1,11 @@
 import { describe, it, expect } from "vitest";
-import {
-  MODULE1_PROBLEM_FAMILIES,
-} from "../../../convex/seed/problem_families/module_1";
-import {
-  MODULE2_PROBLEM_FAMILIES,
-} from "../../../convex/seed/problem_families/module_2";
-import {
-  MODULE3_PROBLEM_FAMILIES,
-} from "../../../convex/seed/problem_families/module_3";
-import {
-  MODULE4_PROBLEM_FAMILIES,
-} from "../../../convex/seed/problem_families/module_4";
-import {
-  MODULE5_PROBLEM_FAMILIES,
-} from "../../../convex/seed/problem_families/module_5";
+import { IM3_PROBLEM_FAMILIES } from "@math-platform/math-content/problem-families/im3";
 import { problemFamilySchema } from "@math-platform/practice-core";
 import { practiceItemSchema } from "@math-platform/practice-core";
 
-const ALL_PROBLEM_FAMILIES = [
-  ...MODULE1_PROBLEM_FAMILIES,
-  ...MODULE2_PROBLEM_FAMILIES,
-  ...MODULE3_PROBLEM_FAMILIES,
-  ...MODULE4_PROBLEM_FAMILIES,
-  ...MODULE5_PROBLEM_FAMILIES,
-];
+const ALL_PROBLEM_FAMILIES = IM3_PROBLEM_FAMILIES.filter(
+  (f) => (f.metadata as { module?: number }).module !== undefined
+);
 
 describe("Problem Family Seed Data Validation", () => {
   it("all problem family records pass problemFamilySchema", () => {

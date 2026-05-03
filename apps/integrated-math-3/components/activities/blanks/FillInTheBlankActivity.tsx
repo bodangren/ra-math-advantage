@@ -1,6 +1,6 @@
 'use client';
 
-import { FillInTheBlank } from '@/components/activities/blanks/FillInTheBlank';
+import { FillInTheBlank } from '@math-platform/activity-components/blanks';
 
 export interface FillInTheBlankActivityProps {
   activityId: string;

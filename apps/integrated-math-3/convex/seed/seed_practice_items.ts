@@ -1,45 +1,9 @@
 import { internalMutation } from "../_generated/server";
 import type { Id } from "../_generated/dataModel";
 import { practiceItemSchema } from "@math-platform/practice-core";
-import {
-  MODULE1_PROBLEM_FAMILIES,
-} from "./problem_families/module_1";
-import {
-  MODULE2_PROBLEM_FAMILIES,
-} from "./problem_families/module_2";
-import {
-  MODULE3_PROBLEM_FAMILIES,
-} from "./problem_families/module_3";
-import {
-  MODULE4_PROBLEM_FAMILIES,
-} from "./problem_families/module_4";
-import {
-  MODULE5_PROBLEM_FAMILIES,
-} from "./problem_families/module_5";
-import {
-  MODULE6_PROBLEM_FAMILIES,
-} from "./problem_families/module_6";
-import {
-  MODULE7_PROBLEM_FAMILIES,
-} from "./problem_families/module_7";
-import {
-  MODULE8_PROBLEM_FAMILIES,
-} from "./problem_families/module_8";
-import {
-  MODULE9_PROBLEM_FAMILIES,
-} from "./problem_families/module_9";
+import { IM3_PROBLEM_FAMILIES } from "@math-platform/math-content/problem-families/im3";
 
-const ALL_PROBLEM_FAMILY_IDS = [
-  ...MODULE1_PROBLEM_FAMILIES,
-  ...MODULE2_PROBLEM_FAMILIES,
-  ...MODULE3_PROBLEM_FAMILIES,
-  ...MODULE4_PROBLEM_FAMILIES,
-  ...MODULE5_PROBLEM_FAMILIES,
-  ...MODULE6_PROBLEM_FAMILIES,
-  ...MODULE7_PROBLEM_FAMILIES,
-  ...MODULE8_PROBLEM_FAMILIES,
-  ...MODULE9_PROBLEM_FAMILIES,
-].map((f) => f.problemFamilyId);
+const ALL_PROBLEM_FAMILY_IDS = [...IM3_PROBLEM_FAMILIES].map((f) => f.problemFamilyId);
 
 export const seedPracticeItems = internalMutation({
   args: {},
