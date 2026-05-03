@@ -58,4 +58,4 @@
   - [x] Verify tests still pass without aliases
   - [x] Update tech-debt.md: mark as Resolved
 
-- [ ] Task: Measure - User Manual Verification 'Phase 3' (Protocol in workflow.md)
+- [x] Task: Measure - User Manual Verification 'Phase 3' (Protocol in workflow.md)

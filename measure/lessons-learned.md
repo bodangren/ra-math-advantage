@@ -17,7 +17,7 @@
 - (2026-04-23, review-14) Convex runtime cannot import npm packages — duplicate constants in convex/ files are unavoidable
 - (2026-04-19, review-10) Always validate + parse request body BEFORE consuming rate limits — malformed requests burn quota
 - (2026-04-29, review-25) Converting Convex public mutations to `internalMutation` requires: (1) updating generated `api.d.ts`, (2) updating ALL test mock setups from `fetchMutation` + `api.*` to `fetchInternalMutation` + `internal.*`, (3) removing stale `Id` imports
-- (2026-05-03, vitest-aliases) New monorepo packages need vitest `resolve.alias` entries in each app until `npm install` creates workspace symlinks. Without aliases, imports resolve to nothing and tests fail with opaque transform errors.
+- (2026-05-03, vitest-aliases) New monorepo packages need vitest `resolve.alias` entries in each app until `npm install` creates workspace symlinks. Without aliases, imports resolve to nothing and tests fail with opaque transform errors. Once symlink exists, remove aliases immediately — they mask broken workspace resolution.
 
 ## Patterns That Worked Well
 
@@ -26,6 +26,7 @@
 - (2026-04-29, saveCards-batch) Two-phase Promise.all: lookups in parallel first, then writes in parallel. Sequential await = 2N DB round trips; two-phase = 2 round trips
 - (2026-05-03, rate-limiter-extraction) Extract pure algorithm logic (sliding window check, config constants) to packages; keep Convex-specific handlers thin in apps. 15 package-level tests + per-app handler tests = high confidence without mocking Convex.
 - (2026-05-03, governance-tests) BM2 governance tests using `process.cwd()` broke in monorepo. Fix: `const REPO_ROOT = path.resolve(__dirname, '../../..')` for monorepo-root paths, keep `path.resolve(__dirname, '..')` for app-local paths.
+- (2026-05-03, vany-typing) Replace `v.any()` with `v.record(v.string(), v.any())` in Convex schemas — validates object shape without constraining properties. Intentionally untyped fields (polymorphic rawAnswer, interactionHistory) are acceptable exceptions.
 
 ## Planning Improvements
 
