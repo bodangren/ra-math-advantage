@@ -899,18 +899,15 @@ Parallel tracks delivering complete curriculum for all three new apps. Tracks 1 
       *Result: 2.0 MB (manualChunks + drizzle decoupling + lazy-loaded activities). CI-enforced 3 MB audit.*
       *Link: [./tracks/bm2-bundle-optimization_20260503/](./tracks/bm2-bundle-optimization_20260503/)*
 
-- [ ] **Track: Extract Shared Rate Limiter Package**
-     *Extract duplicated rate limiting logic from IM3/BM2 into shared @math-platform/rate-limiter package*
-     *Link: [./tracks/shared-rate-limiter-package_20260503/](./tracks/shared-rate-limiter-package_20260503/)*
+- [x] **Track: Extract Shared Rate Limiter Package** — **COMPLETED**
+      *Extract duplicated rate limiting logic from IM3/BM2 into shared @math-platform/rate-limiter package*
+      *Result: 15 tests pass. Both apps consume via package. Concurrent inserts verified.*
+      *Link: [./tracks/shared-rate-limiter-package_20260503/](./tracks/shared-rate-limiter-package_20260503/)*
 
-- [ ] **Track: Session History Cursor Pagination**
-     *Replace fetch-all-then-slice pattern with Convex cursor pagination for session history queries*
-     *Link: [./tracks/session-history-pagination_20260503/](./tracks/session-history-pagination_20260503/)*
-
-- [~] **Track: Remediate Recent Work Review Findings**
-     *Repair TypeScript failures, superficial schema audit coverage, overstated v.any() remediation, weak math-content tests, and Measure plan truthfulness found in the 2026-05-03 recent-work review*
-     *Depends on: Extract Shared Math Content Package; Tech Debt Resolution v2*
-     *Link: [./tracks/recent-work-remediation_20260503/](./tracks/recent-work-remediation_20260503/)*
+- [x] **Track: Session History Cursor Pagination** — **COMPLETED**
+      *Replace fetch-all-then-slice pattern with Convex cursor pagination for session history queries*
+      *Result: Filter-before-paginate via by_student_and_status index + neq filter. BM2 N/A.*
+      *Link: [./tracks/session-history-pagination_20260503/](./tracks/session-history-pagination_20260503/)*
 
 - [x] **Track: Curriculum Content Authoring — IM2** — **COMPLETED**
      *Author complete curriculum content for Integrated Math 2: 13 units, ~67 lessons*
