@@ -779,13 +779,15 @@ AI Tutoring and Workbook scope is explicitly **import/adopt from BM2**, not gree
 
 ## Tech Debt Resolution (2026-04-29)
 
-- [x] **Track: Monorepo Tech Debt Resolution** — **IN PROGRESS** (9 of 24 tasks complete)
+- [x] **Track: Monorepo Tech Debt Resolution** — **COMPLETED** (28 of 28 tasks complete)
   *Resolve all 24 open/partial tech debt items, add missing test coverage, and implement metrics/monitoring guardrails*
   *Link: [./tracks/tech-debt-resolution_20260429/](./tracks/tech-debt-resolution_20260429/)*
-  - Phase 1: Tasks 1.3 ✅, 1.4 ✅; 1.1, 1.2 pending
-  - Phase 2: Tasks 2.1 ✅, 2.2 ✅, 2.4 ✅; 2.3 pending
-  - Phase 3: Tasks 3.1 ✅, 3.3 ✅, 3.5 ✅; 3.2, 3.4, 3.6 pending
-  - Phase 5: Tasks 5.1 ✅, 5.2 ✅, 5.3 ✅; 5.4-5.7 pending
+  - Phase 1: Tasks 1.1 ✅, 1.2 ✅, 1.3 ✅, 1.4 ✅
+  - Phase 2: Tasks 2.1 ✅, 2.2 ✅, 2.3 ✅, 2.4 ✅
+  - Phase 3: Tasks 3.1 ✅, 3.2 ✅, 3.3 ✅, 3.4 ✅, 3.5 ✅, 3.6 ✅
+  - Phase 4: Task 4.1 ✅
+  - Phase 5: Tasks 5.1 ✅, 5.2 ✅, 5.3 ✅, 5.4 ✅, 5.5 ✅, 5.6 ✅, 5.7 ✅
+  - Phase 6: Tasks 6.1 ✅, 6.2 ✅, 6.3 ✅, 6.4 ✅
 
 ## Upcoming Tracks
 
