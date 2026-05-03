@@ -1,7 +1,9 @@
 {
   "id": "bm2-bundle-optimization_20260503",
   "title": "BM2 Worker-Entry Bundle Optimization",
-  "status": "pending",
+  "status": "complete",
+  "completedAt": "2026-05-03T17:37:27Z",
   "created": "2026-05-03",
-  "priority": "high"
+  "priority": "high",
+  "result": "Reduced BM2 worker-entry bundle from 5.1 MB to 2.0 MB via manualChunks, drizzle decoupling, and lazy-loaded activities. CI-enforced 3 MB threshold with bundle-size-audit.mjs."
 }
