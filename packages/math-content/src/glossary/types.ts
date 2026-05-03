@@ -8,6 +8,7 @@ export const glossaryTermSchema = z.object({
   topics: z.array(z.string().min(1)),
   synonyms: z.array(z.string().min(1)),
   related: z.array(z.string().min(1)),
+  modules: z.array(z.number()).optional(),
 });
 
 export type GlossaryTerm = z.infer<typeof glossaryTermSchema>;
@@ -15,5 +16,6 @@ export type GlossaryTerm = z.infer<typeof glossaryTermSchema>;
 export interface GlossaryFilter {
   course?: string;
   topic?: string;
+  module?: number;
   slug?: string;
 }

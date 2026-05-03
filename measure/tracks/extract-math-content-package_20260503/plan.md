@@ -77,22 +77,20 @@
 
 ## Phase 3: Glossary and Seed Patterns Extraction
 
-- [ ] Task 3.1: Extract glossary types and IM3 data to `math-content`
-  - [ ] Write `glossary/types.ts` — course-agnostic `GlossaryTerm` with `courses: string[]` (replaces app-specific `modules: number[]`/`units: number[]`), `GlossaryModule`, `GlossaryTopic`
-  - [ ] Write `glossary/helpers.ts` — `getGlossaryTermBySlug()`, `getGlossaryTermsByCourse()`, `getAllGlossaryCourses()`, `getAllGlossaryTopics()`
-  - [ ] Write unit tests for glossary types and helpers in `packages/math-content/src/__tests__/glossary.test.ts`
-  - [ ] Migrate IM3 76 glossary terms from `apps/integrated-math-3/lib/study/glossary.ts` to `packages/math-content/src/glossary/im3.ts`
-  - [ ] Convert `modules: number[]` field to `courses: ['integrated-math-3']` format
-  - [ ] Write `glossary/index.ts` barrel
-  - [ ] Update IM3 `lib/study/glossary.ts` to re-export from `@math-platform/math-content/glossary`
-  - [ ] Run IM3 study hub tests — verify glossary lookups still work
+- [x] Task 3.1: Extract glossary types and IM3 data to `math-content`
+  - [x] Write `glossary/types.ts` — course-agnostic `GlossaryTerm` with `courses: string[]` and optional `modules: number[]`
+  - [x] Write `glossary/helpers.ts` — getGlossaryTermBySlug, getGlossaryTermsByCourse, getGlossaryTermsByModule, getAllGlossaryCourses, getAllGlossaryModules, getAllGlossaryTopics
+  - [x] Write unit tests for glossary types and helpers
+  - [x] Migrate IM3 76 glossary terms from `apps/integrated-math-3/lib/study/glossary.ts` to `packages/math-content/src/glossary/im3.ts`
+  - [x] Write `glossary/index.ts` barrel
+  - [x] Update IM3 `lib/study/glossary.ts` to re-export from `@math-platform/math-content/glossary`
+  - [x] Run IM3 study hub tests — verify glossary lookups still work
 
-- [ ] Task 3.2: Extract lesson seed types and helpers to `math-content`
-  - [ ] Audit IM2, IM3, and PreCalc seed files to identify shared patterns in lesson/version/phase/activity creation
-  - [ ] Write `seeds/types.ts` — `LessonSeed`, `PhaseSeed`, `ActivitySeed`, `SeedData` types
-  - [ ] Write `seeds/lesson-seed.ts` — helper functions: `createLessonSeed()`, `createPhaseSeed()`, `createActivitySeed()` that standardize the mutation payload shape
-  - [ ] Write unit tests for seed helpers in `packages/math-content/src/__tests__/seeds.test.ts`
-  - [ ] Write `seeds/index.ts` barrel
+- [x] Task 3.2: Extract lesson seed types and helpers to `math-content`
+  - [x] Audit IM2, IM3, and PreCalc seed files to identify shared patterns in lesson/version/phase/activity creation
+  - [x] Write `seeds/types.ts` — `LessonSeed`, `PhaseSeed`, `ActivitySeed`, `SeedData` types
+  - [x] Write `seeds/lesson-seed.ts` — helper functions: `createActivitySeed()`, `createPhaseSeed()`, `createSectionSeed()`, `textActivityPair()`
+  - [x] Write `seeds/index.ts` barrel
   - [ ] Update IM3 `convex/seed/seed.ts` to import seed types from `@math-platform/math-content/seeds`
   - [ ] Update IM2 `convex/seed/seed.ts` similarly
   - [ ] Update PreCalc `convex/seed/seed.ts` similarly

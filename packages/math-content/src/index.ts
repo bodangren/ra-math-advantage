@@ -39,7 +39,9 @@ export {
   getGlossaryTermBySlug,
   getGlossaryTermsByCourse,
   getGlossaryTermsByTopic,
+  getGlossaryTermsByModule,
   getAllGlossaryCourses,
+  getAllGlossaryModules,
   getAllGlossaryTopics,
 } from './glossary';
 export type { GlossaryTerm, GlossaryFilter } from './glossary';

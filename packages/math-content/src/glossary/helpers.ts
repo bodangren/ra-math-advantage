@@ -12,10 +12,20 @@ export function getGlossaryTermsByTopic(terms: GlossaryTerm[], topic: string): G
   return terms.filter((term) => term.topics.includes(topic));
 }
 
+export function getGlossaryTermsByModule(terms: GlossaryTerm[], moduleNumber: number): GlossaryTerm[] {
+  return terms.filter((term) => term.modules?.includes(moduleNumber));
+}
+
 export function getAllGlossaryCourses(terms: GlossaryTerm[]): string[] {
   const courses = new Set<string>();
   terms.forEach((term) => term.courses.forEach((c) => courses.add(c)));
   return Array.from(courses).sort();
+}
+
+export function getAllGlossaryModules(terms: GlossaryTerm[]): number[] {
+  const modules = new Set<number>();
+  terms.forEach((term) => term.modules?.forEach((m) => modules.add(m)));
+  return Array.from(modules).sort((a, b) => a - b);
 }
 
 export function getAllGlossaryTopics(terms: GlossaryTerm[]): string[] {
