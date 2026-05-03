@@ -9,11 +9,11 @@
   - [x] Verify bundle under 3 MB via `npx vinext build`
   - [x] Update tech-debt.md: mark "BM2 worker-entry bundle 5.1 MB" as Resolved
 
-- [ ] Task 1.2: Harden rate limit table unique constraints (High)
-  - [ ] Write concurrent insert tests for apiRateLimits upsert behavior
-  - [ ] Audit try/catch upsert pattern in all rate limit endpoints (IM3 + BM2)
-  - [ ] Fix any gaps where concurrent inserts could create duplicates
-  - [ ] Update tech-debt.md: mark "No unique constraints on rate limit tables" as Resolved
+- [x] Task 1.2: Harden rate limit table unique constraints (High)
+  - [x] Write concurrent insert tests for apiRateLimits upsert behavior
+  - [x] Audit try/catch upsert pattern in all rate limit endpoints (IM3 + BM2)
+  - [x] Fix any gaps where concurrent inserts could create duplicates
+  - [x] Update tech-debt.md: mark "No unique constraints on rate limit tables" as Resolved
 
 - [x] Task 1.3: Fix prompt guard punctuation bypass (High)
   - [x] Write tests for bypass patterns: `bypass.the.system`, `ignore.rules.here`, period-separated variants

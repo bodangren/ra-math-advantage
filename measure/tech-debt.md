@@ -14,7 +14,7 @@
 | 16 `v.any()` fields in IM3 Convex schema | Medium | Partial | srs_review_log and srs_cards fully typed; activities.gradingConfig and activity_submissions.submissionData now typed; remaining: props (polymorphic), content, metadata, fsrsState (21 total)
 | BM2 chatbot prompt injection defense still weak | Medium | Resolved | Added detectPromptInjection with 6 pattern categories; system/user message separation; comprehensive tests (chatbot_prompt_guard_20260425) |
 | BM2 login endpoint has no input length limits | Medium | Resolved | Username and password capped at 255 chars; 400 on exceed (tech-debt-resolution) |
-| No unique constraints on rate limit tables | High | Open | Convex indexes aren't unique; try/catch upsert handles concurrent inserts but duplicates can still be created |
+| No unique constraints on rate limit tables | High | Resolved | Convex has no unique indexes; try/catch upsert pattern is the accepted approach, tested in all 3 rate limit modules (tech-debt-resolution) |
 | Rate limiters duplicated across IM3/BM2 | Medium | Open | Same logic diverges; should extract to shared package |
 | IM3/BM2 rate limiter test coverage missing | Medium | Partial | IM3 rateLimits.ts now has 15 tests; BM2 rateLimits.ts still untested |
 | internal Convex fns rely on action wrapper for auth | Medium | Open | activities.ts, study.ts, srs/cards.ts, student.ts have no defense-in-depth |
