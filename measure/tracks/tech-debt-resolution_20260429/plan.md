@@ -2,12 +2,12 @@
 
 ## Phase 1: Critical + High Severity
 
-- [ ] Task 1.1: Reduce BM2 worker-entry bundle (Critical)
-  - [ ] Write bundle size snapshot test for BM2 worker entry
-  - [ ] Audit BM2 worker-entry imports for tree-shaking opportunities
-  - [ ] Apply code-splitting (manualChunks) to BM2 vinext config
-  - [ ] Verify bundle under 3 MB via `npx vinext build`
-  - [ ] Update tech-debt.md: mark "BM2 worker-entry bundle 5.1 MB" as Resolved
+- [x] Task 1.1: Reduce BM2 worker-entry bundle (Critical)
+  - [x] Write bundle size snapshot test for BM2 worker entry
+  - [x] Audit BM2 worker-entry imports for tree-shaking opportunities
+  - [x] Apply code-splitting (manualChunks) to BM2 vinext config
+  - [x] Verify bundle under 3 MB via `npx vinext build`
+  - [x] Update tech-debt.md: mark "BM2 worker-entry bundle 5.1 MB" as Resolved
 
 - [ ] Task 1.2: Harden rate limit table unique constraints (High)
   - [ ] Write concurrent insert tests for apiRateLimits upsert behavior

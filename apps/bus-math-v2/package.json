@@ -9,9 +9,12 @@
     "start": "vinext start",
     "lint": "eslint . --max-warnings 0",
     "test": "vitest run",
-    "test:watch": "vitest watch"
+    "test:watch": "vitest watch",
+    "bundle:audit": "node scripts/bundle-size-audit.mjs"
   },
   "dependencies": {
+    "@math-platform/app-shell": "*",
+    "@math-platform/lesson-renderer": "*",
     "@math-platform/activity-runtime": "*",
     "@math-platform/ai-tutoring": "*",
     "@math-platform/component-approval": "*",

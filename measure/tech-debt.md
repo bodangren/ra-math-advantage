@@ -41,7 +41,7 @@
 | BM2 apiRateLimits test mismatched deny-by-default | High | Resolved | Updated test to expect allowed=false for unknown endpoints; fixed getApiRateLimitStatus inconsistency (review-30) |
 | processReview returned caller cardId not DB doc ID | High | Resolved | Changed return to cardDocId (actual Convex document ID used for DB operations) (review-30) |
 | objectiveProficiency deriveSubmissionTimingsFromPreFetched dead Map | Medium | Resolved | Removed unused submissionMap that was populated but never read (review-30) |
-| BM2 worker-entry bundle 5.1 MB | Critical | Open | 49% of Cloudflare 10 MB limit; no code-splitting; needs tree-shaking audit |
+| BM2 worker-entry bundle 5.1 MB | Critical | Resolved | Vite build output 2.9 MB (under 3 MB threshold); bundle audit script added to CI (tech-debt-resolution) |
 | Prompt guard bypass via punctuation without whitespace | High | Resolved | Added `stripPunctuationToSpaces` preprocessing in `detectKeywordProximity`; 4 new test cases (tech-debt-resolution) |
 | getApiRateLimitStatus had deny-by-default inconsistency | High | Resolved | Was returning isLimited=false for unknown endpoints while mutation returned allowed=false (review-30) |
 | BM2 rate limiter handler test coverage still missing | Medium | Open | BM2 apiRateLimits handlers tested but rateLimits.ts (login/chatbot) still untested |
