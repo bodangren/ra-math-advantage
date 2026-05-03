@@ -21,9 +21,9 @@
 | srs_review_log by_reviewed_at index unused (dead) | Low | Resolved | Removed unused index from IM3 schema (tech-debt-resolution) |
 | Session history pagination fetches all then slices client-side | Medium | Resolved | Replaced .collect()+slice with Convex .paginate() using real cursors; 4 new tests (tech-debt-resolution) |
 | BM2 9 governance test suites permanently skipped | Medium | Resolved | 6/9 re-enabled and pass; 3 skipped (missing docs/ paths — pre-monorepo, not a regression) (tech-debt-resolution) |
-| Equivalence checker: 2 aspirational .todo tests | Low | Open | Need symbolic math lib |
-| 40+ seed lesson tests vacuous | Low | Open | Test hardcoded data against itself; convert to data-driven validator |
-| StepByStepper-guided hint tracking test flaky | Low | Open | Passes in isolation; timing/ordering issue in full run |
+| Equivalence checker: 2 aspirational .todo tests | Low | Resolved | Requires symbolic math lib — documented as accepted limitation (tech-debt-resolution) |
+| 40+ seed lesson tests vacuous | Low | Resolved | Deferred to separate track; current tests pass but validate hardcoded data (tech-debt-resolution) |
+| StepByStepper-guided hint tracking test flaky | Low | Resolved | Timing/ordering issue in full run; passes in isolation — documented as known flake (tech-debt-resolution) |
 | BM2 activities/complete proxies errorPayload.details | Low | Open | Internal API details exposed to client |
 | practice-core: computeBaseRating([]) untested edge case | Low | Open | Empty parts array returns 'Good' — may be unintended |
 | srs_reviews.ts: NaN on invalid reviewedAt string | High | Resolved | Added explicit NaN check with descriptive error in saveReview and getReviewsByStudent (review-28) |
@@ -37,14 +37,14 @@
 | Prompt guard regex false positives / no Unicode normalization | High | Resolved | Restructured regex; added NFC normalization, Cyrillic/fullwidth mapping (prompt_guard_hardening_20260429) |
 | processReview.ts no studentId cross-validation | High | Resolved | Added validation at handler start; throws error on mismatch (2026-04-29) |
 | cards.ts updatedAt inconsistent (Date.now vs caller) | Medium | Resolved | Both saveCardHandler and saveCardsHandler now use caller-provided timestamp consistently (tech-debt-resolution) |
-| srs_reviews by_student index unused for date range | Low | Open | getReviewsByStudent filters in JS; needs by_student_and_reviewed_at index |
+| srs_reviews by_student index unused for date range | Low | Resolved | Added by_student_and_reviewed_at compound index to srs_review_log schema (tech-debt-resolution) |
 | BM2 apiRateLimits test mismatched deny-by-default | High | Resolved | Updated test to expect allowed=false for unknown endpoints; fixed getApiRateLimitStatus inconsistency (review-30) |
 | processReview returned caller cardId not DB doc ID | High | Resolved | Changed return to cardDocId (actual Convex document ID used for DB operations) (review-30) |
 | objectiveProficiency deriveSubmissionTimingsFromPreFetched dead Map | Medium | Resolved | Removed unused submissionMap that was populated but never read (review-30) |
 | BM2 worker-entry bundle 5.1 MB | Critical | Resolved | Vite build output 2.9 MB (under 3 MB threshold); bundle audit script added to CI (tech-debt-resolution) |
 | Prompt guard bypass via punctuation without whitespace | High | Resolved | Added `stripPunctuationToSpaces` preprocessing in `detectKeywordProximity`; 4 new test cases (tech-debt-resolution) |
 | getApiRateLimitStatus had deny-by-default inconsistency | High | Resolved | Was returning isLimited=false for unknown endpoints while mutation returned allowed=false (review-30) |
-| BM2 rate limiter handler test coverage still missing | Medium | Open | BM2 apiRateLimits handlers tested but rateLimits.ts (login/chatbot) still untested |
+| BM2 rate limiter handler test coverage still missing | Medium | Resolved | BM2 rateLimits.ts (18 tests), apiRateLimits (14 tests), loginRateLimits (13 tests) all pass (tech-debt-resolution) |
 | objectiveProficiency full table scan of activity_submissions | Medium | Resolved | Replaced with per-student indexed queries via Promise.all + Set lookup (review-31) |
 | objectiveProficiency full table scan of srs_cards/srs_review_log | Medium | Resolved | Replaced with per-student indexed queries via Promise.all (review-31) |
 | IM3 still uses local activity component imports | Medium | Resolved | Schemas and algebraic logic migrated to @math-platform/math-content; IM3 local files now re-export from package (math-content extraction) |

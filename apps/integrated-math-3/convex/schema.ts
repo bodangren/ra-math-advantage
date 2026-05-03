@@ -484,7 +484,8 @@ export default defineSchema({
     reviewedAt: v.number(),
   })
     .index("by_card", ["cardId"])
-    .index("by_student", ["studentId"]),
+    .index("by_student", ["studentId"])
+    .index("by_student_and_reviewed_at", ["studentId", "reviewedAt"]),
 
   srs_sessions: defineTable({
     studentId: v.id("profiles"),
