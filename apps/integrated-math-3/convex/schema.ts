@@ -7,6 +7,75 @@ import {
   srsRatingValidator,
 } from "./srs/validators";
 
+const gradingConfigValidator = v.object({
+  autoGrade: v.boolean(),
+  passingScore: v.optional(v.number()),
+  partialCredit: v.boolean(),
+  rubric: v.optional(v.array(v.object({
+    criteria: v.string(),
+    points: v.number(),
+  }))),
+});
+
+const submissionPartValidator = v.object({
+  partId: v.string(),
+  rawAnswer: v.any(),
+  normalizedAnswer: v.optional(v.string()),
+  isCorrect: v.optional(v.boolean()),
+  score: v.optional(v.number()),
+  maxScore: v.optional(v.number()),
+  misconceptionTags: v.optional(v.array(v.string())),
+  hintsUsed: v.optional(v.number()),
+  revealStepsSeen: v.optional(v.number()),
+  changedCount: v.optional(v.number()),
+  firstInteractionAt: v.optional(v.string()),
+  answeredAt: v.optional(v.string()),
+  wallClockMs: v.optional(v.number()),
+  activeMs: v.optional(v.number()),
+});
+
+const timingSummaryValidator = v.object({
+  startedAt: v.string(),
+  submittedAt: v.string(),
+  wallClockMs: v.number(),
+  activeMs: v.number(),
+  idleMs: v.number(),
+  pauseCount: v.number(),
+  focusLossCount: v.number(),
+  visibilityHiddenCount: v.number(),
+  longestIdleMs: v.optional(v.number()),
+  confidence: v.union(v.literal("high"), v.literal("medium"), v.literal("low")),
+  confidenceReasons: v.optional(v.array(v.string())),
+});
+
+const submissionDataValidator = v.object({
+  contractVersion: v.literal("practice.v1"),
+  activityId: v.string(),
+  mode: v.union(
+    v.literal("worked_example"),
+    v.literal("guided_practice"),
+    v.literal("independent_practice"),
+    v.literal("assessment"),
+    v.literal("teaching"),
+  ),
+  status: v.union(
+    v.literal("draft"),
+    v.literal("submitted"),
+    v.literal("graded"),
+    v.literal("returned"),
+  ),
+  attemptNumber: v.number(),
+  submittedAt: v.string(),
+  answers: v.record(v.string(), v.any()),
+  parts: v.array(submissionPartValidator),
+  artifact: v.optional(v.record(v.string(), v.any())),
+  interactionHistory: v.optional(v.array(v.any())),
+  analytics: v.optional(v.record(v.string(), v.any())),
+  studentFeedback: v.optional(v.string()),
+  teacherSummary: v.optional(v.string()),
+  timing: v.optional(timingSummaryValidator),
+});
+
 export default defineSchema({
   organizations: defineTable({
     name: v.string(),
@@ -165,7 +234,7 @@ export default defineSchema({
     displayName: v.string(),
     description: v.optional(v.string()),
     props: v.any(),
-    gradingConfig: v.optional(v.any()),
+    gradingConfig: v.optional(gradingConfigValidator),
     standardId: v.optional(v.id("competency_standards")),
     approval: v.optional(v.object({
       status: v.union(
@@ -235,7 +304,7 @@ export default defineSchema({
   activity_submissions: defineTable({
     userId: v.id("profiles"),
     activityId: v.id("activities"),
-    submissionData: v.any(),
+    submissionData: submissionDataValidator,
     score: v.optional(v.number()),
     maxScore: v.optional(v.number()),
     feedback: v.optional(v.string()),
@@ -408,8 +477,7 @@ export default defineSchema({
     reviewedAt: v.number(),
   })
     .index("by_card", ["cardId"])
-    .index("by_student", ["studentId"])
-    .index("by_reviewed_at", ["reviewedAt"]),
+    .index("by_student", ["studentId"]),
 
   srs_sessions: defineTable({
     studentId: v.id("profiles"),

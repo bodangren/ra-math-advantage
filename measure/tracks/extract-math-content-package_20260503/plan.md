@@ -2,7 +2,7 @@
 
 ## Phase 1: Package Scaffold and Schema Consolidation
 
-- [ ] Task 1.1: Create `packages/math-content/` scaffold
+- [x] Task 1.1: Create `packages/math-content/` scaffold
   - [ ] Write package.json with `@math-platform/math-content` name, dependencies on `@math-platform/practice-core` and `zod`
   - [ ] Write tsconfig.json extending root config with `declaration: true`, `declarationMap: true`
   - [ ] Write vite.config.ts for library build with `rollupOptions.input` for each subdirectory entry point
@@ -12,7 +12,7 @@
   - [ ] Add `@math-platform/math-content` to root `package.json` workspaces array
   - [ ] Run `npm install` and verify workspace resolution
 
-- [ ] Task 1.2: Migrate activity Zod schemas to `math-content`
+- [x] Task 1.2: Migrate activity Zod schemas to `math-content`
   - [ ] Write schema tests for all 6 component schemas in `packages/math-content/src/__tests__/schemas.test.ts` — validate parse/transform round-trips
   - [ ] Copy `comprehension-quiz.schema.ts` from `packages/activity-components/src/schemas/` to `packages/math-content/src/schemas/`
   - [ ] Copy `fill-in-the-blank.schema.ts` from `packages/activity-components/src/schemas/` to `packages/math-content/src/schemas/`
@@ -30,7 +30,7 @@
   - [ ] Update all IM3 imports pointing to `@/lib/activities/schemas/` to `@math-platform/math-content/schemas`
   - [ ] Run `npx tsc --noEmit` for IM3 — verify zero new errors
 
-- [ ] Task 1.3: Replace IM3 Convex `v.any()` fields with typed validators
+- [x] Task 1.3: Replace IM3 Convex `v.any()` fields with typed validators
   - [ ] Audit remaining `v.any()` fields in `apps/integrated-math-3/convex/schema.ts` — identify which map to activity props now in `math-content`
   - [ ] Write typed validators for: `props` (union of 6 activity schemas), `submissionData` (PracticeSubmissionEnvelope), `content`, `config`, `metadata`
   - [ ] Replace each `v.any()` field with the appropriate typed validator

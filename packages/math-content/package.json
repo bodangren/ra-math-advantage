@@ -1,5 +1,5 @@
 {
-  "name": "@math-platform/activity-components",
+  "name": "@math-platform/math-content",
   "version": "0.1.0",
   "private": true,
   "type": "module",
@@ -7,8 +7,6 @@
   "types": "src/index.ts",
   "exports": {
     ".": "./src/index.ts",
-    "./registry": "./src/registry/index.ts",
-    "./types": "./src/types/index.ts",
     "./schemas": "./src/schemas/index.ts",
     "./schemas/comprehension-quiz": "./src/schemas/comprehension-quiz.schema.ts",
     "./schemas/fill-in-the-blank": "./src/schemas/fill-in-the-blank.schema.ts",
@@ -16,13 +14,13 @@
     "./schemas/step-by-step-solver": "./src/schemas/step-by-step-solver.schema.ts",
     "./schemas/rate-of-change-calculator": "./src/schemas/rate-of-change-calculator.schema.ts",
     "./schemas/discriminant-analyzer": "./src/schemas/discriminant-analyzer.schema.ts",
-    "./quiz": "./src/components/quiz/index.ts",
-    "./blanks": "./src/components/blanks/index.ts",
-    "./discriminant": "./src/components/discriminant/index.ts",
-    "./roc": "./src/components/roc/index.ts",
-    "./algebraic": "./src/components/algebraic/index.ts",
-    "./graphing": "./src/components/graphing/index.ts",
-    "./renderer": "./src/renderer/ActivityRenderer.tsx"
+    "./algebraic": "./src/algebraic/index.ts",
+    "./glossary": "./src/glossary/index.ts",
+    "./problem-families": "./src/problem-families/index.ts",
+    "./problem-families/im2": "./src/problem-families/im2/index.ts",
+    "./problem-families/im3": "./src/problem-families/im3/index.ts",
+    "./problem-families/precalc": "./src/problem-families/precalc/index.ts",
+    "./seeds": "./src/seeds/index.ts"
   },
   "scripts": {
     "test": "vitest run",
@@ -32,23 +30,14 @@
     "build": "tsc --noEmit"
   },
   "dependencies": {
-    "@hello-pangea/dnd": "^18.0.1",
     "@math-platform/activity-runtime": "*",
-    "@math-platform/math-content": "*",
     "@math-platform/practice-core": "*",
+    "@math-platform/study-hub-core": "*",
     "zod": "^4.1.12"
-  },
-  "peerDependencies": {
-    "react": "^19"
   },
   "devDependencies": {
     "@eslint/js": "^9",
-    "@matejmazur/react-katex": "^3.1.3",
-    "@testing-library/react": "^16.3.0",
-    "@types/react": "^19",
     "eslint": "^9",
-    "katex": "^0.16.21",
-    "react": "^19",
     "typescript": "^5",
     "typescript-eslint": "^8",
     "vitest": "^4.0.16"
