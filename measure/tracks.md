@@ -795,6 +795,10 @@ AI Tutoring and Workbook scope is explicitly **import/adopt from BM2**, not gree
 
 ## Upcoming Tracks
 
+- [~] **Track: Reliability Contracts and DB Boundary Enforcement**
+   *Enforce strict data contracts at the database boundary, introduce branded types for IDs, and export canonical test fixtures*
+   *Link: [./measure/tracks/reliability-contracts_20260504/](./measure/tracks/reliability-contracts_20260504/)*
+
 - [x] **Track: SRS reviews.ts Test Coverage** — **COMPLETED**
      *Add unit tests for saveReview, getReviewsByCard, and getReviewsByStudent in convex/srs/reviews.ts*
      *Link: [./archive/srs_reviews_test_coverage_20260429/](./archive/srs_reviews_test_coverage_20260429/)*

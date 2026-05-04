@@ -34,6 +34,24 @@ export const practiceSubmissionStatusSchema = z.enum(PRACTICE_SUBMISSION_STATUS_
 
 const jsonRecordSchema = z.record(z.string(), z.unknown());
 
+/**
+ * Branded schema for canonical Convex activity IDs.
+ *
+ * This brand prevents accidental assignment of transient/raw UUIDs
+ * where a validated database ID is required. The brand is erased at
+ * runtime; it exists only for compile-time safety.
+ */
+export const convexActivityIdSchema = z.string().trim().min(1).brand<'ConvexId'>();
+
+/**
+ * Canonical activity ID type — a string validated to be a Convex document ID.
+ *
+ * Use `convexActivityIdSchema.parse(id)` to brand a raw string, or
+ * `buildPracticeSubmissionEnvelope({ activityId: id, ... })` which brands
+ * automatically on output.
+ */
+export type ConvexActivityId = z.infer<typeof convexActivityIdSchema>;
+
 function normalizeSubmittedAt(value: string | Date): string {
   return value instanceof Date ? value.toISOString() : value;
 }
@@ -163,7 +181,7 @@ export type PracticeSubmissionPart = z.infer<typeof practiceSubmissionPartSchema
 /** Zod schema for the canonical practice submission envelope. */
 export const practiceSubmissionEnvelopeSchema = z.object({
   contractVersion: z.literal(PRACTICE_CONTRACT_VERSION),
-  activityId: z.string().trim().min(1),
+  activityId: convexActivityIdSchema,
   mode: practiceModeSchema,
   status: practiceSubmissionStatusSchema,
   attemptNumber: z.number().int().positive(),
@@ -232,7 +250,7 @@ export function isPracticeSubmissionEnvelope(
 
 const practiceSubmissionInputSchema = z.object({
   contractVersion: z.literal(PRACTICE_CONTRACT_VERSION).optional(),
-  activityId: z.string().trim().min(1).optional(),
+  activityId: convexActivityIdSchema.optional(),
   mode: practiceModeSchema.optional(),
   status: practiceSubmissionStatusSchema.optional(),
   attemptNumber: z.number().int().positive().optional(),

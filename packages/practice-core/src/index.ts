@@ -10,6 +10,8 @@ export {
   type PracticeTimingSummary,
   practiceSubmissionPartSchema,
   type PracticeSubmissionPart,
+  convexActivityIdSchema,
+  type ConvexActivityId,
   practiceSubmissionEnvelopeSchema,
   type PracticeSubmissionEnvelope,
   type PracticeSubmissionCallbackPayload,
