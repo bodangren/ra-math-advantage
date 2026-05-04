@@ -1,0 +1,7 @@
+{
+  "track_id": "review-remediation_20260504",
+  "title": "Review Remediation — 2026-05-04 Daily Work",
+  "description": "Remediate issues found during Measure review of the past 24 hours: failing accessibility tests, code duplication drift risk, partial schema compliance in BM2, seed-file type-safety regression, and under-documented validation gaps.",
+  "status": "active",
+  "created_at": "2026-05-04"
+}
