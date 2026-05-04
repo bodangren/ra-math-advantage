@@ -163,7 +163,7 @@ describe('ConvexCardStore.saveCardAndReview', () => {
         reasons: [],
       },
       stateBefore: { stability: 3, difficulty: 5, state: 'learning', reps: 2, lapses: 1 },
-      stateAfter: { stability: 5, difficulty: 4, state: 'review', reps: 5, lapses: 0 },
+      stateAfter: { stability: 5, difficulty: 4, state: 'review', reps: 3, lapses: 1 },
       reviewedAt: '2026-04-16T12:00:00.000Z',
     };
 
