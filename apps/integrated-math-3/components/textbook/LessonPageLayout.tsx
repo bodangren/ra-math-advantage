@@ -81,7 +81,7 @@ export function LessonPageLayout({
             type="button"
             aria-label="Toggle phases navigation"
             onClick={() => setSidebarOpen(o => !o)}
-            className="flex-shrink-0 p-2 rounded-md hover:bg-secondary transition-colors lg:hidden"
+            className="flex-shrink-0 p-2 rounded-md hover:bg-secondary transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 lg:hidden"
           >
             {sidebarOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>

@@ -111,7 +111,7 @@ function StepButton({
         title={phase.status === 'locked' ? 'Complete previous phase to unlock' : phase.title}
         className={cn(
           'flex items-center justify-center rounded-full border-2 transition-all',
-          'focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2',
+          'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2',
           compact ? 'h-9 w-9' : 'h-11 w-11',
           statusClass,
           isClickable && 'hover:scale-105',
