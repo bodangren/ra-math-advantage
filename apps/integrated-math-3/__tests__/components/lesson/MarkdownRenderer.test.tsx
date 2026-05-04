@@ -32,6 +32,13 @@ describe('LessonMarkdownRenderer', () => {
       expect(screen.getByText(/item one/)).toBeInTheDocument();
       expect(screen.getByText(/item two/)).toBeInTheDocument();
     });
+
+    it('renders links with focus-visible indicator classes', () => {
+      render(<LessonMarkdownRenderer content="[Example](https://example.com)" />);
+      const link = screen.getByRole('link', { name: /example/i });
+      expect(link).toHaveAttribute('target', '_blank');
+      expect(link.className).toMatch(/focus-visible:/);
+    });
   });
 
   describe('math rendering', () => {
