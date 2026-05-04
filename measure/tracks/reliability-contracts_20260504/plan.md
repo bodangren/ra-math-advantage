@@ -15,7 +15,7 @@
   - **File:** `packages/srs-engine/src/srs/fixtures.ts` (New file)
   - **Action:** Implement and export `createMockSrsCard(overrides?)` and `createMockSrsReviewLog(overrides?)` ensuring compliance with `srs.contract.v1`. Add to `index.ts` exports.
 
-- [~] **Task 1.4: Package Verification**
+- [x] **Task 1.4: Package Verification** [0dcc576]
   - **Action:** Run tests in both packages (`npm run test` inside `packages/practice-core` and `packages/srs-engine`).
 
 ## Phase 2: Convex Schema Boundary Enforcement
