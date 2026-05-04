@@ -56,6 +56,11 @@ export type { CardStore, ReviewLogStore } from './srs/adapters';
 export { InMemoryCardStore, InMemoryReviewLogStore } from './srs/adapters';
 
 export {
+  createMockSrsCard,
+  createMockSrsReviewLog,
+} from './srs/fixtures';
+
+export {
   SubmissionSrsAdapter,
   InMemoryProblemFamilyResolver,
   InMemoryTimingBaselineResolver,

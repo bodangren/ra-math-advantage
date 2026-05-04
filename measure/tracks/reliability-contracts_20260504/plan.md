@@ -11,7 +11,7 @@
   - **File:** `packages/practice-core/src/practice/fixtures.ts` (New file)
   - **Action:** Implement and export `createMockPracticeEnvelope(overrides?)`. Add to `index.ts` exports.
 
-- [ ] **Task 1.3: Export SRS Mock Factories**
+- [~] **Task 1.3: Export SRS Mock Factories**
   - **File:** `packages/srs-engine/src/srs/fixtures.ts` (New file)
   - **Action:** Implement and export `createMockSrsCard(overrides?)` and `createMockSrsReviewLog(overrides?)` ensuring compliance with `srs.contract.v1`. Add to `index.ts` exports.
 
