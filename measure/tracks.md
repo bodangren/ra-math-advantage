@@ -963,3 +963,7 @@ Parallel tracks delivering complete curriculum for all three new apps. Tracks 1 
      - Phase 3: Glossary & Seed Patterns [x] (76 terms, 6 helpers, seed types; app seed.ts imports skipped — type incompatibility)
      - Phase 4: IM3 Import Migration [x] (re-export barrels; 0 new type errors)
      - Phase 5: Package Quality & Documentation [x] [checkpoint: bd141ea] (43 tests, build verified, README done)
+
+- [ ] **Track: Reliability Contracts & DB Boundary Enforcement**
+     *Replace critical `v.any()` schema definitions with discriminated unions, introduce Branded IDs to prevent reference bugs, enforce SRS transitions mathematically, and export canonical test fixtures.*
+     *Link: [./tracks/reliability-contracts_20260504/](./tracks/reliability-contracts_20260504/)*

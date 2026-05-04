@@ -1,0 +1,7 @@
+{
+  "track_id": "reliability-contracts_20260504",
+  "title": "Reliability Contracts and DB Boundary Enforcement",
+  "description": "Enforce strict data contracts at the database boundary (eliminating critical v.any() usage), introduce branded types for IDs, and export canonical test fixtures to prevent regressions and improve system reliability.",
+  "status": "pending",
+  "created_at": "2026-05-04"
+}
