@@ -12,7 +12,7 @@
 - [x] Write tests verifying Tab/Shift+Tab reaches all interactive elements on lesson page [9a9d263]
 - [x] Add visible focus indicators to all buttons, links, and form controls (Tailwind focus-visible styles) [c8ecb86]
 - [x] Make GraphingCanvas keyboard-accessible (arrow keys for point placement, Enter to submit) [c234567]
-- [ ] Make parameter sliders in Explore mode keyboard-adjustable
+- [~] Make parameter sliders in Explore mode keyboard-adjustable
 - [ ] Make drag-and-drop activities keyboard-operable (spacebar to pick up, arrow keys to move, spacebar to drop)
 - [ ] Add skip-to-content link for lesson and dashboard layouts
 

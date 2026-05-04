@@ -100,15 +100,17 @@ describe('GraphingExplorer - explore mode', () => {
     });
 
     it('displays the live equation with current coefficient values', () => {
-      render(<GraphingExplorer {...defaultExploreProps} />);
-      expect(screen.getByText(/y\s*=\s*x²/i)).toBeInTheDocument();
+      const { container } = render(<GraphingExplorer {...defaultExploreProps} />);
+      const equationEl = container.querySelector('p[aria-hidden="true"]');
+      expect(equationEl).toHaveTextContent(/y\s*=\s*x²/i);
     });
 
     it('updates equation display when sliders change', async () => {
-      render(<GraphingExplorer {...defaultExploreProps} />);
+      const { container } = render(<GraphingExplorer {...defaultExploreProps} />);
       const sliders = screen.getAllByRole('slider');
       fireEvent.change(sliders[0], { target: { value: '2' } });
-      expect(screen.getByText(/y\s*=\s*2x²/i)).toBeInTheDocument();
+      const equationEl = container.querySelector('p[aria-hidden="true"]');
+      expect(equationEl).toHaveTextContent(/y\s*=\s*2x²/i);
     });
   });
 
@@ -171,6 +173,31 @@ describe('GraphingExplorer - explore mode', () => {
       expect(spans[0]).toHaveTextContent('2.0');
       expect(spans[1]).toHaveTextContent('-3.0');
       expect(spans[2]).toHaveTextContent('1.0');
+    });
+  });
+
+  describe('slider keyboard accessibility', () => {
+    it('sliders have visible focus indicator classes', () => {
+      render(<GraphingExplorer {...defaultExploreProps} />);
+      const sliders = screen.getAllByRole('slider');
+      sliders.forEach(slider => {
+        expect(slider.className).toMatch(/focus-visible:/);
+      });
+    });
+
+    it('announces equation changes via aria-live region', () => {
+      render(<GraphingExplorer {...defaultExploreProps} />);
+      const liveRegion = screen.getByTestId('explore-equation-live');
+      expect(liveRegion).toHaveAttribute('aria-live', 'polite');
+    });
+
+    it('sliders are reachable via keyboard (native range behavior)', () => {
+      render(<GraphingExplorer {...defaultExploreProps} />);
+      const sliders = screen.getAllByRole('slider');
+      sliders.forEach(slider => {
+        slider.focus();
+        expect(slider).toHaveFocus();
+      });
     });
   });
 });

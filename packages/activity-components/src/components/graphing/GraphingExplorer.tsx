@@ -337,7 +337,7 @@ export function GraphingExplorer({
                   step="0.1"
                   value={sliderA}
                   onChange={(e) => setSliderA(parseFloat(e.target.value))}
-                  className="flex-1 h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer"
+                  className="flex-1 h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
                   aria-label="Coefficient a"
                 />
               </div>
@@ -353,7 +353,7 @@ export function GraphingExplorer({
                   step="0.5"
                   value={sliderB}
                   onChange={(e) => setSliderB(parseFloat(e.target.value))}
-                  className="flex-1 h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer"
+                  className="flex-1 h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
                   aria-label="Coefficient b"
                 />
               </div>
@@ -369,16 +369,24 @@ export function GraphingExplorer({
                   step="0.5"
                   value={sliderC}
                   onChange={(e) => setSliderC(parseFloat(e.target.value))}
-                  className="flex-1 h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer"
+                  className="flex-1 h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
                   aria-label="Coefficient c"
                 />
               </div>
             </div>
 
             <div className="pt-2 border-t border-slate-200">
-              <p className="text-lg font-mono text-center text-blue-700">
+              <p className="text-lg font-mono text-center text-blue-700" aria-hidden="true">
                 {exploreEquation}
               </p>
+              <div
+                data-testid="explore-equation-live"
+                aria-live="polite"
+                aria-atomic="true"
+                className="sr-only"
+              >
+                Current equation: {exploreEquation}
+              </div>
             </div>
           </div>
 
