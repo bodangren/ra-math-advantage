@@ -9,7 +9,8 @@
     ".": "./src/index.ts",
     "./shuffle": "./src/study/shuffle.ts",
     "./base-session": "./src/study/base-session.tsx",
-    "./types": "./src/study/types.ts"
+    "./types": "./src/study/types.ts",
+    "./games": "./src/games/index.ts"
   },
   "scripts": {
     "test": "vitest run",

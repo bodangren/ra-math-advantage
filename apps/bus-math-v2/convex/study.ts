@@ -1,5 +1,5 @@
 import { mutation, query } from "./_generated/server";
-import { v } from "convex/values";
+import { v, ConvexError } from "convex/values";
 import { scheduleNewTerm, processReview as processFsrsReview, proficiencyBand, updateMastery } from "../lib/study/srs";
 import { getGlossaryTermsByUnit } from "../lib/study/glossary";
 import type { Card } from "ts-fsrs";
@@ -8,13 +8,13 @@ export const getStudyPreferences = query({
   args: {},
   handler: async (ctx) => {
     const identity = await ctx.auth.getUserIdentity();
-    if (!identity) throw new Error("Unauthenticated");
+    if (!identity) throw new ConvexError("Unauthenticated");
 
     const profile = await ctx.db
       .query("profiles")
       .withIndex("by_username", (q) => q.eq("username", identity.email!))
       .unique();
-    if (!profile) throw new Error("Profile not found");
+    if (!profile) throw new ConvexError("Profile not found");
 
     const preferences = await ctx.db
       .query("study_preferences")
@@ -38,13 +38,13 @@ export const updatePreferences = mutation({
   },
   handler: async (ctx, args) => {
     const identity = await ctx.auth.getUserIdentity();
-    if (!identity) throw new Error("Unauthenticated");
+    if (!identity) throw new ConvexError("Unauthenticated");
 
     const profile = await ctx.db
       .query("profiles")
       .withIndex("by_username", (q) => q.eq("username", identity.email!))
       .unique();
-    if (!profile) throw new Error("Profile not found");
+    if (!profile) throw new ConvexError("Profile not found");
 
     const now = Date.now();
 
@@ -75,13 +75,13 @@ export const getTermMasteryByUnit = query({
   args: { unitNumber: v.optional(v.number()) },
   handler: async (ctx, args) => {
     const identity = await ctx.auth.getUserIdentity();
-    if (!identity) throw new Error("Unauthenticated");
+    if (!identity) throw new ConvexError("Unauthenticated");
 
     const profile = await ctx.db
       .query("profiles")
       .withIndex("by_username", (q) => q.eq("username", identity.email!))
       .unique();
-    if (!profile) throw new Error("Profile not found");
+    if (!profile) throw new ConvexError("Profile not found");
 
     const mastery = await ctx.db
       .query("term_mastery")
@@ -100,13 +100,13 @@ export const getDueTerms = query({
   args: {},
   handler: async (ctx) => {
     const identity = await ctx.auth.getUserIdentity();
-    if (!identity) throw new Error("Unauthenticated");
+    if (!identity) throw new ConvexError("Unauthenticated");
 
     const profile = await ctx.db
       .query("profiles")
       .withIndex("by_username", (q) => q.eq("username", identity.email!))
       .unique();
-    if (!profile) throw new Error("Profile not found");
+    if (!profile) throw new ConvexError("Profile not found");
 
     const now = Date.now();
 
@@ -125,13 +125,13 @@ export const getRecentSessions = query({
   args: { limit: v.optional(v.number()) },
   handler: async (ctx, args) => {
     const identity = await ctx.auth.getUserIdentity();
-    if (!identity) throw new Error("Unauthenticated");
+    if (!identity) throw new ConvexError("Unauthenticated");
 
     const profile = await ctx.db
       .query("profiles")
       .withIndex("by_username", (q) => q.eq("username", identity.email!))
       .unique();
-    if (!profile) throw new Error("Profile not found");
+    if (!profile) throw new ConvexError("Profile not found");
 
     const sessions = await ctx.db
       .query("study_sessions")
@@ -155,13 +155,13 @@ export const processReview = mutation({
   },
   handler: async (ctx, args) => {
     const identity = await ctx.auth.getUserIdentity();
-    if (!identity) throw new Error("Unauthenticated");
+    if (!identity) throw new ConvexError("Unauthenticated");
 
     const profile = await ctx.db
       .query("profiles")
       .withIndex("by_username", (q) => q.eq("username", identity.email!))
       .unique();
-    if (!profile) throw new Error("Profile not found");
+    if (!profile) throw new ConvexError("Profile not found");
 
     const now = Date.now();
 
@@ -279,13 +279,13 @@ export const recordSession = mutation({
   },
   handler: async (ctx, args) => {
     const identity = await ctx.auth.getUserIdentity();
-    if (!identity) throw new Error("Unauthenticated");
+    if (!identity) throw new ConvexError("Unauthenticated");
 
     const profile = await ctx.db
       .query("profiles")
       .withIndex("by_username", (q) => q.eq("username", identity.email!))
       .unique();
-    if (!profile) throw new Error("Profile not found");
+    if (!profile) throw new ConvexError("Profile not found");
 
     const now = Date.now();
     const session = await ctx.db.insert("study_sessions", {
@@ -311,13 +311,13 @@ export const getExportData = query({
   args: {},
   handler: async (ctx) => {
     const identity = await ctx.auth.getUserIdentity();
-    if (!identity) throw new Error("Unauthenticated");
+    if (!identity) throw new ConvexError("Unauthenticated");
 
     const profile = await ctx.db
       .query("profiles")
       .withIndex("by_username", (q) => q.eq("username", identity.email!))
       .unique();
-    if (!profile) throw new Error("Profile not found");
+    if (!profile) throw new ConvexError("Profile not found");
 
     const [preferences, termMastery, dueReviews, studySessions, practiceTestResults] = await Promise.all([
       ctx.db.query("study_preferences").withIndex("by_user", (q) => q.eq("userId", profile._id)).unique(),
@@ -342,13 +342,13 @@ export const getPracticeTestResults = query({
   args: { unitNumber: v.optional(v.number()) },
   handler: async (ctx, args) => {
     const identity = await ctx.auth.getUserIdentity();
-    if (!identity) throw new Error("Unauthenticated");
+    if (!identity) throw new ConvexError("Unauthenticated");
 
     const profile = await ctx.db
       .query("profiles")
       .withIndex("by_username", (q) => q.eq("username", identity.email!))
       .unique();
-    if (!profile) throw new Error("Profile not found");
+    if (!profile) throw new ConvexError("Profile not found");
 
     let resultsQuery = ctx.db
       .query("practice_test_results")
@@ -384,24 +384,24 @@ export const savePracticeTestResult = mutation({
   },
   handler: async (ctx, args) => {
     const identity = await ctx.auth.getUserIdentity();
-    if (!identity) throw new Error("Unauthenticated");
+    if (!identity) throw new ConvexError("Unauthenticated");
 
     const profile = await ctx.db
       .query("profiles")
       .withIndex("by_username", (q) => q.eq("username", identity.email!))
       .unique();
-    if (!profile) throw new Error("Profile not found");
+    if (!profile) throw new ConvexError("Profile not found");
 
     const now = Date.now();
 
     if (args.score < 0 || args.score > args.questionCount) {
-      throw new Error("Invalid score: must be between 0 and questionCount");
+      throw new ConvexError("Invalid score: must be between 0 and questionCount");
     }
     if (args.questionCount <= 0) {
-      throw new Error("Invalid question count: must be positive");
+      throw new ConvexError("Invalid question count: must be positive");
     }
     if (args.unitNumber < 1 || args.unitNumber > 8) {
-      throw new Error("Invalid unit number: must be between 1 and 8");
+      throw new ConvexError("Invalid unit number: must be between 1 and 8");
     }
 
     const resultId = await ctx.db.insert("practice_test_results", {

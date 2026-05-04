@@ -87,7 +87,7 @@
     - [x] Record any discovered tech debt or unresolved source questions
 - [x] Task: Measure - User Manual Verification 'Implementation Bridge and Audit' (Protocol in workflow.md)
 
-## Phase 5: Curriculum Depth Remediation
+## Phase 5: Curriculum Depth Remediation [checkpoint: 67901ff]
 
 The existing Phase 1-4 artifacts are structurally complete but lack instructional depth. Passwater source docs are topic-index stubs (43-44 lines each), topic files are CED-identity-only shells (25 lines each), the activity map assigns `comprehension-quiz` to every topic regardless of content type, and class-period packages use copy-paste daily phases. This phase enriches all artifacts to course-authoring quality.
 

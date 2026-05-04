@@ -4,7 +4,7 @@
 
 ## Phase 2: IM1 Lesson Seeds (Modules 8-14) — SKIPPED
 
-## Phase 3: IM2 Lesson Seeds — COMPLETE
+## Phase 3: IM2 Lesson Seeds — COMPLETE [checkpoint: 80af510]
 
 - [x] Task: Create seed files for Units 1-7 (38 lessons)
     - [x] Unit 1: Relationships in Triangles (6)
@@ -23,7 +23,7 @@
     - [x] Unit 13: Trig Identities (5)
 - [x] Task: Update IM2 `seed.ts` to orchestrate all lesson seeds
 
-## Phase 4: PreCalc Lesson Seeds — COMPLETE
+## Phase 4: PreCalc Lesson Seeds — COMPLETE [checkpoint: 31f146b]
 
 - [x] Task: Create seed files for Unit 1 (14 lessons)
 - [x] Task: Create seed files for Unit 2 (15 lessons)

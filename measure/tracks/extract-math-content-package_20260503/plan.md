@@ -90,7 +90,7 @@
 
 - [x] Task: Measure - User Manual Verification 'Phase 3' — **DEFERRED**: glossary verification via integration tests.
 
-## Phase 4: IM3 Import Migration and Verification
+## Phase 4: IM3 Import Migration and Verification [checkpoint: efd9d81]
 
 - [x] Task 4.1: Complete IM3 local import migration
   - [x] IM3 local schemas replaced with re-export barrels from math-content

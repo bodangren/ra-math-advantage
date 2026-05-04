@@ -9,7 +9,7 @@
 - [x] Implement getClassExport using Promise.all to batch per-student queries
 - [x] Implement getSubmissionExport with cursor pagination support
 
-## Phase 2: CSV Formatting — COMPLETE
+## Phase 2: CSV Formatting — COMPLETE [checkpoint: 918bb58]
 
 - [x] Write tests for CSV formatting utility
 - [x] Implement toCsv helper in lib/teacher/data-export.ts

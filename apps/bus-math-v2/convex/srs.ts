@@ -1,5 +1,5 @@
 import { internalQuery, mutation, query } from './_generated/server';
-import { v } from 'convex/values';
+import { v, ConvexError } from 'convex/values';
 import type { Doc, Id } from './_generated/dataModel';
 import {
   computeClassHealth,
@@ -22,7 +22,7 @@ async function verifyStudentIdentity(
     .withIndex('by_username', (q: any) => q.eq('username', identity.email!))
     .unique();
   if (!profile || profile._id !== studentId) {
-    throw new Error('Unauthorized: studentId does not match authenticated user');
+    throw new ConvexError('Unauthorized: studentId does not match authenticated user');
   }
 }
 
@@ -35,7 +35,7 @@ export const upsertSrsCard = mutation({
   },
   handler: async (ctx, args) => {
     const identity = await ctx.auth.getUserIdentity();
-    if (!identity) throw new Error('Unauthenticated');
+    if (!identity) throw new ConvexError('Unauthenticated');
 
     await verifyStudentIdentity(ctx, identity, args.studentId);
 
@@ -100,7 +100,7 @@ export const recordSrsReview = mutation({
   },
   handler: async (ctx, args) => {
     const identity = await ctx.auth.getUserIdentity();
-    if (!identity) throw new Error('Unauthenticated');
+    if (!identity) throw new ConvexError('Unauthenticated');
 
     await verifyStudentIdentity(ctx, identity, args.studentId);
 
@@ -168,7 +168,7 @@ export const getDueCards = query({
   },
   handler: async (ctx, args) => {
     const identity = await ctx.auth.getUserIdentity();
-    if (!identity) throw new Error('Unauthenticated');
+    if (!identity) throw new ConvexError('Unauthenticated');
 
     await verifyStudentIdentity(ctx, identity, args.studentId);
 
@@ -191,7 +191,7 @@ export const getStudentSrsSummary = query({
   },
   handler: async (ctx, args) => {
     const identity = await ctx.auth.getUserIdentity();
-    if (!identity) throw new Error('Unauthenticated');
+    if (!identity) throw new ConvexError('Unauthenticated');
 
     await verifyStudentIdentity(ctx, identity, args.studentId);
 
@@ -220,7 +220,7 @@ export const getSrsCard = query({
   },
   handler: async (ctx, args) => {
     const identity = await ctx.auth.getUserIdentity();
-    if (!identity) throw new Error('Unauthenticated');
+    if (!identity) throw new ConvexError('Unauthenticated');
 
     await verifyStudentIdentity(ctx, identity, args.studentId);
 
@@ -251,20 +251,20 @@ export const getClassSrsHealth = query({
   },
   handler: async (ctx, args) => {
     const identity = await ctx.auth.getUserIdentity();
-    if (!identity) throw new Error('Unauthenticated');
+    if (!identity) throw new ConvexError('Unauthenticated');
 
     const profile = await ctx.db
       .query('profiles')
       .withIndex('by_username', (q) => q.eq('username', identity.email!))
       .unique();
-    if (!profile) throw new Error('Profile not found');
+    if (!profile) throw new ConvexError('Profile not found');
 
     const teacher = await getAuthorizedTeacher(ctx, profile._id);
-    if (!teacher) throw new Error('Unauthorized');
+    if (!teacher) throw new ConvexError('Unauthorized');
 
     const cls = await ctx.db.get(args.classId);
-    if (!cls) throw new Error('Class not found');
-    if (cls.teacherId !== teacher._id) throw new Error('Unauthorized');
+    if (!cls) throw new ConvexError('Class not found');
+    if (cls.teacherId !== teacher._id) throw new ConvexError('Unauthorized');
 
     const enrollments = await ctx.db
       .query('class_enrollments')
@@ -310,20 +310,20 @@ export const getWeakFamilies = query({
   },
   handler: async (ctx, args) => {
     const identity = await ctx.auth.getUserIdentity();
-    if (!identity) throw new Error('Unauthenticated');
+    if (!identity) throw new ConvexError('Unauthenticated');
 
     const profile = await ctx.db
       .query('profiles')
       .withIndex('by_username', (q) => q.eq('username', identity.email!))
       .unique();
-    if (!profile) throw new Error('Profile not found');
+    if (!profile) throw new ConvexError('Profile not found');
 
     const teacher = await getAuthorizedTeacher(ctx, profile._id);
-    if (!teacher) throw new Error('Unauthorized');
+    if (!teacher) throw new ConvexError('Unauthorized');
 
     const cls = await ctx.db.get(args.classId);
-    if (!cls) throw new Error('Class not found');
-    if (cls.teacherId !== teacher._id) throw new Error('Unauthorized');
+    if (!cls) throw new ConvexError('Class not found');
+    if (cls.teacherId !== teacher._id) throw new ConvexError('Unauthorized');
 
     const enrollments = await ctx.db
       .query('class_enrollments')
@@ -359,20 +359,20 @@ export const getStrugglingStudents = query({
   },
   handler: async (ctx, args) => {
     const identity = await ctx.auth.getUserIdentity();
-    if (!identity) throw new Error('Unauthenticated');
+    if (!identity) throw new ConvexError('Unauthenticated');
 
     const profile = await ctx.db
       .query('profiles')
       .withIndex('by_username', (q) => q.eq('username', identity.email!))
       .unique();
-    if (!profile) throw new Error('Profile not found');
+    if (!profile) throw new ConvexError('Profile not found');
 
     const teacher = await getAuthorizedTeacher(ctx, profile._id);
-    if (!teacher) throw new Error('Unauthorized');
+    if (!teacher) throw new ConvexError('Unauthorized');
 
     const cls = await ctx.db.get(args.classId);
-    if (!cls) throw new Error('Class not found');
-    if (cls.teacherId !== teacher._id) throw new Error('Unauthorized');
+    if (!cls) throw new ConvexError('Class not found');
+    if (cls.teacherId !== teacher._id) throw new ConvexError('Unauthorized');
 
     const enrollments = await ctx.db
       .query('class_enrollments')
@@ -417,16 +417,16 @@ export const resetStudentCard = mutation({
   },
   handler: async (ctx, args) => {
     const identity = await ctx.auth.getUserIdentity();
-    if (!identity) throw new Error('Unauthenticated');
+    if (!identity) throw new ConvexError('Unauthenticated');
 
     const profile = await ctx.db
       .query('profiles')
       .withIndex('by_username', (q) => q.eq('username', identity.email!))
       .unique();
-    if (!profile) throw new Error('Profile not found');
+    if (!profile) throw new ConvexError('Profile not found');
 
     const teacher = await getAuthorizedTeacher(ctx, profile._id);
-    if (!teacher) throw new Error('Unauthorized');
+    if (!teacher) throw new ConvexError('Unauthorized');
 
     const enrollments = await ctx.db
       .query('class_enrollments')
@@ -445,7 +445,7 @@ export const resetStudentCard = mutation({
       }
     }
 
-    if (!isAuthorizedStudent) throw new Error('Unauthorized');
+    if (!isAuthorizedStudent) throw new ConvexError('Unauthorized');
 
     const existing = await ctx.db
       .query('srs_cards')
@@ -498,7 +498,7 @@ export const resetStudentCard = mutation({
       });
     }
 
-    if (!classId) throw new Error('No valid class found for intervention');
+    if (!classId) throw new ConvexError('No valid class found for intervention');
 
     await ctx.db.insert('srs_interventions', {
       teacherId: teacher._id,
@@ -520,20 +520,20 @@ export const bumpFamilyPriority = mutation({
   },
   handler: async (ctx, args) => {
     const identity = await ctx.auth.getUserIdentity();
-    if (!identity) throw new Error('Unauthenticated');
+    if (!identity) throw new ConvexError('Unauthenticated');
 
     const profile = await ctx.db
       .query('profiles')
       .withIndex('by_username', (q) => q.eq('username', identity.email!))
       .unique();
-    if (!profile) throw new Error('Profile not found');
+    if (!profile) throw new ConvexError('Profile not found');
 
     const teacher = await getAuthorizedTeacher(ctx, profile._id);
-    if (!teacher) throw new Error('Unauthorized');
+    if (!teacher) throw new ConvexError('Unauthorized');
 
     const cls = await ctx.db.get(args.classId);
-    if (!cls) throw new Error('Class not found');
-    if (cls.teacherId !== teacher._id) throw new Error('Unauthorized');
+    if (!cls) throw new ConvexError('Class not found');
+    if (cls.teacherId !== teacher._id) throw new ConvexError('Unauthorized');
 
     const enrollments = await ctx.db
       .query('class_enrollments')

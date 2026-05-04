@@ -202,7 +202,7 @@ describe('POST /api/activities/complete', () => {
     expect(data.message).toBe('Use POST /api/phases/complete.');
     expect(data.replacement).toBe('/api/phases/complete');
     expect(data.deprecated).toBe(true);
-    expect(data.details).toBe('This phase has already been completed.');
+    expect(data.details).toBeUndefined();
     expect(response.headers.get('deprecation')).toBe('true');
   });
 

@@ -1,6 +1,6 @@
 # Plan: E2E Test Coverage for Critical Student Flows
 
-## Phase 1: Test Infrastructure — COMPLETE
+## Phase 1: Test Infrastructure — COMPLETE [checkpoint: 4b7b97d]
 
 - [x] Write Playwright config for IM3 (baseURL, webServer, projects for chromium)
 - [x] Create test fixtures: authenticated student page object, authenticated teacher page object

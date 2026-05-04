@@ -2,7 +2,7 @@
 
 ## Phase 1: IM1 Demo Environment — SKIPPED (deferred per user request)
 
-## Phase 2: IM2 Demo Environment — COMPLETE
+## Phase 2: IM2 Demo Environment — COMPLETE [checkpoint: 8d7c55a]
 
 - [x] Task: Create IM2 demo environment seed
     - [x] Create `apps/integrated-math-2/convex/seed/seed_demo_env.ts`
@@ -14,7 +14,7 @@
     - [x] Assign Unit 1 lessons to demo class
 - [x] Task: Update IM2 `seed.ts` to orchestrate demo seeds
 
-## Phase 3: PreCalc Demo Environment — COMPLETE
+## Phase 3: PreCalc Demo Environment — COMPLETE [checkpoint: b8b4479]
 
 - [x] Task: Create PreCalc demo environment seed
     - [x] Create `apps/pre-calculus/convex/seed/seed_demo_env.ts`

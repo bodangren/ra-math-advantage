@@ -4,7 +4,7 @@ import {
   type QueryCtx,
   type MutationCtx,
 } from "./_generated/server";
-import { v } from "convex/values";
+import { v, ConvexError } from "convex/values";
 import type { Id } from "./_generated/dataModel";
 import {
   componentTypeValidator,
@@ -17,7 +17,7 @@ import { computeComponentVersionHash } from "../lib/component-approval/version-h
 async function requireAdmin(ctx: QueryCtx | MutationCtx): Promise<void> {
   const identity = await ctx.auth.getUserIdentity();
   if (!identity) {
-    throw new Error("Unauthorized");
+    throw new ConvexError("Unauthorized");
   }
   const profile = await ctx.db
     .query("profiles")
@@ -25,7 +25,7 @@ async function requireAdmin(ctx: QueryCtx | MutationCtx): Promise<void> {
     .withIndex("by_username", (q: any) => q.eq("username", identity.email!))
     .unique();
   if (!profile || profile.role !== "admin") {
-    throw new Error("Unauthorized");
+    throw new ConvexError("Unauthorized");
   }
 }
 
@@ -197,7 +197,7 @@ export async function submitComponentReviewHandler(
   await requireAdmin(ctx);
 
   if (args.componentType === "example") {
-    throw new Error(
+    throw new ConvexError(
       "Example components are not supported for review. Examples are embedded lesson content, not standalone React components, and do not have source files to hash for version tracking."
     );
   }
@@ -206,7 +206,7 @@ export async function submitComponentReviewHandler(
     (args.status === "changes_requested" || args.status === "rejected") &&
     !args.improvementNotes
   ) {
-    throw new Error(
+    throw new ConvexError(
       "Improvement notes are required for changes_requested or rejected status"
     );
   }
@@ -216,19 +216,19 @@ export async function submitComponentReviewHandler(
     args.componentId
   );
   if (serverHash !== args.componentVersionHash) {
-    throw new Error("Component version hash mismatch");
+    throw new ConvexError("Component version hash mismatch");
   }
 
   const identity = await ctx.auth.getUserIdentity();
   if (!identity) {
-    throw new Error("Not authenticated");
+    throw new ConvexError("Not authenticated");
   }
   const profile = await ctx.db
     .query("profiles")
     .withIndex("by_username", (q) => q.eq("username", identity.email!))
     .unique();
   if (!profile) {
-    throw new Error("Profile not found");
+    throw new ConvexError("Profile not found");
   }
 
   const now = Date.now();
@@ -378,19 +378,19 @@ export async function resolveReviewHandler(
 
   const identity = await ctx.auth.getUserIdentity();
   if (!identity) {
-    throw new Error("Not authenticated");
+    throw new ConvexError("Not authenticated");
   }
   const profile = await ctx.db
     .query("profiles")
     .withIndex("by_username", (q) => q.eq("username", identity.email!))
     .unique();
   if (!profile) {
-    throw new Error("Profile not found");
+    throw new ConvexError("Profile not found");
   }
 
   const review = await ctx.db.get(args.reviewId);
   if (!review) {
-    throw new Error("Review not found");
+    throw new ConvexError("Review not found");
   }
 
   await ctx.db.patch(args.reviewId, {

@@ -13,7 +13,7 @@
     - [ ] Create `apps/integrated-math-1/convex/seed/seed_objective_policies.ts`
     - [ ] Assign `essential`/`supporting`/`extension` priority to each standard
 
-## Phase 2: IM2 Standards — COMPLETE
+## Phase 2: IM2 Standards — COMPLETE [checkpoint: 8d7c55a]
 
 - [x] Task: Define IM2 competency standards
     - [x] Research Common Core standards for Integrated Math 2
@@ -25,7 +25,7 @@
     - [x] Create `apps/integrated-math-2/convex/seed/seed_objective_policies.ts`
     - [x] Create companion `objective_policies.ts` with 48 policies (27 essential, 16 supporting, 5 extension)
 
-## Phase 3: PreCalc Standards — COMPLETE
+## Phase 3: PreCalc Standards — COMPLETE [checkpoint: b8b4479]
 
 - [x] Task: Define PreCalc competency standards
     - [x] Research AP Precalculus standards

@@ -36,7 +36,7 @@
     - [x] Lessons 4-1 through 4-14: full phase content, worked examples, activities
     - [x] 14 lessons, 77-90 lines each, all 7 phases per lesson (CED-based, no Passwater source)
 
-## Phase 6: Verification [COMPLETE]
+## Phase 6: Verification [COMPLETE] [checkpoint: 0d43b49]
 
 - [x] Task: Validate all lesson files
     - [x] 58 lesson.md files exist across 4 units

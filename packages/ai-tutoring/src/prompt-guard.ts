@@ -95,11 +95,22 @@ const INJECTION_ACTION_KEYWORDS = ['ignore', 'disregard', 'forget', 'override', 
 const INJECTION_TARGET_KEYWORDS = ['instruction', 'instructions', 'prompt', 'prompts', 'system', 'configuration'];
 
 /**
+ * Replaces punctuation characters (periods, commas, semicolons, colons, dashes)
+ * with spaces to prevent punctuation-without-whitespace bypass.
+ * e.g., "bypass.the.system" -> "bypass the system"
+ */
+function stripPunctuationToSpaces(input: string): string {
+  return input.replace(/[.,;:\-]+/g, ' ');
+}
+
+/**
  * Context-aware detection: checks if injection action and target keywords
  * appear within a short word window (5 words), indicating suspicious proximity.
  */
 function detectKeywordProximity(input: string): InjectionDetection | null {
-  const words = input.toLowerCase().split(/\s+/);
+  // Pre-process: replace punctuation with spaces to catch "bypass.the.system" patterns
+  const preprocessed = stripPunctuationToSpaces(input);
+  const words = preprocessed.toLowerCase().split(/\s+/);
 
   for (let i = 0; i < words.length; i++) {
     const word = words[i].replace(/[^\w]/g, '');

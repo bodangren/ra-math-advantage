@@ -42,6 +42,14 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: 'Username and password are required' }, { status: 400 });
   }
 
+  if (username.length > 255) {
+    return NextResponse.json({ error: 'Username is too long' }, { status: 400 });
+  }
+
+  if (password.length > 255) {
+    return NextResponse.json({ error: 'Password is too long' }, { status: 400 });
+  }
+
   const clientIp = getClientIp(request);
   const ipHash = hashIpAddress(clientIp);
 

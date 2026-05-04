@@ -1,5 +1,5 @@
 import { internalMutation, internalQuery } from "./_generated/server";
-import { v } from "convex/values";
+import { v, ConvexError } from "convex/values";
 import { Id } from "./_generated/dataModel";
 import { coerceNullableString } from "./dashboardHelpers";
 import {
@@ -116,7 +116,7 @@ export const completePhase = internalMutation({
         .withIndex("by_slug", (q) => q.eq("slug", args.lessonId))
         .unique();
     }
-    if (!lesson) throw new Error("Lesson not found");
+    if (!lesson) throw new ConvexError("Lesson not found");
 
     // 2. Get latest published version
     const versions = await ctx.db
@@ -124,7 +124,7 @@ export const completePhase = internalMutation({
       .withIndex("by_lesson", (q) => q.eq("lessonId", lesson._id))
       .collect();
     const latestVersion = resolveLatestPublishedLessonVersion(versions);
-    if (!latestVersion) throw new Error("Published lesson version not found");
+    if (!latestVersion) throw new ConvexError("Published lesson version not found");
 
     // 3. Find specific phase
     const phase = await ctx.db
@@ -133,7 +133,7 @@ export const completePhase = internalMutation({
         q.eq("lessonVersionId", latestVersion._id).eq("phaseNumber", args.phaseNumber)
       )
       .unique();
-    if (!phase) throw new Error("Phase not found");
+    if (!phase) throw new ConvexError("Phase not found");
 
     // 4. Check idempotency
     const existing = await ctx.db

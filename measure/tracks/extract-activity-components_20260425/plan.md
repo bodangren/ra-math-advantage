@@ -67,7 +67,7 @@ Created `packages/app-shell/` for components identical across all 5 apps.
     - [x] PreCalc: 7 files rewritten (brand: "AP Precalculus")
 - [x] Task: Verify — typecheck passes in IM3, IM1, BM2
 
-## Phase 7: Lesson Rendering Package (Tier 3) [COMPLETE]
+## Phase 7: Lesson Rendering Package (Tier 3) [COMPLETE] [checkpoint: 3e5a7dd]
 
 Created `packages/lesson-renderer/` with textbook concept components and lesson rendering primitives.
 
@@ -81,7 +81,7 @@ Created `packages/lesson-renderer/` with textbook concept components and lesson 
 - [x] Task: Add to all 5 apps as dependency
 - [x] Task: Verify — typecheck clean
 
-## Phase 8: Study Hub Unification (Tier 4) [COMPLETE]
+## Phase 8: Study Hub Unification (Tier 4) [COMPLETE] [checkpoint: 4c948c4]
 
 `study-hub-core` now has game components in addition to BaseReviewSession and shuffleArray.
 
