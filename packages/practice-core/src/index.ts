@@ -101,3 +101,9 @@ export {
   generateAISummary,
   buildTeacherErrorView,
 } from './practice/error-analysis';
+
+export {
+  createMockPracticeEnvelope,
+  createMockPracticeTimingSummary,
+  createMockPracticeSubmissionPart,
+} from './practice/fixtures';

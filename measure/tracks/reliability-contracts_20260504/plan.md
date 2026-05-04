@@ -7,7 +7,7 @@
   - **Action:** Update `practiceSubmissionEnvelopeSchema` to brand the `activityId` (e.g., `z.string().brand<'ConvexId'>()`). Update type exports as necessary.
   - **Validation:** Run `practice-core` unit tests to ensure Zod parsing handles the brand correctly.
 
-- [ ] **Task 1.2: Export `createMockPracticeEnvelope` Factory**
+- [~] **Task 1.2: Export `createMockPracticeEnvelope` Factory**
   - **File:** `packages/practice-core/src/practice/fixtures.ts` (New file)
   - **Action:** Implement and export `createMockPracticeEnvelope(overrides?)`. Add to `index.ts` exports.
 
