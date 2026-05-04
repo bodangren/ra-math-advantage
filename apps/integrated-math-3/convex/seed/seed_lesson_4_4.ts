@@ -1,5 +1,6 @@
 import { internalMutation } from "../_generated/server";
 import type { Id } from "../_generated/dataModel";
+import { SeedActivityContent } from "./types";
 
 interface SeedLesson4_4Result {
   lessonId: Id<"lessons">;
@@ -444,16 +445,13 @@ export const seedLesson4_4 = internalMutation({
 
       for (const section of phase.sections) {
         if (section.sectionType === "activity") {
-          const activityContent = section.content as {
-            componentKey: string;
-            props: any;
-          };
+          const activityContent = section.content as SeedActivityContent;
 
           const insertedActivityId = await ctx.db.insert("activities", {
             componentKey: activityContent.componentKey,
             displayName: `${phase.title} - ${activityContent.componentKey}`,
             description: `Activity for ${phase.title}`,
-            props: activityContent.props,
+            props: activityContent.props as never,
             gradingConfig: { autoGrade: true, partialCredit: true },
             createdAt: now,
             updatedAt: now,

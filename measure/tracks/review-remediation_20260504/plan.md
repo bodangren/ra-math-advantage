@@ -46,12 +46,12 @@
 
 ## Phase 4: Seed File Type Safety
 
-- [ ] **Task 4.1: Replace `any` with typed assertions in all 52 seed files**
+- [x] **Task 4.1: Replace `any` with typed assertions in all 52 seed files**
   - Define a helper type or cast function in a shared seed utility (e.g., `apps/integrated-math-3/convex/seed/types.ts`).
   - Replace `props: any` with `props: unknown as ActivityProps` or a seed-specific `asSeedActivityProps()` helper.
   - Ensure `npx tsc --noEmit` still passes.
 
-- [ ] **Task 4.2: Verify seed compilation**
+- [x] **Task 4.2: Verify seed compilation**
   - Run IM3 typecheck.
   - Run a sample seed file through `tsc` to confirm no `any` remains.
 
