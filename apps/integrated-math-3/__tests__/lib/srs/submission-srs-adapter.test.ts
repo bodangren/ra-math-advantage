@@ -1,4 +1,5 @@
 import { describe, it, expect, beforeEach } from 'vitest';
+import { toConvexActivityId } from '@math-platform/practice-core';
 import type {
   SubmissionSrsInput,
   SubmissionSrsResultSuccess,
@@ -15,7 +16,7 @@ function makeSubmission(
 ): PracticeSubmissionEnvelope {
   return {
     contractVersion: 'practice.v1',
-    activityId: 'activity-1',
+    activityId: toConvexActivityId('activity-1'),
     mode: 'independent_practice',
     status: 'submitted',
     attemptNumber: 1,
@@ -50,7 +51,7 @@ describe('SubmissionSrsAdapter', () => {
       const input: SubmissionSrsInput = {
         submission: makeSubmission(),
         studentId: 'student-1',
-        activityId: 'activity-1',
+        activityId: toConvexActivityId('activity-1'),
       };
 
       const result = await adapter.processSubmission(input);
@@ -70,7 +71,7 @@ describe('SubmissionSrsAdapter', () => {
       const input: SubmissionSrsInput = {
         submission: makeSubmission(),
         studentId: 'student-1',
-        activityId: 'activity-1',
+        activityId: toConvexActivityId('activity-1'),
       };
 
       const result = await adapter.processSubmission(input);
@@ -91,7 +92,7 @@ describe('SubmissionSrsAdapter', () => {
       const input: SubmissionSrsInput = {
         submission: makeSubmission(),
         studentId: 'student-1',
-        activityId: 'activity-1',
+        activityId: toConvexActivityId('activity-1'),
       };
 
       await adapter.processSubmission(input);
@@ -111,7 +112,7 @@ describe('SubmissionSrsAdapter', () => {
       const input: SubmissionSrsInput = {
         submission: makeSubmission(),
         studentId: 'student-1',
-        activityId: 'activity-1',
+        activityId: toConvexActivityId('activity-1'),
       };
 
       const result = await adapter.processSubmission(input);
@@ -125,9 +126,9 @@ describe('SubmissionSrsAdapter', () => {
   describe('processSubmission returns skipped: true when no blueprint exists', () => {
     it('returns skipped result when activity has no blueprint', async () => {
       const input: SubmissionSrsInput = {
-        submission: makeSubmission({ activityId: 'unknown-activity' }),
+        submission: makeSubmission({ activityId: toConvexActivityId('unknown-activity') }),
         studentId: 'student-1',
-        activityId: 'unknown-activity',
+        activityId: toConvexActivityId('unknown-activity'),
       };
 
       const result = await adapter.processSubmission(input);
@@ -140,9 +141,9 @@ describe('SubmissionSrsAdapter', () => {
 
     it('does not create card when blueprint is missing', async () => {
       const input: SubmissionSrsInput = {
-        submission: makeSubmission({ activityId: 'unknown-activity' }),
+        submission: makeSubmission({ activityId: toConvexActivityId('unknown-activity') }),
         studentId: 'student-1',
-        activityId: 'unknown-activity',
+        activityId: toConvexActivityId('unknown-activity'),
       };
 
       await adapter.processSubmission(input);
@@ -167,9 +168,9 @@ describe('SubmissionSrsAdapter', () => {
       })();
 
       const input: SubmissionSrsInput = {
-        submission: makeSubmission({ activityId: 'activity-error' }),
+        submission: makeSubmission({ activityId: toConvexActivityId('activity-error') }),
         studentId: 'student-1',
-        activityId: 'activity-error',
+        activityId: toConvexActivityId('activity-error'),
       };
 
       const result = await brokenAdapter.processSubmission(input);
@@ -187,11 +188,11 @@ describe('SubmissionSrsAdapter', () => {
         objectiveId: 'obj-1',
       });
 
-      const safeSubmission = makeSubmission({ activityId: 'activity-safe' });
+      const safeSubmission = makeSubmission({ activityId: toConvexActivityId('activity-safe') });
       const input: SubmissionSrsInput = {
         submission: safeSubmission,
         studentId: 'student-1',
-        activityId: 'activity-safe',
+        activityId: toConvexActivityId('activity-safe'),
       };
 
       const result = await adapter.processSubmission(input);
@@ -208,9 +209,9 @@ describe('SubmissionSrsAdapter', () => {
       });
 
       const input: SubmissionSrsInput = {
-        submission: makeSubmission({ activityId: 'activity-custom' }),
+        submission: makeSubmission({ activityId: toConvexActivityId('activity-custom') }),
         studentId: 'student-1',
-        activityId: 'activity-custom',
+        activityId: toConvexActivityId('activity-custom'),
       };
 
       const result = await adapter.processSubmission(input);
@@ -237,7 +238,7 @@ describe('SubmissionSrsAdapter', () => {
 
       const input: SubmissionSrsInput = {
         submission: makeSubmission({
-          activityId: 'activity-timing',
+          activityId: toConvexActivityId('activity-timing'),
           timing: {
             startedAt: mockNow,
             submittedAt: mockNow,
@@ -251,7 +252,7 @@ describe('SubmissionSrsAdapter', () => {
           },
         }),
         studentId: 'student-1',
-        activityId: 'activity-timing',
+        activityId: toConvexActivityId('activity-timing'),
       };
 
       const result = await adapter.processSubmission(input);
@@ -277,7 +278,7 @@ describe('SubmissionSrsAdapter', () => {
 
       const input: SubmissionSrsInput = {
         submission: makeSubmission({
-          activityId: 'activity-fast',
+          activityId: toConvexActivityId('activity-fast'),
           parts: [{ partId: 'part1', rawAnswer: 'answer', isCorrect: true }],
           timing: {
             startedAt: mockNow,
@@ -292,7 +293,7 @@ describe('SubmissionSrsAdapter', () => {
           },
         }),
         studentId: 'student-1',
-        activityId: 'activity-fast',
+        activityId: toConvexActivityId('activity-fast'),
       };
 
       const result = await adapter.processSubmission(input);
@@ -311,14 +312,14 @@ describe('SubmissionSrsAdapter', () => {
 
       const input: SubmissionSrsInput = {
         submission: makeSubmission({
-          activityId: 'activity-misconception',
+          activityId: toConvexActivityId('activity-misconception'),
           parts: [
             { partId: 'part1', rawAnswer: 'wrong', isCorrect: false, misconceptionTags: ['sign-error'] },
             { partId: 'part2', rawAnswer: 'wrong2', isCorrect: false, misconceptionTags: ['sign-error', 'distribution-error'] },
           ],
         }),
         studentId: 'student-1',
-        activityId: 'activity-misconception',
+        activityId: toConvexActivityId('activity-misconception'),
       };
 
       const result = await adapter.processSubmission(input);
@@ -338,11 +339,11 @@ describe('SubmissionSrsAdapter', () => {
 
       const input: SubmissionSrsInput = {
         submission: makeSubmission({
-          activityId: 'activity-clean',
+          activityId: toConvexActivityId('activity-clean'),
           parts: [{ partId: 'part1', rawAnswer: 'answer', isCorrect: true }],
         }),
         studentId: 'student-1',
-        activityId: 'activity-clean',
+        activityId: toConvexActivityId('activity-clean'),
       };
 
       const result = await adapter.processSubmission(input);

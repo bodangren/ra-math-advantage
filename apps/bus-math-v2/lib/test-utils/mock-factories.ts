@@ -1,4 +1,5 @@
 import { randomUUID } from 'node:crypto';
+import { toConvexActivityId } from '@math-platform/practice-core';
 
 import {
   insertActivitySchema,
@@ -463,7 +464,7 @@ export function buildActivitySubmissionInput(
       overrides.submissionData ??
       {
         contractVersion: 'practice.v1',
-        activityId: overrides.activityId ?? randomUUID(),
+        activityId: toConvexActivityId(overrides.activityId ?? randomUUID()),
         mode: 'assessment',
         status: 'submitted',
         attemptNumber: 1,

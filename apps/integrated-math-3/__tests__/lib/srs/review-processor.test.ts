@@ -1,4 +1,5 @@
 import { describe, it, expect, vi } from 'vitest';
+import { toConvexActivityId } from '@math-platform/practice-core';
 import type { SrsCardState, PracticeSubmissionEnvelope } from '@math-platform/srs-engine';
 
 vi.mock('@math-platform/srs-engine/scheduler', () => ({
@@ -23,7 +24,7 @@ const mockNow = '2026-04-16T12:00:00.000Z';
 function makeSubmission(overrides: Partial<PracticeSubmissionEnvelope> = {}): PracticeSubmissionEnvelope {
   return {
     contractVersion: 'practice.v1',
-    activityId: 'activity-1',
+    activityId: toConvexActivityId('activity-1'),
     mode: 'independent_practice',
     status: 'submitted',
     attemptNumber: 1,
@@ -191,7 +192,7 @@ describe('processReview', () => {
 
   it('uses activityId and attemptNumber as submissionId', () => {
     const card = makeCard();
-    const submission = makeSubmission({ activityId: 'act-42', attemptNumber: 3 });
+    const submission = makeSubmission({ activityId: toConvexActivityId('act-42'), attemptNumber: 3 });
 
     const result = processReview({ card, submission, now: mockNow });
 

@@ -1,4 +1,5 @@
 import { describe, it, expect, beforeEach } from 'vitest';
+import { toConvexActivityId } from '@math-platform/practice-core';
 import type { SrsCardState, SrsReviewLogEntry } from '@math-platform/srs-engine';
 import {
   InMemoryCardStore,
@@ -189,7 +190,7 @@ describe('End-to-end: scheduler + processor + in-memory stores', () => {
 
     const submission = {
       contractVersion: 'practice.v1' as const,
-      activityId: 'activity-1',
+      activityId: toConvexActivityId('activity-1'),
       mode: 'independent_practice' as const,
       status: 'submitted' as const,
       attemptNumber: 1,
@@ -231,7 +232,7 @@ describe('End-to-end: scheduler + processor + in-memory stores', () => {
     for (let i = 0; i < 3; i++) {
       const submission = {
         contractVersion: 'practice.v1' as const,
-        activityId: 'activity-1',
+        activityId: toConvexActivityId('activity-1'),
         mode: 'independent_practice' as const,
         status: 'submitted' as const,
         attemptNumber: i + 1,

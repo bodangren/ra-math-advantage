@@ -1,4 +1,5 @@
 import { describe, it, expect } from 'vitest';
+import { toConvexActivityId } from '@math-platform/practice-core';
 import {
   canTeacherAccessSubmission,
   canTeacherAccessLessonSummary,
@@ -14,7 +15,7 @@ import type { PracticeSubmissionEnvelope } from '@math-platform/practice-core/co
 function makeSubmission(overrides: Partial<PracticeSubmissionEnvelope> = {}): PracticeSubmissionEnvelope {
   return {
     contractVersion: 'practice.v1',
-    activityId: 'activity-1',
+    activityId: toConvexActivityId('activity-1'),
     mode: 'independent_practice',
     status: 'submitted',
     attemptNumber: 1,
@@ -79,7 +80,7 @@ describe('aggregateMisconceptionTags', () => {
   it('counts single tag correctly', () => {
     const submissions = [
       makeSubmission({
-        activityId: 'activity-1',
+        activityId: toConvexActivityId('activity-1'),
         parts: [makePart('p1', false, ['sign-error'])],
       }),
     ];
@@ -93,11 +94,11 @@ describe('aggregateMisconceptionTags', () => {
   it('accumulates counts for same tag across submissions', () => {
     const submissions = [
       makeSubmission({
-        activityId: 'activity-1',
+        activityId: toConvexActivityId('activity-1'),
         parts: [makePart('p1', false, ['sign-error'])],
       }),
       makeSubmission({
-        activityId: 'activity-2',
+        activityId: toConvexActivityId('activity-2'),
         parts: [makePart('p1', false, ['sign-error'])],
       }),
     ];
@@ -109,11 +110,11 @@ describe('aggregateMisconceptionTags', () => {
   it('handles multiple different tags', () => {
     const submissions = [
       makeSubmission({
-        activityId: 'activity-1',
+        activityId: toConvexActivityId('activity-1'),
         parts: [makePart('p1', false, ['sign-error'])],
       }),
       makeSubmission({
-        activityId: 'activity-2',
+        activityId: toConvexActivityId('activity-2'),
         parts: [makePart('p1', false, ['distribution-error'])],
       }),
     ];
@@ -128,11 +129,11 @@ describe('aggregateMisconceptionTags', () => {
     ]);
     const submissions = [
       makeSubmission({
-        activityId: 'activity-1',
+        activityId: toConvexActivityId('activity-1'),
         parts: [makePart('p1', false, ['sign-error'])],
       }),
       makeSubmission({
-        activityId: 'activity-2',
+        activityId: toConvexActivityId('activity-2'),
         parts: [makePart('p1', false, ['sign-error'])],
       }),
     ];
@@ -145,15 +146,15 @@ describe('aggregateMisconceptionTags', () => {
   it('sorts by count descending', () => {
     const submissions = [
       makeSubmission({
-        activityId: 'activity-1',
+        activityId: toConvexActivityId('activity-1'),
         parts: [makePart('p1', false, ['low-count'])],
       }),
       makeSubmission({
-        activityId: 'activity-2',
+        activityId: toConvexActivityId('activity-2'),
         parts: [makePart('p1', false, ['high-count']), makePart('p2', false, ['high-count'])],
       }),
       makeSubmission({
-        activityId: 'activity-3',
+        activityId: toConvexActivityId('activity-3'),
         parts: [makePart('p1', false, ['high-count'])],
       }),
     ];
@@ -174,7 +175,7 @@ describe('summarizePartOutcomes', () => {
   it('calculates accuracy for single submission', () => {
     const submissions = [
       makeSubmission({
-        activityId: 'activity-1',
+        activityId: toConvexActivityId('activity-1'),
         parts: [makePart('p1', true), makePart('p2', false)],
       }),
     ];
@@ -195,11 +196,11 @@ describe('summarizePartOutcomes', () => {
   it('accumulates across multiple submissions for same part', () => {
     const submissions = [
       makeSubmission({
-        activityId: 'activity-1',
+        activityId: toConvexActivityId('activity-1'),
         parts: [makePart('p1', true)],
       }),
       makeSubmission({
-        activityId: 'activity-2',
+        activityId: toConvexActivityId('activity-2'),
         parts: [makePart('p1', false)],
       }),
     ];
@@ -214,11 +215,11 @@ describe('summarizePartOutcomes', () => {
   it('aggregates misconception tags within parts', () => {
     const submissions = [
       makeSubmission({
-        activityId: 'activity-1',
+        activityId: toConvexActivityId('activity-1'),
         parts: [makePart('p1', false, ['sign-error'])],
       }),
       makeSubmission({
-        activityId: 'activity-2',
+        activityId: toConvexActivityId('activity-2'),
         parts: [makePart('p1', false, ['sign-error'])],
       }),
     ];
@@ -234,7 +235,7 @@ describe('buildStudentProfiles', () => {
   it('maps single submission correctly', () => {
     const submissions = [
       makeSubmission({
-        activityId: 'activity-1',
+        activityId: toConvexActivityId('activity-1'),
         parts: [
           makePart('p1', true),
           makePart('p2', false, ['sign-error']),
@@ -252,8 +253,8 @@ describe('buildStudentProfiles', () => {
 
   it('produces multiple profiles for multiple submissions', () => {
     const submissions = [
-      makeSubmission({ activityId: 'activity-1', parts: [makePart('p1', true)] }),
-      makeSubmission({ activityId: 'activity-2', parts: [makePart('p1', false)] }),
+      makeSubmission({ activityId: toConvexActivityId('activity-1'), parts: [makePart('p1', true)] }),
+      makeSubmission({ activityId: toConvexActivityId('activity-2'), parts: [makePart('p1', false)] }),
     ];
     const result = buildStudentProfiles(submissions);
     expect(result).toHaveLength(2);
@@ -262,7 +263,7 @@ describe('buildStudentProfiles', () => {
   it('deduplicates misconceptions', () => {
     const submissions = [
       makeSubmission({
-        activityId: 'activity-1',
+        activityId: toConvexActivityId('activity-1'),
         parts: [
           makePart('p1', false, ['sign-error']),
           makePart('p2', false, ['sign-error']),
@@ -277,7 +278,7 @@ describe('buildStudentProfiles', () => {
   it('verifies correctParts + incorrectParts = totalParts', () => {
     const submissions = [
       makeSubmission({
-        activityId: 'activity-1',
+        activityId: toConvexActivityId('activity-1'),
         parts: [
           makePart('p1', true),
           makePart('p2', true),
@@ -292,7 +293,7 @@ describe('buildStudentProfiles', () => {
   it('uses studentIdMap when provided', () => {
     const studentIdMap = new Map([['activity-1', 'student-actual']]);
     const submissions = [
-      makeSubmission({ activityId: 'activity-1', parts: [makePart('p1', true)] }),
+      makeSubmission({ activityId: toConvexActivityId('activity-1'), parts: [makePart('p1', true)] }),
     ];
     const result = buildStudentProfiles(submissions, studentIdMap);
     expect(result[0].studentId).toBe('student-actual');
@@ -303,7 +304,7 @@ describe('buildDeterministicSummary', () => {
   it('combines all aggregation functions', () => {
     const submissions = [
       makeSubmission({
-        activityId: 'activity-1',
+        activityId: toConvexActivityId('activity-1'),
         parts: [
           makePart('p1', true),
           makePart('p2', false, ['sign-error']),
@@ -322,7 +323,7 @@ describe('buildDeterministicSummary', () => {
   it('limits topMisconceptions to 10', () => {
     const submissions = [
       makeSubmission({
-        activityId: 'activity-1',
+        activityId: toConvexActivityId('activity-1'),
         parts: Array.from({ length: 15 }, (_, i) =>
           makePart(`p${i}`, false, [`tag-${i}`])
         ),
@@ -390,7 +391,7 @@ describe('generateAISummary', () => {
 describe('buildTeacherErrorView', () => {
   it('assembles submission correctly', () => {
     const submission = makeSubmission({
-      activityId: 'activity-1',
+      activityId: toConvexActivityId('activity-1'),
       attemptNumber: 2,
       parts: [makePart('p1', true)],
     });

@@ -12,6 +12,7 @@ export {
   type PracticeSubmissionPart,
   convexActivityIdSchema,
   type ConvexActivityId,
+  toConvexActivityId,
   practiceSubmissionEnvelopeSchema,
   type PracticeSubmissionEnvelope,
   type PracticeSubmissionCallbackPayload,

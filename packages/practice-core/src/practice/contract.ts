@@ -52,6 +52,16 @@ export const convexActivityIdSchema = z.string().trim().min(1).brand<'ConvexId'>
  */
 export type ConvexActivityId = z.infer<typeof convexActivityIdSchema>;
 
+/**
+ * Brand a raw string as a ConvexActivityId at runtime.
+ *
+ * Use this in test files or adapters when you have a string ID that
+ * must satisfy the branded type.
+ */
+export function toConvexActivityId(id: string): ConvexActivityId {
+  return convexActivityIdSchema.parse(id);
+}
+
 function normalizeSubmittedAt(value: string | Date): string {
   return value instanceof Date ? value.toISOString() : value;
 }

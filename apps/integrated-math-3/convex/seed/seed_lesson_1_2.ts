@@ -336,7 +336,7 @@ export const seedLesson2 = internalMutation({
         if (section.sectionType === "activity") {
           const activityContent = section.content as {
             componentKey: string;
-            props: Record<string, unknown>;
+            props: any;
           };
 
           const insertedActivityId = await ctx.db.insert("activities", {

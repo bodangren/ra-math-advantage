@@ -1,6 +1,7 @@
 import { describe, it, expect, vi } from 'vitest';
 
 import type { PracticeSubmissionEnvelope } from '@/lib/practice/contract';
+import { toConvexActivityId } from '@math-platform/practice-core';
 import {
   canTeacherAccessSubmission,
   canTeacherAccessLessonSummary,
@@ -17,7 +18,7 @@ import {
 function makeSubmission(overrides: Partial<PracticeSubmissionEnvelope> = {}): PracticeSubmissionEnvelope {
   return {
     contractVersion: 'practice.v1',
-    activityId: 'test-activity',
+    activityId: toConvexActivityId('test-activity'),
     mode: 'independent_practice',
     status: 'submitted',
     attemptNumber: 1,
@@ -49,7 +50,7 @@ function makeSubmission(overrides: Partial<PracticeSubmissionEnvelope> = {}): Pr
 
 function makeSubmissionWithMultipleTags(): PracticeSubmissionEnvelope {
   return makeSubmission({
-    activityId: 'student-b',
+    activityId: toConvexActivityId('student-b'),
     parts: [
       {
         partId: 'q1',

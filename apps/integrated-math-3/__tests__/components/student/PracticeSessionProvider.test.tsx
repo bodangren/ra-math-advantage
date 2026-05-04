@@ -3,6 +3,7 @@ import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import { render, screen, waitFor, fireEvent, act } from '@testing-library/react';
 import { PracticeSessionProvider } from '@/components/student/PracticeSessionProvider';
 import { submitActivity } from '@/lib/activities/submission';
+import { toConvexActivityId } from '@math-platform/practice-core';
 import type { PracticeSubmissionEnvelope } from '@math-platform/practice-core/contract';
 
 vi.mock('@/components/student/PracticeCardRenderer', () => ({
@@ -25,7 +26,7 @@ vi.mock('@/components/student/PracticeCardRenderer', () => ({
         onClick={() => {
           onSubmit?.({
             contractVersion: 'practice.v1',
-            activityId: queueItem.props.activityId,
+            activityId: toConvexActivityId(queueItem.props.activityId),
             mode: 'independent_practice',
             status: 'submitted',
             attemptNumber: 1,
@@ -98,7 +99,7 @@ const mockQueue = [
     isOverdue: false,
     daysOverdue: 0,
     componentKey: 'test-activity',
-    props: { activityId: 'act-1' },
+    props: { activityId: toConvexActivityId('act-1') },
   },
   {
     card: {
@@ -122,7 +123,7 @@ const mockQueue = [
     isOverdue: false,
     daysOverdue: 0,
     componentKey: 'test-activity',
-    props: { activityId: 'act-2' },
+    props: { activityId: toConvexActivityId('act-2') },
   },
 ];
 

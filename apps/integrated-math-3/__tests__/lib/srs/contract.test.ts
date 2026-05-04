@@ -1,4 +1,5 @@
 import { describe, it, expect } from 'vitest';
+import { toConvexActivityId } from '@math-platform/practice-core';
 import {
   SRS_CONTRACT_VERSION,
   SrsRating,
@@ -177,7 +178,7 @@ describe('Re-exports from lib/practice/contract.ts', () => {
   it('PracticeSubmissionEnvelope should be usable', () => {
     const envelope: PracticeSubmissionEnvelope = {
       contractVersion: 'practice.v1',
-      activityId: 'act-1',
+      activityId: toConvexActivityId('act-1'),
       mode: 'independent_practice',
       status: 'submitted',
       attemptNumber: 1,

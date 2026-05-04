@@ -5,6 +5,7 @@ import { GraphingCanvas, Point, FunctionPlot } from './GraphingCanvas';
 import { InteractiveTableOfValues } from './InteractiveTableOfValues';
 import { HintPanel, HintData } from './HintPanel';
 import { InterceptIdentification, InterceptData } from './InterceptIdentification';
+import { toConvexActivityId } from '@math-platform/practice-core';
 import type { PracticeSubmissionEnvelope } from '@math-platform/practice-core/contract';
 import { parseQuadratic, parseLinear } from '@math-platform/graphing-core';
 
@@ -221,7 +222,7 @@ export function GraphingExplorer({
 
     const envelope: PracticeSubmissionEnvelope = {
       contractVersion: 'practice.v1',
-      activityId,
+      activityId: toConvexActivityId(activityId),
       mode: (mode === 'practice' ? 'independent_practice' : mode === 'guided' ? 'guided_practice' : mode) as PracticeSubmissionEnvelope['mode'],
       status: 'submitted',
       attemptNumber: 1,

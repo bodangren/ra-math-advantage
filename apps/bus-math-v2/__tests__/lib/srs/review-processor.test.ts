@@ -1,4 +1,5 @@
 import { describe, it, expect } from 'vitest';
+import { toConvexActivityId } from '@math-platform/practice-core';
 import { processPracticeSubmission } from '../../../lib/srs/review-processor';
 import { createCard } from '../../../lib/srs/scheduler';
 
@@ -13,7 +14,7 @@ function makeEnvelope(parts: Array<{
 }>): PracticeSubmissionEnvelope {
   return {
     contractVersion: 'practice.v1',
-    activityId: 'transaction-effects',
+    activityId: toConvexActivityId('transaction-effects'),
     mode: 'independent_practice',
     status: 'submitted',
     attemptNumber: 1,
