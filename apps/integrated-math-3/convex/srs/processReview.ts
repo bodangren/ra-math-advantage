@@ -90,6 +90,7 @@ export type ProcessReviewArgs = {
   };
 };
 
+// COPIED from packages/srs-engine/src/srs/transition-validator.ts — DO NOT EDIT WITHOUT SYNCING
 function validateSrsTransition(
   stateBefore: SrsStatePick,
   stateAfter: SrsStatePick,
@@ -127,6 +128,8 @@ export async function processReviewHandler(
     throw new Error("studentId mismatch: cardState and reviewEntry must refer to the same student");
   }
 
+  // Teacher resets bypass SRS transition validation because they are administrative
+  // overrides, not learner reviews. The reset action reinitializes the card state.
   if (!('action' in reviewEntry.evidence)) {
     validateSrsTransition(reviewEntry.stateBefore, reviewEntry.stateAfter);
   }

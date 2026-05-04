@@ -10,6 +10,7 @@ import {
 import { srsCardStateValidator, srsRatingValidator } from './srs_validators';
 import { createCard } from '@math-platform/srs-engine';
 
+// COPIED from packages/srs-engine/src/srs/transition-validator.ts — DO NOT EDIT WITHOUT SYNCING
 function validateSrsTransition(
   stateBefore: {
     stability: number;

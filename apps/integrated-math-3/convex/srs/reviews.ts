@@ -16,6 +16,7 @@ type SrsStatePick = {
   lapses: number;
 };
 
+// COPIED from packages/srs-engine/src/srs/transition-validator.ts — DO NOT EDIT WITHOUT SYNCING
 function validateSrsTransition(
   stateBefore: SrsStatePick,
   stateAfter: SrsStatePick,
@@ -57,6 +58,8 @@ export async function saveReviewHandler(
     reviewedAt: string;
   }
 ) {
+  // Teacher resets bypass SRS transition validation because they are administrative
+  // overrides, not learner reviews. The reset action reinitializes the card state.
   if (!('action' in args.evidence)) {
     validateSrsTransition(args.stateBefore, args.stateAfter);
   }

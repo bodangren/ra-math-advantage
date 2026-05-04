@@ -18,13 +18,13 @@
 
 ## Phase 2: Harden `validateSrsTransition` Against Drift
 
-- [ ] **Task 2.1: Add canonical reference comments to inline copies**
+- [x] **Task 2.1: Add canonical reference comments to inline copies**
   - `apps/integrated-math-3/convex/srs/processReview.ts`
   - `apps/integrated-math-3/convex/srs/reviews.ts`
   - `apps/bus-math-v2/convex/srs.ts`
   - Comment template: `// COPIED from packages/srs-engine/src/srs/transition-validator.ts — DO NOT EDIT WITHOUT SYNCING`
 
-- [ ] **Task 2.2: Add unit-test parity check (optional but recommended)**
+- [x] **Task 2.2: Add unit-test parity check (optional but recommended)**
   - Add a lightweight test in each app that imports the canonical validator and asserts its logic hash matches a known value, OR
   - Add a CI script that diffs the inline functions against the canonical version and warns on mismatch.
   - If CI script is too heavy, document in `tech-debt.md` instead.
