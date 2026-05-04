@@ -1,6 +1,6 @@
 # Implementation Plan: Reliability Contracts & DB Boundary Enforcement
 
-## Phase 1: Shared Packages – Branded Types & Test Fixtures
+## Phase 1: Shared Packages – Branded Types & Test Fixtures [checkpoint: eaf6fe8]
 
 - [x] **Task 1.1: Introduce Branded ID Type** [49a5262]
   - **File:** `packages/practice-core/src/practice/contract.ts`
