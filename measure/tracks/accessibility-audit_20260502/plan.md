@@ -7,9 +7,9 @@
 - [x] Run automated audit and log all violations by severity (critical/serious/moderate/minor)
 - [x] Document findings in audit report with affected components and remediation priority
 
-## Phase 2: Keyboard Navigation Fixes [ ]
+## Phase 2: Keyboard Navigation Fixes [~]
 
-- [ ] Write tests verifying Tab/Shift+Tab reaches all interactive elements on lesson page
+- [x] Write tests verifying Tab/Shift+Tab reaches all interactive elements on lesson page [9a9d263]
 - [ ] Add visible focus indicators to all buttons, links, and form controls (Tailwind focus-visible styles)
 - [ ] Make GraphingCanvas keyboard-accessible (arrow keys for point placement, Enter to submit)
 - [ ] Make parameter sliders in Explore mode keyboard-adjustable
