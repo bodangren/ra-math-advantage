@@ -44,12 +44,15 @@ const defaultProps: LessonRendererProps = {
 
 describe('Lesson Page Keyboard Navigation', () => {
   describe('Tab order through lesson shell', () => {
-    it('reaches mobile sidebar toggle on first Tab', async () => {
+    it('reaches skip link on first Tab, then mobile sidebar toggle', async () => {
       const user = userEvent.setup();
       render(<LessonRenderer {...defaultProps} />);
 
       await user.tab();
+      const skipLink = screen.getByRole('link', { name: /skip to lesson content/i });
+      expect(skipLink).toHaveFocus();
 
+      await user.tab();
       const toggle = screen.getByRole('button', { name: /toggle phases navigation/i });
       expect(toggle).toHaveFocus();
     });
@@ -57,6 +60,10 @@ describe('Lesson Page Keyboard Navigation', () => {
     it('cycles through stepper buttons and reaches Mark Complete', async () => {
       const user = userEvent.setup();
       render(<LessonRenderer {...defaultProps} />);
+
+      // Tab past skip link
+      await user.tab();
+      expect(document.activeElement).toHaveAttribute('href', '#lesson-content');
 
       // Tab to toggle
       await user.tab();
@@ -85,7 +92,8 @@ describe('Lesson Page Keyboard Navigation', () => {
       const user = userEvent.setup();
       render(<LessonRenderer {...defaultProps} />);
 
-      // Tab past toggle, desktop stepper, mobile stepper, and Mark Complete
+      // Tab past skip link, toggle, desktop stepper, mobile stepper, and Mark Complete
+      await user.tab(); // skip link
       await user.tab(); // toggle
       await user.tab(); // desktop P1
       await user.tab(); // desktop P2
@@ -120,6 +128,7 @@ describe('Lesson Page Keyboard Navigation', () => {
       render(<LessonRenderer {...defaultProps} />);
 
       // Tab forward to Skip (last interactive element in normal flow)
+      await user.tab(); // skip link
       await user.tab(); // toggle
       await user.tab(); // desktop P1
       await user.tab(); // desktop P2
@@ -148,6 +157,9 @@ describe('Lesson Page Keyboard Navigation', () => {
 
       await user.tab({ shift: true });
       expect(document.activeElement).toHaveAttribute('aria-label', 'Toggle phases navigation');
+
+      await user.tab({ shift: true });
+      expect(document.activeElement).toHaveAttribute('href', '#lesson-content');
     });
   });
 

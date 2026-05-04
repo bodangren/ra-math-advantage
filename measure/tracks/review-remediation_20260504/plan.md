@@ -2,17 +2,17 @@
 
 ## Phase 1: Fix Failing Accessibility Tests
 
-- [ ] **Task 1.1: Diagnose Skip button tab-order failure**
+- [x] **Task 1.1: Diagnose Skip button tab-order failure**
   - Run `lesson-keyboard-navigation.test.tsx` in isolation and capture exact DOM state at failure point.
   - Determine whether `PhaseCompleteButton` renders Skip button in test env (`canSkip` evaluation, `isSkippable` import resolution).
   - Document root cause.
 
-- [ ] **Task 1.2: Fix or adjust test expectations**
+- [x] **Task 1.2: Fix or adjust test expectations**
   - If Skip button is genuinely missing due to test-env import issue: mock `isSkippable` explicitly or fix module resolution.
   - If Skip button exists but tab order differs: update test to match actual DOM tab order.
   - If test expectation is wrong (e.g., Skip is not focusable): adjust test or component.
 
-- [ ] **Task 1.3: Verify all lesson tests pass**
+- [x] **Task 1.3: Verify all lesson tests pass**
   - Run full lesson test suite.
   - Run targeted accessibility tests.
 
