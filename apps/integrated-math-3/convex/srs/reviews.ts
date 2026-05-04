@@ -17,6 +17,13 @@ type SrsStatePick = {
 };
 
 // COPIED from packages/srs-engine/src/srs/transition-validator.ts — DO NOT EDIT WITHOUT SYNCING
+const VALID_STATE_TRANSITIONS: Record<string, string[]> = {
+  new: ['learning', 'review'],
+  learning: ['learning', 'review'],
+  review: ['learning', 'review'],
+  relearning: ['learning', 'review'],
+};
+
 function validateSrsTransition(
   stateBefore: SrsStatePick,
   stateAfter: SrsStatePick,
@@ -31,13 +38,8 @@ function validateSrsTransition(
       `lapses cannot decrease (before: ${stateBefore.lapses}, after: ${stateAfter.lapses})`
     );
   }
-  const validNext: Record<string, string[]> = {
-    new: ['learning', 'review'],
-    learning: ['learning', 'review'],
-    review: ['learning', 'review'],
-    relearning: ['learning', 'review'],
-  };
-  if (!validNext[stateBefore.state]?.includes(stateAfter.state)) {
+  const allowedNextStates = VALID_STATE_TRANSITIONS[stateBefore.state];
+  if (!allowedNextStates?.includes(stateAfter.state)) {
     throw new Error(
       `invalid state transition: ${stateBefore.state} → ${stateAfter.state}`
     );

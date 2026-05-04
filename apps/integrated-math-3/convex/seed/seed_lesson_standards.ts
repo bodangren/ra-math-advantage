@@ -1,5 +1,4 @@
 import { internalMutation } from "../_generated/server";
-import { SeedActivityContent } from "./types";
 
 interface LessonStandardLink {
   lessonSlug: string;
