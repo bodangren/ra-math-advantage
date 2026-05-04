@@ -10,6 +10,45 @@ import {
 import { srsCardStateValidator, srsRatingValidator } from './srs_validators';
 import { createCard } from '@math-platform/srs-engine';
 
+function validateSrsTransition(
+  stateBefore: {
+    stability: number;
+    difficulty: number;
+    state: 'new' | 'learning' | 'review' | 'relearning';
+    reps: number;
+    lapses: number;
+  },
+  stateAfter: {
+    stability: number;
+    difficulty: number;
+    state: 'new' | 'learning' | 'review' | 'relearning';
+    reps: number;
+    lapses: number;
+  },
+): void {
+  if (stateAfter.reps !== stateBefore.reps + 1) {
+    throw new Error(
+      `reps must increase by exactly 1 (before: ${stateBefore.reps}, after: ${stateAfter.reps})`
+    );
+  }
+  if (stateAfter.lapses < stateBefore.lapses) {
+    throw new Error(
+      `lapses cannot decrease (before: ${stateBefore.lapses}, after: ${stateAfter.lapses})`
+    );
+  }
+  const validNext: Record<string, string[]> = {
+    new: ['learning', 'review'],
+    learning: ['learning', 'review'],
+    review: ['learning', 'review'],
+    relearning: ['learning', 'review'],
+  };
+  if (!validNext[stateBefore.state]?.includes(stateAfter.state)) {
+    throw new Error(
+      `invalid state transition: ${stateBefore.state} → ${stateAfter.state}`
+    );
+  }
+}
+
 async function verifyStudentIdentity(
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   ctx: { db: { query: (table: 'profiles') => any } },
@@ -134,6 +173,8 @@ export const recordSrsReview = mutation({
       reps: args.card.reps,
       lapses: args.card.lapses,
     };
+
+    validateSrsTransition(stateBefore, stateAfter);
 
     await ctx.db.insert('srs_review_log', {
       studentId: args.studentId,

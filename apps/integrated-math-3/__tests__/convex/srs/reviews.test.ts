@@ -142,7 +142,7 @@ describe('saveReview', () => {
         lapses: 0,
       },
       stateAfter: {
-        stability: 4,
+        stability: 6,
         difficulty: 4,
         state: 'review' as const,
         reps: 6,
@@ -166,7 +166,7 @@ describe('saveReview', () => {
       lapses: 0,
     });
     expect(inserted.stateAfter).toEqual({
-      stability: 4,
+      stability: 6,
       difficulty: 4,
       state: 'review',
       reps: 6,

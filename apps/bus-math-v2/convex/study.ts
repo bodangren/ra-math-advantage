@@ -2,7 +2,6 @@ import { mutation, query } from "./_generated/server";
 import { v, ConvexError } from "convex/values";
 import { scheduleNewTerm, processReview as processFsrsReview, proficiencyBand, updateMastery } from "../lib/study/srs";
 import { getGlossaryTermsByUnit } from "../lib/study/glossary";
-import type { Card } from "ts-fsrs";
 
 export const getStudyPreferences = query({
   args: {},
@@ -187,7 +186,7 @@ export const processReview = mutation({
       fsrsResult = processFsrsReview(
         {
           termSlug: args.termSlug,
-          fsrsState: dueReview.fsrsState as Card,
+          fsrsState: dueReview.fsrsState,
           scheduledFor: dueReview.scheduledFor,
         },
         args.rating

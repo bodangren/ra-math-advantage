@@ -487,7 +487,7 @@ describe('Flashcard SRS Handlers', () => {
         termSlug: 'quadratic-function',
         rating: 'good' as const,
         masteryDelta: 0.1,
-        fsrsState: { due: '2024-01-01' },
+        fsrsState: { due: '2024-01-01', stability: 0, difficulty: 0, elapsed_days: 0, scheduled_days: 0, reps: 0, lapses: 0, state: 0 },
         scheduledFor: 1700000000000,
         now: 1699999999999,
       };
@@ -543,7 +543,7 @@ describe('Flashcard SRS Handlers', () => {
         termSlug: 'quadratic-function',
         rating: 'again' as const,
         masteryDelta: -0.2,
-        fsrsState: { due: '2024-01-02' },
+        fsrsState: { due: '2024-01-02', stability: 0, difficulty: 0, elapsed_days: 0, scheduled_days: 0, reps: 0, lapses: 0, state: 0 },
         scheduledFor: 1700000000000,
         now: 1699999999999,
       };
@@ -586,7 +586,7 @@ describe('Flashcard SRS Handlers', () => {
         termSlug: 'quadratic-function',
         rating: 'easy' as const,
         masteryDelta: 0.2,
-        fsrsState: {},
+        fsrsState: { due: '2024-01-03', stability: 0, difficulty: 0, elapsed_days: 0, scheduled_days: 0, reps: 0, lapses: 0, state: 0 },
         scheduledFor: 1700000000000,
       };
 

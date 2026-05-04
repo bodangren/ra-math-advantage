@@ -90,6 +90,33 @@ export type ProcessReviewArgs = {
   };
 };
 
+function validateSrsTransition(
+  stateBefore: SrsStatePick,
+  stateAfter: SrsStatePick,
+): void {
+  if (stateAfter.reps !== stateBefore.reps + 1) {
+    throw new Error(
+      `reps must increase by exactly 1 (before: ${stateBefore.reps}, after: ${stateAfter.reps})`
+    );
+  }
+  if (stateAfter.lapses < stateBefore.lapses) {
+    throw new Error(
+      `lapses cannot decrease (before: ${stateBefore.lapses}, after: ${stateAfter.lapses})`
+    );
+  }
+  const validNext: Record<string, string[]> = {
+    new: ['learning', 'review'],
+    learning: ['learning', 'review'],
+    review: ['learning', 'review'],
+    relearning: ['learning', 'review'],
+  };
+  if (!validNext[stateBefore.state]?.includes(stateAfter.state)) {
+    throw new Error(
+      `invalid state transition: ${stateBefore.state} → ${stateAfter.state}`
+    );
+  }
+}
+
 export async function processReviewHandler(
   ctx: MutationCtx,
   args: ProcessReviewArgs
@@ -98,6 +125,10 @@ export async function processReviewHandler(
 
   if (cardState.studentId !== reviewEntry.studentId) {
     throw new Error("studentId mismatch: cardState and reviewEntry must refer to the same student");
+  }
+
+  if (!('action' in reviewEntry.evidence)) {
+    validateSrsTransition(reviewEntry.stateBefore, reviewEntry.stateAfter);
   }
 
   const existing = await ctx.db

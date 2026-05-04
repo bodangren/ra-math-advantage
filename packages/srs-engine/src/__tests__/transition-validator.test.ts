@@ -22,9 +22,21 @@ describe('validateSrsTransition', () => {
     expect(() => validateSrsTransition(before, after)).not.toThrow();
   });
 
+  it('accepts valid new → review transition (short-term preview off)', () => {
+    const before = makeState({ state: 'new', reps: 0, lapses: 0 });
+    const after = makeState({ state: 'review', reps: 1, lapses: 0, stability: 2.3 });
+    expect(() => validateSrsTransition(before, after)).not.toThrow();
+  });
+
   it('accepts valid learning → review transition', () => {
     const before = makeState({ state: 'learning', reps: 1, lapses: 0 });
     const after = makeState({ state: 'review', reps: 2, lapses: 0, stability: 2.5 });
+    expect(() => validateSrsTransition(before, after)).not.toThrow();
+  });
+
+  it('accepts valid learning → learning transition (Again in learning)', () => {
+    const before = makeState({ state: 'learning', reps: 1, lapses: 0, stability: 0.2 });
+    const after = makeState({ state: 'learning', reps: 2, lapses: 0, stability: 0.1 });
     expect(() => validateSrsTransition(before, after)).not.toThrow();
   });
 
@@ -34,9 +46,15 @@ describe('validateSrsTransition', () => {
     expect(() => validateSrsTransition(before, after)).not.toThrow();
   });
 
-  it('accepts valid review → relearning transition (lapse)', () => {
-    const before = makeState({ state: 'review', reps: 5, lapses: 1, stability: 10 });
-    const after = makeState({ state: 'relearning', reps: 6, lapses: 2, stability: 1 });
+  it('accepts valid review → learning transition (Again with short-term preview)', () => {
+    const before = makeState({ state: 'review', reps: 5, lapses: 0, stability: 10 });
+    const after = makeState({ state: 'learning', reps: 6, lapses: 0, stability: 0.5 });
+    expect(() => validateSrsTransition(before, after)).not.toThrow();
+  });
+
+  it('accepts valid review → review transition with stability decrease (Again, lapses increase)', () => {
+    const before = makeState({ state: 'review', reps: 5, lapses: 0, stability: 10 });
+    const after = makeState({ state: 'review', reps: 6, lapses: 1, stability: 0.5 });
     expect(() => validateSrsTransition(before, after)).not.toThrow();
   });
 
@@ -70,22 +88,10 @@ describe('validateSrsTransition', () => {
     expect(() => validateSrsTransition(before, after)).toThrow('invalid state transition');
   });
 
-  it('rejects invalid new → review transition (skipping learning)', () => {
-    const before = makeState({ state: 'new', reps: 0, lapses: 0 });
-    const after = makeState({ state: 'review', reps: 1, lapses: 0, stability: 5 });
+  it('rejects invalid learning → new transition', () => {
+    const before = makeState({ state: 'learning', reps: 1, lapses: 0 });
+    const after = makeState({ state: 'new', reps: 2, lapses: 0, stability: 5 });
     expect(() => validateSrsTransition(before, after)).toThrow('invalid state transition');
-  });
-
-  it('rejects transition where stability decreases without a lapse', () => {
-    const before = makeState({ state: 'review', reps: 5, lapses: 0, stability: 10 });
-    const after = makeState({ state: 'review', reps: 6, lapses: 0, stability: 8 });
-    expect(() => validateSrsTransition(before, after)).toThrow('stability cannot decrease');
-  });
-
-  it('allows stability decrease when transitioning to relearning', () => {
-    const before = makeState({ state: 'review', reps: 5, lapses: 0, stability: 10 });
-    const after = makeState({ state: 'relearning', reps: 6, lapses: 1, stability: 1 });
-    expect(() => validateSrsTransition(before, after)).not.toThrow();
   });
 
   it('rejects transition from identical before and after', () => {

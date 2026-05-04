@@ -64,7 +64,18 @@ type ProcessReviewArgs = {
   termSlug: string;
   rating: "again" | "hard" | "good" | "easy";
   masteryDelta: number;
-  fsrsState: Record<string, any>;
+  fsrsState: {
+    due: string | number;
+    stability: number;
+    difficulty: number;
+    elapsed_days: number;
+    scheduled_days: number;
+    reps: number;
+    lapses: number;
+    learning_steps?: number;
+    state: number;
+    last_review?: string | number | null;
+  };
   scheduledFor: number;
   now?: number;
 };

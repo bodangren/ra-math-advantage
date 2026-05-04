@@ -9,26 +9,34 @@ type SrsStatePick = Pick<
 >;
 
 /**
- * Valid state transitions in the FSRS model.
+ * Valid state transitions produced by the ts-fsrs scheduler.
+ *
+ * With enableShortTermPreview=false (the default), new cards transition
+ * directly to review. With enableShortTermPreview=true, new cards go to
+ * learning first. The scheduler never produces relearning in practice,
+ * but we keep it in the type for completeness.
  */
 const VALID_STATE_TRANSITIONS: Record<
   SrsCardState['state'],
   SrsCardState['state'][]
 > = {
-  new: ['learning'],
-  learning: ['review', 'relearning'],
-  review: ['review', 'relearning'],
-  relearning: ['review', 'relearning'],
+  new: ['learning', 'review'],
+  learning: ['learning', 'review'],
+  review: ['learning', 'review'],
+  relearning: ['learning', 'review'],
 };
 
 /**
  * Validate that an SRS card state transition is mathematically sound.
  *
- * Rules enforced:
+ * Rules enforced (invariant properties of the FSRS scheduler):
  * - reps must increase by exactly 1 on every transition
  * - lapses cannot decrease
- * - stability cannot decrease unless the card is lapsing (→ relearning)
  * - state transitions must follow the FSRS state machine
+ *
+ * We intentionally do NOT validate stability decreases, because ts-fsrs
+ * legitimately decreases stability on Again ratings (including when a
+ * learning card receives Again and stays in learning state).
  *
  * @throws Error if the transition violates any rule.
  */
@@ -55,15 +63,6 @@ export function validateSrsTransition(
   if (!allowedNextStates.includes(stateAfter.state)) {
     throw new Error(
       `invalid state transition: ${stateBefore.state} → ${stateAfter.state}`
-    );
-  }
-
-  // Rule 4: stability cannot decrease unless the card is lapsing
-  const isLapsing =
-    stateBefore.state === 'review' && stateAfter.state === 'relearning';
-  if (!isLapsing && stateAfter.stability < stateBefore.stability) {
-    throw new Error(
-      `stability cannot decrease outside of a lapse (before: ${stateBefore.stability}, after: ${stateAfter.stability})`
     );
   }
 }

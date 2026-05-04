@@ -8,6 +8,41 @@ import {
   srsRatingValidator,
 } from "./validators";
 
+type SrsStatePick = {
+  stability: number;
+  difficulty: number;
+  state: "new" | "learning" | "review" | "relearning";
+  reps: number;
+  lapses: number;
+};
+
+function validateSrsTransition(
+  stateBefore: SrsStatePick,
+  stateAfter: SrsStatePick,
+): void {
+  if (stateAfter.reps !== stateBefore.reps + 1) {
+    throw new Error(
+      `reps must increase by exactly 1 (before: ${stateBefore.reps}, after: ${stateAfter.reps})`
+    );
+  }
+  if (stateAfter.lapses < stateBefore.lapses) {
+    throw new Error(
+      `lapses cannot decrease (before: ${stateBefore.lapses}, after: ${stateAfter.lapses})`
+    );
+  }
+  const validNext: Record<string, string[]> = {
+    new: ['learning', 'review'],
+    learning: ['learning', 'review'],
+    review: ['learning', 'review'],
+    relearning: ['learning', 'review'],
+  };
+  if (!validNext[stateBefore.state]?.includes(stateAfter.state)) {
+    throw new Error(
+      `invalid state transition: ${stateBefore.state} → ${stateAfter.state}`
+    );
+  }
+}
+
 export async function saveReviewHandler(
   ctx: MutationCtx,
   args: {
@@ -22,6 +57,10 @@ export async function saveReviewHandler(
     reviewedAt: string;
   }
 ) {
+  if (!('action' in args.evidence)) {
+    validateSrsTransition(args.stateBefore, args.stateAfter);
+  }
+
   const reviewedAtMs = new Date(args.reviewedAt).getTime();
   if (Number.isNaN(reviewedAtMs)) {
     throw new Error(`Invalid reviewedAt date: ${args.reviewedAt}`);
