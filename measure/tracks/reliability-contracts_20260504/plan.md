@@ -20,16 +20,16 @@
 
 ## Phase 2: Convex Schema Boundary Enforcement
 
-- [~] **Task 2.1: Define Strict Activity Props Union**
+- [x] **Task 2.1: Define Strict Activity Props Union** [7ce486e]
   - **File:** `apps/integrated-math-3/convex/schema.ts`
   - **Action:** Create a `v.union()` mapping for all known `componentKey` values (e.g., `graphing-explorer`, `step-by-step-solver`) to their respective `v.object()` schemas.
   - **BM2:** Replace `v.any()` with `v.record(v.string(), v.any())` for `activities.props` and `phase_sections.content` (validators for 40+ BM2 component types do not yet exist as Convex validators).
   
-- [ ] **Task 2.2: Apply Strict Types to Curriculum Fields**
+- [x] **Task 2.2: Apply Strict Types to Curriculum Fields** [7ce486e]
   - **File:** `convex/schema.ts`
   - **Action:** Replace `v.any()` on `activities.props` with the new props union. Replace `v.any()` on `phase_sections.content` with a discriminated union for text, activity, callout, video, and image types.
 
-- [ ] **Task 2.3: Define Strict SRS State Schema**
+- [x] **Task 2.3: Define Strict SRS State Schema** [7ce486e]
   - **File:** `convex/schema.ts`
   - **Action:** Replace `v.any()` on `srs_review_log.stateBefore`, `srs_review_log.stateAfter`, and `due_reviews.fsrsState` with a strictly typed `v.object()` mirroring `SrsCardState`.
 
