@@ -10,6 +10,10 @@ Tracks 1+4 unlock Track 8; Track 8 unlocks Tracks 9+10.
 
 ## Active Tracks
 
+- [ ] **Track: Review Remediation — 2026-05-05 Daily Work**
+   *Remediate issues found during Measure review: dead import in seed_lesson_standards.ts, SRS validator structural drift, missing drift detection, missing checkpoints, as never anti-pattern*
+   *Link: [./measure/tracks/review-remediation_20260505/](./measure/tracks/review-remediation_20260505/)*
+
 - [x] **Track: Review Remediation — 2026-05-04 Daily Work**
    *Remediate issues found during Measure review: failing accessibility tests, code duplication drift risk, partial schema compliance, seed-file type regression, under-documented validation gaps*
    *Link: [./measure/archive/review-remediation_20260504/](./measure/archive/review-remediation_20260504/)*

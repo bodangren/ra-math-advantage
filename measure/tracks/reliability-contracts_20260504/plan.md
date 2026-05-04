@@ -33,7 +33,7 @@
   - **File:** `convex/schema.ts`
   - **Action:** Replace `v.any()` on `srs_review_log.stateBefore`, `srs_review_log.stateAfter`, and `due_reviews.fsrsState` with a strictly typed `v.object()` mirroring `SrsCardState`.
 
-## Phase 3: SRS State Transition Validation
+## Phase 3: SRS State Transition Validation [checkpoint: 76059dd]
 
 - [x] **Task 3.1: Implement `validateSrsTransition`** [a2db1ae]
   - **File:** `packages/srs-engine/src/srs/transition-validator.ts`
@@ -74,7 +74,7 @@ The following TypeScript errors were revealed by `npx tsc --noEmit` and belong t
 
 3. **Pre-existing SVG casting errors** in `GraphingCanvas.test.tsx`.
 
-## Phase 4: App Adoption and Final Verification
+## Phase 4: App Adoption and Final Verification [checkpoint: a0620916]
 
 - [x] **Task 4.1: Update App-level Mock Usage (Bus Math V2)** [a0620916]
   - **File:** `apps/bus-math-v2/__tests__/...`

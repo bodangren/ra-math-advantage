@@ -1,0 +1,8 @@
+{
+  "trackId": "review-remediation_20260505",
+  "title": "Review Remediation — 2026-05-05 Daily Work",
+  "status": "active",
+  "priority": "high",
+  "created": "2026-05-05",
+  "sourceReview": "Measure review of commits 2026-05-05 (fix(tests), docs(srs), docs(schema), refactor(seed), test(fixtures)) against review-remediation_20260504 spec and reliability-contracts_20260504 plan"
+}
