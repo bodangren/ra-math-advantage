@@ -106,6 +106,36 @@ const discriminantAnalyzerPropsValidator = v.object({
   coefficients: v.optional(v.object({ a: v.number(), b: v.number(), c: v.number() })),
 });
 
+const activityPropsValidator = v.union(
+  graphingExplorerPropsValidator,
+  stepByStepSolverPropsValidator,
+  comprehensionQuizPropsValidator,
+  fillInTheBlankPropsValidator,
+  rateOfChangeCalculatorPropsValidator,
+  discriminantAnalyzerPropsValidator,
+);
+
+const phaseSectionContentValidator = v.union(
+  textContentValidator,
+  calloutContentValidator,
+  activityContentValidator,
+  videoContentValidator,
+  imageContentValidator,
+);
+
+const fsrsStateValidator = v.object({
+  due: v.union(v.string(), v.number()),
+  stability: v.number(),
+  difficulty: v.number(),
+  elapsed_days: v.number(),
+  scheduled_days: v.number(),
+  reps: v.number(),
+  lapses: v.number(),
+  learning_steps: v.optional(v.number()),
+  state: v.number(),
+  last_review: v.optional(v.union(v.string(), v.number(), v.null())),
+});
+
 const gradingConfigValidator = v.object({
   autoGrade: v.boolean(),
   passingScore: v.optional(v.number()),
@@ -303,10 +333,7 @@ export default defineSchema({
       v.literal("video"),
       v.literal("image"),
     ),
-    content: v.record(v.string(), v.any()),
-    // Convex limitation: v.union() cannot discriminate by adjacent sectionType field.
-    // Per-sectionType validators are defined above (textContentValidator, etc.)
-    // for use in mutation-level validation. See math-content package for Zod-level schemas.
+    content: phaseSectionContentValidator,
     createdAt: v.number(),
   })
     .index("by_phase_version", ["phaseVersionId"])
@@ -335,10 +362,7 @@ export default defineSchema({
     componentKey: v.string(),
     displayName: v.string(),
     description: v.optional(v.string()),
-    props: v.record(v.string(), v.any()),
-    // Convex limitation: v.union() cannot discriminate by adjacent componentKey field.
-    // Per-component validators are defined above (graphingExplorerPropsValidator, etc.)
-    // for use in mutation-level validation. See math-content package for Zod-level schemas.
+    props: activityPropsValidator,
     gradingConfig: v.optional(gradingConfigValidator),
     standardId: v.optional(v.id("competency_standards")),
     approval: v.optional(v.object({
@@ -671,7 +695,7 @@ export default defineSchema({
     userId: v.id("profiles"),
     termSlug: v.string(),
     scheduledFor: v.number(),
-    fsrsState: v.record(v.string(), v.any()),
+    fsrsState: fsrsStateValidator,
     isDue: v.boolean(),
     createdAt: v.number(),
     updatedAt: v.number(),

@@ -104,6 +104,37 @@ export const recordSrsReview = mutation({
 
     await verifyStudentIdentity(ctx, identity, args.studentId);
 
+    const existing = await ctx.db
+      .query('srs_cards')
+      .withIndex('by_student_family', (q) =>
+        q.eq('studentId', args.studentId).eq('problemFamilyId', args.problemFamilyId)
+      )
+      .unique();
+
+    const stateBefore = existing
+      ? {
+          stability: existing.stability,
+          difficulty: existing.difficulty,
+          state: existing.state,
+          reps: existing.reps,
+          lapses: existing.lapses,
+        }
+      : {
+          stability: 0,
+          difficulty: 0,
+          state: 'new' as const,
+          reps: 0,
+          lapses: 0,
+        };
+
+    const stateAfter = {
+      stability: args.card.stability,
+      difficulty: args.card.difficulty,
+      state: args.card.state,
+      reps: args.card.reps,
+      lapses: args.card.lapses,
+    };
+
     await ctx.db.insert('srs_review_log', {
       studentId: args.studentId,
       problemFamilyId: args.problemFamilyId,
@@ -114,14 +145,9 @@ export const recordSrsReview = mutation({
       scheduledDays: args.scheduledDays,
       reviewDurationMs: args.reviewDurationMs,
       timingConfidence: args.timingConfidence,
+      stateBefore,
+      stateAfter,
     });
-
-    const existing = await ctx.db
-      .query('srs_cards')
-      .withIndex('by_student_family', (q) =>
-        q.eq('studentId', args.studentId).eq('problemFamilyId', args.problemFamilyId)
-      )
-      .unique();
 
     if (existing) {
       await ctx.db.patch(existing._id, {

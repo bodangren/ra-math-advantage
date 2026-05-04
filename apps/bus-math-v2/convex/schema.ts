@@ -11,9 +11,20 @@ import {
   submissionStatusValidator,
   issueCategoryValidator,
 } from "./component_approval_validators";
-import { srsRatingValidator } from "./srs_validators";
+import { srsRatingValidator, srsCardStatePickValidator } from "./srs_validators";
 
-const fsrsStateValidator = v.record(v.string(), v.any());
+const fsrsStateValidator = v.object({
+  due: v.union(v.string(), v.number()),
+  stability: v.number(),
+  difficulty: v.number(),
+  elapsed_days: v.number(),
+  scheduled_days: v.number(),
+  reps: v.number(),
+  lapses: v.number(),
+  learning_steps: v.optional(v.number()),
+  state: v.number(),
+  last_review: v.optional(v.union(v.string(), v.number(), v.null())),
+});
 
 export default defineSchema({
   organizations: defineTable({
@@ -121,7 +132,7 @@ export default defineSchema({
       v.literal("video"),
       v.literal("image")
     ),
-    content: v.any(), // JSONB
+    content: v.record(v.string(), v.any()),
     createdAt: v.number(),
   })
     .index("by_phase_version", ["phaseVersionId"])
@@ -150,8 +161,8 @@ export default defineSchema({
     componentKey: v.string(),
     displayName: v.string(),
     description: v.optional(v.string()),
-    props: v.any(), // JSONB
-    gradingConfig: v.optional(v.any()), // JSONB
+    props: v.record(v.string(), v.any()),
+    gradingConfig: v.optional(v.record(v.string(), v.any())),
     standardId: v.optional(v.id("competency_standards")),
     createdAt: v.number(),
     updatedAt: v.number(),
@@ -526,6 +537,8 @@ export default defineSchema({
     scheduledDays: v.number(),
     reviewDurationMs: v.optional(v.number()),
     timingConfidence: v.optional(v.string()),
+    stateBefore: v.optional(srsCardStatePickValidator),
+    stateAfter: v.optional(srsCardStatePickValidator),
   })
     .index("by_student", ["studentId"])
     .index("by_student_family", ["studentId", "problemFamilyId"])

@@ -98,14 +98,12 @@ describe('Convex Schema v.any() Field Audit (source-level)', () => {
       expect(settingsField).toBeDefined();
     });
 
-    it('phase_sections.content uses v.record() not bare v.any()', () => {
-      const contentField = vRecordFields.find((f) => f.table === 'phase_sections' && f.field === 'content');
-      expect(contentField).toBeDefined();
+    it('phase_sections.content uses phaseSectionContentValidator (strict union)', () => {
+      expect(schemaSource).toMatch(/content:\s*phaseSectionContentValidator/);
     });
 
-    it('activities.props uses v.record() not bare v.any()', () => {
-      const propsField = vRecordFields.find((f) => f.table === 'activities' && f.field === 'props');
-      expect(propsField).toBeDefined();
+    it('activities.props uses activityPropsValidator (strict union)', () => {
+      expect(schemaSource).toMatch(/props:\s*activityPropsValidator/);
     });
 
     it('activity_submissions uses submissionDataValidator (typed)', () => {
@@ -141,9 +139,8 @@ describe('Convex Schema v.any() Field Audit (source-level)', () => {
       expect(cardsFields).toHaveLength(0);
     });
 
-    it('due_reviews.fsrsState uses v.record() not bare v.any()', () => {
-      const fsrsField = vRecordFields.find((f) => f.table === 'due_reviews' && f.field === 'fsrsState');
-      expect(fsrsField).toBeDefined();
+    it('due_reviews.fsrsState uses fsrsStateValidator (strict object)', () => {
+      expect(schemaSource).toMatch(/fsrsState:\s*fsrsStateValidator/);
     });
 
     it('study_preferences.preferences uses v.record() not bare v.any()', () => {
@@ -218,12 +215,15 @@ describe('Convex Schema v.any() Field Audit (source-level)', () => {
     });
   });
 
-  describe('Convex union limitation documented', () => {
-    it('phase_sections.content has limitation comment', () => {
-      expect(schemaSource).toMatch(/Convex limitation[\s\S]*?sectionType/);
+  describe('strict union validators defined', () => {
+    it('activityPropsValidator is defined', () => {
+      expect(schemaSource).toMatch(/const activityPropsValidator = v\.union/);
     });
-    it('activities.props has limitation comment', () => {
-      expect(schemaSource).toMatch(/Convex limitation[\s\S]*?componentKey/);
+    it('phaseSectionContentValidator is defined', () => {
+      expect(schemaSource).toMatch(/const phaseSectionContentValidator = v\.union/);
+    });
+    it('fsrsStateValidator is defined', () => {
+      expect(schemaSource).toMatch(/const fsrsStateValidator = v\.object/);
     });
   });
 });

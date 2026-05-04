@@ -30,6 +30,19 @@ export const srsRatingValidator = v.union(
   v.literal('Easy')
 );
 
+export const srsCardStatePickValidator = v.object({
+  stability: v.number(),
+  difficulty: v.number(),
+  state: v.union(
+    v.literal('new'),
+    v.literal('learning'),
+    v.literal('review'),
+    v.literal('relearning')
+  ),
+  reps: v.number(),
+  lapses: v.number(),
+});
+
 export const srsCardValidator = v.object({
   due: v.string(),
   stability: v.number(),

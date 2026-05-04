@@ -20,9 +20,10 @@
 
 ## Phase 2: Convex Schema Boundary Enforcement
 
-- [ ] **Task 2.1: Define Strict Activity Props Union**
-  - **File:** `packages/math-content/src/schemas/` (or wherever exact schemas are defined) / `convex/schema.ts`
+- [~] **Task 2.1: Define Strict Activity Props Union**
+  - **File:** `apps/integrated-math-3/convex/schema.ts`
   - **Action:** Create a `v.union()` mapping for all known `componentKey` values (e.g., `graphing-explorer`, `step-by-step-solver`) to their respective `v.object()` schemas.
+  - **BM2:** Replace `v.any()` with `v.record(v.string(), v.any())` for `activities.props` and `phase_sections.content` (validators for 40+ BM2 component types do not yet exist as Convex validators).
   
 - [ ] **Task 2.2: Apply Strict Types to Curriculum Fields**
   - **File:** `convex/schema.ts`

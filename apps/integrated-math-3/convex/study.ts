@@ -5,6 +5,19 @@ import type { Id } from "./_generated/dataModel";
 import { proficiencyBand, updateMastery } from "../lib/study/srs";
 import { getGlossaryTermBySlug } from "../lib/study/glossary";
 
+const fsrsStateValidator = v.object({
+  due: v.union(v.string(), v.number()),
+  stability: v.number(),
+  difficulty: v.number(),
+  elapsed_days: v.number(),
+  scheduled_days: v.number(),
+  reps: v.number(),
+  lapses: v.number(),
+  learning_steps: v.optional(v.number()),
+  state: v.number(),
+  last_review: v.optional(v.union(v.string(), v.number(), v.null())),
+});
+
 type SavePracticeTestResultArgs = {
   userId: Id<"profiles">;
   moduleNumber: number;
@@ -434,7 +447,7 @@ export const processReview = internalMutation({
       v.literal("easy")
     ),
     masteryDelta: v.number(),
-    fsrsState: v.any(),
+    fsrsState: fsrsStateValidator,
     scheduledFor: v.number(),
     now: v.optional(v.number()),
   },
