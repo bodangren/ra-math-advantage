@@ -18,7 +18,7 @@
 - [x] **Task 1.4: Package Verification** [0dcc576]
   - **Action:** Run tests in both packages (`npm run test` inside `packages/practice-core` and `packages/srs-engine`).
 
-## Phase 2: Convex Schema Boundary Enforcement
+## Phase 2: Convex Schema Boundary Enforcement [checkpoint: e2366a8]
 
 - [x] **Task 2.1: Define Strict Activity Props Union** [7ce486e]
   - **File:** `apps/integrated-math-3/convex/schema.ts`
