@@ -795,13 +795,13 @@ AI Tutoring and Workbook scope is explicitly **import/adopt from BM2**, not gree
 
 ## Upcoming Tracks
 
-- [~] **Track: Reliability Contracts and DB Boundary Enforcement**
+- [x] **Track: Reliability Contracts and DB Boundary Enforcement** — **COMPLETED**
    *Enforce strict data contracts at the database boundary, introduce branded types for IDs, and export canonical test fixtures*
    *Link: [./measure/tracks/reliability-contracts_20260504/](./measure/tracks/reliability-contracts_20260504/)*
    - Phase 1: Branded Types & Test Fixtures [COMPLETE] [checkpoint: eaf6fe8]
    - Phase 2: Convex Schema Boundary Enforcement [COMPLETE] [checkpoint: e2366a8]
    - Phase 3: SRS State Transition Validation [COMPLETE] [checkpoint: 76059dd]
-   - Phase 4: App Adoption and Final Verification [PENDING]
+   - Phase 4: App Adoption and Final Verification [COMPLETE] [checkpoint: a0620916]
 
 - [x] **Track: SRS reviews.ts Test Coverage** — **COMPLETED**
      *Add unit tests for saveReview, getReviewsByCard, and getReviewsByStudent in convex/srs/reviews.ts*
