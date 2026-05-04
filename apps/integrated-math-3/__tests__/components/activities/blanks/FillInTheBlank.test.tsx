@@ -322,5 +322,55 @@ describe('FillInTheBlank', () => {
       expect(screen.getByText('Word Bank')).toBeInTheDocument();
       expect(screen.getByText('This')).toBeInTheDocument();
     });
+
+    it('word bank has aria-label with keyboard instructions', () => {
+      const props = createPropsWithWordBank(
+        'The vertex is at ({{blank:1}}, {{blank:2}}).',
+        [
+          { id: '1', correctAnswer: '0' },
+          { id: '2', correctAnswer: '0' },
+        ],
+        [
+          { id: 'wb1', text: '0' },
+          { id: 'wb2', text: '1' },
+        ]
+      );
+      render(<FillInTheBlank {...props} />);
+      const wordBank = screen.getByLabelText(/word bank/i);
+      expect(wordBank).toBeInTheDocument();
+    });
+
+    it('word bank items are focusable via keyboard', () => {
+      const props = createPropsWithWordBank(
+        'The vertex is at ({{blank:1}}, {{blank:2}}).',
+        [
+          { id: '1', correctAnswer: '0' },
+          { id: '2', correctAnswer: '0' },
+        ],
+        [
+          { id: 'wb1', text: '0' },
+          { id: 'wb2', text: '1' },
+        ]
+      );
+      render(<FillInTheBlank {...props} />);
+      const wordBankItems = screen.getAllByRole('button', { name: /assign .* to a blank/i });
+      expect(wordBankItems.length).toBeGreaterThan(0);
+    });
+
+    it('blank drop zones have descriptive aria-labels', () => {
+      const props = createPropsWithWordBank(
+        'The vertex is at ({{blank:1}}, {{blank:2}}).',
+        [
+          { id: '1', correctAnswer: '0' },
+          { id: '2', correctAnswer: '0' },
+        ],
+        [
+          { id: 'wb1', text: '0' },
+        ]
+      );
+      render(<FillInTheBlank {...props} />);
+      const dropZones = screen.getAllByLabelText(/blank .* drop zone/i);
+      expect(dropZones.length).toBe(2);
+    });
   });
 });

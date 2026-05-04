@@ -343,6 +343,7 @@ export function FillInTheBlank({
                     <div
                       ref={provided.innerRef}
                       {...provided.droppableProps}
+                      aria-label="Word bank. Use Tab to focus items, Enter to pick up, arrow keys to move, Enter to drop."
                       className="flex flex-wrap gap-2"
                     >
                       {unusedWordBankItems.map((item, index) => (
@@ -352,7 +353,8 @@ export function FillInTheBlank({
                               ref={provided.innerRef}
                               {...provided.draggableProps}
                               {...provided.dragHandleProps}
-                              className={`px-3 py-1 bg-white border border-gray-300 rounded cursor-move ${
+                              aria-label={`Assign "${item.text}" to a blank. Press Enter to select, then arrow keys to choose a blank, Enter again to confirm.`}
+                              className={`px-3 py-1 bg-white border border-gray-300 rounded cursor-move focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 ${
                                 snapshot.isDragging ? 'shadow-lg' : ''
                               }`}
                             >
@@ -382,7 +384,8 @@ export function FillInTheBlank({
                         <span
                           ref={provided.innerRef}
                           {...provided.droppableProps}
-                          className={`inline-block px-2 py-1 rounded border mx-1 ${
+                          aria-label={`Blank ${part.blankId}. Drop zone for draggable items.`}
+                          className={`inline-block px-2 py-1 rounded border mx-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 ${
                             snapshot.isDraggingOver
                               ? 'bg-blue-200 border-blue-400'
                               : answer
@@ -395,7 +398,8 @@ export function FillInTheBlank({
                           {usedWordBank && answer && (
                             <button
                               onClick={() => handleClearWordBank(part.blankId!)}
-                              className="ml-1 text-xs text-gray-500 hover:text-red-500"
+                              aria-label={`Remove ${answer} from blank ${part.blankId}`}
+                              className="ml-1 text-xs text-gray-500 hover:text-red-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
                             >
                               ×
                             </button>
