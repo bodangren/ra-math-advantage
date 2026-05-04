@@ -10,7 +10,7 @@
 ## Phase 2: Keyboard Navigation Fixes [~]
 
 - [x] Write tests verifying Tab/Shift+Tab reaches all interactive elements on lesson page [9a9d263]
-- [ ] Add visible focus indicators to all buttons, links, and form controls (Tailwind focus-visible styles)
+- [x] Add visible focus indicators to all buttons, links, and form controls (Tailwind focus-visible styles) [c8ecb86]
 - [ ] Make GraphingCanvas keyboard-accessible (arrow keys for point placement, Enter to submit)
 - [ ] Make parameter sliders in Explore mode keyboard-adjustable
 - [ ] Make drag-and-drop activities keyboard-operable (spacebar to pick up, arrow keys to move, spacebar to drop)
