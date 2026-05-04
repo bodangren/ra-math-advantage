@@ -82,4 +82,15 @@ describe('provider nesting order', () => {
     expect(auth).toContainElement(theme);
     expect(theme).toContainElement(child);
   });
+
+  describe('skip-to-content link', () => {
+    it('layout file contains a skip link targeting main-content', () => {
+      const layoutPath = path.resolve(process.cwd(), 'app/layout.tsx');
+      const layout = fs.readFileSync(layoutPath, 'utf8');
+
+      expect(layout).toContain('Skip to main content');
+      expect(layout).toContain('href="#main-content"');
+      expect(layout).toContain('id="main-content"');
+    });
+  });
 });

@@ -39,6 +39,14 @@ export function LessonPageLayout({
 
   return (
     <div className="min-h-screen bg-background flex flex-col">
+      {/* Skip link for lesson content */}
+      <a
+        href="#lesson-content"
+        className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-50 focus:px-4 focus:py-2 focus:bg-primary focus:text-primary-foreground focus:rounded-md focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+      >
+        Skip to lesson content
+      </a>
+
       {/* Sticky progress bar */}
       <div
         role="progressbar"
@@ -136,7 +144,7 @@ export function LessonPageLayout({
         )}
 
         {/* Main content */}
-        <main className="flex-1 min-w-0 max-w-3xl">
+        <main id="lesson-content" className="flex-1 min-w-0 max-w-3xl" tabIndex={-1}>
           {children}
         </main>
       </div>

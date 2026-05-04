@@ -278,5 +278,36 @@ describe('LessonPageLayout', () => {
       );
       expect(screen.getByRole('navigation')).toBeInTheDocument();
     });
+
+    it('has a skip-to-content link targeting lesson content', () => {
+      render(
+        <LessonPageLayout
+          lessonTitle="Linear Functions"
+          moduleLabel="Module 1"
+          lessonNumber={1}
+          phases={samplePhases}
+        >
+          <div>content</div>
+        </LessonPageLayout>
+      );
+      const skipLink = screen.getByRole('link', { name: /skip to lesson content/i });
+      expect(skipLink).toHaveAttribute('href', '#lesson-content');
+    });
+
+    it('lesson main content has id matching skip link target', () => {
+      const { container } = render(
+        <LessonPageLayout
+          lessonTitle="Linear Functions"
+          moduleLabel="Module 1"
+          lessonNumber={1}
+          phases={samplePhases}
+        >
+          <div>content</div>
+        </LessonPageLayout>
+      );
+      const main = container.querySelector('main#lesson-content');
+      expect(main).toBeInTheDocument();
+      expect(main).toHaveAttribute('tabIndex', '-1');
+    });
   });
 });
