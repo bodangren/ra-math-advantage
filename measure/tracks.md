@@ -10,15 +10,9 @@ Tracks 1+4 unlock Track 8; Track 8 unlocks Tracks 9+10.
 
 ## Active Tracks
 
-- [~] **Track: Review Remediation — 2026-05-04 Daily Work**
+- [x] **Track: Review Remediation — 2026-05-04 Daily Work**
    *Remediate issues found during Measure review: failing accessibility tests, code duplication drift risk, partial schema compliance, seed-file type regression, under-documented validation gaps*
-   *Link: [./measure/tracks/review-remediation_20260504/](./measure/tracks/review-remediation_20260504/)*
-   - Phase 1: Fix Failing Accessibility Tests [ ]
-   - Phase 2: Harden `validateSrsTransition` Against Drift [ ]
-   - Phase 3: BM2 Schema Compliance [ ]
-   - Phase 4: Seed File Type Safety [ ]
-   - Phase 5: Test Fixture Robustness [ ]
-   - Phase 6: Document Validation Gaps [ ]
+   *Link: [./measure/archive/review-remediation_20260504/](./measure/archive/review-remediation_20260504/)*
 
 - [x] **Track: BM2 Deactivated-User Access**
    *Swap JWT-only auth for active-credential verification on all 10 BM2 API endpoints to revoke access on deactivation*
