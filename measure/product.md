@@ -36,6 +36,14 @@ These features exist across all apps via shared packages in `packages/`:
 - **AI Tutoring** (`ai-tutoring`): OpenRouter provider, retry wrapper, lesson context
 - **Workbook Pipeline** (`workbook-pipeline`): Filename, manifest, and path utilities
 
+## Global Competency Standard Codes
+
+To support cross-course remediation (e.g., a student in Integrated Math 3 receiving practice activities from Integrated Math 1), the system implements a Knowledge Graph for competency standards.
+Therefore, all `competency_standards` records must use **globally unique, namespaced codes** across the entire monorepo.
+- **Example:** `IM1.A.REI.B.3`, `IM3.F.TF.A.1`, `BM2.FIN.4`
+
+This prevents namespace collisions when the SRS engine pulls problem families from `packages/math-content` for prerequisites belonging to different courses.
+
 ## App-Local Scope
 
 Each app owns:

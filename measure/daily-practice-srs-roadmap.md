@@ -76,7 +76,7 @@ Wave 0 (DONE)        Wave 1                Wave 2                Wave 3         
 |-------|-----------|---------|
 | **Track 9: Student Daily Practice** | `student-daily-practice_20260416` | Student daily practice page at `/student/practice`, session flow, card rendering with activity components, submission with timing, completion states |
 | **Track 10: Objective Proficiency** | `objective-proficiency_20260416` | Upgrade `objective-proficiency.ts` to use FSRS stability from card states; build aggregation pipeline; student/teacher proficiency queries |
-| **Track 11: Teacher SRS Dashboard** | `teacher-srs-dashboard_20260416` | Class health overview, weak objectives panel, struggling students, misconception diagnostics, basic interventions |
+| **Track 11: Teacher SRS Dashboard** | `teacher-srs-dashboard_20260416` | Class health overview, weak objectives panel, struggling students, **Knowledge Graph-powered misconception and prerequisite diagnostics**, basic interventions |
 
 **Depends on:** Track 9 needs Tracks 6 and 8. Track 10 needs Track 5 (can start early if card schema is stable). Track 11 needs Track 10. **Start Track 10 first, then Track 9, then Track 11.**
 
@@ -112,6 +112,14 @@ The system should not:
 ## Objective Measurement Notes
 
 Objective proficiency should be interpreted against an objective-specific policy:
+
+- `essential`
+- `supporting`
+- `extension`
+- `triaged`
+
+Different objectives can intentionally require different amounts of evidence. A narrow objective may be complete with a small number of problem families. A broad or essential objective may require more varied evidence.
+fic policy:
 
 - `essential`
 - `supporting`
