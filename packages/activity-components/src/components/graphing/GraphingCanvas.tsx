@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useRef, useEffect, useState } from 'react';
+import React, { useRef, useEffect, useState, useCallback } from 'react';
 import {
   Point,
   GraphingCanvasProps,
@@ -26,6 +26,12 @@ export function GraphingCanvas({
 }: GraphingCanvasProps) {
   const svgRef = useRef<SVGSVGElement>(null);
   const [canvasSize, setCanvasSize] = useState({ width, height });
+  const [isFocused, setIsFocused] = useState(false);
+  const [cursorPos, setCursorPos] = useState<{ x: number; y: number }>(() => ({
+    x: Math.max(domain[0], Math.min(domain[1], 0)),
+    y: Math.max(range[0], Math.min(range[1], 0)),
+  }));
+  const [announcement, setAnnouncement] = useState('');
 
   useEffect(() => {
     const resizeObserver = new ResizeObserver(() => {
@@ -83,6 +89,95 @@ export function GraphingCanvas({
     if (point.label) {
       onPointRemove(point.label);
     }
+  };
+
+  const handleSvgKeyDown = useCallback((event: React.KeyboardEvent<SVGSVGElement>) => {
+    if (readonly || !onPointAdd) return;
+
+    const step = snapToGrid ? 1 : 0.5;
+
+    switch (event.key) {
+      case 'ArrowLeft':
+        event.preventDefault();
+        setCursorPos(prev => ({
+          ...prev,
+          x: Math.max(domain[0], prev.x - step),
+        }));
+        break;
+      case 'ArrowRight':
+        event.preventDefault();
+        setCursorPos(prev => ({
+          ...prev,
+          x: Math.min(domain[1], prev.x + step),
+        }));
+        break;
+      case 'ArrowUp':
+        event.preventDefault();
+        setCursorPos(prev => ({
+          ...prev,
+          y: Math.min(range[1], prev.y + step),
+        }));
+        break;
+      case 'ArrowDown':
+        event.preventDefault();
+        setCursorPos(prev => ({
+          ...prev,
+          y: Math.max(range[0], prev.y - step),
+        }));
+        break;
+      case 'Enter':
+      case ' ': {
+        event.preventDefault();
+        const finalX = snapToGrid ? snapToGridValue(cursorPos.x) : cursorPos.x;
+        const finalY = snapToGrid ? snapToGridValue(cursorPos.y) : cursorPos.y;
+        if (isFinite(finalX) && isFinite(finalY)) {
+          onPointAdd({ x: finalX, y: finalY, label: `${finalX.toFixed(1)}, ${finalY.toFixed(1)}` });
+          setAnnouncement(`Point placed at ${finalX.toFixed(1)}, ${finalY.toFixed(1)}`);
+        }
+        break;
+      }
+      case 'Escape':
+        event.preventDefault();
+        svgRef.current?.blur();
+        break;
+    }
+  }, [readonly, onPointAdd, snapToGrid, domain, range, cursorPos]);
+
+  const handlePointKeyDown = useCallback((point: Point, event: React.KeyboardEvent) => {
+    if (readonly || !onPointRemove) return;
+    if ((event.key === 'Delete' || event.key === 'Backspace') && point.label) {
+      event.preventDefault();
+      event.stopPropagation();
+      onPointRemove(point.label);
+      setAnnouncement(`Point ${point.label} removed`);
+    }
+  }, [readonly, onPointRemove]);
+
+  const renderCursor = () => {
+    if (!isFocused || readonly) return null;
+    const { canvasX, canvasY } = transformDataToCanvas(
+      cursorPos.x,
+      cursorPos.y,
+      domain,
+      range,
+      canvasSize.width,
+      canvasSize.height,
+    );
+    return (
+      <g className="keyboard-cursor" aria-hidden="true">
+        <circle
+          cx={canvasX}
+          cy={canvasY}
+          r={8}
+          fill="none"
+          stroke="#ef4444"
+          strokeWidth={2}
+          strokeDasharray="4 2"
+        />
+        <line x1={canvasX - 12} y1={canvasY} x2={canvasX + 12} y2={canvasY} stroke="#ef4444" strokeWidth={1} strokeDasharray="2 2" />
+        <line x1={canvasX} y1={canvasY - 12} x2={canvasX} y2={canvasY + 12} stroke="#ef4444" strokeWidth={1} strokeDasharray="2 2" />
+      </g>
+    );
   };
 
   const renderGrid = () => {
@@ -250,6 +345,10 @@ export function GraphingCanvas({
         <g
           key={`point-${index}`}
           onClick={(e) => handlePointClick(point, e)}
+          onKeyDown={(e) => handlePointKeyDown(point, e)}
+          tabIndex={0}
+          role="button"
+          aria-label={`Point at ${point.x.toFixed(1)}, ${point.y.toFixed(1)}. Press Delete to remove.`}
           style={{ cursor: readonly ? 'default' : 'pointer' }}
         >
           <circle
@@ -279,6 +378,13 @@ export function GraphingCanvas({
 
   return (
     <div style={{ width: '100%', maxWidth: '800px', margin: '0 auto' }}>
+      <div id="graphing-instructions" className="sr-only">
+        Use arrow keys to move the cursor. Press Enter or Space to place a point.
+        Tab to a placed point and press Delete to remove it.
+      </div>
+      <div role="status" aria-live="polite" className="sr-only">
+        {announcement}
+      </div>
       <svg
         ref={svgRef}
         width="100%"
@@ -286,14 +392,20 @@ export function GraphingCanvas({
         viewBox={`0 0 ${canvasSize.width} ${canvasSize.height}`}
         style={{ width: '100%', minHeight: '400px', backgroundColor: '#ffffff' }}
         onClick={handleClick}
+        onFocus={() => setIsFocused(true)}
+        onBlur={() => setIsFocused(false)}
+        onKeyDown={handleSvgKeyDown}
+        tabIndex={0}
         role="img"
         aria-label="Coordinate plane for graphing"
+        aria-describedby="graphing-instructions"
       >
         {renderGrid()}
         {renderAxes()}
         {renderTickLabels()}
         {renderFunctions()}
         {renderPoints()}
+        {renderCursor()}
       </svg>
     </div>
   );

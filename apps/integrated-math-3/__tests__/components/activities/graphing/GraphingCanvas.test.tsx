@@ -1,5 +1,6 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import { GraphingCanvas } from '@math-platform/activity-components/graphing';
 
 describe('GraphingCanvas', () => {
@@ -186,6 +187,126 @@ describe('GraphingCanvas', () => {
         const [, , width, height] = viewBox.split(' ').map(Number);
         expect(width).toBe(height);
       }
+    });
+  });
+
+  describe('keyboard accessibility', () => {
+    it('svg is focusable with tabIndex=0', () => {
+      render(<GraphingCanvas {...defaultProps} />);
+      const svg = screen.getByRole('img');
+      svg.focus();
+      expect(svg).toHaveFocus();
+    });
+
+    it('has keyboard instructions via aria-describedby', () => {
+      render(<GraphingCanvas {...defaultProps} />);
+      const svg = screen.getByRole('img');
+      expect(svg).toHaveAttribute('aria-describedby', 'graphing-instructions');
+    });
+
+    it('places a point at cursor with Enter key', async () => {
+      const user = userEvent.setup();
+      render(<GraphingCanvas {...defaultProps} />);
+      const svg = screen.getByRole('img');
+
+      svg.focus();
+      await user.keyboard('{Enter}');
+
+      expect(defaultProps.onPointAdd).toHaveBeenCalledWith(
+        expect.objectContaining({ x: expect.any(Number), y: expect.any(Number) }),
+      );
+    });
+
+    it('places a point at cursor with Space key', async () => {
+      const user = userEvent.setup();
+      render(<GraphingCanvas {...defaultProps} />);
+      const svg = screen.getByRole('img');
+
+      svg.focus();
+      await user.keyboard(' ');
+
+      expect(defaultProps.onPointAdd).toHaveBeenCalledWith(
+        expect.objectContaining({ x: expect.any(Number), y: expect.any(Number) }),
+      );
+    });
+
+    it('does not place point when readonly', async () => {
+      const user = userEvent.setup();
+      render(<GraphingCanvas {...defaultProps} readonly={true} />);
+      const svg = screen.getByRole('img');
+
+      svg.focus();
+      await user.keyboard('{Enter}');
+
+      expect(defaultProps.onPointAdd).not.toHaveBeenCalled();
+    });
+
+    it('point markers are focusable with tabIndex=0', () => {
+      const points = [{ x: 0, y: 0, label: 'test' }];
+      render(<GraphingCanvas {...defaultProps} points={points} />);
+      const group = document.querySelector('.point-marker')?.closest('g') as HTMLElement;
+      group.focus();
+      expect(group).toHaveFocus();
+    });
+
+    it('removes focused point with Delete key', async () => {
+      const user = userEvent.setup();
+      const points = [{ x: 0, y: 0, label: 'test' }];
+      render(<GraphingCanvas {...defaultProps} points={points} />);
+      const group = document.querySelector('.point-marker')?.closest('g') as HTMLElement;
+
+      group.focus();
+      await user.keyboard('{Delete}');
+
+      expect(defaultProps.onPointRemove).toHaveBeenCalledWith('test');
+    });
+
+    it('removes focused point with Backspace key', async () => {
+      const user = userEvent.setup();
+      const points = [{ x: 0, y: 0, label: 'test' }];
+      render(<GraphingCanvas {...defaultProps} points={points} />);
+      const group = document.querySelector('.point-marker')?.closest('g') as HTMLElement;
+
+      group.focus();
+      await user.keyboard('{Backspace}');
+
+      expect(defaultProps.onPointRemove).toHaveBeenCalledWith('test');
+    });
+
+    it('does not remove point when readonly', async () => {
+      const user = userEvent.setup();
+      const points = [{ x: 0, y: 0, label: 'test' }];
+      render(<GraphingCanvas {...defaultProps} points={points} readonly={true} />);
+      const group = document.querySelector('.point-marker')?.closest('g') as HTMLElement;
+
+      group.focus();
+      await user.keyboard('{Delete}');
+
+      expect(defaultProps.onPointRemove).not.toHaveBeenCalled();
+    });
+
+    it('announces point placement via aria-live region', async () => {
+      const user = userEvent.setup();
+      render(<GraphingCanvas {...defaultProps} />);
+      const svg = screen.getByRole('img');
+
+      svg.focus();
+      await user.keyboard('{Enter}');
+
+      const liveRegion = screen.getByRole('status');
+      expect(liveRegion).toBeInTheDocument();
+    });
+
+    it('moves cursor with arrow keys', async () => {
+      const user = userEvent.setup();
+      render(<GraphingCanvas {...defaultProps} />);
+      const svg = screen.getByRole('img');
+
+      svg.focus();
+      await user.keyboard('{ArrowRight}{ArrowRight}{Enter}');
+
+      const call = defaultProps.onPointAdd.mock.calls[0][0];
+      expect(call.x).toBeGreaterThan(0);
     });
   });
 });
