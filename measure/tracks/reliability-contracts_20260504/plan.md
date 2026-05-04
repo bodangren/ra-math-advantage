@@ -2,7 +2,7 @@
 
 ## Phase 1: Shared Packages – Branded Types & Test Fixtures
 
-- [~] **Task 1.1: Introduce Branded ID Type**
+- [x] **Task 1.1: Introduce Branded ID Type** [49a5262]
   - **File:** `packages/practice-core/src/practice/contract.ts`
   - **Action:** Update `practiceSubmissionEnvelopeSchema` to brand the `activityId` (e.g., `z.string().brand<'ConvexId'>()`). Update type exports as necessary.
   - **Validation:** Run `practice-core` unit tests to ensure Zod parsing handles the brand correctly.
