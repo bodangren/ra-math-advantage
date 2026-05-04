@@ -35,7 +35,7 @@
 
 ## Phase 3: SRS State Transition Validation
 
-- [ ] **Task 3.1: Implement `validateSrsTransition`**
+- [~] **Task 3.1: Implement `validateSrsTransition`**
   - **File:** `packages/srs-engine/src/srs/transition-validator.ts`
   - **Action:** Write pure logic validating that an SRS card state transition is mathematically sound (reps increased, lapses updated correctly if state went to 'relearning', etc.).
   - **Validation:** Write unit tests for `validateSrsTransition` covering standard transitions and invalid regressions.

@@ -61,6 +61,10 @@ export {
 } from './srs/fixtures';
 
 export {
+  validateSrsTransition,
+} from './srs/transition-validator';
+
+export {
   SubmissionSrsAdapter,
   InMemoryProblemFamilyResolver,
   InMemoryTimingBaselineResolver,
