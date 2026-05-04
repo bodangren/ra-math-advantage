@@ -57,21 +57,21 @@
 
 ## Phase 5: Test Fixture Robustness
 
-- [ ] **Task 5.1: Audit all SRS test fixtures for transition validity**
+- [x] **Task 5.1: Audit all SRS test fixtures for transition validity**
   - Search both apps for `stateBefore:` and `stateAfter:` in test files.
   - Ensure every pair satisfies: `reps_after === reps_before + 1`, `lapses_after >= lapses_before`, `state_after` is in allowed transitions.
   - Fix any violations.
 
-- [ ] **Task 5.2: Add fixture validation to mock factories**
+- [x] **Task 5.2: Add fixture validation to mock factories**
   - In `createMockSrsReviewLog` (packages/srs-engine), optionally assert that `stateAfter` is mathematically valid relative to `stateBefore` when both are provided.
   - This prevents future invalid fixtures at the factory level.
 
 ## Phase 6: Document Validation Gaps
 
-- [ ] **Task 6.1: Add inline comments for teacher-reset exemption**
+- [x] **Task 6.1: Add inline comments for teacher-reset exemption**
   - In `apps/integrated-math-3/convex/srs/processReview.ts` and `reviews.ts`, add comment above the `if (!('action' in evidence))` guard explaining that teacher resets bypass SRS transition validation because they are administrative overrides, not learner reviews.
 
-- [ ] **Task 6.2: Final verification**
+- [~] **Task 6.2: Final verification**
   - Run IM3 tests: target 0 failures.
   - Run BM2 tests: target 0 failures.
   - Run package tests: target 0 failures.

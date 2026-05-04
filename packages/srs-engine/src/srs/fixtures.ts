@@ -1,4 +1,5 @@
 import type { SrsCardState, SrsReviewLogEntry, SrsRating } from './contract';
+import { validateSrsTransition } from './transition-validator';
 
 /**
  * Generate a unique card ID using crypto-safe random bytes.
@@ -88,7 +89,7 @@ export function createMockSrsReviewLog(
     reasons: ['correct'],
   };
 
-  return {
+  const entry: SrsReviewLogEntry = {
     reviewId: generateReviewId(),
     cardId: 'mock-card',
     studentId: 'mock-student',
@@ -112,4 +113,11 @@ export function createMockSrsReviewLog(
     reviewedAt: now,
     ...overrides,
   };
+
+  // Validate transition invariants unless this is a teacher reset (administrative override).
+  if (!('action' in entry.evidence)) {
+    validateSrsTransition(entry.stateBefore, entry.stateAfter);
+  }
+
+  return entry;
 }

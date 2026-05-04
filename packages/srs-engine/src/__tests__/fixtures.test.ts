@@ -103,9 +103,9 @@ describe('createMockSrsReviewLog', () => {
       stateAfter: {
         stability: 4,
         difficulty: 3,
-        state: 'relearning',
-        reps: 5,
-        lapses: 1,
+        state: 'review',
+        reps: 6,
+        lapses: 0,
       },
     });
 
@@ -116,8 +116,8 @@ describe('createMockSrsReviewLog', () => {
       objectiveId: 'obj_001',
     });
     expect(log.stateBefore.reps).toBe(5);
-    expect(log.stateAfter.lapses).toBe(1);
-    expect(log.stateAfter.state).toBe('relearning');
+    expect(log.stateAfter.lapses).toBe(0);
+    expect(log.stateAfter.state).toBe('review');
   });
 
   it('generates unique review IDs when none provided', () => {

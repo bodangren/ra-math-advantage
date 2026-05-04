@@ -197,8 +197,8 @@ describe('saveReview', () => {
       stateAfter: {
         stability: 1,
         difficulty: 5,
-        state: 'new' as const,
-        reps: 0,
+        state: 'learning' as const,
+        reps: 2,
         lapses: 0,
       },
       reviewedAt: '2026-04-29T13:00:00.000Z',
@@ -223,8 +223,8 @@ describe('saveReview', () => {
     expect(inserted.stateAfter).toEqual({
       stability: 1,
       difficulty: 5,
-      state: 'new',
-      reps: 0,
+      state: 'learning',
+      reps: 2,
       lapses: 0,
     });
   });
@@ -436,7 +436,7 @@ describe('getReviewsByStudent', () => {
         objectiveId: 'obj-123',
       },
       stateBefore: { stability: 1, difficulty: 5, state: 'learning' as const, reps: 1, lapses: 0 },
-      stateAfter: { stability: 1, difficulty: 5, state: 'new' as const, reps: 0, lapses: 0 },
+      stateAfter: { stability: 1, difficulty: 5, state: 'learning' as const, reps: 2, lapses: 0 },
       reviewedAt: 1777456800000,
     };
     const { db } = makeMockQueryCtx({ reviews: [dbReview] });
