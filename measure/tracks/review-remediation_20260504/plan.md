@@ -31,16 +31,16 @@
 
 ## Phase 3: BM2 Schema Compliance
 
-- [ ] **Task 3.1: Audit which BM2 component types have existing validators**
+- [x] **Task 3.1: Audit which BM2 component types have existing validators**
   - Check `bus-math-v2/convex/schema.ts` and `component_approval_validators.ts` for existing prop shapes.
   - Count how many of the 40+ BM2 component types already have Convex validators.
 
-- [ ] **Task 3.2: Implement strict union for BM2 activities.props**
+- [x] **Task 3.2: Implement strict union for BM2 activities.props**
   - For component types WITH existing validators: add to a BM2 `activityPropsValidator` union.
   - For component types WITHOUT validators: keep in a fallback `v.record(v.string(), v.any())` branch with a typed comment linking to a follow-up track.
   - Update `phase_sections.content` similarly.
 
-- [ ] **Task 3.3: Document deferral or close gap**
+- [x] **Task 3.3: Document deferral or close gap**
   - If the fallback branch covers >10% of components, create a follow-up track and link it in BM2 schema file.
   - If <10%, complete the union inline.
 

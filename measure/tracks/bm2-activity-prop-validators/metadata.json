@@ -1,0 +1,8 @@
+{
+  "track_id": "bm2-activity-prop-validators",
+  "title": "BM2 Activity Prop Validators",
+  "description": "Create Convex validators for 40+ BM2 component types and replace v.record(v.string(), v.any()) with discriminated unions for activities.props and phase_sections.content.",
+  "status": "deferred",
+  "created_at": "2026-05-04",
+  "blocked_by": "BM2 component audit and prop schema inventory"
+}

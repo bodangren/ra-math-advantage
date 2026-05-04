@@ -805,6 +805,10 @@ AI Tutoring and Workbook scope is explicitly **import/adopt from BM2**, not gree
 
 ## Upcoming Tracks
 
+- [ ] **Track: BM2 Activity Prop Validators** — **DEFERRED**
+  *Create Convex validators for 40+ BM2 component types and replace v.record(v.string(), v.any()) with discriminated unions*
+  *Link: [./measure/tracks/bm2-activity-prop-validators/](./measure/tracks/bm2-activity-prop-validators/)*
+
 - [x] **Track: Reliability Contracts and DB Boundary Enforcement** — **COMPLETED**
    *Enforce strict data contracts at the database boundary, introduce branded types for IDs, and export canonical test fixtures*
    *Link: [./measure/tracks/reliability-contracts_20260504/](./measure/tracks/reliability-contracts_20260504/)*

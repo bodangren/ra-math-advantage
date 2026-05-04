@@ -132,6 +132,8 @@ export default defineSchema({
       v.literal("video"),
       v.literal("image")
     ),
+    // TODO: Replace with discriminated union once BM2 component prop validators exist.
+    // Deferral track: measure/tracks/bm2-activity-prop-validators (to be created).
     content: v.record(v.string(), v.any()),
     createdAt: v.number(),
   })
@@ -161,6 +163,8 @@ export default defineSchema({
     componentKey: v.string(),
     displayName: v.string(),
     description: v.optional(v.string()),
+    // TODO: Replace with discriminated union once BM2 component prop validators exist.
+    // Deferral track: measure/tracks/bm2-activity-prop-validators (to be created).
     props: v.record(v.string(), v.any()),
     gradingConfig: v.optional(v.record(v.string(), v.any())),
     standardId: v.optional(v.id("competency_standards")),
