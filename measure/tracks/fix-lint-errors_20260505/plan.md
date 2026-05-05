@@ -40,7 +40,7 @@
 - [x] Task 3.2: Refactor `im1`/`im2`/`precalc` jobs into a single matrix strategy [checkpoint: a0d6f74]
   - Review fix: deduplicate 3 identical jobs into `strategy.matrix` with app name and prefix.
 
-## Phase 4: Final Verification and Cleanup
+## Phase 4: Final Verification and Cleanup [checkpoint: 97f1efd]
 
 - [x] Task 4.1: Run lint in all 5 apps and confirm zero errors
   - Commands: `npm run lint --prefix apps/<app>` for each app.
