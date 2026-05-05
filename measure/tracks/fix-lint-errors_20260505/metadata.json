@@ -1,11 +1,11 @@
 {
   "track_id": "fix-lint-errors_20260505",
   "type": "chore",
-  "status": "new",
+  "status": "completed",
   "created_at": "2026-05-05T09:10:37Z",
   "updated_at": "2026-05-05T09:10:37Z",
   "description": "Fix pre-existing lint errors across all apps and add CI lint gates",
-  "estimated_tasks": 15,
-  "actual_tasks": null,
-  "deviation_notes": ""
+  "estimated_tasks": 13,
+  "actual_tasks": 13,
+  "deviation_notes": "IM3 had 5 lint errors (not 12 as tech-debt suggested). BM2 had 1. IM1/IM2/PreCalc were already clean. CI gates added for IM1/IM2/PreCalc with lint+typecheck+build; test gates deferred due to pre-existing Convex provider test failures."
 }

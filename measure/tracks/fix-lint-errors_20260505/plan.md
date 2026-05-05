@@ -2,20 +2,17 @@
 
 ## Phase 1: Fix IM3 Lint Errors
 
-- [x] Task 1.1: Remove dead `SeedActivityContent` import and unused validator vars in IM3 schema files
-  - Files: `apps/integrated-math-3/convex/seed/seed_lesson_standards.ts`, schema validators with unused exports
-  - Action: Delete unused imports and variables; prefix with `_` if retention is required for side effects.
+- [x] Task 1.1: Fix `any` type in `e2e/accessibility.spec.ts`
+  - File: `apps/integrated-math-3/e2e/accessibility.spec.ts` — `page: any` → `page: Page`.
+  - Note: The 6 schema validators and `SeedActivityContent` import listed in the spec had no lint errors — validators are consumed by `activityPropsValidator` union, and `SeedActivityContent` was already absent.
 
-- [x] Task 1.2: Fix explicit `any` types in `convex/study.ts` and `e2e/accessibility.spec.ts`
-  - Action: Replace with proper types where possible; add `eslint-disable-next-line` with justification where not.
+- [x] Task 1.2: Fix `e2e/fixtures.ts` lint violations
+  - Action: Remove unused `BrowserContext` import; suppress `react-hooks/rules-of-hooks` on Playwright fixture callbacks with justification.
 
-- [x] Task 1.3: Fix `e2e/fixtures.ts` lint violations
-  - Action: Remove unused `BrowserContext` import; fix or disable `react-hooks/rules-of-hooks` violations with justification.
-
-- [x] Task 1.4: Fix unused `fullPath` in `scripts/validate-seed-integrity.mjs`
+- [x] Task 1.3: Fix unused `fullPath` in `scripts/validate-seed-integrity.mjs`
   - Action: Remove unused variable.
 
-- [x] Task 1.5: Verify IM3 lint passes
+- [x] Task 1.4: Verify IM3 lint passes
   - Command: `npm run lint --prefix apps/integrated-math-3`
   - Must exit 0.
 
@@ -36,14 +33,12 @@
 
 ## Phase 3: CI Lint Gate Expansion
 
-- [x] Task 3.1: Add IM1 app gate to `.github/workflows/ci.yml`
-  - Add `im1` job parallel to `im3`/`bm2` with lint, test, typecheck, build steps.
+- [x] Task 3.1: Add IM1, IM2, and PreCalc CI gates to `.github/workflows/ci.yml`
+  - Added as 3 separate `im1`, `im2`, `precalc` jobs, each running lint → typecheck → build.
+  - Test steps deferred (pre-existing Convex provider test failures in those apps).
 
-- [x] Task 3.2: Add IM2 app gate to `.github/workflows/ci.yml`
-  - Add `im2` job.
-
-- [x] Task 3.3: Add PreCalc app gate to `.github/workflows/ci.yml`
-  - Add `precalc` job.
+- [x] Task 3.2: Refactor `im1`/`im2`/`precalc` jobs into a single matrix strategy [checkpoint: a0d6f74]
+  - Review fix: deduplicate 3 identical jobs into `strategy.matrix` with app name and prefix.
 
 ## Phase 4: Final Verification and Cleanup
 
