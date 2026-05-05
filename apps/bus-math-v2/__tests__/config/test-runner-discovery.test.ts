@@ -2,7 +2,6 @@ import { describe, expect, it } from 'vitest';
 import fs from 'node:fs';
 import path from 'node:path';
 
-const REPO_ROOT = path.resolve(__dirname, '../../../..');
 const BM2_ROOT = path.resolve(__dirname, '../..');
 
 function listFiles(dir: string, matcher: RegExp): string[] {

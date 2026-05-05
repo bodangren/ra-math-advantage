@@ -21,17 +21,17 @@
 
 ## Phase 2: Audit and Fix Remaining Apps
 
-- [ ] Task 2.1: Run BM2 lint and fix all errors
+- [x] Task 2.1: Run BM2 lint and fix all errors
   - Command: `npm run lint --prefix apps/bus-math-v2`
   - Fix every reported error; prefer removal over suppression.
 
-- [ ] Task 2.2: Run IM1 lint and fix all errors
+- [x] Task 2.2: Run IM1 lint and fix all errors
   - Command: `npm run lint --prefix apps/integrated-math-1`
 
-- [ ] Task 2.3: Run IM2 lint and fix all errors
+- [x] Task 2.3: Run IM2 lint and fix all errors
   - Command: `npm run lint --prefix apps/integrated-math-2`
 
-- [ ] Task 2.4: Run PreCalc lint and fix all errors
+- [x] Task 2.4: Run PreCalc lint and fix all errors
   - Command: `npm run lint --prefix apps/pre-calculus`
 
 ## Phase 3: CI Lint Gate Expansion
