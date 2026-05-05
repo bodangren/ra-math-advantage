@@ -2,20 +2,20 @@
 
 ## Phase 1: Fix IM3 Lint Errors
 
-- [ ] Task 1.1: Remove dead `SeedActivityContent` import and unused validator vars in IM3 schema files
+- [x] Task 1.1: Remove dead `SeedActivityContent` import and unused validator vars in IM3 schema files
   - Files: `apps/integrated-math-3/convex/seed/seed_lesson_standards.ts`, schema validators with unused exports
   - Action: Delete unused imports and variables; prefix with `_` if retention is required for side effects.
 
-- [ ] Task 1.2: Fix explicit `any` types in `convex/study.ts` and `e2e/accessibility.spec.ts`
+- [x] Task 1.2: Fix explicit `any` types in `convex/study.ts` and `e2e/accessibility.spec.ts`
   - Action: Replace with proper types where possible; add `eslint-disable-next-line` with justification where not.
 
-- [ ] Task 1.3: Fix `e2e/fixtures.ts` lint violations
+- [x] Task 1.3: Fix `e2e/fixtures.ts` lint violations
   - Action: Remove unused `BrowserContext` import; fix or disable `react-hooks/rules-of-hooks` violations with justification.
 
-- [ ] Task 1.4: Fix unused `fullPath` in `scripts/validate-seed-integrity.mjs`
+- [x] Task 1.4: Fix unused `fullPath` in `scripts/validate-seed-integrity.mjs`
   - Action: Remove unused variable.
 
-- [ ] Task 1.5: Verify IM3 lint passes
+- [x] Task 1.5: Verify IM3 lint passes
   - Command: `npm run lint --prefix apps/integrated-math-3`
   - Must exit 0.
 

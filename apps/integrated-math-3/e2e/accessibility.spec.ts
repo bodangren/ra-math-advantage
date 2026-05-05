@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { test, expect, type Page } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
 
 /**
@@ -74,7 +74,7 @@ function logResults(route: string, violations: AxeViolation[]) {
   console.log('');
 }
 
-async function runAxeAudit(page: any, route: string) {
+async function runAxeAudit(page: Page, route: string) {
   const accessibilityScanResults = await new AxeBuilder({ page })
     .withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'best-practice'])
     .analyze();

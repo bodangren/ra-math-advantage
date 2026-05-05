@@ -77,7 +77,6 @@ function getCurriculumLessons() {
   const lessonSlugs = new Set();
 
   for (const entry of entries) {
-    const fullPath = join(CURRICULUM_MODULES_DIR, entry);
     // Lesson entries are either directories or files named "module-N-lesson-N"
     if (/^module-\d+-lesson-\d+$/.test(entry)) {
       lessonSlugs.add(entry);

@@ -1,4 +1,4 @@
-import { test as base, type Page, type BrowserContext } from '@playwright/test';
+import { test as base, type Page } from '@playwright/test';
 
 const STUDENT_USERNAME = 'student1@demo';
 const STUDENT_PASSWORD = 'Demo1234!';
@@ -24,6 +24,7 @@ export const test = base.extend<{
     const context = await browser.newContext();
     const page = await context.newPage();
     await loginAs(page, STUDENT_USERNAME, STUDENT_PASSWORD);
+    // eslint-disable-next-line react-hooks/rules-of-hooks -- Playwright fixture API, not React
     await use(page);
     await context.close();
   },
@@ -32,6 +33,7 @@ export const test = base.extend<{
     const context = await browser.newContext();
     const page = await context.newPage();
     await loginAs(page, TEACHER_USERNAME, TEACHER_PASSWORD);
+    // eslint-disable-next-line react-hooks/rules-of-hooks -- Playwright fixture API, not React
     await use(page);
     await context.close();
   },

@@ -10,7 +10,7 @@ Tracks 1+4 unlock Track 8; Track 8 unlocks Tracks 9+10.
 
 ## Active Tracks
 
-- [ ] **Track: Fix Pre-existing Lint Errors Across All Apps**
+- [~] **Track: Fix Pre-existing Lint Errors Across All Apps**
    *Fix lint errors in all 5 apps and add CI lint gates for IM1, IM2, and PreCalc*
    *Link: [./measure/tracks/fix-lint-errors_20260505/](./measure/tracks/fix-lint-errors_20260505/)*
 
