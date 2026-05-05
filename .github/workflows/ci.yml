@@ -175,10 +175,18 @@ jobs:
 
   # Phase 5: IM1, IM2, PreCalc lint/typecheck/build gates
   # Test gates are deferred due to pre-existing test failures (Convex provider tests).
-  im1:
-    name: IM1 App Gates
+  # Apps share the same step structure; matrix deduplicates the config.
+  im1-im2-precalc:
+    name: ${{ matrix.app.name }} App Gates
     runs-on: ubuntu-latest
     needs: [packages, boundary-check]
+    strategy:
+      fail-fast: false
+      matrix:
+        app:
+          - { name: IM1, prefix: apps/integrated-math-1, dir: apps/integrated-math-1 }
+          - { name: IM2, prefix: apps/integrated-math-2, dir: apps/integrated-math-2 }
+          - { name: PreCalc, prefix: apps/pre-calculus, dir: apps/pre-calculus }
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -192,82 +200,18 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Run IM1 lint
-        run: npm run lint --prefix apps/integrated-math-1
+      - name: Run ${{ matrix.app.name }} lint
+        run: npm run lint --prefix ${{ matrix.app.prefix }}
         env:
           CI: true
 
-      - name: Run IM1 typecheck
-        run: cd apps/integrated-math-1 && npx tsc --noEmit
+      - name: Run ${{ matrix.app.name }} typecheck
+        run: cd ${{ matrix.app.dir }} && npx tsc --noEmit
         env:
           CI: true
 
-      - name: Run IM1 build
-        run: npm run build --prefix apps/integrated-math-1
-        env:
-          CI: true
-
-  im2:
-    name: IM2 App Gates
-    runs-on: ubuntu-latest
-    needs: [packages, boundary-check]
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-          cache: 'npm'
-
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Run IM2 lint
-        run: npm run lint --prefix apps/integrated-math-2
-        env:
-          CI: true
-
-      - name: Run IM2 typecheck
-        run: cd apps/integrated-math-2 && npx tsc --noEmit
-        env:
-          CI: true
-
-      - name: Run IM2 build
-        run: npm run build --prefix apps/integrated-math-2
-        env:
-          CI: true
-
-  precalc:
-    name: PreCalc App Gates
-    runs-on: ubuntu-latest
-    needs: [packages, boundary-check]
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-          cache: 'npm'
-
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Run PreCalc lint
-        run: npm run lint --prefix apps/pre-calculus
-        env:
-          CI: true
-
-      - name: Run PreCalc typecheck
-        run: cd apps/pre-calculus && npx tsc --noEmit
-        env:
-          CI: true
-
-      - name: Run PreCalc build
-        run: npm run build --prefix apps/pre-calculus
+      - name: Run ${{ matrix.app.name }} build
+        run: npm run build --prefix ${{ matrix.app.prefix }}
         env:
           CI: true
 
