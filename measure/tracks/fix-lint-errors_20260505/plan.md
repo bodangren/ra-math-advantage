@@ -36,13 +36,13 @@
 
 ## Phase 3: CI Lint Gate Expansion
 
-- [ ] Task 3.1: Add IM1 app gate to `.github/workflows/ci.yml`
+- [x] Task 3.1: Add IM1 app gate to `.github/workflows/ci.yml`
   - Add `im1` job parallel to `im3`/`bm2` with lint, test, typecheck, build steps.
 
-- [ ] Task 3.2: Add IM2 app gate to `.github/workflows/ci.yml`
+- [x] Task 3.2: Add IM2 app gate to `.github/workflows/ci.yml`
   - Add `im2` job.
 
-- [ ] Task 3.3: Add PreCalc app gate to `.github/workflows/ci.yml`
+- [x] Task 3.3: Add PreCalc app gate to `.github/workflows/ci.yml`
   - Add `precalc` job.
 
 ## Phase 4: Final Verification and Cleanup
