@@ -47,11 +47,11 @@
 
 ## Phase 4: Final Verification and Cleanup
 
-- [ ] Task 4.1: Run lint in all 5 apps and confirm zero errors
+- [x] Task 4.1: Run lint in all 5 apps and confirm zero errors
   - Commands: `npm run lint --prefix apps/<app>` for each app.
 
-- [ ] Task 4.2: Update `measure/tech-debt.md`
+- [x] Task 4.2: Update `measure/tech-debt.md`
   - Remove the resolved lint-error item.
 
-- [ ] Task 4.3: Commit and checkpoint
+- [x] Task 4.3: Commit and checkpoint
   - Commit message: `fix(lint): Resolve pre-existing lint errors across all apps`
