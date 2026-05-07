@@ -1,0 +1,11 @@
+{
+  "track_id": "practice-worksheet-example-import_20260507",
+  "type": "feature",
+  "status": "new",
+  "created_at": "2026-05-07T00:00:00Z",
+  "updated_at": "2026-05-07T00:00:00Z",
+  "description": "Extract IM1, IM2, and IM3 Practice Worksheet Student Bundles into structured worked-example descriptions that can drive reusable React examples, guided practice, and independent practice.",
+  "estimated_tasks": 19,
+  "actual_tasks": null,
+  "deviation_notes": ""
+}

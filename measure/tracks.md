@@ -10,6 +10,10 @@ Tracks 1+4 unlock Track 8; Track 8 unlocks Tracks 9+10.
 
 ## Active Tracks
 
+- [ ] **Track: Practice Worksheet Example Import**
+   *Extract IM1, IM2, and IM3 Practice Worksheet Student Bundles into structured worked-example descriptions for reusable React worked, guided, and independent practice components*
+   *Link: [./measure/tracks/practice-worksheet-example-import_20260507/](./measure/tracks/practice-worksheet-example-import_20260507/)*
+
 - [x] **Track: Fix Pre-existing Lint Errors Across All Apps**
    *Fix lint errors in all 5 apps and add CI lint gates for IM1, IM2, and PreCalc*
    *Link: [./measure/archive/fix-lint-errors_20260505/](./measure/archive/fix-lint-errors_20260505/)*
