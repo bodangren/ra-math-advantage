@@ -11,7 +11,7 @@ Tracks 1+4 unlock Track 8; Track 8 unlocks Tracks 9+10.
 ## Active Tracks
 
 - [ ] **Track: Practice Worksheet Example Import**
-   *Extract IM1, IM2, and IM3 Practice Worksheet Student Bundles into structured worked-example descriptions for reusable React worked, guided, and independent practice components*
+   *Import IM1, IM2, and IM3 Practice Worksheet Student Bundles as reviewed Markdown problem set catalogs before mapping selected groups to React worked, guided, and independent practice components*
    *Link: [./measure/tracks/practice-worksheet-example-import_20260507/](./measure/tracks/practice-worksheet-example-import_20260507/)*
 
 - [x] **Track: Fix Pre-existing Lint Errors Across All Apps**
