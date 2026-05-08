@@ -1,0 +1,11 @@
+{
+  "track_id": "im2-im1-curriculum-update_20260508",
+  "type": "feature",
+  "status": "new",
+  "created_at": "2026-05-08T14:38:00Z",
+  "updated_at": "2026-05-08T14:38:00Z",
+  "description": "Reconcile updated IM2 curriculum (module renaming, new lessons) and new IM1 curriculum (93 lessons) with seed data, Convex schema, and standards",
+  "estimated_tasks": 18,
+  "actual_tasks": null,
+  "deviation_notes": ""
+}

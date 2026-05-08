@@ -938,9 +938,13 @@ Parallel tracks delivering complete curriculum for all three new apps. Tracks 1 
       *Result: Filter-before-paginate via by_student_and_status index + neq filter. BM2 N/A.*
       *Link: [./tracks/session-history-pagination_20260503/](./tracks/session-history-pagination_20260503/)*
 
-- [x] **Track: Curriculum Content Authoring — IM2** — **COMPLETED**
-     *Author complete curriculum content for Integrated Math 2: 13 units, ~67 lessons*
-     *Link: [./tracks/curriculum-authoring-im2_20260425/](./tracks/curriculum-authoring-im2_20260425/)*
+- [x] **Track: Curriculum Content Authoring — IM2** — **SUPERSEDED**
+      *Original track superseded by im2-im1-curriculum-update_20260508 — content was updated (unit→module rename, new lessons added)*
+      *Link: [./archive/curriculum-authoring-im2_20260425/](./archive/curriculum-authoring-im2_20260425/)*
+
+- [ ] **Track: IM2 + IM1 Curriculum Update**
+      *Reconcile updated IM2 (module rename, new lessons) and new IM1 (93 lessons) with seed data, Convex schema, and standards*
+      *Link: [./tracks/im2-im1-curriculum-update_20260508/](./tracks/im2-im1-curriculum-update_20260508/)*
 
 - [x] **Track: Curriculum Content Authoring — PreCalc** — **COMPLETED**
       *Author AP Precalculus lesson phases from the CED/Passwater planning layer: 4 units, 58 CED topics; Unit 4 locally unsourced and not AP-exam-assessed*
