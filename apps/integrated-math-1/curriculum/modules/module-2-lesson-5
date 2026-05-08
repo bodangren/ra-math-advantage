@@ -1,0 +1,149 @@
+# Lesson 2-5 — Solving Equations Involving Absolute Value
+
+Source: (Module 2, Lesson 2-5, Int1_0205_practice.docx)
+
+## Today's Goals
+
+* Solve absolute value equations of the form [ |expression| = constant ] and recognize when no solution exists
+* Graph the solution set of an absolute value equation on a number line
+* Write absolute value equations that model real-world tolerance, margin-of-error, and range situations
+* Translate between number-line graphs and their corresponding absolute value equations
+
+## Vocabulary
+
+* **Absolute value** — The distance of a number from zero on the number line; always nonnegative
+* **Tolerance** — An allowable deviation from a specified value in manufacturing or measurement
+* **Margin of error** — The range of values above and below a sample statistic in a survey or poll
+* **Standard deviation** — A statistical measure of how far data values are from the mean
+* **Solution set** — The set of all values that satisfy an equation
+
+## Learn: Solving Absolute Value Equations
+
+An absolute value equation states that the distance between an expression and zero equals a given number.
+
+### Key Concept: Absolute Value Equations
+
+* If [ |A| = p ] and [ p > 0 ], then the equation splits into two cases: [ A = p ] or [ A = -p ] 
+* If [ |A| = p ] and [ p < 0 ], there is **no solution** because absolute value is never negative
+* If [ |A| = 0 ], there is exactly one solution: [ A = 0 ] 
+* After solving, check each solution in the original equation
+
+## Example 1 — Solve and Graph Simple Absolute Value Equations
+
+Solve equations of the form [ |expression| = \text{positive constant} ], then graph the solution set on a number line.
+
+### Step 1: Split into Two Cases
+
+Rewrite the absolute value equation as two separate linear equations.
+
+For [ |x - 3| = 5 ]:
+[
+x - 3 = 5 \quad \text{or} \quad x - 3 = -5
+]
+
+### Step 2: Solve Each Equation
+
+[
+x = 8 \quad \text{or} \quad x = -2
+]
+
+### Step 3: Graph the Solution Set
+
+Plot both solutions on a number line using closed circles.
+
+Variations include equations with fractions, such as:
+[
+\left| \frac{3}{4}a - 3 \right| = 9
+]
+
+## Example 2 — Identify Equations with No Solution
+
+Determine whether an absolute value equation has solutions before attempting to solve.
+
+### Step 1: Examine the Right-Hand Side
+
+If the constant on the right side is negative, the equation has no solution.
+
+[
+|v - 2| = -5 \quad \Rightarrow \quad \text{no solution}
+]
+[
+|6y - 7| = -1 \quad \Rightarrow \quad \text{no solution}
+]
+
+### Step 2: Solve When a Solution Exists
+
+When the right-hand side is positive or zero, proceed with the two-case method.
+
+[
+|4t - 8| = 20 \quad \Rightarrow \quad 4t - 8 = 20 \; \text{or} \; 4t - 8 = -20
+]
+
+## Example 3 — Apply Absolute Value to Real-World Problems
+
+Use absolute value equations to model tolerance, margin of error, and range in everyday contexts.
+
+### Step 1: Identify the Target Value and Allowable Deviation
+
+Determine what quantity represents the center (mean or set point) and what represents the allowed distance from that center.
+
+### Step 2: Write the Absolute Value Equation
+
+For a thermostat set to [ 400^\circ \text{F} ] with a tolerance of [ \pm 15^\circ \text{F} ]:
+[
+|T - 400| = 15
+]
+
+### Step 3: Solve and Interpret
+
+[
+T - 400 = 15 \quad \text{or} \quad T - 400 = -15
+]
+[
+T = 415 \quad \text{or} \quad T = 385
+]
+
+The maximum temperature is [ 415^\circ \text{F} ] and the minimum is [ 385^\circ \text{F} ].
+
+Contexts include:
+* **Polling:** A poll result of [ 38\% ] with [ \pm 5\% ] margin of error
+* **Standard deviation:** An ACT mean of [ 20.9 ] with standard deviation [ 5.3 ] 
+* **Manufacturing:** A labeled weight of [ 35 ] pounds within [ 8 ] ounces
+* **Aviation:** A survey margin of error applied to a population of [ 40 ] million students
+
+## Example 4 — Write Absolute Value Equations from Graphs
+
+Given a number-line graph showing two symmetric points, write the corresponding absolute value equation.
+
+### Step 1: Identify the Center and the Distance
+
+Find the midpoint of the two graphed points — this is the value inside the absolute value expression. Find the distance from the center to either endpoint — this is the constant on the right side.
+
+### Step 2: Construct the Equation
+
+If the graph shows solutions at [ x = -1 ] and [ x = 5 ]:
+[
+\text{center} = \frac{-1 + 5}{2} = 2, \quad \text{distance} = 3
+]
+[
+|x - 2| = 3
+]
+
+Variations include graphs with fractional or negative centers and different distances.
+
+## Mixed Exercises
+
+The mixed exercises integrate all skills from the lesson:
+
+* Solving absolute value equations with variables on either side and fractional coefficients, then graphing the solutions
+* Handling equations that require isolating the absolute value first, such as [ 2|h| - 3 = 8 ] or [ 4 - 3|q| = 10 ] 
+* Writing absolute value equations from number-line graphs with varied scales and intervals
+* Applying absolute value to range, tolerance, and error-bound contexts including temperature control, manufacturing quality, chlorine concentration, and aquarium conditions
+* Reasoning about why absolute value can never be negative, analyzing common errors, and creating original real-world situations modeled by absolute value equations
+* Using the structure of absolute value to represent definitions such as betweenness of points on a line
+
+## Review Notes
+
+* The worksheet contains 17 embedded images (`media/image1.png` through `media/image17.png`) that show number-line graphs for problems 24–31 and 38–43, a bar graph for the aviation survey in problem 22, a fish-tank illustration for problem 48, and student work for the error-analysis problem 51. These images must be reviewed and described or reproduced during activity implementation.
+* Problem 21 references the Wechsler IQ test mean and standard deviation as background context.
+* Problems 44–47 and 49–53 are open-ended writing, reasoning, and creation prompts that do not require numeric answer verification.

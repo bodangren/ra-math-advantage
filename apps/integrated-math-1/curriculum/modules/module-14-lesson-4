@@ -1,0 +1,277 @@
+# Lesson 14-4 — Proving Triangles Congruent: ASA, AAS
+
+Source: (Module 14, Lesson 14-4, Int1_1404_practice.docx)
+
+## Today's Goals
+
+* Write two-column, paragraph, and flow proofs to prove triangle congruence using the ASA and AAS theorems.
+* Identify when the ASA Congruence Postulate applies versus when the AAS Congruence Theorem applies.
+* Use properties of parallel lines, midpoints, and angle bisectors to find congruent parts needed for ASA or AAS proofs.
+* Apply triangle congruence to solve real-world problems in architecture, engineering, and design.
+
+## Vocabulary
+
+* **Angle-Side-Angle (ASA) Congruence Postulate** — If two angles and the included side of one triangle are congruent to two angles and the included side of another triangle, then the triangles are congruent.
+* **Angle-Angle-Side (AAS) Congruence Theorem** — If two angles and a non-included side of one triangle are congruent to two angles and the corresponding non-included side of another triangle, then the triangles are congruent.
+* **Included Side** — The side between two angles of a triangle.
+* **Non-Included Side** — A side that is not between the two given angles.
+* **Two-Column Proof** — A proof formatted with statements in one column and reasons in another.
+* **Paragraph Proof** — A proof written in complete sentences as a paragraph.
+* **Flow Proof** — A proof that uses arrows to show the logical flow from given information to the conclusion.
+* **Reflexive Property** — A quantity is congruent to itself.
+* **Definition of Midpoint** — A midpoint divides a segment into two congruent segments.
+* **Definition of Angle Bisector** — A ray that divides an angle into two congruent angles.
+* **Alternate Interior Angles** — Angles formed when a transversal intersects two parallel lines; they are congruent when the lines are parallel.
+
+## Explore: How Can Two Angles and a Side Prove Triangles Congruent?
+
+Students investigate whether knowing two angles and a side is sufficient to guarantee that two triangles are congruent. They compare cases where the side is included between the angles versus when it is not.
+
+Inquiry Question:
+If two triangles have two pairs of congruent corresponding angles and one pair of congruent corresponding sides, is that always enough to prove the triangles congruent? Does it matter whether the side is between the angles?
+
+## Learn: Triangle Congruence Using ASA and AAS
+
+The ASA and AAS criteria provide shortcuts for proving triangle congruence when angle and side information is known. Understanding whether the side is included or not determines which postulate or theorem to use.
+
+### Key Concept: ASA Congruence Postulate
+
+If two angles and the included side of one triangle are congruent to two angles and the included side of a second triangle, then the two triangles are congruent.
+
+### Key Concept: AAS Congruence Theorem
+
+If two angles and a non-included side of one triangle are congruent to two angles and the corresponding non-included side of a second triangle, then the two triangles are congruent.
+
+### Key Concept: Using Parallel Lines and Transversals
+
+When parallel lines are cut by a transversal, alternate interior angles are congruent. This relationship is often used to establish one of the angle pairs needed for ASA or AAS.
+
+Given [\overline{AB} \parallel \overline{CD}] with transversal [\overline{AC}]:
+[
+\angle BAC \cong \angle DCA
+]
+
+### Key Concept: Using Midpoints and Angle Bisectors
+
+A midpoint divides a segment into two congruent segments, providing a pair of congruent sides. An angle bisector divides an angle into two congruent angles, providing a pair of congruent angles.
+
+## Example 1 — Write Proofs Using ASA and AAS
+
+Write two-column, paragraph, and flow proofs to establish triangle congruence using the ASA Postulate and AAS Theorem. Problems involve parallel lines, midpoints, angle bisectors, and shared sides.
+
+### Step 1: Identify the Given Information
+
+Extract all givens from the problem statement, including parallel segments, congruent angles, congruent sides, midpoints, and bisectors. Identify the triangles to be proven congruent.
+
+### Step 2: Find the Missing Congruent Parts
+
+Use geometric properties to deduce additional congruent parts:
+
+* Alternate Interior Angles from parallel lines:
+[
+\angle CBD \cong \angle ADB
+]
+
+* Reflexive Property for a shared side:
+[
+\overline{BD} \cong \overline{BD}
+]
+
+* Definition of Midpoint:
+[
+\overline{ST} \cong \overline{VT}
+]
+
+* Definition of Angle Bisector:
+[
+\angle ABD \cong \angle CBD
+]
+
+### Step 3: Apply ASA or AAS
+
+Once two angles and the included side (ASA) or two angles and a non-included side (AAS) are established, state the triangles are congruent.
+
+For ASA:
+[
+\angle A \cong \angle C, \quad \overline{AB} \cong \overline{CB}, \quad \angle ABD \cong \angle CBD
+]
+[
+\triangle ABD \cong \triangle CBD \quad \text{by ASA}
+]
+
+For AAS:
+[
+\angle S \cong \angle V, \quad \angle STR \cong \angle VTU, \quad \overline{ST} \cong \overline{VT}
+]
+[
+\triangle RTS \cong \triangle UTV \quad \text{by AAS}
+]
+
+### Step 4: Prove Corresponding Parts Congruent (CPCTC)
+
+When the goal is to prove a segment or angle congruent rather than the triangles themselves, first prove the triangles congruent by ASA or AAS, then apply CPCTC.
+
+[
+\triangle ECB \cong \triangle ECD \quad \text{by ASA}
+]
+[
+\overline{AD} \cong \overline{CD} \quad \text{by CPCTC}
+]
+
+## Example 2 — Apply ASA and AAS to Real-World Problems
+
+Use the ASA and AAS congruence criteria to analyze real-world situations involving right triangles, architectural designs, and bridge trusses. Calculate areas, perimeters, and material requirements after establishing congruence.
+
+### Step 1: Determine Whether Triangles Are Congruent
+
+Analyze the given information to identify two pairs of congruent angles and a pair of congruent sides. Determine whether ASA or AAS applies.
+
+For two right triangles with a [20°] angle and equal length between the [90°] and [20°] angles:
+[
+\text{Angle} = 90°, \quad \text{Included Side} \cong \text{Included Side}, \quad \text{Angle} = 20°
+]
+[
+\triangle_1 \cong \triangle_2 \quad \text{by ASA}
+]
+
+### Step 2: Calculate Combined Area
+
+Once congruence is established, corresponding dimensions are equal. Use the triangle area formula with given dimensions.
+
+For a triangle with height [h = 2] inches and base [x = 5] inches:
+[
+A = \frac{1}{2}bh = \frac{1}{2}(5)(2) = 5 \text{ in}^2
+]
+
+Combined area for two congruent triangles:
+[
+2 \times 5 = 10 \text{ in}^2
+]
+
+### Step 3: Prove Congruence in Architectural Designs
+
+Use given angle congruences and shared sides in a stained-glass window design to prove triangle congruence by ASA, then calculate the total glass area needed.
+
+Given [\angle ABC \cong \angle DCB] and [\angle ACB \cong \angle DBC] with shared side [\overline{BC}]:
+[
+\triangle BCA \cong \triangle CBD \quad \text{by ASA}
+]
+
+Area calculation using base [CD = 3.5] meters and height [1.4] meters:
+[
+A = \frac{1}{2}(3.5)(1.4) = 2.45 \text{ m}^2
+]
+
+Total for two congruent triangles:
+[
+2 \times 2.45 = 4.9 \text{ m}^2
+]
+
+### Step 4: Apply to Bridge Engineering
+
+Use parallel line properties to confirm congruent angles, then apply ASA or AAS to prove triangle congruence in bridge truss analysis. Calculate perimeters of composite figures.
+
+Given [\overline{AC} \parallel \overline{BK}], [\overline{CB} \parallel \overline{KM}], and [B] is the midpoint of [\overline{AM}]:
+[
+\angle CAB \cong \angle KBM \quad \text{(corresponding angles)}
+]
+[
+\angle ACB \cong \angle BKM \quad \text{(corresponding angles)}
+]
+[
+\overline{AB} \cong \overline{BM} \quad \text{(Definition of Midpoint)}
+]
+[
+\triangle ABC \cong \triangle BMK \quad \text{by AAS}
+]
+
+For an equilateral triangle with side [AB = 18.5] feet, the perimeter of quadrilateral [ACKB] is:
+[
+AC + CK + KB + BA = 18.5 + 18.5 + 18.5 + 18.5 = 74 \text{ ft}
+]
+
+## Example 3 — Write Advanced Proofs Using ASA and AAS
+
+Write flow proofs, paragraph proofs, and two-column proofs involving more complex diagrams. Problems require using parallel lines, midpoints, and shared sides to establish the angle-angle-side or angle-side-angle relationships.
+
+### Step 1: Use Given Congruent Sides and Angles
+
+Identify the directly given information: congruent segments, congruent angles, parallel lines, midpoints, and bisectors.
+
+Given [\overline{JK} \cong \overline{MK}] and [\angle N \cong \angle L]:
+[
+\angle JKN \cong \angle MKL \quad \text{(Vertical Angles)}
+]
+[
+\triangle JKN \cong \triangle MKL \quad \text{by AAS}
+]
+
+### Step 2: Use Parallel Lines to Establish Angle Congruence
+
+When parallel lines are given, use alternate interior angles or corresponding angles to find a second pair of congruent angles.
+
+Given [\overline{DE} \parallel \overline{FG}] and [\angle E \cong \angle G]:
+[
+\angle DFE \cong \angle FEG \quad \text{(Alternate Interior Angles)}
+]
+[
+\overline{FE} \cong \overline{EF} \quad \text{(Reflexive Property)}
+]
+[
+\triangle DFG \cong \triangle FDE \quad \text{by AAS}
+]
+
+### Step 3: Use Midpoints and Parallel Lines Together
+
+When a midpoint and parallel lines are both given, combine the Definition of Midpoint with Alternate Interior Angles to establish the parts needed for ASA or AAS.
+
+Given [V] is the midpoint of [\overline{YW}] and [\overline{UY} \parallel \overline{XW}]:
+[
+\overline{YV} \cong \overline{WV} \quad \text{(Definition of Midpoint)}
+]
+[
+\angle UYV \cong \angle XWV \quad \text{(Alternate Interior Angles)}
+]
+[
+\angle UVY \cong \angle XVW \quad \text{(Vertical Angles)}
+]
+[
+\triangle UVY \cong \triangle XVW \quad \text{by ASA}
+]
+
+### Step 4: Use Congruent and Parallel Segments
+
+When two segments are both congruent and parallel, use the parallel property for angles and the congruent property for sides.
+
+Given [\overline{MS} \cong \overline{RQ}] and [\overline{MS} \parallel \overline{RQ}]:
+[
+\angle MSP \cong \angle RQP \quad \text{(Alternate Interior Angles)}
+]
+[
+\angle MPS \cong \angle RPQ \quad \text{(Vertical Angles)}
+]
+[
+\triangle MSP \cong \triangle RQP \quad \text{by AAS}
+]
+
+## Mixed Exercises
+
+The mixed exercises section provides practice with all skills from the lesson: writing ASA and AAS proofs, applying congruence to real-world contexts, constructing congruent triangles, analyzing errors, and reasoning about triangle congruence criteria. Problems include:
+
+* Using a compass and straightedge to construct a triangle congruent to a given triangle using the ASA Congruence Postulate.
+* Reasoning about whether two right triangles with a shared acute angle measure and equal included side are congruent, and calculating combined area.
+* Proving triangle congruence in an architectural stained-glass window design and calculating the amount of glass needed.
+* Using properties of parallel lines and midpoints to prove triangle congruence in bridge trusses and calculating perimeters.
+* Writing two-column, paragraph, and flow proofs using ASA and AAS with various combinations of given information.
+* Determining whether two people walking triangular paths in different cities formed congruent triangles, given specific angle measures and side lengths.
+* Using estimation and congruent triangles to estimate the distance across a river by sighting along a walking stick.
+* Writing a paragraph proof involving an angle bisector to show that two segments are congruent.
+* Finding a counterexample to demonstrate why SSA (Side-Side-Angle) cannot be used as a congruence criterion.
+* Identifying errors in student reasoning about triangle congruence proofs.
+* Drawing and labeling two triangles that could be proved congruent by ASA.
+* Explaining how to choose among SSS, SAS, ASA, AAS, and HL when proving triangle congruence.
+* Writing a flow proof using information from a diagram to show triangle congruence.
+
+## Review Notes
+
+* Images referenced in the worksheet (geometric diagrams for proof problems in Examples 1 and 3, doorstop cross-section diagrams for problem 7, stained-glass window diagram for problem 8, bridge truss diagram for problem 9, various triangle diagrams for problems 10-11 and 12-15, construction diagram for problem 16, river estimation diagram for problem 18, angle bisector diagram for problem 19, SSA counterexample diagram for problem 20, error analysis diagram for problem 21, and flow proof diagram for problem 24) could not be fully described without visual reference. Teachers should consult the original worksheet for exact diagrams, markings, and measurements.

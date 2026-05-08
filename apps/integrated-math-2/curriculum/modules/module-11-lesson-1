@@ -1,0 +1,189 @@
+# Lesson 11-1 — Adding and Subtracting Polynomials
+
+Source: (Module 11, Lesson 11-1, Int2_1101_practice.docx)
+
+## Today's Goals
+
+* Classify polynomials by degree and number of terms.
+* Write polynomials in standard form and identify the leading coefficient.
+* Add and subtract polynomials using horizontal and vertical methods.
+* Apply polynomial operations to real-world scenarios involving profit, perimeter, and volume.
+
+## Vocabulary
+
+* **Polynomial** — A mathematical expression consisting of terms combined by addition or subtraction.
+* **Monomial** — A polynomial with one term.
+* **Binomial** — A polynomial with two terms.
+* **Trinomial** — A polynomial with three terms.
+* **Degree of a Polynomial** — The highest exponent in a polynomial when written in standard form.
+* **Standard Form** — A polynomial written with terms in descending order of exponent.
+* **Leading Coefficient** — The coefficient of the term with the highest exponent.
+* **Closed under Addition** — A property where the sum of any two elements in a set remains in that set.
+
+## Explore: What Makes a Polynomial?
+
+Students consider what separates polynomials from other algebraic expressions. They explore why certain expressions do or do not qualify as polynomials and investigate how degree and term count determine classification.
+
+Inquiry Question:
+What characteristics determine whether an algebraic expression is a polynomial, and how does the degree affect the classification?
+
+## Learn: Adding and Subtracting Polynomials
+
+### Key Concept: Identifying Polynomials
+
+A polynomial is a sum of terms each consisting of a coefficient multiplied by a variable raised to a nonnegative integer power.
+
+Determine whether each expression is a polynomial. If it is, find the degree and classify it as a monomial, binomial, or trinomial.
+
+### Key Concept: Standard Form
+
+A polynomial is in standard form when its terms are arranged from highest to lowest degree. The leading coefficient is the coefficient of the first term.
+
+Write each polynomial in standard form and identify the leading coefficient.
+
+### Key Concept: Adding Polynomials
+
+To add polynomials, combine like terms by adding coefficients of terms with the same variable part.
+
+Find each sum or difference.
+
+[(2x + 3y) + (4x + 9y)]
+[(6s + 5t) + (4t + 8s)]
+[(5a + 9b) - (2a + 4b)]
+[(11m - 7n) - (2m + 6n)]
+
+### Key Concept: Subtracting Polynomials
+
+To subtract polynomials, distribute the negative sign to each term of the polynomial being subtracted, then combine like terms.
+
+[(m^2 - m) + (2m + m^2)]
+[(x^2 - 3x) - (2x^2 + 5x)]
+[(d^2 - d + 5) - (2d + 5)]
+[(2h^2 - 5h) + (7h - 3h^2)]
+
+## Example 1 — Classify Polynomials
+
+Determine whether each expression is a polynomial. If it is a polynomial, find the degree and determine whether it is a monomial, binomial, or trinomial.
+
+### Step 1: Identify Polynomial Characteristics
+
+Check if every term has a variable raised to a nonnegative integer power and no variables in denominators. If it qualifies, count the terms and find the highest exponent.
+
+[5y^3/x^2 + 4x] — Not a polynomial (negative exponent in denominator)
+[21] — Monomial, degree 0
+[c^4 - 2c^2 + 1] — Trinomial, degree 4
+[d + 3d^c] — Not a polynomial (variable exponent)
+
+### Step 2: Classify and Determine Degree
+
+[a - a^2] — Binomial (reorder to standard form: -a^2 + a)
+[5n^3 + nq^3] — Trinomial, degree 4 (when treated as polynomial in n)
+
+## Example 2 — Write Polynomials in Standard Form
+
+Write each polynomial in standard form and identify the leading coefficient.
+
+### Step 1: Arrange Terms by Descending Exponent
+
+[5x^2 - 2 + 3x] → [5x^2 + 3x - 2], leading coefficient: 5
+[8y + 7y^3] → [7y^3 + 8y], leading coefficient: 7
+[4 - 3c - 5c^2] → [-5c^2 - 3c + 4], leading coefficient: -5
+[-y^3 + 3y - 3y^2 + 2] → [-y^3 - 3y^2 + 3y + 2], leading coefficient: -1
+
+## Example 3 — Add and Subtract Polynomials
+
+Find each sum or difference using the horizontal method.
+
+### Step 1: Group Like Terms
+
+[(5f + g - 2) + (-2f + 3)]
+= [5f - 2f + g - 2 + 3]
+= [3f + g + 1]
+
+[(6k^2 + 2k + 9) + (4k^2 - 5k)]
+= [6k^2 + 4k^2 + 2k - 5k + 9]
+= [10k^2 - 3k + 9]
+
+[(2c^2 + 6c + 4) + (5c^2 - 7)]
+= [7c^2 + 6c - 3]
+
+[(2x + 3x^2) - (7 - 8x^2)]
+= [2x + 3x^2 - 7 + 8x^2]
+= [11x^2 + 2x - 7]
+
+## Example 4 — Subtract with Negative Signs
+
+[(3c^3 - c + 11) - (c^2 + 2c + 8)]
+= [3c^3 - c^2 - c - 2c + 11 - 8]
+= [3c^3 - c^2 - 3c + 3]
+
+[(z^2 + z) + (z^2 - 11)]
+= [2z^2 + z - 11]
+
+## Example 5 — Polynomials with Multiple Variables
+
+[(x^2y - 3x^2 + y) + (3y - 2x^2y)]
+= [-x^2y - 3x^2 + 4y]
+
+[(-8xy + 3x^2 - 5y) + (4x^2 - 2y + 6xy)]
+= [-2xy + 7x^2 - 7y]
+
+[(5n - 2p^2 + 2np) - (4p^2 + 4n)]
+= [5n - 2p^2 + 2np - 4p^2 - 4n]
+= [n - 6p^2 + 2np]
+
+## Example 6 — Real-World Applications
+
+Write polynomial equations to represent real-world situations and evaluate them.
+
+### Step 1: Write a Polynomial Equation
+
+Company A profit: [P = 3.2x + 12]
+Company B profit: [P = 2.7x + 10]
+
+Write a polynomial equation to give the difference in profit D after x years.
+
+[D = (3.2x + 12) - (2.7x + 10)]
+
+### Step 2: Evaluate the Polynomial
+
+Predict the difference in profit after 10 years.
+
+[D = 3.2(10) + 12 - (2.7(10) + 10) = 32 + 12 - 27 - 10 = 7] million dollars
+
+### Step 3: Perimeter Application
+
+The length of an envelope is always 4 centimeters more than double the width x.
+
+Write a polynomial equation to give the perimeter P of any envelope.
+
+[P = 2(2x + 4) + 2x = 6x + 8]
+
+Predict the perimeter when x = 6 cm.
+
+[P = 6(6) + 8 = 44] cm
+
+## Mixed Exercises
+
+Practice covers all skills from the lesson. Problems include:
+
+* Classifying polynomials by degree and number of terms
+* Adding three or more polynomials with multiple variables
+* A rocket height problem: Two toy rockets are launched straight up. Rocket A height is [-16t^2 + 122t] and Rocket B height is [-16t^2 + 84t]. Write an equation to find the difference in height after t seconds, then predict the difference after 5 seconds. ![](media/image1.png)
+* A surface area problem: Two identical cylindrical drums with radius r and height h have surface area [S = 2πrh + 2πr^2]. Write a polynomial for the total surface area of both drums, then evaluate when h = 2 m and r = 0.5 m.
+* A box volume problem: A company ships products in cubic boxes of volume [x^3]. A new box is 3 inches longer in one dimension and 1 inch shorter in another, with volume [x^3 + 2x^2 - 3x]. Write expressions for the total volume of 4 of each kind of box and the difference in volume between the boxes.
+* Analyzing whether polynomials are closed under addition using a counterexample
+* A volume comparison: The volume of a sphere with radius x is [4/3 πx^3] and a cube with side length x is [x^3]. Find the total combined volume and how much more volume the sphere contains.
+* Structure questions about subtracting polynomials in different orders
+* Finding and correcting errors in polynomial subtraction
+* Analyzing whether statements about binomials and subtraction order are true or false
+* Writing a polynomial representing the sum of 2n + 1 and the next two consecutive odd integers
+* Creating two polynomials that add to [-11x^3 - x^2 + 5x + 6]
+
+## Review Notes
+
+* Images referenced: ![](media/image1.png) — Rocket diagram for the toy rocket problem. ![](media/image2.png) — Student work showing two incorrect approaches to polynomial subtraction. Teachers should consult the original worksheet for the exact diagrams and student examples.
+* The worksheet contains 58 practice problems covering classification, standard form, polynomial operations, and real-world applications.
+* Key concept: Polynomials are closed under addition — the sum of any two polynomials is always a polynomial.
+* When subtracting polynomials, order matters: (a - b) ≠ (b - a) in general.
+* Additive inverses exist for all polynomials: for any polynomial p, there exists -p such that p + (-p) = 0.

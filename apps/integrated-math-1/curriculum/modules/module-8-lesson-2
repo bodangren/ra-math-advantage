@@ -1,0 +1,153 @@
+# Lesson 8-2 — Transformations of Exponential Functions
+
+Source: (Module 8, Lesson 8-2, Int1_0802_practice.docx)
+
+## Today's Goals
+
+* Describe transformations of exponential functions verbally and in function notation
+* Write equations for transformed exponential functions given a graph
+* Apply transformations to model real-world situations involving exponential growth and decay
+* Graph transformed exponential functions and identify their key features
+
+## Vocabulary
+
+* **Parent function** — The simplest form of a function in a family, e.g. [ f(x) = b^x ] 
+* **Vertical translation (shift)** — A transformation of the form [ g(x) = f(x) + k ] that moves the graph up or down
+* **Horizontal translation (shift)** — A transformation of the form [ g(x) = f(x - h) ] that moves the graph left or right
+* **Vertical stretch/compression** — A transformation of the form [ g(x) = a \cdot f(x) ] that scales the output values
+* **Horizontal stretch/compression** — A transformation of the form [ g(x) = f(cx) ] that scales the input values
+* **Reflection** — A transformation that flips the graph over an axis; [ g(x) = -f(x) ] reflects over the [ x ]-axis and [ g(x) = f(-x) ] reflects over the [ y ]-axis
+* **Dilation** — A stretch or compression of a graph by a scale factor
+* **Depreciation** — The decrease in the value of an item over time due to age or wear
+
+## Learn: Transformations of Exponential Functions
+
+Exponential functions can be transformed in the same ways as other function families. Understanding how each parameter affects the graph allows you to predict and describe changes.
+
+### Key Concept: General Form of a Transformed Exponential Function
+
+The general form of a transformed exponential function is:
+
+[
+g(x) = a \cdot b^{c(x - h)} + k
+]
+
+where:
+
+* [ a ] controls vertical stretch, compression, and reflection over the [ x ]-axis
+* [ b ] is the base of the exponential function
+* [ c ] controls horizontal stretch, compression, and reflection over the [ y ]-axis
+* [ h ] controls horizontal translation (shift right if [ h > 0 ], left if [ h < 0 ])
+* [ k ] controls vertical translation (shift up if [ k > 0 ], down if [ k < 0 ])
+
+### Key Concept: Identifying Transformations
+
+* [ g(x) = f(x) + k ] — vertical shift up by [ k ] units (or down if [ k ] is negative)
+* [ g(x) = f(x - h) ] — horizontal shift right by [ h ] units (or left if [ h ] is negative)
+* [ g(x) = a \cdot f(x) ] — vertical stretch by factor [ |a| ] if [ |a| > 1 ], compression if [ 0 < |a| < 1 ]; reflection over [ x ]-axis if [ a < 0 ] 
+* [ g(x) = f(cx) ] — horizontal compression by factor [ \frac{1}{|c|} ] if [ |c| > 1 ], stretch if [ 0 < |c| < 1 ]; reflection over [ y ]-axis if [ c < 0 ] 
+
+## Example 1 — Describe Transformations from Equations
+
+Given a parent exponential function [ f(x) ] and a transformed function [ g(x) ], identify and describe the transformation(s) that map [ f(x) ] to [ g(x) ].
+
+### Step 1: Compare the Structures
+
+Write both functions side by side and note any differences in form.
+
+For example, given:
+[
+f(x) = 6^x \quad \text{and} \quad g(x) = 6^x + 8
+]
+
+### Step 2: Identify the Transformation Type
+
+Determine whether the change is a vertical shift, horizontal shift, stretch, compression, reflection, or combination.
+
+* [ g(x) = 6^x + 8 ] is a vertical shift up 8 units
+* [ g(x) = -5^x ] is a reflection across the [ x ]-axis
+* [ g(x) = 3^{2x} + 1 ] is a horizontal compression by a factor of [ \frac{1}{2} ] 
+* [ g(x) = 2^{-x} + 1 ] is a reflection across the [ y ]-axis and a vertical shift up 1 unit
+* [ g(x) = 2(3^x + 1) ] is a vertical stretch by a factor of 2
+* [ g(x) = 4^{x - 3} ] is a horizontal shift right 3 units
+
+### Step 3: State the Complete Description
+
+Write a clear sentence describing how [ g(x) ] relates to [ f(x) ].
+
+## Example 2 — Write Equations from Graphs
+
+Each graph shows a transformation of the parent function [ y = 2^x ]. Use key points and asymptote behavior to determine the equation of the transformed function.
+
+### Step 1: Identify the Parent Function
+
+The parent function is [ f(x) = 2^x ], which passes through [ (0, 1) ] and has a horizontal asymptote at [ y = 0 ].
+
+### Step 2: Locate Transformed Key Points
+
+Find where the transformed graph crosses the [ y ]-axis or other identifiable points, and compare to the parent.
+
+### Step 3: Determine the Transformation Parameters
+
+Use the shifted points and asymptote to solve for [ a ], [ h ], and [ k ] in:
+[
+g(x) = a \cdot 2^{x - h} + k
+]
+
+For example, if the asymptote moves to [ y = -3 ] and the graph is reflected:
+[
+g(x) = -2^x - 3
+]
+
+## Example 3 — Apply Transformations to Real-World Models
+
+Use exponential transformations to model and compare real-world situations involving growth and decay.
+
+### Step 1: Identify the Parent Model
+
+For example, the parent function for compound interest at rate [ r ] is:
+[
+f(x) = (1 + r)^x
+]
+
+### Step 2: Interpret the Transformation in Context
+
+Given [ g(x) = 2000(1.0125)^x ], recognize this as a vertical stretch by factor 2000 of the parent [ f(x) = 1.0125^x ]. The stretch factor represents the initial principal.
+
+### Step 3: Compare Models
+
+When comparing two exponential models, describe one as a transformation of the other:
+
+* [ f(x) = 100(0.89)^x ] models caffeine from coffee
+* [ g(x) = 25(0.89)^x ] models caffeine from green tea
+
+Here, [ g(x) ] is a vertical compression of [ f(x) ] by factor [ \frac{1}{4} ], reflecting the lower initial caffeine content.
+
+### Step 4: Solve Contextual Questions
+
+Use the models to answer specific questions such as calculating values after a given time or finding the difference between two quantities.
+
+For example, to compare depreciation of a 12000-dollar car ([ g(x) = 12000(0.85)^x ]) and a 20000-dollar car at the same rate:
+[
+h(x) = 20000(0.85)^x
+]
+
+After 5 years, find [ h(5) - g(5) ] to determine the value difference.
+
+## Mixed Exercises
+
+The mixed exercises section provides comprehensive practice across all transformation types and applications. Problems include:
+
+* Describing transformations of [ g(x) = 2^x + 6 ], [ g(x) = 3(2)^x ], [ g(x) = -\frac{1}{4}(2)^x ], [ g(x) = (2)^{-x} ], and others relative to the parent [ f(x) = 2^x ] 
+* Writing functions [ g(x) ] to represent described transformations (translations, stretches, compressions) of given parent functions [ f(x) = 2^x ], [ f(x) = 8^x ], [ f(x) = 5^x ], [ f(x) = 3^x ], [ f(x) = 6^x ], and [ f(x) = 4^x ] 
+* Writing equations for graphs that are transformations of [ f(x) = 5^x ] 
+* Analyzing a graph showing assets over time for two people with identical bank accounts but one also owning an antique; describing the graph as a transformation and extrapolating the antique's value
+* Graphing and describing combined transformations such as [ g(x) = 5 \cdot 3^{x + 2} - 4 ] and [ g(x) = -3 \cdot 2^{-x} + 1 ] 
+* Reasoning and proof problems including finding intersection points, using properties of exponents to justify equivalent forms, analyzing the effect of negative scale factors, identifying errors in transformation descriptions, and describing constraints on model parameters
+
+## Review Notes
+
+* Problems 13–16 and 37–40 include graphs (images) that cannot be described textually. These require visual inspection to determine transformation parameters and write equations.
+* Problem 41 includes a graph showing assets over time that must be visually inspected to describe the transformation and extrapolate the value of the antique toy automobile.
+* Problem 50 includes a graph of a parent function [ f(x) ] that must be visually inspected to identify the parent function, write a transformation [ g(x) ], describe the transformation, and graph the result.
+* Problem 49 includes an image showing four pairs of transformations labeled A, B, C, D for a "Which One Doesn't Belong?" task.

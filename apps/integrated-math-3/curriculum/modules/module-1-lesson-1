@@ -1,265 +1,170 @@
 # Lesson 1-1 — Graphing Quadratic Functions
 
-Source: (Module 1, Lesson 1-1, pp. 3–7)
+Source: (Module 1, Lesson 1-1, Int3_0101_practice.docx)
 
-## Today’s Goals
+## Today's Goals
 
-* Graph quadratic functions
-* Find and interpret the average rate of change
-
----
+* Graph quadratic functions and identify the vertex, axis of symmetry, and direction of opening.
+* State the domain and range of a quadratic function.
+* Compare two quadratic functions by analyzing their graphs and tables.
+* Write and solve quadratic revenue functions derived from real-world scenarios.
+* Calculate and interpret the average rate of change of a quadratic function over a given interval.
 
 ## Vocabulary
 
-* quadratic function
-* axis of symmetry
-* vertex
-* maximum
-* minimum
-* rate of change
-* average rate of change
+* **Quadratic Function** — A function of the form [f(x) = ax^2 + bx + c] where [a], [b], and [c] are constants and [a ≠ 0].
+* **Vertex** — The highest or lowest point of a parabola; the maximum or minimum value of the function.
+* **Axis of Symmetry** — The vertical line [x = -b / 2a] that divides the parabola into two mirror images.
+* **Domain** — The set of all possible input values (x-values) for which the function is defined.
+* **Range** — The set of all possible output values (y-values) of the function.
+* **Maximum Value** — The highest y-value of a parabola that opens downward.
+* **Minimum Value** — The lowest y-value of a parabola that opens upward.
+* **Average Rate of Change** — The change in output value divided by the change in input value over an interval.
 
----
+## Explore: The Shape of a Parabola
 
-## Explore: Transforming Quadratic Functions
-
-Use graphing technology to explore how changes to (a), (b), and (c) affect the graph of
-[
-y = ax^2 + bx + c
-]
+Quadratic functions produce U-shaped graphs called parabolas. Students explore how the coefficients in [f(x) = ax^2 + bx + c] affect the direction, width, and position of the parabola. The vertex represents the maximum or minimum point, and the axis of symmetry divides the parabola into symmetric halves.
 
 Inquiry Question:
-How can you use the values of (a), (b), and (c) to visualize the graph?
-
----
+How does the value of [a] in [f(x) = ax^2 + bx + c] determine whether the parabola opens upward or downward, and what does this tell you about the vertex?
 
 ## Learn: Graphing Quadratic Functions
 
-A quadratic function has the form:
-[
-y = ax^2 + bx + c, \quad a \ne 0
-]
+### Key Concept: Standard Form and Vertex Form
 
-* The graph is a parabola
-* The y-intercept is (c)
+A quadratic function can be written as [f(x) = ax^2 + bx + c]. The vertex is located at [x = -b / 2a].
 
----
+* If [a > 0], the parabola opens upward and the vertex is the minimum point.
+* If [a < 0], the parabola opens downward and the vertex is the maximum point.
 
-### Key Concept: Graph of a Quadratic Function
+### Key Concept: Domain and Range
 
-* Axis of symmetry:
-  [
-  x = -\frac{b}{2a}
-  ]
+* The domain of any quadratic function is all real numbers: [(-∞, ∞)].
+* The range depends on the vertex and the direction the parabola opens.
 
-* The axis of symmetry passes through the vertex
+## Example 1 — Graph Quadratic Functions and State Domain and Range
 
----
+Graph each function and determine its domain and range.
 
-### Key Concept: Maximum and Minimum
+### Step 1: Identify the Coefficients
 
-* If (a > 0): parabola opens up → vertex is a minimum
-* If (a < 0): parabola opens down → vertex is a maximum
+For [f(x) = x^2 + 6x + 8], identify [a = 1], [b = 6], and [c = 8].
 
-⚠️ Important:
+### Step 2: Find the Vertex and Axis of Symmetry
 
-* A maximum is not necessarily above the x-axis
-* A minimum is not necessarily below the x-axis
+Calculate [x = -b / 2a = -6 / 2(1) = -3]. Substitute to find the y-coordinate: [f(-3) = (-3)^2 + 6(-3) + 8 = 9 - 18 + 8 = -1].
 
----
+The vertex is at [(-3, -1)] and the axis of symmetry is [x = -3].
 
-## Example 1 — Graph Using a Table
+### Step 3: Create a Table and Graph
 
-Graph:
-[
-f(x) = x^2 + 2x - 3
-]
+Choose x-values around the vertex, compute corresponding y-values, plot points, and draw the parabola opening upward.
 
-### Step 1: Analyze
+### Step 4: State Domain and Range
 
-* (a = 1,\ b = 2,\ c = -3)
-* y-intercept: (-3)
+Since [a > 0], the parabola opens upward, so the range is [[-1, ∞)]. The domain is all real numbers.
 
-Axis of symmetry:
-[
-x = -\frac{2}{2(1)} = -1
-]
+Graph [f(x) = -x^2 - 2x + 2] and [f(x) = 2x^2 - 4x + 3], identifying vertex, axis of symmetry, domain, and range for each.
 
-Vertex x-value: (-1)
-Since (a > 0), vertex is a minimum
+## Example 2 — Compare Quadratic Functions Using Graphs and Tables
 
----
+Compare the graph of [f(x)] to a given quadratic function [g(x)] to determine which has a greater maximum or lesser minimum.
 
-### Step 2: Table of Values
+### Step 1: Analyze [f(x)] from its Graph
 
-| x  | f(x) | Point    |
-| -- | ---- | -------- |
-| -3 | 0    | (-3, 0)  |
-| -2 | -3   | (-2, -3) |
-| -1 | -4   | (-1, -4) |
-| 0  | -3   | (0, -3)  |
-| 1  | 0    | (1, 0)   |
+Examine the vertex and opening direction of [f(x)] from the provided graph.
 
----
+### Step 2: Identify the Key Features of [g(x)]
 
-### Step 3: Analyze Graph
+For [g(x)] with a y-intercept of 1 and vertex at [(1, 3)]: determine whether it opens upward or downward, find the maximum or minimum value, and compare to [f(x)].
 
-* Domain: all real numbers
-* Range: (y \ge -4)
+Graphs show [f(x)] compared to [g(x) = x^2 - 10x + 5] and [g(x)] shown in a table. Students determine which function has the lesser minimum or greater maximum.
 
----
+## Example 3 — Quadratic Revenue Functions
 
-## Example 2 — Compare Quadratic Functions
+Write a quadratic function to model revenue based on price changes, then find the maximum revenue and the price that produces it.
 
-* (f(x)) has a maximum of about 5 (from graph)
-* (g(x)): vertex (1, 2), y-intercept -1
+### Step 1: Define Variables and Write the Revenue Function
 
-Since (5 > 2), (f(x)) has the greater maximum
+For a park that sold 480 permits at $80 each, with a $4 price increase reducing sales by 16 permits:
 
----
+Let [x] = number of $4 increases. Then price per permit is [80 + 4x] and quantity is [480 - 16x].
 
-## Example 3 — Real-World Application (Modeling)
+Revenue function: [R(x) = (80 + 4x)(480 - 16x)].
 
-A ski resort sells:
+### Step 2: Find the Vertex to Maximize Revenue
 
-* 680 passes at $120
-* For every $5 increase → 20 fewer passes sold
+Expand and rewrite in standard form, then find the vertex. The x-coordinate of the vertex gives the number of $4 increases that maximizes revenue. Substitute back to find the optimal price.
 
----
+### Step 3: Find Domain and Range in Context
 
-### Step 1: Define Variables
+The domain is restricted by the fact that price and quantity must be non-negative: [0 ≤ x ≤ 30]. The range is the corresponding revenue values.
 
-Let:
+Similar analysis for a candle retailer problem where a $2 price decrease increases sales by 10 candles.
 
-* (x) = number of $5 increases
-* (P(x)) = total revenue
+## Example 4 — Average Rate of Change of Quadratic Functions
 
-[
-P(x) = (120 + 5x)(680 - 20x)
-]
+Calculate the average rate of change of [f(x)] over a given interval using the formula [[f(b) - f(a)] / (b - a)].
 
----
+### Step 1: Evaluate the Function at the Endpoints
 
-### Step 2: Expand
+For [f(x) = x^2 - 10x + 5] on the interval [[-4, 4]]:
 
-[
-P(x) = -100x^2 + 1000x + 81{,}600
-]
+[f(-4) = (-4)^2 - 10(-4) + 5 = 16 + 40 + 5 = 61]
+[f(4) = (4)^2 - 10(4) + 5 = 16 - 40 + 5 = -19]
 
----
+### Step 2: Calculate the Average Rate of Change
 
-### Step 3: Find Maximum
+Average rate of change = [[61 - (-19)] / [4 - (-4)]] = [80 / 8] = [10].
 
-Axis of symmetry:
-[
-x = -\frac{1000}{2(-100)} = 5
-]
+This means the function increases by 10 units for every 1-unit increase in x over this interval.
 
----
+## Example 5 — Average Rate of Change from Graphs
 
-### Step 4: Interpret
+Use a graph to estimate the average rate of change over a specified interval by identifying coordinates and applying the formula.
 
-Best price:
-[
-120 + 5(5) = 145
-]
+### Step 1: Read Coordinates from the Graph
 
-✅ Maximum profit at $145 per pass
+For each function shown in a graph, identify the y-values at the endpoints of the given interval.
 
----
+### Step 2: Apply the Rate of Change Formula
 
-### Domain and Range (Context)
+Calculate [[f(b) - f(a)] / (b - a)] using the coordinates read from the graph.
 
-* Domain: (0 \le x \le 34)
-* Range: (0 \le P(x) \le 84{,}100)
+## Example 6 — Interpret Average Rate of Change in Context
 
----
+Use graphs showing real-world data to estimate and then verify the average rate of change algebraically.
 
-## Learn: Average Rate of Change
+### Step 1: Estimate from the Graph
 
-### Key Concept
+Identify two points on the line or curve within the specified interval and estimate the slope.
 
-[
-\text{Average Rate of Change} = \frac{f(b) - f(a)}{b - a}
-]
+### Step 2: Verify Algebraically
 
----
+Use the function or data to compute the exact average rate of change and compare to the estimate.
 
-## Example 4 — From an Equation
+For a graph showing chip bag consumption from 2011 to 2016: interpret what the average rate of change means in context (e.g., bags per year).
 
-Find average rate of change of:
-[
-f(x) = -x^2 + 2x - 1 \quad \text{on } [-4, 4]
-]
+For a graph of Sheila's earnings from 2008 to 2018: interpret the average rate of change as yearly earnings change.
 
-[
-f(4) = -9,\quad f(-4) = -25
-]
+## Mixed Exercises
 
-[
-\frac{-9 - (-25)}{4 - (-4)} = \frac{16}{8} = 2
-]
+The mixed exercises section provides practice with all skills from the lesson. Problems include:
 
-✅ Answer: 2
+* Graphing quadratic functions by finding the y-intercept, axis of symmetry, vertex, and creating a table of values. (Problems 27–32)
+* Determining whether a function has a maximum or minimum and finding that value. (Problems 33–38)
+* A health club pricing problem: finding the vertex and interpreting it in context to determine if the pricing model seems reasonable. (Problem 39)
+* A symphony ticket pricing problem: finding the ticket price that maximizes profit given a revenue function. (Problem 40)
+* A cinema ticket pricing problem: defining variables, writing and graphing a revenue function, finding the domain, and determining the optimal price. (Problem 41)
+* A ball thrown upward from a pool: using [h(t) = -16t^2 + 32t + 4] to find the maximum height and when it occurs. (Problem 42)
+* A cannonball trajectory problem: using [y = -(1/1600)x^2 + (1/2)x + 20] to determine the cannon's height above ground. (Problem 43)
+* Comparing maximum values of two quadratic functions using graphical reasoning. (Problem 44)
+* Analyzing a "Find the Error" problem comparing two students' work on quadratic functions. (Problem 45)
+* A table of values representing a quadratic function: finding coefficients a, b, c, and d; determining the x-coordinate of the vertex; and identifying whether there is a maximum or minimum. (Problem 46)
+* A reasoning problem asking students to describe how to determine if a function is quadratic and whether it has a maximum or minimum. (Problem 47)
+* Creating quadratic functions with specific characteristics: maximum of 8, minimum of -4, and vertex at (-2, 6). (Problem 48)
 
----
+## Review Notes
 
-## Example 5 — From a Table
-
-Given:
-
-| x  | f(x) |
-| -- | ---- |
-| -3 | 48   |
-| 3  | -24  |
-
-[
-\frac{-24 - 48}{3 - (-3)} = \frac{-72}{6} = -12
-]
-
-✅ Answer: -12
-
----
-
-## Example 6 — From a Graph (Estimation + Algebra)
-
-* Change in y ≈ 5.5
-* Change in x = 10
-
-[
-\text{Rate} \approx 0.55
-]
-
-Exact:
-[
-\frac{20.99 - 15.72}{10} = 0.527
-]
-
----
-
-### Interpretation
-
-Spending increased by about $527 million per year
-
----
-
-## Think About It
-
-* Why does the vertex represent a maximum or minimum?
-* How can you tell a function is nonlinear without graphing?
-* Compare average rate of change over different intervals
-
----
-
-## CAP Reflection
-
-* Courage: What part of graphing felt unfamiliar today?
-* Adaptability: How did you adjust when the graph didn’t look right?
-* Persistence: What strategy helped you finish the examples?
-
----
-
-## Objective Alignment
-
-- `Graph quadratic functions`: Primary worked examples: Examples 1-3.
-- `Find and interpret the average rate of change`: Primary worked examples: Examples 4-6.
+* Images referenced in the worksheet (graphs for comparing f(x) to g(x) in Example 2, graphs for average rate of change problems in Example 5, chip consumption and earnings graphs in Example 6, the ball throw diagram in Problem 42, cannon trajectory in Problem 43, and the two quadratic function graphs in Problems 44-45, and the table in Problem 46) could not be fully described without visual reference. Teachers should consult the original worksheet for exact diagrams and values.
+* The worksheet contains 48 practice problems across six examples and mixed exercises.

@@ -1,0 +1,118 @@
+# Lesson 2-3 — Tests for Parallelograms
+
+Source: (Module 2, Lesson 2-3, Int2_0203_practice.docx)
+
+## Today's Goals
+
+* Determine whether a quadrilateral is a parallelogram using side, angle, and diagonal properties.
+* Find values of variables to make a quadrilateral a parallelogram.
+* Use coordinate geometry to verify that a quadrilateral is a parallelogram.
+* Write coordinate proofs for parallelogram theorems.
+
+## Vocabulary
+
+* **Parallelogram Tests** — Conditions that guarantee a quadrilateral is a parallelogram (e.g., both pairs of opposite sides parallel, both pairs of opposite sides congruent, diagonals bisect each other, one pair of opposite sides parallel and congruent).
+* **Coordinate Proof** — A proof that uses coordinates and algebraic calculations to verify geometric properties.
+
+## Explore: How Do We Know It's a Parallelogram?
+
+Students explore the minimum conditions needed to guarantee that a quadrilateral is a parallelogram, considering both geometric properties and coordinate approaches.
+
+Inquiry Question:
+What is the smallest set of measurements you can make to confirm that a quadrilateral is a parallelogram?
+
+## Learn: Tests for Parallelograms
+
+### Key Concept: Tests for Parallelograms
+
+A quadrilateral is a parallelogram if any of the following is true:
+
+* Both pairs of opposite sides are parallel.
+* Both pairs of opposite sides are congruent.
+* One pair of opposite sides is both parallel and congruent.
+* Both pairs of opposite angles are congruent.
+* The diagonals bisect each other.
+
+### Key Concept: Using Coordinate Geometry
+
+To verify a quadrilateral is a parallelogram using coordinates:
+
+* **Slope Formula** — Opposite sides have the same slope (parallel).
+* **Distance Formula** — Opposite sides have the same length (congruent).
+* **Midpoint Formula** — Diagonals have the same midpoint (bisect each other).
+
+## Example 1 — Identify Parallelograms from Diagrams
+
+Determine whether each given quadrilateral is a parallelogram based on visual inspection and measurement information.
+
+### Step 1: Check Side Relationships
+
+Look for parallel sides (indicated by arrows), congruent sides (tick marks), or other properties shown in the diagram.
+
+### Step 2: Apply a Test
+
+Use one of the parallelogram tests to justify whether the quadrilateral is or is not a parallelogram.
+
+## Example 2 — Find Values to Form a Parallelogram
+
+Solve for x and y so that a quadrilateral satisfies the conditions to be a parallelogram.
+
+### Step 1: Identify the Test Being Used
+
+Determine whether to use opposite sides parallel, opposite sides congruent, or another condition based on the problem context.
+
+### Step 2: Set Up Equations
+
+Create equations using the given expressions for sides or angles, then solve for the unknowns.
+
+## Example 3 — Coordinate Geometry Verification
+
+Graph quadrilaterals with given vertices and determine whether each is a parallelogram using the indicated formula.
+
+### Step 1: Calculate Slopes, Distances, or Midpoints
+
+Use the appropriate formula based on whether the problem asks for slope formula, distance and slope formulas, or midpoint formula verification.
+
+### Step 2: Compare Results
+
+For opposite sides to be parallel, their slopes must be equal. For opposite sides to be congruent, their lengths must be equal. For diagonals to bisect each other, their midpoints must be equal.
+
+## Example 4 — Write Coordinate Proofs
+
+Write coordinate proofs for statements about parallelograms.
+
+### Step 1: Position the Figure
+
+Place the parallelogram conveniently on the coordinate plane, often with one vertex at the origin and sides along the axes.
+
+### Step 2: Use Algebraic Methods
+
+Calculate slopes, distances, or midpoints algebraically to prove the desired property.
+
+## Mixed Exercises
+
+The mixed exercises section provides practice with all skills from the lesson. Problems include:
+
+* Writing paragraph proofs and two-column proofs for theorems about parallelogram tests (Theorem 7.10 about opposite angles congruent implying parallelogram, Theorem 7.11 about diagonal bisection).
+* Finding a possible fourth vertex for parallelogram ABCD given three vertices, and finding all possible coordinates for the fourth vertex of a parallelogram with given vertices.
+* Determining the slope of a side so that a quadrilateral with given side slopes becomes a parallelogram.
+* Explaining how a designer can be certain that congruent parallelogram shapes in a pattern are actually parallelograms.
+* Finding the perimeter of a parallelogram given one side length.
+* Determining how many different parallelograms can be formed with four given side lengths (two of one length, two of another).
+* Verifying whether four street lamps form the vertices of a parallelogram on a town map coordinate plane.
+* Explaining how to use Theorem 7.11 to construct a parallelogram, then performing the construction.
+* Determining whether four people balancing on an X-shaped object must all be the same distance from the center to form a parallelogram.
+* Finding three possible locations for a missing jet when three jets are at vertices of a parallelogram.
+* Writing a coordinate proof that segments joining midpoints of any quadrilateral form a parallelogram.
+* Analyzing whether two parallelograms with four congruent corresponding angles are always, sometimes, or never congruent.
+* Comparing Theorem 7.9 and Theorem 7.3.
+* Proving that if ABCD is a parallelogram and AJ ≅ KC, then quadrilateral JBKD is a parallelogram.
+* Finding the remaining vertices of a parallelogram when given two vertices and the intersection point of the diagonals.
+
+## Review Notes
+
+* Images referenced in the worksheet (quadrilateral diagrams for Examples 1-4, coordinate graphs, street map, and jet formation) could not be fully described without visual reference. Teachers should consult the original worksheet for exact diagrams and values.
+* The worksheet contains 35 practice problems across four examples and mixed exercises.
+* ![](media/image1.png) ![](media/image2.png) ![](media/image3.png) ![](media/image4.png) ![](media/image5.png) ![](media/image6.png) ![](media/image7.png) ![](media/image8.png) ![](media/image9.png) ![](media/image10.png) ![](media/image11.png) ![](media/image12.png) ![](media/image13.png) ![](media/image14.png) ![](media/image15.png) ![](media/image16.png) ![](media/image17.png) ![](media/image18.png) ![](media/image19.png) ![](media/image20.png)
+
+(End of file - total 178 lines)

@@ -1,114 +1,115 @@
 # Lesson 9-7 — Inverse Trigonometric Functions
 
-Source: (Module 9, Lesson 9-7, pp. 473–474)
+Source: (Module 9, Lesson 9-7, Int3_0907_practice.docx)
 
-## Today's Goal
+## Today's Goals
 
-* Find values of angle measures by using inverse trigonometric functions
-
----
+* Find values of inverse trigonometric functions including arcsine, arccosine, and arctangent.
+* Evaluate composite expressions involving inverse trigonometric functions.
+* Solve trigonometric equations using inverse functions.
+* Apply inverse trigonometric functions to solve real-world problems involving angles and measurements.
 
 ## Vocabulary
 
-* inverse trigonometric functions
-* principal values
+* **Inverse Trigonometric Functions** — Functions that reverse the action of trigonometric functions: [sin⁻¹ x] (arcsine), [cos⁻¹ x] (arccosine), [tan⁻¹ x] (arctangent).
+* **Arcsine** — [y = sin⁻¹ x] means [sin y = x] with [y] in the range [[-π/2, π/2]] (Quadrants I and IV).
+* **Arccosine** — [y = cos⁻¹ x] means [cos y = x] with [y] in the range [[0, π]] (Quadrants I and II).
+* **Arctangent** — [y = tan⁻¹ x] means [tan y = x] with [y] in the range [(-π/2, π/2)] (Quadrants I and IV).
+* **Principal Value** — The single value in the restricted range of an inverse trigonometric function.
 
----
+## Explore: Why Inverse Trigonometric Functions Exist
+
+Since trigonometric functions are not one-to-one (they repeat values), inverse functions must have restricted domains to be well-defined. The ranges are chosen to give one principal value for each input.
+
+Inquiry Question:
+Why do inverse sine, cosine, and tangent have different restricted ranges, and how do these ranges affect the values you get when solving equations?
 
 ## Learn: Inverse Trigonometric Functions
 
-Inverse trigonometric functions return angle measures.
+### Key Concept: Ranges of Inverse Functions
 
-Because sine, cosine, and tangent are not one-to-one over all real numbers, their domains must be restricted so the inverses are functions. These restricted outputs are called **principal values**.
+* [y = sin⁻¹ x] has range [[-π/2, π/2]] or [[-90°, 90°]]
+* [y = cos⁻¹ x] has range [[0, π]] or [[0°, 180°]]
+* [y = tan⁻¹ x] has range [(-π/2, π/2)] or [(-90°, 90°)]
 
-### Key Concept: Inverse Trigonometric Functions
+### Key Concept: Evaluating Inverse Trigonometric Functions
 
-* `Arcsin x` or `Sin^-1 x`
-  * domain: `-1 <= x <= 1`
-  * range: `-pi/2 <= y <= pi/2`
-* `Arccos x` or `Cos^-1 x`
-  * domain: `-1 <= x <= 1`
-  * range: `0 <= y <= pi`
-* `Arctan x` or `Tan^-1 x`
-  * domain: all real numbers
-  * range: `-pi/2 <= y <= pi/2`
+Example: [cos⁻¹(√3/2)]
+* Find the angle [θ] in [[0, π]] where [cos θ = √3/2]
+* [cos 30° = √3/2], so [cos⁻¹(√3/2) = π/6] or [30°]
 
----
+Example: [sin⁻¹(-√3/2)]
+* Find the angle [θ] in [[-π/2, π/2]] where [sin θ = -√3/2]
+* [sin(-60°) = -√3/2], so [sin⁻¹(-√3/2) = -π/3] or [-60°]
+
+### Key Concept: Composite Expressions
+
+For expressions like [cos(sin⁻¹ x)]:
+* Let [θ = sin⁻¹ x], so [sin θ = x] and [θ] is in [[-π/2, π/2]]
+* Use the Pythagorean identity to find [cos θ = √(1 - x²)] (positive in Quadrant I or IV)
 
 ## Example 1 — Evaluate Inverse Trigonometric Functions
 
-Find:
+### Step 1: Use the Principal Value Ranges
 
-`Tan^-1(sqrt(3))`
+[cos⁻¹(√3/2) = π/6]
+[sin⁻¹(-√3/2) = -π/3]
+[arccos(-1/2) = 2π/3]
+[arctan(√3) = π/3]
+[arccos(-√2/2) = 3π/4]
+[tan⁻¹(-1) = -π/4]
 
-Use the principal range for tangent, `-90°` to `90°`.
+## Example 2 — Evaluate Composite Expressions
 
-Since:
+### Step 1: Use Reference Triangles and Identities
 
-`tan 60° = sqrt(3)`
+[cos(sin⁻¹(-√2/2))]
+* Let [θ = sin⁻¹(-√2/2)], so [sin θ = -√2/2] and [θ = -45°] or [-π/4]
+* [cos(-π/4) = √2/2]
 
-we have:
+[tan(arcsin(-5/7))]
+* Let [θ = arcsin(-5/7)], so [sin θ = -5/7]
+* [tan θ = sin θ / cos θ = (-5/7) / (√(1 - 25/49)) = (-5/7) / (√24/7) = -5/√24 = -5√6/6]
 
-`Tan^-1(sqrt(3)) = 60° = pi/3`
+[sin(cos⁻¹(0.3))]
+* Let [θ = cos⁻¹(0.3)], so [cos θ = 0.3]
+* [sin θ = √(1 - 0.09) = √0.91 ≈ 0.954]
 
----
+## Example 3 — Solve Trigonometric Equations
 
-## Example 2 — Find a Trigonometric Value by Using a Calculator
+### Step 1: Use Inverse Functions to Find Angles
 
-Find:
+[sin θ = 0.8] → [θ = sin⁻¹(0.8) ≈ 53.1°] (in Quadrant I or II)
+[cos θ = 0.5] → [θ = cos⁻¹(0.5) = 60°]
+[tan θ = 4.5] → [θ = tan⁻¹(4.5) ≈ 77.5°]
 
-`sin(Cos^-1(0.36))`
+For solutions in [[0, 2π]] or [[0°, 360°]], also consider supplementary angles and coterminal angles.
 
-Using a calculator:
+## Example 4 — Real-World Applications
 
-`sin(Cos^-1(0.36)) ≈ 0.93`
+### Step 1: Set Up Trigonometric Relationships
 
----
+**Kitchen door problem:** Each door is 3 feet wide, cart is 2 feet wide. The minimum angle [θ] satisfies a relationship involving the door width and cart width. Use [cos θ = adjacent/hypotenuse] or appropriate trigonometric ratio to find the angle.
 
-## Example 3 — Find an Angle Measure by Using a Graphing Calculator
+**Biking direction problem:** Bike travels 2 miles east and 4 miles south. The direction [θ] satisfies [tan θ = opposite/adjacent = 4/2 = 2], so [θ = tan⁻¹(2) ≈ 63.4°]. The direction is [63.4°] south of east, or [26.6°] east of south.
 
-If:
+## Mixed Exercises
 
-`Sin theta = -0.17`
+Practice problems include:
 
-then:
+* Solving trigonometric equations for [0 ≤ θ ≤ 2π].
+* Surveying rope triangle problems (3-4-5 triangle).
+* Analyzing when [cos(arccos x) = x] is true or false.
+* Solving cosine equations with restrictions.
+* Creating equations involving arcsine and sine functions.
+* Comparing [tan⁻¹ x] and [Tan⁻¹ x] domains and ranges.
+* Explaining why [sin⁻¹ 8] and [cos⁻¹ 8] are undefined but [tan⁻¹ 8] is defined.
+* Creating inverse trigonometric functions with specific domains and ranges.
 
-`theta = Arcsin(-0.17) ≈ -9.79°`
+## Review Notes
 
----
+* Images referenced in the worksheet (kitchen door diagram for problem 31, biking diagram for problem 32, error analysis diagram for problem 41) could not be fully described without visual reference. Teachers should consult the original worksheet for exact diagrams and values.
 
-## Example 4 — Use Inverse Trigonometric Functions
-
-A plane has `30` miles to land from an elevation of `15,000` feet. Find the angle of descent.
-
-### Step 1: Draw the triangle
-
-Opposite side:
-
-`15,000` feet
-
-Adjacent side:
-
-`30` miles
-
-### Step 2: Write and solve the trig equation
-
-Convert miles to feet:
-
-`30 * 5280 = 158,400`
-
-Use tangent:
-
-`tan theta = 15,000 / 158,400`
-
-Take the inverse tangent:
-
-`theta = Tan^-1(15,000 / 158,400) ≈ 5.4°`
-
-So the angle of descent is about `5.4°`.
-
----
-
-## Objective Alignment
-
-- `Find values of angle measures by using inverse trigonometric functions`: Primary worked examples: Examples 1-4.
+![](media/image1.png)
+![](media/image2.png)
+![](media/image3.png)

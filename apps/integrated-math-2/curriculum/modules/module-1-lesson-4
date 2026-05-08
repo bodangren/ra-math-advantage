@@ -1,0 +1,109 @@
+# Lesson 1-4 — Inequalities in One Triangle
+
+Source: (Module 1, Lesson 1-4, Int2_0104_practice.docx)
+
+## Today's Goals
+
+* List all angles that satisfy a given condition relative to another angle.
+* Order angles and sides of a triangle from smallest to largest.
+* Apply triangle inequality relationships to solve problems.
+* Use angle and side relationships in real-world contexts.
+
+## Vocabulary
+
+* **Triangle Inequality Theorem** — The sum of the lengths of any two sides of a triangle is greater than the length of the third side.
+* **Side-Angle Inequality** — In a triangle, the larger angle is opposite the longer side.
+* **Angle-Side Inequality** — In a triangle, the longer side is opposite the larger angle.
+
+## Explore: How Are Sides and Angles Related?
+
+In a triangle, the sides and angles are connected. A bigger angle always sits across from a bigger side, and vice versa. Students explore how to use this relationship to compare the sizes of angles and sides without measuring.
+
+Inquiry Question:
+If you know the side lengths of a triangle, how can you determine which angle is the largest?
+
+## Learn: Comparing Angles and Sides in Triangles
+
+### Key Concept: Side-Angle Relationship
+
+In any triangle, the longest side is opposite the largest angle, and the shortest side is opposite the smallest angle. This means if one side is longer than another, the angle opposite the longer side is larger.
+
+### Key Concept: Listing Angles and Sides in Order
+
+To order angles or sides from smallest to largest:
+1. Identify the smallest/largest angle or side using the given information or relationships.
+2. Use the side-angle relationship to determine the corresponding angle/side ordering.
+
+## Example 1 — List Angles Satisfying a Condition
+
+Given a triangle diagram with numbered angles, list all angles that satisfy conditions such as "measures greater than m∠3" or "measures less than m∠1."
+
+### Step 1: Compare Angle Numbers
+
+Use the diagram to compare the positions and measures of numbered angles. Angles that share a side or are vertical angles may have special relationships.
+
+### Step 2: Apply the Side-Angle Relationship
+
+If a side appears longer or shorter in a diagram, the angle opposite that side will be correspondingly larger or smaller.
+
+### Step 3: List All Matching Angles
+
+Compile all angles from the diagram that satisfy the stated condition.
+
+## Example 2 — Order Angles and Sides from Smallest to Largest
+
+Given a triangle with side lengths or angle measures, list the angles and sides in order from smallest to largest.
+
+### Step 1: Identify the Smallest and Largest
+
+Find the smallest angle (opposite the shortest side) and the largest angle (opposite the longest side). Fill in the middle values.
+
+### Step 2: Write the Ordering
+
+List the angles in order and separately list the sides in order.
+
+## Example 3 — Compare Angles and Sides in Multiple Triangles
+
+Given multiple triangle diagrams, determine the ordering for each triangle.
+
+### Step 1: Analyze Each Triangle
+
+Apply the side-angle relationship to each triangle separately.
+
+### Step 2: Compare Across Triangles
+
+If the problem asks for comparisons across triangles, use the given measurements or diagram relationships.
+
+## Example 4 — Real-World Angle Comparison
+
+Use the relationship between side lengths and opposite angles to solve real-world problems.
+
+### Step 1: Model the Situation
+
+Identify the three points (e.g., trees on a golf course) and the angles between them.
+
+### Step 2: Apply the Relationship
+
+The largest angle is opposite the longest side. Determine which side is the longest to find the largest angle.
+
+## Mixed Exercises
+
+Practice involves:
+
+* Map problem: determining which two cities are nearest and farthest apart based on angle measures in a triangle formed by three cities.
+* Listing angles and sides of triangles in order from smallest to largest given diagrams.
+* Analyzing angle bisector intersections: if BC > AC, compare m∠BAY and m∠ABX, determine whether XC ≅ YC, and if m∠AQB > m∠BQY, which side of triangle ABQ has the greatest length.
+* Writing a paragraph proof: if WY > YX, then m∠ZWY > m∠YWX.
+* Comparing perimeters of squares arranged to form a triangle.
+* Determining which angle has the greatest measure given a complex diagram with multiple intersecting lines.
+* Comparing two angle measures to determine the relationship (e.g., is one angle greater than, less than, or equal to another).
+* Comparing two side lengths to determine the relationship.
+* Drawing a triangle ABC such that m∠A > m∠B > m∠C using only a ruler, and justifying the drawing.
+* Finding a possible measure for side AB in triangle ABC given a diagram.
+* Analyzing whether the base of an isosceles triangle is sometimes, always, or never the longest side.
+* Listing numbered angles in order from smallest to largest given side lengths and a condition m∠2 = m∠5.
+
+## Review Notes
+
+* Multiple diagrams referenced: images showing triangle angle and side relationships (media/image1.png through media/image19.png) contain geometric figures that could not be fully described.
+* The worksheet contains 39 practice problems covering angle and side comparisons, proofs, and real-world applications.

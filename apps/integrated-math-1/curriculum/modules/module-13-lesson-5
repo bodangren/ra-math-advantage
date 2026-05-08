@@ -1,0 +1,222 @@
+# Lesson 13-5 — Tessellations
+
+Source: (Module 13, Lesson 13-5, Int1_1305_practice.docx)
+
+## Today's Goals
+
+* Determine whether a regular polygon will tessellate the plane by examining its interior angle measure.
+* Determine whether a semiregular uniform tessellation can be created from given combinations of regular polygons.
+* Classify tessellation patterns as uniform, not uniform, regular, not regular, or semiregular.
+* Determine whether a tessellation can be created from a given figure and describe the transformation(s) used.
+
+## Vocabulary
+
+* **Tessellation** — A repeating pattern of figures that completely covers a plane without gaps or overlaps.
+* **Regular Tessellation** — A tessellation formed by only one type of regular polygon.
+* **Semiregular Tessellation** — A tessellation formed by two or more regular polygons arranged in the same pattern at each vertex.
+* **Uniform Tessellation** — A tessellation in which the same combination of shapes and angles meets at every vertex.
+* **Interior Angle** — The angle formed inside a polygon at each vertex by two adjacent sides.
+* **Vertex** — A point where two or more edges of a polygon meet; in a tessellation, the point where the corners of the shapes come together.
+
+## Explore: Which Shapes Can Cover a Plane Without Gaps?
+
+Students consider how regular polygons fit together around a point and what conditions must be met for them to cover a plane completely without overlapping or leaving gaps.
+
+Inquiry Question:
+Why do only certain regular polygons tessellate the plane, and what role does angle measure play?
+
+## Learn: Tessellations of the Plane
+
+A tessellation is created when a shape (or combination of shapes) is repeated to cover a plane with no gaps and no overlaps. Whether a regular polygon tessellates depends on whether its interior angle is a factor of 360 degrees.
+
+### Key Concept: Regular Polygon Tessellations
+
+* The interior angle of a regular n-gon is given by:
+[
+\frac{(n - 2) \times 180^{\circ}}{n}
+]
+* A regular polygon tessellates the plane if and only if its interior angle measure divides evenly into 360 degrees.
+* Only three regular polygons tessellate the plane: the equilateral triangle, the square, and the regular hexagon.
+
+### Key Concept: Semiregular and Uniform Tessellations
+
+* A semiregular tessellation combines two or more different regular polygons.
+* For a semiregular tessellation to be uniform, the same combination of polygons must meet at every vertex, and the sum of the interior angles at each vertex must equal 360 degrees.
+* If the arrangement of polygons differs from vertex to vertex, the tessellation is not uniform.
+
+### Key Concept: Tessellations from General Figures
+
+* Any triangle or quadrilateral can tessellate the plane.
+* Certain other polygons (such as some hexagons) can also tessellate depending on their angle measures and side lengths.
+* Common transformations used to create tessellations include translations, reflections, and rotations.
+
+## Example 1 — Determine Whether Regular Polygons Tessellate
+
+Use the interior angle measure to decide whether a given regular polygon can tessellate the plane, and explain the reasoning.
+
+### Step 1: Find the Interior Angle
+
+Apply the interior angle formula for a regular n-gon.
+
+For a regular pentagon ([n = 5]):
+[
+\frac{(5 - 2) \times 180^{\circ}}{5} = \frac{540^{\circ}}{5} = 108^{\circ}
+]
+
+For a regular hexagon ([n = 6]):
+[
+\frac{(6 - 2) \times 180^{\circ}}{6} = \frac{720^{\circ}}{6} = 120^{\circ}
+]
+
+For a regular 9-gon ([n = 9]):
+[
+\frac{(9 - 2) \times 180^{\circ}}{9} = \frac{1260^{\circ}}{9} = 140^{\circ}
+]
+
+### Step 2: Check Divisibility Into 360 Degrees
+
+Determine whether the interior angle divides evenly into 360 degrees.
+
+For the pentagon:
+[
+360^{\circ} \div 108^{\circ} = 3.\overline{3}
+]
+The result is not a whole number, so a regular pentagon does not tessellate.
+
+For the hexagon:
+[
+360^{\circ} \div 120^{\circ} = 3
+]
+The result is a whole number, so regular hexagons tessellate the plane (three meet at each vertex).
+
+For the 9-gon:
+[
+360^{\circ} \div 140^{\circ} = 2.\overline{571428}
+]
+The result is not a whole number, so a regular 9-gon does not tessellate.
+
+## Example 2 — Determine Whether Semiregular Uniform Tessellations Exist
+
+Given two types of regular polygons (with all sides equal to 1 unit), determine whether a semiregular uniform tessellation can be formed. If so, find how many of each shape meet at each vertex.
+
+### Step 1: Identify the Interior Angles
+
+List the interior angle measures of the given polygons.
+
+Regular pentagon interior angle:
+[
+108^{\circ}
+]
+
+Square interior angle:
+[
+90^{\circ}
+]
+
+Regular hexagon interior angle:
+[
+120^{\circ}
+]
+
+Equilateral triangle interior angle:
+[
+60^{\circ}
+]
+
+### Step 2: Test Combinations That Sum to 360 Degrees
+
+Find a combination of the given polygons whose interior angles sum to exactly 360 degrees.
+
+For regular pentagons and squares:
+[
+108^{\circ} + 108^{\circ} + 90^{\circ} + 90^{\circ} = 396^{\circ}
+]
+[
+108^{\circ} + 90^{\circ} + 90^{\circ} + 90^{\circ} = 378^{\circ}
+]
+No combination of pentagons and squares sums to exactly 360 degrees, so no semiregular uniform tessellation exists using these two shapes.
+
+For regular hexagons and equilateral triangles:
+[
+120^{\circ} + 120^{\circ} + 60^{\circ} + 60^{\circ} = 360^{\circ}
+]
+This combination works: two hexagons and two triangles meet at each vertex. Therefore, a semiregular uniform tessellation exists.
+
+## Example 3 — Classify Tessellation Patterns
+
+Examine a given pattern to determine whether it is a tessellation, and if so, classify it as uniform, not uniform, regular, not regular, or semiregular.
+
+### Step 1: Verify It Is a Tessellation
+
+Check that the pattern covers the plane completely with no gaps and no overlaps.
+
+### Step 2: Check for Uniformity
+
+Determine whether the same arrangement of shapes meets at every vertex. If every vertex looks identical, the pattern is uniform. If vertices differ, it is not uniform.
+
+### Step 3: Check for Regularity
+
+Determine whether the tessellation uses only one type of regular polygon. If so, it is regular. If it uses more than one type of regular polygon, it is semiregular. If the shapes are not all regular polygons, the tessellation is not regular.
+
+## Example 4 — Tessellations from General Figures
+
+Determine whether a tessellation can be created from a given non-regular figure, describe the transformation(s) that can be used, and justify the reasoning.
+
+### Step 1: Consider Triangles and Quadrilaterals
+
+Any triangle can tessellate the plane. Copies of the triangle can be arranged by translations and rotations so that angles summing to 180 degrees meet along a straight line, and pairs of triangles form a parallelogram that tiles by translation.
+
+For a scalene triangle:
+[
+180^{\circ} + 180^{\circ} = 360^{\circ}
+]
+Two copies of the triangle placed together form a parallelogram, which tessellates by translations.
+
+### Step 2: Consider Special Quadrilaterals
+
+A rhombus is a parallelogram, and all parallelograms tessellate by translations.
+
+For a parallelogram:
+[
+\text{opposite angles are equal, and consecutive angles are supplementary}
+]
+Translations along the sides of the parallelogram produce a tessellation.
+
+### Step 3: Consider Polygons with More Than Four Sides
+
+A regular dodecagon has an interior angle of 150 degrees:
+[
+\frac{(12 - 2) \times 180^{\circ}}{12} = 150^{\circ}
+]
+Since 360 divided by 150 is not a whole number, regular dodecagons do not tessellate by themselves. However, a dodecagon can be part of a semiregular tessellation when combined with other polygons whose angles complement it to 360 degrees.
+
+A regular 15-gon has an interior angle of:
+[
+\frac{(15 - 2) \times 180^{\circ}}{15} = 156^{\circ}
+]
+Since 360 divided by 156 is not a whole number, a regular 15-gon never tessellates the plane by itself.
+
+### Step 4: Describe Transformations
+
+When a figure tessellates, identify the specific rigid transformations used:
+
+* **Translations** — slide copies of the figure without rotating or flipping.
+* **Reflections** — flip copies across a line.
+* **Rotations** — turn copies around a vertex or the midpoint of a side.
+
+For an isosceles trapezoid, rotate a copy 180 degrees around the midpoint of a leg to form a hexagon-like shape, then translate that combined unit to tile the plane.
+
+## Mixed Exercises
+
+The mixed exercises section provides practice with all skills from the lesson:
+
+* Determining the transformation(s) used to create a tessellation from a given pattern.
+* Applying the interior angle criterion to select a single shape of regular polygon paving stones that will form a solid floor.
+* Describing the transformations that can be used to tessellate a custom figure (such as a heart-shaped puzzle piece).
+* Evaluating a conjecture about whether a regular polygon with a 180-degree interior angle tessellates, and explaining the flaw in the reasoning.
+* Creating an original tessellation using translations or rotations.
+* Writing a precise verbal description of what a tessellation is.
+
+## Review Notes
+
+* Images referenced in the worksheet (tessellation patterns for problems 6–8 and 15–17) could not be fully described without visual reference. Teachers should consult the original worksheet for exact diagrams.

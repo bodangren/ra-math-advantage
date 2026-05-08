@@ -1,0 +1,114 @@
+# Lesson 1-2 — Angle Bisectors
+
+Source: (Module 1, Lesson 1-2, Int2_0102_practice.docx)
+
+## Today's Goals
+
+* Find the measures of angles and segments using the Angle Bisector Theorem.
+* Apply properties of angle bisectors and the incenter of a triangle.
+* Solve problems involving the incenter and its distance relationships.
+* Use angle bisectors to find equidistant points in real-world contexts.
+
+## Vocabulary
+
+* **Angle Bisector** — A ray that divides an angle into two congruent angles.
+* **Incenter** — The point of concurrency of the three angle bisectors of a triangle; equidistant from all three sides.
+* **Angle Bisector Theorem** — If a point is on the bisector of an angle, then it is equidistant from the two sides of the angle.
+* **Converse of the Angle Bisector Theorem** — If a point is equidistant from the two sides of an angle, then it lies on the angle bisector.
+* **Incenter Theorem** — The incenter of a triangle is equidistant from all three sides.
+
+## Explore: Where Do Angle Bisectors Meet?
+
+The three angle bisectors of any triangle intersect at a single point. This point has a special property: it is equally distant from all three sides of the triangle. Students explore why this happens and how the incenter differs from the circumcenter.
+
+Inquiry Question:
+Why does the incenter always lie inside the triangle while the circumcenter can lie outside?
+
+## Learn: Angle Bisectors and the Incenter
+
+### Key Concept: Angle Bisector Theorem
+
+If a point lies on the bisector of an angle, then the perpendicular distances from that point to the two sides of the angle are equal. The converse states that if a point is equally distant from the two sides, it lies on the angle bisector.
+
+### Key Concept: The Incenter
+
+The incenter is the point where all three angle bisectors of a triangle meet. Unlike the circumcenter, the incenter is always inside the triangle. It is the center of the circle that is tangent to all three sides of the triangle.
+
+## Example 1 — Find Angle and Segment Measures Using Angle Bisectors
+
+Given a triangle with an angle bisector, use the Angle Bisector Theorem to find unknown angle measures and segment lengths.
+
+### Step 1: Identify the Angle Bisector
+
+Locate the ray that divides an angle into two equal parts. The point where the angle bisector meets the opposite side is on the segment connecting to the vertex.
+
+### Step 2: Apply Proportional Relationships
+
+When a ray bisects an angle, it divides the opposite side into segments that are proportional to the adjacent sides. Use this relationship to set up equations.
+
+### Step 3: Solve and Check
+
+Solve for the unknown variable and substitute back to find the requested angle or segment measure.
+
+## Example 2 — Use the Incenter to Find Measures
+
+The incenter is where all three angle bisectors meet. Use its properties to find distances and angle measures.
+
+### Step 1: Recognize the Incenter
+
+The incenter is equidistant from all three sides, so perpendicular segments from the incenter to the sides are congruent.
+
+### Step 2: Use Equal Distances
+
+Set up relationships using the fact that the incenter's distance to each side is the same.
+
+## Example 3 — Incenter in Triangles
+
+Given a triangle with an incenter, find angle measures and distances from the incenter to the vertices.
+
+### Step 1: Find Angle Measures
+
+Since the incenter is on all three angle bisectors, the angles around the incenter relate to the original triangle's angles. The angle between any two bisectors equals [90] plus half of the opposite angle.
+
+### Step 2: Find Distances
+
+Use triangle geometry relationships to find distances from the incenter to the vertices.
+
+## Example 4 — Real-World Angle Bisector Applications
+
+Use angle bisectors to find points that are equidistant from the sides of an angle, such as locating a facility that should be equally distant from two roads.
+
+### Step 1: Interpret the Problem
+
+Identify the two lines (roads) that form an angle, and determine what "equidistant from the roads" means in context.
+
+### Step 2: Locate the Point
+
+The set of points equidistant from two intersecting lines is the union of the two angle bisectors. Determine which bisector makes sense given the constraints.
+
+### Step 3: Apply Coordinates
+
+If coordinates are given for the roads' intersection and other reference points, find the coordinates of the point on the appropriate bisector.
+
+## Mixed Exercises
+
+Practice involves:
+
+* Finding the value of x in angle bisector problems where the two resulting angles are expressed algebraically (e.g., m∠1 = 5x + 8 and m∠2 = 8x - 16).
+* Determining whether there is enough information in a diagram to solve for x.
+* Writing paragraph proofs of the Angle Bisector Theorem.
+* Writing paragraph proofs of the Converse of the Angle Bisector Theorem.
+* Writing a two-column proof of the Incenter Theorem.
+* Analyzing whether the statement "The three angle bisectors of a triangle intersect at a point in the exterior of the triangle" is sometimes, always, or never true.
+* Constructing the incenter of a triangle using a compass and verifying with a ruler.
+* Drawing a triangle with an incenter inside and a circumcenter outside, justifying the construction.
+* Determining whether the angle bisectors of a triangle intersect at a point equidistant from the vertices.
+* Analyzing whether in an isosceles triangle, the perpendicular bisector of the base is also the angle bisector of the opposite vertex.
+* Writing a two-column proof given a plane is an angle bisector of an angle.
+* Comparing and contrasting perpendicular bisectors and angle bisectors.
+* Writing a biconditional statement for a theorem and its converse.
+
+## Review Notes
+
+* Multiple diagrams referenced: images showing angle bisectors, incenter constructions, and coordinate grid problems (media/image1.png through media/image18.png) contain geometric figures that could not be fully described.
+* The worksheet contains 27 practice problems covering angle bisector theorems, incenter properties, and real-world applications.

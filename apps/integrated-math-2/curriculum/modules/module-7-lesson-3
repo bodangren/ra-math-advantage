@@ -1,0 +1,156 @@
+# Lesson 7-3 — Geometric Probability
+
+Source: (Module 7, Lesson 7-3, Int2_0703_practice.docx)
+
+## Today's Goals
+
+* Calculate geometric probability using lengths and areas.
+* Apply geometric probability to real-world scenarios involving distances, times, and regions.
+* Use area ratios to find the probability of landing in specific regions of geometric shapes.
+* Understand assumptions required for geometric probability models.
+
+## Vocabulary
+
+* **Geometric Probability** — A probability calculated using ratios of lengths, areas, or volumes.
+* **Geometric Model** — A representation where outcomes depend on geometric measures such as length or area.
+* **Continuous Sample Space** — A sample space where any value in an interval is possible.
+* **Favorable Region** — The part of a geometric figure where the desired outcome occurs.
+* **Total Region** — The entire geometric figure representing all possible outcomes.
+
+## Explore: Probability from Geometry
+
+Students consider how probability can be determined from geometric figures where any point in a region is equally likely to be chosen.
+
+Inquiry Question:
+How can you use the dimensions of a figure to find the probability that a randomly chosen point falls in a specific region?
+
+## Learn: Geometric Probability
+
+### Key Concept: Length-Based Geometric Probability
+
+When a point is chosen at random on a line segment, the probability it falls in a particular subsegment equals the ratio of the subsegment length to the total length.
+
+[P(\text{point in region}) = \frac{\text{length of region}}{\text{total length}}]
+
+**Example:** On a 15-foot log with frogs at positions Z, Q, and R, the probability a fourth frog lands between the first two (5 feet apart) is [\frac{5}{15} = \frac{1}{3}].
+
+### Key Concept: Area-Based Geometric Probability
+
+When a point is chosen at random in a two-dimensional region, the probability it falls in a particular subregion equals the ratio of the subregion area to the total area.
+
+[P(\text{point in region}) = \frac{\text{area of region}}{\text{total area}}]
+
+**Example:** A circular target with diameter 4 feet inside a rectangular field 120 yards by 30 yards. First find the target radius and area, then the field area, then compute the ratio.
+
+### Key Concept: Time-Based Geometric Probability
+
+Convert all time measures to the same unit, then use the ratio of favorable time to total time.
+
+**Example:** A traffic light is green for 2 minutes 27 seconds, yellow for 6 seconds, and red for 2 minutes 27 seconds in a 5-minute cycle.
+[P(\text{green}) = \frac{2\text{ min }27\text{ s}}{5\text{ min}} = \frac{147\text{ s}}{300\text{ s}}]
+
+## Example 1 — Length-Based Probability
+
+### Step 1: Identify Total Length and Favorable Length
+
+Point [M] is chosen at random on segment [ZP]. Find each probability:
+
+**Problem 1:** [P(M] is on [ZQ)]
+**Problem 2:** [P(M] is on [QR])
+**Problem 3:** [P(M] is on [RP])
+**Problem 4:** [P(M] is on [QP])
+
+Point [X] is chosen at random on segment [LP]. Find each probability:
+
+**Problem 5:** [P(X] is on [LN])
+**Problem 6:** [P(X] is on [MO])
+
+## Example 2 — Time-Based and Real-World Probability
+
+### Step 1: Convert All Measures and Compute Ratios
+
+**Problem 7:** A 15-foot log with frogs 5 feet apart and third frog 10 feet from the second. Find probability fourth frog lands between first two.
+[P = \frac{5}{15}]
+
+**Problem 9:** Traffic light green for 2 min 27 s, yellow for 6 s, red for 2 min 27 s in a 5-minute cycle.
+[P(\text{green}) = \frac{147}{300}]
+
+**Problem 10:** Battery takes 2 hours to fully charge. Probability battery is between [\frac{1}{4}] and [\frac{1}{2}] charged when checked randomly.
+[P = \frac{\frac{1}{2} - \frac{1}{4}}{1} = \frac{1}{4}]
+
+**Problem 11:** A 2-hour movie with a 6 minute 31 second song. Probability a random customer hears the song playing.
+[P = \frac{6\text{ min }31\text{ s}}{120\text{ min}}]
+
+**Problem 12:** A song is 2 minutes 40 seconds played sometime between noon and 4 P.M. (4 hours = 240 minutes). Find probability of hearing it.
+[P = \frac{160\text{ s}}{14400\text{ s}}]
+
+## Example 3 — Area-Based Probability
+
+### Step 1: Calculate Areas and Find Ratio
+
+**Problem 13:** A fish charm lands on a circular landing pad. Center circle has 4-foot diameter. Find probability of landing in center.
+[P = \frac{\text{area of center circle}}{\text{area of entire pad}} = \frac{\pi (2)^2}{\pi r^2}]
+
+**Problem 14:** Circular target with 10-yard radius inside a rectangular field 120 yards by 30 yards.
+[P = \frac{\text{area of target}}{\text{area of field}}]
+
+## Example 4 — Spinner Probability
+
+### Step 1: Determine Favorable and Total Outcomes
+
+**Problems 15–19:** Use the spinner to find each probability. If the spinner lands on a line, spin again.
+
+[P(\text{red}) = \frac{\text{red sections}}{\text{total sections}}]
+[P(\text{blue}) = \frac{\text{blue sections}}{\text{total sections}}]
+[P(\text{green}) = \frac{\text{green sections}}{\text{total sections}}]
+[P(\text{green or blue}) = P(\text{green}) + P(\text{blue})]
+[P(\text{neither red nor yellow}) = 1 - P(\text{red}) - P(\text{yellow})]
+
+## Example 5 — Assumptions in Geometric Probability
+
+### Step 1: State Assumptions and Calculate
+
+**Problem 20:** Deangelo waits for the Crimson bus (every 8 minutes) or Gold bus (every 15 minutes) with a 5-minute maximum wait.
+
+**a.** Assumption: Buses arrive at consistent intervals and passengers arrive randomly.
+
+**b.** Probability of waiting 5 minutes or less for both buses.
+[P(\text{Crimson} \leq 5) = \frac{5}{8} = 0.625]
+[P(\text{Gold} \leq 5) = \frac{5}{15} = 0.333]
+Assuming independence: [P(\text{both}) = 0.625 \times 0.333 \approx 0.208 = 20.8\%]
+
+**c.** Probability of waiting 5 minutes or less for only one bus.
+[0.625 \times (1 - 0.333) + (1 - 0.625) \times 0.333 \approx 0.417 + 0.125 = 0.542 = 54.2\%]
+
+## Mixed Exercises
+
+Problems 21–35 provide practice with all skills:
+
+* Describe an event with 33% probability using three different geometric models.
+* Find probability a point lies in the shaded region of given figures.
+* Darts: equally likely to land anywhere on the dart board — find probability of landing in a shaded sector.
+* Washers game: 17-inch by 17-inch square pit with 4-inch diameter circular region. Find probability of landing in the circle.
+* Dance stage illuminated by two overlapping circles passing through each other's centers. Find probability of landing in illuminated area and in the overlap.
+* Prove probability in shaded circular region equals [\frac{x}{360}].
+* Find probability in a complex shaded figure (rounded to nearest tenth of a percent).
+* Isosceles triangle with perimeter 32 cm and integer side lengths — find probability area is exactly 48 sq cm.
+* Explain whether athletic events can be considered random.
+* Create three different geometric representations of 20% probability.
+* Compare why probability of landing in shaded region is the same for two different squares.
+
+## Review Notes
+
+* ![](media/image1.png) — Line segment ZP diagram for Problems 1–4
+* ![](media/image2.png) — Line segment LP diagram for Problems 5–6
+* ![](media/image3.png) — Wildlife frog on log diagram for Problem 7
+* ![](media/image4.png) — Livestock pigs diagram for Problem 8
+* ![](media/image5.png) — Circular landing pad for Problem 13
+* ![](media/image6.png) — Colored spinner for Problems 15–19
+* ![](media/image7.png), ![](media/image8.png) — Geometric models for Problems 21–22
+* ![](media/image9.jpg) — Geometric figure for Problem 23
+* ![](media/image10.png), ![](media/image11.png), ![](media/image12.png), ![](media/image13.png) — Shaded region figures for Problems 24–27
+* ![](media/image14.png) — Dart board sector diagram for Problem 27
+* ![](media/image15.png) — Washers game diagram for Problem 28
+* ![](media/image16.png) — Dance stage with overlapping circles for Problem 29
+* ![](media/image17.png) — Shaded circular region for Problem 30
+* ![](media/image18.png) — Complex shaded figure for Problem 31

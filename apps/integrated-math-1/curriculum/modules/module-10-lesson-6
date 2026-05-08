@@ -1,0 +1,173 @@
+# Lesson 10-6 — Locating Points on a Coordinate Plane
+
+Source: (Module 10, Lesson 10-6, Int1_1006_practice.docx)
+
+## Today's Goals
+
+* Find the coordinates of a point that is a given fractional distance from one endpoint of a segment to the other on a coordinate plane.
+* Find the coordinates of a point that divides a segment in a given ratio on a coordinate plane.
+* Apply the partition formula to solve real-world problems involving locations and maps.
+* Analyze and correct errors when applying the partition formula to find a point on a segment.
+
+## Vocabulary
+
+* **Partition** — To divide a segment into parts with specified proportional relationships.
+* **Ratio** — A comparison of two quantities by division.
+* **Coordinate Plane** — A two-dimensional grid formed by a horizontal x-axis and a vertical y-axis, used to locate points with ordered pairs.
+* **Endpoint** — A point at either end of a segment.
+* **Fractional Distance** — The distance from one endpoint to an interior point, expressed as a fraction of the total segment length.
+* **Section Formula** — A formula used to find the coordinates of a point that divides a segment in a given ratio.
+
+## Explore: How Can You Find a Point Partway Along a Segment?
+
+Students consider how to locate a point that is not at the midpoint of a segment but at some other fractional distance from one endpoint. They explore whether proportional reasoning or weighted averages can determine the coordinates of such a point.
+
+Inquiry Question:
+How can you use the coordinates of the endpoints to find the coordinates of any point along the segment between them?
+
+## Learn: Partitioning Segments on a Coordinate Plane
+
+A point that lies on a segment can be located by using the coordinates of the endpoints and the desired fractional distance or ratio. The coordinates of the interior point are found by taking a weighted average of the endpoint coordinates.
+
+### Key Concept: Finding a Point at a Fractional Distance
+
+To find a point that is [\frac{m}{n}] of the distance from [(x_1, y_1)] to [(x_2, y_2)], use the partition formula:
+
+[
+x = x_1 + \frac{m}{n}(x_2 - x_1)
+]
+[
+y = y_1 + \frac{m}{n}(y_2 - y_1)
+]
+
+Alternatively, the coordinates can be written as:
+[
+\left( \frac{n-m}{n} x_1 + \frac{m}{n} x_2, \frac{n-m}{n} y_1 + \frac{m}{n} y_2 \right)
+]
+
+### Key Concept: Finding a Point That Divides a Segment in a Given Ratio
+
+If a point divides a segment so that the ratio of the first part to the second part is [a:b], then the point is [\frac{a}{a+b}] of the distance from the first endpoint. Apply the same partition formula using this fraction.
+
+For example, if the ratio of [AX] to [XB] is [1:3], the point [X] is [\frac{1}{4}] of the distance from [A] to [B].
+
+## Example 1 — Find a Point at a Fractional Distance
+
+Given a segment on a coordinate plane with labeled endpoints, find the coordinates of an interior point that is a specified fractional distance from one endpoint to the other.
+
+### Step 1: Identify the Endpoint Coordinates
+
+Read the coordinates of the two endpoints from the coordinate plane.
+
+### Step 2: Identify the Fractional Distance
+
+Determine what fraction of the total distance the point is from the first endpoint.
+
+### Step 3: Apply the Partition Formula
+
+Substitute the endpoint coordinates and the fraction into the formula. Compute each coordinate separately.
+
+For a point that is [\frac{2}{3}] of the distance from [(x_1, y_1)] to [(x_2, y_2)]:
+[
+x = x_1 + \frac{2}{3}(x_2 - x_1)
+]
+[
+y = y_1 + \frac{2}{3}(y_2 - y_1)
+]
+
+### Step 4: Simplify and State the Coordinates
+
+Perform the arithmetic to find the ordered pair of the interior point.
+
+## Example 2 — Find a Point That Divides a Segment in a Given Ratio
+
+Given a segment on a coordinate plane with labeled endpoints, find the coordinates of an interior point such that the ratio of the two parts is specified.
+
+### Step 1: Identify the Endpoint Coordinates
+
+Read the coordinates of the two endpoints from the coordinate plane.
+
+### Step 2: Convert the Ratio to a Fraction
+
+If the ratio of the first part to the second part is [a:b], the point is [\frac{a}{a+b}] of the distance from the first endpoint.
+
+For example, a ratio of [1:3] means the point is [\frac{1}{4}] of the distance from the first endpoint.
+
+### Step 3: Apply the Partition Formula
+
+Substitute the endpoint coordinates and the computed fraction into the formula.
+
+For a ratio of [2:3], the fraction is [\frac{2}{5}]:
+[
+x = x_1 + \frac{2}{5}(x_2 - x_1)
+]
+[
+y = y_1 + \frac{2}{5}(y_2 - y_1)
+]
+
+### Step 4: Simplify and State the Coordinates
+
+Perform the arithmetic to find the ordered pair of the interior point.
+
+## Examples 1 and 2 — Combined Practice with Coordinate Grids
+
+Apply both fractional distance and ratio methods to find interior points on segments shown on coordinate grids.
+
+### Step 1: Find a Point at a Fractional Distance
+
+Read the endpoint coordinates from the grid. Determine the specified fractional distance. Apply the partition formula and simplify.
+
+### Step 2: Find a Point That Divides a Segment in a Ratio
+
+Read the endpoint coordinates from the grid. Convert the given ratio to a fraction of the total distance. Apply the partition formula and simplify.
+
+### Step 3: Repeat for Additional Segments
+
+Use the same process for each segment on the coordinate grid, paying attention to which endpoint is used as the starting point.
+
+## Example 3 — Real-World Applications
+
+Apply the partition formula to solve contextual problems involving maps, city planning, and navigation.
+
+### Step 1: Identify the Endpoint Coordinates and Ratio
+
+Extract the coordinates of the two endpoints from the problem description or map. Identify the ratio or fractional distance given in the context.
+
+For example, if a person wants to stop for a break when the distance traveled to the distance remaining is [3:5], the stopping point is [\frac{3}{8}] of the total distance from the starting point.
+
+### Step 2: Apply the Partition Formula
+
+Substitute the coordinates and the fraction into the formula:
+[
+x = x_1 + \frac{3}{8}(x_2 - x_1)
+]
+[
+y = y_1 + \frac{3}{8}(y_2 - y_1)
+]
+
+### Step 3: Interpret the Result in Context
+
+State the coordinates of the stopping point and verify that the result makes sense on the map.
+
+### Step 4: Find Multiple Points on a Segment
+
+When asked to find two points that divide a segment in a given ratio, identify both possible points on either side of the segment that satisfy the ratio condition, or find two distinct interior points if the problem specifies multiple divisions.
+
+## Mixed Exercises
+
+The mixed exercises provide practice with all skills from the lesson: finding points at fractional distances, dividing segments in given ratios, and applying these concepts to real-world and abstract problems. Problems include:
+
+* Finding a point on a segment that is a given fractional distance from one endpoint to the other on a coordinate grid.
+* Finding a point on a segment that divides it in a specified ratio on a coordinate grid.
+* Working backward from a known interior point and one endpoint to determine the ratio in which the point divides the segment.
+* Determining what fraction of the total distance a known interior point represents.
+* Finding the inverse ratio when the interior point divides the segment.
+* Analyzing a student's work to identify and explain an error in applying the partition formula, then finding the correct coordinates.
+* Evaluating whether a proposed formula for a one-third distance point is sometimes, always, or never correct, and justifying the argument.
+* Explaining how to find the fractional distance of a point and computing its coordinates when the point divides a segment in a given ratio.
+* Working backward from a known interior point and one endpoint to find the coordinates of the other endpoint.
+* Creating an original diagram and determining the fractional distance of a self-selected interior point.
+
+## Review Notes
+
+* Images referenced in the worksheet (coordinate plane diagrams for Examples 1, 2, and the combined practice; map for Example 3; coordinate grid for Mixed Exercises 16–17; segment diagram for Mixed Exercises 18–20; coordinate grid for Mixed Exercise 21) could not be fully described without visual reference. Teachers should consult the original worksheet for exact coordinates, diagrams, and figures.

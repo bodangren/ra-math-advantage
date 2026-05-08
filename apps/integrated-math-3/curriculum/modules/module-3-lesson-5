@@ -1,282 +1,269 @@
 # Lesson 3-5 — Roots and Zeros
 
-Source: (Module 3, Lesson 3-5, pp. 143–148)
+Source: (Module 3, Lesson 3-5, Int3_0305_practice.docx)
 
 ## Today's Goals
 
-* Use the Fundamental Theorem of Algebra to determine the number and type of roots of polynomial equations
-* Determine the number and type of roots of polynomial equations, find zeros, and use zeros to graph polynomial functions
-
----
+* Solve polynomial equations and state the number and type of roots.
+* Use Descartes' Rule of Signs to determine the possible numbers of positive, negative, and imaginary zeros.
+* Find all zeros of polynomial functions and use them to sketch accurate graphs.
 
 ## Vocabulary
 
-* multiplicity
+* **Root** — A value that makes a polynomial equal to zero; also called a zero of the function.
+* **Positive Real Zero** — A zero that is a positive real number; corresponds to a sign change in [f(x)] based on Descartes' Rule of Signs.
+* **Negative Real Zero** — A zero that is a negative real number; found by analyzing [f(-x)].
+* **Imaginary Zero** — A zero that is a complex number with no real part; comes in conjugate pairs when coefficients are real.
+* **Descartes' Rule of Signs** — A rule that determines the maximum number of positive and negative real zeros by counting sign changes in [f(x)] and [f(-x)].
 
----
+## Explore: How Many Roots Does a Polynomial Have?
 
-## Explore: Roots of Quadratic Polynomials
+The Fundamental Theorem of Algebra tells us that a polynomial of degree [n] has exactly [n] complex roots (counting multiplicity). These roots may be real or imaginary, and we can use the structure of the polynomial to predict how many of each type to expect.
 
-Use graphing technology to complete the explore.
+Inquiry Question:
+How can you determine the maximum number of real roots a polynomial can have without solving it?
 
-**Inquiry Question:**
-Is the Fundamental Theorem of Algebra true for quadratic polynomials?
-
----
-
-## Learn: Fundamental Theorem of Algebra
-
-The zero of a function `f(x)` is any value `c` such that `f(c) = 0`.
-
-### Key Concept: Zeros, Factors, Roots, and Intercepts
-
-Let `P(x)` be a polynomial function. Then the following are equivalent:
-
-* `c` is a zero of `P(x)`
-* `c` is a root or solution of `P(x) = 0`
-* `x - c` is a factor of the polynomial
-* if `c` is real, then `(c, 0)` is an x-intercept of the graph
-
-Example:
-
-For `P(x) = x^2 + 3x - 18`:
-
-* zeros: `-6` and `3`
-* roots of `P(x) = 0`: `-6` and `3`
-* factors: `(x + 6)` and `(x - 3)`
-* x-intercepts: `(-6, 0)` and `(3, 0)`
+## Learn: Roots and Zeros of Polynomial Functions
 
 ### Key Concept: Fundamental Theorem of Algebra
 
-Every polynomial equation with degree greater than zero has at least one root in the set of complex numbers.
+A polynomial of degree [n] has exactly [n] complex roots (counting multiplicity).
 
-### Key Concept: Corollary to the Fundamental Theorem of Algebra
-
-A polynomial equation of degree `n` has exactly `n` roots in the set of complex numbers, including repeated roots.
-
-Repeated roots are roots of **multiplicity** `m`, where `m` is greater than `1`.
-
-Multiplicity is the number of times a number is a zero of a polynomial.
-
-Example:
-
-`f(x) = x^3 = x * x * x`
-
-has a zero at `x = 0` with multiplicity `3`.
-
-## Think About It
-
-What is the multiplicity of the zero at `x = 1` for `p(x) = (x - 1)^5`? Explain your reasoning.
-
----
+If the coefficients are real:
+* Imaginary roots occur in conjugate pairs: [a + bi] and [a - bi].
+* The sum of the counts of real and imaginary roots equals [n].
 
 ### Key Concept: Descartes' Rule of Signs
 
-For a polynomial `P(x)` with real coefficients and nonzero constant term:
+For [f(x)]:
+* Count the number of sign changes between consecutive nonzero terms.
+* The number of positive real zeros equals the number of sign changes or is less than it by an even number.
 
-* the number of positive real zeros equals the number of sign changes in `P(x)`, or less than that by an even number
-* the number of negative real zeros equals the number of sign changes in `P(-x)`, or less than that by an even number
+For [f(-x)]:
+* Count the sign changes (which corresponds to negative real zeros of [f(x)]).
+* The number of negative real zeros equals the number of sign changes in [f(-x)] or is less than it by an even number.
 
----
+### Key Concept: Finding Zeros
 
-## Example 1 — Determine the Number and Type of Roots
+1. Use the Rational Root Theorem to list possible rational roots: factors of the constant term divided by factors of the leading coefficient.
+2. Test each possible root using synthetic substitution.
+3. Factor the polynomial using found roots.
+4. Solve the remaining quadratic or polynomial factor.
+5. For complex roots from quadratic factors, use the quadratic formula.
 
-Solve:
+## Example 1 — Solve Equations and State Number and Type of Roots
 
-`x^4 + 49x^2 = 0`
+Solve each equation. State the number and type of roots.
 
-Factor:
+### Step 1: Solve and Classify
 
-`x^2(x^2 + 49) = 0`
+**Problem 1:** [5x + 12 = 0]
 
-So:
+Solution: [x = -\frac{12}{5}]; 1 real root (rational)
 
-* `x^2 = 0` -> `x = 0`
-* `x^2 + 49 = 0` -> `x^2 = -49` -> `x = +/- 7i`
+**Problem 2:** [x^2 - 4x + 40 = 0]
 
-The polynomial has degree `4`, so it has four roots in the complex numbers.
+Discriminant: [b^2 - 4ac = 16 - 160 = -144 < 0]; 2 imaginary roots
 
-Because `x^2` is a factor:
+**Problem 3:** [x^5 + 4x^3 = 0]
 
-* `x = 0` is a repeated real root with multiplicity `2`
-* `7i` and `-7i` are imaginary roots
+Factor: [x^3(x^2 + 4) = 0]
 
----
+Solutions: [x = 0] (multiplicity 3); [x = 2i]; [x = -2i]; 1 real root, 4 imaginary roots
 
-## Example 2 — Find the Number of Positive and Negative Zeros
+**Problem 4:** [x^4 - 625 = 0]
 
-State the possible number of positive real zeros, negative real zeros, and imaginary zeros of:
+Factor as difference of squares: [(x^2 - 25)(x^2 + 25) = 0]
 
-`f(x) = x^5 - 2x^4 - x^3 + 6x^2 - 5x + 10`
+[x^2 = 25] or [x^2 = -25]
 
-Because the degree is `5`, there are `5` zeros total.
+Solutions: [x = 5], [x = -5], [x = 5i], [x = -5i]; 2 real roots, 2 imaginary roots
 
-### Part A: Positive real zeros
+**Problem 5:** [4x^2 - 4x - 1 = 0]
 
-There are `4` sign changes in `f(x)`, so there are:
+Using quadratic formula: [x = \frac{4 \pm \sqrt{16 + 16}}{8} = \frac{4 \pm \sqrt{32}}{8} = \frac{4 \pm 4\sqrt{2}}{8} = \frac{1 \pm \sqrt{2}}{2}]; 2 real roots (irrational)
 
-* `4`, `2`, or `0` positive real zeros
+**Problem 6:** [x^5 - 81x = 0]
 
-### Part B: Negative real zeros
+Factor: [x(x^4 - 81) = x(x^2 - 9)(x^2 + 9) = x(x - 3)(x + 3)(x^2 + 9)]
 
-Compute `f(-x)` and count sign changes.
+Solutions: [x = 0], [x = 3], [x = -3], [x = 3i], [x = -3i]; 3 real roots, 2 imaginary roots
 
-There is `1` sign change, so there is:
+## Example 2 — Use Descartes' Rule of Signs
 
-* `1` negative real zero
+State the possible number of positive real zeros, negative real zeros, and imaginary zeros of each function.
 
-### Part C: Imaginary zeros
+### Step 1: Analyze [f(x)] for Positive Zeros
 
-Possible combinations:
+**Problem 17:** [g(x) = 3x^3 - 4x^2 - 17x + 6]
 
-| Positive Real Zeros | Negative Real Zeros | Imaginary Zeros |
-| ------------------- | ------------------- | --------------- |
-| 4                   | 1                   | 0               |
-| 2                   | 1                   | 2               |
-| 0                   | 1                   | 4               |
+Signs in [g(x)]: +, -, -, + → 1 sign change
 
-## Talk About It
+Maximum positive real zeros: 1
 
-If a polynomial has degree `n` and no real zeros, then how many imaginary zeros does it have? Explain.
+### Step 2: Analyze [g(-x)] for Negative Zeros
 
----
+[g(-x) = -3x^3 - 4x^2 + 17x + 6]
 
-## Learn: Finding Zeros of Polynomial Functions
+Signs in [g(-x)]: -, -, +, + → 2 sign changes
 
-### Key Concept: Complex Conjugates Theorem
+Maximum negative real zeros: 2 or 0
 
-If `a + bi` is a zero of a polynomial with real coefficients, then `a - bi` is also a zero.
+### Step 3: Determine Imaginary Zeros
 
-Example:
+Degree is 3, so total roots = 3.
 
-If `1 + 2i` is a zero of `f(x)`, then `1 - 2i` is also a zero.
+If there is 1 positive real zero, then the remaining 2 zeros are either:
+* 2 negative real zeros, or
+* 2 imaginary (conjugate pair)
 
-When you know all of the zeros of a polynomial function and need the equation:
+If there are 0 positive real zeros, then the remaining 3 zeros are either:
+* 3 negative real zeros, or
+* 1 negative real + 2 imaginary, or
+* 3 imaginary
 
-* write the corresponding factors
-* multiply them together
+## Example 3 — Find All Zeros and Sketch Graphs
 
----
+Find all of the zeros of each function and use them to sketch a rough graph.
 
-## Example 3 — Use Synthetic Substitution to Find Zeros
+### Step 1: Factor and Find Zeros
 
-Find all of the zeros of:
+**Problem 29:** [h(x) = x^3 - 5x^2 + 5x + 3]
 
-`f(x) = x^3 + x^2 - 7x - 15`
+Possible rational roots: ±1, ±3
 
-and use them to sketch a rough graph.
+Test [x = 3]: synthetic gives remainder 0, so [(x - 3)] is a factor.
 
-### Part A: Find all zeros
+Divide to get quotient: [x^2 - 2x - 1]
 
-### Step 1: Determine the total number of zeros
+Zeros: [x = 3]; [x = 1 + \sqrt{2}]; [x = 1 - \sqrt{2}]
 
-Since the degree is `3`, the function has `3` zeros.
+Three real zeros (one integer, two irrational).
 
-### Step 2: Determine the type of zeros
+### Step 2: Sketch the Graph
 
-Using sign changes:
+The graph crosses the x-axis at each real zero. Since the leading coefficient is positive and degree is odd, the graph goes from bottom left to top right.
 
-* `f(x)` has `1` positive real zero
-* `f(-x)` has `2` or `0` negative real zeros
+## Example 4 — Write Polynomials from Graphs
 
-So the function has either:
+### Step 1: Identify Zeros from Graph
 
-* `3` real zeros
-* or `1` real zero and `2` imaginary zeros
+**Problem 41.** ![](media/image1.png) — graph shows a polynomial with visible x-intercepts
 
-### Step 3: Determine the real zero
+**Problem 42.** ![](media/image2.png) — graph shows a different set of x-intercepts
 
-Testing possible values shows that `x = 3` is a zero.
+**Problem 43.** ![](media/image3.png) — graph shows another pattern of intercepts
 
-Synthetic substitution gives the depressed polynomial:
+## Example 5 — Apply Zeros to Real-World Problems
 
-`x^2 + 4x + 5`
+### Step 1: Create Polynomial Functions from Given Zeros
 
-Use the Quadratic Formula:
+**FISH (Problem 44):** Some fish jump out of the water. A biologist noticed that a fish is at sea level at [-3], [-2], [-1], [1], [2], and [3] minutes from noon. Graph a polynomial function that could represent the location of the fish compared to sea level [y], in centimeters, [x] seconds from noon.
 
-The zeros are:
+Since the fish is at sea level (y = 0) at these points, these are the zeros. Since there are 6 zeros and we want a reasonable polynomial, we could use degree 5 or 6.
 
-* `3`
-* `-2 - i`
-* `-2 + i`
+One possibility: [f(x) = k(x + 3)(x + 2)(x + 1)(x - 1)(x - 2)(x - 3)] where [k] is a scaling factor.
 
-### Part B: Sketch a rough graph
+Note: The problem says [x] seconds from noon, but zeros are given in minutes — this may need unit conversion.
 
-The graph:
+**BUSINESS (Problem 45):** After introducing a new product, a company's profit is modeled by a polynomial function. In 2012 and 2017, the company's profit on the product was $0. Graph a polynomial function that could represent the amount of profit, [p(x)], in thousands of dollars, [x] years since 2010.
 
-* crosses the x-axis at `(3, 0)`
-* has odd degree and positive leading coefficient
-* so:
-  * as `x -> -infinity`, `f(x) -> -infinity`
-  * as `x -> infinity`, `f(x) -> infinity`
+If profit is 0 in 2012 (x = 2) and 2017 (x = 7), then [x = 2] and [x = 7] are zeros. The polynomial must have at least these two factors.
 
-Use this and table values to sketch the graph.
+## Mixed Exercises
 
----
+**Write a polynomial function of least degree with integral coefficients that has the given zeros.**
 
-## Example 4 — Use a Graph to Write a Polynomial Function
+**46.** 5, -2, -1
 
-Write a polynomial function that could be represented by the graph.
+**47.** -4, -3, 5
 
-The graph crosses the x-axis at:
+**48.** -1, -1, [2i] — Note: -1 has multiplicity 2
 
-* `x = -4`
-* `x = -2`
-* `x = 1`
+**49.** -3, 1, [-3i] — Note: complex roots come in conjugate pairs
 
-So the factors are:
+**50.** 0, -5, [3 + i]
 
-* `x + 4`
-* `x + 2`
-* `x - 1`
+**51.** -2, -3, [4 - 3i]
 
-Multiply:
+**Sketch the graph of each function using its zeros.**
 
-`y = (x + 4)(x + 2)(x - 1)`
+**52.** [f(x) = x^3 - 5x^2 - 2x + 24]
 
-`= (x^2 + 6x + 8)(x - 1)`
+**53.** [f(x) = 4x^3 + 2x^2 - 4x - 2]
 
-`= x^3 + 5x^2 + 2x - 8`
+![](media/image4.png) ![](media/image5.png)
 
-So one possible polynomial is:
+**54.** [f(x) = x^4 - 6x^3 + 7x^2 + 6x - 8]
 
-`y = x^3 + 5x^2 + 2x - 8`
+**55.** [f(x) = x^4 - 6x^3 + 9x^2 + 4x - 12]
 
----
+![](media/image6.png) ![](media/image7.png)
 
-## Apply Example 5 — Use Zeros to Graph a Polynomial Function
+**56. USE A SOURCE:** Linear algebra is the study of linear equations. In linear algebra, the coefficients of linear equations are often organized into rectangular arrays called matrices. Research the eigenvalues of a matrix and how they relate to the roots of a polynomial function. What fields use linear algebra, matrices, and eigenvalues?
 
-A book publisher knows that if they charge `$5` or `$40`, their profit will be `$0`.
+**57. SPACE:** The technology for a rocket that will safely return to Earth for refueling and reuse is currently being developed. The three sections of the booster that will power the flight of the payload are cylindrical with a total volume of about [234\pi] cubic meters. If the second stage section of the booster is [x] meters tall, then the interstage section [x + 3] meters tall, and the first stage section is [5x + 6.5] meters tall. The radius of the booster is [x - 5] meters.
 
-Graph a polynomial function that could represent the company's profit in thousands of dollars as a function of price.
+![](media/image8.png)
 
-### 1. What is the task?
+**a.** Write and solve an equation to represent the total volume of the booster.
 
-Let `x` represent the price and `y` represent the profit. Write and graph a polynomial function relating `x` and `y`.
+**b.** What are the dimensions of the first stage section of the booster? Explain your reasoning.
 
-### 2. How will you approach the task?
+**58. CREATE:** Consider two polynomial functions, [f(x)] and [g(x)].
 
-Because `5` and `40` are zeros, use them to write factors and then an equation.
+**a.** Write a polynomial function [f(x)] of least degree with integral coefficients and zeros that include [-1 - 4i] and [\frac{2}{3} + \frac{1}{3}i]. Explain how you found the function.
 
-### 3. What is your solution?
+**b.** Write another polynomial function [g(x)] with integral coefficients that has the same degree and zeros. How did you find this function?
 
-One function with those zeros is:
+**c.** Are you able to sketch the graphs of [f(x)] and [g(x)] based on the zeros? Explain your reasoning. Then sketch the graphs of [f(x)] and [g(x)].
 
-`y = x^2 - 45x + 200`
+**59. ANALYZE:** Use the zeros to draw the graph of [P(x) = x^3 - 7x^2 + 7x + 15] by hand. Discuss the accuracy of your graph, and what could be done to improve the accuracy.
 
-But that graph does not make sense in context because it shows unreasonable profit behavior for book prices.
+**60. PERSEVERE:** Let the polynomial function [f(x)] have real coefficients, be of degree 5, and have zeros [4 + 3i], [2 - 7i], and [6 + bi] where [b] is a real number.
 
-A more reasonable model is:
+**a.** What can be determined about [b]? Explain your reasoning.
 
-`y = -x^2 + 45x - 200`
+**b.** Write a possible equation for [f(x)].
 
-### 4. How can you know the solution is reasonable?
+**61. CREATE:** Sketch the graph of a polynomial function with:
 
-Multiplying by `-1` makes the parabola open downward, so the profit is negative when charging less than `$5`, which makes more sense in context.
+**a.** 3 real, 2 imaginary zeros
 
----
+**b.** 4 real zeros
 
-## Objective Alignment
+**c.** 2 imaginary zeros
 
-- `Use the Fundamental Theorem of Algebra to determine the number and type of roots of polynomial equations`: Primary worked examples: Examples 1-2.
-- `Determine the number and type of roots of polynomial equations, find zeros, and use zeros to graph polynomial functions`: Primary worked examples: Examples 2-4.
+**62. PERSEVERE:** Write an equation in factored form of a polynomial function of degree 5 with 2 imaginary zeros, 1 nonintegral zero, and 2 irrational zeros. Explain.
+
+**63. WHICH ONE DOESN'T BELONG?** Determine which equation is not like the others. Justify your conclusion.
+
+![](media/image9.png)
+
+**64. ANALYZE:** Provide a counterexample for each statement.
+
+**a.** All polynomial functions of degree greater than 2 have at least 1 negative real root.
+
+**b.** All polynomial functions of degree greater than 2 have at least 1 positive real root.
+
+**65. WRITE:** Explain to a friend how you would use Descartes' Rule of Signs to determine the number of possible positive real roots and the number of possible negative real roots of the polynomial function [f(x) = x^4 - 2x^3 + 6x^2 + 5x - 12].
+
+![](media/image10.png)
+
+**66. FIND THE ERROR:** The graph shows a polynomial function. Brianne says the function is a 4th degree polynomial. Amrita says the function is a 2nd degree polynomial. Is either of them correct? Explain your reasoning.
+
+## Review Notes
+
+* Images referenced in the worksheet:
+  * ![](media/image1.png) — graph for problem 41 (write polynomial from graph)
+  * ![](media/image2.png) — graph for problem 42
+  * ![](media/image3.png) — graph for problem 43
+  * ![](media/image4.png) — graph for problem 52
+  * ![](media/image5.png) — graph for problem 53
+  * ![](media/image6.png) — graph for problem 54
+  * ![](media/image7.png) — graph for problem 55
+  * ![](media/image8.png) — rocket booster diagram
+  * ![](media/image9.png) — "Which One Doesn't Belong?" equations
+  * ![](media/image10.png) — graph for error analysis problem 66
+* Teachers should consult the original worksheet for exact diagrams and values.
+* The worksheet contains 66 practice problems involving roots, zeros, Descartes' Rule of Signs, and applied problems.

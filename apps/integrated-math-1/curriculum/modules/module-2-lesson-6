@@ -1,0 +1,129 @@
+# Lesson 2-6 — Solving Proportions
+
+Source: (Module 2, Lesson 2-6, Int1_0206_practice.docx)
+
+## Today's Goals
+
+* Solve proportions algebraically, including those with variable expressions in numerators and denominators
+* Set up and solve real-world problems using proportions
+* Apply proportions to percent situations, scaling problems, and mixture contexts
+
+## Vocabulary
+
+* **proportion** — An equation stating that two ratios are equal
+* **cross products** — The products obtained by multiplying the numerator of each ratio by the denominator of the other ratio; in a true proportion, the cross products are equal
+* **rate** — A ratio that compares two quantities measured in different units
+* **scale** — A ratio that compares a measurement on a model or drawing to the corresponding actual measurement
+* **unit cost** — The cost of a single unit of a quantity
+
+## Learn: Solving Proportions Algebraically
+
+To solve a proportion, use the Cross Products Property: if [ \frac{a}{b} = \frac{c}{d} ] then [ ad = bc ] (where [ b \ne 0 ] and [ d \ne 0 ]). After cross-multiplying, solve the resulting equation for the unknown.
+
+### Key Concept: Cross Products Property
+
+* In any proportion, the product of the means equals the product of the extremes
+* Cross-multiplying turns a rational equation into a linear (or simpler) equation
+* Always check that the solution does not make any denominator zero
+
+## Example 1 — Basic Proportions
+
+Solve proportions containing simple numbers, decimals, or basic variable expressions. Round to the nearest hundredth if necessary.
+
+### Step 1: Cross-Multiply
+
+Multiply the numerator of each ratio by the denominator of the other ratio.
+
+For a simple numerical proportion:
+[
+\frac{3}{8} = \frac{15}{a}
+]
+
+For a proportion with decimals:
+[
+\frac{w}{2} = \frac{4.5}{6.8}
+]
+
+### Step 2: Solve for the Variable
+
+Isolate the variable and simplify. For proportions with an expression containing the variable:
+[
+\frac{x - 3}{5} = \frac{6}{10}
+]
+
+Distribute and combine like terms as needed, then solve.
+
+## Example 2 — Proportions with Linear Expressions
+
+Solve proportions where one or both sides contain linear expressions in the numerator or denominator.
+
+### Step 1: Cross-Multiply to Eliminate Denominators
+
+Set the cross products equal to each other.
+[
+\frac{4v + 7}{15} = \frac{6v + 2}{10}
+]
+
+[
+10(4v + 7) = 15(6v + 2)
+]
+
+### Step 2: Distribute and Solve the Linear Equation
+
+Expand both sides, collect variable terms on one side and constants on the other, then isolate the variable.
+
+For proportions with variables in denominators, such as:
+[
+\frac{2}{g + 6} = \frac{4}{5g + 10}
+]
+
+cross-multiply, distribute, and solve while checking that the final value does not make any original denominator zero.
+
+## Example 3 — Real-World Proportion Problems
+
+Use proportions to solve contextual problems involving rates, ratios, and scaling.
+
+### Step 1: Identify the Relationship
+
+Determine the two equivalent ratios described in the problem (e.g., gallons per hour, cost per pack, distance per time).
+
+### Step 2: Set Up and Solve
+
+Write a proportion matching the given rate to the unknown quantity, then cross-multiply and solve.
+
+Representative contexts include:
+
+* Fuel consumption: [\frac{5 \text{ gal}}{4 \text{ hr}} = \frac{g}{10 \text{ hr}}] 
+* Unit pricing: [\frac{3 \text{ packs}}{5} = \frac{10 \text{ packs}}{c}] 
+* Currency exchange: [\frac{2}{1.78 \text{ Euros}} = \frac{121}{e}] 
+* Picture scaling: [\frac{6 \text{ in}}{4 \text{ in}} = \frac{w}{15 \text{ in}}] 
+
+## Example 4 — Percent and Mixture Problems
+
+Apply proportions to situations involving percents, part-whole relationships, and mixtures.
+
+### Step 1: Translate the Percent or Part-Whole Relationship
+
+Express the given information as a ratio. For a percent problem, the percent compares the part to the whole.
+
+[
+\frac{\text{part}}{\text{whole}} = \frac{\text{percent}}{100}
+]
+
+### Step 2: Solve for the Unknown Quantity
+
+Cross-multiply and solve. Representative contexts include:
+
+* Fundraising expenses: [\frac{500}{p} = \frac{15}{100}] 
+* Coffee blending: [\frac{8 \text{ lb}}{b} = \frac{25}{100}] 
+* Acid solutions: [\frac{a}{a + 1500} = \frac{12}{100}] 
+* Recipe ratios: [\frac{18 \text{ oz}}{t} = \frac{20}{100}] 
+
+## Mixed Exercises
+
+The mixed exercises provide comprehensive practice across all proportion skills covered in the lesson. Problems range from straightforward numerical proportions to proportions with variables on one or both sides, multi-step word problems, percent applications, map-scale questions, estimation tasks, and writing prompts that ask students to compare ratios and rates or create their own examples.
+
+## Review Notes
+
+* Problem 70 requires students to look up the actual heights of Willis Tower and the John Hancock Center in Chicago (including the tip) from an external source and then use a proportion to find the scale-model height of the John Hancock Center.
+* Problem 71 references a map image (`media/image1.png`) of Waco, Texas and neighboring towns that is not available in the extracted text. Students must use a metric ruler to measure the map distance between Robinson and Neale, then apply the given scale ([1 \text{ cm} = 3 \text{ mi}]) to find actual distances and area.

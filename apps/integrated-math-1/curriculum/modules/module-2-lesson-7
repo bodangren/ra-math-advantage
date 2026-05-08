@@ -1,0 +1,215 @@
+# Lesson 2-7 — Using Formulas
+
+Source: (Module 2, Lesson 2-7, Int1_0207_practice.docx)
+
+## Today's Goals
+
+* Solve literal equations and formulas for a specified variable using inverse operations
+* Apply formulas to solve real-world problems involving geometry, finance, and everyday contexts
+* Use dimensional analysis to convert between units of measurement
+
+## Vocabulary
+
+* **Literal equation** — An equation that involves two or more variables.
+* **Formula** — A special type of literal equation that expresses a relationship between quantities, often from geometry, science, or finance.
+* **Dimensional analysis** — A method of converting between units of measurement by multiplying by conversion factors written as fractions equal to one.
+
+## Learn: Solving Literal Equations and Formulas
+
+### Key Concept: Isolating a Variable
+
+* Use inverse operations to undo whatever is being done to the variable you want to solve for.
+* If the variable appears in multiple terms, collect those terms on one side and factor out the variable.
+* When fractions are present, eliminate denominators first by multiplying both sides by the least common denominator.
+
+### Key Concept: Dimensional Analysis
+
+* Write the given quantity as a fraction over 1.
+* Multiply by conversion factors so that unwanted units cancel, leaving the desired unit in the numerator.
+* Chain multiple conversions together in a single multiplication string.
+
+## Example 1 and 2 — Solve for a Specified Variable
+
+Solve linear equations and formulas for a given variable by applying inverse operations systematically.
+
+### Step 1: Identify the Target Variable
+
+Determine which variable must be isolated.
+
+### Step 2: Undo Addition and Subtraction
+
+Move all terms containing the target variable to one side and all other terms to the opposite side.
+
+Representative equations:
+[
+x - 2y = 1, \quad \text{for } y
+]
+[
+7f + g = 5, \quad \text{for } f
+]
+[
+q - r = r, \quad \text{for } r
+]
+
+### Step 3: Undo Multiplication and Division
+
+If the target variable is multiplied by a coefficient, divide both sides by that coefficient. If it appears inside a fraction, eliminate the denominator first.
+
+Representative equations:
+[
+r = wp, \quad \text{for } p
+]
+[
+4m - t = m, \quad \text{for } m
+]
+[
+\frac{10ac - x}{11} = -3, \quad \text{for } a
+]
+
+### Step 4: Factor if the Variable Appears in Multiple Terms
+
+When the target variable occurs in more than one term, collect those terms, factor out the variable, and then divide.
+
+Representative equations:
+[
+7a - b = 15a, \quad \text{for } a
+]
+[
+-5c + d = 2c, \quad \text{for } c
+]
+
+### Step 5: Solve Formulas with Multiple Operations
+
+For formulas involving several variables and operations, work from the outside in using inverse operations.
+
+Representative formulas:
+[
+u = vw + z, \quad \text{for } v
+]
+[
+r = \frac{2}{3}t + v, \quad \text{for } t
+]
+[
+\frac{df + 10}{6} = g, \quad \text{for } f
+]
+
+## Example 3 — Apply Formulas to Real-World Situations
+
+Given a formula from geometry or a real-world context, solve it for a specific variable and then substitute known values to find an unknown quantity.
+
+### Step 1: Solve the Formula for the Desired Variable
+
+Use inverse operations to isolate the variable you need to find.
+
+Representative formulas:
+* Perimeter of a rectangle:
+[
+  P = 2\ell + 2w, \quad \text{for } \ell
+]
+* Batting average:
+[
+  a = \frac{h}{b}, \quad \text{for } b
+]
+* Volume of a rectangular prism:
+[
+  V = \ell wh, \quad \text{for } h
+]
+
+### Step 2: Substitute Known Values and Compute
+
+Replace the other variables with the given numbers and evaluate to find the unknown.
+
+## Example 4 — Solve Formulas with Constraints
+
+Given a real-world formula, describe the constraints on the variables, solve for a specified variable, and use the result to answer questions involving budgets or limits.
+
+### Step 1: Identify Constraints
+
+Determine what values or conditions the variables must satisfy based on the context, such as a maximum budget or a minimum number of items.
+
+Representative situations:
+* Coffee shop budget:
+[
+  T = 5.50p + 7f
+]
+  where [ T = 40 ] dollars is the maximum amount to spend.
+* Towel and washcloth order:
+[
+  T = 6b + 2w
+]
+  where [ T = 85 ] dollars is the budget and at least 20 washcloths are needed.
+
+### Step 2: Solve for the Desired Variable
+
+Isolate the variable you need to analyze.
+
+### Step 3: Apply the Constraint to Answer the Question
+
+Substitute the known or constrained values and solve the resulting inequality or equation to find a maximum or minimum.
+
+## Examples 5-7 — Dimensional Analysis and Unit Conversion
+
+Use dimensional analysis to convert measurements from one unit to another in real-world contexts.
+
+### Step 1: Write the Given Quantity as a Fraction
+
+Express the starting measurement as a fraction over 1.
+
+### Step 2: Multiply by Conversion Factors
+
+Use known conversion relationships written as fractions so that unwanted units cancel.
+
+Representative conversions:
+* Metric tons to trillion pounds:
+[
+  1 \text{ trillion lb} = 0.4536 \text{ billion metric tons}
+]
+* Euros to U.S. dollars:
+[
+  \$1 \text{ U.S.} = 0.678 \text{ euros}
+]
+* Centimeters to inches to feet:
+[
+  1 \text{ cm} = 0.39 \text{ in}, \quad 1 \text{ ft} = 12 \text{ in}
+]
+* Meters to feet to miles for track laps:
+[
+  1 \text{ ft} = 0.3048 \text{ m}, \quad 1 \text{ mi} = 5280 \text{ ft}
+]
+* Kilometers to yards to miles:
+[
+  1 \text{ m} = 1.094 \text{ yd}, \quad 1 \text{ mi} = 1760 \text{ yd}
+]
+
+### Step 3: Compute and Round as Directed
+
+Multiply the numerators, divide by the denominators, and round to the specified place value.
+
+Additional contexts include production rates over time, water usage across multiple showers, time until an event in seconds, and determining how many students can be served from a given mass of material.
+
+## Mixed Exercises
+
+The mixed exercises provide comprehensive practice across all skills from the lesson.
+
+* **Solve for a variable:** A range of literal equations requiring collection of variable terms, factoring, and clearing fractions.
+[
+  rt - 2n = y, \quad \text{for } t
+]
+[
+  \frac{x - c}{2} = d, \quad \text{for } x \text{ and for } c
+]
+[
+  ax + z = aw - y, \quad \text{for } a
+]
+* **Structure and reasoning:** Analyze conversion factors to determine possible initial and final units of a rate.
+* **Financial reasoning:** Solve the simple interest formula [ A = P(1 + r) ] for [ r ] and interpret the result in context.
+* **Geometric reasoning:** Use the area of a triangle formula [ A = \frac{1}{2}bh ] to find the height of congruent triangles forming a regular octagon.
+* **Variable restrictions:** Solve [ \frac{ry + z}{m} - t = x ] for [ y ] and explain any restrictions on the variables.
+* **Create:** Write an original area formula involving a fraction and solve it for a non-area variable.
+* **Error analysis:** Evaluate whether a worked solution for solving the temperature conversion formula for [ C ] is correct.
+* **Compound interest:** Solve [ A = P(1 + r)^t ] for [ P ] and analyze whether [ A ] is always greater than [ P ] when [ r > 0 ] and [ t ] is a positive integer.
+
+## Review Notes
+
+* Problem 46 references an image (`media/image1.png`) showing a regular octagon divided into 8 congruent triangles. The problem asks students to find the side length of the octagon, solve the triangle area formula for height, and compute the height of each triangle.
+* Problem 49 references an image (`media/image2.png`) showing Sasha's worked solution for solving the Fahrenheit-to-Celsius temperature conversion formula for [ C ]. The problem asks students to determine whether her solution is correct and explain their reasoning.

@@ -1,0 +1,129 @@
+# Lesson 1-7 — Inequalities in Two Triangles
+
+Source: (Module 1, Lesson 1-7, Int2_0107_practice.docx)
+
+## Today's Goals
+
+* Apply the Hinge Theorem to compare sides and angles in two triangles.
+* Write two-column and paragraph proofs involving triangle inequalities.
+* Use the Hinge Theorem and its converse to solve problems.
+
+## Vocabulary
+
+* **Hinge Theorem** — If two sides of one triangle are congruent to two sides of another triangle, and the included angle of the first is larger, then the third side of the first is longer.
+* **Converse of the Hinge Theorem** — If two sides of one triangle are congruent to two sides of another triangle, and the third side of the first is longer, then the included angle of the first is larger.
+
+## Explore: How Does an Angle Affect the Opposite Side?
+
+When two triangles have two sides of equal length, the difference in the included angle determines which triangle has the longer third side. This is the idea behind the Hinge Theorem.
+
+Inquiry Question:
+Why is the angle between two sides important in determining the length of the third side?
+
+## Learn: Comparing Two Triangles
+
+### Key Concept: The Hinge Theorem
+
+When comparing two triangles:
+* Two pairs of sides are congruent.
+* The included angles are different.
+* The larger included angle produces the longer third side.
+
+### Key Concept: Using the Hinge Theorem
+
+To apply the Hinge Theorem:
+1. Verify that two pairs of sides are congruent.
+2. Identify which included angle is larger.
+3. Conclude that the third side opposite the larger angle is longer.
+
+### Key Concept: Converse of the Hinge Theorem
+
+If two pairs of sides are congruent and the third sides differ, the triangle with the longer third side has the larger included angle.
+
+## Example 1 — Compare Distances Using the Hinge Theorem
+
+Two planes take off from the same airstrip and travel different courses. Use the Hinge Theorem to determine which plane is farther from the starting point.
+
+### Step 1: Identify the Two Sides for Each Triangle
+
+For each plane, the two legs of the journey form two sides of a triangle.
+
+### Step 2: Identify the Included Angle
+
+The change in direction forms the included angle between the two legs.
+
+### Step 3: Apply the Hinge Theorem
+
+If one included angle is smaller than the other, the third side (distance from starting point) is shorter.
+
+## Example 2 — Write Proofs Using the Hinge Theorem
+
+Write two-column proofs that apply the Hinge Theorem or its converse.
+
+### Step 1: Identify the Two Triangles
+
+Note which two triangles are being compared and which sides are congruent.
+
+### Step 2: Compare the Included Angles
+
+State which angle is larger based on the given information.
+
+### Step 3: Apply the Hinge Theorem
+
+Conclude that the third side opposite the larger angle is longer.
+
+## Example 3 — Find the Range of Values for x
+
+Given a diagram with an unknown x, use triangle inequality relationships to find the range of possible values.
+
+### Step 1: Set Up the Inequality
+
+For the given diagram, use the relationship between the given sides and the unknown side to create an inequality.
+
+### Step 2: Solve for x
+
+Isolate x to find the range of values that satisfy the triangle inequality.
+
+### Step 3: Express the Range
+
+Write the range of possible values for x.
+
+## Example 4 — Hinge Theorem in Proofs
+
+Write two-column or paragraph proofs applying the Hinge Theorem.
+
+### Step 1: Identify Given Information
+
+Extract the two pairs of congruent sides and any additional angle information.
+
+### Step 2: Apply the Hinge Theorem
+
+Use the theorem to relate the third sides or third angles.
+
+### Step 3: Write the Proof
+
+Organize the logical steps with reasons.
+
+## Mixed Exercises
+
+Practice involves:
+
+* Comparing two segment lengths in a diagram (e.g., MR and RP) using triangle relationships.
+* Comparing two angle measures (e.g., m∠C and m∠Z) using triangle relationships.
+* Writing a two-column proof: if BA ≅ DA and BC > DC, then m∠1 > m∠2.
+* Writing a paragraph proof: if EF ≅ GH and m∠F > m∠G, then EG > FH.
+* Analyzing a diagram with multiple congruent segments and using the given AC < DE to determine how m∠1 compares to m∠3.
+* Comparing distances at different times on a clock: is the distance between the ends of the minute and hour hands greater at 3:00 or at 8:00?
+* Writing a paragraph proof of the Hinge Theorem.
+* Using an indirect proof to prove the Converse of the Hinge Theorem.
+* Determining from a diagram which of three runners is nearest to and farthest from the photographer.
+* Analyzing submarine navigation: if submarine A sails 38 km east and then 52 degrees north of east for 25 km, and submarine B sails 38 degrees south of west for 25 km and then west for 38 km, determine relative final positions.
+* Creating a real-world example of an object that uses a hinge and explaining why Theorem 6.12 is called the Hinge Theorem.
+* Given a triangle RST with median RQ, if RT is greater than or equal to RS, determining possible classifications of triangle RQT.
+* Comparing and contrasting the Hinge Theorem to the SAS Postulate for triangle congruence.
+* Analyzing whether if BD is a median and AB < BC, then angle BDC is sometimes, always, or never an acute angle.
+
+## Review Notes
+
+* Multiple diagrams referenced: images showing triangles for side and angle comparison problems (media/image1.png through media/image19.png) contain geometric figures that could not be fully described.
+* The worksheet contains 25 practice problems covering Hinge Theorem applications, proofs, and real-world comparisons.

@@ -1,0 +1,261 @@
+# Lesson 14-6 — Isosceles and Equilateral Triangles
+
+Source: (Module 14, Lesson 14-6, Int1_1406_practice.docx)
+
+## Today's Goals
+
+* Write two-column proofs using the Isosceles Triangle Theorem and its converse.
+* Find missing side lengths and angle measures in isosceles and equilateral triangles.
+* Solve for unknown variables using properties of isosceles and equilateral triangles.
+* Apply triangle properties to model and solve real-world problems.
+
+## Vocabulary
+
+* **Isosceles Triangle** — A triangle with at least two congruent sides.
+* **Equilateral Triangle** — A triangle with three congruent sides.
+* **Equiangular Triangle** — A triangle with three congruent angles.
+* **Legs** — The congruent sides of an isosceles triangle.
+* **Base** — The side of an isosceles triangle that is not one of the congruent sides.
+* **Vertex Angle** — The angle formed by the two congruent sides of an isosceles triangle.
+* **Base Angles** — The two angles adjacent to the base of an isosceles triangle.
+* **Isosceles Triangle Theorem** — If two sides of a triangle are congruent, then the angles opposite those sides are congruent.
+* **Converse of the Isosceles Triangle Theorem** — If two angles of a triangle are congruent, then the sides opposite those angles are congruent.
+* **Corollary** — A statement that follows directly from a theorem.
+
+## Explore: What Happens When Two Sides of a Triangle Are Congruent?
+
+Students examine triangles with two congruent sides and observe the relationship between the angles opposite those sides. They discuss whether this relationship always holds and how it can be used to find missing measures.
+
+Inquiry Question:
+How can knowing that two sides of a triangle are congruent help you find the missing angles?
+
+## Learn: Properties of Isosceles and Equilateral Triangles
+
+The Isosceles Triangle Theorem and its converse provide powerful tools for finding missing measures and writing proofs. Equilateral triangles have special corollaries that simplify calculations.
+
+### Key Concept: Isosceles Triangle Theorem
+
+If two sides of a triangle are congruent, then the angles opposite those sides are congruent.
+
+For example, in triangle ABC with congruent sides AB and AC:
+
+[
+\overline{AB} \cong \overline{AC}
+]
+
+Then the opposite angles are congruent:
+
+[
+\angle B \cong \angle C
+]
+
+### Key Concept: Converse of the Isosceles Triangle Theorem
+
+If two angles of a triangle are congruent, then the sides opposite those angles are congruent.
+
+For example, in triangle ABC with congruent angles B and C:
+
+[
+\angle B \cong \angle C
+]
+
+Then the opposite sides are congruent:
+
+[
+\overline{AB} \cong \overline{AC}
+]
+
+### Key Concept: Corollaries for Equilateral and Equiangular Triangles
+
+* A triangle is equilateral if and only if it is equiangular.
+* Each angle of an equilateral triangle measures:
+
+[
+60°
+]
+
+## Example 1 — Write Two-Column Proofs Using Isosceles Triangle Properties
+
+Write two-column proofs to show segment congruence using given angle or side relationships in isosceles triangles.
+
+### Step 1: Identify the Given Information and the Prove Statement
+
+Extract the known congruences and the desired conclusion from the diagram and the problem.
+
+### Step 2: Apply the Converse of the Isosceles Triangle Theorem
+
+When two angles of a triangle are congruent, conclude that the sides opposite those angles are congruent.
+
+For example, if angle 1 is congruent to angle 2:
+
+[
+\angle 1 \cong \angle 2
+]
+
+Then the sides opposite those angles are congruent:
+
+[
+\overline{AB} \cong \overline{CB}
+]
+
+### Step 3: Use Segment Addition with Congruent Parts
+
+When two pairs of smaller segments are congruent and share a common endpoint, add the congruent parts to show the longer segments are congruent.
+
+If:
+
+[
+\overline{CD} \cong \overline{CG}
+]
+
+and:
+
+[
+\overline{DE} \cong \overline{GF}
+]
+
+Then by the Segment Addition Postulate:
+
+[
+\overline{CE} \cong \overline{CF}
+]
+
+### Step 4: Use Parallel Lines to Establish Angle Congruence
+
+When a line parallel to one side of a triangle creates alternate interior angles, use those congruent angles with the converse of the Isosceles Triangle Theorem to prove two sides of the triangle are congruent.
+
+### Step 5: Prove an Angle Bisector Using Triangle Congruence
+
+In an isosceles triangle with a perpendicular segment from the vertex angle to the base, prove the two formed triangles are congruent by the Hypotenuse-Leg or SAS Postulate, then conclude the perpendicular bisects the vertex angle.
+
+## Example 2 — Find Side Lengths and Angle Measures in Isosceles Triangles
+
+Use the properties of isosceles triangles to calculate unknown side lengths and angle measures from diagrams.
+
+### Step 1: Identify Congruent Sides and Base Angles
+
+Mark the congruent legs and the base angles of the isosceles triangle using the given diagram or information.
+
+### Step 2: Apply the Triangle Angle Sum Theorem
+
+Subtract the measure of the vertex angle from 180° and divide the result by 2 to find each base angle.
+
+[
+\frac{180° - m\angle V}{2}
+]
+
+### Step 3: Set Up and Solve Equations for Side Lengths
+
+When algebraic expressions represent the lengths of congruent sides, set the expressions equal and solve for the variable.
+
+If the legs are given as:
+
+[
+2x + 3
+]
+
+and:
+
+[
+x + 7
+]
+
+Set them equal:
+
+[
+2x + 3 = x + 7
+]
+
+Then solve:
+
+[
+x = 4
+]
+
+### Step 4: Use Right-Triangle Relationships When Needed
+
+If an altitude splits the isosceles triangle into two right triangles, use the Pythagorean Theorem or trigonometric ratios to find missing lengths or angles. Round to the nearest tenth when necessary.
+
+## Examples 3 and 4 — Solve for Unknowns in Isosceles and Equilateral Triangles
+
+Set up and solve equations using the properties of isosceles and equilateral triangles.
+
+### Step 1: Equate Expressions for Congruent Angles or Sides
+
+In an isosceles triangle, set the expressions for congruent base angles or congruent legs equal to each other.
+
+For example, if the base angles are:
+
+[
+(3x + 5)°
+]
+
+and:
+
+[
+(2x + 15)°
+]
+
+Write:
+
+[
+3x + 5 = 2x + 15
+]
+
+Then solve:
+
+[
+x = 10
+]
+
+### Step 2: Use the Triangle Angle Sum to Verify Missing Angles
+
+After solving for the variable, substitute back to find each angle measure and confirm that the three angles sum to 180°.
+
+[
+m\angle A + m\angle B + m\angle C = 180°
+]
+
+### Step 3: Apply Equilateral Triangle Properties
+
+In an equilateral triangle, set each angle expression equal to 60° or set each side expression equal to a common value.
+
+If each angle is expressed as:
+
+[
+4x - 8
+]
+
+Then:
+
+[
+4x - 8 = 60
+]
+
+And:
+
+[
+x = 17
+]
+
+### Step 4: Solve Real-World Problems Modeled by Triangles
+
+Recognize isosceles or equilateral shapes in everyday objects, assign variables to unknown dimensions, set up the appropriate equation, and solve.
+
+## Mixed Exercises
+
+The mixed exercises section provides practice with all skills from the lesson: writing proofs, finding missing measures, solving equations, and applying triangle properties to real-world contexts. Problems include:
+
+* Writing two-column proofs to establish corollaries about equilateral and equiangular triangles.
+* Writing paragraph proofs to justify angle measures in real-world isosceles triangle structures.
+* Investigating the midsegment triangle formed by connecting the midpoints of the sides of an isosceles triangle and making conjectures.
+* Finding angle measures in complex diagrams containing multiple triangles.
+* Applying isosceles triangle properties to contexts such as marble paths, bridge architecture, and traffic signs.
+* Constructing isosceles right triangles and verifying the constructions with measurement and mathematics.
+* Analyzing statements about isosceles triangles as sometimes, always, or never true and justifying the reasoning.
+* Identifying and explaining errors in student work about angle measures in isosceles triangles.
+* Solving multi-step real-world problems involving parallel lines, isosceles triangles, and distance calculations.
+
+## Review Notes
+
+* Images referenced in the worksheet (media/image1.png through media/image24.png) could not be fully described without visual reference. Teachers should consult the original worksheet for exact diagrams and values.

@@ -1,228 +1,185 @@
 # Lesson 8-4 — Normal Distributions
 
-Source: (Module 8, Lesson 8-4, pp. 393–400)
+Source: (Module 8, Lesson 8-4, Int3_0804_practice.docx)
 
 ## Today's Goals
 
-* Classify variables and analyze probability distributions to determine expected outcomes
-* Analyze normally distributed variables by using the Empirical Rule
-* Analyze standardized data and distributions by using z-values
-
----
+* Classify random variables as discrete or continuous.
+* Construct probability distributions and histograms.
+* Use the empirical rule (68-95-99.7 rule) for normal distributions.
+* Find and interpret z-values for standard normal distributions.
+* Find areas under the normal curve using z-tables.
 
 ## Vocabulary
 
-* probability distribution
-* discrete random variable
-* continuous random variable
-* outcome
-* sample space
-* normal distribution
-* z-value
-* standard normal distribution
+* **Random Variable** — A variable that represents a numerical outcome of a random phenomenon.
+* **Discrete Random Variable** — A random variable with a countable number of possible values.
+* **Continuous Random Variable** — A random variable that can take any value within an interval.
+* **Probability Distribution** — A table, graph, or rule that assigns probabilities to values of a random variable.
+* **Normal Distribution** — A symmetric, bell-shaped distribution where data values cluster around the mean.
+* **Standard Normal Distribution** — A normal distribution with mean [μ = 0] and standard deviation [σ = 1].
+* **z-Value (z-score)** — The number of standard deviations a value [X] is from the mean: [z = (X - μ) / σ].
+* **Empirical Rule (68-95-99.7 Rule)** — About 68% of data within 1 SD, 95% within 2 SD, 99.7% within 3 SD of the mean.
 
----
+## Explore: What Makes a Distribution Normal?
 
-## Explore: Probability Distributions
+Inquiry Question:
+Why do so many real-world data sets follow a normal distribution pattern?
 
-Use a simulation to complete the explore.
+## Learn: Random Variables and Probability Distributions
 
-**Inquiry Question:**
-What is the relationship between the expected value of a discrete random variable and the mean of the distribution of that variable as the sample size increases?
+### Key Concept: Discrete vs. Continuous Random Variables
 
----
+* **Discrete random variables** have a countable number of possible values (e.g., number of texts received).
+* **Continuous random variables** can take any value within an interval (e.g., height of a plant).
 
-## Learn: Probability Distributions
+### Key Concept: Constructing a Probability Distribution
 
-A **probability distribution** maps each outcome of a random variable to its probability.
-
-* a **discrete random variable** is countable
-* a **continuous random variable** can take on any value in an interval
-
-Conditions for a probability distribution:
-
-* each probability is between `0` and `1`
-* the probabilities of all outcomes add to `1`
-
----
+1. List all possible outcomes.
+2. Determine the probability for each outcome.
+3. Verify that probabilities sum to 1.
+4. Create a table or histogram to display the distribution.
 
 ## Example 1 — Classify Random Variables
 
-Classify each variable.
+Identify the random variable in each distribution, and classify it as *discrete* or *continuous*. Explain your reasoning.
 
-* number of songs on smartphones: **discrete**
-* air pressure in basketballs: **continuous**
+1. The number of texts received per week.
+   * Random variable: Number of texts per week.
+   * Classification: **Discrete** — Counted in whole numbers.
 
----
+2. The number of "likes" for a Web page.
+   * Random variable: Number of "likes."
+   * Classification: **Discrete** — Counted in whole numbers.
 
-## Example 2 — Analyze a Probability Distribution
+3. The height of a plant after a specific amount of time.
+   * Random variable: Plant height.
+   * Classification: **Continuous** — Height can be any value within a range (not restricted to whole numbers).
 
-A candy company records the number of prize-winning wrappers for each cash amount.
+## Example 2 — Construct a Probability Distribution
 
-Construct a relative frequency table by dividing each frequency by the total number of winning wrappers, `4000`.
+### Step 1: Fundraising Dinner Problem
 
-Sample probabilities:
+At a fundraising dinner, the underside of 200 plates were randomly tagged with a sticker to indicate winning a cash prize. The frequency table shows the number of winning plates for each prize. Construct a relative frequency table and graph the probability distribution. ![](media/image2.JPG)
 
-* `$5`: `0.3125`
-* `$10`: `0.2500`
-* `$20`: `0.1875`
-* `$50`: `0.1500`
+Calculate relative frequency by dividing each frequency by the total (200). Graph as a histogram with prize categories on the horizontal axis and relative frequency on the vertical axis.
 
-Graph the distribution with separated bars because the outcomes are discrete.
+### Step 2: Basketball Flyer Problem
 
----
+An athletic director made a probability distribution of basketball player heights and claimed that the majority of players are 71 inches or taller. Identify any flaws in the representation. ![](media/image3.png)
 
-## Example 3 — Misleading Distributions
+Flaws might include:
+* Misleading scale on the histogram
+* Categories that don't evenly distribute the data
+* The claim may not accurately reflect the actual distribution
 
-A business publishes a salary probability distribution to suggest that most employees earn at least `$40,000`.
+## Example 3 — Determine if Data Follow a Normal Distribution
 
-Misleading features:
+### Step 1: Track Race Problem
 
-* the x-axis bins are uneven, especially above `$70,000`
-* the y-axis scale uses very small increments that exaggerate differences
+Create a histogram of the 110-meter hurdles preliminary times. Determine whether the data can be approximated with a normal distribution.
 
-Conclusion:
+A normal distribution is symmetric and bell-shaped. If the histogram is approximately symmetric with a central peak and tails that diminish on both sides, the data can be approximated as normally distributed. ![](media/image4.JPG)
 
-The graph visually overstates how much more likely the `$40,000` to `$50,000` range is.
+## Example 4 — The Empirical Rule
 
----
+A normal distribution has a mean of [μ = 186.4] and a standard deviation of [σ = 48.9].
 
-## Learn: Normal Distributions
+a. What range of values represents the middle 99.7% of the data?
+[μ - 3σ to μ + 3σ]
+[186.4 - 3(48.9) to 186.4 + 3(48.9)]
+[186.4 - 146.7 to 186.4 + 146.7]
+[39.7 to 333.1]
 
-The **normal distribution** is a continuous, bell-shaped, symmetric distribution.
+b. What percent of data will be greater than 235.3?
+[235.3 = 186.4 + 48.9 = μ + σ]
+By the empirical rule, about 16% of data lies above [μ + σ] (one standard deviation above the mean).
 
-### Key Concept: The Normal Distribution
+c. What range of values represents the upper 2.5% of the data?
+The upper 2.5% corresponds to values greater than [μ + 2σ] (since about 95% lies within 2 SD).
+[186.4 + 2(48.9) = 186.4 + 97.8 = 284.2]
+So the upper 2.5% is greater than approximately 284.2.
 
-* the graph is bell-shaped and symmetric
-* the mean, median, and mode are equal
-* the curve approaches but never touches the x-axis
-* the total area under the curve is `1`
+## Example 5 — Calculate z-Values
 
-### Key Concept: The Empirical Rule
+Find the z-value for each standard normal distribution.
 
-For a normal distribution with mean `mu` and standard deviation `sigma`:
+8. [σ = 9.8, X = 55.4, μ = 68.34]
+[z = (55.4 - 68.34) / 9.8 = -12.94 / 9.8 ≈ -1.32]
 
-* about `68%` of the data lies within `1 sigma`
-* about `95%` lies within `2 sigma`
-* about `99.7%` lies within `3 sigma`
+9. [σ = 11.6, X = 42.80, μ = 68.2]
+[z = (42.80 - 68.2) / 11.6 = -25.4 / 11.6 ≈ -2.19]
 
----
+10. [σ = 11.6, X = 119.2, μ = 112.4]
+[z = (119.2 - 112.4) / 11.6 = 6.8 / 11.6 ≈ 0.59]
 
-## Example 4 — Approximate Data by Using a Normal Distribution
+## Example 6 — Find Areas Under the Normal Curve
 
-A histogram of goals scored by soccer players is skewed.
+Use a z-table to find the area under the normal curve for each interval.
 
-Conclusion:
+11. [z > 0.58]
+Area to the right of [z = 0.58] under the standard normal curve.
 
-The data cannot be approximated by a normal distribution because it is not symmetric.
+12. [z < -1.56]
+Area to the left of [z = -1.56] under the standard normal curve.
 
----
+13. [-2.29 < z < 2.76]
+Area between [z = -2.29] and [z = 2.76] under the standard normal curve.
 
-## Example 5 — Use the Empirical Rule to Analyze Data
+## Example 7 — Apply Normal Distribution to Real Data
 
-A normal distribution has:
+### Step 1: Testing Scores Problem
 
-* mean `= 42`
-* standard deviation `= 6`
+Test scores are normally distributed with a mean of [μ = 100] and a standard deviation of [σ = 12.3].
 
-### a. Find the middle `95%`
+a. What percent of scores are between 70 and 80?
+[z for 70: (70 - 100) / 12.3 ≈ -2.44]
+[z for 80: (80 - 100) / 12.3 ≈ -1.63]
+Use the z-table to find the area between these z-values.
 
-Use `mu ± 2sigma`:
+b. What percent of scores are over 115?
+[z for 115: (115 - 100) / 12.3 ≈ 1.22]
+Area to the right of [z = 1.22] from the z-table.
 
-* `42 - 12 = 30`
-* `42 + 12 = 54`
-
-So the middle `95%` is from `30` to `54`.
-
-### b. What percent of the data is greater than `36`?
-
-`36` is one standard deviation below the mean.
-
-Area greater than `36`:
-
-* `50%` above the mean
-* `34%` between `36` and the mean
-
-Total:
-
-`84%`
-
----
-
-## Learn: The Standard Normal Distribution
-
-Data can be standardized using **z-values**:
-
-`z = (X - mu) / sigma`
-
-The **standard normal distribution** has:
-
-* mean `0`
-* standard deviation `1`
-
-Areas under the curve correspond to probabilities.
-
----
-
-## Example 6 — Use z-Values to Locate Position
-
-Find `z` if:
-
-* `X = 24`
-* `mu = 19`
-* `sigma = 3.8`
-
-`z = (24 - 19) / 3.8 = 5 / 3.8 ≈ 1.316`
-
----
-
-## Example 7 — Find Area Under the Standard Normal Curve by Using a Table
-
-Find the area under the normal curve for:
-
-`z < -1.18`
-
-From the standard normal table:
-
-`P(z < -1.18) = 0.1190`
-
-So the area is:
-
-`0.1190`
-
----
-
-## Example 8 — Find Area Under the Standard Normal Curve by Using a Calculator
-
-Daily hits to a website are normally distributed with:
-
-* `mu = 98,452`
-* `sigma = 10,325`
-
-Find:
-
-`P(X > 100,000)`
-
-### Step 1: Find the z-value
-
-`z = (100,000 - 98,452) / 10,325 ≈ 0.150`
-
-### Step 2: Use a calculator
-
-Use `normalcdf` to find the area from `z = 0.150` to a large upper bound.
-
-Probability:
-
-`≈ 0.44`
-
-So the probability is about:
-
-`44.0%`
-
----
-
-## Objective Alignment
-
-- `Classify variables and analyze probability distributions to determine expected outcomes`: Primary worked examples: Examples 1-3.
-- `Analyze normally distributed variables by using the Empirical Rule`: Primary worked examples: Examples 4-5.
-- `Analyze standardized data and distributions by using z-values`: Primary worked examples: Examples 6-8.
+c. If 75 people take the test, how many would you expect to score lower than 75?
+First find the area to the left of [z = (75 - 100) / 12.3 ≈ -2.03].
+Then multiply 75 by that proportion.
+
+## Mixed Exercises
+
+15. Shawndra studied how far people park from parking blocks. Mean is 8.5 inches, and about 2.5% park more than 11.5 inches. What percentage park less than 5.5 inches?
+If the distribution is symmetric and normal, 5.5 inches is the same distance below the mean as 11.5 is above. So about 2.5% also park less than 5.5 inches.
+
+16. Use the normal distribution of data to answer:
+a. What is the standard deviation of the data set?
+b. What percent of the data will be greater than 60? ![](media/image4.png)
+
+17. Light bulbs: About 2.5% last longer than 6800 hours, and about 16% last longer than 6500 hours. What is the average bulb life?
+Use the empirical rule: if 16% last longer than 6500, then 6500 is approximately [μ + σ]. If 2.5% last longer than 6800, then 6800 is approximately [μ + 2σ].
+Solving gives approximate values for [μ] and [σ].
+
+18. Roberto takes a 20-question practice college entrance exam daily and records his score. Find the probability distribution.
+Each score can range from 0 to 20, and the distribution would show the probability of each possible score.
+
+19. Tree diameters: Mean 11.5 cm, standard deviation 2.5, range 3.6 to 19.8. Monica and Hiroko find the range for the middle 68%. Is either correct?
+The middle 68% is within [μ - σ, μ + σ] = [9.0, 14.0]. The actual range 3.6 to 19.8 spans more than 3 standard deviations, so the middle 68% would fall within [9.0, 14.0].
+
+20. Cell phone shipment: Average battery life 8.2 hours with standard deviation 0.7 hour. Eight phones have battery life greater than 9.3 hours. If normally distributed, how many phones are in the shipment?
+[9.3 = 8.2 + 1.1 = 8.2 + (1.57)(0.7) ≈ μ + 1.57σ]
+From the z-table, about 5.8% of phones exceed this value.
+If 8 phones represent 5.8%, then total phones ≈ 8 / 0.058 ≈ 138.
+
+21. Describe the relationship between the z-value, position of an interval of X in the normal distribution, area under the normal curve, and probability of the interval occurring.
+The z-value indicates how many standard deviations X is from the mean. The z-value's position determines the area under the normal curve, which equals the probability of X falling in that interval.
+
+## Review Notes
+
+* Image references in this lesson:
+  * ![](media/image1.JPG) — Spinner or measurement diagram (Examples 2-4, Question 4)
+  * ![](media/image2.JPG) — Fundraising prize frequency table (Example 2, Question 4)
+  * ![](media/image3.png) — Basketball player height distribution (Example 2, Question 5)
+  * ![](media/image4.JPG) — Track race histogram (Example 3, Question 6)
+  * ![](media/image4.png) — Normal distribution diagram (Mixed Exercises, Question 16)
+  * ![](media/image5.png) — Roberto's exam score distribution (Mixed Exercises, Question 18)
+  * ![](media/image6.png) — Monica and Hiroko's tree diameter analysis (Mixed Exercises, Question 19)
+* This lesson covers normal distributions, z-scores, the empirical rule, and applications to real-world data.

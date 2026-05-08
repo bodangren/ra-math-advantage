@@ -1,0 +1,314 @@
+# Lesson 12-10 — Perpendiculars and Distance
+
+Source: (Module 12, Lesson 12-10, Int1_1210_practice.docx)
+
+## Today's Goals
+
+* Find the distance from a point to a line in the coordinate plane.
+* Find the distance between two parallel lines given their equations.
+* Apply perpendicular distance concepts to solve real-world design and physics problems.
+* Use constructions and reasoning to justify properties of perpendiculars and distance.
+
+## Vocabulary
+
+* **Perpendicular Distance** — The shortest distance from a point to a line, measured along the segment perpendicular to the line.
+* **Parallel Lines** — Lines in the same plane that never intersect and are always the same distance apart.
+* **Equidistant** — Being the same distance from a given point or line.
+* **Slope** — The ratio of vertical change to horizontal change between two points on a line.
+* **Midpoint** — The point that divides a segment into two congruent segments.
+
+## Explore: What Is the Shortest Distance from a Point to a Line?
+
+Students investigate why the perpendicular segment from a point to a line represents the shortest possible distance. Consider what happens if a non-perpendicular segment is drawn from the point to the line.
+
+Inquiry Question:
+Why must the shortest distance from a point to a line always be measured along a perpendicular segment?
+
+## Learn: Distance from a Point to a Line and Between Parallel Lines
+
+The distance from a point to a line is the length of the perpendicular segment from the point to the line. In the coordinate plane, this can be found using the slope of the given line, the slope of the perpendicular line, and the intersection point of the two lines. The distance between two parallel lines is the length of any perpendicular segment connecting them.
+
+### Key Concept: Distance from a Point to a Line
+
+* Find the slope of the given line.
+* Determine the slope of the perpendicular line (negative reciprocal).
+* Write the equation of the perpendicular line passing through the given point.
+* Find the intersection point of the two lines by solving the system.
+* Use the distance formula to find the length of the perpendicular segment from the point to the intersection point.
+
+### Key Concept: Distance Between Parallel Lines
+
+* Rewrite both equations in the same form (slope-intercept or standard form) to confirm they are parallel.
+* Choose any point on one of the lines.
+* Find the perpendicular distance from that point to the other line using the point-to-line distance method.
+* Alternatively, for lines in standard form [Ax + By + C = 0], use the formula:
+[
+d = \frac{|C_2 - C_1|}{\sqrt{A^2 + B^2}}
+]
+when the lines have the same [A] and [B] coefficients.
+
+## Example 1 — Find the Distance from a Point to a Line (Slanted Lines)
+
+Find the perpendicular distance from a given point to a line defined by two points in the coordinate plane.
+
+### Step 1: Find the Slope of the Given Line
+
+Use the two given points on the line to calculate its slope.
+
+For a line through [(0, -3)] and [(7, 4)]:
+[
+m = \frac{4 - (-3)}{7 - 0} = \frac{7}{7} = 1
+]
+
+For a line through [(11, -1)] and [(-3, -11)]:
+[
+m = \frac{-11 - (-1)}{-3 - 11} = \frac{-10}{-14} = \frac{5}{7}
+]
+
+### Step 2: Find the Slope of the Perpendicular Line
+
+Take the negative reciprocal of the original slope.
+
+If the original slope is [1], the perpendicular slope is:
+[
+m_{\perp} = -1
+]
+
+If the original slope is [\frac{5}{7}], the perpendicular slope is:
+[
+m_{\perp} = -\frac{7}{5}
+]
+
+### Step 3: Write the Equation of the Perpendicular Line
+
+Use point-slope form with the given point and the perpendicular slope.
+
+Through point [(4, 3)] with slope [-1]:
+[
+y - 3 = -1(x - 4)
+]
+[
+y = -x + 7
+]
+
+Through point [(-1, 1)] with slope [-\frac{7}{5}]:
+[
+y - 1 = -\frac{7}{5}(x + 1)
+]
+
+### Step 4: Find the Intersection Point
+
+Solve the system of the original line and the perpendicular line.
+
+Original: [y = x - 3] 
+Perpendicular: [y = -x + 7] 
+[
+x - 3 = -x + 7
+]
+[
+2x = 10
+]
+[
+x = 5, \quad y = 2
+]
+
+Intersection point: [(5, 2)] 
+
+### Step 5: Apply the Distance Formula
+
+Find the distance between the given point and the intersection point.
+
+From [(4, 3)] to [(5, 2)]:
+[
+d = \sqrt{(5 - 4)^2 + (2 - 3)^2} = \sqrt{1 + 1} = \sqrt{2}
+]
+
+From [(-1, 1)] to the intersection point:
+[
+d = \sqrt{(x_2 + 1)^2 + (y_2 - 1)^2}
+]
+
+## Example 2 — Find the Distance from a Point to a Horizontal or Vertical Line
+
+Find the perpendicular distance when the given line is horizontal or vertical.
+
+### Step 1: Identify Horizontal or Vertical Lines
+
+A horizontal line has the form [y = k] and slope [0].
+A vertical line has the form [x = k] and undefined slope.
+
+For a horizontal line through [(-2, 1)] and [(4, 1)]:
+[
+y = 1
+]
+
+For a vertical line through [(4, -1)] and [(4, 9)]:
+[
+x = 4
+]
+
+### Step 2: Find the Perpendicular Distance
+
+For a horizontal line, the perpendicular distance is the absolute difference of the [y]-coordinates.
+
+From point [(5, 7)] to line [y = 1]:
+[
+d = |7 - 1| = 6
+]
+
+From point [(-2, 4)] to line [y = 1]:
+[
+d = |4 - 1| = 3
+]
+
+For a vertical line, the perpendicular distance is the absolute difference of the [x]-coordinates.
+
+From point [(1, 6)] to line [x = 4]:
+[
+d = |1 - 4| = 3
+]
+
+### Step 3: Apply the Full Method for Oblique Lines
+
+For a slanted line through [(1, 5)] and [(4, -4)]:
+[
+m = \frac{-4 - 5}{4 - 1} = \frac{-9}{3} = -3
+]
+[
+m_{\perp} = \frac{1}{3}
+]
+
+Write the perpendicular through [(-1, 1)], find the intersection with the original line, then apply the distance formula.
+
+## Example 3 — Find the Distance Between Parallel Lines
+
+Find the distance between pairs of parallel lines given their equations.
+
+### Step 1: Verify the Lines Are Parallel
+
+Confirm both lines have the same slope.
+
+For [y = 7] and [y = -1]:
+Both are horizontal with slope [0].
+
+For [x = -6] and [x = 5]:
+Both are vertical with undefined slope.
+
+For [y = 3x] and [y = 3x + 10]:
+Both have slope [3].
+
+For [y = -5x] and [y = -5x + 26]:
+Both have slope [-5].
+
+For [y = x + 9] and [y = x + 3]:
+Both have slope [1].
+
+For [y = -2x + 5] and [y = -2x - 5]:
+Both have slope [-2].
+
+### Step 2: Find the Distance Between Horizontal Lines
+
+For [y = 7] and [y = -1]:
+[
+d = |7 - (-1)| = 8
+]
+
+### Step 3: Find the Distance Between Vertical Lines
+
+For [x = -6] and [x = 5]:
+[
+d = |5 - (-6)| = 11
+]
+
+### Step 4: Find the Distance Between Slanted Lines
+
+For [y = 3x] and [y = 3x + 10]:
+
+Choose a point on the first line, such as [(0, 0)].
+Rewrite the second line in standard form:
+[
+3x - y + 10 = 0
+]
+
+Use the point-to-line distance formula:
+[
+d = \frac{|3(0) - 1(0) + 10|}{\sqrt{3^2 + (-1)^2}} = \frac{10}{\sqrt{10}} = \sqrt{10}
+]
+
+For [y = -5x] and [y = -5x + 26]:
+
+Choose [(0, 0)] on the first line.
+Standard form of second line: [5x + y - 26 = 0] 
+[
+d = \frac{|5(0) + 1(0) - 26|}{\sqrt{5^2 + 1^2}} = \frac{26}{\sqrt{26}} = \sqrt{26}
+]
+
+For [y = x + 9] and [y = x + 3]:
+
+Choose [(0, 9)] on the first line.
+Standard form of second line: [x - y + 3 = 0] 
+[
+d = \frac{|0 - 9 + 3|}{\sqrt{1^2 + (-1)^2}} = \frac{6}{\sqrt{2}} = 3\sqrt{2}
+]
+
+For [y = -2x + 5] and [y = -2x - 5]:
+
+Choose [(0, 5)] on the first line.
+Standard form of second line: [2x + y + 5 = 0] 
+[
+d = \frac{|2(0) + 5 + 5|}{\sqrt{2^2 + 1^2}} = \frac{10}{\sqrt{5}} = 2\sqrt{5}
+]
+
+### Step 5: Find the Distance with Fractional Slopes
+
+For [y = \frac{1}{4}x + 2] and [4y - x = -60] (which becomes [y = \frac{1}{4}x - 15]):
+
+Both have slope [\frac{1}{4}].
+Choose [(0, 2)] on the first line.
+Standard form of second line: [x - 4y - 60 = 0] 
+[
+d = \frac{|0 - 4(2) - 60|}{\sqrt{1^2 + (-4)^2}} = \frac{68}{\sqrt{17}} = 4\sqrt{17}
+]
+
+For [3x + y = 3] (which becomes [y = -3x + 3]) and [y + 17 = -3x] (which becomes [y = -3x - 17]):
+
+Both have slope [-3].
+Choose [(0, 3)] on the first line.
+Standard form of second line: [3x + y + 17 = 0] 
+[
+d = \frac{|3(0) + 3 + 17|}{\sqrt{3^2 + 1^2}} = \frac{20}{\sqrt{10}} = 2\sqrt{10}
+]
+
+For [y = -\frac{5}{4}x + 3.5] and [4y + 10.6 = -5x] (which becomes [y = -\frac{5}{4}x - 2.65]):
+
+Both have slope [-\frac{5}{4}].
+Choose [(0, 3.5)] on the first line.
+Standard form of second line: [5x + 4y + 10.6 = 0] 
+[
+d = \frac{|5(0) + 4(3.5) + 10.6|}{\sqrt{5^2 + 4^2}} = \frac{24.6}{\sqrt{41}} = \frac{123}{5\sqrt{41}} = \frac{123\sqrt{41}}{205}
+]
+
+## Mixed Exercises
+
+The mixed exercises section provides practice with all skills from the lesson: finding the perpendicular distance from a point to a line, finding the distance between parallel lines, and applying these concepts to real-world situations and geometric reasoning. Problems include:
+
+* Finding the distance from a given point to a horizontal line, a line with fractional slope, and a vertical line.
+* Applying perpendicular distance to determine whether telephone wires are parallel by measuring perpendicular distances at different points.
+* Using perpendicular distance to verify whether a park entrance meets a minimum distance requirement from a street represented on a coordinate plane.
+* Constructing a perpendicular line from a given point to a given line or segment using a compass and straightedge.
+* Reasoning about whether a path represents the shortest possible distance from a starting point to an ending point.
+* Finding endpoint coordinates of perpendicular segments given slopes and midpoints.
+* Explaining what it means when the distance from a point to a line is zero, or when the distance between two lines is zero.
+* Completing a two-column proof that if two lines are each equidistant from a third line, then they are parallel to each other.
+* Summarizing the steps needed to find the distance between parallel lines given their equations.
+* Solving for an unknown coordinate given the distance between parallel lines and points where a perpendicular transversal intersects them.
+* Analyzing whether the distance between a line and a plane can always be found.
+* Creating and justifying a perpendicular construction in an irregular convex pentagon.
+* Rewriting a theorem about equidistant lines in terms of planes and sketching an example.
+* Finding the error in a claim about whether two drawn segments, if extended, would intersect or remain parallel.
+
+## Review Notes
+
+* Images referenced in the worksheet (telephone wires diagram, geometric construction diagrams, golf path diagram, segments for error analysis) could not be fully described without visual reference. Teachers should consult the original worksheet for exact diagrams and visual details.
+* The worksheet groups problems 1–6 and 7–8 under "Examples 1 and 2" and problems 9–17 under "Example 3."
+* The two-column proof in problem 28 references Theorem 3.24, which states that two lines equidistant from a third line are parallel to each other.

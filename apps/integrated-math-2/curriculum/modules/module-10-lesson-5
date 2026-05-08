@@ -1,0 +1,227 @@
+# Lesson 10-5 — Simplifying Radical Expressions
+
+Source: (Module 10, Lesson 10-5, Int2_1005_practice.docx)
+
+## Today's Goals
+
+* Apply the Product Property of Square Roots to simplify radical expressions.
+* Apply the Quotient Property of Square Roots to simplify radical expressions.
+* Simplify radical expressions by extracting perfect square factors.
+* Simplify cube roots and other higher-index radicals.
+* Solve real-world problems involving geometric formulas with radicals.
+
+## Vocabulary
+
+* **Product Property of Square Roots** — [\sqrt{ab} = \sqrt{a} \cdot \sqrt{b}], where [a \geq 0] and [b \geq 0].
+* **Quotient Property of Square Roots** — [\sqrt{\frac{a}{b}} = \frac{\sqrt{a}}{\sqrt{b}}], where [a \geq 0] and [b > 0].
+* **Simplest Form of a Radical** — A radical expression where no perfect [n]th power factors remain under the radical and no fractions remain under the radical.
+* **Like Radicals** — Radical expressions that have the same radicand and index; can be combined by addition or subtraction.
+
+## Explore: Simplifying Radicals
+
+Students explore how to break down radical expressions into simpler factors, connecting the idea that roots can be factored to reveal perfect powers that can be extracted.
+
+Inquiry Question:
+How do the Product and Quotient Properties of Radicals help us write radical expressions in simplest form?
+
+## Learn: Simplifying Radical Expressions
+
+### Key Concept: Product Property of Square Roots
+
+The square root of a product equals the product of the square roots.
+
+[
+\sqrt{52} = \sqrt{4 \cdot 13} = \sqrt{4} \cdot \sqrt{13} = 2\sqrt{13}
+]
+
+[
+\sqrt{72} = \sqrt{36 \cdot 2} = \sqrt{36} \cdot \sqrt{2} = 6\sqrt{2}
+]
+
+### Key Concept: Quotient Property of Square Roots
+
+The square root of a quotient equals the quotient of the square roots.
+
+[
+\sqrt{\frac{75}{49}} = \frac{\sqrt{75}}{\sqrt{49}} = \frac{\sqrt{25 \cdot 3}}{7} = \frac{5\sqrt{3}}{7}
+]
+
+[
+\sqrt{\frac{8}{81}} = \frac{\sqrt{8}}{\sqrt{81}} = \frac{2\sqrt{2}}{9}
+]
+
+### Key Concept: Simplifying Variables
+
+When the radicand contains variables raised to powers, extract even powers as coefficients.
+
+[
+\sqrt{16b^4} = 4b^2
+]
+
+[
+\sqrt{40x^4y^8} = \sqrt{4 \cdot 10 \cdot x^4 \cdot y^8} = 2x^2y^4\sqrt{10}
+]
+
+[
+\sqrt{75qr^3} = \sqrt{25 \cdot 3 \cdot q \cdot r^2 \cdot r} = 5r\sqrt{3qr}
+]
+
+## Example 1 — Simplifying Square Roots
+
+Simplify square root expressions by identifying perfect square factors.
+
+### Step 1: Factor Out Perfect Squares
+
+[
+\sqrt{52} = \sqrt{4 \cdot 13} = 2\sqrt{13}
+]
+
+[
+\sqrt{56} = \sqrt{4 \cdot 14} = 2\sqrt{14}
+]
+
+[
+\sqrt{72} = \sqrt{36 \cdot 2} = 6\sqrt{2}
+]
+
+### Step 2: Simplify Variable Expressions
+
+[
+\sqrt{16b^4} = 4b^2
+]
+
+[
+\sqrt{81a^{12}d^4} = 9a^6d^2
+]
+
+[
+\sqrt{28a^4b^3} = \sqrt{4 \cdot 7 \cdot a^4 \cdot b^2 \cdot b} = 2a^2b\sqrt{7b}
+]
+
+## Example 2 — Multiplying Radicals
+
+Multiply radical expressions and simplify the result.
+
+### Step 1: Multiply Under the Radical
+
+[
+\sqrt{5} \cdot \sqrt{10} = \sqrt{50} = \sqrt{25 \cdot 2} = 5\sqrt{2}
+]
+
+[
+\sqrt{10} \cdot \sqrt{20} = \sqrt{200} = \sqrt{100 \cdot 2} = 10\sqrt{2}
+]
+
+### Step 2: Simplify the Product
+
+[
+\sqrt{2} \cdot \sqrt{10} = \sqrt{20} = 2\sqrt{5}
+]
+
+[
+\sqrt{8} \cdot \sqrt{12} = \sqrt{96} = \sqrt{16 \cdot 6} = 4\sqrt{6}
+]
+
+## Example 3 — Dividing Radicals
+
+Apply the Quotient Property to simplify radical expressions involving fractions.
+
+### Step 1: Apply Quotient Property
+
+[
+\sqrt{\frac{75}{49}} = \frac{\sqrt{75}}{\sqrt{49}} = \frac{\sqrt{25 \cdot 3}}{7} = \frac{5\sqrt{3}}{7}
+]
+
+[
+\sqrt{\frac{8}{81}} = \frac{\sqrt{8}}{\sqrt{81}} = \frac{2\sqrt{2}}{9}
+]
+
+[
+\sqrt{\frac{84}{121}} = \frac{\sqrt{84}}{\sqrt{121}} = \frac{2\sqrt{21}}{11}
+]
+
+## Example 4 — Real-World Applications
+
+Apply radical formulas to solve real-world problems involving measurement.
+
+### Step 1: Tsunami Velocity
+
+The velocity formula is [V = \sqrt{16} \cdot \sqrt{d}]. In 300 feet of water:
+
+[
+V = 4 \cdot \sqrt{300} = 4 \cdot 10\sqrt{3} = 40\sqrt{3} \text{ feet per second}
+]
+
+### Step 2: Pendulum Period
+
+The period formula is [t = 0.2\sqrt{p}] where [p] is the pendulum length in centimeters. For a 22 cm pendulum:
+
+[
+t = 0.2 \cdot \sqrt{22} \approx 0.2 \cdot 4.7 = 0.94 \text{ seconds}
+]
+
+### Step 3: Horizon Distance
+
+The distance to the horizon formula is [d = \sqrt{\frac{3h}{2}}] where [h] is height in feet. For someone 60 feet above sea level:
+
+[
+d = \sqrt{\frac{180}{2}} = \sqrt{90} = 3\sqrt{10} \text{ miles}
+]
+
+## Example 5 — Cube Roots and Higher Index Radicals
+
+Simplify cube roots and other radicals with indices greater than 2.
+
+### Step 1: Identify Perfect Cubes
+
+[
+\sqrt[3]{8} = 2
+]
+
+[
+\sqrt[3]{125} = 5
+]
+
+[
+\sqrt[3]{216} = 6
+]
+
+### Step 2: Simplify Expressions with Variables
+
+[
+\sqrt[3]{54b^8} = \sqrt[3]{27 \cdot 2 \cdot b^6 \cdot b^2} = 3b^2\sqrt[3]{2b^2}
+]
+
+[
+\sqrt[3]{10yz^5} \cdot \sqrt[3]{4y^3} = \sqrt[3]{40y^4z^5} = \sqrt[3]{8 \cdot 5 \cdot y^3 \cdot y \cdot z^3 \cdot z^2} = 2yz\sqrt[3]{5yz^2}
+]
+
+### Step 3: Simplify Quotients of Cube Roots
+
+[
+\sqrt[3]{\frac{162}{375}} = \sqrt[3]{\frac{54}{125}} = \frac{\sqrt[3]{54}}{\sqrt[3]{125}} = \frac{3\sqrt[3]{2}}{5}
+]
+
+## Mixed Exercises
+
+Practice problems covering all skills in the lesson:
+
+* Simplify square roots of numbers and algebraic expressions.
+* Multiply and divide radical expressions, then simplify.
+* Simplify cube roots, including those with variables and fractional radicands.
+* Solve problems involving area of triangles and rectangles with radical dimensions.
+* Solve problems involving pendulum periods, horizon distance, sphere radius, scale model diagonal, and surface area of cubes.
+* Find geometric mean of numbers in simplified radical form.
+* Analyze structure of the Product and Quotient Properties of Square Roots, including limitations on values of variables.
+* Convert between radical form and rational exponent form using properties of exponents.
+* Analyze whether statements about square roots are always, sometimes, or never true.
+* Find counterexamples to common misconceptions about square roots.
+* Create radical problems involving multiplication or division with at least one variable.
+* Determine possible dimensions of rectangles given algebraic area expressions.
+
+## Review Notes
+
+* ![](media/image1.png) Image of triangle diagram for problem 67 (triangle area calculation).
+* ![](media/image2.png) Image of rectangle diagram for problem 68 (rectangle area calculation).
+
+(End of file - total 242 lines)

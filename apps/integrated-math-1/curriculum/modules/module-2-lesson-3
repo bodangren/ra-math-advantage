@@ -1,0 +1,196 @@
+# Lesson 2-3 — Solving Multi-Step Equations
+
+Source: (Module 2, Lesson 2-3, Int1_0203_practice.docx)
+
+## Today's Goals
+
+* Solve multi-step linear equations using properties of equality and check solutions by substitution
+* Write and solve equations to model real-world situations involving multiple operations
+* Solve literal equations for a specified variable
+
+## Vocabulary
+
+* **Multi-step equation** — An equation that requires more than one operation to isolate the variable.
+* **Properties of equality** — Rules stating that performing the same operation on both sides of an equation preserves the solution.
+* **Literal equation** — An equation that involves two or more variables, often solved for one variable in terms of the others.
+
+## Learn: Solving Multi-Step Equations
+
+To solve a multi-step equation, undo operations in reverse order of operations (PEMDAS). First isolate terms containing the variable, then isolate the variable itself. Always check the solution by substituting back into the original equation.
+
+### Key Concept: Properties of Equality
+
+* **Addition Property:** Add the same value to both sides.
+* **Subtraction Property:** Subtract the same value from both sides.
+* **Multiplication Property:** Multiply both sides by the same nonzero value.
+* **Division Property:** Divide both sides by the same nonzero value.
+
+## Example 1 — Solve Linear Equations Using Properties of Equality
+
+Solve linear equations that require two or more inverse operations. Check each solution by substituting the result back into the original equation.
+
+### Step 1: Isolate the Variable Term
+
+Use addition or subtraction to move constant terms to one side of the equation.
+
+Representative equations include two-step forms such as:
+[
+3t + 7 = -8
+]
+[
+8 = 16 + 8n
+]
+[
+-34 = 6m - 4
+]
+
+### Step 2: Isolate the Variable
+
+Use multiplication or division to solve for the variable.
+
+For equations involving fractions, first undo the subtraction or addition, then multiply by the denominator:
+[
+\frac{y}{5} - 6 = 8
+]
+[
+1 + \frac{r}{9} = 4
+]
+
+### Step 3: Check the Solution
+
+Substitute the value found back into the original equation to verify.
+
+Some problems involve rational expressions with binomial numerators:
+[
+\frac{n - 2}{7} = 2
+]
+[
+14 = \frac{6 + z}{-2}
+]
+[
+\frac{22 - w}{3} = -7
+]
+
+## Example 2 — Write and Solve Equations from Word Problems
+
+Translate real-world situations into multi-step equations, then solve and interpret the result in context.
+
+### Step 1: Define the Variable
+
+Identify the unknown quantity and assign a variable.
+
+### Step 2: Write the Equation
+
+Represent the described operations and relationships algebraically. Problem types include:
+
+* **Spending scenarios:** Ricardo spent half his allowance on supplies, then [ 5.25 ] on a snack, and had [ 22.50 ] left.
+[
+\frac{a}{2} - 5.25 = 22.50
+]
+
+* **Sequential purchases:** Liza earned money, made several purchases, spent two-thirds of the remainder, and had [ 38.50 ] left.
+
+* **Equal distribution:** A package of treats minus [ 10 ] set-aside treats, divided equally among [ 15 ] dogs with [ 4 ] treats each.
+[
+\frac{t - 10}{15} = 4
+]
+
+* **Averages:** The average of three game scores is [ 63 ], with the first two scores equal and each [ 6 ] points more than the third.
+
+* **Comparisons:** Adult height is one less than twice the height at age 2, with adult height [ 71 ] inches.
+[
+2h - 1 = 71
+]
+
+### Step 3: Solve and Interpret
+
+Solve the equation and state the answer in the context of the problem.
+
+## Example 3 — Solve Literal Equations
+
+Solve equations for [x] when the coefficients are given as other variables. Assume [a \ne 0].
+
+### Step 1: Isolate the Term Containing x
+
+Use addition or subtraction to move constants to the other side.
+
+Representative forms include:
+[
+ax + 3 = 23
+]
+[
+4 = ax - 14
+]
+[
+6 + ax = -29
+]
+
+### Step 2: Solve for x
+
+Divide both sides by the coefficient [a].
+
+[
+x = \frac{20}{a}
+]
+
+### Step 3: Handle Rational Forms
+
+For equations where [x] appears in the denominator, first isolate the fractional term, then take the reciprocal and solve:
+[
+\frac{8}{ax} - 5 = -3
+]
+[
+5 = \frac{5}{ax} + 1
+]
+
+Equations may also involve a negative leading coefficient:
+[
+-7 = -ax - 16
+]
+
+## Mixed Exercises
+
+Practice solving a variety of multi-step equations that combine all skills from the lesson. Problems include:
+
+* Two-step linear equations:
+[
+3x + 8 = 29
+]
+[
+-27 = -6 - 3p
+]
+
+* Equations with fractional coefficients:
+[
+\frac{a}{6} - 5 = 9
+]
+[
+\frac{5r}{2} - 6 = 19
+]
+[
+5 + \frac{x}{4} = 1
+]
+[
+-\frac{h}{3} - 4 = 13
+]
+
+* Equations requiring the distributive property:
+[
+5(1 + n) = -5
+]
+
+* Reasoning problems that require translating verbal descriptions into equations and solving:
+  * A number divided by 2, then increased by 8, gives 33
+  * Two subtracted from a number, then divided by 3, gives 30
+  * The sum of 4 consecutive odd integers equals zero
+
+* Error analysis, creation, and analysis problems:
+  * Evaluate two students' methods for solving an equation with a fractional coefficient
+  * Create a real-world problem for a given equation
+  * Determine whether equations have solutions and justify
+  * Determine whether a statement about consecutive odd integers is sometimes, always, or never true
+  * Write a paragraph explaining the general order of steps for solving multi-step equations
+
+## Review Notes
+
+* No images or diagrams were present in the source material; all content is text-based.

@@ -1,0 +1,141 @@
+# Lesson 13-4 — Compositions of Transformations
+
+Source: (Module 13, Lesson 13-4, Int1_1304_practice.docx)
+
+## Today's Goals
+
+* Graph the image of a figure after a glide reflection or other composition of transformations on the coordinate plane.
+* Identify a single transformation that is equivalent to a composition of two reflections.
+* Determine whether two figures are congruent and find a composition of transformations that maps one onto the other.
+* Analyze whether the order of transformations in a composition affects the final image.
+
+## Vocabulary
+
+* **Composition of Transformations** — A transformation that consists of two or more transformations performed in sequence.
+* **Glide Reflection** — A composition of a translation followed by a reflection in a line parallel to the direction of the translation.
+* **Preimage** — The original figure before a transformation is applied.
+* **Image** — The resulting figure after a transformation is applied.
+* **Isometry** — A transformation that preserves distance and angle measure; a rigid transformation.
+* **Congruent** — Having the same size and shape.
+
+## Explore: What Happens When You Apply Two Transformations in a Row?
+
+Students investigate what happens to a figure when two transformations are applied sequentially. They explore whether reflecting a figure and then rotating it produces the same result as rotating first and then reflecting, and how the order affects the final position.
+
+Inquiry Question:
+How does the order of transformations affect the final image of a composition?
+
+## Learn: Compositions of Transformations
+
+A composition of transformations applies two or more transformations in sequence. The image of the first transformation becomes the preimage for the second. A glide reflection is a special composition of a translation followed by a reflection.
+
+### Key Concept: Glide Reflection
+
+A glide reflection is a composition of a translation along a vector followed by a reflection in a line parallel to that vector.
+
+### Key Concept: Composition of Two Reflections
+
+* If a figure is reflected in two parallel lines, the composition is equivalent to a translation perpendicular to the lines. The distance of the translation is twice the distance between the two lines.
+* If a figure is reflected in two intersecting lines, the composition is equivalent to a rotation about the point of intersection. The angle of rotation is twice the angle between the two lines.
+
+### Key Concept: Order of Transformations
+
+In general, the order in which transformations are applied matters. A composition of transformation A followed by transformation B is not always the same as B followed by A.
+
+## Example 1 — Graph the Image of a Figure Under a Glide Reflection
+
+Graph a figure and its image after a glide reflection, which consists of a translation followed by a reflection.
+
+### Step 1: Translate and Reflect a Triangle
+
+For a triangle with given vertices, first apply the translation vector to each vertex. Then reflect the translated vertices in the given line.
+
+For a translation along [ \langle a, b \rangle ] followed by a reflection in the x-axis:
+[
+(x, y) \rightarrow (x + a, y + b) \rightarrow (x + a, -(y + b))
+]
+
+### Step 2: Apply Glide Reflections with Different Parameters
+
+Repeat the process for other triangles using different translation vectors and different lines of reflection, including reflections in the x-axis and the line [y = x].
+
+## Example 2 — Graph the Image of a Figure Under a Composition of Transformations
+
+Graph a line segment and its image after a composition of two transformations such as a reflection followed by a rotation, a rotation followed by a translation, or a translation followed by a reflection.
+
+### Step 1: Reflect Then Rotate
+
+For a line segment with given endpoints, first reflect each endpoint in the given line. Then rotate each reflected endpoint about the origin by the given angle.
+
+For example, reflect in the x-axis then rotate [90^{\circ}] about the origin:
+[
+(x, y) \rightarrow (x, -y) \rightarrow (y, x)
+]
+
+### Step 2: Rotate Then Translate
+
+For a line segment with given endpoints, first rotate each endpoint about the origin by the given angle. Then apply the translation vector to each rotated endpoint.
+
+For example, rotate [90^{\circ}] about the origin then translate along [ \langle a, b \rangle ]:
+[
+(x, y) \rightarrow (-y, x) \rightarrow (-y + a, x + b)
+]
+
+### Step 3: Apply Different Compositions
+
+Repeat the process for other line segments using different pairs of transformations, including reflections in the x-axis or y-axis, rotations of [90^{\circ}] or [180^{\circ}] about the origin, and translations along various vectors.
+
+## Example 3 — Identify a Single Transformation Equivalent to Two Reflections
+
+Given a figure and two reflection lines, reflect the figure in the first line and then in the second line. Describe the single transformation that maps the original figure onto the final image.
+
+### Step 1: Reflect in Two Parallel Lines
+
+Reflect a figure in line u and then in line v, where u and v are parallel. The composition is equivalent to a translation perpendicular to the lines. Determine the direction and distance of this translation.
+
+### Step 2: Reflect in Two Intersecting Lines
+
+Reflect a figure in line u and then in line v, where u and v intersect. The composition is equivalent to a rotation about the point of intersection. Determine the angle and direction of this rotation.
+
+## Example 4 — Determine Congruence and Find a Composition of Transformations
+
+Given two triangles on the coordinate plane, determine whether they are congruent. If they are, identify a sequence of transformations that maps one triangle onto the other.
+
+### Step 1: Verify Congruence
+
+Compare the side lengths and angle measures of the two triangles. If all corresponding parts are congruent, the triangles are congruent.
+
+### Step 2: Identify the Composition
+
+Find a sequence of transformations (such as a translation followed by a rotation, or a reflection followed by a translation) that maps each vertex of the first triangle onto the corresponding vertex of the second triangle.
+
+## Example 5 — Describe Transformations in a Pattern
+
+Analyze a decorative border or repeating pattern and describe the transformations that are combined to create it.
+
+### Step 1: Analyze a Border Pattern
+
+Identify the basic unit of the pattern and describe how it is repeated using transformations such as translations, reflections, or rotations.
+
+### Step 2: Analyze a Tessellation Pattern
+
+Identify the basic unit of the pattern and describe the composition of transformations that creates the overall design.
+
+## Mixed Exercises
+
+The mixed exercises provide comprehensive practice with all skills from the lesson. Problems include:
+
+* Drawing and labeling the image of a figure after a composition of a rotation and a translation, or a reflection and a rotation.
+* Determining the coordinates of a preimage given the image and the composition of transformations that produced it.
+* Finding the single translation equivalent to reflecting a point over two parallel lines that are a given distance apart.
+* Determining whether statements about compositions are always, sometimes, or never true, and justifying the argument.
+* Writing a paragraph proof for the Composition of Isometries Theorem.
+* Writing a two-column proof for a theorem about reflections in parallel lines.
+* Analyzing whether the order of a rotation and a reflection affects the final image.
+* Finding and explaining errors in reasoning about whether a given composition is a glide reflection.
+* Finding the coordinates of a quadrilateral after three transformations.
+* Analyzing whether the order of two reflections affects the final image.
+
+## Review Notes
+
+* Images referenced in the worksheet (figures for problems 9–12, triangles for problems 13–16, border pattern for problem 17, tessellation pattern for problem 18, figures for problems 19–20, diagram for problem 29, diagram for problem 30, diagram for problem 31, diagram for problem 32, diagram for problem 33) could not be fully described without visual reference. Teachers should consult the original worksheet for exact figures and diagrams.

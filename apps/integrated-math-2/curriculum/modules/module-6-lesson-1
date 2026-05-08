@@ -1,0 +1,355 @@
+# Lesson 6-1 — Areas of Quadrilaterals
+
+Source: (Module 6, Lesson 6-1, Int2_0601_practice.docx)
+
+## Today's Goals
+
+* Find areas of parallelograms, rhombuses, and trapezoids.
+* Find areas of kites.
+* Solve real-world problems involving areas of quadrilaterals.
+
+## Vocabulary
+
+* **Parallelogram** — A quadrilateral with both pairs of opposite sides parallel.
+* **Rhombus** — A parallelogram with four congruent sides.
+* **Trapezoid** — A quadrilateral with exactly one pair of parallel sides.
+* **Kite** — A quadrilateral with two pairs of consecutive sides that are congruent, but no opposite sides are congruent.
+
+## Explore: Areas of Quadrilaterals
+
+Students explore how the area formulas for parallelograms, rhombuses, trapezoids, and kites are derived from the rectangle area formula. Each shape's area can be found by rearranging the shape into a rectangle or by using triangles within the shape.
+
+Inquiry Question:
+How are the area formulas for a parallelogram, a rhombus, a trapezoid, and a kite related to the area formula for a rectangle?
+
+## Learn: Areas of Quadrilaterals
+
+### Key Concept: Area of a Parallelogram
+
+The area of a parallelogram is found by multiplying the base length by the height perpendicular to that base.
+
+### Key Concept: Area of a Rhombus
+
+The area of a rhombus can be found using the diagonals: [A = d1 * d2 / 2]
+
+### Key Concept: Area of a Trapezoid
+
+The area of a trapezoid is the average of the lengths of the two parallel bases multiplied by the height.
+
+### Key Concept: Area of a Kite
+
+The area of a kite is half the product of the lengths of its diagonals: [A = d1 * d2 / 2]
+
+## Example 1 — Find Areas of Parallelograms and Rhombuses
+
+Find the area of each parallelogram or rhombus.
+
+### Step 1: Identify Base and Height
+
+For a parallelogram, identify one side as the base and draw the perpendicular height to the opposite side. The height must be perpendicular to the base.
+
+### Step 2: Apply the Formula
+
+For a parallelogram: [A = bh]
+For a rhombus: [A = d1 * d2 / 2]
+
+Find the area of a parallelogram with base 10 centimeters and height 7 centimeters.
+[
+A = bh
+]
+[
+A = 10 * 7
+]
+[
+A = 70 cm^2
+]
+
+Find the area of a rhombus with diagonals measuring 8 inches and 6 inches.
+[
+A = d1 * d2 / 2
+]
+[
+A = 8 * 6 / 2
+]
+[
+A = 24 in^2
+]
+
+Find the area of a rhombus with diagonals measuring 12 meters and 10 meters.
+[
+A = d1 * d2 / 2
+]
+[
+A = 12 * 10 / 2
+]
+[
+A = 60 m^2
+]
+
+Find the area of a parallelogram with base 9 feet and height 11 feet.
+[
+A = bh
+]
+[
+A = 9 * 11
+]
+[
+A = 99 ft^2
+]
+
+## Example 2 — Find Areas of Trapezoids and Kites
+
+Find the area of each trapezoid or kite.
+
+### Step 1: Identify the Parallel Bases (for Trapezoid)
+
+For a trapezoid, identify the two parallel sides as the bases. Find the length of each base and the perpendicular height.
+
+### Step 2: Identify the Diagonals (for Kite)
+
+For a kite, identify the two diagonals and find their lengths.
+
+### Step 3: Apply the Formula
+
+For a trapezoid: [A = (b1 + b2)/2 * h]
+For a kite: [A = d1 * d2 / 2]
+
+Find the area of a trapezoid with bases 8 inches and 12 inches, and height 5 inches.
+[
+A = (b1 + b2)/2 * h
+]
+[
+A = (8 + 12)/2 * 5
+]
+[
+A = 50 in^2
+]
+
+Find the area of a kite with diagonals 7 centimeters and 10 centimeters.
+[
+A = d1 * d2 / 2
+]
+[
+A = 7 * 10 / 2
+]
+[
+A = 35 cm^2
+]
+
+Find the area of a trapezoid with bases 6 meters and 14 meters, and height 4 meters.
+[
+A = (b1 + b2)/2 * h
+]
+[
+A = (6 + 14)/2 * 4
+]
+[
+A = 40 m^2
+]
+
+Find the area of a kite with diagonals 9 feet and 6 feet.
+[
+A = d1 * d2 / 2
+]
+[
+A = 9 * 6 / 2
+]
+[
+A = 27 ft^2
+]
+
+## Example 3 — Construction: Trapezoidal Window
+
+A contractor is replacing a trapezoidal window on the front of a house.
+
+**a.** Find the area of the window.
+
+**b.** If the glass for the window costs $7 per square foot, about how much should the contractor expect to pay to replace the window?
+
+The window has a height of 3.5 feet and base lengths of 4 feet and 6 feet.
+[
+A = (b1 + b2)/2 * h
+]
+[
+A = (4 + 6)/2 * 3.5
+]
+[
+A = 5 * 3.5
+]
+[
+A = 17.5 ft^2
+]
+
+For part b:
+[
+Cost = 17.5 * 7 = $122.50
+]
+
+## Example 4 — Find Areas of Parallelograms and Rhombuses
+
+Find the area of each parallelogram or rhombus.
+
+Find the area of a parallelogram with base 7 meters and height 8 meters.
+[
+A = bh
+]
+[
+A = 7 * 8
+]
+[
+A = 56 m^2
+]
+
+Find the area of a rhombus with diagonals measuring 10 centimeters and 6 centimeters.
+[
+A = d1 * d2 / 2
+]
+[
+A = 10 * 6 / 2
+]
+[
+A = 30 cm^2
+]
+
+Find the area of a parallelogram with base 12 inches and height 6 inches.
+[
+A = bh
+]
+[
+A = 12 * 6
+]
+[
+A = 72 in^2
+]
+
+## Example 5 — Find Areas of Trapezoids and Kites
+
+Find the area of each trapezoid or kite.
+
+Find the area of a trapezoid with bases 9 feet and 13 feet, and height 5 feet.
+[
+A = (b1 + b2)/2 * h
+]
+[
+A = (9 + 13)/2 * 5
+]
+[
+A = 55 ft^2
+]
+
+Find the area of a kite with diagonals 8 meters and 12 meters.
+[
+A = d1 * d2 / 2
+]
+[
+A = 8 * 12 / 2
+]
+[
+A = 48 m^2
+]
+
+Find the area of a trapezoid with bases 7 inches and 11 inches, and height 4 inches.
+[
+A = (b1 + b2)/2 * h
+]
+[
+A = (7 + 11)/2 * 4
+]
+[
+A = 36 in^2
+]
+
+## Example 6 — More Area Problems
+
+Find the area of each parallelogram, trapezoid, rhombus, or kite.
+
+Find the area of a rhombus with diagonals measuring 14 meters and 8 meters.
+[
+A = d1 * d2 / 2
+]
+[
+A = 14 * 8 / 2
+]
+[
+A = 56 m^2
+]
+
+Find the area of a parallelogram with base 15 feet and height 9 feet.
+[
+A = bh
+]
+[
+A = 15 * 9
+]
+[
+A = 135 ft^2
+]
+
+Find the area of a kite with diagonals 10 centimeters and 7 centimeters.
+[
+A = d1 * d2 / 2
+]
+[
+A = 10 * 7 / 2
+]
+[
+A = 35 cm^2
+]
+
+## Example 7 — Find Diagonal Lengths
+
+The area of a rhombus is 168 square centimeters. If one diagonal is three times as long as the other, what are the lengths of the diagonals to the nearest tenth of a centimeter?
+
+Let d1 = x and d2 = 3x.
+[
+A = d1 * d2 / 2
+]
+[
+168 = x * 3x / 2
+]
+[
+168 = 3x^2 / 2
+]
+[
+336 = 3x^2
+]
+[
+x^2 = 112
+]
+[
+x ≈ 10.6
+]
+
+So d1 ≈ 10.6 cm and d2 ≈ 31.8 cm.
+
+## Mixed Exercises
+
+* A parallelogram has a base of 15 meters and a height of 8 meters. Find the area.
+* A rhombus has diagonals of length 10 centimeters and 14 centimeters. Find the area.
+* A trapezoid has bases of 9 inches and 13 inches, and a height of 6 inches. Find the area.
+* A kite has diagonals of length 12 feet and 8 feet. Find the area.
+* A parallelogram has an area of 72 square yards and a base of 9 yards. Find the height.
+* A kite has an area of 48 square meters and one diagonal of 8 meters. Find the length of the other diagonal.
+* A trapezoid has an area of 100 square centimeters and a height of 10 centimeters. The sum of the bases is 25 centimeters. If one base is 12 centimeters, find the other base.
+* A rhombus has a perimeter of 40 centimeters. What is the length of each side?
+* Find the area of a square with a diagonal of 10 inches.
+* A parallelogram has a base of 2x + 3 and a height of 5. Express the area in terms of x.
+* A kite has an area of 36 square centimeters and one diagonal is twice as long as the other. Find the lengths of the diagonals.
+* REASONING: Explain why the area formula for a rhombus [A = d1 * d2 / 2] works even though a rhombus is not a kite.
+* PRECISION: Find the area of a parallelogram with vertices at (0, 0), (5, 0), (3, 4), and (8, 4).
+* STRUCTURE: How is the area of a trapezoid related to the area of a parallelogram?
+* ANALYZE: If you double the height of a parallelogram while keeping the base the same, what happens to the area?
+* PERSEVERE: A trapezoid has an area of 48 square inches. The height is 6 inches, one base is 5 inches. Find the other base.
+* CREATE: Draw a kite and a rhombus that have the same area. Label all dimensions.
+* A trapezoid has a height of 8 meters, a base length of 12 meters, and an area of 64 square meters. What is the length of the other base?
+* The height of a parallelogram is 10 feet more than the length of the base. If the area is 1200 square feet, find the base and height.
+* A trapezoid has base lengths of 4 and 19 feet and an area of 115 square feet. What is the height?
+* One diagonal of a kite is twice as long as the other. If the area is 240 square inches, what are the diagonal lengths?
+* One diagonal of a kite is four times as long as the other. If the area is 72 square meters, what are the diagonal lengths?
+
+## Review Notes
+
+* The worksheet contains image references for geometric figures that could not be fully captured. Teachers should consult the original DOCX for exact diagrams.
+* Students should verify that their height measurements are perpendicular to the base when calculating parallelogram areas.
+* The formula [A = d1 * d2 / 2] applies to both rhombuses and kites since both have perpendicular diagonals that bisect each other.
+* When solving real-world problems, students should identify the quadrilateral type first, then select the appropriate area formula.

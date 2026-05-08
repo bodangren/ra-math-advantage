@@ -1,375 +1,247 @@
 # Lesson 6-1 — Logarithms and Logarithmic Functions
 
-Source: (Module 6, Lesson 6-1, pp. 259–264)
+Source: (Module 6, Lesson 6-1, Int3_0601_practice.docx)
 
 ## Today's Goals
 
-* Write logarithmic expressions in exponential form and write exponential expressions in logarithmic form
-* Graph and analyze logarithmic functions
-
----
+* Write equations in exponential form and logarithmic form.
+* Evaluate logarithmic expressions.
+* Graph logarithmic functions and identify key features.
+* Compare logarithmic functions using transformations.
 
 ## Vocabulary
 
-* logarithm
-* logarithmic function
+* **Logarithm** — The exponent to which a base [b] must be raised to produce a given number [N]; written [log_b N].
+* **Logarithmic Function** — A function of the form [f(x) = log_b x] where [b > 0] and [b ≠ 1].
+* **Common Logarithm** — A logarithm with base 10, written [\log x].
+* **Natural Logarithm** — A logarithm with base [e], written [\ln x].
+* **Asymptote** — A line that a graph approaches but never crosses.
 
----
+## Explore: What Is a Logarithm?
 
-## Think About It
+Logarithms were developed to simplify complex calculations before calculators existed. They transform multiplication into addition and exponents into multiplication. Consider how Napier's work on logarithms connected arithmetic sequences (powers) and geometric sequences (exponents).
 
-If `logz 16 = y`, find `z^y`.
+Inquiry Question:
+If [2^7 = 128], what does this tell us about [\log_2 128]? How can you use the definition of a logarithm to convert between exponential and logarithmic forms?
 
----
+## Learn: Logarithms and Logarithmic Functions
 
-## Learn: Logarithmic Functions
+### Key Concept: Converting Between Forms
 
-Recall the exponential function `f(x) = 2^x`. You can graph its inverse by interchanging the `x`- and `y`-values and graphing the ordered pairs.
+An equation of the form [b^e = N] is equivalent to [\log_b N = e].
 
-For `y = 2^x`:
+**Exponential Form:** [b^e = N]
+**Logarithmic Form:** [\log_b N = e]
 
-| x  | y |
-| -- | -- |
-| -3 | `1/8` |
-| -2 | `1/4` |
-| -1 | `1/2` |
-| 0 | `1` |
-| 1 | `2` |
-| 2 | `4` |
-| 3 | `8` |
+The base in the exponential form becomes the base of the logarithm.
 
-For the inverse `x = 2^y`:
+### Key Concept: Evaluating Logarithms
 
-| x | y |
-| -- | -- |
-| `1/8` | `-3` |
-| `1/4` | `-2` |
-| `1/2` | `-1` |
-| `1` | `0` |
-| `2` | `1` |
-| `4` | `2` |
-| `8` | `3` |
+To evaluate [\log_b N], find the exponent [e] such that [b^e = N].
 
-The inverse of `y = b^x` is `x = b^y`. In `x = b^y`, `y` is called the logarithm, base `b`, of `x`. This is written as:
+### Key Concept: Properties of Logarithmic Functions
 
-`y = logb x`
+For [f(x) = log_b x] where [b > 1]:
+* Domain: [x > 0]
+* Range: all real numbers
+* [x]-intercept: [(1, 0)]
+* [y]-intercept: none
+* Vertical asymptote: [x = 0]
 
-and is read as "log base `b` of `x`."
+When the base is between 0 and 1, the function is decreasing. When the base is greater than 1, the function is increasing.
 
-### Key Concept: Logarithms with Base `b`
+## Example 1 — Write Equations in Exponential Form
 
-Let `b` and `x` be positive numbers, with `b != 1`.
+Convert each logarithmic equation to its exponential equivalent.
 
-`logb x = y` if and only if `b^y = x`
+### Step 1: Identify the Base, Exponent, and Result
 
-In the expression `logb x`, `x` is called the **argument**.
+For [\log_{15} 225 = 2], the base is 15, the result is 225, and the exponent is 2.
 
----
+### Step 2: Write in Exponential Form
 
-## Example 1 — Logarithmic to Exponential Form
+[\log_{15} 225 = 2] becomes [15^2 = 225].
+[\log_3 \frac{1}{27} = -3] becomes [3^{-3} = \frac{1}{27}].
+[\log_5 \frac{1}{25} = -2] becomes [5^{-2} = \frac{1}{25}].
 
-Write each equation in exponential form.
+### Step 3: Apply to All Problems
 
-### a. `log4 64 = 3`
+[\log_3 243 = 5] → [3^5 = 243]
+[\log_4 64 = 3] → [4^3 = 64]
+[\log_4 32 = \frac{5}{2}] → [4^{5/2} = 32]
 
-`64 = 4^3`
+## Example 2 — Write Equations in Logarithmic Form
 
-### b. `log3 (1/243) = -5`
+Convert each exponential equation to its logarithmic equivalent.
 
-`1/243 = 3^(-5)`
+### Step 1: Identify the Base, Exponent, and Result
 
-### c. `log9 3 = 1/2`
+For [2^7 = 128], the base is 2, the exponent is 7, and the result is 128.
 
-`3 = 9^(1/2)`
+### Step 2: Write in Logarithmic Form
 
-### Check
+[2^7 = 128] becomes [\log_2 128 = 7].
+[3^{-4} = \frac{1}{81}] becomes [\log_3 \frac{1}{81} = -4].
+[7^{-2} = \frac{1}{49}] becomes [\log_7 \frac{1}{49} = -2].
 
-Write `log125 5 = 1/3` in exponential form.
+### Step 3: Apply to All Problems
 
----
-
-## Example 2 — Exponential to Logarithmic Form
-
-Write each equation in logarithmic form.
-
-### a. `7^6 = 117,649`
-
-`log7 117,649 = 6`
-
-### b. `8^(-3) = 1/512`
-
-`log8 (1/512) = -3`
-
-### c. `8^(2/3) = 4`
-
-`log8 4 = 2/3`
-
-### Check
-
-Write `2^9 = 512` in logarithmic form.
-
----
+[\left(\frac{1}{7}\right)^3 = \frac{1}{343}] → [\log_{1/7} \frac{1}{343} = 3]
+[2^9 = 512] → [\log_2 512 = 9]
+[64^{2/3} = 16] → [\log_{64} 16 = \frac{2}{3}]
 
 ## Example 3 — Evaluate Logarithmic Expressions
 
-Evaluate `log216 6`.
+Find the value of each logarithm.
 
-Let:
+### Step 1: Rewrite the Argument as a Power
 
-`log216 6 = y`
+For [\log_2 64], find the exponent such that [2^e = 64]. Since [2^6 = 64], [\log_2 64 = 6].
+For [\log_{100} 100,000], rewrite: [100^e = 100,000]. Since [100^3 = 1,000,000] and [100^2 = 10,000], we need [100^e = 10^5]. Since [100^2 = 10^4], we check [100^{2.5} = 10^5]. Using [\log 10^5 = 5] and [\log 100 = 2], we get [\log_{100} 100,000 = \frac{5}{2} = 2.5].
 
-Then:
+[\log_5 625]: Since [5^4 = 625], the answer is 4.
 
-`6 = 216^y`
+### Step 2: Handle Bases That Are Not Simple
 
-Because `216 = 6^3`,
+[\log_{27} 81]: Find [e] such that [27^e = 81]. Since [27 = 3^3] and [81 = 3^4], we have [(3^3)^e = 3^4]. So [3^{3e} = 3^4], giving [3e = 4] and [e = \frac{4}{3}].
 
-`6 = (6^3)^y`
+[\log_4 \frac{1}{32}]: Find [e] such that [4^e = \frac{1}{32}]. Since [4 = 2^2] and [32 = 2^5], we have [(2^2)^e = 2^{-5}]. So [2^{2e} = 2^{-5}], giving [2e = -5] and [e = -\frac{5}{2}].
 
-`6^1 = 6^(3y)`
+[\log_{10} 0.00001]: Since [10^{-5} = 0.00001], the answer is -5.
 
-So:
+### Step 3: Evaluate Remaining Expressions
 
-`1 = 3y`
+[\log_8 512]: Since [8^3 = 512], the answer is 3.
+[\log_9 1]: Any base to the power 0 equals 1, so [\log_9 1 = 0].
+[\log_8 4]: Since [8 = 2^3] and [4 = 2^2], we have [(2^3)^e = 2^2]. So [3e = 2] and [e = \frac{2}{3}].
 
-`y = 1/3`
+## Example 4 — Write Equations from Real-World Contexts
 
-Therefore:
+Translate verbal descriptions into logarithmic equations.
 
-`log216 6 = 1/3`
+### Step 1: Identify the Given Relationship
 
-## Think About It
+For the electric current equation [\log_2 I = -t], to find the current [I] when time [t] is known, rewrite in exponential form: [I = 2^{-t}].
 
-Without evaluating the expression, how can you determine that the value of `log512 8` will be less than `1`?
+### Step 2: Apply to Investment Context
 
----
-
-## Example 4 — Find Inverses of Exponential Functions
-
-The air pressure outside of an aircraft can be determined by:
-
-`P = B(10^(-9h/100))`
-
-where `B` is the air pressure at sea level and `h` is the altitude in miles. If the air pressure at sea level is `14.7` pounds per square inch, write an equation to find the height of an aircraft when the air pressure is known.
-
-Substitute `14.7` for `B`:
-
-`P = 14.7(10^(-9h/100))`
-
-Divide by `14.7`:
-
-`P/14.7 = 10^(-9h/100)`
-
-Write in logarithmic form:
-
-`log10(P/14.7) = -9h/100`
-
-Solve for `h`:
-
-`h = (-100/9) log10(P/14.7)`
-
-## Think About It
-
-How could you write `(2z + 5)^3 = 8` in logarithmic form?
-
----
-
-## Explore: Transforming Logarithmic Functions
-
-Use graphing technology to complete the explore.
-
-**Inquiry Question:**
-How does performing an operation on a logarithmic function affect its graph?
-
-### Watch Out
-
-The `LOG` button on a graphing calculator allows you to enter logarithmic functions of base `10` only.
-
----
-
-## Learn: Graphing Logarithmic Functions
-
-A function of the form `f(x) = logb x`, where `b > 0` and `b != 1`, is a **logarithmic function**.
-
-### Key Concept: Parent Function of Logarithmic Functions
-
-For `f(x) = logb x`:
-
-* type of graph: continuous, one-to-one
-* domain: `(0, infinity)`, or all positive real numbers
-* range: `(-infinity, infinity)`, or all real numbers
-* asymptote: the `y`-axis
-* x-intercept: `(1, 0)`
-* y-intercept: none
-* symmetry: none
-* extrema: none
-
-For the parent function when `b > 1`:
-
-* as `x -> 0+`, `f(x) -> -infinity`
-* as `x -> infinity`, `f(x) -> infinity`
-
-For the parent function when `0 < b < 1`:
-
-* as `x -> 0+`, `f(x) -> infinity`
-* as `x -> infinity`, `f(x) -> -infinity`
-
-### Key Concept: Transformations of Logarithmic Functions
-
-For:
-
-`g(x) = a logb (x - h) + k`
-
-* `h` controls horizontal translation
-* `k` controls vertical translation
-* `a` controls reflection and vertical stretch or compression
-
-If `a < 0`, the graph is reflected across the `x`-axis.
-
-If `|a| > 1`, the graph is stretched vertically.
-
-If `0 < |a| < 1`, the graph is compressed vertically.
-
----
+For the guitar value equation [y = g(1.0065)^x], to find the number of years [x] when the value [y] is known, take the logarithm of both sides: [\log(1.0065)^x = \log\left(\frac{y}{g}\right)]. Using the Power Property: [x \cdot \log(1.0065) = \log\left(\frac{y}{g}\right)], so [x = \frac{\log(y/g)}{\log(1.0065)}].
 
 ## Example 5 — Graph Logarithmic Functions
 
-Graph each function. Then find the intercepts, domain, range, and end behavior.
+Graph each function and identify intercepts, domain, range, and end behavior.
 
-### a. `f(x) = log6 x`
+### Step 1: Analyze [f(x) = \log_{1/9} x]
 
-Use the points:
+The base [\frac{1}{9}] is between 0 and 1, so the function is decreasing. The [x]-intercept is at [(1, 0)] since [\log_{1/9} 1 = 0]. Domain is [x > 0], range is all real numbers. As [x \to 0^+], [f(x) \to +\infty]; as [x \to \infty], [f(x) \to -\infty].
 
-* `(1/6, -1)`
-* `(1, 0)`
-* `(6, 1)`
+### Step 2: Analyze [f(x) = \log_{1/5} x]
 
-Key features:
+Similarly, base [\frac{1}{5}] gives a decreasing function. [x]-intercept at [(1, 0)]. Domain: [x > 0]. Range: all real numbers.
 
-* x-intercept: `1`
-* y-intercept: none
-* domain: all positive real numbers
-* range: all real numbers
-* end behavior:
-  * as `x -> 0+`, `f(x) -> -infinity`
-  * as `x -> infinity`, `f(x) -> infinity`
+### Step 3: Analyze Bases Greater Than 1
 
-### b. `g(x) = log(1/4) x`
+[f(x) = \log_2 x]: Base 2 > 1, so increasing. [x]-intercept at [(1, 0)]. Domain: [x > 0]. As [x \to 0^+], [f(x) \to -\infty]; as [x \to \infty], [f(x) \to \infty].
 
-Use the points:
+[f(x) = \log_8 x]: Base 8 > 1, so increasing. Same characteristics as [\log_2 x] but the curve rises more slowly.
 
-* `(4, -1)`
-* `(1, 0)`
-* `(1/4, 1)`
+## Example 6 — Graph Transformed Logarithmic Functions
 
-Key features:
+Graph functions involving horizontal shifts and vertical stretches/compressions.
 
-* x-intercept: `1`
-* y-intercept: none
-* domain: all positive real numbers
-* range: all real numbers
-* end behavior:
-  * as `x -> 0+`, `g(x) -> infinity`
-  * as `x -> infinity`, `g(x) -> -infinity`
+### Step 1: Graph [f(x) = 2 \log_4 (x + 3) - 2]
 
-## Think About It
+The function involves a horizontal shift left 3, vertical stretch by factor 2, and downward shift 2. Find the vertical asymptote at [x = -3]. Plot points by choosing [x] values and computing [f(x)]. For example, when [x = 1], [\log_4 4 = 1], so [f(1) = 2(1) - 2 = 0].
 
-Compare the graphs in parts `a` and `b`.
+### Step 2: Graph [f(x) = -3 \log_{10} (x - 2) + 1]
 
----
+Horizontal shift right 2, reflection over the [x]-axis (from the negative sign), vertical stretch by 3, and upward shift 1. Vertical asymptote at [x = 2].
 
-## Example 6 — Graph Transformations of Logarithmic Functions
+### Step 3: Graph [f(x) = \log_3 (x + 1) - 4]
 
-Graph:
+Horizontal shift left 1, downward shift 4. Vertical asymptote at [x = -1].
 
-`g(x) = 2 log10(x + 3) - 1`
+### Step 4: Graph [f(x) = -\log_5 x + 2.5]
 
-This is a transformation of:
-
-`f(x) = log10 x`
-
-Transformations:
-
-* `a = 2`: vertical stretch
-* `h = -3`: translate `3` units left
-* `k = -1`: translate `1` unit down
-
-Using parent points for `log10 x`:
-
-* `(1/10, -1)`
-* `(1, 0)`
-* `(10, 1)`
-
-After the vertical stretch:
-
-* `(1/10, -2)`
-* `(1, 0)`
-* `(10, 2)`
-
-After translating left `3` and down `1`:
-
-* `(-29/10, -3)`
-* `(-2, -1)`
-* `(7, 1)`
-
-Plot the transformed points and draw the curve.
-
-## Think About It
-
-Find the domain and range of `g(x)`.
-
----
+Reflection over the [x]-axis, upward shift 2.5. Vertical asymptote at [x = 0].
 
 ## Example 7 — Compare Logarithmic Functions
 
-Consider:
+Use graphs and tables to compare end behavior of logarithmic functions.
 
-`g(x) = log10(x - 2)`
+### Step 1: Compare [g(x) = \log_{10}(x - 4)] to a Given Graph
 
-and `j(x)` shown in the graph.
+Graph [g(x)] by finding key points and the vertical asymptote at [x = 4]. Compare the end behavior to the given function [p(x)] by analyzing how each function behaves as [x \to \infty] and as [x] approaches the vertical asymptote from the right.
 
-### Part A: Graph `g(x)`
+### Step 2: Compare [f(x) = \log_{10}(x + 2)] to a Tabular Function
 
-`g(x)` is a transformation of `f(x) = log10 x`.
+Graph [f(x)] and the function [g(x)] from the table. Determine end behavior by examining the values in the table as [x] increases.
 
-Because `h = 2`, the parent graph is translated `2` units right.
+## Example 8 — Identify Transformations
 
-### Part B: Compare the end behavior of `g(x)` and `j(x)`
+For each graph, identify the value of [k] and write the function in terms of [f(x) = \log_5 x].
 
-For `g(x)`:
+### Step 1: Analyze [g(x) = f(x) + k]
 
-* as `x -> 2+`, `g(x) -> -infinity`
-* as `x -> infinity`, `g(x) -> infinity`
+If the graph is shifted vertically, [k] represents the vertical shift. Compare key points on the graph to [f(x)] to determine [k].
 
-For `j(x)`:
+### Step 2: Analyze [h(x) = k \cdot f(x)]
 
-* as `x -> 0+`, `j(x) -> infinity`
-* as `x -> infinity`, `j(x) -> -infinity`
+If the graph is stretched or compressed vertically, [k] represents the vertical stretch factor.
 
-## Think About It
+### Step 3: Analyze [j(x) = f(x) + k]
 
-Find the domain and range of `g(x)`. Does `j(x)` have the same domain and range? Explain.
+Similar to [g(x)], identify the vertical shift from the graph's position relative to [f(x)].
 
----
+## Mixed Exercises
 
-## Example 8 — Write Logarithmic Functions From Graphs
+**Write each equation in exponential form:**
 
-Identify the value of `k`, and write a function for the graph as it relates to:
+[\log_6 216 = 3] → [6^3 = 216]
+[\log_2 64 = 6] → [2^6 = 64]
 
-`f(x) = log4 x`
+**Write each equation in logarithmic form:**
 
-The graph is translated `5` units up, so:
+[3^{-5} = \frac{1}{243}] → [\log_3 \frac{1}{243} = -5]
+[\left(\frac{1}{4}\right)^3 = \frac{1}{64}] → [\log_{1/4} \frac{1}{64} = 3]
+[7776^{1/5} = 6] → [\log_{7776} 6 = \frac{1}{5}]
 
-* `k = 5`
-* `g(x) = log4 x + 5`
+**37.** Express [\log_6 216 = 3] in exponential form.
+**38.** Express [\log_2 64 = 6] in exponential form.
+**39.** Express [\log_3 \frac{1}{81} = -4] in exponential form.
+**40.** Write [3^{-5} = \frac{1}{243}] in logarithmic form.
+**41.** Write [\left(\frac{1}{4}\right)^3 = \frac{1}{64}] in logarithmic form.
+**42.** Write [7776^{1/5} = 6] in logarithmic form.
 
-### Check
+**43. EARTHQUAKES** The intensity of an earthquake can be measured on the Richter scale using the formula [y = 10^{R-1}], where [y] is the absolute intensity and [R] is the Richter measurement. If an earthquake has absolute intensity 6,000,000, find the Richter scale reading.
 
-Write a function for each graph as it relates to `f(x) = log3 x`.
+**44. INVESTING** Maria invests $1000 at 4% interest compounded annually. Write an equation to find the number of years for the investment to reach a target value.
 
----
+**45. CONSTRUCT ARGUMENTS** Compare [f(x) = 10 \log_2 x] and [g(x) = 2 \log_{10} x]. Which has a greater value at [x = 7]? At [x = 1]?
 
-## Objective Alignment
+**46. BIOLOGY** If [t = \log_2 N] represents the time for an amoeba population to reach [N], how many hours for a single amoeba to become 2048?
 
-- `Write logarithmic expressions in exponential form and write exponential expressions in logarithmic form`: Primary worked examples: Examples 1-4.
-- `Graph and analyze logarithmic functions`: Primary worked examples: Examples 5-8.
+**47. STRUCTURE** Graph [f(x) = 3^x] and [g(x) = \log_3 x] on the same coordinate plane. Compare domain, range, intercepts, and asymptotes.
+
+**48. WRITE** What should you consider when using exponential and logarithmic models to make decisions?
+
+**49. ANALYZE** For [f(x) = \log_{10} x] and [g(x) = 10^x], find [f(g(x))] and [g(f(x))]. What do you notice?
+
+**50. FIND THE ERROR** Betsy says all logarithmic functions cross the [y]-axis at [(0, 1)]. Tyrone says log 0 is undefined. Who is correct?
+
+**51. PERSEVERE** Without a calculator, compare [\log_7 51], [\log_8 61], and [\log_9 71]. Which is greatest?
+
+**52. CREATE** Write a logarithmic equation [y = \log_b x] for each condition:
+* [y = 25]
+* [y] is negative
+* [y] is between 0 and 1
+* [x = 1]
+* [x = 0]
+
+**53. FIND THE ERROR** Elisa and Matthew are evaluating [\log_{1/7} 49]. Is either of them correct? Explain your reasoning.
+
+## Review Notes
+
+* Image references from source worksheet (graphs for Examples 7 and 8, problem 53) could not be fully transcribed. Consult the original DOCX for complete diagrams.
+* Images: ![](media/image1.png) — Example 7 graph reference; ![](media/image2.png) — Example 7 table; ![](media/image3.png), ![](media/image4.png), ![](media/image5.png) — Example 8 graphs; ![](media/image6.JPG) — Mixed Exercises problem 41 image; ![](media/image7.png) — Problem 53 image.
+* The worksheet contains 53 practice problems across eight examples and mixed exercises.

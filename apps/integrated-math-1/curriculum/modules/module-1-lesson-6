@@ -1,0 +1,215 @@
+# Lesson 1-6 — Descriptive Modeling and Accuracy
+
+Source: (Module 1, Lesson 1-6, Int1_0106_practice.docx)
+
+## Today's Goals
+
+* Use ratios and percentages as metrics to model real-world situations and make decisions.
+* Apply appropriate rounding strategies based on the context of a problem.
+* Determine a reasonable level of accuracy when performing multi-step calculations.
+* Evaluate the accuracy of reported data based on context and the nature of what is being measured.
+
+## Vocabulary
+
+* **metric** — a standard of measurement used to compare or evaluate a quantity.
+* **ratio** — a comparison of two quantities by division.
+* **debt-to-income ratio** — the ratio of monthly debt payments to monthly gross income.
+* **accuracy** — the degree to which a measured or calculated value conforms to the actual value.
+* **reasonable level of accuracy** — an appropriate precision for a given real-world context.
+
+## Learn: Using Ratios as Metrics
+
+A metric is a ratio used to evaluate a situation. To apply a metric, set up the ratio, compare it to a given threshold, and solve for the unknown quantity.
+
+### Key Concept: Ratios as Metrics
+
+* A metric has the form [ \frac{\text{part}}{\text{whole}} ].
+* To test whether a quantity meets a standard, set up an inequality using the metric and the threshold value.
+* Solve the inequality for the unknown value.
+
+## Example 1 — Set Up and Evaluate Ratios as Metrics
+
+Students set up ratios from real-world scenarios and compare them to a threshold value to answer questions.
+
+### Step 1: Define the Ratio
+
+Identify the part and the whole in the problem. Write the ratio in the form:
+[
+\frac{\text{part}}{\text{whole}}
+]
+
+For example, a test score metric is:
+[
+\frac{\text{number of questions answered correctly}}{\text{total number of questions}}
+]
+
+### Step 2: Compare to the Threshold
+
+Set up an inequality using the metric and the given threshold. For a student to earn an A or B, the ratio must be greater than or equal to 0.8:
+[
+\frac{x}{40} \ge 0.8
+]
+
+Solve for [ x ] to find the minimum number of correct answers needed.
+
+### Variation: Percentage Thresholds
+
+Some problems use a percentage threshold instead of a decimal ratio. Convert the percentage to a decimal and set up the inequality the same way. For example, scoring 84% or greater on a 46-point exam:
+[
+\frac{x}{46} \ge 0.84
+]
+
+### Variation: Time Ratios
+
+A track coach may compare a runner's time to a benchmark. If the ratio of a runner's time to 12 seconds must be less than or equal to 0.95:
+[
+\frac{t}{12} \le 0.95
+]
+
+Solve for [ t ] to find the slowest allowable time.
+
+## Learn: Comparing Calculation Methods
+
+Different methods for estimating a quantity can produce different results. Students compare an estimated method to an exact method and evaluate which is more appropriate.
+
+### Key Concept: Estimated vs. Exact Methods
+
+* An estimated method uses an average or rounded value to simplify calculations.
+* An exact method uses the precise value.
+* The context determines whether an estimate or an exact value is more useful.
+
+## Example 2 — Calculate and Compare Using Different Methods
+
+Students calculate ratios and compare estimated versus exact calculation methods in real-world contexts.
+
+### Step 1: Calculate a Debt-to-Income Ratio
+
+The debt-to-income ratio is calculated as:
+[
+\frac{\text{monthly expenses}}{\text{monthly salary}}
+]
+
+For monthly expenses of [ 1850 ] and a monthly salary of [ 2500 ]:
+[
+\frac{1850}{2500}
+]
+
+### Step 2: Compare Estimated and Exact Methods
+
+Some problems present two pricing or planning methods. One method multiplies an average value by a rate; the other multiplies the exact value by a different rate. Calculate both and compare. For example, if a service multiplies the average number of hours by [ 50 ] while another multiplies the exact hours by [ 60 ], compute the cost from each provider and determine which is lower for a given situation.
+
+## Learn: Context-Appropriate Rounding
+
+When a calculator returns a long decimal, the context determines how to round the result. You cannot simply round to the nearest whole number if the context requires a different approach.
+
+### Key Concept: Rounding Strategies
+
+* When sharing a fixed quantity, you may need to round down, round up, or report a repeating decimal depending on the context.
+* When determining how many items fit in a space, you may need to round down because partial items are not possible.
+* When ensuring everyone gets enough, you may need to round up.
+
+## Example 3 — Apply Context-Appropriate Rounding
+
+Students interpret calculator results and choose an appropriate rounding strategy based on the real-world context.
+
+### Step 1: Perform the Division
+
+A calculator may return a long decimal such as:
+[
+20 \div 3 = 6.666666667
+]
+
+### Step 2: Choose the Appropriate Rounding
+
+* **Sharing money:** If [ 20 ] is shared among 3 people, each person could receive [ 6.67 ] to distribute the full amount fairly.
+* **Dividing snack bars:** If 14 snack bars are shared among 6 students, each student could receive 2 whole snack bars with some remainder.
+* **Seating arrangements:** If 60 people attend a banquet and 8 people fit at a table, round up to ensure enough seating:
+[
+  \lceil \frac{60}{8} \rceil = 8
+]
+* **Spacing plants:** If plants need to be spaced at least 8 inches apart in a 1 foot by 4.5 foot plot, first convert units, then determine how many whole plants fit.
+
+## Learn: Reasonable Accuracy in Multi-Step Problems
+
+In complex real-world problems, intermediate values may be approximate. The final answer should reflect a reasonable level of accuracy given the approximations in the problem.
+
+### Key Concept: Reasonable Accuracy
+
+* When inputs are approximate, the output cannot be more precise than the least precise input.
+* Do not report more decimal places than the context justifies.
+* Round the final answer to a level that makes sense for the situation.
+
+## Example 4 — Compute with Reasonable Accuracy
+
+Students perform multi-step calculations and report the final answer with a reasonable level of accuracy.
+
+### Step 1: Identify All Quantities
+
+Break the problem into parts. For example, a fundraiser has multiple revenue sources: cupcakes sold, cookies sold, and donations received.
+
+### Step 2: Compute Each Part
+
+Calculate the revenue from each source. If almost all items were sold, use the approximate quantity to compute revenue:
+[
+50 \times 1.50 + 100 \times 1.00 + 7 \times 4.25
+]
+
+### Step 3: Combine and Report with Reasonable Accuracy
+
+Sum the values and report the total with an appropriate level of precision. Because the problem uses words like "almost all" and "averaging," the final answer should reflect that these are estimates.
+
+### Variation: Expenses with Tax
+
+For problems involving tax, compute the subtotal, then apply the tax rate:
+[
+\text{Total} = \text{subtotal} \times (1 + \text{tax rate})
+]
+
+For a 7.25% tax rate, multiply by [ 1.0725 ]. Report the annual total with a reasonable level of accuracy.
+
+### Variation: Time Reductions
+
+When reducing time by a fraction, multiply the original time by [ 1 - \frac{1}{6} = \frac{5}{6} ]. Convert all time units to a common unit before calculating the annual total.
+
+## Learn: Evaluating the Accuracy of Reported Data
+
+A reported number may be exact, approximate, or rounded. The context tells you how accurate the report is likely to be.
+
+### Key Concept: Assessing Accuracy
+
+* Numbers like population counts from a census are estimates, not exact counts.
+* A number with many significant figures may imply false precision.
+* The tool or method used to obtain the number affects its accuracy.
+
+## Example 5 — Evaluate Accuracy of Reported Data
+
+Students assess how accurate a reported number is and explain their reasoning.
+
+### Step 1: Consider the Context
+
+Ask how the number was obtained. For example:
+* A school enrollment of 3103 students was likely counted directly and is reasonably accurate.
+* A state population of 27,862,596 from a census is an estimate and is accurate to the nearest person only in a formal statistical sense.
+* A report of about 12,000 traffic lights is intentionally rounded and only accurate to the nearest thousand.
+* A report of exactly 1,578,932 grains of sand in one cubic foot implies a precision that is extremely difficult to verify.
+
+### Step 2: Explain the Reasoning
+
+Write a clear explanation connecting the context to the likely accuracy. Consider whether the number is an exact count, a rounded estimate, or a statistical projection.
+
+## Mixed Exercises
+
+The mixed exercises combine skills from all five examples. Problems include:
+
+* Using ratio metrics with real-world data sources to make comparisons and decisions.
+* Selecting the most appropriate unit of measurement for a given context (feet, inches, meters, kilometers, light-years).
+* Comparing the accuracy of two different reported values and explaining which is more reasonable.
+* Interpreting a scatter plot with a line of best fit and evaluating the accuracy of the line as a model.
+* Comparing two different metric thresholds to determine which requires a greater value.
+* Writing about real-world metrics and explaining why different measurement tools can produce different yet correct results.
+* Calculating costs with fractional pricing and discussing how much accuracy is possible versus necessary.
+
+## Review Notes
+
+* **Image:** The worksheet contains an image (`media/image1.png`) associated with the test score ratio formula in Example 1. The image shows the fraction [ \frac{\text{number of questions answered correctly}}{\text{total number of questions}} ] in a visual layout.
+* **Image:** The worksheet contains a scatter plot graph (`media/image2.png`) showing the relationship between average daily temperature and the number of visitors at a local zoo, with a line of best fit. Exercises 25–27 require students to use this graph to describe the line's accuracy, estimate values from the line, and explain why data points fall above or below the line.

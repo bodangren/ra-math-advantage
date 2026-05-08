@@ -1,0 +1,186 @@
+# Lesson 12-6 — Proving Angle Relationships
+
+Source: (Module 12, Lesson 12-6, Int1_1206_practice.docx)
+
+## Today's Goals
+
+* Apply the Angle Addition Postulate to find unknown angle measures.
+* Use properties of linear pairs and supplementary angles to solve for unknown angle measures in geometric and real-world contexts.
+* Write two-column proofs to justify angle relationships including congruent supplements, congruent complements, and right angles.
+* Prove theorems about perpendicular lines and angle congruence using deductive reasoning.
+
+## Vocabulary
+
+* **Angle Addition Postulate** — If point D lies in the interior of [\angle ABC], then [m\angle ABD + m\angle DBC = m\angle ABC].
+* **Linear Pair** — Two adjacent angles whose non-common sides form opposite rays.
+* **Supplementary Angles** — Two angles whose measures sum to [180^\circ].
+* **Complementary Angles** — Two angles whose measures sum to [90^\circ].
+* **Congruent Angles** — Angles that have equal measure.
+* **Right Angle** — An angle whose measure is exactly [90^\circ].
+* **Perpendicular Lines** — Two lines that intersect to form right angles.
+* **Two-Column Proof** — A deductive argument organized into statements and reasons in two columns.
+* **Congruent Supplements Theorem** — If two angles are supplementary to the same angle (or to congruent angles), then they are congruent.
+* **Congruent Complements Theorem** — If two angles are complementary to the same angle (or to congruent angles), then they are congruent.
+
+## Explore: How Can We Prove Angle Measures Without Measuring?
+
+Students consider how geometric relationships allow us to determine angle measures through logical deduction rather than direct measurement. They explore what information is needed to find an unknown angle and how given angle relationships create a chain of reasoning.
+
+Inquiry Question:
+If you know that two angles form a linear pair and one angle measures [70^\circ], can you prove the measure of the other angle without using a protractor?
+
+## Learn: Angle Relationships and Deductive Proofs
+
+Angle relationships such as supplementary, complementary, and linear pairs form the foundation for deductive proofs in geometry. By applying postulates and previously proven theorems, we can establish new conclusions about angle measures and congruence.
+
+### Key Concept: Angle Addition Postulate
+
+When a ray divides an angle into two smaller adjacent angles, the measure of the whole angle equals the sum of the measures of its parts:
+[
+m\angle ABD + m\angle DBC = m\angle ABC
+]
+
+### Key Concept: Supplementary and Complementary Relationships
+
+* If two angles form a linear pair, they are supplementary.
+* If two angles are complementary, their measures sum to [90^\circ].
+* If two angles are supplementary, their measures sum to [180^\circ].
+
+### Key Concept: Congruent Supplements and Complements
+
+* Angles supplementary to the same angle (or to congruent angles) are congruent to each other.
+* Angles complementary to the same angle (or to congruent angles) are congruent to each other.
+
+### Key Concept: Perpendicular Lines and Right Angles
+
+* Perpendicular lines intersect to form four right angles.
+* If two lines are perpendicular, they form congruent adjacent angles.
+* If two angles are congruent and supplementary, each is a right angle.
+* If two congruent angles form a linear pair, they are right angles.
+
+## Example 1 — Apply the Angle Addition Postulate
+
+Use the Angle Addition Postulate to find unknown angle measures when given the measures of adjacent angles or the total angle measure.
+
+### Step 1: Identify the Relationship
+
+Determine whether the problem gives two adjacent angle measures and asks for the total, or gives the total and one part to find the other part.
+
+When two adjacent angles are given, add their measures:
+[
+m\angle ABC = m\angle ABD + m\angle DBC
+]
+
+### Step 2: Solve for the Unknown Measure
+
+When the total and one part are known, subtract to find the missing angle:
+[
+m\angle ABD = m\angle ABC - m\angle DBC
+]
+
+### Step 3: Apply to a Diagram with Multiple Angles
+
+When a diagram contains several adjacent angles, use the same postulate with the appropriate angle labels. Identify which angles share a common ray and vertex.
+
+## Example 2 — Solve Real-World Problems Using Linear Pairs
+
+Apply the property that angles forming a linear pair are supplementary to solve problems presented in real-world contexts.
+
+### Step 1: Recognize a Linear Pair
+
+Identify two adjacent angles whose non-common sides form a straight line. These angles must sum to [180^\circ].
+
+### Step 2: Set Up and Solve
+
+Given one angle in a linear pair, subtract from [180^\circ] to find the other:
+[
+m\angle 2 = 180^\circ - m\angle 1
+]
+
+### Step 3: Apply to Construction Contexts
+
+When a structure contains intersecting lines or a window frame creates adjacent angles along a straight edge, use the same supplementary relationship to find unknown angle measures.
+
+## Example 3 — Write Two-Column Proofs with Congruent Angles
+
+Construct logical arguments using two-column proofs to show that angles are congruent based on given information about angle relationships.
+
+### Step 1: Analyze the Given Information
+
+Identify what is known from the diagram and the given statements. Determine which angles are marked as congruent or supplementary.
+
+### Step 2: Identify the Target Conclusion
+
+Determine what must be proven. Common targets include showing two angles are congruent or that a pair of angles are supplementary.
+
+### Step 3: Build the Proof
+
+State each logical step in the left column and justify it with a definition, postulate, or theorem in the right column. Common reasons include:
+* Given
+* Definition of congruent angles
+* Angle Addition Postulate
+* Substitution Property of Equality
+* Subtraction Property of Equality
+
+For example, to prove that [\angle 1 \cong \angle 3] given that [\angle 2 \cong \angle 4]:
+* Use the fact that [\angle 1] and [\angle 2] form a linear pair, as do [\angle 3] and [\angle 4].
+* Apply the definition of supplementary angles.
+* Use substitution and subtraction to show the remaining angles are equal in measure.
+
+## Example 4 — Prove Angle Congruence Using Supplements
+
+Write a two-column proof to establish that two angles are congruent when they are supplementary to congruent angles.
+
+### Step 1: State the Given and Prove
+
+Identify the angles that are given as congruent and the angles that must be proven congruent.
+
+### Step 2: Use Supplement Relationships
+
+Show that the target angles are supplementary to the given congruent angles, either because they form linear pairs or because they are explicitly stated as supplementary.
+
+### Step 3: Apply the Congruent Supplements Theorem
+
+Conclude that angles supplementary to congruent angles are themselves congruent.
+
+## Example 5 — Prove Theorems About Right Angles and Perpendicular Lines
+
+Write two-column proofs for theorems involving right angles, supplementary congruent angles, and perpendicular lines.
+
+### Step 1: Prove Two Supplementary Congruent Angles Are Right Angles
+
+Given that two angles are both congruent and supplementary:
+* Let [m\angle ABC = m\angle DEF = x].
+* Since they are supplementary: [x + x = 180^\circ].
+* Solve to show [x = 90^\circ], proving each is a right angle.
+
+### Step 2: Prove Perpendicular Lines Create Congruent Adjacent Angles
+
+Given that a line is perpendicular to another line:
+* Use the definition of perpendicular lines to establish right angles.
+* Apply the property that all right angles are congruent.
+
+### Step 3: Prove Angle Congruence with a Perpendicular Line
+
+When a perpendicular line creates multiple right angles, use the fact that all right angles are congruent to prove that a specified angle is congruent to another angle in the diagram.
+
+## Mixed Exercises
+
+The mixed exercises provide practice with all skills from the lesson:
+
+* Applying the Angle Addition Postulate to find unknown angle measures from diagrams.
+* Solving for angle measures when two adjacent angles form a known total.
+* Finding numbered angle measures and naming the theorems used to justify each step.
+* Setting up and solving equations for angle measures expressed in terms of [x], including complementary and supplementary relationships.
+* Writing two-column proofs for the Supplement Theorem, Complement Theorem, Congruent Supplements Theorem, and Congruent Complements Theorem.
+* Proving theorems about perpendicular lines using diagrams with intersecting lines.
+* Constructing arguments about geometric quality control using angle comparison and congruence.
+* Analyzing triangle angle measures using supplementary angle relationships and algebraic solving.
+* Creating constructions and making conjectures about resulting angle measures.
+* Writing proof steps for segment congruence using given midpoint relationships.
+* Explaining why theorems about congruent supplements and complements have multiple cases and writing proofs for the alternate cases.
+
+## Review Notes
+
+* Images referenced in the worksheet (angle diagrams for Examples 1–5, flag and construction diagrams for Example 2, proof diagrams for Examples 3–5 and Mixed Exercises) could not be fully described without visual reference. Teachers should consult the original worksheet for exact diagrams and angle labels.
+* The worksheet labels individual problems within example groups rather than using separate example headings for all groups. Problems 6–7 correspond to Example 3, Problem 8 corresponds to Example 4, and Problems 9–10 correspond to Example 5.

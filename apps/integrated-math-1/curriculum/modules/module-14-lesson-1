@@ -1,0 +1,156 @@
+# Lesson 14-1 — Angles of Triangles
+
+Source: (Module 14, Lesson 14-1, Int1_1401_practice.docx)
+
+## Today's Goals
+
+* Apply the Triangle Angle-Sum Theorem to find unknown interior angle measures.
+* Use the Exterior Angle Theorem to relate exterior and remote interior angles.
+* Classify triangles as acute, right, or obtuse based on their angle measures.
+* Write algebraic equations from angle relationships and solve for unknown variables.
+
+## Vocabulary
+
+* **Triangle Angle-Sum Theorem** — The sum of the measures of the interior angles of a triangle is 180°.
+* **Exterior Angle** — An angle formed by one side of a triangle and the extension of an adjacent side.
+* **Remote Interior Angles** — The two interior angles of a triangle that are not adjacent to a given exterior angle.
+* **Exterior Angle Theorem** — The measure of an exterior angle of a triangle equals the sum of the measures of its two remote interior angles.
+* **Acute Triangle** — A triangle in which all three angles are acute (less than 90°).
+* **Right Triangle** — A triangle containing exactly one right angle (90°).
+* **Obtuse Triangle** — A triangle containing exactly one obtuse angle (greater than 90°).
+* **Corollary** — A statement that follows directly from a theorem.
+* **Complementary Angles** — Two angles whose measures sum to 90°.
+* **Flow Proof** — A proof that uses arrows to show the logical flow of an argument.
+* **Paragraph Proof** — A proof written in complete sentences.
+
+## Explore: What Is the Sum of the Angles in Any Triangle?
+
+Students investigate the relationship among the three interior angles of a triangle. By tearing off the corners of a paper triangle and arranging them side by side, students observe that the three angles always form a straight angle.
+
+Inquiry Question:
+Why does tearing off and rearranging the corners of any triangle always produce a straight line?
+
+## Learn: Angles of Triangles
+
+The angles of a triangle have special relationships that allow us to find missing measures and classify the triangle.
+
+### Key Concept: Triangle Angle-Sum Theorem
+
+For any triangle, the sum of the three interior angle measures equals 180°.
+[
+\angle A + \angle B + \angle C = 180°
+]
+
+### Key Concept: Exterior Angle Theorem
+
+An exterior angle of a triangle equals the sum of the two remote interior angles.
+[
+\text{exterior angle} = \text{remote interior angle}_1 + \text{remote interior angle}_2
+]
+
+### Key Concept: Corollaries
+
+* The acute angles of a right triangle are complementary.
+* A triangle can have at most one right angle.
+* A triangle can have at most one obtuse angle.
+
+### Key Concept: Classifying Triangles by Angles
+
+* If all three angles are acute, the triangle is acute.
+* If one angle is exactly 90°, the triangle is right.
+* If one angle is greater than 90°, the triangle is obtuse.
+
+## Example 1 — Find Unknown Angle Measures in Triangles
+
+Use the Triangle Angle-Sum Theorem to find missing interior angle measures from given diagrams.
+
+### Step 1: Identify Known Angles
+
+Read the diagram to determine which angles are given and which angle is unknown.
+
+### Step 2: Apply the Triangle Angle-Sum Theorem
+
+Set up an equation showing that the three angles sum to 180°, then solve for the unknown angle.
+
+For a triangle with two known angles:
+[
+\angle 1 + \angle 2 + \angle 3 = 180°
+]
+
+### Step 3: Find Each Numbered Angle
+
+Repeat the process for each numbered angle in the given diagrams, using subtraction when two angles are known or using the exterior angle relationship when applicable.
+
+## Example 2 — Solve for Angle Measures Using Algebra
+
+Write and solve equations based on angle relationships in triangles and real-world contexts.
+
+### Step 1: Translate the Diagram into an Equation
+
+When angles are expressed in terms of a variable, use the Triangle Angle-Sum Theorem to write an equation.
+
+For angles expressed as [(7x - 7)°], [(4x + 2)°], and [(2x + 6)°]:
+[
+(7x - 7) + (4x + 2) + (2x + 6) = 180
+]
+
+### Step 2: Solve for the Variable
+
+Combine like terms and isolate the variable.
+[
+13x + 1 = 180
+]
+[
+13x = 179
+]
+[
+x = 13.769...
+]
+
+### Step 3: Substitute Back to Find the Angle Measure
+
+Once [x] is known, substitute into the expression for the desired angle.
+
+### Step 4: Apply to Real-World Contexts
+
+For a gardening problem with grow light angles [(8x)°] and [(7x - 4)°], use the same approach. Recognize that the two angles with the light beam form a triangle with the ground, and apply the Triangle Angle-Sum Theorem or complementary relationship as appropriate.
+
+## Example 3 — Use the Exterior Angle Theorem
+
+Find unknown angles in diagrams involving exterior angles of triangles.
+
+### Step 1: Identify Exterior and Remote Interior Angles
+
+Locate the exterior angle and its two remote interior angles in the diagram.
+
+### Step 2: Apply the Exterior Angle Theorem
+
+Set up an equation showing that the exterior angle equals the sum of the remote interior angles.
+[
+m\angle \text{exterior} = m\angle \text{remote}_1 + m\angle \text{remote}_2
+]
+
+### Step 3: Solve for the Unknown Angle
+
+Use the equation to find each numbered angle in the diagram. For multiple unknowns, set up a system of equations using both the Exterior Angle Theorem and the Triangle Angle-Sum Theorem.
+
+## Mixed Exercises
+
+The mixed exercises section provides comprehensive practice with angles of triangles, including:
+
+* Finding the value of [x] and the measure of each angle in triangles with algebraic expressions.
+* Constructing arguments about whether a statement is true or false, and providing counterexamples or proofs.
+* Writing flow proofs and paragraph proofs for corollaries of the Triangle Angle-Sum Theorem.
+* Solving multi-step algebraic problems involving angle relationships in triangles.
+* Classifying triangles by their angles and justifying the classification.
+* Writing inequalities to describe possible angle measures.
+* Applying angle relationships to real-world contexts such as automobiles, basketball, bridge construction, and architecture.
+* Using tools like tracing paper to verify the Triangle Angle-Sum Theorem.
+* Analyzing whether a triangle can be classified when given information about an exterior angle.
+* Finding multiple unknown angle values in complex diagrams.
+* Creating and measuring triangles to confirm theoretical results.
+
+## Review Notes
+
+* Images referenced in the worksheet (triangle diagrams for Examples 1, 2, and 3, tower strut diagram, grow light diagram, automobile hood diagram, Pratt Truss bridge diagram, Flatiron Building diagram) could not be fully described without visual reference. Teachers should consult the original worksheet for exact diagrams and measurements.
+* The worksheet contains diagrams for problems 1–4, 5–6, 7–8, 9–14, 15–17, 24, 26, 28, 29–30, 34, and 36. Exact angle values and geometric relationships should be verified against the original document.

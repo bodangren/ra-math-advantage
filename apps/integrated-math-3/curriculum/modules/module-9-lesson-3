@@ -1,170 +1,143 @@
 # Lesson 9-3 — Circular and Periodic Functions
 
-Source: (Module 9, Lesson 9-3, pp. 435–440)
+Source: (Module 9, Lesson 9-3, Int3_0903_practice.docx)
 
 ## Today's Goals
 
-* Find values of trigonometric functions given a point on a unit circle or the measure of a special angle
-* Find values of trigonometric functions that model periodic events
-
----
+* Find sine and cosine values for angles whose terminal sides intersect the unit circle at given points.
+* Determine the period of a periodic function from its graph or equation.
+* Evaluate trigonometric expressions using exact values and periodicity.
+* Apply periodic functions to model real-world phenomena such as gear rotations and pendulum motion.
 
 ## Vocabulary
 
-* unit circle
-* circular function
-* periodic function
-* cycle
-* period
+* **Periodic Function** — A function that repeats its values in regular intervals; the period is the length of one complete cycle.
+* **Period** — The smallest positive [P] for which [f(x + P) = f(x)] for all [x] in the domain.
+* **Unit Circle** — A circle with radius 1 centered at the origin; coordinates [(cos θ, sin θ)] give the position of a point on the circle at angle [θ].
+* **Sine Function** — [f(θ) = sin θ], defined as the y-coordinate of the point on the unit circle at angle [θ].
+* **Cosine Function** — [f(θ) = cos θ], defined as the x-coordinate of the point on the unit circle at angle [θ].
+* **Midline** — A horizontal line that is the average of the maximum and minimum values of a periodic function.
 
----
+## Explore: The Unit Circle and Trigonometric Functions
 
-## Explore: Trigonometric Functions of Special Angles
+The unit circle provides a geometric way to understand sine and cosine for all angles. As a point travels around the unit circle, its coordinates trace out the sine and cosine functions, revealing their periodic nature.
 
-Use the online activity to complete the explore.
+Inquiry Question:
+Why do sine and cosine functions repeat their values, and how does the unit circle explain this periodicity?
 
-**Inquiry Question:**
-How can you use special right triangles and the unit circle to find the exact trigonometric values of special angles?
+## Learn: Circular and Periodic Functions
 
----
+### Key Concept: Sine and Cosine on the Unit Circle
 
-## Learn: Circular Functions
+For any angle [θ] in standard position, the terminal side intersects the unit circle at point [P(cos θ, sin θ)].
 
-A **unit circle** has radius `1` and center at the origin.
+Example: If [P(-√3/2, 1/2)], then [cos θ = -√3/2] and [sin θ = 1/2].
 
-If the terminal side of angle `theta` intersects the unit circle at `P(x, y)`, then:
+### Key Concept: Exact Values for Special Angles
 
-* `cos theta = x`
-* `sin theta = y`
+Using the unit circle, exact values include:
+[sin π/6 = 1/2]
+[cos π/6 = √3/2]
+[sin π/4 = √2/2]
+[cos π/4 = √2/2]
+[sin π/3 = √3/2]
+[cos π/3 = 1/2]
 
-So:
+### Key Concept: Period of Trigonometric Functions
 
-`P(x, y) = P(cos theta, sin theta)`
+The period of [sin θ] and [cos θ] is [2π] (or 360°).
+The period of [tan θ] is [π] (or 180°).
 
-These are **circular functions** because they describe points on the unit circle as functions of angle.
+For functions of the form [sin(bθ)] or [cos(bθ)], the period is [2π/|b|].
 
----
+### Key Concept: Using Periodicity to Find Values
 
-## Example 1 — Find Sine and Cosine Given a Point on the Unit Circle
+Since trigonometric functions are periodic, values can be found using coterminal angles:
+[sin(θ + 2πk) = sin θ]
+[cos(θ + 2πk) = cos θ]
 
-If the terminal side intersects the unit circle at
+Example: sin(-510°) = sin(-510° + 720°) = sin 210° = -1/2.
 
-`(-12/13, 5/13)`
+## Example 1 — Find Sine and Cosine from Unit Circle Points
 
-then:
+### Step 1: Read Coordinates Directly
 
-* `cos theta = -12/13`
-* `sin theta = 5/13`
+For [P(-√3/2, 1/2)]: [cos θ = -√3/2], [sin θ = 1/2].
 
----
+For [P(0, -1)]: [cos θ = 0], [sin θ = -1].
 
-## Example 2 — Find Trigonometric Values of Special Angles
+For [P(-2/3, √5/3)]: [cos θ = -2/3], [sin θ = √5/3].
 
-Find the six trigonometric functions for `5pi/4`.
+## Example 2 — Exact Values at Special Angles
 
-On the unit circle:
+### Step 1: Use Known Unit Circle Values
 
-`(cos theta, sin theta) = (-sqrt(2)/2, -sqrt(2)/2)`
+For [π/6] radians (30°):
+[sin = 1/2]
+[cos = √3/2]
+[tan = 1/√3 = √3/3]
+[csc = 2]
+[sec = 2/√3 = 2√3/3]
+[cot = √3]
 
-So:
+For [3π/4] radians (135°):
+[sin = √2/2]
+[cos = -√2/2]
+[tan = -1]
 
-* `sin theta = -sqrt(2)/2`
-* `cos theta = -sqrt(2)/2`
-* `tan theta = 1`
-* `csc theta = -sqrt(2)`
-* `sec theta = -sqrt(2)`
-* `cot theta = 1`
+## Example 3 — Determine Period from Graphs
 
----
+### Step 1: Identify One Complete Cycle
 
-## Learn: Periodic Functions
+Count the horizontal distance for one full repetition of the pattern.
 
-A **periodic function** repeats its values at regular intervals.
+For standard sine and cosine graphs, one complete cycle spans [2π] horizontally.
 
-* one full repeating pattern is a **cycle**
-* the horizontal length of a cycle is the **period**
+## Example 4 — Real-World Periodic Motion
 
-For sine and cosine:
+### Step 1: Identify the Period from Context
 
-* `sin(x + 2pi) = sin x`
-* `cos(x + 2pi) = cos x`
+**Gear problem:** A gear with 15 rotations per minute has a period of [1/15] minute per rotation, or [60/15 = 4] seconds per rotation.
 
-so both have period `2pi`.
+**Pendulum problem:** A pendulum swings from low point to high point in 3 seconds. One full cycle (low to high and back to low) takes 6 seconds, so the period is 6 seconds.
 
----
+## Example 5 — Evaluate Expressions Using Periodicity
 
-## Example 3 — Identify the Period of a Function
+### Step 1: Simplify Using Coterminal Angles
 
-From the graph, the pattern repeats every `3pi/2`.
+[sin(-510°) = sin(-510° + 720°) = sin 210° = -1/2]
 
-So the period is:
+[cos(-5π/2) = cos(-5π/2 + 4π) = cos(3π/2) = 0]
 
-`3pi/2`
+## Mixed Exercises
 
----
-
-## Apply Example 4 — Graph Periodic Functions
-
-A carousel rider starts at the point closest to a wall, `20` feet away. The carousel diameter is `50` feet and it completes `10` rotations per minute.
-
-### 1. What is the task?
-
-Identify the period of the rider’s distance from the wall and graph the function.
-
-### 2. How will you approach the task?
-
-Use the carousel’s rotation rate and geometry to determine one cycle and key points.
-
-### 3. What is your solution?
-
-* closest distance: `20` ft
-* farthest distance: `70` ft
-
-Since the carousel completes `10` rotations per minute:
-
-* `60` seconds / `10` rotations = `6` seconds per rotation
-
-So the period is:
-
-`6` seconds
-
-Key table:
-
-| Time (s) | Distance (ft) |
-| -- | -- |
-| 0 | 20 |
-| 1.5 | 45 |
-| 3 | 70 |
-| 4.5 | 45 |
-| 6 | 20 |
-
-The graph repeats every `6` seconds.
-
-### 4. How can you know that your solution is reasonable?
-
-The graph repeats as expected, and the minimum and maximum distances match the geometry of the carousel.
-
----
-
-## Example 5 — Evaluate Trigonometric Expressions
-
-Find `cos(10pi/3)`.
-
-Use periodicity:
-
-`cos(10pi/3) = cos(4pi/3 + 2pi) = cos(4pi/3)`
-
-From the unit circle:
-
-`cos(4pi/3) = -1/2`
-
-So:
-
-`cos(10pi/3) = -1/2`
-
----
-
-## Objective Alignment
-
-- `Find values of trigonometric functions given a point on a unit circle or the measure of a special angle`: Primary worked examples: Examples 1-2.
-- `Find values of trigonometric functions that model periodic events`: Primary worked examples: Examples 3-5.
+Practice problems include:
+
+* Finding exact trigonometric values for expressions involving sum/difference of standard angles.
+* Ferris wheel period problems.
+* Moon period determination from graph.
+* Arguments about when trigonometric statements are always, sometimes, or never true.
+* Unit circle point problems involving [y = x].
+* Water wheel problems modeling height with sine functions.
+* Tire point height problems.
+* Temperature modeling problems.
+* Factory gear distance problems.
+* Error analysis in trigonometric calculations.
+* Ray angle problems.
+* Periodic function creation and description.
+
+## Review Notes
+
+* Images referenced in the worksheet (period graphs for problems 13-18, Ferris wheel diagram for problem 33, Moon graph for problem 34, water wheel diagram for problem 37, temperature wheel for problem 40, error analysis diagrams for problem 41) could not be fully described without visual reference. Teachers should consult the original worksheet for exact diagrams and values.
+
+![](media/image1.png)
+![](media/image2.png)
+![](media/image3.png)
+![](media/image4.png)
+![](media/image5.png)
+![](media/image6.png)
+![](media/image7.png)
+![](media/image8.png)
+![](media/image9.png)
+![](media/image10.png)
+![](media/image11.png)

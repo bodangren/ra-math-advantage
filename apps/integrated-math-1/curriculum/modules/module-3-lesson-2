@@ -1,0 +1,139 @@
+# Lesson 3-2 — Functions
+
+Source: (Module 3, Lesson 3-2, Int1_0302_practice.docx)
+
+## Today's Goals
+
+* Determine whether a relation represented as a graph, table, mapping, set of ordered pairs, or equation is a function.
+* Find the domain and range of a relation and identify whether it is a function.
+* Evaluate functions using function notation for numerical and algebraic inputs.
+* Interpret function values in real-world contexts.
+
+## Vocabulary
+
+* **Function** — A relation in which each input (x-value) is paired with exactly one output (y-value).
+* **Relation** — A set of ordered pairs, a table, a graph, or a mapping that pairs inputs with outputs.
+* **Domain** — The set of all possible input values (x-values) of a relation.
+* **Range** — The set of all possible output values (y-values) of a relation.
+* **Function notation** — A way to write a function using [ f(x) ] to represent the output when the input is [ x ].
+* **Mapping** — A diagram that shows how each element of the domain is paired with an element of the range.
+
+## Learn: Identifying Functions
+
+A relation is a function if no input value is paired with more than one output value.
+
+### Key Concept: Representations of Relations
+
+* **Graph:** Use the vertical line test. If any vertical line intersects the graph more than once, it is not a function.
+* **Set of ordered pairs:** Check that no x-coordinate is repeated with different y-coordinates.
+* **Equation:** Solve for [ y ]. If a single [ x ] produces more than one [ y ], it is not a function.
+* **Table or mapping:** Check that each input appears only once or is always paired with the same output.
+
+## Example 1 — Determine Whether a Relation Is a Function
+
+Given a relation in various forms, decide whether it is a function and explain why.
+
+### Step 1: Analyze the Representation
+
+For a set of ordered pairs such as [ \{(2, 5), (4, -2), (3, 3), (5, 4), (-2, 5)\} ], check whether any x-value is repeated with a different y-value.
+
+For an equation such as [ y = 2x - 5 ], verify that each [ x ] produces exactly one [ y ].
+
+### Step 2: Apply the Function Test
+
+If each input maps to exactly one output, the relation is a function. For example, [ y = 11 ] is a function because every [ x ] gives the same single [ y ]-value.
+
+## Example 2 — Domain and Range from Real-World Data
+
+Create a table from a real-world situation, identify the domain and range, and determine whether the relation is a function.
+
+### Step 1: Make a Table
+
+Organize the given data as ordered pairs. For example, turnpike costs:
+
+[
+\begin{array}{c|c}
+\text{Cars} & \text{Cost} \\
+\hline
+1 & 0.75 \\
+2 & 1.50 \\
+3 & 2.25 \\
+4 & 3.00 \\
+5 & 3.75
+\end{array}
+]
+
+### Step 2: Identify Domain and Range
+
+* Domain: [ \{1, 2, 3, 4, 5\} ] 
+* Range: [ \{0.75, 1.50, 2.25, 3.00, 3.75\} ] 
+
+### Step 3: Determine Whether It Is a Function
+
+Check that each input (number of cars) corresponds to exactly one output (cost). If so, the relation is a function.
+
+## Example 3 — Evaluate Functions
+
+Given functions such as [ f(x) = 3x + 2 ] and [ g(x) = x^2 - x ], find output values for numerical and algebraic inputs.
+
+### Step 1: Substitute the Input
+
+Replace [ x ] with the given value. For example, to find [ f(4) ]:
+
+[
+f(4) = 3(4) + 2 = 14
+]
+
+### Step 2: Simplify
+
+Perform the arithmetic. For [ g(-3) ]:
+
+[
+g(-3) = (-3)^2 - (-3) = 9 + 3 = 12
+]
+
+### Step 3: Evaluate Expressions Involving Functions
+
+For combined expressions such as [ f(2) + 1 ], first evaluate [ f(2) ], then add 1.
+
+For algebraic inputs such as [ g(3b) ]:
+
+[
+g(3b) = (3b)^2 - (3b) = 9b^2 - 3b
+]
+
+## Example 4 — Interpret Functions in Context
+
+Apply function evaluation to real-world scenarios and explain the meaning of the result.
+
+### Step 1: Identify the Function and Input
+
+For a cell phone plan modeled by [ f(x) = 25x + 200 ], where [ x ] is the number of phones, find [ f(3) ].
+
+### Step 2: Evaluate and Interpret
+
+[
+f(3) = 25(3) + 200 = 275
+]
+
+Interpret the result in context: the monthly cost for 3 phones is 275 dollars.
+
+Similarly, for a square with side length [ x ], the area is [ f(x) = x^2 ]. Evaluating [ f(3.5) ] gives the area of a square with side length 3.5 units.
+
+## Mixed Exercises
+
+The mixed exercises section provides practice across all skills:
+
+* Determining whether tables, mappings, and graphs represent functions.
+* Evaluating functions with numerical and algebraic inputs, including combined expressions such as [ g(-2) + 2 ], [ f(0) - 7 ], and [ 5[f(d)] ].
+* Working with real-world models: graphing linear relationships, finding function values, and solving for inputs given an output.
+* Reasoning about domain restrictions and finding the range when the domain is limited.
+* Constructing arguments about missing values and whether given relations are functions.
+* Writing explanations of how to determine whether a relation represents a function.
+* Finding a possible expression for [ f(x) ] given a composite input such as [ f(3b - 1) = 9b - 1 ].
+
+## Review Notes
+
+* Problems 1–6 and 11–13 include graphs, mappings, and diagrams that could not be described from the extracted text. These should be reviewed for visual content.
+* Problem 32 includes a table, mapping diagram, and graph that could not be described from the extracted text.
+* Problem 45a asks students to graph an equation; verify the graphing grid or coordinate plane is available.

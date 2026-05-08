@@ -1,0 +1,190 @@
+# Lesson 3-4 — Intercepts of Graphs
+
+Source: (Module 3, Lesson 3-4, Int1_0304_practice.docx)
+
+## Today's Goals
+
+* Estimate the [ x ]- and [ y ]-intercepts of a function from its graph and describe where the function is positive and negative
+* Find and interpret intercepts in real-world contexts using graphs and tables
+* Solve linear and quadratic equations by graphing and check the solution
+* Find the zero of a linear function and explain what it means in the context of a situation
+
+## Vocabulary
+
+* **[ x ]-intercept** — the point where a graph crosses the [ x ]-axis, where [ y = 0 ] 
+* **[ y ]-intercept** — the point where a graph crosses the [ y ]-axis, where [ x = 0 ] 
+* **Zero of a function** — the [ x ]-value for which [ f(x) = 0 ]; corresponds to the [ x ]-intercept
+* **Positive function** — the graph lies above the [ x ]-axis on an interval
+* **Negative function** — the graph lies below the [ x ]-axis on an interval
+
+## Learn: Intercepts of a Function
+
+The intercepts of a function are the points where its graph crosses the axes. These values are often the most meaningful in real-world situations because they represent starting amounts or the point at which a quantity reaches zero.
+
+### Key Concept: Finding Intercepts
+
+* To find the [ x ]-intercept, set [ y = 0 ] and solve for [ x ] 
+* To find the [ y ]-intercept, set [ x = 0 ] and solve for [ y ] 
+* On a graph, the [ x ]-intercept is where the curve crosses the horizontal axis; the [ y ]-intercept is where it crosses the vertical axis
+
+## Examples 1 and 2 — Estimate Intercepts from a Graph
+
+Given the graph of a function, estimate the coordinates of the [ x ]- and [ y ]-intercepts, then describe the intervals where the function is positive and where it is negative.
+
+### Step 1: Locate the [ x ]-intercept
+
+Find where the graph crosses the [ x ]-axis. Read the [ x ]-coordinate of that point.
+
+[
+y = 0 \text{ at the } x\text{-intercept}
+]
+
+### Step 2: Locate the [ y ]-intercept
+
+Find where the graph crosses the [ y ]-axis. Read the [ y ]-coordinate of that point.
+
+[
+x = 0 \text{ at the } y\text{-intercept}
+]
+
+### Step 3: Identify Positive and Negative Intervals
+
+Determine where the graph lies above the [ x ]-axis (function is positive) and where it lies below the [ x ]-axis (function is negative).
+
+## Example 3 — Interpret Intercepts in Context
+
+Given a real-world graph (such as the height of a football after being kicked, or earnings over time), estimate the [ x ]- and [ y ]-intercepts, identify where the function is positive and negative, and interpret each value in the context of the situation.
+
+### Step 1: Estimate Intercepts from the Graph
+
+Read the [ x ]-intercept and [ y ]-intercept from the labeled axes.
+
+### Step 2: Identify Positive and Negative Intervals
+
+Note where the graph is above or below the [ x ]-axis.
+
+### Step 3: Interpret in Context
+
+Describe what each intercept means for the real-world quantity being modeled. For example, the [ y ]-intercept may represent an initial height or starting amount, and the [ x ]-intercept may represent when a quantity reaches zero.
+
+## Example 4 — Find and Interpret Intercepts from a Table
+
+Given a table that models a real-world linear relationship (such as a climber's height decreasing over time, or a loan balance decreasing with each payment), find the intercepts and describe what they mean in context.
+
+### Step 1: Find the [ y ]-intercept
+
+Look for the entry where [ x = 0 ], or extend the pattern backward to the starting value.
+
+### Step 2: Find the [ x ]-intercept
+
+Determine the [ x ]-value that makes the output equal to zero. This may require extending the table or using the rate of change.
+
+### Step 3: Interpret the Intercepts
+
+Explain what each intercept represents. For example:
+
+[
+\text{Starting height} = 182.5 \text{ m}, \quad \text{Starting debt} = \$1950
+]
+
+## Examples 5, 6, and 7 — Solve Equations by Graphing
+
+Solve an equation by graphing each side as a separate function and finding the [ x ]-coordinate of the intersection point. Check the solution by substituting back into the original equation.
+
+### Step 1: Rewrite Each Side as a Function
+
+Let [ y ] equal the left side and [ y ] equal the right side. For example, rewrite [ 2x - 3 = 3 ] as:
+
+[
+y = 2x - 3 \quad \text{and} \quad y = 3
+]
+
+### Step 2: Graph Both Functions
+
+Graph each function on the same coordinate plane. For linear equations, this is a line and a horizontal line. For quadratic equations, graph the parabola and the line.
+
+Representative forms include:
+
+[
+2x - 3 = 3
+]
+
+[
+4 = \frac{1}{2}x + 5
+]
+
+[
+x^2 = 6x - 8
+]
+
+[
+x^2 + x = 6
+]
+
+### Step 3: Find the Intersection
+
+The [ x ]-coordinate(s) of the intersection point(s) give the solution(s) to the equation.
+
+### Step 4: Check for Special Cases
+
+Some equations have no solution, which appears as parallel lines that never intersect:
+
+[
+-4x + 2 = -4x + 1
+]
+
+[
+3x - 5 = 3x - 3
+]
+
+### Step 5: Check the Solution
+
+Substitute the [ x ]-value back into the original equation to verify.
+
+## Example 8 — Find and Interpret the Zero of a Function
+
+Given a linear function that models a real-world situation (such as money left after mailing invitations, or ribbon left after tying gift bags), find the zero of the function and describe what it means in context.
+
+### Step 1: Set the Function Equal to Zero
+
+The zero occurs where the output equals zero:
+
+[
+m = 50 - 1.25w = 0
+]
+
+[
+r = 24 - 0.75g = 0
+]
+
+### Step 2: Solve for the Input Variable
+
+Solve the equation to find the value of the independent variable.
+
+### Step 3: Interpret the Zero
+
+Describe what the zero represents in the situation. For example, it is the number of items that can be purchased or used before the remaining amount reaches zero.
+
+## Mixed Exercises
+
+The mixed exercises section provides cumulative practice across all skills from the lesson. Problems include:
+
+* Estimating [ x ]- and [ y ]-intercepts from graphs and describing positive and negative intervals
+* Interpreting intercepts in real-world contexts from graphs (such as a bird's height compared to sea level)
+* Solving equations by graphing and then finding the [ x ]- and [ y ]-intercepts of the related functions, including:
+[
+  3x + 1 = -5
+]
+[
+  9x - 7 = -6x + 8
+]
+* Analyzing whether linear equations sometimes, always, or never have [ x ]- and [ y ]-intercepts and justifying the argument
+* Writing a description of how to find intercepts by graphing and by using tables
+* Creating an original word problem for a given linear function, finding its zero, and interpreting the result
+* Describing the steps to solve a multi-step equation by graphing and explaining how to check the solution
+
+## Review Notes
+
+* The worksheet contains images of graphs for problems 1–9, 10, 11, and 22–24 that cannot be described in text. These graphs must be reviewed and reproduced for the digital lesson.
+* The worksheet contains images of tables for problems 12 and 13 that cannot be described in text. These tables must be reviewed and reproduced for the digital lesson.
+* Problem 20 references "Moesha and Keyon" in the text but the function uses "Shelby and Dylan." Verify the intended names during content review.

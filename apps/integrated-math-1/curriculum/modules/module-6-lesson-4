@@ -1,0 +1,215 @@
+# Lesson 6-4 — Solving Absolute Value Inequalities
+
+Source: (Module 6, Lesson 6-4, Int1_0604_practice.docx)
+
+## Today's Goals
+
+* Solve absolute value inequalities and rewrite them as compound inequalities using *and* or *or*
+* Graph the solution set of an absolute value inequality on a number line
+* Model real-world situations with absolute value inequalities and interpret the solutions
+* Recognize special cases where an absolute value inequality has no solution or all real numbers as solutions
+
+## Vocabulary
+
+* **absolute value inequality** — An inequality that contains an absolute value expression, such as [|x - 3| < 5].
+* **compound inequality** — Two inequalities joined by the word *and* or *or*.
+* **solution set** — The set of all values that make an inequality true.
+* **margin of error** — The maximum allowable difference between a measured or claimed value and the actual value.
+* **open sentence** — A mathematical statement that contains a variable and becomes true or false when values are substituted.
+
+## Learn: Solving Absolute Value Inequalities
+
+An absolute value inequality can be rewritten as a compound inequality. The direction of the inequality symbol and the sign of the right-hand side determine the form of the compound inequality.
+
+### Key Concept: Rewriting Absolute Value Inequalities
+
+* If [|X| < a] and [a > 0], rewrite as [-a < X < a] (compound inequality with *and*).
+* If [|X| \le a] and [a > 0], rewrite as [-a \le X \le a] (compound inequality with *and*).
+* If [|X| > a] and [a > 0], rewrite as [X < -a] or [X > a] (compound inequality with *or*).
+* If [|X| \ge a] and [a > 0], rewrite as [X \le -a] or [X \ge a] (compound inequality with *or*).
+* If [a < 0] and the symbol is [<] or [\le], there is **no solution** because absolute value is never negative.
+* If [a < 0] and the symbol is [>] or [\ge], the solution is **all real numbers** because absolute value is always non-negative.
+
+## Example 1 — Solve Less-Than Absolute Value Inequalities
+
+Solve absolute value inequalities with less-than or less-than-or-equal-to symbols, then graph the solution set on a number line.
+
+### Step 1: Identify the Form
+
+Determine whether the inequality uses [<] or [\le] and whether the right-hand side is positive or negative.
+
+For [|x + 8| < 16]:
+[
+-16 < x + 8 < 16
+]
+
+### Step 2: Solve the Compound Inequality
+
+Isolate the variable in the middle by subtracting or adding the same value to all three parts.
+
+[
+-16 - 8 < x < 16 - 8
+]
+[
+-24 < x < 8
+]
+
+For inequalities with a coefficient on the variable inside the absolute value, such as [|2c - 1| \le 7]:
+[
+-7 \le 2c - 1 \le 7
+]
+[
+-6 \le 2c \le 8
+]
+[
+-3 \le c \le 4
+]
+
+### Step 3: Graph the Solution
+
+Graph the solution set on a number line using open or closed circles depending on the inequality symbol.
+
+## Example 2 — Solve Greater-Than Absolute Value Inequalities
+
+Solve absolute value inequalities with greater-than or greater-than-or-equal-to symbols, then graph the solution set on a number line.
+
+### Step 1: Identify the Form
+
+Determine whether the inequality uses [>] or [\ge] and whether the right-hand side is positive or negative.
+
+For [|r + 2| > 6]:
+[
+r + 2 < -6 \quad \text{or} \quad r + 2 > 6
+]
+
+### Step 2: Solve Each Inequality
+
+Solve each part of the compound inequality separately.
+
+[
+r < -8 \quad \text{or} \quad r > 4
+]
+
+For inequalities with a coefficient, such as [|2h - 3| \ge 9]:
+[
+2h - 3 \le -9 \quad \text{or} \quad 2h - 3 \ge 9
+]
+[
+2h \le -6 \quad \text{or} \quad 2h \ge 12
+]
+[
+h \le -3 \quad \text{or} \quad h \ge 6
+]
+
+### Step 3: Graph the Solution
+
+Graph both parts of the solution on a number line. The solution is the union of the two intervals.
+
+## Example 3 — Real-World Applications
+
+Write and solve absolute value inequalities that model real-world situations involving tolerance, margin of error, or acceptable ranges.
+
+### Step 1: Translate the Situation
+
+Identify the target value and the allowable deviation from that value.
+
+For a speedometer accurate within [\pm 2.5\%] at 60 mph:
+[
+|s - 60| \le 0.025(60)
+]
+[
+|s - 60| \le 1.5
+]
+
+### Step 2: Solve and Interpret
+
+Solve the inequality and interpret the result in the context of the problem.
+
+[
+-1.5 \le s - 60 \le 1.5
+]
+[
+58.5 \le s \le 61.5
+]
+
+The car could actually be traveling between 58.5 mph and 61.5 mph.
+
+Other situations include baking temperatures within a range, paint amounts within a tolerance, healthy weight ranges, and SAT scores within standard deviations of the mean.
+
+## Example 4 — Special Cases
+
+Recognize and explain absolute value inequalities that have no solution or all real numbers as solutions.
+
+### No Solution
+
+When the right-hand side is negative and the symbol is [<] or [\le], the inequality has no solution because an absolute value can never be less than a negative number.
+
+[
+|m + 4| < -2 \quad \Rightarrow \quad \text{no solution}
+]
+
+[
+\left|\frac{7c + 3}{2}\right| \le -5 \quad \Rightarrow \quad \text{no solution}
+]
+
+### All Real Numbers
+
+When the right-hand side is negative and the symbol is [>] or [\ge], the solution is all real numbers because an absolute value is always non-negative.
+
+[
+|5v + 3| > -9 \quad \Rightarrow \quad \text{all real numbers}
+]
+
+[
+\left|\frac{2g + 3}{2}\right| > -7 \quad \Rightarrow \quad \text{all real numbers}
+]
+
+## Example 5 — Fractional Coefficients and Mixed Practice
+
+Solve more complex absolute value inequalities that include fractional expressions or negative coefficients inside the absolute value, then graph each solution set.
+
+### Fractional Expressions
+
+For inequalities such as [\left|\frac{3h + 1}{2}\right| < 8]:
+[
+-8 < \frac{3h + 1}{2} < 8
+]
+[
+-16 < 3h + 1 < 16
+]
+[
+-17 < 3h < 15
+]
+[
+-\frac{17}{3} < h < 5
+]
+
+### Negative Coefficients
+
+For inequalities such as [|-6r - 4| < 8], first isolate the absolute value, then proceed as usual. The negative coefficient does not change the solving process.
+
+[
+-8 < -6r - 4 < 8
+]
+[
+-4 < -6r < 12
+]
+
+Remember to reverse the inequality symbols when dividing by a negative number:
+[
+\frac{2}{3} > r > -2 \quad \text{or} \quad -2 < r < \frac{2}{3}
+]
+
+## Mixed Exercises
+
+The mixed exercises section provides comprehensive practice across all skills from this lesson. Students write absolute value open sentences from number line graphs, match inequalities to their graphical solutions, model real-world scenarios with absolute value inequalities and then solve and graph them, solve a variety of absolute value inequalities with and without fractional coefficients, and engage in reasoning tasks such as finding errors in worked solutions, constructing arguments about solution sets, analyzing the relationship between absolute value and compound inequalities, and creating their own inequalities.
+
+## Review Notes
+
+* Problems 26–31 require number line graphs that are not described in the source text. Each graph shows a solution interval (or union of intervals) on a number line; students must write the corresponding absolute value open sentence.
+* Problems 32–35 require matching absolute value inequalities to their number line graph solutions. The graphs are not described in the source text.
+* Problem 51 includes an image showing the work of Jordan and Chloe solving [|x + 3| > 10]. The image is not described; human review is needed to evaluate their reasoning.
+* Problem 53 includes a number line graph image showing the solution to [2 < |n + 1| \le 7]. The graph is not described in the source text.
+* Problem 54 includes a number line graph image. The graph is not described in the source text.
+* Problem 55 includes an image showing Lucita's graph of [|2a - 3| > 1]. The image is not described; human review is needed to evaluate her work.
+* Problem 60 includes an image showing four absolute value inequalities and asks which one does not belong. The image is not described; human review is needed.

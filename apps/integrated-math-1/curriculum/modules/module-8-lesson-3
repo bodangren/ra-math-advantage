@@ -1,0 +1,146 @@
+# Lesson 8-3 — Writing Exponential Functions
+
+Source: (Module 8, Lesson 8-3, Int1_0803_practice.docx)
+
+## Today's Goals
+
+* Write an exponential function [ y = ab^x ] given two points on its graph.
+* Determine an exponential model from a graphed curve by extracting coordinates.
+* Translate real-world growth and decay scenarios into exponential functions and use them to make predictions.
+* Apply the compound-interest formula [ A = P(1 + \frac{r}{n})^{nt} ] to investment and depreciation problems.
+
+## Vocabulary
+
+* **Exponential function** — A function of the form [ y = ab^x ] where [ a \ne 0 ], [ b > 0 ], and [ b \ne 1 ].
+* **Growth factor** — The base [ b ] in an exponential function when [ b > 1 ]; the quantity increases by a constant percent each time period.
+* **Decay factor** — The base [ b ] in an exponential function when [ 0 < b < 1 ]; the quantity decreases by a constant percent each time period.
+* **Compound interest** — Interest earned on both the principal and any previously accumulated interest.
+* **Depreciation** — The decrease in value of an asset over time, often modeled with exponential decay.
+
+## Learn: Writing Exponential Functions from Points
+
+An exponential function has the form [ y = ab^x ]. When two points on the graph are known, substitute them into the equation to create a system. Dividing the equations eliminates [ a ] and lets you solve for [ b ]. Then substitute [ b ] back to find [ a ].
+
+### Key Concept: Two-Point Method
+
+* Substitute each point into [ y = ab^x ] to obtain two equations.
+* Divide one equation by the other to eliminate [ a ] and solve for [ b ].
+* Substitute [ b ] into either equation to solve for [ a ].
+* Write the final function [ f(x) = ab^x ].
+
+## Learn: Compound Interest and Growth Models
+
+Real-world quantities that grow or decay by a fixed percentage are modeled exponentially. For compound interest, the formula is:
+
+[
+A = P\left(1 + \frac{r}{n}\right)^{nt}
+]
+
+where [ P ] is the principal, [ r ] is the annual rate, [ n ] is the number of compounding periods per year, and [ t ] is time in years.
+
+### Key Concept: Modeling with Exponential Functions
+
+* Identify the initial amount [ a ] (or principal [ P ]).
+* Determine the growth or decay factor from the rate: [ b = 1 + r ] for growth, [ b = 1 - r ] for decay.
+* For compound interest, adjust the rate per period and the total number of periods.
+* Substitute values and solve for the unknown quantity or time.
+
+## Example 1 — Write a Function from Two Points
+
+Given two points on an exponential graph, determine the function [ y = ab^x ].
+
+### Step 1: Set Up the System
+
+Substitute each point into [ y = ab^x ].
+
+For example, with points [ (2, 16) ] and [ (3, 32) ]:
+[
+16 = ab^2 \quad \text{and} \quad 32 = ab^3
+]
+
+### Step 2: Solve for the Growth Factor
+
+Divide the second equation by the first to eliminate [ a ]:
+[
+\frac{32}{16} = \frac{ab^3}{ab^2} \implies 2 = b
+]
+
+### Step 3: Solve for the Initial Value
+
+Substitute [ b = 2 ] back into [ 16 = ab^2 ]:
+[
+16 = a(2)^2 \implies 16 = 4a \implies a = 4
+]
+
+The function is [ y = 4(2)^x ].
+
+## Example 2 — Write a Function from a Graph
+
+Given the graph of an exponential function, write its equation.
+
+### Step 1: Read Coordinates from the Graph
+
+Identify two clearly marked points on the curve, such as the y-intercept and another point.
+
+### Step 2: Apply the Two-Point Method
+
+Use the same process as Example 1: set up [ y = ab^x ], divide to find [ b ], and solve for [ a ].
+
+## Example 3 — Model Real-World Growth and Decay
+
+Write an exponential function to describe a real-world scenario, then use it to answer questions.
+
+### Step 1: Identify the Model Type
+
+Determine whether the situation represents growth or decay, and identify the initial value and rate.
+
+* Bacteria doubling: [ y = 50(2)^x ] where [ x ] is the number of 30-minute periods.
+* Depreciation at 12% per year: [ y = 32500(0.88)^x ].
+
+### Step 2: Write and Evaluate the Function
+
+Substitute the appropriate time or other known value to find the desired quantity.
+
+## Examples 4–6 — Apply Compound Interest and Exponential Models
+
+Solve multi-step financial and population problems using the compound-interest formula or exponential growth/decay models.
+
+### Step 1: Choose the Correct Formula
+
+For compound interest:
+[
+A = P\left(1 + \frac{r}{n}\right)^{nt}
+]
+
+For continuous exponential growth or decay:
+[
+y = ab^x \quad \text{or} \quad y = a(1 + r)^t
+]
+
+### Step 2: Substitute Known Values
+
+Identify [ P ], [ r ], [ n ], and [ t ] from the problem statement. Watch for whether the rate is given as a percent or decimal.
+
+### Step 3: Solve and Interpret
+
+Evaluate the expression to find the account balance, population, or remaining value. Round as directed by the problem context.
+
+## Mixed Exercises
+
+The mixed exercises combine all skills from the lesson:
+
+* Writing exponential functions from two given points.
+* Modeling population growth and decline with exponential functions.
+* Applying the compound-interest formula to investments and savings accounts.
+* Working with half-life and decay models in medicine and science contexts.
+* Analyzing whether an investment is increasing or decreasing from its equation.
+* Using technology to estimate when an investment reaches a target value.
+* Comparing exponential and linear growth through average rate of change.
+* Explaining structural features of exponential models and justifying arguments about growth rates.
+* Creating original exponential models for combined investment and depreciation scenarios.
+
+## Review Notes
+
+* Example 2 (problems 7–10) requires four graph images (`media/image1.png` through `media/image4.png`) that cannot be described in text. A teacher or curriculum reviewer should verify the coordinates shown on each graph so that the two-point method can be applied.
+* Problem 18 includes a table of average annual college costs (`media/image5.png`) that must be reviewed to extract the dollar amounts for public-college tuition, fees, room, and board.
+* Problem 29 includes a table of deer-population data (`media/image6.png`) that must be reviewed to extract the year-by-year population values needed to fit an exponential function.

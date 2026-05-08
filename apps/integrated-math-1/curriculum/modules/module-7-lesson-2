@@ -1,0 +1,156 @@
+# Lesson 7-2 — Substitution
+
+Source: (Module 7, Lesson 7-2, Int1_0702_practice.docx)
+
+## Today's Goals
+
+* Solve systems of linear equations using the substitution method
+* Write and solve systems of equations to model real-world situations
+* Solve systems containing decimals, fractions, and special angle or digit relationships
+* Analyze and compare solution methods for systems of equations
+
+## Vocabulary
+
+* **system of equations** — a set of two or more equations containing the same variables
+* **substitution method** — an algebraic technique for solving a system by replacing a variable with an equivalent expression from another equation
+* **solution of a system** — an ordered pair that satisfies every equation in the system simultaneously
+
+## Learn: The Substitution Method
+
+The substitution method solves a system of equations by expressing one variable in terms of another and replacing that variable in the second equation.
+
+### Key Concept: Solving by Substitution
+
+* Isolate one variable in one of the equations (if it is not already isolated).
+* Substitute the resulting expression into the other equation.
+* Solve the new equation for the remaining variable.
+* Substitute that value back into the isolated equation to find the first variable.
+* Check the ordered pair in both original equations.
+
+## Example 1 — Solve Systems by Substitution
+
+Use substitution to solve linear systems. The problems fall into three categories based on how the equations are structured.
+
+### Step 1: Substitute When One Variable Is Isolated
+
+When one equation is already solved for [ y ] or [ x ], substitute that expression directly into the other equation.
+
+For example, given:
+[
+y = 5x + 1
+]
+[
+4x + y = 10
+]
+
+Substitute [ 5x + 1 ] for [ y ] in the second equation:
+[
+4x + (5x + 1) = 10
+]
+
+Solve for [ x ], then substitute back to find [ y ].
+
+Other problems in this group provide the system with [ x ] isolated, such as:
+[
+x = y - 1
+]
+[
+-x + y = -1
+]
+
+### Step 2: Set Equal When Both Equations Are Solved for the Same Variable
+
+When both equations express [ y ] in terms of [ x ], set the two expressions equal to each other.
+
+For example:
+[
+y = 3x - 2
+]
+[
+y = 2x - 5
+]
+
+Set the right sides equal:
+[
+3x - 2 = 2x - 5
+]
+
+Solve for [ x ], then substitute into either equation to find [ y ].
+
+### Step 3: Isolate First, Then Substitute
+
+When neither equation is solved for a variable, isolate a variable in one equation before substituting.
+
+For example:
+[
+2x + y = 3
+]
+[
+4x + 4y = 8
+]
+
+Solve the first equation for [ y ]:
+[
+y = 3 - 2x
+]
+
+Then substitute into the second equation and solve.
+
+Some problems involve negative coefficients or require careful simplification, such as:
+[
+-1 = 2x - y
+]
+[
+8x - 4y = -4
+]
+
+## Example 2 — Applications of Systems of Equations
+
+Set up systems of equations from verbal descriptions and solve them using substitution.
+
+### Step 1: Define Variables and Write the System
+
+Identify the unknown quantities, assign variables, and translate the words into two equations.
+
+For example, Harvey has [ x ] [ 1 ]-dollar bills and [ y ] [ 5 ]-dollar bills. He has 6 bills worth [ 22 ] dollars total:
+[
+x + y = 6
+]
+[
+x + 5y = 22
+]
+
+### Step 2: Solve and Interpret
+
+Use substitution to solve the system, then state the answer in the context of the problem.
+
+In the chemistry problem, Shelby and Calvin need 5 milliliters of a 65% acid solution by mixing from two beakers: Beaker A (70% acid) and Beaker B (20% acid). Let [ a ] be milliliters from Beaker A and [ b ] be milliliters from Beaker B.
+
+The system is:
+[
+a + b = 5
+]
+[
+0.70a + 0.20b = 3.25
+]
+
+Solve by substitution to find how many milliliters are needed from each beaker.
+
+## Mixed Exercises
+
+The mixed exercises extend substitution practice to a variety of problem types and contexts.
+
+* **Decimals and fractions:** Solve systems with decimal coefficients, such as [ y = 3.2x + 1.9 ] and [ 2.3x + 2y = 17.72 ], and systems with fractional coefficients, such as [ y = \frac{1}{4}x - \frac{1}{2} ] and [ 8x + 12y = -\frac{1}{2} ].
+* **Geometry:** Angle [ A ] and angle [ B ] are complementary with a difference of [ 20^\circ ]. Write and solve a system to find their measures, then generalize the method.
+* **Number theory:** A two-digit number decreases by 45 when its digits are interchanged. The tens digit is 1 more than 3 times the units digit. Define variables and write a system to find the original number.
+* **Data modeling:** Use data from a table of zoo visitors to write equations relating adults and children at different exhibits, solve the system, and extend to a ticket-sales problem.
+* **Error analysis:** Evaluate two students' work solving a system about pounds of apples and bananas, determine who is correct, and explain the reasoning.
+* **Ratios:** A charity has 60 volunteers with a boy-to-girl ratio of 7:5. Find the number of boys and girls.
+* **Method comparison:** Compare and contrast solving the same system by graphing versus by substitution.
+* **Creation and explanation:** Create a real-world system with one solution and explain how to choose what to substitute.
+
+## Review Notes
+
+* Problem 24 references a table of zoo visitors (`image2.png`) that is not described in the extracted text. The table data is needed to model the relationships in parts a–c.
+* Problem 25 includes student work (`image3.png`) that cannot be described. Human review is needed to evaluate Guillermo's and Cara's solutions.
+* Problem 22 has an adjacent image (`image1.png`) preceding the problem text that cannot be described.

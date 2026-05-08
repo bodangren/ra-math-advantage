@@ -1,0 +1,161 @@
+# Lesson 13-3 — Sum and Difference Identities
+
+Source: (Module 13, Lesson 13-3, Int2_1303_practice.docx)
+
+## Today's Goals
+
+* Apply sum and difference identities to find exact values at non-standard angles
+* Use sum/difference formulas to verify trigonometric identities
+* Apply sum/difference identities to solve real-world problems (art, cameras)
+* Write expressions as single trigonometric functions using sum/difference formulas
+
+## Vocabulary
+
+* **Sum identity** — a formula expressing sin(A + B), cos(A + B), or tan(A + B) in terms of functions of A and B
+* **Difference identity** — a formula for sin(A - B), cos(A - B), or tan(A - B)
+* **Compound angle** — an angle expressed as the sum or difference of two other angles
+
+## Explore: Beyond Standard Angles
+
+We know exact values for [sin 30 degrees = 1/2] and [sin 45 degrees = sqrt(2)/2], but what about [sin 75 degrees]? It is NOT [sin 30 degrees + sin 45 degrees]. The sum identity gives exact values for compound angles.
+
+Inquiry Question:
+Why doesn't [sin(A + B) = sin A + sin B]? Can you find a counterexample using specific angle measures?
+
+## Learn: Sum and Difference Identities
+
+### Key Concept: Sine Sum and Difference
+
+[sin(A + B) = sin A cos B + cos A sin B]
+
+[sin(A - B) = sin A cos B - cos A sin B]
+
+### Key Concept: Cosine Sum and Difference
+
+[cos(A + B) = cos A cos B - sin A sin B]
+
+[cos(A - B) = cos A cos B + sin A sin B]
+
+### Key Concept: Tangent Sum and Difference
+
+[tan(A + B) = (tan A + tan B) / (1 - tan A tan B)]
+
+[tan(A - B) = (tan A - tan B) / (1 + tan A tan B)]
+
+## Example 1 — Find Exact Values Using Sum Identities
+
+Find the exact value of [sin 135 degrees].
+
+### Step 1: Rewrite as a Sum of Known Angles
+
+[135 degrees = 90 degrees + 45 degrees]
+
+[sin(90 degrees + 45 degrees) = sin 90 degrees cos 45 degrees + cos 90 degrees sin 45 degrees]
+
+### Step 2: Substitute Known Values
+
+[sin 90 degrees = 1], [cos 45 degrees = sqrt(2)/2]
+[cos 90 degrees = 0], [sin 45 degrees = sqrt(2)/2]
+
+[= 1 * sqrt(2)/2 + 0 * sqrt(2)/2 = sqrt(2)/2]
+
+### Step 3: Conclude
+
+[sin 135 degrees = sqrt(2)/2]
+
+## Example 2 — Find cos 165 degrees Using Difference Identity
+
+### Step 1: Rewrite as a Difference
+
+[165 degrees = 180 degrees - 15 degrees] (or [135 degrees + 30 degrees])
+
+Using [cos(A - B) = cos A cos B + sin A sin B]:
+
+[cos 165 degrees = cos(180 degrees - 15 degrees) = -cos 15 degrees]
+
+### Step 2: Find cos 15 degrees
+
+[cos 15 degrees = cos(45 degrees - 30 degrees)]
+
+[= cos 45 degrees cos 30 degrees + sin 45 degrees sin 30 degrees]
+
+[= (sqrt(2)/2)(sqrt(3)/2) + (sqrt(2)/2)(1/2) = (sqrt(6) + sqrt(2))/4]
+
+### Step 3: Apply Sign
+
+Since [cos(180 degrees - 15 degrees) = -cos 15 degrees]:
+
+[cos 165 degrees = -(sqrt(6) + sqrt(2))/4]
+
+## Example 3 — Apply Identities to Real-World Problem
+
+ART: Two triangular tiles with sides (3, 4, 5) and (4, 4sqrt(3), 8) are placed with 4-inch sides together.
+
+### Part a: Find sin A and cos A for the 3-4-5 triangle
+
+For the 3-4-5 triangle: [sin A = 4/5], [cos A = 3/5]
+
+### Part b: Find the measure of angle A
+
+Use the identity for the combined triangle. The angle can be found using the dot product of vectors.
+
+### Part c: Determine if the combined triangle is a right triangle
+
+Check if the Pythagorean theorem holds for the combined sides.
+
+## Example 4 — Verify Identities Using Sum/Difference Formulas
+
+Verify [cos(60 degrees + theta) = sin(30 degrees - theta)]
+
+### Step 1: Apply Cosine Sum Identity
+
+[cos(60 degrees + theta) = cos 60 degrees cos theta - sin 60 degrees sin theta]
+
+[= (1/2) cos theta - (sqrt(3)/2) sin theta]
+
+### Step 2: Apply Sine Difference Identity
+
+[sin(30 degrees - theta) = sin 30 degrees cos theta - cos 30 degrees sin theta]
+
+[= (1/2) cos theta - (sqrt(3)/2) sin theta]
+
+### Step 3: Conclude
+
+Both expressions match. Verified.
+
+## Example 5 — Use Sum/Difference Identities to Write Single Expressions
+
+Write [sin 19 degrees cos 11 degrees + cos 19 degrees sin 11 degrees] as a single trigonometric function.
+
+### Step 1: Recognize the Pattern
+
+This matches [sin A cos B + cos A sin B = sin(A + B)]
+
+### Step 2: Apply
+
+[sin 19 degrees cos 11 degrees + cos 19 degrees sin 11 degrees = sin(19 degrees + 11 degrees) = sin 30 degrees]
+
+### Step 3: State the Value
+
+[sin 30 degrees = 1/2]
+
+## Mixed Exercises
+
+The mixed exercises provide practice with:
+
+* Finding exact values for angles like [sin 330 degrees], [cos(-165 degrees)], [tan 75 degrees], [sin(4pi/3)]
+* Verifying sum and difference identities for various compound angles
+* Proving the cosine sum formula using geometric construction (CONSTRUCT ARGUMENTS problem)
+* Finding exact values for tan 165 degrees, sec 1275 degrees, sin 735 degrees, tan(23pi/12)
+* Verifying identities involving sum/difference formulas in general form
+* Constructing arguments explaining how to derive difference formulas from sum formulas
+* Using graphs to find values of h in [sin(theta - h) = cos theta]
+* Finding exact values for angles like [sin(13pi/12)]
+* Solving problems involving flagpole height using angle of elevation
+* Using sum or difference identities to prove cofunction identities
+
+## Review Notes
+
+* Image references: ![](media/image1.png) — Problem 6 shows angle diagram for camera problem. ![](media/image2.png) — Problem 7 shows triangular tiles for art problem. ![](media/image3.png) — Problem 31 shows geometric proof diagram. ![](media/image4.png) — Problem 46 shows sine and cosine graphs. ![](media/image5.png) — Problem 48 shows flagpole diagram. ![](media/image6.png) — Problem 59 shows angle diagram. ![](media/image7.png) — Problem 60 shows unit circle with angles A and B. Consult original worksheet for exact diagrams.
+* The worksheet contains 63 practice problems across worked examples and mixed exercises.
+* Problems involving proofs and constructions require written explanations.

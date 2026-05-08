@@ -1,0 +1,161 @@
+# Lesson 11-5 — Using the Distributive Property
+
+Source: (Module 11, Lesson 11-5, Int2_1105_practice.docx)
+
+## Today's Goals
+
+* Use the Distributive Property to factor out the greatest common factor from polynomials.
+* Factor polynomials by grouping when there is no single common factor.
+* Apply factoring to solve real-world problems involving falling objects, swimming pools, and projectiles.
+* Recognize when to use simple distributive factoring versus factoring by grouping.
+
+## Vocabulary
+
+* **Greatest Common Factor (GCF)** — The largest expression that divides evenly into each term of a polynomial
+* **Factoring** — The process of rewriting a polynomial as a product of its factors
+* **Factoring by Grouping** — A technique where terms are grouped to reveal a common factor in each group
+* **Distributive Property (factoring form)** — ab + ac = a(b + c)
+
+## Explore: Reversing Multiplication
+
+Students consider what it means to work backwards from a product. They explore taking a polynomial like [12x + 18] and asking "what multiplied by what gives this result?"
+
+Inquiry Question:
+If [3(4 + 6) = 30], what question does this answer in reverse? What does factoring reveal about the structure of a polynomial?
+
+## Learn: Using the Distributive Property to Factor
+
+### Key Concept: Finding the Greatest Common Factor
+
+To factor a polynomial, find the largest expression that divides evenly into every term.
+
+[16t - 40y] → GCF is 8 → [8(2t - 5y)]
+[30v + 50x] → GCF is 10 → [10(3v + 5x)]
+[2k^2 + 4k] → GCF is 2k → [2k(k + 2)]
+
+### Key Concept: Factoring with Multiple Variables
+
+When factoring expressions with multiple variables, find the GCF for both the numerical coefficients and each variable separately.
+
+[4a^2b^2 + 2a^2b - 10ab^2] → GCF is 2ab
+= [2ab(2ab + a - 5b)]
+
+[5c^2v - 15c^2v^2 + 5c^2v^3] → GCF is 5c^2v
+= [5c^2v(1 - 3v + v^2)]
+
+## Example 1 — Factor Using the Distributive Property
+
+Use the Distributive Property to factor each polynomial by extracting the GCF.
+
+### Step 1: Find the GCF of All Terms
+
+[16t - 40y] → Numbers: factors of 16: 1, 2, 4, 8, 16; factors of 40: 1, 2, 4, 5, 8, 10, 20, 40 → GCF of coefficients: 8. No common variable. → [8(2t - 5y)]
+
+[5z^2 + 10z] → GCF is 5z → [5z(z + 2)]
+
+## Example 2 — Factor to Solve Real-World Problems
+
+Factor expressions that model real-world scenarios.
+
+### Step 1: Falling Object Height
+
+The height of an object launched upward from ground level at 32 feet per second is given by [32t - 16t^2]. Factor this expression.
+
+GCF is 16t: [16t(2 - t)]
+
+### Step 2: Swimming Pool Area
+
+The area of a rectangular pool is given by [12w - w^2], where w is the width. Factor this expression.
+
+GCF is w: [w(12 - w)]
+
+### Step 3: Vertical Jump Height
+
+A basketball player's height above standing reach after t seconds is modeled by [162t - 192t^2]. Factor this expression.
+
+GCF is 6t: [6t(27 - 32t)]
+
+### Step 4: Treat Toss Height
+
+A treat tossed upward at 13.7 meters per second has height given by [13.7t - 4.9t^2]. Factor this expression.
+
+GCF is 0.7t: [0.7t(19.5 - 7t)]
+
+## Example 3 — Factor by Grouping
+
+When a polynomial has four or more terms, try grouping terms that share a common factor.
+
+### Step 1: Group Terms with Common Factors
+
+[fg - 5g + 4f - 20]
+Group: [(fg - 5g) + (4f - 20)]
+Factor each group: [g(f - 5) + 4(f - 5)]
+Factor out (f - 5): [(f - 5)(g + 4)]
+
+[xy - 2x - 2 + y]
+Group: [(xy - 2x) + (y - 2)]
+Factor each group: [x(y - 2) + 1(y - 2)]
+Factor out (y - 2): [(y - 2)(x + 1)]
+
+### Step 2: Arrange Terms Before Grouping
+
+[3dt - 21d + 35 - 5t]
+Reorder: [3dt - 21d - 5t + 35]
+Group: [(3dt - 21d) + (-5t + 35)]
+Factor each group: [3d(t - 7) - 5(t - 7)]
+Factor out (t - 7): [(t - 7)(3d - 5)]
+
+## Example 4 — More Factoring by Grouping
+
+Continue practicing the grouping technique with various polynomial structures.
+
+[45pq - 27q - 50p + 30]
+Group: [(45pq - 27q) + (-50p + 30)]
+Factor each group: [9q(5p - 3) - 10(5p - 3)]
+Factor out (5p - 3): [(5p - 3)(9q - 10)]
+
+[24ty - 18t + 4y - 3]
+Group: [(24ty - 18t) + (4y - 3)]
+Factor each group: [6t(4y - 3) + 1(4y - 3)]
+Factor out (4y - 3): [(4y - 3)(6t + 1)]
+
+[vp + 12v + 8p + 96]
+Group: [(vp + 12v) + (8p + 96)]
+Factor each group: [v(p + 12) + 8(p + 12)]
+Factor out (p + 12): [(p + 12)(v + 8)]
+
+[5br - 25b + 2r - 10]
+Group: [(5br - 25b) + (2r - 10)]
+Factor each group: [5b(r - 5) + 2(r - 5)]
+Factor out (r - 5): [(r - 5)(5b + 2)]
+
+[2nu - 8u + 3n - 12]
+Group: [(2nu - 8u) + (3n - 12)]
+Factor each group: [2u(n - 4) + 3(n - 4)]
+Factor out (n - 4): [(n - 4)(2u + 3)]
+
+## Mixed Exercises
+
+Practice includes:
+
+* Factoring with GCF: [7x + 49], [8m - 6], [5a^2 - 15]
+* Factoring with powers: [10q - 25q^2], [a^2b^2 + a], [x + x^2y + x^3y^2]
+* Factoring complex expressions: [3p^2r^2 + 6pr + p], [4a^2b^2 + 16ab + 12a], [10h^3n^3 - 2hn^2 + 14hn]
+* Factoring expressions with coefficients: [48a^2b^2 - 12ab], [6x^2y - 21y^2w + 24xw]
+* Factoring by grouping: [x^2 + 3x + x + 3], [2x^2 - 5x + 6x - 15], [3n^2 + 6np - np - 2p^2]
+* Decimals in coefficients: [4x^2 - 1.2x + 0.5x - 0.15], [3x^2 + 24x - 1.5x - 12], [2x^2 - 0.6x + 3x - 0.9]
+* Mixed grouping with different variable arrangements: [9x^2 - 3xy + 6x - 2y]
+* An archery problem: The height of an arrow is modeled by [80t - 16t^2]. Factor the expression.
+* A regularity question: Compare factoring using the Distributive Property versus factoring by grouping — what are the similarities?
+* Create your own four-term polynomial that can be factored by grouping.
+* Find the error: Theresa says to factor [3x^2 + 7x - 18x - 42] using groups (3x^2 - 18x) and (7x - 42). Akash says to use (3x^2 + 7x) and (-18x - 42). Determine who is correct and justify.
+* Choose a value q so that [2x^2 + qx + 7x - 21] can be factored by grouping, then factor the expression.
+* Explain how to factor [12a^2b^2 - 16a^2b^3].
+
+## Review Notes
+
+* Images are not heavily used in this lesson; the problems are primarily algebraic manipulation.
+* The worksheet contains 49 practice problems covering GCF factoring, factoring by grouping, and real-world applications.
+* Key insight: The Distributive Property works in both directions — to expand (distribute) or to factor (提取).
+* When factoring by grouping, the factored form must be the same binomial factor in each group.
+* Physical interpretation of factored forms: For [16t(2 - t)], the 16t represents "16 times t groups" and (2 - t) represents "2 minus t per group".

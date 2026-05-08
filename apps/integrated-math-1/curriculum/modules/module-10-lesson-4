@@ -1,0 +1,269 @@
+# Lesson 10-4 — Distance
+
+Source: (Module 10, Lesson 10-4, Int1_1004_practice.docx)
+
+## Today's Goals
+
+* Find the distance between two points on a number line by subtracting coordinates.
+* Determine whether segments are congruent by comparing their lengths.
+* Use the Distance Formula to find the distance between two points in the coordinate plane.
+* Apply the Distance Formula to solve real-world problems.
+
+## Vocabulary
+
+* **Distance** — The length of the segment between two points.
+* **Congruent Segments** — Segments that have the same length.
+* **Distance Formula** — A formula used to find the distance between two points [(x_1, y_1)] and [(x_2, y_2)] in a coordinate plane.
+* **Segment** — A part of a line that consists of two endpoints and all points between them.
+
+## Explore: How Can We Measure the Distance Between Two Points?
+
+Students investigate how to find the length of a segment on a number line and in the coordinate plane. Consider whether counting units, subtracting coordinates, or using a formula gives the most reliable result.
+
+Inquiry Question:
+Why is the absolute value used when finding distance on a number line, and how does this idea extend to two dimensions?
+
+## Learn: Finding Distance on a Number Line and in the Coordinate Plane
+
+Distance can be found on a number line by subtracting coordinates, and in the coordinate plane by applying the Distance Formula.
+
+### Key Concept: Distance on a Number Line
+
+The distance between two points [A] and [B] on a number line with coordinates [a] and [b] is:
+[
+AB = |b - a|
+]
+
+### Key Concept: The Distance Formula
+
+The distance [d] between two points [(x_1, y_1)] and [(x_2, y_2)] is:
+[
+d = \sqrt{(x_2 - x_1)^2 + (y_2 - y_1)^2}
+]
+
+## Example 1 — Find Segment Lengths on a Number Line
+
+Use number lines with labeled points to find the measure of various segments.
+
+### Step 1: Identify the Coordinates
+
+Read the coordinate of each endpoint from the number line.
+
+### Step 2: Subtract and Take the Absolute Value
+
+Find the distance by subtracting the smaller coordinate from the larger coordinate.
+
+For points [J] at [-3] and [L] at [5]:
+[
+JL = |5 - (-3)| = |8| = 8
+]
+
+For points [J] at [-3] and [K] at [1]:
+[
+JK = |1 - (-3)| = |4| = 4
+]
+
+For points [K] at [1] and [P] at [8]:
+[
+KP = |8 - 1| = 7
+]
+
+### Step 3: Apply to Additional Segments
+
+Repeat the process for other segments on the same or different number lines.
+
+For points [N] at [6] and [P] at [8]:
+[
+NP = |8 - 6| = 2
+]
+
+For points [J] at [-3] and [P] at [8]:
+[
+JP = |8 - (-3)| = |11| = 11
+]
+
+For points [L] at [5] and [N] at [6]:
+[
+LN = |6 - 5| = 1
+]
+
+## Example 2 — Determine Whether Segments Are Congruent
+
+Compare the lengths of segments shown on a number line to determine if they are congruent.
+
+### Step 1: Find the Length of Each Segment
+
+Use the coordinates of the endpoints to calculate each segment's length.
+
+For [\overline{AB}] with endpoints [A] and [B]:
+[
+AB = |B - A|
+]
+
+For [\overline{EF}] with endpoints [E] and [F]:
+[
+EF = |F - E|
+]
+
+### Step 2: Compare Lengths
+
+If the lengths are equal, the segments are congruent. Write *yes* or *no*.
+
+For example, if [AB = 3] and [EF = 3]:
+[
+AB = EF \quad \rightarrow \quad \text{yes}
+]
+
+If [BD = 2] and [DF = 4]:
+[
+BD \neq DF \quad \rightarrow \quad \text{no}
+]
+
+Continue comparing pairs of segments using their calculated lengths.
+
+## Example 3 — Find the Distance Between Two Points in the Coordinate Plane
+
+Use the Distance Formula to find the distance between pairs of points, including points shown on coordinate planes and points given as ordered pairs.
+
+### Step 1: Identify the Coordinates
+
+For points shown on a graph, read the [x]- and [y]-coordinates of each point.
+
+For points given as ordered pairs, such as [A(2, 6)] and [N(5, 10)]:
+[
+(x_1, y_1) = (2, 6) \quad \text{and} \quad (x_2, y_2) = (5, 10)
+]
+
+### Step 2: Apply the Distance Formula
+
+Substitute the coordinates into the formula and simplify.
+
+For [A(2, 6)] and [N(5, 10)]:
+[
+AN = \sqrt{(5 - 2)^2 + (10 - 6)^2}
+]
+[
+AN = \sqrt{3^2 + 4^2}
+]
+[
+AN = \sqrt{9 + 16}
+]
+[
+AN = \sqrt{25} = 5
+]
+
+For [R(3, 4)] and [T(7, 2)]:
+[
+RT = \sqrt{(7 - 3)^2 + (2 - 4)^2}
+]
+[
+RT = \sqrt{4^2 + (-2)^2}
+]
+[
+RT = \sqrt{16 + 4}
+]
+[
+RT = \sqrt{20} \approx 4.5
+]
+
+For [X(-3, 8)] and [Z(-5, 1)]:
+[
+XZ = \sqrt{(-5 - (-3))^2 + (1 - 8)^2}
+]
+[
+XZ = \sqrt{(-2)^2 + (-7)^2}
+]
+[
+XZ = \sqrt{4 + 49}
+]
+[
+XZ = \sqrt{53} \approx 7.3
+]
+
+### Step 3: Round When Necessary
+
+If the result is not a perfect square, round to the nearest tenth.
+
+## Example 4 — Apply the Distance Formula to Real-World Problems
+
+Solve contextual problems using the Distance Formula, including paths on coordinate grids and scale conversions.
+
+### Step 1: Identify Coordinates and Scale
+
+Extract the starting and ending coordinates from the problem. Note any scale factor that converts map units to real-world units.
+
+For a spiral beginning at the origin [(0, 0)] and ending at a point [(x, y)]:
+[
+d = \sqrt{(x - 0)^2 + (y - 0)^2}
+]
+[
+d = \sqrt{x^2 + y^2}
+]
+
+### Step 2: Apply the Distance Formula
+
+Substitute the coordinates and compute the distance.
+
+For a bird migrating from [(63, 45)] to [(67, 10)]:
+[
+d = \sqrt{(67 - 63)^2 + (10 - 45)^2}
+]
+[
+d = \sqrt{4^2 + (-35)^2}
+]
+[
+d = \sqrt{16 + 1225}
+]
+[
+d = \sqrt{1241} \approx 35.23
+]
+
+### Step 3: Convert Using the Scale Factor
+
+Multiply the map distance by the scale factor to find the real-world distance.
+
+If each unit represents 75 kilometers:
+[
+\text{Total distance} = 35.23 \times 75 \approx 2642 \text{ km}
+]
+
+### Step 4: Construct Arguments Using Distance
+
+For problems requiring justification, calculate the distance and compare it to a given threshold.
+
+For example, to determine whether a cycling distance is at least [\frac{2}{3}] of a 12-mile triathlon segment:
+[
+\frac{2}{3} \times 12 = 8 \text{ miles}
+]
+
+Calculate the actual cycling distance using the grid scale, then compare to 8 miles and justify the conclusion with the calculated result.
+
+### Step 5: Solve Sports Applications
+
+For a baseball infield where the distance between bases is 90 feet, use the Distance Formula to find the length of a throw from third base to a point [P] in the outfield. Substitute the coordinates of third base and point [P], then round to the nearest foot.
+
+## Mixed Exercises
+
+The mixed exercises provide comprehensive practice with all distance skills, including:
+
+* Finding the distance between pairs of points in the coordinate plane and rounding to the nearest tenth, such as [M(-4, 9)] and [N(-5, 3)], [C(2, 4)] and [D(5, 7)], and [W(-8, 1)] and [Y(0, 6)].
+* Using a number line to determine whether two segments are congruent.
+* Finding points on the [x]-axis or [y]-axis that are a given distance from a specified point.
+* Applying the Distance Formula to real-world contexts, including knitting patterns on a coordinate grid where each unit represents 2 inches.
+* Finding the perimeter of a triangle given its vertices on a coordinate plane and converting to real-world units.
+* Analyzing whether segments in a rectangle are congruent by comparing their calculated lengths.
+* Explaining the relationship between the Pythagorean Theorem and the Distance Formula.
+* Finding a point that divides a segment in a given ratio, such as when the distance from [A] to [P] is twice the distance from [P] to [D].
+* Using the Distance Formula to find an unknown coordinate when the distance and one endpoint are known.
+
+## Review Notes
+
+* Images referenced in the worksheet (`media/image1.png` through `media/image15.png`) could not be fully described without visual reference. Teachers should consult the original worksheet for exact number line diagrams, coordinate planes, spiral figures, zoo maps, triathlon grids, baseball infield diagrams, knitting patterns, and terracotta bowl diagrams.
+* Problem 27 references a spiral figure showing a path beginning at the origin.
+* Problem 28 references a map showing migration coordinates from Vermont to Venezuela.
+* Problem 29 references a grid showing a cycling route with a scale in miles.
+* Problem 30 references a baseball infield diagram.
+* Problem 43 references a number line diagram for comparing segment lengths.
+* Problem 46 references a geometric figure for comparing segment congruence.
+* Problem 47 references a knitting pattern on a coordinate grid.
+* Problem 48 references a terracotta bowl with a triangular pattern.

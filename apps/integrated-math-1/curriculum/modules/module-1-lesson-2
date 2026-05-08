@@ -1,0 +1,180 @@
+# Lesson 1-2 — Algebraic Expressions
+
+Source: (Module 1, Lesson 1-2, Int1_0102_practice.docx)
+
+## Today's Goals
+
+* Translate between algebraic expressions and verbal expressions using correct mathematical terminology
+* Write algebraic expressions to model real-world situations
+* Evaluate algebraic expressions by substituting given values for variables and following the order of operations
+
+## Vocabulary
+
+* **Algebraic expression** — A mathematical phrase that can contain numbers, variables, and operation symbols, but no equals sign
+* **Verbal expression** — A mathematical phrase described using words instead of symbols
+* **Variable** — A symbol, usually a letter, used to represent an unknown quantity
+* **Coefficient** — The numerical factor multiplied by a variable in a term
+* **Term** — A single number, variable, or the product of numbers and variables separated by addition or subtraction in an expression
+
+## Learn: Translating Between Algebraic and Verbal Expressions
+
+Mathematical communication requires fluency in moving between symbolic notation and verbal descriptions. Key translation rules include:
+
+### Key Concept: Translation Conventions
+
+* Addition is described as "sum," "more than," or "increased by"
+* Subtraction is described as "difference," "less than," or "decreased by"
+* Multiplication is described as "product," "times," or "of"
+* Division is described as "quotient," "divided by," or "per"
+* Exponents are described as "squared," "cubed," or "to the power of"
+* Grouping with parentheses indicates a quantity that is treated as a single unit
+
+## Example 1 — Write Verbal Expressions for Algebraic Expressions
+
+Given an algebraic expression, write a correct verbal expression using appropriate mathematical terminology.
+
+### Step 1: Identify the Operation Structure
+
+Break the expression into its components: terms, coefficients, variables, exponents, and operations.
+
+Representative expressions:
+[
+4q \quad \frac{1}{8}y \quad 15 + r \quad w - 24 \quad 3x^2 \quad \frac{r^4}{9}
+]
+
+### Step 2: Construct the Verbal Expression
+
+Use precise language that matches each operation. For example:
+* [ 4q ] → "the product of 4 and [ q ]"
+* [ 15 + r ] → "15 more than [ r ]" or "the sum of 15 and [ r ]"
+* [ 3x^2 ] → "3 times [ x ] squared"
+* [ \frac{r^4}{9} ] → "the quotient of [ r ] to the fourth power and 9"
+
+For more complex expressions with multiple operations:
+[
+2a + 6 \quad r^4 \cdot t^3 \quad 25 + 6x^2 \quad 6f^2 + 5f \quad \frac{3a^5}{2} \quad 9(a^2 - 1)
+]
+
+Describe each operation in the correct order, noting that parentheses indicate a grouped quantity.
+
+## Example 2 — Write Algebraic Expressions for Verbal Expressions
+
+Given a verbal description, translate it into a correct algebraic expression.
+
+### Step 1: Identify the Operation Words
+
+Locate keywords that indicate which operation to use.
+
+### Step 2: Write the Algebraic Expression
+
+Representative verbal descriptions and their translations:
+* "[ x ] more than 7" → [ x + 7 ] 
+* "5 times a number" → [ 5n ] 
+* "one third of a number" → [ \frac{1}{3}n ] 
+* "[ f ] divided by 10" → [ \frac{f}{10} ] 
+* "the quotient of 45 and [ r ]" → [ \frac{45}{r} ] 
+* "three times a number plus 16" → [ 3n + 16 ] 
+* "18 decreased by 3 times [ d ]" → [ 18 - 3d ] 
+* "[ k ] squared minus 11" → [ k^2 - 11 ] 
+* "20 divided by [ t ] to the fifth power" → [ \frac{20}{t^5} ] 
+* "the sum of a number and 10" → [ n + 10 ] 
+* "15 less than the sum of [ k ] and 2" → [ (k + 2) - 15 ] 
+* "the product of 18 and [ q ]" → [ 18q ] 
+* "6 more than twice [ m ]" → [ 2m + 6 ] 
+
+Pay special attention to phrases like "less than," which reverses the order of subtraction.
+
+## Example 3 — Write Expressions for Real-World Situations
+
+Translate contextual descriptions into algebraic expressions that model quantities in real-world scenarios.
+
+### Step 1: Identify the Quantities and Relationships
+
+Read the problem to determine what quantities are known, what is unknown, and how they relate mathematically.
+
+### Step 2: Define Variables and Write the Expression
+
+Representative scenarios:
+* **Bytes and kilobytes:** If there are 1024 bytes in a kilobyte, the number of bytes in [ n ] kilobytes is [ 1024n ] 
+* **Average rate:** The average number of shows attended per year over [ y ] years is [ \frac{6136}{y} ] 
+* **Average of two values:** The average difference between tides of 19 feet and [ x ] feet is [ \frac{19 + x}{2} ] 
+* **Cost with coupon:** The cost of [ t ] T-shirts at a given price with a 10-dollar-off coupon
+* **Membership cost:** A one-time fee of 100 dollars plus 30 dollars per month for [ m ] months is [ 100 + 30m ] 
+* **Group activity cost:** [ f ] friends bowling at 5 dollars per player plus 45 dollars per hour for [ h ] hours is [ 5f + 45h ] 
+
+## Example 4 — Evaluate Algebraic Expressions
+
+Substitute given values for variables and evaluate the expression using the order of operations.
+
+### Step 1: Substitute the Given Values
+
+Replace each variable with its assigned value.
+
+### Step 2: Apply the Order of Operations
+
+Simplify exponents, then perform multiplication and division from left to right, then addition and subtraction from left to right.
+
+Representative expressions with [ g = 2 ], [ r = 3 ], [ t = 11 ]:
+[
+g + 6t \quad 7 - gr \quad r^2 + (g^3 - 8)^5 \quad (2t + 3g) \div 4 \quad t^2 + 8rt + r^2 \quad 3g(g + r)^2 - 1
+]
+
+Representative expressions with [ a = 8 ], [ b = 4 ], [ c = 16 ]:
+[
+a^2bc - b^2 \quad \frac{c^2}{b^2} + \frac{b^2}{a^2} \quad \frac{2b + 3c^2}{4a^2 - 2b} \quad \frac{3ab + c^2}{a} \quad \left(\frac{a}{b}\right)^2 - \frac{c}{a - b} \quad \frac{(2a - b)^2}{ab} + \frac{c - a}{b^2}
+]
+
+Representative expressions with [ x = 6 ], [ y = 8 ], [ z = 3 ]:
+[
+xy + z \quad yz - x \quad 2x + 3y - z \quad 2(x + z) - y \quad 5z + (y - x) \quad 5x - (y + 2z)
+]
+[
+z^3 + (y^2 - 4x) \quad \frac{y + xz}{2} \quad \frac{3y + x^2}{z}
+]
+
+## Example 5 — Write and Evaluate Expressions from Word Problems
+
+Create an algebraic expression for a real-world situation, then substitute a given value to find a numerical answer.
+
+### Step 1: Write the Expression
+
+Translate the word problem into an algebraic expression using the defined variable.
+
+### Step 2: Substitute and Evaluate
+
+Replace the variable with the given value and compute the result.
+
+Representative problems:
+* **School enrollment:** Jefferson High has 100 less than 5 times as many students as Taft High. If Taft has [ t ] students, Jefferson has [ 5t - 100 ]. When [ t = 300 ], Jefferson has [ 5(300) - 100 = 1400 ] students.
+* **Altitude comparison:** Guadalupe Peak is 671 feet more than double the altitude of Mount Sunflower. If Mount Sunflower has altitude [ n ], Guadalupe Peak has [ 2n + 671 ]. When [ n = 4039 ], the altitude is [ 2(4039) + 671 = 8749 ] feet.
+* **Taxi fare:** A base fee of 1.75 dollars plus 3.45 dollars per mile for [ m ] miles is [ 1.75 + 3.45m ]. For 8 miles, the cost is [ 1.75 + 3.45(8) = 29.35 ] dollars.
+* **Area of a circle:** The area is the product of [ \pi ] and the square of the radius [ r ]: [ A = \pi r^2 ]. Using [ \pi = 3.14 ], evaluate for a given radius.
+
+## Example 6 — Mixed Review with Structure and Reasoning
+
+Apply expression-writing and evaluation skills to problems requiring deeper reasoning, multiple steps, or open-ended construction.
+
+### Step 1: Analyze the Problem Requirements
+
+Identify whether the task asks for translation, evaluation, comparison, or construction.
+
+### Step 2: Execute the Required Process
+
+Representative problem types:
+* **Dual translation:** Write two different verbal expressions for a single algebraic expression, such as [ \frac{5x}{2} + y^3 ], then evaluate for given values [ x = 4 ] and [ y = 2 ] 
+* **Expression evaluation with multiple variables:** Evaluate [ \frac{7a + b}{b + c} ] when [ a = 2 ], [ b = 6 ], [ c = 4 ] 
+* **Open-ended construction:** Create an algebraic expression that includes both a sum and a product, then write its verbal expression; or create a verbal expression with a difference and a quotient, then write its algebraic form
+* **Surface area application:** For a cube with edge [ b ], write expressions for paint needed (one coat: surface area [ 6b^2 ]; two coats: [ 12b^2 ]), then set up an inequality for coverage
+* **Rental car cost analysis:** Write expressions for additional mileage charges and miles over 200, then solve for total miles driven given a total cost
+* **Persevere problem:** Find a positive whole number [ x ] such that the volume of a cube, [ x^3 ], equals 6 times the area of one face, [ 6x^2 ] 
+
+## Mixed Exercises
+
+The mixed exercises consolidate all skills from the lesson: translating between verbal and algebraic expressions, writing expressions from real-world contexts, and evaluating expressions with substitution. Problems range from straightforward translation and evaluation to multi-step word problems and open-ended reasoning tasks that require students to construct their own expressions and explain mathematical concepts in writing.
+
+## Review Notes
+
+* Problem 39 references an image (`media/image1.png`) of a T-shirt price tag that was not extracted. The image shows the cost of a single T-shirt needed to write the expression for [ t ] T-shirts with a 10-dollar-off coupon.
+* Problem 66 references an image (`media/image2.png`) of a circle with a given radius that was not extracted. The image is needed to evaluate the area of the circle in part b.
+* Problem 73 references an image (`media/image3.png`) that was not extracted. The nature of the image is unclear from context.
+* Problem 74 references an image (`media/image4.png`) of a cube that was not extracted. The image is needed for the geometry problem about cube volume and surface area in problem 76.

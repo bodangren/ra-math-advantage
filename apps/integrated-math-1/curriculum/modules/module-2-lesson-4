@@ -1,0 +1,234 @@
+# Lesson 2-4 — Solving Equations with the Variable on Each Side
+
+Source: (Module 2, Lesson 2-4, Int1_0204_practice.docx)
+
+## Today's Goals
+
+* Solve linear equations that have the variable on both sides of the equation, including those with fractions and grouping symbols.
+* Write and solve equations to model real-world and geometric situations.
+* Determine whether an equation has one solution, no solution, or is an identity.
+
+## Vocabulary
+
+* **identity** — An equation that is true for every value of the variable.
+* **no solution** — An equation that is not true for any value of the variable.
+* **one solution** — An equation that is true for exactly one value of the variable.
+* **consecutive integers** — Integers that follow one after another in order (e.g., [ n ] and [ n + 1 ]).
+* **consecutive even integers** — Even integers that follow one after another (e.g., [ n ] and [ n + 2 ]).
+* **consecutive odd integers** — Odd integers that follow one after another (e.g., [ n ] and [ n + 2 ]).
+* **supplementary angles** — Two angles whose measures sum to [ 180^\circ ].
+* **complementary angles** — Two angles whose measures sum to [ 90^\circ ].
+
+## Learn: Solving Equations with Variables on Both Sides
+
+To solve an equation with the variable on each side, collect variable terms on one side and constant terms on the other. Then isolate the variable.
+
+### Key Concept: Solving Equations with Variables on Both Sides
+
+* Simplify each side by distributing and combining like terms.
+* Add or subtract to move all variable terms to one side and all constants to the other.
+* Divide by the coefficient to isolate the variable.
+* Check the solution by substituting back into the original equation.
+
+## Example 1 — Solve Equations with Variables on Both Sides
+
+Solve linear equations where the variable appears on both sides of the equal sign. The equations vary in complexity: some require combining like terms first, some involve fractions, and some require using the Distributive Property.
+
+### Step 1: Collect Variable Terms
+
+Move all terms containing the variable to one side by adding or subtracting.
+
+For a basic equation:
+[
+7c + 12 = -4c + 78
+]
+
+Add [ 4c ] to both sides:
+[
+11c + 12 = 78
+]
+
+For an equation with fractions:
+[
+\frac{b - 4}{6} = \frac{b}{2}
+]
+
+Multiply both sides by the LCD to clear fractions, then collect variable terms.
+
+### Step 2: Collect Constant Terms
+
+Move all constant terms to the opposite side.
+
+[
+11c + 12 = 78
+]
+
+Subtract [ 12 ] from both sides:
+[
+11c = 66
+]
+
+### Step 3: Isolate the Variable
+
+Divide by the coefficient.
+
+[
+c = 6
+]
+
+### Variations
+
+* Equations with the Distributive Property:
+[
+  2(r + 6) = 4(r + 4)
+]
+  Distribute first, then collect variable terms.
+
+* Equations with multiple grouping symbols:
+[
+  3(3m - 2) = 2(3m + 3)
+]
+
+* Equations with fractional coefficients:
+[
+  12 - \frac{4}{5}(x + 15) = \frac{2}{5}x + 6
+]
+
+## Example 2 — Write and Solve Equations from Word Problems
+
+Translate a verbal description into an equation with the variable on both sides, then solve.
+
+### Step 1: Define the Variable
+
+Identify the unknown quantity and assign a variable.
+
+**Olympics:** The United States won 1 more than 4 times the number of gold medals France won. The United States also won 7 more gold medals than France.
+
+Let [ f ] = number of gold medals France won.
+
+### Step 2: Write the Equation
+
+Translate both relationships into expressions and set them equal.
+
+[
+4f + 1 = f + 7
+]
+
+### Step 3: Solve and Interpret
+
+Collect variable terms and constants, then solve. State the answer in the context of the problem.
+
+### Variations
+
+* **Ages:** Compare two expressions for the same person's age.
+* **Nature:** Use a table showing current heights and growth rates of two tree species to find when their heights will be equal.
+* **Weight:** Compare the weights of two animals using two different relationships.
+
+## Example 3 — Geometry Applications
+
+Write and solve equations based on geometric relationships such as supplementary angles, complementary angles, and equal areas.
+
+### Step 1: Write the Geometric Relationship
+
+**Supplementary and Complementary Angles:** The measure of the supplement of an angle is [ 10^\circ ] more than twice the measure of the complement of the angle.
+
+Let [ x ] = the measure of the angle.
+Complement: [ 90 - x ] 
+Supplement: [ 180 - x ] 
+
+Equation:
+[
+180 - x = 2(90 - x) + 10
+]
+
+### Step 2: Solve for the Unknown
+
+Solve the equation to find the angle measure or the value of [ x ].
+
+### Variations
+
+* **Equal areas:** Write and solve an equation so that two geometric figures have the same area. One problem involves a trapezoid, using the formula:
+[
+  A = \frac{1}{2}h(b_1 + b_2)
+]
+
+## Example 4 — Classify Equations
+
+Solve each equation and determine whether it has one solution, no solution, or is an identity.
+
+### Step 1: Simplify Each Side
+
+Distribute and combine like terms.
+
+[
+-6y - 3 = 3 - 6y
+]
+
+### Step 2: Collect Variable Terms
+
+Add [ 6y ] to both sides:
+[
+-3 = 3
+]
+
+### Step 3: Classify the Result
+
+* If you obtain a true statement with no variable (such as [ 5 = 5 ]), the equation is an **identity**.
+* If you obtain a false statement with no variable (such as [ -3 = 3 ]), the equation has **no solution**.
+* If you isolate the variable to a single value, the equation has **one solution**.
+
+### Representative Equations
+
+* Identity:
+[
+  8q + 12 = 4(3 + 2q)
+]
+  Simplifies to [ 8q + 12 = 8q + 12 ].
+
+* No solution:
+[
+  \frac{1}{2}(x + 6) = \frac{1}{2}x - 9
+]
+  Simplifies to [ \frac{1}{2}x + 3 = \frac{1}{2}x - 9 ], which gives [ 3 = -9 ].
+
+* One solution:
+[
+  2a + 2 = 3(a + 2)
+]
+  Simplifies to [ 2a + 2 = 3a + 6 ], which gives [ a = -4 ].
+
+## Mixed Exercises
+
+The mixed exercises provide comprehensive practice with all skills from the lesson:
+
+* Solve equations with variables on both sides, including those with decimals and multiple grouping levels.
+[
+  6.78j - 5.2 = 4.33j + 2.15
+]
+* Solve equations with nested grouping symbols.
+[
+  5[2p - 4(p + 5)] = 25
+]
+* Solve equations with fractions on both sides.
+[
+  \frac{3d - 2}{8} = -d + 16\frac{1}{4}
+]
+* Write and solve equations involving consecutive odd or even integers.
+* Use a model: write an equation from a description of two figures with equal perimeters, solve for the unknown, and verify by computing both perimeters.
+* Analyze student work to find and explain errors in solving equations.
+* Persevere: write an equation with specific constraints (variables on both sides, at least one fractional coefficient, and a given solution).
+* Create: write an equation with at least two grouping symbols that has no solution.
+* Analyze: determine whether a given solution is correct and justify the argument.
+* Find the value of a parameter that makes an equation an identity.
+* Solve a literal equation for a variable, assuming the coefficient is non-zero.
+[
+  5x + 2 = ax - 1, \quad a \ne 5
+]
+
+## Review Notes
+
+* **Problem 19 (NATURE):** Requires a table (`media/image1.png`) showing the current heights and average growth rates of two tree species. The table cannot be described from the extracted text.
+* **Problem 21 (GEOMETRY):** Requires a diagram (`media/image2.png`) showing an angle and its complement/supplement relationship.
+* **Problem 22 (GEOMETRY):** Requires a diagram (`media/image3.png`) showing two geometric figures whose areas must be equal.
+* **Problem 23 or 24 (GEOMETRY):** Requires a diagram (`media/image4.png`) showing two geometric figures whose areas must be equal. One figure is a trapezoid.
+* **Problem 53 (FIND THE ERROR):** Requires an image (`media/image5.png`) showing Anthony's and Patty's work solving an equation. The image content is needed to evaluate their reasoning.

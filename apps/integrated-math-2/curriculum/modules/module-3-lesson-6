@@ -1,0 +1,151 @@
+# Lesson 3-6 — Parts of Similar Triangles
+
+Source: (Module 3, Lesson 3-6, Int2_0306_practice.docx)
+
+## Today's Goals
+
+* Find unknown side lengths in similar triangles using proportional reasoning.
+* Find the lengths of altitudes in similar triangles.
+* Apply theorems about proportional relationships of medians and angle bisectors in similar triangles.
+* Use triangle angle bisector theorem to solve problems.
+
+## Vocabulary
+
+* **Altitude** — A perpendicular segment from a vertex to the line containing the opposite side.
+* **Median** — A segment from a vertex to the midpoint of the opposite side.
+* **Angle Bisector** — A ray that divides an angle into two congruent angles.
+* **Triangle Angle Bisector Theorem** — The angle bisector of a triangle divides the opposite side into segments proportional to the adjacent sides.
+* **Theorem 8.12** — Perimeters of similar triangles are in the same ratio as the corresponding sides.
+* **Theorem 8.13** — If two triangles are similar, the lengths of corresponding medians are in the same ratio as the corresponding sides.
+* **Theorem 8.14** — Angle bisectors of similar triangles are proportional to the corresponding sides.
+
+## Explore: Special Segments in Similar Triangles
+
+Students explore how special segments (altitudes, medians, angle bisectors) behave in similar triangles.
+
+Inquiry Question:
+When triangles are similar, how do the lengths of corresponding altitudes, medians, and angle bisectors relate?
+
+## Learn: Parts of Similar Triangles
+
+### Key Concept: Altitudes in Similar Triangles
+
+If △RST ∼ △EFG and [SH] and [FJ] are altitudes, then [
+\frac{SH}{FJ} = \frac{ST}{FG} = k
+], where [k] is the scale factor.
+
+### Key Concept: Perimeters Ratio
+
+The ratio of the perimeters of similar triangles equals the scale factor.
+
+### Key Concept: Medians in Similar Triangles
+
+If △ABC ∼ △RST, [AD] is a median of △ABC, and [RU] is a median of △RST, then [
+\frac{AD}{RU} = \frac{AB}{RS} = k
+].
+
+### Key Concept: Angle Bisectors in Similar Triangles
+
+If △RTS ∼ △EGF and [TA] and [GB] are angle bisectors, then [
+\frac{TA}{GB} = \frac{RT}{EG} = k
+].
+
+### Key Concept: Triangle Angle Bisector Theorem
+
+If [CD] bisects [∠ACB], then [
+\frac{AD}{DB} = \frac{AC}{BC}
+].
+
+## Example 1 — Find Unknown Side Lengths
+
+### Step 1: Set Up a Proportion
+
+Given similar triangles, use the ratio of corresponding sides to set up a proportion.
+
+### Step 2: Solve for the Unknown
+
+Cross-multiply and solve.
+
+## Example 2 — Altitudes in Similar Triangles
+
+### Step 1: Identify Corresponding Altitudes
+
+If △RST ∼ △EFG and [SH] is an altitude of △RST and [FJ] is an altitude of △EFG, then [SH] and [FJ] are corresponding altitudes.
+
+### Step 2: Apply the Proportion
+
+**Problem 5:** △RST ∼ △EFG, [ST = 6], [SH = 5], [FJ = 7], find [FG].
+
+Since [
+\frac{SH}{FJ} = \frac{ST}{FG}
+]:
+[
+\frac{5}{7} = \frac{6}{FG}
+]
+[
+FG = \frac{6 \times 7}{5} = 8.4
+]
+
+**Problem 6:** △ABC ∼ △MNP, [AB = 24], [AD = 14], [MQ = 10.5], find [MN].
+
+Since [
+\frac{AD}{MQ} = \frac{AB}{MN}
+]:
+[
+\frac{14}{10.5} = \frac{24}{MN}
+]
+[
+MN = \frac{24 \times 10.5}{14} = 18
+]
+
+## Example 3 — Real-World Application
+
+### Step 1: Set Up the Proportion
+
+**SCENERY (Problem 7):** Two similar triangles formed by paths. [AC = 50] yd, [MP = 35] yd. Fountain is 5 yd from intersection.
+
+Use the scale factor [
+k = \frac{MP}{AC} = \frac{35}{50} = \frac{7}{10}
+].
+
+### Step 2: Find the Unknown Distance
+
+Distance from intersection to stadium entrance is proportional to [AC] and [MP].
+
+## Mixed Exercises
+
+The mixed exercises section provides practice with all skills from the lesson. Problems include:
+
+* Finding values of [x] in similar triangle problems (Problems 1–4)
+* Altitude problems in similar triangles (Problems 5–6)
+* Scenery/paths problem — finding distance to stadium entrance (Problem 7)
+* Finding values of variables in triangle figures (Problems 8–9)
+* Finding lengths of segments [XC] and [EY] in similar triangles (Problems 10–11)
+* Paragraph proof of Theorem 8.12 — angle bisector proportionality (Problem 12)
+* Two-column proof of Theorem 8.13 — median proportionality (Problem 13)
+* Two-column proof of Triangle Angle Bisector Theorem (Theorem 8.14) (Problem 14)
+* Find the error — analyzing incorrect proportion setups (Problem 15)
+* Creating non-similar triangles with proportional altitude and side (Problem 16)
+* Finding [PS] and [RS] using angle bisector theorem (Problem 17)
+
+## Review Notes
+
+* Images referenced in the worksheet (triangle figures for problems 1–4, altitude figures for problems 5–6, scenery/paths diagram for problem 7, triangle figures for problems 8–9, triangle figures for problems 10–11, proof figures for problems 12–14, triangle for problem 15, figure for problem 16, triangle for problem 17) could not be fully described without visual reference. Teachers should consult the original worksheet for exact diagrams and values.
+* ![](media/image1.png) — Triangle for problem 1
+* ![](media/image2.png) — Triangle for problem 2
+* ![](media/image3.png) — Triangle for problem 3
+* ![](media/image4.png) — Triangle for problem 4
+* ![](media/image5.png) — Triangle for problem 5
+* ![](media/image6.png) — Triangle for problem 6
+* ![](media/image7.png) — Scenery/path figure for problem 7
+* ![](media/image8.png) — Triangle for problem 8
+* ![](media/image9.png) — Triangle for problem 9
+* ![](media/image10.png) — Triangle for problems 10–11
+* ![](media/image11.png) — Proof figure for problem 12
+* ![](media/image12.png) — Proof figure for problem 13
+* ![](media/image13.png) — Proof figure for problem 13
+* ![](media/image14.png) — Triangle for problem 14
+* ![](media/image15.png) — Figure for problem 16
+* The worksheet contains 17 practice problems across three examples and mixed exercises.
+
+(End of file - total 143 lines)

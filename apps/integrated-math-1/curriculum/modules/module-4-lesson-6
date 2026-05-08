@@ -1,0 +1,128 @@
+# Lesson 4-6 — Piecewise and Step Functions
+
+Source: (Module 4, Lesson 4-6, Int1_0406_practice.docx)
+
+## Today's Goals
+
+* Graph piecewise-defined functions and identify their domain and range.
+* Graph step functions (greatest integer functions) and identify their domain and range.
+* Model real-world situations using piecewise-linear and step functions.
+* Write piecewise and step functions from tables, graphs, and verbal descriptions.
+
+## Vocabulary
+
+* **Piecewise-defined function** — A function defined by different expressions over different intervals of its domain.
+* **Step function** — A piecewise function whose graph resembles a set of steps; the output values are constant over intervals of the input.
+* **Greatest integer function** — The step function [ f(x) = \llbracket x \rrbracket ], which returns the greatest integer less than or equal to [ x ]; also called the floor function.
+* **Domain** — The set of all possible input values ([ x ]-values) for a function.
+* **Range** — The set of all possible output values ([ f(x) ]-values) for a function.
+
+## Learn: Piecewise-Defined Functions
+
+A piecewise-defined function uses different rules for different parts of its domain. To graph a piecewise function, graph each piece over its specified interval only, paying attention to whether endpoints are included (closed circle) or excluded (open circle).
+
+### Key Concept: Graphing Piecewise Functions
+
+* Identify the boundary value where the expression changes.
+* Graph each linear piece over its specified interval.
+* Use an open circle at an endpoint if the inequality is strict ([ > ] or [ < ]).
+* Use a closed circle at an endpoint if the inequality includes equality ([ \ge ] or [ \le ]).
+* State the domain as the union of all intervals and the range from the resulting [ y ]-values.
+
+## Learn: Step Functions
+
+Step functions are a special type of piecewise function where the output is constant over intervals of the input. The greatest integer function is the most common example.
+
+### Key Concept: Transformations of the Greatest Integer Function
+
+* Vertical stretch: [ f(x) = a \llbracket x \rrbracket ] changes the height of each step.
+* Vertical shift: [ f(x) = \llbracket x \rrbracket + k ] moves the graph up or down.
+* Reflection: [ f(x) = -\llbracket x \rrbracket ] or [ f(x) = \llbracket -x \rrbracket ] reflects the graph.
+* The domain of any greatest integer function is all real numbers.
+* The range is a set of discrete values (integers or scaled integers).
+
+## Example 1 — Graph Piecewise-Defined Functions
+
+Graph piecewise-defined linear functions and state the domain and range for each.
+
+### Step 1: Identify the Pieces and Boundaries
+
+For a function such as:
+
+[
+f(x) = \begin{cases} \frac{1}{2}x - 1 & \text{if } x > 3 \\ -2x + 3 & \text{if } x \le 3 \end{cases}
+]
+
+Identify the two linear expressions and the boundary at [ x = 3 ].
+
+### Step 2: Graph Each Piece
+
+Graph [ y = \frac{1}{2}x - 1 ] only for [ x ]-values greater than 3, using an open circle at [ x = 3 ].
+
+Graph [ y = -2x + 3 ] only for [ x ]-values less than or equal to 3, using a closed circle at [ x = 3 ].
+
+### Step 3: State Domain and Range
+
+* Domain: All real numbers, [ (-\infty, \infty) ] 
+* Range: Determine the [ y ]-values produced by each piece and combine them.
+
+## Example 2 — Graph Step Functions
+
+Graph step functions involving the greatest integer function and state the domain and range for each.
+
+### Step 1: Identify the Transformation
+
+Recognize the form of the function:
+
+* [ f(x) = 3\llbracket x \rrbracket ] — vertical stretch by a factor of 3
+* [ f(x) = \llbracket -x \rrbracket ] — reflection across the [ y ]-axis
+* [ g(x) = \llbracket x \rrbracket + 3 ] — vertical shift up 3 units
+* [ h(x) = \frac{1}{2}\llbracket x \rrbracket + 1 ] — vertical compression by [ \frac{1}{2} ] and shift up 1
+
+### Step 2: Graph the Steps
+
+Draw horizontal segments of length 1. At each integer, place a closed circle on the left and an open circle on the right (or adjust for reflections). Apply any stretches, compressions, or shifts.
+
+### Step 3: State Domain and Range
+
+* Domain: All real numbers, [ (-\infty, \infty) ] 
+* Range: All integer multiples of the stretch factor, shifted vertically if applicable.
+
+## Example 3 — Model Real-World Situations with Step Functions
+
+Use step functions to model situations where quantities are rounded or charged in discrete intervals.
+
+### Step 1: Understand the Rounding Rule
+
+Read the problem to determine how fractions are handled. For example, rounding every fraction of an hour up to the next half-hour means the charge increases in half-hour steps.
+
+### Step 2: Define the Variables and Step Size
+
+* Let [ x ] represent the input quantity (hours, pounds, boxes, etc.).
+* Let [ y ] or [ f(x) ] represent the output (cost, earnings, cases needed, etc.).
+* Determine the step size based on the rounding rule.
+
+### Step 3: Draw the Graph
+
+Draw horizontal segments with jumps at the boundary values. Use closed circles where the higher value applies and open circles where the lower value ends.
+
+## Mixed Exercises
+
+The mixed exercises provide practice across all lesson skills:
+
+* **Piecewise-linear functions from tables:** Given a table of shipping costs by weight, write a piecewise-linear function, state the domain and range, and answer application questions.
+* **Piecewise earnings models:** Given a dual pay rate, organize information in a table, write a piecewise equation, and graph daily earnings.
+* **Writing step functions from graphs:** Analyze a given graph and write the corresponding step function using greatest integer notation.
+* **Evaluating step functions:** Substitute values into transformed greatest integer functions such as [ f(x) = 2\llbracket x - 1 \rrbracket ] and simplify.
+* **Step function word problems:** Calculate costs when fractions of days or hours are rounded up to the next whole unit.
+* **Piecewise functions from tables:** Write a piecewise-linear cost function from a pricing table, graph it, and use it to find specific costs.
+* **Step function tables and graphs:** Complete a table for a repair pricing model, write the step function, graph it, and solve for an unknown input given an output.
+* **Piecewise functions from graphs:** Analyze a graph with multiple linear segments, write the piecewise function, identify domain and range, and evaluate the function at specific points.
+* **Conceptual questions:** Create an original piecewise-defined function, identify errors in reasoning about step functions, explain differences between step and piecewise functions, and analyze whether a given piecewise relation represents a function.
+
+## Review Notes
+
+* The original worksheet contains numerous blank graph grids (image placeholders) for student graphing. These cannot be described in text; digital activities should provide an interactive graphing canvas or pre-plotted coordinate grid.
+* Problems 13, 14, 16, 20, 21, and 22 reference tables and graphs in the original document that are represented as image placeholders. The tabular data should be extracted and presented as structured tables in any digital implementation.
+* Problems 17 and 27–31 refer to graphs that students must analyze. Descriptions of these graphs (key points, segments, open/closed circles) would need to be provided or replaced with interactive graph elements.
+* Problem 26 asks students to analyze whether a piecewise relation is a function, noting that the two pieces overlap in their domain conditions.

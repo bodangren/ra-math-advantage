@@ -1,0 +1,155 @@
+# Lesson 12-9 — Combining Functions
+
+Source: (Module 12, Lesson 12-N, Int2_1209_practice.docx)
+
+## Today's Goals
+
+* Add and subtract functions to create new functions.
+* Multiply (compose) functions and interpret the result in context.
+* Write real-world scenarios as combined functions representing total quantity, difference, or composite relationships.
+* Analyze how function operations affect domain restrictions.
+
+## Vocabulary
+
+* **Combining Functions** — Adding, subtracting, or composing two or more functions to produce a new function.
+* **Addition of Functions** — [(f + g)(x) = f(x) + g(x)]; the sum of the outputs of each function at the same input.
+* **Subtraction of Functions** — [(f - g)(x) = f(x) - g(x)]; the difference of the outputs.
+* **Composition of Functions** — [(f ∘ g)(x) = f(g(x))]; applying one function to the output of another.
+* **Function Notation for Operations** — (f + g), (f - g), and (f ∘ g) denote the result of combining functions.
+
+## Explore: What Does It Mean to Combine Functions?
+
+When two quantities are described by separate functions, combining them lets you model total quantities, differences, or relationships where one quantity depends on another. Students consider how adding the height of two people on a seesaw differs from composing functions like "apply the square function, then double."
+
+Inquiry Question:
+What does it mean when you add two functions together versus when you compose them?
+
+## Learn: Combining Functions
+
+### Key Concept: Adding and Subtracting Functions
+
+When combining functions by addition or subtraction, combine like terms from each function's expression.
+
+Given [f(x) = x - 9], [g(x) = 3x² - 2x + 5], and [h(x) = -6x]:
+
+[
+(f + g)(x) = (x - 9) + (3x² - 2x + 5) = 3x² - x - 4
+]
+
+[
+(f - g)(x) = (x - 9) - (3x² - 2x + 5) = -3x² + 3x - 14
+]
+
+[
+(g - h)(x) = (3x² - 2x + 5) - (-6x) = 3x² + 4x + 5
+]
+
+### Key Concept: Composing Functions
+
+When composing functions [(f ∘ g)(x)], substitute the entire expression of g(x) into f(x) and simplify.
+
+Given [f(x) = 11x], [g(x) = x² - 6x + 3], and [h(x) = -x + 4]:
+
+[
+(f ∘ g)(x) = f(g(x)) = 11(x² - 6x + 3) = 11x² - 66x + 33
+]
+
+[
+(g ∘ h)(x) = g(h(x)) = (-x + 4)² - 6(-x + 4) + 3 = x² - 8x + 16 + 6x - 24 + 3 = x² - 2x - 5
+]
+
+### Key Concept: Interpreting Combined Functions in Context
+
+In real-world problems, combined functions represent total quantities (e.g., combined walking speed), differences (e.g., one quantity minus another), or composite relationships (e.g., cost as a function of quantity sold).
+
+Walking speed example: If Jan's walking speed is [f(t) = 4t + 3] and a walkway speed is [g(t) = 3t + 1], then [f(t) + g(t) = 7t + 4] represents their combined speed walking on the walkway.
+
+## Example 1 — Add and Subtract Functions
+
+### Step 1: Identify the Functions
+
+Given [f(x) = x - 9], [g(x) = 3x² - 2x + 5], and [h(x) = -6x].
+
+### Step 2: Compute (f + g)(x)
+
+[
+(f + g)(x) = (x - 9) + (3x² - 2x + 5)
+]
+[
+= 3x² + (x - 2x) + (-9 + 5)
+]
+[
+= 3x² - x - 4
+]
+
+### Step 3: Compute (g - h)(x)
+
+[
+(g - h)(x) = (3x² - 2x + 5) - (-6x)
+]
+[
+= 3x² - 2x + 5 + 6x
+]
+[
+= 3x² + 4x + 5
+]
+
+### Step 4: Interpret in Context
+
+(f + g)(x) combines the outputs of f and g at the same input. (g - h)(x) subtracts h's output from g's output.
+
+## Example 2 — Compose Functions
+
+### Step 1: Identify the Inner Function
+
+Given [f(x) = 11x] and [g(x) = x² - 6x + 3]. For (f ∘ g)(x), g(x) is the inner function.
+
+### Step 2: Substitute g(x) into f(x)
+
+[
+(f ∘ g)(x) = f(g(x)) = 11 · (x² - 6x + 3)
+]
+
+### Step 3: Simplify
+
+[
+= 11x² - 66x + 33
+]
+
+### Step 4: Find (g ∘ f)(x) for Comparison
+
+[
+(g ∘ f)(x) = g(f(x)) = (11x)² - 6(11x) + 3 = 121x² - 66x + 3
+]
+
+Composition is not commutative: [(f ∘ g)(x) ≠ (g ∘ f)(x)] in general.
+
+## Mixed Exercises
+
+The mixed exercises section provides additional practice combining functions in increasingly complex contexts:
+
+* Evaluate sum and difference functions given algebraic definitions of f, g, h, j, p, q, r, and t.
+* Compose functions with linear, quadratic, and exponential functions.
+* Write functions for real-world scenarios: membership growth for two clubs combined, ticket pricing and revenue for a magician, cost of golf rounds as a sum of fixed and per-round fees.
+* Analyze a box-making problem: cut identical squares from corners of a 20-by-12 sheet, find the area function (ℓ ∘ w)(x), determine its domain, and evaluate at a specific value.
+* Model granola pricing and sales: write price and quantity functions, combine them to find revenue, and evaluate whether a price increase is profitable.
+* Analyze a tile pattern: write separate functions for shaded and white tiles, combine them to find the total, and verify by evaluating at n = 10.
+* Model temperature cooling: separate a constant lab temperature from the cooling function to write a composition.
+* Find the area of a gravel border around a flower bed as a combination of simpler area functions.
+* Compare adding linear and quadratic functions versus multiplying them.
+* Determine the equation of a translated exponential function when a constant is added.
+* Create and solve problems where (f - g)(x) or (f ∘ g)(x) yields a specified polynomial.
+* Analyze whether multiplying a linear and quadratic function always produces a three-term result.
+* Find and correct errors in function composition.
+* Determine which product of three functions does not belong with the others.
+
+## Review Notes
+
+* ![](media/image1.png) (cardboard box diagram referenced in problem 27) could not be fully reproduced. Consult the original worksheet for visual reference.
+* ![](media/image2.png) (tile pattern diagrams referenced in problems 29-30) could not be fully reproduced. Consult the original worksheet for visual reference.
+* ![](media/image3.png) (temperature data table referenced in problem 31) could not be fully reproduced. Consult the original worksheet for visual reference.
+* ![](media/image4.png) (flower bed diagram referenced in problem 40) could not be fully reproduced. Consult the original worksheet for visual reference.
+* Problem 40 contains a table image showing three functions a(x), b(x), and c(x) with their products that requires visual reference to complete.
+* The lesson introduces all four operations for combining functions: addition, subtraction, multiplication (as composition), and interpretation of results in context.
+
+(End of file - total 158 lines)

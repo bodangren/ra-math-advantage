@@ -1,236 +1,190 @@
 # Lesson 7-3 — Graphing Reciprocal Functions
 
-Source: (Module 7, Lesson 7-3, pp. 327–332)
+Source: (Module 7, Lesson 7-3, Int3_0703_practice.docx)
 
 ## Today's Goals
 
-* Graph reciprocal functions by making tables of values
-* Graph and write reciprocal functions by using transformations
-
----
+* Identify excluded values and asymptotes of reciprocal functions.
+* Graph reciprocal functions and identify key features.
+* Analyze transformations of the parent reciprocal function.
 
 ## Vocabulary
 
-* reciprocal function
-* vertical asymptote
-* horizontal asymptote
-* hyperbola
-* excluded values
+* **Reciprocal Function** — A function of the form [f(x) = a/(x - h) + k].
+* **Vertical Asymptote** — A vertical line [x = h] that the graph approaches but never touches.
+* **Horizontal Asymptote** — A horizontal line [y = k] that the graph approaches as [x] goes to positive or negative infinity.
+* **Excluded Value** — A value of [x] that makes the denominator zero.
+* **Point Discontinuity** — A hole in the graph where the function is not defined.
 
----
+## Explore: The Parent Reciprocal Function
+
+What does the graph of [f(x) = 1/x] look like and what are its key features?
+
+Inquiry Question:
+Why does the graph of [1/x] have two separate branches, and what happens as [x] approaches 0 or infinity?
 
 ## Learn: Graphing Reciprocal Functions
 
-A reciprocal function has the form:
+### Key Concept: Parent Function [f(x) = 1/x]
 
-`f(x) = n / b(x)`
+* Domain: all real numbers except [x = 0]
+* Range: all real numbers except [y = 0]
+* Vertical asymptote: [x = 0]
+* Horizontal asymptote: [y = 0]
 
-where `n` is a real number and `b(x)` is a linear expression that cannot equal `0`.
+### Key Concept: Transformations
 
-The parent function is:
+For [f(x) = a/(x - h) + k]:
+* [a] determines vertical stretch/compression and reflection.
+* [h] shifts horizontally (opposite sign).
+* [k] shifts vertically.
 
-`f(x) = 1/x`
+### Key Concept: Identifying Asymptotes
 
-Its graph is a hyperbola.
+* Vertical asymptote: set denominator equal to zero, solve for [x].
+* Horizontal asymptote: the constant [k] added outside the fraction.
 
-### Key Concept: Reciprocal Functions
+## Example 1 — Determine Excluded Values (Problems 1–6)
 
-For `f(x) = 1/x`:
+Find the excluded value of [x] for each function.
 
-* type of graph: hyperbola
-* domain: all nonzero real numbers
-* range: all nonzero real numbers
-* asymptotes: `x = 0` and `y = 0`
-* intercepts: none
+**1.** [f(x) = 5/x]
 
-The vertical asymptote is determined by the excluded value of `x`. The horizontal asymptote is the value the function approaches but never reaches.
+**2.** [g(x) = -2/(x + 2)]
 
----
+**3.** [f(x) = 10/(x - 3)]
 
-## Example 1 — Limitations on the Domains of Reciprocal Functions
+**4.** [g(x) = 5/(-6x)]
 
-Determine the excluded value of `x` for each function.
+**5.** [f(x) = 5/(2x + 3)]
 
-### a. `g(x) = 6/x`
+**6.** [g(x) = 5/(7x - 9)]
 
-Undefined when `x = 0`
+## Example 2 — Identify Asymptotes, Domain, Range, and Intercepts (Problems 7–10)
 
-### b. `g(x) = 2/(x - 7)`
+### Step 1: Identify Asymptotes
 
-Set the denominator equal to `0`:
+**7.** [f(x) = 1/(x - 1)]
 
-`x - 7 = 0`
+**8.** [f(x) = -1/x + 4]
 
-`x = 7`
+**9.** [f(x) = 5/(x + 4)]
 
-### c. `g(x) = -5/(3x + 4)`
+**10.** [f(x) = 6/x - 3]
 
-Set the denominator equal to `0`:
+## Example 3 — Real-World Application (Problems 11–12)
 
-`3x + 4 = 0`
+### Step 1: Write the Function
 
-`x = -4/3`
+**11. PLANES** A plane is scheduled to leave Dallas for an 800-mile flight to Chicago. The departure is delayed for two hours.
 
-## Think About It
+**a.** If [t = 0] represents the scheduled departure time, write a function that represents the plane's average speed [r] as a function of travel time [t].
 
-Explain why reciprocal functions have a restricted domain.
+**b.** Analyze the key features of the graph in context.
 
----
+**12. COMPUTERS** To manufacture a computer, a company pays $5000 for rent and overhead and $435 per computer for parts.
 
-## Example 2 — Graph a Reciprocal Function by Using a Table
+**a.** Write the function relating average cost [C] to how many computers [n] are being made.
 
-Consider:
+**b.** Analyze the key features of the function.
 
-`g(x) = 1/(2x - 5) + 2`
+## Example 4 — Graph Transformed Reciprocal Functions (Problems 13–16)
 
-### Part A: Identify key features
+### Step 1: Identify Transformations
 
-Set the denominator equal to `0`:
+**13.** [f(x) = 1/(x + 3) - 3]
 
-`2x - 5 = 0`
+**14.** [f(x) = -1/(x + 5) - 6]
 
-`x = 5/2`
+**15.** [f(x) = -1/(x + 1) + 3]
 
-So:
+**16.** [f(x) = 1/(x + 4) - 2]
 
-* vertical asymptote: `x = 5/2`
-* horizontal asymptote: `y = 2`
-* domain: `{x | x != 5/2}`
-* range: `{g(x) | g(x) != 2}`
+## Example 5 — Write Functions from Graphs (Problems 17–22)
 
-### Part B: Find the intercepts
+Identify the values of [a], [h], and [k] for [g(x) = a/(x - h) + k].
 
-For the x-intercept, set `g(x) = 0`:
+*(Graphs referenced — see original DOCX for images)*
 
-`0 = 1/(2x - 5) + 2`
+## Mixed Exercises
 
-`-2 = 1/(2x - 5)`
+**23.** [f(x) = 2/(-2x + 5)]
 
-`-2(2x - 5) = 1`
+**24.** [f(x) = -12/(-3x - 7)]
 
-`-4x + 10 = 1`
+**25.** [f(x) = 4/(x^2 - 2x - 3)]
 
-`x = 2.25`
+**26.** [f(x) = 6/(x^2 + 4x - 12)]
 
-For the y-intercept, substitute `x = 0`:
+**27.** [f(x) = -3/(x^2 - 2x - 15)]
 
-`g(0) = 1/(-5) + 2 = 1.8`
+**28.** [f(x) = -2/((x + 4)(x^2 - 9))]
 
-So:
+**29.** What are the domain and range for [f(x) = 3/(x + 1)]?
 
-* x-intercept: `2.25`
-* y-intercept: `1.8`
+**30.** Determine the equations of any asymptotes of [f(x) = 3/(x^2 - x - 12)].
 
----
+**31.** [f(x) = 3/(2x - 4)]
 
-## Example 3 — Analyze a Reciprocal Function
+**32.** [f(x) = 5/(3x)]
 
-Ohm’s law is:
+**33.** [f(x) = 2/(4x + 1)]
 
-`I = V/R`
+**34.** [f(x) = 1/(2x + 3)]
 
-For a `110`-volt curling iron:
+**35.** [f(x) = -3/(x + 7) - 1]
 
-`I = 110/R`
+**36.** [f(x) = -4/(x + 2) - 5]
 
-### Part A: Write and graph a function
+**37.** [f(x) = 6/(x - 1) + 2]
 
-The function is:
+**38.** [f(x) = 2/(x - 4) + 3]
 
-`I = 110/R`
+**39.** [f(x) = -7/(x - 8) - 9]
 
-with asymptotes:
+**40.** [f(x) = -6/(x - 7) - 8]
 
-* `R = 0`
-* `I = 0`
+*(Problems 41–44: graphs for writing functions — see original DOCX)*
 
-### Part B: Analyze the key features
+**45. VACATION** The Castellanos family is planning to rent a car. The rental costs $125 plus $0.30 per mile.
 
-* domain: `{R | R != 0}`
-* range: `{I | I != 0}`
-* intercepts: none
-* positive when `R > 0`
-* negative when `R < 0`
-* symmetric about the origin
-* end behavior:
-  * as `R -> -infinity`, `I -> 0`
-  * as `R -> infinity`, `I -> 0`
+**a.** Write the equation that relates the cost per mile [C] to the number of miles traveled [m].
 
----
+**b.** Explain any limitations to the range or domain.
 
-## Explore: Transforming Reciprocal Functions
+**46. BIOLOGY** The population of a certain bacteria can be approximated by [P(t) = 40/(t + 2) + 10], where [P(t)] is the number of bacteria after [t] minutes. Eventually, what will happen to the bacteria population?
 
-Use graphing technology to complete the explore.
+*(Problems 47–49: graphs referenced — see original DOCX)*
 
-**Inquiry Question:**
-How does performing an operation on a reciprocal function affect its graph?
+**50. MONEY** Some students are renting a bus for a trip to an aquarium. The bus costs $200 and the aquarium tickets are $25 per person.
 
----
+**a.** Write a function that gives the total cost per student [y].
 
-## Learn: Transformations of Reciprocal Functions
+**b.** What is an appropriate domain?
 
-For:
+**c.** Find the average rate of change on the interval [x = 10] to [x = 20].
 
-`g(x) = a/(x - h) + k`
+**51. CREATE** Write a reciprocal function with a vertical asymptote at [x = -4] and a horizontal asymptote at [f(x) = 6].
 
-* `h` shifts the graph left or right and sets the vertical asymptote `x = h`
-* `k` shifts the graph up or down and sets the horizontal asymptote `y = k`
-* `a` controls orientation and stretch/compression
+**52. ANALYZE** Consider [f(x) = 1/x] and [g(x)].
 
----
+**a.** Make a table comparing the two functions.
 
-## Example 4 — Graph a Transformation of a Reciprocal Function
+**b.** Compare and contrast the two graphs.
 
-Graph:
+**c.** Make a conjecture about the difference between graphs of reciprocal functions with even versus odd exponents in the denominator.
 
-`g(x) = -4/(x + 1) - 2`
+**53. WHICH ONE DOESN'T BELONG?** Find the function that does not belong.
 
-This is a transformation of `f(x) = 1/x`.
+*(Image referenced — see original DOCX)*
 
-* `a = -4`: reflect across the x-axis and stretch vertically
-* `h = -1`: translate left `1`
-* `k = -2`: translate down `2`
+**54. PERSEVERE** Write two different reciprocal functions with graphs having the same vertical and horizontal asymptotes.
 
-So:
+**55. PERSEVERE** Graph [f(x) = 4/((x + 2)^2)]. What are the asymptotes?
 
-* vertical asymptote: `x = -1`
-* horizontal asymptote: `y = -2`
-* domain: `{x | x != -1}`
-* range: `{g(x) | g(x) != -2}`
+**56. WRITE** Explain why only part of the graph of a rational function may be meaningful in a real-world situation.
 
----
+## Review Notes
 
-## Example 5 — Write a Reciprocal Function from a Graph
-
-Write a function in the form:
-
-`g(x) = a/(x - h) + k`
-
-The graph has asymptotes:
-
-* `x = -4`
-* `y = -2`
-
-So:
-
-* `h = -4`
-* `k = -2`
-
-Using the point `(-3, 3)`:
-
-`3 = a/((-3) - (-4)) - 2`
-
-`3 = a - 2`
-
-`a = 5`
-
-So the function is:
-
-`g(x) = 5/(x + 4) - 2`
-
----
-
-## Objective Alignment
-
-- `Graph reciprocal functions by making tables of values`: Primary worked examples: Examples 1-3.
-- `Graph and write reciprocal functions by using transformations`: Primary worked examples: Examples 4-5.
+* Problems 17–22, 41–44, 47, and 53 contain graph images from the original worksheet that cannot be fully described in text format. Teachers should consult the original DOCX for all graph references.
+* The worksheet contains 56 practice problems across five examples and mixed exercises.

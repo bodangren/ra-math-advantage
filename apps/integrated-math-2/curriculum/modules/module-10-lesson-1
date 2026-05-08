@@ -1,0 +1,192 @@
+# Lesson 10-1 — Multiplication Properties of Exponents
+
+Source: (Module 10, Lesson 10-1, Int2_1001_practice.docx)
+
+## Today's Goals
+
+* Apply the Product of Powers Property when multiplying two expressions with the same base.
+* Apply the Power of a Power Property when raising an expression with an exponent to another power.
+* Apply the Power of a Product Property when raising a product to a power.
+* Simplify expressions using multiple properties of exponents.
+* Write very large and very small numbers in scientific notation.
+
+## Vocabulary
+
+* **Product of Powers Property** — When multiplying two expressions with the same base, add the exponents: [a^m \cdot a^n = a^{m+n}].
+* **Power of a Power Property** — When raising an expression with an exponent to another power, multiply the exponents: [(a^m)^n = a^{m \cdot n}].
+* **Power of a Product Property** — When raising a product to a power, raise each factor to that power: [(ab)^n = a^n \cdot b^n].
+* **Scientific Notation** — A way to write very large or very small numbers as a number between 1 and 10 multiplied by a power of 10: [a \times 10^n].
+
+## Explore: Multiplying with Exponents
+
+When multiplying expressions that contain exponents, students explore why certain properties hold and how to apply them systematically to simplify expressions.
+
+Inquiry Question:
+How do the three properties of exponents work together to simplify complex expressions involving products?
+
+## Learn: Multiplication Properties of Exponents
+
+### Key Concept: Product of Powers Property
+
+To multiply two powers with the same base, keep the base and add the exponents.
+
+[
+(a^2)(a^4) = a^{2+4} = a^6
+]
+
+[
+(q^2)(2q^4) = 2q^{2+4} = 2q^6
+]
+
+[
+(9w^2x^8)(w^6x^4) = 9w^{2+6}x^{8+4} = 9w^8x^{12}
+]
+
+### Key Concept: Power of a Power Property
+
+To find the power of a power, multiply the exponents.
+
+[
+(j^5k^7)^4 = j^{5 \cdot 4}k^{7 \cdot 4} = j^{20}k^{28}
+]
+
+[
+[(2^2)^2]^2 = 2^{2 \cdot 2 \cdot 2} = 2^8
+]
+
+[
+[(4r^2t)^3]^2 = (4r^2t)^{3 \cdot 2} = (4r^2t)^6
+]
+
+### Key Concept: Power of a Product Property
+
+To find the power of a product, raise each factor to the power.
+
+[
+(ab)^n = a^n \cdot b^n
+]
+
+[
+(y^2z)(yz^2) = y^{2+1}z^{1+2} = y^3z^3
+]
+
+[
+(3pr^2)^2 = 3^2 \cdot p^2 \cdot r^{2 \cdot 2} = 9p^2r^4
+]
+
+## Example 1 — Product of Powers
+
+Multiply expressions with the same base using the Product of Powers Property.
+
+### Step 1: Identify the Common Base
+
+When multiplying powers, identify expressions that share the same base variable.
+
+[
+(q^2)(2q^4) = 2q^{2+4} = 2q^6
+]
+
+[
+(-2u^2)(6u^6) = -12u^{2+6} = -12u^8
+]
+
+[
+(y^6z^9)(6y^4z^2) = 6y^{6+4}z^{9+2} = 6y^{10}z^{11}
+]
+
+### Step 2: Apply the Power of a Power
+
+When an expression with an exponent is raised to another power, multiply all exponents involved.
+
+[
+(j^5k^7)^4 = j^{5 \cdot 4}k^{7 \cdot 4} = j^{20}k^{28}
+]
+
+[
+(n^3p)^4 = n^{3 \cdot 4}p^{1 \cdot 4} = n^{12}p^4
+]
+
+[
+[(4r^2t)^3]^2 = (4r^2t)^6 = 4^6 \cdot r^{2 \cdot 6}t^{1 \cdot 6}
+]
+
+## Example 2 — Scientific Notation
+
+Apply exponent properties to express very large and very small numbers in scientific notation.
+
+### Step 1: Understand Scientific Notation
+
+A number in scientific notation has the form [a \times 10^n] where [1 \leq a < 10] and [n] is an integer.
+
+During a community service project, each student planted [1.2 \times 10^2] flowers. With [1.5 \times 10^3] students:
+
+[
+(1.2 \times 10^2)(1.5 \times 10^3) = (1.2 \cdot 1.5) \times 10^{2+3} = 1.8 \times 10^5
+]
+
+### Step 2: Solve Applied Problems
+
+A farmer has 350 cherry trees, each yielding 6200 cherries per year:
+
+[
+350 \cdot 6200 = 3.5 \times 10^2 \cdot 6.2 \times 10^3 = 21.7 \times 10^5 = 2.17 \times 10^6
+]
+
+An adult panda weighs [1.1 \times 10^3] times more than a newborn panda weighing [2.2 \times 10^{-1}] pounds:
+
+[
+(2.2 \times 10^{-1})(1.1 \times 10^3) = 2.42 \times 10^2 \text{ pounds}
+]
+
+## Example 3 — Power of a Product
+
+Apply the Power of a Product Property to expressions with multiple variables and coefficients.
+
+### Step 1: Raise Each Factor to the Power
+
+[
+(b^8c^6d^5)(7b^6c^2d) = 7b^{8+6}c^{6+2}d^{5+1} = 7b^{14}c^8d^6
+]
+
+[
+(14fg^2h^2)(3f^4g^2h^2) = 42f^{1+4}g^{2+2}h^{2+2} = 42f^5g^4h^4
+]
+
+### Step 2: Combine Multiple Properties
+
+When multiplying a power raised to a power, multiply the exponents:
+
+[
+(2a^3)^4(a^3)^3 = 2^4 \cdot a^{3 \cdot 4} \cdot a^{3 \cdot 3} = 16a^{12}a^9 = 16a^{21}
+]
+
+[
+(c^3)^2(-3c^5)^2 = c^6 \cdot 9c^{10} = 9c^{16}
+]
+
+## Mixed Exercises
+
+Practice problems covering all skills in the lesson:
+
+* Simplify expressions using the Product of Powers Property, Power of a Power Property, and Power of a Product Property.
+* Simplify expressions involving multiple variables and coefficients, including negative coefficients.
+* Evaluate real-world problems involving scientific notation, including population estimates, product sales, and measurement conversions.
+* Solve applied problems involving volume (building blocks in the shape of a cube with dimensions based on a variable), area of geometric shapes expressed in terms of variables, and community service hour calculations.
+* Determine whether pairs of expressions are equivalent, using properties of exponents to justify answers.
+* Simplify products of powers with multiple variables and multiple factors.
+* Simplify expressions involving decimals raised to powers and fractions raised to powers.
+* Evaluate motion problems such as an object falling at an average speed of [16x] feet per second.
+* Apply the power formula [W = I^2R] for electrical power calculations involving current and resistance.
+* Analyze the structure of exponent operations, including whether raising to an exponent is commutative or associative.
+* Create three different expressions that simplify to [x^6].
+* Find and correct errors in simplification of exponent expressions.
+
+## Review Notes
+
+* ![](media/image1.png) Image of apple juice bottles for problem 23 (apple juice company calculation).
+* ![](media/image2.png) Image of picture frame diagram for problem 26 (area of interior).
+* ![](media/image3.png) Image of shipping box diagram for problem 27 (volume calculation).
+* ![](media/image4.png) Image of equations table for problem 58 (linear vs nonlinear analysis).
+* ![](media/image5.png) Image of student work for problem 61 (Find the Error — Jade and Sal).
+
+(End of file - total 224 lines)

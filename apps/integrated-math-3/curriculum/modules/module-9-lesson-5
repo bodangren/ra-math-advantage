@@ -1,170 +1,119 @@
 # Lesson 9-5 — Graphing Other Trigonometric Functions
 
-Source: (Module 9, Lesson 9-5, pp. 455–460)
+Source: (Module 9, Lesson 9-5, Int3_0905_practice.docx)
 
 ## Today's Goals
 
-* Graph and analyze tangent functions
-* Graph and analyze reciprocal trigonometric functions
-
----
+* Find the period and asymptotes of tangent, cotangent, secant, and cosecant functions.
+* Identify x-intercepts, midline, and transformations for tangent functions.
+* Graph tangent, cotangent, secant, and cosecant functions.
+* Apply tangent and other trigonometric functions to solve real-world problems involving angles and distances.
 
 ## Vocabulary
 
-* reciprocal trigonometric functions
+* **Tangent Function** — [y = tan θ = sin θ / cos θ]; undefined where [cos θ = 0]; period is [π].
+* **Cotangent Function** — [y = cot θ = cos θ / sin θ = 1/tan θ]; undefined where [sin θ = 0]; period is [π].
+* **Secant Function** — [y = sec θ = 1/cos θ]; undefined where [cos θ = 0]; period is [2π].
+* **Cosecant Function** — [y = csc θ = 1/sin θ]; undefined where [sin θ = 0]; period is [2π].
+* **Asymptote** — A line that the graph approaches but never reaches; occurs at values where the function is undefined.
+* **Relative Extrema** — Maximum or minimum points on a restricted domain of the function.
 
----
+## Explore: Tangent, Cotangent, Secant, and Cosecant Graphs
 
-## Learn: Graphing Tangent Functions
+These reciprocal functions have distinct graph shapes and properties that differ from sine and cosine. Understanding their asymptotes, periods, and ranges is essential for graphing them accurately.
 
-Because:
+Inquiry Question:
+Where do the asymptotes occur in the graphs of tangent, cotangent, secant, and cosecant functions, and why?
 
-`tan x = sin x / cos x`
+## Learn: Graphing Other Trigonometric Functions
 
-tangent is undefined where `cos x = 0`, so its graph has vertical asymptotes there.
+### Key Concept: Periods of the Reciprocal Functions
 
-### Key Concept: Graphs of Tangent Functions
+* [y = tan θ] and [y = cot θ] have period [π] (180°).
+* [y = sec θ] and [y = csc θ] have period [2π] (360°).
 
-For `y = tan x`:
+### Key Concept: Asymptote Locations
 
-* domain: all real numbers except `(90 + 180n)°`
-* range: all real numbers
-* period: `180°`
-* midline: `y = 0`
-* one x-intercept per cycle
+* [y = tan θ]: asymptotes at [θ = π/2 + kπ] where [cos θ = 0].
+* [y = cot θ]: asymptotes at [θ = kπ] where [sin θ = 0].
+* [y = sec θ]: asymptotes at [θ = π/2 + kπ] where [cos θ = 0].
+* [y = csc θ]: asymptotes at [θ = kπ] where [sin θ = 0].
 
-For `y = a tan bx`:
+### Key Concept: Ranges
 
-* period `= 180°/|b|`
-* asymptotes at `(90 + 180n)° / |b|`
-* `a` controls vertical stretch/compression and reflection
-* `b` controls horizontal stretch/compression
+* [y = tan θ] range: all real numbers
+* [y = cot θ] range: all real numbers
+* [y = sec θ] range: [y ≤ -1] or [y ≥ 1]
+* [y = csc θ] range: [y ≤ -1] or [y ≥ 1]
 
----
+## Example 1 — Graph Tangent Functions
 
-## Example 1 — Graph a Tangent Function with a Dilation
+### Step 1: Identify Period and Asymptotes
 
-Graph:
+For [y = tan 5x]:
+* Period = [π/5]
+* Asymptotes at [x = π/10 + kπ/5]
 
-`y = tan 3x`
+For [y = (1/2) tan x]:
+* Period = [π]
+* Asymptotes at [x = π/2 + kπ]
+* Amplitude affects vertical scaling
 
-* period `= 180°/3 = 60°`
-* asymptotes at `(90 + 180n)° / 3 = 30° + 60n°`
-* x-intercepts at integer multiples of `60°`
-* midline: `y = 0`
+## Example 2 — Graph Cosecant and Secant Functions
 
-The graph is horizontally compressed relative to `y = tan x`.
+### Step 1: Find Relative Extrema
 
----
+For [y = csc(3x/4)]:
+* Period = [8π/3]
+* Use the reciprocal of the sine function to find peaks and valleys
 
-## Example 2 — Graph a Tangent Function with a Dilation and a Reflection
+For [y = csc 3x]:
+* Period = [2π/3]
 
-Graph:
+## Example 3 — Graph Cotangent Functions
 
-`y = -(1/3) tan 2x`
+### Step 1: Identify x-Intercepts and Asymptotes
 
-* period `= pi/2`
-* asymptotes at `pi/4 + n(pi/2)`
-* x-intercepts at multiples of `pi/2`
-* midline: `y = 0`
+For [y = cot 2x]:
+* x-intercepts where [cot 2x = 0], which occurs when [2x = π/2 + kπ], so [x = π/4 + kπ/2]
+* Asymptotes at [x = kπ/2]
 
-Transformations:
+## Example 4 — Graph Secant Functions
 
-* vertically compressed
-* horizontally compressed
-* reflected across the x-axis
+### Step 1: Find Where Maximum and Minimum Occur
 
----
+For [y = 3 sec x]:
+* Amplitude affects the distance from the asymptotes
+* Maximum values at [y = 3] where [cos x = 1]
+* Minimum values at [y = -3] where [cos x = -1]
 
-## Learn: Graphing Reciprocal Trigonometric Functions
+## Example 5 — Real-World Applications
 
-The reciprocal trigonometric functions are:
+### Step 1: Set Up Functions from Context
 
-* `csc x = 1/sin x`
-* `sec x = 1/cos x`
-* `cot x = 1/tan x`
+**Acrobat problem:** Height = 200 feet, distance from camera = [d]. The function relates [d] to the angle [x] using [d = 200 sec x] or similar.
 
-Their asymptotes occur where the corresponding sine, cosine, or tangent value is `0`.
+**Air traffic control:** Shadow length [y] relates to angle [x] by [y = 300 cot x] since [tan x = opposite/adjacent = 300/y].
 
-### Key Concept: Graphs of Reciprocal Functions
+## Mixed Exercises
 
-* `y = csc x`
-  * period `360°`
-  * range `y <= -1` or `y >= 1`
-* `y = sec x`
-  * period `360°`
-  * range `y <= -1` or `y >= 1`
-* `y = cot x`
-  * period `180°`
-  * range all real numbers
+Practice problems include:
 
----
+* Graphing tangent functions with various periods and coefficients.
+* Graphing secant and cosecant functions.
+* Graphing cotangent functions.
+* Eiffel Tower elevator distance problem.
+* Football helicopter distance problem.
+* Domain and range analysis for cosine and secant functions.
+* Period error analysis for tangent function.
+* Creating trigonometric functions with specific domain restrictions.
+* Justifying key feature identification for trigonometric graphs.
 
-## Example 3 — Graph a Cosecant Function
+## Review Notes
 
-Graph:
+* Images referenced in the worksheet (tangent graph for problem 1, acrobat diagram for problem 16, air traffic control diagram for problem 17, Eiffel Tower diagram for problem 24, football field diagram for problem 25) could not be fully described without visual reference. Teachers should consult the original worksheet for exact diagrams and values.
 
-`y = csc 0.5x`
-
-Since it is the reciprocal of `sin 0.5x`:
-
-* period `= 2pi/0.5 = 4pi`
-* asymptotes occur where `sin 0.5x = 0`, so `x = 2pi n`
-* midline: `y = 0`
-
-Relative extrema occur at the same x-values as the corresponding maxima and minima of `sin 0.5x`.
-
----
-
-## Example 4 — Graph a Cotangent Function
-
-Graph:
-
-`y = -4 cot 2x`
-
-Since cotangent is the reciprocal of tangent:
-
-* period `= 180°/2 = 90°`
-* asymptotes at `x = 90n°`
-* x-intercepts at odd multiples of `45°`
-* midline: `y = 0`
-
----
-
-## Example 5 — Apply a Reciprocal Trigonometric Function
-
-A banner plane is `1200` feet above a festival. Let `d` be the distance from the crowd to the banner and `x` the angle of elevation.
-
-### Part A: Write a function
-
-Use:
-
-`sin x = 1200/d`
-
-So:
-
-`d = 1200/sin x = 1200 csc x`
-
-### Part B: Graph the function
-
-* period `= 360°`
-* asymptotes where `sin x = 0`, so `x = 180n°`
-
-### Part C: Analyze key features in context
-
-For `0° < x < 180°`:
-
-* domain: `0 < x < 180`
-* range: `d >= 1200`
-* x-intercept: none
-* y-intercept: none
-* relative minimum: `(90, 1200)`
-* decreasing on `(0, 90)`
-* increasing on `(90, 180)`
-
----
-
-## Objective Alignment
-
-- `Graph and analyze tangent functions`: Primary worked examples: Examples 1-2.
-- `Graph and analyze reciprocal trigonometric functions`: Primary worked examples: Examples 3-5.
+![](media/image1.png)
+![](media/image2.png)
+![](media/image3.png)
+![](media/image4.png)

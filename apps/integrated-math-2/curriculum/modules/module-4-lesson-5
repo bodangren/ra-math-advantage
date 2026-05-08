@@ -1,0 +1,114 @@
+# Lesson 4-5 — Trigonometry
+
+Source: (Module 4, Lesson 4-5, Int2_0405_practice.docx)
+
+## Today's Goals
+
+* Find trigonometric ratios (sine, cosine, tangent) for acute angles in right triangles.
+* Use special right triangles to find exact trigonometric values.
+* Use trigonometric ratios to find missing side lengths and angle measures.
+* Solve right triangles.
+
+## Vocabulary
+
+* **Sine** — For acute angle [A], [sin A = opposite/hypotenuse].
+* **Cosine** — For acute angle [A], [cos A = adjacent/hypotenuse].
+* **Tangent** — For acute angle [A], [tan A = opposite/adjacent].
+* **Solve a Triangle** — Find all missing side lengths and angle measures.
+
+## Explore: Trigonometric Ratios
+
+The ratios of sides in a right triangle define the trigonometric functions sine, cosine, and tangent for the acute angles.
+
+Inquiry Question:
+How can the side lengths of a right triangle determine the trigonometric ratios for its acute angles?
+
+## Learn: Trigonometric Ratios
+
+For a right triangle with acute angle [A]:
+
+[sin A = opposite/hypotenuse]
+[cos A = adjacent/hypotenuse]
+[tan A = opposite/adjacent]
+
+## Example 1 — Find Trigonometric Ratios
+
+Find sin [L], cos [L], tan [L], sin [M], cos [M], and tan [M].
+
+### Step 1: Identify Sides Relative to Each Angle
+
+1. l = 15, m = 36, n = 39
+2. l = 12, m = 12√3, n = 24
+3-4. Find ratios for triangles RST and JKL.
+
+## Example 2 — Special Triangle Trigonometry
+
+Use a special right triangle to express each trigonometric ratio.
+
+### Step 1: Use Known Values from Special Triangles
+
+5. sin 30° = 1/2
+6. tan 45° = 1
+7. cos 60° = 1/2
+8. sin 60° = √3/2
+9. tan 30° = 1/√3 = √3/3
+10. cos 45° = √2/2
+
+## Example 3 — Find the Value of x
+
+Find [x] to the nearest hundredth.
+
+### Step 1: Choose the Appropriate Ratio
+
+11-14. Set up the trigonometric equation and solve for [x].
+
+15. Geology: Shan measures 43 meters at 36° angle. Find height.
+
+16. Ramps: 60-foot ramp at 15° angle. Find height.
+
+## Example 4 — Find Angle Measures
+
+Use a calculator to find [m∠B] to the nearest tenth.
+
+### Step 1: Use Inverse Trigonometric Functions
+
+16-21. Use [sin⁻¹], [cos⁻¹], or [tan⁻¹] to find angle measures.
+
+## Example 5 — Solve Right Triangles
+
+Solve each right triangle. Round side measures to the nearest tenth and angle measures to the nearest degree.
+
+### Step 1: Find All Missing Measures
+
+22-27. Use trigonometric ratios and triangle sum to find all sides and angles.
+
+## Mixed Exercises
+
+28-29. Find angle measure using Distance Formula and inverse trig.
+
+30-32. Find perimeter and area of triangles.
+
+33. Neighbors: Amy, Barry, and Chris problem with trigonometric expressions.
+
+34. Construct Arguments: Cell phone tower guy wire problem.
+
+35. Complementary Angles: Given sin α = 0.6428 and cos α = 0.7660, find sin β and cos β.
+
+36-38. Find [x] and [y].
+
+39. Find the Error: Lakasha and Treyvon with 52 sin 27° vs 52 cos 63°.
+
+40. Persevere: Solve △ABC.
+
+41. Analyze: Are sine and cosine always less than 1 for acute angles?
+
+42. Which One Doesn't Belong: Identify the triangle that cannot be solved the same way.
+
+43. Write: Explain how to use ratios to find angle measures.
+
+44. Create: Draw a right triangle with tan = 3/2 for one acute angle.
+
+## Review Notes
+
+* Images referenced in this lesson:
+  * ![](media/image1.png) through ![](media/image31.png) — various trigonometry diagrams

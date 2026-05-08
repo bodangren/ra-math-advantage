@@ -1,213 +1,253 @@
 # Lesson 5-2 — Solving Exponential Equations and Inequalities
 
-Source: (Module 5, Lesson 5-2, pp. 225–228)
+Source: (Module 5, Lesson 5-2, Int3_0502_practice.docx)
 
 ## Today's Goals
 
-* Solve exponential equations in one variable
-* Solve exponential inequalities in one variable
-
----
+* Solve exponential equations using properties of exponents and logarithms.
+* Solve exponential inequalities and interpret solutions in context.
+* Apply exponential equations to real-world problems involving compound interest and growth/decay.
+* Use graphing calculators to solve exponential equations.
 
 ## Vocabulary
 
-* exponential equation
-* compound interest
-* exponential inequality
-
----
+* **Exponential Equation** — An equation where the variable appears in an exponent.
+* **Exponential Inequality** — An inequality containing an exponential expression.
+* **Compound Interest** — Interest computed on both the initial principal and accumulated interest.
+* **Annual Percentage Rate (APR)** — The yearly interest rate applied to a financial account.
 
 ## Explore: Solving Exponential Equations
 
-Use the interactive tool to complete the explore.
+When solving exponential equations, the key is to express both sides with the same base, then equate exponents. If the bases cannot be matched, logarithms provide an alternative method.
 
-**Inquiry Question:**
-How can you rewrite expressions to solve exponential equations?
-
----
+Inquiry Question:
+Why can we set exponents equal when the bases are equal? What conditions must apply?
 
 ## Learn: Solving Exponential Equations
 
-In an **exponential equation**, the independent variable is an exponent.
+### Key Concept: Same-Base Method
 
-### Key Concept: Property of Equality for Exponential Equations
+If [a^x = a^y] and [a > 0] and [a ≠ 1], then [x = y].
 
-If `b > 0` and `b != 1`, then:
+### Key Concept: Logarithmic Method
 
-`b^x = b^y` if and only if `x = y`
+If the bases cannot be made the same, take the logarithm of both sides:
+[ln(a^x) = ln(b) → x · ln(a) = ln(b) → x = ln(b)/ln(a)]
 
-Exponential equations can be solved algebraically or by graphing a system.
-
----
-
-### Key Concept: Compound Interest
-
-Compound interest is calculated with:
-
-`A = P(1 + r/n)^(nt)`
-
-where:
-
-* `A` is the amount after `t` years
-* `P` is the principal
-* `r` is the annual interest rate
-* `n` is the number of compounding periods per year
-
----
-
-## Example 1 — Solve Exponential Equations Algebraically
+## Example 1 — Solve Exponential Equations
 
 Solve each equation.
 
-### a. `4^(5x + 1) = 64^7`
+### Step 1: Express Both Sides with the Same Base
 
-Rewrite:
+[25^(2x+3) = 25^(5x-9)] → [2x + 3 = 5x - 9 → 3x = 12 → x = 4]
 
-* `64 = 4^3`
+[9^(8x-4) = 81^(3x+6)] → [9^(8x-4) = 9^(6x+12)] (since [81 = 9^2]) → [8x - 4 = 6x + 12 → 2x = 16 → x = 8]
 
-So:
+[4^(x-5) = 16^(2x-31)] → [4^(x-5) = 4^(4x-62)] (since [16 = 4^2]) → [x - 5 = 4x - 62 → 3x = 57 → x = 19]
 
-`4^(5x + 1) = (4^3)^7 = 4^21`
+[4^(3x-3) = 8^(4x-4)] → [4^(3x-3) = 4^(6x-6)] (since [8 = 4^(3/2)]) → [3x - 3 = 6x - 6 → 3x = 3 → x = 1]
 
-Then:
+[9^(-x+5) = 27^(6x-10)] → [9^(-x+5) = 9^(9x-15)] (since [27 = 9^(3/2)]) → [-x + 5 = 9x - 15 → 10x = 20 → x = 2]
 
-`5x + 1 = 21`
+[125^(3x-4) = 25^(4x+2)] → [125^(3x-4) = 125^(8x/3 + 4/3)] (convert both to base 5)
 
-`5x = 20`
+### Step 2: Check Solutions
 
-`x = 4`
+Verify that solutions satisfy the original equation and do not make any exponent undefined.
 
-### b. `(1/2)^(4x - 16) = 16^(2x - 5)`
+## Example 2 — Real-World Exponential Equations
 
-Rewrite in base `2`:
+### Step 1: Set Up the Function
 
-* `(1/2) = 2^-1`
-* `16 = 2^4`
+**INTEREST:** Bianca invested $5000 at 5% annual interest.
 
-So:
+[A = 5000(1.05)^x]
 
-`(2^-1)^(4x - 16) = (2^4)^(2x - 5)`
+### Step 2: Solve for the Unknown Time
 
-`2^(-4x + 16) = 2^(8x - 20)`
+To find when the account reaches $25,000:
+[25000 = 5000(1.05)^x → 5 = (1.05)^x → x = ln(5)/ln(1.05) ≈ 32.98] years
 
-Then:
+**POPULATION:** World population in 2000 was 6,071,675,206, growing at 1.2% annually.
 
-`-4x + 16 = 8x - 20`
+[P(x) = 6.071675206 × 10^9 (1.012)^x]
 
-`-12x = -36`
+Find when population reaches 8,000,000,000:
+[8 × 10^9 = 6.071675206 × 10^9 (1.012)^x → x = ln(8/6.071675206)/ln(1.012) ≈ 23] years after 2000, so approximately 2023.
 
-`x = 3`
+**BUSINESS:** Ahmed's firm started with 23 clients and decreases 0.5% annually.
 
----
+[C(x) = 23(0.995)^x]
 
-## Example 2 — Solve an Exponential Equation by Graphing
+Find when the firm has 15 clients: [15 = 23(0.995)^x → x = ln(15/23)/ln(0.995) ≈ 93.3] years
 
-A Super Bowl ad cost can be modeled by:
+**BATTERY LIFE:** Battery starts at 8 hours and decreases 30% annually.
 
-`C = 0.058(1.099)^x`
+[B(x) = 8(0.70)^x]
 
-where `C` is in millions of dollars and `x` is the Super Bowl number.
+Find when battery life reaches 2 hours: [2 = 8(0.70)^x → x = ln(2/8)/ln(0.70) ≈ 6.8] years
 
-Find when the cost first surpassed `$1 million`.
+## Example 3 — Compound Interest with Multiple Compounding Periods
 
-### Part A: Write the model
+### Step 1: Apply the Compound Interest Formula
 
-Initial cost:
+[A = P(1 + r/n)^(nt)]
 
-`$58,000 = 0.058 million`
+**BANKING:** $1200 at 5.2% compounded monthly for 4 years:
+[A = 1200(1 + 0.052/12)^(12·4) = 1200(1.004333)^48 ≈ $1473.23]
 
-Growth rate:
+**INVESTING:** $2500 at 6.1% compounded quarterly for 10 years:
+[A = 2500(1 + 0.061/4)^(4·10) = 2500(1.01525)^40 ≈ $4545.28]
 
-`9.9% = 0.099`
+**CHECKING:** $5000 at 0.75% compounded monthly for 8 years:
+[A = 5000(1 + 0.0075/12)^(12·8) = 5000(1.000625)^96 ≈ $5309.47]
 
-So:
+**FINANCE:** $60,000 at 2.5% compounded quarterly for 20 years:
+[A = 60000(1 + 0.025/4)^(4·20) = 60000(1.00625)^80 ≈ $96,143.47]
 
-`C = 0.058(1.099)^x`
+## Example 4 — Solve Exponential Inequalities
 
-### Part B: Solve by graphing
+### Step 1: Solve the Inequality
 
-Set up the system:
+When the bases are the same and [b > 1], preserve the inequality sign when taking logarithms.
 
-* `y = 1`
-* `y = 0.058(1.099)^x`
+[(1/36)^(6x-3) > 6^(3x-9)]
 
-The intersection is at about:
+Rewrite both sides with common base. Since [6 = 36^(1/2)], we have [36^(6x-3) = (6^2)^(6x-3) = 6^(12x-6)].
 
-`x ≈ 30.16`
+The inequality [(1/36)^(6x-3) > 6^(3x-9)] becomes [36^(-(6x-3)) > 6^(3x-9)] which simplifies based on solving for [x].
 
-So the cost had not yet surpassed `$1 million` during Super Bowl `30`.
+[64^(4x-8) < 256^(2x+6)] — [256 = 64^(4/3)]
 
-It first surpassed `$1 million` during **Super Bowl 31**.
+[(1/27)^(3x+13) ≤ 9^(5x-1/2)] — [9 = 27^(2/3)]
 
-### Study Tip
+[(1/9)^(2x+7) ≤ 27^(6x-12)] — [27 = 9^(3/2)]
 
-This conclusion depends on treating the cost trend as a reasonable exponential model.
+[(1/8)^(-2x-6) > (1/32)^(-x+11)]
 
----
+[9^(9x+1) < (1/243)^(-3x+5)] — [243 = 3^5]
 
-## Example 3 — Use the Compound Interest Formula
+## Mixed Exercises
 
-Luciana deposits `$1700` into a savings account paying `1.8%` annual interest compounded monthly.
+Solve each equation or inequality.
 
-Find the balance after `5` years.
+**Basic equations:**
+[8^(4x+2) = 64] → [8^(4x+2) = 8^2] → [4x + 2 = 2] → [x = 0]
 
-`A = P(1 + r/n)^(nt)`
+[5^(x-6) = 125] → [5^(x-6) = 5^3] → [x - 6 = 3] → [x = 9]
 
-`= 1700(1 + 0.018/12)^(12*5)`
+[625 ≥ 5^(a+8)] → [5^4 ≥ 5^(a+8)] → [4 ≥ a + 8] → [a ≤ -4]
 
-`≈ 1859.97`
+[256^(b+2) = 4^(2-2b)]
 
-So after `5` years, the balance is about:
+[9^(3c+1) = 27^(3c-1)] → [9^(3c+1) = 9^(9c/2 - 3/2)] → solve for [c]
 
-`$1859.97`
+[(1/27)^(2d-2) ≤ 81^(d+4)]
 
----
+[(1/2)^(4x+1) = 8^(2x+1)]
 
-## Learn: Solving Exponential Inequalities
+[(1/5)^(x-5) = 25^(3x+2)]
 
-An **exponential inequality** is an inequality in which the independent variable is an exponent.
+[(1/64)^(c-2) < 32^(2c)]
 
-### Key Concept: Property of Inequality for Exponential Equations
+[(1/8)^(3x+4) = (1/4)^(-2x+4)]
 
-If `b > 1`, then:
+[(2/3)^(5x+1) = (27/8)^(x-4)]
 
-* `b^x > b^y` if and only if `x > y`
-* `b^x < b^y` if and only if `x < y`
+[(1/9)^(3t+5) ≤ (1/243)^(t-6)]
 
----
+[81^(a+2) = 3^(3a+1)]
 
-## Example 4 — Solve Exponential Inequalities Algebraically
+[10^(5b+2) > 1000]
 
-Solve:
+[216 = (1/6)^(x+3)]
 
-`27^(2x + 6) >= 81^(x - 5)`
+[8^(2y+4) = 16^(y+1)]
 
-Rewrite with base `3`:
+[(25/81)^(2x+1) = (729/125)^(-3x+1)]
 
-* `27 = 3^3`
-* `81 = 3^4`
+[(1/36)^(w+2) ≤ (1/216)^(4w)]
 
-So:
+[4^(2x) = 8^(x+4)]
 
-`(3^3)^(2x + 6) >= (3^4)^(x - 5)`
+[(1/3)^m = 27^(m+2)]
 
-`3^(6x + 18) >= 3^(4x - 20)`
+[25^(4t+1) ≥ 125^(2t)]
 
-Thus:
+[6^(2x-1) = 36^(-x)]
 
-`6x + 18 >= 4x - 20`
+**Real-world problems:**
 
-`2x >= -38`
+BUSINESS: Ingrid started with 2 employees in 2010 and had 50 in 2013. Alberto started with 32 and had 310 in 2017. Both have exponential growth.
 
-`x >= -19`
+a. Ingrid: [y = 2 · b^3 = 50 → b^3 = 25 → b = 25^(1/3) ≈ 2.924]
+Alberto: [y = 32 · b^7 = 310 → b^7 = 310/32 → b = (310/32)^(1/7) ≈ 1.387]
 
-Solution set:
+b. Employees in 2015 (5 years after 2010):
+Ingrid: [2 · 2.924^5 ≈ 2 · 218.6 ≈ 437]
+Alberto: [32 · 1.387^5 ≈ 32 · 7.45 ≈ 238]
 
-`{x | x >= -19}`
+c. Discuss whether continuous exponential business growth is realistic.
 
----
+**Write an exponential function passing through given points:**
 
-## Objective Alignment
+[(0, 3) and (3, 375)] → [f(x) = 3 · 5^x] (since [375/3 = 125 = 5^3])
 
-- `Solve exponential equations in one variable`: Primary worked examples: Examples 1-3.
-- `Solve exponential inequalities in one variable`: Primary worked examples: Example 4.
+[(0, -1) and (6, -64)] → [f(x) = -1 · 2^x] (since [-64/-1 = 64 = 2^6])
+
+[(0, 7) and (-2, 28)] → [f(x) = 7 · (1/2)^x]
+
+[(0, 1/2) and (2, 40.5)] → [f(x) = 0.5 · 9^x] (since [40.5/0.5 = 81 = 9^2], so base is [9^(1/2) = 3], but with x increase of 2, [b^2 = 81], so [b = 9])
+
+Wait — for (0, 1/2) to (2, 40.5): [40.5/0.5 = 81 = 9^2], so [b^2 = 81 → b = 9]. So [f(x) = 0.5 · 9^x].
+
+[(0, 15) and (1, 12)] → [f(x) = 15 · (4/5)^x]
+
+[(0, -6) and (-4, -1536)] → [f(x) = -6 · 2^x]
+
+[(0, 1/3) and (3, 9)] → [f(x) = (1/3) · 3^x]
+
+[(0, 1) and (6, 4096)] → [f(x) = 1 · 2^x] (since [4096 = 2^12], with 6 steps, [b^6 = 4096], [b = 2])
+
+[(0, -2) and (-1, -4)] → [f(x) = -2 · 2^x]
+
+USE A MODEL: Graph [y ≥ 2000(1.04)^x] to show potential earnings.
+
+ECONOMICS: Jones Corp: [y = 10(0.99)^t]; Davis Co: [y = 8(1.01)^t]
+
+MEDICINE: Patient has 3.0 mg/mL concentration, decays to 1.5 mg/mL after 2 hours. Medicine ineffective below 0.6 mg/mL. Next dose at 3 P.M. (5 hours later) — will concentration be above 0.6? Use graph to justify.
+
+STRUCTURE: Compare retirement accounts for Dale and Xavier based on deposits, interest rates, and compounding periods. Who has more after 30 years?
+
+USE A SOURCE: Research average college professor salary and calculate raises.
+
+ANALYZE: Tom graphs [f(x) = 5(1.25)^x] and [g(x) = 1.5^x]. The gap increases as [x] increases. Is [f(x) > g(x)] for [x > 0]?
+
+FIND THE ERROR: Beth and Liz solve [6^(x-3) > 36^(-x-1)]. Check both solutions.
+
+PERSEVERE: Solve [16^18 + 16^18 + 16^18 + 16^18 + 16^18 = 4^x]. Note that [5 · 16^18 = 4^x], and [16 = 4^2], so [5 · (4^2)^18 = 4^x → 5 · 4^36 = 4^x → x = log_4(5) + 36].
+
+ANALYZE: Compare reducing a 5-year loan at 8% compounded monthly from 5 to 4 years vs. reducing interest to 6.5%.
+
+ANALYZE: Determine whether statements are sometimes, always, or never true.
+
+a. [2^x > -8^(20x)] for all [x]
+b. Graph of [y = ab^x] is increasing
+c. Graph of [y = ab^x] with decay is increasing
+
+CREATE: Write an exponential inequality with solution [x ≤ 2]. For example: [2^x ≤ 4] or [(1/2)^x ≥ 4].
+
+PERSEVERE: Show [27^(2x) · 81^(x+1) = 3^(2x+2) · 9^(4x+1)].
+
+WRITE: Given initial and final amounts of radioactive substance and time elapsed, how to determine the rate?
+
+## Review Notes
+
+* Image references in this lesson:
+  * ![](media/image1.JPG) — table comparing Dale and Xavier's retirement accounts
+  * ![](media/image2.png) — Beth and Liz's work on solving the exponential inequality
+
+Teachers should consult the original worksheet for exact diagrams, tables, and problem images.
+
+(End of file - total 285 lines)

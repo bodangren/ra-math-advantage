@@ -1,0 +1,164 @@
+# Lesson 13-2 — Translations
+
+Source: (Module 13, Lesson 13-2, Int1_1302_practice.docx)
+
+## Today's Goals
+
+* Determine whether a given transformation between two figures is a translation and justify the answer.
+* Find the translation vector that maps a preimage to its image.
+* Apply a translation vector to find the coordinates of an image given a preimage.
+* Draw the image of a figure after a translation on the coordinate plane.
+* Describe translations resulting from compositions of reflections.
+* Analyze properties of translations and classify statements as always, sometimes, or never true.
+
+## Vocabulary
+
+* **Translation** — A rigid transformation that slides every point of a figure the same distance in the same direction.
+* **Translation Vector** — A vector written as [\langle a, b \rangle] that describes a horizontal shift of [a] units and a vertical shift of [b] units.
+* **Preimage** — The original figure before a transformation is applied.
+* **Image** — The figure resulting from applying a transformation to the preimage.
+* **Rigid Transformation** — A transformation that preserves side lengths and angle measures.
+* **Composition of Transformations** — The result of applying two or more transformations in sequence.
+
+## Explore: What Makes a Transformation a Translation?
+
+Students examine pairs of figures on the coordinate plane and consider what conditions must be met for one figure to be a translation image of another. Discussions focus on whether corresponding sides remain parallel, whether all points move by the same vector, and how to verify these properties.
+
+Inquiry Question:
+How can you tell whether one figure is a translation image of another without measuring every side and angle?
+
+## Learn: Translations on the Coordinate Plane
+
+A translation moves every point of a figure by the same vector. On the coordinate plane, a point [(x, y)] translated by the vector [\langle a, b \rangle] has an image at [(x + a, y + b)].
+
+### Key Concept: Properties of Translations
+
+* Translations preserve side lengths and angle measures.
+* Corresponding sides of the preimage and image are parallel.
+* Every point shifts by exactly the same vector.
+* The orientation of the figure does not change.
+
+### Key Concept: Finding a Translation Vector
+
+To find the translation vector that maps a point to its image, subtract the coordinates of the preimage from the image:
+[
+\langle a, b \rangle = \langle x' - x, y' - y \rangle
+]
+
+## Example 1 — Determine Whether a Triangle Is a Translation Image
+
+Verify whether a given triangle maps onto another triangle by a translation. If it does, find the translation vector; if not, explain which properties fail.
+
+### Step 1: Compare Corresponding Side Lengths
+
+Check whether the side lengths of the preimage triangle match the side lengths of the image triangle. If any side length differs, the transformation is not a translation.
+
+### Step 2: Compare Corresponding Angles
+
+Verify that angle measures are preserved. A translation is a rigid transformation, so all angle measures must be equal.
+
+### Step 3: Find the Translation Vector Between Corresponding Vertices
+
+Calculate the vector from one vertex of the preimage to its corresponding vertex in the image:
+[
+\langle a, b \rangle = \langle x_{J'} - x_J, y_{J'} - y_J \rangle
+]
+
+Repeat for the other two pairs of corresponding vertices. If all three vectors are identical, the transformation is a translation.
+
+### Step 4: State the Conclusion
+
+If the vectors match, report the translation vector [\langle a, b \rangle]. If they do not match, explain that the transformation is not a translation because not all points shift by the same vector.
+
+## Example 2 — Determine Whether a Quadrilateral Is a Translation Image
+
+Apply the same verification process to a quadrilateral. Check side lengths, angle measures, and the consistency of translation vectors between all four pairs of corresponding vertices.
+
+### Step 1: Verify Rigid Transformation Properties
+
+Confirm that corresponding sides and angles of the quadrilateral and its image are congruent.
+
+### Step 2: Compute Vectors for All Pairs of Corresponding Vertices
+
+Calculate the shift vector for each vertex:
+[
+\langle a, b \rangle = \langle x_{L'} - x_L, y_{L'} - y_L \rangle
+]
+[
+\langle a, b \rangle = \langle x_{M'} - x_M, y_{M'} - y_M \rangle
+]
+[
+\langle a, b \rangle = \langle x_{N'} - x_N, y_{N'} - y_N \rangle
+]
+[
+\langle a, b \rangle = \langle x_{P'} - x_P, y_{P'} - y_P \rangle
+]
+
+### Step 3: Draw a Conclusion
+
+If all four vectors are identical, the transformation is a translation with that vector. Otherwise, explain why the transformation fails to be a translation.
+
+## Example 3 — Find Missing Coordinates in a Translation Pattern
+
+Given a repeating pattern formed by translating a single figure, determine the coordinates of a missing figure that continues the pattern.
+
+### Step 1: Identify the Translation Vector from the Pattern
+
+Examine the coordinates of two consecutive figures in the pattern. Compute the translation vector:
+[
+\langle a, b \rangle = \langle x_{\text{next}} - x_{\text{current}}, y_{\text{next}} - y_{\text{current}} \rangle
+]
+
+### Step 2: Apply the Translation Vector to Find the Missing Figure
+
+Use the identified vector to shift the vertices of the nearest known figure to the location of the missing figure:
+[
+(x_{\text{missing}}, y_{\text{missing}}) = (x_{\text{known}} + a, y_{\text{known}} + b)
+]
+
+### Step 3: Verify Consistency
+
+Check that the computed vertices align with the overall pattern and spacing shown in the diagram.
+
+## Example 4 — Describe a Translation and Apply It to Another Figure
+
+Given a preimage and its image for one figure on a coordinate plane, describe the translation vector. Then apply the same translation to a second figure and draw its image.
+
+### Step 1: Determine the Translation Vector
+
+Select a pair of corresponding points from the preimage and image of the first figure. Compute:
+[
+\langle a, b \rangle = \langle x_{\text{image}} - x_{\text{preimage}}, y_{\text{image}} - y_{\text{preimage}} \rangle
+]
+
+Describe the translation in words (for example, [a] units right/left and [b] units up/down).
+
+### Step 2: Apply the Same Translation to the Second Figure
+
+Shift every vertex of the second figure by the same vector [\langle a, b \rangle]:
+[
+(x', y') = (x + a, y + b)
+]
+
+### Step 3: Draw the Image
+
+Plot the translated vertices and connect them to form the image of the second figure.
+
+## Mixed Exercises
+
+The mixed exercises provide practice with all skills from the lesson: identifying translations, finding translation vectors, computing image coordinates, drawing translated figures, and analyzing properties of translations. Problems include:
+
+* Drawing and labeling the image of a figure after a translation by a given horizontal or vertical shift or by a specified translation vector.
+* Finding the image of a point after applying a translation vector, using the rule [(x, y) \to (x + a, y + b)].
+* Finding the image of a second point under the same translation that maps a known preimage to its image.
+* Constructing arguments to explain why a given pair of triangles cannot be related by a translation, citing specific properties that fail.
+* Determining whether a triangle is a translation image of another and explaining the reasoning.
+* Writing a translation vector that corresponds to a verbal description of a shift (for example, a given number of units left and up).
+* Describing the single translation that results from reflecting an object across two parallel lines.
+* Classifying statements about translations as always, sometimes, or never true, with justification.
+* Solving a problem about translating a square so that one vertex lands at the origin, choosing the translation vector with the least possible length.
+* Translating a triangle by a given vector, listing the image vertices, and calculating the distance the figure has moved.
+
+## Review Notes
+
+* Images referenced in the worksheet (triangle and quadrilateral diagrams for Examples 1 and 2, wallpaper pattern for Example 3, furniture coordinate plane for Example 4, figure diagrams for exercises 5–7, and the triangle diagram for exercise 13) could not be fully described without visual reference. Teachers should consult the original worksheet for exact coordinates, values, and diagrams.

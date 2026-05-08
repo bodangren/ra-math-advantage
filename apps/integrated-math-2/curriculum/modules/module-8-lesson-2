@@ -1,0 +1,152 @@
+# Lesson 8-2 — Linearity, Intercepts, and Symmetry
+
+Source: (Module 8, Lesson 8-2, Int2_0802_practice.docx)
+
+## Today's Goals
+
+* Determine whether a function is linear or nonlinear from an equation or graph.
+* Estimate and interpret x- and y-intercepts of a function.
+* Identify symmetry in a graph and determine whether a function is even, odd, or neither.
+
+## Vocabulary
+
+* **Linear Function** — A function that can be written in the form [y = mx + b], where [m] and [b] are constants; its graph is a straight line.
+* **Nonlinear Function** — Any function that does not form a straight line when graphed.
+* **x-Intercept** — The point where a graph crosses the x-axis; [(a, 0)].
+* **y-Intercept** — The point where a graph crosses the y-axis; [(0, b)].
+* **Line Symmetry (Reflectional Symmetry)** — A graph is symmetric about a line if one half is a mirror image of the other across that line.
+* **Point Symmetry (Rotational Symmetry)** — A graph has point symmetry if it looks the same after a 180° rotation about a point.
+* **Even Function** — A function where [f(-x) = f(x)] for all [x] in the domain; symmetric about the y-axis.
+* **Odd Function** — A function where [f(-x) = -f(x)] for all [x] in the domain; symmetric about the origin.
+
+## Explore: Lines and Their Properties
+
+Students examine what makes a function linear and how symmetry appears in different types of functions.
+
+Inquiry Question:
+What do the intercepts of a linear function tell you about the situation it models?
+
+## Learn: Linearity, Intercepts, and Symmetry
+
+### Key Concept: Identifying Linear Functions
+
+A function is linear if it can be written as [y = mx + b] and its graph is a straight line. Nonlinear functions include quadratics, absolute value, radicals, and any equation where [x] appears with an exponent other than 1.
+
+### Key Concept: Finding Intercepts
+
+* **x-intercept:** Set [y = 0] and solve for [x].
+* **y-intercept:** Set [x = 0] and solve for [y].
+
+### Key Concept: Symmetry Types
+
+* **Line symmetry** — the graph mirrors across a vertical or horizontal line.
+* **Point symmetry** — the graph looks the same when rotated 180°.
+
+### Key Concept: Even vs. Odd Functions
+
+Test algebraically:
+* Even: [f(-x) = f(x)]
+* Odd: [f(-x) = -f(x)]
+
+## Example 1 — Identify Linear Functions
+
+Determine whether each equation represents a linear function. Justify your answer.
+
+### Step 1: Check the Equation Form
+
+* [y = 3x] — linear (in the form [y = mx + b])
+* [y = -2 + 5x] — linear
+* [2x + y = 10] — linear (rearranges to [y = -2x + 10])
+* [y = 4x^2] — nonlinear (exponent on [x] is 2)
+
+## Example 2 — Linear vs. Nonlinear Graphs
+
+Determine whether each graph represents a linear or nonlinear function.
+
+### Step 1: Examine the Shape
+
+Linear graphs are straight lines. Any curve or bend indicates a nonlinear function.
+
+## Example 3 — Tables: Linear or Nonlinear?
+
+Determine whether the relationship in each table can be modeled by a linear or nonlinear function.
+
+### Step 1: Check for Constant Rate of Change
+
+In a linear function, the difference in [y] values is constant for equal steps in [x].
+
+## Examples 4 and 5 — Estimate Intercepts from Graphs
+
+Use the graph to estimate the x- and y-intercepts.
+
+### Step 1: Read the Intercept Values
+
+Find where the graph crosses each axis. Estimate coordinates to the nearest tenth if needed.
+
+## Example 6 — Interpret Intercepts in Context
+
+Interpret the x- and y-intercepts in the context of each situation.
+
+### Step 1: Money Problem (Aksa's Lunch Account)
+
+A deposit of $20 at the start of the week. The x-intercept represents when the account reaches zero; the y-intercept represents the starting balance.
+
+### Step 2: Golf Problem
+
+Height of a golf ball after being hit off a tee. The x-intercept represents when the ball hits the ground; the y-intercept represents the initial height.
+
+## Example 7 — Identify Symmetry Type
+
+Identify the type of symmetry for the graph of each function.
+
+### Step 1: Visual Inspection
+
+Determine whether the graph has line symmetry (mirror image across a line) or point symmetry (looks the same after 180° rotation).
+
+## Example 8 — Determine Even, Odd, or Neither
+
+Determine whether each function is even, odd, or neither. Confirm algebraically. If the function is odd or even, describe the symmetry.
+
+### Step 1: Test with [f(-x)]
+
+* [f(x) = 2x^3 - 8x] — odd (symmetric about the origin)
+* [f(x) = x^3 + x^2] — neither
+* [f(x) = x^2 + 2] — even (symmetric about the y-axis)
+
+## Mixed Exercises
+
+Problems 25–44 provide additional practice:
+
+* Determine whether each equation represents a linear function; algebraically determine even, odd, or neither.
+* Analyze graphs to identify linear vs. nonlinear, estimate intercepts, and identify symmetry.
+* Games: racquetball ball motion across a screen (line or point symmetry).
+* Basketball: height of a tossed basketball — would the graph have symmetry if extended to all real numbers?
+* Profit problem: Stefon charges $25 to test air quality, device costs $500. Linear function [y = 25x - 500].
+* Playgrounds: perimeter problem involving line or point symmetry.
+* Pools: draining a 720-gallon pool — intercepts and symmetry in context.
+* Volume of a sphere: [f(r) = (4/3)pi*r^3] — odd function.
+* Find a car's braking distance equation.
+* Find the error: Javier's claim that all cubic functions are odd.
+* Analyze a gift-wrapping table to determine linearity.
+* Determine whether [x = a] is always, sometimes, or never a linear function.
+* Which one doesn't belong? Four functions shown.
+
+## Review Notes
+
+* ![](media/image1.png)![](media/image2.png) — Graphs for problems 5–6
+* ![](media/image3.png)![](media/image4.png) — Graphs for problems 7–8
+* ![](media/image5.png) — MEASUREMENT table (problem 9)
+* ![](media/image6.png) — ASTRONOMY table (problem 10)
+* ![](media/image7.png)![](media/image8.png)![](media/image9.png) — Graphs for problems 11–13
+* ![](media/image10.png)![](media/image11.png)![](media/image12.png) — Graphs for problems 14–16
+* ![](media/image13.png) — MONEY table (problem 17)
+* ![](media/image14.png) — GOLF table (problem 18)
+* ![](media/image15.png)![](media/image16.png)![](media/image17.png) — Graphs for problems 19–21
+* ![](media/image18.png)![](media/image19.png)![](media/image20.png) — Graphs for problems 22–24
+* ![](media/image21.png)![](media/image22.png)![](media/image23.png) — Mixed exercise graphs (problems 31–33)
+* ![](media/image24.png) — Graph for problem 34
+* ![](media/image25.png) — GAMES graph (problem 34)
+* ![](media/image26.png) — BASKETBALL graph (problem 35)
+* ![](media/image27.png) — PLAYGROUNDS diagram (problem 37)
+* ![](media/image28.png) — ANALYZE table (problem 42)
+* ![](media/image29.png) — WHICH ONE DOESN'T BELONG graphs (problem 44)

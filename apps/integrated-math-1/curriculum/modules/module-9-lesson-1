@@ -1,0 +1,124 @@
+# Lesson 9-1 — Measures of Center
+
+Source: (Module 9, Lesson 9-1, Int1_0901_practice.docx)
+
+## Today's Goals
+
+* Calculate the mean, median, and mode of a data set.
+* Determine the percentile rank of a data value within a given distribution.
+* Analyze how outliers and data changes affect each measure of center.
+* Choose the most appropriate measure of center for a given context.
+
+## Vocabulary
+
+* **Mean** — The arithmetic average of a data set, found by summing all values and dividing by the number of values.
+* **Median** — The middle value of an ordered data set; for an even number of values, it is the average of the two middle values.
+* **Mode** — The value that occurs most frequently in a data set.
+* **Percentile Rank** — The percentage of values in a data set that are less than or equal to a given value.
+* **Outlier** — A data value that is substantially larger or smaller than most other values in the set.
+
+## Explore: What Is a "Typical" Value?
+
+Students discuss what it means for a value to be "typical" or "average" for a group. They consider a data set with one very large or very small value and debate whether the mean, median, or mode best represents the group.
+
+Inquiry Question:
+How can different measures of center give very different pictures of the same data set?
+
+## Learn: Measures of Center
+
+The three main measures of center describe the "typical" value in a data set in different ways.
+
+### Key Concept: Mean, Median, and Mode
+
+* **Mean** — Add all values and divide by the number of values.
+[
+  \bar{x} = \frac{\sum x_i}{n}
+]
+* **Median** — Arrange values in order from least to greatest. If there is an odd number of values, the median is the middle one. If there is an even number, the median is the mean of the two middle values.
+* **Mode** — Identify the value that appears most often. A data set can have one mode, more than one mode, or no mode.
+
+### Key Concept: Percentile Rank
+
+The percentile rank of a value tells you what percentage of the data falls at or below that value.
+
+[
+\text{Percentile Rank} = \frac{\text{number of values less than the selected value}}{\text{total number of values}} \times 100
+]
+
+## Example 1 — Find Mean, Median, and Mode
+
+Given a data set, find all three measures of center.
+
+### Step 1: Order the Data
+
+List the values from least to greatest. This makes the median and mode easier to identify.
+
+### Step 2: Compute the Mean
+
+Add all values and divide by the count.
+
+Representative data set:
+[
+\{17,\; 11,\; 8,\; 15,\; 28,\; 20,\; 10,\; 16\}
+]
+
+Mean:
+[
+\bar{x} = \frac{8 + 10 + 11 + 15 + 16 + 17 + 20 + 28}{8} = \frac{125}{8} = 15.625
+]
+
+### Step 3: Find the Median
+
+With 8 ordered values, the median is the average of the 4th and 5th values:
+[
+\text{Median} = \frac{15 + 16}{2} = 15.5
+]
+
+### Step 4: Identify the Mode
+
+Look for the most frequently occurring value. In this data set, every value appears once, so there is no mode.
+
+Variations include data sets with decimals, repeated values, and real-world contexts (weights, speeds, ratings).
+
+## Example 2 — Find Percentile Rank
+
+Given a ranked distribution of scores, determine the percentile rank for a specific data value.
+
+### Step 1: Count Values Below the Selected Score
+
+Determine how many scores in the distribution are strictly less than the value of interest.
+
+### Step 2: Apply the Percentile Rank Formula
+
+[
+\text{Percentile Rank} = \frac{\text{number of values below}}{\text{total number of values}} \times 100
+]
+
+Representative problem: In a competition of 12 marching bands with scores from 0 to 100, a band's percentile rank is found by counting how many of the 12 bands scored lower and multiplying that fraction by 100.
+
+## Mixed Exercises
+
+The mixed exercises integrate all skills from the lesson and extend them through reasoning, real-world applications, and error analysis. Problem types include:
+
+* Computing mean, median, and mode for tabular and contextual data (football weights, basketball points, bowling scores, novel lengths, volunteer hours, laptop prices).
+* Finding percentile ranks in competition and ranking contexts (singing, dance, band, sports medals).
+* Reasoning about why the mean and median differ, including the effect of outliers and skewed data.
+* Determining an unknown data value needed to achieve a target mean and median.
+* Analyzing how adding, removing, or multiplying all values affects each measure of center.
+* Evaluating statements about percentile rank and identifying errors in reasoning.
+* Constructing a data set that satisfies given mean, median, and mode conditions.
+* Choosing the best measure of center for a given situation and justifying the choice.
+
+## Review Notes
+
+* **Image references (media/image1.png through media/image10.png)** — The worksheet contains images and diagrams whose content could not be fully extracted as text. Key images include:
+  * Image1, image2 — Likely blank work spaces for problems 1–4.
+  * Image3 — Marching band competition score chart for problems 10–12.
+  * Image4 — Basketball points table for problem 19.
+  * Image5 — Laptop prices table for problem 24.
+  * Image6 — Novel lengths table for problem 25.
+  * Image7 — Volunteer hours table for problem 26.
+  * Image8 — Pet adoptions table for problem 28.
+  * Image9 — Bowling scores table for problem 30.
+  * Image10 — "Which One Doesn't Belong" options for problem 36.
+  A human reviewer should verify that all tables and charts are correctly represented or transcribed into the digital curriculum.

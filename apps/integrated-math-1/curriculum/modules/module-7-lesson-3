@@ -1,0 +1,188 @@
+# Lesson 7-3 — Elimination Using Addition and Subtraction
+
+Source: (Module 7, Lesson 7-3, Int1_0703_practice.docx)
+
+## Today's Goals
+
+* Solve systems of linear equations using elimination by addition or subtraction.
+* Recognize when adding or subtracting equations will eliminate a variable.
+* Write and solve systems of equations to model real-world situations.
+* Solve systems containing decimals, fractions, and expressions that require simplification first.
+
+## Vocabulary
+
+* **elimination method** — an algebraic technique for solving a system by adding or subtracting equations to eliminate one variable.
+* **system of equations** — a set of two or more equations containing the same variables.
+* **solution of a system** — an ordered pair that satisfies every equation in the system simultaneously.
+
+## Learn: Elimination by Addition and Subtraction
+
+The elimination method solves a system by combining equations so that one variable cancels out. When the coefficients of one variable are opposites, add the equations. When the coefficients of one variable are identical, subtract the equations.
+
+### Key Concept: Elimination by Addition
+
+* Look for a variable whose coefficients are opposites (e.g., [ 3x ] and [ -3x ]).
+* Add the two equations term by term.
+* The opposite coefficients sum to zero, eliminating that variable.
+* Solve the resulting equation for the remaining variable.
+* Substitute the value back into either original equation to find the eliminated variable.
+
+### Key Concept: Elimination by Subtraction
+
+* Look for a variable whose coefficients are identical (e.g., [ 5y ] and [ 5y ]).
+* Subtract one equation from the other term by term.
+* The identical coefficients subtract to zero, eliminating that variable.
+* Solve the resulting equation for the remaining variable.
+* Substitute the value back into either original equation to find the eliminated variable.
+
+## Example 1 — Solve by Elimination (Addition)
+
+Use elimination by addition to solve linear systems. These problems are structured so that one variable has opposite coefficients.
+
+### Step 1: Align and Add
+
+Write the equations with like terms aligned. Add the left sides and add the right sides.
+
+For example:
+[
+-v + w = 7
+]
+[
+v + w = 1
+]
+
+Adding eliminates [ v ]:
+[
+2w = 8
+]
+
+### Step 2: Solve and Back-Substitute
+
+Solve for the remaining variable, then substitute to find the eliminated variable.
+
+Other representative systems include:
+[
+4x + 5y = 17 \quad \text{and} \quad 4x + 6y = -6
+]
+
+[
+6r - 6t = 6 \quad \text{and} \quad 3r - 6t = 15
+]
+
+[
+3x - 8y = -24 \quad \text{and} \quad 3x - 5y = 4.5
+]
+
+## Example 2 — Word Problems with Elimination
+
+Translate verbal descriptions into systems of equations, then solve by elimination.
+
+### Step 1: Define Variables and Write the System
+
+Identify the two unknown quantities and assign variables. Translate each sentence into an equation.
+
+For example, twice a number added to another number is 15, and the sum of the two numbers is 11.
+
+Let [ x ] and [ y ] be the two numbers.
+[
+2x + y = 15
+]
+[
+x + y = 11
+]
+
+### Step 2: Solve and Interpret
+
+Subtract the second equation from the first to eliminate [ y ], solve for [ x ], substitute back, and state the answer in context.
+
+Other problems in this group involve differences and sums of two numbers, requiring students to choose whether to add or subtract based on the coefficients.
+
+## Example 3 — Solve by Elimination (Subtraction)
+
+Use elimination by subtraction to solve linear systems. These problems are structured so that one variable has identical coefficients.
+
+### Step 1: Align and Subtract
+
+Write the equations with like terms aligned. Subtract one equation from the other.
+
+For example:
+[
+6c - 9d = 111
+]
+[
+5c - 9d = 103
+]
+
+Subtracting eliminates [ d ]:
+[
+c = 8
+]
+
+### Step 2: Solve and Back-Substitute
+
+Substitute [ c = 8 ] into either original equation to find [ d ].
+
+Other representative systems include:
+[
+11f + 14g = 13 \quad \text{and} \quad 11f + 10g = 25
+]
+
+[
+x - y = 1 \quad \text{and} \quad x + y = 3
+]
+
+[
+3x + 4y = 2 \quad \text{and} \quad 4x - 4y = 12
+]
+
+[
+5x - y = -6 \quad \text{and} \quad -x + y = 2
+]
+
+## Example 4 — Real-World Applications
+
+Set up and solve systems from real-world contexts involving government, sports, and business.
+
+### Government Problem
+
+The Texas State Legislature has state representatives and state senators. The sum of the two is 181, and the difference (representatives minus senators) is 119. Write a system, define variables, and solve by elimination.
+
+Let [ r ] = number of representatives and [ s ] = number of senators.
+[
+r + s = 181
+]
+[
+r - s = 119
+]
+
+### Sports Problem
+
+The difference of World Series championships won by the Yankees and twice the number won by the Cardinals is 5. The sum of the two teams' championships is 38. Write a system, define variables, and solve by elimination.
+
+Let [ y ] = Yankees championships and [ x ] = Cardinals championships.
+[
+y - 2x = 5
+]
+[
+y + x = 38
+]
+
+## Mixed Exercises
+
+The mixed exercises extend elimination practice to a variety of problem types and contexts.
+
+* **Simplification first:** Solve systems that require distributing or simplifying before elimination, such as [ 4(x + 2y) = 8 ] and [ 4x + 4y = 12 ], or [ 5(x + y) = 5 ] paired with another equation.
+* **Decimal coefficients:** Solve systems with decimal coefficients, such as [ 0.3x - 2y = -28 ] and [ 0.8x + 2y = 28 ].
+* **Fractional coefficients:** Solve systems with fractional coefficients, such as [ \frac{1}{2}q - 4r = -2 ] and [ \frac{1}{6}q - 4r = 10 ], or [ \frac{1}{2}x + \frac{1}{3}y = -1 ] and [ -\frac{1}{2}x + \frac{2}{3}y = 10 ].
+* **Modeling with tables:** Use data from tables about snacks, jogging, and walking to write systems of equations, define variables, solve by elimination, and interpret the results.
+* **Reasoning about elimination:** Determine the first step in solving a given system by elimination, explain the reasoning, and predict how the solution would change if an equation were altered.
+* **Error analysis:** Evaluate statements about elimination results such as [ 0 = 0 ] or [ 0 = 2 ], provide counterexamples, and justify the argument.
+* **Creation tasks:** Create a system that can be solved by addition, formulate a general rule, and find a second equation given a solution and one equation.
+* **Number theory:** A two-digit number has a digit sum of 8, and subtracting the units digit from the tens digit gives [ -4 ]. Define variables, write a system, and find the number.
+* **Method comparison:** Describe when elimination is most beneficial compared to other solution methods.
+
+## Review Notes
+
+* Problem 40 references an image of two bouquet types (`image1.png`) that cannot be described. The image shows the number of tulips in a Spring Mix bouquet and a Garden Delight bouquet, which is needed to write the system in parts a–b.
+* Problem 41 references a table (`image2.png`) showing the number of bags of popcorn and plates of nachos purchased by Jeremy and Kendrick, along with total costs. The table data is needed to write and solve the system in parts a–b.
+* Problem 42 references a table (`image3.png`) showing Erin's jogging and walking times and distances for Saturday and Sunday. The table data is needed to write the system in parts a–b.

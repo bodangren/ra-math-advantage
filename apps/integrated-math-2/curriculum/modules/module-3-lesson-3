@@ -1,0 +1,108 @@
+# Lesson 3-3 — Similar Triangles: AA Similarity
+
+Source: (Module 3, Lesson 3-3, Int2_0303_practice.docx)
+
+## Today's Goals
+
+* Determine whether two triangles are similar using the AA Similarity Postulate.
+* Identify corresponding parts of similar triangles.
+* Find unknown side lengths and angle measures in similar triangles.
+* Apply AA similarity to real-world problems involving indirect measurement.
+
+## Vocabulary
+
+* **AA Similarity Postulate** — If two angles of one triangle are congruent to two angles of another triangle, then the triangles are similar.
+* **Corresponding Angles** — Angles in the same relative position in similar figures.
+* **Corresponding Sides** — Sides in the same relative position in similar figures.
+* **Similar Triangles** — Triangles that have congruent corresponding angles and proportional corresponding sides.
+
+## Explore: Why AA Proves Similarity
+
+Students explore why knowing just two angles are congruent is enough to conclude that triangles are similar.
+
+Inquiry Question:
+If two triangles have two pairs of congruent angles, why must the third pair of angles also be congruent, and what does this tell us about the triangles?
+
+## Learn: AA Similarity
+
+### Key Concept: AA Similarity Postulate
+
+If [∠A ≅ ∠D] and [∠B ≅ ∠E] in triangles △ABC and △DEF, then △ABC ∼ △DEF.
+
+The third pair of angles must also be congruent because the sum of angles in a triangle is always 180°.
+
+### Key Concept: Identifying Similar Triangles
+
+When given a diagram with overlapping triangles, look for:
+* Shared angles
+* Vertical angles
+* Right angles
+* Angles formed by parallel lines
+
+## Example 1 — Determine Triangle Similarity
+
+### Step 1: Identify Given Angle Relationships
+
+Look for angles that are congruent based on given information (shared angles, vertical angles, right angles, or parallel line angle relationships).
+
+### Step 2: Apply the AA Similarity Postulate
+
+If two angles of one triangle are congruent to two angles of another triangle, conclude the triangles are similar and write the similarity statement.
+
+## Example 2 — Indirect Measurement with AA Similarity
+
+Use similar triangles to find distances that cannot be measured directly.
+
+### Step 1: Set Up the Proportion
+
+**CELL TOWERS (Problem 7):** Tower shadow = 100 ft, Lia's shadow = 3 ft 4 in (3.33 ft), Lia's height = 4 ft 6 in (4.5 ft).
+
+The tower and Lia form similar triangles with their shadows:
+[
+\frac{tower\ height}{tower\ shadow} = \frac{Lia's\ height}{Lia's\ shadow}
+]
+[
+\frac{h}{100} = \frac{4.5}{3.33}
+]
+
+### Step 2: Solve for the Unknown
+
+[
+h = \frac{4.5 \times 100}{3.33} ≈ 135\ ft
+]
+
+**LIGHTHOUSE (Problem 8):** Maya's shadow coincides with the lighthouse shadow. Use the similar triangles formed by each object and its shadow to find distances [x] and [y].
+
+## Mixed Exercises
+
+The mixed exercises section provides practice with all skills from the lesson. Problems include:
+
+* Determining whether given triangle pairs are similar and explaining reasoning (Problems 1–6)
+* Cell tower shadow problem — finding height using similar triangles (Problem 7)
+* Lighthouse problem — finding distances using coinciding shadows (Problem 8)
+* Finding lengths of segments [AC] and [JL] using similar triangle identification (Problems 9–10)
+* Finding lengths of segments [EH] and [VT] using similar triangle identification (Problems 11–12)
+* Proving triangles in a 5-pointed star are similar (Problem 13)
+* Writing triangle similarity statements from a figure and justifying (Problem 14)
+* Proving whether △JKL ∼ △JMK given perpendicular lines (Problem 15)
+
+## Review Notes
+
+* Images referenced in the worksheet (triangle pairs for problems 1–6, cell tower diagram for problem 7, lighthouse diagram for problem 8, triangle figures for problems 9–12, pentagon/star figure for problem 13, triangle figure for problem 14, perpendicular line figure for problem 15) could not be fully described without visual reference. Teachers should consult the original worksheet for exact diagrams and values.
+* ![](media/image1.png) — Triangle pair for problem 1
+* ![](media/image2.png) — Triangle pair for problem 2
+* ![](media/image3.png) — Triangle pair for problem 3
+* ![](media/image4.png) — Triangle pair for problem 4
+* ![](media/image5.png) — Triangle pair for problem 5
+* ![](media/image6.png) — Triangle pair for problem 6
+* ![](media/image7.png) — Cell tower diagram for problem 7
+* ![](media/image8.png) — Triangle for problem 9
+* ![](media/image9.png) — Triangle for problem 10
+* ![](media/image10.png) — Triangle for problem 11
+* ![](media/image11.png) — Triangle for problem 12
+* ![](media/image12.png) — Triangle for problem 12 (continued)
+* ![](media/image13.png) — Pentagon/star figure for problem 13
+* ![](media/image14.png) — Triangle figure for problem 14
+* The worksheet contains 15 practice problems across two examples and mixed exercises.
+
+(End of file - total 137 lines)

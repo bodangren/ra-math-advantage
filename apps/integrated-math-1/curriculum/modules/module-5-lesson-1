@@ -1,0 +1,170 @@
+# Lesson 5-1 — Writing Equations in Slope-Intercept Form
+
+Source: (Module 5, Lesson 5-1, Int1_0501_practice.docx)
+
+## Today's Goals
+
+* Write linear equations in slope-intercept form given a point and a slope.
+* Write linear equations in slope-intercept form given two points.
+* Model real-world situations with linear equations in slope-intercept form.
+* Determine whether a point lies on a given line and find additional points on a line.
+
+## Vocabulary
+
+* **Slope-intercept form** — A linear equation written as [ y = mx + b ], where [ m ] is the slope and [ b ] is the [ y ]-intercept.
+* **Point-slope form** — A linear equation written as [ y - y_1 = m(x - x_1) ], used when a point [ (x_1, y_1) ] and slope [ m ] are known.
+* **Rate of change** — The ratio of the change in the dependent variable to the change in the independent variable; represented by the slope in a linear model.
+
+## Learn: Writing Equations in Slope-Intercept Form
+
+To write the equation of a line in slope-intercept form [ y = mx + b ], identify the slope [ m ] and the [ y ]-intercept [ b ]. When these values are not given directly, use the information provided (a point and slope, two points, or a real-world scenario) to calculate them.
+
+### Key Concept: Slope-Intercept Form
+
+* The slope-intercept form of a line is [ y = mx + b ].
+* [ m ] represents the slope (rate of change).
+* [ b ] represents the [ y ]-intercept (the value of [ y ] when [ x = 0 ]).
+
+## Example 1 — Write an Equation Given a Point and a Slope
+
+Given a point [ (x_1, y_1) ] and slope [ m ], write the equation of the line in slope-intercept form.
+
+### Step 1: Substitute into Point-Slope Form
+
+Use [ y - y_1 = m(x - x_1) ].
+
+For example, with point [ (4, 2) ] and slope [ \frac{1}{2} ]:
+[
+y - 2 = \frac{1}{2}(x - 4)
+]
+
+### Step 2: Solve for [ y ] 
+
+Distribute and isolate [ y ]:
+[
+y - 2 = \frac{1}{2}x - 2
+]
+[
+y = \frac{1}{2}x
+]
+
+Variations in the worksheet include:
+* Positive and negative integer slopes (e.g., slope [ -3 ])
+* Positive and negative fractional slopes (e.g., slope [ -\frac{3}{4} ])
+* Points with positive and negative coordinates
+
+## Example 2 — Model Real-World Situations with Linear Equations
+
+Translate a verbal description of a linear relationship into an equation in slope-intercept form.
+
+### Step 1: Identify the Slope and Initial Value
+
+Determine the rate of change [ m ] and the starting value [ b ] from the context.
+
+For example, a person jogs at a constant speed starting 12 feet from a marker and is 21 feet away after 3 seconds:
+[
+m = \frac{21 - 12}{3} = 3, \quad b = 12
+]
+
+### Step 2: Write the Equation
+
+Substitute [ m ] and [ b ] into [ y = mx + b ] using context-appropriate variables:
+[
+d = 3t + 12
+]
+
+Scenarios in the worksheet include:
+* Distance traveled at a constant rate over time
+* Total pay consisting of a base salary plus commission
+* Ticket price increasing by a fixed amount per year
+* Words typed at a constant rate after an initial amount
+
+## Example 3 — Write an Equation Given Two Points
+
+Given two points [ (x_1, y_1) ] and [ (x_2, y_2) ], write the equation of the line in slope-intercept form.
+
+### Step 1: Calculate the Slope
+
+Use the slope formula:
+[
+m = \frac{y_2 - y_1}{x_2 - x_1}
+]
+
+For example, with points [ (-4, -2) ] and [ (4, 0) ]:
+[
+m = \frac{0 - (-2)}{4 - (-4)} = \frac{2}{8} = \frac{1}{4}
+]
+
+### Step 2: Find the [ y ]-Intercept
+
+Substitute the slope and one point into [ y = mx + b ] and solve for [ b ]:
+[
+0 = \frac{1}{4}(4) + b \implies b = -1
+]
+
+### Step 3: Write the Equation
+
+[
+y = \frac{1}{4}x - 1
+]
+
+Variations in the worksheet include:
+* Horizontal lines (e.g., [ (0, -4) ] and [ (5, -4) ], slope [ 0 ])
+* Vertical lines (e.g., [ (-6, 5) ] and [ (-6, -4) ], undefined slope)
+* Points with fractional coordinates (e.g., [ \left(\frac{5}{4}, 1\right) ] and [ \left(-\frac{1}{4}, \frac{3}{4}\right) ])
+
+## Example 4 — Write Equations from Data and Models
+
+Use given data points, tables, or models to write linear equations representing real-world contexts.
+
+### Step 1: Extract Two Data Points
+
+Identify two ordered pairs from the problem.
+
+For example, guitar lessons: 7 lessons and 11 lessons with corresponding prices, or population data from two different years.
+
+### Step 2: Calculate Slope and Intercept
+
+Apply the same process as Example 3. For the population of Laredo (123,000 in 1990 and 215,500 in 2007):
+[
+m = \frac{215500 - 123000}{2007 - 1990} = \frac{92500}{17} \approx 5441
+]
+Then use an integer slope and solve for [ b ].
+
+### Step 3: Write the Final Equation
+
+Express the equation using variables defined by the problem context.
+
+Scenarios in the worksheet include:
+* Pricing models with two known data points
+* Population growth over time
+* Temperature change with elevation
+* Fundraising amounts tied to units sold
+
+## Mixed Exercises
+
+The mixed exercises provide comprehensive practice across all skills in this lesson. Problem types include:
+
+* Writing equations from graphed lines (6 graph images)
+* Checking whether a given ordered pair satisfies a linear equation by substitution
+* Finding another point on a line given two points on the line
+* Selecting the correct linear equation for a described situation and explaining the meaning of each variable
+* Writing an equation from a table of ordered pairs
+* Comparing shoe sizes across countries using a linear model
+* Analyzing a repayment schedule table to write and interpret a linear equation
+* Analyzing a puppy growth table to write and interpret a linear equation
+* Finding the intersection of two lines and interpreting its meaning
+* Identifying and explaining errors in writing an equation through two points
+* Discussing limitations of linear models for real-world prediction
+* Creating an original real-world situation to match a given graph
+
+## Review Notes
+
+* Example 4, Exercise 23 references a sign showing guitar lesson prices (image: `media/image1.png`). The price data should be reviewed for accuracy.
+* Exercises 27–29 reference graphed lines on coordinate planes (images: `media/image2.emf`, `media/image3.emf`, `media/image4.emf`).
+* Exercises 30–32 reference graphed lines on coordinate planes (images: `media/image5.png`, `media/image6.png`, `media/image7.png`).
+* Exercise 46 references a table of ordered pairs and its corresponding graph (images: `media/image8.png`, `media/image9.png`). The table data should be reviewed for accuracy.
+* Exercise 48 references a table showing amount owed over weeks (image: `media/image10.png`). The table data should be reviewed.
+* Exercise 49 references a table showing puppy weight by age in months (image: `media/image11.png`). The table data should be reviewed.
+* Exercise 51 references two students' work writing an equation (image: `media/image12.png`). The student work needs review.
+* Exercise 53 references a graph for creating a real-world situation (image: `media/image13.emf`). The graph needs review.

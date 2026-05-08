@@ -1,0 +1,121 @@
+# Lesson 7-6 — Probability and the Addition Rule
+
+Source: (Module 7, Lesson 7-6, Int2_0706_practice.docx)
+
+## Today's Goals
+
+* Determine whether events are mutually exclusive or not mutually exclusive.
+* Apply the addition rule for mutually exclusive events: [P(A \cup B) = P(A) + P(B)]
+* Apply the general addition rule for non-mutually exclusive events: [P(A \cup B) = P(A) + P(B) - P(A \cap B)]
+* Use Venn diagrams to organize outcomes and apply addition rules.
+
+## Vocabulary
+
+* **Mutually Exclusive** — Two events that cannot occur at the same time; they have no outcomes in common.
+* **Not Mutually Exclusive** — Two events that share at least one outcome.
+* **Addition Rule** — A rule for finding the probability of the union of two events.
+* **Overlap** — The intersection of two events; must be subtracted when events are not mutually exclusive.
+
+## Explore: When Events Cannot Happen Together
+
+Students consider situations where two events cannot both occur and situations where both can occur simultaneously.
+
+Inquiry Question:
+How do you correctly add probabilities when two events share some outcomes?
+
+## Learn: Probability and the Addition Rule
+
+### Key Concept: Mutually Exclusive Events
+
+Events A and B are mutually exclusive if [A \cap B = \emptyset].
+
+For mutually exclusive events:
+[P(A \cup B) = P(A) + P(B)]
+
+**Example:** Rolling a die — event A = rolling a 6, event B = rolling an even number.
+A = {6}, B = {2, 4, 6}
+These are not mutually exclusive because 6 is in both.
+If A = rolling a 6 and B = rolling a 3, these are mutually exclusive.
+
+### Key Concept: Not Mutually Exclusive Events
+
+For events that share outcomes:
+[P(A \cup B) = P(A) + P(B) - P(A \cap B)]
+
+**Example:** Drawing from a deck — event A = drawing a heart, event B = drawing a face card.
+A has 13 cards, B has 12 cards, intersection (heart face cards) has 3 cards.
+[P(A \cup B) = \frac{13}{52} + \frac{12}{52} - \frac{3}{52} = \frac{22}{52}]
+
+### Key Concept: Complementary Events
+
+[P(A') = 1 - P(A)]
+
+This is useful when it is easier to find the probability that an event does NOT occur.
+
+## Example 1 — Classify Events as Mutually Exclusive or Not
+
+### Step 1: Check for Common Outcomes
+
+**Problem 1:** Rolling a die — event of rolling a 6 and event of rolling an even number.
+These events are not mutually exclusive because 6 is both a 6 and an even number.
+
+**Problem 2:** T-shirt selection — blue or large.
+Check whether being blue and being large are mutually exclusive based on the table data.
+If there are blue large shirts, they are not mutually exclusive.
+
+## Examples 2 and 3 — Apply the Addition Rule
+
+### Step 1: Identify Mutually Exclusive or Not, Then Apply Appropriate Rule
+
+**Problem 3:** Student of month chooses from 9 gift certificates, 8 T-shirts, 6 water bottles, 5 gift cards. What is probability of choosing a T-shirt or water bottle?
+These are mutually exclusive (a student cannot choose both a T-shirt and water bottle as the single award).
+[P = \frac{8}{28} + \frac{6}{28} = \frac{14}{28} = \frac{1}{2}]
+
+**Problem 4:** Store envelopes — 10 with coupons, 8 with gift cards, 2 with $100. Probability of gift card or $100.
+Mutually exclusive.
+[P = \frac{8}{20} + \frac{2}{20} = \frac{10}{20} = \frac{1}{2}]
+
+**Problem 5:** Traffic light — 35% chance of green. Probability of yellow or red.
+Mutually exclusive to green (only one color at a time).
+[P = 1 - 0.35 = 0.65]
+
+**Problem 6:** Graduate students — 4 of 5 females are international, 2 of 3 males are international. Probability of male or international student.
+Not mutually exclusive — some males are international, some internationals are male.
+Use general addition rule:
+Total females = 5, total males = 3+2 = 5 (2 international males included)
+Total students = 10
+P(male) = 5/10 = 0.5, P(international) = (4+2)/10 = 0.6
+P(male and international) = 2/10 = 0.2
+P(male or international) = 0.5 + 0.6 - 0.2 = 0.9
+
+## Mixed Exercises
+
+Problems 7–30 provide practice with all skills:
+
+* Standard 52-card deck problems:
+  * P(4), P(red), P(face card), P(not face card)
+  * P(queen or heart), P(jack or spade), P(five or prime), P(ace or black)
+* Drawing ticket numbered 1–80 — probability of multiple of 4 or factor of 12.
+* Venn diagram of senior class extracurricular activities (athletics, drama, band) — find total students, athletics participants, P(athletics or drama), P(only drama and band).
+* Cindy's bowling: 30% strike, 45% spare, 25% neither — P(spare or strike).
+* Dario's cards: 145 baseball, 102 football, 48 basketball — P(baseball or football).
+* Scholarship essays: 3000 reviewed, 2865 correct length, 2577 minimum GPA, 2486 both — P(length or GPA).
+* Ruby's cat kittens: 2 orange female, 3 mixed female, 1 orange male, 2 mixed male — P(female or orange).
+* Sports complex: age and participants table — P(14 or basketball).
+* Dice game: find P(sum of 7), P(sum of even or not 2).
+* Parks and Recreation: drama and 8-year-old participants table.
+* Flower garden: bulb type and color table — P(yellow flower or dahlia).
+* Roll 3 dice — P(at least two dice ≤ 4).
+* Teo and Mason: red marble probability from bag of 4 red, 7 blue, 5 green, 2 purple.
+* Analyze mutually exclusive: square and rectangle, equilateral and equiangular triangle, complex number and natural number.
+* Explain why sum of probabilities of mutually exclusive events is not always 1.
+
+## Review Notes
+
+* ![](media/image1.png) — T-shirt colors and sizes table for Problem 2
+* ![](media/image2.png) — Senior class Venn diagram for Problem 16
+* ![](media/image3.png) — Sports complex age and participation table for Problem 21
+* ![](media/image4.png) — Dice game probability table for Problem 22
+* ![](media/image5.png) — Parks and Recreation table for Problem 23
+* ![](media/image6.png) — Flower garden bulb table for Problem 24
+* ![](media/image7.png) — Teo and Mason's marble probability comparison

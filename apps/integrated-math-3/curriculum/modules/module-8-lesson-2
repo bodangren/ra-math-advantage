@@ -1,154 +1,179 @@
 # Lesson 8-2 — Using Statistical Experiments
 
-Source: (Module 8, Lesson 8-2, pp. 379–382)
+Source: (Module 8, Lesson 8-2, Int3_0802_practice.docx)
 
 ## Today's Goals
 
-* Compare theoretical and experimental probabilities
-* Determine whether models are consistent with results from simulations of real-life situations
-
----
+* Distinguish between theoretical and experimental probability.
+* Design and run simulations to estimate probabilities.
+* Evaluate simulations to test whether real-world results match expected probabilities.
 
 ## Vocabulary
 
-* theoretical probability
-* experimental probability
-* probability model
-* simulation
+* **Theoretical Probability** — The probability based on mathematical reasoning about equally likely outcomes.
+* **Experimental Probability** — The probability based on the results of an experiment or simulation.
+* **Simulation** — A model used to replicate a real-world situation to estimate probabilities.
+* **Trial** — A single repetition of a simulation.
 
----
+## Explore: How Do Predictions Compare to Actual Results?
 
-## Explore: Fair Decisions
+Inquiry Question:
+When you perform an experiment, will the experimental probability always equal the theoretical probability? Why or why not?
 
-Use a real-world situation to complete the explore.
+## Learn: Theoretical vs. Experimental Probability
 
-**Inquiry Question:**
-How can you use probability to make a fair decision?
+### Key Concept: Theoretical Probability
 
----
+For equally likely outcomes, theoretical probability is calculated as:
 
-## Learn: Theoretical and Experimental Probability
+[P(event) = number of favorable outcomes / total number of possible outcomes]
 
-* **theoretical probability** is what is expected to happen
-* **experimental probability** is based on actual data from an experiment
+### Key Concept: Experimental Probability
 
-### Key Concept: Law of Large Numbers
+Experimental probability is calculated as:
 
-As sample size increases, variation decreases and experimental probability tends to approach theoretical probability.
+[P(event) = number of times event occurs / total number of trials]
 
----
+As the number of trials increases, experimental probability generally gets closer to theoretical probability.
 
-## Example 1 — Find Probabilities
+### Key Concept: Simulation Models
 
-A fair eight-sided die is rolled `200` times. The result `8` occurs `42` times.
+Common simulation tools include:
+* Spinners divided into sections representing probabilities
+* Coin tosses (for two equally likely outcomes)
+* Random number generators
+* Cards or marbles
+* Dice rolls
 
-* theoretical probability of rolling `8`: `1/8 = 12.5%`
-* experimental probability of rolling `8`: `42/200 = 21%`
+## Example 1 — Compare Theoretical and Experimental Probability
 
-## Talk About It
+### Step 1: Spinner Problem
 
-Explain how the phrase "The house always wins" relates to experimental and theoretical probability.
+A student spun a spinner with 4 equal sections 100 times and recorded the results.
 
----
+a. Find the theoretical probability of spinning Blue.
+[P(Blue) = 1/4 = 25%]
 
-## Explore: Simulations and Experiments
+b. Find the experimental probability of spinning Blue.
+The answer depends on the recorded data from the spinner results.
 
-Use the interactive tool to complete the explore.
+### Step 2: Coin Flip Problem
 
-**Inquiry Question:**
-How can simulations help you analyze the results of an experiment?
+A student flipped a coin 125 times and recorded the results.
 
----
+a. Find the theoretical probability of the coin landing on heads.
+[P(Heads) = 1/2 = 50%]
 
-## Learn: Simulations
+b. Find the experimental probability of the coin landing on heads.
+The answer depends on the recorded data from the 125 flips.
 
-A **probability model** represents a random event using its sample space and the probability of each outcome.
+### Step 3: Die Roll Problem
 
-A **simulation** imitates a process or situation so it can be studied when real experimentation is difficult or impractical.
+A fair 6-sided die is rolled 150 times.
 
-### Key Concept: Conducting a Simulation
+a. Find the theoretical probability of rolling a 3.
+[P(3) = 1/6 ≈ 16.7%]
 
-1. Determine each possible outcome and its theoretical probability
-2. Describe a probability model
-3. Define a trial and choose the number of trials
-4. Conduct the simulation
-5. Analyze the results
+b. Find the experimental probability of rolling a 3.
+The answer depends on the recorded data from the 150 rolls.
 
----
+## Example 2 — Design a Simulation
 
-## Example 2 — Design and Run a Simulation
+### Step 1: Internet Sales Simulation
 
-A water bottle company has a promotion where `1` out of every `8` bottle caps wins a free bottle.
+Tiana sells handmade earrings online. Last month she sold 60% of her inventory. Design a simulation to estimate the probability of selling inventory.
 
-### Step 1: Describe the probability model
+Model: Use a spinner with two sections — one representing sold (60%) and one representing not sold (40%). Spin the spinner to represent each day's potential sale, or use a random number generator where 0–5 represent sold and 6–9 represent not sold.
 
-* win: `1/8`
-* not win: `7/8`
+Run multiple trials to estimate the probability of selling inventory.
 
-### Step 2: Define the trial and number of trials
+### Step 2: Soccer Game Simulation
 
-Use a random number generator from `1` to `8`.
+Lamar coded a soccer game where a player makes a goal on 35% of attempts. Paola attempted 30 goals and only 4 were successful. Run a simulation to determine if there may be an error.
 
-* `1` represents winning
-* `2` through `8` represent not winning
+Model: Use a spinner with two sections — 35% for goal and 65% for miss. Simulate 30 attempts. Compare the simulation results to Paola's actual result (4 out of 30 ≈ 13.3%).
 
-Run `100` trials.
+If Paola's result is unusually low compared to the simulation, there may be an error in the game's programming.
 
-### Step 3: Conduct the simulation
+## Mixed Exercises
 
-Generate `100` random integers from `1` to `8`.
+6. Describe a way to simulate test results for someone guessing on a multiple-choice test with 4 choices per question.
+Use a random number generator where numbers 1–4 each represent one answer choice. Each "spin" or random number represents one guessed answer.
 
-### Step 4: Analyze the results
+7. Describe a spinner for an event with 2 outcomes where one has a probability of 60%.
+Divide the spinner into two sections: one section takes up 60% of the circle, the other takes up 40%. The spinner lands on each section with probability matching its area.
 
-Sample result:
+8. How should numbers be assigned to a random number generator for:
+   * Blue: 40% → assign 0–3
+   * Green: 20% → assign 4–5
+   * Red: 30% → assign 6–8
+   * Purple: 10% → assign 9
 
-If `1` appears `12` times, then the experimental probability of winning is `12%`.
+9. Hair color survey simulation: 50% brown hair, 40% blonde hair, 10% red hair.
+Use a spinner divided into three sections: 50% brown, 40% blonde, 10% red. Spin to simulate each randomly selected student's hair color.
 
----
+10. Marta designed a simulation using a fair coin and a spinner with six equal sections. Describe a situation she might be simulating.
+Possible: Simulating a game where flipping a coin determines whether to spin a die (if heads, spin die 1–6; if tails, automatic failure or another outcome).
 
-## Example 3 — Run and Evaluate a Simulation
+11. Travel agency cruise destinations: 40% Bahamas, 25% Mexico, 20% Alaska, 15% Greece. Compare spinner model vs. random number generator for conducting many trials.
+A random number generator would allow more trials in less time because spins can be generated rapidly, whereas a physical spinner requires manual operation for each trial.
 
-A health club sells tickets where `1` in `10` wins free training sessions. A customer buys `20` tickets in a row and wins nothing. Determine whether the complaint is legitimate.
+12. Earthquake probability simulation: 62% probability of a magnitude 6.7+ quake in the San Francisco Bay region before 2032.
+Use a random number generator where 0–61 represent a quake occurring and 62–99 represent no quake. Run trials to simulate whether the quake occurs in a given year, then aggregate results.
 
-### Step 1: Describe the model
+13. Sarah tracked car colors for 250 cars passing her house.
+a. Theoretical probability of a blue car: [P(Blue) = number of blue outcomes / total possible outcomes]
+b. Experimental probability of a blue car: [P(Blue) = number of blue cars counted / 250]
+c. Assumption: The theoretical probability assumes each car passing is equally likely to be any color, which may not reflect actual traffic patterns.
 
-* win: `1/10`
-* not win: `9/10`
+14. Describe an event for each simulation method:
+a. Coin toss: Simulates a 50/50 event such as flipping a coin or guessing a true/false question.
+b. Four-sided die: Simulates an event with four equally likely outcomes.
 
-### Step 2: Define the simulation
+15. Raffle simulation with three prizes. Fifteen of 42 participants are basketball team members. All three winners were team members.
+a. Simulation: Model the raffle by randomly drawing three winners from the 42 participants. Record whether all three are basketball team members. Repeat many trials.
+b. Run the simulation and record results.
+c. Based on results, determine whether the probability of all three winners being team members is unusually high.
 
-Use a spinner:
+16. Card colors simulation: Equal numbers of red, black, white, blue, green, yellow, orange, and purple cards (8 colors). Judy drew cards 500 times.
+a. Theoretical probability of any color: [P(any color) = 1/8 = 12.5%]
+b. Experimental probability of drawing green: [P(Green) = number of green draws / 500]
+c. Experimental probability of drawing yellow: [P(Yellow) = number of yellow draws / 500]
 
-* winning sector: `10%`
-* losing sector: `90%`
+17. Volleyball serve simulation: A player serves an ace 66% of the time in a set.
+a. Model: Use a spinner where 66% represents an ace and 34% represents not an ace.
+b. Run simulation and record results in a table.
+c. Compare simulation data to the 66% probability model.
 
-Run `100` trials.
+18. Class president election simulation: 2 candidates running. Which model is most appropriate?
+A random number generator or coin toss would be most appropriate for simulating a binary choice between two candidates.
 
-### Step 3: Conduct the simulation
+19. Jevon tosses a coin and finds experimental probability of heads is 25%. Should he be concerned about fairness?
+With only a small number of tosses, experimental probability can deviate significantly from the theoretical 50%. With 25%, Jevon should toss the coin many more times to determine if the coin is unfair.
 
-Spin `100` times and record wins.
+20. Is experimental probability of heads when a coin is tossed 15 times *sometimes*, *never*, or *always* equal to theoretical probability?
+*Sometimes* — With 15 tosses, the experimental probability may equal 50% but likely will not. With many more tosses, it tends toward 50% but rarely hits it exactly.
 
-### Step 4: Analyze and evaluate
+21. True or false: If theoretical probability of an event is 1, the experimental probability cannot be 0.
+*True* — If an event has theoretical probability of 1, it is certain to occur. In an experiment, it may not occur in a limited number of trials, but as trials increase, experimental probability approaches 1.
 
-Sample result:
+22. What should you consider when using simulation results to make a prediction?
+Consider the number of trials, whether the model accurately reflects the real-world situation, and whether the sample size is large enough.
 
-If a simulation gives `11` wins in `100` trials, the experimental probability is `11%`.
+23. Spinner with three equally likely outcomes A, B, and C. Can it predict the probability of outcome C?
+Yes — If the spinner has three equal sections, the theoretical probability of C is [P(C) = 1/3 ≈ 33.3%]. The simulation can predict this probability through repeated trials.
 
-To address the customer’s concern, run the simulation multiple times and check whether there are long losing streaks of at least `20`.
+24. Can a coin toss be used to simulate an experiment with two possible outcomes?
+*Always* — A coin toss has exactly two equally likely outcomes (heads or tails), making it ideal for simulating any two-outcome situation.
 
-If that happens frequently, then the customer’s experience is not unusual.
+## Review Notes
 
-Sample conclusion:
-
-If `36` out of `50` simulations contain a losing streak of at least `20`, the complaint is not legitimate because the outcome is not unlikely.
-
-## Think About It
-
-Why do you think multiple simulations were needed to evaluate this model?
-
----
-
-## Objective Alignment
-
-- `Compare theoretical and experimental probabilities`: Primary worked examples: Example 1.
-- `Determine whether models are consistent with results from simulations of real-life situations`: Primary worked examples: Examples 2-3.
+* Image references in this lesson:
+  * ![](media/image1.JPG) — Spinner diagram (Example 1, Question 1)
+  * ![](media/image2.JPG) — Coin flip results (Example 1, Question 2)
+  * ![](media/image3.JPG) — Dice or spinner diagram (Example 1, Question 3)
+  * ![](media/image4.png) — Travel agency spinner with central angles (Mixed Exercises, Question 11)
+  * ![](media/image5.JPG) — Sarah's car color tracking data (Mixed Exercises, Question 13)
+  * ![](media/image6.JPG) — Card color simulation diagram (Mixed Exercises, Question 16)
+  * ![](media/image7.png) — Spinner with three outcomes A, B, C (Mixed Exercises, Question 23)
+* This lesson focuses on designing and running simulations, comparing theoretical and experimental probability, and using simulation results to make predictions.

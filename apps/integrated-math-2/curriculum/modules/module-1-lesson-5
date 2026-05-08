@@ -1,0 +1,147 @@
+# Lesson 1-5 — Indirect Proof
+
+Source: (Module 1, Lesson 1-5, Int2_0105_practice.docx)
+
+## Today's Goals
+
+* Write indirect proofs of algebraic and geometric statements.
+* Apply the steps of indirect proof: assume the opposite, derive a contradiction, and conclude the original statement is true.
+* Use indirect reasoning in real-world contexts.
+
+## Vocabulary
+
+* **Indirect Proof** — A proof technique that assumes the opposite of what you want to prove, then shows that this assumption leads to a contradiction.
+* **Contradiction** — A statement that is false because it conflicts with another statement or known fact.
+
+## Explore: Proving by Contradiction
+
+Sometimes the most direct way to prove something is true is to assume it is false and show that this assumption leads to an impossible situation. This is the idea behind indirect proof.
+
+Inquiry Question:
+How does assuming the opposite of what you want to prove help you reach a conclusion?
+
+## Learn: Writing Indirect Proofs
+
+### Key Concept: Steps for Indirect Proof
+
+1. Identify the statement you want to prove.
+2. Assume the opposite (the negation of the statement).
+3. Use logical reasoning to derive a new statement from your assumption.
+4. Show that this new statement contradicts something you know to be true.
+5. Since the assumption leads to a contradiction, the original statement must be true.
+
+### Key Concept: Common Algebraic Applications
+
+For statements like "if x squared plus 8 is less than or equal to 12, then x is less than or equal to 2":
+1. Assume x > 2.
+2. Show this assumption makes x squared plus 8 > 12, which contradicts the given.
+3. Conclude x ≤ 2.
+
+### Key Concept: Common Geometric Applications
+
+For statements about triangles (e.g., "a triangle can have only one right angle"):
+1. Assume the triangle has two right angles.
+2. Show this would make the angle sum > 180 degrees.
+3. Conclude the original statement is true.
+
+## Example 1 — Indirect Proofs of Algebraic Statements
+
+Write indirect proofs for statements about inequalities and algebraic relationships.
+
+### Step 1: State the Original Statement
+
+Identify what you are trying to prove, for example: If x squared plus 8 ≤ 12, then x ≤ 2.
+
+### Step 2: Assume the Opposite
+
+Assume x > 2. This is the negation of x ≤ 2.
+
+### Step 3: Derive a Contradiction
+
+Use algebraic manipulation: if x > 2, then x squared > 4, so x squared plus 8 > 12. This contradicts the given that x squared plus 8 ≤ 12.
+
+### Step 4: Conclude
+
+Since the assumption leads to a contradiction, the original statement must be true.
+
+## Example 2 — Indirect Proofs in Real-World Contexts
+
+Use indirect reasoning to solve problems about purchases, sales, and quantities.
+
+### Step 1: Interpret the Situation
+
+Understand what you are trying to show, for example: proving at least one bracelet costs more than $20 when two bracelets together cost a little over $40.
+
+### Step 2: Set Up the Negation
+
+Assume both bracelets cost $20 or less. Then the total would be $40 or less.
+
+### Step 3: Show the Contradiction
+
+The problem states the total is a little more than $40. If both were $20 or less, the total could not exceed $40. Therefore at least one bracelet must cost more than $20.
+
+## Example 3 — Indirect Proofs with Integer Properties
+
+Prove statements about integers using indirect reasoning.
+
+### Step 1: Identify the Goal
+
+For example, prove that if the product xy is odd, then both x and y are odd integers.
+
+### Step 2: Assume the Opposite
+
+Assume at least one of x or y is even. Without loss of generality, suppose x is even.
+
+### Step 3: Derive the Contradiction
+
+If x is even, then x = 2k for some integer k. Then xy = (2k)y = 2(ky), which is even. But the given says xy is odd. Contradiction.
+
+### Step 4: Conclude
+
+Both x and y must be odd.
+
+## Example 4 — Indirect Proofs in Geometry
+
+Use indirect proof to establish geometric properties.
+
+### Step 1: State What to Prove
+
+For example, prove that in an isosceles triangle, neither base angle can be a right angle.
+
+### Step 2: Assume the Opposite
+
+Assume one base angle is a right angle. Then the triangle has a right angle and two equal sides.
+
+### Step 3: Show the Contradiction
+
+In an isosceles triangle with a right angle at the base, the other base angle would also be 90 degrees, making the sum 180 degrees plus the vertex angle, which is impossible in Euclidean geometry.
+
+### Step 4: Conclude
+
+Neither base angle can be a right angle.
+
+## Mixed Exercises
+
+Practice involves:
+
+* Writing indirect proofs for algebraic inequalities (e.g., if -4x + 2 < -10, then x > 3; if 5x + 12 < -33, then x < -9).
+* Indirect reasoning about purchases: if two bracelets cost a little more than $40 total, at least one costs more than $20.
+* Proving at least 81 large soft drinks were sold given 120 total soft drinks sold for more than $320 total, with small drinks at $2 and large at $3.
+* Proving that if xy is an odd integer, then both x and y are odd.
+* Proving that if x squared is even, then x squared is divisible by 4.
+* Proving that if x is an odd number, then x is not divisible by 4.
+* Proving that if xy is an even integer, then x or y is even.
+* Proving that in an isosceles triangle, neither base angle can be a right angle.
+* Proving a triangle can have only one right angle.
+* Proving that if angle C is 100 degrees, then angle A is not a right angle.
+* Proving that if angle D is not congruent to angle F, then DE is not equal to EF.
+* Indirect proof that if 1/b < 0, then b is negative.
+* Proving the Side-Angle Inequality Theorem: if one angle has greater measure than another, the side opposite the greater angle is longer.
+* Proving that any 14-letter word must use a repeated letter or have two consecutive letters in the alphabet.
+* Writing a statement that can be proved using indirect proof and including the proof.
+* Proving that the product of a nonzero rational number and an irrational number is irrational.
+
+## Review Notes
+
+* Two diagrams referenced: images showing geometric figures for indirect proof examples (media/image1.png, media/image2.png) contain figures that could not be fully described.
+* The worksheet contains 23 practice problems covering indirect proof techniques in algebraic, geometric, and real-world contexts.

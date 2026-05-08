@@ -1,0 +1,166 @@
+# Lesson 7-8 — Two-Way Frequency Tables
+
+Source: (Module 7, Lesson 7-8, Int2_0708_practice.docx)
+
+## Today's Goals
+
+* Create and interpret two-way frequency tables.
+* Construct and interpret relative frequency tables (by row, by column, and overall).
+* Find conditional probabilities from two-way tables.
+* Determine whether two events are independent using two-way table data.
+
+## Vocabulary
+
+* **Two-Way Frequency Table** — A table that displays the frequencies of two categorical variables.
+* **Joint Frequency** — The count in a cell where both row and column categories apply.
+* **Marginal Frequency** — The total in each row or column (excluding the cell itself).
+* **Relative Frequency** — A proportion or percentage; frequency divided by the total.
+* **Conditional Probability** — Probability of an event given that another condition is satisfied; found by restricting to a row or column.
+* **Independence** — Events A and B are independent if [P(A | B) = P(A)] or equivalently [P(B | A) = P(B)].
+
+## Explore: Organizing Data with Two Variables
+
+Students consider how two-way tables help organize and analyze data involving two categorical variables simultaneously.
+
+Inquiry Question:
+How can a table that organizes data by two different categories help you find probabilities that are not immediately obvious from the raw counts?
+
+## Learn: Two-Way Frequency Tables
+
+### Key Concept: Reading Two-Way Frequency Tables
+
+A two-way table has:
+* Rows representing one categorical variable
+* Columns representing another categorical variable
+* Marginals (row and column totals) along the edges
+* A grand total in the bottom-right corner
+
+**Example:** Survey of 100 people about vehicle type and gender:
+|  | SUV | Truck | Total |
+|--|-----|-------|-------|
+| Male | 15 | 35 | 50 |
+| Female | 40 | 10 | 50 |
+| Total | 55 | 45 | 100 |
+
+### Key Concept: Relative Frequency Tables
+
+Relative frequency can be calculated three ways:
+* **Overall:** Each cell divided by the grand total
+* **By Row:** Each cell divided by its row total (gives conditional distribution on the row variable)
+* **By Column:** Each cell divided by its column total (gives conditional distribution on the column variable)
+
+### Key Concept: Conditional Probability from Tables
+
+[P(A | B)] is found by restricting to the row or column representing B:
+[P(A | B) = \frac{\text{count in } A \cap B}{\text{count in } B}]
+
+**Example:** From vehicle survey, P(Female | SUV) = [40/55] — restrict to SUV column.
+
+### Key Concept: Testing Independence
+
+Events are independent if:
+[P(A | B) = P(A)] — the conditional probability equals the marginal probability.
+
+## Example 1 — Create Two-Way Frequency and Relative Frequency Tables
+
+### Step 1: Organize Data into Rows and Columns
+
+**Problem 1:** 100 people surveyed — 15 males and 40 females drive SUVs, 35 males and 10 females drive trucks.
+
+**a.** Two-way frequency table:
+|  | SUV | Truck | Total |
+|--|-----|-------|-------|
+| Male | 15 | 35 | 50 |
+| Female | 40 | 10 | 50 |
+| Total | 55 | 45 | 100 |
+
+**b.** Relative frequency table (overall):
+|  | SUV | Truck |
+|--|-----|-------|
+| Male | 0.15 | 0.35 |
+| Female | 0.40 | 0.10 |
+
+**Problem 2:** 100 students surveyed about social media — 25 males and 35 females have accounts, 25 males and 15 females do not.
+
+**a.** Two-way frequency table:
+|  | Has Account | No Account | Total |
+|--|-------------|------------|-------|
+| Male | 25 | 25 | 50 |
+| Female | 35 | 15 | 50 |
+| Total | 60 | 40 | 100 |
+
+**b.** Relative frequency table (overall):
+|  | Has Account | No Account |
+|--|-------------|------------|
+| Male | 0.25 | 0.25 |
+| Female | 0.35 | 0.15 |
+
+## Example 2 — College Student Survey with Independence Test
+
+### Step 1: Build Table and Calculate Relative Frequencies
+
+**Problem 3:** 2000 college students surveyed — in-state vs. out-of-state and visit home frequency.
+
+**a.** Two-way frequency table:
+|  | >4 visits | ≤4 visits | Total |
+|--|-----------|-----------|-------|
+| In-state | 928 | 332 | 1260 |
+| Out-of-state | 118 | 622 | 740 |
+| Total | 1046 | 954 | 2000 |
+
+**b.** Relative frequency table (rounded to nearest tenth percent):
+|  | >4 visits | ≤4 visits |
+|--|-----------|-----------|
+| In-state | 46.4% | 16.6% |
+| Out-of-state | 5.9% | 31.1% |
+
+**c.** Test independence: Is visiting home frequency independent of in-state/out-of-state status?
+Compare P(>4 visits | in-state) to P(>4 visits overall).
+P(>4 | in-state) = 928/1260 ≈ 0.7365
+P(>4 overall) = 1046/2000 = 0.523
+Since these are not equal, the events are **not independent**.
+
+## Example 3 — Movie Theater Ticket Analysis
+
+### Step 1: Complete Table and Find Conditional Probability
+
+**Problem 4:** 800 tickets sold — 578 adult, 222 student. Adult: 136 animated, 442 documentary. Student: 181 animated, 41 documentary.
+
+**a.** Two-way frequency table:
+|  | Animated | Documentary | Total |
+|--|----------|-------------|-------|
+| Adult | 136 | 442 | 578 |
+| Student | 181 | 41 | 222 |
+| Total | 317 | 483 | 800 |
+
+**b.** Relative frequency table (rounded to nearest tenth):
+|  | Animated | Documentary |
+|--|----------|-------------|
+| Adult | 17.0% | 55.3% |
+| Student | 22.6% | 5.1% |
+
+**c.** P(adult | documentary) = [442/483 ≈ 0.9152]
+
+## Mixed Exercises
+
+Problems 5–10 provide practice with all skills:
+
+* Two-way frequency table of homework completion vs. exam pass/fail — find number who completed homework and passed. Identify marginal vs. joint frequencies.
+* Relative frequency table of gender vs. movie preference (drama or comedy) — determine if gender is independent of movie type preference.
+* Technology survey: 72 shoppers, smart phone and tablet ownership — find P(tablet | smart phone). Justify reasoning.
+* Car and job ownership survey in two-way relative frequency table — verify P(job | car) = 46.7%.
+* Exit poll results (vote by gender and age) — find mutually exclusive events, P(male 46-60 votes A), P(female votes A), P(female age 18-30 votes B), identify demographics Candidate A and B should focus on.
+* Market research: 240 adults and students, 2-D vs. 3-D movie preference.
+  * Organize into two-way frequency table.
+  * Convert to relative frequency table, round to nearest tenth. Out of every 10 surveyed, about how many prefer 3-D?
+  * Find P(3-D | adult).
+  * Verify analyst claim: P(child | does not prefer 3-D) = 10.8%.
+  * Determine if 2-D/3-D preference is independent of age.
+
+## Review Notes
+
+* ![](media/image1.png) — Partial two-way table for Problem 4 (missing values to complete)
+* ![](media/image2.png) — Homework/exam two-way frequency table for Problem 5
+* ![](media/image3.png) — Movies/gender relative frequency table for Problem 6
+* ![](media/image4.png) — Technology ownership two-way table for Problem 7
+* ![](media/image5.png) — Exit poll results table for Problem 9

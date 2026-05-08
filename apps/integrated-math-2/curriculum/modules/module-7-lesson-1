@@ -1,0 +1,166 @@
+# Lesson 7-1 — Sample Spaces
+
+Source: (Module 7, Lesson 7-1, Int2_0701_practice.docx)
+
+## Today's Goals
+
+* Define and describe the sample space for an experiment.
+* Use organized lists, tables, and tree diagrams to represent sample spaces.
+* Classify sample spaces as finite or infinite, and identify infinite sample spaces as discrete or continuous.
+* Apply the Fundamental Counting Principle to find the total number of possible outcomes.
+
+## Vocabulary
+
+* **Sample Space** — The set of all possible outcomes of an experiment.
+* **Outcome** — A single possible result of an experiment.
+* **Event** — A subset of the sample space; a specific outcome or set of outcomes.
+* **Finite Sample Space** — A sample space with a countable number of outcomes.
+* **Infinite Sample Space** — A sample space with an uncountable number of outcomes.
+* **Discrete Sample Space** — An infinite sample space where outcomes can be listed (e.g., whole numbers).
+* **Continuous Sample Space** — An infinite sample space where any value in an interval is possible.
+* **Tree Diagram** — A visual representation of the possible outcomes of a multi-stage experiment.
+* **Fundamental Counting Principle** — If one event has [m] possible outcomes and a second event has [n] possible outcomes, the combined event has [m \times n] possible outcomes.
+
+## Explore: What Are All the Possible Outcomes?
+
+Students consider how to systematically list all outcomes of simple experiments and why organized counting methods matter for accuracy.
+
+Inquiry Question:
+How can you be sure you have listed all possible outcomes of an experiment without missing any?
+
+## Learn: Sample Spaces
+
+### Key Concept: Describing Sample Spaces
+
+A sample space can be represented in multiple ways:
+
+* **Organized List:** Write outcomes in a clear sequence.
+* **Table:** Arrange outcomes in rows and columns for multi-stage experiments.
+* **Tree Diagram:** Branch out to show all possible combinations of outcomes across stages.
+
+For a coin tossed once, the sample space is [S = {H, T}] or [S = {heads, tails}].
+
+For a spinner with five equal parts labeled A, B, C, D, E, the sample space is [S = {A, B, C, D, E}].
+
+### Key Concept: Classifying Sample Spaces
+
+* **Finite:** Can be counted completely. Example: drawing a tile from a bag of colored tiles.
+* **Infinite Discrete:** Can be listed but continues without end. Example: spinning a spinner until it lands on a specific number.
+* **Infinite Continuous:** Any value in a range is possible. Example: measuring the distance a fishing line travels.
+
+### Key Concept: The Fundamental Counting Principle
+
+For multi-stage experiments where each stage has a fixed number of choices:
+
+If a experiment has [k] stages and stage 1 has [n_1] outcomes, stage 2 has [n_2] outcomes, and so on, the total number of outcomes is:
+
+[P = n_1 \times n_2 \times \cdots \times n_k]
+
+Example: A bedroom can be decorated using 3 paint colors, 2 furniture sets, and 4 lamp styles. The total combinations are [3 \times 2 \times 4 = 24].
+
+## Example 1 — Define Sample Spaces
+
+Define the sample space and represent it using an organized list, table, or tree diagram for each experiment.
+
+### Step 1: Identify the Experiment and List Outcomes
+
+**Experiment 1:** A fair coin is tossed once.
+The sample space is [S = {heads, tails}] or [S = {H, T}].
+
+**Experiment 2:** A numbered spinner with six equal parts is spun once.
+The sample space is [S = {1, 2, 3, 4, 5, 6}].
+
+**Event — Landing on a prime number:** The primes from 1 to 6 are [2, 3, 5], so the event set is [E = {2, 3, 5}].
+
+**Experiment 3:** A regular dodecagon (12-sided polygon) is rolled once.
+The sample space is [S = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12}].
+
+**Event — Rolling an even number:** [E = {2, 4, 6, 8, 10, 12}].
+
+**Experiment 4:** A lettered spinner with five equal parts (A through E) is spun once.
+The sample space is [S = {A, B, C, D, E}].
+
+**Event — Landing on a vowel:** [E = {A, E}].
+
+## Example 2 — Represent Multi-Stage Sample Spaces
+
+Use tables and tree diagrams to represent the sample space for multi-stage experiments.
+
+### Step 1: Identify Stages and List Outcomes
+
+**Experiment:** A baseball team can wear blue or white shirts with blue or white pants for away games.
+
+Stage 1: Shirt color — [2] choices (blue, white)
+Stage 2: Pants color — [2] choices (blue, white)
+
+Use a table or tree diagram to show all four combinations:
+[{(blue shirt, blue pants), (blue shirt, white pants), (white shirt, blue pants), (white shirt, white pants)}]
+
+**Experiment:** A baby can drink apple juice or milk from a bottle or a toddler cup.
+
+Stage 1: Drink type — [2] choices (apple juice, milk)
+Stage 2: Container type — [2] choices (bottle, toddler cup)
+
+Total outcomes: [2 \times 2 = 4]
+
+## Example 3 — Classify Sample Spaces
+
+Classify each sample space as finite or infinite. If finite, write the sample space. If infinite, classify as discrete or continuous.
+
+### Step 1: Determine if the Number of Outcomes is Countable
+
+**Problem 7:** A color tile is drawn from a cup containing 1 yellow, 2 blue, 3 green, and 4 red tiles.
+This is finite. The sample space is [S = {yellow, blue, green, red}] with [1 + 2 + 3 + 4 = 10] total tiles.
+
+**Problem 8:** A numbered spinner with eight equal parts is spun until it lands on 2.
+This is infinite discrete — theoretically the spinner could take an unbounded number of spins to land on 2.
+
+**Problem 9:** An angler casts a fishing line and its distance is recorded in centimeters.
+This is infinite continuous — any positive real number is possible for the distance.
+
+**Problem 10:** A letter is randomly chosen from the alphabet.
+This is finite. The sample space has [26] outcomes.
+
+## Example 4 — Apply the Fundamental Counting Principle
+
+Find the number of possible outcomes for each situation using the Fundamental Counting Principle.
+
+### Step 1: Identify Each Stage and Its Options
+
+**Problem 11:** A video game lets you decorate a bedroom with one choice from each category:
+[The total = n_1 \times n_2 \times n_3 \times \cdots]
+
+**Problem 12:** A cafeteria meal includes one choice from each category:
+[Multiply the number of options at each stage.]
+
+**Problem 13:** A patio set includes 4 stone types, 3 edging types, 5 dining sets, and 6 grills.
+[4 \times 3 \times 5 \times 6 = 360] different patio sets.
+
+**Problem 14:** Auditions for 6 roles with 5, 3, 8, 4, 2, and 3 applicants respectively.
+[5 \times 3 \times 8 \times 4 \times 2 \times 3 = 2880] possible casts.
+
+## Mixed Exercises
+
+Problems 15–31 provide practice with all skills from the lesson, including:
+
+* A spinner spun 4 times — find total outcomes.
+* A 14-player basketball roster with specific position counts — find 5-player team combinations.
+* Vacation rental choices in two cities with different stay lengths and bedroom options.
+* Maurice's packing list with suits, shirts, and ties — draw a tree diagram.
+* Tala's school uniform with multiple clothing options — find total outfit combinations.
+* A sandwich shop with bread, meats, and cheeses — find total sandwich combinations.
+* License plates with three letters followed by three numbers (no O or 0).
+* Internship options across 3 months, 4 departments, and 3 companies (July constraint applied).
+* Bicycle lock combinations with and without repeated digits.
+* Rolling two fair dice — find outcomes with sum of 8 and outcomes with odd sum.
+* Justify when to use tree diagrams versus the Fundamental Counting Principle.
+* A multi-stage experiment with [n] outcomes per stage over [k] stages.
+* Drawing three objects from [n] objects without replacement.
+* Describe an asymmetrical two-stage experiment and sketch its tree diagram.
+* Explain why tables cannot represent all multi-stage experiments.
+* Analyze whether an outcome outside the sample space represents a failure.
+
+## Review Notes
+
+* Images referenced in the worksheet (spinner diagrams, packing list, school uniform outfit table, sandwich shop menu) could not be fully described without visual reference. Teachers should consult the original worksheet for exact diagrams and visual elements.
+* The worksheet contains 31 practice problems across four examples and mixed exercises.

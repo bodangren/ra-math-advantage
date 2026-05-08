@@ -1,177 +1,192 @@
 # Lesson 8-5 — Estimating Population Parameters
 
-Source: (Module 8, Lesson 8-5, pp. 403–407)
+Source: (Module 8, Lesson 8-5, Int3_0805_practice.docx)
 
 ## Today's Goals
 
-* Use sample data to infer a population mean by using confidence intervals
-* Use sample data to infer a population proportion by using confidence intervals
-
----
+* Calculate the maximum error of estimate for a confidence interval.
+* Construct and interpret confidence intervals for population means and population proportions.
+* Determine the effect of sample size on the maximum error.
 
 ## Vocabulary
 
-* inferential statistics
-* sampling error
-* standard error of the mean
-* confidence interval
-* maximum error of the estimate
-* population proportion
+* **Confidence Interval** — A range of values used to estimate a population parameter.
+* **Maximum Error of Estimate** — The margin of error that accounts for the desired confidence level.
+* **Population Mean (μ)** — The average of all values in a population.
+* **Sample Mean (x̄)** — The average of a sample from the population.
+* **Population Proportion (p)** — The proportion of a population that has a certain characteristic.
+* **Sample Proportion (p̂)** — The proportion of a sample that has a certain characteristic.
+* **Confidence Level** — The probability that a confidence interval contains the true population parameter.
 
----
+## Explore: How Accurate Are Our Estimates?
 
-## Learn: Estimating the Population Mean
+Inquiry Question:
+When we use sample data to estimate population parameters, how confident should we be in our estimate?
 
-Using sample data to make statements about a population is called **inferential statistics**.
+## Learn: Confidence Intervals and Maximum Error
 
-**Sampling error** is the random variation between samples of the same population.
+### Key Concept: Maximum Error for Means
 
-As sample size increases, sampling error decreases.
+For a sample mean [x̄] with sample standard deviation [s] and sample size [n], the maximum error of estimate at confidence level [c] is:
 
-The standard error of the mean is:
+[E = z_c · s / √n]
 
-`sigma_x = sigma / sqrt(n)`
+Where [z_c] is the z-value corresponding to the confidence level.
 
-The maximum error of the estimate is:
+### Key Concept: Confidence Interval for Means
 
-`E = z * s / sqrt(n)`
+A confidence interval for the population mean is:
 
-Common confidence levels:
+[x̄ - E < μ < x̄ + E]
 
-* `90%`: `z = 1.645`
-* `95%`: `z = 1.960`
-* `99%`: `z = 2.576`
+### Key Concept: Maximum Error for Proportions
 
-### Key Concept: Estimating the Population Mean
+For a sample proportion [p̂], the maximum error of estimate at confidence level [c] is:
 
-1. Find the sample mean `x-bar`
-2. Choose the confidence level
-3. Find the maximum error `E`
-4. Use the interval `(x-bar - E, x-bar + E)`
+[E = z_c · √(p̂(1 - p̂) / n)]
 
----
+### Key Concept: Confidence Interval for Proportions
 
-## Example 1 — Find the Maximum Error of the Estimate
+A confidence interval for the population proportion is:
 
-A poll of `315` chess club members gives:
+[p̂ - E < p < p̂ + E]
 
-* sample mean `= 4.6` hours per week
-* sample standard deviation `= 1.2`
+## Example 1 — Find Maximum Error for Means
 
-Use a `90%` confidence interval.
+### Step 1: Homework Problem
 
-`E = 1.645 * 1.2 / sqrt(315) ≈ 0.11`
+A poll of 225 randomly selected high school students showed they spent an average of 2.75 hours per night doing homework with a standard deviation of 1.5 hours. Use a 90% confidence interval to find the maximum error.
 
-So, with `90%` confidence, the population mean is within `0.11` hour of the sample mean.
+[E = z_c · s / √n]
+[z_0.90 ≈ 1.645]
+[E = 1.645 · 1.5 / √225]
+[E = 1.645 · 1.5 / 15]
+[E ≈ 0.165 hours]
 
----
+### Step 2: Athletes Problem
 
-## Example 2 — Estimate a Population Mean
+A poll of 350 randomly selected athletes showed they spent an average of 10.25 hours per week at practice with a standard deviation of 2.3 hours. Use a 95% confidence interval to find the maximum error.
 
-A survey of `50` students gives:
+[z_0.95 ≈ 1.96]
+[E = 1.96 · 2.3 / √350]
+[E ≈ 0.24 hours]
 
-* sample mean `= 8.61`
-* sample standard deviation `= 2.6`
+### Step 3: Pets Problem
 
-Use a `95%` confidence level.
+A poll of 470 randomly selected pet owners showed they have an average of 1.9 pets per household with a standard deviation of 0.5 pets. Use a 99% confidence interval to find the maximum error.
 
-### Step 1: Find `E`
+[z_0.99 ≈ 2.576]
+[E = 2.576 · 0.5 / √470]
+[E ≈ 0.059 pets]
 
-`E = 1.960 * 2.6 / sqrt(50) ≈ 0.72`
+## Example 2 — Construct Confidence Intervals for Means
 
-### Step 2: Form the interval
+### Step 1: Freight Package Problem
 
-* `8.61 - 0.72 = 7.89`
-* `8.61 + 0.72 = 9.33`
+A sample of 200 packages is weighed. The sample mean is 5.8 pounds, and the sample standard deviation is 2.7 pounds. Use a 90% confidence level to estimate the mean.
 
-Confidence interval:
+[E = 1.645 · 2.7 / √200 ≈ 0.314 pounds]
+[5.8 - 0.314 < μ < 5.8 + 0.314]
+[5.486 < μ < 6.114]
 
-`7.89 <= mu <= 9.33`
+### Step 2: Airline Passengers Problem
 
-Interpretation:
+A survey of 700 airline passengers rates the airline 1 to 10. Sample mean is 5.5, sample standard deviation is 1.5. Use a 99% confidence level.
 
-We are `95%` confident that the population mean lies between `7.89` and `9.33`.
+[E = 2.576 · 1.5 / √700 ≈ 0.146]
+[5.5 - 0.146 < μ < 5.5 + 0.146]
+[5.354 < μ < 5.646]
 
----
+### Step 3: Credit Hours Problem
 
-## Learn: Estimating the Population Proportion
+A sample of 650 college students is surveyed about credit hours. Sample mean is 14.75, sample standard deviation is 2.25. Use a 95% confidence level.
 
-The **population proportion** `p` is the proportion of the population with a given characteristic.
+[E = 1.96 · 2.25 / √650 ≈ 0.173]
+[14.75 - 0.173 < μ < 14.75 + 0.173]
+[14.577 < μ < 14.923]
 
-The sample estimate is:
+## Example 3 — Construct Confidence Intervals for Proportions
 
-`p-hat = x/n`
+### Step 1: Part-Time Job Problem
 
-and
+A survey of 120 students asked if they agree high school students should have part-time jobs. 93 respondents agreed. Use a 90% confidence level to estimate the population proportion for all 1532 students.
 
-`q-hat = 1 - p-hat`
+[p̂ = 93/120 = 0.775]
+[E = 1.645 · √(0.775(0.225) / 120) ≈ 0.063]
+[0.775 - 0.063 < p < 0.775 + 0.063]
+[0.712 < p < 0.838]
 
-The maximum error for a population proportion is:
+### Step 2: Bus Ridership Problem
 
-`E = z * sqrt((p-hat * q-hat) / n)`
+A survey of 215 students at Landry High School asked if they ride the bus. 46 respondents said yes. Use a 95% confidence level to estimate for all 1109 students.
 
-The confidence interval is:
+[p̂ = 46/215 ≈ 0.214]
+[E = 1.96 · √(0.214(0.786) / 215) ≈ 0.055]
+[0.214 - 0.055 < p < 0.214 + 0.055]
+[0.159 < p < 0.269]
 
-`p-hat ± E`
+### Step 3: Field Trip Problem
 
----
+A survey of 245 students asked if they agree with the principal's decision about packing lunches. 102 agreed. Use a 99% confidence level to estimate for all 973 students.
 
-## Apply Example 3 — Estimate a Population Proportion
+[p̂ = 102/245 ≈ 0.416]
+[E = 2.576 · √(0.416(0.584) / 245) ≈ 0.081]
+[0.416 - 0.081 < p < 0.416 + 0.081]
+[0.335 < p < 0.497]
 
-A survey of `150` students asks whether they agree with a lunch-period change. `72` say yes.
+## Example 4 — Identify Misleading Representations
 
-Use a `90%` confidence level.
+### Step 1: Menu Satisfaction Report
 
-### 1. What is the task?
+A report claims with 80% confidence that the proportion of people satisfied with the lunch menu is between 85% and 90%. The sample size was 15. Identify any misleading representation.
 
-Estimate the population proportion of students who agree.
+With a sample size of only 15, the margin of error would be very large. A small sample is unlikely to produce a reliable confidence interval. The claim of 80% confidence with such a small sample is misleading because the estimate has high variability.
 
-### 2. How will you approach the task?
+### Step 2: Parks Poll
 
-Find `p-hat` and `q-hat`, check sample size conditions, compute the maximum error, and form a confidence interval.
+A poll showed 120 citizens favor building parks. With 95% confidence, the proportion is claimed to be 51% with a margin of error of 3%. Sample size was 250. Identify misleading representation.
 
-### 3. What is your solution?
+If the claim is 51% with margin of error 3%, the interval is [48%, 54%]. Verify whether this interval is consistent with the sample size and confidence level. Also check whether the claim of exactly 51% is precise given the sample data.
 
-`p-hat = 72/150 = 0.48`
+## Mixed Exercises
 
-`q-hat = 0.52`
+12. Enrique assesses morning commute times for the first two weeks. For 10 commutes, [x̄ = 30.8 minutes] and [s ≈ 4.83 minutes].
+a. Find 90%, 95%, and 99% confidence intervals for the mean commute time.
+For 90%: [z ≈ 1.645], [E = 1.645 · 4.83 / √10 ≈ 2.52]. Interval: [28.3, 33.3] minutes.
+For 95%: [z ≈ 1.96], [E = 1.96 · 4.83 / √10 ≈ 3.00]. Interval: [27.8, 33.8] minutes.
+For 99%: [z ≈ 2.576], [E = 2.576 · 4.83 / √10 ≈ 3.94]. Interval: [26.9, 34.7] minutes.
 
-Check sample size:
+b. With new data over 20 workdays: [x̄ = 31.1 min] and [s ≈ 6.40 min]. Enrique is late twice. Which confidence level should he pick to avoid being late?
+If he wants to avoid being late, he should use the widest confidence interval (99%) to ensure he accounts for the maximum possible commute time. However, being late twice suggests his actual commute occasionally exceeds even the upper bound of the 99% interval.
 
-* `np-hat = 72`
-* `nq-hat = 78`
+13. Karen's kiln concern: She finds it acceptable to discard no more than 10% of fired pieces, but recently discarded 32 out of 205.
+[p̂ = 32/205 ≈ 0.156]
+[E = 1.96 · √(0.156(0.844) / 205) ≈ 0.049]
+[0.156 - 0.049 < p < 0.156 + 0.049]
+[0.107 < p < 0.205]
+Since the lower bound (10.7%) exceeds 10%, Karen should consider purchasing a new kiln.
 
-So the sample is large enough.
+14. Pharmaceutical medication test: 45 patients, average 5.3 days until symptoms cleared, standard deviation 1.1 days.
+a. Maximum error at 99% confidence: [E = 2.576 · 1.1 / √45 ≈ 0.42 days]. Interpretation: The estimate of the mean recovery time is accurate within 0.42 days.
+b. 99% confidence interval: [5.3 - 0.42 < μ < 5.3 + 0.42] → [4.88 < μ < 5.72 days].
+c. The company claims recovery can be as low as 4 days. Since 4 is below the interval [4.88, 5.72], this claim is not supported by the 99% confidence interval.
 
-The confidence interval is:
+15. How does sample size affect maximum error?
+Maximum error decreases as sample size increases because [E ∝ 1/√n]. Larger samples produce more precise estimates.
 
-`[0.413, 0.547]`
+16. Explain how to estimate the population proportion.
+1. Collect a random sample from the population.
+2. Calculate the sample proportion [p̂ = x/n] where x is the number of successes and n is the sample size.
+3. Choose a confidence level and find the corresponding z-value.
+4. Calculate the maximum error: [E = z_c · √(p̂(1 - p̂) / n)].
+5. Construct the confidence interval: [p̂ - E < p < p̂ + E].
 
-Interpretation:
+17. Survey students in your class about weekly television hours. Find the sample mean and sample standard deviation. Use a 90% confidence level to estimate the mean for all students.
+Collect the data, calculate [x̄] and [s], then use the 90% confidence interval formula to estimate the population mean.
 
-With `90%` confidence, between `41.3%` and `54.7%` of students agree with the plan.
+## Review Notes
 
-### 4. How can you know that your solution is reasonable?
-
-The sample proportion lies inside the confidence interval, and the sample size is large enough for the estimate to be appropriate.
-
----
-
-## Example 4 — Misleading Population Estimates
-
-A lobbying group claims that with `90%` confidence the proportion of people who support a ballot measure is `50%`, but could be as low as `40%` with a margin of error of `5%`.
-
-Given sample size:
-
-`n = 200`
-
-The misleading part is that the sample proportion is actually `0.45`, not `0.50`.
-
-So instead of honestly reporting `45% ± 5%`, the group reports the highest possible estimate to make support appear stronger than it is.
-
----
-
-## Objective Alignment
-
-- `Use sample data to infer a population mean by using confidence intervals`: Primary worked examples: Examples 1-2.
-- `Use sample data to infer a population proportion by using confidence intervals`: Primary worked examples: Apply Example 3 and Example 4.
+* Image references in this lesson:
+  * ![](media/image1.wmf) — Enrique commute time formula (Mixed Exercises, Question 12)
+  * ![](media/image2.wmf) — Enrique's second data set formula (Mixed Exercises, Question 12)
+* This lesson covers confidence intervals, maximum error of estimate, and how to estimate population parameters using sample statistics.

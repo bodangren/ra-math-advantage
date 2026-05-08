@@ -1,0 +1,71 @@
+# Lesson 5-4 — Correlation and Causation
+
+Source: (Module 5, Lesson 5-4, Int1_0504_practice.docx)
+
+## Today's Goals
+
+* Create scatter plots from bivariate data tables and identify the type of correlation shown.
+* Distinguish between correlation and causation in real-world contexts.
+* Explain reasoning for whether a relationship is merely correlated or causal, and identify possible lurking variables.
+
+## Vocabulary
+
+* **Correlation** — A statistical relationship between two variables, measured as positive, negative, or none, based on the pattern of a scatter plot.
+* **Causation** — A relationship in which a change in one variable directly produces a change in another variable.
+* **Scatter plot** — A graph that displays ordered pairs of bivariate data to reveal patterns or trends.
+* **Lurking variable** — An unmeasured factor that may influence the relationship between two variables.
+
+## Learn: Distinguishing Correlation and Causation
+
+When two variables change together, they may be correlated. However, correlation alone does not prove that one variable causes the other. To claim causation, there must be evidence of a direct cause-and-effect mechanism, such as a controlled experiment.
+
+### Key Concept: Correlation vs. Causation
+
+* A **positive correlation** means that as one variable increases, the other tends to increase.
+* A **negative correlation** means that as one variable increases, the other tends to decrease.
+* **Correlation does not imply causation** — two variables may be correlated because of a common underlying factor, coincidence, or a lurking variable.
+
+## Example 1 — Analyze Real-World Data with Scatter Plots
+
+For each bivariate data set, create a scatter plot and interpret the relationship.
+
+### Step 1: Graph the Ordered Pairs
+
+Plot the given ordered pairs with one quantity on the horizontal axis and the other on the vertical axis. For example:
+
+[
+(\text{pounds of frozen yogurt}, \text{pounds of sherbet})
+]
+
+or
+
+[
+(\text{minutes reading}, \text{minutes watching television})
+]
+
+### Step 2: Identify the Correlation
+
+Examine the overall trend of the plotted points to determine whether the scatter plot shows a positive, negative, or no correlation, and explain your reasoning based on the pattern.
+
+### Step 3: Distinguish Correlation from Causation
+
+Determine whether the data illustrate correlation only or causation. Consider what other factors (lurking variables) may influence the data, such as season, personal preference, or economic conditions.
+
+## Example 2 — Classify Relationships as Correlation or Causation
+
+Determine whether each described situation illustrates correlation (but not causation) or causation. Explain your reasoning by considering whether one variable directly causes the other, or whether a third factor or coincidence could explain the relationship.
+
+Representative situations include:
+
+* A negative correlation between the width of a person's palm and daily television time.
+* A positive association between shoe size and reading level.
+* A negative association between the price of cereal and the number of boxes sold.
+* An observed relationship between daily temperature and time spent outside.
+
+## Mixed Exercises
+
+The mixed exercises integrate the skills from Examples 1 and 2. Students create scatter plots from tabular data, classify correlations, distinguish correlation from causation, and construct arguments about why correlation does not imply causation. Some exercises also require analyzing a given scatter plot and critiquing a causal claim based on correlational data.
+
+## Review Notes
+
+* The worksheet contains embedded images and data tables (`media/image1.png` through `media/image5.png`) that could not be described in this extracted source. These include the data tables for Exercises 1, 2, 7, and 8, as well as the scatter plot referenced in Exercises 12 and 13. A human reviewer should verify the numerical values and the scatter plot details when building interactive practice items.

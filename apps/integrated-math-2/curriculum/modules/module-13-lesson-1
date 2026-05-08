@@ -1,0 +1,183 @@
+# Lesson 13-1 — Trigonometric Identities
+
+Source: (Module 13, Lesson 13-1, Int2_1301_practice.docx)
+
+## Today's Goals
+
+* Apply reciprocal and quotient identities to find trigonometric values
+* Simplify trigonometric expressions using fundamental identities
+* Verify identities by transforming one side to match the other
+* Evaluate trig expressions using identities given partial information
+* Simplify real-world expressions involving trigonometric identities
+
+## Vocabulary
+
+* **Reciprocal identity** — relates a trig function to the reciprocal of another: [csc theta = 1/sin theta], [sec theta = 1/cos theta], [cot theta = 1/tan theta]
+* **Quotient identity** — expresses tangent and cotangent as ratios of sine and cosine: [tan theta = sin theta / cos theta], [cot theta = cos theta / sin theta]
+* **Pythagorean identity** — an identity derived from the Pythagorean theorem: [sin^2 theta + cos^2 theta = 1]
+* **Identity** — an equation that is true for all values of the variable in its domain
+
+## Explore: Identities and the Unit Circle
+
+Trigonometric identities are equations that hold true for all values of the variable. Just as simplifying algebraic expressions makes computation easier, simplifying trigonometric expressions reveals underlying relationships between functions.
+
+Inquiry Question:
+How can you determine which reciprocal or quotient identity to apply when simplifying a given expression?
+
+## Learn: Fundamental Identities
+
+### Key Concept: Reciprocal Identities
+
+[csc theta = 1/sin theta]
+[sec theta = 1/cos theta]
+[cot theta = 1/tan theta]
+
+### Key Concept: Quotient Identities
+
+[tan theta = sin theta / cos theta]
+[cot theta = cos theta / sin theta]
+
+### Key Concept: Simplification Strategy
+
+1. Replace tan, cot, sec, csc with their sin/cos definitions
+2. Simplify the resulting fraction
+3. Look for expressions that equal 1 (e.g., [sin theta / sin theta = 1])
+
+## Example 1 — Find Exact Values Given One Trigonometric Ratio
+
+Given one trig ratio, find the exact values of other trig functions using identities and the Pythagorean theorem.
+
+### Step 1: Identify Known Information
+
+If [sin theta = 3/5] and [0 degrees < theta < 90 degrees] (Q1), find [cos theta].
+
+### Step 2: Apply the Pythagorean Identity
+
+[sin^2 theta + cos^2 theta = 1]
+
+[(3/5)^2 + cos^2 theta = 1]
+
+[9/25 + cos^2 theta = 1]
+
+### Step 3: Solve for cos theta
+
+[cos^2 theta = 1 - 9/25 = 16/25]
+
+Since Q1, [cos theta = 4/5]
+
+### Step 4: Find tan theta Using Quotient Identity
+
+[tan theta = sin theta / cos theta = (3/5) / (4/5) = 3/4]
+
+## Example 2 — Find Values in Different Quadrants
+
+Use quadrant information to determine the correct sign for trigonometric values.
+
+### Problem: If sin theta = -1/2 and [180 degrees < theta < 270 degrees] (Q3), find cos theta.
+
+### Step 1: Apply Pythagorean Identity
+
+[sin^2 theta + cos^2 theta = 1]
+
+[(-1/2)^2 + cos^2 theta = 1]
+
+[1/4 + cos^2 theta = 1]
+
+### Step 2: Solve for cos^2 theta
+
+[cos^2 theta = 3/4]
+
+### Step 3: Determine the Sign
+
+In Q3, cosine is negative. So [cos theta = -sqrt(3)/2].
+
+## Example 3 — Simplify Trigonometric Expressions
+
+Use reciprocal and quotient identities to simplify expressions.
+
+### Problem: Simplify sec theta * tan^2 theta + sec theta
+
+### Step 1: Factor Out Common Term
+
+[sec theta * tan^2 theta + sec theta = sec theta (tan^2 theta + 1)]
+
+### Step 2: Apply Pythagorean Identity
+
+Recall: [1 + tan^2 theta = sec^2 theta]
+
+[sec theta (tan^2 theta + 1) = sec theta * sec^2 theta = sec^3 theta]
+
+## Example 4 — Simplify Cofunction Expressions
+
+Simplify expressions involving complementary angle relationships.
+
+### Problem: Simplify cos(pi/2 - theta) * cot theta
+
+### Step 1: Apply Cofunction Identity
+
+[cos(pi/2 - theta) = sin theta]
+
+### Step 2: Substitute
+
+[sin theta * cot theta = sin theta * (cos theta / sin theta) = cos theta]
+
+## Example 5 — Simplify Real-World Wave Equations
+
+Apply trigonometric identities to simplify expressions that model physical phenomena.
+
+### Problem: WAVES — The path P of a wave is given by [P = (1 + sin^2 theta * sec^2 theta) / sec^2 theta - cos^2 theta]. Simplify this expression.
+
+### Step 1: Rewrite in Terms of sin and cos
+
+[sec^2 theta = 1/cos^2 theta]
+
+[P = (1 + sin^2 theta / cos^2 theta) / (1/cos^2 theta) - cos^2 theta]
+
+### Step 2: Simplify the Complex Fraction
+
+[P = (1 + sin^2 theta / cos^2 theta) * cos^2 theta - cos^2 theta]
+
+[P = cos^2 theta + sin^2 theta - cos^2 theta]
+
+### Step 3: Apply Pythagorean Identity
+
+[P = sin^2 theta]
+
+### Problem: LIGHT WAVE — The distance d is given by [d = sin^2 theta + tan^2 theta + cos^2 theta]. Simplify.
+
+### Step 1: Apply Identities
+
+Recall: [tan^2 theta = sin^2 theta / cos^2 theta]
+
+[d = sin^2 theta + sin^2 theta / cos^2 theta + cos^2 theta]
+
+### Step 2: Find Common Denominator
+
+[d = sin^2 theta + cos^2 theta + sin^2 theta / cos^2 theta]
+
+[d = 1 + sin^2 theta / cos^2 theta]
+
+### Step 3: Write as Single Fraction
+
+[d = (cos^2 theta + sin^2 theta) / cos^2 theta + sin^2 theta / cos^2 theta - sin^2 theta]
+
+This simplifies to [d = 1 + sin^2 theta (1/cos^2 theta - 1)]
+
+For specific values, this reduces further.
+
+## Mixed Exercises
+
+The mixed exercises provide practice with:
+
+* Finding exact trigonometric values given one ratio and quadrant information (Q2, Q3, Q4)
+* Simplifying expressions using reciprocal, quotient, and Pythagorean identities
+* Proving that expressions are not identities by finding counterexamples
+* Writing two expressions equivalent to a given trig expression
+* Using division to rewrite Pythagorean identities in different forms
+* Proving tan^2 theta + 1 = sec^2 theta and cot^2 theta + 1 = csc^2 theta
+
+## Review Notes
+
+* Image reference: ![](media/image1.png) — Problem 47 shows graphs for Jordan and Ebony's simplification comparison. Consult original worksheet for exact graph values.
+* The worksheet contains 48 practice problems across worked examples and mixed exercises.
+* Problems 42-48 involve proof and reasoning skills.

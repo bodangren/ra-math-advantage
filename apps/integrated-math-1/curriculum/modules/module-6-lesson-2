@@ -1,0 +1,125 @@
+# Lesson 6-2 — Solving Multi-Step Inequalities
+
+Source: (Module 6, Lesson 6-2, Int1_0602_practice.docx)
+
+## Today's Goals
+
+* Solve multi-step linear inequalities using the Distributive Property, combining like terms, and inverse operations
+* Translate real-world situations and verbal sentences into algebraic inequalities, then solve and interpret the results
+* Graph the solution set of an inequality on a number line, including solutions with fractions and decimals
+* Recognize and explain special solution sets such as "no solution" and "all real numbers"
+
+## Vocabulary
+
+* **inequality** — a mathematical statement that compares two expressions using [<], [>], [\le], [\ge], or [\ne] 
+* **solution set** — the set of all values that make an inequality true
+* **Addition Property of Inequality** — adding the same number to both sides of an inequality preserves the inequality relationship
+* **Division Property of Inequality** — dividing both sides by a positive number preserves the inequality; dividing by a negative number reverses the inequality symbol
+* **Distributive Property** — multiplying a sum by a number yields the same result as multiplying each addend by the number and adding the products
+
+## Learn: Solving Multi-Step Inequalities
+
+Solving multi-step inequalities follows the same general process as solving multi-step equations, with one critical difference: whenever you multiply or divide both sides by a negative number, you must reverse the inequality symbol.
+
+### Key Concept: Solving Process
+
+* Simplify each side of the inequality by applying the Distributive Property and combining like terms
+* Use addition or subtraction to isolate the variable term on one side
+* Use multiplication or division to isolate the variable; reverse the inequality symbol if multiplying or dividing by a negative number
+* Graph the solution on a number line using an open circle for [<] or [>] and a closed circle for [\le] or [\ge] 
+
+## Example 1 — Write and Solve Real-World Inequalities
+
+Translate contextual situations into inequalities, solve them, and interpret the solution in the original context. Problems involve fixed fees plus variable rates, sums with constraints, and tiered pricing structures.
+
+### Step 1: Define the Variable and Identify Quantities
+
+Read the situation to identify the unknown quantity, the fixed value, and the rate or relationship. For example, a one-time fee of 15 dollars plus 2 dollars per hour with a budget of 35 dollars:
+
+[
+15 + 2h \le 35
+]
+
+### Step 2: Solve the Inequality
+
+Use inverse operations to isolate the variable. Subtract the fixed fee from both sides, then divide by the rate:
+
+[
+2h \le 20 \quad \Rightarrow \quad h \le 10
+]
+
+### Step 3: Interpret the Solution
+
+State the answer in the context of the problem. The maximum number of hours is 10. Some problems ask for a generalized method when parameters change, such as a first [\frac{1}{a}] mile at one rate and each additional [\frac{1}{a}] mile at another rate.
+
+## Example 2 — Translate Verbal Sentences into Inequalities
+
+Convert English sentences into symbolic inequalities, solve them, and graph the solution on a number line. These problems test careful reading of phrases such as "greater than," "less than or equal to," "the sum of," and "the difference of."
+
+### Step 1: Translate Words to Symbols
+
+Identify the variable, the operations described, and the comparison. For example, "Five times a number minus one is greater than or equal to negative eleven" becomes:
+
+[
+5n - 1 \ge -11
+]
+
+Other common translations include:
+
+* "Twenty-one is greater than the sum of fifteen and two times a number" → [21 > 15 + 2n] 
+* "A number divided by eight minus thirteen is greater than negative six" → [\frac{n}{8} - 13 > -6] 
+* "The difference of three times a number and six is greater than or equal to the sum of fifteen and twenty-four times a number" → [3n - 6 \ge 15 + 24n] 
+
+### Step 2: Solve the Inequality
+
+Simplify and isolate the variable using inverse operations. Remember to reverse the inequality symbol when multiplying or dividing by a negative number.
+
+### Step 3: Graph on a Number Line
+
+Draw a number line. Use a closed circle for [\le] or [\ge] and an open circle for [<] or [>]. Shade in the direction of the solutions.
+
+## Example 3 — Solve and Graph Multi-Step Inequalities
+
+Solve algebraic inequalities that require the Distributive Property and combining like terms, then graph the solution on a number line.
+
+### Step 1: Simplify Each Side
+
+Apply the Distributive Property where needed. For example:
+
+[
+-3(7n + 3) < 6n \quad \Rightarrow \quad -21n - 9 < 6n
+]
+
+Another example:
+
+[
+21 \ge 3(a - 7) + 9 \quad \Rightarrow \quad 21 \ge 3a - 21 + 9 \quad \Rightarrow \quad 21 \ge 3a - 12
+]
+
+### Step 2: Isolate the Variable
+
+Collect variable terms on one side and constants on the other. When a variable term disappears, check whether the remaining statement is always true (all real numbers) or always false (no solution).
+
+### Step 3: Graph the Solution
+
+Graph the final solution on a number line. Watch for solutions that involve reversing the inequality symbol when dividing by a negative number.
+
+## Mixed Exercises
+
+The mixed exercises provide comprehensive practice across all skills from the lesson. The problem set includes:
+
+* Solving multi-step inequalities with the Distributive Property and combining like terms, then checking the solution
+* Inequalities involving fractions, such as [\frac{2x - 4}{6} \ge -5x + 2] 
+* Inequalities with decimal coefficients, such as [5.6z + 1.5 < 2.5z - 4.7] 
+* Using a graphing calculator to solve and verify inequalities
+* Real-world application problems involving geometric constraints (perimeter, area), budgeting, averaging, and dosage calculations
+* Conceptual reasoning problems asking students to construct arguments, analyze structure, explain when a solution set is empty or all real numbers, and create original inequalities with specified properties
+* Solving inequalities in terms of a parameter, such as [ax + 5 < 11] where [a \ne 0] 
+
+## Review Notes
+
+* Problem 38b references a medicine label image (`media/image1.png`) that was not extracted; a human reviewer should supply the label text or dosage table
+* Problem 43 references an image (`media/image2.png`) that was not extracted; the problem asks students to write and solve an inequality for an exam average
+* Problem 44 references an image (`media/image3.png`) that was not extracted; the problem involves a triangular carpet with constraints on side lengths
+* Problem 45 references a graph image (`media/image3.png`) showing a solution set on a number line; students are asked to write an inequality that produces that graph
+* Problem 50 references an image (`media/image4.png`) displaying four inequalities for a "Which One Doesn't Belong?" task; a human reviewer should supply the four inequality expressions

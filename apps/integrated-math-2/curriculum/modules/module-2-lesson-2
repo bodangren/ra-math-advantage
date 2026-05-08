@@ -1,0 +1,112 @@
+# Lesson 2-2 — Parallelograms
+
+Source: (Module 2, Lesson 2-2, Int2_0202_practice.docx)
+
+## Today's Goals
+
+* Use properties of parallelograms to find angle measures and side lengths.
+* Prove that opposite sides and opposite angles of a parallelogram are congruent.
+* Find the area and perimeter of parallelograms.
+* Write two-column proofs and paragraph proofs involving parallelogram theorems.
+
+## Vocabulary
+
+* **Parallelogram** — A quadrilateral with both pairs of opposite sides parallel.
+* **Opposite Sides** — Two sides of a parallelogram that do not share a vertex.
+* **Opposite Angles** — Two angles of a parallelogram that do not share a vertex.
+* **Consecutive Angles** — Two angles of a parallelogram that share a side.
+* **Diagonal** — A segment connecting two non-adjacent vertices of a polygon.
+
+## Explore: Properties of Parallelograms
+
+Students investigate the unique properties of parallelograms and how these properties relate to the shapes of gates, supports, and other real-world structures.
+
+Inquiry Question:
+What relationships exist between the sides, angles, and diagonals of a parallelogram?
+
+## Learn: Parallelograms
+
+### Key Concept: Properties of Parallelograms
+
+* Both pairs of opposite sides are parallel and congruent.
+* Both pairs of opposite angles are congruent.
+* Consecutive angles are supplementary.
+* The diagonals bisect each other.
+
+### Key Concept: Using Diagonal Properties
+
+The diagonals of a parallelogram bisect each other, meaning they cut each other into two equal segments. This property can be used to find unknown lengths.
+
+## Example 1 — Find Measures in a Parallelogram
+
+Use parallelogram properties to find unknown angle measures and side lengths.
+
+### Step 1: Use Opposite Angle Congruence
+
+In parallelogram PQRS, opposite angles are congruent, so m∠R = m∠P and m∠Q = m∠S. Use this to find missing angle measures.
+
+### Step 2: Use Parallel Side Congruence
+
+Opposite sides of a parallelogram are congruent. Use this to find the length of QR or QP when given a diagram with measurements.
+
+## Example 2 — Write Parallelogram Proofs
+
+Write two-column and paragraph proofs to prove statements about parallelograms using established theorems.
+
+### Step 1: Identify Given Information
+
+Note the parallelogram stated in the problem and any additional congruent segments or angles provided.
+
+### Step 2: Plan the Proof Steps
+
+Use properties of parallelograms (opposite sides parallel, opposite angles congruent, consecutive angles supplementary) to build a logical chain of reasoning.
+
+### Step 3: Write the Proof
+
+Present the proof in two-column format with statements and reasons, or as a coherent paragraph.
+
+## Example 3 — Find Unknown Values in Parallelograms
+
+Solve for variables in parallelogram diagrams using angle and side relationships.
+
+### Step 1: Set Up Equations
+
+Use the property that opposite angles are congruent and consecutive angles are supplementary to write equations involving the unknown variables.
+
+### Step 2: Solve the Equations
+
+Solve for each variable, then substitute to find angle measures or side lengths.
+
+## Example 4 — Area and Perimeter of Parallelograms
+
+Calculate the area and perimeter of parallelograms in real-world contexts like park design and cookie cutting.
+
+### Step 1: Find Perimeter
+
+Add all four side lengths. Since opposite sides are congruent, perimeter = 2(length + width).
+
+### Step 2: Find Area
+
+The area of a parallelogram is A = base × height, where the height is the perpendicular distance between the parallel sides.
+
+## Mixed Exercises
+
+The mixed exercises section provides practice with all skills from the lesson. Problems include:
+
+* Writing two-column proofs for Theorem 7.3 (opposite sides congruent), Theorem 7.7 (diagonal bisectors), Theorem 7.5 (consecutive angles supplementary), and Theorem 7.8 (diagonal triangles congruent).
+* Finding values x and y, angle measures m∠AFB, m∠DAC, m∠ACD, and m∠DAB in a parallelogram diagram.
+* Using the Distance Formula to verify whether diagonals of JKLM bisect each other, checking if diagonals are congruent, and using slopes to determine if consecutive sides are perpendicular.
+* Creating a Venn diagram showing the relationship between squares, rectangles, and parallelograms.
+* Finding the perimeter of parallelogram ABCD given side length expressions and solving for unknown variables.
+* Explaining why parallelograms are always quadrilaterals but quadrilaterals are sometimes parallelograms.
+* Summarizing all properties of sides, angles, and diagonals of a parallelogram.
+* Providing an example showing that parallelograms with congruent corresponding sides are not always congruent.
+* Finding m∠1 and m∠10 in a geometric figure and justifying the reasoning.
+
+## Review Notes
+
+* Images referenced in the worksheet (parallelogram diagrams for Examples 1-4, proofs, and various mixed exercise figures) could not be fully described without visual reference. Teachers should consult the original worksheet for exact diagrams and values.
+* The worksheet contains 31 practice problems across four examples and mixed exercises.
+* ![](media/image1.png) ![](media/image2.png) ![](media/image3.png) ![](media/image4.png) ![](media/image5.png) ![](media/image6.png) ![](media/image7.png) ![](media/image8.png) ![](media/image9.png) ![](media/image10.png) ![](media/image11.png) ![](media/image12.png) ![](media/image13.png) ![](media/image14.png) ![](media/image15.png) ![](media/image16.png) ![](media/image17.png) ![](media/image18.png) ![](media/image19.png)
+
+(End of file - total 134 lines)

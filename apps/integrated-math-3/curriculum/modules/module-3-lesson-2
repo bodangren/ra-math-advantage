@@ -1,293 +1,245 @@
 # Lesson 3-2 — Solving Polynomial Equations Algebraically
 
-Source: (Module 3, Lesson 3-2, pp. 123–126)
+Source: (Module 3, Lesson 3-2, Int3_0302_practice.docx)
 
 ## Today's Goals
 
-* Solve polynomial equations by factoring
-* Solve polynomial equations by writing them in quadratic form and factoring
-
----
+* Factor polynomial expressions completely, including sums and differences of cubes, polynomials with multiple variables, and expressions requiring grouping.
+* Solve polynomial equations using factoring techniques and the Zero Product Property.
+* Write expressions in quadratic form to solve higher-degree polynomial equations.
 
 ## Vocabulary
 
-* prime polynomial
-* quadratic form
+* **Factoring Completely** — Expressing a polynomial as a product of factors that cannot be factored further using real number coefficients.
+* **Sum of Cubes** — A polynomial of the form [a^3 + b^3] that factors as [(a + b)(a^2 - ab + b^2)].
+* **Difference of Cubes** — A polynomial of the form [a^3 - b^3] that factors as [(a - b)(a^2 + ab + b^2)].
+* **Quadratic Form** — An expression of degree [2n] that can be written as [au^2 + bu + c] where [u = x^n].
+* **Zero Product Property** — If [AB = 0], then either [A = 0] or [B = 0].
 
----
+## Explore: Why Factoring Matters
 
-## Learn: Solving Polynomial Equations by Factoring
+Factoring polynomial expressions reveals their structure and allows us to solve equations. When a polynomial equals zero, finding its factors helps identify the roots. This connects to the Fundamental Theorem of Algebra, which tells us that every polynomial of degree [n] has exactly [n] complex roots.
 
-Like quadratics, some higher-degree polynomials can be factored.
+Inquiry Question:
+How can recognizing patterns like the difference of squares or sum/difference of cubes help you factor more efficiently?
 
-A **prime polynomial** is a polynomial that cannot be written as a product of two polynomials with integral coefficients.
+## Learn: Factoring and Solving Polynomial Equations
 
-Like a prime real number, the only factors of a prime polynomial are `1` and itself.
+### Key Concept: Special Factoring Patterns
 
-### Key Concept: Sum and Difference of Cubes
+**Difference of Squares:** [a^2 - b^2 = (a + b)(a - b)]
 
-* `a^3 + b^3 = (a + b)(a^2 - ab + b^2)`
-* `a^3 - b^3 = (a - b)(a^2 + ab + b^2)`
+**Sum of Cubes:** [a^3 + b^3 = (a + b)(a^2 - ab + b^2)]
 
-### Concept Summary: Factoring Techniques
+**Difference of Cubes:** [a^3 - b^3 = (a - b)(a^2 + ab + b^2)]
 
-Always look for a **greatest common factor** first.
+**Perfect Square Trinomials:**
+* [a^2 + 2ab + b^2 = (a + b)^2]
+* [a^2 - 2ab + b^2 = (a - b)^2]
 
-Common techniques:
+### Key Concept: Solving Polynomial Equations
 
-* GCF
-* difference of two squares
-* sum of two cubes
-* difference of two cubes
-* perfect square trinomials
-* general trinomials
-* grouping
+1. Move all terms to one side so the equation equals zero.
+2. Factor the polynomial completely.
+3. Apply the Zero Product Property: set each factor equal to zero.
+4. Solve each resulting equation.
+5. Check all solutions in the original equation.
 
-## Think About It
+## Examples 1-3
 
-Mateo says you could use the sum of two cubes to factor `x^15 + y^15`. Is he correct? Why or why not?
+**Factor completely. If the polynomial is not factorable, write prime.**
 
-How can you check that an expression has been factored correctly?
+**1.** [8c^3 - 27d^3]
 
----
+**2.** [64x^4 + xy^3]
 
-## Example 1 — Factor Sums and Differences of Cubes
+**3.** [a^8 - a^2b^6]
 
-Factor each polynomial. If the polynomial cannot be factored, write prime.
+**4.** [x^6y^3 + y^9]
 
-### a. `8x^3 + 125y^12`
+**5.** [18x^6 + 5y^6]
 
-The GCF is `1`, and both terms are perfect cubes:
+**6.** [w^3 - 2y^3]
 
-* `8x^3 = (2x)^3`
-* `125y^12 = (5y^4)^3`
+**7.** [gx^2 - 3hx^2 - 6fy^2 - gy^2 + 6fx^2 + 3hy^2]
 
-So:
+**8.** [12ax^2 - 20cy^2 - 18bx^2 - 10ay^2 + 15by^2 + 24cx^2]
 
-`8x^3 + 125y^12`
+**9.** [a^3x^2 - 16a^3x + 64a^3 - b^3x^2 + 16b^3x - 64b^3]
 
-`= (2x)^3 + (5y^4)^3`
+**10.** [8x^5 - 25y^3 + 80x^4 - x^2y^3 + 200x^3 - 10xy^3]
 
-`= (2x + 5y^4)(4x^2 - 10xy^4 + 25y^8)`
+## Example 4
 
-### b. `54x^5 - 128x^2y^3`
+**Solve each equation.**
 
-Factor out the GCF:
+**11.** [a^3 - 9a^2 + 14a = 0]
 
-`54x^5 - 128x^2y^3 = 2x^2(27x^3 - 64y^3)`
+**12.** [x^3 = 3x^2]
 
-Now factor the difference of cubes:
+**13.** [t^4 - 3t^3 - 40t^2 = 0]
 
-`= 2x^2[(3x)^3 - (4y)^3]`
+**14.** [b^3 - 8b^2 + 16b = 0]
 
-`= 2x^2(3x - 4y)(9x^2 + 12xy + 16y^2)`
+![](media/image1.png)
 
----
+## Example 5
 
-## Example 2 — Factor by Grouping
+**15. FURNITURE** A modern table is constructed with four legs made of concrete cubes with cube-shaped notches.
 
-Factor:
+**a.** Define one or more variables and write an expression that represents the volume of one table leg.
 
-`14ax^2 - 16by + 20cy + 28bx^2 - 35cx^2 - 8ay`
+**b.** Marisol determined that she will use 12,636 cubic inches of concrete to construct the four table legs. If the sides of the notches are 40% of the sides of the legs, how long are the sides of the legs?
 
-Group terms:
+## Example 6
 
-`(14ax^2 + 28bx^2 - 35cx^2) + (-8ay - 16by + 20cy)`
+**Write each expression in quadratic form, if possible.**
 
-Factor each group:
+**16.** [x^4 + 12x^2 - 8]
 
-`= 7x^2(2a + 4b - 5c) - 4y(2a + 4b - 5c)`
+**17.** [-15x^4 + 18x^2 - 4]
 
-Factor the common binomial:
+**18.** [8x^6 + 6x^3 + 7]
 
-`= (7x^2 - 4y)(2a + 4b - 5c)`
+**19.** [5x^6 - 2x^2 + 8]
 
-## Think About It
+**20.** [9x^8 - 21x^4 + 12]
 
-When factoring by grouping, what must be true about the expressions inside parentheses after factoring out a GCF from each group?
+**21.** [16x^10 + 2x^5 + 6]
 
----
+## Example 7
 
-## Example 3 — Combine Cubes and Squares
+**Solve each equation.**
 
-Factor:
+**22.** [x^4 + 6x^2 + 5 = 0]
 
-`64x^6 - y^6`
+**23.** [x^4 - 3x^2 - 10 = 0]
 
-This can be viewed as a difference of squares first:
+**24.** [4x^4 - 14x^2 + 12 = 0]
 
-`64x^6 - y^6 = (8x^3)^2 - (y^3)^2`
+**25.** [9x^4 - 27x^2 + 20 = 0]
 
-`= (8x^3 + y^3)(8x^3 - y^3)`
+**26.** [4x^4 - 5x^2 - 6 = 0]
 
-Now factor each expression as cubes:
+**27.** [24x^4 + 14x^2 - 3 = 0]
 
-`= [(2x)^3 + y^3][(2x)^3 - y^3]`
+## Mixed Exercises
 
-`= (2x + y)(4x^2 - 2xy + y^2)(2x - y)(4x^2 + 2xy + y^2)`
+**Factor completely. If the polynomial is not factorable, write prime.**
 
----
+**28.** [x^4 - 625]
 
-## Example 4 — Solve a Polynomial Equation by Factoring
+**29.** [x^6 - 64]
 
-Solve:
+**30.** [x^5 - 16x]
 
-`4x^3 + 12x^2 - 9x - 27 = 0`
+**31.** [8x^5y^2 - 27x^2y^5]
 
-Group terms:
+**32.** [x^6 - 4x^4 - 8x^4 + 32x^2 + 16x^2 - 64]
 
-`(4x^3 + 12x^2) + (-9x - 27) = 0`
+**33.** [y^9 - y^6 - 2y^6 + 2y^3 + y^3 - 1]
 
-Factor each group:
+**34. DECOR** Each box in a set of decorative storage boxes is a cube.
 
-`4x^2(x + 3) - 9(x + 3) = 0`
+**a.** The sides of the smallest box are 30% of the length of the sides of the largest box. The volume of the largest box is 7784 cubic inches more than the volume of the smallest box. Define one or more variables, and write an equation that represents the situation.
 
-Factor common binomial:
+**b.** What are the lengths of the sides of the largest and smallest boxes?
 
-`(4x^2 - 9)(x + 3) = 0`
+**c.** Two of the other boxes have a total volume of 2457 cubic inches. The length of the sides of the smaller of these boxes is 75% of those of the larger box. Write and solve an equation to find the lengths of the sides of the boxes.
 
-Factor the difference of squares:
+![](media/image2.png)
 
-`(2x + 3)(2x - 3)(x + 3) = 0`
+**Solve each equation.**
 
-Use the Zero Product Property:
+**35.** [x^4 + x^2 - 90 = 0]
 
-* `2x + 3 = 0` -> `x = -3/2`
-* `2x - 3 = 0` -> `x = 3/2`
-* `x + 3 = 0` -> `x = -3`
+**36.** [x^4 - 16x^2 - 720 = 0]
 
-Solutions:
+**37.** [x^4 - 7x^2 - 44 = 0]
 
-* `-3`
-* `-3/2`
-* `3/2`
+**38.** [x^4 + 6x^2 - 91 = 0]
 
----
+**39.** [x^3 + 216 = 0]
 
-## Example 5 — Write and Solve a Polynomial Equation by Factoring
+**40.** [64x^3 + 1 = 0]
 
-The small cube has side length `x`, and the larger cube has side length `4x`. The volume of the figure is `1701 cm^3`.
+**41.** [8x^4 + 10x^2 - 3 = 0]
 
-Write and solve an equation.
+**42.** [6x^4 - 5x^2 - 4 = 0]
 
-`(4x)^3 - x^3 = 1701`
+**43.** [20x^4 - 53x^2 + 18 = 0]
 
-`64x^3 - x^3 = 1701`
+**44.** [18x^4 + 43x^2 - 5 = 0]
 
-`63x^3 = 1701`
+**45.** [8x^4 - 18x^2 + 4 = 0]
 
-`x^3 = 27`
+**46.** [3x^4 - 22x^2 - 45 = 0]
 
-`x^3 - 27 = 0`
+**47.** [x^6 + 7x^3 - 8 = 0]
 
-Factor the difference of cubes:
+**48.** [x^6 - 26x^3 - 27 = 0]
 
-`(x - 3)(x^2 + 3x + 9) = 0`
+**49.** [8x^6 + 999x^3 = 125]
 
-So:
+**50.** [4x^4 - 4x^2 - x^2 + 1 = 0]
 
-* `x = 3`
-* or the other two roots are complex
+**51.** [x^6 - 9x^4 - x^2 + 9 = 0]
 
-Since `3` is the only real solution, the cube side lengths are:
+**52.** [x^4 + 8x^2 + 15 = 0]
 
-* small cube: `3 cm`
-* large cube: `12 cm`
+**53. STRUCTURE** Consider the equation ![](media/image3.wmf).
 
----
+**a.** How are the exponents in the equation related?
 
-## Learn: Solving Polynomial Equations in Quadratic Form
+**b.** How could you define [u] so that you could rewrite the equation as a quadratic equation in terms of [u]? Write the quadratic equation.
 
-Some polynomials in `x` can be rewritten in **quadratic form**.
+**c.** Solve the original equation.
 
-### Key Concept: Quadratic Form
+**Factor completely. If the polynomial is not factorable, write prime.**
 
-An expression in quadratic form can be written as:
+**54.** [21x^3 - 18x^2y + 24xy^2]
 
-`au^2 + bu + c`
+**55.** [8j^3k - 4jk^3 - 7]
 
-for numbers `a`, `b`, and `c`, where `a != 0` and `u` is some expression in `x`.
+**56.** [a^2 + 7a - 18]
 
-## Think About It
+**57.** [2ak - 6a + k - 3]
 
-What do you notice about the variable terms in these expressions?
+**58.** [b^2 + 8b + 7]
 
-* `2x^10 + x^5 + 9`
-* `12x^6 - 20x^3 + 6`
-* `15x^2 + 9x^4 - 1`
+**59.** [z^2 - 8z - 10]
 
----
+**60.** [4f^2 - 64]
 
-## Example 6 — Write Expressions in Quadratic Form
+**61.** [d^2 - 12d + 36]
 
-Write each expression in quadratic form, if possible.
+**62.** [9x^2 + 25]
 
-### a. `4x^20 + 6x^10 + 15`
+**63.** [y^2 + 18y + 81]
 
-Let `u = 2x^10`.
+**64.** [7x^2 - 14x]
 
-Then:
+**65.** [19x^3 - 38x^2]
 
-`4x^20 + 6x^10 + 15 = (2x^10)^2 + 3(2x^10) + 15`
+**66.** [n^3 - 125]
 
-### b. `18x^4 + 180x^8 - 28`
+**67.** [m^4 - 1]
 
-Rewrite in standard form:
+**68. REASONING** A rectangular box has dimensions of [x] inches, [(x + 5)] inches, and [(x - 2)] inches. If the volume of the box is [30x] cubic inches. Find the dimensions of the box. Explain your reasoning.
 
-`180x^8 + 18x^4 - 28`
+**69. GEOMETRY** The combined volume of a cube and a cylinder is 1000 cubic inches. If the height of the cylinder is twice the radius and the side of the cube is four times the radius, find the radius of the cylinder to the nearest tenth of an inch.
 
-Let `u = 6x^4`.
+**70. ANALYZE** Find the solutions of [(a + 3)^4 - 2(a + 3)^2 - 8 = 0]. Show your work.
 
-Then:
+**71. WRITE** If the equation [ax^2 + bx + c = 0] has solutions [x = m] and [x = n], what are the solutions to [ax^4 + bx^2 + c = 0]. Explain your reasoning.
 
-`= 5(6x^4)^2 + 3(6x^4) - 28`
+**72. PERSEVERE** Factor [36x^{2n} + 12x^n + 1].
 
-### c. `9x^6 - 4x^2 - 12`
+**73. CREATE** The cubic form of an equation is [ax^3 + bx^2 + cx + d = 0]. Write an equation with degree 6 that can be written in cubic form.
 
-This cannot be written in quadratic form because `x^6 != (x^2)^2`.
+## Review Notes
 
----
-
-## Example 7 — Solve Equations in Quadratic Form
-
-Solve:
-
-`8x^4 + 10x^2 - 12 = 0`
-
-Rewrite:
-
-`2(2x^2)^2 + 5(2x^2) - 12 = 0`
-
-Let `u = 2x^2`.
-
-Then:
-
-`2u^2 + 5u - 12 = 0`
-
-Factor:
-
-`(2u - 3)(u + 4) = 0`
-
-So:
-
-* `u = 3/2`
-* `u = -4`
-
-Replace `u`:
-
-* `2x^2 = 3/2` -> `x^2 = 3/4` -> `x = +/- (sqrt(3))/2`
-* `2x^2 = -4` -> `x^2 = -2` -> `x = +/- i sqrt(2)`
-
-Solutions:
-
-* `sqrt(3)/2`
-* `-sqrt(3)/2`
-* `i sqrt(2)`
-* `-i sqrt(2)`
-
----
-
-## Objective Alignment
-
-- `Solve polynomial equations by factoring`: Primary worked examples: Examples 1-5.
-- `Solve polynomial equations by writing them in quadratic form and factoring`: Primary worked examples: Examples 6-7.
+* ![](media/image1.png) referenced in Example 4 (problems 11-14) — diagram could not be fully described without visual reference. Teachers should consult the original worksheet.
+* ![](media/image2.png) referenced in DECOR problem (problem 34) — diagram of storage boxes could not be fully described without visual reference. Teachers should consult the original worksheet.
+* ![](media/image3.wmf) referenced in STRUCTURE problem (problem 53) — equation image could not be fully described without visual reference. Teachers should consult the original worksheet.
+* The worksheet contains 73 practice problems across factoring, solving equations, and applied problems.

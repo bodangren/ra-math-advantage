@@ -1,0 +1,233 @@
+# Lesson 6-8 — Applying Similarity to Solid Figures
+
+Source: (Module 6, Lesson 6-8, Int2_0608_practice.docx)
+
+## Today's Goals
+
+* Find missing areas given similar figures.
+* Find scale factors from areas of similar figures.
+* Find volumes of similar solids.
+* Apply similarity to solve real-world problems involving surface areas and volumes.
+
+## Vocabulary
+
+* **Similar Figures** — Figures that have the same shape but not necessarily the same size; corresponding angles are congruent and corresponding sides are proportional.
+* **Scale Factor** — The ratio of corresponding lengths in similar figures.
+* **Similar Solids** — Three-dimensional figures that have the same shape; corresponding angles are congruent and corresponding lengths are proportional.
+* **Area Ratio** — For similar figures, the ratio of areas is the square of the scale factor.
+* **Volume Ratio** — For similar solids, the ratio of volumes is the cube of the scale factor.
+
+## Explore: Applying Similarity to Solid Figures
+
+Students explore how the relationships between similar figures extend to three dimensions. While linear dimensions scale by the scale factor k, areas scale by k^2 and volumes scale by k^3.
+
+Inquiry Question:
+If you double all the dimensions of a solid, by what factor does the surface area increase? By what factor does the volume increase?
+
+## Learn: Applying Similarity to Solid Figures
+
+### Key Concept: Scale Factor from Areas
+
+If two similar figures have areas A1 and A2, the scale factor is:
+[
+k = sqrt(A1/A2)
+]
+
+### Key Concept: Finding Missing Areas
+
+If two similar figures have scale factor k, then:
+[
+A2 = k^2 * A1
+]
+
+### Key Concept: Scale Factor from Volumes
+
+If two similar solids have volumes V1 and V2, the scale factor is:
+[
+k = cube_root(V1/V2)
+]
+
+### Key Concept: Volume of Similar Solids
+
+If the scale factor between similar solids is k, then:
+[
+V2 = k^3 * V1
+]
+
+### Key Concept: Surface Area of Similar Solids
+
+If the scale factor between similar solids is k, then:
+[
+SA2 = k^2 * SA1
+]
+
+## Example 1 — Find Missing Areas
+
+For each pair of similar figures, find the missing area. Round to the nearest tenth, if necessary.
+
+### Step 1: Find the Scale Factor
+
+Use the ratio of corresponding sides.
+
+### Step 2: Square the Scale Factor
+
+The area ratio is k^2.
+
+### Step 3: Find the Missing Area
+
+Multiply or divide the known area by k^2.
+
+If the scale factor from small to large is 2:1, and small area is 10 cm^2:
+[
+k = 2
+]
+[
+Area ratio = 4
+]
+[
+Large area = 10 * 4 = 40 cm^2
+]
+
+## Example 2 — Find Scale Factor and Missing Value
+
+For each pair of similar figures, use the given areas to find the scale factor. Then find the value of x to the nearest tenth.
+
+### Step 1: Find the Scale Factor
+
+[
+k = sqrt(A_small/A_large) or sqrt(A_large/A_small)
+]
+
+### Step 2: Use the Scale Factor to Find x
+
+Set up a proportion using corresponding sides.
+
+If areas are 25 cm^2 and 100 cm^2:
+[
+k = sqrt(25/100) = 1/2
+]
+[
+If large figure side = 8 cm, small figure side = 4 cm
+]
+
+## Example 3 — Real-World Similarity Problems
+
+ASSIGNMENTS: Matt has two similar rectangular posters. Larger poster length is 11 in, smaller is 6 in. Larger area is 93.5 in^2. Find smaller area.
+[
+k = 6/11
+]
+[
+Area ratio = (6/11)^2 = 36/121
+]
+[
+Small area = 93.5 * (36/121) = 27.8 in^2
+]
+
+ACCESSORIES: Carla has decorative pins shaped like equilateral triangles. Larger pin has side 3 times longer than smaller. Smaller area is 6.9 cm^2. Find larger area.
+[
+k = 3
+]
+[
+Area ratio = 9
+]
+[
+Large area = 6.9 * 9 = 62.1 cm^2
+]
+
+QUILT: A quilt design has one large rectangle surrounded by four congruent rectangles similar to the large rectangle. Large area is 45 in^2. Find area of each small rectangle.
+[
+Each small rectangle has area = 45/5 = 9 in^2
+]
+
+## Example 4 — Find Volumes of Similar Solids
+
+Each pair of solids is similar. Find the volume of each solid. Round to the nearest tenth, if necessary.
+
+### Step 1: Find the Scale Factor
+
+Use corresponding linear dimensions.
+
+### Step 2: Cube the Scale Factor for Volume
+
+Volume ratio = k^3
+
+### Step 3: Find the Volumes
+
+If k = 2, then volume ratio = 8.
+
+If two similar cylinders have scale factor 3:1 and small volume is 50 m^3:
+[
+Large volume = 50 * 27 = 1350 m^3
+]
+
+## Example 5 — Surface Area and Volume with Similar Solids
+
+Two similar cylinders have radii of 3 inches and 12 inches. If the height of the larger cylinder is 24 inches, what is the surface area of the smaller cylinder?
+
+### Step 1: Find the Scale Factor
+
+[
+k = 3/12 = 1/4
+]
+
+### Step 2: Find the Height of the Smaller Cylinder
+
+[
+h_small = 24 * (1/4) = 6 in
+]
+
+### Step 3: Find the Surface Area
+
+For the larger cylinder with r = 12 and h = 24:
+[
+SA_large = 2pi * 12 * 24 + 2pi * 144 = 576pi + 288pi = 864pi
+]
+[
+SA_small = SA_large * (1/4)^2 = 864pi/16 = 54pi = 169.6 in^2
+]
+
+Two similar rectangular prisms have surface areas 112 cm^2 and 1008 cm^2. If the length and width of the smaller prism base are 4 cm and 2 cm, find the perimeter of one base of the larger prism.
+
+### Step 1: Find the Scale Factor
+
+[
+k = sqrt(112/1008) = sqrt(1/9) = 1/3
+]
+
+### Step 2: Find the Perimeter of the Small Base
+
+[
+P_small = 2(4 + 2) = 12 cm
+]
+
+### Step 3: Find the Perimeter of the Large Base
+
+[
+P_large = 12 * 3 = 36 cm
+]
+
+## Mixed Exercises
+
+* Two similar prisms have heights 12 ft and 20 ft. Find the ratio of their volumes.
+* Two cubes have surface areas 81 in^2 and 144 in^2. Find the ratio of their volumes.
+* REGULARITY: A polygon has area 225 m^2. If the area is tripled, how does each side length change?
+* REASONING: Smith's Bakery is baking several large cakes similar to a small cake. If 50 pieces come from the small cake, how many from the large cake?
+* PROOF: Write paragraph proofs for Theorem 11.1 and Theorem 11.2 about surface area and volume ratios of similar prisms.
+* ATMOSPHERE: Earth's atmosphere is in a 31-km thick layer. Earth radius is 6378 km. Find ratio of atmosphere volume to Earth volume.
+* SCULPTURE: Two similar regular octagon sculptures. Larger side is 7 in. Smaller base area is 19.28 in^2. Find side length of smaller. Will larger fit in 15-in diameter box?
+* SPORTS: Baseball circumference 9 in. Softball circumference max 12 in. Find ratio of volumes.
+* STRUCTURE: Toy tennis balls in 3 sizes. Find volume in terms of pi for each size as diameter increases. What pattern?
+* Describe dimensions of a similar trapezoid with area 4 times the original.
+* FIND THE ERROR: Violeta and Gavin with a formula for area of enlarged circle. Who is correct?
+* PERSEVERE: If you want area of polygon to be x% of original, by what scale factor should you multiply each side?
+* CREATE: Draw a pair of similar figures with area ratio 4:1.
+* WRITE: Explain how to find area of an enlarged polygon given original area and scale factor.
+* PERSEVERE: Cylinder A : Cylinder B = 5 : 1. Cylinder A similar to Cylinder C (scale 2:1). Cylinder B similar to Cylinder D (scale 3:1). Find ratio of Cylinder C to Cylinder D.
+
+## Review Notes
+
+* ![](media/) — Image references for similar figure diagrams could not be fully captured.
+* Key formulas: If scale factor is k, then area ratio is k^2 and volume ratio is k^3.
+* To find scale factor from areas: k = sqrt(A1/A2).
+* To find scale factor from volumes: k = cube_root(V1/V2).
+* When working with similar solids, ALL linear dimensions scale by k, including height, radius, slant height, perimeter, etc.

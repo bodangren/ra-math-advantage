@@ -1,0 +1,131 @@
+# Lesson 3-1 — Dilations
+
+Source: (Module 3, Lesson 3-1, Int2_0301_practice.docx)
+
+## Today's Goals
+
+* Determine whether a dilation is an enlargement or reduction and find its scale factor.
+* Graph the image of a polygon after a dilation centered at the origin.
+* Find the perimeter of a dilated figure and compare it to the original.
+* Analyze how sequential dilations affect the original figure.
+
+## Vocabulary
+
+* **Dilation** — A transformation that produces an image that is the same shape as the original, but not necessarily the same size.
+* **Enlargement** — A dilation with a scale factor greater than 1, producing a larger image.
+* **Reduction** — A dilation with a scale factor between 0 and 1, producing a smaller image.
+* **Scale Factor** — The ratio of the distances (or lengths) of corresponding points of the image to the original.
+* **Invariant Point** — A point that remains fixed under a transformation.
+* **Center of Dilation** — The fixed point about which a dilation is performed.
+
+## Explore: Understanding Dilations
+
+Students explore how dilations transform figures by examining whether the image is larger or smaller than the original and how the scale factor determines the relationship between corresponding points.
+
+Inquiry Question:
+What does the scale factor tell you about whether a dilation produces an enlargement or a reduction?
+
+## Learn: Dilations
+
+### Key Concept: Scale Factor and Dilation Type
+
+* If [k > 1], the dilation is an **enlargement** — the image is larger than the original.
+* If [0 < k < 1], the dilation is a **reduction** — the image is smaller than the original.
+* If [k = 1], the image is congruent to the original (no change).
+* If [k < 0], the dilation also includes a rotation of 180° about the center.
+
+### Key Concept: Coordinates After a Dilation
+
+When a point [(x, y)] is dilated by a scale factor [k] centered at the origin, the image is [(kx, ky)].
+
+## Example 1 — Identify Enlargement or Reduction
+
+Determine whether each dilation is an enlargement or reduction, then find the scale factor.
+
+### Step 1: Compare Image to Original
+
+For each figure pair, compare corresponding lengths. If the image is larger, it is an enlargement. If smaller, it is a reduction.
+
+[
+scale\ factor = \frac{image\ length}{original\ length}
+]
+
+### Step 2: Classify the Dilation
+
+Based on the scale factor value, classify as enlargement ([k > 1]), reduction ([0 < k < 1]), or identity ([k = 1]).
+
+## Example 2 — Dilations with Scale Factors
+
+### Step 1: Apply the Scale Factor
+
+When a dilation has scale factor [k = \frac{1}{2}], the image dimensions are half the original dimensions. The perimeter of the image is also half the original perimeter.
+
+**BLUEPRINTS:** Ezra is redrawing a blueprint so that the image is [k = \frac{1}{2}] the size of the original. If the original perimeter is [P], the new perimeter is [\frac{1}{2}P].
+
+## Example 3 — Graph Dilated Triangles
+
+For each set of triangle vertices, graph the image after a dilation centered at the origin with the given scale factor.
+
+### Step 1: Multiply Coordinates by the Scale Factor
+
+Multiply each coordinate of the original vertices by the scale factor [k].
+
+*Problem 6:* [J(-8, 0)], [K(-4, 4)], [L(-2, 0)], [k = 0.5]
+Image vertices: [J'(-4, 0)], [K'(-2, 2)], [L'(-1, 0)]
+
+*Problem 7:* [S(0, 0)], [T(-4, 0)], [V(-8, -8)], [k = 1.25]
+Image vertices: [S'(0, 0)], [T'(-5, 0)], [V'(-10, -10)]
+
+### Step 2: Plot and Connect
+
+Plot the original triangle and its dilated image on the coordinate plane.
+
+## Example 4 — Find the Scale Factor
+
+### Step 1: Use Corresponding Points
+
+To find the scale factor, compare the lengths of corresponding sides or distances from the center of dilation to corresponding points.
+
+[
+k = \frac{image\ length}{original\ length}
+]
+
+## Mixed Exercises
+
+The mixed exercises section provides practice with all skills from the lesson. Problems include:
+
+* Determining enlargement vs. reduction for figures (Problems 1–4)
+* Blueprint scale factor and perimeter calculations (Problem 5)
+* Graphing dilated triangles and identifying coordinates (Problems 6–9, 13–16)
+* Finding scale factors from given triangle pairs (Problems 10–12, 17–19)
+* Finding coordinates after dilation with a given scale factor (Problem 20)
+* Using a ruler to draw dilations with a non-origin center (Problem 21)
+* Sequential dilations — finding the final image after two dilations and determining if there is a single direct transformation (Problem 22)
+* Analyzing the slope of lines connecting points to their dilated images (Problem 23)
+* Perimeter comparison after dilation (Problem 24)
+* Finding the equation of a dilated line (Problem 25)
+* Comparing preservation of parallelism and collinearity under transformations (Problem 26)
+* Determining when invariant points exist for various transformations (Problem 27)
+* Creating a dilation with a specific area relationship (Problem 28)
+* Using transformations to create congruent figures (Problem 29)
+* Analyzing statements about dilations and lines (Problem 30)
+
+## Review Notes
+
+* Images referenced in the worksheet (triangles and quadrilaterals for problems 1–4, 6–9, 10–12, 13–16, 19, 21, 22) could not be fully described without visual reference. Teachers should consult the original worksheet for exact diagrams and values.
+* ![](media/image1.png) — Figure for problems 1, 2
+* ![](media/image2.png) — Figure for problems 1, 2
+* ![](media/image3.png) — Figure for problems 3, 4
+* ![](media/image4.png) — Figure for problems 3, 4
+* ![](media/image5.png) — Blueprint figure for problem 5
+* ![](media/image6.png) — Triangle for problem 10
+* ![](media/image7.png) — Triangle for problem 11
+* ![](media/image8.png) — Logo figure for problem 12
+* ![](media/image9.png) — Triangle for problem 17
+* ![](media/image10.png) — Triangle for problem 18
+* ![](media/image11.png) — Figure N for problem 19
+* ![](media/image12.png) — Triangle ABC for problem 20
+* ![](media/image13.png) — Figure for problem 21
+* The worksheet contains 30 practice problems across four examples and mixed exercises.
+
+(End of file - total 152 lines)

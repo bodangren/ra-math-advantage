@@ -1,0 +1,142 @@
+# Lesson 6-3 — Solving Compound Inequalities
+
+Source: (Module 6, Lesson 6-3, Int1_0603_practice.docx)
+
+## Today's Goals
+
+* Solve compound inequalities involving "and" and "or" and express the solution algebraically.
+* Graph the solution set of a compound inequality on a number line.
+* Write compound inequalities that model real-world situations and interpret the solutions in context.
+* Translate number-line graphs into compound inequality notation.
+
+## Vocabulary
+
+* **compound inequality** — two or more inequalities joined by the word "and" or "or."
+* **intersection** — the solution set of a compound inequality with "and"; includes only values that satisfy both inequalities.
+* **union** — the solution set of a compound inequality with "or"; includes all values that satisfy at least one of the inequalities.
+* **bounded interval** — a solution set with finite upper and lower endpoints.
+* **unbounded interval** — a solution set that extends to infinity in at least one direction.
+
+## Learn: Solving Compound Inequalities
+
+A compound inequality can be written as two separate inequalities joined by "and" or "or." When the same expression is bounded between two values, it can often be solved as a single three-part inequality.
+
+### Key Concept: Compound Inequality Types
+
+* **"And" inequalities (intersection):** Both conditions must be true. The solution is the overlap of the two individual solution sets.
+[
+  a < x < b \quad \text{means} \quad x > a \; \text{and} \; x < b
+]
+* **"Or" inequalities (union):** Either condition may be true. The solution includes all values from both individual solution sets.
+[
+  x < a \; \text{or} \; x > b
+]
+* When solving a three-part inequality, perform the same operation on all three parts to isolate the variable.
+
+## Example 1 — Solve Compound Inequalities
+
+Solve compound inequalities involving "and" or "or." Graph the solution set on a number line.
+
+### Step 1: Identify the Structure
+
+Determine whether the inequality uses "and" or "or." For three-part inequalities such as [
+-5 < 3p + 7 \le 22
+], recognize it as an "and" statement.
+
+### Step 2: Solve Each Part
+
+For separate inequalities, solve each one independently using the Addition and Division Properties of Inequality.
+
+Representative "and" problem:
+[
+f - 6 < 5 \quad \text{and} \quad f - 4 \ge 2
+]
+
+Representative "or" problem:
+[
+y - 1 \ge 7 \quad \text{or} \quad y + 3 < -1
+]
+
+Representative three-part inequality:
+[
+-3 \le 7c + 4 < 18
+]
+
+### Step 3: Find the Combined Solution
+
+* For "and," the final solution is the intersection of the two intervals.
+* For "or," the final solution is the union of the two intervals.
+
+### Step 4: Graph the Solution
+
+Shade the number line to represent the final interval. Use open circles for [<] or [>] and closed circles for [\le] or [\ge].
+
+## Example 2 — Model Real-World Situations
+
+Define a variable, write a compound inequality, and solve word problems in context.
+
+### Step 1: Define the Variable
+
+Identify the unknown quantity and assign a variable.
+
+### Step 2: Write the Inequality
+
+Translate the verbal description into a compound inequality. For example, a combined height that must be less than 20 feet or greater than 35 feet translates to:
+[
+x + 8 < 20 \quad \text{or} \quad x + 8 > 35
+]
+
+### Step 3: Solve and Interpret
+
+Solve for the variable and interpret the solution within the constraints of the problem. Check that the answer is reasonable in context.
+
+## Example 3 — Write Inequalities from Graphs
+
+Given a number-line graph, write the compound inequality it represents.
+
+### Step 1: Identify Endpoints and Boundaries
+
+Read the endpoints shown on the graph. Note whether each endpoint is open or closed.
+
+### Step 2: Determine "And" or "Or"
+
+* If the shaded regions overlap or form a single continuous segment, use "and."
+* If the shaded regions are separated, use "or."
+
+### Step 3: Write the Inequality
+
+Express the graph algebraically. For example, a graph shaded between [-2] and [3] with closed circles is:
+[
+-2 \le x \le 3
+]
+
+A graph shaded to the left of [-1] or to the right of [4] is:
+[
+x < -1 \quad \text{or} \quad x > 4
+]
+
+## Mixed Exercises
+
+The mixed exercises integrate all skills from the lesson:
+
+* Solving and graphing compound inequalities with "and" and "or."
+* Solving three-part inequalities.
+* Translating verbal descriptions into compound inequalities and checking solutions.
+* Writing inequalities from number-line graphs.
+* Real-world applications involving temperature ranges, BMI, the Triangle Inequality, density, and budgeting.
+* Error analysis, reasoning, and construction of arguments about the structure of compound inequalities.
+
+Problems include multiple-choice analysis, finding errors in student work, and creating original compound inequalities that meet specified constraints.
+
+## Review Notes
+
+* Example 2, problem 17: Image of a store sign diagram (`image1.png`) is present but not described in the extracted text.
+* Examples 5 and 6, problems 19–26: Number-line graphs (`image2.png` through `image9.png`) are referenced but not described.
+* Mixed Exercise 35: Weather forecast number-line graph (`image10.png`) is referenced but not described.
+* Mixed Exercise 39: Triangle diagram (`image11.png`) is referenced but not described.
+* Mixed Exercise 41: Number-line graph (`image12.png`) is referenced but not described.
+* Mixed Exercise 42: Density table (`image13.png`) is referenced but not described.
+* Mixed Exercise 44: Number-line graph (`image14.png`) is referenced but not described.
+* Mixed Exercise 46: Error-analysis work (`image15.png`) is referenced but not described.
+* Mixed Exercises 47–49: Two number-line graphs (`image16.png` and `image17.png`) are referenced but not described.
+* Mixed Exercise 50: Triangular flower bed diagram (`image18.png`) is referenced but not described.

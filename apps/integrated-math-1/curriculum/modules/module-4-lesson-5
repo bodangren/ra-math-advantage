@@ -1,0 +1,159 @@
+# Lesson 4-5 — Arithmetic Sequences
+
+Source: (Module 4, Lesson 4-5, Int1_0405_practice.docx)
+
+## Today's Goals
+
+* Determine whether a given sequence is arithmetic and justify the reasoning using the common difference.
+* Find the common difference of an arithmetic sequence and extend it to find additional terms.
+* Write an explicit equation for the [ n ]th term of an arithmetic sequence and use it to find specific terms.
+* Model real-world situations with arithmetic sequences and use the resulting function to answer questions.
+
+## Vocabulary
+
+* **Arithmetic sequence** — A sequence in which the difference between consecutive terms is constant.
+* **Common difference** — The constant difference [ d ] between any two consecutive terms in an arithmetic sequence.
+* **Explicit formula** — A formula that defines the [ n ]th term of a sequence directly in terms of [ n ], written as [ a_n = a_1 + (n - 1)d ].
+
+## Learn: Identifying Arithmetic Sequences
+
+An arithmetic sequence is identified by a constant difference between consecutive terms. To test whether a sequence is arithmetic, subtract each term from the term that follows it. If all differences are equal, the sequence is arithmetic.
+
+### Key Concept: Arithmetic Sequence Test
+
+* Subtract consecutive terms: [ a_2 - a_1 ], [ a_3 - a_2 ], [ a_4 - a_3 ], and so on.
+* If all differences equal the same value [ d ], the sequence is arithmetic.
+* If the differences are not equal, the sequence is not arithmetic.
+
+## Example 1 — Determine Whether a Sequence Is Arithmetic
+
+Determine whether each given sequence is arithmetic. Justify the reasoning by examining the differences between consecutive terms.
+
+### Step 1: Compute Consecutive Differences
+
+For a sequence such as [ -3, 1, 5, 9, \ldots ], calculate:
+[
+1 - (-3) = 4, \quad 5 - 1 = 4, \quad 9 - 5 = 4
+]
+
+Since the difference is constant, the sequence is arithmetic with common difference [ d = 4 ].
+
+For a sequence such as [ \frac{1}{2}, \frac{3}{4}, \frac{5}{8}, \frac{7}{16}, \ldots ], calculate:
+[
+\frac{3}{4} - \frac{1}{2} = \frac{1}{4}, \quad \frac{5}{8} - \frac{3}{4} = -\frac{1}{8}
+]
+
+The differences are not equal, so the sequence is not arithmetic.
+
+### Step 2: State the Conclusion
+
+* If all differences are equal, state that the sequence is arithmetic and identify [ d ].
+* If the differences vary, state that the sequence is not arithmetic.
+
+## Example 2 — Find the Common Difference and Next Three Terms
+
+Find the common difference [ d ] of each arithmetic sequence, then use it to find the next three terms.
+
+### Step 1: Find the Common Difference
+
+Subtract any term from the term that follows it:
+[
+d = a_{n+1} - a_n
+]
+
+For example, given [ 0.02, 1.08, 2.14, 3.2, \ldots ]:
+[
+d = 1.08 - 0.02 = 1.06
+]
+
+### Step 2: Extend the Sequence
+
+Add [ d ] repeatedly to the last known term to generate the next three terms:
+[
+3.2 + 1.06 = 4.26, \quad 4.26 + 1.06 = 5.32, \quad 5.32 + 1.06 = 6.38
+]
+
+Variations in the worksheet include sequences with:
+* Integer terms (e.g., [ 6, 12, 18, 24, \ldots ])
+* Negative integer terms (e.g., [ 21, 19, 17, 15, \ldots ])
+* Fractional terms (e.g., [ -\frac{1}{2}, 0, \frac{1}{2}, 1, \ldots ])
+* Mixed-number terms (e.g., [ 2\frac{1}{3}, 2\frac{2}{3}, 3, 3\frac{1}{3}, \ldots ])
+* Decimal terms (e.g., [ 22, 19.5, 17, 14.5, \ldots ])
+
+## Example 3 — Write an Equation and Find the 7th Term
+
+Use a given arithmetic sequence to write an explicit equation for the [ n ]th term, then find the 7th term.
+
+### Step 1: Identify [ a_1 ] and [ d ] 
+
+From the sequence [ -3, -8, -13, -18, \ldots ]:
+[
+a_1 = -3, \quad d = -8 - (-3) = -5
+]
+
+### Step 2: Write the Explicit Formula
+
+Substitute into [ a_n = a_1 + (n - 1)d ]:
+[
+a_n = -3 + (n - 1)(-5) = -3 - 5n + 5 = 2 - 5n
+]
+
+### Step 3: Find the 7th Term
+
+Evaluate at [ n = 7 ]:
+[
+a_7 = 2 - 5(7) = 2 - 35 = -33
+]
+
+## Example 4 — Model Real-World Situations with Arithmetic Sequences
+
+Create a function to represent an arithmetic sequence modeling a real-world scenario, graph the function, and use it to answer a question.
+
+### Step 1: Define the Function
+
+Identify the first term [ a_1 ] (the initial value at [ n = 1 ]) and the common difference [ d ] (the constant rate of change). Write the function in the form:
+[
+f(n) = a_1 + (n - 1)d
+]
+
+For example, a 128-ounce cooler loses 4 ounces per cup handed out:
+[
+a_1 = 128, \quad d = -4, \quad f(n) = 128 + (n - 1)(-4) = 132 - 4n
+]
+
+### Step 2: Graph the Function
+
+Graph the discrete points [ (n, f(n)) ] for positive integer values of [ n ]. The points lie on a line with slope [ d ] and a [ y ]-intercept determined by the explicit form.
+
+### Step 3: Answer the Question
+
+Substitute the given value into the function and solve. For example, to find the water remaining after the 14th cup:
+[
+f(14) = 132 - 4(14) = 132 - 56 = 76
+]
+
+Scenarios in the worksheet include:
+* Water remaining in a cooler as cups are handed out
+* Theater seats per row increasing by a fixed amount
+* Postage cost increasing by a fixed amount per additional ounce
+* Video download cost increasing by a fixed amount per episode
+* Weekly push-up count increasing by a fixed amount each week
+
+## Mixed Exercises
+
+The mixed exercises provide comprehensive practice across all skills in this lesson. Problem types include:
+
+* Determining whether a sequence is arithmetic and justifying the argument (similar to Example 1)
+* Writing an explicit equation for the [ n ]th term of a given sequence and graphing the first five terms (similar to Examples 2 and 3)
+* Solving word problems by modeling with arithmetic sequences and using the explicit formula
+* Analyzing well-known sequences (such as the Fibonacci sequence) to determine whether they are arithmetic
+* Using the structure of an arithmetic sequence to find a specific term
+* Creating original arithmetic sequences with given properties
+* Determining a variable value that makes a set of expressions form an arithmetic sequence
+* Comparing two arithmetic sequences in a real-world context and using tables and graphs to find when two quantities are equal
+
+## Review Notes
+
+* Exercise 25 references a table showing postage costs for weights up to 5 ounces (image: `media/image1.png`). The table data should be reviewed to ensure the values are correctly incorporated into the curriculum.
+* Exercises 44–46 reference a table showing Sam's daily reading progress (image: `media/image2.png`). The table data should be reviewed for accuracy.
+* Exercise 46 references a coordinate plane for sketching graphs (image: `media/image3.png`). A blank coordinate plane should be provided for student use.

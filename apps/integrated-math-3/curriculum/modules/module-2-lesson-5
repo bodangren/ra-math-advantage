@@ -1,130 +1,182 @@
 # Lesson 2-5 — Powers of Binomials
 
-Source: (Module 2, Lesson 2-5, pp. 109–110)
+Source: (Module 2, Lesson 2-5, Int3_0205_practice.docx)
 
-## Today's Goal
+## Today's Goals
 
-* Expand powers of binomials by using Pascal's Triangle and the Binomial Theorem
-
----
+* Use Pascal's Triangle to expand powers of binomials.
+* Apply the Binomial Theorem to expand binomials.
+* Find specific terms in binomial expansions.
+* Apply binomial expansions to solve probability problems.
 
 ## Vocabulary
 
-* Pascal's triangle
+* **Pascal's Triangle** — A triangular array of numbers where each number is the sum of the two numbers directly above it.
+* **Binomial Theorem** — [(a + b)^n = \sum_{k=0}^{n} \binom{n}{k} a^{n-k} b^k] where [\binom{n}{k} = \frac{n!}{k!(n-k)!}]
+* **Binomial Coefficient** — [\binom{n}{r}] represents the number of ways to choose [r] items from [n] items.
+* **Combination** — A selection of items where order does not matter.
 
----
-
-## Explore: Expanding Binomials
-
-Use the interactive tool to complete the explore.
+## Explore: Pascal's Triangle and Binomial Expansion
 
 Inquiry Question:
-How can you use Pascal's triangle to write expansions of binomials?
-
----
+How does Pascal's Triangle relate to the coefficients in the expansion of powers of binomials?
 
 ## Learn: Powers of Binomials
 
-You can expand binomials by following patterns and rules.
+### Key Concept: Pascal's Triangle
 
-### Key Concept: Binomial Expansion
+Row 0: [1]
+Row 1: [1  1]
+Row 2: [1  2  1]
+Row 3: [1  3  3  1]
+Row 4: [1  4  6  4  1]
+Row 5: [1  5  10  10  5  1]
+Row 6: [1  6  15  20  15  6  1]
 
-In the binomial expansion of `(a + b)^n`:
-
-* there are `n + 1` terms
-* `n` is the exponent of `a` in the first term and of `b` in the last term
-* in successive terms, the exponent of `a` decreases by `1`
-* in successive terms, the exponent of `b` increases by `1`
-* the sum of the exponents in each term is `n`
-* the coefficients are symmetric
-
-Pascal's triangle is a triangle of numbers in which each row gives the coefficients of an expanded binomial `(a + b)^n`.
-
-* Each row begins and ends with `1`
-* Each interior number is the sum of the two numbers above it
-
-Instead of writing the triangle, you can use the Binomial Theorem.
+Each row gives the coefficients for the expansion of [(a + b)^n] where [n] is the row number starting with [n = 0].
 
 ### Key Concept: Binomial Theorem
 
-If `n` is a natural number, then:
+[(a + b)^n = a^n + \binom{n}{1}a^{n-1}b + \binom{n}{2}a^{n-2}b^2 + ... + \binom{n}{n-1}ab^{n-1} + b^n]
 
-`(a + b)^n = nC0 a^n b^0 + nC1 a^(n-1) b^1 + nC2 a^(n-2) b^2 + ... + nCn a^0 b^n`
+The [k]th term (starting with [k = 0]) is: [\binom{n}{k} a^{n-k} b^k]
 
-This can also be written using factorial notation for the coefficients.
+### Key Concept: Combinations
 
-## Think About It
+[\binom{n}{r} = \frac{n!}{r!(n-r)!}]
 
-Both `nC0` and `nCn` equal `1`. What does this mean for the terms of a binomial expansion? How does this relate to Pascal's triangle?
-
----
+This counts the number of ways to choose [r] items from [n] items without regard to order.
 
 ## Example 1 — Use Pascal's Triangle
 
-Use Pascal's triangle to expand `(x + y)^7`.
+Use Pascal's Triangle to expand each binomial.
 
-Relevant row of Pascal's triangle:
+**1.** [(x - y)^3]
+**2.** [(a + b)^4]
+**3.** [(g - h)^4]
+**4.** [(m + 1)^4]
+**5.** [(y - z)^6]
+**6.** [(d + 2)^8]
 
-`1  7  21  35  35  21  7  1`
+### Step 1: Expand each binomial
 
-So:
+**1.** [(x - y)^3]
+* Row 3 of Pascal's Triangle: [1, 3, 3, 1]
+* [= 1 \cdot x^3 + 3 \cdot x^2(-y) + 3 \cdot x(-y)^2 + 1 \cdot (-y)^3]
+* [= x^3 - 3x^2y + 3xy^2 - y^3]
 
-`(x + y)^7 = x^7 + 7x^6y + 21x^5y^2 + 35x^4y^3 + 35x^3y^4 + 21x^2y^5 + 7xy^6 + y^7`
+**2.** [(a + b)^4]
+* Row 4 of Pascal's Triangle: [1, 4, 6, 4, 1]
+* [= a^4 + 4a^3b + 6a^2b^2 + 4ab^3 + b^4]
 
----
+**3.** [(g - h)^4]
+* Row 4 of Pascal's Triangle: [1, 4, 6, 4, 1]
+* [= g^4 - 4g^3h + 6g^2h^2 - 4gh^3 + h^4]
 
-## Example 2 — Use the Binomial Theorem
+**4.** [(m + 1)^4]
+* Row 4 of Pascal's Triangle: [1, 4, 6, 4, 1]
+* [= m^4 + 4m^3 + 6m^2 + 4m + 1]
 
-In 2016, the Chicago Cubs played the Atlanta Braves `6` times, winning `3` games and losing `3` games. If the Cubs were equally likely to win or lose, find the probability of this outcome by expanding `(w + l)^6`.
+**5.** [(y - z)^6]
+* Row 6 of Pascal's Triangle: [1, 6, 15, 20, 15, 6, 1]
+* [= y^6 - 6y^5z + 15y^4z^2 - 20y^3z^3 + 15y^2z^4 - 6yz^5 + z^6]
 
-Expand:
+**6.** [(d + 2)^8]
+* Row 8 of Pascal's Triangle: [1, 8, 28, 56, 70, 56, 28, 8, 1]
+* [= d^8 + 8d^7(2) + 28d^6(2)^2 + 56d^5(2)^3 + 70d^4(2)^4 + 56d^3(2)^5 + 28d^2(2)^6 + 8d(2)^7 + (2)^8]
+* [= d^8 + 16d^7 + 112d^6 + 448d^5 + 1120d^4 + 1792d^3 + 1792d^2 + 1024d + 256]
 
-`(w + l)^6`
+## Example 2 — Probability Applications
 
-`= 6C0 w^6 + 6C1 w^5l + 6C2 w^4l^2 + 6C3 w^3l^3 + 6C4 w^2l^4 + 6C5 wl^5 + 6C6 l^6`
+**7. BAND** A school band went to 4 competitions and received a superior rating 2 times. If the band is equally likely to receive a superior rating as not, find the probability of this outcome by expanding [(s + n)^4].
 
-`= w^6 + 6w^5l + 15w^4l^2 + 20w^3l^3 + 15w^2l^4 + 6wl^5 + l^6`
+**8. BASKETBALL** Oliver shot 8 free throws, making 6 and missing 2. If equally likely to make or miss, find the probability by expanding [(m + n)^8].
 
-The sum of the coefficients is:
+### Step 1: Apply to probability
 
-`1 + 6 + 15 + 20 + 15 + 6 + 1 = 64`
+For [(s + n)^4 = s^4 + 4s^3n + 6s^2n^2 + 4sn^3 + n^4]:
+* The coefficient of [s^2n^2] term is [6].
+* Total outcomes: [2^4 = 16].
+* Probability: [\frac{6}{16} = \frac{3}{8} = 37.5\%]
 
-So there are `64` possible win-loss combinations.
+For [(m + n)^8]:
+* Coefficient of [m^6n^2] = [\binom{8}{6} = 28] (or equivalently [\binom{8}{2} = 28])
+* Total outcomes: [2^8 = 256]
+* Probability: [\frac{28}{256} = \frac{7}{64} ≈ 10.9\%]
 
-The term `20w^3l^3` represents the number of ways to get `3` wins and `3` losses.
+## Example 3 — Expand Binomials
 
-Therefore, the probability is:
+Expand each binomial.
 
-`20 / 64`
+**9.** [(3x + 4y)^5]
+**10.** [(2c - 2d)^7]
+**11.** [(8h - 3j)^4]
+**12.** [(4a + 3b)^6]
 
-which is about 31%.
+### Step 1: Apply the Binomial Theorem
 
-## Talk About It
+**9.** [(3x + 4y)^5]
+* Coefficients from row 5: [1, 5, 10, 10, 5, 1]
+* [= (3x)^5 + 5(3x)^4(4y) + 10(3x)^3(4y)^2 + 10(3x)^2(4y)^3 + 5(3x)(4y)^4 + (4y)^5]
+* [= 243x^5 + 1620x^4y + 4320x^3y^2 + 5760x^2y^3 + 3840xy^4 + 1024y^5]
 
-Describe a shortcut you could use to write rows of Pascal's triangle instead of adding to find every number in a row.
+**10.** [(2c - 2d)^7]
+* Coefficients from row 7: [1, 7, 21, 35, 35, 21, 7, 1]
+* [= (2c)^7 + 7(2c)^6(-2d) + 21(2c)^5(-2d)^2 + ...]
+* [= 128c^7 - 896c^6d + 2688c^5d^2 - 4480c^4d^3 + 4480c^3d^4 - 2688c^2d^5 + 896cd^6 - 128d^7]
 
----
+**11.** [(8h - 3j)^4]
+* Coefficients from row 4: [1, 4, 6, 4, 1]
+* [= (8h)^4 + 4(8h)^3(-3j) + 6(8h)^2(-3j)^2 + 4(8h)(-3j)^3 + (-3j)^4]
+* [= 4096h^4 - 6144h^3j + 3456h^2j^2 - 864hj^3 + 81j^4]
 
-## Example 3 — Coefficients Other Than 1
+**12.** [(4a + 3b)^6]
+* Coefficients from row 6: [1, 6, 15, 20, 15, 6, 1]
+* [= (4a)^6 + 6(4a)^5(3b) + 15(4a)^4(3b)^2 + 20(4a)^3(3b)^3 + 15(4a)^2(3b)^4 + 6(4a)(3b)^5 + (3b)^6]
+* [= 4096a^6 + 36864a^5b + 124416a^4b^2 + 207360a^3b^3 + 172800a^2b^4 + 58320ab^5 + 729b^6]
 
-Expand:
+## Mixed Exercises
 
-`(2c - 6d)^4`
+Expand each binomial.
 
-Use the Binomial Theorem:
+**13.** [\left(x + \frac{1}{2}\right)^5]
+**14.** [\left(x - \frac{1}{3}\right)^4]
+**15.** [\left(2b + \frac{1}{4}\right)^5]
+**16.** [\left(3c + \frac{1}{3}d\right)^3]
 
-`= 4C0(2c)^4 + 4C1(2c)^3(-6d) + 4C2(2c)^2(-6d)^2 + 4C3(2c)(-6d)^3 + 4C4(-6d)^4`
+**17. STRUCTURE** Out of 12 frames, Vince bowled 6 strikes. If equally likely to bowl a strike as not, find the probability. Round to the nearest percent.
 
-`= 16c^4 + 4(8c^3)(-6d) + 6(4c^2)(36d^2) + 4(2c)(-216d^3) + 1296d^4`
+**18. REGULARITY** A group of 10 choir members are selected at random. If equal boys and girls, find probability of 7 boys and 3 girls. Round to the nearest percent.
 
-`= 16c^4 - 192c^3d + 864c^2d^2 - 1728cd^3 + 1296d^4`
+**19. USE A MODEL** A robotic welder produces 50% correct circuit boards. Find probability that 5 of 7 chosen boards are correct.
 
-### Study Tip
+**20. USE A MODEL** Diego flips a fair coin 12 times. What is probability of 3 tails? 5 tails? 9 tails?
 
-When the coefficients in the binomial are not `1`, the coefficients in the expansion are no longer symmetric, so the Binomial Theorem is often easier to use.
+**21. REASONING** A test has 10 true-false questions. Matthew guesses on every question. What is probability he gets 8 or more correct?
 
----
+**22. REGULARITY** Use Pascal's Triangle to find the fourth term in [(2x + 7)^6]. Why is it the same as the fourth term in [(7 + 2x)^6]?
 
-## Objective Alignment
+**23. USE A SOURCE** Research the number of Supreme Court judges. For most rulings, a majority is needed. How many combinations of votes are possible for a majority?
 
-- `Expand powers of binomials by using Pascal's Triangle and the Binomial Theorem`: Primary worked examples: Examples 1-3.
+**24. STRUCTURE** Find the term in [(a + b)^12] where the exponent of [a] is 5.
+
+**25. PRECISION** Use the first four terms of [(1 + 0.02)^10] to approximate [1.02^10]. Evaluate using a calculator and compare.
+
+**26. PERSEVERE** Find the sixth term of [\left(\sqrt{a} + \sqrt{b}\right)^{12}].
+
+**27. ANALYZE** Explain how the terms of [(x + y)^n] and [(x - y)^n] are the same and how they are different.
+
+**28. REGULARITY** Each row of Pascal's triangle is like a palindrome. Explain why this is the case.
+
+**29. CREATE** Write a power of a binomial for which the second term of the expansion is [6x^4y].
+
+**30. WRITE** Explain how to write out the terms of Pascal's triangle.
+
+## Review Notes
+
+* Pascal's Triangle coefficients can also be calculated using the combination formula: [\binom{n}{k} = \frac{n!}{k!(n-k)!}]
+* The sum of coefficients in [(a + b)^n] is [2^n] (by substituting [a = 1, b = 1]).
+* For [(x + y)^n], the signs in the expansion of [(x - y)^n] alternate: positive, negative, positive...
+* The [r]th term (1-indexed) of [(a + b)^n] is: [\binom{n}{r-1} a^{n-(r-1)} b^{r-1}]
+* In probability, if an event has probability [p] of success and [q = 1-p] of failure, the probability of exactly [k] successes in [n] trials is: [\binom{n}{k} p^k q^{n-k}]
+* When expanding [(a + b)^n], the sum of exponents in each term equals [n].

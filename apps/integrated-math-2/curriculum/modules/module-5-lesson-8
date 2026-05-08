@@ -1,0 +1,109 @@
+# Lesson 5-8 — Equations of Parabolas
+
+Source: (Module 5, Lesson 5-8, Int2_0508_practice.docx)
+
+## Today's Goals
+
+* Write the equation of a parabola given the focus and directrix.
+* Identify the focus and directrix of a parabola from its equation.
+* Find points of intersection between a parabola and a line.
+* Apply parabolic equations to real-world contexts (highways, tunnels, headlights, flashlights).
+
+## Vocabulary
+
+* **Parabola** — The set of all points equidistant from a focus and a directrix.
+* **Focus** — A fixed point used to define a parabola; the distance from any point on the parabola to the focus equals the distance from that point to the directrix.
+* **Directrix** — A fixed line used to define a parabola.
+* **Vertex** — The point on the parabola that is halfway between the focus and directrix.
+
+## Explore: What Defines a Parabola?
+
+A parabola is defined by the condition that every point on it is equidistant from a fixed point (the focus) and a fixed line (the directrix). Students explore how this geometric definition leads to an algebraic equation.
+
+Inquiry Question:
+If the focus is at (0, 3) and the directrix is [y = -3], what point on the parabola is closest to the directrix?
+
+## Learn: Equations of Parabolas
+
+### Key Concept: Standard Form of a Parabola with Vertical Axis
+
+For a parabola with vertex at the origin and focus at (0, p):
+
+* If the focus is at (0, p) and directrix is [y = -p], the equation is [x² = 4py].
+* If the focus is at (0, -p) and directrix is [y = p], the equation is [x² = -4py].
+
+For a parabola with vertex at (h, k):
+
+[(x - h)² = 4p(y - k)] (opens upward if p > 0, downward if p < 0)
+[(y - k)² = 4p(x - h)] (opens right if p > 0, left if p < 0)
+
+### Key Concept: Writing Equations Given Focus and Directrix
+
+The distance from any point (x, y) on the parabola to the focus (xf, yf) equals the distance from (x, y) to the directrix. Set up the equation [sqrt((x - xf)² + (y - yf)²) = |distance to directrix|] and simplify.
+
+For focus (0, 3) and directrix [y = -3]: The vertex is at (0, 0) and [p = 3]. The equation is [x² = 12y].
+
+For focus (0, -5) and directrix [y = 5]: [p = -5], so the equation is [x² = -20y].
+
+For focus (0, 4) and directrix [y = -4]: [p = 4], so [x² = 16y].
+
+For focus (0, 2) and directrix [y = -2]: [p = 2], so [x² = 8y].
+
+### Key Concept: Parabolas with Horizontal Axes
+
+If the focus is at (1, 7) and directrix is [y = -9], the axis of symmetry is vertical. The vertex is midway between the focus and directrix: [(1, -1)]. The distance [p = 8]. Since the focus is above the directrix, the parabola opens upward. The equation is [(x - 1)² = 32(y + 1)].
+
+## Example 1 — Write Equations with Vertical Axes
+
+Write the equation of the parabola with the given focus and directrix.
+
+### Step 1: Find the Vertex and Value of p
+
+The vertex is at the midpoint between the focus and directrix along the axis of symmetry. The value of [p] is the distance from the vertex to the focus (or directrix).
+
+For focus (0, 8) and directrix [y = -8]: vertex at (0, 0), [p = 8], so [x² = 32y].
+
+For focus (0, -9) and directrix [y = 9]: vertex at (0, 0), [p = -9], so [x² = -36y].
+
+## Example 2 — Write Equations with Horizontal or Off-Axis Parabolas
+
+For focus (8, 0) and directrix [y = 4]: the axis of symmetry is vertical through [x = 8]. The vertex is at (8, 2). The distance [p = -2] (focus is below directrix, so it opens downward). The equation is [(x - 8)² = -8(y - 2)].
+
+### Step 1: Identify the Axis of Symmetry
+
+The axis of symmetry is perpendicular to the directrix and passes through the focus. Determine whether the parabola opens vertically (up/down) or horizontally (left/right) based on whether the directrix is horizontal or vertical.
+
+### Step 2: Apply the Formula
+
+For a vertical axis: [(x - h)² = 4p(y - k)].
+For a horizontal axis: [(y - k)² = 4p(x - h)].
+
+## Example 3 — Parabolas in the Real World
+
+### Step 1: Highway Valley
+
+For a highway section modeled by a parabola with focus at (100, 55) and directrix at [y = 5]: the vertex is at (100, 30), and [p = 25]. The equation is [(x - 100)² = 100(y - 30)].
+
+The level section is modeled by [y = 70]. To find the maximum width, solve for [x] when [y = 70]: [(x - 100)² = 100(40) = 4000]. [x - 100 = ± sqrt(4000) = ± 20sqrt(10) ≈ ±63.25]. The width is approximately [126.5] km.
+
+### Step 2: Tunnel Design
+
+For a tunnel with focus at (4, -2.5) and directrix at [y = 2.5]: the vertex is at (4, 0), [p = -2.5]. The equation is [(x - 4)² = -10y].
+
+To check the width at 5 feet above ground ([y = -5]): [(-5 - 4)² = -10(-5)], so [81 = 50]. This is false, so the width at 5 feet is not 14 feet.
+
+## Mixed Exercises
+
+Practice with all skills from the lesson, including:
+
+* Writing equations of parabolas given focus and directrix (Exercises 1–9).
+* Finding points of intersection between parabolas and lines.
+* Writing equations for parabolic reflectors in headlights and flashlights given focus and directrix.
+* Proving or disproving that a point lies on a parabola given the focus and directrix.
+* Explaining how to determine whether a parabola opens upward, downward, left, or right given its focus and directrix.
+* Finding the equation of a parabola B with the same vertex as parabola A but with focus and directrix twice as far apart.
+* Determining whether the vertex of a parabola is always closer to the focus than to the directrix.
+
+## Review Notes
+
+* ![](media/image1.png) — parabolic reflector diagram for mixed exercises (flashlight/headlight context)

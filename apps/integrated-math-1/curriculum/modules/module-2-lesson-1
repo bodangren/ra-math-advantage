@@ -1,0 +1,169 @@
+# Lesson 2-1 — Writing and Interpreting Equations
+
+Source: (Module 2, Lesson 2-1, Int1_0201_practice.docx)
+
+## Today's Goals
+
+* Translate verbal sentences and real-world situations into algebraic equations and formulas
+* Translate algebraic equations and formulas into complete verbal sentences
+* Interpret formulas in the context of geometry, finance, and science
+
+## Vocabulary
+
+* **equation** — A mathematical statement that two expressions are equal, often containing variables.
+* **formula** — A special type of equation that shows the relationship between two or more quantities.
+* **variable** — A symbol (usually a letter) used to represent an unknown number or quantity.
+
+## Learn: Translating Between Words and Algebra
+
+### Key Concept: Verbal to Algebraic Translation
+
+* Identify the unknown quantity and assign a variable.
+* Look for key words that indicate operations: sum/addition, difference/subtraction, product/multiplication, quotient/division, squared/exponent.
+* Pay attention to grouping words such as "the sum of" or "the product of," which often require parentheses.
+* Write the equation so that both sides are equal.
+
+### Key Concept: Algebraic to Verbal Translation
+
+* Read the equation left to right, naming each operation and quantity in words.
+* Use phrases like "is equal to," "is the same as," or "is identical to" for the equals sign.
+* Describe variables as "a number" or use their defined names in context.
+
+## Example 1 — Write an Equation from a Verbal Sentence
+
+Translate verbal descriptions into algebraic equations using one or more variables.
+
+### Step 1: Identify the Variable and Operations
+
+Read the sentence carefully and determine which words indicate addition, subtraction, multiplication, division, or exponents. Watch for phrases like "the sum of" or "the product of" that require grouping with parentheses.
+
+### Step 2: Write the Equation
+
+Place the verbal description on the left and the value on the right, connected by an equals sign.
+
+Representative equations:
+[
+2 + 3m = 18
+]
+[
+5(x + 3) = 12
+]
+[
+85 - 9y = 7(4 + y)
+]
+
+## Example 2 — Write an Equation from a Real-World Situation
+
+Read a short scenario and write an equation that models the described situation.
+
+### Step 1: Identify the Known and Unknown Quantities
+
+Determine what values are given and what quantity the problem asks you to find. Assign a variable to the unknown.
+
+### Step 2: Relate the Quantities with an Equation
+
+Use the relationships described in the problem to build an equation. The equation should represent how the known and unknown quantities are related.
+
+Representative situations:
+* A person has already walked 2 miles and walks 3 miles per hour. The goal is 6 miles total.
+[
+  2 + 3h = 6
+]
+* A business sold 216,000 cars, which was 39,000 more than three times the number of trucks sold.
+[
+  216{,}000 = 3t + 39{,}000
+]
+
+## Example 3 — Translate Sentences into Equations or Formulas
+
+Translate verbal sentences into equations with variables, including geometric and scientific formulas.
+
+### Step 1: Distinguish Equations from Formulas
+
+An equation typically has a single unknown. A formula defines a relationship among multiple quantities that can be reused.
+
+### Step 2: Write the Algebraic Statement
+
+Represent each verbal description using appropriate variables and operations.
+
+Representative formulas:
+[
+A = \ell^2
+]
+[
+P = a + b + c
+]
+[
+I = Prt
+]
+[
+SA = 2(wh + \ell w + \ell h)
+]
+
+## Example 4 and 5 — Write a Sentence for Each Equation
+
+Given an algebraic equation, write a complete verbal sentence that describes the same relationship.
+
+### Step 1: Read the Equation Left to Right
+
+Name each term using words. Use "a number" when a variable appears without context.
+
+### Step 2: Choose Appropriate Verbal Connectors
+
+Use phrases such as "is equal to," "is the same as," "is as much as," or "is identical to" for the equals sign.
+
+Representative equations:
+[
+j + 16 = 35
+]
+[
+7(p + 23) = 102
+]
+[
+\frac{2}{5}v + \frac{3}{4} = \frac{2}{3}x^2
+]
+[
+2(t + 4q) = 2q + 4t
+]
+
+## Example 6 — Interpret Formulas in Context
+
+Given a formula from geometry, finance, or science, write a sentence describing it and explain what it means in the given situation.
+
+### Step 1: Write the Formula in Words
+
+Describe what each side of the equation represents and how the variables are related.
+
+### Step 2: Interpret in Context
+
+Explain the meaning of the formula within its real-world or mathematical domain.
+
+Representative formulas:
+* Volume of a cylinder:
+[
+  V = \pi r^2 h
+]
+* Compound interest:
+[
+  A = P\left(1 + \frac{r}{n}\right)^{nt}
+]
+* Newton's second law:
+[
+  F = ma
+]
+
+## Mixed Exercises
+
+The mixed exercises provide comprehensive practice translating between verbal descriptions and algebraic equations in both directions.
+
+* **Matching:** Match a verbal sentence to its correct equation from a set of choices.
+* **Verbal to algebraic:** Translate sentences involving exponents, fractions, and grouping into equations.
+* **Algebraic to verbal:** Translate equations involving products, differences, and powers into complete sentences.
+* **Formulas:** Write formulas for geometric relationships such as the area of a circle and the volume of a rectangular prism.
+* **Reasoning and analysis:** Write equations for real-world scenarios, determine whether two sentences describe the same equation, and evaluate whether an equation accurately translates a given sentence.
+* **Create:** Write original scenarios that correspond to a given equation.
+
+## Review Notes
+
+* Problem 50 references an image (`media/image1.png`) of a kitchen floor plan that cannot be described from the extracted text. The problem states: "The area of a kitchen is 182 square feet. This is 20% of the area of the first floor of the house. Let [ F ] represent the area of the first floor. Write an equation to represent the situation."
+* Problem 56 references an image (`media/image2.png`) that cannot be described from the extracted text. The problem asks students to translate the formula [ A = \frac{b_1 + b_2}{2} \cdot h ] into words and list any constraints on the variables.

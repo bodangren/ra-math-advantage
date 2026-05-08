@@ -1,0 +1,230 @@
+# Lesson 11-1 — Angles and Congruence
+
+Source: (Module 11, Lesson 11-1, Int1_1101_practice.docx)
+
+## Today's Goals
+
+* Identify and name the parts of an angle, including the vertex and sides.
+* Use proper notation to name angles in multiple ways.
+* Apply the Angle Addition Postulate and the definition of an angle bisector to find unknown angle measures.
+* Identify adjacent angles, vertical angles, and linear pairs in figures.
+* Set up and solve equations to find angle measures using angle relationships.
+
+## Vocabulary
+
+* **Angle** — A figure formed by two noncollinear rays that share a common endpoint.
+* **Vertex** — The common endpoint of the two rays that form an angle.
+* **Sides** — The two rays that form an angle.
+* **Interior of an Angle** — The set of all points inside the angle.
+* **Exterior of an Angle** — The set of all points outside the angle.
+* **Angle Bisector** — A ray that divides an angle into two congruent angles.
+* **Opposite Rays** — Two rays that share the same endpoint and form a straight line.
+* **Adjacent Angles** — Two angles that share a common vertex and side but have no common interior points.
+* **Vertical Angles** — Two nonadjacent angles formed by two intersecting lines.
+* **Linear Pair** — A pair of adjacent angles whose noncommon sides are opposite rays.
+* **Congruent Angles** — Angles that have the same measure.
+
+## Explore: How Many Ways Can You Name an Angle?
+
+Students examine a figure with multiple angles and discuss how many different names can describe a single angle. Consider what happens when several angles share the same vertex and how to avoid ambiguity.
+
+Inquiry Question:
+What rules determine whether an angle name is clear or ambiguous when multiple angles share a vertex?
+
+## Learn: Naming Angles and Using Angle Relationships
+
+Angles are named using the vertex and points on each side. When multiple angles share a vertex, a three-letter name is often necessary to identify the angle unambiguously. Angle bisectors, adjacent angles, vertical angles, and linear pairs provide algebraic relationships that can be used to find unknown measures.
+
+### Key Concept: Naming Angles
+
+* An angle can be named using its vertex alone when only one angle exists at that vertex.
+* When multiple angles share a vertex, use three letters with the vertex in the middle.
+* An angle can also be named with a number inside the angle.
+
+### Key Concept: Angle Bisector
+
+* A ray is an angle bisector if it divides an angle into two angles of equal measure.
+* If a ray bisects an angle, the measure of each resulting angle is half the measure of the original angle.
+
+### Key Concept: Adjacent Angles, Vertical Angles, and Linear Pairs
+
+* **Adjacent angles** share a common vertex and a common side but do not overlap.
+* **Vertical angles** are opposite each other when two lines intersect; they are always congruent.
+* **Linear pairs** are adjacent angles whose noncommon sides form opposite rays; the angles in a linear pair are supplementary.
+
+### Key Concept: Solving for Angle Measures
+
+* Use the definitions of angle bisector, vertical angles, and linear pairs to write equations.
+* Solve the equation for the variable, then substitute back to find the angle measure.
+
+## Example 1 — Identify Parts of an Angle and Use Proper Notation
+
+Given a figure with multiple angles sharing vertices, identify the vertex and sides of specific angles and write alternate names for angles.
+
+### Step 1: Identify the Vertex
+
+The vertex of an angle is the common endpoint of its two sides. For any labeled angle, locate the point where the two rays meet.
+
+### Step 2: Identify the Sides
+
+The sides of an angle are the two rays that form it. Name the sides using the endpoint and another point on each ray.
+
+### Step 3: Write Another Name for an Angle
+
+When multiple angles share a vertex, use three-letter notation with the vertex in the middle to name an angle unambiguously. For example, if points C, A, and D are on the sides of an angle with vertex A, the angle can be named:
+[
+\angle CAD \text{ or } \angle DAC
+]
+
+## Example 2 — Apply the Definition of an Angle Bisector
+
+Use the fact that a ray bisects an angle to set up and solve equations for unknown angle measures.
+
+### Step 1: Recognize an Angle Bisector
+
+When a ray bisects an angle, the two smaller angles formed are congruent. If the measures are given as algebraic expressions, set them equal to each other.
+
+### Step 2: Set Up and Solve the Equation
+
+For example, if a ray bisects an angle and the two resulting angles measure [14x + 5] and [17x - 1], set the expressions equal:
+[
+14x + 5 = 17x - 1
+]
+Solve for [x]:
+[
+5 + 1 = 17x - 14x
+]
+[
+6 = 3x
+]
+[
+x = 2
+]
+
+### Step 3: Find the Measure of the Original Angle
+
+Substitute the value of [x] back into either expression to find the measure of one of the congruent angles, then double it to find the measure of the original angle:
+[
+m\angle FLG = 14(2) + 5 = 33
+]
+[
+m\angle FLH = 2 \times 33 = 66
+]
+
+### Step 4: Apply the Angle Addition Postulate with Opposite Rays
+
+When two rays are opposite rays, they form a straight angle measuring 180°. If a ray lies between them, the sum of the two adjacent angles is 180°. Use this relationship to write equations and solve for unknown measures.
+
+For example, if two adjacent angles formed by opposite rays measure [2n + 7] and [4n - 13], set up the equation:
+[
+(2n + 7) + (4n - 13) = 180
+]
+Solve:
+[
+6n - 6 = 180
+]
+[
+6n = 186
+]
+[
+n = 31
+]
+Then find each angle measure by substituting back.
+
+### Step 5: Solve Various Bisector and Linear Pair Problems
+
+Additional problems involve:
+* Finding an angle measure when the total and one part are known.
+* Finding the parts when the total and the relationship between parts are known.
+* Solving equations with variables on both sides.
+
+For example, if an angle and its adjacent angle formed by opposite rays are related by [m\angle ABF = 7b - 24] and [m\angle ABE = 2b], the remaining angle measure can be found by:
+[
+m\angle EBF = m\angle ABF - m\angle ABE
+]
+[
+m\angle EBF = (7b - 24) - 2b = 5b - 24
+]
+
+## Example 3 — Identify Angle Relationships and Solve for Variables
+
+Use relationships between adjacent angles, vertical angles, and linear pairs in figures with intersecting lines to find unknown angle measures and variable values.
+
+### Step 1: Identify Adjacent Angles
+
+Look for two angles that share a common vertex and a common side without overlapping. Name the pair using the vertex and points on the sides.
+
+### Step 2: Identify Vertical Angles
+
+When two lines intersect, the angles opposite each other are vertical angles. Vertical angles are always congruent.
+
+For example, if two lines intersect and one vertical angle measures [62°], the opposite angle also measures:
+[
+62°
+]
+
+### Step 3: Find an Angle Measure from a Figure
+
+Use the given information in a figure to determine an angle measure. If angles form a linear pair, their measures sum to 180°. If they are vertical angles, they are equal.
+
+### Step 4: Solve for a Variable Using Angle Relationships
+
+When angle measures are given as algebraic expressions, use the appropriate relationship to write an equation.
+
+**Supplementary angles** (linear pair):
+[
+(3x + 10) + (5x - 2) = 180
+]
+[
+8x + 8 = 180
+]
+[
+8x = 172
+]
+[
+x = 21.5
+]
+
+**Vertical angles**:
+[
+4y - 20 = 2y + 30
+]
+[
+2y = 50
+]
+[
+y = 25
+]
+
+**Complementary angles**:
+[
+(2a + 15) + (3a - 5) = 90
+]
+[
+5a + 10 = 90
+]
+[
+5a = 80
+]
+[
+a = 16
+]
+
+## Mixed Exercises
+
+The mixed exercises section provides comprehensive practice with all skills from the lesson. Problems include:
+
+* Naming the vertex and sides of angles from a figure.
+* Writing alternative names for angles using proper notation.
+* Identifying points in the interior and exterior of angles.
+* Finding angle pairs that share exactly one point or more than one point.
+* Identifying adjacent angles, vertical angles, and linear pairs from figures.
+* Solving for variables using angle relationships in figures with intersecting lines.
+* Applying angle concepts to real-world contexts such as traffic patterns, pool table geometry, woodworking cuts, and posture analysis.
+* Using multiple angle bisectors to reason backward from a small angle to the original angle measure.
+* Analyzing constructions of copied angles and determining whether angle pairs form linear pairs.
+
+## Review Notes
+
+* Images referenced in the worksheet (angle figures for Examples 1–3, intersecting lines diagrams for variable problems, traffic circle diagram, pool table diagram, woodworking block diagrams, texting posture diagram, angle construction diagram) could not be fully described without visual reference. Teachers should consult the original worksheet for exact figures and diagrams.
+* Several problems in Example 2 and the Mixed Exercises require interpreting figures to identify angle relationships; visual reference is essential for these problems.

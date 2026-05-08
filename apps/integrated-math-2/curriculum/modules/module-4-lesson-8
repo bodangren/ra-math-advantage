@@ -1,0 +1,85 @@
+# Lesson 4-8 — The Law of Cosines
+
+Source: (Module 4, Lesson 4-8, Int2_0408_practice.docx)
+
+## Today's Goals
+
+* Apply the Law of Cosines to find missing sides and angles in oblique triangles.
+* Determine whether to use the Law of Sines or Law of Cosines to solve a triangle.
+* Solve triangles using the Law of Cosines.
+* Apply the Law of Cosines in real-world contexts.
+
+## Vocabulary
+
+* **Law of Cosines** — For any triangle [ABC] with sides [a], [b], and [c]: [a² = b² + c² - 2bc cos A].
+* **SAS (Side-Angle-Side)** — Given two sides and the included angle.
+* **SSS (Side-Side-Side)** — Given all three sides.
+
+## Explore: Law of Cosines
+
+The Law of Cosines generalizes the Pythagorean Theorem to all triangles. It is used when you know either SAS or SSS information.
+
+Inquiry Question:
+Why does the Pythagorean Theorem become [a² = b² + c² - 2bc cos A] for non-right triangles?
+
+## Learn: Law of Cosines
+
+For any triangle [ABC]:
+
+[a² = b² + c² - 2bc cos A]
+[b² = a² + c² - 2ac cos B]
+[c² = a² + b² - 2ab cos C]
+
+Use the Law of Cosines when you have:
+* **SAS**: Two sides and the included angle
+* **SSS**: All three sides (use Law of Cosines to find the largest angle first)
+
+## Examples 1 and 2 — Find the Value of x
+
+Find [x] to the nearest tenth for side lengths and nearest degree for angle measures.
+
+### Step 1: Identify SAS or SSS
+
+1-6. Apply the appropriate Law of Cosines formula.
+
+## Example 3 — Real-World Applications
+
+### Step 1: Set Up the Diagram and Equation
+
+7. Radar: Two stations 2.4 miles apart track an airplane. Station A to plane is 7.4 miles, Station B to plane is 6.9 miles. Find angle of elevation from Station A.
+
+8. Drafting: Marion draws segment AB = 4.2 inches. From B, she draws segment BC = 6.4 inches at 42° to AB. Find AC.
+
+## Examples 4 and 5 — Solve Triangles
+
+Solve each triangle. Round side lengths to the nearest tenth and angle measures to the nearest degree.
+
+### Step 1: Choose Law of Cosines or Law of Sines
+
+For SAS: Use Law of Cosines first to find the third side.
+For SSS: Use Law of Cosines first to find the largest angle.
+
+9-14. Solve each triangle.
+
+## Mixed Exercises
+
+Determine whether each triangle should be solved by beginning with Law of Sines or Law of Cosines. Then solve.
+
+15-18. Apply the appropriate method.
+
+19. Pools: Lifeguard station problem at Perth County pool.
+
+20. Proof: Two-column proof of the Law of Cosines.
+
+21. Persevere: Find [x] in the figure.
+
+22. Analyze: Why is the Pythagorean Theorem a specific case of the Law of Cosines?
+
+23. Write: What methods can you use to solve a triangle?
+
+24. Create: Draw and label a triangle that can be solved (a) using only Law of Sines, (b) using only Law of Cosines.
+
+## Review Notes
+
+* Images referenced in this lesson:
+  * ![](media/image1.png) through ![](media/image16.png) — various Law of Cosines application diagrams

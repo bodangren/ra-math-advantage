@@ -1,0 +1,312 @@
+# Lesson 6-7 — Volumes of Cylinders, Cones, and Spheres
+
+Source: (Module 6, Lesson 6-7, Int2_0607_practice.docx)
+
+## Today's Goals
+
+* Find volumes of cylinders.
+* Find volumes of cones.
+* Find volumes of spheres.
+* Find volumes of composite solids involving cylinders, cones, and spheres.
+
+## Vocabulary
+
+* **Cylinder** — A solid with two parallel, congruent circular bases.
+* **Cone** — A solid with one circular base and a curved lateral surface meeting at a vertex.
+* **Sphere** — The set of all points equidistant from a center point in three-dimensional space.
+* **Hemisphere** — Half of a sphere.
+* **Composite Solid** — A solid made up of two or more simpler solids.
+
+## Explore: Volumes of Cylinders, Cones, and Spheres
+
+Students explore how the volume formulas for cylinders, cones, and spheres are related. A cone has exactly one-third the volume of a cylinder with the same base and height, and a sphere has volume equal to (2/3) of the volume of the smallest cylinder that contains it.
+
+Inquiry Question:
+How are the volume formulas for a cylinder, a cone, and a sphere related to each other?
+
+## Learn: Volumes of Cylinders, Cones, and Spheres
+
+### Key Concept: Volume of a Cylinder
+
+[
+V = pi * r^2 * h
+]
+
+### Key Concept: Volume of a Cone
+
+[
+V = (1/3) * pi * r^2 * h
+]
+
+### Key Concept: Volume of a Sphere
+
+[
+V = (4/3) * pi * r^3
+]
+
+### Key Concept: Volume of a Hemisphere
+
+A hemisphere is half a sphere:
+[
+V = (2/3) * pi * r^3
+]
+
+## Example 1 — Volume of Cylinders
+
+Find the volume of each cylinder. Round to the nearest tenth.
+
+### Step 1: Identify the Radius and Height
+
+Extract these values from the problem statement.
+
+### Step 2: Apply the Formula
+
+[
+V = pi * r^2 * h
+]
+
+DISPOSAL: A kitchen trash can shaped like a cylinder with height 18 inches and base diameter 12 inches.
+[
+r = 12/2 = 6 in
+]
+[
+V = pi * 6^2 * 18
+]
+[
+V = 648pi = 2035.8 in^3
+]
+
+COFFEE: A canister shaped like a cylinder with radius 1.5 inches and height 7.5 inches.
+[
+V = pi * 1.5^2 * 7.5
+]
+[
+V = 16.875pi = 53.0 in^3
+]
+
+## Example 2 — Volume of Cylinders with Variables
+
+Find the volume of a cylinder with given conditions.
+
+### Step 1: Write the Formula in Terms of Variables
+
+### Step 2: Simplify the Expression
+
+### Step 3: Substitute to Find Numerical Value
+
+Find the volume of a cylinder with radius 2x millimeters and height x - 2 millimeters.
+a. [
+V = pi * (2x)^2 * (x - 2)
+]
+[
+V = 4pi * x^2 * (x - 2)
+]
+[
+V = 4pi(x^3 - 2x^2)
+]
+b. If x = 10:
+[
+V = 4pi(1000 - 200) = 3200pi = 10,053.5 mm^3
+]
+
+Find the volume of a cylinder with diameter 6 cm shorter than the height x.
+a. [
+r = (x - 6)/2
+]
+[
+V = pi * ((x - 6)/2)^2 * x
+]
+[
+V = pi * (x - 6)^2 * x / 4
+]
+b. If height is 14 cm (so x = 14):
+[
+r = (14 - 6)/2 = 4 cm
+]
+[
+V = pi * 16 * 14 = 224pi = 703.7 cm^3
+]
+
+Find the volume of a cylinder with radius x feet and height 3x + 4 feet.
+a. [
+V = pi * x^2 * (3x + 4)
+]
+[
+V = pi(3x^3 + 4x^2)
+]
+b. If x = 3:
+[
+V = pi(3(27) + 4(9)) = pi(81 + 36) = 117pi = 367.6 ft^3
+]
+
+## Example 3 — Volume of Cones
+
+Examine the cone and find the volume.
+
+### Step 1: Identify the Radius and Height
+
+### Step 2: Apply the Cone Volume Formula
+
+[
+V = (1/3) * pi * r^2 * h
+]
+
+A cone with radius 4 ft and height 7 ft:
+[
+V = (1/3) * pi * 16 * 7
+]
+[
+V = (112/3)pi = 117.3 ft^3
+]
+
+## Example 4 — Volume of Cones with Variables
+
+Examine the cone and find the volume in terms of x and when x = given value.
+
+### Step 1: Write the Formula
+
+For a cone with radius x and height x + 2:
+[
+V = (1/3) * pi * x^2 * (x + 2)
+]
+[
+V = (1/3) * pi * (x^3 + 2x^2)
+]
+
+### Step 2: Substitute and Calculate
+
+If x = 4 ft:
+[
+V = (1/3) * pi * 16 * 6 = (96/3)pi = 100.5 ft^3
+]
+
+DINING: A dish shaped like a cone with radius 2 inches and height 1.2 inches.
+[
+V = (1/3) * pi * 4 * 1.2
+]
+[
+V = 1.6pi = 5.03 in^3
+]
+
+AUTOMOBILE: A funnel with radius 6 cm and slant height 10 cm. Find height first:
+[
+h = sqrt(10^2 - 6^2) = sqrt(64) = 8 cm
+]
+[
+V = (1/3) * pi * 36 * 8 = 96pi = 301.6 cm^3
+]
+
+## Example 5 — Volume of Spheres
+
+Examine the sphere and find the volume.
+
+### Step 1: Identify the Radius
+
+### Step 2: Apply the Sphere Volume Formula
+
+[
+V = (4/3) * pi * r^3
+]
+
+A sphere with radius 2 inches:
+[
+V = (4/3) * pi * 8 = (32/3)pi = 33.5 in^3
+]
+
+ORANGES: Moesha cuts a spherical orange in half. Radius is 2 inches. Find volume of half (hemisphere).
+[
+V_sphere = (4/3) * pi * 8 = 33.5 in^3
+]
+[
+V_hemisphere = (2/3) * pi * 8 = 16.8 in^3
+]
+
+## Example 6 — Volume of Spheres with Variables
+
+Examine the sphere and find the volume in terms of x.
+
+### Step 1: Write the Formula
+
+For a sphere with radius x:
+[
+V = (4/3) * pi * x^3
+]
+
+### Step 2: Substitute and Calculate
+
+DESIGN: A spherical fountain with radius 1.5 feet.
+[
+V = (4/3) * pi * 3.375 = 14.14 ft^3
+]
+
+Examine spheres and find volumes for various values of x.
+
+## Example 7 — Volume of Composite Solids with Cylinders and Cones
+
+Find the volume of each composite solid. Round to the nearest tenth.
+
+### Step 1: Identify the Components
+
+Break into cylinder, cone, and/or other shapes.
+
+### Step 2: Find Each Volume
+
+Calculate separately.
+
+### Step 3: Combine Appropriately
+
+Add or subtract as needed.
+
+## Example 8 — More Composite Solids
+
+Find the volume of each composite solid.
+
+CELEBRATION: Emilia's three-tiered cake. Each tier is a cylinder with height 4 inches. Diameters: 6 in, 10 in, 14 in.
+[
+Top tier: r = 3, V = (1/3) * pi * 9 * 4 = 12pi
+]
+[
+Middle tier: r = 5, V = (1/3) * pi * 25 * 4 = (100/3)pi
+]
+[
+Bottom tier: r = 7, V = (1/3) * pi * 49 * 4 = (196/3)pi
+]
+[
+Total = 12pi + (100/3)pi + (196/3)pi = (36 + 100 + 196)/3 * pi = 332/3 * pi = 347.3 in^3
+]
+
+SCULPTING: A sculptor removes stone from a cylindrical block to create a cone. Cylinder height 3 ft, cone and cylinder diameter 2 ft.
+[
+V_cylinder = pi * 1^2 * 3 = 3pi
+]
+[
+V_cone = (1/3) * pi * 1^2 * 3 = pi
+]
+[
+V_stone = 3pi - pi = 2pi = 6.28 ft^3
+]
+
+## Mixed Exercises
+
+* STRUCTURE: Write a formula for the volume of a solid in terms of radius r.
+* PRECISION: Explain how to write the formula.
+* Find the volume of a cone. Round to the nearest tenth.
+* REASONING: A hemisphere has base area 25pi cm^2. Find the volume.
+* TEEPEE: Cathy made a teepee with diameter 6 ft and side angle 65 degrees with ground.
+* SCHOOL SUPPLIES: A pencil grip shaped like a triangular prism with a cylinder removed.
+* CONSTRUCT ARGUMENTS: A wooden sphere carved from a cube with volume 729 in^3.
+* REASONING: Reginald's scale model of a building (cube topped with hemisphere, 30 ft total height).
+* REGULARITY: A cylindrical container with radius 3 in and height 10 in. Find radius of another cylinder with same volume but height 8 in.
+* PERSEVERE: A cylindrical can fills a container in 3 full cans. Describe possible dimensions of the container if it's a rectangular prism, square prism, or triangular prism.
+* CREATE: Sketch a composite solid made of a cylinder and cone with volume about 7698.5 cm^3.
+* WRITE: How are volume formulas for prisms and cylinders similar? Different?
+* ANALYZE: Is the volume of a cone with radius r and height h sometimes, always, or never equal to the volume of a prism with height h?
+* FIND THE ERROR: Alexandra and Cornelio calculating volume of a cone. Who is correct?
+* ANALYZE: If a sphere has radius r, does there exist a cone with radius r having the same volume?
+
+## Review Notes
+
+* ![](media/) — Image references for diagrams in the original DOCX could not be fully captured.
+* Key relationships: Cone volume = (1/3) of cylinder with same base and height. Sphere volume = (2/3) of cylinder with same base and height (actually same radius and height equal to diameter).
+* Remember to use the height perpendicular to the base for cones, not the slant height.
+* When solving composite solid problems, draw a diagram to identify all components.

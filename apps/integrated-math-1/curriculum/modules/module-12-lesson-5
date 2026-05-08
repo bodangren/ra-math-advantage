@@ -1,0 +1,136 @@
+# Lesson 12-5 — Proving Segment Relationships
+
+Source: (Module 12, Lesson 12-5, Int1_1205_practice.docx)
+
+## Today's Goals
+
+* Complete two-column proofs by supplying missing statements and reasons.
+* Write original two-column proofs using properties of congruence and equality.
+* Apply the Reflexive, Symmetric, and Transitive Properties of segment congruence.
+* Use the Segment Addition Postulate and Substitution Property in proofs.
+* Write paragraph proofs for fundamental properties of segment congruence.
+* Solve real-world problems by reasoning about segment lengths and congruence.
+
+## Vocabulary
+
+* **Two-Column Proof** — A formal proof that lists statements in one column and corresponding reasons in another.
+* **Paragraph Proof** — A proof written in complete sentences, like a paragraph.
+* **Segment Congruence** — The relationship between two segments that have the same length.
+* **Reflexive Property of Congruence** — Any segment is congruent to itself: [\overline{AB} \cong \overline{AB}].
+* **Symmetric Property of Congruence** — If [\overline{AB} \cong \overline{CD}], then [\overline{CD} \cong \overline{AB}].
+* **Transitive Property of Congruence** — If [\overline{AB} \cong \overline{CD}] and [\overline{CD} \cong \overline{EF}], then [\overline{AB} \cong \overline{EF}].
+* **Substitution Property** — If two quantities are equal, one can be substituted for the other in any equation.
+* **Segment Addition Postulate** — If point [B] is between points [A] and [C], then [AB + BC = AC].
+* **Midpoint** — A point that divides a segment into two congruent segments.
+* **Definition of Midpoint** — If [M] is the midpoint of [\overline{AB}], then [\overline{AM} \cong \overline{MB}].
+
+## Explore: How Do We Know Two Segments Are Congruent?
+
+Students examine diagrams with overlapping or connected segments and discuss what information is needed to conclude that two segments are congruent. Consider how properties like substitution and transitivity allow us to chain known facts together.
+
+Inquiry Question:
+What properties of equality and congruence allow us to connect one known fact to another in a logical chain?
+
+## Learn: Writing Proofs About Segment Relationships
+
+Geometric proofs use definitions, postulates, and properties to establish new facts from given information. Two-column proofs organize the reasoning into statements and reasons, while paragraph proofs present the same logic in prose.
+
+### Key Concept: Properties of Segment Congruence
+
+* **Reflexive Property:** [\overline{AB} \cong \overline{AB}] for any segment [\overline{AB}].
+* **Symmetric Property:** If [\overline{AB} \cong \overline{CD}], then [\overline{CD} \cong \overline{AB}].
+* **Transitive Property:** If [\overline{AB} \cong \overline{CD}] and [\overline{CD} \cong \overline{EF}], then [\overline{AB} \cong \overline{EF}].
+
+### Key Concept: The Segment Addition Postulate and Substitution
+
+* If point [B] is between [A] and [C], then [AB + BC = AC].
+* If two segments are congruent, their lengths are equal and can be substituted in equations.
+
+### Key Concept: Using Midpoints in Proofs
+
+* A midpoint divides a segment into two congruent segments.
+* If two segments are congruent, their halves are also congruent.
+* If a point is the midpoint of two congruent segments, the resulting subsegments are congruent.
+
+## Example 1 — Complete a Two-Column Proof
+
+Given information about segment relationships including midpoints and congruent segments, supply the missing statements and reasons to complete a two-column proof.
+
+### Step 1: Identify the Given Information
+
+Read the problem to extract the givens: which segments are congruent, which points are midpoints, and what segment must be proved congruent.
+
+### Step 2: State the Prove Statement
+
+Identify the conclusion that the proof must establish.
+
+### Step 3: Fill in the Proof Table
+
+Use definitions, postulates, and properties to supply each missing statement and its justification. Common reasons include:
+* Definition of midpoint
+* Definition of congruent segments
+* Segment Addition Postulate
+* Substitution Property
+* Transitive Property of Congruence
+
+## Example 2 — Write a Two-Column Proof
+
+Given conditions about congruent segments or a midpoint, write a complete two-column proof to show that a target segment is congruent to another segment.
+
+### Step 1: Draw or Interpret the Diagram
+
+Use the diagram to identify collinear points and overlapping segments.
+
+### Step 2: List the Givens and the Prove Statement
+
+Restate the given information and what must be proved.
+
+### Step 3: Build the Logical Chain
+
+Write each statement with its corresponding reason:
+* Use the definition of congruent segments to convert between congruence and equality of lengths.
+* Apply the Segment Addition Postulate to express a whole segment as a sum of parts.
+* Use substitution to replace equal lengths in an equation.
+* Use the definition of congruent segments to conclude segment congruence from equal lengths.
+
+## Example 3 — Apply Segment Properties to Real-World Situations
+
+Use properties of segment congruence, the transitive property, and midpoint relationships to analyze and solve real-world problems.
+
+### Step 1: Model the Situation with Segments
+
+Represent real-world quantities such as heights, lengths of planks, or distances between houses as segments on a line.
+
+### Step 2: Apply Properties of Congruence and Equality
+
+Use the transitive property to compare quantities that are not directly measured against each other. Use the definition of midpoint to reason about halfway points.
+
+### Step 3: Draw Conclusions
+
+State what can be concluded about the real-world quantities based on the geometric properties applied.
+
+## Mixed Exercises
+
+The mixed exercises consolidate proof-writing and reasoning skills with a variety of problem types:
+
+* **Complete two-column proofs:** Given midpoint conditions and congruent segments, fill in missing statements and reasons to prove a segment relationship.
+* **Write two-column proofs:** Given diagrams with collinear points and congruent segments, write original proofs to establish congruence.
+* **Paragraph proofs:** Write proofs in paragraph form for the Reflexive and Symmetric Properties of segment congruence.
+* **Find the error:** Examine student reasoning about segment congruence, substitution, and the Segment Addition Postulate; identify mistakes and explain the correct approach.
+* **Real-world applications:** Apply segment properties to situations involving aligned lights, lumberyard planks, park paths, and neighborhoods on a line.
+* **Create and analyze:** Draw a segment representation of the Segment Addition Postulate with specific constraints; create examples that distinguish the Transitive Property from the Substitution Property.
+* **Compare and contrast:** Explain similarities and differences between paragraph proofs and two-column proofs.
+* **Prove with given lengths:** Given three congruent segments and an equation relating their lengths, prove that two intermediate segments are congruent.
+* **Multi-step reasoning:** Prove that if one point is the midpoint of a segment and two outer segments are congruent, then another point must also be a midpoint.
+
+## Review Notes
+
+* Images referenced in the worksheet (segment diagrams for problems 1, 2, 3, 4, 9, 10, 11, 13, and 15; proof tables for problems 1, 2, 8, 10, and 11; student work for problem 13) could not be fully described without visual reference. Teachers should consult the original worksheet for exact diagrams and proof table layouts.
+* Problem 1 involves a diagram with overlapping segments and a partially completed two-column proof table.
+* Problem 2 involves a diagram with collinear points and a partially completed two-column proof table.
+* Problems 3 and 4 involve diagrams with collinear points that require writing original two-column proofs.
+* Problem 8 involves a diagram of five aligned lights and a partially completed two-column proof table.
+* Problem 10 involves a diagram of collinear points on a line and a partially completed two-column proof table.
+* Problem 11 involves a diagram of two paths with a monument at their common midpoint and a partially completed two-column proof table.
+* Problem 13 involves a diagram with multiple congruent segments for evaluating student reasoning.
+* Problem 15 requires drawing a segment diagram that satisfies specific constraints.

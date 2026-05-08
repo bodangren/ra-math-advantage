@@ -1,0 +1,83 @@
+# Lesson 8-4 — Transforming Exponential Expressions
+
+Source: (Module 8, Lesson 8-4, Int1_0804_practice.docx)
+
+## Today's Goals
+
+* Rewrite exponential growth and decay functions so rates share the same time unit for direct comparison
+* Calculate effective annual, quarterly, and monthly rates using properties of exponents
+* Analyze and explain which of two exponential models represents faster growth or decay
+
+## Vocabulary
+
+* **Compound interest** — Interest calculated on the initial principal and on the accumulated interest from previous periods
+* **Effective rate** — The equivalent rate over a specified time period that produces the same final amount as a given compounding rate
+* **Exponential growth/decay** — A quantity that increases or decreases by a constant percent rate per unit time, modeled by [ A(t) = A_0(1 + r)^t ] or [ A(t) = A_0(1 - r)^t ] 
+
+## Learn: Transforming Exponential Expressions
+
+When two exponential models use different compounding periods, rewrite one function so both use the same time unit. Use the exponent property:
+
+[
+(a^m)^n = a^{mn}
+]
+
+For example, to convert an annual growth factor to a quarterly equivalent, adjust the exponent to match the number of compounding periods per year.
+
+### Key Concept: Comparing Rates with Different Compounding Periods
+
+* Rewrite [ A(t) = A_0(1 + r_{\text{annual}})^t ] as an equivalent function with a different compounding period by adjusting the base and exponent
+* To compare two rates directly, ensure both functions use the same time unit (annual, quarterly, monthly, etc.)
+* The effective annual rate reveals the true yearly growth when compounding occurs more than once per year
+
+## Example 1 — Compare Compounding Interest and Growth Rates
+
+Given two exponential growth or decay scenarios with different compounding periods, write equivalent functions using the same time unit and determine which rate is more favorable.
+
+### Step 1: Write the Initial Function
+
+For an investment or quantity with periodic rate [ r ]:
+
+[
+A(t) = A_0(1 + r_{\text{period}})^{\text{number of periods in } t}
+]
+
+### Step 2: Rewrite with a Common Time Unit
+
+Use properties of exponents to convert one function so both use the same compounding period.
+
+Convert an annual rate to a quarterly equivalent:
+
+[
+A(t) = A_0(1.021)^t = A_0\left((1.021)^{\frac{1}{4}}\right)^{4t}
+]
+
+Convert a quarterly rate to an annual effective rate:
+
+[
+A(t) = A_0(1.008)^{4t} = A_0\left((1.008)^4\right)^t \approx A_0(1.0324)^t
+]
+
+### Step 3: Compare and Explain
+
+Compare the effective rates or growth factors. The larger effective rate corresponds to faster growth (or, for decay, a faster decrease). Explain which plan, item, or population is increasing or decreasing at the faster rate.
+
+Variations include:
+* Comparing annual vs. quarterly vs. monthly compounding for investments
+* Comparing growth rates per minute vs. per second for populations
+* Comparing decay rates per quarter vs. per year for declining populations
+
+## Mixed Exercises
+
+The mixed exercises apply the skill of transforming exponential expressions to a range of contexts. Students:
+* Interpret population data from tables to write exponential functions [ P(t) ] and find effective monthly rates
+* Compare bank accounts, investments, certificate of deposit plans, and car depreciation rates with different compounding periods
+* Rewrite a cooling function so the coefficient of [ t ] in the exponent is 1
+* Explain in writing why consumers must compare rates in the same unit before making financial decisions
+* Create an original scenario comparing two accounts with different compounding periods
+* Analyze and correct a common error when comparing a monthly interest rate directly to an annual interest rate
+
+## Review Notes
+
+* Problems 6 and 12 reference tables (images) showing population data for two towns and hawk populations in two nature preserves. The tables must be described or recreated from the original worksheet.
+* Problem 13 involves the cooling function [ T(t) = 72 + (212 - 72)(2.72)^{-0.4t} ]. The value 2.72 may be an approximation of [ e ]; verify the base and coefficients against the original worksheet.

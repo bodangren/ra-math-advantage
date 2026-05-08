@@ -1,0 +1,124 @@
+# Lesson 1-3 — Medians and Altitudes of Triangles
+
+Source: (Module 1, Lesson 1-3, Int2_0103_practice.docx)
+
+## Today's Goals
+
+* Find the lengths of medians and other segments in a triangle given the centroid.
+* Find the coordinates of the centroid of a triangle.
+* Find the coordinates of the orthocenter of a triangle.
+* Compare and contrast medians, perpendicular bisectors, and altitudes.
+
+## Vocabulary
+
+* **Median** — A segment from a vertex to the midpoint of the opposite side.
+* **Centroid** — The point of concurrency of the three medians of a triangle; located at [2/3] of the distance from each vertex to the midpoint of the opposite side.
+* **Centroid Theorem** — The medians of a triangle intersect at a point that divides each median in a [2 to 1] ratio.
+* **Altitude** — A perpendicular segment from a vertex to the line containing the opposite side.
+* **Orthocenter** — The point of concurrency of the three altitudes of a triangle.
+
+## Explore: Where Three Lines Meet
+
+Every triangle has several sets of special lines: medians connect vertices to midpoints of opposite sides, while altitudes are perpendicular to the opposite side. Each set of three lines always meets at one point. Students explore the properties of these points of concurrency.
+
+Inquiry Question:
+How does the location of the orthocenter change as the triangle goes from acute to right to obtuse?
+
+## Learn: Medians, Altitudes, and Points of Concurrency
+
+### Key Concept: The Centroid
+
+The centroid is the point where all three medians intersect. It is located at [2/3] of the distance from each vertex to the midpoint of the opposite side. This means if G is the centroid and M is the midpoint of the opposite side, then AG = [2/3] AM and GM = [1/3] AM.
+
+### Key Concept: Finding the Centroid
+
+To find the centroid given the coordinates of the vertices, find the average of the x-coordinates and the average of the y-coordinates of all three vertices.
+
+### Key Concept: The Orthocenter
+
+The orthocenter is where all three altitudes intersect. In an acute triangle, it is inside. In a right triangle, it is at the vertex of the right angle. In an obtuse triangle, it is outside the triangle.
+
+## Example 1 — Find Segment Lengths Using the Centroid
+
+Given the centroid and some segment lengths, find other lengths in the triangle.
+
+### Step 1: Use the [2/3] and [1/3] Relationships
+
+Since the centroid divides each median in a [2 to 1] ratio, if you know the distance from a vertex to the centroid, you can find the distance from the centroid to the midpoint, and vice versa.
+
+### Step 2: Set Up Equations
+
+Let the unknown be x and use the given lengths to set up equations based on the centroid's position on each median.
+
+### Step 3: Solve and Verify
+
+Solve for x, then find the requested segment lengths. Check that the results are consistent with the median lengths.
+
+## Example 2 — Find Coordinates of the Centroid
+
+Given the coordinates of the vertices of a triangle, find the coordinates of the centroid.
+
+### Step 1: Apply the Centroid Formula
+
+The centroid is at [(x1 + x2 + x3) / 3, (y1 + y2 + y3) / 3].
+
+### Step 2: Substitute and Simplify
+
+Plug in the coordinates and compute the averages.
+
+## Example 3 — Real-World Centroid Application
+
+Use the centroid to find the point where a collage should be hung so that it balances.
+
+### Step 1: Model with Coordinates
+
+Place the collage on a coordinate grid and find the coordinates of its vertices or corners.
+
+### Step 2: Find the Centroid
+
+Use the centroid formula to find the balance point.
+
+### Step 3: Describe the Location
+
+The centroid is where the string should be attached to balance the collage.
+
+## Example 4 — Find the Orthocenter
+
+Given the coordinates of the vertices of a triangle, find the orthocenter.
+
+### Step 1: Find Equations of Two Altitudes
+
+For each altitude, find the slope of the opposite side, then the negative reciprocal slope for the altitude line, and write the equation through the given vertex.
+
+### Step 2: Solve the System
+
+Find the intersection point of the two altitude equations.
+
+### Step 3: Verify with the Third Altitude
+
+Check that the third altitude passes through the same point.
+
+## Mixed Exercises
+
+Practice involves:
+
+* Finding x, y, and z given midpoints J, P, L of sides KH, HM, MK and related algebraic expressions.
+* Using properties of medians to find values of x in centroid problems (e.g., SL = x(JL), JT = x(TK), JM = x(RJ)).
+* Given that EC is an altitude and expressions for two angles, find the angle measures (solving 2x + 7 = 3x + 13).
+* Given that EC is a median and expressions for segments and an angle, find x and determine whether EC is also an altitude.
+* Proving the Centroid Theorem using coordinate geometry.
+* Determining whether a given segment is a perpendicular bisector, median, and/or altitude of a triangle based on given conditions.
+* Using altitude properties to solve for x in a triangle (e.g., if JM is an altitude, find value of x).
+* Using median properties to find side lengths (e.g., if PK is a median, find LK).
+* Writing paragraph proofs involving isosceles triangles and angle bisectors.
+* Comparing and contrasting perpendicular bisectors, medians, and altitudes.
+* Analyzing an error in a student's reasoning about a centroid relationship.
+* Finding the centroid of a triangle given coordinates and explaining the process.
+* Investigating relationships among the circumcenter, centroid, and orthocenter in acute, obtuse, and right triangles.
+* Determining whether the orthocenter of a right triangle is always at the vertex of the right angle.
+* Finding the length of a side CA given that AD and CE are medians, AD is perpendicular to CE, AB = 10, and CE = 9.
+
+## Review Notes
+
+* Multiple diagrams referenced: images showing medians, altitudes, centroids, and orthocenters (media/image1.png through media/image12.png) contain geometric figures that could not be fully described.
+* The worksheet contains 36 practice problems covering centroid theorem, altitude properties, orthocenter construction, and proofs.

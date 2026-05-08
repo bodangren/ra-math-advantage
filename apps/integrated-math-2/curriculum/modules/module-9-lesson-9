@@ -1,0 +1,396 @@
+# Lesson 9-9 — Solving Absolute Value Equations and Inequalities by Graphing
+
+Source: (Module 9, Lesson 9-9, Int2_0909_practice.docx)
+
+## Today's Goals
+
+* Solve absolute value equations by graphing the related function and identifying intersection points with a horizontal line.
+* Solve absolute value equations algebraically by isolating the absolute value expression and considering both positive and negative cases.
+* Solve absolute value inequalities by graphing and by using a graphing calculator to identify solution regions.
+* Write absolute value equations and inequalities to model real-world tolerance and range problems.
+* Recognize when an absolute value equation or inequality has no solution or all real numbers as its solution set.
+
+## Vocabulary
+
+* **Absolute Value Equation** — An equation containing an absolute value expression.
+* **Absolute Value Inequality** — An inequality containing an absolute value expression.
+* **Solution Set** — The set of all values that make an equation or inequality true.
+* **Graphing** — A method of solving equations and inequalities by finding points of intersection or shaded regions on a coordinate plane.
+* **Graphing Calculator** — A tool used to graph functions and find intersection points or analyze solution regions.
+* **Algebraic Solution** — A solution obtained by manipulating the equation or inequality using operations and properties of equality.
+* **Boundary Point** — The point(s) where the graph of an absolute value function intersects a horizontal line, marking the edge of a solution region.
+* **No Solution** — A situation where no real number satisfies the equation or inequality.
+* **All Real Numbers** — A solution set that includes every real number.
+
+## Explore: How Can Graphing Reveal the Solutions of an Absolute Value Equation?
+
+Students consider the relationship between the graph of an absolute value function and a horizontal line. By counting intersection points, students can predict the number of solutions before solving algebraically.
+
+Inquiry Question:
+How does the number of intersection points between the graph of an absolute value function and a horizontal line relate to the number of solutions of the equation?
+
+## Learn: Solving Absolute Value Equations and Inequalities
+
+Absolute value equations and inequalities can be solved graphically by analyzing where the graph of the related absolute value function intersects or lies relative to a horizontal line. They can also be solved algebraically by isolating the absolute value expression and splitting into cases.
+
+### Key Concept: Solving Absolute Value Equations by Graphing
+
+* Rewrite the equation so the absolute value expression is isolated on one side.
+* Graph the related absolute value function and a horizontal line at the value on the other side.
+* The x-coordinates of the intersection points are the solutions.
+* If the horizontal line is below the vertex and the equation is of the form [|expression| = negative number], there is no solution.
+* If the horizontal line touches the vertex, there is exactly one solution.
+
+### Key Concept: Solving Absolute Value Equations Algebraically
+
+* Isolate the absolute value expression completely.
+* Write two separate equations: one where the expression inside equals the positive value, and one where it equals the negative value.
+* Solve each equation separately.
+* Check for extraneous solutions or cases where the absolute value equals a negative number, which yields no solution.
+
+### Key Concept: Solving Absolute Value Inequalities by Graphing
+
+* Isolate the absolute value expression.
+* For [|expression| < a] or [|expression| \le a], the solution is the interval between the two boundary points (where the graph is below the horizontal line).
+* For [|expression| > a] or [|expression| \ge a], the solution is the union of the two outer regions (where the graph is above the horizontal line).
+* If the horizontal line is below the vertex and the inequality is [|expression| < negative number], there is no solution.
+* If the horizontal line is below the vertex and the inequality is [|expression| > negative number], the solution is all real numbers.
+
+## Example 1 — Solve Absolute Value Equations by Graphing
+
+Students solve absolute value equations by graphing the related function and identifying the x-coordinates of intersection points with a horizontal line.
+
+### Step 1: Isolate the Absolute Value Expression
+
+Rewrite each equation so the absolute value term is alone on one side.
+
+[
+\lvert x - 4 \rvert = 5
+]
+
+[
+\lvert 2x - 3 \rvert = 17
+]
+
+[
+3 + \lvert 2x + 1 \rvert = 3 \implies \lvert 2x + 1 \rvert = 0
+]
+
+[
+\lvert x - 1 \rvert + 6 = 4 \implies \lvert x - 1 \rvert = -2
+]
+
+[
+7 + \lvert 3x - 1 \rvert = 7 \implies \lvert 3x - 1 \rvert = 0
+]
+
+[
+\lvert x + 2 \rvert + 5 = 13 \implies \lvert x + 2 \rvert = 8
+]
+
+### Step 2: Graph and Identify Intersection Points
+
+Graph the absolute value function and the horizontal line. The x-coordinates of the intersections are the solutions.
+
+For [\lvert x - 4 \rvert = 5], graph [y = \lvert x - 4 \rvert] and [y = 5]:
+[
+x = -1 \text{ and } x = 9
+]
+
+For [\lvert 2x - 3 \rvert = 17], graph [y = \lvert 2x - 3 \rvert] and [y = 17]:
+[
+x = -7 \text{ and } x = 10
+]
+
+For [\lvert 2x + 1 \rvert = 0], graph [y = \lvert 2x + 1 \rvert] and [y = 0]. The graph touches the line at the vertex:
+[
+x = -\frac{1}{2}
+]
+
+### Step 3: Recognize No-Solution Cases
+
+When the isolated absolute value equals a negative number, there are no real solutions.
+
+For [\lvert x - 1 \rvert = -2]:
+[
+\text{No solution}
+]
+
+For [\lvert 3x - 1 \rvert = 0], there is one solution at the vertex:
+[
+x = \frac{1}{3}
+]
+
+For [\lvert x + 2 \rvert = 8]:
+[
+x = -10 \text{ and } x = 6
+]
+
+## Example 2 — Solve Absolute Value Equations Using a Graphing Calculator
+
+Students use a graphing calculator to find the intersection points of absolute value functions with horizontal lines, including equations with fractional coefficients.
+
+### Step 1: Enter the Functions
+
+Enter the absolute value function and the horizontal line into the calculator.
+
+For [\frac{1}{2}\lvert x - 1 \rvert + 5 = 9], enter:
+[
+y = \frac{1}{2}\lvert x - 1 \rvert + 5
+]
+and
+[
+y = 9
+]
+
+For [\frac{3}{4}\lvert x + 1 \rvert + 1 = 7], enter:
+[
+y = \frac{3}{4}\lvert x + 1 \rvert + 1
+]
+and
+[
+y = 7
+]
+
+### Step 2: Find Intersection Points
+
+Use the calculator's intersect feature to determine the x-coordinates.
+
+For [\frac{1}{2}\lvert x - 1 \rvert + 5 = 9]:
+[
+x = -7 \text{ and } x = 9
+]
+
+For [\frac{3}{4}\lvert x + 1 \rvert + 1 = 7]:
+[
+x = -9 \text{ and } x = 7
+]
+
+For [\frac{2}{3}\lvert x - 2 \rvert - 4 = 4]:
+[
+x = -2 \text{ and } x = 10
+]
+
+For [2\lvert x + 2 \rvert = 10]:
+[
+x = -7 \text{ and } x = 3
+]
+
+For [\frac{1}{5}\lvert x + 6 \rvert - 1 = 9]:
+[
+x = -56 \text{ and } x = 44
+]
+
+For [3\lvert x + 5 \rvert - 1 = 11]:
+[
+x = -9 \text{ and } x = -1
+]
+
+## Example 3 — Solve Absolute Value Equations Algebraically
+
+Students solve absolute value equations algebraically by splitting into two cases, then use a graphing calculator to verify the solutions.
+
+### Step 1: Isolate the Absolute Value Expression
+
+Divide or add as needed to isolate the absolute value.
+
+[
+\lvert 3x - 6 \rvert = 42
+]
+
+[
+7\lvert x + 3 \rvert = 42 \implies \lvert x + 3 \rvert = 6
+]
+
+[
+-3\lvert 4x - 9 \rvert = 24 \implies \lvert 4x - 9 \rvert = -8
+]
+
+[
+-6\lvert 5 - 2x \rvert = -9 \implies \lvert 5 - 2x \rvert = \frac{3}{2}
+]
+
+[
+5\lvert 2x + 3 \rvert - 5 = 0 \implies \lvert 2x + 3 \rvert = 1
+]
+
+[
+\lvert 15 - 2x \rvert = 45
+]
+
+### Step 2: Split into Two Cases and Solve
+
+Set the expression inside the absolute value equal to both the positive and negative values.
+
+For [\lvert 3x - 6 \rvert = 42]:
+[
+3x - 6 = 42 \quad \text{or} \quad 3x - 6 = -42
+]
+[
+3x = 48 \quad \text{or} \quad 3x = -36
+]
+[
+x = 16 \quad \text{or} \quad x = -12
+]
+
+For [\lvert x + 3 \rvert = 6]:
+[
+x + 3 = 6 \quad \text{or} \quad x + 3 = -6
+]
+[
+x = 3 \quad \text{or} \quad x = -9
+]
+
+For [\lvert 15 - 2x \rvert = 45]:
+[
+15 - 2x = 45 \quad \text{or} \quad 15 - 2x = -45
+]
+[
+x = -15 \quad \text{or} \quad x = 30
+]
+
+### Step 3: Identify No-Solution Cases
+
+If the isolated absolute value equals a negative number, there is no solution.
+
+For [\lvert 4x - 9 \rvert = -8]:
+[
+\text{No solution}
+]
+
+For [\lvert 5 - 2x \rvert = \frac{3}{2}]:
+[
+5 - 2x = \frac{3}{2} \quad \text{or} \quad 5 - 2x = -\frac{3}{2}
+]
+[
+x = \frac{7}{4} \quad \text{or} \quad x = \frac{13}{4}
+]
+
+For [\lvert 2x + 3 \rvert = 1]:
+[
+2x + 3 = 1 \quad \text{or} \quad 2x + 3 = -1
+]
+[
+x = -1 \quad \text{or} \quad x = -2
+]
+
+## Example 4 — Solve Absolute Value Inequalities by Graphing
+
+Students solve absolute value inequalities by graphing the related function and identifying the intervals where the graph satisfies the inequality condition.
+
+### Step 1: Rewrite the Inequality
+
+Isolate the absolute value expression, then graph the related function and the boundary line.
+
+For [\lvert 2x - 6 \rvert - 4 \le 0], rewrite as:
+[
+\lvert 2x - 6 \rvert \le 4
+]
+
+Graph [y = \lvert 2x - 6 \rvert] and [y = 4].
+
+### Step 2: Identify the Solution Region
+
+For "less than or equal to," shade between the intersection points. For "greater than or equal to," shade outside.
+
+For [\lvert 2x - 6 \rvert \le 4], the solution is the interval between the boundary points:
+[
+1 \le x \le 5
+]
+
+For [\lvert x - 1 \rvert - 3 \le 0], which simplifies to [\lvert x - 1 \rvert \le 3]:
+[
+-2 \le x \le 4
+]
+
+For [\lvert 2x - 1 \rvert \ge 4], the solution is the union of the two outer regions:
+[
+x \le -\frac{3}{2} \quad \text{or} \quad x \ge \frac{5}{2}
+]
+
+For [\lvert 3x + 2 \rvert \ge 6]:
+[
+x \le -\frac{8}{3} \quad \text{or} \quad x \ge \frac{4}{3}
+]
+
+For [2\lvert x + 2 \rvert < 8], which simplifies to [\lvert x + 2 \rvert < 4]:
+[
+-6 < x < 2
+]
+
+For [3\lvert x - 1 \rvert < 12], which simplifies to [\lvert x - 1 \rvert < 4]:
+[
+-3 < x < 5
+]
+
+## Example 5 — Solve Absolute Value Inequalities Using a Graphing Calculator
+
+Students use a graphing calculator to visualize solution regions and handle special cases such as no solution or all real numbers.
+
+### Step 1: Enter the Functions
+
+Enter the absolute value function and the horizontal boundary line.
+
+For [\left\lvert \frac{1}{4}x + 4 \right\rvert - 1 > 0], enter:
+[
+y = \left\lvert \frac{1}{4}x + 4 \right\rvert - 1
+]
+and
+[
+y = 0
+]
+
+### Step 2: Determine the Solution Set
+
+Find the intersection points and determine where the inequality holds.
+
+For [\left\lvert \frac{1}{4}x + 4 \right\rvert - 1 > 0], the solution is where the graph is above [y = 0]:
+[
+x < -20 \quad \text{or} \quad x > -12
+]
+
+For [\frac{2}{5}\lvert x - 5 \rvert + 1 > 0], the left side is always at least 1, so:
+[
+\text{All real numbers}
+]
+
+For [\lvert 3x - 1 \rvert < 2], the solution is between the boundary points:
+[
+-\frac{1}{3} < x < 1
+]
+
+For [\lvert 4x + 1 \rvert \le 1]:
+[
+-\frac{1}{2} \le x \le 0
+]
+
+For [\frac{1}{6}\lvert x - 1 \rvert + 1 \le 0], the left side is always at least 1, so:
+[
+\text{No solution}
+]
+
+For [\frac{1}{4}\lvert x + 5 \rvert - 1 \le 1], which simplifies to [\frac{1}{4}\lvert x + 5 \rvert \le 2]:
+[
+-13 \le x \le 3
+]
+
+## Mixed Exercises
+
+The mixed exercises provide practice with all skills from the lesson: solving absolute value equations and inequalities by graphing, with a graphing calculator, and algebraically. Problems include:
+
+* Solving absolute value equations by graphing with decimal coefficients.
+* Solving absolute value inequalities by graphing with fractional coefficients.
+* Solving equations and inequalities algebraically and verifying with a graphing calculator.
+* Writing and solving an absolute value equation to model a real-world tolerance problem involving package weights.
+* Writing and solving an absolute value inequality to model a real-world range problem involving planetary orbit distances.
+* Constructing arguments about whether two different absolute value equations can represent the same graph and solution set.
+* Comparing and contrasting the solution sets of absolute value equations and inequalities.
+* Analyzing how to determine whether an absolute value equation has no solution without graphing or fully solving it.
+* Creating an absolute value equation that produces a given solution set.
+
+## Review Notes
+
+* ![](media/image1.png) Images referenced in the worksheet (graph for the construct-arguments problem) could not be fully described without visual reference. Teachers should consult the original worksheet for exact values and diagrams.
+* All absolute value expressions use proper LaTeX delimiters with `\lvert` and `\rvert` for vertical bars to avoid ambiguity with division operators.
+
+(End of file - total 397 lines)

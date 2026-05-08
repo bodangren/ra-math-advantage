@@ -1,0 +1,280 @@
+# Lesson 9-7 — Optimization with Linear Programming
+
+Source: (Module 9, Lesson 9-7, Int2_0907_practice.docx)
+
+## Today's Goals
+
+* Graph a system of linear inequalities and identify the vertices of the feasible region.
+* Evaluate a linear objective function at each vertex to find the maximum and minimum values.
+* Set up a system of inequalities from a real-world scenario involving resource constraints.
+* Apply linear programming to optimize quantities such as profit, cost, or production in applied problems.
+
+## Vocabulary
+
+* **Linear Programming** — A method used to optimize a linear objective function subject to a system of linear inequality constraints.
+* **Feasible Region** — The set of all points that satisfy every constraint in a system of inequalities; the region where the solution is possible.
+* **Objective Function** — A linear function of the form [f(x, y) = ax + by] that represents the quantity to be maximized or minimized.
+* **Vertex** — A corner point of the feasible region where two boundary lines intersect; also called a corner point.
+* **Constraint** — A linear inequality that limits the possible values of the variables in a linear programming problem.
+* **Bounded Region** — A feasible region that is enclosed on all sides by boundary lines.
+* **Unbounded Region** — A feasible region that extends infinitely in one or more directions.
+
+## Explore: Where Is the Best Solution?
+
+When a system of inequalities defines a feasible region and an objective function represents something to maximize or minimize, the best value does not occur just anywhere inside the region. Students consider why the optimal value might be found at specific points rather than in the interior.
+
+Inquiry Question:
+Why does the maximum or minimum value of a linear objective function over a feasible region always occur at a vertex?
+
+## Learn: Optimization with Linear Programming
+
+### Key Concept: Steps in Linear Programming
+
+1. Write the system of inequality constraints and graph each boundary line.
+2. Identify the feasible region and find the coordinates of all vertices.
+3. Write the objective function [f(x, y) = ax + by].
+4. Evaluate the objective function at each vertex.
+5. The largest value is the maximum; the smallest value is the minimum.
+
+### Key Concept: Bounded vs. Unbounded Regions
+
+* For a **bounded** feasible region, both a maximum and a minimum value of the objective function always exist.
+* For an **unbounded** feasible region, a maximum or minimum may not exist if the objective function increases or decreases without bound in the allowed direction.
+
+## Example 1 — Find Maximum and Minimum on a Bounded Feasible Region
+
+Graph systems of inequalities with vertical, horizontal, and slanted boundaries. Identify the vertices of the feasible region and evaluate the objective function at each vertex to find the maximum and minimum values.
+
+### Step 1: Graph Constraints and Identify Vertices
+
+Graph the boundary lines for the given system and shade the appropriate half-planes. The feasible region is the overlapping shaded area. Find the coordinates of each vertex by solving the systems of equations formed by intersecting boundary pairs.
+
+[
+y \geq 2
+]
+[
+1 \leq x \leq 5
+]
+[
+y \leq x + 3
+]
+
+[
+f(x, y) = 3x - 2y
+]
+
+The vertices of the feasible region are found at the intersections of [x = 1], [x = 5], [y = 2], and [y = x + 3].
+
+[
+y \geq -2
+]
+[
+y \geq 2x - 4
+]
+[
+f(x, y) = 4x - y
+]
+
+Find where the boundary lines meet and test each vertex in the objective function.
+
+[
+x + y \geq 2
+]
+[
+4y \leq x + 8
+]
+[
+y \geq 2x - 5
+]
+[
+f(x, y) = 4x + 3y
+]
+
+[
+x \geq 2
+]
+[
+x \leq 5
+]
+[
+y \geq 1
+]
+[
+y \leq 4
+]
+[
+f(x, y) = x + y
+]
+
+[
+x \geq 1
+]
+[
+y \leq 6
+]
+[
+y \geq x - 2
+]
+[
+f(x, y) = x - y
+]
+
+[
+x \geq 0
+]
+[
+y \geq 0
+]
+[
+y \leq 7 - x
+]
+[
+f(x, y) = 3x + y
+]
+
+### Step 2: Evaluate the Objective Function at Each Vertex
+
+Substitute the coordinates of each vertex into the objective function. Compare the results to determine the maximum and minimum values.
+
+For example, if the vertices are [(1, 2)], [(5, 2)], [(1, 4)], and [(5, 8)], evaluate [f(x, y)] at each point:
+[
+f(1, 2) = 3(1) - 2(2) = -1
+]
+[
+f(5, 2) = 3(5) - 2(2) = 11
+]
+[
+f(1, 4) = 3(1) - 2(4) = -5
+]
+[
+f(5, 8) = 3(5) - 2(8) = -1
+]
+
+The maximum value is [11] and the minimum value is [-5].
+
+## Example 2 — Optimization with Unbounded and Multi-Constraint Regions
+
+Graph systems that produce both bounded and unbounded feasible regions. Evaluate the objective function at all vertices to determine whether a maximum, minimum, both, or neither exist.
+
+### Step 1: Analyze Unbounded Regions
+
+[
+x \geq -1
+]
+[
+x + y \leq 6
+]
+[
+f(x, y) = x + 2y
+]
+
+Graph the vertical boundary [x = -1] and the slanted boundary [y = -x + 6]. The feasible region extends downward and to the left, so it is unbounded in some directions. Check whether the objective function has both a maximum and a minimum, or if one value does not exist.
+
+[
+y \leq 2x
+]
+[
+y \geq 6 - x
+]
+[
+y \leq 6
+]
+[
+x \geq -2
+]
+[
+f(x, y) = 4x + 3y
+]
+
+### Step 2: Evaluate at Vertices for Bounded Portions
+
+[
+y \leq 3x + 6
+]
+[
+4y + 3x \leq 3
+]
+[
+x \geq -2
+]
+[
+f(x, y) = -x + 3y
+]
+
+Find the vertices by intersecting boundary pairs. Substitute each vertex into the objective function. If the region is unbounded, determine whether the objective function increases or decreases without bound in the allowed direction.
+
+## Example 3 — Real-World Linear Programming
+
+Translate resource and cost constraints into a system of inequalities, graph the feasible region, and optimize the objective function in applied contexts.
+
+### Step 1: Define Variables and Write Constraints
+
+**Painting:** A painter has limited supplies of two dyes. Each gallon of color A and color B requires specific amounts of yellow and green dye. Define variables for the gallons of each color mixed.
+
+Let [a] represent gallons of color A and [b] represent gallons of color B.
+
+Constraints based on available dye:
+[
+4a + b \leq 32
+]
+[
+a + 6b \leq 54
+]
+
+Non-negativity constraints:
+[
+a \geq 0
+]
+[
+b \geq 0
+]
+
+Objective: maximize total gallons mixed.
+[
+G = a + b
+]
+
+**Jewelry:** A necklace uses two types of beads with specific quantity limits and a cost relationship. Define variables for the number of clay beads and glass beads.
+
+Let [c] represent clay beads and [g] represent glass beads.
+
+Constraints based on bead limits:
+[
+c \leq 10
+]
+[
+g \geq 4
+]
+[
+4g \leq 2c + 8
+]
+
+Cost function to minimize:
+[
+C = 0.20c + 0.40g
+]
+
+### Step 2: Graph and Find Vertices
+
+Graph each system of constraints in the first quadrant. Identify the feasible region and find the coordinates of each vertex by solving pairs of boundary equations.
+
+### Step 3: Optimize the Objective Function
+
+Evaluate the objective function at every vertex of the feasible region. For the painting problem, the largest value of [G] gives the maximum gallons. For the jewelry problem, the smallest value of [C] gives the minimum cost.
+
+## Mixed Exercises
+
+The mixed exercises section provides practice with all skills from the lesson. Problems include:
+
+* A craft fair problem where a person makes pots and plates subject to time, weight, and daily production constraints. Write the system of inequalities, list the vertices, and maximize profit.
+* A trapezoidal park with an elevation function [f(x, y) = x - 3y + 20]. Find the coordinates of the highest point and the elevation there.
+* A zoo food mixing problem with protein and fat requirements. Minimize cost by choosing how much of two food types to use, and interpret what an unbounded feasible region represents in this context.
+* Analyzing whether an unbounded region can have both a maximum and minimum value, classifying the statement as sometimes, always, or never true.
+* Identifying which of four graphed systems of inequalities does not match the others. (Images of the four graphs are provided in the original worksheet.)
+* Explaining how two different vertices could yield the same maximum value for a linear objective function over a correctly graphed bounded region.
+* Creating a system of inequalities that forms a bounded region with area [20] square units lying entirely in the fourth quadrant.
+
+## Review Notes
+
+* Images referenced in the worksheet (graph for the pots and plates problem, four graphed systems for the "Which One Doesn't Belong?" problem) could not be fully described without visual reference. Teachers should consult the original worksheet for exact diagrams and values.
+* The worksheet contains 18 practice problems across three examples and mixed exercises.

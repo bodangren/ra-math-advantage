@@ -1,0 +1,196 @@
+# Lesson 6-1 — Solving One-Step Inequalities
+
+Source: (Module 6, Lesson 6-1, Int1_0601_practice.docx)
+
+## Today's Goals
+
+* Graph the solution set of a one-step inequality on a number line.
+* Write an inequality that matches a given number-line graph.
+* Solve one-step inequalities using addition, subtraction, multiplication, and division, including when the coefficient is negative.
+* Translate real-world situations into inequalities, solve them, and interpret the solutions.
+
+## Vocabulary
+
+* **inequality** — A mathematical statement that compares two expressions using symbols such as [<], [>], [\le], or [\ge].
+* **solution set** — The set of all values that make an inequality true.
+* **open circle** — Used on a number line to show that a boundary value is *not* included in the solution.
+* **closed circle** — Used on a number line to show that a boundary value *is* included in the solution.
+* **at least** — Means greater than or equal to, [\ge].
+* **at most** — Means less than or equal to, [\le].
+
+## Learn: Solving One-Step Inequalities
+
+Solving a one-step inequality uses the same inverse-operation strategy as solving a one-step equation. The goal is to isolate the variable on one side.
+
+### Key Concept: One-Step Inequalities
+
+* To undo addition, subtract the same number from both sides.
+* To undo subtraction, add the same number to both sides.
+* To undo multiplication, divide both sides by the same nonzero number.
+* To undo division, multiply both sides by the same nonzero number.
+* **Critical rule:** When you multiply or divide both sides of an inequality by a *negative* number, you **must reverse** the inequality symbol.
+
+## Example 1 — Graph Solution Sets
+
+Graph the solution set of each inequality on a number line.
+
+### Step 1: Identify the Boundary and Direction
+
+Determine whether the boundary value is included (closed circle for [\le] or [\ge]) or excluded (open circle for [<] or [>]). Then shade the number line in the direction indicated by the inequality symbol.
+
+Representative inequalities:
+[
+x \le -5
+]
+[
+y \ge -2
+]
+[
+g > 5
+]
+[
+a < 7
+]
+
+## Example 2 — Write Inequalities from Graphs
+
+Write an inequality that represents each number-line graph.
+
+### Step 1: Read the Graph
+
+Identify the boundary value, whether the circle is open or closed, and the direction of the shaded ray. Translate these features into the correct inequality symbol and value.
+
+## Examples 3–5 — Solve One-Step Inequalities (Addition and Subtraction)
+
+Solve each inequality.
+
+### Step 1: Isolate the Variable
+
+Use the inverse operation to move the constant to the other side.
+
+Representative problems:
+[
+m - 4 < 3
+]
+[
+p - 6 \ge 3
+]
+[
+b + 2 \ge 4
+]
+[
+13 > 18 + r
+]
+
+### Step 2: Variables on Both Sides
+
+When the variable appears on both sides, collect variable terms on one side first by adding or subtracting the smaller variable term.
+
+Representative problems:
+[
+2a \le -4 + a
+]
+[
+z + 4 \ge 2z
+]
+[
+3y \le 2y - 6
+]
+[
+6x + 5 \ge 7x
+]
+
+## Example 6 — Apply Inequalities to Real-World Problems
+
+Define a variable, write an inequality, and solve.
+
+### Step 1: Pizza Cost
+
+Tara eats 3 of 10 slices and pays $4.50, which is at least her fair share. Write and solve an inequality to find the total cost of the pizza.
+
+### Step 2: Tornado Wind Speeds
+
+Use the Fujita tornado classification table to write and solve inequalities about wind speeds.
+
+* **Part a:** An F3 tornado has winds of 162 mph. Determine how much the winds must increase to become an F4 tornado.
+* **Part b:** A tornado has wind speeds of at least 158 mph. Describe how much greater these speeds are than the slowest tornado.
+
+## Example 7 — Mixed Real-World Applications
+
+Define a variable, write an inequality, and solve each problem.
+
+### Step 1: Garbage and Recycling
+
+The average American creates 4.6 pounds of garbage daily. If at least 2.5 pounds could be recycled, determine how much still goes to a landfill.
+
+### Step 2: Supreme Court Service
+
+John Jay served 2,079 days as Chief Justice, which is 10,463 days fewer than John Marshall. Determine how many days the current Chief Justice must serve to surpass Marshall's record.
+
+### Step 3: Lost Luggage
+
+At least 25,000 pieces of luggage are lost daily, and 98% are located within 5 days. Find the minimum number still lost after 5 days.
+
+### Step 4: Test Average
+
+Gilberto earned scores of 86, 88, and 78 on three tests. Find the lowest score he can earn on the fourth test to have an average of at least 83.
+
+## Examples 8–10 — Solve and Graph Inequalities (Multiplication and Division)
+
+Solve each inequality and graph the solution on a number line.
+
+### Step 1: Undo Multiplication or Division
+
+Divide or multiply both sides by the coefficient of the variable. Remember to reverse the inequality symbol when multiplying or dividing by a negative number.
+
+Representative problems with fractions:
+[
+\frac{1}{4}m \le -17
+]
+[
+\frac{2}{3}h > 14
+]
+[
+-\frac{3}{4}j \ge 12
+]
+
+Representative problems with negative divisors:
+[
+-10 \le \frac{x}{-2}
+]
+[
+-72 < \frac{f}{-6}
+]
+
+Representative problems with negative coefficients:
+[
+-2d < 5
+]
+[
+-7f > 5
+]
+[
+-33 \ge -3z
+]
+
+## Mixed Exercises
+
+The mixed exercises provide comprehensive practice across all skills in the lesson:
+
+* **Matching (55–60):** Match symbolic inequalities such as [
+3n < 9 ], [
+\frac{1}{3}n \ge 9 ], and [
+-3n > 9 ] to their corresponding verbal descriptions.
+* **Translate and Solve (61–66):** Define a variable, write a one-step inequality from a verbal statement, solve it, and check the solution. Statements include "seven more than a number is less than or equal to [
+-18 ]" and "one eighth of a number is less than or equal to 3."
+* **Structure Problems (67–74):** Solve an inequality, check the solution, and graph it on a number line. Problems involve integer, decimal, and fractional coefficients.
+* **Extended Applications (75–78):** Solve multi-step word problems involving event-planning costs, vitamin requirements, sound-level comparisons, and exam-score interpretations.
+* **Reasoning (79–82):** Identify which inequality does not belong to a given solution set, analyze a worked error example, solve inequalities with a literal coefficient [
+a ], and determine whether a reciprocal statement is sometimes, always, or never true.
+
+## Review Notes
+
+* **Example 2:** Number-line graphs for problems 7–12 are image-based and must be reviewed from the original worksheet.
+* **Example 6 (problem 32):** The Fujita tornado classification table is an image and must be reviewed from the original worksheet.
+* **Example 7 (problem 77):** The image of the African cicada and blue whale must be reviewed from the original worksheet.
+* **Mixed Exercises (problem 80):** Marty and Heath's worked solutions are shown in an image and must be reviewed from the original worksheet.

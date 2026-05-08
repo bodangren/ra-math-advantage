@@ -1,0 +1,259 @@
+# Lesson 12-7 — Solving Systems of Linear and Quadratic Equations
+
+Source: (Module 12, Lesson 12-N, Int2_1207_practice.docx)
+
+## Today's Goals
+
+* Solve a system of linear and quadratic equations by graphing, identifying intersection points of the parabola and line.
+* Solve a system of linear and quadratic equations algebraically by substitution or elimination.
+* Interpret real-world scenarios involving parabolic and linear relationships to find solution points and explain their meaning in context.
+
+## Vocabulary
+
+* **System of Linear and Quadratic Equations** — A system containing one equation of degree 1 and one equation of degree 2, typically a parabola and a line.
+* **Substitution Method** — An algebraic technique where one equation is solved for a variable in terms of the others and substituted into the remaining equation(s).
+* **Intersection Point** — The coordinate(s) where the graph of the linear function and the graph of the quadratic function cross each other; the solution to the system.
+
+## Explore: Intersection of Parabolas and Lines
+
+When a parabola and a line are graphed on the same coordinate plane, their intersection(s) represent the solution(s) to the system of equations. Students investigate how many intersection points are possible and what conditions determine whether the line intersects, is tangent to, or misses the parabola.
+
+Inquiry Question:
+What determines whether a line and a parabola will intersect at 0, 1, or 2 points?
+
+## Learn: Solving Systems of Linear and Quadratic Equations
+
+### Key Concept: Number of Solutions
+
+A system of one linear and one quadratic equation can have 0, 1, or 2 solutions depending on how many times the line intersects the parabola:
+
+* **0 solutions** — The line does not intersect the parabola (line is entirely above or below, or opens in a direction away from the line).
+* **1 solution** — The line is tangent to the parabola (touches at exactly one point).
+* **2 solutions** — The line crosses the parabola at two distinct points.
+
+### Key Concept: Solving by Graphing
+
+Graph both equations on the same coordinate plane. Read the coordinates of the intersection point(s) from the graph. This method is useful for estimating solutions and visualizing the relationship between the functions.
+
+### Key Concept: Solving Algebraically
+
+Use substitution or elimination to solve the system exactly:
+
+1. Solve the linear equation for one variable, or substitute the quadratic expression for [y] (or [x]) in the linear equation.
+2. Rearrange to standard quadratic form and solve for the remaining variable.
+3. Substitute back to find the other coordinate of each solution point.
+
+## Example 1 — Solve Systems by Graphing
+
+Graph each system and identify the solution point(s) where the parabola and line intersect.
+
+### Step 1: Graph the Parabola
+
+Use a table of values or vertex form to sketch the quadratic function. Plot several points to reveal the shape of the parabola.
+
+[
+y = x^2 - 4
+]
+[
+y = -3
+]
+
+The parabola [y = x^2 - 4] opens upward with vertex at (0, -4).
+
+[
+y = x^2 + x - 2
+]
+[
+y = -x + 1
+]
+
+The parabola [y = x^2 + x - 2] opens upward, shifted left and down from [y = x^2].
+
+[
+y = 2x^2 + 1
+]
+[
+y = 1
+]
+
+The parabola [y = 2x^2 + 1] is vertically stretched and shifted up one unit.
+
+[
+y = x^2 + 3x + 1
+]
+[
+y = x + 1
+]
+
+The parabola [y = x^2 + 3x + 1] opens upward and intersects the line [y = x + 1].
+
+### Step 2: Graph the Line
+
+Plot the linear function using its slope and y-intercept. Extend the line across the coordinate plane.
+
+### Step 3: Identify Intersection Points
+
+Read the coordinates of each point where the line and parabola cross. These coordinates are the solution(s) to the system.
+
+## Example 2 — Solve Systems Algebraically
+
+Solve each system exactly using substitution or elimination. Find both coordinates of each solution.
+
+### Step 1: Substitute the Quadratic Expression into the Linear Equation
+
+For a system written as [y =] quadratic and [y =] linear, substitute the right-hand side of the quadratic for [y] in the linear equation. This eliminates [y] and leaves an equation in [x].
+
+[
+y = x^2 - 2x - 5
+]
+[
+y = 3
+]
+
+Substitute [3] for [y] in the first equation:
+[
+3 = x^2 - 2x - 5
+]
+
+[
+y = x^2 + 4x - 1
+]
+[
+y = 3x + 1
+]
+
+Substitute [3x + 1] for [y]:
+[
+3x + 1 = x^2 + 4x - 1
+]
+
+[
+y = x^2 - 6x + 5
+]
+[
+x + y = -1
+]
+
+Rearrange the linear equation: [y = -x - 1]. Substitute into the quadratic:
+[
+-x - 1 = x^2 - 6x + 5
+]
+
+### Step 2: Rearrange to Standard Quadratic Form
+
+Move all terms to one side so the equation equals zero.
+
+[
+x^2 - 2x - 8 = 0
+]
+[
+x^2 - x - 2 = 0
+]
+
+### Step 3: Solve the Quadratic Equation
+
+Factor, complete the square, or use the quadratic formula to find the [x]-values.
+
+[
+(x - 4)(x + 2) = 0
+]
+[
+(x - 2)(x + 1) = 0
+]
+
+### Step 4: Substitute Back to Find [y]
+
+Plug each [x]-value into one of the original equations to find the corresponding [y]-value.
+
+For [x = 4] and [x = -2] in the first system:
+[
+y = 3
+]
+
+The solutions are [(4, 3)] and [(-2, 3)].
+
+### Step 5: Check All Solutions in Both Equations
+
+Verify that each solution pair satisfies both original equations.
+
+## Example 3 — Real-World Systems
+
+### Gymnastics Problem
+
+A gymnast throws a baton into the air. The height of the baton is modeled by a quadratic function, and the gym ceiling is modeled by a horizontal line.
+
+**a.** Solve the system algebraically to find when and where the baton height equals the ceiling height.
+
+Set the quadratic expression equal to [42] and solve for [x]:
+[
+-16x^2 + 24x + 4 = 42
+]
+[
+-16x^2 + 24x - 38 = 0
+]
+
+Divide by -2 and solve:
+[
+8x^2 - 12x + 19 = 0
+]
+
+Apply the quadratic formula. If the discriminant is negative, the baton does not reach the ceiling.
+
+**b.** Explain whether the baton reaches the ceiling, using the number of real solutions found in part a.
+
+### Disc Golf Problem
+
+A disc's height is modeled by a quadratic function and Rodrigo's hand height by a linear function.
+
+**a.** Solve the system algebraically to find when the disc reaches Rodrigo's hand height.
+
+**b.** Substitute the [x]-value(s) into the linear function to find the catch height.
+
+### Zoo Revenue Problem
+
+Two revenue functions (single-day tickets and season passes) intersect at a specific month.
+
+Solve the system:
+[
+y = -x^2 + 25x + 80
+]
+[
+y = -4x + 200
+]
+
+Set equal and solve:
+[
+-x^2 + 25x + 80 = -4x + 200
+]
+
+The positive [x]-value that is less than 12 represents a month. Convert [x] months past January to find the actual month.
+
+## Mixed Exercises
+
+The mixed exercises provide practice with all skills from the lesson:
+
+* Problems 14–27: Solve each system by graphing or algebraically. Equations include parabolas intersecting horizontal, vertical, and slanted lines.
+* Problems 28–33: Rearrange each equation into standard quadratic form and solve using a system approach.
+* Problem 34 (Wingsuit): A wingsuit flyer model with a quadratic freefall function and a linear post-deployment function. Find deployment time and height.
+* Problem 35 (Reasoning): Analyze a graph showing a parabola and horizontal line [y = k]. Determine the number of solutions for the original line and after vertical shifts. ![](media/image1.png)
+* Problem 36 (Use a Model): Write a cost function from given data and solve a revenue-cost system. Interpret break-even points.
+* Problem 37 (Use Tools): A video game with rubber bands on a linear path and a target on a parabolic path. Graph and approximate intersection points, then use a calculator to find precise coordinates.
+* Problem 38 (Rockets): A rocket launch with line-of-sight constraints. Set up, solve graphically, solve algebraically, and interpret results in context.
+* Problem 39 (Regularity): Explain how to determine the number of solutions from a graph of the two functions.
+* Problem 40 (State Your Assumption): Choose between two solutions for a slinky problem and justify the assumption made.
+* Problem 41 (Construct Arguments): A rock kicked off a cliff with both rock path and cliff face modeled. Determine whether the rock lands on the cliff or in the river.
+* Problems 42–43 (Persevere): Use a graphing calculator to solve a system of quadratics and a system involving a circle.
+* Problems 44–45 (Analyze): Find the value of [k] that produces exactly one solution for a quadratic-line system and justify using the discriminant.
+* Problem 46 (Create): Write a problem using a provided graph and table of values, then solve it. ![](media/image2.png)
+* Problem 47 (Write): Determine and explain the maximum number of solutions for a linear-quadratic system versus a linear-linear system.
+* Problem 48 (Find the Error): Identify the mistake in Xavier's solution and correct the work. ![](media/image3.png)
+* Problem 49 (Which One Doesn't Belong): Identify which of three systems does not share a property with the others and explain the reasoning.
+
+## Review Notes
+
+* Problem 35 references ![](media/image1.png) showing a parabola and horizontal line [y = k]; the exact values should be confirmed against the original worksheet image.
+* Problem 46 includes ![](media/image2.png) a graph and table of values (approximately 3.84 in by 1.75 in) that describe two equations, one linear and one quadratic. The visual reference is needed to write an accurate problem.
+* Problem 48 contains ![](media/image3.png) a step-by-step solution with multiple equations; the original document shows the work in a two-column format with "Step 1" through "Step 7" labels.
+* The worksheet contains 49 total problems across three examples and mixed exercises.
+
+(End of file - total 261 lines)

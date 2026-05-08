@@ -1,190 +1,246 @@
 # Lesson 7-5 — Variation
 
-Source: (Module 7, Lesson 7-5, pp. 347–350)
+Source: (Module 7, Lesson 7-5, Int3_0705_practice.docx)
 
 ## Today's Goals
 
-* Recognize and solve direct and joint variation equations
-* Recognize and solve inverse and combined variation equations
-
----
+* Identify and solve direct, inverse, joint, and combined variation problems.
+* Write variation equations from real-world scenarios.
+* Apply variation to solve contextual problems.
 
 ## Vocabulary
 
-* direct variation
-* constant of variation
-* joint variation
-* inverse variation
-* combined variation
+* **Direct Variation** — [y = kx] where [k] is the constant of variation.
+* **Inverse Variation** — [y = k/x] where [k] is the constant of variation.
+* **Joint Variation** — [y = kxz] where [y] varies directly as [x] and [z].
+* **Combined Variation** — A combination of direct and inverse variation.
+* **Constant of Variation** — The constant [k] in a variation equation.
 
----
+## Explore: What Does Variation Mean?
 
-## Explore: Variation
+How do we recognize whether a relationship represents direct, inverse, or joint variation?
 
-Use the interactive tool to complete the explore.
+Inquiry Question:
+If [y] varies directly as [x] and [y = 12] when [x = 3], what is the constant of variation?
 
-**Inquiry Question:**
-How can you relate the dimensions of a rectangle with its area?
+## Learn: Variation
 
----
+### Key Concept: Direct Variation
 
-## Learn: Direct Variation and Joint Variation
+[y = kx]
+The ratio [y/x] is constant.
 
-Two quantities `x` and `y` are related by a **direct variation** if:
+### Key Concept: Inverse Variation
 
-`y = kx`
+[y = k/x]
+The product [xy] is constant.
 
-where `k` is the constant of variation.
+### Key Concept: Joint Variation
 
-The graph of a direct variation is a line through the origin.
+[y = kxz]
+The variable [y] varies directly with the product of [x] and [z].
 
-In **joint variation**, one quantity varies directly as the product of two or more other quantities:
+### Key Concept: Combined Variation
 
-`y = kxz`
+[y = kx/z]
+[ y = k * (product of direct variables) / (product of inverse variables) ]
 
----
+### Key Concept: Solving Variation Problems
 
-## Example 1 — Direct Variation
+1. Write the variation equation.
+2. Substitute the given values and solve for [k].
+3. Rewrite the equation with [k].
+4. Use the equation to find the unknown value.
 
-If `y` varies directly as `x` and `y = -3` when `x = 24`, find `y` when `x = -16`.
+## Example 1 — Direct Variation (Problems 1–6)
 
-Use a proportion:
+Find [x] when [y = 8] if [x] varies directly as [y].
 
-`y1/x1 = y2/x2`
+### Step 1: Write and Solve for [k]
 
-`-3/24 = y/(-16)`
+**1.** [x = 6] when [y = 32]
 
-So:
+**2.** [x = 11] when [y = -3]
 
-`y = 2`
+**3.** [x = 14] when [y = -2]
 
-## Talk About It
+**4.** [x = -4] when [y = 10]
 
-Explain why the graph of a direct variation function always passes through the origin.
+**5.** If [y] varies directly as [x], and [y = 35] when [x = 7], find [y] when [x = 11].
 
----
+**6.** If [y] varies directly as [x], and [y = 360] when [x = 180], find [y] when [x = 270].
 
-## Example 2 — Joint Variation
+## Example 2 — Joint Variation (Problems 7–12)
 
-Suppose `y` varies jointly as `x` and `z`. Find `y` when `x = 4` and `z = -3`, if `y = -15` when `x = -6` and `z = 1`.
+Find [a] when [b = 4] and [c = -3] if [a] varies jointly as [b] and [c].
 
-Use:
+### Step 1: Write and Solve for [k]
 
-`y1/(x1z1) = y2/(x2z2)`
+**7.** [a = -96] when [b = 3] and [c = -8]
 
-`y/(4(-3)) = -15/(-6(1))`
+**8.** [a = -60] when [b = -5] and [c = 4]
 
-`y/(-12) = -15/(-6)`
+**9.** [a = -108] when [b = 2] and [c = 9]
 
-`y = -30`
+**10.** [a = 24] when [b = 8] and [c = 12]
 
----
+**11.** If [y] varies jointly as [x] and [z], and [y = 18] when [x = 2] and [z = 3], find [y] when [x = 5] and [z = 6].
 
-## Learn: Inverse Variation and Combined Variation
+**12.** If [y] varies jointly as [x] and [z], and [y = -16] when [x = 4] and [z = 2], find [y] when [x = -1] and [z = 7].
 
-Two quantities vary inversely if:
+## Example 3 — Inverse Variation (Problems 13–18)
 
-`xy = k`
+Find [f] when [g = -6] if [f] varies inversely as [g].
 
-or
+### Step 1: Write and Solve for [k]
 
-`y = k/x`
+**13.** [f = 15] when [g = 9]
 
-In **combined variation**, one quantity varies directly and/or inversely with multiple others.
+**14.** [f = 4] when [g = 28]
 
-For example, if `y` varies directly as `x` and inversely as `z`, then:
+**15.** [f = -12] when [g = 19]
 
-`y = kx/z`
+**16.** [f = 0.6] when [g = -21]
 
----
+**17.** If [y] varies inversely as [x], and [y = 2] when [x = 2], find [y] when [x = 1].
 
-## Example 3 — Inverse Variation
+**18.** If [y] varies inversely as [x], and [y = 6] when [x = 5], find [y] when [x = 10].
 
-If `m` varies inversely as `n`, and `m = -4` when `n = 6`, find `m` when `n = -10`.
+## Example 4 — Combined Variation (Problems 19–22)
 
-Use a proportion:
+### Step 1: Set Up Equations
 
-`m1/n2 = m2/n1`
+**19.** Suppose [a] varies directly as [b], and [a] varies inversely as [c]. Find [b] when [a = 5] and [c = -4], if [b = 12] when [c = 3] and [a = 8].
 
-`-4/(-10) = m/6`
+**20.** Suppose [x] varies directly as [y], and [x] varies inversely as [z]. Find [z] when [x = 10] and [y = -7], if [z = 20] when [x = 6] and [y = 14].
 
-Cross multiply:
+**21.** Suppose [a] varies directly as [b], and [a] varies inversely as [c]. Find [b] when [a = 2.5] and [c = 18], if [b = 6] when [c = 4] and [a = 96].
 
-`-24 = -10m`
+**22.** Suppose [x] varies directly as [y], and [x] varies inversely as [z]. Find [z] when [x = 32] and [y = 9], if [z = 16] when [x = 12] and [y = 4].
 
-`m = 2.4`
+## Example 5 — Application Problems (Problems 23–25)
 
----
+### Step 1: Identify Variation Type and Solve
 
-## Example 4 — Combined Variation
+**23. ELECTRICITY** The resistance [R] of a piece of wire varies directly as its length [L] and inversely as its cross-sectional area [A]. A piece of copper wire 3 meters long and 2 millimeters in diameter has a resistance of 0.0107 ohms. Find the resistance of a second piece of copper wire 2 meters long and 6 millimeters in diameter.
 
-Suppose `a` varies directly as `b` and inversely as `c`. Find `b` when `a = 6` and `c = 28`, if `b = 7` when `a = -49` and `c = 3`.
+**24. PLANTS** The size of plant cells before cell division is directly related to the water available and inversely proportional to the bacteria present. If a plant's cells grow to 1.5 mm when 0.25 liter of water is available and bacteria is 500 parts per million, what would the bacteria level be for cells that grow to 2 mm with 0.4 liter of water available?
 
-Because:
+**25. PRESSURE** The volume of a gas varies directly with the temperature and inversely with the pressure. A certain gas has a volume of 15 L, a temperature of 290 K, and a pressure of 1 atm. If the gas is compressed to a volume of 12 L and heated to 310 K, what will the new pressure be?
 
-`a = kb/c`
+## Mixed Exercises
 
-set the two expressions for `k` equal:
+**26.** [c = 12m]; [c]
 
-`a1c1/b1 = a2c2/b2`
+**27.** [p = 4/q]; [p]
 
-`6(28)/b = (-49)(3)/7`
+**28.** [A = (1/2)bh]; [A]
 
-Solve:
+**29.** [rw = 15]; [r]
 
-`b = -8`
+**30.** [y = 2rgt]; [y]
 
----
+**31.** [f = 5280m]; [f]
 
-## Example 5 — Write and Solve a Combined Variation
+**32.** [y = 0.2d]; [y]
 
-A rider’s speed varies jointly with pedal RPM and front gear teeth, and inversely with rear gear teeth.
+**33.** [vz = -25]; [z]
 
-Given:
+**34.** [t = 16rh]; [t]
 
-* speed `= 17.1` mph
-* front gear `= 50`
-* rear gear `= 16`
-* pedal rate `= 70` RPM
+**35.** [R = 8/w]; [R]
 
-Find the speed when:
+**36.** [b = (1/3)a]; [b]
 
-* front gear `= 34`
-* rear gear `= 23`
-* pedal rate `= 70` RPM
+**37.** [C = 2πr]; [C]
 
-Let:
+**38.** [x/y = 2.75]; [x]
 
-* `x = speed`
-* `p = pedal RPM`
-* `f = front gear teeth`
-* `r = rear gear teeth`
+**39.** [fg = -2]; [f]
 
-Since speed varies jointly with `p` and `f` and inversely with `r`:
+**40.** [a = 3bc]; [a]
 
-`x = kpf/r`
+**41.** [10 = xy^2/z]; [x]
 
-Set up the proportion:
+**42.** [y = -11x]; [y]
 
-`x1r1/(p1f1) = x2r2/(p2f2)`
+**43.** [n/p = 4]; [n]
 
-Substitute:
+**44.** [9n = pr]; [p]
 
-`17.1(16)/(70(50)) = x(23)/(70(34))`
+**45.** [-2y = z]; [z]
 
-Solve:
+**46.** [a = 27b]; [a]
 
-`x ≈ 8.1`
+**47.** [c = 7/d]; [c]
 
-So the uphill speed is about `8.1` mph.
+**48.** [-10 = gh]; [g]
 
-## Think About It
+**49.** [m = 20cd]; [m]
 
-What assumptions were made when determining the rider’s speed?
+**50.** If [y] varies directly as [x] and [y = 540] when [x = 10], find [x] when [y = 1080].
 
----
+**51.** If [y] varies directly as [x] and [y = 12] when [x = 72], find [x] when [y = 9].
 
-## Objective Alignment
+**52.** If [y] varies jointly as [x] and [z] and [y = 120] when [x = 4] and [z = 6], find [y] when [x = 3] and [z = 2].
 
-- `Recognize and solve direct and joint variation equations`: Primary worked examples: Examples 1-2.
-- `Recognize and solve inverse and combined variation equations`: Primary worked examples: Examples 3-5.
+**53.** If [y] varies inversely as [x], and [y = 3] when [x = 14], find [x] when [y = 6].
+
+**54. STRUCTURE** Bulan works at a car wash. The amount Bulan earns varies directly with the number of hours she works. Bulan earns $144 for working 12 hours. Write the direct variation equation. How much will Bulan earn for working 18 hours?
+
+**55. DESIGN** The number of parking spaces in a parking lot varies directly with the number of theaters. A typical complex has 30 parking spaces per theater. A developer has space for 210 parking spaces. How many theaters should be built?
+
+**56–58.** Determine whether each relation shows direct or inverse variation.
+
+*(Images referenced — see original DOCX)*
+
+**59. ART** Premade art canvas is available in standard sizes.
+
+**a.** Analyze the relationship between width and length of each canvas size. Write a function relating length [ℓ] to width [w].
+
+**b.** For which sizes is the relationship the same?
+
+**c.** Explain what it means if the relationship is the same for two canvas sizes.
+
+**60. PRECISION** The cost of painting a wall varies directly with the area of the wall. Write a formula for the cost of painting a rectangular wall with dimensions [ℓ] by [w]. With respect to [ℓ] and [w], does the cost vary directly, jointly, or inversely?
+
+**61. RENT** An apartment rents for [m] dollars per month.
+
+**a.** If [n] students share the rent equally, how much would each student pay?
+
+**b.** How does the cost per student vary with the number of students?
+
+**c.** If 2 students pay $700 each, how much would each pay if 5 students share the rent?
+
+**62. COMMUNICATIONS** On average, the number of calls [c] between two cities is directly proportional to the product of the populations [P_1] and [P_2] and inversely proportional to the square of the distance between them: [c = kP_1P_2/d^2].
+
+**a.** The average number of daily calls between Indianapolis and Birmingham is about 16,000. Find [k].
+
+**b.** Find the average number of daily calls between Tallahassee and each other city.
+
+**c.** Could you use this formula to find the average number of phone calls made within a city?
+
+**63. INVESTING** You decide to invest 10% of your before-tax income in a retirement fund.
+
+**a.** Write an equation for the amount deducted from your paycheck [d].
+
+**b.** Is your equation a direct, joint, or inverse variation?
+
+**c.** If you earn $19.50 per hour and worked 36 hours, determine the amount deducted.
+
+**64. FIND THE ERROR** Jamil and Savannah are setting up a proportion for combined variation. Who is correct?
+
+*(Image referenced — see original DOCX)*
+
+**65. PERSEVERE** If [a] varies inversely as [b], [c] varies jointly as [b] and [f], and [f] varies directly as [g], how are [a] and [g] related?
+
+**66. ANALYZE** Explain why some mathematicians consider every joint variation a combined variation, but not every combined variation a joint variation.
+
+**67. CREATE** Describe three real-life quantities that vary jointly with each other.
+
+**68. WRITE** Determine the type(s) of variation for which 0 cannot be one of the values. Explain your reasoning.
+
+## Review Notes
+
+* Problems 56–58, 59, and 64 contain images from the original worksheet (variation tables, canvas sizes, proportion work). Teachers should consult the original DOCX for all image references.
+* The worksheet contains 68 practice problems across five examples and mixed exercises.

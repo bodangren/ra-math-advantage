@@ -1,0 +1,123 @@
+# Lesson 9-6 — Comparing Sets of Data
+
+Source: (Module 9, Lesson 9-6, Int1_0906_practice.docx)
+
+## Today's Goals
+
+* Describe how adding or multiplying every value in a data set by a constant affects the mean, median, mode, range, and standard deviation.
+* Construct and interpret box plots and histograms to compare the shape, center, and spread of two data sets.
+* Select and justify the appropriate statistical measures (mean/standard deviation or five-number summary) based on the shape of a distribution.
+
+## Vocabulary
+
+* **Mean** — The average of a data set, found by summing all values and dividing by the number of values.
+* **Median** — The middle value of an ordered data set; the second quartile [ Q_2 ].
+* **Mode** — The value(s) that appear most frequently in a data set.
+* **Range** — The difference between the maximum and minimum values in a data set.
+* **Standard Deviation** — A measure of the spread of a data set, based on the average squared distance from the mean.
+* **Five-Number Summary** — The minimum, first quartile [ Q_1 ], median [ Q_2 ], third quartile [ Q_3 ], and maximum of a data set.
+* **Interquartile Range (IQR)** — The difference [ Q_3 - Q_1 ], representing the spread of the middle 50% of data.
+* **Symmetrical Distribution** — A distribution whose left and right sides are approximately mirror images.
+* **Skewed Distribution** — A distribution with a longer tail on one side; described as left-skewed or right-skewed.
+
+## Explore: How Do Changes to Data Affect Its Description?
+
+Students imagine a teacher adds 5 points to every student's test score or converts every score to a percentage out of 100. They predict how the mean, median, range, and standard deviation would change and explain their reasoning.
+
+Inquiry Question:
+What happens to the measures of center and spread when every value in a data set is changed by the same amount?
+
+## Learn: Effects of Transformations on Data
+
+When every value in a data set is transformed by addition or multiplication, the measures of center and spread change in predictable ways.
+
+### Key Concept: Adding a Constant
+
+* Adding a constant [ c ] to every value shifts all measures of center by [ c ].
+* Measures of spread (range, standard deviation) remain unchanged because the distances between values do not change.
+* If the original mean is [ \bar{x} ], the new mean is [ \bar{x} + c ].
+* The new range equals the original range: [ \text{Range}_{\text{new}} = \text{Range}_{\text{old}} ].
+
+### Key Concept: Multiplying by a Constant
+
+* Multiplying every value by a constant [ k ] scales all measures of center and spread by [ |k| ].
+* If the original mean is [ \bar{x} ], the new mean is [ k \cdot \bar{x} ].
+* The new standard deviation is [ |k| \cdot \sigma ].
+* The new range is [ |k| \cdot \text{Range}_{\text{old}} ].
+
+### Key Concept: Choosing Comparison Statistics
+
+* For symmetrical distributions, use the **mean** and **standard deviation** to compare center and spread.
+* For skewed distributions, or when comparing a symmetric and a skewed distribution, use the **five-number summary** (or median and IQR).
+
+## Example 1 — Add a Constant and Find Statistics
+
+Given a data set, add a constant to each value and compute the mean, median, mode, range, and standard deviation of the transformed data.
+
+### Step 1: Apply the Transformation
+
+Add the given constant to every data value. For example, with data [ 52, 53, 49, 61, 57, 52, 48, 60, 50, 47 ] and constant [ +8 ]:
+
+[
+60, 61, 57, 69, 65, 60, 56, 68, 58, 55
+]
+
+### Step 2: Compute Measures of Center and Spread
+
+Find the mean, median, mode, range, and standard deviation of the new data set. Notice that:
+
+* Mean, median, and mode each increase by [ 8 ].
+* Range and standard deviation stay the same as the original data set.
+
+## Example 2 — Multiply by a Constant and Find Statistics
+
+Given a data set, multiply each value by a constant and compute the mean, median, mode, range, and standard deviation of the transformed data.
+
+### Step 1: Apply the Transformation
+
+Multiply every data value by the given constant. For example, with data [ 11, 7, 3, 13, 16, 8, 3, 11, 17, 3 ] and constant [ \times 4 ]:
+
+[
+44, 28, 12, 52, 64, 32, 12, 44, 68, 12
+]
+
+### Step 2: Compute Measures of Center and Spread
+
+Find the mean, median, mode, range, and standard deviation of the new data set. Notice that:
+
+* Mean, median, and mode are each multiplied by [ 4 ].
+* Range and standard deviation are also multiplied by [ 4 ].
+
+## Examples 3 and 4 — Compare Data Sets with Graphs and Statistics
+
+Use technology and statistical reasoning to compare two real-world data sets.
+
+### Step 1: Construct Graphs
+
+Use a graphing calculator to build a box plot or histogram for each data set. Describe the shape of each distribution (symmetric, skewed left, skewed right).
+
+### Step 2: Choose and Apply Comparison Statistics
+
+* If both distributions are roughly symmetric, compare using **means and standard deviations**.
+* If either distribution is skewed, compare using **five-number summaries** (or medians and IQRs).
+
+### Step 3: Justify the Choice
+
+Explain why the chosen statistics are appropriate for the shapes of the distributions. Summarize how the center and spread differ between the two data sets.
+
+## Mixed Exercises
+
+The mixed exercises provide practice across all lesson skills:
+
+* Compute statistics after adding a constant, multiplying by a constant, or applying a sequence of both operations.
+* Solve real-world problems involving unit conversions (e.g., Fahrenheit to Celsius) and analyze how the transformation affects each statistic.
+* Construct box plots and histograms for paired data sets, describe their shapes, and compare them using the appropriate statistics.
+* Analyze the effect of eliminating outliers on comparisons.
+* Use the median and IQR to evaluate which of two samples is more representative of a population.
+* Explain reasoning for choosing specific statistical measures based on distribution shape.
+* Analyze combined transformations: if [ k ] is added to every value and then each result is multiplied by [ m ] (where [ m > 0 ]), the new measures of center become [ m(\bar{x} + k) ] and measures of spread become [ m ] times the original spread.
+
+## Review Notes
+
+* Problems 9, 10, 21–28 contain images/tables (baseball win data, treadmill times, bowling scores, football distances, temperature tables, fantasy sports points, phone accessory prices, snail shell samples, height samples, and rainfall data) that cannot be described from the extracted text. These require visual review of the original worksheet or scanned images.
+* The data tables in problems 21–26 and 28 are represented as images in the source document and should be recreated or referenced from the original `.docx`.

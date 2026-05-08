@@ -1,0 +1,142 @@
+# Lesson 2-6 — Trapezoids and Kites
+
+Source: (Module 2, Lesson 2-6, Int2_0206_practice.docx)
+
+## Today's Goals
+
+* Apply properties of trapezoids, isosceles trapezoids, and kites to solve problems.
+* Find the midsegment of a trapezoid and use it to find unknown lengths.
+* Write proofs for trapezoid and kite theorems.
+* Classify quadrilaterals based on their properties.
+
+## Vocabulary
+
+* **Trapezoid** — A quadrilateral with exactly one pair of parallel sides.
+* **Isosceles Trapezoid** — A trapezoid with congruent non-parallel sides (legs).
+* **Midsegment of a Trapezoid** — The segment connecting the midpoints of the legs; its length is the average of the two bases.
+* **Kite** — A quadrilateral with two pairs of adjacent congruent sides.
+* **Legs of a Trapezoid** — The non-parallel sides of a trapezoid.
+* **Bases of a Trapezoid** — The parallel sides of a trapezoid.
+
+## Explore: Trapezoids, Kites, and Their Properties
+
+Students investigate the unique properties of trapezoids and kites and how they differ from parallelograms and other quadrilaterals.
+
+Inquiry Question:
+What makes an isosceles trapezoid different from a regular trapezoid? What special properties do kites have?
+
+## Learn: Trapezoids and Kites
+
+### Key Concept: Trapezoid Properties
+
+* A trapezoid has exactly one pair of parallel sides.
+* In an isosceles trapezoid, the base angles are congruent and the diagonals are congruent.
+* The midsegment of a trapezoid is parallel to both bases and its length equals the average of the base lengths:
+
+[m = \frac{b_1 + b_2}{2}]
+
+### Key Concept: Kite Properties
+
+* A kite has two pairs of adjacent congruent sides.
+* The diagonals of a kite are perpendicular.
+* One pair of opposite angles are congruent (the angles between unequal sides).
+* One diagonal bisects the other at a right angle.
+
+## Example 1 — Solve Problems with Trapezoids
+
+Use trapezoid properties to solve for unknown variables, angle measures, and perimeters.
+
+### Step 1: Set Up Equations
+
+Use the given algebraic expressions for side lengths and the properties of trapezoids (or isosceles trapezoids) to write equations.
+
+### Step 2: Solve and Verify
+
+Solve for the unknown variable, then use this to find angle measures or perimeter.
+
+## Example 2 — Verify Trapezoids Using Coordinates
+
+Determine whether a quadrilateral is a trapezoid or an isosceles trapezoid by calculating slopes and distances.
+
+### Step 1: Check for Parallel Sides
+
+Calculate slopes to determine which sides are parallel. A trapezoid has exactly one pair of parallel sides.
+
+### Step 2: Check for Congruent Legs (Isosceles)
+
+Calculate the lengths of the non-parallel sides (legs). If they are congruent, the trapezoid is isosceles.
+
+## Example 3 — Find Midsegment Lengths
+
+Use the midsegment formula to find unknown lengths in trapezoids.
+
+### Step 1: Identify the Bases and Midsegment
+
+The midsegment connects the midpoints of the legs.
+
+### Step 2: Apply the Formula
+
+Substitute the known base lengths into [m = \frac{b_1 + b_2}{2}] and solve for the unknown.
+
+## Example 4 — Find Midsegment Endpoints
+
+Find the coordinates of the endpoints of the midsegment of a trapezoid given the vertices.
+
+### Step 1: Find Midpoints of the Legs
+
+Use the midpoint formula to find where each leg is bisected.
+
+### Step 2: Connect the Midpoints
+
+The segment connecting these midpoints is the midsegment.
+
+## Example 5 — Find Angle Measures in Kites
+
+Use kite properties to find unknown angle measures.
+
+### Step 1: Identify Congruent Angles
+
+In a kite, the angles between pairs of unequal adjacent sides are congruent.
+
+### Step 2: Apply Angle Sum
+
+Use the fact that the sum of interior angles in a quadrilateral is 360 degrees.
+
+## Example 6 — Perimeter and Area Problems with Kites
+
+Solve for unknown side lengths and find perimeters of kites.
+
+### Step 1: Use Diagonal Properties
+
+The diagonals of a kite are perpendicular and one diagonal bisects the other.
+
+### Step 2: Apply the Pythagorean Theorem
+
+Right triangles formed by the diagonals allow use of the Pythagorean Theorem to find unknown lengths.
+
+## Mixed Exercises
+
+The mixed exercises section provides practice with all skills from the lesson. Problems include:
+
+* Finding x or angle measures in isosceles trapezoids and kites given diagonal or angle expressions.
+* Finding the width of a set of stairs halfway up if the bottom is 21 feet wide and the top is 14 feet wide (isosceles trapezoid).
+* Determining what measurements a carpenter needs besides both base lengths to replace trapezoid-shaped desktops.
+* Writing two-column proofs for Theorem 7.22 (trapezoid with congruent base angles is isosceles) and Theorem 7.25 (diagonal of a kite is perpendicular to the other diagonal).
+* Writing a paragraph proof for Theorem 7.26 (angles in a kite).
+* Researching traditional diamond kites to find perimeter and area.
+* Writing equations of four lines that intersect to form an isosceles trapezoid and verifying with coordinate geometry.
+* Determining which quadrilateral does not belong given three characteristics: at least one pair of opposite sides parallel, diagonals not perpendicular, at least one pair of opposite sides congruent.
+* Analyzing whether m∠A in kite ABCD is 45° or 115°.
+* Finding the perimeter of kite JKLM given side expressions and condition KL > JK.
+* Describing properties that classify a quadrilateral as trapezoid, isosceles trapezoid, or kite, and comparing all three.
+* Analyzing whether a square is also a kite (sometimes, always, never).
+* Analyzing whether one pair of opposite sides are congruent in a kite (sometimes, always, never).
+* Analyzing whether opposite angles of a trapezoid are supplementary (sometimes, always, never).
+
+## Review Notes
+
+* Images referenced in the worksheet (trapezoid sign, trapezoid diagrams, coordinate graphs, kite figures, and various geometry figures) could not be fully described without visual reference. Teachers should consult the original worksheet for exact diagrams and values.
+* The worksheet contains 34 practice problems across seven examples and mixed exercises.
+* ![](media/image1.png) ![](media/image2.png) ![](media/image3.png) ![](media/image4.png) ![](media/image5.png) ![](media/image6.png) ![](media/image7.png) ![](media/image8.png) ![](media/image9.png) ![](media/image10.png) ![](media/image11.png) ![](media/image12.png) ![](media/image13.png) ![](media/image14.png) ![](media/image15.png) ![](media/image16.png) ![](media/image17.png) ![](media/image18.png)
+
+(End of file - total 175 lines)

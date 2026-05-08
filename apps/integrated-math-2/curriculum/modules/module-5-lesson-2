@@ -1,0 +1,115 @@
+# Lesson 5-2 — Measuring Angles and Arcs
+
+Source: (Module 5, Lesson 5-2, Int2_0502_practice.docx)
+
+## Today's Goals
+
+* Find central angle measures and arc measures in degrees.
+* Classify arcs as major arcs, minor arcs, or semicircles.
+* Convert between degree measure and radian measure.
+* Find arc length given the radius and central angle.
+
+## Vocabulary
+
+* **Central Angle** — An angle whose vertex is at the center of a circle and whose sides are radii.
+* **Minor Arc** — An arc smaller than a semicircle, named by its endpoints.
+* **Major Arc** — An arc larger than a semicircle, named by three points (the endpoints and a point in between).
+* **Semicircle** — An arc that is exactly half of a circle, named by three points (the endpoints and a point on the arc).
+* **Arc Measure** — The measure in degrees of an arc, equal to the measure of its central angle.
+* **Arc Length** — The linear distance along an arc, found using [s = rθ] where θ is in radians.
+
+## Explore: How Are Arcs and Angles Related?
+
+When a central angle cuts a circle, it creates an arc. Students explore how the measure of the central angle directly determines the measure of the intercepted arc, and how this relationship extends to arc length.
+
+Inquiry Question:
+If a central angle measures 72°, what type of arc does it intercept? How many such arcs would fill the entire circle?
+
+## Learn: Measuring Angles and Arcs
+
+### Key Concept: Arc Measures
+
+* A **minor arc** has measure less than 180°.
+* A **semicircle** has measure exactly 180°.
+* A **major arc** has measure greater than 180°.
+
+The sum of the measures of all arcs in a circle is 360°.
+
+### Key Concept: Arc Length
+
+Arc length is a fraction of the circumference. If the radius is [r] and the central angle measures [θ] degrees, the arc length is:
+
+[s = (θ/360) × 2πr]
+
+In radians: [s = rθ].
+
+### Key Concept: Degree–Radian Conversion
+
+[180° = π radians]
+
+To convert degrees to radians: multiply by [π/180].
+To convert radians to degrees: multiply by [180/π].
+
+## Example 1 — Find Angle Measures in Circles
+
+Find the value of [x] using geometric relationships in circle diagrams.
+
+### Step 1: Apply Angle Relationships
+
+Use the fact that angles around a point sum to 360°, vertical angles are congruent, and linear pairs sum to 180°.
+
+## Example 2 — Classify Arcs and Find Arc Measures
+
+In ⊙*R*, [AC] and [EB] are diameters. Identify each arc as major, minor, or semicircle, then find its measure.
+
+### Step 1: Identify Arc Type and Apply 360°
+
+For arc [EA]: since *E* and *A* are endpoints and the arc does not pass through the opposite side of the circle, [mEA = 60°] or similar, making it a minor arc.
+
+For arc [DEB]: this arc passes through *D* and *E* to *B*, spanning more than 180°, making it a major arc. Its measure is [360° - mED - mDC - mCB - mBA] or similar decomposition.
+
+For arc [AB]: if [AB] is a diameter, then [mAB = 180°], making it a semicircle.
+
+For arc [CDA]: this arc goes from *C* through *D* to *A*, passing through the opposite side of the circle. [mCDA = 180°], making it a semicircle.
+
+### Step 2: Find Specific Arc Measures
+
+If [m∠HCG = 2x°] and [m∠HCD = (6x + 28)°], and [HE] and [GD] are diameters, then find the arc measures using the relationship between inscribed angles and arcs.
+
+## Mixed Exercises
+
+Practice with all skills from the lesson, including:
+
+* Finding angle measures using circle geometry relationships.
+* Classifying arcs as major, minor, or semicircles and finding their measures.
+* Converting between degrees and radians (120°, 45°, 30°, 90°, 180°, 225°, etc.).
+* Finding arc length given radius or diameter (r = 5 in, d = 3 yd, JD = 7 cm, NL = 12 ft, etc.).
+* Real-world arc problems (clock divisions, ribbons around cylinders, pie slices).
+* Finding how far a bike wheel travels given rotations or distance traveled.
+* Constructing circle graphs and analyzing arc types.
+* Writing two-column proofs of Theorem 10.2.
+* Finding circumference and arc measures in given circle diagrams.
+* Analyzing adjacent arcs and central angle relationships.
+* Determining whether statements about arcs are always, sometimes, or never true.
+* Finding the angle formed by clock hands at a given time.
+* Working with arcs in the ratio 5:3:4.
+
+## Review Notes
+
+* ![](media/image1.png), ![](media/image2.png), ![](media/image3.png) — diagrams for Exercises 1–3 (find x)
+* ![](media/image4.png) — ⊙*R* with diameters AC and EB for Exercises 4–9
+* ![](media/image5.png) — circle graph for Westwood High School mascot survey (Exercise 10)
+* ![](media/image6.png) — circle graph for favorite spectator sport (Exercise 11)
+* ![](media/image7.png) — ⊙*A* with diameters PR and QT for Exercises 12–19
+* ![](media/image8.png) — ⊙*D* with diameter NL for Exercises 20–25 (arc length)
+* ![](media/image9.png) — ⊙*Z* for Exercises 38–41 (arc length with given radii)
+* ![](media/image10.png) — ⊙*Z* for Exercise 41
+* ![](media/image11.png) — Chinese clock for Exercise 42
+* ![](media/image12.png) — table and circle graph for Leland High School homework data (Exercise 46)
+* ![](media/image13.png) — diagram for Exercise 47 (Theorem 10.2 proof)
+* ![](media/image14.png), ![](media/image15.png), ![](media/image16.png) — ⊙*S* diagrams for Exercises 48–50
+* ![](media/image17.png) — diagram for Exercises 51–53 (m∠HCG = 2x°)
+* ![](media/image18.png) — table for Exercise 54 (arc length for given radius)
+* ![](media/image19.png) — theater seating diagram for Exercise 55
+* ![](media/image20.png) — diagram for Exercise 59 (congruent arcs discussion)
+* ![](media/image21.png) — diagram for Exercise 60 (clock at 8:10)

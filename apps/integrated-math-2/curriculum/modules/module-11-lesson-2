@@ -1,0 +1,145 @@
+# Lesson 11-2 — Multiplying Polynomials by Monomials
+
+Source: (Module 11, Lesson 11-2, Int2_1102_practice.docx)
+
+## Today's Goals
+
+* Multiply polynomials by monomials using the Distributive Property.
+* Simplify expressions involving multiplication of monomials and polynomials.
+* Solve equations that involve multiplying polynomials by monomials.
+* Apply polynomial multiplication to real-world contexts including geometry, number theory, and finance.
+
+## Vocabulary
+
+* **Distributive Property** — For any numbers a, b, and c: [a(b + c) = ab + ac]
+* **Monomial** — A polynomial with one term, such as [3x^2] or [-7ab]
+* **Term** — A single mathematical expression consisting of a coefficient and variable(s)
+* **Like Terms** — Terms that have the same variable factors with the same exponents
+
+## Explore: Distributing Over Polynomials
+
+Students explore what happens when a single term multiplies an expression with multiple terms. They consider why each term in the polynomial must be multiplied and how the Distributive Property applies to increasingly complex expressions.
+
+Inquiry Question:
+How does the Distributive Property extend when multiplying a monomial by a polynomial with three or more terms?
+
+## Learn: Multiplying Polynomials by Monomials
+
+### Key Concept: Distributive Property with Polynomials
+
+To multiply a monomial by a polynomial, distribute the monomial to each term of the polynomial.
+
+[b(b^2 - 12b + 1)] → [b^3 - 12b^2 + b]
+
+### Key Concept: Coefficients and Exponents
+
+When multiplying like bases, add the exponents. Apply this rule to each term after distributing.
+
+[2pr^2(2pr + 5p^2r - 15p)] → [4p^2r^3 + 10p^3r^3 - 30p^2r^2]
+
+## Example 1 — Multiply Monomials by Polynomials
+
+Simplify each expression by distributing the monomial.
+
+### Step 1: Distribute to Each Term
+
+[b(b^2 - 12b + 1)] = [b^3 - 12b^2 + b]
+
+[f(f^2 + 2f + 25)] = [f^3 + 2f^2 + 25f]
+
+[-3m^3(2m^3 - 12m^2 + 2m + 25)] = [-6m^6 + 36m^5 - 6m^4 - 75m^3]
+
+[2j^2(5j^3 - 15j^2 + 2j + 2)] = [10j^5 - 30j^4 + 4j^3 + 4j^2]
+
+## Example 2 — Combine Multiplication with Addition/Subtraction
+
+Simplify each expression involving multiple operations.
+
+### Step 1: Distribute First, Then Combine Like Terms
+
+[-3(5x^2 + 2x + 9) + x(2x - 3)]
+= [-15x^2 - 6x - 27 + 2x^2 - 3x]
+= [-13x^2 - 9x - 27]
+
+[a(-8a^2 + 2a + 4) + 3(6a^2 - 4)]
+= [-8a^3 + 2a^2 + 4a + 18a^2 - 12]
+= [-8a^3 + 20a^2 + 4a - 12]
+
+[-4d(5d^2 - 12) + 7(d + 5)]
+= [-20d^3 + 48d + 7d + 35]
+= [-20d^3 + 55d + 35]
+
+[-9g(-2g + g^2) + 3(g^3 + 4)]
+= [18g^2 - 9g^3 + 3g^3 + 12]
+= [-6g^3 + 18g^2 + 12]
+
+## Example 3 — Real-World Applications
+
+Apply polynomial multiplication to solve problems involving sums, volumes, and linear equations.
+
+### Step 1: Write and Simplify an Expression
+
+The sum of the first n whole numbers is given by [1/2(n^2 + n)]. Expand the expression by multiplying, then find the sum of the first 12 whole numbers.
+
+[1/2(n^2 + n) = n^2/2 + n/2]
+For n = 12: [12^2/2 + 12/2 = 72 + 6 = 78]
+
+### Step 2: Apply to College Savings
+
+Troy's grandfather gives him $700 to start an account, then $40 each month. His mother gives him $50 each month but has been doing so for 4 fewer months than the grandfather. Write a simplified expression for the amount after m months.
+
+Let grandfather's months = m, mother's months = m - 4.
+Total = [700 + 40m + 50(m - 4) = 700 + 40m + 50m - 200 = 90m + 500]
+
+### Step 3: Geometry Application — Pyramid Volume
+
+The volume of a pyramid is one-third of base area times height. The base area is [B = x^2 - 4x - 12]. Write a polynomial for the volume when the height is 10 meters, then find the volume when x = 12 m.
+
+[V = 1/3(x^2 - 4x - 12)(10) = 10/3x^2 - 40/3x - 40]
+When x = 12: [V = 10/3(144) - 40/3(12) - 40 = 480 - 160 - 40 = 280] cubic meters
+
+## Example 4 — Solve Equations with Polynomial Multiplication
+
+Solve each equation by first simplifying both sides using the Distributive Property.
+
+### Step 1: Expand Both Sides
+
+[7(t^2 + 5t - 9) + t = t(7t - 2) + 13]
+= [7t^2 + 35t - 63 + t = 7t^2 - 2t + 13]
+= [7t^2 + 36t - 63 = 7t^2 - 2t + 13]
+= [36t + 13 = -2t + 13]
+= [38t = 0]
+= [t = 0]
+
+[w(4w + 6) + 2w = 2(2w^2 + 7w - 3)]
+= [4w^2 + 6w + 2w = 4w^2 + 14w - 6]
+= [4w^2 + 8w = 4w^2 + 14w - 6]
+= [8w = 14w - 6]
+= [-6w = -6]
+= [w = 1]
+
+## Mixed Exercises
+
+The mixed exercises section provides practice with all skills. Problems include:
+
+* Simplifying products of monomials and binomials: [a(4a + 3)], [-c(11c + 4)]
+* Simplifying products with powers: [3n(n^2 + 2n)], [4h(3h - 5)]
+* Simplifying trinomial products: [3x(5x^2 - x + 4)], [7c(5 - 2c^2 + c^3)]
+* Combining distribution with addition/subtraction: [w(3w + 2) + 5w], [f(5f - 3) - 2f]
+* Multi-term distribution: [4b(-5b - 3) - 2(b^2 - 7b - 4)], [-5q^2w^3(4q + 7w) + 4qw^2(7q^2w + 2q) - 3qw(3q^2w^2 + 9)]
+* Solving basic linear equations before multi-step versions
+* A landmarks problem: A circle of 50 flags with a 12-foot sidewalk around it. The outside circumference is 1.10 times the inside circumference. Write and solve an equation for the radius. Recall C = 2πr. ![](media/image2.png)
+* A structure problem: Write and simplify an expression for the area of a trapezoid given polynomial expressions for the base lengths in terms of height h. ![](media/image3.png)
+* A volume problem: Write and simplify an expression for the volume of a right rectangular prism given polynomial dimensions. ![](media/image4.png) ![](media/image5.png)
+* A revenue problem: A company expects to sell [45 - 5x] products at a price of [$1.25x] per product. Write and simplify a revenue expression, then determine the price and revenue when x = 4.5. ![](media/image6.png)
+* An enclosure area problem: Write and simplify an expression for the area enclosed by a fence with polynomial side lengths. ![](media/image7.png)
+* Finding a value p such that [3x^p(4x^{2p} + 3 + 2x^{3p} - 2) = 12x^{12} + 6x^{10}]
+* Simplifying an expression with negative exponents: [4x^{-3}y^2(2x^5y^{-4} + 6x^{-7}y^6 - 4x^0y^{-2})]
+* Analyzing whether a value of x exists that makes [(x + 2)^2 = x^2 + 2^2] true
+
+## Review Notes
+
+* Images referenced: ![](media/image1.png) — Farmers market vegetable problem context. ![](media/image2.png) — Circle of flags and sidewalk diagram. ![](media/image3.png) — Trapezoid with polynomial base lengths. ![](media/image4.png) and ![](media/image5.png) — Student work showing simplification errors. ![](media/image6.png) — Revenue problem context. ![](media/image7.png) — Enclosure fence diagram with polynomial side lengths. Teachers should consult the original worksheet for exact diagrams and values.
+* The worksheet contains 64 practice problems covering multiplication of monomials by polynomials, equation solving, and real-world applications.
+* When multiplying monomials by polynomials, each term gets multiplied and like terms are combined.
+* Negative exponents require care: subtract exponents when dividing like bases.

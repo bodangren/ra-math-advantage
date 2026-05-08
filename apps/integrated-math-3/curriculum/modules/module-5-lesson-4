@@ -1,329 +1,263 @@
 # Lesson 5-4 — Geometric Sequences and Series
 
-Source: (Module 5, Lesson 5-4, pp. 239–244)
+Source: (Module 5, Lesson 5-4, Int3_0504_practice.docx)
 
 ## Today's Goals
 
-* Generate geometric sequences
-* Find sums of geometric series
-
----
+* Determine whether a sequence is geometric.
+* Find terms and graph geometric sequences.
+* Write equations for the nth term of a geometric sequence.
+* Find geometric means and sums of geometric series.
+* Apply geometric sequences and series to real-world problems.
 
 ## Vocabulary
 
-* sequence
-* term of a sequence
-* finite sequence
-* infinite sequence
-* geometric sequence
-* common ratio
-* explicit formula
-* recursive formula
-* geometric means
-* series
-* geometric series
-* sigma notation
+* **Geometric Sequence** — A sequence where each term is found by multiplying the previous term by a constant ratio [r].
+* **Common Ratio** — The constant multiplier [r] between consecutive terms in a geometric sequence.
+* **Geometric Series** — The sum of the terms in a geometric sequence.
+* **Geometric Mean** — The square root of the product of two terms equidistant from a given term.
 
----
+## Explore: Geometric Patterns
 
-## Explore: Explicit and Recursive Formulas
+In a geometric sequence, each term is found by multiplying the previous term by a constant called the common ratio. Unlike arithmetic sequences that add consistently, geometric sequences multiply consistently.
 
-Use a concrete model to complete the explore.
+Inquiry Question:
+If a geometric sequence has first term [a1] and common ratio [r], how can you determine whether the terms will grow without bound, shrink toward zero, or alternate signs?
 
-**Inquiry Question:**
-How can a geometric sequence be defined?
+## Learn: Geometric Sequences
 
----
+### Key Concept: Identifying Geometric Sequences
 
-## Learn: Sequences
+A sequence is geometric if [a_n/a_(n-1) = r] is constant for all [n ≥ 2].
 
-A **sequence** is a set of numbers in a particular order or pattern.
+### Step 1: Check Each Sequence
 
-* each number is a **term**
-* `a1` is the first term, `a2` the second, and so on
-* a **finite** sequence has a limited number of terms
-* an **infinite** sequence continues without end
+[5, 7, 9, 11, 13, ...] — NOT geometric (differences are 2, not constant ratio)
+[3, 6, 12, 24, 48, ...] — geometric with [r = 2]
+[2, -4, 8, -16, 32, ...] — geometric with [r = -2]
+[400, 200, 100, 50, 25, ...] — geometric with [r = 1/2]
+[60, 48, 36, 24, 12, ...] — NOT geometric (differences are -12, but ratios vary)
+[8000; -2000; 500; -125; ...] — geometric with [r = -1/4]
 
-A sequence can be defined as a function.
+## Example 1 — Graph Geometric Sequences
 
-### Key Concept: Sequences as Functions
+Find and graph the first six terms of each geometric sequence.
 
-* domain: natural numbers `1, 2, 3, ..., n`
-* range: sequence terms `a1, a2, a3, ..., an`
+### Step 1: Generate Terms
 
-In a **geometric sequence**, each term is found by multiplying the previous term by a nonzero constant called the **common ratio**.
+For [1, 2, 4, ...]: [a1 = 1, r = 2] → terms: [1, 2, 4, 8, 16, 32]
 
-### Key Concept: nth Term of a Geometric Sequence
+For [2, 6, 18, ...]: [a1 = 2, r = 3] → terms: [2, 6, 18, 54, 162, 486]
 
-If the first term is `a1` and the common ratio is `r`, then:
+For [-1, -3, -9, ...]: [a1 = -1, r = 3] → terms: [-1, -3, -9, -27, -81, -243]
 
-`an = a1 r^(n - 1)`
+For [800, -400, 200, ...]: [a1 = 800, r = -1/2] → terms: [800, -400, 200, -100, 50, -25]
 
-The recursive form is:
+For [512, -128, 32, ...]: [a1 = 512, r = -1/4] → terms: [512, -128, 32, -8, 2, -0.5]
 
-`an = r * a(n - 1)`
+For [160, 80, 40, ...]: [a1 = 160, r = 1/2] → terms: [160, 80, 40, 20, 10, 5]
 
-**Geometric means** are the terms between two nonconsecutive terms of a geometric sequence.
+## Example 2 — Real-World Geometric Sequences
 
----
+### Step 1: Apply the Context
 
-## Example 1 — Identify Geometric Sequences
+**FAMILY:** Amanda researches ancestry. 5 generations before her means great-great-great-grandparents. This is the 6th generation back (hers is generation 0). If each generation doubles, [a_6 = a_0 · r^6].
 
-Determine whether:
+**MOORE'S LAW:** Transistors double every 18 months. In year 6, how many times as many transistors?
 
-`2, 6, 15, 30, ...`
+If doubling period is 1.5 years, in 6 years there are [6/1.5 = 4] doubling periods. So transistors are multiplied by [2^4 = 16] times.
 
-is geometric.
+## Example 3 — Write Equations for the nth Term
 
-Ratios:
+### Step 1: Apply the Formula
 
-* `6/2 = 3`
-* `15/6 = 2.5`
-* `30/15 = 2`
+The nth term of a geometric sequence is [a_n = a_1 · r^(n-1)].
 
-The ratios are not the same, so the sequence is **not geometric**.
+For [3, 9, 27, ...]: [a_n = 3 · 3^(n-1) = 3^n]
 
----
+For [-1, -3, -9, ...]: [a_n = -1 · 3^(n-1) = -3^(n-1)]
 
-## Example 2 — Graph Geometric Sequences
+For [2, -6, 18, ...]: [a_n = 2 · (-3)^(n-1)]
 
-Find and graph the first six terms of:
+For [5, 10, 20, ...]: [a_n = 5 · 2^(n-1)]
 
-`-1, -2, -4, ...`
+Given [a_4 = 324] and [r = 3]: [a_1 = 324/3^3 = 324/27 = 12]; [a_n = 12 · 3^(n-1)]
 
-### Step 1: Find the common ratio
+Given [a_3 = 512] and [r = 1/8]: [a_1 = 512/(1/8)^2 = 512 · 64 = 32768]; [a_n = 32768 · (1/8)^(n-1)]
 
-`(-2)/(-1) = 2`
+## Example 4 — Convert Between Recursive and Explicit Forms
 
-### Step 2: Find the next terms
+### Step 1: Understand Both Forms
 
-Continue multiplying by `2`:
+Recursive: [a_1] is given, [a_n = r · a_(n-1)]
+Explicit: [a_n = a_1 · r^(n-1)]
 
-`-8, -16, -32`
+From [a_1 = 3, a_n = 0.6a_(n-1)]: explicit is [a_n = 3 · 0.6^(n-1)]
 
-### Step 3: Graph the sequence
+From [a_n = 0.8(2)^(n-1)]: recursive is [a_1 = 0.8, a_n = 2a_(n-1)]
 
-* domain: `{1, 2, 3, 4, 5, 6}`
-* range: `{-1, -2, -4, -8, -16, -32}`
+From [a_1 = -1, a_n = (1/2)a_(n-1)]: explicit is [a_n = -1 · (1/2)^(n-1)]
 
-## Talk About It
+From [a_n = -(2/3)(6)^(n-1)]: recursive is [a_1 = -(2/3), a_n = 6a_(n-1)]
 
-Is `{1, 2, 3, 4, 5, 6}` also the domain of the original infinite sequence? Explain.
+## Example 5 — Find Geometric Means
 
----
+### Step 1: Insert Geometric Means
 
-## Apply Example 3 — Find the nth Term
+To find geometric means between [4] and [64], find [r] such that going from 4 to 64 in 4 equal ratio steps:
 
-Javier starts with a `50`-gram chocolate bar and eats half of what remains each day.
+[64 = 4 · r^4 → r^4 = 16 → r = 2] (taking positive root for this context)
 
-If he starts on Monday, how much will he eat on Friday?
+Geometric means: [4, 8, 16, 32, 64]
 
-The amount eaten each day forms a geometric sequence:
+For [1] and [81]: [81 = 1 · r^4 → r = 81^(1/4) = 3]; means: [1, 3, 9, 27, 81]
 
-* first day: `25 g`
-* common ratio: `1/2`
+For sequences with more terms, find the intermediate terms.
 
-Friday is the fifth day, so use:
+## Example 6 — Geometric Series
 
-`an = 25(1/2)^(n - 1)`
+### Step 1: Find Sums of Geometric Series
 
-For Friday:
+Sum of geometric series: [S_n = a_1(r^n - 1)/(r - 1)] for [r ≠ 1]
 
-`a5 = 25(1/2)^4 = 1.5625`
+Find [a_1] for each geometric series.
 
-So Javier eats about:
+For [S_n = 1295, r = 6, n = 4]: [1295 = a_1(6^4 - 1)/(6 - 1) = a_1(1295)/5 → a_1 = 5]
 
-`1.6 g`
+For [S_n = 1640, r = 3, n = 8]: use formula to find [a_1]
 
-## Think About It
+For [S_n = 218 2/5, a_n = 1 2/5, r = 1/5]: find [a_1]
 
-If you let `a1 = 50`, what would `an` represent?
+For [S_n = -342, a_n = -512, r = -2]: find [a_1]
 
----
+### Step 2: Apply the Sum Formula
 
-## Example 4 — Write an Equation for the nth Term
+Find the sum of each geometric series.
 
-Write an equation for the nth term of each geometric sequence.
+[∑_(k=1)^7 4(-3)^(k-1)] = [4(1 - (-3)^7)/(1 - (-3)) = 4(1 + 2187)/4 = 2188/4 = 547]
 
-### a. `-1, 3, -9, 27, ...`
+[∑_(k=1)^8 (-3)(-2)^(k-1)]
 
-Find `r`:
+[∑_(k=1)^9 (-1)(4)^(k-1)]
 
-`r = (-9)/3 = -3`
+[∑_(k=1)^10 5(-1)^(k-1)]
 
-So:
+## Example 7 — Real-World Series Applications
 
-`an = -1(-3)^(n - 1)`
+### Step 1: Analyze the Balloon Problem
 
-### b. `a8 = 5` and `r = 1/2`
+Scientific balloon rises 1000 feet in first minute, then each subsequent minute rises 1% more than the previous minute. After an hour, how high?
 
-Use:
+This is a geometric series with [a_1 = 1000, r = 1.01, n = 60]:
 
-`an = a1 r^(n - 1)`
+[S_60 = 1000(1.01^60 - 1)/(1.01 - 1) = 1000(1.01^60 - 1)/0.01]
 
-`5 = a1 (1/2)^7`
+[1.01^60 ≈ 1.967], so [S_60 ≈ 1000(0.967)/0.01 = 96700] feet
 
-`a1 = 640`
+This is between 80,000 and 90,000 feet, so yes, it reaches the target height.
 
-So:
+## Mixed Exercises
 
-`an = 640(1/2)^(n - 1)`
+Find [a_n] for each geometric sequence.
 
----
+[a_1 = 5, r = 2, n = 6] → [a_6 = 5 · 2^5 = 160]
 
-## Example 5 — Recursive and Explicit Formulas
+[a_1 = 18, r = 3, n = 6] → [a_6 = 18 · 3^5 = 18 · 243 = 4374]
 
-Translate between recursive and explicit form.
+[a_1 = -3, r = -2, n = 5] → [a_5 = -3 · (-2)^4 = -48]
 
-### a. `a1 = 5, an = (1/5)a(n - 1), n >= 2`
+[a_1 = -20, r = -2, n = 9] → [a_9 = -20 · (-2)^8 = -5120]
 
-This is recursive, with:
+[a_1 = 65536, r = 1/4, n = 6] → [a_6 = 65536 · (1/4)^5 = 65536/1024 = 64]
 
-* `a1 = 5`
-* `r = 1/5`
+[a_1 = -78125, r = 1/5, n = 9] → [a_9 = -78125 · (1/5)^8 = -78125/390625 = -0.2]
 
-Explicit form:
+Determine whether each sequence is geometric. If yes, write the equation for the nth term.
 
-`an = 5(1/5)^(n - 1)`
+[4, 7, 13, 25, ...] — NOT geometric (ratios: 7/4, 13/7, 25/13 — not equal)
 
-### b. `an = (2/3)(7)^(n - 1)`
+[25, 175, 1225, 8575, ...] — geometric with [r = 7]; [a_n = 25 · 7^(n-1)]
 
-This is explicit, with:
+[-16384; -8192; -4096; -2048; ...] — geometric with [r = 1/2]; [a_n = -16384 · (1/2)^(n-1)]
 
-* `a1 = 2/3`
-* `r = 7`
+[-15, 30, -60, 120, -240, ...] — geometric with [r = -2]; [a_n = -15 · (-2)^(n-1)]
 
-Recursive form:
+Find the sum of each geometric series to the nearest ten-thousandth.
 
-* `a1 = 2/3`
-* `an = 7a(n - 1), n >= 2`
+[a_1 = 36, r = 1/3, n = 8] → [S_8 = 36(1 - (1/3)^8)/(1 - 1/3) = 36(1 - 1/6561)/(2/3) = 36 · (6560/6561) · (3/2) ≈ 53.99]
 
----
+[a_1 = 16, r = 1/2, n = 9] → [S_9 = 16(1 - (1/2)^9)/(1 - 1/2) ≈ 31.98]
 
-## Example 6 — Find Geometric Means
+[a_1 = 240, r = 3/4, n = 7] → [S_7 = 240(1 - (3/4)^7)/(1 - 3/4) ≈ 702.4]
 
-Find four geometric means between `243` and `32`.
+[a_1 = 360, r = 4/3, n = 8] → [S_8 = 360((4/3)^8 - 1)/((4/3) - 1) ≈ 360(7.5503)/0.3333 ≈ 8154.3]
 
-There are `6` total terms, so:
+Find the missing term: [64, 96, 144, 216, ?] — ratio is [96/64 = 1.5], so next term is [216 · 1.5 = 324]
 
-* `a1 = 243`
-* `a6 = 32`
-* `n = 6`
+First five terms of [a_1 = 3, r = -2]: [3, -6, 12, -24, 48]
 
-Use:
+Sum of geometric series with [a_1 = 3125, a_n = 1, r = 1/5]: [S_n = 3125(1 - (1/5)^n)/(1 - 1/5) = 3125(1 - 1/5^n)/(4/5) = 3906.25(1 - 1/5^n)]
 
-`32 = 243r^5`
+Find [a_1] with [S_n = 3045, r = 2/5, a_n = 120]: [3045 = a_1(1 - (2/5)^8)/(1 - 2/5)]
 
-`r^5 = 32/243`
+Find [a_1] with [S_n = -728, r = 3, n = 6]: [-728 = a_1(3^6 - 1)/(3 - 1) = a_1(728)/2 → a_1 = -2]
 
-`r = 2/3`
+Write an equation for the nth term of the sequence shown in the graph. (Interpret from graph)
 
-Now generate the sequence:
+Write equation for geometric sequence [1/3, 2/9, 4/27, ...]: [r = (2/9)/(1/3) = 2/3]; [a_n = (1/3)(2/3)^(n-1)]
 
-`243, 162, 108, 72, 48, 32`
+Find missing terms in [729/64, ?, ?, ?, 324/9]: First term [= 729/64], last term [= 36], ratio [r^4 = 36/(729/64) = (36 · 64)/729 = 2304/729 = (48/27)^2 = (16/9)^2], so [r = 16/9]. Means: [729/64 · 16/9 = 81/4]; [81/4 · 16/9 = 36]; [36 · 16/9 = 64]; [64 · 16/9 = 1024/9]
 
-So the geometric means are:
+Find two geometric means between 3 and 375: [375 = 3 · r^3 → r^3 = 125 → r = 5]; means: [15, 75]
 
-* `162`
-* `108`
-* `72`
-* `48`
+Find two geometric means between 16 and -2: [r^3 = -2/16 = -1/8 → r = -1/2]; means: [-8, 4]
 
----
+BIOLOGY: Mitosis — number of cells doubles each division.
 
-## Learn: Geometric Series
+a. Yes, it's geometric with [r = 2]
+b. Explicit: [a_n = 2^n]; Recursive: [a_1 = 2, a_n = 2a_(n-1)]
+c. After 100 divisions: [a_100 = 2^100] cells
 
-A **series** is the sum of the terms of a sequence.
+CONSTRUCT ARGUMENTS: Compare $80 million immediate payout vs. 20 annual payments starting at $4 million and increasing 2% per year. Calculate present value of annuity option.
 
-The sum of the first `n` terms is `Sn`.
+STRUCTURE: Athlete training formula [a_n = 20(1.1)^(n-1)]:
 
-A **geometric series** is the sum of the terms of a geometric sequence.
+a. Starting at 20 miles, increasing 10% each week
+b. Total miles after 10 weeks: [S_10 = 20(1.1^10 - 1)/(1.1 - 1) ≈ 318.87] miles
+c. Will she reach 1000 miles in 20 weeks? [S_20 = 20(1.1^20 - 1)/0.1 ≈ 1270.61] — yes, exceeds 1000
+d. Another athlete reached 1000 miles in 15 weeks: find [a_1] from [S_15 = 1000]
 
-### Key Concept: Partial Sums of a Geometric Series
+USE A MODEL: Mortgage payment formula [PMT = Pr/(1 - (1+r)^(-n))]:
 
-If `a1`, `r`, and `n` are known:
+a. 30-year $300,000 at 6%: total paid minus principal equals interest
+b. Monthly payment $1250 at 4%: find maximum mortgage amount
 
-`Sn = (a1 - a1 r^n) / (1 - r)`, for `r != 1`
+PROOF: Derive explicit formula from recursive: [a_n = a_1 · r^(n-1)]
 
-If `a1`, `r`, and `an` are known:
+CREATE: Geometric series with [r = 3/4] and [n = 6]. Example: [a_1 = 4, S_6 = 4(1 - (3/4)^6)/(1 - 3/4) = 4(1 - 729/4096)/(1/4) = 4(3367/4096)(4) = 13468/1024 ≈ 13.16]
 
-`Sn = (a1 - an r) / (1 - r)`, for `r != 1`
+ANALYZE: Alter [∑_(k=1)^10 3(2)^(k-1)] to start at [k = 0] instead of [k = 1]. When [k = 1], term is [3(2)^0 = 3]; when [k = 0], term is [3(2)^(-1) = 3/2]. The series would need adjustment.
 
-### Key Concept: Sigma Notation
+PROOF: Prove nth term formula for geometric sequence.
 
-Sigma notation uses `Σ` to represent a sum.
+PERSEVERE: Fifth term is [1/27] of the eighth term. Ninth term is 702. Find the eighth term.
 
-Example:
+Let [a_5 = a_1 · r^4]; [a_8 = a_1 · r^7]; given [a_5 = (1/27)a_8], so [a_1 · r^4 = (1/27)a_1 · r^7 → r^3 = 27 → r = 3]. Since [a_9 = a_1 · r^8 = 702], [a_1 = 702/3^8 = 702/6561 = 2/19], approximately. Actually: [a_9 = a_1 · 3^8 = 702 → a_1 = 702/6561 = 2/19]. Wait — [6561 = 3^8], so [a_1 = 702/6561]. Simplify: divide by 3: [234/2187]; divide by 3: [78/729]; divide by 3: [26/243]. So [a_1 = 26/243]. Then [a_8 = (26/243) · 3^7 = (26/243) · 2187 = 26 · 9 = 234].
 
-`sum(k=1 to 6) (3k + 2)`
+PERSEVERE: In the right triangle with [h] as geometric mean between [x] and [y], find [h^4]. By geometric mean property: [h = √(xy)], so [h^4 = (xy)^2].
 
-and
+CREATE: Geometric series with 6 terms and sum of 252. Many solutions possible, e.g., [a_1 = 1, r = 2]: [S_6 = 1(2^6 - 1)/(2-1) = 63] — need different values. Try [a_1 = 3, r = 2]: [S_6 = 3(64-1) = 189]. Try [a_1 = 4, r = 2]: [S_6 = 4(63) = 252]. So [4, 8, 16, 32, 64, 128] works.
 
-`sum(k=1 to 8) 5(3)^(k - 1)`
+WRITE: Classify sequences: check if differences are constant (arithmetic) or ratios are constant (geometric).
 
----
+## Review Notes
 
-## Example 7 — Find the Sum of a Geometric Series
+* Image references in this lesson:
+  * ![](media/image1.png) — balloon height data table
+  * ![](media/image2.png) — graph for problem 57
+  * ![](media/image3.JPG) — mitosis cell division table
+  * ![](media/image4.png) — geometric mean problem with right triangle
 
-Kateri sets up dominos so each domino knocks down `2` more, for `6` rows total.
+Teachers should consult the original worksheet for exact diagrams, tables, and graph images.
 
-* `a1 = 1`
-* `r = 2`
-* `n = 6`
-
-Use:
-
-`Sn = (1 - 1*2^6) / (1 - 2)`
-
-`= (1 - 64)/(-1)`
-
-`= 63`
-
-So she needs:
-
-`63` dominos
-
----
-
-## Example 8 — Find the First Term in a Series
-
-Find `a1` for a geometric series where:
-
-* `Sn = 21.3125`
-* `n = 5`
-* `r = 1/2`
-
-Use:
-
-`21.3125 = (a1 - a1(1/2)^5) / (1 - 1/2)`
-
-Solving gives:
-
-`a1 = 11`
-
----
-
-## Example 9 — Sum in Sigma Notation
-
-Find:
-
-`sum(k=5 to 12) 3(-2)^(k - 1)`
-
-First identify:
-
-* `a1 = 3(-2)^(5 - 1) = 48`
-* `r = -2`
-* number of terms: `12 - 5 + 1 = 8`
-
-Then:
-
-`Sn = (48 - 48(-2)^8) / (1 - (-2))`
-
-`= -4080`
-
----
-
-## Objective Alignment
-
-- `Generate geometric sequences`: Primary worked examples: Examples 1-6.
-- `Find sums of geometric series`: Primary worked examples: Examples 7-9.
+(End of file - total 365 lines)

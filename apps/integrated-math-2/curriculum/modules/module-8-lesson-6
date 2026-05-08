@@ -1,0 +1,109 @@
+# Lesson 8-6 — Special Functions
+
+Source: (Module 8, Lesson 8-6, Int2_0806_practice.docx)
+
+## Today's Goals
+
+* Graph piecewise-defined functions and identify their key features.
+* Graph and analyze greatest integer (floor) functions.
+* Graph and analyze absolute value functions.
+* Apply special functions to real-world situations involving piecewise pricing.
+
+## Vocabulary
+
+* **Piecewise Function** — A function defined by different rules for different parts of its domain.
+* **Greatest Integer Function (Floor Function)** — [[x]] equals the greatest integer less than or equal to [x].
+* **Absolute Value Function** — A function of the form [f(x) = |x|]; outputs the distance of [x] from 0.
+* **Step Function** — A function that jumps or steps from one value to another; greatest integer functions are step functions.
+
+## Explore: When Different Rules Apply
+
+Students consider situations where the rule governing a relationship changes depending on the input — for example, pricing that changes at quantity thresholds.
+
+Inquiry Question:
+Why do real-world situations often result in piecewise functions rather than a single algebraic rule?
+
+## Learn: Special Functions
+
+### Key Concept: Piecewise Functions
+
+A piecewise function uses different expressions for different intervals of the domain. The notation indicates which expression applies in which interval.
+
+### Key Concept: Greatest Integer Functions
+
+[[x]] rounds down to the nearest integer. Graphing [f(x) = [[x]]] produces a step function with jumps at each integer.
+
+### Key Concept: Absolute Value Functions
+
+[f(x) = |x|] produces a V-shaped graph that is symmetric about the y-axis. Transformations shift, stretch, and reflect this graph.
+
+## Example 1 — Graph a Piecewise Function
+
+Graph each function. Then analyze the key features.
+
+### Step 1: Graph Each Piece
+
+For [f(x) = {-1 if x <= 0; 2x if 0 < x <= 3; 6 if x > 3}], draw each branch in its corresponding domain interval.
+
+## Example 2 — Another Piecewise Function
+
+Graph [f(x) = {-x if x < -1; 0 if -1 <= x <= 1; x if x > 1}] and analyze its key features.
+
+## Example 3 — Write a Piecewise Function from a Description
+
+### Step 1: TILE
+
+Mark buys tile at $48/box for 3 or fewer, $45/box for 4–8 boxes, $42/box for 9–19 boxes, $38/box for more than 19.
+
+[f(x) = {48x if x <= 3; 45x if 3 < x <= 8; 42x if 8 < x <= 19; 38x if x > 19}]
+
+### Step 2: BOOKLETS
+
+Digital media company orders booklets with quantity discounts and a $10 shipping charge per order.
+
+## Examples 3 and 4 — Graph Greatest Integer Functions
+
+Graph each function. State the domain and range.
+
+### Step 1: Identify the Steps
+
+[f(x) = [[x]] - 6], [h(x) = [[3x]] - 8], [f(x) = [[x + 1]]], [f(x) = [[x - 3]]]
+
+## Examples 5 and 6 — Graph Absolute Value Functions
+
+Graph each function. State the domain and range.
+
+### Step 1: Apply Transformations
+
+[f(x) = |x - 5|], [g(x) = |x + 2|], [h(x) = |2x| - 8], [k(x) = |-3x| + 3], [f(x) = 2|x - 4| + 6], [h(x) = -3|0.5x + 1| - 2]
+
+## Mixed Exercises
+
+Problems 21–54 provide extensive practice:
+
+* Graph piecewise functions and identify domain and range.
+* PARKING: Rates at $5 for 2 hours or less, $10 for 4 hours or less, $15 for 6 hours or less, $20 for 8 hours or less.
+* BOWLING: $30 for 1 hour or less, $45 for 2 hours or less, $60 for unlimited after 2 hours.
+* FINANCE: 5% commission on every transaction modeled with absolute value.
+* GAMING: Monthly fee graph — write the function.
+* ROUNDING: Write a formula for rounding measurements.
+* REUNIONS: Banquet hall $500 plus $17.50/guest for first 40, $14.75/guest thereafter. Maximum guests on a $900 budget.
+* SAVINGS: [v = 200[[m]]] — how much after 105 days?
+* POLITICS: Approval rating graph over a 9-month term — formulate piecewise function.
+* STRUCTURE: Compare [f(x) = 3[[x]]] vs [g(x) = [[3x]]] for [0 <= x <= 2]. Same for 4.
+* Write piecewise-defined functions from given graphs (problems 42–45).
+* SKYSCRAPERS: Window cleaning carriage at 0.75 floor/hour: [f(t) = |0.75t - 12|].
+* TAXIS: Table of cost vs. miles — graph, state domain and range.
+* WALKING: Jackson walks away from home 2 miles in 20 minutes, returns in 30 minutes — absolute value or piecewise model?
+* CREATE: Write an absolute value relation with domain all nonnegative numbers and range all real numbers.
+* PERSEVERE: Graph |y| = 2|x + 3| - 5.
+* ANALYZE: Counterexample to "round x to nearest integer to find [[x]] when x is not an integer."
+* CREATE: Write an absolute value function where [f(5) = -3].
+
+## Review Notes
+
+* ![](media/image1.png) — FINANCE graph (problem 34)
+* ![](media/image2.png) — POLITICS approval rating graph (problem 39)
+* ![](media/image3.png)![](media/image4.png) — Write piecewise from graphs (problems 42–43)
+* ![](media/image5.png)![](media/image6.png) — Write piecewise from graphs (problems 44–45)
+* ![](media/image7.png) — TAXIS table (problem 47)

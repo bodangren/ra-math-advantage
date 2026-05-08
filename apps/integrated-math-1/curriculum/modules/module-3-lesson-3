@@ -1,0 +1,141 @@
+# Lesson 3-3 — Linearity and Continuity of Graphs
+
+Source: (Module 3, Lesson 3-3, Int1_0303_practice.docx)
+
+## Today's Goals
+
+* Determine whether a function represented by a graph, equation, table, or real-world situation is discrete, continuous, or neither, and justify the classification.
+* Determine whether a function represented by an equation, graph, or table is linear or nonlinear.
+* Analyze and justify properties of linear and continuous functions in abstract and real-world contexts.
+
+## Vocabulary
+
+* **Discrete function** — a function whose graph consists of distinct, unconnected points, typically because the domain is restricted to countable values.
+* **Continuous function** — a function whose graph is an unbroken curve or line, meaning it can be drawn without lifting the pencil.
+* **Linear function** — a function that can be written in the form [ y = mx + b ] and whose graph is a straight line with a constant rate of change.
+* **Nonlinear function** — a function whose graph is not a straight line and whose rate of change is not constant.
+
+## Learn: Discrete, Continuous, and Neither
+
+A function's graph reveals whether it is discrete, continuous, or neither. Look at how the points are connected—or not connected—to classify the function.
+
+### Key Concept: Classifying Functions by Graph Type
+
+* **Discrete:** The graph shows isolated points (e.g., counting people, whole numbers of items).
+* **Continuous:** The graph is an unbroken line or curve (e.g., time, distance, temperature).
+* **Neither:** The graph has breaks or gaps that do not follow a single continuous path.
+
+## Learn: Linear and Nonlinear Functions
+
+A function is linear if it has a constant rate of change and can be written in standard form or slope-intercept form. Nonlinear functions include quadratics, cubics, reciprocals, and other curves.
+
+### Key Concept: Recognizing Linearity
+
+* **From an equation:** Simplify to standard form. If all variable terms are degree 1 and there are no products of variables, the function is linear.
+* **From a graph:** The graph is a straight line.
+* **From a table:** The first differences (change in [ y ] over change in [ x ]) are constant.
+
+## Example 1 — Classify Functions from Graphs
+
+Examine each graph and determine whether the function it represents is discrete, continuous, or neither. Explain your reasoning by describing the visual features of the graph.
+
+### Step 1: Inspect the Graph
+
+Look for whether the points are connected by a line or curve, whether they are isolated dots, or whether there are gaps or breaks.
+
+### Step 2: Classify and Justify
+
+State the classification and explain based on the visual evidence:
+
+* Discrete: isolated points only
+* Continuous: unbroken line or curve
+* Neither: gaps, jumps, or disconnected segments
+
+## Example 2 — Classify Real-World Functions from Graphs
+
+Given a graph that models a real-world situation, determine whether the function is discrete, continuous, or neither. Consider whether the quantities involved can take on any value in an interval or only specific, separate values.
+
+### Step 1: Interpret the Context
+
+Read the problem to identify what the variables represent (e.g., hours worked, cups of flour, hours of homework).
+
+### Step 2: Connect Context to Classification
+
+* Discrete: quantities that must be whole numbers or counted individually
+* Continuous: quantities that can take any value within a range, such as time or distance
+* Neither: situations that involve breaks or restrictions not captured by either category
+
+## Example 3 — Determine Linearity from Equations
+
+Determine whether each equation represents a linear or nonlinear function. Simplify the equation by collecting like terms and checking the degree of each variable term.
+
+### Step 1: Simplify the Equation
+
+Rearrange terms to isolate [ y ] or bring all terms to one side. Expand any squared expressions and simplify radicals when possible.
+
+For example:
+[
+y - \frac{1}{x} = 11
+]
+[
+y = 2x + 5
+]
+
+### Step 2: Identify the Degree
+
+* Linear: the highest power of any variable is 1, and variables are not multiplied together or in denominators.
+* Nonlinear: any variable has degree 2 or higher, variables appear in denominators, or variables are multiplied together.
+
+Representative forms:
+[
+2y + \frac{x}{3} = -6 \quad \text{(linear)}
+]
+[
+y = 3x^2 - x + 5 \quad \text{(nonlinear)}
+]
+[
+y = -x^3 + 2x \quad \text{(nonlinear)}
+]
+
+## Example 4 — Determine Linearity from Graphs
+
+Examine each graph and determine whether the function it represents is linear or nonlinear. A linear graph is a single straight line; any curve indicates a nonlinear function.
+
+### Step 1: Examine the Shape
+
+Look at the overall shape of the graph. Is it a straight line, or does it curve?
+
+### Step 2: Classify
+
+* Linear: the graph is a straight line with a constant slope.
+* Nonlinear: the graph curves, changes direction, or is not a single straight line.
+
+## Example 5 — Determine Linearity from Tables
+
+Given a table of values representing a real-world situation, determine whether the function is linear or nonlinear. If linear, graph the function.
+
+### Step 1: Calculate First Differences
+
+Compute the change in [ y ] for each constant change in [ x ]:
+[
+\frac{\Delta y}{\Delta x}
+]
+
+### Step 2: Determine Linearity
+
+* Linear: the ratio [ \frac{\Delta y}{\Delta x} ] is constant for all pairs of consecutive points.
+* Nonlinear: the ratio changes from one interval to the next.
+
+### Step 3: Graph (if linear)
+
+Plot the points from the table. If the function is linear, the points will lie on a single straight line.
+
+## Mixed Exercises
+
+The mixed exercises section provides comprehensive practice combining all skills from the lesson. Students classify functions as discrete, continuous, or neither, and as linear or nonlinear, using graphs, equations, tables, and real-world contexts. The exercises also include analysis questions that ask students to justify their reasoning about properties of linear and continuous functions in general cases.
+
+## Review Notes
+
+* Problems 1–8, 20–23, 30–33 include graphs that are referenced as images (image1.png through image23.png). These images must be reviewed and described or replaced with equivalent graph descriptions.
+* Problems 9–10, 26 include real-world context graphs (image10.png, image11.png, image18.png) that must be reviewed.
+* Problems 24–25, 27 include data tables (image16.png, image17.png, image19.png) that must be reviewed and converted to text tables.

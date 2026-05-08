@@ -1,0 +1,176 @@
+# Lesson 6-2 — Areas of Regular Polygons
+
+Source: (Module 6, Lesson 6-2, Int2_0602_practice.docx)
+
+## Today's Goals
+
+* Identify the center, radius, apothem, and central angle of a regular polygon.
+* Find the area of regular polygons.
+* Find the area of composite figures involving regular polygons.
+
+## Vocabulary
+
+* **Center** — The point from which all vertices of a regular polygon are equidistant.
+* **Radius** — A segment from the center of a regular polygon to a vertex.
+* **Apothem** — A perpendicular segment from the center of a regular polygon to a side.
+* **Central Angle** — An angle formed by two radii drawn to consecutive vertices.
+* **Regular Polygon** — A polygon that is equilateral and equiangular.
+
+## Explore: Areas of Regular Polygons
+
+Students explore how a regular polygon can be divided into congruent isosceles triangles, each with the center as a vertex and a side of the polygon as the base. The area of the polygon is the sum of the areas of these triangles.
+
+Inquiry Question:
+How can you use the formula for the area of a triangle to find the area of any regular polygon?
+
+## Learn: Areas of Regular Polygons
+
+### Key Concept: Central Angle Measure
+
+The measure of each central angle of a regular n-gon is [360 / n] degrees.
+
+### Key Concept: Area of a Regular Polygon
+
+The area of a regular polygon with n sides, side length s, and apothem a is:
+[
+A = (1/2) * Perimeter * Apothem
+]
+[
+A = (1/2) * n * s * a
+]
+
+## Example 1 — Identify Parts of Regular Polygons
+
+In each figure, a regular polygon is inscribed in a circle. Identify the center, a radius, an apothem, and a central angle of each polygon. Then find the measure of a central angle.
+
+### Step 1: Identify the Center
+
+The center is the point equidistant from all vertices.
+
+### Step 2: Identify the Radius
+
+A radius is a segment from the center to any vertex.
+
+### Step 3: Identify the Apothem
+
+The apothem is a perpendicular segment from the center to a side.
+
+### Step 4: Find the Central Angle
+
+Divide 360 degrees by the number of sides: [360 / n]
+
+For a regular hexagon, the central angle is [360 / 6 = 60] degrees.
+For a regular octagon, the central angle is [360 / 8 = 45] degrees.
+
+## Example 2 — Find Areas of Regular Polygons
+
+Find the area of each regular polygon. Round to the nearest tenth.
+
+### Step 1: Find the Perimeter
+
+Multiply the side length by the number of sides.
+
+### Step 2: Find the Apothem
+
+Use trigonometry if needed. The apothem is the height of each isosceles triangle formed by radii.
+
+### Step 3: Apply the Formula
+
+[
+A = (1/2) * Perimeter * Apothem
+]
+
+Find the area of a regular pentagon with side length 6 centimeters and apothem 4.1 centimeters.
+[
+P = 5 * 6 = 30 cm
+]
+[
+A = (1/2) * 30 * 4.1
+]
+[
+A = 61.5 cm^2
+]
+
+Find the area of a regular hexagon with side length 8 inches and apothem 6.9 inches.
+[
+P = 6 * 8 = 48 in
+]
+[
+A = (1/2) * 48 * 6.9
+]
+[
+A = 165.6 in^2
+]
+
+Find the area of a regular octagon with side length 5 meters and apothem 6 meters.
+[
+P = 8 * 5 = 40 m
+]
+[
+A = (1/2) * 40 * 6
+]
+[
+A = 120 m^2
+]
+
+## Example 3 — Area with Given Apothem
+
+Find the area of each figure. Round to the nearest tenth, if necessary.
+
+### Step 1: Calculate the Perimeter
+
+Multiply the side length by the number of sides.
+
+### Step 2: Apply the Area Formula
+
+Use [A = (1/2) * P * a] where P is perimeter and a is apothem.
+
+## Example 4 — Composite Figures with Regular Polygons
+
+Find the area of each figure. Round to the nearest tenth, if necessary.
+
+### Step 1: Decompose the Figure
+
+Break the composite figure into regular polygons and other shapes.
+
+### Step 2: Find the Area of Each Part
+
+Calculate the area of each component.
+
+### Step 3: Combine or Subtract
+
+Add areas of combined shapes or subtract holes from larger areas.
+
+## Mixed Exercises
+
+* LAWN: Lalita has to buy grass seed for her lawn shaped like a composite figure. Find the area.
+* PATIO: Chenoa is building a patio to surround his fire pit. Find the area of patio pavers needed.
+* Find the area of a regular hexagon with a perimeter of 72 inches. Round to the nearest square inch.
+* Draw a regular pentagon inscribed in a circle with center X, radius, apothem, and central angle.
+* Find the perimeter and area of a regular hexagon with side length 12 centimeters.
+* Find the total area of shaded regions. Round to the nearest tenth.
+* HOME IMPROVEMENT: Pilar is putting a backsplash with octagon and square tiles. Find the area of one tile sheet.
+* REASONING: Miguel's living room floor plan requires varnish and paint calculations.
+* STATE YOUR ASSUMPTION: Find the area of a shelf for 15 homerun baseballs shaped like a regular triangle.
+* USE A SOURCE: Research the Pentagon building and find its area in square feet.
+* SIGNS: A stop sign has side lengths of approximately 12.5 inches. What is the area?
+* DIAMONDS: A regular heptagon diamond with side length 6 millimeters. Find the area.
+* ARCHITECTURE: Fort Jefferson in the Florida Keys is a hexagon with side lengths of 477 feet. Find the area.
+* FRAME: A regular pentagonal picture frame with outside side lengths of 9 inches. Find the area.
+* FLOWER: An approximately regular triangular flower with side lengths of 4 centimeters. Find the area.
+* STAINED GLASS: A regular octagonal window with apothem of 14 inches. Find the area.
+* GAMING: A 12-sided die made of 12 regular pentagons with side length 1.5 centimeters. Find the area of one face.
+* HONEYCOMB: A hexagonal wax cell with height approximately 5 millimeters. Find the area.
+* FIND THE ERROR: Chenglei and Flavio want to find the area of a hexagon. Who is correct?
+* ANALYZE: Is the measure of an apothem sometimes, always, or never [s * sqrt(3)/2] where s is a side length?
+* CREATE: Draw a pair of composite figures that have the same area.
+* PERSEVERE: Consider the sequence of area diagrams. What algebraic theorem do they prove?
+* WRITE: How can you find the area of any figure?
+* WHICH ONE DOESN'T BELONG?: Find which diagram for area of regular polygons is incorrect.
+
+## Review Notes
+
+* The DOCX contains many diagrams and images for the polygon identification and area problems. Teachers should consult the original worksheet for exact figures.
+* ![](media/) — Image references in original worksheet could not be fully captured.
+* The formula [A = (1/2) * Perimeter * Apothem] works for ALL regular polygons.
+* For composite figures, students should identify all regular polygon components and calculate each separately before combining.

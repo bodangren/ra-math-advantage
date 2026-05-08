@@ -1,0 +1,147 @@
+# Lesson 7-5 — Systems of Inequalities
+
+Source: (Module 7, Lesson 7-5, Int1_0705_practice.docx)
+
+## Today's Goals
+
+* Graph systems of linear inequalities and identify the overlapping solution region.
+* Write systems of inequalities to represent real-world constraints with two variables.
+* Determine whether an ordered pair is a solution to a system without graphing.
+* Write a system of inequalities that corresponds to a given graph.
+
+## Vocabulary
+
+* **system of inequalities** — A set of two or more inequalities with the same variables.
+* **solution of a system of inequalities** — An ordered pair that makes every inequality in the system true.
+* **boundary line** — The line formed by replacing the inequality symbol with an equal sign; dashed for strict inequalities, solid for non-strict inequalities.
+* **feasible region** — The overlapping shaded region where all inequalities in the system are satisfied.
+
+## Learn: Graphing Systems of Linear Inequalities
+
+A system of linear inequalities is graphed by shading each inequality on the same coordinate plane. The solution to the system is the intersection of all shaded regions.
+
+### Key Concept: Graphing a System of Inequalities
+
+* Graph each inequality separately: draw the boundary line (dashed for `<` or `>`, solid for `≤` or `≥`), then shade the appropriate half-plane.
+* The solution region is where all shaded areas overlap.
+* If the boundary lines are parallel, the system may have no solution, a bounded strip of solutions, or an unbounded region depending on the inequality directions.
+* To test a point without graphing, substitute its coordinates into every inequality; it must satisfy all of them.
+
+## Example 1 — Graph Systems in Slope-Intercept Form
+
+Graph systems where both inequalities are given in or easily converted to slope-intercept form. Identify the overlapping feasible region.
+
+### Step 1: Graph the First Inequality
+
+Draw the boundary line and shade the appropriate side.
+
+[
+y < 6
+]
+
+### Step 2: Graph the Second Inequality
+
+On the same axes, draw the second boundary line and shade.
+
+[
+y > x + 3
+]
+
+### Step 3: Identify the Solution Region
+
+The solution is the overlapping shaded area. Points in this region satisfy both inequalities.
+
+Other representative systems include:
+
+[
+y \ge x + 10 \quad \text{and} \quad y \le x - 3
+]
+
+[
+y < 5x - 5 \quad \text{and} \quad y > 5x + 9
+]
+
+## Example 2 — Graph Systems with Horizontal, Vertical, and Standard-Form Boundaries
+
+Graph systems that include vertical lines, horizontal lines, or inequalities in standard form.
+
+### Step 1: Handle Vertical and Horizontal Boundaries
+
+Vertical and horizontal lines divide the plane differently than sloped lines.
+
+[
+x > -1 \quad \text{and} \quad y \le -3
+]
+
+[
+y > 2 \quad \text{and} \quad x < -2
+]
+
+### Step 2: Convert Standard Form to Convenient Form
+
+For inequalities like [ x + y \le -1 ], graph using intercepts or solve for [ y ].
+
+[
+x + y \le -1 \quad \text{and} \quad x + y \ge 3
+]
+
+[
+y - x > 4 \quad \text{and} \quad x + y > 2
+]
+
+### Step 3: Identify the Overlap
+
+The feasible region is where all conditions are satisfied simultaneously.
+
+## Example 3 — Model Real-World Situations
+
+Write, graph, and interpret systems of inequalities based on contextual constraints.
+
+### Step 1: Define the Variables
+
+Identify what each variable represents in the situation.
+
+### Step 2: Write the System
+
+Translate each constraint into an inequality.
+
+For an exercise program where a person walks from 9 to 12 miles and works out from 4.5 to 6 hours per week:
+
+[
+9 \le m \le 12
+]
+
+[
+4.5 \le h \le 6
+]
+
+For souvenir stones costing either [ 4 ] or [ 6 ] with a budget of no more than [ 30 ], buying at least 4 stones:
+
+[
+f + s \ge 4
+]
+
+[
+4f + 6s \le 30
+]
+
+where [ f ] is the number of [ 4 ]-dollar stones and [ s ] is the number of [ 6 ]-dollar stones.
+
+### Step 3: Graph and Interpret
+
+Graph the system and list viable solutions as ordered pairs that satisfy all constraints and make sense in context.
+
+## Mixed Exercises
+
+The mixed exercises integrate all skills from the lesson:
+
+* Writing systems of inequalities from given graphs.
+* Verifying whether a point is a solution by substitution.
+* Solving word problems by defining variables, writing systems, graphing, and interpreting solutions.
+* Analyzing conceptual questions about parallel boundaries, equivalent systems, and special cases.
+* Creating original systems to match given conditions, such as a system with no solution or a system equivalent to an absolute-value inequality.
+
+## Review Notes
+
+* Problems 15–18 require images of graphed systems that could not be described in the extracted source. A human reviewer should inspect the original worksheet images and translate each graph into a system of inequalities.
+* Problem 18 references a graph "shown at the right" that was not available in extracted form.

@@ -1,0 +1,132 @@
+# Lesson 5-1 — Circles and Circumference
+
+Source: (Module 5, Lesson 5-1, Int2_0501_practice.docx)
+
+## Today's Goals
+
+* Identify and name circles, radii, chords, and diameters.
+* Use the relationships between radii, diameters, and circumference.
+* Find the radius, diameter, and circumference of a circle given any one of these measures.
+* Distinguish between congruent, concentric, and tangent circles.
+
+## Vocabulary
+
+* **Circle** — The set of all points in a plane that are the same distance from a given point called the center.
+* **Radius** — A segment from the center of a circle to any point on the circle; also the length of that segment.
+* **Chord** — A segment whose endpoints are on a circle.
+* **Diameter** — A chord that passes through the center of a circle; also the length of that segment.
+* **Congruent Circles** — Circles that have the same radius.
+* **Concentric Circles** — Circles that share the same center but have different radii.
+* **Circumference** — The distance around a circle.
+
+## Explore: What Makes Circles Unique?
+
+Circles appear throughout the physical world — from bicycle tires to clock faces. Students investigate how the fixed distance from the center to any point on the circle (the radius) connects to the distance around the circle (the circumference).
+
+Inquiry Question:
+If you double the diameter of a circle, what happens to its circumference?
+
+## Learn: Circles and Circumference
+
+### Key Concept: Parts of a Circle
+
+A circle is named by its center. For example, ⊙*A* is a circle with center *A*. Key segments related to a circle include:
+
+* A **radius** is a segment from the center to any point on the circle. All radii of a circle are congruent.
+* A **diameter** is a chord that passes through the center. The diameter is twice the radius: [d = 2r].
+* A **chord** is a segment whose endpoints are both on the circle.
+
+### Key Concept: Circumference
+
+The circumference [C] of a circle is related to its diameter [d] and radius [r] by the ratio π. The formulas are:
+
+[C = πd]
+[C = 2πr]
+
+### Key Concept: Relationships Among Radius, Diameter, and Circumference
+
+If the radius or diameter of a circle is known, the other measures can be found:
+
+[r = d ÷ 2]
+[d = 2r]
+[C = πd = 2πr]
+
+Conversely, if the circumference is known, the radius and diameter can be found:
+
+[d = C ÷ π]
+[r = C ÷ (2π)]
+
+## Example 1 — Identify Parts of Circles
+
+Use the figures to identify circles, radii, chords, and diameters. Understand the naming conventions for these elements.
+
+### Step 1: Identify the Circle and Its Center
+
+A circle is named using the symbol ⊙ followed by the center point. For example, ⊙*R* is a circle with center *R*. A radius is any segment from the center to a point on the circle, such as [AR]. A diameter is a chord that passes through the center, such as [AB] if *A* and *B* are on the circle and the segment passes through *R*.
+
+In the figure for Exercises 9–11, if [AB = 18 millimeters], then [AR = 9 millimeters] because the diameter is twice the radius. Similarly, if [RY = 10 inches], then [AR = 10 inches] and [AB = 20 inches].
+
+### Step 2: Identify Chords
+
+A chord is any segment whose endpoints lie on the circle. A diameter is a special type of chord. In the circle, chords do not necessarily pass through the center unless they are diameters.
+
+In the circle ⊙*R*, determine whether [AB ≅ XY] by noting that congruent circles have congruent radii, and if the circles are congruent, corresponding chords are congruent.
+
+## Example 2 — Find Radius, Diameter, and Circumference
+
+Use the given measures to find missing radius, diameter, and circumference values.
+
+### Step 1: Given a Diameter, Find Radius and Circumference
+
+If the diameter of a bicycle tire is 26 inches, then the radius is [r = 13 inches]. The circumference is found using [C = 2πr = 2π(13) = 26π inches].
+
+If the diameter of a sundial is 9.5 inches, the radius is [r = 4.75 inches] and the circumference is [C = 2π(4.75) = 9.5π ≈ 29.85 inches] to the nearest hundredth. Assumptions include treating the sundial as a perfect circle and using π ≈ 3.14.
+
+### Step 2: Given Circumference, Find Radius and Diameter
+
+If [C = 40 inches], then [d = 40 ÷ π ≈ 12.73 inches] and [r = d ÷ 2 ≈ 6.37 inches].
+
+If [C = 256 feet], then [d = 256 ÷ π ≈ 81.49 feet] and [r = d ÷ 2 ≈ 40.75 feet].
+
+If [C = 15.62 meters], then [d = 15.62 ÷ π ≈ 4.97 meters] and [r = d ÷ 2 ≈ 2.49 meters].
+
+If [C = 79.5 yards], then [d = 79.5 ÷ π ≈ 25.31 yards] and [r = d ÷ 2 ≈ 12.66 yards].
+
+If [C = 204.16 meters], then [d = 204.16 ÷ π ≈ 64.99 meters] and [r = d ÷ 2 ≈ 32.50 meters].
+
+### Step 3: Algebraic Circumference
+
+If [C = 35x cm], then [d = 35x ÷ π] and [r = 35x ÷ (2π)].
+
+If [r = x/8], then [d = x/4] and [C = 2π(x/4) = (πx)/2].
+
+## Mixed Exercises
+
+Practice with all skills from the lesson, including:
+
+* Naming circles, radii, chords, and diameters from diagrams.
+* Finding radius, diameter, and circumference given any one of these measures, including fractional and algebraic values.
+* Determining whether circles are congruent, concentric, or neither from diagrams.
+* Finding exact circumference in terms of π given diagrams with labeled radii.
+* Writing paragraph proofs (e.g., proof of Theorem 10.1 that all circles are similar).
+* Researching real-world circular objects (e.g., clock faces) and computing their circumference.
+* Finding spoke length on a wheel given diameter.
+* Determining whether a cut through a circle is a radius, diameter, or chord.
+* Reasoning about three identical coins lined up in a row.
+* Designing exercise hoops with a given length of material.
+* Analyzing the ratio of circle circumferences.
+* Determining whether a point inside a circle is sometimes, always, or never closer than the radius to the center.
+
+## Review Notes
+
+* ![](media/image1.png) — circle with labeled center and radii for Exercises 1–3
+* ![](media/image2.png) — circle with labeled center and chords for Exercises 4–8
+* ![](media/image3.png) — circle for Exercises 9–11 involving ⊙*R*
+* ![](media/image4.png) — circle for Exercises 12–14 involving ⊙*L*
+* ![](media/image5.png) — circle for Examples 4–5
+* ![](media/image6.png) — circles for Exercises 23–24 involving ⊙*F* and ⊙*G*
+* ![](media/image7.png), ![](media/image8.png), ![](media/image9.png) — concentric/congruent circle figures for Exercises 33–35
+* ![](media/image10.png), ![](media/image11.png), ![](media/image12.png), ![](media/image13.png), ![](media/image14.png), ![](media/image15.png), ![](media/image16.png) — circles for Exercises 36–42 (find exact circumference in terms of π)
+* ![](media/image17.png) — three coins in a row for Exercise 46
+* ![](media/image18.png) — circles H, J, K for Exercise 49 (sum of circumferences = 56π)
+* ![](media/image19.png) — circles D and E for Exercise 51 (prove similarity)

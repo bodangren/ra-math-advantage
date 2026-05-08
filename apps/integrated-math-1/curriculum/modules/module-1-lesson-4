@@ -1,0 +1,286 @@
+# Lesson 1-4 — Distributive Property
+
+Source: (Module 1, Lesson 1-4, Int1_0104_practice.docx)
+
+## Today's Goals
+
+* Apply the Distributive Property to rewrite and evaluate numerical expressions, including mixed numbers and decimals.
+* Use the Distributive Property to simplify algebraic expressions with one or more variables.
+* Translate verbal expressions into algebraic form, simplify them, and identify the properties used.
+
+## Vocabulary
+
+* **Distributive Property** — For all real numbers [ a ], [ b ], and [ c ], [ a(b + c) = ab + ac ] and [ a(b - c) = ab - ac ].
+* **Like terms** — Terms that have the same variable raised to the same power.
+* **Coefficient** — The numerical factor of a term that contains a variable.
+* **Constant** — A term that has no variable factor.
+* **Simplest form** — An expression with no like terms or parentheses.
+
+## Learn: The Distributive Property
+
+The Distributive Property connects multiplication with addition and subtraction. It allows you to multiply a sum or difference by a factor by distributing the factor to each term inside the parentheses.
+
+### Key Concept: Distributive Property
+
+* For any real numbers [ a ], [ b ], and [ c ]:
+[
+  a(b + c) = ab + ac
+]
+[
+  a(b - c) = ab - ac
+]
+* The property works from the left ([ a(b + c) ]) or from the right ([ (b + c)a ]).
+* When the factor is negative, distribute the negative sign to each term.
+
+## Example 1 — Evaluate Numerical Expressions
+
+Use the Distributive Property to rewrite a product of a number and a sum or difference, then evaluate.
+
+### Step 1: Rewrite Using the Distributive Property
+
+Split the sum or difference inside the parentheses and multiply each part by the factor outside.
+
+[
+(4 + 5)6 = 4 \cdot 6 + 5 \cdot 6
+]
+
+[
+7(13 + 12) = 7 \cdot 13 + 7 \cdot 12
+]
+
+[
+6(6 - 1) = 6 \cdot 6 - 6 \cdot 1
+]
+
+### Step 2: Evaluate
+
+Add or subtract the resulting products.
+
+[
+4 \cdot 6 + 5 \cdot 6 = 24 + 30 = 54
+]
+
+### Word Problem Applications
+
+Write an expression that models a real-world situation and use the Distributive Property to find the total.
+
+* **Ticket costs:** Find the total cost for a group when each ticket has the same price.
+[
+  39(23 + 2) = 39 \cdot 23 + 39 \cdot 2
+]
+* **Salaries:** Estimate the total cost to employ two people for multiple years.
+[
+  5(55{,}000 + 52{,}000) = 5 \cdot 55{,}000 + 5 \cdot 52{,}000
+]
+* **Fabric needed:** Multiply a whole number by a mixed number by writing the mixed number as a sum of an integer and a fraction.
+[
+  10 \cdot 3\frac{3}{5} = 10\left(3 + \frac{3}{5}\right) = 10 \cdot 3 + 10 \cdot \frac{3}{5}
+]
+* **Monthly deposits:** Find the total in multiple accounts after a given number of months.
+
+## Example 2 — Mental Math with the Distributive Property
+
+Rewrite a product involving a number close to a round value, then evaluate using mental math.
+
+### Step 1: Rewrite in a Convenient Form
+
+Express the factor as a sum or difference that uses a multiple of 10, 100, or a whole number.
+
+[
+7 \cdot 497 = 7(500 - 3) = 7 \cdot 500 - 7 \cdot 3
+]
+
+[
+6(525) = 6(500 + 25) = 6 \cdot 500 + 6 \cdot 25
+]
+
+[
+36 \cdot 3\frac{1}{4} = 36\left(3 + \frac{1}{4}\right) = 36 \cdot 3 + 36 \cdot \frac{1}{4}
+]
+
+[
+5 \cdot 89 = 5(90 - 1) = 5 \cdot 90 - 5 \cdot 1
+]
+
+[
+9 \cdot 99 = 9(100 - 1) = 9 \cdot 100 - 9 \cdot 1
+]
+
+### Step 2: Compute Mentally
+
+Use the simpler products to find the result quickly.
+
+[
+7 \cdot 500 - 7 \cdot 3 = 3500 - 21 = 3479
+]
+
+Variations include decimals ([ 8 \cdot 1.5 ]), numbers near 100 ([ 12 \cdot 98 = 12(100 - 2) ]), and fractions ([ 15\left(2\frac{1}{3}\right) ]).
+
+## Examples 3 and 4 — Simplify Algebraic Expressions
+
+Rewrite an algebraic expression by distributing a constant to each term inside parentheses, then simplify if possible.
+
+### Step 1: Distribute the Factor
+
+Multiply the outside factor by every term inside the parentheses.
+
+[
+2(x + 4) = 2 \cdot x + 2 \cdot 4 = 2x + 8
+]
+
+[
+(5 + n)3 = 5 \cdot 3 + n \cdot 3 = 15 + 3n
+]
+
+[
+(4 - 3m)8 = 4 \cdot 8 - 3m \cdot 8 = 32 - 24m
+]
+
+[
+11(4d + 6) = 11 \cdot 4d + 11 \cdot 6 = 44d + 66
+]
+
+[
+4(8p + 16q - 7r) = 32p + 64q - 28r
+]
+
+[
+6(2c - cd^2 + d) = 12c - 6cd^2 + 6d
+]
+
+### Step 2: Distribute Negative and Fractional Coefficients
+
+When the outside factor is negative or a fraction, watch the sign of each term after distributing.
+
+[
+-3(2x - 6) = -3 \cdot 2x - 3(-6) = -6x + 18
+]
+
+[
+\left(\frac{1}{3} - 2b\right)27 = \frac{1}{3} \cdot 27 - 2b \cdot 27 = 9 - 54b
+]
+
+[
+-2(7m - 8n - 5p) = -14m + 16n + 10p
+]
+
+[
+(0.3 - 6x)9 = 0.3 \cdot 9 - 6x \cdot 9 = 2.7 - 54x
+]
+
+[
+-4\left(4a + 2b - \frac{1}{2}c\right) = -16a - 8b + 2c
+]
+
+### Step 3: Combine Like Terms (if any)
+
+After distributing, add or subtract any like terms.
+
+## Example 5 — Combine Like Terms
+
+Simplify an expression by combining like terms. If no like terms exist, write **simplified**.
+
+### Step 1: Identify Like Terms
+
+Terms are alike only if they have the same variable raised to the same power.
+
+[
+13r + 5r = (13 + 5)r = 18r
+]
+
+[
+7m + 7 - 5m = (7m - 5m) + 7 = 2m + 7
+]
+
+[
+5z^2 + 3z + 8z^2 = (5z^2 + 8z^2) + 3z = 13z^2 + 3z
+]
+
+[
+7m + 2m + 5p + 4m = (7m + 2m + 4m) + 5p = 13m + 5p
+]
+
+[
+6x + 4y + 5x = (6x + 5x) + 4y = 11x + 4y
+]
+
+[
+3m + 5g + 6g + 11m = (3m + 11m) + (5g + 6g) = 14m + 11g
+]
+
+### Step 2: Recognize When Simplification Is Not Possible
+
+Expressions such as [ 3x^3 - 2x^2 ] or [ 3y^2 - 2y + 9 ] contain no like terms, so they are already simplified.
+
+### Variations
+
+* Higher powers: [ 5k + 3k^3 + 7k + 9k^3 = 12k + 12k^3 ] 
+* Single variable: [ 17g + g = 18g ] and [ 2x^2 + 6x^2 = 8x^2 ] 
+* Three terms with subtraction: [ 3q^2 + q - q^2 = 2q^2 + q ] 
+
+## Example 6 — Translate and Simplify Verbal Expressions
+
+Translate a verbal description into an algebraic expression, then simplify and name the properties used.
+
+### Step 1: Write the Algebraic Expression
+
+Parse the words to identify operations and their order.
+
+*The product of 9 and t squared, increased by 3 times the sum of 2 and t squared:*
+[
+9t^2 + 3(2 + t^2)
+]
+
+*The product of 3 and a, plus 5 times the difference of a and b:*
+[
+3a + 5(a - b)
+]
+
+*3 times the sum of r and d squared increased by 2 times the sum of r and d squared:*
+[
+3(r + d^2) + 2(r + d^2)
+]
+
+### Step 2: Simplify and Identify Properties
+
+Distribute and combine like terms, then state which properties were applied.
+
+[
+9t^2 + 3(2 + t^2) = 9t^2 + 6 + 3t^2 = 12t^2 + 6
+]
+
+Properties used: Distributive Property, Commutative Property of Addition, Associative Property of Addition.
+
+[
+3a + 5(a - b) = 3a + 5a - 5b = 8a - 5b
+]
+
+## Mixed Exercises
+
+Simplify a variety of expressions that require one or more skills from the lesson:
+
+* Distribute a constant across parentheses and then combine like terms.
+[
+  3x + 7(3x + 4) = 3x + 21x + 28 = 24x + 28
+]
+* Distribute across multiple terms and combine with existing terms.
+[
+  4(fg + 3g) + 5g = 4fg + 12g + 5g = 4fg + 17g
+]
+* Combine like terms involving fractions.
+[
+  a + \frac{a}{5} + \frac{2}{5}a
+]
+* Simplify expressions with grouping and multiple variables.
+[
+  7(2x + y) + 6(x + 5y) = 14x + 7y + 6x + 30y = 20x + 37y
+]
+
+Additional problems include reasoning about the Distributive Property in geometric contexts (perimeter, area), identifying errors in calculations, analyzing whether statements about properties are true or false, and creating original expressions that simplify to a given result.
+
+## Review Notes
+
+* **Problem 10 (REASONING):** Requires a chart/diagram (`media/image1.png`) showing monthly deposits into checking, savings, and college fund accounts for Letisha and Noelle. The chart cannot be described from the extracted text.
+* **Problem 66 (REASONING):** Requires a diagram (`media/image2.png`) of theater seating with [ m ] seats per row on the left and [ n ] seats per row on the right across [ r ] rows.
+* **Problem 67 (FENCES):** Requires a diagram (`media/image3.png`) of a fenced dog park to write two equivalent perimeter expressions.
+* **Problem 69 (FIND THE ERROR):** Requires an image (`media/image4.png`) showing Ariana's shipping weight calculations. The image content is needed to fully evaluate her reasoning.

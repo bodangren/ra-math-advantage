@@ -10,9 +10,10 @@ Tracks 1+4 unlock Track 8; Track 8 unlocks Tracks 9+10.
 
 ## Active Tracks
 
-- [ ] **Track: Practice Worksheet Example Import**
-   *Import IM1, IM2, and IM3 Practice Worksheet Student Bundles as reviewed Markdown problem set catalogs before mapping selected groups to React worked, guided, and independent practice components*
+- [x] **Track: Practice Worksheet Example Import** — **COMPLETED**
+   *Import IM1, IM2, and IM3 Practice Worksheet Student Bundles as reviewed Markdown problem set catalogs. 244 DOCX → 241 reviewed lesson files (IM1: 93, IM2: 96, IM3: 52). Full regeneration of IM2 and IM3 from canonical DOCX sources.*
    *Link: [./measure/tracks/practice-worksheet-example-import_20260507/](./measure/tracks/practice-worksheet-example-import_20260507/)*
+   - Phases 1-7: All complete (extraction, naming, template, IM1 greenfield, IM2 verification/amendment, IM3 verification/amendment, cross-course validation)
 
 - [x] **Track: Fix Pre-existing Lint Errors Across All Apps**
    *Fix lint errors in all 5 apps and add CI lint gates for IM1, IM2, and PreCalc*

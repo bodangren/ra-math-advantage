@@ -1,0 +1,244 @@
+# Lesson 14-2 — Congruent Triangles
+
+Source: (Module 14, Lesson 14-2, Int1_1402_practice.docx)
+
+## Today's Goals
+
+* Identify all congruent corresponding parts of polygons and write correct congruence statements.
+* Use congruence statements to find unknown side lengths and angle measures in congruent figures.
+* Apply properties of congruent triangles to solve real-world design and construction problems.
+* Write two-column proofs and paragraph proofs to show that two triangles are congruent.
+
+## Vocabulary
+
+* **Congruent** — Having the same size and shape; corresponding parts are equal.
+* **Corresponding Parts** — Matching sides or angles of two congruent polygons that are in the same relative position.
+* **Congruence Statement** — A statement that identifies the corresponding vertices of two congruent polygons in matching order.
+* **Two-Column Proof** — A structured proof with statements in one column and reasons in a second column.
+* **Paragraph Proof** — A proof written in complete sentences that explains the logical steps and reasons.
+* **Bisect** — To divide into two congruent parts.
+
+## Explore: How Do We Know Two Polygons Match Exactly?
+
+Students examine pairs of polygons and consider what it means for two shapes to be exactly the same. Inquiry focuses on whether matching all sides and angles is sufficient to guarantee congruence.
+
+Inquiry Question:
+If two polygons have the same side lengths and angle measures, what else must be true about how their vertices correspond?
+
+## Learn: Congruent Polygons and Corresponding Parts
+
+Two polygons are congruent if and only if their corresponding sides and corresponding angles are congruent. The order of vertices in a congruence statement matters because it identifies which parts correspond.
+
+### Key Concept: Corresponding Parts of Congruent Polygons
+
+* In a congruence statement such as [polygon ABCD ≅ polygon PQRS], vertex [A] corresponds to [P], [B] to [Q], [C] to [R], and [D] to [S].
+* Corresponding sides are congruent: [\overline{AB} ≅ \overline{PQ}], [\overline{BC} ≅ \overline{QR}], and so on.
+* Corresponding angles are congruent: [\angle A ≅ \angle P], [\angle B ≅ \angle Q], and so on.
+
+### Key Concept: Using Congruence to Find Unknown Values
+
+* If two figures are congruent, set corresponding expressions equal to each other and solve.
+* If [\overline{AC} ≅ \overline{DF}], then the lengths are equal: [AC = DF].
+* If [\angle BAC ≅ \angle EDF], then the measures are equal: [m\angle BAC = m\angle EDF].
+
+## Example 1 — Identify Congruent Corresponding Parts and Write a Congruence Statement
+
+Given pairs of polygons shown in diagrams, identify all pairs of congruent corresponding sides and angles, then write a valid congruence statement.
+
+### Step 1: Match Vertices by Position
+
+Examine the diagrams to determine which vertices correspond based on markings, orientation, or given information.
+
+For a pair of triangles:
+[
+\triangle ABC ≅ \triangle DEF
+]
+
+This means:
+[
+\overline{AB} ≅ \overline{DE}, \quad \overline{BC} ≅ \overline{EF}, \quad \overline{AC} ≅ \overline{DF}
+]
+[
+\angle A ≅ \angle D, \quad \angle B ≅ \angle E, \quad \angle C ≅ \angle F
+]
+
+For a pair of quadrilaterals:
+[
+polygon ABCD ≅ polygon QRST
+]
+
+This means:
+[
+\overline{AB} ≅ \overline{QR}, \quad \overline{BC} ≅ \overline{RS}, \quad \overline{CD} ≅ \overline{ST}, \quad \overline{DA} ≅ \overline{TQ}
+]
+[
+\angle A ≅ \angle Q, \quad \angle B ≅ \angle R, \quad \angle C ≅ \angle S, \quad \angle D ≅ \angle T
+]
+
+### Step 2: Verify the Congruence Statement
+
+Check that every pair of corresponding sides and angles is accounted for and that the vertex order correctly reflects the correspondence.
+
+## Example 2 — Find Unknown Values Using Congruence
+
+Use given congruence statements to set up equations and solve for unknown variables in diagrams.
+
+### Step 1: Set Up Equations from Corresponding Sides
+
+When [\triangle ABC ≅ \triangle FDE], match corresponding sides to find [x] and [y].
+
+If [\overline{AB}] corresponds to [\overline{FD}] and expressions are given:
+[
+AB = FD
+]
+
+If [\overline{BC}] corresponds to [\overline{DE}]:
+[
+BC = DE
+]
+
+For a quadrilateral where [polygon ABCD ≅ polygon PQRS]:
+[
+AB = PQ, \quad BC = QR, \quad CD = RS, \quad DA = SP
+]
+
+Substitute given expressions and solve:
+[
+3x - 5 = 2x + 7 \implies x = 12
+]
+
+### Step 2: Set Up Equations from Corresponding Angles
+
+Match corresponding angle measures:
+[
+m\angle A = m\angle D
+]
+
+If expressions involve [y]:
+[
+2y + 10 = 5y - 8 \implies 18 = 3y \implies y = 6
+]
+
+### Step 3: Check Solutions
+
+Substitute the found values back into the original expressions to confirm that all corresponding parts are indeed congruent.
+
+## Example 3 — Apply Congruent Triangles to Real-World Problems
+
+Use properties of congruent triangles to find unknown angle measures in design and construction contexts.
+
+### Step 1: Identify the Congruent Parts in Context
+
+In a design problem where two triangles share a congruent angle relationship:
+[
+\angle ACB ≅ \angle DEB
+]
+
+Since corresponding angles of congruent triangles are congruent, the measure of one angle equals the measure of its corresponding angle.
+
+### Step 2: Use the Triangle Angle Sum
+
+When two angles of a triangle are known, find the third:
+[
+m\angle ACB = 180° - m\angle ABC - m\angle BAC
+]
+[
+m\angle ACB = 180° - 35° - 29° = 116°
+]
+
+Therefore:
+[
+m\angle DEB = m\angle ACB = 116°
+]
+
+### Step 3: Apply to Carpentry and Structural Supports
+
+In a support structure with congruent angles:
+[
+\angle PRQ ≅ \angle TVU
+]
+
+Using the triangle angle sum in the first triangle to find the unknown angle, then equate to its corresponding angle in the congruent triangle:
+[
+m\angle TVU = m\angle PRQ = 180° - m\angle RPQ - m\angle RQP
+]
+
+## Example 4 — Write Proofs of Triangle Congruence
+
+Write formal proofs to demonstrate that two triangles are congruent using given information about sides and angles.
+
+### Step 1: Write a Two-Column Proof
+
+Organize the proof with statements and reasons.
+
+**Given:** [\overline{AB} ≅ \overline{CB}], [\overline{AD} ≅ \overline{CD}], [\angle BAD ≅ \angle BCD], [\overline{BD}] bisects [\angle ABC] 
+
+**Prove:** [\triangle ABD ≅ \triangle CBD] 
+
+| Statements | Reasons |
+|---|---|
+| [\overline{AB} ≅ \overline{CB}] | Given |
+| [\overline{AD} ≅ \overline{CD}] | Given |
+| [\angle BAD ≅ \angle BCD] | Given |
+| [\overline{BD}] bisects [\angle ABC] | Given |
+| [\angle ABD ≅ \angle CBD] | Definition of angle bisector |
+| [\triangle ABD ≅ \triangle CBD] | SAS Congruence Postulate |
+
+### Step 2: Write Another Two-Column Proof Using Different Given Information
+
+**Given:** [\overline{AB} ≅ \overline{CB}], [\overline{AD} ≅ \overline{CD}], [\angle ABD ≅ \angle CBD], [\angle ADB ≅ \angle CDB] 
+
+**Prove:** [\triangle ABD ≅ \triangle CBD] 
+
+| Statements | Reasons |
+|---|---|
+| [\overline{AB} ≅ \overline{CB}] | Given |
+| [\overline{AD} ≅ \overline{CD}] | Given |
+| [\angle ABD ≅ \angle CBD] | Given |
+| [\angle ADB ≅ \angle CDB] | Given |
+| [\overline{BD} ≅ \overline{BD}] | Reflexive Property |
+| [\triangle ABD ≅ \triangle CBD] | ASA or AAS Congruence Theorem |
+
+### Step 3: Write a Two-Column Proof with Segment Bisector
+
+**Given:** [\angle A ≅ \angle C], [\angle D ≅ \angle B], [\overline{AD} ≅ \overline{CB}], [\overline{AE} ≅ \overline{CE}], [\overline{AC}] bisects [\overline{BD}] 
+
+**Prove:** [\triangle AED ≅ \triangle CEB] 
+
+| Statements | Reasons |
+|---|---|
+| [\angle A ≅ \angle C] | Given |
+| [\angle D ≅ \angle B] | Given |
+| [\overline{AD} ≅ \overline{CB}] | Given |
+| [\overline{AC}] bisects [\overline{BD}] | Given |
+| [\overline{DE} ≅ \overline{BE}] | Definition of segment bisector |
+| [\triangle AED ≅ \triangle CEB] | ASA or SAS Congruence Theorem |
+
+### Step 4: Write a Paragraph Proof
+
+**Given:** [\overline{BD}] bisects [\angle ABC] and [\angle ADC], [\overline{AB} ≅ \overline{CB}], [\overline{AD} ≅ \overline{CD}] 
+
+**Prove:** [\triangle ABD ≅ \triangle CBD] 
+
+Since [\overline{BD}] bisects [\angle ABC], we know that [\angle ABD ≅ \angle CBD] by the definition of an angle bisector. Similarly, since [\overline{BD}] bisects [\angle ADC], we know that [\angle ADB ≅ \angle CDB]. We are given that [\overline{AB} ≅ \overline{CB}] and [\overline{AD} ≅ \overline{CD}]. Therefore, by the SAS Congruence Postulate applied to two pairs of sides and the included angle, [\triangle ABD ≅ \triangle CBD].
+
+## Mixed Exercises
+
+The mixed exercises section provides practice with all skills from the lesson: identifying corresponding parts, writing congruence statements, finding unknown values, applying congruence to real-world situations, and writing proofs. Problems include:
+
+* Identifying the geometric property that guarantees congruent stamped designs.
+* Drawing and labeling figures for congruent triangles and solving for [x] and [y] using corresponding side and angle relationships.
+* Using the triangle angle sum and congruent angle relationships to find missing angle measures.
+* Analyzing the Sierpinski triangle to count congruent equilateral triangles.
+* Identifying congruent triangles in a logo design and naming their corresponding congruent angles and sides.
+* Applying congruent triangle relationships to map distances and angle measures.
+* Completing a two-column proof of the Third Angles Theorem by supplying reasons for each statement.
+* Analyzing whether equilateral triangles are always, sometimes, or never congruent and justifying the argument.
+* Creating critical questions about extending the Third Angles Theorem to quadrilaterals.
+* Finding and correcting errors in student claims about congruence statements for triangles.
+* Justifying why vertex order matters when naming congruent triangles.
+* Finding values of [x] and [y] when two triangles sharing a common side are congruent.
+
+## Review Notes
+
+* Images referenced in the worksheet (diagrams of polygons for corresponding parts, congruent triangles with variable expressions, cell phone case design, carpentry table supports, two-column proof diagrams, Sierpinski triangle, logo designs, map triangles, Third Angles Theorem proof diagram, triangle with labeled vertices for error analysis, and triangles sharing a common side) could not be fully described without visual reference. Teachers should consult the original worksheet for exact diagrams, markings, and values.

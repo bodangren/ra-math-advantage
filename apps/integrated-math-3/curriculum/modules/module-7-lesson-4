@@ -1,242 +1,229 @@
 # Lesson 7-4 — Graphing Rational Functions
 
-Source: (Module 7, Lesson 7-4, pp. 337–342)
+Source: (Module 7, Lesson 7-4, Int3_0704_practice.docx)
 
 ## Today's Goals
 
-* Graph and analyze rational functions with vertical and horizontal asymptotes
-* Graph and analyze rational functions with oblique asymptotes
-
----
+* Graph rational functions and identify key features including asymptotes and intercepts.
+* Find zeros and point discontinuities.
+* Analyze real-world scenarios modeled by rational functions.
 
 ## Vocabulary
 
-* rational function
-* oblique asymptote
-* point discontinuity
+* **Rational Function** — A function of the form [f(x) = P(x)/Q(x)] where [P] and [Q] are polynomials and [Q(x) ≠ 0].
+* **Zeros of a Function** — The [x]-values that make the function equal to zero.
+* **Point Discontinuity** — A hole in the graph where the function can be simplified.
+* **End Behavior** — What happens to the function values as [x] approaches positive or negative infinity.
+* **Oblique Asymptote** — A slanted asymptote that occurs when the degree of the numerator is one more than the degree of the denominator.
 
----
+## Explore: Rational Function Graphs
 
-## Explore: Analyzing Rational Functions
+How do the degrees of the numerator and denominator affect the graph of a rational function?
 
-Use graphing technology to complete the explore.
+Inquiry Question:
+What is the difference between a vertical asymptote and a point discontinuity?
 
-**Inquiry Question:**
-How can you use a graphing calculator to analyze a rational function?
+## Learn: Graphing Rational Functions
 
----
+### Key Concept: Finding Zeros
 
-## Learn: Graphing Rational Functions with Vertical and Horizontal Asymptotes
+Set the numerator equal to zero and solve. The denominator cannot be zero at these points.
 
-A rational function has the form:
+### Key Concept: Finding Vertical Asymptotes
 
-`f(x) = a(x)/b(x)`
-
-where `a(x)` and `b(x)` are polynomial functions and `b(x) != 0`.
-
-### Key Concept: Vertical and Horizontal Asymptotes
-
-If `a(x)` and `b(x)` have no common factors:
-
-* vertical asymptotes occur where `b(x) = 0`
-* there is at most one horizontal asymptote
-* if `deg a(x) > deg b(x)`, there is no horizontal asymptote
-* if `deg a(x) < deg b(x)`, the horizontal asymptote is `y = 0`
-* if `deg a(x) = deg b(x)`, the horizontal asymptote is the ratio of leading coefficients
-
----
-
-## Example 1 — Graph with No Horizontal Asymptotes
-
-Graph:
-
-`f(x) = x^3 / (x + 2/3)`
-
-### Step 1: Find the zeros
-
-Set the numerator equal to `0`:
-
-`x^3 = 0`
-
-`x = 0`
-
-### Step 2: Find the asymptotes
-
-Set the denominator equal to `0`:
-
-`x + 2/3 = 0`
-
-`x = -2/3`
-
-So there is a vertical asymptote at `x = -2/3`.
-
-Because the degree of the numerator is greater than the degree of the denominator, there is no horizontal asymptote.
-
-### Step 3: Graph
-
-Use the asymptote and a table of values to sketch the graph.
-
----
-
-## Example 2 — Use Graphs of Rational Functions
-
-Young’s Rule can be modeled by:
-
-`y = Ax/(x + 12)`
-
-where `A` is the adult dose and `x` is the child’s age.
-
-For `A = 200`:
-
-`y = 200x/(x + 12)`
-
-### Part A: Graph the function
-
-* vertical asymptote: `x = -12`
-* horizontal asymptote: `y = 200`
-
-### Part B: Find key features
-
-* x-intercept: `0`
-* y-intercept: `0`
-* end behavior:
-  * as `x -> infinity`, `y -> 200`
-  * as `x -> -infinity`, `y -> 200`
-
-### Part C: Use the graph
-
-For a `12`-year-old child:
-
-`y = 200(12)/(12 + 12) = 100`
-
-So the dosage is `100` milligrams.
-
----
-
-## Example 3 — Compare Rational Functions
-
-Consider:
-
-`g(x) = (x - 2)/(2x + 2)`
-
-and another rational function `h(x)` from the graph.
-
-### Part A: Graph `g(x)`
-
-Set the numerator equal to `0`:
-
-`x - 2 = 0`
-
-`x = 2`
-
-So there is a zero at `x = 2`.
-
-Set the denominator equal to `0`:
-
-`2x + 2 = 0`
-
-`x = -1`
-
-So there is a vertical asymptote at `x = -1`.
-
-Since the numerator and denominator have the same degree, the horizontal asymptote is:
-
-`y = 1/2`
-
-### Part B: Compare y-intercepts
-
-`g(x)` has y-intercept `-1`. The graph of `h(x)` shows a lower y-intercept.
-
-### Part C: Compare the asymptotes
-
-* `g(x)`: vertical asymptote `x = -1`, horizontal asymptote `y = 1/2`
-* `h(x)`: vertical asymptote `x = 1`, horizontal asymptote `y = 1`
-
----
-
-## Learn: Graphing Rational Functions with Oblique Asymptotes
-
-An **oblique asymptote** is neither vertical nor horizontal.
-
-### Key Concept: Oblique Asymptotes
-
-A rational function has an oblique asymptote when:
-
-`deg a(x) - deg b(x) = 1`
-
-The oblique asymptote is the quotient found by polynomial division, ignoring the remainder.
-
-In some cases, rational functions also have a **point discontinuity**, or hole, when a common factor cancels but the original denominator still excludes that value.
+1. Factor numerator and denominator.
+2. Set the denominator equal to zero.
+3. Solve for excluded values that are not canceled by common factors.
 
 ### Key Concept: Point Discontinuity
 
-If `x - c` is a factor of both numerator and denominator, then there is a point discontinuity at `x = c`.
+If a factor cancels completely, the graph has a hole at that [x]-value.
 
----
+### Key Concept: End Behavior
 
-## Example 4 — Graph with Oblique Asymptotes
+* If degree of numerator < degree of denominator: horizontal asymptote at [y = 0].
+* If degree of numerator = degree of denominator: horizontal asymptote at [y = (leading coefficient ratio)].
+* If degree of numerator > degree of denominator by 1: oblique asymptote.
 
-Consider:
+## Example 1 — Graph Basic Rational Functions (Problems 1–4)
 
-`f(x) = (x^2 + 2x + 1)/(x + 4)`
+### Step 1: Factor and Find Key Features
 
-### Part A: Find the zeros
+**1.** [f(x) = x^4/(6x + 12)]
 
-`x^2 + 2x + 1 = 0`
+**2.** [f(x) = x^3/(8x - 4)]
 
-`(x + 1)^2 = 0`
+**3.** [f(x) = (x^4 - 16)/(x^2 - 1)]
 
-`x = -1`
+**4.** [f(x) = (x^3 + 64)/(16x - 24)]
 
-### Part B: Find the asymptotes
+## Example 2 — Real-World Rational Functions (Problems 5–7)
 
-Vertical asymptote:
+### Step 1: Analyze the Function
 
-`x + 4 = 0`
+**5. INTERNET** An Internet service provider charges $60 installation fee plus $30 per month. The function is [f(x) = (60 + 30x)/x], where [x] is the number of months.
 
-`x = -4`
+**a.** Graph the function.
 
-Because the degree difference is `1`, there is an oblique asymptote.
+**b.** Find the [x]- and [y]-intercepts and end behavior.
 
-Divide:
+**c.** Find the average monthly cost for 8 months.
 
-`(x^2 + 2x + 1) / (x + 4) = x - 2` with remainder
+**6. SALES** The quantity of a product sold in week [x] is approximated by [f(x) = (80x)/(x^2 + 40)].
 
-So the oblique asymptote is:
+**a.** Graph the function.
 
-`y = x - 2`
+**b.** Find the [x]- and [y]-intercepts and end behavior.
 
-### Part C: Graph the function
+**c.** During which week(s) did 5 of the products sell?
 
-Graph the vertical asymptote and the oblique asymptote, then plot the function.
+**7. FACTORY** The cost to create [x] parts is [f(x) = (18x - 12)/(6x)].
 
----
+**a.** Graph the function.
 
-## Example 5 — Graph with Point Discontinuity
+**b.** Find the [x]- and [y]-intercepts and end behavior.
 
-Graph:
+**c.** About how much does the 6th part cost to make?
 
-`f(x) = (x^2 - 4)/(x + 2)`
+## Example 3 — Compare Functions and Graphs (Problems 8–10)
 
-Factor:
+### Step 1: Graph and Compare
 
-`(x^2 - 4)/(x + 2) = ((x + 2)(x - 2))/(x + 2) = x - 2`
+**8.** [f(x) = (x - 5)/(3x + 5)] and [g(x)] shown in graph.
 
-But the original denominator is `0` when:
+**9.** [h(x) = (x + 1)/(4x - 4)] and [j(x)] shown in graph.
 
-`x + 2 = 0`
+**10.** [f(x) = (x - 3)/(2x + 7)] and [g(x)] shown in graph.
 
-`x = -2`
+*(Graphs referenced — see original DOCX)*
 
-So the graph is the line `y = x - 2` with a hole at `x = -2`.
+## Example 4 — Find Zeros and Asymptotes (Problems 11–16)
 
-## Think About It
+### Step 1: Factor and Identify Features
 
-Create a rational function with a hole at `x = 2`.
+**11.** [f(x) = (x - 4)^2/(x + 2)]
 
----
+**12.** [f(x) = (x + 3)^2/(x - 5)]
 
-## Objective Alignment
+**13.** [f(x) = (6x^2 + 4x + 2)/(x + 2)]
 
-- `Graph and analyze rational functions with vertical and horizontal asymptotes`: Primary worked examples: Examples 1-3 and 5.
-- `Graph and analyze rational functions with oblique asymptotes`: Primary worked examples: Example 4.
+**14.** [f(x) = (2x^2 + 7x)/(x - 2)]
+
+**15.** [f(x) = (3x^2 + 8)/(2x - 1)]
+
+**16.** [f(x) = (2x^2 + 5)/(3x + 4)]
+
+## Example 5 — Graph Functions with Point Discontinuity (Problems 17–22)
+
+### Step 1: Simplify and Factor
+
+**17.** [f(x) = (x^2 - 2x - 8)/(x - 4)]
+
+**18.** [f(x) = (x^2 + 4x - 12)/(x - 2)]
+
+**19.** [f(x) = (x^2 - 25)/(x + 5)]
+
+**20.** [f(x) = (x^2 - 64)/(x - 8)]
+
+**21.** [f(x) = ((x - 4)(x^2 - 4))/(x^2 - 6x + 8)]
+
+**22.** [f(x) = ((x + 5)(x^2 + 2x - 3))/(x^2 + 8x + 15)]
+
+## Mixed Exercises
+
+**23.** [f(x) = x/(x + 2)]
+
+**24.** [f(x) = (x^2 - 4)/(x - 2)]
+
+**25.** [f(x) = (x^2 + x - 12)/(x - 3)]
+
+**26.** [f(x) = (x - 1)/(x^2 - 4x + 3)]
+
+**27.** [f(x) = 3/(x^2 - 2x - 8)]
+
+**28.** [f(x) = x^3/(2x + 2)]
+
+**29.** [f(x) = (2x^3 + 4x^2 - 10x - 12)/(2x^2 + 8x + 6)]
+
+**30.** [f(x) = (x + 1)^2/(2x - 1)]
+
+**31.** Consider [f(x) = ((x + 2)(x - 3))/(x + 2)] and [g(x) = ((x + 2)(x - 3))/(x(x + 2))].
+
+**a.** Graph [f(x)] and [g(x)].
+
+**b.** Which function has a [y]-intercept of [-3]?
+
+**c.** Compare the asymptotes and point discontinuity.
+
+**32. BACTERIA** The graph shows the cost in millions of dollars [y] to remove [x] percent of bacteria from drinking water.
+
+**a.** What does the [x]-coordinate of the vertical asymptote represent?
+
+**b.** What happens to the cost as [p] approaches 100?
+
+**33.** Sir Isaac Newton studied [f(x) = (ax^3 + bx^2 + cx + d)/x]. Where will the graph have a vertical asymptote?
+
+**34.** [f(x) = 5/((x - 1)(x + 4))]
+
+**35.** [f(x) = 4/(x - 2)^2]
+
+**36.** [f(x) = (x - 3)/(x + 1)]
+
+**37.** [f(x) = 1/(x + 4)^2]
+
+**38.** [f(x) = (2x)/((x + 2)(x - 5))]
+
+**39.** [f(x) = (x^4 - 2x^2 + 1)/(x^3 + 2)]
+
+**40.** [f(x) = (x^4 - x^2 - 12)/(x^3 - 6)]
+
+**41.** [f(x) = (3x^4 + 6x^3 + 3x^2)/(x^2 + 2x + 1)]
+
+**42.** [f(x) = (2x^4 + 10x^3 + 12x^2)/(x^2 + 5x + 6)]
+
+**43.** [f(x) = (x + 1)/(x^2 + 6x + 5)]
+
+*(Problem 44–45: graphs referenced — see original DOCX)*
+
+**46. CONSTRUCT ARGUMENTS** Alina graphed [f(x) = (x^2 - 4x)/(x - 4)]. Did she correctly graph the function?
+
+**47. BATTING AVERAGES** A major league baseball player had a lifetime batting average of 0.305 at the beginning of the 2017 season with 2067 hits out of 6767 at bats. During the 2017 season, the player had 183 hits.
+
+**a.** Write an equation for batting average [y] at the end of the season.
+
+**b.** Determine the location of the horizontal and vertical asymptotes.
+
+**c.** What is the meaning of the horizontal asymptote?
+
+**48. REASONING** A music studio uses [f(x) = (300x)/(x^2 + 4)] to estimate downloads per hour in thousands. Graph the function and restrict the domain as required by context.
+
+**49. STRUCTURE** Identify the domain, zeros, intercepts, and asymptotes of the graph.
+
+**50. STRUCTURE** Consider [y = x + 1], [y = ((x + 1)(x - 1))/(x - 1)], [y = ((x + 1)(x - 1)^2)/(x - 1)], and [y = ((x + 1)(x - 1)^2)/(x - 1)^2]. Which are equivalent?
+
+**51. SKETCH A GRAPH** Graph a rational function with a [y]-intercept at 5, a vertical asymptote at [x = 3], and a horizontal asymptote at [y = 6.5].
+
+*(Problem 52: graph referenced — see original DOCX)*
+
+**53. REGULARITY** Describe how you use the degrees of the numerator and denominator to learn about a function's asymptotes.
+
+**54. PERSEVERE** On the drive to visit a nearby college, the Marshall family averages 40 miles per hour.
+
+**a.** Define variables and write a function for average speed for the entire trip.
+
+**b.** If the family averages 60 miles per hour driving home, is the average speed for the entire trip equal to 50 miles per hour?
+
+**55. CREATE** Sketch the graph of a rational function with a horizontal asymptote [y = 1] and a vertical asymptote [x = -2].
+
+*(Problem 56: graph referenced — see original DOCX)*
+
+**57. ANALYZE** Describe the difference between [f(x) = x - 2] and [g(x) = ((x + 3)(x - 2))/(x + 3)].
+
+**58. PERSEVERE** Show that [f(x) = x/a - b + c] is a rational function.
+
+**59. WRITE** How can factoring be used to determine the vertical asymptotes or point discontinuity of a rational function?
+
+## Review Notes
+
+* Problems 8–10, 32, 44–45, 49, 52, and 56 contain graph images from the original worksheet. Teachers should consult the original DOCX for all graph references.
+* The worksheet contains 59 practice problems across five examples and mixed exercises.

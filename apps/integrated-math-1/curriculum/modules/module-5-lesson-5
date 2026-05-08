@@ -1,0 +1,111 @@
+# Lesson 5-5 — Linear Regression
+
+Source: (Module 5, Lesson 5-5, Int1_0505_practice.docx)
+
+## Today's Goals
+
+* Use technology to calculate the equation of a best-fit line and the correlation coefficient for a bivariate data set.
+* Interpret the correlation coefficient [ r ] in the context of a problem.
+* Make predictions using a linear regression equation and distinguish between interpolation and extrapolation.
+* Construct and analyze a residual plot to assess the appropriateness of a linear model.
+
+## Vocabulary
+
+* **Linear regression** — a statistical method for finding the line of best fit that models the relationship between two quantitative variables.
+* **Best-fit line** — the line [ y = ax + b ] that minimizes the sum of the squared residuals for a data set.
+* **Correlation coefficient** — a value [ r ] between -1 and 1 that measures the strength and direction of a linear relationship; values close to [ \pm 1 ] indicate a strong linear fit.
+* **Residual** — the difference between an observed [ y ]-value and the [ y ]-value predicted by the regression line: [ y_i - \hat{y}_i ].
+* **Residual plot** — a scatter plot of the residuals versus the independent variable, used to check whether a linear model is appropriate.
+* **Extrapolation** — using a regression equation to estimate values outside the range of the original data, which may produce unreliable predictions.
+
+## Learn: Linear Regression and Prediction
+
+When two variables appear to have a linear relationship, a regression line can model the trend and help make predictions. Technology (graphing calculator or statistical software) is typically used to find the exact equation and correlation coefficient.
+
+### Key Concept: Interpreting Linear Regression
+
+* The best-fit line has the form [ y = ax + b ], where [ a ] is the slope (rate of change) and [ b ] is the [ y ]-intercept.
+* The correlation coefficient [ r ] tells you how closely the data points cluster around the line. [ |r| \approx 1 ] means a strong linear fit; [ r \approx 0 ] means little to no linear relationship.
+* A residual plot with no obvious pattern suggests a linear model is appropriate. A curved pattern suggests a different model may be better.
+* Predictions made within the data range (interpolation) are generally more reliable than predictions outside the range (extrapolation).
+
+## Example 1 — Best-Fit Line and Correlation Coefficient
+
+Given a table of paired data, find the equation of the best-fit line and interpret the correlation coefficient.
+
+### Step 1: Enter the Data
+
+Input the paired values into a graphing calculator or statistical software. Let [ x ] represent the independent variable (such as years since a base year) and [ y ] represent the dependent variable (such as goals scored, revenue, or sales).
+
+### Step 2: Perform Linear Regression
+
+Run the linear regression command to obtain:
+[
+y = ax + b
+]
+and the correlation coefficient:
+[
+r
+]
+
+### Step 3: Interpret the Results
+
+State the equation in context. Interpret [ r ] by describing the strength and direction of the linear relationship. For example, [ r = 0.95 ] indicates a strong positive linear association.
+
+## Example 2 — Prediction with Linear Regression
+
+Given a data set, find the best-fit line and use it to predict a future or unknown value.
+
+### Step 1: Find the Regression Equation
+
+Enter the data and compute the best-fit line:
+[
+y = ax + b
+]
+
+### Step 2: Substitute to Predict
+
+Identify the [ x ]-value for the desired prediction. Substitute into the equation:
+[
+\hat{y} = a(x_{\text{new}}) + b
+]
+
+For example, if [ x ] represents years since 2010, to predict a value in 2025 use [ x = 15 ].
+
+### Step 3: Consider Reasonableness
+
+Evaluate whether the prediction is interpolation (within the data range) or extrapolation (beyond the data range). Extrapolated predictions should be reported with caution.
+
+## Example 3 — Residual Plot Analysis
+
+Given a data set, find the best-fit line and use a residual plot to assess whether a linear model is appropriate.
+
+### Step 1: Find the Best-Fit Line
+
+Perform linear regression to obtain:
+[
+\hat{y} = ax + b
+]
+
+### Step 2: Calculate Residuals
+
+For each data point, compute:
+[
+\text{residual} = y_i - \hat{y}_i = y_i - (ax_i + b)
+]
+
+### Step 3: Graph and Analyze the Residual Plot
+
+Plot each residual against its corresponding [ x ]-value.
+
+* If the points are randomly scattered around the horizontal axis with no obvious pattern, a linear model is appropriate.
+* If a curved pattern (such as a U-shape) is visible, the relationship may be nonlinear and a different model should be considered.
+
+## Mixed Exercises
+
+The mixed exercises provide practice combining all skills: finding best-fit lines, interpreting correlation coefficients, making predictions, analyzing residual plots, and evaluating the reasonableness of extrapolation. Problems also ask students to consider constraints in real-world contexts, compare lines of fit with linear regression, and distinguish between correlation and causation.
+
+## Review Notes
+
+* The extracted worksheet references 13 image files (image1.png through image13.png) containing data tables. These images were not converted to text and must be reviewed to obtain the numerical values for each problem.
+* Several problems involve real-world contexts (soccer, revenue, sales, sunscreen, gold prices, golf, plant growth, physical fitness, farming, football, athletics) that require students to interpret slopes and predictions in context.

@@ -1,0 +1,574 @@
+# Lesson 1-1 — Numerical Expressions
+
+Source: (Module 1, Lesson 1-1, Int1_0101_practice.docx)
+
+## Today's Goals
+
+* Translate verbal descriptions into correct numerical expressions using operation symbols and grouping.
+* Evaluate numerical expressions accurately using the order of operations.
+* Apply numerical expressions to model and solve real-world problems.
+
+## Vocabulary
+
+* **numerical expression** — A mathematical phrase containing numbers and operation symbols.
+* **evaluate** — To find the value of a numerical expression.
+* **sum** — The result of adding two or more numbers.
+* **difference** — The result of subtracting one number from another.
+* **product** — The result of multiplying two or more numbers.
+* **quotient** — The result of dividing one number by another.
+* **order of operations** — The rules that tell which operation to perform first when evaluating an expression.
+
+## Explore: What Does "Two More Than Three Times Four" Mean?
+
+Students discuss how the wording of a verbal expression affects the mathematical operations and their order. Consider whether different groupings of the same words can produce different answers.
+
+Inquiry Question:
+How can the same words produce different answers if parentheses or the order of operations are ignored?
+
+## Learn: Writing and Evaluating Numerical Expressions
+
+Numerical expressions use numbers, operation symbols, and sometimes grouping symbols to represent mathematical relationships.
+
+### Key Concept: Order of Operations
+
+* Evaluate expressions inside grouping symbols (parentheses, brackets, fraction bars) first.
+* Evaluate all exponents.
+* Multiply and divide from left to right.
+* Add and subtract from left to right.
+
+### Key Concept: Translating Verbal Expressions
+
+* "More than" and "increased by" indicate addition.
+* "Less than" and "decreased by" indicate subtraction — note that order matters.
+* "Times" and "product of" indicate multiplication.
+* "Divided by" and "quotient of" indicate division.
+* Grouping symbols are needed when an operation applies to a combined quantity.
+
+## Example 1 — Write Numerical Expressions from Verbal Descriptions
+
+Translate simple verbal expressions into numerical expressions using the correct operation symbols and order.
+
+### Step 1: Identify Operations and Order
+
+Read the verbal description to determine which operations are needed and in what order.
+
+For example, "two plus twelve divided by four" becomes:
+[
+2 + 12 \div 4
+]
+
+"Eighteen more than five" becomes:
+[
+5 + 18
+]
+
+"Seven more than three times eleven" becomes:
+[
+3 \times 11 + 7
+]
+
+### Step 2: Watch for Left-to-Right and Grouping
+
+When multiple operations appear in sequence, respect the natural order or use grouping.
+
+"Twenty-five less than one hundred" becomes:
+[
+100 - 25
+]
+
+"Six minus three minus one" becomes:
+[
+6 - 3 - 1
+]
+
+"Fourteen decreased by three times four" becomes:
+[
+14 - 3 \times 4
+]
+
+"Twenty-four divided by six plus seven" becomes:
+[
+24 \div 6 + 7
+]
+
+"Eight times six divided by two minus nine" becomes:
+[
+8 \times 6 \div 2 - 9
+]
+
+## Example 2 — Verbal Expressions with Sum, Difference, Product, and Quotient
+
+Write numerical expressions for verbal descriptions that explicitly name operations such as sum, difference, product, and quotient.
+
+### Step 1: Recognize Operation Names
+
+Identify whether the problem names an operation explicitly.
+
+"The sum of three and seven divided by two" becomes:
+[
+(3 + 7) \div 2
+]
+
+"The difference of six and two divided by four" becomes:
+[
+(6 - 2) \div 4
+]
+
+"The sum of four and nine times three" becomes:
+[
+(4 + 9) \times 3
+]
+
+### Step 2: Handle Nested Operations
+
+When one operation is applied to the result of another, use parentheses to show grouping.
+
+"Eighteen divided by the sum of two and seven" becomes:
+[
+18 \div (2 + 7)
+]
+
+"Ten divided by the product of four and five" becomes:
+[
+10 \div (4 \times 5)
+]
+
+"The difference of eleven and four times five" becomes:
+[
+(11 - 4) \times 5
+]
+
+### Step 3: Combine Multiple Grouped Quantities
+
+For more complex expressions, identify all grouped quantities first.
+
+"The sum of twelve and sixteen divided by the sum of three and four" becomes:
+[
+(12 + 16) \div (3 + 4)
+]
+
+"The difference of twenty-two and six divided by the sum of five and three" becomes:
+[
+(22 - 6) \div (5 + 3)
+]
+
+"The sum of thirty-six and fourteen divided by the product of two and five" becomes:
+[
+(36 + 14) \div (2 \times 5)
+]
+
+"The quotient of thirty-two and four divided by the sum of one and three" becomes:
+[
+(32 \div 4) \div (1 + 3)
+]
+
+"The sum of six and fifteen divided by the difference of thirteen and three" becomes:
+[
+(6 + 15) \div (13 - 3)
+]
+
+"The difference of thirty-one and seventeen divided by the product of ten and four" becomes:
+[
+(31 - 17) \div (10 \times 4)
+]
+
+## Example 3 — Real-World Applications
+
+Write numerical expressions to model real-world situations described in words.
+
+### Step 1: Identify Quantities and Relationships
+
+Extract the numbers and the relationships between them from the problem context.
+
+**Solar System:** It takes Earth about 365 days to orbit the Sun. It takes Uranus about 85 times as long.
+[
+365 \times 85
+]
+
+**Test Scores:** Ryan scored 85, 92, 88, and 98 on four tests. Write an expression for his average.
+[
+(85 + 92 + 88 + 98) \div 4
+]
+
+### Step 2: Translate Multi-Step Relationships
+
+When a description involves multiple operations, combine them in the correct order.
+
+**Homework:** Carrie took five less minutes than twice the amount of time Hua took (35 minutes).
+[
+2 \times 35 - 5
+]
+
+**Perimeter:** The perimeter of Stephanie's triangle is half the perimeter of Juan's triangle. (Juan's triangle side lengths are shown in a diagram.)
+[
+(a + b + c) \div 2
+]
+
+**Bedroom Area:** A rectangular bedroom is 12 feet long and 7 feet wide.
+[
+12 \times 7
+]
+
+## Examples 4, 5, and 7 — Evaluate Numerical Expressions
+
+Evaluate numerical expressions using the order of operations. The problems progress from simple powers to complex expressions with nested grouping symbols and fractions.
+
+### Step 1: Evaluate Powers
+
+Find the value of exponential expressions.
+
+[
+7^2 = 49
+]
+
+[
+14^3 = 2744
+]
+
+[
+2^6 = 64
+]
+
+### Step 2: Apply Order of Operations
+
+Evaluate expressions with multiple operations.
+
+[
+35 - 3 \times 8
+]
+
+First multiply, then subtract:
+[
+35 - 24 = 11
+]
+
+[
+18 \div 9 + 2 \times 6
+]
+
+Divide and multiply from left to right, then add:
+[
+2 + 12 = 14
+]
+
+[
+10 + 8^3 \div 16
+]
+
+Evaluate the power first, then divide, then add:
+[
+10 + 512 \div 16 = 10 + 32 = 42
+]
+
+### Step 3: Evaluate Expressions with Grouping Symbols
+
+Work from the innermost grouping outward.
+
+[
+(6^3 - 9) \div 23 \times 4
+]
+
+Evaluate the power inside parentheses:
+[
+(216 - 9) \div 23 \times 4
+]
+
+Subtract inside parentheses:
+[
+207 \div 23 \times 4
+]
+
+Divide, then multiply:
+[
+9 \times 4 = 36
+]
+
+### Step 4: Evaluate Fraction Expressions
+
+Treat the fraction bar as a grouping symbol for numerator and denominator.
+
+[
+\frac{8 + 3^3}{12 - 7}
+]
+
+Evaluate the power in the numerator:
+[
+\frac{8 + 27}{12 - 7}
+]
+
+Add and subtract:
+[
+\frac{35}{5} = 7
+]
+
+[
+\frac{(1 + 6) \times 9}{5^2 - 4}
+]
+
+Evaluate inside parentheses and the power:
+[
+\frac{7 \times 9}{25 - 4}
+]
+
+Multiply, subtract, then divide:
+[
+\frac{63}{21} = 3
+]
+
+### Step 5: Evaluate Expressions with Parentheses and Fractions
+
+[
+4(16 \div 2 + 6)
+]
+
+Divide inside parentheses first:
+[
+4(8 + 6)
+]
+
+Add inside parentheses:
+[
+4 \times 14 = 56
+]
+
+[
+13 - \frac{1}{3}(11 - 5)
+]
+
+Subtract inside parentheses:
+[
+13 - \frac{1}{3} \times 6
+]
+
+Multiply the fraction:
+[
+13 - 2 = 11
+]
+
+[
+(5 \times 2 - 9) + 2 \times \frac{1}{2}
+]
+
+Multiply inside parentheses:
+[
+(10 - 9) + 2 \times \frac{1}{2}
+]
+
+Subtract inside parentheses:
+[
+1 + 2 \times \frac{1}{2}
+]
+
+Multiply, then add:
+[
+1 + 1 = 2
+]
+
+### Step 6: Evaluate More Complex Expressions
+
+[
+62 - 3^2 \times 8 + 11
+]
+
+Evaluate the power:
+[
+62 - 9 \times 8 + 11
+]
+
+Multiply:
+[
+62 - 72 + 11
+]
+
+Subtract and add from left to right:
+[
+1
+]
+
+[
+4^3 \div 8
+]
+
+Evaluate the power, then divide:
+[
+64 \div 8 = 8
+]
+
+[
+20 + 3(8 - 5)
+]
+
+Subtract inside parentheses:
+[
+20 + 3 \times 3
+]
+
+Multiply, then add:
+[
+20 + 9 = 29
+]
+
+### Step 7: Evaluate Expressions with Nested Brackets
+
+[
+3[4 - 8 + 4^2(2 + 5)] 
+]
+
+Work from the innermost parentheses outward:
+[
+3[4 - 8 + 16(7)] 
+]
+
+Multiply:
+[
+3[4 - 8 + 112] 
+]
+
+Add and subtract inside brackets:
+[
+3[108] = 324
+]
+
+### Step 8: Evaluate Complex Fraction Expressions
+
+[
+\frac{2 \times 8^2 - 2^2 \times 8}{2 \times 8}
+]
+
+Evaluate powers:
+[
+\frac{2 \times 64 - 4 \times 8}{16}
+]
+
+Multiply in numerator:
+[
+\frac{128 - 32}{16}
+]
+
+Subtract:
+[
+\frac{96}{16} = 6
+]
+
+### Step 9: Evaluate Expressions with Multiple Grouping Levels
+
+[
+25 + [(16 - 3 \times 5) + \frac{12 + 3}{5}] 
+]
+
+Multiply inside the inner parentheses:
+[
+25 + [(16 - 15) + \frac{15}{5}] 
+]
+
+Subtract and divide:
+[
+25 + [1 + 3] 
+]
+
+Add inside brackets:
+[
+25 + 4 = 29
+]
+
+### Step 10: Evaluate Expressions with Fractions and Powers
+
+[
+7^3 - \frac{2}{3}(13 \times 6 + 9) \times 4
+]
+
+Evaluate the power and work inside parentheses:
+[
+343 - \frac{2}{3}(78 + 9) \times 4
+]
+
+Add inside parentheses:
+[
+343 - \frac{2}{3} \times 87 \times 4
+]
+
+Multiply fractions and whole numbers:
+[
+343 - 58 \times 4
+]
+
+Multiply, then subtract:
+[
+343 - 232 = 111
+]
+
+## Example 6 — Evaluate Real-World Expressions
+
+Write and evaluate numerical expressions to solve real-world problems.
+
+### Step 1: Write the Expression
+
+Translate the problem into a numerical expression before evaluating.
+
+**Biology:** Lavania observes 20 fruit flies on day 1. After 6 days, she has nine more than five times the initial amount.
+
+Expression:
+[
+5 \times 20 + 9
+]
+
+### Step 2: Evaluate the Expression
+
+[
+5 \times 20 + 9 = 100 + 9 = 109
+]
+
+**Precision (Diving):** A dive score is calculated using judge scores and a degree of difficulty. (A table showing the scoring method is provided in the worksheet.) Tyrell's scores are 8.0, 7.5, 6.5, 7.5, and 7.0 with a degree of difficulty of 2.5.
+
+Expression:
+[
+(8.0 + 7.5 + 6.5 + 7.5 + 7.0) \times 2.5
+]
+
+**Ramp:** The side panel of a skateboard ramp is a trapezoid. Write an expression for the amount of wood needed to build two side panels. (A diagram with dimensions is provided in the worksheet.)
+
+Expression for area of one trapezoid:
+[
+\frac{1}{2}(b_1 + b_2)h
+]
+
+Expression for two panels:
+[
+2 \times \frac{1}{2}(b_1 + b_2)h
+]
+
+## Example 8 — Multi-Step Real-World Problem
+
+Solve a multi-step problem by writing and evaluating a numerical expression.
+
+### Step 1: Identify All Costs
+
+Extract each cost component from the problem or diagram.
+
+**Skiing:** The Sanchez family wants lift tickets for 2 adults and 3 children, 2 complete ski rentals, and a 16-ounce hot chocolate for each person. (Cost information is shown in a diagram in the worksheet.)
+
+Expression structure:
+[
+2 \times (\text{adult lift ticket}) + 3 \times (\text{child lift ticket}) + 2 \times (\text{ski rental}) + 5 \times (\text{hot chocolate})
+]
+
+### Step 2: Evaluate the Total Cost
+
+Substitute values and evaluate using the order of operations.
+
+## Mixed Exercises
+
+The mixed exercises section provides practice with all skills from the lesson: translating verbal expressions into numerical expressions, evaluating expressions using the order of operations, and applying expressions to real-world contexts. Problems include:
+
+* Writing numerical expressions from verbal descriptions, including expressions with powers.
+* Constructing arguments about the correctness of an evaluated expression and identifying who applied the order of operations correctly.
+* Reasoning puzzles that require creating an expression with specific constraints (for example, using 2, 4, and 5 with one set of parentheses to get a value of 50).
+* Interpreting the meaning of numbers and operations in real-world cost expressions, and modifying expressions when a fee changes.
+* Finding errors in student work and explaining the correct approach using the order of operations.
+* Persevering through multi-step area problems by writing equivalent expressions in different ways.
+* Creating real-world situations that match given numerical expressions.
+
+## Review Notes
+
+* Images referenced in the worksheet (diving score table, ramp trapezoid diagram, ski trip costs, floor plan for a two-room apartment) could not be fully described without visual reference. Teachers should consult the original worksheet for exact values and diagrams.
+* The worksheet labels the example group as "Examples 4, 5, and 7" — there is no separate Example 4 or 5 heading in the original document; these are grouped together under one heading.

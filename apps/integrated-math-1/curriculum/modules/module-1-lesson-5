@@ -1,0 +1,127 @@
+# Lesson 1-5 — Expressions Involving Absolute Value
+
+Source: (Module 1, Lesson 1-5, Int1_0105_practice.docx)
+
+## Today's Goals
+
+* Write absolute value expressions that model real-world distances and accuracy as positive differences.
+* Evaluate absolute value expressions by substituting given values for variables and simplifying correctly.
+* Analyze and justify whether absolute value statements and expressions are equivalent or true in general.
+
+## Vocabulary
+
+* **Absolute value** — The distance of a number from zero on the number line, always nonnegative; denoted [ |x| ].
+* **Accuracy** — The positive difference between a measured or reported value and the actual value.
+* **Positive difference** — The nonnegative distance between two quantities on the number line, equivalent to the absolute value of their difference.
+
+## Learn: Absolute Value as Distance and Difference
+
+The absolute value of a number represents its distance from zero. More broadly, [ |a - b| ] represents the distance between two values [ a ] and [ b ] on the number line, regardless of which is larger. This property makes absolute value useful for describing accuracy, tolerance, and any situation where only the magnitude of a difference matters.
+
+### Key Concept: Equivalent Absolute Value Expressions for a Difference
+
+* The positive difference between two quantities [ a ] and [ b ] can be written equivalently as [ |a - b| ] or [ |b - a| ].
+* Both forms yield the same nonnegative result because distance is symmetric.
+* When evaluating expressions containing absolute value, simplify inside the absolute value bars first, then apply the absolute value, and finally complete any remaining operations.
+
+## Example 1 — Write Absolute Value Expressions for Real-World Accuracy
+
+Translate real-world accuracy and tolerance situations into two equivalent absolute value expressions.
+
+### Step 1: Identify the Two Quantities
+
+Determine the reported or measured value and the actual or target value. For example, a thermometer reading [ t ] and the actual pool temperature [ p ].
+
+### Step 2: Write the Expressions
+
+Write two equivalent absolute value expressions representing the positive difference:
+
+[
+|t - p| \quad \text{and} \quad |p - t|
+]
+
+Repeat this process for scenarios such as a box of golf balls with a target weight of 540 grams and an actual weight of [ g ] grams:
+
+[
+|g - 540| \quad \text{and} \quad |540 - g|
+]
+
+## Example 2 — Evaluate Absolute Value Expressions with Integers
+
+Substitute given integer values into absolute value expressions and simplify.
+
+### Step 1: Substitute Values
+
+Replace each variable with its assigned integer value. For example, given [ m = -4 ], [ n = 1 ], [ p = 2 ], [ q = -6 ], [ r = 5 ], and [ t = -2 ], substitute into an expression such as:
+
+[
+|-n - 2mp|
+]
+
+### Step 2: Simplify Inside the Absolute Value
+
+Follow the order of operations. Multiply before adding or subtracting:
+
+[
+|-1 - 2(-4)(2)| = |-1 + 16| = |15| = 15
+]
+
+### Step 3: Apply the Absolute Value and Final Operations
+
+For expressions with a negative sign outside the absolute value, such as:
+
+[
+-|10 - 7r + 8m + 2p|
+]
+
+simplify inside first, take the absolute value, then apply the outer negative sign.
+
+## Example 3 — Evaluate Absolute Value Expressions with Integers, Decimals, and Fractions
+
+Evaluate more complex absolute value expressions using three different sets of assigned values.
+
+### Part A — Integer Values
+
+Given integer values for [ a ], [ b ], [ c ], [ h ], [ y ], and [ z ], evaluate expressions that combine absolute value with addition, subtraction, and multiplication. For example:
+
+[
+|2b - 3y| + 5z
+]
+
+Substitute, simplify inside the absolute value, apply the absolute value, and then complete the remaining arithmetic.
+
+### Part B — Decimal and Integer Values
+
+Given values including decimals such as [ x = 2.1 ] and [ z = -4.2 ], evaluate expressions such as:
+
+[
+|2x + z| + 2y
+]
+
+and
+
+[
+-a + |2x - a|
+]
+
+### Part C — Fraction Values
+
+Given fractional values such as [ a = -\frac{1}{2} ], [ b = \frac{3}{4} ], and [ c = -\frac{2}{3} ], evaluate expressions by carefully applying order of operations with fractions. For example:
+
+[
+-|6c - 16b| + 1
+]
+
+and
+
+[
+|2 - (a - 6b)| + 18c
+]
+
+## Mixed Exercises
+
+The mixed exercises consolidate all skills from the lesson: writing absolute value expressions for real-world accuracy, evaluating absolute value expressions with various number types, and analyzing the structure and properties of absolute value. Problems include a two-part GPS accuracy application, a jar-guessing accuracy and evaluation task, creating an original real-world situation for a given expression, identifying an error in a proposed equivalent expression, and determining whether a general claim about absolute value is true or false with justification.
+
+## Review Notes
+
+* No images or diagrams appear in the extracted source material.

@@ -1,0 +1,112 @@
+# Lesson 4-4 — Special Right Triangles
+
+Source: (Module 4, Lesson 4-4, Int2_0404_practice.docx)
+
+## Today's Goals
+
+* Find missing side lengths in 45°-45°-90° triangles using the special ratio.
+* Find missing side lengths in 30°-60°-90° triangles using the special ratio.
+* Apply special right triangle ratios to solve real-world problems.
+
+## Vocabulary
+
+* **45°-45°-90° Triangle Theorem** — In a 45°-45°-90° triangle, the legs are congruent and the hypotenuse is [l√2] if each leg has length [l].
+* **30°-60°-90° Triangle Theorem** — In a 30°-60°-90° triangle, the hypotenuse is [2x] and the longer leg is [x√3] if the shorter leg has length [x].
+
+## Explore: Special Right Triangles
+
+Special right triangles have side length ratios that allow you to find all sides if you know just one.
+
+Inquiry Question:
+Why do 45°-45°-90° and 30°-60°-90° triangles have predictable side ratios?
+
+## Learn: Special Right Triangles
+
+**45°-45°-90° Triangle:** If legs have length [l], hypotenuse is [l√2].
+
+**30°-60°-90° Triangle:** If shorter leg has length [x], longer leg is [x√3] and hypotenuse is [2x].
+
+## Example 1 — 45°-45°-90° Triangles
+
+Find the value of [x].
+
+### Step 1: Identify the Ratio
+
+For a 45°-45°-90° triangle, if the leg is [l], the hypotenuse is [l√2].
+
+1-6. Find [x] using the 45°-45°-90° ratio.
+
+## Example 2 — 30°-60°-90° Triangles
+
+Find the value of [x].
+
+### Step 1: Identify the Shorter Leg
+
+For a 30°-60°-90° triangle, if the shorter leg is [x], the longer leg is [x√3] and the hypotenuse is [2x].
+
+7-12. Find [x] using the 30°-60°-90° ratio.
+
+## Example 3 — Mixed Special Triangles
+
+Find the value of [x].
+
+### Step 1: Determine Which Special Triangle Applies
+
+13-18. Apply the appropriate ratio based on the given angle measures.
+
+## Example 4 — Find x and y
+
+Find the values of [x] and [y].
+
+### Step 1: Use Both Ratios
+
+19-24. For 30°-60°-90° triangles, find the shorter leg [x] first, then use ratios to find [y].
+
+## Example 5 — Real-World Applications
+
+### Step 1: Apply Special Triangle Ratios
+
+25. Escalators: A 40-foot escalator rises at a 30° angle. How high is the second floor?
+
+26. Windows: Height of window using six 30°-60°-90° triangles.
+
+27. Certificate: Will a 12-cm equilateral triangle fit in a 12-cm by 10-cm frame?
+
+28. Chocolate Box: Hexagon with side length 3 inches inside rectangular box.
+
+## Mixed Exercises
+
+29. Botanical Gardens: Square garden 6 yards on each side. Length of diagonal pathway.
+
+30. Origami: 150-mm square folded along diagonal. Find hypotenuse length.
+
+31. Movie Theater: Kim and Yanika's line of sight problem.
+
+32. Structure: Find [x] in nested 45°-45°-90° triangles.
+
+33-38. Find [x] and [y] in various triangles.
+
+39-40. Proof: 45°-45°-90° Triangle Theorem and 30°-60°-90° Triangle Theorem.
+
+41. Triangle XYZ is 45°-45°-90° with right angle Z. Find coordinates of X for Y(−1, 2) and Z(6, 2).
+
+42. Triangle EFG is 30°-60°-90° with m∠F = 90°. Find coordinates of E in Quadrant III for F(−3, −4) and G(−3, 2).
+
+43. Use Tools: Loading dock ramp with m∠R = 30° and ST = RS + 4.
+
+44. State Your Assumption: Quilt with two squares cut along diagonal, large block area 36 in².
+
+45. Persevere: Perimeter of quadrilateral ABCD.
+
+46. Write: Why are some right triangles considered special?
+
+47. Find the Error: Carmen and Audrey finding [x].
+
+48. Analyze: Triangle with angle ratio 1:2:3, shortest side 8.
+
+49. Create: Rectangle with diagonal twice as long as width.
+
+## Review Notes
+
+* Images referenced in this lesson:
+  * ![](media/image1.png) through ![](media/image43.png) — various special right triangle diagrams

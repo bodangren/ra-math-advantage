@@ -10,7 +10,7 @@ The goal is to add a problem-family layer that can drive practice generation, ma
 |--------|------|
 | `curriculum/course-spec.md` | Defines the class period as the atomic planning object and sets the schema. |
 | `curriculum/unit-*-class-period-plan.md` | Canonical period-by-period plans for all 13 units. |
-| `curriculum/modules/unit-*-lesson-*` | Lesson source files with worked examples and objective alignment. |
+| `curriculum/modules/module-*-lesson-*` | Lesson source files with worked examples and objective alignment. |
 | Problem-type PDFs (18 files) | Local ALEKS-style question banks used to derive problem types. |
 
 ## Working Model

@@ -1,0 +1,135 @@
+# Lesson 2-5 — Rhombi and Squares
+
+Source: (Module 2, Lesson 2-5, Int2_0205_practice.docx)
+
+## Today's Goals
+
+* Apply properties of rhombi and squares to find angle measures and diagonal lengths.
+* Prove that a quadrilateral is a rhombus or a square using geometric reasoning.
+* Classify quadrilaterals using coordinate geometry.
+* Compare properties of parallelograms, rectangles, rhombi, and squares.
+
+## Vocabulary
+
+* **Rhombus** — A parallelogram with all four sides congruent.
+* **Square** — A parallelogram with all sides congruent and all angles right angles (a regular quadrilateral).
+* **Diagonal of a Rhombus** — The diagonals of a rhombus are perpendicular bisectors of each other.
+* **Kite** — A quadrilateral with two pairs of adjacent congruent sides.
+
+## Explore: Properties of Special Parallelograms
+
+Students explore the hierarchy of quadrilaterals and how rhombi and squares fit into the classification system alongside rectangles and general parallelograms.
+
+Inquiry Question:
+What properties must a quadrilateral have to be classified as a rhombus? What additional properties make it a square?
+
+## Learn: Rhombi and Squares
+
+### Key Concept: Properties of Rhombi
+
+* All properties of parallelograms apply.
+* All four sides are congruent.
+* The diagonals are perpendicular bisectors of each other.
+* Each diagonal bisects a pair of opposite angles.
+
+### Key Concept: Properties of Squares
+
+* All properties of rectangles apply.
+* All properties of rhombi apply.
+* All four sides are congruent.
+* All four angles are right angles.
+* The diagonals are congruent, perpendicular, and bisect the angles.
+
+### Key Concept: The Hierarchy
+
+Square ⊂ Rhombus ⊂ Parallelogram
+Square ⊂ Rectangle ⊂ Parallelogram
+
+A square is simultaneously a rectangle and a rhombus.
+
+## Example 1 — Find Values in a Rhombus
+
+Use rhombus properties to find unknown angle measures and diagonal lengths.
+
+### Step 1: Use Diagonal Perpendicularity
+
+The diagonals of a rhombus intersect at right angles (are perpendicular).
+
+### Step 2: Use Angle Bisector Properties
+
+Each diagonal bisects the angles at the vertices it connects.
+
+## Example 2 — Find Diagonal Lengths in Squares
+
+Solve for unknown values in square diagrams using the relationship between side lengths and diagonal lengths.
+
+### Step 1: Apply Square Properties
+
+In a square, all sides are congruent and diagonals are equal in length. The diagonal and two sides form an isosceles right triangle.
+
+### Step 2: Use the Pythagorean Theorem
+
+For a square with side s, diagonal d = s√2.
+
+## Example 3 — Prove Quadrilaterals Are Rhombi or Squares
+
+Write two-column proofs to demonstrate that a given quadrilateral satisfies the definition of a rhombus or square.
+
+### Step 1: Show the Quadrilateral Is a Parallelogram
+
+First prove the quadrilateral is a parallelogram using appropriate tests.
+
+### Step 2: Show Additional Properties
+
+For a rhombus, prove all sides are congruent. For a square, prove all sides congruent and all angles right (or prove it's both a rectangle and a rhombus).
+
+## Example 4 — Precision Problems with Real Objects
+
+Determine what measurements are needed to confirm whether a garden box or quilt patch is a square.
+
+### Step 1: Identify Required Properties
+
+A square requires: four right angles and four congruent sides.
+
+### Step 2: State What to Measure
+
+Explain what measurements (side lengths, diagonals, angles) would confirm the shape is a square.
+
+## Example 5 — Classify Quadrilaterals Using Coordinates
+
+Given coordinates of four vertices, determine whether the quadrilateral is a rhombus, rectangle, square, parallelogram, or none. List all that apply.
+
+### Step 1: Calculate Slopes and Distances
+
+Find slopes of all sides, lengths of all sides, and slopes of diagonals.
+
+### Step 2: Check Each Category
+
+* Parallelogram: opposite sides parallel.
+* Rectangle: parallelogram with right angles or congruent diagonals.
+* Rhombus: parallelogram with all sides congruent or perpendicular diagonals.
+* Square: both rectangle and rhombus properties.
+
+## Mixed Exercises
+
+The mixed exercises section provides practice with all skills from the lesson. Problems include:
+
+* Finding side lengths, diagonals, and angle measures in squares (BC, CD, GD, BD given FD = 55; ZX, XY, m∠WTZ, m∠WYX given WT = 3).
+* Writing two-column proofs for Theorem 7.16 (diagonals of a rhombus bisect opposite angles), Theorem 7.17 (parallelogram with perpendicular diagonals is a rhombus), Theorem 7.19 (parallelogram with congruent adjacent sides is a rhombus), and Theorem 7.20 (rectangle and rhombus is a square).
+* Estimating and measuring shapes in a quilt pattern to identify quadrilaterals used.
+* Classifying individual quadrilateral shapes shown in diagrams.
+* Using diagonals to construct a rhombus and a square, justifying each construction step.
+* Classifying the four congruent triangles formed when cutting a rhombus-shaped cake along both diagonals (acute, obtuse, or right).
+* Finding CF given that the area of square ABCD is 36 square units, area of triangle EBF is 20 square units, EB is perpendicular to BF, and AE = 2.
+* Comparing all properties of parallelograms, rectangles, rhombi, and squares in a comprehensive summary.
+* Analyzing whether a parallelogram with congruent diagonals PR and QS is a square or a rhombus (or neither).
+* Determining truth values of the statement "If a quadrilateral is a square, then it is a rectangle" and its converse, inverse, and contrapositive.
+* Finding vertices of a square with diagonals on y = x and y = -x + 6 and justifying the answer.
+
+## Review Notes
+
+* Images referenced in the worksheet (rhombus and square diagrams, quilt patch, kite figure, and various geometry figures) could not be fully described without visual reference. Teachers should consult the original worksheet for exact diagrams and values.
+* The worksheet contains 46 practice problems across six examples and mixed exercises.
+* ![](media/image1.png) ![](media/image2.png) ![](media/image3.png) ![](media/image4.png) ![](media/image5.png) ![](media/image6.png) ![](media/image7.png) ![](media/image8.png) ![](media/image9.png) ![](media/image10.png) ![](media/image11.png) ![](media/image12.png) ![](media/image13.png) ![](media/image14.png) ![](media/image15.png) ![](media/image16.png) ![](media/image17.png) ![](media/image18.png) ![](media/image19.png) ![](media/image20.png) ![](media/image21.png)
+
+(End of file - total 189 lines)

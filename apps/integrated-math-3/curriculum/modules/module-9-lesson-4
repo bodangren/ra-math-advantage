@@ -1,192 +1,148 @@
 # Lesson 9-4 — Graphing Sine and Cosine Functions
 
-Source: (Module 9, Lesson 9-4, pp. 445–450)
+Source: (Module 9, Lesson 9-4, Int3_0904_practice.docx)
 
 ## Today's Goals
 
-* Graph and analyze sine and cosine functions
-* Model periodic real-world situations with sine and cosine functions
-
----
+* Identify the amplitude, midline, and period of sine and cosine functions from their graphs and equations.
+* Graph sine and cosine functions with various amplitudes, periods, and transformations.
+* Write trigonometric functions to model real-world periodic phenomena.
+* Analyze the characteristics of sinusoidal functions in context.
 
 ## Vocabulary
 
-* oscillation
-* midline
-* amplitude
-* sinusoidal function
-* frequency
+* **Amplitude** — The vertical distance from the midline to the maximum or minimum value of the function; for [y = a sin x], the amplitude is [|a|].
+* **Period** — The horizontal length of one complete cycle of the graph; for [y = sin(bx)], the period is [2π/|b|].
+* **Midline** — A horizontal line at the average of the maximum and minimum values; [y = d] for [y = a sin x + d].
+* **Sinusoidal Function** — A function that has the shape of a sine or cosine wave, including both sinusoidal and non-sinusoidal variations.
+* **Frequency** — The number of cycles per unit of time; frequency is the reciprocal of the period.
 
----
+## Explore: The Basic Sine and Cosine Graphs
+
+The graphs of [y = sin x] and [y = cos x] are the foundation for understanding all sinusoidal functions. By examining key features like amplitude, period, and midline, students learn to analyze and predict the behavior of more complex trigonometric graphs.
+
+Inquiry Question:
+How do the values of [a] and [b] in [y = a sin(bx)] affect the graph of the function?
 
 ## Learn: Graphing Sine and Cosine Functions
 
-Sine and cosine are oscillating functions.
+### Key Concept: Characteristics of Sine and Cosine
 
-* the **midline** is halfway between the maximum and minimum
-* the **amplitude** is half the distance between the maximum and minimum
+For [y = a sin(bx) + d] or [y = a cos(bx) + d]:
 
-For `y = a sin bx` or `y = a cos bx`:
+* **Amplitude** = [|a|]
+* **Period** = [2π/|b|] (for sine and cosine)
+* **Midline** = [y = d]
+* **Phase shift** = determined by horizontal translations
 
-* amplitude `= |a|`
-* period `= 360°/|b|` or `2pi/|b|`
+### Key Concept: Graphing Steps
 
----
+1. Identify amplitude [|a|], period [2π/|b|], and midline [y = d].
+2. Draw the midline.
+3. Mark maximum at [d + |a|] and minimum at [d - |a|].
+4. Divide the period into four equal parts to find key points.
+5. Connect the points with a smooth curve.
 
-## Example 1 — Identify the Amplitude and Period from a Graph
+## Example 1 — Identify Characteristics from Graphs
 
-From the graph:
+### Step 1: Read Amplitude, Midline, and Period
 
-* maximum `= 4`
-* minimum `= -4`
+Amplitude is half the vertical distance between maximum and minimum values.
+Period is the horizontal distance of one complete cycle.
+Midline is the horizontal line exactly between max and min.
 
-Amplitude:
+From the graphs shown, identify each characteristic for the given sinusoidal curves.
 
-`(4 - (-4))/2 = 4`
+## Example 2 — Find Amplitude and Period from Equations
 
-Midline:
+### Step 1: Apply the Formulas
 
-`y = 0`
+For [y = 2 cos θ]: amplitude = 2, period = [2π/1 = 2π].
 
-The graph repeats every `pi`, so the period is:
+For [y = 2 sin θ]: amplitude = 2, period = [2π].
 
-`pi`
+For [y = cos(θ/2)]: amplitude = 1, period = [2π/(1/2) = 4π].
 
----
+For [y = (3/4) cos θ]: amplitude = 3/4, period = [2π].
 
-## Example 2 — Identify the Amplitude and Period from an Equation
+For [y = (1/2) sin 2θ]: amplitude = 1/2, period = [2π/2 = π].
 
-For `f(x) = 3 cos 5x`:
+For [y = 3 cos 2θ]: amplitude = 3, period = [2π/2 = π].
 
-* amplitude `= 3`
-* period `= 360°/5 = 72°`
+## Example 3 — Graph Sine Functions
 
----
+### Step 1: Plot Key Points
 
-## Example 3 — Graph a Sine Function
+For [y = 3 sin θ]:
+* Amplitude = 3, Period = [2π]
+* Key points at θ = 0, π/2, π, 3π/2, 2π
+* Values: sin 0 = 0 → 0; sin π/2 = 1 → 3; sin π = 0 → 0; sin 3π/2 = -1 → -3; sin 2π = 0 → 0
 
-Graph:
+## Example 4 — Graph Cosine Functions
 
-`y = 0.5 sin 4x`
+### Step 1: Plot Key Points
 
-### Step 1: Find the amplitude
+For [y = cos 3θ]:
+* Amplitude = 1, Period = [2π/3]
+* Key points at θ = 0, π/6, π/3, π/2, 2π/3
 
-`|a| = 0.5`
+For [y = sin 4θ]:
+* Amplitude = 1, Period = [2π/4 = π/2]
+* Key points at θ = 0, π/8, π/4, 3π/8, π/2
 
-### Step 2: Find the period
+## Example 5 — Real-World Modeling with Trigonometric Functions
 
-`360°/4 = 90°`
+### Step 1: Identify Key Values from Context
 
-### Step 3: Find key points
+**Spring oscillation:** [y = 25 cos πt]
+* Amplitude = 25 (inches from equilibrium)
+* Period = [2π/π = 2] seconds
+* Frequency = [1/2] cycles per second
 
-x-intercepts:
+**Tire swing:** [y = (π/5) cos 2t]
+* Amplitude = [π/5] radians
+* Period = [2π/2 = π] seconds
 
-* `(0, 0)`
-* `(45°, 0)`
-* `(90°, 0)`
+## Example 6 — Write Functions from Real-World Situations
 
-Maximum:
+### Step 1: Extract Information and Match to Form
 
-* `(22.5°, 0.5)`
+**Boat problem:** 6 up-and-down movements in 30 seconds means period = 5 seconds. Amplitude = 1.5 feet (half of 3-foot difference). Use [y = 1.5 cos(2π/5 × t)] or equivalent sine form starting at maximum.
 
-Minimum:
+**Ferris wheel:** Diameter = 65 feet, 4 revolutions per minute. Radius = 32.5 feet. Period = 1/4 minute = 15 seconds. Write function for height relative to axle.
 
-* `(67.5°, -0.5)`
+## Mixed Exercises
 
-Plot these points and draw the sine curve.
+Practice problems include:
 
----
-
-## Example 4 — Graph a Cosine Function
-
-Graph:
-
-`y = 2 cos 3x`
-
-### Step 1: Find the amplitude
-
-`|a| = 2`
-
-### Step 2: Find the period
-
-`360°/3 = 120°`
-
-### Step 3: Find key points
-
-* maximum at `(0, 2)`
-* x-intercepts at `(30°, 0)` and `(90°, 0)`
-* minimum at `(60°, -2)`
-
-Plot the points and sketch the curve.
-
----
-
-## Learn: Modeling with Sine and Cosine Functions
-
-Sine and cosine functions are also called **sinusoidal functions**.
-
-The **frequency** is the number of cycles per unit time and is the reciprocal of the period.
-
-### Key Concept: Modeling with `y = a sin bx` and `y = a cos bx`
-
-1. Use the amplitude to find `a`
-2. Use the period or frequency to find `b`
-3. Write the function
-
----
-
-## Example 5 — Characteristics of the Sine and Cosine Functions
-
-For:
-
-`y = 40 cos(pi t)`
-
-### Part A: Find period and frequency
-
-`period = 2pi/pi = 2`
-
-`frequency = 1/2`
-
-Interpretation:
-
-The object completes half a cycle per second and reaches its maximum every `2` seconds.
-
-### Part B: Identify domain and range in context
-
-* relevant domain: `[0, infinity)`
-* range: `[-40, 40]`
-
----
-
-## Example 6 — Model Periodic Situations
-
-The voltage in an outlet oscillates between `-120` and `120` volts with frequency `50` cycles per second. Write a function for voltage `v` as a function of time `t`.
-
-### Step 1: Find the amplitude
-
-`a = 120`
-
-### Step 2: Find the period and `b`
-
-`period = 1/50`
-
-Use:
-
-`2pi/b = 1/50`
-
-So:
-
-`b = 100pi`
-
-### Step 3: Write the function
-
-`v = 120 sin(100pi t)`
-
-This models the voltage as a periodic sine function.
-
----
-
-## Objective Alignment
-
-- `Graph and analyze sine and cosine functions`: Primary worked examples: Examples 1-5.
-- `Model periodic real-world situations with sine and cosine functions`: Primary worked examples: Example 6.
+* Graphing various sine and cosine functions.
+* Identifying period from graphs and writing equations.
+* Research on sine function modeling of ocean waves.
+* Physics force component problems.
+* Weather temperature modeling.
+* Cyclist pedal height modeling.
+* Light wave pattern analysis.
+* Swimming hand position modeling.
+* Spring experiment analysis.
+* Amusement ride arm rotation problems.
+* Writing sine functions with specific amplitude and cycle requirements.
+* Floor fan blade speed problems.
+* Comparing sine function graphs.
+* Creating and graphing trigonometric functions with specific characteristics.
+
+## Review Notes
+
+* Images referenced in the worksheet (sine and cosine graphs for problems 1-4, 11-16, 21-26, 32, spring graph for problem 33, amusement ride diagram for problem 34) could not be fully described without visual reference. Teachers should consult the original worksheet for exact diagrams and values.
+
+![](media/image1.png)
+![](media/image2.png)
+![](media/image3.png)
+![](media/image4.png)
+![](media/image5.png)
+![](media/image6.png)
+![](media/image7.png)
+![](media/image8.png)
+![](media/image9.JPG)
+![](media/image10.png)
+![](media/image11.png)
+![](media/image12.png)

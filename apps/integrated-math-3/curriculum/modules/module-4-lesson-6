@@ -1,271 +1,176 @@
 # Lesson 4-6 — Solving Radical Equations
 
-Source: (Module 4, Lesson 4-6, pp. 203–206)
+Source: (Module 4, Lesson 4-6, Int3_0406_practice.docx)
 
 ## Today's Goals
 
-* Solve radical equations in one variable and identify extraneous solutions
-* Solve radical equations by graphing systems of equations
-
----
+* Solve equations containing square roots and cube roots.
+* Identify extraneous solutions by checking in the original equation.
+* Solve equations with rational exponents.
+* Use graphing calculators to solve radical equations.
 
 ## Vocabulary
 
-* radical equation
+* **Radical Equation** — An equation in which the variable appears inside a radical.
+* **Extraneous Solution** — A solution that emerges from algebraic manipulation but does not satisfy the original equation.
+* **Power Property** — If a = b, then aⁿ = bⁿ for any positive integer n.
 
----
+## Explore: Solving Equations with Radicals
 
-## Explore: Solutions of Radical Equations
+When variables are trapped under radicals, new techniques are needed to free them. Students consider what happens when both sides of an equation are raised to a power.
 
-Use graphing technology to complete the explore.
+Inquiry Question:
+Why might raising both sides of an equation to a power introduce solutions that were not in the original equation?
 
-**Inquiry Question:**
-When will a radical equation have a solution? When will it have no solution?
+## Learn: Solving Radical Equations
 
----
+### Key Concept: Isolating and Raising to a Power
 
-## Learn: Solving Radical Equations Algebraically
+To solve √(x − 5) = 3:
+1. Square both sides: x − 5 = 9
+2. Solve: x = 14
+3. Check: √(14 − 5) = √9 = 3 ✓
 
-A **radical equation** has a variable in a radicand.
+### Key Concept: Extraneous Solutions
 
-When solving a radical equation, the result may be an **extraneous solution**.
+Always check solutions in the original equation. If the radical is still defined and the equality holds, the solution is valid.
 
-### Key Concept: Solving Radical Equations
+### Key Concept: Isolating the Radical First
 
-1. Isolate the radical on one side.
-2. Raise each side to a power equal to the index of the radical.
-3. Solve the resulting polynomial equation.
-4. Check all results.
+For equations like 2 + √(3p + 7) = 6, first isolate the radical:
+√(3p + 7) = 4, then square both sides.
 
----
+## Example 1 — Solve Square Root Equations
 
-## Example 1 — Solve a Square Root Equation
+### Step 1: Isolate the Radical
 
-Solve:
+5√j = 1 → √j = 1/5
 
-`sqrt(3x - 5) + 2 = 6`
+### Step 2: Square Both Sides
 
-Isolate the radical:
+j = 1/25
 
-`sqrt(3x - 5) = 4`
+### Step 3: Check
 
-Square both sides:
+5√(1/25) = 5(1/5) = 1 ✓
 
-`3x - 5 = 16`
+## Example 2 — Solve Cube Root Equations
 
-`3x = 21`
+### Step 1: Cube Both Sides
 
-`x = 7`
+³√(3r − 6) = 3
+(3r − 6) = 27
+3r = 33
+r = 11
 
-Check the result in the original equation.
+### Step 2: Check in Original
 
----
+³√(3(11) − 6) = ³√(33 − 6) = ³√27 = 3 ✓
 
-## Example 2 — Solve a Cube Root Equation
+## Example 3 — Equations with Multiple Radicals
 
-Solve:
+### Step 1: Isolate One Radical
 
-`4(2x + 6)^(1/3) - 9 = 3`
+√(x − 15) = 3 − √x
 
-Isolate the cube root:
+√(x − 15) + √x = 3
 
-`4(2x + 6)^(1/3) = 12`
+### Step 2: Square, Then Repeat
 
-`(2x + 6)^(1/3) = 3`
+Let u = √x, then √(x − 15) = √(u² − 15)
 
-Cube both sides:
+(√(u² − 15) + u)² = 9
+u² − 15 + 2u√(u² − 15) + u² = 9
+2u² − 6 + 2u√(u² − 15) = 0
 
-`2x + 6 = 27`
+### Step 3: Solve and Check
 
-`2x = 21`
+Continue solving and verify each potential solution in the original equation.
 
-`x = 21/2`
+## Example 4 — Equations with Rational Exponents
 
-## Think About It
+### Step 1: Convert to Radical Form if Needed
 
-How could you change the equation so that there is no solution?
+(5q + 1)^(1/4) + 7 = 5
+(5q + 1)^(1/4) = −2
 
----
+Since the fourth root cannot be negative, there is no solution.
 
-## Example 3 — Identify Extraneous Solutions
+### Step 2: Solve When Possible
 
-Solve:
+(3x + 7)^(1/4) − 3 = 1
+(3x + 7)^(1/4) = 4
+Raise both sides to 4th power: 3x + 7 = 256
+3x = 249
+x = 83
 
-`sqrt(x + 21) = 3 - sqrt(x)`
+## Example 5 — Use a Graphing Calculator
 
-Square both sides:
+### Step 1: Graph Each Side
 
-`x + 21 = 9 - 6sqrt(x) + x`
+For √(x − 7) + 2 = 8, graph y = √(x − 7) + 2 and y = 8.
 
-`12 = -6sqrt(x)`
+### Step 2: Find Intersection
 
-`-2 = sqrt(x)`
+Use the intersect function to find where the graphs meet.
 
-Square both sides:
+### Step 3: Read the Solution
 
-`x = 4`
+The x-coordinate of the intersection is the solution.
 
-Check:
+## Example 6 — Use a System of Equations
 
-`sqrt(4 + 21) = 5`
+### Step 1: Set Up Two Equations
 
-`3 - sqrt(4) = 1`
+For 2³√(2k − 3) = ⁴√(k + 14):
+Let y = 2³√(2k − 3) and y = ⁴√(k + 14)
 
-These are not equal, so `x = 4` is an **extraneous solution**.
+### Step 2: Graph the System
 
-Therefore, there is **no real solution**.
+Graph both equations and find where they intersect.
 
-## Talk About It
+## Example 7 — Geometry Applications
 
-In Example 3, could you tell that `4` was extraneous before checking? Explain.
+### Step 1: Use Heron's Formula
 
----
+Given A = 270 cm², s = 45 cm, a = 15 cm, c = 39 cm
 
-## Example 4 — Solve a Radical Equation
+270 = √(45(45 − 15)(45 − b)(45 − 39))
 
-Solve:
+Square both sides and solve for b.
 
-`(2/3)(11x + 14)^(1/6) + 8 = 10`
+### Step 2: Solve the Resulting Equation
 
-Isolate the radical:
+(270)² = 45 · 30 · (45 − b) · 6
+72900 = 8100(45 − b)
+9 = 45 − b
+b = 36
 
-`(2/3)(11x + 14)^(1/6) = 2`
+## Mixed Exercises
 
-`(11x + 14)^(1/6) = 3`
+The mixed exercises section provides practice with all skills from the lesson. Problems include:
 
-Raise both sides to the sixth power:
+* Solving various radical equations including square roots, cube roots, fourth roots, and fifth roots.
+* Identifying extraneous solutions.
+* Using graphing calculators to solve equations by graphing and by systems.
+* Geometry problems involving cone lateral area and sphere volume.
+* Tether/pole problem using Pythagorean theorem and radical equations.
+* Space problem about asteroid distance from Earth.
+* Driving problem about skid marks and speed.
+* Chemistry problem finding molecular mass from nuclear radius.
+* Explaining how to solve ⁴√(10x + 11) − √(x + 2) = 0 graphically and algebraically.
+* Analyzing why √(x − 5) + 1 = √(2 − x) has no solutions without solving.
+* Determining which radical expression doesn't belong.
+* Analyzing why Haruko can tell (x + 5)^(1/4) = −4 has no real solution.
+* Analyzing whether √((x²)²)/(−x) = x is sometimes, always, or never true.
+* Creating equations that can be solved by raising to specific powers.
+* Analyzing whether there are extraneous solutions when n is odd versus even.
 
-`11x + 14 = 729`
+## Review Notes
 
-`11x = 715`
-
-`x = 65`
-
-This value makes the equation true.
-
----
-
-## Learn: Solving Radical Equations by Graphing
-
-To solve a radical equation using a graph:
-
-* rewrite the equation with `0` on one side and graph the related function
-* or write a system by setting each side equal to `y`
-
-The zeros or intersections give the solution.
-
-Example:
-
-Equation:
-
-`sqrt(2x + 5) + 1 = 4`
-
-Related function:
-
-`f(x) = sqrt(2x + 5) - 3`
-
-System:
-
-* `y = sqrt(2x + 5) + 1`
-* `y = 4`
-
----
-
-## Example 5 — Solve a Radical Equation by Graphing
-
-Use a graphing calculator to solve:
-
-`2 cuberoot(3x - 4) + 10 = 9`
-
-### Step 1: Find a related function
-
-Move everything to one side:
-
-`2 cuberoot(3x - 4) + 1 = 0`
-
-So the related function is:
-
-`f(x) = 2 cuberoot(3x - 4) + 1`
-
-### Step 2: Graph the function
-
-Graph in the calculator.
-
-### Step 3: Use a table
-
-The table shows the function changes sign between `x = 1` and `x = 2`.
-
-### Step 4: Find the zero
-
-Use the `zero` feature.
-
-The zero is about:
-
-`x ≈ 1.29`
-
-## Think About It
-
-What would the graph of a related function with no solution look like?
-
----
-
-## Example 6 — Solve a Radical Equation by Using a System
-
-Use a graphing calculator to solve:
-
-`sqrt(x + 6) - 5 = -sqrt(2x) + 1`
-
-### Step 1: Write a system
-
-* `y = sqrt(x + 6) - 5`
-* `y = -sqrt(2x) + 1`
-
-### Step 2: Graph the system
-
-Enter both in the `Y=` list.
-
-### Step 3: Find the intersection
-
-Use the `intersect` feature.
-
-The x-coordinate of the intersection is about:
-
-`x ≈ 4.02`
-
-## Think About It
-
-How can you use the table feature on your calculator to find the intersection?
-
----
-
-## Example 7 — Confirm Solutions by Using Technology
-
-The relationship for a planet orbiting the Sun is:
-
-`T = sqrt(a^3)`
-
-where:
-
-* `T` is measured in years
-* `a` is measured in astronomical units
-
-If Mars takes `1.88` years to orbit the Sun, find its mean distance from the Sun.
-
-`1.88 = sqrt(a^3)`
-
-Square both sides:
-
-`3.5344 = a^3`
-
-Take the cube root:
-
-`a ≈ 1.5233`
-
-So the mean distance from Mars to the Sun is about **1.5233 AU**.
-
----
-
-## Objective Alignment
-
-- `Solve radical equations in one variable and identify extraneous solutions`: Primary worked examples: Examples 1-4.
-- `Solve radical equations by graphing systems of equations`: Primary worked examples: Examples 5-7.
+* ![](media/image1.png) — Graph for problem 40 (√(x − 3) = 3 − x)
+* ![](media/image2.png) — Diagram for tether/pole problem (problem 44)
+* ![](media/image3.wmf) — Chemistry/nuclear radius image (problem 47)
+* ![](media/image4.png) — Graph for "Which One Doesn't Belong?" problem (problem 3)
+* Images referenced in the worksheet could not be fully described without visual reference. Teachers should consult the original worksheet for exact diagrams and values.
+* The worksheet contains 56 practice problems across seven examples and mixed exercises.

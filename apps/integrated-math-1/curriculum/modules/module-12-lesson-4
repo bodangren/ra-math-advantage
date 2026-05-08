@@ -1,0 +1,311 @@
+# Lesson 12-4 — Writing Proofs
+
+Source: (Module 12, Lesson 12-4, Int1_1204_practice.docx)
+
+## Today's Goals
+
+* Apply geometric postulates about points, lines, and planes to justify statements.
+* Determine whether a statement about geometric relationships is always, sometimes, or never true and justify the answer.
+* Write two-column proofs using given information, definitions, and properties.
+* Write flow proofs to show logical sequences of statements and reasons.
+* Write paragraph proofs that connect statements in sentence form with logical reasoning.
+
+## Vocabulary
+
+* **Postulate** — A statement accepted as true without proof.
+* **Collinear** — Points that lie on the same line.
+* **Coplanar** — Points or lines that lie in the same plane.
+* **Two-Column Proof** — A proof format with statements in one column and corresponding reasons in another.
+* **Flow Proof** — A proof format that uses arrows to show how statements connect from given information to the conclusion.
+* **Paragraph Proof** — A proof written in sentences that explains the logical argument from given information to the conclusion.
+* **Congruent Segments** — Segments that have the same length.
+* **Midpoint** — A point that divides a segment into two congruent segments.
+* **Transitive Property** — If two quantities are equal to the same quantity, then they are equal to each other.
+* **Substitution Property** — If two quantities are equal, then one may be substituted for the other in any equation.
+
+## Explore: How Do We Know a Statement Is True?
+
+Students discuss how mathematicians justify claims about geometric figures. They consider the difference between a postulate, which is accepted without proof, and a theorem, which must be proven using logical reasoning.
+
+Inquiry Question:
+What is the difference between a postulate and a proof, and when do we need each one?
+
+## Learn: Writing Geometric Proofs
+
+A proof is a logical argument that uses definitions, postulates, and previously proven statements to show that a conclusion follows from given information. Different proof formats — two-column, flow, and paragraph — organize the same logical reasoning in different ways.
+
+### Key Concept: Points, Lines, and Planes Postulates
+
+* Through any two points, there is exactly one line.
+* Through any three noncollinear points, there is exactly one plane.
+* A line contains at least two points.
+* A plane contains at least three noncollinear points.
+* If two points lie in a plane, then the line containing them lies in the plane.
+* The intersection of two lines is a point.
+* The intersection of two planes is a line.
+
+### Key Concept: Two-Column Proof Structure
+
+* List each statement in the left column.
+* List the reason for each statement in the right column.
+* Start with the given information.
+* End with the statement to be proven.
+* Each statement must follow logically from previous statements or from given information.
+
+### Key Concept: Flow Proof Structure
+
+* Write each statement inside a box.
+* Draw an arrow from the reason to the new statement it justifies.
+* Show how the given information leads step by step to the conclusion.
+
+### Key Concept: Paragraph Proof Structure
+
+* Write the proof as a coherent paragraph of sentences.
+* State the given information and what is to be proven.
+* Connect each step with logical transitions such as "because," "since," or "therefore."
+* Reference definitions, postulates, and properties by name.
+
+## Example 1 — Apply Postulates about Points, Lines, and Planes
+
+Use postulates about points, lines, and planes to justify statements about geometric figures. Identify which postulate supports each statement.
+
+### Step 1: Identify the Geometric Relationship
+
+Examine the figure to determine what relationship exists between the given points, lines, or planes.
+
+### Step 2: State the Appropriate Postulate
+
+Select the postulate that explains why the statement is true. For example:
+
+If two planes intersect, their intersection is a line:
+[
+	ext{If plane } O 	ext{ and plane } M 	ext{ intersect, then they intersect in exactly one line.}
+]
+
+If a line lies in a plane:
+[
+	ext{If two points of a line lie in a plane, then the entire line lies in that plane.}
+]
+
+If points are collinear:
+[
+	ext{Through any two points, there is exactly one line.}
+]
+
+If points are coplanar:
+[
+	ext{If three points lie in a plane, then they are coplanar.}
+]
+
+## Example 2 — Determine Whether Statements Are Always, Sometimes, or Never True
+
+Analyze statements about geometric relationships and classify each as always true, sometimes true, or never true. Justify each classification using postulates, definitions, or counterexamples.
+
+### Step 1: Test with Definitions and Postulates
+
+Consider whether the statement is guaranteed by a postulate or definition.
+
+For example, three noncollinear points determine a plane:
+[
+	ext{Always true. Through any three noncollinear points, there is exactly one plane.}
+]
+
+### Step 2: Look for Counterexamples
+
+If a statement is not guaranteed, try to find a case where it fails.
+
+For example, three points in a plane are collinear:
+[
+	ext{Sometimes true. Three points in a plane may lie on the same line, but they need not.}
+]
+
+### Step 3: Consider Extreme Cases
+
+If two planes intersect:
+[
+	ext{The intersection of two planes is always a line, never a point.}
+]
+
+## Example 3 — Write and Complete Two-Column Proofs
+
+Write a two-column proof from given information, or complete a partially written proof by supplying missing statements or reasons.
+
+### Step 1: List the Given Information and the Prove Statement
+
+Identify what is assumed and what must be shown.
+
+Given: Point [Y] is the midpoint of segment [XZ]. Point [W] is collinear with [X], [Y], and [Z]. Point [Z] is the midpoint of segment [YW].
+
+Prove: Segment [XY] is congruent to segment [ZW].
+
+### Step 2: Apply the Definition of Midpoint
+
+Since [Y] is the midpoint of [XZ]:
+[
+XY = YZ
+]
+
+Since [Z] is the midpoint of [YW]:
+[
+YZ = ZW
+]
+
+### Step 3: Apply the Transitive Property
+
+Because [XY] and [ZW] are both equal to [YZ]:
+[
+XY = ZW
+]
+
+Therefore:
+[
+\overline{XY} \cong \overline{ZW}
+]
+
+### Step 4: Complete a Proof with Algebraic Expressions
+
+Given two congruent segments with expressions for their lengths, set the expressions equal and solve for the variable.
+
+Given: Segment [JK] is congruent to segment [LM].
+
+Set the expressions equal:
+[
+JK = LM
+]
+
+Substitute the expressions and solve:
+[
+w = 3.5
+]
+
+### Step 5: Complete a Proof Using Substitution
+
+Given equal segment lengths, use substitution and the definition of midpoint to prove that a point is the midpoint of two different segments.
+
+Given: [SR = RT], [SR = UR], and [RT = RV].
+
+By substitution:
+[
+RT = UR \quad \text{and} \quad SR = RV
+]
+
+Therefore [R] is the midpoint of segment [ST] and segment [UV].
+
+### Step 6: Prove a Variable Value from a Midpoint
+
+Given that a point is the midpoint of a segment with algebraic expressions for the segment parts, set the expressions equal and solve.
+
+Given: [H] is the midpoint of segment [FG].
+
+Set the expressions for [FH] and [HG] equal:
+[
+FH = HG
+]
+
+Solve for [x]:
+[
+x = 1.25
+]
+
+## Example 4 — Write and Complete Flow Proofs
+
+Use flow proof format to show the logical connection between given information and the conclusion.
+
+### Step 1: Start with the Given Information
+
+Place the given facts in boxes. Draw arrows to show how each fact leads to the next statement.
+
+Given: Point [L] is the midpoint of segment [JK]. Segment [JK] intersects segment [MK] at point [K]. Segment [MK] is congruent to segment [JL].
+
+Prove: Segment [LK] is congruent to segment [MK].
+
+### Step 2: Apply the Definition of Midpoint
+
+From the given that [L] is the midpoint of [JK]:
+[
+\overline{JL} \cong \overline{LK}
+]
+
+### Step 3: Use Substitution or Transitive Property
+
+Given that [MK] is congruent to [JL], and [JL] is congruent to [LK]:
+[
+\overline{LK} \cong \overline{MK}
+]
+
+### Step 4: Complete a Flow Proof with Algebraic Reasoning
+
+Given: Segment [MN] is congruent to segment [PQ], with [MN = 5x - 10] and [PQ = 4x + 10].
+
+Set the expressions equal:
+[
+5x - 10 = 4x + 10
+]
+
+Solve for [x]:
+[
+x = 20
+]
+
+Substitute back to find [MN]:
+[
+MN = 5(20) - 10 = 90
+]
+
+## Example 5 — Write Paragraph Proofs
+
+Write a proof in paragraph form, connecting statements with logical transitions and referencing definitions and properties.
+
+### Step 1: State the Given Information and Goal
+
+Begin by stating what is given and what is to be proven.
+
+Given: Point [B] is the midpoint of segment [AC], and point [C] is the midpoint of segment [BD].
+
+Prove: [AB = CD].
+
+### Step 2: Apply Definitions and Properties
+
+Since [B] is the midpoint of [AC], the definition of midpoint tells us that [AB = BC]. Since [C] is the midpoint of [BD], we know that [BC = CD]. By the transitive property, [AB = CD].
+
+### Step 3: Write a Paragraph Proof with Substitution
+
+Given expressions for segment lengths and a value for the variable, substitute and simplify to show congruence.
+
+Given: [PQ = 4(x - 3) + 1], [QR = x + 10], and [x = 7].
+
+Substitute [x = 7] into each expression:
+[
+PQ = 4(7 - 3) + 1 = 4(4) + 1 = 17
+]
+[
+QR = 7 + 10 = 17
+]
+
+Since [PQ = QR], segment [PQ] is congruent to segment [QR].
+
+## Mixed Exercises
+
+The mixed exercises section provides practice with all skills from the lesson: applying postulates, classifying statements, and writing proofs. Problems include:
+
+* Identifying the postulate that justifies a statement about points and lines.
+* Applying postulates about planes to determine whether a real-world structure is geometrically possible.
+* Evaluating whether a student is correct about the intersection of a line and a plane and explaining the reasoning.
+* Using the definition of midpoint to find a segment length in a real-world context and writing a paragraph proof.
+* Explaining how a definition was used within a paragraph proof.
+* Counting the number of lines determined by pairs of noncollinear points in a combinatorics setting.
+* Finding the maximum number of segments connecting pairs of points and applying the result to a departmental grouping problem.
+* Evaluating two student paragraph proofs to find errors and determine which approach is correct.
+* Creating a figure that satisfies five of the seven postulates and explaining each choice.
+* Applying the definition of perpendicular planes to determine what must be true in a given configuration.
+* Reflecting on how logical thinking is required when writing a proof.
+* Classifying statements about planes and lines as always, sometimes, or never true with justification.
+
+## Review Notes
+
+* Images referenced in the worksheet (geometric figures for problems 1–4, 11, 13, 14, 15, 17; roofing diagram for problem 20; student drawings for problem 21; marathon course diagram for problem 22; airline and small-business diagrams for problems 23–24; student work samples for problem 25; created figure for problem 26; perpendicular planes figure for problem 27) could not be fully described without visual reference. Teachers should consult the original worksheet for exact values and diagrams.
+* Problem 11 requires interpreting a diagram showing points on a line; visual reference is essential.
+* Problems 13 and 14 require interpreting partially completed two-column proofs shown in images; visual reference is essential.
+* Problems 15 and 16 require interpreting flow proof diagrams shown in images; visual reference is essential.
+* Problem 17 requires interpreting a geometric figure with collinear points; visual reference is essential.
+* Problems 25 and 27 involve evaluating student work shown in images; visual reference is essential.

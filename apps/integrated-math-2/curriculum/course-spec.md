@@ -76,7 +76,7 @@ Each class period should be labeled as one of:
 If a class period is labeled `instruction`, it must include:
 
 1. A **class objective** that matches an objective in the unit's core objectives
-2. A reference to the **source lesson** (`curriculum/modules/unit-*-lesson-*`)
+2. A reference to the **source lesson** (`curriculum/modules/module-*-lesson-*`)
 3. The specific **worked examples** used in that class period
 4. Problem-type familyKey references from `curriculum/practice/` when aligned problem families are available
 
@@ -186,7 +186,7 @@ For unit-level class-period planning, the canonical source of truth should be th
 Those audited plan documents should be kept aligned with:
 
 - `curriculum/overview.md`
-- `curriculum/modules/unit-*-lesson-*`
+- `curriculum/modules/module-*-lesson-*`
 - `curriculum/practice/problem-type-registry.md`
 
 ### Year-Level Planning Budget

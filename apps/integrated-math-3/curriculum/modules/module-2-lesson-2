@@ -1,248 +1,178 @@
 # Lesson 2-2 — Analyzing Graphs of Polynomial Functions
 
-Source: (Module 2, Lesson 2-2, pp. 83–88)
+Source: (Module 2, Lesson 2-2, Int3_0202_practice.docx)
 
 ## Today's Goals
 
-* Approximate zeros by graphing polynomial functions
-* Find extrema of polynomial functions
-
----
+* Use tables to locate real zeros of polynomial functions.
+* Estimate [x]-coordinates at which relative maxima and minima occur.
+* Graph polynomial functions and describe their key features.
+* Find average rate of change from a table of values.
 
 ## Vocabulary
 
-* polynomial function
-* zero
-* Location Principle
-* extrema
-* relative maximum
-* relative minimum
-* coefficient of determination
+* **Relative Maximum** — A point where the function changes from increasing to decreasing; a "peak" in the graph.
+* **Relative Minimum** — A point where the function changes from decreasing to increasing; a "valley" in the graph.
+* **Extrema** — Collective term for relative maxima and minima.
+* **Zero (of a function)** — An input value [x] such that [f(x) = 0]; also called a root.
+* **Average Rate of Change** — [\frac{f(x_2) - f(x_1)}{x_2 - x_1}] over an interval [[x_1, x_2]].
 
----
+## Explore: Zeros and Extrema
 
-## Learn: The Location Principle
+Inquiry Question:
+How can a table of values help you determine between which consecutive integers a real zero of a polynomial function lies?
 
-If the value of a polynomial function `f(x)` changes signs from one value of `x` to the next, then there is a zero between those two x-values. This is called the Location Principle.
+## Learn: Analyzing Graphs of Polynomial Functions
 
-### Key Concept: Location Principle
+### Key Concept: Finding Zeros Using a Table
 
-Suppose `y = f(x)` is a polynomial function, and `a` and `b` are real numbers such that:
+To determine between which consecutive integer values of [x] a real zero lies:
 
-* `f(a) < 0`
-* `f(b) > 0`
+1. Create a table of values for [x] and [f(x)].
+2. Look for a sign change in [f(x)] between consecutive [x]-values.
+3. If [f(a)] and [f(b)] have opposite signs (where [a] and [b] are consecutive integers), then a zero lies between [a] and [b].
 
-Then the function has at least one real zero between `a` and `b`.
+### Key Concept: Extrema from Tables
 
----
+A relative maximum occurs where the function changes from increasing to decreasing.
+A relative minimum occurs where the function changes from decreasing to increasing.
 
-## Example 1 — Locate Zeros of a Function
+## Example 1 — Locate Zeros Using a Table
 
-Determine the consecutive integer values of `x` between which each real zero of
+Determine the consecutive integer values of [x] between which each real zero of each function is located by using a table. Then sketch the graph.
 
-`f(x) = x^4 - 2x^3 - x^2 + 1`
+**1.** [f(x) = x^2 + 3x - 1]
+**2.** [f(x) = -x^3 + 2x^2 - 4]
+**3.** [f(x) = x^3 + 4x^2 - 5x + 5]
+**4.** [f(x) = -x^4 - x^3 + 4]
 
-is located. Then draw the graph.
+### Step 1: Create tables for each function
 
-### Step 1: Make a table
+**1.** [f(x) = x^2 + 3x - 1]
+Table shows sign changes between [x = 0] and [x = 1], so a zero is between 0 and 1.
+Also between [x = -3] and [x = -2], another zero.
 
-| x  | -2 | -1 | 0 | 1  | 2  | 3  | 4   |
-| -- | -- | -- | - | -- | -- | -- | --- |
-| f(x) | 29 | 3 | 1 | -1 | -3 | 19 | 113 |
+**2.** [f(x) = -x^3 + 2x^2 - 4]
+Table shows sign change between [x = 1] and [x = 2], so a zero is between 1 and 2.
 
-Using the Location Principle, there are zeros:
+**3.** [f(x) = x^3 + 4x^2 - 5x + 5]
+Table shows no sign change for consecutive integer values, suggesting no real zeros.
 
-* between `x = 0` and `x = 1`
-* between `x = 2` and `x = 3`
+**4.** [f(x) = -x^4 - x^3 + 4]
+Table shows sign change between [x = -2] and [x = -1], so a zero is between -2 and -1.
 
-### Step 2: Sketch the graph
+## Example 2 — Find Extrema Using a Table
 
-Use the table to sketch the graph and locate the zeros.
+Use a table to graph each function. Then estimate the [x]-coordinates at which relative maxima and relative minima occur.
 
-### Technology Check
+**5.** [f(x) = -2x^3 + 12x^2 - 8x]
+**6.** [f(x) = 2x^3 - 4x^2 - 3x + 4]
+**7.** [f(x) = x^4 + 2x - 1]
+**8.** [f(x) = x^4 + 8x^2 - 12]
 
-Using a graphing calculator gives more precise values:
+### Step 1: Analyze each function
 
-* `x ≈ 0.7213`
-* `x ≈ 2.3486`
+**5.** [f(x) = -2x^3 + 12x^2 - 8x]
+* Relative maximum occurs where the function changes from increasing to decreasing.
+* Relative minimum occurs where the function changes from decreasing to increasing.
 
-## Think About It
+**6.** [f(x) = 2x^3 - 4x^2 - 3x + 4]
+* Cubic with positive leading coefficient.
+* One relative maximum and one relative minimum.
 
-Not all real zeros can be found by using the Location Principle. Provide an example where `f(a) > 0` and `f(b) > 0`, but there is a zero between `x = a` and `x = b`.
+**7.** [f(x) = x^4 + 2x - 1]
+* Fourth-degree with positive leading coefficient.
+* May have a relative minimum.
 
-How can you adjust the table on a graphing calculator to give a more precise interval for each zero?
+**8.** [f(x) = x^4 + 8x^2 - 12]
+* Fourth-degree with positive leading coefficient.
+* Symmetric about the [y]-axis.
 
----
+## Example 3 — Key Features from Graphs
 
-## Learn: Extrema of Polynomials
+**9. BUSINESS** A banker models the expected value [v] of a company in millions of dollars by using the formula [v = n^3 - 3n^2], where [n] is the number of years in business. Graph the function and describe its key features over the relevant domain.
 
-Extrema occur at relative maxima or relative minima of a function.
+* Degree: 3 (odd), Leading coefficient: 1 (positive)
+* End behavior: as [n → -∞], [v → -∞] and as [n → +∞], [v → +∞]
+* Zeros at [n = 0] and [n = 3]
+* Relative maximum at [n = 0], relative minimum at [n = 2]
 
-* A relative minimum and a relative maximum are both extrema
-* A polynomial of degree `n` has at most `n - 1` extrema
+**10. HEIGHT** A plant's height is modeled by [f(x) = 1.5x^3 - 20x^2 + 85x - 84], where [x] is the number of weeks since the seed was planted and [f(x)] is the height in inches. Graph the function and describe its key features over its relevant domain.
 
-### Study Tip
+* The function is cubic with positive leading coefficient.
+* The plant height increases initially, then may decrease after reaching a peak.
+* Relevant domain: [[0, +∞)] since weeks cannot be negative.
 
-Relative maxima and relative minima are sometimes called turning points.
+## Example 4 — Regression Analysis
 
----
+**11. CAR SALES** The table shows U.S. car sales in millions. Use a graphing calculator to make a scatter plot and a curve of best fit. Estimate car sales in 2017 (let 2008 be year 0).
 
-## Example 2 — Identify Extrema
+**12. POPULATION** The table shows Cincinnati population since 1960. Make a scatter plot and curve of best fit. Estimate population in 2020.
 
-Use a table to graph
+**13. VOLUNTEERS** The table shows average volunteer hours per month. Make a scatter plot and curve of best fit. Estimate volunteer hours for September (let January be month 1).
 
-`f(x) = x^3 + x^2 - 5x - 2`
+## Example 5 — Average Rate of Change
 
-and estimate the x-coordinates at which the relative maxima and relative minima occur.
+**14. FARMS** The table shows number of farms in the U.S. Find the average rate of change from 1982 to 2012. Interpret the results.
 
-### Step 1: Make a table
+Average rate of change: [\frac{f(2012) - f(1982)}{2012 - 1982}]
 
-| x  | -4  | -3 | -2 | -1 | 0  | 1  | 2 | 3  |
-| -- | --- | -- | -- | -- | -- | -- | - | -- |
-| f(x) | -30 | -5 | 4  | 3  | -2 | -5 | 0 | 19 |
+**15. SALARY** The table shows annual salary over time. Find the average rate of change over the given interval. Interpret in context.
 
-### Step 2: Estimate the extrema
+## Mixed Exercises
 
-* `f(x)` at `x = -2` is greater than the surrounding values, so there is a relative maximum near `x = -2`
-* `f(x)` at `x = 1` is less than the surrounding values, so there is a relative minimum near `x = 1`
+Graph each function using a table of values. Then estimate the [x]-coordinates at which each zero and relative extrema occur, and state the domain and range.
 
-You can use a graphing calculator to confirm the estimates.
+**16.** [f(x) = x^3 - 3x^2 + 1]
+**17.** [f(x) = 2x^3 + 9x^2 + 12x + 2]
+**18.** [f(x) = 2x^3 - 3x^2 + 2]
+**19.** [f(x) = x^4 - 2x^2 + 2]
 
----
+**20.** Determine key features for [y = \begin{cases} x^2 & \text{if } x \leq -4 \\ 5 & \text{if } -4 < x \leq 0 \\ x^3 & \text{if } x > 0 \end{cases}]
 
-## Example 3 — Analyze a Polynomial Function
+**USE TOOLS** Use a graphing calculator to estimate the [x]-coordinates at which the maxima and minima occur. Round to the nearest hundredth.
 
-The total number of certified pilots in the United States is approximated by:
+**21.** [f(x) = x^3 + 3x^2 - 6x - 6]
+**22.** [f(x) = -2x^3 + 4x^2 - 5x + 8]
+**23.** [f(x) = -2x^4 + 5x^3 - 4x^2 + 3x - 7]
+**24.** [f(x) = x^5 - 4x^3 + 3x^2 - 8x - 6]
 
-`f(x) = 0.0000903x^4 - 0.0166x^3 + 0.762x^2 + 6.317x + 7.708`
+**25. PRECISION** Sketch the graph of a third-degree polynomial function that has a relative minimum at [x = -3], passes through the origin, and has a relative maximum at [x = 2]. Describe the end behavior. Based on the sketch, determine whether the leading coefficient is negative or positive.
 
-where:
+**26. USE TOOLS** A canister has the shape of a cylinder with spherical caps. The volume is modeled by [V(x) = π(x^3 + 3x^2) + \frac{4}{3}πx^3] where [x] represents the radius.
 
-* `x` is the number of years after 1930
-* `f(x)` is the number of pilots in thousands
+**a.** Use a graphing calculator to sketch the model.
+**b.** What is the domain of the model?
 
-Graph the function and describe its key features over the relevant domain.
+**27. CONSTRUCT ARGUMENTS** What type of polynomial function best models the data in the graph? Explain your reasoning.
 
-### Step 1: Graph the function
+**28. FORECASTING** The table shows deliveries since a grocery store began the service. Use a scatter plot and curve of best fit to determine expected deliveries 10 years after start.
 
-Use a table of values.
+**29. ANALYZE** Explain why the leading coefficient and the degree are the only determining factors in the end behavior of a polynomial function.
 
-| x  | f(x)   |
-| -- | ------ |
-| 0  | 7.708  |
-| 10 | 131.381 |
-| 20 | 320.496 |
-| 30 | 507.961 |
-| 40 | 648.356 |
-| 50 | 717.933 |
-| 60 | 714.616 |
-| 70 | 658.001 |
-| 80 | 589.356 |
-| 90 | 571.621 |
+**30. ANALYZE** The table shows values of a cubic function. Could there be a zero between [x = 2] and [x = 3]? Justify your argument.
 
-### Step 2: Describe key features
+**31. CREATE** Sketch the graph of an odd-degree polynomial function with 6 extrema and a relative extreme at [y = 0].
 
-#### Domain and range
+**32. ANALYZE** Determine whether the following statement is sometimes, always, or never true: For any continuous polynomial function, the [y]-coordinate of a point where a function changes from increasing to decreasing or from decreasing to increasing is either a relative maximum or relative minimum.
 
-* Mathematical domain and range: all real numbers
-* Relevant domain: `x >= 0`
-* Relevant range: `f(x) >= 7.708`
+**33. PERSEVERE** A function is even if [f(x) = f(-x)] for every [x] in the domain. Is every even-degree polynomial function also an even function? Explain.
 
-#### Extrema
+**34. PERSEVERE** A function is odd if [-f(x) = f(-x)] for every [x] in the domain. Is every odd-degree polynomial function also an odd function? Explain.
 
-* There is a relative maximum between 1980 and 1990
-* There is a relative minimum between 2010 and 2020 in the relevant domain
+## Review Notes
 
-#### End behavior
+* Image references in this lesson:
+  * ![](media/image1.png) — Car sales data table (Exercise 11)
+  * ![](media/image2.png) — Population data table (Exercise 12)
+  * ![](media/image3.png) — Volunteer hours data table (Exercise 13)
+  * ![](media/image4.png) — Farms data table (Exercise 14)
+  * ![](media/image5.png) — Salary data table (Exercise 15)
+  * ![](media/image6.png) — Precision problem sketch (Exercise 25)
+  * ![](media/image7.png) — Canister diagram (Exercise 26)
+  * ![](media/image8.png) — Deliveries data table (Exercise 28)
+  * ![](media/image9.png) — Cubic function values table (Exercise 30)
 
-As `x -> infinity`, `f(x) -> infinity`.
-
-#### Intercepts
-
-* y-intercept: `(0, 7.708)`
-* There is no x-intercept in the relevant domain
-
-#### Symmetry
-
-The graph does not have symmetry.
-
-## Think About It
-
-What trends in the number of pilots does the graph suggest?
-
-## Talk About It
-
-Is it reasonable that the trend will continue indefinitely? Explain.
-
----
-
-## Example 4 — Use a Polynomial Function and Technology to Model
-
-The table shows U.S. backpack sales, in millions of dollars. Make a scatter plot and a curve of best fit to show the trend over time. Then determine the backpack sales in 2015.
-
-### Step 1: Enter the data
-
-Let the year `2000` be represented by `0`.
-
-### Step 2: Graph the scatter plot
-
-Use a scatter plot with:
-
-* years since 2000 in `List 1`
-* backpack sales in `List 2`
-
-### Step 3: Determine the polynomial function of best fit
-
-Compare linear, quadratic, cubic, and quartic regressions using the coefficient of determination `r^2`.
-
-A quartic function fits the data best.
-
-Regression equation, rounded to the nearest tenth:
-
-`y ≈ 0.2x^4 - 3.9x^3 + 26.4x^2 - 43.6x + 1139.9`
-
-### Step 4: Graph and evaluate the regression function
-
-To predict backpack sales in 2015, use `x = 15`.
-
-So, in `2015`, backpack sales were about $3.523 billion.
-
-## Think About It
-
-Explain the approximation that is made when using the model to determine backpack sales in a specific year.
-
----
-
-## Example 5 — Find Average Rate of Change
-
-The table shows the expected g-force on the Ares-V rocket during a `200`-second launch.
-
-### Part A: Find the average rate of change
-
-From the graph:
-
-* change in y-values is about `0.9`
-* change in x-values is `200`
-
-Estimated average rate of change:
-
-`0.9 / 200 = 0.0045`
-
-Check algebraically:
-
-`(f(200) - f(0)) / (200 - 0) = (2.2 - 1.34) / 200 = 0.0043`
-
-### Part B: Interpret the result
-
-From `0` to `200` seconds, the average rate of change in acceleration was an increase of `0.0043` Gs per second.
-
-## Think About It
-
-Does the average rate of change from `0` to `200` seconds accurately describe the acceleration of the launch? Justify your reasoning.
-
----
-
-## Objective Alignment
-
-- `Approximate zeros by graphing polynomial functions`: Primary worked examples: Examples 1, 3, and 4.
-- `Find extrema of polynomial functions`: Primary worked examples: Examples 2-4.
+* The Intermediate Value Theorem guarantees a zero between [a] and [b] if [f(a)] and [f(b)] have opposite signs.
+* Average rate of change over [[a, b]] is calculated as [\frac{f(b) - f(a)}{b - a}].
+* Even-degree polynomials can have absolute maxima/minima; odd-degree polynomials do not.

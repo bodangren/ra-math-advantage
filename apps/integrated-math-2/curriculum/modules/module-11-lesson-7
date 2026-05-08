@@ -1,0 +1,207 @@
+# Lesson 11-7 — Factoring Special Products
+
+Source: (Module 11, Lesson 11-7, Int2_1107_practice.docx)
+
+## Today's Goals
+
+* Factor polynomials using the difference of squares pattern, including repeated application and factoring by grouping.
+* Recognize perfect square trinomials by verifying the relationship between the first, middle, and last terms, then factor them.
+* Identify prime polynomials that cannot be factored over the integers.
+* Apply special factoring patterns to solve real-world area and volume problems.
+
+## Vocabulary
+
+* **Difference of squares** — A binomial of the form [ a^2 - b^2 ] that factors into [ (a+b)(a-b) ].
+* **Perfect square trinomial** — A trinomial of the form [ a^2 + 2ab + b^2 ] or [ a^2 - 2ab + b^2 ] that factors into a binomial squared.
+* **Prime polynomial** — A polynomial that cannot be factored using integer coefficients.
+* **Factor by grouping** — A factoring method used for polynomials with four or more terms by grouping terms with common factors.
+
+## Learn: Difference of Squares
+
+Polynomials that fit the difference of squares pattern can be factored quickly once the two perfect squares are identified.
+
+### Key Concept: Difference of Squares
+
+* A binomial is a difference of squares if it can be written as [ a^2 - b^2 ].
+* The factored form is [ (a+b)(a-b) ].
+* Always look for a greatest common factor (GCF) before applying special factoring patterns.
+* The difference of squares pattern can sometimes be applied more than once.
+
+## Example 1 — Factor Difference of Squares
+
+Factor polynomials that are differences of squares, including those requiring multiple applications of the pattern or preliminary factoring.
+
+### Step 1: Look for a GCF
+
+Check whether all terms share a common factor. If so, factor it out first.
+
+[
+3c^3 + 2c^2 - 147c - 98 = c^2(3c + 2) - 49(3c + 2)
+]
+
+### Step 2: Identify Perfect Squares
+
+Rewrite each term as a perfect square.
+
+[
+a^2 - b^2
+]
+
+### Step 3: Apply the Pattern
+
+Write the factored form using the sum and difference of the square roots.
+
+[
+a^2 - b^2 = (a+b)(a-b)
+]
+
+### Step 4: Check for Repeated Patterns
+
+If a factor is itself a difference of squares, apply the pattern again until fully factored.
+
+[
+w^4 - 625 = (w^2+25)(w^2-25) = (w^2+25)(w+5)(w-5)
+]
+
+## Example 2 — Factor by Grouping
+
+Factor polynomials with four terms by grouping pairs of terms and then applying special factoring patterns.
+
+### Step 1: Group Terms
+
+Group the first two terms and the last two terms.
+
+[
+(2x^3 - x^2) - (162x - 81)
+]
+
+### Step 2: Factor Out the GCF from Each Group
+
+Factor out the greatest common factor from each group.
+
+[
+x^2(2x - 1) - 81(2x - 1)
+]
+
+### Step 3: Factor Out the Common Binomial
+
+Factor out the common binomial factor.
+
+[
+(2x - 1)(x^2 - 81)
+]
+
+### Step 4: Apply Special Factoring Patterns
+
+If the remaining factor fits a special pattern, continue factoring.
+
+[
+(2x - 1)(x+9)(x-9)
+]
+
+## Example 3 — Apply Difference of Squares to Area Problems
+
+Use the difference of squares pattern to factor expressions that represent areas of squares and rectangles, then interpret the factors as dimensions.
+
+### Step 1: Write the Area Expression
+
+Identify the expression that represents the area of the region.
+
+[
+A = x^2 - 25
+]
+
+### Step 2: Factor the Expression
+
+Recognize the difference of squares and factor.
+
+[
+x^2 - 25 = (x+5)(x-5)
+]
+
+### Step 3: Interpret the Factors
+
+The factors represent the possible length and width of the rectangular region.
+
+[
+A = a^2 - 4b^2 = (a+2b)(a-2b)
+]
+
+The factors [ (a+2b) ] and [ (a-2b) ] represent the length and width.
+
+## Learn: Perfect Square Trinomials
+
+Some trinomials are the square of a binomial. Recognizing this pattern avoids lengthy trial-and-error factoring.
+
+### Key Concept: Perfect Square Trinomial
+
+* A trinomial is a perfect square if the first and last terms are perfect squares and the middle term is twice the product of their square roots.
+* [ a^2 + 2ab + b^2 = (a+b)^2 ]
+* [ a^2 - 2ab + b^2 = (a-b)^2 ]
+* If the middle term does not equal [ \pm 2ab ], the trinomial is not a perfect square.
+
+## Example 4 — Identify Perfect Square Trinomials
+
+Determine whether a trinomial is a perfect square by checking the relationship between its terms.
+
+### Step 1: Check the First and Last Terms
+
+Verify that the first term and the last term are perfect squares.
+
+[
+16x^2 = (4x)^2, \quad 49 = 7^2
+]
+
+### Step 2: Check the Middle Term
+
+Confirm that the middle term equals [ 2ab ] or [ -2ab ].
+
+[
+-56x = -2(4x)(7)
+]
+
+### Step 3: Write Yes or No
+
+If all conditions are met, write *yes* and factor. Otherwise, write *no*.
+
+[
+16x^2 - 56x + 49 = (4x - 7)^2
+]
+
+## Example 5 — Factor Perfect Square Trinomials
+
+Factor trinomials that have been identified as perfect squares.
+
+### Step 1: Identify [ a ] and [ b ]
+
+Find the square roots of the first and last terms.
+
+[
+a = 9n, \quad b = 5
+]
+
+### Step 2: Write the Factored Form
+
+Use the sign of the middle term to determine whether to use [ (a+b)^2 ] or [ (a-b)^2 ].
+
+[
+9n^2 + 30n + 25 = (3n + 5)^2
+]
+
+## Mixed Exercises
+
+The mixed exercises provide comprehensive practice in factoring special products. Problems include:
+
+* Factoring differences of squares, including those with a GCF or multiple variables.
+* Identifying and factoring perfect square trinomials.
+* Recognizing prime polynomials such as sums of squares that cannot be factored over the integers.
+* Factoring four-term polynomials by grouping.
+* Applying factoring skills to real-world contexts including garden design, parking lots, and manufacturing volumes.
+* Analyzing and critiquing the reasoning of others about factoring patterns.
+
+## Review Notes
+
+* Several diagrams and images appear in the original worksheet (rug, roof truss, washers, error analysis, and "which one doesn't belong") that could not be described from the text extraction. These should be reviewed for visual context.
+* Problems involving geometric diagrams may require image assets or teacher-provided descriptions.
+* The "Find the Error" problem references a visual comparison of two students' work that is not available in text form.
+* The triangular roof truss area problem includes a fraction coefficient that should be reviewed for proper rendering.

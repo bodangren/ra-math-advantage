@@ -1,159 +1,163 @@
 # Lesson 9-1 — Angles and Angle Measure
 
-Source: (Module 9, Lesson 9-1, pp. 417–420)
+Source: (Module 9, Lesson 9-1, Int3_0901_practice.docx)
 
 ## Today's Goals
 
-* Draw angles in standard position and identify coterminal angles
-* Convert between degree and radian measures and find arc lengths by using central angles
-
----
+* Draw angles in standard position given degree measures, including angles greater than 360° and negative angles.
+* Find coterminal angles by adding or subtracting multiples of 360° or [2π] radians.
+* Convert between degree measure and radian measure.
+* Solve problems involving arc length using the formula [s = rθ].
 
 ## Vocabulary
 
-* standard position
-* initial side
-* terminal side
-* coterminal angles
-* radian
-* central angle of a circle
+* **Standard Position** — An angle whose vertex is at the origin and whose initial side lies along the positive x-axis.
+* **Coterminal Angles** — Angles in standard position that share the same terminal side; their measures differ by multiples of 360° or [2π] radians.
+* **Radian** — The measure of a central angle that intercepts an arc equal in length to the radius of the circle; [1 radian = 180°/π].
+* **Arc Length** — The distance along a circular arc, calculated as [s = rθ] where [r] is the radius and [θ] is the central angle in radians.
+* **Sector** — A region of a circle bounded by two radii and the intercepted arc.
+* **Quadrantal Angle** — An angle in standard position whose terminal side lies on one of the axes (0°, 90°, 180°, 270°, 360°).
 
----
+## Explore: Angles in Standard Position
 
-## Learn: Angles in Standard Position
+When an angle is drawn in standard position, its measure determines how far the terminal side has rotated from the initial side. Students explore what it means for an angle to have a measure greater than 360° or a negative measure, and why coterminal angles are useful.
 
-An angle is in **standard position** if:
+Inquiry Question:
+How can you determine whether two angles are coterminal without drawing them?
 
-* its vertex is at the origin
-* its initial side lies on the positive x-axis
+## Learn: Angles and Angle Measure
 
-Positive angles rotate counterclockwise. Negative angles rotate clockwise.
+### Key Concept: Drawing Angles in Standard Position
 
-Angles with the same terminal side are **coterminal angles**.
+To draw an angle in standard position:
+1. Place the vertex at the origin.
+2. Draw the initial side along the positive x-axis.
+3. Rotate counterclockwise for positive angles and clockwise for negative angles.
+4. For angles greater than 360°, the terminal side makes multiple complete rotations.
 
-You can find coterminal angles by adding or subtracting multiples of `360°`.
+Example: 400° = 400 - 360 = 40°, so the terminal side is in the same position as a 40° angle.
 
----
+### Key Concept: Finding Coterminal Angles
 
-## Example 1 — Draw an Angle in Standard Position
+To find a coterminal angle:
+* Add or subtract 360° (or [2π] radians) as many times as needed.
+* For a positive angle greater than 360°, subtract 360°.
+* For a negative angle, add 360°.
 
-Draw an angle measuring `200°`.
+Example: A 160° angle is already between 0° and 360°, so it is its own positive coterminal angle.
+Example: 280° is between 0° and 360°, so it is its own positive coterminal angle.
+Example: 400° - 360° = 40°.
 
-Because the angle is positive, rotate counterclockwise.
+### Key Concept: Degree to Radian Conversion
 
-Since:
+The relationship between degrees and radians is based on 180° = [π] radians.
 
-`200° = 180° + 20°`
+To convert degrees to radians: multiply by [π/180].
+To convert radians to degrees: multiply by [180/π].
 
-the terminal side is `20°` past the negative x-axis.
+Common conversions:
+* 90° = [π/2] radians
+* 180° = [π] radians
+* 270° = [3π/2] radians
+* 360° = [2π] radians
 
----
+## Example 1 — Draw Angles in Standard Position
 
-## Example 2 — Draw an Angle with More Than One Rotation
+Draw each angle in standard position and identify its quadrant.
 
-Draw an angle measuring `475°`.
+### Step 1: Analyze Each Angle
 
-`475° = 360° + 115°`
+**160°** — This angle is between 90° and 180°, so it lies in Quadrant II.
 
-So the angle makes one full counterclockwise rotation and then continues to `115°`.
+**280°** — This angle is between 270° and 360°, so it lies in Quadrant IV.
 
----
+**400°** — Since 400° > 360°, subtract 360° to get 40°. This angle lies in Quadrant I.
 
-## Example 3 — Identify Coterminal Angles
+**185°** — This angle is between 180° and 270°, so it lies in Quadrant III.
 
-Find one positive and one negative angle coterminal with `35°`.
+**810°** — Subtract 360° twice: 810° - 720° = 90°. This is a quadrantal angle on the positive y-axis.
 
-* positive: `35° + 360° = 395°`
-* negative: `35° - 360° = -325°`
+**390°** — Subtract 360°: 390° - 360° = 30°. This angle lies in Quadrant I.
 
-## Think About It
+**495°** — Subtract 360°: 495° - 360° = 135°. This angle lies in Quadrant II.
 
-Write expressions for four different angles that are all coterminal with an angle measuring `x°`.
+**-50°** — This negative angle rotates clockwise from the positive x-axis, landing in Quadrant IV.
 
----
+**-420°** — Add 360° twice: -420° + 720° = 300°. This angle lies in Quadrant IV.
 
-## Explore: Arc Length
+## Example 2 — Find Coterminal Angles
 
-Use the online activity to complete the explore.
+Find one positive and one negative coterminal angle for each given angle.
 
-**Inquiry Question:**
-How can you use a central angle to determine the length of an arc?
+### Step 1: Apply the Coterminal Angle Formula
 
----
+For any angle [θ], coterminal angles can be found using:
+[θ + 360°k] or [θ - 360°k] where [k] is any integer.
 
-## Learn: Degrees and Radians
+For radian measures, use: [θ + 2πk] or [θ - 2πk].
 
-A **radian** is the measure of an angle whose intercepted arc has the same length as the radius.
+Example for 65°: Positive coterminal = 65° + 360° = 425°; Negative coterminal = 65° - 360° = -295°.
 
-One full revolution is:
+Example for -75°: Positive coterminal = -75° + 360° = 285°; Negative coterminal = -75° - 360° = -435°.
 
-`2pi` radians
+Example for 230°: Positive coterminal = 230° + 360° = 590°; Negative coterminal = 230° - 360° = -130°.
 
-### Key Concept: Convert Between Degrees and Radians
+## Example 3 — Convert Between Degrees and Radians
 
-* degrees to radians: multiply by `pi/180`
-* radians to degrees: multiply by `180/pi`
+### Step 1: Use the Conversion Formulas
 
-Common angle measures:
+To convert degrees to radians, multiply by [π/180]:
+[140° × π/180 = 7π/9]
 
-* `30° = pi/6`
-* `45° = pi/4`
-* `60° = pi/3`
-* `90° = pi/2`
+To convert radians to degrees, multiply by [180/π]:
+[3π/5 × 180/π = 108°]
 
-### Key Concept: Arc Length
-
-For radius `r` and central angle `theta` in radians:
-
-`s = r theta`
-
----
-
-## Example 4 — Convert Degrees to Radians
-
-Rewrite `-100°` in radians.
-
-`-100 * pi/180 = -5pi/9`
-
-So:
-
-`-100° = -5pi/9`
-
----
-
-## Example 5 — Convert Radians to Degrees
-
-Rewrite `11pi/4` in degrees.
-
-`(11pi/4) * 180/pi = 495°`
-
----
-
-## Example 6 — Find Arc Length
-
-A traffic circle has diameter `160` feet. How far does a car travel if it goes three-fourths of the way around?
-
-### Step 1: Find the angle in radians
-
-Three-fourths of a full rotation is:
-
-`(3/4)(2pi) = 3pi/2`
-
-### Step 2: Find the arc length
-
-Radius:
-
-`r = 80`
-
-Arc length:
-
-`s = 80 * 3pi/2 = 120pi ≈ 377`
-
-So the car travels about `377` feet.
-
----
-
-## Objective Alignment
-
-- `Draw angles in standard position and identify coterminal angles`: Primary worked examples: Examples 1-3.
-- `Convert between degree and radian measures and find arc lengths by using central angles`: Primary worked examples: Examples 4-6.
+Convert each:
+* 140° = [7π/9] radians
+* -260° = [-13π/9] radians
+* -75° = [-5π/12] radians
+
+## Example 4 — Arc Length Problems
+
+### Step 1: Apply the Arc Length Formula
+
+Arc length [s] on a circle of radius [r] with central angle [θ] (in radians) is:
+[s = rθ]
+
+**Traffic roundabout:** Diameter = 200 m, so radius = 100 m. One-fourth of the way around = [θ = (1/4) × 2π = π/2] radians.
+[s = 100 × π/2 = 50π] meters.
+
+**Minute hand:** Length = 5 inches. From 12 to 12:40 is 40 minutes, which is [θ = (40/60) × 2π = 4π/3] radians.
+[s = 5 × 4π/3 = 20π/3] inches.
+
+## Mixed Exercises
+
+Practice problems include:
+
+* Converting degree measures to radians: 18°, 6°, -72°, -820°.
+* Converting radian measures to degrees: 4π, 5π/2, -9π/2, -7π/12.
+* Finding arc lengths given radius and central angle.
+* Clock problems involving hour and minute hand rotations.
+* Planet rotation problems calculating time for a given angle of rotation.
+* Surveyor's wheel problems.
+* Structure problems identifying angle measures in diagrams.
+* Ferris wheel problems involving arc length and rotation time.
+* Pizza slice problems finding central angle in radians.
+* Lawn sprinkler problems involving arc area and angle measure.
+* Circle arc function problems.
+* Line equation problems from angle and point information.
+* Revolution conversion problems (fraction of revolution to degrees/radians).
+
+## Review Notes
+
+* Images referenced in the worksheet (arc diagrams for problems 63-65, wheel diagram for problem 68, angle diagram for problem 76, circle diagram for problem 78) could not be fully described without visual reference. Teachers should consult the original worksheet for exact diagrams and values.
+
+![](media/image1.png)
+![](media/image2.png)
+![](media/image3.png)
+![](media/image4.png)
+![](media/image5.png)
+![](media/image6.png)
+![](media/image7.png)
+![](media/image8.png)
+![](media/image9.png)

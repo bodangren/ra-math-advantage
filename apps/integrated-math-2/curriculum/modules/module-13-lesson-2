@@ -1,0 +1,141 @@
+# Lesson 13-2 — Verifying Trigonometric Identities
+
+Source: (Module 13, Lesson 13-2, Int2_1302_practice.docx)
+
+## Today's Goals
+
+* Verify trigonometric identities by transforming one side to match the other
+* Apply strategies for choosing which side to transform
+* Verify identities by transforming each side independently
+* Determine whether an equation is an identity or not an identity
+* Use identities to prove real-world relationships (e.g., Brewster's Law)
+
+## Vocabulary
+
+* **Verify an identity** — to prove that an equation is true for all values of the variable by transforming one side into the other
+* **Identity** — an equation that holds true for all values in the domain
+* **Not an identity** — an equation that is false for some values in the domain (a contradiction or conditional equation)
+
+## Explore: The Art of Verification
+
+Verifying an identity is different from solving an equation. You cannot assume the two sides are equal—you must prove they are identical through valid transformations.
+
+Inquiry Question:
+Why do we transform only one side when verifying an identity, rather than moving terms between sides?
+
+## Learn: Strategies for Verifying Identities
+
+### Key Concept: Choose One Side to Transform
+
+Pick the more complex side and transform it step by step until it matches the simpler side.
+
+### Key Concept: Useful Strategies
+
+1. Rewrite all trig functions in terms of sin and cos
+2. Factor and cancel common factors
+3. Look for patterns like [1 - sin^2 theta = cos^2 theta]
+4. Multiply by conjugates to create difference of squares
+5. Break up complex fractions
+
+### Key Concept: Transforming Both Sides
+
+For some identities, transforming one side is very difficult. In these cases, transform each side independently and show both simplify to the same expression.
+
+## Example 1 — Verify by Transforming One Side
+
+Verify [cos^2 theta + tan^2 theta * cos^2 theta = 1]
+
+### Step 1: Factor the Left Side
+
+[cos^2 theta + tan^2 theta * cos^2 theta = cos^2 theta (1 + tan^2 theta)]
+
+### Step 2: Apply the Pythagorean Identity
+
+Recall: [1 + tan^2 theta = sec^2 theta]
+
+[cos^2 theta * sec^2 theta = cos^2 theta * (1/cos^2 theta) = 1]
+
+### Step 3: Conclude
+
+Left side simplifies to 1, matching the right side. Verified.
+
+## Example 2 — Verify Using Multiple Identities
+
+Verify [cot theta (cot theta + tan theta) = csc^2 theta]
+
+### Step 1: Expand the Left Side
+
+[cot theta * cot theta + cot theta * tan theta = cot^2 theta + 1]
+
+### Step 2: Apply the Pythagorean Identity
+
+Recall: [1 + cot^2 theta = csc^2 theta]
+
+[cot^2 theta + 1 = csc^2 theta]
+
+### Step 3: Conclude
+
+Left side simplifies to [csc^2 theta]. Verified.
+
+## Example 3 — Transform Each Side Independently
+
+Verify [(sin theta + cot theta / csc theta)^2 = (2 + sec theta * csc theta) / (sec theta * csc theta)]
+
+### Step 1: Simplify the Left Side
+
+First, note that [cot theta / csc theta = (cos theta / sin theta) / (1/sin theta) = cos theta]
+
+So [(sin theta + cos theta)^2 = sin^2 theta + 2 sin theta cos theta + cos^2 theta = 1 + 2 sin theta cos theta]
+
+### Step 2: Simplify the Right Side
+
+[(2 + sec theta * csc theta) / (sec theta * csc theta) = 2/(sec theta * csc theta) + 1]
+
+[sec theta * csc theta = (1/cos theta)(1/sin theta) = 1/(sin theta cos theta)]
+
+So [2/(sec theta * csc theta) = 2 sin theta cos theta]
+
+Thus, the right side equals [1 + 2 sin theta cos theta]
+
+### Step 3: Both Sides Match
+
+Both sides simplify to [1 + 2 sin theta cos theta]. Verified.
+
+## Example 4 — Verify the Cofunction Identity
+
+Verify [cos(theta - pi/2) = sin theta] (or equivalently [cos(pi/2 - theta) = sin theta])
+
+### Step 1: Apply the Cosine Difference Identity
+
+[cos(A - B) = cos A cos B + sin A sin B]
+
+[cos(theta - pi/2) = cos theta * cos(pi/2) + sin theta * sin(pi/2)]
+
+### Step 2: Substitute Known Values
+
+[cos(pi/2) = 0] and [sin(pi/2) = 1]
+
+[cos theta * 0 + sin theta * 1 = sin theta]
+
+### Step 3: Conclude
+
+[cos(theta - pi/2) = sin theta]. Verified.
+
+## Mixed Exercises
+
+The mixed exercises provide practice with:
+
+* Verifying basic identities (tan theta * cos theta = sin theta, cot theta * tan theta = 1)
+* Verifying Pythagorean forms ([sin^2 theta / (1 - sin^2 theta) = tan^2 theta])
+* Verifying identities that require algebraic manipulation or factoring
+* Proving Brewster's Law using trigonometric identities (OPTICS problem)
+* Determining whether an equation is an identity and justifying the argument
+* Using calculator methods to test whether an equation is an identity
+* Analyzing why [sin^2 theta + cos^2 theta = 1] is an identity but [sin theta = sqrt(1 - cos^2 theta)] is not
+* Creating trigonometric contradictions and expressions
+
+## Review Notes
+
+* Image references: ![](media/image1.png) — Problem 23 shows an optics diagram for Brewster's Law. ![](media/image2.png) — Problem 24 shows graphs comparing y = cos^2 x / (1 - sin x) and y = sin x. ![](media/image3.png) — Problem 36 shows calculator display for testing identity. Consult original worksheet for exact diagrams.
+* The worksheet contains 42 practice problems across worked examples and mixed exercises.
+* Problems 35-42 involve proof, analysis, and creation tasks.

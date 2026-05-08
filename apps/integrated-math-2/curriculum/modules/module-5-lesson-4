@@ -1,0 +1,113 @@
+# Lesson 5-4 — Inscribed Angles
+
+Source: (Module 5, Lesson 5-4, Int2_0504_practice.docx)
+
+## Today's Goals
+
+* Find the measure of inscribed angles and their intercepted arcs.
+* Prove theorems about inscribed angles and intercepted arcs.
+* Use the relationship between inscribed angles and central angles.
+* Apply properties of angles inscribed in semicircles.
+
+## Vocabulary
+
+* **Inscribed Angle** — An angle whose vertex is on the circle and whose sides contain chords of the circle.
+* **Intercepted Arc** — The arc that lies in the interior of an inscribed angle, with endpoints on the angle.
+* **Inscribed Polygon** — A polygon whose vertices all lie on a circle.
+
+## Explore: How Do Inscribed Angles Compare to Central Angles?
+
+An inscribed angle is formed by two chords meeting at a point on the circle, while a central angle has its vertex at the center. Students explore why an inscribed angle measures half of its intercepted arc.
+
+Inquiry Question:
+If two inscribed angles intercept the same arc, how are they related?
+
+## Learn: Inscribed Angles
+
+### Key Concept: Inscribed Angle Theorem
+
+The measure of an inscribed angle is half the measure of its intercepted arc:
+
+[m∠ABC = (1/2)mAC]
+
+This is true whether the angle is acute, right, or obtuse.
+
+### Key Concept: Angles Inscribed in a Semicircle
+
+An angle inscribed in a semicircle is a right angle. This is a direct consequence of the Inscribed Angle Theorem, since a semicircle measures 180°, and half of 180° is 90°.
+
+### Key Concept: Cyclic Quadrilaterals
+
+Opposite angles of an inscribed quadrilateral are supplementary. If a quadrilateral is inscribed in a circle, then:
+
+[m∠D + m∠F = 180°]
+[m∠E + m∠G = 180°]
+
+## Example 1 — Find Measures of Inscribed Angles
+
+Find [mAC], [m∠N], [m∠QSR], [m∠XY], [m∠E], and [m∠R] from circle diagrams.
+
+### Step 1: Apply the Inscribed Angle Theorem
+
+Use the relationship [m∠ = (1/2)m(intercepted arc)]. Identify the intercepted arc for each inscribed angle.
+
+## Example 2 — Find Angle Measures in Overlapping Triangles
+
+Use properties of inscribed angles to find [m∠N], [m∠L], [m∠C], and [m∠A] from circle diagrams.
+
+### Step 1: Identify the Intercepted Arc for Each Angle
+
+For each inscribed angle, find the arc it intercepts, then apply the inscribed angle theorem.
+
+## Example 3 — Prove Inscribed Angle Theorems
+
+Write paragraph and two-column proofs involving inscribed angles.
+
+### Step 1: Paragraph Proof
+
+**Given:** [m∠T = (1/2)m∠S]
+**Prove:** [mTUR = 2mURS]
+
+Use the relationship between central and inscribed angles, or the relationship between an inscribed angle and its intercepted arc.
+
+### Step 2: Two-Column Proof
+
+**Given:** ⊙*C*
+**Prove:** [△KML ∼ △JMH]
+
+Use inscribed angle properties to establish angle congruence, then conclude similarity.
+
+## Mixed Exercises
+
+Practice with all skills from the lesson, including:
+
+* Finding arc measures and inscribed angle measures from circle diagrams (Exercises 26–31).
+* Writing two-column proofs for Theorem 10.8 (if two inscribed angles intercept the same arc, they are congruent).
+* Writing paragraph proofs for Theorem 10.10 (opposite angles of an inscribed quadrilateral are supplementary).
+* Proving both directions of Theorem 10.9 (angle inscribed in a semicircle is a right angle and converse).
+* Proving that if [PQRS] is an inscribed quadrilateral and [∠Q ≅ ∠S], then [PR] is a diameter.
+* Finding angle measures in a triangular garden inscribed in a circle, then using trigonometry to find the radius.
+* Finding [m∠1] for five lights equally spaced around a circular arena.
+* Finding [mADC] given [m∠ADC] and writing a formula relating inscribed angle measure to intercepted arc measure.
+* Finding [m∠SRU] and the value of [x] in a kite inscribed in a circle.
+* Analyzing whether squares, rectangles, parallelograms, rhombuses, and kites can always be inscribed in a circle.
+* Finding the ratio of the area of a circle to the area of an inscribed square.
+* Explaining how to find leg lengths of a 45°-45°-90° triangle inscribed in a circle given the radius.
+* Comparing and contrasting inscribed angles and central angles.
+* Determining whether statements about arcs and inscribed angles are always, sometimes, or never true.
+
+## Review Notes
+
+* ![](media/image1.png), ![](media/image2.png), ![](media/image3.png) — inscribed angle diagrams for Exercises 1–3
+* ![](media/image4.png), ![](media/image5.png), ![](media/image6.png) — inscribed angle diagrams for Exercises 4–6
+* ![](media/image7.png), ![](media/image8.png) — diagrams for Exercises 7–10 (find m∠N, m∠L, m∠C, m∠A)
+* ![](media/image9.png), ![](media/image10.png) — proof diagrams for Exercises 11–12
+* ![](media/image11.png), ![](media/image12.png), ![](media/image13.png), ![](media/image14.png) — inscribed angle diagrams for Exercises 13–20
+* ![](media/image15.png), ![](media/image16.png), ![](media/image17.png) — inscribed angle diagrams for Exercises 21–24
+* ![](media/image18.png), ![](media/image19.png), ![](media/image20.png) — mixed exercise diagrams for Exercises 26–31
+* ![](media/image21.png), ![](media/image22.png), ![](media/image23.png) — mixed exercise diagrams for Exercises 29–31
+* ![](media/image24.png) — two-column proof diagram for Exercises 32–33 (Theorem 10.8 and 10.10)
+* ![](media/image25.png), ![](media/image26.png) — diagrams for Exercise 34 (Theorem 10.9 proof)
+* ![](media/image27.png) — circular garden with triangle for Exercise 36
+* ![](media/image28.png) — arena with five lights for Exercise 37
+* ![](media/image29.png) — earrings with inscribed quadrilateral for Exercise 38

@@ -1,101 +1,141 @@
 # Lesson 5-5 — Modeling Data
 
-Source: (Module 5, Lesson 5-5, pp. 249–250)
+Source: (Module 5, Lesson 5-5, Int3_0505_practice.docx)
 
 ## Today's Goals
 
-* Choose the best function type to model sets of data
-
----
+* Use scatter plots to determine whether data are best modeled by linear, quadratic, or exponential functions.
+* Perform regression analysis using a graphing calculator.
+* Interpret the correlation coefficient [r] to describe the strength of a linear relationship.
+* Apply regression models to make predictions in real-world contexts.
 
 ## Vocabulary
 
-* regression function
-* coefficient of determination
+* **Scatter Plot** — A graph of points representing data pairs of two variables.
+* **Regression** — A statistical method for finding the best-fit function to model data.
+* **Correlation Coefficient [r]** — A value between -1 and 1 that measures the strength and direction of a linear relationship.
+* **Linear Model** — A function of the form [y = mx + b] that best fits linear data.
+* **Quadratic Model** — A function of the form [y = ax^2 + bx + c] that best fits parabolic data.
+* **Exponential Model** — A function of the form [y = ab^x] that best fits exponential data.
 
----
+## Explore: Choosing the Right Model
 
-## Explore: Modeling Exponential Decay
+When data are collected from real-world situations, the scatter plot reveals the pattern. Linear data show a constant rate of change, quadratic data show acceleration or deceleration, and exponential data show constant percentage change.
 
-Use a concrete model to complete the explore.
+Inquiry Question:
+How can examining the scatter plot help you decide which type of function to use for modeling before performing regression?
 
-**Inquiry Question:**
-How can experimental data be used to predict outcomes?
+## Learn: Modeling Data
 
----
+### Key Concept: Identifying Data Patterns
 
-## Learn: Choosing the Best Model
+* **Linear:** Points form a pattern with constant slope (straight line)
+* **Quadratic:** Points form a U-shaped or inverted U pattern (parabola)
+* **Exponential:** Points show rapid increases or decreases that level off (growth/decay curve)
 
-Linear, quadratic, and exponential functions grow differently.
+### Key Concept: Using the Correlation Coefficient
 
-* linear functions have linear graphs
-* quadratic and exponential functions are nonlinear
-* exponential functions grow faster than quadratic functions
+* [r = 1] or [r = -1]: perfect correlation
+* [0.7 < |r| < 1]: strong correlation
+* [0.4 < |r| < 0.7]: moderate correlation
+* [0 < |r| < 0.4]: weak correlation
 
-A graphing calculator can find a **regression function**, which is a function chosen to fit a set of data.
+## Example 1 — Create and Analyze Scatter Plots
 
-Calculators may also compute `r^2`, the **coefficient of determination**, which measures how well the data are modeled by the regression function.
+### Step 1: Plot the Data
 
-* an `r^2` value close to `1` indicates a strong fit
+Use a graphing calculator to create scatter plots for each data set.
 
-## Think About It
+Data Set 1: Create scatter plot from table of values. Examine pattern to determine best model.
 
-Describe the reliability of using a regression function to make predictions for domain values much greater or much less than the values in the data set.
+Data Set 2: Create scatter plot from table of values. Examine pattern to determine best model.
 
----
+Data Set 3: Create scatter plot from table of values. Examine pattern to determine best model.
 
-## Example 1 — Examine Scatter Plots
+### Step 2: Classify the Data
 
-Use a graphing calculator to make a scatter plot of the given data and determine whether it is best modeled by a linear, quadratic, or exponential function.
+Based on the scatter plot, determine whether the data are best modeled by linear, quadratic, or exponential.
 
-After plotting the data, the scatter plot appears to have:
+## Example 2 — Regression Analysis for Real-World Data
 
-* an asymptote at `y = -3`
-* rapid increase as `x -> infinity`
+### Step 1: Create a Scatter Plot
 
-So the data are likely best modeled by an **exponential function**.
+**SAVINGS:** Brittany deposited $1000 with no further deposits. The table shows account balance over 10 years.
 
----
+Create a scatter plot of year vs. account balance.
 
-## Example 2 — Model Data by Using Technology
+### Step 2: Perform Regression
 
-A coffee company grew to more than `17,000` shops over `40` years.
+Use the regression feature of the graphing calculator.
 
-Use the data table to determine a best-fit model, then make predictions.
+The data appear exponential (compound interest growth). Find the exponential regression: [y = ab^x].
 
-### Steps 1 and 2: Enter the data and make a scatter plot
+Round coefficients and constants to the nearest hundredth.
 
-Plot years since opening against number of shops.
+### Step 3: Make Predictions
 
-### Step 3: Determine the function of best fit
+After 15 years: substitute [x = 15] into the regression equation.
 
-Compare quadratic and exponential regressions using `r^2`.
+**TEST GRADES:** Survey of 12 students on hours studied vs. final exam grade.
 
-The exponential regression has the stronger fit:
+a. Graph and analyze. Is it linear or exponential? Write the equation for the best-fit model.
 
-* `r^2 ≈ 0.964`
+b. Based on the graph, find the minimum hours needed for a 60% or better passing grade.
 
-Regression equation, rounded to the nearest thousandth:
+**SCIENCE EXPERIMENTS:** Shawnte measured average time before soap bubbles pop. 64 identical bubbles.
 
-`y ≈ (0.655)1.317^x`
+a. Graph the data (number of unpopped bubbles vs. time)
 
-### Step 4: Evaluate the regression function
+b. Find the best model and regression function.
 
-Predictions from the model:
+c. Predict when 32 bubbles remain unpopped.
 
-* after `10` years: about `10` shops
-* after `42` years: about `70,116` shops
+## Mixed Exercises
 
-## Talk About It
+**USE TOOLS** Create scatter plots and determine the best model.
 
-Based on the scatter plot, is it reasonable that the data could be modeled by another function type? Justify your argument.
+Data Set 7: [(0, 1), (-1, -3), (10, 41), (2, 9), (7, 29), (-9, -35), (5, 21)]
+Analysis: The x-values range from -9 to 10. Looking at the pattern, this appears to be linear data.
 
-## Think About It
+Data Set 8: [(0, 1), (6, 64), (2, 4), (4, 16), (3, 8), (5, 32), (1, 2)]
+Analysis: The y-values double as x increases by 1 in some intervals (2→4→8→16→32→64), suggesting exponential model.
 
-What approximations were made when determining the number of shops at a given year?
+**Describe the correlation for each value of [r].**
 
----
+[r = 0.965] — strong positive linear correlation
+[r = -1] — perfect negative linear correlation
+[r = 0.22] — weak positive linear correlation
+[r = -0.39] — weak negative linear correlation
 
-## Objective Alignment
+**POPULATION:** World population per square kilometer data. Use graphing calculator to create scatter plot. Describe the relationship.
 
-- `Choose the best function type to model sets of data`: Primary worked examples: Examples 1-2.
+**CREATE:** Make a table of values that is best modeled by an exponential function. Example: exponential decay where each y-value is half the previous.
+
+**WRITE:** Explain how to use a graphing calculator to determine whether data are best modeled by linear, quadratic, or exponential:
+
+1. Enter data into calculator lists
+2. Create scatter plot
+3. Visually examine the pattern
+4. Try different regression types and compare [r^2] values
+5. Choose the model with the best fit
+
+**ANALYZE:** Fountain water stream path — is this best modeled by exponential or quadratic function? Explain why quadratic is appropriate for projectile motion (water follows parabolic path due to gravity).
+
+**PERSEVERE:** Surface area [SA] of hemispheres with radius [r]. What is the best model? What is the regression equation?
+
+## Review Notes
+
+* Image references in this lesson:
+  * ![](media/image1.JPG) — data table for Problem 1
+  * ![](media/image2.JPG) — data table for Problem 2
+  * ![](media/image3.JPG) — data table for Problem 3
+  * ![](media/image4.JPG) — savings account data graph
+  * ![](media/image5.JPG) — test grades data graph
+  * ![](media/image6.JPG) — science experiment data table
+  * ![](media/image7.JPG) — correlation coefficient diagram showing strong correlation
+  * ![](media/image8.png) — fountain water path graph
+  * ![](media/image9.JPG) — surface area of hemispheres data table
+
+Teachers should consult the original worksheet for exact diagrams, data tables, and scatter plot images.
+
+(End of file - total 154 lines)

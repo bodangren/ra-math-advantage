@@ -1,0 +1,152 @@
+# Lesson 8-1 — Exponential Functions
+
+Source: (Module 8, Lesson 8-1, Int1_0801_practice.docx)
+
+## Today's Goals
+
+* Determine whether a table of values represents an exponential relationship by examining common ratios.
+* Identify key features of exponential functions, including initial value, growth or decay factor, domain, range, and asymptote.
+* Graph exponential functions and interpret them in real-world contexts.
+* Compare exponential functions to linear functions using tables, graphs, and key characteristics.
+
+## Vocabulary
+
+* **Exponential function** — A function of the form [ y = ab^x ], where [ a \ne 0 ], [ b > 0 ], and [ b \ne 1 ].
+* **Exponential growth** — A situation modeled by an exponential function with base [ b > 1 ], where values increase over time.
+* **Exponential decay** — A situation modeled by an exponential function with base [ 0 < b < 1 ], where values decrease over time.
+* **Half-life** — The time required for a quantity to decrease to half its initial value.
+* **Asymptote** — A line that a graph approaches but never touches; for basic exponential functions, the horizontal asymptote is [ y = 0 ].
+* **Common ratio** — The constant factor by which each term in an exponential sequence is multiplied to get the next term.
+* **Initial value** — The value of [ y ] when [ x = 0 ], represented by the parameter [ a ] in [ y = ab^x ].
+
+## Learn: Recognizing Exponential Behavior
+
+To determine whether a table displays exponential behavior, check whether the ratio of successive outputs is constant.
+
+### Key Concept: Common Ratio Test
+
+* For equally spaced [ x ]-values, divide each [ y ]-value by the previous [ y ]-value.
+* If the ratio is constant, the data is exponential.
+* If the ratio is not constant (for example, first differences are constant), the data may be linear instead.
+
+## Learn: Key Features of Exponential Functions
+
+Exponential functions have a distinctive shape and predictable properties that make them useful for modeling growth and decay.
+
+### Key Concept: Exponential Function Features
+
+* The graph passes through [ (0, a) ], so the [ y ]-intercept is the initial value [ a ].
+* The domain is all real numbers: [ (-\infty, \infty) ].
+* The range depends on the sign of [ a ]: if [ a > 0 ], range is [ (0, \infty) ]; if [ a < 0 ], range is [ (-\infty, 0) ].
+* The horizontal asymptote is [ y = 0 ] unless the function is shifted vertically.
+* For [ b > 1 ], the function shows growth; for [ 0 < b < 1 ], it shows decay.
+
+## Example 1 — Identify Exponential Behavior from Data
+
+Determine whether a given table of values represents an exponential relationship. Write yes or no and explain.
+
+### Step 1: Check the Common Ratio
+
+For a table with equally spaced [ x ]-values, divide consecutive [ y ]-values to test for a constant ratio.
+
+For example, given:
+[
+\begin{array}{c|c}
+x & y \\
+\hline
+0 & 3 \\
+1 & 6 \\
+2 & 12 \\
+3 & 24 \\
+\end{array}
+]
+
+Compute ratios:
+[
+\frac{6}{3} = 2, \quad \frac{12}{6} = 2, \quad \frac{24}{12} = 2
+]
+
+Since the ratio is constant, the data displays exponential behavior.
+
+### Step 2: Explain the Reasoning
+
+State whether the relationship is exponential based on the common ratio test. If the ratios are not constant, identify what type of relationship the data does represent (for example, linear if first differences are constant).
+
+### Application: Picture Frames
+
+A table shows the relationship between picture area and frame length for a line of frames. Apply the common ratio test to determine whether the relationship is exponential and justify the answer.
+
+## Examples 2 and 3 — Analyze Exponential Functions in Context
+
+Given an exponential function that models a real-world situation, identify key features, graph the function, and determine the relevant domain and range.
+
+### Step 1: Identify Key Features
+
+For a function such as:
+[
+y = 1000(2)^{0.3x}
+]
+
+Identify:
+* Initial value: [ a = 1000 ] 
+* Base: [ b = 2 ] 
+* Growth or decay: since [ b > 1 ], this is exponential growth
+* Horizontal asymptote: [ y = 0 ] 
+
+For a half-life function such as:
+[
+y = 50\left(\frac{1}{2}\right)^{\frac{x}{8.02}}
+]
+
+Identify:
+* Initial amount: [ a = 50 ] milligrams
+* Decay factor: [ \frac{1}{2} ] 
+* Half-life: [ 8.02 ] days
+* Horizontal asymptote: [ y = 0 ] 
+
+### Step 2: Graph the Function
+
+Plot the [ y ]-intercept at [ (0, a) ]. Use the growth or decay factor to find additional points. Sketch a smooth curve approaching the horizontal asymptote.
+
+### Step 3: Identify Relevant Domain and Range
+
+For real-world contexts, the domain is often restricted to non-negative values:
+[
+\text{Domain: } \lbrack 0, \infty)
+]
+
+The range depends on the initial value and whether the function represents growth or decay:
+[
+\text{Range: } (0, a] \text{ for decay, or } [a, \infty) \text{ for growth}
+]
+
+### Step 4: Evaluate the Function
+
+To find a value at a specific input, substitute into the equation. For example, given:
+[
+y = 4000(0.87)^x
+]
+
+to find the value 5 years after purchase, evaluate:
+[
+y = 4000(0.87)^5
+]
+
+Round to the nearest dollar as appropriate.
+
+## Mixed Exercises
+
+The mixed exercises provide comprehensive practice with exponential functions. Students graph functions, find [ y ]-intercepts, and state the domain, range, and equation of the horizontal asymptote. The exercises include functions with various bases and coefficients, such as:
+[
+y = 2\left(\frac{1}{6}\right)^x, \quad y = \left(\frac{1}{12}\right)^x, \quad y = -3(9)^x, \quad y = -4(10)^x, \quad y = 3(11)^x, \quad y = 4^x + 3
+]
+
+Word problems apply exponential functions to atmospheric pressure, requiring students to evaluate the function at sea level and at a given altitude and to describe how pressure changes as altitude increases. Additional problems ask students to compare exponential and linear functions using tables and graphs, create an exponential function passing through two given points, analyze whether an exponential graph can have an [ x ]-intercept, and write a real-world situation modeled by an exponential function.
+
+## Review Notes
+
+* Problems 1–4 contain tables of values presented as images; the specific [ x ] and [ y ] values were not transcribed. A human reviewer should verify the table contents from the original worksheet.
+* Problem 5 contains a table (picture area versus frame length) presented as an image; the specific values should be verified from the original worksheet.
+* Graphing grids for problems 6b, 7b, and 9–14 are presented as images and cannot be displayed in this source file. These are standard coordinate-plane grids for hand-sketching exponential curves.
+* The half-life of Iodine 131 is stated as approximately 8.02 days in the original worksheet.
+* The meteorology problem uses the function [ f(x) = 1038(1.000134)^{-x} ] for atmospheric pressure at altitude [ x ] meters, where [ 0 \le x \le 10{,}000 ].

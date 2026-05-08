@@ -1,178 +1,149 @@
 # Lesson 9-6 — Translations of Trigonometric Graphs
 
-Source: (Module 9, Lesson 9-6, pp. 463–468)
+Source: (Module 9, Lesson 9-6, Int3_0906_practice.docx)
 
 ## Today's Goals
 
-* Graph horizontal translations of trigonometric functions
-* Graph vertical translations of trigonometric functions
-
----
+* Identify amplitude, period, phase shift, vertical shift, and midline from equations of trigonometric functions.
+* Graph translated sine, cosine, and tangent functions.
+* Write trigonometric equations to represent translated graphs.
+* Apply trigonometric functions to model real-world periodic phenomena with phase shifts and vertical translations.
 
 ## Vocabulary
 
-* phase shift
-* vertical shift
+* **Phase Shift** — A horizontal translation of a periodic function; for [y = a sin(b(x - h))], the phase shift is [h].
+* **Vertical Shift** — A translation up or down of the graph; for [y = a sin x + d], the vertical shift is [d].
+* **Midline** — The horizontal line [y = d] that is the average of the maximum and minimum values after a vertical translation.
+* **Translation** — A movement of a graph horizontally (phase shift) or vertically (vertical shift) without changing its shape.
 
----
+## Explore: Horizontal and Vertical Translations
 
-## Explore: Analyzing Trigonometric Functions by Using Technology
+Translating a trigonometric graph changes its position but preserves its shape. The phase shift moves the graph left or right, while the vertical shift moves it up or down. Understanding these transformations allows modeling of real-world situations where the starting point or average value is not at the origin.
 
-Use the online activity to complete the explore.
+Inquiry Question:
+How does a phase shift affect the key points of a sine or cosine graph, and how is it different from a change in period?
 
-**Inquiry Question:**
-How does adding a constant to, subtracting a constant from, or multiplying a constant by a function affect the graph of a trigonometric function?
+## Learn: Translations of Trigonometric Graphs
 
----
+### Key Concept: Equation Forms
 
-## Learn: Horizontal Translations of Trigonometric Functions
+For translated trigonometric functions:
 
-A horizontal translation of a trigonometric graph is called a **phase shift**.
+[y = a sin(b(x - h)) + d]
+[y = a cos(b(x - h)) + d]
+[y = a tan(b(x - h)) + d]
 
-### Key Concept: Phase Shift
+* Amplitude = [|a|]
+* Period = [2π/|b|] (for sin and cos) or [π/|b|] (for tan)
+* Phase shift = [h] (to the right if [h > 0], to the left if [h < 0])
+* Vertical shift = [d]
+* Midline = [y = d]
 
-For:
+### Key Concept: Graphing Translated Functions
 
-* `y = a sin b(x - h)`
-* `y = a cos b(x - h)`
-* `y = a tan b(x - h)`
+1. Identify amplitude, period, phase shift, and vertical shift.
+2. Draw the midline at [y = d].
+3. Apply the phase shift to locate key points horizontally.
+4. Plot points and connect with the appropriate curve shape.
 
-the phase shift is `h`.
+## Example 1 — Analyze Simple Translations
 
-* if `h > 0`, shift right
-* if `h < 0`, shift left
+### Step 1: Identify Each Characteristic
 
----
+For [y = sin(θ + π)]:
+* Amplitude = 1
+* Period = [2π]
+* Phase shift = [-π] (left π units)
+* Vertical shift = 0
+* Midline = [y = 0]
 
-## Example 1 — Graph a Phase Shift
+For [y = tan(θ - π/2)]:
+* Amplitude: N/A for tangent
+* Period = [π]
+* Phase shift = [π/2] (right)
+* Vertical shift = 0
 
-For:
+For [y = sin(θ + 90°)]:
+* Phase shift = [-90°] (left 90°)
 
-`y = cos(x - 270°)`
+## Example 2 — Analyze Functions with Amplitude Changes
 
-* amplitude `= 1`
-* period `= 360°`
-* phase shift `= 270°` right
+### Step 1: Apply All Characteristics
 
-The domain is all real numbers, and the range is `-1 <= y <= 1`.
+For [y = 3 cos(θ - 45°)]:
+* Amplitude = 3
+* Period = [2π]
+* Phase shift = [45°] (right)
+* Vertical shift = 0
 
----
+For [y = 2 sin(θ + 60°)]:
+* Amplitude = 2
+* Period = [2π]
+* Phase shift = [-60°] (left 60°)
 
-## Example 2 — Graph a Transformation of a Trigonometric Function
+## Example 3 — Functions with Vertical Shifts
 
-For:
+### Step 1: Include Midline
 
-`y = 3 sin(x + pi/4)`
+For [y = cos θ + 3]:
+* Amplitude = 1
+* Period = [2π]
+* Phase shift = 0
+* Vertical shift = 3
+* Midline = [y = 3]
 
-* amplitude `= 3`
-* period `= 2pi`
-* phase shift `= pi/4` left
+For [y = 2 cos θ - 5]:
+* Amplitude = 2
+* Vertical shift = [-5]
+* Midline = [y = -5]
+* Maximum = [-3], Minimum = [-7]
 
-The graph is stretched vertically and shifted left.
+## Example 4 — Real-World Modeling with Translations
 
-Domain: all real numbers  
-Range: `-3 <= y <= 3`
+### Step 1: Extract Information from Context
 
----
+**Clock problem:** Center at 79 feet, minute hand 3 feet. Height function: [h(t) = 79 + 3 cos(2πt/60)] or equivalent.
 
-## Learn: Vertical Translations of Trigonometric Functions
+**Tide problem:** Low 15 m, high 18 m, 6.2 hours in and 6.2 hours out. Midline = 16.5 m, amplitude = 1.5 m, period = 12.4 hours.
 
-A vertical translation is called a **vertical shift**.
+## Example 5 — Write Equations from Graphs
 
-### Key Concept: Vertical Shift
+### Step 1: Determine All Characteristics
 
-For:
-
-* `y = a sin(bx) + k`
-* `y = a cos(bx) + k`
-* `y = a tan(bx) + k`
-
-the vertical shift is `k`.
-
-The midline is:
-
-`y = k`
-
----
-
-## Example 3 — Graph a Vertical Shift
-
-For:
-
-`y = tan(1/2 x) - 1`
-
-* period `= 180° / (1/2) = 360°`
-* vertical shift `= -1`
-* midline `= y = -1`
-
-The graph is shifted down `1` unit.
-
-Domain: all real numbers except `180n°`
-
-Range: all real numbers
-
----
-
-## Example 4 — Model Translations of Trigonometric Functions
-
-A jump rope oscillates between heights `0` and `108` inches and hits the ground twice each second. It begins at height `0`.
-
-Use a cosine model.
-
-### Step 1: Find the midline and amplitude
-
-* midline `= (0 + 108)/2 = 54`
-* amplitude `= (108 - 0)/2 = 54`
-
-### Step 2: Find the period and `b`
-
-The rope completes one cycle in `0.5` second, so:
-
-`0.5 = 2pi / b`
-
-`b = 4pi`
-
-### Step 3: Find the phase shift
-
-Because cosine starts at a maximum and the rope starts at `0`, the graph is shifted to the right by `0.25`.
-
-### Step 4: Write the function
-
-`y = 54 cos(4pi(x - 0.25)) + 54`
-
-This models the jump rope height.
-
----
-
-## Example 5 — Write a Trigonometric Function from a Graph
-
-From the graph:
-
-* maximum `= 5`
-* minimum `= -1`
-
-So:
-
-* midline `= 2`
-* amplitude `= 3`
-
-The maximum has shifted right by `pi`, so:
-
-* phase shift `= pi`
-
-The period is `4pi`, so:
-
-`4pi = 2pi/|b|`
-
-`b = 0.5`
-
-Function:
-
-`y = 3 cos(0.5(x - pi)) + 2`
-
----
-
-## Objective Alignment
-
-- `Graph horizontal translations of trigonometric functions`: Primary worked examples: Examples 1-2 and 4-5.
-- `Graph vertical translations of trigonometric functions`: Primary worked examples: Examples 3-5.
+For a cosine graph:
+1. Find vertical shift (midline) = average of max and min.
+2. Find amplitude = (max - min)/2.
+3. Find phase shift from the horizontal translation.
+4. Find period from the horizontal length of one cycle.
+
+## Mixed Exercises
+
+Practice problems include:
+
+* Writing equations for translated graphs.
+* Identifying all characteristics of translated functions.
+* Graphing various translated trigonometric functions.
+* Ferris wheel modeling.
+* Insect population modeling.
+* Snake and rat predator-prey population modeling.
+* Ambulance light beam problem.
+* Finding maximum points on translated graphs.
+* Comparing translated graphs.
+* Structure problems converting between sine and cosine forms.
+* Writing equations from graphed trigonometric functions.
+* Creating periodic functions with specific amplitude and midline.
+* Analyzing when maximum/minimum values can be determined.
+* Describing differences between translated graphs.
+* Argument problems about sine graphs through specific points.
+
+## Review Notes
+
+* Images referenced in the worksheet (tide graph for problem 20, cosine/sine graphs for problems 21-22, ambulance diagram for problem 32, trigonometric graphs for problems 41-44, cosine graph for problem 47) could not be fully described without visual reference. Teachers should consult the original worksheet for exact diagrams and values.
+
+![](media/image1.png)
+![](media/image2.png)
+![](media/image3.png)
+![](media/image4.png)
+![](media/image5.png)
+![](media/image6.png)
+![](media/image7.png)

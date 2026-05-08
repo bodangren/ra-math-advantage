@@ -1,0 +1,182 @@
+# Lesson 11-2 — Angle Relationships
+
+Source: (Module 11, Lesson 11-2, Int1_1102_practice.docx)
+
+## Today's Goals
+
+* Solve problems involving complementary, supplementary, and vertical angle relationships using algebra.
+* Use the fact that perpendicular lines form right angles to write and solve equations for unknown angle measures.
+* Determine what geometric relationships can and cannot be assumed from a given figure.
+* Apply angle relationships to solve real-world problems.
+
+## Vocabulary
+
+* **Complementary Angles** — Two angles whose measures sum to [90^\circ].
+* **Supplementary Angles** — Two angles whose measures sum to [180^\circ].
+* **Vertical Angles** — Two nonadjacent angles formed by two intersecting lines; vertical angles are congruent.
+* **Linear Pair** — A pair of adjacent angles whose non-common sides are opposite rays; a linear pair is supplementary.
+* **Perpendicular Lines** — Lines, rays, or segments that intersect to form right angles.
+* **Adjacent Angles** — Two angles that share a common vertex and side but have no common interior points.
+* **Angle Bisector** — A ray that divides an angle into two congruent angles.
+
+## Explore: How Are Angles Related?
+
+Students consider pairs of angles that appear in everyday settings and in geometric figures. They investigate whether knowing one angle measure is enough to determine another.
+
+Inquiry Question:
+How can you use the relationship between two angles to find a missing measure without using a protractor?
+
+## Learn: Using Angle Relationships to Solve Problems
+
+Angle relationships such as complement, supplement, and perpendicularity provide equations that can be solved algebraically. Recognizing these relationships in figures and word problems is essential for finding unknown measures.
+
+### Key Concept: Complementary and Supplementary Angles
+
+* If two angles are complementary, the sum of their measures is [90^\circ].
+  [m\angle A + m\angle B = 90] 
+* If two angles are supplementary, the sum of their measures is [180^\circ].
+  [m\angle A + m\angle B = 180] 
+
+### Key Concept: Perpendicular Lines and Right Angles
+
+* If two lines, rays, or segments are perpendicular, they form right angles.
+* When a ray lies in the interior of a right angle, the two adjacent angles formed are complementary.
+* When two lines intersect to form perpendicular lines, all four angles are right angles.
+
+### Key Concept: Assumptions from a Figure
+
+* You may assume that straight lines, segments, and rays are straight.
+* You may assume that intersecting lines form vertical angle pairs and linear pairs.
+* You may **not** assume that angles are right angles, congruent, or complementary unless marked or stated.
+* You may **not** assume that lines are parallel or perpendicular unless marked or stated.
+
+## Example 1 — Solve Problems Using Complementary and Supplementary Angles
+
+Write and solve equations based on complementary and supplementary angle relationships. Problems include finding two angles given their sum and a relationship between them, and finding an angle given a relationship between the angle and its complement or supplement.
+
+### Step 1: Define the Variable
+
+Let a variable represent the measure of one angle. Express the other angle in terms of that variable using the given relationship.
+
+For supplementary angles with a difference of [35^\circ]:
+Let [x] = the measure of the smaller angle.
+Then the larger angle is [x + 35].
+
+### Step 2: Write the Equation
+
+Use the fact that the angles are complementary or supplementary to write an equation.
+
+Supplementary:
+[x + (x + 35) = 180]
+
+Complementary where one angle is [54^\circ] more than the other:
+[x + (x + 54) = 90]
+
+Supplement is [76^\circ] less than the angle:
+[x + (x - 76) = 180]
+
+### Step 3: Solve the Equation
+
+Combine like terms and isolate the variable.
+
+For [x + (x + 35) = 180]:
+[2x + 35 = 180]
+[2x = 145]
+[x = 72.5]
+
+The angles measure [72.5^\circ] and [107.5^\circ].
+
+### Step 4: Apply to Rate Problems
+
+For a real-world problem involving an angle opening at a constant rate, set up a proportion or use the rate to find the remaining time.
+
+If a bridge opens from horizontal to vertical ([90^\circ]) and has lifted [35^\circ] in 21 seconds, find the time to reach vertical at the same rate:
+[\frac{35}{21} = \frac{90}{t}]
+
+## Example 2 — Use Perpendicular Lines to Find Unknown Measures
+
+Use the property that perpendicular lines, rays, or segments form right angles to write equations and solve for unknown variables in angle expressions.
+
+### Step 1: Identify the Right Angle
+
+When two rays are perpendicular, the angle between them is [90^\circ]. If a point lies in the interior of that angle, the two adjacent angles are complementary.
+
+For perpendicular rays [BA] and [BC] with point [D] in the interior:
+[m\angle ABD + m\angle DBC = 90]
+
+### Step 2: Substitute Expressions and Solve
+
+Substitute the given algebraic expressions for the angle measures.
+
+If [m\angle ABD = (3r + 5)^\circ] and [m\angle DBC = (5r - 27)^\circ]:
+[(3r + 5) + (5r - 27) = 90]
+[8r - 22 = 90]
+[8r = 112]
+[r = 14]
+
+Then find each angle measure:
+[m\angle ABD = 3(14) + 5 = 47]
+[m\angle DBC = 5(14) - 27 = 43]
+
+### Step 3: Apply to Intersecting Lines
+
+When two lines intersect, if they are perpendicular, all four angles are [90^\circ]. Use this to find values of variables in angle expressions.
+
+For intersecting lines [WX] and [YZ] at point [V], if [m\angle WVY = (4a + 58)^\circ] and [m\angle XVY = (2b - 18)^\circ], and the lines are perpendicular:
+[4a + 58 = 90]
+[2b - 18 = 90]
+
+Solve each equation separately to find [a] and [b].
+
+## Example 3 — Determine Assumptions from a Figure
+
+Analyze a geometric figure to determine whether a stated relationship can be assumed. Justify each answer by referencing what can and cannot be assumed from an unmarked diagram.
+
+### Step 1: Identify What Is Given in the Figure
+
+Examine the figure for marks indicating right angles, congruent angles, parallel lines, or perpendicular lines. Note any labeled angle measures or tick marks.
+
+### Step 2: Evaluate Each Statement
+
+* **Complementary angles:** Can only be assumed if the angles form a right angle or are marked as such.
+* **Linear pair:** Can be assumed if two angles are adjacent and their non-common sides form a straight line (opposite rays).
+* **Vertical angles:** Can be assumed if two lines intersect and the angles are opposite each other.
+* **Angle addition:** Can be assumed if an angle is clearly composed of two adjacent angles with no overlap.
+* **Congruent angles:** Can **not** be assumed unless marked with arcs or stated in the problem.
+* **Perpendicular lines:** Can **not** be assumed unless marked with a right-angle symbol or stated.
+
+### Step 3: Write the Explanation
+
+For each statement, state whether it can be assumed and explain why or why not using precise geometric reasoning.
+
+## Mixed Exercises
+
+The mixed exercises provide comprehensive practice with all skills from the lesson:
+
+* Solve problems combining complements and supplements, such as finding an angle when its supplement is related to its complement.
+* Write and solve equations for linear pairs, including problems where one angle measure is expressed as a multiple of another.
+* Use diagrams with labeled points and rays to find values of variables that make an angle a right angle or make two angles supplementary.
+* Determine what can be assumed from figures, including whether angles are vertical, congruent, complementary, or form a linear pair.
+* Solve for variables when two intersecting lines form adjacent angles and the lines are perpendicular.
+* Apply angle relationships to real-world contexts such as designing a flag, analyzing string art patterns, and constructing geometric figures.
+* Use tools to draw and measure an acute angle, then write and solve an equation for the variable in its expression. Explain how to find complementary and supplementary angles.
+* Analyze whether all angles have complements or supplements and justify the reasoning.
+* Find and explain errors in a student's solution to an angle-relationship problem.
+* Create original figures showing an angle with its complement and supplement using only a line and two rays.
+* Evaluate statements made by different students about a figure and determine which are correct.
+* Apply three-dimensional reasoning about lines perpendicular to planes.
+
+## Review Notes
+
+* Problem 6 references an image (`media/image1.png`) of a bascule bridge that cannot be described from the extracted text.
+* Problem 9 references an image (`media/image2.png`) of a geometric figure with rays and angles.
+* Problems 11–14 reference an image (`media/image3.emf`) of a figure used to determine assumptions.
+* Problems 17–19 reference an image (`media/image4.png`) of a figure with labeled points, rays, and angles.
+* Problems 20–23 reference an image (`media/image5.png`) of a figure used to determine assumptions.
+* Problem 24–25 references intersecting lines; no additional image is required beyond the text description.
+* Problem 26 references an image (`media/image6.png`) of a rectangular flag with labeled angles.
+* Problem 27 references images (`media/image7.png` and `media/image8.png`) of string art patterns.
+* Problem 30 references an image (`media/image9.emf`) illustrating a line perpendicular to a plane.
+* Problem 32 references an image (`media/image10.png`) showing a student's work with an error.
+* Problem 33 is a create exercise requiring students to draw their own figure.
+* Problem 34 references an image (`media/image11.emf`) of a figure with intersecting rays used for a "Which One Doesn't Belong?" activity.

@@ -1,337 +1,257 @@
 # Lesson 6-4 — Natural Logarithms
 
-Source: (Module 6, Lesson 6-4, pp. 285–290)
+Source: (Module 6, Lesson 6-4, Int3_0604_practice.docx)
 
 ## Today's Goals
 
-* Simplify expressions with natural logarithms
-* Solve exponential equations by using natural logarithms
-
----
+* Convert between exponential and logarithmic forms using the natural logarithm.
+* Write logarithmic expressions as a single logarithm.
+* Solve equations involving natural logarithms.
+* Apply natural logarithms to real-world problems involving continuous growth and decay.
+* Use regression with logarithmic models to make predictions.
 
 ## Vocabulary
 
-* natural base exponential function
-* natural logarithm
+* **Natural Logarithm** — A logarithm with base [e], written [\ln x]; the inverse of the exponential function [e^x].
+* **Continuously Compounded Interest** — Interest calculated as [A = Pe^{rt}], where [P] is principal, [r] is rate, and [t] is time.
+* **Natural Logarithm Function** — [f(x) = \ln x], defined for [x > 0].
 
----
+## Explore: Where Does [e] Come From?
 
-## Learn: Simplifying Expressions with Natural Logarithms
+The number [e \approx 2.71828...] arises naturally when studying continuous growth. Unlike base-10 logarithms which connect to our decimal system, natural logarithms connect to the base that makes the function its own derivative: [\frac{d}{dx} e^x = e^x].
 
-An exponential function with base `e`, written as `y = e^x`, is called a **natural base exponential function**.
+Inquiry Question:
+Why is [\ln e = 1]? How does this relate to the definition of a logarithm?
 
-The inverse of a natural base exponential function is a **natural logarithm**, written:
+## Learn: Natural Logarithms
 
-`ln x`
+### Key Concept: The Relationship Between [e^x] and [\ln x]
 
-The same properties that apply to logarithms with base `b` also apply to natural logarithms.
+The natural exponential function and natural logarithm are inverses:
+* If [y = e^x], then [\ln y = x].
+* If [y = \ln x], then [e^y = x].
 
-## Think About It
+This means: [e^{\ln x} = x] and [\ln(e^x) = x].
 
-Why do the same properties that apply to logarithms with base `b` also apply to natural logarithms?
+### Key Concept: Properties of Natural Logarithms
 
----
+All logarithm properties apply to natural logarithms:
+* [\ln (MN) = \ln M + \ln N]
+* [\ln \frac{M}{N} = \ln M - \ln N]
+* [\ln M^p = p \cdot \ln M]
 
-## Example 1 — Write Equivalent Logarithmic Equations
+### Key Concept: Solving [e^x = k]
 
-Write each exponential equation in logarithmic form.
+To solve [e^x = k], take the natural logarithm of both sides: [x = \ln k].
 
-### a. `e^x = 14`
+## Example 1 — Write Exponential Equations in Logarithmic Form
 
-`loge 14 = x`
+### Step 1: Apply the Definition
 
-`ln 14 = x`
+[e^{15} = x] → [\ln x = 15]
+[e^{3x} = 45] → [\ln 45 = 3x]
+[e^{-5x} = 0.2] → [\ln 0.2 = -5x]
 
-### b. `e^7 = x`
+[e^{8.2} = 10x] → [\ln (10x) = 8.2]
+[e^x = 3] → [\ln 3 = x]
+[e^4 = 8x] → [\ln (8x) = 4]
 
-`loge x = 7`
+[e^4 = x - 3] → [\ln (x - 3) = 4]
+[e^x = 8] → [\ln 8 = x]
+[e^5 = 10x] → [\ln (10x) = 5]
 
-`ln x = 7`
+## Example 2 — Write Logarithmic Equations in Exponential Form
 
-### Check
+### Step 1: Apply the Definition
 
-Write each exponential equation in logarithmic form.
+[\ln 50 = x] → [e^x = 50]
+[\ln 36 = 2x] → [e^{2x} = 36]
+[\ln 20 = x] → [e^x = 20]
 
-* `e^3 = 4x`
-* `e^(4x) = 3`
+[\ln x = 8] → [e^8 = x]
+[\ln (4x) = 9.6] → [e^{9.6} = 4x]
+[\ln 0.0002 = x] → [e^x = 0.0002]
 
----
+[\ln x \approx 0.3345] → [e^{0.3345} \approx x] → [x \approx 1.397]
+[\ln 15 = x] → [e^x = 15]
+[\ln 5.34 = 2x] → [e^{2x} = 5.34]
 
-## Example 2 — Write Equivalent Exponential Equations
+## Example 3 — Write as a Single Logarithm
 
-Write each logarithmic equation in exponential form.
+### Step 1: Apply Logarithm Properties
 
-### a. `ln 9 = x`
+[3 \ln 3 - \ln 9 = \ln 3^3 - \ln 9 = \ln 27 - \ln 9 = \ln \frac{27}{9} = \ln 3]
 
-`9 = e^x`
+[4 \ln 16 - \ln 256 = \ln 16^4 - \ln 256 = \ln 65536 - \ln 256 = \ln \frac{65536}{256} = \ln 256]
 
-### b. `ln x ≈ 1.7347`
+[2 \ln x + 2 \ln 4 = \ln x^2 + \ln 16 = \ln (16x^2)]
 
-`x ≈ e^1.7347`
+[3 \ln 4 + 3 \ln 3 = \ln 4^3 + \ln 3^3 = \ln 64 + \ln 27 = \ln 1728]
 
-### Check
+[\ln 125 - 2 \ln 5 = \ln 125 - \ln 25 = \ln \frac{125}{25} = \ln 5]
 
-Write each logarithmic equation in exponential form.
+[3 \ln 10 + 2 \ln 100 = \ln 10^3 + \ln 100^2 = \ln 1000 + \ln 10000 = \ln 10,000,000]
 
-* `ln(3x) = 4`
-* `ln 4 = 3x`
+[4 \ln \frac{1}{3} - 6 \ln \frac{1}{9} = \ln \left(\frac{1}{3}\right)^4 - \ln \left(\frac{1}{9}\right)^6 = \ln \frac{1}{81} - \ln \frac{1}{531441} = \ln (531441/81) = \ln 6561]
 
----
+[7 \ln \frac{1}{2} + 5 \ln 2 = \ln \left(\frac{1}{2}\right)^7 + \ln 2^5 = \ln \frac{1}{128} + \ln 32 = \ln \frac{32}{128} = \ln \frac{1}{4} = -\ln 4]
 
-## Example 3 — Simplify Logarithmic Expressions
+[8 \ln x - 4 \ln 5 = \ln x^8 - \ln 625 = \ln \frac{x^8}{625}]
 
-Write
+## Example 4 — Solve Equations with Natural Logarithms
 
-`(1/3) ln 8 - ln 3 + ln 9`
+Solve each equation. Round to the nearest ten-thousandth.
 
-as a single logarithm.
+### Step 1: Isolate and Take the Natural Logarithm
 
-Use the Power Property:
+[2e^x - 1 = 11] → [2e^x = 12] → [e^x = 6] → [x = \ln 6 \approx 1.7918]
 
-`= ln(8^(1/3)) - ln 3 + ln 9`
+[5e^x + 3 = 18] → [5e^x = 15] → [e^x = 3] → [x = \ln 3 \approx 1.0986]
 
-`= ln 2 - ln 3 + ln 9`
+[e^{3x} = 30] → [3x = \ln 30] → [x = \frac{\ln 30}{3} \approx \frac{3.4012}{3} \approx 1.1337]
 
-Use the Quotient Property:
+### Step 2: Continue with Remaining Equations
 
-`= ln(2/3) + ln 9`
+[e^x = 5.8] → [x = \ln 5.8 \approx 1.7579]
 
-Use the Product Property:
+[2e^x - 3 = 1] → [2e^x = 4] → [e^x = 2] → [x = \ln 2 \approx 0.6931]
 
-`= ln 6`
+[4 + e^x = 19] → [e^x = 15] → [x = \ln 15 \approx 2.7080]
 
-So:
+## Example 5 — Solve Equations with [\ln] Terms
 
-`(1/3) ln 8 - ln 3 + ln 9 = ln 6`
+Solve each equation. Round to the nearest ten-thousandth.
 
-## Think About It
+### Step 1: Use Properties to Combine Logarithms
 
-In what order should you apply the properties of logarithms to simplify a logarithmic expression?
+[\ln (x - 6) = 1] → [x - 6 = e^1] → [x = e + 6 \approx 2.718 + 6 = 8.718]
 
-### Check
+[\ln (x + 2) = 3] → [x + 2 = e^3] → [x = e^3 - 2 \approx 20.086 - 2 = 18.086]
 
-Write `ln 7 - (1/3) ln 27 + ln 6` as a single logarithm.
+[\ln (x + 3) = 5] → [x + 3 = e^5] → [x = e^5 - 3 \approx 148.413 - 3 = 145.413]
 
----
+[\ln 3x + \ln 2x = 9] → [\ln (6x^2) = 9] → [6x^2 = e^9] → [x^2 = \frac{e^9}{6} \approx \frac{8103.084}{6} \approx 1350.514] → [x \approx \sqrt{1350.514} \approx 36.75]
 
-## Learn: Solving Exponential Equations by Using Natural Logarithms
+[\ln 5x + \ln x = 7] → [\ln (5x^2) = 7] → [5x^2 = e^7] → [x^2 = \frac{e^7}{5} \approx \frac{1096.633}{5} \approx 219.327] → [x \approx \sqrt{219.327} \approx 14.81]
 
-Because an exponential function with base `e` is the inverse of the natural logarithm function:
+[\ln 3x = 2] → [3x = e^2] → [x = \frac{e^2}{3} \approx \frac{7.389}{3} \approx 2.463]
 
-* `e^(ln x) = x`
-* `ln(e^x) = x`
+## Example 6 — Continuously Compounded Interest
 
-This allows exponential equations with base `e` to be solved using natural logarithms.
+### Step 1: Solve Part a — Find Balance After 5 Years
 
----
+[A = Pe^{rt}] with [P = 4000], [r = 0.034], [t = 5].
+[A = 4000e^{0.034(5)} = 4000e^{0.17} \approx 4000(1.1853) \approx 4741.20]
 
-## Example 4 — Solve Exponential Equations with Base `e`
+The balance is approximately $4741.20.
 
-Solve:
+### Step 2: Solve Part b — Time to Reach $6000
 
-`-2e^(x + 3) + 8 = -14`
+[6000 = 4000e^{0.034t}]
+[1.5 = e^{0.034t}]
+[\ln 1.5 = 0.034t]
+[t = \frac{\ln 1.5}{0.034} \approx \frac{0.4055}{0.034} \approx 11.93] years
 
-Round to the nearest ten-thousandth.
+### Step 3: Solve Part c — Principal for $10,000 in 10 Years
 
-Subtract `8`:
+[10000 = Pe^{0.034(10)} = Pe^{0.34}]
+[P = \frac{10000}{e^{0.34}} \approx \frac{10000}{1.4049} \approx 7119.44]
 
-`-2e^(x + 3) = -22`
+Monique should invest approximately $7119.44.
 
-Divide by `-2`:
+### Step 4: Apply to Sarita's Account
 
-`e^(x + 3) = 11`
+For [P = 750], [r = 0.027], [t = 3]:
+[A = 750e^{0.027(3)} = 750e^{0.081} \approx 750(1.0843) \approx 813.23]
 
-Take natural logarithms:
+For time to reach $2000:
+[2000 = 750e^{0.027t}]
+[2.667 = e^{0.027t}]
+[t = \frac{\ln 2.667}{0.027} \approx \frac{0.9808}{0.027} \approx 36.33] years
 
-`ln(e^(x + 3)) = ln 11`
+For principal to have $1000 in 5 years:
+[1000 = Pe^{0.027(5)} = Pe^{0.135}]
+[P = \frac{1000}{e^{0.135}} \approx \frac{1000}{1.1447} \approx 873.64]
 
-`x + 3 = ln 11`
+## Example 7 — Use Logarithmic Regression
 
-`x + 3 ≈ 2.3979`
+### Step 1: Find the Logarithmic Model
 
-`x ≈ -0.6021`
+Use a graphing calculator to perform logarithmic regression on the data. The general form is [y = a + b \ln x].
 
-### Check
+For the festival attendance data, enter the years since 2005 and attendance values, then calculate the regression equation.
 
-Solve `6e^(0.25x + 3) = 26`. Round to the nearest ten-thousandth.
+### Step 2: Make Predictions
 
----
+Substitute the appropriate [x] value into the regression equation to predict future attendance.
 
-## Example 5 — Solve Natural Logarithmic Equations
+Similar process for the decaying compound mass and cell colony data.
 
-Solve:
+## Mixed Exercises
 
-`(1/6) ln(5x) = 2`
+**Write as sum or difference of logarithms:**
 
-Round to the nearest ten-thousandth.
+[\ln \frac{16}{125} = \ln 16 - \ln 125 = 4\ln 2 - 3\ln 5]
 
-Multiply both sides by `6`:
+[\ln \sqrt[5]{x^3} = \frac{3}{5} \ln x]
 
-`ln(5x) = 12`
+**Solve using natural logarithms:**
 
-Rewrite exponentially:
+[3^x = 0.4] → [x \ln 3 = \ln 0.4] → [x = \frac{\ln 0.4}{\ln 3} \approx \frac{-0.9163}{1.0986} \approx -0.834]
 
-`e^(ln(5x)) = e^12`
+[2^{3x} = 18] → [3x \ln 2 = \ln 18] → [x = \frac{\ln 18}{3 \ln 2} \approx \frac{2.8904}{3(0.6931)} \approx \frac{2.8904}{2.0793} \approx 1.390]
 
-`5x = e^12`
+**50. POPULATION** World population: [A = A_0 e^{rt}] with [A_0 = 6,641,000,000], [r = 0.012]. Find when [A = 9,000,000,000].
 
-`x = e^12 / 5`
+[9 \times 10^9 = 6.641 \times 10^9 e^{0.012t}]
+[1.355 = e^{0.012t}]
+[\ln 1.355 = 0.012t]
+[t = \frac{\ln 1.355}{0.012} \approx \frac{0.3039}{0.012} \approx 25.33] years from 2008, so approximately 2033.
 
-`x ≈ 32,550.9583`
+**51. FINANCE** Double $2000 at 2.8% continuously compounded:
+[4000 = 2000e^{0.028t}]
+[2 = e^{0.028t}]
+[t = \frac{\ln 2}{0.028} \approx \frac{0.6931}{0.028} \approx 24.75] years
 
-## Think About It
+**STRUCTURE: Given [\ln 5 \approx 1.6094] and [\ln 8 \approx 2.0794]:**
 
-Elliott says that `ln(e^(3x))` equals `3x`. Is he correct? Explain.
+[\ln 200 = \ln (5 \cdot 40) = \ln 5 + \ln 40 = \ln 5 + \ln (5 \cdot 8) = \ln 5 + \ln 5 + \ln 8 = 2\ln 5 + \ln 8 \approx 2(1.6094) + 2.0794 = 5.2982]
 
----
+[\ln 3.125 = \ln \frac{25}{8} = \ln 25 - \ln 8 = \ln (5^2) - \ln 8 = 2\ln 5 - \ln 8 \approx 2(1.6094) - 2.0794 = 1.1394]
 
-## Example 6 — Apply Functions with Base `e`
+[\ln 10 = \ln (2 \cdot 5) = \ln 2 + \ln 5]. Need [\ln 2]. Note [\ln 8 = 3\ln 2], so [\ln 2 = \frac{\ln 8}{3} \approx \frac{2.0794}{3} \approx 0.6931]. Then [\ln 10 = 0.6931 + 1.6094 = 2.3025].
 
-Newton’s Law of Cooling is modeled by:
+**55. USE ESTIMATION** Carbon-14 dating:
+* Half-life = 5730 years. Find decay constant [k] in [y = ae^{kt}].
+  [0.5 = e^{k(5730)}] → [k = \frac{\ln 0.5}{5730} \approx \frac{-0.6931}{5730} \approx -0.000121]
 
-`T(t) = Ta + (T0 - Ta)e^(-0.032t)`
+* For fossil with initial 200 mg: [y = 200e^{-0.000121t}]
 
-where:
+* Find when [y \leq 0.4(200) = 80] mg:
+  [80 = 200e^{-0.000121t}] → [0.4 = e^{-0.000121t}] → [\ln 0.4 = -0.000121t] → [t \approx \frac{-0.9163}{-0.000121} \approx 7573] years
 
-* `T0` is the initial temperature
-* `Ta` is the ambient temperature
-* `t` is time in minutes
+**56. PRECISION** When will $5000 at 2% equal $3000 at 4%?
+[5000e^{0.02t} = 3000e^{0.04t}]
+[\frac{5000}{3000} = e^{0.02t}] → [\frac{5}{3} = e^{0.02t}] → [\ln \frac{5}{3} = 0.02t] → [t = \frac{\ln(5/3)}{0.02} \approx \frac{0.5108}{0.02} \approx 25.54] years
 
-### Part A: Evaluate the function
+**57. ANALYZE** Does [\ln \frac{a}{b} = \frac{\ln a}{\ln b}]? No, this is not generally true. The correct property is [\ln \frac{a}{b} = \ln a - \ln b].
 
-Find the temperature of soup that is initially `200°F` in a room that is `72°F` after `30` minutes.
+**58. PERSEVERE** Solve [4^x - 2^{x+1} = 15].
+Let [u = 2^x]. Then [4^x = (2^2)^x = 2^{2x} = u^2].
+[u^2 - 2u = 15] → [u^2 - 2u - 15 = 0] → [(u - 5)(u + 3) = 0].
+[u = 5] or [u = -3]. Since [u = 2^x > 0], [u = 5].
+[2^x = 5] → [x = \log_2 5 \approx 2.3219].
 
-Substitute:
+**59. CONSTRUCT ARGUMENTS** Prove [\ln ab = \ln a + \ln b].
+Let [a = e^m] and [b = e^n]. Then [ab = e^m \cdot e^n = e^{m+n}]. Taking ln: [\ln(ab) = m + n = \ln a + \ln b].
 
-`T(t) = 72 + (200 - 72)e^(-0.032(30))`
+**60. ANALYZE** Is [x > \ln x] sometimes, always, or never true?
+For [x = 1]: [\ln 1 = 0], so [1 > 0] is true.
+For [x = 0.5]: [\ln 0.5 \approx -0.693], and [0.5 > -0.693] is true.
+For [x = e]: [\ln e = 1] and [e \approx 2.718 > 1] is true.
+In fact, [x > \ln x] is always true for all [x > 0], since the function [f(x) = x - \ln x] has derivative [1 - 1/x] which is positive for [x > 1], and [f(1) = 1 > 0].
 
-`≈ 121`
+## Review Notes
 
-After `30` minutes, the soup will be about `121°F`.
-
-### Part B: Evaluate the function for `t`
-
-If the soup must be at least `180°F` when served, and it starts at `200°F` in a `72°F` room, how long can the server wait?
-
-Set up the inequality:
-
-`180 <= 72 + (200 - 72)e^(-0.032t)`
-
-`108 <= 128e^(-0.032t)`
-
-`0.84375 <= e^(-0.032t)`
-
-Take natural logarithms:
-
-`ln 0.84375 <= -0.032t`
-
-Divide by `-0.032` and reverse the inequality:
-
-`t <= ln(0.84375) / (-0.032)`
-
-`t <= 5.3`
-
-The server should serve the soup within `5.3` minutes.
-
-### Part C: Evaluate the function for `T0`
-
-If the room is increased to `75°F` and the servers need at least `7` minutes while the soup stays `180°F` or warmer, what initial soup temperature is needed?
-
-Set up the inequality:
-
-`180 <= 75 + (T0 - 75)e^(-0.032(7))`
-
-`105 <= (T0 - 75)e^(-0.224)`
-
-Distribute:
-
-`105 <= T0(e^(-0.224)) - 75(e^(-0.224))`
-
-Add `75(e^(-0.224))`:
-
-`105 + 75(e^(-0.224)) <= T0(e^(-0.224))`
-
-Divide by `e^(-0.224)`:
-
-`T0 >= (105 + 75e^(-0.224)) / e^(-0.224)`
-
-`T0 >= 206.4`
-
-The soup must start at least `206.4°F`.
-
-## Think About It
-
-Will the soup ever become colder than the ambient temperature of the restaurant? Explain.
-
----
-
-## Explore: Using a Scatter Plot to Analyze Data
-
-Use the video to complete the explore.
-
-**Inquiry Question:**
-How can you use a scatter plot to determine the type of function that best models a set of data?
-
----
-
-## Example 7 — Examine Logarithmic Data
-
-The table shows the percentage of people in the U.S. who play games on mobile phones in the years since `2010`.
-
-| Years Since 2010 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 |
-| -- | -- | -- | -- | -- | -- | -- | -- | -- | -- | -- |
-| Population (%) | 25.9 | 33.9 | 40.9 | 46.3 | 51.3 | 55.7 | 58.9 | 61.6 | 63.1 | 63.7 |
-
-### Step 1: Enter the data
-
-Enter years into `L1` and percentages into `L2`.
-
-### Step 2: Make a scatter plot
-
-The scatter plot suggests a curved trend that approximates a natural logarithmic function.
-
-### Step 3: Determine the function of best fit
-
-Perform a natural logarithmic regression.
-
-The regression equation is:
-
-`y = 23.3237 + 17.7473 ln x`
-
-The coefficient of determination is:
-
-`r ≈ 0.9934`
-
-This is a very strong fit.
-
-### Step 4: Evaluate using the regression function
-
-Use the table to predict the percentage for `x = 15`, which corresponds to the year `2025`.
-
-Prediction:
-
-About `71.4%` of people in America will play games on a phone in `2025`.
-
-### Step 5: Analyze the graph
-
-Key features of the regression model:
-
-* domain: `{x | x > 0}`
-* range: `{y | y > 0}` in context
-* x-intercept: `0.2687`
-* y-intercept: none
-* increasing: `{x | x > 0}`
-* positive: `{x | x > 0.2687}`
-* negative: `{x | 0 < x < 0.2687}`
-* end behavior: as `x -> infinity`, `y -> infinity`
-
-### Watch Out
-
-The function has all real numbers as its range, but in context only values from `0` to `100` make sense because `y` represents a percent.
-
----
-
-## Objective Alignment
-
-- `Simplify expressions with natural logarithms`: Primary worked examples: Examples 1-3.
-- `Solve exponential equations by using natural logarithms`: Primary worked examples: Examples 4-5.
+* Images: ![](media/image1.png) — Festival attendance data table; ![](media/image2.png) — Decay compound data table; ![](media/image3.png) — Cell colonies data table; ![](media/image4.png) — Visitor data table; ![](media/image5.wmf) — Expression for analysis in problem 57.
+* The worksheet contains 60 practice problems across seven examples and mixed exercises.

@@ -1,0 +1,197 @@
+# Lesson 11-6 — Two-Dimensional Representations of Three-Dimensional Figures
+
+Source: (Module 11, Lesson 11-6, Int1_1106_practice.docx)
+
+## Today's Goals
+
+* Interpret orthographic drawings to build models of three-dimensional figures.
+* Create orthographic drawings showing top, front, left, and right views of solids.
+* Use nets to identify solids, find surface area, and construct models.
+* Recognize and classify Platonic solids from their nets.
+* Sketch nets for prisms, pyramids, and other three-dimensional objects.
+* Compare and contrast orthographic drawings and nets as two-dimensional representations.
+
+## Vocabulary
+
+* **Orthographic Drawing** — A two-dimensional representation of a three-dimensional object that shows multiple views (top, front, left, right).
+* **Net** — A two-dimensional pattern that can be folded to form a three-dimensional solid.
+* **Surface Area** — The sum of the areas of all the faces of a three-dimensional figure.
+* **Platonic Solid** — A regular, convex polyhedron in which all faces are congruent regular polygons and the same number of faces meet at each vertex.
+* **Prism** — A polyhedron with two congruent, parallel bases and rectangular lateral faces.
+* **Pyramid** — A polyhedron with one base and triangular lateral faces that meet at a common vertex.
+* **Face** — A flat surface of a polyhedron.
+* **Edge** — A line segment where two faces of a polyhedron meet.
+* **Vertex** — A point where three or more edges of a polyhedron meet.
+
+## Explore: How Can a Flat Drawing Show a 3D Object?
+
+Students examine different ways to represent a three-dimensional object on paper. They discuss how a single viewpoint can be misleading and explore why multiple views or unfolded patterns are needed to communicate the full shape of a solid.
+
+Inquiry Question:
+What information is lost when a three-dimensional object is drawn from only one perspective, and how can we recover it?
+
+## Learn: Representing Solids in Two Dimensions
+
+Three-dimensional figures can be represented in two dimensions using orthographic drawings (multiple views) or nets (unfolded faces). Each representation reveals different properties of the solid and is useful for different purposes such as construction, packaging design, and visualization.
+
+### Key Concept: Orthographic Drawings
+
+* An orthographic drawing shows the top, front, left, and right views of a solid separately.
+* Each view is drawn as if looking directly at that face.
+* By combining all views, one can reconstruct or build a model of the solid.
+
+### Key Concept: Nets
+
+* A net is an arrangement of all the faces of a solid laid out flat.
+* When folded along the edges, the net forms the complete solid.
+* Nets are useful for calculating surface area and for constructing physical models.
+
+### Key Concept: Platonic Solids
+
+* There are exactly five Platonic solids: tetrahedron, cube, octahedron, dodecahedron, and icosahedron.
+* Each Platonic solid has congruent regular polygons for faces and the same number of faces meeting at every vertex.
+
+## Example 1 — Build a Model from an Orthographic Drawing
+
+Given an orthographic drawing showing the top, front, left, and right views, construct a model of the corresponding three-dimensional figure using unit cubes.
+
+### Step 1: Analyze the Top View
+
+The top view shows the footprint of the solid from above. Use this to determine the length and width of the base and the arrangement of cubes in the bottom layer.
+
+### Step 2: Use the Front and Side Views to Determine Height
+
+The front view shows the height of each column from the front. The left and right views show the height from the sides. Combine these to determine how many cubes are stacked in each position.
+
+### Step 3: Build the Model
+
+Place unit cubes according to the heights determined from all views. Verify that the completed model matches every view in the orthographic drawing.
+
+## Example 2 — Make an Orthographic Drawing from a Model
+
+Given a solid built from unit cubes, create an orthographic drawing that shows the top, front, left, and right views.
+
+### Step 1: Determine the Top View
+
+Look directly down on the solid and draw the footprint, showing which positions are occupied by cubes.
+
+### Step 2: Determine the Front View
+
+Look directly at the front of the solid. Draw the outline formed by the highest cube in each column. The front view shows the height and width of the solid.
+
+### Step 3: Determine the Left and Right Views
+
+Look directly at the left and right sides of the solid. Each side view shows the height and depth of the solid. Draw the outline formed by the highest cube in each row from that perspective.
+
+### Step 4: Assemble the Orthographic Drawing
+
+Arrange the four views in a standard layout so that they can be used together to reconstruct the solid.
+
+## Example 3 — Identify Solids and Find Surface Area from Nets
+
+Given a net, determine what three-dimensional solid it represents, then calculate the surface area by finding the total area of all faces.
+
+### Step 1: Identify the Solid from the Net
+
+Count the number and shape of the faces in the net. Look for the arrangement that indicates a particular solid:
+
+* Two congruent polygonal bases with rectangular faces between them indicate a prism.
+* One polygonal base with triangular faces meeting at a point indicates a pyramid.
+
+### Step 2: Find the Area of Each Face
+
+Calculate the area of each distinct face shape. For rectangles, use:
+[
+A = l \times w
+]
+
+For triangles, use:
+[
+A = \frac{1}{2}bh
+]
+
+### Step 3: Sum the Areas to Find Surface Area
+
+Add the areas of all faces in the net. The total is the surface area of the solid.
+[
+SA = \text{sum of the areas of all faces}
+]
+
+## Example 4 — Identify Platonic Solids from Nets
+
+Given a net, identify which of the five Platonic solids it represents.
+
+### Step 1: Count the Number and Type of Faces
+
+Determine whether the net consists entirely of congruent regular polygons:
+
+* Four equilateral triangles: Tetrahedron
+* Six squares: Cube (Hexahedron)
+* Eight equilateral triangles: Octahedron
+* Twelve regular pentagons: Dodecahedron
+* Twenty equilateral triangles: Icosahedron
+
+### Step 2: Verify the Vertex Configuration
+
+Confirm that the same number of faces meets at each vertex when folded. This regularity is what defines a Platonic solid.
+
+## Example 5 — Draw a Net for a Rectangular Prism and a Triangular Prism
+
+Sketch a net that can be folded to form the given prism. Ensure all faces are connected along edges and that the net can fold without overlapping.
+
+### Step 1: Identify the Bases and Lateral Faces
+
+For a rectangular prism, identify the two congruent rectangular bases and four rectangular lateral faces.
+
+For a triangular prism, identify the two congruent triangular bases and three rectangular lateral faces.
+
+### Step 2: Arrange the Faces in a Net
+
+Lay out the lateral faces in a row, with the bases attached to opposite sides of one of the lateral faces. There are multiple valid arrangements for any prism.
+
+### Step 3: Verify the Net
+
+Check that the net contains exactly the right number of faces and that all edges match up correctly when folded. Label dimensions if given.
+
+## Example 6 — Draw a Net for Pyramids and Other Prisms
+
+Sketch nets for solids such as a square pyramid, a hexagonal prism, a pentagonal prism, and a triangular pyramid.
+
+### Step 1: Analyze the Base and Lateral Faces
+
+For a square pyramid, the net has one square base and four congruent triangular faces.
+
+For a hexagonal prism, the net has two hexagonal bases and six rectangular lateral faces.
+
+For a pentagonal prism, the net has two pentagonal bases and five rectangular lateral faces.
+
+For a triangular pyramid (tetrahedron), the net has four triangular faces.
+
+### Step 2: Sketch the Net
+
+Arrange the lateral faces around the base so that they can fold up to meet at the apex (for pyramids) or at the opposite base (for prisms). Ensure adjacent edges match in length.
+
+### Step 3: Confirm Completeness
+
+Count the total number of faces and verify that every edge of the solid is accounted for in the net.
+
+## Mixed Exercises
+
+The mixed exercises provide practice with all skills from the lesson: interpreting orthographic drawings, creating orthographic drawings, working with nets, identifying Platonic solids, and calculating surface area. Problems include:
+
+* Using an orthographic drawing to make a model of a game piece.
+* Making an orthographic drawing to show multiple views of a storage cabinet.
+* Identifying a real-world object that can be represented by a given net.
+* Calculating the amount of wrapping paper needed by finding the surface area from a net.
+* Analyzing whether a given net with known edge lengths could represent a solid with a specified surface area.
+* Determining which orthographic drawing does not belong with a set and justifying the conclusion.
+* Finding and explaining errors in two students' nets for a square pyramid.
+* Creating a possible net for a box used in packaging.
+* Writing a description of the similarities and differences between orthographic drawings and nets.
+* Describing all five Platonic solids, including the number of faces, vertices, edges, and the number of shapes meeting at each vertex.
+
+## Review Notes
+
+* Images referenced in the worksheet (orthographic drawings for Examples 1 and 2, nets for Examples 3 and 4, solid figures for Examples 5 and 6, game piece orthographic drawing, storage cabinet figure, nets for mixed exercises problems 25, 26, 27, 28, 29, and 30) could not be fully described without visual reference. Teachers should consult the original worksheet for exact figures, diagrams, and dimensions.
+* Several problems in Examples 3 and 4 and throughout the mixed exercises require interpreting visual nets to identify solids and calculate surface area; visual reference is essential for these problems.
+* Platonic solid descriptions in problem 32 require knowledge of the five regular polyhedra: tetrahedron (4 triangular faces, 4 vertices, 6 edges, 3 triangles per vertex), cube (6 square faces, 8 vertices, 12 edges, 3 squares per vertex), octahedron (8 triangular faces, 6 vertices, 12 edges, 4 triangles per vertex), dodecahedron (12 pentagonal faces, 20 vertices, 30 edges, 3 pentagons per vertex), and icosahedron (20 triangular faces, 12 vertices, 30 edges, 5 triangles per vertex).

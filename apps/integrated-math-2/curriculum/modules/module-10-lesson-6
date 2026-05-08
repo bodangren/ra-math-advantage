@@ -1,0 +1,236 @@
+# Lesson 10-6 — Operations with Radical Expressions
+
+Source: (Module 10, Lesson 10-6, Int2_1006_practice.docx)
+
+## Today's Goals
+
+* Add and subtract radical expressions by combining like radicals
+* Simplify radical expressions before adding or subtracting
+* Multiply radical expressions and distribute radicals over binomials
+* Apply operations with radicals to solve real-world geometry and measurement problems
+
+## Vocabulary
+
+* **radical expression** — an expression containing a root symbol, such as a square root
+* **radicand** — the number or expression under the radical symbol
+* **like radicals** — radical expressions that have the same index and the same radicand
+* **simplest form of a radical** — a radical with no perfect-square factors in the radicand, no fractions under the radical, and no radicals in the denominator
+* **coefficient** — the numerical factor in front of a radical
+
+## Explore: How Do We Work with Radicals?
+
+Inquiry Question:
+Why can we combine 3√7 + 5√7 but not 3√5 + 3√7? How are radical expressions similar to and different from variable expressions when we add, subtract, multiply, and divide them?
+
+## Learn: Adding and Subtracting Radical Expressions
+
+To add or subtract radicals, treat them like variable terms: only like radicals can be combined.
+
+### Key Concept: Like Radicals
+
+* Like radicals have the same index and the same radicand
+* Add or subtract the coefficients while keeping the radical part unchanged
+* Example:
+  [
+  7\sqrt{7} - 2\sqrt{7} = (7 - 2)\sqrt{7} = 5\sqrt{7}
+  ]
+
+### Key Concept: Simplify Before Combining
+
+* A sum or difference may appear to have unlike radicals until one or more terms are simplified
+* Factor out perfect squares from radicands, simplify each term, then combine any like radicals that appear
+* Example:
+  [
+  3\sqrt{50} - 3\sqrt{32} = 3\sqrt{25 \cdot 2} - 3\sqrt{16 \cdot 2} = 15\sqrt{2} - 12\sqrt{2} = 3\sqrt{2}
+  ]
+
+## Learn: Multiplying Radical Expressions
+
+Multiplication of radicals uses the product property: the product of two square roots equals the square root of the product.
+
+### Key Concept: Product Property of Radicals
+
+* For nonnegative real numbers [ a ] and [ b ]:
+  [
+  \sqrt{a} \cdot \sqrt{b} = \sqrt{ab}
+  ]
+* Multiply the coefficients together and multiply the radicands together
+* Simplify the resulting radical by removing perfect-square factors
+* Example:
+  [
+  2\sqrt{3} \cdot 3\sqrt{15} = 6\sqrt{45} = 6\sqrt{9 \cdot 5} = 18\sqrt{5}
+  ]
+
+### Key Concept: Distributing a Radical Over a Binomial
+
+* Use the distributive property to multiply a radical across each term inside parentheses
+* Multiply the radical by each term, simplify each product, and combine like radicals if possible
+* Example:
+  [
+  \sqrt{5}(\sqrt{10} - \sqrt{3}) = \sqrt{50} - \sqrt{15} = 5\sqrt{2} - \sqrt{15}
+  ]
+
+## Example 1 — Add and Subtract Like Radicals
+
+Combine radical terms that already have the same radicand by adding or subtracting their coefficients.
+
+### Step 1: Identify Like Radicals
+
+Recognize that all terms share the same radicand. Only coefficients may differ.
+
+### Step 2: Combine the Coefficients
+
+Add or subtract the numerical coefficients while keeping the radical part unchanged.
+
+### Step 3: Simplify the Result
+
+Write the combined coefficient multiplied by the common radical.
+
+[
+3\sqrt{13} + 7\sqrt{13} = (3 + 7)\sqrt{13} = 10\sqrt{13}
+]
+
+[
+12\sqrt{r} - 9\sqrt{r} = (12 - 9)\sqrt{r} = 3\sqrt{r}
+]
+
+When three or more terms are present, combine them in order:
+
+[
+9\sqrt{6a} - 11\sqrt{6a} + 4\sqrt{6a} = (9 - 11 + 4)\sqrt{6a} = 2\sqrt{6a}
+]
+
+## Example 2 — Simplify Before Adding or Subtracting
+
+Simplify radicals to reveal hidden like terms, then combine.
+
+### Step 1: Factor the Radicand
+
+Identify perfect-square factors within each radicand to simplify the radical expressions.
+
+### Step 2: Simplify Each Term
+
+Rewrite each radical in simplest form by extracting perfect squares.
+
+[
+3\sqrt{5} - 2\sqrt{20} = 3\sqrt{5} - 2\sqrt{4 \cdot 5} = 3\sqrt{5} - 4\sqrt{5}
+]
+
+### Step 3: Combine Like Radicals
+
+Add or subtract the coefficients of the now-like radicals.
+
+[
+3\sqrt{5} - 4\sqrt{5} = -\sqrt{5}
+]
+
+For expressions with multiple unlike radicals, simplify each term and group like radicals:
+
+[
+7\sqrt{3} - 2\sqrt{2} + 3\sqrt{2} + 5\sqrt{3} = (7\sqrt{3} + 5\sqrt{3}) + (-2\sqrt{2} + 3\sqrt{2}) = 12\sqrt{3} + \sqrt{2}
+]
+
+## Example 3 — Apply Radical Operations to Real-World Problems
+
+Use addition and subtraction of radicals to solve perimeter, distance, and measurement problems.
+
+### Step 1: Identify Relevant Lengths or Distances
+
+Read the problem to find the lengths or distances expressed as radicals.
+
+Perimeter of a regular pentagon with side length [ 23\sqrt{149} ] meters:
+
+[
+P = 5 \times 23\sqrt{149} = 115\sqrt{149}
+]
+
+Total distance traveled on three trails:
+
+[
+2\sqrt{3} + 4\sqrt{3} + 3\sqrt{3} = 9\sqrt{3} \text{ kilometers}
+]
+
+### Step 2: Perform the Operation and Simplify
+
+Determine the correct operation based on context (perimeter means add, difference means subtract), then simplify.
+
+Difference between two radii:
+
+[
+\sqrt{\frac{400}{\pi}} - \sqrt{\frac{200}{\pi}} = \frac{20}{\sqrt{\pi}} - \frac{10\sqrt{2}}{\sqrt{\pi}} = \frac{20 - 10\sqrt{2}}{\sqrt{\pi}}
+]
+
+## Example 4 — Multiply Radical Expressions
+
+Multiply two radical expressions using the product property of radicals.
+
+### Step 1: Multiply the Coefficients
+
+Multiply the numerical coefficients together.
+
+### Step 2: Multiply the Radicands
+
+Multiply the radicands together under a single radical.
+
+[
+6\sqrt{7} \cdot 2\sqrt{8} = 12\sqrt{56}
+]
+
+### Step 3: Simplify the Result
+
+Factor out perfect squares from the resulting radicand.
+
+[
+12\sqrt{56} = 12\sqrt{4 \cdot 14} = 24\sqrt{14}
+]
+
+When the product of radicands is already a perfect square:
+
+[
+7\sqrt{10} \cdot 4\sqrt{10} = 28\sqrt{100} = 28 \cdot 10 = 280
+]
+
+## Example 5 — Distribute a Radical Over a Binomial
+
+Use the distributive property to multiply a radical expression by a sum or difference of radicals.
+
+### Step 1: Distribute the Radical
+
+Apply the outside radical to each term inside the parentheses.
+
+[
+\sqrt{6}(2\sqrt{10} + 3\sqrt{2}) = 2\sqrt{60} + 3\sqrt{12}
+]
+
+### Step 2: Multiply and Simplify Each Term
+
+Multiply coefficients and radicands, then simplify each resulting radical.
+
+[
+2\sqrt{60} + 3\sqrt{12} = 2\sqrt{4 \cdot 15} + 3\sqrt{4 \cdot 3} = 4\sqrt{15} + 6\sqrt{3}
+]
+
+With a coefficient on the outside radical:
+
+[
+4\sqrt{5}(3\sqrt{5} + 8\sqrt{2}) = 12\sqrt{25} + 32\sqrt{10} = 12 \cdot 5 + 32\sqrt{10} = 60 + 32\sqrt{10}
+]
+
+## Mixed Exercises
+
+The mixed exercises provide comprehensive practice combining all four operations with radicals. Problem types include:
+
+* Simplifying single radical expressions and fractions containing radicals
+* Adding and subtracting radicals that require simplification first
+* Multiplying simple radical expressions and distributing radicals over binomials
+* Geometry applications involving perimeter, area, and the Pythagorean theorem
+* Real-world word problems involving distance, scaling, and motion
+* Conceptual problems requiring error analysis, proof, and conjecture about rational and irrational numbers
+
+## Review Notes
+
+* Problems 15, 18, 43, 44, 45, 46, 47, and 48 reference images or diagrams that could not be described from the extracted text and will need visual review
+* Problem 48 contains a table of radical expressions for students to compare; the table image could not be described
+* Problem 55 shows a set of expressions for "Which One Doesn't Belong?" but the expression images could not be described
+
+(End of file - total 259 lines)

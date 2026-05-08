@@ -1,0 +1,143 @@
+# Lesson 9-2 — Representing Data
+
+Source: (Module 9, Lesson 9-2, Int1_0902_practice.docx)
+
+## Today's Goals
+
+* Construct dot plots, bar graphs, and histograms to represent data sets.
+* Distinguish between discrete and continuous data and select the appropriate display.
+* Analyze data displays to draw conclusions and answer questions about a data set.
+* Explain the process of creating histograms and scaling number lines for dot plots.
+
+## Vocabulary
+
+* **Dot Plot** — A data display that uses dots over a number line to show the frequency of each value.
+* **Bar Graph** — A display that uses bars of different heights to compare categories of data.
+* **Histogram** — A display that uses bars to show the frequency of data values grouped into intervals.
+* **Discrete Data** — Data that can only take specific, separate values (usually counts).
+* **Continuous Data** — Data that can take any value within a range (usually measurements).
+
+## Explore: Which Graph Best Tells the Story?
+
+Students examine a small data set and discuss which visual display — a list, a dot plot, a bar graph, or a histogram — makes patterns easiest to see. They consider how the type of data (categorical vs. numerical, discrete vs. continuous) affects the choice.
+
+Inquiry Question:
+Why does the type of data determine which display is most appropriate?
+
+## Learn: Choosing a Data Display
+
+Different types of data require different displays. The choice depends on whether the data are categorical or numerical, and whether they are discrete or continuous.
+
+### Key Concept: Data Display Selection
+
+* Use a **dot plot** for small numerical data sets where individual values matter.
+* Use a **bar graph** for categorical data or discrete numerical data with distinct categories.
+* Use a **histogram** for continuous numerical data or large data sets grouped into intervals.
+* Always scale the number line appropriately so all data fit and patterns are visible.
+
+## Example 1 — Make a Dot Plot from a Table
+
+### Step 1: Identify the Data Values
+
+Read the data from the given table. List each distinct value and its frequency.
+
+### Step 2: Draw and Scale the Number Line
+
+Create a number line that includes all data values. Choose a scale with equal intervals so every value has a place.
+
+### Step 3: Place Dots Above Each Value
+
+For each occurrence of a value, place one dot above that value on the number line. Stack dots vertically when a value appears more than once.
+
+[
+\text{value} \rightarrow \text{dot count} = \text{frequency}
+]
+
+## Example 2 — Make a Dot Plot from a List
+
+### Step 1: Organize the Data
+
+Arrange the given list of numerical values in order from least to greatest to identify the range.
+
+### Step 2: Scale the Number Line
+
+Set the number line from slightly below the minimum value to slightly above the maximum value. Use consistent tick marks.
+
+### Step 3: Plot Each Value
+
+Place a dot above the corresponding value on the number line for each data point. Stacked dots show repeated values.
+
+[
+21,\ 22,\ 23,\ 24,\ 25,\ 27,\ 28,\ 35,\ 37,\ 38,\ 41,\ 42,\ 43,\ 45,\ 50
+]
+
+## Example 3 — Make a Bar Graph from a Survey
+
+### Step 1: Identify Categories and Frequencies
+
+Read the survey results to determine each category and how many responses it received.
+
+### Step 2: Draw and Label the Axes
+
+Label the horizontal axis with the category names. Label the vertical axis with frequency (number of responses). Choose a scale for the vertical axis that fits the largest frequency.
+
+### Step 3: Draw the Bars
+
+Draw a bar for each category. Bars should have equal width and be separated by gaps. The height of each bar matches its frequency.
+
+[
+\text{bar height} = \text{frequency of category}
+]
+
+## Example 4 — Discrete vs. Continuous Data and Graph Selection
+
+### Step 1: Determine the Data Type
+
+Decide whether the data are discrete or continuous:
+
+* **Discrete:** Counts of whole, separate items (e.g., number of students, number of movies).
+* **Continuous:** Measurements that can take any value in a range (e.g., height, weight, age as a measurement).
+
+### Step 2: Choose the Appropriate Graph
+
+* For **discrete** categorical data, use a **bar graph**.
+* For **continuous** numerical data, use a **histogram**.
+
+### Step 3: Construct the Graph
+
+Draw the axes, label them, scale appropriately, and create bars to represent the data.
+
+[
+\text{discrete} \rightarrow \text{bar graph} \qquad \text{continuous} \rightarrow \text{histogram}
+]
+
+## Example 5 — Bar Graph or Histogram?
+
+### Step 1: Analyze the Data Structure
+
+Examine whether the data represent distinct categories (bar graph) or intervals of numerical values (histogram).
+
+### Step 2: Select and Construct the Display
+
+If the data are grouped by age ranges or other intervals, use a histogram with touching bars. If the data are separate counts by distinct group, use a bar graph with gaps between bars.
+
+## Mixed Exercises
+
+The mixed exercises provide practice across all data display types. Problems include:
+
+* Determining whether data are discrete or continuous and selecting the appropriate graph.
+* Constructing dot plots, bar graphs, and histograms from tables and lists.
+* Interpreting data displays to answer questions about frequency, range, and intervals.
+* Analyzing dot plots and bar graphs to draw conclusions about a data set.
+* Explaining when histograms are the best model and why scaling is necessary for dot plots.
+* Comparing bar graphs and histograms by explaining their similarities and differences.
+
+## Review Notes
+
+* **Image 1 (media/image1.png):** Table showing number of books read by students — contains the data set for Example 1.
+* **Image 2 (media/image2.png):** Blank number line for quiz scores — template for Example 2 dot plot.
+* **Image 3 (media/image3.png):** Table showing field trip destination survey results — contains data for Example 3.
+* **Image 4 (media/image4.png):** Table showing number of prizes won at a carnival — contains data for Mixed Exercise 6.
+* **Image 5 (media/image5.png):** Table showing number of movies released theatrically each year — contains data for Mixed Exercise 8.
+* **Image 6 (media/image6.png):** Dot plot showing product ratings — needed for Mixed Exercise 13 analysis.
+* **Image 7 (media/image7.png):** Double bar graph about peanut butter sales — needed for Mixed Exercise 16 conclusions.

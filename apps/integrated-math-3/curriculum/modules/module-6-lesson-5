@@ -1,299 +1,245 @@
 # Lesson 6-5 — Using Exponential and Logarithmic Functions
 
-Source: (Module 6, Lesson 6-5, pp. 295–300)
+Source: (Module 6, Lesson 6-5, Int3_0605_practice.docx)
 
 ## Today's Goals
 
-* Write and solve exponential growth equations and inequalities
-* Write and solve exponential decay equations
-
----
+* Write exponential growth and decay equations from real-world data.
+* Use exponential models to make predictions.
+* Apply the natural logarithm to solve for time in continuously compounded growth and decay problems.
+* Solve real-world problems involving half-life, depreciation, and population growth.
+* Use regression to fit exponential models to data.
 
 ## Vocabulary
 
-* continuous exponential growth
-* continuous exponential decay
-* continuously compounded interest
-* half-life
-* decay constant
-* radiocarbon dating
+* **Exponential Growth** — A model of the form [y = A_0 e^{kt}] where [k > 0].
+* **Exponential Decay** — A model of the form [y = A_0 e^{kt}] where [k < 0].
+* **Half-life** — The time required for a quantity to decrease to half its original amount.
+* **Decay Constant** — The constant [k] in [y = A_0 e^{kt}] that determines the rate of decay.
+* **Continuously Compounded Interest** — Interest calculated as [A = Pe^{rt}].
 
----
+## Explore: Modeling Real-World Growth and Decay
 
-## Learn: Using Logarithms to Solve Exponential Growth Problems
+Exponential functions describe many natural phenomena, from population growth to radioactive decay. The key is identifying whether the model involves discrete compounding (like annual growth) or continuous compounding (like continuously compounded interest or natural decay processes).
 
-Exponential functions with base `e` are frequently used to represent situations involving continuous growth.
+Inquiry Question:
+How is the exponential growth model [y = A_0(1 + r)^t] related to the continuous growth model [y = A_0 e^{rt}]?
 
-### Key Concept: Continuous Exponential Growth
+## Learn: Exponential and Logarithmic Models
 
-Exponential growth can be modeled by:
+### Key Concept: Discrete vs. Continuous Growth
 
-`f(x) = ae^(kt)`
+* **Discrete growth:** [y = A_0(1 + r)^t] — growth by discrete periods (years, months)
+* **Continuous growth:** [y = A_0 e^{rt}] — growth happening at every instant
 
-where:
+The continuous model uses [e] as the base. The parameter [r] is the annual rate, and [t] is time in years.
 
-* `a` is the initial value
-* `t` is time in years
-* `k` is the constant rate of continuous growth
+### Key Concept: Finding the Growth Constant
 
-This is the same form as the continuously compounded interest formula:
+For discrete growth [A = A_0(1 + r)^t], the continuous equivalent has [k = \ln(1 + r)] since [e^k = 1 + r].
 
-`A = Pe^(rt)`
+### Key Concept: Half-Life Formula
 
-## Think About It
+For a substance with half-life [T_{1/2}], the decay constant is [k = -\frac{\ln 2}{T_{1/2}}]. The amount remaining after time [t] is [y = A_0 e^{kt}].
 
-Write an exponential growth equation to represent a population that grows at a rate of `6%` per year and has an initial population of `250`.
+## Example 1 — Population Growth and Television Price Models
 
----
+### Step 1: Write the World Population Model
 
-## Example 1 — Continuous Exponential Growth
+Given: 2000 population = 6.124 billion, 2005 population = 6.515 billion.
 
-In `2016`, the population of Florida was `20.61` million people. In `2000`, it was `15.98` million.
+Use [P = P_0 e^{kt}].
+[6.515 = 6.124e^{k(5)}]
+[\frac{6.515}{6.124} = e^{5k}]
+[\ln \frac{6.515}{6.124} = 5k]
+[k = \frac{\ln(1.0638)}{5} \approx \frac{0.0620}{5} \approx 0.0124]
 
-### Part A: Write an exponential growth equation
+The model is [P = 6.124e^{0.0124t}] where [t] is years since 2000.
 
-Use:
+### Step 2: Predict When Population Reaches 7.5 Billion
 
-`y = ae^(kt)`
+[7.5 = 6.124e^{0.0124t}]
+[\frac{7.5}{6.124} = e^{0.0124t}]
+[\ln \frac{7.5}{6.124} = 0.0124t]
+[t = \frac{\ln 1.2248}{0.0124} \approx \frac{0.2028}{0.0124} \approx 16.35]
 
-Since `t` is years after `2000`:
+Approximately 16.35 years after 2000, so around 2016.
 
-* `a = 15.98`
-* `y = 20.61` when `t = 16`
+### Step 3: Write the Television Price Model
 
-Substitute:
+Price increases 4% per year: [P = 2500(1.04)^t].
 
-`20.61 = 15.98e^(16k)`
+To find when price reaches $3000:
+[3000 = 2500(1.04)^t]
+[1.2 = 1.04^t]
+[t \ln 1.04 = \ln 1.2]
+[t = \frac{\ln 1.2}{\ln 1.04} \approx \frac{0.1823}{0.0392} \approx 4.65] years.
 
-Divide by `15.98`:
+### Step 4: Compare Price Growth to Savings
 
-`20.61 / 15.98 = e^(16k)`
+Jason saves $2200 at 4.7% continuous: [A = 2200e^{0.047t}].
 
-Take natural logarithms:
+Find when [A > 3000] (cost of TV):
+[2200e^{0.047t} > 3000]
+[e^{0.047t} > \frac{3000}{2200} \approx 1.3636]
+[0.047t > \ln 1.3636 \approx 0.3103]
+[t > \frac{0.3103}{0.047} \approx 6.60] years.
 
-`ln(20.61 / 15.98) = 16k`
+## Example 2 — Radioactive Decay
 
-Solve:
+### Step 1: Determine the Decay Constant
 
-`k = ln(20.61 / 15.98) / 16`
+For a substance with half-life 32 years:
+[k = -\frac{\ln 2}{T_{1/2}} = -\frac{\ln 2}{32} \approx -\frac{0.6931}{32} \approx -0.02166]
 
-`k ≈ 0.0159`
+The equation of decay is [y = y_0 e^{-0.02166t}].
 
-So the model is:
+### Step 2: Find Remaining Amount After 100 Years
 
-`y = 15.98e^(0.0159t)`
+For a 5-gram sample:
+[y = 5e^{-0.02166(100)} = 5e^{-2.166} \approx 5(0.115) \approx 0.575] grams.
 
-### Part B: Predict when the population will reach `25` million people
+## Example 3 — Carbon Dating Applications
 
-Substitute `y = 25`:
+### Step 1: Apply Carbon-14 Decay
 
-`25 = 15.98e^(0.0159t)`
+For Carbon-14 with decay constant [k = -0.00012]:
+[y = y_0 e^{-0.00012t}]
 
-`1.564 = e^(0.0159t)`
+**Part a:** Fossil lost 95% of Carbon-14 means [y = 0.05y_0].
+[0.05 = e^{-0.00012t}]
+[\ln 0.05 = -0.00012t]
+[t = \frac{\ln 0.05}{-0.00012} \approx \frac{-2.9957}{-0.00012} \approx 24,964] years.
 
-Take natural logarithms:
+**Part b:** Animal skeleton has 95% remaining means [y = 0.95y_0].
+[0.95 = e^{-0.00012t}]
+[t = \frac{\ln 0.95}{-0.00012} \approx \frac{-0.0513}{-0.00012} \approx 428] years.
 
-`ln 1.564 = 0.0159t`
+### Step 2: Apply to Half-Life Problem
 
-`t = ln 1.564 / 0.0159`
+Wooden tool has 22% Carbon-14 remaining:
+[0.22 = e^{-0.00012t}]
+[t = \frac{\ln 0.22}{-0.00012} \approx \frac{-1.5141}{-0.00012} \approx 12,618] years.
 
-`t ≈ 28.129`
+## Mixed Exercises
 
-Florida’s population reaches `25` million about `28.129` years after `2000`, or in `2028`.
+**6. RADIOACTIVE DECAY** Rubidium-87, half-life 48.8 billion years:
 
-### Part C: Compare the populations of Florida and California
+**Part a:** [k = -\frac{\ln 2}{48.8} \approx -0.01421] per billion years.
 
-California’s population in `2000` was `33.9` million and can be modeled by:
+**Part b:** Time to decay from 50 mg to 18 mg:
+[18 = 50e^{-0.01421t}]
+[0.36 = e^{-0.01421t}]
+[t = \frac{\ln 0.36}{-0.01421} \approx \frac{-1.0216}{-0.01421} \approx 71.9] billion years.
 
-`y = 33.9e^(0.0092t)`
+**Part c:** Amount after 800 million years:
+[y = 50e^{-0.01421(0.8)} \approx 50e^{-0.01137} \approx 50(0.9887) \approx 49.4] mg.
 
-Determine when Florida’s population will surpass California’s.
+**Part d:** Time to reach one-sixteenth original:
+[0.0625 = e^{-0.01421t}]
+[t = \frac{\ln 0.0625}{-0.01421} \approx \frac{-2.7726}{-0.01421} \approx 195.1] billion years.
 
-Set up the inequality:
+**7. USE A MODEL** Bacteria growth:
 
-`15.98e^(0.0159t) > 33.9e^(0.0092t)`
+**Part a:** Initial 80 cells, 675 after 30 minutes.
+[675 = 80e^{k(30)}]
+[8.4375 = e^{30k}]
+[k = \frac{\ln 8.4375}{30} \approx \frac{2.1335}{30} \approx 0.0711] per minute.
 
-Take natural logarithms:
+**Part b:** Time to reach 6000 cells:
+[6000 = 80e^{0.0711t}]
+[75 = e^{0.0711t}]
+[t = \frac{\ln 75}{0.0711} \approx \frac{4.3175}{0.0711} \approx 60.7] minutes.
 
-`ln 15.98 + 0.0159t > ln 33.9 + 0.0092t`
+**Part c:** Compare with second bacteria [y = 35e^{0.0978t}]. Find when [35e^{0.0978t} > 80e^{0.0711t}].
 
-Subtract `0.0092t`:
+**8. NUCLEAR POWER** Plutonium-239, half-life 24,360 years:
+[k = -\frac{\ln 2}{24360} \approx -0.00002845] per year.
 
-`ln 15.98 + 0.0067t > ln 33.9`
+**9. DEPRECIATION** GPS system: bought for $12,500, now worth $8600, depreciates 6.2% annually.
 
-Subtract `ln 15.98`:
+Current model: [V = 12500(0.938)^{t}] where [t] is years ago.
+[8600 = 12500(0.938)^t]
+[0.688 = 0.938^t]
+[t = \frac{\ln 0.688}{\ln 0.938} \approx \frac{-0.374}{0.064} \approx 5.84] years ago.
 
-`0.0067t > ln 33.9 - ln 15.98`
+**10. WHALES** If vertebrae has 80% less Carbon-14 (20% remaining), age:
+[t = \frac{\ln 0.20}{-0.00012} \approx \frac{-1.609}{-0.00012} \approx 13,408] years.
 
-Solve:
+Since modern whales appeared 5-10 million years ago, this vertebrae is far too old to be from a modern whale.
 
-`t > (ln 33.9 - ln 15.98) / 0.0067`
+**11. REGULARITY** Population growth:
 
-`t > 112.25`
+**Part a:** Current 68,735, one year ago 67,387.
+Growth factor: [k = \ln \frac{68735}{67387} \approx \ln 1.020 \approx 0.0198].
+Model: [y = 68735e^{0.0198t}] where [t] is years from now.
 
-So, if the trend continues, Florida is on track to surpass California in `2112`.
+**Part b:** Population 100 years ago ([t = -100]):
+[y = 68735e^{0.0198(-100)} \approx 68735e^{-1.98} \approx 68735(0.138) \approx 9485].
 
-## Think About It
+**12. RADIOACTIVE DECAY** Cobalt-60, half-life 5.7 years:
+[k = -\frac{\ln 2}{5.7} \approx -0.1216] per year.
 
-Based on the given models, does it make sense that Florida’s population will eventually surpass California’s? Explain.
+**13. WILDLIFE** Rabbit population: initial 8000, grows 26% annually.
+Model: [P = 8e^{0.26t}] (in thousands).
+Find [t] when [P = 25]:
+[25 = 8e^{0.26t}]
+[3.125 = e^{0.26t}]
+[t = \frac{\ln 3.125}{0.26} \approx \frac{1.139}{0.26} \approx 4.38] years.
 
-### Check
+**14. STATE YOUR ASSUMPTIONS** Continuous 3% growth from 5 million to 8.3 million:
+[8.3 = 5e^{0.03t}]
+[1.66 = e^{0.03t}]
+[t = \frac{\ln 1.66}{0.03} \approx \frac{0.507}{0.03} \approx 16.9] years.
 
-An experiment starts with `20` bacteria A cells. After `45` minutes, there are `710` bacteria A cells.
+Assumption: Growth rate remains constant.
 
-* Write the equation that models the number of bacteria A cells after `t` minutes
-* Find when there will be `1000` bacteria A cells
-* Compare bacteria A with bacteria B, modeled by `y = 52e^(0.064t)`
+**15. ORGANISMS** Verify decay constant using table data. The constant [k \approx -0.00012] for Carbon-14 should be consistent across the data points.
 
----
+**16. SCIENCE** Bacteria growth at 8% per hour:
 
-## Learn: Using Logarithms to Solve Exponential Decay Problems
+**Part a:** [y = 20e^{0.08t}] where [t] is hours after 10:00 AM.
 
-Exponential functions with base `e` are also used to represent continuous decay.
+**Part b:** Find [t] when [y = 50]:
+[50 = 20e^{0.08t}]
+[2.5 = e^{0.08t}]
+[t = \frac{\ln 2.5}{0.08} \approx \frac{0.9163}{0.08} \approx 11.45] hours after 10:00 AM, so approximately 9:27 PM.
 
-### Key Concept: Continuous Exponential Decay
+**17. USE A MODEL** Cell experiment:
 
-Exponential decay can be modeled by:
+**Part a:** Complete table and determine model type (exponential decay).
+30% die each minute means 70% remain: [y = 1000000(0.7)^t].
 
-`f(x) = ae^(-kt)`
+**Part b:** [y = 1000000(0.7)^t], where [y] is cells and [t] is minutes.
 
-where:
+**Part c:** [k = \ln 0.7 \approx -0.3567] (indicates decay).
 
-* `a` is the initial value
-* `t` is time
-* `k` is a positive constant representing the rate of continuous decay
+**Part d:** Find [t] when [y < 1000]:
+[1000 = 1000000(0.7)^t]
+[0.001 = 0.7^t]
+[t = \frac{\ln 0.001}{\ln 0.7} \approx \frac{-6.908}{-0.357} \approx 19.35] minutes.
 
-## Think About It
+**18. USE A MODEL** City population [f(t) = 250e^{0.01753t}] (population in thousands after 2012):
 
-Given time in months and a rate per year, how would you find the value of `t` to substitute into the continuous exponential decay function?
+**Part a:** Initial population = 250,000 (since [f(0) = 250]), annual growth rate approximately 1.753%.
 
----
+**Part b:** Find [t] when [f(t) = 500]:
+[500 = 250e^{0.01753t}]
+[2 = e^{0.01753t}]
+[t = \frac{\ln 2}{0.01753} \approx \frac{0.6931}{0.01753} \approx 39.54] years after 2012, so around 2051-2052.
 
-## Example 2 — Continuous Exponential Decay
+**19. PERSEVERE** Solve [\frac{120000}{1 + 48e^{-0.015t}} = 24e^{0.055t}]:
 
-Thorium-230 has a half-life of `75,381` years.
+This requires algebraic manipulation and likely numerical methods to solve for [t]. Start by cross-multiplying and collecting terms.
 
-### Part A: Determine `k` and write the decay equation
+**20. ARGUMENTS** Explain why [f(t) = \frac{c}{1 + 60e^{-0.5t}}] approaches but never reaches [c]:
+As [t \to \infty], [e^{-0.5t} \to 0], so [f(t) \to \frac{c}{1 + 0} = c]. Since the exponential term is always positive, the denominator is always greater than 1, so [f(t) < c] for all finite [t].
 
-After one half-life period, the amount remaining is `0.5a`.
+**21. WRITE** Compare how exponential and continuous exponential functions model real-world situations:
+* Discrete exponential [y = ab^t] models situations with fixed time periods (annual growth, compound interest periods).
+* Continuous exponential [y = ae^{kt}] models situations where growth/decay happens continuously (radioactive decay, heat transfer, continuously compounded interest).
 
-Use:
+## Review Notes
 
-`y = ae^(-kt)`
-
-Substitute:
-
-`0.5a = ae^(-k(75,381))`
-
-Divide by `a`:
-
-`0.5 = e^(-75,381k)`
-
-Take natural logarithms:
-
-`ln 0.5 = -75,381k`
-
-Solve:
-
-`k = ln 0.5 / (-75,381)`
-
-`k ≈ 0.0000092`
-
-So the decay equation is:
-
-`y = ae^(-0.0000092t)`
-
-### Part B: How much of a `2`-gram sample remains after `1500` years?
-
-Substitute `a = 2` and `t = 1500`:
-
-`y = 2e^(-0.0000092(1500))`
-
-`= 2e^(-0.0138)`
-
-`≈ 1.97`
-
-After `1500` years, about `1.97` grams remain.
-
-### Watch Out
-
-Time units must match the rate. If the half-life is measured in days, then the decay constant is per day, not per year.
-
-### Check
-
-Iodine-131 has a half-life of `8.02` days.
-
-* Write the continuous exponential decay equation
-* Find how much of a `15`-gram sample remains after `20` days
-
----
-
-## Apply Example 3 — Radiocarbon Dating
-
-Carbon-14 is used in radiocarbon dating. It has a half-life of `5730` years and a decay constant `k = 0.00012`.
-
-In `2016`, charcoal flakes from an excavation site in Canada were found to contain about `18.6%` as much Carbon-14 as they would have originally contained. How old are the charcoal flakes to the nearest year?
-
-### 1. What is the task?
-
-Use the Carbon-14 decay information to find the age of the charcoal flakes.
-
-### 2. How will you approach the task?
-
-Estimate the age using half-lives, then write and solve an exponential decay equation.
-
-### 3. What is your solution?
-
-#### Estimate first
-
-After two half-lives, `25%` remains.
-
-After three half-lives, `12.5%` remains.
-
-Because `18.6%` lies between `25%` and `12.5%`, the sample is between:
-
-* `11,460` years old
-* `17,190` years old
-
-#### Write the equation
-
-Because the sample has `18.6%` of its original Carbon-14:
-
-`0.186 = e^(-0.00012t)`
-
-Solving gives:
-
-`t ≈ 14,017`
-
-So the charcoal flakes are about `14,017` years old.
-
-### 4. How can you know that your solution is reasonable?
-
-The solution lies within the estimated interval.
-
-Checking the model:
-
-`y = e^(-0.00012(14,017))`
-
-`≈ 0.186`
-
-So the result is consistent with the given percent remaining.
-
-### Check
-
-An archaeologist estimates that a prehistoric painting contains about `2.34%` as much Carbon-14 as it would have contained when it was painted. Use the decay model below to determine how long ago the painting was created.
-
-`y = ae^(-0.00012t)`
-
----
-
-## Pause and Reflect
-
-Did you struggle with anything in this lesson? If so, how did you deal with it?
-
----
-
-## Objective Alignment
-
-- `Write and solve exponential growth equations and inequalities`: Primary worked examples: Example 1.
-- `Write and solve exponential decay equations`: Primary worked examples: Example 2.
+* Images: ![](media/image1.JPG) — Problem 15 data verification image; ![](media/image2.JPG) — Problem 17 table of values.
+* The worksheet contains 21 practice problems across three examples and mixed exercises.

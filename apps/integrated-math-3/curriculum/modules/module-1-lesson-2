@@ -1,153 +1,135 @@
-# Lesson 1-2 - Solving Quadratic Equations by Graphing
+# Lesson 1-2 — Solving Quadratic Equations by Graphing
+
+Source: (Module 1, Lesson 1-2, Int3_0102_practice.docx)
 
 ## Today's Goals
 
-* Solve quadratic equations by graphing
-
----
+* Use the graph of a quadratic function to identify the solutions (roots or zeros) of the related equation.
+* Solve quadratic equations by graphing the related function and identifying where it crosses or touches the x-axis.
+* Use tables to estimate the location of roots when exact values cannot be determined.
+* Apply quadratic equations to real-world problems involving sums and products, physics, and trajectories.
 
 ## Vocabulary
 
-* quadratic equation
-* standard form of a quadratic equation
+* **Root (or Zero)** — A value of x that makes [f(x) = 0]; the x-coordinate where the graph of the function crosses or touches the x-axis.
+* **Solutions of a Quadratic Equation** — The values of x that satisfy [ax^2 + bx + c = 0]; correspond to the x-intercepts of the graph of [y = ax^2 + bx + c].
+* **Quadratic Equation** — An equation of the form [ax^2 + bx + c = 0] where [a ≠ 0].
+* **Related Quadratic Function** — The function [f(x) = ax^2 + bx + c] associated with the equation [f(x) = 0].
 
----
+## Explore: Where Do the Solutions Appear on a Graph?
 
-## Explore: Roots of Quadratic Equations
-
-Use graphing technology to explore how the graph of a quadratic function relates to the solutions of its related equation.
+When solving a quadratic equation by graphing, the solutions appear as the x-intercepts of the related quadratic function. Students consider why some quadratic equations have two solutions, one solution, or no real solutions, and how these correspond to the graph's interaction with the x-axis.
 
 Inquiry Question:
-How can you use the graph of a quadratic function to find the solutions of its related equation?
-
----
+How can you determine the number of real solutions a quadratic equation has by looking at its graph?
 
 ## Learn: Solving Quadratic Equations by Graphing
 
-A quadratic equation is an equation that includes a quadratic expression.
+### Key Concept: Reading Solutions from a Graph
 
-### Key Concept: Standard Form of a Quadratic Equation
+* If the graph crosses the x-axis at two distinct points, there are two distinct real solutions.
+* If the graph touches the x-axis at one point (the vertex), there is one real solution (a double root).
+* If the graph does not intersect the x-axis, there are no real solutions (two complex solutions).
 
-The standard form of a quadratic equation is:
+### Key Concept: Solving by Graphing
 
-`ax^2 + bx + c = 0`
+1. Rewrite the equation in standard form if needed: [ax^2 + bx + c = 0].
+2. Graph the related function [f(x) = ax^2 + bx + c].
+3. Identify the x-intercepts of the graph—these are the solutions.
 
-where `a != 0` and `a`, `b`, and `c` are integers.
+## Example 1 — Use Related Graphs to Determine Solutions
 
-One method for finding the roots of a quadratic equation is to find the zeros of a related quadratic function. The x-intercepts of the graph give the real solutions. When exact roots cannot be found from the graph, the solutions can be estimated from the intervals where the graph crosses the x-axis.
+Use the graph of the related equation to determine its solutions.
 
-### Study Tip
+### Step 1: Identify the X-Intercepts
 
-A quadratic equation can have:
+For [x^2 + 2x + 3 = 0]: the graph shows no x-intercepts, so there are no real solutions.
 
-* one real solution
-* two real solutions
-* no real solutions
+For [x^2 - 3x - 10 = 0]: the graph crosses the x-axis at approximately [x = -2] and [x = 5].
 
----
+For [-x^2 - 8x - 16 = 0]: the graph touches the x-axis at [x = -4], so there is one solution.
 
-## Example 1 - One Real Solution
+### Step 2: Solve by Graphing
 
-Solve `10 - x^2 = 4x + 14` by graphing.
+Solve [x^2 - 10x + 21 = 0], [4x^2 + 4x + 1 = 0], [x^2 + x - 6 = 0], and other equations by graphing their related functions and identifying x-intercepts.
 
-Rearrange terms so that one side is `0`:
+## Example 2 — Find Two Numbers with Given Sum and Product Using Quadratic Equations
 
-`0 = x^2 + 4x + 4`
+Use a quadratic equation to find two real numbers that satisfy given sum and product conditions.
 
-Find the axis of symmetry:
+### Step 1: Write the Equation
 
-`x = -b / (2a) = -4 / 2 = -2`
+For two numbers with sum of 2 and product of -24: if the numbers are x and (2 - x), then [x(2 - x) = -24].
 
-Graph the related function and identify the zero.
+This simplifies to [-x^2 + 2x + 24 = 0] or [x^2 - 2x - 24 = 0].
 
-The zero of the function is `-2`, so the solution is:
+### Step 2: Solve by Factoring
 
-`x = -2`
+Factor [[x^2 - 2x - 24 = (x - 6)(x + 4) = 0]], so [x = 6] or [x = -4]. The two numbers are 6 and -4.
 
----
+Similar process for sum of -15 and product of -54.
 
-## Example 2 - Two Real Solutions
+## Example 3 — Solve by Graphing When Exact Roots Cannot Be Found
 
-Use a quadratic equation to find two real numbers with a sum of `24` and a product of `143`.
+Solve equations by graphing and identify consecutive integers between which the roots lie.
 
-Let `x` represent one number. Then `24 - x` represents the other number.
+### Step 1: Graph and Identify Approximate Location
 
-`x(24 - x) = 143`
+For [x^2 - 4x + 2 = 0]: the graph crosses the x-axis between [x = 0] and [x = 1], and between [x = 3] and [x = 4].
 
-Rewrite:
+For [x^2 + 6x + 6 = 0]: the roots lie between [-5 and -4] and between [-1 and 0].
 
-`0 = x^2 - 24x + 143`
+### Step 2: Use Tables to Refine Estimates
 
-The axis of symmetry is:
+For equations where exact roots cannot be found from the graph, use a table to narrow down the location to consecutive integers.
 
-`x = 12`
+Solve [-x^2 - 4x = 0], [-x^2 + 36 = 0], and other equations similarly.
 
-From the graph, the zeros are `11` and `13`.
+## Example 4 — Use Tables to Determine Zeros
 
-So the two numbers are:
+Use tables to determine the location of zeros and identify consecutive integers between which roots are located.
 
-* `11`
-* `13`
+### Step 1: Read the Table for Sign Changes
 
----
+Examine the table values for each function. When the sign of the output changes from positive to negative or vice versa, a root lies between those input values.
 
-## Example 3 - Estimate Roots
+### Step 2: Identify the Integer Interval
 
-Solve `-x^2 + 3x + 7 = 0` by graphing. If the exact roots cannot be found, state the consecutive integers between which the roots are located.
+For [x^2 - 4x + 2 = 0]: the table shows [f(0) = 2], [f(1) = -1], so one root is between 0 and 1.
 
-From the graph, one x-intercept is between `-2` and `-1`, and the other is between `4` and `5`.
+## Example 5 — Solve Using the Height Formula in Physics
 
-So the roots are located between:
+Use the formula [h(t) = -16t^2 + v_0 t + h_0] to solve problems involving objects in free fall.
 
-* `-2` and `-1`
-* `4` and `5`
+### Step 1: Set Up the Equation
 
----
+For a baseball thrown with initial velocity 32 ft/s from height 4 ft: [h(t) = -16t^2 + 32t + 4]. Find when [h(t) = 0] to determine when the ball hits the ground.
 
-## Example 4 - Solve by Using a Table
+### Step 2: Use a Graphing Calculator to Solve
 
-Use a table to solve `-x^2 + 5x - 1 = 0`.
+Graph [y = -16t^2 + 32t + 4] and find where it crosses the t-axis.
 
-A table shows a sign change between `x = 0` and `x = 1`. Refining the table gives one zero at about `x = 0.209`.
+Similar problem for a football kicked with initial velocity 60 ft/s from height 2 ft.
 
-Repeating the process for the other side of the parabola gives the second zero at about `x = 4.791`.
+## Mixed Exercises
 
-So the approximate solutions are:
+The mixed exercises section provides practice with all skills from the lesson. Problems include:
 
-* `x ~= 0.209`
-* `x ~= 4.791`
+* Solving quadratic equations by graphing when exact roots can and cannot be found. (Problems 35–40)
+* Using graphs or tables to solve equations and identifying consecutive integers between which roots lie. (Problems 41–49)
+* Regularity problems: using quadratic equations to find two numbers with a given sum and product, or showing no such numbers exist. (Problems 50–53)
+* A bridge arch problem: graphing [h = 9 - (1/50)x^2] to find where the bridge touches the ground. (Problem 54)
+* A radio telescope problem: using [y = (2/75)x^2 - (4/3)x - (32/3)] to find the diameter of the dish by graphing. (Problem 55)
+* A volcanic eruption problem: finding when a boulder returns to ground level using [h(t) = -16t^2 + 240t]. (Problem 56)
+* A golf ball trajectory problem: using [h = 80t - 16t^2] to find when the ball lands. (Problem 57)
+* A hiking backpack problem: writing and solving a quadratic function for time for a dropped backpack to land. (Problem 58)
+* A "Find the Error" problem analyzing two students' work on finding root locations from a table. (Problem 59)
+* Finding a positive integer k such that [f(x) = x^2 - 2kx + 55] has roots at [k + 3] and [k - 3]. (Problem 60)
+* Finding the other root of a quadratic function with a minimum at (-6, -14) and a root at [x = -17]. (Problem 61)
+* Creating a quadratic function with a maximum at (3, 125) and roots at -2 and 8. (Problem 62)
+* Explaining how to solve a quadratic equation by graphing its related function. (Problem 63)
 
----
+## Review Notes
 
-## Example 5 - Solve by Using a Calculator
-
-Football: A kicker punts a football. The height after `t` seconds is given by
-
-`h(t) = -16t^2 + 50t + h0`
-
-where `h0` is the initial height. If the ball is `1.5` feet above the ground when it is kicked, how long will it take the ball to hit the ground?
-
-Use the related function:
-
-`h(t) = -16t^2 + 50t + 1.5`
-
-Graph the function and use the zero feature to find the positive zero.
-
-The ball hits the ground at about:
-
-`t ~= 3.15`
-
-So the ball hits the ground about `3.15` seconds after it is punted.
-
----
-
-## Talk About It
-
-* How can you estimate the solutions of the equation from a table?
-* Why is it sometimes necessary to use a graphing calculator or a table instead of a hand-drawn graph?
-
----
-
-## Objective Alignment
-
-- `Solve quadratic equations by graphing`: Primary worked examples: Examples 1-5.
+* Images referenced in the worksheet (graphs for Example 1 showing the related graphs for solving equations, bridge arch diagram in Problem 54, radio telescope cross-section in Problem 55, volcanic eruption graph in Problem 56, golf ball trajectory graph in Problem 57, hiking cliff diagram in Problem 58, and the table in Problem 59) could not be fully described without visual reference. Teachers should consult the original worksheet for exact diagrams and values.
+* The worksheet contains 63 practice problems across five examples and mixed exercises.

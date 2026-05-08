@@ -1,0 +1,168 @@
+# Lesson 9-5 — Distributions of Data
+
+Source: (Module 9, Lesson 9-5, Int1_0905_practice.docx)
+
+## Today's Goals
+
+* Construct and interpret histograms and box plots to visualize the shape of a data distribution
+* Choose appropriate measures of center and spread based on whether a distribution is symmetric or skewed
+* Analyze the effect of outliers on statistical summaries and justify the choice of statistics
+
+## Vocabulary
+
+* **Histogram** — A bar graph that shows the frequency of data values within equal intervals
+* **Box Plot** — A graphical display of the five-number summary of a data set
+* **Symmetric Distribution** — A distribution whose left and right sides are approximately mirror images
+* **Skewed Distribution** — A distribution whose tail extends farther to one side; skewed left if the tail is on the left, skewed right if the tail is on the right
+* **Five-Number Summary** — The minimum, first quartile, median, third quartile, and maximum of a data set
+* **Outlier** — A data value that is much greater or much less than the other values in the data set
+* **Mean** — The average of a data set, found by summing all values and dividing by the number of values
+* **Standard Deviation** — A measure of spread that describes the typical distance of data values from the mean
+* **Interquartile Range (IQR)** — The difference between the third quartile and the first quartile, [ Q_3 - Q_1 ] 
+
+## Explore: What Shape Does the Data Take?
+
+Students sketch what they think a histogram of test scores or household incomes might look like. They discuss whether the data would cluster in the middle, tail off to one side, or have gaps, and how that shape affects which statistics they trust most.
+
+Inquiry Question:
+How does the shape of a distribution help us choose the best measures of center and spread?
+
+## Learn: Describing Distributions
+
+When analyzing a data set, begin by creating a visual display to identify the overall shape. Then choose statistics that best represent the center and spread without being distorted by outliers or skewness.
+
+### Key Concept: Choosing Measures of Center and Spread
+
+* For a **symmetric** distribution, use the **mean** and **standard deviation** to describe center and spread
+* For a **skewed** distribution or one with outliers, use the **median** and the **five-number summary** (or IQR) to describe center and spread
+* Always justify the choice by referencing the shape shown in the histogram or box plot
+
+## Example 1 — Construct Histograms and Box Plots
+
+Use a graphing calculator or statistical software to construct a histogram and a box plot for a given data set, then describe the shape of the distribution.
+
+### Step 1: Enter the Data
+
+Input all data values into a list.
+
+### Step 2: Create the Graphs
+
+Generate a histogram and a box plot from the data list.
+
+### Step 3: Describe the Shape
+
+Identify whether the distribution is approximately symmetric, skewed left, or skewed right by examining the histogram and box plot. Note the direction of the longest tail.
+
+Representative data set:
+[
+14, 71, 63, 42, 24, 76, 34, 77, 37, 69, 54, 64, 47, 74, 59, 43, 76, 56,
+78, 52, 18, 54, 39, 28, 56, 74, 68, 36, 20, 49, 67, 47, 69, 68, 72, 69
+]
+
+## Example 2 — Describe Center and Spread Using a Histogram
+
+Describe the center and spread of a data set using either the mean and standard deviation or the five-number summary. Justify the choice by constructing a histogram.
+
+### Step 1: Construct a Histogram
+
+Create a histogram to visualize the shape of the distribution.
+
+### Step 2: Determine the Shape
+
+Examine the histogram to decide whether the distribution is symmetric or skewed. Look for tails, gaps, or clusters.
+
+### Step 3: Choose and Calculate Statistics
+
+* If symmetric, report the mean [ \bar{x} ] and standard deviation [ \sigma ] 
+* If skewed or containing outliers, report the five-number summary: [ \text{min}, Q_1, \text{median}, Q_3, \text{max} ] 
+
+Representative data set:
+[
+32, 44, 50, 49, 21, 12, 27, 41, 48, 30, 50, 23, 37, 16, 49, 53, 33, 25,
+35, 40, 48, 39, 50, 24, 15, 29, 37, 50, 36, 43, 49, 44, 46, 27, 42, 47
+]
+
+## Example 3 — Describe Center and Spread Using a Box Plot
+
+Describe the center and spread of a data set using either the mean and standard deviation or the five-number summary. Justify the choice by constructing a box plot.
+
+### Step 1: Construct a Box Plot
+
+Create a box plot from the data to visualize the spread and identify any outliers.
+
+### Step 2: Determine the Shape
+
+Use the box plot to assess symmetry. A symmetric distribution has the median roughly centered in the box and whiskers of similar length. Skewed distributions have a longer whisker on one side and the median closer to one end of the box.
+
+### Step 3: Choose and Calculate Statistics
+
+* If the box plot shows symmetry, use the mean and standard deviation
+* If the box plot shows skewness or outliers, use the five-number summary
+
+Representative data set:
+[
+47, 16, 70, 80, 28, 33, 91, 55, 60, 45, 86, 54, 30, 98, 34, 87, 44, 35,
+64, 58, 27, 67, 72, 68, 31, 95, 37, 41, 97, 56, 49, 71, 84, 66, 45, 93
+]
+
+## Example 4 — Analyze Outliers and Their Effects
+
+In real-world contexts, identify outliers in a data set, construct a box plot, calculate appropriate statistics, and describe how the outlier affects the measures of center and spread.
+
+### Step 1: Identify Potential Outliers
+
+Examine the data for values that are substantially different from the rest. For example, in a data set of daily exercise minutes, a value of 10 minutes might be an outlier if most values cluster around 55–62 minutes.
+
+### Step 2: Construct a Box Plot
+
+Create a box plot to confirm the presence of outliers visually.
+
+### Step 3: Calculate Statistics With and Without the Outlier
+
+Calculate appropriate measures of center and spread for the full data set. Then remove the outlier and recalculate to compare.
+
+### Step 4: Describe the Effect
+
+Explain how the outlier influences the mean, median, standard deviation, or range. Outliers typically have a larger effect on the mean and standard deviation than on the median and IQR.
+
+Representative contexts:
+
+* Flight prices from Los Angeles to New York:
+[
+182, 234, 264, 271, 277, 314, 317, 455
+]
+
+* Exercise minutes tracked over 10 days:
+[
+57, 60, 53, 59, 57, 61, 61, 54, 62, 10
+]
+
+## Mixed Exercises
+
+The mixed exercises provide practice across all skills from this lesson. Problems include:
+
+* Constructing histograms and box plots for raw data sets and describing distribution shape
+* Selecting and justifying appropriate measures of center and spread for symmetric versus skewed data
+* Working with contextual data sets involving outliers and analyzing their effect on statistics
+* Comparing two data sets or distributions using statistical summaries and graphical displays
+* Removing outliers from a data set, reconstructing the box plot, and comparing means and medians before and after
+* Matching histograms to their corresponding box plots
+* Interpreting real-world data presented in tables and graphs
+* Researching and defining distribution types such as bimodal distributions
+* Creating examples of symmetric and non-symmetric real-world data
+* Explaining why the mean and standard deviation are used for symmetric distributions while the five-number summary is preferred for skewed distributions
+
+Some problems present data in tables or graphs that require reading values before analysis.
+
+## Review Notes
+
+* **Image needed:** Problem 13 (GOLF) contains a box plot or table image (`media/image1.png`) showing miniature golf scores that cannot be described from the source
+* **Image needed:** Problem 15 (PRESIDENTS) contains a table of presidential inauguration ages as an image (`media/image2.png`) that cannot be described from the source
+* **Image needed:** Problem 16 (AUTOMOTIVE) contains two images (`media/image3.png`, `media/image4.png`) showing cars serviced per day data that cannot be described from the source
+* **Image needed:** Problem 17 (COMMUTE) contains an image (`media/image5.png`) showing weekly miles driven data that cannot be described from the source
+* **Image needed:** Problem 19 (USE A MODEL) contains a histogram image (`media/image6.png`) comparing two brands of pasta weights that cannot be described from the source
+* **Image needed:** Problem 20 (STRUCTURE) contains a table image (`media/image7.png`) of Space Shuttle flight durations that cannot be described from the source
+* **Image needed:** Problem 22 contains two box plot images (`media/image8.png`, `media/image9.png`) for comparison that cannot be described from the source
+* **Image needed:** Problem 23 (SUPREME COURT) references a table of Supreme Court Justice ages that appears to be an embedded image not described in the source text
+* **Image needed:** Problem 24 contains a histogram image (`media/image10.png`) and three box plot images (`media/image11.png` labeled A, B, C) for matching that cannot be described from the source
+* **Missing data:** Problem 18 (ELEVATION) references a table of 10 U.S. elevations, but the actual values are not present in the extracted source text

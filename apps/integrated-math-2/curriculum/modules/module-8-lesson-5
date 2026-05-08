@@ -1,0 +1,109 @@
+# Lesson 8-5 — Graphing Linear Functions and Inequalities
+
+Source: (Module 8, Lesson 8-5, Int2_0805_practice.docx)
+
+## Today's Goals
+
+* Graph linear equations using a table, intercepts, or slope-intercept form [y = mx + b].
+* Graph linear inequalities and identify the solution set.
+* Apply linear equations and inequalities to real-world resource and constraint problems.
+
+## Vocabulary
+
+* **Slope-Intercept Form** — [y = mx + b], where [m] is the slope and [b] is the y-intercept.
+* **x-Intercept** — The point where the line crosses the x-axis; found by setting [y = 0].
+* **y-Intercept** — The point where the line crosses the y-axis; found by setting [x = 0].
+* **Boundary Line** — The line that defines the boundary of an inequality; dashed for [>] or [<], solid for [>=] or [<=].
+* **Solution Set** — The set of all points that satisfy an inequality.
+
+## Explore: Lines and Half-Planes
+
+Students consider how the graph of a linear inequality differs from a linear equation and what determines which side of the boundary line is shaded.
+
+Inquiry Question:
+How does the inequality symbol determine which side of the boundary line is part of the solution set?
+
+## Learn: Graphing Linear Functions and Inequalities
+
+### Key Concept: Three Methods for Graphing Lines
+
+1. **Table method:** Choose x-values, compute y-values, plot points, draw line.
+2. **Intercept method:** Find where the line crosses each axis, plot those points, draw the line through them.
+3. **Slope-intercept method (m and b):** Plot the y-intercept [(0, b)], use the slope [m] to find another point, draw the line.
+
+### Key Concept: Graphing Linear Inequalities
+
+1. Graph the boundary line (solid for [<= / >=], dashed for [< / >]).
+2. Test a point not on the line (commonly the origin) to determine which side to shade.
+3. Shade the appropriate half-plane.
+
+## Example 1 — Graph Using a Table
+
+Graph each equation by using a table.
+
+### Step 1: Make a Table of Values
+
+Choose x-values, compute corresponding y-values, plot the points, and connect them.
+
+## Example 2 — Graph Using Intercepts
+
+Graph each equation by using the x- and y-intercepts.
+
+### Step 1: Find Both Intercepts
+
+Set [y = 0] to find the x-intercept; set [x = 0] to find the y-intercept. Plot both and draw the line through them.
+
+## Example 3 — Graph Using m and b
+
+Graph each equation by using [m] and [b].
+
+### Step 1: Identify m and b
+
+Write each equation in the form [y = mx + b], identify [m] and [b], plot the y-intercept, use the slope to find another point, draw the line.
+
+## Examples 4 and 5 — Graph Inequalities
+
+Graph each inequality.
+
+### Step 1: Graph the Boundary, then Shade
+
+## Example 6 — Real-World Inequality Problems
+
+Write and graph inequalities for real-world constraint situations.
+
+### Step 1: CRAFT FAIR
+
+Kylie wants to sell two paintings for at least $400 total. If x is the price of the first painting and y is the price of the second: [x + y >= 400].
+
+### Step 2: BUILDING CODES
+
+Building height must be less than 0.1x, where x is distance in hundreds of feet from the park center: [y < 0.1x].
+
+### Step 3: WEIGHT
+
+Truck weight limit: [200t + 60c < 1200], where t is tables and c is chairs.
+
+### Step 4: ART
+
+Artist sells drawings at $100 and watercolors at $400, wants at least $2000: [100d + 400w >= 2000].
+
+## Mixed Exercises
+
+Problems 35–65 provide extensive practice:
+
+* Graph equations and inequalities (problems 35–52).
+* ANIMALS: Horse needs 36 liters/day, sheep needs 3.6 liters/day, farmer has 300 liters total. Write and graph equation or inequality.
+* COMPUTERS: Desktops at $1000, notebooks at $1200, budget max $80,000.
+* BAKED GOODS: Mary sells chocolate chip cookies at $1.25 and peanut butter at $1.00, wants at least $25/day.
+* FUNDRAISING: Drama club costs $400 to put on a play, 300 students and 150 adults attend, want $1400 profit.
+* CONSTRUCTION: Rectangular sandbox with no more than 20 linear feet of lumber.
+* SPIRITWEAR: Long-sleeved shirts profit $7, short-sleeved profit $4, want at least $280 profit.
+* MONEY: Gemma buys candles at $9 and soaps at $4, needs at least $50 for free shipping.
+* FIND THE ERROR: Paulo and Janette's graphs of [x - y >= 2].
+* CREATE: Write an inequality with a dashed boundary line.
+* ANALYZE: Counterexample for "every point in the first quadrant is a solution for 3y > -x + 6."
+* PERSEVERE: Write an equation of a line with the same slope as [2x - 8y = 7] and the same y-intercept as [4x + 3y = 15].
+
+## Review Notes
+
+* ![](media/image1.png) — FIND THE ERROR problem graph (problem 61)

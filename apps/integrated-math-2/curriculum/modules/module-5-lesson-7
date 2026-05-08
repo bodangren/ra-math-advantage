@@ -1,0 +1,119 @@
+# Lesson 5-7 — Equations of Circles
+
+Source: (Module 5, Lesson 5-7, Int2_0507_practice.docx)
+
+## Today's Goals
+
+* Write the equation of a circle in standard form given center and radius, center and diameter, or center and a point on the circle.
+* Identify the center and radius of a circle from its equation.
+* Find points of intersection between a circle and a line.
+* Apply circle equations to real-world contexts.
+
+## Vocabulary
+
+* **Standard Form (Circle)** — [(x - h)² + (y - k)² = r²], where (h, k) is the center and [r] is the radius.
+* **General Form** — [x² + y² + Dx + Ey + F = 0]
+
+## Explore: Where Do Points Lie?
+
+A circle is the set of all points equidistant from a center. Students explore how this geometric definition translates into an algebraic equation.
+
+Inquiry Question:
+If the center of a circle is at (3, -2) and a point on the circle is at (7, -2), what is the radius? How would you write the equation?
+
+## Learn: Equations of Circles
+
+### Key Concept: Standard Form of a Circle
+
+The standard form of a circle with center [(h, k)] and radius [r] is:
+
+[(x - h)² + (y - k)² = r²]
+
+If the center is at the origin (0, 0), the equation simplifies to:
+
+[x² + y² = r²]
+
+### Key Concept: Writing Equations of Circles
+
+**Given center and radius:** Use the standard form directly.
+
+**Given center and diameter:** Find the radius as half the diameter, then use the standard form.
+
+**Given center and a point on the circle:** Find the radius by computing the distance from the center to the point, then use the standard form.
+
+Distance formula: [r = sqrt((x₂ - x₁)² + (y₂ - y₁)²)]
+
+### Key Concept: Converting to Standard Form
+
+To convert [x² + y² + Dx + Ey + F = 0] to standard form, complete the square for both [x] and [y]:
+
+[x² + Dx → (x + D/2)²]
+[y² + Ey → (y + E/2)²]
+
+The center is [(-D/2, -E/2)] and the radius is [r = sqrt((D/2)² + (E/2)² - F)].
+
+### Key Concept: Intersections of Circles and Lines
+
+To find where a circle and a line intersect, substitute the linear equation into the circle equation and solve the resulting quadratic.
+
+## Example 1 — Write Equations of Circles
+
+Write the equation of each circle described.
+
+### Step 1: Identify Known Information
+
+For center at (0, 0) with radius 8: [(x - 0)² + (y - 0)² = 64], or [x² + y² = 64].
+
+For center at (-2, 6) with diameter 8: radius is 4. [(x + 2)² + (y - 6)² = 16].
+
+For a circle centered at (3, -4) passing through (-1, -4): the radius is the distance [sqrt((3 - (-1))² + (-4 - (-4))²) = sqrt(16 + 0) = 4]. [(x - 3)² + (y + 4)² = 16].
+
+### Step 2: Write the Standard Form
+
+For center (0, 3) passing through (2, 0): radius = [sqrt((0-2)² + (3-0)²) = sqrt(4 + 9) = sqrt(13)]. [x² + (y - 3)² = 13].
+
+## Example 2 — Identify Center and Radius from an Equation
+
+State the coordinates of the center and the radius. Then graph.
+
+### Step 1: Complete the Square or Use Standard Form
+
+For [x² + y² = 16]: center is (0, 0), radius is [r = 4].
+
+For [(x - 1)² + (y - 4)² = 9]: center is (1, 4), radius is [r = 3].
+
+For [x² + y² - 4 = 0]: rewrite as [x² + y² = 4], center is (0, 0), radius is [r = 2].
+
+For [x² + y² + 6x - 6y + 9 = 0]: complete the square: [(x² + 6x) + (y² - 6y) = -9]. [(x + 3)² + (y - 3)² = -9 + 9 + 9 = 9]. Center is (-3, 3), radius is [r = 3].
+
+## Example 3 — Circle Equations in Real-World Contexts
+
+### Step 1: Define the Circle from the Context
+
+For the dog leash problem: [RS] is a diameter of ⊙*Q*. With endpoints R(-4, 1) and S(8, 7), the center is the midpoint: [Q = ((-4+8)/2, (1+7)/2) = (2, 4)]. The radius is half the distance between R and S: [r = (1/2)sqrt((8-(-4))² + (7-1)²) = (1/2)sqrt(144 + 36) = (1/2)sqrt(180) = 3sqrt(5)]. The equation is [(x - 2)² + (y - 4)² = 45].
+
+For the pizza delivery problem: points A(-2, 2), B(2, -2), and C(6, 2) lie on ⊙*P*, with [AC] as a diameter. The center is the midpoint of A and C: [P = ((-2+6)/2, (2+2)/2) = (2, 2)]. The radius is half the distance between A and C: [r = (1/2)sqrt((6-(-2))² + (2-2)²) = (1/2)(8) = 4]. The equation is [(x - 2)² + (y - 2)² = 16].
+
+## Mixed Exercises
+
+Practice with all skills from the lesson, including:
+
+* Writing equations of circles given center and radius or diameter endpoints.
+* Writing equations of circles given center and a point on the circle.
+* Identifying centers and radii from circle equations (including equations that require completing the square).
+* Graphing circles from their equations.
+* Finding points of intersection between circles and lines (substitute and solve).
+* Writing equations for circles given real-world constraints (delivery areas, roaming boundaries).
+* Analyzing whether [x² + y² + 4x - 10y = k] is always a circle for any value of [k].
+* Sketching wallpaper patterns modeled by [(x - a)² + (y - b)² = 4] for even integer values of [b].
+* Finding the equation of an inscribed circle in a square.
+* Finding the radius of a park given [(x - 3)² + (y - 7)² = 225] where each unit represents 10 feet.
+* Finding the radius of a fire station's response area given [(x - 8)² + (y + 2)² = 324].
+* Analyzing whether a circle intersects a given line based on its equation.
+* Explaining how the equation of a circle changes when translated.
+* Constructing a circle that circumscribes a triangle given three noncollinear points.
+
+## Review Notes
+
+* ![](media/image1.png), ![](media/image2.png) — circle diagrams for Exercises 3–4
+* ![](media/image3.png) — wallpaper pattern design for Exercise 22

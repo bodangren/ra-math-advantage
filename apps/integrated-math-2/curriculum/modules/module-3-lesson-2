@@ -1,0 +1,147 @@
+# Lesson 3-2 — Similar Polygons
+
+Source: (Module 3, Lesson 3-2, Int2_0302_practice.docx)
+
+## Today's Goals
+
+* Identify pairs of congruent angles and write proportions for corresponding sides of similar polygons.
+* Determine whether polygons are similar and find the scale factor.
+* Find unknown side lengths in similar polygons using proportions.
+* Apply similarity to real-world problems involving scale models and maps.
+
+## Vocabulary
+
+* **Similar Polygons** — Two polygons with the same shape but not necessarily the same size; corresponding angles are congruent and corresponding sides are proportional.
+* **Scale Factor** — The ratio of the lengths of corresponding sides of similar polygons.
+* **Congruent Angles** — Angles that have the same measure.
+* **Proportion** — An equation stating that two ratios are equal.
+* **Similarity Statement** — A statement such as [ABCD ∼ WXYZ] indicating which vertices correspond between similar figures.
+
+## Explore: What Makes Polygons Similar?
+
+Students consider how similar polygons maintain their shape while their size changes, and how corresponding angles and sides relate.
+
+Inquiry Question:
+If two polygons are similar, what must be true about their corresponding angles and corresponding sides?
+
+## Learn: Similar Polygons
+
+### Key Concept: Properties of Similar Polygons
+
+* Corresponding angles are **congruent** (equal in measure).
+* Corresponding sides are **proportional** (ratios equal the scale factor).
+* The ratio of perimeters equals the scale factor: [\frac{perimeter_{image}}{perimeter_{original}} = k]
+
+### Key Concept: Writing Similarity Statements
+
+When writing similarity statements, list vertices in corresponding order:
+[ABCD ∼ WXYZ] means [A ↔ W], [B ↔ X], [C ↔ Y], [D ↔ Z].
+
+## Example 1 — Identify Corresponding Parts
+
+### Step 1: List Congruent Angles
+
+For similar polygons, identify the pairs of congruent angles by matching vertex positions in the similarity statement.
+
+*Problem 1:* [ABCD ∼ WXYZ]
+Congruent angles: [∠A ≅ ∠W], [∠B ≅ ∠X], [∠C ≅ ∠Y], [∠D ≅ ∠Z]
+
+### Step 2: Write the Proportion
+
+Write proportions relating corresponding sides using the similarity statement.
+
+[
+\frac{AB}{WX} = \frac{BC}{XY} = \frac{CD}{YZ} = \frac{DA}{ZW}
+]
+
+## Example 2 — Determine Similarity and Scale Factor
+
+### Step 1: Compare Angle Measures
+
+Check whether corresponding angles are congruent. If all corresponding angles are equal, the figures may be similar.
+
+### Step 2: Compare Side Ratios
+
+Verify that all pairs of corresponding sides have the same ratio (scale factor). If they do, the polygons are similar.
+
+[
+k = \frac{side_{image}}{side_{original}}
+]
+
+## Example 3 — Find Unknown Values
+
+### Step 1: Set Up a Proportion
+
+Use the known side lengths and the scale factor to set up a proportion.
+
+### Step 2: Solve for the Unknown
+
+Cross-multiply and solve for the variable.
+
+## Example 4 — Apply Similarity to Real-World Problems
+
+### Step 1: Extract Given Information
+
+Identify the actual distances or measurements from the problem.
+
+*Problem 15 (GAMING):* Map distances: home to health food store = 2 cm, health food store to dungeon = 8 cm, dungeon to home = 7 cm. Actual distance from health food store to dungeon = 4 km.
+
+### Step 2: Find the Scale Factor
+
+[
+k = \frac{actual\ distance}{map\ distance}
+]
+
+### Step 3: Calculate the Requested Distance
+
+Apply the scale factor to find other actual distances.
+
+*Problem 16 (LAWN CARE):* Perimeter = 126 m, ratio length:width = 5:2.
+Let [l = 5x] and [w = 2x]. Then [2(5x + 2x) = 126], so [x = 9], and [w = 18] m.
+
+## Mixed Exercises
+
+The mixed exercises section provides practice with all skills from the lesson. Problems include:
+
+* Finding perimeters of triangles given similarity with other triangles in geometric figures (Problems 17–18)
+* Finding values of [x] and [y] in similar polygons (Problems 19–20)
+* Proving the Perimeters of Similar Triangles Theorem (Theorem 8.3) (Problem 21)
+* Finding [x] and the scale factor from one triangle to another (Problem 22)
+* Scale factor between rectangles given perimeters (Problem 23)
+* Writing ratios and possible side measures for isosceles triangles with given perimeters (Problem 24)
+* Comparing Olympic and community college ice hockey rink dimensions for similarity (Problem 25)
+* Magnification scale factors for a paramecium (Problem 26)
+* Finding values for which quadrilaterals are similar (Problem 27)
+* Analyzing whether similarity is an equivalence relation (Problem 28)
+* Finding a counterexample to "all rectangles are similar" (Problem 29)
+* Determining if regular pentagons of different sizes are similar (Problem 30)
+* Describing the relationship between two figures (Problem 31)
+
+## Review Notes
+
+* Images referenced in the worksheet (polygon pairs for problems 1–6, similar figure comparisons for problems 7–10, proportion problems for problems 11–14, triangle figures for problems 17–18, additional polygon problems for problems 19–20, proof diagram for problem 21, triangle for problem 22, hockey rink for problem 25, paramecium for problem 26, pentagon for problem 30) could not be fully described without visual reference. Teachers should consult the original worksheet for exact diagrams and values.
+* ![](media/image1.png) — Polygon pair for problem 1 (ABCD ∼ WXYZ)
+* ![](media/image2.png) — Polygon pair for problem 2 (MNPQ ∼ RSTU)
+* ![](media/image3.png) — Triangle pair for problem 3 (△FGH ∼ △JKL)
+* ![](media/image4.png) — Triangle pair for problem 4 (△DEF ∼ △VWX)
+* ![](media/image5.png) — Polygon pair for problem 5 (ABCD ∼ FGHJ)
+* ![](media/image6.png) — Triangle pair for problem 6 (△MNP ∼ △QRP)
+* ![](media/image7.png) — Figure for problem 7
+* ![](media/image8.png) — Figure for problem 8
+* ![](media/image9.png) — Figure for problem 9
+* ![](media/image10.png) — Figure for problem 10
+* ![](media/image11.png) — Figure for problem 11
+* ![](media/image12.png) — Figure for problem 12
+* ![](media/image13.png) — Figure for problem 13
+* ![](media/image14.png) — Figure for problem 14
+* ![](media/image15.png) — Figure for problem 17 (△CBH ∼ △FEH)
+* ![](media/image16.png) — Figure for problem 18 (△DEF ∼ △CBF)
+* ![](media/image17.png) — Polygon for problem 19 (ABCD ∼ QSRP)
+* ![](media/image18.png) — Triangle for problem 20 (△JKL ∼ △WYZ)
+* ![](media/image19.png) — Proof diagram for Theorem 8.3
+* ![](media/image20.png) — Triangle for problem 22
+* ![](media/image21.png) — Ice hockey rink for problem 25
+* ![](media/image22.png) — Paramecium figure for problem 26
+* The worksheet contains 31 practice problems across four examples and mixed exercises.
+
+(End of file - total 196 lines)

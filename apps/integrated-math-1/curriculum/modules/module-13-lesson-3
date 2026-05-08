@@ -1,0 +1,170 @@
+# Lesson 13-3 — Rotations
+
+Source: (Module 13, Lesson 13-3, Int1_1303_practice.docx)
+
+## Today's Goals
+
+* Graph the image of a polygon after a rotation of 90°, 180°, or 270° about a given point on the coordinate plane.
+* Determine the coordinates of an image after rotating a figure about a point that is not the origin.
+* Apply rotation rules to solve real-world problems involving figures on the coordinate plane.
+* Analyze properties preserved under rotations and identify common errors in reasoning about rotations.
+
+## Vocabulary
+
+* **Rotation** — A transformation that turns a figure about a fixed point called the center of rotation.
+* **Center of Rotation** — The fixed point about which a figure is rotated.
+* **Angle of Rotation** — The number of degrees a figure is turned about the center of rotation.
+* **Preimage** — The original figure before a transformation is applied.
+* **Image** — The resulting figure after a transformation is applied.
+* **Clockwise** — The direction of rotation that follows the motion of a clock's hands.
+* **Counterclockwise** — The direction of rotation opposite to the motion of a clock's hands.
+
+## Explore: What Happens to a Figure When You Turn It Around a Point?
+
+Students investigate what happens to the coordinates of a figure when it is rotated around a point that is not the origin. They explore whether rotating 180° produces the same result as two 90° rotations, and how the center of rotation affects the image's position.
+
+Inquiry Question:
+How can you find the coordinates of a figure's image after a rotation about any point on the coordinate plane?
+
+## Learn: Rotations About a Given Point
+
+A rotation turns every point of a figure about a fixed center point through a given angle. To rotate a figure about a point other than the origin, translate the center to the origin, apply the rotation rule, then translate back.
+
+### Key Concept: Rotation Rules About the Origin
+
+* Rotation 180° about the origin: [(x, y) \rightarrow (-x, -y)] 
+* Rotation 90° counterclockwise about the origin: [(x, y) \rightarrow (-y, x)] 
+* Rotation 270° counterclockwise about the origin: [(x, y) \rightarrow (y, -x)] 
+* A 90° clockwise rotation is equivalent to a 270° counterclockwise rotation.
+* A 270° clockwise rotation is equivalent to a 90° counterclockwise rotation.
+
+### Key Concept: Rotating About an Arbitrary Point
+
+To rotate a point [(x, y)] about a center [(a, b)]:
+1. Translate by subtracting the center: [(x - a, y - b)] 
+2. Apply the rotation rule about the origin.
+3. Translate back by adding the center: add [(a, b)] to the result.
+
+For example, a 180° rotation about [(a, b)] gives:
+[
+(x, y) \rightarrow (2a - x, 2b - y)
+]
+
+### Key Concept: Properties Preserved Under Rotation
+
+* Distance from any point to the center of rotation equals the distance from its image to the center.
+* Side lengths and angle measures are preserved.
+* The figure and its image are congruent.
+* Collinearity and betweenness of points are maintained.
+
+## Example 1 — Rotate Polygons About a Given Point
+
+Graph a polygon and its image after a rotation of 180°, 270° counterclockwise, or 90° counterclockwise about a given point. Determine the coordinates of the image vertices using the translate-rotate-translate-back method.
+
+### Step 1: Rotate a Triangle 180° About a Given Point
+
+For a triangle with vertices at given coordinates, rotate 180° about the point [(2, -3)].
+
+Translate each vertex by subtracting the center [(2, -3)], apply the 180° rule [(x, y) \rightarrow (-x, -y)], then add [(2, -3)] back:
+
+[
+X(0, 2) \rightarrow (0 - 2, 2 - (-3)) = (-2, 5) \rightarrow (2, -5) \rightarrow (2 + 2, -5 + (-3)) = X'(4, -8)
+]
+
+[
+Y(4, 4) \rightarrow (4 - 2, 4 - (-3)) = (2, 7) \rightarrow (-2, -7) \rightarrow (-2 + 2, -7 + (-3)) = Y'(0, -10)
+]
+
+[
+Z(3, -1) \rightarrow (3 - 2, -1 - (-3)) = (1, 2) \rightarrow (-1, -2) \rightarrow (-1 + 2, -2 + (-3)) = Z'(1, -5)
+]
+
+Graph the original triangle and the image triangle.
+
+### Step 2: Rotate a Triangle 270° Counterclockwise About a Given Point
+
+For a triangle with vertices at given coordinates, rotate 270° counterclockwise about the point [(-4, 2)].
+
+Translate each vertex by subtracting [(-4, 2)], apply the 270° counterclockwise rule [(x, y) \rightarrow (y, -x)], then add [(-4, 2)] back:
+
+[
+A(1, 7) \rightarrow (1 - (-4), 7 - 2) = (5, 5) \rightarrow (5, -5) \rightarrow (5 + (-4), -5 + 2) = A'(1, -3)
+]
+
+[
+B(3, 2) \rightarrow (3 - (-4), 2 - 2) = (7, 0) \rightarrow (0, -7) \rightarrow (0 + (-4), -7 + 2) = B'(-4, -5)
+]
+
+[
+C(-2, -2) \rightarrow (-2 - (-4), -2 - 2) = (2, -4) \rightarrow (-4, -2) \rightarrow (-4 + (-4), -2 + 2) = C'(-8, 0)
+]
+
+Graph the original triangle and the image triangle.
+
+### Step 3: Rotate Another Triangle 180° About a Different Point
+
+Apply the same 180° rotation method from Step 1 to a triangle with given vertices about the point [(-3, -6)].
+
+Translate each vertex by subtracting [(-3, -6)], apply [(x, y) \rightarrow (-x, -y)], then add [(-3, -6)] back to find the image coordinates. Graph both triangles.
+
+### Step 4: Rotate a Quadrilateral 90° Counterclockwise About a Given Point
+
+For a quadrilateral with vertices at given coordinates, rotate 90° counterclockwise about the point [(-1, 2)].
+
+Translate each vertex by subtracting [(-1, 2)], apply the 90° counterclockwise rule [(x, y) \rightarrow (-y, x)], then add [(-1, 2)] back:
+
+[
+A(-2, 4) \rightarrow (-2 - (-1), 4 - 2) = (-1, 2) \rightarrow (-2, -1) \rightarrow (-2 + (-1), -1 + 2) = A'(-3, 1)
+]
+
+[
+B(1, 3) \rightarrow (1 - (-1), 3 - 2) = (2, 1) \rightarrow (-1, 2) \rightarrow (-1 + (-1), 2 + 2) = B'(-2, 4)
+]
+
+[
+C(2, -3) \rightarrow (2 - (-1), -3 - 2) = (3, -5) \rightarrow (5, 3) \rightarrow (5 + (-1), 3 + 2) = C'(4, 5)
+]
+
+[
+D(-3, -1) \rightarrow (-3 - (-1), -1 - 2) = (-2, -3) \rightarrow (3, -2) \rightarrow (3 + (-1), -2 + 2) = D'(2, 0)
+]
+
+Graph the original quadrilateral and the image quadrilateral.
+
+### Step 5: Apply Rotation to a Real-World Scale Drawing
+
+A scale drawing of a baseball field has home plate, first base, second base, and third base at given coordinates on the coordinate plane. Rotate the entire field 270° counterclockwise about second base.
+
+Translate each base by subtracting the coordinates of second base, apply the 270° counterclockwise rule [(x, y) \rightarrow (y, -x)], then add the coordinates of second base back to find the new position of each base.
+
+For example, if home plate is at [(3, 3)] and second base is at [(13, 13)]:
+[
+(3, 3) \rightarrow (3 - 13, 3 - 13) = (-10, -10) \rightarrow (-10, 10) \rightarrow (-10 + 13, 10 + 13) = (3, 23)
+]
+
+Repeat for the remaining bases to find their new coordinates.
+
+## Mixed Exercises
+
+The mixed exercises provide comprehensive practice with all skills from the lesson. Problems include:
+
+* Finding the coordinates of a point after a 270° clockwise rotation about a given point.
+* Finding the coordinates of a single vertex of a parallelogram after the parallelogram is rotated 270° counterclockwise about a given point.
+* Using a protractor and ruler to draw the image of a triangle after a rotation of 210° about a given point.
+* Finding the endpoints of a line segment after a 90° counterclockwise rotation about a given point.
+* Solving a real-world compass problem by determining the angle of rotation from a damaged compass reading to true north.
+* Determining how many times a repeated rotation of a circular dial returns it to its original position.
+* Finding the image of a point under a rotation about the origin when given the image of another point under the same rotation.
+* Drawing a right triangle and a point not on the triangle, rotating the triangle 90° counterclockwise about the point, and finding an equivalent clockwise rotation.
+* Analyzing the distance from a rotated vertex to the center of rotation and the measure of the angle formed by a vertex, the center, and its image.
+* Analyzing what happens when two rotations are applied in sequence about the same center.
+* Evaluating a student's claim about whether two reflections are equivalent to a rotation and explaining the error.
+* Listing and explaining the properties of a figure that are preserved under a rotation.
+* Evaluating a student's claim about the angle of rotation based on congruent triangles and explaining the error.
+* Analyzing whether collinearity and betweenness of points are maintained under rotations.
+
+## Review Notes
+
+* Images referenced in the worksheet (triangle graph for problem 3, triangle graph for problem 8, line segment graph for problem 9, triangle graph for problem 13, triangle rotation diagram for problem 14, triangle diagram for problem 18) could not be fully described without visual reference. Teachers should consult the original worksheet for exact figures and diagrams.
+* The worksheet labels the example group as "Examples 1 and 2" — there is no separate Example 1 or 2 heading in the original document; these are grouped together under one heading.
+* Problems 8 and 13 require drawing geometric figures with a protractor and ruler; teachers should ensure students have these tools available.

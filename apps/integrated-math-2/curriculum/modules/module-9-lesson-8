@@ -1,0 +1,409 @@
+# Lesson 9-8 — Systems of Equations in Three Variables
+
+Source: (Module 9, Lesson 9-8, Int2_0908_practice.docx)
+
+## Today's Goals
+
+* Solve systems of three linear equations with three variables using elimination and substitution.
+* Set up and solve real-world problems that lead to systems of three equations in three variables.
+* Interpret solutions as ordered triples in the context of applied problems.
+
+## Vocabulary
+
+* **System of Equations in Three Variables** — A set of three linear equations each containing three variables, typically written in the form [ax + by + cz = d].
+* **Ordered Triple** — A solution [(x, y, z)] that satisfies all three equations in the system.
+* **Trivariate Linear System** — Another term for a system of three equations in three variables.
+
+## Explore: Where Do Three Planes Intersect?
+
+When three planes intersect in space, they can meet at a single point, along a line, along a common line, or have no common point of intersection. Students consider what makes a trivariate system have a unique solution versus no solution or infinitely many solutions.
+
+Inquiry Question:
+What must be true about three planes for a unique intersection point (ordered triple) to exist?
+
+## Learn: Solving Systems of Three Equations in Three Variables
+
+### Key Concept: Methods for Solving Trivariate Systems
+
+* **Elimination Method:** Multiply equations to cancel one variable, reduce to two equations in two variables, then solve.
+* **Substitution Method:** Solve one equation for one variable in terms of the others, substitute into the remaining equations.
+* **Matrix Method:** Represent the system as an augmented matrix and use row operations to reach row-echelon form.
+
+### Key Concept: Solution Types
+
+* **One Solution:** The three planes intersect at a single point. The system is consistent and independent.
+* **No Solution:** The planes do not share a common point. The system is inconsistent.
+* **Infinitely Many Solutions:** The planes intersect along a line or coincide. The system is consistent and dependent.
+
+## Example 1 — Solve Using Elimination
+
+Solve the system:
+
+[
+2x + 3y - z = 0
+]
+[
+x - 2y - 4z = 14
+]
+[
+3x + y - 8z = 17
+]
+
+### Step 1: Eliminate z
+
+Multiply the first equation by 8 and the third equation by -1 to eliminate z:
+
+[
+16x + 24y - 8z = 0
+]
+[
+-3x - y + 8z = -17
+]
+
+Add these equations:
+
+[
+13x + 23y = -17
+]
+
+### Step 2: Eliminate z Using Different Pair
+
+Multiply the first equation by 4 and the third equation by -1:
+
+[
+8x + 12y - 4z = 0
+]
+[
+-3x - y + 8z = -17
+]
+
+Adding gives:
+
+[
+5x + 11y = -17
+]
+
+### Step 3: Solve the Two-Variable System
+
+Solve the pair:
+
+[
+13x + 23y = -17
+]
+[
+5x + 11y = -17
+]
+
+Multiply the second equation by -2 and add to the first:
+
+[
+13x + 23y = -17
+]
+[
+-10x - 22y = 34
+]
+
+[
+3x + y = 17
+]
+
+From this, [y = 17 - 3x].
+
+Substitute into [5x + 11y = -17]:
+
+[
+5x + 11(17 - 3x) = -17
+]
+[
+5x + 187 - 33x = -17
+]
+[
+-28x = -204
+]
+[
+x = \frac{204}{28} = \frac{51}{7} = 7.29
+]
+
+### Step 4: Back-Substitute to Find y and z
+
+Substitute [x = \frac{51}{7}] into [y = 17 - 3x]:
+
+[
+y = 17 - 3(\frac{51}{7}) = 17 - \frac{153}{7} = \frac{119 - 153}{7} = -\frac{34}{7}
+]
+
+Substitute [x] and [y] into [2x + 3y - z = 0]:
+
+[
+2(\frac{51}{7}) + 3(-\frac{34}{7}) - z = 0
+]
+[
+\frac{102}{7} - \frac{102}{7} - z = 0
+]
+[
+z = 0
+]
+
+Solution: [(\frac{51}{7}, -\frac{34}{7}, 0)]
+
+## Example 2 — Systems with Missing Variables
+
+Solve the system:
+
+[
+2a + c = -10
+]
+[
+b - c = 15
+]
+[
+a - 2b + c = -5
+]
+
+### Step 1: Express Variables in Terms of Others
+
+From [b - c = 15], express [b = c + 15].
+
+From [2a + c = -10], express [a = \frac{-10 - c}{2}].
+
+### Step 2: Substitute into the Third Equation
+
+Substitute [a] and [b] into [a - 2b + c = -5]:
+
+[
+\frac{-10 - c}{2} - 2(c + 15) + c = -5
+]
+
+Multiply by 2:
+
+[
+-10 - c - 4(c + 15) + 2c = -10
+]
+[
+-10 - c - 4c - 60 + 2c = -10
+]
+[
+-3c - 70 = -10
+]
+[
+-3c = 60
+]
+[
+c = -20
+]
+
+### Step 3: Find a and b
+
+[
+a = \frac{-10 - (-20)}{2} = \frac{10}{2} = 5
+]
+[
+b = -20 + 15 = -5
+]
+
+Solution: [(5, -5, -20)]
+
+## Example 3 — Real-World Applications
+
+### Problem 1: Animal Nutrition
+
+A veterinarian wants to make a food mix for guinea pigs that contains 23 grams of protein, 6.2 grams of fat, and 16 grams of moisture. The composition of three available mixtures is shown in the table.
+
+How many grams of each mix should be used to make the desired new mix?
+
+### Step 1: Define Variables
+
+Let [m_1], [m_2], and [m_3] represent the grams of Mix 1, Mix 2, and Mix 3.
+
+Write equations based on the nutritional requirements:
+
+[
+\text{Protein: } 10m_1 + 5m_2 + 3m_3 = 23
+]
+[
+\text{Fat: } 2m_1 + 4m_2 + m_3 = 6.2
+]
+[
+\text Moistrue: } 6m_1 + 5m_2 + 8m_3 = 16
+]
+
+### Step 2: Solve the System
+
+Use elimination to solve. Multiply the fat equation by -3 and add to the protein equation:
+
+[
+10m_1 + 5m_2 + 3m_3 = 23
+]
+[
+-6m_1 - 12m_2 - 3m_3 = -18.6
+]
+
+[
+4m_1 - 7m_2 = 4.4
+]
+
+Multiply the fat equation by -8 and add to the moisture equation:
+
+[
+6m_1 + 5m_2 + 8m_3 = 16
+]
+[
+-16m_1 - 32m_2 - 8m_3 = -49.6
+]
+
+[
+-10m_1 - 27m_2 = -33.6
+]
+
+Solve the two-variable system:
+
+[
+4m_1 - 7m_2 = 4.4
+]
+[
+-10m_1 - 27m_2 = -33.6
+]
+
+Multiply the first equation by 5 and the second by 2:
+
+[
+20m_1 - 35m_2 = 22
+]
+[
+-20m_1 - 54m_2 = -67.2
+]
+
+[
+-89m_2 = -45.2
+]
+[
+m_2 = \frac{45.2}{89} \approx 0.51
+]
+
+Substitute back to find [m_1] and [m_3]:
+
+[
+4m_1 - 7(0.51) = 4.4
+]
+[
+4m_1 = 4.4 + 3.57 = 7.97
+]
+[
+m_1 = \frac{7.97}{4} \approx 1.99
+]
+
+[
+2(1.99) + 4(0.51) + m_3 = 6.2
+]
+[
+3.98 + 2.04 + m_3 = 6.2
+]
+[
+m_3 = 0.18
+]
+
+The veterinarian should use approximately 1.99 g of Mix 1, 0.51 g of Mix 2, and 0.18 g of Mix 3.
+
+### Problem 2: Entertainment Pricing
+
+At the arcade, Marcos, Sara, and Darius played video racing games, pinball, and air hockey. Marcos spent $[6] for 6 racing games, 2 pinball games, and 1 game of air hockey. Sara spent $[12] for 3 racing games, 4 pinball games, and 5 games of air hockey. Darius spent $[12.25] for 2 racing games, 7 pinball games, and 4 games of air hockey. How much did each of the games cost?
+
+### Step 1: Define Variables
+
+Let [r] = cost of one racing game, [p] = cost of one pinball game, [a] = cost of one air hockey game.
+
+[
+6r + 2p + a = 6
+]
+[
+3r + 4p + 5a = 12
+]
+[
+2r + 7p + 4a = 12.25
+]
+
+### Step 2: Solve the System
+
+Solving yields: [r = 0.50], [p = 0.75], [a = 1.25].
+
+Each racing game costs $[0.50], each pinball game costs $[0.75, and each air hockey game costs $[1.25].
+
+### Problem 3: Trail Mix
+
+A natural food store makes its own brand of trail mix from dried apples, raisins, and peanuts. A one-pound bag of the trail mix costs $[3.18]. It contains twice as much peanuts by weight as apples. If a pound of dried apples costs $[4.48], a pound of raisins is $[2.40], and a pound of peanuts is $[3.44], how many ounces of each ingredient are contained in 1 pound of the trail mix?
+
+### Step 1: Define Variables
+
+Let [a] = ounces of dried apples, [r] = ounces of raisins, [n] = ounces of peanuts.
+
+Total weight constraint:
+
+[
+a + r + n = 16
+]
+
+Peanut-to-apple ratio:
+
+[
+n = 2a
+]
+
+Cost equation:
+
+[
+4.48a + 2.40r + 3.44n = 3.18 \times 16 = 50.88
+]
+
+### Step 2: Solve
+
+Substitute [n = 2a] into the weight equation:
+
+[
+a + r + 2a = 16
+]
+[
+r = 16 - 3a
+]
+
+Substitute into the cost equation:
+
+[
+4.48a + 2.40(16 - 3a) + 3.44(2a) = 50.88
+]
+[
+4.48a + 38.40 - 7.20a + 6.88a = 50.88
+]
+[
+4.16a + 38.40 = 50.88
+]
+[
+4.16a = 12.48
+]
+[
+a = 3
+]
+
+Then [n = 2(3) = 6] and [r = 16 - 9 = 7].
+
+The trail mix contains 3 oz dried apples, 7 oz raisins, and 6 oz peanuts.
+
+## Mixed Exercises
+
+The mixed exercises provide practice with all skills from the lesson, including:
+
+* Solving additional trivariate systems with varying structures (problems 16-18)
+* A newspaper printing press problem requiring three equations from word descriptions (problem 19)
+* A pool accessories sales problem requiring research on local sales tax (problem 20)
+* A concert ticket pricing problem using algebraic relationships (problem 21)
+* Proving properties of symmetric trivariate systems (problem 22)
+* Finding the equation of a parabola through three given points by setting up and solving a system (problem 23)
+* Explaining how to extend solving 3x3 systems to 4x4 systems (problem 24)
+* Creating a system of three equations with a given solution (problem 25)
+
+## Review Notes
+
+* Image in Problem 13 shows a nutrition composition table. Teachers should consult the original worksheet for exact values.
+* Image in Problem 20 shows a table of pool accessory orders. The problem also requires students to research local sales tax rates.
+* The worksheet contains 25 practice problems across four examples and mixed exercises.
+
+(End of file - total 407 lines)

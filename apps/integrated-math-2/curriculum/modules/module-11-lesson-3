@@ -1,0 +1,154 @@
+# Lesson 11-3 — Multiplying Polynomials
+
+Source: (Module 11, Lesson 11-3, Int2_1103_practice.docx)
+
+## Today's Goals
+
+* Multiply binomials using the FOIL method and algebraic multiplication.
+* Multiply polynomials with more than two terms using vertical and horizontal methods.
+* Apply special product patterns for sum and difference, perfect squares, and cubes.
+* Use polynomial multiplication to solve real-world problems involving area, volume, and revenue.
+
+## Vocabulary
+
+* **FOIL Method** — A technique for multiplying two binomials: First, Outer, Inner, Last
+* **Special Products** — Products of polynomials that follow predictable patterns (sum and difference, perfect square trinomials)
+* **Conjugate Pairs** — Two binomials of the form (a + b) and (a - b) whose product is a difference of squares
+* **Perfect Square Trinomial** — A trinomial that results from squaring a binomial
+
+## Explore: Patterns in Polynomial Multiplication
+
+Students investigate what happens when two binomials are multiplied in different orders. They notice that (a + b)(c + d) = (c + d)(a + b), but (a + b)(a - b) produces a special result different from squaring a single binomial.
+
+Inquiry Question:
+Why do some polynomial products produce predictable patterns while others do not?
+
+## Learn: Multiplying Polynomials
+
+### Key Concept: FOIL Method
+
+When multiplying two binomials, multiply in this order: First terms, Outer terms, Inner terms, Last terms.
+
+[(3c - 5)(c + 3)] → [3c^2 + 9c - 5c - 15] → [3c^2 + 4c - 15]
+
+### Key Concept: Sum and Difference Pattern
+
+The product of conjugates (a + b)(a - b) = [a^2 - b^2]
+
+[(12t - 5)(12t + 5)] = [(12t)^2 - 5^2] = [144t^2 - 25]
+
+## Example 1 — Multiply Binomials
+
+Find each product using FOIL or vertical method.
+
+### Step 1: Apply FOIL
+
+[(3c - 5)(c + 3)] = [3c^2 + 9c - 5c - 15] = [3c^2 + 4c - 15]
+
+[(g + 10)(2g - 5)] = [2g^2 - 5g + 20g - 50] = [2g^2 + 15g - 50]
+
+[(6a + 5)(5a + 3)] = [30a^2 + 18a + 25a + 15] = [30a^2 + 43a + 15]
+
+[(4x + 1)(6x + 3)] = [24x^2 + 12x + 6x + 3] = [24x^2 + 18x + 3]
+
+### Step 2: Check for Special Patterns
+
+[(5r + 7)(5r - 7)] = [(5r)^2 - 7^2] = [25r^2 - 49] (sum and difference)
+
+## Example 2 — Multiply Binomials with Different Variables
+
+[(8w + 4x)(5w - 6x)] = [40w^2 - 48wx + 20wx - 24x^2] = [40w^2 - 28wx - 24x^2]
+
+[(11z - 5y)(3z + 2y)] = [33z^2 + 22zy - 15zy - 10y^2] = [33z^2 + 7zy - 10y^2]
+
+## Example 3 — Area and Volume Applications
+
+### Step 1: Write Polynomial Expressions for Area
+
+A playground has width [9x + 1] feet and length [5x - 2] feet. Write an expression for the area.
+
+[A = (9x + 1)(5x - 2) = 45x^2 - 18x + 5x - 2 = 45x^2 - 13x - 2] square feet
+
+A theater has [3c + 8] rows with [4c - 1] seats per row. Write an expression for total seats.
+
+[Seats = (3c + 8)(4c - 1) = 12c^2 - 3c + 32c - 8 = 12c^2 + 29c - 8]
+
+### Step 2: Number Trick with Polynomials
+
+Think of a whole number n. Subtract 2 and write it down. Take the original number, add 2, and write it down. Find the product and subtract [n^2]. The result is always -4. Show why using polynomials.
+
+Original: n
+First result: n - 2
+Second result: n + 2
+Product: (n - 2)(n + 2) = [n^2 - 4]
+Subtract [n^2]: [[n^2 - 4] - n^2 = -4]
+
+## Example 4 — Multiply a Binomial by a Trinomial
+
+Use horizontal distribution: multiply each term of the binomial by each term of the trinomial.
+
+### Step 1: Distribute Each Term
+
+[(2y - 11)(y^2 - 3y + 2)]
+= [2y(y^2) + 2y(-3y) + 2y(2) - 11(y^2) - 11(-3y) - 11(2)]
+= [2y^3 - 6y^2 + 4y - 11y^2 + 33y - 22]
+= [2y^3 - 17y^2 + 37y - 22]
+
+[(4a + 7)(9a^2 + 2a - 7)]
+= [36a^3 + 8a^2 - 28a + 63a^2 + 14a - 49]
+= [36a^3 + 71a^2 - 14a - 49]
+
+## Example 5 — Cubes of Binomials
+
+### Step 1: Expand Step by Step
+
+[(2r - 3t)^3 = (2r - 3t)(2r - 3t)(2r - 3t)]
+
+First: [(2r - 3t)^2 = 4r^2 - 12rt + 9t^2]
+
+Then: [(4r^2 - 12rt + 9t^2)(2r - 3t)]
+= [8r^3 - 12r^2t - 24r^2t + 36rt^2 + 18rt^2 - 27t^3]
+= [8r^3 - 36r^2t + 54rt^2 - 27t^3]
+
+## Example 6 — Simplify and Find Products
+
+### Step 1: Combine Like Terms Before Multiplying
+
+[(m + 2)[(m^2 + 3m - 6) + (m^2 - 2m + 4)]]
+= [(m + 2)(2m^2 + m - 2)]
+= [2m^3 + m^2 - 2m + 4m^2 + 2m - 4]
+= [2m^3 + 5m^2 - 4]
+
+### Step 2: Subtract First, Then Multiply
+
+[(t^2 + 3t - 8) - (t^2 - 2t + 6)](t - 4)]
+= [(t^2 + 3t - 8 - t^2 + 2t - 6)](t - 4)]
+= [(5t - 14)](t - 4)]
+= [5t^2 - 20t - 14t + 56]
+= [5t^2 - 34t + 56]
+
+## Mixed Exercises
+
+Practice includes:
+
+* Multiplying binomials: (m + 4)(m + 1), (x + 2)(x + 2), (r + 1)(r - 2), etc.
+* Multiplying binomials with coefficients: (3c + 1)(c - 2), (2x - 6)(x + 3), (3b + 3)(3b - 2)
+* Multiplying binomials with different variables: (w + 4)(w^2 + 3w - 6), (t + 1)(t^2 + 2t + 4)
+* Squaring binomials: (a - 2b)^2, (3c + 4d)^2
+* Cubing binomials: (2r - 3t)^3, (5g + 2h)^3
+* Mixed operations with brackets: [(m + 2)[(m^2 + 3m - 6) + (m^2 - 2m + 4)]]
+* A mural frame problem: A museum mural has length 5 feet longer than its width, with a 2-foot wide frame covering 100 square feet total. Write expressions for the mural area, frame area, and solve for mural dimensions. ![](media/image2.png)
+* A composite figure area problem: Write and simplify a quadratic expression for the area of a figure with dimensions given in terms of triangle height h. If h = 1.42 units, find the area to the nearest hundredth. ![](media/image3.png)
+* A profit model problem: Monthly profit is given by P = n(p - U) - F, where n = 5000 - 40p is monthly sales, U = $30 unit cost, and F = $3000 fixed cost. Write profit as a quadratic in p, then find profit when p = $77.50. ![](media/image4.png)
+* A rectangular prism volume problem: Find an expression for the volume given polynomial dimensions.
+* Analyzing whether the FOIL method can multiply a binomial and trinomial (and why or why not)
+* Simplifying expressions with exponents: [x^{4p+1}(x^{1-2p})^2p+3]
+* Which one doesn't belong: Identify which of four polynomial expressions does not belong with the others. ![](media/image5.png)
+* Finding errors in multiplication: Two students incorrectly multiplied (2x + 1)(x - 4). Find their mistakes. ![](media/image6.png)
+
+## Review Notes
+
+* Images referenced: ![](media/image1.png) — Flag case diagram. ![](media/image2.png) — Frame and mural dimensions. ![](media/image3.png) — Composite figure with triangular height. ![](media/image4.png) — Profit model diagram. ![](media/image5.png) — Four polynomial expressions for "Which One Doesn't Belong?". ![](media/image6.png) — Student work for (2x + 1)(x - 4). Teachers should consult the original worksheet for exact diagrams.
+* The worksheet contains 68 practice problems.
+* FOIL only applies to binomials — for larger polynomials, use distribution or vertical multiplication.
+* The sum and difference pattern (a + b)(a - b) always produces a difference of squares.

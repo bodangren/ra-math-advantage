@@ -1,0 +1,120 @@
+# Lesson 5-3 — Scatter Plots and Lines of Fit
+
+Source: (Module 5, Lesson 5-3, Int1_0503_practice.docx)
+
+## Today's Goals
+
+* Analyze scatter plots to determine whether they show positive, negative, or no correlation and interpret the meaning in context
+* Write equations of lines of fit in slope-intercept form using two points from a data set
+* Use lines of fit to make predictions and evaluate the reliability of those predictions
+
+## Vocabulary
+
+* **Scatter plot** — A graph that displays pairs of data as points on a coordinate plane to show the relationship between two variables.
+* **Correlation** — A relationship between two variables in a data set.
+* **Positive correlation** — As one variable increases, the other variable tends to increase.
+* **Negative correlation** — As one variable increases, the other variable tends to decrease.
+* **No correlation** — There is no apparent relationship between the two variables.
+* **Line of fit** — A line drawn on a scatter plot that approximates the trend of the data.
+* **Slope-intercept form** — The form [ y = mx + b ], where [ m ] is the slope and [ b ] is the [ y ]-intercept.
+* **Extrapolation** — Using a line of fit to estimate values that lie outside the range of the original data.
+
+## Learn: Scatter Plots and Correlation
+
+Scatter plots display pairs of quantitative data as points on a coordinate plane. By observing the overall pattern of the points, you can identify the type of correlation and describe what it means in the situation.
+
+### Key Concept: Types of Correlation
+
+* **Positive correlation:** Points trend upward from left to right.
+* **Negative correlation:** Points trend downward from left to right.
+* **No correlation:** Points show no discernible pattern or trend.
+* When a correlation exists, describe its real-world meaning in the context of the problem.
+
+## Learn: Lines of Fit
+
+A line of fit approximates the trend shown in a scatter plot. Once you find its equation, you can use it to predict values within or beyond the data set.
+
+### Key Concept: Writing and Using a Line of Fit
+
+* Choose two points [ (x_1, y_1) ] and [ (x_2, y_2) ] that lie on or near the line of fit.
+* Calculate the slope:
+[
+  m = \frac{y_2 - y_1}{x_2 - x_1}
+]
+* Substitute the slope and one point into [ y = mx + b ] to solve for [ b ].
+* Write the equation [ y = mx + b ] and use it to make predictions by substituting the known value of [ x ] or [ y ].
+
+## Example 1 — Identify Correlation from Scatter Plots
+
+Examine scatter plots and classify the relationship between the variables as positive, negative, or no correlation. For plots that show a correlation, explain what the relationship means in the context of the situation.
+
+### Step 1: Observe the Trend
+
+Look at the overall direction of the data points.
+
+### Step 2: Classify the Correlation
+
+* Upward trend → positive correlation
+* Downward trend → negative correlation
+* No pattern → no correlation
+
+### Step 3: Interpret in Context
+
+Describe what the correlation means for the real-world variables. For example, a positive correlation between study time and test scores means that as study time increases, test scores tend to increase.
+
+## Example 2 — Write and Use Lines of Fit
+
+Given a scatter plot or data table that shows a linear trend, use two points to write an equation for the line of fit in slope-intercept form. Then use the equation to predict a value.
+
+### Step 1: Calculate the Slope
+
+Use two given points, such as [ (2, 2485.6) ] and [ (6, 1172.5) ]:
+
+[
+m = \frac{1172.5 - 2485.6}{6 - 2} = \frac{-1313.1}{4}
+]
+
+### Step 2: Find the [ y ]-Intercept
+
+Substitute the slope and one point into [ y = mx + b ] and solve for [ b ]:
+
+[
+2485.6 = m(2) + b \quad \Rightarrow \quad b = 2485.6 - 2m
+]
+
+### Step 3: Write the Equation
+
+State the line of fit:
+
+[
+y = mx + b
+]
+
+where [ x ] represents years since a base year and [ y ] represents the quantity being measured.
+
+### Step 4: Make Predictions
+
+Substitute the desired [ x ]-value into the equation. For example, to predict a value in 2019 when [ x ] is years since 2010, substitute [ x = 9 ]:
+
+[
+y = m(9) + b
+]
+
+## Mixed Exercises
+
+The mixed exercises integrate all skills from the lesson. Students:
+
+* Create scatter plots from tables, draw lines of fit, and describe the relationships in the data
+* Classify correlations from scatter plots and interpret their meaning in real-world contexts
+* Write equations of lines of fit in slope-intercept form and use them to interpolate or extrapolate
+* Evaluate the reliability of predictions and explain the assumptions made when using a line of fit
+* Analyze data sets from contexts such as family costs, baseball game lengths, income by age, football ticket prices, life expectancy, and volunteer work groups
+* Construct original real-world situations that can be modeled with scatter plots and justify the type of correlation
+* Compare multiple lines of fit for the same data and determine which model is more appropriate
+* Reflect on whether an accurate line of fit always guarantees accurate future predictions
+
+## Review Notes
+
+* Problems 1–4, 8–10, 13, 14, and 19 rely on scatter plot images that cannot be described in text; these require visual review.
+* Problems 7, 11, 12, 15, and 16 include data tables presented as images; tabular values should be verified during review.
+* Problem 18 presents four situations as an image for a "Which One Doesn't Belong" analysis; the text content needs visual verification.

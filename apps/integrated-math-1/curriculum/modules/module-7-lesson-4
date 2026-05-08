@@ -1,0 +1,137 @@
+# Lesson 7-4 — Elimination Using Multiplication
+
+Source: (Module 7, Lesson 7-4, Int1_0704_practice.docx)
+
+## Today's Goals
+
+* Solve systems of linear equations using elimination when multiplication of one or both equations is required.
+* Recognize when to multiply one equation versus both equations to create opposite coefficients.
+* Write and solve systems of equations to model real-world situations.
+* Evaluate and compare solution methods for systems of linear equations.
+
+## Vocabulary
+
+* **elimination method** — an algebraic technique for solving a system by combining equations to eliminate one variable.
+* **system of equations** — a set of two or more equations containing the same variables.
+* **solution of a system** — an ordered pair that satisfies every equation in the system simultaneously.
+
+## Learn: Elimination Using Multiplication
+
+When the coefficients of a variable are not already opposites or identical, multiply one or both equations by constants to create opposite coefficients. Then add the equations to eliminate a variable.
+
+### Key Concept: Elimination with Multiplication
+
+* Identify which variable to eliminate by finding the least common multiple of its coefficients.
+* Multiply one or both equations by constants so that the chosen variable has opposite coefficients.
+* Add the modified equations to eliminate that variable, then solve for the remaining variable.
+* Substitute the found value back into either original equation to solve for the eliminated variable.
+* Check the solution in both original equations.
+
+## Example 1 — Solve by Elimination (Multiplication)
+
+Use elimination to solve systems of linear equations. Determine whether to multiply one equation, both equations, or neither to create opposite coefficients.
+
+### Step 1: Choose a Variable to Eliminate
+
+Examine the coefficients of [ x ] and [ y ] in both equations. Select the variable whose coefficients have the smallest least common multiple.
+
+Representative systems include:
+[
+x + y = 2 \quad \text{and} \quad -3x + 4y = 15
+]
+
+[
+8x + 3y = 4 \quad \text{and} \quad -7x + 5y = -34
+]
+
+### Step 2: Multiply to Create Opposite Coefficients
+
+Multiply one or both equations by constants so that the chosen variable has opposite coefficients.
+
+For example, to eliminate [ y ] in:
+[
+2x + 5y = 11 \quad \text{and} \quad 4x + 3y = 1
+]
+
+Multiply the first equation by 3 and the second by 5:
+[
+6x + 15y = 33
+]
+[
+20x + 15y = 5
+]
+
+Or, to eliminate [ x ] in:
+[
+4x + 7y = -80 \quad \text{and} \quad 3x + 5y = -58
+]
+
+Multiply the first equation by 3 and the second by 4.
+
+Some systems require multiplying only one equation. For example:
+[
+3x + 4y = 29 \quad \text{and} \quad 6x + 5y = 43
+]
+
+Multiply the first equation by 2 to match the [ x ]-coefficients.
+
+### Step 3: Add and Solve
+
+Add the modified equations to eliminate one variable, then solve for the remaining variable.
+
+### Step 4: Substitute and Verify
+
+Substitute the value found into either original equation to find the other variable. Check the solution in both equations.
+
+## Example 2 — Applications of Systems of Equations
+
+Write and solve systems of equations to model real-world situations.
+
+### Step 1: Define Variables
+
+Identify the two unknown quantities and assign variables.
+
+### Step 2: Write a System of Equations
+
+Translate the given information into two equations.
+
+**Sports Problem:** A family of four spends [ 592.30 ] to attend two MLB games and one NBA game. The same family would spend [ 691.31 ] to attend one MLB game and two NBA games.
+
+Let [ m ] = cost of one MLB game and [ n ] = cost of one NBA game.
+[
+2m + n = 592.30
+]
+[
+m + 2n = 691.31
+]
+
+**Art Supplies Problem:** A curator makes two purchases of firing clay and polymer clay. Use data from a table showing the quantities purchased in each order to write a system and find the cost per kilogram of each product.
+
+Let [ f ] = cost per kilogram of firing clay and [ p ] = cost per kilogram of polymer clay.
+
+> Review Note: The purchase table for problem 14 (`media/image1.png`) cannot be described here. It shows the kilograms of firing clay and polymer clay purchased in two separate orders.
+
+### Step 3: Solve and Interpret
+
+Use elimination with multiplication to solve the system. State the answer in the context of the problem.
+
+## Mixed Exercises
+
+The mixed exercises extend practice across a variety of problem types and contexts.
+
+* **Translation problems:** Convert verbal descriptions into systems of equations and solve. For example, "Two times a number plus three times another number equals 13. The sum of the two numbers is 7."
+* **Real-world applications:** Solve contextual problems involving car washing and vacuuming rates to raise money.
+* **Structure and reasoning:** Consider a given system and describe two different ways to solve it by elimination. Explain why a particular multiplication strategy (such as multiplying the first equation by 6 and the second by 5) is not useful for solving the system, then solve correctly.
+* **Mixture problems:** Use a table to write a system of equations for mixing two juice drinks to obtain a desired amount and concentration. Solve the system and explain what the solution represents.
+* **Modeling with currency:** Write a system to find the number of five-dollar and ten-dollar bills given the total number of bills and total value. Define variables, solve, and interpret.
+* **Error analysis:** Examine worked solutions from two students solving a system and determine whether either is correct. Explain the reasoning.
+* **True/false analysis:** Determine whether a statement about systems having infinitely many solutions is true or false, and justify the argument.
+* **Creation tasks:** Write a system of equations that can be solved by multiplying one equation by [ -3 ] and then adding.
+* **Persevere in problem solving:** Given that [ (3, a) ] is the solution to a system with an unknown constant [ b ], find the values of [ a ] and [ b ] and discuss the steps used.
+* **Method comparison:** Explain why substitution is sometimes more helpful than elimination, and vice versa.
+
+## Review Notes
+
+* Problem 14 references a table of purchase data for firing clay and polymer clay (`media/image1.png`). The table shows two purchases with different quantities of each product, which is needed to write the system in parts a–b.
+* Problem 19 references a juice mixture table or diagram (`media/image2.png`) for mixing Tropical Breeze and Kona Cooler. The image data is needed to write the system in parts a–b.
+* Problem 21 shows worked student solutions from Jason and Daniela (`media/image3.png`). The image displays their steps for solving a system of equations and is needed for the error analysis.

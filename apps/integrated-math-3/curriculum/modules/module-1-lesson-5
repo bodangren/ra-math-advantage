@@ -1,309 +1,173 @@
-# Lesson 1-5 - Solving Quadratic Equations by Completing the Square
+# Lesson 1-5 — Solving Quadratic Equations by Completing the Square
 
-## Today's Goal
+Source: (Module 1, Lesson 1-5, Int3_0105_practice.docx)
 
-* Solve quadratic equations by using the Square Root Property
-* Complete the square in quadratic expressions to solve quadratic equations
-* Complete the square in a quadratic function to interpret key features of its graph
+## Today's Goals
 
----
+* Use the Square Root Property to solve equations of the form [(x - p)^2 = d].
+* Complete the square to transform a quadratic expression into a perfect square trinomial.
+* Solve quadratic equations by completing the square.
+* Write quadratic functions in vertex form by completing the square.
+* Apply completing the square to real-world problems involving projectile motion and geometry.
 
 ## Vocabulary
 
-* completing the square
-* vertex form
-* projectile motion problems
+* **Square Root Property** — If [x^2 = d], then [x = ±√d].
+* **Completing the Square** — The process of adding a constant to a quadratic expression to form a perfect square trinomial.
+* **Perfect Square Trinomial** — A trinomial of the form [x^2 + bx + (b/2)^2] that factors as [(x + b/2)^2].
+* **Vertex Form** — A quadratic function written as [f(x) = a(x - h)^2 + k], where [(h, k)] is the vertex.
+* **Axis of Symmetry** — The vertical line [x = h] in vertex form.
 
----
+## Explore: From a Perfect Square to the Original Trinomial
 
-## Learn: Solving Quadratic Equations by Using the Square Root Property
+When we have [(x + m)^2 = x^2 + 2mx + m^2], the constant term [m^2] is the square of half the coefficient of [x]. Students explore this relationship to understand how to "complete" a trinomial into a perfect square.
 
-You can use square roots to solve equations of the form `x^2 = n`.
-
-### Key Concept: Square Root Property
-
-For any number `n >= 0`, if `x^2 = n`, then:
-
-`x = +-sqrt(n)`
-
-Some quadratic equations have irrational solutions, and some have complex solutions.
-
----
-
-## Example 1 - Solve a Quadratic Equation with Rational Roots
-
-Solve `x^2 - 4x + 4 = 25` by using the Square Root Property.
-
-`(x - 2)^2 = 25`
-
-`x - 2 = +-5`
-
-`x = 2 +- 5`
-
-So:
-
-* `x = 7`
-* `x = -3`
-
----
-
-## Example 2 - Solve a Quadratic Equation with Irrational Roots
-
-Solve `x^2 + 24x + 144 = 192` by using the Square Root Property.
-
-`(x + 12)^2 = 192`
-
-`x + 12 = +-sqrt(192)`
-
-`x + 12 = +-8sqrt(3)`
-
-So the exact solutions are:
-
-* `x = -12 + 8sqrt(3)`
-* `x = -12 - 8sqrt(3)`
-
-Approximate solutions:
-
-* `x ~= 1.86`
-* `x ~= -25.86`
-
----
-
-## Example 3 - Solve a Quadratic Equation with Complex Solutions
-
-Solve `2x^2 - 92x + 1058 = -72` by using the Square Root Property.
-
-Divide by `2`:
-
-`x^2 - 46x + 529 = -36`
-
-`(x - 23)^2 = -36`
-
-`x - 23 = +-sqrt(-36)`
-
-`x - 23 = +-6i`
-
-So:
-
-* `x = 23 + 6i`
-* `x = 23 - 6i`
-
----
+Inquiry Question:
+Given [x^2 + bx], what constant term c makes [x^2 + bx + c] a perfect square trinomial?
 
 ## Learn: Completing the Square
 
-All quadratic equations can be solved by manipulating the equation until one side is a perfect square.
+### Key Concept: The Square Root Property
 
-### Key Concept: Completing the Square
+If [x^2 = d] where [d] is any real number, then [x = √d] or [x = -√d].
 
-For an expression of the form `x^2 + bx`:
+* If [d > 0], there are two real solutions.
+* If [d = 0], there is one solution (a double root).
+* If [d < 0], there are two complex solutions.
 
-1. Find one half of `b`
-2. Square that value
-3. Add the result to `x^2 + bx`
+## Examples 1–3 — Use the Square Root Property
 
-Symbolically:
+### Step 1: Identify the Perfect Square
 
-`x^2 + bx + (b/2)^2 = (x + b/2)^2`
+For [x^2 - 18x + 81 = 49]: recognize that [x^2 - 18x + 81 = (x - 9)^2]. So [(x - 9)^2 = 49].
 
----
+### Step 2: Apply the Square Root Property
 
-## Example 4 - Complete the Square
+[x - 9 = ±√49 = ±7]
+[x = 9 ± 7]
+[x = 16] or [x = 2]
 
-Find the value of `c` that makes `x^2 - 7x + c` a perfect square. Then write the expression as a perfect square trinomial.
+### Step 3: Solve Various Equations
 
-Half of `-7` is `-3.5`.
+Solve [x^2 + 20x + 100 = 64], [9x^2 - 12x + 4 = 4], [4x^2 + 4x + 1 = 16], and similar equations.
 
-Square it:
+For [36x^2 + 12x + 1 = 18]: first recognize the perfect square [(6x + 1)^2 = 18], then apply the Square Root Property.
 
-`(-3.5)^2 = 12.25`
+## Example 4 — Find the Value of c That Completes the Square
 
-So:
+### Step 1: Use the Formula
 
-`x^2 - 7x + 12.25 = (x - 3.5)^2`
+For [x^2 + 10x + c] to be a perfect square: take half of 10 (which is 5) and square it to get [c = 25].
 
----
+[x^2 + 10x + 25 = (x + 5)^2]
 
-## Example 5 - Solve by Completing the Square
+### Step 2: Apply to Various Problems
 
-Solve `x^2 + 18x - 4 = 0` by completing the square.
+For [x^2 - 14x + c]: [c = (-7)^2 = 49]
+For [x^2 + 24x + c]: [c = 12^2 = 144]
+For [x^2 + 5x + c]: [c = (5/2)^2 = 25/4]
+For [x^2 - 9x + c]: [c = (-9/2)^2 = 81/4]
+For [x^2 - x + c]: [c = (-1/2)^2 = 1/4]
 
-`x^2 + 18x = 4`
+## Examples 5 and 6 — Solve Equations by Completing the Square
 
-`x^2 + 18x + 81 = 85`
+### Step 1: Move the Constant Term
 
-`(x + 9)^2 = 85`
+For [x^2 - 13x + 36 = 0]: move 36 to the right side: [x^2 - 13x = -36].
 
-`x + 9 = +-sqrt(85)`
+### Step 2: Complete the Square
 
-So:
+Take half of [-13] (which is [-13/2]) and square it: [169/4]. Add this to both sides:
 
-* `x = -9 + sqrt(85)`
-* `x = -9 - sqrt(85)`
+[x^2 - 13x + 169/4 = -36 + 169/4]
 
-Approximate solutions:
+### Step 3: Write as a Square and Solve
 
-* `x ~= 0.22`
-* `x ~= -18.22`
+[(x - 13/2)^2 = 169/4 - 144/4 = 25/4]
+[x - 13/2 = ±√(25/4) = ±5/2]
+[x = 13/2 ± 5/2]
+[x = 9] or [x = 4]
 
----
+Similar process for [x^2 + x - 6 = 0], [x^2 - 4x - 13 = 0], and other equations.
 
-## Example 6 - Complete the Square with a Leading Coefficient
+### Step 4: Geometry Application
 
-Local replacement example: the unavailable source example is replaced here with an original worked example that preserves the lesson numbering and prepares students for Example 7.
+For a cube with side length reduced by 4 inches on each side resulting in surface area of 864 square inches: let [s] be the original side length. The new cube has side length [s - 4], and surface area [6(s - 4)^2 = 864]. Solve for [s].
 
-Solve `2x^2 + 8x - 10 = 0` by completing the square.
+## Examples 7 and 8 — Solve Equations with [a ≠ 1] by Completing the Square
 
-First divide every term by `2`:
+### Step 1: Divide by the Coefficient of [x^2]
 
-`x^2 + 4x - 5 = 0`
+For [2x^2 - 8x - 24 = 0]: divide by 2: [x^2 - 4x - 12 = 0].
 
-Move the constant term:
+### Step 2: Complete the Square
 
-`x^2 + 4x = 5`
+Move the constant, add the completing term to both sides, and solve.
 
-Complete the square:
+### Step 3: Handle Leading Coefficients Greater Than 1
 
-`(4/2)^2 = 4`
+For [2x^2 - 3x + 1 = 0]: divide by 2: [x^2 - (3/2)x + 1/2 = 0]. Then complete the square with fractions.
 
-Add `4` to both sides:
+### Step 4: Identify When Solutions are Complex
 
-`x^2 + 4x + 4 = 9`
+For [x^2 - 4x + 12 = 0]: completing the square gives [(x - 2)^2 = -8], so [x - 2 = ±√(-8) = ±2i√2]. Solutions are [x = 2 ± 2i√2].
 
-Rewrite the left side as a square:
+## Examples 9 and 10 — Write Functions in Vertex Form
 
-`(x + 2)^2 = 9`
+### Step 1: Complete the Square to Find Vertex Form
 
-Take square roots:
+For [y = x^2 + 2x - 5]: complete the square: [y + 5 = (x + 1)^2], so [y = (x + 1)^2 - 6]. The vertex is [(-1, -6)] and since [a = 1 > 0], it is a minimum.
 
-`x + 2 = +-3`
+### Step 2: Identify Maximum or Minimum
 
-So:
+For [y = -x^2 + 4x + 2]: rewrite as [y = -(x^2 - 4x) + 2], complete the square: [y = -(x - 2)^2 + 6]. The vertex is [(2, 6)] and since [a = -1 < 0], it is a maximum.
 
-* `x = 1`
-* `x = -5`
+### Step 3: Find Vertex, Axis of Symmetry, and Max/Min
 
----
+Convert [y = 2x^2 + 4x + 3], [y = 3x^2 + 6x - 1], and other functions to vertex form.
 
-## Example 7 - Solve When a Is Not 1
+## Example 11 — Apply to Projectile Motion
 
-Solve `4x^2 - 12x - 27 = 0` by completing the square.
+### Step 1: Write the Function
 
-Divide by `4`:
+For a firework launched from 2 feet at 96 ft/s: use [h(t) = -(1/2)gt^2 + vt + h_0] with [g = 32 ft/s^2].
 
-`x^2 - 3x - 27/4 = 0`
+[h(t) = -16t^2 + 96t + 2]
 
-`x^2 - 3x = 27/4`
+### Step 2: Rewrite in Vertex Form
 
-`x^2 - 3x + 9/4 = 9`
+Complete the square to find [h(t) = -16(t - 3)^2 + 146].
 
-`(x - 3/2)^2 = 9`
+The axis of symmetry is [t = 3] seconds, and the maximum height is 146 feet.
 
-`x - 3/2 = +-3`
+### Step 3: Interpret in Context
 
-So:
+The maximum height occurs at [t = 3] seconds. This represents when the firework reaches its peak before falling.
 
-* `x = 9/2`
-* `x = -3/2`
+### Step 4: Apply to Diving Problem
 
----
+For Malik diving from a board 7.5 meters above water with velocity 4.18 m/s: use [h(t) = -4.9t^2 + 4.18t + 7.5]. Find the vertex and interpret in context.
 
-## Example 8 - Solve Equations with Imaginary Solutions
+## Mixed Exercises
 
-Solve `3x^2 - 72x + 465 = 0` by completing the square.
+The mixed exercises section provides practice with all skills from the lesson. Problems include:
 
-Divide by `3`:
+* Precision problems: solving equations by completing the square, rounding to the nearest hundredth when necessary. (Problems 52–60)
+* A free fall problem: writing a quadratic function for a rock falling from a 25.8-meter cliff and finding time to ground. (Problem 61)
+* A reaction time problem: finding how long a glass falls before being caught 6 inches above the ground using [h = -16t^2 + 4.5]. (Problem 62)
+* Investment problems: using the compound interest formula to find interest rates. (Problems 63–64)
+* Writing functions in vertex form: [y = x^2 - 10x + 28], [y = x^2 + 16x + 65], and others. (Problems 65–68)
+* An auditorium seating problem: finding how many seats are added when expanding a square grid, and finding [n] when adding 1000 seats. (Problem 69)
+* A deck design problem: finding how much larger each side of a 12ft x 12ft deck needs to be to achieve 200 square feet area. (Problem 70)
+* A volume problem: writing a quadratic function for the volume of an open-top box made from sheet metal (length is 3 times width) with 2-inch squares cut from corners. (Problem 71)
+* A "Construct Arguments" problem: explaining why the axis of symmetry formula is [x = -b/(2a)]. (Problem 72)
+* A "Find the Error" problem analyzing Alonso and Aika's work on completing the square for [x^2 + 8x - 20 = 0]. (Problem 73)
+* Deriving the quadratic formula by completing the square on [x^2 + bx + c = 0]. (Problem 74)
+* Analyzing how many unique solutions (rational, real, or complex) various equations have without solving. (Problem 75)
+* Creating a perfect square trinomial equation with a negative linear coefficient and a fractional constant term, then solving it. (Problem 76)
+* Explaining what it means to complete the square and describing each step. (Problem 77)
 
-`x^2 - 24x + 155 = 0`
+## Review Notes
 
-`x^2 - 24x = -155`
-
-`x^2 - 24x + 144 = -11`
-
-`(x - 12)^2 = -11`
-
-`x - 12 = +-i sqrt(11)`
-
-So:
-
-* `x = 12 + i sqrt(11)`
-* `x = 12 - i sqrt(11)`
-
----
-
-## Learn: Quadratic Functions in Vertex Form
-
-When a function is given in standard form `y = ax^2 + bx + c`, you can complete the square to write it in vertex form.
-
-### Key Concept: Vertex Form of a Quadratic Function
-
-`y = a(x - h)^2 + k`
-
-The vertex is `(h, k)`.
-
-The axis of symmetry is `x = h`.
-
----
-
-## Example 9 - Write Functions in Vertex Form
-
-Write `y = -x^2 - 12x - 9` in vertex form.
-
-`y = -(x^2 + 12x) - 9`
-
-`y = -(x^2 + 12x + 36) - 9 + 36`
-
-`y = -(x + 6)^2 + 27`
-
----
-
-## Example 10 - Determine the Vertex and Axis of Symmetry
-
-Consider `y = 3x^2 - 12x + 5`.
-
-Write in vertex form:
-
-`y = 3(x - 2)^2 - 7`
-
-So:
-
-* axis of symmetry: `x = 2`
-* vertex: `(2, -7)`
-
-Because `a > 0`, the vertex is a minimum.
-
----
-
-## Example 11 - Model with a Quadratic Function
-
-Fireworks: If a firework is launched `1` foot off the ground at a velocity of `128` feet per second, write a function for the situation and interpret the axis of symmetry and vertex.
-
-Using `h(t) = -1/2 gt^2 + vt + h0` with `g = 32`, `v = 128`, and `h0 = 1`:
-
-`h(t) = -16t^2 + 128t + 1`
-
-Write in vertex form:
-
-`h(t) = -16(t - 4)^2 + 257`
-
-So:
-
-* axis of symmetry: `t = 4`
-* vertex: `(4, 257)`
-
-The firework reaches a maximum height of `257` feet after `4` seconds.
-
----
-
-## Talk About It
-
-* Why does completing the square reveal the vertex?
-* Why must the coefficient of `x^2` be `1` before you complete the square?
-
----
-
-## Objective Alignment
-
-- `Solve quadratic equations by using the Square Root Property`: Primary worked examples: Examples 1-3.
-- `Complete the square in quadratic expressions to solve quadratic equations`: Primary worked examples: Examples 4-8.
-- `Complete the square in a quadratic function to interpret key features of its graph`: Primary worked examples: Examples 9-11.
+* Images referenced in the worksheet (deck design diagram in Problem 70 and Alonso and Aika's work in Problem 73) could not be fully described without visual reference. Teachers should consult the original worksheet for exact diagrams and comparison of student work.
+* The worksheet contains 77 practice problems across eleven examples and mixed exercises.

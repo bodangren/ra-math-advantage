@@ -1,0 +1,167 @@
+# Lesson 6-5 — Cross Sections and Solids of Revolution
+
+Source: (Module 6, Lesson 6-5, Int2_0605_practice.docx)
+
+## Today's Goals
+
+* Describe planes of symmetry for three-dimensional solids.
+* Identify shapes of cross sections.
+* Identify solids formed by rotating two-dimensional shapes about an axis.
+* Determine whether objects have axis symmetry.
+
+## Vocabulary
+
+* **Plane of Symmetry** — A plane that divides a three-dimensional figure into two mirror-image halves.
+* **Cross Section** — The intersection of a plane with a three-dimensional solid.
+* **Solid of Revolution** — A three-dimensional solid created by rotating a two-dimensional shape around an axis.
+* **Axis Symmetry** — Symmetry around a line (axis); rotating the object around that line leaves it unchanged.
+* **Axis of Rotation** — The line around which a two-dimensional shape is rotated to create a solid of revolution.
+
+## Explore: Cross Sections and Solids of Revolution
+
+Students explore how two-dimensional slices of three-dimensional solids can reveal information about the solid's structure. They also explore how rotating a two-dimensional shape around an axis creates a three-dimensional solid.
+
+Inquiry Question:
+What cross sections are possible when you slice a cube? How does rotating different shapes about different axes create different solids?
+
+## Learn: Cross Sections and Solids of Revolution
+
+### Key Concept: Planes of Symmetry
+
+A plane of symmetry divides a solid into two congruent halves that are mirror images of each other.
+
+### Key Concept: Cross Sections
+
+The shape of a cross section depends on the orientation of the cutting plane relative to the solid's bases and faces.
+
+### Key Concept: Solids of Revolution
+
+Rotating a shape around an axis creates a solid. The shape of the resulting solid depends on both the original shape and the axis of rotation.
+
+## Example 1 — Planes of Symmetry
+
+Describe each plane of symmetry for each solid.
+
+### Step 1: Identify Symmetry Planes
+
+Look for ways to divide the solid into two equal halves.
+
+### Step 2: Describe Each Plane
+
+A rectangular prism has 3 planes of symmetry: one through the length, one through the width, and one through the height (each dividing the prism into two congruent halves).
+
+A cylinder has infinitely many planes of symmetry if it is a right circular cylinder — any plane containing the central axis.
+
+A cone has planes of symmetry that contain the central axis.
+
+A sphere has infinitely many planes of symmetry — any plane through the center.
+
+## Example 2 — Identify Cross Section Shapes
+
+Identify the shape of each cross section.
+
+### Step 1: Identify the Cutting Direction
+
+Determine whether the cut is parallel or perpendicular to the base, or at some other angle.
+
+### Step 2: Match the Shape to the Solid
+
+A slice parallel to the base of a pyramid gives a smaller similar shape.
+A slice perpendicular to the base gives a triangle (for a pyramid) or rectangle (for a prism).
+A diagonal slice gives various quadrilaterals or triangles.
+
+Cross sections can be: triangles, rectangles, squares, pentagons, hexagons, circles, ellipses.
+
+## Example 3 — Identify Solids of Revolution
+
+Identify the solid formed by rotating the two-dimensional shape about each line.
+
+### Step 1: Visualize the Rotation
+
+Think about what the shape would look like if spun around the given axis.
+
+### Step 2: Match to Known Solids
+
+Rotating a rectangle about one side creates a cylinder.
+Rotating a right triangle about one leg creates a cone.
+Rotating a semicircle about its diameter creates a sphere.
+Rotating a rectangle about its diagonal creates a cylinder with an oblique appearance.
+Rotating a trapezoid about its parallel side creates a truncated cone (frustum).
+
+## Example 4 — Axis Symmetry
+
+Determine whether each item has axis symmetry. Write yes or no.
+
+### Step 1: Identify the Axis
+
+Look for a central line around which the object could rotate.
+
+### Step 2: Check if Rotation Leaves the Object Unchanged
+
+If rotating the object around an axis produces the same appearance, it has axis symmetry.
+
+A traffic cone with a base: Yes — any rotation around its central vertical axis leaves it unchanged.
+
+A one pound weight: Yes — a standard weight has axis symmetry around its central vertical axis.
+
+A flower petal and stem: No — the petal is not symmetric around the stem axis.
+
+A golf ball: Yes — rotation around any axis through the center leaves it appearing the same (if the dimples are uniform).
+
+A tree: Generally No — most trees are not perfectly symmetric around a central axis.
+
+A lamp: It depends on the lamp design. A symmetrical lamp shade would have axis symmetry.
+
+## Mixed Exercises
+
+For Exercises 18 and 19, refer to the solid shown.
+
+* Name the shape of the cross section cut parallel to the base.
+* Name the shape of the cross section cut perpendicular to the base.
+
+Sketch the cross section from a vertical slice of the solid shown.
+
+Reshan rotated a semicircle about a vertical axis to create a sphere. Describe another way Reshan could have rotated a semicircle about an axis to generate a sphere.
+
+WASHER: Describe the two-dimensional shape and axis that could be used to generate the washer by rotating the two-dimensional shape around the axis.
+
+TRIANGLES: Sallie is going to rotate the right triangle around the axis shown. Describe a real-world object that could be generated.
+
+REASONING: The rectangle shown will be rotated about the x-axis.
+a. Describe the three-dimensional shape that is generated.
+b. What is the length of the radius and height of the figure generated?
+
+USE TOOLS: Determine whether each cross section can be made from a cube. If so, sketch the cube and its cross section.
+a. triangle b. square c. rectangle d. pentagon e. hexagon f. octagon
+
+USE A SOURCE: Research the shape and dimensions of the Washington Monument.
+a. Describe each plane of symmetry of the Washington Monument.
+b. Describe the cross section from a vertical slice perpendicular to the base through the vertex.
+c. Determine if the Washington Monument has axis symmetry. Write yes or no.
+
+Identify and sketch the cross section of an object made by each cut described.
+
+* square pyramid cut perpendicular to base but not through the vertex
+* rectangular prism cut diagonally from a top edge to a bottom edge on the opposite side
+
+You want to cut each geometric object so that the cross section is a circle. Give the name for each object. Then describe the cut that results in a circle.
+
+Sketch and describe the object that is created by rotating each shape around the indicated axis of rotation.
+
+CONSTRUCT ARGUMENTS: A regular polyhedron has axis symmetry of order 3, but does not have plane symmetry. What is the figure? Justify your argument.
+
+PERSEVERE: The figure at the right is a cross section of a geometric solid. Describe a solid and how the cross section was made.
+
+WRITE: A hexagonal pyramid is sliced through the vertex and the base so that the prism is separated into two congruent parts. Describe the cross section. Is there more than one way to separate the figure into two congruent parts? Will the shape of the cross section change? Explain.
+
+CREATE: Sketch a real-world object that has plane symmetry, but not axis symmetry.
+
+ANALYZE: Determine whether the statement below is true or false. Justify your argument.
+"The only two shapes formed by the cross sections of a square pyramid are a triangle and a square."
+
+## Review Notes
+
+* ![](media/) — Image references for the many cross section and rotation diagrams in the worksheet could not be fully captured. Teachers should consult the original DOCX for exact figures.
+* Cross sections are named by their shape: triangle, rectangle, square, pentagon, hexagon, circle, ellipse.
+* When a shape is rotated about an axis, points on the axis remain fixed while all other points trace circles.
+* A solid can have multiple different cross sections depending on how you slice it.

@@ -1,271 +1,254 @@
 # Lesson 6-2 — Properties of Logarithms
 
-Source: (Module 6, Lesson 6-2, pp. 269–272)
+Source: (Module 6, Lesson 6-2, Int3_0602_practice.docx)
 
 ## Today's Goals
 
-* Solve logarithmic equations using properties of equality
-* Simplify and evaluate expressions by using the properties of logarithms
-
----
+* Solve logarithmic equations using the properties of logarithms.
+* Approximate logarithms using known values.
+* Apply logarithm properties to real-world contexts including sound intensity and earthquake magnitude.
+* Evaluate and simplify logarithmic expressions.
 
 ## Vocabulary
 
-* logarithmic equation
+* **Product Property of Logarithms** — [\log_b (MN) = \log_b M + \log_b N]
+* **Quotient Property of Logarithms** — [\log_b \frac{M}{N} = \log_b M - \log_b N]
+* **Power Property of Logarithms** — [\log_b M^p = p \cdot \log_b M]
+* **Change of Base Formula** — [\log_b x = \frac{\log_a x}{\log_a b}]
 
----
+## Explore: How Do Logarithms Behave Under Operations?
 
-## Explore: Logarithmic Expressions and Equations
+Just as exponents have properties that simplify calculations, logarithms have corresponding properties. Consider the relationship between [2^3 \cdot 2^2 = 2^5] and how this translates to logarithms.
 
-Use the interactive tool to complete the explore.
-
-**Inquiry Question:**
-How can you determine `logb(xy)` and `logb(x/y)` given `logb x` and `logb y`?
-
----
-
-## Learn: Logarithmic Equations
-
-A **logarithmic equation** contains one or more logarithms.
-
-### Key Concept: Property of Equality for Logarithmic Equations
-
-If `b` is a positive number other than `1`, then:
-
-`logb x = logb y` if and only if `x = y`
-
-This property also holds true for inequalities.
-
----
-
-## Example 1 — Solve a Logarithmic Equation by Using Definitions
-
-Solve:
-
-`log4 x = 5/2`
-
-Rewrite in exponential form:
-
-`x = 4^(5/2)`
-
-Because `4 = 2^2`,
-
-`x = (2^2)^(5/2)`
-
-`x = 2^5`
-
-`x = 32`
-
----
-
-## Example 2 — Solve a Logarithmic Equation by Using Properties of Equality
-
-Solve:
-
-`log5(2x^2 - 6) = log5(4x)`
-
-### Step 1: Solve for `x`
-
-Because the bases are the same:
-
-`2x^2 - 6 = 4x`
-
-`2x^2 - 4x - 6 = 0`
-
-`x^2 - 2x - 3 = 0`
-
-`(x - 3)(x + 1) = 0`
-
-So:
-
-* `x = 3`
-* `x = -1`
-
-### Step 2: Check for extraneous solutions
-
-For `x = 3`:
-
-`log5(12) = log5(12)` so the solution is valid.
-
-For `x = -1`:
-
-`log5(-4)` is undefined.
-
-So `x = -1` is extraneous.
-
-Final answer:
-
-`x = 3`
-
-## Think About It
-
-Why does the property also include the statement "If `x = 7`, then `log3 x = log3 7`"?
-
-### Check
-
-Solve:
-
-`log13(-5x) = log13(-2x^2 + 3)`
-
----
+Inquiry Question:
+If [\log_b (MN) = \log_b M + \log_b N], explain why this is true using the definition of logarithms and the properties of exponents.
 
 ## Learn: Properties of Logarithms
 
-Because logarithms are exponents, the properties of logarithms can be derived from the properties of exponents.
+### Key Concept: Product Property
 
-### Key Concept: Product Property of Logarithms
+[\log_b (MN) = \log_b M + \log_b N]
 
-The logarithm of a product is the sum of the logarithms of its factors.
+To prove: If [\log_b M = x] and [\log_b N = y], then [b^x = M] and [b^y = N]. So [MN = b^x \cdot b^y = b^{x+y}]. Therefore, [\log_b (MN) = x + y = \log_b M + \log_b N].
 
-`logb(mn) = logb m + logb n`
+### Key Concept: Quotient Property
 
-### Key Concept: Quotient Property of Logarithms
+[\log_b \frac{M}{N} = \log_b M - \log_b N]
 
-The logarithm of a quotient is the difference of the logarithms of the numerator and denominator.
+Similar proof using [b^x / b^y = b^{x-y}].
 
-`logb(m/n) = logb m - logb n`
+### Key Concept: Power Property
 
-### Key Concept: Power Property of Logarithms
+[\log_b M^p = p \cdot \log_b M]
 
-The logarithm of a power is the product of the logarithm and the exponent.
+If [\log_b M = x], then [b^x = M]. So [M^p = (b^x)^p = b^{xp}]. Therefore, [\log_b M^p = xp = p \cdot \log_b M].
 
-`logb(m^n) = n logb m`
+### Key Concept: Change of Base Formula
 
----
+To evaluate logarithms with bases other than 10 or [e]:
+[\log_b x = \frac{\log_a x}{\log_a b}]
 
-## Example 3 — Product Property of Logarithms
+This allows us to compute any logarithm using a calculator's common or natural log functions.
 
-Use `log3 5 ≈ 1.465` to approximate `log3 405`.
+## Example 1 — Solve Logarithmic Equations
 
-Factor:
+Solve each equation by converting to exponential form.
 
-`405 = 3^4 * 5`
+### Step 1: Rewrite as an Exponential Equation
 
-Then:
+For [\log_4 x = \frac{3}{2}], rewrite as [4^{3/2} = x]. Since [4^{3/2} = (\sqrt{4})^3 = 2^3 = 8], we have [x = 8].
 
-`log3 405 = log3(3^4 * 5)`
+For [\log_{16} x = \frac{3}{2}], rewrite as [16^{3/2} = x]. Since [16^{3/2} = (\sqrt{16})^3 = 4^3 = 64], we have [x = 64].
 
-`= log3(3^4) + log3 5`
+For [\log_{25} x = \frac{5}{2}], rewrite as [25^{5/2} = x]. Since [25^{5/2} = (\sqrt{25})^5 = 5^5 = 3125], we have [x = 3125].
 
-`= 4 + log3 5`
+### Step 2: Apply to Remaining Problems
 
-`≈ 4 + 1.465`
+[\log_9 x = \frac{3}{2}] → [9^{3/2} = (\sqrt{9})^3 = 3^3 = 27]
+[\log_{27} x = \frac{2}{3}] → [27^{2/3} = (\sqrt[3]{27})^2 = 3^2 = 9]
+[\log_8 x = \frac{2}{3}] → [8^{2/3} = (\sqrt[3]{8})^2 = 2^2 = 4]
 
-`≈ 5.465`
+## Example 2 — Solve Equations with Logarithms on Both Sides
 
-### Check
+When both sides have logarithms with the same base, the arguments must be equal.
 
-Use `log8 5 ≈ 0.7740` to approximate `log8 320`.
+### Step 1: Apply the Property for Equal Bases
 
----
+For [\log_4 (2x^2 - 4) = \log_4 2x], since the bases and types are the same, we have [2x^2 - 4 = 2x].
 
-## Example 4 — Quotient Property of Logarithms
+### Step 2: Solve the Resulting Equation
 
-Use `log3 5 ≈ 1.465` to approximate `log3(9/5)`.
+[2x^2 - 4 = 2x]
+[2x^2 - 2x - 4 = 0]
+[x^2 - x - 2 = 0]
+[(x - 2)(x + 1) = 0]
+[x = 2] or [x = -1]
 
-Rewrite:
+Check for extraneous solutions. For [x = 2]: [\log_4 (2(4) - 4) = \log_4 (4)] and [\log_4 (4) = 1]. Valid. For [x = -1]: the argument [2x = -2] is negative, so the logarithm is undefined. Discard.
 
-`9/5 = 3^2 / 5`
+### Step 3: Solve Remaining Equations
 
-Then:
+[\log_5 (x^2 - 6) = \log_5 x] → [x^2 - 6 = x] → [x^2 - x - 6 = 0] → [(x - 3)(x + 2) = 0]. Valid solution: [x = 3].
 
-`log3(9/5) = log3(3^2 / 5)`
+[\log_3 (x^2 - 8) = \log_3 2x] → [x^2 - 8 = 2x] → [x^2 - 2x - 8 = 0] → [(x - 4)(x + 2) = 0]. Valid: [x = 4].
 
-`= log3(3^2) - log3 5`
+[\log_4 (2x^2 - 20) = \log_4 6x] → [2x^2 - 20 = 6x] → [2x^2 - 6x - 20 = 0] → [x^2 - 3x - 10 = 0] → [(x - 5)(x + 2) = 0]. Valid: [x = 5].
 
-`= 2 - log3 5`
+[\log_2 (6x^2 + 1) = \log_2 5x] → [6x^2 + 1 = 5x] → [6x^2 - 5x + 1 = 0] → [(3x - 1)(2x - 1) = 0]. Valid: [x = \frac{1}{3}] or [x = \frac{1}{2}].
 
-`≈ 2 - 1.465`
+[\log_6 (6x^2 - 3) = \log_6 7x] → [6x^2 - 3 = 7x] → [6x^2 - 7x - 3 = 0] → [(3x + 1)(2x - 3) = 0]. Valid: [x = \frac{3}{2}].
 
-`≈ 0.535`
+## Examples 3 and 4 — Approximate Logarithms Using Known Values
 
-### Check
+Given [\log_4 2 = 0.5], [\log_4 3 \approx 0.7925], and [\log_4 5 \approx 1.1610], approximate each expression.
 
-Use `log6 5 ≈ 0.8982` to approximate `log6(5/1296)`.
+### Step 1: Use Product Property
 
----
+[\log_4 30 = \log_4 (2 \cdot 3 \cdot 5) = \log_4 2 + \log_4 3 + \log_4 5 \approx 0.5 + 0.7925 + 1.1610 = 2.4535]
 
-## Example 5 — Power Property of Logarithms
+[\log_4 20 = \log_4 (2 \cdot 10) = \log_4 2 + \log_4 (2 \cdot 5) = \log_4 2 + \log_4 2 + \log_4 5 = 0.5 + 0.5 + 1.1610 = 2.1610]
 
-Use `log2 6 ≈ 2.585` to approximate `log2 1296`.
+Alternatively: [\log_4 20 = \log_4 (4 \cdot 5) = \log_4 4 + \log_4 5 = 1 + 1.1610 = 2.1610]
 
-Because:
+### Step 2: Use Quotient Property
 
-`1296 = 6^4`
+[\log_4 \frac{2}{3} = \log_4 2 - \log_4 3 \approx 0.5 - 0.7925 = -0.2925]
 
-Then:
+[\log_4 \frac{4}{3} = \log_4 4 - \log_4 3 = 1 - 0.7925 = 0.2075]
 
-`log2 1296 = log2(6^4)`
+### Step 3: Use Power Property
 
-`= 4 log2 6`
+[\log_4 9 = \log_4 (3^2) = 2 \cdot \log_4 3 \approx 2(0.7925) = 1.585]
 
-`≈ 4(2.585)`
+[\log_4 8 = \log_4 (2^3) = 3 \cdot \log_4 2 = 3(0.5) = 1.5]
 
-`≈ 10.34`
+## Example 5 — Change of Base with Different Bases
 
-### Check
+Given [\log_2 3 \approx 1.5850] and [\log_2 5 \approx 2.3219], approximate each expression.
 
-Use `log2 3 ≈ 1.5850` to approximate `log2 243`.
+### Step 1: Use Power and Product Properties
 
----
+[\log_2 25 = \log_2 (5^2) = 2 \cdot \log_2 5 \approx 2(2.3219) = 4.6438]
 
-## Apply Example 6 — Solve a Logarithmic Equation by Using Properties
+[\log_2 27 = \log_2 (3^3) = 3 \cdot \log_2 3 \approx 3(1.5850) = 4.755]
 
-The loudness of a sound `L` in decibels is defined by:
+[\log_2 125 = \log_2 (5^3) = 3 \cdot \log_2 5 \approx 3(2.3219) = 6.9657]
 
-`L = 10 log10 R`
+### Step 2: Apply to Remaining Problems
 
-where `R` is the relative intensity of the sound.
+[\log_2 625 = \log_2 (5^4) = 4 \cdot \log_2 5 \approx 4(2.3219) = 9.2876]
 
-A choir director wants to determine how many choir members could sing while maintaining a safe level of sound, about `80` decibels. If one person has a relative intensity of `10^6` when singing, then how many people could sing with the same relative intensity to achieve a loudness of `80` decibels?
+[\log_2 81 = \log_2 (3^4) = 4 \cdot \log_2 3 \approx 4(1.5850) = 6.34]
 
-### 1. What is the task?
+[\log_2 243 = \log_2 (3^5) = 5 \cdot \log_2 3 \approx 5(1.5850) = 7.925]
 
-Describe the task in your own words and identify the needed information.
+## Example 6 — Real-World Applications
 
-### 2. How will you approach the task?
+### Step 1: Solve the Sound Intensity Problem
 
-Represent the total relative intensity `R` in terms of the number of singers `x`, then solve the equation.
+The loudness equation is [L = 10 \log_{10} R]. If the loudness is 120 decibels after multiplying the intensity by 10, we have [120 = 10 \log_{10} (10R_0)], where [R_0] is the original intensity.
 
-### 3. What is your solution?
+[120 = 10(\log_{10} 10 + \log_{10} R_0) = 10(1 + \log_{10} R_0)]
 
-If one singer has relative intensity `10^6`, then a choir with `x` members has:
+[12 = 1 + \log_{10} R_0]
+[\log_{10} R_0 = 11]
+[R_0 = 10^{11}]
 
-`R = x * 10^6`
+The original relative intensity was [10^{11}] times the minimum threshold.
 
-Substitute into the loudness formula:
+### Step 2: Solve the Earthquake Magnitude Problem
 
-`80 = 10 log10(x * 10^6)`
+The Richter scale is [m = \log_{10} x], where [x] is the amplitude. If an earthquake measures 4.5 and another is 10 times less intense, we find [m = \log_{10} (0.1x) = \log_{10} x + \log_{10} 0.1 = 4.5 - 1 = 3.5].
 
-Divide by `10`:
+The reading for the less intense earthquake is 3.5.
 
-`8 = log10(x * 10^6)`
+## Mixed Exercises
 
-Write in exponential form:
+**Solve each equation:**
 
-`10^8 = x * 10^6`
+[\log_3 56 - \log_3 n = \log_3 7] → [\log_3 \frac{56}{n} = \log_3 7] → [\frac{56}{n} = 7] → [n = 8]
 
-So:
+[\log_2 (4x) + \log_2 5 = \log_2 40] → [\log_2 (20x) = \log_2 40] → [20x = 40] → [x = 2]
 
-`x = 10^2 = 100`
+[5 \log_2 x = \log_2 32] → [\log_2 x^5 = \log_2 32] → [x^5 = 32] → [x = 2]
 
-A choir of `100` members would reach `80` decibels.
+[\log_{10} a + \log_{10} (a + 21) = \log_{10} 100] → [\log_{10} (a(a + 21)) = 2] → [a^2 + 21a = 100] → [a^2 + 21a - 100 = 0]. Using quadratic formula: [a = \frac{-21 \pm \sqrt{441 + 400}}{2} = \frac{-21 \pm \sqrt{841}}{2} = \frac{-21 \pm 29}{2}]. Valid: [a = 4] (positive solution).
 
-### 4. How can you know that your solution is reasonable?
+[\log_2 x + \log_2 (x + 2) = \log_2 8] → [\log_2 (x(x + 2)) = 3] → [x^2 + 2x = 8] → [x^2 + 2x - 8 = 0] → [(x + 4)(x - 2) = 0]. Valid: [x = 2].
 
-Check by substituting `x = 100`:
+[\log_4 (x^2 + 2x + 1) = \log_4 (11 - x)] → [x^2 + 2x + 1 = 11 - x] → [x^2 + 3x - 10 = 0] → [(x + 5)(x - 2) = 0]. Valid: [x = 2].
 
-`R = 100(10^6) = 10^8`
+[\log_3 \frac{x^2}{4} = \log_3 25] → [\frac{x^2}{4} = 25] → [x^2 = 100] → [x = \pm 10]. Both valid since [x^2/4 > 0].
 
-`L = 10 log10(10^8) = 10(8) = 80`
+[\log_3 3d = \log_3 9] → [3d = 9] → [d = 3].
 
-### Check
+[\log_{10} (3x^2 - 5x) = \log_{10} 2] → [3x^2 - 5x = 2] → [3x^2 - 5x - 2 = 0] → [(3x + 1)(x - 2) = 0]. Valid: [x = 2].
 
-Recall that the Richter scale magnitude is given by `m = log10 x`, where `x` is the amplitude of the seismic wave. Determine the reading of an earthquake that is `10` times less intense than an earthquake that measures `4.5` on the Richter scale.
+[\log_4 (2x^2 - 3x) = \log_4 2] → [2x^2 - 3x = 2] → [2x^2 - 3x - 2 = 0] → [(2x + 1)(x - 2) = 0]. Valid: [x = 2].
 
----
+**Approximate using [\log_5 3 \approx 0.6826] and [\log_5 4 \approx 0.8614]:**
 
-## Objective Alignment
+[\log_5 40 = \log_5 (5 \cdot 8) = \log_5 5 + \log_5 8 = 1 + \log_5 (2^3) = 1 + 3\log_5 2]. Need [\log_5 2]. Note [\log_5 4 = 2\log_5 2 = 0.8614], so [\log_5 2 = 0.4307]. Then [\log_5 40 = 1 + 3(0.4307) = 1 + 1.2921 = 2.2921].
 
-- `Solve logarithmic equations using properties of equality`: Primary worked examples: Examples 1-2.
-- `Simplify and evaluate expressions by using the properties of logarithms`: Primary worked examples: Examples 3-5.
+[\log_5 30 = \log_5 (2 \cdot 3 \cdot 5) = \log_5 2 + \log_5 3 + \log_5 5 = 0.4307 + 0.6826 + 1 = 2.1133]
+
+[\log_5 \frac{3}{4} = \log_5 3 - \log_5 4 \approx 0.6826 - 0.8614 = -0.1788]
+
+[\log_5 \frac{4}{3} = \log_5 4 - \log_5 3 \approx 0.8614 - 0.6826 = 0.1788]
+
+[\log_5 9 = 2 \cdot \log_5 3 \approx 2(0.6826) = 1.3652]
+
+[\log_5 16 = 4 \cdot \log_5 2 \approx 4(0.4307) = 1.7228]
+
+**43. REASONING** If a student wrote [\log_2 a + \log_2 b = \log_2 (a + b)] but still got the right answer when [a = 11], what must [b] be? Show that [\log_2 11 + \log_2 b = \log_2 (11 + b)] would require a special value of [b].
+
+**44. CHEMISTRY** The pH formula is [pH = \log_{10} \frac{1}{H^+}]. If pH = 2.5 for a soft drink, find [H^+] in moles per liter.
+
+**45. PHYSICS** The gravitational force is [F = k\frac{m_1 m_2}{d^2}]. Find the expanded form of [\log F].
+
+**46. MOTION** The period of simple harmonic motion is [p = \sqrt{\frac{m}{k}}]. Find the expanded form of [\log p].
+
+**47. BIOLOGY** Energy for transporting substances across a cell membrane: [E = 1.4(\log_{10} C_2 - \log_{10} C_1)].
+* Express [E] as a single logarithm.
+* If [C_2 = 3C_1], find [E] using [\log_{10} 3 \approx 0.4771].
+* If [C_2 = 2C_1], find [E] using [\log_{10} 2 \approx 0.3010].
+
+**48. CONSTRUCT ARGUMENTS** Are [\log \frac{y}{3}] and [\frac{\log y}{\log 3}] equivalent? Justify.
+
+**49.** Explain how to determine [a] and [b] if [\log_2 a^3 b^2 = 19] and [\log_2 \frac{a^4}{b^5} = 10].
+
+**State whether each equation is true or false:**
+
+[\log_8 (x - 3) = \log_8 x - \log_8 3] — False, because [\log_8 (x - 3) \neq \log_8 x - \log_8 3] unless [x - 3 = \frac{x}{3}].
+
+[\log_5 22x = \log_5 22 + \log_5 x] — True, by the Product Property.
+
+[\log_{10} 19k = 19 \log_{10} k] — False, because [\log 19k \neq 19 \log k]; the 19 multiplies the logarithm of k, not the argument.
+
+[\log_2 y^5 = 5 \log_2 y] — True, by the Power Property.
+
+[\log_7 \frac{x}{3} = \log_7 x - \log_7 3] — True, by the Quotient Property.
+
+[\log_4 (z + 2) = \log_4 z + \log_4 2] — False, because [\log_4 (z + 2) \neq \log_4 z + \log_4 2] unless [z + 2 = 2z].
+
+[\log_8 p^4 = (\log_8 p)^4] — False, because [4 \log_8 p \neq (\log_8 p)^4].
+
+[\log_9 \frac{x^2 y^3}{z^4} = 2 \log_9 x + 3 \log_9 y - 4 \log_9 z] — True, by the Product, Quotient, and Power Properties.
+
+**58. CREATE** Write a logarithmic expression for each condition and expand:
+* a product and a quotient
+* a product and a power
+* a product, a quotient, and a power
+
+**59. PERSEVERE** Simplify [\log_{\sqrt{a}}(a^2)] to find an exact numerical value.
+
+**60. WHICH ONE DOESN'T BELONG?** Find the expression that does not belong. Justify your conclusion.
+
+**61. PERSEVERE** Simplify [x^{3\log_x 2 - \log_x 5}] to find an exact numerical value.
+
+**62. WRITE** Explain how the properties of exponents and logarithms are related. Include the Quotient and Power Properties in your explanation.
+
+## Review Notes
+
+* Images: ![](media/image1.wmf) — Gravitational force formula diagram; ![](media/image2.wmf) — Period formula diagram; ![](media/image3.png) — "Which One Doesn't Belong?" image.
+* The worksheet contains 62 practice problems across six examples and mixed exercises.

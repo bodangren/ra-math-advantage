@@ -1,318 +1,111 @@
 # Lesson 1-7 — Quadratic Inequalities
 
+Source: (Module 1, Lesson 1-7, Int3_0107_practice.docx)
+
 ## Today's Goals
 
-* Solve quadratic inequalities in one variable using graphs and sign charts
-* Interpret solutions in context
-
----
+* Graph quadratic inequalities in two variables.
+* Solve quadratic inequalities by graphing the related quadratic function.
+* Apply quadratic inequalities to real-world problems involving fencing, business, sports, and projectile motion.
 
 ## Vocabulary
 
-* quadratic inequality
-* sign chart
-* boundary values
-* test point
+* **Quadratic Inequality** — An inequality of the form [y < ax^2 + bx + c], [y ≤ ax^2 + bx + c], [y > ax^2 + bx + c], or [y ≥ ax^2 + bx + c].
+* **Solution of a Quadratic Inequality** — All points [(x, y)] that satisfy the inequality; represented by the region of the graph where the inequality holds.
+* **Boundary Curve** — The parabola [y = ax^2 + bx + c] that forms the boundary of the solution region.
+* **Test Point** — A point used to determine which region of the graph satisfies the inequality.
 
----
+## Explore: Regions Defined by Quadratic Curves
 
-## Explore: Where Is the Parabola Above or Below the x-axis?
-
-Use graphing technology to explore how the sign of a quadratic expression changes.
-
-Consider:
-[
-y = x^2 - 5x + 6
-]
+Quadratic inequalities describe regions of the coordinate plane bounded by parabolas. Students explore how the sign of the inequality (less than vs. greater than) and whether the parabola opens up or down determine which region is part of the solution.
 
 Inquiry Question:
-How can you determine where a parabola is above or below the x-axis without graphing?
+How do you determine which side of the parabola represents the solution to [y > ax^2 + bx + c]?
 
----
+## Learn: Quadratic Inequalities
 
-## Learn: Solving Quadratic Inequalities
+### Key Concept: Graphing Quadratic Inequalities
 
-### Key Concept: Sign Chart Method
+1. Graph the related equation [y = ax^2 + bx + c] as a boundary (solid line for [≤] or [≥], dashed for [<] or [>]).
+2. Determine whether the parabola opens upward or downward.
+3. Test a point (usually the origin, unless it lies on the boundary) to determine which region satisfies the inequality.
+4. Shade the appropriate region.
 
-To solve inequalities like:
+### Key Concept: Solving by Graphing
 
-* [
-x^2 - 5x + 6 > 0
-]
-* [
-2x^2 + x - 3 \leq 0
-]
+To solve [ax^2 + bx + c ≤ 0]:
+1. Graph [y = ax^2 + bx + c].
+2. Find where the graph is on or below the x-axis.
+3. The x-values at these points give the solution set.
 
-follow these steps:
+## Example 1 — Graph Quadratic Inequalities
 
-**Step 1:** Find the boundary values by setting the quadratic expression equal to zero.
+Graph [y ≤ x^2 + 6x + 4], [y < -x^2 + 4x - 6], [y ≤ x^2 - 4], and other inequalities.
 
-**Step 2:** Plot the boundary values on a number line. These divide the number line into intervals.
+### Step 1: Graph the Boundary
 
-**Step 3:** Choose a test point in each interval and determine the sign of the expression.
+For [y ≤ x^2 + 6x + 4], first graph [y = x^2 + 6x + 4]. Since [≤], use a solid curve.
 
-**Step 4:** Determine which intervals satisfy the inequality.
+### Step 2: Test a Point
 
----
+Test [(0, 0)]: [0 ≤ 0 + 0 + 4] is true, so shade the region containing (0, 0).
 
-## Example 1 — Solve x² - 5x + 6 > 0 Graphically
+### Step 3: Apply to Different Inequalities
 
-Solve:
-[
-x^2 - 5x + 6 > 0
-]
+For [y > -x^2 + 4x - 6], graph the boundary with a dashed curve and test a point to determine which region to shade.
 
-### Step 1: Find zeros
+For [-x^2 + 12x - 36 > y], rewrite as [y < -x^2 + 12x - 36] and graph accordingly.
 
-[
-x^2 - 5x + 6 = 0
-]
+## Examples 3 and 4 — Solve Inequalities by Graphing
 
-[
-(x - 2)(x - 3) = 0
-]
+### Step 1: Graph the Related Function
 
-[
-x = 2 \quad \text{or} \quad x = 3
-]
+For [x^2 - 6x + 9 ≤ 0]: graph [y = x^2 - 6x + 9]. Notice that this factors as [(x - 3)^2], so the parabola touches the x-axis at [x = 3] and opens upward.
 
-### Step 2: Sketch the parabola
+### Step 2: Identify the Solution Region
 
-Since a = 1 > 0, the parabola opens upward.
+Since [≤ 0], the solution is where the graph is on or below the x-axis. For [(x - 3)^2 ≤ 0], this occurs only when [(x - 3)^2 = 0], so [x = 3].
 
-The x-intercepts are at x = 2 and x = 3.
+### Step 3: Solve Various Inequalities
 
-### Step 3: Identify the regions
+For [-x^2 - 4x + 32 ≥ 0]: rewrite as [-(x^2 + 4x - 32) ≥ 0] or [x^2 + 4x - 32 ≤ 0]. Find the roots and determine where the quadratic is non-positive.
 
-* The parabola is **above** the x-axis when x < 2 or x > 3
-* The parabola is **below** the x-axis when 2 < x < 3
+For [(3/4)x^2 + (3/4)x - 10 > 5]: first rewrite as [(3/4)x^2 + (3/4)x - 15 > 0] and solve.
 
-### Solution
+## Example 5 — Real-World Quadratic Inequalities
 
-Since we want > 0 (above the x-axis):
+### Step 1: Define Variables and Write an Inequality
 
-[
-x < 2 \quad \text{or} \quad x > 3
-]
+For a rectangular play area with 180 feet of fencing needing to enclose at least 1800 square feet: if [w] is the width, then length is [(180 - 2w)/2 = 90 - w]. The area inequality is [w(90 - w) ≥ 1800].
 
-In interval notation: [
-(-\infty, 2) \cup (3, \infty)
-]
+### Step 2: Solve the Inequality
 
----
+[w(90 - w) ≥ 1800]
+[90w - w^2 ≥ 1800]
+[w^2 - 90w + 1800 ≤ 0]
 
-## Example 2 — Solve x² - 5x + 6 > 0 Using a Sign Chart
+Solve the quadratic equation [w^2 - 90w + 1800 = 0] using factoring or the Quadratic Formula: [w ≈ 26.3] or [w ≈ 63.7]. Since the parabola opens upward, the solution is [26.3 ≤ w ≤ 63.7].
 
-Solve the same inequality algebraically:
+### Step 3: Apply to Business Problem
 
-[
-x^2 - 5x + 6 > 0
-]
+For a bicycle company: let [x] be the number of $20 profit increases. Total profit is [(300 - 10x)(300 + 20x)]. Find when this is at least $100,000.
 
-### Step 1: Find boundary values
+## Mixed Exercises
 
-[
-x^2 - 5x + 6 = 0
-]
+The mixed exercises section provides practice with all skills from the lesson. Problems include:
 
-[
-(x - 2)(x - 3) = 0
-]
+* Solving quadratic inequalities by graphing: [-2x^2 + 12x < -15], [5x^2 + x + 3 ≥ 0], [11 ≤ 4x^2 + 7x], and others. (Problems 21–35)
+* A reasoning problem: given a quadratic equation with discriminant zero and [a > 0], determine the solutions of the inequality. (Problem 36)
+* Writing quadratic inequalities for given graphs: three graphs showing different parabola regions are provided and students write corresponding inequalities. (Problems 37–39)
+* A baseball problem: using [h(t) = -4.9t^2 + 32t + 1.3] to find when a ball is higher than a 43.4m camera and when it is within 2.4m of the ground. (Problem 40)
+* A "Construct Arguments" problem: determining whether the boundaries of [x^2 + 4x - 12 ≤ 0] are twice the boundaries of [(1/2)x^2 + 2x - 6 ≤ 0]. (Problem 41)
+* A "Find the Error" problem analyzing Don and Diego's graphical solution of [x^2 - 2x - 8 > 0]. (Problem 42)
+* Creating quadratic inequalities for conditions where the solution set is all real numbers or the empty set. (Problem 43)
+* Analyzing whether the intersection of [y ≤ -ax^2 + c] and [y ≥ ax^2 - c] is always, sometimes, or never the empty set. (Problem 44)
+* Graphing the intersection of [y ≤ -x^2 + 4] and [y ≥ x^2 - 4]. (Problem 45)
+* Writing about how techniques for solving quadratic and linear inequalities are similar and different. (Problem 46)
 
-Boundary values: x = 2 and x = 3
+## Review Notes
 
-### Step 2: Draw sign chart
-
-Plot x = 2 and x = 3 on a number line. This creates three intervals:
-
-* Interval A: x < 2
-* Interval B: 2 < x < 3
-* Interval C: x > 3
-
-### Step 3: Test each interval
-
-Choose test points:
-
-* Interval A (x < 2): Test x = 0
-  [
-  (0)^2 - 5(0) + 6 = 6 > 0 \quad \text{(positive)}
-  ]
-
-* Interval B (2 < x < 3): Test x = 2.5
-  [
-  (2.5)^2 - 5(2.5) + 6 = 6.25 - 12.5 + 6 = -0.25 < 0 \quad \text{(negative)}
-  ]
-
-* Interval C (x > 3): Test x = 4
-  [
-  (4)^2 - 5(4) + 6 = 16 - 20 + 6 = 2 > 0 \quad \text{(positive)}
-  ]
-
-### Step 4: Read the solution
-
-Since we want > 0, select the positive intervals:
-
-[
-x < 2 \quad \text{or} \quad x > 3
-]
-
-[
-(-\infty, 2) \cup (3, \infty)
-]
-
----
-
-## Example 3 — Solve 2x² + x - 3 ≤ 0
-
-Solve:
-[
-2x^2 + x - 3 \leq 0
-]
-
-### Step 1: Find boundary values
-
-[
-2x^2 + x - 3 = 0
-]
-
-[
-(2x + 3)(x - 1) = 0
-]
-
-[
-x = -\frac{3}{2} \quad \text{or} \quad x = 1
-]
-
-### Step 2: Draw sign chart
-
-Boundary values: x = -1.5 and x = 1
-
-Three intervals:
-* Interval A: x < -1.5
-* Interval B: -1.5 < x < 1
-* Interval C: x > 1
-
-### Step 3: Test each interval
-
-* Interval A (x < -1.5): Test x = -2
-  [
-  2(-2)^2 + (-2) - 3 = 8 - 2 - 3 = 3 > 0 \quad \text{(positive)}
-  ]
-
-* Interval B (-1.5 < x < 1): Test x = 0
-  [
-  2(0)^2 + (0) - 3 = -3 < 0 \quad \text{(negative)}
-  ]
-
-* Interval C (x > 1): Test x = 2
-  [
-  2(2)^2 + (2) - 3 = 8 + 2 - 3 = 7 > 0 \quad \text{(positive)}
-  ]
-
-### Step 4: Read the solution
-
-Since we want ≤ 0, select the negative interval AND the boundary points:
-
-[
--1.5 \leq x \leq 1
-]
-
-In interval notation: [
-\left[-\frac{3}{2}, 1\right]
-]
-
----
-
-## Example 4 — Real-World: Height Above a Threshold
-
-A football is kicked into the air. Its height h (in feet) after t seconds is given by:
-
-[
-h(t) = -16t^2 + 64t
-]
-
-The height of the goal post crossbar is 10 feet. During which time intervals is the ball above the crossbar?
-
-### Step 1: Set up the inequality
-
-The ball is above 10 feet when:
-
-[
--16t^2 + 64t > 10
-]
-
-### Step 2: Solve the related equation
-
-[
--16t^2 + 64t - 10 = 0
-]
-
-Divide by -2:
-
-[
-8t^2 - 32t + 5 = 0
-]
-
-Using the quadratic formula:
-
-[
-t = \frac{32 \pm \sqrt{1024 - 160}}{16} = \frac{32 \pm \sqrt{864}}{16} = \frac{32 \pm 12\sqrt{6}}{16}
-]
-
-[
-t \approx 0.17 \quad \text{or} \quad t \approx 3.83
-]
-
-### Step 3: Determine the intervals
-
-Since the parabola opens downward (a = -16 < 0), the ball is above 10 feet between the two roots.
-
-### Solution
-
-[
-0.17 < t < 3.83
-]
-
-The ball is above the crossbar for approximately 0.17 to 3.83 seconds after the kick.
-
----
-
-## Think About It (Discourse Prompts)
-
-* Why does the sign of the leading coefficient affect which intervals satisfy the inequality?
-* When solving x² + x - 6 > 0, why can't we simply square both sides?
-* How does the sign chart method generalize to higher-degree polynomials?
-
----
-
-## In-Class Quick Check
-
-Solve each inequality.
-
-1. [
-x^2 - 5x + 6 \leq 0
-]
-2. [
-x^2 + x - 12 > 0
-]
-3. [
-2x^2 - 5x - 3 \geq 0
-]
-4. [
--x^2 + 4x - 3 < 0
-]
-
----
-
-## CAP Reflection
-
-* Courage: Did you attempt each problem even when the signs were confusing?
-* Adaptability: How did you adjust your approach when the sign chart didn't match your graph?
-* Persistence: How did you verify that your solution intervals were correct?
-
----
-
-## Objective Alignment
-
-- `Solve quadratic inequalities in one variable`: Primary worked examples: Examples 1-3.
-- `Interpret solutions in context`: Primary worked examples: Example 4.
+* Images referenced in the worksheet (the two graphs in Problem 36 for comparing boundary values, three graphs in Problems 37-39 for writing quadratic inequalities, Don and Diego's graphical solutions in Problem 42) could not be fully described without visual reference. Teachers should consult the original worksheet for exact diagrams and values.
+* The worksheet contains 46 practice problems across five examples and mixed exercises.

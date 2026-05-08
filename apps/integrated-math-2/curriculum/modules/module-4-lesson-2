@@ -1,0 +1,122 @@
+# Lesson 4-2 — Pythagorean Theorem and Its Converse
+
+Source: (Module 4, Lesson 4-2, Int2_0402_practice.docx)
+
+## Today's Goals
+
+* Find unknown side lengths in right triangles using the Pythagorean Theorem.
+* Identify and use Pythagorean triples.
+* Classify triangles as acute, right, or obtuse using the converse of the Pythagorean Theorem.
+* Apply the Pythagorean Theorem in real-world contexts.
+
+## Vocabulary
+
+* **Pythagorean Theorem** — In a right triangle, the sum of the squares of the lengths of the legs equals the square of the length of the hypotenuse: [a² + b² = c²].
+* **Pythagorean Triple** — A set of three positive integers [a], [b], and [c] that satisfy [a² + b² = c²].
+* **Converse of the Pythagorean Theorem** — If [a² + b² = c²] for a triangle with sides [a], [b], and [c] (where [c] is longest), then the triangle is a right triangle.
+
+## Explore: Pythagorean Theorem
+
+The Pythagorean Theorem relates the three sides of a right triangle. The converse can determine whether a triangle is acute ([c² < a² + b²]), right ([c² = a² + b²]), or obtuse ([c² > a² + b²]).
+
+Inquiry Question:
+How can you determine whether a triangle is acute, right, or obtuse using only its side lengths?
+
+## Learn: Pythagorean Theorem
+
+In a right triangle with legs [a] and [b] and hypotenuse [c]:
+
+[a² + b² = c²]
+
+To find a missing side, isolate the variable on one side of the equation.
+
+## Example 1 — Find the Value of x
+
+### Step 1: Apply the Pythagorean Theorem
+
+1-6. Solve [a² + b² = c²] for the unknown side length in each right triangle.
+
+## Example 2 — Use Pythagorean Triples
+
+### Step 1: Recognize Common Triples
+
+Pythagorean triples include (3, 4, 5), (5, 12, 13), (7, 24, 25), (8, 15, 17), and (9, 40, 41).
+
+7-12. Identify and use Pythagorean triples to find values more efficiently.
+
+## Example 3 — Real-World Applications
+
+### Step 1: Set Up the Problem
+
+13. Ramp: The bottom of a ramp is 10 feet from the dock. The ramp is 11 feet long. How high is the dock?
+
+14. Flight: An airplane lands 60 miles east and 25 miles north of where it took off. How far apart are the airports?
+
+## Example 4 — Classify Triangles
+
+Determine whether points X, Y, and Z can be vertices of a triangle. If so, classify as acute, right, or obtuse.
+
+### Step 1: Check Triangle Inequality and Side Lengths
+
+15. X(−3, −2), Y(−1, 0), Z(0, −1)
+16. X(−7, −3), Y(−2, −5), Z(−4, −1)
+17. X(1, 2), Y(4, 6), Z(6, 6)
+18. X(3, 1), Y(3, 7), Z(11, 1)
+
+## Mixed Exercises
+
+19. Tether: A 50-foot tether is tied to a pole 40 feet above ground. How far from the base is the anchor?
+
+20-22. Classify triangles as acute, obtuse, or right.
+
+23-24. Proof: Theorem 9.6 and Theorem 9.7
+
+25. Sidewalks: 1071 and 1840 slabs for short sides. How many for the long side?
+
+26-28. Find perimeter and area.
+29. Find [x] for right triangle with sides [x], [x + 5], and 25.
+30. Find [x] values for acute triangle with sides [2x], 8, and 12.
+31. Redwood tree broken at 20 meters tall, top lands 16 feet from centerline.
+32. Construct arguments for garden dimensions.
+33-35. Find the value of [x].
+36. HDTV screen with 16:9 aspect ratio, height 32 inches.
+37. Eduardo and Lisa leave school on bikes.
+38. Office park shortcut distance.
+39. Structure: Pythagorean triple formula.
+40. True or false about right triangles with same hypotenuse.
+41. Create a right triangle with a Pythagorean triple.
+42. Find [x] in the figure.
+43. Research incommensurable magnitudes.
+
+## Review Notes
+
+* Images referenced in this lesson:
+  * ![](media/image1.png) — right triangle diagram
+  * ![](media/image2.png) — right triangle diagram
+  * ![](media/image3.png) — right triangle diagram
+  * ![](media/image4.png) — right triangle diagram
+  * ![](media/image5.png) — right triangle diagram
+  * ![](media/image6.png) — right triangle diagram
+  * ![](media/image7.png) — Pythagorean triple triangle
+  * ![](media/image8.png) — Pythagorean triple triangle
+  * ![](media/image9.png) — Pythagorean triple triangle
+  * ![](media/image10.png) — Pythagorean triple triangle
+  * ![](media/image11.png) — Pythagorean triple triangle
+  * ![](media/image12.png) — Pythagorean triple triangle
+  * ![](media/image13.png) — warehouse ramp diagram
+  * ![](media/image14.png) — proof diagram
+  * ![](media/image15.png) — triangle classification diagram
+  * ![](media/image16.png) — proof diagram
+  * ![](media/image17.png) — proof diagram
+  * ![](media/image18.png) — perimeter/area diagram
+  * ![](media/image19.png) — perimeter/area diagram
+  * ![](media/image20.png) — perimeter/area diagram
+  * ![](media/image21.png) — redwood tree diagram
+  * ![](media/image22.png) — find x diagram
+  * ![](media/image23.png) — find x diagram
+  * ![](media/image24.png) — find x diagram
+  * ![](media/image25.png) — structure diagram
+  * ![](media/image26.png) — HDTV diagram
+  * ![](media/image27.png) — distance diagram
+  * ![](media/image28.png) — office park diagram
+  * ![](media/image29.png) — find x diagram

@@ -1,0 +1,225 @@
+# Lesson 12-2 — Statements, Conditionals, and Biconditionals
+
+Source: (Module 12, Lesson 12-2, Int1_1202_practice.docx)
+
+## Today's Goals
+
+* Determine the truth value of compound statements formed by conjunction and disjunction.
+* Identify the hypothesis and conclusion of a conditional statement.
+* Rewrite statements in if-then form by identifying implied hypotheses and conclusions.
+* Write the converse, inverse, and contrapositive of a conditional statement and determine their truth values.
+* Formulate biconditional statements when a conditional and its converse are both true.
+* Analyze the truth value of biconditional statements and provide counterexamples when false.
+
+## Vocabulary
+
+* **Statement** — A sentence that is either true or false.
+* **Negation** — A statement that has the opposite truth value of the original statement.
+* **Conjunction** — A compound statement formed by joining two statements with the word "and," symbolized by [\land].
+* **Disjunction** — A compound statement formed by joining two statements with the word "or," symbolized by [\lor].
+* **Conditional Statement** — A statement of the form "if p, then q," symbolized by [p \rightarrow q].
+* **Hypothesis** — The "if" part of a conditional statement.
+* **Conclusion** — The "then" part of a conditional statement.
+* **Converse** — The statement formed by exchanging the hypothesis and conclusion of a conditional.
+* **Inverse** — The statement formed by negating both the hypothesis and conclusion of a conditional.
+* **Contrapositive** — The statement formed by negating and exchanging the hypothesis and conclusion of a conditional.
+* **Biconditional Statement** — A statement of the form "p if and only if q," symbolized by [p \leftrightarrow q], which is true when both the conditional and its converse are true.
+* **Counterexample** — A specific case that shows a statement is false.
+* **Truth Value** — Whether a statement is true or false.
+
+## Explore: How Do Simple Statements Combine to Form New Truths?
+
+Students discuss how the truth of individual statements affects the truth of compound statements. Consider whether knowing one part of an "and" statement or an "or" statement is enough to know the whole statement's truth value.
+
+Inquiry Question:
+If you know that one simple statement is true and another is false, can you predict whether "p and q" and "p or q" are true?
+
+## Learn: Logic, Conditionals, and Related Statements
+
+Logical reasoning uses simple statements and logical connectives to build compound statements. A conditional statement relates a hypothesis to a conclusion. Related conditionals — the converse, inverse, and contrapositive — are formed by rearranging or negating the parts of the original conditional. A biconditional states that both a conditional and its converse are true.
+
+### Key Concept: Compound Statements and Truth Values
+
+* A **conjunction** [p \land q] is true only when both p and q are true.
+* A **disjunction** [p \lor q] is true when at least one of p or q is true.
+* The **negation** of a statement p, written [\sim p], has the opposite truth value.
+
+### Key Concept: Conditional Statements
+
+* A conditional statement has the form "If hypothesis, then conclusion."
+* Symbolically: [p \rightarrow q], where p is the hypothesis and q is the conclusion.
+
+### Key Concept: Related Conditionals
+
+* **Converse:** Exchange the hypothesis and conclusion: [q \rightarrow p] 
+* **Inverse:** Negate both parts: [\sim p \rightarrow \sim q] 
+* **Contrapositive:** Negate and exchange: [\sim q \rightarrow \sim p] 
+* A conditional and its contrapositive always have the same truth value.
+* The converse and inverse always have the same truth value.
+
+### Key Concept: Biconditional Statements
+
+* A biconditional [p \leftrightarrow q] means "p if and only if q."
+* It is true only when both [p \rightarrow q] and [q \rightarrow p] are true.
+
+## Example 1 — Evaluate Conjunctions and Disjunctions
+
+Given several simple statements with known truth values, write compound statements using conjunction or disjunction and determine whether each compound statement is true or false. Explain the reasoning by referring to the truth values of the individual statements.
+
+### Step 1: Determine the Truth Value of Each Simple Statement
+
+Evaluate whether each given simple statement is true or false before combining them.
+
+### Step 2: Write the Compound Statement
+
+Form a conjunction using "and" or a disjunction using "or" from the given statements.
+
+[
+p \land q
+]
+
+### Step 3: Evaluate the Compound Statement
+
+Use the rules for conjunction and disjunction to determine the final truth value. A conjunction is true only if both parts are true; a disjunction is true if at least one part is true.
+
+## Example 2 — Evaluate Negations of Compound Statements
+
+Determine the truth value of compound statements that involve negations of simple statements. Combine negated statements using conjunction or disjunction and explain the reasoning.
+
+### Step 1: Find the Negation of Each Statement
+
+Determine [\sim p], [\sim q], and [\sim r] by reversing the truth value of each simple statement.
+
+### Step 2: Form the Compound Statement
+
+Write the expression using the negated statements and the given connective.
+
+[
+\sim p \land \sim q
+]
+
+### Step 3: Evaluate Using Truth Value Rules
+
+Apply the rules for conjunction or disjunction to the negated statements to find the final truth value.
+
+## Example 3 — Identify Hypothesis and Conclusion
+
+Given conditional statements in if-then form, identify the hypothesis (the "if" part) and the conclusion (the "then" part).
+
+### Step 1: Locate the "If" Clause
+
+Read the statement and identify the condition being assumed. This is the hypothesis.
+
+### Step 2: Locate the "Then" Clause
+
+Identify the result or outcome that follows from the hypothesis. This is the conclusion.
+
+### Step 3: State Hypothesis and Conclusion Clearly
+
+Write the hypothesis and conclusion in your own words for each conditional statement.
+
+## Example 4 — Rewrite Statements in If-Then Form
+
+Given statements that are not written as conditionals, identify the implied hypothesis and conclusion, then rewrite each statement in standard if-then form.
+
+### Step 1: Identify the Condition
+
+Determine what condition must be met or what action must be taken. This becomes the hypothesis.
+
+### Step 2: Identify the Result
+
+Determine what follows from that condition. This becomes the conclusion.
+
+### Step 3: Write the If-Then Statement
+
+Combine the hypothesis and conclusion into the standard conditional form: "If [hypothesis], then [conclusion]."
+
+## Example 5 — Write Converse, Inverse, and Contrapositive
+
+For a given true conditional statement, write the converse, inverse, and contrapositive. Determine whether each related conditional is true or false, and provide a counterexample for any false statement.
+
+### Step 1: Identify the Hypothesis and Conclusion
+
+Write the original conditional as [p \rightarrow q], clearly identifying p and q.
+
+### Step 2: Write the Converse
+
+Exchange the hypothesis and conclusion to form [q \rightarrow p]. Determine whether the converse is true or false.
+
+### Step 3: Write the Inverse
+
+Negate both the hypothesis and conclusion to form [\sim p \rightarrow \sim q]. Determine whether the inverse is true or false.
+
+### Step 4: Write the Contrapositive
+
+Negate and exchange the hypothesis and conclusion to form [\sim q \rightarrow \sim p]. Determine whether the contrapositive is true or false.
+
+### Step 5: Provide Counterexamples
+
+For any related conditional that is false, give a specific counterexample that shows the statement does not hold in all cases.
+
+## Example 6 — Analyze Conditionals and Form Biconditionals
+
+Write the conditional and the converse for a given statement. Determine the truth value of each. If both are true, write a biconditional statement. If either is false, provide a counterexample.
+
+### Step 1: Write the Conditional in If-Then Form
+
+Identify the hypothesis and conclusion and express the statement as [p \rightarrow q].
+
+### Step 2: Write the Converse
+
+Exchange the hypothesis and conclusion to form [q \rightarrow p].
+
+### Step 3: Determine Truth Values
+
+Decide whether the conditional is true and whether the converse is true.
+
+### Step 4: Write the Biconditional if Possible
+
+If both the conditional and its converse are true, write the biconditional as [p \leftrightarrow q] or "p if and only if q." If one is false, explain why a biconditional cannot be written.
+
+## Example 7 — Analyze Biconditional Statements
+
+Write a given biconditional statement as a conditional and its converse. Determine whether the biconditional is true or false. If false, provide a counterexample.
+
+### Step 1: Write the Conditional
+
+Extract the forward direction from the biconditional: "If [first part], then [second part]."
+
+### Step 2: Write the Converse
+
+Extract the reverse direction: "If [second part], then [first part]."
+
+### Step 3: Evaluate the Biconditional
+
+The biconditional is true only if both the conditional and its converse are true. If either is false, the biconditional is false.
+
+### Step 4: Provide a Counterexample if Needed
+
+If the biconditional is false, give a specific example that demonstrates why one direction fails.
+
+## Mixed Exercises
+
+The mixed exercises section provides comprehensive practice with all skills from the lesson. Problems include:
+
+* Evaluating the truth value of compound statements with conjunctions, disjunctions, and negations.
+* Determining the truth value of logical expressions given the truth values of individual statements.
+* Identifying hypotheses and conclusions in conditional statements from real-world and mathematical contexts.
+* Rewriting everyday and mathematical statements in if-then form.
+* Writing the converse, inverse, and contrapositive of conditional statements and determining their truth values.
+* Finding counterexamples to show that related conditionals are false.
+* Writing biconditionals when both a conditional and its converse are true.
+* Determining whether biconditional statements are true or false and justifying with counterexamples.
+* Analyzing logical statements in real-world contexts such as travel, games, medicine, and raffles.
+* Reasoning through multi-step logic puzzles involving multiple conditional statements.
+* Negating statements that contain quantifiers such as "all," "every," and "there exists."
+* Creating original conditional statements with specified properties for the converse, inverse, and contrapositive.
+* Evaluating errors in student reasoning about conditional statements.
+* Describing the relationships among a conditional, its converse, its inverse, and its contrapositive.
+* Using truth tables to prove logical equivalences between conditionals and contrapositives.
+
+## Review Notes
+
+* Images referenced in the worksheet (segment diagram for problem 38, student work for problem 49) could not be fully described without visual reference. Teachers should consult the original worksheet for exact diagrams.
+* Problem 38 requires interpreting a segment diagram to write a statement with a specified truth value.
+* Problem 49 involves evaluating student work shown in an image; visual reference is essential.

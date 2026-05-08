@@ -1,0 +1,201 @@
+# Lesson 12-8 — Slope and Equations of Lines
+
+Source: (Module 12, Lesson 12-8, Int1_1208_practice.docx)
+
+## Today's Goals
+
+* Calculate the slope of a line through two given points and interpret its meaning.
+* Determine whether two lines are parallel, perpendicular, or neither by comparing their slopes.
+* Write equations of lines in slope-intercept form that are parallel or perpendicular to a given line and pass through a given point.
+* Graph a line that satisfies a given geometric condition such as passing through a point and being parallel or perpendicular to another line.
+* Apply slope relationships to solve real-world and geometric problems.
+
+## Vocabulary
+
+* **Slope** — The ratio of vertical change to horizontal change between two points on a line, often denoted [m].
+* **Parallel Lines** — Lines in the same plane that never intersect; they have equal slopes.
+* **Perpendicular Lines** — Lines that intersect at a right angle; their slopes are negative reciprocals.
+* **Slope-Intercept Form** — The form [y = mx + b], where [m] is the slope and [b] is the [y]-intercept.
+* **Point-Slope Form** — The form [y - y_1 = m(x - x_1)], where [m] is the slope and [(x_1, y_1)] is a point on the line.
+* **Negative Reciprocal** — Two numbers whose product is [-1]; the slopes of perpendicular lines are negative reciprocals.
+* **Collinear** — Points that lie on the same straight line.
+* **Biconditional Statement** — A statement of the form "[p] if and only if [q]," combining a conditional and its converse.
+
+## Explore: How Can We Tell If Two Lines Never Meet or Cross at Right Angles?
+
+Students investigate what information about two lines is needed to predict whether they are parallel, perpendicular, or neither. They explore whether examining graphs, equations, or pairs of points gives the same conclusion.
+
+Inquiry Question:
+If two lines have the same slope, will they always be parallel? If the product of their slopes is [-1], will they always be perpendicular?
+
+## Learn: Slope and Relationships Between Lines
+
+The slope of a line determines its direction and steepness. By comparing slopes, we can classify the relationship between two lines without graphing.
+
+### Key Concept: Calculating Slope
+
+Given two points [(x_1, y_1)] and [(x_2, y_2)], the slope is:
+[
+m = \frac{y_2 - y_1}{x_2 - x_1}
+]
+
+### Key Concept: Parallel Lines
+
+* Two non-vertical lines are parallel if and only if they have the same slope.
+* Parallel lines never intersect.
+* Vertical lines are parallel to each other.
+
+### Key Concept: Perpendicular Lines
+
+* Two non-vertical lines are perpendicular if and only if the product of their slopes is [-1], which means their slopes are negative reciprocals.
+* If one line has slope [m], a perpendicular line has slope [\text{-}\frac{1}{m}].
+* A horizontal line is perpendicular to a vertical line.
+
+### Key Concept: Writing Equations of Parallel and Perpendicular Lines
+
+To write the equation of a line through a given point that is parallel or perpendicular to a given line:
+* Identify the slope of the given line.
+* For a parallel line, use the same slope.
+* For a perpendicular line, use the negative reciprocal of the slope.
+* Substitute the slope and the given point into point-slope form, then convert to slope-intercept form.
+
+## Example 1 — Determine Whether Lines Through Given Points Are Parallel, Perpendicular, or Neither
+
+Given the coordinates of two pairs of points that define two lines, calculate each slope and compare them to classify the relationship.
+
+### Step 1: Calculate the Slope of Each Line
+
+Use the slope formula with the given coordinates for each line.
+
+For a line through [(x_1, y_1)] and [(x_2, y_2)]:
+[
+m = \frac{y_2 - y_1}{x_2 - x_1}
+]
+
+### Step 2: Compare the Slopes
+
+* If the slopes are equal, the lines are parallel.
+* If the product of the slopes is [-1], the lines are perpendicular.
+* Otherwise, the lines are neither parallel nor perpendicular.
+
+### Step 3: Verify by Graphing
+
+Sketch both lines on a coordinate plane to confirm the algebraic conclusion.
+
+## Example 2 — Determine Whether Graphed Lines Are Parallel, Perpendicular, or Neither
+
+Given graphs of two lines on a coordinate plane, determine their relationship by analyzing their slopes visually and algebraically.
+
+### Step 1: Identify Points on Each Graphed Line
+
+Read the coordinates of two points that lie on each line from the graph.
+
+### Step 2: Calculate or Compare Slopes
+
+Use the identified points to compute each slope, or compare the rise-over-run visually.
+
+### Step 3: Classify the Relationship
+
+Use the slope comparison rules to state whether the lines are parallel, perpendicular, or neither.
+
+## Example 3 — Determine Whether Lines Given by Equations Are Parallel, Perpendicular, or Neither
+
+Given the equations of two lines, rewrite them in slope-intercept form if necessary, identify their slopes, and classify their relationship.
+
+### Step 1: Rewrite in Slope-Intercept Form
+
+Convert each equation to [y = mx + b] to identify the slope [m].
+
+For example, an equation in point-slope form:
+[
+y - y_1 = m(x - x_1)
+]
+is solved for [y] to reveal the slope.
+
+### Step 2: Identify the Slopes
+
+Extract the slope from each equation in slope-intercept form.
+
+### Step 3: Compare the Slopes
+
+* Equal slopes indicate parallel lines.
+* Negative reciprocal slopes indicate perpendicular lines.
+* Special cases: a vertical line ([x = k]) has undefined slope, and a horizontal line ([y = k]) has slope [0]; they are perpendicular to each other.
+
+## Example 4 — Graph Lines and Solve Real-World Problems Using Parallel and Perpendicular Relationships
+
+Graph a line that satisfies a given condition, such as passing through a specified point and being parallel or perpendicular to a line through two other points. Apply these concepts to real-world contexts.
+
+### Step 1: Find the Slope of the Reference Line
+
+Calculate the slope of the line through the given reference points.
+
+### Step 2: Determine the Slope of the Desired Line
+
+* For a parallel line, use the same slope.
+* For a perpendicular line, use the negative reciprocal slope.
+
+### Step 3: Graph the Line
+
+Plot the given point and use the slope to find a second point. Draw the line through these points.
+
+### Step 4: Write the Equation
+
+Substitute the slope and the given point into point-slope form, then convert to slope-intercept form.
+
+### Step 5: Apply to Real-World Contexts
+
+In applied problems, interpret the slope as a rate of change. Use parallel slopes to model objects moving in the same direction with the same steepness, and use perpendicular slopes to model right-angle turns or crossings.
+
+## Example 5 — Write Equations in Slope-Intercept Form for Parallel and Perpendicular Lines
+
+Write the equation of a line in slope-intercept form that passes through a given point and is either parallel or perpendicular to a given line.
+
+### Step 1: Identify the Slope of the Given Line
+
+Read the slope from the given equation in slope-intercept form.
+
+### Step 2: Determine the New Slope
+
+* Parallel: [m_{\text{new}} = m_{\text{given}}] 
+* Perpendicular: [m_{\text{new}} = \text{-}\frac{1}{m_{\text{given}}}] 
+
+### Step 3: Use Point-Slope Form
+
+Substitute the new slope and the given point [(x_1, y_1)] into point-slope form:
+[
+y - y_1 = m_{\text{new}}(x - x_1)
+]
+
+### Step 4: Convert to Slope-Intercept Form
+
+Solve for [y] to write the final equation as [y = mx + b].
+
+## Mixed Exercises
+
+The mixed exercises provide practice with all skills from the lesson:
+
+* Finding the value of an unknown coordinate so that a line through two points is parallel or perpendicular to another line.
+* Writing both a parallel and a perpendicular equation in slope-intercept form through a given point.
+* Determining from a diagram whether any lines in a figure are parallel or perpendicular, and justifying the answer with slopes.
+* Applying slope concepts to a city map with parallel roads to find distances and slopes.
+* Finding possible coordinates for a point so that two lines are parallel, using the property that parallel lines have equal slopes.
+* Using a model to find where a perpendicular path meets an axis in a video game design context.
+* Finding slopes of two lines and determining possible values for variables that make the lines parallel.
+* Writing equations of parallel and perpendicular lines in point-slope and slope-intercept form using variables for coefficients.
+* Constructing arguments about whether a line equation can be written in a specified standard form.
+* Analyzing a square given opposite vertices by finding the other vertices and proving sides are parallel and angles are right angles.
+* Persevering through multi-step algebra to find an unknown value so that a perpendicular line passes through two given points.
+* Determining whether three points are collinear by comparing slopes between pairs of points.
+* Creating original equations for a pair of perpendicular lines that intersect at a given point.
+* Writing biconditional statements that use slopes to characterize parallel and perpendicular lines.
+* Finding and explaining errors in a student's work when writing the equation of a perpendicular line.
+
+## Review Notes
+
+* Images referenced in the worksheet (graphed lines for problems 7, 8, and 9; ski slope diagram for problem 20; marching band coordinate diagram for problem 21; graphs for problems 30 and 31; geometric figures for problems 32, 33, and 34; city blocks map for problem 35; helicopter path diagram for problem 37; student work for problem 46) could not be fully described without visual reference. Teachers should consult the original worksheet for exact diagrams, labels, and values.
+* Problem 7, 8, and 9 involve graphs of two lines on coordinate planes for visual slope comparison.
+* Problems 20 and 21 are multi-part real-world applications requiring equation writing and reasoning about coordinates.
+* Problems 32, 33, and 34 involve geometric figures with multiple lines; students must determine whether any pair is parallel or perpendicular and justify with slope calculations.
+* Problem 35 involves a city map with parallel roads and requires applying slope to find distances.
+* Problem 46 involves a diagram of student work showing an attempt to find the equation of a perpendicular line; students must identify and explain the error.

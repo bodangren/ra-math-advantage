@@ -1,0 +1,185 @@
+# Lesson 11-6 — Factoring Quadratic Trinomials
+
+Source: (Module 11, Lesson 11-6, Int2_1106_practice.docx)
+
+## Today's Goals
+
+* Factor trinomials of the form [x^2 + bx + c] by finding two numbers that multiply to c and add to b.
+* Factor trinomials of the form [ax^2 + bx + c] where a ≠ 1.
+* Determine whether a trinomial is prime or can be factored using integers.
+* Apply factoring to solve real-world problems involving area, volume, engineering, and finance.
+
+## Vocabulary
+
+* **Prime Trinomial** — A trinomial that cannot be factored using integer coefficients
+* **Factoring Quadratic Trinomials** — Writing a quadratic expression as a product of two binomials
+* **AC Method** — A technique for factoring trinomials where a ≠ 1 by multiplying a and c, then finding factors that sum to b
+
+## Explore: Reversing FOIL
+
+Students consider the reverse of multiplying two binomials. Given a quadratic trinomial, what two binomials, when multiplied, produce it?
+
+Inquiry Question:
+Given that (x + 3)(x + 5) = [x^2 + 8x + 15], how can we work backwards from [x^2 + 8x + 15] to find the original binomials?
+
+## Learn: Factoring Quadratic Trinomials
+
+### Key Concept: Factoring x^2 + bx + c
+
+Find two numbers that multiply to c and add to b.
+
+[x^2 + 17x + 42] → Find two numbers that multiply to 42 and add to 17: 3 and 14.
+→ [(x + 3)(x + 14)]
+
+[y^2 - 17y + 72] → Find two numbers that multiply to 72 and add to -17: -8 and -9.
+→ [(y - 8)(y - 9)]
+
+### Key Concept: Sign Patterns
+
+When c is positive and b is negative, both factors are negative.
+When c is negative, one factor is positive and one is negative.
+
+[a^2 + 8a - 48] → Two numbers that multiply to -48 and add to 8: 12 and -4.
+→ [(a + 12)(a - 4)]
+
+[n^2 - 2n - 35] → Two numbers that multiply to -35 and add to -2: -7 and 5.
+→ [(n - 7)(n + 5)]
+
+## Example 1 — Factor x^2 + bx + c Trinomials
+
+Factor each polynomial, if possible. If the polynomial cannot be factored using integers, write prime.
+
+### Step 1: Identify the Sign Pattern
+
+For [x^2 + 17x + 42]: c is positive, b is positive → both factors positive.
+For [y^2 - 17y + 72]: c is positive, b is negative → both factors negative.
+For [a^2 + 8a - 48]: c is negative → one factor positive, one negative.
+
+### Step 2: Find the Number Pair
+
+44 + 15h + h^2 → Rewrite as [h^2 + 15h + 44]. Find numbers that multiply to 44 and add to 15: 4 and 11.
+→ [(h + 4)(h + 11)]
+
+40 - 22x + x^2 → Rewrite as [x^2 - 22x + 40]. Find numbers that multiply to 40 and add to -22: -2 and -20.
+→ [(x - 2)(x - 20)]
+
+[-24 - 5x + x^2] → Rewrite as [x^2 - 5x - 24]. Find numbers that multiply to -24 and add to -5: -8 and 3.
+→ [(x - 8)(x + 3)]
+
+### Step 3: Check for Prime Cases
+
+[d^2 + 5d - 13] → Find two numbers that multiply to -13 and add to 5: ±1 and ±13. No pair works. → prime
+
+[y^2 - 6y + 17] → Find two numbers that multiply to 17 and add to -6: ±1 and ±17. No pair works. → prime
+
+## Example 2 — More x^2 + bx + c Problems
+
+Continue factoring or identifying prime trinomials.
+
+[n^2 + 7n + 12] → Numbers that multiply to 12 and add to 7: 3 and 4 → [(n + 3)(n + 4)]
+
+[b^2 - 12b - 101] → No integer pair multiplies to -101 and adds to -12. → prime
+
+[p^2 + 9p + 20] → Numbers that multiply to 20 and add to 9: 4 and 5 → [(p + 4)(p + 5)]
+
+[c^2 + c + 21] → No integer pair multiplies to 21 and adds to 1. → prime
+
+## Example 3 — Real-World Applications
+
+### Step 1: Cosmetics Case Problem
+
+A cosmetics case has width that is 2 cm greater than the length x. The area is [x^2 + 26x + 168]. Factor this expression.
+
+Find numbers that multiply to 168 and add to 26: 12 and 14.
+[x^2 + 26x + 168 = (x + 12)(x + 14)]
+The length is x + 12 and the width is x + 14 (or vice versa). ![](media/image1.png)
+
+### Step 2: Carpentry Crate Problem
+
+A crate volume is [2x^2 - 6x - 80]. Factor this expression.
+
+[2x^2 - 6x - 80] → First factor out 2: [2(x^2 - 3x - 40)]
+Find numbers that multiply to -40 and add to -3: -8 and 5.
+→ [2(x - 8)(x + 5)]
+
+### Step 3: Bridge Cable Height
+
+A cable's height above the deck at distance d yards from the first tower is [d^2 - 36d + 324]. Factor this expression.
+
+Find numbers that multiply to 324 and add to -36: -18 and -18.
+[d^2 - 36d + 324 = (d - 18)^2] ![](media/image2.png)
+
+### Step 4: Break-Even Point
+
+A museum's break-even point is modeled by [2h^2 - 2h - 24], where h is hours open per day. Factor this expression.
+
+[2h^2 - 2h - 24] → Factor out 2: [2(h^2 - h - 12)]
+Find numbers that multiply to -12 and add to -1: -4 and 3.
+→ [2(h - 4)(h + 3)]
+
+## Example 4 — Factor ax^2 + bx + c where a ≠ 1
+
+Use the AC method: multiply a and c, find factors that sum to b, then rewrite and group.
+
+### Step 1: Apply AC Method
+
+[5x^2 + 34x + 24] → Multiply a and c: 5 × 24 = 120
+Find factors of 120 that sum to 34: 4 and 30
+Rewrite: [5x^2 + 4x + 30x + 24]
+Group: [(5x^2 + 4x) + (30x + 24)]
+Factor: [x(5x + 4) + 6(5x + 4)]
+→ [(5x + 4)(x + 6)]
+
+[2x^2 + 19x + 24] → Multiply: 2 × 24 = 48
+Find factors of 48 that sum to 19: 3 and 16
+Rewrite: [2x^2 + 3x + 16x + 24]
+Factor: [x(2x + 3) + 8(2x + 3)]
+→ [(2x + 3)(x + 8)]
+
+### Step 2: Check if Prime
+
+[4x^2 + 22x + 10] → Multiply: 4 × 10 = 40
+Find factors of 40 that sum to 22: No pair works → prime
+
+[2x^2 + 3x + 6] → Multiply: 2 × 6 = 12
+Find factors of 12 that sum to 3: No pair works → prime
+
+[5x^2 + 3x + 4] → Multiply: 5 × 4 = 20
+Find factors of 20 that sum to 3: No pair works → prime
+
+### Step 3: Trinomials with Negative Middle Term
+
+[4x^2 - 13x + 10] → Multiply: 4 × 10 = 40
+Find factors of 40 that sum to -13: -5 and -8
+Rewrite: [4x^2 - 5x - 8x + 10]
+Factor: [x(4x - 5) - 2(4x - 5)]
+→ [(4x - 5)(x - 2)]
+
+## Mixed Exercises
+
+Practice includes:
+
+* Factor [x^2 + bx + c] trinomials: [n^2 + 3n - 18], [x^2 + 2x - 8], [r^2 + 4r - 12], [x^2 - x - 12], [w^2 - w - 6], [y^2 - 6y + 8], [t^2 - 15t + 56]
+* Reorder and factor: [-4 - 3m + m^2]
+* Factor [ax^2 + bx + c] trinomials: [2x^2 + 5x + 2], [3n^2 + 5n + 2], [3g^2 - 7g + 2], [2t^2 - 11t + 15], [4x^2 - 3x - 3], [4b^2 + 15b - 4]
+* Prime identification: [x^2 + 2x - 15], [x^2 - 6x - 7], [p^2 - 10p + 21], [x^2 + x - 20]
+* Factor with different variable arrangements: [9p^2 + 6p - 8], [6q^2 - 13q + 6], [q^2 + 11qr + 18r^2], [x^2 - 14xy - 51y^2], [x^2 - 6xy + 5y^2], [a^2 + 10ab - 39b^2]
+* Negative coefficient trinomials: [-6x^2 - 23x - 20], [-4x^2 - 15x - 14], [-5x^2 + 18x + 8], [-6x^2 + 31x - 35], [-4x^2 + 5x - 12], [-12x^2 + x + 20]
+* Pyramidal monument problem: A stone monument has height 9 feet, base length is 5 feet greater than width, and volume is [3x^2 - 15x - 150]. Factor the expression and interpret each factor. ![](media/image2.png)
+* Projectile time problem: A T-shirt is launched from 32 feet above ground at 16 ft/s initial velocity. The height model is [-16t^2 + 16t + 32]. Write and factor an expression for the time in the air. ![](media/image3.png)
+* Which one doesn't belong: Which expression does not belong with the others? ![](media/image3.png)
+* Find the error: Jamaall and Charles factored [x^2 + 6x - 16] differently. Determine who is correct. ![](media/image4.png)
+* Analyze problems: Find all values of k so that [x^2 + kx - 19] and [x^2 + kx + 14] can be factored with integers. Find k values so that [x^2 - 8x + k] and [x^2 - 5x + k] with k > 0 are factorable.
+* Determine whether the absolute value of b is sometimes, always, or never less than the absolute value of c in factorable trinomials [x^2 + bx + c].
+* Persevere: Factor [(4y - 5)^2 + 3(4y - 5) - 70] by treating (4y - 5) as a single variable.
+* Analyze: A square has area [9x^2 + 30xy + 25y^2]. The dimensions are binomials with positive integer coefficients. Find the perimeter.
+* Find all values of k so that [2x^2 + kx + 12] can be factored as two binomials using integers.
+
+## Review Notes
+
+* Images referenced: ![](media/image1.png) — Cosmetics case diagram. ![](media/image2.png) — Suspension bridge cable diagram. ![](media/image3.png) — Four expressions for "Which One Doesn't Belong?". ![](media/image4.png) — Student work for factoring [x^2 + 6x - 16]. Teachers should consult the original worksheet for exact diagrams.
+* The worksheet contains 85 practice problems covering factoring techniques and applications.
+* For [x^2 + bx + c]: Find two numbers that multiply to c and add to b.
+* For [ax^2 + bx + c]: Use the AC method — multiply a and c, find two numbers that multiply to ac and add to b, then rewrite and group.
+* When c is negative in [x^2 + bx + c]: The two factors have opposite signs, with the larger absolute value taking the sign of b.
+* Prime trinomials cannot be factored using integers.

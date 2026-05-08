@@ -1,0 +1,241 @@
+# Lesson 12-9 — Proving Lines Parallel
+
+Source: (Module 12, Lesson 12-9, Int1_1209_practice.docx)
+
+## Today's Goals
+
+* Use angle relationships formed by a transversal to prove that two lines are parallel.
+* Identify the correct converse theorem or postulate that justifies a conclusion about parallel lines.
+* Find the value of an unknown variable that makes two lines parallel.
+* Apply parallel line theorems to solve real-world and geometric problems.
+* Write two-column and paragraph proofs involving parallel lines.
+
+## Vocabulary
+
+* **Corresponding Angles Converse** — If two lines are cut by a transversal so that corresponding angles are congruent, then the lines are parallel.
+* **Alternate Interior Angles Converse** — If two lines are cut by a transversal so that alternate interior angles are congruent, then the lines are parallel.
+* **Alternate Exterior Angles Converse** — If two lines are cut by a transversal so that alternate exterior angles are congruent, then the lines are parallel.
+* **Consecutive Interior Angles Converse** — If two lines are cut by a transversal so that consecutive interior angles are supplementary, then the lines are parallel.
+* **Perpendicular Transversal Converse** — In a plane, if two lines are perpendicular to the same line, then they are parallel to each other.
+* **Parallel Postulate** — Through a point not on a given line, there is exactly one line parallel to the given line.
+* **Transversal** — A line that intersects two or more coplanar lines at different points.
+
+## Explore: What Makes Two Lines Parallel?
+
+Students examine diagrams where two lines are cut by a transversal and discuss which angle relationships are enough to guarantee the lines are parallel. They consider whether one pair of congruent angles is sufficient, or whether supplementary angles can also prove parallelism.
+
+Inquiry Question:
+What angle relationships between two lines and a transversal provide enough evidence to prove the lines are parallel?
+
+## Learn: Converse Theorems for Parallel Lines
+
+The converses of the parallel line theorems allow us to prove lines are parallel when certain angle relationships are known. Each converse reverses the direction of the original theorem.
+
+### Key Concept: Converse Theorems
+
+* **Corresponding Angles Converse:** Corresponding angles congruent implies the lines are parallel.
+* **Alternate Interior Angles Converse:** Alternate interior angles congruent implies the lines are parallel.
+* **Alternate Exterior Angles Converse:** Alternate exterior angles congruent implies the lines are parallel.
+* **Consecutive Interior Angles Converse:** Consecutive interior angles supplementary implies the lines are parallel.
+
+### Key Concept: Finding Values to Make Lines Parallel
+
+To find a variable value that ensures two lines are parallel:
+* Identify the angle relationship that must hold for the lines to be parallel.
+* Set up an equation based on that relationship (congruence or supplementary).
+* Solve for the unknown variable.
+
+## Example 1 — Determine Which Lines Are Parallel
+
+Use given information about angle congruence or supplementary relationships to determine which lines, if any, are parallel. State the converse theorem or postulate that justifies each conclusion.
+
+### Step 1: Recognize Corresponding Angles
+
+When corresponding angles formed by a transversal are congruent, the two lines cut by the transversal are parallel.
+
+For example, if corresponding angles are congruent:
+[
+\angle 3 \cong \angle 7 \Rightarrow p \parallel q
+]
+Justification: Corresponding Angles Converse.
+
+### Step 2: Recognize Alternate Exterior Angles
+
+When alternate exterior angles are congruent, the lines are parallel.
+
+For example:
+[
+\angle 2 \cong \angle 16 \Rightarrow r \parallel s
+]
+Justification: Alternate Exterior Angles Converse.
+
+### Step 3: Recognize Consecutive Interior Angles
+
+When consecutive interior angles are supplementary, the lines are parallel.
+
+For example:
+[
+m\angle 5 + m\angle 12 = 180^\circ \Rightarrow p \parallel q
+]
+Justification: Consecutive Interior Angles Converse.
+
+### Step 4: Recognize Alternate Interior Angles
+
+When alternate interior angles are congruent, the lines are parallel.
+
+For example:
+[
+\angle 1 \cong \angle 6 \Rightarrow p \parallel q
+]
+Justification: Alternate Interior Angles Converse.
+
+## Example 2 — Find the Value of x That Makes Lines Parallel
+
+Find the value of a variable that ensures two lines are parallel by setting up and solving an equation based on the appropriate angle relationship.
+
+### Step 1: Use Corresponding Angles
+
+Set the expressions for corresponding angles equal and solve.
+
+For example, if one corresponding angle measures [(3x + 5)^\circ] and the other measures [80^\circ]:
+[
+3x + 5 = 80
+]
+[
+x = 25
+]
+
+### Step 2: Use Alternate Interior Angles
+
+Set the expressions for alternate interior angles equal and solve.
+
+For example:
+[
+2x + 10 = 3x - 20
+]
+[
+x = 30
+]
+
+### Step 3: Use Consecutive Interior Angles
+
+Set the sum of the consecutive interior angle expressions equal to [180^\circ] and solve.
+
+For example:
+[
+(4x + 15) + (5x - 30) = 180
+]
+[
+9x - 15 = 180
+]
+[
+x = \frac{65}{3}
+]
+
+### Step 4: Use Angle Sums and Parallel Line Conditions
+
+When angles on a straight line or within a geometric figure relate to a parallel line condition, combine angle relationships to set up the equation.
+
+For example:
+[
+(2x + 8) + (3x + 12) = 90
+]
+[
+5x + 20 = 90
+]
+[
+x = 14
+]
+
+### Step 5: Combine Vertical Angles with Alternate Exterior Angles
+
+Use vertical angle congruence together with the Alternate Exterior Angles Converse.
+
+For example:
+[
+5x - 20 = 3x + 30
+]
+[
+x = 25
+]
+
+### Step 6: Use Corresponding Angles with Algebraic Expressions
+
+[
+7x + 5 = 9x - 15
+]
+[
+x = 10
+]
+
+### Step 7: Apply Triangle Angle Sum with Parallel Lines
+
+When a triangle is formed and one side must be parallel to a given line, use the triangle angle sum theorem together with corresponding angles.
+
+For example:
+[
+x + 40 + 60 = 180
+]
+[
+x = 80
+]
+
+## Example 3 — Apply Parallel Line Theorems to Real-World Problems
+
+Use the converse theorems for parallel lines to analyze and solve problems in real-world contexts.
+
+### Step 1: Books on a Shelf
+
+Two books on a shelf each make the same angle with the base. Determine what can be concluded about the books.
+
+Since each book makes the same angle with the base, these are corresponding angles formed by the books with a common transversal (the base). By the Corresponding Angles Converse:
+[
+70^\circ = 70^\circ \Rightarrow \text{the books are parallel}
+]
+
+### Step 2: Patterns from Cutting a Rectangle
+
+A rectangle is cut along a slanted line and the two pieces are rearranged. Describe the shape of the new figure.
+
+Because opposite sides of a rectangle are parallel and the cut creates congruent alternate interior angles, when the pieces are rearranged the matching angles ensure the new figure has two pairs of parallel sides. The resulting figure is a parallelogram.
+
+### Step 3: Fireworks Trajectories
+
+Designers want fireworks to shoot along parallel trajectories from launchers at different heights. Determine what condition must be met for the trajectories to be parallel.
+
+For the trajectories to be parallel, the angle that each trajectory makes with the horizontal must be equal. Using the Corresponding Angles Converse:
+[
+m\angle 1 = \text{the corresponding angle on the other launcher}
+]
+
+### Step 4: Constructing a Letter A
+
+For the horizontal bar of a large letter A to be truly horizontal (parallel to the base), the angles where the diagonal sides meet the horizontal bar must satisfy certain conditions.
+
+a. Angles 1 and 2 should each equal the base angles they correspond to, ensuring the horizontal bar is parallel to the base. By the Alternate Interior Angles Converse:
+[
+m\angle 1 = m\angle \text{base angle}, \quad m\angle 2 = m\angle \text{base angle}
+]
+
+b. If angle 1 is correct but angle 2 is not, then the horizontal bar is not parallel to the base. The two diagonal sides are not symmetric, so the letter A is not perfectly formed.
+
+## Mixed Exercises
+
+The mixed exercises section provides practice with all skills from the lesson: identifying parallel lines from angle relationships, finding values of variables that make lines parallel, applying parallel line theorems to real-world situations, and writing proofs. Problems include:
+
+* Completing a two-column proof of the Perpendicular Transversal Converse, given that two angles are complementary and one line is perpendicular to a transversal.
+* Writing a paragraph proof of the Alternate Interior Angles Converse from a given diagram.
+* Writing a paragraph proof of the Alternate Exterior Angles Converse from a given diagram.
+* Using a compass and straightedge to construct a line through a given point that is parallel to a given line.
+* Applying parallel line theorems to explain why opposite sides of a wooden picture frame with 45-degree cuts and right-angle corners are parallel.
+* Reasoning about how many corners of a rectangular frame must be checked to ensure opposite sides are parallel.
+* Finding and explaining errors in a student's reasoning about which lines are parallel based on a given pair of congruent angles.
+* Analyzing whether a theorem about parallel lines remains true when the two lines are not coplanar, and drawing a figure to justify the argument.
+* Creating a construction of a line parallel to one side of a triangle through the opposite vertex, and using measurements to justify that the constructed line is parallel.
+* Completing a two-column proof that if two lines are each parallel to a third line, then they are parallel to each other.
+* Exploring whether a pair of angles can be both supplementary and congruent, and explaining the reasoning.
+* Using given angle relationships in a diagram to prove that two lines are parallel, and then proving that a transversal is perpendicular to one of the lines.
+
+## Review Notes
+
+* Images referenced in the worksheet (angle diagrams for Example 1 problems 1–6 and the second diagram for problems 5–6, angle diagrams for Example 2 problems 7–13, bookshelf diagram for problem 14, rectangle cut pattern for problem 15, fireworks launcher diagram for problem 16, letter A sketch for problem 17, perpendicular transversal proof diagram for problem 18, alternate interior angles diagram for problem 19, alternate exterior angles diagram for problem 20, compass and straightedge construction diagrams for problems 21–22, picture frame diagram for problem 23, quadrilateral error-analysis diagram for problem 25, triangle construction diagram for problem 27, three-line proof diagram for problem 28, and final proof figure for problem 30) could not be fully described without visual reference. Teachers should consult the original worksheet for exact angle measures, labels, and diagrams.

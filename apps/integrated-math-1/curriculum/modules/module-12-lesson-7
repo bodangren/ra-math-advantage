@@ -1,0 +1,195 @@
+# Lesson 12-7 — Parallel Lines and Transversals
+
+Source: (Module 12, Lesson 12-7, Int1_1207_practice.docx)
+
+## Today's Goals
+
+* Identify parallel, skew, and perpendicular segments and lines in two-dimensional and three-dimensional figures.
+* Classify angle pairs formed by two lines cut by a transversal as alternate interior, alternate exterior, corresponding, or consecutive interior angles.
+* Use properties of parallel lines and transversals to find unknown angle measures.
+* Solve for unknown variables in geometric figures using parallel line relationships.
+* Write paragraph proofs and two-column proofs for theorems about parallel lines and transversals.
+
+## Vocabulary
+
+* **Parallel Lines** — Coplanar lines that do not intersect.
+* **Skew Lines** — Lines that do not intersect and are not coplanar.
+* **Parallel Planes** — Planes that do not intersect.
+* **Transversal** — A line that intersects two or more coplanar lines at distinct points.
+* **Alternate Interior Angles** — Nonadjacent interior angles that lie on opposite sides of a transversal.
+* **Alternate Exterior Angles** — Nonadjacent exterior angles that lie on opposite sides of a transversal.
+* **Corresponding Angles** — Angles that lie in the same relative position at each intersection where a transversal crosses two lines.
+* **Consecutive Interior Angles** — Interior angles that lie on the same side of a transversal; also called same-side interior angles.
+* **Perpendicular Transversal Theorem** — If a transversal is perpendicular to one of two parallel lines, then it is perpendicular to the other.
+* **Consecutive Interior Angles Theorem** — If two parallel lines are cut by a transversal, then each pair of consecutive interior angles is supplementary.
+* **Alternate Exterior Angles Theorem** — If two parallel lines are cut by a transversal, then each pair of alternate exterior angles is congruent.
+
+## Explore: How Can We Describe Relationships Between Lines and Angles?
+
+Students investigate how lines in space relate to one another — intersecting, parallel, or skew — and what happens when a third line crosses two or more lines. They consider how angle positions reveal hidden relationships and allow us to determine whether lines are parallel.
+
+Inquiry Question:
+If two lines are cut by a transversal, what can the positions of the angles tell us about whether the lines are parallel?
+
+## Learn: Parallel Lines, Transversals, and Angle Relationships
+
+When parallel lines are cut by a transversal, special angle relationships emerge that allow us to find unknown measures and prove geometric theorems.
+
+### Key Concept: Parallel, Skew, and Perpendicular Relationships
+
+* Parallel lines are coplanar and never intersect.
+* Skew lines are non-coplanar and never intersect.
+* Perpendicular lines intersect at right angles.
+* In three-dimensional figures, parallel segments and skew segments can be identified by examining faces and edges.
+
+### Key Concept: Angle Pairs Formed by a Transversal
+
+* Alternate interior angles are on opposite sides of the transversal and inside the two lines.
+* Alternate exterior angles are on opposite sides of the transversal and outside the two lines.
+* Corresponding angles are in the same position at each intersection.
+* Consecutive interior angles are on the same side of the transversal and inside the two lines.
+
+### Key Concept: Parallel Line Angle Theorems
+
+When two parallel lines are cut by a transversal:
+
+* Corresponding angles are congruent.
+* Alternate interior angles are congruent.
+* Alternate exterior angles are congruent.
+* Consecutive interior angles are supplementary.
+
+## Example 1 — Identify Parallel, Skew, and Perpendicular Segments
+
+Use spatial reasoning to identify relationships between segments and faces in a three-dimensional figure.
+
+### Step 1: Recognize Parallel Segments
+
+Identify segments that lie in the same plane and never intersect. Look for edges on opposite faces or along the same direction in a prism.
+
+### Step 2: Recognize Skew Segments
+
+Identify segments that do not intersect and are not coplanar. These typically lie on edges that are neither parallel nor intersecting.
+
+### Step 3: Analyze Plane Relationships
+
+Determine whether two faces of a three-dimensional figure are parallel or perpendicular by examining whether their edges are parallel or perpendicular.
+
+## Examples 2 and 3 — Identify Transversals and Classify Angle Pairs
+
+Identify the transversal connecting pairs of angles and classify the relationship between each pair using the vocabulary of parallel line angle pairs.
+
+### Step 1: Locate the Transversal
+
+Determine which line intersects the two lines containing the given angles.
+
+### Step 2: Classify the Angle Pair
+
+Use the positions of the angles relative to the transversal and the two lines:
+
+* Same side, both interior → Consecutive Interior
+* Opposite sides, both interior → Alternate Interior
+* Opposite sides, both exterior → Alternate Exterior
+* Same relative position → Corresponding
+
+### Step 3: Apply to Multiple Diagrams
+
+Repeat the classification process for different pairs of angles across several figures, including diagrams with multiple transversals.
+
+### Step 4: Connect to Real-World Contexts
+
+Apply the concept of transversals to real-world situations such as escalator railings crossing horizontal floor lines.
+
+## Example 4 — Find Angle Measures Using Parallel Line Properties
+
+Use the theorems for parallel lines and transversals to find unknown angle measures when one angle measure is known.
+
+### Step 1: Identify the Given Angle Measure
+
+From the diagram, note the measure of the given angle. For example:
+[
+m\angle 7 = 100^{\circ}
+]
+
+### Step 2: Apply Corresponding and Alternate Angle Relationships
+
+When two parallel lines are cut by a transversal, corresponding angles and alternate interior or exterior angles have equal measures:
+[
+m\angle 9 = m\angle 7
+]
+[
+m\angle 5 = m\angle 7
+]
+[
+m\angle 11 = m\angle 7
+]
+
+### Step 3: Apply Supplementary Relationships
+
+Consecutive interior angles and linear pairs sum to [180^{\circ}]. Use subtraction to find the complement of a known angle:
+[
+m\angle 8 = 180^{\circ} - m\angle 7 = 80^{\circ}
+]
+[
+m\angle 6 = 180^{\circ} - m\angle 7 = 80^{\circ}
+]
+[
+m\angle 2 = 180^{\circ} - m\angle 7 = 80^{\circ}
+]
+
+### Step 4: Solve Real-World Angle Problems
+
+Apply the same reasoning to real-world contexts such as parking garage ramps and city street intersections where parallel lines and transversals model physical structures.
+
+## Example 5 — Solve for Variables in Figures with Parallel Lines
+
+Set up and solve equations using parallel line relationships to find unknown variable values in geometric figures.
+
+### Step 1: Identify the Angle Relationship
+
+Determine whether the angles in the figure are congruent or supplementary based on their positions relative to parallel lines and a transversal.
+
+### Step 2: Write an Equation
+
+If the angles are congruent, set their expressions equal. If supplementary, set their sum equal to [180^{\circ}].
+
+For congruent angles:
+[
+x + 15 = 2x - 5
+]
+
+For supplementary angles:
+[
+3x + 20 + 2x = 180
+]
+
+### Step 3: Solve for the Variable
+
+Isolate the variable using algebraic techniques:
+[
+x = 20
+]
+
+### Step 4: Verify the Solution
+
+Substitute the value back into the original expressions to confirm the angle measures are consistent with the identified relationship.
+
+## Mixed Exercises
+
+The mixed exercises provide practice with all skills from the lesson:
+
+* Identifying parallel, skew, and perpendicular segments in three-dimensional figures.
+* Naming transversals and classifying angle pairs as alternate interior, alternate exterior, corresponding, or consecutive interior.
+* Finding unknown angle measures using parallel line theorems when one angle measure is given.
+* Setting up and solving equations for variables in figures with parallel lines and transversals.
+* Applying parallel line concepts to real-world contexts such as carpentry, mapping, and city engineering.
+* Writing paragraph proofs for the Alternate Exterior Angles Theorem.
+* Writing two-column proofs for the Consecutive Interior Angles Theorem and the Perpendicular Transversal Theorem.
+* Finding angle measures in trapezoids and justifying each step with a theorem or definition.
+* Analyzing whether statements about lines in parallel planes are always, sometimes, or never true.
+* Comparing and contrasting the Alternate Interior Angles Theorem and the Consecutive Interior Angles Theorem.
+* Creating figures based on descriptions involving parallel, skew, and intersecting lines in space.
+* Determining the minimum number of angle measures needed to find all angles formed by two parallel lines cut by a transversal.
+
+## Review Notes
+
+* Images referenced in the worksheet (three-dimensional figure for Example 1, angle diagrams for Examples 2–4 and Mixed Exercises, ramp and street diagrams for Example 4, variable figures for Example 5, flag diagram, proof diagrams, and mapping figures for Mixed Exercises) could not be fully described without visual reference. Teachers should consult the original worksheet for exact diagrams, angle labels, and values.

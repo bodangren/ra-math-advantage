@@ -1,0 +1,185 @@
+# Lesson 4-7 — Absolute Value Functions
+
+Source: (Module 4, Lesson 4-7, Int1_0407_practice.docx)
+
+## Today's Goals
+
+* Describe translations, dilations, and reflections of absolute value functions from their equations.
+* Write the equation of an absolute value function given its graph.
+* Graph absolute value functions and state their domain and range.
+* Model real-world situations using absolute value functions.
+
+## Vocabulary
+
+* **Absolute value function** — A function of the form [ f(x) = a|x - h| + k ], where [ a ], [ h ], and [ k ] are constants and [ a \neq 0 ].
+* **Parent function** — The simplest form of a function in a family, [ f(x) = |x| ] for absolute value functions.
+* **Translation** — A shift of a graph horizontally, vertically, or both without changing its shape or orientation.
+* **Dilation** — A transformation that stretches or compresses a graph vertically or horizontally.
+* **Reflection** — A transformation that flips a graph across an axis, producing a mirror image.
+* **Domain** — The set of all possible input values ([ x ]) for a function.
+* **Range** — The set of all possible output values ([ y ]) for a function.
+
+## Learn: Transformations of Absolute Value Functions
+
+The general form of an absolute value function is:
+
+[
+g(x) = a|x - h| + k
+]
+
+Each parameter transforms the parent graph [ f(x) = |x| ] in a specific way.
+
+### Key Concept: Transformations of Absolute Value Functions
+
+* **Horizontal translation:** [ h ] shifts the graph right if [ h > 0 ] and left if [ h < 0 ].
+* **Vertical translation:** [ k ] shifts the graph up if [ k > 0 ] and down if [ k < 0 ].
+* **Vertical stretch/compression:** [ |a| > 1 ] stretches the graph vertically; [ 0 < |a| < 1 ] compresses it vertically.
+* **Horizontal stretch/compression:** [ |a| > 1 ] inside the absolute value with [ x ] compresses horizontally; [ 0 < |a| < 1 ] stretches horizontally.
+* **Reflection:** If [ a < 0 ], the graph reflects across the [ x ]-axis. If [ x ] is replaced by [ -x ], the graph reflects across the [ y ]-axis.
+* The vertex of the transformed graph is at [ (h, k) ].
+
+## Example 1 — Describe Translations
+
+Given an absolute value function in the form [ g(x) = |x - h| + k ], describe how the graph is translated from the parent function [ f(x) = |x| ].
+
+### Step 1: Identify Horizontal Shift
+
+Look at the expression inside the absolute value. For [ g(x) = |x + 6| ], rewrite as [ |x - (-6)| ] to see the horizontal shift.
+
+[
+g(x) = |x - h| + k
+]
+
+* [ h ] determines the horizontal shift.
+
+### Step 2: Identify Vertical Shift
+
+Look at the constant outside the absolute value. For [ g(x) = |x| - 5 ], the value [ k = -5 ] indicates a vertical shift.
+
+* [ k ] determines the vertical shift.
+
+### Step 3: Describe the Translation
+
+State the shift in words. For example, [ g(x) = |x - 2| + 7 ] is translated 2 units right and 7 units up from the parent function.
+
+## Example 2 — Write the Equation from a Graph
+
+Given the graph of an absolute value function, determine its equation in the form [ g(x) = a|x - h| + k ].
+
+### Step 1: Locate the Vertex
+
+Identify the vertex [ (h, k) ] from the graph.
+
+### Step 2: Determine the Value of a
+
+Use another point on the graph and substitute into the equation to solve for [ a ].
+
+[
+y = a|x - h| + k
+]
+
+For example, if the vertex is [ (3, 1) ] and the point [ (4, 3) ] lies on the graph:
+
+[
+3 = a|4 - 3| + 1 \implies 3 = a + 1 \implies a = 2
+]
+
+### Step 3: Write the Equation
+
+Substitute [ a ], [ h ], and [ k ] into [ g(x) = a|x - h| + k ].
+
+## Example 3 — Describe Dilations
+
+Given an absolute value function with a coefficient inside or outside the absolute value, describe the dilation from the parent function.
+
+### Step 1: Identify Vertical Dilation
+
+When the coefficient is outside the absolute value, such as [ g(x) = \frac{2}{5}|x| ] or [ g(x) = 1.3|x| ], the graph is vertically stretched or compressed by the factor [ |a| ].
+
+### Step 2: Identify Horizontal Dilation
+
+When the coefficient is inside the absolute value, such as [ g(x) = |3x| ] or [ g(x) = \left|\frac{1}{6}x\right| ], the graph is horizontally compressed or stretched. A coefficient [ b ] inside gives a horizontal compression by [ \frac{1}{|b|} ] if [ |b| > 1 ], or stretch by [ \frac{1}{|b|} ] if [ 0 < |b| < 1 ].
+
+## Example 4 — Describe Combined Transformations
+
+Given an absolute value function involving reflection, dilation, and translation, describe all transformations from the parent function.
+
+### Step 1: Identify Reflections
+
+* If [ a < 0 ], the graph reflects across the [ x ]-axis.
+* If [ x ] is replaced by [ -x ] inside the absolute value, the graph reflects across the [ y ]-axis.
+
+For example, [ g(x) = -3|x| ] reflects across the [ x ]-axis and vertically stretches by a factor of 3.
+
+### Step 2: Identify Dilations
+
+Determine the stretch or compression factor from the coefficient.
+
+### Step 3: Identify Translations
+
+Determine any horizontal and vertical shifts from [ h ] and [ k ].
+
+For [ g(x) = -|x - 7| + 3 ], the graph reflects across the [ x ]-axis, shifts 7 units right, and shifts 3 units up.
+
+## Example 5 — Graph Absolute Value Functions and State Domain and Range
+
+Graph an absolute value function that includes translations, dilations, and/or reflections, then state the domain and range.
+
+### Step 1: Identify the Vertex
+
+From [ g(x) = a|x - h| + k ], the vertex is at [ (h, k) ].
+
+### Step 2: Plot Additional Points
+
+Choose [ x ]-values on either side of the vertex and compute [ y ]. Account for the stretch or compression factor.
+
+For [ g(x) = |x + 2| + 3 ], the vertex is [ (-2, 3) ].
+
+### Step 3: Draw the Graph
+
+Draw a V-shaped graph with the vertex at the identified point. The slopes of the two rays depend on [ a ].
+
+### Step 4: State Domain and Range
+
+* Domain: All real numbers, [ (-\infty, \infty) ] 
+* Range: If [ a > 0 ], [ y \ge k ]; if [ a < 0 ], [ y \le k ] 
+
+For example, for [ h(x) = -2|x - 3| + 2 ], the range is [ y \le 2 ].
+
+## Example 6 — Model with Absolute Value Functions
+
+Write an absolute value function that models a real-world situation involving a target value and a tolerance.
+
+### Step 1: Identify the Target and Tolerance
+
+Determine the ideal or target value (the vertex) and how much deviation is allowed.
+
+### Step 2: Write the Equation
+
+Use the form [ y = |x - h| + k ] or an equation comparing the absolute difference to a tolerance. For example, if a bag should contain 16 ounces and the difference cannot exceed [ x ] ounces:
+
+[
+|s - 16| \le x
+]
+
+where [ s ] is the actual amount.
+
+### Step 3: Interpret the Results
+
+Solve to find the maximum and minimum acceptable values.
+
+## Mixed Exercises
+
+The mixed exercises provide comprehensive practice with all transformation types and modeling. Problems include:
+
+* Graphing functions, stating domain and range, and describing how each graph relates to its parent graph.
+* Writing equations from given graphs.
+* Modeling real-world scenarios such as manufacturing tolerances (sunflower seeds, cereal boxes), travel time to a destination, a scuba diver's elevation, and a bicycle racer's distance from a start line.
+* Writing an absolute value function as a piecewise-defined function.
+* Creating an original absolute value function meeting given domain and range constraints.
+
+## Review Notes
+
+* Problems 7–12 require images of graphs that were not described in the source extraction. These graphs show V-shaped absolute value functions with various vertices, orientations, and steepness. A human reviewer should verify the exact vertices and slopes depicted.
+* Problem involving Example 15 (image7.png) requires an image that was not described in the source extraction. A human reviewer should supply the situation details from the original worksheet.
+* Problems 39–42 require images of graphs that were not described in the source extraction.

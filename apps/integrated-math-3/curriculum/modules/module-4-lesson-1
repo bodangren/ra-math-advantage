@@ -1,243 +1,194 @@
 # Lesson 4-1 — Operations on Functions
 
-Source: (Module 4, Lesson 4-1, pp. 159–162)
+Source: (Module 4, Lesson 4-1, Int3_0401_practice.docx)
 
 ## Today's Goals
 
-* Find sums, differences, products, and quotients of functions
-* Find compositions of functions
-
----
+* Add, subtract, multiply, and divide functions.
+* Find the composition of two functions.
+* Write and evaluate composite functions in real-world contexts.
 
 ## Vocabulary
 
-* composition of functions
+* **Function Operations** — Adding, subtracting, multiplying, or dividing two functions to create a new function.
+* **Composition of Functions** — Applying one function to the output of another function, written as [(f ∘ g)(x) = f(g(x))].
+* **Domain of a Composite Function** — The set of all input values for which the composition is defined; restricted by both functions.
 
----
+## Explore: Combining Functions
 
-## Explore: Adding Functions
+When two functions model different aspects of a real situation, combining them can yield new insights. Students consider how adding, subtracting, multiplying, or composing functions produces a new function that may reveal patterns not visible in the original functions alone.
 
-Use graphing technology to complete the explore.
-
-**Inquiry Question:**
-Do you think that the graph of `f(x) + g(x)` will be more or less steep than the graphs of `f(x)` and `g(x)`?
-
----
+Inquiry Question:
+How does the order of operations in function composition affect the resulting function, and why is the domain of the composite function important?
 
 ## Learn: Operations on Functions
 
-### Key Concept: Operations on Functions
+### Key Concept: Adding and Subtracting Functions
 
-Let `f(x) = 3x` and `g(x) = 2x - 4`.
+For two functions f(x) and g(x):
 
-* Addition:
-  * `(f + g)(x) = f(x) + g(x)`
-  * `(f + g)(x) = 3x + (2x - 4) = 5x - 4`
-* Subtraction:
-  * `(f - g)(x) = f(x) - g(x)`
-  * `(f - g)(x) = 3x - (2x - 4) = x + 4`
-* Multiplication:
-  * `(f * g)(x) = f(x) * g(x)`
-  * `(f * g)(x) = 3x(2x - 4) = 6x^2 - 12x`
-* Division:
-  * `(f / g)(x) = f(x) / g(x)`, where `g(x) != 0`
-  * `(f / g)(x) = 3x / (2x - 4)`, `x != 2`
+* (f + g)(x) = f(x) + g(x)
+* (f − g)(x) = f(x) − g(x)
 
-To graph the sum or difference of functions:
+The domain of f + g and f − g is the intersection of the domains of f and g.
 
-* graph each function separately
-* add or subtract corresponding functional values
+### Key Concept: Multiplying and Dividing Functions
 
----
+* (f · g)(x) = f(x) · g(x)
+* (f/g)(x) = f(x) / g(x), where g(x) ≠ 0
 
-## Example 1 — Add and Subtract Functions
-
-Given:
-
-* `f(x) = -x^2 + 3x + 1`
-* `g(x) = 2x^2 - 5`
-
-Find each function.
-
-### a. `(f + g)(x)`
-
-`(f + g)(x) = f(x) + g(x)`
-
-`= (-x^2 + 3x + 1) + (2x^2 - 5)`
-
-`= x^2 + 3x - 4`
-
-### b. `(f - g)(x)`
-
-`(f - g)(x) = f(x) - g(x)`
-
-`= (-x^2 + 3x + 1) - (2x^2 - 5)`
-
-`= -x^2 + 3x + 1 - 2x^2 + 5`
-
-`= -3x^2 + 3x + 6`
-
----
-
-## Example 2 — Multiply and Divide Functions
-
-Given:
-
-* `f(x) = 4x^2 - 2x + 3`
-* `g(x) = -x + 5`
-
-Find each function.
-
-### a. `(f * g)(x)`
-
-`(f * g)(x) = (4x^2 - 2x + 3)(-x + 5)`
-
-`= -4x^3 + 20x^2 + 2x^2 - 10x - 3x + 15`
-
-`= -4x^3 + 22x^2 - 13x + 15`
-
-### b. `(f / g)(x)`
-
-`(f / g)(x) = (4x^2 - 2x + 3) / (-x + 5)`, with `x != 5`
-
----
-
-## Learn: Compositions of Functions
+The domain of f/g excludes any x where g(x) = 0.
 
 ### Key Concept: Composition of Functions
 
-Suppose `f` and `g` are functions such that the range of `g` is a subset of the domain of `f`.
+(f ∘ g)(x) = f(g(x))
 
-Then:
+To find (f ∘ g)(x), substitute g(x) into f(x). The domain of (f ∘ g) consists of all x in the domain of g for which g(x) is in the domain of f.
 
-`[f o g](x) = f[g(x)]`
+## Example 1 — Add, Subtract, Multiply, and Divide Functions
 
----
+Find (f + g)(x), (f − g)(x), (f · g)(x), and (f/g)(x) for each pair of functions.
 
-## Example 3 — Evaluate a Composition from Formulas
+### Step 1: Identify f(x) and g(x)
 
-Local replacement example: the unavailable source example is replaced here with an original worked example that preserves the lesson numbering and introduces formula-based composition before ordered-pair composition.
+For problem 1: f(x) = 2x and g(x) = −4x + 5
 
-Let `f(x) = 2x - 3` and `g(x) = x^2 + 4`.
+### Step 2: Compute Each Operation
 
-Find `(f o g)(x)` and `(g o f)(x)`.
+(f + g)(x) = 2x + (−4x + 5) = −2x + 5
 
-For `(f o g)(x)`, substitute `g(x)` into `f`:
+(f − g)(x) = 2x − (−4x + 5) = 2x + 4x − 5 = 6x − 5
 
-`(f o g)(x) = f(g(x))`
+(f · g)(x) = 2x(−4x + 5) = −8x² + 10x
 
-`= 2(x^2 + 4) - 3`
+(f/g)(x) = 2x / (−4x + 5), where x ≠ 5/4
 
-`= 2x^2 + 8 - 3`
+### Step 3: Repeat for Other Pairs
 
-`= 2x^2 + 5`
+For problem 2: f(x) = x − 1 and g(x) = 5x − 2
 
-For `(g o f)(x)`, substitute `f(x)` into `g`:
+(f + g)(x) = (x − 1) + (5x − 2) = 6x − 3
 
-`(g o f)(x) = g(f(x))`
+(f − g)(x) = (x − 1) − (5x − 2) = x − 1 − 5x + 2 = −4x + 1
 
-`= (2x - 3)^2 + 4`
+(f · g)(x) = (x − 1)(5x − 2) = 5x² − 2x − 5x + 2 = 5x² − 7x + 2
 
-`= 4x^2 - 12x + 9 + 4`
+(f/g)(x) = (x − 1) / (5x − 2), where x ≠ 2/5
 
-`= 4x^2 - 12x + 13`
+## Example 2 — Composition of Functions with Ordered Pairs
 
-The two compositions are different, so the order of composition matters.
+For each pair of functions, find f ∘ g and g ∘ f, if they exist. State the domain and range for each.
 
----
+### Step 1: Understand Function Composition with Relations
 
-## Example 4 — Compose Functions by Using Ordered Pairs
+Given f = {(−8, −4), (0, 4), (2, 6), (−6, −2)} and g = {(4, −4), (−2, −1), (−4, 0), (6, −5)}
 
-Given:
+To find f ∘ g, look for pairs in g where the second coordinate matches inputs in f.
 
-* `f = {(1, 12), (10, 11), (0, 13), (9, 7)}`
-* `g = {(4, 1), (5, 0), (13, 9), (12, 10)}`
+### Step 2: Compute f ∘ g
 
-Find `[f o g](x)` and `[g o f](x)`. State the domain and range for each.
+g(4) = −4, then f(−4) is not defined in f.
+g(−2) = −1, then f(−1) is not defined in f.
+g(−4) = 0, then f(0) = 4.
+g(6) = −5, then f(−5) is not defined in f.
 
-### Part A: Find `[f o g](x)` and `[g o f](x)`
+f ∘ g = {(−4, 4)} — only one output pair exists.
 
-For `f o g`:
+### Step 3: Compute g ∘ f
 
-* `g(4) = 1`, so `f[g(4)] = f(1) = 12`
-* `g(5) = 0`, so `f[g(5)] = f(0) = 13`
-* `g(13) = 9`, so `f[g(13)] = f(9) = 7`
-* `g(12) = 10`, so `f[g(12)] = f(10) = 11`
+f(−8) = −4, then g(−4) = 0.
+f(0) = 4, then g(4) = −4.
+f(2) = 6, then g(6) = −5.
+f(−6) = −2, then g(−2) = −1.
 
-So:
+g ∘ f = {(−8, 0), (0, −4), (2, −5), (−6, −1)}
 
-`f o g = {(4, 12), (5, 13), (13, 7), (12, 11)}`
+## Example 3 — Real-World Function Composition
 
-For `g o f`:
+Write and graph combined functions to model real-world scenarios.
 
-* `f(1) = 12`, so `g[f(1)] = g(12) = 10`
-* `f(10) = 11`, but `11` is not in the domain of `g`
-* `f(0) = 13`, so `g[f(0)] = g(13)` is undefined
-* `f(9) = 7`, but `7` is not in the domain of `g`
+### Step 1: Define the Account Balance Function
 
-From the deck, the defined outputs are:
+Trevon opens a checking account with $1750 and deposits $925 each month. His fixed bills total $840 per month.
 
-`g o f = {(1, 10), (0, 9)}`
+Balance function: a(x) = 1750 + 925x
+Bills function: b(x) = 840x
 
-### Part B: Domain and range
+The account balance after paying bills: (a − b)(x) = 1750 + 925x − 840x = 1750 + 85x
 
-* `[f o g](x)`:
-  * domain: `{4, 5, 12, 13}`
-  * range: `{7, 11, 12, 13}`
-* `[g o f](x)`:
-  * domain: `{0, 1}`
-  * range: `{9, 10}`
+### Step 2: Graph the Combined Function
 
----
+Graph y = 1750 + 85x in the first quadrant. The y-intercept is 1750, representing the initial balance. The slope is 85, representing the net gain each month after paying bills.
 
-## Example 5 — Compose Functions
+### Step 3: Define the Total Cost Function
 
-Given:
+T-shirt cost: t(x) = 7.5x + 35
+Jersey cost: j(x) = 18x + 20
 
-* `f(x) = 2x - 5`
-* `g(x) = 3x`
+Total cost: (t + j)(x) = 7.5x + 35 + 18x + 20 = 25.5x + 55
 
-Find `[f o g](x)` and `[g o f](x)`. State the domain and range for each.
+## Example 4 — Composition with Algebraic Functions
 
-### Part A: Find the compositions
+Find [f ∘ g](x) and [g ∘ f](x), if they exist. State the domain and range for each.
 
-`[f o g](x) = f[g(x)] = f(3x) = 2(3x) - 5 = 6x - 5`
+### Step 1: Compute f ∘ g for f(x) = 2x and g(x) = x + 5
 
-`[g o f](x) = g[f(x)] = g(2x - 5) = 3(2x - 5) = 6x - 15`
+[f ∘ g](x) = f(g(x)) = f(x + 5) = 2(x + 5) = 2x + 10
 
-### Part B: Domain and range
+Domain: all real numbers
+Range: all real numbers
 
-Because both are linear functions with nonzero slopes:
+### Step 2: Compute g ∘ f
 
-* domain: all real numbers
-* range: all real numbers
+[g ∘ f](x) = g(f(x)) = g(2x) = 2x + 5
 
----
+Domain: all real numbers
+Range: all real numbers
 
-## Apply Example 6 — Use Composition of Functions
+### Step 3: Compare Results
 
-A movie theater charges `$8.50` for each of the `x` tickets sold. The studios take `75%` of the ticket revenue.
+Note that [f ∘ g](x) ≠ [g ∘ f](x) in general. Function composition is not commutative.
 
-Let:
+## Example 5 — Real-World Composition with Discounts and Tax
 
-* `t(x) = 8.50x` represent ticket revenue
-* `k(x) = 0.25x` represent the amount the theater keeps
+### Step 1: Write Functions for Discount and Tax
 
-Because the theater first earns the total revenue and then keeps `25%` of it, the correct composition is:
+Original price: x
+Discounted price: p(x) = 0.85x (15% off)
+After tax: t(p) = 1.065p (6.5% sales tax)
 
-`[k o t](x) = k(8.50x) = 0.25(8.50x) = 2.125x`
+### Step 2: Write the Composition
 
-So the theater keeps:
+(t ∘ p)(x) = t(0.85x) = 1.065(0.85x) = 0.90525x
 
-`2.125x`
+So the final price is about 90.525% of the original price.
 
-### Watch Out
+### Step 3: Evaluate for a Specific Price
 
-For functions `f(x)` and `g(x)`, `[f o g](x)` is not always equal to `[g o f](x)`.
+For a mower originally costing $1350:
+(t ∘ p)(1350) = 0.90525(1350) = $1222.09
 
----
+## Mixed Exercises
 
-## Objective Alignment
+The mixed exercises section provides practice with all skills from the lesson. Problems include:
 
-- `Find sums, differences, products, and quotients of functions`: Primary worked examples: Examples 1-2.
-- `Find compositions of functions`: Primary worked examples: Examples 3-5 and Apply Example 6.
+* Determining whether f ∘ g equals g ∘ f for given functions and justifying with counterexamples.
+* Evaluating compositions like f[g(1)], g[h(0)], and h[f(5)] for given functions f(x) = 3x, g(x) = x + 4, and h(x) = x² − 1.
+* Writing a function for the combined area of an equilateral triangle and square sharing an edge.
+* Modeling the volume of a weather balloon as a function of time, given V(r) = (4/3)πr³ and r(t) = (1/2)t + 2.
+* Interpreting combined college enrollment data for men and women modeled by linear functions.
+* Using tables to find values of (f + g), (h − g), (f · h), and various quotients.
+* Solving for f(3) and g(3) given (f + g)(3) = 5 and (f · g)(3) = 6.
+* Writing two functions f(x) and g(x) such that (f ∘ g)(4) = 0.
+* Analyzing errors in finding (f ∘ g)(x) for f(x) = x² + 2x − 8 and g(x) = x² + 8.
+* Determining domains of products like g(x) · g(x) and f(x) · f(x) for f(x) = √(x³) and g(x) = √(x⁶).
+* Analyzing whether the statement about domain restrictions in composition is sometimes, always, or never true.
+
+## Review Notes
+
+* ![](media/image1.png) — Graph for Trevon checking account problem (problem 7)
+* ![](media/image2.png) — Graph for baseball coach T-shirt and jersey cost problem (problem 8)
+* ![](media/image4.png) — Table showing values of f(x), g(x), and h(x) (problem 39)
+* ![](media/image5.png) — Student work showing Chris and Tobias's compositions (problem 42)
+* Images referenced in the worksheet could not be fully described without visual reference. Teachers should consult the original worksheet for exact diagrams and values.
+* The worksheet contains 44 practice problems across five examples and mixed exercises.

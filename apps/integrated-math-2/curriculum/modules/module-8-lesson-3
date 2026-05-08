@@ -1,0 +1,103 @@
+# Lesson 8-3 — Extrema and End Behavior
+
+Source: (Module 8, Lesson 8-3, Int2_0803_practice.docx)
+
+## Today's Goals
+
+* Identify and estimate relative maxima and relative minima (extrema) from a graph.
+* Describe the end behavior of a function as [x -> infinity] and [x -> -infinity].
+* Connect extrema and end behavior to real-world contexts.
+
+## Vocabulary
+
+* **Relative Maximum** — A point where a function changes from increasing to decreasing; a "peak" in the graph.
+* **Relative Minimum** — A point where a function changes from decreasing to increasing; a "valley" in the graph.
+* **Extrema** — Collective term for relative maxima and minima.
+* **End Behavior** — The behavior of a function as [x] approaches very large positive values [(infinity)] or very large negative values [(-infinity)].
+
+## Explore: Reading Graphs at the Extremes
+
+Students consider what the highest and lowest points on a graph tell us and how the behavior at the edges of a graph relates to the function's nature.
+
+Inquiry Question:
+How does the end behavior of a polynomial relate to the degree and leading coefficient of the polynomial?
+
+## Learn: Extrema and End Behavior
+
+### Key Concept: Identifying Extrema
+
+Relative maxima and minima are found where the function changes direction. Estimate x- and y-values to the nearest tenth when necessary.
+
+### Key Concept: End Behavior Patterns
+
+* Even-degree polynomials: both ends go the same direction.
+* Odd-degree polynomials: ends go in opposite directions.
+* Positive leading coefficient (even degree): [x -> +/- infinity, f(x) -> +infinity]
+* Negative leading coefficient (even degree): [x -> +/- infinity, f(x) -> -infinity]
+* Positive leading coefficient (odd degree): as [x -> -infinity, f(x) -> -infinity] and as [x -> +infinity, f(x) -> +infinity]
+* Negative leading coefficient (odd degree): as [x -> -infinity, f(x) -> +infinity] and as [x -> +infinity, f(x) -> -infinity]
+
+## Examples 1 and 2 — Identify and Estimate Extrema
+
+Identify and estimate the x- and y-values of the extrema. Round to the nearest tenth if necessary.
+
+### Step 1: Read the Graph
+
+Find the peaks and valleys. Record the coordinates.
+
+## Examples 3–5 — Describe End Behavior
+
+Describe the end behavior of each function.
+
+### Step 1: Analyze the Graph's Ends
+
+Look at both the left and right ends of the graph and describe where [f(x)] goes as [x] goes to [+-infinity].
+
+## Example 6 — Interpret End Behavior in Context
+
+The roller coaster problem describes the height of a coaster as a function of distance from the start.
+
+### Step 1: Contextualize the Ends
+
+As the coaster moves away from the start, its height eventually decreases — interpret what happens to height as distance increases.
+
+## Mixed Exercises
+
+Problems 11–35 provide additional practice:
+
+* Model problem: fish thrown to a dolphin from a 64-foot platform with [h(t) = -16t^2 + 48t + 64].
+* Estimate extrema and describe end behavior for multiple graphs.
+* Bubbles: volume formula [V = 4*pi*r^2] — describe end behavior.
+* Science: water density at various temperatures — interpret end behavior as temperature increases.
+* Use a graphing calculator to estimate x-coordinates of extrema for polynomial functions.
+* CONSTRUCT ARGUMENTS: Sheena's claim about relative maxima at B and G and relative minimum at A.
+* Chemistry: dynamic pressure [q(v) = (1/2)pv^2] — what happens as velocity increases?
+* Engineering: watermelon launched from a catapult — appropriate domain, maximum height, when it occurs.
+* Drilling: drill bit volume [V = (sqrt(3)/9)*pi*r^3] — describe end behavior.
+* Table of values — describe end behavior.
+* Reaction rate: [R(x) = (0.5x)/(x + 10)] — interpret end behavior in context.
+* Sketch a graph with 2 relative maxima, 2 relative minima, and specific end behavior.
+* FIND THE ERROR: Joshua's incorrect end behavior description.
+
+## Review Notes
+
+* ![](media/image1.png)![](media/image2.png) — Graphs for problems 1–2 (extrema)
+* ![](media/image3.png)![](media/image4.png) — Graphs for problems 3–4 (extrema)
+* ![](media/image5.png) — LANDSCAPES graph (problem 5)
+* ![](media/image6.png)![](media/image7.png) — Graphs for problems 6–7 (end behavior)
+* ![](media/image8.png)![](media/image9.png) — Graphs for problems 8–9 (end behavior)
+* ![](media/image10.png) — ROLLER COASTER graph (problem 10)
+* ![](media/image11.png) — MODEL problem graph (problem 11)
+* ![](media/image12.png)![](media/image13.png) — Graphs for problems 12–13 (extrema and end behavior)
+* ![](media/image14.png)![](media/image15.png) — Graphs for problems 14–15 (extrema and end behavior)
+* ![](media/image16.png)![](media/image17.png) — Graphs for problems 16–17 (extrema and end behavior)
+* ![](media/image18.png) — BUBBLES graph (problem 18)
+* ![](media/image19.png) — SCIENCE water density table (problem 19)
+* ![](media/image20.png)![](media/image21.png) — Graphs for problems 20–21 (extrema and end behavior)
+* ![](media/image22.png) — CONSTRUCT ARGUMENTS graph (problem 26)
+* ![](media/image23.png) — CHEMISTRY graph (problem 27)
+* ![](media/image24.png) — Graph for problem 28
+* ![](media/image25.png) — ENGINEERING catapult graph (problem 28)
+* ![](media/image26.png) — Table of values (problem 30)
+* ![](media/image27.png) — Graph for problem 33 (catalyst reaction rate)
+* ![](media/image28.png) — Graph for problem 34 (sketch with 2 maxima and 2 minima)

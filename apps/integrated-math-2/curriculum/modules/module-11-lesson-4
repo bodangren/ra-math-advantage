@@ -1,0 +1,156 @@
+# Lesson 11-4 — Special Products
+
+Source: (Module 11, Lesson 11-4, Int2_1104_practice.docx)
+
+## Today's Goals
+
+* Identify and apply special product patterns: sum and difference, square of a sum, square of a difference.
+* Recognize when a product follows a special pattern and use the pattern to multiply efficiently.
+* Apply special products to solve real-world problems involving geometry, probability, and business.
+* Extend patterns to cubes of binomials and products of multiple binomials.
+
+## Vocabulary
+
+* **Sum and Difference Pattern** — (a + b)(a - b) = [a^2 - b^2]
+* **Square of a Sum** — (a + b)^2 = [a^2 + 2ab + b^2]
+* **Square of a Difference** — (a - b)^2 = [a^2 - 2ab + b^2]
+* **Perfect Square Trinomial** — A trinomial that results from squaring a binomial
+* **Conjugate Pairs** — Two binomials that differ only in the sign between terms: (a + b) and (a - b)
+
+## Explore: Patterns in Squaring Binomials
+
+Students investigate what happens when they multiply (a + b)(a + b) compared to adding a and b first, then squaring. They discover that (a + b)^2 ≠ a^2 + b^2 in general — there is a middle term.
+
+Inquiry Question:
+Why is (a + b)^2 not equal to [a^2 + b^2]? What term appears between them and why?
+
+## Learn: Special Products
+
+### Key Concept: Square of a Sum
+
+(a + b)^2 = (a + b)(a + b) = [a^2 + 2ab + b^2]
+
+[(h + 7)^2] = [h^2 + 14h + 49]
+[(x + 6)^2] = [x^2 + 12x + 36]
+
+### Key Concept: Square of a Difference
+
+(a - b)^2 = (a - b)(a - b) = [a^2 - 2ab + b^2]
+
+[(8 - m)^2] = [64 - 16m + m^2]
+[(9 - 2y)^2] = [81 - 36y + 4y^2]
+[(2b + 3)^2] = [4b^2 + 12b + 9]
+
+### Key Concept: Sum and Difference
+
+(a + b)(a - b) = [a^2 - b^2]
+
+[(a + 10)(a - 10)] = [a^2 - 100]
+[(2q + 5r)(2q - 5r)] = [4q^2 - 25r^2]
+
+## Example 1 — Apply Special Product Patterns
+
+Find each product using the appropriate special pattern.
+
+### Step 1: Identify the Pattern
+
+[(8h - 4n)^2] — Square of a difference: a = 8h, b = 4n
+= [(8h)^2 - 2(8h)(4n) + (4n)^2]
+= [64h^2 - 64hn + 16n^2]
+
+[(4m - 5n)^2] — Square of a difference: a = 4m, b = 5n
+= [(4m)^2 - 2(4m)(5n) + (5n)^2]
+= [16m^2 - 40mn + 25n^2]
+
+## Example 2 — Real-World Applications
+
+### Step 1: Roundabout Area Problem
+
+A city roundabout has radius r for the traffic circle and a 18-foot wide road surrounding it. Write a polynomial for the total area A of the traffic circle.
+
+Total radius = [r + 18]
+[A = π(r + 18)^2 = π(r^2 + 36r + 324) = πr^2 + 36πr + 324π] ![](media/image1.png)
+
+### Step 2: Number Cube Problem
+
+Cube A has edges 3 mm less than cube B. If cube B has edge length x mm, write a model for the surface area of cube A.
+
+Cube B edge: x mm
+Cube A edge: [x - 3] mm
+Surface area of cube A: [6(x - 3)^2 = 6(x^2 - 6x + 9) = 6x^2 - 36x + 54] square mm ![](media/image2.png)
+
+### Step 3: Probability with Square of a Sum
+
+A spinner has two equal sections, blue (B) and red (R). Use the square of a sum to determine all possible combinations when spinning the spinner twice.
+
+[(B + R)^2 = B^2 + 2BR + R^2]
+Possible combinations: BB, BR, RB, RR
+
+### Step 4: Business Profit Model
+
+A company's profit from 2015 to present is modeled by [y = (2n + 11)^2], where y is profit n years since 2015. Which special product does this demonstrate? Simplify it.
+
+This is the square of a sum: [(2n)^2 + 2(2n)(11) + 11^2 = 4n^2 + 44n + 121]
+
+## Example 3 — More Sum and Difference Products
+
+[(u + 3)(u - 3)] = [u^2 - 9]
+[(b + 7)(b - 7)] = [b^2 - 49]
+[(2 + x)(2 - x)] = [4 - x^2]
+[(4 - x)(4 + x)] = [16 - x^2]
+[(2q + 5r)(2q - 5r)] = [4q^2 - 25r^2]
+[(3a^2 + 7b)(3a^2 - 7b)] = [9a^4 - 49b^2]
+
+## Example 4 — Cubes of Binomials
+
+### Step 1: Pattern for Cube of a Sum
+
+[(a + b)^3 = (a + b)(a + b)(a + b)]
+
+First find (a + b)^2: [a^2 + 2ab + b^2]
+
+Then multiply by (a + b): [(a^2 + 2ab + b^2)(a + b)]
+= [a^3 + a^2b + 2a^2b + 2ab^2 + ab^2 + b^3]
+= [a^3 + 3a^2b + 3ab^2 + b^3]
+
+### Step 2: Pattern for Cube of a Difference
+
+[(a - b)^3 = a^3 - 3a^2b + 3ab^2 - b^3]
+
+### Step 3: Apply to Find (x + 2)^3
+
+Let a = x and b = 2:
+[(x + 2)^3 = x^3 + 3x^2(2) + 3x(2^2) + 2^3 = x^3 + 6x^2 + 12x + 8]
+
+## Mixed Exercises
+
+Practice includes:
+
+* Squares of binomials: [(n + 3)^2], [(y - 7)^2], [(3g + 2)^2]
+* Sum and difference products: [(b + 1)(b - 1)], [(3q + 1)(3q - 1)]
+* Products with coefficients: [(6 + u)^2], [(2k - 2)^2]
+* Multi-variable squares: [(r + t)^2], [(c - d)^2], [(w + 3h)^2], [(x - 4y)^2]
+* Product of conjugates: [(3y - 3g)(3y + 3g)], [(3a^4 - b)(3a^4 + b)]
+* Squaring expressions with exponents: [(n^2 + r^2)^2], [(2k + m^2)^2], [(3t^2 - n)^2]
+* Products with fractions: [(3/4k + 8)^2], [(2/5y - 4)^2]
+* Products of multiple binomials: [(2m + 3)(2m - 3)(m + 4)], [(r + 2)(r - 5)(r - 2)(r + 5)]
+* Cubing binomials: [(c + d)(c + d)(c + d)], [(2a - b)^3]
+* Raising products to powers: [(f + g)(f - g)(f + g)], [(k - m)^2(k + m)]
+* Geometry problem: A rectangle's length is the sum of two whole numbers, width is the difference of the same two numbers. Write a verbal expression for the area.
+* Product of (10 - 4t) and (10 + 4t) — identify the special product type.
+* Storage problem: A cylindrical tank and PVC pipe in a corner. Given tank radius r and pipe radius s, use the Pythagorean Theorem to write a relationship, then write a polynomial to solve for s when r = 20 inches. ![](media/image4.png)
+* Structure investigation: Tanisha investigates square growth patterns. How much more area does a square with side s + 1 have than one with side s? With side s + 2 compared to s + 1? With side s + 3 compared to s + 2? ![](media/image5.png)
+* Which one doesn't belong: Which expression does not belong with the others? ![](media/image6.png)
+* Pattern investigation: Find (a + b)^3 by multiplying (a + b)(a + b)(a + b), then use it to find (x + 2)^3, and describe a geometric model.
+* Find c so that [25x^2 - 90x + c] is a perfect square trinomial.
+
+## Review Notes
+
+* Images referenced: ![](media/image1.png) — Roundabout traffic circle diagram. ![](media/image2.png) — Number cubes comparison. ![](media/image3.png) — Probability spinner. ![](media/image4.png) — Cylindrical tank and PVC pipe side view. ![](media/image5.png) — Square growth pattern diagram. ![](media/image6.png) — Four expressions for "Which One Doesn't Belong?". Teachers should consult the original worksheet for exact diagrams.
+* The worksheet contains 80 practice problems.
+* Key patterns to remember:
+  * (a + b)(a - b) = [a^2 - b^2]
+  * (a + b)^2 = [a^2 + 2ab + b^2]
+  * (a - b)^2 = [a^2 - 2ab + b^2]
+  * (a + b)^3 = [a^3 + 3a^2b + 3ab^2 + b^3]
+  * (a - b)^3 = [a^3 - 3a^2b + 3ab^2 - b^3]

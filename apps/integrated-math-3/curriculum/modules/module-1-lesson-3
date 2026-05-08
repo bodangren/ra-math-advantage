@@ -1,155 +1,160 @@
-# Lesson 1-3 - Complex Numbers
+# Lesson 1-3 — Complex Numbers
+
+Source: (Module 1, Lesson 1-3, Int3_0103_practice.docx)
 
 ## Today's Goals
 
-* Perform operations with pure imaginary numbers
-* Perform operations with complex numbers
-
----
+* Simplify square roots of negative numbers using the imaginary unit [i], where [i^2 = -1].
+* Perform operations with complex numbers including addition, subtraction, multiplication, and division.
+* Solve quadratic equations that have complex number solutions.
+* Find values of x and y that make equations involving complex numbers true.
+* Apply complex numbers to real-world problems involving electrical circuits.
 
 ## Vocabulary
 
-* imaginary unit `i`
-* pure imaginary number
-* complex number
-* complex conjugates
-* rationalizing the denominator
+* **Imaginary Unit** — [i], defined by [i^2 = -1], used to represent the square root of a negative number.
+* **Complex Number** — A number of the form [a + bi], where [a] and [b] are real numbers and [i] is the imaginary unit.
+* **Real Part** — The [a] in [a + bi].
+* **Imaginary Part** — The [b] in [a + bi] (not including [i]).
+* **Pure Imaginary Number** — A complex number of the form [bi] where [a = 0].
+* **Conjugate** — Of [a + bi], the conjugate is [a - bi]; of [a - bi], the conjugate is [a + bi].
 
----
+## Explore: What Happens When You Take the Square Root of a Negative Number?
 
-## Learn: Pure Imaginary Numbers
+When solving quadratic equations, sometimes the discriminant is negative and there are no real solutions. Students explore how extending the number system to include imaginary numbers allows us to find solutions in these cases.
 
-The imaginary unit is the principal square root of `-1`.
-
-`i = sqrt(-1)` and `i^2 = -1`
-
-Numbers of the form `bi`, where `b` is real, are called pure imaginary numbers.
-
----
-
-## Example 1 - Square Roots of Negative Numbers
-
-Simplify `sqrt(-294)`.
-
-`sqrt(-294) = sqrt(-1 * 7^2 * 6)`
-
-`= i * 7 * sqrt(6)`
-
-`= 7i sqrt(6)`
-
----
-
-## Example 2 - Products of Pure Imaginary Numbers
-
-Simplify `sqrt(-10) * sqrt(-15)`.
-
-`sqrt(-10) * sqrt(-15) = i sqrt(10) * i sqrt(15)`
-
-`= i^2 sqrt(150)`
-
-`= -sqrt(150)`
-
-`= -5 sqrt(6)`
-
----
-
-## Example 3 - Equation with Pure Imaginary Solutions
-
-Solve `x^2 + 81 = 0`.
-
-`x^2 = -81`
-
-`x = +-sqrt(-81)`
-
-`x = +-9i`
-
----
+Inquiry Question:
+How can we define [√(-1)] in a way that allows us to solve equations like [x^2 + 1 = 0]?
 
 ## Learn: Complex Numbers
 
-A complex number is any number that can be written in the form:
+### Key Concept: Simplifying Square Roots of Negative Numbers
 
-`a + bi`
+For any positive number [a]: [√(-a) = i√a].
 
-where `a` and `b` are real numbers and `i` is the imaginary unit.
+Examples:
+* [√(-48) = i√48 = i·4√3 = 4i√3]
+* [√(-63) = i√63 = i·3√7 = 3i√7]
+* [√(-72) = i√72 = i·6√2 = 6i√2]
 
-* `a` is the real part
-* `b` is the imaginary part
+### Key Concept: Multiplying Imaginary Numbers
 
-Two complex numbers are equal if and only if their real parts are equal and their imaginary parts are equal.
+When multiplying square roots of negative numbers, first simplify each to the form [i√a], then multiply.
 
-Two complex numbers of the form `a + bi` and `a - bi` are called complex conjugates.
+Example: [√(-24) · √(-84) = i√24 · i√84 = i^2 · √(24·84) = -√2016 = -24√14]
 
----
+### Key Concept: Powers of [i]
 
-## Example 4 - Equate Complex Numbers
+The powers of [i] cycle every four:
+* [i^1 = i]
+* [i^2 = -1]
+* [i^3 = -i]
+* [i^4 = 1]
+* [i^11 = i^3 = -i] (since [11 mod 4 = 3])
 
-Find the values of `x` and `y` that make `5x - 7 + (y + 4)i = 13 + 11i` true.
+## Example 1 — Simplify Expressions with Imaginary Numbers
 
-Match real parts:
+Simplify each expression.
 
-`5x - 7 = 13`
+### Step 1: Simplify Square Roots
 
-`x = 4`
+[√(-48) = i√48 = i·4√3 = 4i√3]
+[√(-63) = i√63 = i·3√7 = 3i√7]
+[√(-72) = i√72 = i·6√2 = 6i√2]
 
-Match imaginary parts:
+### Step 2: Multiply Imaginary Numbers
 
-`y + 4 = 11`
+When multiplying [√(-a) · √(-b)]: simplify each to [i√a · i√b = i^2·√(ab) = -√(ab)].
 
-`y = 7`
+Example: [√(-6) · √(-3) = i√6 · i√3 = i^2·√18 = -3√2]
 
----
+### Step 3: Simplify Products Involving [i]
 
-## Example 5 - Add or Subtract Complex Numbers
+For [(3i)(-2i)(5i)]: multiply the coefficients and use [i^2 = -1].
 
-Simplify `(8 + 3i) - (4 - 10i)`.
+[(3)(-2)(5) · i^3 = -30 · (-i) = 30i]
 
-`(8 + 3i) - (4 - 10i) = (8 - 4) + [3 - (-10)]i`
+For [i^11]: since powers of i cycle every four, [i^11 = i^(4·2 + 3) = i^3 = -i].
 
-`= 4 + 13i`
+For [4i(-6i)^2]: first compute [(-6i)^2 = 36i^2 = -36], then [4i · (-36) = -144i].
 
----
+## Example 3 — Solve Quadratic Equations with Complex Solutions
 
-## Example 6 - Multiply Complex Numbers
+Solve each equation.
 
-Electricity: The voltage `V` of an AC circuit can be found using `V = CI`. If `C = 3 + 2j` amps and `I = 7 - 5j` ohms, determine the voltage.
+### Step 1: Isolate the Quadratic Term
 
-`V = (3 + 2j)(7 - 5j)`
+For [5x^2 + 45 = 0]: divide by 5 to get [x^2 + 9 = 0].
 
-`= 21 - 15j + 14j - 10j^2`
+### Step 2: Take the Square Root of Both Sides
 
-`= 21 - j + 10`
+[x^2 = -9]
+[x = ±√(-9) = ±3i]
 
-`= 31 - j`
+Similarly solve [4x^2 + 24 = 0], [-9x^2 = 9], [7x^2 + 84 = 0], [5x^2 + 125 = 0], and [8x^2 + 96 = 0].
 
-The voltage is `31 - j` volts.
+## Example 4 — Find Values of x and y in Complex Equations
 
----
+Find the values of x and y that make each equation true.
 
-## Example 7 - Divide Complex Numbers
+### Step 1: Equate Real and Imaginary Parts
 
-Simplify `5i / (3 + 2i)`.
+For [9 + 12i = 3x + 4yi]: equate real parts [9 = 3x] so [x = 3], and imaginary parts [12 = 4y] so [y = 3].
 
-Rationalize the denominator using the conjugate `3 - 2i`:
+### Step 2: Solve the System
 
-`5i / (3 + 2i) * (3 - 2i) / (3 - 2i)`
+For [x + 1 + 2yi = 3 - 6i]: real parts give [x + 1 = 3] so [x = 2]; imaginary parts give [2y = -6] so [y = -3].
 
-`= (15i - 10i^2) / (9 - 4i^2)`
+Similar process for [2x + 7 + (3 - y)i = -4 + 6i] and other equations.
 
-`= (15i + 10) / 13`
+## Examples 5 and 6 — Add, Subtract, and Multiply Complex Numbers
 
-`= 10/13 + (15/13)i`
+### Step 1: Add and Subtract
 
----
+To add complex numbers, combine like terms:
+[(6 + i) + (4 - 5i) = 10 - 4i]
+[(8 + 3i) - (6 - 2i) = 2 + 5i]
 
-## Talk About It
+### Step 2: Multiply
 
-* How can a product of two imaginary factors be real?
-* Why does rationalizing the denominator use complex conjugates?
+Use the distributive property (FOIL) and remember that [i^2 = -1]:
+[(5 - i)(3 - 2i) = 15 - 10i - 3i + 2i^2 = 15 - 13i - 2 = 13 - 13i]
 
----
+### Step 3: Apply to Electricity Problems
 
-## Objective Alignment
+Using [V = CI], find the voltage when [C = 3 - j] amps and [I = 3 + 2j] ohms. Note: in electrical engineering, [j] is used instead of [i] for the imaginary unit.
 
-- `Perform operations with pure imaginary numbers`: Primary worked examples: Examples 1-3.
-- `Perform operations with complex numbers`: Primary worked examples: Examples 4-7.
+## Example 7 — Divide Complex Numbers
+
+To divide complex numbers, multiply numerator and denominator by the conjugate of the denominator.
+
+### Step 1: Multiply by the Conjugate
+
+For [5 / (3 + i)]: multiply by [(3 - i) / (3 - i)].
+
+[[5(3 - i)] / [(3 + i)(3 - i)]] = [[15 - 5i] / [9 - i^2]] = [[15 - 5i] / 10] = [3/2 - (1/2)i]
+
+### Step 2: Simplify
+
+For [7 - 13i / 2i]: multiply by the conjugate or simplify directly using [1/i = -i].
+
+## Mixed Exercises
+
+The mixed exercises section provides practice with all skills from the lesson. Problems include:
+
+* Simplifying complex number products: [(1 + i)(2 + 3i)(4 - 3i)] and complex quotients with square roots in the numerator or denominator. (Problems 38–40)
+* Adding polynomial expressions with complex coefficients. (Problem 41)
+* Subtracting polynomial expressions with complex coefficients. (Problem 42)
+* Electricity problems using [V = CI] to find voltage and current in circuits with complex impedance. (Problems 43–44)
+* A circuit problem: finding total impedance by adding two complex impedances in a series circuit. (Problem 45)
+* An electrical engineering problem: finding impedance and current in a standard European circuit (220V) given various current values. (Problem 46)
+* A "Find the Error" problem analyzing Jose and Zoe's simplification of [(2i)(3i)(4i)]. (Problem 47)
+* Simplifying [(1 + 2i)^3]. (Problem 48)
+* Analyzing whether every complex number has both a real and imaginary part (sometimes, always, or never true). (Problem 49)
+* Creating two complex numbers with a product of 20. (Problem 50)
+* Writing an explanation of how complex numbers are related to quadratic equations. (Problem 51)
+
+## Review Notes
+
+* Images referenced in the worksheet (Jose and Zoe's work in Problem 47 showing their calculations) could not be fully described without visual reference. Teachers should consult the original worksheet for the exact comparison of their work.
+* The worksheet contains 51 practice problems across seven examples and mixed exercises.

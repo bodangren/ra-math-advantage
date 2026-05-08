@@ -1,0 +1,154 @@
+# Lesson 4-1 — Graphing Linear Functions
+
+Source: (Module 4, Lesson 4-1, Int1_0401_practice.docx)
+
+## Today's Goals
+
+* Graph linear equations by making a table of values.
+* Graph linear equations by finding and plotting the [ x ]- and [ y ]-intercepts.
+* Interpret intercepts in the context of real-world situations modeled by linear functions.
+* Rewrite linear equations in equivalent forms to identify intercepts and slope.
+
+## Vocabulary
+
+* **linear function** — A function whose graph is a straight line and can be written in the form [ y = mx + b ] or [ Ax + By = C ].
+* **x-intercept** — The point where the graph crosses the x-axis; occurs where [ y = 0 ].
+* **y-intercept** — The point where the graph crosses the y-axis; occurs where [ x = 0 ].
+* **slope** — The ratio of vertical change to horizontal change between any two points on a line.
+* **table of values** — A set of ordered pairs used to plot points and sketch the graph of an equation.
+* **standard form** — A linear equation written as [ Ax + By = C ], where [ A ], [ B ], and [ C ] are constants.
+
+## Learn: Graphing by Making a Table
+
+One way to graph a linear equation is to create a table of values. Choose several values for [ x ], substitute them into the equation to find the corresponding [ y ] values, plot the resulting ordered pairs, and draw a straight line through the points.
+
+### Key Concept: Using a Table to Graph
+
+* Choose at least three values for [ x ], including positive, negative, and zero when possible.
+* Substitute each [ x ] value into the equation and solve for [ y ].
+* Write the results as ordered pairs [ (x, y) ].
+* Plot the points on a coordinate plane and draw the line.
+
+## Learn: Graphing Using Intercepts
+
+The intercepts of a line are often the easiest points to find. Because an intercept lies on an axis, one of its coordinates is always zero. Plotting the two intercepts determines the line.
+
+### Key Concept: Finding Intercepts
+
+* To find the **x-intercept**, substitute [ y = 0 ] into the equation and solve for [ x ]. The intercept is at [ (x, 0) ].
+* To find the **y-intercept**, substitute [ x = 0 ] into the equation and solve for [ y ]. The intercept is at [ (0, y) ].
+* Plot both intercepts and draw the line through them.
+
+## Example 1 — Graph by Making a Table
+
+Graph linear equations by choosing input values, computing outputs, and plotting the resulting points. Problems include vertical lines, horizontal lines, and lines with various slopes and [ y ]-intercepts.
+
+### Step 1: Choose Input Values
+
+Select convenient values for [ x ], such as [ -2 ], [ 0 ], and [ 2 ]. For equations solved for [ y ], any real number will work. For equations like [ x = -2 ], the [ x ] value is fixed.
+
+### Step 2: Compute Output Values
+
+Substitute each chosen [ x ] into the equation and solve for [ y ]. For example, with [ y = \frac{1}{2}x + 1 ]:
+
+[
+\begin{align*}
+x &= -2 \quad\Rightarrow\quad y = \frac{1}{2}(-2) + 1 = 0 \\
+x &= 0 \quad\Rightarrow\quad y = 1 \\
+x &= 2 \quad\Rightarrow\quad y = 2
+\end{align*}
+]
+
+### Step 3: Plot and Draw
+
+Plot the ordered pairs on a coordinate plane and draw a straight line through them. For a vertical line such as [ x = -2 ], all points have [ x ]-coordinate [ -2 ]. For a horizontal line such as [ y = -4 ], all points have [ y ]-coordinate [ -4 ].
+
+> **Note:** Problems in this group vary in equation form (e.g., [ y = -8x ], [ 3x = y ], [ y - 8 = -x ], [ x = 10 - y ], [ y + 2 = \frac{1}{4}x ]). The process is the same: rewrite if needed, build a table, plot, and connect.
+
+## Example 2 — Graph Using x- and y-Intercepts
+
+Graph linear equations by finding the intercepts. This method is especially efficient when the equation is in standard form or when the intercepts are integers.
+
+### Step 1: Find the x-Intercept
+
+Substitute [ y = 0 ] and solve for [ x ]. For [ x + y = 4 ]:
+
+[
+x + 0 = 4 \quad\Rightarrow\quad x = 4
+]
+
+The x-intercept is [ (4, 0) ].
+
+### Step 2: Find the y-Intercept
+
+Substitute [ x = 0 ] and solve for [ y ]. For the same equation:
+
+[
+0 + y = 4 \quad\Rightarrow\quad y = 4
+]
+
+The y-intercept is [ (0, 4) ].
+
+### Step 3: Plot and Draw
+
+Plot the two intercepts and draw the line through them. Repeat for equations such as [ y = 4 + 2x ], [ 5 - y = -3x ], [ x = 5y + 5 ], [ x - y = -3 ], and [ y = 8 - 6x ].
+
+> **Note:** The general process is identical for all problems in this group. Variations are in the coefficients and whether the equation needs to be rearranged before substituting.
+
+## Example 3 — Interpret Intercepts in Context
+
+Apply intercept-finding skills to real-world situations. Write or use a given linear model, find its intercepts, and explain what each intercept means in the problem's context.
+
+### Step 1: Identify the Model
+
+Read the problem to find or write the linear equation. For example, Amanda's lunch account balance is modeled by:
+
+[
+y = 210 - 35x
+]
+
+where [ y ] is the dollar balance and [ x ] is the number of weeks.
+
+### Step 2: Find and Interpret the y-Intercept
+
+Set [ x = 0 ] to find the starting value:
+
+[
+y = 210 - 35(0) = 210
+]
+
+The y-intercept [ (0, 210) ] means Amanda starts with [ \$210 ] in her account.
+
+### Step 3: Find and Interpret the x-Intercept
+
+Set [ y = 0 ] to find when the balance reaches zero:
+
+[
+0 = 210 - 35x \quad\Rightarrow\quad x = 6
+]
+
+The x-intercept [ (6, 0) ] means Amanda will run out of money after [ 6 ] weeks.
+
+### Step 4: Graph the Equation
+
+Plot the two intercepts and draw the line segment connecting them. Label the axes with appropriate units (weeks and dollars).
+
+> **Note:** The second problem in this group involves a shipping scenario modeled by [ y = 8063 - 60x ]. The process is the same: find intercepts, interpret them as initial containers and hours to unload, and graph.
+
+## Mixed Exercises
+
+The mixed exercises integrate the lesson's graphing methods and reinforce intercept concepts through varied problem types.
+
+* **Graphing practice:** Graph equations given in slope-intercept form, standard form, or other equivalent forms (e.g., [ 1.25x + 7.5 = y ], [ 2x - 3 = 4y + 6 ], [ 3y - 7 = 4x + 1 ]).
+* **Finding intercepts algebraically:** Given an equation in standard form or slope-intercept form, compute the x-intercept and y-intercept without graphing (e.g., [ 5x + 3y = 15 ], [ 2x - 7y = 14 ], [ 2x - 3y = 5 ], [ 6x + 2y = 8 ], [ y = \frac{1}{4}x - 3 ], [ y = \frac{2}{3}x + 1 ]).
+* **Modeling and interpreting:** Write a linear equation from a verbal description, graph it, and interpret the intercepts. Problems include predicting height from bone length ([ h = 81.2 + 3.34r ]), towing costs ([ y = 40 + 1.70x ]), and budget constraints for party snacks.
+* **Reasoning and error analysis:** Evaluate whether intercepts are reasonable in a given context (e.g., a football team's wins and losses). Identify common misconceptions, such as the claim that every line has both intercepts.
+* **Writing and creating:** Invent a real-world linear situation, define variables, write an equation, find intercepts, and graph by making a table. State a reasonable domain and explain axis labels.
+* **Comparing and analyzing:** Compare the graph of a linear function with a discrete domain versus a continuous domain. Determine which equation among a set does not belong and justify the choice. Analyze how to graph a given equation using intercepts.
+
+## Review Notes
+
+* Images referenced in the source worksheet (`media/image1.png` through `media/image19.png`) could not be described. These images contain blank coordinate grids for students to graph equations by hand. Verify that the grid scales and axis labels match the original worksheet.
+* Problem 32 ("Which One Doesn't Belong?") references an image (`media/image19.png`) containing a set of equations. The image could not be described; teachers should verify the equation set shown.
+* Problem 31 asks students to evaluate Geroy's claim that every line has both an x- and y-intercept. Remind students to consider vertical and horizontal lines.
+* Problems 35–37 ask students to create linear equations in standard form [ Ax + By = C ] with specific coefficient conditions ([ A = 0 ], [ B = 0 ], [ C = 0 ]) and describe the resulting graphs.

@@ -1,182 +1,313 @@
 # Lesson 3-4 — The Remainder and Factor Theorems
 
-Source: (Module 3, Lesson 3-4, pp. 135–137)
+Source: (Module 3, Lesson 3-4, Int3_0304_practice.docx)
 
 ## Today's Goals
 
-* Evaluate functions by using synthetic substitution
-* Use the Factor Theorem to determine factors of polynomials
-
----
+* Use synthetic substitution to evaluate polynomials at given values.
+* Apply the Remainder Theorem to determine function values.
+* Use the Factor Theorem to find remaining factors of polynomials when one factor is known.
 
 ## Vocabulary
 
-* synthetic substitution
-* depressed polynomial
+* **Synthetic Substitution** — A streamlined method for evaluating a polynomial at a given value by using only the coefficients and basic arithmetic operations.
+* **Remainder Theorem** — If a polynomial [f(x)] is divided by [(x - c)], the remainder equals [f(c)].
+* **Factor Theorem** — A polynomial [f(x)] has a factor [(x - c)] if and only if [f(c) = 0]. This is a special case of the Remainder Theorem.
 
----
+## Explore: Connecting Division and Function Values
 
-## Explore: Remainders
+When you divide a polynomial by a linear expression, the remainder carries information about the original polynomial. The Remainder Theorem reveals that you do not need to perform the full division to find this remainder — you simply evaluate the polynomial at the appropriate value.
 
-Use the interactive tool to complete the explore.
+Inquiry Question:
+How can knowing the remainder when dividing by [(x - c)] tell you whether [(x - c)] is a factor of the polynomial?
 
-**Inquiry Question:**
-How are the divisor and quotient of a polynomial related to its factors when the remainder is zero?
+## Learn: The Remainder and Factor Theorems
 
----
+### Key Concept: Synthetic Substitution
 
-## Learn: The Remainder Theorem
+To evaluate [f(c)] for a polynomial using synthetic substitution:
 
-From the Division Algorithm:
-
-`f(x) / g(x) = q(x) + r(x)/g(x)`
-
-and
-
-`f(x) = q(x)g(x) + r(x)`
-
-Suppose the dividend is `p(x)` and the divisor is `x - a`. Then:
-
-`p(x) / (x - a) = q(x) + r/(x - a)`
-
-and
-
-`p(x) = q(x)(x - a) + r`
-
-Evaluate at `x = a`:
-
-`p(a) = q(a)(a - a) + r`
-
-`p(a) = q(a)(0) + r`
-
-`p(a) = r`
-
-So the remainder is the value of the polynomial at `a`.
+1. Write the coefficients of the polynomial in order, including zeros for missing terms.
+2. Bring down the leading coefficient.
+3. Multiply by [c] and add to the next coefficient.
+4. Repeat until all coefficients are processed.
+5. The final sum is [f(c)].
 
 ### Key Concept: Remainder Theorem
 
-For a polynomial `p(x)` and a number `a`, the remainder upon division by `x - a` is `p(a)`.
+If [f(x)] is divided by [(x - c)], then the remainder is [f(c)].
 
-Example:
-
-Evaluate `p(x) = x^2 - 4x + 7` when `x = 5`.
-
-* direct substitution gives `p(5) = 25 - 20 + 7 = 12`
-* synthetic substitution also gives remainder `12`
-
-Applying the Remainder Theorem to evaluate a function is called **synthetic substitution**.
-
----
-
-## Example 1 — Synthetic Substitution
-
-Use synthetic substitution to find `f(-3)` if:
-
-`f(x) = -2x^4 + 3x^2 - 15x + 9`
-
-Use `-3` with coefficients:
-
-`-2, 0, 3, -15, 9`
-
-Synthetic substitution gives remainder:
-
-`-81`
-
-Therefore:
-
-`f(-3) = -81`
-
-Check with direct substitution:
-
-`f(-3) = -2(-3)^4 + 3(-3)^2 - 15(-3) + 9`
-
-`= -162 + 27 + 45 + 9`
-
-`= -81`
-
-### Study Tip
-
-Use `0` as a placeholder for any missing terms.
-
----
-
-## Example 2 — Apply the Remainder Theorem
-
-Egg production in the United States can be modeled by:
-
-`f(x) = 0.007x^3 - 0.149x^2 + 1.534x + 84.755`
-
-where `x` is the number of years since `2000`.
-
-Predict egg production in `2025`.
-
-Since `2025 - 2000 = 25`, evaluate `f(25)` using synthetic substitution.
-
-The result is:
-
-`f(25) = 139.355`
-
-So in `2025`, approximately **139.355 billion eggs** will be produced.
-
-## Think About It
-
-How could you use the function and synthetic substitution to estimate the number of eggs produced in 1990? What assumption would you have to make?
-
----
-
-## Learn: The Factor Theorem
-
-When a binomial evenly divides a polynomial, the binomial is a factor of the polynomial.
-
-The quotient from this division is called a **depressed polynomial**. It has degree one less than the original polynomial.
+This means:
+* If you want [f(c)], divide by [(x - c)] and look at the remainder.
+* If you want to check if [(x - c)] is a factor, compute [f(c)]. If [f(c) = 0], then [(x - c)] is a factor.
 
 ### Key Concept: Factor Theorem
 
-The binomial `x - a` is a factor of the polynomial `p(x)` **if and only if** `p(a) = 0`.
+Since [(x - c)] is a factor of [f(x)] if and only if [f(c) = 0]:
+* If [f(c) = 0], then [(x - c)] is a factor.
+* If [(x - c)] is a factor, then [f(c) = 0].
 
-Example:
+When one factor is known, you can use synthetic division to find the remaining factor(s).
 
-If dividing `x^3 - x^2 - 30x + 72` by `x + 6` gives remainder `0`, then `x + 6` is a factor.
+## Example 1 — Use Synthetic Substitution to Evaluate Polynomials
 
----
+Use synthetic substitution to find [f(-5)] and [f(2)] for each function.
 
-## Example 3 — Use the Factor Theorem
+### Step 1: Set Up Synthetic Substitution for [f(-5)]
 
-Show that `x + 8` is a factor of:
+**Problem 1:** [f(x) = x^3 + 2x^2 - 3x + 1]
 
-`2x^3 + 15x^2 - 11x - 24`
+Coefficients: 1, 2, -3, 1
 
-Then find the remaining factors.
+For [f(-5)]:
 
-Use synthetic substitution with `-8`:
+| -5 | 1 | 2 | -3 | 1 |
+|----|---|---|---|---|
+| | | -5 | 15 | -60 |
+| | 1 | -3 | 12 | -59 |
 
-The remainder is `0`, so by the Factor Theorem, `x + 8` is a factor.
+[f(-5) = -59]
 
-The depressed polynomial is:
+For [f(2)]:
 
-`2x^2 - x - 3`
+| 2 | 1 | 2 | -3 | 1 |
+|---|--|--|---|---|
+| | | 2 | 8 | 10 |
+| | 1 | 4 | 5 | 11 |
 
-Factor it:
+[f(2) = 11]
 
-`2x^2 - x - 3 = (2x - 3)(x + 1)`
+**Problem 2:** [f(x) = x^2 - 8x + 6]
 
-So the full factorization is:
+Coefficients: 1, -8, 6
 
-`2x^3 + 15x^2 - 11x - 24 = (x + 8)(2x - 3)(x + 1)`
+For [f(-5)]:
 
-## Talk About It
+| -5 | 1 | -8 | 6 |
+|----|---|----|---|
+| | | -5 | 65 |
+| | 1 | -13 | 71 |
 
-Suppose you were asked to determine whether `3x + 4` is a factor of `3x^3 - 2x^2 - 8x`. Describe the steps necessary to find a solution.
+[f(-5) = 71]
 
----
+For [f(2)]:
 
-## Pause and Reflect
+| 2 | 1 | -8 | 6 |
+|---|--|---|---|
+| | | 2 | -12 |
+| | 1 | -6 | -6 |
 
-Did you struggle with anything in this lesson? If so, how did you deal with it?
+[f(2) = -6]
 
----
+**Problem 3:** [f(x) = 3x^4 + x^3 - 2x^2 + x + 12]
 
-## Objective Alignment
+**Problem 4:** [f(x) = 2x^3 - 8x^2 - 2x + 5]
 
-- `Evaluate functions by using synthetic substitution`: Primary worked examples: Examples 1-2.
-- `Use the Factor Theorem to determine factors of polynomials`: Primary worked examples: Examples 2-3.
+**Problem 5:** [f(x) = x^3 - 5x + 2]
+
+**Problem 6:** [f(x) = x^5 + 8x^3 + 2x - 15]
+
+**Problem 7:** [f(x) = x^6 - 4x^4 + 3x^2 - 10]
+
+**Problem 8:** [f(x) = x^4 - 6x - 8]
+
+### Step 2: Use Synthetic Substitution for [f(2)] and [f(-1)]
+
+Use synthetic substitution to find [f(2)] and [f(-1)] for each function.
+
+**Problem 9:** [f(x) = x^2 + 6x + 5]
+
+**Problem 10:** [f(x) = x^2 - x + 1]
+
+**Problem 11:** [f(x) = x^2 - 2x - 2]
+
+**Problem 12:** [f(x) = x^3 + 2x^2 + 5]
+
+**Problem 13:** [f(x) = x^3 - x^2 - 2x + 3]
+
+**Problem 14:** [f(x) = x^3 + 6x^2 + x - 4]
+
+**Problem 15:** [f(x) = x^3 - 3x^2 + x - 2]
+
+**Problem 16:** [f(x) = x^3 - 5x^2 - x + 6]
+
+**Problem 17:** [f(x) = x^4 + 2x^2 - 9]
+
+**Problem 18:** [f(x) = x^4 - 3x^3 + 2x^2 - 2x + 6]
+
+**Problem 19:** [f(x) = x^5 - 7x^3 - 4x + 10]
+
+**Problem 20:** [f(x) = x^6 - 2x^5 + x^4 + x^3 - 9x^2 - 20]
+
+## Example 2 — Apply Polynomials to Real-World Situations
+
+### Step 1: Evaluate at Given Points
+
+**Problem 21. BUSINESS:** The revenue from online advertising in the United States from 2000 to 2015 can be modeled by [y = 0.01x^3 + 0.02x^2 + x + 6], where [x] is the number of years since 2000 and [y] is the revenue in billions of U.S. dollars.
+
+**a.** Estimate the revenue from online advertising in 2008.
+
+**b.** Predict the revenue from online advertising in 2022.
+
+**Problem 22. PROFIT:** The profit, in thousands, of Clyde's Corporation can be modeled by [P(y) = y^4 - 4y^3 + 2y^2 + 10y - 200], where [y] is the number of years after the business was started. Predict the profit of Clyde's Corporation after 10 years.
+
+## Example 3 — Find Remaining Factors Using the Factor Theorem
+
+Given a polynomial and one of its factors, find the remaining factors of the polynomial.
+
+### Step 1: Use Synthetic Division with the Known Factor
+
+**Problem 23:** [x^3 - 3x + 2]; factor is [x + 2]
+
+Since [x + 2 = 0] when [x = -2], use synthetic division with [-2].
+
+| -2 | 1 | 0 | -3 | 2 |
+|----|---|---|---|---|
+| | | -2 | 4 | -2 |
+| | 1 | -2 | 1 | 0 |
+
+The remainder is 0, confirming [(x + 2)] is a factor.
+The quotient is [x^2 - 2x + 1 = (x - 1)^2].
+
+So: [x^3 - 3x + 2 = (x + 2)(x - 1)^2]
+
+**Problem 24:** [x^4 + 2x^3 - 8x - 16]; factor is [x + 2]
+
+Use synthetic division with [-2].
+
+| -2 | 1 | 2 | 0 | -8 | -16 |
+|----|---|---|---|----|----|
+| | | -2 | 0 | 0 | 16 |
+| | 1 | 0 | 0 | -8 | 0 |
+
+Quotient: [x^3 - 8 = (x - 2)(x^2 + 2x + 4)]
+
+Full factorization: [(x + 2)(x - 2)(x^2 + 2x + 4)]
+
+**Problem 25:** [x^3 - x^2 - 10x - 8]; factor is [x + 2]
+
+**Problem 26:** [x^3 - x^2 - 5x - 3]; factor is [x - 3]
+
+**Problem 27:** [2x^3 + 17x^2 + 23x - 42]; factor is [x - 1]
+
+**Problem 28:** [2x^3 + 7x^2 - 53x - 28]; factor is [x - 4]
+
+**Problem 29:** [x^4 + 2x^3 + 2x^2 - 2x - 3]; factor is [x - 1]
+
+**Problem 30:** [3x^3 - 19x^2 - 15x + 7]; factor is [x - 7]
+
+**Problem 31:** [x^3 + 2x^2 - x - 2]; factor is [x + 1]
+
+**Problem 32:** [x^3 + x^2 - 5x + 3]; factor is [x - 1]
+
+**Problem 33:** [x^3 + 3x^2 - 4x - 12]; factor is [x + 3]
+
+**Problem 34:** [x^3 - 6x^2 + 11x - 6]; factor is [x - 3]
+
+**Problem 35:** [x^3 + 2x^2 - 33x - 90]; factor is [x + 5]
+
+**Problem 36:** [x^3 - 6x^2 + 32]; factor is [x - 4]
+
+**Problem 37:** [x^3 - x^2 - 10x - 8]; factor is [x + 2]
+
+**Problem 38:** [x^3 - 19x + 30]; factor is [x - 2]
+
+**Problem 39:** [2x^3 + x^2 - 2x - 1]; factor is [x + 1]
+
+**Problem 40:** [2x^3 + x^2 - 5x + 2]; factor is [x + 2]
+
+**Problem 41:** [3x^3 + 4x^2 - 5x - 2]; factor is [3x + 1]
+
+**Problem 42:** [3x^3 + x^2 + x - 2]; factor is [3x - 2]
+
+**Problem 43:** [6x^3 - 25x^2 + 2x + 8]; factor is [2x + 1]
+
+**Problem 44:** [16x^5 - 32x^4 - 81x + 162]; factor is [2x - 3]
+
+## Mixed Exercises
+
+**Problem 45. REASONING:** Jessica evaluates the polynomial [p(x) = x^3 - 5x^2 + 3x + 5] for a factor using synthetic substitution. Some of his work is shown below. Find the values of [a] and [b].
+
+| a | 1 | -5 | 3 | 5 |
+|---|--|----|---|---|
+| | | 11 | 66 | 759 |
+| | 1 | 6 | 69 | b |
+
+**Problem 46. STATE YOUR ASSUMPTION:** The revenue from streaming music services in the United States from 2005 to 2016 can be modeled by [y = 0.26x^5 - 7.48x^4 + 79.20x^3 - 333.33x^2 + 481.68x + 99.13], where [x] is the number of years since 2005 and [y] is the revenue in millions of U.S. dollars.
+
+**a.** Estimate the revenue from streaming music services in 2010.
+
+**b.** What might the revenue from streaming music services be in 2020? What assumption did you make to make your prediction?
+
+**Problem 47. NATURAL EXPONENTIAL FUNCTION:** The natural exponential function [y = e^x] is a special function that is applied in many fields such as physics, biology, and economics. It is not a polynomial function, however for small values of [x], the value of [e^x] is very closely approximated by the polynomial function [f(x) = \frac{1}{6}x^3 + \frac{1}{2}x^2 + x + 1]. Use synthetic substitution to determine [f(0.1)].
+
+**Find values of [k] so that each remainder is 3.**
+
+**Problem 48.** [(x^2 - x + k) \div (x - 1)]
+
+**Problem 49.** [(x^2 + kx - 17) \div (x - 2)]
+
+**Problem 50.** [(x^2 + 5x + 7) \div (x + k)]
+
+**Problem 51.** [(x^3 + 4x^2 + x + k) \div (x + 2)]
+
+**Problem 52.** If [f(-8) = 0] and [f(x) = x^3 - x^2 - 58x + 112], find all the zeros of [f(x)] and use them to graph the function.
+
+**Problem 53. REASONING:** If [P(1) = 0] and [P(x) = 10x^3 + kx^2 - 16x + 3], find all the factors of [P(x)] and use them to graph the function. Explain your reasoning.
+
+**Problem 54. GEOMETRY:** The volume of a box with a square base is [V(x) = 2x^3 + 15x^2 + 36x + 27]. If the height of the box is [(2x + 3)] units, what are the measures of the sides of the base in terms of [x]?
+
+**Problem 55. GEOMETRY:** The average value of a franchise in the National Football League from 2000 to 2018 can be modeled by [y = -0.037x^5 + 1.658x^4 - 24.804x^3 + 145.100x^2 - 207.594x + 482.008], where [x] is the number of years since 2000 and [y] is the value in millions of U.S. dollars.
+
+**a.** Complete the table of estimated values. Round to the nearest million.
+
+![](media/image1.png)
+
+**b.** What assumption did you make to make your predictions? Do you think the assumption is valid? Explain.
+
+**Problem 56. CONSTRUCT ARGUMENTS:** Divide the polynomial function [f(x) = 4x^3 - 10x + 8] by the factor [(x + 5)]. Then state and confirm the Remainder Theorem for this particular polynomial function and factor.
+
+**Problem 57. REGULARITY:** The polynomial function [P(x)] is symmetric in the [y]-axis and contains the point (2, -5). What is the remainder when [P(x)] is divided by [(x + 2)]? Explain your reasoning.
+
+**Problem 58. STRUCTURE:** Verify the Remainder Theorem for the polynomial [x^2 + 3x + 5] and the factor [(x - ![](media/image2.wmf))] by first using synthetic division and then evaluating for [x = ![](media/image2.wmf)].
+
+**Problem 59. STRUCTURE:** If [(x + 6)] is a factor of [kx^3 + 15x^2 + 13x - 30], determine the value of [k], factor the polynomial and confirm the result graphically.
+
+**Problem 60. REGULARITY:** Polynomial [f(x)] is divided by [x - c]. What can you conclude if:
+
+**a.** the remainder is 0?
+
+**b.** the remainder is 1?
+
+**c.** the quotient is 1, and the remainder is 0?
+
+**Problem 61. CREATE:** Write a polynomial function that has a double zero of 1 and a double zero of -5. Graph the function.
+
+**Problem 62. PERSEVERE:** For a cubic function [P(x)], [P(2) = -90], [P(-8) = 0], and [P(5) = 0].
+
+**a.** Write two possible equations for [P(x)]. Explain your answer.
+
+**b.** Graph your equations from part a. What three points do these graphs have in common?
+
+**c.** If [P(4) = 60], write the equation for [P(x)].
+
+**Problem 63. ANALYZE:** Review the definition for the Factor Theorem. Provide a proof of the theorem.
+
+**Problem 64. CREATE:** Write a cubic function that has a remainder of 8 for [f(2)] and a remainder of -5 for [f(3)].
+
+**Problem 65. PERSEVERE:** Show that the quartic function [f(x) = ax^4 + bx^3 + cx^2 + dx + e] will always have a rational zero when the numbers 1, -2, 3, 4, and -6 are randomly assigned to replace [a] through [e], and all of the numbers are used.
+
+**Problem 66. WRITE:** Explain how the zeros of a function can be located by using the Remainder Theorem and making a table of values for different input values and then comparing the remainders.
+
+**Problem 67. FIND THE ERROR:** The table shows the [x]-values and their corresponding [P(x)] values for a polynomial function. Tyrone and Nia used the Factor Theorem to find factors of [P(x)]. Is either of them correct? Explain your reasoning.
+
+![](media/image3.png)
+
+## Review Notes
+
+* Images referenced in the worksheet:
+  * ![](media/image1.png) — table of NFL franchise values (Problem 55)
+  * ![](media/image2.wmf) — mathematical expression referenced in Problem 58
+  * ![](media/image3.png) — error analysis table for Problem 67
+* Teachers should consult the original worksheet for exact diagrams and values.
+* The worksheet contains 67 practice problems involving synthetic substitution, the Remainder Theorem, the Factor Theorem, and applied problems.

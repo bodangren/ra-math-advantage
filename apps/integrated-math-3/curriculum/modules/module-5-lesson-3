@@ -1,182 +1,182 @@
 # Lesson 5-3 — Special Exponential Functions
 
-Source: (Module 5, Lesson 5-3, pp. 233–236)
+Source: (Module 5, Lesson 5-3, Int3_0503_practice.docx)
 
 ## Today's Goals
 
-* Analyze expressions and functions involving the natural base `e`
-
----
+* Simplify expressions involving base [e], the natural exponential base.
+* Graph functions of the form [f(x) = ae^x] and transformations thereof.
+* Apply continuous compounding formulas to solve real-world problems.
+* Use graphing calculators to solve equations involving [e].
 
 ## Vocabulary
 
-* `e`
+* **Natural Base [e]** — The irrational number approximately equal to 2.71828, used as the base for natural exponential functions.
+* **Natural Exponential Function** — A function of the form [f(x) = e^x].
+* **Natural Logarithm** — The logarithm with base [e], denoted [ln(x)].
+* **Continuous Compounding** — A compound interest formula where interest is computed and added infinitely often.
 
----
+## Explore: The Number [e]
 
-## Explore: Finding the Value of e
+The base [e] arises naturally in many contexts, particularly in continuous growth and decay. Unlike other exponential bases, [e] makes calculus operations simpler because the derivative of [e^x] is itself.
 
-Use a table to complete the explore.
+Inquiry Question:
+Why does the function [f(x) = e^x] have the special property that its derivative equals itself?
 
-**Inquiry Question:**
-How can you best approximate the value of `e`?
+## Learn: Special Exponential Functions
 
----
+### Key Concept: Properties of [e]
 
-## Learn: Exponential Functions with Base e
+The natural exponential function follows the same exponent rules as other bases, with [e > 1] so it represents growth.
 
-The constant `e` is an irrational number approached by:
+[e^8 · e^3 = e^11]
+[e^4 · e^(-1) = e^3]
+[e^9 · e^(-7) = e^2]
+[(2e^(3x))^2 = 4e^(6x)]
+[(3e^(4x))^3 = 27e^(12x)]
+[(-4e^(5x))^2 = 16e^(10x)]
+[26e^4/(13e) = 2e^3]
+[-39e^7/(13e^2) = -3e^5]
+[-16e^9/(2e^3) = -8e^6]
 
-`(1 + 1/n)^n`
+### Key Concept: Continuous Compounding Formula
 
-as `n -> infinity`.
+[A = Pe^(rt)]
 
-Approximate value:
+where [P] is principal, [r] is annual rate as a decimal, and [t] is time in years.
 
-`e ≈ 2.7182818...`
+## Example 1 — Simplify Expressions with [e]
 
-Graphs of functions with base `e` behave like other exponential functions.
+### Step 1: Apply Exponent Properties
 
-For `f(x) = e^x`:
+[e^(1/8) · e^(5/8) = e^(6/8) = e^(3/4)]
 
-* asymptote: `y = 0` as `x -> -infinity`
-* `f(x) -> infinity` as `x -> infinity`
-* y-intercept: `1`
+[e^(1/2) · e^(-3/4) = e^(-1/4)]
 
-Continuously compounded interest is modeled by:
+[(1/3 e^(2x))^2 = (1/9)e^(4x)]
 
-`A = Pe^(rt)`
+[(-2/5 e^(1/4 x))^3 = -(8/125)e^(3x/4)]
 
-where:
+[100e^(9/10)/(4e^(1/5)) = 25e^(7/10)]
 
-* `A` is the amount after `t` years
-* `P` is the principal
-* `r` is the annual interest rate
+[(-216(e^(1/2))^5)/((3e^(1/4))^2) = -216e^(5/2)/(9e^(1/2)) = -24e^2]
 
----
+## Example 2 — Graph Natural Exponential Functions
 
-## Example 1 — Expressions with Base e
+Consider [f(x) = 3e^x - 1 + 3].
+
+### Step 1: Identify Transformations
+
+The function is [f(x) = 3e^x] shifted left 1 unit and up 3 units.
+
+* Domain: all real numbers
+* Range: [y > 3]
+* y-intercept: [f(0) = 3e^0 - 1 + 3 = 3(1) + 2 = 5], so [(0, 5)]
+* Asymptote: [y = 3]
+
+### Step 2: Find Average Rate of Change
+
+Over [-5, -2]: [f(-5) = 3e^(-5) - 1 + 3 ≈ 3(0.0067) + 2 ≈ 2.02]; [f(-2) = 3e^(-2) - 1 + 3 ≈ 3(0.135) + 2 ≈ 2.41]
+Rate of change: [(2.41 - 2.02)/3 ≈ 0.13]
+
+For [f(x) = 4e^(2x) - 1]:
+
+* Domain: all real numbers
+* Range: [y > -1]
+* y-intercept: [f(0) = 4(1) - 1 = 3]
+* Asymptote: [y = -1]
+
+Over [-3, -1]: compute similarly.
+
+For [f(x) = -2e^x + 3 + 2] (which is [-2e^x + 5]):
+
+* Domain: all real numbers
+* Range: [y < 5]
+* y-intercept: [f(0) = -2(1) + 5 = 3]
+* Asymptote: [y = 5]
+
+Over [-7, -4]: compute similarly.
+
+## Example 3 — Continuous Compounding Applications
+
+### Step 1: Set Up the Continuous Compounding Formula
+
+**COMPOUND INTEREST:** Ryan invested $5000 at 2.5% continuous annual rate.
+
+[A = 5000e^(0.025t)]
+
+After 7 years: [A = 5000e^(0.025·7) = 5000e^0.175 ≈ 5000(1.191) ≈ $5955.23]
+
+**SAVINGS:** Jariah invested $6500 at 3.25% continuous rate.
+
+[A = 6500e^(0.0325t)]
+
+After 18 years: [A = 6500e^(0.0325·18) = 6500e^0.585 ≈ 6500(1.795) ≈ $11,667.50]
+
+**INVESTMENTS:** Marcella invested $12,750 at 5.5% continuous rate.
+
+[A = 12750e^(0.055t)]
+
+After 9 years: [A = 12750e^(0.055·9) = 12750e^0.495 ≈ 12750(1.640) ≈ $20,910]
+
+## Example 4 — Solve Equations with [e] Using a Graphing Calculator
+
+### Step 1: Use System of Equations
+
+To solve [1 = e^(3x)], graph [y1 = e^(3x)] and [y2 = 1], find intersection.
+
+[ln(1) = 3x → 0 = 3x → x = 0]
+
+To solve [-2 = -e^(4x)]: [ln(2) = 4x → x = ln(2)/4 ≈ 0.173]
+
+To solve [3 = (1/2)e^x]: [ln(6) = x → x ≈ 1.791]
+
+To solve [5 = (1/2)e^(x+2) - 4]: rearrange and solve using calculator.
+
+To solve [-3 = -2e^x - 1]: [ln(2) = x]
+
+To solve [-11/2 = (2/3)e^(x+1) - 6]: solve for [x] using the graphing calculator.
+
+## Mixed Exercises
 
 Simplify each expression.
 
-### a. `e^7 * e^-2`
+[e^(1/8) · e^(5/8) = e^(3/4)]
+[e^(1/2) · e^(-3/4) = e^(-1/4)]
+[(1/3 e^(2x))^2 = (1/9)e^(4x)]
+[(-2/5 e^(1/4 x))^3 = -(8/125)e^(3x/4)]
+[100e^(9/10)/(4e^(1/5)) = 25e^(7/10)]
+[(-216(e^(1/2))^5)/((3e^(1/4))^2) = -24e^2]
 
-`= e^(7 + (-2)) = e^5`
+**USE TOOLS** Solve each equation. Round to nearest hundredth.
 
-### b. `(-3e^(2x))^4`
+[e^x = -2e^(x-1) + 3] → solve for [x]
+[-3e^x + 1 = 4e^(x+2) - 5]
+[(1/2)e^(x+2) - 3 = -(1/4)e^(2x-4) + 2]
 
-`= (-3)^4 (e^(2x))^4`
+REASONING: $900 in savings at 1.2% annual interest compounded continuously. Value after 5 years: [A = 900e^(0.012·5) ≈ $955.81]
 
-`= 81e^(8x)`
+CONSTRUCT ARGUMENTS: All functions of the form [f(x) = ae^x] have the same domain (all real numbers) because [e^x] is defined for all real [x].
 
-### c. `(42e^7) / (14e^5)`
+USE TOOLS: Graph [g(x) = 7e^x + 8]. Identify domain (all real), range ([y > 8]), intercepts, zeros (none), asymptote ([y = 8]), and end behavior.
 
-`= 3e^(7 - 5)`
+USE TOOLS: Find the zero of [f(x) = 0.8e^(2x) - 9]. Round to nearest hundredth.
 
-`= 3e^2`
+WRITE: Population growth uses the same variables as compound interest: final population corresponds to final amount, initial population to principal, growth rate to interest rate, and time to time.
 
-### Watch Out
+CREATE: Write a compound interest problem that solves for the initial amount [P].
 
-Use exponent properties before evaluating on a calculator so answers stay exact.
+ANALYZE: Make a conjecture about why you should use properties of exponents to simplify exponential functions with base [e] before evaluating on a calculator.
 
----
+FIND THE ERROR: Aza invests $2000 at 0.7% annual interest compounded continuously and predicts $16,332.34 after 3 years. Actual: [2000e^(0.007·3) = 2000e^0.021 ≈ $242.43]. Aza is incorrect.
 
-## Example 2 — Graph Functions with Base e
+WHICH ONE DOESN'T BELONG?: Which function doesn't belong?
 
-Consider:
+## Review Notes
 
-`g(x) = -2e^(x - 3) + 2`
+* Image references in this lesson:
+  * ![](media/image1.png) — Which One Doesn't Belong problem showing multiple exponential function forms
 
-### Part A: Graph the function
+Teachers should consult the original worksheet for exact diagrams and function comparisons.
 
-This is a transformation of `f(x) = e^x`.
-
-* `a = -2`: reflect across the x-axis and stretch vertically
-* `h = 3`: shift `3` units right
-* `k = 2`: shift `2` units up
-
-### Part B: Determine the domain and range
-
-* domain: all real numbers
-* range: all real numbers less than `2`
-
-### Part C: Find the average rate of change
-
-### a. `[-4, -1]`
-
-Average rate of change is about:
-
-`-0.012`
-
-### b. `[0, 3]`
-
-Average rate of change is about:
-
-`-0.633`
-
-### c. `[4, 8]`
-
-Average rate of change is about:
-
-`-72.847`
-
-## Think About It
-
-Does a base-`e` exponential function behave in the same way as other exponential functions? Explain.
-
----
-
-## Example 3 — Apply Functions with Base e
-
-LaShawndra deposits `$1500` in an account paying `2.5%` annual interest compounded continuously.
-
-Find the balance after `4` years.
-
-`A = Pe^(rt)`
-
-`= 1500e^(0.025 * 4)`
-
-`= 1657.76`
-
-So after `4` years, the account balance is:
-
-`$1657.76`
-
-## Think About It
-
-If another account offers `2.5%` annual interest compounded monthly, which should she choose?
-
----
-
-## Example 4 — Solve an Exponential Equation by Using Technology
-
-Use a graphing calculator to solve:
-
-`5 = 2e^x`
-
-by using a system.
-
-### Step 1: Write a system
-
-* `y = 5`
-* `y = 2e^x`
-
-### Step 2: Graph the system
-
-Graph both.
-
-### Step 3: Find the intersection
-
-The solution is the x-coordinate:
-
-`x ≈ 0.916`
-
-### Step 4: Use a table
-
-Using a table near `x = 0.916` confirms the two y-values are nearly equal.
-
----
-
-## Objective Alignment
-
-- `Analyze expressions and functions involving the natural base `e``: Primary worked examples: Examples 1-4.
+(End of file - total 180 lines)

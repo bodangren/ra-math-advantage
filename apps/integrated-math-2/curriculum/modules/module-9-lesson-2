@@ -1,0 +1,273 @@
+# Lesson 9-2 — Solving Absolute Value Equations and Inequalities
+
+Source: (Module 9, Lesson 9-2, Int2_0902_practice.docx)
+
+## Today's Goals
+
+* Solve absolute value equations of the form [|ax + b| = c] and interpret solutions.
+* Solve absolute value inequalities and graph solution sets on a number line.
+* Write absolute value equations and inequalities to represent real-world scenarios.
+* Distinguish between "and" and "or" compound inequalities involving absolute values.
+
+## Vocabulary
+
+* **Absolute Value Equation** — An equation that contains an absolute value expression, such as [|x| = 5].
+* **Absolute Value Inequality** — An inequality that contains an absolute value expression, such as [|x| < 5].
+* **Compound Inequality** — An inequality formed by joining two conditions with "and" or "or."
+* **And Compound Inequality** — A compound inequality where both conditions must be true, such as [-3 < x < 3].
+* **Or Compound Inequality** — A compound inequality where at least one condition must be true.
+* **Margin of Error** — The range within which the true value is expected to fall, expressed as [+/-] a value around a measured value.
+
+## Explore: Absolute Value as Distance
+
+Absolute value represents distance from zero on a number line. This idea extends to solving equations like [|x - 3| = 7], which asks: "What numbers are exactly 7 units away from 3?"
+
+Inquiry Question:
+How can you use the definition of absolute value to solve [|2x + 1| = 9] without first isolating the absolute value?
+
+## Learn: Solving Absolute Value Equations
+
+### Key Concept: Solving |ax + b| = c
+
+For [c > 0], the equation [|ax + b| = c] is equivalent to [ax + b = c] or [ax + b = -c].
+
+For [c = 0], the equation [|ax + b| = 0] is equivalent to [ax + b = 0].
+
+For [c < 0], there is no solution because absolute value is always non-negative.
+
+### Key Concept: Cases for Absolute Value
+
+When solving equations with multiple absolute values, such as [|x - 3| = |2x + 1|], consider all combinations of positive and negative cases for each expression. With two absolute values, there are 4 combinations, but only 2 unique cases need be considered because if [A = B], then either [A = B] or [A = -B].
+
+## Example 1 — Solve Equations with One Absolute Value
+
+Solve each equation. Check your solutions.
+
+**1.** [|8 + p| = 2p - 3]
+
+Break into cases: [8 + p = 2p - 3] or [8 + p = -(2p - 3)]
+
+Solve each case and check for extraneous solutions.
+
+**2.** [|4w - 1| = 5w + 37]
+
+### Step 1: Set Up Cases
+
+Since [5w + 37] must be non-negative for a solution to exist (because absolute value equals it), first find where [5w + 37 >= 0].
+
+### Step 2: Solve Each Case
+
+Case 1: [4w - 1 = 5w + 37] → solve for w
+Case 2: [4w - 1 = -(5w + 37)] → solve for w
+
+### Step 3: Check Solutions
+
+Substitute each solution back into the original equation to verify.
+
+**3.** [4|2y - 7| + 13 = 9]
+
+**4.** [-2|7 - 3y| - 6 = -14]
+
+**5.** [2|4 - n| = -3n]
+
+**6.** [5 - 3|2 + 2w| = -7]
+
+**7.** [5|2r + 3| - 5 = 0]
+
+**8.** [3 - 5|2d - 3| = 4]
+
+## Example 2 — Real-World Absolute Value Equations
+
+Solve each problem by writing and solving an absolute value equation.
+
+### Step 1: Define the Situation
+
+For problems involving tolerances, write an equation of the form [|measured - actual| = tolerance].
+
+**9. WEATHER** A thermometer claims accuracy within 1.5 degrees of the actual temperature. If the thermometer reads 87.4°F, write and solve an absolute value equation to find the least and greatest possible temperature.
+
+Let [T] represent the actual temperature in degrees Fahrenheit.
+
+[|87.4 - T| = 1.5]
+
+Solve: [87.4 - T = 1.5] or [87.4 - T = -1.5]
+
+[T = 85.9] or [T = 88.9]
+
+The least possible temperature is 85.9°F and the greatest is 88.9°F.
+
+**10. OPINION POLLS** A poll shows Candidate Morrison will receive 51% of the votes with a margin of error of ±3%. Write and solve an absolute value equation to find the minimum and maximum percent of the vote.
+
+Let [p] represent the actual percent of votes.
+
+[|51 - p| = 3]
+
+Solve: [51 - p = 3] or [51 - p = -3]
+
+[p = 48] or [p = 54]
+
+The candidate can expect between 48% and 54% of the vote.
+
+## Example 3 — Solve Absolute Value Inequalities
+
+Solve each inequality. Graph the solution set on a number line.
+
+### Key Concept: Solving |ax + b| <= c and |ax + b| >= c
+
+* [|ax + b| <= c] (where [c > 0]) is equivalent to [-c <= ax + b <= c], an "and" compound inequality.
+* [|ax + b| >= c] is equivalent to [ax + b <= -c] or [ax + b >= c], an "or" compound inequality.
+* [|<] and [>] strict inequalities do not include the boundary.
+
+### Step 1: Isolate the Absolute Value
+
+**11.** [|2x + 2| - 7 <= -5]
+
+First add 7 to both sides: [|2x + 2| <= 2]
+
+Then rewrite as: [-2 <= 2x + 2 <= 2]
+
+Subtract 2: [-4 <= 2x <= 0]
+
+Divide by 2: [-2 <= x <= 0]
+
+**12.** [|x/2 - 5| + 2 > 10]
+
+First subtract 2: [|x/2 - 5| > 8]
+
+Rewrite as two cases: [x/2 - 5 > 8] or [x/2 - 5 < -8]
+
+Solve each: [x/2 > 13] or [x/2 > -3]
+
+Multiply by 2: [x > 26] or [x < -6]
+
+**13.** [|3b + 5| <= -2]
+
+No solution, because absolute value is always [>= 0] and cannot be [<= -2].
+
+**14.** [|x| > x - 1]
+
+Rewrite as: [x > x - 1] or [x < -(x - 1)]
+
+Simplify: The first case is always true ([0 > -1]). The second gives [x < -x + 1], so [2x < 1], so [x < 0.5].
+
+**15.** [|4 - 5x| < 13]
+
+**16.** [|3n - 2| - 2 < 1]
+
+**17.** [|3x + 1| > 2]
+
+**18.** [|2x - 1| < 5 + 0.5x]
+
+## Example 4 — Real-World Absolute Value Inequalities
+
+Solve each problem by writing and solving an absolute value inequality.
+
+### Step 1: Write the Inequality
+
+**19. RAINFALL** In 90% of the last 30 years, the rainfall at Shell Beach varied no more than 6.5 inches from its mean of 24 inches. Write and solve an absolute value inequality to describe the rainfall in the other 10% of the years.
+
+Let [R] represent the rainfall in inches.
+
+For the 10% outside the normal range: [|R - 24| > 6.5]
+
+Solve: [R - 24 > 6.5] or [R - 24 < -6.5]
+
+[R > 30.5] or [R < 17.5]
+
+In the other 10% of years, rainfall was less than 17.5 inches or greater than 30.5 inches.
+
+**20. MANUFACTURING** A soup can states a volume of 14.5 fluid ounces and must not vary by more than 0.08 ounces. Write and solve an absolute value inequality for acceptable volumes.
+
+Let [V] represent the acceptable volume.
+
+[|V - 14.5| <= 0.08]
+
+Solve: [-0.08 <= V - 14.5 <= 0.08]
+
+[14.42 <= V <= 14.58]
+
+Acceptable volumes range from 14.42 to 14.58 fluid ounces.
+
+## Mixed Exercises
+
+Solve each equation. Check your solutions.
+
+**21.** [8x = 2|6x - 2|]
+
+**22.** [-6y + 4 = |4y + 12|]
+
+**23.** [8z + 20 > -|2z + 4|]
+
+**24.** [-3y - 2 <= |6y + 25|]
+
+**REASONING Write an absolute value equation to represent each situation. Then solve and discuss reasonableness.**
+
+**25.** The absolute value of the sum of 4 times a number and 7 is the sum of 2 times a number and 3.
+
+**26.** The sum of 7 and the absolute value of the difference of a number and 8 is -2 times a number plus 4.
+
+**27. MODELING** A carpenter cuts lumber to 36 inches, accurate within 0.125 inch.
+
+**a.** Write an inequality to represent acceptable length. Explain your reasoning.
+
+**b.** Solve the inequality. State the maximum and minimum length.
+
+**28. SAND** A bag of sand is labeled 35 pounds but can vary by up to 8 ounces.
+
+**a.** Write an absolute value equation for the maximum and minimum weight.
+
+**b.** Solve and interpret the result.
+
+**29. CONSTRUCT ARGUMENTS** Megan says there are 4 cases to consider for [|x - 9| = |5x + 6|] because there are two possible values for each absolute value. Yuki says only 2 cases need be considered. Who is correct? Will they get the same solution?
+
+**Solve each inequality. Graph the solution set on a number line.**
+
+**30.** [3|2z - 4| - 6 > 12]
+
+**31.** [6|4p + 2| - 8 < 34]
+
+**32.** [|5f - 2|/6 > 4]
+
+**33.** [|2w + 8|/5 >= 3]
+
+**34.** [-3x|6x + 1|/5 < 12x]
+
+**35.** [-7/8|2x + 5| > 14]
+
+**36. TIRES** A tire should be inflated to no more than 35 psi. Weather conditions can cause fluctuation up to 3.4 psi. Write and solve an absolute value equation for the maximum and minimum pressure.
+
+**37. PROJECTILE** An object's velocity is [v = 200 - 32t] (feet per second). Speed is the absolute value of velocity. Write and solve a compound inequality for when speed is between 40 and 88 ft/s.
+
+**38. USA A SOURCE** Research a poll with a margin of error. Describe the poll and write an absolute value inequality to represent the results.
+
+**39. CONSTRUCT ARGUMENTS** Roberto claims that [|3c - 4| > -4.5] has the same solution as [|3c - 4| >= 0] because absolute value is always [>= 0]. Is he correct?
+
+**40. WRITE** Summarize the difference between "and" compound inequalities and "or" compound inequalities.
+
+**41. WHICH ONE DOESN'T BELONG?** Identify the compound inequality that does not share the same characteristics as the other three. Justify your conclusion.
+
+![](media/image1.png)
+
+**42. FIND THE ERROR** Ana and Ling are solving [|3x + 14| = -6x]. Is either correct?
+
+![](media/image2.png)
+
+**43. PERSEVERE** Solve [|2x - 1| + 3 = |5 - x|]. List all cases and resulting equations.
+
+**ANALYZE If a, x, and y are real numbers, determine whether each statement is sometimes, always, or never true.**
+
+**44.** If [|a| > 7], then [|a + 3| > 10].
+
+**45.** If [|x| < 3], then [x + 3 > 0].
+
+**46.** If y is between 1 and 5, then [|y - 3| <= 2].
+
+**47. CREATE** Write an absolute value inequality with solution [a <= x <= b].
+
+## Review Notes
+
+* Problem 41 references an image showing four compound inequalities.
+* Problem 42 references images showing Ana's and Ling's work on solving an absolute value equation.
+* The worksheet contains 47 problems across seven examples and mixed exercises.
+* ![](media/image1.png)
+* ![](media/image2.png)

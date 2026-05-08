@@ -1,0 +1,268 @@
+# Lesson 9-5 — Solving Systems of Equations Algebraically
+
+Source: (Module 9, Lesson 9-5, Int2_0905_practice.docx)
+
+## Today's Goals
+
+* Solve a system of equations using substitution.
+* Solve a system of equations using elimination.
+* Choose an appropriate method (substitution or elimination) based on the structure of the system.
+* Write and solve systems of equations to represent real-world situations.
+
+## Vocabulary
+
+* **Substitution Method** — Solve one equation for a variable, then substitute that expression into the other equation.
+* **Elimination Method** — Add or subtract multiples of the equations to eliminate one variable.
+* **System of Equations** — Two or more equations considered together with the same variables.
+* **Solution of a System** — The ordered pair(s) that satisfy all equations in the system.
+* **Equivalent Systems** — Systems that have the same solution set; obtained by multiplying an equation by a non-zero constant.
+
+## Explore: Two Variables, Two Equations
+
+When solving a system algebraically, the goal is to reduce two equations in two variables to one equation in one variable. Substitution and elimination are two paths to the same destination.
+
+Inquiry Question:
+Which method would you prefer to solve [y = 2x + 1] and [3x + 2y = 16]? What about [2x + 3y = 8] and [4x - 3y = 10]? Explain your reasoning.
+
+## Learn: The Substitution Method
+
+### Key Concept: When to Use Substitution
+
+Substitution works well when:
+* One equation is already solved for y (or x).
+* An equation can be easily solved for y (or x).
+* A variable has a coefficient of 1 or -1.
+
+### Steps for Substitution
+
+1. Solve one equation for one variable in terms of the other.
+2. Substitute that expression into the other equation.
+3. Solve the resulting equation in one variable.
+4. Substitute back to find the other variable.
+5. Check the solution in both original equations.
+
+## Example 1 — Substitution with Simple Coefficients
+
+Use substitution to solve each system.
+
+**1.** [2x - y = 9] and [x + 3y = -6]
+
+### Step 1: Solve for y
+
+From first equation: [y = 2x - 9]
+
+### Step 2: Substitute
+
+[x + 3(2x - 9) = -6]
+
+[x + 6x - 27 = -6]
+
+[7x = 21] → [x = 3]
+
+### Step 3: Solve for y
+
+[y = 2(3) - 9 = 6 - 9 = -3]
+
+Solution: (3, -3)
+
+**2.** [2x - y = 7] and [6x - 3y = 14]
+
+**3.** [2x + y = 5] and [3x - 3y = 3]
+
+## Example 2 — Substitution with Fractional Coefficients
+
+### Step 1: Clear Fractions if Needed
+
+**4.** [3x + y = 7] and [4x + 2y = 16]
+
+From first: [y = 7 - 3x]
+
+Substitute: [4x + 2(7 - 3x) = 16]
+
+[4x + 14 - 6x = 16]
+
+[-2x = 2] → [x = -1]
+
+[y = 7 - 3(-1) = 7 + 3 = 10]
+
+Solution: (-1, 10)
+
+**5.** [4x + 2y = 16] and [2x - y/2 = 4]
+
+Multiply second equation by 2: [4x - y = 8]
+
+From first: [4x + 2y = 16]
+
+Subtract: [(4x + 2y) - (4x - y) = 16 - 8] → [3y = 8] → [y = 8/3]
+
+Substitute back: [2x - (8/3)/2 = 4] → [2x - 4/3 = 4] → [2x = 16/3] → [x = 8/3]
+
+Solution: (8/3, 8/3)
+
+**6.** [2x + y = 8] and [3x + 3/2 y = 12]
+
+## Example 3 — Real-World Substitution Problems
+
+### Step 1: Define Variables
+
+**7. BAKE SALE** Cassandra sold 3 small pies + 14 large pies = $203. Alberto sold 11 small pies + 11 large pies = $220. Find cost of each pie.
+
+**a.** Let [s] = price of small pie, [l] = price of large pie.
+
+System:
+[3s + 14l = 203]
+[11s + 11l = 220]
+
+Solve using substitution. From second: [s + l = 20] → [s = 20 - l]
+
+Substitute: [3(20 - l) + 14l = 203]
+
+[60 - 3l + 14l = 203]
+
+[11l = 143] → [l = 13]
+
+[s = 20 - 13 = 7]
+
+Small pie: $7, Large pie: $13
+
+**b.** The solution represents the price of each pie.
+
+**c.** Verify: [3(7) + 14(13) = 21 + 182 = 203]. [11(7) + 11(13) = 77 + 143 = 220].
+
+**8. STOCKS** Ms. Patel invested $825 in two stocks. Stock A: $12.41/share. Stock B: $8.62/share. Total 79 shares. How many shares of each?
+
+**a.** Let [a] = shares of Stock A, [b] = shares of Stock B.
+
+System:
+[a + b = 79]
+[12.41a + 8.62b = 825]
+
+From first: [b = 79 - a]
+
+Substitute: [12.41a + 8.62(79 - a) = 825]
+
+[12.41a + 681.58 - 8.62a = 825]
+
+[3.79a = 143.42] → [a = 37.84]. Not an integer — check calculation.
+
+Wait: [12.41a + 8.62(79 - a) = 12.41a + 681.58 - 8.62a = 3.79a + 681.58]
+
+[3.79a = 825 - 681.58 = 143.42]
+
+[a ≈ 37.84]. Let me recalculate with exact values.
+
+Actually: [3.79a = 143.42] → [a ≈ 37.84]. This suggests approximately 38 shares of A and 41 shares of B.
+
+Let me verify: [38 × 12.41 + 41 × 8.62 = 471.58 + 353.42 = 825]. Yes.
+
+**b.** Ms. Patel bought about 38 shares of Stock A and 41 shares of Stock B.
+
+## Learn: The Elimination Method
+
+### Key Concept: When to Use Elimination
+
+Elimination works well when:
+* Both equations are in standard form.
+* Coefficients of one variable are opposites (or can be made opposites).
+* A variable can be eliminated by adding or subtracting after multiplying.
+
+### Steps for Elimination
+
+1. Multiply one or both equations by constants so that the coefficients of one variable are opposites.
+2. Add or subtract the equations to eliminate that variable.
+3. Solve the resulting equation.
+4. Substitute back to find the other variable.
+5. Check.
+
+## Example 4 — Basic Elimination
+
+Use elimination to solve each system.
+
+**9.** [3x - 2y = 4] and [5x + 3y = -25]
+
+### Step 1: Make Coefficients Opposites
+
+Multiply first equation by 3 and second by 2:
+
+[9x - 6y = 12]
+[10x + 6y = -50]
+
+### Step 2: Add
+
+[19x = -38] → [x = -2]
+
+### Step 3: Substitute Back
+
+[3(-2) - 2y = 4] → [-6 - 2y = 4] → [-2y = 10] → [y = -5]
+
+Solution: (-2, -5)
+
+**10.** [5x + 2y = 12] and [-6x - 2y = -14]
+
+Add directly: [-x = -2] → [x = 2]
+
+Substitute: [5(2) + 2y = 12] → [10 + 2y = 12] → [y = 1]
+
+**11.** [7x + 2y = -1] and [21x + 6y = -9]
+
+Multiply first by 3: [21x + 6y = -3]. This conflicts with [21x + 6y = -9]. No solution.
+
+**12.** [3x - 5y = -9] and [-7x + 3y = 8]
+
+## Example 5 — Elimination with Different Multipliers
+
+**13.** [x - 3y = -12] and [2x + y = 11]
+
+Multiply first by -2: [-2x + 6y = 24]
+
+Add to second: [7y = 35] → [y = 5]
+
+Substitute: [x - 3(5) = -12] → [x - 15 = -12] → [x = 3]
+
+**14.** [6w - 8z = 16] and [3w - 4z = 8]
+
+Multiply second by -2: [-6w + 8z = -16]
+
+Add to first: [0 = 0]. Infinitely many solutions — same line.
+
+## Mixed Exercises
+
+Use substitution or elimination to solve each system.
+
+**15.** [0.5x + 2y = 5] and [x - 2y = -8]
+
+**16.** [h - z = 3] and [-3h + 3z = 6]
+
+**17.** [-r + t = 5] and [-2r + t = 4]
+
+**18.** [3r - 2t = 1] and [2r - 3t = 9]
+
+**19.** [5g + 4k = 10] and [-3g - 5k = 7]
+
+**20.** [4m - 2p = 0] and [-3m + 9p = 5]
+
+**21.** Sum of two numbers is 12. Difference is -4. Find the two numbers.
+
+**22.** Twice a number minus a second number is -1. Twice the second number plus three times the first is 9. Find the two numbers.
+
+**23. REASONING** Mr. Janson bought 3 adult + 2 student tickets for $22. Ms. Pham bought 5 adult + 3 student tickets for $35.75. Find price of each ticket.
+
+**24. USE A MODEL** City Park has 11 basketball courts in use. 54 people playing. One-on-one requires 2 players, team game requires 10 players.
+
+**a.** Write a system for number of one-on-one and team games.
+
+**b.** Solve and interpret.
+
+**25. FIND THE ERROR** Gloria and Syreeta solving [6x - 4y = 26] and [-3x + 4y = -17]. Is either correct?
+
+![](media/image1.png)
+
+**26. CREATE** Write a system requiring multiplication by 3 for one equation and 4 for the other to solve by elimination. Then solve.
+
+**27. WRITE** Why is substitution sometimes more helpful than elimination?
+
+## Review Notes
+
+* Problem 25 references an image showing Gloria's and Syreeta's algebraic work on the system.
+* The worksheet contains 27 problems across six examples and mixed exercises.
+* ![](media/image1.png)

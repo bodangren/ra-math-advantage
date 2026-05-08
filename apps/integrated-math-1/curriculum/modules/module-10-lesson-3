@@ -1,0 +1,271 @@
+# Lesson 10-3 — Line Segments
+
+Source: (Module 10, Lesson 10-3, Int1_1003_practice.docx)
+
+## Today's Goals
+
+* Find the length of a segment by reading coordinates from a number line.
+* Apply the Segment Addition Postulate to find missing segment lengths.
+* Set up and solve linear equations involving segment measures.
+* Use segment addition to model and solve real-world distance problems.
+* Find segment measures when coordinates involve variables or midpoints.
+
+## Vocabulary
+
+* **Line Segment** — A part of a line consisting of two endpoints and all points between them.
+* **Endpoint** — A point at either end of a segment.
+* **Measure of a Segment** — The distance between the endpoints of a segment.
+* **Segment Addition Postulate** — If point B is between points A and C, then AB + BC = AC.
+* **Between** — A point is between two other points if it lies on the segment connecting them.
+* **Collinear** — Points that lie on the same line.
+* **Midpoint** — A point that divides a segment into two congruent segments.
+* **Congruent Segments** — Segments that have the same measure.
+
+## Explore: How Can You Find a Distance Without Measuring Directly?
+
+Students consider situations where the total distance between two points is known, but only part of the distance is directly measurable. They explore how subtraction or algebraic reasoning can reveal an unknown portion of a path.
+
+Inquiry Question:
+If you know the total length of a path and the length of one section, how can you determine the length of the remaining section?
+
+## Learn: Measuring and Applying Line Segments
+
+Line segments are measured by finding the distance between their endpoints. On a number line, this is done by subtracting the lesser coordinate from the greater coordinate. The Segment Addition Postulate connects the parts of a segment to the whole, allowing us to solve for unknown lengths using algebra.
+
+### Key Concept: Measuring a Segment on a Number Line
+
+* The length of a segment with endpoints at coordinates a and b is found by computing the absolute difference of the coordinates.
+* If the coordinates are positive and ordered, subtract the left coordinate from the right coordinate.
+
+[
+\overline{AB} = |b - a|
+]
+
+### Key Concept: Segment Addition Postulate
+
+* If point B lies between points A and C on a segment, then the sum of the two parts equals the whole segment.
+
+[
+AB + BC = AC
+]
+
+* This relationship can be used to write an equation when some measures are known and others are expressed as variables.
+
+## Examples 1 and 2 — Find Segment Lengths from Number Lines
+
+Read the coordinates of the endpoints from each number line diagram and subtract to find the segment length.
+
+### Step 1: Identify the Coordinates
+
+Locate the two endpoints on the number line and record their coordinates.
+
+For a segment with endpoints at 3 and 10:
+[
+\overline{AB} = 10 - 3
+]
+
+### Step 2: Compute the Length
+
+Subtract the lesser coordinate from the greater coordinate to find the measure.
+
+[
+10 - 3 = 7
+]
+
+### Step 3: Apply to Additional Diagrams
+
+Repeat the process for each number line. When one or both coordinates are negative, use the same subtraction method. The result is always a positive measure.
+
+For a segment from [-2] to [5]:
+[
+5 - (-2) = 7
+]
+
+## Example 3 — Apply the Segment Addition Postulate Algebraically
+
+Given that a point Y is between points X and Z, use the Segment Addition Postulate to write an equation and solve for an unknown variable. Then find the length of the requested segment.
+
+### Step 1: Write the Equation
+
+Express the relationship XY + YZ = XZ using the given algebraic expressions.
+
+If XY = 11, YZ = 4c, and XZ = 83:
+[
+11 + 4c = 83
+]
+
+If XY = 6b, YZ = 8b, and XZ = 175:
+[
+6b + 8b = 175
+]
+
+If XY = 7a, YZ = 5a, and XZ = 6a + 24:
+[
+7a + 5a = 6a + 24
+]
+
+### Step 2: Solve for the Variable
+
+Combine like terms and isolate the variable.
+
+For [6b + 8b = 175]:
+[
+14b = 175
+]
+[
+b = 12.5
+]
+
+For [7a + 5a = 6a + 24]:
+[
+12a = 6a + 24
+]
+[
+6a = 24
+]
+[
+a = 4
+]
+
+### Step 3: Find the Requested Segment Length
+
+Substitute the value of the variable back into the expression for the segment asked for in the problem.
+
+If YZ = 4c and c = 18:
+[
+YZ = 4 \times 18 = 72
+]
+
+If YZ = 8b and b = 12.5:
+[
+YZ = 8 \times 12.5 = 100
+]
+
+## Example 4 — Solve Real-World Problems Using Segment Addition
+
+Apply the Segment Addition Postulate to practical situations involving distances, lengths, and locations along a straight path.
+
+### Step 1: Identify the Total and the Known Part
+
+Determine which distance represents the total segment and which represents a part.
+
+**Railroad Track:** A straight track between two cities measures 160.5 miles total. A mail stop is 28.5 miles from the first city. The remaining distance is:
+[
+160.5 - 28.5 = 132
+]
+
+**Carpentry:** A board 78 inches long is cut so one piece is five times the other. Let the shorter piece be x. The total length gives:
+[
+x + 5x = 78
+]
+[
+6x = 78
+]
+[
+x = 13
+]
+
+The two pieces are 13 inches and 65 inches.
+
+### Step 2: Use Collinear Points to Find a Distance
+
+When three locations are collinear, the total distance equals the sum of the two parts.
+
+**Walking:** A home is 2300 yards from school and 1500 yards from a pharmacy, with all three locations collinear. The pharmacy lies between the home and the school. The distance from pharmacy to school is:
+[
+2300 - 1500 = 800
+]
+
+### Step 3: Set Up Multi-Step Equations
+
+When relationships are described with comparisons, define a variable and write an equation for the total.
+
+**Coffee Shop:** Let the distance from the coffee shop to school be x. The distance from home to the coffee shop is 3 miles more than twice that distance, so it is 2x + 3. The total distance from home to school is 5 times the coffee-shop-to-school distance, so:
+[
+(2x + 3) + x = 5x
+]
+[
+3x + 3 = 5x
+]
+[
+3 = 2x
+]
+[
+x = 1.5
+]
+
+The distance from home to the coffee shop is:
+[
+2(1.5) + 3 = 6
+]
+
+## Example 5 — Find Segment Measures with Variables and Midpoints
+
+Find the measure of segments when number line coordinates involve variables, fractions, or midpoint relationships.
+
+### Step 1: Read Coordinates Involving Variables
+
+Identify the coordinates of the endpoints from the diagram. Some coordinates may be given as algebraic expressions.
+
+For a segment from [2x] to [8] with midpoint-related information, use the relationship between the parts.
+
+### Step 2: Use the Midpoint Relationship
+
+If a point is the midpoint, the two resulting segments are congruent. Set their expressions equal and solve.
+
+If the segments to the left and right of a midpoint measure [3y + 2] and [5y - 4]:
+[
+3y + 2 = 5y - 4
+]
+[
+6 = 2y
+]
+[
+y = 3
+]
+
+### Step 3: Find the Total Segment Length
+
+Substitute back to find each part, then add to find the whole segment.
+
+[
+3(3) + 2 = 11
+]
+[
+5(3) - 4 = 11
+]
+[
+\text{Total} = 11 + 11 = 22
+]
+
+### Step 4: Solve with Fractional Coordinates
+
+When coordinates are fractions, subtract them carefully using common denominators.
+
+For endpoints at [
+\frac{3}{4}
+] and [
+\frac{5}{2}
+]:
+[
+\frac{5}{2} - \frac{3}{4} = \frac{10}{4} - \frac{3}{4} = \frac{7}{4}
+]
+
+## Mixed Exercises
+
+The mixed exercises provide practice with all skills from the lesson: reading segment lengths from number lines, applying the Segment Addition Postulate with numerical values, setting up and solving algebraic equations for segment measures, working with congruent segments, and solving real-world distance problems. Problems include:
+
+* Finding a missing segment length when the total and one part are known numerically.
+* Finding the value of a variable when a segment is expressed algebraically.
+* Using congruent segments to write an equation and solve for a variable.
+* Working with midpoints to determine segment measures.
+* Solving real-world problems involving distances along straight paths, including field trips, hiking trails, race routes, and everyday locations.
+* Using precision and reasoning to write true statements about betweenness and segment relationships.
+* Analyzing whether statements about betweenness are sometimes, always, or never true.
+* Writing and solving equations with quadratic expressions for segment lengths.
+* Solving systems of equations involving two variables in a segment addition context.
+* Explaining the process for finding segment lengths and creating original segment diagrams.
+
+## Review Notes
+
+* Images referenced in the worksheet (number line diagrams for Examples 1, 2, and 5; walking route diagram; race route diagram; field trip bus diagram; distance line segment diagram; cafe line diagram) could not be fully described without visual reference. Teachers should consult the original worksheet for exact coordinate values and diagrams.

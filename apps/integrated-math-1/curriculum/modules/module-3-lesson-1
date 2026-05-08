@@ -1,0 +1,165 @@
+# Lesson 3-1 — Representing Relations
+
+Source: (Module 3, Lesson 3-1, Int1_0301_practice.docx)
+
+## Today's Goals
+
+* Express a relation as a table, a graph, a mapping, and a set of ordered pairs.
+* Identify the domain and range of a relation.
+* Distinguish independent and dependent variables in real-world situations.
+* Interpret the meaning of axes, scale, and origin on a graph of data.
+
+## Vocabulary
+
+* **Relation** — a set of ordered pairs.
+* **Domain** — the set of all first coordinates (x-values) in a relation.
+* **Range** — the set of all second coordinates (y-values) in a relation.
+* **Independent variable** — the input variable whose value is chosen or controlled.
+* **Dependent variable** — the output variable whose value depends on the input.
+* **Mapping** — a diagram that shows how each element of the domain is paired with elements of the range.
+* **Ordered pair** — a pair of numbers [ (x, y) ] used to locate a point on a coordinate plane.
+
+## Learn: Representing Relations
+
+A relation can be represented in multiple ways: as a set of ordered pairs, a table of values, a graph on the coordinate plane, or a mapping diagram. Each representation shows the same pairing between two quantities.
+
+### Key Concept: Representations of a Relation
+
+* **Ordered pairs:** a list such as [ \{ (-1, -1), (1, 1), (2, 1), (3, 2) \} ] 
+* **Table:** columns for the domain and range values.
+* **Graph:** points plotted on the coordinate plane.
+* **Mapping:** two ovals with arrows showing which domain values pair with which range values.
+
+### Key Concept: Domain and Range
+
+* **Domain:** the set of all x-values. For [ \{ (-1, -1), (1, 1), (2, 1), (3, 2) \} ], the domain is [ \{ -1, 1, 2, 3 \} ].
+* **Range:** the set of all y-values. For the same relation, the range is [ \{ -1, 1, 2 \} ].
+
+## Learn: Independent and Dependent Variables
+
+In a real-world situation, the quantity that is controlled or changed is the independent variable (usually on the horizontal axis). The quantity that responds or is measured is the dependent variable (usually on the vertical axis).
+
+### Key Concept: Identifying Variables
+
+* The independent variable is the input; the dependent variable is the output.
+* On a graph, the horizontal axis typically shows the independent variable and the vertical axis shows the dependent variable.
+
+## Example 1 — Multiple Representations of a Relation
+
+Given a set of ordered pairs, express the relation as a table, a graph, and a mapping. Then state the domain and range.
+
+### Step 1: Create a Table
+
+List each ordered pair in a two-column table with [ x ] and [ y ] headers.
+
+### Step 2: Graph the Relation
+
+Plot each ordered pair as a point on the coordinate plane.
+
+### Step 3: Draw a Mapping
+
+Place the domain values in one oval and the range values in another. Draw arrows from each domain value to its corresponding range value(s).
+
+### Step 4: State Domain and Range
+
+List the set of all x-values as the domain and all y-values as the range.
+
+[
+\text{Example: } \{ (-1, -1), (1, 1), (2, 1), (3, 2) \}
+]
+
+[
+\text{Domain: } \{ -1, 1, 2, 3 \}, \quad \text{Range: } \{ -1, 1, 2 \}
+]
+
+## Example 2 — Independent and Dependent Variables from Graphs
+
+Analyze a graph that represents a real-world situation.
+
+### Step 1: Identify the Variables
+
+Determine which quantity is the input (independent) and which is the output (dependent) based on the context.
+
+### Step 2: Describe the Graph
+
+Explain what happens to the dependent variable as the independent variable increases. Describe any trends, increases, decreases, or constant sections.
+
+[
+\text{Example contexts: hours worked vs. paycheck amount; price vs. demand; flight time vs. altitude}
+]
+
+## Example 3 — Graph Data from a Table
+
+Given a table of real-world data, plot the points on a coordinate plane.
+
+### Step 1: Identify the Variables
+
+Determine which column represents the independent variable and which represents the dependent variable.
+
+### Step 2: Set Up the Axes
+
+Choose an appropriate scale for each axis based on the range of values in the table.
+
+### Step 3: Plot the Points
+
+Plot each row of the table as an ordered pair and label the graph with a title.
+
+## Example 4 — Graph Data from Ordered Pairs
+
+Given a set of ordered pairs representing measured data, plot the points on a coordinate plane.
+
+### Step 1: Identify the Variables
+
+Determine what each coordinate represents in the context.
+
+### Step 2: Choose a Scale
+
+Select scales for the axes that fit all data points.
+
+### Step 3: Plot and Label
+
+Plot each ordered pair and label the axes with units.
+
+[
+\text{Example: } \{ (5.5, 4.5), (3, 0.5), (3, 2), (8, 4.5), (2, 0.5) \}
+]
+
+## Example 5 — Interpret Axes, Scale, and Origin
+
+Given a table of real-world data, explain what the axes, scale, and origin represent in the corresponding graph.
+
+### Step 1: Identify What Each Axis Represents
+
+State the quantity and unit shown on the horizontal axis and the vertical axis.
+
+### Step 2: Explain the Scale
+
+Describe what each unit or grid line on each axis represents.
+
+### Step 3: Interpret the Origin
+
+Explain what the point [ (0, 0) ] means in the context of the situation.
+
+## Mixed Exercises
+
+The mixed exercises section provides practice across all skills from the lesson:
+
+* Converting relations shown as tables, graphs, or mappings into sets of ordered pairs.
+* Interpreting real-world graphs and expressing them as ordered pairs.
+* Identifying reasonable domains for real-world functions.
+* Analyzing mappings to find domain, range, and ordered pairs.
+* Selecting the correct graph to represent a proportional relationship.
+* Drawing reasonable graphs for real-world motion problems.
+* Creating relations from given domains and ranges and expressing them in all four forms.
+* Analyzing statements about domain and range and providing counterexamples.
+* Comparing and contrasting independent and dependent variables.
+
+## Review Notes
+
+* Problems 4–6, 15, and 18–19 reference graphs and diagrams that could not be fully described from the extracted source. Human review is needed to verify image content.
+* Problem 7 references a data table image (age vs. maximum heart rate) that was not extractable.
+* Problems 9–10 reference table images for the elevator and supermarket contexts.
+* Problems 11–14 reference table, graph, and mapping images.
+* Problems 17 and 20 reference mapping diagram images.
+* Problems 21–24 reference a distance-time graph for Tim and Lauren. Human review is needed to describe the graph features.
+* Problem 26 references a graph image for students to interpret and label.

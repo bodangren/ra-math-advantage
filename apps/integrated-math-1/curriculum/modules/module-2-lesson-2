@@ -1,0 +1,291 @@
+# Lesson 2-2 — Solving One-Step Equations
+
+Source: (Module 2, Lesson 2-2, Int1_0202_practice.docx)
+
+## Today's Goals
+
+* Solve one-step equations involving addition, subtraction, multiplication, and division using the Properties of Equality.
+* Write and solve one-step equations to model real-world situations.
+* Apply the correct Property of Equality to isolate the variable and verify solutions.
+
+## Vocabulary
+
+* **equation** — A mathematical sentence stating that two expressions are equal.
+* **solution** — A value for a variable that makes an equation true.
+* **inverse operations** — Operations that undo each other, such as addition and subtraction or multiplication and division.
+* **Addition Property of Equality** — If you add the same number to both sides of an equation, the two sides remain equal.
+* **Subtraction Property of Equality** — If you subtract the same number from both sides of an equation, the two sides remain equal.
+* **Multiplication Property of Equality** — If you multiply both sides of an equation by the same number, the two sides remain equal.
+* **Division Property of Equality** — If you divide both sides of an equation by the same non-zero number, the two sides remain equal.
+
+## Learn: Solving One-Step Equations
+
+A one-step equation contains a single operation. To solve it, apply the inverse operation to both sides using the appropriate Property of Equality, isolating the variable on one side.
+
+### Key Concept: Properties of Equality
+
+* **Addition equations** [ x + a = b ]: Use the Subtraction Property of Equality. Subtract [ a ] from both sides.
+* **Subtraction equations** [ x - a = b ]: Use the Addition Property of Equality. Add [ a ] to both sides.
+* **Multiplication equations** [ ax = b ]: Use the Division Property of Equality. Divide both sides by [ a ].
+* **Division equations** [ \frac{x}{a} = b ]: Use the Multiplication Property of Equality. Multiply both sides by [ a ].
+
+## Example 1 — Solve Addition and Subtraction Equations with Integers
+
+Solve one-step equations where the variable is added to or subtracted from an integer, including cases with negative numbers and subtracting a negative.
+
+### Step 1: Identify the Operation
+
+Determine whether the variable is being added to or subtracted from a number.
+
+Representative equations:
+[
+v - 9 = 14
+]
+[
+44 = t - 72
+]
+[
+18 + z = 40
+]
+[
+-61 = d + (-18)
+]
+
+### Step 2: Apply the Inverse Operation
+
+Use the Addition or Subtraction Property of Equality to isolate the variable.
+
+For [ v - 9 = 14 ], add 9 to both sides:
+[
+v - 9 + 9 = 14 + 9
+]
+[
+v = 23
+]
+
+For equations involving subtracting a negative, simplify first:
+[
+18 - (-f) = 91 \quad \rightarrow \quad 18 + f = 91
+]
+[
+f = 91 - 18 = 73
+]
+
+### Step 3: Solve Equations with Larger Integers
+
+The same process applies regardless of the size of the numbers.
+
+[
+v + 914 = -23
+]
+[
+447 + x = -261
+]
+
+Subtract the constant from both sides to isolate the variable.
+
+## Example 2 — Solve Multiplication and Division Equations with Integers
+
+Solve one-step equations where the variable is multiplied or divided by an integer, including negative coefficients and divisors.
+
+### Step 1: Identify the Operation
+
+Determine whether the variable is multiplied by a number or divided by a number.
+
+Representative equations:
+[
+-4a = 48
+]
+[
+12t = -132
+]
+[
+\frac{c}{4} = 16
+]
+[
+\frac{a}{16} = 9
+]
+
+### Step 2: Apply the Inverse Operation
+
+For multiplication equations, divide both sides by the coefficient.
+
+[
+-4a = 48 \quad \rightarrow \quad a = \frac{48}{-4} = -12
+]
+
+For division equations, multiply both sides by the divisor.
+
+[
+\frac{c}{4} = 16 \quad \rightarrow \quad c = 16 \times 4 = 64
+]
+
+### Step 3: Handle Negative Coefficients and Divisors
+
+When the coefficient or constant is negative, apply the same inverse operation and track signs carefully.
+
+[
+-7t = 49 \quad \rightarrow \quad t = \frac{49}{-7} = -7
+]
+[
+-84 = \frac{d}{3} \quad \rightarrow \quad d = -84 \times 3 = -252
+]
+[
+-6d = -42 \quad \rightarrow \quad d = \frac{-42}{-6} = 7
+]
+
+## Example 3 — Write and Solve Real-World Equations
+
+Translate contextual situations into one-step equations, then solve to find the unknown quantity.
+
+### Step 1: Define the Variable
+
+Identify what quantity is unknown and assign a variable to represent it.
+
+### Step 2: Write the Equation
+
+Use keywords and relationships from the problem to build the equation.
+
+Representative problems:
+
+**Supreme Court:** Chief Justice Rehnquist served 33 years until his death in 2005. Find the year he was confirmed.
+[
+y + 33 = 2005
+]
+
+**Salary:** The Governor of Tennessee earned 94000 dollars less than New York's salary of 179000 dollars.
+[
+t = 179{,}000 - 94{,}000
+]
+
+**Weather:** Temperature dropped 21 degrees to [-9°C]. Find the starting temperature.
+[
+t - 21 = -9
+]
+
+**Farming:** Rolling Hills (126 acres) is [ \frac{1}{4} ] the size of Briarwood Farm.
+[
+\frac{1}{4}b = 126
+]
+
+### Step 3: Solve and Interpret
+
+Apply the appropriate Property of Equality and state the answer in context.
+
+For the farming problem:
+[
+b = 126 \times 4 = 504 \text{ acres}
+]
+
+## Example 4 — Solve Equations with Fractions
+
+Solve one-step equations where coefficients or constants are fractions, including negative fractions and fractional coefficients.
+
+### Step 1: Addition and Subtraction Equations with Fractions
+
+Use the Addition or Subtraction Property of Equality. Find a common denominator when needed.
+
+[
+\frac{3}{4} = w + \frac{2}{5}
+]
+
+Subtract [ \frac{2}{5} ] from both sides using a common denominator of 20:
+[
+w = \frac{3}{4} - \frac{2}{5} = \frac{15}{20} - \frac{8}{20} = \frac{7}{20}
+]
+
+Other representative equations:
+[
+-\frac{1}{2} + a = \frac{5}{8}
+]
+[
+-\frac{5}{7} = y - 2
+]
+
+### Step 2: Multiplication Equations with Fractions
+
+When the variable is multiplied by a fraction, multiply both sides by the reciprocal.
+
+[
+\frac{1}{3}v = -5
+]
+[
+v = -5 \times 3 = -15
+]
+
+[
+-\frac{1}{7}c = 21
+]
+[
+c = 21 \times (-7) = -147
+]
+
+[
+-\frac{2}{3}v = -22
+]
+[
+v = -22 \times \left(-\frac{3}{2}\right) = 33
+]
+
+### Step 3: Division Equations with Fractions
+
+When the variable is divided by a number, multiply both sides by that number. When a negative fraction equals a fraction, multiply by the denominator.
+
+[
+-\frac{k}{5} = \frac{7}{5}
+]
+[
+k = \frac{7}{5} \times (-5) = -7
+]
+
+[
+-\frac{t}{7} = \frac{1}{15}
+]
+[
+t = \frac{1}{15} \times (-7) = -\frac{7}{15}
+]
+
+[
+\frac{n}{8} = -\frac{1}{4}
+]
+[
+n = -\frac{1}{4} \times 8 = -2
+]
+
+## Example 5 — Multi-Part Application with Percentages
+
+Solve a multi-part real-world problem that requires defining a variable, writing an expression, writing an equation, and solving it.
+
+### Step 1: Assign a Variable and Write an Expression
+
+**Soccer league:** 13% of players dropped out, and 174 players finished. Let [ p ] be the number of players who signed up. The number who finished is the total minus 13% of the total:
+[
+p - 0.13p \quad \text{or} \quad 0.87p
+]
+
+### Step 2: Write and Solve the Equation
+
+Set the expression equal to the known finished amount:
+[
+0.87p = 174
+]
+
+Divide both sides by 0.87:
+[
+p = \frac{174}{0.87} = 200
+]
+
+## Mixed Exercises
+
+The mixed exercises provide comprehensive practice with all one-step equation skills, including:
+
+* Writing equations from verbal sentences and then solving them, such as "Six times a number is 132" ([ 6x = 132 ]) and "Two thirds equals negative eight times a number" ([ \frac{2}{3} = -8n ]).
+* Solving equations with fractions and checking solutions, including equations like [ \frac{2}{3}n = 14 ], [ 4\frac{1}{5} = 3p ], and [ -\frac{2}{5} = -\frac{z}{45} ].
+* Real-world applications involving travel distances, ticket prices, and food costs, requiring students to define variables, write equations, and solve multi-part problems.
+* Identifying and naming the Property of Equality used to solve an equation, such as [ \frac{x}{9} = 24 ], [ m - 183 = -79 ], and [ -\frac{4}{5}p = 32 ].
+* Deeper reasoning tasks including "Which One Doesn't Belong," persevering through related-equation problems, analyzing whether statements are sometimes/always/never true, and comparing solution methods for multiplication versus addition equations.
+
+## Review Notes
+
+* Problem 89 references an image (`media/image1.png`) that was not extracted. The context suggests it is a standard equation-solving problem, but the exact expression is unclear without the image.
+* Problem 99 references an image (`media/image2.png`) showing four equations for a "Which One Doesn't Belong?" task. The image was not extracted; teachers should consult the original worksheet for the exact equations.

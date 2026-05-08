@@ -1,0 +1,172 @@
+# Lesson 4-2 — Rate of Change and Slope
+
+Source: (Module 4, Lesson 4-2, Int1_0402_practice.docx)
+
+## Today's Goals
+
+* Calculate the rate of change from tables, graphs, and real-world data
+* Compute the slope of a line passing through two given points, including horizontal and vertical lines
+* Determine whether a function is linear by checking for a constant rate of change
+* Solve for an unknown coordinate given two points and a target slope
+* Interpret slope and rate of change in real-world contexts
+
+## Vocabulary
+
+* **Rate of change** — The ratio of the change in the dependent variable to the change in the independent variable between two points
+* **Slope** — A measure of the steepness of a line, defined as the ratio of vertical change to horizontal change between any two points on the line
+* **Linear function** — A function whose graph is a straight line and has a constant rate of change
+* **Undefined slope** — The slope of a vertical line, where the horizontal change is zero
+* **Grade** — The slope of a road or hill, often expressed as a percentage
+
+## Learn: Rate of Change and Slope
+
+The rate of change describes how one quantity changes with respect to another. For a linear function, this rate is constant and equal to the slope of its graph.
+
+### Key Concept: Rate of Change from Two Points
+
+* Given two points [ (x_1, y_1) ] and [ (x_2, y_2) ], the rate of change is:
+[
+  \text{rate of change} = \frac{y_2 - y_1}{x_2 - x_1}
+]
+* For a table of values, select any two rows and compute the ratio of the change in output to the change in input
+
+### Key Concept: Slope of a Line
+
+* The slope [ m ] of a line through [ (x_1, y_1) ] and [ (x_2, y_2) ] is:
+[
+  m = \frac{y_2 - y_1}{x_2 - x_1}
+]
+* Horizontal lines have slope [ m = 0 ] 
+* Vertical lines have undefined slope because [ x_2 - x_1 = 0 ] 
+
+### Key Concept: Linear Functions
+
+* A function is linear if it has a constant rate of change across all pairs of points
+* If the rate of change varies, the function is not linear
+
+## Example 1 — Find the Rate of Change from a Table
+
+Given a table of input-output values for a function, compute the rate of change by selecting two points.
+
+### Step 1: Identify Two Points
+
+Extract coordinate pairs from the table, such as [ (x_1, y_1) ] and [ (x_2, y_2) ].
+
+### Step 2: Apply the Rate of Change Formula
+
+[
+\text{rate of change} = \frac{y_2 - y_1}{x_2 - x_1}
+]
+
+Repeat for different pairs to verify consistency. Some problems present real-world contexts (e.g., population density over time, band enrollment over years) where students interpret the average annual rate of change.
+
+## Example 2 — Find the Rate of Change from a Graph
+
+Given a graph showing how a quantity changes over time or another variable, calculate the rate of change between two specified points and interpret its meaning.
+
+### Step 1: Read Coordinates from the Graph
+
+Identify the values on the horizontal and vertical axes at the two given points.
+
+### Step 2: Compute the Rate of Change
+
+[
+\text{rate of change} = \frac{\text{change in vertical quantity}}{\text{change in horizontal quantity}}
+]
+
+### Step 3: Interpret in Context
+
+Describe whether the quantity is increasing or decreasing and at what rate. Contexts include temperature over hours of a day and annual coal exports over years.
+
+## Example 3 and 4 — Determine Whether a Function Is Linear
+
+Given a table or equation, decide whether the function is linear by checking for a constant rate of change.
+
+### Step 1: Compute Rates of Change Across Multiple Pairs
+
+For a table, calculate [ \frac{\Delta y}{\Delta x} ] between successive pairs of points.
+
+### Step 2: Compare and Conclude
+
+* If all rates are equal, the function is linear and that common value is the rate of change
+* If rates differ, the function is not linear
+
+Representative forms include sets of [ (x, y) ] pairs and equations relating [ x ] and [ y ].
+
+## Examples 5 through 8 — Find the Slope Through Two Points
+
+Given pairs of coordinate points, find the slope of the line passing through each pair.
+
+### Step 1: Label Coordinates
+
+Identify [ (x_1, y_1) ] and [ (x_2, y_2) ] from the given pair.
+
+### Step 2: Apply the Slope Formula
+
+[
+m = \frac{y_2 - y_1}{x_2 - x_1}
+]
+
+This set includes a wide variety of points:
+* Points with positive, negative, and zero slopes
+* Horizontal lines, e.g., [ (5, -4) ] and [ (9, -4) ], giving [ m = 0 ] 
+* Vertical lines, e.g., [ (6, -10) ] and [ (6, 14) ], giving undefined slope
+* Fractional and integer results
+
+Simplify fractions to lowest terms where applicable.
+
+## Example 9 — Find an Unknown Coordinate Given Slope
+
+Given two points where one coordinate is an unknown [ r ] and a target slope [ m ], solve for [ r ].
+
+### Step 1: Set Up the Slope Equation
+
+Substitute known values and [ r ] into the slope formula:
+[
+m = \frac{y_2 - y_1}{x_2 - x_1}
+]
+
+### Step 2: Solve for r
+
+Rearrange and solve the resulting linear equation. Examples include integer slopes such as [ m = -4 ] and [ m = 8 ], and fractional slopes such as [ m = \frac{3}{4} ] and [ m = -\frac{1}{2} ].
+
+## Example 10 — Slope in Real-World Contexts
+
+Apply the concept of slope to practical situations involving grade, elevation, and positioning.
+
+### Step 1: Identify Rise and Run
+
+Extract the vertical change (rise) and horizontal change (run) from the problem description.
+
+### Step 2: Compute the Slope
+
+[
+\text{slope} = \frac{\text{rise}}{\text{run}}
+]
+
+Contexts include:
+* Road signs describing a steep downgrade
+* Soil grading around a house foundation (6 inches of height per 10 feet horizontal)
+* Wheelchair ramp regulations under the Americans with Disabilities Act
+* Relative positions of a boat, scuba diver, and fish below the water surface
+
+## Mixed Exercises
+
+The mixed exercises provide comprehensive practice across all skills in the lesson:
+
+* Find the slope of a line from a coordinate plane graph
+* Find the slope through pairs of points, including positive, negative, zero, and undefined slopes
+* Solve for an unknown coordinate to produce a specific slope, including cases with undefined and zero slopes
+* Reason about when a slope is undefined or zero
+* Create a line on a coordinate plane and explain how to determine its slope
+* Analyze a real-world graph to evaluate a claim about the rate of change
+* Describe a function from a table using rate of change
+* Explain the relationship between rate of change and slope
+* Find and explain an error in a slope calculation
+* Solve for a general unknown coordinate in terms of variables given a target slope
+* Analyze why vertical lines have undefined slope
+
+## Review Notes
+
+* Images referenced in the source document (image1 through image17) contain tables, graphs, and diagrams that could not be fully described from the extracted text. Human review is recommended to transcribe tabular data, graph coordinates, and diagram measurements for accurate problem reproduction.
+* Problem 48 (USE A SOURCE) asks students to research the Americans with Disabilities Act (ADA) wheelchair ramp slope regulation. The expected maximum slope of [ \frac{1}{12} ] (approximately 8.33%) may need to be provided if students do not have internet access.

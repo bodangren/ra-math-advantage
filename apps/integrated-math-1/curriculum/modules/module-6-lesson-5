@@ -1,0 +1,132 @@
+# Lesson 6-5 — Graphing Inequalities in Two Variables
+
+Source: (Module 6, Lesson 6-5, Int1_0605_practice.docx)
+
+## Today's Goals
+
+* Graph linear inequalities in two variables written in slope-intercept and standard form
+* Write linear inequalities to model real-world constraints and verify solution points
+* Analyze boundary lines, half-planes, and test points to determine solution regions
+
+## Vocabulary
+
+* **linear inequality in two variables** — An inequality that can be written in the form [ax + by < c], [ax + by > c], [ax + by \le c], or [ax + by \ge c] where [ a ], [ b ], and [ c ] are constants.
+* **boundary line** — The line [ ax + by = c ] that separates the coordinate plane into two half-planes.
+* **half-plane** — The region on one side of a boundary line that contains all points satisfying the inequality.
+* **test point** — A point, often [(0, 0)] when it is not on the boundary line, used to determine which half-plane contains the solutions.
+
+## Learn: Graphing Linear Inequalities
+
+To graph a linear inequality in two variables, first graph the boundary line from the corresponding equation. Then use a test point to determine which half-plane represents the solution set.
+
+### Key Concept: Boundary Lines and Shading
+
+* If the inequality symbol is [<] or [>], draw a **dashed** boundary line to show that points on the line are not solutions.
+* If the inequality symbol is [\le] or [\ge], draw a **solid** boundary line to show that points on the line are solutions.
+* Choose a test point not on the boundary line, usually [(0, 0)], and substitute its coordinates into the inequality.
+* If the test point makes the inequality true, shade the half-plane containing that point. If false, shade the opposite half-plane.
+
+## Example 1 — Graph Inequalities in Slope-Intercept Form
+
+Graph linear inequalities that are given in slope-intercept form.
+
+### Step 1: Graph the Boundary Line
+
+Rewrite the inequality as an equation and graph the line. Use a dashed line for [<] or [>] and a solid line for [\le] or [\ge].
+
+[
+y < x - 3 \quad \text{(dashed)}
+]
+
+[
+y \ge 3x - 1 \quad \text{(solid)}
+]
+
+### Step 2: Test a Point
+
+Substitute [(0, 0)] or another convenient point not on the line into the original inequality.
+
+### Step 3: Shade the Appropriate Half-Plane
+
+Shade the region that contains the test point if the inequality is satisfied; otherwise shade the opposite side.
+
+## Example 2 — Graph Inequalities in Standard Form
+
+Graph linear inequalities written in standard form [ax + by \mathbin{\square} c].
+
+### Step 1: Graph the Boundary Line
+
+Graph [ ax + by = c ] by finding the intercepts or solving for [ y ].
+
+[
+5x + y > 10
+]
+
+[
+-24x + 8y \ge -48
+]
+
+### Step 2: Test a Point and Shade
+
+Use [(0, 0)] or another test point to determine which side of the boundary line contains the solutions, then shade that half-plane.
+
+## Example 3 — Write and Graph Inequalities from Context
+
+Translate real-world situations into linear inequalities, graph them, and verify whether given points are solutions.
+
+### Step 1: Define the Variables
+
+Identify what each variable represents in the problem situation.
+
+### Step 2: Write the Inequality
+
+Translate the verbal description into a linear inequality.
+
+For a median yearly income of [48200] growing at [1240] per year, write an inequality for incomes less than the median [ x ] years after 2006:
+
+[
+y < 48200 + 1240x
+]
+
+For fundraising with small donut boxes at [1.25] and cider at [2.50] per gallon, requiring at least [100]:
+
+[
+1.25d + 2.50c \ge 100
+]
+
+### Step 3: Graph and Verify Solutions
+
+Graph the inequality on a coordinate plane. Determine whether given ordered pairs satisfy the inequality by substituting their coordinates.
+
+## Example 4 — Graph Special-Case Inequalities
+
+Graph inequalities that simplify to a single variable, resulting in horizontal or vertical boundary lines.
+
+### Step 1: Simplify the Inequality
+
+Solve for the single variable to identify the boundary.
+
+[
+2y + 6 \ge 0 \implies y \ge -3
+]
+
+[
+\frac{1}{2}x + 1 < 3 \implies x < 4
+]
+
+### Step 2: Graph the Boundary and Shade
+
+Graph the resulting horizontal or vertical line and shade the appropriate half-plane.
+
+[
+\frac{2}{3}x - \frac{10}{3} > -4
+]
+
+## Mixed Exercises
+
+The mixed exercises provide comprehensive practice graphing linear inequalities in various forms, including slope-intercept form, standard form, and special cases involving single variables. Real-world problems ask students to write inequalities from verbal descriptions, graph the solutions, identify feasible combinations, and interpret points in context. Higher-order thinking problems include constructing mathematical arguments about half-planes, analyzing why boundary points cannot be used as test points, creating original inequalities with specified solution conditions, finding and explaining errors in student work, and summarizing the complete graphing procedure.
+
+## Review Notes
+
+* Problem 28 includes an image showing two students' graphing attempts for [ 4y \le \frac{8}{3}x ]. The image could not be described and requires human review to determine whether Reiko or Kristin is correct.
+* Problem 26b references a coordinate plane shown in the original worksheet for graphing the triathlon training inequality.

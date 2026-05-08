@@ -1,0 +1,277 @@
+# Lesson 9-3 — Equations of Linear Functions
+
+Source: (Module 9, Lesson 9-3, Int2_0903_practice.docx)
+
+## Today's Goals
+
+* Write linear equations in standard form, slope-intercept form, and point-slope form.
+* Identify the slope and y-intercept from an equation in slope-intercept form.
+* Interpret the parameters of a linear equation in the context of a real-world situation.
+* Write linear equations to model real-world data.
+
+## Vocabulary
+
+* **Standard Form** — A linear equation written as [Ax + By = C], where A, B, and C are integers and A is non-negative.
+* **Slope-Intercept Form** — A linear equation written as [y = mx + b], where m is the slope and b is the y-intercept.
+* **Point-Slope Form** — A linear equation written as [y - y1 = m(x - x1)], where m is the slope and (x1, y1) is a point on the line.
+* **Slope** — The ratio of the change in y to the change in x between two points on a line; also [m = rise/run].
+* **Y-Intercept** — The point where a line crosses the y-axis; the value of y when [x = 0].
+* **X-Intercept** — The point where a line crosses the x-axis; the value of x when [y = 0].
+
+## Explore: Different Forms, Same Line
+
+A linear function can be represented in multiple equivalent forms. Each form reveals different information about the line and is useful in different contexts.
+
+Inquiry Question:
+If you know a line passes through (2, 5) with slope 3, what information can you write down immediately using point-slope form? What additional steps are needed to write the equation in slope-intercept form?
+
+## Learn: Writing Linear Equations in Different Forms
+
+### Key Concept: Standard Form
+
+In standard form [Ax + By = C]:
+* A, B, and C are integers (preferably positive).
+* A and B are not both zero.
+* If possible, A, B, and C share no common factor greater than 1.
+
+To check if a point (x, y) is on the line, substitute into Ax + By and verify it equals C.
+
+### Key Concept: Slope-Intercept Form
+
+In slope-intercept form [y = mx + b]:
+* [m] is the slope, which tells you the rate of change of y with respect to x.
+* [b] is the y-intercept, which tells you where the line crosses the y-axis.
+
+The slope [m] can be interpreted as "for every 1 unit increase in x, y changes by m units."
+
+### Key Concept: Point-Slope Form
+
+Point-slope form is especially useful when you know:
+* One point on the line and the slope, or
+* Two points on the line (find the slope first, then use either point).
+
+[y - y1 = m(x - x1)]
+
+## Example 1 — Write Equations in Standard Form
+
+Write each equation in standard form. Identify A, B, and C.
+
+**1.** [-7x - 5y = 35]
+
+A = -7, B = -5, C = 35
+
+**2.** [8x + 3y + 6 = 0]
+
+Rewrite as [8x + 3y = -6]
+
+A = 8, B = 3, C = -6
+
+**3.** [10y - 3x + 6 = 11]
+
+Rewrite as [-3x + 10y = 5] or [3x - 10y = -5] (multiply by -1)
+
+**4.** [2/3 y - 3/4 x + 1/6 = 0]
+
+Multiply by 12 to clear fractions: [8y - 9x + 2 = 0]
+
+Rewrite as [-9x + 8y = -2] or [9x - 8y = 2]
+
+**5.** [4/5 y + 1/8 x = 4]
+
+**6.** [-0.08x = 1.24y - 3.12]
+
+## Example 2 — Write Equations in Slope-Intercept Form
+
+Write each equation in slope-intercept form. Identify the slope m and y-intercept b.
+
+### Step 1: Solve for y
+
+**7.** [6x + 3y = 12]
+
+[3y = -6x + 12]
+
+[y = -2x + 4]
+
+m = -2, b = 4
+
+**8.** [14x - 7y = 21]
+
+**9.** [2/3 x + 1/6 y = 2]
+
+Multiply by 6: [4x + y = 12]
+
+[y = -4x + 12]
+
+**10.** [5x + 10y = 20]
+
+**11.** [6x + 9y = 15]
+
+**12.** [1/5 x + 1/2 y = 4]
+
+## Example 3 — Interpret Linear Equations in Context
+
+### Step 1: Identify What Each Variable Represents
+
+**13. CHARITY** The equation [y - 20x = 83] relates shirts collected, where x is hours since noon and y is total shirts.
+
+Write in slope-intercept form: [y = 20x + 83]
+
+Interpret: The slope 20 means 20 shirts are collected per hour. The y-intercept 83 means 83 shirts had been collected at noon.
+
+**14. GROWTH** The body length y of a baby snake is given by [4x - 2y = -3], where x is age in months until age 1.
+
+Write in slope-intercept form: [-2y = -4x - 3] → [y = 2x + 1.5]
+
+Interpret: The snake grows 2 inches per month. At birth (x = 0), the snake is 1.5 inches long.
+
+## Example 4 — Write Equations from Two Points
+
+**15. PLUMBER** Two neighbors hire the same plumber. Camila: 3 hours, $191. Conner: 1 hour, $107.
+
+**a.** Define variables: Let [x] = hours worked, [y] = total cost in dollars.
+
+**b.** Find slope and write equation: [m = (191 - 107)/(3 - 1) = 84/2 = 42]
+
+The plumber charges $42 per hour. Using point (1, 107): [y - 107 = 42(x - 1)]
+
+In slope-intercept form: [y = 42x + 65]
+
+The flat fee is $65 per visit.
+
+**c.** Cost for 5 hours: [y = 42(5) + 65 = 210 + 65 = 275]
+
+**16. HIKING** Tim hikes near Big Bear Lake. 9:00 A.M. to 10:30 A.M.: elevation 7200 ft. 11:15 A.M.: elevation 7425 ft.
+
+**a.** Define: Let [x] = hours since 9:00 A.M., [y] = elevation in feet.
+
+**b.** From 9:00 to 10:30 (1.5 hours), elevation increases 225 ft. Slope: [225/1.5 = 150] ft/hour.
+
+Equation: At 9:00 A.M. (x = 0), elevation is 7200 ft, so [y = 150x + 7200].
+
+**c.** 12:30 P.M. is 3.5 hours after 9:00: [y = 150(3.5) + 7200 = 525 + 7200 = 7725] ft.
+
+## Example 5 — Write Equations in Point-Slope Form Given Slope and Point
+
+Write an equation in point-slope form for the line that satisfies each set of conditions.
+
+**17.** slope of -5, passes through (-3, -8)
+
+[y + 8 = -5(x + 3)]
+
+**18.** slope of 4/5, passes through (10, -3)
+
+[y + 3 = 4/5 (x - 10)]
+
+**19.** slope of -2/3, passes through (6, -8)
+
+**20.** slope of 0, passes through (0, -10)
+
+[y + 10 = 0(x - 0)] → [y = -10]
+
+## Example 6 — Write Equations Given Two Points
+
+Write an equation in point-slope form for a line passing through each pair of points.
+
+### Step 1: Find the Slope
+
+**21.** (2, -3) and (1, 5)
+
+[m = (5 - (-3))/(1 - 2) = 8/(-1) = -8]
+
+Equation using (2, -3): [y + 3 = -8(x - 2)]
+
+**22.** (3, 5) and (-6, -4)
+
+**23.** (-1, -2) and (-3, 1)
+
+**24.** (-2, -4) and (1, 8)
+
+## Example 7 — Real-World Point-Slope Applications
+
+**25. SALES** Light trucks sold: 5.919 million in 2011, 11.055 million in 2017. Write an equation for y trucks sold x years after 2010.
+
+2011 is x = 1, y = 5.919. 2017 is x = 7, y = 11.055.
+
+[m = (11.055 - 5.919)/(7 - 1) = 5.136/6 = 0.856]
+
+Using point (1, 5.919): [y - 5.919 = 0.856(x - 1)]
+
+**26. RESTAURANTS** A pizza franchise had 2483 restaurants in 2012, 2606 in 2017. Write an equation for y restaurants x years after 2010.
+
+## Mixed Exercises
+
+Write linear equations in standard form, slope-intercept form, and point-slope form.
+
+**27.** slope of -2, passes through (6, -7)
+
+**28.** x-intercept: 3, y-intercept: 5
+
+**29.** passes through (4, -1) and (8, 3)
+
+**30.** slope of 0.6, passes through (1, 1)
+
+**31. STATE YOUR ASSUMPTION** Lake surface at 648 ft elevation drops 3 inches per day during a drought. Write a slope-intercept equation for elevation y after x days. Explain your assumptions.
+
+**32. USE A SOURCE** Find your city's population in 2010 and 2015. Write a slope-intercept equation. State your assumptions.
+
+**33. PRECISION** Use the graph to write the equation in standard form passing through two points.
+
+![](media/image1.png)
+
+**34. USE ESTIMATION** Jacalyn opens a savings account with $200 initial balance and deposits about the same amount each month.
+
+![](media/image2.png)
+
+**a.** Write a slope-intercept equation for balance y in months x.
+
+**b.** Estimate balance at the beginning of December.
+
+**35. CONSTRUCT ARGUMENTS** Line passes through (3, 1) and (0, 7).
+
+**a.** Find a third point on the line. Justify.
+
+**b.** Explain why both [y - 1 = -2(x - 3)] and [y - 7 = -2(x - 0)] represent the same line.
+
+**36. USE A MODEL** Joe and Alisha reading novels.
+
+**Joe's data:**
+
+![](media/image4.png)
+
+**Alisha's data:** (graph shown in original)
+
+**a.** Describe the function modeling pages remaining for each student.
+
+**b.** What is the y-intercept for each function? Interpret in context.
+
+**c.** Write a slope-intercept equation for each student. Then write in standard form.
+
+**d.** After how many days will each finish reading? What feature represents this?
+
+**e.** Who is the faster reader and by how many pages per day?
+
+**37. CONSTRUCT ARGUMENTS** Is an equation in the form [x = a], where a is constant, sometimes, always, or never a function?
+
+**38. PERSEVERE** Write [y = ax + b] in point-slope form.
+
+**39. CREATE** Write an equation in point-slope form of a line with x-intercept of 3.
+
+**40. WRITE** When does hours worked and earnings represent a linear relationship? When nonlinear? Explain.
+
+**41. FIND THE ERROR** Dan claims [y = x + 1] and [y = 3x + 2] are linear, so [y = (x + 1)(3x + 2)] must also be linear. Is he correct?
+
+**42. PERSEVERE** Write [y = ax + b] in point-slope form.
+
+**43. WRITE** Why is it important to represent linear equations in more than one form?
+
+## Review Notes
+
+* Problem 33 references a graph image.
+* Problem 34 references a table image with Jacalyn's monthly balances.
+* Problem 35 references a graph image for the line through two points.
+* Problem 36 references a graph image showing Alisha's data and a table showing Joe's data.
+* The worksheet contains 43 problems across seven examples and mixed exercises.
+* ![](media/image1.png)
+* ![](media/image2.png)
+* ![](media/image3.png)
+* ![](media/image4.png)

@@ -1,0 +1,93 @@
+# Lesson 5-3 — Arcs and Chords
+
+Source: (Module 5, Lesson 5-3, Int2_0503_practice.docx)
+
+## Today's Goals
+
+* Use the relationships among arcs, chords, and central angles.
+* Apply Theorems 10.5 and 10.6 about chords equidistant from the center.
+* Find the length of chords using perpendicular bisectors and distance from the center.
+* Write two-column proofs involving chords and arcs.
+
+## Vocabulary
+
+* **Chord** — A segment whose endpoints are on a circle.
+* **Minor Arc** — An arc smaller than a semicircle.
+* **Major Arc** — An arc larger than a semicircle.
+* **Semicircle** — An arc that is exactly half of a circle.
+* **Perpendicular Bisector** — A line or segment that is perpendicular to a chord and bisects it.
+
+## Explore: What Determines a Chord's Length?
+
+When a chord is drawn in a circle, its length is related to its distance from the center. Students investigate how the perpendicular from the center to a chord bisects the chord, and how chords that are equidistant from the center are congruent.
+
+Inquiry Question:
+If two chords in the same circle have the same length, what can you say about their distances from the center?
+
+## Learn: Arcs and Chords
+
+### Key Concept: Chord–Arc Relationships
+
+Within the same circle or congruent circles:
+
+* Congruent arcs have congruent chords.
+* Congruent chords have congruent arcs.
+
+### Key Concept: Perpendicular Bisector Theorem
+
+The perpendicular from the center of a circle to a chord bisects the chord. Conversely, the perpendicular bisector of a chord passes through the center.
+
+### Key Concept: Distance from Center to Chord
+
+If two chords are equidistant from the center, they are congruent. This is the converse of the perpendicular bisector relationship.
+
+## Example 1 — Find Missing Values Using Chord Relationships
+
+Given congruent circles or chord relationships, find the value of [x].
+
+### Step 1: Apply Theorems About Chords and Arcs
+
+If [PQ = 13] and [RS = 24] in ⊙*P*, find [RT], [PT], and [TQ]. Use the fact that perpendicular radii bisect chords.
+
+If in ⊙*A*, [EB = 12], [CD = 8], and [mCD = 90°], find [mDE], [FD], and [AF]. Round to the nearest hundredth if necessary.
+
+### Step 2: Solve for Unknowns
+
+If [TS = 21] and [UV = 3x] in ⊙*R*, find [x]: [3x = 21], so [x = 7].
+
+If [CD ≅ CB] in ⊙*Q*, with [GQ = x + 5] and [EQ = 3x - 6], find [x]. Since [CD ≅ CB], the distances from the center to these chords are equal, so [GQ = EQ]. Solve: [x + 5 = 3x - 6], giving [2x = 11], so [x = 5.5].
+
+## Example 2 — Use the Perpendicular Bisector to Find Chord Length
+
+Use the distance from the center to a chord to find the chord's length.
+
+### Step 1: Apply the Distance–Chord Relationship
+
+A chord located 0.7 cm from the center of a circle with radius 2.5 cm: the chord's half-length is found using the Pythagorean theorem: [sqrt(2.5^2 - 0.7^2) = sqrt(6.25 - 0.49) = sqrt(5.76) = 2.4 cm]. The full chord length is [2 × 2.4 = 4.8 cm] to the nearest tenth.
+
+## Mixed Exercises
+
+Practice with all skills from the lesson, including:
+
+* Finding the value of [x] in circle diagrams with chord relationships (Exercises 1–9).
+* Finding chord lengths, arc measures, and segment lengths using circle geometry (Exercises 10–18).
+* Using constructions with chords and perpendicular bisectors to reconstruct a broken plate.
+* Analyzing a circular garden with arcs and chords to find equal straight paths.
+* Writing two-column proofs of Theorem 10.6 (converses about chords equidistant from center).
+* Explaining how to determine whether a segment is a diameter or a shorter chord.
+* Analyzing quilt patterns with inscribed chords and explaining why the result may not be a rectangle.
+* Constructing a circle, drawing a chord, and finding the radius from the chord length and its distance from the center.
+* Determining whether [HX = GX] is sometimes, always, or never true when a diameter and chord intersect.
+
+## Review Notes
+
+* ![](media/image1.png), ![](media/image2.png), ![](media/image3.png) — diagrams for Exercises 1–3 (find x)
+* ![](media/image4.png), ![](media/image5.png), ![](media/image6.png) — diagrams for Exercises 4–6 (find x)
+* ![](media/image7.png), ![](media/image8.png), ![](media/image9.png) — ⊙*M* ≅ ⊙*P* and ⊙*V* ≅ ⊙*W* for Exercises 7–9
+* ![](media/image10.png) — ⊙*P* with PQ = 13, RS = 24 for Exercises 10–12
+* ![](media/image11.png) — ⊙*A* with EB = 12, CD = 8, mCD = 90° for Exercises 13–15
+* ![](media/image12.png) — ⊙*R* with TS = 21, UV = 3x for Exercise 17
+* ![](media/image13.png) — ⊙*Q* with CD ≅ CB for Exercise 18
+* ![](media/image14.png) — jewelry watermark diagram for Exercise 16
+* ![](media/image15.png) — broken plate archaeological diagram for Exercise 19
+* ![](media/image16.png) — circular garden diagram for Exercise 20

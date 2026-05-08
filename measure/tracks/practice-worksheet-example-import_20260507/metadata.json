@@ -1,11 +1,11 @@
 {
   "track_id": "practice-worksheet-example-import_20260507",
   "type": "feature",
-  "status": "new",
+  "status": "completed",
   "created_at": "2026-05-07T00:00:00Z",
-  "updated_at": "2026-05-07T00:00:00Z",
+  "updated_at": "2026-05-08T01:35:00Z",
   "description": "Import IM1, IM2, and IM3 Practice Worksheet Student Bundles as reviewed Markdown problem set catalogs before mapping selected groups to React worked, guided, and independent practice components.",
   "estimated_tasks": 21,
-  "actual_tasks": null,
-  "deviation_notes": ""
+  "actual_tasks": 19,
+  "deviation_notes": "Full regeneration of IM2 (96 lessons) and IM3 (52 lessons) from DOCX sources. Original authored files had source-content mismatches, wrong math delimiters, and missing template sections. Template compliance achieved across all 241 lesson files."
 }

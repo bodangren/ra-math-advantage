@@ -1,0 +1,155 @@
+# Lesson 8-7 — Transformations of Functions
+
+Source: (Module 8, Lesson 8-7, Int2_0807_practice.docx)
+
+## Today's Goals
+
+* Describe translations (shifts) of functions as they relate to the parent function.
+* Describe dilations and reflections of functions.
+* Write equations for transformed functions given their graphs.
+* Apply transformations to model real-world situations.
+
+## Vocabulary
+
+* **Parent Function** — The simplest function in a family of functions (e.g., [y = x^2], [y = |x|], [y = x^3]).
+* **Translation (Shift)** — A transformation that moves a graph horizontally or vertically without changing its shape.
+* **Dilation** — A transformation that stretches or compresses a graph.
+* **Reflection** — A transformation that flips a graph across a line (typically the x-axis or y-axis).
+* **Horizontal Translation** — A shift left or right; occurs when a value is added or subtracted inside the function (e.g., [y = (x - h)^2]).
+* **Vertical Translation** — A shift up or down; occurs when a value is added or subtracted outside the function (e.g., [y = x^2 + k]).
+
+## Explore: Moving the Graph
+
+Students consider how changing the equation of a function shifts, stretches, or flips its graph relative to the parent function.
+
+Inquiry Question:
+How can you look at an equation and know exactly how the graph will be transformed?
+
+## Learn: Transformations of Functions
+
+### Key Concept: Translation Patterns
+
+* [y = x^2 + k] — vertical shift up by [k] (or down if [k] is negative)
+* [y = x^2 - h] — horizontal shift right by [h] (note: [y = (x - h)^2] shifts right by [h])
+* [y = |x| + k] — vertical shift
+* [y = |x + h|] — horizontal shift left by [h]
+
+### Key Concept: Dilation and Reflection Patterns
+
+* [y = ax^2] — vertical dilation (stretch if |a| > 1, compress if 0 < |a| < 1)
+* [y = -ax^2] — reflection across the x-axis combined with dilation
+* [y = (bx)^2] — horizontal dilation (compress if |b| > 1, stretch if 0 < |b| < 1)
+* [y = -|x|] — reflection across the x-axis
+* [y = |-x|] — reflection across the y-axis
+
+### Key Concept: Combined Transformations
+
+When multiple transformations are present, apply them in order: horizontal shifts, dilations/reflections, then vertical shifts.
+
+## Example 1 — Describe Translations
+
+Describe each translation as it relates to the graph of the parent function.
+
+### Step 1: Identify the Type of Shift
+
+* [y = x^2 + 4] — shift up 4
+* [y = |x| - 3] — shift down 3
+* [y = x - 1] — shift right 1
+* [y = x + 2] — shift left 2
+* [y = (x - 5)^2] — shift right 5
+* [y = |x + 6|] — shift left 6
+
+## Example 2 — Write Equations from Graphs
+
+Use the graph of each translated parent function to write its equation.
+
+### Step 1: Identify the Parent Function and the Shift
+
+Determine which parent function the graph comes from, then measure how it has been shifted.
+
+## Examples 3 and 4 — Describe Dilations and Reflections
+
+Describe each dilation and reflection as it relates to the parent function.
+
+### Step 1: Analyze the Transformation
+
+* [y = (-3x)^2] — horizontal compression by factor of 3, then reflection over y-axis (net effect equals [y = 9x^2])
+* [y = -6x] — reflection over x-axis, vertical stretch
+* [y = -4|x|] — reflection over x-axis, vertical stretch by factor of 4
+* [y = |-2x|] — horizontal compression by factor of 2, then reflection over y-axis (net effect: V-shape opening up)
+* [y = -(2/3)x] — reflection over x-axis, dilation
+* [y = -(1/2)x^2] — reflection over x-axis, vertical compression
+
+## Example 5 — Describe Combined Transformations
+
+Describe each transformation as it relates to the graph of the parent function.
+
+### Step 1: Break Down the Transformation
+
+* [y = -6|x| - 4] — reflect over x-axis, vertical stretch 6, shift down 4
+* [y = 3x + 11] — slope increase from 1 to 3, shift up 11 (but this is a linear function, not a dilation of [y = x] in the traditional sense)
+* [y = (1/3)x^2 - 2] — vertical compression by 1/3, shift down 2
+* [y = (1/2)|x - 1| + 14] — horizontal shift right 1, vertical compression 1/2, shift up 14
+* [y = -0.8(x + 3)] — shift left 3, reflection/dilation
+* [y = (1.5x)^2 + 22] — horizontal stretch, shift up 22
+
+## Example 6 — Real-World Transformation Problems
+
+### Step 1: BILLIARDS
+
+[g(x) = |0.5x|] models a cue ball path. The absolute value creates the V-shape; the 0.5 compresses it horizontally. The x-axis represents the edge of the table.
+
+### Step 2: SALAD
+
+[c(x) = 4.5 + 0.32x] — vertical shift up 4.5 and slope 0.32 (linear, not a transformation of a parent quadratic or absolute value function in the traditional sense).
+
+### Step 3: TRAVEL
+
+[c(x) = 0.75|x| + 25] — absolute value makes cost the same east or west; shift up 25 represents base fare.
+
+### Step 4: ARCHERY
+
+[h(x) = -0.03x^2 + 6] — this is a vertical dilation (compress by 0.03), reflection over x-axis (negative), and vertical shift up 6 of [y = x^2].
+
+## Example 7 — Write Equations from Graphs
+
+Write an equation for each function.
+
+### Step 1: Identify the Parent Function and All Transformations
+
+Determine the parent function, then measure each transformation from the graph.
+
+## Mixed Exercises
+
+Problems 37–59 provide extensive practice:
+
+* Describe and graph transformations: [y = |x| - 2], [y = (x + 1)^2], [y = -x], [y = -|x|], [y = 3x], [y = 2x^2].
+* Describe the translation in [y = x^2 - 4].
+* Describe the reflection in [y = -x^3].
+* Describe the type of transformation in [f(x) = (5x)^2].
+* ARCHITECTURE: Write an absolute value function for a roof cross-section.
+* SPEED: [y = |x - 8|] — difference between actual and displayed speed.
+* GRAPHIC DESIGN: [f(x) = -1.25(x - 1)^2 + 18.75] — describe all transformations.
+* GEOMETRY: Perimeter of a square as side length increases — relation to [y = x].
+* BUSINESS: Maria's income as a function of hours worked — modification of [y = x].
+* ANALYZE: What determines whether a transformation affects the graph vertically or horizontally?
+* PERSEVERE: Model rocket launch — identify function type, axis of reflection, translations, and write the equation.
+* ANALYZE: Graph [g(x) = -3|x + 5| - 1] — describe transformations and state domain and range.
+* ANALYZE: [f(x) = |2x|], [g(x) = x + 2], [h(x) = 2x^2], [k(x) = 2x^3] — graph each with its y-axis reflection and determine even/odd.
+* PERSEVERE: Horizontal then vertical translation vs. vertical then horizontal — do they produce the same result?
+* CREATE: Draw a graph in Quadrant II, then use transformations to move it to Quadrant IV.
+* WRITE: Explain why [g(x) = (-x)^2] appears the same as [f(x) = x^2]. Is this always true for quadratic reflections?
+
+## Review Notes
+
+* ![](media/image1.png)![](media/image2.png) — Graphs for problems 7–8
+* ![](media/image3.png)![](media/image4.png) — Graphs for problems 9–10
+* ![](media/image5.png)![](media/image6.png) — Graphs for problems 11–12
+* ![](media/image7.png) — Write equation from graph (problem 31)
+* ![](media/image8.png) — Write equation from graph (problem 32)
+* ![](media/image9.png)![](media/image10.png) — Graphs for problems 33–34
+* ![](media/image11.png)![](media/image12.png) — Graphs for problems 35–36
+* ![](media/image13.png) — ARCHITECTURE roof figure (problem 46)
+* ![](media/image14.png) — GEOMETRY graph (problem 49)
+* ![](media/image15.png) — BUSINESS Maria income graph (problem 51)
+* ![](media/image16.png) — PERSEVERE model rocket graph (problem 53)

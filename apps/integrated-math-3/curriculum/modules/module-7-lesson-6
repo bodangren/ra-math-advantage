@@ -1,257 +1,213 @@
 # Lesson 7-6 — Solving Rational Equations and Inequalities
 
-Source: (Module 7, Lesson 7-6, pp. 355–360)
+Source: (Module 7, Lesson 7-6, Int3_0706_practice.docx)
 
 ## Today's Goals
 
-* Solve rational equations in one variable
-* Solve rational inequalities in one variable
-
----
+* Solve rational equations and check for extraneous solutions.
+* Solve rational inequalities and express solution sets.
+* Apply rational equations to real-world problems.
 
 ## Vocabulary
 
-* rational equation
-* rational inequality
-
----
+* **Rational Equation** — An equation containing one or more rational expressions.
+* **Extraneous Solution** — A solution that does not satisfy the original equation.
+* **Rational Inequality** — An inequality containing one or more rational expressions.
+* **Critical Values** — Values that make numerators or denominators equal to zero.
 
 ## Explore: Solving Rational Equations
 
-Use a real-world situation to complete the explore.
+What does it mean to solve a rational equation and why must we check for extraneous solutions?
 
-**Inquiry Question:**
-How can you solve rational equations by graphing?
+Inquiry Question:
+When solving [(2x + 3)/(x + 1) = 3/2], what values of [x] must be excluded?
 
----
+## Learn: Solving Rational Equations and Inequalities
 
-## Learn: Solving Rational Equations
+### Key Concept: Solving Rational Equations
 
-A **rational equation** contains at least one rational expression.
+1. Identify excluded values (where any denominator equals zero).
+2. Multiply both sides by the LCD to clear denominators.
+3. Solve the resulting polynomial equation.
+4. Check all solutions against excluded values.
 
-These are usually solved by multiplying both sides by the least common denominator to eliminate fractions. This can create extraneous solutions, so answers must be checked against the original equation.
+### Key Concept: Extraneous Solutions
 
-Common contexts include:
-
-* mixture problems
-* uniform motion problems
-* work problems
-
----
-
-## Example 1 — Solve a Rational Equation
-
-Solve:
-
-`7/12 + 9/(x - 4) = 55/48`
-
-The LCD is:
-
-`48(x - 4)`
-
-Multiply through and simplify:
-
-`28x - 112 + 432 = 55x - 220`
-
-`28x + 320 = 55x - 220`
-
-`540 = 27x`
-
-`x = 20`
-
----
-
-## Example 2 — Solve a Rational Equation with an Extraneous Solution
-
-Solve:
-
-`2m/(m - 4) - (m^2 + 7m + 4)/(3m^2 - 18m + 24) = 4m/(3m - 6)`
-
-Use the LCD:
-
-`(m - 4)(3m - 6)`
-
-After simplifying:
-
-`m^2 - 3m - 4 = 0`
-
-`(m - 4)(m + 1) = 0`
-
-Possible solutions:
-
-* `m = 4`
-* `m = -1`
-
-But `m = 4` makes a denominator `0`, so it is extraneous.
-
-Final answer:
-
-`m = -1`
-
-## Talk About It
-
-How could you identify the extraneous solution without substituting every result back into the original equation?
-
----
-
-## Example 3 — Mixture Problem
-
-You are adding a `50%` isopropyl alcohol liquid to `200` mL of a liquid that is `91%` isopropyl alcohol to create a `70%` solution. How much of the `50%` liquid should be added?
-
-Let `x` be the amount added.
-
-Set up the rational equation:
-
-`70/100 = (0.91(200) + 0.5x) / (200 + x)`
-
-Simplify:
-
-`0.70 = (182 + 0.5x) / (200 + x)`
-
-Multiply by `100(200 + x)` and solve:
-
-`14,000 + 70x = 18,200 + 50x`
-
-`x = 210`
-
-So `210` milliliters of the `50%` liquid should be added.
-
----
-
-## Example 4 — Distance Problem
-
-A bat flies `121.8` miles round trip in `5` hours, with an average still-air speed of `25` mph. Determine the wind speed.
-
-Each leg is `60.9` miles.
-
-Let `w` be the wind speed. Then:
-
-`60.9/(25 + w) + 60.9/(25 - w) = 5`
-
-Solve:
-
-`w^2 = 16`
-
-`w = 4` or `w = -4`
-
-The viable solution is:
-
-`w = 4`
-
-So the wind speed is `4` mph.
-
----
-
-## Example 5 — Work Problem
-
-If a `24`-row planter can plant a field in `10` hours and it takes `6` hours when a `16`-row planter is also used, how long would the `16`-row planter take by itself?
-
-Let `p` be the time for the `16`-row planter alone.
-
-Set up the equation:
-
-`1/10 + 1/p = 1/6`
-
-Multiply by `30p`:
-
-`3p + 30 = 5p`
-
-`30 = 2p`
-
-`p = 15`
-
-It would take the `16`-row planter `15` hours alone.
-
----
-
-## Learn: Solving Rational Inequalities
-
-A **rational inequality** contains at least one rational expression.
+A solution is extraneous if it makes any denominator zero in the original equation. Always check solutions.
 
 ### Key Concept: Solving Rational Inequalities
 
-1. State the excluded values
-2. Solve the related equation
-3. Use those values to divide the number line into intervals
-4. Test a value in each interval
+1. Write the inequality so all terms are on one side with zero on the other.
+2. Find the LCD and combine into a single rational expression.
+3. Identify critical values (zeros of numerator and denominator).
+4. Test intervals on a number line.
+5. Check endpoints based on the inequality symbol.
 
----
+## Example 1 — Solve Rational Equations (Problems 1–6)
 
-## Example 6 — Solve a Rational Inequality
+Solve each equation. Check your solutions.
 
-Solve:
+### Step 1: Multiply by LCD and Solve
 
-`x/2 - 5/(x + 1) > (x - 4)/3`
+**1.** [(2x + 3)/(x + 1) = 3/2]
 
-### Step 1: Find the excluded value
+**2.** [-12/y = y - 7]
 
-`x = -1`
+**3.** [9/(x - 7) - 7/(x - 6) = 13/(x^2 - 13x + 42)]
 
-### Step 2: Solve the related equation
+**4.** [13/(y + 3) - 12/(y + 4) = 18/(y^2 + 7y + 12)]
 
-`x/2 - 5/(x + 1) = (x - 4)/3`
+**5.** [14/(x - 2) - 18/(x + 1) = 22/(x^2 - x - 2)]
 
-After clearing denominators and simplifying:
+**6.** [2/(a + 2) - 10/(a + 5) = 36/(a^2 + 7a + 10)]
 
-`x^2 + 9x - 22 = 0`
+## Example 2 — Solve More Complex Rational Equations (Problems 7–12)
 
-`(x - 2)(x + 11) = 0`
+### Step 1: Find LCD and Clear Denominators
 
-Critical values:
+**7.** [x/(2x - 1) + 3/(x + 4) = 21/(2x^2 + 7x - 4)]
 
-* `x = -11`
-* `x = -1` excluded
-* `x = 2`
+**8.** [2/(y - 5) + (y - 1)/(2y + 1) = 2/(2y^2 - 9y - 5)]
 
-### Step 3: Test intervals
+**9.** [(x - 8)/(2x + 2) + x/(2x + 2) = (2x - 3)/(x + 1)]
 
-The inequality is true on:
+**10.** [(12p + 19)/(p^2 + 7p + 12) - 3/(p + 3) = 5/(p + 4)]
 
-* `-11 < x < -1`
-* `x > 2`
+**11.** [(2f)/(f^2 - 4) + 1/(f - 2) = 2/(f + 2)]
 
----
+**12.** [8/(t^2 - 9) + 4/(t + 3) = 1]
 
-## Apply Example 7 — Write and Solve a Rational Inequality
+## Examples 3–5 — Application Problems (Problems 13–18)
 
-Jamila spends `$378` on an embroidery machine and `$1.85` per hat. How many hats must she make so that the average cost per hat is less than or equal to `$5`?
+### Step 1: Define Variables and Write Equation
 
-### 1. What is the task?
+**13. SOLUTION** Evita adds a 75% acid solution to 8 milliliters of solution that is 15% acid.
 
-Find the number of hats needed so the average cost per hat is at most `$5`.
+**a.** Write a function representing the percent of acid in the resulting solution, where [x] is the amount of 75% acid solution added.
 
-### 2. How will you approach the task?
+**b.** How much 75% acid solution should be added to create a 50% acid solution?
 
-Write an inequality for average cost, identify excluded values, solve the related equation, and test intervals.
+**14. FLIGHT TIME** The distance between JFK and LAX is about 2500 miles. Let [S] be the airspeed of a jet.
 
-### 3. What is your solution?
+**a.** Suppose the wind speed is 100 miles per hour. Write an equation if it takes 2 hours and 5 minutes longer to fly against the wind versus with the wind.
 
-Average cost inequality:
+**b.** Solve the equation for [S].
 
-`(1.85h + 378) / h <= 5`
+**c.** Find how much longer it would take if the wind speed increases to 150 miles per hour and the airspeed is 525 miles per hour.
 
-Excluded value:
+**15. CONSTRUCTION** It takes Rosita 32 hours to drywall a basement by herself and 18 hours if Paola helps her. How long would it take Paola to drywall the basement by herself?
 
-* `h = 0`
+**16. BASEBALL** A major league baseball team plays 162 games a season. Halfway through, one team has won 60% of their games. What percent of their remaining games would they need to win to end with 75%?
 
-Solutions to the inequality:
+**17. CURRENT** The distance for the Valleyview River Cruise trip is 14 miles round trip. The boat travels 10 miles per hour in still water. It takes 30 minutes longer to cruise upstream than downstream.
 
-* `h < 0`
-* `h >= 120`
+**a.** Define a variable and write an equation.
 
-Only the contextual solution is viable:
+**b.** What is the speed of the current?
 
-`h >= 120`
+**18. YARDWORK** Each week Imani and Demond must mow their 4-acre yard. When they use both mowers it takes 2 hours. When the 36-inch mower is out for repairs, it takes [3 1/4] hours. How long would the job take if the 42-inch mower were broken?
 
-Jamila must make at least `120` hats.
+## Example 6 — Solve Rational Inequalities (Problems 19–24)
 
-### 4. How can you know that your solution is reasonable?
+### Step 1: Find Critical Values and Test Intervals
 
-As more hats are made, the fixed machine cost is spread across more units, so the average cost falls. Reaching `$5` or less after a fairly large number of hats is reasonable.
+**19.** [3 - 4/x > 5/(4x)]
 
----
+**20.** [5/(3a) - 3/(4a) > 5/6]
 
-## Objective Alignment
+**21.** [(x - 2)/(x + 2) + 1/(x - 2) > (x - 4)/(x - 2)]
 
-- `Solve rational equations in one variable`: Primary worked examples: Examples 1-5.
-- `Solve rational inequalities in one variable`: Primary worked examples: Example 6.
+**22.** [3/4 - 1/(x - 3) > x/(x + 4)]
+
+**23.** [x/5 + 2/3 < 3/(x - 4)]
+
+**24.** [x/(x + 2) + 1/(x - 1) < 3/2]
+
+## Example 7 — Application with Inequalities (Problems 25–26)
+
+### Step 1: Write and Solve Inequality
+
+**25. ORIGAMI** For prom, Muna wants to fold 1000 origami cranes. She does not want anyone to fold more than 15 cranes.
+
+**a.** Write an inequality to represent this situation, if [N] is the number of people enlisted.
+
+**b.** What is the minimum number of people?
+
+**26. PROM** Caleb manages the budget for his school's junior prom. His class has spent $1250 for the venue, $625 for a DJ, and $1470 for decorations. Dinner costs $12 per student. If he wants to keep ticket prices less than $20, how many students need to buy tickets?
+
+## Mixed Exercises
+
+**27. HEIGHT** Fabiana is 8 inches shorter than her sister Pilar, or 12.5% shorter. How tall is Fabiana?
+
+**28.** [(x - 2)/(x + 4) > (x + 1)/(x + 10)]
+
+**29.** [3/k - 4/(3k) = 0]
+
+**30.** [2 - 3/v = 5/v]
+
+**31.** [n + 3/n < 12/n]
+
+**32.** [1/(2m) - 3/m < -5/2]
+
+**33.** [1/(2x) < 2/x - 1]
+
+**34.** [6/(x + 2) = (x - 7)/(x + 2) + 1/4]
+
+**35.** [(t - 5)/(t - 3) = (t - 3)/(t + 3) + 1/(t - 3)]
+
+**36.** [3 + 2/t > 8/t]
+
+**37.** [6/(m + 5) > 2]
+
+**38. NUMBER THEORY** The ratio of two less than a number to six more than that number is 2 to 3. What is the number?
+
+**39. BUSINESS** The Franklin Electronics Company has determined that after its first 50 wireless speakers are produced, the average cost is [C(x) = (60x + 17000)/(x - 50)], where [x] represents the number of speakers produced. The company should charge $80 per speaker to maximize profit.
+
+**a.** Write an inequality for how many speakers must be produced and sold.
+
+**b.** Solve and interpret.
+
+**40. ANALYZE** Let [f(x) = -x - 2] and [g(x) = -3/x].
+
+**a.** Find any [x] values for which [f(x)] or [g(x)] is undefined and any solutions to [f(x) = g(x)].
+
+**b.** Write the solution set to [f(x) ≤ g(x)].
+
+**c.** Explain why each value should be included or excluded.
+
+**41. USE TOOLS** Graph [f(x) = 2/(x^2 - x)] and [g(x) = 1/(x - 1)]. Then solve [2/(x^2 - x) = 1/(x - 1)]. Explain why this method works.
+
+**42. USE A MODEL** It takes one fuel line 3 hours to fill an oil tanker. How fast must a second fuel line be able to fill the oil tanker so that together they fill the tanker in 45 minutes?
+
+**43.** The prom committee is spending $1000 for the venue and DJ plus $35 per person for the catered meal. How many students must attend to keep the ticket price at or below $60?
+
+**44. STATISTICS** The harmonic mean of [y] and [z] is [x] if [1/x] is the average of [1/y] and [1/z].
+
+**a.** Write an equation for the harmonic mean of 50 and 75.
+
+**b.** What is the harmonic mean of 50 and 75?
+
+**45. CONSTRUCT ARGUMENTS** Hideki used [f(x) = (x^2 + x - 12)/(x^2 - 2x - 3)] to determine solutions of [f(x) = 0]. He found [x = 3] or [-4]. Do you agree?
+
+**46. ANALYZE** Given [5x/(x - 2) = 7 + 10/(x - 2)].
+
+**a.** Solve for [x]. Is your solution extraneous?
+
+**b.** How can you use a graphical method to check?
+
+**47. FIND THE ERROR** A student is trying to solve the inequality [1/x < 2]. Refer to the work. Do you agree?
+
+*(Image referenced — see original DOCX)*
+
+**48. CREATE** Give an example of a rational equation that can be solved by multiplying each side by [4(x + 3)(x - 4)].
+
+**49. PERSEVERE** Solve [(1 + 9/x + 20/x^2)/(x^2 - 25)/x^2 = (x + 4)/(x - 5)].
+
+**50. ANALYZE** While using the table feature on [f(x) = 1/(x^2 - x - 6)], the values [-2] and [3] say "ERROR." Explain its meaning.
+
+**51. WRITE** Why should you check solutions of rational equations and inequalities?
+
+## Review Notes
+
+* Problem 47 contains an image from the original worksheet showing a student's work on inequality solving. Teachers should consult the original DOCX for the full image reference.
+* The worksheet contains 51 practice problems across seven examples and mixed exercises.

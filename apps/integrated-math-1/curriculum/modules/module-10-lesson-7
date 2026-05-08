@@ -1,0 +1,267 @@
+# Lesson 10-7 — Midpoints and Bisectors
+
+Source: (Module 10, Lesson 10-7, Int1_1007_practice.docx)
+
+## Today's Goals
+
+* Find the coordinate of a midpoint on a number line.
+* Apply the concept of midpoint to solve real-world problems.
+* Use the Midpoint Formula to find the coordinates of the midpoint of a segment in the coordinate plane.
+* Find the coordinates of a missing endpoint when the midpoint and one endpoint are known.
+* Use algebraic expressions to find missing segment lengths when a point is known to be the midpoint.
+
+## Vocabulary
+
+* **Midpoint** — The point on a segment that divides it into two congruent segments.
+* **Bisector** — A point, line, ray, or segment that divides a segment or angle into two congruent parts.
+* **Midpoint Formula** — The formula for finding the midpoint of a segment with endpoints [(x_1, y_1)] and [(x_2, y_2)] is [\left( \frac{x_1 + x_2}{2}, \frac{y_1 + y_2}{2} \right)].
+* **Segment Bisector** — A segment, ray, line, or plane that intersects a segment at its midpoint.
+* **Congruent Segments** — Segments that have the same length.
+
+## Explore: What Does "Halfway" Mean on a Number Line?
+
+Students explore how to locate the point that is exactly halfway between two given points on a number line. They consider whether adding the coordinates and dividing by two always produces the correct halfway point.
+
+Inquiry Question:
+Why does averaging the two endpoint coordinates give the midpoint on a number line?
+
+## Learn: Midpoints and Segment Bisectors
+
+The midpoint of a segment is the point that divides the segment into two segments of equal length. On a number line, the midpoint coordinate is the average of the endpoint coordinates. In the coordinate plane, the Midpoint Formula averages the x-coordinates and the y-coordinates separately.
+
+### Key Concept: Midpoint on a Number Line
+
+If a segment has endpoints with coordinates [a] and [b] on a number line, the coordinate of the midpoint is:
+[
+\frac{a + b}{2}
+]
+
+### Key Concept: Midpoint Formula in the Coordinate Plane
+
+For a segment with endpoints [(x_1, y_1)] and [(x_2, y_2)], the midpoint [(M)] has coordinates:
+[
+M = \left( \frac{x_1 + x_2}{2}, \frac{y_1 + y_2}{2} \right)
+]
+
+### Key Concept: Finding a Missing Endpoint
+
+If the midpoint [M] and one endpoint are known, the missing endpoint can be found by solving for the unknown coordinate. If [M_x = \frac{x_1 + x_2}{2}] and [M_y = \frac{y_1 + y_2}{2}], then:
+[
+x_2 = 2M_x - x_1 \quad \text{and} \quad y_2 = 2M_y - y_1
+]
+Equivalently, the missing endpoint is twice the midpoint coordinate minus the known endpoint coordinate.
+
+### Key Concept: Algebraic Midpoint Problems
+
+When a point [M] is the midpoint of [\overline{FG}], the two segments [\overline{FM}] and [\overline{MG}] are congruent, so [FM = MG]. If expressions are given for [FM] and [MG], set them equal and solve for the variable. Then substitute back to find the segment lengths. The total length [FG = FM + MG = 2 \cdot FM = 2 \cdot MG].
+
+## Example 1 — Find the Midpoint on a Number Line
+
+Use number lines with labeled points to find the coordinate of the midpoint of various segments.
+
+### Step 1: Identify the Endpoint Coordinates
+
+Read the number line to determine the coordinates of the two endpoints of the given segment.
+
+### Step 2: Apply the Midpoint Formula for a Number Line
+
+Add the two endpoint coordinates and divide by 2 to find the midpoint coordinate:
+[
+\text{midpoint} = \frac{a + b}{2}
+]
+
+For example, if the endpoints are at [3] and [7]:
+[
+\frac{3 + 7}{2} = \frac{10}{2} = 5
+]
+
+If the endpoints are at [-4] and [2]:
+[
+\frac{-4 + 2}{2} = \frac{-2}{2} = -1
+]
+
+If the endpoints are at [-6] and [-2]:
+[
+\frac{-6 + (-2)}{2} = \frac{-8}{2} = -4
+]
+
+## Example 2 — Real-World Midpoint Applications
+
+Apply the concept of midpoint to solve real-world problems involving distances and halfway locations.
+
+### Step 1: Identify the Given Information
+
+Read the problem to determine what distances or locations are known and what needs to be found.
+
+### Step 2: Apply Midpoint Reasoning
+
+If a fence is to be built halfway between two houses, the distance from either house to the fence is half the total distance between the houses. If a location is at the midpoint between two places and the distance to one place is known, the distance to the other place is the same.
+
+For example, if the total distance between two houses is [d] miles, the fence should be built at a distance of:
+[
+\frac{d}{2}
+]
+miles from each house.
+
+If a home is at the midpoint between two pizzerias and one pizzeria is a quarter mile away, the other pizzeria is also a quarter mile away, and the total distance between the two pizzerias is:
+[
+2 \times \frac{1}{4} = \frac{1}{2}
+]
+mile.
+
+## Example 3 — Find the Midpoint in the Coordinate Plane
+
+Use the Midpoint Formula to find the coordinates of the midpoint of a segment when the two endpoints are given as ordered pairs.
+
+### Step 1: Identify the Endpoint Coordinates
+
+Extract the x- and y-coordinates of the two endpoints [(x_1, y_1)] and [(x_2, y_2)].
+
+### Step 2: Apply the Midpoint Formula
+
+Calculate the average of the x-coordinates and the average of the y-coordinates:
+[
+\left( \frac{x_1 + x_2}{2}, \frac{y_1 + y_2}{2} \right)
+]
+
+For example, for endpoints [(5, 11)] and [(3, 1)]:
+[
+\left( \frac{5 + 3}{2}, \frac{11 + 1}{2} \right) = \left( \frac{8}{2}, \frac{12}{2} \right) = (4, 6)
+]
+
+For endpoints [(7, -5)] and [(3, 3)]:
+[
+\left( \frac{7 + 3}{2}, \frac{-5 + 3}{2} \right) = \left( \frac{10}{2}, \frac{-2}{2} \right) = (5, -1)
+]
+
+For endpoints [(-8, -11)] and [(2, 5)]:
+[
+\left( \frac{-8 + 2}{2}, \frac{-11 + 5}{2} \right) = \left( \frac{-6}{2}, \frac{-6}{2} \right) = (-3, -3)
+]
+
+For endpoints with decimals, such as [(2.4, 14)] and [(6, 6.8)]:
+[
+\left( \frac{2.4 + 6}{2}, \frac{14 + 6.8}{2} \right) = \left( \frac{8.4}{2}, \frac{20.8}{2} \right) = (4.2, 10.4)
+]
+
+## Example 4 — Find a Missing Endpoint
+
+Find the coordinates of a missing endpoint when one endpoint and the midpoint of the segment are known.
+
+### Step 1: Set Up the Midpoint Equation
+
+Use the Midpoint Formula with the known endpoint [(x_1, y_1)] and the known midpoint [(M_x, M_y)]. Let the missing endpoint be [(x_2, y_2)].
+[
+M_x = \frac{x_1 + x_2}{2} \quad \text{and} \quad M_y = \frac{y_1 + y_2}{2}
+]
+
+### Step 2: Solve for the Missing Coordinates
+
+Multiply both sides by 2 and subtract the known coordinate:
+[
+x_2 = 2M_x - x_1 \quad \text{and} \quad y_2 = 2M_y - y_1
+]
+
+For example, if endpoint [C] is [(-5, 4)] and midpoint [B] is [(-2, 5)], find the missing endpoint [A = (x_2, y_2)]:
+[
+x_2 = 2(-2) - (-5) = -4 + 5 = 1
+]
+[
+y_2 = 2(5) - 4 = 10 - 4 = 6
+]
+So the missing endpoint is [(1, 6)].
+
+For another example, if endpoint [A] is [(1, 7)] and midpoint [B] is [(-3, 1)], find the missing endpoint [C = (x_2, y_2)]:
+[
+x_2 = 2(-3) - 1 = -6 - 1 = -7
+]
+[
+y_2 = 2(1) - 7 = 2 - 7 = -5
+]
+So the missing endpoint is [(-7, -5)].
+
+## Examples 5 and 6 — Algebraic Midpoint Problems
+
+Given that [M] is the midpoint of [\overline{FG}], use the fact that [FM = MG] to find missing measures or variable values.
+
+### Step 1: Set the Segment Expressions Equal
+
+Since [M] is the midpoint, the two parts of the segment are congruent:
+[
+FM = MG
+]
+
+For example, if [FM = 5y + 13] and [MG = 5 - 3y]:
+[
+5y + 13 = 5 - 3y
+]
+
+### Step 2: Solve for the Variable
+
+Solve the equation for the variable:
+[
+5y + 3y = 5 - 13
+]
+[
+8y = -8
+]
+[
+y = -1
+]
+
+### Step 3: Find the Segment Lengths
+
+Substitute back to find each segment length:
+[
+FM = 5(-1) + 13 = -5 + 13 = 8
+]
+[
+MG = 5 - 3(-1) = 5 + 3 = 8
+]
+
+### Step 4: Find the Total Segment Length
+
+The total length [FG] is the sum of the two parts:
+[
+FG = FM + MG = 8 + 8 = 16
+]
+Alternatively:
+[
+FG = 2 \cdot FM = 2 \cdot 8 = 16
+]
+
+### Step 5: Find a Variable When the Total Length Is Known
+
+If [FG] is known but one part is given as an expression, first use [FG = 2 \cdot FM] (or [FG = 2 \cdot MG]) to find the value of the expression, then solve for the variable.
+
+For example, if [FM = 8a + 1] and [FG = 42]:
+[
+FM = \frac{FG}{2} = \frac{42}{2} = 21
+]
+[
+8a + 1 = 21
+]
+[
+8a = 20
+]
+[
+a = \frac{20}{8} = 2.5
+]
+
+## Mixed Exercises
+
+The mixed exercises section provides practice with all skills from the lesson. Problems include:
+
+* Finding the coordinates of a missing endpoint when the midpoint and one endpoint are known.
+* Using a number line or coordinate plane diagram to find a midpoint in a real-world context (camping, game design, scavenger hunt).
+* Finding a missing variable value when a point is the midpoint of a segment on a number line or coordinate plane.
+* Calculating walking distances using midpoint information on a coordinate grid.
+* Finding the midpoint of a geometric figure (such as a quadrilateral) to locate a point for practical purposes.
+* Reasoning about the coordinates for an irrigation system by finding the midpoint of a dry area.
+* Persevering through a problem by deriving the Midpoint Formula and explaining why it works.
+* Writing about how the Midpoint Formula relates to the Section Formula.
+* Creating a segment given a midpoint and one endpoint.
+
+## Review Notes
+
+* Images referenced in the worksheet (number lines for Examples 1 and 2, coordinate grids for camping, game design, scavenger hunt, walking, and school life problems, quadrilateral diagram for the irrigation problem) could not be fully described without visual reference. Teachers should consult the original worksheet for exact diagrams, point labels, and coordinate values.

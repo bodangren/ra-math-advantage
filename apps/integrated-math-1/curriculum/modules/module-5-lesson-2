@@ -1,0 +1,276 @@
+# Lesson 5-2 — Writing Equations in Standard and Point-Slope Forms
+
+Source: (Module 5, Lesson 5-2, Int1_0502_practice.docx)
+
+## Today's Goals
+
+* Write linear equations in point-slope form given a point and a slope or two points.
+* Convert equations between point-slope, slope-intercept, and standard forms.
+* Write equations for lines parallel or perpendicular to a given line through a specified point.
+* Determine whether two lines are parallel, perpendicular, or neither by comparing their slopes.
+* Model real-world situations with linear equations in point-slope and standard forms.
+
+## Vocabulary
+
+* **Point-slope form** — A linear equation written as [ y - y_1 = m(x - x_1) ], where [ m ] is the slope and [ (x_1, y_1) ] is a point on the line.
+* **Standard form** — A linear equation written as [ Ax + By = C ], where [ A ], [ B ], and [ C ] are integers and [ A \ne 0 ].
+* **Slope-intercept form** — A linear equation written as [ y = mx + b ], where [ m ] is the slope and [ b ] is the [ y ]-intercept.
+* **Parallel lines** — Lines in the same plane that never intersect; they have identical slopes.
+* **Perpendicular lines** — Lines that intersect at a right angle; their slopes are negative reciprocals (product is [ -1 ]).
+
+## Learn: Writing Equations in Point-Slope and Standard Forms
+
+Different situations call for different forms of a linear equation. Point-slope form is most useful when a point and the slope are known. Standard form is useful for finding intercepts and working with certain real-world constraints. Converting between forms requires algebraic manipulation while preserving equality.
+
+### Key Concept: Forms of a Linear Equation
+
+* **Point-slope form:** [ y - y_1 = m(x - x_1) ] 
+* **Slope-intercept form:** [ y = mx + b ] 
+* **Standard form:** [ Ax + By = C ] with integer coefficients
+
+## Example 1 — Write Point-Slope Form Given a Point and Slope
+
+Given a point [ (x_1, y_1) ] and slope [ m ], write the equation of the line in point-slope form, then graph the line.
+
+### Step 1: Substitute into Point-Slope Form
+
+Use [ y - y_1 = m(x - x_1) ].
+
+For example, with point [ (-6, -3) ] and slope [ -1 ]:
+[
+y - (-3) = -1(x - (-6))
+]
+Simplifying:
+[
+y + 3 = -(x + 6)
+]
+
+### Step 2: Graph the Equation
+
+Plot the given point, use the slope to find a second point, and draw the line through them.
+
+Variations in the worksheet include:
+* Negative integer slopes (e.g., [ m = -1 ])
+* Zero slope (horizontal line, e.g., [ m = 0 ])
+* Positive fractional slopes (e.g., [ m = \frac{4}{3} ])
+* Points with positive and negative coordinates
+
+## Example 2 — Write Point-Slope Form Given Two Points
+
+Given two points [ (x_1, y_1) ] and [ (x_2, y_2) ], first calculate the slope, then write the equation in point-slope form using either point.
+
+### Step 1: Calculate the Slope
+
+Use the slope formula:
+[
+m = \frac{y_2 - y_1}{x_2 - x_1}
+]
+
+For example, with points [ (-4, 6) ] and [ (-2, 22) ]:
+[
+m = \frac{22 - 6}{-2 - (-4)} = \frac{16}{2} = 8
+]
+
+### Step 2: Write in Point-Slope Form
+
+Substitute the slope and one point into [ y - y_1 = m(x - x_1) ]:
+[
+y - 6 = 8(x - (-4)) \quad \text{or} \quad y - 6 = 8(x + 4)
+]
+
+Variations include points with positive, negative, and mixed coordinates.
+
+## Example 3 — Convert Point-Slope Form to Slope-Intercept Form
+
+Given an equation in point-slope form, solve for [ y ] to rewrite it in slope-intercept form [ y = mx + b ].
+
+### Step 1: Distribute the Slope
+
+For example, with [ y - 1 = \frac{4}{5}(x + 5) ]:
+[
+y - 1 = \frac{4}{5}x + 4
+]
+
+### Step 2: Isolate [ y ] 
+
+Add or subtract the constant on the left side:
+[
+y = \frac{4}{5}x + 5
+]
+
+Variations in the worksheet include:
+* Positive and negative integer slopes (e.g., [ y + 5 = -6(x + 7) ])
+* Positive and negative fractional slopes (e.g., [ y + 6 = -\frac{3}{4}(x + 8) ])
+* Various constant terms on the left side
+
+## Example 4 — Model Real-World Situations in Point-Slope Form
+
+Translate a verbal description or graph of a linear relationship into an equation in point-slope form.
+
+### Step 1: Identify a Point and the Slope
+
+Extract a known point [ (x_1, y_1) ] and the rate of change [ m ] from the context or graph.
+
+For example, a cricket chirps at a rate related to temperature. From the graph, identify a point such as [ (30, 67) ] and slope [ m = \frac{3}{5} ].
+
+### Step 2: Write the Equation
+
+Substitute into [ y - y_1 = m(x - x_1) ]:
+[
+y - 67 = \frac{3}{5}(x - 30)
+]
+
+Scenarios in the worksheet include:
+* Cricket chirps and outdoor temperature (graph provided)
+* Canoeing distance over time at a constant speed
+* Perimeter of a square as a function of side length
+
+## Example 5 — Convert Equations to Standard Form
+
+Rewrite various linear equations into standard form [ Ax + By = C ] with integer coefficients.
+
+### Step 1: Eliminate Fractions and Distribute
+
+For example, with [ y - 10 = 2(x - 8) ]:
+[
+y - 10 = 2x - 16
+]
+
+### Step 2: Rearrange Terms
+
+Move all variable terms to one side and constants to the other:
+[
+-2x + y = -6
+]
+
+Or multiply by [ -1 ] to make [ A ] positive:
+[
+2x - y = 6
+]
+
+Variations in the worksheet include:
+* Equations starting in point-slope form with integer slopes
+* Equations starting in point-slope form with fractional slopes (e.g., [ y + 7 = -\frac{3}{2}(x + 1) ])
+* Equations with variables on both sides that require simplification first (e.g., [ 4y - 5x = 3(4x - 2y + 1) ])
+* Equations already in slope-intercept form (e.g., [ y = x + 1 ] and [ y = \frac{1}{3}x - 10 ])
+
+## Example 6 — Write Standard Form Given Two Points
+
+Given two points, write the equation of the line in standard form [ Ax + By = C ].
+
+### Step 1: Calculate the Slope
+
+Use the slope formula:
+[
+m = \frac{y_2 - y_1}{x_2 - x_1}
+]
+
+For example, with points [ (-2, -3) ] and [ (4, -7) ]:
+[
+m = \frac{-7 - (-3)}{4 - (-2)} = \frac{-4}{6} = -\frac{2}{3}
+]
+
+### Step 2: Write in Point-Slope Form, Then Convert
+
+Using point [ (-2, -3) ]:
+[
+y - (-3) = -\frac{2}{3}(x - (-2))
+]
+[
+y + 3 = -\frac{2}{3}(x + 2)
+]
+
+Multiply through by [ 3 ] to clear fractions, then rearrange:
+[
+3y + 9 = -2x - 4
+]
+[
+2x + 3y = -13
+]
+
+## Example 7 and 8 — Parallel and Perpendicular Lines
+
+Given a point and the equation of a line, write equations in slope-intercept form for the line through the given point that is parallel to the given line, and for the line through the given point that is perpendicular to the given line.
+
+### Step 1: Identify the Slope of the Given Line
+
+For a line [ y = mx + b ], the slope is [ m ].
+
+For example, given [ y = x + 4 ] (slope [ m = 1 ]) and point [ (3, -2) ]:
+
+### Step 2: Write the Parallel Line
+
+Parallel lines have the same slope. Use [ y - y_1 = m(x - x_1) ] and solve for [ y ]:
+[
+y - (-2) = 1(x - 3)
+]
+[
+y = x - 5
+]
+
+### Step 3: Write the Perpendicular Line
+
+Perpendicular lines have slopes that are negative reciprocals. The perpendicular slope is [ -\frac{1}{m} ]:
+[
+y - (-2) = -1(x - 3)
+]
+[
+y = -x + 1
+]
+
+Variations in the worksheet include:
+* Integer slopes (e.g., [ y = 3x - 5 ])
+* Negative slopes (e.g., [ y = -5x + 8 ])
+* Fractional slopes (e.g., [ y = -\frac{1}{2}x + 6 ] and [ y = -\frac{3}{4}x + 4 ])
+* Large integer slopes (e.g., [ y = 13x - 4 ])
+
+## Example 9 — Determine Parallel, Perpendicular, or Neither
+
+Given two linear equations, determine whether their graphs are parallel, perpendicular, or neither by comparing their slopes.
+
+### Step 1: Write Both Equations in Slope-Intercept Form
+
+Solve each equation for [ y ] to identify [ m ].
+
+For example:
+[
+y = 4x + 3 \quad \text{and} \quad 4x + y = 3 \implies y = -4x + 3
+]
+
+### Step 2: Compare the Slopes
+
+* **Parallel:** [ m_1 = m_2 ] 
+* **Perpendicular:** [ m_1 \cdot m_2 = -1 ] (negative reciprocals)
+* **Neither:** neither condition holds
+
+In the example above, [ m_1 = 4 ] and [ m_2 = -4 ], so the lines are **neither** parallel nor perpendicular.
+
+Variations in the worksheet include pairs where the lines are:
+* Parallel (same slope)
+* Perpendicular (negative reciprocal slopes)
+* Neither (different slopes that are not negative reciprocals)
+
+## Mixed Exercises
+
+The mixed exercises provide comprehensive practice across all skills in this lesson. Problem types include:
+
+* Writing an equation in standard form given the [ x ]-intercept and [ y ]-intercept
+* Converting equations from point-slope form to both slope-intercept and standard forms
+* Analyzing three equations to identify which are parallel and which are perpendicular, with justification
+* A real-world geometry problem: determining whether two walls of a shed are perpendicular by calculating and comparing slopes
+* A coordinate geometry problem: determining whether two segments of a quadrilateral are parallel by comparing slopes
+* A multi-part problem about a jet's climb trajectory: writing the equation in point-slope form, slope-intercept form, and standard form
+* Finding an unknown coordinate [ p ] so that three given points lie on the same line
+* Open-response questions about what information is needed to write a line's equation
+* Analyzing claims about whether a line through two points is perpendicular or parallel to a given equation, with justification
+* Finding errors in reasoning about parallel lines without computing slopes
+* Writing a general point-slope equation for a line through [ (f, g) ] and [ (h, j) ] 
+* Identifying which equation does not belong in a set and justifying the conclusion
+* Creating an original real-world scenario with a constant rate of change and representing it in both point-slope and slope-intercept forms
+
+## Review Notes
+
+* Example 1, Exercises 1–3 reference coordinate plane grids for graphing (image: `media/image1.png`). Three graph images are provided.
+* Example 3, Exercise 11 references a coordinate plane grid (image: `media/image2.png`).
+* Exercise 47 references a graph showing a jet's trajectory after take-off (image: `media/image3.png`). The graph data should be reviewed for accuracy.
+* Exercise 54 references a set of equations for "Which One Doesn't Belong?" (image: `media/image4.png`). The equations should be reviewed for accuracy.

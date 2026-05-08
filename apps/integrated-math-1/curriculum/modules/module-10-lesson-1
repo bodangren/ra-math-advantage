@@ -1,0 +1,93 @@
+# Lesson 10-1 — The Geometric System
+
+Source: (Module 10, Lesson 10-1, Int1_1001_practice.docx)
+
+## Today's Goals
+
+* Understand the structure of an axiomatic system and distinguish between axioms and conclusions.
+* Apply given axioms to real-world situations to draw valid logical conclusions.
+* Differentiate between synthetic geometry and analytic geometry based on their defining characteristics.
+* Construct and evaluate models for a given set of axioms.
+
+## Vocabulary
+
+* **Axiomatic System** — A logical structure built from undefined terms, defined terms, axioms, and theorems.
+* **Axiom** — A statement accepted as true without proof; a rule or assumption in a system.
+* **Conclusion** — A statement that logically follows from one or more axioms or given facts.
+* **Synthetic Geometry** — The study of geometry using logical reasoning and proof without relying on a coordinate system or numerical measurements.
+* **Analytic Geometry** — The study of geometry using a coordinate system, algebra, and numerical calculations to analyze geometric figures.
+* **Model** — A specific interpretation or diagram that satisfies all axioms of an axiomatic system.
+
+## Explore: What Makes a System Logical?
+
+Students consider how games, sports, and real-world systems operate according to a set of agreed-upon rules. They explore how conclusions can be drawn when rules and facts are known.
+
+Inquiry Question:
+How can a small set of rules (axioms) be used to logically determine facts about a situation?
+
+## Learn: Axiomatic Systems in Geometry
+
+An axiomatic system begins with basic assumptions called axioms. From these axioms, logical conclusions can be drawn without needing to measure or calculate.
+
+### Key Concept: Structure of an Axiomatic System
+
+* Undefined terms are the basic building blocks (for example, point, line, plane).
+* Axioms are assumptions about how those terms relate.
+* Conclusions are statements that must be true if the axioms are true.
+* A model is a specific example or diagram that satisfies every axiom in the system.
+
+### Key Concept: Synthetic vs. Analytic Geometry
+
+* **Synthetic Geometry** relies on logic, axioms, and proof. No coordinates or formulas are used.
+* **Analytic Geometry** uses coordinates, formulas (such as distance or slope), and algebraic calculations to solve geometric problems.
+
+## Example 1 — Draw Conclusions from Axioms
+
+Use a given set of axioms about a real-world situation to make logical conclusions. Students analyze facts about a scenario and apply the axioms to deduce what must be true.
+
+### Step 1: Identify the Axioms and Facts
+
+Read the problem to extract the axioms (rules of the system) and the given facts about individuals or items involved.
+
+### Step 2: Match Facts to Axioms
+
+Determine which axioms apply to each given fact. Use the rules to reason about quantities, categories, and relationships.
+
+### Step 3: State Valid Conclusions
+
+For each fact, write a conclusion that must logically follow. For example, if an axiom states that each item in a category has a specific price, and a person paid that exact price, conclude which item they purchased.
+
+## Example 2 — Classify Synthetic and Analytic Geometry
+
+Examine diagrams and descriptions of geometric work to classify each as synthetic geometry or analytic geometry.
+
+### Step 1: Identify Coordinate or Formula Use
+
+Look for evidence of a coordinate grid, numerical coordinates, algebraic formulas, or measured distances. If present, the figure represents analytic geometry.
+
+### Step 2: Identify Purely Logical Construction
+
+Look for compass-and-straightedge constructions, logical proofs without numbers, or figures without grids. If present, the figure represents synthetic geometry.
+
+### Step 3: Classify Each Figure
+
+Based on the presence or absence of coordinates and algebraic tools, label each figure as synthetic geometry or analytic geometry.
+
+## Mixed Exercises
+
+The mixed exercises section provides practice with all skills from the lesson. Problems include:
+
+* Applying axioms about real-world situations (restaurant menu, clothing sale, shopping) to draw logical conclusions.
+* Classifying classroom tools and projects as synthetic or analytic geometry and explaining the reasoning.
+* Determining whether a test problem involving a distance formula represents synthetic or analytic geometry.
+* Writing original axioms based on collected survey data and using them to form a conclusion.
+* Evaluating whether a given set of bus routes satisfies all axioms of an axiomatic system and justifying the argument.
+* Drawing a model that satisfies a given list of axioms about points and lines.
+* Identifying which diagram does not satisfy the axioms of three-point geometry.
+* Finding and explaining errors in a student's conclusions from an axiomatic system.
+* Comparing the rules and plays of a game to the elements of an axiomatic system.
+* Using assumptions to classify a blueprint on a grid as synthetic or analytic geometry.
+
+## Review Notes
+
+* Images referenced in the worksheet (landscaping photo, geometric figures for classification, Sydney's blueprint, figures for "Which One Doesn't Belong?") could not be fully described without visual reference. Teachers should consult the original worksheet for exact diagrams and figures.

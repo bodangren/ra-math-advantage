@@ -1,235 +1,164 @@
 # Lesson 4-3 — nth Roots and Rational Exponents
 
-Source: (Module 4, Lesson 4-3, pp. 175–178)
+Source: (Module 4, Lesson 4-3, Int3_0403_practice.docx)
 
 ## Today's Goals
 
-* Simplify expressions involving radicals and rational exponents
-* Simplify expressions in exponential or radical form
-
----
+* Simplify expressions involving nth roots.
+* Write radical expressions in exponential form and vice versa.
+* Evaluate expressions with rational exponents.
+* Apply properties of exponents to simplify expressions.
 
 ## Vocabulary
 
-* nth root
-* index
-* radicand
-* principal root
-* rational exponent
+* **nth Root** — A number that when raised to the nth power gives the original number. For even n, ±√[n]{a} gives two roots.
+* **Rational Exponent** — An exponent expressed as a fraction a^(m/n), which equals √[n]{a^m} or (√[n]{a})^m.
+* **Principal Root** — The non-negative root for even-index radicals; the real root for odd-index radicals.
+* **Simplest Form** — An expression is in simplest form when there are no perfect nth power factors in the radicand and no radicals in denominators.
 
----
+## Explore: Roots and Exponents
 
-## Explore: Inverses of Power Functions
+When exponents become fractions, the relationship between roots and powers becomes explicit. Students explore how x^(1/n) connects to the nth root of x.
 
-Use a calculator to complete the explore.
+Inquiry Question:
+How does writing √[n]{a} as a^(1/n) help simplify expressions that involve both roots and powers?
 
-**Inquiry Question:**
-What conjectures can you make about `f(x) = x^n` and `g(x) = nroot(x)` for all odd positive values of `n`?
+## Learn: nth Roots and Rational Exponents
 
----
+### Key Concept: Converting Between Forms
 
-## Learn: nth Roots
+x^(m/n) = (x^(1/n))^m = (√[n]{x})^m
 
-Finding a square root and squaring are inverse operations.
+x^(m/n) = √[n]{x^m} = √[n]{x^m}
 
-More generally, the inverse of raising a number to the `n`th power is finding the `n`th root.
+### Key Concept: Properties of Rational Exponents
 
-For any real numbers `a` and `b` and positive integer `n`:
+* a^(m/n) · a^(p/q) = a^(m/n + p/q)
+* (a^(m/n))^p = a^(mp/n)
+* a^(-m/n) = 1/a^(m/n)
 
-* if `a^n = b`, then `a` is an `n`th root of `b`
+### Key Concept: Simplifying Radicals
 
-Example:
+For √[n]{a^n}:
+* If n is odd: √[n]{a^n} = a
+* If n is even: √[n]{a^n} = |a|
 
-* `(-2)^6 = 64`, so `-2` is a sixth root of `64`
-* `2` is the **principal root**
+## Example 1 — Simplify Square Roots
 
-In `nroot(36)`:
+Simplify each expression.
 
-* `n` is the **index**
-* `36` is the **radicand**
+### Step 1: Identify Perfect Squares
 
-### Key Concept: Real nth Roots
+±√(121x⁴y¹⁶) = ±(11x²y⁸)
 
-Suppose `n > 1` and `a` is a real number.
+### Step 2: Handle Even vs Odd Indices
 
-* If `n` is even and `a > 0`, there is one positive and one negative real root: `+/- nroot(a)`
-* If `n` is even and `a < 0`, there are no real roots
-* If `n` is odd and `a > 0`, there is one positive real root
-* If `n` is odd and `a < 0`, there is one negative real root
-* If `a = 0`, then the root is `0`
+For −√(16c⁴d²) = −(4c²d) — the negative sign is kept outside.
 
-A radical expression is simplified when:
+## Example 2 — Simplify Higher Roots
 
-* the radicand contains no fractions
-* no radicals appear in the denominator
+Simplify each expression.
 
-## Think About It
+### Step 1: Fourth Roots
 
-Lorena says she can tell that `cuberoot(-64)` has a real root without graphing. Do you agree? Explain.
+√[4]{16(x − 3)¹²} = 2(x − 3)³
 
----
+### Step 2: Cube Roots
 
-## Example 1 — Find Roots
+√[3]{a¹²} = a⁴
 
-Simplify.
+### Step 3: Sixth Roots
 
-### a. `+/- sqrt(25x^4)`
+√[6]{x¹⁸} = x³
 
-`+/- sqrt((5x^2)^2) = +/- 5x^2`
+## Example 3 — Convert Between Radical and Exponential Forms
 
-### b. `-sqrt((y^2 + 7)^12)`
+### Step 1: Exponential to Radical
 
-`= -sqrt([(y^2 + 7)^6]^2)`
+8^(1/5) = √[5]{8}
 
-`= -(y^2 + 7)^6`
+4^(2/7) = √[7]{4²} = √[7]{16}
 
-### c. `cuberoot(343a^18b^6)`
+(x³)^(3/2) = √[2]{(x³)³} = √[2]{x⁹} = x⁴√[2]{x}
 
-`= cuberoot((7a^6b^2)^3) = 7a^6b^2`
+### Step 2: Radical to Exponential
 
-### d. `sqrt(-289c^8d^4)`
+√17 = 17^(1/2)
 
-There are no real roots of `sqrt(-289)`, but the principal square root is imaginary:
+√[3]{5xy²} = (5xy²)^(1/3)
 
-`sqrt(-289c^8d^4) = 17ic^4d^2`
+√[4]{625x²} = (625x²)^(1/4) = 5x^(1/2)
 
----
+## Example 4 — Real-World Applications
 
-## Example 2 — Simplify Using Absolute Value
+### Step 1: Orbiting Planets
 
-When you find an even root of an even power and the result is an odd power, use absolute value to keep the principal root nonnegative.
+The distance in millions of miles is given by √[3]{6t²}, where t is days to orbit.
 
-### a. `fourthroot(81x^4)`
+In exponential form: (6t²)^(1/3)
 
-`= fourthroot((3x)^4) = 3|x|`
+### Step 2: Depreciation
 
-### b. `eighthroot(256(y^2 - 2)^24)`
+The depreciation rate is 1 − (T/P)^(1/n).
 
-`= eighthroot(256) * eighthroot((y^2 - 2)^24)`
-
-`= 2 |(y^2 - 2)^3|`
-
-## Talk About It
-
-Compare these expressions with the previous example. Why are absolute value bars needed here?
-
----
-
-## Learn: Rational Exponents
-
-You can translate between radical and exponential form using exponent properties.
-
-For any real number `b` and positive integer `n`:
-
-* `b^(1/n) = nroot(b)`
-
-except when `b < 0` and `n` is even.
-
-### Key Concept: Rational Exponents
-
-For nonzero `b` and integers `x`, `y` with `y > 1`:
-
-`b^(x/y) = nroot(b^x) = (nroot(b))^x`
-
-Examples:
-
-* `125^(2/3) = (cuberoot(125))^2 = 25`
-* `(-49)^(3/2) = (sqrt(-49))^3 = (7i)^3 = -343i`
-
-### Key Concept: Simplest Form of Expressions with Rational Exponents
-
-An expression is in simplest form when:
-
-* it has no negative exponents
-* it has no non-integer exponents in the denominator
-* it is not a complex fraction
-* any remaining radical has the least possible index
-
----
-
-## Example 3 — Radical and Exponential Forms
-
-Simplify.
-
-### a. Write `x^(4/3)` in radical form
-
-`x^(4/3) = cuberoot(x^4)`
-
-### b. Write `fifthroot(x^2)` in exponential form
-
-`fifthroot(x^2) = x^(2/5)`
-
-## Think About It
-
-Write two equivalent expressions, one in radical form and one in exponential form.
-
----
-
-## Example 4 — Use Rational Exponents
-
-The expression `c(1 + r)^t` estimates future cost due to inflation.
-
-Write the expression in radical form for an item `3` months from now if the annual inflation rate is `4.7%`.
-
-Since `3` months is `1/4` year:
-
-`c(1 + r)^t = c(1 + 0.047)^(1/4)`
-
-`= c(1.047)^(1/4)`
-
-`= c * fourthroot(1.047)`
-
-## Think About It
-
-Why did you set `t = 1/4`?
-
----
+For an 8-year-old car originally purchased for $52,425:
+1 − (T/P)^(1/8) = 1 − (T/52425)^(1/8)
 
 ## Example 5 — Evaluate Expressions with Rational Exponents
 
-Evaluate:
+### Step 1: Positive Exponents
 
-`32^(-2/5)`
+27^(1/3) = 3
 
-`= 1 / 32^(2/5)`
+256^(1/4) = 4
 
-`= 1 / (2^5)^(2/5)`
+### Step 2: Negative Exponents
 
-`= 1 / 2^2`
+16^(-3/2) = 1/(16^(3/2)) = 1/(4³) = 1/64
 
-`= 1/4`
+81^(-1/4) = 1/(81^(1/4)) = 1/3
 
----
+### Step 3: Mixed Exponents
 
-## Example 6 — Simplify Expressions with Rational Exponents
+1024^(3/5) = (1024^(1/5))³ = 2³ = 8
 
-### a. `x^(2/3) * x^(1/6)`
+16^(-5/4) = 1/(16^(5/4)) = 1/((16^(1/4))^5) = 1/(2⁵) = 1/32
 
-`= x^(2/3 + 1/6)`
+## Example 6 — Simplify Products and Powers
 
-`= x^(4/6 + 1/6)`
+### Step 1: Multiply Same Bases
 
-`= x^(5/6)`
+x^(1/3) · x^(2/5) = x^(1/3 + 2/5) = x^(5/15 + 6/15) = x^(11/15)
 
-### b. `y^(-2/3)`
+### Step 2: Negative Exponents
 
-`= 1 / y^(2/3)`
+b^(-3/4) = 1/b^(3/4)
 
-### c. `z^(-1/3) * z^(3/4)`
+y^(-4/5) = 1/y^(4/5)
 
-`= z^(-1/3 + 3/4)`
+## Mixed Exercises
 
-`= z^(-4/12 + 9/12)`
+The mixed exercises section provides practice with all skills from the lesson. Problems include:
 
-`= z^(5/12)`
+* Simplifying various radical expressions including cube roots, fourth roots, and nested radicals.
+* Converting between exponential and radical forms.
+* Finding volumes of regular octahedrons given edge length.
+* Simplifying quotients with negative exponents.
+* Sports problem comparing radii of volleyball and tennis ball given volumes.
+* Water tower problem finding radius given volume.
+* Cell growth problem converting exponential expressions to radical form.
+* Analyzing why √[b]{m^(3b)} simplifies to m^(3/b) and conditions on b.
+* Determining conditions for real nth roots of a number.
+* Analyzing when √(x²) ≠ x.
+* Comparing equivalent functions written in different radical forms.
+* Explaining why absolute value symbols are sometimes needed when taking even roots of even powers.
+* Finding conditions under which √(x² + y²) = x + y.
+* Analyzing whether √[4]{(−x)⁴} = x is sometimes, always, or never true.
+* Finding values of x where √[3]{x} > x.
 
-## Think About It
+## Review Notes
 
-How can you tell if `x^(y/z)` will simplify to an integer?
-
----
-
-## Objective Alignment
-
-- `Simplify expressions involving radicals and rational exponents`: Primary worked examples: Examples 1-6.
-- `Simplify expressions in exponential or radical form`: Primary worked examples: Examples 3-6.
+* ![](media/image1.png) — Diagram for volleyball/tennis ball volume problem (problem 54)
+* ![](media/image2.png) — Student work for Destiny and Kimi simplifying √[4]{16x⁴y⁸} (problem 62)
+* Images referenced in the worksheet could not be fully described without visual reference. Teachers should consult the original worksheet for exact diagrams and values.
+* The worksheet contains 68 practice problems across six examples and mixed exercises.

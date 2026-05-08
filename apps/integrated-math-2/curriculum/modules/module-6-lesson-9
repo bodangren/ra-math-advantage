@@ -1,0 +1,198 @@
+# Lesson 6-9 — Density
+
+Source: (Module 6, Lesson 6-9, Int2_0609_practice.docx)
+
+## Today's Goals
+
+* Find population density.
+* Find area density and mass density.
+* Solve real-world problems involving density concepts.
+
+## Vocabulary
+
+* **Density** — The measure of how much of something is packed into a given unit of space or area. Expresses the concentration of a quantity.
+* **Population Density** — The number of people per unit of area: [D = Population / Area]
+* **Mass Density** — The mass per unit volume of a substance: [D = Mass / Volume]
+* **Area Density** — The amount of quantity per unit area: [D = Quantity / Area]
+* **Linear Density** — The mass per unit length of a one-dimensional object.
+
+## Explore: Density
+
+Students explore how density describes the concentration of a quantity in a given space. Population density tells us how crowded a place is. Mass density tells us how heavy a material is for its size. Density is a ratio that allows comparison between different-sized objects or regions.
+
+Inquiry Question:
+Why do some cities with similar populations have very different population densities? What does this tell us about how people are distributed?
+
+## Learn: Density
+
+### Key Concept: Population Density
+
+Population density measures how many people live per unit of area:
+[
+D = Population / Area
+]
+Common units: people per square mile, people per square kilometer.
+
+### Key Concept: Mass Density
+
+Mass density measures mass per unit volume:
+[
+D = Mass / Volume
+]
+Common units: grams per cubic centimeter, kilograms per cubic meter.
+
+### Key Concept: Area Density
+
+For objects with uniform distribution:
+[
+D = Quantity / Area
+]
+
+### Key Concept: Solving Density Problems
+
+Many real-world problems give density and ask for quantity, or give quantity and density and ask for area/volume.
+
+Rearrange the density formula:
+[
+Quantity = Density * Area
+]
+[
+Area = Quantity / Density
+]
+
+## Example 1 — Population Density
+
+Use the data in the table to find the population density of each city.
+
+### Step 1: Identify Population and Area
+
+Find these values from the data.
+
+### Step 2: Divide Population by Area
+
+[
+D = Population / Area
+]
+
+London, England:
+[
+D = 8,900,000 / 607 mi^2 = 14,662 people/mi^2
+]
+
+Paris, France:
+[
+D = 2,200,000 / 41 mi^2 = 53,659 people/mi^2
+]
+
+Madrid, Spain:
+[
+D = 3,200,000 / 233.3 mi^2 = 13,717 people/mi^2
+]
+
+Sydney, Australia:
+[
+D = 5,300,000 / 4800 km^2 = 1,104 people/km^2
+]
+
+## Example 2 — Applying Density to Solve Problems
+
+WILDLIFE: A town is installing bat boxes to reduce mosquitos. Each bat box houses 150 bats. The town has 300 bats per square mile to control the mosquito population. The town area is 12 square miles. How many bat boxes are needed?
+
+### Step 1: Find the Number of Bats the Town Can Support
+
+[
+300 bats/mi^2 * 12 mi^2 = 3600 bats
+]
+
+### Step 2: Divide by Bats per Box
+
+[
+3600 / 150 = 24 boxes
+]
+
+OCCUPANCY: Jamero wants to open a restaurant. Safety regulations require 15 ft^2 per person. If he wants to accommodate 50 people, what is the smallest floor space needed?
+
+### Step 1: Multiply People by Space per Person
+
+[
+50 * 15 = 750 ft^2
+]
+
+## Example 3 — Mass Density Problems
+
+FESTIVALS: Ohio State Fair butter sculptures of cow and calf weighed 2000 pounds in 2017.
+a. If a stick of butter weighs 4 ounces, what is its approximate density?
+[
+1 pound = 16 ounces
+]
+[
+1 stick = 4 oz = 0.25 lb
+]
+[
+Density of butter is approximately 0.25 lb per stick, but we need volume...
+]
+
+Actually, the problem asks about the sculpture density:
+[
+We need volume to find density
+]
+
+b. What was the total volume of the sculptures? (1 lb = 16 oz, density of butter is about 0.94 g/cm^3 or we work in pounds and cubic inches)
+
+First find the number of sticks:
+[
+2000 lb * 16 oz/lb = 32,000 oz
+]
+[
+32,000 oz / 4 oz/stick = 8000 sticks
+]
+
+If we know the volume of one stick of butter, we could find total volume. Assuming a stick is about 1 oz in volume (actual is about 1.8 oz or about 5.3 cm^3), we work with the given information.
+
+c. Approximately how many sticks of butter were used?
+[
+2000 lb / 0.25 lb = 8000 sticks
+]
+
+ENERGY: A house is 80 ft by 25 ft by 8 ft. Requires 60,000 BTUs to heat.
+a. What is the density of the house in BTUs?
+[
+Volume = 80 * 25 * 8 = 16,000 ft^3
+]
+[
+Density = 60,000 / 16,000 = 3.75 BTU/ft^3
+]
+
+b. A nearby house requires 52,000 BTUs, is 31 ft by 25 ft. Find the height.
+[
+Volume needed = 52,000 / 3.75 = 13,866.7 ft^3
+]
+[
+Area = 31 * 25 = 775 ft^2
+]
+[
+Height = 13,866.7 / 775 = 17.9 ft
+]
+
+## Mixed Exercises
+
+* REGULATIONS: A rectangular park 2 mi by 3 mi has maximum capacity 250 people. Find population density.
+* REASONING: A city has east river portion (25% of city) with density 28 persons/km^2 and west portion with 17 persons/km^2. Find overall density.
+* CONSTRUCT ARGUMENTS: A semi-trailer can weigh no more than 34,000 lb. Interior dimensions given. Freight has density 0.006 lb/in^3. Will the load meet weight restrictions?
+* PAPER WEIGHTS: A cylindrical paper weight with given dimensions has mass 606.7 g. Find density. Use a table to determine which material.
+* WHICH ONE DOESN'T BELONG?: Jonathan building a terrarium for 18 plants, 120 in^3 space per plant. Which structure won't meet requirement?
+* WRITE: Explain why a cubic foot of gas and a cubic foot of gold do not have the same density.
+* ANALYZE: Determine whether Block A having greater density than Block B is true or false.
+* PERSEVERE: An engineer designing a marble fountain. Marble sample is 4 in by 6 in by 1 in with mass 1066.32 g.
+a. Find density of marble.
+b. A sphere fountain with radius 2 ft. Find mass in kilograms.
+
+## Review Notes
+
+* ![](media/) — Image references for diagrams and tables in the original DOCX could not be fully captured.
+* Density is ALWAYS a ratio of quantity to space (mass/volume, population/area, etc.).
+* To find the total quantity: multiply density by the area or volume.
+* To find area or volume: divide quantity by density.
+* Units matter! Make sure density units match the units of the quantity you're calculating.
+* Population density is typically expressed as people per square mile or people per square kilometer.
+* Mass density is typically expressed as grams per cubic centimeter or kilograms per cubic meter.

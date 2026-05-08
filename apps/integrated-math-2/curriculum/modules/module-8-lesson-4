@@ -1,0 +1,104 @@
+# Lesson 8-4 — Sketching Graphs and Comparing Functions
+
+Source: (Module 8, Lesson 8-4, Int2_0804_practice.docx)
+
+## Today's Goals
+
+* Use key features (intercepts, linearity, continuity, symmetry, extrema, end behavior) to sketch the graph of a function.
+* Compare key features of functions represented in different formats (graph, table, verbal description).
+* Model real-world situations by sketching graphs from key features.
+
+## Vocabulary
+
+* **Key Features** — Important characteristics of a function including x-intercept, y-intercept, linearity, continuity, symmetry, positive/negative intervals, increasing/decreasing intervals, extrema, and end behavior.
+* **Set-Builder Notation** — A way to describe a set by specifying the conditions that all members satisfy, e.g., [{x | x > 2}].
+* **Interval Notation** — A way to describe an interval using brackets: parentheses for open endpoints, brackets for closed endpoints.
+
+## Explore: Building Graphs from Descriptions
+
+Students consider how to translate a verbal description of key features into a sketch of the graph.
+
+Inquiry Question:
+How can you use key features to sketch a graph if you don't have an equation?
+
+## Learn: Sketching Graphs from Key Features
+
+### Key Concept: Key Features to Identify
+
+* **x-intercept(s):** where the graph crosses the x-axis
+* **y-intercept:** where the graph crosses the y-axis
+* **Linearity:** linear (straight line) or nonlinear
+* **Continuity:** continuous (no breaks) or discrete (isolated points)
+* **Positive/Negative:** where the graph is above/below the x-axis
+* **Increasing/Decreasing:** where the function rises or falls as you move left to right
+* **Symmetry:** line symmetry (about a vertical/horizontal line) or point symmetry
+* **Extrema:** relative maxima and minima
+* **End Behavior:** what happens to [f(x)] as [x -> +/- infinity]
+
+### Key Concept: Sketching from Key Features
+
+1. Plot the intercepts.
+2. Determine whether the function is linear or nonlinear.
+3. Identify positive/negative regions and increasing/decreasing behavior.
+4. Draw the graph consistent with all features, including end behavior.
+
+## Examples 1 and 2 — Sketch from Key Features
+
+Use the given key features to sketch each graph.
+
+### Step 1: Plot Key Points and Determine Shape
+
+* Problem 1: x-intercept (2, 0), y-intercept (0, -6), linear, continuous, positive for x > 2, increasing for all x, end behavior both infinity.
+* Problem 2: x-intercept (0, 0), y-intercept (0, 0), linear, continuous, positive for x < 0, negative for x > 0, decreasing for all x, end behavior opposite.
+* Problems 3–8: continue with various combinations of linear and nonlinear functions with different key feature sets.
+
+## Example 3 — Real-World Graph Sketches
+
+Use key features to sketch graphs for real-world situations.
+
+### Step 1: Pelicans
+
+A pelican descends from 6 feet to 0 feet over 3 seconds. Linear function.
+
+### Step 2: Scooters
+
+Greg's scooter ride: starts at 0 mph, reaches 35 mph at 5 minutes, speed behavior over 20 minutes with increases and decreases.
+
+## Examples 4 and 5 — Compare Functions Across Representations
+
+Compare the key features of functions represented with a graph, a table, and a verbal description.
+
+### Step 1: Graph and Table Comparison
+
+### Step 2: Graph and Verbal Description
+
+### Step 3: Table and Verbal Description
+
+### Step 4: More Comparisons
+
+## Mixed Exercises
+
+Problems 17–27 provide additional practice:
+
+* USE A MODEL: Sketch a linear function with specific key features.
+* WATER: Sia fills a pitcher from 0 to 64 ounces in 8 seconds, linear function.
+* USE TOOLS: Monica walks for 60 minutes, maximum 2 miles from home at 30 minutes, then returns.
+* USE A SOURCE: Research a new car's depreciation over time.
+* SKI LIFTS: A ski lift descends from 1800 feet to ground level in 4 minutes.
+* CONSTRUCT ARGUMENTS: Keisha babysitting at $9/hour — why does the graph only exist for positive x and y?
+* CREATE: Choose a function, list key features, and sketch it.
+* WRITE: Describe the relationship between slope of a linear function and increasing/decreasing.
+* ANALYZE: Determine if a graph with more than one x-intercept must be nonlinear.
+* PERSEVERE: Deborah fills a tub — maximum 50 gallons at 10 minutes, then decreases to 0 at 30 minutes.
+* FIND THE ERROR: Linda and Rubio's conflicting sketches for the same key features.
+
+## Review Notes
+
+* ![](media/image1.png) — Graph and table comparison (problem 11)
+* ![](media/image2.png) — Graph and verbal comparison (problem 12)
+* ![](media/image3.png) — Table and verbal comparison (problem 13)
+* ![](media/image4.png) — Graph and verbal comparison (problem 14)
+* ![](media/image5.png) — Table and verbal comparison (problem 15)
+* ![](media/image6.png) — Graph and table comparison (problem 16)
+* ![](media/image7.png) — SKI LIFTS graph (problem 21)
+* ![](media/image8.png) — PERSEVERE Deborah's tub graph (problem 26)

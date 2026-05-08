@@ -1,0 +1,97 @@
+# Lesson 5-6 — Tangents, Secants, and Angle Measures
+
+Source: (Module 5, Lesson 5-6, Int2_0506_practice.docx)
+
+## Today's Goals
+
+* Find angle measures formed by chords, tangents, and secants.
+* Apply the theorems for angles formed inside, on, and outside circles.
+* Use angle measure relationships to find arc measures and unknown angles.
+
+## Vocabulary
+
+* **Secant** — A line that intersects a circle at two points.
+* **Interior Angle (Circle)** — An angle formed by two chords whose vertex is inside the circle.
+* **Exterior Angle (Circle)** — An angle formed by a tangent and a secant, two secants, or two tangents whose vertex is outside the circle.
+
+## Explore: Where Does the Angle's Vertex Live?
+
+The measure of an angle formed by intersecting lines and circles depends on where the vertex is located. Students discover different formulas for angles inside a circle (vertex in the interior), on the circle (vertex on the circle), and outside the circle (vertex in the exterior).
+
+Inquiry Question:
+If a tangent and a secant intersect outside a circle, how is the angle formed related to the arcs they intercept?
+
+## Learn: Tangents, Secants, and Angle Measures
+
+### Key Concept: Angles Inside a Circle
+
+When two chords intersect inside a circle, the measure of each angle is half the sum of the measures of the arcs intercepted by the angle and its vertical angle:
+
+[m∠ = (1/2)(m intercepted arc + m opposite arc)]
+
+### Key Concept: Angles On the Circle (Inscribed Angle)
+
+An angle formed by two chords with its vertex on the circle has measure half the measure of its intercepted arc:
+
+[m∠ = (1/2)m intercepted arc]
+
+### Key Concept: Angles Outside a Circle
+
+When a tangent and a secant, two secants, or a tangent and a chord intersect outside a circle, the angle measure is half the difference of the intercepted arcs:
+
+[m∠ = (1/2)(m major arc - m minor arc)]
+
+For a tangent and secant: [m∠ = (1/2)(m larger intercepted arc - m smaller intercepted arc)].
+
+## Example 1 — Find Angle Measures from Diagrams
+
+Find [m∠2], [m∠1], [mGH], [m∠5], [m∠1], and [m∠2] from circle diagrams.
+
+### Step 1: Identify the Type of Angle
+
+Determine whether each angle is an interior angle, an inscribed angle, or an exterior angle based on the location of its vertex. Apply the appropriate formula.
+
+## Example 2 — Find Measures with Tangents and Secants
+
+Find [m∠1], [m∠3], [mRT], [m∠6], [m∠3], and [m∠4] in tangent–secant configurations. Assume segments that appear tangent are tangent.
+
+### Step 1: Apply the Exterior Angle Theorem
+
+For an angle formed by a tangent and a secant intersecting outside the circle, [m∠ = (1/2)(m major arc - m minor arc)]. Identify the intercepted arcs for each angle.
+
+## Example 3 — Find Angle Measures and Arc Measures
+
+Find [m∠R], [m∠U], and [mDPA] in tangent–secant configurations.
+
+### Step 1: Set Up Equations Using Arc Differences
+
+If [m∠R = (1/2)(m major arc - m minor arc)], set up the equation using the given arc measures and solve for the unknown.
+
+For [m∠R], the intercepted arcs come from the secant and tangent lines. The angle exterior to the circle equals half the difference between the far arc and the near arc.
+
+## Mixed Exercises
+
+Practice with all skills from the lesson, including:
+
+* Finding angle measures and arc measures from circle diagrams.
+* Analyzing a plane at altitude 5 miles finding the visible portion of a longitude line.
+* Finding [mAB] given an apex angle of 30° and [mBC = 22°] in a circular canvas on an A-frame easel.
+* Writing paragraph proofs for both parts of Theorem 10.15 (tangent–secant angle theorem).
+* Finding the value of [x] in various tangent–secant configurations.
+* Analyzing an isosceles triangle inscribed in a circle to find arc measures.
+* Explaining how to find the measure of an angle formed by a secant and a tangent intersecting outside a circle.
+* Drawing a circle with two tangents intersecting outside, measuring the angle, and finding the minor and major arc measures.
+* Finding [m∠A] when given concentric circles and angle relationships.
+* Describing how to find measures of three minor arcs formed by the points of tangency of an inscribed circle in a triangle with angles 50° and 60°.
+
+## Review Notes
+
+* ![](media/image1.png), ![](media/image2.png), ![](media/image3.png) — diagrams for Exercises 1–3
+* ![](media/image4.png), ![](media/image5.png), ![](media/image6.png) — diagrams for Exercises 4–6
+* ![](media/image7.png), ![](media/image8.png), ![](media/image9.png) — tangent/secant diagrams for Exercises 7–12
+* ![](media/image10.png), ![](media/image11.png), ![](media/image12.png) — tangent/secant diagrams for Exercises 10–12
+* ![](media/image13.png), ![](media/image14.png), ![](media/image15.png), ![](media/image16.png) — tangent/secant diagrams for Exercises 13–15
+* ![](media/image17.png) — plane altitude diagram for Exercise 16
+* ![](media/image18.png) — circular canvas on A-frame easel for Exercise 17
+* ![](media/image19.png), ![](media/image20.png), ![](media/image21.png), ![](media/image22.png) — diagrams for Exercises 19–22
+* ![](media/image23.png) — diagram for Exercise 25 (concentric circles)

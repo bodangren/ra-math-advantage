@@ -1,0 +1,149 @@
+# Lesson 12-3 — Deductive Reasoning
+
+Source: (Module 12, Lesson 12-3, Int1_1203_practice.docx)
+
+## Today's Goals
+
+* Distinguish between inductive and deductive reasoning in given arguments.
+* Determine whether a conclusion is valid or invalid based on given information.
+* Apply the Law of Detachment and the Law of Syllogism to draw valid conclusions from conditional statements.
+* Use Venn diagrams and symbolic logic to justify reasoning.
+
+## Vocabulary
+
+* **Deductive Reasoning** — Using facts, rules, definitions, or properties to reach a logical conclusion.
+* **Inductive Reasoning** — Using specific examples, patterns, or observations to make a general conclusion.
+* **Conditional Statement** — A logical statement of the form "if [p], then [q]," where [p] is the hypothesis and [q] is the conclusion.
+* **Law of Detachment** — If a conditional statement [p \to q] is true and the hypothesis [p] is true, then the conclusion [q] must also be true.
+* **Law of Syllogism** — If [p \to q] and [q \to r] are both true, then [p \to r] is also true.
+* **Valid Conclusion** — A conclusion that logically follows from the given statements using a recognized law of logic.
+* **Invalid Conclusion** — A conclusion that does not logically follow from the given statements.
+* **Conjunction** — A compound statement formed by joining two statements with "and," symbolized as [p \land q].
+* **Disjunction** — A compound statement formed by joining two statements with "or," symbolized as [p \lor q].
+
+## Explore: When Does a Conclusion Follow Logically?
+
+Students examine everyday arguments and decide whether the conclusions are guaranteed to be true or only likely to be true. Consider how the structure of an argument determines whether the conclusion is certain.
+
+Inquiry Question:
+What makes a conclusion logically certain rather than merely probable?
+
+## Learn: Deductive Reasoning and Logical Laws
+
+Deductive reasoning moves from general statements to specific, certain conclusions. Two fundamental laws govern valid deductions from conditional statements.
+
+### Key Concept: Inductive vs. Deductive Reasoning
+
+* **Inductive reasoning** uses specific observations or examples to reach a general conclusion. The conclusion is probable but not guaranteed.
+* **Deductive reasoning** uses facts, rules, definitions, or properties to reach a specific conclusion. If the premises are true, the conclusion is guaranteed.
+
+### Key Concept: Law of Detachment
+
+* Given a true conditional [p \to q] and a true hypothesis [p], the conclusion [q] must be true.
+* Symbolically: [(p \to q) \land p \Rightarrow q] 
+
+### Key Concept: Law of Syllogism
+
+* Given two true conditionals [p \to q] and [q \to r], the conditional [p \to r] must also be true.
+* Symbolically: [(p \to q) \land (q \to r) \Rightarrow (p \to r)] 
+* The conclusion of the first statement must match the hypothesis of the second statement exactly.
+
+### Key Concept: Validity vs. Truth
+
+* A conclusion is **valid** when it is correctly derived from the given statements using a law of logic.
+* A conclusion is **invalid** when it commits a logical error, such as affirming the converse or denying the hypothesis.
+
+## Example 1 — Distinguish Inductive and Deductive Reasoning
+
+Given a set of arguments, determine whether each conclusion was reached using inductive or deductive reasoning.
+
+### Step 1: Identify the Structure of the Argument
+
+Determine whether the argument moves from specific examples to a general rule (inductive) or from general rules to a specific conclusion (deductive).
+
+* Arguments that apply a general rule to a specific case are deductive. For example, applying a school policy about tardiness to a specific student uses deductive reasoning.
+* Arguments that infer a future event from repeated past observations are inductive. For example, predicting that a habitually late patient will be late again uses inductive reasoning.
+
+### Step 2: Classify Each Argument
+
+Representative argument types include:
+* Applying an "if-then" school rule to a specific student — deductive.
+* Predicting future behavior from a pattern of past behavior — inductive.
+* Applying a membership requirement to a specific person observed at a gym — deductive.
+* Inferring a consequence from a stated decision — deductive.
+* Predicting a weekly phone call based on a repeated pattern — inductive.
+* Predicting improved grades from a tutoring pattern — inductive.
+
+## Example 2 — Determine Whether a Conclusion Is Valid
+
+Given a set of premises and a stated conclusion, determine whether the conclusion is valid or invalid and explain the reasoning.
+
+### Step 1: Identify the Logical Form
+
+Determine whether the argument follows the Law of Detachment, affirms the converse, denies the hypothesis, or makes another common error.
+
+* **Valid (Law of Detachment):** The argument affirms the hypothesis of a conditional. Given [p \to q] and [p], concluding [q] is valid.
+[
+  p \to q \\
+  p \\
+  \therefore q
+]
+
+* **Invalid (Converse Error):** The argument affirms the conclusion and tries to infer the hypothesis. Given [p \to q] and [q], concluding [p] is invalid.
+[
+  p \to q \\
+  q \\
+  \therefore p \quad \text{(invalid)}
+]
+
+### Step 2: Evaluate Each Argument
+
+Representative argument types include:
+* Given that all right angles are congruent and that two angles are right angles, concluding they are congruent — valid by definition.
+* Given "if square then four right angles" and observing four right angles, concluding the figure is a square — invalid (converse error; the figure could be a rectangle).
+* Given "if lights on then battery dies" and observing a dead battery, concluding the lights were left on — invalid (converse error; other causes are possible).
+* Given "if part-time job then afford car payment" and observing the ability to afford a car payment, concluding a part-time job was obtained — invalid (converse error).
+* Given "if 75% of tickets sold then prom at country club" and observing 75% of tickets sold, concluding the prom will be at the country club — valid by the Law of Detachment.
+
+## Example 3 — Apply the Law of Syllogism
+
+Given a pair of conditional statements, use the Law of Syllogism to draw a valid conclusion if possible. If no valid conclusion can be drawn, explain why.
+
+### Step 1: Check for a Chain of Conditionals
+
+Identify whether the conclusion of the first conditional matches the hypothesis of the second conditional exactly.
+
+* If the statements have the form [p \to q] and [q \to r], then the valid conclusion is [p \to r].
+[
+  p \to q \\
+  q \to r \\
+  \therefore p \to r
+]
+
+* If the conclusion of the first statement does not match the hypothesis of the second, no valid conclusion can be drawn by the Law of Syllogism.
+
+### Step 2: Draw or Reject the Conclusion
+
+Representative cases include:
+* Two conditionals sharing the same hypothesis but different conclusions — no valid conclusion by syllogism (the chain is broken).
+* A chain connecting grade point average to honor roll to school paper — valid conclusion links grade point average to name in the paper.
+* A conditional about perpendicular lines and a statement that two lines form right angles — no valid conclusion (the second statement is not a conditional with the first conclusion as its hypothesis).
+* A chain connecting obtuse angles to not acute — valid conclusion links angle measure between 90° and 180° to not acute.
+* A chain connecting non-parallel lines to intersecting to intersecting in a point — valid conclusion links non-parallel lines to intersecting in a point.
+* Two conditionals with unrelated hypotheses (ending in 0 vs. ending in 4) and the same conclusion — no valid conclusion by syllogism.
+
+## Mixed Exercises
+
+The mixed exercises consolidate reasoning skills with a variety of problem types:
+
+* **Construct arguments:** Given conditional statements, draw a valid conclusion and identify whether the Law of Detachment or the Law of Syllogism was used. If no valid conclusion can be drawn, justify why.
+* **Determine validity with Venn diagrams:** Given a conditional statement and additional information, decide whether a stated conclusion is valid or invalid and explain using a Venn diagram.
+* **Real-world reasoning:** Apply logical laws to everyday situations involving tutoring schedules, music history, building directions, and energy costs.
+* **Writing and analysis:** Explain why the Law of Syllogism fails for a given pair of conditionals; compare and contrast inductive and deductive reasoning.
+* **Symbolic logic:** Use symbols for conjunction, disjunction, and implication to represent the Law of Detachment and the Law of Syllogism.
+* **Create and write original statements:** Write pairs of statements that illustrate the Law of Detachment and the Law of Syllogism, and specify the conclusion reached.
+* **Persevere and analyze:** Solve logic puzzles involving truth-tellers and liars, and determine which statement among a set does not belong with the others.
+
+## Review Notes
+
+* Problem 29 references an image (`media/image1.png`) of two posted signs outside a trampoline park. The signs contain rules about age and supervision requirements. Teachers should consult the original worksheet for the exact text on the signs.

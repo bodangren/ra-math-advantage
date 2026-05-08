@@ -1,323 +1,252 @@
 # Lesson 2-1 — Polynomial Functions
 
-Source: (Module 2, Lesson 2-1, pp. 73–78)
+Source: (Module 2, Lesson 2-1, Int3_0201_practice.docx)
 
 ## Today's Goals
 
-* Graph and analyze power functions
-* Graph and analyze polynomial functions
-
----
+* Describe the end behavior of polynomial functions using leading coefficient and degree.
+* State the domain and range of polynomial functions.
+* Identify the degree and leading coefficient of polynomials.
+* Determine the number of real zeros from a graph.
 
 ## Vocabulary
 
-* power function
-* leading coefficient
-* degree
-* monomial function
-* polynomial in one variable
-* standard form of a polynomial
-* degree of a polynomial
-* polynomial function
-* quartic function
-* quintic function
-
----
-
-## Explore: Power Functions
-
-Use graphing technology to complete the explore.
-
-Inquiry Question:
-How do the coefficient and degree of a function of the form `f(x) = ax^n` affect its end behavior?
-
----
-
-## Learn: Graphing Power Functions
-
-A power function is any function of the form `f(x) = ax^n`, where `a` and `n` are nonzero real numbers.
-
-* `a` is the leading coefficient
-* `n` is the degree
-* A power function with positive integer `n` is called a monomial function
-
-### Key Concept: End Behavior of a Monomial Function
-
-* Even degree, positive leading coefficient:
-  * as `x -> -infinity`, `f(x) -> infinity`
-  * as `x -> infinity`, `f(x) -> infinity`
-  * domain: all real numbers
-  * range: `y >= 0`
-* Odd degree, positive leading coefficient:
-  * as `x -> -infinity`, `f(x) -> -infinity`
-  * as `x -> infinity`, `f(x) -> infinity`
-  * domain: all real numbers
-  * range: all real numbers
-* Even degree, negative leading coefficient:
-  * as `x -> -infinity`, `f(x) -> -infinity`
-  * as `x -> infinity`, `f(x) -> -infinity`
-  * domain: all real numbers
-  * range: `y <= 0`
-* Odd degree, negative leading coefficient:
-  * as `x -> -infinity`, `f(x) -> infinity`
-  * as `x -> infinity`, `f(x) -> -infinity`
-  * domain: all real numbers
-  * range: all real numbers
-
-### Key Concept: Zeros of Even- and Odd-Degree Monomial Functions
-
-* Odd-degree functions always have at least one real zero
-* Even-degree functions may have any number of real zeros or no real zeros at all
-
-## Talk About It
-
-Is `f(x) = sqrt(x)` a power function? A monomial function? Explain your reasoning.
-
----
-
-## Example 1 — End Behavior and Degree of a Monomial Function
-
-Describe the end behavior of `f(x) = -2x^3` using the leading coefficient and degree, and state the domain and range.
-
-* The leading coefficient is `-2`, which is negative
-* The degree is `3`, which is odd
-
-Because the leading coefficient is negative and the degree is odd:
-
-* as `x -> -infinity`, `f(x) -> infinity`
-* as `x -> infinity`, `f(x) -> -infinity`
-
-Because this is a monomial function:
-
-* domain: all real numbers
-* range: all real numbers
-
----
-
-## Example 2 — Graph a Power Function by Using a Table
-
-Pressure in a garden hose can be modeled by:
-
-`P(F) = (3/2)F^2`
-
-where `F` is the flow rate in gallons per minute.
-
-Graph the function and state the domain and range.
-
-### Steps 1 and 2: Find `a` and `n`
-
-* `a = 3/2`
-* `n = 2`
-
-Because `a` is positive and `n` is even:
-
-* domain: all real numbers
-* range: `y >= 0`
-
-### Steps 3–5: Make a table and graph
-
-| F  | P(F) |
-| -- | ---- |
-| -2 | 6    |
-| -1 | 1.5  |
-| 0  | 0    |
-| 1  | 1.5  |
-| 2  | 6    |
-
-## Think About It
-
-Interpret the domain and range given the context of the situation.
-
----
+* **Polynomial Function** — A function of the form [f(x) = a_nx^n + a_{n-1}x^{n-1} + ... + a_1x + a_0] where [a_n ≠ 0] and [n] is a non-negative integer.
+* **Degree** — The highest power of the variable in a polynomial function.
+* **Leading Coefficient** — The coefficient of the term with the highest degree.
+* **End Behavior** — The behavior of the graph as [x → ∞] or [x → -∞].
+* **Real Zero** — A value of [x] where [f(x) = 0]; the [x]-intercept of the graph.
 
 ## Explore: Polynomial Functions
 
-Use graphing technology to complete the explore.
-
 Inquiry Question:
-How is the degree of a function related to the number of times its graph intersects the x-axis?
+How does the degree and leading coefficient of a polynomial function determine its end behavior?
 
----
+## Learn: Polynomial Functions
 
-## Learn: Graphing Polynomial Functions
+### Key Concept: End Behavior
 
-A polynomial in one variable has the form:
+For a polynomial function [f(x) = a_nx^n + a_{n-1}x^{n-1} + ... + a_0]:
 
-`a_nx^n + a_(n-1)x^(n-1) + ... + a_2x^2 + a_1x + a_0`
+* If [n] is even and [a_n > 0], the end behavior is: as [x → ±∞], [f(x) → +∞]
+* If [n] is even and [a_n < 0], the end behavior is: as [x → ±∞], [f(x) → -∞]
+* If [n] is odd and [a_n > 0], the end behavior is: as [x → -∞], [f(x) → -∞] and as [x → +∞], [f(x) → +∞]
+* If [n] is odd and [a_n < 0], the end behavior is: as [x → -∞], [f(x) → +∞] and as [x → +∞], [f(x) → -∞]
 
-where:
+### Key Concept: Domain and Range
 
-* `a_n != 0`
-* the coefficients are real numbers
-* `n` is a nonnegative integer
+The domain of any polynomial function is all real numbers, [[-∞, +∞]].
 
-When the terms are written from greatest degree to least degree, the polynomial is in standard form.
+The range depends on the degree and leading coefficient:
+* Even degree with [a_n > 0]: [[a_min, +∞)] where [a_min] is the relative minimum
+* Even degree with [a_n < 0]: [(-∞, a_max]] where [a_max] is the relative maximum
+* Odd degree: [(-∞, +∞)]
 
-* The degree is `n`
-* The leading coefficient is `a_n`
+## Example 1 — Describe End Behavior
 
-A polynomial function is a continuous function described by a polynomial equation in one variable.
+Describe the end behavior of each function using the leading coefficient and degree, and state the domain and range.
 
-* A fourth-degree polynomial is a quartic function
-* A fifth-degree polynomial is a quintic function
-* The degree tells the maximum number of times the graph can intersect the x-axis
+**1.** [f(x) = 3x^4]
+**2.** [f(x) = -2x^3]
+**3.** [f(x) = -\frac{1}{2}x^5]
+**4.** [f(x) = \frac{3}{4}x^6]
 
-### Watch Out
+### Step 1: Analyze each function
 
-If the term with the greatest degree has no coefficient shown, the leading coefficient is `1`.
+**1.** [f(x) = 3x^4]
+* Degree: 4 (even)
+* Leading coefficient: 3 (positive)
+* End behavior: as [x → ±∞], [f(x) → +∞]
+* Domain: [(-∞, +∞)]
+* Range: [[0, +∞)]
 
----
+**2.** [f(x) = -2x^3]
+* Degree: 3 (odd)
+* Leading coefficient: -2 (negative)
+* End behavior: as [x → -∞], [f(x) → +∞] and as [x → +∞], [f(x) → -∞]
+* Domain: [(-∞, +∞)]
+* Range: [(-∞, +∞)]
 
-## Example 3 — Degrees and Leading Coefficients
+**3.** [f(x) = -\frac{1}{2}x^5]
+* Degree: 5 (odd)
+* Leading coefficient: [-\frac{1}{2}] (negative)
+* End behavior: as [x → -∞], [f(x) → +∞] and as [x → +∞], [f(x) → -∞]
+* Domain: [(-∞, +∞)]
+* Range: [(-∞, +∞)]
 
-State the degree and leading coefficient of each expression. If it is not a polynomial in one variable, explain why.
+**4.** [f(x) = \frac{3}{4}x^6]
+* Degree: 6 (even)
+* Leading coefficient: [\frac{3}{4}] (positive)
+* End behavior: as [x → ±∞], [f(x) → +∞]
+* Domain: [(-∞, +∞)]
+* Range: [[0, +∞)]
 
-* `2x^4 - 3x^3 - 4x^2 - 5x + 6`
-  * degree: `4`
-  * leading coefficient: `2`
-* `7x^3 - 2`
-  * degree: `3`
-  * leading coefficient: `7`
-* `4x^2 - 2xy + 8y^2`
-  * not a polynomial in one variable because it has two variables
-* `x^5 + 12x^4 - 3x^3 + 2x^2 + 8x + 4`
-  * degree: `5`
-  * leading coefficient: `1`
+## Example 2 — Graph Polynomial Functions
 
-## Think About It
+### Step 1: Graph [f(x) = \frac{4}{3}x^2]
 
-Jamison says the leading coefficient of `4x^2 - 3 + 2x^3 - x` is `4`. Do you agree or disagree? Explain.
+**5. FLASHLIGHT** The shape of a parabolic reflector inside a flashlight can be modeled by the function [f(x) = \frac{4}{3}x^2]. Graph the function and state the domain and range.
 
-If a polynomial function has a leading coefficient of `4`, can you determine its end behavior? Explain.
+* Degree: 2 (even)
+* Leading coefficient: [\frac{4}{3}] (positive)
+* End behavior: as [x → ±∞], [f(x) → +∞]
+* Domain: [(-∞, +∞)]
+* Range: [[0, +∞)]
+* The vertex is at (0, 0) and the parabola opens upward.
 
----
+### Step 2: Graph [f(x) = x^3 + 3x^2 - 18x - 40]
 
-## Example 4 — Evaluate and Graph a Polynomial Function
+**6. MACHINE EFFICIENCY** A company uses the function [f(x) = x^3 + 3x^2 - 18x - 40] to model the change in efficiency of a machine based on its position [x]. Graph the function and state the domain and range.
 
-The density of the Sun can be modeled by:
+* Degree: 3 (odd)
+* Leading coefficient: 1 (positive)
+* End behavior: as [x → -∞], [f(x) → -∞] and as [x → +∞], [f(x) → +∞]
+* Domain: [(-∞, +∞)]
+* Range: [(-∞, +∞)]
+* The function has a relative maximum and a relative minimum.
 
-`f(x) = 519x^4 - 1630x^3 + 1844x^2 - 889x + 155`
+## Example 3 — Degree and Leading Coefficient
 
-where `x` is the percent of the distance from the core to the surface, written as a decimal.
+State the degree and leading coefficient of each polynomial in one variable. If it is not a polynomial in one variable, explain why.
 
-### Part A: Evaluate the function
+**7.** [n + 8]
+**8.** [(2x - 1)(4x^2 + 3)]
+**9.** [-5x^5 + 3x^3 - 8]
+**10.** [18 - 3y + 5y^2 - y^5 + 7y^6]
+**11.** [u^3 + 4u^2t^2 + t^4]
+**12.** [2r - r^2 + \frac{1}{r^2}]
 
-Find the density at a radius `60%` of the way to the surface.
+### Step 1: Identify each
 
-Substitute `x = 0.6`:
+**7.** [n + 8]
+* Degree: 1
+* Leading coefficient: 1
+* This is a polynomial in one variable.
 
-`f(0.6) = 519(0.6)^4 - 1630(0.6)^3 + 1844(0.6)^2 - 889(0.6) + 155`
+**8.** [(2x - 1)(4x^2 + 3)] expands to [8x^3 - 4x^2 + 6x - 3]
+* Degree: 3
+* Leading coefficient: 8
+* This is a polynomial in one variable.
 
-`= 67.2624 - 352.08 + 663.84 - 533.4 + 155`
+**9.** [-5x^5 + 3x^3 - 8]
+* Degree: 5
+* Leading coefficient: -5
+* This is a polynomial in one variable.
 
-`= 0.6224`
+**10.** [18 - 3y + 5y^2 - y^5 + 7y^6]
+* Degree: 6
+* Leading coefficient: 7
+* This is a polynomial in one variable.
 
-So the density is `0.6224 g/cm^3`.
+**11.** [u^3 + 4u^2t^2 + t^4]
+* Not a polynomial in one variable because it contains two variables [u] and [t].
 
-### Part B: Graph the function
+**12.** [2r - r^2 + \frac{1}{r^2}]
+* Not a polynomial because [\frac{1}{r^2} = r^{-2}] has a negative exponent.
 
-Create a table of values and connect the points with a smooth curve.
+## Example 4 — Real-World Applications
 
-| x   | f(x)    |
-| --- | ------- |
-| 0.1 | 82.9619 |
-| 0.2 | 38.7504 |
-| 0.3 | 14.4539 |
-| 0.4 | 3.4064  |
-| 0.5 | 0.1875  |
-| 0.7 | 1.7819  |
-| 0.8 | 1.9824  |
-| 0.9 | 0.7859  |
+### Step 1: Triangles Problem
 
-## Think About It
+**13. TRIANGLES** Dylan drew [n] dots on a piece of paper making sure that no set of 3 points were collinear. The number of triangles that can be made using the dots as vertices is [f(n) = \frac{1}{6}(n^3 - 3n^2 + 2n)], when [n ≥ 0].
 
-What values of `x` make sense in the context of the situation? Justify your reasoning.
+**a.** If Dylan drew 15 dots, how many triangles can be made?
 
----
+[f(15) = \frac{1}{6}(15^3 - 3(15)^2 + 2(15)) = \frac{1}{6}(3375 - 675 + 30) = \frac{1}{6}(2730) = 455]
 
-## Example 5 — Zeros of a Polynomial Function
+**b.** Sketch a graph of the function.
 
-Use the graph to state the number of real zeros of the function.
+* The function is cubic with positive leading coefficient [\frac{1}{6}].
+* End behavior: as [x → -∞], [f(x) → -∞] and as [x → +∞], [f(x) → +∞]
+* The graph passes through the origin and increases.
 
-The real zeros occur at:
+### Step 2: Drilling Problem
 
-* `x = -2`
-* `x = 1`
-* `x = 4`
+**14. DRILLING** The volume of a drill bit can be estimated by the formula [V = \frac{1}{3}πhr^2]. Substituting [h = \frac{\sqrt{3}}{3}r], the volume is [V = \frac{\sqrt{3}}{9}πr^3].
 
-So there are three real zeros.
+**a.** What is the volume of a drill bit with a radius of 3 centimeters?
 
-### Study Tip
+[V = \frac{\sqrt{3}}{9}π(3)^3 = \frac{\sqrt{3}}{9}π(27) = 3\sqrt{3}π ≈ 16.3 cm^3]
 
-The real zeros occur where `f(x) = 0`, or where the polynomial intersects the x-axis.
+**b.** Sketch a graph of the function.
 
----
+* The function is cubic with positive leading coefficient [\frac{\sqrt{3}}{9}π].
+* Domain: [[0, +∞)] (radius cannot be negative)
+* Range: [[0, +∞)]
 
-## Example 6 — Compare Polynomial Functions
+## Example 5 — Real Zeros from Graphs
 
-Examine `f(x) = x^3 + 2x^2 - 3x` and `g(x)` shown in the graph.
+Use the graph to state the number of real zeros of each function.
 
-### Part A: Graph `f(x)`
+**15. 16. 17. 18. 19. 20.**
 
-Use a table of values.
+### Step 1: Count x-intercepts
 
-| x  | f(x) |
-| -- | ---- |
-| -3 | 0    |
-| -2 | 6    |
-| -1 | 4    |
-| 0  | 0    |
-| 1  | 0    |
-| 2  | 10   |
-| 3  | 36   |
+A real zero corresponds to an [x]-intercept of the graph. Count the number of times the graph crosses or touches the [x]-axis.
 
-### Part B: Analyze the extrema
+* Each graph shows a different polynomial function.
+* Count the distinct [x]-intercepts for each.
 
-Which function has the greater relative maximum?
+## Example 6 — Compare Functions
 
-* `f(x)` has a relative maximum at about `y = 6`
-* `g(x)` has a relative maximum between `y = 2` and `y = 3`
+**21.** Examine [f(x) = x^3 - 2x^2 - 4x + 1] and [g(x)] shown in the graph.
 
-So, `f(x)` has the greater relative maximum.
+**a.** Which function has the greater relative maximum?
 
-### Part C: Compare key features
+**b.** Compare the zeros, [x]- and [y]-intercepts, and end behavior of [f(x)] and [g(x)].
 
-### Zeros
+**22.** Examine the graph of [f(x)] and [g(x)] shown in the table.
 
-* `f(x)`: `-3, 0, 1`
-* `g(x)`: about `-1, -0.5, 1, 2`
+**a.** Which function has the greater relative maximum?
 
-### Intercepts
+**b.** Compare the zeros, [x]- and [y]-intercepts, and end behavior of [f(x)] and [g(x)].
 
-* `f(x)`:
-  * x-intercepts: `-3, 0, 1`
-  * y-intercept: `0`
-* `g(x)`:
-  * x-intercepts: about `-1, -0.5, 1, 2`
-  * y-intercept: `2`
+## Mixed Exercises
 
-### End behavior
+**23.** [f(x) = -5x^4 + 3x^2]
+**24.** [g(x) = 2x^5 + 6x^4]
+**25.** [g(x) = 8x^4 + 5x^5]
+**26.** [h(x) = 9x^6 - 5x^7 + 3x^2]
+**27.** [f(x) = -6x^6 - 4x^5 + 13x^{-2}]
+**28.** [f(x) = (5 - 2x)(4 + 3x)]
+**29.** [h(x) = (x + 5)(3x - 4)]
+**30.** [g(x) = 3x^7 - 4x^4 + \frac{3}{x}]
 
-* `f(x)`:
-  * as `x -> -infinity`, `f(x) -> -infinity`
-  * as `x -> infinity`, `f(x) -> infinity`
-* `g(x)`:
-  * as `x -> -infinity`, `g(x) -> infinity`
-  * as `x -> infinity`, `g(x) -> infinity`
+**31. REASONING** Describe the end behavior, and the possible degree and sign of the leading coefficient of the graph shown.
 
-## Think About It
+**32. CONSTRUCT ARGUMENTS** Explain why a polynomial function with an odd degree must have at least one real zero.
 
-Find the domain and range of `f(x)`. Does `g(x)` have the same domain and range? Explain.
+**33. STRUCTURE** If [f(x) = ax^3 - bx^2 + x], determine [f(1 - x)]. Express the result in standard form. How does the end behavior of [f(1 - x)] compare to [f(x)]?
 
----
+**34. COMPARING** Compare the end behavior of [g(x) = -3x^4 + 15x^3 - 12x^2 + 3x + 20] and [h(x) = -3x^4 - 16x - 1]. Explain your reasoning.
 
-## Pause and Reflect
+**35. USE A MODEL** A box has a square base with sides of 10 centimeters and a height of 4 centimeters. For a new box, the height is increased by twice a number [x] and the lengths of the sides of the base are decreased by [x]. Write and graph a function to represent the volume of the new box. What new dimensions will produce a box with the greatest volume?
 
-Did you struggle with anything in this lesson? If so, how did you deal with it?
+**36. FIND THE ERROR** Shenequa and Virginia are determining the number of real zeros of the graph. Is either of them correct? Explain your reasoning.
 
----
+**37. ANALYZE** Compare the functions [g(x)] and [f(x)]. Determine which function has the potential for more zeros and the degree of each function.
 
-## Objective Alignment
+**38. PERSEVERE** If [f(x)] has a degree of 5 and a positive leading coefficient and [g(x)] has a degree of 3 and a positive leading coefficient, determine the end behavior of [\frac{f(x)}{g(x)}]. Explain your reasoning.
 
-- `Graph and analyze power functions`: Primary worked examples: Examples 1-2.
-- `Graph and analyze polynomial functions`: Primary worked examples: Examples 3-6.
+**39. CREATE** Sketch the graph of an even-degree polynomial with 7 real zeros, one of which is a double zero, and the leading coefficient is negative.
+
+## Review Notes
+
+* Image references in this lesson:
+  * ![](media/image1.png) — Example 4 diagram for triangles problem
+  * ![](media/image2.png) — Example 5 graph for problem 15
+  * ![](media/image3.png) — Example 5 graph for problem 16
+  * ![](media/image4.png) — Example 5 graph for problem 17
+  * ![](media/image5.png) — Example 5 graph for problem 18
+  * ![](media/image6.png) — Example 5 graph for problem 19
+  * ![](media/image7.png) — Example 5 graph for problem 20
+  * ![](media/image8.png) — Example 6 long graph
+  * ![](media/image9.png) — Example 6 table
+  * ![](media/image10.png) — Example 6 graph
+  * ![](media/image11.png) — Mixed exercise 31 graph
+  * ![](media/image12.png) — Mixed exercise 36 error analysis
+  * ![](media/image13.png) — Mixed exercise 37 function comparison
+
+* Key connections: End behavior is determined solely by the leading coefficient and degree; the intermediate terms do not affect end behavior.
+* Polynomial functions are continuous and smooth curves.
+* The domain of any polynomial function is all real numbers.

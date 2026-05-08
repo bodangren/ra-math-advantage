@@ -1,0 +1,143 @@
+# Lesson 8-1 — Functions and Continuity
+
+Source: (Module 8, Lesson 8-1, Int2_0801_practice.docx)
+
+## Today's Goals
+
+* Identify the domain, range, and codomain of a function given its graph.
+* Determine whether a function is one-to-one, onto, both, or neither.
+* Classify a function as discrete, continuous, or neither discrete nor continuous.
+* Write the domain and range of a function in set-builder and interval notation.
+
+## Vocabulary
+
+* **Domain** — The set of all possible input values (x-values) of a function.
+* **Range** — The set of all actual output values of a function.
+* **Codomain** — The set of all possible output values; the range is a subset of the codomain.
+* **One-to-One** — A function where each element in the domain maps to a unique element in the range; no range value is repeated.
+* **Onto (Surjective)** — A function where every element in the codomain has at least one corresponding input in the domain.
+* **Discrete Function** — A function with a domain that consists of isolated, individual points.
+* **Continuous Function** — A function with an unbroken domain, often an interval, with no gaps or jumps.
+
+## Explore: What Can a Function Look Like?
+
+Students consider functions as relationships between sets and examine how the choice of domain and codomain affects whether a function is one-to-one or onto.
+
+Inquiry Question:
+How can changing the codomain change whether a function is onto?
+
+## Learn: Analyzing Functions
+
+### Key Concept: One-to-One and Onto
+
+* A function is **one-to-one** if each element of the domain maps to a unique element in the range — no range value is used more than once.
+* A function is **onto** if every element in the codomain has at least one preimage in the domain — the range equals the codomain.
+* A function can be one-to-one but not onto, onto but not one-to-one, both, or neither.
+
+### Key Concept: Discrete vs. Continuous
+
+* A function is **discrete** when its domain consists of isolated points (e.g., whole numbers).
+* A function is **continuous** when its domain is an unbroken interval with no gaps.
+* Some functions are neither discrete nor continuous — for example, a function with domain {1, 3, 5}.
+
+## Example 1 — Identify Domain, Range, Codomain, and Determine If Onto
+
+Use the codomain and range to determine whether the function is onto.
+
+### Step 1: Examine the Graphs
+
+For each graph, identify the domain (all x-values covered), the range (all y-values actually attained), and the codomain (as stated or implied).
+
+The function is onto when every value in the codomain also appears in the range.
+
+## Example 2 — Analyze Functions from Tables
+
+Define the domain and range of each function and state whether it is one-to-one, onto, both, or neither.
+
+### Step 1: Analyze the Sales Data
+
+A table shows Cool Athletics' Power Sneaker sales over 6 weeks.
+
+### Step 2: Interpret Temperatures
+
+A table shows low temperatures in degrees Fahrenheit for a week in Sioux Falls, Idaho.
+
+### Step 3: Examine Planetary Data
+
+A table shows the orbital period of the eight major planets given their mean distance from the Sun.
+
+## Example 3 — Determine One-to-One, Onto, Both, or Neither
+
+For each graphed function, determine whether it is one-to-one, onto, both, or neither.
+
+### Step 1: Analyze Each Graph
+
+Use the vertical line test (one-to-one) and compare range to codomain (onto).
+
+## Example 4 — Classify Functions as Discrete or Continuous
+
+Examine each graph. Determine whether each function is discrete, continuous, or neither discrete nor continuous. Then state the domain and range of each function.
+
+### Step 1: Identify the Type
+
+Look at the domain — is it an unbroken interval (continuous) or a set of isolated points (discrete)?
+
+## Example 5 — Real-World Discrete and Continuous Functions
+
+Determine whether the function that models each situation is discrete, continuous, or neither. Then state the domain and range.
+
+### Step 1: Probability (Rolling a Number Cube)
+
+The outcome of rolling a number cube produces a discrete function with domain {1, 2, 3, 4, 5, 6} and range {1, 2, 3, 4, 5, 6}.
+
+### Step 2: Amusement Park Pricing
+
+Ticket price based on group size is discrete because group size is measured in whole people.
+
+### Step 3: Grocery Pricing (Grapes)
+
+Grapes sold at $1.99 per pound produce a continuous function — weight can be any nonnegative real number.
+
+## Examples 6 and 7 — Write Domain and Range in Set-Builder and Interval Notation
+
+For each graph, write the domain and range in both set-builder and interval notation.
+
+### Step 1: Analyze the Graphs
+
+Use the visual extent of the graph to determine which x-values and y-values are covered. Then convert to both notation forms.
+
+## Mixed Exercises
+
+Problems 22–39 provide practice with all skills from the lesson:
+
+* Write domain and range in set-builder and interval notation.
+* Determine whether each function is one-to-one, onto, both, or neither.
+* State whether each function is discrete, continuous, or neither.
+* Research a real-world example of a function (baseball team wins over five seasons).
+* Analyze the spring function [L(w) = (1/2)w + 4] for domain, range, one-to-one, onto, and continuity.
+* Analyze cashew pricing at $12.79 per pound.
+* Examine a CPI graph and a town's annual jobless rate graph.
+* Computer calculation time function [T(n) = 0.0000000015n].
+* Shipping cost table problem.
+* Sketch a function that is onto but not one-to-one with codomain [y >= -3].
+* True/false: If a function is onto, then it must be one-to-one.
+* Analyze [f(x) = 1/x].
+* Use a specific domain, codomain, and range to create a function that is neither one-to-one nor onto.
+* Compare and contrast the vertical and horizontal line tests.
+
+## Review Notes
+
+* ![](media/image1.png)![](media/image2.png)![](media/image3.png) — Graphs for problems 1–3 (domain, range, codomain)
+* ![](media/image4.png) — SALES table (problem 4)
+* ![](media/image5.png)![](media/image6.png) — TEMPERATURES table and BAR GRAPH for problems 5–6
+* ![](media/image7.png)![](media/image8.png)![](media/image9.png) — Graphs for problems 7–9 (one-to-one/onto)
+* ![](media/image10.png)![](media/image11.png)![](media/image12.png) — Graphs for problems 10–12 (discrete/continuous)
+* ![](media/image13.png) — PROBABILITY table (problem 13)
+* ![](media/image14.png) — AMUSEMENT PARK table (problem 14)
+* ![](media/image15.png)![](media/image16.png)![](media/image17.png) — Graphs for problems 16–18 (domain/range notation)
+* ![](media/image18.png)![](media/image19.png)![](media/image20.png) — Graphs for problems 19–21 (domain/range notation)
+* ![](media/image21.png)![](media/image22.png)![](media/image23.png) — Mixed exercise graphs (problems 22–24)
+* ![](media/image24.png)![](media/image25.png)![](media/image26.png) — Mixed exercise graphs (problems 25–27)
+* ![](media/image27.png) — CPI graph (problem 31)
+* ![](media/image28.png) — Labor/jobless rate graph (problem 32)
+* ![](media/image29.png) — SHIPPING table (problem 34)

@@ -1,0 +1,262 @@
+# Lesson 7-1 — Graphing Systems of Equations
+
+Source: (Module 7, Lesson 7-1, Int1_0701_practice.docx)
+
+## Today's Goals
+
+* Graph systems of linear equations and determine the number of solutions.
+* Classify systems as consistent or inconsistent and as independent or dependent.
+* Write and solve systems of equations to model real-world situations.
+* Use graphing to solve linear equations and systems with decimal coefficients.
+
+## Vocabulary
+
+* **system of equations** — a set of two or more equations with the same variables
+* **solution of a system** — an ordered pair that satisfies all equations in the system
+* **consistent** — a system that has at least one solution
+* **inconsistent** — a system that has no solution
+* **independent** — a consistent system with exactly one solution
+* **dependent** — a consistent system with infinitely many solutions
+
+## Learn: Graphing Systems of Linear Equations
+
+A system of two linear equations can be graphed on the same coordinate plane. The point(s) of intersection represent the solution(s).
+
+### Key Concept: Number of Solutions
+
+* **One solution** — The lines intersect at exactly one point. The system is consistent and independent.
+* **No solution** — The lines are parallel and never intersect. The system is inconsistent.
+* **Infinitely many solutions** — The lines coincide (are the same line). The system is consistent and dependent.
+
+### Key Concept: Classification from Slope-Intercept Form
+
+When both equations are written as [ y = mx + b ], compare slopes and y-intercepts:
+
+* Different slopes → one solution (consistent, independent)
+* Same slope, different intercepts → no solution (inconsistent)
+* Same slope, same intercept → infinitely many solutions (consistent, dependent)
+
+## Example 1 — Determine Solutions from a Graph
+
+Use a provided graph to identify how many times the two lines intersect, then classify the system.
+
+### Step 1: Inspect the Graph
+
+Locate the point(s) where the two lines cross.
+
+### Step 2: Classify the System
+
+* If the lines intersect once, state the solution and classify as consistent and independent.
+* If the lines are parallel, classify as inconsistent.
+* If the lines overlap, classify as consistent and dependent.
+
+[
+y = x - 1 \quad \text{and} \quad y = -x + 1
+]
+
+> Review Note: The graph for Examples 1–2 (image1.png) is not described here.
+
+## Example 2 — Determine Solutions Algebraically
+
+Without graphing, determine the number of solutions and classify the system by rewriting each equation in slope-intercept form.
+
+### Step 1: Rewrite in Slope-Intercept Form
+
+Solve each equation for [ y ]:
+
+[
+4x - 6y = 12 \quad \Rightarrow \quad y = \frac{2}{3}x - 2
+]
+
+[
+-2x + 3y = -6 \quad \Rightarrow \quad y = \frac{2}{3}x - 2
+]
+
+### Step 2: Compare Slopes and Intercepts
+
+* Same slope, same intercept → infinitely many solutions (consistent, dependent)
+* Same slope, different intercepts → no solution (inconsistent)
+* Different slopes → one solution (consistent, independent)
+
+Representative systems include:
+
+[
+y = \frac{1}{2}x \quad \text{and} \quad y = x + 2
+]
+
+[
+8x - 4y = 16 \quad \text{and} \quad -5x - 5y = 5
+]
+
+[
+y = -\frac{3}{2}x + 5 \quad \text{and} \quad y = -\frac{2}{3}x + 5
+]
+
+## Example 3 — Graph a System and Find the Solution
+
+Graph each system of equations on the same coordinate plane. Determine the number of solutions. If there is exactly one solution, identify its coordinates.
+
+### Step 1: Graph Each Equation
+
+Use slope-intercept form or intercepts to graph each line.
+
+### Step 2: Identify the Intersection
+
+Read the coordinates of the intersection point, if it exists.
+
+Representative systems include:
+
+[
+y = -3 \quad \text{and} \quad y = x - 3
+]
+
+[
+y = 4x + 2 \quad \text{and} \quad y = -2x - 4
+]
+
+[
+x + y = 4 \quad \text{and} \quad 3x + 3y = 12
+]
+
+[
+2x + 3y = 12 \quad \text{and} \quad 2x - y = 4
+]
+
+## Example 4 — Write and Solve a System from a Word Problem
+
+Define variables, write a system of equations, and solve graphically to answer questions about a real-world scenario.
+
+### Aviation Problem
+
+Two planes are in flight. One starts at 1000 meters and ascends at 400 meters per minute. The other starts at 5900 meters and descends at 300 meters per minute. Write a system where [ x ] is time in minutes and [ y ] is altitude in meters, graph the system, and predict when the planes will be at the same altitude.
+
+[
+y = 400x + 1000
+]
+
+[
+y = -300x + 5900
+]
+
+### Table-Seating Problem
+
+Round tables seat 8 people; rectangular tables seat 10 people. Set up tables for 124 people using 2 more round tables than rectangular tables. Define variables, write a system, and solve graphically.
+
+Let [ r ] = number of round tables and [ t ] = number of rectangular tables.
+
+[
+8r + 10t = 124
+]
+
+[
+r = t + 2
+]
+
+## Example 5 — Solve a Linear Equation by Graphing a System
+
+Rewrite a single linear equation as a system of two equations, then graph the system to find the solution.
+
+### Step 1: Split the Equation
+
+Write the left side as one equation and the right side as another, both in terms of [ x ].
+
+For [ 3x + 6 = 6 ]:
+
+[
+y = 3x + 6 \quad \text{and} \quad y = 6
+]
+
+### Step 2: Graph and Find the Intersection
+
+The [ x ]-coordinate of the intersection is the solution to the original equation.
+
+Other representative equations include:
+
+[
+2x - 17 = x - 10
+]
+
+[
+-12x + 90 = 30
+]
+
+[
+2x + 5 = 2x + 5
+]
+
+[
+x + 1 = x + 3
+]
+
+## Example 6 — Solve Decimal Systems
+
+Solve systems of linear equations with decimal coefficients. State the solution to the nearest hundredth.
+
+### Step 1: Choose a Method
+
+Graphing or substitution/elimination may be used. Graphing is often practical with decimal coefficients.
+
+### Step 2: Round Appropriately
+
+If the solution is not exact, round each coordinate to the nearest hundredth.
+
+Representative systems include:
+
+[
+2.5x + 3.75y = 10.5 \quad \text{and} \quad 1.25x - 8.5y = -5.25
+]
+
+[
+2.2x + 1.8y = -3.6 \quad \text{and} \quad -4.8x + 12.4y = 10.6
+]
+
+[
+1.12x - 2.24y = 4.96 \quad \text{and} \quad -3.56x - 2.48y = -7.32
+]
+
+## Example 7 — More Word Problems with Systems
+
+Write and solve systems of equations to interpret real-world scenarios.
+
+### Elevator Problem
+
+One elevator starts on the 4th floor, 35 feet above ground, descending at 2.2 feet per second. Another starts at ground level, rising at 1.7 feet per second. Write and solve a system to find when both elevators are at the same height, and interpret the result.
+
+[
+y = -2.2x + 35 \quad \text{and} \quad y = 1.7x
+]
+
+### Bookstore Profit Problem
+
+A store makes [ 2.50 ] profit per book and [ 0.75 ] profit per magazine. Total profit for the week is [ 450 ], and total publications sold is 260. Find the number of books and magazines sold.
+
+Let [ x ] = books and [ y ] = magazines.
+
+[
+2.50x + 0.75y = 450
+]
+
+[
+x + y = 260
+]
+
+## Mixed Exercises
+
+The mixed exercises section provides comprehensive practice across all skills from this lesson. Problems include:
+
+* Graphing systems and determining the number of solutions, then classifying as consistent/inconsistent and independent/dependent
+* Systems with integer, fractional, and decimal coefficients
+* Parallel and coincident lines
+* Word problems involving business, racing, and daily routines
+* Error analysis and reasoning about the nature of solutions
+* Construction of systems with specified numbers of solutions
+
+Students must apply graphing skills, algebraic classification, and contextual interpretation throughout.
+
+## Review Notes
+
+* The graph for Examples 1–2 (image1.png) could not be described; it should show two linear equations for visual classification.
+* The graph for problem 40 (image2.png) could not be described; it shows two parallel lines for a business application.
+* The calculator screen for problem 42 (image3.png) could not be described; it shows a graphed system used in an argument about whether the system has no solution.
+* The four systems for problem 47 (image4.png) could not be described; students must identify which system does not belong.
+* The discussion between Francisca and Alan for problem 51 (image5.png) could not be described; it presents two students' reasoning about comparing a 10% discount versus a 10-dollar discount.

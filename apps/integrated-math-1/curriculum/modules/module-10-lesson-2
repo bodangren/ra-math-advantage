@@ -1,0 +1,184 @@
+# Lesson 10-2 — Points, Lines, and Planes
+
+Source: (Module 10, Lesson 10-2, Int1_1002_practice.docx)
+
+## Today's Goals
+
+* Identify and name points, lines, and planes from geometric figures.
+* Determine relationships between points, lines, and planes, including collinear, coplanar, and intersecting.
+* Model real-world objects and situations with correct geometric terms.
+* Draw and label figures that accurately represent given geometric relationships.
+
+## Vocabulary
+
+* **Point** — A location in space with no size, represented by a dot and named with a capital letter.
+* **Line** — A straight path that extends infinitely in opposite directions.
+* **Plane** — A flat surface that extends infinitely in all directions.
+* **Collinear** — Points that lie on the same line.
+* **Coplanar** — Points or lines that lie in the same plane.
+* **Intersection** — The set of points that two or more geometric figures share.
+* **Line Segment** — Part of a line consisting of two endpoints and all points between them.
+* **Ray** — Part of a line with one endpoint that extends infinitely in one direction.
+
+## Explore: How Do Points, Lines, and Planes Connect?
+
+Students explore the fundamental building blocks of geometry. Consider how a point with no dimension, a line with one dimension, and a plane with two dimensions relate to each other and to the physical world.
+
+Inquiry Question:
+How can three undefined terms — point, line, and plane — form the foundation for all of geometry?
+
+## Learn: Points, Lines, and Planes
+
+Points, lines, and planes are the undefined terms of geometry. They are described and understood through examples and relationships rather than formal definitions.
+
+### Key Concept: Undefined Terms and Their Dimensions
+
+* A point has no dimension; it is represented by a dot and named with a capital letter.
+* A line has one dimension; it extends without end in two directions and is named by any two points on the line or by a lowercase script letter.
+* A plane has two dimensions; it extends without end and is named by a capital script letter or by three non-collinear points.
+
+### Key Concept: Relationships Between Geometric Figures
+
+* Collinear points lie on the same line.
+* Coplanar points or lines lie in the same plane.
+* Two distinct lines intersect at exactly one point.
+* Two distinct planes intersect in exactly one line.
+* A line and a plane can intersect at one point, or the line can lie entirely in the plane.
+
+## Example 1 — Identify Lines, Planes, and Relationships from a Figure
+
+Analyze a three-dimensional figure containing labeled points, lines, and planes to answer questions about containment, coplanarity, and intersection.
+
+### Step 1: Identify Lines in a Given Plane
+
+Name the lines that lie entirely within a specified plane.
+
+### Step 2: Count Labeled Planes
+
+Determine the total number of distinct planes that are labeled in the figure.
+
+### Step 3: Name the Plane Containing Two Lines
+
+Identify the plane that contains both of two given lines.
+
+### Step 4: Find the Intersection of Two Lines
+
+Name the point where two given lines cross.
+
+### Step 5: Identify a Non-Coplanar Point
+
+Find a point that does not lie in the same plane as three given points.
+
+### Step 6: Determine Whether Points Are Coplanar
+
+Explain whether four specified points all lie in a single plane.
+
+### Step 7: Determine Whether Two Lines Intersect
+
+Explain whether two given lines share a common point.
+
+## Example 2 — Model Real-World Objects with Geometric Terms
+
+Match everyday objects, images, and phrases to the geometric terms they best represent.
+
+### Step 1: Identify Geometric Terms from Descriptions
+
+Consider common objects such as a roof, a tabletop, or a support beam, and name the geometric term each object models.
+
+### Step 2: Identify Geometric Terms from Images
+
+Examine images of various objects and name the geometric term each represents, such as a point, line, plane, line segment, or ray.
+
+### Step 3: Identify Intersections and Spatial Relationships
+
+Consider phrases describing spatial relationships, such as where a wall meets the floor or the edge of a table, and name the geometric concept.
+
+### Step 4: Apply Terminology to Additional Objects
+
+Name the geometric term modeled by objects such as a blanket, a telephone pole, or a tablet computer.
+
+## Example 3 — Draw and Label Geometric Figures
+
+Use tools to construct figures that illustrate specified geometric relationships.
+
+### Step 1: Draw Points on a Line
+
+Sketch a line and mark two points that lie on it.
+
+For example, points X and Y lie on:
+[
+\overleftrightarrow{CD}
+]
+
+### Step 2: Draw Non-Intersecting Planes
+
+Sketch two planes that do not share any points.
+
+### Step 3: Draw a Line Intersecting a Plane
+
+Sketch a line that crosses a plane at exactly one point.
+
+### Step 4: Draw Non-Coplanar Lines Through a Point
+
+Sketch three lines that all pass through one point but do not all lie in the same plane.
+
+### Step 5: Draw Collinear and Non-Collinear Points
+
+Sketch points that are collinear in one group but include an additional point that is not collinear with the others.
+
+## Example 4 — Analyze a Three-Dimensional Figure for Planes and Coplanarity
+
+Examine a figure showing multiple planes to answer questions about planes and coplanar points.
+
+### Step 1: Count Planes in the Figure
+
+Determine the total number of planes shown.
+
+### Step 2: Find Planes Containing Two Points
+
+Count how many of the shown planes contain two specified points.
+
+### Step 3: Name Coplanar Points
+
+Identify four points that all lie in the same plane.
+
+### Step 4: Determine if Points Are Coplanar
+
+Explain whether three given points lie in the same plane.
+
+## Example 5 — Apply Geometric Concepts to Real-World Contexts
+
+Use geometric terminology to describe and analyze real-world situations.
+
+### Step 1: Identify Lines Formed by Intersecting Planes
+
+Using an image of a house, name all the lines formed where the roof and exterior walls intersect.
+
+### Step 2: Model a Line and Plane Intersection
+
+If the surface of a lake represents a plane, name the geometric term represented by where a fishing line meets the lake's surface.
+
+### Step 3: Analyze Perspective Drawing
+
+a. Identify where receding lines and horizon lines intersect in an artist's perspective drawing.
+
+b. Identify examples of planes within the perspective drawing.
+
+## Mixed Exercises
+
+The mixed exercises provide practice with all skills from the lesson: identifying geometric relationships from figures, modeling real-world objects with geometric terms, and drawing figures to represent relationships. Problems include:
+
+* Drawing and labeling figures for coplanar non-intersecting lines, intersecting lines with coordinates, and a third line that does not intersect either of two given lines.
+* Referring to figures to name lines containing given points, points contained in given lines, alternate names for lines, and planes containing given lines.
+* Drawing figures showing a point on a line, a plane containing a line, a line in a plane that contains some points but not others, and intersecting lines in a plane.
+* Naming geometric terms modeled by everyday objects.
+* Sketching three planes that intersect in a single point.
+* Analyzing whether two points on the surface of a prism can be neither collinear nor coplanar, and justifying the argument.
+* Finding errors in student reasoning about the greatest number of lines that can be drawn through four random points.
+* Determining the greatest number of planes determined by four points, with no three collinear.
+* Writing about finite planes and real-world examples, and explaining whether an infinite plane can exist in real life.
+* Sketching three planes that intersect in a line.
+
+## Review Notes
+
+* Images referenced in the worksheet (geometric figures for Examples 1 and 4; real-world object images for Example 2; house and perspective drawing images for Example 5; figures for Mixed Exercises; error analysis diagram; four-point diagram) could not be fully described without visual reference. Teachers should consult the original worksheet for exact figures and diagrams.

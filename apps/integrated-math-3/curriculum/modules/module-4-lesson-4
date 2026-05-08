@@ -1,356 +1,171 @@
 # Lesson 4-4 — Graphing Radical Functions
 
-Source: (Module 4, Lesson 4-4, pp. 183–188)
+Source: (Module 4, Lesson 4-4, Int3_0404_practice.docx)
 
 ## Today's Goals
 
-* Graph and analyze square root functions
-* Graph and analyze cube root functions
-
----
+* Identify the domain and range of radical functions.
+* Graph square root and cube root functions.
+* Describe transformations of radical functions.
+* Write radical functions from given graphs.
 
 ## Vocabulary
 
-* radical function
-* square root function
-* cube root function
+* **Square Root Function** — A function of the form f(x) = √x, defined for x ≥ 0.
+* **Cube Root Function** — A function of the form f(x) = √[3]{x}, defined for all real numbers.
+* **Parent Function** — The simplest radical function before transformations are applied.
+* **Transformation** — A shift, stretch, compress, or reflection of the parent function.
 
----
+## Explore: The Shape of Radical Graphs
 
-## Explore: Using Technology to Analyze Square Root Functions
+Radical functions produce distinctive curves that start at a point and extend in one direction. Students consider how the parameters inside and outside the radical affect the graph's position and shape.
 
-Use graphing technology to complete the explore.
+Inquiry Question:
+How does the value inside the radical (the radicand) affect the domain of a square root function, and how do transformations change its graph?
 
-**Inquiry Question:**
-How does adding, subtracting, or multiplying a constant to a function affect the graph of the function?
+## Learn: Graphing Radical Functions
 
----
+### Key Concept: Domain of Square Root Functions
 
-## Learn: Graphing Square Root Functions
+For y = √(x − h) + k, the radicand (x − h) must be ≥ 0, so x ≥ h.
 
-A **radical function** contains radicals with variables in the radicand.
+The domain is {x | x ≥ h} and the range depends on the transformation.
 
-A **square root function** contains the square root of a variable expression.
+### Key Concept: Transformations of Square Root Functions
 
-### Key Concept: Parent Function of Square Root Functions
+For y = a√(x − h) + k:
 
-Parent function:
+* a: vertical stretch (|a| > 1) or compression (|a| < 1); negative a reflects across x-axis
+* h: horizontal shift (positive h shifts right)
+* k: vertical shift (positive k shifts up)
 
-`f(x) = sqrt(x)`
+### Key Concept: Cube Root Functions
 
-Key features:
+For y = √[3]{x}, the domain and range are both all real numbers. The graph passes through the origin and is odd-symmetric.
 
-* domain: `{x | x >= 0}`
-* range: `{f(x) | f(x) >= 0}`
-* intercepts: `x = 0`, `f(x) = 0`
-* end behavior:
-  * as `x -> 0`, `f(x) -> 0`
-  * as `x -> infinity`, `f(x) -> infinity`
-* increasing for `x > 0`
-* positive for `x > 0`
-* no symmetry
+## Example 1 — Identify Domain and Range
 
-A square root function can be written:
+### Step 1: Square Root Functions
 
-`g(x) = a sqrt(x - h) + k`
+y = √(x − 9): domain {x | x ≥ 9}, range {y | y ≥ 0}
 
-Effects of constants:
+y = −√(6x): domain {x | x ≥ 0}, range {y | y ≤ 0}
 
-* `|a|` stretches or compresses the graph
-* if `a < 0`, the graph reflects across the x-axis
-* `h` shifts left or right
-* `k` shifts up or down
+### Step 2: Transformations
 
-## Think About It
+y = 5√(x + 2) − 1: domain {x | x ≥ −2}, range {y | y ≥ −1}
 
-Why is the domain limited to `x >= 0` for the parent square root function?
+y = −√(x − 2) + 2: domain {x | x ≥ 2}, range {y | y ≤ 2}
 
----
+## Example 2 — Graph and Describe Transformations
 
-## Example 1 — Identify Domain and Range Algebraically
+### Step 1: Graph y = (1/3)√(x + 1)
 
-Identify the domain and range of:
+The parent function y = √x is compressed vertically by factor 1/3 and shifted left 1 unit.
 
-`f(x) = sqrt(2x - 6) + 1`
+Domain: {x | x ≥ −1}, Range: {y | y ≥ 0}
 
-For the domain, require the radicand to be nonnegative:
+### Step 2: Graph y = −√(x − 2) + 3
 
-`2x - 6 >= 0`
+The parent function y = √x is reflected across the x-axis, shifted right 2 units, and up 3 units.
 
-`2x >= 6`
+Domain: {x | x ≥ 2}, Range: {y | y ≤ 3}
 
-`x >= 3`
+## Example 3 — Reflexes Application
 
-So:
+### Step 1: Write the Function
 
-* domain: `{x | x >= 3}`
+The time to catch a ruler is t = (1/4)√d, where d is the distance in inches.
 
-Find the lower limit of the range by evaluating `f(3)`:
+Graph this function with d on the horizontal axis and t on the vertical axis.
 
-`f(3) = sqrt(2(3) - 6) + 1 = 1`
+### Step 2: Describe Key Features
 
-So:
+The domain is d ≥ 0. The range is t ≥ 0. The graph passes through (0, 0) and increases, but at a decreasing rate.
 
-* range: `{f(x) | f(x) >= 1}`
+### Step 3: Compare to Parent Function
 
----
+This function is a vertical compression of y = √d by factor 1/4.
 
-## Example 2 — Graph a Transformed Square Root Function
+## Example 4 — Graph Radical Inequalities
 
-Graph:
+### Step 1: Graph y < √(x − 5)
 
-`g(x) = -3 sqrt(x + 1) + 2`
+First graph y = √(x − 5). Then shade the region below the curve.
 
-Then identify the domain and range and describe how it is related to the parent graph.
+The boundary is not included (dashed line).
 
-### Step 1: Determine the minimum domain value
+### Step 2: Graph y ≥ −4√(x + 3)
 
-`x + 1 >= 0`
+Graph y = −4√(x + 3). The boundary is included (solid line). Since a is negative, the graph opens downward. Shade the region above the curve.
 
-`x >= -1`
+## Example 5 — Cube Root Functions
 
-### Step 2: Make a table and graph
+### Step 1: Graph f(x) = √[3]{x + 1}
 
-| x  | g(x)   |
-| -- | ------ |
-| -1 | 2      |
-| 0  | -1     |
-| 1  | about -2.2 |
-| 2  | about -3.2 |
-| 3  | -4     |
+This is the parent function shifted left 1 unit.
 
-So:
+Domain: all real numbers
+Range: all real numbers
 
-* domain: `{x | x >= -1}`
-* range: `{g(x) | g(x) <= 2}`
+### Step 2: Graph f(x) = 3√[3]{x − 2}
 
-### Step 3: Compare to the parent function
+This is the parent function stretched vertically by 3 and shifted right 2 units.
 
-* maximum point: `(-1, 2)`
-* `a = -3`, so reflect across the x-axis and stretch vertically by `3`
-* `h = -1`, so shift left `1`
-* `k = 2`, so shift up `2`
+Domain: all real numbers
+Range: all real numbers
 
-## Think About It
+## Example 6 — Compare Functions to Graphs
 
-How are the values of `h` and `k` related to the domain and range?
+### Step 1: Graph p(x) = −3√[3]{x − 2}
 
----
+This is a cube root function reflected across the x-axis, shifted right 2, but since it's cube root (odd function), the reflection flips the direction of the curve.
 
-## Example 3 — Analyze the Graph of a Square Root Function
+### Step 2: Compare Features
 
-A centrifuge with radius `7.8 cm` has RPM setting:
+Compare the y-intercept, end behavior, and steepness of p(x) to the given q(x).
 
-`r = 104.23 * sqrt(g)`
+## Example 7 — Write Functions from Graphs
 
-where `g` is the required g-force.
+### Step 1: Identify the Parent Function
 
-### Part A: Write and graph the function
+Determine whether the graph is a square root or cube root function based on its shape.
 
-Use the function:
+### Step 2: Find Transformation Parameters
 
-`r = 104.23 sqrt(g)`
+Use points on the graph to determine a, h, and k in the standard form.
 
-Sample table:
+### Step 3: Write the Function
 
-| g    | r    |
-| ---- | ---- |
-| 0    | 0    |
-| 400  | 2085 |
-| 800  | 2948 |
-| 1200 | 3611 |
-| 1600 | 4169 |
+For a graph that looks like √x shifted right 2 and up 5: f(x) = √(x − 2) + 5
 
-### Part B: Describe key features
+## Mixed Exercises
 
-* domain: `{g | g >= 0}`
-* range: `{r | r >= 0}`
-* x-intercept: `0`
-* y-intercept: `0`
-* increasing as `g -> infinity`
-* positive for `g > 0`
-* as `g -> infinity`, `r -> infinity`
+The mixed exercises section provides practice with all skills from the lesson. Problems include:
 
-## Think About It
+* Graphing various square root and cube root functions with transformations.
+* Writing radical functions from given graphs.
+* Graphing radical inequalities.
+* Comparing two radical functions' maximum values, domains, and rates of change.
+* Distance problem involving √(9 + 36t²).
+* Geometry problem graphing r = √[3]{3V/(2π)} for hemisphere volume.
+* Analyzing inverse radical relations and their restrictions.
+* Writing an equation for a square root function with specific domain, range, and passing through a point.
+* Analyzing for what values of a the function f(x) = √[a]{x} has all real numbers as domain and range.
+* Explaining limitations on domain and range of square root functions.
+* Explaining why y = ±√x is not a function.
+* Creating relations containing radicals and their inverses with specific properties.
 
-What do the domain and range mean in the context of the situation?
+## Review Notes
 
----
-
-## Example 4 — Graph a Square Root Inequality
-
-Graph:
-
-`y < sqrt(2x + 5)`
-
-### Step 1: Graph the related function
-
-Graph the boundary:
-
-`y = sqrt(2x + 5)`
-
-Use a dashed line because the inequality is `<`.
-
-### Step 2: Shade
-
-* domain: `{x | x > -2.5}`
-* shade below the boundary and within the domain
-* choose a test point within the shaded region to verify
-
----
-
-## Learn: Graphing Cube Root Functions
-
-A **cube root function** contains the cube root of a variable expression.
-
-### Key Concept: Parent Function of Cube Root Functions
-
-Parent function:
-
-`f(x) = cuberoot(x)`
-
-Key features:
-
-* domain: all real numbers
-* range: all real numbers
-* intercepts: `x = 0`, `f(x) = 0`
-* end behavior:
-  * as `x -> -infinity`, `f(x) -> -infinity`
-  * as `x -> infinity`, `f(x) -> infinity`
-* increasing as `x -> infinity`
-* positive for `x > 0`
-* negative for `x < 0`
-* symmetric about the origin
-
-A cube root function can be written:
-
-`g(x) = a cuberoot(x - h) + k`
-
-## Talk About It
-
-Describe how the domain and range differ for radical functions with odd index versus even index.
-
----
-
-## Example 5 — Graph Cube Root Functions
-
-Graph each function and state the domain and range.
-
-### a. `g(x) = (1/3) cuberoot(x)`
-
-This is a vertical compression of the parent function.
-
-Sample table:
-
-| x  | g(x) |
-| -- | ---- |
-| -2 | about -0.42 |
-| -1 | about -0.33 |
-| 0  | 0 |
-| 1  | about 0.33 |
-| 2  | about 0.42 |
-
-* domain: all real numbers
-* range: all real numbers
-
-### b. `p(x) = cuberoot(x + 5)`
-
-This is the parent graph shifted `5` units left.
-
-* domain: all real numbers
-* range: all real numbers
-
-### c. `q(x) = cuberoot(4 - x) + 1`
-
-Rewrite as:
-
-`q(x) = cuberoot(-(x - 4)) + 1`
-
-So the graph is reflected and translated right `4` and up `1`.
-
-* domain: all real numbers
-* range: all real numbers
-
-## Think About It
-
-Describe the end behavior of `y = cuberoot(4 - x) + 1`.
-
----
-
-## Example 6 — Compare Radical Functions
-
-Examine:
-
-* `p(x) = -2 cuberoot(x - 6)`
-* `q(x)` shown in the graph
-
-### Part A: Graph `p(x)`
-
-Use a table.
-
-### Part B: Compare key features
-
-From the lesson table:
-
-* `p(x)`:
-  * domain: all real numbers
-  * range: all real numbers
-  * x-intercept: `6`
-  * y-intercept: about `3.63`
-  * decreasing as `x -> infinity`
-  * positive for `x < 6`, negative for `x > 6`
-* `q(x)`:
-  * domain: `{x | x >= 6}`
-  * range: `{q(x) | q(x) <= 0}`
-  * x-intercept: `6`
-  * no y-intercept
-  * decreasing as `x -> infinity`
-
----
-
-## Example 7 — Write a Radical Function
-
-Write a radical function for the graph of `g(x)`.
-
-### Step 1: Identify the index
-
-Because the domain and range are all real numbers, the index is odd.
-
-Use:
-
-`g(x) = a cuberoot(x - h) + k`
-
-### Step 2: Identify transformations
-
-The graph is translated:
-
-* `3` units left
-* `4` units down
-
-So:
-
-* `h = -3`
-* `k = -4`
-
-Use point `(-2, -2)`:
-
-`-2 = a cuberoot(-2 - (-3)) + (-4)`
-
-`-2 = a * 1 - 4`
-
-`a = 2`
-
-### Step 3: Write the function
-
-`g(x) = 2 cuberoot(x + 3) - 4`
-
-## Think About It
-
-Write a cube root function reflected across the x-axis and translated `7` units right and `4` units down from the parent function.
-
----
-
-## Objective Alignment
-
-- `Graph and analyze square root functions`: Primary worked examples: Examples 1-4.
-- `Graph and analyze cube root functions`: Primary worked examples: Examples 5-7.
+* ![](media/image1.png) — Reflexes/ruler drop graph (problem 13)
+* ![](media/image2.png) — Graph referenced in cube root problem (problem 23)
+* ![](media/image3.png) — Graph for comparing p(x) = −3√[3]{x − 2} to q(x) (problem 25)
+* ![](media/image4.png) — Graph for comparing p(x) to q(x) (problem 26)
+* ![](media/image5.png) — Graph for writing radical function (problem 27)
+* ![](media/image6.png) — Graph for writing radical function (problem 28)
+* ![](media/image7.png) — Graph for mixed exercise 1 (write radical function)
+* ![](media/image8.png) — Graph for mixed exercise 2 (write radical function)
+* ![](media/image9.png) — Graph of g(x) for structure problem (problem 3)
+* Images referenced in the worksheet could not be fully described without visual reference. Teachers should consult the original worksheet for exact diagrams and values.
+* The worksheet contains 47 practice problems across seven examples and mixed exercises.

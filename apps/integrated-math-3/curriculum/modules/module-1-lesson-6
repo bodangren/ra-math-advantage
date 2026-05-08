@@ -1,188 +1,114 @@
 # Lesson 1-6 — Using the Quadratic Formula and the Discriminant
 
-## Today’s Goals
+Source: (Module 1, Lesson 1-6, Int3_0106_practice.docx)
 
-* Use the Quadratic Formula to solve equations
-* Use the discriminant to determine the number and type of solutions
+## Today's Goals
 
----
+* Use the Quadratic Formula to solve quadratic equations.
+* Understand the discriminant as the expression [b^2 - 4ac] and what it reveals about the number and type of roots.
+* Apply quadratic equations to real-world problems involving projectile motion, geometry, and sports.
+* Analyze stopping distance problems involving reaction time and friction.
 
 ## Vocabulary
 
-* quadratic formula
-* discriminant
+* **Quadratic Formula** — For [ax^2 + bx + c = 0] with [a ≠ 0], the solutions are [x = [-b ± √(b^2 - 4ac)] / [2a]].
+* **Discriminant** — The expression [b^2 - 4ac] under the square root in the Quadratic Formula.
+* **Two Distinct Real Roots** — Occurs when [b^2 - 4ac > 0] and is a perfect square (rational) or not a perfect square (irrational).
+* **One Real Root (Double Root)** — Occurs when [b^2 - 4ac = 0].
+* **Two Complex Roots** — Occurs when [b^2 - 4ac < 0].
 
----
+## Explore: Where Does the Quadratic Formula Come From?
 
-## Explore: The Discriminant
+The Quadratic Formula is derived by completing the square on the general form [ax^2 + bx + c = 0]. Students explore this derivation to understand why the formula works and what the discriminant represents.
 
 Inquiry Question:
-How can you predict the number and type of solutions of a quadratic equation without solving it?
+How does the value of [b^2 - 4ac] determine what kinds of solutions a quadratic equation has?
 
----
+## Learn: The Quadratic Formula and the Discriminant
 
-## Learn: Quadratic Formula
+### Key Concept: The Quadratic Formula
 
-For a quadratic equation in standard form:
+For any quadratic equation in standard form [ax^2 + bx + c = 0], the solutions are given by:
 
-ax^2 + bx + c = 0, where a ≠ 0
+[x = [-b ± √(b^2 - 4ac)] / [2a]]
 
-The solutions are given by:
+This formula works for all quadratic equations, including those that cannot be factored easily.
 
-x = (−b ± √(b^2 − 4ac)) / (2a)
+### Key Concept: The Discriminant
 
----
+The expression [D = b^2 - 4ac] is called the discriminant:
+
+* If [D > 0]: two distinct real roots. If [D] is a perfect square, the roots are rational; otherwise they are irrational.
+* If [D = 0]: one real root (a double root).
+* If [D < 0]: two complex roots (conjugates of each other).
 
 ## Example 1 — Use the Quadratic Formula
 
-Solve:
+### Step 1: Identify a, b, and c
 
-x^2 + 5x + 6 = 0
+For [x^2 + 8x + 15 = 0]: [a = 1], [b = 8], [c = 15].
 
-Identify coefficients:
+### Step 2: Substitute into the Formula
 
-a = 1, b = 5, c = 6
+[x = [-8 ± √(64 - 60)] / 2 = [-8 ± √4] / 2 = [-8 ± 2] / 2]
 
-Substitute into the formula:
+### Step 3: Simplify
 
-x = (−5 ± √(5^2 − 4(1)(6))) / (2(1))
+[x = (-8 + 2)/2 = -3] or [x = (-8 - 2)/2 = -5]
 
-Simplify:
+### Step 4: Apply to Football Problem
 
-x = (−5 ± √(25 − 24)) / 2
-x = (−5 ± √1) / 2
+A quarterback throws a football with height modeled by [h = -16t^2 + 45t + 4]. Find when the ball hits the ground by solving [h(t) = 0].
 
-x = (−5 ± 1) / 2
+## Examples 2 and 3 — Solve More Complex Equations
 
-Solutions:
+Solve [x^2 + 2x - 35 = 0], [4x^2 + 19x - 5 = 0], [2x^2 - x - 15 = 0], and other equations using the Quadratic Formula.
 
-x = −2, −3
+Include equations with negative leading coefficients, fractional coefficients, and equations that simplify before applying the formula.
 
----
+### Handle Special Cases
 
-## Example 2 — Non-Factorable Equation
+For equations like [x^2 + 25 = 0]: [a = 1], [b = 0], [c = 25]. Then [x = [0 ± √(0 - 100)] / 2 = ±√(-100)/2 = ±5i].
 
-Solve:
+For [8x^2 - 4x + 1 = 0]: [D = 16 - 32 = -16 < 0], so two complex roots.
 
-x^2 − 4x − 1 = 0
+## Examples 4 and 5 — Use the Discriminant
 
-x = (4 ± √((−4)^2 − 4(1)(−1))) / 2
+### Step 1: Calculate the Discriminant
 
-= (4 ± √(16 + 4)) / 2
-= (4 ± √20) / 2
+For [x^2 - 8x + 16 = 0]: [D = 64 - 64 = 0], so one real (double) root.
 
-Simplify radical:
+For [x^2 - 11x - 26 = 0]: [D = 121 + 104 = 225 > 0], so two distinct real roots. Since 225 is a perfect square (15^2), the roots are rational.
 
-= (4 ± 2√5) / 2
-= 2 ± √5
+### Step 2: Describe Number and Type of Roots
 
----
+For [3x^2 - 2x = 0]: [D = 0 - 0 = 0]... wait, let me recalculate. Actually [b^2 - 4ac = 0 - 0 = 0], so one real root (double root).
 
-## Example 3 — Imaginary Solutions
+For [5x^2 - 6 = 0]: [D = 0 - 4(5)(-6) = 120 > 0], two distinct real irrational roots.
 
-Solve:
+### Step 3: Match with Graphs
 
-x^2 + 2x + 5 = 0
+For graphs showing parabolas, use the discriminant to describe whether each parabola has two x-intercepts (real roots), one x-intercept (double root), or no x-intercepts (complex roots).
 
-x = (−2 ± √(2^2 − 4(1)(5))) / 2
+## Mixed Exercises
 
-= (−2 ± √(4 − 20)) / 2
-= (−2 ± √(−16)) / 2
+The mixed exercises section provides practice with all skills from the lesson. Problems include:
 
-= (−2 ± 4i) / 2
+* Describing the discriminant of each graphed parabola and determining type and number of roots. (Problems 36–38)
+* Using the discriminant to describe roots, then solving using the Quadratic Formula. (Problems 39–47)
+* A model problem: finding when an object propelled at 60 ft/s reaches 56 feet using [h(t) = -16t^2 + 60t]. (Problem 48)
+* A sports problem: using the shot put trajectory [h = -4.9t^2 + 13.7t + 1.6] to find how long the shot was in the air. (Problem 49)
+* A stopping distance problem: using [d = vt + v^2/(2μg)] to analyze stopping distances with different reaction times and friction coefficients. (Problem 50)
+* A geometry problem: finding dimensions of a rectangular box with a square base where increasing dimensions changes the volume by 531 cubic inches. (Problem 51)
+* A carnival game problem: explaining how to find initial velocities for which a ball will fail to hit a target using [h(t) = -16t^2 + vt]. (Problem 52)
+* A "Which One Doesn't Belong?" problem: using the discriminant to determine which of four equations is different from the others. (Problem 53)
+* A "Find the Error" problem analyzing Tama and Jonathan's determination of the number of solutions for [3x^2 - 5x = 7]. (Problem 54)
+* Analyzing statements about quadratic equations and discriminants: whether they are sometimes, always, or never true. (Problems 55)
+* Creating sketches of quadratic functions with specific discriminant values and root characteristics. (Problem 56)
+* Finding values of [m] such that [x^2 + x + m + 1 = 0] has exactly one solution. (Problem 57)
+* Comparing three methods for solving [x^2 - 2x - 15 = 0] and explaining which method is preferred. (Problem 58)
 
-= −1 ± 2i
+## Review Notes
 
----
-
-## Learn: The Discriminant
-
-The expression under the square root:
-
-b^2 − 4ac
-
-is called the discriminant.
-
----
-
-### Key Concept: Interpreting the Discriminant
-
-Let D = b^2 − 4ac
-
-* If D > 0 → two real solutions
-* If D = 0 → one real solution
-* If D < 0 → two imaginary solutions
-
----
-
-## Example 4 — Use the Discriminant
-
-Determine the number and type of solutions:
-
-2x^2 − 3x + 5 = 0
-
-D = (−3)^2 − 4(2)(5)
-= 9 − 40
-= −31
-
-Since D < 0:
-
-There are two imaginary solutions
-
----
-
-## Example 5 — Determine Without Solving
-
-x^2 − 6x + 9 = 0
-
-D = (−6)^2 − 4(1)(9)
-= 36 − 36
-= 0
-
-There is exactly one real solution
-
----
-
-## Key Idea: Why the Formula Works
-
-The quadratic formula comes from completing the square on the general form:
-
-ax^2 + bx + c = 0
-
----
-
-## In-Class Quick Check
-
-Use the quadratic formula to solve:
-
-1. x^2 + 3x − 4 = 0
-2. 2x^2 + x − 3 = 0
-3. x^2 + 4x + 8 = 0
-
-Determine the number and type of solutions:
-
-4. x^2 − 2x + 5 = 0
-5. 3x^2 + 6x + 3 = 0
-
----
-
-## Think About It
-
-* Why is the discriminant useful before solving?
-* When is the quadratic formula more efficient than factoring?
-* How does this connect to completing the square?
-
----
-
-## CAP Reflection
-
-* Courage: Did you attempt using the full formula independently?
-* Adaptability: How did you handle complex numbers in solutions?
-* Persistence: How did you check your algebra carefully before submitting?
-
----
-
-## Objective Alignment
-
-- `Use the Quadratic Formula to solve equations`: Primary worked examples: Examples 1-3.
-- `Use the discriminant to determine the number and type of solutions`: Primary worked examples: Examples 4-5.
+* Images referenced in the worksheet (graphs for Problems 36-38 showing parabolas with different numbers of x-intercepts, the stopping distance table in Problem 50, the rectangular box diagram in Problem 51, the carnival game diagram in Problem 52, the four equations in Problem 53, and Tama and Jonathan's work in Problem 54) could not be fully described without visual reference. Teachers should consult the original worksheet for exact diagrams and values.
+* The worksheet contains 58 practice problems across five examples and mixed exercises.

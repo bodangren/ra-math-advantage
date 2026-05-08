@@ -1,0 +1,205 @@
+# Lesson 9-7 — Summarizing Categorical Data
+
+Source: (Module 9, Lesson 9-7, Int1_0907_practice.docx)
+
+## Today's Goals
+
+* Construct and complete two-way frequency tables from verbal descriptions or given data.
+* Convert two-way frequency tables into relative frequency tables and conditional relative frequency tables.
+* Calculate and interpret joint, marginal, and conditional relative frequencies in context.
+* Distinguish between relative frequencies based on the overall total and conditional relative frequencies based on a subset total.
+
+## Vocabulary
+
+* **Categorical Data** — Data that can be sorted into groups or categories rather than measured numerically.
+* **Two-Way Frequency Table** — A table that displays the frequencies of data classified according to two different categories.
+* **Joint Frequency** — The number of responses that belong to both a specific row category and a specific column category.
+* **Marginal Frequency** — The total frequency for a single row or column, found in the margins of a two-way table.
+* **Relative Frequency** — A ratio of a frequency to the total number of observations, often expressed as a percentage.
+* **Joint Relative Frequency** — The ratio of a joint frequency to the total number of observations.
+* **Conditional Relative Frequency** — The ratio of a joint frequency to the marginal total of a specific row or column.
+* **Association** — A relationship between two categorical variables where the distribution of one variable changes depending on the category of the other.
+
+## Explore: How Can We Organize Data with Two Categories?
+
+Students consider a collection of survey responses that each have two attributes — for example, a favorite snack and a grade level. They discuss how listing the raw responses makes it difficult to see patterns, and they explore ways to arrange the counts in a rectangular grid.
+
+Inquiry Question:
+How does organizing paired categorical data into a two-way table make it easier to compare groups and spot relationships?
+
+## Learn: Two-Way Tables and Relative Frequencies
+
+Two-way tables organize paired categorical data so that joint counts, marginal totals, and derived relative frequencies can be read systematically.
+
+### Key Concept: Two-Way Frequency Table
+
+* Rows represent one categorical variable and columns represent another.
+* The cell where a row and column intersect shows the joint frequency for that pair of categories.
+* The rightmost column and bottom row contain the marginal frequencies (row totals and column totals).
+* The bottom-right corner contains the grand total.
+
+### Key Concept: Relative Frequency Table
+
+* Each cell value is divided by the grand total to produce a joint relative frequency.
+* Marginal relative frequencies are row or column totals divided by the grand total.
+* All joint relative frequencies sum to [ 1 ] (or [ 100\% ]).
+
+### Key Concept: Conditional Relative Frequency Table
+
+* Each joint frequency is divided by the marginal total of a chosen row or column.
+* A table conditioned on rows expresses each cell as a percentage of its row total.
+* A table conditioned on columns expresses each cell as a percentage of its column total.
+* Conditional relative frequencies help compare groups of different sizes.
+
+## Example 1 — Construct a Two-Way Frequency Table
+
+Use verbal clues about totals and relationships to build a complete two-way frequency table with row and column categories.
+
+### Step 1: Identify the Categories and Grand Total
+
+Determine the two variables, their categories, and the overall total number of observations.
+
+Representative totals:
+[
+\text{Total snow cones} = 125
+]
+[
+\text{Large} = 40\% \text{ of } 125 = 50
+]
+[
+\text{Small} = 125 - 50 = 75
+]
+
+### Step 2: Use Percentages to Find Category Totals
+
+Apply the given percentages to the grand total to find marginal frequencies for one variable.
+
+[
+\text{Grape} = 32\% \text{ of } 125 = 40
+]
+[
+\text{Small watermelon} = 12\% \text{ of } 125 = 15
+]
+
+### Step 3: Use Differences and Relationships to Fill Remaining Cells
+
+Use clues such as "15 more than" or "most popular" to find missing joint frequencies, then subtract to find the remaining values.
+
+[
+\text{Cherry} = \text{Grape} + 15 = 40 + 15 = 55
+]
+[
+\text{Watermelon total} = 125 - 40 - 55 = 30
+]
+[
+\text{Large watermelon} = 30 - 15 = 15
+]
+
+### Step 4: Verify the Table
+
+Check that all row totals and column totals match the given constraints and that the grand total is correct.
+
+## Example 2 — Construct and Interpret a Relative Frequency Table
+
+Convert a two-way frequency table into a relative frequency table by dividing each frequency by the grand total, then interpret a joint relative frequency in context.
+
+### Step 1: Read the Two-Way Frequency Table
+
+Extract the joint and marginal frequencies from the given table. (The source table is provided as an image; values must be read from the original worksheet.)
+
+### Step 2: Compute Joint Relative Frequencies
+
+Divide each joint frequency by the grand total and express the result as a percentage rounded to the nearest tenth.
+
+[
+\text{Joint relative frequency} = \frac{\text{joint frequency}}{\text{grand total}} \times 100
+]
+
+### Step 3: Compute Marginal Relative Frequencies
+
+Divide each row total and column total by the grand total.
+
+### Step 4: Interpret the Data
+
+Use the relative frequency table to describe what percentage of the surveyed group falls into a specific combined category or into a single category overall.
+
+## Example 3 — Construct a Conditional Relative Frequency Table
+
+Build a conditional relative frequency table by conditioning on one variable, then interpret conditional probabilities and compare them to joint probabilities.
+
+### Step 1: Organize the Raw Counts
+
+Place the given counts into a two-way frequency table and compute all marginal totals.
+
+Representative structure:
+[
+\text{Male voters} = 145
+]
+[
+\text{Female voters} = 139
+]
+[
+\text{Male for Santiago} = 68
+]
+[
+\text{Male for Measha} = 145 - 68 = 77
+]
+[
+\text{Female for Measha} = 89
+]
+[
+\text{Female for Santiago} = 139 - 89 = 50
+]
+
+### Step 2: Condition on the Column Variable
+
+Divide each joint frequency by its column total to produce conditional relative frequencies based on voter preference.
+
+[
+\text{Conditional relative frequency} = \frac{\text{joint frequency}}{\text{column total}}
+]
+
+For example, the conditional relative frequency of male voters given a vote for Santiago is:
+[
+\frac{68}{68 + 50} = \frac{68}{118}
+]
+
+### Step 3: Interpret the Conditional Probabilities
+
+Explain what each conditional relative frequency represents. For instance, a value in the Santiago column shows what fraction of all Santiago voters are male or female.
+
+### Step 4: Compare Conditional and Joint Probabilities
+
+Distinguish between:
+* The probability that a vote for Measha comes from a female student (conditional on Measha).
+* The probability that a female student intends to vote for Measha (conditional on female).
+
+These two probabilities have different denominators and answer different questions.
+
+## Mixed Exercises
+
+The mixed exercises provide practice with all skills from the lesson:
+
+* Read values from a two-way frequency table and answer questions about specific joint or marginal counts (veterinarian visit data).
+* Construct a two-way frequency table from verbal percentages and relationships, then use it to answer comparison questions (bird watching data).
+* Convert a two-way frequency table into a relative frequency table, find joint relative frequencies, and determine what percentage of a subgroup does or does not belong to a category (school activities data).
+* Read a two-way frequency table and compute totals, subtotals, and overall percentages for a voting survey (school mascot data).
+* Complete a two-way frequency table from partial data, compute relative frequencies, and construct a conditional relative frequency table conditioned on one variable; interpret the resulting probabilities (Thanksgiving pie preferences by region).
+* Convert relative frequencies back to joint and marginal frequencies given a total count, then reason about conditional relative frequencies without calculating every value individually (vehicle drive systems).
+* Analyze a two-way frequency table to determine whether there appears to be an association between two categorical variables and explain the reasoning (gasoline prices and vacation distance).
+* Create an original two-way frequency table, write a related question, and provide the solution.
+* Compare and contrast two-way relative frequency tables and two-way conditional relative frequency tables in writing.
+* Interpret a conditional relative frequency table related to age groups, evaluate competing claims about the data, and determine which claim is supported by the percentages (snack survey data).
+
+## Review Notes
+
+* **Image references (media/image1.png through media/image8.png)** — The worksheet contains images and tables whose content could not be fully extracted as text. Key images include:
+  * Image1 — Foreign language survey two-way frequency table for Example 2 (problems 5–7).
+  * Image2 — Veterinarian visit two-way frequency table for problems 11–12.
+  * Image3 — School activities participation two-way frequency table for problems 17–20.
+  * Image4 — School mascot voting two-way frequency table for problems 21–28.
+  * Image5 — Thanksgiving pie preferences by region two-way frequency table for problems 29–32.
+  * Image6 — Vehicle drive systems relative frequency table for problems 33–34.
+  * Image7 — Gasoline prices versus vacation distance two-way frequency table for problem 35.
+  * Image8 — Snack survey conditional relative frequency table for problem 38.
+  A human reviewer should verify that all tables are correctly represented or transcribed into the digital curriculum from the original `.docx`.

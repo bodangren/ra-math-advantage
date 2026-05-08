@@ -1,0 +1,167 @@
+# Lesson 9-4 — Measures of Spread
+
+Source: (Module 9, Lesson 9-4, Int1_0904_practice.docx)
+
+## Today's Goals
+
+* Calculate the range, interquartile range, and standard deviation of a data set
+* Determine the five-number summary and construct a box plot from a data set
+* Interpret measures of spread in real-world contexts
+
+## Vocabulary
+
+* **Range** — The difference between the maximum and minimum values in a data set
+* **Five-Number Summary** — The minimum, first quartile [ Q_1 ], median, third quartile [ Q_3 ], and maximum of a data set
+* **Box Plot** — A graphical display of the five-number summary that shows the spread and center of a data set
+* **Interquartile Range (IQR)** — The difference between the third and first quartiles, [ IQR = Q_3 - Q_1 ], representing the middle 50% of data
+* **Standard Deviation** — A measure of how much the values in a data set deviate from the mean
+
+## Explore: How Much Do Values Vary?
+
+Students compare two data sets with the same mean but very different spreads. They discuss why knowing the center alone is not enough to describe a data set and brainstorm ways to measure how spread out the values are.
+
+Inquiry Question:
+Why do we need more than a measure of center to fully describe a data set?
+
+## Learn: Measures of Spread
+
+Measures of spread describe how data values are distributed around the center. Common measures include the range, interquartile range, and standard deviation. Together with the five-number summary, they provide a complete picture of a data set's variability.
+
+### Key Concept: Range and Five-Number Summary
+
+* The **range** is found by subtracting the minimum value from the maximum value:
+[
+  \text{Range} = \text{max} - \text{min}
+]
+* The **five-number summary** divides the data into four parts using the minimum, first quartile, median, third quartile, and maximum.
+* A **box plot** displays the five-number summary visually, with a box from [ Q_1 ] to [ Q_3 ] and whiskers extending to the minimum and maximum.
+
+### Key Concept: Interquartile Range and Standard Deviation
+
+* The **interquartile range** measures the spread of the middle half of the data:
+[
+  IQR = Q_3 - Q_1
+]
+* The **standard deviation** measures the average distance of each data point from the mean. To calculate it:
+  1. Find the mean of the data set.
+  2. Find the squared deviation of each data value from the mean.
+  3. Find the mean of the squared deviations (variance).
+  4. Take the square root of the variance.
+
+## Example 1 — Find the Range
+
+Find the range of a given data set by identifying the maximum and minimum values and subtracting.
+
+### Step 1: Identify the Maximum and Minimum
+
+Locate the smallest and largest values in the data set.
+
+### Step 2: Calculate the Range
+
+Subtract the minimum from the maximum:
+[
+\text{Range} = \text{max} - \text{min}
+]
+
+For example, given the data set [ 12, 27, 43, 52, 43, 18, 45, 53, 26 ], the maximum is [ 53 ] and the minimum is [ 12 ], so:
+[
+\text{Range} = 53 - 12 = 41
+]
+
+Problems also include data sets with decimal values and a real-world context involving daily exercise minutes.
+
+## Example 2 — Five-Number Summary and Box Plot
+
+Determine the five-number summary for a data set and use it to draw a box plot.
+
+### Step 1: Order the Data
+
+Arrange the data values from least to greatest.
+
+### Step 2: Find the Five-Number Summary
+
+* **Minimum:** the smallest value
+* **Maximum:** the largest value
+* **Median:** the middle value (or average of the two middle values)
+* **[ Q_1 ]:** the median of the lower half of the data
+* **[ Q_3 ]:** the median of the upper half of the data
+
+For example, for smartphone prices [ 311, 309, 312, 314, 399, 312 ]:
+[
+\text{Min} = 309, \quad Q_1 = 311.5, \quad \text{Median} = 312, \quad Q_3 = 313, \quad \text{Max} = 399
+]
+
+### Step 3: Draw the Box Plot
+
+Mark the five-number summary on a number line. Draw a box from [ Q_1 ] to [ Q_3 ] with a line at the median, and extend whiskers to the minimum and maximum.
+
+## Example 3 — Find the Interquartile Range
+
+Find the interquartile range of a data set by first determining the first and third quartiles.
+
+### Step 1: Order the Data and Find Quartiles
+
+Arrange the data in order and locate [ Q_1 ] (median of the lower half) and [ Q_3 ] (median of the upper half).
+
+### Step 2: Calculate the IQR
+
+Subtract the first quartile from the third quartile:
+[
+IQR = Q_3 - Q_1
+]
+
+For example, given [ 43, 36, 51, 68, 50, 27, 38, 81, 33 ], the ordered data is [ 27, 33, 36, 38, 43, 50, 51, 68, 81 ]. The median is [ 43 ], [ Q_1 = 34.5 ], and [ Q_3 = 59.5 ], so:
+[
+IQR = 59.5 - 34.5 = 25
+]
+
+Problems include whole numbers, larger values, and a real-world heart rate context.
+
+## Example 4 — Find the Standard Deviation
+
+Calculate the standard deviation of a data set using the mean and squared deviations.
+
+### Step 1: Find the Mean
+
+Add all data values and divide by the number of values:
+[
+\bar{x} = \frac{\sum x_i}{n}
+]
+
+### Step 2: Find the Squared Deviations
+
+For each data value, subtract the mean and square the result:
+[
+(x_i - \bar{x})^2
+]
+
+### Step 3: Find the Variance and Standard Deviation
+
+Find the mean of the squared deviations (variance), then take the square root:
+[
+\sigma = \sqrt{\frac{\sum (x_i - \bar{x})^2}{n}}
+]
+
+For example, for the data set [ \{10, 9, 11, 6, 9\} ], the mean is [ \bar{x} = 9 ]. The squared deviations are [ 1, 0, 4, 9, 0 ], the variance is [ \frac{14}{5} = 2.8 ], and the standard deviation is [ \sigma = \sqrt{2.8} \approx 1.67 ].
+
+Problems also include a real-world parking context.
+
+## Mixed Exercises
+
+The mixed exercises integrate all four skills — range, five-number summary, interquartile range, and standard deviation — along with box plot construction. Problems include:
+
+* Reasoning and interpreting standard deviation in context (hockey goals)
+* Analyzing data from a table to find and interpret standard deviation (football carries)
+* Determining a five-number summary and drawing a box plot for a real-world data set (movie ages)
+* Finding the five-number summary and drawing a box plot for gasoline prices
+* A comprehensive problem requiring all four measures and a box plot for a single data set (seashells and shoe sizes)
+* Error analysis about methods to decrease standard deviation
+* Analyzing whether two random samples from the same population always have the same mean and standard deviation
+* Creating a survey, collecting data, and calculating all measures of spread
+* Writing about what the interquartile range reveals about data clustering around the median
+
+## Review Notes
+
+* **Image needed:** Problem 5 includes a table or diagram showing Kent's daily exercise minutes (image1.png).
+* **Image needed:** Problem 22 includes a table showing the number of carries a running back had over several years (image2.png).
+* **Image needed:** Problem 27 includes a dialogue or work sample from Jennifer and Megan discussing how to decrease the standard deviation of a data set (image3.png).

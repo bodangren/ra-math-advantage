@@ -1,0 +1,188 @@
+# Lesson 13-4 — Double-Angle and Half-Angle Identities
+
+Source: (Module 13, Lesson 13-4, Int2_1304_practice.docx)
+
+## Today's Goals
+
+* Apply double-angle formulas for sin(2theta), cos(2theta), tan(2theta)
+* Apply half-angle identities for sin(theta/2) and cos(theta/2)
+* Find exact values using double-angle and half-angle formulas
+* Choose the appropriate form of cos(2theta) based on given information
+* Derive double-angle formulas from sum formulas
+* Apply double-angle identities to solve real-world problems (sound waves, monuments)
+
+## Vocabulary
+
+* **Double-angle identity** — a formula expressing sin(2theta), cos(2theta), or tan(2theta) in terms of functions of theta
+* **Half-angle identity** — a formula expressing sin(theta/2), cos(theta/2), or tan(theta/2) in terms of functions of theta
+* **Power-reducing identity** — forms like [cos(2theta) = 1 - 2 sin^2 theta = 2 cos^2 theta - 1] used to reduce powers
+
+## Explore: Special Cases of Sum Formulas
+
+The double-angle formulas are just the sum formulas with A = B = theta. For example:
+
+[sin(theta + theta) = sin theta cos theta + cos theta sin theta = 2 sin theta cos theta]
+
+Inquiry Question:
+Why are there three forms of cos(2theta)? When is each form most useful?
+
+## Learn: Double-Angle and Half-Angle Formulas
+
+### Key Concept: Double-Angle Identities
+
+[sin(2theta) = 2 sin theta cos theta]
+
+[cos(2theta) = cos^2 theta - sin^2 theta = 2 cos^2 theta - 1 = 1 - 2 sin^2 theta]
+
+[tan(2theta) = (2 tan theta) / (1 - tan^2 theta)]
+
+### Key Concept: Choosing the Right Form for cos(2theta)
+
+* Use [cos^2 theta - sin^2 theta] when you know both sin and cos
+* Use [2 cos^2 theta - 1] when you know cos theta and want to eliminate sin
+* Use [1 - 2 sin^2 theta] when you know sin theta and want to eliminate cos
+
+### Key Concept: Half-Angle Identities
+
+[sin(theta/2) = +/- sqrt((1 - cos theta)/2)]
+
+[cos(theta/2) = +/- sqrt((1 + cos theta)/2)]
+
+The sign depends on the quadrant of theta/2.
+
+## Example 1 — Find sin(2theta), cos(2theta), sin(theta/2), cos(theta/2)
+
+Given [sin theta = 2/3] and [90 degrees < theta < 180 degrees] (Q2), find all four values.
+
+### Step 1: Find cos theta
+
+[sin^2 theta + cos^2 theta = 1]
+
+[cos^2 theta = 1 - 4/9 = 5/9]
+
+In Q2, cosine is negative: [cos theta = -sqrt(5)/3]
+
+### Step 2: Find sin(2theta)
+
+[sin(2theta) = 2 sin theta cos theta = 2 * (2/3) * (-sqrt(5)/3) = -4 sqrt(5)/9]
+
+### Step 3: Find cos(2theta)
+
+[cos(2theta) = cos^2 theta - sin^2 theta = 5/9 - 4/9 = 1/9]
+
+### Step 4: Find sin(theta/2)
+
+Since [90 degrees < theta < 180 degrees], [45 degrees < theta/2 < 90 degrees] (Q1).
+
+[sin(theta/2) = sqrt((1 - cos theta)/2) = sqrt((1 - (-sqrt(5)/3))/2) = sqrt((1 + sqrt(5)/3)/2)]
+
+### Step 5: Find cos(theta/2)
+
+[cos(theta/2) = sqrt((1 + cos theta)/2) = sqrt((1 - sqrt(5)/3)/2)]
+
+Since theta/2 is in Q1, both sin and cos are positive.
+
+## Example 2 — Apply Double-Angle to Sound Wave Problem
+
+SOUND WAVES: The sound from a tuning fork is represented by [S = 2 sin 2theta]. Rewrite this formula in terms of sin theta and cos theta.
+
+### Step 1: Apply Double-Angle Identity
+
+[S = 2 sin(2theta) = 2 * (2 sin theta cos theta) = 4 sin theta cos theta]
+
+### Step 2: Interpret
+
+The formula shows the wave can be expressed as [4 sin theta cos theta], which relates to the product-to-sum identities.
+
+## Example 3 — Find Exact Values Using Half-Angle Formulas
+
+Find the exact value of [sin 75 degrees].
+
+### Step 1: Write as a Half-Angle
+
+[75 degrees = 150 degrees / 2]
+
+[sin 75 degrees = sin(150 degrees / 2)]
+
+### Step 2: Apply Half-Angle Formula
+
+[sin(theta/2) = sqrt((1 - cos theta)/2)]
+
+[sin 75 degrees = sqrt((1 - cos 150 degrees)/2)]
+
+### Step 3: Substitute Known Values
+
+[cos 150 degrees = -sqrt(3)/2]
+
+[sin 75 degrees = sqrt((1 - (-sqrt(3)/2))/2) = sqrt((1 + sqrt(3)/2)/2)]
+
+### Step 4: Simplify
+
+[= sqrt((2 + sqrt(3))/4) = sqrt(2 + sqrt(3))/2]
+
+Alternatively, using [75 degrees = 45 degrees + 30 degrees]:
+
+[sin 75 degrees = sin 45 degrees cos 30 degrees + cos 45 degrees sin 30 degrees]
+
+[= (sqrt(2)/2)(sqrt(3)/2) + (sqrt(2)/2)(1/2) = (sqrt(6) + sqrt(2))/4]
+
+## Example 4 — Find tan 165 degrees
+
+### Step 1: Write as Sum or Difference
+
+[165 degrees = 180 degrees - 15 degrees] or [330 degrees / 2]
+
+Using [tan(180 degrees - theta) = -tan theta]:
+
+[tan 165 degrees = -tan 15 degrees]
+
+### Step 2: Find tan 15 degrees Using Half-Angle
+
+[tan(15 degrees) = tan(30 degrees/2)]
+
+Using [tan(theta/2) = sin theta / (1 + cos theta)]:
+
+[tan 15 degrees = sin 30 degrees / (1 + cos 30 degrees) = (1/2) / (1 + sqrt(3)/2) = 1/(2 + sqrt(3))]
+
+Rationalize: [= (2 - sqrt(3))/1 = 2 - sqrt(3)]
+
+### Step 3: Apply Sign
+
+[tan 165 degrees = -tan 15 degrees = -(2 - sqrt(3)) = sqrt(3) - 2]
+
+## Example 5 — Structure Problem with Isosceles Right Triangle
+
+STRUCTURE: A large isosceles right triangle has a small triangle formed by bisecting each acute angle.
+
+### Part a: Find sine and cosine for the congruent angles of the small triangle
+
+Each acute angle of the large triangle is 45 degrees. When bisected, each becomes 22.5 degrees.
+
+[sin 22.5 degrees = sqrt((1 - cos 45 degrees)/2) = sqrt((1 - sqrt(2)/2)/2)]
+
+[cos 22.5 degrees = sqrt((1 + cos 45 degrees)/2) = sqrt((1 + sqrt(2)/2)/2)]
+
+### Part b: Find sine and cosine for the obtuse angle of the small triangle
+
+The obtuse angle is [180 degrees - 22.5 degrees - 22.5 degrees = 135 degrees].
+
+[sin 135 degrees = sqrt(2)/2], [cos 135 degrees = -sqrt(2)/2]
+
+## Mixed Exercises
+
+The mixed exercises provide practice with:
+
+* Finding exact values of sin(2theta), cos(2theta), tan(2theta) given various trig values and quadrants
+* Using double-angle formulas to find exact values (sin 240 degrees using sum, difference, double-angle, and half-angle methods)
+* Analyzing ramp problems with angle relationships
+* Proving [tan(1/2 theta) = sin theta / (1 + cos theta)] using unit circle
+* Writing paragraphs comparing when to use each form of cos(2theta)
+* Deriving double-angle identities from sum identities
+* Deriving half-angle identities from double-angle identities
+* Analyzing golf ball distance problems involving [d = (2v^2 sin theta cos theta)/g]
+
+## Review Notes
+
+* Image references: ![](media/image1.png) — Problem 11 shows sound wave diagram. ![](media/image2.png) — Problem 31 shows isosceles triangle structure. ![](media/image3.png) — Problem 32 shows ramp diagram. ![](media/image4.png) — Problem 34 shows Teresa and Armando's calculations. ![](media/image5.png) — Problem 34 shows additional calculation. Consult original worksheet for exact diagrams.
+* The worksheet contains 40 practice problems across worked examples and mixed exercises.
+* Problem 33 requires solving sin 240 degrees using four different methods.

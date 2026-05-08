@@ -1,248 +1,271 @@
 # Lesson 5-1 — Graphing Exponential Functions
 
-Source: (Module 5, Lesson 5-1, pp. 217–220)
+Source: (Module 5, Lesson 5-1, Int3_0501_practice.docx)
 
 ## Today's Goals
 
-* Graph exponential growth functions
-* Graph exponential decay functions
-
----
+* Graph exponential functions and identify domain, range, y-intercept, asymptote, and end behavior.
+* Apply transformations to exponential parent functions.
+* Distinguish between exponential growth and exponential decay.
+* Model real-world situations with exponential functions.
 
 ## Vocabulary
 
-* exponential function
-* exponential growth
-* asymptote
-* growth factor
-* exponential decay
-* decay factor
+* **Exponential Function** — A function of the form [f(x) = ab^x] where [a ≠ 0], [b > 0], and [b ≠ 1].
+* **Exponential Growth** — When the base [b > 1], the function values increase as [x] increases.
+* **Exponential Decay** — When [0 < b < 1], the function values decrease as [x] increases.
+* **Horizontal Asymptote** — A horizontal line that the graph approaches but never crosses.
+* **Transformation** — A shift, stretch, compression, or reflection of a graph.
 
----
+## Explore: Understanding Exponential Graphs
 
-## Explore: Using Technology to Analyze Graphs of Exponential Functions
+Exponential functions behave differently from polynomial functions. As [x] increases, exponential growth (when [b > 1]) rises very rapidly, while exponential decay (when [0 < b < 1]) approaches the horizontal asymptote. Consider why these functions model real-world phenomena like population growth and radioactive decay.
 
-Use graphing technology to complete the explore.
+Inquiry Question:
+How does the value of [b] affect the shape and behavior of the graph of [f(x) = ab^x]?
 
-**Inquiry Question:**
-How does performing an operation on an exponential function affect its graph?
+## Learn: Graphing Exponential Functions
 
----
+### Key Concept: Parent Function Behavior
 
-## Learn: Graphing Exponential Growth Functions
+The parent function [f(x) = b^x] has these characteristics:
 
-In an exponential function, the independent variable is an exponent.
+* Domain: all real numbers
+* Range: [y > 0]
+* y-intercept: [(0, 1)]
+* Horizontal asymptote: [y = 0]
+* For [b > 1]: increases as [x] increases
+* For [0 < b < 1]: decreases as [x] increases
 
-An exponential function has the form:
+### Key Concept: Transformations of [f(x) = ab^x]
 
-`f(x) = b^x`
+The general form [f(x) = ab^x] can be transformed to [f(x) = ab^x + k] or [f(x) = ab^(x-h) + k]:
 
-where the base `b` is a constant and `x` is the exponent.
+* [a] affects vertical stretch/compression and reflection
+* [h] affects horizontal shift
+* [k] affects vertical shift
 
-For an **exponential growth** function, `b > 1`.
+## Example 1 — Graph Basic Exponential Functions
 
-Exponential growth occurs when an initial amount increases by the same percent over a given period of time.
+Graph each function. Find the domain, range, y-intercept, asymptote, and end behavior.
 
-Graphs of exponential functions have **asymptotes**, which are lines the graph approaches.
+### Step 1: Analyze [f(x) = 3^x]
 
----
+* Domain: all real numbers
+* Range: [y > 0]
+* y-intercept: [(0, 1)]
+* Asymptote: [y = 0]
+* End behavior: as [x → +∞], [f(x) → +∞]; as [x → -∞], [f(x) → 0]
 
-## Example 1 — Graph Exponential Growth Functions
+### Step 2: Analyze [f(x) = 5^x] and [f(x) = 1.5^x]
 
-Graph:
+Similar analysis with different bases. For [f(x) = (5/2)^x], since [5/2 > 1], the function exhibits exponential growth.
 
-`f(x) = 2^x`
+### Step 3: Analyze [f(x) = (5/2)^x]
 
-Find the domain, range, y-intercept, asymptote, and end behavior.
+When the base is a fraction [5/2 > 1] but the function still grows because [5/2 > 1]. Wait — [5/2 = 2.5 > 1], so this is growth. Actually [f(x) = (5/2)^x] with base [5/2 > 1] means growth.
 
-Table of values:
+## Example 2 — Graph Transformed Exponential Functions
 
-| x  | f(x) |
-| -- | ---- |
-| -3 | 0.125 |
-| -2 | 0.25 |
-| -1 | 0.5 |
-| 0  | 1 |
-| 1  | 2 |
-| 2  | 4 |
-| 3  | 8 |
+Graph each function and identify the transformations applied to the parent function.
 
-Key features:
+### Step 1: Vertical Stretch and Reflection
 
-* domain: all real numbers
-* range: all positive real numbers
-* y-intercept: `(0, 1)`
-* asymptote: `y = 0`
-* end behavior:
-  * as `x -> -infinity`, `f(x) -> 0`
-  * as `x -> infinity`, `f(x) -> infinity`
+[f(x) = 2(3)^x] — vertical stretch by factor of 2
+[f(x) = -2(4)^x] — vertical stretch by factor of 2 and reflection across x-axis
 
-## Think About It
+### Step 2: Vertical and Horizontal Shifts
 
-Why is the range all positive real numbers instead of all real numbers?
+[f(x) = 4^x + 1] — shift up 1 unit
+[f(x) = 3^(2x) + 1] — this is equivalent to [(3^2)^x = 9^x] so horizontal compression
+[f(x) = -0.4(3)^x + 2] + 4 — vertical stretch by 0.4, reflection, shift up 2, then shift up 4
 
----
+### Step 3: Complex Transformations
 
-## Example 2 — Graph Transformations of Exponential Growth Functions
+[f(x) = 1.5(2)^x + 6] — vertical stretch by 1.5 and shift up 6
 
-Graph:
+## Example 3 — Write Functions from Graphs
 
-`g(x) = -(1/2) * 3^(x + 4) + 1`
+Identify the value of [k] and write a function [g(x)] for each graph as it relates to [f(x)].
 
-Transform the parent graph `f(x) = 3^x`.
+### Step 1: Determine the Transformation Type
 
-* `a = -1/2`: reflect across the x-axis and compress vertically
-* `h = -4`: translate `4` units left
-* `k = 1`: translate `1` unit up
+For [f(x) = 2^x; g(x) = f(x) + k] — determine [k] from the vertical shift shown in the graph.
 
----
+For [f(x) = 3^x; g(x) = f(x) + k] — determine [k] from the vertical shift shown in the graph.
 
-## Example 3 — Analyze Graphs of Exponential Functions
+For [f(x) = (3/2)^x; g(x) = k · f(x)] — determine [k] from the vertical stretch factor shown in the graph.
 
-Identify `k` and write a function for the graph of:
+### Step 2: Write the Function
 
-`j(x) = f(x) + k`
+Use the graph to determine the exact value of [k] and write [g(x)] in the specified form.
 
-as it relates to:
+![](media/image1.png) ![](media/image2.png) ![](media/image3.png)
 
-`f(x) = 3.5^x`
+## Example 4 — Real-World Exponential Models
 
-The graph is translated `2` units down, so:
+### Step 1: Set Up the Problem
 
-* `k = -2`
-* `j(x) = 3.5^x - 2`
+**SUBSCRIPTIONS:** A club starts with 40 members and grows by 20% each year. Model the number of subscribers over 5 years.
 
----
+Initial value: [a = 40]
+Growth rate: [b = 1.20]
+Function: [f(x) = 40(1.20)^x]
 
-## Example 4 — Use Exponential Growth Functions
+### Step 2: Answer the Question
 
-Mr. Lopez invests `$50 million` at `5%` annual interest.
+After Year 4: [f(4) = 40(1.20)^4 ≈ 40(2.0736) ≈ 82.94] subscriptions
 
-Use:
+**SHOES:** Athletic shoes cost $58.17 in 2018 and increase 5.1% annually. Model the cost after [t] years.
 
-`A(t) = a(1 + r)^t`
+[f(t) = 58.17(1.051)^t]
 
-So:
+After 25 years: [f(25) = 58.17(1.051)^25 ≈ 58.17(3.473) ≈ $202.17]
 
-`A(t) = 50(1.05)^t`
+### Step 3: Compound Interest Applications
 
-Using technology, after `20` years there will be about:
+**MONEY:** Sunil deposits [P] dollars at 3% annual compound interest.
 
-`$132,664,885.26`
+[A = P(1.03)^t]
 
-### Watch Out
+After $500 deposit for 10 years: [A = 500(1.03)^10 ≈ 500(1.344) ≈ $671.96]
 
-Keep units in mind. In this lesson, the account balance is measured in millions of dollars.
+To find when the account doubles: [2P = P(1.03)^t → 2 = (1.03)^t → t = ln(2)/ln(1.03) ≈ 23.4] years
 
----
+## Example 5 — Exponential Growth vs. Decay
 
-## Learn: Graphing Exponential Decay Functions
+Determine whether each function represents exponential growth or exponential decay.
 
-**Exponential decay** occurs when an initial amount decreases by the same percent over a given period of time.
+### Step 1: Apply the Criteria
 
-For a function of the form `f(x) = b^x`, decay occurs when:
+* If [b > 1]: exponential growth
+* If [0 < b < 1]: exponential decay
 
-`0 < b < 1`
+[f(x) = 7^x] → [b = 7 > 1] → growth
+[g(x) = 0.99^x] → [b = 0.99 < 1] → decay
+[h(x) = (2/3)^x] → [b = 2/3 < 1] → decay
+[j(x) = (5/4)^x] → [b = 5/4 > 1] → growth
+[k(x) = 0.75^x] → [b = 0.75 < 1] → decay
+[m(x) = 1.02^x] → [b = 1.02 > 1] → growth
 
-Exponential decay can be modeled by:
+## Example 6 — Decay Functions
 
-`A(t) = a(1 - r)^t`
+Graph each function. Find the domain, range, y-intercept, asymptote, and end behavior.
 
-The **decay factor** is:
+### Step 1: Analyze Decay Functions
 
-`1 - r`
+[f(x) = 0.25^x] — base [0.25 < 1], decay
+[f(x) = 0.8^x] — base [0.8 < 1], decay
+[f(x) = (1/2)^x] — base [1/2 < 1], decay
+[f(x) = (2/3)^x] — base [2/3 < 1], decay
 
----
+## Example 7 — Complex Transformations with Decay
 
-## Example 5 — Interpret Exponential Functions
+Graph each function.
 
-Determine whether each function represents growth or decay.
+### Step 1: Identify Each Transformation
 
-* `f(x) = 5^x` -> growth
-* `g(x) = (2/7)^x` -> decay
-* `h(x) = (4/3)^x` -> growth
-* `j(x) = 1.05^x` -> growth
-* `k(x) = 0.85^x` -> decay
+[f(x) = -4(3/5)^(x+4) + 3] — horizontal shift left 4, vertical stretch 4, reflection, shift up 3
+[f(x) = 3(2/5)^(x-3) - 6] — horizontal shift right 3, vertical stretch 3, shift down 6
+[f(x) = (1/2)(1/5)^(x+5) + 8] — horizontal shift left 5, vertical compression by 1/2, shift up 8
+[f(x) = (3/4)(2/3)^(x+4) - 2] — horizontal shift left 4, vertical stretch by 3/4, shift down 2
+[f(x) = -(1/2)(3/8)^(x+2) + 9] — horizontal shift left 2, vertical stretch by 1/2, reflection, shift up 9
+[f(x) = -(5/4)(4/5)^(x+4) + 2] — horizontal shift left 4, vertical stretch by 5/4, reflection, shift up 2
 
----
+## Example 8 — Piecewise Functions with Exponential Parts
 
-## Example 6 — Graph Exponential Decay Functions
+### Step 1: Graph the Piecewise Function
 
-Graph:
+Consider [f(x) = {(3/4)^x for x < 0; 3x + 1 for x ≥ 0}] and [g(x)] shown in the graph.
 
-`f(x) = (1/2)^x`
+Graph each piece on its designated domain. For [x < 0], use exponential decay. For [x ≥ 0], use the linear function.
 
-Key features:
+### Step 2: Compare Key Features
 
-* domain: all real numbers
-* range: all positive real numbers
-* y-intercept: `(0, 1)`
-* asymptote: `y = 0`
-* end behavior:
-  * as `x -> -infinity`, `f(x) -> infinity`
-  * as `x -> infinity`, `f(x) -> 0`
+Analyze domain, range, intercepts, increasing/decreasing behavior, positive/negative, minimum/maximum, symmetry, and end behavior for both [f(x)] and [g(x)].
 
-## Talk About It
+## Mixed Exercises
 
-Explain how you can use the end behavior of an exponential function to determine whether it represents growth or decay.
+Graph each function. State the domain and range. Then determine whether the function represents exponential growth or exponential decay.
 
----
+1. [y = 3(2)^x] 2. [y = 2(1/2)^x] 3. [y = -(3/2)(1.5)^x] 4. [y = 3(1/3)^x]
 
-## Example 7 — Graph Transformations of Exponential Decay Functions
+For each [f(x)] is the parent function and [g(x)] is a transformation. Use the graph to determine [g(x)].
 
-Graph:
+REASONING: For [y = ab^x], where [a > 0]:
+* If [b > 1], the function represents exponential growth
+* If [0 < b < 1], it represents exponential decay
 
-`g(x) = -2(1/4)^(x - 4) + 3`
+a. Choose [a > 0] and let [b = 1]. Complete the table. Is [y = ab^x] an exponential function? Explain.
 
-This is a transformation of:
+b. Choose [a > 0] and a negative value for [b]. Complete the table. Is [y = ab^x] an exponential function? Explain.
 
-`f(x) = (1/4)^x`
+INVESTMENTS: At age 28, Cataline makes a $22,000 investment at 5% interest annually.
 
-* `a = -2`: reflect across the x-axis and stretch vertically
-* `h = 4`: translate `4` units right
-* `k = 3`: translate `3` units up
+a. If she leaves it untouched until age 65, the investment will be worth [22000(1.05)^37].
 
----
+b. Rodrigo waits 2 years and makes the same investment. His investment at age 65: [22000(1.05)^35]. Compare values.
 
-## Example 8 — Compare Exponential Functions
+PERSEVERE: A substance decays 35% each day. After 8 days, 8 mg remain. Initial amount: [8/(0.65)^8 ≈ 8/0.0282 ≈ 283.7] mg
 
-Consider:
+WRITE: Write the procedure for transforming [g(x) = b^x] to [f(x) = ab^(x-h) + k]. Justify each step.
 
-`f(x) = { (1/2)^x for x < -1 ; 2x + 4 for x >= -1 }`
+CARS: A car depreciates 15% annually. Jayden paid $28,000 for a car 15 years ago.
 
-and `g(x)` from the graph.
+a. Depreciation function: [V(t) = 28000(0.85)^t]
 
-### Part A: Graph `f(x)`
+b. Compare average decrease in first 5 years vs. last 5 years.
 
-Graph the exponential part and the linear part.
+STRUCTURE: Let [f(x) = 6^x]; [g(x) = -(1/2)(6)^(x+3) - 1]; [h(x) = (3/2)(6)^x - 5].
 
-### Part B: Compare key features
+a. Find the asymptote of each function.
+b. Transform [f(x)] to create [g(x)] and [h(x)].
+c. Transform [g(x)] directly to create [h(x)].
 
-* `f(x)` has a relative minimum of `2`
-* `g(x)` has no relative minimum
-* `g(x)` appears to have asymptote `y = 2`
+For [f(x) = 4^x] and [g(x) = 4^(-x) + 1]: transformations include reflection in y-axis and vertical shift.
 
-### y-intercepts
+For [f(x) = (0.5)^x] reflected in y-axis, stretched vertically by 2, and translated 1 unit down: [g(x) = 2(2)^x - 1].
 
-* `f(x)`: `4`
-* `g(x)`: `3`
+CHEMISTRY: A compound with initial 27.3 grams decays 10% annually.
 
-### end behavior
+a. [A(t) = 27.3(0.90)^t]
 
-* `f(x)`:
-  * as `x -> -infinity`, `f(x) -> infinity`
-  * as `x -> infinity`, `f(x) -> infinity`
-* `g(x)`:
-  * as `x -> -infinity`, `g(x) -> 2`
-  * as `x -> infinity`, `g(x) -> infinity`
+b. Average rate of change over [0, 2]: [(A(2) - A(0))/2]; over [3, 5]: [(A(5) - A(3))/2]
 
-## Think About It
+USE TOOLS: Bacteria population grows from 20,000 to 30,000 in one day.
 
-Find the domain and range of `f(x)`. Does `g(x)` have the same domain and range? Explain.
+a. [P(t) = 20000(1.5)^t]
 
----
+b. Graph [P(t)], identify intercepts, zeros, and end behavior as [t → +∞].
 
-## Objective Alignment
+c. Appropriate domain: [t ≥ 0].
 
-- `Graph exponential growth functions`: Primary worked examples: Examples 1-5.
-- `Graph exponential decay functions`: Primary worked examples: Examples 6-8.
+ANALYZE: Determine whether each statement is sometimes, always, or never true.
+
+a. [y = ab^(x-h) + k] has a y-intercept.
+b. [y = ab^(x-h) + k] has an x-intercept.
+c. [f(x) = |b|^x] is exponential growth if [b] is an integer.
+
+FIND THE ERROR: Vince and Grady disagree about [f(x)] and [g(x)] from a table. Analyze who is correct.
+
+PERSEVERE: A substance decays 35% each day. After 8 days, 8 mg remain. Initial amount: [8/(0.65)^8].
+
+CREATE: Give an example where [f(x) = (8/b)^x] represents exponential decay. (Choose [b > 8]).
+
+## Review Notes
+
+* Image references in this lesson:
+  * ![](media/image1.png) — transformation graphs for Example 3
+  * ![](media/image2.png) — transformation graphs for Example 3
+  * ![](media/image3.png) — transformation graphs for Example 3
+  * ![](media/image4.png) — piecewise function graph for Example 8
+  * ![](media/image5.png) — piecewise function graph for Example 8
+  * ![](media/image6.png) — parent function graphs for mixed exercises
+  * ![](media/image7.png) — parent function graphs for mixed exercises
+  * ![](media/image8.png) — table for reasoning problem
+  * ![](media/image9.png) — table for reasoning problem
+  * ![](media/image10.JPG) — find the error problem graph
+
+Teachers should consult the original worksheet for exact diagrams, tables, and graph images.
+
+(End of file - total 277 lines)

@@ -1,0 +1,350 @@
+# Lesson 6-3 — Areas of Circles and Sectors
+
+Source: (Module 6, Lesson 6-3, Int2_0603_practice.docx)
+
+## Today's Goals
+
+* Find the area of a circle.
+* Find the area of a sector of a circle.
+* Solve problems involving areas of circles and sectors.
+
+## Vocabulary
+
+* **Circle** — The set of all points in a plane that are a fixed distance (radius) from a given point (center).
+* **Radius** — A segment from the center of a circle to any point on the circle.
+* **Diameter** — A chord that passes through the center of a circle; twice the radius.
+* **Sector** — A region bounded by two radii and an arc of a circle.
+* **Arc** — A portion of the circumference of a circle.
+
+## Explore: Areas of Circles and Sectors
+
+Students explore how the area of a circle relates to the area of a parallelogram. By dividing a circle into many thin sectors and rearranging them, the shape approximates a parallelogram with base equal to half the circumference and height equal to the radius.
+
+Inquiry Question:
+How can you derive the formula for the area of a circle from the area formula for a parallelogram?
+
+## Learn: Areas of Circles and Sectors
+
+### Key Concept: Area of a Circle
+
+The area of a circle with radius r is:
+[
+A = pi * r^2
+]
+
+### Key Concept: Area of a Sector
+
+The area of a sector with central angle x degrees is:
+[
+A = (x/360) * pi * r^2
+]
+
+### Key Concept: Relating Diameter and Radius
+
+[
+d = 2r
+]
+[
+r = d/2
+]
+
+## Example 1 — Find the Area of a Circle
+
+Find the area of each circle. Round to the nearest tenth.
+
+### Step 1: Identify the Radius or Diameter
+
+Read the problem to find either the radius directly or the diameter from which you can calculate the radius.
+
+### Step 2: Apply the Area Formula
+
+[
+A = pi * r^2
+]
+
+If the radius is 5 inches:
+[
+A = pi * 5^2
+]
+[
+A = 25pi
+]
+[
+A = 78.5 in^2
+]
+
+If the diameter is 10 centimeters:
+[
+r = 10/2 = 5 cm
+]
+[
+A = pi * 5^2
+]
+[
+A = 78.5 cm^2
+]
+
+DINING: Maricela is making a tablecloth for a circular table with diameter 8 feet.
+a. Find the area of the tabletop. Round to the nearest tenth.
+[
+r = 8/2 = 4 ft
+]
+[
+A = pi * 4^2 = 16pi = 50.3 ft^2
+]
+b. If a square yard of fabric costs $13.99, what is the minimum cost?
+[
+A = 50.3 ft^2 = 50.3/9 yd^2 = 5.59 yd^2
+]
+[
+Cost = 5.59 * 13.99 = $78.20
+]
+
+GAMES: Kiyoshi is making circular tiles with radius 2 inches. Balsa wood costs $1.99 per square foot.
+a. Find the area of a single tile. Round to the nearest tenth.
+[
+A = pi * 2^2 = 4pi = 12.6 in^2
+]
+b. Cost for 30 tiles:
+[
+30 * 12.6 = 378 in^2 = 378/144 ft^2 = 2.625 ft^2
+]
+[
+Cost = 2.625 * 1.99 = $5.22
+]
+
+PORTHOLES: A circular window with radius 8 inches. Find the area of glass needed.
+[
+A = pi * 8^2 = 64pi = 201.06 in^2
+]
+
+## Example 2 — Find Diameter, Radius, or Area Given One Measure
+
+Find the indicated measure. Round to the nearest tenth.
+
+### Step 1: Use the Appropriate Formula
+
+If given area, solve for radius or diameter using the area formula.
+
+### Step 2: Show All Steps
+
+Work through the algebra to isolate the unknown variable.
+
+Find the diameter of a circle with an area of 94 square millimeters.
+[
+A = pi * r^2
+]
+[
+94 = pi * r^2
+]
+[
+r^2 = 94/pi
+]
+[
+r = sqrt(94/pi) = 5.5 mm
+]
+[
+d = 2r = 11 mm
+]
+
+The area of a circle is 132.7 square centimeters. Find the diameter.
+[
+132.7 = pi * r^2
+]
+[
+r^2 = 132.7/pi
+]
+[
+r = 6.5 cm
+]
+[
+d = 13 cm
+]
+
+The area of a circle is 112 square inches. Find the radius.
+[
+112 = pi * r^2
+]
+[
+r^2 = 112/pi
+]
+[
+r = 6.0 in
+]
+
+Find the diameter of a circle with area 1134.1 square millimeters.
+[
+1134.1 = pi * r^2
+]
+[
+r = sqrt(1134.1/pi) = 19.0 mm
+]
+[
+d = 38.0 mm
+]
+
+The area of a circle is 706.9 square inches. Find the radius.
+[
+r = sqrt(706.9/pi) = 15.0 in
+]
+
+Find the radius of a circle with area 2827.4 square feet.
+[
+r = sqrt(2827.4/pi) = 30.0 ft
+]
+
+## Example 3 — Find the Area of a Sector
+
+Find the area of each shaded sector. Round to the nearest tenth.
+
+### Step 1: Find the Radius
+
+Identify the radius of the circle from the diagram or given information.
+
+### Step 2: Find the Central Angle
+
+Read the measure of the arc or central angle that bounds the sector.
+
+### Step 3: Apply the Sector Area Formula
+
+[
+A = (x/360) * pi * r^2
+]
+
+Find the area of a sector with radius 6 inches and central angle 60 degrees.
+[
+A = (60/360) * pi * 6^2
+]
+[
+A = (1/6) * 36pi
+]
+[
+A = 6pi = 18.8 in^2
+]
+
+Find the area of a sector with radius 4 centimeters and central angle 90 degrees.
+[
+A = (90/360) * pi * 4^2
+]
+[
+A = (1/4) * 16pi
+]
+[
+A = 4pi = 12.6 cm^2
+]
+
+SPINNERS: Jeremy wants to make a spinner divided into 8 congruent pieces. What is the area of each piece?
+[
+Central angle = 360/8 = 45 degrees
+]
+[
+A = (45/360) * pi * r^2
+]
+[
+If r is given or needs to be found from context
+]
+
+## Example 4 — Find the Area of a Circle Containing a Sector
+
+Find the area of the circle that contains each sector. Round to the nearest tenth, if necessary.
+
+### Step 1: Use the Sector Area Formula in Reverse
+
+If a sector has area A and central angle x, the whole circle area can be found:
+[
+A_circle = A_sector * (360/x)
+]
+
+### Step 2: Verify with Radius if Possible
+
+If the sector's radius is known, you can also use [A = pi * r^2] directly.
+
+One sector has an area of 210 square centimeters and arc measure of 30 degrees.
+[
+A_circle = 210 * (360/30)
+]
+[
+A_circle = 210 * 12
+]
+[
+A_circle = 2520 cm^2
+]
+
+One sector has an area of 65 square feet and arc measure of 270 degrees.
+[
+A_circle = 65 * (360/270)
+]
+[
+A_circle = 65 * (4/3)
+]
+[
+A_circle = 86.7 ft^2
+]
+
+One sector has an area of 325 square millimeters and arc measure of 72 degrees.
+[
+A_circle = 325 * (360/72)
+]
+[
+A_circle = 325 * 5
+]
+[
+A_circle = 1625 mm^2
+]
+
+One sector has an area of 167 square inches and arc measure of 110 degrees.
+[
+A_circle = 167 * (360/110)
+]
+[
+A_circle = 167 * 3.27
+]
+[
+A_circle = 546.1 in^2
+]
+
+One sector has an area of 98 square meters and arc measure of 40 degrees.
+[
+A_circle = 98 * (360/40)
+]
+[
+A_circle = 98 * 9
+]
+[
+A_circle = 882 m^2
+]
+
+One sector has an area of 412 square inches and arc measure of 82 degrees.
+[
+A_circle = 412 * (360/82)
+]
+[
+A_circle = 412 * 4.39
+]
+[
+A_circle = 1808.7 in^2
+]
+
+## Mixed Exercises
+
+* LOBBY: A circular table with diameter 15 feet. Find the area. If a floral arrangement with diameter 2 feet is added, how much space remains?
+* STRUCTURE: A stained-glass circle separated into 3 equal sectors with the bottom sector divided equally in two.
+* SOUP CAN: Cover the top and bottom of a cylindrical can with diameter 7.5 centimeters. Find total area.
+* POOL: A circular pool surrounded by a 3-foot-wide sidewalk with diameter 26 feet. Find areas.
+* REASONING: Explain how to find the area of the shaded region.
+* REGULARITY: A sector has area A and central angle x degrees. Explain how to find the area of the whole circle.
+* PIE: One sector of apple pie has area 8 square inches and arc measure 45 degrees. Find the area of the pie.
+* USE ESTIMATION: A lawn sprinkler sprays water in an arc with sector area approximately 235.6 square feet.
+* PRECISION: Luciano wants to use sectors of different circles for a mural. Find areas and star counts.
+* FIND THE ERROR: Ketria and Colton want to find the area of a shaded region. Who is correct?
+* PERSEVERE: Find the area of the shaded region.
+* ANALYZE: Is the area of a sector sometimes, always, or never greater than the area of its corresponding segment?
+* WRITE: Describe two methods to find the area of the shaded region of a circle.
+* PERSEVERE: Derive the formula for the area of a sector using the arc length formula.
+* CREATE: Draw a circle with a shaded sector and find its area.
+
+## Review Notes
+
+* ![](media/) — Image references for diagrams in the original DOCX could not be fully captured. Teachers should consult the original worksheet for figures.
+* Remember: sector area is a fraction of the whole circle's area, determined by the ratio of the central angle to 360 degrees.
+* When finding the radius or diameter from a given area, divide by pi first, then take the square root.

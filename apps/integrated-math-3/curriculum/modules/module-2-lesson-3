@@ -1,289 +1,216 @@
 # Lesson 2-3 — Operations with Polynomials
 
-Source: (Module 2, Lesson 2-3, pp. 93–96)
+Source: (Module 2, Lesson 2-3, Int3_0203_practice.docx)
 
 ## Today's Goals
 
-* Add and subtract polynomials
-* Multiply polynomials
-
----
+* Determine whether an expression is a polynomial.
+* Add, subtract, and multiply polynomials.
+* Find the degree of the resulting polynomial after operations.
+* Apply polynomial operations to solve real-world problems.
 
 ## Vocabulary
 
-* binomial
-* trinomial
-* closed
-* FOIL method
+* **Polynomial** — An expression of the form [a_nx^n + a_{n-1}x^{n-1} + ... + a_0] where [a_n ≠ 0] and [n] is a non-negative integer.
+* **Degree of a Polynomial** — The highest exponent of the variable in the polynomial.
+* **Binomial** — A polynomial with two terms.
+* **Trinomial** — A polynomial with three terms.
+* **Closure** — A set is closed under an operation if performing that operation on any members of the set produces a member of the set.
 
----
+## Explore: Polynomial Operations
 
-## Learn: Adding and Subtracting Polynomials
+Inquiry Question:
+How can you determine the degree of a polynomial that is the result of adding, subtracting, or multiplying two polynomials?
 
-A polynomial is a monomial or the sum of two or more monomials.
+## Learn: Operations with Polynomials
 
-* A binomial is the sum of two monomials
-* A trinomial is the sum of three monomials
-* The degree of a polynomial is the greatest degree of any term
+### Key Concept: Identifying Polynomials
 
-Polynomials can be added or subtracted by performing the indicated operations and combining like terms.
+A polynomial in one variable:
+* Has terms of the form [ax^n] where [a] is a constant and [n] is a non-negative integer
+* Cannot have variables in denominators (no [x^{-1}] or [\frac{1}{x}])
+* Cannot have radicals of variables (no [\sqrt{x}])
 
-* To subtract a polynomial, add its additive inverse
-* The sum or difference of polynomials has the same variables and exponents as the original polynomials, but possibly different coefficients
+### Key Concept: Addition and Subtraction
 
-A set is closed under an operation if performing that operation on any two elements of the set produces another element of the same set.
+To add polynomials: combine like terms.
+To subtract polynomials: add the opposite of each term in the subtrahend.
 
-Because adding or subtracting polynomials results in a polynomial, the set of polynomials is closed under addition and subtraction.
+### Key Concept: Multiplication
 
-### Study Tip
-
-Constant terms have degree `0`, and variable terms with no exponent shown have degree `1`.
-
----
+* **Distributive Property:** [a(b + c) = ab + ac]
+* **FOIL:** [(a + b)(c + d) = ac + ad + bc + bd]
+* **Special Products:**
+  * [(a + b)^2 = a^2 + 2ab + b^2]
+  * [(a - b)^2 = a^2 - 2ab + b^2]
+  * [(a + b)(a - b) = a^2 - b^2]
 
 ## Example 1 — Identify Polynomials
 
-Determine whether each expression is a polynomial. If it is a polynomial, state its degree.
+Determine whether each expression is a polynomial. If it is, state the degree.
+
+**1.** [2x^2 - 3x + 5]
+**2.** [a^3 - 11]
+**3.** [\frac{5np}{n^2} - \frac{2g}{h}]
+**4.** [\sqrt{m - 7}]
+
+### Step 1: Check each expression
+
+**1.** [2x^2 - 3x + 5]
+* This is a polynomial.
+* Degree: 2
+
+**2.** [a^3 - 11]
+* This is a polynomial.
+* Degree: 3
+
+**3.** [\frac{5np}{n^2} - \frac{2g}{h}]
+* This is NOT a polynomial because it contains variables in denominators.
+
+**4.** [\sqrt{m - 7}]
+* This is NOT a polynomial because it contains a square root of a variable.
+
+## Examples 2 and 3 — Add or Subtract
+
+**5.** [(6a^2 + 5a + 10) - (4a^2 + 6a + 12)]
+**6.** [(7b^2 + 6b - 7) - (4b^2 - 2)]
+**7.** [(g + 5) + (2g + 7)]
+**8.** [(5d + 5) - (d + 1)]
+**9.** [(x^2 - 3x - 3) + (2x^2 + 7x - 2)]
+**10.** [(-2f^2 - 3f - 5) + (-2f^2 - 3f + 8)]
+**11.** [(2x - 3) - (5x - 6)]
+**12.** [(x^2 + 2x - 5) - (3x^2 - 4x + 7)]
 
-* `x^6 + cuberoot(x) - 4`
-  * not a polynomial because `cuberoot(x)` is not a monomial
-* `5a^4b + 3a^2b^7 - 9`
-  * polynomial
-  * degree of first term: `4 + 1 = 5`
-  * degree of second term: `2 + 7 = 9`
-  * degree of constant term: `0`
-  * degree of polynomial: `9`
-* `(2/3)x^-5 - 6x^-3 - x`
-  * not a polynomial because `x^-5` and `x^-3` are not monomials
+### Step 1: Simplify each expression
 
-## Think About It
+**5.** [(6a^2 + 5a + 10) - (4a^2 + 6a + 12) = 2a^2 - a - 2]
+**6.** [(7b^2 + 6b - 7) - (4b^2 - 2) = 3b^2 + 6b - 5]
+**7.** [(g + 5) + (2g + 7) = 3g + 12]
+**8.** [(5d + 5) - (d + 1) = 4d + 4]
+**9.** [(x^2 - 3x - 3) + (2x^2 + 7x - 2) = 3x^2 + 4x - 5]
+**10.** [(-2f^2 - 3f - 5) + (-2f^2 - 3f + 8) = -4f^2 - 6f + 3]
+**11.** [(2x - 3) - (5x - 6) = -3x + 3]
+**12.** [(x^2 + 2x - 5) - (3x^2 - 4x + 7) = -2x^2 + 6x - 12]
 
-Identify the like terms in `8x^5 + 3x^2 - 10` and `4x^3 - 7x^2 + 5`.
+## Examples 4, 5, and 6 — Multiply
 
----
+**13.** [3p(np - z)]
+**14.** [4x(2x^2 + y)]
+**15.** [-5(2c^2 - d^2)]
+**16.** [x^2(2x + 9)]
+**17.** [(a - 5)^2]
+**18.** [(2x - 3)(3x - 5)]
+**19.** [(x - y)(x^2 + 2xy + y^2)]
+**20.** [(a + b)(a^3 - 3ab - b^2)]
+**21.** [(x - y)(x + y)(2x + y)]
+**22.** [(a + b)(2a + 3b)(2x - y)]
+**23.** [(r - 2t)(r + 2t)]
+**24.** [(3y + 4)(2y - 3)]
+**25.** [(x^3 - 3x^2 + 1)(2x^2 - x + 2)]
+**26.** [(4x^5 + x^3 - 7x^2 + 2)(3x - 1)]
 
-## Example 2 — Add Polynomials
+### Step 1: Multiply each expression
 
-Find:
+**13.** [3p(np - z) = 3np^2 - 3pz]
+**14.** [4x(2x^2 + y) = 8x^3 + 4xy]
+**15.** [-5(2c^2 - d^2) = -10c^2 + 5d^2]
+**16.** [x^2(2x + 9) = 2x^3 + 9x^2]
+**17.** [(a - 5)^2 = a^2 - 10a + 25]
+**18.** [(2x - 3)(3x - 5) = 6x^2 - 10x - 9x + 15 = 6x^2 - 19x + 15]
+**19.** [(x - y)(x^2 + 2xy + y^2) = x^3 + 2x^2y + xy^2 - x^2y - 2xy^2 - y^3 = x^3 - xy^2 - y^3]
+**20.** [(a + b)(a^3 - 3ab - b^2) = a^4 - 3a^2b - ab^2 + a^3b - 3ab^2 - b^3 = a^4 + a^3b - 6ab^2 - b^3]
+**21.** [(x - y)(x + y)(2x + y) = (x^2 - y^2)(2x + y) = 2x^3 + x^2y - 2xy^2 - y^3]
+**22.** [(a + b)(2a + 3b)(2x - y)]
+**23.** [(r - 2t)(r + 2t) = r^2 - 4t^2]
+**24.** [(3y + 4)(2y - 3) = 6y^2 - 9y + 8y - 12 = 6y^2 - y - 12]
+**25.** [(x^3 - 3x^2 + 1)(2x^2 - x + 2)]
+**26.** [(4x^5 + x^3 - 7x^2 + 2)(3x - 1)]
 
-`(6x^3 + 7x^2 - 2x + 5) + (x^3 - 4x^2 - 8x + 1)`
+## Example 7 — Real-World Applications
 
-### Method 1: Add horizontally
+**27. CONSTRUCTION** A rectangular deck is built around a square pool. The pool has side length [s]. The length of the deck is 5 units longer than twice the side length of the pool. The width of the deck is 3 units longer than the side length of the pool. What is the area of the deck in terms of [s]?
 
-`(6x^3 + x^3) + (7x^2 - 4x^2) + (-2x - 8x) + (5 + 1)`
+**28. VOLUME** A rectangular prism has length [b^2] units, width [a] units, and height [ab + c] units. What is the volume?
 
-`= 7x^3 + 3x^2 - 10x + 6`
+**29. SAIL BOATS** Tamara is making a sail for her sailboat.
 
-### Method 2: Add vertically
+**a.** Refer to the diagram to find the area of the sail.
+**b.** If Tamara wants fabric on each side, write a polynomial for the total amount of fabric needed.
 
-```
-  6x^3 + 7x^2 - 2x + 5
-+   x^3 - 4x^2 - 8x + 1
------------------------
-  7x^3 + 3x^2 - 10x + 6
-```
+## Mixed Exercises
 
----
+Simplify.
 
-## Example 3 — Subtract Polynomials
+**30.** [5xy(2x - y) + 6y^2(x^2 + 6)]
+**31.** [3ab(4a - 5b) + 4b^2(2a^2 + 1)]
+**32.** [\frac{1}{4}g^2(8g + 12h - 16gh^2)]
+**33.** [\frac{1}{3}n^3(6n - 9p + 18np^4)]
+**34.** [(g^3 - h)(g^3 + h)]
+**35.** [(n^2 - 7)(2n^3 + 4)]
+**36.** [(2x - 2y)^3]
+**37.** [(4n - 5)^3]
+**38.** [(3z - 2)^3]
+**39.** [\frac{1}{4}(16x - 12y) + \frac{1}{3}(9x + 3y)]
 
-Find:
+**40. STRUCTURE** Use [f(x) = -6x^3 + 2x^2 + 4] and [g(x) = x^4 - 6x^3 - 2x] to evaluate and simplify:
 
-`(2x^5 + 11x^4 + 7x - 8) - (5x^4 + 9x^3 - 3x + 4)`
+**a.** [f(x) + g(x)]
+**b.** [g(x) - f(x)]
 
-### Method 1: Subtract horizontally
+**41. STRUCTURE** Use [f(x) = 3x^2 - 1], [g(x) = x + 2], and [h(x) = -x^2 - x] to evaluate and simplify:
 
-`2x^5 + 11x^4 + 7x - 8 - 5x^4 - 9x^3 + 3x - 4`
+**a.** [f(x) \cdot g(x)]
+**b.** [h(x) \cdot f(x)]
+**c.** [f(x)]^2
 
-`= 2x^5 + 6x^4 - 9x^3 + 10x - 12`
+**42. USE A MODEL** Inez wants to increase the size of her rectangular garden. The original garden is 8 feet longer than it is wide. For the new garden, she will increase the length by 25% and increase the width by 5 feet.
 
-### Method 2: Subtract vertically
+**a.** Draw and label a diagram. Define a variable and label each dimension.
+**b.** Write and simplify an expression for the increase in area. If the original width was 10 feet, find the increase.
 
-```
-   2x^5 + 11x^4 + 0x^3 + 7x - 8
--  0x^5 +  5x^4 + 9x^3 - 3x + 4
---------------------------------
-   2x^5 +  6x^4 - 9x^3 + 10x - 12
-```
+**43. CONSTRUCT ARGUMENTS** Complete the table to show which sets are closed under the operations.
 
-## Talk About It
+**44. STRUCTURE** The polynomial [2x^2 + 3x + 1] can be represented by tiles that form a rectangle.
 
-Will the terms in a sum always have the same variables and exponents as the original expressions? Explain.
+**a.** Find the length and width of the rectangle.
+**b.** Find the perimeter of the rectangle.
+**c.** Select a value for [x] and substitute. State length, width, perimeter, and area. Discuss restrictions.
 
-## Think About It
+**45. BANKING** Terry invests $1500 in two mutual funds. The first year, one fund grows 3.8% and the other grows 6%. Write a polynomial to represent the value after the first year if he invested [x] dollars in the fund with the lesser growth rate.
 
-Why is it helpful to insert placeholders such as `0x^3` and `0x^5` terms?
+**46. GEOMETRY** Consider a trapezoid with one base 5 feet greater than its height. The other base is 1 foot less than twice its height. Let [x] represent the height.
 
----
+**a.** Write an expression for the area of the trapezoid.
+**b.** Write an expression for the area if the height is increased by 4 feet.
 
-## Explore: Multiplying Polynomials
+**47. URBAN DEVELOPMENT** A sidewalk 12 feet wide with area [384π] square feet surrounds a statue with circular base radius [r].
 
-Use a table to complete the explore.
+**a.** Find the radius of the smaller and larger circles.
+**b.** Draw and label a diagram with two squares representing a sidewalk with the same width and area.
+**c.** If [s] represents the side length of the smaller square, write a polynomial expression for the sidewalk area.
 
-Inquiry Question:
-How is using a table to multiply polynomials related to the Distributive Property?
+**48. ANALYZE** Given [f(x)] and [g(x)] are polynomials, is the product always a polynomial? Justify.
 
----
+**49. PERSEVERE** Use your result from Exercise 48 to make conjectures about the product of a polynomial with [m] terms and a polynomial with [n] terms.
 
-## Learn: Multiplying Polynomials
+**a.** How many times are two terms multiplied?
+**b.** What is the least number of terms in the simplified product?
 
-Polynomials can be multiplied by using the Distributive Property to multiply each term in one polynomial by each term in the other.
+**50. FIND THE ERROR** Isabella found the product of [3x^2 - 4x + 1] and [x^2 + 5x + 6] using vertical alignment. Is her answer correct?
 
-* The product of polynomials is also a polynomial
-* So the set of polynomials is closed under multiplication
+**51. CREATE** Write an expression where two binomials are multiplied and have a product of [9 - 4b^2].
 
-To multiply two binomials, you can use the FOIL method.
+## Review Notes
 
-### Key Concept: FOIL Method
+* Image references in this lesson:
+  * ![](media/image1.png) — Construction deck diagram (Exercise 27)
+  * ![](media/image2.png) — Volume prism diagram (Exercise 28)
+  * ![](media/image3.png) — Closure table (Exercise 43)
+  * ![](media/image4.png) — Tile arrangement (Exercise 44)
+  * ![](media/image5.png) — Urban development diagram (Exercise 47)
+  * ![](media/image6.png) — Vertical multiplication error analysis (Exercise 50)
 
-Find the sum of the products of:
-
-* First terms
-* Outer terms
-* Inner terms
-* Last terms
-
-Example:
-
-`(2x + 4)(x - 3)`
-
-`= (2x)(x) + (2x)(-3) + (4)(x) + (4)(-3)`
-
-`= 2x^2 - 6x + 4x - 12`
-
-`= 2x^2 - 2x - 12`
-
----
-
-## Example 4 — Simplify by Using the Distributive Property
-
-Find:
-
-`2x(4x^3 + 5x^2 - x - 7)`
-
-Distribute `2x` to each term:
-
-`= 2x(4x^3) + 2x(5x^2) + 2x(-x) + 2x(-7)`
-
-`= 8x^4 + 10x^3 - 2x^2 - 14x`
-
-## Think About It
-
-Why are the exponents added when you multiply monomials?
-
----
-
-## Example 5 — Multiply Binomials
-
-Find:
-
-`(3a + 5)(a - 7)(4a + 1)`
-
-### Step 1: Multiply two binomials
-
-`(3a + 5)(a - 7)`
-
-`= 3a(a) + 3a(-7) + 5(a) + 5(-7)`
-
-`= 3a^2 - 21a + 5a - 35`
-
-`= 3a^2 - 16a - 35`
-
-### Step 2: Multiply the result by the remaining binomial
-
-`(3a^2 - 16a - 35)(4a + 1)`
-
-`= 3a^2(4a + 1) + (-16a)(4a + 1) + (-35)(4a + 1)`
-
-`= 12a^3 + 3a^2 - 64a^2 - 16a - 140a - 35`
-
-`= 12a^3 - 61a^2 - 156a - 35`
-
----
-
-## Example 6 — Multiply Polynomial Expressions in Context
-
-Local replacement example: the unavailable source example is replaced here with an original worked example that preserves the lesson numbering and connects polynomial multiplication to a geometric context.
-
-A rectangular sign has length `(3x + 4)` feet and width `(2x - 5)` feet.
-
-Write a polynomial expression for the area of the sign.
-
-Use the area formula:
-
-`A = length * width`
-
-Substitute:
-
-`A = (3x + 4)(2x - 5)`
-
-Multiply each term:
-
-`A = 3x(2x) + 3x(-5) + 4(2x) + 4(-5)`
-
-Simplify:
-
-`A = 6x^2 - 15x + 8x - 20`
-
-`A = 6x^2 - 7x - 20`
-
-So the area is:
-
-`6x^2 - 7x - 20` square feet.
-
----
-
-## Apply Example 7 — Write and Simplify a Polynomial Expression
-
-Byron is baking a three-tier cake. Each tier has `1/2` the volume of the previous tier. The dimensions of the first tier are given.
-
-Find the total volume of the cake.
-
-### 1. What is the task?
-
-Describe the task in your own words and list any questions you have.
-
-Sample answer:
-
-I need to find the total volume of the cake, which is the sum of all 3 tiers. I need to determine how to represent the volume of each tier as a polynomial and which properties will help simplify the result.
-
-### 2. How will you approach the task?
-
-Sample answer:
-
-I will find and simplify the volume of each tier and then add them together. I will use the Distributive Property and the FOIL method.
-
-### 3. What is your solution?
-
-### Volume of each tier
-
-* Tier 1: `8x^3 - 2x^2 - 3x`
-* Tier 2: `4x^3 - x^2 - 1.5x`
-* Tier 3: `2x^3 - 0.5x^2 - 0.75x`
-
-### Total volume
-
-`14x^3 - 3.5x^2 - 5.25x`
-
-### 4. How can you know the solution is reasonable?
-
-Check the volume expression for Tier 1 by factoring:
-
-`8x^3 - 2x^2 - 3x`
-
-`= (8x^2 - 2x - 3)x`
-
-`= (4x - 3)(2x + 1)x`
-
-So the factored form matches the given dimensions.
-
-## Think About It
-
-What does `x` represent in the polynomial expression for the volume of the cake?
-
----
-
-## Objective Alignment
-
-- `Add and subtract polynomials`: Primary worked examples: Examples 2-3.
-- `Multiply polynomials`: Primary worked examples: Examples 4-6 and Apply Example 7.
+* When adding or subtracting polynomials, only combine like terms (same variable part and same exponent).
+* When multiplying polynomials, every term in the first factor must be multiplied by every term in the second factor.
+* The degree of a sum or difference cannot be determined without evaluating; it depends on the leading terms.
+* The degree of a product is the sum of the degrees of the factors.

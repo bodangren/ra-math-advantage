@@ -1,0 +1,128 @@
+# Lesson 13-6 — Symmetry
+
+Source: (Module 13, Lesson 13-6, Int1_1306_practice.docx)
+
+## Today's Goals
+
+* Identify and draw lines of symmetry for two-dimensional figures.
+* Determine whether a figure has rotational symmetry and justify the answer.
+* Locate the center of symmetry and state the order and magnitude of rotational symmetry for a given figure.
+* Apply understanding of symmetry to real-world objects and geometric figures.
+
+## Vocabulary
+
+* **Line of Symmetry** — A line that divides a figure into two congruent halves that are mirror images of each other.
+* **Rotational Symmetry** — A property of a figure that can be rotated less than 360° about a central point and map onto itself.
+* **Center of Symmetry** — The fixed point about which a figure with rotational symmetry is rotated.
+* **Order of Symmetry** — The number of times a figure maps onto itself during one complete 360° rotation.
+* **Magnitude of Symmetry** — The smallest angle through which a figure can be rotated to map onto itself, calculated as [360^{\circ} \div \text{order}].
+
+## Explore: When Does a Figure Look the Same After Turning or Flipping?
+
+Students examine everyday objects and geometric shapes to notice when a figure can be folded so that the two halves match, or when a figure looks unchanged after being rotated partway around a point.
+
+Inquiry Question:
+Can a figure have both line symmetry and rotational symmetry? Can it have one but not the other?
+
+## Learn: Line Symmetry and Rotational Symmetry
+
+Symmetry describes the ways a figure can be transformed and still look the same. Line symmetry involves reflection across a line; rotational symmetry involves rotation around a point.
+
+### Key Concept: Line Symmetry
+
+* A figure has line symmetry if there exists at least one line that divides the figure into two matching halves.
+* Some figures have no lines of symmetry, some have exactly one, and others have multiple lines of symmetry.
+* Regular polygons have the same number of lines of symmetry as they have sides.
+
+### Key Concept: Rotational Symmetry
+
+* A figure has rotational symmetry if it maps onto itself after a rotation of less than 360° around its center.
+* The order of symmetry is the count of distinct positions in which the figure looks identical during a full rotation.
+* The magnitude of symmetry is found by dividing 360° by the order.
+* A figure with 180° rotational symmetry has order 2 and is also called point symmetric.
+
+## Example 1 — Identify and Draw Lines of Symmetry
+
+Determine whether each figure has a line of symmetry. For figures that do, draw the line(s) of symmetry and state the total count.
+
+### Step 1: Test for a Vertical Line of Symmetry
+
+Imagine folding the figure vertically. If the left half matches the right half exactly, the figure has a vertical line of symmetry.
+
+### Step 2: Test for a Horizontal Line of Symmetry
+
+Imagine folding the figure horizontally. If the top half matches the bottom half exactly, the figure has a horizontal line of symmetry.
+
+### Step 3: Test for Diagonal Lines of Symmetry
+
+For some figures, especially squares and regular polygons, check whether a diagonal fold produces matching halves.
+
+### Step 4: Count All Lines of Symmetry
+
+Record the total number of distinct lines of symmetry found for each figure.
+
+## Example 2 — Determine Rotational Symmetry in Real-World Objects
+
+Analyze real-world objects and symbols to decide whether each has rotational symmetry, then explain the reasoning.
+
+### Step 1: Identify the Center Point
+
+Locate the approximate center of the object or symbol.
+
+### Step 2: Mentally Rotate the Figure
+
+Imagine turning the figure around its center by various angles less than 360°.
+
+### Step 3: Check for Self-Coincidence
+
+Determine whether the rotated figure looks identical to the original. If it matches at any angle other than 360°, the figure has rotational symmetry.
+
+### Step 4: Explain the Conclusion
+
+State clearly whether the object has rotational symmetry and describe the evidence that supports the answer.
+
+## Example 3 — Order and Magnitude of Rotational Symmetry
+
+Determine whether each figure has rotational symmetry. If so, locate the center of symmetry and state the order and magnitude.
+
+### Step 1: Locate the Center of Symmetry
+
+Find the point around which the figure appears balanced. For regular shapes, this is often the geometric center.
+
+### Step 2: Determine the Order
+
+Count how many times the figure maps onto itself during one complete 360° rotation.
+
+### Step 3: Calculate the Magnitude
+
+Use the formula:
+[
+\text{magnitude} = 360^{\circ} \div \text{order}
+]
+
+### Step 4: State the Results
+
+Record the center location, the order, and the magnitude for each figure that has rotational symmetry.
+
+## Mixed Exercises
+
+The mixed exercises section provides comprehensive practice with all symmetry skills from the lesson. Problems include:
+
+* Drawing all lines of symmetry for a given figure and locating its center of symmetry.
+* Determining the order and magnitude of rotational symmetry for a given figure.
+* Examining capital letters of the alphabet to identify which have 180° rotational symmetry about their center.
+* Finding the regular polygon that corresponds to a given order and magnitude of symmetry.
+* Analyzing the symmetry of a circle, including its infinite lines of symmetry and its order of rotation.
+* Determining whether named polygons (equilateral triangle, scalene triangle, regular hexagon) have rotational symmetry and describing their order and magnitude when applicable.
+* Constructing a three-dimensional object whose base has line symmetry.
+* Creating and describing an object that has at least one line of symmetry.
+* Analyzing a gallery floor plan to describe every reflection or rotation that maps the plan onto itself.
+* Finding the number of sides of a regular polygon given its magnitude of symmetry.
+* Evaluating student arguments about whether a figure has line symmetry, rotational symmetry, both, or neither.
+* Finding possible vertices for a quadrilateral with exactly two given lines of symmetry and graphing the figure.
+* Drawing a figure that has line symmetry but not rotational symmetry and explaining why.
+* Writing about the relationship between line symmetry and rotational symmetry.
+
+## Review Notes
+
+* Images referenced in the worksheet (six figures for line symmetry in Example 1, hubcap designs in Example 2, the Union Jack flag, the recycling symbol, a seashell, and four geometric figures in Example 3, plus a figure for exercises 15–17 and a gallery floor plan) could not be fully described without visual reference. Teachers should consult the original worksheet for exact diagrams and figures.

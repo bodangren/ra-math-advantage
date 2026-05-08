@@ -1,116 +1,199 @@
 # Lesson 3-3 — Proving Polynomial Identities
 
-Source: (Module 3, Lesson 3-3, pp. 131–132)
+Source: (Module 3, Lesson 3-3, Int3_0303_practice.docx)
 
-## Today's Goal
+## Today's Goals
 
-* Prove polynomial identities and use them to describe numerical relationships
-
----
+* Prove polynomial identities by showing that both sides of an equation are equivalent.
+* Use polynomial identities to solve problems involving geometric areas and algebraic expressions.
+* Determine whether a given equation is an identity.
 
 ## Vocabulary
 
-* identity
-* polynomial identity
+* **Polynomial Identity** — An equation that is true for all values of the variable(s) for which both sides are defined.
+* **Proof** — A logical argument that demonstrates why a statement is true.
+* **Area Model** — A visual representation that uses geometric shapes to illustrate multiplication and factorization of algebraic expressions.
 
----
+## Explore: The Nature of Identities
 
-## Explore: Polynomial Identities
+An identity differs from a regular equation because it holds true for every possible value of the variable. Proving an identity requires showing that the left side can be transformed into the right side (or vice versa) through valid algebraic operations.
 
-Use graphing technology to complete the explore.
-
-**Inquiry Question:**
-How can you prove that two polynomial expressions form a polynomial identity?
-
----
+Inquiry Question:
+Why is it not sufficient to test a few values to prove that an equation is an identity?
 
 ## Learn: Proving Polynomial Identities
 
-An **identity** is an equation that is satisfied by any numbers that replace the variables.
+### Key Concept: Methods of Proof
 
-A **polynomial identity** is a polynomial equation that is true for any values substituted for the variables.
+**Algebraic Proof:** Start with one side of the identity and use algebraic operations (expanding, factoring, simplifying) to transform it into the other side.
 
-Unlike solving an equation, do not begin by assuming that an identity is true and then perform the same operation to both sides. Instead, verify it algebraically.
+**Substitution Proof:** Replace variables with specific values to show that both sides produce the same result for those values. This alone does not prove an identity but can provide evidence.
 
-### Key Concept: Verifying Identities by Transforming One Side
+**Area Model Proof:** Use geometric representations to show that two expressions represent the same area.
 
-* Simplify one side of the equation until the two sides are the same
-* It is often easier to transform the more complicated side
-* Factor or multiply expressions as needed
-* Combine like terms
+### Key Concept: Common Identities to Know
 
-## Talk About It
+**Binomial Square:**
+* [(x + y)^2 = x^2 + 2xy + y^2]
+* [(x - y)^2 = x^2 - 2xy + y^2]
 
-If you multiplied each side of the equation by a variable `z`, would the result still be a polynomial identity? Explain.
+**Difference of Squares:** [x^2 - y^2 = (x + y)(x - y)]
 
----
+**Sum and Difference of Cubes:**
+* [x^3 + y^3 = (x + y)(x^2 - xy + y^2)]
+* [x^3 - y^3 = (x - y)(x^2 + xy + y^2)]
 
-## Example 1 — Transform One Side
+**Sum of Squares (special pattern):** [x^4 + 4y^4 = (x^2 + 2xy + 2y^2)(x^2 - 2xy + 2y^2)]
 
-Prove that:
+## Example 1 — Prove Polynomial Identities
 
-`x^3 - y^3 = (x - y)(x^2 + xy + y^2)`
+Prove each polynomial identity.
 
-Start with the right side:
+### Step 1: Expand One Side
 
-`(x - y)(x^2 + xy + y^2)`
+**Identity 1:** [(x - y)^2 = x^2 - 2xy + y^2]
 
-Distribute:
+Starting with the left side:
+[(x - y)^2 = (x - y)(x - y)]
 
-`= x(x^2) + x(xy) + x(y^2) - y(x^2) - y(xy) - y(y^2)`
+Expand: [= x \cdot x + x \cdot (-y) + (-y) \cdot x + (-y) \cdot (-y)]
 
-Simplify:
+Simplify: [= x^2 - xy - xy + y^2 = x^2 - 2xy + y^2]
 
-`= x^3 + x^2y + xy^2 - x^2y - xy^2 - y^3`
+This matches the right side. Identity proven.
 
-Combine like terms:
+**Identity 2:** [(x + 5)^2 = x^2 + 10x + 25]
 
-`= x^3 - y^3`
+Left side: [(x + 5)^2 = (x + 5)(x + 5)]
 
-So the right side simplifies to the left side, which proves the identity.
+Expand: [= x^2 + 5x + 5x + 25 = x^2 + 10x + 25]
 
----
+**Identity 3:** [4(x - 7)^2 = 4x^2 - 56x + 196]
 
-## Example 2 — Use Polynomial Identities
+Left side: [4(x - 7)^2 = 4(x - 7)(x - 7)]
 
-Pedro claims that for positive integers `x` and `y`, where `x > y`, you can form the sides of a right triangle using:
+First expand: [(x - 7)(x - 7) = x^2 - 14x + 49]
 
-* one leg: `x^2 - y^2`
-* other leg: `2xy`
-* hypotenuse: `x^2 + y^2`
+Then multiply by 4: [= 4x^2 - 56x + 196]
 
-To check this, test the Pythagorean relationship:
+**Identity 4:** [(2x^2 + y^2)^2 = (2x^2 - y^2)^2 + (2xy)^2]
 
-`(x^2 - y^2)^2 + (2xy)^2 = (x^2 + y^2)^2`
+This is more complex. Expand both sides and verify they are equal.
 
-Expand:
+Left side: [(2x^2 + y^2)^2 = 4x^4 + 4x^2y^2 + y^4]
 
-`(x^2 - y^2)^2 + (2xy)^2`
+Right side: [(2x^2 - y^2)^2 + (2xy)^2 = (4x^4 - 4x^2y^2 + y^4) + 4x^2y^2 = 4x^4 + y^4]
 
-`= x^4 - 2x^2y^2 + y^4 + 4x^2y^2`
+Wait — these are not equal. Let me verify: The right side should be [(2x^2 - y^2)^2 + (2xy)^2].
 
-`= x^4 + 2x^2y^2 + y^4`
+Actually: [(2x^2 - y^2)^2 = 4x^4 - 4x^2y^2 + y^4]
 
-Right side:
+And [(2xy)^2 = 4x^2y^2]
 
-`(x^2 + y^2)^2 = x^4 + 2x^2y^2 + y^4`
+Sum: [4x^4 - 4x^2y^2 + y^4 + 4x^2y^2 = 4x^4 + y^4]
 
-Both sides are equal, so the identity is true.
+Left side: [(2x^2 + y^2)^2 = 4x^4 + 4x^2y^2 + y^4]
 
-Therefore, Pedro is correct.
+These are only equal if [4x^2y^2 = 0], which is not always true. This appears to be a misstatement of a known identity. The correct identity (difference of squares pattern) would be: [(2x^2 + y^2)^2 - (2x^2 - y^2)^2 = 8x^2y^2 = (2xy)^2 \cdot 2], which is related to the Lagrange identity.
 
-### Check
+### Step 2: Factor-Based Proofs
 
-Complete the proof that:
+**Identity 5:** [a^2 - b^2 = (a + b)(a - b)]
 
-`x^4 - y^4 = (x - y)(x + y)(x^2 + y^2)`
+This factors directly using the difference of squares pattern.
 
-### Use a Source
+**Identity 6:** [x^3 + y^3 = (x + y)(x^2 - xy + y^2)]
 
-Research an application of prime numbers. How could a polynomial identity for identifying prime numbers impact the application?
+Multiply the right side to verify:
+[(x + y)(x^2 - xy + y^2) = x^3 - x^2y + xy^2 + x^2y - xy^2 + y^3 = x^3 + y^3]
 
----
+**Identity 7:** [p^4 - q^4 = (p - q)(p + q)(p^2 + q^2)]
 
-## Objective Alignment
+Factor stepwise: [p^4 - q^4 = (p^2 - q^2)(p^2 + q^2) = (p - q)(p + q)(p^2 + q^2)]
 
-- `Prove polynomial identities and use them to describe numerical relationships`: Primary worked examples: Examples 1-2.
+**Identity 8:** [a^5 - b^5 = (a - b)(a^4 + a^3b + a^2b^2 + ab^3 + b^4)]
+
+This is a difference of fifth powers, which factors as [(a - b)] times the sum of the geometric series.
+
+## Example 2 — Apply Polynomial Identities to Geometric Problems
+
+### Step 1: Verify Area Calculations Using Identities
+
+**SQUARES (Problem 9):** Aponi claims that you can find the area of a square using the following method: take two positive integers [x] and [y]. The side length of the square is defined by the expression [3x + y]. The area of the square is defined by the expression [9x^2 + 6xy + y^2]. Is Aponi correct?
+
+The area of a square with side [3x + y] should be [(3x + y)^2].
+
+Using the binomial square identity: [(3x + y)^2 = (3x)^2 + 2(3x)(y) + y^2 = 9x^2 + 6xy + y^2]
+
+Aponi is correct.
+
+![](media/image2.png)
+
+**USE A MODEL (Problem 10):** Julio claims that you can find the area of a rectangle using the following method: take two positive integers [x] and [y], where [x > y]. The side lengths of the rectangle are defined by the expression [2x + y] and [2x - y]. The area of the rectangle is defined by the expression [4x^2 - y^2]. Is Julio correct?
+
+The area of a rectangle with sides [2x + y] and [2x - y] is [(2x + y)(2x - y)].
+
+Using the difference of squares identity: [(2x + y)(2x - y) = (2x)^2 - y^2 = 4x^2 - y^2]
+
+Julio is correct.
+
+![](media/image3.png)
+
+## Mixed Exercises
+
+**Determine whether each equation is an identity.**
+
+**11.** [(x + 3)^2(x^3 + 3x^2 + 3x + 1) = (x^2 + 6x + 9)(x + 1)^3]
+
+**12.** [(x + 2)(x + 1)^2 = (x^2 + 3x + 2)(x + 1)]
+
+**13.** [(x + 3)(x - 1)^2 = (x^2 - 2x - 3)(x - 1)]
+
+**14.** [(x + 2)^2(x^3 - 3x^2 + 3x - 1) = (x^2 + 4x + 4)(x - 1)^3]
+
+**15.** [(a + b)^2 = a^2 - 2ab + b^2]
+
+**16. USE TOOLS:** Consider the following equation.
+
+[(x - 2)^2(x^3 + 9x^2 + 27x + 27) = (x^2 - 4x + 4)(x + 3)^3]
+
+**a.** Evaluate the expressions for each value to complete the table.
+
+![](media/image4.png)
+
+**b.** What conclusion can you make about the equation, based on the results in your table? Explain.
+
+**c.** How can you prove your conclusion from part b?
+
+**USE TOOLS Use a computer algebra system (CAS) to prove each identity.**
+
+**17.** [g^6 + h^6 = (g^2 + h^2)(g^4 - g^2h^2 + h^4)]
+
+**18.** [a^5 + b^5 = (a + b)(a^4 - a^3b + a^2b^2 - ab^3 + b^4)]
+
+**19.** [u^6 - w^6 = (u + w)(u - w)(u^2 + uw + w^2)(u^2 - uw + w^2)]
+
+**20.** [(x + 1)^2(x - 4)^3 = (x^2 - 3x - 4)(x^3 - 7x^2 + 8x + 16)]
+
+**21. WRITE:** Explain the meaning of polynomial identity and summarize the method for proving an equation is a polynomial identity.
+
+**22. CREATE:** Write and solve a system of equations using the identity, [(x^2 - y^2)^2 + (2xy)^2 = (x^2 + y^2)^2] to find the values of [x] and [y] that make a 3, 4, 5 Pythagorean triple.
+
+**23. ANALYZE:** Refer to Example 2. Notice that Pedro says [x] and [y] must be positive integers and [x] must be greater than [y]. Explain why these restrictions are necessary.
+
+**24. PERSEVERE:** Rebecca has a square garden with side length [a] that she wants to transform into a rectangle. Rebecca speculates that if she subtracts the same length [b] from one dimension of the garden and adds it to the other dimension the new rectangle's area will be smaller than the original garden in the amount of [b^2]. Draw a diagram and show algebraically that Rebecca is correct.
+
+**25. FIND THE ERROR:** George is proving the identity [a^3 + b^3 = (a + b)(a^2 - ab + b^2)] by simplifying the right side. His work is shown. Is George correct? If not, identify and correct his error.
+
+![](media/image5.png)
+
+## Review Notes
+
+* Images referenced in the worksheet:
+  * ![](media/image1.wmf) — diagram referenced in identity 4
+  * ![](media/image2.png) — Aponi square diagram
+  * ![](media/image3.png) — Julio rectangle diagram
+  * ![](media/image4.png) — table of values for problem 16
+  * ![](media/image5.png) — George's work on error analysis
+* Teachers should consult the original worksheet for exact diagrams and values.
+* The worksheet contains 25 practice problems involving identity proofs and applications.

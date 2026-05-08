@@ -1,0 +1,198 @@
+# Lesson 8-5 — Geometric Sequences
+
+Source: (Module 8, Lesson 8-5, Int1_0805_practice.docx)
+
+## Today's Goals
+
+* Determine whether a given sequence is geometric by checking for a constant common ratio.
+* Find missing terms and specific terms of a geometric sequence using the common ratio and explicit formula.
+* Write and use explicit formulas to model real-world situations involving exponential growth and decay.
+* Compare geometric sequences to arithmetic sequences and analyze their graphs and properties.
+
+## Vocabulary
+
+* **Geometric sequence** — A sequence in which the ratio of any term to the previous term is constant.
+* **Common ratio** — The constant factor [ r ] by which each term in a geometric sequence is multiplied to obtain the next term, where [ r = \frac{a_n}{a_{n-1}} ].
+* **Explicit formula** — A formula for the [ n ]th term of a sequence that depends only on [ n ], written as [ a_n = a_1 \cdot r^{n-1} ] for geometric sequences.
+* **Exponential equation** — An equation of the form [ f(x) = a \cdot b^x ] that can represent a geometric sequence when [ x ] is a positive integer.
+
+## Learn: Identifying Geometric Sequences
+
+A sequence is geometric if the ratio between consecutive terms is constant. This is different from an arithmetic sequence, where the difference between consecutive terms is constant.
+
+### Key Concept: Common Ratio Test
+
+* Divide each term by the term that precedes it.
+* If all ratios are equal, the sequence is geometric and the constant value is the common ratio [ r ].
+* If the ratios are not equal, the sequence is not geometric (it may be arithmetic, or neither).
+
+For example, given the sequence [ 4, 20, 100, \dots ]:
+[
+\frac{20}{4} = 5, \quad \frac{100}{20} = 5
+]
+
+The common ratio is [ r = 5 ], so the sequence is geometric.
+
+## Learn: Explicit Formula for a Geometric Sequence
+
+Once the first term [ a_1 ] and common ratio [ r ] are known, any term can be found directly without listing all intermediate terms.
+
+### Key Concept: Explicit Formula
+
+[
+a_n = a_1 \cdot r^{n-1}
+]
+
+* [ a_n ] is the [ n ]th term.
+* [ a_1 ] is the first term.
+* [ r ] is the common ratio.
+* [ n ] is the term number.
+
+## Example 1 — Determine Whether a Sequence Is Geometric
+
+Given a list of terms, determine whether the sequence is geometric. Explain your reasoning by computing the ratio between consecutive terms.
+
+### Step 1: Compute Consecutive Ratios
+
+For each pair of adjacent terms, divide the later term by the earlier term.
+
+For example, for [ 212, 106, 53, \dots ]:
+[
+\frac{106}{212} = \frac{1}{2}, \quad \frac{53}{106} = \frac{1}{2}
+]
+
+The common ratio is [ r = \frac{1}{2} ], so the sequence is geometric.
+
+For [ 10, 20, 30, 40, \dots ]:
+[
+\frac{20}{10} = 2, \quad \frac{30}{20} = \frac{3}{2}
+]
+
+The ratios are not equal, so the sequence is not geometric.
+
+### Step 2: State the Conclusion
+
+Classify the sequence as geometric (and state [ r ]), arithmetic (and state the common difference), or neither. Sequences involving fractions and negative numbers should be checked with the same ratio test.
+
+For example, for [ \frac{7}{3}, 14, 84, 504, \dots ]:
+[
+\frac{14}{\frac{7}{3}} = 6, \quad \frac{84}{14} = 6
+]
+
+The common ratio is [ r = 6 ].
+
+## Example 2 — Explain Your Reasoning for Non-Geometric Sequences
+
+Some sequences may have an inconsistent ratio or may follow a different pattern altogether. Students must verify the ratio across all consecutive pairs and explain why the sequence fails the geometric test.
+
+For example, for [ 3, 9, 81, 6561, \dots ]:
+[
+\frac{9}{3} = 3, \quad \frac{81}{9} = 9
+]
+
+Since [ 3 \ne 9 ], the sequence is not geometric.
+
+## Example 3 — Find the Next Three Terms
+
+Given a geometric sequence, identify the common ratio and extend the pattern to find the next three terms.
+
+### Step 1: Identify the Common Ratio
+
+Divide any term by its preceding term. For [ 36, 12, 4, \dots ]:
+[
+r = \frac{12}{36} = \frac{1}{3}
+]
+
+### Step 2: Multiply to Find Subsequent Terms
+
+Multiply the last given term by [ r ] repeatedly to generate the next three terms:
+[
+4 \cdot \frac{1}{3} = \frac{4}{3}, \quad \frac{4}{3} \cdot \frac{1}{3} = \frac{4}{9}, \quad \frac{4}{9} \cdot \frac{1}{3} = \frac{4}{27}
+]
+
+Sequences may have negative or fractional common ratios, such as [ -4, 24, -144, \dots ] where [ r = -6 ], or [ 1024, -128, 16, \dots ] where [ r = -\frac{1}{8} ].
+
+## Example 4 — Find the 10th Term Using the Explicit Formula
+
+Use the explicit formula [ a_n = a_1 \cdot r^{n-1} ] to find a specific term without listing all terms.
+
+### Step 1: Identify [ a_1 ] and [ r ] 
+
+For the sequence [ 1, 9, 81, 729, \dots ]:
+[
+a_1 = 1, \quad r = \frac{9}{1} = 9
+]
+
+### Step 2: Substitute into the Explicit Formula
+
+To find the 10th term, substitute [ n = 10 ]:
+[
+a_{10} = 1 \cdot 9^{10-1} = 9^9
+]
+
+For the sequence [ 6, -24, 96, -384, \dots ]:
+[
+a_1 = 6, \quad r = \frac{-24}{6} = -4
+]
+
+[
+a_{10} = 6 \cdot (-4)^{10-1} = 6 \cdot (-4)^9
+]
+
+## Example 5 — Apply Geometric Sequences to Real-World Situations
+
+Write and use an explicit formula to model exponential growth or decay in context.
+
+### Museums
+
+A table shows projected annual museum visitors (in millions) over several years. Identify the pattern as geometric, determine the common ratio, and write an equation for the projected number of visitors after [ n ] years.
+
+### World Population Growth
+
+The world population grows at a fixed annual percentage rate. Given an initial population and a growth rate:
+
+* Write an equation for the population after [ n ] years in the form:
+[
+P(n) = P_0 \cdot (1 + r)^n
+]
+* Evaluate the equation for a specific future year by determining the correct value of [ n ].
+
+### Depreciation
+
+An asset loses a fixed fraction of its value each year. Given an initial value and an annual decay factor, calculate the remaining value after a specified number of years using the explicit formula.
+
+For example, a computer system purchased for $5000 loses one-fifth of its value each year. The decay factor is [ \frac{4}{5} ], so the value after 6 years is:
+[
+V(6) = 5000 \cdot \left(\frac{4}{5}\right)^6
+]
+
+## Mixed Exercises
+
+The mixed exercises provide comprehensive practice with geometric sequences across a range of skills and contexts. Students identify whether sequences are geometric or arithmetic, find missing terms and specific terms using the explicit formula, and apply geometric sequences to real-world scenarios including savings accounts with monthly interest, population projections, salary growth, and depreciation.
+
+Additional problem types include:
+
+* Writing an explicit formula for a given geometric sequence and then finding a specific term, such as the 5th, 7th, 8th, or 9th term. Sequences include positive, negative, and fractional values, such as [ 1000, 200, 40, \dots ] with [ r = \frac{1}{5} ], and [ -8, -2, -\frac{1}{2}, \dots ] with [ r = \frac{1}{4} ].
+* Filling in missing terms of a geometric sequence, writing the corresponding exponential equation, and using it to determine the 10th term.
+* Finding previous terms by working backwards: divide by the common ratio instead of multiplying.
+* Comparing two geometric sequences that start with the same initial value but have reciprocal common ratios (for example, [ r ] and [ \frac{1}{r} ]), then analyzing and graphing their behavior including intercepts, asymptotes, and end behavior.
+* Comparing two payment plans—one linear and one geometric—described in a table, writing equations for each, and choosing the better plan for a two-year commitment.
+* Comparing two sequences given in different forms (one by explicit formula, one by two known terms) to determine which has the greater common ratio and identifying the initial term of each.
+* Investigating whether the relationship between the number of sides of a polygon and the sum of its interior angles forms a geometric sequence, using known angle sums to justify the answer.
+* Finding a sequence that is both geometric and arithmetic, and explaining why this is possible.
+* Error analysis: evaluating two students' work for finding a term of a geometric sequence and determining who is correct.
+* Writing a sequence that is neither arithmetic nor geometric and justifying the reasoning.
+* Open-ended writing prompts about how graphs of geometric sequences and exponential functions are similar and different, and summarizing how to find a specific term of a geometric sequence.
+* Creating a counterexample to the statement that as [ n ] increases in a geometric sequence, the value of [ a_n ] always moves farther away from zero.
+* Writing an original geometric sequence and explaining why it satisfies the definition.
+
+## Review Notes
+
+* Problem 29 contains a table of annual museum visitors presented as an image. The specific values should be verified from the original worksheet.
+* Problem 32 contains a table of projected U.S. population through 2060 presented as an image. The specific values should be verified from the original worksheet.
+* Problem 40 is a multi-part structure problem asking students to fill in missing terms, write an exponential equation, and find the 10th term for two different geometric sequences.
+* Problem 42 asks students to graph two geometric sequences with reciprocal common ratios. No graphing grid is provided in the source text; a standard coordinate plane should be used.
+* Problem 43 contains a table comparing two payment methods presented as an image. The specific payment values and structure should be verified from the original worksheet.
+* Problem 44 defines one sequence with the formula [ a_n = 512(0.5)^x ] and gives two terms of a second sequence, [ b_3 = 7168 ] and [ b_7 = 28 ]. Students must find the common ratio and initial term of the second sequence.
+* Problem 47 contains an image showing the work of two students (Haro and Matthew) finding the ninth term of the geometric sequence [ -5, 10, -20, \dots ]. The specific work shown should be verified from the original worksheet.
+* An additional image (image4.png) appears near problem 46 in the original document; its intended placement or association should be verified by a human reviewer.

@@ -1,0 +1,123 @@
+# Lesson 1-6 — The Triangle Inequality
+
+Source: (Module 1, Lesson 1-6, Int2_0106_practice.docx)
+
+## Today's Goals
+
+* Determine whether three given lengths can form a triangle.
+* Find the range of possible measures for the third side of a triangle given two sides.
+* Apply the Triangle Inequality Theorem in proofs and real-world contexts.
+
+## Vocabulary
+
+* **Triangle Inequality Theorem** — The sum of the lengths of any two sides of a triangle must be greater than the length of the third side.
+* **Range of the Third Side** — For two sides a and b, the third side c must satisfy |a - b| < c < a + b.
+
+## Explore: When Can Three Lengths Make a Triangle?
+
+Not every three lengths can be the sides of a triangle. There is a specific rule that determines whether three lengths can form a triangle. Students explore what happens when this rule is violated.
+
+Inquiry Question:
+If you know two sides of a triangle, what are the possible lengths of the third side?
+
+## Learn: Triangle Inequality Theorem
+
+### Key Concept: Testing Three Lengths
+
+To determine if three lengths a, b, and c can form a triangle, check that all three of these are true:
+* a + b > c
+* b + c > a
+* a + c > b
+
+If any one of these fails, the three lengths cannot form a triangle.
+
+### Key Concept: Finding the Range of the Third Side
+
+Given two sides a and b, the third side c must satisfy:
+* c > |a - b| (difference condition)
+* c < a + b (sum condition)
+
+This means c is greater than the absolute difference of a and b, and less than their sum.
+
+## Example 1 — Can These Lengths Form a Triangle?
+
+Given multiple sets of three lengths, determine which can form a triangle and explain why not for those that cannot.
+
+### Step 1: Check the Sum Condition
+
+For each set, check if the sum of the two smallest lengths is greater than the largest length.
+
+### Step 2: Apply to All Sets
+
+Some sets will fail (like 8, 9, 17 where 8 + 9 = 17 exactly), meaning they form a degenerate line segment rather than a triangle.
+
+### Step 3: Explain Why Not
+
+For sets that cannot form a triangle, explain that the sum of two sides must be strictly greater than the third side.
+
+## Example 2 — Find the Range for the Third Side
+
+Given two side lengths, find the range of possible values for the third side.
+
+### Step 1: Apply the Difference Condition
+
+The third side must be greater than the difference of the two given sides.
+
+### Step 2: Apply the Sum Condition
+
+The third side must be less than the sum of the two given sides.
+
+### Step 3: Express the Range
+
+Write the range as an inequality, for example: if sides are 6 ft and 19 ft, then x > 13 and x < 25, so 13 < x < 25.
+
+## Example 3 — Real-World Triangle Inequality
+
+Apply the Triangle Inequality Theorem to real situations like distances between cities or fencing a plot of land.
+
+### Step 1: Identify the Two Known Sides
+
+Extract the two given lengths from the problem context.
+
+### Step 2: Calculate the Range
+
+Apply the formula for the range of the third side.
+
+### Step 3: Interpret in Context
+
+For a city distance problem, the third side must be greater than some minimum (the difference) and less than some maximum (the sum). For fencing, calculate both minimum and maximum fencing needed.
+
+## Example 4 — Proofs Using the Triangle Inequality
+
+Write two-column proofs that apply the Triangle Inequality Theorem.
+
+### Step 1: Identify the Given Information
+
+Note what is provided (parallel lines, midpoints, congruent triangles).
+
+### Step 2: Plan the Proof Steps
+
+Use the Triangle Inequality Theorem to establish that a sum of two lengths is greater than a third length.
+
+### Step 3: Write the Proof
+
+Organize into a two-column format with statements and reasons.
+
+## Mixed Exercises
+
+Practice involves:
+
+* Finding the range of possible measures for x given that x, 4, and 6 are triangle side lengths.
+* Finding the range for x given expressions like x - 2, 10, 12 as side lengths.
+* Determining whether given coordinates are the vertices of a triangle.
+* Analyzing how many different triangular borders can be made from four given wood lengths (8, 10, 12, 18 inches).
+* Writing a two-column proof of Theorem 6.11 (Triangle Inequality Theorem) with a hint to draw an auxiliary segment.
+* Finding the probability that an isosceles triangle with whole number sides and perimeter 30 is equilateral.
+* Drawing a triangle in which a 2-inch side is the shortest side and one in which the 2-inch side is the longest side.
+* Explaining what you can determine about a triangle when given three side lengths.
+* Analyzing the range of lengths for each leg of an isosceles triangle if the base is 6 inches.
+
+## Review Notes
+
+* Diagram referenced: image showing triangle with parallel lines for proof example (media/image3.png) contains a geometric figure that could not be fully described.
+* The worksheet contains 26 practice problems covering triangle inequality determination, range finding, proofs, and applications.

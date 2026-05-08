@@ -1,0 +1,161 @@
+# Lesson 10-3 — Negative Exponents
+
+Source: (Module 10, Lesson 10-3, Int2_1003_practice.docx)
+
+## Today's Goals
+
+* Apply the definition of negative exponents to rewrite expressions with positive exponents.
+* Simplify expressions using the properties of exponents with negative exponents.
+* Evaluate real-world problems involving orders of magnitude comparisons.
+* Understand why any nonzero base raised to the zero power equals 1.
+
+## Vocabulary
+
+* **Negative Exponent** — An exponent that is less than zero, indicating the reciprocal of the base raised to the opposite positive exponent: [a^{-n} = \frac{1}{a^n}], where [a \neq 0].
+* **Orders of Magnitude** — The ratio between two quantities expressed as a power of 10; used to compare sizes of very different objects.
+* **Zero Exponent Property** — Any nonzero base raised to the zero power equals 1: [a^0 = 1] where [a \neq 0].
+* **Quotient of Powers Property** — When dividing two expressions with the same base, subtract the exponents: [\frac{a^m}{a^n} = a^{m-n}].
+
+## Explore: Understanding Negative Exponents
+
+Students explore what it means to have a negative exponent and why the definition [a^{-n} = \frac{1}{a^n}] makes sense based on patterns in powers of a base.
+
+Inquiry Question:
+How can patterns in powers of a number help explain why [a^{-n}] equals [\frac{1}{a^n}]?
+
+## Learn: Negative Exponents
+
+### Key Concept: Definition of Negative Exponents
+
+A negative exponent indicates the reciprocal of the base raised to the opposite positive exponent.
+
+[
+a^{-n} = \frac{1}{a^n}, \quad a \neq 0
+]
+
+[
+\frac{r^6n^{-7}}{r^4n^2} = r^{6-4}n^{-7-2} = r^2n^{-9} = \frac{r^2}{n^9}
+]
+
+[
+\frac{h^3}{h^{-6}} = h^{3-(-6)} = h^9
+]
+
+### Key Concept: Zero Exponent Rule
+
+Any nonzero base raised to the zero power equals 1.
+
+[
+\left(\frac{16p^5w^2}{2p^3w^3}\right)^0 = 1
+]
+
+[
+\left(\frac{3t^6u^2v^5}{9tuv^{21}}\right)^0 = 1
+]
+
+### Key Concept: Combining Properties
+
+When simplifying expressions with negative exponents, use all properties together.
+
+[
+\frac{f^{-5}g^4}{h^{-2}} = f^{-5}g^4 \cdot \frac{h^2}{1} = \frac{g^4h^2}{f^5}
+]
+
+[
+\frac{15x^6y^{-9}}{5xy^{-11}} = 3x^{6-1}y^{-9-(-11)} = 3x^5y^2
+]
+
+## Example 1 — Simplifying Expressions with Negative Exponents
+
+Rewrite expressions using only positive exponents.
+
+### Step 1: Apply the Negative Exponent Definition
+
+Convert negative exponents to positive by moving factors between numerator and denominator.
+
+[
+\frac{r^6n^{-7}}{r^4n^2} = \frac{r^6}{r^4} \cdot \frac{n^{-7}}{n^2} = r^2 \cdot n^{-9} = \frac{r^2}{n^9}
+]
+
+[
+\frac{f^{-7}}{f^4} = f^{-7-4} = f^{-11} = \frac{1}{f^{11}}
+]
+
+### Step 2: Simplify Completely
+
+[
+\frac{-15t^0u^{-1}}{5u^3} = \frac{-15 \cdot 1 \cdot u^{-1}}{5u^3} = -3u^{-1-3} = -3u^{-4} = -\frac{3}{u^4}
+]
+
+[
+\frac{(z^2w^{-1})^3}{(z^3w^2)^2} = \frac{z^6w^{-3}}{z^6w^4} = z^{6-6}w^{-3-4} = w^{-7} = \frac{1}{w^7}
+]
+
+## Example 2 — Orders of Magnitude
+
+Compare very large and very small quantities using orders of magnitude (powers of 10).
+
+### Step 1: Calculate the Ratio as a Power of 10
+
+A dust mite measures [10^{-3}] millimeters. A gecko measures 10 centimeters = [10^2] millimeters.
+
+[
+\frac{10^2}{10^{-3}} = 10^{2-(-3)} = 10^5
+]
+
+The gecko is [10^5] (five orders of magnitude) longer than the mite.
+
+### Step 2: Apply to Real-World Comparisons
+
+A paper clip weighs about [10^{-3}] kilograms. A draft horse weighs about [10^3] kilograms.
+
+[
+\frac{10^3}{10^{-3}} = 10^6
+]
+
+The draft horse is six orders of magnitude heavier than a paper clip.
+
+GDP comparisons: Indonesia's GDP is approximately [1.02 \times 10^{12}] while Madagascar's is approximately [1.04 \times 10^{10}]. The ratio is approximately [10^2] (two orders of magnitude).
+
+## Example 3 — Complex Expressions with Negative Exponents
+
+Simplify expressions involving multiple factors and operations.
+
+### Step 1: Apply Quotient of Powers First
+
+[
+\left(\frac{2a^{-2}b^4c^2}{-4a^{-2}b^{-5}c^{-7}}\right)^{-1} = \left(\frac{2b^4c^2}{-4b^{-5}c^{-7}}\right)^{-1} = \left(\frac{b^9c^9}{-2}\right)^{-1} = -\frac{2}{b^9c^9}
+]
+
+### Step 2: Handle Multiple Negative Exponents
+
+[
+\left(\frac{-3x^{-6}y^{-1}z^{-2}}{6x^{-2}yz^{-5}}\right)^{-2} = \left(\frac{-3x^{-6}y^{-1}z^{-2}}{6x^{-2}yz^{-5}}\right)^{-2}
+]
+
+Simplify inside first, then apply the outer negative exponent.
+
+## Mixed Exercises
+
+Practice problems covering all skills in the lesson:
+
+* Simplify expressions with negative exponents, zero exponents, and multiple variables.
+* Compare real-world quantities using orders of magnitude, including metric measurements, chemistry, weight comparisons, and astronomy distances.
+* Solve problems involving bacteria population doubling, vehicle depreciation, and marketing spread models.
+* Analyze why [4 \cdot n^5] and [4 \cdot n^{-5}] are or are not reciprocals.
+* Explain why [3^0 = 1] using properties of exponents.
+* Evaluate expressions using multiple methods to verify equivalence of results.
+* Analyze calculator displays showing common errors with negative exponents and zero exponents.
+* Find and correct errors in student work simplifying expressions with exponents.
+* Create problems comparing orders of magnitude of large and small things.
+* Analyze which values in an expression cannot be zero and explain why.
+
+## Review Notes
+
+* ![](media/image1.png) Image of marketing spread table for problem 35 (Jana's marketing plan).
+* ![](media/image2.png) Image of marketing diagram for problem 35.
+* ![](media/image3.png) Image of astronomy diagram for problem 36 (Earth-Sun-Saturn distance).
+* ![](media/image4.png) Image of computer hard drive table for problem 37 (byte conversions).
+* ![](media/image5.png) Image of calculator display for problem 46 (Dalip's --5^0 calculation).
+
+(End of file - total 220 lines)

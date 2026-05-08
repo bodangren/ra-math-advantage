@@ -1,158 +1,180 @@
 # Lesson 3-1 — Solving Polynomial Equations by Graphing
 
-Source: (Module 3, Lesson 3-1, pp. 119–120)
+Source: (Module 3, Lesson 3-1, Int3_0301_practice.docx)
 
 ## Today's Goals
 
-* Solve polynomial equations by graphing
-
----
+* Use a graphing calculator to solve polynomial equations by graphing.
+* Solve systems of equations involving polynomial functions.
+* Apply polynomial equations to real-world scenarios involving volume and optimization.
 
 ## Vocabulary
 
-* polynomial equation
-* related function
-* real zero
-* root
-* x-intercept
-* system of equations
+* **Polynomial Equation** — An equation that contains a polynomial expression set equal to another value, often zero.
+* **System of Equations** — A set of two or more equations with the same variables that are solved simultaneously.
+* **Volume** — The amount of three-dimensional space occupied by an object, often expressed in cubic units.
 
----
+## Explore: Solving Polynomials Graphically
 
-## Explore: Solutions of Polynomial Equations
+When a polynomial equation cannot be solved algebraically by factoring, graphing provides a numerical approach. By finding where the related function crosses or touches the x-axis, you can identify real roots. When roots are irrational or non-integer, graphing calculators allow you to approximate solutions to any required precision.
 
-Use graphing technology to complete the explore.
-
-**Inquiry Question:**
-How can you solve a polynomial equation by using the graph of a related polynomial function?
-
----
+Inquiry Question:
+How can you determine the number of real solutions to a polynomial equation by analyzing its graph?
 
 ## Learn: Solving Polynomial Equations by Graphing
 
-A **related function** is found by rewriting the equation with `0` on one side and then replacing `0` with `f(x)`.
+### Key Concept: Using a Graphing Calculator
 
-* The values of `x` for which `f(x) = 0` are the **real zeros** of the function
-* These are also the **x-intercepts** of the graph
+1. Rewrite the equation in the form [f(x) = 0] by moving all terms to one side.
+2. Enter the resulting polynomial as [Y₁] in the graphing calculator.
+3. Adjust the window to show the region where the graph intersects the x-axis.
+4. Use the zero or root feature to find where [f(x) = 0].
+5. For multiple roots or complex roots, analyze the graph's behavior and use additional algebraic methods.
 
-Example relationship:
+### Key Concept: Systems with Polynomial Equations
 
-* `x^3 + 2x^2 - 4x = x + 6`
-* related function: `f(x) = x^3 + 2x^2 - 5x - 6`
-* `-3`, `-1`, and `2` are:
-  * solutions
-  * roots
-  * zeros
-  * x-intercepts
+When a problem involves two or more polynomial expressions, you may need to:
+1. Write a system of equations representing the relationships.
+2. Graph both equations on the same coordinate plane.
+3. Identify intersection points as solutions.
 
-## Talk About It
+## Example 1 — Solve Polynomial Equations by Graphing
 
-Explain how you could use the table feature to more accurately estimate the zeros of the related function. What are the limitations of the table feature?
+Use a graphing calculator to solve each equation by graphing. If necessary, round to the nearest hundredth.
 
----
+### Step 1: Set Up Each Equation
 
-## Example 1 — Solve a Polynomial Equation by Graphing
+For each equation, rewrite it so one side equals zero, then graph the related function.
 
-Use a graphing calculator to solve:
+**Equation 1:** [\frac{2}{3}x^3 + x^2 - 5x = -9]
 
-`x^4 + 3x^2 - 5 = -4x^3`
+Rewrite as: [\frac{2}{3}x^3 + x^2 - 5x + 9 = 0]
 
-### Step 1: Find a related function
+Graph [f(x) = \frac{2}{3}x^3 + x^2 - 5x + 9] and find where it crosses the x-axis.
 
-Write the equation with `0` on the right:
+**Equation 2:** [x^3 - 9x^2 + 27x = 20]
 
-`x^4 + 3x^2 - 5 = -4x^3`
+Rewrite as: [x^3 - 9x^2 + 27x - 20 = 0]
 
-`x^4 + 3x^2 - 5 + 4x^3 = -4x^3 + 4x^3`
+Graph [f(x) = x^3 - 9x^2 + 27x - 20] and find the roots.
 
-`x^4 + 4x^3 + 3x^2 - 5 = 0`
+**Equation 3:** [x^3 + 1 = 4x^2]
 
-So the related function is:
+Rewrite as: [x^3 - 4x^2 + 1 = 0]
 
-`f(x) = x^4 + 4x^3 + 3x^2 - 5`
+### Step 2: Use the Zero Feature
 
-### Step 2: Graph the related function
+Use the graphing calculator's zero or root-finding feature to approximate each solution to the nearest hundredth.
 
-Enter the function in the graphing calculator and graph it.
+## Example 2 — Solve Polynomial Equations with Higher Degrees
 
-### Step 3: Find the zeros
+Solve each equation by graphing. If necessary, round to the nearest hundredth.
 
-Use the `zero` feature from the `CALC` menu.
+### Step 1: Rearrange and Graph
 
-The real zeros are about:
+**Equation 4:** [x^6 - 15 = 5x^4 - x^2]
 
-* `x ≈ -3.22`
-* `x ≈ 0.84`
+Rewrite as: [x^6 - 5x^4 + x^2 - 15 = 0]
 
-## Think About It
+**Equation 5:** [\frac{1}{2}x^5 = \frac{1}{5}x^2 - 2]
 
-How can you use the structure of the related function to determine the number of real solutions of the equation?
+Rewrite as: [\frac{1}{2}x^5 - \frac{1}{5}x^2 + 2 = 0]
 
----
+**Equation 6:** [x^8 = -x^7 + 3]
 
-## Example 2 — Solve a Polynomial Equation by Using a System
+Rewrite as: [x^8 + x^7 - 3 = 0]
 
-For an exhibit with five Emperor penguins, a pool must have a minimum volume of `217 ft^3` per bird. The pool dimensions are shown as:
+## Example 3 — Applied Problems with Polynomial Equations
 
-* length: `2x + 3`
-* width: `5x - 2`
-* depth: `2x`
+Solve each real-world problem by writing and solving a system of polynomial equations.
 
-What should the pool dimensions be to meet the minimum requirements?
+### Step 1: Define Variables and Write Equations
 
-### Part A: Write a polynomial equation
+**SHIPPING (Problem 7):** A shipping company will ship a package for $7.50 when the volume is no more than 15,000 cm³. Grace needs to ship a package that is [3x - 5] cm long, [2x] cm wide, and [x + 20] cm tall.
 
-Since the minimum required volume is:
+Let [x] represent the value that defines the dimensions.
 
-`217 * 5 = 1085 ft^3`
+**a.** Write a polynomial equation to represent the situation.
 
-use the volume formula for a rectangular prism:
+Volume: [V = (3x - 5)(2x)(x + 20)]
 
-`V = lwh`
+The constraint: [V \leq 15{,}000]
 
-So:
+**b.** Write and solve a system of equations.
 
-`(2x + 3)(5x - 2)(2x) = 1085`
+**c.** What should the dimensions of the package be to have the maximum volume?
 
-Simplify:
+![](media/image1.png)
 
-`(2x + 3)(5x - 2)(2x) = 1085`
+**GARDEN (Problem 8):** A rectangular garden is 12 feet across and 16 feet long. It is surrounded by a border of mulch that is a uniform width, [x]. The maximum area for the garden, plus border, is 285 ft².
 
-`[2x(5x) + 2x(-2) + 3(5x) + 3(-2)](2x) = 1085`
+**a.** Write a polynomial equation to represent the situation.
 
-`(10x^2 - 4x + 15x - 6)(2x) = 1085`
+**b.** Write and solve a system of equations.
 
-`(10x^2 + 11x - 6)(2x) = 1085`
+**c.** What are the dimensions of the garden plus border?
 
-`20x^3 + 22x^2 - 12x = 1085`
+**PACKAGING (Problem 9):** A juice manufacturer is creating new cylindrical packaging. The height of the cylinder is to be 3 units longer than the radius of the can. The cylinder is to have a volume of 628 cubic inches. Use 3.14 for π.
 
-### Part B: Write and solve a system of equations
+**a.** Write a polynomial equation to support the model.
 
-Set each side equal to `y`:
+Volume of cylinder: [V = \pi r^2 h]. If [r] is the radius and [h = r + 3], then:
 
-* `y = 20x^3 + 22x^2 - 12x`
-* `y = 1085`
+[628 = 3.14 \cdot r^2 \cdot (r + 3)]
 
-Graph both equations and use the `intersect` feature.
+**b.** Write and solve a system of equations.
 
-The real solution is:
+**c.** What is the radius and height of the new packaging?
 
-`x = 3.5`
+## Mixed Exercises
 
-### Part C: Find the dimensions
+Solve each equation. If necessary, round to the nearest hundredth.
 
-Substitute `x = 3.5`:
+**10.** [x^4 + 2x^3 = 7]
 
-* length: `2x + 3 = 10 ft`
-* width: `5x - 2 = 15.5 ft`
-* depth: `2x = 7 ft`
+**11.** [x^4 - 15x^2 = -24]
 
-## Think About It
+**12.** [x^3 - 6x^2 + 4x = -6]
 
-Is your solution reasonable? Justify your conclusion.
+**13.** [x^4 - 15x^2 + x + 65 = 0]
 
----
+**14. BALLOON:** Treyvon is standing 9 yards from the base of a hill that has a slope of [\frac{3}{4}]. He throws a water balloon from a height of 2 yards. Its path is modeled by [h(x) = -0.1x^2 + 0.8x + 2], where [h] is the height of the balloon in yards and [x] is the distance the balloon travels in yards.
 
-## Objective Alignment
+**a.** Write a polynomial equation to represent the situation.
 
-- `Solve polynomial equations by graphing`: Primary worked examples: Examples 1-2.
+**b.** How far from Treyvon will the balloon hit the hill?
+
+**15. USE TOOLS:** A company models its revenue in dollars using the function [P(x) = 70{,}000(x - x^4)] on the domain (0, 1) where [x] is the price at which they sell their product in dollars. Use a graphing calculator to sketch a graph and find the price at which their product should be sold to make revenue of $20,000. Describe your solution process.
+
+![](media/image2.png)
+
+**16. ROLLER COASTERS:** On a racing roller coaster, two trains start at the same time and race to see which returns to the station first. On one coaster, the height of a train on the blue track can be modeled by [f(x) = \frac{1}{20}(x^3 - 60x^2 + 900x)] and the height of a train on the green track can be modeled by [g(x) = \frac{1}{12{,}000}(x^5 - 144x^4 + 7{,}384x^3 - 158{,}400x^2 + 1{,}210{,}000x)] where [x] is time in seconds for the first 35 seconds of the ride.
+
+**a.** What equation would determine the times when the blue and green trains are at the same height?
+
+**b.** Use a graphing calculator to sketch a graph of [f(x)] and [g(x)] and solve the equation from part a. Interpret the solution in the context of the situation.
+
+**c.** Write an equation to determine the times for which the blue train modeled by [f(x)] is at a height of 150 feet. Use a graphing calculator to solve the equation. Interpret the solution in the context of the situation.
+
+**17. WRITE:** Use a graph to explain why a function with an even degree can have zero real solutions, but a function with an odd degree must have at least one real solution.
+
+**18. CREATE:** Write a polynomial equation and solve it by graphing a related function and finding its zeros.
+
+**19. ANALYZE:** Determine whether the following statement is sometimes, always, or never true. Justify your argument.
+
+*If a system of equations has more than one solution, then the positive solution is the only viable solution.*
+
+**20. PERSEVERE:** During practice, a player kicks a ball from the ground with an initial velocity of 32 feet per second. The polynomial [f(x) = -16x^2 + 32x] models the height of the ball, where [x] represents time in seconds. At the same time, another player heads a ball at some distance [c] feet off the ground with an initial velocity of 27 feet per second. The polynomial [g(x) = -16x^2 + 27x + 6] models the height of the ball.
+
+**a.** If the balls are at the same height after 1.2 seconds, from what height did the second player head the ball?
+
+**b.** If [c > 0], is it possible that the soccer balls are never at the same height? Is it reasonable in the context of the situation? Explain your reasoning.
+
+**21. WHICH ONE DOESN'T BELONG?** Which polynomial doesn't belong? Justify your conclusion.
+
+![](media/image3.png)
+
+## Review Notes
+
+* Images referenced in the worksheet (graph for the shipping problem, graph for the revenue problem, graph for the roller coaster problem, and the "Which One Doesn't Belong?" polynomial images) could not be fully described without visual reference. Teachers should consult the original worksheet for exact diagrams and values.
+* The worksheet contains 21 practice problems across three examples and mixed exercises.

@@ -1,0 +1,218 @@
+# Lesson 9-4 — Solving Systems of Equations Graphically
+
+Source: (Module 9, Lesson 9-4, Int2_0904_practice.docx)
+
+## Today's Goals
+
+* Determine the number of solutions for a system of linear equations and classify the system as consistent or inconsistent, independent or dependent.
+* Solve a system of equations by graphing.
+* Use a graphing calculator to solve systems of equations.
+* Use systems of equations to model and solve real-world problems.
+
+## Vocabulary
+
+* **System of Equations** — Two or more equations considered together with the same variables.
+* **Solution of a System** — An ordered pair (x, y) that makes all equations in the system true.
+* **Consistent System** — A system that has at least one solution.
+* **Inconsistent System** — A system that has no solution.
+* **Independent System** — A system where the equations represent two different lines.
+* **Dependent System** — A system where the equations represent the same line (infinitely many solutions).
+* **Intersecting Lines** — Two lines that cross at exactly one point (one solution, consistent and independent).
+* **Parallel Lines** — Two lines that never intersect (no solution, inconsistent).
+* **Coincident Lines** — Two lines that lie on top of each other (infinitely many solutions, consistent and dependent).
+
+## Explore: Systems as Intersections
+
+A system of equations asks: "What point(s) lie on all of the lines simultaneously?" Geometrically, this is the intersection of lines.
+
+Inquiry Question:
+If two lines have different slopes, how many points do they share? What if they have the same slope but different y-intercepts? What if they have the same slope and same y-intercept?
+
+## Learn: Classifying Systems
+
+### Key Concept: Types of Systems
+
+| System Type | Graphical Representation | Number of Solutions | Classification |
+|------------|-------------------------|---------------------|------------------|
+| Consistent and Independent | Two lines intersecting | Exactly 1 | [m1 ≠ m2] |
+| Inconsistent | Two parallel lines | 0 | [m1 = m2], different b |
+| Consistent and Dependent | Two coincident lines | Infinitely many | Same line |
+
+To classify algebraically: write both equations in slope-intercept form and compare slopes and intercepts.
+
+## Example 1 — Classify Each System
+
+Determine the number of solutions and state whether consistent/inconsistent and independent/dependent.
+
+**1.** [y = 3x] and [y = -3x + 2]
+
+Slopes: 3 and -3 (different) → one solution, consistent and independent.
+
+**2.** [y = x - 5] and [-2x + 2y = -10]
+
+Rewrite second: [2y = 2x - 10] → [y = x - 5]
+
+Same line → infinitely many solutions, consistent and dependent.
+
+**3.** [2x - 5y = 10] and [3x + y = 15]
+
+Rewrite both in slope-intercept form:
+
+First: [-5y = -2x + 10] → [y = 2/5 x - 2]
+
+Second: [y = -3x + 15]
+
+Different slopes → one solution.
+
+**4.** [3x + y = -2] and [6x + 2y = 10]
+
+Rewrite first: [y = -3x - 2]
+
+Rewrite second: [2y = -6x + 10] → [y = -3x + 5]
+
+Same slope (-3) but different intercepts (-2 vs 5) → no solution, inconsistent.
+
+**5.** [x + 2y = 5] and [3x - 15 = -6y]
+
+Rewrite first: [2y = -x + 5] → [y = -1/2 x + 2.5]
+
+Rewrite second: [6y = -3x + 15] → [y = -1/2 x + 2.5]
+
+Same line → infinitely many solutions.
+
+**6.** [3x - y = 2] and [x + y = 6]
+
+## Example 2 — Solve by Graphing (Integer Solutions)
+
+Solve the system by graphing. Estimate the solution from the graph, then check algebraically.
+
+### Step 1: Graph Both Lines
+
+**7.** [x - 2y = 0] and [y = 2x - 3]
+
+Graph both lines on the same coordinate plane. Find where they intersect.
+
+**8.** [-4x + 6y = -2] and [2x - 3y = 1]
+
+Rewrite in slope-intercept form:
+
+First: [6y = 4x - 2] → [y = 2/3 x - 1/3]
+
+Second: [-3y = -2x + 1] → [y = 2/3 x - 1/3]
+
+Same line → infinitely many solutions.
+
+**9.** [2x + y = 3] and [y = 1/2 x - 9/2]
+
+**10.** [y - x = 3] and [y = 1]
+
+**11.** [2x - 3y = 0] and [4x - 6y = 3]
+
+**12.** [5x - y = 4] and [-2x + 6y = 4]
+
+## Example 3 — Solve by Graphing (Fractional Solutions)
+
+### Step 1: Graph and Identify Intersection
+
+**13. USE ESTIMATION** Mr. Lycan buys clay from two companies.
+
+Company A: $24 for 50-pound container + $42 shipping.
+Company B: $28 for 50-pound container + $25 shipping.
+
+**a.** Write cost equations, where [x] = containers ordered and [y] = total cost.
+
+Company A: [y = 24x + 42]
+Company B: [y = 28x + 25]
+
+**b.** Graph both equations. The intersection represents the order size where costs are equal.
+
+**c.** Check algebraically: set [24x + 42 = 28x + 25]
+
+[-4x = -17] → [x = 4.25]
+
+At 4.25 containers, both cost the same.
+
+**14. USE ESTIMATION** Two moving truck companies.
+
+Haul-n-Save: $30 + $0.79/mile.
+Rent It Trucks: $75 + $0.55/mile.
+
+**a.** Write cost equations.
+
+**b.** Graph and estimate miles where costs are equal.
+
+**c.** Check algebraically.
+
+## Example 4 — Use a Graphing Calculator
+
+Use a graphing calculator to solve each system. Round to the nearest hundredth.
+
+### Step 1: Enter Equations and Find Intersection
+
+**15.** [12y = 5x - 15] and [4.2y + 6.1x = 11]
+
+Rewrite in slope-intercept form:
+
+First: [y = (5/12)x - 15/12 = (5/12)x - 1.25]
+
+Second: [y = (-6.1/4.2)x + 11/4.2]
+
+Use the intersect function on the calculator.
+
+**16.** [-3.8x + 2.9y = 19] and [6.6x - 5.4y = -23]
+
+**17.** [5.8x - 6.3y = 18] and [-4.3x + 8.8y = 32]
+
+## Example 5 — Solve an Equation Using a System
+
+Use a graphing calculator to solve each equation by using a system of equations. Round to the nearest hundredth.
+
+### Step 1: Rewrite as a System
+
+An equation like [f(x) = g(x)] becomes a system where you find the intersection of [y = f(x)] and [y = g(x)].
+
+**18.** [-4.7x + 16 = 16.79x - 80.2]
+
+Let [y1 = -4.7x + 16] and [y2 = 16.79x - 80.2]
+
+Find where they intersect.
+
+**19.** [0.0019x + 3.55 = 0.27x + 2.81]
+
+**20.** [471 - 63x = -50.5x + 509]
+
+**21.** [-47.83x - 9 = 33x + 71.019]
+
+## Mixed Exercises
+
+Solve each system by graphing.
+
+**22.** [x - 3y = 6] and [2x - y = -3]
+
+**23.** [2x - y = 3] and [x + 2y = 4]
+
+**24.** [4x + y = -2] and [2x + y/2 = -1]
+
+**25. LASERS** A machinist programs a laser cutting machine to focus two laser beams at the same point. One beam is programmed to follow the path [y = 0.5x - 3.15] and the other is programmed to follow [10x + 5y = 63]. Graph both equations and find the point at which the lasers are focused.
+
+**26. REASONING** A high school band was selling ride tickets for the school fair. On the first day, 250 children's tickets and 150 adult tickets were sold for a total of $550. On the second day, 180 children's tickets and 120 adult tickets were sold for a total of $420. What is the price for each child ticket and each adult ticket?
+
+**a.** Write a system of equations.
+
+**b.** Graph the system.
+
+**c.** Find the intersection. What does it represent?
+
+**27. ANALYZE** If a is consistent and dependent with b, b is inconsistent with c, and c is consistent and independent with d, then a will sometimes, always, or never be consistent and independent with d. Explain your reasoning.
+
+**28. WRITE** Explain how to find the solution to a system of linear equations by graphing.
+
+**29. ANALYZE** Determine if the following statement is sometimes, always, or never true. Explain your reasoning.
+
+A system of linear equations in two variables can have exactly two solutions.
+
+**30. CREATE** Write a system of equations with no solution.
+
+## Review Notes
+
+* The worksheet contains 30 problems across six examples and mixed exercises.

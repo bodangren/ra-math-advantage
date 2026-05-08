@@ -1,0 +1,124 @@
+# Lesson 5-5 — Tangents
+
+Source: (Module 5, Lesson 5-5, Int2_0505_practice.docx)
+
+## Today's Goals
+
+* Identify the number of common tangents to pairs of circles.
+* Determine whether a segment is tangent to a circle.
+* Find angle measures involving tangents.
+* Find perimeters of polygons circumscribed about circles.
+
+## Vocabulary
+
+* **Tangent** — A line that touches a circle at exactly one point without crossing it.
+* **Common Tangent** — A line that is tangent to two circles.
+* **Point of Tangency** — The single point where a tangent touches a circle.
+* **Circumscribed Polygon** — A polygon whose sides are all tangent to a circle.
+
+## Explore: How Does a Tangent Touch a Circle?
+
+A tangent line grazes a circle at exactly one point — the point of tangency. Students explore how the radius drawn to the point of tangency is perpendicular to the tangent line, and how tangents from a common external point are congruent.
+
+Inquiry Question:
+If two tangents are drawn from the same external point to a circle, what do you know about their lengths?
+
+## Learn: Tangents
+
+### Key Concept: Tangent–Radius Relationship
+
+A radius drawn to the point of tangency is perpendicular to the tangent line. The converse is also true: a line perpendicular to a radius at its outer endpoint is tangent to the circle.
+
+### Key Concept: Tangents from an External Point
+
+If two tangent segments are drawn from the same external point to a circle, they are congruent.
+
+### Key Concept: Common Tangents
+
+* Two circles can have 0, 1, or 2 common tangents.
+* External tangents do not cross the segment connecting the two centers.
+* Internal tangents cross the segment connecting the two centers.
+
+## Example 1 — Identify Common Tangents
+
+Identify the number of common tangents between pairs of circles.
+
+### Step 1: Analyze the Position of Two Circles
+
+If the circles are separate and do not overlap, there are typically 2 common tangents (one external, one internal).
+If one circle is inside the other without touching, there are 0 common tangents.
+If the circles touch externally at one point, there is 1 common tangent.
+If the circles intersect at two points, there are 2 common tangents.
+
+## Example 2 — Determine Whether a Segment Is Tangent
+
+Check whether [HI], [AB], [MP], or [QR] is tangent to the given circle. Justify your answer.
+
+### Step 1: Apply the Converse of the Tangent–Radius Theorem
+
+If a segment from a point outside the circle to a point on the circle is perpendicular to the radius drawn to that point, then the segment is tangent. Use the Pythagorean theorem to check perpendicularity.
+
+For [HI]: check whether [HI^2 = GI^2 + GH^2] or similar relationship holds.
+
+## Example 3 — Find Values Involving Tangents
+
+Find the value of [x] in tangent–secant configurations.
+
+### Step 1: Use the Tangent–Chord Angle Theorem
+
+An angle formed by a tangent and a chord through the point of tangency equals half the intercepted arc. If [m∠BDC = 12x°] and [m∠A = (4x + 4)°], find [m∠A]. The angle formed by the tangent and chord equals half the measure of the intercepted arc. Set up an equation using this relationship.
+
+### Step 2: Solve for [x]
+
+[m∠A = 4x + 4] and [m∠BDC = 12x]. Since the angle formed by the tangent and chord relates to the intercepted arc, and the intercepted arc relates to the other angle, solve: [12x = 2(4x + 4)] gives [12x = 8x + 8], so [4x = 8] and [x = 2]. Then [m∠A = 4(2) + 4 = 12°].
+
+## Example 4 — Find Perimeter of Circumscribed Polygons
+
+Each polygon is circumscribed about a circle. Find the perimeter.
+
+### Step 1: Recognize That Opposite Sides Have Common External Tangents
+
+For a polygon circumscribed about a circle, the sum of the lengths of opposite sides are equal. Add all side lengths to find the perimeter.
+
+## Mixed Exercises
+
+Practice with all skills from the lesson, including:
+
+* Identifying common tangents between various pairs of circles.
+* Determining whether segments are tangent to circles (justify using the tangent–radius relationship).
+* Finding values of [x] in tangent diagrams with various geometric configurations.
+* Solving real-world tangent problems (hanging a terrarium, carnival game basket positions).
+* Finding perimeter of circumscribed polygons given side lengths.
+* Finding the value of [x] in circumscribed polygons and computing their perimeters.
+* Analyzing a clock face inscribed in a triangular base.
+* Writing two-column proofs for Theorem 10.12 (tangents from a common external point are congruent), Theorem 10.13 (an angle formed by two tangents equals 180° minus the minor arc), and circumscribed quadrilateral property.
+* Finding side lengths and perimeter of a triangle circumscribed about a circular gem.
+* Using precision to find [x] to the nearest hundredth in tangent diagrams.
+* Finding the radius of the large circle in an equilateral triangle with inscribed circles.
+* Determining which spoke of a rolling wheel is perpendicular to an incline.
+* Constructing a tangent line through a point on a circle.
+* Finding distance to the horizon from a spacecraft at a given altitude.
+* Finding the length of a common external tangent segment between two circles.
+* Identifying which polygon is not circumscribed.
+* Analyzing how three tangent segments can be congruent even if circles have different radii.
+
+## Review Notes
+
+* ![](media/image1.png), ![](media/image2.png), ![](media/image3.png), ![](media/image4.png) — circle pairs for Exercises 1–4 (common tangents)
+* ![](media/image5.png), ![](media/image6.png), ![](media/image7.png), ![](media/image8.png) — tangent segment diagrams for Exercises 5–8
+* ![](media/image9.png), ![](media/image10.png), ![](media/image11.png), ![](media/image12.png), ![](media/image13.png), ![](media/image14.png) — diagrams for Exercises 9–14 (find x)
+* ![](media/image15.png), ![](media/image16.png), ![](media/image17.png) — tangent diagrams for Exercises 15–16
+* ![](media/image18.png) — terrarium hanging diagram for Exercise 17
+* ![](media/image19.png), ![](media/image20.png) — tangent diagrams for Exercises 19–20
+* ![](media/image21.png), ![](media/image22.png), ![](media/image23.png) — circumscribed polygons for Exercises 21–23
+* ![](media/image24.png), ![](media/image25.png), ![](media/image26.png) — circumscribed polygons for Exercises 24–26
+* ![](media/image27.png) — clock face in triangular base for Exercise 27
+* ![](media/image28.png) — proof diagram for Theorem 10.12 (Exercise 28)
+* ![](media/image29.png) — proof diagram for Theorem 10.13 (Exercise 29)
+* ![](media/image30.png) — circumscribed quadrilateral for Exercise 30
+* ![](media/image31.png) — triangular pendant with circular gem for Exercise 31
+* ![](media/image32.png), ![](media/image33.png), ![](media/image34.png) — tangent diagrams for Exercises 32–34
+* ![](media/image35.png) — equilateral triangle with circles for Exercise 34
+* ![](media/image36.png) — wheel rolling on incline for Exercise 35
+* ![](media/image37.png) — five polygons for Exercise 39 (which is not circumscribed)
+* ![](media/image38.png) — tangent circles R and S for Exercise 38

@@ -1,262 +1,168 @@
 # Lesson 4-5 — Operations with Radical Expressions
 
-Source: (Module 4, Lesson 4-5, pp. 193–198)
+Source: (Module 4, Lesson 4-5, Int3_0405_practice.docx)
 
 ## Today's Goals
 
-* Simplify radical expressions
-* Add, subtract, and multiply radicals
-* Divide and simplify radical expressions by rationalizing the denominator
-
----
+* Simplify radical expressions using properties of nth roots.
+* Add and subtract radical expressions.
+* Multiply and divide radical expressions.
+* Rationalize denominators containing radicals.
 
 ## Vocabulary
 
-* like radical expressions
-* conjugates
+* **Like Radicals** — Radical expressions with the same index and radicand; can be combined by adding or subtracting coefficients.
+* **Rationalizing the Denominator** — Multiplying by a form of 1 to eliminate radicals from the denominator of a fraction.
+* **Conjugate** — The binomial a√b + c√d and a√b − c√d are conjugates; their product contains no radicals.
+* **Simplest Form** — A radical expression is in simplest form when no radicand has a perfect nth power factor and no radicals appear in the denominator.
 
----
+## Explore: Combining Radicals
 
-## Learn: Properties of Radicals
+When adding or subtracting radicals, the structure matters. Students explore why √2 + √8 can be combined but √2 + √3 cannot.
 
-The properties used to simplify square roots extend to nth roots.
+Inquiry Question:
+Why can we combine √2 and √8 but not √2 and √3, and what does "simplest form" mean for radical expressions?
+
+## Learn: Operations with Radical Expressions
 
 ### Key Concept: Product Property of Radicals
 
-For real numbers `a`, `b` and integer `n > 1`:
+For any real numbers a and b:
+√[n]{a} · √[n]{b} = √[n]{ab}
 
-`nroot(ab) = nroot(a) * nroot(b)`
-
-when the roots are defined.
-
-Examples:
-
-* `sqrt(12) * sqrt(3) = sqrt(36) = 6`
-* `cuberoot(4) * cuberoot(16) = cuberoot(64) = 4`
+This allows simplifying products like √(72a⁸b⁵) = 6a⁴b²√(2b).
 
 ### Key Concept: Quotient Property of Radicals
 
-For real numbers `a` and `b != 0`:
+√[n]{a} / √[n]{b} = √[n]{a/b}
 
-`nroot(a/b) = nroot(a) / nroot(b)`
+### Key Concept: Like Radicals
 
-when all roots are defined.
+Only radicals with the same index and radicand can be combined. Simplify each radical first, then add or subtract coefficients.
 
-Examples:
+## Example 1 — Simplify Products of Radicals
 
-* `sqrt(x^4 / 25) = x^2 / 5`
-* `cuberoot(27/8) = 3/2`
+### Step 1: Square Roots
 
-### Key Concept: Simplest Form of Radical Expressions
+√(72a⁸b⁵) = √(36 · 2 · a⁸ · b⁴ · b) = 6a⁴b²√(2b)
 
-A radical expression is in simplest form when:
+√(9a¹⁵b³) = √(9 · a¹⁴ · a · b² · b) = 3a⁷b√(ab)
 
-* the index is as small as possible
-* the radicand contains no nth-power factors other than `1`
-* the radicand contains no fractions
-* no radicals appear in the denominator
+### Step 2: Higher Index Roots
 
----
+√[4]{64a⁴b⁴} = √[4]{16 · 4 · a⁴ · b⁴} = 2ab√[4]{4}
 
-## Example 1 — Simplify Expressions with the Product Property
+√[3]{−8d²f⁵} = −2df√[3]{d²f²}
 
-### a. `cuberoot(-27a^6b^14)`
+## Example 2 — Simplify Quotients with Radicals
 
-Factor into cubes:
+### Step 1: Square Root Quotients
 
-`= cuberoot((-3)^3 * (a^2)^3 * (b^4)^3 * b^2)`
+√(25/36 · r²t) = (5r/6)√t
 
-`= -3a^2b^4 cuberoot(b^2)`
+√(192k⁴/64) = √(3k⁴) = k²√3
 
-### b. `sqrt(75x^12y^7)`
+### Step 2: Higher Index Quotients
 
-Factor into squares:
+√[5]{3072h⁸/(243f⁵)} = (2h^(8/5))/(3f) · √[5]{(3072/243) · h^(8/5 - 8/5)} ... simplify to 2h^(8/5)/(3f)
 
-`= sqrt(5^2 * 3 * (x^6)^2 * (y^3)^2 * y)`
+## Example 3 — Add and Subtract Radical Expressions
 
-`= 5x^6y^3 sqrt(3y)`
+### Step 1: Identify Like Radicals
 
-## Think About It
+√2 + √8 + √50 = √2 + 2√2 + 5√2 = 8√2
 
-Why are absolute value symbols not necessary around `y^3` in part `b`?
+### Step 2: Simplify First
 
----
+√12 − 2√3 + √108 = 2√3 − 2√3 + 6√3 = 6√3
 
-## Example 2 — Simplify Expressions with the Quotient Property
+### Step 3: Handle Variables
 
-### a. `cuberoot((24a^6)/125)`
+√(28x) − √14 + √(63x) = 2√(7x) − √14 + 3√(7x) = 5√(7x) − √14
 
-`= cuberoot(24a^6) / cuberoot(125)`
+## Example 4 — Multiply Radical Expressions
 
-`= cuberoot(2^3 * 3 * (a^2)^3) / cuberoot(5^3)`
+### Step 1: Multiply Like Indices
 
-`= 2a^2 cuberoot(3) / 5`
+3√(5y) · 8√(10yz) = 24√(50y²z) = 24 · 5y√(2z) = 120y√(2z)
 
-### b. `fourthroot((80y^14)/(256z^4))`
+### Step 2: Simplify the Product
 
-`= fourthroot(80y^14) / fourthroot(256z^4)`
+2√(32a³b⁵) · √(8a⁷b²) = 2√(256a¹⁰b⁷) = 2 · 16a⁵b³√b = 32a⁵b³√b
 
-Factor into fourth powers and simplify:
+### Step 3: Multiply Differentradical Terms
 
-`= |y^3| fourthroot(5y^2) / (2z)`
+(7√2 − 3√3)(4√6 + 3√12) = 7√2 · 4√6 + 7√2 · 3√12 − 3√3 · 4√6 − 3√3 · 3√12
 
-## Think About It
+= 28√12 + 21√24 − 12√18 − 9√36
 
-Jon says that `cuberoot(40)` and `6 cuberoot(5)` cannot be combined because they do not have the same radicand. Is he correct? Why?
+= 28 · 2√3 + 21 · 2√6 − 12 · 3√2 − 9 · 6
 
----
+= 56√3 + 42√6 − 36√2 − 54
 
-## Learn: Adding and Subtracting Radical Expressions
+## Example 5 — Real-World Radical Expressions
 
-Radicals can be added or subtracted like monomials, but only if they are **like radical expressions**.
+### Step 1: Trampoline Area
 
-Two radicals are like radicals if:
+Both runways are √3 meters wide. One is 6√3 m long, the other is 5√2 m long.
 
-* they have the same index
-* they have the same radicand
+Area = (6√3)(√3) + (5√2)(√3) = 6 · 3 + 5√6 = 18 + 5√6 square meters
 
-Even if expressions do not initially look alike, simplify them first.
+### Step 2: Walking Distance
 
-Example:
+Jayla walks 5 blocks north and 8 blocks east. Each block is 5√10 yards.
 
-* `sqrt(18) = 3sqrt(2)`
-* `sqrt(32) = 4sqrt(2)`
+Direct distance = √((5 · 5√10)² + (8 · 5√10)²) = √(625 · 10 + 1600 · 10) = √(6250 + 16000) = √(22250) = 50√(8.9) ... simplify to 25√(89) yards
 
-Then they can be combined.
+## Example 6 — Divide and Rationalize
 
-Radicals with the same index can also be multiplied using the Product Property of Radicals.
+### Step 1: Quotients with Radicals
 
-For expressions with more than one term, use the Distributive Property or FOIL.
+√(5a⁵)/√(b¹³) = a²√(5a)/b⁶√b = (a²/b⁶)√(5a/b)
 
----
+### Step 2: Cube Roots
 
-## Example 3 — Add and Subtract Radicals
+³√(6x²)/³√(5y) = ³√((6x²)/(5y))
 
-Simplify:
+### Step 3: Rationalize Denominators
 
-`6sqrt(45x) + sqrt(12) - 3sqrt(20x)`
+3/(√3 − √2) · (√3 + √2)/(√3 + √2) = 3(√3 + √2)/(3 − 2) = 3√3 + 3√2
 
-Factor:
+## Example 7 — More Complex Rationalization
 
-`= 6sqrt(3^2 * 5x) + sqrt(2^2 * 3) - 3sqrt(2^2 * 5x)`
+### Step 1: Conjugate Pairs
 
-Simplify radicals:
+(8√5 − 6√3)(8√5 + 6√3) = (8√5)² − (6√3)² = 64 · 5 − 36 · 3 = 320 − 108 = 212
 
-`= 6(3sqrt(5x)) + 2sqrt(3) - 3(2sqrt(5x))`
-
-`= 18sqrt(5x) + 2sqrt(3) - 6sqrt(5x)`
-
-`= 12sqrt(5x) + 2sqrt(3)`
-
----
-
-## Example 4 — Multiply Radicals
-
-Simplify:
-
-`4 fifthroot(-10x^2y^6) * 3 fifthroot(16x^4y^4)`
-
-Multiply coefficients and radicands:
-
-`= 12 fifthroot((-10x^2y^6)(16x^4y^4))`
-
-Factor and simplify:
-
-`= 12 fifthroot(-1 * 2^5 * 5 * x^5 * x * y^10)`
-
-`= 12(-1)xy^2 fifthroot(5x)`
-
----
-
-## Example 5 — Use the Distributive Property to Multiply Radicals
-
-SPORTS: A sports pennant has the dimensions shown. Find the area, in square inches.
-
-* base: `3sqrt(8) + 4`
-* height: `7sqrt(8) + 6sqrt(3)`
-
-Use `Area = 1/2 * base * height`:
-
-`Area = 1/2 (3sqrt(8) + 4)(7sqrt(8) + 6sqrt(3))`
-
-Apply the Distributive Property:
-
-`= 1/2 [3sqrt(8) * 7sqrt(8) + 3sqrt(8) * 6sqrt(3) + 4 * 7sqrt(8) + 4 * 6sqrt(3)]`
-
-`= 1/2 [21sqrt(8^2) + 18sqrt(24) + 28sqrt(8) + 24sqrt(3)]`
-
-Simplify each radical:
-
-`= 1/2 [168 + 36sqrt(6) + 56sqrt(2) + 24sqrt(3)]`
-
-`= 84 + 18sqrt(6) + 28sqrt(2) + 12sqrt(3)`
-
-So the area of the pennant is:
-
-`84 + 18sqrt(6) + 28sqrt(2) + 12sqrt(3)` square inches.
-
----
-
-## Learn: Rationalizing the Denominator
-
-If a radical expression contains a radical in the denominator, you can rationalize the denominator by multiplying the numerator and denominator by a quantity that produces an exact root in the denominator.
-
-### Watch Out
-
-Do not stop until the result is in simplest form. Check that no radicals remain in the denominator and that individual radicals cannot be simplified further.
-
----
-
-## Example 6 — Rationalize the Denominator
-
-Simplify:
-
-`cuberoot(250a^6) / cuberoot(7a)`
-
-Use the Quotient Property of Radicals:
-
-`= cuberoot(250a^6) / cuberoot(7a)`
-
-Factor into cubes:
-
-`= cuberoot(5^3 * 2 * (a^2)^3) / cuberoot(7a)`
-
-`= 5a^2 cuberoot(2) / cuberoot(7a)`
-
-Multiply numerator and denominator by `cuberoot(7^2 a^2)` to rationalize the denominator:
-
-`= (5a^2 cuberoot(2) / cuberoot(7a)) * (cuberoot(7^2 a^2) / cuberoot(7^2 a^2))`
-
-`= 5a^2 cuberoot(98a^2) / cuberoot(7^3 a^3)`
-
-`= 5a^2 cuberoot(98a^2) / (7a)`
-
-`= 5a cuberoot(98a^2) / 7`
-
----
-
-## Example 7 — Use Conjugates to Rationalize the Denominator
-
-Simplify:
-
-`4x / (2sqrt(7) - 5)`
-
-Multiply numerator and denominator by the conjugate `2sqrt(7) + 5`:
-
-`= (4x / (2sqrt(7) - 5)) * ((2sqrt(7) + 5) / (2sqrt(7) + 5))`
-
-Multiply:
-
-`= [4x(2sqrt(7)) + 4x(5)] / [(2sqrt(7))^2 + 5(2sqrt(7)) - 5(2sqrt(7)) - 5^2]`
-
-`= (8xsqrt(7) + 20x) / (28 - 25)`
-
-`= (8xsqrt(7) + 20x) / 3`
-
----
-
-## Objective Alignment
-
-- `Simplify radical expressions`: Primary worked examples: Examples 1-2.
-- `Add, subtract, and multiply radicals`: Primary worked examples: Examples 3-5.
-- `Divide and simplify radical expressions by rationalizing the denominator`: Primary worked examples: Examples 6-7.
+### Step 2: Trinomial Conjugates
+
+(6√3 + 5√2)(2√6 + 3√8) = multiply out and simplify
+
+## Mixed Exercises
+
+The mixed exercises section provides practice with all skills from the lesson. Problems include:
+
+* Simplifying various radical expressions with different indices.
+* Rationalizing denominators with single and binomial radical expressions.
+* Finding side length of a cube with the same volume as a rectangular prism.
+* Music problem about frequency ratios with √[12]{2}.
+* Physics problem simplifying √(t/u) for wave speed.
+* Light intensity problem finding d₂/d₁ given I₁ = 50 and I₂ = 24.
+* Racing problem comparing times and speeds of two runners.
+* Comparing side length ratios of cubes given volumes or surface areas.
+* Regularity problem generalizing √x(√x + √(4x) + ... + √(n²x)).
+* Modeling trapezoid area to find height.
+* Constructing arguments about spherical paperweight packaging.
+* Finding combinations of whole numbers for which √[a]{256} = b.
+* Proving that (−1 − i√3)/2 is a cube root of 1.
+* Explaining why absolute values may be unnecessary when an nth root of an even power results in an odd power.
+* Determining which radical expression doesn't belong.
+
+## Review Notes
+
+* ![](media/image1.png) — Diagram for racing problem (problem 51)
+* ![](media/image2.png) — Trapezoid diagram for modeling problem (problem 54)
+* ![](media/image3.png) — Student work for Twyla and Brandon simplifying 4√32 + 6√18 (problem 56)
+* ![](media/image4.png) — Radical expressions for "Which One Doesn't Belong?" problem (problem 60)
+* Images referenced in the worksheet could not be fully described without visual reference. Teachers should consult the original worksheet for exact diagrams and values.
+* The worksheet contains 60 practice problems across seven examples and mixed exercises.

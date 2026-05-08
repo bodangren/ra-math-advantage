@@ -1,0 +1,226 @@
+# Lesson 14-7 — Triangles and Coordinate Proof
+
+Source: (Module 14, Lesson 14-7, Int1_1407_practice.docx)
+
+## Today's Goals
+
+* Position and label triangles on the coordinate plane using given side lengths and properties.
+* Determine missing coordinates of triangle vertices from diagrams on the coordinate plane.
+* Write coordinate proofs for geometric statements about triangles.
+* Apply coordinate geometry and the Distance Formula to classify triangles in real-world contexts.
+* Use algebraic reasoning to find coordinates that produce a specific type of triangle.
+
+## Vocabulary
+
+* **Coordinate Proof** — A style of proof that places geometric figures on the coordinate plane and uses coordinates, slopes, distances, and midpoints to verify geometric properties.
+* **Isosceles Triangle** — A triangle with at least two congruent sides.
+* **Right Triangle** — A triangle containing exactly one right angle.
+* **Isosceles Right Triangle** — A right triangle with two congruent legs.
+* **Hypotenuse** — The side opposite the right angle in a right triangle; the longest side.
+* **Leg** — One of the two sides that form the right angle in a right triangle.
+* **Midpoint** — The point that divides a segment into two congruent segments.
+* **Midsegment** — A segment connecting the midpoints of two sides of a triangle.
+* **Distance Formula** — A formula used to find the distance between two points [(x_1, y_1)] and [(x_2, y_2)]: [d = \sqrt{(x_2 - x_1)^2 + (y_2 - y_1)^2}].
+* **Slope** — A measure of the steepness of a line, calculated as [\frac{y_2 - y_1}{x_2 - x_1}].
+
+## Explore: How Can the Coordinate Plane Help Prove Things About Triangles?
+
+Students consider why placing a triangle on the coordinate plane might make it easier to prove geometric properties. They discuss strategies such as using the origin as a vertex, placing sides on the axes, and choosing convenient coordinates.
+
+Inquiry Question:
+Why is it helpful to place one vertex of a triangle at the origin and one side along an axis when writing a coordinate proof?
+
+## Learn: Triangles and Coordinate Proof
+
+Coordinate geometry combines algebra and geometry. By placing triangles strategically on the coordinate plane, we can use formulas for distance, slope, and midpoint to verify geometric relationships.
+
+### Key Concept: Placing Triangles on the Coordinate Plane
+
+When positioning a triangle for a coordinate proof, choose coordinates that simplify calculations:
+
+* Place one vertex at the origin [(0, 0)].
+* Place at least one side on the [x]-axis or [y]-axis.
+* Use variables to represent unknown lengths so the proof applies to any triangle with the given properties.
+
+For an isosceles triangle with base [\overline{AB}] of length [a] and height [b]:
+[
+A(0, 0), \quad B(a, 0), \quad C\left(\frac{a}{2}, b\right)
+]
+
+For a right triangle with legs along the axes:
+[
+J(0, 0), \quad K(a, 0), \quad L(0, b)
+]
+
+### Key Concept: Writing a Coordinate Proof
+
+A coordinate proof follows the same logical structure as other proofs, but uses coordinates to establish facts:
+
+1. Position and label the figure on the coordinate plane.
+2. State the Given and Prove.
+3. Use the Distance Formula, midpoint formula, or slope formula to establish relationships.
+4. Draw the conclusion.
+
+### Key Concept: Classifying Triangles Using Coordinates
+
+To classify a triangle from its vertices, calculate the lengths of all three sides using the Distance Formula, then compare:
+
+* If all three side lengths are different, the triangle is scalene.
+* If at least two side lengths are equal, the triangle is isosceles.
+* If all three side lengths are equal, the triangle is equilateral.
+* If the side lengths satisfy the Pythagorean Theorem, the triangle is right.
+
+## Example 1 — Position and Label Triangles on the Coordinate Plane
+
+Use given properties and side lengths to assign coordinates to the vertices of triangles, placing them strategically to simplify future calculations.
+
+### Step 1: Position an Isosceles Triangle
+
+Place the base on the [x]-axis with one endpoint at the origin. Use the given base length and height to locate the third vertex directly above the midpoint of the base.
+
+For an isosceles triangle with base [\overline{AB}] of length [a] and height [b]:
+[
+A(0, 0), \quad B(a, 0), \quad C\left(\frac{a}{2}, b\right)
+]
+
+### Step 2: Position a Right Triangle
+
+Place the right angle at the origin with the legs along the axes. Use the given leg lengths to locate the remaining vertices.
+
+For a right triangle with one leg [b] units long and the other leg three times as long:
+[
+X(0, 0), \quad Y(0, b), \quad Z(3b, 0)
+]
+
+### Step 3: Position an Isosceles Right Triangle
+
+Place the right angle at the origin with the congruent legs along the axes. Use the given leg length to locate the vertices.
+
+For an isosceles right triangle with legs [3a] units long:
+[
+R(0, 0), \quad S(3a, 0), \quad T(0, 3a)
+]
+
+Note that the hypotenuse is [\overline{RS}] in this labeling, so adjust vertex labels accordingly.
+
+### Step 4: Position a Right Triangle with Given Leg Lengths
+
+Place the right angle at the origin with legs along the axes. Use the given expressions for leg lengths.
+
+For a right triangle with legs [a] and [4b]:
+[
+J(0, 0), \quad K(a, 0), \quad L(0, 4b)
+]
+
+## Example 2 — Find Missing Coordinates of Triangles
+
+Given diagrams of triangles on the coordinate plane with some coordinates missing, use properties of the triangle and the placement strategy to determine the unknown coordinates.
+
+### Step 1: Identify the Triangle Type and Placement
+
+Determine whether the triangle is isosceles, right, or isosceles right, and note which sides lie on axes or have known endpoints.
+
+### Step 2: Use Symmetry and Properties
+
+For an isosceles triangle with a vertex on an axis of symmetry, use the fact that the base is horizontal or vertical to find the missing [x]- or [y]-coordinate.
+
+For a right triangle with the right angle at the origin and one leg along an axis, the missing coordinate is determined by the given leg length.
+
+### Step 3: Verify the Coordinates
+
+Check that the coordinates satisfy the given conditions, such as equal side lengths for an isosceles triangle or perpendicular sides for a right triangle.
+
+## Examples 3 and 4 — Write Coordinate Proofs
+
+Write formal coordinate proofs for geometric statements about triangles. Each proof requires positioning the triangle, stating the given information, and using algebraic calculations to reach the conclusion.
+
+### Step 1: Prove Midsegments Form a Right Triangle
+
+Position a right triangle with vertices at convenient coordinates. Find the midpoints of each side using the midpoint formula, then show that the triangle formed by connecting these midpoints contains a right angle by showing two of its sides have opposite reciprocal slopes.
+
+Given the midpoints [R], [P], and [Q] of the sides of a right triangle, show:
+[
+\triangle RPQ \text{ is a right triangle}
+]
+
+### Step 2: Prove a Segment to the Base Is Perpendicular
+
+Position an isosceles triangle with its base on the [x]-axis and its vertex on the [y]-axis. Use the midpoint formula to find the midpoint of the base, then show that the segment from the vertex to this midpoint is vertical while the base is horizontal, making them perpendicular.
+
+Show:
+[
+\overline{SU} \perp \overline{RT}
+]
+
+### Step 3: Prove a Segment to the Hypotenuse Is Perpendicular
+
+Position an isosceles right triangle with the right angle at the origin and legs along the axes. Find the midpoint of the hypotenuse, then show that the segment from the right-angle vertex to this midpoint is perpendicular to the hypotenuse by comparing slopes.
+
+Show:
+[
+\overline{BM} \perp \overline{AC}
+]
+
+### Step 4: Prove a Segment Equals Half the Hypotenuse
+
+Position a right triangle with the right angle at one vertex and the hypotenuse opposite. Find the midpoint of the hypotenuse, then use the Distance Formula to show that the distance from the right-angle vertex to the midpoint equals half the length of the hypotenuse.
+
+Show:
+[
+AP = \frac{1}{2}BC
+]
+
+### Step 5: Prove the Midsegment Theorem
+
+Position a general triangle on the coordinate plane. Find the midpoints of two sides, then use the Distance Formula to show that the segment connecting these midpoints has length equal to half the length of the third side.
+
+Show:
+[
+ST = \frac{1}{2}AB
+]
+
+## Example 5 — Apply Coordinate Geometry to Real-World Problems
+
+Use the Distance Formula and coordinate geometry to classify triangles formed by real-world locations described by their positions relative to a reference point.
+
+### Step 1: Assign Coordinates to Locations
+
+Use a reference point as the origin and translate directional descriptions into coordinates. East and north correspond to positive directions; west and south correspond to negative directions.
+
+For example, if a school is at the origin, a home 6 miles east and 4 miles north has coordinates [(6, 4)], and a mall 2 miles west and 3 miles north has coordinates [(-2, 3)].
+
+### Step 2: Calculate Side Lengths
+
+Apply the Distance Formula to find the three distances between the locations:
+[
+d = \sqrt{(x_2 - x_1)^2 + (y_2 - y_1)^2}
+]
+
+### Step 3: Classify the Triangle
+
+Compare the three side lengths to classify the triangle as scalene, isosceles, equilateral, and/or right. Check whether the Pythagorean Theorem holds to determine if the triangle is right.
+
+### Step 4: Estimate and Verify
+
+For problems that ask for an estimate first, make a visual or rough calculation to predict the triangle type, then verify with precise coordinate calculations.
+
+## Mixed Exercises
+
+The mixed exercises section provides practice with all skills from the lesson: positioning triangles on the coordinate plane, finding missing coordinates, writing coordinate proofs, and applying coordinate geometry to real-world contexts. Problems include:
+
+* Determining whether given coordinates can form a right triangle by applying the Distance Formula and the converse of the Pythagorean Theorem.
+* Finding coordinates for the acute angles of a right isosceles triangle placed in Quadrant I with the right angle at the origin.
+* Finding the third vertex of an isosceles triangle when the base is on the [y]-axis with one endpoint at the origin and the opposite vertex is known.
+* Describing the main steps of a coordinate proof to show two angles in different triangles are congruent.
+* Determining whether a triangular community garden has any congruent angles and writing a coordinate proof to justify the answer.
+* Finding the coordinates of midpoints of the sides of an isosceles triangle with given vertex coordinates.
+* Describing sets of points in the coordinate plane that could or could not serve as the third vertex of a triangle with two given vertices.
+* Describing sets of points that would form an isosceles triangle or a right triangle with two given vertices.
+* Drawing an isosceles right triangle so that the midpoint of its hypotenuse is at the origin.
+* Explaining why placing a vertex at the origin, a side on an axis, and keeping the triangle in the first quadrant simplifies coordinate proofs.
+* Finding coordinates for a third vertex that produce a scalene, right, or isosceles triangle when two vertices are given in terms of variables.
+* Analyzing the relationship between the midpoints of a triangle's sides and its vertices to find missing vertex coordinates.
+
+## Review Notes
+
+* Images referenced in the worksheet (triangle diagrams for Example 2 problems 5–8, diagrams for coordinate proof problems 9–13, neighborhood map for problem 14, county fair map for problem 15, 5K run course map for problem 16, shelf bracket diagram for problem 19, flag diagram for problem 20, quilt patch diagram for problem 21, community garden fence diagram for problem 22) could not be fully described without visual reference. Teachers should consult the original worksheet for exact diagrams, coordinates, and measurements.

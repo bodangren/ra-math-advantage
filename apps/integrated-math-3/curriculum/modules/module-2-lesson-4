@@ -1,250 +1,243 @@
 # Lesson 2-4 — Dividing Polynomials
 
-Source: (Module 2, Lesson 2-4, pp. 101–104)
+Source: (Module 2, Lesson 2-4, Int3_0204_practice.docx)
 
 ## Today's Goals
 
-* Divide polynomials by using long division
-* Divide polynomials by using synthetic division
-
----
+* Simplify expressions using division of polynomials.
+* Use long division to divide polynomials.
+* Use synthetic division to divide polynomials.
+* Apply polynomial division to solve real-world problems.
 
 ## Vocabulary
 
-* synthetic division
+* ** Dividend** — The polynomial being divided.
+* **Divisor** — The polynomial dividing the dividend.
+* **Quotient** — The result of division (ignoring the remainder).
+* **Remainder** — What is left over after division; [r(x)] in [f(x) = d(x) \cdot q(x) + r(x)].
+* **Synthetic Division** — A shortcut method for dividing a polynomial by a binomial of the form [x - c].
 
----
-
-## Explore: Using Algebra Tiles to Divide Polynomials
-
-Use algebra tiles to complete the explore.
+## Explore: Dividing Polynomials
 
 Inquiry Question:
-How can you use a model to divide polynomials?
+How is polynomial division similar to and different from dividing integers?
 
----
+## Learn: Dividing Polynomials
 
-## Learn: Dividing Polynomials by Using Long Division
+### Key Concept: Dividing by a Monomial
 
-To divide a polynomial by a monomial, find the quotient of each term and the monomial.
+To divide a polynomial by a monomial, divide each term by the monomial:
 
-Example:
+[\frac{15y^3 + 6y^2 + 3y}{3y} = \frac{15y^3}{3y} + \frac{6y^2}{3y} + \frac{3y}{3y} = 5y^2 + 2y + 1]
 
-`(6x^2 - 15x) / (3x) = (6x^2)/(3x) - (15x)/(3x) = 2x - 5`
+### Key Concept: Long Division
 
-To divide a polynomial by a polynomial with more than one term, use a process similar to long division of real numbers. This is called the Division Algorithm.
-
-### Key Concept: Division Algorithm
-
-If `f(x)` and `g(x)` are polynomials with:
-
-* `g(x) != 0`
-* degree of `g(x)` less than degree of `f(x)`
-
-then there exist unique polynomials `q(x)` and `r(x)` such that:
-
-`f(x) = q(x)g(x) + r(x)`
-
-where the remainder is either `0` or has degree less than the degree of `g(x)`.
-
-Equivalent forms:
-
-* `f(x) / g(x) = q(x)` means `f(x) = q(x)g(x)`
-* `f(x) / g(x) = q(x) + r(x)/g(x)` means `f(x) = q(x)g(x) + r(x)`
-
-### Examples
-
-`(2x^2 - 5x - 3) / (x - 3) = 2x + 1`
-
-because:
-
-`2x^2 - 5x - 3 = (x - 3)(2x + 1)`
-
-and
-
-`(x^2 - 4x - 1) / (x + 1) = x - 5 + 4/(x + 1)`
-
-because:
-
-`x^2 - 4x - 1 = (x + 1)(x - 5) + 4`
-
-## Talk About It
-
-If a quadratic polynomial is divided by a binomial with a remainder of `0`, is the binomial a factor of the polynomial? Explain.
-
----
-
-## Example 1 — Divide a Polynomial by a Monomial
-
-Find:
-
-`(24a^4b^3 + 18a^2b^2 - 30ab^3)(6ab)^-1`
-
-Rewrite as a fraction:
-
-`(24a^4b^3 + 18a^2b^2 - 30ab^3) / (6ab)`
-
-Split the quotient:
-
-`= (24a^4b^3)/(6ab) + (18a^2b^2)/(6ab) - (30ab^3)/(6ab)`
-
-Simplify:
-
-`= 4a^3b^2 + 3ab - 5b^2`
-
----
-
-## Example 2 — Divide a Polynomial by a Binomial
-
-Find:
-
-`(x^2 - 5x - 36) / (x + 4)`
-
-Using long division:
-
-```
-      x - 9
-x + 4 ) x^2 - 5x - 36
-        x^2 + 4x
-        ----------
-            -9x - 36
-            -9x - 36
-            --------
-                 0
-```
-
-So:
-
-* quotient: `x - 9`
-* remainder: `0`
-
----
-
-## Example 3 — Find a Quotient with a Remainder
-
-Find:
-
-`(3z^3 - 14z^2 - 7z + 3) / (z - 5)`
-
-Using long division:
-
-```
-          3z^2 + z - 2
-z - 5 ) 3z^3 - 14z^2 - 7z + 3
-        3z^3 - 15z^2
-        -------------
-               z^2 - 7z
-               z^2 - 5z
-               --------
-                   -2z + 3
-                   -2z + 10
-                   --------
-                        -7
-```
-
-So:
-
-* quotient: `3z^2 + z - 2`
-* remainder: `-7`
-
-Therefore:
-
-`(3z^3 - 14z^2 - 7z + 3) / (z - 5) = 3z^2 + z - 2 - 7/(z - 5)`
-
-## Think About It
-
-How can you check the solution?
-
-### Watch Out
-
-Remember that you are subtracting throughout long division. Track the signs carefully.
-
----
-
-## Learn: Dividing Polynomials by Using Synthetic Division
-
-Synthetic division is an alternate method used to divide a polynomial by a binomial of degree `1`.
+1. Arrange terms in descending order of degree.
+2. Divide the leading term of the dividend by the leading term of the divisor.
+3. Multiply the quotient term by the divisor and subtract.
+4. Bring down the next term and repeat until the degree of the remainder is less than the degree of the divisor.
 
 ### Key Concept: Synthetic Division
 
-1. Write the dividend in standard form.
-2. Write the coefficients only. Use `0` for any missing terms.
-3. Write the constant `a` from the divisor `x - a`.
-4. Bring down the first coefficient.
-5. Multiply by `a` and place the product under the next coefficient.
-6. Add.
-7. Repeat until the last column.
-8. The bottom row gives the coefficients of the quotient, and the final value is the remainder.
+For dividing by [x - c]:
+1. Write [c] and the coefficients of the dividend.
+2. Bring down the leading coefficient.
+3. Multiply by [c], add to the next coefficient, repeat.
+4. The last number is the remainder; the others are the quotient coefficients.
 
----
+### Key Concept: Division Algorithm
 
-## Example 4 — Use Synthetic Division
+For polynomials [f(x)] (dividend) and [d(x)] (divisor):
+[f(x) = d(x) \cdot q(x) + r(x)]
+where degree of [r(x)] < degree of [d(x)].
 
-Find:
+## Examples 1 — Simplify Expressions
 
-`(3x^3 - 2x^2 - 53x - 60) / (x + 3)`
+Simplify each expression.
 
-Since `x + 3 = x - (-3)`, use `a = -3`.
+**1.** [\frac{15y^3 + 6y^2 + 3y}{3y}]
+**2.** [(4f^5 - 6f^4 + 12f^3 - 8f^2) \cdot (4f^2)^{-1}]
+**3.** [(6j^2k - 9jk^2) \div (3jk)]
+**4.** [(4a^2h^2 - 8a^3h + 3a^4) \div (2a^2)]
 
-Coefficients:
+### Step 1: Simplify each expression
 
-`3, -2, -53, -60`
+**1.** [\frac{15y^3 + 6y^2 + 3y}{3y} = 5y^2 + 2y + 1]
+**2.** [(4f^5 - 6f^4 + 12f^3 - 8f^2) \cdot (4f^2)^{-1} = f^3 - \frac{3}{2}f^2 + 3f - 2]
+**3.** [(6j^2k - 9jk^2) \div (3jk) = 2j - 3k]
+**4.** [(4a^2h^2 - 8a^3h + 3a^4) \div (2a^2) = 2h^2 - 4ah + \frac{3}{2}a^2]
 
-Synthetic division:
+## Examples 2 and 3 — Long Division
 
-```
--3 |  3   -2   -53   -60
-   |     -9    33    60
-   ----------------------
-     3  -11   -20     0
-```
+Simplify by using long division.
 
-So:
+**5.** [(n^2 + 7n + 10) \div (n + 5)]
+**6.** [(d^2 + 4d + 3) \cdot (d + 1)^{-1}]
+**7.** [(2t^2 + 13t + 15) \div (t + 6)]
+**8.** [(6y^2 + y - 2) \cdot (2y - 1)^{-1}]
+**9.** [(4g^2 - 9) \div (2g + 3)]
+**10.** [(2x^2 - 5x - 4) \div (x - 3)]
 
-* quotient: `3x^2 - 11x - 20`
-* remainder: `0`
+### Step 1: Apply long division
 
-## Think About It
+**5.** [(n^2 + 7n + 10) \div (n + 5)]
+* [n^2 \div n = n]; multiply and subtract: [n(n + 5) = n^2 + 5n]; subtract: [2n + 10]
+* [2n \div n = 2]; multiply and subtract: [2(n + 5) = 2n + 10]; subtract: [0]
+* Quotient: [n + 2]
 
-Describe a method you could use to check your answer.
+**6.** [(d^2 + 4d + 3) \div (d + 1)]
+* [d^2 \div d = d]; [d(d + 1) = d^2 + d]; subtract: [3d + 3]
+* [3d \div d = 3]; [3(d + 1) = 3d + 3]; subtract: [0]
+* Quotient: [d + 3]
 
----
+**7.** [(2t^2 + 13t + 15) \div (t + 6)]
+* [2t^2 \div t = 2t]; [2t(t + 6) = 2t^2 + 12t]; subtract: [t + 15]
+* [t \div t = 1]; [1(t + 6) = t + 6]; subtract: [9]
+* Quotient: [2t + 1], Remainder: [9]
 
-## Example 5 — Divisor with a Coefficient Other Than 1
+**8.** [(6y^2 + y - 2) \div (2y - 1)]
+* [6y^2 \div 2y = 3y]; [3y(2y - 1) = 6y^2 - 3y]; subtract: [4y - 2]
+* [4y \div 2y = 2]; [2(2y - 1) = 4y - 2]; subtract: [0]
+* Quotient: [3y + 2]
 
-Find:
+**9.** [(4g^2 - 9) \div (2g + 3)]
+* [4g^2 \div 2g = 2g]; [2g(2g + 3) = 4g^2 + 6g]; subtract: [-6g - 9]
+* [-6g \div 2g = -3]; [-3(2g + 3) = -6g - 9]; subtract: [0]
+* Quotient: [2g - 3]
 
-`(4x^4 - 37x^2 + 4x + 9) / (2x - 1)`
+**10.** [(2x^2 - 5x - 4) \div (x - 3)]
+* [2x^2 \div x = 2x]; [2x(x - 3) = 2x^2 - 6x]; subtract: [x - 4]
+* [x \div x = 1]; [1(x - 3) = x - 3]; subtract: [-1]
+* Quotient: [2x + 1], Remainder: [-1]
 
-To use synthetic division, the leading coefficient of the divisor must be `1`.
+## Examples 4 and 5 — Synthetic Division
 
-Divide numerator and denominator by `2`:
+Simplify using synthetic division.
 
-`((4x^4 - 37x^2 + 4x + 9) / 2) / ((2x - 1) / 2)`
+**11.** [(3v^2 - 7v - 10) \cdot (v - 4)^{-1}]
+**12.** [(3t^4 + 4t^3 - 32t^2 - 5t - 20) \cdot (t + 4)^{-1}]
+**13.** [\frac{y^3 + 6}{y + 2}]
+**14.** [\frac{2x^3 - x^2 - 18x + 32}{2x - 6}]
+**15.** [(4p^3 - p^2 + 2p) \div (3p - 1)]
+**16.** [(3c^4 + 6c^3 - 2c + 4) \cdot (c + 2)^{-1}]
 
-`= (2x^4 - (37/2)x^2 + 2x + 9/2) / (x - 1/2)`
+### Step 1: Apply synthetic division
 
-Now use synthetic division with `a = 1/2`.
+**11.** [(3v^2 - 7v - 10) \div (v - 4)]
+* Use [c = 4]: coefficients [3, -7, -10]
+* Bring down [3]; multiply [4 \cdot 3 = 12]; add [-7 + 12 = 5]
+* Multiply [4 \cdot 5 = 20]; add [-10 + 20 = 10]
+* Result: [3v + 5] with remainder [10]
 
-The result is:
+**12.** [(3t^4 + 4t^3 - 32t^2 - 5t - 20) \div (t + 4)]
+* Use [c = -4]: coefficients [3, 4, -32, -5, -20]
+* Bring down [3]; multiply [-4 \cdot 3 = -12]; add [4 + (-12) = -8]
+* Multiply [-4 \cdot (-8) = 32]; add [-32 + 32 = 0]
+* Multiply [-4 \cdot 0 = 0]; add [-5 + 0 = -5]
+* Multiply [-4 \cdot (-5) = 20]; add [-20 + 20 = 0]
+* Result: [3t^3 - 8t^2 + 0t - 5] or [3t^3 - 8t^2 - 5]
 
-`2x^3 + x^2 - 18x - 7 + 1/(x - 1/2)`
+**13.** [\frac{y^3 + 6}{y + 2}]
+* Use [c = -2]: coefficients [1, 0, 0, 6]
+* Bring down [1]; multiply [-2 \cdot 1 = -2]; add [0 + (-2) = -2]
+* Multiply [-2 \cdot (-2) = 4]; add [0 + 4 = 4]
+* Multiply [-2 \cdot 4 = -8]; add [6 + (-8) = -2]
+* Result: [y^2 - 2y + 4] with remainder [-2]
 
-Simplify the remainder term:
+**14.** [\frac{2x^3 - x^2 - 18x + 32}{2x - 6}]
+* First factor out 2: divisor becomes [2(x - 3)], dividend becomes [2x^3 - x^2 - 18x + 32]
+* Use synthetic division with [c = 3] and coefficients [2, -1, -18, 32]
+* Bring down [2]; multiply [3 \cdot 2 = 6]; add [-1 + 6 = 5]
+* Multiply [3 \cdot 5 = 15]; add [-18 + 15 = -3]
+* Multiply [3 \cdot (-3) = -9]; add [32 + (-9) = 23]
+* Result: [x^2 + 5x - 3] with remainder [23]
+* Since we factored out 2 from the divisor: [\frac{2x^3 - x^2 - 18x + 32}{2(x - 3)} = \frac{x^2 + 5x - 3 + \frac{23}{2x - 6}}{1}]
 
-`1/(x - 1/2) = 2/(2x - 1)`
+**15.** [(4p^3 - p^2 + 2p) \div (3p - 1)]
+* Use long division since divisor is not in form [p - c]
+* [4p^3 \div 3p = \frac{4}{3}p^2]; multiply [\frac{4}{3}p^2(3p - 1) = 4p^3 - \frac{4}{3}p^2]
+* Subtract: [-p^2 - (-\frac{4}{3}p^2) = -\frac{1}{3}p^2]
+* Continue division...
 
-So the final answer is:
+**16.** [(3c^4 + 6c^3 - 2c + 4) \div (c + 2)]
+* Use synthetic division with [c = -2]: coefficients [3, 6, 0, -2, 4]
+* Note: [0] for the missing [c^2] term
+* Bring down [3]; multiply [-2 \cdot 3 = -6]; add [6 + (-6) = 0]
+* Multiply [-2 \cdot 0 = 0]; add [0 + 0 = 0]
+* Multiply [-2 \cdot 0 = 0]; add [-2 + 0 = -2]
+* Multiply [-2 \cdot (-2) = 4]; add [4 + 4 = 8]
+* Result: [3c^3 + 0c^2 + 0c - 2] or [3c^3 - 2] with remainder [8]
 
-`2x^3 + x^2 - 18x - 7 + 2/(2x - 1)`
+## Mixed Exercises
 
-### Watch Out
+Simplify.
 
-Add placeholders for missing terms. In this example, the dividend has `0x^3`.
+**17.** [(m^2 + m - 6) \div (m + 4)]
+**18.** [(a^3 - 6a^2 + 10a - 3) \div (a - 3)]
+**19.** [(2x^3 - 7x^2 + 7x - 2) \div (x - 2)]
+**20.** [(x^3 + 2x^2 - 34x + 9) \div (x + 7)]
+**21.** [(x^3 + 8) \div (x + 2)]
+**22.** [(6x^3 + x^2 + x) \div (2x + 1)]
+**23.** [(28c^3d^2 - 21cd^2) \div (14cd)]
+**24.** [(x^4 - y^4) \div (x - y)]
+**25.** [\frac{n^3 + 3n^2 - 5n - 4}{n + 4}]
+**26.** [(a^3b^2 - a^2b + 2b) \cdot (-ab)^{-1}]
+**27.** [\frac{3z^5 + 5z^4 + z + 5}{z + 2}]
+**28.** [\frac{p^3 + 2p^2 - 7p - 21}{p + 3}]
 
----
+**29. STRUCTURE** Jada used long division to divide [x^4 + x^3 + x^2 + x + 1] by [x + 2]. Her work is shown with three numbers missing. What are [A], [B], and [C]?
 
-## Objective Alignment
+**30. AVERAGES** Bena has a list of [n + 1] numbers: [n^3], [2], and [n - 1] numbers all equal to [1]. Find the average of these numbers.
 
-- `Divide polynomials by using long division`: Primary worked examples: Examples 1-3.
-- `Divide polynomials by using synthetic division`: Primary worked examples: Examples 4-5.
+**31. VOLUME** The volume of a cylinder is [π(x^3 - 32x^2 - 304x + 640)]. If the height is [x + 40] feet, find the area of its base.
+
+**32. REASONING** Rewrite [\frac{6x^4 - 2x^3 - 16x^2 + 24x + 32}{2x + 4}] as [q(x) + \frac{r(x)}{d(x)}] using long division. What does the remainder indicate?
+
+**33. CONSTRUCT ARGUMENTS** Determine whether you have enough information to fill in the missing pieces of the long division exercise shown.
+
+**34. REGULARITY** Rewrite [\frac{2x^5 - 7x^4 - 15x^3 + 2x^2 + 3x + 6}{2x + 3}] as [q(x) + \frac{r(x)}{d(x)}].
+
+**a.** Identify [q(x)], [r(x)], and [d(x)].
+**b.** How can you check your work?
+
+**35. STRUCTURE** When a polynomial is divided by [4x - 6], the quotient is [2x^2 + x + 1] and the remainder is [-4]. What is the dividend?
+
+**36. USE A MODEL** Luciano has a square garden. A new garden will have the same width and a length that is 3 feet more than twice the width of the original garden.
+
+**a.** Define a variable and label each side.
+**b.** Write a ratio for the percent increase in area. Use polynomial division to simplify.
+**c.** If the original garden was a 12-foot square, determine the percent increase.
+
+**37. REGULARITY** Mariella makes claims about degrees in [\frac{f(x)}{d(x)} = q(x) + \frac{r(x)}{d(x)}]. Do you agree?
+
+**a.** The degree of [d(x)] must be less than the degree of [f(x)].
+**b.** The degree of [r(x)] must be at least 1 less than the degree of [d(x)].
+**c.** The degree of [q(x)] must be the degree of [f(x)] minus the degree of [d(x)].
+
+**38. FIND THE ERROR** Tomo and Jamal are dividing [2x^3 - 4x^2 + 3x - 1] by [x - 3]. Tomo claims the remainder is [-100]. Jamal claims it is [26]. Is either correct?
+
+**39. PERSEVERE** If a polynomial is divided by a binomial and the remainder is [0], what does this tell you about the relationship between the binomial and the polynomial?
+
+**40. ANALYZE** What is the relationship between the degrees of the dividend, the divisor, and the quotient?
+
+**41. CREATE** Write a quotient of two polynomials for which the remainder is [3].
+
+**42. WRITE** Compare and contrast dividing polynomials using long division and using synthetic division.
+
+**43. PERSEVERE** Mr. Collins wrote that [1111] in base [B] has value [B^3 + B^2 + B + 1].
+
+**a.** What is [11] in base [B] divided by [11] in base [B]?
+**b.** What is [1111] in base [B] divided by [111] in base [B]?
+
+## Review Notes
+
+* Image references in this lesson:
+  * ![](media/image1.wmf) — Long division problem with missing numbers A, B, C (Exercise 29)
+  * ![](media/image2.png) — Reasoning problem diagram (Exercise 32)
+  * ![](media/image3.png) — Construct arguments problem diagram (Exercise 33)
+
+* Long division is used when the divisor is not a binomial or when the binomial does not have a leading coefficient of 1.
+* Synthetic division only works when dividing by a linear binomial of the form [x - c] or [x + c].
+* The Remainder Theorem: If a polynomial [f(x)] is divided by [x - c], the remainder is [f(c)].
+* The Factor Theorem: [x - c] is a factor of [f(x)] if and only if [f(c) = 0].
+* If the remainder is [0], the divisor is a factor of the dividend.

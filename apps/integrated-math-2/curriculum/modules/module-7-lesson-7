@@ -1,0 +1,102 @@
+# Lesson 7-7 — Conditional Probability
+
+Source: (Module 7, Lesson 7-7, Int2_0707_practice.docx)
+
+## Today's Goals
+
+* Calculate conditional probabilities using the definition [P(B | A) = \frac{P(A \cap B)}{P(A)}].
+* Find probabilities given new information that restricts the sample space.
+* Determine whether two events are independent using conditional probability.
+* Apply conditional probability to real-world scenarios involving Venn diagrams and two-way tables.
+
+## Vocabulary
+
+* **Conditional Probability** — The probability of an event occurring given that another event has already occurred; [P(B | A)].
+* **Given Information** — The event that has already occurred, which restricts the sample space.
+* **Restricted Sample Space** — The set of outcomes that satisfy the given condition.
+* **Independence** — Two events A and B are independent if [P(B | A) = P(B)] or equivalently [P(A | B) = P(A)].
+
+## Explore: How New Information Changes Probability
+
+Students consider how knowing that one event has occurred changes the possible outcomes for another event.
+
+Inquiry Question:
+If you know that a card drawn from a deck is a face card, what is the probability it is a king? How does the given information change your calculation?
+
+## Learn: Conditional Probability
+
+### Key Concept: Definition of Conditional Probability
+
+[P(B | A) = \frac{P(A \cap B)}{P(A)}]
+
+This formula arises from restricting the sample space to only the outcomes in event A.
+
+**Example:** From a standard deck, P(king | face card):
+Face cards = {Jacks, Queens, Kings} of all 4 suits = 12 cards
+Kings among face cards = 4 kings
+[P(king | face card) = \frac{4}{12} = \frac{1}{3}]
+
+### Key Concept: Conditional Probability from Tables
+
+When data is presented in a Venn diagram or two-way table, conditional probability restricts to the row or column of the given event.
+
+[P(B | A) = \frac{\text{count in } A \cap B}{\text{count in } A}]
+
+### Key Concept: Testing for Independence
+
+Events A and B are independent if:
+[P(B | A) = P(B)] or [P(A | B) = P(A)]
+
+If knowing A occurred does not change the probability of B, the events are independent.
+
+## Example 1 — Conditional Probability
+
+### Step 1: Identify the Given Event and Apply Definition
+
+**Problem 1:** Spanish Club — 10 students draw cards 1–10. Odd numbers bring main dishes, even numbers bring desserts. Given Cynthia is bringing a dessert, what is P(she drew 10)?
+Given: Cynthia drew an even number (1, 2, 4, 6, 8, 10) — sample space size = 5
+Favorable: 10 is one of the options
+[P(10 | even) = \frac{1}{5}]
+
+**Problem 2:** Card drawn from standard deck. P(king of diamonds | card is a king).
+Given: card is a king (4 possible kings)
+[P(king of diamonds | king) = \frac{1}{4}]
+
+**Problem 3:** Spinner with 7 colors of the rainbow. P(blue | primary color).
+Primary colors: red, yellow, blue — only 3 possible outcomes in restricted space.
+[P(blue | primary) = \frac{1}{3}]
+
+**Problem 4:** Cards 1–15 in a hat. P(multiple of 3 | odd).
+Odd numbers: {1, 3, 5, 7, 9, 11, 13, 15} — 8 cards
+Multiples of 3 among these: {3, 9, 15}
+[P(multiple of 3 | odd) = \frac{3}{8}]
+
+## Mixed Exercises
+
+Problems 5–14 provide practice with all skills:
+
+* Blue marble selected (not replaced) from 3 red and 9 blue — find P(second blue).
+* Die rolled — P(2 | number < 5).
+* Two dice rolled — P(sum = 4 | first die odd).
+* Spinner 1–12 — P(11 | odd number spun).
+* Two dice rolled — P(sum = 8 | first die even).
+* Picnic: 60% order hamburger, 48% order hamburger and chips.
+  * P(chips | hamburger)
+  * If 50% ordered chips, are ordering hamburger and chips independent?
+  * If 80% of hot dog orderers also order drinks and 35% ordered hot dogs, find P(hot dog and drink).
+* Venn diagram of library (L) and home (H) study preferences for 60 students.
+  * Find number who study neither.
+  * P(L and H | student selected library).
+  * Determine if studying at library and studying at home are independent events.
+* House ownership (A) and car ownership (B) — independent or dependent? Compare P(A | B) to P(B | A).
+* North High School: 25% in Algebra, 20% in Algebra and Health.
+  * P(Health | Algebra)
+  * If 50% in Health, are Algebra and Health independent?
+  * Accounting (20%) and Accounting and Spanish (5%) — if independent, what percent in Spanish?
+* Standard deck face-value cards (2–10), two drawn without replacement.
+  * P(two face-value cards)
+  * P(exactly one is a 4)
+
+## Review Notes
+
+* ![](media/image1.png) — Venn diagram of library and home study preferences for Problem 11

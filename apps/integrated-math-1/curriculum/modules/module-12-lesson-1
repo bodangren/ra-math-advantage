@@ -1,0 +1,247 @@
+# Lesson 12-1 — Conjectures and Counterexamples
+
+Source: (Module 12, Lesson 12-1, Int1_1201_practice.docx)
+
+## Today's Goals
+
+* Recognize patterns in numerical, geometric, and real-world sequences and express them as conjectures.
+* Use a conjecture to predict the next term or value in a sequence.
+* Determine whether a given conjecture is true or false.
+* Find a counterexample to disprove a false conjecture.
+
+## Vocabulary
+
+* **Conjecture** — An unproven statement based on observations or patterns.
+* **Counterexample** — A specific case that shows a conjecture is false.
+* **Sequence** — An ordered list of numbers or objects.
+* **Prime Number** — A number greater than 1 that is divisible only by itself and 1.
+* **Supplementary Angles** — Two angles whose measures add to 180 degrees.
+* **Linear Pair** — Two adjacent angles whose non-common sides are opposite rays.
+* **Noncollinear** — Points that do not all lie on the same line.
+* **Right Triangle** — A triangle with one 90-degree angle.
+* **Midpoint** — A point that divides a segment into two congruent segments.
+
+## Explore: How Can We Predict What Comes Next?
+
+Students examine sequences and geometric patterns to discover how observation leads to prediction. They discuss whether a pattern always continues in the same way and what happens when a prediction fails.
+
+Inquiry Question:
+What makes a prediction based on a pattern reliable, and how can we know when it might be wrong?
+
+## Learn: Making and Testing Conjectures
+
+A conjecture is a statement believed to be true based on observed patterns. To test a conjecture, we look for a counterexample — a single case where the statement fails.
+
+### Key Concept: Writing a Conjecture from a Pattern
+
+* Observe how terms change from one to the next.
+* Identify whether the change is additive, multiplicative, or follows another rule.
+* State the rule as a general sentence that applies to all terms.
+* Use the rule to predict the next term.
+
+### Key Concept: Proving or Disproving a Conjecture
+
+* To support a conjecture, test it with many examples.
+* To disprove a conjecture, find one counterexample.
+* A single counterexample is enough to show a conjecture is false.
+
+## Example 1 — Write Conjectures for Sequences
+
+Write a conjecture that describes the pattern in a given sequence, then use it to find the next term.
+
+### Step 1: Identify Additive Patterns
+
+Determine whether the sequence grows by adding the same value each time.
+
+A sequence that increases by 4:
+[
+4, 8, 12, 16, 20, \dots
+]
+Conjecture: Each term is 4 more than the previous term. The next term is:
+[
+24
+]
+
+A sequence of arrival times that decreases by a fixed interval:
+[
+3\!:\!00 \text{ P.M.},\; 12\!:\!30 \text{ P.M.},\; 10\!:\!00 \text{ A.M.},\; \dots
+]
+Conjecture: Each arrival is 2 hours 30 minutes earlier. The next arrival is:
+[
+7\!:\!30 \text{ A.M.}
+]
+
+A sequence of percent humidity that decreases by a fixed amount:
+[
+100\%,\; 93\%,\; 86\%,\; \dots
+]
+Conjecture: Each value is 7 percentage points lower. The next value is:
+[
+79\%
+]
+
+### Step 2: Identify Multiplicative and Fractional Patterns
+
+Determine whether the sequence changes by multiplication or by a fixed fractional amount.
+
+A sequence where each term is half the previous term:
+[
+1, \frac{1}{2}, \frac{1}{4}, \frac{1}{8}, \dots
+]
+Conjecture: Each term is one-half the previous term. The next term is:
+[
+\frac{1}{16}
+]
+
+A sequence that decreases by one-half each time, alternating between whole numbers and fractions:
+[
+6, \frac{11}{2}, 5, \frac{9}{2}, 4, \dots
+]
+Conjecture: Each term is one-half less than the previous term. The next term is:
+[
+\frac{7}{2}
+]
+
+### Step 3: Identify Digit and Visual Patterns
+
+Describe patterns based on repeated digits or geometric figures.
+
+A sequence built by repeating the same digit:
+[
+2, 22, 222, 2222, \dots
+]
+Conjecture: Each term adds another digit 2. The next term is:
+[
+22222
+]
+
+For visual sequences shown in diagrams, describe how the figure changes from step to step and predict the next figure.
+
+## Examples 2 and 3 — Make Conjectures about Numbers and Geometry
+
+Make a conjecture about a numerical value, algebraic relationship, or geometric property.
+
+### Step 1: Conjectures about Numbers
+
+State a general rule based on testing numerical examples.
+
+The product of two odd numbers:
+[
+\text{odd} \times \text{odd} = \text{odd}
+]
+Conjecture: The product of two odd numbers is always odd.
+
+The product of two and a number, plus one:
+[
+2n + 1
+]
+Conjecture: The result is always an odd number.
+
+### Step 2: Conjectures from Equations
+
+Examine an equation to infer a relationship between variables.
+
+Given [ab = bc] with [b \neq 0]:
+[
+a = c
+]
+Conjecture: [a] and [c] are equal because both multiply by the same nonzero [b] to produce the same product.
+
+Given [ab = 1]:
+[
+a = \frac{1}{b}
+]
+Conjecture: [a] and [b] are reciprocals.
+
+### Step 3: Conjectures about Geometric Relationships
+
+Use definitions and properties to state relationships.
+
+Two intersecting lines that form four congruent angles:
+Conjecture: The lines are perpendicular.
+
+A triangle with all sides congruent:
+Conjecture: All three angles are congruent, and each measures 60 degrees.
+
+If point [P] is the midpoint of segment [NQ]:
+[
+NP = PQ
+]
+Conjecture: The two segments created by the midpoint are congruent.
+
+A prism and a pyramid with the same base and equal heights:
+Conjecture: The volume of the prism is three times the volume of the pyramid.
+
+## Example 4 — Make a Conjecture from a Table
+
+Use data organized in a table to identify a pattern and make a prediction.
+
+### Step 1: Examine the Data
+
+Read the values in the table to see how a quantity changes over equal time intervals.
+
+### Step 2: State the Conjecture
+
+Describe the rule that relates time to distance traveled.
+
+### Step 3: Predict the Next Value
+
+Apply the rule to find the distance at the next time interval.
+
+## Example 5 — Determine Whether Conjectures Are True or False
+
+Test given conjectures. If a conjecture is false, find a counterexample.
+
+### Step 1: Test Numerical Conjectures
+
+Check several cases to see if the statement holds.
+
+Conjecture: If [n] is prime, then [n + 1] is not prime.
+This is false. Counterexample:
+[
+n = 2 \quad \Rightarrow \quad n + 1 = 3 \text{, which is prime.}
+]
+
+Conjecture: If [x] is an integer, then [-x] is positive.
+This is false. Counterexample:
+[
+x = 3 \quad \Rightarrow \quad -x = -3 \text{, which is negative.}
+]
+
+### Step 2: Test Geometric Conjectures
+
+Apply definitions and diagrams to verify geometric statements.
+
+Conjecture: If two angles are supplementary, then they form a linear pair.
+This is false. Counterexample: Two non-adjacent angles whose measures add to 180 degrees.
+
+Conjecture: If three points [A], [B], and [C] are given, then they are noncollinear.
+This is false. Counterexample: Three points that all lie on the same straight line.
+
+Conjecture: In [\triangle ABC], if [(AB)^2 + (BC)^2 = (AC)^2], then [\triangle ABC] is a right triangle.
+This is true by the converse of the Pythagorean Theorem.
+
+Conjecture: If the area of a rectangle is 20 square meters, then the length is 10 meters and the width is 2 meters.
+This is false. Counterexample: A rectangle with length 5 meters and width 4 meters also has area 20 square meters.
+
+## Mixed Exercises
+
+The mixed exercises provide practice with all skills from the lesson: recognizing patterns, writing conjectures, finding counterexamples, and applying reasoning to geometric and real-world situations. Problems include:
+
+* Writing a counterexample to show that a conjecture about solving an equation is false.
+* Constructing a logical argument about whether an assertion involving division of items among teams must be true.
+* Using visual tools to sketch the next figure in a sequence of ancestry diagrams.
+* Identifying regularity in tile patterns and making conjectures about the number of tiles needed for larger figures.
+* Analyzing the structure of line-segment patterns and comparing the number of segments to the number of points.
+* Finding a counterexample to a conjecture about prime numbers of the form [2^n - 1].
+* Using a repeated shortening process to make a conjecture about the length of a segment after [n] iterations.
+* Applying perseverance to a complex problem about points on a circle and the regions they create.
+* Creating an original number sequence that can be generated by two different patterns.
+* Analyzing whether a conjecture about equidistant points and collinearity is true or false.
+* Using undefined terms, definitions, and postulates to justify conjectures about planes and lines.
+* Analyzing a tile-path pattern to make a conjecture about the number of tiles for any length and testing whether a specific tile count is possible.
+
+## Review Notes
+
+* Images referenced in the worksheet (sequence diagrams for problems 7 and 8, ramp data table for problem 17, ancestry sketches for problem 26, square tile sequences for problem 27, line-segment patterns for problem 28, shortened line-segment diagrams for problem 30, point-and-circle region diagrams for problem 31, patio tile paths for problem 36, and geometric figures for problems 34 and 35) could not be fully described without visual reference. Teachers should consult the original worksheet for exact values and diagrams.
+* The worksheet labels the example group as "Examples 2 and 3" — there is no separate Example 2 or 3 heading in the original document; these are grouped together under one heading.

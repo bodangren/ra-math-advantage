@@ -1,129 +1,139 @@
 # Lesson 8-3 — Analyzing Population Data
 
-Source: (Module 8, Lesson 8-3, pp. 387–390)
+Source: (Module 8, Lesson 8-3, Int3_0803_practice.docx)
 
-## Today's Goal
+## Today's Goals
 
-* Describe distributions by finding their mean and standard deviation
-
----
+* Calculate and interpret the standard deviation of a data set.
+* Use technology to find the mean and standard deviation.
+* Compare distributions using mean and standard deviation.
 
 ## Vocabulary
 
-* descriptive statistics
-* distribution
-* symmetric distribution
-* outlier
-* variance
-* standard deviation
+* **Mean** — The average of a data set, found by dividing the sum of values by the number of values.
+* **Standard Deviation** — A measure of the spread of data values from the mean.
+* **Population Standard Deviation** — The standard deviation of an entire population.
+* **Sample Standard Deviation** — The standard deviation of a sample from a population.
+* **Bimodal Distribution** — A distribution with two distinct peaks or modes.
+* **Variance** — The average of the squared differences from the mean.
 
----
+## Explore: What Does Spread Tell Us?
 
-## Learn: Describing Distributions
+Inquiry Question:
+If two data sets have the same mean but different standard deviations, what does that tell you about the distributions?
 
-Measures of center and measures of spread are called **descriptive statistics**.
+## Learn: Measuring Spread with Standard Deviation
 
-A **distribution** is a graph or table showing the frequency of possible data values.
+### Key Concept: Standard Deviation Formula
 
-For symmetric distributions:
+For a population, the standard deviation is calculated as:
 
-* the mean and median are approximately equal
-* mean describes the center well
-* variance and standard deviation describe spread
+[σ = √(Σ(x - μ)² / n)]
 
-For skewed distributions or data with outliers:
+Where:
+* [x] is each individual value
+* [μ] is the population mean
+* [n] is the number of values
 
-* the mean is less reliable
+### Key Concept: Interpreting Standard Deviation
 
-### Key Concept: Finding the Standard Deviation
+* A smaller standard deviation indicates data are clustered near the mean.
+* A larger standard deviation indicates data are more spread out from the mean.
+* Standard deviation is in the same units as the original data.
 
-1. Find the mean `mu`
-2. Find each squared difference `(x - mu)^2`
-3. Add those squared differences
-4. Divide by the number of data values to get variance
-5. Take the square root to get standard deviation
+## Example 1 — Calculate Standard Deviation from a Table
 
-Formula:
+### Step 1: Barber Shears Problem
 
-`sigma = sqrt(sum((x - mu)^2) / n)`
+A barber wants to purchase professional shears from a website. The prices are shown in a table. Use the standard deviation formula to find and interpret the standard deviation. Round to the nearest cent.
 
----
+Calculate the mean price, then find each price's deviation from the mean, square those deviations, and find the average. Take the square root to get the standard deviation.
 
-## Example 1 — Find a Standard Deviation
+Interpretation: The standard deviation indicates how much the shear prices vary from the average price.
 
-A coach records `400`-meter race times:
+### Step 2: Reading Book Club Problem
 
-`57.1, 59.3, 54.6, 55.2, 55.9, 54.9, 50.3, 53.5`
+Ms. Sanchez keeps track of the total number of books each student in the book club reads during the school year. Use the standard deviation formula. Round to the nearest tenth.
 
-### Step 1: Find the mean
+Calculate the mean number of books, then compute the standard deviation using the same process.
 
-`mu = 55.1`
+Interpretation: A higher standard deviation indicates more variation in the number of books read among students.
 
-### Step 2: Find the squared differences
+## Example 2 — Use Technology to Find Mean and Standard Deviation
 
-These sum to:
+### Step 1: Technology Calculation
 
-`48.18`
+Use a graphing calculator to find the mean and standard deviation of each data set. Round to the nearest tenth.
 
-### Step 3: Find the variance
+Data set 1: 20, 23, 24, 23, 22, 25, 21, 23, 24, 22, 21, 23, 22, 24
+[Mean ≈ 22.9, Standard Deviation ≈ 1.3]
 
-`48.18 / 8 = 6.0225`
+Data set 2: 150, 153, 125, 136, 143, 150, 166, 148, 150, 173, 150, 153, 143, 142, 153
+[Mean ≈ 150.4, Standard Deviation ≈ 11.0]
 
-### Step 4: Find the standard deviation
+Data set 3: 9.0, 3.8, 6.2, 7.1, 5.3, 6.2, 7.1, 8.2, 7.1, 4.5, 9.9, 8.2
+[Mean ≈ 6.8, Standard Deviation ≈ 1.9]
 
-`sqrt(6.0225) ≈ 2.45`
+Data set 4: 3350, 2800, 4525, 2150, 2800, 2150, 3350, 1800, 5250, 3975, 580, 2800
+[Mean ≈ 2977.5, Standard Deviation ≈ 1293.3]
 
-Interpretation:
+## Example 3 — Compare Distributions Using Mean and Standard Deviation
 
-The standard deviation is small compared with the running times, so most team times are close to the mean.
+### Step 1: Track Team Timing Comparison
 
-The interval within `2` standard deviations is approximately:
+Twenty track members were timed on a one-mile run before their season began and again after their season was completed. Use the mean and standard deviation to compare the distributions. ![](media/image3.JPG)
 
-`50.2` to `60.0` seconds
+Compare the means: A higher or lower mean indicates faster or slower average times.
+Compare the standard deviations: A smaller standard deviation indicates more consistent times across team members.
 
-## Talk About It
+### Step 2: Geometry Class Test Score Comparison
 
-In what case would a standard deviation of `2.45` be considered large? Give a real-world example.
+Mr. Williams recorded students' test scores of his two Geometry classes. Use the mean and standard deviation to compare the distributions. ![](media/image4.JPG)
 
----
+Higher mean: Better average performance.
+Smaller standard deviation: More consistent scores within that class.
 
-## Example 2 — Calculate Statistics
+## Mixed Exercises
 
-Use a graphing calculator to find the mean and standard deviation of:
+9. Data set: 0.2, 0.4, 0.35, 0.25, 0.3, 0.45, 0.3, 0.4, 0.65, 0.35, 0.15, 0.35, 0.4, 0.45, 0.35, 0.5, 0.6, 0.3
+Use technology to calculate the mean and standard deviation.
 
-`26, 12, 15, 20, 17, 19, 18, 16, 14, 23, 13, 18, 19, 20, 22`
+10. Data set: 1/4, 5/8, 1/2, 3/8, 5/8, 3/8, 1/2, 1, 1/2, 1/8, 5/8, 3/4, 1/2, 3/4, 7/8, 1/4
+Use technology to calculate the mean and standard deviation.
 
-Calculator results:
+11. Community college entrance exam: 10 session dates, number of attendees at each session. Find and interpret the standard deviation. ![](media/image5.JPG)
 
-* mean `≈ 18.1`
-* standard deviation `≈ 3.7`
+12. Juan Carlos researches the effect of tank size on guppy development. He measures each fish in both tanks. How can he use mean and standard deviation to develop a conclusion?
+By comparing the mean sizes and standard deviations of guppies raised in different tank sizes, he can determine whether tank size affects growth and whether guppy sizes are more consistent in certain tank sizes.
 
-## Pause and Reflect
+13. A fast food restaurant manager wants to reduce the spread of employee hourly wages by adding $1 to each employee's wage. Is this effective?
+**No** — Adding a constant to every value increases the mean by that constant but does not change the spread. The standard deviation remains the same because deviations from the mean are unchanged.
 
-Did you struggle with anything so far in this lesson? If so, how did you deal with it?
+14. How can the center and spread of a bimodal distribution be described?
+The mean and standard deviation alone do not fully describe a bimodal distribution. Describe each mode separately, note the gap between modes, and recognize that the data has two distinct centers.
 
----
+15. Approximate the mean and standard deviation of the distribution shown. Explain your reasoning. ![](media/image9.png)
 
-## Example 3 — Compare Distributions
+16. Create a symmetric set of data with 12 data values. Then calculate the mean and standard deviation of your set.
+For a symmetric set, the mean and median are equal. Choose values that balance around a center point.
 
-Compare exam score distributions for two Algebra 2 classes using the mean and standard deviation.
+17. Explain how to find the standard deviation of a data set without using technology.
+1. Find the mean of the data.
+2. Find each deviation from the mean.
+3. Square each deviation.
+4. Find the mean of the squared deviations (this is the variance).
+5. Take the square root of the variance to get the standard deviation.
 
-Results:
+## Review Notes
 
-* Mr. Jackson’s class:
-  * mean `= 93.2`
-  * standard deviation `= 2.3`
-* Ms. Hettrick’s class:
-  * mean `= 79.9`
-  * standard deviation `= 7.2`
-
-Interpretation:
-
-* Mr. Jackson’s class scored higher on average
-* Ms. Hettrick’s class scores are more spread out
-
----
-
-## Objective Alignment
-
-- `Describe distributions by finding their mean and standard deviation`: Primary worked examples: Examples 1-3.
+* Image references in this lesson:
+  * ![](media/image1.JPG) — Barber shears price table (Example 1, Question 1)
+  * ![](media/image2.JPG) — Reading book club data table (Example 1, Question 2)
+  * ![](media/image3.JPG) — Track team timing data (Example 3, Question 7)
+  * ![](media/image4.JPG) — Geometry class test score data (Example 3, Question 8)
+  * ![](media/image5.JPG) — Community college exam attendance data (Mixed Exercises, Question 11)
+  * ![](media/image6.JPG) — Tank size / guppy research data (Mixed Exercises, Question 12)
+  * ![](media/image7.png) — Bimodal distribution diagram (Mixed Exercises, Question 13)
+  * ![](media/image8.JPG) — Distribution diagram (Mixed Exercises, Question 14)
+  * ![](media/image9.png) — Approximate mean and standard deviation diagram (Mixed Exercises, Question 15)
+* This lesson focuses on calculating and interpreting standard deviation, comparing distributions, and understanding how spread measures describe data.

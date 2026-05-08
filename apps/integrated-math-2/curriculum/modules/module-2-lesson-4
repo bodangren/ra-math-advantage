@@ -1,0 +1,116 @@
+# Lesson 2-4 — Rectangles
+
+Source: (Module 2, Lesson 2-4, Int2_0204_practice.docx)
+
+## Today's Goals
+
+* Apply properties of rectangles to find angle measures and diagonal lengths.
+* Prove triangles are congruent using rectangle properties.
+* Use coordinate geometry to determine whether a quadrilateral is a rectangle.
+* Write two-column proofs for rectangle theorems.
+
+## Vocabulary
+
+* **Rectangle** — A parallelogram with four right angles.
+* **Right Angle** — An angle measuring exactly 90 degrees.
+* **Diagonal of a Rectangle** — The segment connecting opposite vertices of a rectangle.
+
+## Explore: Special Properties of Rectangles
+
+Students explore what makes rectangles special among parallelograms, focusing on the unique relationship between the diagonals and the right angles.
+
+Inquiry Question:
+What additional property do rectangles have that general parallelograms do not have?
+
+## Learn: Rectangles
+
+### Key Concept: Properties of Rectangles
+
+* All rectangles are parallelograms (inherit all parallelogram properties).
+* All angles are right angles.
+* The diagonals of a rectangle are congruent.
+* The diagonals bisect each other.
+* The diagonals create two congruent right triangles.
+
+### Key Concept: Diagonal Length
+
+In a rectangle with length l and width w, the diagonal d can be found using the Pythagorean Theorem:
+
+[d^2 = l^2 + w^2]
+
+## Example 1 — Find Measures in Rectangles
+
+Use rectangle properties and the Pythagorean Theorem to find side lengths, diagonal lengths, and angle measures.
+
+### Step 1: Identify Right Angles
+
+In a rectangle, all angles are right angles (90°). Use this to find complementary and supplementary angles.
+
+### Step 2: Apply the Pythagorean Theorem
+
+When a rectangle's sides form right triangles with the diagonal, use a² + b² = c² to find unknown side lengths.
+
+## Example 2 — Solve Algebraic Problems with Rectangles
+
+Set up and solve equations involving angle measures and side lengths in rectangles.
+
+### Step 1: Write Equations
+
+Use the given angle expressions and the fact that angles in a rectangle are right angles or that consecutive angles are supplementary.
+
+### Step 2: Solve for the Unknown
+
+Solve the equation to find the value of the variable, then substitute to find the actual measure.
+
+## Example 3 — Prove Triangles Congruent Using Rectangles
+
+Write two-column proofs showing that triangles within or created by rectangle diagonals are congruent.
+
+### Step 1: Identify Congruent Triangles
+
+Rectangles have diagonals that bisect each other and create two pairs of congruent triangles.
+
+### Step 2: List Corresponding Parts
+
+Use the properties of rectangles (right angles, congruent diagonals, bisecting diagonals) to justify triangle congruence criteria.
+
+## Example 4 — Coordinate Geometry with Rectangles
+
+Graph quadrilaterals on the coordinate plane and determine whether each is a rectangle using slope and distance formulas.
+
+### Step 1: Check for Right Angles (Slope Formula)
+
+For adjacent sides to be perpendicular, the product of their slopes must equal -1.
+
+### Step 2: Check for Congruent Diagonals (Distance Formula)
+
+Calculate the lengths of both diagonals and verify they are equal.
+
+## Mixed Exercises
+
+The mixed exercises section provides practice with all skills from the lesson. Problems include:
+
+* Writing a two-column proof for Theorem 7.13 (diagonals of a rectangle are congruent) and Theorem 7.14 (if a parallelogram has congruent diagonals, it is a rectangle).
+* Determining whether knowing opposite sides are congruent and parallel is sufficient to conclude a garden plot is rectangular.
+* Naming a property true for rectangles but not always true for parallelograms.
+* Constructing a rectangle using congruent segment and perpendicular line constructions.
+* Determining whether a sign with given dimensions must be a rectangle based on measurements.
+* Finding diagonal lengths in rectangles (if XW = 3 and WZ = 4, find YW; if ZY = 6 and XY = 8, find WY).
+* Comparing distances BD and AC in a rectangular frame to verify it's a rectangle.
+* Determining whether sections of a bookshelf with two vertical planks and five horizontal shelves form rectangles.
+* Finding the coordinates of a fourth corner of a rectangular plot when three corners are given on a coordinate plane.
+* Counting how many rectangles can be formed using lines in a figure of seven rectangles with four equal sides.
+* Finding possible side lengths for extending a pattern of rectangles to make a larger rectangle.
+* Solving for x and y in a rectangle given angle expressions m∠EAB = (4x + 6)°, m∠DEC = (10 - 11y)°, and m∠EBC = 60°.
+* Determining whether any two congruent acute triangles can form a rectangle or if only congruent right triangles work.
+* Explaining why all rectangles are parallelograms but not all parallelograms are rectangles.
+* Writing equations of four lines whose intersections form a rectangle and verifying with coordinate geometry.
+* Analyzing whether proving one right angle is sufficient to prove a quadrilateral is a rectangle.
+
+## Review Notes
+
+* Images referenced in the worksheet (rectangle diagrams for Examples 1-4, proof figures, trapezoid figure, rectangular pattern with side lengths, and various geometry figures) could not be fully described without visual reference. Teachers should consult the original worksheet for exact diagrams and values.
+* The worksheet contains 39 practice problems across four examples and mixed exercises.
+* ![](media/image1.png) ![](media/image2.png) ![](media/image3.png) ![](media/image4.png) ![](media/image5.png) ![](media/image6.png) ![](media/image7.png) ![](media/image8.png) ![](media/image9.png) ![](media/image10.png) ![](media/image11.png) ![](media/image12.png) ![](media/image13.png) ![](media/image14.png)
+
+(End of file - total 169 lines)

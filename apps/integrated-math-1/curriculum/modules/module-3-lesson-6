@@ -1,0 +1,200 @@
+# Lesson 3-6 — Sketching Graphs and Comparing Functions
+
+Source: (Module 3, Lesson 3-6, Int1_0306_practice.docx)
+
+## Today's Goals
+
+* Sketch graphs of real-world functions from verbal descriptions, identifying intercepts, intervals of increase and decrease, end behavior, extrema, and symmetry.
+* Compare two functions by interpreting their key features from descriptions and graphs.
+* Write and analyze linear functions that model cost, revenue, and profit in a business context.
+* Use technology to verify hand-sketched graphs of functions.
+
+## Vocabulary
+
+* **[ x ]-intercept** — The point where the graph crosses the [ x ]-axis; the input value for which the output is zero.
+* **[ y ]-intercept** — The point where the graph crosses the [ y ]-axis; the output value when the input is zero.
+* **Linear function** — A function whose graph is a straight line and has a constant rate of change.
+* **Nonlinear function** — A function whose graph is not a straight line and may have curves or turning points.
+* **Increasing** — The function values rise as the input values increase.
+* **Decreasing** — The function values fall as the input values increase.
+* **Relative maximum** — A point where the function changes from increasing to decreasing, forming a local high point.
+* **Relative minimum** — A point where the function changes from decreasing to increasing, forming a local low point.
+* **End behavior** — A description of what happens to the function values as the input approaches positive or negative infinity.
+* **Symmetry** — A property where one part of the graph mirrors another part across a line or point.
+* **Revenue** — The total income generated from selling a number of items.
+* **Cost** — The total amount spent to produce or acquire items, including fixed and variable costs.
+* **Profit** — The amount remaining when total cost is subtracted from total revenue.
+* **Break-even point** — The point where revenue equals cost, resulting in zero profit.
+
+## Learn: Key Features of Functions
+
+Functions can be described and sketched by analyzing their key features. Recognizing whether a function is linear or nonlinear is the first step. Linear functions have straight-line graphs and constant rates of change, while nonlinear functions may curve and have turning points.
+
+### Key Concept: Describing a Function's Graph
+
+* **Intercepts:** Locate where the graph crosses the axes. The [ y ]-intercept is at [ (0, b) ] and the [ x ]-intercept is where [ y = 0 ].
+* **Intervals:** Determine where the function is positive ([ y > 0 ]) or negative ([ y < 0 ]), and where it is increasing or decreasing.
+* **Extrema:** Identify any relative maximum or minimum points.
+* **End Behavior:** Describe what happens to [ y ] as [ x \to \infty ] or [ x \to -\infty ].
+* **Symmetry:** Note whether the graph is symmetric about a vertical line or the origin.
+
+## Learn: Modeling with Functions
+
+Real-world situations can be represented by functions. By translating words into mathematical expressions, you can sketch graphs, compare trends, and make predictions.
+
+### Key Concept: Writing Functions from Context
+
+* Identify the independent and dependent variables.
+* Determine whether the relationship is linear (constant rate) or nonlinear.
+* Write an equation using appropriate formulas, such as [ y = mx + b ] for linear situations.
+* Use the function to calculate specific values, sketch a graph, and interpret key features in context.
+
+## Example 1 — Sketch Linear Functions from Verbal Descriptions
+
+Sketch a graph that models a real-world linear relationship by using the given key features.
+
+### Step 1: Identify the Function Type and Intercept
+
+Determine whether the relationship is linear or nonlinear. For a linear situation, note the [ y ]-intercept. For example, a savings account starts with an initial amount:
+
+[
+\text{y-intercept} = 1400
+]
+
+### Step 2: Determine Direction and Sign
+
+Decide whether the function is increasing or decreasing and whether the outputs are positive or negative for the relevant domain. For time greater than zero, the amount saved increases:
+
+[
+\text{Increasing for } x > 0
+]
+
+### Step 3: Sketch the Graph
+
+Draw a straight line that passes through the [ y ]-intercept and continues in the correct direction. Label the axes and indicate the scale. State the end behavior:
+
+[
+\text{As } x \to \infty,\; y \to \infty
+]
+
+> **Note:** Problems in this group vary only in context and specific intercept values. The process is the same for each.
+
+## Example 2 — Sketch Nonlinear Functions and Interpret Key Features
+
+Sketch a nonlinear graph from a verbal description and interpret intercepts, intervals of increase and decrease, relative extrema, end behavior, and symmetry.
+
+### Step 1: Identify the Shape and Intercepts
+
+Recognize that the situation is nonlinear. A football's height over time is a parabolic curve. Note any intercepts:
+
+[
+\text{y-intercept at } (0, 0)
+]
+
+### Step 2: Locate the Turning Point and Intervals
+
+Find the relative maximum and the intervals where the function is increasing or decreasing. For the football:
+
+[
+\text{Relative maximum at } (2, 9)
+]
+
+[
+\text{Increasing for } x < 2,\quad \text{Decreasing for } x > 2
+]
+
+### Step 3: Describe Sign, Symmetry, and End Behavior
+
+State where the outputs are positive or negative, describe any symmetry, and give the end behavior. The height is positive while the ball is in the air:
+
+[
+\text{Positive for } 0 < x < 5
+]
+
+[
+\text{Symmetry about } x = 2
+]
+
+[
+\text{As } x \to \infty,\; y \to -\infty
+]
+
+> **Note:** Problems in this group describe similar parabolic trajectories (e.g., a fish jumping). The general approach is identical; only the numerical values and context differ.
+
+## Example 3 — Sketch and Interpret Real-World Data Trends
+
+Sketch a graph that models survey or poll data over time, then interpret intercepts, extrema, intervals of increase and decrease, and end behavior.
+
+### Step 1: Plot the Initial Value
+
+Use the given [ y ]-intercept to anchor the graph. For example, a poll shows about 60 people responded yes at the start:
+
+[
+(0, 60)
+]
+
+### Step 2: Trace the Trend
+
+Determine whether the function increases, decreases, or changes direction over the domain. Some polls rise steadily:
+
+[
+\text{Increasing for all } x > 0
+]
+
+Others may rise, fall, and rise again, producing a relative maximum and minimum:
+
+[
+\text{Relative maximum at } (10, 39)
+]
+
+[
+\text{Relative minimum at } (65, 31)
+]
+
+### Step 3: Interpret the End Behavior
+
+Describe what happens as time continues. Because the data represent people, the output is bounded by the survey size:
+
+[
+\text{As } x \to \infty,\; y \text{ increases toward the maximum surveyed.}
+]
+
+## Example 4 — Compare Functions from Descriptions and Graphs
+
+Use a verbal description and a graph to compare two related functions, writing statements about their key features over the same interval.
+
+### Step 1: Extract Key Features from the Description
+
+Read the description to find intercepts, changes in direction, and end behavior for the first function. For example, Internet use at home started at about 10,000 users:
+
+[
+(0, 10000)
+]
+
+It decreased to 7,000 users after 36 months, then increased again.
+
+### Step 2: Extract Key Features from the Graph
+
+Examine the second function's graph to find its intercept, trends, and end behavior over the same time period.
+
+### Step 3: Write Comparison Statements
+
+Compare the two functions by stating which has a greater initial value, which decreases or increases faster, and how their end behaviors differ. Use specific values when possible:
+
+[
+\text{At } x = 0,\; y_{\text{home}} = 10000 \quad \text{and} \quad y_{\text{away}} = \text{value from graph.}
+]
+
+## Mixed Exercises
+
+The mixed exercises apply the lesson skills to new contexts and integrate earlier topics.
+
+* **Modeling geometry:** Given a cone with a fixed slant height of [ 20 ] inches, sketch the graph of the lateral area as a function of the base radius [ x ]. Write the function [ y = \pi x (20) ], enter it into a graphing calculator with an appropriate window, and compare the calculator graph to the hand-drawn sketch.
+* **Business applications:** Given a fixed cost of [ 840 ] dollars, a per-unit cost of [ 47 ] dollars, and a selling price of [ 75 ] dollars per bicycle, write revenue and cost functions [ R(x) ] and [ C(x) ], combine them into a profit function [ P(x) = R(x) - C(x) ], list key features, sketch the profit graph, and identify the break-even point as the [ x ]-intercept where [ P(x) = 0 ].
+* **Research and create:** Gather population data for your state over a 10-year period, sketch a graph to model the data, and list the key features of the graph.
+
+## Review Notes
+
+* Images referenced in the source worksheet (`media/image1.png` through `media/image8.png`) could not be described. Verify that the sketches and graphs described in the text match the original diagrams, especially for Example 4 where a graph is paired with a description.
+* The football and fish problems in Example 2 are parabolic; confirm that the symmetry and turning-point values align with the original images.
+* Mixed Exercise 16 is an open-ended research task; teachers may need to provide guidance on data sources.

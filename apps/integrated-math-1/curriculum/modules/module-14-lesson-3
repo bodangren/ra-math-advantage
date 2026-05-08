@@ -1,0 +1,180 @@
+# Lesson 14-3 — Proving Triangles Congruent: SSS, SAS
+
+Source: (Module 14, Lesson 14-3, Int1_1403_practice.docx)
+
+## Today's Goals
+
+* Write two-column, paragraph, and flow proofs to prove triangle congruence using the SSS and SAS postulates.
+* Use the Distance Formula to determine whether two triangles on the coordinate plane are congruent.
+* Identify the included angle and apply the SAS Congruence Postulate correctly.
+* Determine whether a given set of information is sufficient to prove triangle congruence.
+
+## Vocabulary
+
+* **Side-Side-Side (SSS) Congruence Postulate** — If three sides of one triangle are congruent to three sides of another triangle, then the triangles are congruent.
+* **Side-Angle-Side (SAS) Congruence Postulate** — If two sides and the included angle of one triangle are congruent to two sides and the included angle of another triangle, then the triangles are congruent.
+* **Included Angle** — The angle formed by two adjacent sides of a triangle.
+* **Two-Column Proof** — A proof formatted with statements in one column and reasons in another.
+* **Paragraph Proof** — A proof written in complete sentences as a paragraph.
+* **Flow Proof** — A proof that uses arrows to show the logical flow from given information to the conclusion.
+* **Reflexive Property** — A quantity is congruent to itself.
+* **Definition of Midpoint** — A midpoint divides a segment into two congruent segments.
+
+## Explore: How Much Information Is Needed to Prove Two Triangles Congruent?
+
+Students investigate what minimum set of corresponding parts guarantees that two triangles are congruent. They explore whether three sides, two sides and an angle, or other combinations are sufficient.
+
+Inquiry Question:
+What combinations of corresponding sides and angles are enough to prove that two triangles are congruent?
+
+## Learn: Triangle Congruence Using SSS and SAS
+
+Two triangles can be proven congruent without showing that all six corresponding parts are congruent. The SSS and SAS postulates provide shortcuts.
+
+### Key Concept: SSS Congruence Postulate
+
+If three sides of one triangle are congruent to three sides of a second triangle, then the two triangles are congruent.
+
+### Key Concept: SAS Congruence Postulate
+
+If two sides and the included angle of one triangle are congruent to two sides and the included angle of a second triangle, then the two triangles are congruent.
+
+### Key Concept: Using the Distance Formula on the Coordinate Plane
+
+To verify SSS on a coordinate plane, calculate the lengths of all three sides of each triangle using the Distance Formula and compare corresponding side lengths.
+[
+d = \sqrt{(x_2 - x_1)^2 + (y_2 - y_1)^2}
+]
+
+## Example 1 — Write Proofs Using the SSS Postulate
+
+Write two-column, paragraph, and flow proofs to establish triangle congruence when three pairs of corresponding sides are given as congruent.
+
+### Step 1: State the Given Information
+
+Identify the three pairs of congruent sides provided. State the triangles to be proven congruent.
+
+For example, given:
+[
+\overline{AB} \cong \overline{XY}, \overline{AC} \cong \overline{XZ}, \overline{BC} \cong \overline{YZ}
+]
+
+Prove:
+[
+\triangle ABC \cong \triangle XYZ
+]
+
+### Step 2: Apply the SSS Postulate
+
+Since all three pairs of corresponding sides are congruent, conclude that the triangles are congruent by SSS. Structure the proof in the requested format.
+
+A two-column proof format:
+[
+\begin{array}{l|l}
+\text{Statements} & \text{Reasons} \\
+\hline
+\overline{AB} \cong \overline{XY} & \text{Given} \\
+\overline{AC} \cong \overline{XZ} & \text{Given} \\
+\overline{BC} \cong \overline{YZ} & \text{Given} \\
+\triangle ABC \cong \triangle XYZ & \text{SSS Congruence Postulate}
+\end{array}
+]
+
+### Step 3: Use Midpoints and Shared Sides
+
+When a midpoint is given, use the Definition of Midpoint to establish a pair of congruent segments. A shared side between two triangles is congruent to itself by the Reflexive Property.
+
+Given that D is the midpoint of [\overline{AC}]:
+[
+\overline{AD} \cong \overline{CD}
+]
+
+This provides the third pair of congruent sides needed for SSS.
+
+## Example 2 — Determine Triangle Congruence on the Coordinate Plane
+
+Use the Distance Formula to calculate side lengths of two triangles on the coordinate plane, then compare lengths to determine congruence by SSS.
+
+### Step 1: Apply the Distance Formula
+
+Calculate the lengths of all three sides of each triangle.
+
+For example, with vertices D(-6, 1), E(1, 2), F(-1, -4):
+[
+DE = \sqrt{(1 - (-6))^2 + (2 - 1)^2} = \sqrt{49 + 1} = \sqrt{50}
+]
+[
+EF = \sqrt{(-1 - 1)^2 + (-4 - 2)^2} = \sqrt{4 + 36} = \sqrt{40}
+]
+[
+DF = \sqrt{(-1 - (-6))^2 + (-4 - 1)^2} = \sqrt{25 + 25} = \sqrt{50}
+]
+
+Similarly compute all three side lengths for the second triangle.
+
+### Step 2: Compare Corresponding Sides
+
+List the three side lengths of each triangle and check whether corresponding lengths are equal.
+
+### Step 3: Draw a Conclusion
+
+If all three pairs of corresponding sides are equal, the triangles are congruent by SSS. If any pair differs, the triangles are not congruent.
+
+## Example 3 — Write Proofs Using the SAS Postulate
+
+Write two-column, paragraph, and flow proofs to establish triangle congruence when two pairs of corresponding sides and the included angle are known to be congruent.
+
+### Step 1: Identify the Included Angle
+
+Determine which angle is formed by the two given congruent sides. This included angle is required for SAS.
+
+### Step 2: Apply the SAS Postulate
+
+State the pairs of congruent sides and the included congruent angle, then conclude the triangles are congruent by SAS.
+
+For example, given:
+[
+\overline{NP} \cong \overline{MP}, \angle NPL \cong \angle MPL
+]
+
+With shared side:
+[
+\overline{PL} \cong \overline{PL} \quad \text{by the Reflexive Property}
+]
+
+Prove:
+[
+\triangle NPL \cong \triangle MPL
+]
+
+### Step 3: Use Properties of Parallel Lines and Midpoints
+
+When parallel lines are given, use Alternate Interior Angles to establish a pair of congruent angles. When a midpoint is given, use the Definition of Midpoint to establish congruent sides.
+
+Given [\overline{AB} \parallel \overline{CD}] with transversal [\overline{AC}]:
+[
+\angle CAB \cong \angle DCA
+]
+
+This provides the included angle needed for SAS when combined with congruent sides.
+
+## Mixed Exercises
+
+The mixed exercises section provides practice with all skills from the lesson: writing SSS and SAS proofs, determining congruence from coordinates, analyzing diagrams for sufficient information, and applying congruence to real-world contexts. Problems include:
+
+* Writing two-column, paragraph, and flow proofs using SSS and SAS with given side and angle congruences.
+* Using the Distance Formula to verify whether triangles on the coordinate plane are congruent.
+* Examining figures to determine whether there is enough information to prove triangle congruence using SSS or SAS.
+* Reasoning about whether three given side lengths can form two non-congruent triangles.
+* Identifying which congruence postulate applies in real-world contexts such as baking, tiling, construction, and gaming.
+* Determining whether two pieces of an isosceles triangle divided by a specific cut are congruent.
+* Analyzing whether a given pair of triangles can be proven congruent and explaining why or why not.
+* Finding errors in student reasoning about SAS congruence.
+* Using multiple methods to prove triangle congruence on a coordinate grid and comparing efficiency.
+* Constructing arguments about whether a statement involving isosceles triangles is true or false.
+* Determining whether two right triangles with two pairs of congruent corresponding sides are necessarily congruent.
+* Creating a congruent triangle using construction and justifying the result mathematically.
+
+## Review Notes
+
+* Images referenced in the worksheet (geometric diagrams for proof problems in Examples 1 and 3, coordinate plane figures for Example 2, house roof diagram for problem 15, hourglass icon for problem 16, various triangle diagrams for mixed exercises problems 17-20 and 27, cake diagram for problem 24, tower diagram for problem 26, and graph for problem 32) could not be fully described without visual reference. Teachers should consult the original worksheet for exact diagrams and visual information.

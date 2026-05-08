@@ -1,0 +1,224 @@
+# Lesson 8-6 — Recursive Formulas
+
+Source: (Module 8, Lesson 8-6, Int1_0806_practice.docx)
+
+## Today's Goals
+
+* Find the first several terms of a sequence given a recursive formula
+* Write recursive formulas for sequences and graphs
+* Convert between recursive and explicit formulas for arithmetic and geometric sequences
+* Apply recursive formulas to model real-world situations
+
+## Vocabulary
+
+* **Recursive formula** — A formula that defines each term of a sequence using one or more of the preceding terms
+* **Explicit formula** — A formula that defines the [ n ]th term of a sequence directly as a function of [ n ] 
+* **Sequence** — An ordered list of numbers called terms
+* **Arithmetic sequence** — A sequence in which the difference between consecutive terms is constant
+* **Geometric sequence** — A sequence in which the ratio between consecutive terms is constant
+* **First term** — The initial term of a sequence, often denoted [ a_1 ] 
+
+## Learn: Recursive Formulas
+
+A recursive formula defines each term of a sequence based on previous terms. To use a recursive formula, you need an initial term (or terms) and a rule for generating subsequent terms.
+
+### Key Concept: Recursive Formulas
+
+* A recursive formula has two parts: an initial value [ a_1 ] and a rule that relates [ a_n ] to previous terms such as [ a_{n-1} ] 
+* For an arithmetic sequence, the recursive formula has the form [ a_n = a_{n-1} + d ] where [ d ] is the common difference
+* For a geometric sequence, the recursive formula has the form [ a_n = r \cdot a_{n-1} ] where [ r ] is the common ratio
+
+## Example 1 — Find Terms from a Recursive Formula
+
+Given a recursive formula, find the first five terms of the sequence by repeatedly applying the rule.
+
+### Step 1: Identify the Initial Term and Rule
+
+Read the given first term [ a_1 ] and the recursive rule for [ a_n ] in terms of [ a_{n-1} ].
+
+### Step 2: Generate Subsequent Terms
+
+Substitute the previous term into the recursive rule to find the next term.
+
+For an arithmetic-type rule:
+[
+a_1 = 23, \quad a_n = a_{n-1} + 7, \quad n \ge 2
+]
+
+For a geometric-type rule with an added constant:
+[
+a_1 = 48, \quad a_n = -0.5a_{n-1} + 8, \quad n \ge 2
+]
+
+Continue until you have found the required number of terms.
+
+## Example 2 — Find Terms from a Recursive Formula (Variations)
+
+Apply the same process as Example 1 to sequences with different recursive rules.
+
+### Step 1: Identify the Rule Type
+
+Determine whether the rule involves addition, multiplication, or a combination of operations.
+
+### Step 2: Compute Terms Systematically
+
+For a pure geometric rule:
+[
+a_1 = 8, \quad a_n = 2.5a_{n-1}, \quad n \ge 2
+]
+
+For a geometric rule with a subtracted constant:
+[
+a_1 = 12, \quad a_n = 3a_{n-1} - 21, \quad n \ge 2
+]
+
+For rules involving fractions:
+[
+a_1 = \frac{1}{2}, \quad a_n = a_{n-1} + \frac{3}{2}, \quad n \ge 2
+]
+
+## Example 3 — Write a Recursive Formula for a Sequence
+
+Given the first several terms of a sequence, write a recursive formula by finding the relationship between consecutive terms.
+
+### Step 1: Find the Relationship Between Terms
+
+Calculate the difference or ratio between consecutive terms.
+
+For an arithmetic sequence such as [ 27, 41, 55, 69, \dots ]:
+[
+41 - 27 = 14, \quad 55 - 41 = 14, \quad 69 - 55 = 14
+]
+The common difference is [ 14 ].
+
+For a geometric sequence such as [ 81, 27, 9, 3, \dots ]:
+[
+\frac{27}{81} = \frac{1}{3}, \quad \frac{9}{27} = \frac{1}{3}, \quad \frac{3}{9} = \frac{1}{3}
+]
+The common ratio is [ \frac{1}{3} ].
+
+### Step 2: Write the Recursive Formula
+
+State the first term and the rule. For the arithmetic example above:
+[
+a_1 = 27, \quad a_n = a_{n-1} + 14, \quad n \ge 2
+]
+
+For the geometric example above:
+[
+a_1 = 81, \quad a_n = \frac{1}{3}a_{n-1}, \quad n \ge 2
+]
+
+Some sequences alternate signs, such as [ 40, -60, 90, -135, \dots ], which requires a negative common ratio.
+
+## Example 4 — Write a Recursive Formula from a Graph
+
+Given a graph of a sequence (discrete points), write a recursive formula by reading coordinates and finding the pattern.
+
+### Step 1: Read Coordinates from the Graph
+
+Identify the [ (n, a_n) ] coordinates of the plotted points.
+
+### Step 2: Determine the Pattern
+
+Compute differences or ratios between consecutive terms to decide whether the sequence is arithmetic, geometric, or neither.
+
+### Step 3: Write the Formula
+
+State [ a_1 ] and the recursive rule based on the pattern found.
+
+## Example 5 — Apply Recursive Formulas to Real-World Problems
+
+Use recursive formulas to model situations that change by a constant amount or constant factor over time.
+
+### Step 1: Identify the Pattern in the Data
+
+Read the given information and determine whether the situation represents an arithmetic or geometric pattern.
+
+A viral video gets [ 175 ] views in hour 1, [ 350 ] in hour 2, [ 525 ] in hour 3, and so on. This is arithmetic with common difference [ 175 ].
+
+A piece of paper folded repeatedly doubles the number of sections. This is geometric with common ratio [ 2 ].
+
+A snowman melting loses height by a constant ratio each hour. This is geometric.
+
+### Step 2: Write the Recursive Formula
+
+State the initial term and the rule.
+
+For the video example:
+[
+a_1 = 175, \quad a_n = a_{n-1} + 175, \quad n \ge 2
+]
+
+### Step 3: Write the Explicit Formula (when requested)
+
+Convert to explicit form:
+[
+a_n = a_1 + (n-1)d \quad \text{(arithmetic)}
+]
+[
+a_n = a_1 \cdot r^{n-1} \quad \text{(geometric)}
+]
+
+For the video example:
+[
+a_n = 175n
+]
+
+## Example 6 — Convert Between Recursive and Explicit Formulas
+
+Given one form of a formula, write the equivalent formula in the other form.
+
+### Step 1: Identify the Sequence Type
+
+Examine the given formula to determine whether it represents an arithmetic or geometric sequence.
+
+### Step 2: Convert Recursive to Explicit
+
+For an arithmetic recursive formula [ a_1 = -2, \; a_n = a_{n-1} - 12, \; n \ge 2 ]:
+[
+a_n = a_1 + (n-1)d = -2 + (n-1)(-12) = -12n + 10
+]
+
+For a geometric recursive formula [ a_1 = 38, \; a_n = \frac{1}{2}a_{n-1}, \; n \ge 2 ]:
+[
+a_n = a_1 \cdot r^{n-1} = 38 \left(\frac{1}{2}\right)^{n-1}
+]
+
+### Step 3: Convert Explicit to Recursive
+
+For an explicit arithmetic formula [ a_n = -7n + 52 ]:
+[
+d = -7, \quad a_1 = -7(1) + 52 = 45
+]
+[
+a_1 = 45, \quad a_n = a_{n-1} - 7, \quad n \ge 2
+]
+
+For an explicit geometric formula [ a_n = 3(4)^{n-1} ]:
+[
+r = 4, \quad a_1 = 3
+]
+[
+a_1 = 3, \quad a_n = 4a_{n-1}, \quad n \ge 2
+]
+
+## Mixed Exercises
+
+The mixed exercises section provides practice with all skills from the lesson, including:
+
+* Converting explicit formulas to recursive formulas in real-world contexts (cost models, savings accounts)
+* Developing and comparing explicit formulas for two related quantities (population and widget production)
+* Using spreadsheet models to explore the Fibonacci sequence and ratios of consecutive terms
+* Analyzing classic puzzles (Tower of Hanoi) with recursive reasoning
+* Finding errors, analyzing structure, and writing explanations about recursive vs. explicit formulas
+* Solving challenge problems such as finding an initial term given a later term, finding recursive formulas for non-standard sequences, and exploring Gauss's method for summing arithmetic sequences
+
+## Review Notes
+
+* Problems 13–18 require graphs shown as images (image1.png through image6.png). These graphs display discrete sequences as plotted points; students must read coordinates and determine recursive formulas.
+* Problem 19 includes an image (image7.png) showing a graph of the viral video views over time.
+* Problem 20 includes an image (image8.png) showing the number of paper sections after each fold.
+* Problem 32 includes an image (image9.png) showing a graph of widget production per person.
+* Problem 34 includes an image (image10.png) showing Gauss's pairing method for summing 1 to 100.
+* Problem 35 includes an image (image11.png) showing a spreadsheet with Fibonacci numbers and ratios.

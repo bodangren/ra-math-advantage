@@ -1,0 +1,199 @@
+# Lesson 13-1 — Reflections
+
+Source: (Module 13, Lesson 13-1, Int1_1301_practice.docx)
+
+## Today's Goals
+
+* Graph the image of a figure after a reflection over a given line on the coordinate plane.
+* Determine the coordinates of the image of a point after a reflection in a horizontal or vertical line.
+* Apply reflection rules to solve real-world problems involving figures on the coordinate plane.
+
+## Vocabulary
+
+* **Reflection** — A transformation that flips a figure over a line, creating a mirror image.
+* **Line of Reflection** — The line over which a figure is reflected; the perpendicular bisector of the segment joining any point to its image.
+* **Image** — The new figure formed after a transformation.
+* **Preimage** — The original figure before a transformation.
+* **Coordinate Plane** — A two-dimensional grid formed by the intersection of a horizontal number line (the x-axis) and a vertical number line (the y-axis).
+
+## Explore: What Happens to Coordinates When You Flip a Figure?
+
+Students examine what happens to the coordinates of a point when it is reflected across different lines on the coordinate plane. Consider whether reflecting over the x-axis, y-axis, or the line y = x produces predictable changes.
+
+Inquiry Question:
+How can you predict the new coordinates of a point after it is reflected across a line without graphing?
+
+## Learn: Reflections on the Coordinate Plane
+
+A reflection is a transformation that flips a figure over a line called the line of reflection. Every point of the preimage and its corresponding point on the image are the same distance from the line of reflection.
+
+### Key Concept: Reflection Rules
+
+* Reflection in the x-axis: [ (x, y) \rightarrow (x, -y) ] 
+* Reflection in the y-axis: [ (x, y) \rightarrow (-x, y) ] 
+* Reflection in the line [y = x]: [ (x, y) \rightarrow (y, x) ] 
+* Reflection in the line [y = -x]: [ (x, y) \rightarrow (-y, -x) ] 
+
+### Key Concept: Reflection in Horizontal and Vertical Lines
+
+* Reflection in a horizontal line [y = k]: The x-coordinate stays the same; the y-coordinate becomes [2k - y].
+[
+  (x, y) \rightarrow (x, 2k - y)
+]
+* Reflection in a vertical line [x = h]: The y-coordinate stays the same; the x-coordinate becomes [2h - x].
+[
+  (x, y) \rightarrow (2h - x, y)
+]
+
+## Examples 1 and 2 — Graph the Image of a Figure Under a Reflection
+
+Graph a figure and its image after a reflection over a given line, then determine the coordinates of the image vertices.
+
+### Step 1: Reflect a Triangle in the Line [y = x] 
+
+Use the rule [ (x, y) \rightarrow (y, x) ] to find the image of each vertex of the triangle. Graph the original vertices and the reflected vertices, then connect the reflected vertices to form the image.
+
+[
+A(x, y) \rightarrow A'(y, x)
+]
+[
+B(x, y) \rightarrow B'(y, x)
+]
+[
+C(x, y) \rightarrow C'(y, x)
+]
+
+### Step 2: Reflect a Trapezoid in a Vertical Line
+
+Use the rule for reflection in a vertical line [x = h], where [h = -1]. For each vertex [ (x, y) ], the image is [ (2h - x, y) = (-2 - x, y) ].
+
+[
+D(x, y) \rightarrow D'(-2 - x, y)
+]
+[
+E(x, y) \rightarrow E'(-2 - x, y)
+]
+[
+F(x, y) \rightarrow F'(-2 - x, y)
+]
+[
+G(x, y) \rightarrow G'(-2 - x, y)
+]
+
+Graph the original trapezoid and the reflected trapezoid.
+
+### Step 3: Reflect a Parallelogram in the Line [y = x] 
+
+Apply the same rule [ (x, y) \rightarrow (y, x) ] to each vertex of the parallelogram. Plot the preimage and image, then verify that corresponding sides are congruent.
+
+[
+R(x, y) \rightarrow R'(y, x)
+]
+[
+S(x, y) \rightarrow S'(y, x)
+]
+[
+T(x, y) \rightarrow T'(y, x)
+]
+[
+U(x, y) \rightarrow U'(y, x)
+]
+
+### Step 4: Reflect a Square in a Horizontal Line
+
+Use the rule for reflection in a horizontal line [y = k], where [k = -2]. For each vertex [ (x, y) ], the image is [ (x, 2k - y) = (x, -4 - y) ].
+
+[
+K(x, y) \rightarrow K'(x, -4 - y)
+]
+[
+L(x, y) \rightarrow L'(x, -4 - y)
+]
+[
+M(x, y) \rightarrow M'(x, -4 - y)
+]
+[
+N(x, y) \rightarrow N'(x, -4 - y)
+]
+
+Graph the original square and the reflected square.
+
+## Example 3 — Determine Coordinates After a Reflection
+
+Find the coordinates of a single point after a reflection in a given line without graphing.
+
+### Step 1: Reflect a Point in a Horizontal Line
+
+For a point [S(-7, 1)] reflected in the line [y = 3], apply the rule [ (x, y) \rightarrow (x, 2k - y) ] with [k = 3]:
+
+[
+S(-7, 1) \rightarrow S'(-7, 2(3) - 1) = S'(-7, 5)
+]
+
+### Step 2: Reflect a Point in a Vertical Line
+
+For a point [Q(6, -4)] reflected in the line [x = 2], apply the rule [ (x, y) \rightarrow (2h - x, y) ] with [h = 2]:
+
+[
+Q(6, -4) \rightarrow Q'(2(2) - 6, -4) = Q'(-2, -4)
+]
+
+## Example 4 — Apply Reflections to Real-World Problems
+
+Use reflection rules to solve problems involving objects placed on the coordinate plane.
+
+### Step 1: Reflect a Triangular Banner in a Vertical Line
+
+A triangular banner has vertices at [P(0, 4)], [Q(2, 8)], and [R(-3, 6)]. To reflect the banner over the line [x = 1], apply the rule [ (x, y) \rightarrow (2(1) - x, y) = (2 - x, y) ] to each vertex:
+
+[
+P(0, 4) \rightarrow P'(2 - 0, 4) = P'(2, 4)
+]
+[
+Q(2, 8) \rightarrow Q'(2 - 2, 8) = Q'(0, 8)
+]
+[
+R(-3, 6) \rightarrow R'(2 - (-3), 6) = R'(5, 6)
+]
+
+Plot the original vertices and the reflected vertices, then draw the image of the banner.
+
+### Step 2: Reflect a Square Sandbox in a Vertical Line
+
+A square sandbox has vertices at [D(1, 1)], [E(1, 6)], [F(6, 6)], and [G(6, 1)]. To reflect the sandbox in the line [x = 1], apply the rule [ (x, y) \rightarrow (2(1) - x, y) = (2 - x, y) ] to each vertex:
+
+[
+D(1, 1) \rightarrow D'(2 - 1, 1) = D'(1, 1)
+]
+[
+E(1, 6) \rightarrow E'(2 - 1, 6) = E'(1, 6)
+]
+[
+F(6, 6) \rightarrow F'(2 - 6, 6) = F'(-4, 6)
+]
+[
+G(6, 1) \rightarrow G'(2 - 6, 1) = G'(-4, 1)
+]
+
+Notice that vertices on the line of reflection remain unchanged.
+
+## Mixed Exercises
+
+The mixed exercises section provides comprehensive practice with all skills from the lesson. Problems include:
+
+* Determining the coordinates of a point after a reflection in a horizontal line without graphing.
+* Graphing a rectangle and its image after a reflection in a horizontal line, then finding the image coordinates.
+* Graphing a triangle and its image after a reflection in the line [y = x], then finding the image coordinates.
+* Graphing a triangle and its image after a reflection in the line [y = x] and verifying the result.
+* Using a diagram to identify the vertices of a triangle, then finding the image after reflection in the line [y = x].
+* Identifying the line of reflection when given the coordinates of a point and its image.
+* Analyzing a student's claim about whether a figure is a reflection in the line [y = x] and explaining the error in their reasoning.
+* Creating five points that form the letter M on the coordinate plane, then finding their images under a reflection in the line [y = x].
+* Describing the process for reflecting a figure in a line when the figure is not on the coordinate plane.
+* Finding the coordinates of the image of a point in the second quadrant after a reflection in the line [y = -x].
+* Analyzing whether the image of a point reflected in a line is sometimes, always, or never located on the other side of the line of reflection, and justifying the answer.
+
+## Review Notes
+
+* Images referenced in the worksheet (triangle graph for problem 1, trapezoid graph for problem 2, parallelogram graph for problem 3, square graph for problem 4, triangle graph for problem 13, triangular garden diagram for problem 14, two-figure diagram for problem 16) could not be fully described without visual reference. Teachers should consult the original worksheet for exact figures and diagrams.
+* The worksheet labels the example group as "Examples 1 and 2" — there is no separate Example 1 or 2 heading in the original document; these are grouped together under one heading.

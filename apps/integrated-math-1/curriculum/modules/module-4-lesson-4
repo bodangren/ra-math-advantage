@@ -1,0 +1,249 @@
+# Lesson 4-4 — Transformations of Linear Functions
+
+Source: (Module 4, Lesson 4-4, Int1_0404_practice.docx)
+
+## Today's Goals
+
+* Describe translations, dilations, and reflections of linear functions in relation to the parent function [ f(x) = x ] 
+* Distinguish between vertical and horizontal transformations given a function rule
+* Write transformed linear functions from verbal descriptions and real-world contexts
+
+## Vocabulary
+
+* **Parent function** — The simplest form of a function in a family; for linear functions, [ f(x) = x ] 
+* **Translation** — A shift of a graph horizontally, vertically, or both without changing its shape
+* **Dilation** — A stretch or compression of a graph that changes its steepness
+* **Reflection** — A flip of a graph across an axis
+* **Vertical stretch** — A dilation where [ |a| > 1 ] in [ g(x) = a \cdot f(x) ], making the graph steeper
+* **Vertical compression** — A dilation where [ 0 < |a| < 1 ] in [ g(x) = a \cdot f(x) ], making the graph flatter
+* **Horizontal compression** — A dilation where [ |b| > 1 ] in [ g(x) = f(bx) ], making the graph steeper
+* **Horizontal stretch** — A dilation where [ 0 < |b| < 1 ] in [ g(x) = f(bx) ], making the graph flatter
+
+## Learn: Translations of Linear Functions
+
+A translation shifts every point of a graph by the same amount.
+
+### Key Concept: Vertical and Horizontal Translations
+
+* **Vertical translation:** [ g(x) = f(x) + k ] shifts the graph [ k ] units up if [ k > 0 ], or down if [ k < 0 ] 
+* **Horizontal translation:** [ g(x) = f(x - h) ] shifts the graph [ h ] units right if [ h > 0 ], or left if [ h < 0 ] 
+* **Combined translation:** [ g(x) = f(x - h) + k ] shifts right [ h ] and up [ k ] 
+
+## Example 1 — Describe Vertical Translations
+
+Describe how the graph of [ g(x) ] is related to the graph of the parent function [ f(x) = x ].
+
+### Step 1: Identify the Transformation Type
+
+Look at the form of [ g(x) ]. When a constant is added or subtracted outside the function, the transformation is vertical.
+
+For example:
+[
+g(x) = x + 11
+]
+The [ +11 ] is outside the function, so this is a vertical shift.
+
+### Step 2: State the Direction and Magnitude
+
+[
+g(x) = x + 11 \quad \text{translates the graph 11 units up}
+]
+[
+g(x) = x - 8 \quad \text{translates the graph 8 units down}
+]
+
+## Example 2 — Describe Horizontal Translations
+
+Describe how the graph of [ g(x) ] is related to the graph of the parent function [ f(x) = x ].
+
+### Step 1: Identify the Transformation Type
+
+When a constant is added or subtracted inside the function argument, the transformation is horizontal.
+
+For example:
+[
+g(x) = (x - 7)
+]
+The [ -7 ] is inside with [ x ], so this is a horizontal shift.
+
+### Step 2: State the Direction and Magnitude
+
+Remember: [ g(x) = f(x - h) ] shifts [ h ] units to the right when [ h > 0 ].
+
+[
+g(x) = (x - 7) \quad \text{translates the graph 7 units to the right}
+]
+[
+g(x) = (x + 12) \quad \text{translates the graph 12 units to the left}
+]
+
+## Example 3 — Describe Combined Translations
+
+Describe how the graph of [ g(x) ] is related to the graph of the parent function when both horizontal and vertical shifts are present.
+
+### Step 1: Identify Both Transformations
+
+For example:
+[
+g(x) = (x + 10) - 1
+]
+* The [ +10 ] inside indicates a horizontal shift left 10 units
+* The [ -1 ] outside indicates a vertical shift down 1 unit
+
+### Step 2: State the Combined Translation
+
+[
+g(x) = (x + 10) - 1 \quad \text{translates the graph 10 units left and 1 unit down}
+]
+[
+g(x) = (x - 9) + 5 \quad \text{translates the graph 9 units right and 5 units up}
+]
+
+## Example 4 — Translations in Context
+
+Write and describe translated functions based on real-world scenarios.
+
+### Step 1: Identify the Original Function and What Changes
+
+Read the problem to find:
+* The original function modeling the situation
+* What quantity increases or decreases
+
+For example, if the cost to bowl is [ f(x) = 4x + 3.5 ] where [ 3.5 ] is a shoe rental fee, and the fee is removed:
+[
+g(x) = 4x \quad \text{or equivalently} \quad g(x) = f(x) - 3.5
+]
+
+### Step 2: Describe the Translation
+
+Determine whether the change represents a vertical or horizontal shift and state its direction and magnitude.
+
+* Removing a flat fee: vertical shift down by that amount
+* Adding a deposit: vertical shift up by that amount
+* Changing a starting balance: vertical shift up or down
+
+## Learn: Dilations of Linear Functions
+
+A dilation stretches or compresses a graph, changing its steepness.
+
+### Key Concept: Vertical and Horizontal Dilations
+
+* **Vertical dilation:** [ g(x) = a \cdot f(x) ] stretches vertically by factor [ |a| ] if [ |a| > 1 ], or compresses if [ 0 < |a| < 1 ] 
+* **Horizontal dilation:** [ g(x) = f(bx) ] compresses horizontally by factor [ \frac{1}{|b|} ] if [ |b| > 1 ], or stretches if [ 0 < |b| < 1 ] 
+* For linear functions, a vertical stretch by [ a ] produces the same graph as a horizontal compression by [ a ] 
+
+## Example 5 — Describe Vertical Dilations
+
+Describe how the graph of [ g(x) ] is related to the graph of the parent function [ f(x) = x ].
+
+### Step 1: Identify the Coefficient Location
+
+When the coefficient multiplies the entire function, the dilation is vertical.
+
+For example:
+[
+g(x) = 5(x)
+]
+The [ 5 ] is outside, so this is a vertical dilation.
+
+### Step 2: Determine Stretch or Compression
+
+Compare [ |a| ] to 1:
+
+[
+g(x) = 5(x) \quad \text{vertical stretch by a factor of 5}
+]
+[
+g(x) = \frac{1}{3}(x) \quad \text{vertical compression by a factor of } \frac{1}{3}
+]
+[
+g(x) = 1.5(x) \quad \text{vertical stretch by a factor of 1.5}
+]
+
+## Example 6 — Describe Horizontal Dilations
+
+Describe how the graph of [ g(x) ] is related to the graph of the parent function when the coefficient is inside the function argument.
+
+### Step 1: Identify the Coefficient Location
+
+When the coefficient multiplies [ x ] inside the function, the dilation is horizontal.
+
+For example:
+[
+g(x) = (3x)
+]
+The [ 3 ] is inside with [ x ], so this is a horizontal dilation.
+
+### Step 2: Determine Stretch or Compression
+
+For horizontal dilations, [ |b| > 1 ] gives a compression:
+
+[
+g(x) = (3x) \quad \text{horizontal compression by a factor of } \frac{1}{3}
+]
+[
+g(x) = \left(\frac{3}{4}x\right) \quad \text{horizontal stretch by a factor of } \frac{4}{3}
+]
+[
+g(x) = (0.4x) \quad \text{horizontal stretch by a factor of } \frac{1}{0.4} = 2.5
+]
+
+## Example 7 — Reflections Across the x-Axis
+
+Describe how the graph of [ g(x) ] is related to the graph of the parent function when a negative coefficient is outside.
+
+### Step 1: Identify the Reflection
+
+A negative coefficient outside the function reflects the graph across the x-axis.
+
+For example:
+[
+g(x) = -4(x)
+]
+
+### Step 2: State the Dilation and Reflection
+
+[
+g(x) = -4(x) \quad \text{reflected across the x-axis and vertically stretched by a factor of 4}
+]
+[
+g(x) = -8(x) \quad \text{reflected across the x-axis and vertically stretched by a factor of 8}
+]
+[
+g(x) = -\frac{2}{3}(x) \quad \text{reflected across the x-axis and vertically compressed by a factor of } \frac{2}{3}
+]
+
+## Example 8 — Reflections Across the y-Axis
+
+Describe how the graph of [ g(x) ] is related to the graph of the parent function when a negative coefficient is inside with [ x ].
+
+### Step 1: Identify the Reflection
+
+A negative coefficient multiplying [ x ] inside the function reflects the graph across the y-axis.
+
+For example:
+[
+g(x) = \left(-\frac{4}{5}x\right)
+]
+
+### Step 2: State the Dilation and Reflection
+
+[
+g(x) = \left(-\frac{4}{5}x\right) \quad \text{reflected across the y-axis and horizontally stretched by a factor of } \frac{5}{4}
+]
+[
+g(x) = (-6x) \quad \text{reflected across the y-axis and horizontally compressed by a factor of } \frac{1}{6}
+]
+[
+g(x) = (-1.5x) \quad \text{reflected across the y-axis and horizontally compressed by a factor of } \frac{1}{1.5} = \frac{2}{3}
+]
+
+## Mixed Exercises
+
+The mixed exercises provide comprehensive practice with all transformation types. Students identify translations, dilations, and reflections from function rules; write transformed functions from verbal descriptions; and solve real-world problems involving rates, costs, and geometric quantities. The exercises also include reasoning questions that ask students to compare horizontal and vertical shifts, analyze the relationship between vertical and horizontal dilations, and justify which function does not belong in a given group.
+
+## Review Notes
+
+* The extracted worksheet contains image placeholders (`media/image1.png` through `media/image8.png`) that could not be described. These likely contain graphs of the parent function and transformed functions for problems 1–6, 10–21, and 22–27. Verify that graph images are available for the activity renderer.
+* The worksheet notation uses parentheses [ (x - h) ] and [ (bx) ] to denote horizontal transformations of the linear parent function. Confirm that the absolute value bars seen in the original printed worksheet are properly rendered if applicable.
+* Problems 34–36 are open-ended reasoning and creation tasks that may require free-response input or discussion prompts rather than auto-graded numeric answers.

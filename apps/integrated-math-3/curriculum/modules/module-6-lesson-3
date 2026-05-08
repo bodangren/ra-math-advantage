@@ -1,239 +1,260 @@
 # Lesson 6-3 — Common Logarithms
 
-Source: (Module 6, Lesson 6-3, pp. 277–280)
+Source: (Module 6, Lesson 6-3, Int3_0603_practice.docx)
 
 ## Today's Goals
 
-* Solve exponential equations by using common logarithms
-* Evaluate logarithmic expressions by using the Change of Base Formula
-
----
+* Evaluate common logarithms using a calculator.
+* Solve exponential equations using logarithms.
+* Solve logarithmic inequalities.
+* Express logarithms in terms of common logarithms using the Change of Base Formula.
+* Apply common logarithms to real-world problems involving population growth, sound intensity, and financial models.
 
 ## Vocabulary
 
-* common logarithms
+* **Common Logarithm** — A logarithm with base 10, written [\log x] (the base 10 is implied).
+* **Change of Base Formula** — [\log_b x = \frac{\log x}{\log b}] or [\log_b x = \frac{\ln x}{\ln b}]
+* **Exponential Equation** — An equation where the variable appears in an exponent.
 
----
+## Explore: Why Do We Need Common Logarithms?
+
+Before digital calculators, common logarithms revolutionized computation by transforming multiplication into addition. The base-10 logarithm connects directly to our decimal number system, making it practical for scientific and engineering calculations.
+
+Inquiry Question:
+How does the fact that [\log 10 = 1] and [\log 100 = 2] help you estimate the value of [\log 50] without a calculator?
 
 ## Learn: Common Logarithms
 
-Base `10` logarithms are called **common logarithms** and are usually written without the subscript `10`.
-
-`log10 x = log x`, for `x > 0`
-
-The common logarithm function can be evaluated with a calculator.
-
-Common logarithms of numbers that differ by powers of ten are closely related:
-
-* `log 1 = 0` because `10^0 = 1`
-* `log 10 = 1` because `10^1 = 10`
-* `log 100 = 2` because `10^2 = 100`
-* `log 10^m = m`
-
-## Think About It
-
-Describe the meaning of `log 8 ≈ 0.9031` in the context of exponents and the definition of a common logarithm.
-
----
-
-## Example 1 — Find Common Logarithms by Using Technology
-
-Use a calculator to evaluate `log 8` to the nearest ten-thousandth.
-
-`log 8 ≈ 0.9031`
-
----
-
-## Example 2 — Solve a Logarithmic Equation by Using Exponential Form
-
-The amount of energy `E` in ergs released by an earthquake is related to its Richter scale magnitude `M` by:
-
-`log E = 11.8 + 1.5M`
-
-An earthquake in Cyprus in `1222` is estimated to have measured `7` on the Richter scale. How much energy was released?
-
-Substitute `M = 7`:
-
-`log E = 11.8 + 1.5(7)`
-
-`log E = 22.3`
-
-Write in exponential form:
-
-`E = 10^22.3`
-
-Use a calculator:
-
-`E ≈ 2 * 10^22`
-
-So the earthquake released approximately `2 * 10^22` ergs of energy.
-
-## Talk About It
-
-What approximations were made when determining the energy released by the Cyprus earthquake?
-
----
-
-## Example 3 — Solve an Exponential Equation by Using Logarithms
-
-Solve:
-
-`11^x = 101`
-
-Round to the nearest ten-thousandth.
-
-Take the common logarithm of both sides:
-
-`log 11^x = log 101`
-
-Use the Power Property:
-
-`x log 11 = log 101`
-
-Solve for `x`:
-
-`x = log 101 / log 11`
-
-`x ≈ 1.9247`
-
-### Check
-
-The solution can also be checked graphically by comparing `y = 11^x` and `y = 101`.
-
----
-
-## Example 4 — Solve an Exponential Inequality by Using Logarithms
-
-Solve:
-
-`6^(2y - 5) < 5^(3y)`
-
-Round to the nearest ten-thousandth.
-
-Take common logarithms:
-
-`log(6^(2y - 5)) < log(5^(3y))`
-
-Apply the Power Property:
-
-`(2y - 5) log 6 < 3y log 5`
-
-Distribute:
-
-`2y log 6 - 5 log 6 < 3y log 5`
-
-Move the `y`-terms:
-
-`-5 log 6 < y(3 log 5 - 2 log 6)`
-
-Solve:
-
-`(-5 log 6) / (3 log 5 - 2 log 6) < y`
-
-`y > -7.1970`
-
-### Check
-
-Test `y = 0`:
-
-`6^(2(0) - 5) < 5^(3(0))`
-
-`6^(-5) < 1`
-
-`1/7776 < 1`
-
-This is true.
-
-### Watch Out
-
-When multiplying or dividing an inequality by a negative value, the inequality sign reverses. Evaluate expressions if needed to confirm the sign.
-
----
-
-## Learn: Change of Base Formula
-
-The Change of Base Formula allows you to write equivalent logarithmic expressions with different bases.
+### Key Concept: Evaluating Common Logarithms
+
+A common logarithm [\log x] means [\log_{10} x]. To evaluate:
+* If [x = 10^n], then [\log x = n].
+* If [x] is between powers of 10, the logarithm falls between the corresponding exponents.
 
 ### Key Concept: Change of Base Formula
 
-For positive numbers `a`, `b`, and `n`, where `a != 1` and `b != 1`:
+To evaluate logarithms with bases other than 10:
+[\log_b x = \frac{\log x}{\log b}]
 
-`loga n = logb n / logb a`
+This allows any logarithm to be computed using common (or natural) log functions on a calculator.
 
-A common choice is to rewrite in terms of common logarithms:
+### Key Concept: Solving Exponential Equations
 
-`loga n = log n / log a`
+To solve [a^x = b]:
+1. Take the common logarithm of both sides: [\log a^x = \log b]
+2. Apply the Power Property: [x \cdot \log a = \log b]
+3. Solve for [x]: [x = \frac{\log b}{\log a}]
 
-## Talk About It
+## Example 1 — Evaluate Common Logarithms with a Calculator
 
-Is it possible to evaluate `logpi 5`? Explain.
+### Step 1: Use Calculator Functions
 
----
+[\log 18 \approx 1.2553]
+[\log 39 \approx 1.5911]
+[\log 120 \approx 2.0792]
+[\log 5.8 \approx 0.7634]
+[\log 42.3 \approx 1.6263]
+[\log 0.003 \approx -2.5229]
 
-## Example 5 — Change of Base Formula
+## Example 2 — Apply Common Logarithms to Real-World Problems
 
-Evaluate `log2 11` by writing it in terms of common logarithms. Round to the nearest ten-thousandth.
+### Step 1: Solve the Bacteria Growth Problem
 
-`log2 11 = log 11 / log 2`
+The number of bacteria after [t] hours is [N = 1000(2)^t]. We need [t] when [N = 50,000].
 
-`≈ 3.4594`
+[50000 = 1000(2)^t]
+[50 = 2^t]
+[\log 50 = \log 2^t]
+[\log 50 = t \cdot \log 2]
+[t = \frac{\log 50}{\log 2} \approx \frac{1.6990}{0.3010} \approx 5.64] hours
 
-### Check
+### Step 2: Solve the Sound Intensity Problem
 
-Evaluate `log8 30`. Round to the nearest ten-thousandth.
+Loudness is [L = 10 \log R]. If the siren is 138 decibels, find how many times greater than the threshold.
 
----
+[138 = 10 \log R]
+[13.8 = \log R]
+[R = 10^{13.8} \approx 6.31 \times 10^{13}]
 
-## Example 6 — Use the Change of Base Formula
+The siren is approximately [6.31 \times 10^{13}] times the minimum threshold.
 
-The musical cent is a unit of relative pitch. One octave consists of `1200` cents. The formula for the difference `n` in cents between two notes with beginning frequency `a` and ending frequency `b` is:
+## Example 3 — Solve Exponential Equations
 
-`n = 1200(log2(a/b))`
+Solve each equation. Round to the nearest ten-thousandth.
 
-Find the frequency of pitch `a` if pitch `b` is `1661.22` and the difference between the pitches is `1600` cents.
+### Step 1: Apply the Logarithm Method
 
-### Step 1: Write the equation in terms of common logarithms
+[4^{5k} = 37]
+[\log 4^{5k} = \log 37]
+[5k \cdot \log 4 = \log 37]
+[k = \frac{\log 37}{5 \cdot \log 4} \approx \frac{1.5682}{5(0.6021)} \approx \frac{1.5682}{3.0105} \approx 0.5209]
 
-Substitute the known values:
+[8^p = 50]
+[p \cdot \log 8 = \log 50]
+[p = \frac{\log 50}{\log 8} \approx \frac{1.6990}{0.9031} \approx 1.8813]
 
-`1600 = 1200(log2(a/1661.22))`
+[7^y = 15]
+[y \cdot \log 7 = \log 15]
+[y = \frac{\log 15}{\log 7} \approx \frac{1.1761}{0.8451} \approx 1.3915]
 
-Divide by `1200`:
+### Step 2: Solve More Complex Equations
 
-`4/3 = log2(a/1661.22)`
+[5^{4x - 2} = 120]
+[(4x - 2) \cdot \log 5 = \log 120]
+[4x - 2 = \frac{\log 120}{\log 5} \approx \frac{2.0792}{0.6990} \approx 2.9747]
+[4x = 4.9747]
+[x \approx 1.2437]
 
-Use Change of Base:
+[6^{x + 2} = 18]
+[(x + 2) \cdot \log 6 = \log 18]
+[x + 2 = \frac{\log 18}{\log 6} \approx \frac{1.2553}{0.7782} \approx 1.6133]
+[x \approx -0.3867]
 
-`4/3 = log(a/1661.22) / log 2`
+[2.4^{x + 4} = 30]
+[(x + 4) \cdot \log 2.4 = \log 30]
+[x + 4 = \frac{\log 30}{\log 2.4} \approx \frac{1.4771}{0.3802} \approx 3.8851]
+[x \approx -0.1149]
 
-### Step 2: Use a graphing calculator to solve for `a`
+## Example 4 — Solve Logarithmic Inequalities
 
-Graph:
+Solve each inequality. Round to the nearest ten-thousandth.
 
-* `y = 4/3`
-* `y = log(a/1661.22) / log 2`
+### Step 1: Use Logarithms to Isolate the Variable
 
-The functions intersect at approximately:
+[7^{3x - 1} \geq 21]
+[(3x - 1) \cdot \log 7 \geq \log 21]
+[3x - 1 \geq \frac{\log 21}{\log 7} \approx \frac{1.3222}{0.8451} \approx 1.5647]
+[3x \geq 2.5647]
+[x \geq 0.8549]
 
-`a = 4186.0121`
+[6.5^{2x} \geq 200]
+[2x \cdot \log 6.5 \geq \log 200]
+[2x \geq \frac{\log 200}{\log 6.5} \approx \frac{2.3010}{0.8129} \approx 2.8301]
+[x \geq 1.4151]
 
-So pitch `a` has a frequency of about `4186.01` hertz.
+### Step 2: Handle Special Cases
 
-## Think About It
+[3^x > 243]
+Since [243 = 3^5], we have [3^x > 3^5]. Since base 3 > 1, [x > 5].
 
-Describe how to solve
+[16^v \leq \frac{1}{4}]
+Since [\frac{1}{4} = 16^{-1/2}], we have [16^v \leq 16^{-1/2}]. Since base 16 > 1, [v \leq -\frac{1}{2}].
 
-`4/3 = log(a/1661.22) / log 2`
+[8^{y + 4} > 15]
+[(y + 4) \cdot \log 8 > \log 15]
+[y + 4 > \frac{\log 15}{\log 8} \approx \frac{1.1761}{0.9031} \approx 1.3023]
+[y > -2.6977]
 
-algebraically.
+[2^x < 25]
+Since [25 = 5^2 = 2^{\log_2 25}], we need [\log_2 25]. Alternatively, [x \cdot \log 2 < \log 25], so [x < \frac{\log 25}{\log 2} \approx \frac{1.3979}{0.3010} \approx 4.6439].
 
-### Check
+## Example 5 — Express Logarithms in Terms of Common Logarithms
 
-The revenue of a company is `r = 227 + 44 log5 x`, where `r` is annual revenue in thousands and `x` is advertising spending in thousands. Use a graphing calculator to determine the amount spent on advertising if revenue is `$325,000`.
+Use the Change of Base Formula to express each logarithm in terms of common logs, then approximate.
 
----
+### Step 1: Apply Change of Base Formula
 
-## Objective Alignment
+[\log_4 22 = \frac{\log 22}{\log 4} \approx \frac{1.3424}{0.6021} \approx 2.2293]
 
-- `Solve exponential equations by using common logarithms`: Primary worked examples: Examples 1-4.
-- `Evaluate logarithmic expressions by using the Change of Base Formula`: Primary worked examples: Examples 5-6.
+[\log_{12} 200 = \frac{\log 200}{\log 12} \approx \frac{2.3010}{1.0792} \approx 2.1316]
+
+[\log_2 50 = \frac{\log 50}{\log 2} \approx \frac{1.6990}{0.3010} \approx 5.6439]
+
+[\log_8 15 = \frac{\log 15}{\log 8} \approx \frac{1.1761}{0.9031} \approx 1.3023]
+
+[\log_3 2 = \frac{\log 2}{\log 3} \approx \frac{0.3010}{0.4771} \approx 0.6309]
+
+[\log_5 0.4 = \frac{\log 0.4}{\log 5} \approx \frac{-0.3979}{0.6990} \approx -0.5693]
+
+## Example 6 — Use Estimation in Real-World Models
+
+### Step 1: Solve the Restaurant Revenue Problem
+
+Revenue is [r = 180 + 35 \log_4 x], where [r] is in thousands and [x] is advertising in thousands. Find [x] when [r = 250] (thousands).
+
+[250 = 180 + 35 \log_4 x]
+[70 = 35 \log_4 x]
+[2 = \log_4 x]
+[x = 4^2 = 16]
+
+So $16,000 spent on advertising yields $250,000 revenue.
+
+### Step 2: Solve the Deer Population Problem
+
+The function [f(x) = 2 + 10 \log_9 (x + 2)] gives deer population in hundreds, where [x] is years since 2012. Find when [f(x) = 15] (1500 deer).
+
+[15 = 2 + 10 \log_9 (x + 2)]
+[13 = 10 \log_9 (x + 2)]
+[1.3 = \log_9 (x + 2)]
+[x + 2 = 9^{1.3}]
+[x = 9^{1.3} - 2]
+
+Using calculator: [9^{1.3} \approx 20.29], so [x \approx 18.29]. The year is approximately [2012 + 18 = 2030].
+
+## Mixed Exercises
+
+**Solve each equation or inequality:**
+
+[5^{x^2 - 3} = 72] → [(x^2 - 3) \log 5 = \log 72] → [x^2 - 3 = \frac{\log 72}{\log 5} \approx \frac{1.8573}{0.6990} \approx 2.657] → [x^2 = 5.657] → [x = \pm \sqrt{5.657} \approx \pm 2.379]
+
+[4^{2x} = 9^{x + 1}] → [2x \log 4 = (x + 1) \log 9] → [2x(0.6021) = x(0.9542) + 0.9542] → [1.2042x - 0.9542x = 0.9542] → [0.25x = 0.9542] → [x \approx 3.817]
+
+[2^{n + 1} = 5^{2n - 1}] → [(n + 1) \log 2 = (2n - 1) \log 5] → [0.3010n + 0.3010 = 1.3982n - 0.6990] → [1.0000 = 1.0972n] → [n \approx 0.911]
+
+[7^{2n} > 52^{4n + 3}] → [2n \log 7 > (4n + 3) \log 52] → [2n(0.8451) > 4n(1.7160) + 3(1.7160)] → [1.6902n > 6.864n + 5.148] → [-5.1738n > 5.148] → [n < -0.995]
+
+[6^p \leq 13^{5 - p}] → [p \log 6 \leq (5 - p) \log 13] → [p(0.7782) \leq 5(1.1139) - p(1.1139)] → [0.7782p + 1.1139p \leq 5.5695] → [1.8921p \leq 5.5695] → [p \leq 2.944]
+
+[2^{y + 3} \geq 8^{3y}] → [2^{y + 3} \geq 2^{3(3y)} = 2^{9y}] → [y + 3 \geq 9y] → [3 \geq 8y] → [y \leq \frac{3}{8} = 0.375]
+
+**Express in terms of common logarithms and approximate:**
+
+[\log_3 (20)^2 = 2 \cdot \log_3 20 = 2 \cdot \frac{\log 20}{\log 3} \approx 2 \cdot \frac{1.3010}{0.4771} \approx 2 \cdot 2.727 \approx 5.454]
+
+[\log_6 (5)^4 = 4 \cdot \log_6 5 = 4 \cdot \frac{\log 5}{\log 6} \approx 4 \cdot \frac{0.6990}{0.7782} \approx 4 \cdot 0.898 \approx 3.592]
+
+[\log_8 (4)^5 = 5 \cdot \log_8 4 = 5 \cdot \frac{\log 4}{\log 8} \approx 5 \cdot \frac{0.6021}{0.9031} \approx 5 \cdot 0.667 \approx 3.333]
+
+[\log_5 (8)^3 = 3 \cdot \log_5 8 = 3 \cdot \frac{\log 8}{\log 5} \approx 3 \cdot \frac{0.9031}{0.6990} \approx 3 \cdot 1.292 \approx 3.876]
+
+[\log_2 (3.6)^6 = 6 \cdot \log_2 3.6 = 6 \cdot \frac{\log 3.6}{\log 2} \approx 6 \cdot \frac{0.5563}{0.3010} \approx 6 \cdot 1.848 \approx 11.088]
+
+[\log_{12} (10.5)^4 = 4 \cdot \log_{12} 10.5 = 4 \cdot \frac{\log 10.5}{\log 12} \approx 4 \cdot \frac{1.0212}{1.0792} \approx 4 \cdot 0.946 \approx 3.785]
+
+[\log_3 \sqrt{150} = \frac{1}{2} \cdot \log_3 150 = \frac{1}{2} \cdot \frac{\log 150}{\log 3} \approx \frac{1}{2} \cdot \frac{2.1761}{0.4771} \approx \frac{1}{2} \cdot 4.563 \approx 2.282]
+
+[\log_4 \sqrt[3]{39} = \frac{1}{3} \cdot \log_4 39 = \frac{1}{3} \cdot \frac{\log 39}{\log 4} \approx \frac{1}{3} \cdot \frac{1.5911}{0.6021} \approx \frac{1}{3} \cdot 2.643 \approx 0.881]
+
+[\log_5 \sqrt[4]{1600} = \frac{1}{4} \cdot \log_5 1600 = \frac{1}{4} \cdot \frac{\log 1600}{\log 5} \approx \frac{1}{4} \cdot \frac{3.2041}{0.6990} \approx \frac{1}{4} \cdot 4.584 \approx 1.146]
+
+**44. STRUCTURE** Given [\log 2 \approx 0.3010] and [\log 3 \approx 0.4771], explain how to find [\log_2 3].
+
+**45. REASONING** Sketch [y = \log_2 x] on the same plane as [y = \log_{10} x] given that [\frac{1}{\log_{10} 2} \approx 3.32].
+
+**46. CONSTRUCT ARGUMENTS** Prove that if [n = s \times 10^p] with [1 \leq s < 10], then [p \leq \log_{10} n < p + 1].
+
+**47. STRUCTURE** Use a table of values to determine [\log_{10} 1.5] and explain the reasoning.
+
+**48. USE TOOLS** The equation [t = \frac{1}{\log(1 + r)}] gives years to grow $1000 to $10,000. Find [r] if [t = 45] years.
+
+**49. STRUCTURE** Rewrite using common logarithms and solve:
+* [3 \log_2 (2x) - \log_4 (3x) = 1]
+* [\log_6 (x^2) + \log_3 x = 3]
+* [2 \log_2 (3x) = -8 \log_3 x]
+
+**50. STRUCTURE** Rewrite using common logarithms and solve:
+* [\log_7 (2x) < 2 \log_6 x]
+* [3 \log_2 (4x) \leq \log (8x)]
+
+**51. FIND THE ERROR** Sam and Rosamaria solved [4^{3p} = 10]. Who is correct?
+
+**52. PERSEVERE** Solve [\log_{\sqrt{a}} 3 = \log_a x] for [x].
+
+**53. CONSTRUCT ARGUMENTS** Find [\log_3 27] and [\log_{27} 3]. Make a conjecture about the relationship between [\log_a b] and [\log_b a].
+
+**54. FIND THE ERROR** Claudia tried to find [\log_7 8] and got an unexpected result. Explain her error.
+
+## Review Notes
+
+* Images: ![](media/image1.png) — Example 6 reference diagram; ![](media/image2.JPG) — Problem 45 graph; ![](media/image3.png) — Problem 51 (Sam and Rosamaria error analysis); ![](media/image4.png) — Problem 54 (Claudia's calculator error).
+* The worksheet contains 54 practice problems across six examples and mixed exercises.

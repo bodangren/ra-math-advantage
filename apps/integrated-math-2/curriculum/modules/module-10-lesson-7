@@ -1,0 +1,167 @@
+# Lesson 10-7 — Exponential Equations
+
+Source: (Module 10, Lesson 10-7, Int2_1007_practice.docx)
+
+## Today's Goals
+
+* Solve exponential equations by writing both sides with a common base.
+* Apply properties of exponents to rewrite exponential expressions.
+* Interpret exponential models in real-world contexts involving growth and decay.
+* Use exponential equations to solve for unknown quantities in applied problems.
+
+## Vocabulary
+
+* **Exponential Equation** — An equation where the variable appears in an exponent, such as [a^x = b].
+* **Common Base** — When both sides of an exponential equation can be expressed using the same base number.
+* **Base** — The number being raised to a power in an exponential expression.
+* **Exponent** — The power to which the base is raised.
+* **Exponential Growth** — A pattern of increase where a quantity multiplies by a constant factor over equal intervals.
+* **Exponential Decay** — A pattern of decrease where a quantity divides by a constant factor over equal intervals.
+
+## Explore: What Makes Exponential Equations Unique?
+
+Exponential equations differ from linear equations because the variable is in the exponent rather than the base. When solving exponential equations, the key strategy is to express both sides using the same base, then set the exponents equal to each other.
+
+Inquiry Question:
+What types of exponential equations can be solved by matching bases, and when is a different approach needed?
+
+## Learn: Solving Exponential Equations
+
+### Key Concept: Using Common Bases
+
+If [a^m = a^n] and [a \ne 1] and [a > 0], then [m = n].
+
+To solve an exponential equation:
+
+1. Rewrite each side so both have a common base.
+2. Set the exponents equal to each other.
+3. Solve the resulting equation for the variable.
+
+### Key Concept: Powers with Variables in the Exponent
+
+When the same variable expression appears in the exponent on both sides, set the exponents equal:
+
+If [a^{f(x)} = a^{g(x)}], then [f(x) = g(x)].
+
+## Example 1 — Solve Exponential Equations with Common Bases
+
+Solve each equation by rewriting both sides with the same base.
+
+### Step 1: Identify a Common Base
+
+For [2^x = 512], recognize that [512 = 2^9], so rewrite as [2^x = 2^9] and set [x = 9].
+
+For [3^x = 243], recognize that [243 = 3^5], so rewrite as [3^x = 3^5] and set [x = 5].
+
+For [6^x = 46656], find the power: [6^6 = 46656], so [x = 6].
+
+For [5^x = 125], recognize that [125 = 5^3], so [x = 3].
+
+### Step 2: Solve for the Variable
+
+Work through each equation by expressing the right side as a power of the left side's base:
+
+[
+2^x = 512 \Rightarrow 2^x = 2^9 \Rightarrow x = 9
+]
+[
+3^x = 243 \Rightarrow 3^x = 3^5 \Rightarrow x = 5
+]
+[
+6^x = 46656 \Rightarrow 6^x = 6^6 \Rightarrow x = 6
+]
+[
+5^x = 125 \Rightarrow 5^x = 5^3 \Rightarrow x = 3
+]
+
+## Example 2 — Solve Equations with Exponent Operations
+
+Solve equations where exponents involve sums, differences, or coefficients by first simplifying each side to a common base or form.
+
+### Step 1: Simplify Exponents Before Matching
+
+For [3^{x-3} = 243], note that [243 = 3^5], so [3^{x-3} = 3^5], giving [x - 3 = 5] and [x = 8].
+
+For [4^{x-1} = 1024], note that [1024 = 4^5] (since [4^5 = 1024]), so [4^{x-1} = 4^5], giving [x - 1 = 5] and [x = 6].
+
+For [6^{x-1} = 1296], find that [1296 = 6^4], so [6^{x-1} = 6^4], giving [x - 1 = 4] and [x = 5].
+
+For [4^{2x+1} = 1024], note [1024 = 4^5], so [4^{2x+1} = 4^5], giving [2x + 1 = 5] and [x = 2].
+
+### Step 2: Apply to Equations with Multiple Coefficients
+
+For [2^{4x+3} = 2048], find [2048 = 2^{11}], so [2^{4x+3} = 2^{11}], giving [4x + 3 = 11] and [x = 2].
+
+For [3^{3x+3} = 6561], find [6561 = 3^8], so [3^{3x+3} = 3^8], giving [3x + 3 = 8] and [x = \frac{5}{3}].
+
+## Example 3 — Exponential Equations in Applied Contexts
+
+Use exponential models to solve real-world problems involving electricity, video views, and land development.
+
+### Step 1: Translate the Real-World Situation into an Equation
+
+**Electricity Problem:** Given [I\sqrt{R} = \sqrt{P}] with [I = 2.5] amperes and [P = 100] watts, solve for [R].
+
+[
+2.5\sqrt{R} = \sqrt{100} = 10
+]
+[
+\sqrt{R} = 4
+]
+[
+R = 16 \text{ ohms}
+]
+
+**Video Views Problem:** Given [v = 4^{1.25d}] and [v = 1024], solve for [d].
+
+[
+1024 = 4^{1.25d}
+]
+[
+1024 = 4^5 = 4^{1.25(4)}
+]
+[
+d = 4 \text{ days}
+]
+
+**Land Development Problem:** Given [A = 6250 \cdot 10^{-0.1t}] and [A = 62.5], solve for [t].
+
+[
+62.5 = 6250 \cdot 10^{-0.1t}
+]
+[
+0.01 = 10^{-0.1t}
+]
+[
+10^{-2} = 10^{-0.1t}
+]
+[
+t = 20 \text{ months}
+]
+
+### Step 2: Check Units and Context
+
+Verify that answers make sense in context. For instance, the electricity problem asks for resistance, so a positive value of 16 ohms is reasonable.
+
+## Mixed Exercises
+
+Practice solving a variety of exponential equations and applied problems:
+
+* Solve equations requiring rewriting with different bases, such as [2^{5x} = 8^{2x-4}] and [81^{2x-3} = 9^{x+3}] by expressing each side with a common base.
+* Solve equations resulting in fractional or negative exponents, such as [16^x = \frac{1}{2}], [25^x = \frac{1}{125}], and [6^{8-x} = \frac{1}{216}].
+* Solve equations like [2^{5x-4} = 64], [4^{x+1} = 256], and [3^{4x-2} = 729] by rewriting with common bases.
+* **Use a Model:** Write and use an exponential equation where a website's traffic doubles every 5 days, starting from 96 visits, to find when visits reach 12,288.
+* **Physics:** Use [v = \sqrt{64d}] to find the drop distance when velocity is 49 ft/s.
+* **Fencing:** Use [f = 4\sqrt{A}] to find the area of a playground with 324 ft of fencing.
+* **Create:** Write an equation equivalent to [8^{2+x} = 16^{2.5 - 0.5x}] with a base of 4, then solve.
+* **Find the Error:** Analyze two student solutions to [128^x = 4] and identify any mistakes in reasoning.
+* **Construct Arguments:** Make a conjecture about why [2^b = 5^{b-1}] cannot be solved by matching bases.
+* **Persevere:** Find solutions to [32^{(x^2 + 4x)} = 16^{(x^2 + 4x)}] by analyzing when both sides are equal.
+* **Create:** Write an exponential equation with solution [x = -1].
+* **Which One Doesn't Belong:** Identify the exponential equation that does not belong among four given equations and justify the conclusion.
+* **Write:** Explain the process for solving [9^{4n-3} = 3^6] and include the solution.
+
+## Review Notes
+
+* The worksheet contains images in problems 30 and 35 (Zari and Jenell's work, and the "Which One Doesn't Belong" set of equations) that cannot be fully described without visual reference.
+* The lesson covers 36 practice problems across three examples and mixed exercises, with problems ranging from basic base-matching to multi-step applications and proof-based reasoning.

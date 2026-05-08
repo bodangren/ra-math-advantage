@@ -1,162 +1,251 @@
 # Lesson 8-1 — Random Sampling
 
-Source: (Module 8, Lesson 8-1, pp. 371–374)
+Source: (Module 8, Lesson 8-1, Int3_0801_practice.docx)
 
 ## Today's Goals
 
-* Classify sampling methods and identify bias in samples and survey questions
-* Distinguish among sample surveys, experiments, and observational studies
-
----
+* Identify sampling methods and classify samples as simple random, systematic, self-selected, convenience, or stratified.
+* Determine whether samples are biased or unbiased.
+* Classify statistical studies as surveys, experiments, or observational studies.
+* Write unbiased survey questions.
 
 ## Vocabulary
 
-* parameter
-* statistic
-* population
-* bias
-* survey
-* experiment
-* observational study
+* **Parameter** — A characteristic of an entire population.
+* **Statistic** — A characteristic of a sample.
+* **Population** — The full group of interest.
+* **Sample** — A subset of the population used to gather data.
+* **Bias** — An error that systematically misrepresents the population.
+* **Simple Random Sample** — Each member of the population has an equal chance of selection.
+* **Systematic Sample** — Members are selected at a regular interval.
+* **Self-Selected Sample** — Members volunteer to participate.
+* **Convenience Sample** — Readily available members are selected.
+* **Stratified Sample** — Members are selected from similar, nonoverlapping groups.
+* **Survey** — A study that collects data from responses about opinions, behaviors, or characteristics.
+* **Experiment** — A study in which participants are divided into groups and the effect of a treatment is compared.
+* **Observational Study** — A study in which participants are observed without being affected by the study.
 
----
+## Explore: What Makes a Good Sample?
 
-## Learn: Randomness and Bias
+Inquiry Question:
+How can you determine if a sample truly represents the population it is drawn from?
 
-Statistics deals with collecting, analyzing, and interpreting data.
-
-* a **parameter** is a characteristic of a population
-* a **statistic** is a characteristic of a sample
-* a **population** is the full group of interest
-* **bias** is an error that misrepresents the population
+## Learn: Random Sampling Methods
 
 ### Key Concept: Types of Samples
 
-* simple random: each member has an equal chance of selection
-* systematic: members are selected at a regular interval
-* self-selected: members volunteer
-* convenience: readily available members are selected
-* stratified: members are selected from similar, nonoverlapping groups
+* **Simple Random Sample** — Each member of the population has an equal chance of selection.
+* **Systematic Sample** — Members are selected at a regular interval.
+* **Self-Selected Sample** — Members volunteer to participate.
+* **Convenience Sample** — Readily available members are selected.
+* **Stratified Sample** — Members are selected from similar, nonoverlapping groups (strata).
 
----
+### Key Concept: Biased vs. Unbiased Samples
 
-## Example 1 — Classify a Random Sample
+An **unbiased sample** is one that fairly represents the population. A **biased sample** systematically favors certain outcomes.
 
-A school asks students to complete an online questionnaire about a school app.
+Sources of bias include:
+* Small sample size
+* Leading question wording
+* Non-random selection methods
+* Self-selection (volunteers may differ from non-volunteers)
 
-* population: the entire student body
-* sample: the students who responded
-* classification: **self-selected**
+## Example 1 — Identify and Classify Samples
 
----
+Identify each sample, suggest a population from which it was selected, and classify the sample as *simple random*, *systematic*, *self-selected*, *convenience*, or *stratified*. Explain your reasoning.
 
-## Example 2 — Identify Sample Bias
+### Step 1: Analyze Sample 1
 
-A traffic commission uses a random sample of travelers on Route 15 during rush hour and proposes a major road expansion.
+Berton divides his sports T-shirts by team. Then he randomly selects four T-shirts from each team and records the size.
 
-The sample is biased because:
+* Population: All of Berton's sports T-shirts.
+* Sample: Four T-shirts selected from each team.
+* Classification: **Stratified** — The T-shirts are divided into teams (strata), and a random selection is made from each.
 
-* the sample size is only `10`
-* it is too small to represent all drivers using the road
+### Step 2: Analyze Sample 2
 
-Potential interest:
+The project manager at a new business inspects every tenth smartphone produced to check that it is operating correctly.
 
-The small sample could support contractors who benefit from road expansion.
+* Population: All smartphones produced.
+* Sample: Every tenth smartphone.
+* Classification: **Systematic** — Members are selected at a regular interval (every tenth).
 
-## Think About It
+### Step 3: Analyze Sample 3
 
-How large a sample size do you think would be needed to accurately reflect the population?
+A grocery store manager asks its customers to submit suggestions for items on the salad bar during the week.
 
----
+* Population: All customers of the grocery store.
+* Sample: Customers who submit suggestions.
+* Classification: **Self-Selected** — Customers volunteer to submit suggestions.
 
-## Example 3 — Identify Biased Questions
+## Example 2 — Identify Biased and Unbiased Samples
 
-A restaurant owner asks:
+Identify each sample as *biased* or *unbiased*. Explain your reasoning.
 
-"Do you prefer a plain salad or a delicious steak?"
+### Step 1: Analyze Question 4
 
-The question is biased because the wording favors the steak and is not neutral.
+A random sample of eight people is asked to select their favorite food for a survey about Americans' food preferences.
 
-## Talk About It
+* Sample size of eight is very small relative to the entire U.S. population.
+* Classification: The sample is **biased** due to its small size — it cannot adequately represent all Americans.
 
-Describe an example of a biased observational study. Explain how the study is biased.
+### Step 2: Analyze Question 5
 
----
+Every tenth student at band camp is asked to name his or her favorite band for a survey about the campers.
 
-## Learn: Types of Studies
+* Every tenth student selected systematically.
+* Classification: **Unbiased** — The systematic selection at regular intervals produces a representative sample.
 
-* In a **survey**, data are collected from responses about opinions, behaviors, or characteristics.
-* In an **experiment**, participants are divided into groups and the effect of a treatment is compared.
-* In an **observational study**, participants are observed without being affected by the study.
+### Step 3: Analyze Question 6
 
----
+Every fifth person entering a museum is asked to name his or her favorite type of book to read for a survey about reading interests of people in the city.
 
-## Example 4 — Classify Study Types
+* Classification: **Unbiased** — Systematic selection of museum visitors provides a reasonably representative sample of the city's people.
 
-A research team shows football uniform designs to `100` young adults and records their reactions.
+### Step 4: Analyze Questions 7–10
 
-* purpose: determine whether the uniforms appeal to young adults
-* study type: **observational study**
-* sample: the `100` young adults
-* population: all young adults
+Identify whether each question is biased. Explain your reasoning.
 
----
+* Question 7: "Do you think that the workout facility needs a new treadmill and racquetball court?" — **Biased** — The question assumes the respondent agrees that something needs to be added.
+* Question 8: "Which is your favorite type of music, pop or country?" — **Biased** — The question limits choices to two options and assumes one is correct.
+* Question 9: "Are you a member of any after-school clubs?" — **Unbiased** — This is a neutral, factual question.
+* Question 10: "Don't you agree that employees should pack their lunch?" — **Biased** — The wording implies agreement and uses loaded language.
 
-## Example 5 — Design a Survey
+## Example 3 — Classify Study Types
 
-A company owner wants to know whether employees would use an exercise room if a conference room were converted.
+Determine whether each situation describes a *survey*, an *experiment*, or an *observational study*. Identify the sample and suggest a population.
 
-### Step 1: State the objective
+### Step 1: Analyze Question 11
 
-Determine employee interest in converting the room.
+An Internet service provider conducts an online study in which customers are randomly selected and asked to provide feedback on their customer service.
 
-### Step 2: Identify the population
+* Type: **Survey** — Data are collected from responses about customer service.
+* Sample: Randomly selected customers.
+* Population: All customers of the Internet service provider.
 
-All employees who work in the building.
+### Step 2: Analyze Question 12
 
-### Step 3: Write an unbiased question
+A research group randomly selects 100 business owners, half of whom started their own businesses, and compares their success.
 
-Sample question:
+* Type: **Observational Study** — The group observes and compares without applying a treatment.
+* Sample: 100 business owners.
+* Population: All business owners.
 
-"If available, would you use an exercise room in the building if it were created by converting a conference room?"
+### Step 3: Analyze Question 13
 
----
+A research group randomly chooses 50 people to participate in a study to determine whether exercising regularly reduces the risk of diabetes in adults.
 
-## Example 6 — Draw Conclusions from a Study
+* Type: **Experiment** — Participants are divided into groups and a treatment (exercise) is introduced to measure its effect.
+* Sample: 50 people.
+* Population: All adults.
 
-Researchers test different virtual reality goggles.
+### Step 4: Analyze Question 14
 
-| Type | Number of People | Positive Reactions |
-| -- | -- | -- |
-| A | 11 | 45% |
-| B | 17 | 53% |
-| C | 45 | 91% |
-| D | 52 | 92% |
-| E | 6 | 33% |
+An online video streaming service mails a questionnaire to randomly selected people across the country to determine whether they prefer streaming movies or sports.
 
-Conclusion:
+* Type: **Survey** — Data are collected from responses about streaming preferences.
+* Sample: Randomly selected people who receive the questionnaire.
+* Population: All subscribers or people in the country.
 
-Types `C` and `D` appear to be preferred by the most people and have the highest positive reaction rates, so those goggles should be recommended for production.
+## Example 4 — Design an Unbiased Survey
 
----
+State the objective of the survey, suggest a population, and write two unbiased survey questions.
 
-## Example 7 — Identify Bias in Studies
+### Step 1: PROM Survey
 
-A teacher gives one class a test in silence and another class the same test with music playing, then concludes that music helps testing because the second class scored higher.
+Objective: Determine how many juniors and seniors are planning to attend prom.
 
-Flaws:
+* Population: All juniors and seniors at the school.
+* Unbiased question 1: "Do you plan to attend the prom this year?"
+* Unbiased question 2: "How many guests will you bring to the prom?"
 
-* the groups were not randomly selected
-* the classes differ in more than just the presence of music
-* the classes may have different skill levels
+### Step 2: Restaurant Survey
 
-Improved design:
+Objective: Determine what new food items to include on the restaurant's menu.
 
-Use students with similar ability levels and randomly assign them to control and experimental groups.
+* Population: All restaurant customers.
+* Unbiased question 1: "What type of cuisine would you like to see added to our menu?"
+* Unbiased question 2: "How often do you dine at our restaurant?"
 
----
+## Example 5 — Draw Conclusions from a Study
 
-## Objective Alignment
+### Step 1: Analyze Sports Drink Study
 
-- `Classify sampling methods and identify bias in samples and survey questions`: Primary worked examples: Examples 1-3 and 7.
-- `Distinguish among sample surveys, experiments, and observational studies`: Primary worked examples: Examples 4-6.
+A sports drink company gives out free samples at the mall. The percent of teens that take the sample is 62%. The percent of adults that take the sample is 20%.
+
+* Type of study: **Observational Study** — Researchers observe behavior without controlling who takes the sample.
+* Conclusion: A higher percentage of teens take the sample compared to adults. However, this does not necessarily indicate a preference for the product — it may reflect differences in mall foot traffic patterns, willingness to try samples, or other factors.
+
+### Step 2: Analyze Education Study
+
+Researchers observe five class periods and record the difficulty of the lesson, students' reactions, and the overall effectiveness of the lesson.
+
+* Type of study: **Observational Study** — Researchers observe without intervening or applying a treatment.
+* Conclusion: The table data would need to be examined to draw further conclusions. ![](media/image1.png)
+* Note: Observational studies can identify correlations but cannot establish causation.
+
+## Example 6 — Identify Control and Experimental Groups
+
+Identify the control and experimental groups in the experiments. Identify and correct any flaws in the design.
+
+### Step 1: MORALE Study
+
+A school principal hopes to increase student morale. The principal selects some students at random and gives each a gift card to a local restaurant. The principal compares the morale of the students in each group.
+
+* Flaw: There is no control group that receives no gift card. The design compares nothing to the treatment group.
+* Improved design: Randomly select students into two groups — one receiving gift cards (experimental) and one receiving nothing (control). Measure morale in both groups.
+
+### Step 2: SPORTS Study
+
+The owner of a professional sports team wants to see if new uniforms will improve ticket sales. The team opened the season by playing three away games. The fourth game was played at home, and the team wore the new uniforms. The owner compares the number of tickets purchased for the home game with the first three games.
+
+* Flaws:
+  * The comparison is confounded — home vs. away games affect attendance.
+  * There is no control group.
+  * The new uniforms coincide with a home game, so the effect cannot be isolated.
+* Improved design: Play the same number of home games with and without new uniforms, or use two comparable teams.
+
+## Mixed Exercises
+
+1. A music store manager selects 10 customers in the store to participate in an interview about music preferences.
+   * Classification: **Convenience** — Readily available customers are selected.
+   * Type of study: **Survey** — Data are collected from interview responses.
+
+2. Every Friday, a community library records the type of media each patron uses.
+   * Classification: **Systematic** — Data are collected at regular intervals (every Friday).
+   * Type of study: **Observational Study** — Patrons are observed without intervention.
+
+3. A technology team divides 50 students into two groups by age. Half from each age group use current software, and half use new software. Students' actions are recorded.
+   * Classification: **Stratified** — Students are divided by age, then randomly assigned to groups.
+   * Type of study: **Experiment** — A treatment (new software) is applied and compared.
+
+4. A behavioral scientist studies the influence of video games on students' academic performance.
+   * a. Describe an observational study: The scientist observes students' gaming habits and academic performance over time, without manipulating either variable.
+   * b. Describe an experiment: The scientist randomly assigns students to play video games or not, then measures the effect on academic performance.
+
+5. A band director wants to compare the musical instruments played by males in band class with those played by females.
+   * Type of study: **Observational Study** — The director observes and records without applying a treatment.
+
+6. A raffle with three prizes. Fifteen participants were basketball team members, and all three winners were basketball team members. The other students claim the raffle was unfair.
+   * a. Simulation: Model the raffle by randomly assigning winners from the pool of participants and repeating many trials.
+   * b. A fair raffle would have each participant equally likely to win.
+
+7. Mia and Esteban describe ways to improve a survey. ![](media/image3.png)
+
+8. Aaliyah selects 10 students at random from each class and asks: "How do students feel about the new dress code?"
+   * Strength: Random selection from each class provides stratified representation.
+   * Weakness: The question is leading and assumes students have feelings about the dress code.
+
+9. True or false: Population parameters are used to estimate sample statistics.
+   * **False** — Sample statistics are used to estimate population parameters, not the other way around.
+
+10. True or false: Observational studies and experiments can both be used to study cause-and-effect relationships.
+    * **False** — Only experiments can establish cause-and-effect relationships. Observational studies can only identify correlations.
+
+## Review Notes
+
+* Image references in this lesson:
+  * ![](media/image1.png) — Education study table (Example 5, Step 2)
+  * ![](media/image2.JPG) — Cat rescue group weight gain table (Mixed Exercises, Question 29)
+  * ![](media/image3.png) — Mia and Esteban's survey improvement description (Mixed Exercises, Question 30)
+* This lesson covers identifying and classifying sampling methods, recognizing bias, and distinguishing among surveys, experiments, and observational studies.

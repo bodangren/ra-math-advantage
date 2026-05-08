@@ -1,0 +1,97 @@
+# Lesson 4-7 — The Law of Sines
+
+Source: (Module 4, Lesson 4-7, Int2_0407_practice.docx)
+
+## Today's Goals
+
+* Apply the Law of Sines to find missing sides and angles in oblique triangles.
+* Determine whether a triangle has no solution, one solution, or two solutions (ambiguous case).
+* Solve triangles using the Law of Sines.
+* Apply the Law of Sines in real-world contexts.
+
+## Vocabulary
+
+* **Law of Sines** — For any triangle [ABC] with sides [a], [b], and [c]: [a/sin A = b/sin B = c/sin C].
+* **Oblique Triangle** — A triangle that does not have a right angle.
+* **Ambiguous Case** — When given two sides and a non-included angle (SSA), there may be 0, 1, or 2 possible triangles.
+
+## Explore: Law of Sines
+
+The Law of Sines extends trigonometry to non-right triangles by relating each side to the sine of its opposite angle.
+
+Inquiry Question:
+When does SSA produce one triangle, two triangles, or no triangle?
+
+## Learn: Law of Sines
+
+For any triangle [ABC]:
+
+[a/sin A = b/sin B = c/sin C]
+
+This allows you to find unknown sides or angles when you know either:
+* Two angles and one side (AAS or ASA)
+* Two sides and an angle opposite one of them (SSA, the ambiguous case)
+
+## Examples 1 and 2 — Find the Value of x
+
+Find [x] to the nearest tenth.
+
+### Step 1: Set Up the Law of Sines Proportion
+
+1-12. Apply [a/sin A = b/sin B] and solve for the unknown side.
+
+## Example 3 — Real-World Applications
+
+### Step 1: Draw a Diagram and Apply the Law of Sines
+
+13. Wildlife: Boat travels north to first osprey site, then 5° north of west for 2.14 miles to second site, then 6.7 miles back to dock. Find distance from dock to first site.
+
+14. Sailing: Two towers 100 feet apart measure angles to sailboat. Find distance [d] from Tower A.
+
+## Examples 4-6 — Ambiguous Case
+
+Determine whether each triangle has no solution, one solution, or two solutions. Then solve the triangle.
+
+### Step 1: Analyze Given Information
+
+For SSA conditions, the height [h = b sin A] determines the number of solutions:
+
+* If [a < h]: No solution
+* If [a = h]: One solution (right triangle)
+* If [a > h] and [a < b]: Two solutions
+* If [a ≥ b]: One solution
+
+15-26. Classify and solve each triangle.
+
+## Mixed Exercises
+
+27. Proof: Justify each statement for the proof of the Law of Sines.
+
+28-30. Find perimeter of each figure.
+
+31. Walking: Alliya walks on path making 35° angle with road, walks 450 meters, then turns 75° back to road.
+
+32. Cameras: Security camera revolves at 1 revolution per minute. At one point it faces a point 20 meters away, then 10 meters away 4 seconds later.
+
+33. Fishing: 5-foot pole at 22° with deck, hook 3 feet from tip. Find angles for hook to be level with deck.
+
+34. Reasoning: Angle A is obtuse. How many triangles can be formed if [a = b], [a < b], or [a > b]?
+
+35-43. Determine whether given measures define 0, 1, or 2 triangles.
+
+44. Towers: Cell towers A, B, C form triangle. A and B are 8 miles apart. Angle at A is 112°, angle at B is 40°. Find distance between B and C.
+
+45. Find the Error: Cameron vs Gabriela finding [m∠T] in △RST.
+
+46. Write: Two methods to find [x] in △ABC.
+
+47. Persevere: Find both solutions for △ABC if [a = 15], [b = 21], [m∠A = 42°].
+
+48. Analyze: Can Law of Sines always be used when two sides and included angle are known?
+
+49. Create: Give measures for [a], [b], and acute ∠A that define: (a) 0 triangles, (b) exactly one triangle, (c) two triangles.
+
+## Review Notes
+
+* Images referenced in this lesson:
+  * ![](media/image1.png) through ![](media/image24.png) — various Law of Sines application diagrams

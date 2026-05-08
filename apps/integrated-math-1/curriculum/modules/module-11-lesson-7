@@ -1,0 +1,137 @@
+# Lesson 11-7 — Precision and Accuracy
+
+Source: (Module 11, Lesson 11-7, Int1_1107_practice.docx)
+
+## Today's Goals
+
+* Distinguish between accuracy and precision in measurement contexts.
+* Calculate approximate error given a measured value and an actual value.
+* Determine the possible range of a measurement based on its precision.
+* Apply precision and accuracy concepts to solve real-world problems involving area, cost, and data analysis.
+
+## Vocabulary
+
+* **Accuracy** — How close a measured value is to the actual or true value.
+* **Precision** — How close repeated measurements are to each other; the level of detail in a measurement.
+* **Approximate Error** — The difference between a measured value and the actual value.
+* **Greatest Possible Error** — Half of the smallest unit used in a measurement.
+* **Measurement** — A value assigned to a physical quantity using a standard unit.
+
+## Explore: What Makes a Measurement Good?
+
+Students discuss what it means for a measurement to be "good." Consider whether being close to the true value is the same as being consistent, and whether a measurement can be one without the other.
+
+Inquiry Question:
+Can a set of measurements be accurate without being precise? Can it be precise without being accurate?
+
+## Learn: Precision, Accuracy, and Error
+
+Measurements are never exact. Accuracy describes how close a measurement is to the true value, while precision describes how detailed or consistent the measurements are. Approximate error quantifies the difference between a measured value and the actual value. When a measurement is recorded to a given precision, the true value lies within a range centered at the measured value.
+
+### Key Concept: Accuracy and Precision
+
+* **Accuracy** refers to closeness to the true or accepted value.
+* **Precision** refers to the consistency of repeated measurements or the fineness of the measuring tool.
+* A set of data can be accurate, precise, both, or neither.
+
+### Key Concept: Approximate Error
+
+* The approximate error of a measurement is found by subtracting the actual value from the measured value:
+[
+\text{approximate error} = \text{measured value} - \text{actual value}
+]
+
+### Key Concept: Possible Range of a Measurement
+
+* When a measurement is given to a certain precision, the greatest possible error is half of the smallest unit shown.
+* The actual value lies in the interval:
+[
+\text{measured value} - \text{greatest possible error} \leq \text{actual value} \leq \text{measured value} + \text{greatest possible error}
+]
+* For area or cost calculations based on measured dimensions, use the least and greatest possible dimensions to find the range.
+
+## Example 1 — Analyze Accuracy and Precision from Data
+
+Given a manufacturer's claim and a sample of measurements, determine whether the claim is accurate and/or precise.
+
+### Step 1: Find the Mean of the Sample
+
+Calculate the average of the sample values to assess accuracy compared to the claimed value.
+
+### Step 2: Assess Accuracy
+
+Compare the sample mean to the claimed value. If the mean is close to the claimed value, the measurements are accurate.
+
+### Step 3: Assess Precision
+
+Examine how close the sample values are to each other. If the values cluster tightly together, the measurements are precise.
+
+### Step 4: Explain the Reasoning
+
+State whether the claim is accurate, precise, both, or neither, using the calculations to justify the conclusion.
+
+## Example 2 — Calculate Approximate Error
+
+Find the approximate error for various measurements in real-world contexts.
+
+### Step 1: Identify the Actual and Measured Values
+
+Extract the actual (true) value and the measured value from the problem statement.
+
+### Step 2: Apply the Approximate Error Formula
+
+Subtract the actual value from the measured value:
+[
+\text{approximate error} = \text{measured value} - \text{actual value}
+]
+
+### Step 3: Interpret the Result
+
+State the approximate error with the appropriate units. A positive error means the measurement is too high; a negative error means it is too low.
+
+Problems include weighing a known weight on different scales, measuring circuit amperage, measuring a door frame height, and measuring the boiling point of water.
+
+## Example 3 — Determine Possible Range for Area and Cost
+
+Given measured dimensions of a region and a unit cost, find the possible range for the area and the total cost.
+
+### Step 1: Determine the Greatest Possible Error
+
+Identify the precision of each measured dimension. The greatest possible error is half of the smallest unit shown.
+
+### Step 2: Find the Least and Greatest Possible Dimensions
+
+Subtract the greatest possible error from each measured dimension to find the least possible value, and add it to find the greatest possible value.
+
+### Step 3: Calculate the Range for the Area
+
+Multiply the least possible dimensions to find the minimum area, and multiply the greatest possible dimensions to find the maximum area.
+
+### Step 4: Calculate the Range for the Cost
+
+Multiply the minimum and maximum areas by the unit cost to find the possible range for the total cost.
+
+Problems include finding the area and cost of a road section and finding the dimensions, area, and cost for grass seed on a lawn.
+
+## Mixed Exercises
+
+The mixed exercises section provides comprehensive practice with all skills from the lesson. Problems include:
+
+* Finding the approximate error of temperature, length, speed, and weight measurements.
+* Evaluating the accuracy of deli scales using a known standard weight.
+* Finding the possible range for fertilizer cost based on garden dimensions.
+* Finding the possible range for wallpaper cost based on wall dimensions.
+* Classifying sets of measurements as accurate, precise, both, or neither compared to a known correct value.
+* Explaining the difference between accuracy and precision in writing.
+* Evaluating whether accuracy necessarily implies precision and providing a counterexample if not.
+* Calculating face areas and surface area of a rectangular prism from labeled dimensions.
+* Determining the range of values that should contain the true surface area based on measurement precision.
+* Analyzing how an incorrect measurement affects the calculated surface area.
+* Creating a sample of data that is both accurate and precise relative to a target value.
+
+## Review Notes
+
+* Images referenced in the worksheet (road dimensions diagram for problem 6, lawn dimensions diagram for problem 7, thermometer diagram for problem 8, scale results table for problem 12, garden dimensions diagram for problem 13, box dimensions diagram for problem 19) could not be fully described without visual reference. Teachers should consult the original worksheet for exact values and diagrams.
+* Problems 6, 7, 13, 15, and 19 require interpreting measured dimensions and their precision to determine possible ranges for area or cost.
+* Problem 12 requires reading a table of scale measurements to determine which scale is most accurate.
+* Problem 19 involves a three-dimensional figure with labeled dimensions; visual reference is essential.

@@ -1,0 +1,123 @@
+# Lesson 3-4 — Similar Triangles: SSS and SAS Similarity
+
+Source: (Module 3, Lesson 3-4, Int2_0304_practice.docx)
+
+## Today's Goals
+
+* Determine whether triangles are similar using the SSS Similarity Theorem.
+* Determine whether triangles are similar using the SAS Similarity Theorem.
+* Find unknown side lengths in similar triangles.
+* Apply SSS and SAS similarity to real-world problems involving proportional reasoning.
+
+## Vocabulary
+
+* **SSS Similarity Theorem** — If the three sides of one triangle are proportional to the three sides of another triangle, then the triangles are similar.
+* **SAS Similarity Theorem** — If two sides of one triangle are proportional to two sides of another triangle and the included angles are congruent, then the triangles are similar.
+* **Included Angle** — The angle between two given sides of a triangle.
+* **Proportional Sides** — Sides whose lengths have the same ratio.
+
+## Explore: Proving Similarity with Limited Information
+
+Students consider what minimum information is needed to prove triangles are similar, beyond AA.
+
+Inquiry Question:
+What combinations of side lengths and angles are sufficient to guarantee that two triangles are similar?
+
+## Learn: SSS and SAS Similarity
+
+### Key Concept: SSS Similarity Theorem
+
+If [
+\frac{AB}{DE} = \frac{BC}{EF} = \frac{AC}{DF}
+], then △ABC ∼ △DEF.
+
+All three side ratios must be equal.
+
+### Key Concept: SAS Similarity Theorem
+
+If [
+\frac{AB}{DE} = \frac{AC}{DF}
+] and [∠A ≅ ∠D], then △ABC ∼ △DEF.
+
+Two sides must be proportional AND the included angle must be congruent.
+
+### Key Concept: SSS vs. SAS
+
+* **SSS**: Requires all three side ratios
+* **SAS**: Requires two side ratios and the included angle
+
+## Example 1 — Determine Similarity Using SSS or SAS
+
+### Step 1: Identify Given Information
+
+Look for side length ratios or angle measures that are given or can be deduced.
+
+### Step 2: Apply the Appropriate Theorem
+
+* For SSS: Verify all three side ratios are equal.
+* For SAS: Verify two side ratios are equal AND the included angle is congruent.
+
+## Example 2 — Find Unknown Values Using Similarity
+
+### Step 1: Set Up the Proportion
+
+Use the given side lengths to set up a proportion based on the similarity relationship.
+
+### Step 2: Solve for the Unknown
+
+Cross-multiply and solve.
+
+## Example 3 — Apply Similarity to Real-World Problems
+
+**ROOFING (Problem 9):** Find [x] such that triangles DEF and FBC in the roof outline are similar.
+
+**RADIO (Problem 10):** Radio tower shadow = 8 ft, yardstick shadow = 0.5 ft (1/2 in = 1/12 ft), yardstick height = 3 ft.
+[
+\frac{tower\ height}{8} = \frac{3}{0.5}
+]
+[
+tower\ height = 3 \times \frac{8}{0.5} = 48\ ft
+]
+
+**SAILING (Problem 11):** Find [x] given similar sails.
+
+**MOUNTAIN PEAKS (Problem 12):** Marcus and Skye measure distances to a mountain peak. Given the actual distance between houses is [1\frac{1}{2}] miles, find distances from each house to the peak.
+
+## Mixed Exercises
+
+The mixed exercises section provides practice with all skills from the lesson. Problems include:
+
+* Determining triangle similarity using SSS or SAS with given diagrams (Problems 1–4)
+* Finding values of [x] in similar triangle problems (Problems 5–8)
+* Roofing problem — finding [x] for similar triangles in roof structure (Problem 9)
+* Radio tower problem — finding height using similar triangles (Problem 10)
+* Sailing problem — finding [x] from similar sails (Problem 11)
+* Mountain peaks problem — finding distances to a peak (Problem 12)
+* Mia's triangle claim — justifying if △STU ∼ △SQR (Problem 13)
+* Two-column proof of SAS Similarity Theorem (Theorem 8.5) (Problem 14)
+* Comparing AA, SSS, and SAS similarity criteria (Problem 15)
+* Finding altitude length [YW] in a triangle (Problem 16)
+* Finding [x] in similar triangles with given angle and side measures (Problem 17)
+* Creating a triangle similar to a given triangle and explaining (Problem 18)
+
+## Review Notes
+
+* Images referenced in the worksheet (triangle pairs for problems 1–4, similar triangle figures for problems 5–9, roof structure for problem 9, radio tower diagram for problem 10, sailboats for problem 11, mountain peak diagram for problem 12, Mia's triangles for problem 13, proof figure for problem 14, triangle for problem 16, triangle for problem 17, triangle for problem 18) could not be fully described without visual reference. Teachers should consult the original worksheet for exact diagrams and values.
+* ![](media/image1.png) — Triangle for problem 1
+* ![](media/image2.png) — Triangle for problem 2
+* ![](media/image3.png) — Triangle for problem 3
+* ![](media/image4.png) — Triangle for problem 4
+* ![](media/image5.png) — Triangle for problem 5
+* ![](media/image6.png) — Triangle for problem 6
+* ![](media/image7.png) — Triangle for problem 7
+* ![](media/image8.png) — Triangle for problem 8
+* ![](media/image9.png) — Triangle for problem 9
+* ![](media/image10.png) — Triangle for problem 10
+* ![](media/image11.png) — Mountain diagram for problem 12
+* ![](media/image12.png) — Triangle for problem 12
+* ![](media/image13.png) — Mia's triangles for problem 13
+* ![](media/image14.png) — Proof figure for problem 14
+* ![](media/image15.png) — Triangle for problem 17
+* The worksheet contains 18 practice problems across three examples and mixed exercises.
+
+(End of file - total 161 lines)

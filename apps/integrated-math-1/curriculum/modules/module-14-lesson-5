@@ -1,0 +1,233 @@
+# Lesson 14-5 — Proving Right Triangles Congruent
+
+Source: (Module 14, Lesson 14-5, Int1_1405_practice.docx)
+
+## Today's Goals
+
+* Apply the Leg-Leg (LL), Hypotenuse-Angle (HA), Leg-Angle (LA), and Hypotenuse-Leg (HL) theorems to prove right triangles congruent.
+* Write two-column proofs and paragraph proofs for right triangle congruence in real-world contexts.
+* Identify which corresponding parts must be congruent to apply a specific right triangle congruence theorem.
+* Determine whether a given pair of right triangles is congruent and name the theorem that applies.
+
+## Vocabulary
+
+* **Right Triangle Congruence Theorems** — Special shortcuts for proving two right triangles congruent: LL, HA, LA, and HL.
+* **Leg-Leg (LL) Congruence Theorem** — If the legs of one right triangle are congruent to the corresponding legs of another right triangle, then the triangles are congruent. (Equivalent to SAS.)
+* **Hypotenuse-Angle (HA) Congruence Theorem** — If the hypotenuse and an acute angle of one right triangle are congruent to the hypotenuse and corresponding acute angle of another right triangle, then the triangles are congruent. (Equivalent to AAS.)
+* **Leg-Angle (LA) Congruence Theorem** — If one leg and an acute angle of one right triangle are congruent to the corresponding leg and acute angle of another right triangle, then the triangles are congruent. (Equivalent to ASA or AAS.)
+* **Hypotenuse-Leg (HL) Congruence Theorem** — If the hypotenuse and a leg of one right triangle are congruent to the hypotenuse and corresponding leg of another right triangle, then the triangles are congruent.
+* **Hypotenuse** — The side opposite the right angle in a right triangle; it is the longest side.
+* **Leg** — Either of the two sides that form the right angle in a right triangle.
+* **Two-Column Proof** — A structured proof with statements in one column and reasons in a second column.
+* **Paragraph Proof** — A proof written in complete sentences as a paragraph.
+* **Reflexive Property** — A quantity is congruent to itself.
+* **Definition of Midpoint** — A midpoint divides a segment into two congruent segments.
+* **Definition of Perpendicular Lines** — Perpendicular lines intersect to form right angles.
+
+## Explore: Are Right Triangles Easier to Prove Congruent?
+
+Students examine pairs of right triangles and consider whether knowing one angle is 90° reduces the amount of other information needed to prove congruence. Inquiry focuses on which combinations of hypotenuse and leg information are sufficient.
+
+Inquiry Question:
+Why do right triangles have their own set of congruence theorems instead of just using SSS, SAS, ASA, and AAS?
+
+## Learn: Proving Right Triangles Congruent
+
+Because all right triangles contain a 90° angle, we can use special theorems that require fewer corresponding parts than the general triangle congruence postulates.
+
+### Key Concept: Right Triangle Congruence Theorems
+
+* **LL (Leg-Leg):** If two legs of one right triangle are congruent to two legs of another right triangle, the triangles are congruent.
+* **HA (Hypotenuse-Angle):** If the hypotenuse and an acute angle of one right triangle are congruent to the hypotenuse and corresponding acute angle of another, the triangles are congruent.
+* **LA (Leg-Angle):** If one leg and an acute angle of one right triangle are congruent to the corresponding leg and acute angle of another, the triangles are congruent.
+* **HL (Hypotenuse-Leg):** If the hypotenuse and a leg of one right triangle are congruent to the hypotenuse and corresponding leg of another, the triangles are congruent.
+
+### Key Concept: Using the Right Angle
+
+The right angle in each triangle is always congruent to the right angle in the other because all right angles measure 90°. This gives a guaranteed pair of congruent angles without additional given information.
+
+## Example 1 — Write Two-Column Proofs for Right Triangle Congruence
+
+Write two-column proofs to prove pairs of right triangles congruent in real-world contexts involving perpendicular lines, midpoints, parallel lines, and congruent segments.
+
+### Step 1: Prove Two Right Triangles Congruent Using Perpendicularity and a Midpoint
+
+Given a perpendicular segment and a midpoint, establish right angles and congruent segments, then apply the appropriate right triangle congruence theorem.
+
+**Given:** [\overline{XZ} \perp \overline{WY}]; [Z] is the midpoint of [\overline{WY}].
+
+**Prove:** [\triangle WXZ \cong \triangle YXZ] 
+
+A two-column proof:
+
+| Statements | Reasons |
+|---|---|
+| [\overline{XZ} \perp \overline{WY}] | Given |
+| [\angle WZX] and [\angle YZX] are right angles | Definition of perpendicular lines |
+| [\triangle WXZ] and [\triangle YXZ] are right triangles | Definition of right triangle |
+| [Z] is the midpoint of [\overline{WY}] | Given |
+| [\overline{WZ} \cong \overline{YZ}] | Definition of midpoint |
+| [\overline{XZ} \cong \overline{XZ}] | Reflexive Property |
+| [\triangle WXZ \cong \triangle YXZ] | LL Congruence Theorem |
+
+### Step 2: Prove Two Right Triangles Congruent Using Parallel Lines and Right Angles
+
+When parallel lines form right triangles with a transversal, use alternate interior angles and the fact that both triangles contain a right angle.
+
+**Given:** [\angle H] and [\angle K] are right angles; [\overline{GH} \parallel \overline{KJ}].
+
+**Prove:** [\triangle GKJ \cong \triangle JHG] 
+
+A two-column proof:
+
+| Statements | Reasons |
+|---|---|
+| [\angle H] and [\angle K] are right angles | Given |
+| [\triangle GKJ] and [\triangle JHG] are right triangles | Definition of right triangle |
+| [\overline{GH} \parallel \overline{KJ}] | Given |
+| [\angle G \cong \angle J] | Alternate Interior Angles Theorem |
+| [\overline{GJ} \cong \overline{JG}] | Reflexive Property |
+| [\triangle GKJ \cong \triangle JHG] | HA Congruence Theorem |
+
+### Step 3: Prove Two Right Triangles Congruent Using Perpendicularity and Congruent Hypotenuses
+
+Given a perpendicular segment and two congruent hypotenuses, apply the HL theorem.
+
+**Given:** [\overline{BX} \perp \overline{AC}]; [AB = CB].
+
+**Prove:** [\triangle AXB \cong \triangle CXB] 
+
+A two-column proof:
+
+| Statements | Reasons |
+|---|---|
+| [\overline{BX} \perp \overline{AC}] | Given |
+| [\angle AXB] and [\angle CXB] are right angles | Definition of perpendicular lines |
+| [\triangle AXB] and [\triangle CXB] are right triangles | Definition of right triangle |
+| [AB = CB] | Given |
+| [\overline{AB} \cong \overline{CB}] | Definition of congruent segments |
+| [\overline{BX} \cong \overline{BX}] | Reflexive Property |
+| [\triangle AXB \cong \triangle CXB] | HL Congruence Theorem |
+
+## Example 2 — Determine Whether Triangles Are Congruent and Name the Theorem
+
+Examine pairs of triangles shown in diagrams and determine whether they are congruent. If they are, state the right triangle congruence theorem that applies.
+
+### Step 1: Identify the Given Information in Each Diagram
+
+Read each diagram to identify which sides and angles are marked as congruent. Note whether the triangles are right triangles.
+
+### Step 2: Match the Information to a Congruence Theorem
+
+Determine which theorem applies based on the given parts:
+
+* Two pairs of congruent legs → LL
+* Hypotenuse and one acute angle → HA
+* One leg and one acute angle → LA
+* Hypotenuse and one leg → HL
+
+If the given information does not match any theorem, the triangles cannot be proven congruent from the diagram alone.
+
+### Step 3: State the Conclusion
+
+For each pair, write either the congruence statement with the theorem name or explain that there is not enough information.
+
+## Example 3 — Identify Corresponding Parts Needed for a Specific Theorem
+
+Given a general pair of right triangles and a named theorem, determine exactly which corresponding parts must be proven congruent in order to apply that theorem.
+
+### Step 1: Analyze the HA Theorem
+
+For HA, identify the hypotenuse and one acute angle in each triangle. State which pair of corresponding hypotenuses must be congruent and which pair of corresponding acute angles must be congruent.
+
+[
+\triangle ABC \cong \triangle XYZ \text{ by HA}
+]
+
+Required congruent parts:
+[
+\overline{AB} \cong \overline{XY} \quad \text{(hypotenuses)}
+]
+[
+\angle A \cong \angle X \quad \text{or} \quad \angle B \cong \angle Y \quad \text{(acute angles)}
+]
+
+### Step 2: Analyze the LL Theorem
+
+For LL, identify the two legs in each triangle. State which pairs of corresponding legs must be congruent.
+
+Required congruent parts:
+[
+\overline{AC} \cong \overline{XZ}, \quad \overline{BC} \cong \overline{YZ}
+]
+
+## Example 4 — Write Proofs Using Perpendicular Segments and Congruent Parts
+
+Write a two-column proof when two perpendicular relationships and one pair of congruent segments are given.
+
+### Step 1: Identify the Right Triangles
+
+Given two perpendicular relationships, establish that both triangles are right triangles.
+
+**Given:** [\overline{BX} \perp \overline{XA}]; [\overline{BY} \perp \overline{YA}]; [\overline{XA} \cong \overline{YA}].
+
+**Prove:** [\triangle BXA \cong \triangle BYA] 
+
+A two-column proof:
+
+| Statements | Reasons |
+|---|---|
+| [\overline{BX} \perp \overline{XA}] | Given |
+| [\overline{BY} \perp \overline{YA}] | Given |
+| [\angle BXA] and [\angle BYA] are right angles | Definition of perpendicular lines |
+| [\triangle BXA] and [\triangle BYA] are right triangles | Definition of right triangle |
+| [\overline{XA} \cong \overline{YA}] | Given |
+| [\overline{BA} \cong \overline{BA}] | Reflexive Property |
+| [\triangle BXA \cong \triangle BYA] | HL Congruence Theorem |
+
+## Example 5 — Write a Paragraph Proof for Right Triangle Congruence
+
+Write a paragraph proof when two perpendicular segments and a pair of congruent segments are given.
+
+### Step 1: State the Given Information and Goal
+
+Identify the right triangles, the congruent right angles, and the other given congruent parts.
+
+**Given:** [\overline{BY} \perp \overline{AC}]; [\overline{CX} \perp \overline{AB}]; [AX = AY].
+
+**Prove:** [\triangle ABY \cong \triangle ACX] 
+
+### Step 2: Write the Paragraph Proof
+
+Since [\overline{BY} \perp \overline{AC}], [\angle BYA] is a right angle, so [\triangle ABY] is a right triangle. Since [\overline{CX} \perp \overline{AB}], [\angle CXA] is a right angle, so [\triangle ACX] is a right triangle. We are given that [AX = AY], so [\overline{AX} \cong \overline{AY}]. Angle [\angle A] is congruent to itself by the Reflexive Property. Therefore, [\triangle ABY \cong \triangle ACX] by the LA Congruence Theorem.
+
+## Example 6 — Analyze a Claim About Right Triangle Congruence
+
+Evaluate a student's claim about whether a right triangle congruence theorem proves a real-world geometric relationship.
+
+### Step 1: Identify the Triangles and Given Information
+
+From the description, sketch or identify the two triangles formed by the light posts and the ends of the walkway. Determine what information is known and what must be assumed.
+
+### Step 2: Check Whether the Conditions Match a Theorem
+
+Determine whether the triangles are right triangles, whether any hypotenuses or legs are known to be congruent, and whether any acute angles are known to be congruent.
+
+### Step 3: Evaluate the Conclusion
+
+If the given information does not satisfy the conditions of LL, HA, LA, or HL, explain why the student's conclusion is incorrect. Identify what additional information would be needed to make the proof valid.
+
+## Mixed Exercises
+
+The mixed exercises section provides practice with all skills from the lesson: proving right triangles congruent, identifying applicable theorems, writing two-column proofs and paragraph proofs, and analyzing claims. Problems include:
+
+* Determining whether pairs of triangles shown in diagrams are congruent and naming the right triangle congruence theorem that applies.
+* Identifying which corresponding parts must be congruent to prove [\triangle ABC \cong \triangle XYZ] using HA and using LL.
+* Writing two-column proofs for right triangles formed by perpendicular segments and congruent shared sides.
+* Determining whether two triangles in a sculpture side view are congruent and writing a paragraph proof if they are, or explaining the reasoning if they are not.
+* Writing a paragraph proof for right triangles formed by two perpendicular segments and a pair of congruent segments.
+* Evaluating a student's claim about using a right triangle congruence theorem to prove that two light posts are equidistant from the end of a walkway, and explaining whether the conclusion is correct.
+
+## Review Notes
+
+* Images referenced in the worksheet (pup tent diagram for problem 1, cell phone tower diagram for problem 2, bridge diagram for problem 3, triangle diagrams for mixed exercises problems 4–9, light post diagram for problem 14, and sculpture diagram for problem 12) could not be fully described without visual reference. Teachers should consult the original worksheet for exact diagrams, markings, and measurements.

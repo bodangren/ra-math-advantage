@@ -1,0 +1,175 @@
+# Lesson 4-3 — Slope-Intercept Form
+
+Source: (Module 4, Lesson 4-3, Int1_0403_practice.docx)
+
+## Today's Goals
+
+* Write linear equations in slope-intercept form given the slope and [ y ]-intercept.
+* Rewrite linear equations from standard form into slope-intercept form by solving for [ y ].
+* Model real-world situations with linear equations in slope-intercept form and interpret the meaning of slope and intercept in context.
+* Graph linear functions given in slope-intercept form or standard form.
+
+## Vocabulary
+
+* **slope-intercept form** — The form [ y = mx + b ], where [ m ] is the slope and [ b ] is the [ y ]-intercept.
+* **slope** — The rate of change of a line, representing rise over run.
+* **[ y ]-intercept** — The point [ (0, b) ] where the graph crosses the [ y ]-axis.
+* **standard form** — A linear equation written as [ Ax + By = C ], where [ A ], [ B ], and [ C ] are constants.
+
+## Learn: Slope-Intercept Form
+
+The slope-intercept form of a linear equation is the most useful form for graphing and interpreting linear relationships.
+
+### Key Concept: Slope-Intercept Form
+
+* A linear equation in slope-intercept form is written as [ y = mx + b ].
+* [ m ] represents the slope (rate of change).
+* [ b ] represents the [ y ]-intercept (starting value when [ x = 0 ]).
+* To graph, plot the [ y ]-intercept [ (0, b) ] and use the slope to find additional points.
+
+## Example 1 — Write Equations from Slope and [ y ]-Intercept
+
+Write an equation of a line in slope-intercept form when given the slope and [ y ]-intercept.
+
+Substitute the given values of [ m ] and [ b ] directly into [ y = mx + b ].
+
+For example, with slope [ 5 ] and [ y ]-intercept [ -3 ]:
+
+[
+y = 5x - 3
+]
+
+Problems include positive, negative, and zero slopes, as well as positive and negative [ y ]-intercepts.
+
+## Example 2 — Rewrite in Slope-Intercept Form
+
+Rewrite linear equations from standard form into slope-intercept form by isolating [ y ].
+
+### Step 1: Isolate the [ y ]-Term
+
+Move all terms except [ y ] to the right side of the equation.
+
+For example, starting with:
+
+[
+-10x + 2y = 12
+]
+
+Add [ 10x ] to both sides:
+
+[
+2y = 10x + 12
+]
+
+### Step 2: Solve for [ y ] 
+
+Divide every term by the coefficient of [ y ].
+
+[
+y = 5x + 6
+]
+
+Problems include cases where the coefficient of [ y ] requires division by a constant, as well as equations where the constant term is a fraction after dividing.
+
+## Example 3 — Model Real-World Situations
+
+Write an equation in slope-intercept form to represent a real-world scenario, identifying the initial value and the rate of change.
+
+### Step 1: Identify the Starting Value and Rate
+
+Determine what value corresponds to [ b ] (the amount when [ x = 0 ]) and what value corresponds to [ m ] (the amount that changes per unit).
+
+For example, if Wade starts with [ 100 ] and saves [ 25 ] per month, the equation is:
+
+[
+y = 25x + 100
+]
+
+### Step 2: Define the Variables
+
+Clearly state what [ x ] and [ y ] represent in the context of the problem.
+
+Problems include savings over time, costs with enrollment fees, earnings with hourly wages and commission, and energy consumption trends.
+
+## Example 4 — Graph from Slope and [ y ]-Intercept
+
+Graph a linear function when given the slope and [ y ]-intercept.
+
+### Step 1: Plot the [ y ]-Intercept
+
+Plot the point [ (0, b) ] on the coordinate plane.
+
+### Step 2: Use the Slope to Find Another Point
+
+From the [ y ]-intercept, use [ m = \frac{\text{rise}}{\text{run}} ] to locate a second point. Then draw a line through the points.
+
+For example, with slope [ 5 ] and [ y ]-intercept [ 8 ], plot [ (0, 8) ], then rise [ 5 ] and run [ 1 ] to reach [ (1, 13) ].
+
+## Examples 5 and 6 — Graph Linear Functions
+
+Graph linear functions presented in various forms, including standard form and equations of horizontal lines.
+
+### Step 1: Convert to Slope-Intercept Form (if needed)
+
+For equations in standard form, solve for [ y ] to identify the slope and [ y ]-intercept.
+
+For example, [ 5x + 2y = 8 ] becomes:
+
+[
+y = -\frac{5}{2}x + 4
+]
+
+### Step 2: Graph Horizontal Lines
+
+For equations like [ y = 7 ] or [ y = -\frac{2}{3} ], draw a horizontal line through the [ y ]-value on the [ y ]-axis.
+
+### Step 3: Graph Using Intercepts or Slope-Intercept
+
+Plot the [ y ]-intercept, use the slope to find additional points, and draw the line.
+
+## Example 7 — Equation, Graph, and Evaluation
+
+Write a slope-intercept equation for a real-world situation, graph the function, and use it to answer follow-up questions.
+
+### Step 1: Write the Equation
+
+Identify the fixed cost and variable rate, then write [ y = mx + b ].
+
+For a basic streaming plan at [ 13 ] per month plus [ 8 ] per premium channel:
+
+[
+c = 8p + 13
+]
+
+### Step 2: Graph the Function
+
+Plot the [ y ]-intercept (or [ c ]-intercept) and use the slope to draw the line.
+
+### Step 3: Evaluate
+
+Substitute a given value into the equation to find a specific cost or quantity.
+
+For example, the cost of [ 3 ] premium channels is:
+
+[
+c = 8(3) + 13 = 37
+]
+
+## Mixed Exercises
+
+The mixed exercises provide comprehensive practice across all skills from the lesson:
+
+* Writing equations in slope-intercept form from given slope and [ y ]-intercept, including fractional slopes.
+* Graphing lines from slope and [ y ]-intercept.
+* Graphing functions given in standard form.
+* Writing equations from graphed lines (requires interpreting graphs).
+* Multi-part real-world problems involving movies, factory heating, savings accounts, and charity walks, requiring students to write equations, graph, and interpret results.
+* Analyzing a specific linear function over a restricted domain, completing a table, and identifying maximum and minimum values.
+* Determining whether a graphical method can be used to solve a linear equation.
+* Finding an unknown coordinate given three collinear points.
+* Creating an original real-world linear model and making a prediction.
+
+## Review Notes
+
+* Problems 37–39 require interpreting graphs shown as images (`media/image1.png`, `media/image2.png`, `media/image3.png`) to write equations in slope-intercept form. These images were not described in the source extraction and will need to be recreated or described during content implementation.
+* Problem 44 includes a table image (`media/image4.png`) for completing values of [ y = -\frac{4}{5}x + \frac{2}{5} ] over the interval [ -2 \le x \le 5 ]. The table structure will need to be recreated during implementation.

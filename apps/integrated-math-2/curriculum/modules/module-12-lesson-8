@@ -1,0 +1,258 @@
+# Lesson 12-8 — Modeling and Curve Fitting
+
+Source: (Module 12, Lesson 12-N, Int2_1208_practice.docx)
+
+## Today's Goals
+
+* Identify whether data is best modeled by a linear, quadratic, or exponential function by examining patterns in tables
+* Write equations that model data using first/second differences and ratios
+* Use regression equations to make predictions and interpret the coefficient of determination (R²)
+
+---
+
+## Vocabulary
+
+* **Linear model** — a function with constant first differences; grows by equal differences over equal intervals
+* **Quadratic model** — a function with constant second differences; characterized by a² term
+* **Exponential model** — a function with constant ratios; grows by equal factors over equal intervals
+* **Coefficient of determination (R²)** — a value between 0 and 1 indicating how well a regression model fits data; values closer to 1 indicate a better fit
+* **Scatter plot** — a graph of plotted points showing the relationship between two variables
+* **Regression equation** — an equation derived from data that best fits a given pattern (linear, quadratic, or exponential)
+
+---
+
+## Explore: Identifying Model Types from Tables
+
+When given a table of values, you can determine the model type by analyzing how the y-values change:
+
+* **Linear**: Compute first differences [(y₂ − y₁), (y₃ − y₂), ...]. If they are constant (or nearly constant), a linear model fits.
+* **Quadratic**: Compute second differences [(Δy)₂ − (Δy)₁, (Δy)₃ − (Δy)₂, ...]. If they are constant (or nearly constant), a quadratic model fits.
+* **Exponential**: Compute ratios (y₂/y₁, y₃/y₂, ...). If they are constant (or nearly constant), an exponential model fits.
+
+Inquiry Question:
+How can you determine whether a set of data is best modeled by a linear, quadratic, or exponential function just by looking at the patterns in a table of values?
+
+### Example Table Analysis
+
+| x | y | First Differences | Second Differences | Ratios |
+|---|---|-------------------|---------------------|--------|
+| 0 | 3 | — | — | — |
+| 1 | 7 | 4 | — | 7/3 ≈ 2.33 |
+| 2 | 11 | 4 | 0 | 11/7 ≈ 1.57 |
+| 3 | 15 | 4 | 0 | 15/11 ≈ 1.36 |
+
+The constant first differences (4) indicate a **linear model**: [y = 4x + 3]
+
+---
+
+## Learn: Choosing and Applying the Right Model
+
+### Key Concept: Decision Framework
+
+1. **Examine the context** — Does the situation suggest a particular type of growth?
+   * Linear: constant rate of change (distance over time, flat fee + per unit)
+   * Quadratic: acceleration or parabolic motion (height over time, area problems)
+   * Exponential: growth/decay by percentage (population, radioactive decay, interest)
+
+2. **Check the differences** — Use finite differences or ratios to confirm your hypothesis
+
+3. **Use technology for regression** — When differences are not perfectly constant (real-world data), use a graphing calculator to find the regression equation with the highest R² value
+
+4. **Interpret domain and range** — In context, domain is typically the range of x-values (time, age, etc.) and range is the corresponding y-values (height, population, etc.)
+
+---
+
+## Example 1 — Identify the Model Type from a Table
+
+**Problem:** Look for a pattern in the table of values to determine which kind of model best describes the data. Then write an equation for the function that models the data.
+
+| x | 0 | 1 | 2 | 3 | 4 |
+|---|---|---|---|---|---|
+| y | 2 | 6 | 18 | 54 | 162 |
+
+### Step 1: Compute first differences
+
+- y₂ − y₁ = 6 − 2 = 4
+- y₃ − y₂ = 18 − 6 = 12
+- y₄ − y₃ = 54 − 18 = 36
+- y₅ − y₄ = 162 − 54 = 108
+
+First differences are **not constant** (4, 12, 36, 108).
+
+### Step 2: Compute second differences
+
+- 12 − 4 = 8
+- 36 − 12 = 24
+- 108 − 36 = 72
+
+Second differences are **not constant** (8, 24, 72).
+
+### Step 3: Compute ratios
+
+- 6 ÷ 2 = 3
+- 18 ÷ 6 = 3
+- 54 ÷ 18 = 3
+- 162 ÷ 54 = 3
+
+Ratios are **constant (3)**. This indicates an **exponential model**.
+
+### Step 4: Write the exponential equation
+
+The general form is [y = a \cdot b^x]. From the ratio, b = 3. Using the point (0, 2): [2 = a \cdot 3^0 = a], so a = 2.
+
+**Answer:** [y = 2 \cdot 3^x]
+
+---
+
+## Example 2 — Model Data with a Quadratic Function
+
+**Problem:** The table shows the height of a ball thrown upward at various times.
+
+| t (seconds) | 0 | 1 | 2 | 3 | 4 |
+|---|---|---|---|---|---|
+| h (feet) | 0 | 48 | 64 | 48 | 0 |
+
+### Step 1: Compute first differences
+
+- 48 − 0 = 48
+- 64 − 48 = 16
+- 48 − 64 = −16
+- 0 − 48 = −48
+
+First differences are **not constant**.
+
+### Step 2: Compute second differences
+
+- 16 − 48 = −32
+- −16 − 16 = −32
+- −48 − (−16) = −32
+
+Second differences are **constant (−32)**. This indicates a **quadratic model**.
+
+### Step 3: Write the quadratic equation
+
+The general form is [h = at^2 + bt + c]. Using the three points:
+- t = 0: h = 0 → c = 0
+- t = 1: h = 48 → a + b = 48
+- t = 2: h = 64 → 4a + 2b = 64
+
+Solving: From a + b = 48, b = 48 − a. Substituting: 4a + 2(48 − a) = 64 → 4a + 96 − 2a = 64 → 2a = −32 → a = −16.
+Then b = 48 − (−16) = 64.
+
+**Answer:** [h = -16t^2 + 64t] (a projectile motion model)
+
+---
+
+## Example 3 — Use Regression to Find the Best Model
+
+**Problem:** A drone's height is recorded at various times after launch.
+
+| Time (s) | 0 | 1 | 2 | 3 | 4 | 5 |
+|---|---|---|---|---|---|---|
+| Height (ft) | 0 | 62 | 95 | 108 | 115 | 120 |
+
+**(a)** Make a scatter plot of the data.
+
+**(b)** Which regression equation has an R² value closest to 1?
+
+**(c)** Find an appropriate regression equation and state the coefficient of determination. What are the relevant domain and range?
+
+**(d)** Predict the height of the drone 7 seconds after launch.
+
+### Step 1: Analyze the scatter plot
+
+Plot the points (0, 0), (1, 62), (2, 95), (3, 108), (4, 115), (5, 120). The relationship appears to increase rapidly at first, then level off — suggesting an exponential or logarithmic model.
+
+### Step 2: Test regression types
+
+Use a graphing calculator to compare linear, quadratic, and exponential regression:
+
+- **Linear regression**: R² ≈ 0.847
+- **Quadratic regression**: R² ≈ 0.991
+- **Exponential regression**: R² ≈ 0.953
+
+The **quadratic model has R² closest to 1**.
+
+### Step 3: Write the regression equation
+
+The quadratic regression yields:
+
+[h = -4.8t^2 + 35.2t + 0.8]
+
+R² ≈ 0.991 (99.1% of variation is explained by the model).
+
+**Domain:** In context, t ≥ 0 (time after launch) up to when the drone lands.  
+**Range:** h ≥ 0 (height above ground).
+
+### Step 4: Predict at t = 7
+
+[h = -4.8(7)^2 + 35.2(7) + 0.8 = -4.8(49) + 246.4 + 0.8 = -235.2 + 246.4 + 0.8 = 12]
+
+**Answer (d):** Approximately 12 feet.
+
+---
+
+## Mixed Exercises
+
+**Problems 1–14:** For each table of values, look for a pattern and determine whether a linear, quadratic, or exponential model best fits. Then write an equation that models the data.
+
+**Problems 15–16:** Given data tables for drone height and cake cooling temperature:
+- Make scatter plots
+- Determine which regression equation has R² closest to 1
+- Find the appropriate regression equation and state R²
+- State relevant domain and range in context
+- Use the regression equation to make predictions
+
+**Problems 17–19:** Use a graphing calculator to determine whether linear, quadratic, or exponential regression is appropriate. State the coefficient of determination.
+
+**Problem 20:** Weather data (rainfall vs. time) — determine which model best describes the data from ordered pairs.
+
+**Problem 21:** Land value appreciation over time — identify the model and write an equation.
+
+**Problem 22:** Boat depreciation — write an equation modeling the data, then use it to find the value after 9 years.
+
+**Problem 23:** Nuclear waste (radioactive decay):
+- Determine whether the decay is linear, quadratic, or exponential
+- Write an equation for grams remaining after x half-lives
+- Calculate remaining grams after 11 half-lives
+- Solve for time required for a 20-gram sample to decay to 0.078 gram (given half-life of 87.7 years for plutonium-238)
+
+**Problem 24:** Two-town population data — write functions modeling each town, then analyze long-term behavior.
+
+**Problem 25:** Elevator height data:
+- Identify the function type
+- Calculate average rate of change over x = 0 to x = 4; interpret in context
+- Write a function model and relate coefficients to parts (a) and (b)
+
+**Problem 26:** Soccer team goals data:
+- Make a scatter plot
+- Find which regression has R² closest to 1
+- Find the appropriate regression equation; state domain and range
+- Predict in which game the team will score their 25th goal
+
+**Problem 27:** Use a source — look up hourly temperature data and plot; identify the model type.
+
+**Problem 28:** Precision — determine how many digits to report when a calculator gives 5127.45928113.
+
+**Problem 29:** Construct arguments — determine whether any function can have equal non-zero first differences and equal non-zero second differences. Justify with examples or counterexamples.
+
+**Problem 30:** Persevere — write a function with constant second differences, non-constant first differences, y-intercept of −5, that contains the point (2, 3).
+
+**Problem 31:** Analyze — what type of function has constant third differences but not constant second differences? Justify.
+
+**Problem 32:** Create — write a linear function with constant first difference of 4.
+
+**Problem 33:** Persevere — explain why linear functions grow by equal differences and exponential functions grow by equal factors over equal intervals.
+
+**Problem 34:** Write — how can you determine whether data should be modeled by a linear, quadratic, or exponential function?
+
+---
+
+## Review Notes
+
+* ![](media/image1.png) through ![](media/image23.png) — Tables and scatter plots from the original worksheet are embedded in the source document and should be rendered alongside the appropriate problems.
+* **Graphing calculator skills** are required for Examples 4 and Mixed Exercises 15–19, 23–26 to compute regression equations and R² values.
+* **Problem 23 (Nuclear Waste)** connects to real-world applications of exponential decay and half-life calculations.
+* **Problem 27 (Use a Source)** is a research-based activity requiring external data lookup.
+
+(End of file - total 257 lines)

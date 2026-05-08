@@ -1,0 +1,174 @@
+# Lesson 11-3 — Two-Dimensional Figures
+
+Source: (Module 11, Lesson 11-3, Int1_1103_practice.docx)
+
+## Today's Goals
+
+* Calculate the perimeter, circumference, and area of two-dimensional figures from coordinate grids and labeled diagrams.
+* Use appropriate two-dimensional models to represent real-world objects and solve applied measurement problems.
+* Apply coordinate geometry to identify figures from vertices and compute their measurements.
+* Solve multi-step problems that require converting between units or combining multiple geometric concepts.
+
+## Vocabulary
+
+* **Perimeter** — The distance around a two-dimensional figure.
+* **Circumference** — The distance around a circle.
+* **Area** — The number of square units needed to cover a two-dimensional figure.
+* **Two-Dimensional Model** — A simplified geometric representation of a real-world object used for calculations.
+* **Coordinate Grid** — A plane formed by the intersection of a horizontal number line (x-axis) and a vertical number line (y-axis).
+* **Composite Figure** — A figure made up of two or more simpler geometric shapes.
+* **Radius** — The distance from the center of a circle to any point on the circle.
+* **Diameter** — The distance across a circle through its center.
+
+## Explore: How Can Geometry Help Us Measure Real Objects?
+
+Students investigate how geometric shapes can model real-world objects. They explore when to use perimeter versus area and how to extract measurements from diagrams and coordinate grids.
+
+Inquiry Question:
+How do we decide which measurements and formulas to use when a real-world object is represented by a geometric figure?
+
+## Learn: Perimeter, Circumference, and Area of Two-Dimensional Figures
+
+Two-dimensional figures can be analyzed using perimeter (or circumference for circles) and area. Measurements can be determined from coordinate grids, labeled diagrams, or described dimensions.
+
+### Key Concept: Perimeter and Circumference
+
+* Perimeter of a polygon: sum of all side lengths.
+* Circumference of a circle: [C = 2 \pi r] or [C = \pi d].
+* The Pythagorean Theorem may be needed for diagonal distances on a coordinate grid.
+
+### Key Concept: Area Formulas
+
+* Rectangle: [A = l \times w] 
+* Triangle: [A = \frac{1}{2}bh] 
+* Circle: [A = \pi r^2] 
+* Trapezoid: [A = \frac{1}{2}(b_1 + b_2)h] 
+* Parallelogram: [A = bh] 
+* For composite figures, decompose into simpler shapes or subtract unwanted regions.
+
+### Key Concept: Coordinate Geometry
+
+* Use the distance formula to find side lengths when vertices are given:
+[
+d = \sqrt{(x_2 - x_1)^2 + (y_2 - y_1)^2}
+]
+* Count grid units for horizontal and vertical segments.
+* Identify figures by analyzing side lengths, slopes, and angles.
+
+## Example 1 — Find Perimeter and Area from Grid Figures
+
+Calculate the perimeter (or circumference) and area for geometric figures drawn on a coordinate grid where each unit represents 1 centimeter.
+
+### Step 1: Determine Dimensions from the Grid
+
+Identify side lengths, radius, base, and height by counting units or applying the distance formula. Round to the nearest tenth when necessary.
+
+### Step 2: Apply the Appropriate Formula
+
+Select perimeter or circumference for the distance around the figure, and area for the space enclosed.
+
+For a rectangle with length [l] and width [w]:
+[
+P = 2l + 2w
+]
+[
+A = l \times w
+]
+
+For a circle with radius [r]:
+[
+C = 2 \pi r
+]
+[
+A = \pi r^2
+]
+
+For a triangle with base [b] and height [h]:
+[
+P = a + b + c
+]
+[
+A = \frac{1}{2}bh
+]
+
+## Example 2 — Calculate Measurements Using Two-Dimensional Models
+
+Use a labeled two-dimensional model with provided dimensions to compute perimeter, circumference, and area for real-world objects.
+
+### Step 1: Identify the Geometric Shape
+
+Match the object to its geometric model and extract the relevant dimensions from the diagram.
+
+### Step 2: Compute Perimeter or Circumference
+
+Add side lengths for polygons. Use the circumference formula for circular parts.
+
+### Step 3: Compute Area
+
+Apply the area formula that corresponds to the shape. For composite figures, decompose into simpler shapes or subtract regions.
+
+## Example 3 — Solve Real-World Problems with Perimeter and Area
+
+Apply perimeter and area concepts to multi-step design, construction, and measurement scenarios.
+
+### Step 1: Calculate Perimeter and Area for a Sign
+
+Calculate the perimeter to determine the amount of trim needed. Calculate the area to determine the amount of sealer needed. Divide the total area by the coverage per pint to find the number of pints required.
+
+### Step 2: Calculate Surface Area of a Rectangular Prism
+
+Model the exposed surfaces of a rectangular prism using two-dimensional faces. Exclude the bottom surface from the total. Sum the areas of the remaining faces.
+
+For a rectangular prism with length [l], width [w], and height [h] (excluding bottom):
+[
+A = lw + 2lh + 2wh
+]
+
+### Step 3: Find Area of Circular and Triangular Regions
+
+Use area formulas for circles and equilateral triangles. Approximate measurements as needed.
+
+Area of a circle:
+[
+A = \pi r^2
+]
+
+Area of an equilateral triangle with side length [s]:
+[
+A = \frac{s^2 \sqrt{3}}{4}
+]
+
+### Step 4: Analyze a Track Modeled by a Rectangle and Semicircles
+
+Calculate the distance around a track by summing the lengths of the straight sides and the circumference of the circular ends. Adjust for lane width and runner position to find precise distances.
+
+Distance around the track:
+[
+d = 2L + 2 \pi r
+]
+
+For a runner in the center of a lane of width [w], use an adjusted radius:
+[
+d = 2L + 2 \pi \left(r + \frac{w}{2}\right)
+]
+
+## Mixed Exercises
+
+The mixed exercises provide practice with all skills from the lesson: calculating perimeter and area from coordinate grids and models, solving multi-step real-world problems, and using coordinate geometry. Problems include:
+
+* Identifying figures from given vertices and calculating their perimeter and area.
+* Writing algebraic expressions for the perimeter of a rectangle and solving for unknown dimensions.
+* Calculating fencing costs using coordinate grid measurements and unit conversions.
+* Finding areas of triangles using a perpendicular height.
+* Calculating areas represented on coordinate grids with real-world scale factors.
+* Determining perimeter and area of squares given only two vertices.
+* Finding areas of composite figures formed by inscribed shapes.
+* Solving multi-step tiling problems involving unit conversions.
+* Finding the area between a rectangle inscribed in a circle.
+* Constructing and justifying examples of equiangular non-regular polygons.
+* Calculating side lengths and perimeters of equilateral triangles from coordinates.
+
+## Review Notes
+
+* Images referenced in Examples 1 and 2 (grid figures and labeled models) and throughout the mixed exercises (sign diagram, ice cream cake, pool rack, track diagram, coordinate grids for problems 19, 20, 21, and 23) could not be fully described without visual reference. Teachers should consult the original worksheet for exact values and diagrams.
+* The worksheet contains visual diagrams for each figure in Examples 1 and 2 that are essential for calculating measurements.

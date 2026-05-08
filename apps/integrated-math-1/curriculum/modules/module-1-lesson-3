@@ -1,0 +1,176 @@
+# Lesson 1-3 — Properties of Real Numbers
+
+Source: (Module 1, Lesson 1-3, Int1_0103_practice.docx)
+
+## Today's Goals
+
+* Identify and apply the reflexive, symmetric, and transitive properties of equality.
+* Evaluate numerical and algebraic expressions by naming the property used in each step.
+* Use the commutative, associative, identity, and inverse properties to simplify calculations.
+
+## Vocabulary
+
+* **Reflexive Property of Equality** — Any quantity is equal to itself: [ a = a ].
+* **Symmetric Property of Equality** — If [ a = b ], then [ b = a ].
+* **Transitive Property of Equality** — If [ a = b ] and [ b = c ], then [ a = c ].
+* **Commutative Property** — The order of two addends or factors does not change the sum or product: [ a + b = b + a ] and [ ab = ba ].
+* **Associative Property** — The grouping of three or more addends or factors does not change the sum or product: [ (a + b) + c = a + (b + c) ] and [ (ab)c = a(bc) ].
+* **Additive Identity** — The sum of any number and zero is the number itself: [ a + 0 = a ].
+* **Multiplicative Identity** — The product of any number and one is the number itself: [ a \times 1 = a ].
+* **Additive Inverse** — The sum of a number and its opposite is zero: [ a + (-a) = 0 ].
+* **Multiplicative Inverse** — The product of a number and its reciprocal is one: [ a \times \frac{1}{a} = 1 ], where [ a \ne 0 ].
+* **Closure Property** — The sum or product of any two numbers in a set is also a member of that set.
+
+## Learn: Properties of Equality
+
+Recognize and use the fundamental properties that allow equations to be rewritten and rearranged.
+
+### Key Concept: Properties of Equality
+
+* **Reflexive:** [ a = a ] 
+* **Symmetric:** If [ a = b ], then [ b = a ].
+* **Transitive:** If [ a = b ] and [ b = c ], then [ a = c ].
+* These properties justify statements about equivalent quantities and are used to rearrange and simplify equations.
+
+## Example 1 — Identify Properties of Equality
+
+Given a true equation or statement, determine which property of equality justifies it.
+
+### Step 1: Analyze the Statement
+
+Compare the structure of the given statement to the form of each property.
+
+For example, [ 4 + 17 = 21 ] implies [ 21 = 4 + 17 ], which uses the **Symmetric Property**.
+
+The statement [ x + 3 = x + 3 ] uses the **Reflexive Property**.
+
+A chain such as [ 6 + 2 = 4 + 4 ] and [ 4 + 4 = 8 ] leading to [ 6 + 2 = 8 ] uses the **Transitive Property**.
+
+## Example 2 — Apply Properties of Equality to Complete Statements
+
+Use a specified property to fill in the missing part of an equation.
+
+### Step 1: Identify the Given Property
+
+Read the name of the property provided for the problem.
+
+### Step 2: Rewrite the Equation
+
+Apply the property to determine the missing value or expression.
+
+For example, given [ 23 + 14 = 37 ], the Symmetric Property yields [ 37 = 23 + 14 ].
+
+Given [ a + 5 = b + 3 ] and [ a + 5 = 12 ], the Transitive Property gives [ b + 3 = 12 ].
+
+Given [ 34 = 19 + 15 ], the Symmetric Property gives [ 19 + 15 = 34 ].
+
+## Example 3 — Real-World Application: Toll Roads
+
+Apply properties of equality to interpret a real-world toll table.
+
+### Step 1: Read the Table
+
+Examine the toll amounts for travel between pairs of highway exits, assuming the toll is the same in both directions.
+
+### Step 2: Apply the Symmetric Property
+
+Determine the toll for a reverse trip and justify which property guarantees the amount is unchanged.
+
+For example, if traveling from Exit 8 to Exit 15 costs a certain amount, the return from Exit 15 to Exit 8 costs the same amount by the **Symmetric Property of Equality**.
+
+## Learn: Properties of Real Numbers
+
+Simplify numerical expressions by applying properties of real numbers at each step.
+
+### Key Concept: Order of Operations and Properties
+
+* Perform operations inside grouping symbols first.
+* Apply multiplication, division, addition, and subtraction in the correct order.
+* Name the property that justifies each rewrite, such as substitution or the commutative and associative properties.
+
+## Example 4 — Evaluate Expressions and Name Properties
+
+Evaluate multi-step numerical expressions and justify each step with a property.
+
+### Step 1: Simplify Inside Grouping Symbols
+
+Evaluate parentheses or brackets first, following the order of operations.
+
+[
+3(22 - 3 \times 7)
+]
+
+### Step 2: Perform Remaining Operations
+
+Continue simplifying and name the property used in each step, such as the Substitution Property of Equality.
+
+Variations include expressions with fractions, division inside brackets, and nested grouping symbols such as:
+
+[
+2\left[5 - (15 \div 3)\right] 
+]
+
+[
+6 + 9\left[10 - 2(2 + 3)\right] 
+]
+
+[
+2(6 \div 3 - 1) \times \frac{1}{2}
+]
+
+## Example 5 — Simplify Expressions Using Properties of Numbers
+
+Rearrange and group terms to make mental arithmetic easier, naming the property used in each step.
+
+### Step 1: Look for Compatible Numbers
+
+Identify pairs that sum to a whole number, a multiple of 10, or a simple product.
+
+### Step 2: Rearrange and Group
+
+Use the Commutative and Associative Properties to reorder and regroup terms.
+
+For sums:
+
+[
+25 + 14 + 15 + 36 = (25 + 15) + (14 + 36)
+]
+
+Variations include decimal sums such as [ 4.3 + 2.4 + 3.6 + 9.7 ], fraction sums such as [ 4\frac{4}{9} + 7\frac{2}{9} ], and products such as [ 2 \times 8 \times 10 \times 2 ] and [ \frac{4}{3} \times 7 \times 3 \times 10 ].
+
+Additional problems ask students to evaluate products involving mixed numbers, such as [ 1\frac{5}{6} \times 24 \times 3\frac{1}{11} ] and [ 2\frac{3}{4} \times 1\frac{1}{8} \times 32 ].
+
+## Example 6 — Evaluate Algebraic Expressions
+
+Substitute given values for variables and simplify, combining like terms when possible.
+
+### Step 1: Substitute Values
+
+Replace each variable with its given value. For example, with [ a = -1 ], [ b = 4 ], and [ c = 6 ]:
+
+[
+4a + 9b - 2c
+]
+
+### Step 2: Simplify
+
+Perform the arithmetic and combine like terms.
+
+Variations include expressions with squared terms such as [ 3c^2 + 2c + 2c^2 ] and expressions requiring distribution or combining like terms such as [ a - b + 5a - 2b ] and [ 8a + 5b - 11a - 7b ].
+
+Additional problems ask students to identify which property produces a given result (for example, [ 5 \times n \times 2 = 0 ] uses the Zero Product Property) and to evaluate expressions while naming multiple properties used.
+
+## Mixed Exercises
+
+Apply properties of real numbers to solve for an unknown, solve word problems, and analyze mathematical statements.
+
+* **Solve for x and name the property:** Given equations such as [ 8 = 8 + x ], [ 3.2 + x = 3.2 ], [ 10x = 10 ], [ \frac{1}{2} \times x = \frac{1}{2} \times 7 ], [ x + 0 = 5 ], [ 1 \times x = 3 ], [ \frac{4}{3} \times \frac{3}{4} = x ], and [ \frac{1}{3} \times x = 1 ], determine the value of [ x ] and identify whether the Additive Identity, Multiplicative Identity, Additive Inverse, Multiplicative Inverse, or Symmetric Property applies.
+
+* **Mental math and word problems:** Calculate the area of a triangular banner by rearranging factors, determine the total amount paid for a car including a down payment and monthly payments, count total bones in the human body using the Associative Property, and find the total cost of school supplies using compatible pairs.
+
+* **Analyze and justify:** Determine whether the Commutative Property holds for subtraction (sometimes, always, or never), provide counterexamples showing division is not commutative or associative, explain why 0 has no multiplicative inverse, analyze whether 1 can be an additive identity, decide whether whole numbers are closed under subtraction, multiplication, and division, identify which equation among four does not belong, and write an original expression that simplifies to 160 using the Commutative and Associative Properties.
+
+## Review Notes
+
+* A toll-road table image (image1.png) appears in Example 3. The table shows highway tolls for a car entering and exiting at various exits; the text assumes the toll for the reverse direction is the same.
+* A triangular banner diagram (image2.png) appears in the Mixed Exercises mental-math problem. The banner has a base of 9 centimeters and a height of 6 centimeters.

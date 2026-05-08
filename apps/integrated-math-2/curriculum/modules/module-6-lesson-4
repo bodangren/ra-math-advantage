@@ -1,0 +1,337 @@
+# Lesson 6-4 — Surface Area
+
+Source: (Module 6, Lesson 6-4, Int2_0604_practice.docx)
+
+## Today's Goals
+
+* Find lateral areas and surface areas of prisms, cylinders, pyramids, and cones.
+* Find surface areas of spheres.
+* Solve real-world problems involving surface area.
+
+## Vocabulary
+
+* **Surface Area** — The total area of all faces of a three-dimensional figure.
+* **Lateral Area** — The sum of the areas of the lateral faces of a prism or pyramid.
+* **Prism** — A polyhedron with two parallel, congruent bases and rectangular lateral faces.
+* **Cylinder** — A solid with two parallel, congruent circular bases.
+* **Pyramid** — A polyhedron with one base and triangular lateral faces meeting at a vertex.
+* **Cone** — A solid with one circular base and a curved lateral surface meeting at a vertex.
+* **Sphere** — The set of all points equidistant from a center point in three-dimensional space.
+
+## Explore: Surface Area
+
+Students explore how to find the surface area of three-dimensional figures by identifying all faces and their dimensions. For prisms and pyramids, this involves finding the area of each face. For cylinders and cones, curved surface area formulas are used.
+
+Inquiry Question:
+How does finding the surface area of a three-dimensional figure compare to finding the area of a two-dimensional figure?
+
+## Learn: Surface Area
+
+### Key Concept: Lateral Area and Surface Area of a Prism
+
+* Lateral Area of a right prism: [L = Perimeter of base * height]
+* Surface Area: [SA = L + 2B] where B is the area of the base
+
+### Key Concept: Lateral Area and Surface Area of a Cylinder
+
+* Lateral Area: [L = 2pi * r * h]
+* Surface Area: [SA = 2pi * r * h + 2pi * r^2]
+
+### Key Concept: Lateral Area and Surface Area of a Pyramid
+
+* Lateral Area: [L = (1/2) * Perimeter of base * slant height]
+* Surface Area: [SA = L + B]
+
+### Key Concept: Lateral Area and Surface Area of a Cone
+
+* Lateral Area: [L = pi * r * l] where l is the slant height
+* Surface Area: [SA = pi * r * l + pi * r^2]
+
+### Key Concept: Surface Area of a Sphere
+
+* Surface Area: [SA = 4pi * r^2]
+
+## Example 1 — Surface Area of Prisms
+
+Find the lateral area and surface area of each prism. Round to the nearest tenth, if necessary.
+
+### Step 1: Find the Perimeter and Area of the Base
+
+Calculate these from the given base dimensions.
+
+### Step 2: Find the Lateral Area
+
+Multiply the perimeter of the base by the height of the prism.
+
+### Step 3: Find the Surface Area
+
+Add twice the base area to the lateral area: [SA = L + 2B]
+
+A rectangular prism with length 5 cm, width 3 cm, and height 4 cm:
+[
+P = 2(5 + 3) = 16 cm
+]
+[
+L = 16 * 4 = 64 cm^2
+]
+[
+B = 5 * 3 = 15 cm^2
+]
+[
+SA = 64 + 2(15) = 94 cm^2
+]
+
+A triangular prism with base area 12 in^2, base perimeter 16 in, and height 8 in:
+[
+L = 16 * 8 = 128 in^2
+]
+[
+SA = 128 + 2(12) = 152 in^2
+]
+
+## Example 2 — Surface Area of Cylinders
+
+Find the lateral area and surface area of each cylinder. Round to the nearest tenth, if necessary.
+
+### Step 1: Find the Lateral Area
+
+[L = 2pi * r * h]
+
+### Step 2: Find the Surface Area
+
+[SA = 2pi * r * h + 2pi * r^2]
+
+A cylinder with radius 3 cm and height 7 cm:
+[
+L = 2pi * 3 * 7 = 42pi = 131.9 cm^2
+]
+[
+SA = 42pi + 2pi * 9 = 42pi + 18pi = 60pi = 188.5 cm^2
+]
+
+## Example 3 — Surface Area of Prisms with Variables
+
+Find the surface area in terms of x.
+
+PAINTING: Greg is painting the four walls of his bedroom and the ceiling. The height of the walls is x and the edge length of the square ceiling is 2x.
+a. Surface area in terms of x:
+[
+Wall area = 4 * (x * 2x) = 8x^2
+]
+[
+Ceiling area = (2x)^2 = 4x^2
+]
+[
+Total = 12x^2
+]
+b. If x = 8 feet:
+[
+Total = 12 * 64 = 768 ft^2
+]
+
+## Example 4 — Surface Area of Pyramids
+
+Find the lateral area and surface area of each pyramid. Round to the nearest tenth, if necessary.
+
+### Step 1: Find the Perimeter of the Base
+
+Calculate the perimeter from the base dimensions.
+
+### Step 2: Find the Lateral Area
+
+[L = (1/2) * P * slant height]
+
+### Step 3: Find the Surface Area
+
+[SA = L + B]
+
+A square pyramid with base side 6 m and slant height 5 m:
+[
+P = 4 * 6 = 24 m
+]
+[
+L = (1/2) * 24 * 5 = 60 m^2
+]
+[
+B = 6^2 = 36 m^2
+]
+[
+SA = 60 + 36 = 96 m^2
+]
+
+## Example 5 — Surface Area of Cones
+
+Find the lateral area and surface area of each cone. Round to the nearest tenth, if necessary.
+
+### Step 1: Find the Slant Height if Not Given
+
+Use the Pythagorean Theorem if needed: [l = sqrt(r^2 + h^2)]
+
+### Step 2: Apply the Formulas
+
+[L = pi * r * l]
+[SA = pi * r * l + pi * r^2]
+
+A cone with radius 4 cm and slant height 9 cm:
+[
+L = pi * 4 * 9 = 36pi = 113.1 cm^2
+]
+[
+SA = 36pi + 16pi = 52pi = 163.4 cm^2
+]
+
+## Example 6 — Surface Area of Cones with Variables
+
+MANUFACTURING: A cylindrical package with radius x and height x + 4. Find surface area that is cardboard (lateral area + bottom):
+[
+L = 2pi * x * (x + 4) = 2pi(x^2 + 4x)
+]
+[
+Bottom = pi * x^2
+]
+[
+Cardboard area = 3pi * x^2 + 8pi * x
+]
+If x = 6 cm:
+[
+= 3pi(36) + 8pi(6) = 108pi + 48pi = 156pi = 490.1 cm^2
+]
+
+CAMPING: A tent shaped like a square pyramid with base x and slant height 1.5x. Find sidewall area:
+[
+P = 4x
+]
+[
+L = (1/2) * 4x * 1.5x = 3x^2
+]
+If x = 9 ft:
+[
+L = 3(81) = 243 ft^2
+]
+
+TOPIARY: A bush shaped like a cone with radius x and slant height 4x. Find lateral area:
+[
+L = pi * x * 4x = 4pi * x^2
+]
+Surface area of slipcover (no base):
+[
+SA = pi * x * 4x = 4pi * x^2
+]
+If x = 0.75 m:
+[
+SA = 4pi(0.5625) = 7.1 m^2
+]
+
+## Example 7 — Surface Area of Spheres
+
+Find the surface area of each sphere to the nearest tenth.
+
+### Step 1: Identify the Radius
+
+Use the given radius or diameter to find the radius.
+
+### Step 2: Apply the Sphere Formula
+
+[SA = 4pi * r^2]
+
+A sphere with radius 5 cm:
+[
+SA = 4pi * 25 = 100pi = 314.2 cm^2
+]
+
+MOONS OF SATURN: Titan has radius about 2575 kilometers. Find surface area:
+[
+SA = 4pi * (2575)^2
+]
+[
+SA = 4pi * 6,630,625
+]
+[
+SA = 83,304,588 km^2
+]
+
+## Example 8 — Surface Area from Circumference
+
+Find the surface area in terms of pi.
+
+### Step 1: Find the Radius from Circumference
+
+[C = 2pi * r] so [r = C/(2pi)]
+
+### Step 2: Apply the Sphere Formula
+
+AMUSEMENT PARK: Spaceship Earth has circumference [C]. Find surface area in terms of [C] and [pi]:
+[
+r = C/(2pi)
+]
+[
+SA = 4pi * (C/(2pi))^2
+]
+[
+SA = 4pi * C^2/(4pi^2)
+]
+[
+SA = C^2/pi
+]
+
+BILLIARDS: An eight-ball with circumference [C]. Find surface area in terms of [C] and [pi]:
+[
+SA = C^2/pi
+]
+
+## Example 9 — Surface Area of Composite Solids
+
+Find the surface area of each figure to the nearest tenth.
+
+### Step 1: Identify All Components
+
+Break the composite solid into simpler shapes.
+
+### Step 2: Find Each Surface Area
+
+Calculate the surface area of each component.
+
+### Step 3: Combine Appropriately
+
+Add areas that are exposed, subtract areas that are joined.
+
+THEATER: Carlos is building a tower prop that is a hollow cylinder with no base. Radius is 2.5 feet.
+[
+Lateral area of outside = 2pi * 2.5 * h
+]
+[
+Lateral area of inside = 2pi * 2.5 * h
+]
+[
+Top ring area = pi * (R^2 - r^2)
+]
+[
+Total = 2pi * 2.5 * h + 2pi * 2.5 * h + top ring
+]
+
+## Mixed Exercises
+
+* STATE YOUR ASSUMPTION: Maddie is painting a shed. Approximate surface area.
+* STRUCTURE: A cylinder has lateral area 120pi m^2 and height 7 m. Find the radius.
+* Find lateral and surface areas of various solids: triangular prism, square pyramid, hexagonal pyramid, cones.
+* GREAT CIRCLE: Find surface area of sphere with great circle circumference 2 cm and great circle area 32 ft^2.
+* GREENHOUSE: Reina's greenhouse is a square pyramid with all edges 6 feet. Find total surface area including floor.
+* PAPER MODELS: A net is cut and folded into a pyramid. Find surface area.
+* CAKES: A rectangular prism cake with frosting on sides and top. Find surface area with frosting.
+* CONSTRUCTION: A metal pipe shaped like a cylinder with height 50 in and radius 6 in. Find surface area.
+* INSTRUMENTS: A mute formed by cutting a cone. Find surface areas of original cone, removed cone, and mute.
+* USE A MODEL: Find total surface area of a sofa for a fitted cover.
+* REASONING: Jaylen builds a sphere inside a cube. Find surface areas and ratio.
+* CONSTRUCT ARGUMENTS: A cone and square pyramid have same surface area and same base area. Do they have same slant height?
+* ANALYZE: Is the surface area of a cone sometimes, always, or never less than a cylinder of same radius and height?
+* WRITE: Compare and contrast finding surface area of a prism and a cylinder.
+* CREATE: Give an example of two cylinders with same lateral area but different surface areas.
+* PERSEVERE: Find general formula for total surface area of a right prism with equilateral triangle base.
+* WRITE: Compare lateral areas of square prism and triangular prism with same height.
+
+## Review Notes
+
+* ![](media/) — Image references for the many solid figures in the worksheet could not be fully captured.
+* For composite solids, be careful to only count exposed surfaces.
+* When a cylinder has no top or bottom, do not include those areas in surface area.
+* The slant height of a cone is different from its vertical height — use the Pythagorean Theorem to find slant height when only vertical height is given.

@@ -1,218 +1,167 @@
-# Lesson 1-8 - Solving Linear-Nonlinear Systems
+# Lesson 1-8 — Solving Linear-Nonlinear Systems
+
+Source: (Module 1, Lesson 1-8, Int3_0108_practice.docx)
 
 ## Today's Goals
 
-* Solve systems of linear and quadratic equations
-* Solve systems of two quadratic equations
-
----
+* Solve systems of equations where one equation is linear and the other is quadratic using substitution or elimination.
+* Solve systems by graphing, identifying intersection points.
+* Solve systems of two quadratic equations algebraically.
+* Apply systems of equations to real-world problems involving roads, business, rockets, and volleyball.
 
 ## Vocabulary
 
-* quadratic relations
+* **Linear-Quadratic System** — A system of equations containing one linear equation and one quadratic equation.
+* **Quadratic-Quadratic System** — A system containing two quadratic equations.
+* **Substitution Method** — Solving a system by replacing one variable with an expression from another equation.
+* **Elimination Method** — Solving a system by adding or subtracting equations to eliminate a variable.
+* **Intersection Point** — A point [(x, y)] that satisfies both equations in a system; represents a solution.
 
----
+## Explore: Where Linear Meets Quadratic
 
-## Explore: Linear-Quadratic Systems
-
-Use graphing technology to explore how many solutions a linear-quadratic system can have.
+When a linear equation and quadratic equation are graphed together, their intersection points represent the solutions to the system. Students explore why a linear-quadratic system can have 0, 1, or 2 solutions.
 
 Inquiry Question:
-How many solutions can a linear-quadratic system of equations have?
+How many points can a line intersect a parabola? What determines the number of intersection points?
 
----
+## Learn: Solving Linear-Nonlinear Systems
 
-## Learn: Solving Linear-Quadratic Systems
+### Key Concept: Number of Solutions
 
-Like systems of linear equations, linear-quadratic systems can be solved by graphical or algebraic methods. A system can also be used to solve a quadratic equation by writing each side as a related function.
+* A line can intersect a parabola at 0, 1, or 2 points.
+* If the line is tangent to the parabola, there is 1 solution.
+* If the line crosses the parabola at two distinct points, there are 2 solutions.
+* If the line never crosses the parabola, there are no solutions.
 
----
+### Key Concept: Solving by Substitution
 
-## Example 1 - Solve a Linear-Quadratic System by Using Substitution
+1. Solve the linear equation for one variable (usually y or x).
+2. Substitute this expression into the quadratic equation.
+3. Solve the resulting quadratic equation.
+4. Substitute back to find the corresponding values of the other variable.
 
-Solve the system:
+## Examples 1 and 2 — Solve by Substitution or Elimination
 
-`x = 2y^2 + 3y + 1`
+### Step 1: Identify the System Type
 
-`-x + y = -1`
+For [y = x^2 - 5] and [y = x - 3]: both equations are solved for y, so set them equal.
 
-From the second equation:
+### Step 2: Set Equal and Solve
 
-`x = y + 1`
+[x^2 - 5 = x - 3]
+[x^2 - x - 2 = 0]
+[(x - 2)(x + 1) = 0]
+[x = 2] or [x = -1]
 
-Substitute:
+### Step 3: Find Corresponding y-Values
 
-`y + 1 = 2y^2 + 3y + 1`
+For [x = 2]: [y = 2 - 3 = -1], so [(2, -1)].
+For [x = -1]: [y = -1 - 3 = -4], so [(-1, -4)].
 
-`0 = 2y^2 + 2y`
+### Step 4: Solve Various Systems
 
-`0 = 2y(y + 1)`
+For [y = 3x] and [x = y^2]: substitute x from the second into the first: [y = 3y^2]. This gives [y = 0] or [y = 1/3]. Then find corresponding x-values.
 
-So:
+For [y = -2x + 2] and [y^2 = 2x]: substitute and solve.
 
-* `y = 0`
-* `y = -1`
+## Example 3 — Use Systems to Solve Quadratic Equations
 
-Then:
+Rewrite a quadratic equation as a system to solve it.
 
-* if `y = 0`, `x = 1`
-* if `y = -1`, `x = 0`
+### Step 1: Set the Quadratic Equal to Zero
 
-Solutions:
+For [x^2 + 3x + 3 = -2x - 3]: rewrite as [x^2 + 5x + 6 = 0].
 
-* `(1, 0)`
-* `(0, -1)`
+### Step 2: Create a System
 
----
+[y = x^2 + 5x + 6]
+[y = 0]
 
-## Example 2 - Solve a Linear-Quadratic System by Using Elimination
+### Step 3: Solve by Substitution
 
-Solve the system:
+[0 = x^2 + 5x + 6], then factor to find [x = -2] or [x = -3].
 
-`x^2 = y + 5`
+## Example 4 — Apply to Civil Engineering
 
-`-x + y = 7`
+### Step 1: Understand the Problem
 
-Rearrange the second equation so the `y`-terms can be eliminated, then add:
+A road's surface is modeled by [y = -(1/300)x^2 + (3/4)], where x is the distance from the center in feet and y is the height above the shoulder.
 
-`x^2 - x = 12`
+### Step 2: Find the Width of the Road
 
-`x^2 - x - 12 = 0`
+At the edge of the road, [y = 0]. Solve [-(1/300)x^2 + (3/4) = 0]. The road extends from [x = -15√6] to [x = 15√6], so the width is [30√6] feet.
 
-`(x - 4)(x + 3) = 0`
+### Step 3: Apply to Flood Problem
 
-So:
+If water level is 6 inches (0.5 feet) above the shoulder: solve [-(1/300)x^2 + (3/4) = 0.5] to find how wide the non-submerged portion is.
 
-* `x = 4`
-* `x = -3`
+### Step 4: Apply to Small Business Problem
 
-Then:
+For profit [P = 2x^2 + 30x]: find the selling price [x] for which profit is $50,000 by solving [2x^2 + 30x = 50000].
 
-* `(4, 11)`
-* `(-3, 4)`
+## Example 5 — Solve by Graphing
 
----
+Graph systems of equations to find intersection points.
 
-## Example 3 - Use a System to Solve a Quadratic Equation
+### Step 1: Graph Both Equations
 
-Use a system to solve `x^2 - 2x + 6 = 4x + 1`.
+For [y = x^2] and [x = y^2]: graph both and identify where they intersect.
 
-Create the system:
+### Step 2: Read Coordinates
 
-* `y = x^2 - 2x + 6`
-* `y = 4x + 1`
+The intersection points give the solution(s).
 
-From the graph, the functions intersect at:
+### Step 3: Handle Systems with Parabolas in Different Orientations
 
-* `(1, 5)`
-* `(5, 21)`
+For [x = (y - 2)^2] and [y = x^2 + 2]: recognize that [x = (y - 2)^2] opens to the right.
 
-So the equation solutions are:
+## Example 6 — Solve Quadratic-Quadratic Systems Algebraically
 
-* `x = 1`
-* `x = 5`
+### Step 1: Use Elimination or Substitution
 
----
+For [2x^2 - y = 8] and [y = x^2 + 8]: substitute the second into the first: [2x^2 - (x^2 + 8) = 8].
 
-## Example 4 - Solve a Linear-Quadratic System by Graphing
+### Step 2: Solve the Resulting Equation
 
-Production: A company's revenue is modeled by:
+[x^2 - 8 = 8]
+[x^2 = 16]
+[x = ±4]
 
-`R = -0.1x^2 + 4x`
+### Step 3: Find Corresponding y-Values
 
-To determine the price for which the company earns `$4.2` million, graph the system:
+For [x = 4]: [y = 4^2 + 8 = 24], so [(4, 24)].
+For [x = -4]: [y = (-4)^2 + 8 = 24], so [(-4, 24)].
 
-* `R = -0.1x^2 + 4x`
-* `R = 42`
+### Step 4: Solve Various Systems
 
-The graphs do not intersect, so the system has:
+For [x = (1/4)y^2] and [y^2 = -4x + 18]: substitute and solve to find 0, 1, or 2 solutions.
 
-`0 solutions`
+## Example 7 — More Systems Leading to Quadratic Equations
 
----
+### Step 1: Rearrange and Set Equal
 
-## Learn: Solving Quadratic-Quadratic Systems
+For [2x^2 + 5x + 3 = 2 - 2x^2]: rearrange to [4x^2 + 5x + 1 = 0].
 
-If a system contains two quadratic relations, it may have `0` to `4` solutions. These systems can be solved graphically or algebraically.
+### Step 2: Solve the Quadratic
 
----
+Use factoring or the Quadratic Formula to find the solutions.
 
-## Example 5 - Solve a Quadratic-Quadratic System Graphically
+## Mixed Exercises
 
-Solve:
+The mixed exercises section provides practice with all skills from the lesson. Problems include:
 
-* `y = x^2`
-* `x = 1/5 (y - 6)^2 + 6/5`
+* Using related graphs to determine solutions of systems. (Problems 36–38)
+* Solving systems by graphing, substitution, or elimination. (Problems 39–56)
+* Using systems of equations to solve quadratic equations. (Problems 57–68)
+* A rockets problem: finding when two model rockets are at the same height using [y = -4.9t^2 + 48.8t] and [y = -4.9t^2 + 46.7t + 1.5]. (Problem 69)
+* A packaging problem: creating a quadratic equation to find when the surface areas of two different packages are equal. (Problem 70)
+* A volleyball problem: determining if a volleyball can clear the net using [h(t) = -16t^2 + vt + h_0], and whether a blocker can block it. (Problem 71)
+* Describing three linear-quadratic systems with 0, 1, and 2 solutions. (Problem 72)
+* Creating a system of two quadratics with exactly one solution. (Problem 73)
+* Writing about a real-life situation modeled by a system with a quadratic and linear function. (Problem 74)
+* A "Find the Error" problem analyzing Danny and Carol's solution of [y = x^2 + 3x - 9] and [-4x + y = 3]. (Problem 75)
 
-From the graph, the relations intersect at:
+## Review Notes
 
-* `(2, 4)`
-* `(3, 9)`
-
----
-
-## Example 6 - Solve a Quadratic-Quadratic System Algebraically
-
-Solve:
-
-* `2x^2 - y = 4`
-* `y = -1/2 x^2 + 6`
-
-Substitute:
-
-`2x^2 - (-1/2 x^2 + 6) = 4`
-
-`5/2 x^2 - 10 = 0`
-
-`x^2 - 4 = 0`
-
-`(x + 2)(x - 2) = 0`
-
-So:
-
-* `x = 2`
-* `x = -2`
-
-Substitute into an original equation:
-
-`y = 4`
-
-Solutions:
-
-* `(2, 4)`
-* `(-2, 4)`
-
----
-
-## Example 7 - Use a System to Solve a Quadratic Equation
-
-Use a system to solve `2x^2 - 3x + 8 = 11 - 4x^2`.
-
-Create the system:
-
-* `y = 2x^2 - 3x + 8`
-* `y = 11 - 4x^2`
-
-From the graph, the functions intersect at:
-
-* `(-1/2, 10)`
-* `(1, 7)`
-
-So the equation solutions are:
-
-* `x = -1/2`
-* `x = 1`
-
----
-
-## Talk About It
-
-* Can a linear-quadratic system have infinitely many solutions? Why or why not?
-* Why is graphing still useful even when solving a system algebraically?
-
----
-
-## Objective Alignment
-
-- `Solve systems of linear and quadratic equations`: Primary worked examples: Examples 1-4 and 7.
-- `Solve systems of two quadratic equations`: Primary worked examples: Examples 5-6.
+* Images referenced in the worksheet (the road cross-section diagram in Problem 16, graphs for Problems 36-38, the two packages diagram in Problem 70, and Danny and Carol's work in Problem 75) could not be fully described without visual reference. Teachers should consult the original worksheet for exact diagrams and values.
+* The worksheet contains 75 practice problems across seven examples and mixed exercises.

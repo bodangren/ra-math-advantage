@@ -1,215 +1,161 @@
 # Lesson 9-2 — Trigonometric Functions of General Angles
 
-Source: (Module 9, Lesson 9-2, pp. 425–430)
+Source: (Module 9, Lesson 9-2, Int3_0902_practice.docx)
 
 ## Today's Goals
 
-* Find values of trigonometric functions for acute angles
-* Find values of trigonometric functions of general angles
-* Find values of trigonometric functions by using reference angles
-
----
+* Find the exact values of the six trigonometric functions given a point on the terminal side of an angle in standard position.
+* Find the values of trigonometric functions for angles in right triangles.
+* Determine reference angles and use them to evaluate trigonometric functions.
+* Apply trigonometric functions to solve real-world problems involving angles and lengths.
 
 ## Vocabulary
 
-* trigonometry
-* trigonometric ratio
-* trigonometric function
-* sine
-* cosine
-* tangent
-* cosecant
-* secant
-* cotangent
-* quadrantal angle
-* reference angle
+* **Trigonometric Functions** — Functions of an angle that relate the ratios of sides in a right triangle or coordinates on the unit circle: sine, cosine, tangent, cosecant, secant, and cotangent.
+* **Reference Angle** — The acute angle formed between the terminal side of an angle in standard position and the nearest x-axis.
+* **Unit Circle** — A circle with radius 1 centered at the origin; used to define trigonometric values for all angles.
+* **Pythagorean Identity** — [sin²θ + cos²θ = 1], which relates sine and cosine for any angle.
+* **Reciprocal Functions** — [csc θ = 1/sin θ], [sec θ = 1/cos θ], [cot θ = 1/tan θ].
 
----
+## Explore: Trigonometric Functions Beyond Acute Angles
 
-## Learn: Trigonometric Functions in Right Triangles
+The trigonometric ratios defined for acute angles in right triangles can be extended to any angle using the unit circle or coordinate geometry. Students explore how the signs of trigonometric functions change depending on which quadrant the terminal side lies in.
 
-Trigonometry studies relationships among sides and angles of triangles.
-
-### Key Concept: Trigonometric Functions in a Right Triangle
-
-For angle `theta`:
-
-* `sin theta = opp/hyp`
-* `cos theta = adj/hyp`
-* `tan theta = opp/adj`
-* `csc theta = hyp/opp`
-* `sec theta = hyp/adj`
-* `cot theta = adj/opp`
-
----
-
-## Example 1 — Evaluate Trigonometric Functions
-
-Given a right triangle with:
-
-* opposite `= 28`
-* adjacent `= 45`
-* hypotenuse `= 53`
-
-find the six trigonometric functions.
-
-* `sin theta = 28/53`
-* `cos theta = 45/53`
-* `tan theta = 28/45`
-* `csc theta = 53/28`
-* `sec theta = 53/45`
-* `cot theta = 45/28`
-
----
-
-## Example 2 — Find Trigonometric Ratios
-
-If `cos A = 9/13`, find the other five trigonometric functions.
-
-Use a right triangle with adjacent `9` and hypotenuse `13`.
-
-By the Pythagorean Theorem:
-
-`a^2 + 9^2 = 13^2`
-
-`a^2 = 88`
-
-`a = 2sqrt(22)`
-
-So:
-
-* `sin A = 2sqrt(22)/13`
-* `cos A = 9/13`
-* `tan A = 2sqrt(22)/9`
-* `csc A = 13/(2sqrt(22))`
-* `sec A = 13/9`
-* `cot A = 9/(2sqrt(22))`
-
----
+Inquiry Question:
+How can you determine the sign of each trigonometric function for an angle in each quadrant?
 
 ## Learn: Trigonometric Functions of General Angles
 
-If point `P(x, y)` lies on the terminal side of angle `theta`, and
+### Key Concept: The Six Trigonometric Functions
 
-`r = sqrt(x^2 + y^2)`
+For an angle [θ] in standard position with point [(x, y)] on its terminal side (not at the origin):
 
-then:
+[sin θ = y/r]
+[cos θ = x/r]
+[tan θ = y/x] (when x ≠ 0)
 
-* `sin theta = y/r`
-* `cos theta = x/r`
-* `tan theta = y/x`
-* `csc theta = r/y`
-* `sec theta = r/x`
-* `cot theta = x/y`
+Where [r = √(x² + y²)] is the distance from the origin to the point.
 
-A **quadrantal angle** has its terminal side on an axis.
+The reciprocal functions are:
+[csc θ = r/y] (when y ≠ 0)
+[sec θ = r/x] (when x ≠ 0)
+[cot θ = x/y] (when y ≠ 0)
 
----
+### Key Concept: Signs by Quadrant
 
-## Example 3 — Evaluate Trigonometric Functions Given a Point
+* Quadrant I: All functions positive
+* Quadrant II: sin and csc positive; cos, sec, tan, cot negative
+* Quadrant III: tan and cot positive; sin, csc, cos, sec negative
+* Quadrant IV: cos and sec positive; sin, csc, tan, cot negative
 
-The terminal side of `theta` contains `(-6, 4)`.
+### Key Concept: Reference Angles
 
-First find:
+A reference angle [θ'] is always positive and less than 90° (or [π/2] radians).
 
-`r = sqrt((-6)^2 + 4^2) = sqrt(52) = 2sqrt(13)`
+To find the reference angle:
+* Quadrant I: [θ' = θ]
+* Quadrant II: [θ' = 180° - θ] or [θ' = π - θ]
+* Quadrant III: [θ' = θ - 180°] or [θ' = θ - π]
+* Quadrant IV: [θ' = 360° - θ] or [θ' = 2π - θ]
 
-Then:
+## Example 1 — Find Trigonometric Values from Points on the Terminal Side
 
-* `sin theta = 4/(2sqrt(13)) = 2sqrt(13)/13`
-* `cos theta = -6/(2sqrt(13)) = -3sqrt(13)/13`
-* `tan theta = 4/(-6) = -2/3`
-* `csc theta = 2sqrt(13)/4 = sqrt(13)/2`
-* `sec theta = 2sqrt(13)/(-6) = -sqrt(13)/3`
-* `cot theta = -6/4 = -3/2`
+### Step 1: Calculate r and Apply Function Definitions
 
----
+For point (5, 12): [r = √(25 + 144) = √169 = 13]
+[sin θ = 12/13]
+[cos θ = 5/13]
+[tan θ = 12/5]
 
-## Example 4 — Evaluate Trigonometric Functions of Quadrantal Angles
+For point (3, 4): [r = √(9 + 16) = √25 = 5]
+[sin θ = 4/5]
+[cos θ = 3/5]
+[tan θ = 4/3]
 
-The terminal side contains `(-5, 0)`, so `theta = 180°`.
+For point (8, -15): [r = √(64 + 225) = √289 = 17]
+[sin θ = -15/17]
+[cos θ = 8/17]
+[tan θ = -15/8]
 
-Using `x = -5`, `y = 0`, and `r = 5`:
+## Example 2 — Find Values Given Another Trigonometric Function
 
-* `sin theta = 0`
-* `cos theta = -1`
-* `tan theta = 0`
-* `csc theta` is undefined
-* `sec theta = -1`
-* `cot theta` is undefined
+### Step 1: Use Pythagorean Identities and Right Triangle Ratios
 
----
+Given tan A = 8/15, use the Pythagorean theorem to find the hypotenuse:
+[r = √(8² + 15²) = √(64 + 225) = √289 = 17]
+[sin A = 8/17]
+[cos A = 15/17]
+[csc A = 17/8]
+[sec A = 17/15]
+[cot A = 15/8]
 
-## Learn: Trigonometric Functions with Reference Angles
+## Example 3 — Evaluate Trigonometric Functions Using Reference Angles
 
-The **reference angle** is the acute angle between the terminal side and the x-axis.
+### Step 1: Find the Reference Angle and Determine the Sign
 
-### Key Concept: Evaluating with Reference Angles
+For 330°: The reference angle is 360° - 330° = 30°.
+Since 330° is in Quadrant IV, only cos and sec are positive.
+[tan 330° = -tan 30° = -√3/3]
 
-1. Find the reference angle
-2. Evaluate the function at the reference angle
-3. Apply the correct sign based on the quadrant
+For 230°: The reference angle is 230° - 180° = 50°.
+Since 230° is in Quadrant III, tan is positive.
+[cos 230° = -cos 50°]
 
----
+## Example 4 — Exact Values at Special Angles
 
-## Example 5 — Find Reference Angles
+### Step 1: Use Known Values from the Unit Circle
 
-### a. `155°`
+[sin 150° = sin 30° = 1/2]
+[cos 270° = 0]
+[cot 135° = -1]
+[tan(-30°) = -√3/3]
+[csc π/4 = √2]
+[sin(-150°) = -1/2]
 
-This lies in Quadrant II, so:
+## Example 5 — Real-World Trigonometry Applications
 
-`theta' = 180° - 155° = 25°`
+### Step 1: Set Up Trigonometric Ratios
 
-### b. `-8pi/3`
+**Amusement ride:** With a 62-foot swing arm and 71.6° angle, find height above ground.
+Use [sin 71.6° = height/62] or appropriate trigonometric ratio.
 
-First find a positive coterminal angle:
+**Ladder problem:** With 12 feet height and 71.6° angle with ladder:
+[cos 71.6° = 12/distance] or [tan 71.6° = 12/distance]
+[Solve for distance]
 
-`-8pi/3 + 4pi = 4pi/3`
+## Mixed Exercises
 
-This lies in Quadrant III, so:
+Practice problems include:
 
-`theta' = 4pi/3 - pi = pi/3`
+* Finding trigonometric values from right triangle diagrams.
+* Completing five remaining trigonometric functions given one function value.
+* Finding exact values using points on the terminal side.
+* Sketching angles and finding reference angles.
+* Evaluating trigonometric functions at special and non-special angles.
+* Amusement ride height problems.
+* Ladder and roofing problems.
+* Light refraction problems using Snell's law.
+* Radio positioning problems using coordinates.
+* Paper airplane distance problems.
+* Clock hand length problems.
+* Ferris wheel height problems.
+* Shadow length problems using angle of elevation.
+* Reasoning problems about trigonometric properties.
+* Structure problems about angles with the same reference angle.
 
----
+## Review Notes
 
-## Example 6 — Use a Reference Angle to Find a Trigonometric Value
+* Images referenced in the worksheet (trigonometric diagrams for problems 1-6, light refraction diagram for problem 58, radio positioning diagram for problem 59, clock diagram for problem 61, Ferris wheel diagram for problem 62, congruent triangles for problems 63-66, shadow diagram for problem 68) could not be fully described without visual reference. Teachers should consult the original worksheet for exact diagrams and values.
 
-Find the exact value of `tan(7pi/4)`.
-
-The angle lies in Quadrant IV.
-
-Reference angle:
-
-`2pi - 7pi/4 = pi/4`
-
-Since tangent is negative in Quadrant IV:
-
-`tan(7pi/4) = -tan(pi/4) = -1`
-
----
-
-## Example 7 — Use Trigonometric Functions
-
-A softball pitcher has arm length `28` inches and shoulder height `57` inches. Find the height of the ball when the arm is positioned as shown, with reference angle `42°`.
-
-Use:
-
-`sin 42° = y/28`
-
-So:
-
-`y = 28 sin 42° ≈ 18.7`
-
-Add shoulder height:
-
-`18.7 + 57 = 75.7`
-
-The ball is about `75.7` inches high.
-
----
-
-## Objective Alignment
-
-- `Find values of trigonometric functions for acute angles`: Primary worked examples: Examples 1-3.
-- `Find values of trigonometric functions of general angles`: Primary worked examples: Examples 4-7.
-- `Find values of trigonometric functions by using reference angles`: Primary worked examples: Examples 5-6.
+![](media/image1.png)
+![](media/image2.png)
+![](media/image3.png)
+![](media/image4.png)
+![](media/image5.png)
+![](media/image6.png)
+![](media/image7.JPG)
+![](media/image8.png)
+![](media/image9.png)
+![](media/image10.png)
+![](media/image11.png)
+![](media/image12.png)

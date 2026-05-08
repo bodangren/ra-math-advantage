@@ -1,0 +1,246 @@
+# Lesson 11-4 — Transformations in the Plane
+
+Source: (Module 11, Lesson 11-4, Int1_1104_practice.docx)
+
+## Today's Goals
+
+* Identify rigid motions (reflection, translation, rotation) from diagrams.
+* Apply reflections, translations, and rotations to figures on the coordinate plane.
+* Determine the coordinates of an image after a transformation given the preimage coordinates.
+* Describe and analyze transformations in real-world contexts.
+
+## Vocabulary
+
+* **Rigid Motion** — A transformation that preserves distance and angle measure, so the preimage and image are congruent.
+* **Reflection** — A transformation that flips a figure over a line called the line of reflection.
+* **Translation** — A transformation that slides every point of a figure the same distance in the same direction, described by a vector.
+* **Rotation** — A transformation that turns a figure about a fixed point called the center of rotation.
+* **Preimage** — The original figure before a transformation is applied.
+* **Image** — The resulting figure after a transformation is applied.
+* **Line of Reflection** — The line over which a figure is reflected.
+* **Center of Rotation** — The fixed point about which a figure is rotated.
+* **Vector** — A quantity that has both magnitude and direction, written as [\langle a, b \rangle] to describe a translation.
+
+## Explore: How Can You Move a Figure Without Changing Its Shape?
+
+Students investigate what happens when geometric figures are moved in the plane. They explore different ways to reposition a figure and consider which movements preserve the figure's size and shape.
+
+Inquiry Question:
+What kinds of movements in the plane keep a figure congruent to its original position, and how can you tell?
+
+## Learn: Reflections, Translations, and Rotations
+
+Rigid motions are transformations that preserve the size and shape of a figure. The three basic rigid motions are reflections, translations, and rotations. Each can be identified visually from a diagram or described algebraically on the coordinate plane.
+
+### Key Concept: Reflection
+
+* A reflection flips a figure over a line of reflection.
+* Reflection in the [x]-axis: [(x, y) \rightarrow (x, -y)] 
+* Reflection in the [y]-axis: [(x, y) \rightarrow (-x, y)] 
+* The line of reflection is the perpendicular bisector of every segment joining a point to its image.
+
+### Key Concept: Translation
+
+* A translation slides every point of a figure the same distance in the same direction.
+* Given a vector [\langle a, b \rangle], the translation rule is: [(x, y) \rightarrow (x + a, y + b)] 
+* Translations preserve orientation as well as size and shape.
+
+### Key Concept: Rotation
+
+* A rotation turns a figure about a fixed point (the center of rotation).
+* Rotation [180°] about the origin: [(x, y) \rightarrow (-x, -y)] 
+* Rotation [90°] counterclockwise about the origin: [(x, y) \rightarrow (-y, x)] 
+* Rotation [270°] counterclockwise about the origin: [(x, y) \rightarrow (y, -x)] 
+* A [90°] counterclockwise rotation is equivalent to a [270°] clockwise rotation.
+
+### Key Concept: Identifying Rigid Motions
+
+* **Reflection:** The figure appears as a mirror image across a line. Orientation is reversed.
+* **Translation:** Every point moves the same distance in the same direction. No flipping or turning.
+* **Rotation:** The figure turns around a point. Orientation is preserved but position changes.
+
+## Example 1 — Identify Rigid Motions from Diagrams
+
+Given diagrams showing a preimage and its image, determine whether each transformation is a reflection, translation, or rotation by analyzing the relationship between the figures.
+
+### Step 1: Look for a Reflection
+
+Check whether the image appears as a mirror image of the preimage across a line. If the figure is flipped and orientation is reversed, the transformation is a reflection. Identify the line of reflection if possible.
+
+### Step 2: Look for a Translation
+
+Check whether every point of the figure has moved the same distance in the same direction. If the figure is simply slid without turning or flipping, the transformation is a translation.
+
+### Step 3: Look for a Rotation
+
+Check whether the figure has turned around a fixed point. If the figure maintains its orientation relative to itself but is repositioned around a center point, the transformation is a rotation. Identify the angle and center if possible.
+
+### Step 4: Distinguish Between the Three Types
+
+Compare the relative positions of corresponding points. Reflections reverse left-right or up-down relationships; translations preserve all directional relationships; rotations turn the figure around a point.
+
+## Example 2 — Reflect Figures on the Coordinate Plane
+
+Given the coordinates of a triangle's vertices, find the coordinates of the image after reflecting the triangle in the [x]-axis or [y]-axis.
+
+### Step 1: Apply the Reflection Rule for the [x]-Axis
+
+To reflect a point in the [x]-axis, keep the [x]-coordinate the same and change the sign of the [y]-coordinate:
+[
+(x, y) \rightarrow (x, -y)
+]
+
+For example, reflecting [A(2, 0)] in the [x]-axis gives [A'(2, 0)]. Reflecting [B(-1, 5)] gives [B'(-1, -5)]. Reflecting [C(4, 3)] gives [C'(4, -3)].
+
+### Step 2: Apply the Reflection Rule for the [y]-Axis
+
+To reflect a point in the [y]-axis, change the sign of the [x]-coordinate and keep the [y]-coordinate the same:
+[
+(x, y) \rightarrow (-x, y)
+]
+
+For example, reflecting [A(2, 0)] in the [y]-axis gives [A'(-2, 0)]. Reflecting [B(-1, 5)] gives [B'(1, 5)]. Reflecting [C(4, 3)] gives [C'(-4, 3)].
+
+### Step 3: Apply Reflections to a Second Triangle
+
+For [\triangle DEF] with vertices [D(4, -1)], [E(5, 2)], and [F(1, 2)], apply the same rules.
+
+Reflection in the [x]-axis:
+[
+D'(4, 1), \quad E'(5, -2), \quad F'(1, -2)
+]
+
+Reflection in the [y]-axis:
+[
+D'(-4, -1), \quad E'(-5, 2), \quad F'(-1, 2)
+]
+
+## Example 3 — Translate Figures on the Coordinate Plane
+
+Given the coordinates of a triangle's vertices, find the coordinates of the image after translating the triangle along a given vector.
+
+### Step 1: Apply the Translation Rule
+
+To translate a point along a vector [\langle a, b \rangle], add [a] to the [x]-coordinate and [b] to the [y]-coordinate:
+[
+(x, y) \rightarrow (x + a, y + b)
+]
+
+### Step 2: Translate Along [\langle 0, 2 \rangle] 
+
+For [\triangle ABC] with vertices [A(2, 0)], [B(-1, 5)], and [C(4, 3)]:
+[
+A'(2 + 0, 0 + 2) = A'(2, 2)
+]
+[
+B'(-1 + 0, 5 + 2) = B'(-1, 7)
+]
+[
+C'(4 + 0, 3 + 2) = C'(4, 5)
+]
+
+### Step 3: Translate Along [\langle 3, -4 \rangle] 
+
+[
+A'(2 + 3, 0 + (-4)) = A'(5, -4)
+]
+[
+B'(-1 + 3, 5 + (-4)) = B'(2, 1)
+]
+[
+C'(4 + 3, 3 + (-4)) = C'(7, -1)
+]
+
+### Step 4: Apply Translations to a Second Triangle
+
+For [\triangle DEF] with vertices [D(4, -1)], [E(5, 2)], and [F(1, 2)]:
+
+Translation along [\langle 1, 0 \rangle]:
+[
+D'(5, -1), \quad E'(6, 2), \quad F'(2, 2)
+]
+
+Translation along [\langle -3, 1 \rangle]:
+[
+D'(1, 0), \quad E'(2, 3), \quad F'(-2, 3)
+]
+
+## Example 4 — Rotate Figures on the Coordinate Plane
+
+Given the coordinates of a triangle's vertices, find the coordinates of the image after rotating the triangle about the origin.
+
+### Step 1: Apply a [180°] Rotation About the Origin
+
+To rotate a point [180°] about the origin, change the sign of both coordinates:
+[
+(x, y) \rightarrow (-x, -y)
+]
+
+For [\triangle ABC] with vertices [A(2, 0)], [B(-1, 5)], and [C(4, 3)]:
+[
+A'(-2, 0), \quad B'(1, -5), \quad C'(-4, -3)
+]
+
+For [\triangle DEF] with vertices [D(4, -1)], [E(5, 2)], and [F(1, 2)]:
+[
+D'(-4, 1), \quad E'(-5, -2), \quad F'(-1, -2)
+]
+
+### Step 2: Apply a [90°] Counterclockwise Rotation About the Origin
+
+To rotate a point [90°] counterclockwise about the origin, switch the coordinates and negate the new [x]-coordinate:
+[
+(x, y) \rightarrow (-y, x)
+]
+
+For [\triangle ABC]:
+[
+A'(0, 2), \quad B'(-5, -1), \quad C'(-3, 4)
+]
+
+### Step 3: Apply a [270°] Counterclockwise Rotation About the Origin
+
+To rotate a point [270°] counterclockwise about the origin, switch the coordinates and negate the new [y]-coordinate:
+[
+(x, y) \rightarrow (y, -x)
+]
+
+For [\triangle DEF]:
+[
+D'(-1, -4), \quad E'(2, -5), \quad F'(2, -1)
+]
+
+### Step 4: Describe a Transformation from Coordinate Changes
+
+Given starting coordinates and ending coordinates of points, determine the transformation by analyzing how the coordinates changed. Compare the pattern of change to the rules for reflection, translation, and rotation.
+
+## Mixed Exercises
+
+The mixed exercises section provides comprehensive practice with all skills from the lesson. Problems include:
+
+* Identifying rigid motions (reflection, translation, rotation) from diagrams of preimages and images.
+* Finding image coordinates after reflecting triangles in the [x]-axis or [y]-axis.
+* Finding image coordinates after translating triangles along given vectors.
+* Finding image coordinates after rotating triangles [90°], [180°], or [270°] counterclockwise about the origin.
+* Describing transformations that map one set of coordinates to another in real-world contexts such as flight demonstrations.
+* Selecting the correct reflected plan from multiple options for a room layout.
+* Identifying transformations in everyday situations such as spinning or passing a basketball.
+* Applying rotation concepts to combination locks to determine the final numbers.
+* Analyzing transformations in natural structures such as honeycomb cells.
+* Graphing preimages and images after translations and rotations on the coordinate plane.
+* Evaluating arguments about whether a pattern is formed by translations or rotations.
+* Identifying congruence transformations given the coordinates of two congruent triangles.
+* Identifying transformations from segment endpoints and their images.
+* Identifying transformations from the coordinates of congruent quadrilaterals.
+* Analyzing the result of applying multiple reflections to a figure.
+* Evaluating student work to find and explain errors in reflecting points.
+* Defining a glide reflection based on a diagram showing a combination of translation and reflection.
+* Creating polygons that are invariant under reflection in the [y]-axis.
+* Analyzing whether reflection in the [x]-axis is equivalent to a [180°] rotation about the origin.
+
+## Review Notes
+
+* Images referenced in the worksheet (diagrams for problems 1–8 showing preimages and images, air show coordinate diagram, office floor plan reflection options, basketball spin illustration, combination lock diagram, honeycomb cell diagram, coordinate grids for problems 26–27, quilt pattern diagram for problem 28, glide reflection diagram for problem 34) could not be fully described without visual reference. Teachers should consult the original worksheet for exact figures and diagrams.
+* Problems 1–8 require visual interpretation of geometric diagrams to identify the type of rigid motion.
+* Problem 22 requires selecting the correct reflected room plan from visual options.
+* Problems 26 and 27 require graphing preimages and images on a coordinate plane.

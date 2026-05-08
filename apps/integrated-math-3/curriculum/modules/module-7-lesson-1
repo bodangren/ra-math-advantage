@@ -1,194 +1,218 @@
 # Lesson 7-1 — Multiplying and Dividing Rational Expressions
 
-Source: (Module 7, Lesson 7-1, pp. 311–314)
+Source: (Module 7, Lesson 7-1, Int3_0701_practice.docx)
 
 ## Today's Goals
 
-* Simplify rational expressions
-* Simplify rational expressions by multiplying and dividing
-
----
+* Simplify rational expressions involving multiplication and division.
+* State the values for which the original expression is undefined.
+* Write and simplify ratios in applied contexts.
 
 ## Vocabulary
 
-* rational expression
-* complex fraction
+* **Rational Expression** — A ratio of two polynomials where the denominator is not zero.
+* **Undefined** — A rational expression is undefined when its denominator equals zero.
+* **Excluded Value** — A value of the variable that makes the denominator zero.
 
----
+## Explore: Simplifying Rational Expressions
 
-## Think About It
+What does it mean to simplify a rational expression, and how do we identify values that must be excluded from the domain?
 
-Are all rational expressions defined for all values of `x`? Justify your argument.
-
----
-
-## Learn: Simplifying Rational Expressions
-
-A **rational expression** is a ratio of two polynomial expressions.
-
-To simplify a rational expression, factor the numerator and denominator and divide out common factors. The original denominator still determines excluded values.
-
----
-
-## Example 1 — Simplify a Rational Expression
-
-Simplify
-
-`(x^2 - 2x - 24) / (2x^3 + 6x^2 - 8x)`
-
-and state when the original expression is undefined.
-
-### Part A: Simplify
-
-Factor:
-
-`2x^3 + 6x^2 - 8x = 2x(x^2 + 3x - 4) = 2x(x + 4)(x - 1)`
-
-`x^2 - 2x - 24 = (x + 4)(x - 6)`
-
-So:
-
-`((x + 4)(x - 6)) / (2x(x + 4)(x - 1)) = (x - 6) / (2x(x - 1))`
-
-### Part B: State when the expression is undefined
-
-The original denominator is `0` when:
-
-* `x = 0`
-* `x = -4`
-* `x = 1`
-
-### Check
-
-Simplify
-
-`(x^2 + 2x + 1) / (4x^2 + 3x - 1)`
-
-and state when the original expression is undefined.
-
----
-
-## Example 2 — Simplify by Using `-1`
-
-Simplify
-
-`((6x^2 - 5xy)(x + 2y)) / ((x + y)(5y - 6x))`
-
-Factor:
-
-`6x^2 - 5xy = x(6x - 5y)`
-
-Since:
-
-`6x - 5y = -(5y - 6x)`
-
-rewrite and simplify:
-
-`(x(6x - 5y)(x + 2y)) / ((x + y)(5y - 6x)) = (-x)(x + 2y) / (x + y)`
-
-## Think About It
-
-How would your answer differ if you factored out `-1` in the denominator rather than the numerator? Would the expression be equivalent?
-
----
-
-## Explore: Simplifying Complex Fractions
-
-Use the interactive tool to complete the explore.
-
-**Inquiry Question:**
-Can you simplify complex fractions that contain polynomials in the numerator or denominator?
-
----
+Inquiry Question:
+When simplifying [x(x - 3)(x + 6) / (x^2 + x - 12)], what factored forms reveal common factors that can be canceled?
 
 ## Learn: Multiplying and Dividing Rational Expressions
 
+### Key Concept: Simplifying Rational Expressions
+
+To simplify a rational expression:
+1. Factor the numerator and denominator completely.
+2. Cancel any common factors.
+3. State the excluded values (where the original denominator equals zero).
+
 ### Key Concept: Multiplying Rational Expressions
 
-To multiply rational expressions, multiply the numerators and the denominators.
+[ (A/B) * (C/D) = (A*C)/(B*D) ]
 
-`(a/b) * (c/d) = ac / bd`
+Multiply numerators together and denominators together, then simplify by canceling common factors.
 
 ### Key Concept: Dividing Rational Expressions
 
-To divide rational expressions, multiply by the reciprocal of the divisor.
+[ (A/B) ÷ (C/D) = (A/B) * (D/C) = (A*D)/(B*C) ]
 
-`(a/b) / (c/d) = (a/b) * (d/c) = ad / bc`
+To divide by a rational expression, multiply by its reciprocal.
 
-A **complex fraction** is a rational expression whose numerator and/or denominator is also a rational expression.
+### Key Concept: Compound Rational Expressions
 
----
+For complex fractions, treat the numerator and denominator as separate rational expressions and simplify step by step.
 
-## Example 3 — Multiply and Divide Rational Expressions
+## Example 1 — Simplify Rational Expressions (Problems 1–6)
 
-Simplify each expression.
+Simplify each expression and state when the original expression is undefined.
 
-### a. `(3x / 8y) * (12x^2y / 9xy^3)`
+### Step 1: Factor Numerator and Denominator
 
-Factor and divide out common factors to get:
+Factor each polynomial completely. Look for differences of squares, perfect squares, and trinomials.
 
-`x^2 / (2y^3)`
+### Step 2: Cancel Common Factors
 
-### b. `(10d^5 / 6cd) / (30c^3d^2 / 4c)`
+Cancel any factor that appears in both numerator and denominator.
 
-Rewrite as multiplication by the reciprocal and simplify:
+### Step 3: State Excluded Values
 
-`2d^2 / (9c^3)`
+Identify values that make the original denominator zero.
 
-## Think About It
+**1.** [ (x(x - 3)(x + 6)) / (x^2 + x - 12) ]
 
-Why do multiplying rational expressions require `b != 0` and `d != 0`, while dividing also requires `c != 0`?
+**2.** [ (y^2(y^2 + 3y + 2)) / (2y(y - 4)(y + 2)) ]
 
----
+**3.** [ ((x^2 - 9)(x^2 - z^2)) / (4(x + z)(x - 3)) ]
 
-## Example 4 — Multiply and Divide Polynomial Expressions
+**4.** [ ((x^2 - 16x + 64)(x + 2)) / ((x^2 - 64)(x^2 - 6x - 16)) ]
 
-A manufacturer compares the areas of two rectangular planters:
+**5.** [ (x^2(x + 2)(x - 4)) / (6x(x^2 + x - 20)) ]
 
-`(x^2 + 15x + 50) / (x + 2)`
+**6.** [ (3y(y - 8)(y^2 + 2y - 24)) / (15y^2(y^2 - 12y + 32)) ]
 
-and
+## Example 2 — Simplify More Complex Rational Expressions (Problems 7–10)
 
-`(x^2 + 30x + 200) / (x + 2)`
+### Step 1: Factor All Polynomials
 
-Write and simplify the ratio of the first area to the second.
+**7.** [ (x^2 - 5x - 14) / (28 + 3x - x^2) ]
 
-Set up the ratio:
+**8.** [ (9x^2 - x^3) / (x^2 - 3x - 54) ]
 
-`((x^2 + 15x + 50)/(x + 2)) / ((x^2 + 30x + 200)/(x + 2))`
+**9.** [ ((x - 4)(x^2 + 2x - 48)) / ((36 - x^2)(x^2 + 4x - 32)) ]
 
-Factor:
+**10.** [ (16 - c^2) / (c^2 + c - 20) ]
 
-* `x^2 + 15x + 50 = (x + 5)(x + 10)`
-* `x^2 + 30x + 200 = (x + 10)(x + 20)`
+## Example 3 — Multiply and Divide with Multiple Variables (Problems 11–16)
 
-Simplify:
+### Step 1: Apply Multiplication or Division Rules
 
-`(x + 5) / (x + 20)`
+**11.** [ (3ac^3f^3)/(8a^2bcf^4) * (12ab^2c)/(18ab^3c^2f) ]
 
----
+**12.** [ (14xy^2z^3)/(21w^4x^2z) * (7wxyz)/(12w^2y^3z) ]
 
-## Example 5 — Simplify Complex Fractions
+### Step 2: Apply Division Rules
 
-Simplify
+**13.** [ (64a^2b^5)/(35b^2c^3f^4) ÷ (12a^4b^3c)/(70abcf^2) ]
 
-`(3x / (x - y)) / (6xy / (4x^2 - 4y^2))`
+**14.** [ (9x^2yz)/(5z^4) ÷ (12x^4y^2)/(50xy^4z^2) ]
 
-Rewrite as division, multiply by the reciprocal, factor, and simplify:
+**15.** [ (15a^2b^2)/(21ac) * (14a^4c^2)/(6ab^3) ]
 
-`(3x / (x - y)) * ((4x^2 - 4y^2) / 6xy)`
+**16.** [ (14c^2f^5)/(9a^2) ÷ (35cf^4)/(18ab^3) ]
 
-`= (3x / (x - y)) * (4(x + y)(x - y) / 6xy)`
+## Example 4 — Application Problems (Problems 17–19)
 
-`= 2(x + y) / y`
+### Step 1: Write the Ratio Expression
 
-## Talk About It
+**17. BEAUTY** A producer of beauty care products wants to compare the areas of two face cream containers. For some measure [a] the area for the first container is represented by [(16a^2 + 40a + 25)/(3a^2 - 10a - 8)]. The area of the second container is represented by [(4a + 5)/(a^2 - 8a + 16)]. Write and simplify an expression that represents the ratio of the area of the first container to the area of the second container.
 
-If you simplify a ratio of two rational expressions that both contain polynomials in their numerators and denominators, will the simplified expression always, sometimes, or never still be a rational expression with polynomials? Explain.
+### Step 1: Define Variable and Write Expression
 
----
+**18. PACKAGING** A packaging plant quality assurance agent compares the surface area and volume of packages. The most popular package size is a cylinder with a height of 18 inches. Define a variable, then write and simplify an expression that represents the ratio of the surface area to the volume of the cylinder.
 
-## Objective Alignment
+### Step 1: Multiply Length and Width
 
-- `Simplify rational expressions`: Primary worked examples: Examples 1-2.
-- `Simplify rational expressions by multiplying and dividing`: Primary worked examples: Examples 3-4.
+**19. LANDSCAPING** Rashard is building a rectangular patio. If [(t^2 + 19t + 84)/(4t - 4)] represents the length of the patio and [(2t - 2)/(t^2 + 9t + 14)] represents the width, write and simplify an expression that represents the area of the patio.
+
+## Example 5 — Simplify Compound Fractions (Problems 20–23)
+
+### Step 1: Rewrite as Division
+
+**20.** [ ((x^2 - 9)/(6x - 12)) / ((x^2 + 10x + 21)/(x^2 - x - 2)) ]
+
+**21.** [ ((y - x)/z^3) / ((x - y)/(6z^2)) ]
+
+**22.** [ ((a^2 - b^2)/b^3) / ((b^2 - ab)/a^2) ]
+
+**23.** [ ((x - y)/(a + b)) / ((x^2 - y^2)/(b^2 - a^2)) ]
+
+## Mixed Exercises
+
+**24.** [ (y^2 + 8y + 15)/(y - 6) * (y^2 - 9y + 18)/(y^2 - 9) ]
+
+**25.** [ (c^2 - 6c - 16)/(c^2 - d^2) ÷ (c^2 - 8c)/(c + d) ]
+
+**26.** [ (x^2 + 9x + 20)/(8x + 16) * (4x^2 + 16x + 16)/(x^2 - 25) ]
+
+**27.** [ (3a^2 + 6a + 3)/(a^2 - 3a - 10) ÷ (12a^2 - 12)/(a^2 - 4) ]
+
+**28.** [ ((9 - x)^2)/(x^2 - 4x - 21) * ((2x^2 + 7x + 3)/(2x^2 - 15x + 7))^{-1} ]
+
+**29.** [ ((2x^2 + 2x - 12)/(x^2 + 4x - 5))^{-1} * (2x^3 - 8x)/(x^2 - 2x - 35) ]
+
+**30.** [ ((3xy^3z)/(2a^2bc^2))^3 * (16a^4b^3c^5)/(15x^7yz^3) ]
+
+**31.** [ (20x^2y^6z^{-2})/(3a^3c^2) * ((16x^3y^3)/(9acz))^{-1} ]
+
+**32.** [ ((8x^2 - 10x - 3)/(10x^2 + 35x - 20)) / ((2x^2 + x - 6)/(4x^2 + 18x + 8)) ]
+
+**33.** [ ((2x^2 + 7x - 30)/(-6x^2 + 13x + 5)) / ((4x^2 + 12x - 72)/(3x^2 - 11x - 4)) ]
+
+**34.** [ (x^2 + 4x - 32)/(2x^2 + 9x - 5) * (3x^2 - 75)/(3x^2 - 11x - 4) ÷ (6x^2 - 18x - 60)/(x^3 - 4x) ]
+
+**35.** [ (8x^2 + 10x - 3)/(3x^2 - 12x - 36) ÷ (2x^2 - 5x - 12)/(3x^2 - 17x - 6) * (4x^2 + 3x - 1)/(4x^2 - 40x + 24) ]
+
+**36. JELLY BEANS** A large jar contains [B] blue jelly beans and [R] red jelly beans. A bag of 100 red and 100 blue jelly beans is added to the jar. What is the ratio of red to blue jelly beans in the jar?
+
+**37. MILEAGE** Martina drives a hybrid car that gets 45 miles per gallon when driving in the city and 48 miles per gallon when driving on the highway. If Martina uses [C] gallons of gas in the city and [H] gallons of gas on the highway, write an expression for the average number of miles per gallon that Martina gets.
+
+**38. HEIGHT** The front face of a Nordic house is triangular. The area of the face is [x^2 + 3x + 10], where [x] is the base of the triangle. What is the height of the triangle in terms of [x]?
+
+**39. CONTAINERS** David is designing a cylindrical container. He wants the height of the container to be twice the length of the radius. Write an expression for the ratio of the volume of the container to the surface area of the container.
+
+**40. ARCHERY** Harold and Hinto are on the archery team. So far at practice, Harold has hit the target 7 out of 10 times, and Hinto has hit the target 9 out of 10 times. Harold and Hinto each hit the target on their next [x] consecutive attempts.
+
+**a.** Write an expression for Harold's and Hinto's average after [x] consecutive hits.
+
+**b.** Write a simplified expression for the ratio of Harold's percentage to Hinto's percentage.
+
+**41. GEOMETRY** The volume of the rectangular box shown is given by [V = (2x^3 + 26x^2 + 60x)] cubic inches.
+
+**a.** Explain how to find an expression in terms of [x] for the height [h] of the box.
+
+**b.** In terms of [x], what is [h] in simplest form?
+
+**c.** Explain how you could check the expression you found.
+
+**42. ROWING** The time it takes Irfan to row 9 miles upstream is [9/(5 - c)]. The time it takes him to row 9 miles downstream is [9/(5 + c)], where [c] is the speed of the current in miles per hour and [0 ≤ c < 5].
+
+**a.** Which way does Irfan travel faster, downstream or upstream?
+
+**b.** Determine how much faster Irfan travels in the faster direction.
+
+**43. REASONING** During her first week of running, Rafaela takes [t] minutes to run a mile. Her average speed is [60/t] miles per hour. During her second week, she hopes to get her average time to [t - 2] minutes per mile. How many times faster does Rafaela hope to run a mile during her second week?
+
+**44. CONSTRUCTING ARGUMENTS** Saquita graphs [y = (5(x + 1)(x + 2)(x + 3))/((x + 1)(x + 2)(x + 3))] on a graphing calculator and claims that the result is a horizontal line. Is Saquita correct?
+
+**45. USE A MODEL** Anita's yard is being professionally landscaped. The final design consists of a circular fountain [x] feet in diameter in square A surrounded by a grassy area in square B and a gravel pathway in square C. Square A has a side length of [2x] feet.
+
+**a.** For what values of [x] will the ratio of the side of square C to the side of square B equal the ratio of the side of square B to the side of square A?
+
+**b.** If the gravel pathway is 4 feet wide and the grassy area is 2 feet wide, is there a value for [x] that would make the ratios equal?
+
+**46. ANALYZE** Compare and contrast [((x - 6)(x + 2)(x + 3))/(x + 3)] and [(x - 6)(x + 2)].
+
+**47. FIND THE ERROR** Troy and Beverly are simplifying [(x + y)/(x - y) ÷ (4/(y - x))]. Is either of them correct?
+
+**48. PERSEVERE** Find the expression that makes the following statement true for all values of [x] within the domain:
+
+[(x - 6)/(x + 3) * ( ? )/(x - 6) = x - 2]
+
+**49. WHICH ONE DOESN'T BELONG?** Identify the expression that does not belong with the other three.
+
+**50. ANALYZE** Determine whether the following statement is sometimes, always, or never true: A rational function that has a variable in the denominator is defined for all real values of [x].
+
+**51. CREATE** Write a rational expression that simplifies to [(x - 1)/(x + 4)].
+
+**52. WRITE** The rational expression [(x^2 + 3x)/(4x)] is simplified to [(x + 3)/4]. Explain why this new expression is not defined for all values of [x].
+
+**53. CREATE** Write three different rational expressions that are equivalent to [a/(a - 5)], [a ≠ 5].
+
+## Review Notes
+
+* Problems 37, 38, 41, and 45 contain contextual diagrams referenced from the original worksheet. The images (barrels, geometry figures, fountain design) are not reproduced here. Teachers should consult the original DOCX for full diagram reference.
+* The worksheet contains 53 practice problems across five examples and mixed exercises.

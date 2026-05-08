@@ -1,0 +1,218 @@
+# Lesson 11-8 — Representing Measurements
+
+Source: (Module 11, Lesson 11-8, Int1_1108_practice.docx)
+
+## Today's Goals
+
+* Count the number of significant digits in a given measurement using the rules for significance.
+* Determine the possible range of a measurement based on its precision and significant figures.
+* Apply the correct number of significant figures when computing area, perimeter, and circumference.
+* Round sums, differences, products, and quotients to the correct number of significant figures in real-world contexts.
+
+## Vocabulary
+
+* **Significant Figures** — The digits in a measurement that carry meaning contributing to its precision.
+* **Significant Digits** — Another name for significant figures; the reliable digits in a reported measurement.
+* **Precision** — The level of detail of a measurement, indicated by the place value of the last significant digit.
+* **Accuracy** — How close a measurement is to the true or accepted value.
+* **Leading Zeros** — Zeros that precede all non-zero digits in a number; they are not significant.
+* **Trailing Zeros** — Zeros at the end of a number; they are significant only if a decimal point is present.
+* **Measurement** — A number with a unit that expresses the size or amount of a quantity.
+
+## Explore: How Precise Is a Measurement?
+
+Students consider what a reported measurement tells us about the actual value. If a length is reported as 5.2 centimeters, what is the smallest and largest the true length could be? How does the number of digits change what we know about the measurement?
+
+Inquiry Question:
+Why does adding more digits to a measurement make it more precise, and how do you know which digits actually matter?
+
+## Learn: Significant Figures in Measurements and Calculations
+
+Significant figures communicate the precision of a measurement. Rules determine which digits in a number are significant, and additional rules govern how to report results after arithmetic operations.
+
+### Key Concept: Rules for Significant Figures
+
+* All non-zero digits are significant.
+* Zeros between non-zero digits are significant.
+* Leading zeros are not significant.
+* Trailing zeros are significant if the number contains a decimal point.
+* In a whole number without a decimal point, trailing zeros may or may not be significant and are considered ambiguous without further context.
+
+### Key Concept: Range of a Measurement
+
+A measurement reported to a certain precision has a greatest possible value and a least possible value that are half a unit above and half a unit below the reported value in the last significant place.
+
+### Key Concept: Operations with Significant Figures
+
+* For addition and subtraction, round the result to the same number of decimal places as the measurement with the fewest decimal places.
+* For multiplication and division, round the result to the same number of significant figures as the measurement with the fewest significant figures.
+
+## Example 1 — Count Significant Digits in Measurements
+
+Apply the rules for significant figures to count how many digits are significant in each given measurement.
+
+### Step 1: Identify Non-Zero Digits
+
+Count all non-zero digits as significant.
+
+[
+54.023 \text{ has } 5 \text{ significant digits}
+]
+
+[
+0.923 \text{ has } 3 \text{ significant digits}
+]
+
+[
+100.58 \text{ has } 5 \text{ significant digits}
+]
+
+### Step 2: Account for Leading Zeros
+
+Leading zeros are placeholders and are not significant.
+
+[
+0.0002 \text{ has } 1 \text{ significant digit}
+]
+
+### Step 3: Account for Trailing Zeros After a Decimal
+
+Zeros after the last non-zero digit and after the decimal point are significant.
+
+[
+0.30 \text{ has } 2 \text{ significant digits}
+]
+
+[
+101.01 \text{ has } 5 \text{ significant digits}
+]
+
+### Step 4: Apply to a Real-World Context
+
+Compare several reported measurements of the same object and determine which one is reported with the required number of significant digits.
+
+## Example 2 — Find the Possible Range of a Segment Length
+
+Given a measurement for the length of a segment, find the greatest possible measurement and the least possible measurement consistent with the reported precision.
+
+### Step 1: Identify the Place Value of Precision
+
+Determine the place value of the last significant digit in the reported measurement.
+
+For a measurement reported to the nearest tenth:
+[
+\text{Greatest possible value} = \text{reported value} + 0.05
+]
+
+[
+\text{Least possible value} = \text{reported value} - 0.05
+]
+
+### Step 2: Calculate the Range
+
+Apply the half-unit above and half-unit below rule to find the interval containing the true length.
+
+### Step 3: Apply to Diagrams
+
+Use segment diagrams with labeled measurements to determine the possible range for each indicated length. Express the range as an inequality or interval.
+
+## Example 3 — Significant Figures in Area of a Triangle
+
+The base of a triangle is fixed. Given several different heights, determine how many significant figures the computed area should have.
+
+### Step 1: Recall the Area Formula
+
+The area of a triangle is:
+[
+A = \frac{1}{2}bh
+]
+
+### Step 2: Determine Significant Figures in Each Factor
+
+Count the significant figures in the fixed base and in each given height.
+
+### Step 3: Apply the Multiplication Rule
+
+For multiplication, the result should be rounded to the same number of significant figures as the factor with the fewest significant figures.
+
+If the base has 4 significant figures and a height has 3 significant figures, the area should be reported with 3 significant figures.
+
+### Step 4: Verify with Multiple Heights
+
+Repeat the process for each height and observe how the number of significant figures in the height affects the precision of the area.
+
+## Example 4 — Real-World Applications with Significant Figures
+
+Solve applied problems by performing arithmetic and rounding the final answer to the correct number of significant figures.
+
+### Step 1: Subtraction with Significant Figures
+
+Subtract two measurements and round to the correct number of decimal places.
+
+[
+8.341 \text{ mL} - 1.1 \text{ mL}
+]
+
+Since 1.1 has only one decimal place, round the result to one decimal place.
+
+### Step 2: Area of a Parallelogram
+
+Use the formula [
+A = bh
+] to find the area of a parallelogram with given base and height. Round the result to the least number of significant figures in the given dimensions.
+
+### Step 3: Area of a Triangle
+
+Use [
+A = \frac{1}{2}bh
+] with given base and height. Round the computed area to match the factor with the fewest significant figures.
+
+### Step 4: Estimate and Compute Area of a Rectangle
+
+Estimate the area of a rectangular region using the given dimensions, then find the exact area and round to the correct number of significant figures.
+
+## Example 5 — Possible Range for Area and Circumference of a Circle
+
+Given the radius of a circle with a certain precision, find the possible range for the area and circumference.
+
+### Step 1: Determine the Range of the Radius
+
+Find the greatest and least possible values of the radius based on its reported precision.
+
+### Step 2: Compute the Greatest and Least Possible Area
+
+Use [
+A = \pi r^2
+] with the greatest radius to find the greatest possible area, and with the least radius to find the least possible area. Round each result to the correct number of significant figures.
+
+### Step 3: Compute the Greatest and Least Possible Circumference
+
+Use [
+C = 2\pi r
+] with the extreme values of the radius to find the range of possible circumferences. Round to the correct number of significant figures.
+
+## Mixed Exercises
+
+The mixed exercises section provides practice with all skills from the lesson: counting significant digits, finding possible measurement ranges, computing areas and perimeters with correct significant figures, and applying these skills to real-world contexts. Problems include:
+
+* Counting significant digits in decimal and whole-number measurements, including cases with leading and trailing zeros.
+* Finding the difference between two mass measurements and rounding to the correct precision.
+* Adding multiple mass measurements on a plate and rounding the total to the correct number of decimal places.
+* Interpreting digital scale readings and reporting the correct number of significant figures.
+* Finding the perimeter and area of a rectangle and rounding each to the correct number of significant figures.
+* Finding the area of a triangle given a diagram and rounding to the correct precision.
+* Solving a rate problem involving area painted per hour and rounding the time to the correct number of significant figures.
+* Using density and volume to find mass and rounding to the correct number of significant figures.
+* Adding two distance measurements from a trip and rounding to the correct precision.
+* Finding the volume of a rectangular prism and rounding to the correct number of significant figures.
+* Solving a cost-of-travel problem using miles per gallon and cost per gallon, rounding to the correct number of significant figures.
+* Analyzing a student's error in reporting the area of a rectangle with significant figures and explaining the correct approach.
+* Solving a multi-step solar panel electricity problem involving unit conversions and rounding appropriately.
+* Writing an explanation about whether two measurements with different decimal placements have the same number of significant figures.
+* Explaining the process of using significant figures to report sums and products of two measures.
+* Analyzing whether the statement "zeros are significant figures" is sometimes, always, or never true, with justification.
+* Creating possible swim team times with four significant digits that satisfy a given comparison condition.
+
+## Review Notes
+
+* Images referenced in the worksheet (segment length diagrams, triangle diagrams, circle radius diagrams, digital scales, rectangular prism, gas price display, and various measurement illustrations) could not be fully described without visual reference. Teachers should consult the original worksheet for exact values and diagrams.

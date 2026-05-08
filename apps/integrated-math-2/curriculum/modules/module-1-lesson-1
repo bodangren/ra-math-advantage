@@ -1,0 +1,125 @@
+# Lesson 1-1 — Perpendicular Bisectors
+
+Source: (Module 1, Lesson 1-1, Int2_0101_practice.docx)
+
+## Today's Goals
+
+* Find the measures of segments related to perpendicular bisectors and angle bisectors.
+* Use the Perpendicular Bisector Theorem and its converse to solve problems.
+* Find the coordinates of the circumcenter of a triangle.
+* Apply properties of perpendicular bisectors in real-world contexts.
+
+## Vocabulary
+
+* **Perpendicular Bisector** — A line, ray, or segment that is perpendicular to a segment at its midpoint.
+* **Circumcenter** — The point of concurrency of the perpendicular bisectors of a triangle; equidistant from all three vertices.
+* **Circumcircle** — The circle that passes through all three vertices of a triangle; centered at the circumcenter.
+* **Perpendicular Bisector Theorem** — If a point is on the perpendicular bisector of a segment, then it is equidistant from the endpoints of the segment.
+* **Converse of the Perpendicular Bisector Theorem** — If a point is equidistant from the endpoints of a segment, then it is on the perpendicular bisector of the segment.
+
+## Explore: Where Do Lines Cross?
+
+A triangle has special points where certain lines meet. The perpendicular bisectors of the sides of any triangle intersect at one point, which is the center of the circle that passes through all three vertices. Students explore why this point of concurrency always exists and what properties it has.
+
+Inquiry Question:
+What makes the circumcenter unique, and how does its location relate to the type of triangle (acute, right, or obtuse)?
+
+## Learn: Perpendicular Bisectors and Circumcenter
+
+### Key Concept: Perpendicular Bisector Theorem
+
+If a point lies on the perpendicular bisector of a segment, then it is equally distant from both endpoints of that segment. The converse is also true: if a point is equally distant from two endpoints, it must lie on the perpendicular bisector.
+
+### Key Concept: Finding the Circumcenter
+
+The circumcenter is the point where all three perpendicular bisectors of a triangle meet. It is equidistant from the three vertices. To find the circumcenter:
+1. Find the midpoints of at least two sides.
+2. Find the slopes of the perpendicular lines to those sides.
+3. Write equations of the perpendicular bisectors.
+4. Solve the system to find the intersection point.
+
+## Example 1 — Find Segment Lengths Using Perpendicular Bisectors
+
+Use the Perpendicular Bisector Theorem and properties of perpendicular bisectors to find unknown segment lengths. If a point is on the perpendicular bisector, distances to the endpoints are equal.
+
+### Step 1: Identify Known Information
+
+Read the diagram to identify which segments are bisected and what relationships are given. Look for right angles at the midpoint of a side, or for equal distances from a point to both endpoints of a segment.
+
+### Step 2: Apply the Perpendicular Bisector Theorem
+
+If point D is on the perpendicular bisector of segment AB, then DA equals DB. Set up an equation using the given expressions and solve for the unknown. For circumcenter problems, CD equals RD when D is the circumcenter.
+
+### Step 3: Verify and Round
+
+Check that the solution makes sense in the context of the diagram. If the problem requires rounding, round to the nearest tenth or hundredth as specified.
+
+## Example 2 — Find Coordinates of the Circumcenter
+
+Given the vertices of a triangle, find the circumcenter by solving for the intersection of two perpendicular bisectors.
+
+### Step 1: Find Midpoints and Slopes
+
+For two sides of the triangle, calculate the midpoint and the slope of the side. The slope of the perpendicular bisector is the negative reciprocal.
+
+### Step 2: Write Equations
+
+Use point-slope form to write the equations of two perpendicular bisectors.
+
+### Step 3: Solve the System
+
+Solve the two equations simultaneously to find the coordinates of the circumcenter. Verify by checking that the third perpendicular bisector passes through the same point.
+
+## Example 3 — Apply Circumcenter in Coordinate Problems
+
+Use coordinates to solve real-world problems involving the circumcenter, such as finding the location of a monument equidistant from three points.
+
+### Step 1: Plot the Points
+
+Graph the three given vertices on a coordinate plane.
+
+### Step 2: Find the Circumcenter
+
+Apply the same procedure as in Example 2 to find the point equidistant from all three vertices.
+
+### Step 3: Interpret the Result
+
+The circumcenter represents the location that is equally distant from all three vertices. In a real-world context, this point could be where a monument or facility should be placed.
+
+## Example 4 — Real-World Circumcenter Applications
+
+Solve applied problems where the circumcenter represents an optimal location for something that must be equidistant from three other locations.
+
+### Step 1: Set Up Coordinates
+
+Assign coordinates to each of the three given locations based on the problem context.
+
+### Step 2: Calculate the Circumcenter
+
+Use the perpendicular bisector intersection method to find the point that is equidistant from all three locations.
+
+### Step 3: Describe the Location
+
+Give the approximate coordinates and explain what this location represents in the context of the problem.
+
+## Mixed Exercises
+
+Practice involves:
+
+* Finding unknown segment lengths given diagrams with perpendicular bisectors and circumcenters. Problems show triangles with labeled sides and right angle markers.
+* Determining whether there is enough information to solve for an unknown, and explaining what additional information would be needed.
+* Writing paragraph proofs of the Perpendicular Bisector Theorem.
+* Writing two-column proofs of the Converse of the Perpendicular Bisector Theorem.
+* Finding coordinates of the circumcenter given triangle vertices, with explanation.
+* Describing the set of all points equidistant from two endpoints of a segment.
+* Real-world application: placing a sprinkler equidistant from three trees on a coordinate grid.
+* Geometry construction and verification: using a compass to construct the circumcenter and verify it is equidistant from all three vertices.
+* Creating a coordinate proof for a baseball diamond situation using the Perpendicular Bisector Theorem.
+* Analyzing a diagram to determine if a point is on the perpendicular bisector of a segment, with error analysis.
+* Proving triangle congruence using properties of perpendicular bisectors in a plane geometry context.
+* PROOF: Writing a two-column proof given that a plane is a perpendicular bisector of a segment.
+
+## Review Notes
+
+* Multiple diagrams referenced: images showing perpendicular bisectors in triangles (media/image1.png through media/image21.png) contain geometric figures that could not be fully described.
+* The worksheet contains 24 practice problems covering perpendicular bisector theorems, circumcenter construction, and coordinate applications.

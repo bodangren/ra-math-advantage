@@ -1,0 +1,135 @@
+# Lesson 2-1 — Angles of Polygons
+
+Source: (Module 2, Lesson 2-1, Int2_0201_practice.docx)
+
+## Today's Goals
+
+* Find the sum of interior angles of a polygon and the measure of each interior angle in regular polygons.
+* Find the sum of exterior angles and the measure of each exterior angle of a regular polygon.
+* Solve problems involving interior and exterior angles of polygons.
+
+## Vocabulary
+
+* **Interior Angle** — An angle inside a polygon at one of its vertices.
+* **Exterior Angle** — An angle formed by one side of a polygon and the extension of an adjacent side.
+* **Regular Polygon** — A polygon with all sides congruent and all interior angles congruent.
+* **Polygon Interior Angles Sum Theorem** — The sum of the interior angles of a convex n-gon is [(n - 2) \times 180] degrees.
+* **Polygon Exterior Angles Sum Theorem** — The sum of the exterior angles of any convex polygon is 360 degrees.
+
+## Explore: Interior and Exterior Angles
+
+Students investigate the relationship between the number of sides in a polygon and the sum of its interior angles. They also explore how exterior angles behave regardless of the number of sides.
+
+Inquiry Question:
+If you know the number of sides of a regular polygon, how can you find the measure of each interior angle?
+
+## Learn: Angles of Polygons
+
+### Key Concept: Interior Angle Sum
+
+The sum of the measures of the interior angles of a convex n-gon is:
+
+[S = (n - 2) \times 180]
+
+For a regular polygon, each interior angle measures:
+
+[A = \frac{(n - 2) \times 180}{n}]
+
+### Key Concept: Exterior Angle Sum
+
+The sum of the measures of the exterior angles of any convex polygon is always 360 degrees, regardless of the number of sides.
+
+Each exterior angle of a regular n-gon measures:
+
+[E = \frac{360}{n}]
+
+## Example 1 — Find Measures of Interior Angles
+
+Use the Polygon Interior Angles Sum Theorem to find the measure of each interior angle of given regular polygons shown in diagrams.
+
+### Step 1: Apply the Interior Angle Formula
+
+For a regular polygon with n sides, substitute n into the formula for each interior angle. Use given diagrams to identify the polygon and count the number of sides.
+
+### Step 2: Verify with the Sum Formula
+
+Check that the sum of all interior angles equals [(n - 2) \times 180] by adding the individual angle measures.
+
+## Example 2 — Apply Interior Angles to Real Polygons
+
+Use knowledge of interior angles to solve applied problems involving regular polygons found in architecture and real-world contexts.
+
+### Step 1: Identify the Polygon Type
+
+Determine the number of sides from the context (octagon has 8 sides, dodecagon has 12 sides, heptagon has 7 sides).
+
+### Step 2: Calculate the Interior Angle
+
+For a regular octagon, the measure of the angle formed by two consecutive walls is found by computing the interior angle measure using the formula.
+
+## Example 3 — Find Number of Sides Given Interior Angle
+
+Given the measure of one interior angle of a regular polygon, find the number of sides.
+
+### Step 1: Set Up the Equation
+
+Use the formula for a regular polygon's interior angle:
+
+[A = \frac{(n - 2) \times 180}{n}]
+
+Substitute the given angle measure for A and solve for n.
+
+### Step 2: Solve for n
+
+Multiply both sides by n, expand, and isolate n to find the number of sides.
+
+## Example 4 — Find Unknown Values in Diagrams
+
+Solve for unknown variables in polygon diagrams using angle relationships and the interior angle sum theorem.
+
+### Step 1: Write Equations
+
+Use the interior angle sum to write an equation involving the unknown variable.
+
+### Step 2: Solve the Equation
+
+Solve for the unknown, then substitute back to find the angle measures.
+
+## Example 5 — Find Exterior Angle Measures
+
+Find the measure of each exterior angle of given regular polygons.
+
+### Step 1: Apply the Exterior Angle Formula
+
+For a regular n-gon, each exterior angle measures [E = \frac{360}{n}].
+
+### Step 2: Calculate for Each Polygon
+
+Substitute the number of sides (pentagon = 5, 15-gon = 15, hexagon = 6, etc.) to find each exterior angle measure.
+
+## Mixed Exercises
+
+The mixed exercises section provides practice with all skills from the lesson. Problems include:
+
+* Finding measures of both exterior and interior angles of regular polygons with 7, 13, and 14 sides.
+* Solving for unknowns in convex polygons: an octagon with angles expressed as (x + 55), (3x + 20), 4x, and other expressions; a hexagon with angles (5x - 103), (2x + 60), (7x - 31), and more.
+* Finding interior angles of a decagon and a pentagon (ABCDE) when angles are expressed algebraically.
+* Writing paragraph proofs for the Polygon Interior Angles Sum Theorem and a proof using algebra for the Polygon Exterior Angles Sum Theorem.
+* Finding how many sides a polygon has given that its interior angle is 24 more than 38 times its exterior angle.
+* Using angle measures from unearthed castle walls to determine the actual number of sides of the original polygon.
+* Designing a regular polygon where interior angles are half the measure of exterior angles.
+* Finding the sum of interior angles of a quadrilateral (one face of turquoise crystal).
+* Solving for unknown angles in a hexagon where three angles measure 140, one measures 84, and the remaining two have a 3:1 ratio.
+* Determining whether the sum of exterior angles of a decagon is greater than that of a heptagon.
+* Writing an explanation of how triangles relate to the Polygon Interior Angles Sum Theorem.
+* Creating a polygon and finding its interior angles sum, then determining how many sides a polygon with twice that sum would have.
+* Finding values a, b, and c in a regular hexagon QRSTVX and justifying each step.
+* Analyzing whether extending two sides of a regular hexagon always, sometimes, or never produces an equilateral triangle.
+
+## Review Notes
+
+* Images referenced in the worksheet (polygon diagrams for problems 1-4, the Uffizi Tribune room plan, theater floor plan, polygon path figure, and various geometry figures) could not be fully described without visual reference. Teachers should consult the original worksheet for exact diagrams.
+* The worksheet contains 45 practice problems across five examples and mixed exercises.
+* ![](media/image1.png) ![](media/image2.png) ![](media/image3.png) ![](media/image4.png) ![](media/image5.png) ![](media/image6.png) ![](media/image7.png) ![](media/image8.png) ![](media/image9.png) ![](media/image10.png) ![](media/image11.png) ![](media/image12.png) ![](media/image13.png)
+
+(End of file - total 156 lines)

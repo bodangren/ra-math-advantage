@@ -1,0 +1,141 @@
+# Lesson 7-5 — Probability and the Multiplication Rule
+
+Source: (Module 7, Lesson 7-5, Int2_0705_practice.docx)
+
+## Today's Goals
+
+* Apply the multiplication rule for independent events to find joint probabilities.
+* Distinguish between independent and dependent events.
+* Apply the multiplication rule for dependent events with and without replacement.
+* Calculate conditional probabilities from joint probability information.
+
+## Vocabulary
+
+* **Independent Events** — Two events where the occurrence of one does not affect the probability of the other; [P(A | B) = P(A)].
+* **Dependent Events** — Two events where the occurrence of one affects the probability of the other.
+* **Joint Probability** — The probability of two events occurring together; [P(A \text{ and } B)].
+* **Conditional Probability** — [P(B | A)] — the probability of event B given that event A has occurred.
+* **With Replacement** — Drawing an item and returning it before the next draw; events remain independent.
+* **Without Replacement** — Drawing an item and not returning it; events become dependent.
+
+## Explore: When Does One Event Affect Another?
+
+Students consider situations where the outcome of one event changes the probabilities for subsequent events.
+
+Inquiry Question:
+If you draw a card from a deck and do not put it back, how does that change the probability of what you might draw next?
+
+## Learn: Probability and the Multiplication Rule
+
+### Key Concept: Multiplication Rule for Independent Events
+
+For independent events A and B:
+
+[P(A \text{ and } B) = P(A) \times P(B)]
+
+**Example:** Flipping a coin and rolling a die — the coin flip does not affect the die roll.
+[P(\text{heads and 3}) = \frac{1}{2} \times \frac{1}{6} = \frac{1}{12}]
+
+### Key Concept: Multiplication Rule for Dependent Events
+
+For dependent events (without replacement):
+
+[P(A \text{ and } B) = P(A) \times P(B | A)]
+
+**Example:** Drawing two aces from a standard deck without replacement:
+[P(\text{first ace}) = \frac{4}{52}]
+[P(\text{second ace} | \text{first ace}) = \frac{3}{51}]
+[P(\text{both aces}) = \frac{4}{52} \times \frac{3}{51} = \frac{1}{221}]
+
+### Key Concept: Testing for Independence
+
+Events A and B are independent if and only if:
+
+[P(A \text{ and } B) = P(A) \times P(B)]
+or equivalently
+[P(B) = P(B | A)]
+
+## Example 1 — Independent Events and Joint Probability
+
+### Step 1: Identify Events and Apply Multiplication Rule
+
+**Problem 1:** Omari has 2 red sock pairs, 2 white sock pairs, 2 red T-shirts, 1 white T-shirt. Choosing a red sock pair and a white T-shirt.
+[P(\text{red socks}) = \frac{2}{4} = \frac{1}{2}]
+[P(\text{white T-shirt}) = \frac{1}{3}]
+[P(\text{both}) = \frac{1}{2} \times \frac{1}{3} = \frac{1}{6}]
+
+**Problem 2:** Dropping two coins — probability both land tails.
+[P(\text{both tails}) = \frac{1}{2} \times \frac{1}{2} = \frac{1}{4}]
+
+**Problem 3:** Rolling a 2 on a die and landing on tails with a penny.
+[P(2 \text{ and tails}) = \frac{1}{6} \times \frac{1}{2} = \frac{1}{12}]
+
+**Problem 4:** Drawing a blue marble (with replacement) and then drawing another blue marble.
+[P(\text{first blue}) = \frac{4}{9}]
+[P(\text{second blue}) = \frac{4}{9}]
+[P(\text{both blue}) = \frac{4}{9} \times \frac{4}{9} = \frac{16}{81}]
+
+**Problem 5:** Rain on Tuesday (40%) and Wednesday (60%), independent.
+[P(\text{rain both days}) = 0.4 \times 0.6 = 0.24 = 24\%]
+
+## Example 2 — Independent vs. Dependent Events
+
+### Step 1: Determine Whether One Event Affects the Other
+
+**Problem 6:** Rolling an even number, then spinning an odd number on a 1–5 spinner.
+Independent — rolling the die does not affect the spinner.
+
+**Problem 7:** Drawing an ace, not replacing it, then drawing another ace.
+Dependent — the first ace reduces the number of aces remaining.
+
+**Problem 8:** Drawing a blue marble, not replacing, then drawing another blue marble.
+Dependent — the first blue marble reduces the count.
+
+**Problem 9:** Rolling a 5 on each of two fair dice.
+Independent — each die roll is independent.
+
+## Example 3 — Dependent Events Without Replacement
+
+### Step 1: Adjust Probabilities After Each Draw
+
+**Problem 10:** Drawing Sofia then Joe from 4 students (Joe, Sofia, Hayden, Bonita).
+[P(\text{Sofia first}) = \frac{1}{4}]
+[P(\text{Joe second} | \text{Sofia first}) = \frac{1}{3}]
+[P(\text{Sofia then Joe}) = \frac{1}{4} \times \frac{1}{3} = \frac{1}{12}]
+
+**Problem 11:** Drawing a jack of spades first, then a black card (without replacement).
+[P(\text{jack of spades first}) = \frac{1}{52}]
+[P(\text{black second} | \text{first jack of spades}) = \frac{25}{51}]
+[P(\text{both}) = \frac{1}{52} \times \frac{25}{51} = \frac{25}{2652}]
+
+**Problem 12:** Jersey colors table — first jersey is red, second jersey is red.
+Find P(red first) and P(red second | red first) based on table data, then multiply.
+
+## Mixed Exercises
+
+Problems 13–29 provide practice with all skills:
+
+* Best-of-seven series — probability of winning first four games (assuming equal probability).
+* Director and assistant director team — probability of selecting 3 directors and 1 assistant from 3+3 people.
+* Magic trick with 3 people each drawing a card (without replacement) — probability all 3 draw hearts.
+* Given P(Geometry and French) = 0.064 and P(French) = 0.45, find P(Geometry | French) for dependent events.
+* At Bell High School, 43% in club and 28% play sports — find P(club | sports) assuming independence.
+* Derek selects chip from Box B without replacement — find P(both defective) from table.
+* Sunita selects from Box A — given P(both defective) = 1/625, did she replace the first chip?
+* Travel agency survey with P(D) = 0.6, P(D and F) = 0.2, P(no vacation) = 0.1 — find P(F) and P(F | D).
+* Business expansion with good/bad economy probabilities and different outcomes — create tree diagram.
+* Spinner twice — find P(orange and green) and show P(O) · P(G | O) = P(G) · P(O | G).
+* Card trick with Tracy drawing and replacing — are Sam's and Tracy's picks independent? Find P(both queen of spades).
+* Derive conditional probability formula from P(A and B) for dependent events.
+* Kelly's tennis serve: 40% first serve, 70% second serve — draw tree diagram, find P(double fault).
+* Bag with n objects — given P(A and B without replacement) = 0.024, find n.
+* Explain how to determine if left-handedness and parent left-handedness are independent.
+* Describe a pair of independent events and a pair of dependent events.
+* Given P(A | B) = P(A) and P(B | A) = P(B), what can be concluded about A and B?
+
+## Review Notes
+
+* ![](media/image1.png) — Intramural volleyball jersey color and number table for Problem 12
+* ![](media/image2.png) — Microchip box table for Problems 18–19
+* ![](media/image3.png) — Probability model for Problems 20–22
+* ![](media/image4.png) — Spinner for Problems 22–23

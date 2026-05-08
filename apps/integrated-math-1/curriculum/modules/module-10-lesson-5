@@ -1,0 +1,200 @@
+# Lesson 10-5 — Locating Points on a Number Line
+
+Source: (Module 10, Lesson 10-5, Int1_1005_practice.docx)
+
+## Today's Goals
+
+* Find the coordinate of a point located at a fractional distance between two given points on a number line.
+* Locate a point that divides a segment on a number line in a given ratio.
+* Apply partitioning concepts to solve real-world problems involving distances, locations, and proportional divisions.
+
+## Vocabulary
+
+* **Coordinate** — The real number that corresponds to a point on a number line.
+* **Partition** — To divide a segment into parts with a specified ratio or fraction.
+* **Ratio** — A comparison of two quantities by division.
+* **Segment** — A part of a line that consists of two endpoints and all points between them.
+* **Fractional Distance** — A portion of the total length of a segment, expressed as a fraction.
+
+## Explore: How Can We Precisely Locate a Point Between Two Coordinates?
+
+Students explore how to locate points between two given coordinates by considering fractions of the distance and ratios of the two parts. Consider how finding a midpoint relates to finding other fractional locations, and how direction on the number line affects the calculation.
+
+Inquiry Question:
+How can we use fractions and ratios to precisely locate a point between two given coordinates on a number line?
+
+## Learn: Partitioning Segments on a Number Line
+
+To locate a point that partitions a segment on a number line, use the coordinates of the endpoints and either a fractional distance or a ratio.
+
+### Key Concept: Fractional Distance
+
+If point P is a fraction of the distance from point A to point B, its coordinate is:
+[
+A + \text{fraction} \times (B - A)
+]
+
+The fraction represents how far from A toward B the point lies. For example, [\frac{1}{3}] of the distance from A to B means:
+[
+A + \frac{1}{3}(B - A)
+]
+
+### Key Concept: Ratio Partitioning
+
+If point X divides segment AB such that the ratio of AX to XB is m:n, then the coordinate of X is:
+[
+A + \frac{m}{m + n}(B - A)
+]
+
+The total number of parts is [m + n], and the first portion is [\frac{m}{m+n}] of the whole segment.
+
+## Example 1 — Locate Points Using Fractional Distances
+
+Given two endpoints on a number line, find the coordinate of a point located at a specified fractional distance from one endpoint toward the other.
+
+### Step 1: Identify the Coordinates of the Endpoints
+
+Read the coordinates of the two given points from the number line. Let the starting point have coordinate [x_1] and the ending point have coordinate [x_2].
+
+### Step 2: Calculate the Distance Between the Endpoints
+
+Find the length of the segment by subtracting the coordinates:
+[
+d = x_2 - x_1
+]
+
+### Step 3: Find the Fractional Distance
+
+Multiply the total distance by the given fraction to determine how far to travel from the starting point:
+[
+\text{fractional distance} = \frac{m}{n} \times d
+]
+
+### Step 4: Find the Coordinate of the New Point
+
+Add the fractional distance to the coordinate of the starting point:
+[
+x = x_1 + \frac{m}{n}(x_2 - x_1)
+]
+
+For example, to find a point that is [\frac{2}{3}] of the distance from M to J:
+[
+M + \frac{2}{3}(J - M)
+]
+
+## Example 2 — Real-World Problems with Fractional Distances and Ratios
+
+Apply the concept of partitioning to practical situations such as travel, hiking trails, and physical objects.
+
+### Step 1: Identify the Starting and Ending Values
+
+Extract the two reference points from the problem. For example, a gas stop at one mile marker and a destination at another.
+
+### Step 2: Determine the Fraction or Ratio
+
+Identify the fraction of the total distance at which the intermediate point lies, or the ratio that describes how the segment is divided.
+
+### Step 3: Apply the Partitioning Formula
+
+For a fractional distance, calculate the location using:
+[
+\text{location} = \text{start} + \text{fraction} \times (\text{end} - \text{start})
+]
+
+For a stop at [3/4] of the way from mile marker 36 to mile marker 353:
+[
+36 + \frac{3}{4}(353 - 36)
+]
+
+### Step 4: Interpret the Result
+
+Round to the appropriate place value if the context requires it, and state the answer with proper units.
+
+### Step 5: Apply to Ratio-Based Problems
+
+When a point divides a segment in a given ratio, convert the ratio to a fraction of the total. For example, a ratio of 2:9 means the first part is [\frac{2}{11}] of the total distance:
+[
+\text{distance} = \frac{2}{2 + 9} \times \text{total}
+]
+
+## Example 3 — Locate Points Using Ratios on a Number Line
+
+Given two endpoints on a number line, find the coordinate of a point that divides the segment in a specified ratio.
+
+### Step 1: Identify the Endpoints and the Ratio
+
+Read the coordinates of the two given points and identify the ratio of the two parts. For example, if the ratio of MX to XJ is 3:1.
+
+### Step 2: Convert the Ratio to a Fraction of the Total
+
+Add the parts of the ratio to find the total number of parts:
+[
+\text{total parts} = m + n
+]
+
+The first part is [\frac{m}{m+n}] of the total distance:
+[
+\text{fraction} = \frac{m}{m + n}
+]
+
+### Step 3: Calculate the Coordinate
+
+Apply the partitioning formula using the fraction:
+[
+x = x_1 + \frac{m}{m + n}(x_2 - x_1)
+]
+
+For a ratio of MX to XJ of 3:1:
+[
+x = M + \frac{3}{3 + 1}(J - M) = M + \frac{3}{4}(J - M)
+]
+
+### Step 4: Handle Equal Ratios
+
+When the ratio is 1:1, the point is the midpoint of the segment:
+[
+x = \frac{x_1 + x_2}{2}
+]
+
+## Example 4 — Partitioning Physical Objects
+
+Apply partitioning concepts to divide physical objects, such as a canvas or a wall, into equal or proportional parts.
+
+### Step 1: Identify the Total Length
+
+Determine the total length of the object to be partitioned. For example, a canvas that is 8 feet wide.
+
+### Step 2: Determine the Number of Equal Parts
+
+Identify how many equal segments the length is divided into. For example, hangers placed at regular fractional intervals of the length, excluding the edges.
+
+### Step 3: Calculate the Partition Points
+
+Mark the locations by adding successive fractional distances from one edge. If the canvas is centered on a wall, first find the starting position, then mark each hanger location:
+[
+\text{position}_k = \text{start} + k \times \frac{L}{n}
+]
+
+where [k] is the partition number and [n] is the total number of equal parts.
+
+### Step 4: Justify the Placement
+
+Verify that the spacing is uniform and that the placement satisfies the given conditions, such as excluding the edges or centering the object on a larger surface.
+
+## Mixed Exercises
+
+The mixed exercises section provides practice with all skills from the lesson: locating points at fractional distances on a number line, partitioning segments in given ratios, and applying these concepts to real-world contexts. Problems include:
+
+* Finding the coordinate of a point at a fractional distance between two given points on a number line.
+* Locating a point that divides a segment in a given ratio on a number line.
+* Identifying which labeled point on a number line corresponds to a given fractional distance.
+* Writing an equation to find the coordinate of a point at a fractional distance.
+* Solving real-world problems involving travel distances, trail locations, photo resizing, and body proportions using partitioning.
+* Constructing a segment with a specified multiple length using a compass and straightedge.
+* Analyzing whether a statement about coordinates and fractional distances is sometimes, always, or never true.
+* Persevering through multi-step partitioning problems on a number line.
+
+## Review Notes
+
+* Images referenced in the worksheet (number lines with labeled points, hiking trail diagram, canvas diagram) could not be fully described without visual reference. Teachers should consult the original worksheet for exact coordinate values and diagrams.
+* The worksheet labels the example group as "Examples 1 and 3" for the number line problems and "Examples 2 and 4" for the real-world and physical partitioning problems.
