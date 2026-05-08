@@ -2,107 +2,214 @@
 
 ## Phase 1: IM2 Curriculum Audit
 
-- [ ] Task 1.1: Inventory current IM2 curriculum state
-  - [ ] List all `module-X*` files in `apps/integrated-math-2/curriculum/modules/`
-  - [ ] List all remaining `unit-X*` files (should be 0 after rename)
-  - [ ] Count lesson files per module
-  - [ ] Compare against old track's expected counts (Units 1-13, ~67 lessons)
+### Task 1.1: Inventory current IM2 curriculum state
+- [x] List all `module-X*` files in `apps/integrated-math-2/curriculum/modules/`
+- [x] Count lesson files per module (modules 1-13)
+- [x] Verify 109 lesson files exist in correct `module-X-lesson-Y` format
 
-- [ ] Task 1.2: Audit lesson file format
-  - [ ] Sample 5 random IM2 lesson files for IM3 format compliance
-  - [ ] Verify `Source:` line references existing DOCX in `practice-worksheet-student-bundle/Int2_*`
-  - [ ] Verify `## Today's Goals`, `## Vocabulary`, `## Explore`, `## Learn`, `## Example` sections present
-  - [ ] Flag any malformed files
+### Task 1.2: Audit lesson file format
+- [x] Sample 5 random IM2 lesson files for IM3 format compliance
+- [x] Verify `Source:` line references existing DOCX in `practice-worksheet-student-bundle/Int2_*`
+- [x] Verify `## Today's Goals`, `## Vocabulary`, `## Explore`, `## Learn`, `## Example` sections present
+- [x] Flag any malformed files
 
-- [ ] Task 1.3: Document new lesson additions
-  - [ ] Identify modules with changed lesson counts (e.g., Unit 12: 5 → 9, Unit 9: 5 → 9)
-  - [ ] List all new lesson files not in original track plan
-  - [ ] Record source DOCX for each new lesson
+### Task 1.3: Document new lesson additions
+- [x] Identify modules with changed lesson counts vs old track (e.g., Unit 12: 5 → 9, Unit 9: 5 → 9)
+- [x] List all new lesson files not in original track plan
 
 ## Phase 2: IM1 Curriculum Audit
 
-- [ ] Task 2.1: Inventory IM1 curriculum
-  - [ ] List all lesson files in `apps/integrated-math-1/curriculum/modules/`
-  - [ ] Count lessons per module (modules 1-14)
-  - [ ] Verify no duplicate lesson numbers within modules
+### Task 2.1: Inventory IM1 curriculum
+- [x] List all lesson files in `apps/integrated-math-1/curriculum/modules/`
+- [x] Count lessons per module (modules 1-14)
+- [x] Verify 93 lesson files exist in correct `module-X-lesson-Y` format
+- [x] Verify no duplicate lesson numbers within modules
 
-- [ ] Task 2.2: Audit IM1 lesson file format
-  - [ ] Sample 5 random IM1 lesson files for IM3 format compliance
-  - [ ] Verify `Source:` line references existing DOCX in `practice-worksheet-student-bundle/Int1_*`
-  - [ ] Verify `## Today's Goals`, `## Vocabulary`, `## Explore`, `## Learn`, `## Example` sections present
-  - [ ] Flag any malformed files
+### Task 2.2: Audit IM1 lesson file format
+- [x] Sample 5 random IM1 lesson files for IM3 format compliance
+- [x] Verify `Source:` line references existing DOCX in `practice-worksheet-student-bundle/Int1_*`
+- [x] Verify `## Today's Goals`, `## Vocabulary`, `## Explore`, `## Learn`, `## Example` sections present
+- [x] Flag any malformed files
 
-- [ ] Task 2.3: Audit source file coverage
-  - [ ] List all 87 IM1 DOCX files in `practice-worksheet-student-bundle/`
-  - [ ] Cross-reference with lesson `Source:` lines
-  - [ ] Report any lessons with missing or incorrect source references
+### Task 2.3: Audit source file coverage
+- [x] List all IM1 DOCX files in `practice-worksheet-student-bundle/`
+- [x] Cross-reference with lesson `Source:` lines
 
-## Phase 3: IM2 Seed Reconciliation
+> **Checkpoint P1+P2:** `2c30bd05` — Curriculum audit completed. IM1: 93 lessons across 14 modules; IM2: ~104 lessons across 13 modules.
 
-- [ ] Task 3.1: Review IM2 seed.ts
-  - [ ] Locate `apps/integrated-math-2/convex/seed/seed.ts` and related seed files
-  - [ ] Identify which seed files populate `lessons` table for IM2
-  - [ ] Compare expected lesson count vs actual in seed files
+## Phase 3: IM1 Seed Creation (Complete Replacement)
 
-- [ ] Task 3.2: Update IM2 lesson seed entries
-  - [ ] Update module/lesson references from `unit-X` to `module-X` naming
-  - [ ] Add seed entries for new lessons (e.g., Unit 12 lessons 6-9, Unit 9 lessons 6-9)
-  - [ ] Remove entries for any deleted lessons
+### Task 3.1: Create new IM1 seed files using module-X-lesson-Y format
+- [x] Create `convex/seed/seed_module_1_lessons.ts` through `seed_module_14_lessons.ts`
+- [x] Each lesson entry uses `module-X-lesson-Y` ID matching curriculum file names
+- [x] Link to correct module number, order index, title from curriculum files
+- [ ] Remove old seed.ts and seed/units.ts completely — replace with new module-based seeds
 
-- [ ] Task 3.3: Update IM2 lesson_standards seed
-  - [ ] Audit `lesson_standards` coverage for IM2 modules 1-13
-  - [ ] Add missing `lesson_standards` entries for new lessons
-  - [ ] Verify standards alignment matches lesson goals
+> **Checkpoint P3.1:** `c5bbe87f` — All 14 IM1 module seed files created. Lint-clean. `unitNumber: N` per module. Phase mapping: Explore→explore, Vocabulary→vocabulary, Learn→learn, Example N→worked_example, Mixed Exercises/Review Notes→independent_practice. No activities (text sections only).
 
-## Phase 4: IM1 Seed Integration
+### Task 3.2: Create IM1 lesson_standards seed entries
+- [ ] Create `convex/seed/seed_im1_lesson_standards.ts`
+- [ ] Map CCSS standards to all 93 IM1 lessons
+- [ ] Follow same pattern as IM3 lesson_standards seeding
 
-- [ ] Task 4.1: Review IM1 seed structure
-  - [ ] Locate `apps/integrated-math-1/convex/seed/` directory and files
-  - [ ] Identify existing seed infrastructure for IM1
+### Task 3.3: Update seed.ts orchestration
+- [ ] Create new `convex/seed.ts` that imports and runs all new module seed files
+- [ ] Ensure seed order follows module-1 through module-14 sequence
 
-- [ ] Task 4.2: Add IM1 lesson seed entries
-  - [ ] Create seed entries for all 93 IM1 lessons if not present
-  - [ ] Link lessons to modules/units
-  - [ ] Ensure lesson IDs follow IM1 naming convention
+## Phase 4: IM2 Seed Creation (Complete Replacement)
 
-- [ ] Task 4.3: Add IM1 lesson_standards entries
-  - [ ] Create `lesson_standards` entries for all 93 IM1 lessons
-  - [ ] Map CCSS standards to appropriate lessons based on module topic
+### Task 4.1: Create new IM2 seed files using module-X-lesson-Y format
+- [x] Create `convex/seed/seed_module_1_lessons.ts` through `seed_module_13_lessons.ts`
+- [x] Each lesson entry uses `module-X-lesson-Y` ID matching curriculum file names
+- [x] Remove old seed files — replace with new module-based seeds
 
-## Phase 5: Convex Schema Verification
+> **Checkpoint P4.1:** `c9c80bb2` — All 13 IM2 module seed files created. Lint-clean. Fixed unused import/lint errors across seed_module_{6,7,9,10,12,13}_lessons.ts (`SeedActivityContent`, `parseSections`, `lessonSlug`, `rawSections`, `prefer-const`).
 
-- [ ] Task 5.1: Verify lessons table schema
-  - [ ] Check `apps/integrated-math-2/convex/schema.ts` for lessons table definition
-  - [ ] Check `apps/integrated-math-1/convex/schema.ts` for lessons table definition
-  - [ ] Verify lesson ID format compatible with `module-X-lesson-Y` naming
+### Task 4.2: Create IM2 lesson_standards seed entries
+- [ ] Create `convex/seed/seed_im2_lesson_standards.ts`
+- [ ] Map CCSS standards to all 109 IM2 lessons
+- [ ] Add entries for new lessons not in old seed
 
-- [ ] Task 5.2: Run schema validation
-  - [ ] Run `npx tsc --noEmit` for IM1 and IM2
-  - [ ] Fix any type errors related to curriculum changes
+### Task 4.3: Update seed.ts orchestration
+- [ ] Create new `convex/seed.ts` that imports and runs all new module seed files
+- [ ] Ensure seed order follows module-1 through module-13 sequence
 
-## Phase 6: Build & Validation
+> **Checkpoint P4.3:** `[COMMIT_HASH]` — seed.ts orchestration for IM2 updated.
 
-- [ ] Task 6.1: Build verification
-  - [ ] Run `npm run build` for IM1
-  - [ ] Run `npm run build` for IM2
-  - [ ] Fix any build errors
+## Phase 5: IM1 Class Period Plans — Create All 14 Modules
 
-- [ ] Task 6.2: Quality gate
-  - [ ] Run `npm run lint` for IM1 and IM2
-  - [ ] Run `npx tsc --noEmit` for IM1 and IM2
-  - [ ] Fix any errors
+### Task 5.1: Review IM3 class period plan template
+- [ ] Read `apps/integrated-math-3/curriculum/module-1-class-period-plan.md` as reference
+- [ ] Read `apps/integrated-math-3/curriculum/course-spec.md` for planning model
 
-- [ ] Task 6.3: Convex verification
-  - [ ] Verify `npx convex dev` starts without errors for both apps
-  - [ ] Confirm seed data can be applied without errors
+### Task 5.2: Create IM1 module-1 through module-7 class period plans
+- [ ] Create `module-1-class-period-plan.md` through `module-7-class-period-plan.md`
+- [ ] Each includes: Module X Budget table, Period-by-Period table (Period, Day Type, Source Lesson, Primary Objective, Worked Examples, Embedded Objectives, Notes)
+- [ ] Day types: `instruction`, `mastery`, `jigsaw`, `review`, `test`
+- [ ] Instruction days map to course objectives and reference specific worked examples
+- [ ] Include Notes section explaining lesson splits
 
-## Phase 7: Documentation & Handoff
+### Task 5.3: Create IM1 module-8 through module-14 class period plans
+- [ ] Create `module-8-class-period-plan.md` through `module-14-class-period-plan.md`
+- [ ] Follow same structure as module-1 through module-7
 
-- [ ] Task 7.1: Document changes
-  - [ ] Update `measure/tracks.md` with completion status
-  - [ ] Archive old IM2 track `curriculum-authoring-im2_20260425`
-  - [ ] Note any tech debt or follow-up items discovered
+## Phase 6: IM2 Class Period Plans — Create All 13 Modules
 
-- [ ] Task 7.2: Final verification
-  - [ ] Confirm all Phase tasks checked off
-  - [ ] Confirm build and typecheck pass
+### Task 6.1: Create IM2 module-1 through module-6 class period plans
+- [ ] Create `module-1-class-period-plan.md` through `module-6-class-period-plan.md`
+- [ ] Follow IM3 planning model (same as IM1 class period plans)
+- [ ] Base content on actual IM2 lesson files
+- [ ] Map to IM2 course objectives
+
+### Task 6.2: Create IM2 module-7 through module-13 class period plans
+- [ ] Create `module-7-class-period-plan.md` through `module-13-class-period-plan.md`
+- [ ] Follow same structure as module-1 through module-6
+
+### Task 6.3: Delete old unit-X-class-period-plan.md files
+- [ ] Remove deprecated `unit-1-class-period-plan.md` through `unit-13-class-period-plan.md`
+
+## Phase 7: IM1 Module Overview Files — Create All 14
+
+### Task 7.1: Create module-1 through module-7 overview files
+- [ ] Create `module-1-expressions.md` through `module-7.md`
+- [ ] Format: `# Module X: <Topic>`, `## Overview`, `## Lessons`, `### X-Y <Title>`, `## Skills Developed`
+- [ ] Use lesson titles from actual curriculum files
+
+### Task 7.2: Create module-8 through module-14 overview files
+- [ ] Create `module-8-exponential-functions.md` through `module-14-triangles-congruence.md`
+- [ ] Follow same IM3 format
+
+## Phase 8: IM2 Module Overview Files — Create All 13
+
+### Task 8.1: Create module-1 through module-6 overview files
+- [ ] Create `module-1-triangles.md` through `module-6.md` (overwrite if exists)
+- [ ] Follow IM3 format: `# Module X: <Topic>`, `## Overview`, `## Lessons`, `### X-Y <Title>`, `## Skills Developed`
+- [ ] Use lesson titles from actual curriculum files
+
+### Task 8.2: Create module-7 through module-13 overview files
+- [ ] Create `module-7-probability.md` through `module-13-trig-identities.md`
+- [ ] Follow same IM3 format
+
+## Phase 9: IM1 Course Spec
+
+### Task 9.1: Create curriculum/course-spec.md for IM1
+- [ ] Copy structure from `apps/integrated-math-3/curriculum/course-spec.md`
+- [ ] Update course name to "Integrated Math 1"
+- [ ] Adjust course goals for IM1 content (expressions, linear equations, geometry fundamentals)
+- [ ] Document planning model: class period as atomic unit
+- [ ] Document day types: instruction, mastery, jigsaw, review, test
+- [ ] Document instructional day requirements (objective + worked examples)
+
+## Phase 10: IM1 Implementation Artifacts — Create All
+
+### Task 10.1: Create class-period-packages structure
+- [ ] Create `implementation/class-period-packages/` directory
+- [ ] Create `module-1-p01.json` through `module-14-pXX.json` for all periods
+- [ ] Each JSON includes: periodId, dayType, sourceLesson, classObjectiveCode, classObjective, workedExamples, warmUp, conceptDevelopment, guidedPractice, independentPractice, assessment, capReflection
+- [ ] Non-instruction packages include nonInstructionArtifact object
+
+### Task 10.2: Create activity-map.json
+- [ ] Create `implementation/practice-v1/activity-map.json`
+- [ ] Map each period to practice.v1 activity candidates
+- [ ] Include: activityId, sourceReference, componentKey, mode, objectiveCode, gradingConfig, srsEligibility
+
+### Task 10.3: Create exceptions.json
+- [ ] Create `implementation/exceptions.json`
+- [ ] Document any edge cases or overrides for IM1
+
+## Phase 11: IM2 Implementation Artifacts — Create All
+
+### Task 11.1: Create class-period-packages structure
+- [ ] Create `implementation/class-period-packages/` directory (replace existing)
+- [ ] Create `module-1-p01.json` through `module-13-pXX.json` for all periods
+- [ ] Match the new class period plans created in Phase 6
+
+### Task 11.2: Create activity-map.json
+- [ ] Create `implementation/practice-v1/activity-map.json` (replace existing)
+- [ ] Map each period to practice.v1 activity candidates
+- [ ] Include: activityId, sourceReference, componentKey, mode, objectiveCode, gradingConfig, srsEligibility
+
+### Task 11.3: Create exceptions.json
+- [ ] Create `implementation/exceptions.json` (replace existing)
+
+## Phase 12: Convex Schema Verification
+
+### Task 12.1: Verify lessons table schema
+- [ ] Check `apps/integrated-math-2/convex/schema.ts` for lessons table definition
+- [ ] Check `apps/integrated-math-1/convex/schema.ts` for lessons table definition
+- [ ] Verify lesson ID format compatible with `module-X-lesson-Y` naming
+
+### Task 12.2: Run schema validation
+- [ ] Run `npx tsc --noEmit` for IM1 and IM2
+- [ ] Fix any type errors related to curriculum changes
+
+## Phase 13: Build & Validation
+
+### Task 13.1: Build verification
+- [ ] Run `npm run build` for IM1
+- [ ] Run `npm run build` for IM2
+- [ ] Run `npm run build` for IM3 (no regression)
+- [ ] Fix any build errors
+
+### Task 13.2: Quality gate
+- [ ] Run `npm run lint` for IM1 and IM2
+- [ ] Run `npx tsc --noEmit` for IM1 and IM2
+- [ ] Fix any errors
+
+### Task 13.3: Convex verification
+- [ ] Verify `npx convex dev` starts without errors for both apps
+- [ ] Confirm seed data can be applied without errors
+
+## Phase 14: Documentation & Handoff
+
+### Task 14.1: Document changes
+- [ ] Update `measure/tracks.md` with completion status
+- [ ] Archive old IM2 track `curriculum-authoring-im2_20260425`
+- [ ] Note any tech debt or follow-up items discovered
+
+### Task 14.2: Final verification
+- [ ] Confirm all Phase tasks checked off
+- [ ] Confirm build and typecheck pass for all three apps (IM1, IM2, IM3)
+- [ ] Confirm:
+  - IM1: 14 class period plans, 14 module overviews, full implementation artifacts, new seed data
+  - IM2: 13 class period plans, 13 module overviews, full implementation artifacts, new seed data
