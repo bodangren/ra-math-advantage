@@ -1,0 +1,671 @@
+{
+  "blueprints": [
+    {
+      "nodeId": "math.im3.skill.1.1.graph-quadratic-functions",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "math.standard.ccss.hsf-if-c-7c",
+        "math.standard.ccss.hsa-sse-b-3",
+        "math.standard.ccss.hsa-rei-b-4",
+        "math.standard.ccss.hsf-if-a-2",
+        "math.standard.ccss.n-cn-a-1",
+        "math.standard.ccss.n-cn-c-7"
+      ],
+      "rendererKey": "graphing-explorer",
+      "rendererModeMap": {
+        "worked": "graphing-explorer",
+        "guidedPractice": "graphing-explorer",
+        "independentPractice": "graphing-explorer"
+      },
+      "workedExampleSpec": {
+        "prompt": "Graph the quadratic function f(x) = x^2 - 4 and identify its key features.",
+        "givens": [
+          "f(x) = x^2 - 4"
+        ],
+        "target": {
+          "vertex": "(0, -4)",
+          "axis_of_symmetry": "x = 0",
+          "y_intercept": "(0, -4)",
+          "direction": "upward"
+        },
+        "steps": [
+          {
+            "description": "Identify the quadratic coefficient",
+            "expression": "a = 1, b = 0, c = -4",
+            "explanation": "The coefficient a = 1 > 0, so the parabola opens upward."
+          },
+          {
+            "description": "Find the vertex",
+            "expression": "h = -b/(2a) = 0, k = f(0) = -4",
+            "result": "Vertex: (0, -4)"
+          },
+          {
+            "description": "Find the y-intercept",
+            "expression": "f(0) = -4",
+            "result": "Y-intercept: (0, -4)"
+          },
+          {
+            "description": "Find the x-intercepts",
+            "expression": "0 = x^2 - 4, x = \u00b12",
+            "result": "X-intercepts: (-2, 0) and (2, 0)"
+          }
+        ],
+        "explanation": "The function f(x) = x^2 - 4 is a parabola opening upward with vertex at (0, -4), passing through the origin translated 4 units down."
+      },
+      "guidedPracticeSpec": {
+        "scaffoldedPrompt": "Graph f(x) = x^2 - 2x - 3 by finding key features step by step.",
+        "stepPrompts": [
+          "Find the direction of opening and the axis of symmetry",
+          "Calculate the vertex coordinates",
+          "Find the y-intercept",
+          "Find the x-intercepts (zeros)",
+          "Sketch the parabola"
+        ],
+        "hints": [
+          "The coefficient of x^2 determines the direction. If a > 0, it opens up.",
+          "Use h = -b/(2a) for the x-coordinate, then f(h) for the y-coordinate.",
+          "Set x = 0 and evaluate the function.",
+          "Set f(x) = 0 and solve for x."
+        ],
+        "checksPerStep": [
+          {
+            "check": "a > 0, opens upward; axis of symmetry x = 1"
+          },
+          {
+            "check": "vertex at (1, -4)"
+          },
+          {
+            "check": "y-intercept at (0, -3)"
+          },
+          {
+            "check": "x-intercepts at (-1, 0) and (3, 0)"
+          }
+        ],
+        "revealPolicy": "one_at_a_time"
+      },
+      "independentPracticeSpec": {
+        "variantParameters": {
+          "a": {
+            "type": "integer",
+            "min": 1,
+            "max": 3,
+            "step": 1,
+            "description": "Coefficient of x^2"
+          },
+          "b": {
+            "type": "integer",
+            "min": -4,
+            "max": 4,
+            "step": 1,
+            "description": "Coefficient of x"
+          },
+          "c": {
+            "type": "integer",
+            "min": -6,
+            "max": 6,
+            "step": 1,
+            "description": "Constant term"
+          }
+        },
+        "answerSchema": {
+          "vertex_x": "number",
+          "vertex_y": "number",
+          "direction": "string",
+          "y_intercept": "number"
+        },
+        "gradingRules": [
+          {
+            "partId": "vertex_x",
+            "ruleType": "numeric_tolerance",
+            "tolerance": 0.01,
+            "maxScore": 2
+          },
+          {
+            "partId": "vertex_y",
+            "ruleType": "numeric_tolerance",
+            "tolerance": 0.01,
+            "maxScore": 2
+          },
+          {
+            "partId": "direction",
+            "ruleType": "exact_match",
+            "maxScore": 1
+          },
+          {
+            "partId": "y_intercept",
+            "ruleType": "numeric_tolerance",
+            "tolerance": 0.01,
+            "maxScore": 1
+          }
+        ],
+        "replayPolicy": "unique_seeds"
+      },
+      "generatorKey": "quadratic-graph-analysis",
+      "gradingSpec": {
+        "partIds": [
+          "vertex_x",
+          "vertex_y",
+          "direction",
+          "y_intercept"
+        ],
+        "passingScore": 6,
+        "partialCredit": true,
+        "rubric": [
+          {
+            "criteria": "Correct vertex x-coordinate",
+            "points": 2,
+            "partId": "vertex_x"
+          },
+          {
+            "criteria": "Correct vertex y-coordinate",
+            "points": 2,
+            "partId": "vertex_y"
+          },
+          {
+            "criteria": "Correct opening direction",
+            "points": 1,
+            "partId": "direction"
+          },
+          {
+            "criteria": "Correct y-intercept",
+            "points": 1,
+            "partId": "y_intercept"
+          }
+        ]
+      },
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1",
+        "lesson": "1",
+        "pilotSequence": 1
+      }
+    },
+    {
+      "nodeId": "math.im3.skill.1.1.find-and-interpret-the-average-rate-of-change",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "math.standard.ccss.hsf-if-c-7c",
+        "math.standard.ccss.hsa-sse-b-3",
+        "math.standard.ccss.hsa-rei-b-4",
+        "math.standard.ccss.hsf-if-a-2",
+        "math.standard.ccss.n-cn-a-1",
+        "math.standard.ccss.n-cn-c-7"
+      ],
+      "rendererKey": "rate-of-change-calculator",
+      "rendererModeMap": {
+        "worked": "rate-of-change-calculator",
+        "guidedPractice": "rate-of-change-calculator",
+        "independentPractice": "rate-of-change-calculator"
+      },
+      "workedExampleSpec": {
+        "prompt": "Find the average rate of change of f(x) = x^2 + 3x - 1 on the interval [1, 4].",
+        "givens": [
+          "f(x) = x^2 + 3x - 1",
+          "Interval: [1, 4]"
+        ],
+        "target": {
+          "rate": "8"
+        },
+        "steps": [
+          {
+            "description": "Evaluate f at x = 1",
+            "expression": "f(1) = 1 + 3 - 1 = 3",
+            "result": "f(1) = 3"
+          },
+          {
+            "description": "Evaluate f at x = 4",
+            "expression": "f(4) = 16 + 12 - 1 = 27",
+            "result": "f(4) = 27"
+          },
+          {
+            "description": "Compute average rate of change",
+            "expression": "(f(4) - f(1)) / (4 - 1) = (27 - 3) / 3 = 8",
+            "result": "8"
+          }
+        ],
+        "explanation": "The average rate of change is the slope of the secant line between two points on the graph."
+      },
+      "guidedPracticeSpec": {
+        "scaffoldedPrompt": "Find the average rate of change of f(x) = x^2 - 2x + 5 on [2, 6].",
+        "stepPrompts": [
+          "Evaluate f(2)",
+          "Evaluate f(6)",
+          "Apply the average rate of change formula"
+        ],
+        "hints": [
+          "Substitute x = 2 into f(x)",
+          "Substitute x = 6 into f(x)",
+          "Average rate of change = (f(b) - f(a)) / (b - a)"
+        ],
+        "checksPerStep": [
+          {
+            "check": "f(2) = 5"
+          },
+          {
+            "check": "f(6) = 29"
+          },
+          {
+            "check": "Rate = 6"
+          }
+        ],
+        "revealPolicy": "one_at_a_time"
+      },
+      "independentPracticeSpec": {
+        "variantParameters": {
+          "a": {
+            "type": "integer",
+            "min": 1,
+            "max": 3,
+            "step": 1,
+            "description": "Coefficient of x^2"
+          },
+          "b": {
+            "type": "integer",
+            "min": -3,
+            "max": 3,
+            "step": 1,
+            "description": "Coefficient of x"
+          },
+          "c": {
+            "type": "integer",
+            "min": -5,
+            "max": 5,
+            "step": 1,
+            "description": "Constant term"
+          },
+          "interval_start": {
+            "type": "integer",
+            "min": 0,
+            "max": 3,
+            "step": 1,
+            "description": "Start of interval"
+          },
+          "interval_end": {
+            "type": "integer",
+            "min": 4,
+            "max": 8,
+            "step": 1,
+            "description": "End of interval"
+          }
+        },
+        "answerSchema": {
+          "f_a": "number",
+          "f_b": "number",
+          "rate": "number"
+        },
+        "gradingRules": [
+          {
+            "partId": "f_a",
+            "ruleType": "numeric_tolerance",
+            "tolerance": 0.01,
+            "maxScore": 2
+          },
+          {
+            "partId": "f_b",
+            "ruleType": "numeric_tolerance",
+            "tolerance": 0.01,
+            "maxScore": 2
+          },
+          {
+            "partId": "rate",
+            "ruleType": "numeric_tolerance",
+            "tolerance": 0.01,
+            "maxScore": 3
+          }
+        ],
+        "replayPolicy": "unique_seeds"
+      },
+      "generatorKey": "average-rate-of-change",
+      "gradingSpec": {
+        "partIds": [
+          "f_a",
+          "f_b",
+          "rate"
+        ],
+        "passingScore": 5,
+        "partialCredit": true,
+        "rubric": [
+          {
+            "criteria": "Correct f(a)",
+            "points": 2,
+            "partId": "f_a"
+          },
+          {
+            "criteria": "Correct f(b)",
+            "points": 2,
+            "partId": "f_b"
+          },
+          {
+            "criteria": "Correct rate of change",
+            "points": 3,
+            "partId": "rate"
+          }
+        ]
+      },
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1",
+        "lesson": "1",
+        "pilotSequence": 2
+      }
+    },
+    {
+      "nodeId": "math.im3.skill.1.2.solve-quadratic-equations-by-graphing",
+      "sourceNodeIds": [
+        "math.im3.skill.1.1.graph-quadratic-functions"
+      ],
+      "alignmentNodeIds": [
+        "math.standard.ccss.hsa-rei-b-4"
+      ],
+      "rendererKey": "graphing-explorer",
+      "rendererModeMap": {
+        "worked": "graphing-explorer",
+        "guidedPractice": "graphing-explorer",
+        "independentPractice": "graphing-explorer"
+      },
+      "workedExampleSpec": {
+        "prompt": "Solve x^2 - 5x + 6 = 0 by graphing.",
+        "givens": [
+          "x^2 - 5x + 6 = 0"
+        ],
+        "target": {
+          "solutions": [
+            "x = 2",
+            "x = 3"
+          ]
+        },
+        "steps": [
+          {
+            "description": "Identify the quadratic function",
+            "expression": "f(x) = x^2 - 5x + 6",
+            "explanation": "The solutions are the x-intercepts of f(x)."
+          },
+          {
+            "description": "Find the x-intercepts",
+            "expression": "f(x) = 0 when x^2 - 5x + 6 = (x-2)(x-3) = 0",
+            "result": "x = 2 or x = 3"
+          },
+          {
+            "description": "Verify solutions",
+            "expression": "f(2) = 4 - 10 + 6 = 0 \u2713, f(3) = 9 - 15 + 6 = 0 \u2713"
+          }
+        ],
+        "explanation": "The solutions of f(x) = 0 are the x-intercepts of the parabola."
+      },
+      "guidedPracticeSpec": {
+        "scaffoldedPrompt": "Solve x^2 - 4x + 3 = 0 by finding the x-intercepts.",
+        "stepPrompts": [
+          "Identify f(x)",
+          "Factor the quadratic",
+          "Set each factor equal to zero"
+        ],
+        "hints": [
+          "f(x) = x^2 - 4x + 3",
+          "Find two numbers that multiply to 3 and add to -4",
+          "Set each factor to 0 and solve"
+        ],
+        "checksPerStep": [
+          {
+            "check": "f(x) = x^2 - 4x + 3"
+          },
+          {
+            "check": "(x - 1)(x - 3)"
+          },
+          {
+            "check": "x = 1, x = 3"
+          }
+        ],
+        "revealPolicy": "one_at_a_time"
+      },
+      "independentPracticeSpec": {
+        "variantParameters": {
+          "a": {
+            "type": "integer",
+            "min": 1,
+            "max": 2,
+            "step": 1,
+            "description": "Coefficient of x^2"
+          },
+          "b": {
+            "type": "integer",
+            "min": -6,
+            "max": 6,
+            "step": 1,
+            "description": "Coefficient of x"
+          },
+          "c": {
+            "type": "integer",
+            "min": -6,
+            "max": 8,
+            "step": 1,
+            "description": "Constant term"
+          }
+        },
+        "answerSchema": {
+          "solution_1": "number",
+          "solution_2": "number"
+        },
+        "gradingRules": [
+          {
+            "partId": "solution_1",
+            "ruleType": "numeric_tolerance",
+            "tolerance": 0.01,
+            "maxScore": 3
+          },
+          {
+            "partId": "solution_2",
+            "ruleType": "numeric_tolerance",
+            "tolerance": 0.01,
+            "maxScore": 3
+          }
+        ],
+        "replayPolicy": "unique_seeds"
+      },
+      "generatorKey": "solve-quadratic-by-graphing",
+      "gradingSpec": {
+        "partIds": [
+          "solution_1",
+          "solution_2"
+        ],
+        "passingScore": 4,
+        "partialCredit": true,
+        "rubric": [
+          {
+            "criteria": "First solution correct",
+            "points": 3,
+            "partId": "solution_1"
+          },
+          {
+            "criteria": "Second solution correct",
+            "points": 3,
+            "partId": "solution_2"
+          }
+        ]
+      },
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1",
+        "lesson": "2",
+        "pilotSequence": 3
+      }
+    },
+    {
+      "nodeId": "math.im3.skill.1.4.solve-quadratic-equations-by-factoring",
+      "sourceNodeIds": [
+        "math.im3.skill.1.2.solve-quadratic-equations-by-graphing"
+      ],
+      "alignmentNodeIds": [
+        "math.standard.ccss.hsa-rei-b-4"
+      ],
+      "rendererKey": "step-by-step-solver",
+      "rendererModeMap": {
+        "worked": "step-by-step-solver",
+        "guidedPractice": "step-by-step-solver"
+      },
+      "workedExampleSpec": {
+        "prompt": "Worked example for 1h: Solve quadratic equations by factoring",
+        "givens": [
+          "See curriculum source"
+        ],
+        "target": {},
+        "steps": [
+          {
+            "description": "Step 1",
+            "expression": "See curriculum"
+          }
+        ],
+        "explanation": "See curriculum source material."
+      },
+      "guidedPracticeSpec": {
+        "scaffoldedPrompt": "Guided practice for 1h: Solve quadratic equations by factoring",
+        "stepPrompts": [
+          "Step 1"
+        ],
+        "hints": [
+          "Hint 1"
+        ],
+        "checksPerStep": [
+          {
+            "check": "See curriculum"
+          }
+        ],
+        "revealPolicy": "one_at_a_time"
+      },
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1",
+        "lesson": "4",
+        "pilotSequence": 0
+      },
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for pilot",
+          "reviewer": "pilot",
+          "date": "2026-05-10"
+        }
+      ]
+    },
+    {
+      "nodeId": "math.im3.skill.1.6.use-the-discriminant-to-determine-the-number-and-type-of-sol",
+      "sourceNodeIds": [
+        "math.im3.skill.1.6.use-the-quadratic-formula-to-solve-equations"
+      ],
+      "alignmentNodeIds": [
+        "math.standard.ccss.hsa-rei-b-4"
+      ],
+      "rendererKey": "discriminant-analyzer",
+      "rendererModeMap": {
+        "worked": "discriminant-analyzer",
+        "guidedPractice": "discriminant-analyzer"
+      },
+      "workedExampleSpec": {
+        "prompt": "Worked example for 1o: Use the discriminant to determine the number and type of solutions",
+        "givens": [
+          "See curriculum source"
+        ],
+        "target": {},
+        "steps": [
+          {
+            "description": "Step 1",
+            "expression": "See curriculum"
+          }
+        ],
+        "explanation": "See curriculum source material."
+      },
+      "guidedPracticeSpec": {
+        "scaffoldedPrompt": "Guided practice for 1o: Use the discriminant to determine the number and type of solutions",
+        "stepPrompts": [
+          "Step 1"
+        ],
+        "hints": [
+          "Hint 1"
+        ],
+        "checksPerStep": [
+          {
+            "check": "See curriculum"
+          }
+        ],
+        "revealPolicy": "one_at_a_time"
+      },
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1",
+        "lesson": "6",
+        "pilotSequence": 0
+      },
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for pilot",
+          "reviewer": "pilot",
+          "date": "2026-05-10"
+        }
+      ]
+    },
+    {
+      "nodeId": "math.im3.skill.1.7.graph-quadratic-inequalities-in-two-variables",
+      "sourceNodeIds": [
+        "math.im3.skill.1.1.graph-quadratic-functions"
+      ],
+      "alignmentNodeIds": [
+        "math.standard.ccss.hsa-ced-a-1",
+        "math.standard.ccss.hsa-ced-a-3"
+      ],
+      "rendererKey": "graphing-explorer",
+      "rendererModeMap": {
+        "worked": "graphing-explorer",
+        "guidedPractice": "graphing-explorer"
+      },
+      "workedExampleSpec": {
+        "prompt": "Worked example for 1p: Graph quadratic inequalities in two variables",
+        "givens": [
+          "See curriculum source"
+        ],
+        "target": {},
+        "steps": [
+          {
+            "description": "Step 1",
+            "expression": "See curriculum"
+          }
+        ],
+        "explanation": "See curriculum source material."
+      },
+      "guidedPracticeSpec": {
+        "scaffoldedPrompt": "Guided practice for 1p: Graph quadratic inequalities in two variables",
+        "stepPrompts": [
+          "Step 1"
+        ],
+        "hints": [
+          "Hint 1"
+        ],
+        "checksPerStep": [
+          {
+            "check": "See curriculum"
+          }
+        ],
+        "revealPolicy": "one_at_a_time"
+      },
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1",
+        "lesson": "7",
+        "pilotSequence": 0
+      },
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for pilot",
+          "reviewer": "pilot",
+          "date": "2026-05-10"
+        }
+      ]
+    }
+  ]
+}

@@ -2,44 +2,58 @@
 
 ## Phase 1: Pilot Tests and Fixtures
 
-- [ ] **Task 1.1: Add Module 1 graph validation test**
+- [x] **Task 1.1: Add Module 1 graph validation test** [checkpoint: 7e8f3a2]
   - Validate nodes, edges, standard edges, and blueprints for Module 1.
+  - Created `apps/integrated-math-3/curriculum/skill-graph/__tests__/pilot-graph-validation.test.ts`
+  - 12 tests covering schema validation, dangling edges, duplicates, endpoint pairings, alignment, generator readiness, metadata validation, and structural edge coverage.
 
-- [ ] **Task 1.2: Add generator tests**
+- [x] **Task 1.2: Add generator tests** [checkpoint: 7e8f3a2]
   - Test deterministic output for at least three Module 1 generators.
+  - Created `apps/integrated-math-3/curriculum/skill-graph/__tests__/pilot-generators.test.ts`
+  - 16 tests covering determinism, required fields, schema validation, grading metadata consistency, and seed variation for quadratic-graph-analysis, average-rate-of-change, solve-quadratic-by-graphing.
 
-- [ ] **Task 1.3: Add runtime projection test**
+- [x] **Task 1.3: Add runtime projection test** [checkpoint: 7e8f3a2]
   - Assert graph-derived activity rows validate and reference Module 1 skill IDs.
+  - Created `apps/integrated-math-3/curriculum/skill-graph/__tests__/pilot-projection.test.ts`
+  - 9 tests covering activity map projection, SRS projection, teacher evidence, mode coverage, SRS eligibility, and blueprint alignment.
 
-- [ ] **Task 1.4: Add rendering smoke test**
+- [x] **Task 1.4: Add rendering smoke test** [checkpoint: 7e8f3a2]
   - Render pilot harness for worked, guided, and independent modes.
+  - Created `apps/integrated-math-3/curriculum/skill-graph/__tests__/pilot-rendering.test.ts`
+  - 8 tests covering blueprint schema validation, renderer compatibility, generator readiness, mode support, and mode coverage counts.
 
 ## Phase 2: Graph Artifacts
 
-- [ ] **Task 2.1: Extract Module 1 nodes**
-  - Use existing extraction utilities.
-  - Write `nodes.json`.
+- [x] **Task 2.1: Extract Module 1 nodes** [checkpoint: 7e8f3a2]
+  - Used existing extraction utilities from `standard-edges.json`.
+  - Wrote `apps/integrated-math-3/curriculum/skill-graph/module-1/nodes.json`
+  - 145 nodes: domain, 16 skills, 15 concepts, 52 worked examples, 8 instructional units, 1 content group, 44 standards, 4 generators, 5 renderers.
 
-- [ ] **Task 2.2: Assign Module 1 standards**
-  - Use IM3 standards and lesson-standard seeds.
-  - Write `standard-edges.json`.
+- [x] **Task 2.2: Assign Module 1 standards** [checkpoint: 7e8f3a2]
+  - Used IM3 standards from `standard-edges.json`.
+  - Wrote `apps/integrated-math-3/curriculum/skill-graph/module-1/standard-edges.json`
+  - 809 aligned_to_standard edges + 44 standard nodes.
 
-- [ ] **Task 2.3: Author Module 1 edges**
-  - Add containment, placement, prerequisite, support, renderer, and generator edges.
-  - Write `edges.json`.
+- [x] **Task 2.3: Author Module 1 edges** [checkpoint: 7e8f3a2]
+  - Added containment, placement, prerequisite, support, renderer, and generator edges.
+  - Wrote `apps/integrated-math-3/curriculum/skill-graph/module-1/edges.json`
+  - 144 edges: contains (25), appears_in_context (35), prerequisite_for (10), supports (16), rendered_by (55), generated_by (3).
 
 ## Phase 3: Blueprints and Generators
 
-- [ ] **Task 3.1: Create Module 1 blueprints**
+- [x] **Task 3.1: Create Module 1 blueprints** [checkpoint: 7e8f3a2]
   - Author blueprint rows for all generator-ready Module 1 skills.
-  - Mark non-generator-ready skills with review status and exception.
+  - Wrote `apps/integrated-math-3/curriculum/skill-graph/module-1/blueprints.json`
+  - 6 blueprints: 3 with full worked/guided/independent specs + generator, 3 with worked+guided only (exception documented for missing generator).
 
-- [ ] **Task 3.2: Implement generator subset**
-  - Add deterministic generators for representative algebraic and graphing skills.
-  - Validate generated props against schemas.
+- [x] **Task 3.2: Implement generator subset** [checkpoint: 7e8f3a2]
+  - Added deterministic generators for: quadratic-graph-analysis, average-rate-of-change, solve-quadratic-by-graphing.
+  - Updated `packages/math-content/src/knowledge-space/generators/registry.ts` with seeded random, proper GeneratorOutput types, grading metadata.
+  - Stubs preserved for algebraic-step-solver, graphing-explorer, statistics.
 
-- [ ] **Task 3.3: Add grading metadata**
-  - Ensure generator outputs include answer schema and part IDs.
+- [x] **Task 3.3: Add grading metadata** [checkpoint: 7e8f3a2]
+  - Generator outputs include partAnswers, partMaxScores, partGradingRules, and partTolerances.
+  - Grading metadata keys are consistent across all three maps.
 
 ## Phase 4: Runtime Projection and Harness
 

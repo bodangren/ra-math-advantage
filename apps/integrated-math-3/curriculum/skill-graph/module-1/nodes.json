@@ -1,0 +1,2733 @@
+{
+  "nodes": [
+    {
+      "id": "math.im3",
+      "kind": "domain",
+      "title": "Integrated Math 3",
+      "domain": "math.im3",
+      "description": "Students develop a deep understanding of quadratic relationships, multiple solution methods, and extend solutions into the complex number system. Emphasis is placed on connecting algebraic procedures with graphical meaning.",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md",
+        "apps/integrated-math-3/curriculum/module-2-class-period-plan.md",
+        "apps/integrated-math-3/curriculum/module-3-class-period-plan.md",
+        "apps/integrated-math-3/curriculum/module-4-class-period-plan.md",
+        "apps/integrated-math-3/curriculum/module-5-class-period-plan.md",
+        "apps/integrated-math-3/curriculum/module-6-class-period-plan.md",
+        "apps/integrated-math-3/curriculum/module-7-class-period-plan.md",
+        "apps/integrated-math-3/curriculum/module-8-class-period-plan.md",
+        "apps/integrated-math-3/curriculum/module-9-class-period-plan.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3"
+      }
+    },
+    {
+      "id": "math.im3.example.1.1.001",
+      "kind": "worked_example",
+      "title": "Example 1: Graph Using a Table; Compare Quadratic Functions; Real-World Application (Modeling)",
+      "domain": "math.im3",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-1, Example 1)"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1",
+        "lesson": "1",
+        "exampleNumber": 1,
+        "sourceLesson": "1-1",
+        "rawText": "1-1, Examples 1-3 \u2014 Graph Using a Table; Compare Quadratic Functions; Real-World Application (Modeling)"
+      }
+    },
+    {
+      "id": "math.im3.example.1.1.002",
+      "kind": "worked_example",
+      "title": "Example 2: Graph Using a Table; Compare Quadratic Functions; Real-World Application (Modeling)",
+      "domain": "math.im3",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-1, Example 2)"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1",
+        "lesson": "1",
+        "exampleNumber": 2,
+        "sourceLesson": "1-1",
+        "rawText": "1-1, Examples 1-3 \u2014 Graph Using a Table; Compare Quadratic Functions; Real-World Application (Modeling)"
+      }
+    },
+    {
+      "id": "math.im3.example.1.1.003",
+      "kind": "worked_example",
+      "title": "Example 3: Graph Using a Table; Compare Quadratic Functions; Real-World Application (Modeling)",
+      "domain": "math.im3",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-1, Example 3)"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1",
+        "lesson": "1",
+        "exampleNumber": 3,
+        "sourceLesson": "1-1",
+        "rawText": "1-1, Examples 1-3 \u2014 Graph Using a Table; Compare Quadratic Functions; Real-World Application (Modeling)"
+      }
+    },
+    {
+      "id": "math.im3.example.1.1.004",
+      "kind": "worked_example",
+      "title": "Example 4: From an Equation; From a Table; From a Graph (Estimation + Algebra)",
+      "domain": "math.im3",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-1, Example 4)"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1",
+        "lesson": "1",
+        "exampleNumber": 4,
+        "sourceLesson": "1-1",
+        "rawText": "1-1, Examples 4-6 \u2014 From an Equation; From a Table; From a Graph (Estimation + Algebra)"
+      }
+    },
+    {
+      "id": "math.im3.example.1.1.005",
+      "kind": "worked_example",
+      "title": "Example 5: From an Equation; From a Table; From a Graph (Estimation + Algebra)",
+      "domain": "math.im3",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-1, Example 5)"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1",
+        "lesson": "1",
+        "exampleNumber": 5,
+        "sourceLesson": "1-1",
+        "rawText": "1-1, Examples 4-6 \u2014 From an Equation; From a Table; From a Graph (Estimation + Algebra)"
+      }
+    },
+    {
+      "id": "math.im3.example.1.1.006",
+      "kind": "worked_example",
+      "title": "Example 6: From an Equation; From a Table; From a Graph (Estimation + Algebra)",
+      "domain": "math.im3",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-1, Example 6)"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1",
+        "lesson": "1",
+        "exampleNumber": 6,
+        "sourceLesson": "1-1",
+        "rawText": "1-1, Examples 4-6 \u2014 From an Equation; From a Table; From a Graph (Estimation + Algebra)"
+      }
+    },
+    {
+      "id": "math.im3.example.1.2.007",
+      "kind": "worked_example",
+      "title": "Example 1: One Real Solution; Two Real Solutions; Estimate Roots",
+      "domain": "math.im3",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-2, Example 1)"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1",
+        "lesson": "2",
+        "exampleNumber": 1,
+        "sourceLesson": "1-2",
+        "rawText": "1-2, Examples 1-3 \u2014 One Real Solution; Two Real Solutions; Estimate Roots"
+      }
+    },
+    {
+      "id": "math.im3.example.1.2.008",
+      "kind": "worked_example",
+      "title": "Example 2: One Real Solution; Two Real Solutions; Estimate Roots",
+      "domain": "math.im3",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-2, Example 2)"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1",
+        "lesson": "2",
+        "exampleNumber": 2,
+        "sourceLesson": "1-2",
+        "rawText": "1-2, Examples 1-3 \u2014 One Real Solution; Two Real Solutions; Estimate Roots"
+      }
+    },
+    {
+      "id": "math.im3.example.1.2.009",
+      "kind": "worked_example",
+      "title": "Example 3: One Real Solution; Two Real Solutions; Estimate Roots",
+      "domain": "math.im3",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-2, Example 3)"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1",
+        "lesson": "2",
+        "exampleNumber": 3,
+        "sourceLesson": "1-2",
+        "rawText": "1-2, Examples 1-3 \u2014 One Real Solution; Two Real Solutions; Estimate Roots"
+      }
+    },
+    {
+      "id": "math.im3.example.1.2.010",
+      "kind": "worked_example",
+      "title": "Example 4: Solve by Using a Table; Solve by Using a Calculator",
+      "domain": "math.im3",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-2, Example 4)"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1",
+        "lesson": "2",
+        "exampleNumber": 4,
+        "sourceLesson": "1-2",
+        "rawText": "1-2, Examples 4-5 \u2014 Solve by Using a Table; Solve by Using a Calculator"
+      }
+    },
+    {
+      "id": "math.im3.example.1.2.011",
+      "kind": "worked_example",
+      "title": "Example 5: Solve by Using a Table; Solve by Using a Calculator",
+      "domain": "math.im3",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-2, Example 5)"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1",
+        "lesson": "2",
+        "exampleNumber": 5,
+        "sourceLesson": "1-2",
+        "rawText": "1-2, Examples 4-5 \u2014 Solve by Using a Table; Solve by Using a Calculator"
+      }
+    },
+    {
+      "id": "math.im3.example.1.3.012",
+      "kind": "worked_example",
+      "title": "Example 1: Square Roots of Negative Numbers; Products of Pure Imaginary Numbers; Equation with Pure Imaginary Solutions",
+      "domain": "math.im3",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-3, Example 1)"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1",
+        "lesson": "3",
+        "exampleNumber": 1,
+        "sourceLesson": "1-3",
+        "rawText": "1-3, Examples 1-3 \u2014 Square Roots of Negative Numbers; Products of Pure Imaginary Numbers; Equation with Pure Imaginary Solutions"
+      }
+    },
+    {
+      "id": "math.im3.example.1.3.013",
+      "kind": "worked_example",
+      "title": "Example 2: Square Roots of Negative Numbers; Products of Pure Imaginary Numbers; Equation with Pure Imaginary Solutions",
+      "domain": "math.im3",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-3, Example 2)"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1",
+        "lesson": "3",
+        "exampleNumber": 2,
+        "sourceLesson": "1-3",
+        "rawText": "1-3, Examples 1-3 \u2014 Square Roots of Negative Numbers; Products of Pure Imaginary Numbers; Equation with Pure Imaginary Solutions"
+      }
+    },
+    {
+      "id": "math.im3.example.1.3.014",
+      "kind": "worked_example",
+      "title": "Example 3: Square Roots of Negative Numbers; Products of Pure Imaginary Numbers; Equation with Pure Imaginary Solutions",
+      "domain": "math.im3",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-3, Example 3)"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1",
+        "lesson": "3",
+        "exampleNumber": 3,
+        "sourceLesson": "1-3",
+        "rawText": "1-3, Examples 1-3 \u2014 Square Roots of Negative Numbers; Products of Pure Imaginary Numbers; Equation with Pure Imaginary Solutions"
+      }
+    },
+    {
+      "id": "math.im3.example.1.3.015",
+      "kind": "worked_example",
+      "title": "Example 4: Equate Complex Numbers; Add or Subtract Complex Numbers; Multiply Complex Numbers; Divide Complex Numbers",
+      "domain": "math.im3",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-3, Example 4)"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1",
+        "lesson": "3",
+        "exampleNumber": 4,
+        "sourceLesson": "1-3",
+        "rawText": "1-3, Examples 4-7 \u2014 Equate Complex Numbers; Add or Subtract Complex Numbers; Multiply Complex Numbers; Divide Complex Numbers"
+      }
+    },
+    {
+      "id": "math.im3.example.1.3.016",
+      "kind": "worked_example",
+      "title": "Example 5: Equate Complex Numbers; Add or Subtract Complex Numbers; Multiply Complex Numbers; Divide Complex Numbers",
+      "domain": "math.im3",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-3, Example 5)"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1",
+        "lesson": "3",
+        "exampleNumber": 5,
+        "sourceLesson": "1-3",
+        "rawText": "1-3, Examples 4-7 \u2014 Equate Complex Numbers; Add or Subtract Complex Numbers; Multiply Complex Numbers; Divide Complex Numbers"
+      }
+    },
+    {
+      "id": "math.im3.example.1.3.017",
+      "kind": "worked_example",
+      "title": "Example 6: Equate Complex Numbers; Add or Subtract Complex Numbers; Multiply Complex Numbers; Divide Complex Numbers",
+      "domain": "math.im3",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-3, Example 6)"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1",
+        "lesson": "3",
+        "exampleNumber": 6,
+        "sourceLesson": "1-3",
+        "rawText": "1-3, Examples 4-7 \u2014 Equate Complex Numbers; Add or Subtract Complex Numbers; Multiply Complex Numbers; Divide Complex Numbers"
+      }
+    },
+    {
+      "id": "math.im3.example.1.3.018",
+      "kind": "worked_example",
+      "title": "Example 7: Equate Complex Numbers; Add or Subtract Complex Numbers; Multiply Complex Numbers; Divide Complex Numbers",
+      "domain": "math.im3",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-3, Example 7)"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1",
+        "lesson": "3",
+        "exampleNumber": 7,
+        "sourceLesson": "1-3",
+        "rawText": "1-3, Examples 4-7 \u2014 Equate Complex Numbers; Add or Subtract Complex Numbers; Multiply Complex Numbers; Divide Complex Numbers"
+      }
+    },
+    {
+      "id": "math.im3.example.1.4.019",
+      "kind": "worked_example",
+      "title": "Example 1: Factor by Using the Distributive Property; Factor a Trinomial; Solve an Equation by Factoring; Factor a Trinomial Where a Is Not 1",
+      "domain": "math.im3",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-4, Example 1)"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1",
+        "lesson": "4",
+        "exampleNumber": 1,
+        "sourceLesson": "1-4",
+        "rawText": "1-4, Examples 1-4 \u2014 Factor by Using the Distributive Property; Factor a Trinomial; Solve an Equation by Factoring; Factor a Trinomial Where a Is Not 1"
+      }
+    },
+    {
+      "id": "math.im3.example.1.4.020",
+      "kind": "worked_example",
+      "title": "Example 2: Factor by Using the Distributive Property; Factor a Trinomial; Solve an Equation by Factoring; Factor a Trinomial Where a Is Not 1",
+      "domain": "math.im3",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-4, Example 2)"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1",
+        "lesson": "4",
+        "exampleNumber": 2,
+        "sourceLesson": "1-4",
+        "rawText": "1-4, Examples 1-4 \u2014 Factor by Using the Distributive Property; Factor a Trinomial; Solve an Equation by Factoring; Factor a Trinomial Where a Is Not 1"
+      }
+    },
+    {
+      "id": "math.im3.example.1.4.021",
+      "kind": "worked_example",
+      "title": "Example 3: Factor by Using the Distributive Property; Factor a Trinomial; Solve an Equation by Factoring; Factor a Trinomial Where a Is Not 1",
+      "domain": "math.im3",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-4, Example 3)"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1",
+        "lesson": "4",
+        "exampleNumber": 3,
+        "sourceLesson": "1-4",
+        "rawText": "1-4, Examples 1-4 \u2014 Factor by Using the Distributive Property; Factor a Trinomial; Solve an Equation by Factoring; Factor a Trinomial Where a Is Not 1"
+      }
+    },
+    {
+      "id": "math.im3.example.1.4.022",
+      "kind": "worked_example",
+      "title": "Example 4: Factor by Using the Distributive Property; Factor a Trinomial; Solve an Equation by Factoring; Factor a Trinomial Where a Is Not 1",
+      "domain": "math.im3",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-4, Example 4)"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1",
+        "lesson": "4",
+        "exampleNumber": 4,
+        "sourceLesson": "1-4",
+        "rawText": "1-4, Examples 1-4 \u2014 Factor by Using the Distributive Property; Factor a Trinomial; Solve an Equation by Factoring; Factor a Trinomial Where a Is Not 1"
+      }
+    },
+    {
+      "id": "math.im3.example.1.4.023",
+      "kind": "worked_example",
+      "title": "Example 5: Factor a Difference of Squares; Factor a Perfect Square Trinomial; Complex Solutions",
+      "domain": "math.im3",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-4, Example 5)"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1",
+        "lesson": "4",
+        "exampleNumber": 5,
+        "sourceLesson": "1-4",
+        "rawText": "1-4, Examples 5-7 \u2014 Factor a Difference of Squares; Factor a Perfect Square Trinomial; Complex Solutions"
+      }
+    },
+    {
+      "id": "math.im3.example.1.4.024",
+      "kind": "worked_example",
+      "title": "Example 6: Factor a Difference of Squares; Factor a Perfect Square Trinomial; Complex Solutions",
+      "domain": "math.im3",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-4, Example 6)"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1",
+        "lesson": "4",
+        "exampleNumber": 6,
+        "sourceLesson": "1-4",
+        "rawText": "1-4, Examples 5-7 \u2014 Factor a Difference of Squares; Factor a Perfect Square Trinomial; Complex Solutions"
+      }
+    },
+    {
+      "id": "math.im3.example.1.4.025",
+      "kind": "worked_example",
+      "title": "Example 7: Factor a Difference of Squares; Factor a Perfect Square Trinomial; Complex Solutions",
+      "domain": "math.im3",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-4, Example 7)"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1",
+        "lesson": "4",
+        "exampleNumber": 7,
+        "sourceLesson": "1-4",
+        "rawText": "1-4, Examples 5-7 \u2014 Factor a Difference of Squares; Factor a Perfect Square Trinomial; Complex Solutions"
+      }
+    },
+    {
+      "id": "math.im3.example.1.5.026",
+      "kind": "worked_example",
+      "title": "Example 1: Solve a Quadratic Equation with Rational Roots; Solve a Quadratic Equation with Irrational Roots; Solve a Quadratic Equation with Complex Solutions; Complete the Square; Solve by Completing the Square",
+      "domain": "math.im3",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-5, Example 1)"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1",
+        "lesson": "5",
+        "exampleNumber": 1,
+        "sourceLesson": "1-5",
+        "rawText": "1-5, Examples 1-5 \u2014 Solve a Quadratic Equation with Rational Roots; Solve a Quadratic Equation with Irrational Roots; Solve a Quadratic Equation with Complex Solutions; Complete the Square; Solve by Completing the Square"
+      }
+    },
+    {
+      "id": "math.im3.example.1.5.027",
+      "kind": "worked_example",
+      "title": "Example 2: Solve a Quadratic Equation with Rational Roots; Solve a Quadratic Equation with Irrational Roots; Solve a Quadratic Equation with Complex Solutions; Complete the Square; Solve by Completing the Square",
+      "domain": "math.im3",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-5, Example 2)"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1",
+        "lesson": "5",
+        "exampleNumber": 2,
+        "sourceLesson": "1-5",
+        "rawText": "1-5, Examples 1-5 \u2014 Solve a Quadratic Equation with Rational Roots; Solve a Quadratic Equation with Irrational Roots; Solve a Quadratic Equation with Complex Solutions; Complete the Square; Solve by Completing the Square"
+      }
+    },
+    {
+      "id": "math.im3.example.1.5.028",
+      "kind": "worked_example",
+      "title": "Example 3: Solve a Quadratic Equation with Rational Roots; Solve a Quadratic Equation with Irrational Roots; Solve a Quadratic Equation with Complex Solutions; Complete the Square; Solve by Completing the Square",
+      "domain": "math.im3",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-5, Example 3)"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1",
+        "lesson": "5",
+        "exampleNumber": 3,
+        "sourceLesson": "1-5",
+        "rawText": "1-5, Examples 1-5 \u2014 Solve a Quadratic Equation with Rational Roots; Solve a Quadratic Equation with Irrational Roots; Solve a Quadratic Equation with Complex Solutions; Complete the Square; Solve by Completing the Square"
+      }
+    },
+    {
+      "id": "math.im3.example.1.5.029",
+      "kind": "worked_example",
+      "title": "Example 4: Solve a Quadratic Equation with Rational Roots; Solve a Quadratic Equation with Irrational Roots; Solve a Quadratic Equation with Complex Solutions; Complete the Square; Solve by Completing the Square",
+      "domain": "math.im3",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-5, Example 4)"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1",
+        "lesson": "5",
+        "exampleNumber": 4,
+        "sourceLesson": "1-5",
+        "rawText": "1-5, Examples 1-5 \u2014 Solve a Quadratic Equation with Rational Roots; Solve a Quadratic Equation with Irrational Roots; Solve a Quadratic Equation with Complex Solutions; Complete the Square; Solve by Completing the Square"
+      }
+    },
+    {
+      "id": "math.im3.example.1.5.030",
+      "kind": "worked_example",
+      "title": "Example 5: Solve a Quadratic Equation with Rational Roots; Solve a Quadratic Equation with Irrational Roots; Solve a Quadratic Equation with Complex Solutions; Complete the Square; Solve by Completing the Square",
+      "domain": "math.im3",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-5, Example 5)"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1",
+        "lesson": "5",
+        "exampleNumber": 5,
+        "sourceLesson": "1-5",
+        "rawText": "1-5, Examples 1-5 \u2014 Solve a Quadratic Equation with Rational Roots; Solve a Quadratic Equation with Irrational Roots; Solve a Quadratic Equation with Complex Solutions; Complete the Square; Solve by Completing the Square"
+      }
+    },
+    {
+      "id": "math.im3.example.1.5.031",
+      "kind": "worked_example",
+      "title": "Example 7: Solve When a Is Not 1; Solve Equations with Imaginary Solutions; Write Functions in Vertex Form; Determine the Vertex and Axis of Symmetry; Model with a Quadratic Function",
+      "domain": "math.im3",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-5, Example 7)"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1",
+        "lesson": "5",
+        "exampleNumber": 7,
+        "sourceLesson": "1-5",
+        "rawText": "1-5, Examples 7-11 \u2014 Solve When a Is Not 1; Solve Equations with Imaginary Solutions; Write Functions in Vertex Form; Determine the Vertex and Axis of Symmetry; Model with a Quadratic Function"
+      }
+    },
+    {
+      "id": "math.im3.example.1.5.032",
+      "kind": "worked_example",
+      "title": "Example 8: Solve When a Is Not 1; Solve Equations with Imaginary Solutions; Write Functions in Vertex Form; Determine the Vertex and Axis of Symmetry; Model with a Quadratic Function",
+      "domain": "math.im3",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-5, Example 8)"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1",
+        "lesson": "5",
+        "exampleNumber": 8,
+        "sourceLesson": "1-5",
+        "rawText": "1-5, Examples 7-11 \u2014 Solve When a Is Not 1; Solve Equations with Imaginary Solutions; Write Functions in Vertex Form; Determine the Vertex and Axis of Symmetry; Model with a Quadratic Function"
+      }
+    },
+    {
+      "id": "math.im3.example.1.5.033",
+      "kind": "worked_example",
+      "title": "Example 9: Solve When a Is Not 1; Solve Equations with Imaginary Solutions; Write Functions in Vertex Form; Determine the Vertex and Axis of Symmetry; Model with a Quadratic Function",
+      "domain": "math.im3",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-5, Example 9)"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1",
+        "lesson": "5",
+        "exampleNumber": 9,
+        "sourceLesson": "1-5",
+        "rawText": "1-5, Examples 7-11 \u2014 Solve When a Is Not 1; Solve Equations with Imaginary Solutions; Write Functions in Vertex Form; Determine the Vertex and Axis of Symmetry; Model with a Quadratic Function"
+      }
+    },
+    {
+      "id": "math.im3.example.1.5.034",
+      "kind": "worked_example",
+      "title": "Example 10: Solve When a Is Not 1; Solve Equations with Imaginary Solutions; Write Functions in Vertex Form; Determine the Vertex and Axis of Symmetry; Model with a Quadratic Function",
+      "domain": "math.im3",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-5, Example 10)"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1",
+        "lesson": "5",
+        "exampleNumber": 10,
+        "sourceLesson": "1-5",
+        "rawText": "1-5, Examples 7-11 \u2014 Solve When a Is Not 1; Solve Equations with Imaginary Solutions; Write Functions in Vertex Form; Determine the Vertex and Axis of Symmetry; Model with a Quadratic Function"
+      }
+    },
+    {
+      "id": "math.im3.example.1.5.035",
+      "kind": "worked_example",
+      "title": "Example 11: Solve When a Is Not 1; Solve Equations with Imaginary Solutions; Write Functions in Vertex Form; Determine the Vertex and Axis of Symmetry; Model with a Quadratic Function",
+      "domain": "math.im3",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-5, Example 11)"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1",
+        "lesson": "5",
+        "exampleNumber": 11,
+        "sourceLesson": "1-5",
+        "rawText": "1-5, Examples 7-11 \u2014 Solve When a Is Not 1; Solve Equations with Imaginary Solutions; Write Functions in Vertex Form; Determine the Vertex and Axis of Symmetry; Model with a Quadratic Function"
+      }
+    },
+    {
+      "id": "math.im3.example.1.6.036",
+      "kind": "worked_example",
+      "title": "Example 1: Use the Quadratic Formula; Non-Factorable Equation; Imaginary Solutions",
+      "domain": "math.im3",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-6, Example 1)"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1",
+        "lesson": "6",
+        "exampleNumber": 1,
+        "sourceLesson": "1-6",
+        "rawText": "1-6, Examples 1-3 \u2014 Use the Quadratic Formula; Non-Factorable Equation; Imaginary Solutions"
+      }
+    },
+    {
+      "id": "math.im3.example.1.6.037",
+      "kind": "worked_example",
+      "title": "Example 2: Use the Quadratic Formula; Non-Factorable Equation; Imaginary Solutions",
+      "domain": "math.im3",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-6, Example 2)"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1",
+        "lesson": "6",
+        "exampleNumber": 2,
+        "sourceLesson": "1-6",
+        "rawText": "1-6, Examples 1-3 \u2014 Use the Quadratic Formula; Non-Factorable Equation; Imaginary Solutions"
+      }
+    },
+    {
+      "id": "math.im3.example.1.6.038",
+      "kind": "worked_example",
+      "title": "Example 3: Use the Quadratic Formula; Non-Factorable Equation; Imaginary Solutions",
+      "domain": "math.im3",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-6, Example 3)"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1",
+        "lesson": "6",
+        "exampleNumber": 3,
+        "sourceLesson": "1-6",
+        "rawText": "1-6, Examples 1-3 \u2014 Use the Quadratic Formula; Non-Factorable Equation; Imaginary Solutions"
+      }
+    },
+    {
+      "id": "math.im3.example.1.6.039",
+      "kind": "worked_example",
+      "title": "Example 4: Use the Discriminant; Determine Without Solving",
+      "domain": "math.im3",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-6, Example 4)"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1",
+        "lesson": "6",
+        "exampleNumber": 4,
+        "sourceLesson": "1-6",
+        "rawText": "1-6, Examples 4-5 \u2014 Use the Discriminant; Determine Without Solving"
+      }
+    },
+    {
+      "id": "math.im3.example.1.6.040",
+      "kind": "worked_example",
+      "title": "Example 5: Use the Discriminant; Determine Without Solving",
+      "domain": "math.im3",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-6, Example 5)"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1",
+        "lesson": "6",
+        "exampleNumber": 5,
+        "sourceLesson": "1-6",
+        "rawText": "1-6, Examples 4-5 \u2014 Use the Discriminant; Determine Without Solving"
+      }
+    },
+    {
+      "id": "math.im3.example.1.7.041",
+      "kind": "worked_example",
+      "title": "Example 1: Graph a Quadratic Inequality (\u2264); Graph a Quadratic Inequality (>)",
+      "domain": "math.im3",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-7, Example 1)"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1",
+        "lesson": "7",
+        "exampleNumber": 1,
+        "sourceLesson": "1-7",
+        "rawText": "1-7, Examples 1-2 \u2014 Graph a Quadratic Inequality (\u2264); Graph a Quadratic Inequality (>)"
+      }
+    },
+    {
+      "id": "math.im3.example.1.7.042",
+      "kind": "worked_example",
+      "title": "Example 2: Graph a Quadratic Inequality (\u2264); Graph a Quadratic Inequality (>)",
+      "domain": "math.im3",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-7, Example 2)"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1",
+        "lesson": "7",
+        "exampleNumber": 2,
+        "sourceLesson": "1-7",
+        "rawText": "1-7, Examples 1-2 \u2014 Graph a Quadratic Inequality (\u2264); Graph a Quadratic Inequality (>)"
+      }
+    },
+    {
+      "id": "math.im3.example.1.7.043",
+      "kind": "worked_example",
+      "title": "Example 3: Solve x^2 + x - 6 < 0 by Graphing; Solve x^2 - 3x - 4 \u2265 0 by Graphing; Solve a Quadratic Inequality in Context",
+      "domain": "math.im3",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-7, Example 3)"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1",
+        "lesson": "7",
+        "exampleNumber": 3,
+        "sourceLesson": "1-7",
+        "rawText": "1-7, Examples 3-5 \u2014 Solve x^2 + x - 6 < 0 by Graphing; Solve x^2 - 3x - 4 \u2265 0 by Graphing; Solve a Quadratic Inequality in Context"
+      }
+    },
+    {
+      "id": "math.im3.example.1.7.044",
+      "kind": "worked_example",
+      "title": "Example 4: Solve x^2 + x - 6 < 0 by Graphing; Solve x^2 - 3x - 4 \u2265 0 by Graphing; Solve a Quadratic Inequality in Context",
+      "domain": "math.im3",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-7, Example 4)"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1",
+        "lesson": "7",
+        "exampleNumber": 4,
+        "sourceLesson": "1-7",
+        "rawText": "1-7, Examples 3-5 \u2014 Solve x^2 + x - 6 < 0 by Graphing; Solve x^2 - 3x - 4 \u2265 0 by Graphing; Solve a Quadratic Inequality in Context"
+      }
+    },
+    {
+      "id": "math.im3.example.1.7.045",
+      "kind": "worked_example",
+      "title": "Example 5: Solve x^2 + x - 6 < 0 by Graphing; Solve x^2 - 3x - 4 \u2265 0 by Graphing; Solve a Quadratic Inequality in Context",
+      "domain": "math.im3",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-7, Example 5)"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1",
+        "lesson": "7",
+        "exampleNumber": 5,
+        "sourceLesson": "1-7",
+        "rawText": "1-7, Examples 3-5 \u2014 Solve x^2 + x - 6 < 0 by Graphing; Solve x^2 - 3x - 4 \u2265 0 by Graphing; Solve a Quadratic Inequality in Context"
+      }
+    },
+    {
+      "id": "math.im3.example.1.8.046",
+      "kind": "worked_example",
+      "title": "Example 1: Solve a Linear-Quadratic System by Using Substitution; Solve a Linear-Quadratic System by Using Elimination; Use a System to Solve a Quadratic Equation; Solve a Linear-Quadratic System by Graphing",
+      "domain": "math.im3",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-8, Example 1)"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1",
+        "lesson": "8",
+        "exampleNumber": 1,
+        "sourceLesson": "1-8",
+        "rawText": "1-8, Examples 1-4 \u2014 Solve a Linear-Quadratic System by Using Substitution; Solve a Linear-Quadratic System by Using Elimination; Use a System to Solve a Quadratic Equation; Solve a Linear-Quadratic System by Graphing"
+      }
+    },
+    {
+      "id": "math.im3.example.1.8.047",
+      "kind": "worked_example",
+      "title": "Example 2: Solve a Linear-Quadratic System by Using Substitution; Solve a Linear-Quadratic System by Using Elimination; Use a System to Solve a Quadratic Equation; Solve a Linear-Quadratic System by Graphing",
+      "domain": "math.im3",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-8, Example 2)"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1",
+        "lesson": "8",
+        "exampleNumber": 2,
+        "sourceLesson": "1-8",
+        "rawText": "1-8, Examples 1-4 \u2014 Solve a Linear-Quadratic System by Using Substitution; Solve a Linear-Quadratic System by Using Elimination; Use a System to Solve a Quadratic Equation; Solve a Linear-Quadratic System by Graphing"
+      }
+    },
+    {
+      "id": "math.im3.example.1.8.048",
+      "kind": "worked_example",
+      "title": "Example 3: Solve a Linear-Quadratic System by Using Substitution; Solve a Linear-Quadratic System by Using Elimination; Use a System to Solve a Quadratic Equation; Solve a Linear-Quadratic System by Graphing",
+      "domain": "math.im3",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-8, Example 3)"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1",
+        "lesson": "8",
+        "exampleNumber": 3,
+        "sourceLesson": "1-8",
+        "rawText": "1-8, Examples 1-4 \u2014 Solve a Linear-Quadratic System by Using Substitution; Solve a Linear-Quadratic System by Using Elimination; Use a System to Solve a Quadratic Equation; Solve a Linear-Quadratic System by Graphing"
+      }
+    },
+    {
+      "id": "math.im3.example.1.8.049",
+      "kind": "worked_example",
+      "title": "Example 4: Solve a Linear-Quadratic System by Using Substitution; Solve a Linear-Quadratic System by Using Elimination; Use a System to Solve a Quadratic Equation; Solve a Linear-Quadratic System by Graphing",
+      "domain": "math.im3",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-8, Example 4)"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1",
+        "lesson": "8",
+        "exampleNumber": 4,
+        "sourceLesson": "1-8",
+        "rawText": "1-8, Examples 1-4 \u2014 Solve a Linear-Quadratic System by Using Substitution; Solve a Linear-Quadratic System by Using Elimination; Use a System to Solve a Quadratic Equation; Solve a Linear-Quadratic System by Graphing"
+      }
+    },
+    {
+      "id": "math.im3.example.1.8.050",
+      "kind": "worked_example",
+      "title": "Example 5: Solve a Quadratic-Quadratic System Graphically; Solve a Quadratic-Quadratic System Algebraically; Use a System to Solve a Quadratic Equation",
+      "domain": "math.im3",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-8, Example 5)"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1",
+        "lesson": "8",
+        "exampleNumber": 5,
+        "sourceLesson": "1-8",
+        "rawText": "1-8, Examples 5-7 \u2014 Solve a Quadratic-Quadratic System Graphically; Solve a Quadratic-Quadratic System Algebraically; Use a System to Solve a Quadratic Equation"
+      }
+    },
+    {
+      "id": "math.im3.example.1.8.051",
+      "kind": "worked_example",
+      "title": "Example 6: Solve a Quadratic-Quadratic System Graphically; Solve a Quadratic-Quadratic System Algebraically; Use a System to Solve a Quadratic Equation",
+      "domain": "math.im3",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-8, Example 6)"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1",
+        "lesson": "8",
+        "exampleNumber": 6,
+        "sourceLesson": "1-8",
+        "rawText": "1-8, Examples 5-7 \u2014 Solve a Quadratic-Quadratic System Graphically; Solve a Quadratic-Quadratic System Algebraically; Use a System to Solve a Quadratic Equation"
+      }
+    },
+    {
+      "id": "math.im3.example.1.8.052",
+      "kind": "worked_example",
+      "title": "Example 7: Solve a Quadratic-Quadratic System Graphically; Solve a Quadratic-Quadratic System Algebraically; Use a System to Solve a Quadratic Equation",
+      "domain": "math.im3",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-8, Example 7)"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1",
+        "lesson": "8",
+        "exampleNumber": 7,
+        "sourceLesson": "1-8",
+        "rawText": "1-8, Examples 5-7 \u2014 Solve a Quadratic-Quadratic System Graphically; Solve a Quadratic-Quadratic System Algebraically; Use a System to Solve a Quadratic Equation"
+      }
+    },
+    {
+      "id": "math.im3.lesson.1.1",
+      "kind": "instructional_unit",
+      "title": "Graphing Quadratic Functions",
+      "domain": "math.im3",
+      "description": "Students analyze vertex form, standard form, and intercept form. Focus on transformations (translations, reflections, stretches) and identifying key features (vertex, axis of symmetry, intercepts).",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1",
+        "lesson": "1"
+      }
+    },
+    {
+      "id": "math.im3.lesson.1.2",
+      "kind": "instructional_unit",
+      "title": "Solving Quadratic Equations by Graphing",
+      "domain": "math.im3",
+      "description": "Students interpret x-intercepts as solutions and connect graphical solutions to real-world contexts.",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1",
+        "lesson": "2"
+      }
+    },
+    {
+      "id": "math.im3.lesson.1.3",
+      "kind": "instructional_unit",
+      "title": "Complex Numbers",
+      "domain": "math.im3",
+      "description": "Introduction to imaginary unit i, operations with complex numbers, and understanding why non-real solutions occur.",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1",
+        "lesson": "3"
+      }
+    },
+    {
+      "id": "math.im3.lesson.1.4",
+      "kind": "instructional_unit",
+      "title": "Solve Quadratic Equations by Factoring",
+      "domain": "math.im3",
+      "description": "Students factor trinomials and apply the zero product property.",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1",
+        "lesson": "4"
+      }
+    },
+    {
+      "id": "math.im3.lesson.1.5",
+      "kind": "instructional_unit",
+      "title": "Solving Quadratic Equations by Completing the Square",
+      "domain": "math.im3",
+      "description": "Conceptual development of completing the square, linking to vertex form.",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1",
+        "lesson": "5"
+      }
+    },
+    {
+      "id": "math.im3.lesson.1.6",
+      "kind": "instructional_unit",
+      "title": "Using the Quadratic Formula and the Discriminant",
+      "domain": "math.im3",
+      "description": "Derivation (conceptual) and application; interpreting discriminant for number/type of solutions.",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1",
+        "lesson": "6"
+      }
+    },
+    {
+      "id": "math.im3.lesson.1.7",
+      "kind": "instructional_unit",
+      "title": "Quadratic Inequalities",
+      "domain": "math.im3",
+      "description": "Graphing solution regions and interpreting intervals.",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1",
+        "lesson": "7"
+      }
+    },
+    {
+      "id": "math.im3.lesson.1.8",
+      "kind": "instructional_unit",
+      "title": "Solving Linear-Nonlinear Systems",
+      "domain": "math.im3",
+      "description": "Solving systems graphically and algebraically; interpreting intersections.",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1",
+        "lesson": "8"
+      }
+    },
+    {
+      "id": "math.im3.module.1",
+      "kind": "content_group",
+      "title": "Quadratic Functions and Complex Numbers",
+      "domain": "math.im3",
+      "description": "Students develop a deep understanding of quadratic relationships, multiple solution methods, and extend solutions into the complex number system. Emphasis is placed on connecting algebraic procedures with graphical meaning.",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1"
+      }
+    },
+    {
+      "id": "math.im3.skill.1.1.find-and-interpret-the-average-rate-of-change",
+      "kind": "skill",
+      "title": "1b: Find and interpret the average rate of change",
+      "domain": "math.im3",
+      "description": "Find and interpret the average rate of change",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1",
+        "lesson": "1"
+      },
+      "generatorKey": "average-rate-of-change",
+      "independentPracticeReady": true,
+      "rendererKey": "rate-of-change-calculator"
+    },
+    {
+      "id": "math.im3.skill.1.1.graph-quadratic-functions",
+      "kind": "skill",
+      "title": "1a: Graph quadratic functions",
+      "domain": "math.im3",
+      "description": "Graph quadratic functions",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1",
+        "lesson": "1"
+      },
+      "generatorKey": "quadratic-graph-analysis",
+      "independentPracticeReady": true,
+      "rendererKey": "graphing-explorer"
+    },
+    {
+      "id": "math.im3.skill.1.2.interpret-solutions-roots-in-context",
+      "kind": "skill",
+      "title": "1d: Interpret solutions (roots) in context",
+      "domain": "math.im3",
+      "description": "Interpret solutions (roots) in context",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1",
+        "lesson": "2"
+      },
+      "rendererKey": "graphing-explorer"
+    },
+    {
+      "id": "math.im3.skill.1.2.solve-quadratic-equations-by-graphing",
+      "kind": "skill",
+      "title": "1c: Solve quadratic equations by graphing",
+      "domain": "math.im3",
+      "description": "Solve quadratic equations by graphing",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1",
+        "lesson": "2"
+      },
+      "generatorKey": "solve-quadratic-by-graphing",
+      "independentPracticeReady": true,
+      "rendererKey": "graphing-explorer"
+    },
+    {
+      "id": "math.im3.skill.1.3.perform-operations-with-complex-numbers",
+      "kind": "skill",
+      "title": "1f: Perform operations with complex numbers",
+      "domain": "math.im3",
+      "description": "Perform operations with complex numbers",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1",
+        "lesson": "3"
+      },
+      "rendererKey": "step-by-step-solver"
+    },
+    {
+      "id": "math.im3.skill.1.3.understand-and-use-the-imaginary-unit-i",
+      "kind": "skill",
+      "title": "1e: Understand and use the imaginary unit i",
+      "domain": "math.im3",
+      "description": "Understand and use the imaginary unit i",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1",
+        "lesson": "3"
+      },
+      "rendererKey": "step-by-step-solver"
+    },
+    {
+      "id": "math.im3.skill.1.4.recognize-special-factor-patterns-gcf-trinomials-difference",
+      "kind": "skill",
+      "title": "1j: Recognize special factor patterns (GCF, trinomials, difference of squares)",
+      "domain": "math.im3",
+      "description": "Recognize special factor patterns (GCF, trinomials, difference of squares)",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1",
+        "lesson": "4"
+      },
+      "rendererKey": "step-by-step-solver"
+    },
+    {
+      "id": "math.im3.skill.1.4.solve-quadratic-equations-by-factoring",
+      "kind": "skill",
+      "title": "1h: Solve quadratic equations by factoring",
+      "domain": "math.im3",
+      "description": "Solve quadratic equations by factoring",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1",
+        "lesson": "4"
+      },
+      "rendererKey": "step-by-step-solver"
+    },
+    {
+      "id": "math.im3.skill.1.5.connect-completing-the-square-to-vertex-form",
+      "kind": "skill",
+      "title": "1m: Connect completing the square to vertex form",
+      "domain": "math.im3",
+      "description": "Connect completing the square to vertex form",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1",
+        "lesson": "5"
+      },
+      "rendererKey": "step-by-step-solver"
+    },
+    {
+      "id": "math.im3.skill.1.5.solve-quadratic-equations-by-completing-the-square",
+      "kind": "skill",
+      "title": "1k: Solve quadratic equations by completing the square",
+      "domain": "math.im3",
+      "description": "Solve quadratic equations by completing the square",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1",
+        "lesson": "5"
+      },
+      "rendererKey": "step-by-step-solver"
+    },
+    {
+      "id": "math.im3.skill.1.6.use-the-discriminant-to-determine-the-number-and-type-of-sol",
+      "kind": "skill",
+      "title": "1o: Use the discriminant to determine the number and type of solutions",
+      "domain": "math.im3",
+      "description": "Use the discriminant to determine the number and type of solutions",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1",
+        "lesson": "6"
+      },
+      "rendererKey": "discriminant-analyzer"
+    },
+    {
+      "id": "math.im3.skill.1.6.use-the-quadratic-formula-to-solve-equations",
+      "kind": "skill",
+      "title": "1n: Use the Quadratic Formula to solve equations",
+      "domain": "math.im3",
+      "description": "Use the Quadratic Formula to solve equations",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1",
+        "lesson": "6"
+      },
+      "rendererKey": "step-by-step-solver"
+    },
+    {
+      "id": "math.im3.skill.1.7.graph-quadratic-inequalities-in-two-variables",
+      "kind": "skill",
+      "title": "1p: Graph quadratic inequalities in two variables",
+      "domain": "math.im3",
+      "description": "Graph quadratic inequalities in two variables",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1",
+        "lesson": "7"
+      },
+      "rendererKey": "graphing-explorer"
+    },
+    {
+      "id": "math.im3.skill.1.7.solve-quadratic-inequalities-in-one-variable-by-graphing",
+      "kind": "skill",
+      "title": "1q: Solve quadratic inequalities in one variable by graphing",
+      "domain": "math.im3",
+      "description": "Solve quadratic inequalities in one variable by graphing",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1",
+        "lesson": "7"
+      },
+      "rendererKey": "graphing-explorer"
+    },
+    {
+      "id": "math.im3.skill.1.8.solve-systems-involving-a-linear-and-a-quadratic-equation",
+      "kind": "skill",
+      "title": "1s: Solve systems involving a linear and a quadratic equation",
+      "domain": "math.im3",
+      "description": "Solve systems involving a linear and a quadratic equation",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1",
+        "lesson": "8"
+      },
+      "rendererKey": "graphing-explorer"
+    },
+    {
+      "id": "math.im3.skill.1.8.solve-systems-of-two-quadratic-equations",
+      "kind": "skill",
+      "title": "1t: Solve systems of two quadratic equations",
+      "domain": "math.im3",
+      "description": "Solve systems of two quadratic equations",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1",
+        "lesson": "8"
+      },
+      "rendererKey": "graphing-explorer"
+    },
+    {
+      "id": "math.im3.skill.1.aleks.average-rate-of-change",
+      "kind": "concept",
+      "title": "average_rate_of_change",
+      "domain": "math.im3",
+      "description": "Must support equation, table, and graph-estimation inputs.",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1",
+        "source": "aleks-registry",
+        "familyKey": "average_rate_of_change",
+        "objectives": [
+          "1b"
+        ],
+        "sourceExamples": "1-1, Examples 4-6",
+        "interactionShape": "step-by-step solver + table/graph readout",
+        "status": "component-planned"
+      },
+      "generatorKey": "average-rate-of-change",
+      "independentPracticeReady": true,
+      "rendererKey": "rate-of-change-calculator"
+    },
+    {
+      "id": "math.im3.skill.1.aleks.completing-square-solve",
+      "kind": "concept",
+      "title": "completing_square_solve",
+      "domain": "math.im3",
+      "description": "Solve quadratics with rational, irrational, and complex solutions.",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1",
+        "source": "aleks-registry",
+        "familyKey": "completing_square_solve",
+        "objectives": [
+          "1k",
+          "1l"
+        ],
+        "sourceExamples": "1-5, Examples 1-8",
+        "interactionShape": "step-by-step solver",
+        "status": "component-planned"
+      },
+      "generatorKey": "algebraic-step-solver",
+      "independentPracticeReady": true,
+      "rendererKey": "step-by-step-solver"
+    },
+    {
+      "id": "math.im3.skill.1.aleks.complex-number-operations",
+      "kind": "concept",
+      "title": "complex_number_operations",
+      "domain": "math.im3",
+      "description": "Includes equating complex numbers, add/subtract, multiply, and divide.",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1",
+        "source": "aleks-registry",
+        "familyKey": "complex_number_operations",
+        "objectives": [
+          "1f"
+        ],
+        "sourceExamples": "1-3, Examples 4-7",
+        "interactionShape": "step-by-step solver",
+        "status": "component-planned"
+      },
+      "generatorKey": "algebraic-step-solver",
+      "independentPracticeReady": true,
+      "rendererKey": "step-by-step-solver"
+    },
+    {
+      "id": "math.im3.skill.1.aleks.discriminant-analysis",
+      "kind": "concept",
+      "title": "discriminant_analysis",
+      "domain": "math.im3",
+      "description": "Compute and classify solution type before solving.",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1",
+        "source": "aleks-registry",
+        "familyKey": "discriminant_analysis",
+        "objectives": [
+          "1o"
+        ],
+        "sourceExamples": "1-6, Examples 4-5",
+        "interactionShape": "classification + step-by-step computation",
+        "status": "component-planned"
+      },
+      "generatorKey": "algebraic-step-solver",
+      "independentPracticeReady": true,
+      "rendererKey": "discriminant-analyzer"
+    },
+    {
+      "id": "math.im3.skill.1.aleks.imaginary-number-simplification",
+      "kind": "concept",
+      "title": "imaginary_number_simplification",
+      "domain": "math.im3",
+      "description": "Covers sqrt(-n), products of pure imaginaries, and equations with pure imaginary solutions.",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1",
+        "source": "aleks-registry",
+        "familyKey": "imaginary_number_simplification",
+        "objectives": [
+          "1e",
+          "1g"
+        ],
+        "sourceExamples": "1-3, Examples 1-3",
+        "interactionShape": "step-by-step solver",
+        "status": "component-planned"
+      },
+      "generatorKey": "algebraic-step-solver",
+      "independentPracticeReady": true,
+      "rendererKey": "step-by-step-solver"
+    },
+    {
+      "id": "math.im3.skill.1.aleks.linear-quadratic-system",
+      "kind": "concept",
+      "title": "linear_quadratic_system",
+      "domain": "math.im3",
+      "description": "Supports substitution, elimination, graphing, and intersection interpretation.",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1",
+        "source": "aleks-registry",
+        "familyKey": "linear_quadratic_system",
+        "objectives": [
+          "1s",
+          "1u"
+        ],
+        "sourceExamples": "1-8, Examples 1-4 and 7",
+        "interactionShape": "graphing explorer + step-by-step solver",
+        "status": "component-planned"
+      },
+      "rendererKey": "graphing-explorer"
+    },
+    {
+      "id": "math.im3.skill.1.aleks.quadratic-factoring",
+      "kind": "concept",
+      "title": "quadratic_factoring",
+      "domain": "math.im3",
+      "description": "Includes GCF, trinomial factoring, a != 1, and Zero Product Property.",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1",
+        "source": "aleks-registry",
+        "familyKey": "quadratic_factoring",
+        "objectives": [
+          "1h",
+          "1i"
+        ],
+        "sourceExamples": "1-4, Examples 1-4",
+        "interactionShape": "step-by-step solver",
+        "status": "component-planned"
+      },
+      "generatorKey": "algebraic-step-solver",
+      "independentPracticeReady": true,
+      "rendererKey": "step-by-step-solver"
+    },
+    {
+      "id": "math.im3.skill.1.aleks.quadratic-formula",
+      "kind": "concept",
+      "title": "quadratic_formula",
+      "domain": "math.im3",
+      "description": "Routine, non-factorable, and imaginary-solution cases.",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1",
+        "source": "aleks-registry",
+        "familyKey": "quadratic_formula",
+        "objectives": [
+          "1n"
+        ],
+        "sourceExamples": "1-6, Examples 1-3",
+        "interactionShape": "step-by-step solver",
+        "status": "component-planned"
+      },
+      "generatorKey": "algebraic-step-solver",
+      "independentPracticeReady": true,
+      "rendererKey": "step-by-step-solver"
+    },
+    {
+      "id": "math.im3.skill.1.aleks.quadratic-graph-analysis",
+      "kind": "concept",
+      "title": "quadratic_graph_analysis",
+      "domain": "math.im3",
+      "description": "Covers graphing from table, equation, comparison, and context. Aligns with graph_analysis and plot_from_equation.",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1",
+        "source": "aleks-registry",
+        "familyKey": "quadratic_graph_analysis",
+        "objectives": [
+          "1a"
+        ],
+        "sourceExamples": "1-1, Examples 1-3",
+        "interactionShape": "graphing explorer + feature table",
+        "status": "component-planned"
+      },
+      "generatorKey": "quadratic-graph-analysis",
+      "independentPracticeReady": true,
+      "rendererKey": "graphing-explorer"
+    },
+    {
+      "id": "math.im3.skill.1.aleks.quadratic-inequality-graphing",
+      "kind": "concept",
+      "title": "quadratic_inequality_graphing",
+      "domain": "math.im3",
+      "description": "Boundary type, test point, and shading region.",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1",
+        "source": "aleks-registry",
+        "familyKey": "quadratic_inequality_graphing",
+        "objectives": [
+          "1p"
+        ],
+        "sourceExamples": "1-7, Examples 1-2",
+        "interactionShape": "graphing explorer",
+        "status": "planned"
+      },
+      "rendererKey": "graphing-explorer"
+    },
+    {
+      "id": "math.im3.skill.1.aleks.quadratic-inequality-interval-solution",
+      "kind": "concept",
+      "title": "quadratic_inequality_interval_solution",
+      "domain": "math.im3",
+      "description": "One-variable inequality solution sets and contextual interpretation.",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1",
+        "source": "aleks-registry",
+        "familyKey": "quadratic_inequality_interval_solution",
+        "objectives": [
+          "1q",
+          "1r"
+        ],
+        "sourceExamples": "1-7, Examples 3-5",
+        "interactionShape": "graphing explorer + interval input",
+        "status": "planned"
+      },
+      "rendererKey": "graphing-explorer"
+    },
+    {
+      "id": "math.im3.skill.1.aleks.quadratic-quadratic-system",
+      "kind": "concept",
+      "title": "quadratic_quadratic_system",
+      "domain": "math.im3",
+      "description": "Solves and interprets systems of two quadratic equations.",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1",
+        "source": "aleks-registry",
+        "familyKey": "quadratic_quadratic_system",
+        "objectives": [
+          "1t",
+          "1u"
+        ],
+        "sourceExamples": "1-8, Examples 5-6",
+        "interactionShape": "graphing explorer + step-by-step solver",
+        "status": "planned"
+      },
+      "rendererKey": "graphing-explorer"
+    },
+    {
+      "id": "math.im3.skill.1.aleks.quadratic-vertex-form-completion",
+      "kind": "concept",
+      "title": "quadratic_vertex_form_completion",
+      "domain": "math.im3",
+      "description": "Convert to vertex form and interpret graph features.",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1",
+        "source": "aleks-registry",
+        "familyKey": "quadratic_vertex_form_completion",
+        "objectives": [
+          "1m",
+          "1k",
+          "1l"
+        ],
+        "sourceExamples": "1-5, Examples 9-11",
+        "interactionShape": "step-by-step solver + graph feature table",
+        "status": "component-planned"
+      },
+      "rendererKey": "step-by-step-solver"
+    },
+    {
+      "id": "math.im3.skill.1.aleks.solve-quadratic-by-graphing",
+      "kind": "concept",
+      "title": "solve_quadratic_by_graphing",
+      "domain": "math.im3",
+      "description": "Includes exact roots, estimated roots, table/calculator support, and contextual root interpretation.",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1",
+        "source": "aleks-registry",
+        "familyKey": "solve_quadratic_by_graphing",
+        "objectives": [
+          "1c",
+          "1d"
+        ],
+        "sourceExamples": "1-2, Examples 1-5",
+        "interactionShape": "graphing explorer",
+        "status": "component-planned"
+      },
+      "generatorKey": "solve-quadratic-by-graphing",
+      "independentPracticeReady": true,
+      "rendererKey": "graphing-explorer"
+    },
+    {
+      "id": "math.im3.skill.1.aleks.special-product-factoring",
+      "kind": "concept",
+      "title": "special_product_factoring",
+      "domain": "math.im3",
+      "description": "Difference of squares, perfect square trinomials, and complex-solution extension.",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1",
+        "source": "aleks-registry",
+        "familyKey": "special_product_factoring",
+        "objectives": [
+          "1j",
+          "1g"
+        ],
+        "sourceExamples": "1-4, Examples 5-7",
+        "interactionShape": "step-by-step solver",
+        "status": "component-planned"
+      },
+      "rendererKey": "step-by-step-solver"
+    },
+    {
+      "id": "math.standard.ccss.hsf-if-c-7c",
+      "kind": "standard",
+      "title": "HSF-IF.C.7c: Graph polynomial functions, identifying zeros when suitable factorizations are available, and showing end behavior",
+      "domain": "math",
+      "description": "Graph polynomial functions, identifying zeros when suitable factorizations are available, and showing end behavior",
+      "sourceRefs": [
+        {
+          "source": "seed-standards:ccss",
+          "note": "HSF-IF.C.7c"
+        }
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "framework": "ccss",
+        "code": "HSF-IF.C.7c"
+      }
+    },
+    {
+      "id": "math.standard.ccss.hsa-sse-b-3",
+      "kind": "standard",
+      "title": "HSA-SSE.B.3: Choosing and producing equivalent forms of expressions",
+      "domain": "math",
+      "description": "Choosing and producing equivalent forms of expressions",
+      "sourceRefs": [
+        {
+          "source": "seed-standards:ccss",
+          "note": "HSA-SSE.B.3"
+        }
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "framework": "ccss",
+        "code": "HSA-SSE.B.3"
+      }
+    },
+    {
+      "id": "math.standard.ccss.hsa-rei-b-4",
+      "kind": "standard",
+      "title": "HSA-REI.B.4: Solving quadratic equations in one variable",
+      "domain": "math",
+      "description": "Solving quadratic equations in one variable",
+      "sourceRefs": [
+        {
+          "source": "seed-standards:ccss",
+          "note": "HSA-REI.B.4"
+        }
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "framework": "ccss",
+        "code": "HSA-REI.B.4"
+      }
+    },
+    {
+      "id": "math.standard.ccss.hsf-if-a-2",
+      "kind": "standard",
+      "title": "HSF-IF.A.2: Use function notation, evaluate functions for inputs in their domains, and interpret statements that use function notation in terms of a context",
+      "domain": "math",
+      "description": "Use function notation, evaluate functions for inputs in their domains, and interpret statements that use function notation in terms of a context",
+      "sourceRefs": [
+        {
+          "source": "seed-standards:ccss",
+          "note": "HSF-IF.A.2"
+        }
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "framework": "ccss",
+        "code": "HSF-IF.A.2"
+      }
+    },
+    {
+      "id": "math.standard.ccss.n-cn-a-1",
+      "kind": "standard",
+      "title": "N-CN.A.1: Knowing the definition of complex numbers",
+      "domain": "math",
+      "description": "Knowing the definition of complex numbers",
+      "sourceRefs": [
+        {
+          "source": "seed-standards:ccss",
+          "note": "N-CN.A.1"
+        }
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "framework": "ccss",
+        "code": "N-CN.A.1"
+      }
+    },
+    {
+      "id": "math.standard.ccss.n-cn-c-7",
+      "kind": "standard",
+      "title": "N-CN.C.7: Solving quadratics with complex solutions",
+      "domain": "math",
+      "description": "Solving quadratics with complex solutions",
+      "sourceRefs": [
+        {
+          "source": "seed-standards:ccss",
+          "note": "N-CN.C.7"
+        }
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "framework": "ccss",
+        "code": "N-CN.C.7"
+      }
+    },
+    {
+      "id": "math.standard.ccss.hsa-ced-a-1",
+      "kind": "standard",
+      "title": "HSA-CED.A.1: Creating equations in one variable",
+      "domain": "math",
+      "description": "Creating equations in one variable",
+      "sourceRefs": [
+        {
+          "source": "seed-standards:ccss",
+          "note": "HSA-CED.A.1"
+        }
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "framework": "ccss",
+        "code": "HSA-CED.A.1"
+      }
+    },
+    {
+      "id": "math.standard.ccss.hsa-ced-a-3",
+      "kind": "standard",
+      "title": "HSA-CED.A.3: Represent constraints by equations or inequalities, and by systems of equations and/or inequalities, and interpret solutions as viable or nonviable options",
+      "domain": "math",
+      "description": "Represent constraints by equations or inequalities, and by systems of equations and/or inequalities, and interpret solutions as viable or nonviable options",
+      "sourceRefs": [
+        {
+          "source": "seed-standards:ccss",
+          "note": "HSA-CED.A.3"
+        }
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "framework": "ccss",
+        "code": "HSA-CED.A.3"
+      }
+    },
+    {
+      "id": "math.standard.ccss.hsa-rei-c-7",
+      "kind": "standard",
+      "title": "HSA-REI.C.7: Solve systems consisting of linear and quadratic equations graphically and algebraically",
+      "domain": "math",
+      "description": "Solve systems consisting of linear and quadratic equations graphically and algebraically",
+      "sourceRefs": [
+        {
+          "source": "seed-standards:ccss",
+          "note": "HSA-REI.C.7"
+        }
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "framework": "ccss",
+        "code": "HSA-REI.C.7"
+      }
+    },
+    {
+      "id": "math.standard.ccss.hsa-apr-a-1",
+      "kind": "standard",
+      "title": "HSA-APR.A.1: Adding, subtracting, and multiplying polynomials",
+      "domain": "math",
+      "description": "Adding, subtracting, and multiplying polynomials",
+      "sourceRefs": [
+        {
+          "source": "seed-standards:ccss",
+          "note": "HSA-APR.A.1"
+        }
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "framework": "ccss",
+        "code": "HSA-APR.A.1"
+      }
+    },
+    {
+      "id": "math.standard.ccss.hsf-if-b-4",
+      "kind": "standard",
+      "title": "HSF-IF.B.4: Interpreting key features of functions from graphs and tables",
+      "domain": "math",
+      "description": "Interpreting key features of functions from graphs and tables",
+      "sourceRefs": [
+        {
+          "source": "seed-standards:ccss",
+          "note": "HSF-IF.B.4"
+        }
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "framework": "ccss",
+        "code": "HSF-IF.B.4"
+      }
+    },
+    {
+      "id": "math.standard.ccss.hsa-apr-b-3",
+      "kind": "standard",
+      "title": "HSA-APR.B.3: Identifying zeros of polynomials",
+      "domain": "math",
+      "description": "Identifying zeros of polynomials",
+      "sourceRefs": [
+        {
+          "source": "seed-standards:ccss",
+          "note": "HSA-APR.B.3"
+        }
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "framework": "ccss",
+        "code": "HSA-APR.B.3"
+      }
+    },
+    {
+      "id": "math.standard.ccss.hsa-apr-b-2",
+      "kind": "standard",
+      "title": "HSA-APR.B.2: Know and apply the Remainder Theorem: for a polynomial p(x) and a number a, the remainder on division by x - a is p(a)",
+      "domain": "math",
+      "description": "Know and apply the Remainder Theorem: for a polynomial p(x) and a number a, the remainder on division by x - a is p(a)",
+      "sourceRefs": [
+        {
+          "source": "seed-standards:ccss",
+          "note": "HSA-APR.B.2"
+        }
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "framework": "ccss",
+        "code": "HSA-APR.B.2"
+      }
+    },
+    {
+      "id": "math.standard.ccss.hsa-apr-c-4",
+      "kind": "standard",
+      "title": "HSA-APR.C.4: Prove polynomial identities and use them to describe numerical relationships",
+      "domain": "math",
+      "description": "Prove polynomial identities and use them to describe numerical relationships",
+      "sourceRefs": [
+        {
+          "source": "seed-standards:ccss",
+          "note": "HSA-APR.C.4"
+        }
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "framework": "ccss",
+        "code": "HSA-APR.C.4"
+      }
+    },
+    {
+      "id": "math.standard.ccss.hsf-bf-a-1",
+      "kind": "standard",
+      "title": "HSF-BF.A.1: Building functions that describe relationships between quantities",
+      "domain": "math",
+      "description": "Building functions that describe relationships between quantities",
+      "sourceRefs": [
+        {
+          "source": "seed-standards:ccss",
+          "note": "HSF-BF.A.1"
+        }
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "framework": "ccss",
+        "code": "HSF-BF.A.1"
+      }
+    },
+    {
+      "id": "math.standard.ccss.hsf-bf-a-1a",
+      "kind": "standard",
+      "title": "HSF-BF.A.1a: Determine an explicit expression, a recursive process, or steps for calculation from a context",
+      "domain": "math",
+      "description": "Determine an explicit expression, a recursive process, or steps for calculation from a context",
+      "sourceRefs": [
+        {
+          "source": "seed-standards:ccss",
+          "note": "HSF-BF.A.1a"
+        }
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "framework": "ccss",
+        "code": "HSF-BF.A.1a"
+      }
+    },
+    {
+      "id": "math.standard.ccss.hsf-bf-b-3",
+      "kind": "standard",
+      "title": "HSF-BF.B.3: Effects of transformations on function graphs",
+      "domain": "math",
+      "description": "Effects of transformations on function graphs",
+      "sourceRefs": [
+        {
+          "source": "seed-standards:ccss",
+          "note": "HSF-BF.B.3"
+        }
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "framework": "ccss",
+        "code": "HSF-BF.B.3"
+      }
+    },
+    {
+      "id": "math.standard.ccss.hsf-bf-b-4",
+      "kind": "standard",
+      "title": "HSF-BF.B.4: Finding inverse functions",
+      "domain": "math",
+      "description": "Finding inverse functions",
+      "sourceRefs": [
+        {
+          "source": "seed-standards:ccss",
+          "note": "HSF-BF.B.4"
+        }
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "framework": "ccss",
+        "code": "HSF-BF.B.4"
+      }
+    },
+    {
+      "id": "math.standard.ccss.n-rn-a-1",
+      "kind": "standard",
+      "title": "N-RN.A.1: Understanding nth roots and rational exponents",
+      "domain": "math",
+      "description": "Understanding nth roots and rational exponents",
+      "sourceRefs": [
+        {
+          "source": "seed-standards:ccss",
+          "note": "N-RN.A.1"
+        }
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "framework": "ccss",
+        "code": "N-RN.A.1"
+      }
+    },
+    {
+      "id": "math.standard.ccss.n-rn-a-2",
+      "kind": "standard",
+      "title": "N-RN.A.2: Rewriting expressions involving radicals and rational exponents",
+      "domain": "math",
+      "description": "Rewriting expressions involving radicals and rational exponents",
+      "sourceRefs": [
+        {
+          "source": "seed-standards:ccss",
+          "note": "N-RN.A.2"
+        }
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "framework": "ccss",
+        "code": "N-RN.A.2"
+      }
+    },
+    {
+      "id": "math.standard.ccss.hsf-if-c-7a",
+      "kind": "standard",
+      "title": "HSF-IF.C.7a: Graph square root, cube root, and piecewise-defined functions, including step functions and absolute value functions",
+      "domain": "math",
+      "description": "Graph square root, cube root, and piecewise-defined functions, including step functions and absolute value functions",
+      "sourceRefs": [
+        {
+          "source": "seed-standards:ccss",
+          "note": "HSF-IF.C.7a"
+        }
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "framework": "ccss",
+        "code": "HSF-IF.C.7a"
+      }
+    },
+    {
+      "id": "math.standard.ccss.hsf-if-c-7e",
+      "kind": "standard",
+      "title": "HSF-IF.C.7e: Graphing exponential and logarithmic functions, showing intercepts and end behavior",
+      "domain": "math",
+      "description": "Graphing exponential and logarithmic functions, showing intercepts and end behavior",
+      "sourceRefs": [
+        {
+          "source": "seed-standards:ccss",
+          "note": "HSF-IF.C.7e"
+        }
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "framework": "ccss",
+        "code": "HSF-IF.C.7e"
+      }
+    },
+    {
+      "id": "math.standard.ccss.hsf-le-a-1",
+      "kind": "standard",
+      "title": "HSF-LE.A.1: Distinguish between situations that can be modeled with linear functions and with exponential functions",
+      "domain": "math",
+      "description": "Distinguish between situations that can be modeled with linear functions and with exponential functions",
+      "sourceRefs": [
+        {
+          "source": "seed-standards:ccss",
+          "note": "HSF-LE.A.1"
+        }
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "framework": "ccss",
+        "code": "HSF-LE.A.1"
+      }
+    },
+    {
+      "id": "math.standard.ccss.hsf-le-a-4",
+      "kind": "standard",
+      "title": "HSF-LE.A.4: Expressing solutions to exponential models as logarithms",
+      "domain": "math",
+      "description": "Expressing solutions to exponential models as logarithms",
+      "sourceRefs": [
+        {
+          "source": "seed-standards:ccss",
+          "note": "HSF-LE.A.4"
+        }
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "framework": "ccss",
+        "code": "HSF-LE.A.4"
+      }
+    },
+    {
+      "id": "math.standard.ccss.hsf-bf-b-5",
+      "kind": "standard",
+      "title": "HSF-BF.B.5: Understanding the inverse relationship between exponents and logarithms",
+      "domain": "math",
+      "description": "Understanding the inverse relationship between exponents and logarithms",
+      "sourceRefs": [
+        {
+          "source": "seed-standards:ccss",
+          "note": "HSF-BF.B.5"
+        }
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "framework": "ccss",
+        "code": "HSF-BF.B.5"
+      }
+    },
+    {
+      "id": "math.standard.ccss.hsf-le-a-2",
+      "kind": "standard",
+      "title": "HSF-LE.A.2: Construct linear and exponential functions, including arithmetic and geometric sequences, given a graph, a description of a relationship, or two input-output pairs",
+      "domain": "math",
+      "description": "Construct linear and exponential functions, including arithmetic and geometric sequences, given a graph, a description of a relationship, or two input-output pairs",
+      "sourceRefs": [
+        {
+          "source": "seed-standards:ccss",
+          "note": "HSF-LE.A.2"
+        }
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "framework": "ccss",
+        "code": "HSF-LE.A.2"
+      }
+    },
+    {
+      "id": "math.standard.ccss.hsf-le-b-5",
+      "kind": "standard",
+      "title": "HSF-LE.B.5: Interpret the parameters in a linear function or an exponential function in terms of a context",
+      "domain": "math",
+      "description": "Interpret the parameters in a linear function or an exponential function in terms of a context",
+      "sourceRefs": [
+        {
+          "source": "seed-standards:ccss",
+          "note": "HSF-LE.B.5"
+        }
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "framework": "ccss",
+        "code": "HSF-LE.B.5"
+      }
+    },
+    {
+      "id": "math.standard.ccss.hsa-apr-d-6",
+      "kind": "standard",
+      "title": "HSA-APR.D.6: Rewrite simple rational expressions in different forms; write a(x)/b(x) in the form q(x) + r(x)/b(x) where a, b, q, and r are polynomials",
+      "domain": "math",
+      "description": "Rewrite simple rational expressions in different forms; write a(x)/b(x) in the form q(x) + r(x)/b(x) where a, b, q, and r are polynomials",
+      "sourceRefs": [
+        {
+          "source": "seed-standards:ccss",
+          "note": "HSA-APR.D.6"
+        }
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "framework": "ccss",
+        "code": "HSA-APR.D.6"
+      }
+    },
+    {
+      "id": "math.standard.ccss.hsf-if-c-7d",
+      "kind": "standard",
+      "title": "HSF-IF.C.7d: Graph rational functions, showing intercepts and asymptotes when suitable factorizations are available",
+      "domain": "math",
+      "description": "Graph rational functions, showing intercepts and asymptotes when suitable factorizations are available",
+      "sourceRefs": [
+        {
+          "source": "seed-standards:ccss",
+          "note": "HSF-IF.C.7d"
+        }
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "framework": "ccss",
+        "code": "HSF-IF.C.7d"
+      }
+    },
+    {
+      "id": "math.standard.ccss.hsa-ced-a-2",
+      "kind": "standard",
+      "title": "HSA-CED.A.2: Create equations in two or more variables to represent relationships between quantities",
+      "domain": "math",
+      "description": "Create equations in two or more variables to represent relationships between quantities",
+      "sourceRefs": [
+        {
+          "source": "seed-standards:ccss",
+          "note": "HSA-CED.A.2"
+        }
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "framework": "ccss",
+        "code": "HSA-CED.A.2"
+      }
+    },
+    {
+      "id": "math.standard.ccss.hsa-rei-a-2",
+      "kind": "standard",
+      "title": "HSA-REI.A.2: Solve rational equations in one variable and give examples showing how extraneous solutions can arise",
+      "domain": "math",
+      "description": "Solve rational equations in one variable and give examples showing how extraneous solutions can arise",
+      "sourceRefs": [
+        {
+          "source": "seed-standards:ccss",
+          "note": "HSA-REI.A.2"
+        }
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "framework": "ccss",
+        "code": "HSA-REI.A.2"
+      }
+    },
+    {
+      "id": "math.standard.ccss.hss-ic-a-1",
+      "kind": "standard",
+      "title": "HSS-IC.A.1: Understand statistics as a process for making inferences about population parameters based on a random sample from that population",
+      "domain": "math",
+      "description": "Understand statistics as a process for making inferences about population parameters based on a random sample from that population",
+      "sourceRefs": [
+        {
+          "source": "seed-standards:ccss",
+          "note": "HSS-IC.A.1"
+        }
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "framework": "ccss",
+        "code": "HSS-IC.A.1"
+      }
+    },
+    {
+      "id": "math.standard.ccss.hss-ic-b-3",
+      "kind": "standard",
+      "title": "HSS-IC.B.3: Recognize the purposes of and differences among sample surveys, experiments, and observational studies",
+      "domain": "math",
+      "description": "Recognize the purposes of and differences among sample surveys, experiments, and observational studies",
+      "sourceRefs": [
+        {
+          "source": "seed-standards:ccss",
+          "note": "HSS-IC.B.3"
+        }
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "framework": "ccss",
+        "code": "HSS-IC.B.3"
+      }
+    },
+    {
+      "id": "math.standard.ccss.hss-id-a-1",
+      "kind": "standard",
+      "title": "HSS-ID.A.1: Represent data with plots on the real number line (dot plots, histograms, box plots)",
+      "domain": "math",
+      "description": "Represent data with plots on the real number line (dot plots, histograms, box plots)",
+      "sourceRefs": [
+        {
+          "source": "seed-standards:ccss",
+          "note": "HSS-ID.A.1"
+        }
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "framework": "ccss",
+        "code": "HSS-ID.A.1"
+      }
+    },
+    {
+      "id": "math.standard.ccss.hss-id-a-2",
+      "kind": "standard",
+      "title": "HSS-ID.A.2: Use statistics appropriate to the shape of the data distribution to compare center and spread of two or more different data sets",
+      "domain": "math",
+      "description": "Use statistics appropriate to the shape of the data distribution to compare center and spread of two or more different data sets",
+      "sourceRefs": [
+        {
+          "source": "seed-standards:ccss",
+          "note": "HSS-ID.A.2"
+        }
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "framework": "ccss",
+        "code": "HSS-ID.A.2"
+      }
+    },
+    {
+      "id": "math.standard.ccss.hss-id-a-3",
+      "kind": "standard",
+      "title": "HSS-ID.A.3: Interpret differences in shape, center, and spread in the context of the data sets",
+      "domain": "math",
+      "description": "Interpret differences in shape, center, and spread in the context of the data sets",
+      "sourceRefs": [
+        {
+          "source": "seed-standards:ccss",
+          "note": "HSS-ID.A.3"
+        }
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "framework": "ccss",
+        "code": "HSS-ID.A.3"
+      }
+    },
+    {
+      "id": "math.standard.ccss.hss-id-b-6",
+      "kind": "standard",
+      "title": "HSS-ID.B.6: Represent data on two quantitative variables, and describe how those variables vary together",
+      "domain": "math",
+      "description": "Represent data on two quantitative variables, and describe how those variables vary together",
+      "sourceRefs": [
+        {
+          "source": "seed-standards:ccss",
+          "note": "HSS-ID.B.6"
+        }
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "framework": "ccss",
+        "code": "HSS-ID.B.6"
+      }
+    },
+    {
+      "id": "math.standard.ccss.hss-ic-b-4",
+      "kind": "standard",
+      "title": "HSS-IC.B.4: Use data from a sample survey to estimate a population mean or proportion and develop a margin of error through simulations",
+      "domain": "math",
+      "description": "Use data from a sample survey to estimate a population mean or proportion and develop a margin of error through simulations",
+      "sourceRefs": [
+        {
+          "source": "seed-standards:ccss",
+          "note": "HSS-IC.B.4"
+        }
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "framework": "ccss",
+        "code": "HSS-IC.B.4"
+      }
+    },
+    {
+      "id": "math.standard.ccss.hss-ic-b-5",
+      "kind": "standard",
+      "title": "HSS-IC.B.5: Use data from a randomized experiment to compare two treatments and use simulations to decide if differences between them are statistically significant",
+      "domain": "math",
+      "description": "Use data from a randomized experiment to compare two treatments and use simulations to decide if differences between them are statistically significant",
+      "sourceRefs": [
+        {
+          "source": "seed-standards:ccss",
+          "note": "HSS-IC.B.5"
+        }
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "framework": "ccss",
+        "code": "HSS-IC.B.5"
+      }
+    },
+    {
+      "id": "math.standard.ccss.hss-ic-b-6",
+      "kind": "standard",
+      "title": "HSS-IC.B.6: Evaluate reports based on data by identifying sources of bias, questionable conclusions, and the statistical question asked",
+      "domain": "math",
+      "description": "Evaluate reports based on data by identifying sources of bias, questionable conclusions, and the statistical question asked",
+      "sourceRefs": [
+        {
+          "source": "seed-standards:ccss",
+          "note": "HSS-IC.B.6"
+        }
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "framework": "ccss",
+        "code": "HSS-IC.B.6"
+      }
+    },
+    {
+      "id": "math.standard.ccss.hsf-tf-a-1",
+      "kind": "standard",
+      "title": "HSF-TF.A.1: Extend the domain of the trigonometric functions using the unit circle",
+      "domain": "math",
+      "description": "Extend the domain of the trigonometric functions using the unit circle",
+      "sourceRefs": [
+        {
+          "source": "seed-standards:ccss",
+          "note": "HSF-TF.A.1"
+        }
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "framework": "ccss",
+        "code": "HSF-TF.A.1"
+      }
+    },
+    {
+      "id": "math.standard.ccss.hsf-tf-a-2",
+      "kind": "standard",
+      "title": "HSF-TF.A.2: Explain how the unit circle in the coordinate plane enables the extension of trigonometric functions to all real numbers, and interpret these functions in terms of a periodic phenomenon",
+      "domain": "math",
+      "description": "Explain how the unit circle in the coordinate plane enables the extension of trigonometric functions to all real numbers, and interpret these functions in terms of a periodic phenomenon",
+      "sourceRefs": [
+        {
+          "source": "seed-standards:ccss",
+          "note": "HSF-TF.A.2"
+        }
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "framework": "ccss",
+        "code": "HSF-TF.A.2"
+      }
+    },
+    {
+      "id": "math.standard.ccss.hsf-tf-a-4",
+      "kind": "standard",
+      "title": "HSF-TF.A.4: Use the unit circle to explain symmetry and periodicity of trigonometric functions",
+      "domain": "math",
+      "description": "Use the unit circle to explain symmetry and periodicity of trigonometric functions",
+      "sourceRefs": [
+        {
+          "source": "seed-standards:ccss",
+          "note": "HSF-TF.A.4"
+        }
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "framework": "ccss",
+        "code": "HSF-TF.A.4"
+      }
+    },
+    {
+      "id": "math.standard.ccss.hsf-tf-b-5",
+      "kind": "standard",
+      "title": "HSF-TF.B.5: Choose trigonometric functions to model periodic phenomena with specified amplitude, frequency, and midline",
+      "domain": "math",
+      "description": "Choose trigonometric functions to model periodic phenomena with specified amplitude, frequency, and midline",
+      "sourceRefs": [
+        {
+          "source": "seed-standards:ccss",
+          "note": "HSF-TF.B.5"
+        }
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "framework": "ccss",
+        "code": "HSF-TF.B.5"
+      }
+    },
+    {
+      "id": "math.im3.generator.m1.quadratic-graph-analysis",
+      "kind": "generator",
+      "title": "Quadratic Graph Analysis Generator",
+      "domain": "math.im3",
+      "sourceRefs": [
+        {
+          "source": "pilot",
+          "note": "Module 1 pilot generator"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "registered-generator",
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1",
+        "generatorKey": "quadratic-graph-analysis"
+      }
+    },
+    {
+      "id": "math.im3.generator.m1.average-rate-of-change",
+      "kind": "generator",
+      "title": "Average Rate of Change Generator",
+      "domain": "math.im3",
+      "sourceRefs": [
+        {
+          "source": "pilot",
+          "note": "Module 1 pilot generator"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "registered-generator",
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1",
+        "generatorKey": "average-rate-of-change"
+      }
+    },
+    {
+      "id": "math.im3.generator.m1.solve-quadratic-by-graphing",
+      "kind": "generator",
+      "title": "Solve Quadratic by Graphing Generator",
+      "domain": "math.im3",
+      "sourceRefs": [
+        {
+          "source": "pilot",
+          "note": "Module 1 pilot generator"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "registered-generator",
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1",
+        "generatorKey": "solve-quadratic-by-graphing"
+      }
+    },
+    {
+      "id": "math.im3.renderer.step-by-step-solver",
+      "kind": "renderer",
+      "title": "Step-by-Step Solver Renderer",
+      "domain": "math.im3",
+      "sourceRefs": [
+        {
+          "source": "component-registry",
+          "note": "Existing React component"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "registered-renderer",
+      "reviewStatus": "approved",
+      "metadata": {
+        "rendererKey": "step-by-step-solver"
+      }
+    },
+    {
+      "id": "math.im3.renderer.graphing-explorer",
+      "kind": "renderer",
+      "title": "Graphing Explorer Renderer",
+      "domain": "math.im3",
+      "sourceRefs": [
+        {
+          "source": "component-registry",
+          "note": "Existing React component"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "registered-renderer",
+      "reviewStatus": "approved",
+      "metadata": {
+        "rendererKey": "graphing-explorer"
+      }
+    },
+    {
+      "id": "math.im3.renderer.comprehension-quiz",
+      "kind": "renderer",
+      "title": "Comprehension Quiz Renderer",
+      "domain": "math.im3",
+      "sourceRefs": [
+        {
+          "source": "component-registry",
+          "note": "Existing React component"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "registered-renderer",
+      "reviewStatus": "approved",
+      "metadata": {
+        "rendererKey": "comprehension-quiz"
+      }
+    },
+    {
+      "id": "math.im3.renderer.discriminant-analyzer",
+      "kind": "renderer",
+      "title": "Discriminant Analyzer Renderer",
+      "domain": "math.im3",
+      "sourceRefs": [
+        {
+          "source": "component-registry",
+          "note": "Existing React component"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "registered-renderer",
+      "reviewStatus": "approved",
+      "metadata": {
+        "rendererKey": "discriminant-analyzer"
+      }
+    },
+    {
+      "id": "math.im3.generator.m1.algebraic-step-solver",
+      "kind": "generator",
+      "title": "Algebraic Step Solver Generator",
+      "domain": "math.im3",
+      "sourceRefs": [
+        {
+          "source": "pilot",
+          "note": "Module 1 pilot generator"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "registered-generator",
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1",
+        "generatorKey": "algebraic-step-solver"
+      }
+    },
+    {
+      "id": "math.im3.renderer.rate-of-change-calculator",
+      "kind": "renderer",
+      "title": "Rate of Change Calculator Renderer",
+      "domain": "math.im3",
+      "sourceRefs": [
+        {
+          "source": "component-registry",
+          "note": "Existing React component"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "registered-renderer",
+      "reviewStatus": "approved",
+      "metadata": {
+        "rendererKey": "rate-of-change-calculator"
+      }
+    }
+  ]
+}

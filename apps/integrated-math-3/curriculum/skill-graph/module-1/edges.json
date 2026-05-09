@@ -1,0 +1,2927 @@
+{
+  "edges": [
+    {
+      "id": "math.im3.edge.m1.001",
+      "type": "contains",
+      "sourceId": "math.im3",
+      "targetId": "math.im3.module.1",
+      "weight": 1.0,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1"
+      },
+      "rationale": "Module 1 is contained in IM3 domain",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/modules/module-1-quadratic-functions.md"
+      ]
+    },
+    {
+      "id": "math.im3.edge.m1.002",
+      "type": "contains",
+      "sourceId": "math.im3.module.1",
+      "targetId": "math.im3.lesson.1.1",
+      "weight": 1.0,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1"
+      },
+      "rationale": "Lesson 1 is contained in Module 1",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/modules/module-1-quadratic-functions.md"
+      ]
+    },
+    {
+      "id": "math.im3.edge.m1.003",
+      "type": "contains",
+      "sourceId": "math.im3.module.1",
+      "targetId": "math.im3.lesson.1.2",
+      "weight": 1.0,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1"
+      },
+      "rationale": "Lesson 2 is contained in Module 1",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/modules/module-1-quadratic-functions.md"
+      ]
+    },
+    {
+      "id": "math.im3.edge.m1.004",
+      "type": "contains",
+      "sourceId": "math.im3.module.1",
+      "targetId": "math.im3.lesson.1.3",
+      "weight": 1.0,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1"
+      },
+      "rationale": "Lesson 3 is contained in Module 1",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/modules/module-1-quadratic-functions.md"
+      ]
+    },
+    {
+      "id": "math.im3.edge.m1.005",
+      "type": "contains",
+      "sourceId": "math.im3.module.1",
+      "targetId": "math.im3.lesson.1.4",
+      "weight": 1.0,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1"
+      },
+      "rationale": "Lesson 4 is contained in Module 1",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/modules/module-1-quadratic-functions.md"
+      ]
+    },
+    {
+      "id": "math.im3.edge.m1.006",
+      "type": "contains",
+      "sourceId": "math.im3.module.1",
+      "targetId": "math.im3.lesson.1.5",
+      "weight": 1.0,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1"
+      },
+      "rationale": "Lesson 5 is contained in Module 1",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/modules/module-1-quadratic-functions.md"
+      ]
+    },
+    {
+      "id": "math.im3.edge.m1.007",
+      "type": "contains",
+      "sourceId": "math.im3.module.1",
+      "targetId": "math.im3.lesson.1.6",
+      "weight": 1.0,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1"
+      },
+      "rationale": "Lesson 6 is contained in Module 1",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/modules/module-1-quadratic-functions.md"
+      ]
+    },
+    {
+      "id": "math.im3.edge.m1.008",
+      "type": "contains",
+      "sourceId": "math.im3.module.1",
+      "targetId": "math.im3.lesson.1.7",
+      "weight": 1.0,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1"
+      },
+      "rationale": "Lesson 7 is contained in Module 1",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/modules/module-1-quadratic-functions.md"
+      ]
+    },
+    {
+      "id": "math.im3.edge.m1.009",
+      "type": "contains",
+      "sourceId": "math.im3.module.1",
+      "targetId": "math.im3.lesson.1.8",
+      "weight": 1.0,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1"
+      },
+      "rationale": "Lesson 8 is contained in Module 1",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/modules/module-1-quadratic-functions.md"
+      ]
+    },
+    {
+      "id": "math.im3.edge.m1.010",
+      "type": "contains",
+      "sourceId": "math.im3.lesson.1",
+      "targetId": "math.im3.skill.1.1.find-and-interpret-the-average-rate-of-change",
+      "weight": 1.0,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1"
+      },
+      "rationale": "Skill contained in lesson 1",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md"
+      ]
+    },
+    {
+      "id": "math.im3.edge.m1.011",
+      "type": "contains",
+      "sourceId": "math.im3.lesson.1",
+      "targetId": "math.im3.skill.1.1.graph-quadratic-functions",
+      "weight": 1.0,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1"
+      },
+      "rationale": "Skill contained in lesson 1",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md"
+      ]
+    },
+    {
+      "id": "math.im3.edge.m1.012",
+      "type": "contains",
+      "sourceId": "math.im3.lesson.2",
+      "targetId": "math.im3.skill.1.2.interpret-solutions-roots-in-context",
+      "weight": 1.0,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1"
+      },
+      "rationale": "Skill contained in lesson 2",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md"
+      ]
+    },
+    {
+      "id": "math.im3.edge.m1.013",
+      "type": "contains",
+      "sourceId": "math.im3.lesson.2",
+      "targetId": "math.im3.skill.1.2.solve-quadratic-equations-by-graphing",
+      "weight": 1.0,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1"
+      },
+      "rationale": "Skill contained in lesson 2",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md"
+      ]
+    },
+    {
+      "id": "math.im3.edge.m1.014",
+      "type": "contains",
+      "sourceId": "math.im3.lesson.3",
+      "targetId": "math.im3.skill.1.3.perform-operations-with-complex-numbers",
+      "weight": 1.0,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1"
+      },
+      "rationale": "Skill contained in lesson 3",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md"
+      ]
+    },
+    {
+      "id": "math.im3.edge.m1.015",
+      "type": "contains",
+      "sourceId": "math.im3.lesson.3",
+      "targetId": "math.im3.skill.1.3.understand-and-use-the-imaginary-unit-i",
+      "weight": 1.0,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1"
+      },
+      "rationale": "Skill contained in lesson 3",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md"
+      ]
+    },
+    {
+      "id": "math.im3.edge.m1.016",
+      "type": "contains",
+      "sourceId": "math.im3.lesson.4",
+      "targetId": "math.im3.skill.1.4.recognize-special-factor-patterns-gcf-trinomials-difference",
+      "weight": 1.0,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1"
+      },
+      "rationale": "Skill contained in lesson 4",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md"
+      ]
+    },
+    {
+      "id": "math.im3.edge.m1.017",
+      "type": "contains",
+      "sourceId": "math.im3.lesson.4",
+      "targetId": "math.im3.skill.1.4.solve-quadratic-equations-by-factoring",
+      "weight": 1.0,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1"
+      },
+      "rationale": "Skill contained in lesson 4",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md"
+      ]
+    },
+    {
+      "id": "math.im3.edge.m1.018",
+      "type": "contains",
+      "sourceId": "math.im3.lesson.5",
+      "targetId": "math.im3.skill.1.5.connect-completing-the-square-to-vertex-form",
+      "weight": 1.0,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1"
+      },
+      "rationale": "Skill contained in lesson 5",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md"
+      ]
+    },
+    {
+      "id": "math.im3.edge.m1.019",
+      "type": "contains",
+      "sourceId": "math.im3.lesson.5",
+      "targetId": "math.im3.skill.1.5.solve-quadratic-equations-by-completing-the-square",
+      "weight": 1.0,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1"
+      },
+      "rationale": "Skill contained in lesson 5",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md"
+      ]
+    },
+    {
+      "id": "math.im3.edge.m1.020",
+      "type": "contains",
+      "sourceId": "math.im3.lesson.6",
+      "targetId": "math.im3.skill.1.6.use-the-discriminant-to-determine-the-number-and-type-of-sol",
+      "weight": 1.0,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1"
+      },
+      "rationale": "Skill contained in lesson 6",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md"
+      ]
+    },
+    {
+      "id": "math.im3.edge.m1.021",
+      "type": "contains",
+      "sourceId": "math.im3.lesson.6",
+      "targetId": "math.im3.skill.1.6.use-the-quadratic-formula-to-solve-equations",
+      "weight": 1.0,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1"
+      },
+      "rationale": "Skill contained in lesson 6",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md"
+      ]
+    },
+    {
+      "id": "math.im3.edge.m1.022",
+      "type": "contains",
+      "sourceId": "math.im3.lesson.7",
+      "targetId": "math.im3.skill.1.7.graph-quadratic-inequalities-in-two-variables",
+      "weight": 1.0,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1"
+      },
+      "rationale": "Skill contained in lesson 7",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md"
+      ]
+    },
+    {
+      "id": "math.im3.edge.m1.023",
+      "type": "contains",
+      "sourceId": "math.im3.lesson.7",
+      "targetId": "math.im3.skill.1.7.solve-quadratic-inequalities-in-one-variable-by-graphing",
+      "weight": 1.0,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1"
+      },
+      "rationale": "Skill contained in lesson 7",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md"
+      ]
+    },
+    {
+      "id": "math.im3.edge.m1.024",
+      "type": "contains",
+      "sourceId": "math.im3.lesson.8",
+      "targetId": "math.im3.skill.1.8.solve-systems-involving-a-linear-and-a-quadratic-equation",
+      "weight": 1.0,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1"
+      },
+      "rationale": "Skill contained in lesson 8",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md"
+      ]
+    },
+    {
+      "id": "math.im3.edge.m1.025",
+      "type": "contains",
+      "sourceId": "math.im3.lesson.8",
+      "targetId": "math.im3.skill.1.8.solve-systems-of-two-quadratic-equations",
+      "weight": 1.0,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1"
+      },
+      "rationale": "Skill contained in lesson 8",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md"
+      ]
+    },
+    {
+      "id": "math.im3.edge.m1.026",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.module.1",
+      "targetId": "math.im3.skill.1.aleks.average-rate-of-change",
+      "weight": 0.8,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1"
+      },
+      "rationale": "Concept math.im3.skill.1.aleks.average-rate-of-change appears in Module 1 context",
+      "sourceRefs": [
+        {
+          "source": "aleks-problem-type-registry",
+          "note": "Module 1 problem families"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "aleks-registry-mapping"
+    },
+    {
+      "id": "math.im3.edge.m1.027",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.module.1",
+      "targetId": "math.im3.skill.1.aleks.completing-square-solve",
+      "weight": 0.8,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1"
+      },
+      "rationale": "Concept math.im3.skill.1.aleks.completing-square-solve appears in Module 1 context",
+      "sourceRefs": [
+        {
+          "source": "aleks-problem-type-registry",
+          "note": "Module 1 problem families"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "aleks-registry-mapping"
+    },
+    {
+      "id": "math.im3.edge.m1.028",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.module.1",
+      "targetId": "math.im3.skill.1.aleks.complex-number-operations",
+      "weight": 0.8,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1"
+      },
+      "rationale": "Concept math.im3.skill.1.aleks.complex-number-operations appears in Module 1 context",
+      "sourceRefs": [
+        {
+          "source": "aleks-problem-type-registry",
+          "note": "Module 1 problem families"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "aleks-registry-mapping"
+    },
+    {
+      "id": "math.im3.edge.m1.029",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.module.1",
+      "targetId": "math.im3.skill.1.aleks.discriminant-analysis",
+      "weight": 0.8,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1"
+      },
+      "rationale": "Concept math.im3.skill.1.aleks.discriminant-analysis appears in Module 1 context",
+      "sourceRefs": [
+        {
+          "source": "aleks-problem-type-registry",
+          "note": "Module 1 problem families"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "aleks-registry-mapping"
+    },
+    {
+      "id": "math.im3.edge.m1.030",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.module.1",
+      "targetId": "math.im3.skill.1.aleks.imaginary-number-simplification",
+      "weight": 0.8,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1"
+      },
+      "rationale": "Concept math.im3.skill.1.aleks.imaginary-number-simplification appears in Module 1 context",
+      "sourceRefs": [
+        {
+          "source": "aleks-problem-type-registry",
+          "note": "Module 1 problem families"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "aleks-registry-mapping"
+    },
+    {
+      "id": "math.im3.edge.m1.031",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.module.1",
+      "targetId": "math.im3.skill.1.aleks.linear-quadratic-system",
+      "weight": 0.8,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1"
+      },
+      "rationale": "Concept math.im3.skill.1.aleks.linear-quadratic-system appears in Module 1 context",
+      "sourceRefs": [
+        {
+          "source": "aleks-problem-type-registry",
+          "note": "Module 1 problem families"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "aleks-registry-mapping"
+    },
+    {
+      "id": "math.im3.edge.m1.032",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.module.1",
+      "targetId": "math.im3.skill.1.aleks.quadratic-factoring",
+      "weight": 0.8,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1"
+      },
+      "rationale": "Concept math.im3.skill.1.aleks.quadratic-factoring appears in Module 1 context",
+      "sourceRefs": [
+        {
+          "source": "aleks-problem-type-registry",
+          "note": "Module 1 problem families"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "aleks-registry-mapping"
+    },
+    {
+      "id": "math.im3.edge.m1.033",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.module.1",
+      "targetId": "math.im3.skill.1.aleks.quadratic-formula",
+      "weight": 0.8,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1"
+      },
+      "rationale": "Concept math.im3.skill.1.aleks.quadratic-formula appears in Module 1 context",
+      "sourceRefs": [
+        {
+          "source": "aleks-problem-type-registry",
+          "note": "Module 1 problem families"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "aleks-registry-mapping"
+    },
+    {
+      "id": "math.im3.edge.m1.034",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.module.1",
+      "targetId": "math.im3.skill.1.aleks.quadratic-graph-analysis",
+      "weight": 0.8,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1"
+      },
+      "rationale": "Concept math.im3.skill.1.aleks.quadratic-graph-analysis appears in Module 1 context",
+      "sourceRefs": [
+        {
+          "source": "aleks-problem-type-registry",
+          "note": "Module 1 problem families"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "aleks-registry-mapping"
+    },
+    {
+      "id": "math.im3.edge.m1.035",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.module.1",
+      "targetId": "math.im3.skill.1.aleks.quadratic-inequality-graphing",
+      "weight": 0.8,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1"
+      },
+      "rationale": "Concept math.im3.skill.1.aleks.quadratic-inequality-graphing appears in Module 1 context",
+      "sourceRefs": [
+        {
+          "source": "aleks-problem-type-registry",
+          "note": "Module 1 problem families"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "aleks-registry-mapping"
+    },
+    {
+      "id": "math.im3.edge.m1.036",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.module.1",
+      "targetId": "math.im3.skill.1.aleks.quadratic-inequality-interval-solution",
+      "weight": 0.8,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1"
+      },
+      "rationale": "Concept math.im3.skill.1.aleks.quadratic-inequality-interval-solution appears in Module 1 context",
+      "sourceRefs": [
+        {
+          "source": "aleks-problem-type-registry",
+          "note": "Module 1 problem families"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "aleks-registry-mapping"
+    },
+    {
+      "id": "math.im3.edge.m1.037",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.module.1",
+      "targetId": "math.im3.skill.1.aleks.quadratic-quadratic-system",
+      "weight": 0.8,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1"
+      },
+      "rationale": "Concept math.im3.skill.1.aleks.quadratic-quadratic-system appears in Module 1 context",
+      "sourceRefs": [
+        {
+          "source": "aleks-problem-type-registry",
+          "note": "Module 1 problem families"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "aleks-registry-mapping"
+    },
+    {
+      "id": "math.im3.edge.m1.038",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.module.1",
+      "targetId": "math.im3.skill.1.aleks.quadratic-vertex-form-completion",
+      "weight": 0.8,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1"
+      },
+      "rationale": "Concept math.im3.skill.1.aleks.quadratic-vertex-form-completion appears in Module 1 context",
+      "sourceRefs": [
+        {
+          "source": "aleks-problem-type-registry",
+          "note": "Module 1 problem families"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "aleks-registry-mapping"
+    },
+    {
+      "id": "math.im3.edge.m1.039",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.module.1",
+      "targetId": "math.im3.skill.1.aleks.solve-quadratic-by-graphing",
+      "weight": 0.8,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1"
+      },
+      "rationale": "Concept math.im3.skill.1.aleks.solve-quadratic-by-graphing appears in Module 1 context",
+      "sourceRefs": [
+        {
+          "source": "aleks-problem-type-registry",
+          "note": "Module 1 problem families"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "aleks-registry-mapping"
+    },
+    {
+      "id": "math.im3.edge.m1.040",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.module.1",
+      "targetId": "math.im3.skill.1.aleks.special-product-factoring",
+      "weight": 0.8,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1"
+      },
+      "rationale": "Concept math.im3.skill.1.aleks.special-product-factoring appears in Module 1 context",
+      "sourceRefs": [
+        {
+          "source": "aleks-problem-type-registry",
+          "note": "Module 1 problem families"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "aleks-registry-mapping"
+    },
+    {
+      "id": "math.im3.edge.m1.041",
+      "type": "supports",
+      "sourceId": "math.im3.skill.1.aleks.quadratic-graph-analysis",
+      "targetId": "math.im3.skill.1.1.graph-quadratic-functions",
+      "weight": 0.7,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1"
+      },
+      "rationale": "Concept math.im3.skill.1.aleks.quadratic-graph-analysis supports skill math.im3.skill.1.1.graph-quadratic-functions",
+      "sourceRefs": [
+        {
+          "source": "aleks-problem-type-registry",
+          "note": "Mapped from ALEKS objectives"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "aleks-skill-mapping"
+    },
+    {
+      "id": "math.im3.edge.m1.042",
+      "type": "supports",
+      "sourceId": "math.im3.skill.1.aleks.average-rate-of-change",
+      "targetId": "math.im3.skill.1.1.find-and-interpret-the-average-rate-of-change",
+      "weight": 0.7,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1"
+      },
+      "rationale": "Concept math.im3.skill.1.aleks.average-rate-of-change supports skill math.im3.skill.1.1.find-and-interpret-the-average-rate-of-change",
+      "sourceRefs": [
+        {
+          "source": "aleks-problem-type-registry",
+          "note": "Mapped from ALEKS objectives"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "aleks-skill-mapping"
+    },
+    {
+      "id": "math.im3.edge.m1.043",
+      "type": "supports",
+      "sourceId": "math.im3.skill.1.aleks.solve-quadratic-by-graphing",
+      "targetId": "math.im3.skill.1.2.solve-quadratic-equations-by-graphing",
+      "weight": 0.7,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1"
+      },
+      "rationale": "Concept math.im3.skill.1.aleks.solve-quadratic-by-graphing supports skill math.im3.skill.1.2.solve-quadratic-equations-by-graphing",
+      "sourceRefs": [
+        {
+          "source": "aleks-problem-type-registry",
+          "note": "Mapped from ALEKS objectives"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "aleks-skill-mapping"
+    },
+    {
+      "id": "math.im3.edge.m1.044",
+      "type": "supports",
+      "sourceId": "math.im3.skill.1.aleks.solve-quadratic-by-graphing",
+      "targetId": "math.im3.skill.1.2.interpret-solutions-roots-in-context",
+      "weight": 0.7,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1"
+      },
+      "rationale": "Concept math.im3.skill.1.aleks.solve-quadratic-by-graphing supports skill math.im3.skill.1.2.interpret-solutions-roots-in-context",
+      "sourceRefs": [
+        {
+          "source": "aleks-problem-type-registry",
+          "note": "Mapped from ALEKS objectives"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "aleks-skill-mapping"
+    },
+    {
+      "id": "math.im3.edge.m1.045",
+      "type": "supports",
+      "sourceId": "math.im3.skill.1.aleks.imaginary-number-simplification",
+      "targetId": "math.im3.skill.1.3.understand-and-use-the-imaginary-unit-i",
+      "weight": 0.7,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1"
+      },
+      "rationale": "Concept math.im3.skill.1.aleks.imaginary-number-simplification supports skill math.im3.skill.1.3.understand-and-use-the-imaginary-unit-i",
+      "sourceRefs": [
+        {
+          "source": "aleks-problem-type-registry",
+          "note": "Mapped from ALEKS objectives"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "aleks-skill-mapping"
+    },
+    {
+      "id": "math.im3.edge.m1.046",
+      "type": "supports",
+      "sourceId": "math.im3.skill.1.aleks.complex-number-operations",
+      "targetId": "math.im3.skill.1.3.perform-operations-with-complex-numbers",
+      "weight": 0.7,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1"
+      },
+      "rationale": "Concept math.im3.skill.1.aleks.complex-number-operations supports skill math.im3.skill.1.3.perform-operations-with-complex-numbers",
+      "sourceRefs": [
+        {
+          "source": "aleks-problem-type-registry",
+          "note": "Mapped from ALEKS objectives"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "aleks-skill-mapping"
+    },
+    {
+      "id": "math.im3.edge.m1.047",
+      "type": "supports",
+      "sourceId": "math.im3.skill.1.aleks.quadratic-factoring",
+      "targetId": "math.im3.skill.1.4.solve-quadratic-equations-by-factoring",
+      "weight": 0.7,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1"
+      },
+      "rationale": "Concept math.im3.skill.1.aleks.quadratic-factoring supports skill math.im3.skill.1.4.solve-quadratic-equations-by-factoring",
+      "sourceRefs": [
+        {
+          "source": "aleks-problem-type-registry",
+          "note": "Mapped from ALEKS objectives"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "aleks-skill-mapping"
+    },
+    {
+      "id": "math.im3.edge.m1.048",
+      "type": "supports",
+      "sourceId": "math.im3.skill.1.aleks.special-product-factoring",
+      "targetId": "math.im3.skill.1.4.recognize-special-factor-patterns-gcf-trinomials-difference",
+      "weight": 0.7,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1"
+      },
+      "rationale": "Concept math.im3.skill.1.aleks.special-product-factoring supports skill math.im3.skill.1.4.recognize-special-factor-patterns-gcf-trinomials-difference",
+      "sourceRefs": [
+        {
+          "source": "aleks-problem-type-registry",
+          "note": "Mapped from ALEKS objectives"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "aleks-skill-mapping"
+    },
+    {
+      "id": "math.im3.edge.m1.049",
+      "type": "supports",
+      "sourceId": "math.im3.skill.1.aleks.completing-square-solve",
+      "targetId": "math.im3.skill.1.5.solve-quadratic-equations-by-completing-the-square",
+      "weight": 0.7,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1"
+      },
+      "rationale": "Concept math.im3.skill.1.aleks.completing-square-solve supports skill math.im3.skill.1.5.solve-quadratic-equations-by-completing-the-square",
+      "sourceRefs": [
+        {
+          "source": "aleks-problem-type-registry",
+          "note": "Mapped from ALEKS objectives"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "aleks-skill-mapping"
+    },
+    {
+      "id": "math.im3.edge.m1.050",
+      "type": "supports",
+      "sourceId": "math.im3.skill.1.aleks.quadratic-vertex-form-completion",
+      "targetId": "math.im3.skill.1.5.connect-completing-the-square-to-vertex-form",
+      "weight": 0.7,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1"
+      },
+      "rationale": "Concept math.im3.skill.1.aleks.quadratic-vertex-form-completion supports skill math.im3.skill.1.5.connect-completing-the-square-to-vertex-form",
+      "sourceRefs": [
+        {
+          "source": "aleks-problem-type-registry",
+          "note": "Mapped from ALEKS objectives"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "aleks-skill-mapping"
+    },
+    {
+      "id": "math.im3.edge.m1.051",
+      "type": "supports",
+      "sourceId": "math.im3.skill.1.aleks.quadratic-formula",
+      "targetId": "math.im3.skill.1.6.use-the-quadratic-formula-to-solve-equations",
+      "weight": 0.7,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1"
+      },
+      "rationale": "Concept math.im3.skill.1.aleks.quadratic-formula supports skill math.im3.skill.1.6.use-the-quadratic-formula-to-solve-equations",
+      "sourceRefs": [
+        {
+          "source": "aleks-problem-type-registry",
+          "note": "Mapped from ALEKS objectives"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "aleks-skill-mapping"
+    },
+    {
+      "id": "math.im3.edge.m1.052",
+      "type": "supports",
+      "sourceId": "math.im3.skill.1.aleks.discriminant-analysis",
+      "targetId": "math.im3.skill.1.6.use-the-discriminant-to-determine-the-number-and-type-of-sol",
+      "weight": 0.7,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1"
+      },
+      "rationale": "Concept math.im3.skill.1.aleks.discriminant-analysis supports skill math.im3.skill.1.6.use-the-discriminant-to-determine-the-number-and-type-of-sol",
+      "sourceRefs": [
+        {
+          "source": "aleks-problem-type-registry",
+          "note": "Mapped from ALEKS objectives"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "aleks-skill-mapping"
+    },
+    {
+      "id": "math.im3.edge.m1.053",
+      "type": "supports",
+      "sourceId": "math.im3.skill.1.aleks.quadratic-inequality-graphing",
+      "targetId": "math.im3.skill.1.7.graph-quadratic-inequalities-in-two-variables",
+      "weight": 0.7,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1"
+      },
+      "rationale": "Concept math.im3.skill.1.aleks.quadratic-inequality-graphing supports skill math.im3.skill.1.7.graph-quadratic-inequalities-in-two-variables",
+      "sourceRefs": [
+        {
+          "source": "aleks-problem-type-registry",
+          "note": "Mapped from ALEKS objectives"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "aleks-skill-mapping"
+    },
+    {
+      "id": "math.im3.edge.m1.054",
+      "type": "supports",
+      "sourceId": "math.im3.skill.1.aleks.quadratic-inequality-interval-solution",
+      "targetId": "math.im3.skill.1.7.solve-quadratic-inequalities-in-one-variable-by-graphing",
+      "weight": 0.7,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1"
+      },
+      "rationale": "Concept math.im3.skill.1.aleks.quadratic-inequality-interval-solution supports skill math.im3.skill.1.7.solve-quadratic-inequalities-in-one-variable-by-graphing",
+      "sourceRefs": [
+        {
+          "source": "aleks-problem-type-registry",
+          "note": "Mapped from ALEKS objectives"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "aleks-skill-mapping"
+    },
+    {
+      "id": "math.im3.edge.m1.055",
+      "type": "supports",
+      "sourceId": "math.im3.skill.1.aleks.linear-quadratic-system",
+      "targetId": "math.im3.skill.1.8.solve-systems-involving-a-linear-and-a-quadratic-equation",
+      "weight": 0.7,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1"
+      },
+      "rationale": "Concept math.im3.skill.1.aleks.linear-quadratic-system supports skill math.im3.skill.1.8.solve-systems-involving-a-linear-and-a-quadratic-equation",
+      "sourceRefs": [
+        {
+          "source": "aleks-problem-type-registry",
+          "note": "Mapped from ALEKS objectives"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "aleks-skill-mapping"
+    },
+    {
+      "id": "math.im3.edge.m1.056",
+      "type": "supports",
+      "sourceId": "math.im3.skill.1.aleks.quadratic-quadratic-system",
+      "targetId": "math.im3.skill.1.8.solve-systems-of-two-quadratic-equations",
+      "weight": 0.7,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1"
+      },
+      "rationale": "Concept math.im3.skill.1.aleks.quadratic-quadratic-system supports skill math.im3.skill.1.8.solve-systems-of-two-quadratic-equations",
+      "sourceRefs": [
+        {
+          "source": "aleks-problem-type-registry",
+          "note": "Mapped from ALEKS objectives"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "aleks-skill-mapping"
+    },
+    {
+      "id": "math.im3.edge.m1.057",
+      "type": "prerequisite_for",
+      "sourceId": "math.im3.skill.1.1.graph-quadratic-functions",
+      "targetId": "math.im3.skill.1.2.solve-quadratic-equations-by-graphing",
+      "weight": 0.8,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1"
+      },
+      "rationale": "Graphing quadratics is prerequisite for solving by graphing",
+      "sourceRefs": [
+        {
+          "source": "curriculum",
+          "note": "Module 1 lesson sequencing and content dependencies"
+        }
+      ]
+    },
+    {
+      "id": "math.im3.edge.m1.058",
+      "type": "prerequisite_for",
+      "sourceId": "math.im3.skill.1.2.solve-quadratic-equations-by-graphing",
+      "targetId": "math.im3.skill.1.4.solve-quadratic-equations-by-factoring",
+      "weight": 0.6,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1"
+      },
+      "rationale": "Understanding roots from graphing supports factoring approach",
+      "sourceRefs": [
+        {
+          "source": "curriculum",
+          "note": "Module 1 lesson sequencing and content dependencies"
+        }
+      ]
+    },
+    {
+      "id": "math.im3.edge.m1.059",
+      "type": "prerequisite_for",
+      "sourceId": "math.im3.skill.1.1.graph-quadratic-functions",
+      "targetId": "math.im3.skill.1.7.graph-quadratic-inequalities-in-two-variables",
+      "weight": 0.7,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1"
+      },
+      "rationale": "Graphing quadratic functions is prerequisite for graphing quadratic inequalities",
+      "sourceRefs": [
+        {
+          "source": "curriculum",
+          "note": "Module 1 lesson sequencing and content dependencies"
+        }
+      ]
+    },
+    {
+      "id": "math.im3.edge.m1.060",
+      "type": "prerequisite_for",
+      "sourceId": "math.im3.skill.1.3.understand-and-use-the-imaginary-unit-i",
+      "targetId": "math.im3.skill.1.3.perform-operations-with-complex-numbers",
+      "weight": 0.9,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1"
+      },
+      "rationale": "Understanding imaginary unit is prerequisite for complex number operations",
+      "sourceRefs": [
+        {
+          "source": "curriculum",
+          "note": "Module 1 lesson sequencing and content dependencies"
+        }
+      ]
+    },
+    {
+      "id": "math.im3.edge.m1.061",
+      "type": "prerequisite_for",
+      "sourceId": "math.im3.skill.1.4.solve-quadratic-equations-by-factoring",
+      "targetId": "math.im3.skill.1.5.solve-quadratic-equations-by-completing-the-square",
+      "weight": 0.7,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1"
+      },
+      "rationale": "Factoring is prerequisite understanding for completing the square",
+      "sourceRefs": [
+        {
+          "source": "curriculum",
+          "note": "Module 1 lesson sequencing and content dependencies"
+        }
+      ]
+    },
+    {
+      "id": "math.im3.edge.m1.062",
+      "type": "prerequisite_for",
+      "sourceId": "math.im3.skill.1.5.solve-quadratic-equations-by-completing-the-square",
+      "targetId": "math.im3.skill.1.6.use-the-quadratic-formula-to-solve-equations",
+      "weight": 0.8,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1"
+      },
+      "rationale": "Completing the square derives the quadratic formula",
+      "sourceRefs": [
+        {
+          "source": "curriculum",
+          "note": "Module 1 lesson sequencing and content dependencies"
+        }
+      ]
+    },
+    {
+      "id": "math.im3.edge.m1.063",
+      "type": "prerequisite_for",
+      "sourceId": "math.im3.skill.1.6.use-the-quadratic-formula-to-solve-equations",
+      "targetId": "math.im3.skill.1.6.use-the-discriminant-to-determine-the-number-and-type-of-sol",
+      "weight": 0.9,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1"
+      },
+      "rationale": "Quadratic formula leads to discriminant analysis",
+      "sourceRefs": [
+        {
+          "source": "curriculum",
+          "note": "Module 1 lesson sequencing and content dependencies"
+        }
+      ]
+    },
+    {
+      "id": "math.im3.edge.m1.064",
+      "type": "prerequisite_for",
+      "sourceId": "math.im3.skill.1.2.solve-quadratic-equations-by-graphing",
+      "targetId": "math.im3.skill.1.7.solve-quadratic-inequalities-in-one-variable-by-graphing",
+      "weight": 0.7,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1"
+      },
+      "rationale": "Solving by graphing supports quadratic inequality graphing",
+      "sourceRefs": [
+        {
+          "source": "curriculum",
+          "note": "Module 1 lesson sequencing and content dependencies"
+        }
+      ]
+    },
+    {
+      "id": "math.im3.edge.m1.065",
+      "type": "prerequisite_for",
+      "sourceId": "math.im3.skill.1.1.graph-quadratic-functions",
+      "targetId": "math.im3.skill.1.8.solve-systems-involving-a-linear-and-a-quadratic-equation",
+      "weight": 0.6,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1"
+      },
+      "rationale": "Graphing quadratics supports solving linear-quadratic systems",
+      "sourceRefs": [
+        {
+          "source": "curriculum",
+          "note": "Module 1 lesson sequencing and content dependencies"
+        }
+      ]
+    },
+    {
+      "id": "math.im3.edge.m1.066",
+      "type": "prerequisite_for",
+      "sourceId": "math.im3.skill.1.7.graph-quadratic-inequalities-in-two-variables",
+      "targetId": "math.im3.skill.1.8.solve-systems-of-two-quadratic-equations",
+      "weight": 0.5,
+      "confidence": "low",
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1"
+      },
+      "rationale": "Inequality graphing provides context for quadratic-quadratic systems",
+      "sourceRefs": [
+        {
+          "source": "curriculum",
+          "note": "Module 1 lesson sequencing and content dependencies"
+        }
+      ]
+    },
+    {
+      "id": "math.im3.edge.m1.067",
+      "type": "rendered_by",
+      "sourceId": "math.im3.skill.1.1.graph-quadratic-functions",
+      "targetId": "math.im3.renderer.graphing-explorer",
+      "weight": 1.0,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1"
+      },
+      "rationale": "Skill math.im3.skill.1.1.graph-quadratic-functions rendered by math.im3.renderer.graphing-explorer",
+      "sourceRefs": [
+        {
+          "source": "component-registry",
+          "note": "Registered renderer mapping"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "renderer-registry-mapping"
+    },
+    {
+      "id": "math.im3.edge.m1.068",
+      "type": "rendered_by",
+      "sourceId": "math.im3.skill.1.1.find-and-interpret-the-average-rate-of-change",
+      "targetId": "math.im3.renderer.step-by-step-solver",
+      "weight": 1.0,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1"
+      },
+      "rationale": "Skill math.im3.skill.1.1.find-and-interpret-the-average-rate-of-change rendered by math.im3.renderer.step-by-step-solver",
+      "sourceRefs": [
+        {
+          "source": "component-registry",
+          "note": "Registered renderer mapping"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "renderer-registry-mapping"
+    },
+    {
+      "id": "math.im3.edge.m1.069",
+      "type": "rendered_by",
+      "sourceId": "math.im3.skill.1.2.solve-quadratic-equations-by-graphing",
+      "targetId": "math.im3.renderer.graphing-explorer",
+      "weight": 1.0,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1"
+      },
+      "rationale": "Skill math.im3.skill.1.2.solve-quadratic-equations-by-graphing rendered by math.im3.renderer.graphing-explorer",
+      "sourceRefs": [
+        {
+          "source": "component-registry",
+          "note": "Registered renderer mapping"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "renderer-registry-mapping"
+    },
+    {
+      "id": "math.im3.edge.m1.070",
+      "type": "rendered_by",
+      "sourceId": "math.im3.skill.1.2.interpret-solutions-roots-in-context",
+      "targetId": "math.im3.renderer.graphing-explorer",
+      "weight": 1.0,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1"
+      },
+      "rationale": "Skill math.im3.skill.1.2.interpret-solutions-roots-in-context rendered by math.im3.renderer.graphing-explorer",
+      "sourceRefs": [
+        {
+          "source": "component-registry",
+          "note": "Registered renderer mapping"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "renderer-registry-mapping"
+    },
+    {
+      "id": "math.im3.edge.m1.071",
+      "type": "rendered_by",
+      "sourceId": "math.im3.skill.1.3.understand-and-use-the-imaginary-unit-i",
+      "targetId": "math.im3.renderer.step-by-step-solver",
+      "weight": 1.0,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1"
+      },
+      "rationale": "Skill math.im3.skill.1.3.understand-and-use-the-imaginary-unit-i rendered by math.im3.renderer.step-by-step-solver",
+      "sourceRefs": [
+        {
+          "source": "component-registry",
+          "note": "Registered renderer mapping"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "renderer-registry-mapping"
+    },
+    {
+      "id": "math.im3.edge.m1.072",
+      "type": "rendered_by",
+      "sourceId": "math.im3.skill.1.3.perform-operations-with-complex-numbers",
+      "targetId": "math.im3.renderer.step-by-step-solver",
+      "weight": 1.0,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1"
+      },
+      "rationale": "Skill math.im3.skill.1.3.perform-operations-with-complex-numbers rendered by math.im3.renderer.step-by-step-solver",
+      "sourceRefs": [
+        {
+          "source": "component-registry",
+          "note": "Registered renderer mapping"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "renderer-registry-mapping"
+    },
+    {
+      "id": "math.im3.edge.m1.073",
+      "type": "rendered_by",
+      "sourceId": "math.im3.skill.1.4.solve-quadratic-equations-by-factoring",
+      "targetId": "math.im3.renderer.step-by-step-solver",
+      "weight": 1.0,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1"
+      },
+      "rationale": "Skill math.im3.skill.1.4.solve-quadratic-equations-by-factoring rendered by math.im3.renderer.step-by-step-solver",
+      "sourceRefs": [
+        {
+          "source": "component-registry",
+          "note": "Registered renderer mapping"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "renderer-registry-mapping"
+    },
+    {
+      "id": "math.im3.edge.m1.074",
+      "type": "rendered_by",
+      "sourceId": "math.im3.skill.1.4.recognize-special-factor-patterns-gcf-trinomials-difference",
+      "targetId": "math.im3.renderer.step-by-step-solver",
+      "weight": 1.0,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1"
+      },
+      "rationale": "Skill math.im3.skill.1.4.recognize-special-factor-patterns-gcf-trinomials-difference rendered by math.im3.renderer.step-by-step-solver",
+      "sourceRefs": [
+        {
+          "source": "component-registry",
+          "note": "Registered renderer mapping"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "renderer-registry-mapping"
+    },
+    {
+      "id": "math.im3.edge.m1.075",
+      "type": "rendered_by",
+      "sourceId": "math.im3.skill.1.5.solve-quadratic-equations-by-completing-the-square",
+      "targetId": "math.im3.renderer.step-by-step-solver",
+      "weight": 1.0,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1"
+      },
+      "rationale": "Skill math.im3.skill.1.5.solve-quadratic-equations-by-completing-the-square rendered by math.im3.renderer.step-by-step-solver",
+      "sourceRefs": [
+        {
+          "source": "component-registry",
+          "note": "Registered renderer mapping"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "renderer-registry-mapping"
+    },
+    {
+      "id": "math.im3.edge.m1.076",
+      "type": "rendered_by",
+      "sourceId": "math.im3.skill.1.5.connect-completing-the-square-to-vertex-form",
+      "targetId": "math.im3.renderer.step-by-step-solver",
+      "weight": 1.0,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1"
+      },
+      "rationale": "Skill math.im3.skill.1.5.connect-completing-the-square-to-vertex-form rendered by math.im3.renderer.step-by-step-solver",
+      "sourceRefs": [
+        {
+          "source": "component-registry",
+          "note": "Registered renderer mapping"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "renderer-registry-mapping"
+    },
+    {
+      "id": "math.im3.edge.m1.077",
+      "type": "rendered_by",
+      "sourceId": "math.im3.skill.1.6.use-the-quadratic-formula-to-solve-equations",
+      "targetId": "math.im3.renderer.step-by-step-solver",
+      "weight": 1.0,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1"
+      },
+      "rationale": "Skill math.im3.skill.1.6.use-the-quadratic-formula-to-solve-equations rendered by math.im3.renderer.step-by-step-solver",
+      "sourceRefs": [
+        {
+          "source": "component-registry",
+          "note": "Registered renderer mapping"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "renderer-registry-mapping"
+    },
+    {
+      "id": "math.im3.edge.m1.078",
+      "type": "rendered_by",
+      "sourceId": "math.im3.skill.1.6.use-the-discriminant-to-determine-the-number-and-type-of-sol",
+      "targetId": "math.im3.renderer.discriminant-analyzer",
+      "weight": 1.0,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1"
+      },
+      "rationale": "Skill math.im3.skill.1.6.use-the-discriminant-to-determine-the-number-and-type-of-sol rendered by math.im3.renderer.discriminant-analyzer",
+      "sourceRefs": [
+        {
+          "source": "component-registry",
+          "note": "Registered renderer mapping"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "renderer-registry-mapping"
+    },
+    {
+      "id": "math.im3.edge.m1.079",
+      "type": "rendered_by",
+      "sourceId": "math.im3.skill.1.7.graph-quadratic-inequalities-in-two-variables",
+      "targetId": "math.im3.renderer.graphing-explorer",
+      "weight": 1.0,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1"
+      },
+      "rationale": "Skill math.im3.skill.1.7.graph-quadratic-inequalities-in-two-variables rendered by math.im3.renderer.graphing-explorer",
+      "sourceRefs": [
+        {
+          "source": "component-registry",
+          "note": "Registered renderer mapping"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "renderer-registry-mapping"
+    },
+    {
+      "id": "math.im3.edge.m1.080",
+      "type": "rendered_by",
+      "sourceId": "math.im3.skill.1.7.solve-quadratic-inequalities-in-one-variable-by-graphing",
+      "targetId": "math.im3.renderer.graphing-explorer",
+      "weight": 1.0,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1"
+      },
+      "rationale": "Skill math.im3.skill.1.7.solve-quadratic-inequalities-in-one-variable-by-graphing rendered by math.im3.renderer.graphing-explorer",
+      "sourceRefs": [
+        {
+          "source": "component-registry",
+          "note": "Registered renderer mapping"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "renderer-registry-mapping"
+    },
+    {
+      "id": "math.im3.edge.m1.081",
+      "type": "rendered_by",
+      "sourceId": "math.im3.skill.1.8.solve-systems-involving-a-linear-and-a-quadratic-equation",
+      "targetId": "math.im3.renderer.graphing-explorer",
+      "weight": 1.0,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1"
+      },
+      "rationale": "Skill math.im3.skill.1.8.solve-systems-involving-a-linear-and-a-quadratic-equation rendered by math.im3.renderer.graphing-explorer",
+      "sourceRefs": [
+        {
+          "source": "component-registry",
+          "note": "Registered renderer mapping"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "renderer-registry-mapping"
+    },
+    {
+      "id": "math.im3.edge.m1.082",
+      "type": "rendered_by",
+      "sourceId": "math.im3.skill.1.8.solve-systems-of-two-quadratic-equations",
+      "targetId": "math.im3.renderer.graphing-explorer",
+      "weight": 1.0,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1"
+      },
+      "rationale": "Skill math.im3.skill.1.8.solve-systems-of-two-quadratic-equations rendered by math.im3.renderer.graphing-explorer",
+      "sourceRefs": [
+        {
+          "source": "component-registry",
+          "note": "Registered renderer mapping"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "renderer-registry-mapping"
+    },
+    {
+      "id": "math.im3.edge.m1.083",
+      "type": "generated_by",
+      "sourceId": "math.im3.skill.1.1.graph-quadratic-functions",
+      "targetId": "math.im3.generator.m1.quadratic-graph-analysis",
+      "weight": 1.0,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1"
+      },
+      "rationale": "Skill math.im3.skill.1.1.graph-quadratic-functions generated by math.im3.generator.m1.quadratic-graph-analysis",
+      "sourceRefs": [
+        {
+          "source": "pilot",
+          "note": "Module 1 pilot generator"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "generator-registry-mapping"
+    },
+    {
+      "id": "math.im3.edge.m1.084",
+      "type": "generated_by",
+      "sourceId": "math.im3.skill.1.1.find-and-interpret-the-average-rate-of-change",
+      "targetId": "math.im3.generator.m1.average-rate-of-change",
+      "weight": 1.0,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1"
+      },
+      "rationale": "Skill math.im3.skill.1.1.find-and-interpret-the-average-rate-of-change generated by math.im3.generator.m1.average-rate-of-change",
+      "sourceRefs": [
+        {
+          "source": "pilot",
+          "note": "Module 1 pilot generator"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "generator-registry-mapping"
+    },
+    {
+      "id": "math.im3.edge.m1.085",
+      "type": "generated_by",
+      "sourceId": "math.im3.skill.1.2.solve-quadratic-equations-by-graphing",
+      "targetId": "math.im3.generator.m1.solve-quadratic-by-graphing",
+      "weight": 1.0,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1"
+      },
+      "rationale": "Skill math.im3.skill.1.2.solve-quadratic-equations-by-graphing generated by math.im3.generator.m1.solve-quadratic-by-graphing",
+      "sourceRefs": [
+        {
+          "source": "pilot",
+          "note": "Module 1 pilot generator"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "generator-registry-mapping"
+    },
+    {
+      "id": "math.im3.edge.m1.086",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.example.1.1.001",
+      "targetId": "math.im3.lesson.1",
+      "weight": 0.9,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1"
+      },
+      "rationale": "Example appears in lesson 1",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-1, Example 1)"
+      ]
+    },
+    {
+      "id": "math.im3.edge.m1.087",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.example.1.1.002",
+      "targetId": "math.im3.lesson.1",
+      "weight": 0.9,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1"
+      },
+      "rationale": "Example appears in lesson 1",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-1, Example 2)"
+      ]
+    },
+    {
+      "id": "math.im3.edge.m1.088",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.example.1.1.003",
+      "targetId": "math.im3.lesson.1",
+      "weight": 0.9,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1"
+      },
+      "rationale": "Example appears in lesson 1",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-1, Example 3)"
+      ]
+    },
+    {
+      "id": "math.im3.edge.m1.089",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.example.1.1.004",
+      "targetId": "math.im3.lesson.1",
+      "weight": 0.9,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1"
+      },
+      "rationale": "Example appears in lesson 1",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-1, Example 4)"
+      ]
+    },
+    {
+      "id": "math.im3.edge.m1.090",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.example.1.1.005",
+      "targetId": "math.im3.lesson.1",
+      "weight": 0.9,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1"
+      },
+      "rationale": "Example appears in lesson 1",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-1, Example 5)"
+      ]
+    },
+    {
+      "id": "math.im3.edge.m1.091",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.example.1.1.006",
+      "targetId": "math.im3.lesson.1",
+      "weight": 0.9,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1"
+      },
+      "rationale": "Example appears in lesson 1",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-1, Example 6)"
+      ]
+    },
+    {
+      "id": "math.im3.edge.m1.092",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.example.1.2.007",
+      "targetId": "math.im3.lesson.2",
+      "weight": 0.9,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1"
+      },
+      "rationale": "Example appears in lesson 2",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-2, Example 1)"
+      ]
+    },
+    {
+      "id": "math.im3.edge.m1.093",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.example.1.2.008",
+      "targetId": "math.im3.lesson.2",
+      "weight": 0.9,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1"
+      },
+      "rationale": "Example appears in lesson 2",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-2, Example 2)"
+      ]
+    },
+    {
+      "id": "math.im3.edge.m1.094",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.example.1.2.009",
+      "targetId": "math.im3.lesson.2",
+      "weight": 0.9,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1"
+      },
+      "rationale": "Example appears in lesson 2",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-2, Example 3)"
+      ]
+    },
+    {
+      "id": "math.im3.edge.m1.095",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.example.1.2.010",
+      "targetId": "math.im3.lesson.2",
+      "weight": 0.9,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1"
+      },
+      "rationale": "Example appears in lesson 2",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-2, Example 4)"
+      ]
+    },
+    {
+      "id": "math.im3.edge.m1.096",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.example.1.2.011",
+      "targetId": "math.im3.lesson.2",
+      "weight": 0.9,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1"
+      },
+      "rationale": "Example appears in lesson 2",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-2, Example 5)"
+      ]
+    },
+    {
+      "id": "math.im3.edge.m1.097",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.example.1.3.012",
+      "targetId": "math.im3.lesson.3",
+      "weight": 0.9,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1"
+      },
+      "rationale": "Example appears in lesson 3",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-3, Example 1)"
+      ]
+    },
+    {
+      "id": "math.im3.edge.m1.098",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.example.1.3.013",
+      "targetId": "math.im3.lesson.3",
+      "weight": 0.9,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1"
+      },
+      "rationale": "Example appears in lesson 3",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-3, Example 2)"
+      ]
+    },
+    {
+      "id": "math.im3.edge.m1.099",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.example.1.3.014",
+      "targetId": "math.im3.lesson.3",
+      "weight": 0.9,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1"
+      },
+      "rationale": "Example appears in lesson 3",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-3, Example 3)"
+      ]
+    },
+    {
+      "id": "math.im3.edge.m1.100",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.example.1.3.015",
+      "targetId": "math.im3.lesson.3",
+      "weight": 0.9,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1"
+      },
+      "rationale": "Example appears in lesson 3",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-3, Example 4)"
+      ]
+    },
+    {
+      "id": "math.im3.edge.m1.101",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.example.1.3.016",
+      "targetId": "math.im3.lesson.3",
+      "weight": 0.9,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1"
+      },
+      "rationale": "Example appears in lesson 3",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-3, Example 5)"
+      ]
+    },
+    {
+      "id": "math.im3.edge.m1.102",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.example.1.3.017",
+      "targetId": "math.im3.lesson.3",
+      "weight": 0.9,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1"
+      },
+      "rationale": "Example appears in lesson 3",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-3, Example 6)"
+      ]
+    },
+    {
+      "id": "math.im3.edge.m1.103",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.example.1.3.018",
+      "targetId": "math.im3.lesson.3",
+      "weight": 0.9,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1"
+      },
+      "rationale": "Example appears in lesson 3",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-3, Example 7)"
+      ]
+    },
+    {
+      "id": "math.im3.edge.m1.104",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.example.1.4.019",
+      "targetId": "math.im3.lesson.4",
+      "weight": 0.9,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1"
+      },
+      "rationale": "Example appears in lesson 4",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-4, Example 1)"
+      ]
+    },
+    {
+      "id": "math.im3.edge.m1.105",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.example.1.4.020",
+      "targetId": "math.im3.lesson.4",
+      "weight": 0.9,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1"
+      },
+      "rationale": "Example appears in lesson 4",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md (1-4, Example 2)"
+      ]
+    },
+    {
+      "id": "math.im3.edge.m1.106",
+      "type": "generated_by",
+      "sourceId": "math.im3.skill.1.aleks.average-rate-of-change",
+      "targetId": "math.im3.generator.m1.average-rate-of-change",
+      "weight": 1.0,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "rationale": "Concept math.im3.skill.1.aleks.average-rate-of-change generated by math.im3.generator.m1.average-rate-of-change",
+      "sourceRefs": [
+        {
+          "source": "pilot",
+          "note": "Module 1 pilot generator mapping"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "generator-registry-mapping",
+      "metadata": {
+        "course": "im3",
+        "module": "1"
+      }
+    },
+    {
+      "id": "math.im3.edge.m1.107",
+      "type": "generated_by",
+      "sourceId": "math.im3.skill.1.aleks.completing-square-solve",
+      "targetId": "math.im3.generator.m1.algebraic-step-solver",
+      "weight": 1.0,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "rationale": "Concept math.im3.skill.1.aleks.completing-square-solve generated by math.im3.generator.m1.algebraic-step-solver",
+      "sourceRefs": [
+        {
+          "source": "pilot",
+          "note": "Module 1 pilot generator mapping"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "generator-registry-mapping",
+      "metadata": {
+        "course": "im3",
+        "module": "1"
+      }
+    },
+    {
+      "id": "math.im3.edge.m1.108",
+      "type": "generated_by",
+      "sourceId": "math.im3.skill.1.aleks.complex-number-operations",
+      "targetId": "math.im3.generator.m1.algebraic-step-solver",
+      "weight": 1.0,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "rationale": "Concept math.im3.skill.1.aleks.complex-number-operations generated by math.im3.generator.m1.algebraic-step-solver",
+      "sourceRefs": [
+        {
+          "source": "pilot",
+          "note": "Module 1 pilot generator mapping"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "generator-registry-mapping",
+      "metadata": {
+        "course": "im3",
+        "module": "1"
+      }
+    },
+    {
+      "id": "math.im3.edge.m1.109",
+      "type": "generated_by",
+      "sourceId": "math.im3.skill.1.aleks.discriminant-analysis",
+      "targetId": "math.im3.generator.m1.algebraic-step-solver",
+      "weight": 1.0,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "rationale": "Concept math.im3.skill.1.aleks.discriminant-analysis generated by math.im3.generator.m1.algebraic-step-solver",
+      "sourceRefs": [
+        {
+          "source": "pilot",
+          "note": "Module 1 pilot generator mapping"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "generator-registry-mapping",
+      "metadata": {
+        "course": "im3",
+        "module": "1"
+      }
+    },
+    {
+      "id": "math.im3.edge.m1.110",
+      "type": "generated_by",
+      "sourceId": "math.im3.skill.1.aleks.imaginary-number-simplification",
+      "targetId": "math.im3.generator.m1.algebraic-step-solver",
+      "weight": 1.0,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "rationale": "Concept math.im3.skill.1.aleks.imaginary-number-simplification generated by math.im3.generator.m1.algebraic-step-solver",
+      "sourceRefs": [
+        {
+          "source": "pilot",
+          "note": "Module 1 pilot generator mapping"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "generator-registry-mapping",
+      "metadata": {
+        "course": "im3",
+        "module": "1"
+      }
+    },
+    {
+      "id": "math.im3.edge.m1.111",
+      "type": "generated_by",
+      "sourceId": "math.im3.skill.1.aleks.quadratic-factoring",
+      "targetId": "math.im3.generator.m1.algebraic-step-solver",
+      "weight": 1.0,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "rationale": "Concept math.im3.skill.1.aleks.quadratic-factoring generated by math.im3.generator.m1.algebraic-step-solver",
+      "sourceRefs": [
+        {
+          "source": "pilot",
+          "note": "Module 1 pilot generator mapping"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "generator-registry-mapping",
+      "metadata": {
+        "course": "im3",
+        "module": "1"
+      }
+    },
+    {
+      "id": "math.im3.edge.m1.112",
+      "type": "generated_by",
+      "sourceId": "math.im3.skill.1.aleks.quadratic-formula",
+      "targetId": "math.im3.generator.m1.algebraic-step-solver",
+      "weight": 1.0,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "rationale": "Concept math.im3.skill.1.aleks.quadratic-formula generated by math.im3.generator.m1.algebraic-step-solver",
+      "sourceRefs": [
+        {
+          "source": "pilot",
+          "note": "Module 1 pilot generator mapping"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "generator-registry-mapping",
+      "metadata": {
+        "course": "im3",
+        "module": "1"
+      }
+    },
+    {
+      "id": "math.im3.edge.m1.113",
+      "type": "generated_by",
+      "sourceId": "math.im3.skill.1.aleks.quadratic-graph-analysis",
+      "targetId": "math.im3.generator.m1.quadratic-graph-analysis",
+      "weight": 1.0,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "rationale": "Concept math.im3.skill.1.aleks.quadratic-graph-analysis generated by math.im3.generator.m1.quadratic-graph-analysis",
+      "sourceRefs": [
+        {
+          "source": "pilot",
+          "note": "Module 1 pilot generator mapping"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "generator-registry-mapping",
+      "metadata": {
+        "course": "im3",
+        "module": "1"
+      }
+    },
+    {
+      "id": "math.im3.edge.m1.114",
+      "type": "generated_by",
+      "sourceId": "math.im3.skill.1.aleks.solve-quadratic-by-graphing",
+      "targetId": "math.im3.generator.m1.solve-quadratic-by-graphing",
+      "weight": 1.0,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "rationale": "Concept math.im3.skill.1.aleks.solve-quadratic-by-graphing generated by math.im3.generator.m1.solve-quadratic-by-graphing",
+      "sourceRefs": [
+        {
+          "source": "pilot",
+          "note": "Module 1 pilot generator mapping"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "generator-registry-mapping",
+      "metadata": {
+        "course": "im3",
+        "module": "1"
+      }
+    },
+    {
+      "id": "math.im3.edge.m1.115",
+      "type": "rendered_by",
+      "sourceId": "math.im3.skill.1.aleks.completing-square-solve",
+      "targetId": "math.im3.renderer.step-by-step-solver",
+      "weight": 1.0,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "rationale": "Node math.im3.skill.1.aleks.completing-square-solve rendered by math.im3.renderer.step-by-step-solver",
+      "sourceRefs": [
+        {
+          "source": "component-registry",
+          "note": "Registered renderer mapping"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "renderer-registry-mapping",
+      "metadata": {
+        "course": "im3",
+        "module": "1"
+      }
+    },
+    {
+      "id": "math.im3.edge.m1.116",
+      "type": "rendered_by",
+      "sourceId": "math.im3.skill.1.aleks.complex-number-operations",
+      "targetId": "math.im3.renderer.step-by-step-solver",
+      "weight": 1.0,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "rationale": "Node math.im3.skill.1.aleks.complex-number-operations rendered by math.im3.renderer.step-by-step-solver",
+      "sourceRefs": [
+        {
+          "source": "component-registry",
+          "note": "Registered renderer mapping"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "renderer-registry-mapping",
+      "metadata": {
+        "course": "im3",
+        "module": "1"
+      }
+    },
+    {
+      "id": "math.im3.edge.m1.117",
+      "type": "rendered_by",
+      "sourceId": "math.im3.skill.1.aleks.discriminant-analysis",
+      "targetId": "math.im3.renderer.discriminant-analyzer",
+      "weight": 1.0,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "rationale": "Node math.im3.skill.1.aleks.discriminant-analysis rendered by math.im3.renderer.discriminant-analyzer",
+      "sourceRefs": [
+        {
+          "source": "component-registry",
+          "note": "Registered renderer mapping"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "renderer-registry-mapping",
+      "metadata": {
+        "course": "im3",
+        "module": "1"
+      }
+    },
+    {
+      "id": "math.im3.edge.m1.118",
+      "type": "rendered_by",
+      "sourceId": "math.im3.skill.1.aleks.imaginary-number-simplification",
+      "targetId": "math.im3.renderer.step-by-step-solver",
+      "weight": 1.0,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "rationale": "Node math.im3.skill.1.aleks.imaginary-number-simplification rendered by math.im3.renderer.step-by-step-solver",
+      "sourceRefs": [
+        {
+          "source": "component-registry",
+          "note": "Registered renderer mapping"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "renderer-registry-mapping",
+      "metadata": {
+        "course": "im3",
+        "module": "1"
+      }
+    },
+    {
+      "id": "math.im3.edge.m1.119",
+      "type": "rendered_by",
+      "sourceId": "math.im3.skill.1.aleks.linear-quadratic-system",
+      "targetId": "math.im3.renderer.graphing-explorer",
+      "weight": 1.0,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "rationale": "Node math.im3.skill.1.aleks.linear-quadratic-system rendered by math.im3.renderer.graphing-explorer",
+      "sourceRefs": [
+        {
+          "source": "component-registry",
+          "note": "Registered renderer mapping"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "renderer-registry-mapping",
+      "metadata": {
+        "course": "im3",
+        "module": "1"
+      }
+    },
+    {
+      "id": "math.im3.edge.m1.120",
+      "type": "rendered_by",
+      "sourceId": "math.im3.skill.1.aleks.quadratic-factoring",
+      "targetId": "math.im3.renderer.step-by-step-solver",
+      "weight": 1.0,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "rationale": "Node math.im3.skill.1.aleks.quadratic-factoring rendered by math.im3.renderer.step-by-step-solver",
+      "sourceRefs": [
+        {
+          "source": "component-registry",
+          "note": "Registered renderer mapping"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "renderer-registry-mapping",
+      "metadata": {
+        "course": "im3",
+        "module": "1"
+      }
+    },
+    {
+      "id": "math.im3.edge.m1.121",
+      "type": "rendered_by",
+      "sourceId": "math.im3.skill.1.aleks.quadratic-formula",
+      "targetId": "math.im3.renderer.step-by-step-solver",
+      "weight": 1.0,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "rationale": "Node math.im3.skill.1.aleks.quadratic-formula rendered by math.im3.renderer.step-by-step-solver",
+      "sourceRefs": [
+        {
+          "source": "component-registry",
+          "note": "Registered renderer mapping"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "renderer-registry-mapping",
+      "metadata": {
+        "course": "im3",
+        "module": "1"
+      }
+    },
+    {
+      "id": "math.im3.edge.m1.122",
+      "type": "rendered_by",
+      "sourceId": "math.im3.skill.1.aleks.quadratic-graph-analysis",
+      "targetId": "math.im3.renderer.graphing-explorer",
+      "weight": 1.0,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "rationale": "Node math.im3.skill.1.aleks.quadratic-graph-analysis rendered by math.im3.renderer.graphing-explorer",
+      "sourceRefs": [
+        {
+          "source": "component-registry",
+          "note": "Registered renderer mapping"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "renderer-registry-mapping",
+      "metadata": {
+        "course": "im3",
+        "module": "1"
+      }
+    },
+    {
+      "id": "math.im3.edge.m1.123",
+      "type": "rendered_by",
+      "sourceId": "math.im3.skill.1.aleks.quadratic-inequality-graphing",
+      "targetId": "math.im3.renderer.graphing-explorer",
+      "weight": 1.0,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "rationale": "Node math.im3.skill.1.aleks.quadratic-inequality-graphing rendered by math.im3.renderer.graphing-explorer",
+      "sourceRefs": [
+        {
+          "source": "component-registry",
+          "note": "Registered renderer mapping"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "renderer-registry-mapping",
+      "metadata": {
+        "course": "im3",
+        "module": "1"
+      }
+    },
+    {
+      "id": "math.im3.edge.m1.124",
+      "type": "rendered_by",
+      "sourceId": "math.im3.skill.1.aleks.quadratic-inequality-interval-solution",
+      "targetId": "math.im3.renderer.graphing-explorer",
+      "weight": 1.0,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "rationale": "Node math.im3.skill.1.aleks.quadratic-inequality-interval-solution rendered by math.im3.renderer.graphing-explorer",
+      "sourceRefs": [
+        {
+          "source": "component-registry",
+          "note": "Registered renderer mapping"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "renderer-registry-mapping",
+      "metadata": {
+        "course": "im3",
+        "module": "1"
+      }
+    },
+    {
+      "id": "math.im3.edge.m1.125",
+      "type": "rendered_by",
+      "sourceId": "math.im3.skill.1.aleks.quadratic-quadratic-system",
+      "targetId": "math.im3.renderer.graphing-explorer",
+      "weight": 1.0,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "rationale": "Node math.im3.skill.1.aleks.quadratic-quadratic-system rendered by math.im3.renderer.graphing-explorer",
+      "sourceRefs": [
+        {
+          "source": "component-registry",
+          "note": "Registered renderer mapping"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "renderer-registry-mapping",
+      "metadata": {
+        "course": "im3",
+        "module": "1"
+      }
+    },
+    {
+      "id": "math.im3.edge.m1.126",
+      "type": "rendered_by",
+      "sourceId": "math.im3.skill.1.aleks.quadratic-vertex-form-completion",
+      "targetId": "math.im3.renderer.step-by-step-solver",
+      "weight": 1.0,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "rationale": "Node math.im3.skill.1.aleks.quadratic-vertex-form-completion rendered by math.im3.renderer.step-by-step-solver",
+      "sourceRefs": [
+        {
+          "source": "component-registry",
+          "note": "Registered renderer mapping"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "renderer-registry-mapping",
+      "metadata": {
+        "course": "im3",
+        "module": "1"
+      }
+    },
+    {
+      "id": "math.im3.edge.m1.127",
+      "type": "rendered_by",
+      "sourceId": "math.im3.skill.1.aleks.solve-quadratic-by-graphing",
+      "targetId": "math.im3.renderer.graphing-explorer",
+      "weight": 1.0,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "rationale": "Node math.im3.skill.1.aleks.solve-quadratic-by-graphing rendered by math.im3.renderer.graphing-explorer",
+      "sourceRefs": [
+        {
+          "source": "component-registry",
+          "note": "Registered renderer mapping"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "renderer-registry-mapping",
+      "metadata": {
+        "course": "im3",
+        "module": "1"
+      }
+    },
+    {
+      "id": "math.im3.edge.m1.128",
+      "type": "rendered_by",
+      "sourceId": "math.im3.skill.1.aleks.special-product-factoring",
+      "targetId": "math.im3.renderer.step-by-step-solver",
+      "weight": 1.0,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "rationale": "Node math.im3.skill.1.aleks.special-product-factoring rendered by math.im3.renderer.step-by-step-solver",
+      "sourceRefs": [
+        {
+          "source": "component-registry",
+          "note": "Registered renderer mapping"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "renderer-registry-mapping",
+      "metadata": {
+        "course": "im3",
+        "module": "1"
+      }
+    },
+    {
+      "id": "math.im3.edge.m1.129",
+      "type": "rendered_by",
+      "sourceId": "math.im3.skill.1.1.find-and-interpret-the-average-rate-of-change",
+      "targetId": "math.im3.renderer.rate-of-change-calculator",
+      "weight": 1.0,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "rationale": "Node rendered by math.im3.renderer.rate-of-change-calculator",
+      "sourceRefs": [
+        {
+          "source": "component-registry",
+          "note": "Registered renderer mapping"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "renderer-registry-mapping",
+      "metadata": {
+        "course": "im3",
+        "module": "1"
+      }
+    },
+    {
+      "id": "math.im3.edge.m1.130",
+      "type": "rendered_by",
+      "sourceId": "math.im3.skill.1.aleks.average-rate-of-change",
+      "targetId": "math.im3.renderer.rate-of-change-calculator",
+      "weight": 1.0,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "rationale": "Node rendered by math.im3.renderer.rate-of-change-calculator",
+      "sourceRefs": [
+        {
+          "source": "component-registry",
+          "note": "Registered renderer mapping"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "renderer-registry-mapping",
+      "metadata": {
+        "course": "im3",
+        "module": "1"
+      }
+    },
+    {
+      "id": "math.im3.edge.m1.131",
+      "type": "rendered_by",
+      "sourceId": "math.im3.skill.1.aleks.completing-square-solve",
+      "targetId": "math.im3.renderer.step-by-step-solver",
+      "weight": 1.0,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "rationale": "Node rendered by math.im3.renderer.step-by-step-solver",
+      "sourceRefs": [
+        {
+          "source": "component-registry",
+          "note": "Registered renderer mapping"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "renderer-registry-mapping",
+      "metadata": {
+        "course": "im3",
+        "module": "1"
+      }
+    },
+    {
+      "id": "math.im3.edge.m1.132",
+      "type": "rendered_by",
+      "sourceId": "math.im3.skill.1.aleks.complex-number-operations",
+      "targetId": "math.im3.renderer.step-by-step-solver",
+      "weight": 1.0,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "rationale": "Node rendered by math.im3.renderer.step-by-step-solver",
+      "sourceRefs": [
+        {
+          "source": "component-registry",
+          "note": "Registered renderer mapping"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "renderer-registry-mapping",
+      "metadata": {
+        "course": "im3",
+        "module": "1"
+      }
+    },
+    {
+      "id": "math.im3.edge.m1.133",
+      "type": "rendered_by",
+      "sourceId": "math.im3.skill.1.aleks.discriminant-analysis",
+      "targetId": "math.im3.renderer.discriminant-analyzer",
+      "weight": 1.0,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "rationale": "Node rendered by math.im3.renderer.discriminant-analyzer",
+      "sourceRefs": [
+        {
+          "source": "component-registry",
+          "note": "Registered renderer mapping"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "renderer-registry-mapping",
+      "metadata": {
+        "course": "im3",
+        "module": "1"
+      }
+    },
+    {
+      "id": "math.im3.edge.m1.134",
+      "type": "rendered_by",
+      "sourceId": "math.im3.skill.1.aleks.imaginary-number-simplification",
+      "targetId": "math.im3.renderer.step-by-step-solver",
+      "weight": 1.0,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "rationale": "Node rendered by math.im3.renderer.step-by-step-solver",
+      "sourceRefs": [
+        {
+          "source": "component-registry",
+          "note": "Registered renderer mapping"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "renderer-registry-mapping",
+      "metadata": {
+        "course": "im3",
+        "module": "1"
+      }
+    },
+    {
+      "id": "math.im3.edge.m1.135",
+      "type": "rendered_by",
+      "sourceId": "math.im3.skill.1.aleks.linear-quadratic-system",
+      "targetId": "math.im3.renderer.graphing-explorer",
+      "weight": 1.0,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "rationale": "Node rendered by math.im3.renderer.graphing-explorer",
+      "sourceRefs": [
+        {
+          "source": "component-registry",
+          "note": "Registered renderer mapping"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "renderer-registry-mapping",
+      "metadata": {
+        "course": "im3",
+        "module": "1"
+      }
+    },
+    {
+      "id": "math.im3.edge.m1.136",
+      "type": "rendered_by",
+      "sourceId": "math.im3.skill.1.aleks.quadratic-factoring",
+      "targetId": "math.im3.renderer.step-by-step-solver",
+      "weight": 1.0,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "rationale": "Node rendered by math.im3.renderer.step-by-step-solver",
+      "sourceRefs": [
+        {
+          "source": "component-registry",
+          "note": "Registered renderer mapping"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "renderer-registry-mapping",
+      "metadata": {
+        "course": "im3",
+        "module": "1"
+      }
+    },
+    {
+      "id": "math.im3.edge.m1.137",
+      "type": "rendered_by",
+      "sourceId": "math.im3.skill.1.aleks.quadratic-formula",
+      "targetId": "math.im3.renderer.step-by-step-solver",
+      "weight": 1.0,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "rationale": "Node rendered by math.im3.renderer.step-by-step-solver",
+      "sourceRefs": [
+        {
+          "source": "component-registry",
+          "note": "Registered renderer mapping"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "renderer-registry-mapping",
+      "metadata": {
+        "course": "im3",
+        "module": "1"
+      }
+    },
+    {
+      "id": "math.im3.edge.m1.138",
+      "type": "rendered_by",
+      "sourceId": "math.im3.skill.1.aleks.quadratic-graph-analysis",
+      "targetId": "math.im3.renderer.graphing-explorer",
+      "weight": 1.0,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "rationale": "Node rendered by math.im3.renderer.graphing-explorer",
+      "sourceRefs": [
+        {
+          "source": "component-registry",
+          "note": "Registered renderer mapping"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "renderer-registry-mapping",
+      "metadata": {
+        "course": "im3",
+        "module": "1"
+      }
+    },
+    {
+      "id": "math.im3.edge.m1.139",
+      "type": "rendered_by",
+      "sourceId": "math.im3.skill.1.aleks.quadratic-inequality-graphing",
+      "targetId": "math.im3.renderer.graphing-explorer",
+      "weight": 1.0,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "rationale": "Node rendered by math.im3.renderer.graphing-explorer",
+      "sourceRefs": [
+        {
+          "source": "component-registry",
+          "note": "Registered renderer mapping"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "renderer-registry-mapping",
+      "metadata": {
+        "course": "im3",
+        "module": "1"
+      }
+    },
+    {
+      "id": "math.im3.edge.m1.140",
+      "type": "rendered_by",
+      "sourceId": "math.im3.skill.1.aleks.quadratic-inequality-interval-solution",
+      "targetId": "math.im3.renderer.graphing-explorer",
+      "weight": 1.0,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "rationale": "Node rendered by math.im3.renderer.graphing-explorer",
+      "sourceRefs": [
+        {
+          "source": "component-registry",
+          "note": "Registered renderer mapping"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "renderer-registry-mapping",
+      "metadata": {
+        "course": "im3",
+        "module": "1"
+      }
+    },
+    {
+      "id": "math.im3.edge.m1.141",
+      "type": "rendered_by",
+      "sourceId": "math.im3.skill.1.aleks.quadratic-quadratic-system",
+      "targetId": "math.im3.renderer.graphing-explorer",
+      "weight": 1.0,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "rationale": "Node rendered by math.im3.renderer.graphing-explorer",
+      "sourceRefs": [
+        {
+          "source": "component-registry",
+          "note": "Registered renderer mapping"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "renderer-registry-mapping",
+      "metadata": {
+        "course": "im3",
+        "module": "1"
+      }
+    },
+    {
+      "id": "math.im3.edge.m1.142",
+      "type": "rendered_by",
+      "sourceId": "math.im3.skill.1.aleks.quadratic-vertex-form-completion",
+      "targetId": "math.im3.renderer.step-by-step-solver",
+      "weight": 1.0,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "rationale": "Node rendered by math.im3.renderer.step-by-step-solver",
+      "sourceRefs": [
+        {
+          "source": "component-registry",
+          "note": "Registered renderer mapping"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "renderer-registry-mapping",
+      "metadata": {
+        "course": "im3",
+        "module": "1"
+      }
+    },
+    {
+      "id": "math.im3.edge.m1.143",
+      "type": "rendered_by",
+      "sourceId": "math.im3.skill.1.aleks.solve-quadratic-by-graphing",
+      "targetId": "math.im3.renderer.graphing-explorer",
+      "weight": 1.0,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "rationale": "Node rendered by math.im3.renderer.graphing-explorer",
+      "sourceRefs": [
+        {
+          "source": "component-registry",
+          "note": "Registered renderer mapping"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "renderer-registry-mapping",
+      "metadata": {
+        "course": "im3",
+        "module": "1"
+      }
+    },
+    {
+      "id": "math.im3.edge.m1.144",
+      "type": "rendered_by",
+      "sourceId": "math.im3.skill.1.aleks.special-product-factoring",
+      "targetId": "math.im3.renderer.step-by-step-solver",
+      "weight": 1.0,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "rationale": "Node rendered by math.im3.renderer.step-by-step-solver",
+      "sourceRefs": [
+        {
+          "source": "component-registry",
+          "note": "Registered renderer mapping"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "renderer-registry-mapping",
+      "metadata": {
+        "course": "im3",
+        "module": "1"
+      }
+    }
+  ]
+}
