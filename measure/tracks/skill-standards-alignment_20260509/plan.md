@@ -2,13 +2,8 @@
 
 ## Phase 1: Tests and Rule Definition
 
-- [ ] **Task 1.1: Write alignment rule tests**
-  - Fixture: skill in lesson with exact lesson-standard mapping.
-  - Fixture: skill mapped through problem family objective IDs.
-  - Fixture: PreCalc skill mapped through CED topic objective.
-  - Fixture: missing standard produces exception.
-
-- [ ] **Task 1.2: Document confidence rules**
+- [x] **Task 1.1: Write alignment rule tests** [checkpoint: fd77286]
+- [x] **Task 1.2: Document confidence rules** [checkpoint: fd77286]
   - Add `apps/<course>/curriculum/skill-graph/README.md` or shared docs explaining high/medium/low confidence.
 
 ## Phase 2: Standards Source Loading
