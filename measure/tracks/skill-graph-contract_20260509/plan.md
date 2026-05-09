@@ -2,68 +2,19 @@
 
 ## Phase 1: Contract Tests First
 
-- [ ] **Task 1.1: Add valid fixture test**
-  - Create `packages/knowledge-space-core/src/__tests__/contract.test.ts`.
-  - Add a minimal synthetic valid knowledge-space fixture with domain, content_group, instructional_unit, skill, worked_example, standard, renderer, and generator nodes.
-  - Assert `knowledgeSpaceSchema.parse(fixture)` succeeds.
-  - Include synthetic math-like and English/GSE-like metadata examples without using proprietary maps or real descriptor text.
-
-- [ ] **Task 1.2: Add structural failure tests**
-  - Test duplicate node IDs.
-  - Test dangling edge source.
-  - Test dangling edge target.
-  - Test duplicate exact edge.
-  - Test invalid edge endpoint pairing.
-
-- [ ] **Task 1.3: Add readiness validation tests**
-  - Test node requiring standard/objective alignment fails without alignment edge unless exception exists.
-  - Test node marked `independentPracticeReady: true` fails without `generated_by` edge unless exception exists.
-  - Test a domain adapter can reject invalid metadata while the core stays domain-neutral.
+- [x] **Task 1.1: Add valid fixture test** [58259600]
+- [x] **Task 1.2: Add structural failure tests** [58259600]
+- [x] **Task 1.3: Add readiness validation tests** [58259600]
 
 ## Phase 2: Type and Schema Implementation
 
-- [ ] **Task 2.1: Create core schema files**
-  - Add:
-    - `packages/knowledge-space-core/src/types.ts`
-    - `packages/knowledge-space-core/src/schemas.ts`
-    - `packages/knowledge-space-core/src/validation.ts`
-    - `packages/knowledge-space-core/src/adapters.ts`
-    - `packages/knowledge-space-core/src/fixtures.ts`
-    - `packages/knowledge-space-core/src/index.ts`
+- [x] **Task 2.1: Create core schema files** [f3fc8259]
 
-- [ ] **Task 2.2: Implement node schema**
-  - Required fields:
-    - `id`
-    - `kind`
-    - `title`
-    - `domain`
-    - `sourceRefs`
-    - `reviewStatus`
-    - `metadata`
-  - Optional fields:
-    - `description`
-    - `alignmentRefs`
-    - `rendererKey`
-    - `generatorKey`
-    - `difficulty`
-    - `independentPracticeReady`
-    - `exceptions`
+- [x] **Task 2.2: Implement node schema** [f3fc8259]
 
-- [ ] **Task 2.3: Implement edge schema**
-  - Required fields:
-    - `id`
-    - `type`
-    - `sourceId`
-    - `targetId`
-    - `weight`
-    - `confidence`
-    - `sourceRefs`
-    - `reviewStatus`
-  - Optional fields:
-    - `rationale`
-    - `metadata`
+- [x] **Task 2.3: Implement edge schema** [f3fc8259]
 
-- [ ] **Task 2.4: Implement validation helpers**
+- [x] **Task 2.4: Implement validation helpers** [f3fc8259]
   - `validateKnowledgeSpace(space)`
   - `getDanglingEdges(graph)`
   - `getDuplicateNodeIds(graph)`
