@@ -3,7 +3,7 @@
   "title": "Skill Graph Program: Knowledge Space Practice Projections",
   "description": "Generate practice.v1 activity maps, SRS inputs, teacher evidence views, component props, and seed projections from knowledge-space.v1 artifacts through reusable projection adapters instead of maintaining those runtime artifacts as source truth.",
   "type": "feature",
-  "status": "pending",
+  "status": "completed",
   "created_at": "2026-05-09",
   "updated_at": "2026-05-09",
   "estimated_tasks": 14

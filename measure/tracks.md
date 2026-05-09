@@ -37,10 +37,10 @@ Dependencies:
    - [ ] **Track 5: Skill Graph Program — Directed Edge Authoring (post-pilot horizontal expansion)**
       *Apply the pilot-validated edge-authoring approach across IM1, IM2, IM3 Modules 2–9, and PreCalc. Runs **after** T8 pilot acceptance. Cross-course equivalence is **out of scope** here; that lives in T13.*
       *Link: [./measure/tracks/skill-graph-edge-authoring_20260509/](./measure/tracks/skill-graph-edge-authoring_20260509/)*
-   - [ ] **Track 6: Skill Graph Program — Knowledge Space Blueprint and Generator Contract**
+    - [x] **Track 6: Skill Graph Program — Knowledge Space Blueprint and Generator Contract**
       *Define reusable worked-example, guided-practice, and independent-practice blueprint contracts plus deterministic generator requirements.*
       *Link: [./measure/tracks/skill-blueprint-generator-contract_20260509/](./measure/tracks/skill-blueprint-generator-contract_20260509/)*
-   - [ ] **Track 7: Skill Graph Program — Knowledge Space Practice Projections**
+    - [x] **Track 7: Skill Graph Program — Knowledge Space Practice Projections**
       *Generate practice.v1 activity maps, SRS inputs, teacher evidence maps, versioned visualization.v1 payloads (student/parent/teacher), component props, and seed projections through reusable projection adapters. Includes a cross-domain smoke test proving the pipeline runs on a synthetic non-math fixture with no math/app imports.*
       *Link: [./measure/tracks/skill-runtime-projection_20260509/](./measure/tracks/skill-runtime-projection_20260509/)*
    - [ ] **Track 8: Skill Graph Program — IM3 Module 1 Pilot (depth-first slice)**
