@@ -54,3 +54,12 @@
 - [x] **Task 5.2: Run lint/typecheck for touched package/scripts** [61f8be0]
 - [x] **Task 5.3: Confirm source files unchanged** [61f8be0]
   - Run `git diff --name-only` and verify curriculum source catalogs were not modified.
+
+## Phase: Review Fixes
+
+- [x] **Task R.1: Add always-present Exceptions section to audit report** [$SHA]
+  - Replace conditional duplicate-IDs and missing-source-refs blocks with an always-written Exceptions section so readers confirm each check ran and found nothing, not that it was skipped.
+
+- [x] **Task R.2: Add standalone schema-validation script** [$SHA]
+  - Create `scripts/validate-skill-inventory.ts` that reads committed `draft-nodes.json` files and validates each node through `knowledgeSpaceNodeSchema.safeParse()`. Exits non-zero on failure.
+  - Update `validate-inventory` npm script in `packages/math-content/package.json` to call this validator instead of the audit-only extraction re-run.
