@@ -48,13 +48,17 @@
 > **Checkpoint P3.1:** `c5bbe87f` — All 14 IM1 module seed files created. Lint-clean. `unitNumber: N` per module. Phase mapping: Explore→explore, Vocabulary→vocabulary, Learn→learn, Example N→worked_example, Mixed Exercises/Review Notes→independent_practice. No activities (text sections only).
 
 ### Task 3.2: Create IM1 lesson_standards seed entries
-- [ ] Create `convex/seed/seed_im1_lesson_standards.ts`
-- [ ] Map CCSS standards to all 93 IM1 lessons
-- [ ] Follow same pattern as IM3 lesson_standards seeding
+- [x] Create `convex/seed/seed_im1_module_{1..14}_standards.ts` — one per module
+- [x] Map CCSS standards to all 93 IM1 lessons
+- [x] Follow same pattern as IM3 lesson_standards seeding
+
+> **Checkpoint P3.2:** `153fc3b2` — 14 IM1 lesson_standards files covering 93 lessons. Standards inferred from ## Today's Goals per lesson. One primary standard per lesson, supporting standards added where content warrants.
 
 ### Task 3.3: Update seed.ts orchestration
 - [ ] Create new `convex/seed.ts` that imports and runs all new module seed files
 - [ ] Ensure seed order follows module-1 through module-14 sequence
+
+> **Checkpoint P3.3:** `[COMMIT_HASH]` — seed.ts orchestration for IM1 updated.
 
 ## Phase 4: IM2 Seed Creation (Complete Replacement)
 
@@ -66,9 +70,11 @@
 > **Checkpoint P4.1:** `c9c80bb2` — All 13 IM2 module seed files created. Lint-clean. Fixed unused import/lint errors across seed_module_{6,7,9,10,12,13}_lessons.ts (`SeedActivityContent`, `parseSections`, `lessonSlug`, `rawSections`, `prefer-const`).
 
 ### Task 4.2: Create IM2 lesson_standards seed entries
-- [ ] Create `convex/seed/seed_im2_lesson_standards.ts`
-- [ ] Map CCSS standards to all 109 IM2 lessons
-- [ ] Add entries for new lessons not in old seed
+- [x] Create `convex/seed/seed_im2_module_{1..13}_standards.ts` — one per module
+- [x] Map CCSS standards to all ~104 IM2 lessons
+- [x] Add entries for new lessons not in old seed
+
+> **Checkpoint P4.2:** `98fec082` — 13 IM2 lesson_standards files covering ~104 lessons. Standards include G-CO, G-SRT, G-C, G-GPE, G-GMD (geometry); S-CP (probability); F-IF/F-BF/F-LE (functions); A-APR/A-REI/A-CED (algebra); N-RN/N-CN (number systems).
 
 ### Task 4.3: Update seed.ts orchestration
 - [ ] Create new `convex/seed.ts` that imports and runs all new module seed files
