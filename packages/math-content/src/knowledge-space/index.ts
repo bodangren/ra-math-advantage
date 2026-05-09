@@ -6,6 +6,7 @@
 export {
   MATH_COURSES,
   MATH_DOMAIN_PREFIX,
+  ID_PATTERNS,
   buildSkillId,
   buildWorkedExampleId,
   buildLessonId,

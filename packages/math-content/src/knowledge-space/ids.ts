@@ -15,6 +15,17 @@ export type MathCourse = (typeof MATH_COURSES)[number];
 
 export const MATH_DOMAIN_PREFIX = 'math';
 
+// Regex patterns for each math node kind — informational reference for adapter consumers.
+// `validateMathId` is authoritative; these patterns are for quick ad-hoc checks.
+export const ID_PATTERNS: Record<string, RegExp> = {
+  skill:             /^math\.[a-z0-9]+\.skill\.[^.]+\.[^.]+\.[a-z0-9-]+$/,
+  worked_example:    /^math\.[a-z0-9]+\.example\.[^.]+\.[^.]+\.[a-z0-9-]+$/,
+  instructional_unit:/^math\.[a-z0-9]+\.lesson\.[^.]+\.[^.]+$/,
+  content_group:     /^math\.[a-z0-9]+\.module\.[^.]+$/,
+  domain:            /^math\.[a-z0-9]+$/,
+  standard:          /^math\.standard\.[a-z]+\..+$/,
+};
+
 // ---------------------------------------------------------------------------
 // ID constructors
 // ---------------------------------------------------------------------------

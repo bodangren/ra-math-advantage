@@ -8,6 +8,7 @@ import {
   buildCourseId,
   buildStandardId,
   MATH_COURSES,
+  ID_PATTERNS,
 } from '../ids';
 import {
   validateMathNodeMetadata,
@@ -186,7 +187,7 @@ describe('metadata — node metadata', () => {
 
   it('rejects invalid edge metadata', () => {
     const edge: KnowledgeSpaceEdge = {
-      id: 'edge:test',
+      id: 'edge.test',
       type: 'prerequisite_for',
       sourceId: 'a',
       targetId: 'b',
@@ -256,6 +257,9 @@ describe('practice-v1-adapter', () => {
     expect(parts[0].partId).toBe('p1');
     expect(parts[0].rawAnswer).toBe('x = 3');
     expect(parts[0].isCorrect).toBe(true);
+    expect(parts[0].wallClockMs).toBe(45000);
+    expect(parts[0].activeMs).toBe(42000);
+    expect(parts[1].wallClockMs).toBe(45000);
   });
 
   it('handles single-part evidence', () => {
@@ -313,7 +317,7 @@ describe('mathDomainAdapter', () => {
 
   it('validates edge metadata via adapter', () => {
     const edge: KnowledgeSpaceEdge = {
-      id: 'edge:test',
+      id: 'edge.test',
       type: 'prerequisite_for',
       sourceId: 'a',
       targetId: 'b',
@@ -345,5 +349,24 @@ describe('mathDomainAdapter', () => {
       parts: [{ partId: 'q1', answer: '42', correct: true }],
     });
     expect(parts).toHaveLength(1);
+  });
+
+  it('exposes idPatterns matching all supported kinds', () => {
+    expect(mathDomainAdapter.idPatterns).toBe(ID_PATTERNS);
+    expect(mathDomainAdapter.idPatterns.skill).toBeInstanceOf(RegExp);
+    expect(mathDomainAdapter.idPatterns.skill.test('math.im3.skill.1.2.slug')).toBe(true);
+    expect(mathDomainAdapter.idPatterns.skill.test('bad-id')).toBe(false);
+  });
+
+  it('validates a correct ID via adapter.validateId', () => {
+    const id = buildSkillId('im3', '1', '2', 'solve-quadratic');
+    const result = mathDomainAdapter.validateId(id, 'skill');
+    expect(result.valid).toBe(true);
+  });
+
+  it('rejects a malformed ID via adapter.validateId', () => {
+    const result = mathDomainAdapter.validateId('english.gse.skill.b1.slug', 'skill');
+    expect(result.valid).toBe(false);
+    expect(result.errors?.length).toBeGreaterThan(0);
   });
 });

@@ -5,7 +5,7 @@ import type {
   KnowledgeSpaceEdge,
   DomainAdapter,
 } from '@math-platform/knowledge-space-core';
-import { MATH_DOMAIN_PREFIX } from './ids';
+import { MATH_DOMAIN_PREFIX, validateMathId, ID_PATTERNS, type IdValidationResult } from './ids';
 import { validateMathNodeMetadata, validateMathEdgeMetadata } from './metadata';
 import { getGenerator } from './generators/registry';
 import { getRenderer } from './renderers/registry';
@@ -17,6 +17,8 @@ import { evidenceToPracticeV1 } from './practice-v1-adapter';
 
 export interface MathDomainAdapter extends DomainAdapter {
   domain: typeof MATH_DOMAIN_PREFIX;
+  idPatterns: typeof ID_PATTERNS;
+  validateId: (id: string, kind: string) => IdValidationResult;
   validateEdgeMetadata: (edge: KnowledgeSpaceEdge) => { valid: boolean; errors?: string[] };
   getGenerator: typeof getGenerator;
   getRenderer: typeof getRenderer;
@@ -25,6 +27,11 @@ export interface MathDomainAdapter extends DomainAdapter {
 
 export const mathDomainAdapter: MathDomainAdapter = {
   domain: MATH_DOMAIN_PREFIX,
+  idPatterns: ID_PATTERNS,
+
+  validateId(id: string, kind: string): IdValidationResult {
+    return validateMathId(id, kind);
+  },
 
   validateNodeMetadata(node: KnowledgeSpaceNode) {
     return validateMathNodeMetadata(node);

@@ -26,9 +26,13 @@ export interface GenericEvidence {
 // ---------------------------------------------------------------------------
 
 export function evidenceToPracticeV1(evidence: GenericEvidence): PracticeSubmissionPart[] {
+  const wallClockMs = evidence.timing?.wallClockMs;
+  const activeMs = evidence.timing?.activeTimeMs;
   return evidence.parts.map((part) => ({
     partId: part.partId,
     rawAnswer: part.answer,
     isCorrect: part.correct ?? undefined,
+    ...(wallClockMs !== undefined && { wallClockMs }),
+    ...(activeMs !== undefined && { activeMs }),
   }));
 }
