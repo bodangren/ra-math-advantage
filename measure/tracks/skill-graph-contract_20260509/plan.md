@@ -47,3 +47,12 @@
   - Search the new `knowledge-space-core` package for imports from `apps/`, domain content packages, or `convex/_generated`.
   - The result must be empty.
   - This is the runtime confirmation; Phase 4 is the standing automated gate.
+
+## Phase: Review Fixes
+
+- [x] **Task: Apply review suggestions** [16d11f07]
+  - Add `CORE_ID_PATTERN` regex to node/edge `id` fields (spec §6 acceptance criterion)
+  - Add `derived` + `derivationMethod` provenance alternative to `sourceRefs` (spec §7)
+  - Fix `sourceRefs` TypeScript type: `SourceRef[] | string[]` → `Array<SourceRef | string>`
+  - Add `getInvalidEdgePairings()` to `validation.ts`; wire into `validateKnowledgeSpace`
+  - Update all colon-separated test IDs to dot notation; add 7 new tests (38 total pass)
