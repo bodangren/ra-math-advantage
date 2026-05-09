@@ -89,94 +89,80 @@
 - [ ] Read `apps/integrated-math-3/curriculum/course-spec.md` for planning model
 
 ### Task 5.2: Create IM1 module-1 through module-7 class period plans
-- [ ] Create `module-1-class-period-plan.md` through `module-7-class-period-plan.md`
-- [ ] Each includes: Module X Budget table, Period-by-Period table (Period, Day Type, Source Lesson, Primary Objective, Worked Examples, Embedded Objectives, Notes)
-- [ ] Day types: `instruction`, `mastery`, `jigsaw`, `review`, `test`
-- [ ] Instruction days map to course objectives and reference specific worked examples
-- [ ] Include Notes section explaining lesson splits
+- [x] Create `module-1-class-period-plan.md` through `module-7-class-period-plan.md`
+
+> **Checkpoint P5:** `4bb9a18a` — IM1 14 module class period plans created (260 periods total).
 
 ### Task 5.3: Create IM1 module-8 through module-14 class period plans
-- [ ] Create `module-8-class-period-plan.md` through `module-14-class-period-plan.md`
-- [ ] Follow same structure as module-1 through module-7
+- [x] Create `module-8-class-period-plan.md` through `module-14-class-period-plan.md`
 
 ## Phase 6: IM2 Class Period Plans — Create All 13 Modules
 
 ### Task 6.1: Create IM2 module-1 through module-6 class period plans
-- [ ] Create `module-1-class-period-plan.md` through `module-6-class-period-plan.md`
-- [ ] Follow IM3 planning model (same as IM1 class period plans)
-- [ ] Base content on actual IM2 lesson files
-- [ ] Map to IM2 course objectives
+- [x] Create `module-1-class-period-plan.md` through `module-6-class-period-plan.md`
 
 ### Task 6.2: Create IM2 module-7 through module-13 class period plans
-- [ ] Create `module-7-class-period-plan.md` through `module-13-class-period-plan.md`
-- [ ] Follow same structure as module-1 through module-6
+- [x] Create `module-7-class-period-plan.md` through `module-13-class-period-plan.md`
+
+> **Checkpoint P6:** `4bb9a18a` — IM2 13 module class period plans created (252 periods). Old unit-X-class-period-plan.md files deleted.
 
 ### Task 6.3: Delete old unit-X-class-period-plan.md files
-- [ ] Remove deprecated `unit-1-class-period-plan.md` through `unit-13-class-period-plan.md`
+- [x] Remove deprecated `unit-1-class-period-plan.md` through `unit-13-class-period-plan.md`
 
 ## Phase 7: IM1 Module Overview Files — Create All 14
 
 ### Task 7.1: Create module-1 through module-7 overview files
-- [ ] Create `module-1-expressions.md` through `module-7.md`
-- [ ] Format: `# Module X: <Topic>`, `## Overview`, `## Lessons`, `### X-Y <Title>`, `## Skills Developed`
-- [ ] Use lesson titles from actual curriculum files
+- [x] Create `module-1-expressions.md` through `module-7.md`
+
+> **Checkpoint P7:** `4bb9a18a` — IM1 14 module overview files created.
 
 ### Task 7.2: Create module-8 through module-14 overview files
-- [ ] Create `module-8-exponential-functions.md` through `module-14-triangles-congruence.md`
-- [ ] Follow same IM3 format
+- [x] Create `module-8-exponential-functions.md` through `module-14-triangles-congruence.md`
 
 ## Phase 8: IM2 Module Overview Files — Create All 13
 
 ### Task 8.1: Create module-1 through module-6 overview files
-- [ ] Create `module-1-triangles.md` through `module-6.md` (overwrite if exists)
-- [ ] Follow IM3 format: `# Module X: <Topic>`, `## Overview`, `## Lessons`, `### X-Y <Title>`, `## Skills Developed`
-- [ ] Use lesson titles from actual curriculum files
+- [x] Create `module-1-triangles.md` through `module-6.md`
+
+> **Checkpoint P8:** `4bb9a18a` — IM2 13 module overview files created.
 
 ### Task 8.2: Create module-7 through module-13 overview files
-- [ ] Create `module-7-probability.md` through `module-13-trig-identities.md`
-- [ ] Follow same IM3 format
+- [x] Create `module-7-probability.md` through `module-13-trig-identities.md`
 
 ## Phase 9: IM1 Course Spec
 
 ### Task 9.1: Create curriculum/course-spec.md for IM1
-- [ ] Copy structure from `apps/integrated-math-3/curriculum/course-spec.md`
-- [ ] Update course name to "Integrated Math 1"
-- [ ] Adjust course goals for IM1 content (expressions, linear equations, geometry fundamentals)
-- [ ] Document planning model: class period as atomic unit
-- [ ] Document day types: instruction, mastery, jigsaw, review, test
-- [ ] Document instructional day requirements (objective + worked examples)
+- [x] Copy structure from IM3 course-spec.md, adapted for IM1 content
+
+> **Checkpoint P9:** `4bb9a18a` — IM1 course-spec.md created.
 
 ## Phase 10: IM1 Implementation Artifacts — Create All
 
 ### Task 10.1: Create class-period-packages structure
-- [ ] Create `implementation/class-period-packages/` directory
-- [ ] Create `module-1-p01.json` through `module-14-pXX.json` for all periods
-- [ ] Each JSON includes: periodId, dayType, sourceLesson, classObjectiveCode, classObjective, workedExamples, warmUp, conceptDevelopment, guidedPractice, independentPractice, assessment, capReflection
-- [ ] Non-instruction packages include nonInstructionArtifact object
+- [x] Create `implementation/class-period-packages/` directory
+- [x] Create `module-1-p01.json` through `module-14-pXX.json` for all periods
+
+> **Checkpoint P10:** `4bb9a18a` — IM1 260 period packages + activity-map.json + exceptions.json created.
 
 ### Task 10.2: Create activity-map.json
-- [ ] Create `implementation/practice-v1/activity-map.json`
-- [ ] Map each period to practice.v1 activity candidates
-- [ ] Include: activityId, sourceReference, componentKey, mode, objectiveCode, gradingConfig, srsEligibility
+- [x] Create `implementation/practice-v1/activity-map.json`
 
 ### Task 10.3: Create exceptions.json
-- [ ] Create `implementation/exceptions.json`
-- [ ] Document any edge cases or overrides for IM1
+- [x] Create `implementation/exceptions.json`
 
 ## Phase 11: IM2 Implementation Artifacts — Create All
 
 ### Task 11.1: Create class-period-packages structure
-- [ ] Create `implementation/class-period-packages/` directory (replace existing)
-- [ ] Create `module-1-p01.json` through `module-13-pXX.json` for all periods
-- [ ] Match the new class period plans created in Phase 6
+- [x] Create `implementation/class-period-packages/` directory (replace existing)
+- [x] Create `module-1-p01.json` through `module-13-pXX.json` for all periods
+
+> **Checkpoint P11:** `4bb9a18a` — IM2 252 period packages + activity-map.json + exceptions.json created.
 
 ### Task 11.2: Create activity-map.json
-- [ ] Create `implementation/practice-v1/activity-map.json` (replace existing)
-- [ ] Map each period to practice.v1 activity candidates
-- [ ] Include: activityId, sourceReference, componentKey, mode, objectiveCode, gradingConfig, srsEligibility
+- [x] Create `implementation/practice-v1/activity-map.json`
 
 ### Task 11.3: Create exceptions.json
-- [ ] Create `implementation/exceptions.json` (replace existing)
+- [x] Create `implementation/exceptions.json`
 
 ## Phase 12: Convex Schema Verification
 
