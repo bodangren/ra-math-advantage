@@ -24,6 +24,12 @@ Generated: 2026-05-09
 - skill: 138
 - worked_example: 401
 
+### Exceptions
+
+- Lessons without examples: None
+- Duplicate IDs: None
+- Missing source references: None
+
 ## im2
 
 **Total nodes:** 645
@@ -34,6 +40,12 @@ Generated: 2026-05-09
 - instructional_unit: 82
 - skill: 149
 - worked_example: 400
+
+### Exceptions
+
+- Lessons without examples: None
+- Duplicate IDs: None
+- Missing source references: None
 
 ## im3
 
@@ -47,9 +59,12 @@ Generated: 2026-05-09
 - skill: 96
 - worked_example: 260
 
-### Lessons Without Examples (1)
+### Exceptions
 
-- `math.im3.lesson.9.3`
+- Lessons without examples (1):
+  - `math.im3.lesson.9.3`
+- Duplicate IDs: None
+- Missing source references: None
 
 ## precalc
 
@@ -61,6 +76,9 @@ Generated: 2026-05-09
 - instructional_unit: 55
 - worked_example: 158
 
-### Lessons Without Examples (1)
+### Exceptions
 
-- `math.precalc.lesson.1.15`
+- Lessons without examples (1):
+  - `math.precalc.lesson.1.15`
+- Duplicate IDs: None
+- Missing source references: None

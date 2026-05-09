@@ -30,7 +30,7 @@
     "typecheck": "tsc --noEmit",
     "build": "tsc --noEmit",
     "extract-inventory": "npx tsx ../../scripts/extract-skill-inventory.ts",
-    "validate-inventory": "npx tsx ../../scripts/extract-skill-inventory.ts --all --audit-only"
+    "validate-inventory": "npx tsx ../../scripts/validate-skill-inventory.ts"
   },
   "dependencies": {
     "@math-platform/activity-runtime": "*",

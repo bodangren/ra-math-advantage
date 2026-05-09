@@ -537,41 +537,36 @@ function writeAuditReport(
       lines.push(`- ${kind}: ${count}`);
     }
 
-    if (stats.lessonsWithoutExamples.length > 0) {
-      lines.push(
-        '',
-        `### Lessons Without Examples (${stats.lessonsWithoutExamples.length})`,
-        '',
-      );
+    // Exceptions section — always present so readers can confirm each check ran
+    lines.push('', '### Exceptions', '');
+
+    if (stats.lessonsWithoutExamples.length === 0) {
+      lines.push('- Lessons without examples: None');
+    } else {
+      lines.push(`- Lessons without examples (${stats.lessonsWithoutExamples.length}):`);
       for (const id of stats.lessonsWithoutExamples.slice(0, 20)) {
-        lines.push(`- \`${id}\``);
+        lines.push(`  - \`${id}\``);
       }
       if (stats.lessonsWithoutExamples.length > 20) {
-        lines.push(
-          `- ... and ${stats.lessonsWithoutExamples.length - 20} more`,
-        );
+        lines.push(`  - ... and ${stats.lessonsWithoutExamples.length - 20} more`);
       }
     }
 
-    if (stats.duplicateIds.length > 0) {
-      lines.push(
-        '',
-        `### Duplicate IDs (${stats.duplicateIds.length})`,
-        '',
-      );
+    if (stats.duplicateIds.length === 0) {
+      lines.push('- Duplicate IDs: None');
+    } else {
+      lines.push(`- Duplicate IDs (${stats.duplicateIds.length}):`);
       for (const id of stats.duplicateIds) {
-        lines.push(`- \`${id}\``);
+        lines.push(`  - \`${id}\``);
       }
     }
 
-    if (stats.missingSourceRefs.length > 0) {
-      lines.push(
-        '',
-        `### Missing Source References (${stats.missingSourceRefs.length})`,
-        '',
-      );
+    if (stats.missingSourceRefs.length === 0) {
+      lines.push('- Missing source references: None');
+    } else {
+      lines.push(`- Missing source references (${stats.missingSourceRefs.length}):`);
       for (const id of stats.missingSourceRefs) {
-        lines.push(`- \`${id}\``);
+        lines.push(`  - \`${id}\``);
       }
     }
   }
