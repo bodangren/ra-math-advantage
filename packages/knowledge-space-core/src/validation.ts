@@ -7,7 +7,43 @@ import type {
   DomainAdapter,
   ValidationResult,
   ValidationError,
+  NodeKind,
+  EdgeType,
 } from './types';
+
+// ---------------------------------------------------------------------------
+// Edge endpoint pairing rules (mirrors the rules in schemas.ts)
+// ---------------------------------------------------------------------------
+
+type EdgeEndpointRule = { edgeType: EdgeType; targetKinds: NodeKind[] };
+
+const EDGE_ENDPOINT_RULES: EdgeEndpointRule[] = [
+  { edgeType: 'rendered_by', targetKinds: ['renderer'] },
+  { edgeType: 'generated_by', targetKinds: ['generator'] },
+  { edgeType: 'aligned_to_standard', targetKinds: ['standard'] },
+  { edgeType: 'common_misconception_with', targetKinds: ['misconception'] },
+];
+
+export function getInvalidEdgePairings(
+  graph: KnowledgeSpace,
+): Array<{ edgeId: string; message: string }> {
+  const nodeMap = new Map(graph.nodes.map((n) => [n.id, n]));
+  const rulesByType = new Map(EDGE_ENDPOINT_RULES.map((r) => [r.edgeType, r]));
+  const violations: Array<{ edgeId: string; message: string }> = [];
+
+  for (const edge of graph.edges) {
+    const rule = rulesByType.get(edge.type);
+    if (!rule) continue;
+    const target = nodeMap.get(edge.targetId);
+    if (target && !rule.targetKinds.includes(target.kind)) {
+      violations.push({
+        edgeId: edge.id,
+        message: `Edge "${edge.id}" of type "${edge.type}" must target a node of kind ${rule.targetKinds.join(' | ')}, but targets "${target.kind}"`,
+      });
+    }
+  }
+  return violations;
+}
 
 // Nodes that must have standard alignment (skill, worked_example, task_blueprint)
 const NODES_REQUIRING_ALIGNMENT: Set<string> = new Set([
@@ -61,6 +97,16 @@ export function validateKnowledgeSpace(space: KnowledgeSpace): ValidationResult 
       code: 'MISSING_GENERATOR',
       message: `Node "${item.nodeId}" is marked independentPracticeReady but lacks a generated_by edge or exception`,
       nodeId: item.nodeId,
+    });
+  }
+
+  // Invalid edge endpoint pairings
+  const pairingViolations = getInvalidEdgePairings(space);
+  for (const v of pairingViolations) {
+    errors.push({
+      code: 'INVALID_EDGE_PAIRING',
+      message: v.message,
+      edgeId: v.edgeId,
     });
   }
 

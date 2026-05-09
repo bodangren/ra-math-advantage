@@ -52,7 +52,9 @@ export interface KnowledgeSpaceNode {
   title: string;
   domain: string;
   description?: string;
-  sourceRefs: SourceRef[] | string[];
+  sourceRefs?: Array<SourceRef | string>;
+  derived?: boolean;
+  derivationMethod?: string;
   reviewStatus: ReviewStatus;
   metadata: Record<string, unknown>;
   difficulty?: number;
@@ -70,7 +72,9 @@ export interface KnowledgeSpaceEdge {
   targetId: string;
   weight: number;
   confidence: ConfidenceLevel;
-  sourceRefs: SourceRef[] | string[];
+  sourceRefs?: Array<SourceRef | string>;
+  derived?: boolean;
+  derivationMethod?: string;
   reviewStatus: ReviewStatus;
   rationale?: string;
   metadata?: Record<string, unknown>;

@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { knowledgeSpaceSchema } from '../schemas';
+import { knowledgeSpaceSchema, CORE_ID_PATTERN } from '../schemas';
 import {
   validateKnowledgeSpace,
   getDanglingEdges,
@@ -7,6 +7,7 @@ import {
   getDuplicateEdges,
   getNodesMissingRequiredAlignments,
   getIndependentPracticeNodesMissingGenerators,
+  getInvalidEdgePairings,
   validateNodeMetadataWithAdapter,
 } from '../validation';
 import type {
@@ -83,27 +84,27 @@ describe('contract — valid fixtures', () => {
     // Nodes needed to satisfy endpoint pairing rules
     const skillNode: KnowledgeSpaceNode = {
       ...syntheticMathFixture.nodes[0],
-      id: 'test:skill',
+      id: 'test.skill',
       kind: 'skill',
     };
     const standardNode: KnowledgeSpaceNode = {
       ...skillNode,
-      id: 'test:standard',
+      id: 'test.standard',
       kind: 'standard',
     };
     const rendererNode: KnowledgeSpaceNode = {
       ...skillNode,
-      id: 'test:renderer',
+      id: 'test.renderer',
       kind: 'renderer',
     };
     const generatorNode: KnowledgeSpaceNode = {
       ...skillNode,
-      id: 'test:generator',
+      id: 'test.generator',
       kind: 'generator',
     };
     const misconceptionNode: KnowledgeSpaceNode = {
       ...skillNode,
-      id: 'test:misconception',
+      id: 'test.misconception',
       kind: 'misconception',
     };
 
@@ -121,7 +122,7 @@ describe('contract — valid fixtures', () => {
         nodes: [skillNode, standardNode, rendererNode, generatorNode, misconceptionNode],
         edges: [
           {
-            id: `edge:${type}`,
+            id: `edge.${type.replace(/_/g, '-')}`,
             type,
             sourceId: skillNode.id,
             targetId: target.id,
@@ -183,9 +184,9 @@ describe('contract — structural failures', () => {
 
   it('rejects duplicate exact edges', () => {
     const nodeA = syntheticMathFixture.nodes[0];
-    const nodeB = { ...nodeA, id: 'node:b' };
+    const nodeB = { ...nodeA, id: 'node.b' };
     const edge: KnowledgeSpaceEdge = {
-      id: 'edge:test',
+      id: 'edge.test',
       type: 'supports',
       sourceId: nodeA.id,
       targetId: nodeB.id,
@@ -213,14 +214,14 @@ describe('contract — structural failures', () => {
     };
     const standardNode: KnowledgeSpaceNode = {
       ...skillNode,
-      id: 'node:standard',
+      id: 'node.standard',
       kind: 'standard',
     };
     const space: KnowledgeSpace = {
       nodes: [skillNode, standardNode],
       edges: [
         {
-          id: 'edge:rendered-by-wrong',
+          id: 'edge.rendered-by-wrong',
           type: 'rendered_by',
           sourceId: skillNode.id,
           targetId: standardNode.id, // target should be 'renderer', not 'standard'
@@ -243,7 +244,7 @@ describe('contract — structural failures', () => {
 describe('contract — readiness validation', () => {
   it('flags skill nodes missing required standard alignment', () => {
     const skill: KnowledgeSpaceNode = {
-      id: 'skill:no-standard',
+      id: 'skill.no-standard',
       kind: 'skill',
       title: 'Untethered Skill',
       domain: 'math.test',
@@ -258,7 +259,7 @@ describe('contract — readiness validation', () => {
 
   it('does not flag skill nodes that have a standards alignment edge', () => {
     const skill: KnowledgeSpaceNode = {
-      id: 'skill:with-standard',
+      id: 'skill.with-standard',
       kind: 'skill',
       title: 'Tethered Skill',
       domain: 'math.test',
@@ -267,7 +268,7 @@ describe('contract — readiness validation', () => {
       metadata: {},
     };
     const standard: KnowledgeSpaceNode = {
-      id: 'std:ccss.alg.rei.b.4',
+      id: 'std.ccss.alg.rei.b.4',
       kind: 'standard',
       title: 'Solve quadratic equations',
       domain: 'math.test',
@@ -296,7 +297,7 @@ describe('contract — readiness validation', () => {
 
   it('does not flag skill nodes that have a documented alignment exception', () => {
     const skill: KnowledgeSpaceNode = {
-      id: 'skill:with-exception',
+      id: 'skill.with-exception',
       kind: 'skill',
       title: 'Skill With Exception',
       domain: 'math.test',
@@ -319,7 +320,7 @@ describe('contract — readiness validation', () => {
 
   it('flags independentPracticeReady nodes missing generator edge', () => {
     const blueprint: KnowledgeSpaceNode = {
-      id: 'blueprint:no-gen',
+      id: 'blueprint.no-gen',
       kind: 'task_blueprint',
       title: 'Orphan Blueprint',
       domain: 'math.test',
@@ -335,7 +336,7 @@ describe('contract — readiness validation', () => {
 
   it('does not flag independentPracticeReady nodes that have a generated_by edge', () => {
     const blueprint: KnowledgeSpaceNode = {
-      id: 'blueprint:with-gen',
+      id: 'blueprint.with-gen',
       kind: 'task_blueprint',
       title: 'Blueprint With Generator',
       domain: 'math.test',
@@ -345,7 +346,7 @@ describe('contract — readiness validation', () => {
       independentPracticeReady: true,
     };
     const generator: KnowledgeSpaceNode = {
-      id: 'gen:quadratic',
+      id: 'gen.quadratic',
       kind: 'generator',
       title: 'Quadratic Generator',
       domain: 'math.test',
@@ -357,7 +358,7 @@ describe('contract — readiness validation', () => {
       nodes: [blueprint, generator],
       edges: [
         {
-          id: 'edge:gen',
+          id: 'edge.gen',
           type: 'generated_by',
           sourceId: blueprint.id,
           targetId: generator.id,
@@ -374,7 +375,7 @@ describe('contract — readiness validation', () => {
 
   it('does not flag independentPracticeReady nodes with a generator exception', () => {
     const blueprint: KnowledgeSpaceNode = {
-      id: 'blueprint:gen-exception',
+      id: 'blueprint.gen-exception',
       kind: 'task_blueprint',
       title: 'Blueprint With Gen Exception',
       domain: 'math.test',
@@ -454,9 +455,9 @@ describe('validateKnowledgeSpace', () => {
       nodes: [node, { ...node, id: node.id }], // duplicate
       edges: [
         {
-          id: 'edge:dangling',
+          id: 'edge.dangling',
           type: 'supports',
-          sourceId: 'nonexistent:source',
+          sourceId: 'nonexistent.source',
           targetId: node.id,
           weight: 0.5,
           confidence: 'medium',
@@ -478,7 +479,7 @@ describe('validateKnowledgeSpace', () => {
 describe('validateKnowledgeSpace — edge cases', () => {
   it('returns errors for nodes that require alignment but lack it', () => {
     const skill: KnowledgeSpaceNode = {
-      id: 'skill:alone',
+      id: 'skill.alone',
       kind: 'skill',
       title: 'Lone Skill',
       domain: 'math.test',
@@ -494,7 +495,7 @@ describe('validateKnowledgeSpace — edge cases', () => {
 
   it('returns errors for independentPracticeReady nodes missing generators', () => {
     const blueprint: KnowledgeSpaceNode = {
-      id: 'bp:no-gen',
+      id: 'bp.no-gen',
       kind: 'task_blueprint',
       title: 'No Generator',
       domain: 'math.test',
@@ -515,9 +516,9 @@ describe('validateKnowledgeSpace — edge cases', () => {
       nodes: [node],
       edges: [
         {
-          id: 'edge:no-source',
+          id: 'edge.no-source',
           type: 'supports',
-          sourceId: 'gone:source',
+          sourceId: 'gone.source',
           targetId: node.id,
           weight: 0.5,
           confidence: 'medium',
@@ -525,10 +526,10 @@ describe('validateKnowledgeSpace — edge cases', () => {
           reviewStatus: 'draft',
         },
         {
-          id: 'edge:no-target',
+          id: 'edge.no-target',
           type: 'supports',
           sourceId: node.id,
-          targetId: 'gone:target',
+          targetId: 'gone.target',
           weight: 0.5,
           confidence: 'medium',
           sourceRefs: ['test'],
@@ -550,9 +551,9 @@ describe('validateKnowledgeSpace — edge cases', () => {
 
   it('getDuplicateEdges returns duplicate edge signatures', () => {
     const nodeA = syntheticMathFixture.nodes[0];
-    const nodeB = { ...nodeA, id: 'node:b' };
+    const nodeB = { ...nodeA, id: 'node.b' };
     const edge: KnowledgeSpaceEdge = {
-      id: 'edge:dup',
+      id: 'edge.dup',
       type: 'supports',
       sourceId: nodeA.id,
       targetId: nodeB.id,
@@ -563,9 +564,144 @@ describe('validateKnowledgeSpace — edge cases', () => {
     };
     const graph: KnowledgeSpace = {
       nodes: [nodeA, nodeB],
-      edges: [edge, { ...edge, id: 'edge:dup2' }],
+      edges: [edge, { ...edge, id: 'edge.dup2' }],
     };
     const dups = getDuplicateEdges(graph);
     expect(dups.length).toBeGreaterThan(0);
+  });
+
+  it('getInvalidEdgePairings catches endpoint violations', () => {
+    const skill = syntheticMathFixture.nodes.find((n) => n.kind === 'skill')!;
+    const standard = syntheticMathFixture.nodes.find((n) => n.kind === 'standard')!;
+    const graph: KnowledgeSpace = {
+      nodes: [skill, standard],
+      edges: [
+        {
+          id: 'edge.pairing-violation',
+          type: 'rendered_by', // must target renderer, not standard
+          sourceId: skill.id,
+          targetId: standard.id,
+          weight: 1,
+          confidence: 'high',
+          sourceRefs: ['test'],
+          reviewStatus: 'draft',
+        },
+      ],
+    };
+    const violations = getInvalidEdgePairings(graph);
+    expect(violations.length).toBe(1);
+    expect(violations[0].message).toMatch(/rendered_by/);
+  });
+});
+
+// ---------------------------------------------------------------------------
+// ID pattern validation
+// ---------------------------------------------------------------------------
+
+describe('contract — ID pattern validation', () => {
+  it('CORE_ID_PATTERN accepts well-formed IDs', () => {
+    const valid = [
+      'math.im3.domain',
+      'math.im3.skill.m1.l2.solve-quadratic-by-factoring',
+      'english.gse.skill.b1.reading.identify-main-idea.short-text',
+      'math.im3.standard.ccss.hsa.rei.b.4b',
+      'math.im3.edge.prereq-roots',
+    ];
+    for (const id of valid) {
+      expect(CORE_ID_PATTERN.test(id), `expected "${id}" to be valid`).toBe(true);
+    }
+  });
+
+  it('CORE_ID_PATTERN rejects malformed IDs', () => {
+    const invalid = [
+      'UPPERCASE.segments',        // uppercase
+      'single-segment',            // no dot — only one segment
+      '-starts-with-hyphen.node',  // hyphen at start
+      'has spaces.node',           // spaces
+      'has_underscores.node',      // underscores
+      '',                          // empty
+    ];
+    for (const id of invalid) {
+      expect(CORE_ID_PATTERN.test(id), `expected "${id}" to be invalid`).toBe(false);
+    }
+  });
+
+  it('schema rejects nodes with IDs that violate the core pattern', () => {
+    const space: KnowledgeSpace = {
+      nodes: [{ ...syntheticMathFixture.nodes[0], id: 'INVALID ID WITH SPACES' }],
+      edges: [],
+    };
+    const result = knowledgeSpaceSchema.safeParse(space);
+    expect(result.success).toBe(false);
+  });
+});
+
+// ---------------------------------------------------------------------------
+// Derived provenance
+// ---------------------------------------------------------------------------
+
+describe('contract — derived provenance', () => {
+  it('accepts a node with derived:true and a derivationMethod instead of sourceRefs', () => {
+    const space: KnowledgeSpace = {
+      nodes: [
+        {
+          id: 'math.im3.skill.derived-skill',
+          kind: 'skill',
+          title: 'Algorithmically derived skill',
+          domain: 'math.im3',
+          derived: true,
+          derivationMethod: 'co-occurrence extraction from lesson transcripts v1',
+          reviewStatus: 'draft',
+          metadata: {},
+        },
+      ],
+      edges: [],
+    };
+    const result = knowledgeSpaceSchema.safeParse(space);
+    expect(result.success, result.error?.message).toBe(true);
+  });
+
+  it('rejects a node with neither sourceRefs nor derived', () => {
+    const space = {
+      nodes: [
+        {
+          id: 'math.im3.skill.no-provenance',
+          kind: 'skill',
+          title: 'No provenance',
+          domain: 'math.im3',
+          reviewStatus: 'draft',
+          metadata: {},
+        },
+      ],
+      edges: [],
+    };
+    const result = knowledgeSpaceSchema.safeParse(space);
+    expect(result.success).toBe(false);
+    if (!result.success) {
+      expect(result.error.issues.some((i) => i.message.includes('sourceRef'))).toBe(true);
+    }
+  });
+
+  it('accepts a derived edge with derivationMethod instead of sourceRefs', () => {
+    const nodeA = syntheticMathFixture.nodes[0];
+    const nodeB = syntheticMathFixture.nodes[1];
+    const space: KnowledgeSpace = {
+      nodes: [nodeA, nodeB],
+      edges: [
+        {
+          id: 'math.im3.edge.derived-prereq',
+          type: 'prerequisite_for',
+          sourceId: nodeA.id,
+          targetId: nodeB.id,
+          weight: 0.7,
+          confidence: 'low',
+          derived: true,
+          derivationMethod: 'co-occurrence in lesson sequence analysis',
+          reviewStatus: 'draft',
+        },
+      ],
+    };
+    const result = knowledgeSpaceSchema.safeParse(space);
+    expect(result.success, result.error?.message).toBe(true);
   });
 });

@@ -8,6 +8,11 @@ import type {
   KnowledgeSpaceEdge,
 } from './types';
 
+// Stable ID pattern: lower-kebab-case segments separated by dots, minimum two segments.
+// First segment must start with a letter; subsequent segments may start with a letter or digit.
+// Examples: "math.im3.skill.m1.l2.solve-quadratic", "english.gse.domain"
+export const CORE_ID_PATTERN = /^[a-z][a-z0-9-]*(?:\.[a-z0-9][a-z0-9-]*)+$/;
+
 const nodeKindSchema = z.enum([
   'domain',
   'content_group',
@@ -61,12 +66,17 @@ export const exceptionSchema = z.object({
 });
 
 export const knowledgeSpaceNodeSchema = z.object({
-  id: z.string().min(1),
+  id: z.string().regex(
+    CORE_ID_PATTERN,
+    'Node ID must be dot-separated lower-kebab-case segments, e.g. "math.im3.skill.m1.solve-x"',
+  ),
   kind: nodeKindSchema,
   title: z.string().min(1),
   domain: z.string().min(1),
   description: z.string().optional(),
-  sourceRefs: sourceRefsSchema,
+  sourceRefs: sourceRefsSchema.optional(),
+  derived: z.boolean().optional(),
+  derivationMethod: z.string().min(1).optional(),
   reviewStatus: reviewStatusSchema,
   metadata: z.record(z.string(), z.unknown()),
   difficulty: z.number().min(0).max(1).optional(),
@@ -75,19 +85,42 @@ export const knowledgeSpaceNodeSchema = z.object({
   generatorKey: z.string().optional(),
   independentPracticeReady: z.boolean().optional(),
   exceptions: z.array(exceptionSchema).optional(),
+}).superRefine((data, ctx) => {
+  const hasSourceRefs = Array.isArray(data.sourceRefs) && data.sourceRefs.length > 0;
+  const hasDerived = data.derived === true && typeof data.derivationMethod === 'string';
+  if (!hasSourceRefs && !hasDerived) {
+    ctx.addIssue({
+      code: z.ZodIssueCode.custom,
+      message: 'Node must have at least one sourceRef, or set derived:true with a derivationMethod',
+    });
+  }
 });
 
 export const knowledgeSpaceEdgeSchema = z.object({
-  id: z.string().min(1),
+  id: z.string().regex(
+    CORE_ID_PATTERN,
+    'Edge ID must be dot-separated lower-kebab-case segments, e.g. "math.im3.edge.prereq-roots"',
+  ),
   type: edgeTypeSchema,
   sourceId: z.string().min(1),
   targetId: z.string().min(1),
   weight: z.number().min(0).max(1),
   confidence: confidenceSchema,
-  sourceRefs: sourceRefsSchema,
+  sourceRefs: sourceRefsSchema.optional(),
+  derived: z.boolean().optional(),
+  derivationMethod: z.string().min(1).optional(),
   reviewStatus: reviewStatusSchema,
   rationale: z.string().optional(),
   metadata: z.record(z.string(), z.unknown()).optional(),
+}).superRefine((data, ctx) => {
+  const hasSourceRefs = Array.isArray(data.sourceRefs) && data.sourceRefs.length > 0;
+  const hasDerived = data.derived === true && typeof data.derivationMethod === 'string';
+  if (!hasSourceRefs && !hasDerived) {
+    ctx.addIssue({
+      code: z.ZodIssueCode.custom,
+      message: 'Edge must have at least one sourceRef, or set derived:true with a derivationMethod',
+    });
+  }
 });
 
 // ---------------------------------------------------------------------------

@@ -16,7 +16,7 @@ export type {
   ValidationResult,
 } from './types';
 
-export { knowledgeSpaceSchema } from './schemas';
+export { knowledgeSpaceSchema, CORE_ID_PATTERN } from './schemas';
 
 export {
   validateKnowledgeSpace,
@@ -25,6 +25,7 @@ export {
   getDuplicateEdges,
   getNodesMissingRequiredAlignments,
   getIndependentPracticeNodesMissingGenerators,
+  getInvalidEdgePairings,
   validateNodeMetadataWithAdapter,
 } from './validation';
 
