@@ -135,13 +135,13 @@ describe('deterministicGenerator', () => {
     expect(a.expectedAnswer).not.toEqual(b.expectedAnswer);
   });
 
-  it('returns different output for same seed but different nodeId', () => {
+  it('interface accepts different nodeIds without error (simple test generator ignores nodeId)', () => {
     const input1: GeneratorInput = { nodeId: 'math.im3.skill.m1.a', seed: 42, difficulty: 0.5 };
     const input2: GeneratorInput = { nodeId: 'math.im3.skill.m1.b', seed: 42, difficulty: 0.5 };
     const a = testGenerator.generate(input1);
     const b = testGenerator.generate(input2);
-    // With our simple generator, different nodeIds would produce same output
-    // Only seed matters. This just verifies the interface works.
+    // The simple test generator only branches on seed, not nodeId.
+    // Real implementations must incorporate nodeId into output computation.
     expect(a.prompt).toEqual(b.prompt);
   });
 

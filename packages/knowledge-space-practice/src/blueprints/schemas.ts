@@ -150,6 +150,15 @@ export const genericEvidenceResultSchema = z.object({
   passed: z.boolean().optional(),
 });
 
+export const generatorRegistrySchema = z.record(
+  z.string().min(1),
+  z.object({
+    generatorKey: z.string().min(1),
+    nodeIds: z.array(z.string()),
+    description: z.string().optional(),
+  }),
+);
+
 // ---------------------------------------------------------------------------
 // Validation helpers
 // ---------------------------------------------------------------------------

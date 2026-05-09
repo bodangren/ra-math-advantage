@@ -22,6 +22,7 @@ import type {
 export function projectTeacherEvidence(
   nodes: KnowledgeSpaceNode[],
   edges: KnowledgeSpaceEdge[],
+  classStats: Record<string, { mastered: number; total: number }> = {},
 ): TeacherEvidence {
   const nodeMap = new Map(nodes.map((n) => [n.id, n]));
 
@@ -98,10 +99,12 @@ export function projectTeacherEvidence(
 
     if (prereqEdges.length === 0) continue;
 
-    // For the projection, assume prerequisites are "missing" unless proven otherwise
+    const stats = classStats[node.id];
+    const proficiency = stats && stats.total > 0 ? stats.mastered / stats.total : 0;
+    if (proficiency >= 0.6) continue;
+
     const missingPrerequisites = prereqEdges.map((e) => e.sourceId);
-    const blockingLevel: 'full' | 'partial' =
-      missingPrerequisites.length >= 2 ? 'full' : 'partial';
+    const blockingLevel: 'full' | 'partial' = proficiency < 0.3 ? 'full' : 'partial';
 
     prerequisiteGaps.push({
       nodeId: node.id,

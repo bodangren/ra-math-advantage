@@ -228,6 +228,26 @@ describe('Visualization projections', () => {
 // Task 1.5: Cross-domain smoke test
 // ---------------------------------------------------------------------------
 describe('Cross-domain smoke test (English/GSE)', () => {
+  it('projection source files contain no math-domain or app imports (boundary check)', async () => {
+    const { readFileSync } = await import('node:fs');
+    const { resolve } = await import('node:path');
+    const projectionFiles = [
+      '../projections/activity-map.ts',
+      '../projections/srs.ts',
+      '../projections/teacher-evidence.ts',
+      '../projections/visualization.ts',
+      '../projections/fixtures.ts',
+      '../projections/schemas.ts',
+      '../projections/types.ts',
+    ];
+    for (const file of projectionFiles) {
+      const content = readFileSync(resolve(__dirname, file), 'utf-8');
+      expect(content, `${file} must not import from apps/`).not.toMatch(/from ['"].*apps\//);
+      expect(content, `${file} must not import from math-content`).not.toMatch(/from ['"].*math-content/);
+      expect(content, `${file} must not import from convex/_generated`).not.toMatch(/from ['"].*convex\/_generated/);
+    }
+  });
+
   it('runs full projection pipeline on non-math fixture', () => {
     const nodes = syntheticEnglishGseFixture.nodes;
     const edges = syntheticEnglishGseFixture.edges;

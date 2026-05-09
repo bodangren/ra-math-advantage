@@ -55,17 +55,42 @@ import { syntheticEnglishBlueprint } from '@math-platform/knowledge-space-practi
 
 Actual domain maps, descriptors, generator implementations, and renderer bindings live in domain packages. This package only defines the **contract** — the types, schemas, and interfaces that domain packages must satisfy. No real math maps, Pearson/GSE descriptors, standards catalogs, or `apps/` imports live here.
 
+## Projections
+
+Projection utilities convert knowledge-space graphs and blueprints into runtime artifacts. All outputs are regenerated — they are not source truth. Review diffs before replacing app artifacts.
+
+| Function | Output | Use case |
+|---|---|---|
+| `projectActivityMap(nodes, edges, blueprints)` | `ProjectedActivity[]` | Generate `practice.v1` activity map rows with provenance |
+| `projectSrsInputs(nodes, edges, blueprints)` | `SrsProjectionEntry[]` | Feed the SRS engine with node/standard/prereq context |
+| `projectTeacherEvidence(nodes, edges, classStats?)` | `TeacherEvidence` | Standard/skill coverage, prerequisite gaps, attempt artifacts |
+| `projectStudentVisualization(nodes, edges, learnerState?)` | `StudentVisualizationV1` | Mastered/ready/blocked/review-due/recommended-next buckets |
+| `projectParentVisualization(nodes, edges, learnerState?)` | `ParentVisualizationV1` | Plain-language can-do summary, next focus, blockers, trend |
+| `projectTeacherVisualization(nodes, edges, classStats?)` | `TeacherVisualizationV1` | Heatmap, bottlenecks, misconception clusters, interventions |
+
+All three visualization functions return payloads validated against versioned `visualization.v1` Zod schemas. UI components must consume these payloads — they must not infer canonical graph state directly from raw graph files.
+
 ## Package structure
 
 ```
 src/
   blueprints/
     types.ts        — TypeScript types (KnowledgeBlueprint, GeneratorInput, etc.)
-    schemas.ts      — Zod schemas and validation helpers
+    schemas.ts      — Zod schemas, generatorRegistrySchema, and validation helpers
     generator.ts    — DeterministicGenerator interface and validation re-exports
     evidence.ts     — EvidenceAdapter, PracticeSubmissionPart, conversion helpers
     fixtures.ts     — Synthetic test-only fixtures (no real data)
     index.ts        — Barrel exports
+  projections/
+    types.ts        — ProjectedActivity, SrsProjectionEntry, TeacherEvidence, Visualization v1 types
+    schemas.ts      — visualization.v1 Zod schemas (student/parent/teacher)
+    activity-map.ts — projectActivityMap: blueprints → practice.v1 activity rows
+    srs.ts          — projectSrsInputs: nodes/blueprints → SRS projection entries
+    teacher-evidence.ts — projectTeacherEvidence: graph → standard/skill coverage
+    visualization.ts    — projectStudentVisualization, projectParentVisualization, projectTeacherVisualization
+    fixtures.ts     — Synthetic knowledge-space fixtures for testing
+    index.ts        — Barrel exports
   __tests__/
-    blueprints.test.ts — Comprehensive test suite
+    blueprints.test.ts  — Blueprint schema, generator, and evidence tests
+    projections.test.ts — Projection, visualization, and cross-domain smoke tests
 ```

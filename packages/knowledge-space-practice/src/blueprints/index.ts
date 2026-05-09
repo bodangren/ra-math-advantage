@@ -32,6 +32,7 @@ export {
   generatorInputSchema,
   gradingMetadataSchema,
   generatorOutputSchema,
+  generatorRegistrySchema,
   genericEvidencePartSchema,
   genericEvidenceResultSchema,
   validateGeneratorOutput,

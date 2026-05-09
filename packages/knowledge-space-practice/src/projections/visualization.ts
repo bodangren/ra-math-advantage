@@ -212,7 +212,8 @@ export function projectParentVisualization(
   const masteredCount = studentViz.mastered.length;
   const totalSkillNodes = studentViz.mastered.length +
     studentViz.ready.length +
-    studentViz.blocked.length;
+    studentViz.blocked.length +
+    studentViz.reviewDue.length;
 
   let progressTrend: ParentVisualizationV1['progressTrend'] = 'unknown';
   if (totalSkillNodes > 0) {
