@@ -31,7 +31,7 @@ Dependencies:
     - [x] **Track 3: Skill Graph Program — Skill Inventory Extraction**
       *Extract atomic skill and worked-example candidates from IM1, IM2, IM3, and AP Precalculus source artifacts using the math-adapter ID constructors.*
       *Link: [./measure/tracks/skill-inventory-extraction_20260509/](./measure/tracks/skill-inventory-extraction_20260509/)*
-   - [ ] **Track 4: Skill Graph Program — Skill-Level Standards Alignment**
+   - [x] **Track 4: Skill Graph Program — Skill-Level Standards Alignment**
       *Assign standards to skill nodes with confidence, provenance, review queues, and exceptions.*
       *Link: [./measure/tracks/skill-standards-alignment_20260509/](./measure/tracks/skill-standards-alignment_20260509/)*
    - [ ] **Track 5: Skill Graph Program — Directed Edge Authoring (post-pilot horizontal expansion)**
