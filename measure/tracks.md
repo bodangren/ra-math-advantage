@@ -28,7 +28,7 @@ Dependencies:
     - [x] **Track 2.5: Skill Graph Program — Math Domain Adapter**
        *Implement the math-domain adapter against the Track 2 contract: ID rules, metadata schema, generator/renderer registries, and the practice.v1 evidence bridge. This is the seam math rollouts consume; sibling projects implement their own domain adapter (English/GSE, Chinese, science) without touching reusable packages.*
        *Link: [./measure/tracks/skill-math-adapter_20260509/](./measure/tracks/skill-math-adapter_20260509/)*
-   - [ ] **Track 3: Skill Graph Program — Skill Inventory Extraction**
+    - [x] **Track 3: Skill Graph Program — Skill Inventory Extraction**
       *Extract atomic skill and worked-example candidates from IM1, IM2, IM3, and AP Precalculus source artifacts using the math-adapter ID constructors.*
       *Link: [./measure/tracks/skill-inventory-extraction_20260509/](./measure/tracks/skill-inventory-extraction_20260509/)*
    - [ ] **Track 4: Skill Graph Program — Skill-Level Standards Alignment**

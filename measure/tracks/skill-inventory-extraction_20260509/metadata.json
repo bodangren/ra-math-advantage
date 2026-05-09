@@ -3,8 +3,10 @@
   "title": "Skill Graph Program: Skill Inventory Extraction",
   "description": "Extract atomic skill and worked-example candidates from IM1, IM2, IM3, and AP Precalculus curriculum source artifacts into validated knowledge-space.v1 draft node inventories.",
   "type": "feature",
-  "status": "pending",
+  "status": "completed",
   "created_at": "2026-05-09",
   "updated_at": "2026-05-09",
-  "estimated_tasks": 16
+  "estimated_tasks": 16,
+  "actual_tasks": 16,
+  "deviation_notes": "Parser needed section-targeted table extraction (not first-table-wins) due to budget tables appearing before instruction tables. IM2 modules use 'Unit' not 'Module' H1 headings — parser updated for lenient matching. PreCalc skill extraction deferred to T12 rollout — lesson format lacks explicit objective headings."
 }

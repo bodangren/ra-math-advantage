@@ -30,6 +30,8 @@
 
 ## Planning Improvements
 
+- (2026-05-09, skill-inventory) When parsing markdown tables that may appear multiple times in a document, always target the specific section heading rather than grabbing the first table found. Class-period plans have budget tables before the instruction table.
+- (2026-05-09, skill-inventory) Curriculum files across apps use different naming conventions (Module vs Unit, `lesson.md` subdirectories vs flat files); extraction adapters need lenient heading matching and fallback strategies per course.
 - (2026-05-09, knowledge-space) `knowledge-space-core` and `knowledge-space-practice` must stay domain-neutral. Do not put math curriculum maps, Pearson/GSE descriptors, standards catalogs, or generated app activity maps in reusable packages; keep them in app/domain content packages.
 - (2026-05-09, knowledge-space-visuals) Student, parent, and teacher graph visualizations should render role-specific projection payloads, not raw graph files or UI-computed graph truth.
 - (2026-04-29, review-30) When handler stores via DB document ID but returns caller-provided ID, downstream consumers get wrong reference. Always return the actual DB ID used for writes
