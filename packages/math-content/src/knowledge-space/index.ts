@@ -43,3 +43,8 @@ export type { GenericEvidence, GenericEvidencePart } from './practice-v1-adapter
 
 export { mathDomainAdapter } from './adapter';
 export type { MathDomainAdapter } from './adapter';
+
+export { alignSkillsToStandards } from './alignment';
+export type { AlignmentInput, AlignmentResult, ReviewQueueItem, AlignmentException, MissingStandard } from './alignment';
+export type { StandardDefinition, LessonStandardMapping, FamilyObjectiveMapping, CEDTopicMapping } from './alignment';
+export { standardCodeToNodeId, parseStandardCodeToNodeId, buildLessonSlug, parseLessonSlugFromMetadata } from './alignment';
