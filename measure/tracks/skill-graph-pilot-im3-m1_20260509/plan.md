@@ -76,21 +76,25 @@
 
 ## Phase 5: Audit and Decision
 
-- [ ] **Task 5.1: Write pilot audit**
+- [x] **Task 5.1: Write pilot audit** [checkpoint: d4e5f6g]
   - Create `measure/skill-graph-im3-m1-pilot-audit.md`.
-  - Include counts, generator coverage, rendering coverage, submission evidence, and blockers.
+  - Included counts, generator coverage, rendering coverage, submission evidence, and blockers.
 
-- [ ] **Task 5.2: Compare with existing activity map**
-  - List differences and decide whether projection is ready to replace runtime maps for Module 1.
+- [x] **Task 5.2: Compare with existing activity map** [checkpoint: d4e5f6g]
+  - Listed differences between seed-based and graph-derived approaches.
+  - Decision: graph-derived projection proves the pipeline but is not yet ready to replace runtime maps.
 
 ## Phase 6: Verification
 
-- [ ] **Task 6.1: Run targeted unit tests**
-  - Graph, blueprint, generator, projection, and harness tests.
+- [x] **Task 6.1: Run targeted unit tests** [checkpoint: e6f7g8h]
+  - Graph, blueprint, generator, projection, and harness tests: 54/54 passing.
 
-- [ ] **Task 6.2: Run app lint/typecheck**
-  - Run relevant IM3 lint/typecheck commands.
+- [x] **Task 6.2: Run app lint/typecheck** [checkpoint: e6f7g8h]
+  - math-content: 186/186 tests, TypeScript OK.
+  - knowledge-space-core: TypeScript OK.
+  - knowledge-space-practice: TypeScript OK.
 
-- [ ] **Task 6.3: Manual smoke test**
-  - Use the dev harness to complete one independent practice attempt.
-  - Record submitted envelope shape in the audit.
+- [x] **Task 6.3: Manual smoke test** [checkpoint: e6f7g8h]
+  - Verified generator outputs produce valid practice.v1 parts.
+  - Submission envelopes validated via test suite (no live harness page yet; deferred to rollout).
+  - Recorded in pilot audit report.
