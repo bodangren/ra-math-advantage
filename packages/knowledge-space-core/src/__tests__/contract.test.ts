@@ -9,12 +9,14 @@ import {
   getIndependentPracticeNodesMissingGenerators,
   getInvalidEdgePairings,
   validateNodeMetadataWithAdapter,
+  getPrerequisiteCycles,
 } from '../validation';
 import type {
   KnowledgeSpace,
   KnowledgeSpaceNode,
   KnowledgeSpaceEdge,
   DomainAdapter,
+  ConfidenceLevel,
 } from '../types';
 import { syntheticMathFixture, syntheticEnglishGseFixture } from '../fixtures';
 
@@ -81,50 +83,47 @@ describe('contract — valid fixtures', () => {
       'evidenced_by',
     ];
 
-    // Nodes needed to satisfy endpoint pairing rules
-    const skillNode: KnowledgeSpaceNode = {
+    const baseNode: KnowledgeSpaceNode = {
       ...syntheticMathFixture.nodes[0],
-      id: 'test.skill',
-      kind: 'skill',
     };
-    const standardNode: KnowledgeSpaceNode = {
-      ...skillNode,
-      id: 'test.standard',
-      kind: 'standard',
-    };
-    const rendererNode: KnowledgeSpaceNode = {
-      ...skillNode,
-      id: 'test.renderer',
-      kind: 'renderer',
-    };
-    const generatorNode: KnowledgeSpaceNode = {
-      ...skillNode,
-      id: 'test.generator',
-      kind: 'generator',
-    };
-    const misconceptionNode: KnowledgeSpaceNode = {
-      ...skillNode,
-      id: 'test.misconception',
-      kind: 'misconception',
-    };
+    const domainNode: KnowledgeSpaceNode = { ...baseNode, id: 'test.domain', kind: 'domain' };
+    const cgNode: KnowledgeSpaceNode = { ...baseNode, id: 'test.cg', kind: 'content_group' };
+    const lessonNode: KnowledgeSpaceNode = { ...baseNode, id: 'test.lesson', kind: 'instructional_unit' };
+    const skillNode: KnowledgeSpaceNode = { ...baseNode, id: 'test.skill', kind: 'skill' };
+    const conceptNode: KnowledgeSpaceNode = { ...baseNode, id: 'test.concept', kind: 'concept' };
+    const exampleNode: KnowledgeSpaceNode = { ...baseNode, id: 'test.example', kind: 'worked_example' };
+    const bpNode: KnowledgeSpaceNode = { ...baseNode, id: 'test.blueprint', kind: 'task_blueprint' };
+    const standardNode: KnowledgeSpaceNode = { ...baseNode, id: 'test.standard', kind: 'standard' };
+    const rendererNode: KnowledgeSpaceNode = { ...baseNode, id: 'test.renderer', kind: 'renderer' };
+    const generatorNode: KnowledgeSpaceNode = { ...baseNode, id: 'test.generator', kind: 'generator' };
+    const misconceptionNode: KnowledgeSpaceNode = { ...baseNode, id: 'test.misconception', kind: 'misconception' };
 
-    // Pick the right target for each constrained edge type
-    const targetForType: Record<string, KnowledgeSpaceNode> = {
-      aligned_to_standard: standardNode,
-      rendered_by: rendererNode,
-      generated_by: generatorNode,
-      common_misconception_with: misconceptionNode,
+    const allNodes = [domainNode, cgNode, lessonNode, skillNode, conceptNode, exampleNode, bpNode, standardNode, rendererNode, generatorNode, misconceptionNode];
+
+    // Source/target pairs satisfying endpoint rules for constrained edge types
+    const edgeCases: Record<string, { source: KnowledgeSpaceNode; target: KnowledgeSpaceNode }> = {
+      contains: { source: domainNode, target: cgNode },
+      appears_in_context: { source: skillNode, target: lessonNode },
+      aligned_to_standard: { source: skillNode, target: standardNode },
+      prerequisite_for: { source: skillNode, target: conceptNode },
+      supports: { source: conceptNode, target: skillNode },
+      extends: { source: skillNode, target: conceptNode },
+      equivalent_to: { source: skillNode, target: conceptNode },
+      common_misconception_with: { source: skillNode, target: misconceptionNode },
+      rendered_by: { source: skillNode, target: rendererNode },
+      generated_by: { source: skillNode, target: generatorNode },
+      evidenced_by: { source: skillNode, target: exampleNode },
     };
 
     for (const type of edgeTypes) {
-      const target = targetForType[type] ?? skillNode;
+      const { source, target } = edgeCases[type];
       const space: KnowledgeSpace = {
-        nodes: [skillNode, standardNode, rendererNode, generatorNode, misconceptionNode],
+        nodes: allNodes,
         edges: [
           {
             id: `edge.${type.replace(/_/g, '-')}`,
             type,
-            sourceId: skillNode.id,
+            sourceId: source.id,
             targetId: target.id,
             weight: 0.5,
             confidence: 'medium',
@@ -703,5 +702,371 @@ describe('contract — derived provenance', () => {
     };
     const result = knowledgeSpaceSchema.safeParse(space);
     expect(result.success, result.error?.message).toBe(true);
+  });
+});
+
+// ---------------------------------------------------------------------------
+// Task 1.1 — Prerequisite cycle detection
+// ---------------------------------------------------------------------------
+
+describe('getPrerequisiteCycles', () => {
+  const makeNode = (id: string, kind: KnowledgeSpaceNode['kind'] = 'skill'): KnowledgeSpaceNode => ({
+    id,
+    kind,
+    title: id,
+    domain: 'math.im3',
+    sourceRefs: ['test'],
+    reviewStatus: 'draft',
+    metadata: {},
+  });
+
+  const makeEdge = (
+    id: string,
+    sourceId: string,
+    targetId: string,
+    type: KnowledgeSpaceEdge['type'] = 'prerequisite_for',
+    confidence: ConfidenceLevel = 'high',
+  ): KnowledgeSpaceEdge => ({
+    id,
+    type,
+    sourceId,
+    targetId,
+    weight: 0.8,
+    confidence,
+    sourceRefs: ['test'],
+    reviewStatus: 'draft',
+  });
+
+  it('returns empty array for a DAG with no cycles', () => {
+    const a = makeNode('a');
+    const b = makeNode('b');
+    const c = makeNode('c');
+    const graph: KnowledgeSpace = {
+      nodes: [a, b, c],
+      edges: [
+        makeEdge('e1', 'a', 'b'),
+        makeEdge('e2', 'b', 'c'),
+      ],
+    };
+    const cycles = getPrerequisiteCycles(graph);
+    expect(cycles).toEqual([]);
+  });
+
+  it('detects a simple high-confidence cycle of two nodes', () => {
+    const a = makeNode('a');
+    const b = makeNode('b');
+    const graph: KnowledgeSpace = {
+      nodes: [a, b],
+      edges: [
+        makeEdge('e1', 'a', 'b', 'prerequisite_for', 'high'),
+        makeEdge('e2', 'b', 'a', 'prerequisite_for', 'high'),
+      ],
+    };
+    const cycles = getPrerequisiteCycles(graph);
+    expect(cycles.length).toBeGreaterThan(0);
+    const cycleIds = cycles.map((c) => c.cycle.sort().join('→'));
+    expect(cycleIds.some((id) => id.includes('a') && id.includes('b'))).toBe(true);
+  });
+
+  it('detects a longer high-confidence cycle', () => {
+    const a = makeNode('a');
+    const b = makeNode('b');
+    const c = makeNode('c');
+    const graph: KnowledgeSpace = {
+      nodes: [a, b, c],
+      edges: [
+        makeEdge('e1', 'a', 'b', 'prerequisite_for', 'high'),
+        makeEdge('e2', 'b', 'c', 'prerequisite_for', 'high'),
+        makeEdge('e3', 'c', 'a', 'prerequisite_for', 'high'),
+      ],
+    };
+    const cycles = getPrerequisiteCycles(graph);
+    expect(cycles.length).toBeGreaterThan(0);
+  });
+
+  it('ignores low-confidence cycles by default', () => {
+    const a = makeNode('a');
+    const b = makeNode('b');
+    const graph: KnowledgeSpace = {
+      nodes: [a, b],
+      edges: [
+        makeEdge('e1', 'a', 'b', 'prerequisite_for', 'low'),
+        makeEdge('e2', 'b', 'a', 'prerequisite_for', 'low'),
+      ],
+    };
+    const cycles = getPrerequisiteCycles(graph);
+    expect(cycles).toEqual([]);
+  });
+
+  it('detects mixed-confidence cycles including low-confidence when includeLowConfidence is true', () => {
+    const a = makeNode('a');
+    const b = makeNode('b');
+    const graph: KnowledgeSpace = {
+      nodes: [a, b],
+      edges: [
+        makeEdge('e1', 'a', 'b', 'prerequisite_for', 'low'),
+        makeEdge('e2', 'b', 'a', 'prerequisite_for', 'low'),
+      ],
+    };
+    const cycles = getPrerequisiteCycles(graph, { includeLowConfidence: true });
+    expect(cycles.length).toBeGreaterThan(0);
+  });
+
+  it('detects cycles involving medium-confidence edges', () => {
+    const a = makeNode('a');
+    const b = makeNode('b');
+    const graph: KnowledgeSpace = {
+      nodes: [a, b],
+      edges: [
+        makeEdge('e1', 'a', 'b', 'prerequisite_for', 'medium'),
+        makeEdge('e2', 'b', 'a', 'prerequisite_for', 'medium'),
+      ],
+    };
+    const cycles = getPrerequisiteCycles(graph);
+    expect(cycles.length).toBeGreaterThan(0);
+  });
+
+  it('ignores non-prerequisite edge types', () => {
+    const a = makeNode('a');
+    const b = makeNode('b');
+    const graph: KnowledgeSpace = {
+      nodes: [a, b],
+      edges: [
+        makeEdge('e1', 'a', 'b', 'supports', 'high'),
+        makeEdge('e2', 'b', 'a', 'supports', 'high'),
+      ],
+    };
+    const cycles = getPrerequisiteCycles(graph);
+    expect(cycles).toEqual([]);
+  });
+
+  it('reports cycle edge IDs', () => {
+    const a = makeNode('a');
+    const b = makeNode('b');
+    const graph: KnowledgeSpace = {
+      nodes: [a, b],
+      edges: [
+        makeEdge('edge.ab', 'a', 'b', 'prerequisite_for', 'high'),
+        makeEdge('edge.ba', 'b', 'a', 'prerequisite_for', 'high'),
+      ],
+    };
+    const cycles = getPrerequisiteCycles(graph);
+    expect(cycles.length).toBeGreaterThan(0);
+    expect(cycles[0].edgeIds.length).toBeGreaterThanOrEqual(2);
+  });
+});
+
+// ---------------------------------------------------------------------------
+// Task 1.2 — Edge type endpoint validation (extended source rules)
+// ---------------------------------------------------------------------------
+
+describe('validateKnowledgeSpace — extended endpoint pairing rules', () => {
+  const makeNode = (id: string, kind: KnowledgeSpaceNode['kind']): KnowledgeSpaceNode => ({
+    id,
+    kind,
+    title: id,
+    domain: 'math.im3',
+    sourceRefs: ['test'],
+    reviewStatus: 'draft',
+    metadata: {},
+  });
+
+  const makeAlignedSkill = (id: string): KnowledgeSpaceNode => ({
+    id,
+    kind: 'skill',
+    title: id,
+    domain: 'math.im3',
+    sourceRefs: ['test'],
+    reviewStatus: 'draft',
+    metadata: {},
+  });
+
+  const makeEdge = (
+    id: string,
+    type: KnowledgeSpaceEdge['type'],
+    sourceId: string,
+    targetId: string,
+  ): KnowledgeSpaceEdge => ({
+    id,
+    type,
+    sourceId,
+    targetId,
+    weight: 1,
+    confidence: 'high',
+    sourceRefs: ['test'],
+    reviewStatus: 'draft',
+  });
+
+  const standardNode = makeNode('math.im3.standard.ccss.test', 'standard');
+
+  const alignSkill = (skill: KnowledgeSpaceNode): KnowledgeSpaceEdge =>
+    makeEdge(`e.align.${skill.id}`, 'aligned_to_standard', skill.id, standardNode.id);
+
+  it('rejects contains edge where source is a skill (not a container)', () => {
+    const skill = makeNode('math.im3.skill.test', 'skill');
+    const lesson = makeNode('math.im3.lesson.1', 'instructional_unit');
+    const space: KnowledgeSpace = {
+      nodes: [skill, lesson],
+      edges: [
+        makeEdge('e.contains-invalid', 'contains', skill.id, lesson.id),
+      ],
+    };
+    const result = validateKnowledgeSpace(space);
+    expect(result.valid).toBe(false);
+    expect(result.errors.some(
+      (e) => e.code === 'INVALID_EDGE_PAIRING' && e.message.includes('contains'),
+    )).toBe(true);
+  });
+
+  it('accepts contains edge where source is domain and target is content_group', () => {
+    const domain = makeNode('math.im3', 'domain');
+    const cg = makeNode('math.im3.module.1', 'content_group');
+    const lesson = makeNode('math.im3.lesson.1.1', 'instructional_unit');
+    const space: KnowledgeSpace = {
+      nodes: [domain, cg, lesson],
+      edges: [
+        makeEdge('e.contains1', 'contains', domain.id, cg.id),
+        makeEdge('e.contains2', 'contains', cg.id, lesson.id),
+      ],
+    };
+    const result = validateKnowledgeSpace(space);
+    expect(result.valid).toBe(true);
+  });
+
+  it('accepts contains edge where source is instructional_unit and target is worked_example', () => {
+    const lesson = makeNode('math.im3.lesson.1.1', 'instructional_unit');
+    const example = makeNode('math.im3.example.1.1.1', 'worked_example');
+    const standard = makeNode('math.im3.standard.ccss.test', 'standard');
+    const space: KnowledgeSpace = {
+      nodes: [lesson, example, standard],
+      edges: [
+        makeEdge('e.contains-ex', 'contains', lesson.id, example.id),
+        makeEdge('e.align-ex', 'aligned_to_standard', example.id, standard.id),
+      ],
+    };
+    const result = validateKnowledgeSpace(space);
+    expect(result.valid).toBe(true);
+  });
+
+  it('accepts contains edge where source is lesson and target is skill', () => {
+    const lesson = makeNode('math.im3.lesson.1.1', 'instructional_unit');
+    const skill = makeAlignedSkill('math.im3.skill.1.1.test');
+    const space: KnowledgeSpace = {
+      nodes: [lesson, skill, standardNode],
+      edges: [
+        makeEdge('e.contains-skill', 'contains', lesson.id, skill.id),
+        alignSkill(skill),
+      ],
+    };
+    const result = validateKnowledgeSpace(space);
+    expect(result.valid).toBe(true);
+  });
+
+  it('accepts rendered_by edge where source is a worked_example', () => {
+    const example = makeNode('math.im3.example.1.1.1', 'worked_example');
+    const renderer = makeNode('math.im3.renderer.step-by-step-solver', 'renderer');
+    const standard = makeNode('math.im3.standard.ccss.test', 'standard');
+    const space: KnowledgeSpace = {
+      nodes: [example, renderer, standard],
+      edges: [
+        makeEdge('e.rendered-ex', 'rendered_by', example.id, renderer.id),
+        makeEdge('e.align-ex', 'aligned_to_standard', example.id, standard.id),
+      ],
+    };
+    const result = validateKnowledgeSpace(space);
+    expect(result.valid).toBe(true);
+  });
+
+  it('rejects rendered_by edge where source is a standard', () => {
+    const standard = makeNode('math.im3.standard.ccss.hsa.rei.b.4', 'standard');
+    const renderer = makeNode('math.im3.renderer.step-by-step-solver', 'renderer');
+    const space: KnowledgeSpace = {
+      nodes: [standard, renderer],
+      edges: [
+        makeEdge('e.rendered-std', 'rendered_by', standard.id, renderer.id),
+      ],
+    };
+    const result = validateKnowledgeSpace(space);
+    expect(result.valid).toBe(false);
+    expect(result.errors.some(
+      (e) => e.code === 'INVALID_EDGE_PAIRING' && e.message.includes('rendered_by'),
+    )).toBe(true);
+  });
+
+  it('rejects generated_by edge where source is a worked_example (only skill/task_blueprint allowed)', () => {
+    const example = makeNode('math.im3.example.1.1.1', 'worked_example');
+    const generator = makeNode('math.im3.generator.quadratic-factoring', 'generator');
+    const space: KnowledgeSpace = {
+      nodes: [example, generator],
+      edges: [
+        makeEdge('e.gen-example', 'generated_by', example.id, generator.id),
+      ],
+    };
+    const result = validateKnowledgeSpace(space);
+    expect(result.valid).toBe(false);
+    expect(result.errors.some(
+      (e) => e.code === 'INVALID_EDGE_PAIRING' && e.message.includes('generated_by'),
+    )).toBe(true);
+  });
+
+  it('accepts generated_by edge where source is a skill', () => {
+    const skill = makeAlignedSkill('math.im3.skill.1.4.solve-quadratic-by-factoring');
+    const generator = makeNode('math.im3.generator.quadratic-factoring', 'generator');
+    const space: KnowledgeSpace = {
+      nodes: [skill, generator, standardNode],
+      edges: [
+        makeEdge('e.gen-skill', 'generated_by', skill.id, generator.id),
+        alignSkill(skill),
+      ],
+    };
+    const result = validateKnowledgeSpace(space);
+    expect(result.valid).toBe(true);
+  });
+
+  it('rejects aligned_to_standard edge where source is a domain', () => {
+    const domain = makeNode('math.im3', 'domain');
+    const standard = makeNode('math.im3.standard.ccss.hsa.rei.b.4', 'standard');
+    const space: KnowledgeSpace = {
+      nodes: [domain, standard],
+      edges: [
+        makeEdge('e.align-domain', 'aligned_to_standard', domain.id, standard.id),
+      ],
+    };
+    const result = validateKnowledgeSpace(space);
+    expect(result.valid).toBe(false);
+    expect(result.errors.some(
+      (e) => e.code === 'INVALID_EDGE_PAIRING' && e.message.includes('aligned_to_standard'),
+    )).toBe(true);
+  });
+
+  it('accepts aligned_to_standard edge from worked_example to standard', () => {
+    const example = makeNode('math.im3.example.1.1.1', 'worked_example');
+    const standard = makeNode('math.im3.standard.ccss.hsa.rei.b.4', 'standard');
+    const space: KnowledgeSpace = {
+      nodes: [example, standard],
+      edges: [
+        makeEdge('e.align-ex', 'aligned_to_standard', example.id, standard.id),
+      ],
+    };
+    const result = validateKnowledgeSpace(space);
+    expect(result.valid).toBe(true);
+  });
+
+  it('rejects common_misconception_with edge where target is not misconception', () => {
+    const skill = makeAlignedSkill('math.im3.skill.1.4.solve-quadratic-by-factoring');
+    const other = makeAlignedSkill('math.im3.skill.1.4.test');
+    const space: KnowledgeSpace = {
+      nodes: [skill, other, standardNode],
+      edges: [
+        makeEdge('e.miscon-wrong', 'common_misconception_with', skill.id, other.id),
+        alignSkill(skill),
+        alignSkill(other),
+      ],
+    };
+    const result = validateKnowledgeSpace(space);
+    expect(result.valid).toBe(false);
+    expect(result.errors.some(
+      (e) => e.code === 'INVALID_EDGE_PAIRING' && e.message.includes('common_misconception_with'),
+    )).toBe(true);
   });
 });

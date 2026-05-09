@@ -206,15 +206,16 @@ function checkDuplicateEdges(
 
 type EdgeSourceTargetConstraint = {
   edgeType: EdgeType;
-  sourceKinds: NodeKind[];
+  sourceKinds?: NodeKind[];
   targetKinds: NodeKind[];
 };
 
 const EDGE_ENDPOINT_RULES: EdgeSourceTargetConstraint[] = [
-  { edgeType: 'rendered_by', sourceKinds: [], targetKinds: ['renderer'] },
-  { edgeType: 'generated_by', sourceKinds: [], targetKinds: ['generator'] },
-  { edgeType: 'aligned_to_standard', sourceKinds: [], targetKinds: ['standard'] },
-  { edgeType: 'common_misconception_with', sourceKinds: [], targetKinds: ['misconception'] },
+  { edgeType: 'rendered_by', sourceKinds: ['skill', 'worked_example', 'task_blueprint', 'concept'], targetKinds: ['renderer'] },
+  { edgeType: 'generated_by', sourceKinds: ['skill', 'task_blueprint', 'concept'], targetKinds: ['generator'] },
+  { edgeType: 'aligned_to_standard', sourceKinds: ['skill', 'worked_example', 'task_blueprint', 'concept'], targetKinds: ['standard'] },
+  { edgeType: 'common_misconception_with', targetKinds: ['misconception'] },
+  { edgeType: 'contains', sourceKinds: ['domain', 'content_group', 'instructional_unit'], targetKinds: ['content_group', 'instructional_unit', 'worked_example', 'skill', 'concept', 'task_blueprint'] },
 ];
 
 function checkEndpointPairings(
@@ -235,6 +236,16 @@ function checkEndpointPairings(
       ctx.addIssue({
         code: z.ZodIssueCode.custom,
         message: `Edge "${edge.id}" of type "${edge.type}" must target a node of kind ${rule.targetKinds.join(' | ')}, but targets "${targetNode.kind}"`,
+        path: ['edges', i],
+      });
+      return;
+    }
+
+    const sourceNode = nodeMap.get(edge.sourceId);
+    if (sourceNode && rule.sourceKinds && rule.sourceKinds.length > 0 && !rule.sourceKinds.includes(sourceNode.kind)) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        message: `Edge "${edge.id}" of type "${edge.type}" must originate from a node of kind ${rule.sourceKinds.join(' | ')}, but originates from "${sourceNode.kind}"`,
         path: ['edges', i],
       });
       return;

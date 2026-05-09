@@ -9,19 +9,25 @@ import type {
   ValidationError,
   NodeKind,
   EdgeType,
+  ConfidenceLevel,
 } from './types';
 
 // ---------------------------------------------------------------------------
 // Edge endpoint pairing rules (mirrors the rules in schemas.ts)
 // ---------------------------------------------------------------------------
 
-type EdgeEndpointRule = { edgeType: EdgeType; targetKinds: NodeKind[] };
+type EdgeEndpointRule = {
+  edgeType: EdgeType;
+  sourceKinds?: NodeKind[];
+  targetKinds: NodeKind[];
+};
 
 const EDGE_ENDPOINT_RULES: EdgeEndpointRule[] = [
-  { edgeType: 'rendered_by', targetKinds: ['renderer'] },
-  { edgeType: 'generated_by', targetKinds: ['generator'] },
-  { edgeType: 'aligned_to_standard', targetKinds: ['standard'] },
+  { edgeType: 'rendered_by', sourceKinds: ['skill', 'worked_example', 'task_blueprint', 'concept'], targetKinds: ['renderer'] },
+  { edgeType: 'generated_by', sourceKinds: ['skill', 'task_blueprint', 'concept'], targetKinds: ['generator'] },
+  { edgeType: 'aligned_to_standard', sourceKinds: ['skill', 'worked_example', 'task_blueprint', 'concept'], targetKinds: ['standard'] },
   { edgeType: 'common_misconception_with', targetKinds: ['misconception'] },
+  { edgeType: 'contains', sourceKinds: ['domain', 'content_group', 'instructional_unit'], targetKinds: ['content_group', 'instructional_unit', 'worked_example', 'skill', 'concept', 'task_blueprint'] },
 ];
 
 export function getInvalidEdgePairings(
@@ -34,11 +40,20 @@ export function getInvalidEdgePairings(
   for (const edge of graph.edges) {
     const rule = rulesByType.get(edge.type);
     if (!rule) continue;
+    const source = nodeMap.get(edge.sourceId);
     const target = nodeMap.get(edge.targetId);
-    if (target && !rule.targetKinds.includes(target.kind)) {
+
+    if (rule.targetKinds.length > 0 && target && !rule.targetKinds.includes(target.kind)) {
       violations.push({
         edgeId: edge.id,
         message: `Edge "${edge.id}" of type "${edge.type}" must target a node of kind ${rule.targetKinds.join(' | ')}, but targets "${target.kind}"`,
+      });
+    }
+
+    if (rule.sourceKinds && rule.sourceKinds.length > 0 && source && !rule.sourceKinds.includes(source.kind)) {
+      violations.push({
+        edgeId: edge.id,
+        message: `Edge "${edge.id}" of type "${edge.type}" must originate from a node of kind ${rule.sourceKinds.join(' | ')}, but originates from "${source.kind}"`,
       });
     }
   }
@@ -110,7 +125,90 @@ export function validateKnowledgeSpace(space: KnowledgeSpace): ValidationResult 
     });
   }
 
+  // High-confidence prerequisite cycles
+  const cycles = getPrerequisiteCycles(space);
+  for (const cycle of cycles) {
+    errors.push({
+      code: 'PREREQUISITE_CYCLE',
+      message: `High-confidence prerequisite cycle detected: ${cycle.cycle.join(' → ')}`,
+      edgeId: cycle.edgeIds.join(', '),
+    });
+  }
+
   return { valid: errors.length === 0, errors };
+}
+
+// ---------------------------------------------------------------------------
+// Prerequisite cycle detection
+// ---------------------------------------------------------------------------
+
+export interface PrerequisiteCycle {
+  cycle: string[];
+  edgeIds: string[];
+}
+
+export interface CycleDetectionOptions {
+  includeLowConfidence?: boolean;
+}
+
+export function getPrerequisiteCycles(
+  graph: KnowledgeSpace,
+  options?: CycleDetectionOptions,
+): PrerequisiteCycle[] {
+  const includeLow = options?.includeLowConfidence ?? false;
+  const minConfidence: Set<ConfidenceLevel> = includeLow
+    ? new Set(['high', 'medium', 'low'])
+    : new Set(['high', 'medium']);
+
+  // Build adjacency list from prerequisite_for edges meeting confidence threshold
+  const adj = new Map<string, Array<{ target: string; edgeId: string }>>();
+  const nodeIds = new Set(graph.nodes.map((n) => n.id));
+  for (const id of nodeIds) {
+    adj.set(id, []);
+  }
+
+  for (const edge of graph.edges) {
+    if (edge.type !== 'prerequisite_for') continue;
+    if (!minConfidence.has(edge.confidence)) continue;
+    const neighbors = adj.get(edge.sourceId);
+    if (neighbors) {
+      neighbors.push({ target: edge.targetId, edgeId: edge.id });
+    }
+  }
+
+  // Find all cycles using DFS with path tracking
+  const cycles: PrerequisiteCycle[] = [];
+  const visited = new Set<string>();
+  const recStack = new Set<string>();
+
+  function dfs(node: string, path: string[], pathEdges: string[]): void {
+    visited.add(node);
+    recStack.add(node);
+
+    for (const { target, edgeId } of adj.get(node) ?? []) {
+      if (recStack.has(target)) {
+        // Found a cycle — extract the cycle path
+        const cycleStart = path.indexOf(target);
+        if (cycleStart !== -1) {
+          const cyclePath = [...path.slice(cycleStart), target];
+          const cycleEdgeIds = [...pathEdges.slice(cycleStart), edgeId];
+          cycles.push({ cycle: cyclePath, edgeIds: cycleEdgeIds });
+        }
+      } else if (!visited.has(target)) {
+        dfs(target, [...path, target], [...pathEdges, edgeId]);
+      }
+    }
+
+    recStack.delete(node);
+  }
+
+  for (const nodeId of nodeIds) {
+    if (!visited.has(nodeId)) {
+      dfs(nodeId, [nodeId], []);
+    }
+  }
+
+  return cycles;
 }
 
 export function getDanglingEdges(graph: KnowledgeSpace): KnowledgeSpaceEdge[] {

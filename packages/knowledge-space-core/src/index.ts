@@ -16,6 +16,8 @@ export type {
   ValidationResult,
 } from './types';
 
+export type { PrerequisiteCycle, CycleDetectionOptions } from './validation';
+
 export { knowledgeSpaceSchema, CORE_ID_PATTERN } from './schemas';
 
 export {
@@ -27,6 +29,7 @@ export {
   getIndependentPracticeNodesMissingGenerators,
   getInvalidEdgePairings,
   validateNodeMetadataWithAdapter,
+  getPrerequisiteCycles,
 } from './validation';
 
 export { syntheticMathFixture, syntheticEnglishGseFixture } from './fixtures';
