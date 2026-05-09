@@ -146,12 +146,39 @@ describe('alignSkillsToStandards', () => {
     );
     const lowEdge = skillEdges.find(e => e.confidence === 'low');
     if (lowEdge) {
-      expect(lowEdge.rationale.toLowerCase()).toContain('heuristic');
+      expect(lowEdge.rationale!.toLowerCase()).toContain('heuristic');
     } else {
       // If no heuristic match, should have an exception
       const hasException = result.exceptions.some(e => e.skillId === skill.id);
       expect(hasException).toBe(true);
     }
+  });
+
+  it('creates placeholder standard nodes for missing definitions', () => {
+    const skill = makeSkill('im1', '1', '1', 'expressions');
+    const nodes: KnowledgeSpaceNode[] = [skill];
+    const lessonStandards: LessonStandardMapping[] = [
+      { lessonSlug: 'module-1-lesson-1', standardCode: '6.EE.A.2', isPrimary: true },
+    ];
+
+    const result = alignSkillsToStandards({
+      nodes,
+      lessonStandards,
+      standardDefinitions: [], // No definitions available!
+      familyObjectives: [],
+      course: 'im1',
+    });
+
+    // Should still create an edge and a placeholder standard node
+    expect(result.edges.length).toBeGreaterThanOrEqual(1);
+    const placeholderNode = result.standardNodes.find(n => n.metadata.code === '6.EE.A.2');
+    expect(placeholderNode).toBeDefined();
+    expect(placeholderNode!.metadata.isPlaceholder).toBe(true);
+    expect(placeholderNode!.reviewStatus).toBe('draft');
+
+    // Should also record as missing
+    expect(result.missingStandards.length).toBeGreaterThanOrEqual(1);
+    expect(result.missingStandards.some(s => s.code === '6.EE.A.2')).toBe(true);
   });
 
   it('records an exception for skills with no matching standard', () => {

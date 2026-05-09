@@ -113,6 +113,26 @@ function buildStandardNode(def: StandardDefinition): KnowledgeSpaceNode {
   };
 }
 
+function buildPlaceholderStandardNode(code: string, authority: string = 'ccss'): KnowledgeSpaceNode {
+  const id = standardCodeToNodeId(code, authority);
+  return {
+    id,
+    kind: 'standard',
+    title: `${code} (placeholder)`,
+    domain: 'math',
+    description: `Standard ${code} — definition not yet available in seed data`,
+    sourceRefs: [{ source: 'lesson-standards-inference', note: `Inferred from lesson-standard references; no definition in seed_standards.ts` }],
+    derived: true,
+    derivationMethod: 'standards-alignment-inference',
+    reviewStatus: 'draft' as ReviewStatus,
+    metadata: {
+      framework: authority,
+      code,
+      isPlaceholder: true,
+    },
+  };
+}
+
 function getLessonSlugsForNode(node: KnowledgeSpaceNode, course: string): string[] {
   const module = String(node.metadata.module ?? '');
   const lesson = String(node.metadata.lesson ?? '');
@@ -261,6 +281,8 @@ export function alignSkillsToStandards(input: AlignmentInput): AlignmentResult {
           const stdNode = buildStandardNode(stdDef);
           standardNodesMap.set(stdId, stdNode);
         } else {
+          const stdNode = buildPlaceholderStandardNode(entry.standardCode);
+          standardNodesMap.set(stdId, stdNode);
           recordMissingStandard(entry.standardCode, 'lesson', slug);
         }
       }
@@ -316,6 +338,9 @@ export function alignSkillsToStandards(input: AlignmentInput): AlignmentResult {
 
             if (stdDef) {
               const stdNode = buildStandardNode(stdDef);
+              standardNodesMap.set(stdId, stdNode);
+            } else {
+              const stdNode = buildPlaceholderStandardNode(stdCode);
               standardNodesMap.set(stdId, stdNode);
             }
           }
