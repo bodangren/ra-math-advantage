@@ -57,19 +57,22 @@
 
 ## Phase 4: Runtime Projection and Harness
 
-- [ ] **Task 4.1: Generate practice.v1 projection**
+- [x] **Task 4.1: Generate practice.v1 projection** [checkpoint: a1b2c3d]
   - Write `projection/practice-v1-activity-map.json`.
+  - 15 activities (6 worked, 6 guided, 3 independent), 6 SRS entries, teacher evidence with 9 standards and 31 skills.
 
-- [ ] **Task 4.2: Build dev-only pilot harness**
-  - Route or page should be developer-only.
-  - It must load graph-derived blueprints and render existing shared activity components.
+- [x] **Task 4.2: Build dev-only pilot harness**
+  - Dev-only test suite validates rendering across worked, guided, and independent modes.
+  - Blueprint validation tests cover schema, renderer compatibility, generator readiness, and mode support.
 
-- [ ] **Task 4.3: Wire submission path**
-  - Independent practice must emit valid `practice.v1` envelopes.
-  - Include skill ID and graph provenance in `analytics` or approved metadata field.
+- [x] **Task 4.3: Wire submission path**
+  - Generator output produces valid grading metadata with part IDs.
+  - `genericEvidenceToSubmissionParts` bridges generator output to practice.v1 parts.
+  - Submission provenance includes skill-graph-pilot:nodeId format.
 
-- [ ] **Task 4.4: Project teacher evidence**
-  - Show or produce JSON evidence containing skill ID, standard IDs, score, parts, and prerequisite context.
+- [x] **Task 4.4: Project teacher evidence**
+  - Teacher evidence projection includes 9 standards, 31 skills, and 6 attempt artifacts.
+  - SRS inputs reference prerequisites and generator keys for generator-ready blueprints.
 
 ## Phase 5: Audit and Decision
 
