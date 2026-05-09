@@ -1,0 +1,9 @@
+{
+  "periodId": "m3-p06",
+  "dayType": "jigsaw",
+  "nonInstructionArtifact": {
+    "type": "jigsaw",
+    "focus": "Mathematical practices: function identification across representations and notation fluency",
+    "activities": ["Jigsaw rotation on function identification across graph/table/mapping/equation forms", "Expert groups on function notation", "Teaching others your representation strategy"]
+  }
+}

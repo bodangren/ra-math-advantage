@@ -1,0 +1,9 @@
+{
+  "periodId": "m3-p03",
+  "dayType": "mastery",
+  "nonInstructionArtifact": {
+    "type": "mastery",
+    "focus": "Objectives 3a-3b",
+    "activities": ["SRS practice on relations and representations", "Spiral review on domain and range identification", "Peer explanation of graph interpretation"]
+  }
+}

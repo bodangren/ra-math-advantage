@@ -1,0 +1,18 @@
+{
+  "periodId": "m6-p12",
+  "dayType": "instruction",
+  "sourceLesson": "6-5",
+  "classObjectiveCode": "6i",
+  "classObjective": "Graph linear inequalities in two variables written in slope-intercept and standard form and write linear inequalities to model real-world constraints.",
+  "workedExamples": [
+    "6-5, Example 1 — Graph Inequalities in Slope-Intercept Form",
+    "6-5, Example 2 — Graph Inequalities in Standard Form",
+    "6-5, Example 3 — Write and Graph Inequalities from Context"
+  ],
+  "warmUp": "Graph y < 2x + 3",
+  "conceptDevelopment": "Mini-lesson: dashed vs. solid boundary lines; half-plane shading; test point method; writing inequalities from context",
+  "guidedPractice": "Teacher-led practice graphing two-variable inequalities in both slope-intercept and standard form",
+  "independentPractice": "Practice problems graphing linear inequalities and writing inequalities to model real-world constraints",
+  "assessment": "Exit ticket: write and graph an inequality for a budget of at most $200 for x items at $25 each and y items at $40 each",
+  "capReflection": "How does the test point method help you determine which side of the boundary line to shade?"
+}

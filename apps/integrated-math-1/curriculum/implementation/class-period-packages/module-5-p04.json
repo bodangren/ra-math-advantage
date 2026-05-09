@@ -1,0 +1,19 @@
+{
+  "periodId": "m5-p04",
+  "dayType": "instruction",
+  "sourceLesson": "5-2",
+  "classObjectiveCode": "5c",
+  "classObjective": "Write linear equations in point-slope form given a point and a slope or two points and convert equations between point-slope, slope-intercept, and standard forms.",
+  "workedExamples": [
+    "5-2, Example 1 — Write Point-Slope Form Given a Point and Slope",
+    "5-2, Example 2 — Write Point-Slope Form Given Two Points",
+    "5-2, Example 3 — Convert Point-Slope Form to Slope-Intercept Form",
+    "5-2, Example 5 — Convert Equations to Standard Form"
+  ],
+  "warmUp": "Write point-slope form for the line through (3, -2) with slope 4",
+  "conceptDevelopment": "Mini-lesson: preserving integer coefficients in standard form; distributing slopes; form conversion strategies",
+  "guidedPractice": "Teacher-led practice writing equations in point-slope form and converting between all three linear forms",
+  "independentPractice": "Practice problems writing equations in point-slope form and converting between point-slope, slope-intercept, and standard forms",
+  "assessment": "Exit ticket: convert y + 3 = 2(x - 1) to slope-intercept and standard form",
+  "capReflection": "What are the advantages of each linear form (point-slope, slope-intercept, standard) in different contexts?"
+}

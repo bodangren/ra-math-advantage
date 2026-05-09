@@ -1,0 +1,17 @@
+{
+  "periodId": "m11-p11",
+  "dayType": "instruction",
+  "sourceLesson": "11-5",
+  "classObjectiveCode": "11i",
+  "classObjective": "Identify and classify three-dimensional figures as polyhedra or non-polyhedra.",
+  "workedExamples": [
+    "11-5, Example 1 — Identify and Classify Three-Dimensional Figures",
+    "11-5, Example 2 — Model Real-World Objects with Three-Dimensional Figures"
+  ],
+  "warmUp": "What is the difference between a polyhedron and a non-polyhedron?",
+  "conceptDevelopment": "Mini-lesson: polyhedra vs. cylinders/cones/spheres; naming faces, edges, vertices; Euler's formula introduction",
+  "guidedPractice": "Teacher-led practice identifying and classifying 3D figures",
+  "independentPractice": "Practice problems identifying 3D figures and classifying as polyhedra or non-polyhedra",
+  "assessment": "Exit ticket: classify a cylinder, cone, and rectangular prism as polyhedron or non-polyhedron and explain why",
+  "capReflection": "Why is a sphere a non-polyhedron even though it's a common 3D shape?"
+}

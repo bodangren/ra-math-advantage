@@ -1,0 +1,19 @@
+{
+  "periodId": "m5-p13",
+  "dayType": "instruction",
+  "sourceLesson": "5-6",
+  "classObjectiveCode": "5j",
+  "classObjective": "Find the inverse of a relation given its graph, table, or set of ordered pairs and find the inverse of a linear function algebraically using the switch-and-solve method.",
+  "workedExamples": [
+    "5-6, Example 1 — Find the Inverse from a Graph or Table",
+    "5-6, Example 2 — Find the Inverse from Ordered Pairs",
+    "5-6, Example 3 — Graph the Inverse of a Function",
+    "5-6, Example 4 — Find the Inverse of a Linear Function Using Switch-and-Solve"
+  ],
+  "warmUp": "If f(3) = 7, what does this tell us about f^{-1}(7)?",
+  "conceptDevelopment": "Mini-lesson: switching coordinates; solving for y; verifying inverse by composition; reflection across y = x",
+  "guidedPractice": "Teacher-led practice finding inverses from graphs, tables, ordered pairs, and algebraically using switch-and-solve",
+  "independentPractice": "Practice problems finding inverses in multiple representations and verifying by composition",
+  "assessment": "Exit ticket: find the inverse of f(x) = (3x - 7)/2 algebraically and verify it",
+  "capReflection": "Why does switching x and y in an equation and solving give us the inverse function?"
+}

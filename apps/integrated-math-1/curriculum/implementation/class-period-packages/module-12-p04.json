@@ -1,0 +1,17 @@
+{
+  "periodId": "m12-p04",
+  "dayType": "instruction",
+  "sourceLesson": "12-2",
+  "classObjectiveCode": "12c",
+  "classObjective": "Determine the truth value of compound statements formed by conjunction and disjunction.",
+  "workedExamples": [
+    "12-2, Example 1 — Evaluate Conjunctions and Disjunctions (AND/OR Truth Tables)",
+    "12-2, Example 2 — Evaluate Negations of Compound Statements"
+  ],
+  "warmUp": "If p is true and q is false, what is p AND q? What is p OR q?",
+  "conceptDevelopment": "Mini-lesson: AND/OR truth tables; conjunction and disjunction truth values; negation of compound statements",
+  "guidedPractice": "Teacher-led practice evaluating compound statements using truth tables",
+  "independentPractice": "Practice problems determining truth value of compound statements",
+  "assessment": "Exit ticket: determine whether '5 is odd AND 10 is even' is true or false",
+  "capReflection": "How does the truth value of each component affect the truth value of a conjunction versus a disjunction?"
+}

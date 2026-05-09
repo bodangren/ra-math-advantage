@@ -1,0 +1,17 @@
+{
+  "periodId": "m5-p07",
+  "dayType": "instruction",
+  "sourceLesson": "5-3",
+  "classObjectiveCode": "5e",
+  "classObjective": "Analyze scatter plots to determine whether they show positive, negative, or no correlation and interpret the meaning in context.",
+  "workedExamples": [
+    "5-3, Example 1 — Identify Correlation from Scatter Plots",
+    "5-3, Example 2 — Write and Use Lines of Fit"
+  ],
+  "warmUp": "Describe the relationship between hours of sleep and test scores from a scatter plot trend",
+  "conceptDevelopment": "Mini-lesson: upward/downward trend interpretation; real-world meaning of correlation direction; correlation vs. causation introduction",
+  "guidedPractice": "Teacher-led practice analyzing scatter plots for correlation type and interpreting in context",
+  "independentPractice": "Practice problems analyzing scatter plots to identify positive, negative, or no correlation and interpreting meaning",
+  "assessment": "Exit ticket: describe the correlation shown in a scatter plot of height vs. shoe size and explain what it means",
+  "capReflection": "What does the direction of a scatter plot tell us about the relationship between two variables?"
+}

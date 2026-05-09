@@ -1,0 +1,17 @@
+{
+  "periodId": "m12-p01",
+  "dayType": "instruction",
+  "sourceLesson": "12-1",
+  "classObjectiveCode": "12a",
+  "classObjective": "Recognize patterns in numerical, geometric, and real-world sequences and express them as conjectures.",
+  "workedExamples": [
+    "12-1, Example 1 — Write Conjectures for Sequences",
+    "12-1, Example 2 — Make Conjectures about Numbers and Geometry"
+  ],
+  "warmUp": "Find the next term: 2, 6, 18, 54, ...",
+  "conceptDevelopment": "Mini-lesson: additive and multiplicative patterns; geometric conjectures; forming and testing conjectures",
+  "guidedPractice": "Teacher-led practice recognizing patterns and forming conjectures",
+  "independentPractice": "Practice problems identifying patterns and writing conjectures for sequences",
+  "assessment": "Exit ticket: identify the pattern in a sequence and write a conjecture about what will happen next",
+  "capReflection": "What makes a conjecture different from a proven theorem?"
+}

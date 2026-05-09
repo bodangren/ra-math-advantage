@@ -1,0 +1,17 @@
+{
+  "periodId": "m12-p02",
+  "dayType": "instruction",
+  "sourceLesson": "12-1",
+  "classObjectiveCode": "12b",
+  "classObjective": "Determine whether a given conjecture is true or false.",
+  "workedExamples": [
+    "12-1, Example 3 — Make a Conjecture from a Table and Test It",
+    "12-1, Example 4 — Determine Whether Conjectures Are True or False"
+  ],
+  "warmUp": "Is the conjecture 'the sum of two even numbers is always even' true or false?",
+  "conceptDevelopment": "Mini-lesson: finding counterexamples; testing conjectures systematically; distinguishing true from false conjectures",
+  "guidedPractice": "Teacher-led practice determining truth value of conjectures and finding counterexamples",
+  "independentPractice": "Practice problems testing conjectures and finding counterexamples for false statements",
+  "assessment": "Exit ticket: determine whether 'the product of any two odd numbers is odd' is true or false, and prove or disprove",
+  "capReflection": "Why does finding one counterexample prove that a conjecture is false?"
+}

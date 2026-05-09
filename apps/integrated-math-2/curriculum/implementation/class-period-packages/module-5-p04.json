@@ -1,0 +1,17 @@
+{
+  "periodId": "m5-p04",
+  "dayType": "instruction",
+  "sourceLesson": "5-2",
+  "classObjectiveCode": "5d",
+  "classObjective": "Convert between degree measure and radian measure; find arc length.",
+  "workedExamples": [
+    "5-2, Mixed Exercises — Radian conversion",
+    "5-2, Mixed Exercises — Arc length applications"
+  ],
+  "warmUp": "Skill activation problem",
+  "conceptDevelopment": "Mini-lesson or exploration",
+  "guidedPractice": "Teacher-led practice with worked examples",
+  "independentPractice": "Practice problems from the lesson",
+  "assessment": "Exit ticket or quick check",
+  "capReflection": "Courage, Adaptability, Persistence reflection prompt"
+}

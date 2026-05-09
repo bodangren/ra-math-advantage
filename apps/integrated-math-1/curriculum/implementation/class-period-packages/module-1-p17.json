@@ -1,0 +1,17 @@
+{
+  "periodId": "m1-p17",
+  "dayType": "instruction",
+  "sourceLesson": "1-6",
+  "classObjectiveCode": "1l",
+  "classObjective": "Determine a reasonable level of accuracy when performing multi-step calculations and evaluate the accuracy of reported data.",
+  "workedExamples": [
+    "1-6, Example 4 — Compute with Reasonable Accuracy in Multi-Step Calculations",
+    "1-6, Example 5 — Evaluate the Accuracy of Reported Data"
+  ],
+  "warmUp": "Round 4.756 to the nearest tenth and nearest hundredth",
+  "conceptDevelopment": "Mini-lesson: multi-step calculations with appropriate precision; significant figures; evaluating data source reliability",
+  "guidedPractice": "Teacher-led practice determining appropriate accuracy levels in multi-step calculations",
+  "independentPractice": "Practice problems computing with reasonable accuracy and evaluating reported data",
+  "assessment": "Exit ticket: evaluate the accuracy of a multi-step calculation result",
+  "capReflection": "How do you decide how many decimal places or significant figures to keep in a multi-step calculation?"
+}

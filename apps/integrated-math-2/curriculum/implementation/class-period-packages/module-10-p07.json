@@ -1,0 +1,18 @@
+{
+  "periodId": "m10-p07",
+  "dayType": "instruction",
+  "sourceLesson": "10-3",
+  "classObjectiveCode": "10f",
+  "classObjective": "Perform operations with numbers in scientific notation and apply to real-world measurements.",
+  "workedExamples": [
+    "10-3, Example 4 — Multiply and Divide in Scientific Notation",
+    "10-3, Example 5 — Add and Subtract",
+    "10-3, Example 6 — Real-World Application"
+  ],
+  "warmUp": "Skill activation problem",
+  "conceptDevelopment": "Mini-lesson or exploration",
+  "guidedPractice": "Teacher-led practice with worked examples",
+  "independentPractice": "Practice problems from the lesson",
+  "assessment": "Exit ticket or quick check",
+  "capReflection": "Courage, Adaptability, Persistence reflection prompt"
+}

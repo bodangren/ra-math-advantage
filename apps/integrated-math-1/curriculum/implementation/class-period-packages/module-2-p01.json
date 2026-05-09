@@ -1,0 +1,18 @@
+{
+  "periodId": "m2-p01",
+  "dayType": "instruction",
+  "sourceLesson": "2-1",
+  "classObjectiveCode": "2a",
+  "classObjective": "Translate verbal sentences and real-world situations into algebraic equations and formulas.",
+  "workedExamples": [
+    "2-1, Example 1 — Write an Equation from a Verbal Sentence",
+    "2-1, Example 2 — Write an Equation from a Real-World Situation",
+    "2-1, Example 3 — Translate Sentences into Equations or Formulas"
+  ],
+  "warmUp": "Review variable definition and key word identification from Module 1",
+  "conceptDevelopment": "Mini-lesson: variable definition, key word identification, formula recognition",
+  "guidedPractice": "Teacher-led practice translating verbal sentences into algebraic equations with attention to key words",
+  "independentPractice": "Practice problems translating real-world situations into algebraic equations",
+  "assessment": "Exit ticket: translate 2 verbal sentences into algebraic equations",
+  "capReflection": "What key words signal equality in a verbal sentence?"
+}

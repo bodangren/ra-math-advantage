@@ -1,0 +1,17 @@
+{
+  "periodId": "m14-p13",
+  "dayType": "instruction",
+  "sourceLesson": "14-6",
+  "classObjectiveCode": "14k",
+  "classObjective": "Write two-column proofs using the Isosceles Triangle Theorem and its converse.",
+  "workedExamples": [
+    "14-6, Example 1 — Write Two-Column Proofs Using Isosceles Triangle Properties",
+    "14-6, Example 2 — Find Side Lengths and Angle Measures in Isosceles Triangles"
+  ],
+  "warmUp": "What does the Isosceles Triangle Theorem state?",
+  "conceptDevelopment": "Mini-lesson: Isosceles Triangle Theorem: congruent sides → congruent angles; converse: congruent angles → congruent sides; proof applications",
+  "guidedPractice": "Teacher-led practice applying Isosceles Triangle Theorem and its converse in proofs",
+  "independentPractice": "Practice problems using isosceles triangle properties in angle and side proofs",
+  "assessment": "Exit ticket: use the Isosceles Triangle Theorem to find all angles of an isosceles triangle with vertex angle 40°",
+  "capReflection": "How does the converse of the Isosceles Triangle Theorem allow you to prove sides are congruent from angle information?"
+}

@@ -1,0 +1,17 @@
+{
+  "periodId": "m8-p05",
+  "dayType": "instruction",
+  "sourceLesson": "8-2",
+  "classObjectiveCode": "8d",
+  "classObjective": "Write equations for transformed exponential functions given a graph.",
+  "workedExamples": [
+    "8-2, Example 2 — Write Equations from Graphs",
+    "8-2, Example 3 — Apply Transformations to Real-World Models"
+  ],
+  "warmUp": "If an exponential function has a horizontal asymptote at y = -3 and passes through (0, 1), what might its equation be?",
+  "conceptDevelopment": "Mini-lesson: using asymptote and key points to solve for transformation parameters; writing equations from graphs",
+  "guidedPractice": "Teacher-led practice writing equations for transformed exponential functions from graphs",
+  "independentPractice": "Practice problems writing exponential equations given graphs with transformations",
+  "assessment": "Exit ticket: write the equation of an exponential function with horizontal asymptote y = 2, passing through (0, 5) and (2, 20)",
+  "capReflection": "How does knowing the horizontal asymptote help you determine the equation of a transformed exponential function?"
+}

@@ -1,0 +1,16 @@
+{
+  "periodId": "m12-p06",
+  "dayType": "instruction",
+  "sourceLesson": "12-3",
+  "classObjectiveCode": "12e",
+  "classObjective": "Distinguish between inductive and deductive reasoning in given arguments.",
+  "workedExamples": [
+    "12-3, Example 1 — Distinguish Inductive and Deductive Reasoning"
+  ],
+  "warmUp": "If all mammals have fur and a dolphin is a mammal, what can you conclude?",
+  "conceptDevelopment": "Mini-lesson: inductive reasoning (examples to general rule); deductive reasoning (rule to specific case); distinguishing reasoning types",
+  "guidedPractice": "Teacher-led practice distinguishing inductive from deductive reasoning in arguments",
+  "independentPractice": "Practice problems classifying reasoning types and explaining the difference",
+  "assessment": "Exit ticket: classify an argument about plant growth based on multiple observations as inductive or deductive",
+  "capReflection": "Why is deductive reasoning considered 'valid' in mathematics while inductive reasoning leads to conjectures?"
+}

@@ -1,0 +1,18 @@
+{
+  "periodId": "m10-p02",
+  "dayType": "instruction",
+  "sourceLesson": "10-1",
+  "classObjectiveCode": "10b",
+  "classObjective": "Combine multiple laws of exponents in complex expressions.",
+  "workedExamples": [
+    "10-1, Example 4 — Combining Rules",
+    "10-1, Example 5 — Simplifying Expressions with Multiple Laws",
+    "10-1, Example 6 — Mixed Practice"
+  ],
+  "warmUp": "Skill activation problem",
+  "conceptDevelopment": "Mini-lesson or exploration",
+  "guidedPractice": "Teacher-led practice with worked examples",
+  "independentPractice": "Practice problems from the lesson",
+  "assessment": "Exit ticket or quick check",
+  "capReflection": "Courage, Adaptability, Persistence reflection prompt"
+}

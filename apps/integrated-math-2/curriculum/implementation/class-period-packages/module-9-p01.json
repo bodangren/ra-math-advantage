@@ -1,0 +1,18 @@
+{
+  "periodId": "m9-p01",
+  "dayType": "instruction",
+  "sourceLesson": "9-1",
+  "classObjectiveCode": "9a",
+  "classObjective": "Solve multi-step linear equations with variables on one or both sides.",
+  "workedExamples": [
+    "9-1, Example 1 — Variables on One Side",
+    "9-1, Example 2 — Variables on Both Sides",
+    "9-1, Example 3 — Distributive Property"
+  ],
+  "warmUp": "Skill activation problem",
+  "conceptDevelopment": "Mini-lesson or exploration",
+  "guidedPractice": "Teacher-led practice with worked examples",
+  "independentPractice": "Practice problems from the lesson",
+  "assessment": "Exit ticket or quick check",
+  "capReflection": "Courage, Adaptability, Persistence reflection prompt"
+}

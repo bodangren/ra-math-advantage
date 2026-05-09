@@ -1,0 +1,16 @@
+{
+  "periodId": "m3-p17",
+  "dayType": "instruction",
+  "sourceLesson": "3-6",
+  "classObjectiveCode": "3l",
+  "classObjective": "Compare two functions by interpreting their key features from descriptions and graphs and write and analyze linear functions that model cost, revenue, and profit.",
+  "workedExamples": [
+    "3-6, Example 4 — Compare Functions from Descriptions and Graphs"
+  ],
+  "warmUp": "Compare the graphs of f(x) = 2x + 1 and g(x) = 2x - 3 — what's the same and what's different?",
+  "conceptDevelopment": "Mini-lesson: comparison statements; break-even analysis; business context modeling with cost, revenue, profit functions",
+  "guidedPractice": "Teacher-led practice comparing functions using key features from descriptions and graphs including business applications",
+  "independentPractice": "Practice problems comparing functions and analyzing linear cost/revenue/profit models",
+  "assessment": "Exit ticket: given two function descriptions, compare their key features and determine the break-even point",
+  "capReflection": "How does comparing functions help in real-world decision-making contexts like business?"
+}

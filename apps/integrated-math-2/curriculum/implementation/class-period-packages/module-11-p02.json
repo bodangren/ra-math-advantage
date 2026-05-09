@@ -1,0 +1,18 @@
+{
+  "periodId": "m11-p02",
+  "dayType": "instruction",
+  "sourceLesson": "11-1",
+  "classObjectiveCode": "11b",
+  "classObjective": "Determine whether an expression is a polynomial and identify restrictions.",
+  "workedExamples": [
+    "11-1, Example 4 — Identifying Polynomials",
+    "11-1, Example 5 — Non-Polynomial Cases",
+    "11-1, Example 6 — Polynomial Evaluation"
+  ],
+  "warmUp": "Skill activation problem",
+  "conceptDevelopment": "Mini-lesson or exploration",
+  "guidedPractice": "Teacher-led practice with worked examples",
+  "independentPractice": "Practice problems from the lesson",
+  "assessment": "Exit ticket or quick check",
+  "capReflection": "Courage, Adaptability, Persistence reflection prompt"
+}

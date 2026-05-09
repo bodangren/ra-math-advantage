@@ -1,0 +1,18 @@
+{
+  "periodId": "m1-p07",
+  "dayType": "instruction",
+  "sourceLesson": "1-3",
+  "classObjectiveCode": "1e",
+  "classObjective": "Identify and apply the reflexive, symmetric, and transitive properties of equality.",
+  "workedExamples": [
+    "1-3, Example 1 — Identify Properties of Equality",
+    "1-3, Example 2 — Apply Properties of Equality to Complete Statements",
+    "1-3, Example 3 — Real-World Application: Toll Roads (Symmetric Property)"
+  ],
+  "warmUp": "Recall properties of equality from prior knowledge",
+  "conceptDevelopment": "Mini-lesson: reflexive (a=a), symmetric (if a=b then b=a), transitive (if a=b and b=c then a=c) with real-world toll road context",
+  "guidedPractice": "Teacher-led practice identifying and applying properties of equality in statements and real-world contexts",
+  "independentPractice": "Practice problems identifying properties of equality and applying them correctly",
+  "assessment": "Exit ticket: identify the property used and apply it to complete a statement",
+  "capReflection": "Why is the symmetric property particularly useful in real-world contexts like toll roads?"
+}

@@ -1,0 +1,17 @@
+{
+  "periodId": "m4-p18",
+  "dayType": "instruction",
+  "sourceLesson": "4-7",
+  "classObjectiveCode": "4o",
+  "classObjective": "Write the equation of an absolute value function given its graph and model real-world situations using absolute value functions.",
+  "workedExamples": [
+    "4-7, Example 2 — Write the Equation from a Graph (continued)",
+    "4-7, Example 6 — Model Real-World Situations with Absolute Value Functions (Tolerance and Target-Value Contexts)"
+  ],
+  "warmUp": "Given a vertex at (1, 4) and point (3, 0), write the absolute value equation",
+  "conceptDevelopment": "Mini-lesson: using a second point to find parameter a; tolerance and target-value contexts; writing equations from graphs",
+  "guidedPractice": "Teacher-led practice writing absolute value equations from graphs and modeling real-world tolerance situations",
+  "independentPractice": "Practice problems writing absolute value equations from graphs and applying to tolerance/target-value models",
+  "assessment": "Exit ticket: write the absolute value equation for a graph with vertex (-2, 5) passing through (1, -3)",
+  "capReflection": "How does solving for the parameter 'a' in |x - h| + k allow you to write an equation from a graph?"
+}

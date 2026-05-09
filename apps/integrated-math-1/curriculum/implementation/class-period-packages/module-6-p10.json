@@ -1,0 +1,18 @@
+{
+  "periodId": "m6-p10",
+  "dayType": "instruction",
+  "sourceLesson": "6-4",
+  "classObjectiveCode": "6g",
+  "classObjective": "Solve absolute value inequalities and rewrite them as compound inequalities using and or or.",
+  "workedExamples": [
+    "6-4, Example 1 — Solve Less-Than Absolute Value Inequalities (|X| < a)",
+    "6-4, Example 2 — Solve Greater-Than Absolute Value Inequalities (|X| > a)",
+    "6-4, Example 3 — Real-World Applications of Absolute Value Inequalities"
+  ],
+  "warmUp": "Solve |x| < 5 and |x| > 5",
+  "conceptDevelopment": "Mini-lesson: |X| < a becomes -a < X < a; |X| > a becomes X < -a or X > a; compound inequality conversion",
+  "guidedPractice": "Teacher-led practice solving absolute value inequalities and converting to compound forms",
+  "independentPractice": "Practice problems solving absolute value inequalities using the compound inequality method",
+  "assessment": "Exit ticket: solve |2x - 3| < 7 and express as a compound inequality",
+  "capReflection": "Why does |X| < a become a compound inequality while |X| > a becomes an 'or' inequality?"
+}

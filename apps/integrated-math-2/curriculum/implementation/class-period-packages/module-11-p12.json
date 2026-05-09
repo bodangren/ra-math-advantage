@@ -1,0 +1,9 @@
+{
+  "periodId": "m11-p12",
+  "dayType": "mastery",
+  "nonInstructionArtifact": {
+    "type": "mastery",
+    "focus": "Objectives 11e-11i",
+    "activities": ["SRS practice", "spiral review"]
+  }
+}

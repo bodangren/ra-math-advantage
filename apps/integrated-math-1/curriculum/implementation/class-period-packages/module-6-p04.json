@@ -1,0 +1,18 @@
+{
+  "periodId": "m6-p04",
+  "dayType": "instruction",
+  "sourceLesson": "6-2",
+  "classObjectiveCode": "6c",
+  "classObjective": "Solve multi-step linear inequalities using the Distributive Property, combining like terms, and inverse operations.",
+  "workedExamples": [
+    "6-2, Example 1 — Write and Solve Real-World Inequalities",
+    "6-2, Example 2 — Translate Verbal Sentences into Inequalities and Solve",
+    "6-2, Example 3 — Solve and Graph Multi-Step Inequalities"
+  ],
+  "warmUp": "Solve: 2(x + 3) > 10",
+  "conceptDevelopment": "Mini-lesson: distributing negative coefficients; combining like terms; isolating variable terms; multi-step solving process",
+  "guidedPractice": "Teacher-led practice solving multi-step linear inequalities with distribution and combining like terms",
+  "independentPractice": "Practice problems solving multi-step inequalities including those requiring the Distributive Property",
+  "assessment": "Exit ticket: solve 4x - 7 <= 3(x + 2) and graph the solution",
+  "capReflection": "How does solving multi-step inequalities compare to solving multi-step equations, and what extra step must you watch for?"
+}

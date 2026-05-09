@@ -1,0 +1,18 @@
+{
+  "periodId": "m7-p05",
+  "dayType": "instruction",
+  "sourceLesson": "7-3",
+  "classObjectiveCode": "7d",
+  "classObjective": "Compute permutations and interpret nPr in context.",
+  "workedExamples": [
+    "7-3, Example 1 — Permutation Formula",
+    "7-3, Example 2 — nPr in Context",
+    "7-3, Example 3 — Permutations with Restrictions"
+  ],
+  "warmUp": "Skill activation problem",
+  "conceptDevelopment": "Mini-lesson or exploration",
+  "guidedPractice": "Teacher-led practice with worked examples",
+  "independentPractice": "Practice problems from the lesson",
+  "assessment": "Exit ticket or quick check",
+  "capReflection": "Courage, Adaptability, Persistence reflection prompt"
+}

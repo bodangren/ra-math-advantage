@@ -1,0 +1,17 @@
+{
+  "periodId": "m3-p05",
+  "dayType": "instruction",
+  "sourceLesson": "3-2",
+  "classObjectiveCode": "3d",
+  "classObjective": "Evaluate functions using function notation for numerical and algebraic inputs and interpret function values in real-world contexts.",
+  "workedExamples": [
+    "3-2, Example 3 — Evaluate Functions Using Function Notation",
+    "3-2, Example 4 — Interpret Functions in Context"
+  ],
+  "warmUp": "If f(x) = 3x - 7, find f(4)",
+  "conceptDevelopment": "Mini-lesson: f(x) notation; composite inputs; real-world function models",
+  "guidedPractice": "Teacher-led practice evaluating functions with function notation including composite inputs",
+  "independentPractice": "Practice problems evaluating functions and interpreting function values in real-world contexts",
+  "assessment": "Exit ticket: evaluate f(2) and f(x+1) for f(x) = 2x² - 3x + 1",
+  "capReflection": "What does f(x) notation communicate that y notation does not?"
+}

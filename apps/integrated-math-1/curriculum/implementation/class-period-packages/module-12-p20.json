@@ -1,0 +1,17 @@
+{
+  "periodId": "m12-p20",
+  "dayType": "instruction",
+  "sourceLesson": "12-10",
+  "classObjectiveCode": "12q",
+  "classObjective": "Find the distance from a point to a line in the coordinate plane.",
+  "workedExamples": [
+    "12-10, Example 1 — Find the Distance from a Point to a Line (Slanted Lines)",
+    "12-10, Example 2 — Find the Distance from a Point to a Horizontal or Vertical Line"
+  ],
+  "warmUp": "How would you find the distance from point (3, 4) to the x-axis?",
+  "conceptDevelopment": "Mini-lesson: perpendicular distance; slope of perpendicular; intersection method; horizontal/vertical line special cases",
+  "guidedPractice": "Teacher-led practice finding distances from points to lines using perpendicular approach",
+  "independentPractice": "Practice problems finding distances from points to lines in the coordinate plane",
+  "assessment": "Exit ticket: find the distance from the point (3, 4) to the line y = 2x + 1",
+  "capReflection": "Why is the perpendicular distance from a point to a line the shortest distance?"
+}

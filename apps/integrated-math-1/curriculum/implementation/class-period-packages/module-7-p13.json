@@ -1,0 +1,17 @@
+{
+  "periodId": "m7-p13",
+  "dayType": "instruction",
+  "sourceLesson": "7-5",
+  "classObjectiveCode": "7j",
+  "classObjective": "Write systems of inequalities to represent real-world constraints with two variables, determine whether an ordered pair is a solution without graphing, and write a system of inequalities that corresponds to a given graph.",
+  "workedExamples": [
+    "7-5, Example 2 — Graph Systems with Horizontal, Vertical, and Standard-Form Boundaries (continued)",
+    "7-5, Example 3 — Model Real-World Situations with Systems of Inequalities"
+  ],
+  "warmUp": "Write a system for: You need at least 5 hours of sleep and at most 8 hours of screen time",
+  "conceptDevelopment": "Mini-lesson: exercise program constraints; souvenir budget constraints; feasible region enumeration; substitution checking",
+  "guidedPractice": "Teacher-led practice writing systems of inequalities from real-world contexts and graphs",
+  "independentPractice": "Practice problems writing systems of inequalities and verifying solutions by substitution",
+  "assessment": "Exit ticket: write a system of inequalities for a budget problem with spending and savings constraints",
+  "capReflection": "How do real-world constraints like time or budget limits translate into systems of inequalities?"
+}

@@ -1,0 +1,18 @@
+{
+  "periodId": "m3-p13",
+  "dayType": "instruction",
+  "sourceLesson": "3-5",
+  "classObjectiveCode": "3i",
+  "classObjective": "Identify line symmetry in the graph of a function and determine the intervals where a function is increasing, decreasing, or constant.",
+  "workedExamples": [
+    "3-5, Example 1 — Determine Line Symmetry in Function Graphs",
+    "3-5, Example 2 — Interpret Symmetry in Context",
+    "3-5, Example 3 — Determine Where f(x) Is Increasing and/or Decreasing"
+  ],
+  "warmUp": "Does the graph of y = x² have line symmetry? If so, what line?",
+  "conceptDevelopment": "Mini-lesson: line symmetry analysis; reading intervals left to right; increasing/decreasing/constant identification",
+  "guidedPractice": "Teacher-led practice identifying line symmetry and determining function behavior intervals",
+  "independentPractice": "Practice problems identifying symmetry and determining where functions increase, decrease, or stay constant",
+  "assessment": "Exit ticket: identify any line symmetry and describe the increasing/decreasing intervals for a given graph",
+  "capReflection": "How does reading a graph from left to right help you determine where it is increasing or decreasing?"
+}

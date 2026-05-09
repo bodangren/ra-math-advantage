@@ -1,0 +1,18 @@
+{
+  "periodId": "m4-p12",
+  "dayType": "instruction",
+  "sourceLesson": "4-5",
+  "classObjectiveCode": "4j",
+  "classObjective": "Use trigonometric ratios to find missing side lengths and angle measures; solve right triangles.",
+  "workedExamples": [
+    "4-5, Example 3 — Find the Value of x",
+    "4-5, Example 4 — Find Angle Measures",
+    "4-5, Example 5 — Solve Right Triangles"
+  ],
+  "warmUp": "Skill activation problem",
+  "conceptDevelopment": "Mini-lesson or exploration",
+  "guidedPractice": "Teacher-led practice with worked examples",
+  "independentPractice": "Practice problems from the lesson",
+  "assessment": "Exit ticket or quick check",
+  "capReflection": "Courage, Adaptability, Persistence reflection prompt"
+}

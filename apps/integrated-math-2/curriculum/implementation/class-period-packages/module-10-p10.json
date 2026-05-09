@@ -1,0 +1,18 @@
+{
+  "periodId": "m10-p10",
+  "dayType": "instruction",
+  "sourceLesson": "10-4",
+  "classObjectiveCode": "10h",
+  "classObjective": "Rationalize denominators and simplify radicals with variables.",
+  "workedExamples": [
+    "10-4, Example 4 — Rationalize a Denominator",
+    "10-4, Example 5 — Simplify Radicals with Variables",
+    "10-4, Example 6 — Mixed Operations"
+  ],
+  "warmUp": "Skill activation problem",
+  "conceptDevelopment": "Mini-lesson or exploration",
+  "guidedPractice": "Teacher-led practice with worked examples",
+  "independentPractice": "Practice problems from the lesson",
+  "assessment": "Exit ticket or quick check",
+  "capReflection": "Courage, Adaptability, Persistence reflection prompt"
+}

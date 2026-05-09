@@ -1,0 +1,18 @@
+{
+  "periodId": "m11-p09",
+  "dayType": "instruction",
+  "sourceLesson": "11-4",
+  "classObjectiveCode": "11h",
+  "classObjective": "Apply reflections, translations, and rotations to figures on the coordinate plane.",
+  "workedExamples": [
+    "11-4, Example 2 — Reflect Figures on the Coordinate Plane",
+    "11-4, Example 3 — Translate Figures on the Coordinate Plane",
+    "11-4, Example 4 — Rotate Figures on the Coordinate Plane"
+  ],
+  "warmUp": "What are the coordinate rules for reflecting a point across the x-axis?",
+  "conceptDevelopment": "Mini-lesson: coordinate rules for reflection (x-axis, y-axis, y=x); translation vectors; rotation about the origin (90°, 180°, 270°)",
+  "guidedPractice": "Teacher-led practice applying reflections, translations, and rotations to figures on the coordinate plane",
+  "independentPractice": "Practice problems performing rigid motions on coordinate plane figures",
+  "assessment": "Exit ticket: reflect the triangle with vertices (1,2), (3,4), (5,1) across the y-axis and give the new coordinates",
+  "capReflection": "How do the coordinate rules for rigid motions help you verify that a transformation is correct?"
+}

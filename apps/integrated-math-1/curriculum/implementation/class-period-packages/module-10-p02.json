@@ -1,0 +1,16 @@
+{
+  "periodId": "m10-p02",
+  "dayType": "instruction",
+  "sourceLesson": "10-1",
+  "classObjectiveCode": "10b",
+  "classObjective": "Differentiate between synthetic geometry and analytic geometry based on their defining characteristics.",
+  "workedExamples": [
+    "10-1, Example 2 — Classify Synthetic and Analytic Geometry"
+  ],
+  "warmUp": "How would you find the midpoint of a segment using only a compass and straightedge?",
+  "conceptDevelopment": "Mini-lesson: synthetic vs. analytic geometry; compass-and-straightedge vs. coordinate-based reasoning",
+  "guidedPractice": "Teacher-led practice distinguishing between synthetic and analytic approaches",
+  "independentPractice": "Practice problems classifying geometric approaches and solving problems both ways",
+  "assessment": "Exit ticket: classify whether using coordinate geometry to prove a property is synthetic or analytic, and explain",
+  "capReflection": "What are the advantages of each approach to geometry?"
+}

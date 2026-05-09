@@ -1,0 +1,20 @@
+{
+  "periodId": "m4-p17",
+  "dayType": "instruction",
+  "sourceLesson": "4-7",
+  "classObjectiveCode": "4n",
+  "classObjective": "Describe translations, dilations, and reflections of absolute value functions from their equations and graph absolute value functions.",
+  "workedExamples": [
+    "4-7, Example 1 — Describe Translations of Absolute Value Functions from Equations",
+    "4-7, Example 2 — Write the Equation from a Graph",
+    "4-7, Example 3 — Describe Dilations of Absolute Value Functions",
+    "4-7, Example 4 — Describe Combined Transformations",
+    "4-7, Example 5 — Graph Absolute Value Functions and State Domain and Range"
+  ],
+  "warmUp": "What is the basic shape of an absolute value function's graph?",
+  "conceptDevelopment": "Mini-lesson: vertex location (h, k); V-shape graphing; slope of rays; transformation parameter effects",
+  "guidedPractice": "Teacher-led practice describing transformations of absolute value functions and graphing with all key features",
+  "independentPractice": "Practice problems describing and graphing absolute value functions including domain and range",
+  "assessment": "Exit ticket: graph y = |x - 2| + 3 and state the vertex and intercepts",
+  "capReflection": "What determines the position of the vertex in an absolute value function's graph?"
+}

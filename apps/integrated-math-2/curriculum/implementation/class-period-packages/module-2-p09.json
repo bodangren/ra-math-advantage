@@ -1,0 +1,17 @@
+{
+  "periodId": "m2-p09",
+  "dayType": "instruction",
+  "sourceLesson": "2-4",
+  "classObjectiveCode": "2h",
+  "classObjective": "Use coordinate geometry to determine whether a quadrilateral is a rectangle.",
+  "workedExamples": [
+    "2-4, Example 3 — Prove Triangles Congruent Using Rectangles",
+    "2-4, Example 4 — Coordinate Geometry with Rectangles"
+  ],
+  "warmUp": "Skill activation problem",
+  "conceptDevelopment": "Mini-lesson or exploration",
+  "guidedPractice": "Teacher-led practice with worked examples",
+  "independentPractice": "Practice problems from the lesson",
+  "assessment": "Exit ticket or quick check",
+  "capReflection": "Courage, Adaptability, Persistence reflection prompt"
+}

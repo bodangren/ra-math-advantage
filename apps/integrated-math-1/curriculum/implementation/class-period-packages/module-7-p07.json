@@ -1,0 +1,17 @@
+{
+  "periodId": "m7-p07",
+  "dayType": "instruction",
+  "sourceLesson": "7-3",
+  "classObjectiveCode": "7e",
+  "classObjective": "Solve systems of linear equations using elimination by addition or subtraction and recognize when adding or subtracting equations will eliminate a variable.",
+  "workedExamples": [
+    "7-3, Example 1 — Solve by Elimination (Addition)",
+    "7-3, Example 2 — Word Problems with Elimination (Addition)"
+  ],
+  "warmUp": "What do you need to add to x + 2y = 8 to eliminate x?",
+  "conceptDevelopment": "Mini-lesson: opposite coefficients; aligned equations; adding vs. subtracting equations; back-substitution",
+  "guidedPractice": "Teacher-led practice solving systems by elimination using addition and subtraction",
+  "independentPractice": "Practice problems solving systems by elimination and recognizing when addition or subtraction will work",
+  "assessment": "Exit ticket: solve by elimination: 3x + 2y = 16 and 3x - 2y = 4",
+  "capReflection": "How can you tell whether to add or subtract two equations when using elimination?"
+}

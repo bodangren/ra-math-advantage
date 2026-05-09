@@ -1,0 +1,332 @@
+[
+  {
+    "periodId": "m1-p01",
+    "activityId": "im1-m1-p01-we1",
+    "sourceReference": "1-1, Example 1 — Write Numerical Expressions from Verbal Descriptions (Sum and Difference)",
+    "componentKey": "practice",
+    "mode": "guided",
+    "objectiveCode": "1a",
+    "gradingConfig": { "autoGrade": true, "partialCredit": false },
+    "srsEligibility": true
+  },
+  {
+    "periodId": "m1-p01",
+    "activityId": "im1-m1-p01-we2",
+    "sourceReference": "1-1, Example 2 — Write Numerical Expressions from Verbal Descriptions (Product and Quotient)",
+    "componentKey": "practice",
+    "mode": "guided",
+    "objectiveCode": "1a",
+    "gradingConfig": { "autoGrade": true, "partialCredit": false },
+    "srsEligibility": true
+  },
+  {
+    "periodId": "m1-p02",
+    "activityId": "im1-m1-p02-we1",
+    "sourceReference": "1-1, Example 4 — Evaluate Numerical Expressions Using Order of Operations",
+    "componentKey": "practice",
+    "mode": "guided",
+    "objectiveCode": "1b",
+    "gradingConfig": { "autoGrade": true, "partialCredit": false },
+    "srsEligibility": true
+  },
+  {
+    "periodId": "m1-p02",
+    "activityId": "im1-m1-p02-we2",
+    "sourceReference": "1-1, Example 5 — Evaluate Numerical Expressions (Powers and Nested Grouping)",
+    "componentKey": "practice",
+    "mode": "guided",
+    "objectiveCode": "1b",
+    "gradingConfig": { "autoGrade": true, "partialCredit": false },
+    "srsEligibility": true
+  },
+  {
+    "periodId": "m1-p02",
+    "activityId": "im1-m1-p02-we3",
+    "sourceReference": "1-1, Example 6 — Evaluate Numerical Expressions (Fraction Bars)",
+    "componentKey": "practice",
+    "mode": "guided",
+    "objectiveCode": "1b",
+    "gradingConfig": { "autoGrade": true, "partialCredit": false },
+    "srsEligibility": true
+  },
+  {
+    "periodId": "m1-p02",
+    "activityId": "im1-m1-p02-we4",
+    "sourceReference": "1-1, Example 7 — Evaluate Real-World Expressions",
+    "componentKey": "practice",
+    "mode": "guided",
+    "objectiveCode": "1b",
+    "gradingConfig": { "autoGrade": true, "partialCredit": false },
+    "srsEligibility": true
+  },
+  {
+    "periodId": "m1-p04",
+    "activityId": "im1-m1-p04-we1",
+    "sourceReference": "1-2, Example 1 — Write Verbal Expressions for Algebraic Expressions",
+    "componentKey": "practice",
+    "mode": "guided",
+    "objectiveCode": "1c",
+    "gradingConfig": { "autoGrade": true, "partialCredit": false },
+    "srsEligibility": true
+  },
+  {
+    "periodId": "m1-p04",
+    "activityId": "im1-m1-p04-we2",
+    "sourceReference": "1-2, Example 2 — Write Algebraic Expressions for Verbal Expressions",
+    "componentKey": "practice",
+    "mode": "guided",
+    "objectiveCode": "1c",
+    "gradingConfig": { "autoGrade": true, "partialCredit": false },
+    "srsEligibility": true
+  },
+  {
+    "periodId": "m1-p04",
+    "activityId": "im1-m1-p04-we3",
+    "sourceReference": "1-2, Example 3 — Write Expressions for Real-World Situations",
+    "componentKey": "practice",
+    "mode": "guided",
+    "objectiveCode": "1c",
+    "gradingConfig": { "autoGrade": true, "partialCredit": false },
+    "srsEligibility": true
+  },
+  {
+    "periodId": "m1-p05",
+    "activityId": "im1-m1-p05-we1",
+    "sourceReference": "1-2, Example 4 — Evaluate Algebraic Expressions by Substitution",
+    "componentKey": "practice",
+    "mode": "guided",
+    "objectiveCode": "1d",
+    "gradingConfig": { "autoGrade": true, "partialCredit": false },
+    "srsEligibility": true
+  },
+  {
+    "periodId": "m1-p05",
+    "activityId": "im1-m1-p05-we2",
+    "sourceReference": "1-2, Example 5 — Write and Evaluate Expressions from Word Problems",
+    "componentKey": "practice",
+    "mode": "guided",
+    "objectiveCode": "1d",
+    "gradingConfig": { "autoGrade": true, "partialCredit": false },
+    "srsEligibility": true
+  },
+  {
+    "periodId": "m1-p05",
+    "activityId": "im1-m1-p05-we3",
+    "sourceReference": "1-2, Example 6 — Mixed Review with Structure and Reasoning",
+    "componentKey": "practice",
+    "mode": "guided",
+    "objectiveCode": "1d",
+    "gradingConfig": { "autoGrade": true, "partialCredit": false },
+    "srsEligibility": true
+  },
+  {
+    "periodId": "m1-p07",
+    "activityId": "im1-m1-p07-we1",
+    "sourceReference": "1-3, Example 1 — Identify Properties of Equality",
+    "componentKey": "practice",
+    "mode": "guided",
+    "objectiveCode": "1e",
+    "gradingConfig": { "autoGrade": true, "partialCredit": false },
+    "srsEligibility": true
+  },
+  {
+    "periodId": "m1-p07",
+    "activityId": "im1-m1-p07-we2",
+    "sourceReference": "1-3, Example 2 — Apply Properties of Equality to Complete Statements",
+    "componentKey": "practice",
+    "mode": "guided",
+    "objectiveCode": "1e",
+    "gradingConfig": { "autoGrade": true, "partialCredit": false },
+    "srsEligibility": true
+  },
+  {
+    "periodId": "m1-p07",
+    "activityId": "im1-m1-p07-we3",
+    "sourceReference": "1-3, Example 3 — Real-World Application: Toll Roads (Symmetric Property)",
+    "componentKey": "practice",
+    "mode": "guided",
+    "objectiveCode": "1e",
+    "gradingConfig": { "autoGrade": true, "partialCredit": false },
+    "srsEligibility": true
+  },
+  {
+    "periodId": "m1-p08",
+    "activityId": "im1-m1-p08-we1",
+    "sourceReference": "1-3, Example 4 — Evaluate Expressions and Name Properties",
+    "componentKey": "practice",
+    "mode": "guided",
+    "objectiveCode": "1f",
+    "gradingConfig": { "autoGrade": true, "partialCredit": false },
+    "srsEligibility": true
+  },
+  {
+    "periodId": "m1-p08",
+    "activityId": "im1-m1-p08-we2",
+    "sourceReference": "1-3, Example 5 — Simplify Expressions Using Properties of Numbers",
+    "componentKey": "practice",
+    "mode": "guided",
+    "objectiveCode": "1f",
+    "gradingConfig": { "autoGrade": true, "partialCredit": false },
+    "srsEligibility": true
+  },
+  {
+    "periodId": "m1-p08",
+    "activityId": "im1-m1-p08-we3",
+    "sourceReference": "1-3, Example 6 — Evaluate Algebraic Expressions",
+    "componentKey": "practice",
+    "mode": "guided",
+    "objectiveCode": "1f",
+    "gradingConfig": { "autoGrade": true, "partialCredit": false },
+    "srsEligibility": true
+  },
+  {
+    "periodId": "m1-p10",
+    "activityId": "im1-m1-p10-we1",
+    "sourceReference": "1-4, Example 1 — Evaluate Numerical Expressions Using the Distributive Property",
+    "componentKey": "practice",
+    "mode": "guided",
+    "objectiveCode": "1g",
+    "gradingConfig": { "autoGrade": true, "partialCredit": false },
+    "srsEligibility": true
+  },
+  {
+    "periodId": "m1-p10",
+    "activityId": "im1-m1-p10-we2",
+    "sourceReference": "1-4, Example 2 — Mental Math with the Distributive Property",
+    "componentKey": "practice",
+    "mode": "guided",
+    "objectiveCode": "1g",
+    "gradingConfig": { "autoGrade": true, "partialCredit": false },
+    "srsEligibility": true
+  },
+  {
+    "periodId": "m1-p10",
+    "activityId": "im1-m1-p10-we3",
+    "sourceReference": "1-4, Example 3 — Simplify Algebraic Expressions",
+    "componentKey": "practice",
+    "mode": "guided",
+    "objectiveCode": "1g",
+    "gradingConfig": { "autoGrade": true, "partialCredit": false },
+    "srsEligibility": true
+  },
+  {
+    "periodId": "m1-p11",
+    "activityId": "im1-m1-p11-we1",
+    "sourceReference": "1-4, Example 3 — Simplify Algebraic Expressions (continued)",
+    "componentKey": "practice",
+    "mode": "guided",
+    "objectiveCode": "1h",
+    "gradingConfig": { "autoGrade": true, "partialCredit": false },
+    "srsEligibility": true
+  },
+  {
+    "periodId": "m1-p11",
+    "activityId": "im1-m1-p11-we2",
+    "sourceReference": "1-4, Example 4 — Combine Like Terms Using the Distributive Property",
+    "componentKey": "practice",
+    "mode": "guided",
+    "objectiveCode": "1h",
+    "gradingConfig": { "autoGrade": true, "partialCredit": false },
+    "srsEligibility": true
+  },
+  {
+    "periodId": "m1-p11",
+    "activityId": "im1-m1-p11-we3",
+    "sourceReference": "1-4, Example 5 — Translate and Simplify Verbal Expressions",
+    "componentKey": "practice",
+    "mode": "guided",
+    "objectiveCode": "1h",
+    "gradingConfig": { "autoGrade": true, "partialCredit": false },
+    "srsEligibility": true
+  },
+  {
+    "periodId": "m1-p13",
+    "activityId": "im1-m1-p13-we1",
+    "sourceReference": "1-5, Example 1 — Write Absolute Value Expressions for Real-World Accuracy Situations",
+    "componentKey": "practice",
+    "mode": "guided",
+    "objectiveCode": "1i",
+    "gradingConfig": { "autoGrade": true, "partialCredit": false },
+    "srsEligibility": true
+  },
+  {
+    "periodId": "m1-p13",
+    "activityId": "im1-m1-p13-we2",
+    "sourceReference": "1-5, Example 2 — Evaluate Absolute Value Expressions with Integers",
+    "componentKey": "practice",
+    "mode": "guided",
+    "objectiveCode": "1i",
+    "gradingConfig": { "autoGrade": true, "partialCredit": false },
+    "srsEligibility": true
+  },
+  {
+    "periodId": "m1-p14",
+    "activityId": "im1-m1-p14-we1",
+    "sourceReference": "1-5, Example 2 — Evaluate Absolute Value Expressions (continued)",
+    "componentKey": "practice",
+    "mode": "guided",
+    "objectiveCode": "1j",
+    "gradingConfig": { "autoGrade": true, "partialCredit": false },
+    "srsEligibility": true
+  },
+  {
+    "periodId": "m1-p14",
+    "activityId": "im1-m1-p14-we2",
+    "sourceReference": "1-5, Example 3 — Evaluate Absolute Value Expressions with Integers, Decimals, and Fractions",
+    "componentKey": "practice",
+    "mode": "guided",
+    "objectiveCode": "1j",
+    "gradingConfig": { "autoGrade": true, "partialCredit": false },
+    "srsEligibility": true
+  },
+  {
+    "periodId": "m1-p16",
+    "activityId": "im1-m1-p16-we1",
+    "sourceReference": "1-6, Example 1 — Set Up and Evaluate Ratios as Metrics",
+    "componentKey": "practice",
+    "mode": "guided",
+    "objectiveCode": "1k",
+    "gradingConfig": { "autoGrade": true, "partialCredit": false },
+    "srsEligibility": true
+  },
+  {
+    "periodId": "m1-p16",
+    "activityId": "im1-m1-p16-we2",
+    "sourceReference": "1-6, Example 2 — Calculate and Compare Using Different Methods",
+    "componentKey": "practice",
+    "mode": "guided",
+    "objectiveCode": "1k",
+    "gradingConfig": { "autoGrade": true, "partialCredit": false },
+    "srsEligibility": true
+  },
+  {
+    "periodId": "m1-p16",
+    "activityId": "im1-m1-p16-we3",
+    "sourceReference": "1-6, Example 3 — Apply Context-Appropriate Rounding",
+    "componentKey": "practice",
+    "mode": "guided",
+    "objectiveCode": "1k",
+    "gradingConfig": { "autoGrade": true, "partialCredit": false },
+    "srsEligibility": true
+  },
+  {
+    "periodId": "m1-p17",
+    "activityId": "im1-m1-p17-we1",
+    "sourceReference": "1-6, Example 4 — Compute with Reasonable Accuracy in Multi-Step Calculations",
+    "componentKey": "practice",
+    "mode": "guided",
+    "objectiveCode": "1l",
+    "gradingConfig": { "autoGrade": true, "partialCredit": false },
+    "srsEligibility": true
+  },
+  {
+    "periodId": "m1-p17",
+    "activityId": "im1-m1-p17-we2",
+    "sourceReference": "1-6, Example 5 — Evaluate the Accuracy of Reported Data",
+    "componentKey": "practice",
+    "mode": "guided",
+    "objectiveCode": "1l",
+    "gradingConfig": { "autoGrade": true, "partialCredit": false },
+    "srsEligibility": true
+  }
+]

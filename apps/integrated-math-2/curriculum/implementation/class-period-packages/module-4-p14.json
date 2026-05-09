@@ -1,0 +1,17 @@
+{
+  "periodId": "m4-p14",
+  "dayType": "instruction",
+  "sourceLesson": "4-6",
+  "classObjectiveCode": "4k",
+  "classObjective": "Solve problems involving angles of elevation and depression.",
+  "workedExamples": [
+    "4-6, Example 1 — Angle of Elevation Problems",
+    "4-6, Example 2 — Angle of Depression Problems"
+  ],
+  "warmUp": "Skill activation problem",
+  "conceptDevelopment": "Mini-lesson or exploration",
+  "guidedPractice": "Teacher-led practice with worked examples",
+  "independentPractice": "Practice problems from the lesson",
+  "assessment": "Exit ticket or quick check",
+  "capReflection": "Courage, Adaptability, Persistence reflection prompt"
+}

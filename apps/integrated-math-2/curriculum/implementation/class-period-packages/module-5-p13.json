@@ -1,0 +1,9 @@
+{
+  "periodId": "m5-p13",
+  "dayType": "jigsaw",
+  "nonInstructionArtifact": {
+    "type": "jigsaw",
+    "focus": "Objectives 5a-5k",
+    "activities": ["Circle theorem application", "proof construction", "problem-solving"]
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "periodId": "m11-p10",
+  "dayType": "instruction",
+  "sourceLesson": "11-5",
+  "classObjectiveCode": "11i",
+  "classObjective": "Factor trinomials where a ≠ 1 and factor completely using multiple techniques.",
+  "workedExamples": [
+    "11-5, Example 4 — Factor a ≠ 1",
+    "11-5, Example 5 — Factor Completely",
+    "11-5, Example 6 — Mixed Factoring Review"
+  ],
+  "warmUp": "Skill activation problem",
+  "conceptDevelopment": "Mini-lesson or exploration",
+  "guidedPractice": "Teacher-led practice with worked examples",
+  "independentPractice": "Practice problems from the lesson",
+  "assessment": "Exit ticket or quick check",
+  "capReflection": "Courage, Adaptability, Persistence reflection prompt"
+}

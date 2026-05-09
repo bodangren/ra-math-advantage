@@ -1,0 +1,17 @@
+{
+  "periodId": "m12-p02",
+  "dayType": "instruction",
+  "sourceLesson": "12-1",
+  "classObjectiveCode": "12b",
+  "classObjective": "Graph quadratic functions using key features or a table of values.",
+  "workedExamples": [
+    "12-1, Example 3 — Graph Using Key Features",
+    "12-1, Example 4 — Graph with a Table of Values"
+  ],
+  "warmUp": "Skill activation problem",
+  "conceptDevelopment": "Mini-lesson or exploration",
+  "guidedPractice": "Teacher-led practice with worked examples",
+  "independentPractice": "Practice problems from the lesson",
+  "assessment": "Exit ticket or quick check",
+  "capReflection": "Courage, Adaptability, Persistence reflection prompt"
+}

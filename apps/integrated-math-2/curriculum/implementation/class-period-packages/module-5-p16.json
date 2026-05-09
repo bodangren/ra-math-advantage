@@ -1,0 +1,17 @@
+{
+  "periodId": "m5-p16",
+  "dayType": "instruction",
+  "sourceLesson": "5-8",
+  "classObjectiveCode": "5n",
+  "classObjective": "Write the equation of a parabola given the focus and directrix; identify focus and directrix from an equation.",
+  "workedExamples": [
+    "5-8, Example 1 — Write Equations with Vertical Axes",
+    "5-8, Example 2 — Write Equations with Horizontal or Off-Axis Parabolas"
+  ],
+  "warmUp": "Skill activation problem",
+  "conceptDevelopment": "Mini-lesson or exploration",
+  "guidedPractice": "Teacher-led practice with worked examples",
+  "independentPractice": "Practice problems from the lesson",
+  "assessment": "Exit ticket or quick check",
+  "capReflection": "Courage, Adaptability, Persistence reflection prompt"
+}

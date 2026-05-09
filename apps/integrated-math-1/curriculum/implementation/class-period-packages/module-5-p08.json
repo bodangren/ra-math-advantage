@@ -1,0 +1,16 @@
+{
+  "periodId": "m5-p08",
+  "dayType": "instruction",
+  "sourceLesson": "5-3",
+  "classObjectiveCode": "5f",
+  "classObjective": "Write equations of lines of fit in slope-intercept form using two points from a data set and use lines of fit to make predictions and evaluate the reliability of those predictions.",
+  "workedExamples": [
+    "5-3, Example 2 — Write and Use Lines of Fit (continued)"
+  ],
+  "warmUp": "What makes a line of fit 'good' for a scatter plot?",
+  "conceptDevelopment": "Mini-lesson: choosing representative points from scatter plots; writing slope-intercept equations; interpolation vs. extrapolation caution",
+  "guidedPractice": "Teacher-led practice writing lines of fit from scatter plots and using them for predictions",
+  "independentPractice": "Practice problems writing lines of fit and making/reliability-evaluating predictions",
+  "assessment": "Exit ticket: write a line of fit from a scatter plot and use it to predict a value, noting limitations",
+  "capReflection": "Why is extrapolation more risky than interpolation when using a line of fit?"
+}

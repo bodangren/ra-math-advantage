@@ -1,0 +1,17 @@
+{
+  "periodId": "m5-p10",
+  "dayType": "instruction",
+  "sourceLesson": "5-5",
+  "classObjectiveCode": "5i",
+  "classObjective": "Find angle measures involving tangents; find perimeters of polygons circumscribed about circles.",
+  "workedExamples": [
+    "5-5, Example 3 — Find Values Involving Tangents",
+    "5-5, Example 4 — Find Perimeter of Circumscribed Polygons"
+  ],
+  "warmUp": "Skill activation problem",
+  "conceptDevelopment": "Mini-lesson or exploration",
+  "guidedPractice": "Teacher-led practice with worked examples",
+  "independentPractice": "Practice problems from the lesson",
+  "assessment": "Exit ticket or quick check",
+  "capReflection": "Courage, Adaptability, Persistence reflection prompt"
+}

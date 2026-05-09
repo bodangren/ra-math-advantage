@@ -1,0 +1,17 @@
+{
+  "periodId": "m9-p15",
+  "dayType": "instruction",
+  "sourceLesson": "9-7",
+  "classObjectiveCode": "9l",
+  "classObjective": "Construct and complete two-way frequency tables from verbal descriptions or given data.",
+  "workedExamples": [
+    "9-7, Example 1 — Construct a Two-Way Frequency Table",
+    "9-7, Example 2 — Construct and Interpret a Relative Frequency Table"
+  ],
+  "warmUp": "What are joint, marginal, and relative frequencies in a two-way table?",
+  "conceptDevelopment": "Mini-lesson: joint, marginal, and relative frequencies; constructing two-way tables from descriptions",
+  "guidedPractice": "Teacher-led practice constructing and interpreting two-way frequency tables",
+  "independentPractice": "Practice problems constructing two-way tables and calculating relative frequencies",
+  "assessment": "Exit ticket: construct a two-way table for survey data about favorite subjects by grade level and calculate relative frequencies",
+  "capReflection": "How does a two-way table reveal relationships between two categorical variables that a single frequency table cannot?"
+}

@@ -1,0 +1,18 @@
+{
+  "periodId": "m13-p07",
+  "dayType": "instruction",
+  "sourceLesson": "13-3",
+  "classObjectiveCode": "13f",
+  "classObjective": "Analyze properties preserved under rotations and identify common errors in reasoning about rotations.",
+  "workedExamples": [
+    "13-3, Example 3 — Rotate a Quadrilateral 90° and Analyze Preserved Properties",
+    "13-3, Example 4 — Apply Rotation to a Real-World Scale Drawing",
+    "13-3, Example 5 — Identify Common Errors in Rotation Reasoning"
+  ],
+  "warmUp": "What properties (distance, angle measure, orientation) are preserved under rotation?",
+  "conceptDevelopment": "Mini-lesson: properties preserved under rotations; 90°, 180°, 270° preserving distance from center; common rotation errors",
+  "guidedPractice": "Teacher-led practice analyzing preserved properties and identifying rotation errors",
+  "independentPractice": "Practice problems analyzing rotation properties and solving rotation problems",
+  "assessment": "Exit ticket: explain why a 90° rotation about the origin preserves distance from the origin and identify a common rotation error",
+  "capReflection": "What happens to the orientation of a figure when you rotate it? How is this different from reflection?"
+}

@@ -1,0 +1,17 @@
+{
+  "periodId": "m1-p14",
+  "dayType": "instruction",
+  "sourceLesson": "1-6",
+  "classObjectiveCode": "1k",
+  "classObjective": "Determine whether three lengths can form a triangle; find the range of the third side.",
+  "workedExamples": [
+    "1-6, Example 1 — Can These Lengths Form a Triangle?",
+    "1-6, Example 2 — Find the Range for the Third Side"
+  ],
+  "warmUp": "Skill activation problem",
+  "conceptDevelopment": "Mini-lesson or exploration",
+  "guidedPractice": "Teacher-led practice with worked examples",
+  "independentPractice": "Practice problems from the lesson",
+  "assessment": "Exit ticket or quick check",
+  "capReflection": "Courage, Adaptability, Persistence reflection prompt"
+}

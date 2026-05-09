@@ -1,0 +1,17 @@
+{
+  "periodId": "m13-p14",
+  "dayType": "instruction",
+  "sourceLesson": "13-5",
+  "classObjectiveCode": "13k",
+  "classObjective": "Use graphical methods to verify solutions of trigonometric equations.",
+  "workedExamples": [
+    "13-5, Example 6 — Graphical Verification",
+    "13-5, Example 7 — Solve and Verify with Graph"
+  ],
+  "warmUp": "Skill activation problem",
+  "conceptDevelopment": "Mini-lesson or exploration",
+  "guidedPractice": "Teacher-led practice with worked examples",
+  "independentPractice": "Practice problems from the lesson",
+  "assessment": "Exit ticket or quick check",
+  "capReflection": "Courage, Adaptability, Persistence reflection prompt"
+}

@@ -1,0 +1,17 @@
+{
+  "periodId": "m1-p11",
+  "dayType": "instruction",
+  "sourceLesson": "1-5",
+  "classObjectiveCode": "1i",
+  "classObjective": "Write indirect proofs of algebraic and geometric statements.",
+  "workedExamples": [
+    "1-5, Example 1 — Indirect Proofs of Algebraic Statements",
+    "1-5, Example 2 — Indirect Proofs in Real-World Contexts"
+  ],
+  "warmUp": "Skill activation problem",
+  "conceptDevelopment": "Mini-lesson or exploration",
+  "guidedPractice": "Teacher-led practice with worked examples",
+  "independentPractice": "Practice problems from the lesson",
+  "assessment": "Exit ticket or quick check",
+  "capReflection": "Courage, Adaptability, Persistence reflection prompt"
+}

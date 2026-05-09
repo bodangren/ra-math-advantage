@@ -1,0 +1,18 @@
+{
+  "periodId": "m2-p13",
+  "dayType": "instruction",
+  "sourceLesson": "2-6",
+  "classObjectiveCode": "2k",
+  "classObjective": "Apply properties of trapezoids and isosceles trapezoids; find midsegment length.",
+  "workedExamples": [
+    "2-6, Example 1 — Solve Problems with Trapezoids",
+    "2-6, Example 2 — Verify Trapezoids Using Coordinates",
+    "2-6, Example 3 — Find Midsegment Lengths"
+  ],
+  "warmUp": "Skill activation problem",
+  "conceptDevelopment": "Mini-lesson or exploration",
+  "guidedPractice": "Teacher-led practice with worked examples",
+  "independentPractice": "Practice problems from the lesson",
+  "assessment": "Exit ticket or quick check",
+  "capReflection": "Courage, Adaptability, Persistence reflection prompt"
+}

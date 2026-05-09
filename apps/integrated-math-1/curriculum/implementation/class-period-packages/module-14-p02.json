@@ -1,0 +1,16 @@
+{
+  "periodId": "m14-p02",
+  "dayType": "instruction",
+  "sourceLesson": "14-1",
+  "classObjectiveCode": "14b",
+  "classObjective": "Use the Exterior Angle Theorem to relate exterior and remote interior angles.",
+  "workedExamples": [
+    "14-1, Example 3 — Use the Exterior Angle Theorem"
+  ],
+  "warmUp": "What are the remote interior angles of a triangle?",
+  "conceptDevelopment": "Mini-lesson: Exterior Angle Theorem (exterior angle = sum of remote interior angles); solving for unknown angles using exterior angle theorem",
+  "guidedPractice": "Teacher-led practice applying the Exterior Angle Theorem to find unknown angles",
+  "independentPractice": "Practice problems using the Exterior Angle Theorem to find angle measures",
+  "assessment": "Exit ticket: if an exterior angle is 120° and one remote interior angle is 45°, find the other remote interior angle",
+  "capReflection": "How does the Exterior Angle Theorem relate to the Triangle Angle-Sum Theorem?"
+}

@@ -1,0 +1,17 @@
+{
+  "periodId": "m4-p01",
+  "dayType": "instruction",
+  "sourceLesson": "4-1",
+  "classObjectiveCode": "4a",
+  "classObjective": "Find the geometric mean between two numbers and write similarity statements for the three similar right triangles.",
+  "workedExamples": [
+    "4-1, Example 1 — Find the Geometric Mean",
+    "4-1, Example 2 — Similarity Statements for Right Triangles"
+  ],
+  "warmUp": "Skill activation problem",
+  "conceptDevelopment": "Mini-lesson or exploration",
+  "guidedPractice": "Teacher-led practice with worked examples",
+  "independentPractice": "Practice problems from the lesson",
+  "assessment": "Exit ticket or quick check",
+  "capReflection": "Courage, Adaptability, Persistence reflection prompt"
+}

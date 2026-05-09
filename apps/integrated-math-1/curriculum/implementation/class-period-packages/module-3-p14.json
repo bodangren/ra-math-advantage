@@ -1,0 +1,19 @@
+{
+  "periodId": "m3-p14",
+  "dayType": "instruction",
+  "sourceLesson": "3-5",
+  "classObjectiveCode": "3j",
+  "classObjective": "Locate relative maxima and minima on a graph and describe the end behavior of a function using limit notation.",
+  "workedExamples": [
+    "3-5, Example 4 — Determine Extrema (Relative Maxima and Minima) from a Graph",
+    "3-5, Example 5 — Interpret Extrema in Context",
+    "3-5, Example 6 — Determine End Behavior Using Limit Notation",
+    "3-5, Example 7 — Determine End Behavior (continued)"
+  ],
+  "warmUp": "Find the highest and lowest points on a hill — how does this relate to maxima and minima?",
+  "conceptDevelopment": "Mini-lesson: turning points; peak/valley identification; end behavior as x approaches ±∞; limit notation",
+  "guidedPractice": "Teacher-led practice finding relative maxima/minima and describing end behavior using limit notation",
+  "independentPractice": "Practice problems identifying extrema and describing end behavior of functions",
+  "assessment": "Exit ticket: identify the relative maximum and minimum of a function and describe its end behavior",
+  "capReflection": "How does understanding end behavior help you predict what happens to a function far from the origin?"
+}

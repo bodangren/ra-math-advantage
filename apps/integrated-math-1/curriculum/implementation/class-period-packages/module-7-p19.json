@@ -1,0 +1,9 @@
+{
+  "periodId": "m7-p19",
+  "dayType": "test",
+  "nonInstructionArtifact": {
+    "type": "test",
+    "module": 7,
+    "notes": "Module 7 assessment (extended sitting if needed)"
+  }
+}

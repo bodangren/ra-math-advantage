@@ -1,0 +1,17 @@
+{
+  "periodId": "m4-p02",
+  "dayType": "instruction",
+  "sourceLesson": "4-1",
+  "classObjectiveCode": "4b",
+  "classObjective": "Interpret intercepts in the context of real-world situations modeled by linear functions and rewrite linear equations in equivalent forms.",
+  "workedExamples": [
+    "4-1, Example 2 — Graph Using x- and y-Intercepts (continued)",
+    "4-1, Example 3 — Interpret Intercepts in Context"
+  ],
+  "warmUp": "What does the y-intercept represent in a real-world context of earning money?",
+  "conceptDevelopment": "Mini-lesson: initial value interpretation (y-intercept); predicting when a quantity reaches zero (x-intercept); rewriting linear equations in different forms",
+  "guidedPractice": "Teacher-led practice interpreting intercepts in context and rewriting linear equations in equivalent forms",
+  "independentPractice": "Practice problems interpreting intercepts in real-world linear models and rewriting equations",
+  "assessment": "Exit ticket: interpret the intercepts of a linear model for a savings account context",
+  "capReflection": "How does understanding intercepts in context help you make predictions about real-world situations?"
+}

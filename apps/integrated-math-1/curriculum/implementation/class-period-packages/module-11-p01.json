@@ -1,0 +1,16 @@
+{
+  "periodId": "m11-p01",
+  "dayType": "instruction",
+  "sourceLesson": "11-1",
+  "classObjectiveCode": "11a",
+  "classObjective": "Identify and name the parts of an angle, including the vertex and sides.",
+  "workedExamples": [
+    "11-1, Example 1 — Identify Parts of an Angle and Use Proper Notation"
+  ],
+  "warmUp": "Draw an angle and label its vertex and sides",
+  "conceptDevelopment": "Mini-lesson: angle notation (∠ABC); vertex location; sides as rays; interior/exterior regions",
+  "guidedPractice": "Teacher-led practice identifying and naming angle parts with correct notation",
+  "independentPractice": "Practice problems identifying angle components and using proper geometric notation",
+  "assessment": "Exit ticket: identify the vertex and sides of ∠XYZ and write its measure notation",
+  "capReflection": "How does angle notation help you precisely communicate which angle you mean?"
+}

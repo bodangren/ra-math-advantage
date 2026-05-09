@@ -1,0 +1,17 @@
+{
+  "periodId": "m5-p05",
+  "dayType": "instruction",
+  "sourceLesson": "5-3",
+  "classObjectiveCode": "5e",
+  "classObjective": "Use relationships among arcs, chords, and central angles; apply Theorems 10.5 and 10.6.",
+  "workedExamples": [
+    "5-3, Example 1 — Find Missing Values Using Chord Relationships",
+    "5-3, Example 2 — Use the Perpendicular Bisector to Find Chord Length"
+  ],
+  "warmUp": "Skill activation problem",
+  "conceptDevelopment": "Mini-lesson or exploration",
+  "guidedPractice": "Teacher-led practice with worked examples",
+  "independentPractice": "Practice problems from the lesson",
+  "assessment": "Exit ticket or quick check",
+  "capReflection": "Courage, Adaptability, Persistence reflection prompt"
+}

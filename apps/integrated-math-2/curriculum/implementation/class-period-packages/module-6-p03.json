@@ -1,0 +1,17 @@
+{
+  "periodId": "m6-p03",
+  "dayType": "instruction",
+  "sourceLesson": "6-2",
+  "classObjectiveCode": "6c",
+  "classObjective": "Identify the center, radius, apothem, and central angle of a regular polygon; find the area of regular polygons.",
+  "workedExamples": [
+    "6-2, Example 1 — Identify Parts of Regular Polygons",
+    "6-2, Example 2 — Find Areas of Regular Polygons"
+  ],
+  "warmUp": "Skill activation problem",
+  "conceptDevelopment": "Mini-lesson or exploration",
+  "guidedPractice": "Teacher-led practice with worked examples",
+  "independentPractice": "Practice problems from the lesson",
+  "assessment": "Exit ticket or quick check",
+  "capReflection": "Courage, Adaptability, Persistence reflection prompt"
+}

@@ -1,0 +1,18 @@
+{
+  "periodId": "m2-p14",
+  "dayType": "instruction",
+  "sourceLesson": "2-6",
+  "classObjectiveCode": "2l",
+  "classObjective": "Apply kite properties and solve perimeter/area problems.",
+  "workedExamples": [
+    "2-6, Example 4 — Find Angle Measures in Kites",
+    "2-6, Example 5 — Perimeter and Area Problems with Kites",
+    "2-6, Example 6 — Additional Kite Problems"
+  ],
+  "warmUp": "Skill activation problem",
+  "conceptDevelopment": "Mini-lesson or exploration",
+  "guidedPractice": "Teacher-led practice with worked examples",
+  "independentPractice": "Practice problems from the lesson",
+  "assessment": "Exit ticket or quick check",
+  "capReflection": "Courage, Adaptability, Persistence reflection prompt"
+}

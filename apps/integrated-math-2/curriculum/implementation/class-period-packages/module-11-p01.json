@@ -1,0 +1,18 @@
+{
+  "periodId": "m11-p01",
+  "dayType": "instruction",
+  "sourceLesson": "11-1",
+  "classObjectiveCode": "11a",
+  "classObjective": "Classify polynomials by degree, number of terms, and write in standard form.",
+  "workedExamples": [
+    "11-1, Example 1 — Classify by Degree and Terms",
+    "11-1, Example 2 — Write in Standard Form",
+    "11-1, Example 3 — Identify Leading Coefficient"
+  ],
+  "warmUp": "Skill activation problem",
+  "conceptDevelopment": "Mini-lesson or exploration",
+  "guidedPractice": "Teacher-led practice with worked examples",
+  "independentPractice": "Practice problems from the lesson",
+  "assessment": "Exit ticket or quick check",
+  "capReflection": "Courage, Adaptability, Persistence reflection prompt"
+}

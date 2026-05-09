@@ -1,0 +1,17 @@
+{
+  "periodId": "m1-p16",
+  "dayType": "instruction",
+  "sourceLesson": "1-7",
+  "classObjectiveCode": "1m",
+  "classObjective": "Apply the Hinge Theorem to compare sides and angles in two triangles.",
+  "workedExamples": [
+    "1-7, Example 1 — Compare Distances Using the Hinge Theorem",
+    "1-7, Example 2 — Write Proofs Using the Hinge Theorem"
+  ],
+  "warmUp": "Skill activation problem",
+  "conceptDevelopment": "Mini-lesson or exploration",
+  "guidedPractice": "Teacher-led practice with worked examples",
+  "independentPractice": "Practice problems from the lesson",
+  "assessment": "Exit ticket or quick check",
+  "capReflection": "Courage, Adaptability, Persistence reflection prompt"
+}

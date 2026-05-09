@@ -1,0 +1,18 @@
+{
+  "periodId": "m9-p04",
+  "dayType": "instruction",
+  "sourceLesson": "9-2",
+  "classObjectiveCode": "9c",
+  "classObjective": "Graph linear equations using slope-intercept, standard, and point-slope form.",
+  "workedExamples": [
+    "9-2, Example 1 — Slope-Intercept Form",
+    "9-2, Example 2 — Standard Form",
+    "9-2, Example 3 — Point-Slope Form"
+  ],
+  "warmUp": "Skill activation problem",
+  "conceptDevelopment": "Mini-lesson or exploration",
+  "guidedPractice": "Teacher-led practice with worked examples",
+  "independentPractice": "Practice problems from the lesson",
+  "assessment": "Exit ticket or quick check",
+  "capReflection": "Courage, Adaptability, Persistence reflection prompt"
+}

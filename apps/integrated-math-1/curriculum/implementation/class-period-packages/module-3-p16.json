@@ -1,0 +1,18 @@
+{
+  "periodId": "m3-p16",
+  "dayType": "instruction",
+  "sourceLesson": "3-6",
+  "classObjectiveCode": "3k",
+  "classObjective": "Sketch graphs of real-world functions from verbal descriptions, identifying intercepts, intervals of increase and decrease, end behavior, extrema, and symmetry.",
+  "workedExamples": [
+    "3-6, Example 1 — Sketch Linear Functions from Verbal Descriptions",
+    "3-6, Example 2 — Sketch Nonlinear Functions and Interpret Key Features",
+    "3-6, Example 3 — Sketch and Interpret Real-World Data Trends"
+  ],
+  "warmUp": "What key features should you identify when sketching a function from a verbal description?",
+  "conceptDevelopment": "Mini-lesson: linear sketching from descriptions; parabolic trajectories; data trend interpretation",
+  "guidedPractice": "Teacher-led practice sketching graphs of real-world functions from verbal descriptions with all key features",
+  "independentPractice": "Practice problems sketching function graphs from verbal descriptions including intercepts, behavior, extrema, and symmetry",
+  "assessment": "Exit ticket: sketch a function described verbally and identify its key features",
+  "capReflection": "What is the minimum information you need from a verbal description to sketch an accurate graph?"
+}

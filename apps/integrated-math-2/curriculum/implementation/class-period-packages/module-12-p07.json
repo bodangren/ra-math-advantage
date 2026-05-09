@@ -1,0 +1,17 @@
+{
+  "periodId": "m12-p07",
+  "dayType": "instruction",
+  "sourceLesson": "12-3",
+  "classObjectiveCode": "12f",
+  "classObjective": "Interpret zeros of a quadratic function in real-world contexts such as projectile motion.",
+  "workedExamples": [
+    "12-3, Example 3 — Real-World Projectile Motion",
+    "12-3, Example 4 — Interpret Zeros in Context"
+  ],
+  "warmUp": "Skill activation problem",
+  "conceptDevelopment": "Mini-lesson or exploration",
+  "guidedPractice": "Teacher-led practice with worked examples",
+  "independentPractice": "Practice problems from the lesson",
+  "assessment": "Exit ticket or quick check",
+  "capReflection": "Courage, Adaptability, Persistence reflection prompt"
+}

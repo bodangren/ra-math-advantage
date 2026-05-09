@@ -1,0 +1,17 @@
+{
+  "periodId": "m6-p19",
+  "dayType": "instruction",
+  "sourceLesson": "6-8",
+  "classObjectiveCode": "6p",
+  "classObjective": "Find missing areas given similar figures; find scale factors from areas of similar figures.",
+  "workedExamples": [
+    "6-8, Example 1 — Find Missing Areas",
+    "6-8, Example 2 — Find Scale Factor and Missing Value"
+  ],
+  "warmUp": "Skill activation problem",
+  "conceptDevelopment": "Mini-lesson or exploration",
+  "guidedPractice": "Teacher-led practice with worked examples",
+  "independentPractice": "Practice problems from the lesson",
+  "assessment": "Exit ticket or quick check",
+  "capReflection": "Courage, Adaptability, Persistence reflection prompt"
+}

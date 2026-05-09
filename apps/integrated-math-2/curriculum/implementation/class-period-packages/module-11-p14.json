@@ -1,0 +1,18 @@
+{
+  "periodId": "m11-p14",
+  "dayType": "instruction",
+  "sourceLesson": "11-6",
+  "classObjectiveCode": "11k",
+  "classObjective": "Solve higher-degree polynomial equations and apply to real-world zero-finding problems.",
+  "workedExamples": [
+    "11-6, Example 4 — Higher-Degree Equations",
+    "11-6, Example 5 — Real-World Application",
+    "11-6, Example 6 — GCF Before Solving"
+  ],
+  "warmUp": "Skill activation problem",
+  "conceptDevelopment": "Mini-lesson or exploration",
+  "guidedPractice": "Teacher-led practice with worked examples",
+  "independentPractice": "Practice problems from the lesson",
+  "assessment": "Exit ticket or quick check",
+  "capReflection": "Courage, Adaptability, Persistence reflection prompt"
+}

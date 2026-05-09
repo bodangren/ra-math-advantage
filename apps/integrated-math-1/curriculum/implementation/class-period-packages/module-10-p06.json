@@ -1,0 +1,17 @@
+{
+  "periodId": "m10-p06",
+  "dayType": "instruction",
+  "sourceLesson": "10-3",
+  "classObjectiveCode": "10e",
+  "classObjective": "Find the length of a segment by reading coordinates from a number line.",
+  "workedExamples": [
+    "10-3, Example 1 — Find Segment Lengths from Number Lines",
+    "10-3, Example 2 — Find Segment Lengths from Coordinates on a Number Line"
+  ],
+  "warmUp": "Find the length of the segment from point 2 to point 9 on a number line",
+  "conceptDevelopment": "Mini-lesson: absolute value distance on a number line; segment length from coordinates",
+  "guidedPractice": "Teacher-led practice finding segment lengths from number lines and coordinates",
+  "independentPractice": "Practice problems calculating segment lengths using absolute value distance",
+  "assessment": "Exit ticket: find the length of the segment with endpoints at -3 and 7 on a number line",
+  "capReflection": "Why does absolute value give us the distance between two points on a number line?"
+}

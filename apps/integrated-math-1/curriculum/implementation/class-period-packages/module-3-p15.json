@@ -1,0 +1,9 @@
+{
+  "periodId": "m3-p15",
+  "dayType": "mastery",
+  "nonInstructionArtifact": {
+    "type": "mastery",
+    "focus": "Objectives 3g-3j",
+    "activities": ["SRS practice on intercepts, symmetry, and extrema", "Spiral review on increasing/decreasing behavior", "Error analysis on end behavior descriptions"]
+  }
+}

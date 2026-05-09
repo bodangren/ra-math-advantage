@@ -1,0 +1,17 @@
+{
+  "periodId": "m11-p05",
+  "dayType": "instruction",
+  "sourceLesson": "11-2",
+  "classObjectiveCode": "11d",
+  "classObjective": "Use the fact that perpendicular lines form right angles to write and solve equations for unknown angle measures.",
+  "workedExamples": [
+    "11-2, Example 2 — Use Perpendicular Lines to Find Unknown Measures",
+    "11-2, Example 3 — Determine Assumptions from a Figure"
+  ],
+  "warmUp": "What angle measure is formed by perpendicular lines?",
+  "conceptDevelopment": "Mini-lesson: right angles (90°) from perpendicular lines; algebraic angle solving; what can/cannot be assumed from figures",
+  "guidedPractice": "Teacher-led practice using perpendicular properties to find angle measures",
+  "independentPractice": "Practice problems using perpendicular relationships to solve for unknowns and analyze figure assumptions",
+  "assessment": "Exit ticket: if line AB ⟂ CD and m∠ABC = 2x + 15 and m∠DBE = x + 30, find x and each angle measure",
+  "capReflection": "What assumptions about a geometric figure can lead to errors, and how do you avoid them?"
+}

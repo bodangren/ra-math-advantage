@@ -1,0 +1,17 @@
+{
+  "periodId": "m5-p11",
+  "dayType": "instruction",
+  "sourceLesson": "5-6",
+  "classObjectiveCode": "5j",
+  "classObjective": "Find angle measures formed by chords, tangents, and secants (inside, on, and outside circles).",
+  "workedExamples": [
+    "5-6, Example 1 — Find Angle Measures from Diagrams",
+    "5-6, Example 2 — Find Measures with Tangents and Secants"
+  ],
+  "warmUp": "Skill activation problem",
+  "conceptDevelopment": "Mini-lesson or exploration",
+  "guidedPractice": "Teacher-led practice with worked examples",
+  "independentPractice": "Practice problems from the lesson",
+  "assessment": "Exit ticket or quick check",
+  "capReflection": "Courage, Adaptability, Persistence reflection prompt"
+}

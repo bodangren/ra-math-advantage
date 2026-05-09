@@ -1,0 +1,18 @@
+{
+  "periodId": "m2-p11",
+  "dayType": "instruction",
+  "sourceLesson": "2-5",
+  "classObjectiveCode": "2j",
+  "classObjective": "Classify quadrilaterals and prove that a quadrilateral is a rhombus or square.",
+  "workedExamples": [
+    "2-5, Example 3 — Prove Quadrilaterals Are Rhombi or Squares",
+    "2-5, Example 4 — Precision Problems with Real Objects",
+    "2-5, Example 5 — Classify Quadrilaterals Using Coordinates"
+  ],
+  "warmUp": "Skill activation problem",
+  "conceptDevelopment": "Mini-lesson or exploration",
+  "guidedPractice": "Teacher-led practice with worked examples",
+  "independentPractice": "Practice problems from the lesson",
+  "assessment": "Exit ticket or quick check",
+  "capReflection": "Courage, Adaptability, Persistence reflection prompt"
+}

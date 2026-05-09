@@ -1,0 +1,17 @@
+{
+  "periodId": "m6-p05",
+  "dayType": "instruction",
+  "sourceLesson": "6-2",
+  "classObjectiveCode": "6d",
+  "classObjective": "Recognize and explain special solution sets such as 'no solution' and 'all real numbers' and graph the solution set including solutions with fractions and decimals.",
+  "workedExamples": [
+    "6-2, Example 2 — Translate Verbal Sentences (continued)",
+    "6-2, Example 3 — Solve and Graph Multi-Step Inequalities (continued)"
+  ],
+  "warmUp": "What happens when you solve 2x + 3 = 2x - 5?",
+  "conceptDevelopment": "Mini-lesson: when variable terms cancel (always-true vs. never-true); 'no solution' and 'all real numbers' identification; fractional/decimals solutions",
+  "guidedPractice": "Teacher-led practice recognizing and explaining special solution sets and solving inequalities with fractions/decimals",
+  "independentPractice": "Practice problems identifying special solution cases and solving inequalities with various number types",
+  "assessment": "Exit ticket: solve 5(x - 2) >= 5x - 10 and describe the solution set",
+  "capReflection": "How can you determine if an inequality has no solution or all real numbers as a solution before fully solving it?"
+}

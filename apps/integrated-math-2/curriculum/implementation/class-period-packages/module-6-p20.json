@@ -1,0 +1,18 @@
+{
+  "periodId": "m6-p20",
+  "dayType": "instruction",
+  "sourceLesson": "6-8",
+  "classObjectiveCode": "6q",
+  "classObjective": "Find volumes of similar solids and apply similarity to real-world problems involving surface areas and volumes.",
+  "workedExamples": [
+    "6-8, Example 3 — Real-World Similarity Problems",
+    "6-8, Example 4 — Find Volumes of Similar Solids",
+    "6-8, Example 5 — Surface Area and Volume with Similar Solids"
+  ],
+  "warmUp": "Skill activation problem",
+  "conceptDevelopment": "Mini-lesson or exploration",
+  "guidedPractice": "Teacher-led practice with worked examples",
+  "independentPractice": "Practice problems from the lesson",
+  "assessment": "Exit ticket or quick check",
+  "capReflection": "Courage, Adaptability, Persistence reflection prompt"
+}

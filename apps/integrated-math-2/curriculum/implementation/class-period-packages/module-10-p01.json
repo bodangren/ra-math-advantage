@@ -1,0 +1,18 @@
+{
+  "periodId": "m10-p01",
+  "dayType": "instruction",
+  "sourceLesson": "10-1",
+  "classObjectiveCode": "10a",
+  "classObjective": "Apply the product rule, quotient rule, and power rule to simplify exponential expressions.",
+  "workedExamples": [
+    "10-1, Example 1 — Product Rule",
+    "10-1, Example 2 — Quotient Rule",
+    "10-1, Example 3 — Power Rule"
+  ],
+  "warmUp": "Skill activation problem",
+  "conceptDevelopment": "Mini-lesson or exploration",
+  "guidedPractice": "Teacher-led practice with worked examples",
+  "independentPractice": "Practice problems from the lesson",
+  "assessment": "Exit ticket or quick check",
+  "capReflection": "Courage, Adaptability, Persistence reflection prompt"
+}

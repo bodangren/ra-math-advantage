@@ -1,0 +1,17 @@
+{
+  "periodId": "m10-p07",
+  "dayType": "instruction",
+  "sourceLesson": "10-3",
+  "classObjectiveCode": "10f",
+  "classObjective": "Apply the Segment Addition Postulate to find missing segment lengths.",
+  "workedExamples": [
+    "10-3, Example 3 — Apply the Segment Addition Postulate Algebraically",
+    "10-3, Example 4 — Solve Real-World Problems Using Segment Addition"
+  ],
+  "warmUp": "If AB = 5 and BC = 8, what is AC if B is between A and C?",
+  "conceptDevelopment": "Mini-lesson: Segment Addition Postulate (if B is between A and C, then AB + BC = AC); setting up equations; real-world applications",
+  "guidedPractice": "Teacher-led practice applying Segment Addition Postulate to find missing lengths",
+  "independentPractice": "Practice problems applying segment addition to find unknown lengths and solve real-world problems",
+  "assessment": "Exit ticket: if AC = 15 and AB = 6, find BC when B is between A and C",
+  "capReflection": "How does the Segment Addition Postulate extend the idea of measuring distance on a number line to points that are between other points?"
+}

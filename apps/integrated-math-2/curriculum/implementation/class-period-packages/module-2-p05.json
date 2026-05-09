@@ -1,0 +1,17 @@
+{
+  "periodId": "m2-p05",
+  "dayType": "instruction",
+  "sourceLesson": "2-3",
+  "classObjectiveCode": "2e",
+  "classObjective": "Determine whether a quadrilateral is a parallelogram using side, angle, and diagonal properties.",
+  "workedExamples": [
+    "2-3, Example 1 — Identify Parallelograms from Diagrams",
+    "2-3, Example 2 — Find Values to Form a Parallelogram"
+  ],
+  "warmUp": "Skill activation problem",
+  "conceptDevelopment": "Mini-lesson or exploration",
+  "guidedPractice": "Teacher-led practice with worked examples",
+  "independentPractice": "Practice problems from the lesson",
+  "assessment": "Exit ticket or quick check",
+  "capReflection": "Courage, Adaptability, Persistence reflection prompt"
+}

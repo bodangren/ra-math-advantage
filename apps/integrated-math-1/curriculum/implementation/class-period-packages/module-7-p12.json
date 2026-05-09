@@ -1,0 +1,17 @@
+{
+  "periodId": "m7-p12",
+  "dayType": "instruction",
+  "sourceLesson": "7-5",
+  "classObjectiveCode": "7i",
+  "classObjective": "Graph systems of linear inequalities and identify the overlapping solution region (feasible region).",
+  "workedExamples": [
+    "7-5, Example 1 — Graph Systems of Inequalities in Slope-Intercept Form",
+    "7-5, Example 2 — Graph Systems with Horizontal, Vertical, and Standard-Form Boundaries"
+  ],
+  "warmUp": "Graph y > x + 2 and y <= -x + 4",
+  "conceptDevelopment": "Mini-lesson: shading each inequality; intersection of half-planes; bounded vs. unbounded regions",
+  "guidedPractice": "Teacher-led practice graphing systems of inequalities and identifying feasible regions",
+  "independentPractice": "Practice problems graphing systems of inequalities and identifying overlapping solution regions",
+  "assessment": "Exit ticket: graph the system y >= 2x - 1 and y < -x + 3 and identify the feasible region",
+  "capReflection": "What does the feasible region represent in a system of inequalities?"
+}

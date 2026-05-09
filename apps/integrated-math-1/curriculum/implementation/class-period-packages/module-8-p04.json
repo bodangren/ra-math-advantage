@@ -1,0 +1,16 @@
+{
+  "periodId": "m8-p04",
+  "dayType": "instruction",
+  "sourceLesson": "8-2",
+  "classObjectiveCode": "8c",
+  "classObjective": "Describe transformations of exponential functions verbally and in function notation.",
+  "workedExamples": [
+    "8-2, Example 1 — Describe Transformations from Equations (Vertical Shifts, Horizontal Shifts, Stretches, Compressions, Reflections)"
+  ],
+  "warmUp": "How does f(x - 2) compare to f(x)?",
+  "conceptDevelopment": "Mini-lesson: vertical shifts, horizontal shifts, stretches, compressions, reflections of exponential functions",
+  "guidedPractice": "Teacher-led practice describing transformations of exponential functions using function notation",
+  "independentPractice": "Practice problems describing transformations of exponential functions verbally and in notation",
+  "assessment": "Exit ticket: describe how y = 2^{x+3} - 1 relates to y = 2^x",
+  "capReflection": "What is the effect of adding inside the exponent versus adding outside the function?"
+}

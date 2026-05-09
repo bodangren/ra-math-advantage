@@ -1,0 +1,17 @@
+{
+  "periodId": "m5-p14",
+  "dayType": "instruction",
+  "sourceLesson": "5-6",
+  "classObjectiveCode": "5k",
+  "classObjective": "Graph the inverse of a function by reflecting points across the line y = x and use inverse functions to solve real-world problems and interpret their meaning in context.",
+  "workedExamples": [
+    "5-6, Example 5 — Find the Inverse of Rational Linear Functions",
+    "5-6, Example 6 — Inverse Functions in Context (Lemonade Profit)"
+  ],
+  "warmUp": "Reflect the point (3, 7) across the line y = x — what are the new coordinates?",
+  "conceptDevelopment": "Mini-lesson: reflection across y = x geometrically; lemonade profit interpretation; switch-and-solve with fractions; contextual interpretation of inverses",
+  "guidedPractice": "Teacher-led practice graphing inverses by reflection and using inverse functions to solve real-world problems",
+  "independentPractice": "Practice problems graphing inverses and applying inverse functions to real-world contexts",
+  "assessment": "Exit ticket: given a function modeling profit, find and interpret its inverse in context",
+  "capReflection": "What does the inverse of a function tell us that the original function does not?"
+}

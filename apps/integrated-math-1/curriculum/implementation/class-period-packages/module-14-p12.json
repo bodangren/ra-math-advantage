@@ -1,0 +1,18 @@
+{
+  "periodId": "m14-p12",
+  "dayType": "instruction",
+  "sourceLesson": "14-5",
+  "classObjectiveCode": "14j",
+  "classObjective": "Write two-column proofs and paragraph proofs for right triangle congruence in real-world contexts.",
+  "workedExamples": [
+    "14-5, Example 3 — Identify Corresponding Parts Needed for a Specific Theorem",
+    "14-5, Example 4 — Write Proofs Using Perpendicular Segments and Congruent Parts",
+    "14-5, Example 5 — Write a Paragraph Proof for Right Triangle Congruence"
+  ],
+  "warmUp": "How might an architect use right triangle congruence in building design?",
+  "conceptDevelopment": "Mini-lesson: applications in architecture and engineering; perpendicular segment properties; paragraph proof writing",
+  "guidedPractice": "Teacher-led practice writing right triangle congruence proofs in real-world contexts",
+  "independentPractice": "Practice problems writing right triangle congruence proofs for real-world scenarios",
+  "assessment": "Exit ticket: write a paragraph proof for a right triangle congruence problem in an architectural context",
+  "capReflection": "How does CPCTC allow us to draw conclusions about specific parts after establishing triangle congruence?"
+}

@@ -1,0 +1,9 @@
+{
+  "periodId": "m14-p17",
+  "dayType": "jigsaw",
+  "nonInstructionArtifact": {
+    "type": "jigsaw",
+    "focus": "Mathematical practices: multi-step congruence proofs, coordinate proof strategies",
+    "activities": ["Jigsaw rotation on triangle congruence proof problems", "Expert groups on coordinate proof placement", "Teaching others your proof strategy"]
+  }
+}

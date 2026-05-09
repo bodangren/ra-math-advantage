@@ -1,0 +1,16 @@
+{
+  "periodId": "m9-p05",
+  "dayType": "instruction",
+  "sourceLesson": "9-3",
+  "classObjectiveCode": "9d",
+  "classObjective": "Identify sample bias in survey and sampling methods and explain how it affects results.",
+  "workedExamples": [
+    "9-3, Example 1 — Identify Sample Bias"
+  ],
+  "warmUp": "A radio station asks listeners to call in to vote on an issue — why might this sample be biased?",
+  "conceptDevelopment": "Mini-lesson: recognizing biased sampling methods; designing unbiased samples; bias impact on results",
+  "guidedPractice": "Teacher-led practice identifying sample bias in various survey scenarios",
+  "independentPractice": "Practice problems identifying bias in sampling methods and explaining effects on results",
+  "assessment": "Exit ticket: evaluate a sampling method for a survey about school lunch preferences and explain any bias",
+  "capReflection": "How does sample bias affect the conclusions you can draw from a survey?"
+}

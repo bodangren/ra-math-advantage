@@ -1,0 +1,17 @@
+{
+  "periodId": "m2-p15",
+  "dayType": "instruction",
+  "sourceLesson": "2-6",
+  "classObjectiveCode": "2l",
+  "classObjective": "Apply proportions to percent situations, scaling problems, and mixture contexts.",
+  "workedExamples": [
+    "2-6, Example 3 — Real-World Proportion Problems (continued)",
+    "2-6, Example 4 — Percent and Mixture Problems"
+  ],
+  "warmUp": "30% of what number is 45?",
+  "conceptDevelopment": "Mini-lesson: part-whole ratios in percent contexts; coffee blending and acid solution mixture problems; unit pricing",
+  "guidedPractice": "Teacher-led practice applying proportions to percent situations, scaling, and mixture problems",
+  "independentPractice": "Practice problems solving percent, scaling, and mixture problems using proportions",
+  "assessment": "Exit ticket: solve a percent mixture problem using proportions",
+  "capReflection": "How are mixture problems different from scaling problems when using proportions?"
+}

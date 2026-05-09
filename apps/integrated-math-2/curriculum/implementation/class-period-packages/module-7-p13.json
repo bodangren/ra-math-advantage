@@ -1,0 +1,18 @@
+{
+  "periodId": "m7-p13",
+  "dayType": "instruction",
+  "sourceLesson": "7-6",
+  "classObjectiveCode": "7i",
+  "classObjective": "Calculate expected value to evaluate outcomes of random processes.",
+  "workedExamples": [
+    "7-6, Example 1 — Expected Value Formula",
+    "7-6, Example 2 — Expected Value in Context",
+    "7-6, Example 3 — Evaluating a Game"
+  ],
+  "warmUp": "Skill activation problem",
+  "conceptDevelopment": "Mini-lesson or exploration",
+  "guidedPractice": "Teacher-led practice with worked examples",
+  "independentPractice": "Practice problems from the lesson",
+  "assessment": "Exit ticket or quick check",
+  "capReflection": "Courage, Adaptability, Persistence reflection prompt"
+}

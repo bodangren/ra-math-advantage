@@ -1,0 +1,17 @@
+{
+  "periodId": "m11-p02",
+  "dayType": "instruction",
+  "sourceLesson": "11-1",
+  "classObjectiveCode": "11b",
+  "classObjective": "Apply the Angle Addition Postulate and the definition of an angle bisector to find unknown angle measures.",
+  "workedExamples": [
+    "11-1, Example 2 — Apply the Definition of an Angle Bisector",
+    "11-1, Example 3 — Identify Angle Relationships and Solve for Variables"
+  ],
+  "warmUp": "If ∠AOC = 60° and OB bisects it, what is ∠AOB?",
+  "conceptDevelopment": "Mini-lesson: Angle Addition Postulate (m∠AOC = m∠AOB + m∠BOC); angle bisector equations; linear pairs; vertical angles; algebraic angle solving",
+  "guidedPractice": "Teacher-led practice applying Angle Addition Postulate and angle bisector definition",
+  "independentPractice": "Practice problems solving for unknown angle measures using angle addition and bisector properties",
+  "assessment": "Exit ticket: if BD bisects ∠ABC, m∠ABD = 3x + 5, and m∠DBC = 4x - 1, find x and m∠ABC",
+  "capReflection": "How does the Angle Addition Postulate relate to the Segment Addition Postulate?"
+}

@@ -1,0 +1,17 @@
+{
+  "periodId": "m2-p13",
+  "dayType": "instruction",
+  "sourceLesson": "2-5",
+  "classObjectiveCode": "2j",
+  "classObjective": "Graph the solution set of an absolute value equation on a number line and write absolute value equations from graphs.",
+  "workedExamples": [
+    "2-5, Example 3 — Apply Absolute Value to Real-World Problems (continued)",
+    "2-5, Example 4 — Write Absolute Value Equations from Graphs"
+  ],
+  "warmUp": "Graph |x| = 3 on a number line",
+  "conceptDevelopment": "Mini-lesson: number-line graphing with center and distance method; writing equations from visual graphs",
+  "guidedPractice": "Teacher-led practice graphing absolute value equation solutions on number lines and writing equations from graphs",
+  "independentPractice": "Practice problems graphing absolute value solutions and writing equations from graphs",
+  "assessment": "Exit ticket: given a number line showing two points equidistant from center, write the absolute value equation",
+  "capReflection": "How does the center-distance method help you graph absolute value equations quickly?"
+}

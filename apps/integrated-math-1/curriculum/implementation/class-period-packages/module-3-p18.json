@@ -1,0 +1,9 @@
+{
+  "periodId": "m3-p18",
+  "dayType": "review",
+  "nonInstructionArtifact": {
+    "type": "review",
+    "module": 3,
+    "topics": ["Objective 3a through 3l"]
+  }
+}

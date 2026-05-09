@@ -1,0 +1,16 @@
+{
+  "periodId": "m11-p08",
+  "dayType": "instruction",
+  "sourceLesson": "11-4",
+  "classObjectiveCode": "11g",
+  "classObjective": "Identify rigid motions (reflection, translation, rotation) from diagrams.",
+  "workedExamples": [
+    "11-4, Example 1 — Identify Rigid Motions from Diagrams"
+  ],
+  "warmUp": "What are the three types of rigid motions?",
+  "conceptDevelopment": "Mini-lesson: reflection (flip), translation (slide), rotation (turn); identifying preimage-image pairs; rigid motion properties",
+  "guidedPractice": "Teacher-led practice identifying rigid motions from preimage-image diagram pairs",
+  "independentPractice": "Practice problems identifying which rigid motion maps one figure to another",
+  "assessment": "Exit ticket: identify whether each transformation shown is a reflection, translation, or rotation",
+  "capReflection": "What properties do rigid motions preserve that non-rigid motions do not?"
+}

@@ -1,0 +1,17 @@
+{
+  "periodId": "m6-p05",
+  "dayType": "instruction",
+  "sourceLesson": "6-3",
+  "classObjectiveCode": "6e",
+  "classObjective": "Find the area of a circle and relate diameter and radius.",
+  "workedExamples": [
+    "6-3, Example 1 — Find the Area of a Circle",
+    "6-3, Example 2 — Find Diameter, Radius, or Area Given One Measure"
+  ],
+  "warmUp": "Skill activation problem",
+  "conceptDevelopment": "Mini-lesson or exploration",
+  "guidedPractice": "Teacher-led practice with worked examples",
+  "independentPractice": "Practice problems from the lesson",
+  "assessment": "Exit ticket or quick check",
+  "capReflection": "Courage, Adaptability, Persistence reflection prompt"
+}

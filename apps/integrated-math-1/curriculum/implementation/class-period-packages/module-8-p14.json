@@ -1,0 +1,19 @@
+{
+  "periodId": "m8-p14",
+  "dayType": "instruction",
+  "sourceLesson": "8-6",
+  "classObjectiveCode": "8k",
+  "classObjective": "Convert between recursive and explicit formulas for arithmetic and geometric sequences.",
+  "workedExamples": [
+    "8-6, Example 3 — Write a Recursive Formula for a Sequence",
+    "8-6, Example 4 — Convert a Recursive Formula to an Explicit Formula",
+    "8-6, Example 5 — Convert an Explicit Formula to a Recursive Formula",
+    "8-6, Example 6 — Convert Between Forms for Real-World Recursive Models"
+  ],
+  "warmUp": "Write an explicit formula from the recursive: a_1 = 5, a_n = a_{n-1} + 3",
+  "conceptDevelopment": "Mini-lesson: converting both directions; real-world recursive models; explicit formula derivation from recursion",
+  "guidedPractice": "Teacher-led practice converting between recursive and explicit forms for arithmetic and geometric sequences",
+  "independentPractice": "Practice problems converting between recursive and explicit formulas for various sequences",
+  "assessment": "Exit ticket: convert a_n = 100(0.85)^{n-1} to recursive form",
+  "capReflection": "What are the advantages of each form (recursive vs. explicit) in different situations?"
+}

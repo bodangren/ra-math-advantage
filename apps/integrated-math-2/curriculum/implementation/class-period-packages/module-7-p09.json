@@ -1,0 +1,9 @@
+{
+  "periodId": "m7-p09",
+  "dayType": "jigsaw",
+  "nonInstructionArtifact": {
+    "type": "jigsaw",
+    "focus": "Objectives 7c-7f",
+    "activities": ["Method choice between permutations and combinations", "justification of why order matters or does not"]
+  }
+}

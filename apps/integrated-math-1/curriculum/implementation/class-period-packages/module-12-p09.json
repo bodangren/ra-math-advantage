@@ -1,0 +1,18 @@
+{
+  "periodId": "m12-p09",
+  "dayType": "instruction",
+  "sourceLesson": "12-4",
+  "classObjectiveCode": "12h",
+  "classObjective": "Write two-column proofs using given information, definitions, and properties.",
+  "workedExamples": [
+    "12-4, Example 2 — Write and Complete a Two-Column Proof",
+    "12-4, Example 3 — Write a Two-Column Proof",
+    "12-4, Example 4 — Write a Flow Proof"
+  ],
+  "warmUp": "What are the key components of a two-column proof?",
+  "conceptDevelopment": "Mini-lesson: two-column proof structure (statements/reasons); midpoint proofs; transitive property; proof writing conventions",
+  "guidedPractice": "Teacher-led practice writing two-column proofs with given information",
+  "independentPractice": "Practice problems writing two-column and flow proofs for geometric statements",
+  "assessment": "Exit ticket: write a two-column proof showing that if M is the midpoint of AB, then AM = AB/2",
+  "capReflection": "Why is it important to justify every step in a proof with a valid reason?"
+}

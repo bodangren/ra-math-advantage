@@ -1,0 +1,17 @@
+{
+  "periodId": "m10-p04",
+  "dayType": "instruction",
+  "sourceLesson": "10-2",
+  "classObjectiveCode": "10c",
+  "classObjective": "Identify and name points, lines, and planes from geometric figures.",
+  "workedExamples": [
+    "10-2, Example 1 — Identify Lines, Planes, and Relationships from a Figure",
+    "10-2, Example 2 — Model Real-World Objects with Geometric Terms"
+  ],
+  "warmUp": "List 3 undefined terms in geometry",
+  "conceptDevelopment": "Mini-lesson: vocabulary of undefined terms; naming conventions; collinear/coplanar relationships",
+  "guidedPractice": "Teacher-led practice identifying and naming geometric figures from diagrams",
+  "independentPractice": "Practice problems identifying points, lines, planes, and their relationships in figures",
+  "assessment": "Exit ticket: identify all collinear points and name a set of coplanar points from a given figure",
+  "capReflection": "Why are points, lines, and planes called undefined terms in geometry?"
+}

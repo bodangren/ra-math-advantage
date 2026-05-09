@@ -1,0 +1,18 @@
+{
+  "periodId": "m13-p10",
+  "dayType": "instruction",
+  "sourceLesson": "13-4",
+  "classObjectiveCode": "13h",
+  "classObjective": "Apply half-angle identities to find exact values and simplify expressions.",
+  "workedExamples": [
+    "13-4, Example 4 — Half-Angle Formula",
+    "13-4, Example 5 — Find Exact Values Using Half-Angle",
+    "13-4, Example 6 — Simplify with Half-Angle"
+  ],
+  "warmUp": "Skill activation problem",
+  "conceptDevelopment": "Mini-lesson or exploration",
+  "guidedPractice": "Teacher-led practice with worked examples",
+  "independentPractice": "Practice problems from the lesson",
+  "assessment": "Exit ticket or quick check",
+  "capReflection": "Courage, Adaptability, Persistence reflection prompt"
+}

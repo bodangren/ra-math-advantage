@@ -1,0 +1,18 @@
+{
+  "periodId": "m2-p14",
+  "dayType": "instruction",
+  "sourceLesson": "2-6",
+  "classObjectiveCode": "2k",
+  "classObjective": "Solve proportions algebraically, including those with variable expressions in numerators and denominators.",
+  "workedExamples": [
+    "2-6, Example 1 — Solve Basic Proportions",
+    "2-6, Example 2 — Solve Proportions with Linear Expressions in Numerators and Denominators",
+    "2-6, Example 3 — Real-World Proportion Problems"
+  ],
+  "warmUp": "Solve: x/4 = 3/8",
+  "conceptDevelopment": "Mini-lesson: cross-products property; variables in denominators; rate and scale problems",
+  "guidedPractice": "Teacher-led practice solving proportions algebraically including those with variable expressions",
+  "independentPractice": "Practice problems solving proportions and applying to rate and scale contexts",
+  "assessment": "Exit ticket: solve (x + 2)/5 = (3x - 1)/7",
+  "capReflection": "When solving proportions, when can you cross-multiply directly versus when must you be more careful?"
+}

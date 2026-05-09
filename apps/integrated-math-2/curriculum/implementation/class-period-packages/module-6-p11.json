@@ -1,0 +1,17 @@
+{
+  "periodId": "m6-p11",
+  "dayType": "instruction",
+  "sourceLesson": "6-5",
+  "classObjectiveCode": "6j",
+  "classObjective": "Describe planes of symmetry for three-dimensional solids; identify shapes of cross sections.",
+  "workedExamples": [
+    "6-5, Example 1 — Planes of Symmetry",
+    "6-5, Example 2 — Identify Cross Section Shapes"
+  ],
+  "warmUp": "Skill activation problem",
+  "conceptDevelopment": "Mini-lesson or exploration",
+  "guidedPractice": "Teacher-led practice with worked examples",
+  "independentPractice": "Practice problems from the lesson",
+  "assessment": "Exit ticket or quick check",
+  "capReflection": "Courage, Adaptability, Persistence reflection prompt"
+}

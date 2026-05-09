@@ -1,0 +1,19 @@
+{
+  "periodId": "m8-p07",
+  "dayType": "instruction",
+  "sourceLesson": "8-3",
+  "classObjectiveCode": "8f",
+  "classObjective": "Apply the compound-interest formula to investment and depreciation problems.",
+  "workedExamples": [
+    "8-3, Example 3 — Model Real-World Growth and Decay",
+    "8-3, Example 4 — Apply Compound Interest Formula (A = P(1 + r/n)^nt)",
+    "8-3, Example 5 — Continuous Growth",
+    "8-3, Example 6 — Apply Compound Interest and Exponential Models (Half-Life)"
+  ],
+  "warmUp": "If $1000 is invested at 5% annual interest, compounded quarterly, how much is in the account after 1 year?",
+  "conceptDevelopment": "Mini-lesson: A = P(1 + r/n)^nt; continuous growth formula; half-life models; investment and depreciation contexts",
+  "guidedPractice": "Teacher-led practice applying compound interest formula to investment and depreciation problems",
+  "independentPractice": "Practice problems applying exponential formulas to compound interest, depreciation, and half-life scenarios",
+  "assessment": "Exit ticket: how long does it take for an investment to double at 6% interest compounded continuously?",
+  "capReflection": "How does compounding frequency affect the effective rate of return on an investment?"
+}

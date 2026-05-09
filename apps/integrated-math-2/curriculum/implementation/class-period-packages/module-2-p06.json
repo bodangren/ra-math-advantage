@@ -1,0 +1,17 @@
+{
+  "periodId": "m2-p06",
+  "dayType": "instruction",
+  "sourceLesson": "2-3",
+  "classObjectiveCode": "2f",
+  "classObjective": "Use coordinate geometry to verify parallelograms and write coordinate proofs.",
+  "workedExamples": [
+    "2-3, Example 3 — Coordinate Geometry Verification",
+    "2-3, Example 4 — Write Coordinate Proofs"
+  ],
+  "warmUp": "Skill activation problem",
+  "conceptDevelopment": "Mini-lesson or exploration",
+  "guidedPractice": "Teacher-led practice with worked examples",
+  "independentPractice": "Practice problems from the lesson",
+  "assessment": "Exit ticket or quick check",
+  "capReflection": "Courage, Adaptability, Persistence reflection prompt"
+}

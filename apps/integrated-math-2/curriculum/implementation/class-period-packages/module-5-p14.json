@@ -1,0 +1,17 @@
+{
+  "periodId": "m5-p14",
+  "dayType": "instruction",
+  "sourceLesson": "5-7",
+  "classObjectiveCode": "5l",
+  "classObjective": "Write the equation of a circle in standard form given center and radius, center and diameter, or center and a point on the circle.",
+  "workedExamples": [
+    "5-7, Example 1 — Write Equations of Circles",
+    "5-7, Example 2 — Identify Center and Radius from an Equation"
+  ],
+  "warmUp": "Skill activation problem",
+  "conceptDevelopment": "Mini-lesson or exploration",
+  "guidedPractice": "Teacher-led practice with worked examples",
+  "independentPractice": "Practice problems from the lesson",
+  "assessment": "Exit ticket or quick check",
+  "capReflection": "Courage, Adaptability, Persistence reflection prompt"
+}

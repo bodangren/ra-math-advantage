@@ -1,0 +1,20 @@
+{
+  "periodId": "m4-p08",
+  "dayType": "instruction",
+  "sourceLesson": "4-3",
+  "classObjectiveCode": "4g",
+  "classObjective": "Model real-world situations with linear equations in slope-intercept form, interpret the meaning of slope and intercept in context, and graph linear functions.",
+  "workedExamples": [
+    "4-3, Example 3 — Model Real-World Situations with Linear Equations",
+    "4-3, Example 4 — Graph from Slope and y-Intercept",
+    "4-3, Example 5 — Model a Streaming Plan Situation",
+    "4-3, Example 6 — Equation, Graph, and Evaluation for a Savings Context",
+    "4-3, Example 7 — Model a Real-World Situation (continued)"
+  ],
+  "warmUp": "A gym charges $50 membership plus $3 per class — write the equation",
+  "conceptDevelopment": "Mini-lesson: identifying b (starting value) and m (rate) from verbal descriptions; streaming plan and savings contexts; connecting equation to graph",
+  "guidedPractice": "Teacher-led practice modeling real-world situations with linear equations and interpreting slope/intercept",
+  "independentPractice": "Practice problems writing, graphing, and interpreting linear models in context",
+  "assessment": "Exit ticket: write and graph a linear model for a taxi fare with $4.50 base and $2.30 per mile",
+  "capReflection": "How do you identify which part of a real-world situation is the slope and which is the y-intercept?"
+}

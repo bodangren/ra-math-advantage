@@ -1,0 +1,18 @@
+{
+  "periodId": "m2-p01",
+  "dayType": "instruction",
+  "sourceLesson": "2-1",
+  "classObjectiveCode": "2a",
+  "classObjective": "Find the sum of interior angles and the measure of each interior angle in regular polygons.",
+  "workedExamples": [
+    "2-1, Example 1 — Find Measures of Interior Angles",
+    "2-1, Example 2 — Apply Interior Angles to Real Polygons",
+    "2-1, Example 3 — Find Number of Sides Given Interior Angle"
+  ],
+  "warmUp": "Skill activation problem",
+  "conceptDevelopment": "Mini-lesson or exploration",
+  "guidedPractice": "Teacher-led practice with worked examples",
+  "independentPractice": "Practice problems from the lesson",
+  "assessment": "Exit ticket or quick check",
+  "capReflection": "Courage, Adaptability, Persistence reflection prompt"
+}

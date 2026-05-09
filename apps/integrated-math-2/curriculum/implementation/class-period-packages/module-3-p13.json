@@ -1,0 +1,16 @@
+{
+  "periodId": "m3-p13",
+  "dayType": "instruction",
+  "sourceLesson": "3-6",
+  "classObjectiveCode": "3k",
+  "classObjective": "Apply the Triangle Angle Bisector Theorem and relate special segments in similar triangles.",
+  "workedExamples": [
+    "3-6, Example 3 — Real-World Application (scenery/paths)"
+  ],
+  "warmUp": "Skill activation problem",
+  "conceptDevelopment": "Mini-lesson or exploration",
+  "guidedPractice": "Teacher-led practice with worked examples",
+  "independentPractice": "Practice problems from the lesson",
+  "assessment": "Exit ticket or quick check",
+  "capReflection": "Courage, Adaptability, Persistence reflection prompt"
+}

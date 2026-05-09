@@ -1,0 +1,18 @@
+{
+  "periodId": "m12-p13",
+  "dayType": "instruction",
+  "sourceLesson": "12-7",
+  "classObjectiveCode": "12k",
+  "classObjective": "Classify angle pairs formed by two lines cut by a transversal as alternate interior, alternate exterior, corresponding, or consecutive interior angles.",
+  "workedExamples": [
+    "12-7, Example 1 — Identify Parallel, Skew, and Perpendicular Segments",
+    "12-7, Example 2 — Identify Transversals and Classify Angle Pairs",
+    "12-7, Example 3 — Classify Angle Pairs Formed by a Transversal"
+  ],
+  "warmUp": "What are the four main angle pair types when a transversal crosses parallel lines?",
+  "conceptDevelopment": "Mini-lesson: angle pair vocabulary; identifying transversals; alternate interior/exterior, corresponding, consecutive interior angles",
+  "guidedPractice": "Teacher-led practice classifying angle pairs formed by transversals",
+  "independentPractice": "Practice problems identifying and classifying all angle pair types in transversal diagrams",
+  "assessment": "Exit ticket: identify all angle pairs (corresponding, alternate interior, alternate exterior, consecutive interior) in a given transversal diagram",
+  "capReflection": "How does the location of angles relative to the transversal help you remember their classifications?"
+}

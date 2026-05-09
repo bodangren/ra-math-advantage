@@ -1,0 +1,17 @@
+{
+  "periodId": "m4-p06",
+  "dayType": "instruction",
+  "sourceLesson": "4-3",
+  "classObjectiveCode": "4e",
+  "classObjective": "Graph a rectangular solid and find the distance between two points in three-dimensional space.",
+  "workedExamples": [
+    "4-3, Example 1 — Graph a Rectangular Solid",
+    "4-3, Example 2 — Distance in Space"
+  ],
+  "warmUp": "Skill activation problem",
+  "conceptDevelopment": "Mini-lesson or exploration",
+  "guidedPractice": "Teacher-led practice with worked examples",
+  "independentPractice": "Practice problems from the lesson",
+  "assessment": "Exit ticket or quick check",
+  "capReflection": "Courage, Adaptability, Persistence reflection prompt"
+}

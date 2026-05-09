@@ -1,0 +1,17 @@
+{
+  "periodId": "m4-p11",
+  "dayType": "instruction",
+  "sourceLesson": "4-5",
+  "classObjectiveCode": "4i",
+  "classObjective": "Find trigonometric ratios (sine, cosine, tangent) for acute angles in right triangles.",
+  "workedExamples": [
+    "4-5, Example 1 — Find Trigonometric Ratios",
+    "4-5, Example 2 — Special Triangle Trigonometry"
+  ],
+  "warmUp": "Skill activation problem",
+  "conceptDevelopment": "Mini-lesson or exploration",
+  "guidedPractice": "Teacher-led practice with worked examples",
+  "independentPractice": "Practice problems from the lesson",
+  "assessment": "Exit ticket or quick check",
+  "capReflection": "Courage, Adaptability, Persistence reflection prompt"
+}

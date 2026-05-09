@@ -1,0 +1,17 @@
+{
+  "periodId": "m7-p08",
+  "dayType": "instruction",
+  "sourceLesson": "7-3",
+  "classObjectiveCode": "7f",
+  "classObjective": "Solve systems using elimination by subtraction and solve systems containing decimals, fractions, and expressions that require simplification first.",
+  "workedExamples": [
+    "7-3, Example 3 — Solve by Elimination (Subtraction)",
+    "7-3, Example 4 — Real-World Applications (Elimination Subtraction)"
+  ],
+  "warmUp": "Solve by elimination: x + y = 10 and x - y = 4",
+  "conceptDevelopment": "Mini-lesson: identical coefficients; subtracting equations; simplifying before eliminating; decimal and fraction cases",
+  "guidedPractice": "Teacher-led practice solving systems by elimination using subtraction and with simplifying first",
+  "independentPractice": "Practice problems solving systems by elimination with various coefficient configurations",
+  "assessment": "Exit ticket: solve by elimination after first simplifying 2(x + y) + 3x = 8 and x + y = 3",
+  "capReflection": "Why is it sometimes necessary to simplify an equation before eliminating a variable?"
+}

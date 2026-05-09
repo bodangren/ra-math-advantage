@@ -1,0 +1,16 @@
+{
+  "periodId": "m11-p04",
+  "dayType": "instruction",
+  "sourceLesson": "11-2",
+  "classObjectiveCode": "11c",
+  "classObjective": "Solve problems involving complementary, supplementary, and vertical angle relationships using algebra.",
+  "workedExamples": [
+    "11-2, Example 1 — Solve Problems Using Complementary and Supplementary Angles"
+  ],
+  "warmUp": "If two angles are supplementary and one is 110°, what is the other?",
+  "conceptDevelopment": "Mini-lesson: complementary (sum 90°); supplementary (sum 180°); vertical angles (congruent); algebraic relationships",
+  "guidedPractice": "Teacher-led practice solving problems with complementary, supplementary, and vertical angle relationships",
+  "independentPractice": "Practice problems using angle relationships to find unknown measures",
+  "assessment": "Exit ticket: find both angles if they are supplementary and one is 3 times the other",
+  "capReflection": "Why are vertical angles always congruent?"
+}

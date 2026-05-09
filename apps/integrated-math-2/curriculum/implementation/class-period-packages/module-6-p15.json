@@ -1,0 +1,17 @@
+{
+  "periodId": "m6-p15",
+  "dayType": "instruction",
+  "sourceLesson": "6-6",
+  "classObjectiveCode": "6m",
+  "classObjective": "Find volumes of composite solids and solve real-world volume problems.",
+  "workedExamples": [
+    "6-6, Example 6 — Volume of Composite Solids",
+    "6-6, Example 7 — Volume of Frames"
+  ],
+  "warmUp": "Skill activation problem",
+  "conceptDevelopment": "Mini-lesson or exploration",
+  "guidedPractice": "Teacher-led practice with worked examples",
+  "independentPractice": "Practice problems from the lesson",
+  "assessment": "Exit ticket or quick check",
+  "capReflection": "Courage, Adaptability, Persistence reflection prompt"
+}

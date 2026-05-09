@@ -1,0 +1,17 @@
+{
+  "periodId": "m1-p01",
+  "dayType": "instruction",
+  "sourceLesson": "1-1",
+  "classObjectiveCode": "1a",
+  "classObjective": "Find measures of segments and angles using perpendicular bisector and angle bisector theorems.",
+  "workedExamples": [
+    "1-1, Example 1 — Find Segment Lengths Using Perpendicular Bisectors",
+    "1-1, Example 2 — Find Coordinates of the Circumcenter"
+  ],
+  "warmUp": "Skill activation problem",
+  "conceptDevelopment": "Mini-lesson or exploration",
+  "guidedPractice": "Teacher-led practice with worked examples",
+  "independentPractice": "Practice problems from the lesson",
+  "assessment": "Exit ticket or quick check",
+  "capReflection": "Courage, Adaptability, Persistence reflection prompt"
+}

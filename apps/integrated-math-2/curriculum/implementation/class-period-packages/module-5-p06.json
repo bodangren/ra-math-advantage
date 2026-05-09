@@ -1,0 +1,17 @@
+{
+  "periodId": "m5-p06",
+  "dayType": "instruction",
+  "sourceLesson": "5-4",
+  "classObjectiveCode": "5f",
+  "classObjective": "Find the measure of inscribed angles and their intercepted arcs.",
+  "workedExamples": [
+    "5-4, Example 1 — Find Measures of Inscribed Angles",
+    "5-4, Example 2 — Find Angle Measures in Overlapping Triangles"
+  ],
+  "warmUp": "Skill activation problem",
+  "conceptDevelopment": "Mini-lesson or exploration",
+  "guidedPractice": "Teacher-led practice with worked examples",
+  "independentPractice": "Practice problems from the lesson",
+  "assessment": "Exit ticket or quick check",
+  "capReflection": "Courage, Adaptability, Persistence reflection prompt"
+}

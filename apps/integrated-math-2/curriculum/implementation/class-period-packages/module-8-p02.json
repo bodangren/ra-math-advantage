@@ -1,0 +1,18 @@
+{
+  "periodId": "m8-p02",
+  "dayType": "instruction",
+  "sourceLesson": "8-1",
+  "classObjectiveCode": "8b",
+  "classObjective": "Identify domain and range from various representations.",
+  "workedExamples": [
+    "8-1, Example 4 — Domain and Range from a Table",
+    "8-1, Example 5 — From a Graph",
+    "8-1, Example 6 — From a Mapping"
+  ],
+  "warmUp": "Skill activation problem",
+  "conceptDevelopment": "Mini-lesson or exploration",
+  "guidedPractice": "Teacher-led practice with worked examples",
+  "independentPractice": "Practice problems from the lesson",
+  "assessment": "Exit ticket or quick check",
+  "capReflection": "Courage, Adaptability, Persistence reflection prompt"
+}

@@ -1,0 +1,9 @@
+{
+  "periodId": "m1-p03",
+  "dayType": "mastery",
+  "nonInstructionArtifact": {
+    "type": "mastery",
+    "focus": "Objectives 1a-1b",
+    "activities": ["SRS practice on numerical expression translation", "Spiral review of order of operations", "Peer coaching on error analysis"]
+  }
+}

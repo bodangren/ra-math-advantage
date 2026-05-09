@@ -1,0 +1,17 @@
+{
+  "periodId": "m9-p07",
+  "dayType": "instruction",
+  "sourceLesson": "9-4",
+  "classObjectiveCode": "9f",
+  "classObjective": "Calculate the range, interquartile range, and standard deviation of a data set.",
+  "workedExamples": [
+    "9-4, Example 1 — Find the Range",
+    "9-4, Example 2 — Five-Number Summary and Box Plot"
+  ],
+  "warmUp": "What does the range of a data set tell you?",
+  "conceptDevelopment": "Mini-lesson: range calculation; five-number summary construction; box plot interpretation",
+  "guidedPractice": "Teacher-led practice calculating range, IQR, and introducing standard deviation concepts",
+  "independentPractice": "Practice problems calculating range and five-number summaries",
+  "assessment": "Exit ticket: find the range and five-number summary for a given data set",
+  "capReflection": "How does the range differ from the interquartile range in what they measure?"
+}

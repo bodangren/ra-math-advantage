@@ -1,0 +1,17 @@
+{
+  "periodId": "m12-p07",
+  "dayType": "instruction",
+  "sourceLesson": "12-3",
+  "classObjectiveCode": "12f",
+  "classObjective": "Apply the Law of Detachment and the Law of Syllogism to draw valid conclusions from conditional statements.",
+  "workedExamples": [
+    "12-3, Example 2 — Determine Whether a Conclusion Is Valid Using the Law of Detachment",
+    "12-3, Example 3 — Apply the Law of Syllogism to Draw Conclusions"
+  ],
+  "warmUp": "If a number is even, it is divisible by 2. 8 is even. What can you conclude?",
+  "conceptDevelopment": "Mini-lesson: Law of Detachment (affirming hypothesis); Law of Syllogism (chaining conditionals); valid vs. invalid conclusions; common logical errors",
+  "guidedPractice": "Teacher-led practice applying Laws of Detachment and Syllogism to draw valid conclusions",
+  "independentPractice": "Practice problems determining validity of conclusions and applying logical laws",
+  "assessment": "Exit ticket: use the Law of Syllogism to draw a conclusion from: If it rains, the game is cancelled. If the game is cancelled, practice is indoors.",
+  "capReflection": "How does the Law of Syllogism extend the Law of Detachment to chains of conditional statements?"
+}

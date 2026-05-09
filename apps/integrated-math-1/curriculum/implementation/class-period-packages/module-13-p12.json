@@ -1,0 +1,17 @@
+{
+  "periodId": "m13-p12",
+  "dayType": "instruction",
+  "sourceLesson": "13-5",
+  "classObjectiveCode": "13j",
+  "classObjective": "Determine whether a tessellation can be created from a given figure and describe the transformation(s) used.",
+  "workedExamples": [
+    "13-5, Example 3 — Classify Tessellation Patterns",
+    "13-5, Example 4 — Determine Whether General Figures Tessellate"
+  ],
+  "warmUp": "What transformations are used to create a tessellation?",
+  "conceptDevelopment": "Mini-lesson: uniform vs. non-uniform tessellations; regular vs. semiregular; transformation patterns in tessellations",
+  "guidedPractice": "Teacher-led practice analyzing tessellation patterns and determining tessellation capability",
+  "independentPractice": "Practice problems classifying tessellations and describing transformation patterns",
+  "assessment": "Exit ticket: analyze a tessellation pattern and describe the transformations used to create it",
+  "capReflection": "What mathematical principles make tessellations possible?"
+}

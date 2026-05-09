@@ -1,0 +1,17 @@
+{
+  "periodId": "m12-p18",
+  "dayType": "instruction",
+  "sourceLesson": "12-9",
+  "classObjectiveCode": "12o",
+  "classObjective": "Use angle relationships formed by a transversal to prove that two lines are parallel.",
+  "workedExamples": [
+    "12-9, Example 1 — Determine Which Lines Are Parallel Given Angle Relationships",
+    "12-9, Example 2 — Find the Value of x That Makes Lines Parallel"
+  ],
+  "warmUp": "What must be true about corresponding angles if two lines are parallel?",
+  "conceptDevelopment": "Mini-lesson: corresponding angles converse; alternate interior/exterior converses; consecutive interior converse; proving parallelism",
+  "guidedPractice": "Teacher-led practice using angle relationships to prove lines are parallel",
+  "independentPractice": "Practice problems using angle relationships to establish parallel lines",
+  "assessment": "Exit ticket: prove that two lines are parallel given that alternate interior angles are congruent",
+  "capReflection": "How do the converse theorems for parallel lines differ from the basic parallel line theorems?"
+}

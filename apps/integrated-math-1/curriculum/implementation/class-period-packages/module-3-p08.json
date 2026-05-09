@@ -1,0 +1,18 @@
+{
+  "periodId": "m3-p08",
+  "dayType": "instruction",
+  "sourceLesson": "3-3",
+  "classObjectiveCode": "3f",
+  "classObjective": "Determine whether a function represented by an equation, graph, or table is linear or nonlinear.",
+  "workedExamples": [
+    "3-3, Example 3 — Determine Linearity from Equations",
+    "3-3, Example 4 — Determine Linearity from Graphs",
+    "3-3, Example 5 — Determine Linearity from Tables"
+  ],
+  "warmUp": "Is y = 2x + 5 linear or nonlinear? How can you tell?",
+  "conceptDevelopment": "Mini-lesson: first differences for tables; degree checking for equations; constant rate of change identification",
+  "guidedPractice": "Teacher-led practice determining linearity using first differences, graph shape, and equation analysis",
+  "independentPractice": "Practice problems determining whether functions are linear or nonlinear from equations, graphs, and tables",
+  "assessment": "Exit ticket: determine whether a table of values represents a linear or nonlinear function and explain how you know",
+  "capReflection": "What is the key characteristic that makes a function linear versus nonlinear?"
+}

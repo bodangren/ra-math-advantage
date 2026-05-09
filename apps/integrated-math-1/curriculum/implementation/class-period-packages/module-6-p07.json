@@ -1,0 +1,17 @@
+{
+  "periodId": "m6-p07",
+  "dayType": "instruction",
+  "sourceLesson": "6-3",
+  "classObjectiveCode": "6e",
+  "classObjective": "Solve compound inequalities involving 'and' and 'or' and express the solution algebraically.",
+  "workedExamples": [
+    "6-3, Example 1 — Solve Compound Inequalities (And and Or)",
+    "6-3, Example 2 — Model Real-World Situations with Compound Inequalities"
+  ],
+  "warmUp": "Solve: -2 < x and x < 5",
+  "conceptDevelopment": "Mini-lesson: intersection (and) vs. union (or); three-part inequality solving; compound inequality notation",
+  "guidedPractice": "Teacher-led practice solving compound inequalities with 'and' and 'or'",
+  "independentPractice": "Practice problems solving compound inequalities and expressing solutions algebraically",
+  "assessment": "Exit ticket: solve -3 <= 2x + 1 < 5 and express the solution in both inequality and interval notation",
+  "capReflection": "When a compound inequality uses 'and' versus 'or', how does the solution set differ visually on a number line?"
+}

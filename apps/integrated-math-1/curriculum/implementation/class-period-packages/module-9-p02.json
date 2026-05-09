@@ -1,0 +1,18 @@
+{
+  "periodId": "m9-p02",
+  "dayType": "instruction",
+  "sourceLesson": "9-2",
+  "classObjectiveCode": "9b",
+  "classObjective": "Construct dot plots, bar graphs, and histograms to represent data sets.",
+  "workedExamples": [
+    "9-2, Example 1 — Make a Dot Plot from a Table",
+    "9-2, Example 2 — Make a Bar Graph from a Survey",
+    "9-2, Example 3 — Discrete vs. Continuous Data (Histograms)"
+  ],
+  "warmUp": "What is the difference between a bar graph and a histogram?",
+  "conceptDevelopment": "Mini-lesson: choosing appropriate display type; scaling number lines; discrete vs. continuous data representation",
+  "guidedPractice": "Teacher-led practice constructing dot plots, bar graphs, and histograms",
+  "independentPractice": "Practice problems constructing data displays and choosing appropriate graph types",
+  "assessment": "Exit ticket: construct a histogram for a data set with continuous variables and explain why a histogram is appropriate",
+  "capReflection": "How do you decide which type of graph is most appropriate for a given data set?"
+}

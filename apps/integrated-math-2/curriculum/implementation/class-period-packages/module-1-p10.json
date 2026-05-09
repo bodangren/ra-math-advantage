@@ -1,0 +1,17 @@
+{
+  "periodId": "m1-p10",
+  "dayType": "instruction",
+  "sourceLesson": "1-4",
+  "classObjectiveCode": "1h",
+  "classObjective": "Apply triangle inequality relationships in proofs and real-world contexts.",
+  "workedExamples": [
+    "1-4, Example 3 — Compare Angles and Sides in Multiple Triangles",
+    "1-4, Example 4 — Real-World Angle Comparison"
+  ],
+  "warmUp": "Skill activation problem",
+  "conceptDevelopment": "Mini-lesson or exploration",
+  "guidedPractice": "Teacher-led practice with worked examples",
+  "independentPractice": "Practice problems from the lesson",
+  "assessment": "Exit ticket or quick check",
+  "capReflection": "Courage, Adaptability, Persistence reflection prompt"
+}

@@ -1,0 +1,17 @@
+{
+  "periodId": "m3-p06",
+  "dayType": "instruction",
+  "sourceLesson": "3-4",
+  "classObjectiveCode": "3f",
+  "classObjective": "Determine whether triangles are similar using SSS and SAS Similarity Theorems.",
+  "workedExamples": [
+    "3-4, Example 1 — Determine Similarity Using SSS or SAS",
+    "3-4, Example 2 — Find Unknown Values Using Similarity"
+  ],
+  "warmUp": "Skill activation problem",
+  "conceptDevelopment": "Mini-lesson or exploration",
+  "guidedPractice": "Teacher-led practice with worked examples",
+  "independentPractice": "Practice problems from the lesson",
+  "assessment": "Exit ticket or quick check",
+  "capReflection": "Courage, Adaptability, Persistence reflection prompt"
+}

@@ -1,0 +1,17 @@
+{
+  "periodId": "m11-p13",
+  "dayType": "instruction",
+  "sourceLesson": "11-6",
+  "classObjectiveCode": "11k",
+  "classObjective": "Interpret orthographic drawings to build models of three-dimensional figures.",
+  "workedExamples": [
+    "11-6, Example 1 — Build a Model from an Orthographic Drawing",
+    "11-6, Example 2 — Make an Orthographic Drawing from a Model"
+  ],
+  "warmUp": "What three views are typically shown in an orthographic drawing?",
+  "conceptDevelopment": "Mini-lesson: top, front, left/right views from orthographic drawings; building 3D models from 2D representations",
+  "guidedPractice": "Teacher-led practice interpreting orthographic drawings and building corresponding 3D models",
+  "independentPractice": "Practice problems creating models from orthographic drawings and drawings from models",
+  "assessment": "Exit ticket: given an orthographic drawing (top, front, right views), sketch the 3D figure it represents",
+  "capReflection": "Why is orthographic drawing important in engineering and architecture?"
+}

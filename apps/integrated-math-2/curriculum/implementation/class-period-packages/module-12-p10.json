@@ -1,0 +1,18 @@
+{
+  "periodId": "m12-p10",
+  "dayType": "instruction",
+  "sourceLesson": "12-4",
+  "classObjectiveCode": "12h",
+  "classObjective": "Recognize and factor difference of squares and perfect square trinomials; write quadratics from zeros.",
+  "workedExamples": [
+    "12-4, Example 4 — Special Factoring Patterns",
+    "12-4, Example 5 — Write Quadratic from Zeros",
+    "12-4, Example 6 — Sketch from Roots"
+  ],
+  "warmUp": "Skill activation problem",
+  "conceptDevelopment": "Mini-lesson or exploration",
+  "guidedPractice": "Teacher-led practice with worked examples",
+  "independentPractice": "Practice problems from the lesson",
+  "assessment": "Exit ticket or quick check",
+  "capReflection": "Courage, Adaptability, Persistence reflection prompt"
+}

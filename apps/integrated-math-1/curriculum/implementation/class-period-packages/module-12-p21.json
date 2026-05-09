@@ -1,0 +1,9 @@
+{
+  "periodId": "m12-p21",
+  "dayType": "jigsaw",
+  "nonInstructionArtifact": {
+    "type": "jigsaw",
+    "focus": "Mathematical practices: proof writing, parallel/perpendicular reasoning, slope applications",
+    "activities": ["Jigsaw rotation on proof writing with parallel lines", "Expert groups on slope and distance calculations", "Teaching others your proof strategy"]
+  }
+}

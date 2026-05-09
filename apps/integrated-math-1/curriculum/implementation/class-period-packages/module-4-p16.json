@@ -1,0 +1,16 @@
+{
+  "periodId": "m4-p16",
+  "dayType": "instruction",
+  "sourceLesson": "4-6",
+  "classObjectiveCode": "4m",
+  "classObjective": "Write piecewise and step functions from tables, graphs, and verbal descriptions and model real-world situations using piecewise-linear and step functions.",
+  "workedExamples": [
+    "4-6, Example 3 — Model Real-World Situations with Step Functions (Shipping Cost, Rounding)"
+  ],
+  "warmUp": "Write a piecewise function for a phone plan that costs $0.10 per minute for the first 50 minutes, then $0.05 per minute thereafter",
+  "conceptDevelopment": "Mini-lesson: rounding rules for step functions; shipping cost contexts; dual pay rate models; writing functions from verbal descriptions",
+  "guidedPractice": "Teacher-led practice writing piecewise and step functions from verbal descriptions and modeling real-world situations",
+  "independentPractice": "Practice problems writing piecewise and step functions from descriptions, tables, and graphs for real-world contexts",
+  "assessment": "Exit ticket: write a piecewise function that models a taxi fare with $3.50 base plus $1.75 per quarter mile",
+  "capReflection": "How do real-world pricing structures naturally lead to piecewise function models?"
+}

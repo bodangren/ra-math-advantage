@@ -1,0 +1,18 @@
+{
+  "periodId": "m2-p17",
+  "dayType": "instruction",
+  "sourceLesson": "2-7",
+  "classObjectiveCode": "2n",
+  "classObjective": "Use dimensional analysis to convert between units of measurement and apply formulas to solve real-world problems.",
+  "workedExamples": [
+    "2-7, Example 5 — Dimensional Analysis and Unit Conversion (Conversion Factors)",
+    "2-7, Example 6 — Dimensional Analysis (Metric to Imperial)",
+    "2-7, Example 7 — Dimensional Analysis (Chain Conversions and Real-World Formula Application)"
+  ],
+  "warmUp": "Convert 5 feet to inches using dimensional analysis",
+  "conceptDevelopment": "Mini-lesson: conversion factors; metric-to-imperial conversions; chain conversions; real-world formula application",
+  "guidedPractice": "Teacher-led practice using dimensional analysis for unit conversions including multi-step chain conversions",
+  "independentPractice": "Practice problems using dimensional analysis for unit conversions and formula application",
+  "assessment": "Exit ticket: convert 100 miles per hour to feet per second using dimensional analysis",
+  "capReflection": "How does dimensional analysis help you avoid errors in unit conversions?"
+}

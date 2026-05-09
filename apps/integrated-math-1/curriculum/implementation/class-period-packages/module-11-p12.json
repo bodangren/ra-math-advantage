@@ -1,0 +1,18 @@
+{
+  "periodId": "m11-p12",
+  "dayType": "instruction",
+  "sourceLesson": "11-5",
+  "classObjectiveCode": "11j",
+  "classObjective": "Calculate the surface area and volume of prisms, cylinders, pyramids, and cones.",
+  "workedExamples": [
+    "11-5, Example 3 — Find Surface Area and Volume of Prisms and Cylinders",
+    "11-5, Example 4 — Find Surface Area and Volume of Pyramids and Cones",
+    "11-5, Example 5 — Solve Real-World Problems with Surface Area and Volume"
+  ],
+  "warmUp": "What is the volume formula for a rectangular prism?",
+  "conceptDevelopment": "Mini-lesson: SA and V formulas for prisms, cylinders, pyramids, cones; real-world application of 3D measurement",
+  "guidedPractice": "Teacher-led practice calculating surface area and volume of 3D solids",
+  "independentPractice": "Practice problems finding surface area and volume of prisms, cylinders, pyramids, and cones",
+  "assessment": "Exit ticket: find both the surface area and volume of a right circular cylinder with radius 3 and height 7",
+  "capReflection": "How does the volume of a cone compare to the volume of a cylinder with the same base and height?"
+}

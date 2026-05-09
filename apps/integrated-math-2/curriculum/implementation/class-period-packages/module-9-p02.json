@@ -1,0 +1,18 @@
+{
+  "periodId": "m9-p02",
+  "dayType": "instruction",
+  "sourceLesson": "9-1",
+  "classObjectiveCode": "9b",
+  "classObjective": "Identify equations with no solution or infinitely many solutions.",
+  "workedExamples": [
+    "9-1, Example 4 — No Solution Case",
+    "9-1, Example 5 — Infinitely Many Solutions",
+    "9-1, Example 6 — Classifying Solution Types"
+  ],
+  "warmUp": "Skill activation problem",
+  "conceptDevelopment": "Mini-lesson or exploration",
+  "guidedPractice": "Teacher-led practice with worked examples",
+  "independentPractice": "Practice problems from the lesson",
+  "assessment": "Exit ticket or quick check",
+  "capReflection": "Courage, Adaptability, Persistence reflection prompt"
+}

@@ -1,0 +1,18 @@
+{
+  "periodId": "m1-p16",
+  "dayType": "instruction",
+  "sourceLesson": "1-6",
+  "classObjectiveCode": "1k",
+  "classObjective": "Use ratios and percentages as metrics to model real-world situations and make decisions.",
+  "workedExamples": [
+    "1-6, Example 1 — Set Up and Evaluate Ratios as Metrics",
+    "1-6, Example 2 — Calculate and Compare Using Different Methods",
+    "1-6, Example 3 — Apply Context-Appropriate Rounding"
+  ],
+  "warmUp": "Express 45 out of 200 as a ratio, decimal, and percent",
+  "conceptDevelopment": "Mini-lesson: ratio metrics, debt-to-income contexts, context-appropriate rounding decisions",
+  "guidedPractice": "Teacher-led practice setting up and evaluating ratios as metrics for real-world decision-making",
+  "independentPractice": "Practice problems using ratios and percentages as metrics to model and evaluate real-world situations",
+  "assessment": "Exit ticket: evaluate a ratio metric and explain the decision it informs",
+  "capReflection": "How does context-appropriate rounding affect the decisions we make with numerical data?"
+}

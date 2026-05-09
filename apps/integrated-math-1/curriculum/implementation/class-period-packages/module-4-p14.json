@@ -1,0 +1,17 @@
+{
+  "periodId": "m4-p14",
+  "dayType": "instruction",
+  "sourceLesson": "4-5",
+  "classObjectiveCode": "4k",
+  "classObjective": "Write an explicit equation for the nth term of an arithmetic sequence and model real-world situations with arithmetic sequences.",
+  "workedExamples": [
+    "4-5, Example 3 — Write an Equation and Find the 7th Term of an Arithmetic Sequence",
+    "4-5, Example 4 — Model Real-World Situations with Arithmetic Sequences (Cooler, Theater, Postage)"
+  ],
+  "warmUp": "Write the explicit formula for the sequence: 3, 7, 11, 15, ...",
+  "conceptDevelopment": "Mini-lesson: explicit formula a_n = a_1 + (n-1)d; cooler, theater ticket, postage contexts; real-world modeling",
+  "guidedPractice": "Teacher-led practice writing explicit formulas for arithmetic sequences and modeling real-world situations",
+  "independentPractice": "Practice problems writing arithmetic sequence formulas and applying to real-world contexts",
+  "assessment": "Exit ticket: write the explicit formula for the number of seats in a theater with 20 rows, 30 seats in the first row, and 2 additional seats per row",
+  "capReflection": "How does the explicit formula for arithmetic sequences connect to the slope-intercept form of a linear equation?"
+}

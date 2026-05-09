@@ -1,0 +1,17 @@
+{
+  "periodId": "m6-p09",
+  "dayType": "instruction",
+  "sourceLesson": "6-4",
+  "classObjectiveCode": "6h",
+  "classObjective": "Find lateral areas and surface areas of pyramids and cones.",
+  "workedExamples": [
+    "6-4, Example 4 — Surface Area of Pyramids",
+    "6-4, Example 5 — Surface Area of Cones"
+  ],
+  "warmUp": "Skill activation problem",
+  "conceptDevelopment": "Mini-lesson or exploration",
+  "guidedPractice": "Teacher-led practice with worked examples",
+  "independentPractice": "Practice problems from the lesson",
+  "assessment": "Exit ticket or quick check",
+  "capReflection": "Courage, Adaptability, Persistence reflection prompt"
+}

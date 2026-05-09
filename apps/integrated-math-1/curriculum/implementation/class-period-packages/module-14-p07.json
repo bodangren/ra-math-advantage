@@ -1,0 +1,16 @@
+{
+  "periodId": "m14-p07",
+  "dayType": "instruction",
+  "sourceLesson": "14-3",
+  "classObjectiveCode": "14f",
+  "classObjective": "Identify the included angle and apply the SAS Congruence Postulate correctly.",
+  "workedExamples": [
+    "14-3, Example 3 — Write Proofs Using the SAS Postulate"
+  ],
+  "warmUp": "In the statement 'AB, BC form angle B' — is angle B the included angle?",
+  "conceptDevelopment": "Mini-lesson: identifying included angle between two sides; SAS with parallel lines for angle pairs; reflexive property for shared sides",
+  "guidedPractice": "Teacher-led practice identifying included angles and applying SAS correctly",
+  "independentPractice": "Practice problems writing SAS proofs and identifying the included angle in given side pairs",
+  "assessment": "Exit ticket: identify the included angle between sides AB and BC, then use SAS to prove triangles congruent",
+  "capReflection": "Why does the angle in SAS have to be the included angle between the two sides?"
+}

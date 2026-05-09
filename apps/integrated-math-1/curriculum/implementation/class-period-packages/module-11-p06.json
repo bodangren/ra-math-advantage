@@ -1,0 +1,17 @@
+{
+  "periodId": "m11-p06",
+  "dayType": "instruction",
+  "sourceLesson": "11-3",
+  "classObjectiveCode": "11e",
+  "classObjective": "Calculate the perimeter, circumference, and area of two-dimensional figures from coordinate grids and labeled diagrams.",
+  "workedExamples": [
+    "11-3, Example 1 — Find Perimeter and Area from Grid Figures",
+    "11-3, Example 2 — Calculate Measurements Using Two-Dimensional Models"
+  ],
+  "warmUp": "What is the area of a rectangle with length 8 and width 5?",
+  "conceptDevelopment": "Mini-lesson: perimeter, circumference, and area formulas; applying to figures from coordinate grids and labeled diagrams",
+  "guidedPractice": "Teacher-led practice calculating perimeters, circumferences, and areas from various figure representations",
+  "independentPractice": "Practice problems finding perimeter, circumference, and area of two-dimensional figures",
+  "assessment": "Exit ticket: find the perimeter and area of a figure plotted on a coordinate grid",
+  "capReflection": "How does working with figures on coordinate grids connect geometry to algebra?"
+}

@@ -1,0 +1,18 @@
+{
+  "periodId": "m6-p10",
+  "dayType": "instruction",
+  "sourceLesson": "6-4",
+  "classObjectiveCode": "6i",
+  "classObjective": "Find surface areas of spheres and composite solids.",
+  "workedExamples": [
+    "6-4, Example 7 — Surface Area of Spheres",
+    "6-4, Example 8 — Surface Area from Circumference",
+    "6-4, Example 9 — Surface Area of Composite Solids"
+  ],
+  "warmUp": "Skill activation problem",
+  "conceptDevelopment": "Mini-lesson or exploration",
+  "guidedPractice": "Teacher-led practice with worked examples",
+  "independentPractice": "Practice problems from the lesson",
+  "assessment": "Exit ticket or quick check",
+  "capReflection": "Courage, Adaptability, Persistence reflection prompt"
+}

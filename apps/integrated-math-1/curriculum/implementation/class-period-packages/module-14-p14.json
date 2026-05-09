@@ -1,0 +1,17 @@
+{
+  "periodId": "m14-p14",
+  "dayType": "instruction",
+  "sourceLesson": "14-6",
+  "classObjectiveCode": "14l",
+  "classObjective": "Solve for unknown variables using properties of isosceles and equilateral triangles.",
+  "workedExamples": [
+    "14-6, Example 3 — Solve for Unknowns in Isosceles Triangles",
+    "14-6, Example 4 — Solve for Unknowns in Equilateral Triangles"
+  ],
+  "warmUp": "What are the angles of an equilateral triangle?",
+  "conceptDevelopment": "Mini-lesson: setting expressions equal using isosceles/equilateral properties; algebraic solving for angle measures; equilateral → 60° per angle",
+  "guidedPractice": "Teacher-led practice solving for unknown variables using isosceles and equilateral triangle properties",
+  "independentPractice": "Practice problems finding unknown angles and sides in isosceles and equilateral triangles",
+  "assessment": "Exit ticket: find x and y if triangle ABC is isosceles with AB = BC, angle A = x + 20, and angle C = 2x - 10",
+  "capReflection": "How does the 60° angle property of equilateral triangles simplify solving problems involving them?"
+}

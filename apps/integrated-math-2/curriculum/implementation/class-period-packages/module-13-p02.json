@@ -1,0 +1,18 @@
+{
+  "periodId": "m13-p02",
+  "dayType": "instruction",
+  "sourceLesson": "13-1",
+  "classObjectiveCode": "13b",
+  "classObjective": "Verify trigonometric identities using fundamental relationships.",
+  "workedExamples": [
+    "13-1, Example 4 — Verify with Reciprocal Identities",
+    "13-1, Example 5 — Verify with Quotient Identities",
+    "13-1, Example 6 — Rewrite in Terms of sin and cos"
+  ],
+  "warmUp": "Skill activation problem",
+  "conceptDevelopment": "Mini-lesson or exploration",
+  "guidedPractice": "Teacher-led practice with worked examples",
+  "independentPractice": "Practice problems from the lesson",
+  "assessment": "Exit ticket or quick check",
+  "capReflection": "Courage, Adaptability, Persistence reflection prompt"
+}

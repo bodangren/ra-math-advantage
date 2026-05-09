@@ -1,0 +1,19 @@
+{
+  "periodId": "m1-p02",
+  "dayType": "instruction",
+  "sourceLesson": "1-1",
+  "classObjectiveCode": "1b",
+  "classObjective": "Evaluate numerical expressions accurately using the order of operations.",
+  "workedExamples": [
+    "1-1, Example 4 — Evaluate Numerical Expressions Using Order of Operations",
+    "1-1, Example 5 — Evaluate Numerical Expressions (Powers and Nested Grouping)",
+    "1-1, Example 6 — Evaluate Numerical Expressions (Fraction Bars)",
+    "1-1, Example 7 — Evaluate Real-World Expressions"
+  ],
+  "warmUp": "Review order of operations steps (PEMDAS)",
+  "conceptDevelopment": "Mini-lesson: applying order of operations to nested grouping symbols and fraction bars",
+  "guidedPractice": "Teacher-led practice evaluating numerical expressions with powers, nested parentheses, and fraction bars",
+  "independentPractice": "Practice problems evaluating numerical expressions using order of operations",
+  "assessment": "Exit ticket: evaluate 3 numerical expressions with different grouping structures",
+  "capReflection": "Where do students most often make errors when applying order of operations, and how can you avoid them?"
+}

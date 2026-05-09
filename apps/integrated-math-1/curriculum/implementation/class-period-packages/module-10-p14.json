@@ -1,0 +1,18 @@
+{
+  "periodId": "m10-p14",
+  "dayType": "instruction",
+  "sourceLesson": "10-7",
+  "classObjectiveCode": "10l",
+  "classObjective": "Use the Midpoint Formula to find the coordinates of the midpoint of a segment in the coordinate plane.",
+  "workedExamples": [
+    "10-7, Example 1 — Find the Midpoint on a Number Line",
+    "10-7, Example 2 — Real-World Midpoint Applications",
+    "10-7, Example 3 — Find the Midpoint in the Coordinate Plane"
+  ],
+  "warmUp": "What is the midpoint of (4, 8) and (6, 10)?",
+  "conceptDevelopment": "Mini-lesson: Midpoint Formula ((x1+x2)/2, (y1+y2)/2); number line midpoint; real-world midpoint reasoning",
+  "guidedPractice": "Teacher-led practice using the Midpoint Formula in various contexts",
+  "independentPractice": "Practice problems finding midpoints on number lines and coordinate planes",
+  "assessment": "Exit ticket: find the midpoint of (-5, 2) and (3, -4)",
+  "capReflection": "How does the Midpoint Formula relate to averaging coordinates?"
+}

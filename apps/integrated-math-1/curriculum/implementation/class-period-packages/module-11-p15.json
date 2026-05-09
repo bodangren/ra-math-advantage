@@ -1,0 +1,17 @@
+{
+  "periodId": "m11-p15",
+  "dayType": "instruction",
+  "sourceLesson": "11-7",
+  "classObjectiveCode": "11m",
+  "classObjective": "Distinguish between accuracy and precision in measurement contexts.",
+  "workedExamples": [
+    "11-7, Example 1 — Analyze Accuracy and Precision from Data",
+    "11-7, Example 2 — Calculate Approximate Error"
+  ],
+  "warmUp": "If you measure something as 5.2 cm vs 5.20 cm, what's the difference in precision?",
+  "conceptDevelopment": "Mini-lesson: accuracy vs. precision; approximate error; greatest possible error; measurement quality assessment",
+  "guidedPractice": "Teacher-led practice distinguishing accuracy from precision and calculating measurement error",
+  "independentPractice": "Practice problems analyzing measurement accuracy and precision and calculating error",
+  "assessment": "Exit ticket: distinguish accuracy from precision using the example of archery arrows hitting a target",
+  "capReflection": "Why is it important to understand the difference between accuracy and precision in scientific measurement?"
+}

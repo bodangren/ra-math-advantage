@@ -1,0 +1,18 @@
+{
+  "periodId": "m11-p07",
+  "dayType": "instruction",
+  "sourceLesson": "11-3",
+  "classObjectiveCode": "11f",
+  "classObjective": "Multiply polynomials in real-world area and geometric contexts.",
+  "workedExamples": [
+    "11-3, Example 4 — Area Model Multiplication",
+    "11-3, Example 5 — Real-World Product Application",
+    "11-3, Example 6 — Mixed Multiplication"
+  ],
+  "warmUp": "Skill activation problem",
+  "conceptDevelopment": "Mini-lesson or exploration",
+  "guidedPractice": "Teacher-led practice with worked examples",
+  "independentPractice": "Practice problems from the lesson",
+  "assessment": "Exit ticket or quick check",
+  "capReflection": "Courage, Adaptability, Persistence reflection prompt"
+}

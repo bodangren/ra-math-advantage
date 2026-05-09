@@ -1,0 +1,17 @@
+{
+  "periodId": "m1-p05",
+  "dayType": "instruction",
+  "sourceLesson": "1-2",
+  "classObjectiveCode": "1d",
+  "classObjective": "Solve real-world problems involving angle bisectors and the incenter.",
+  "workedExamples": [
+    "1-2, Example 3 — Incenter in Triangles",
+    "1-2, Example 4 — Real-World Angle Bisector Applications"
+  ],
+  "warmUp": "Skill activation problem",
+  "conceptDevelopment": "Mini-lesson or exploration",
+  "guidedPractice": "Teacher-led practice with worked examples",
+  "independentPractice": "Practice problems from the lesson",
+  "assessment": "Exit ticket or quick check",
+  "capReflection": "Courage, Adaptability, Persistence reflection prompt"
+}

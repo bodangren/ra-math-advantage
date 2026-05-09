@@ -1,0 +1,17 @@
+{
+  "periodId": "m3-p04",
+  "dayType": "instruction",
+  "sourceLesson": "3-2",
+  "classObjectiveCode": "3d",
+  "classObjective": "Find unknown side lengths in similar polygons using proportions; apply to real-world problems.",
+  "workedExamples": [
+    "3-2, Example 3 — Find Unknown Values",
+    "3-2, Example 4 — Apply Similarity to Real-World Problems"
+  ],
+  "warmUp": "Skill activation problem",
+  "conceptDevelopment": "Mini-lesson or exploration",
+  "guidedPractice": "Teacher-led practice with worked examples",
+  "independentPractice": "Practice problems from the lesson",
+  "assessment": "Exit ticket or quick check",
+  "capReflection": "Courage, Adaptability, Persistence reflection prompt"
+}

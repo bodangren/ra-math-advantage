@@ -1,0 +1,9 @@
+{
+  "periodId": "m11-p10",
+  "dayType": "mastery",
+  "nonInstructionArtifact": {
+    "type": "mastery",
+    "focus": "Objectives 11c-11h",
+    "activities": ["SRS practice on angle relationships and rigid motions", "Spiral review on transformation coordinate rules", "Error analysis on transformation identification"]
+  }
+}

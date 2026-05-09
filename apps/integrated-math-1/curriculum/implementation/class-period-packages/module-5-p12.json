@@ -1,0 +1,16 @@
+{
+  "periodId": "m5-p12",
+  "dayType": "instruction",
+  "sourceLesson": "5-5",
+  "classObjectiveCode": "5i",
+  "classObjective": "Construct and analyze a residual plot to assess the appropriateness of a linear model.",
+  "workedExamples": [
+    "5-5, Example 3 — Residual Plot Analysis"
+  ],
+  "warmUp": "What is a residual and how is it calculated?",
+  "conceptDevelopment": "Mini-lesson: random scatter vs. curved pattern in residuals; constructing residual plots; model adequacy assessment",
+  "guidedPractice": "Teacher-led practice constructing and interpreting residual plots to evaluate linear model appropriateness",
+  "independentPractice": "Practice problems constructing residual plots and determining whether a linear model is appropriate",
+  "assessment": "Exit ticket: given a residual plot, determine whether a linear model is appropriate and explain your reasoning",
+  "capReflection": "What does a residual plot with a pattern tell us that a scatter plot might not?"
+}

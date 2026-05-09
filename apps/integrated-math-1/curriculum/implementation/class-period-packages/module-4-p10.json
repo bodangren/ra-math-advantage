@@ -1,0 +1,19 @@
+{
+  "periodId": "m4-p10",
+  "dayType": "instruction",
+  "sourceLesson": "4-4",
+  "classObjectiveCode": "4h",
+  "classObjective": "Describe translations, dilations, and reflections of linear functions in relation to the parent function f(x) = x.",
+  "workedExamples": [
+    "4-4, Example 1 — Describe Vertical Translations of f(x) = x",
+    "4-4, Example 2 — Describe Horizontal Translations of f(x) = x",
+    "4-4, Example 3 — Describe Combined Translations",
+    "4-4, Example 4 — Describe Translations in Context"
+  ],
+  "warmUp": "How does f(x) + 3 differ from f(x) = x?",
+  "conceptDevelopment": "Mini-lesson: vertical and horizontal shifts (h and k parameter interpretation); parent function relationship",
+  "guidedPractice": "Teacher-led practice describing transformations of linear functions relative to f(x) = x",
+  "independentPractice": "Practice problems describing translations, dilations, and reflections of linear functions",
+  "assessment": "Exit ticket: describe how g(x) = 2x - 4 relates to f(x) = x",
+  "capReflection": "What is the relationship between the parameters h and k in g(x) = a(x - h) + k and the actual transformation?"
+}

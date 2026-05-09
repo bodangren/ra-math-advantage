@@ -1,0 +1,18 @@
+{
+  "periodId": "m10-p15",
+  "dayType": "instruction",
+  "sourceLesson": "10-7",
+  "classObjectiveCode": "10m",
+  "classObjective": "Find the coordinates of a missing endpoint when the midpoint and one endpoint are known.",
+  "workedExamples": [
+    "10-7, Example 4 — Find a Missing Endpoint When the Midpoint Is Known",
+    "10-7, Example 5 — Find a Missing Endpoint Algebraically",
+    "10-7, Example 6 — Solve Algebraic Midpoint Problems"
+  ],
+  "warmUp": "If the midpoint of (2, y) and (6, 8) is (4, 5), find y",
+  "conceptDevelopment": "Mini-lesson: solving 2M_x - x_1 = x_2; midpoint equations with variables; algebraic approach to missing endpoints",
+  "guidedPractice": "Teacher-led practice finding missing endpoints using midpoint relationships",
+  "independentPractice": "Practice problems finding missing endpoint coordinates when midpoint and one endpoint are known",
+  "assessment": "Exit ticket: the midpoint of (x, 7) and (5, 3) is (3, 5) — find x",
+  "capReflection": "Why does doubling the midpoint and subtracting the known endpoint give you the missing endpoint?"
+}

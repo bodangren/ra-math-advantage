@@ -1,0 +1,17 @@
+{
+  "periodId": "m3-p02",
+  "dayType": "instruction",
+  "sourceLesson": "3-1",
+  "classObjectiveCode": "3b",
+  "classObjective": "Graph dilated images and find perimeter relationships.",
+  "workedExamples": [
+    "3-1, Example 3 — Graph Dilated Triangles",
+    "3-1, Example 4 — Find the Scale Factor"
+  ],
+  "warmUp": "Skill activation problem",
+  "conceptDevelopment": "Mini-lesson or exploration",
+  "guidedPractice": "Teacher-led practice with worked examples",
+  "independentPractice": "Practice problems from the lesson",
+  "assessment": "Exit ticket or quick check",
+  "capReflection": "Courage, Adaptability, Persistence reflection prompt"
+}

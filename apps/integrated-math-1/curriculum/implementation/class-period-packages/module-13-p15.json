@@ -1,0 +1,9 @@
+{
+  "periodId": "m13-p15",
+  "dayType": "jigsaw",
+  "nonInstructionArtifact": {
+    "type": "jigsaw",
+    "focus": "Mathematical practices: tessellation construction, symmetry analysis, transformation composition reasoning",
+    "activities": ["Jigsaw rotation on transformation problems", "Expert groups on tessellation design", "Teaching others your symmetry analysis"]
+  }
+}

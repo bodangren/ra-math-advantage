@@ -1,0 +1,18 @@
+{
+  "periodId": "m11-p05",
+  "dayType": "instruction",
+  "sourceLesson": "11-2",
+  "classObjectiveCode": "11d",
+  "classObjective": "Apply addition of polynomials to find total area in geometric contexts.",
+  "workedExamples": [
+    "11-2, Example 4 — Area Model Addition",
+    "11-2, Example 5 — Real-World Area Application",
+    "11-2, Example 6 — Layered Polynomial Addition"
+  ],
+  "warmUp": "Skill activation problem",
+  "conceptDevelopment": "Mini-lesson or exploration",
+  "guidedPractice": "Teacher-led practice with worked examples",
+  "independentPractice": "Practice problems from the lesson",
+  "assessment": "Exit ticket or quick check",
+  "capReflection": "Courage, Adaptability, Persistence reflection prompt"
+}

@@ -1,0 +1,9 @@
+{
+  "periodId": "m1-p06",
+  "dayType": "jigsaw",
+  "nonInstructionArtifact": {
+    "type": "jigsaw",
+    "focus": "Mathematical practices: translation fluency between verbal, numerical, and algebraic representations",
+    "activities": ["Jigsaw rotation on expression translation across representations", "Expert group problem-solving", "Teaching others your representation strategy"]
+  }
+}

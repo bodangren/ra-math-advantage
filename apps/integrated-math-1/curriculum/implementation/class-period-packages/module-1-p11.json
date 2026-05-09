@@ -1,0 +1,18 @@
+{
+  "periodId": "m1-p11",
+  "dayType": "instruction",
+  "sourceLesson": "1-4",
+  "classObjectiveCode": "1h",
+  "classObjective": "Use the Distributive Property to simplify algebraic expressions and combine like terms.",
+  "workedExamples": [
+    "1-4, Example 3 — Simplify Algebraic Expressions (continued)",
+    "1-4, Example 4 — Combine Like Terms Using the Distributive Property",
+    "1-4, Example 5 — Translate and Simplify Verbal Expressions"
+  ],
+  "warmUp": "Identify like terms: 3x, 5, 2x, 7y, -4x",
+  "conceptDevelopment": "Mini-lesson: distribution of negative and fractional coefficients; combining like terms systematically",
+  "guidedPractice": "Teacher-led practice simplifying algebraic expressions with distribution and combining like terms",
+  "independentPractice": "Practice problems simplifying algebraic expressions using the Distributive Property and combining like terms",
+  "assessment": "Exit ticket: simplify 3 algebraic expressions using the Distributive Property",
+  "capReflection": "What common mistakes occur when distributing negative coefficients, and how do you avoid them?"
+}

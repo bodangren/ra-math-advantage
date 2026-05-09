@@ -1,0 +1,18 @@
+{
+  "periodId": "m10-p08",
+  "dayType": "instruction",
+  "sourceLesson": "10-4",
+  "classObjectiveCode": "10g",
+  "classObjective": "Use the Distance Formula to find the distance between two points in the coordinate plane.",
+  "workedExamples": [
+    "10-4, Example 1 — Find Segment Lengths on a Number Line",
+    "10-4, Example 2 — Determine Whether Segments Are Congruent",
+    "10-4, Example 3 — Find the Distance Between Two Points in the Coordinate Plane"
+  ],
+  "warmUp": "If point A is at (1, 2) and point B is at (4, 6), what is AB?",
+  "conceptDevelopment": "Mini-lesson: Distance Formula derivation from Pythagorean Theorem; number line distance; congruence check using distance",
+  "guidedPractice": "Teacher-led practice using the Distance Formula to find distances and check congruence",
+  "independentPractice": "Practice problems using the Distance Formula to calculate distances between points",
+  "assessment": "Exit ticket: find the distance between (-2, 3) and (4, -1)",
+  "capReflection": "How is the Distance Formula related to the Pythagorean Theorem?"
+}

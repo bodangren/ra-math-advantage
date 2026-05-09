@@ -1,0 +1,17 @@
+{
+  "periodId": "m12-p12",
+  "dayType": "instruction",
+  "sourceLesson": "12-5",
+  "classObjectiveCode": "12i",
+  "classObjective": "Find the value of c that completes the square for a trinomial in the form x² + bx.",
+  "workedExamples": [
+    "12-5, Example 1 — Find the Completing Square Constant",
+    "12-5, Example 2 — Verify a Perfect Square Trinomial"
+  ],
+  "warmUp": "Skill activation problem",
+  "conceptDevelopment": "Mini-lesson or exploration",
+  "guidedPractice": "Teacher-led practice with worked examples",
+  "independentPractice": "Practice problems from the lesson",
+  "assessment": "Exit ticket or quick check",
+  "capReflection": "Courage, Adaptability, Persistence reflection prompt"
+}

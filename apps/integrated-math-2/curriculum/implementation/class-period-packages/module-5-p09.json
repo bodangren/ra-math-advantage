@@ -1,0 +1,17 @@
+{
+  "periodId": "m5-p09",
+  "dayType": "instruction",
+  "sourceLesson": "5-5",
+  "classObjectiveCode": "5h",
+  "classObjective": "Identify the number of common tangents to pairs of circles; determine whether a segment is tangent.",
+  "workedExamples": [
+    "5-5, Example 1 — Identify Common Tangents",
+    "5-5, Example 2 — Determine Whether a Segment Is Tangent"
+  ],
+  "warmUp": "Skill activation problem",
+  "conceptDevelopment": "Mini-lesson or exploration",
+  "guidedPractice": "Teacher-led practice with worked examples",
+  "independentPractice": "Practice problems from the lesson",
+  "assessment": "Exit ticket or quick check",
+  "capReflection": "Courage, Adaptability, Persistence reflection prompt"
+}

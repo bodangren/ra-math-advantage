@@ -1,0 +1,18 @@
+{
+  "periodId": "m13-p09",
+  "dayType": "instruction",
+  "sourceLesson": "13-4",
+  "classObjectiveCode": "13h",
+  "classObjective": "Identify a single transformation that is equivalent to a composition of two reflections.",
+  "workedExamples": [
+    "13-4, Example 3 — Identify a Single Transformation Equivalent to Two Reflections in Parallel Lines (Translation)",
+    "13-4, Example 4 — Identify a Single Transformation Equivalent to Two Reflections in Intersecting Lines (Rotation)",
+    "13-4, Example 5 — Determine Congruence and Find a Composition of Transformations"
+  ],
+  "warmUp": "Two parallel lines are 4 units apart. What single transformation equals reflecting across both?",
+  "conceptDevelopment": "Mini-lesson: two parallel lines → translation (2d distance); two intersecting lines → rotation (2θ); congruence from compositions",
+  "guidedPractice": "Teacher-led practice identifying single transformations equivalent to reflection compositions",
+  "independentPractice": "Practice problems determining what single transformation equals given reflection compositions",
+  "assessment": "Exit ticket: what single transformation is equivalent to reflection across two parallel lines 3 units apart?",
+  "capReflection": "How does knowing that two reflections compose to a translation or rotation help you understand the nature of rigid motions?"
+}

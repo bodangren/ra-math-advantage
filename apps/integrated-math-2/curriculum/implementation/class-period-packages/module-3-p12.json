@@ -1,0 +1,9 @@
+{
+  "periodId": "m3-p12",
+  "dayType": "jigsaw",
+  "nonInstructionArtifact": {
+    "type": "jigsaw",
+    "focus": "Objectives 3a-3j",
+    "activities": ["Similarity criteria choice", "proof justification", "proportional reasoning"]
+  }
+}

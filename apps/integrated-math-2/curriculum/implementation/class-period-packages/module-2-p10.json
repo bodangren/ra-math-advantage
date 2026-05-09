@@ -1,0 +1,17 @@
+{
+  "periodId": "m2-p10",
+  "dayType": "instruction",
+  "sourceLesson": "2-5",
+  "classObjectiveCode": "2i",
+  "classObjective": "Apply properties of rhombi and squares to find angle measures and diagonal lengths.",
+  "workedExamples": [
+    "2-5, Example 1 — Find Values in a Rhombus",
+    "2-5, Example 2 — Find Diagonal Lengths in Squares"
+  ],
+  "warmUp": "Skill activation problem",
+  "conceptDevelopment": "Mini-lesson or exploration",
+  "guidedPractice": "Teacher-led practice with worked examples",
+  "independentPractice": "Practice problems from the lesson",
+  "assessment": "Exit ticket or quick check",
+  "capReflection": "Courage, Adaptability, Persistence reflection prompt"
+}

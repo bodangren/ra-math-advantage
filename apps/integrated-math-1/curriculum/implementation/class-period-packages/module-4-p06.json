@@ -1,0 +1,16 @@
+{
+  "periodId": "m4-p06",
+  "dayType": "instruction",
+  "sourceLesson": "4-2",
+  "classObjectiveCode": "4e",
+  "classObjective": "Interpret slope and rate of change in real-world contexts including grade, elevation, and positioning.",
+  "workedExamples": [
+    "4-2, Example 10 — Slope in Real-World Contexts (Grade, Elevation, Positioning)"
+  ],
+  "warmUp": "A road rises 30 feet over a horizontal distance of 150 feet — what's its grade?",
+  "conceptDevelopment": "Mini-lesson: ADA wheelchair ramp standard (1:12 ratio); road grade interpretation; vertical vs. horizontal change; positioning context",
+  "guidedPractice": "Teacher-led practice interpreting slope in real-world contexts including grade, elevation, and positioning",
+  "independentPractice": "Practice problems interpreting slope/rate of change in real-world contexts",
+  "assessment": "Exit ticket: interpret the meaning of a 6% grade on a highway",
+  "capReflection": "Why is understanding slope important in real-world construction and accessibility contexts?"
+}

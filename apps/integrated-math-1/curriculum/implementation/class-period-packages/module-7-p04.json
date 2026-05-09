@@ -1,0 +1,17 @@
+{
+  "periodId": "m7-p04",
+  "dayType": "instruction",
+  "sourceLesson": "7-2",
+  "classObjectiveCode": "7c",
+  "classObjective": "Solve systems of linear equations using the substitution method.",
+  "workedExamples": [
+    "7-2, Example 1 — Solve Systems by Substitution",
+    "7-2, Example 2 — Applications of Systems of Equations"
+  ],
+  "warmUp": "Solve for y: 3x + y = 12",
+  "conceptDevelopment": "Mini-lesson: isolating a variable; substitution step; back-substitution; when substitution is most efficient",
+  "guidedPractice": "Teacher-led practice solving systems using the substitution method",
+  "independentPractice": "Practice problems solving systems of equations by substitution",
+  "assessment": "Exit ticket: solve by substitution: y = 3x - 5 and 2x + y = 10",
+  "capReflection": "When is the substitution method preferred over graphing for solving systems?"
+}

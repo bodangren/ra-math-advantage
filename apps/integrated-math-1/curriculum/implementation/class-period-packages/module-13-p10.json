@@ -1,0 +1,17 @@
+{
+  "periodId": "m13-p10",
+  "dayType": "instruction",
+  "sourceLesson": "13-5",
+  "classObjectiveCode": "13i",
+  "classObjective": "Determine whether a regular polygon will tessellate the plane by examining its interior angle measure.",
+  "workedExamples": [
+    "13-5, Example 1 — Determine Whether Regular Polygons Tessellate the Plane",
+    "13-5, Example 2 — Determine Whether Semiregular Uniform Tessellations Exist"
+  ],
+  "warmUp": "What is the interior angle of a regular hexagon?",
+  "conceptDevelopment": "Mini-lesson: interior angle formula (180(n-2)/n); 360° ÷ interior angle must be whole number; triangle, square, hexagon tessellations",
+  "guidedPractice": "Teacher-led practice determining tessellation capability from interior angles",
+  "independentPractice": "Practice problems determining whether regular polygons tessellate and analyzing tessellation patterns",
+  "assessment": "Exit ticket: determine whether a regular pentagon tessellates the plane and explain why or why not",
+  "capReflection": "Why can any triangle or quadrilateral tessellate the plane, but only certain regular polygons can?"
+}

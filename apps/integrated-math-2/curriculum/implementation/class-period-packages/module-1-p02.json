@@ -1,0 +1,17 @@
+{
+  "periodId": "m1-p02",
+  "dayType": "instruction",
+  "sourceLesson": "1-1",
+  "classObjectiveCode": "1b",
+  "classObjective": "Apply properties of circumcenters and perpendicular bisectors in real-world contexts.",
+  "workedExamples": [
+    "1-1, Example 3 — Apply Circumcenter in Coordinate Problems",
+    "1-1, Example 4 — Real-World Circumcenter Applications"
+  ],
+  "warmUp": "Skill activation problem",
+  "conceptDevelopment": "Mini-lesson or exploration",
+  "guidedPractice": "Teacher-led practice with worked examples",
+  "independentPractice": "Practice problems from the lesson",
+  "assessment": "Exit ticket or quick check",
+  "capReflection": "Courage, Adaptability, Persistence reflection prompt"
+}

@@ -1,0 +1,16 @@
+{
+  "periodId": "m12-p08",
+  "dayType": "instruction",
+  "sourceLesson": "12-4",
+  "classObjectiveCode": "12g",
+  "classObjective": "Apply geometric postulates about points, lines, and planes to justify statements.",
+  "workedExamples": [
+    "12-4, Example 1 — Apply Postulates about Points, Lines, and Planes"
+  ],
+  "warmUp": "What postulate states that through any two points there is exactly one line?",
+  "conceptDevelopment": "Mini-lesson: postulates for lines, planes, intersections; using postulates to justify geometric statements",
+  "guidedPractice": "Teacher-led practice applying geometric postulates to justify statements",
+  "independentPractice": "Practice problems applying postulates about points, lines, and planes to justify conclusions",
+  "assessment": "Exit ticket: which postulate justifies the statement that exactly one line passes through points A and B?",
+  "capReflection": "Why are postulates considered the foundational truths in an axiomatic geometry system?"
+}

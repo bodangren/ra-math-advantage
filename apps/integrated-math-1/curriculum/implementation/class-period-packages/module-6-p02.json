@@ -1,0 +1,20 @@
+{
+  "periodId": "m6-p02",
+  "dayType": "instruction",
+  "sourceLesson": "6-1",
+  "classObjectiveCode": "6b",
+  "classObjective": "Solve one-step inequalities using addition, subtraction, multiplication, and division, including when the coefficient is negative.",
+  "workedExamples": [
+    "6-1, Example 3 — Solve and Graph Inequalities Using Addition and Subtraction",
+    "6-1, Example 4 — Solve and Graph Inequalities Using Multiplication and Division",
+    "6-1, Example 5 — Apply Inequalities to Real-World Problems",
+    "6-1, Example 6 — Solve and Graph Inequalities (Multiplication and Division with Negatives)",
+    "6-1, Example 7 — Real-World Application of Inequalities"
+  ],
+  "warmUp": "Solve x - 4 > 10 and x + 3 <= 7",
+  "conceptDevelopment": "Mini-lesson: reverse inequality symbol when dividing/multiplying by negatives; checking solution sets",
+  "guidedPractice": "Teacher-led practice solving one-step inequalities including negative coefficient cases",
+  "independentPractice": "Practice problems solving one-step inequalities using all four operations",
+  "assessment": "Exit ticket: solve -3x >= 12 and graph the solution set",
+  "capReflection": "Why does the inequality sign reverse when you multiply or divide by a negative number?"
+}

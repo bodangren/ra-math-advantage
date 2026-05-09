@@ -1,0 +1,9 @@
+{
+  "periodId": "m3-p09",
+  "dayType": "mastery",
+  "nonInstructionArtifact": {
+    "type": "mastery",
+    "focus": "Objectives 3e-3f",
+    "activities": ["SRS practice on discrete/continuous and linear/nonlinear classification", "Spiral review on first differences", "Error analysis on linearity determination"]
+  }
+}

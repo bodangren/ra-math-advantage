@@ -1,0 +1,17 @@
+{
+  "periodId": "m13-p08",
+  "dayType": "instruction",
+  "sourceLesson": "13-4",
+  "classObjectiveCode": "13g",
+  "classObjective": "Graph the image of a figure after a glide reflection or other composition of transformations on the coordinate plane.",
+  "workedExamples": [
+    "13-4, Example 1 — Graph the Image of a Figure Under a Glide Reflection",
+    "13-4, Example 2 — Graph the Image of a Figure Under a Composition of Transformations"
+  ],
+  "warmUp": "What is a glide reflection?",
+  "conceptDevelopment": "Mini-lesson: glide reflection (translation then reflection); composition order matters; multiple transformation sequences",
+  "guidedPractice": "Teacher-led practice graphing compositions of transformations including glide reflections",
+  "independentPractice": "Practice problems graphing figures after glide reflections and other composition sequences",
+  "assessment": "Exit ticket: perform a glide reflection on a figure: first translate <3, 0>, then reflect over the x-axis",
+  "capReflection": "Why does the order of transformations matter in a composition?"
+}

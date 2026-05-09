@@ -1,0 +1,17 @@
+{
+  "periodId": "m8-p11",
+  "dayType": "instruction",
+  "sourceLesson": "8-5",
+  "classObjectiveCode": "8i",
+  "classObjective": "Write and use explicit formulas to model real-world situations involving exponential growth and decay.",
+  "workedExamples": [
+    "8-5, Example 4 — Find the 10th Term Using the Explicit Formula a_n = a_1 * r^(n-1)",
+    "8-5, Example 5 — Apply Geometric Sequences to Real-World Situations"
+  ],
+  "warmUp": "Write the explicit formula for the geometric sequence: 3, 6, 12, 24, ...",
+  "conceptDevelopment": "Mini-lesson: explicit formula a_n = a_1 * r^(n-1); real-world applications of geometric sequences",
+  "guidedPractice": "Teacher-led practice writing and using explicit formulas for geometric sequences in real-world contexts",
+  "independentPractice": "Practice problems writing geometric sequence formulas and applying to growth/decay situations",
+  "assessment": "Exit ticket: a细菌 culture starts with 100 bacteria and triples every hour. How many bacteria after 8 hours?",
+  "capReflection": "How is the explicit formula for a geometric sequence related to the exponential function form y = ab^x?"
+}

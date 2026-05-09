@@ -1,0 +1,17 @@
+{
+  "periodId": "m6-p01",
+  "dayType": "instruction",
+  "sourceLesson": "6-1",
+  "classObjectiveCode": "6a",
+  "classObjective": "Graph the solution set of a one-step inequality on a number line and write an inequality that matches a given number-line graph.",
+  "workedExamples": [
+    "6-1, Example 1 — Graph Solution Sets of Inequalities on a Number Line",
+    "6-1, Example 2 — Write Inequalities from Graphs"
+  ],
+  "warmUp": "Graph x > 3 and x <= 5 on a number line",
+  "conceptDevelopment": "Mini-lesson: open vs. closed circles; shading direction; 'at least' and 'at most' language interpretation",
+  "guidedPractice": "Teacher-led practice graphing one-step inequalities and writing inequalities from number-line graphs",
+  "independentPractice": "Practice problems graphing inequality solution sets and matching graphs to inequalities",
+  "assessment": "Exit ticket: write the inequality shown on a number line and graph the inequality x < -2",
+  "capReflection": "How does knowing the direction of the inequality symbol help you determine which way to shade on a number line?"
+}

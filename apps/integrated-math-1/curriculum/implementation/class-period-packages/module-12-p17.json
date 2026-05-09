@@ -1,0 +1,18 @@
+{
+  "periodId": "m12-p17",
+  "dayType": "instruction",
+  "sourceLesson": "12-8",
+  "classObjectiveCode": "12n",
+  "classObjective": "Write equations of lines in slope-intercept form that are parallel or perpendicular to a given line and pass through a given point.",
+  "workedExamples": [
+    "12-8, Example 3 — Determine Whether Lines Given by Equations Are Parallel, Perpendicular, or Neither",
+    "12-8, Example 4 — Graph Lines Using Parallel and Perpendicular Relationships",
+    "12-8, Example 5 — Write Equations for Parallel and Perpendicular Lines"
+  ],
+  "warmUp": "What is the slope of a line perpendicular to y = 2/3 x + 5?",
+  "conceptDevelopment": "Mini-lesson: point-slope form for parallel/perpendicular; slope-intercept form; negative reciprocal slopes",
+  "guidedPractice": "Teacher-led practice writing parallel and perpendicular line equations",
+  "independentPractice": "Practice problems writing equations for lines parallel or perpendicular to given lines through specified points",
+  "assessment": "Exit ticket: write the equation of the line perpendicular to y = -1/2 x + 3 passing through (4, 1)",
+  "capReflection": "Why is the product of slopes of perpendicular lines equal to -1?"
+}

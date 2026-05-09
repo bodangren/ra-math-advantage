@@ -1,0 +1,17 @@
+{
+  "periodId": "m4-p07",
+  "dayType": "instruction",
+  "sourceLesson": "4-3",
+  "classObjectiveCode": "4f",
+  "classObjective": "Write linear equations in slope-intercept form given the slope and y-intercept and rewrite linear equations from standard form into slope-intercept form.",
+  "workedExamples": [
+    "4-3, Example 1 — Write Equations from Slope and y-Intercept",
+    "4-3, Example 2 — Rewrite in Slope-Intercept Form"
+  ],
+  "warmUp": "Write the equation of a line with slope 3 and y-intercept -2",
+  "conceptDevelopment": "Mini-lesson: direct substitution into y = mx + b; isolating y from standard form; coefficient handling",
+  "guidedPractice": "Teacher-led practice writing equations from slope/intercept and converting between forms",
+  "independentPractice": "Practice problems writing linear equations and converting standard form to slope-intercept form",
+  "assessment": "Exit ticket: write 2x + 5y = 15 in slope-intercept form and identify m and b",
+  "capReflection": "Why is slope-intercept form particularly useful for quickly graphing a linear equation?"
+}

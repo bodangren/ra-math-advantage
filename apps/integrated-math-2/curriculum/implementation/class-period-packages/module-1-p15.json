@@ -1,0 +1,17 @@
+{
+  "periodId": "m1-p15",
+  "dayType": "instruction",
+  "sourceLesson": "1-6",
+  "classObjectiveCode": "1l",
+  "classObjective": "Apply the Triangle Inequality Theorem in proofs and real-world contexts.",
+  "workedExamples": [
+    "1-6, Example 3 — Real-World Triangle Inequality",
+    "1-6, Example 4 — Proofs Using the Triangle Inequality"
+  ],
+  "warmUp": "Skill activation problem",
+  "conceptDevelopment": "Mini-lesson or exploration",
+  "guidedPractice": "Teacher-led practice with worked examples",
+  "independentPractice": "Practice problems from the lesson",
+  "assessment": "Exit ticket or quick check",
+  "capReflection": "Courage, Adaptability, Persistence reflection prompt"
+}

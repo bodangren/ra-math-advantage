@@ -1,0 +1,17 @@
+{
+  "periodId": "m9-p11",
+  "dayType": "instruction",
+  "sourceLesson": "9-5",
+  "classObjectiveCode": "9i",
+  "classObjective": "Choose appropriate measures of center and spread based on whether a distribution is symmetric or skewed.",
+  "workedExamples": [
+    "9-5, Example 3 — Describe Center and Spread Using a Box Plot",
+    "9-5, Example 4 — Analyze Outliers and Their Effects"
+  ],
+  "warmUp": "For a symmetric distribution, which measure of center is most representative?",
+  "conceptDevelopment": "Mini-lesson: mean/std dev for symmetric distributions; median/IQR for skewed distributions; outlier effect analysis",
+  "guidedPractice": "Teacher-led practice choosing appropriate statistics based on distribution shape",
+  "independentPractice": "Practice problems analyzing distributions, identifying outliers, and selecting appropriate statistics",
+  "assessment": "Exit ticket: a data set has a strong outlier — which measures of center and spread would you use and why?",
+  "capReflection": "Why is mean/std dev inappropriate for heavily skewed distributions?"
+}

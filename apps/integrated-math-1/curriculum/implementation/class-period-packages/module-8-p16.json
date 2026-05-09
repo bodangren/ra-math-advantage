@@ -1,0 +1,8 @@
+{
+  "periodId": "m8-p16",
+  "dayType": "test",
+  "nonInstructionArtifact": {
+    "type": "test",
+    "module": 8
+  }
+}

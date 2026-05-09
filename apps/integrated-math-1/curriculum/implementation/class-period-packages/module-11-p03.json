@@ -1,0 +1,9 @@
+{
+  "periodId": "m11-p03",
+  "dayType": "mastery",
+  "nonInstructionArtifact": {
+    "type": "mastery",
+    "focus": "Objectives 11a-11b",
+    "activities": ["SRS practice on angle notation and relationships", "Spiral review on angle addition and bisectors", "Error analysis on angle measure calculations"]
+  }
+}

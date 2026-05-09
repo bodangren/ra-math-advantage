@@ -1,0 +1,17 @@
+{
+  "periodId": "m9-p14",
+  "dayType": "instruction",
+  "sourceLesson": "9-6",
+  "classObjectiveCode": "9k",
+  "classObjective": "Construct and interpret box plots and histograms to compare the shape, center, and spread of two data sets.",
+  "workedExamples": [
+    "9-6, Example 3 — Compare Two Data Sets with Graphs and Statistics",
+    "9-6, Example 4 — Compare Two Data Sets Using Box Plots and Histograms"
+  ],
+  "warmUp": "Compare the spread of two data sets given their ranges: Set A range = 20, Set B range = 35",
+  "conceptDevelopment": "Mini-lesson: comparing distributions using box plots and histograms; choosing appropriate comparison statistics based on distribution shape",
+  "guidedPractice": "Teacher-led practice comparing two data sets using visual displays and statistics",
+  "independentPractice": "Practice problems comparing two data sets using box plots, histograms, and appropriate statistics",
+  "assessment": "Exit ticket: compare the test scores of two classes using given box plots — describe differences in shape, center, and spread",
+  "capReflection": "What visual elements are most helpful when comparing two data sets side by side?"
+}

@@ -1,0 +1,18 @@
+{
+  "periodId": "m8-p10",
+  "dayType": "instruction",
+  "sourceLesson": "8-4",
+  "classObjectiveCode": "8h",
+  "classObjective": "Classify functions as linear or nonlinear from multiple representations.",
+  "workedExamples": [
+    "8-4, Example 4 — Classify from Graphs",
+    "8-4, Example 5 — From Equations",
+    "8-4, Example 6 — Mixed Representations"
+  ],
+  "warmUp": "Skill activation problem",
+  "conceptDevelopment": "Mini-lesson or exploration",
+  "guidedPractice": "Teacher-led practice with worked examples",
+  "independentPractice": "Practice problems from the lesson",
+  "assessment": "Exit ticket or quick check",
+  "capReflection": "Courage, Adaptability, Persistence reflection prompt"
+}

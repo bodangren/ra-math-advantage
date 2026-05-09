@@ -1,0 +1,17 @@
+{
+  "periodId": "m2-p02",
+  "dayType": "instruction",
+  "sourceLesson": "2-1",
+  "classObjectiveCode": "2b",
+  "classObjective": "Find the sum of exterior angles and apply exterior angle relationships.",
+  "workedExamples": [
+    "2-1, Example 4 — Find Unknown Values in Diagrams",
+    "2-1, Example 5 — Find Exterior Angle Measures"
+  ],
+  "warmUp": "Skill activation problem",
+  "conceptDevelopment": "Mini-lesson or exploration",
+  "guidedPractice": "Teacher-led practice with worked examples",
+  "independentPractice": "Practice problems from the lesson",
+  "assessment": "Exit ticket or quick check",
+  "capReflection": "Courage, Adaptability, Persistence reflection prompt"
+}

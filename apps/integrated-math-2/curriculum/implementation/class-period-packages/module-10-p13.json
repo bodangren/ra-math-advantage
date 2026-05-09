@@ -1,0 +1,18 @@
+{
+  "periodId": "m10-p13",
+  "dayType": "instruction",
+  "sourceLesson": "10-5",
+  "classObjectiveCode": "10j",
+  "classObjective": "Apply solving radical equations to real-world problems involving distance and measurement.",
+  "workedExamples": [
+    "10-5, Example 4 — Distance Formula Application",
+    "10-5, Example 5 — Geometric Application",
+    "10-5, Example 6 — Real-World Optimization"
+  ],
+  "warmUp": "Skill activation problem",
+  "conceptDevelopment": "Mini-lesson or exploration",
+  "guidedPractice": "Teacher-led practice with worked examples",
+  "independentPractice": "Practice problems from the lesson",
+  "assessment": "Exit ticket or quick check",
+  "capReflection": "Courage, Adaptability, Persistence reflection prompt"
+}

@@ -1,0 +1,16 @@
+{
+  "periodId": "m13-p13",
+  "dayType": "instruction",
+  "sourceLesson": "13-6",
+  "classObjectiveCode": "13k",
+  "classObjective": "Identify and draw lines of symmetry for two-dimensional figures.",
+  "workedExamples": [
+    "13-6, Example 1 — Identify and Draw Lines of Symmetry"
+  ],
+  "warmUp": "How many lines of symmetry does a regular hexagon have?",
+  "conceptDevelopment": "Mini-lesson: vertical, horizontal, diagonal lines of symmetry; counting lines of symmetry; identifying symmetry in various figures",
+  "guidedPractice": "Teacher-led practice identifying and drawing lines of symmetry in figures",
+  "independentPractice": "Practice problems identifying all lines of symmetry in regular polygons and other figures",
+  "assessment": "Exit ticket: identify all lines of symmetry in a rectangle and an isosceles triangle",
+  "capReflection": "How does the number of lines of symmetry relate to the regularity of a polygon?"
+}

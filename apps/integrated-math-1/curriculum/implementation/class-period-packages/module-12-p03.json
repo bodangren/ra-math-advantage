@@ -1,0 +1,9 @@
+{
+  "periodId": "m12-p03",
+  "dayType": "mastery",
+  "nonInstructionArtifact": {
+    "type": "mastery",
+    "focus": "Objectives 12a-12b",
+    "activities": ["SRS practice on conjecture and counterexample", "Spiral review on pattern recognition", "Error analysis on conjecture testing"]
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "periodId": "m8-p15",
+  "dayType": "instruction",
+  "sourceLesson": "8-6",
+  "classObjectiveCode": "8l",
+  "classObjective": "Analyze and interpret functions in context using multiple representations.",
+  "workedExamples": [
+    "8-6, Example 4 — Real-World Comparison",
+    "8-6, Example 5 — Interpreting Key Features in Context",
+    "8-6, Example 6 — Choosing the Best Model"
+  ],
+  "warmUp": "Skill activation problem",
+  "conceptDevelopment": "Mini-lesson or exploration",
+  "guidedPractice": "Teacher-led practice with worked examples",
+  "independentPractice": "Practice problems from the lesson",
+  "assessment": "Exit ticket or quick check",
+  "capReflection": "Courage, Adaptability, Persistence reflection prompt"
+}

@@ -1,0 +1,17 @@
+{
+  "periodId": "m13-p04",
+  "dayType": "instruction",
+  "sourceLesson": "13-2",
+  "classObjectiveCode": "13c",
+  "classObjective": "Determine whether a given transformation between two figures is a translation and justify the answer.",
+  "workedExamples": [
+    "13-2, Example 1 — Determine Whether a Triangle Is a Translation Image",
+    "13-2, Example 2 — Determine Whether a Quadrilateral Is a Translation Image"
+  ],
+  "warmUp": "What properties does a translation preserve that other transformations might not?",
+  "conceptDevelopment": "Mini-lesson: verifying translation by checking all vertex vectors; rigid transformation properties; translation identification",
+  "guidedPractice": "Teacher-led practice determining whether figures are related by translation",
+  "independentPractice": "Practice problems determining whether given transformations are translations and justifying conclusions",
+  "assessment": "Exit ticket: determine whether figure B with vertices (5,2), (7,5), (9,3) is a translation of figure A with vertices (2,2), (4,5), (6,3)",
+  "capReflection": "Why is checking all vertex vectors necessary to confirm a transformation is a translation?"
+}

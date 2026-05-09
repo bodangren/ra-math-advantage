@@ -1,0 +1,17 @@
+{
+  "periodId": "m6-p14",
+  "dayType": "instruction",
+  "sourceLesson": "6-6",
+  "classObjectiveCode": "6l",
+  "classObjective": "Find volumes of prisms and pyramids.",
+  "workedExamples": [
+    "6-6, Example 1 — Volume of Prisms",
+    "6-6, Example 2 — Volume of Pyramids"
+  ],
+  "warmUp": "Skill activation problem",
+  "conceptDevelopment": "Mini-lesson or exploration",
+  "guidedPractice": "Teacher-led practice with worked examples",
+  "independentPractice": "Practice problems from the lesson",
+  "assessment": "Exit ticket or quick check",
+  "capReflection": "Courage, Adaptability, Persistence reflection prompt"
+}

@@ -1,0 +1,9 @@
+{
+  "periodId": "m4-p12",
+  "dayType": "mastery",
+  "nonInstructionArtifact": {
+    "type": "mastery",
+    "focus": "Objectives 4f-4i",
+    "activities": ["SRS practice on transformations and slope-intercept form", "Spiral review writing equations from transformations", "Error analysis on transformation classification"]
+  }
+}

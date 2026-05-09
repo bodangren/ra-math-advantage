@@ -1,0 +1,18 @@
+{
+  "periodId": "m3-p10",
+  "dayType": "instruction",
+  "sourceLesson": "3-5",
+  "classObjectiveCode": "3i",
+  "classObjective": "Find lengths using midsegments and apply triangle proportionality to real-world problems.",
+  "workedExamples": [
+    "3-5, Example 3 — Find Values with Midsegments",
+    "3-5, Example 4 — Apply to Real-World Problems",
+    "3-5, Example 5 — Find Multiple Unknown Values"
+  ],
+  "warmUp": "Skill activation problem",
+  "conceptDevelopment": "Mini-lesson or exploration",
+  "guidedPractice": "Teacher-led practice with worked examples",
+  "independentPractice": "Practice problems from the lesson",
+  "assessment": "Exit ticket or quick check",
+  "capReflection": "Courage, Adaptability, Persistence reflection prompt"
+}

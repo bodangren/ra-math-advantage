@@ -1,0 +1,9 @@
+{
+  "periodId": "m5-p10",
+  "dayType": "mastery",
+  "nonInstructionArtifact": {
+    "type": "mastery",
+    "focus": "Objectives 5e-5g",
+    "activities": ["SRS practice on scatter plots and correlation analysis", "Spiral review on line of fit", "Error analysis on correlation vs. causation"]
+  }
+}

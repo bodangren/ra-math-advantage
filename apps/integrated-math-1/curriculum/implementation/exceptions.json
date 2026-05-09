@@ -1,0 +1,24 @@
+{
+  "exceptions": [
+    {
+      "periodId": "m6-p16",
+      "type": "doubleReview",
+      "note": "Module 6 has two consecutive review days (p16 and p17) to cover the volume of inequality solving technique vocabulary"
+    },
+    {
+      "periodId": "m6-p17",
+      "type": "doubleReview",
+      "note": "Module 6 review day 2 focuses on error analysis and special cases"
+    },
+    {
+      "periodId": "m7-p18",
+      "type": "doubleTest",
+      "note": "Module 7 has two test days (p18 and p19) as consolidation at end of IM1 course"
+    },
+    {
+      "periodId": "m7-p19",
+      "type": "doubleTest",
+      "note": "Module 7 assessment (extended sitting if needed)"
+    }
+  ]
+}

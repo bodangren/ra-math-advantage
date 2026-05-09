@@ -1,0 +1,17 @@
+{
+  "periodId": "m10-p05",
+  "dayType": "instruction",
+  "sourceLesson": "10-2",
+  "classObjectiveCode": "10d",
+  "classObjective": "Draw and label figures that accurately represent given geometric relationships.",
+  "workedExamples": [
+    "10-2, Example 3 — Draw and Label Geometric Figures",
+    "10-2, Example 4 — Analyze a Three-Dimensional Figure for Planes and Coplanarity"
+  ],
+  "warmUp": "Draw two intersecting lines and label them",
+  "conceptDevelopment": "Mini-lesson: spatial visualization; drawing intersecting/non-intersecting lines and planes; accurate labeling conventions",
+  "guidedPractice": "Teacher-led practice drawing and labeling geometric figures from verbal descriptions",
+  "independentPractice": "Practice problems drawing accurate geometric figures with correct notation",
+  "assessment": "Exit ticket: draw and label a figure showing two intersecting planes with a line of intersection",
+  "capReflection": "What spatial visualization skills are needed to accurately represent 3D relationships in 2D drawings?"
+}

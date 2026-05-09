@@ -1,0 +1,9 @@
+{
+  "periodId": "m14-p10",
+  "dayType": "mastery",
+  "nonInstructionArtifact": {
+    "type": "mastery",
+    "focus": "Objectives 14e-14h",
+    "activities": ["SRS practice on SSS, SAS, ASA, AAS proofs", "Spiral review on triangle congruence postulates", "Error analysis on proof structure"]
+  }
+}

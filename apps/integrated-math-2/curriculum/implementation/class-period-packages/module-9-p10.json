@@ -1,0 +1,18 @@
+{
+  "periodId": "m9-p10",
+  "dayType": "instruction",
+  "sourceLesson": "9-4",
+  "classObjectiveCode": "9h",
+  "classObjective": "Classify systems of equations as having one solution, no solution, or infinitely many solutions.",
+  "workedExamples": [
+    "9-4, Example 4 — One Solution",
+    "9-4, Example 5 — No Solution",
+    "9-4, Example 6 — Infinitely Many Solutions"
+  ],
+  "warmUp": "Skill activation problem",
+  "conceptDevelopment": "Mini-lesson or exploration",
+  "guidedPractice": "Teacher-led practice with worked examples",
+  "independentPractice": "Practice problems from the lesson",
+  "assessment": "Exit ticket or quick check",
+  "capReflection": "Courage, Adaptability, Persistence reflection prompt"
+}

@@ -1,0 +1,16 @@
+{
+  "periodId": "m5-p18",
+  "dayType": "instruction",
+  "sourceLesson": "5-8",
+  "classObjectiveCode": "5o",
+  "classObjective": "Apply parabolic equations to real-world contexts (highways, tunnels, headlights, flashlights).",
+  "workedExamples": [
+    "5-8, Example 3 — Parabolas in the Real World (highway valley, tunnel design)"
+  ],
+  "warmUp": "Skill activation problem",
+  "conceptDevelopment": "Mini-lesson or exploration",
+  "guidedPractice": "Teacher-led practice with worked examples",
+  "independentPractice": "Practice problems from the lesson",
+  "assessment": "Exit ticket or quick check",
+  "capReflection": "Courage, Adaptability, Persistence reflection prompt"
+}

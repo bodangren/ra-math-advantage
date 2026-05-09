@@ -1,0 +1,18 @@
+{
+  "periodId": "m9-p13",
+  "dayType": "instruction",
+  "sourceLesson": "9-5",
+  "classObjectiveCode": "9j",
+  "classObjective": "Apply linear programming to real-world optimization problems.",
+  "workedExamples": [
+    "9-5, Example 4 — Linear Programming Setup",
+    "9-5, Example 5 — Find the Optimal Point",
+    "9-5, Example 6 — Interpret the Solution in Context"
+  ],
+  "warmUp": "Skill activation problem",
+  "conceptDevelopment": "Mini-lesson or exploration",
+  "guidedPractice": "Teacher-led practice with worked examples",
+  "independentPractice": "Practice problems from the lesson",
+  "assessment": "Exit ticket or quick check",
+  "capReflection": "Courage, Adaptability, Persistence reflection prompt"
+}

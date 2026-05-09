@@ -1,0 +1,19 @@
+{
+  "periodId": "m4-p11",
+  "dayType": "instruction",
+  "sourceLesson": "4-4",
+  "classObjectiveCode": "4i",
+  "classObjective": "Distinguish between vertical and horizontal transformations given a function rule and write transformed linear functions from verbal descriptions.",
+  "workedExamples": [
+    "4-4, Example 5 — Describe Vertical Dilations of f(x) = x",
+    "4-4, Example 6 — Describe Horizontal Dilations of f(x) = x",
+    "4-4, Example 7 — Reflections Across the x-Axis",
+    "4-4, Example 8 — Reflections Across the y-Axis"
+  ],
+  "warmUp": "How does f(2x) differ from 2f(x)?",
+  "conceptDevelopment": "Mini-lesson: vertical stretch/compression; reflection identification; combined transformation description",
+  "guidedPractice": "Teacher-led practice distinguishing transformation types and writing transformed functions from descriptions",
+  "independentPractice": "Practice problems describing and writing transformed linear functions including dilations and reflections",
+  "assessment": "Exit ticket: write a function that reflects f(x) = x across the y-axis and shifts up 2 units",
+  "capReflection": "How can you distinguish between vertical and horizontal transformations just by looking at the function rule?"
+}

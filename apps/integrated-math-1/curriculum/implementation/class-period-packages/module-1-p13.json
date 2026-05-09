@@ -1,0 +1,17 @@
+{
+  "periodId": "m1-p13",
+  "dayType": "instruction",
+  "sourceLesson": "1-5",
+  "classObjectiveCode": "1i",
+  "classObjective": "Write absolute value expressions that model real-world distances and accuracy as positive differences.",
+  "workedExamples": [
+    "1-5, Example 1 — Write Absolute Value Expressions for Real-World Accuracy Situations",
+    "1-5, Example 2 — Evaluate Absolute Value Expressions with Integers"
+  ],
+  "warmUp": "Find |5| and |-3|; describe what absolute value means geometrically",
+  "conceptDevelopment": "Mini-lesson: tolerance and accuracy contexts; equivalent forms |x - a| = |a - x|",
+  "guidedPractice": "Teacher-led practice writing absolute value expressions for real-world distance and accuracy situations",
+  "independentPractice": "Practice problems writing absolute value expressions that model real-world situations",
+  "assessment": "Exit ticket: write an absolute value expression for a real-world accuracy scenario",
+  "capReflection": "Why does absolute value naturally model distance and accuracy rather than signed quantities?"
+}

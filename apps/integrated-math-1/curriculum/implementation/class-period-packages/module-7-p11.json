@@ -1,0 +1,17 @@
+{
+  "periodId": "m7-p11",
+  "dayType": "instruction",
+  "sourceLesson": "7-4",
+  "classObjectiveCode": "7h",
+  "classObjective": "Recognize when to multiply one equation versus both equations to create opposite coefficients and evaluate and compare solution methods for systems of linear equations.",
+  "workedExamples": [
+    "7-4, Example 1 — Solve by Elimination (Multiplication) (continued)",
+    "7-4, Example 2 — Applications of Systems of Equations (continued)"
+  ],
+  "warmUp": "Compare the complexity of eliminating x from 3x + 4y = 2 and 5x + 8y = 6 vs. 6x + 8y = 4 and 5x + 8y = 6",
+  "conceptDevelopment": "Mini-lesson: least common multiple strategy; method comparison arguments; efficiency analysis",
+  "guidedPractice": "Teacher-led practice choosing optimal elimination strategy and comparing solution methods",
+  "independentPractice": "Practice problems evaluating elimination strategies and comparing solution approaches",
+  "assessment": "Exit ticket: solve 3x + 2y = 12 and 5x - 3y = 7 using the most efficient elimination approach",
+  "capReflection": "How do you determine whether to multiply one equation or both when setting up elimination?"
+}

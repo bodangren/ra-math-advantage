@@ -1,0 +1,17 @@
+{
+  "periodId": "m2-p07",
+  "dayType": "instruction",
+  "sourceLesson": "2-3",
+  "classObjectiveCode": "2e",
+  "classObjective": "Solve multi-step linear equations using properties of equality and check solutions by substitution.",
+  "workedExamples": [
+    "2-3, Example 1 — Solve Linear Equations Using Properties of Equality",
+    "2-3, Example 2 — Write and Solve Equations from Word Problems"
+  ],
+  "warmUp": "Solve: 2x + 5 = 13",
+  "conceptDevelopment": "Mini-lesson: two-step and multi-step equations; fractional coefficients; checking solutions by substitution",
+  "guidedPractice": "Teacher-led practice solving multi-step linear equations and verifying solutions",
+  "independentPractice": "Practice problems solving multi-step linear equations with solution verification",
+  "assessment": "Exit ticket: solve a multi-step equation and check your answer",
+  "capReflection": "Why is checking your solution by substitution important, especially with multi-step equations?"
+}

@@ -1,0 +1,9 @@
+{
+  "periodId": "m6-p18",
+  "dayType": "jigsaw",
+  "nonInstructionArtifact": {
+    "type": "jigsaw",
+    "focus": "Objectives 6a-6o",
+    "activities": ["Spatial reasoning", "unit conversion", "composite solid decomposition"]
+  }
+}

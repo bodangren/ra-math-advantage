@@ -1,0 +1,18 @@
+{
+  "periodId": "m11-p09",
+  "dayType": "instruction",
+  "sourceLesson": "11-5",
+  "classObjectiveCode": "11h",
+  "classObjective": "Factor polynomials using GCF, grouping, trinomials, and difference of squares.",
+  "workedExamples": [
+    "11-5, Example 1 — Factor Out GCF",
+    "11-5, Example 2 — Factor by Grouping",
+    "11-5, Example 3 — Factor Trinomials"
+  ],
+  "warmUp": "Skill activation problem",
+  "conceptDevelopment": "Mini-lesson or exploration",
+  "guidedPractice": "Teacher-led practice with worked examples",
+  "independentPractice": "Practice problems from the lesson",
+  "assessment": "Exit ticket or quick check",
+  "capReflection": "Courage, Adaptability, Persistence reflection prompt"
+}

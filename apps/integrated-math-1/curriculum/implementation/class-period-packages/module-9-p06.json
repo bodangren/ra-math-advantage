@@ -1,0 +1,17 @@
+{
+  "periodId": "m9-p06",
+  "dayType": "instruction",
+  "sourceLesson": "9-3",
+  "classObjectiveCode": "9e",
+  "classObjective": "Recognize biased survey questions and identify whose interests they may serve.",
+  "workedExamples": [
+    "9-3, Example 2 — Identify Survey Question Bias",
+    "9-3, Example 3 — Calculate and Choose Measures of Center (Selecting Appropriate Measures with Outliers)"
+  ],
+  "warmUp": "Is 'Don't you agree that pizza is the best food?' a well-worded survey question?",
+  "conceptDevelopment": "Mini-lesson: leading questions; contextual bias; selecting appropriate measures with outliers; identifying who benefits from biased questions",
+  "guidedPractice": "Teacher-led practice recognizing biased questions and selecting appropriate measures",
+  "independentPractice": "Practice problems identifying biased survey language and selecting appropriate measures of center",
+  "assessment": "Exit ticket: identify the bias in a survey question and explain who it might benefit",
+  "capReflection": "Why might someone phrase a survey question in a biased way, and how does this affect data collection?"
+}

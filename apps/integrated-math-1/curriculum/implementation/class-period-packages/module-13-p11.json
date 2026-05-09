@@ -1,0 +1,9 @@
+{
+  "periodId": "m13-p11",
+  "dayType": "mastery",
+  "nonInstructionArtifact": {
+    "type": "mastery",
+    "focus": "Objectives 13g-13i",
+    "activities": ["SRS practice on composition transformations and tessellations", "Spiral review on glide reflections", "Error analysis on tessellation determination"]
+  }
+}

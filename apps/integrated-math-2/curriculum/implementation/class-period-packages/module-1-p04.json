@@ -1,0 +1,17 @@
+{
+  "periodId": "m1-p04",
+  "dayType": "instruction",
+  "sourceLesson": "1-2",
+  "classObjectiveCode": "1c",
+  "classObjective": "Use the Angle Bisector Theorem to find angle and segment measures.",
+  "workedExamples": [
+    "1-2, Example 1 — Find Angle and Segment Measures Using Angle Bisectors",
+    "1-2, Example 2 — Use the Incenter to Find Measures"
+  ],
+  "warmUp": "Skill activation problem",
+  "conceptDevelopment": "Mini-lesson or exploration",
+  "guidedPractice": "Teacher-led practice with worked examples",
+  "independentPractice": "Practice problems from the lesson",
+  "assessment": "Exit ticket or quick check",
+  "capReflection": "Courage, Adaptability, Persistence reflection prompt"
+}

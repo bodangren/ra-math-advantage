@@ -1,0 +1,17 @@
+{
+  "periodId": "m4-p02",
+  "dayType": "instruction",
+  "sourceLesson": "4-1",
+  "classObjectiveCode": "4b",
+  "classObjective": "Find unknown side lengths in right triangles using geometric mean relationships.",
+  "workedExamples": [
+    "4-1, Example 3 — Find Unknown Values",
+    "4-1, Example 4 — Real-World Applications"
+  ],
+  "warmUp": "Skill activation problem",
+  "conceptDevelopment": "Mini-lesson or exploration",
+  "guidedPractice": "Teacher-led practice with worked examples",
+  "independentPractice": "Practice problems from the lesson",
+  "assessment": "Exit ticket or quick check",
+  "capReflection": "Courage, Adaptability, Persistence reflection prompt"
+}

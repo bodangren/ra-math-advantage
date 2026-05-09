@@ -1,0 +1,17 @@
+{
+  "periodId": "m1-p14",
+  "dayType": "instruction",
+  "sourceLesson": "1-5",
+  "classObjectiveCode": "1j",
+  "classObjective": "Evaluate absolute value expressions by substituting given values and simplify correctly.",
+  "workedExamples": [
+    "1-5, Example 2 — Evaluate Absolute Value Expressions (continued)",
+    "1-5, Example 3 — Evaluate Absolute Value Expressions with Integers, Decimals, and Fractions"
+  ],
+  "warmUp": "Evaluate |7 - 12| and |3 × 4 - 15|",
+  "conceptDevelopment": "Mini-lesson: integer, decimal, and fractional substitution; order of operations with absolute value bars",
+  "guidedPractice": "Teacher-led practice evaluating absolute value expressions with substitution of integers, decimals, and fractions",
+  "independentPractice": "Practice problems evaluating absolute value expressions with various number types",
+  "assessment": "Exit ticket: evaluate an absolute value expression containing a fraction",
+  "capReflection": "What is the correct order when evaluating expressions like |3x - 7| when x = 2?"
+}

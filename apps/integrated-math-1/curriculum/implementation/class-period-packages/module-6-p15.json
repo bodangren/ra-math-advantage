@@ -1,0 +1,16 @@
+{
+  "periodId": "m6-p15",
+  "dayType": "instruction",
+  "sourceLesson": "6-5",
+  "classObjectiveCode": "6k",
+  "classObjective": "Write systems of inequalities that correspond to a given graph and determine whether an ordered pair is a solution to a system without graphing.",
+  "workedExamples": [
+    "6-5, Mixed Exercises — Write Systems of Inequalities from Graphs; Verify System Solutions by Substitution"
+  ],
+  "warmUp": "Does (2, 3) satisfy y > x + 1?",
+  "conceptDevelopment": "Mini-lesson: feasible region interpretation from graphs; substitution checking for system membership; writing systems from bounded regions",
+  "guidedPractice": "Teacher-led practice writing systems of inequalities from graphs and verifying solutions by substitution",
+  "independentPractice": "Practice problems writing systems from graphs and determining whether points satisfy systems without graphing",
+  "assessment": "Exit ticket: write a system of inequalities that represents the feasible region shown in a graph",
+  "capReflection": "How can you use substitution to check if a point is in the feasible region without graphing?"
+}

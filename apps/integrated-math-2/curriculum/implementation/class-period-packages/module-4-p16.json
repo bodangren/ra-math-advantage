@@ -1,0 +1,17 @@
+{
+  "periodId": "m4-p16",
+  "dayType": "instruction",
+  "sourceLesson": "4-7",
+  "classObjectiveCode": "4m",
+  "classObjective": "Apply the Law of Sines to find missing sides and angles in oblique triangles.",
+  "workedExamples": [
+    "4-7, Example 1 — Find the Value of x (Law of Sines basics)",
+    "4-7, Example 2 — Additional Law of Sines Problems"
+  ],
+  "warmUp": "Skill activation problem",
+  "conceptDevelopment": "Mini-lesson or exploration",
+  "guidedPractice": "Teacher-led practice with worked examples",
+  "independentPractice": "Practice problems from the lesson",
+  "assessment": "Exit ticket or quick check",
+  "capReflection": "Courage, Adaptability, Persistence reflection prompt"
+}

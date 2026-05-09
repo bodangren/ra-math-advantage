@@ -1,0 +1,18 @@
+{
+  "periodId": "m7-p11",
+  "dayType": "instruction",
+  "sourceLesson": "7-5",
+  "classObjectiveCode": "7h",
+  "classObjective": "Find probabilities of compound events using addition rules and inclusion-exclusion.",
+  "workedExamples": [
+    "7-5, Example 4 — P(A or B) for Independent",
+    "7-5, Example 5 — P(A or B) for Dependent",
+    "7-5, Example 6 — Inclusion-Exclusion Principle"
+  ],
+  "warmUp": "Skill activation problem",
+  "conceptDevelopment": "Mini-lesson or exploration",
+  "guidedPractice": "Teacher-led practice with worked examples",
+  "independentPractice": "Practice problems from the lesson",
+  "assessment": "Exit ticket or quick check",
+  "capReflection": "Courage, Adaptability, Persistence reflection prompt"
+}

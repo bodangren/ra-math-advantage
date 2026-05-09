@@ -1,0 +1,16 @@
+{
+  "periodId": "m8-p09",
+  "dayType": "instruction",
+  "sourceLesson": "8-4",
+  "classObjectiveCode": "8g",
+  "classObjective": "Rewrite exponential functions so rates share the same time unit for direct comparison.",
+  "workedExamples": [
+    "8-4, Example 1 — Compare Compounding Interest and Growth Rates (Effective Annual Rates)"
+  ],
+  "warmUp": "Convert a 12% annual rate to a monthly rate",
+  "conceptDevelopment": "Mini-lesson: effective annual rates; converting between compounding periods using exponent properties; direct rate comparison",
+  "guidedPractice": "Teacher-led practice comparing exponential rates by converting to common time units",
+  "independentPractice": "Practice problems converting between compounding periods and comparing rates",
+  "assessment": "Exit ticket: compare 10% compounded annually vs. 9.5% compounded monthly — which is better?",
+  "capReflection": "Why is it necessary to convert to the same time unit before comparing exponential rates?"
+}

@@ -1,0 +1,17 @@
+{
+  "periodId": "m1-p01",
+  "dayType": "instruction",
+  "sourceLesson": "1-1",
+  "classObjectiveCode": "1a",
+  "classObjective": "Translate verbal descriptions into correct numerical expressions using operation symbols and grouping.",
+  "workedExamples": [
+    "1-1, Example 1 — Write Numerical Expressions from Verbal Descriptions (Sum and Difference)",
+    "1-1, Example 2 — Write Numerical Expressions from Verbal Descriptions (Product and Quotient)"
+  ],
+  "warmUp": "Skill activation: translate simple verbal phrases to numerical expressions",
+  "conceptDevelopment": "Mini-lesson: identifying operation keywords (more than, less than, product, quotient) and their corresponding symbols",
+  "guidedPractice": "Teacher-led practice translating verbal descriptions to numerical expressions using operation symbols and grouping",
+  "independentPractice": "Practice problems translating verbal descriptions into correct numerical expressions",
+  "assessment": "Exit ticket: translate 3 verbal descriptions into numerical expressions",
+  "capReflection": "What strategy helps you determine which operation symbol to use when translating verbal descriptions?"
+}

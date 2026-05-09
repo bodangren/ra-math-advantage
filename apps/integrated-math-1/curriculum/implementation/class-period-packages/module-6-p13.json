@@ -1,0 +1,17 @@
+{
+  "periodId": "m6-p13",
+  "dayType": "instruction",
+  "sourceLesson": "6-5",
+  "classObjectiveCode": "6j",
+  "classObjective": "Analyze boundary lines, half-planes, and test points to determine solution regions and verify whether ordered pairs satisfy a two-variable inequality.",
+  "workedExamples": [
+    "6-5, Example 3 — Write and Graph Inequalities from Context (continued)",
+    "6-5, Example 4 — Graph Special-Case Inequalities (Horizontal and Vertical Lines)"
+  ],
+  "warmUp": "Does (0, 0) satisfy y > 2x - 1?",
+  "conceptDevelopment": "Mini-lesson: test point (0, 0) when not on boundary; feasible region identification; special case horizontal/vertical lines",
+  "guidedPractice": "Teacher-led practice analyzing half-planes and test points to verify solutions to two-variable inequalities",
+  "independentPractice": "Practice problems determining solution regions and verifying whether ordered pairs satisfy two-variable inequalities",
+  "assessment": "Exit ticket: determine whether (4, 2) satisfies 3x + 2y <= 16",
+  "capReflection": "Why is (0, 0) often the easiest test point to use, and when should you avoid it?"
+}

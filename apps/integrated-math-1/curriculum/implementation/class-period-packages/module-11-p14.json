@@ -1,0 +1,18 @@
+{
+  "periodId": "m11-p14",
+  "dayType": "instruction",
+  "sourceLesson": "11-6",
+  "classObjectiveCode": "11l",
+  "classObjective": "Use nets to identify solids, find surface area, and construct models.",
+  "workedExamples": [
+    "11-6, Example 3 — Identify Solids from Nets",
+    "11-6, Example 4 — Find Surface Area of Prisms and Pyramids from Nets",
+    "11-6, Example 5 — Draw a Net for Prisms and Pyramids"
+  ],
+  "warmUp": "Draw a net for a cube",
+  "conceptDevelopment": "Mini-lesson: nets for prisms, pyramids, Platonic solids; using nets to find surface area; constructing 3D models from nets",
+  "guidedPractice": "Teacher-led practice using nets to identify solids, calculate surface area, and construct models",
+  "independentPractice": "Practice problems drawing nets, identifying solids from nets, and calculating surface area from nets",
+  "assessment": "Exit ticket: draw a net for a triangular prism and use it to find the total surface area",
+  "capReflection": "How does a net help you visualize surface area differently than the 3D solid itself?"
+}

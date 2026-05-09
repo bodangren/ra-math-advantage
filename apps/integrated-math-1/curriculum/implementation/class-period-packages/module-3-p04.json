@@ -1,0 +1,17 @@
+{
+  "periodId": "m3-p04",
+  "dayType": "instruction",
+  "sourceLesson": "3-2",
+  "classObjectiveCode": "3c",
+  "classObjective": "Determine whether a relation represented as a graph, table, mapping, set of ordered pairs, or equation is a function.",
+  "workedExamples": [
+    "3-2, Example 1 — Determine Whether a Relation Is a Function (Graph, Table, Mapping)",
+    "3-2, Example 2 — Determine Whether a Relation Is a Function from Real-World Data"
+  ],
+  "warmUp": "Use the vertical line test on a graph — what does passing or failing tell you?",
+  "conceptDevelopment": "Mini-lesson: vertical line test for graphs; mapping diagram analysis; checking ordered pairs for repeated x-values",
+  "guidedPractice": "Teacher-led practice determining whether relations are functions using multiple methods",
+  "independentPractice": "Practice problems determining function status using vertical line test, mapping diagrams, and ordered pair checking",
+  "assessment": "Exit ticket: determine whether a given relation is a function using two different methods",
+  "capReflection": "Why does the vertical line test work for determining if a graph represents a function?"
+}

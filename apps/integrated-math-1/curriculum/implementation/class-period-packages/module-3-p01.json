@@ -1,0 +1,18 @@
+{
+  "periodId": "m3-p01",
+  "dayType": "instruction",
+  "sourceLesson": "3-1",
+  "classObjectiveCode": "3a",
+  "classObjective": "Express a relation as a table, a graph, a mapping, and a set of ordered pairs and identify the domain and range.",
+  "workedExamples": [
+    "3-1, Example 1 — Multiple Representations of a Relation (Table, Graph, Mapping, Ordered Pairs)",
+    "3-1, Example 2 — Identify Independent and Dependent Variables from Graphs",
+    "3-1, Example 3 — Graph Data from a Table"
+  ],
+  "warmUp": "List 3 examples of real-world relationships that could be represented as ordered pairs",
+  "conceptDevelopment": "Mini-lesson: four representations of relations; domain and range as sets",
+  "guidedPractice": "Teacher-led practice representing relations in multiple forms and identifying domain/range",
+  "independentPractice": "Practice problems expressing relations as tables, graphs, mappings, and ordered pairs",
+  "assessment": "Exit ticket: given a relation as ordered pairs, express it as a table, graph, and mapping, then identify domain and range",
+  "capReflection": "Why is it useful to represent the same relationship in multiple forms?"
+}

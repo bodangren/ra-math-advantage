@@ -1,0 +1,9 @@
+{
+  "periodId": "m11-p11",
+  "dayType": "jigsaw",
+  "nonInstructionArtifact": {
+    "type": "jigsaw",
+    "focus": "Objectives 11e-11i",
+    "activities": ["Why do factoring patterns work", "error analysis", "justification", "connecting factoring to the distributive property in reverse"]
+  }
+}

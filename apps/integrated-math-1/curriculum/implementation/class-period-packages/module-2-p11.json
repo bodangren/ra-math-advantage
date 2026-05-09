@@ -1,0 +1,9 @@
+{
+  "periodId": "m2-p11",
+  "dayType": "mastery",
+  "nonInstructionArtifact": {
+    "type": "mastery",
+    "focus": "Objectives 2e-2h",
+    "activities": ["SRS practice on multi-step solving and classification", "Spiral review on variables-on-both-sides equations", "Error analysis on solution type determination"]
+  }
+}

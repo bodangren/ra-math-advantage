@@ -1,0 +1,17 @@
+{
+  "periodId": "m2-p08",
+  "dayType": "instruction",
+  "sourceLesson": "2-4",
+  "classObjectiveCode": "2g",
+  "classObjective": "Apply properties of rectangles to find angle measures, diagonal lengths, and prove triangles congruent.",
+  "workedExamples": [
+    "2-4, Example 1 — Find Measures in Rectangles",
+    "2-4, Example 2 — Solve Algebraic Problems with Rectangles"
+  ],
+  "warmUp": "Skill activation problem",
+  "conceptDevelopment": "Mini-lesson or exploration",
+  "guidedPractice": "Teacher-led practice with worked examples",
+  "independentPractice": "Practice problems from the lesson",
+  "assessment": "Exit ticket or quick check",
+  "capReflection": "Courage, Adaptability, Persistence reflection prompt"
+}

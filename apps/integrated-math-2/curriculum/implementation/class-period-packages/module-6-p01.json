@@ -1,0 +1,17 @@
+{
+  "periodId": "m6-p01",
+  "dayType": "instruction",
+  "sourceLesson": "6-1",
+  "classObjectiveCode": "6a",
+  "classObjective": "Find areas of parallelograms and rhombuses using appropriate formulas.",
+  "workedExamples": [
+    "6-1, Example 1 — Find Areas of Parallelograms and Rhombuses",
+    "6-1, Example 2 — Additional Area Problems"
+  ],
+  "warmUp": "Skill activation problem",
+  "conceptDevelopment": "Mini-lesson or exploration",
+  "guidedPractice": "Teacher-led practice with worked examples",
+  "independentPractice": "Practice problems from the lesson",
+  "assessment": "Exit ticket or quick check",
+  "capReflection": "Courage, Adaptability, Persistence reflection prompt"
+}

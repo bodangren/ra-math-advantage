@@ -1,0 +1,16 @@
+{
+  "periodId": "m7-p15",
+  "dayType": "instruction",
+  "sourceLesson": "7-5",
+  "classObjectiveCode": "7k",
+  "classObjective": "Solve real-world optimization problems by defining variables, writing a system of inequalities, graphing, and interpreting the feasible region.",
+  "workedExamples": [
+    "7-5, Mixed Exercises — Optimization in Context: Define Variables, Write System, Graph, Find Corner Points, Optimize"
+  ],
+  "warmUp": "If a corner point of a feasible region is (3, 5) and the objective function is P = 4x + 3y, what is P?",
+  "conceptDevelopment": "Mini-lesson: optimization in context; identifying corner points; comparing viable solutions; maximum/minimum interpretation",
+  "guidedPractice": "Teacher-led practice solving optimization problems using systems of inequalities and corner point evaluation",
+  "independentPractice": "Practice problems solving real-world optimization problems using systems of inequalities",
+  "assessment": "Exit ticket: solve an optimization problem: maximize profit given production time and material constraints",
+  "capReflection": "Why are the maximum and minimum values of an optimization problem found at corner points of the feasible region?"
+}

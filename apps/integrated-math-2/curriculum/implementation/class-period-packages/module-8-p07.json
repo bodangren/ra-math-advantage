@@ -1,0 +1,18 @@
+{
+  "periodId": "m8-p07",
+  "dayType": "instruction",
+  "sourceLesson": "8-3",
+  "classObjectiveCode": "8f",
+  "classObjective": "Connect function notation to real-world meaning and graphs.",
+  "workedExamples": [
+    "8-3, Example 4 — Real-World Function Notation",
+    "8-3, Example 5 — Reading Points from f(x)",
+    "8-3, Example 6 — Comparing Function Values"
+  ],
+  "warmUp": "Skill activation problem",
+  "conceptDevelopment": "Mini-lesson or exploration",
+  "guidedPractice": "Teacher-led practice with worked examples",
+  "independentPractice": "Practice problems from the lesson",
+  "assessment": "Exit ticket or quick check",
+  "capReflection": "Courage, Adaptability, Persistence reflection prompt"
+}

@@ -1,0 +1,17 @@
+{
+  "periodId": "m6-p06",
+  "dayType": "instruction",
+  "sourceLesson": "6-3",
+  "classObjectiveCode": "6f",
+  "classObjective": "Find the area of a sector of a circle.",
+  "workedExamples": [
+    "6-3, Example 3 — Find the Area of a Sector",
+    "6-3, Example 4 — Find the Area of a Circle Containing a Sector"
+  ],
+  "warmUp": "Skill activation problem",
+  "conceptDevelopment": "Mini-lesson or exploration",
+  "guidedPractice": "Teacher-led practice with worked examples",
+  "independentPractice": "Practice problems from the lesson",
+  "assessment": "Exit ticket or quick check",
+  "capReflection": "Courage, Adaptability, Persistence reflection prompt"
+}

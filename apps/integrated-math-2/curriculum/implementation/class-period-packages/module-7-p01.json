@@ -1,0 +1,18 @@
+{
+  "periodId": "m7-p01",
+  "dayType": "instruction",
+  "sourceLesson": "7-1",
+  "classObjectiveCode": "7a",
+  "classObjective": "Understand experimental vs. theoretical probability and sample spaces.",
+  "workedExamples": [
+    "7-1, Example 1 — Experimental vs. Theoretical Probability",
+    "7-1, Example 2 — Sample Spaces",
+    "7-1, Example 3 — Counting Outcomes"
+  ],
+  "warmUp": "Skill activation problem",
+  "conceptDevelopment": "Mini-lesson or exploration",
+  "guidedPractice": "Teacher-led practice with worked examples",
+  "independentPractice": "Practice problems from the lesson",
+  "assessment": "Exit ticket or quick check",
+  "capReflection": "Courage, Adaptability, Persistence reflection prompt"
+}

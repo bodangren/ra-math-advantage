@@ -1,0 +1,17 @@
+{
+  "periodId": "m11-p16",
+  "dayType": "instruction",
+  "sourceLesson": "11-8",
+  "classObjectiveCode": "11n",
+  "classObjective": "Count the number of significant digits in a given measurement using the rules for significance.",
+  "workedExamples": [
+    "11-8, Example 1 — Count Significant Digits in Measurements",
+    "11-8, Example 2 — Find the Possible Range of a Segment Length"
+  ],
+  "warmUp": "How many significant digits does 0.00340 have?",
+  "conceptDevelopment": "Mini-lesson: rules for significant figures; range of measurement from precision; significant digit counting",
+  "guidedPractice": "Teacher-led practice counting significant digits and finding measurement ranges",
+  "independentPractice": "Practice problems counting significant digits and determining measurement ranges",
+  "assessment": "Exit ticket: count significant digits in 20.030 L and find the possible range if rounded to this precision",
+  "capReflection": "How does understanding significant digits help prevent errors in scientific calculations?"
+}

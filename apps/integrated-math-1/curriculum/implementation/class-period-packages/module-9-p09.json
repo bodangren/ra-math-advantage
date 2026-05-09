@@ -1,0 +1,9 @@
+{
+  "periodId": "m9-p09",
+  "dayType": "mastery",
+  "nonInstructionArtifact": {
+    "type": "mastery",
+    "focus": "Objectives 9d-9g",
+    "activities": ["SRS practice on sampling bias and spread measures", "Spiral review on box plot construction", "Error analysis on standard deviation calculation"]
+  }
+}

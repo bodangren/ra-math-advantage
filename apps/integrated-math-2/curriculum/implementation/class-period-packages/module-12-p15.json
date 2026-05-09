@@ -1,0 +1,17 @@
+{
+  "periodId": "m12-p15",
+  "dayType": "instruction",
+  "sourceLesson": "12-5",
+  "classObjectiveCode": "12l",
+  "classObjective": "Apply completing the square to real-world problems involving projectile motion and optimization.",
+  "workedExamples": [
+    "12-5, Example 7 — Projectile Motion Application",
+    "12-5, Example 8 — Optimization Application"
+  ],
+  "warmUp": "Skill activation problem",
+  "conceptDevelopment": "Mini-lesson or exploration",
+  "guidedPractice": "Teacher-led practice with worked examples",
+  "independentPractice": "Practice problems from the lesson",
+  "assessment": "Exit ticket or quick check",
+  "capReflection": "Courage, Adaptability, Persistence reflection prompt"
+}

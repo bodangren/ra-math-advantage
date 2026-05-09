@@ -1,0 +1,18 @@
+{
+  "periodId": "m13-p05",
+  "dayType": "instruction",
+  "sourceLesson": "13-2",
+  "classObjectiveCode": "13d",
+  "classObjective": "Use Pythagorean identities to find missing trig values and simplify expressions.",
+  "workedExamples": [
+    "13-2, Example 4 — Find Missing Values",
+    "13-2, Example 5 — Simplify Expressions",
+    "13-2, Example 6 — Solve Equations Using Pythagorean Identities"
+  ],
+  "warmUp": "Skill activation problem",
+  "conceptDevelopment": "Mini-lesson or exploration",
+  "guidedPractice": "Teacher-led practice with worked examples",
+  "independentPractice": "Practice problems from the lesson",
+  "assessment": "Exit ticket or quick check",
+  "capReflection": "Courage, Adaptability, Persistence reflection prompt"
+}

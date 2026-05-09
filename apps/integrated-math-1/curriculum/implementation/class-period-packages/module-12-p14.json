@@ -1,0 +1,17 @@
+{
+  "periodId": "m12-p14",
+  "dayType": "instruction",
+  "sourceLesson": "12-7",
+  "classObjectiveCode": "12l",
+  "classObjective": "Use properties of parallel lines and transversals to find unknown angle measures.",
+  "workedExamples": [
+    "12-7, Example 4 — Find Angle Measures Using Parallel Line Properties",
+    "12-7, Example 5 — Solve for Variables in Figures with Parallel Lines"
+  ],
+  "warmUp": "If corresponding angles are congruent and one is 3x + 15 and the other is 72, find x",
+  "conceptDevelopment": "Mini-lesson: corresponding angles theorem; alternate interior/exterior theorems; consecutive interior angle theorems; solving for variables",
+  "guidedPractice": "Teacher-led practice finding unknown angle measures using parallel line properties",
+  "independentPractice": "Practice problems solving for unknown angles in parallel line/transversal configurations",
+  "assessment": "Exit ticket: find all angle measures in a transversal diagram where corresponding angles are 5x + 20 and 7x - 10",
+  "capReflection": "How does knowing one angle measure in a transversal diagram allow you to find all other angle measures?"
+}

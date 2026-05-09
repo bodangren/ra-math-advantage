@@ -1,0 +1,17 @@
+{
+  "periodId": "m12-p04",
+  "dayType": "instruction",
+  "sourceLesson": "12-2",
+  "classObjectiveCode": "12c",
+  "classObjective": "Describe how the graph of a quadratic relates to y = x² based on translations and dilations.",
+  "workedExamples": [
+    "12-2, Example 1 — Vertical and Horizontal Translations",
+    "12-2, Example 2 — Dilations from Coefficients"
+  ],
+  "warmUp": "Skill activation problem",
+  "conceptDevelopment": "Mini-lesson or exploration",
+  "guidedPractice": "Teacher-led practice with worked examples",
+  "independentPractice": "Practice problems from the lesson",
+  "assessment": "Exit ticket or quick check",
+  "capReflection": "Courage, Adaptability, Persistence reflection prompt"
+}

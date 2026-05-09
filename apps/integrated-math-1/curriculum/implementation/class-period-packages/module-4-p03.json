@@ -1,0 +1,9 @@
+{
+  "periodId": "m4-p03",
+  "dayType": "mastery",
+  "nonInstructionArtifact": {
+    "type": "mastery",
+    "focus": "Objectives 4a-4b",
+    "activities": ["SRS practice on graphing and intercepts", "Spiral review on table construction", "Error analysis on special line cases"]
+  }
+}

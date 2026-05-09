@@ -1,0 +1,9 @@
+{
+  "periodId": "m12-p08",
+  "dayType": "jigsaw",
+  "nonInstructionArtifact": {
+    "type": "jigsaw",
+    "focus": "Objectives 12a-12f",
+    "activities": ["Comparing solving methods (graphing vs. factoring)", "analyzing why different quadratic problems suit different methods"]
+  }
+}

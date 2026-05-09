@@ -1,0 +1,17 @@
+{
+  "periodId": "m3-p07",
+  "dayType": "instruction",
+  "sourceLesson": "3-3",
+  "classObjectiveCode": "3e",
+  "classObjective": "Determine whether a function represented by a graph, equation, table, or real-world situation is discrete, continuous, or neither.",
+  "workedExamples": [
+    "3-3, Example 1 — Classify Functions from Graphs as Discrete or Continuous",
+    "3-3, Example 2 — Classify Real-World Functions from Graphs as Discrete or Continuous"
+  ],
+  "warmUp": "Give an example of a discrete situation and a continuous situation from daily life",
+  "conceptDevelopment": "Mini-lesson: discrete vs. continuous context; counting vs. measuring quantities; graph appearance differences",
+  "guidedPractice": "Teacher-led practice classifying functions as discrete, continuous, or neither from multiple representations",
+  "independentPractice": "Practice problems classifying real-world and mathematical functions by their continuity type",
+  "assessment": "Exit ticket: classify whether 'number of books on a shelf' is discrete or continuous and explain why",
+  "capReflection": "How does knowing whether a function is discrete or continuous help you choose the right representation?"
+}

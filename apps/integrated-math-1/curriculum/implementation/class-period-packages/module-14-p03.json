@@ -1,0 +1,9 @@
+{
+  "periodId": "m14-p03",
+  "dayType": "mastery",
+  "nonInstructionArtifact": {
+    "type": "mastery",
+    "focus": "Objectives 14a-14b",
+    "activities": ["SRS practice on triangle angle relationships", "Spiral review on exterior angle theorem", "Error analysis on angle sum calculations"]
+  }
+}

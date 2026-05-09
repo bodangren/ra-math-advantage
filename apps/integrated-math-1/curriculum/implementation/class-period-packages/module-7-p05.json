@@ -1,0 +1,17 @@
+{
+  "periodId": "m7-p05",
+  "dayType": "instruction",
+  "sourceLesson": "7-2",
+  "classObjectiveCode": "7d",
+  "classObjective": "Solve systems containing decimals, fractions, and special angle or digit relationships and analyze and compare solution methods for systems of equations.",
+  "workedExamples": [
+    "7-2, Example 1 — Solve Systems by Substitution (continued)",
+    "7-2, Example 2 — Applications of Systems of Equations (continued)"
+  ],
+  "warmUp": "Solve: 1/2 x + 1/3 y = 4 and x - y = 3",
+  "conceptDevelopment": "Mini-lesson: fractional and decimal coefficients; complementary angle problems; number theory applications; method comparison",
+  "guidedPractice": "Teacher-led practice solving systems with fractions and special relationships and comparing methods",
+  "independentPractice": "Practice problems solving systems with special coefficients and analyzing solution methods",
+  "assessment": "Exit ticket: solve a system involving complementary angles using substitution",
+  "capReflection": "How does dealing with fractions or decimals in systems change your approach to substitution?"
+}

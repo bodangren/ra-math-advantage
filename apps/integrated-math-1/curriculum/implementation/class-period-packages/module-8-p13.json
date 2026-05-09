@@ -1,0 +1,17 @@
+{
+  "periodId": "m8-p13",
+  "dayType": "instruction",
+  "sourceLesson": "8-6",
+  "classObjectiveCode": "8j",
+  "classObjective": "Find the first several terms of a sequence given a recursive formula.",
+  "workedExamples": [
+    "8-6, Example 1 — Find Terms from a Recursive Formula (Arithmetic Type)",
+    "8-6, Example 2 — Find Terms from a Recursive Formula (Geometric Type)"
+  ],
+  "warmUp": "Given a_1 = 3 and a_n = a_{n-1} + 5, find the first 5 terms",
+  "conceptDevelopment": "Mini-lesson: generating sequences from recursive rules; identifying arithmetic vs. geometric patterns in recursion",
+  "guidedPractice": "Teacher-led practice finding terms of sequences from recursive formulas",
+  "independentPractice": "Practice problems generating sequence terms from recursive definitions",
+  "assessment": "Exit ticket: find the first 5 terms of: a_1 = 2, a_n = 3a_{n-1}",
+  "capReflection": "How does a recursive formula differ from an explicit formula in how you find the nth term?"
+}

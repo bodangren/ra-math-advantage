@@ -1,0 +1,9 @@
+{
+  "periodId": "m13-p08",
+  "dayType": "jigsaw",
+  "nonInstructionArtifact": {
+    "type": "jigsaw",
+    "focus": "Objectives 13a-13d",
+    "activities": ["Connections between fundamental", "Pythagorean", "and sum/difference identities", "error analysis in identity verification"]
+  }
+}

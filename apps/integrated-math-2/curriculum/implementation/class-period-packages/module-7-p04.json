@@ -1,0 +1,18 @@
+{
+  "periodId": "m7-p04",
+  "dayType": "instruction",
+  "sourceLesson": "7-2",
+  "classObjectiveCode": "7c",
+  "classObjective": "Apply the Fundamental Counting Principle to determine the number of outcomes.",
+  "workedExamples": [
+    "7-2, Example 1 — Fundamental Counting Principle",
+    "7-2, Example 2 — Tree Diagrams",
+    "7-2, Example 3 — Counting Outcomes with Multiple Stages"
+  ],
+  "warmUp": "Skill activation problem",
+  "conceptDevelopment": "Mini-lesson or exploration",
+  "guidedPractice": "Teacher-led practice with worked examples",
+  "independentPractice": "Practice problems from the lesson",
+  "assessment": "Exit ticket or quick check",
+  "capReflection": "Courage, Adaptability, Persistence reflection prompt"
+}

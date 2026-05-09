@@ -1,0 +1,17 @@
+{
+  "periodId": "m3-p11",
+  "dayType": "instruction",
+  "sourceLesson": "3-6",
+  "classObjectiveCode": "3j",
+  "classObjective": "Find unknown side lengths and altitudes in similar triangles using proportional reasoning.",
+  "workedExamples": [
+    "3-6, Example 1 — Find Unknown Side Lengths",
+    "3-6, Example 2 — Altitudes in Similar Triangles"
+  ],
+  "warmUp": "Skill activation problem",
+  "conceptDevelopment": "Mini-lesson or exploration",
+  "guidedPractice": "Teacher-led practice with worked examples",
+  "independentPractice": "Practice problems from the lesson",
+  "assessment": "Exit ticket or quick check",
+  "capReflection": "Courage, Adaptability, Persistence reflection prompt"
+}

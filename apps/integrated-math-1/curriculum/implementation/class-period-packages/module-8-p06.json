@@ -1,0 +1,17 @@
+{
+  "periodId": "m8-p06",
+  "dayType": "instruction",
+  "sourceLesson": "8-3",
+  "classObjectiveCode": "8e",
+  "classObjective": "Write an exponential function given two points on its graph.",
+  "workedExamples": [
+    "8-3, Example 1 — Write a Function from Two Points",
+    "8-3, Example 2 — Write a Function from a Graph"
+  ],
+  "warmUp": "If f(0) = 3 and f(2) = 12, find the exponential function",
+  "conceptDevelopment": "Mini-lesson: two-point method; solving for a and b in y = ab^x; system of equations approach",
+  "guidedPractice": "Teacher-led practice writing exponential functions given two points",
+  "independentPractice": "Practice problems writing exponential equations from two points or graphs",
+  "assessment": "Exit ticket: write the exponential function that passes through (1, 6) and (3, 54)",
+  "capReflection": "Why does solving for a and b in y = ab^x require solving a system of two equations?"
+}

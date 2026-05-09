@@ -1,0 +1,17 @@
+{
+  "periodId": "m12-p16",
+  "dayType": "instruction",
+  "sourceLesson": "12-8",
+  "classObjectiveCode": "12m",
+  "classObjective": "Calculate the slope of a line through two given points and interpret its meaning.",
+  "workedExamples": [
+    "12-8, Example 1 — Determine Whether Lines Through Given Points Are Parallel, Perpendicular, or Neither",
+    "12-8, Example 2 — Determine Whether Graphed Lines Are Parallel, Perpendicular, or Neither"
+  ],
+  "warmUp": "Find the slope of the line through (2, 5) and (6, 13)",
+  "conceptDevelopment": "Mini-lesson: slope formula; rise over run; slope interpretation from graphs; parallel/perpendicular slope relationships",
+  "guidedPractice": "Teacher-led practice calculating slopes and determining parallel/perpendicular relationships",
+  "independentPractice": "Practice problems calculating slope from points and graphs and interpreting slope meaning",
+  "assessment": "Exit ticket: calculate the slope of a hill that rises 30 feet over a horizontal distance of 150 feet and explain what it means",
+  "capReflection": "How does the sign of a slope (positive/negative) describe the direction of a line?"
+}

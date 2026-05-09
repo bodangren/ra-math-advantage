@@ -1,0 +1,18 @@
+{
+  "periodId": "m5-p02",
+  "dayType": "instruction",
+  "sourceLesson": "5-1",
+  "classObjectiveCode": "5b",
+  "classObjective": "Model real-world situations with linear equations in slope-intercept form and determine whether a point lies on a given line.",
+  "workedExamples": [
+    "5-1, Example 2 — Model Real-World Situations (continued)",
+    "5-1, Example 3 — Write an Equation Given Two Points (continued)",
+    "5-1, Example 4 — Write Equations from Data and Models and Check Point Membership"
+  ],
+  "warmUp": "Does the point (4, 11) lie on the line y = 2x + 3?",
+  "conceptDevelopment": "Mini-lesson: population, pricing, and temperature contexts; checking point-on-line membership by substitution",
+  "guidedPractice": "Teacher-led practice modeling real-world situations with linear equations and checking point membership",
+  "independentPractice": "Practice problems modeling real-world situations and determining whether points lie on given lines",
+  "assessment": "Exit ticket: write a linear model for the population of a town growing by 250 people per year, starting at 5000, and check if year 8 population equals 6750",
+  "capReflection": "How does checking whether a point lies on a line help you validate a real-world model?"
+}

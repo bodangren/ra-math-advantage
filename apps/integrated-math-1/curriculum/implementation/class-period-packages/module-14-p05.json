@@ -1,0 +1,17 @@
+{
+  "periodId": "m14-p05",
+  "dayType": "instruction",
+  "sourceLesson": "14-2",
+  "classObjectiveCode": "14d",
+  "classObjective": "Write two-column proofs and paragraph proofs to show that two triangles are congruent.",
+  "workedExamples": [
+    "14-2, Example 3 — Apply Congruent Triangles to Real-World Problems",
+    "14-2, Example 4 — Write Proofs of Triangle Congruence"
+  ],
+  "warmUp": "What is needed to prove two triangles are congruent?",
+  "conceptDevelopment": "Mini-lesson: proof structure for triangle congruence; real-world congruence applications; SAS reasoning in proofs",
+  "guidedPractice": "Teacher-led practice writing two-column and paragraph proofs for triangle congruence",
+  "independentPractice": "Practice problems writing proofs demonstrating triangle congruence",
+  "assessment": "Exit ticket: write a two-column proof showing triangles are congruent given a diagram with marked sides and angles",
+  "capReflection": "Why is proof writing important in geometry, and how does CPCTC follow from establishing triangle congruence?"
+}

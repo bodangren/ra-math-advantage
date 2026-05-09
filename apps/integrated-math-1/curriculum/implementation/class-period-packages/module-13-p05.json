@@ -1,0 +1,17 @@
+{
+  "periodId": "m13-p05",
+  "dayType": "instruction",
+  "sourceLesson": "13-2",
+  "classObjectiveCode": "13d",
+  "classObjective": "Find the translation vector that maps a preimage to its image and apply it.",
+  "workedExamples": [
+    "13-2, Example 3 — Find Missing Coordinates in a Translation Pattern",
+    "13-2, Example 4 — Describe a Translation and Apply It to Another Figure"
+  ],
+  "warmUp": "What is the translation vector that maps (1, 3) to (4, 7)?",
+  "conceptDevelopment": "Mini-lesson: translation vector <a, b>; finding translation vectors; applying same vector to different figures",
+  "guidedPractice": "Teacher-led practice finding translation vectors and applying translations",
+  "independentPractice": "Practice problems finding translation vectors and applying translations to new figures",
+  "assessment": "Exit ticket: find the translation vector from A(2,3) to A'(7,8) and use it to translate point B(1,1)",
+  "capReflection": "How does knowing the translation vector allow you to translate any point in the plane?"
+}

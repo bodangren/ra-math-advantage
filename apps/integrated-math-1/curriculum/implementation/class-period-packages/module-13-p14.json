@@ -1,0 +1,17 @@
+{
+  "periodId": "m13-p14",
+  "dayType": "instruction",
+  "sourceLesson": "13-6",
+  "classObjectiveCode": "13l",
+  "classObjective": "Determine whether a figure has rotational symmetry and justify the answer.",
+  "workedExamples": [
+    "13-6, Example 2 — Determine Rotational Symmetry in Real-World Objects",
+    "13-6, Example 3 — Determine Order and Magnitude of Rotational Symmetry"
+  ],
+  "warmUp": "What is the difference between rotational symmetry of order 2 and point symmetry?",
+  "conceptDevelopment": "Mini-lesson: order = 360° ÷ magnitude; point symmetry (order 2 at 180°); determining rotational symmetry",
+  "guidedPractice": "Teacher-led practice determining rotational symmetry and order",
+  "independentPractice": "Practice problems determining whether figures have rotational symmetry and finding order/magnitude",
+  "assessment": "Exit ticket: determine whether a square has rotational symmetry and find its order",
+  "capReflection": "How does understanding rotational symmetry help you analyze real-world objects like wheels and gears?"
+}

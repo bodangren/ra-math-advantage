@@ -1,0 +1,17 @@
+{
+  "periodId": "m2-p03",
+  "dayType": "instruction",
+  "sourceLesson": "2-2",
+  "classObjectiveCode": "2c",
+  "classObjective": "Use properties of parallelograms to find angle measures and side lengths.",
+  "workedExamples": [
+    "2-2, Example 1 — Find Measures in a Parallelogram",
+    "2-2, Example 2 — Write Parallelogram Proofs"
+  ],
+  "warmUp": "Skill activation problem",
+  "conceptDevelopment": "Mini-lesson or exploration",
+  "guidedPractice": "Teacher-led practice with worked examples",
+  "independentPractice": "Practice problems from the lesson",
+  "assessment": "Exit ticket or quick check",
+  "capReflection": "Courage, Adaptability, Persistence reflection prompt"
+}

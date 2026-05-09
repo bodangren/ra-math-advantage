@@ -1,0 +1,18 @@
+{
+  "periodId": "m2-p02",
+  "dayType": "instruction",
+  "sourceLesson": "2-1",
+  "classObjectiveCode": "2b",
+  "classObjective": "Translate algebraic equations and formulas into complete verbal sentences and interpret formulas in context.",
+  "workedExamples": [
+    "2-1, Example 4 — Write a Sentence for Each Equation",
+    "2-1, Example 5 — Write a Sentence for Each Equation (continued)",
+    "2-1, Example 6 — Interpret Formulas in Context"
+  ],
+  "warmUp": "Read the equation 3x + 7 = 22 aloud in words",
+  "conceptDevelopment": "Mini-lesson: reading equations left to right; geometric and scientific formula interpretation",
+  "guidedPractice": "Teacher-led practice translating algebraic equations to verbal sentences and interpreting formulas",
+  "independentPractice": "Practice problems translating equations to complete sentences and interpreting formulas in context",
+  "assessment": "Exit ticket: translate an equation to a verbal sentence and explain what it models",
+  "capReflection": "Why is it important to be able to read equations as complete sentences rather than just isolated expressions?"
+}

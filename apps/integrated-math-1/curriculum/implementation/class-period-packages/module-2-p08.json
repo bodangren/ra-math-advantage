@@ -1,0 +1,17 @@
+{
+  "periodId": "m2-p08",
+  "dayType": "instruction",
+  "sourceLesson": "2-3",
+  "classObjectiveCode": "2f",
+  "classObjective": "Solve literal equations for a specified variable and solve equations requiring the Distributive Property.",
+  "workedExamples": [
+    "2-3, Example 2 — Write and Solve Equations from Word Problems (continued)",
+    "2-3, Example 3 — Solve Literal Equations"
+  ],
+  "warmUp": "Solve for y: 3x + 2y = 12",
+  "conceptDevelopment": "Mini-lesson: solving for x in terms of other variables; rational literal forms",
+  "guidedPractice": "Teacher-led practice solving literal equations for specified variables and applying the Distributive Property",
+  "independentPractice": "Practice problems solving literal equations and multi-step equations with distribution",
+  "assessment": "Exit ticket: solve for the specified variable: A = 1/2 bh for h",
+  "capReflection": "What is the key difference between solving a literal equation and solving for a numerical variable?"
+}

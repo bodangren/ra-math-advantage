@@ -1,0 +1,18 @@
+{
+  "periodId": "m7-p10",
+  "dayType": "instruction",
+  "sourceLesson": "7-5",
+  "classObjectiveCode": "7g",
+  "classObjective": "Find probabilities of independent and dependent events.",
+  "workedExamples": [
+    "7-5, Example 1 — Independent Events",
+    "7-5, Example 2 — Dependent Events",
+    "7-5, Example 3 — P(A and B) for Each Case"
+  ],
+  "warmUp": "Skill activation problem",
+  "conceptDevelopment": "Mini-lesson or exploration",
+  "guidedPractice": "Teacher-led practice with worked examples",
+  "independentPractice": "Practice problems from the lesson",
+  "assessment": "Exit ticket or quick check",
+  "capReflection": "Courage, Adaptability, Persistence reflection prompt"
+}

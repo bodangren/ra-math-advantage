@@ -1,0 +1,18 @@
+{
+  "periodId": "m5-p01",
+  "dayType": "instruction",
+  "sourceLesson": "5-1",
+  "classObjectiveCode": "5a",
+  "classObjective": "Write linear equations in slope-intercept form given a point and a slope and given two points.",
+  "workedExamples": [
+    "5-1, Example 1 — Write an Equation Given a Point and a Slope",
+    "5-1, Example 2 — Model Real-World Situations with Linear Equations",
+    "5-1, Example 3 — Write an Equation Given Two Points"
+  ],
+  "warmUp": "Write the equation of a line through (2, 5) with slope 3",
+  "conceptDevelopment": "Mini-lesson: point-slope form as bridge to slope-intercept; calculating b from a point; horizontal and vertical line cases",
+  "guidedPractice": "Teacher-led practice writing linear equations given point-slope combinations",
+  "independentPractice": "Practice problems writing equations in slope-intercept form given various input conditions",
+  "assessment": "Exit ticket: write the equation of the line through (-1, 4) and (3, -2)",
+  "capReflection": "Why is point-slope form useful even when you ultimately want slope-intercept form?"
+}

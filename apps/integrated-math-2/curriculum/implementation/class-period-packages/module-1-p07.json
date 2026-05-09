@@ -1,0 +1,17 @@
+{
+  "periodId": "m1-p07",
+  "dayType": "instruction",
+  "sourceLesson": "1-3",
+  "classObjectiveCode": "1f",
+  "classObjective": "Find the coordinates of the orthocenter and compare medians, perpendicular bisectors, and altitudes.",
+  "workedExamples": [
+    "1-3, Example 3 — Real-World Centroid Application",
+    "1-3, Example 4 — Find the Orthocenter"
+  ],
+  "warmUp": "Skill activation problem",
+  "conceptDevelopment": "Mini-lesson or exploration",
+  "guidedPractice": "Teacher-led practice with worked examples",
+  "independentPractice": "Practice problems from the lesson",
+  "assessment": "Exit ticket or quick check",
+  "capReflection": "Courage, Adaptability, Persistence reflection prompt"
+}

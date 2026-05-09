@@ -1,0 +1,18 @@
+{
+  "periodId": "m9-p12",
+  "dayType": "instruction",
+  "sourceLesson": "9-5",
+  "classObjectiveCode": "9i",
+  "classObjective": "Graph systems of linear inequalities and identify the solution region.",
+  "workedExamples": [
+    "9-5, Example 1 — Graph a System of Inequalities",
+    "9-5, Example 2 — Identify Feasible Region",
+    "9-5, Example 3 — Test a Point in the Region"
+  ],
+  "warmUp": "Skill activation problem",
+  "conceptDevelopment": "Mini-lesson or exploration",
+  "guidedPractice": "Teacher-led practice with worked examples",
+  "independentPractice": "Practice problems from the lesson",
+  "assessment": "Exit ticket or quick check",
+  "capReflection": "Courage, Adaptability, Persistence reflection prompt"
+}

@@ -1,0 +1,17 @@
+{
+  "periodId": "m3-p05",
+  "dayType": "instruction",
+  "sourceLesson": "3-3",
+  "classObjectiveCode": "3e",
+  "classObjective": "Determine whether two triangles are similar using the AA Similarity Postulate.",
+  "workedExamples": [
+    "3-3, Example 1 — Determine Triangle Similarity",
+    "3-3, Example 2 — Indirect Measurement with AA Similarity"
+  ],
+  "warmUp": "Skill activation problem",
+  "conceptDevelopment": "Mini-lesson or exploration",
+  "guidedPractice": "Teacher-led practice with worked examples",
+  "independentPractice": "Practice problems from the lesson",
+  "assessment": "Exit ticket or quick check",
+  "capReflection": "Courage, Adaptability, Persistence reflection prompt"
+}

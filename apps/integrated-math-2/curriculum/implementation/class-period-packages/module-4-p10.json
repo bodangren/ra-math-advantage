@@ -1,0 +1,9 @@
+{
+  "periodId": "m4-p10",
+  "dayType": "jigsaw",
+  "nonInstructionArtifact": {
+    "type": "jigsaw",
+    "focus": "Objectives 4a-4h",
+    "activities": ["Special triangle pattern recognition", "justification", "mixed problem solving"]
+  }
+}

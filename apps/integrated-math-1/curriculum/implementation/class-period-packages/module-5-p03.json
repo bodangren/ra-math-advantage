@@ -1,0 +1,9 @@
+{
+  "periodId": "m5-p03",
+  "dayType": "mastery",
+  "nonInstructionArtifact": {
+    "type": "mastery",
+    "focus": "Objectives 5a-5b",
+    "activities": ["SRS practice on writing equations from points and slopes", "Spiral review on point-on-line checking", "Peer coaching on modeling strategies"]
+  }
+}

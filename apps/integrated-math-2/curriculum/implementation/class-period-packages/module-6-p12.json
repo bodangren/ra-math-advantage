@@ -1,0 +1,17 @@
+{
+  "periodId": "m6-p12",
+  "dayType": "instruction",
+  "sourceLesson": "6-5",
+  "classObjectiveCode": "6k",
+  "classObjective": "Identify solids formed by rotating two-dimensional shapes about an axis; determine axis symmetry.",
+  "workedExamples": [
+    "6-5, Example 3 — Identify Solids of Revolution",
+    "6-5, Example 4 — Axis Symmetry"
+  ],
+  "warmUp": "Skill activation problem",
+  "conceptDevelopment": "Mini-lesson or exploration",
+  "guidedPractice": "Teacher-led practice with worked examples",
+  "independentPractice": "Practice problems from the lesson",
+  "assessment": "Exit ticket or quick check",
+  "capReflection": "Courage, Adaptability, Persistence reflection prompt"
+}

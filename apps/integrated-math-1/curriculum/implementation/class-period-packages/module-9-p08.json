@@ -1,0 +1,17 @@
+{
+  "periodId": "m9-p08",
+  "dayType": "instruction",
+  "sourceLesson": "9-4",
+  "classObjectiveCode": "9g",
+  "classObjective": "Determine the five-number summary and construct a box plot from a data set.",
+  "workedExamples": [
+    "9-4, Example 3 — Find the Interquartile Range",
+    "9-4, Example 4 — Find the Standard Deviation"
+  ],
+  "warmUp": "What are the five numbers in the five-number summary?",
+  "conceptDevelopment": "Mini-lesson: IQR calculation; standard deviation concept; constructing box plots from five-number summaries",
+  "guidedPractice": "Teacher-led practice constructing box plots and calculating standard deviation",
+  "independentPractice": "Practice problems constructing box plots and calculating spread measures",
+  "assessment": "Exit ticket: construct a box plot from a data set and identify any outliers",
+  "capReflection": "What does standard deviation tell you about a data set that range and IQR do not?"
+}

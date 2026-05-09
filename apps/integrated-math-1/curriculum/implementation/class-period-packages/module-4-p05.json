@@ -1,0 +1,19 @@
+{
+  "periodId": "m4-p05",
+  "dayType": "instruction",
+  "sourceLesson": "4-2",
+  "classObjectiveCode": "4d",
+  "classObjective": "Determine whether a function is linear by checking for a constant rate of change and solve for an unknown coordinate given two points and a target slope.",
+  "workedExamples": [
+    "4-2, Example 3 — Determine Whether a Function Is Linear",
+    "4-2, Example 4 — Find the Slope Through Two Points",
+    "4-2, Example 5 — Find an Unknown Coordinate Given Slope",
+    "4-2, Example 6 — Verify Linearity and Find Unknowns"
+  ],
+  "warmUp": "Check if this table represents a linear function: x: 1,2,3,4; y: 3,7,11,15",
+  "conceptDevelopment": "Mini-lesson: first differences to verify linearity; slope formula rearrangement; solving for unknown coordinates",
+  "guidedPractice": "Teacher-led practice determining linearity and solving for unknown coordinates given slope constraints",
+  "independentPractice": "Practice problems verifying linearity using first differences and finding unknown coordinates",
+  "assessment": "Exit ticket: find the missing coordinate if the slope between (3, y) and (7, 12) must equal 2",
+  "capReflection": "How can you determine if a table represents a linear function before calculating slope?"
+}

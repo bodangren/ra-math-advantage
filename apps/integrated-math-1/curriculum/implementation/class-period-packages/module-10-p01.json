@@ -1,0 +1,16 @@
+{
+  "periodId": "m10-p01",
+  "dayType": "instruction",
+  "sourceLesson": "10-1",
+  "classObjectiveCode": "10a",
+  "classObjective": "Understand the structure of an axiomatic system and distinguish between axioms and conclusions.",
+  "workedExamples": [
+    "10-1, Example 1 — Draw Conclusions from Axioms"
+  ],
+  "warmUp": "What is the difference between a postulate and a theorem?",
+  "conceptDevelopment": "Mini-lesson: real-world axiomatic systems; logical conclusions from rules; axioms as starting points",
+  "guidedPractice": "Teacher-led practice drawing conclusions from given axioms in geometric contexts",
+  "independentPractice": "Practice problems applying axiomatic reasoning and distinguishing axioms from conclusions",
+  "assessment": "Exit ticket: given a set of axioms, draw a logical conclusion and explain your reasoning",
+  "capReflection": "Why are axiomatic systems important in mathematics?"
+}

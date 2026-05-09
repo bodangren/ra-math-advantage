@@ -1,0 +1,17 @@
+{
+  "periodId": "m2-p04",
+  "dayType": "instruction",
+  "sourceLesson": "2-2",
+  "classObjectiveCode": "2d",
+  "classObjective": "Find the area and perimeter of parallelograms and solve for unknown values.",
+  "workedExamples": [
+    "2-2, Example 3 — Find Unknown Values in Parallelograms",
+    "2-2, Example 4 — Area and Perimeter of Parallelograms"
+  ],
+  "warmUp": "Skill activation problem",
+  "conceptDevelopment": "Mini-lesson or exploration",
+  "guidedPractice": "Teacher-led practice with worked examples",
+  "independentPractice": "Practice problems from the lesson",
+  "assessment": "Exit ticket or quick check",
+  "capReflection": "Courage, Adaptability, Persistence reflection prompt"
+}

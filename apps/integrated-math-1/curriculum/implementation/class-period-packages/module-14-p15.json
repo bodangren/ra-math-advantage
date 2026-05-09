@@ -1,0 +1,17 @@
+{
+  "periodId": "m14-p15",
+  "dayType": "instruction",
+  "sourceLesson": "14-7",
+  "classObjectiveCode": "14m",
+  "classObjective": "Position and label triangles on the coordinate plane using given side lengths and properties.",
+  "workedExamples": [
+    "14-7, Example 1 — Position and Label Triangles on the Coordinate Plane",
+    "14-7, Example 2 — Find Missing Coordinates of Triangles Using Distance Formula"
+  ],
+  "warmUp": "What strategies make coordinate proofs easier?",
+  "conceptDevelopment": "Mini-lesson: strategic placement (right angle at origin, base on axis, isosceles with vertex on perpendicular bisector); coordinate proof setup",
+  "guidedPractice": "Teacher-led practice positioning triangles on coordinate plane for efficient proofs",
+  "independentPractice": "Practice problems positioning and labeling triangles with given properties on coordinate plane",
+  "assessment": "Exit ticket: position an isosceles triangle with base endpoints at (0,0) and (6,0) on a coordinate plane and explain your placement",
+  "capReflection": "Why does strategic placement of a triangle on the coordinate plane make coordinate proofs easier?"
+}

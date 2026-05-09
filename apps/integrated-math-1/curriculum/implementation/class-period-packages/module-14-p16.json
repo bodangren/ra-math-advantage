@@ -1,0 +1,17 @@
+{
+  "periodId": "m14-p16",
+  "dayType": "instruction",
+  "sourceLesson": "14-7",
+  "classObjectiveCode": "14n",
+  "classObjective": "Write coordinate proofs for geometric statements about triangles.",
+  "workedExamples": [
+    "14-7, Example 3 — Write Coordinate Proofs (Midsegment Theorem, Perpendicular Bisector)",
+    "14-7, Example 4 — Write Coordinate Proofs (Segment Equals Half Hypotenuse Using Coordinate Formulas)"
+  ],
+  "warmUp": "How do you prove a point is the midpoint of a segment using coordinates?",
+  "conceptDevelopment": "Mini-lesson: midsegment theorem proof; perpendicular bisector; segment equals half hypotenuse; coordinate formula application to proofs",
+  "guidedPractice": "Teacher-led practice writing coordinate proofs for triangle-related statements",
+  "independentPractice": "Practice problems writing coordinate proofs for geometric statements about triangles",
+  "assessment": "Exit ticket: write a coordinate proof showing the midpoint of the hypotenuse of a right triangle is equidistant from all three vertices",
+  "capReflection": "How does coordinate geometry allow you to prove geometric theorems algebraically?"
+}

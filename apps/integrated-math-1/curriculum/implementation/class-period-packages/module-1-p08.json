@@ -1,0 +1,18 @@
+{
+  "periodId": "m1-p08",
+  "dayType": "instruction",
+  "sourceLesson": "1-3",
+  "classObjectiveCode": "1f",
+  "classObjective": "Use the commutative, associative, identity, and inverse properties to simplify calculations and justify each step.",
+  "workedExamples": [
+    "1-3, Example 4 — Evaluate Expressions and Name Properties",
+    "1-3, Example 5 — Simplify Expressions Using Properties of Numbers",
+    "1-3, Example 6 — Evaluate Algebraic Expressions"
+  ],
+  "warmUp": "Name the property: 5 + 0 = 5; 3 × 1 = 3; 7 + 3 = 3 + 7",
+  "conceptDevelopment": "Mini-lesson: naming properties at each step; mental math with compatible numbers",
+  "guidedPractice": "Teacher-led practice evaluating expressions while naming each property used at every step",
+  "independentPractice": "Practice problems simplifying expressions using properties and justifying each step",
+  "assessment": "Exit ticket: simplify an expression and name all properties used",
+  "capReflection": "How does naming properties at each step help you catch errors in your reasoning?"
+}

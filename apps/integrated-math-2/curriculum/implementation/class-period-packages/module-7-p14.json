@@ -1,0 +1,18 @@
+{
+  "periodId": "m7-p14",
+  "dayType": "instruction",
+  "sourceLesson": "7-6",
+  "classObjectiveCode": "7j",
+  "classObjective": "Apply expected value to real-world decisions such as insurance and raffles.",
+  "workedExamples": [
+    "7-6, Example 4 — Insurance Decision",
+    "7-6, Example 5 — Raffle Analysis",
+    "7-6, Example 6 — Fair Decision-Making Application"
+  ],
+  "warmUp": "Skill activation problem",
+  "conceptDevelopment": "Mini-lesson or exploration",
+  "guidedPractice": "Teacher-led practice with worked examples",
+  "independentPractice": "Practice problems from the lesson",
+  "assessment": "Exit ticket or quick check",
+  "capReflection": "Courage, Adaptability, Persistence reflection prompt"
+}

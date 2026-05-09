@@ -1,0 +1,9 @@
+{
+  "periodId": "m8-p17",
+  "dayType": "review",
+  "nonInstructionArtifact": {
+    "type": "review",
+    "module": 8,
+    "topics": ["All Module 8 objectives (8a-8l)"]
+  }
+}

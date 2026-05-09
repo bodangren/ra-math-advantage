@@ -1,0 +1,17 @@
+{
+  "periodId": "m4-p08",
+  "dayType": "instruction",
+  "sourceLesson": "4-4",
+  "classObjectiveCode": "4g",
+  "classObjective": "Find missing side lengths in 45-45-90 and 30-60-90 triangles using special ratios.",
+  "workedExamples": [
+    "4-4, Example 1 — 45-45-90 Triangles",
+    "4-4, Example 2 — 30-60-90 Triangles"
+  ],
+  "warmUp": "Skill activation problem",
+  "conceptDevelopment": "Mini-lesson or exploration",
+  "guidedPractice": "Teacher-led practice with worked examples",
+  "independentPractice": "Practice problems from the lesson",
+  "assessment": "Exit ticket or quick check",
+  "capReflection": "Courage, Adaptability, Persistence reflection prompt"
+}

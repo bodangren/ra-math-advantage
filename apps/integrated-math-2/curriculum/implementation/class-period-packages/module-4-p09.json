@@ -1,0 +1,18 @@
+{
+  "periodId": "m4-p09",
+  "dayType": "instruction",
+  "sourceLesson": "4-4",
+  "classObjectiveCode": "4h",
+  "classObjective": "Apply special right triangle ratios to solve real-world problems.",
+  "workedExamples": [
+    "4-4, Example 3 — Mixed Special Triangles",
+    "4-4, Example 4 — Find x and y",
+    "4-4, Example 5 — Real-World Applications"
+  ],
+  "warmUp": "Skill activation problem",
+  "conceptDevelopment": "Mini-lesson or exploration",
+  "guidedPractice": "Teacher-led practice with worked examples",
+  "independentPractice": "Practice problems from the lesson",
+  "assessment": "Exit ticket or quick check",
+  "capReflection": "Courage, Adaptability, Persistence reflection prompt"
+}

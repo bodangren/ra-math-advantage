@@ -1,0 +1,17 @@
+{
+  "periodId": "m9-p10",
+  "dayType": "instruction",
+  "sourceLesson": "9-5",
+  "classObjectiveCode": "9h",
+  "classObjective": "Construct and interpret histograms and box plots to visualize the shape of a data distribution.",
+  "workedExamples": [
+    "9-5, Example 1 — Construct Histograms and Box Plots",
+    "9-5, Example 2 — Describe Center and Spread Using a Histogram"
+  ],
+  "warmUp": "Describe the shape of a histogram that is highest in the middle and tails off equally on both sides",
+  "conceptDevelopment": "Mini-lesson: symmetric, skewed left, skewed right distributions; constructing and interpreting histograms and box plots",
+  "guidedPractice": "Teacher-led practice constructing histograms and box plots and describing distribution shapes",
+  "independentPractice": "Practice problems constructing and interpreting histograms and box plots",
+  "assessment": "Exit ticket: given a histogram, describe the shape (symmetric, skewed left/right) and what this tells us about the data",
+  "capReflection": "How does the shape of a distribution help you choose which measures of center and spread to use?"
+}

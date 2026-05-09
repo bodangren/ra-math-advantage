@@ -1,0 +1,18 @@
+{
+  "periodId": "m1-p04",
+  "dayType": "instruction",
+  "sourceLesson": "1-2",
+  "classObjectiveCode": "1c",
+  "classObjective": "Translate between algebraic expressions and verbal expressions using correct mathematical terminology.",
+  "workedExamples": [
+    "1-2, Example 1 — Write Verbal Expressions for Algebraic Expressions",
+    "1-2, Example 2 — Write Algebraic Expressions for Verbal Expressions",
+    "1-2, Example 3 — Write Expressions for Real-World Situations"
+  ],
+  "warmUp": "Review operation keywords and symbols from Lesson 1-1",
+  "conceptDevelopment": "Mini-lesson: coefficient, term, variable recognition; modeling contexts with algebraic expressions",
+  "guidedPractice": "Teacher-led practice translating between algebraic and verbal expressions with attention to mathematical terminology",
+  "independentPractice": "Practice problems translating between algebraic expressions and verbal expressions",
+  "assessment": "Exit ticket: translate 2 algebraic expressions to verbal and 1 verbal to algebraic",
+  "capReflection": "What makes translating algebraic expressions more complex than numerical expressions alone?"
+}

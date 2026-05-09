@@ -1,0 +1,18 @@
+{
+  "periodId": "m7-p08",
+  "dayType": "instruction",
+  "sourceLesson": "7-4",
+  "classObjectiveCode": "7f",
+  "classObjective": "Use combinations and permutations to solve real-world selection problems.",
+  "workedExamples": [
+    "7-4, Example 4 — Selection Problems",
+    "7-4, Example 5 — Mixed Permutation/Combination",
+    "7-4, Example 6 — Real-World Application"
+  ],
+  "warmUp": "Skill activation problem",
+  "conceptDevelopment": "Mini-lesson or exploration",
+  "guidedPractice": "Teacher-led practice with worked examples",
+  "independentPractice": "Practice problems from the lesson",
+  "assessment": "Exit ticket or quick check",
+  "capReflection": "Courage, Adaptability, Persistence reflection prompt"
+}

@@ -1,0 +1,16 @@
+{
+  "periodId": "m10-p10",
+  "dayType": "instruction",
+  "sourceLesson": "10-4",
+  "classObjectiveCode": "10h",
+  "classObjective": "Apply the Distance Formula to solve real-world problems.",
+  "workedExamples": [
+    "10-4, Example 4 — Apply the Distance Formula to Real-World Problems (Map Scales, Sports, Grid-Based Distance)"
+  ],
+  "warmUp": "How would you find the straight-line distance between two cities on a map?",
+  "conceptDevelopment": "Mini-lesson: map scale application; sports applications; grid-based distance problems; real-world Distance Formula application",
+  "guidedPractice": "Teacher-led practice applying the Distance Formula to real-world contexts",
+  "independentPractice": "Practice problems applying Distance Formula to real-world scenarios including maps and sports",
+  "assessment": "Exit ticket: use the Distance Formula to find how far apart two GPS coordinates are in a real-world navigation context",
+  "capReflection": "What real-world measurements would be inaccurate if you used a road distance rather than the straight-line distance?"
+}

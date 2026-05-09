@@ -1,0 +1,19 @@
+{
+  "periodId": "m12-p12",
+  "dayType": "instruction",
+  "sourceLesson": "12-6",
+  "classObjectiveCode": "12j",
+  "classObjective": "Write two-column proofs to justify angle relationships including congruent supplements, congruent complements, and right angles.",
+  "workedExamples": [
+    "12-6, Example 1 — Apply the Angle Addition Postulate in Proofs",
+    "12-6, Example 2 — Write Two-Column Proofs with Congruent Angles",
+    "12-6, Example 3 — Prove Angle Congruence Using Supplements",
+    "12-6, Example 4 — Prove Right Angle Congruence"
+  ],
+  "warmUp": "What is the relationship between angles that are supplementary to the same angle?",
+  "conceptDevelopment": "Mini-lesson: Angle Addition Postulate in proofs; linear pairs; supplementary/complementary angle theorems; right angle congruence",
+  "guidedPractice": "Teacher-led practice writing angle relationship proofs including supplement and complement cases",
+  "independentPractice": "Practice problems writing proofs for angle congruence using angle relationship theorems",
+  "assessment": "Exit ticket: write a two-column proof showing that if two angles are supplementary to the same angle, they are congruent",
+  "capReflection": "Why are supplementary and complementary angle theorems useful in proof writing?"
+}

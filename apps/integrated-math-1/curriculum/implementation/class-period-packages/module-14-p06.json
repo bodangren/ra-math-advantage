@@ -1,0 +1,17 @@
+{
+  "periodId": "m14-p06",
+  "dayType": "instruction",
+  "sourceLesson": "14-3",
+  "classObjectiveCode": "14e",
+  "classObjective": "Write two-column, paragraph, and flow proofs to prove triangle congruence using the SSS and SAS postulates.",
+  "workedExamples": [
+    "14-3, Example 1 — Write Proofs Using the SSS Postulate",
+    "14-3, Example 2 — Determine Triangle Congruence on the Coordinate Plane Using SSS"
+  ],
+  "warmUp": "What does SSS stand for in triangle congruence?",
+  "conceptDevelopment": "Mini-lesson: SSS with shared sides/midpoints; Distance Formula on coordinate plane; SSS and SAS proof structure",
+  "guidedPractice": "Teacher-led practice writing SSS and SAS proofs",
+  "independentPractice": "Practice problems writing proofs using SSS and SAS postulates",
+  "assessment": "Exit ticket: write a two-column proof using SSS to show triangles are congruent",
+  "capReflection": "Why is SSS sufficient to prove triangle congruence without knowing any angles?"
+}

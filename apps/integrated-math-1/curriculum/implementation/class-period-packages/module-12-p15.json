@@ -1,0 +1,9 @@
+{
+  "periodId": "m12-p15",
+  "dayType": "mastery",
+  "nonInstructionArtifact": {
+    "type": "mastery",
+    "focus": "Objectives 12k-12l",
+    "activities": ["SRS practice on angle pair classification and parallel line theorems", "Spiral review on angle relationships", "Error analysis on transversal diagrams"]
+  }
+}

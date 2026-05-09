@@ -1,0 +1,17 @@
+{
+  "periodId": "m12-p14",
+  "dayType": "instruction",
+  "sourceLesson": "12-5",
+  "classObjectiveCode": "12k",
+  "classObjective": "Write quadratic functions in vertex form and identify extrema and axis of symmetry.",
+  "workedExamples": [
+    "12-5, Example 5 — Write in Vertex Form",
+    "12-5, Example 6 — Identify Extrema and Axis from Vertex Form"
+  ],
+  "warmUp": "Skill activation problem",
+  "conceptDevelopment": "Mini-lesson or exploration",
+  "guidedPractice": "Teacher-led practice with worked examples",
+  "independentPractice": "Practice problems from the lesson",
+  "assessment": "Exit ticket or quick check",
+  "capReflection": "Courage, Adaptability, Persistence reflection prompt"
+}

@@ -1,0 +1,9 @@
+{
+  "periodId": "m7-p06",
+  "dayType": "jigsaw",
+  "nonInstructionArtifact": {
+    "type": "jigsaw",
+    "focus": "Mathematical practices: choosing between graphing, substitution, and elimination methods; method efficiency analysis",
+    "activities": ["Jigsaw rotation on substitution method problems", "Expert groups on method selection criteria", "Teaching others your solution strategy"]
+  }
+}

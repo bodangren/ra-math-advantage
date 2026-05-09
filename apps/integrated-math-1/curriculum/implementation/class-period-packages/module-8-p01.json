@@ -1,0 +1,16 @@
+{
+  "periodId": "m8-p01",
+  "dayType": "instruction",
+  "sourceLesson": "8-1",
+  "classObjectiveCode": "8a",
+  "classObjective": "Identify exponential behavior from data using common ratios.",
+  "workedExamples": [
+    "8-1, Example 1 — Identify Exponential Behavior from Data"
+  ],
+  "warmUp": "Calculate the ratio between consecutive terms: 2, 6, 18, 54",
+  "conceptDevelopment": "Mini-lesson: common ratio test; recognizing growth vs. decay from tables; distinguishing exponential from linear patterns",
+  "guidedPractice": "Teacher-led practice identifying exponential behavior in data sets using common ratio calculation",
+  "independentPractice": "Practice problems identifying exponential behavior from tables and data sets",
+  "assessment": "Exit ticket: determine whether a given data set is exponential, and if so, find the common ratio",
+  "capReflection": "How does the common ratio test distinguish exponential functions from linear functions?"
+}

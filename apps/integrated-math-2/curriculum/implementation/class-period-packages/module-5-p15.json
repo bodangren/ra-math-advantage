@@ -1,0 +1,17 @@
+{
+  "periodId": "m5-p15",
+  "dayType": "instruction",
+  "sourceLesson": "5-7",
+  "classObjectiveCode": "5m",
+  "classObjective": "Find points of intersection between a circle and a line; apply circle equations to real-world contexts.",
+  "workedExamples": [
+    "5-7, Example 2 — Identify Center and Radius from an Equation (continued)",
+    "5-7, Example 3 — Circle Equations in Real-World Contexts"
+  ],
+  "warmUp": "Skill activation problem",
+  "conceptDevelopment": "Mini-lesson or exploration",
+  "guidedPractice": "Teacher-led practice with worked examples",
+  "independentPractice": "Practice problems from the lesson",
+  "assessment": "Exit ticket or quick check",
+  "capReflection": "Courage, Adaptability, Persistence reflection prompt"
+}

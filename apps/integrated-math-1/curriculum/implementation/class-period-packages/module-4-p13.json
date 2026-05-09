@@ -1,0 +1,17 @@
+{
+  "periodId": "m4-p13",
+  "dayType": "instruction",
+  "sourceLesson": "4-5",
+  "classObjectiveCode": "4j",
+  "classObjective": "Determine whether a given sequence is arithmetic and justify the reasoning using the common difference.",
+  "workedExamples": [
+    "4-5, Example 1 — Determine Whether a Sequence Is Arithmetic",
+    "4-5, Example 2 — Find the Common Difference and Next Three Terms"
+  ],
+  "warmUp": "Find the next 3 terms of: 5, 9, 13, 17, ...",
+  "conceptDevelopment": "Mini-lesson: common difference d; testing arithmetic by checking consecutive differences; arithmetic sequence identification",
+  "guidedPractice": "Teacher-led practice determining whether sequences are arithmetic using the common difference test",
+  "independentPractice": "Practice problems determining arithmetic sequence status and finding common differences",
+  "assessment": "Exit ticket: determine whether 2, 6, 12, 20, 30 is arithmetic and justify your answer",
+  "capReflection": "Why is checking consecutive differences more reliable than just looking at the numbers for determining arithmetic sequences?"
+}

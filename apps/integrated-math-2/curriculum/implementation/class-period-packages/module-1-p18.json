@@ -1,0 +1,17 @@
+{
+  "periodId": "m1-p18",
+  "dayType": "instruction",
+  "sourceLesson": "1-7",
+  "classObjectiveCode": "1n",
+  "classObjective": "Use the Hinge Theorem and its converse to find ranges of values and solve problems.",
+  "workedExamples": [
+    "1-7, Example 3 — Find the Range of Values for x",
+    "1-7, Example 4 — Hinge Theorem in Proofs"
+  ],
+  "warmUp": "Skill activation problem",
+  "conceptDevelopment": "Mini-lesson or exploration",
+  "guidedPractice": "Teacher-led practice with worked examples",
+  "independentPractice": "Practice problems from the lesson",
+  "assessment": "Exit ticket or quick check",
+  "capReflection": "Courage, Adaptability, Persistence reflection prompt"
+}

@@ -1,0 +1,9 @@
+{
+  "periodId": "m6-p06",
+  "dayType": "jigsaw",
+  "nonInstructionArtifact": {
+    "type": "jigsaw",
+    "focus": "Mathematical practices: inequality solving strategy, error analysis, and special solution reasoning",
+    "activities": ["Jigsaw rotation on multi-step inequality solving", "Expert groups on special solution identification", "Teaching others your error analysis approach"]
+  }
+}

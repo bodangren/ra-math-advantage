@@ -1,0 +1,16 @@
+{
+  "periodId": "m14-p09",
+  "dayType": "instruction",
+  "sourceLesson": "14-4",
+  "classObjectiveCode": "14h",
+  "classObjective": "Use properties of parallel lines, midpoints, and angle bisectors to find congruent parts needed for ASA or AAS proofs.",
+  "workedExamples": [
+    "14-4, Example 3 — Write Advanced Proofs Using ASA and AAS with Parallel Lines and Midpoints"
+  ],
+  "warmUp": "What angles are congruent when a transversal crosses parallel lines?",
+  "conceptDevelopment": "Mini-lesson: complex proofs with midpoints and parallel lines combined; angle bisector reasoning for ASA/AAS",
+  "guidedPractice": "Teacher-led practice using parallel lines, midpoints, and angle bisectors in advanced ASA/AAS proofs",
+  "independentPractice": "Practice problems writing complex ASA/AAS proofs using multiple geometric properties",
+  "assessment": "Exit ticket: write a multi-step AAS proof involving parallel lines and a midpoint",
+  "capReflection": "How do properties like midpoints and parallel lines combine to provide enough information for triangle congruence?"
+}

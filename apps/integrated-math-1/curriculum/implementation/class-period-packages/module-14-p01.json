@@ -1,0 +1,17 @@
+{
+  "periodId": "m14-p01",
+  "dayType": "instruction",
+  "sourceLesson": "14-1",
+  "classObjectiveCode": "14a",
+  "classObjective": "Apply the Triangle Angle-Sum Theorem to find unknown interior angle measures.",
+  "workedExamples": [
+    "14-1, Example 1 — Find Unknown Angle Measures in Triangles",
+    "14-1, Example 2 — Solve for Angle Measures Using Algebra"
+  ],
+  "warmUp": "What is the sum of the interior angles of a triangle?",
+  "conceptDevelopment": "Mini-lesson: Triangle Angle-Sum Theorem (sum of angles = 180°); solving algebraic expressions for angle measures",
+  "guidedPractice": "Teacher-led practice applying Triangle Angle-Sum Theorem to find unknown angles",
+  "independentPractice": "Practice problems using triangle angle sum to find unknown measures",
+  "assessment": "Exit ticket: find the missing angle of a triangle with angles 65° and 47°",
+  "capReflection": "Why does the Triangle Angle-Sum Theorem always hold regardless of the type of triangle?"
+}

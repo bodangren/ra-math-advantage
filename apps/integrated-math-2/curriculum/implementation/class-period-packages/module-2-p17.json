@@ -1,0 +1,9 @@
+{
+  "periodId": "m2-p17",
+  "dayType": "review",
+  "nonInstructionArtifact": {
+    "type": "review",
+    "module": 2,
+    "topics": ["All Module 2 objectives (2a-2m)"]
+  }
+}

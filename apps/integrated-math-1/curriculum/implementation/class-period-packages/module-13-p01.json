@@ -1,0 +1,17 @@
+{
+  "periodId": "m13-p01",
+  "dayType": "instruction",
+  "sourceLesson": "13-1",
+  "classObjectiveCode": "13a",
+  "classObjective": "Graph the image of a figure after a reflection over a given line on the coordinate plane.",
+  "workedExamples": [
+    "13-1, Example 1 — Graph the Image of a Figure Under a Reflection Over the x-axis",
+    "13-1, Example 2 — Graph the Image of a Figure Under a Reflection Over the y-axis or y=x"
+  ],
+  "warmUp": "What are the coordinates of (3, 5) reflected across the x-axis?",
+  "conceptDevelopment": "Mini-lesson: coordinate rules for reflection in x-axis, y-axis, y=x, vertical lines; reflection in horizontal lines",
+  "guidedPractice": "Teacher-led practice graphing reflections of figures over various lines",
+  "independentPractice": "Practice problems graphing images of figures after reflections",
+  "assessment": "Exit ticket: reflect triangle with vertices (1,2), (3,4), (5,1) over the line x = 3",
+  "capReflection": "How do the coordinate rules for reflection help you verify that your graphed image is correct?"
+}

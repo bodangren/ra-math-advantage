@@ -1,0 +1,9 @@
+{
+  "periodId": "m6-p14",
+  "dayType": "mastery",
+  "nonInstructionArtifact": {
+    "type": "mastery",
+    "focus": "Objectives 6g-6j",
+    "activities": ["SRS practice on absolute value inequalities and two-variable inequalities", "Spiral review on shading half-planes", "Error analysis on test point verification"]
+  }
+}

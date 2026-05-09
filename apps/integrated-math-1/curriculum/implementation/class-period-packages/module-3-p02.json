@@ -1,0 +1,17 @@
+{
+  "periodId": "m3-p02",
+  "dayType": "instruction",
+  "sourceLesson": "3-1",
+  "classObjectiveCode": "3b",
+  "classObjective": "Distinguish independent and dependent variables in real-world situations and interpret the meaning of axes, scale, and origin on a graph.",
+  "workedExamples": [
+    "3-1, Example 4 — Graph Data from Ordered Pairs",
+    "3-1, Example 5 — Interpret Axes, Scale, and Origin in Context"
+  ],
+  "warmUp": "In the relationship 'hours worked vs. money earned', which is the independent variable and which is the dependent?",
+  "conceptDevelopment": "Mini-lesson: scale selection; origin meaning in context; variable identification in real-world graphs",
+  "guidedPractice": "Teacher-led practice distinguishing variables and interpreting graph features in context",
+  "independentPractice": "Practice problems identifying independent/dependent variables and interpreting graph axes, scale, and origin",
+  "assessment": "Exit ticket: given a real-world graph, identify what the axes represent, the scale used, and the meaning of the origin",
+  "capReflection": "How does the choice of which variable goes on which axis affect how we interpret data?"
+}

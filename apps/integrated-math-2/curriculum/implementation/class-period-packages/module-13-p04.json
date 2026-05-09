@@ -1,0 +1,18 @@
+{
+  "periodId": "m13-p04",
+  "dayType": "instruction",
+  "sourceLesson": "13-2",
+  "classObjectiveCode": "13c",
+  "classObjective": "Apply sin²θ + cos²θ = 1 and its Pythagorean variants.",
+  "workedExamples": [
+    "13-2, Example 1 — Fundamental Pythagorean Identity",
+    "13-2, Example 2 — tan²θ + 1 = sec²θ",
+    "13-2, Example 3 — 1 + cot²θ = csc²θ"
+  ],
+  "warmUp": "Skill activation problem",
+  "conceptDevelopment": "Mini-lesson or exploration",
+  "guidedPractice": "Teacher-led practice with worked examples",
+  "independentPractice": "Practice problems from the lesson",
+  "assessment": "Exit ticket or quick check",
+  "capReflection": "Courage, Adaptability, Persistence reflection prompt"
+}

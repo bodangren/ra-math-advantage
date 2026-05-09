@@ -1,0 +1,17 @@
+{
+  "periodId": "m5-p09",
+  "dayType": "instruction",
+  "sourceLesson": "5-4",
+  "classObjectiveCode": "5g",
+  "classObjective": "Distinguish between correlation and causation in real-world contexts and explain reasoning for whether a relationship is merely correlated or causal, identifying possible lurking variables.",
+  "workedExamples": [
+    "5-4, Example 1 — Analyze Real-World Data with Scatter Plots for Correlation and Causation",
+    "5-4, Example 2 — Classify Relationships as Correlation or Causation and Identify Lurking Variables"
+  ],
+  "warmUp": "Ice cream sales and drowning deaths both increase in summer — is this causation?",
+  "conceptDevelopment": "Mini-lesson: 'correlation does not imply causation' reasoning; lurking variable identification; distinguishing correlated from causal relationships",
+  "guidedPractice": "Teacher-led practice classifying relationships as correlation or causation and identifying lurking variables",
+  "independentPractice": "Practice problems distinguishing correlation from causation and identifying possible lurking variables",
+  "assessment": "Exit ticket: analyze a given correlation and explain whether causation is likely, identifying a possible lurking variable",
+  "capReflection": "Why is it dangerous to assume causation from correlation alone?"
+}

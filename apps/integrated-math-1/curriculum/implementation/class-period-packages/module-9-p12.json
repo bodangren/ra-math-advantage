@@ -1,0 +1,9 @@
+{
+  "periodId": "m9-p12",
+  "dayType": "jigsaw",
+  "nonInstructionArtifact": {
+    "type": "jigsaw",
+    "focus": "Mathematical practices: analyzing real-world data sets, misleading statistics",
+    "activities": ["Jigsaw rotation on statistical analysis scenarios", "Expert groups on distribution shape identification", "Teaching others your statistical reasoning"]
+  }
+}

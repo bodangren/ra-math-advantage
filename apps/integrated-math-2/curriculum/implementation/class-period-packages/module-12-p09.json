@@ -1,0 +1,18 @@
+{
+  "periodId": "m12-p09",
+  "dayType": "instruction",
+  "sourceLesson": "12-4",
+  "classObjectiveCode": "12g",
+  "classObjective": "Solve quadratic equations by factoring and using the Zero Product Property.",
+  "workedExamples": [
+    "12-4, Example 1 — Solve Equations with Squares and Simple Factors",
+    "12-4, Example 2 — Solve Trinomial Equations",
+    "12-4, Example 3 — Zero Product Property"
+  ],
+  "warmUp": "Skill activation problem",
+  "conceptDevelopment": "Mini-lesson or exploration",
+  "guidedPractice": "Teacher-led practice with worked examples",
+  "independentPractice": "Practice problems from the lesson",
+  "assessment": "Exit ticket or quick check",
+  "capReflection": "Courage, Adaptability, Persistence reflection prompt"
+}

@@ -1,0 +1,17 @@
+{
+  "periodId": "m10-p12",
+  "dayType": "instruction",
+  "sourceLesson": "10-5",
+  "classObjectiveCode": "10j",
+  "classObjective": "Locate a point that divides a segment on a number line in a given ratio.",
+  "workedExamples": [
+    "10-5, Example 3 — Locate Points Using Ratios on a Number Line",
+    "10-5, Example 4 — Partitioning Physical Objects Using Ratios"
+  ],
+  "warmUp": "A 15-foot board is cut in the ratio 2:3 — what are the lengths?",
+  "conceptDevelopment": "Mini-lesson: ratio partitioning; midpoint as 1:1 case; applying ratios to number line segments",
+  "guidedPractice": "Teacher-led practice dividing segments in given ratios on number lines",
+  "independentPractice": "Practice problems partitioning segments using given ratios",
+  "assessment": "Exit ticket: divide the segment from 0 to 20 in the ratio 3:7 and find the coordinate",
+  "capReflection": "How does the midpoint formula relate to dividing a segment in a 1:1 ratio?"
+}

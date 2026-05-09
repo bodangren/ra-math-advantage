@@ -1,0 +1,18 @@
+{
+  "periodId": "m2-p05",
+  "dayType": "instruction",
+  "sourceLesson": "2-2",
+  "classObjectiveCode": "2d",
+  "classObjective": "Write and solve one-step equations to model real-world situations and apply the correct Property of Equality to verify solutions.",
+  "workedExamples": [
+    "2-2, Example 3 — Write and Solve Real-World Equations",
+    "2-2, Example 4 — Solve Equations with Fractions",
+    "2-2, Example 5 — Multi-Part Application with Percentages"
+  ],
+  "warmUp": "Write an equation for: 'A number decreased by 7 equals 15'",
+  "conceptDevelopment": "Mini-lesson: contextual modeling with one-step equations; fractional coefficients; percent problems",
+  "guidedPractice": "Teacher-led practice writing and solving one-step equations for real-world situations including percent applications",
+  "independentPractice": "Practice problems writing, solving, and verifying one-step equations in context",
+  "assessment": "Exit ticket: write and solve a one-step equation for a real-world situation",
+  "capReflection": "How do you know when to add versus subtract to isolate the variable?"
+}

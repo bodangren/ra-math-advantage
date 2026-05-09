@@ -1,0 +1,18 @@
+{
+  "periodId": "m6-p02",
+  "dayType": "instruction",
+  "sourceLesson": "6-1",
+  "classObjectiveCode": "6b",
+  "classObjective": "Find areas of trapezoids and kites; solve real-world area problems.",
+  "workedExamples": [
+    "6-1, Example 3 — Find Areas of Trapezoids and Kites",
+    "6-1, Example 4 — Construction: Trapezoidal Window",
+    "6-1, Example 5 — Additional Trapezoid and Kite Problems"
+  ],
+  "warmUp": "Skill activation problem",
+  "conceptDevelopment": "Mini-lesson or exploration",
+  "guidedPractice": "Teacher-led practice with worked examples",
+  "independentPractice": "Practice problems from the lesson",
+  "assessment": "Exit ticket or quick check",
+  "capReflection": "Courage, Adaptability, Persistence reflection prompt"
+}

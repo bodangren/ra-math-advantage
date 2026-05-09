@@ -1,0 +1,17 @@
+{
+  "periodId": "m5-p11",
+  "dayType": "instruction",
+  "sourceLesson": "5-5",
+  "classObjectiveCode": "5h",
+  "classObjective": "Use technology to calculate the equation of a best-fit line and the correlation coefficient for a bivariate data set and interpret the correlation coefficient r in context.",
+  "workedExamples": [
+    "5-5, Example 1 — Best-Fit Line and Correlation Coefficient Using Technology",
+    "5-5, Example 2 — Prediction with Linear Regression"
+  ],
+  "warmUp": "What does a correlation coefficient r = 0.9 tell us about a relationship?",
+  "conceptDevelopment": "Mini-lesson: calculator/software use for regression; interpreting r strength (|r| near 1 = strong, near 0 = weak); interpolation vs. extrapolation with regression",
+  "guidedPractice": "Teacher-led practice using technology to calculate best-fit line and interpreting correlation coefficient",
+  "independentPractice": "Practice problems using technology for regression analysis and interpreting r in context",
+  "assessment": "Exit ticket: use technology to find the best-fit line and r for a data set and interpret what r means",
+  "capReflection": "How does the correlation coefficient help you evaluate whether a linear model is appropriate for data?"
+}

@@ -1,0 +1,19 @@
+{
+  "periodId": "m7-p02",
+  "dayType": "instruction",
+  "sourceLesson": "7-1",
+  "classObjectiveCode": "7b",
+  "classObjective": "Write and solve systems of equations to model real-world situations and use graphing to solve linear equations and systems with decimal coefficients.",
+  "workedExamples": [
+    "7-1, Example 4 — Write and Solve a System from a Word Problem",
+    "7-1, Example 5 — Solve a Linear Equation by Graphing a System",
+    "7-1, Example 6 — Solve Decimal Systems by Graphing",
+    "7-1, Example 7 — More Word Problems with Systems"
+  ],
+  "warmUp": "Write a system for: Two numbers add to 30, their difference is 6",
+  "conceptDevelopment": "Mini-lesson: aviation and elevator motion problems; decimal coefficient handling; interpreting intersection points as solutions",
+  "guidedPractice": "Teacher-led practice writing systems from real-world contexts and solving including decimal coefficient cases",
+  "independentPractice": "Practice problems writing and solving systems for real-world situations including decimal coefficients",
+  "assessment": "Exit ticket: write and solve a system for a problem involving ticket sales with two types of tickets",
+  "capReflection": "How does graphing a system of equations help you visualize the solution to a real-world problem?"
+}

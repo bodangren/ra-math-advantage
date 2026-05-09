@@ -1,0 +1,17 @@
+{
+  "periodId": "m14-p04",
+  "dayType": "instruction",
+  "sourceLesson": "14-2",
+  "classObjectiveCode": "14c",
+  "classObjective": "Identify all congruent corresponding parts of polygons and write correct congruence statements.",
+  "workedExamples": [
+    "14-2, Example 1 — Identify Congruent Corresponding Parts and Write a Congruence Statement",
+    "14-2, Example 2 — Find Unknown Values Using Congruence"
+  ],
+  "warmUp": "What does CPCTC stand for?",
+  "conceptDevelopment": "Mini-lesson: corresponding sides and angles in congruent triangles; congruence statement vertex order; solving for variables",
+  "guidedPractice": "Teacher-led practice identifying congruent corresponding parts and writing congruence statements",
+  "independentPractice": "Practice problems identifying corresponding parts and writing congruence statements",
+  "assessment": "Exit ticket: given triangle ABC ≅ triangle DEF, identify all corresponding parts and write the 6 congruences",
+  "capReflection": "Why is the order of vertices in a congruence statement important?"
+}

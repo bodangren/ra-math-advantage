@@ -1,0 +1,9 @@
+{
+  "periodId": "m10-p16",
+  "dayType": "jigsaw",
+  "nonInstructionArtifact": {
+    "type": "jigsaw",
+    "focus": "Mathematical practices: coordinate geometry, partitioning, and midpoint problem-solving",
+    "activities": ["Jigsaw rotation on distance and midpoint problems", "Expert groups on partitioning strategies", "Teaching others your coordinate geometry approach"]
+  }
+}

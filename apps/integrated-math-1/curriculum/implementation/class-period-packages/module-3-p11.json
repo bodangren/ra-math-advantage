@@ -1,0 +1,19 @@
+{
+  "periodId": "m3-p11",
+  "dayType": "instruction",
+  "sourceLesson": "3-4",
+  "classObjectiveCode": "3h",
+  "classObjective": "Solve linear and quadratic equations by graphing and find the zero of a linear function and explain its meaning in context.",
+  "workedExamples": [
+    "3-4, Example 5 — Solve Equations by Graphing (Linear and Quadratic)",
+    "3-4, Example 6 — Find and Interpret the Zero of a Linear Function",
+    "3-4, Example 7 — Solve Equations by Graphing (continued)",
+    "3-4, Example 8 — Find and Interpret the Zero of a Function (continued)"
+  ],
+  "warmUp": "Use a graph to find where 2x - 6 = 0",
+  "conceptDevelopment": "Mini-lesson: intersection method for solving by graphing; checking solutions; zero in context",
+  "guidedPractice": "Teacher-led practice solving equations by graphing and finding/interpretating zeros of linear functions",
+  "independentPractice": "Practice problems solving linear and quadratic equations by graphing and explaining zero in context",
+  "assessment": "Exit ticket: solve x² - 4x + 3 = 0 by graphing and explain what the solution means",
+  "capReflection": "How does solving by graphing help you understand the relationship between equations and their solutions?"
+}

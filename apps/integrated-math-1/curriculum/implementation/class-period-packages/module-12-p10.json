@@ -1,0 +1,9 @@
+{
+  "periodId": "m12-p10",
+  "dayType": "mastery",
+  "nonInstructionArtifact": {
+    "type": "mastery",
+    "focus": "Objectives 12c-12h",
+    "activities": ["SRS practice on conditional logic and proof writing", "Spiral review on Law of Detachment and Syllogism", "Error analysis on two-column proofs"]
+  }
+}

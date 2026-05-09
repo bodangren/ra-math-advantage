@@ -1,0 +1,18 @@
+{
+  "periodId": "m7-p01",
+  "dayType": "instruction",
+  "sourceLesson": "7-1",
+  "classObjectiveCode": "7a",
+  "classObjective": "Graph systems of linear equations and determine the number of solutions; classify systems as consistent or inconsistent and as independent or dependent.",
+  "workedExamples": [
+    "7-1, Example 1 — Determine Solutions from a Graph",
+    "7-1, Example 2 — Determine Solutions Algebraically",
+    "7-1, Example 3 — Graph a System and Find the Solution"
+  ],
+  "warmUp": "How many points of intersection can two lines have?",
+  "conceptDevelopment": "Mini-lesson: one, none, or infinitely many solutions; parallel vs. intersecting vs. coincident lines; consistent/inconsistent/independent/dependent classification",
+  "guidedPractice": "Teacher-led practice graphing systems and classifying by solution type",
+  "independentPractice": "Practice problems graphing systems and classifying as consistent/inconsistent and independent/dependent",
+  "assessment": "Exit ticket: classify the system y = 2x + 1 and y = 2x - 3 and explain your reasoning",
+  "capReflection": "What visual characteristic of a system indicates it is inconsistent?"
+}

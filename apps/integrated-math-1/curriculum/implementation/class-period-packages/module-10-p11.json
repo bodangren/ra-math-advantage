@@ -1,0 +1,17 @@
+{
+  "periodId": "m10-p11",
+  "dayType": "instruction",
+  "sourceLesson": "10-5",
+  "classObjectiveCode": "10i",
+  "classObjective": "Find the coordinate of a point located at a fractional distance between two given points on a number line.",
+  "workedExamples": [
+    "10-5, Example 1 — Locate Points Using Fractional Distances on a Number Line",
+    "10-5, Example 2 — Real-World Problems with Fractional Distances and Ratios"
+  ],
+  "warmUp": "What coordinate is 3/4 of the way from 0 to 8?",
+  "conceptDevelopment": "Mini-lesson: A + fraction*(B-A) formula; fractional distance along a number line; ratio-based partitioning",
+  "guidedPractice": "Teacher-led practice finding points at fractional distances on number lines",
+  "independentPractice": "Practice problems finding coordinates at fractional distances in real-world contexts",
+  "assessment": "Exit ticket: find the point that is 2/3 of the way from 3 to 12 on a number line",
+  "capReflection": "How does the fractional distance formula A + fraction*(B-A) generalize the midpoint formula?"
+}

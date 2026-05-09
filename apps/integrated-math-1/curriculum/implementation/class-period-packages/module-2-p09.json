@@ -1,0 +1,17 @@
+{
+  "periodId": "m2-p09",
+  "dayType": "instruction",
+  "sourceLesson": "2-4",
+  "classObjectiveCode": "2g",
+  "classObjective": "Solve linear equations that have the variable on both sides of the equation, including those with fractions and grouping symbols.",
+  "workedExamples": [
+    "2-4, Example 1 — Solve Equations with Variables on Both Sides",
+    "2-4, Example 2 — Write and Solve Equations from Word Problems"
+  ],
+  "warmUp": "Solve: 2x + 3 = x - 5",
+  "conceptDevelopment": "Mini-lesson: collecting variable terms; distributive property application; fraction clearing",
+  "guidedPractice": "Teacher-led practice solving equations with variables on both sides, including fractions and grouping symbols",
+  "independentPractice": "Practice problems solving linear equations with variables on both sides",
+  "assessment": "Exit ticket: solve an equation with variables on both sides and fractions",
+  "capReflection": "What is the first step when you see variables on both sides of an equation?"
+}

@@ -1,0 +1,16 @@
+{
+  "periodId": "m5-p08",
+  "dayType": "instruction",
+  "sourceLesson": "5-4",
+  "classObjectiveCode": "5g",
+  "classObjective": "Prove theorems about inscribed angles and apply properties of angles inscribed in semicircles.",
+  "workedExamples": [
+    "5-4, Example 3 — Prove Inscribed Angle Theorems"
+  ],
+  "warmUp": "Skill activation problem",
+  "conceptDevelopment": "Mini-lesson or exploration",
+  "guidedPractice": "Teacher-led practice with worked examples",
+  "independentPractice": "Practice problems from the lesson",
+  "assessment": "Exit ticket or quick check",
+  "capReflection": "Courage, Adaptability, Persistence reflection prompt"
+}

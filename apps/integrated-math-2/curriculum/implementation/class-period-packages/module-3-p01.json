@@ -1,0 +1,17 @@
+{
+  "periodId": "m3-p01",
+  "dayType": "instruction",
+  "sourceLesson": "3-1",
+  "classObjectiveCode": "3a",
+  "classObjective": "Determine whether a dilation is an enlargement or reduction and find its scale factor.",
+  "workedExamples": [
+    "3-1, Example 1 — Identify Enlargement or Reduction",
+    "3-1, Example 2 — Dilations with Scale Factors"
+  ],
+  "warmUp": "Skill activation problem",
+  "conceptDevelopment": "Mini-lesson or exploration",
+  "guidedPractice": "Teacher-led practice with worked examples",
+  "independentPractice": "Practice problems from the lesson",
+  "assessment": "Exit ticket or quick check",
+  "capReflection": "Courage, Adaptability, Persistence reflection prompt"
+}

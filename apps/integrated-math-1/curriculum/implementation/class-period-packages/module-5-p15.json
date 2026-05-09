@@ -1,0 +1,9 @@
+{
+  "periodId": "m5-p15",
+  "dayType": "mastery",
+  "nonInstructionArtifact": {
+    "type": "mastery",
+    "focus": "Objectives 5h-5k",
+    "activities": ["SRS practice on regression and inverse functions", "Spiral review on residual analysis", "Error analysis on switch-and-solve method"]
+  }
+}

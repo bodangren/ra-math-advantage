@@ -1,0 +1,17 @@
+{
+  "periodId": "m1-p08",
+  "dayType": "instruction",
+  "sourceLesson": "1-4",
+  "classObjectiveCode": "1g",
+  "classObjective": "Order angles and sides of a triangle from smallest to largest using side-angle relationships.",
+  "workedExamples": [
+    "1-4, Example 1 — List Angles Satisfying a Condition",
+    "1-4, Example 2 — Order Angles and Sides from Smallest to Largest"
+  ],
+  "warmUp": "Skill activation problem",
+  "conceptDevelopment": "Mini-lesson or exploration",
+  "guidedPractice": "Teacher-led practice with worked examples",
+  "independentPractice": "Practice problems from the lesson",
+  "assessment": "Exit ticket or quick check",
+  "capReflection": "Courage, Adaptability, Persistence reflection prompt"
+}

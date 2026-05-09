@@ -1,0 +1,19 @@
+{
+  "periodId": "m4-p17",
+  "dayType": "instruction",
+  "sourceLesson": "4-7",
+  "classObjectiveCode": "4n",
+  "classObjective": "Determine whether a triangle has no solution, one solution, or two solutions (ambiguous case).",
+  "workedExamples": [
+    "4-7, Example 3 — Additional Ambiguous Case Problems",
+    "4-7, Example 4 — No Solution Case",
+    "4-7, Example 5 — One Solution Case",
+    "4-7, Example 6 — Two Solutions Case"
+  ],
+  "warmUp": "Skill activation problem",
+  "conceptDevelopment": "Mini-lesson or exploration",
+  "guidedPractice": "Teacher-led practice with worked examples",
+  "independentPractice": "Practice problems from the lesson",
+  "assessment": "Exit ticket or quick check",
+  "capReflection": "Courage, Adaptability, Persistence reflection prompt"
+}

@@ -1,0 +1,16 @@
+{
+  "periodId": "m12-p19",
+  "dayType": "instruction",
+  "sourceLesson": "12-9",
+  "classObjectiveCode": "12p",
+  "classObjective": "Apply parallel line theorems to solve real-world and geometric problems.",
+  "workedExamples": [
+    "12-9, Example 3 — Apply Parallel Line Theorems to Real-World Problems"
+  ],
+  "warmUp": "How are parallel line theorems used in construction and engineering?",
+  "conceptDevelopment": "Mini-lesson: real-world parallel line applications; proofs with converses; geometric problem-solving with parallel line theorems",
+  "guidedPractice": "Teacher-led practice applying parallel line theorems to real-world and geometric contexts",
+  "independentPractice": "Practice problems applying parallel line theorems to solve geometric and real-world problems",
+  "assessment": "Exit ticket: use parallel line theorems to solve a geometric proof involving transversals and angle relationships",
+  "capReflection": "What real-world measurements rely on parallel line properties?"
+}

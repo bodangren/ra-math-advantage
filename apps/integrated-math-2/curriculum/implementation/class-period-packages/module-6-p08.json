@@ -1,0 +1,17 @@
+{
+  "periodId": "m6-p08",
+  "dayType": "instruction",
+  "sourceLesson": "6-4",
+  "classObjectiveCode": "6g",
+  "classObjective": "Find lateral areas and surface areas of prisms and cylinders.",
+  "workedExamples": [
+    "6-4, Example 1 — Surface Area of Prisms",
+    "6-4, Example 2 — Surface Area of Cylinders"
+  ],
+  "warmUp": "Skill activation problem",
+  "conceptDevelopment": "Mini-lesson or exploration",
+  "guidedPractice": "Teacher-led practice with worked examples",
+  "independentPractice": "Practice problems from the lesson",
+  "assessment": "Exit ticket or quick check",
+  "capReflection": "Courage, Adaptability, Persistence reflection prompt"
+}

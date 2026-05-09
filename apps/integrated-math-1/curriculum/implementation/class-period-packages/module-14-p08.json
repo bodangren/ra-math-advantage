@@ -1,0 +1,17 @@
+{
+  "periodId": "m14-p08",
+  "dayType": "instruction",
+  "sourceLesson": "14-4",
+  "classObjectiveCode": "14g",
+  "classObjective": "Write two-column, paragraph, and flow proofs to prove triangle congruence using the ASA and AAS theorems.",
+  "workedExamples": [
+    "14-4, Example 1 — Write Proofs Using ASA and AAS",
+    "14-4, Example 2 — Apply ASA and AAS to Real-World Problems"
+  ],
+  "warmUp": "How does AAS differ from ASA in terms of required information?",
+  "conceptDevelopment": "Mini-lesson: ASA/AAS structure; using parallel lines for alternate interior angles; CPCTC in ASA/AAS proofs",
+  "guidedPractice": "Teacher-led practice writing ASA and AAS proofs",
+  "independentPractice": "Practice problems writing ASA and AAS proofs including real-world applications",
+  "assessment": "Exit ticket: write a two-column proof using AAS to show triangles are congruent",
+  "capReflection": "Why can AAS be treated as equivalent to ASA in triangle congruence proofs?"
+}

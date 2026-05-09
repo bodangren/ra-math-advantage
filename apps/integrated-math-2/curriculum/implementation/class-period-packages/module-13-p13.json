@@ -1,0 +1,17 @@
+{
+  "periodId": "m13-p13",
+  "dayType": "instruction",
+  "sourceLesson": "13-5",
+  "classObjectiveCode": "13j",
+  "classObjective": "Solve trigonometric equations on an unrestricted (general solution) domain.",
+  "workedExamples": [
+    "13-5, Example 4 — General Solution (No Restriction)",
+    "13-5, Example 5 — General Solution with Identities"
+  ],
+  "warmUp": "Skill activation problem",
+  "conceptDevelopment": "Mini-lesson or exploration",
+  "guidedPractice": "Teacher-led practice with worked examples",
+  "independentPractice": "Practice problems from the lesson",
+  "assessment": "Exit ticket or quick check",
+  "capReflection": "Courage, Adaptability, Persistence reflection prompt"
+}

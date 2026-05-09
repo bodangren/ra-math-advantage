@@ -1,0 +1,9 @@
+{
+  "periodId": "m7-p17",
+  "dayType": "review",
+  "nonInstructionArtifact": {
+    "type": "review",
+    "module": 7,
+    "topics": ["Method selection strategies and error analysis"]
+  }
+}

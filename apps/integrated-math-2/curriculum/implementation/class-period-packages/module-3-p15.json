@@ -1,0 +1,16 @@
+{
+  "periodId": "m3-p15",
+  "dayType": "instruction",
+  "sourceLesson": "3-6",
+  "classObjectiveCode": "3l",
+  "classObjective": "Write proofs involving similar triangle theorems and special segments.",
+  "workedExamples": [
+    "3-6, Mixed Exercises — Proofs of Theorems 8.12, 8.13, 8.14"
+  ],
+  "warmUp": "Skill activation problem",
+  "conceptDevelopment": "Mini-lesson or exploration",
+  "guidedPractice": "Teacher-led practice with worked examples",
+  "independentPractice": "Practice problems from the lesson",
+  "assessment": "Exit ticket or quick check",
+  "capReflection": "Courage, Adaptability, Persistence reflection prompt"
+}

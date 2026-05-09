@@ -1,0 +1,17 @@
+{
+  "periodId": "m14-p11",
+  "dayType": "instruction",
+  "sourceLesson": "14-5",
+  "classObjectiveCode": "14i",
+  "classObjective": "Apply the Leg-Leg (LL), Hypotenuse-Angle (HA), Leg-Angle (LA), and Hypotenuse-Leg (HL) theorems to prove right triangles congruent.",
+  "workedExamples": [
+    "14-5, Example 1 — Write Two-Column Proofs for Right Triangle Congruence Using LL, HA, LA, HL",
+    "14-5, Example 2 — Determine Whether Triangles Are Congruent and Name the Theorem"
+  ],
+  "warmUp": "What special congruence theorems apply to right triangles?",
+  "conceptDevelopment": "Mini-lesson: LL, HA, LA, HL theorems; when each applies; right triangle congruence shortcuts",
+  "guidedPractice": "Teacher-led practice applying right triangle congruence theorems",
+  "independentPractice": "Practice problems determining which right triangle congruence theorem applies and proving congruence",
+  "assessment": "Exit ticket: prove two right triangles are congruent given one leg and the hypotenuse are congruent",
+  "capReflection": "Why do right triangles have special congruence theorems that other triangles don't need?"
+}

@@ -1,0 +1,17 @@
+{
+  "periodId": "m9-p01",
+  "dayType": "instruction",
+  "sourceLesson": "9-1",
+  "classObjectiveCode": "9a",
+  "classObjective": "Calculate the mean, median, and mode of a data set.",
+  "workedExamples": [
+    "9-1, Example 1 — Find Mean, Median, and Mode",
+    "9-1, Example 2 — Find Percentile Rank"
+  ],
+  "warmUp": "Find the mean of: 4, 8, 6, 5, 3, 8, 9",
+  "conceptDevelopment": "Mini-lesson: computing measures of center; identifying mode (including bimodal); percentile rank formula",
+  "guidedPractice": "Teacher-led practice calculating mean, median, and mode for various data sets",
+  "independentPractice": "Practice problems calculating measures of center and percentile rank",
+  "assessment": "Exit ticket: find the mean, median, and mode of a given data set and explain what each tells you",
+  "capReflection": "When would the median be a better measure of center than the mean?"
+}

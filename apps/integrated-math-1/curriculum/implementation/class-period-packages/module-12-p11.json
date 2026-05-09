@@ -1,0 +1,17 @@
+{
+  "periodId": "m12-p11",
+  "dayType": "instruction",
+  "sourceLesson": "12-5",
+  "classObjectiveCode": "12i",
+  "classObjective": "Complete two-column proofs by supplying missing statements and reasons.",
+  "workedExamples": [
+    "12-5, Example 1 — Complete a Two-Column Proof by Supplying Missing Statements",
+    "12-5, Example 2 — Write a Two-Column Proof"
+  ],
+  "warmUp": "In a proof, what is the difference between a statement and a reason?",
+  "conceptDevelopment": "Mini-lesson: segment congruence properties (reflexive, symmetric, transitive); midpoint in proofs; filling in missing proof components",
+  "guidedPractice": "Teacher-led practice completing two-column proofs with missing statements and reasons",
+  "independentPractice": "Practice problems completing partial proofs and identifying missing components",
+  "assessment": "Exit ticket: complete the following proof: Given M is midpoint of AB, Prove AM = MB. Statements: M is midpoint of AB. AM = MB. Reasons: Given. ?",
+  "capReflection": "How does the reflexive, symmetric, and transitive properties apply to segment congruence in proofs?"
+}

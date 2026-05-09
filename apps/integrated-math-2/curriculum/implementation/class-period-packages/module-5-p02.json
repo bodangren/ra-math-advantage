@@ -1,0 +1,17 @@
+{
+  "periodId": "m5-p02",
+  "dayType": "instruction",
+  "sourceLesson": "5-1",
+  "classObjectiveCode": "5b",
+  "classObjective": "Find radius, diameter, and circumference given any one of these measures.",
+  "workedExamples": [
+    "5-1, Example 2 — Find Radius, Diameter, and Circumference",
+    "5-1, Example 3 — Algebraic Circumference"
+  ],
+  "warmUp": "Skill activation problem",
+  "conceptDevelopment": "Mini-lesson or exploration",
+  "guidedPractice": "Teacher-led practice with worked examples",
+  "independentPractice": "Practice problems from the lesson",
+  "assessment": "Exit ticket or quick check",
+  "capReflection": "Courage, Adaptability, Persistence reflection prompt"
+}

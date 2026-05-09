@@ -1,0 +1,19 @@
+{
+  "periodId": "m2-p16",
+  "dayType": "instruction",
+  "sourceLesson": "2-7",
+  "classObjectiveCode": "2m",
+  "classObjective": "Solve literal equations and formulas for a specified variable using inverse operations.",
+  "workedExamples": [
+    "2-7, Example 1 — Solve for a Specified Variable",
+    "2-7, Example 2 — Apply Formulas to Real-World Situations",
+    "2-7, Example 3 — Solve Formulas with Constraints",
+    "2-7, Example 4 — Solve Formulas with Multiple Variables"
+  ],
+  "warmUp": "Solve d = rt for r",
+  "conceptDevelopment": "Mini-lesson: isolating variables; collecting variable terms; formula rearrangement in geometric and scientific contexts",
+  "guidedPractice": "Teacher-led practice solving literal equations and formulas for specified variables",
+  "independentPractice": "Practice problems solving formulas for indicated variables using inverse operations",
+  "assessment": "Exit ticket: solve for h: V = 1/3 πr²h",
+  "capReflection": "What strategy do you use when a formula has the variable you need appearing multiple times?"
+}

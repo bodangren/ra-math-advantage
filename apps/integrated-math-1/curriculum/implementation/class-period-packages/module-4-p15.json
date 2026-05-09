@@ -1,0 +1,17 @@
+{
+  "periodId": "m4-p15",
+  "dayType": "instruction",
+  "sourceLesson": "4-6",
+  "classObjectiveCode": "4l",
+  "classObjective": "Graph piecewise-defined functions and step functions (greatest integer functions) and identify their domain and range.",
+  "workedExamples": [
+    "4-6, Example 1 — Graph Piecewise-Defined Functions",
+    "4-6, Example 2 — Graph Step Functions (Greatest Integer Function)"
+  ],
+  "warmUp": "What is floor(3.7)? What is floor(-2.3)?",
+  "conceptDevelopment": "Mini-lesson: closed and open circle notation; floor function notation; step structure; domain/range identification for piecewise functions",
+  "guidedPractice": "Teacher-led practice graphing piecewise-defined and step functions with correct notation",
+  "independentPractice": "Practice problems graphing piecewise and step functions and identifying their domain and range",
+  "assessment": "Exit ticket: graph the piecewise function: f(x) = {2x if x < 0, x + 3 if x ≥ 0} and state its domain and range",
+  "capReflection": "Why do step functions have different notation conventions than continuous piecewise functions?"
+}

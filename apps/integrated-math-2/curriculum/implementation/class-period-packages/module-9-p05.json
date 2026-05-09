@@ -1,0 +1,18 @@
+{
+  "periodId": "m9-p05",
+  "dayType": "instruction",
+  "sourceLesson": "9-2",
+  "classObjectiveCode": "9d",
+  "classObjective": "Write equations of lines from two points, parallel, and perpendicular lines.",
+  "workedExamples": [
+    "9-2, Example 4 — Equation from Two Points",
+    "9-2, Example 5 — Parallel Lines",
+    "9-2, Example 6 — Perpendicular Lines"
+  ],
+  "warmUp": "Skill activation problem",
+  "conceptDevelopment": "Mini-lesson or exploration",
+  "guidedPractice": "Teacher-led practice with worked examples",
+  "independentPractice": "Practice problems from the lesson",
+  "assessment": "Exit ticket or quick check",
+  "capReflection": "Courage, Adaptability, Persistence reflection prompt"
+}

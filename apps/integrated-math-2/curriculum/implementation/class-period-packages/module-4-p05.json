@@ -1,0 +1,17 @@
+{
+  "periodId": "m4-p05",
+  "dayType": "instruction",
+  "sourceLesson": "4-2",
+  "classObjectiveCode": "4d",
+  "classObjective": "Classify triangles as acute, right, or obtuse using the converse of the Pythagorean Theorem.",
+  "workedExamples": [
+    "4-2, Example 3 — Real-World Applications",
+    "4-2, Example 4 — Classify Triangles"
+  ],
+  "warmUp": "Skill activation problem",
+  "conceptDevelopment": "Mini-lesson or exploration",
+  "guidedPractice": "Teacher-led practice with worked examples",
+  "independentPractice": "Practice problems from the lesson",
+  "assessment": "Exit ticket or quick check",
+  "capReflection": "Courage, Adaptability, Persistence reflection prompt"
+}

@@ -1,0 +1,18 @@
+{
+  "periodId": "m7-p07",
+  "dayType": "instruction",
+  "sourceLesson": "7-4",
+  "classObjectiveCode": "7e",
+  "classObjective": "Compute combinations and interpret nCr in context.",
+  "workedExamples": [
+    "7-4, Example 1 — Combination Formula",
+    "7-4, Example 2 — nCr in Context",
+    "7-4, Example 3 — Combinations vs. Permutations"
+  ],
+  "warmUp": "Skill activation problem",
+  "conceptDevelopment": "Mini-lesson or exploration",
+  "guidedPractice": "Teacher-led practice with worked examples",
+  "independentPractice": "Practice problems from the lesson",
+  "assessment": "Exit ticket or quick check",
+  "capReflection": "Courage, Adaptability, Persistence reflection prompt"
+}

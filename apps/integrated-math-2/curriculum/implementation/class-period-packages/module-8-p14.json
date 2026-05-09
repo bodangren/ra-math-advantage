@@ -1,0 +1,18 @@
+{
+  "periodId": "m8-p14",
+  "dayType": "instruction",
+  "sourceLesson": "8-6",
+  "classObjectiveCode": "8k",
+  "classObjective": "Compare two or more functions represented as graphs, tables, equations, and verbal descriptions.",
+  "workedExamples": [
+    "8-6, Example 1 — Compare Rate of Change",
+    "8-6, Example 2 — Compare Intercepts",
+    "8-6, Example 3 — Compare Maxima/Minima"
+  ],
+  "warmUp": "Skill activation problem",
+  "conceptDevelopment": "Mini-lesson or exploration",
+  "guidedPractice": "Teacher-led practice with worked examples",
+  "independentPractice": "Practice problems from the lesson",
+  "assessment": "Exit ticket or quick check",
+  "capReflection": "Courage, Adaptability, Persistence reflection prompt"
+}

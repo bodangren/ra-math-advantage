@@ -1,0 +1,9 @@
+{
+  "periodId": "m6-p03",
+  "dayType": "mastery",
+  "nonInstructionArtifact": {
+    "type": "mastery",
+    "focus": "Objectives 6a-6b",
+    "activities": ["SRS practice on one-step inequalities", "Spiral review graphing inequality solutions", "Error analysis on sign reversal"]
+  }
+}

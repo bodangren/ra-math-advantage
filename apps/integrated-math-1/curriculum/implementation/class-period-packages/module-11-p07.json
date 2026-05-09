@@ -1,0 +1,16 @@
+{
+  "periodId": "m11-p07",
+  "dayType": "instruction",
+  "sourceLesson": "11-3",
+  "classObjectiveCode": "11f",
+  "classObjective": "Apply coordinate geometry to identify figures from vertices and compute their measurements.",
+  "workedExamples": [
+    "11-3, Example 3 — Solve Real-World Problems with Perimeter and Area"
+  ],
+  "warmUp": "Given vertices (0,0), (4,0), (4,3), (0,3), what type of figure is this and what is its area?",
+  "conceptDevelopment": "Mini-lesson: multi-step problems; composite figures; Pythagorean Theorem for diagonals; identifying figures from coordinates",
+  "guidedPractice": "Teacher-led practice identifying figures from vertices and computing measurements using coordinate geometry",
+  "independentPractice": "Practice problems using coordinate geometry to classify figures and calculate perimeter and area",
+  "assessment": "Exit ticket: identify the figure with vertices (0,0), (6,0), (6,8), (0,8) and find its perimeter and area",
+  "capReflection": "How does the Pythagorean Theorem help you find the perimeter of a figure that isn't a simple rectangle?"
+}

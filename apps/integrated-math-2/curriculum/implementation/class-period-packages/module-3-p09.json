@@ -1,0 +1,17 @@
+{
+  "periodId": "m3-p09",
+  "dayType": "instruction",
+  "sourceLesson": "3-5",
+  "classObjectiveCode": "3h",
+  "classObjective": "Apply the Triangle Proportionality Theorem to find unknown lengths; use the converse to identify parallel lines.",
+  "workedExamples": [
+    "3-5, Example 1 — Apply the Triangle Proportionality Theorem",
+    "3-5, Example 2 — Determine Whether Lines Are Parallel"
+  ],
+  "warmUp": "Skill activation problem",
+  "conceptDevelopment": "Mini-lesson or exploration",
+  "guidedPractice": "Teacher-led practice with worked examples",
+  "independentPractice": "Practice problems from the lesson",
+  "assessment": "Exit ticket or quick check",
+  "capReflection": "Courage, Adaptability, Persistence reflection prompt"
+}

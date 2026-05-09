@@ -1,0 +1,17 @@
+{
+  "periodId": "m8-p02",
+  "dayType": "instruction",
+  "sourceLesson": "8-1",
+  "classObjectiveCode": "8b",
+  "classObjective": "Identify key features of exponential functions from equations and context.",
+  "workedExamples": [
+    "8-1, Example 2 — Analyze Exponential Functions in Context (Initial Value, Base, Asymptote)",
+    "8-1, Example 3 — Analyze Exponential Functions in Context (Domain, Range)"
+  ],
+  "warmUp": "What is the y-intercept of y = 3(2)^x?",
+  "conceptDevelopment": "Mini-lesson: initial value (a) identification; base (b) interpretation; asymptote; domain/range from real-world models",
+  "guidedPractice": "Teacher-led practice identifying key features of exponential functions from equations and real-world contexts",
+  "independentPractice": "Practice problems identifying initial value, base, asymptote, domain, and range of exponential functions",
+  "assessment": "Exit ticket: identify the initial value, base, and asymptote of y = 5(0.7)^x and describe what the base tells you about growth or decay",
+  "capReflection": "How does the value of the base b in y = ab^x indicate whether the function represents growth or decay?"
+}

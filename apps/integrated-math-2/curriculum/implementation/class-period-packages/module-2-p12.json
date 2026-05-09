@@ -1,0 +1,9 @@
+{
+  "periodId": "m2-p12",
+  "dayType": "jigsaw",
+  "nonInstructionArtifact": {
+    "type": "jigsaw",
+    "focus": "Objectives 2a-2j",
+    "activities": ["Classification", "proof", "property comparison across quadrilateral families"]
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "periodId": "m6-p11",
+  "dayType": "instruction",
+  "sourceLesson": "6-4",
+  "classObjectiveCode": "6h",
+  "classObjective": "Recognize special cases where an absolute value inequality has no solution or all real numbers as solutions and solve inequalities with fractional coefficients.",
+  "workedExamples": [
+    "6-4, Example 4 — Special Cases (No Solution and All Real Numbers)",
+    "6-4, Example 5 — Fractional Coefficients and Mixed Practice"
+  ],
+  "warmUp": "What is the solution to |x| < -3?",
+  "conceptDevelopment": "Mini-lesson: negative right-hand side analysis; fractional coefficient handling; special case identification",
+  "guidedPractice": "Teacher-led practice recognizing special cases and solving inequalities with fractional coefficients",
+  "independentPractice": "Practice problems solving absolute value inequalities including special cases and fractional coefficients",
+  "assessment": "Exit ticket: solve |x + 2| + 5 < 5 and identify if it has no solution or all real numbers",
+  "capReflection": "How can you quickly determine if an absolute value inequality has no solution or all real numbers?"
+}

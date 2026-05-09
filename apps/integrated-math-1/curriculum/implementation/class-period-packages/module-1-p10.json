@@ -1,0 +1,18 @@
+{
+  "periodId": "m1-p10",
+  "dayType": "instruction",
+  "sourceLesson": "1-4",
+  "classObjectiveCode": "1g",
+  "classObjective": "Apply the Distributive Property to rewrite and evaluate numerical expressions, including mixed numbers and decimals.",
+  "workedExamples": [
+    "1-4, Example 1 — Evaluate Numerical Expressions Using the Distributive Property",
+    "1-4, Example 2 — Mental Math with the Distributive Property",
+    "1-4, Example 3 — Simplify Algebraic Expressions"
+  ],
+  "warmUp": "Rewrite 4 × (5 + 3) using the Distributive Property",
+  "conceptDevelopment": "Mini-lesson: numerical and algebraic distribution; mental math applications with compatible numbers",
+  "guidedPractice": "Teacher-led practice applying the Distributive Property to evaluate and rewrite expressions",
+  "independentPractice": "Practice problems applying the Distributive Property to numerical expressions including mixed numbers and decimals",
+  "assessment": "Exit ticket: use the Distributive Property to rewrite and evaluate a numerical expression",
+  "capReflection": "How does the Distributive Property connect multiplication and addition, and why is this useful for mental math?"
+}

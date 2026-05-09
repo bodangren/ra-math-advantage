@@ -1,0 +1,18 @@
+{
+  "periodId": "m8-p10",
+  "dayType": "instruction",
+  "sourceLesson": "8-5",
+  "classObjectiveCode": "8h",
+  "classObjective": "Determine whether a given sequence is geometric by checking for a constant common ratio.",
+  "workedExamples": [
+    "8-5, Example 1 — Determine Whether a Sequence Is Geometric",
+    "8-5, Example 2 — Find the Next Three Terms Using Common Ratio",
+    "8-5, Example 3 — Identify Geometric vs. Arithmetic Sequences"
+  ],
+  "warmUp": "Determine if 3, 6, 12, 24 is arithmetic or geometric",
+  "conceptDevelopment": "Mini-lesson: common ratio test; identifying geometric vs. arithmetic sequences; geometric sequence definition",
+  "guidedPractice": "Teacher-led practice determining whether sequences are geometric and finding common ratios",
+  "independentPractice": "Practice problems determining geometric status and continuing geometric sequences",
+  "assessment": "Exit ticket: determine whether 5, 10, 20, 35 is geometric and explain your reasoning",
+  "capReflection": "How is the common ratio in a geometric sequence analogous to slope in a linear function?"
+}

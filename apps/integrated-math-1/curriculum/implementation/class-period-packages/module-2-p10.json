@@ -1,0 +1,17 @@
+{
+  "periodId": "m2-p10",
+  "dayType": "instruction",
+  "sourceLesson": "2-4",
+  "classObjectiveCode": "2h",
+  "classObjective": "Determine whether an equation has one solution, no solution, or is an identity and apply equations to geometric situations.",
+  "workedExamples": [
+    "2-4, Example 3 — Geometry Applications (Supplementary and Complementary Angles)",
+    "2-4, Example 4 — Classify Equations (One, No, or Infinitely Many Solutions)"
+  ],
+  "warmUp": "Solve: 2(x + 3) = 2x + 6",
+  "conceptDevelopment": "Mini-lesson: identity vs. no-solution classification; supplementary and complementary angle applications",
+  "guidedPractice": "Teacher-led practice classifying equation solution types and applying to geometric contexts",
+  "independentPractice": "Practice problems determining solution types and solving geometry applications",
+  "assessment": "Exit ticket: determine whether 3(x + 2) = 3x + 6 has one, no, or infinitely many solutions",
+  "capReflection": "How can you determine whether an equation has no solution before fully solving it?"
+}

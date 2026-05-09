@@ -1,0 +1,17 @@
+{
+  "periodId": "m4-p04",
+  "dayType": "instruction",
+  "sourceLesson": "4-2",
+  "classObjectiveCode": "4c",
+  "classObjective": "Calculate the rate of change from tables, graphs, and real-world data and compute the slope of a line passing through two given points.",
+  "workedExamples": [
+    "4-2, Example 1 — Find the Rate of Change from a Table",
+    "4-2, Example 2 — Find the Rate of Change from a Graph"
+  ],
+  "warmUp": "If you drive 150 miles in 3 hours, what is your average speed?",
+  "conceptDevelopment": "Mini-lesson: rate of change formula (rise over run); interpreting rates in context; slope from tables and graphs",
+  "guidedPractice": "Teacher-led practice calculating rate of change from tables and graphs and computing slope from two points",
+  "independentPractice": "Practice problems finding rate of change and slope in various contexts",
+  "assessment": "Exit ticket: find the slope of the line passing through (2, 5) and (6, 13)",
+  "capReflection": "How is rate of change related to the slope of a line?"
+}

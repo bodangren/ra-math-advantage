@@ -1,0 +1,17 @@
+{
+  "periodId": "m9-p04",
+  "dayType": "instruction",
+  "sourceLesson": "9-2",
+  "classObjectiveCode": "9c",
+  "classObjective": "Analyze data displays to draw conclusions and answer questions about a data set.",
+  "workedExamples": [
+    "9-2, Example 4 — Bar Graph or Histogram? (Choosing the Right Display)",
+    "9-2, Example 5 — Analyze Graphs for Misrepresentation"
+  ],
+  "warmUp": "A bar graph has gaps between bars — what type of data does this represent?",
+  "conceptDevelopment": "Mini-lesson: shape, center, spread from displays; misleading graph scale identification; drawing conclusions from data displays",
+  "guidedPractice": "Teacher-led practice analyzing data displays and identifying misrepresentation",
+  "independentPractice": "Practice problems analyzing graphs for meaning and detecting misleading representations",
+  "assessment": "Exit ticket: analyze a given data display and describe what conclusions can and cannot be drawn from it",
+  "capReflection": "What visual elements in a graph can be used to mislead readers, and how do you detect them?"
+}

@@ -1,0 +1,9 @@
+{
+  "periodId": "m10-p09",
+  "dayType": "mastery",
+  "nonInstructionArtifact": {
+    "type": "mastery",
+    "focus": "Objectives 10e-10g",
+    "activities": ["SRS practice on segment addition and distance formula", "Spiral review on Distance Formula applications", "Error analysis on distance calculations"]
+  }
+}

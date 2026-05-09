@@ -1,0 +1,17 @@
+{
+  "periodId": "m13-p02",
+  "dayType": "instruction",
+  "sourceLesson": "13-1",
+  "classObjectiveCode": "13b",
+  "classObjective": "Determine the coordinates of the image of a point after a reflection in a horizontal or vertical line.",
+  "workedExamples": [
+    "13-1, Example 3 — Determine Coordinates After a Reflection in a Horizontal or Vertical Line",
+    "13-1, Example 4 — Apply Reflections to Real-World Problems (Banner, Sandbox)"
+  ],
+  "warmUp": "What is the reflection of (-3, 7) over the line y = 4?",
+  "conceptDevelopment": "Mini-lesson: single point reflection; real-world reflection contexts (banners, mirrors, architecture)",
+  "guidedPractice": "Teacher-led practice determining coordinates after reflections in various lines",
+  "independentPractice": "Practice problems finding coordinates of reflected points and applying to real-world scenarios",
+  "assessment": "Exit ticket: find the coordinates of (5, -2) after reflection over the line y = -3",
+  "capReflection": "How does understanding reflection help you solve real-world problems involving mirrors or symmetry?"
+}

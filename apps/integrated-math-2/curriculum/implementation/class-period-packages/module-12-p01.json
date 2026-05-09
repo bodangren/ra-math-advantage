@@ -1,0 +1,17 @@
+{
+  "periodId": "m12-p01",
+  "dayType": "instruction",
+  "sourceLesson": "12-1",
+  "classObjectiveCode": "12a",
+  "classObjective": "Identify the axis of symmetry, vertex, and end behavior of a quadratic function from its graph.",
+  "workedExamples": [
+    "12-1, Example 1 — Identify Key Features from a Graph",
+    "12-1, Example 2 — Axis of Symmetry and Vertex"
+  ],
+  "warmUp": "Skill activation problem",
+  "conceptDevelopment": "Mini-lesson or exploration",
+  "guidedPractice": "Teacher-led practice with worked examples",
+  "independentPractice": "Practice problems from the lesson",
+  "assessment": "Exit ticket or quick check",
+  "capReflection": "Courage, Adaptability, Persistence reflection prompt"
+}

@@ -1,0 +1,20 @@
+{
+  "periodId": "m6-p17",
+  "dayType": "instruction",
+  "sourceLesson": "6-7",
+  "classObjectiveCode": "6o",
+  "classObjective": "Find volumes of composite solids involving cylinders, cones, and spheres; apply hemisphere volume.",
+  "workedExamples": [
+    "6-7, Example 4 — Volume of Cones with Variables",
+    "6-7, Example 5 — Additional Volume Problems",
+    "6-7, Example 6 — Volume of Spheres with Variables",
+    "6-7, Example 7 — Volume of Composite Solids",
+    "6-7, Example 8 — Additional Composite Solid Problems"
+  ],
+  "warmUp": "Skill activation problem",
+  "conceptDevelopment": "Mini-lesson or exploration",
+  "guidedPractice": "Teacher-led practice with worked examples",
+  "independentPractice": "Practice problems from the lesson",
+  "assessment": "Exit ticket or quick check",
+  "capReflection": "Courage, Adaptability, Persistence reflection prompt"
+}

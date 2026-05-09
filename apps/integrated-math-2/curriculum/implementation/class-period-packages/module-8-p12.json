@@ -1,0 +1,18 @@
+{
+  "periodId": "m8-p12",
+  "dayType": "instruction",
+  "sourceLesson": "8-5",
+  "classObjectiveCode": "8i",
+  "classObjective": "Graph vertical and horizontal shifts of parent functions.",
+  "workedExamples": [
+    "8-5, Example 1 — Vertical Shifts",
+    "8-5, Example 2 — Horizontal Shifts",
+    "8-5, Example 3 — Combined Shifts"
+  ],
+  "warmUp": "Skill activation problem",
+  "conceptDevelopment": "Mini-lesson or exploration",
+  "guidedPractice": "Teacher-led practice with worked examples",
+  "independentPractice": "Practice problems from the lesson",
+  "assessment": "Exit ticket or quick check",
+  "capReflection": "Courage, Adaptability, Persistence reflection prompt"
+}

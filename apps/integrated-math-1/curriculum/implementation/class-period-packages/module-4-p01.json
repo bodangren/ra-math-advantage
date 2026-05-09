@@ -1,0 +1,17 @@
+{
+  "periodId": "m4-p01",
+  "dayType": "instruction",
+  "sourceLesson": "4-1",
+  "classObjectiveCode": "4a",
+  "classObjective": "Graph linear equations by making a table of values and by finding and plotting the x- and y-intercepts.",
+  "workedExamples": [
+    "4-1, Example 1 — Graph by Making a Table of Values",
+    "4-1, Example 2 — Graph Using x- and y-Intercepts"
+  ],
+  "warmUp": "Find the x- and y-intercepts of 2x + 3y = 12",
+  "conceptDevelopment": "Mini-lesson: table construction for linear equations; intercept computation; vertical and horizontal line cases",
+  "guidedPractice": "Teacher-led practice graphing linear equations using tables and intercept methods",
+  "independentPractice": "Practice problems graphing linear equations including special cases (horizontal and vertical lines)",
+  "assessment": "Exit ticket: graph 4x - 2y = 8 using the intercept method",
+  "capReflection": "Why might you choose the intercept method over making a table when graphing a linear equation?"
+}

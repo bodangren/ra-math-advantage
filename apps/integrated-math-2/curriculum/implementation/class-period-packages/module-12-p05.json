@@ -1,0 +1,17 @@
+{
+  "periodId": "m12-p05",
+  "dayType": "instruction",
+  "sourceLesson": "12-2",
+  "classObjectiveCode": "12d",
+  "classObjective": "Write quadratic equations given a graph using transformations.",
+  "workedExamples": [
+    "12-2, Example 3 — Write Equation from Graph",
+    "12-2, Example 4 — Combined Transformations in Context"
+  ],
+  "warmUp": "Skill activation problem",
+  "conceptDevelopment": "Mini-lesson or exploration",
+  "guidedPractice": "Teacher-led practice with worked examples",
+  "independentPractice": "Practice problems from the lesson",
+  "assessment": "Exit ticket or quick check",
+  "capReflection": "Courage, Adaptability, Persistence reflection prompt"
+}

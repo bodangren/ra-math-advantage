@@ -1,0 +1,17 @@
+{
+  "periodId": "m6-p08",
+  "dayType": "instruction",
+  "sourceLesson": "6-3",
+  "classObjectiveCode": "6f",
+  "classObjective": "Graph the solution set of a compound inequality on a number line and write compound inequalities that model real-world situations and interpret the solutions in context.",
+  "workedExamples": [
+    "6-3, Example 2 — Model Real-World Situations (continued)",
+    "6-3, Example 3 — Write Compound Inequalities from Graphs"
+  ],
+  "warmUp": "Graph the compound inequality: x > 2 or x < -1",
+  "conceptDevelopment": "Mini-lesson: bounded and unbounded intervals; temperature range and BMI contexts; writing inequalities from visual graphs",
+  "guidedPractice": "Teacher-led practice graphing compound inequalities and writing them from real-world contexts",
+  "independentPractice": "Practice problems graphing compound inequality solutions and writing inequalities for real-world situations",
+  "assessment": "Exit ticket: write and graph a compound inequality for acceptable room temperature (between 65°F and 78°F inclusive)",
+  "capReflection": "How do real-world constraints like temperature ranges naturally form compound inequalities?"
+}

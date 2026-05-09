@@ -1,0 +1,9 @@
+{
+  "periodId": "m1-p12",
+  "dayType": "jigsaw",
+  "nonInstructionArtifact": {
+    "type": "jigsaw",
+    "focus": "Mathematical practices: property justification, error analysis, and structure reasoning in expressions",
+    "activities": ["Jigsaw rotation on Distributive Property applications", "Expert groups on error analysis scenarios", "Teaching others your simplification strategy"]
+  }
+}

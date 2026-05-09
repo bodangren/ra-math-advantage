@@ -1,0 +1,18 @@
+{
+  "periodId": "m8-p05",
+  "dayType": "instruction",
+  "sourceLesson": "8-2",
+  "classObjectiveCode": "8d",
+  "classObjective": "Describe domain and range restrictions in terms of real-world context.",
+  "workedExamples": [
+    "8-2, Example 4 — Real-World Context",
+    "8-2, Example 5 — Compound Restrictions",
+    "8-2, Example 6 — Interpreting Feasible Domains"
+  ],
+  "warmUp": "Skill activation problem",
+  "conceptDevelopment": "Mini-lesson or exploration",
+  "guidedPractice": "Teacher-led practice with worked examples",
+  "independentPractice": "Practice problems from the lesson",
+  "assessment": "Exit ticket or quick check",
+  "capReflection": "Courage, Adaptability, Persistence reflection prompt"
+}

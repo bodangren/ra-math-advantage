@@ -1,0 +1,17 @@
+{
+  "periodId": "m9-p13",
+  "dayType": "instruction",
+  "sourceLesson": "9-6",
+  "classObjectiveCode": "9j",
+  "classObjective": "Describe how adding or multiplying every value in a data set affects the mean, median, mode, range, and standard deviation.",
+  "workedExamples": [
+    "9-6, Example 1 — Add a Constant to Every Data Value and Find Statistics",
+    "9-6, Example 2 — Multiply Every Data Value by a Constant and Find Statistics"
+  ],
+  "warmUp": "If everyone in a class gets 5 extra points on a test, what happens to the mean score?",
+  "conceptDevelopment": "Mini-lesson: adding constants shifts mean, median, mode but doesn't change spread; multiplying changes both center and spread",
+  "guidedPractice": "Teacher-led practice predicting the effect of transformations on statistics",
+  "independentPractice": "Practice problems analyzing how data transformations affect statistical measures",
+  "assessment": "Exit ticket: if every value in a data set is multiplied by 3, what happens to the standard deviation?",
+  "capReflection": "Why does multiplying by a constant change both the center and spread measures, while adding a constant only changes the center?"
+}

@@ -1,0 +1,18 @@
+{
+  "periodId": "m1-p05",
+  "dayType": "instruction",
+  "sourceLesson": "1-2",
+  "classObjectiveCode": "1d",
+  "classObjective": "Evaluate algebraic expressions by substituting given values for variables and following the order of operations.",
+  "workedExamples": [
+    "1-2, Example 4 — Evaluate Algebraic Expressions by Substitution",
+    "1-2, Example 5 — Write and Evaluate Expressions from Word Problems",
+    "1-2, Example 6 — Mixed Review with Structure and Reasoning"
+  ],
+  "warmUp": "Evaluate simple algebraic expressions with given values",
+  "conceptDevelopment": "Mini-lesson: multi-variable substitution and multi-step evaluation following order of operations",
+  "guidedPractice": "Teacher-led practice evaluating algebraic expressions with substitution, including multi-step and multi-variable cases",
+  "independentPractice": "Practice problems evaluating algebraic expressions with given variable values",
+  "assessment": "Exit ticket: evaluate an algebraic expression with 2 variables given their values",
+  "capReflection": "How does following order of operations protect you from errors when evaluating expressions with multiple operations?"
+}

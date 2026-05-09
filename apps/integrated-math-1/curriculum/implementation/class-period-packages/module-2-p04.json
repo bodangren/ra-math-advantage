@@ -1,0 +1,17 @@
+{
+  "periodId": "m2-p04",
+  "dayType": "instruction",
+  "sourceLesson": "2-2",
+  "classObjectiveCode": "2c",
+  "classObjective": "Solve one-step equations involving addition, subtraction, multiplication, and division using the Properties of Equality.",
+  "workedExamples": [
+    "2-2, Example 1 — Solve Addition and Subtraction Equations with Integers",
+    "2-2, Example 2 — Solve Multiplication and Division Equations with Integers"
+  ],
+  "warmUp": "Solve x + 5 = 12; 3x = 21",
+  "conceptDevelopment": "Mini-lesson: inverse operations and Properties of Equality; handling negative numbers",
+  "guidedPractice": "Teacher-led practice solving one-step equations with integers using inverse operations",
+  "independentPractice": "Practice problems solving one-step equations involving all four operations",
+  "assessment": "Exit ticket: solve 3 one-step equations, one for each operation",
+  "capReflection": "How does the Property of Equality ensure our solution is correct?"
+}

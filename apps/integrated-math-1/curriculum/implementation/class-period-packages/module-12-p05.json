@@ -1,0 +1,18 @@
+{
+  "periodId": "m12-p05",
+  "dayType": "instruction",
+  "sourceLesson": "12-2",
+  "classObjectiveCode": "12d",
+  "classObjective": "Identify the hypothesis and conclusion of a conditional statement and write the converse, inverse, and contrapositive.",
+  "workedExamples": [
+    "12-2, Example 3 — Identify Hypothesis and Conclusion in Conditional Statements",
+    "12-2, Example 4 — Rewrite Statements in If-Then Form",
+    "12-2, Example 5 — Write Converse, Inverse, and Contrapositive"
+  ],
+  "warmUp": "Write 'A figure with 4 sides is a quadrilateral' in if-then form",
+  "conceptDevelopment": "Mini-lesson: conditional logic; hypothesis/conclusion identification; contrapositive equivalence; biconditional formation",
+  "guidedPractice": "Teacher-led practice identifying conditional parts and writing logical variations",
+  "independentPractice": "Practice problems writing converses, inverses, contrapositives and analyzing their truth values",
+  "assessment": "Exit ticket: write the converse, inverse, and contrapositive of 'If it rains, then the ground is wet' and identify which are equivalent",
+  "capReflection": "Why is the contrapositive always logically equivalent to the original conditional statement?"
+}

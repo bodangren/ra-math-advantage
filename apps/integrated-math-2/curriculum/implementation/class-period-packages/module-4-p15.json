@@ -1,0 +1,18 @@
+{
+  "periodId": "m4-p15",
+  "dayType": "instruction",
+  "sourceLesson": "4-6",
+  "classObjectiveCode": "4l",
+  "classObjective": "Use trigonometry to find areas of triangles and solve indirect measurement problems with two angles.",
+  "workedExamples": [
+    "4-6, Example 3 — Indirect Measurement with Two Angles",
+    "4-6, Example 4 — Area Using Trigonometry",
+    "4-6, Example 5 — Area with Different Given Information"
+  ],
+  "warmUp": "Skill activation problem",
+  "conceptDevelopment": "Mini-lesson or exploration",
+  "guidedPractice": "Teacher-led practice with worked examples",
+  "independentPractice": "Practice problems from the lesson",
+  "assessment": "Exit ticket or quick check",
+  "capReflection": "Courage, Adaptability, Persistence reflection prompt"
+}
