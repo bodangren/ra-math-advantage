@@ -1,0 +1,10 @@
+{
+  "track_id": "skill-rollout-im3_20260509",
+  "title": "Skill Graph Program: Integrated Math 3 Rollout",
+  "description": "Expand the approved skill graph pipeline from the IM3 Module 1 pilot across Modules 2-9 while preserving existing IM3 runtime behavior and replacing coarse activity maps with graph-derived projections.",
+  "type": "feature",
+  "status": "pending",
+  "created_at": "2026-05-09",
+  "updated_at": "2026-05-09",
+  "estimated_tasks": 20
+}

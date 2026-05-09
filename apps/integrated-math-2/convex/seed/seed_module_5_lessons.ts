@@ -18,7 +18,7 @@ export const seedModule5Lessons = internalMutation({
     const now = Date.now();
     const lessonsData = [
       {
-        slug: "5-1-circles-circumference",
+        slug: "module-5-lesson-1",
         title: "Circles and Circumference",
         description:
           "Students identify and name circles, radii, chords, and diameters. They use relationships between radii, diameters, and circumference to find missing measures.",
@@ -117,7 +117,7 @@ export const seedModule5Lessons = internalMutation({
         ],
       },
       {
-        slug: "5-2-measuring-angles-arcs",
+        slug: "module-5-lesson-2",
         title: "Measuring Angles and Arcs",
         description:
           "Students find central angle measures and arc measures in degrees, classify arcs as major arcs, minor arcs, or semicircles, and convert between degree and radian measure.",
@@ -216,7 +216,7 @@ export const seedModule5Lessons = internalMutation({
         ],
       },
       {
-        slug: "5-3-arcs-chords",
+        slug: "module-5-lesson-3",
         title: "Arcs and Chords",
         description:
           "Students use relationships among arcs, chords, and central angles. They apply Theorems 10.5 and 10.6 about chords equidistant from the center, and find chord lengths using perpendicular bisectors.",
@@ -315,7 +315,7 @@ export const seedModule5Lessons = internalMutation({
         ],
       },
       {
-        slug: "5-4-inscribed-angles",
+        slug: "module-5-lesson-4",
         title: "Inscribed Angles",
         description:
           "Students find the measure of inscribed angles and their intercepted arcs, prove theorems about inscribed angles, and apply properties of angles inscribed in semicircles.",
@@ -429,7 +429,7 @@ export const seedModule5Lessons = internalMutation({
         ],
       },
       {
-        slug: "5-5-tangents",
+        slug: "module-5-lesson-5",
         title: "Tangents",
         description:
           "Students identify common tangents to pairs of circles, determine whether a segment is tangent to a circle, find angle measures involving tangents, and find perimeters of circumscribed polygons.",
@@ -558,7 +558,7 @@ export const seedModule5Lessons = internalMutation({
         ],
       },
       {
-        slug: "5-6-tangents-secants-angle-measures",
+        slug: "module-5-lesson-6",
         title: "Tangent, Secant, and Angle Measures",
         description:
           "Students find angle measures formed by chords, tangents, and secants. They apply theorems for angles formed inside, on, and outside circles and use angle measure relationships to find arc measures.",
@@ -672,7 +672,7 @@ export const seedModule5Lessons = internalMutation({
         ],
       },
       {
-        slug: "5-7-equations-of-circles",
+        slug: "module-5-lesson-7",
         title: "Equations of Circles",
         description:
           "Students write equations of circles in standard form given center and radius, center and diameter, or center and a point on the circle. They identify center and radius from equations and find intersections with lines.",
@@ -786,7 +786,7 @@ export const seedModule5Lessons = internalMutation({
         ],
       },
       {
-        slug: "5-8-equations-of-parabolas",
+        slug: "module-5-lesson-8",
         title: "Equations of Parabolas",
         description:
           "Students write equations of parabolas given the focus and directrix, identify focus and directrix from equations, find intersections with lines, and apply parabolic equations to real-world contexts.",

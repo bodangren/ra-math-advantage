@@ -1,11 +1,11 @@
 {
   "track_id": "demo-verification-multi-app_20260425",
   "type": "feature",
-  "status": "new",
+  "status": "update-required",
   "created_at": "2026-04-25T00:00:00Z",
-  "updated_at": "2026-04-25T00:00:00Z",
+  "updated_at": "2026-05-09T00:00:00Z",
   "description": "Seed demo environments and run end-to-end verification for IM1, IM2, and PreCalculus",
   "estimated_tasks": 18,
   "actual_tasks": null,
-  "deviation_notes": ""
+  "deviation_notes": "Completed demo verification remains useful. Remaining/new demo verification must validate graph-derived runtime projections after skill-runtime-projection_20260509 and course rollout tracks."
 }

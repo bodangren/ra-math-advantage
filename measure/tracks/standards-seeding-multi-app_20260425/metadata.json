@@ -1,11 +1,11 @@
 {
   "track_id": "standards-seeding-multi-app_20260425",
   "type": "feature",
-  "status": "new",
+  "status": "update-required",
   "created_at": "2026-04-25T00:00:00Z",
-  "updated_at": "2026-04-25T00:00:00Z",
+  "updated_at": "2026-05-09T00:00:00Z",
   "description": "Seed competency standards, lesson-standards mappings, and objective policies for IM1, IM2, and PreCalculus",
   "estimated_tasks": 12,
   "actual_tasks": null,
-  "deviation_notes": ""
+  "deviation_notes": "Existing course/app standard definitions remain useful source evidence. Skill-level standards alignment now belongs to skill-standards-alignment_20260509."
 }

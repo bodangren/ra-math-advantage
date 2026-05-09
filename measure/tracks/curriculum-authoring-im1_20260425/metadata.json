@@ -1,11 +1,11 @@
 {
   "track_id": "curriculum-authoring-im1_20260425",
   "type": "feature",
-  "status": "new",
+  "status": "wontimplement",
   "created_at": "2026-04-25T00:00:00Z",
-  "updated_at": "2026-04-25T00:00:00Z",
+  "updated_at": "2026-05-09T00:00:00Z",
   "description": "Author complete curriculum content for Integrated Math 1: 14 modules, ~99 lessons",
   "estimated_tasks": 20,
   "actual_tasks": null,
-  "deviation_notes": ""
+  "deviation_notes": "Superseded by skill-rollout-im1_20260509. IM1 source catalogs now exist from worksheet import; do not implement the stale hand-authored directory/lesson plan."
 }

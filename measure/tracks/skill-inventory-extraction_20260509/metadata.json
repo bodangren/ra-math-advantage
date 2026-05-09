@@ -1,0 +1,10 @@
+{
+  "track_id": "skill-inventory-extraction_20260509",
+  "title": "Skill Graph Program: Skill Inventory Extraction",
+  "description": "Extract atomic skill and worked-example candidates from IM1, IM2, IM3, and AP Precalculus curriculum source artifacts into validated skill-graph.v1 draft node inventories.",
+  "type": "feature",
+  "status": "pending",
+  "created_at": "2026-05-09",
+  "updated_at": "2026-05-09",
+  "estimated_tasks": 16
+}

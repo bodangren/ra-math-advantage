@@ -14,7 +14,7 @@ export const seedModule13Lessons = internalMutation({
 
     const lessonsData = [
       {
-        slug: "13-1-reflections",
+        slug: "module-13-lesson-1",
         title: "Reflections",
         description:
           "Students graph the image of a figure after a reflection over a given line and determine coordinates after reflection in horizontal or vertical lines.",
@@ -135,7 +135,7 @@ export const seedModule13Lessons = internalMutation({
         ],
       },
       {
-        slug: "13-2-translations",
+        slug: "module-13-lesson-2",
         title: "Translations",
         description:
           "Students determine whether a transformation is a translation, find translation vectors, apply translations to find image coordinates, and draw images on the coordinate plane.",
@@ -272,7 +272,7 @@ export const seedModule13Lessons = internalMutation({
         ],
       },
       {
-        slug: "13-3-rotations",
+        slug: "module-13-lesson-3",
         title: "Rotations",
         description:
           "Students graph the image of a polygon after rotations of 90°, 180°, or 270° about a given point, determine coordinates after rotation, and apply rotation rules to real-world problems.",
@@ -361,7 +361,7 @@ export const seedModule13Lessons = internalMutation({
         ],
       },
       {
-        slug: "13-4-compositions-of-transformations",
+        slug: "module-13-lesson-4",
         title: "Compositions of Transformations",
         description:
           "Students graph images after glide reflections and other compositions, identify single transformations equivalent to compositions of reflections, and determine congruence.",
@@ -514,7 +514,7 @@ export const seedModule13Lessons = internalMutation({
         ],
       },
       {
-        slug: "13-5-tessellations",
+        slug: "module-13-lesson-5",
         title: "Tessellations",
         description:
           "Students determine whether regular polygons tessellate the plane, analyze semiregular uniform tessellations, classify tessellation patterns, and describe transformations used to create tessellations.",
@@ -651,7 +651,7 @@ export const seedModule13Lessons = internalMutation({
         ],
       },
       {
-        slug: "13-6-symmetry",
+        slug: "module-13-lesson-6",
         title: "Symmetry",
         description:
           "Students identify and draw lines of symmetry, determine rotational symmetry and its order/magnitude, locate centers of symmetry, and apply symmetry understanding to real-world objects.",

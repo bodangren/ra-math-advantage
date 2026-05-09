@@ -1,5 +1,9 @@
 # Specification: Demo Environment & Verification — All Apps
 
+## 2026-05-09 Status: Update Required Before Implementation
+
+Keep completed demo verification. Remaining/new verification must validate graph-derived runtime projections after `skill-runtime-projection_20260509` and the course rollout tracks, not hand-maintained activity maps or seed outputs.
+
 ## Overview
 
 Seed demo environments and run end-to-end verification for IM1, IM2, and PreCalculus. Each app needs a demo org, teacher, students, class, enrollments, and sample progress data.

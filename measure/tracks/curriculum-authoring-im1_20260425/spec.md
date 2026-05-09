@@ -1,5 +1,9 @@
 # Specification: Curriculum Content Authoring — Integrated Math 1
 
+## 2026-05-09 Status: Wontimplement
+
+This track is superseded by `skill-rollout-im1_20260509`. Do not implement this stale hand-authored directory/lesson plan. IM1 source catalogs from the reviewed worksheet import should feed the Skill Graph inventory instead.
+
 ## Overview
 
 Author the complete curriculum content for Integrated Math 1: 14 modules, ~99 lessons. This is the heaviest content authoring track — IM1 has no existing curriculum content (only a table of contents in `IM1.md`).

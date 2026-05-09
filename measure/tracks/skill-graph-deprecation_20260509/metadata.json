@@ -1,0 +1,10 @@
+{
+  "track_id": "skill-graph-deprecation_20260509",
+  "title": "Skill Graph Program: Deprecation and Canonical Direction",
+  "description": "Audit overlapping curriculum, problem-family, activity-map, and seeding specs; mark stale work as deprecated; define which artifacts remain source evidence versus generated projections for the skill graph program.",
+  "type": "planning",
+  "status": "pending",
+  "created_at": "2026-05-09",
+  "updated_at": "2026-05-09",
+  "estimated_tasks": 8
+}

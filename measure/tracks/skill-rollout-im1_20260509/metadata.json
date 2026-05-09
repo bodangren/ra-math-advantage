@@ -1,0 +1,10 @@
+{
+  "track_id": "skill-rollout-im1_20260509",
+  "title": "Skill Graph Program: Integrated Math 1 Rollout",
+  "description": "Apply the approved skill graph pipeline to all Integrated Math 1 source catalogs, including skill nodes, standards, edges, blueprints, generators, runtime projections, and review gates.",
+  "type": "feature",
+  "status": "pending",
+  "created_at": "2026-05-09",
+  "updated_at": "2026-05-09",
+  "estimated_tasks": 22
+}

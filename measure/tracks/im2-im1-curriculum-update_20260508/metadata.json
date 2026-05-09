@@ -1,11 +1,11 @@
 {
   "track_id": "im2-im1-curriculum-update_20260508",
   "type": "feature",
-  "status": "new",
+  "status": "completed",
   "created_at": "2026-05-08T14:38:00Z",
-  "updated_at": "2026-05-08T14:38:00Z",
-  "description": "Reconcile updated IM2 curriculum (module renaming, new lessons) and new IM1 curriculum (93 lessons) with seed data, Convex schema, and standards",
+  "updated_at": "2026-05-09T16:00:00Z",
+  "description": "Reconcile updated IM2 curriculum (module renaming, new lessons) and new IM1 curriculum (93 lessons) with seed data, Convex schema, and standards. Phase 15 remediation completed: fixed slug mismatches, regenerated activity maps, cleaned deprecated files.",
   "estimated_tasks": 18,
-  "actual_tasks": null,
-  "deviation_notes": ""
+  "actual_tasks": 24,
+  "deviation_notes": "Phase 15 added post-review to fix 4 critical issues (slug mismatches in IM1 M6/M8/M13 and IM2 M5, orphaned IM2 activity-map, incomplete IM1 activity-map, invalid JSON in class-period-package) and 3 major cleanup items (71 old seed files, units.ts in both apps, track status reconciliation)."
 }

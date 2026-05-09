@@ -23,7 +23,7 @@ export const seedModule6Lessons = internalMutation({
 
     const lessons = [
       {
-        slug: "6-1-one-step-inequalities",
+        slug: "module-6-lesson-1",
         title: "Solving One-Step Inequalities",
         description:
           "Graph the solution set of a one-step inequality on a number line. Write an inequality that matches a given number-line graph. Solve one-step inequalities using addition, subtraction, multiplication, and division, including when the coefficient is negative. Translate real-world situations into inequalities, solve them, and interpret the solutions.",
@@ -192,7 +192,7 @@ export const seedModule6Lessons = internalMutation({
         ],
       },
       {
-        slug: "6-2-multi-step-inequalities",
+        slug: "module-6-lesson-2",
         title: "Solving Multi-Step Inequalities",
         description:
           "Solve multi-step linear inequalities using the Distributive Property, combining like terms, and inverse operations. Translate real-world situations and verbal sentences into algebraic inequalities, then solve and interpret the results. Graph the solution set of an inequality on a number line, including solutions with fractions and decimals. Recognize and explain special solution sets such as 'no solution' and 'all real numbers'.",
@@ -313,7 +313,7 @@ export const seedModule6Lessons = internalMutation({
         ],
       },
       {
-        slug: "6-3-compound-inequalities",
+        slug: "module-6-lesson-3",
         title: "Solving Compound Inequalities",
         description:
           "Solve compound inequalities involving 'and' and 'or' and express the solution algebraically. Graph the solution set of a compound inequality on a number line. Write compound inequalities that model real-world situations and interpret the solutions in context. Translate number-line graphs into compound inequality notation.",
@@ -434,7 +434,7 @@ export const seedModule6Lessons = internalMutation({
         ],
       },
       {
-        slug: "6-4-absolute-value-inequalities",
+        slug: "module-6-lesson-4",
         title: "Solving Absolute Value Inequalities",
         description:
           "Solve absolute value inequalities and rewrite them as compound inequalities using and or or. Graph the solution set of an absolute value inequality on a number line. Model real-world situations with absolute value inequalities and interpret the solutions. Recognize special cases where an absolute value inequality has no solution or all real numbers as solutions.",
@@ -587,7 +587,7 @@ export const seedModule6Lessons = internalMutation({
         ],
       },
       {
-        slug: "6-5-graphing-inequalities-two-variables",
+        slug: "module-6-lesson-5",
         title: "Graphing Inequalities in Two Variables",
         description:
           "Graph linear inequalities in two variables written in slope-intercept and standard form. Write linear inequalities to model real-world constraints and verify solution points. Analyze boundary lines, half-planes, and test points to determine solution regions.",

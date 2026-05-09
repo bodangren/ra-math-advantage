@@ -1,0 +1,10 @@
+{
+  "track_id": "skill-standards-alignment_20260509",
+  "title": "Skill Graph Program: Skill-Level Standards Alignment",
+  "description": "Assign and validate course standards at the skill node level, including confidence, provenance, unresolved exceptions, and compatibility with existing lesson_standards and objective policy data.",
+  "type": "feature",
+  "status": "pending",
+  "created_at": "2026-05-09",
+  "updated_at": "2026-05-09",
+  "estimated_tasks": 14
+}

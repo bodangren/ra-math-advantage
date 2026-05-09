@@ -1,5 +1,9 @@
 # Specification: Standards & Objective Seeding — All Apps
 
+## 2026-05-09 Status: Update Required Before Implementation
+
+Keep existing course/app standard definitions as source evidence. Do not continue this track for final skill-level standard mappings; those now belong to `skill-standards-alignment_20260509`.
+
 ## Overview
 
 Seed competency standards, lesson-standards mappings, and objective policies for IM1, IM2, and PreCalculus. Each app needs its own set of standards (Common Core or AP-specific), mapped to lessons with primary/supporting flags, and SRS objective policies.

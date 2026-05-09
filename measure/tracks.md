@@ -984,9 +984,9 @@ Parallel tracks delivering complete curriculum for all three new apps. Tracks 1 
       *Original track superseded by im2-im1-curriculum-update_20260508 — content was updated (unit→module rename, new lessons added)*
       *Link: [./archive/curriculum-authoring-im2_20260425/](./archive/curriculum-authoring-im2_20260425/)*
 
-- [x]] **Track: IM2 + IM1 Curriculum Update** — **COMPLETED**
+- [x] **Track: IM2 + IM1 Curriculum Update** — **COMPLETED**
       *Keep only curriculum parity, source-catalog, module overview, class-period, and app seed/schema work that does not treat activity maps or lesson-level standards as skill truth. Any activity-map, SRS, skill-standard, or practice blueprint work must depend on the Skill Graph Program and be generated from graph artifacts.*
-      *Must be updated before further implementation. See `measure/skill-graph-deprecation-report.md`.*
+      *Phase 15 remediation completed: fixed lesson slug mismatches, regenerated activity maps, removed deprecated seed files and units.ts.*
       *Link: [./tracks/im2-im1-curriculum-update_20260508/](./tracks/im2-im1-curriculum-update_20260508/)*
 
 - [x] **Track: Curriculum Content Authoring — PreCalc** — **COMPLETED**

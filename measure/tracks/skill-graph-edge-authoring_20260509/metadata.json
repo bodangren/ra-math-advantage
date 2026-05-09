@@ -1,0 +1,10 @@
+{
+  "track_id": "skill-graph-edge-authoring_20260509",
+  "title": "Skill Graph Program: Directed Edge Authoring",
+  "description": "Author and validate prerequisite, support, extension, equivalence, misconception, standards, placement, renderer, and generator edges with typed weights and provenance.",
+  "type": "feature",
+  "status": "pending",
+  "created_at": "2026-05-09",
+  "updated_at": "2026-05-09",
+  "estimated_tasks": 15
+}

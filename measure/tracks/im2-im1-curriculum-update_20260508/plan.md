@@ -43,7 +43,7 @@
 - [x] Create `convex/seed/seed_module_1_lessons.ts` through `seed_module_14_lessons.ts`
 - [x] Each lesson entry uses `module-X-lesson-Y` ID matching curriculum file names
 - [x] Link to correct module number, order index, title from curriculum files
-- [ ] Remove old seed.ts and seed/units.ts completely — replace with new module-based seeds
+- [x] Remove old seed.ts and seed/units.ts completely — replace with new module-based seeds
 
 > **Checkpoint P3.1:** `c5bbe87f` — All 14 IM1 module seed files created. Lint-clean. `unitNumber: N` per module. Phase mapping: Explore→explore, Vocabulary→vocabulary, Learn→learn, Example N→worked_example, Mixed Exercises/Review Notes→independent_practice. No activities (text sections only).
 
@@ -211,3 +211,34 @@
 - [x] Confirm:
   - IM1: 14 class period plans, 14 module overviews, full implementation artifacts (260 period packages), new seed data (14 module seeds + 14 standards seeds)
   - IM2: 13 class period plans, 13 module overviews, full implementation artifacts (252 period packages), new seed data (13 module seeds + 13 standards seeds)
+
+## Phase 15: Post-Review Remediation
+
+*Added after deep-dive review uncovered critical data integrity bugs. See `measure/reviews/im2-im1-curriculum-update_20260509_review.md`.*
+
+### Task 15.1: Fix lesson slug mismatches (C1)
+- [x] IM1 `seed_module_6_lessons.ts` — renamed slugs to `module-6-lesson-Y`
+- [x] IM1 `seed_module_8_lessons.ts` — renamed slugs to `module-8-lesson-Y`
+- [x] IM1 `seed_module_13_lessons.ts` — renamed slugs to `module-13-lesson-Y`
+- [x] IM2 `seed_module_5_lessons.ts` — renamed slugs to `module-5-lesson-Y`
+
+### Task 15.2: Fix activity-map.json files (C2, C3)
+- [x] IM2 `activity-map.json` — regenerated with `module-X-pXX` period IDs (405 activities)
+- [x] IM1 `activity-map.json` — regenerated with `module-X-pXX` period IDs covering all 14 modules (408 activities)
+
+### Task 15.3: Fix invalid JSON (C4)
+- [x] IM1 `module-7-p14.json` — fixed missing closing quote in activities array
+
+### Task 15.4: Clean up deprecated files (M1, M2)
+- [x] Deleted IM2 `seed_lesson_*.ts` (71 old files)
+- [x] Deleted `units.ts` from IM1 and IM2 `convex/seed/`
+
+### Task 15.5: Reconcile track status (M3)
+- [x] Updated `metadata.json` and `spec.md` to consistent completed status
+- [x] Marked Task 3.1 `units.ts` removal as complete
+
+### Task 15.6: Verification
+- [x] Build, lint, tsc pass for IM1 and IM2
+- [x] JSON validity check for all class-period-packages — 0 invalid
+- [x] Seed slug format audit (all modules) — 0 old-format slugs remaining
+- [x] activity-map period ID audit — 0 bad IDs, all modules covered

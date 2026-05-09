@@ -1,5 +1,11 @@
 # Specification: IM2 + IM1 Curriculum Update
 
+## 2026-05-09 Status: COMPLETED (with Phase 15 remediation)
+
+Phase 15 was added after deep-dive review to fix critical data integrity bugs (slug mismatches, orphaned activity maps, invalid JSON, and cleanup debt). See `measure/reviews/im2-im1-curriculum-update_20260509_review.md` for the original review findings.
+
+Activity maps and lesson-level standards in this track are curriculum scaffolding only, not canonical skill truth. Skill-level standards, SRS inputs, and practice blueprints remain the responsibility of the Skill Graph Program.
+
 ## Overview
 
 **Complete replacement** of IM2 and IM1 curriculum infrastructure to bring both courses to full parity with IM3. All existing seed data, class period plans, module overviews, and implementation artifacts are deprecated and replaced.
@@ -8,7 +14,7 @@ The incoming curriculum files follow the IM3 format with `module-X-lesson-Y` nam
 
 ## Context
 
-- **IM2**: 109 lesson files under `curriculum/modules/` in `module-X-lesson-Y` format. Old seed data (using `unit-X` naming), old class period plans (using `unit-X-class-period-plan.md`), old module overviews, and old implementation artifacts are all **deprecated — to be replaced**.
+- **IM2**: 96 lesson files under `curriculum/modules/` in `module-X-lesson-Y` format. Old seed data (using `unit-X` naming), old class period plans (using `unit-X-class-period-plan.md`), old module overviews, and old implementation artifacts are all **deprecated — to be replaced**.
 - **IM1**: 93 lesson files under `curriculum/modules/` in `module-X-lesson-Y` format. No seed data (needs to be created), no class period plans (needs 14 created), no module overviews (needs 14 created), no implementation artifacts (needs full structure created).
 - **Format**: All lesson files follow IM3 flat-file format with `Source:` line, `## Today's Goals`, `## Vocabulary`, `## Explore`, `## Learn`, `## Example N`, `## Mixed Exercises`, `## Review Notes`.
 - **Goal**: Bring IM1 and IM2 to full parity with IM3's curriculum structure.
@@ -98,39 +104,39 @@ curriculum/
 ## Acceptance Criteria
 
 ### Curriculum Files (Already exist — verify only)
-- [ ] IM2: All 109 lesson files exist in `module-X-lesson-Y` format
-- [ ] IM2: `Source:` lines reference existing DOCX files
-- [ ] IM1: All 93 lesson files exist in `module-X-lesson-Y` format
-- [ ] IM1: `Source:` lines reference existing DOCX files
+- [x] IM2: All 96 lesson files exist in `module-X-lesson-Y` format
+- [x] IM2: `Source:` lines reference existing DOCX files
+- [x] IM1: All 93 lesson files exist in `module-X-lesson-Y` format
+- [x] IM1: `Source:` lines reference existing DOCX files
 
 ### Seed Data (Complete replacement)
-- [ ] IM2: Old `unit-X` seed deleted, new `module-X` seed created
-- [ ] IM2: All 109 lessons have seed entries in `module-X-lesson-Y` format
-- [ ] IM2: `lesson_standards` entries exist for all 109 lessons
-- [ ] IM1: Seed created for all 93 lessons in `module-X-lesson-Y` format
-- [ ] IM1: `lesson_standards` entries exist for all 93 lessons
+- [x] IM2: Old `unit-X` seed deleted, new `module-X` seed created
+- [x] IM2: All 96 lessons have seed entries in `module-X-lesson-Y` format
+- [x] IM2: `lesson_standards` entries exist for all 96 lessons
+- [x] IM1: Seed created for all 93 lessons in `module-X-lesson-Y` format
+- [x] IM1: `lesson_standards` entries exist for all 93 lessons
 
 ### Class Period Plans (Complete replacement)
-- [ ] IM2: All `unit-X-class-period-plan.md` deleted
-- [ ] IM2: All 13 `module-X-class-period-plan.md` created
-- [ ] IM1: All 14 `module-X-class-period-plan.md` created
-- [ ] All plans follow IM3 planning model (instruction/mastery/jigsaw/review/test)
+- [x] IM2: All `unit-X-class-period-plan.md` deleted
+- [x] IM2: All 13 `module-X-class-period-plan.md` created
+- [x] IM1: All 14 `module-X-class-period-plan.md` created
+- [x] All plans follow IM3 planning model (instruction/mastery/jigsaw/review/test)
 
 ### Module Overviews (Complete replacement)
-- [ ] IM2: All 13 module overview files created/updated
-- [ ] IM1: All 14 module overview files created
+- [x] IM2: All 13 module overview files created/updated
+- [x] IM1: All 14 module overview files created
 
 ### Course Spec
-- [ ] IM1: `curriculum/course-spec.md` created
+- [x] IM1: `curriculum/course-spec.md` created
 
 ### Implementation Artifacts (Complete replacement)
-- [ ] IM2: `implementation/` structure recreated (class-period-packages, activity-map.json, exceptions.json)
-- [ ] IM1: `implementation/` structure created (class-period-packages, activity-map.json, exceptions.json)
+- [x] IM2: `implementation/` structure recreated (class-period-packages, activity-map.json, exceptions.json)
+- [x] IM1: `implementation/` structure created (class-period-packages, activity-map.json, exceptions.json)
 
 ### Build & Validation
-- [ ] `npx tsc --noEmit` passes for IM1, IM2, IM3
-- [ ] All apps build successfully
-- [ ] IM1 and IM2 demo environments functional
+- [x] `npx tsc --noEmit` passes for IM1, IM2, IM3
+- [x] All apps build successfully
+- [x] IM1 and IM2 demo environments functional
 
 ## Out of Scope
 

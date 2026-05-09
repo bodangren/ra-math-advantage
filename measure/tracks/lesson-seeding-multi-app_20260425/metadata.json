@@ -1,11 +1,11 @@
 {
   "track_id": "lesson-seeding-multi-app_20260425",
   "type": "feature",
-  "status": "new",
+  "status": "wontimplement-remaining-scope",
   "created_at": "2026-04-25T00:00:00Z",
-  "updated_at": "2026-04-25T00:00:00Z",
+  "updated_at": "2026-05-09T00:00:00Z",
   "description": "Seed all curriculum lessons into Convex database for IM1, IM2, and PreCalculus",
   "estimated_tasks": 18,
   "actual_tasks": null,
-  "deviation_notes": ""
+  "deviation_notes": "Completed seed work remains historical evidence. Do not implement remaining/new lesson or activity seed work here; future seed-ready payloads must be generated from skill-runtime-projection_20260509 and course rollout tracks."
 }

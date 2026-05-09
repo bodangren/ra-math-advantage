@@ -1,5 +1,9 @@
 # Specification: Problem Families & Practice Items — All Apps
 
+## 2026-05-09 Status: Wontimplement For Remaining Scope
+
+Existing problem-family files are evidence only. Do not continue app-local problem-family or practice-item blueprint work as source truth; skill graph nodes and algorithmic skill blueprints supersede it.
+
 ## Overview
 
 Define problem families and practice item blueprints for IM1, IM2, and PreCalculus. Problem families group related practice problems by objective and difficulty, linking to activity components for rendering.

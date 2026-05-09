@@ -13,7 +13,7 @@ export const seedModule8Lessons = internalMutation({
 
     const lessonsData = [
       {
-        slug: "8-1-exponential-functions",
+        slug: "module-8-lesson-1",
         title: "Exponential Functions",
         description:
           "Students analyze exponential functions, identifying key features like initial value, growth/decay factor, domain, range, and asymptote, and compare them to linear functions.",
@@ -134,7 +134,7 @@ export const seedModule8Lessons = internalMutation({
         ],
       },
       {
-        slug: "8-2-transformations-exponential",
+        slug: "module-8-lesson-2",
         title: "Transformations of Exponential Functions",
         description:
           "Students describe and apply transformations to exponential functions, write equations from graphs, and model real-world situations involving exponential growth and decay.",
@@ -255,7 +255,7 @@ export const seedModule8Lessons = internalMutation({
         ],
       },
       {
-        slug: "8-3-writing-exponential-functions",
+        slug: "module-8-lesson-3",
         title: "Writing Exponential Functions",
         description:
           "Students write exponential functions from two points, graphs, and real-world scenarios, and apply the compound-interest formula to investment and depreciation problems.",
@@ -408,7 +408,7 @@ export const seedModule8Lessons = internalMutation({
         ],
       },
       {
-        slug: "8-4-transforming-exponential-expressions",
+        slug: "module-8-lesson-4",
         title: "Transforming Exponential Expressions",
         description:
           "Students rewrite exponential functions to compare rates with different compounding periods and calculate effective annual, quarterly, and monthly rates using properties of exponents.",
@@ -497,7 +497,7 @@ export const seedModule8Lessons = internalMutation({
         ],
       },
       {
-        slug: "8-5-geometric-sequences",
+        slug: "module-8-lesson-5",
         title: "Geometric Sequences",
         description:
           "Students identify geometric sequences, find missing terms, write explicit formulas, and apply sequences to real-world contexts involving exponential growth and decay.",
@@ -666,7 +666,7 @@ export const seedModule8Lessons = internalMutation({
         ],
       },
       {
-        slug: "8-6-recursive-formulas",
+        slug: "module-8-lesson-6",
         title: "Recursive Formulas",
         description:
           "Students find terms from recursive formulas, write recursive formulas for sequences and graphs, and convert between recursive and explicit forms for arithmetic and geometric sequences.",

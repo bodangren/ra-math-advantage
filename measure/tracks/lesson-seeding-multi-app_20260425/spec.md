@@ -1,5 +1,9 @@
 # Specification: Lesson Seeding — All Apps
 
+## 2026-05-09 Status: Wontimplement For Remaining Scope
+
+Completed seed work remains historical evidence. Do not implement remaining/new lesson or activity seed work from this track; future seed-ready payloads must be generated from `skill-runtime-projection_20260509` and the course rollout tracks.
+
 ## Overview
 
 Seed all curriculum lessons into the Convex database for IM1, IM2, and PreCalculus. Each lesson needs to be inserted as a lesson version with phases, sections, and activity references.
