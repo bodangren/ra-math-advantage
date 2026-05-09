@@ -2,7 +2,9 @@
 
 ## Phase 1: Tests and Fixtures
 
-- [ ] **Task 1.1: Add parser fixture tests**
+- [x] **Task 1.1: Add parser fixture tests** [817cdfe]
+  - Test valid math IDs for skill, worked_example, lesson, module, course, and standard kinds.
+  - Test malformed IDs (missing course, wrong domain prefix, invalid module/lesson padding).
   - Use small markdown fixtures that include:
     - lesson title
     - source line
@@ -11,11 +13,11 @@
     - mixed exercises
   - Assert expected draft node IDs and source references.
 
-- [ ] **Task 1.2: Add deterministic output test**
+- [x] **Task 1.2: Add deterministic output test** [817cdfe]
   - Run extraction twice against the same fixture.
   - Assert identical JSON output.
 
-- [ ] **Task 1.3: Add duplicate-ID test**
+- [x] **Task 1.3: Add duplicate-ID test** [817cdfe]
   - Create fixture headings that would collide.
   - Assert extractor appends deterministic disambiguators or raises an audit exception.
 
