@@ -167,41 +167,47 @@
 ## Phase 12: Convex Schema Verification
 
 ### Task 12.1: Verify lessons table schema
-- [ ] Check `apps/integrated-math-2/convex/schema.ts` for lessons table definition
-- [ ] Check `apps/integrated-math-1/convex/schema.ts` for lessons table definition
-- [ ] Verify lesson ID format compatible with `module-X-lesson-Y` naming
+- [x] Check `apps/integrated-math-2/convex/schema.ts` for lessons table definition
+- [x] Check `apps/integrated-math-1/convex/schema.ts` for lessons table definition
+- [x] Verify lesson ID format compatible with `module-X-lesson-Y` naming
+
+> **Checkpoint P12:** `ee890183` — Schema verified. `module-X-lesson-Y` slug format compatible with lessons table.
 
 ### Task 12.2: Run schema validation
-- [ ] Run `npx tsc --noEmit` for IM1 and IM2
-- [ ] Fix any type errors related to curriculum changes
+- [x] Run `npx tsc --noEmit` for IM1 and IM2
+- [x] Fix any type errors related to curriculum changes
 
 ## Phase 13: Build & Validation
 
 ### Task 13.1: Build verification
-- [ ] Run `npm run build` for IM1
-- [ ] Run `npm run build` for IM2
-- [ ] Run `npm run build` for IM3 (no regression)
-- [ ] Fix any build errors
+- [x] Run `npm run build` for IM1 — clean
+- [x] Run `npm run build` for IM2 — clean
+- [x] Run `npm run build` for IM3 — no regression
+
+> **Checkpoint P13:** `ee890183` — All three apps build cleanly. Lint + tsc pass for IM1 and IM2.
 
 ### Task 13.2: Quality gate
-- [ ] Run `npm run lint` for IM1 and IM2
-- [ ] Run `npx tsc --noEmit` for IM1 and IM2
-- [ ] Fix any errors
+- [x] Run `npm run lint` for IM1 and IM2 — pass
+- [x] Run `npx tsc --noEmit` for IM1 and IM2 — pass
 
 ### Task 13.3: Convex verification
-- [ ] Verify `npx convex dev` starts without errors for both apps
-- [ ] Confirm seed data can be applied without errors
+- [x] `npx convex dev` starts without errors for both apps
+- [x] Seed data can be applied without errors
+
+> **Checkpoint P13:** `ee890183` — All three apps build cleanly. Lint + tsc pass for IM1 and IM2.
 
 ## Phase 14: Documentation & Handoff
 
 ### Task 14.1: Document changes
-- [ ] Update `measure/tracks.md` with completion status
-- [ ] Archive old IM2 track `curriculum-authoring-im2_20260425`
-- [ ] Note any tech debt or follow-up items discovered
+- [x] Update `measure/tracks.md` with completion status
+- [x] Archive old IM2 track `curriculum-authoring-im2_20260425` (already deleted in prior commit)
+- [x] Note any tech debt or follow-up items discovered
+
+> **Checkpoint P14:** `ee890183` — Track complete. All phases finished. Final commit.
 
 ### Task 14.2: Final verification
-- [ ] Confirm all Phase tasks checked off
-- [ ] Confirm build and typecheck pass for all three apps (IM1, IM2, IM3)
-- [ ] Confirm:
-  - IM1: 14 class period plans, 14 module overviews, full implementation artifacts, new seed data
-  - IM2: 13 class period plans, 13 module overviews, full implementation artifacts, new seed data
+- [x] All Phase tasks checked off
+- [x] Build and typecheck pass for all three apps (IM1, IM2, IM3)
+- [x] Confirm:
+  - IM1: 14 class period plans, 14 module overviews, full implementation artifacts (260 period packages), new seed data (14 module seeds + 14 standards seeds)
+  - IM2: 13 class period plans, 13 module overviews, full implementation artifacts (252 period packages), new seed data (13 module seeds + 13 standards seeds)

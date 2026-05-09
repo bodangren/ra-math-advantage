@@ -10,6 +10,46 @@ Tracks 1+4 unlock Track 8; Track 8 unlocks Tracks 9+10.
 
 ## Active Tracks
 
+- [ ] **Program: Skill Graph and Algorithmic Practice Rollout**
+   *Create a canonical directed weighted knowledge graph where skills are nodes and relationships are typed weighted edges, then project that graph into worked examples, guided practice, independent algorithmic practice, SRS inputs, teacher evidence, and practice.v1 runtime activity maps.*
+   *Program rule: skill graph artifacts are source truth; practice activity maps, SRS inputs, component props, and seed data are generated projections.*
+   - [ ] **Track 1: Skill Graph Program — Deprecation and Canonical Direction**
+      *Audit overlapping earlier specs; preserve source evidence; mark stale activity-map/problem-family/lesson-seed directions as deprecated.*
+      *Link: [./measure/tracks/skill-graph-deprecation_20260509/](./measure/tracks/skill-graph-deprecation_20260509/)*
+   - [ ] **Track 2: Skill Graph Program — Canonical Graph Contract**
+      *Define skill-graph.v1 node, edge, weight, provenance, ID, and validation contracts.*
+      *Link: [./measure/tracks/skill-graph-contract_20260509/](./measure/tracks/skill-graph-contract_20260509/)*
+   - [ ] **Track 3: Skill Graph Program — Skill Inventory Extraction**
+      *Extract atomic skill and worked-example candidates from IM1, IM2, IM3, and AP Precalculus source artifacts.*
+      *Link: [./measure/tracks/skill-inventory-extraction_20260509/](./measure/tracks/skill-inventory-extraction_20260509/)*
+   - [ ] **Track 4: Skill Graph Program — Skill-Level Standards Alignment**
+      *Assign standards to skill nodes with confidence, provenance, review queues, and exceptions.*
+      *Link: [./measure/tracks/skill-standards-alignment_20260509/](./measure/tracks/skill-standards-alignment_20260509/)*
+   - [ ] **Track 5: Skill Graph Program — Directed Edge Authoring**
+      *Create directed weighted prerequisite, support, extension, equivalence, misconception, renderer, and generator edges.*
+      *Link: [./measure/tracks/skill-graph-edge-authoring_20260509/](./measure/tracks/skill-graph-edge-authoring_20260509/)*
+   - [ ] **Track 6: Skill Graph Program — Blueprint and Generator Contract**
+      *Define worked-example, guided-practice, and independent-practice blueprint contracts plus deterministic generator requirements.*
+      *Link: [./measure/tracks/skill-blueprint-generator-contract_20260509/](./measure/tracks/skill-blueprint-generator-contract_20260509/)*
+   - [ ] **Track 7: Skill Graph Program — Runtime Projections**
+      *Generate practice.v1 activity maps, SRS inputs, teacher evidence maps, component props, and seed projections from the graph.*
+      *Link: [./measure/tracks/skill-runtime-projection_20260509/](./measure/tracks/skill-runtime-projection_20260509/)*
+   - [ ] **Track 8: Skill Graph Program — IM3 Module 1 Pilot**
+      *Prove graph-to-runtime flow on IM3 Module 1 before broad rollout.*
+      *Link: [./measure/tracks/skill-graph-pilot-im3-m1_20260509/](./measure/tracks/skill-graph-pilot-im3-m1_20260509/)*
+   - [ ] **Track 9: Skill Graph Program — Integrated Math 1 Rollout**
+      *Apply the approved pipeline to IM1 source catalogs, with explicit standards/generator/component gap handling.*
+      *Link: [./measure/tracks/skill-rollout-im1_20260509/](./measure/tracks/skill-rollout-im1_20260509/)*
+   - [ ] **Track 10: Skill Graph Program — Integrated Math 2 Rollout**
+      *Apply the approved pipeline to IM2, reconciling current worksheet catalogs against stale unit-based artifacts.*
+      *Link: [./measure/tracks/skill-rollout-im2_20260509/](./measure/tracks/skill-rollout-im2_20260509/)*
+   - [ ] **Track 11: Skill Graph Program — Integrated Math 3 Rollout**
+      *Expand the accepted IM3 Module 1 pilot across Modules 2-9.*
+      *Link: [./measure/tracks/skill-rollout-im3_20260509/](./measure/tracks/skill-rollout-im3_20260509/)*
+   - [ ] **Track 12: Skill Graph Program — AP Precalculus Rollout**
+      *Apply the approved pipeline to AP Precalculus using CED/Passwater provenance, FRQ context, and Unit 4 exceptions.*
+      *Link: [./measure/tracks/skill-rollout-precalc_20260509/](./measure/tracks/skill-rollout-precalc_20260509/)*
+
 - [x] **Track: Practice Worksheet Example Import** — **COMPLETED**
    *Import IM1, IM2, and IM3 Practice Worksheet Student Bundles as reviewed Markdown problem set catalogs. 244 DOCX → 241 reviewed lesson files (IM1: 93, IM2: 96, IM3: 52). Full regeneration of IM2 and IM3 from canonical DOCX sources.*
    *Link: [./measure/tracks/practice-worksheet-example-import_20260507/](./measure/tracks/practice-worksheet-example-import_20260507/)*
@@ -919,8 +959,9 @@ Parallel tracks delivering complete curriculum for all three new apps. Tracks 1 
      *Extract all shareable components to packages: math activities, shell/auth, lesson rendering, study hub games, practice tests, teacher UI. Migrate IM3/BM2, adopt in IM1/IM2/PreCalc.*
      *Link: [./tracks/extract-activity-components_20260425/](./tracks/extract-activity-components_20260425/)*
 
-- [ ] **Track: Curriculum Content Authoring — IM1**
-     *Author complete curriculum content for Integrated Math 1: 14 modules, ~99 lessons*
+- [x] **Track: Curriculum Content Authoring — IM1** — **WONTIMPLEMENT**
+     *Deprecated direction: superseded by the reviewed IM1 worksheet catalogs from Practice Worksheet Example Import and the Skill Graph IM1 rollout. Do not implement this hand-authored directory/lesson track.*
+     *Superseded by: Skill Graph Program Track 9 (`skill-rollout-im1_20260509`).*
      *Link: [./tracks/curriculum-authoring-im1_20260425/](./tracks/curriculum-authoring-im1_20260425/)*
 
 - [x] **Track: BM2 Worker-Entry Bundle Optimization** — **COMPLETED**
@@ -942,8 +983,9 @@ Parallel tracks delivering complete curriculum for all three new apps. Tracks 1 
       *Original track superseded by im2-im1-curriculum-update_20260508 — content was updated (unit→module rename, new lessons added)*
       *Link: [./archive/curriculum-authoring-im2_20260425/](./archive/curriculum-authoring-im2_20260425/)*
 
-- [ ] **Track: IM2 + IM1 Curriculum Update**
-      *Reconcile updated IM2 (module rename, new lessons) and new IM1 (93 lessons) with seed data, Convex schema, and standards*
+- [x]] **Track: IM2 + IM1 Curriculum Update** — **COMPLETED**
+      *Keep only curriculum parity, source-catalog, module overview, class-period, and app seed/schema work that does not treat activity maps or lesson-level standards as skill truth. Any activity-map, SRS, skill-standard, or practice blueprint work must depend on the Skill Graph Program and be generated from graph artifacts.*
+      *Must be updated before further implementation. See `measure/skill-graph-deprecation-report.md`.*
       *Link: [./tracks/im2-im1-curriculum-update_20260508/](./tracks/im2-im1-curriculum-update_20260508/)*
 
 - [x] **Track: Curriculum Content Authoring — PreCalc** — **COMPLETED**
@@ -951,24 +993,24 @@ Parallel tracks delivering complete curriculum for all three new apps. Tracks 1 
       *Depends on: AP Precalculus Curriculum Definition*
       *Link: [./tracks/curriculum-authoring-precalc_20260425/](./tracks/curriculum-authoring-precalc_20260425/)*
 
-- [x] **Track: Standards & Objective Seeding — All Apps** — **PARTIALLY COMPLETE** (IM2 + PreCalc done; IM1 skipped)
-     *Seed competency standards, lesson-standards mappings, and objective policies for IM1, IM2, and PreCalculus*
-     *Depends on: Tracks 2, 3, 4*
+- [x] **Track: Standards & Objective Seeding — All Apps** — **PARTIALLY COMPLETE; UPDATE REQUIRED**
+     *Keep existing course/app competency definitions as source evidence. Do not continue this track for skill-level mappings; skill-standard edges now belong to Skill Graph Track 4.*
+     *Depends on: Skill Graph Program Track 4 (`skill-standards-alignment_20260509`) for any future skill-level alignment.*
      *Link: [./tracks/standards-seeding-multi-app_20260425/](./tracks/standards-seeding-multi-app_20260425/)*
 
-- [x] **Track: Lesson Seeding — All Apps** — **PARTIALLY COMPLETE** (IM2 70 lessons + PreCalc 58 lessons done; IM1 skipped)
-     *Seed all curriculum lessons into Convex database for IM1, IM2, and PreCalculus*
-     *Depends on: Tracks 2, 3, 4, 5*
+- [x] **Track: Lesson Seeding — All Apps** — **WONTIMPLEMENT FOR REMAINING SCOPE**
+     *Completed seed work remains historical evidence. Do not implement remaining/new lesson or activity seeds from this track; future seed-ready payloads must be generated from Skill Graph runtime projections.*
+     *Superseded by: Skill Graph Program Track 7 and course rollout tracks.*
      *Link: [./tracks/lesson-seeding-multi-app_20260425/](./tracks/lesson-seeding-multi-app_20260425/)*
 
-- [x] **Track: Problem Families & Practice Items — All Apps** — **PARTIALLY COMPLETE** (IM2 67 + PreCalc 40 families done; IM1 skipped)
-     *Define problem families and practice item blueprints for IM1, IM2, and PreCalculus*
-     *Depends on: Track 6*
+- [x] **Track: Problem Families & Practice Items — All Apps** — **WONTIMPLEMENT FOR REMAINING SCOPE**
+     *Existing problem-family data is evidence only. Do not continue app-local problem-family/practice-item blueprint work as source truth; skill graph nodes and skill blueprints supersede it.*
+     *Superseded by: Skill Graph Program Tracks 2 and 6.*
      *Link: [./tracks/problem-families-multi-app_20260425/](./tracks/problem-families-multi-app_20260425/)*
 
-- [x] **Track: Demo Environment & Verification — All Apps** — **PARTIALLY COMPLETE** (IM2 + PreCalc done; IM1 skipped)
-     *Seed demo environments and run end-to-end verification for IM1, IM2, and PreCalculus*
-     *Depends on: Tracks 6, 7*
+- [x] **Track: Demo Environment & Verification — All Apps** — **PARTIALLY COMPLETE; UPDATE REQUIRED**
+     *Keep completed demo verification. Remaining/new demo verification must validate graph-derived runtime projections, not hand-maintained activity maps or seed outputs.*
+     *Depends on: Skill Graph Program Track 7 and course rollout tracks for any future graph-derived demo data.*
       *Link: [./tracks/demo-verification-multi-app_20260425/](./tracks/demo-verification-multi-app_20260425/)*
 
 - [x] **Track: Convex Best Practices Audit** — **AUDITED** (All 10 phases audited; Phase 9 fixes applied; remaining remediation deferred)
@@ -997,6 +1039,6 @@ Parallel tracks delivering complete curriculum for all three new apps. Tracks 1 
      - Phase 4: IM3 Import Migration [x] (re-export barrels; 0 new type errors)
      - Phase 5: Package Quality & Documentation [x] [checkpoint: bd141ea] (43 tests, build verified, README done)
 
-- [ ] **Track: Reliability Contracts & DB Boundary Enforcement**
+- [x] **Track: Reliability Contracts & DB Boundary Enforcement** — **COMPLETED**
      *Replace critical `v.any()` schema definitions with discriminated unions, introduce Branded IDs to prevent reference bugs, enforce SRS transitions mathematically, and export canonical test fixtures.*
      *Link: [./tracks/reliability-contracts_20260504/](./tracks/reliability-contracts_20260504/)*
