@@ -58,3 +58,7 @@ export {
   textActivityPair,
 } from './seeds';
 export type { ActivitySeed, PhaseSeed, SectionSeed, LessonSeed, SeedData } from './seeds';
+
+// Knowledge-space adapter
+export { mathDomainAdapter } from './knowledge-space';
+export type { MathDomainAdapter } from './knowledge-space';

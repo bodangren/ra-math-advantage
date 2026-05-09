@@ -20,7 +20,8 @@
     "./problem-families/im2": "./src/problem-families/im2/index.ts",
     "./problem-families/im3": "./src/problem-families/im3/index.ts",
     "./problem-families/precalc": "./src/problem-families/precalc/index.ts",
-    "./seeds": "./src/seeds/index.ts"
+    "./seeds": "./src/seeds/index.ts",
+    "./knowledge-space": "./src/knowledge-space/index.ts"
   },
   "scripts": {
     "test": "vitest run",
@@ -32,6 +33,7 @@
   "dependencies": {
     "@math-platform/activity-runtime": "*",
     "@math-platform/practice-core": "*",
+    "@math-platform/knowledge-space-core": "*",
     "@math-platform/study-hub-core": "*",
     "zod": "^4.1.12"
   },
