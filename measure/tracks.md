@@ -22,12 +22,12 @@ Dependencies:
    - [x] **Track 1: Skill Graph Program — Deprecation and Canonical Direction**
       *Audit overlapping earlier specs; preserve source evidence; mark stale activity-map/problem-family/lesson-seed directions as deprecated.*
       *Link: [./measure/tracks/skill-graph-deprecation_20260509/](./measure/tracks/skill-graph-deprecation_20260509/)*
-   - [ ] **Track 2: Skill Graph Program — Knowledge Space Core Contract**
+    - [x] **Track 2: Skill Graph Program — Knowledge Space Core Contract**
       *Define domain-neutral knowledge-space.v1 node, edge, weight, provenance, ID, validation, and adapter contracts for reusable learning graphs. Includes a boundary lint that fails the build if reusable packages import app/domain code.*
       *Link: [./measure/tracks/skill-graph-contract_20260509/](./measure/tracks/skill-graph-contract_20260509/)*
-   - [ ] **Track 2.5: Skill Graph Program — Math Domain Adapter**
-      *Implement the math-domain adapter against the Track 2 contract: ID rules, metadata schema, generator/renderer registries, and the practice.v1 evidence bridge. This is the seam math rollouts consume; sibling projects implement their own domain adapter (English/GSE, Chinese, science) without touching reusable packages.*
-      *Link: [./measure/tracks/skill-math-adapter_20260509/](./measure/tracks/skill-math-adapter_20260509/)*
+    - [x] **Track 2.5: Skill Graph Program — Math Domain Adapter**
+       *Implement the math-domain adapter against the Track 2 contract: ID rules, metadata schema, generator/renderer registries, and the practice.v1 evidence bridge. This is the seam math rollouts consume; sibling projects implement their own domain adapter (English/GSE, Chinese, science) without touching reusable packages.*
+       *Link: [./measure/tracks/skill-math-adapter_20260509/](./measure/tracks/skill-math-adapter_20260509/)*
    - [ ] **Track 3: Skill Graph Program — Skill Inventory Extraction**
       *Extract atomic skill and worked-example candidates from IM1, IM2, IM3, and AP Precalculus source artifacts using the math-adapter ID constructors.*
       *Link: [./measure/tracks/skill-inventory-extraction_20260509/](./measure/tracks/skill-inventory-extraction_20260509/)*

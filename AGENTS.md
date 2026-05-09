@@ -53,6 +53,7 @@ See `measure/practice-component-contract.md` for the full spec.
 - TDD: write/adjust tests first, run `npm run lint` and relevant tests before each commit.
 - Always run `npx tsc --noEmit` in addition to `npm run build` — vinext build does not enforce TypeScript types.
 - Report discovered bugs/tech debt in Measure planning artifacts.
+- **Commit policy:** When a skill-specific workflow (e.g., Measure's atomic-commits-per-task rule) is active, follow that workflow's commit requirements. Generic "do not commit unless asked" only applies to ad-hoc work outside tracked workflows.
 
 <!-- convex-ai-start -->
 This project uses [Convex](https://convex.dev) as its backend.
