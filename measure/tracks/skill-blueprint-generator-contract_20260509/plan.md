@@ -76,3 +76,7 @@
 
 - [x] **Task 5.3: Confirm no app imports**
   - Search package files for app-local imports, domain content imports, or proprietary map fixtures.
+
+## Phase: Review Fixes
+
+- [x] **Task: Apply review suggestions** [924243e2]
