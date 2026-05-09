@@ -43,7 +43,7 @@ Dependencies:
     - [x] **Track 7: Skill Graph Program — Knowledge Space Practice Projections**
       *Generate practice.v1 activity maps, SRS inputs, teacher evidence maps, versioned visualization.v1 payloads (student/parent/teacher), component props, and seed projections through reusable projection adapters. Includes a cross-domain smoke test proving the pipeline runs on a synthetic non-math fixture with no math/app imports.*
       *Link: [./measure/tracks/skill-runtime-projection_20260509/](./measure/tracks/skill-runtime-projection_20260509/)*
-- [~] **Track 8: Skill Graph Program — IM3 Module 1 Pilot (depth-first slice)**
+- [x] **Track 8: Skill Graph Program — IM3 Module 1 Pilot (depth-first slice)**
        *Prove the graph-to-runtime flow end-to-end on IM3 Module 1 before broad cross-course edge authoring or rollout. Authors its own IM3 M1 edges; T5 expands afterward. If the pilot finds contract issues, fix in T2/T6/T7 and re-run before expanding.*
        *Link: [./measure/tracks/skill-graph-pilot-im3-m1_20260509/](./measure/tracks/skill-graph-pilot-im3-m1_20260509/)*
    - [ ] **Track 9: Skill Graph Program — Integrated Math 1 Rollout**
