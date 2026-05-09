@@ -55,10 +55,10 @@
 > **Checkpoint P3.2:** `153fc3b2` — 14 IM1 lesson_standards files covering 93 lessons. Standards inferred from ## Today's Goals per lesson. One primary standard per lesson, supporting standards added where content warrants.
 
 ### Task 3.3: Update seed.ts orchestration
-- [ ] Create new `convex/seed.ts` that imports and runs all new module seed files
-- [ ] Ensure seed order follows module-1 through module-14 sequence
+- [x] Create new `convex/seed.ts` that imports and runs all new module seed files
+- [x] Ensure seed order follows module-1 through module-14 sequence
 
-> **Checkpoint P3.3:** `[COMMIT_HASH]` — seed.ts orchestration for IM1 updated.
+> **Checkpoint P3.3:** `25b26f40` — seed.ts orchestration for IM1 updated. seedAll calls seedUnits (org/teacher/student) then 14 module lesson seeds then 14 module standards seeds.
 
 ## Phase 4: IM2 Seed Creation (Complete Replacement)
 
@@ -77,10 +77,10 @@
 > **Checkpoint P4.2:** `98fec082` — 13 IM2 lesson_standards files covering ~104 lessons. Standards include G-CO, G-SRT, G-C, G-GPE, G-GMD (geometry); S-CP (probability); F-IF/F-BF/F-LE (functions); A-APR/A-REI/A-CED (algebra); N-RN/N-CN (number systems).
 
 ### Task 4.3: Update seed.ts orchestration
-- [ ] Create new `convex/seed.ts` that imports and runs all new module seed files
-- [ ] Ensure seed order follows module-1 through module-13 sequence
+- [x] Create new `convex/seed.ts` that imports and runs all new module seed files
+- [x] Ensure seed order follows module-1 through module-13 sequence
 
-> **Checkpoint P4.3:** `[COMMIT_HASH]` — seed.ts orchestration for IM2 updated.
+> **Checkpoint P4.3:** `25b26f40` — seed.ts orchestration for IM2 updated. seedAll calls seedUnits (org/teacher/student) then seedStandards then 13 module lesson seeds then 13 module standards seeds then objective policies and problem families.
 
 ## Phase 5: IM1 Class Period Plans — Create All 14 Modules
 
