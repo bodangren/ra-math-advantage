@@ -95,44 +95,79 @@ export interface PrecalcLessonExtract {
 }
 
 // ---------------------------------------------------------------------------
-// Utility helpers
+// Markdown table parsing
 // ---------------------------------------------------------------------------
 
-function parseMarkdownTable(text: string): Record<string, string>[] {
+function findSectionTable(
+  text: string,
+  sectionHeading: string,
+): Record<string, string>[] {
   const lines = text.split('\n');
-  const rows: Record<string, string>[] = [];
+  let inTargetSection = false;
 
-  let headers: string[] = [];
-  let inTable = false;
+  for (let i = 0; i < lines.length; i++) {
+    const trimmed = lines[i].trim();
 
-  for (const line of lines) {
-    const trimmed = line.trim();
+    // Detect target section heading
+    if (
+      trimmed.startsWith('## ') &&
+      trimmed.toLowerCase().includes(sectionHeading.toLowerCase())
+    ) {
+      inTargetSection = true;
+      continue;
+    }
 
-    // Detect table header/split row
-    if (trimmed.startsWith('|') && trimmed.endsWith('|')) {
-      if (trimmed.includes('---') && headers.length > 0) {
-        // separator row: skip
-        continue;
-      }
-
-      const cells = trimmed
-        .slice(1, -1)
-        .split('|')
-        .map((c) => c.trim());
-
-      if (headers.length === 0) {
-        headers = cells;
-        inTable = true;
-      } else {
-        const row: Record<string, string> = {};
-        for (let i = 0; i < headers.length && i < cells.length; i++) {
-          row[headers[i]] = cells[i];
-        }
-        rows.push(row);
-      }
-    } else if (inTable && !trimmed.startsWith('|')) {
-      // End of table
+    // Stop if we hit another section
+    if (inTargetSection && trimmed.startsWith('## ') && !trimmed.includes(sectionHeading)) {
       break;
+    }
+
+    // Find table within the target section
+    if (inTargetSection && trimmed.startsWith('|')) {
+      const tableRows = parseTableFrom(lines, i);
+      if (tableRows.length > 0) return tableRows;
+    }
+  }
+
+  return [];
+}
+
+function parseTableFrom(
+  lines: string[],
+  startIdx: number,
+): Record<string, string>[] {
+  const rows: Record<string, string>[] = [];
+  let headers: string[] = [];
+  let foundHeader = false;
+
+  for (let i = startIdx; i < lines.length; i++) {
+    const trimmed = lines[i].trim();
+
+    if (!trimmed.startsWith('|') || !trimmed.endsWith('|')) {
+      if (foundHeader) break;
+      continue;
+    }
+
+    // Separator row
+    if (trimmed.includes('---') && headers.length > 0) {
+      foundHeader = true;
+      continue;
+    }
+
+    const cells = trimmed
+      .slice(1, -1)
+      .split('|')
+      .map((c) => c.trim());
+
+    if (headers.length === 0) {
+      headers = cells;
+    } else {
+      const row: Record<string, string> = {};
+      for (let j = 0; j < headers.length && j < cells.length; j++) {
+        row[headers[j]] = cells[j];
+      }
+      rows.push(row);
+      foundHeader = true;
     }
   }
 
@@ -228,7 +263,7 @@ function parseLessonRef(
 // ---------------------------------------------------------------------------
 
 export function parseClassPeriodPlan(markdown: string): ClassPeriodPlanExtract {
-  const rows = parseMarkdownTable(markdown);
+  const rows = findSectionTable(markdown, 'Period-by-Period Plan');
   const lessonsMap = new Map<string, ExtractedLesson>();
   const allExamples: ExtractedWorkedExample[] = [];
   let moduleNumber = 1;
@@ -326,9 +361,9 @@ export function parseModuleOverview(markdown: string): ModuleOverviewExtract {
     const line = lines[i];
     const trimmed = line.trim();
 
-    // H1: # Module X: Title
+    // H1: # Module X: Title or # Unit X: Title
     const h1Match = trimmed.match(
-      /^#\s+Module\s+(\d+)(?::\s*(.+))?$/,
+      /^#\s+(?:Module|Unit)\s+(\d+)(?::\s*(.+))?$/,
     );
     if (h1Match) {
       moduleNumber = parseInt(h1Match[1], 10);
@@ -398,7 +433,7 @@ export function parseModuleOverview(markdown: string): ModuleOverviewExtract {
 // ---------------------------------------------------------------------------
 
 export function parseAleksRegistry(markdown: string): AleksRegistryExtract {
-  const rows = parseMarkdownTable(markdown);
+  const rows = findSectionTable(markdown, 'Registry');
   const families: ProblemFamilyEntry[] = [];
 
   for (const row of rows) {

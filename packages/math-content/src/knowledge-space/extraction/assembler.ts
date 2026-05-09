@@ -72,7 +72,8 @@ export function assembleDraftInventory(
   input: InventoryAssemblerInput,
 ): KnowledgeSpaceNode[] {
   const { course, moduleOverview, classPeriodPlan, aleksRegistry, sourceFile } = input;
-  const { moduleNumber, title: moduleTitle, description: moduleDesc } = moduleOverview;
+  const { moduleNumber, title: overviewTitle, description: moduleDesc } = moduleOverview;
+  const moduleTitle = overviewTitle || `Module ${moduleNumber}`;
   const domain = `math.${course}`;
   const moduleStr = String(moduleNumber);
   const sourceRef = `${sourceFile}`;

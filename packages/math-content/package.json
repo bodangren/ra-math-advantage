@@ -28,7 +28,9 @@
     "test:watch": "vitest watch",
     "lint": "eslint src --max-warnings 0",
     "typecheck": "tsc --noEmit",
-    "build": "tsc --noEmit"
+    "build": "tsc --noEmit",
+    "extract-inventory": "npx tsx ../../scripts/extract-skill-inventory.ts",
+    "validate-inventory": "npx tsx ../../scripts/extract-skill-inventory.ts --all --audit-only"
   },
   "dependencies": {
     "@math-platform/activity-runtime": "*",
