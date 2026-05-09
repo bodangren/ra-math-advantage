@@ -6,7 +6,7 @@ Apply the approved skill graph pipeline to Integrated Math 2. This rollout must 
 
 ## Dependencies
 
-Same as IM1 rollout, plus special attention to `im2-im1-curriculum-update_20260508` and `im2-curriculum-definition_20260501` as historical context only.
+Same as IM1 rollout (including `skill-math-adapter_20260509`), plus special attention to `im2-im1-curriculum-update_20260508` and `im2-curriculum-definition_20260501` as historical context only.
 
 ## IM2 Source Rules
 

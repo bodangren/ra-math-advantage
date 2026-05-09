@@ -25,8 +25,8 @@
   - worked_example -> skill where extracted from the example
 
 - [ ] **Task 2.2: Implement placement edges**
-  - skill -> lesson using `appears_in_lesson`.
-  - worked_example -> lesson using `appears_in_lesson`.
+  - skill -> lesson using `appears_in_context`.
+  - worked_example -> lesson using `appears_in_context`.
 
 - [ ] **Task 2.3: Implement prerequisite suggestions**
   - Use module/lesson progression as low-confidence default.
@@ -38,9 +38,9 @@
   - Later, harder version of same family = `extends`.
   - Use difficulty and title cues only as low/medium confidence.
 
-- [ ] **Task 2.5: Implement equivalence suggestions**
-  - Same normalized familyKey or exact duplicate skill label across courses = `same_underlying_skill_as`.
-  - Mark cross-course matches medium unless manually reviewed.
+- [ ] **Task 2.5: Implement intra-course equivalence suggestions**
+  - Same normalized familyKey or exact duplicate skill label *within* a course = `equivalent_to`.
+  - Cross-course equivalence is **out of scope** for this track and is handled by `skill-cross-course-equivalence_20260509` after all course rollouts complete.
 
 ## Phase 3: Renderer, Generator, and Misconception Edges
 

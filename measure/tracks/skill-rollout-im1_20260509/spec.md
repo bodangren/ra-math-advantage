@@ -8,6 +8,7 @@ Apply the approved skill graph pipeline to all Integrated Math 1 curriculum sour
 
 - `skill-graph-deprecation_20260509`
 - `skill-graph-contract_20260509`
+- `skill-math-adapter_20260509`
 - `skill-inventory-extraction_20260509`
 - `skill-standards-alignment_20260509`
 - `skill-graph-edge-authoring_20260509`
@@ -36,12 +37,12 @@ Apply the approved skill graph pipeline to all Integrated Math 1 curriculum sour
 3. Assign standards to every skill or document exceptions.
 4. Add directed edges:
    - contains
-   - appears_in_lesson
+   - appears_in_context
    - aligned_to_standard
    - prerequisite_for
    - supports
    - extends
-   - same_underlying_skill_as
+   - equivalent_to
    - rendered_by
    - generated_by where available
 5. Implement or map generator-ready blueprints for algebraic, graphing, statistics, and geometry skills where current components support them.

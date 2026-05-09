@@ -29,7 +29,7 @@
 
 - [x] **Task 2.3: Classify generated projections**
   - Mark existing `implementation/practice-v1/activity-map.json`, class-period packages, and seed data as generated or replaceable projections unless a file is explicitly source evidence.
-  - Note that future projections must be generated from `skill-graph.v1`.
+  - Note that future projections must be generated from `knowledge-space.v1`.
 
 - [x] **Task 2.4: Classify deprecated directions**
   - Include stale specs that instruct developers to create app-local problem-family seed files, lesson-only standards, broad hand-authored lesson directories, or one activity/component per skill.

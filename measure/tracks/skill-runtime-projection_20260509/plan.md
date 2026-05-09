@@ -17,6 +17,13 @@
   - Parent projection includes plain-language can-do summary, next focus, blockers, and progress trend fields.
   - Teacher projection includes heatmap cells, bottleneck nodes, prerequisite gaps, misconception clusters, intervention groups, and standards/objective coverage.
   - Tests assert projections do not require raw graph access in UI components.
+  - Tests assert each payload validates against the corresponding `visualization.v1` Zod schema.
+
+- [ ] **Task 1.5: Cross-domain smoke test**
+  - Build a synthetic non-math fixture (e.g. a tiny synthetic English/GSE-style or Chinese-tone-style knowledge space with a handful of nodes, one blueprint, and one generator stub).
+  - Run the full projection pipeline: activity map, SRS, teacher evidence, and all three visualization payloads.
+  - Assert produced outputs validate against their schemas.
+  - Assert (via static or runtime check) that the test fixture and projection code use **no imports from `apps/`, `math-content`, `convex/_generated/`, or any math-domain module**.
 
 ## Phase 2: Projection Utility Implementation
 
@@ -37,8 +44,8 @@
   - Include node title, standards/objectives, prerequisite relationships, source examples, and evidence/submission part IDs.
 
 - [ ] **Task 2.5: Implement visualization projection**
-  - Define visual node and visual edge DTOs.
-  - Define learner node state, group node state, and recommended focus DTOs.
+  - Define `visualization.v1` Zod schemas: `visualNodeV1`, `visualEdgeV1`, `studentVisualizationV1`, `parentVisualizationV1`, `teacherVisualizationV1`.
+  - Each schema includes `schemaVersion: "v1"`.
   - Generate separate student, parent, and teacher projection shapes from the same graph/evidence inputs.
   - Hide raw/proprietary graph fields unless the target role explicitly needs them.
 

@@ -8,7 +8,7 @@ The Skill Graph and Algorithmic Practice Rollout is now the governing program fo
 
 The key policy change is:
 
-- **Source truth:** `skill-graph.v1` graph artifacts, reviewed curriculum source catalogs, official standards/CED sources, and source provenance.
+- **Source truth:** `knowledge-space.v1` graph artifacts, reviewed curriculum source catalogs, official standards/CED sources, and source provenance.
 - **Generated projections:** `practice.v1` activity maps, SRS inputs, teacher evidence maps, component props, and seed-ready activity payloads.
 - **Deprecated direction:** any later track that treats problem-family seed files, lesson seed files, or activity-map rows as the canonical skill model.
 

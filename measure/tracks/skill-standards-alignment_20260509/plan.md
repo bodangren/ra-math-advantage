@@ -62,7 +62,7 @@
 ## Phase 5: Verification
 
 - [ ] **Task 5.1: Validate all standard edges**
-  - Use `skill-graph.v1` validation.
+  - Use `knowledge-space.v1` validation.
   - Assert no dangling source/target node IDs.
 
 - [ ] **Task 5.2: Run targeted tests and lint**

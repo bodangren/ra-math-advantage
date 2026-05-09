@@ -2,11 +2,16 @@
 
 This file tracks all major tracks for the project.
 
-## Module 1 Roadmap
+## Skill Graph Program Roadmap
 
-Tracks 1–10 deliver a complete Module 1 experience from both the student and teacher standpoint.
-Dependencies flow left to right: Tracks 1+2 unlock Track 3; Track 4 unlocks Tracks 5+6+7;
-Tracks 1+4 unlock Track 8; Track 8 unlocks Tracks 9+10.
+The 13 tracks below build a domain-neutral knowledge-space pipeline (reusable across math, English/GSE, Chinese, science) and apply the math instantiation across IM1, IM2, IM3, and AP Precalculus.
+
+Dependencies:
+- T1 + T2 + T2.5 unlock T3.
+- T4 unlocks T5 only after T8 (pilot) is accepted.
+- T2 + T2.5 + T3 + T4 + T6 + T7 unlock T8 (pilot is the depth-first slice).
+- T8 acceptance + T5 unlock T9 + T10 + T11 + T12 (course rollouts run in parallel).
+- T9 + T10 + T11 + T12 unlock T13 (cross-course equivalence is the final stitch).
 
 ## Active Tracks
 
@@ -14,29 +19,32 @@ Tracks 1+4 unlock Track 8; Track 8 unlocks Tracks 9+10.
    *Before implementing any track in this program, read [Knowledge Space Architecture](./knowledge-space.md). Reusable packages own domain-neutral mechanisms only; proprietary math maps, English/GSE maps, standards catalogs, descriptors, and generated app outputs remain in app/domain content packages.*
    *Create a canonical directed weighted knowledge graph where skills are nodes and relationships are typed weighted edges, then project that graph into worked examples, guided practice, independent algorithmic practice, SRS inputs, teacher evidence, role-specific visualizations, and practice.v1 runtime activity maps.*
    *Program rule: skill graph artifacts are source truth; practice activity maps, SRS inputs, visualization payloads, component props, and seed data are generated projections.*
-   - [ ] **Track 1: Skill Graph Program — Deprecation and Canonical Direction**
+   - [x] **Track 1: Skill Graph Program — Deprecation and Canonical Direction**
       *Audit overlapping earlier specs; preserve source evidence; mark stale activity-map/problem-family/lesson-seed directions as deprecated.*
       *Link: [./measure/tracks/skill-graph-deprecation_20260509/](./measure/tracks/skill-graph-deprecation_20260509/)*
    - [ ] **Track 2: Skill Graph Program — Knowledge Space Core Contract**
-      *Define domain-neutral knowledge-space.v1 node, edge, weight, provenance, ID, validation, and adapter contracts for reusable learning graphs.*
+      *Define domain-neutral knowledge-space.v1 node, edge, weight, provenance, ID, validation, and adapter contracts for reusable learning graphs. Includes a boundary lint that fails the build if reusable packages import app/domain code.*
       *Link: [./measure/tracks/skill-graph-contract_20260509/](./measure/tracks/skill-graph-contract_20260509/)*
+   - [ ] **Track 2.5: Skill Graph Program — Math Domain Adapter**
+      *Implement the math-domain adapter against the Track 2 contract: ID rules, metadata schema, generator/renderer registries, and the practice.v1 evidence bridge. This is the seam math rollouts consume; sibling projects implement their own domain adapter (English/GSE, Chinese, science) without touching reusable packages.*
+      *Link: [./measure/tracks/skill-math-adapter_20260509/](./measure/tracks/skill-math-adapter_20260509/)*
    - [ ] **Track 3: Skill Graph Program — Skill Inventory Extraction**
-      *Extract atomic skill and worked-example candidates from IM1, IM2, IM3, and AP Precalculus source artifacts.*
+      *Extract atomic skill and worked-example candidates from IM1, IM2, IM3, and AP Precalculus source artifacts using the math-adapter ID constructors.*
       *Link: [./measure/tracks/skill-inventory-extraction_20260509/](./measure/tracks/skill-inventory-extraction_20260509/)*
    - [ ] **Track 4: Skill Graph Program — Skill-Level Standards Alignment**
       *Assign standards to skill nodes with confidence, provenance, review queues, and exceptions.*
       *Link: [./measure/tracks/skill-standards-alignment_20260509/](./measure/tracks/skill-standards-alignment_20260509/)*
-   - [ ] **Track 5: Skill Graph Program — Directed Edge Authoring**
-      *Create directed weighted prerequisite, support, extension, equivalence, misconception, renderer, and generator edges.*
+   - [ ] **Track 5: Skill Graph Program — Directed Edge Authoring (post-pilot horizontal expansion)**
+      *Apply the pilot-validated edge-authoring approach across IM1, IM2, IM3 Modules 2–9, and PreCalc. Runs **after** T8 pilot acceptance. Cross-course equivalence is **out of scope** here; that lives in T13.*
       *Link: [./measure/tracks/skill-graph-edge-authoring_20260509/](./measure/tracks/skill-graph-edge-authoring_20260509/)*
    - [ ] **Track 6: Skill Graph Program — Knowledge Space Blueprint and Generator Contract**
       *Define reusable worked-example, guided-practice, and independent-practice blueprint contracts plus deterministic generator requirements.*
       *Link: [./measure/tracks/skill-blueprint-generator-contract_20260509/](./measure/tracks/skill-blueprint-generator-contract_20260509/)*
    - [ ] **Track 7: Skill Graph Program — Knowledge Space Practice Projections**
-      *Generate practice.v1 activity maps, SRS inputs, teacher evidence maps, student/parent/teacher visualization payloads, component props, and seed projections through reusable projection adapters.*
+      *Generate practice.v1 activity maps, SRS inputs, teacher evidence maps, versioned visualization.v1 payloads (student/parent/teacher), component props, and seed projections through reusable projection adapters. Includes a cross-domain smoke test proving the pipeline runs on a synthetic non-math fixture with no math/app imports.*
       *Link: [./measure/tracks/skill-runtime-projection_20260509/](./measure/tracks/skill-runtime-projection_20260509/)*
-   - [ ] **Track 8: Skill Graph Program — IM3 Module 1 Pilot**
-      *Prove graph-to-runtime flow on IM3 Module 1 before broad rollout.*
+   - [ ] **Track 8: Skill Graph Program — IM3 Module 1 Pilot (depth-first slice)**
+      *Prove the graph-to-runtime flow end-to-end on IM3 Module 1 before broad cross-course edge authoring or rollout. Authors its own IM3 M1 edges; T5 expands afterward. If the pilot finds contract issues, fix in T2/T6/T7 and re-run before expanding.*
       *Link: [./measure/tracks/skill-graph-pilot-im3-m1_20260509/](./measure/tracks/skill-graph-pilot-im3-m1_20260509/)*
    - [ ] **Track 9: Skill Graph Program — Integrated Math 1 Rollout**
       *Apply the approved pipeline to IM1 source catalogs, with explicit standards/generator/component gap handling.*
@@ -50,6 +58,9 @@ Tracks 1+4 unlock Track 8; Track 8 unlocks Tracks 9+10.
    - [ ] **Track 12: Skill Graph Program — AP Precalculus Rollout**
       *Apply the approved pipeline to AP Precalculus using CED/Passwater provenance, FRQ context, and Unit 4 exceptions.*
       *Link: [./measure/tracks/skill-rollout-precalc_20260509/](./measure/tracks/skill-rollout-precalc_20260509/)*
+   - [ ] **Track 13: Skill Graph Program — Cross-Course Equivalence**
+      *Author equivalent_to edges across IM1/IM2/IM3/PreCalc knowledge spaces after all four rollouts complete. Wires SRS and teacher evidence projections to treat equivalence components as single learner-state targets.*
+      *Link: [./measure/tracks/skill-cross-course-equivalence_20260509/](./measure/tracks/skill-cross-course-equivalence_20260509/)*
 
 - [x] **Track: Practice Worksheet Example Import** — **COMPLETED**
    *Import IM1, IM2, and IM3 Practice Worksheet Student Bundles as reviewed Markdown problem set catalogs. 244 DOCX → 241 reviewed lesson files (IM1: 93, IM2: 96, IM3: 52). Full regeneration of IM2 and IM3 from canonical DOCX sources.*

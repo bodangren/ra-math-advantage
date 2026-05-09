@@ -4,21 +4,36 @@
 
 Author directed weighted graph edges between skill, worked-example, standard, curriculum, renderer, generator, and misconception nodes. This track turns the node inventory into a useful knowledge graph for adaptive sequencing, prerequisite repair, SRS routing, and teacher diagnostics.
 
+## Sequencing Role
+
+This track applies the edge-authoring approach **validated by `skill-graph-pilot-im3-m1_20260509`**. It runs *after* the pilot is accepted, not before. The pilot authors IM3 Module 1 edges directly; this track horizontally expands the validated approach to IM1, IM2, IM3 Modules 2–9, and PreCalc. Do not begin authoring broad cross-course edges before the pilot audit confirms the schema and heuristics.
+
+## Dependencies
+
+- `skill-graph-deprecation_20260509`
+- `skill-graph-contract_20260509`
+- `skill-math-adapter_20260509`
+- `skill-inventory-extraction_20260509`
+- `skill-standards-alignment_20260509`
+- `skill-blueprint-generator-contract_20260509`
+- `skill-runtime-projection_20260509`
+- `skill-graph-pilot-im3-m1_20260509` (pilot must be accepted)
+
 ## Functional Requirements
 
 1. Consume validated node inventories and standard alignment edges.
-2. Produce per-course edge files:
+2. Produce per-course edge files (IM3 Module 1 edges already exist from the pilot and are merged in, not re-authored):
    - `apps/integrated-math-1/curriculum/skill-graph/edges.json`
    - `apps/integrated-math-2/curriculum/skill-graph/edges.json`
-   - `apps/integrated-math-3/curriculum/skill-graph/edges.json`
+   - `apps/integrated-math-3/curriculum/skill-graph/edges.json` (Modules 2–9; merge with pilot's Module 1 edges)
    - `apps/pre-calculus/curriculum/skill-graph/edges.json`
 3. Author edge types:
    - `contains`
-   - `appears_in_lesson`
+   - `appears_in_context`
    - `prerequisite_for`
    - `supports`
    - `extends`
-   - `same_underlying_skill_as`
+   - `equivalent_to`
    - `common_misconception_with`
    - `rendered_by`
    - `generated_by`
@@ -55,7 +70,7 @@ Author directed weighted graph edges between skill, worked-example, standard, cu
 ## Acceptance Criteria
 
 - [ ] Per-course edge files exist.
-- [ ] All edges validate against `skill-graph.v1`.
+- [ ] All edges validate against `knowledge-space.v1`.
 - [ ] High-confidence prerequisite subgraph has no unapproved cycles.
 - [ ] Low-confidence edge review queues exist.
 - [ ] Audit report includes edge counts by type, confidence, and course.

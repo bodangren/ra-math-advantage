@@ -6,7 +6,7 @@ Apply the approved skill graph pipeline to AP Precalculus using official CED top
 
 ## Dependencies
 
-- All foundation tracks.
+- All foundation tracks (including `skill-math-adapter_20260509`).
 - `precalc-curriculum-definition_20260501` remains canonical source evidence for PreCalc planning.
 
 ## PreCalc Source Rules

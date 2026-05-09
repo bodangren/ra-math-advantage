@@ -6,7 +6,7 @@ Expand the approved IM3 Module 1 pilot across Integrated Math 3 Modules 2-9. Pre
 
 ## Dependencies
 
-- All foundation tracks.
+- All foundation tracks (including `skill-math-adapter_20260509`).
 - `skill-graph-pilot-im3-m1_20260509` must be complete and accepted.
 
 ## IM3 Source Rules

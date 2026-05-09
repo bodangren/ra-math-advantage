@@ -1,0 +1,10 @@
+{
+  "track_id": "skill-math-adapter_20260509",
+  "title": "Skill Graph Program: Math Domain Adapter",
+  "description": "Define the math-domain implementation of the knowledge-space domain-adapter contract: ID rules, metadata schema, generator/renderer registries, and the practice.v1 evidence bridge. This is the single seam math rollouts consume; sibling projects implement their own domain adapter (English/GSE, Chinese, science) without touching reusable packages.",
+  "type": "feature",
+  "status": "pending",
+  "created_at": "2026-05-09",
+  "updated_at": "2026-05-09",
+  "estimated_tasks": 14
+}

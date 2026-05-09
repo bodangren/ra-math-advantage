@@ -83,14 +83,30 @@
   - Update `packages/knowledge-space-core/src/index.ts`.
   - Update any package export map if present.
 
-## Phase 4: Verification
+## Phase 4: Boundary Enforcement
 
-- [ ] **Task 4.1: Run package tests**
+- [ ] **Task 4.1: Add boundary lint**
+  - Add an automated check (eslint rule, depcheck script, or `measure/doctor` extension) that scans `packages/knowledge-space-core/` and `packages/knowledge-space-practice/` for imports from any of:
+    - `apps/`
+    - `convex/_generated/`
+    - `packages/math-content/`
+    - any future domain content package
+  - The check must fail loudly (non-zero exit code, CI failure) if a forbidden import appears.
+  - Wire the check into the package's `npm test` (or equivalent) command so it runs locally and in CI.
+
+- [ ] **Task 4.2: Add boundary lint test fixture**
+  - A test that programmatically inserts a forbidden import and asserts the boundary check rejects it.
+  - Prevents the lint from silently breaking.
+
+## Phase 5: Verification
+
+- [ ] **Task 5.1: Run package tests**
   - Run the knowledge-space-core package tests.
 
-- [ ] **Task 4.2: Run typecheck**
+- [ ] **Task 5.2: Run typecheck**
   - Run `npx tsc --noEmit` for the package or monorepo scope used by existing scripts.
 
-- [ ] **Task 4.3: Confirm no app imports**
+- [ ] **Task 5.3: Confirm no app imports**
   - Search the new `knowledge-space-core` package for imports from `apps/`, domain content packages, or `convex/_generated`.
   - The result must be empty.
+  - This is the runtime confirmation; Phase 4 is the standing automated gate.

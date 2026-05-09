@@ -38,9 +38,6 @@
   - Use lesson sequence, standards, and family similarity.
   - Mark heuristic edges low confidence.
 
-- [ ] **Task 3.3: Add cross-course equivalence edges**
-  - Link IM1 skills to equivalent IM2/IM3/PreCalc skills only when labels and standards support it.
-
 ## Phase 4: Blueprints and Generators
 
 - [ ] **Task 4.1: Create IM1 blueprints**

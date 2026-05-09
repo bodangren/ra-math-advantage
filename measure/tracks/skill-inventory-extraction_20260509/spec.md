@@ -2,7 +2,7 @@
 
 ## Overview
 
-Extract atomic skill and worked-example candidates from existing curriculum source artifacts into draft `skill-graph.v1` node inventories. This track creates inventory data only; it does not finalize standards, edges, generators, or runtime projections.
+Extract atomic skill and worked-example candidates from existing curriculum source artifacts into draft `knowledge-space.v1` node inventories. This track creates inventory data only; it does not finalize standards, edges, generators, or runtime projections.
 
 ## Canonical Sources
 
@@ -11,9 +11,14 @@ Extract atomic skill and worked-example candidates from existing curriculum sour
 - IM3: `apps/integrated-math-3/curriculum/modules/module-*-lesson-*`
 - PreCalc: `apps/pre-calculus/curriculum/source/`, `apps/pre-calculus/curriculum/modules/`, and CED/Passwater-derived planning files
 
+## Dependencies
+
+- `skill-graph-contract_20260509` — `knowledge-space.v1` schemas and validators.
+- `skill-math-adapter_20260509` — math ID constructors and metadata schemas.
+
 ## Functional Requirements
 
-1. Build a deterministic extraction utility under `packages/math-content/src/skill-graph/extraction/` or app scripts if package placement would import app files.
+1. Build a deterministic extraction utility under `packages/math-content/src/knowledge-space/extraction/` or app scripts if package placement would import app files.
 2. Extract draft nodes for:
    - course
    - module/unit
@@ -31,7 +36,7 @@ Extract atomic skill and worked-example candidates from existing curriculum sour
    - heading text
    - line number when feasible
    - source type (`worksheet-catalog`, `ced`, `passwater`, `manual-planning`, `problem-family-registry`)
-5. Generate stable IDs from course/module/lesson/example/slug.
+5. Generate stable IDs using the math domain adapter ID constructors from `skill-math-adapter_20260509` (`packages/math-content/src/knowledge-space/ids.ts`). Do not invent local ID schemes.
 6. Flag ambiguous extraction cases instead of silently guessing.
 7. Add inventory audit output:
    - count by course
@@ -52,7 +57,7 @@ Extract atomic skill and worked-example candidates from existing curriculum sour
 ## Acceptance Criteria
 
 - [ ] Each course has `curriculum/skill-graph/draft-nodes.json`.
-- [ ] Each draft node validates against `skill-graph.v1`.
+- [ ] Each draft node validates against `knowledge-space.v1`.
 - [ ] IDs are unique within each course and across all four course inventories.
 - [ ] Every worked example node has a source reference.
 - [ ] Audit report exists at `measure/skill-graph-inventory-audit.md`.

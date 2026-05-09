@@ -25,11 +25,12 @@
   - Parse H1 lesson titles and H2/H3 sections.
   - Record section start line, heading text, and body excerpt.
 
-- [ ] **Task 2.2: Implement ID generation**
-  - Convert course/module/lesson/example into stable IDs:
-    - `example:im3:m01:l01:e03`
-    - `skill:im3:m01:l01:graph-quadratic-from-table`
-  - Use zero-padded module and lesson numbers.
+- [ ] **Task 2.2: Use math adapter ID constructors**
+  - Import ID constructors from `packages/math-content/src/knowledge-space/ids.ts` (delivered by `skill-math-adapter_20260509`).
+  - Produce IDs in the canonical math domain shape, e.g.:
+    - `math.im3.example.m01.l01.e03`
+    - `math.im3.skill.m01.l01.graph-quadratic-from-table`
+  - Do not redefine ID rules in this track.
 
 - [ ] **Task 2.3: Implement course adapters**
   - IM1/IM2/IM3 adapter: read flat `module-*-lesson-*` files.
@@ -65,7 +66,7 @@
   - Include duplicate IDs, missing examples, ambiguous headings, and source limitations.
 
 - [ ] **Task 4.2: Add validation command**
-  - Add or document a command/script that validates all draft inventories against `skill-graph.v1`.
+  - Add or document a command/script that validates all draft inventories against `knowledge-space.v1`.
 
 ## Phase 5: Verification
 

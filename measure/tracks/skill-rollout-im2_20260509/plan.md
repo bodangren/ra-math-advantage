@@ -31,9 +31,6 @@
 - [ ] **Task 3.2: Generate prerequisite/support/extension edges**
   - Use module sequence, geometry dependencies, standards, and problem families.
 
-- [ ] **Task 3.3: Add equivalence edges**
-  - Link IM2 algebra/function/trig skills to IM1, IM3, or PreCalc equivalents when supported.
-
 ## Phase 4: Blueprints and Generators
 
 - [ ] **Task 4.1: Create IM2 blueprints**

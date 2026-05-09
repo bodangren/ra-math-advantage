@@ -4,6 +4,22 @@
 
 Prove the complete graph-first workflow on Integrated Math 3 Module 1 before rolling out to all courses. The pilot must demonstrate source extraction, standards alignment, graph edges, blueprints, deterministic generators, runtime projection, React rendering, `practice.v1` submission, and teacher evidence.
 
+## Sequencing Role
+
+This pilot is the **depth-first slice** that proves the full pipeline before horizontal rollout. It runs *before* the broad cross-course edge-authoring track (`skill-graph-edge-authoring_20260509`) and before all course rollouts. Schema, edge-authoring heuristics, blueprint shape, and projection format decisions must hold up here before being applied at scale. If the pilot reveals a contract issue, fix it in the foundation tracks (T2/T6/T7) and re-run the pilot before expanding.
+
+## Dependencies
+
+- `skill-graph-deprecation_20260509`
+- `skill-graph-contract_20260509`
+- `skill-math-adapter_20260509`
+- `skill-inventory-extraction_20260509` (IM3 M1 portion at minimum)
+- `skill-standards-alignment_20260509` (IM3 M1 portion at minimum)
+- `skill-blueprint-generator-contract_20260509`
+- `skill-runtime-projection_20260509`
+
+The broad cross-course edge-authoring track (`skill-graph-edge-authoring_20260509`) does **not** block this pilot; the pilot authors its own IM3 M1 edges as part of its scope.
+
 ## Scope
 
 Target source:

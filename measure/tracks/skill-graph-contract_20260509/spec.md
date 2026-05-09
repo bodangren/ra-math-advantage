@@ -89,6 +89,7 @@ Math content is the first domain implementation, but the contract must also supp
 - [ ] Documentation includes examples for math and English/GSE-style nodes using synthetic placeholder content only.
 - [ ] No app-local files are required to import the contract.
 - [ ] No proprietary domain maps or source descriptors are exported from the package.
+- [ ] **Boundary lint** runs in CI/test and fails the build if `packages/knowledge-space-core` or `packages/knowledge-space-practice` import from `apps/`, `convex/_generated/`, `packages/math-content/`, or any other domain content package.
 
 ## Out of Scope
 
