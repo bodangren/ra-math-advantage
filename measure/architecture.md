@@ -2,6 +2,21 @@
 
 Scaffolded from `bus-math-v2`. This document describes the code architecture, auth flow, routing, and course page structure.
 
+## Knowledge Space Package Boundaries
+
+See [Knowledge Space Architecture](./knowledge-space.md) for the full project-wide doctrine. The short version: reusable packages own the domain-neutral learning mechanism, while app/domain packages own proprietary maps and generated outputs.
+
+| Package / Location | Owns | Must Not Own |
+|---|---|---|
+| `packages/knowledge-space-core` | `knowledge-space.v1` graph/state schemas, validation, traversal, readiness primitives, domain adapter interfaces, synthetic fixtures | Math curriculum maps, English/GSE descriptors, standards catalogs, app code, Convex generated files |
+| `packages/knowledge-space-practice` | reusable blueprint/generator contracts, generic evidence, practice and visualization projection utilities, `practice.v1` adapters, synthetic fixtures | Proprietary graph maps, domain descriptor text, generated app activity maps, app component registries |
+| `packages/math-content` and app curriculum folders | IM1/IM2/IM3/AP Precalculus graph artifacts, standards mappings, generator bindings, component/runtime mappings | Re-definitions of core graph theory or reusable cross-domain contracts |
+| future English/GSE content package or app folder | proprietary GSE-aligned graph artifacts, CEFR/GSE metadata, modality/task context, English-specific generators | Pearson/GSE descriptor redistribution through reusable packages |
+
+Runtime artifacts such as activity maps, SRS inputs, teacher evidence maps, student/parent/teacher visualization payloads, component props, and seed payloads are generated projections from knowledge-space artifacts and blueprints. They are not the canonical model for skills or learner readiness.
+
+User-facing graph views must render role-specific projection data. Student views should show path/readiness/next steps, parent views should show plain-language progress and blockers, and teacher views should show class heatmaps, bottlenecks, prerequisite gaps, misconception clusters, intervention groups, and standards/objective coverage. React components should not infer canonical graph state directly from raw graph files.
+
 ## Directory Structure
 
 ```

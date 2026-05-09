@@ -1,0 +1,10 @@
+{
+  "track_id": "skill-graph-contract_20260509",
+  "title": "Skill Graph Program: Knowledge Space Core Contract",
+  "description": "Define domain-neutral knowledge-space.v1 node, edge, weight, provenance, ID, validation, and adapter contracts that can power math, English/GSE, and other proprietary domain graphs without distributing the graph maps.",
+  "type": "feature",
+  "status": "pending",
+  "created_at": "2026-05-09",
+  "updated_at": "2026-05-09",
+  "estimated_tasks": 12
+}

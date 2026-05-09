@@ -11,13 +11,14 @@ Tracks 1+4 unlock Track 8; Track 8 unlocks Tracks 9+10.
 ## Active Tracks
 
 - [ ] **Program: Skill Graph and Algorithmic Practice Rollout**
-   *Create a canonical directed weighted knowledge graph where skills are nodes and relationships are typed weighted edges, then project that graph into worked examples, guided practice, independent algorithmic practice, SRS inputs, teacher evidence, and practice.v1 runtime activity maps.*
-   *Program rule: skill graph artifacts are source truth; practice activity maps, SRS inputs, component props, and seed data are generated projections.*
+   *Before implementing any track in this program, read [Knowledge Space Architecture](./knowledge-space.md). Reusable packages own domain-neutral mechanisms only; proprietary math maps, English/GSE maps, standards catalogs, descriptors, and generated app outputs remain in app/domain content packages.*
+   *Create a canonical directed weighted knowledge graph where skills are nodes and relationships are typed weighted edges, then project that graph into worked examples, guided practice, independent algorithmic practice, SRS inputs, teacher evidence, role-specific visualizations, and practice.v1 runtime activity maps.*
+   *Program rule: skill graph artifacts are source truth; practice activity maps, SRS inputs, visualization payloads, component props, and seed data are generated projections.*
    - [ ] **Track 1: Skill Graph Program — Deprecation and Canonical Direction**
       *Audit overlapping earlier specs; preserve source evidence; mark stale activity-map/problem-family/lesson-seed directions as deprecated.*
       *Link: [./measure/tracks/skill-graph-deprecation_20260509/](./measure/tracks/skill-graph-deprecation_20260509/)*
-   - [ ] **Track 2: Skill Graph Program — Canonical Graph Contract**
-      *Define skill-graph.v1 node, edge, weight, provenance, ID, and validation contracts.*
+   - [ ] **Track 2: Skill Graph Program — Knowledge Space Core Contract**
+      *Define domain-neutral knowledge-space.v1 node, edge, weight, provenance, ID, validation, and adapter contracts for reusable learning graphs.*
       *Link: [./measure/tracks/skill-graph-contract_20260509/](./measure/tracks/skill-graph-contract_20260509/)*
    - [ ] **Track 3: Skill Graph Program — Skill Inventory Extraction**
       *Extract atomic skill and worked-example candidates from IM1, IM2, IM3, and AP Precalculus source artifacts.*
@@ -28,11 +29,11 @@ Tracks 1+4 unlock Track 8; Track 8 unlocks Tracks 9+10.
    - [ ] **Track 5: Skill Graph Program — Directed Edge Authoring**
       *Create directed weighted prerequisite, support, extension, equivalence, misconception, renderer, and generator edges.*
       *Link: [./measure/tracks/skill-graph-edge-authoring_20260509/](./measure/tracks/skill-graph-edge-authoring_20260509/)*
-   - [ ] **Track 6: Skill Graph Program — Blueprint and Generator Contract**
-      *Define worked-example, guided-practice, and independent-practice blueprint contracts plus deterministic generator requirements.*
+   - [ ] **Track 6: Skill Graph Program — Knowledge Space Blueprint and Generator Contract**
+      *Define reusable worked-example, guided-practice, and independent-practice blueprint contracts plus deterministic generator requirements.*
       *Link: [./measure/tracks/skill-blueprint-generator-contract_20260509/](./measure/tracks/skill-blueprint-generator-contract_20260509/)*
-   - [ ] **Track 7: Skill Graph Program — Runtime Projections**
-      *Generate practice.v1 activity maps, SRS inputs, teacher evidence maps, component props, and seed projections from the graph.*
+   - [ ] **Track 7: Skill Graph Program — Knowledge Space Practice Projections**
+      *Generate practice.v1 activity maps, SRS inputs, teacher evidence maps, student/parent/teacher visualization payloads, component props, and seed projections through reusable projection adapters.*
       *Link: [./measure/tracks/skill-runtime-projection_20260509/](./measure/tracks/skill-runtime-projection_20260509/)*
    - [ ] **Track 8: Skill Graph Program — IM3 Module 1 Pilot**
       *Prove graph-to-runtime flow on IM3 Module 1 before broad rollout.*

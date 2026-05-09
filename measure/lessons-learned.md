@@ -30,6 +30,8 @@
 
 ## Planning Improvements
 
+- (2026-05-09, knowledge-space) `knowledge-space-core` and `knowledge-space-practice` must stay domain-neutral. Do not put math curriculum maps, Pearson/GSE descriptors, standards catalogs, or generated app activity maps in reusable packages; keep them in app/domain content packages.
+- (2026-05-09, knowledge-space-visuals) Student, parent, and teacher graph visualizations should render role-specific projection payloads, not raw graph files or UI-computed graph truth.
 - (2026-04-29, review-30) When handler stores via DB document ID but returns caller-provided ID, downstream consumers get wrong reference. Always return the actual DB ID used for writes
 - (2026-04-29, review-31) Reverting N+1 "fix" — full table scans (`.collect()`) replace N indexed queries but are worse for large tables. Use `Promise.all` with per-student `.withIndex()` queries instead. `Array.includes()` → `Set.has()` for O(1) lookup in hot loops
 - (2026-05-03, tech-debt-cleanup) After a tech-debt resolution track, prune tech-debt.md aggressively — remove all Resolved items, keep only Open. Historical record lives in git history, not working memory.

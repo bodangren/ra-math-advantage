@@ -12,6 +12,7 @@
 | **Lessons Learned** | `./lessons-learned.md` |
 | **Tech Debt Registry** | `./tech-debt.md` |
 | **Architecture** | `./architecture.md` |
+| **Knowledge Space Architecture** | `./knowledge-space.md` |
 | **Tech Specs** | `./tech-specs.md` |
 | **Code Styleguides** | `./code_styleguides/` |
 | **Practice Component Contract** | `./practice-component-contract.md` |
