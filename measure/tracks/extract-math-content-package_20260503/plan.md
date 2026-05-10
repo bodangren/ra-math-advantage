@@ -134,4 +134,10 @@
   - [x] Check AGENTS.md and measure/index.md — no package references needed (existing patterns don't list packages there)
   - [x] Final verification: 43 tests pass, typecheck 0 errors, IM2/PreCalc 0 errors, IM3 pre-existing errors only
 
+- [~] Task 5.4: Stabilize package export test timeout
+  - Increase math-content Vitest timeout for cold-start transforms of the large problem-family export surface.
+  - Keep export-map resolution coverage intact; this is test harness stabilization only.
+  - Verify `CI=true npm test --workspace=packages/math-content` and `CI=true npm run typecheck --workspace=packages/math-content`.
+  - Package lint is blocked by missing/baseline ESLint config work; logged in tech-debt.md.
+
 - [x] Task: Measure - User Manual Verification 'Phase 5' — **COMPLETED**: 43 tests + typecheck + build verified.

@@ -4,7 +4,7 @@ describe('Export map entry points resolve', () => {
   it('main entry point resolves', async () => {
     const mod = await import('../index');
     expect(mod).toBeDefined();
-  });
+  }, 30000); // problem-families (~2100 lines) takes ~5-13s to transform on cold start
 
   it('schemas entry point resolves', async () => {
     const mod = await import('../schemas');
@@ -19,7 +19,7 @@ describe('Export map entry points resolve', () => {
   it('problem-families entry point resolves', async () => {
     const mod = await import('../problem-families');
     expect(mod).toBeDefined();
-  });
+  }, 30000); // large data module may be slow on cold start if loaded before index
 
   it('glossary entry point resolves', async () => {
     const mod = await import('../glossary');
