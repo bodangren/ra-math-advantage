@@ -1,0 +1,1206 @@
+{
+  "meta": {
+    "course": "im3",
+    "generatedAt": "2026-05-10",
+    "description": "Low-confidence edges and missing mappings requiring human review"
+  },
+  "lowConfidencePrerequisites": [
+    {
+      "edgeId": "math.im3.edge.m1.066",
+      "sourceId": "math.im3.skill.1.7.graph-quadratic-inequalities-in-two-variables",
+      "targetId": "math.im3.skill.1.8.solve-systems-of-two-quadratic-equations",
+      "rationale": "Inequality graphing provides context for quadratic-quadratic systems",
+      "reviewAction": "confirm, upgrade-to-medium, or remove"
+    },
+    {
+      "edgeId": "math.im3.edge.m2plus.edge.0805",
+      "sourceId": "math.im3.skill.2.1.graph-and-analyze-power-functions",
+      "targetId": "math.im3.skill.2.2.approximate-zeros-by-graphing-polynomial-functions",
+      "rationale": "Lesson-sequence prerequisite: lesson 1 precedes lesson 2 in module 2",
+      "reviewAction": "confirm, upgrade-to-medium, or remove"
+    },
+    {
+      "edgeId": "math.im3.edge.m2plus.edge.0806",
+      "sourceId": "math.im3.skill.2.2.find-extrema-of-polynomial-functions",
+      "targetId": "math.im3.skill.2.3.add-and-subtract-polynomials",
+      "rationale": "Lesson-sequence prerequisite: lesson 2 precedes lesson 3 in module 2",
+      "reviewAction": "confirm, upgrade-to-medium, or remove"
+    },
+    {
+      "edgeId": "math.im3.edge.m2plus.edge.0807",
+      "sourceId": "math.im3.skill.2.3.multiply-polynomials",
+      "targetId": "math.im3.skill.2.4.divide-polynomials-by-using-long-division",
+      "rationale": "Lesson-sequence prerequisite: lesson 3 precedes lesson 4 in module 2",
+      "reviewAction": "confirm, upgrade-to-medium, or remove"
+    },
+    {
+      "edgeId": "math.im3.edge.m2plus.edge.0808",
+      "sourceId": "math.im3.skill.2.4.divide-polynomials-by-using-synthetic-division",
+      "targetId": "math.im3.skill.2.5.expand-powers-of-binomials-by-using-pascals-triangle-and-the",
+      "rationale": "Lesson-sequence prerequisite: lesson 4 precedes lesson 5 in module 2",
+      "reviewAction": "confirm, upgrade-to-medium, or remove"
+    },
+    {
+      "edgeId": "math.im3.edge.m2plus.edge.0809",
+      "sourceId": "math.im3.skill.2.5.expand-powers-of-binomials-by-using-pascals-triangle-and-the",
+      "targetId": "math.im3.skill.3.1.solve-polynomial-equations-by-graphing",
+      "rationale": "Lesson-sequence prerequisite: last lesson of module 2 precedes first lesson of module 3",
+      "reviewAction": "confirm, upgrade-to-medium, or remove"
+    },
+    {
+      "edgeId": "math.im3.edge.m2plus.edge.0810",
+      "sourceId": "math.im3.skill.3.1.solve-polynomial-equations-by-graphing",
+      "targetId": "math.im3.skill.3.2.solve-polynomial-equations-by-factoring",
+      "rationale": "Lesson-sequence prerequisite: lesson 1 precedes lesson 2 in module 3",
+      "reviewAction": "confirm, upgrade-to-medium, or remove"
+    },
+    {
+      "edgeId": "math.im3.edge.m2plus.edge.0811",
+      "sourceId": "math.im3.skill.3.2.solve-polynomial-equations-by-writing-them-in-quadratic-form",
+      "targetId": "math.im3.skill.3.3.prove-polynomial-identities-and-use-them-to-describe-numeric",
+      "rationale": "Lesson-sequence prerequisite: lesson 2 precedes lesson 3 in module 3",
+      "reviewAction": "confirm, upgrade-to-medium, or remove"
+    },
+    {
+      "edgeId": "math.im3.edge.m2plus.edge.0812",
+      "sourceId": "math.im3.skill.3.3.prove-polynomial-identities-and-use-them-to-describe-numeric",
+      "targetId": "math.im3.skill.3.4.evaluate-functions-by-using-synthetic-substitution",
+      "rationale": "Lesson-sequence prerequisite: lesson 3 precedes lesson 4 in module 3",
+      "reviewAction": "confirm, upgrade-to-medium, or remove"
+    },
+    {
+      "edgeId": "math.im3.edge.m2plus.edge.0813",
+      "sourceId": "math.im3.skill.3.4.evaluate-functions-by-using-synthetic-substitution",
+      "targetId": "math.im3.skill.3.5.determine-the-number-and-type-of-roots-of-polynomial-equatio",
+      "rationale": "Lesson-sequence prerequisite: lesson 4 precedes lesson 5 in module 3",
+      "reviewAction": "confirm, upgrade-to-medium, or remove"
+    },
+    {
+      "edgeId": "math.im3.edge.m2plus.edge.0814",
+      "sourceId": "math.im3.skill.3.5.use-the-fundamental-theorem-of-algebra-to-determine-the-numb",
+      "targetId": "math.im3.skill.4.1.find-compositions-of-functions",
+      "rationale": "Lesson-sequence prerequisite: last lesson of module 3 precedes first lesson of module 4",
+      "reviewAction": "confirm, upgrade-to-medium, or remove"
+    },
+    {
+      "edgeId": "math.im3.edge.m2plus.edge.0815",
+      "sourceId": "math.im3.skill.4.1.find-sums-differences-products-and-quotients-of-functions",
+      "targetId": "math.im3.skill.4.2.find-inverses-of-relations",
+      "rationale": "Lesson-sequence prerequisite: lesson 1 precedes lesson 2 in module 4",
+      "reviewAction": "confirm, upgrade-to-medium, or remove"
+    },
+    {
+      "edgeId": "math.im3.edge.m2plus.edge.0816",
+      "sourceId": "math.im3.skill.4.2.verify-that-two-relations-are-inverses-by-using-compositions",
+      "targetId": "math.im3.skill.4.3.simplify-expressions-in-exponential-or-radical-form",
+      "rationale": "Lesson-sequence prerequisite: lesson 2 precedes lesson 3 in module 4",
+      "reviewAction": "confirm, upgrade-to-medium, or remove"
+    },
+    {
+      "edgeId": "math.im3.edge.m2plus.edge.0817",
+      "sourceId": "math.im3.skill.4.3.simplify-expressions-involving-radicals-and-rational-exponen",
+      "targetId": "math.im3.skill.4.4.graph-and-analyze-cube-root-functions",
+      "rationale": "Lesson-sequence prerequisite: lesson 3 precedes lesson 4 in module 4",
+      "reviewAction": "confirm, upgrade-to-medium, or remove"
+    },
+    {
+      "edgeId": "math.im3.edge.m2plus.edge.0818",
+      "sourceId": "math.im3.skill.4.4.graph-and-analyze-square-root-functions",
+      "targetId": "math.im3.skill.4.5.add-subtract-and-multiply-radicals",
+      "rationale": "Lesson-sequence prerequisite: lesson 4 precedes lesson 5 in module 4",
+      "reviewAction": "confirm, upgrade-to-medium, or remove"
+    },
+    {
+      "edgeId": "math.im3.edge.m2plus.edge.0819",
+      "sourceId": "math.im3.skill.4.5.simplify-radical-expressions",
+      "targetId": "math.im3.skill.4.6.solve-radical-equations-by-graphing-systems-of-equations",
+      "rationale": "Lesson-sequence prerequisite: lesson 5 precedes lesson 6 in module 4",
+      "reviewAction": "confirm, upgrade-to-medium, or remove"
+    },
+    {
+      "edgeId": "math.im3.edge.m2plus.edge.0820",
+      "sourceId": "math.im3.skill.4.6.solve-radical-equations-in-one-variable-and-identify-extrane",
+      "targetId": "math.im3.skill.5.1.graph-exponential-decay-functions",
+      "rationale": "Lesson-sequence prerequisite: last lesson of module 4 precedes first lesson of module 5",
+      "reviewAction": "confirm, upgrade-to-medium, or remove"
+    },
+    {
+      "edgeId": "math.im3.edge.m2plus.edge.0821",
+      "sourceId": "math.im3.skill.5.1.graph-exponential-growth-functions",
+      "targetId": "math.im3.skill.5.2.solve-exponential-equations-in-one-variable",
+      "rationale": "Lesson-sequence prerequisite: lesson 1 precedes lesson 2 in module 5",
+      "reviewAction": "confirm, upgrade-to-medium, or remove"
+    },
+    {
+      "edgeId": "math.im3.edge.m2plus.edge.0822",
+      "sourceId": "math.im3.skill.5.2.solve-exponential-inequalities-in-one-variable",
+      "targetId": "math.im3.skill.5.3.analyze-expressions-and-functions-involving-the-natural-base",
+      "rationale": "Lesson-sequence prerequisite: lesson 2 precedes lesson 3 in module 5",
+      "reviewAction": "confirm, upgrade-to-medium, or remove"
+    },
+    {
+      "edgeId": "math.im3.edge.m2plus.edge.0823",
+      "sourceId": "math.im3.skill.5.3.analyze-expressions-and-functions-involving-the-natural-base",
+      "targetId": "math.im3.skill.5.4.find-sums-of-geometric-series",
+      "rationale": "Lesson-sequence prerequisite: lesson 3 precedes lesson 4 in module 5",
+      "reviewAction": "confirm, upgrade-to-medium, or remove"
+    },
+    {
+      "edgeId": "math.im3.edge.m2plus.edge.0824",
+      "sourceId": "math.im3.skill.5.4.generate-geometric-sequences",
+      "targetId": "math.im3.skill.5.5.choose-the-best-function-type-to-model-sets-of-data",
+      "rationale": "Lesson-sequence prerequisite: lesson 4 precedes lesson 5 in module 5",
+      "reviewAction": "confirm, upgrade-to-medium, or remove"
+    },
+    {
+      "edgeId": "math.im3.edge.m2plus.edge.0825",
+      "sourceId": "math.im3.skill.5.5.choose-the-best-function-type-to-model-sets-of-data",
+      "targetId": "math.im3.skill.6.1.write-logarithmic-expressions-in-exponential-form-and-write",
+      "rationale": "Lesson-sequence prerequisite: last lesson of module 5 precedes first lesson of module 6",
+      "reviewAction": "confirm, upgrade-to-medium, or remove"
+    },
+    {
+      "edgeId": "math.im3.edge.m2plus.edge.0826",
+      "sourceId": "math.im3.skill.6.1.write-logarithmic-expressions-in-exponential-form-and-write",
+      "targetId": "math.im3.skill.6.2.solve-logarithmic-equations-using-properties-of-equality",
+      "rationale": "Lesson-sequence prerequisite: lesson 1 precedes lesson 2 in module 6",
+      "reviewAction": "confirm, upgrade-to-medium, or remove"
+    },
+    {
+      "edgeId": "math.im3.edge.m2plus.edge.0827",
+      "sourceId": "math.im3.skill.6.2.solve-logarithmic-equations-using-properties-of-equality",
+      "targetId": "math.im3.skill.6.3.solve-exponential-equations-by-using-common-logarithms",
+      "rationale": "Lesson-sequence prerequisite: lesson 2 precedes lesson 3 in module 6",
+      "reviewAction": "confirm, upgrade-to-medium, or remove"
+    },
+    {
+      "edgeId": "math.im3.edge.m2plus.edge.0828",
+      "sourceId": "math.im3.skill.6.3.solve-exponential-equations-by-using-common-logarithms",
+      "targetId": "math.im3.skill.6.4.simplify-expressions-with-natural-logarithms",
+      "rationale": "Lesson-sequence prerequisite: lesson 3 precedes lesson 4 in module 6",
+      "reviewAction": "confirm, upgrade-to-medium, or remove"
+    },
+    {
+      "edgeId": "math.im3.edge.m2plus.edge.0829",
+      "sourceId": "math.im3.skill.6.4.solve-exponential-equations-by-using-natural-logarithms",
+      "targetId": "math.im3.skill.6.5.write-and-solve-exponential-decay-equations",
+      "rationale": "Lesson-sequence prerequisite: lesson 4 precedes lesson 5 in module 6",
+      "reviewAction": "confirm, upgrade-to-medium, or remove"
+    },
+    {
+      "edgeId": "math.im3.edge.m2plus.edge.0830",
+      "sourceId": "math.im3.skill.6.5.write-and-solve-exponential-growth-equations-and-inequalitie",
+      "targetId": "math.im3.skill.7.1.simplify-rational-expressions",
+      "rationale": "Lesson-sequence prerequisite: last lesson of module 6 precedes first lesson of module 7",
+      "reviewAction": "confirm, upgrade-to-medium, or remove"
+    },
+    {
+      "edgeId": "math.im3.edge.m2plus.edge.0831",
+      "sourceId": "math.im3.skill.7.1.simplify-rational-expressions-by-multiplying-and-dividing",
+      "targetId": "math.im3.skill.7.2.simplify-complex-fractions",
+      "rationale": "Lesson-sequence prerequisite: lesson 1 precedes lesson 2 in module 7",
+      "reviewAction": "confirm, upgrade-to-medium, or remove"
+    },
+    {
+      "edgeId": "math.im3.edge.m2plus.edge.0832",
+      "sourceId": "math.im3.skill.7.2.simplify-rational-expressions-by-adding-and-subtracting",
+      "targetId": "math.im3.skill.7.3.graph-and-write-reciprocal-functions-by-using-transformation",
+      "rationale": "Lesson-sequence prerequisite: lesson 2 precedes lesson 3 in module 7",
+      "reviewAction": "confirm, upgrade-to-medium, or remove"
+    },
+    {
+      "edgeId": "math.im3.edge.m2plus.edge.0833",
+      "sourceId": "math.im3.skill.7.3.graph-reciprocal-functions-by-making-tables-of-values",
+      "targetId": "math.im3.skill.7.4.graph-and-analyze-rational-functions-with-oblique-asymptotes",
+      "rationale": "Lesson-sequence prerequisite: lesson 3 precedes lesson 4 in module 7",
+      "reviewAction": "confirm, upgrade-to-medium, or remove"
+    },
+    {
+      "edgeId": "math.im3.edge.m2plus.edge.0834",
+      "sourceId": "math.im3.skill.7.4.graph-and-analyze-rational-functions-with-vertical-and-horiz",
+      "targetId": "math.im3.skill.7.5.recognize-and-solve-direct-and-joint-variation-equations",
+      "rationale": "Lesson-sequence prerequisite: lesson 4 precedes lesson 5 in module 7",
+      "reviewAction": "confirm, upgrade-to-medium, or remove"
+    },
+    {
+      "edgeId": "math.im3.edge.m2plus.edge.0835",
+      "sourceId": "math.im3.skill.7.5.recognize-and-solve-inverse-and-combined-variation-equations",
+      "targetId": "math.im3.skill.7.6.solve-rational-equations-in-one-variable",
+      "rationale": "Lesson-sequence prerequisite: lesson 5 precedes lesson 6 in module 7",
+      "reviewAction": "confirm, upgrade-to-medium, or remove"
+    },
+    {
+      "edgeId": "math.im3.edge.m2plus.edge.0836",
+      "sourceId": "math.im3.skill.7.6.solve-rational-inequalities-in-one-variable",
+      "targetId": "math.im3.skill.8.1.classify-sampling-methods-and-identify-bias-in-samples-and-s",
+      "rationale": "Lesson-sequence prerequisite: last lesson of module 7 precedes first lesson of module 8",
+      "reviewAction": "confirm, upgrade-to-medium, or remove"
+    },
+    {
+      "edgeId": "math.im3.edge.m2plus.edge.0837",
+      "sourceId": "math.im3.skill.8.1.distinguish-among-sample-surveys-experiments-and-observation",
+      "targetId": "math.im3.skill.8.2.compare-theoretical-and-experimental-probabilities",
+      "rationale": "Lesson-sequence prerequisite: lesson 1 precedes lesson 2 in module 8",
+      "reviewAction": "confirm, upgrade-to-medium, or remove"
+    },
+    {
+      "edgeId": "math.im3.edge.m2plus.edge.0838",
+      "sourceId": "math.im3.skill.8.2.determine-whether-models-are-consistent-with-results-from-si",
+      "targetId": "math.im3.skill.8.3.describe-distributions-by-finding-their-mean-and-standard-de",
+      "rationale": "Lesson-sequence prerequisite: lesson 2 precedes lesson 3 in module 8",
+      "reviewAction": "confirm, upgrade-to-medium, or remove"
+    },
+    {
+      "edgeId": "math.im3.edge.m2plus.edge.0839",
+      "sourceId": "math.im3.skill.8.3.describe-distributions-by-finding-their-mean-and-standard-de",
+      "targetId": "math.im3.skill.8.4.analyze-normally-distributed-variables-by-using-the-empirica",
+      "rationale": "Lesson-sequence prerequisite: lesson 3 precedes lesson 4 in module 8",
+      "reviewAction": "confirm, upgrade-to-medium, or remove"
+    },
+    {
+      "edgeId": "math.im3.edge.m2plus.edge.0840",
+      "sourceId": "math.im3.skill.8.4.classify-variables-and-analyze-probability-distributions-to",
+      "targetId": "math.im3.skill.8.5.use-sample-data-to-infer-a-population-mean-by-using-confiden",
+      "rationale": "Lesson-sequence prerequisite: lesson 4 precedes lesson 5 in module 8",
+      "reviewAction": "confirm, upgrade-to-medium, or remove"
+    },
+    {
+      "edgeId": "math.im3.edge.m2plus.edge.0841",
+      "sourceId": "math.im3.skill.8.5.use-sample-data-to-infer-a-population-proportion-by-using-co",
+      "targetId": "math.im3.skill.9.1.convert-between-degree-and-radian-measures-and-find-arc-leng",
+      "rationale": "Lesson-sequence prerequisite: last lesson of module 8 precedes first lesson of module 9",
+      "reviewAction": "confirm, upgrade-to-medium, or remove"
+    },
+    {
+      "edgeId": "math.im3.edge.m2plus.edge.0842",
+      "sourceId": "math.im3.skill.9.1.draw-angles-in-standard-position-and-identify-coterminal-ang",
+      "targetId": "math.im3.skill.9.2.find-values-of-trigonometric-functions-by-using-reference-an",
+      "rationale": "Lesson-sequence prerequisite: lesson 1 precedes lesson 2 in module 9",
+      "reviewAction": "confirm, upgrade-to-medium, or remove"
+    },
+    {
+      "edgeId": "math.im3.edge.m2plus.edge.0843",
+      "sourceId": "math.im3.skill.9.2.find-values-of-trigonometric-functions-of-general-angles",
+      "targetId": "math.im3.skill.9.3.find-values-of-trigonometric-functions-given-a-point-on-a-un",
+      "rationale": "Lesson-sequence prerequisite: lesson 2 precedes lesson 3 in module 9",
+      "reviewAction": "confirm, upgrade-to-medium, or remove"
+    },
+    {
+      "edgeId": "math.im3.edge.m2plus.edge.0844",
+      "sourceId": "math.im3.skill.9.3.find-values-of-trigonometric-functions-that-model-periodic-e",
+      "targetId": "math.im3.skill.9.4.graph-and-analyze-sine-and-cosine-functions",
+      "rationale": "Lesson-sequence prerequisite: lesson 3 precedes lesson 4 in module 9",
+      "reviewAction": "confirm, upgrade-to-medium, or remove"
+    },
+    {
+      "edgeId": "math.im3.edge.m2plus.edge.0845",
+      "sourceId": "math.im3.skill.9.4.model-periodic-real-world-situations-with-sine-and-cosine-fu",
+      "targetId": "math.im3.skill.9.5.graph-and-analyze-reciprocal-trigonometric-functions",
+      "rationale": "Lesson-sequence prerequisite: lesson 4 precedes lesson 5 in module 9",
+      "reviewAction": "confirm, upgrade-to-medium, or remove"
+    },
+    {
+      "edgeId": "math.im3.edge.m2plus.edge.0846",
+      "sourceId": "math.im3.skill.9.5.graph-and-analyze-tangent-functions",
+      "targetId": "math.im3.skill.9.6.graph-horizontal-translations-of-trigonometric-functions",
+      "rationale": "Lesson-sequence prerequisite: lesson 5 precedes lesson 6 in module 9",
+      "reviewAction": "confirm, upgrade-to-medium, or remove"
+    },
+    {
+      "edgeId": "math.im3.edge.m2plus.edge.0847",
+      "sourceId": "math.im3.skill.9.6.graph-vertical-translations-of-trigonometric-functions",
+      "targetId": "math.im3.skill.9.7.find-values-of-angle-measures-by-using-inverse-trigonometric",
+      "rationale": "Lesson-sequence prerequisite: lesson 6 precedes lesson 7 in module 9",
+      "reviewAction": "confirm, upgrade-to-medium, or remove"
+    }
+  ],
+  "skillsMissingRenderer": [
+    {
+      "nodeId": "math.im3.skill.2.1.graph-and-analyze-polynomial-functions",
+      "title": "2b: Graph and analyze polynomial functions",
+      "reviewAction": "assign renderer node when component registry is extended"
+    },
+    {
+      "nodeId": "math.im3.skill.2.1.graph-and-analyze-power-functions",
+      "title": "2a: Graph and analyze power functions",
+      "reviewAction": "assign renderer node when component registry is extended"
+    },
+    {
+      "nodeId": "math.im3.skill.2.2.approximate-zeros-by-graphing-polynomial-functions",
+      "title": "2c: Approximate zeros by graphing polynomial functions",
+      "reviewAction": "assign renderer node when component registry is extended"
+    },
+    {
+      "nodeId": "math.im3.skill.2.2.find-extrema-of-polynomial-functions",
+      "title": "2d: Find extrema of polynomial functions",
+      "reviewAction": "assign renderer node when component registry is extended"
+    },
+    {
+      "nodeId": "math.im3.skill.2.3.add-and-subtract-polynomials",
+      "title": "2e: Add and subtract polynomials",
+      "reviewAction": "assign renderer node when component registry is extended"
+    },
+    {
+      "nodeId": "math.im3.skill.2.3.multiply-polynomials",
+      "title": "2f: Multiply polynomials",
+      "reviewAction": "assign renderer node when component registry is extended"
+    },
+    {
+      "nodeId": "math.im3.skill.2.4.divide-polynomials-by-using-long-division",
+      "title": "2g: Divide polynomials by using long division",
+      "reviewAction": "assign renderer node when component registry is extended"
+    },
+    {
+      "nodeId": "math.im3.skill.2.4.divide-polynomials-by-using-synthetic-division",
+      "title": "2h: Divide polynomials by using synthetic division",
+      "reviewAction": "assign renderer node when component registry is extended"
+    },
+    {
+      "nodeId": "math.im3.skill.2.5.expand-powers-of-binomials-by-using-pascals-triangle-and-the",
+      "title": "2i: Expand powers of binomials by using Pascal's Triangle and the Binomial Theorem",
+      "reviewAction": "assign renderer node when component registry is extended"
+    },
+    {
+      "nodeId": "math.im3.skill.3.1.solve-polynomial-equations-by-graphing",
+      "title": "3a: Solve polynomial equations by graphing",
+      "reviewAction": "assign renderer node when component registry is extended"
+    },
+    {
+      "nodeId": "math.im3.skill.3.2.solve-polynomial-equations-by-factoring",
+      "title": "3b: Solve polynomial equations by factoring",
+      "reviewAction": "assign renderer node when component registry is extended"
+    },
+    {
+      "nodeId": "math.im3.skill.3.2.solve-polynomial-equations-by-writing-them-in-quadratic-form",
+      "title": "3c: Solve polynomial equations by writing them in quadratic form and factoring",
+      "reviewAction": "assign renderer node when component registry is extended"
+    },
+    {
+      "nodeId": "math.im3.skill.3.3.prove-polynomial-identities-and-use-them-to-describe-numeric",
+      "title": "3d: Prove polynomial identities and use them to describe numerical relationships",
+      "reviewAction": "assign renderer node when component registry is extended"
+    },
+    {
+      "nodeId": "math.im3.skill.3.4.evaluate-functions-by-using-synthetic-substitution",
+      "title": "3e: Evaluate functions by using synthetic substitution",
+      "reviewAction": "assign renderer node when component registry is extended"
+    },
+    {
+      "nodeId": "math.im3.skill.3.5.determine-the-number-and-type-of-roots-of-polynomial-equatio",
+      "title": "3h: Determine the number and type of roots of polynomial equations, find zeros, and use zeros to graph polynomial functions",
+      "reviewAction": "assign renderer node when component registry is extended"
+    },
+    {
+      "nodeId": "math.im3.skill.3.5.use-the-fundamental-theorem-of-algebra-to-determine-the-numb",
+      "title": "3g: Use the Fundamental Theorem of Algebra to determine the number and type of roots of polynomial equations",
+      "reviewAction": "assign renderer node when component registry is extended"
+    },
+    {
+      "nodeId": "math.im3.skill.4.1.find-compositions-of-functions",
+      "title": "4b: Find compositions of functions",
+      "reviewAction": "assign renderer node when component registry is extended"
+    },
+    {
+      "nodeId": "math.im3.skill.4.1.find-sums-differences-products-and-quotients-of-functions",
+      "title": "4a: Find sums, differences, products, and quotients of functions",
+      "reviewAction": "assign renderer node when component registry is extended"
+    },
+    {
+      "nodeId": "math.im3.skill.4.2.find-inverses-of-relations",
+      "title": "4c: Find inverses of relations",
+      "reviewAction": "assign renderer node when component registry is extended"
+    },
+    {
+      "nodeId": "math.im3.skill.4.2.verify-that-two-relations-are-inverses-by-using-compositions",
+      "title": "4d: Verify that two relations are inverses by using compositions",
+      "reviewAction": "assign renderer node when component registry is extended"
+    },
+    {
+      "nodeId": "math.im3.skill.4.3.simplify-expressions-in-exponential-or-radical-form",
+      "title": "4f: Simplify expressions in exponential or radical form",
+      "reviewAction": "assign renderer node when component registry is extended"
+    },
+    {
+      "nodeId": "math.im3.skill.4.3.simplify-expressions-involving-radicals-and-rational-exponen",
+      "title": "4e: Simplify expressions involving radicals and rational exponents",
+      "reviewAction": "assign renderer node when component registry is extended"
+    },
+    {
+      "nodeId": "math.im3.skill.4.4.graph-and-analyze-cube-root-functions",
+      "title": "4h: Graph and analyze cube root functions",
+      "reviewAction": "assign renderer node when component registry is extended"
+    },
+    {
+      "nodeId": "math.im3.skill.4.4.graph-and-analyze-square-root-functions",
+      "title": "4g: Graph and analyze square root functions",
+      "reviewAction": "assign renderer node when component registry is extended"
+    },
+    {
+      "nodeId": "math.im3.skill.4.5.add-subtract-and-multiply-radicals",
+      "title": "4j: Add, subtract, and multiply radicals",
+      "reviewAction": "assign renderer node when component registry is extended"
+    },
+    {
+      "nodeId": "math.im3.skill.4.5.divide-and-simplify-radical-expressions-by-rationalizing-the",
+      "title": "4k: Divide and simplify radical expressions by rationalizing the denominator",
+      "reviewAction": "assign renderer node when component registry is extended"
+    },
+    {
+      "nodeId": "math.im3.skill.4.5.simplify-radical-expressions",
+      "title": "4i: Simplify radical expressions",
+      "reviewAction": "assign renderer node when component registry is extended"
+    },
+    {
+      "nodeId": "math.im3.skill.4.6.solve-radical-equations-by-graphing-systems-of-equations",
+      "title": "4m: Solve radical equations by graphing systems of equations",
+      "reviewAction": "assign renderer node when component registry is extended"
+    },
+    {
+      "nodeId": "math.im3.skill.4.6.solve-radical-equations-in-one-variable-and-identify-extrane",
+      "title": "4l: Solve radical equations in one variable and identify extraneous solutions",
+      "reviewAction": "assign renderer node when component registry is extended"
+    },
+    {
+      "nodeId": "math.im3.skill.5.1.graph-exponential-decay-functions",
+      "title": "5b: Graph exponential decay functions",
+      "reviewAction": "assign renderer node when component registry is extended"
+    },
+    {
+      "nodeId": "math.im3.skill.5.1.graph-exponential-growth-functions",
+      "title": "5a: Graph exponential growth functions",
+      "reviewAction": "assign renderer node when component registry is extended"
+    },
+    {
+      "nodeId": "math.im3.skill.5.2.solve-exponential-equations-in-one-variable",
+      "title": "5c: Solve exponential equations in one variable",
+      "reviewAction": "assign renderer node when component registry is extended"
+    },
+    {
+      "nodeId": "math.im3.skill.5.2.solve-exponential-inequalities-in-one-variable",
+      "title": "5d: Solve exponential inequalities in one variable",
+      "reviewAction": "assign renderer node when component registry is extended"
+    },
+    {
+      "nodeId": "math.im3.skill.5.3.analyze-expressions-and-functions-involving-the-natural-base",
+      "title": "5e: Analyze expressions and functions involving the natural base \\e\\",
+      "reviewAction": "assign renderer node when component registry is extended"
+    },
+    {
+      "nodeId": "math.im3.skill.5.4.find-sums-of-geometric-series",
+      "title": "5g: Find sums of geometric series",
+      "reviewAction": "assign renderer node when component registry is extended"
+    },
+    {
+      "nodeId": "math.im3.skill.5.4.generate-geometric-sequences",
+      "title": "5f: Generate geometric sequences",
+      "reviewAction": "assign renderer node when component registry is extended"
+    },
+    {
+      "nodeId": "math.im3.skill.5.5.choose-the-best-function-type-to-model-sets-of-data",
+      "title": "5h: Choose the best function type to model sets of data",
+      "reviewAction": "assign renderer node when component registry is extended"
+    },
+    {
+      "nodeId": "math.im3.skill.6.1.write-logarithmic-expressions-in-exponential-form-and-write",
+      "title": "6a: Write logarithmic expressions in exponential form and write exponential expressions in logarithmic form",
+      "reviewAction": "assign renderer node when component registry is extended"
+    },
+    {
+      "nodeId": "math.im3.skill.6.2.solve-logarithmic-equations-using-properties-of-equality",
+      "title": "6c: Solve logarithmic equations using properties of equality",
+      "reviewAction": "assign renderer node when component registry is extended"
+    },
+    {
+      "nodeId": "math.im3.skill.6.3.solve-exponential-equations-by-using-common-logarithms",
+      "title": "6e: Solve exponential equations by using common logarithms",
+      "reviewAction": "assign renderer node when component registry is extended"
+    },
+    {
+      "nodeId": "math.im3.skill.6.4.simplify-expressions-with-natural-logarithms",
+      "title": "6g: Simplify expressions with natural logarithms",
+      "reviewAction": "assign renderer node when component registry is extended"
+    },
+    {
+      "nodeId": "math.im3.skill.6.4.solve-exponential-equations-by-using-natural-logarithms",
+      "title": "6h: Solve exponential equations by using natural logarithms",
+      "reviewAction": "assign renderer node when component registry is extended"
+    },
+    {
+      "nodeId": "math.im3.skill.6.5.write-and-solve-exponential-decay-equations",
+      "title": "6j: Write and solve exponential decay equations",
+      "reviewAction": "assign renderer node when component registry is extended"
+    },
+    {
+      "nodeId": "math.im3.skill.6.5.write-and-solve-exponential-growth-equations-and-inequalitie",
+      "title": "6i: Write and solve exponential growth equations and inequalities",
+      "reviewAction": "assign renderer node when component registry is extended"
+    },
+    {
+      "nodeId": "math.im3.skill.7.1.simplify-rational-expressions",
+      "title": "7a: Simplify rational expressions",
+      "reviewAction": "assign renderer node when component registry is extended"
+    },
+    {
+      "nodeId": "math.im3.skill.7.1.simplify-rational-expressions-by-multiplying-and-dividing",
+      "title": "7b: Simplify rational expressions by multiplying and dividing",
+      "reviewAction": "assign renderer node when component registry is extended"
+    },
+    {
+      "nodeId": "math.im3.skill.7.2.simplify-complex-fractions",
+      "title": "7d: Simplify complex fractions",
+      "reviewAction": "assign renderer node when component registry is extended"
+    },
+    {
+      "nodeId": "math.im3.skill.7.2.simplify-rational-expressions-by-adding-and-subtracting",
+      "title": "7c: Simplify rational expressions by adding and subtracting",
+      "reviewAction": "assign renderer node when component registry is extended"
+    },
+    {
+      "nodeId": "math.im3.skill.7.3.graph-and-write-reciprocal-functions-by-using-transformation",
+      "title": "7f: Graph and write reciprocal functions by using transformations",
+      "reviewAction": "assign renderer node when component registry is extended"
+    },
+    {
+      "nodeId": "math.im3.skill.7.3.graph-reciprocal-functions-by-making-tables-of-values",
+      "title": "7e: Graph reciprocal functions by making tables of values",
+      "reviewAction": "assign renderer node when component registry is extended"
+    },
+    {
+      "nodeId": "math.im3.skill.7.4.graph-and-analyze-rational-functions-with-oblique-asymptotes",
+      "title": "7h: Graph and analyze rational functions with oblique asymptotes",
+      "reviewAction": "assign renderer node when component registry is extended"
+    },
+    {
+      "nodeId": "math.im3.skill.7.4.graph-and-analyze-rational-functions-with-vertical-and-horiz",
+      "title": "7g: Graph and analyze rational functions with vertical and horizontal asymptotes",
+      "reviewAction": "assign renderer node when component registry is extended"
+    },
+    {
+      "nodeId": "math.im3.skill.7.5.recognize-and-solve-direct-and-joint-variation-equations",
+      "title": "7i: Recognize and solve direct and joint variation equations",
+      "reviewAction": "assign renderer node when component registry is extended"
+    },
+    {
+      "nodeId": "math.im3.skill.7.5.recognize-and-solve-inverse-and-combined-variation-equations",
+      "title": "7j: Recognize and solve inverse and combined variation equations",
+      "reviewAction": "assign renderer node when component registry is extended"
+    },
+    {
+      "nodeId": "math.im3.skill.7.6.solve-rational-equations-in-one-variable",
+      "title": "7k: Solve rational equations in one variable",
+      "reviewAction": "assign renderer node when component registry is extended"
+    },
+    {
+      "nodeId": "math.im3.skill.7.6.solve-rational-inequalities-in-one-variable",
+      "title": "7l: Solve rational inequalities in one variable",
+      "reviewAction": "assign renderer node when component registry is extended"
+    },
+    {
+      "nodeId": "math.im3.skill.8.1.classify-sampling-methods-and-identify-bias-in-samples-and-s",
+      "title": "8a: Classify sampling methods and identify bias in samples and survey questions",
+      "reviewAction": "assign renderer node when component registry is extended"
+    },
+    {
+      "nodeId": "math.im3.skill.8.1.distinguish-among-sample-surveys-experiments-and-observation",
+      "title": "8b: Distinguish among sample surveys, experiments, and observational studies",
+      "reviewAction": "assign renderer node when component registry is extended"
+    },
+    {
+      "nodeId": "math.im3.skill.8.2.compare-theoretical-and-experimental-probabilities",
+      "title": "8c: Compare theoretical and experimental probabilities",
+      "reviewAction": "assign renderer node when component registry is extended"
+    },
+    {
+      "nodeId": "math.im3.skill.8.2.determine-whether-models-are-consistent-with-results-from-si",
+      "title": "8d: Determine whether models are consistent with results from simulations of real-life situations",
+      "reviewAction": "assign renderer node when component registry is extended"
+    },
+    {
+      "nodeId": "math.im3.skill.8.3.describe-distributions-by-finding-their-mean-and-standard-de",
+      "title": "8e: Describe distributions by finding their mean and standard deviation",
+      "reviewAction": "assign renderer node when component registry is extended"
+    },
+    {
+      "nodeId": "math.im3.skill.8.4.analyze-normally-distributed-variables-by-using-the-empirica",
+      "title": "8g: Analyze normally distributed variables by using the Empirical Rule",
+      "reviewAction": "assign renderer node when component registry is extended"
+    },
+    {
+      "nodeId": "math.im3.skill.8.4.analyze-standardized-data-and-distributions-by-using-z-value",
+      "title": "8h: Analyze standardized data and distributions by using z-values",
+      "reviewAction": "assign renderer node when component registry is extended"
+    },
+    {
+      "nodeId": "math.im3.skill.8.4.classify-variables-and-analyze-probability-distributions-to",
+      "title": "8f: Classify variables and analyze probability distributions to determine expected outcomes",
+      "reviewAction": "assign renderer node when component registry is extended"
+    },
+    {
+      "nodeId": "math.im3.skill.8.5.use-sample-data-to-infer-a-population-mean-by-using-confiden",
+      "title": "8i: Use sample data to infer a population mean by using confidence intervals",
+      "reviewAction": "assign renderer node when component registry is extended"
+    },
+    {
+      "nodeId": "math.im3.skill.8.5.use-sample-data-to-infer-a-population-proportion-by-using-co",
+      "title": "8j: Use sample data to infer a population proportion by using confidence intervals",
+      "reviewAction": "assign renderer node when component registry is extended"
+    },
+    {
+      "nodeId": "math.im3.skill.9.1.convert-between-degree-and-radian-measures-and-find-arc-leng",
+      "title": "9b: Convert between degree and radian measures and find arc lengths by using central angles",
+      "reviewAction": "assign renderer node when component registry is extended"
+    },
+    {
+      "nodeId": "math.im3.skill.9.1.draw-angles-in-standard-position-and-identify-coterminal-ang",
+      "title": "9a: Draw angles in standard position and identify coterminal angles",
+      "reviewAction": "assign renderer node when component registry is extended"
+    },
+    {
+      "nodeId": "math.im3.skill.9.2.find-values-of-trigonometric-functions-by-using-reference-an",
+      "title": "9e: Find values of trigonometric functions by using reference angles",
+      "reviewAction": "assign renderer node when component registry is extended"
+    },
+    {
+      "nodeId": "math.im3.skill.9.2.find-values-of-trigonometric-functions-for-acute-angles",
+      "title": "9c: Find values of trigonometric functions for acute angles",
+      "reviewAction": "assign renderer node when component registry is extended"
+    },
+    {
+      "nodeId": "math.im3.skill.9.2.find-values-of-trigonometric-functions-of-general-angles",
+      "title": "9d: Find values of trigonometric functions of general angles",
+      "reviewAction": "assign renderer node when component registry is extended"
+    },
+    {
+      "nodeId": "math.im3.skill.9.3.find-values-of-trigonometric-functions-given-a-point-on-a-un",
+      "title": "9f: Find values of trigonometric functions given a point on a unit circle or the measure of a special angle",
+      "reviewAction": "assign renderer node when component registry is extended"
+    },
+    {
+      "nodeId": "math.im3.skill.9.3.find-values-of-trigonometric-functions-that-model-periodic-e",
+      "title": "9g: Find values of trigonometric functions that model periodic events",
+      "reviewAction": "assign renderer node when component registry is extended"
+    },
+    {
+      "nodeId": "math.im3.skill.9.4.graph-and-analyze-sine-and-cosine-functions",
+      "title": "9h: Graph and analyze sine and cosine functions",
+      "reviewAction": "assign renderer node when component registry is extended"
+    },
+    {
+      "nodeId": "math.im3.skill.9.4.model-periodic-real-world-situations-with-sine-and-cosine-fu",
+      "title": "9i: Model periodic real-world situations with sine and cosine functions",
+      "reviewAction": "assign renderer node when component registry is extended"
+    },
+    {
+      "nodeId": "math.im3.skill.9.5.graph-and-analyze-reciprocal-trigonometric-functions",
+      "title": "9k: Graph and analyze reciprocal trigonometric functions",
+      "reviewAction": "assign renderer node when component registry is extended"
+    },
+    {
+      "nodeId": "math.im3.skill.9.5.graph-and-analyze-tangent-functions",
+      "title": "9j: Graph and analyze tangent functions",
+      "reviewAction": "assign renderer node when component registry is extended"
+    },
+    {
+      "nodeId": "math.im3.skill.9.6.graph-horizontal-translations-of-trigonometric-functions",
+      "title": "9l: Graph horizontal translations of trigonometric functions",
+      "reviewAction": "assign renderer node when component registry is extended"
+    },
+    {
+      "nodeId": "math.im3.skill.9.6.graph-vertical-translations-of-trigonometric-functions",
+      "title": "9m: Graph vertical translations of trigonometric functions",
+      "reviewAction": "assign renderer node when component registry is extended"
+    },
+    {
+      "nodeId": "math.im3.skill.9.7.find-values-of-angle-measures-by-using-inverse-trigonometric",
+      "title": "9n: Find values of angle measures by using inverse trigonometric functions",
+      "reviewAction": "assign renderer node when component registry is extended"
+    }
+  ],
+  "skillsMissingMisconceptionTaxonomy": [
+    {
+      "nodeId": "math.im3.skill.1.1.find-and-interpret-the-average-rate-of-change",
+      "title": "1b: Find and interpret the average rate of change",
+      "reviewAction": "add misconception node and common_misconception_with edge when taxonomy is available"
+    },
+    {
+      "nodeId": "math.im3.skill.1.1.graph-quadratic-functions",
+      "title": "1a: Graph quadratic functions",
+      "reviewAction": "add misconception node and common_misconception_with edge when taxonomy is available"
+    },
+    {
+      "nodeId": "math.im3.skill.1.2.interpret-solutions-roots-in-context",
+      "title": "1d: Interpret solutions (roots) in context",
+      "reviewAction": "add misconception node and common_misconception_with edge when taxonomy is available"
+    },
+    {
+      "nodeId": "math.im3.skill.1.2.solve-quadratic-equations-by-graphing",
+      "title": "1c: Solve quadratic equations by graphing",
+      "reviewAction": "add misconception node and common_misconception_with edge when taxonomy is available"
+    },
+    {
+      "nodeId": "math.im3.skill.1.3.perform-operations-with-complex-numbers",
+      "title": "1f: Perform operations with complex numbers",
+      "reviewAction": "add misconception node and common_misconception_with edge when taxonomy is available"
+    },
+    {
+      "nodeId": "math.im3.skill.1.3.understand-and-use-the-imaginary-unit-i",
+      "title": "1e: Understand and use the imaginary unit i",
+      "reviewAction": "add misconception node and common_misconception_with edge when taxonomy is available"
+    },
+    {
+      "nodeId": "math.im3.skill.1.4.recognize-special-factor-patterns-gcf-trinomials-difference",
+      "title": "1j: Recognize special factor patterns (GCF, trinomials, difference of squares)",
+      "reviewAction": "add misconception node and common_misconception_with edge when taxonomy is available"
+    },
+    {
+      "nodeId": "math.im3.skill.1.4.solve-quadratic-equations-by-factoring",
+      "title": "1h: Solve quadratic equations by factoring",
+      "reviewAction": "add misconception node and common_misconception_with edge when taxonomy is available"
+    },
+    {
+      "nodeId": "math.im3.skill.1.5.connect-completing-the-square-to-vertex-form",
+      "title": "1m: Connect completing the square to vertex form",
+      "reviewAction": "add misconception node and common_misconception_with edge when taxonomy is available"
+    },
+    {
+      "nodeId": "math.im3.skill.1.5.solve-quadratic-equations-by-completing-the-square",
+      "title": "1k: Solve quadratic equations by completing the square",
+      "reviewAction": "add misconception node and common_misconception_with edge when taxonomy is available"
+    },
+    {
+      "nodeId": "math.im3.skill.1.6.use-the-discriminant-to-determine-the-number-and-type-of-sol",
+      "title": "1o: Use the discriminant to determine the number and type of solutions",
+      "reviewAction": "add misconception node and common_misconception_with edge when taxonomy is available"
+    },
+    {
+      "nodeId": "math.im3.skill.1.6.use-the-quadratic-formula-to-solve-equations",
+      "title": "1n: Use the Quadratic Formula to solve equations",
+      "reviewAction": "add misconception node and common_misconception_with edge when taxonomy is available"
+    },
+    {
+      "nodeId": "math.im3.skill.1.7.graph-quadratic-inequalities-in-two-variables",
+      "title": "1p: Graph quadratic inequalities in two variables",
+      "reviewAction": "add misconception node and common_misconception_with edge when taxonomy is available"
+    },
+    {
+      "nodeId": "math.im3.skill.1.7.solve-quadratic-inequalities-in-one-variable-by-graphing",
+      "title": "1q: Solve quadratic inequalities in one variable by graphing",
+      "reviewAction": "add misconception node and common_misconception_with edge when taxonomy is available"
+    },
+    {
+      "nodeId": "math.im3.skill.1.8.solve-systems-involving-a-linear-and-a-quadratic-equation",
+      "title": "1s: Solve systems involving a linear and a quadratic equation",
+      "reviewAction": "add misconception node and common_misconception_with edge when taxonomy is available"
+    },
+    {
+      "nodeId": "math.im3.skill.1.8.solve-systems-of-two-quadratic-equations",
+      "title": "1t: Solve systems of two quadratic equations",
+      "reviewAction": "add misconception node and common_misconception_with edge when taxonomy is available"
+    },
+    {
+      "nodeId": "math.im3.skill.2.1.graph-and-analyze-polynomial-functions",
+      "title": "2b: Graph and analyze polynomial functions",
+      "reviewAction": "add misconception node and common_misconception_with edge when taxonomy is available"
+    },
+    {
+      "nodeId": "math.im3.skill.2.1.graph-and-analyze-power-functions",
+      "title": "2a: Graph and analyze power functions",
+      "reviewAction": "add misconception node and common_misconception_with edge when taxonomy is available"
+    },
+    {
+      "nodeId": "math.im3.skill.2.2.approximate-zeros-by-graphing-polynomial-functions",
+      "title": "2c: Approximate zeros by graphing polynomial functions",
+      "reviewAction": "add misconception node and common_misconception_with edge when taxonomy is available"
+    },
+    {
+      "nodeId": "math.im3.skill.2.2.find-extrema-of-polynomial-functions",
+      "title": "2d: Find extrema of polynomial functions",
+      "reviewAction": "add misconception node and common_misconception_with edge when taxonomy is available"
+    },
+    {
+      "nodeId": "math.im3.skill.2.3.add-and-subtract-polynomials",
+      "title": "2e: Add and subtract polynomials",
+      "reviewAction": "add misconception node and common_misconception_with edge when taxonomy is available"
+    },
+    {
+      "nodeId": "math.im3.skill.2.3.multiply-polynomials",
+      "title": "2f: Multiply polynomials",
+      "reviewAction": "add misconception node and common_misconception_with edge when taxonomy is available"
+    },
+    {
+      "nodeId": "math.im3.skill.2.4.divide-polynomials-by-using-long-division",
+      "title": "2g: Divide polynomials by using long division",
+      "reviewAction": "add misconception node and common_misconception_with edge when taxonomy is available"
+    },
+    {
+      "nodeId": "math.im3.skill.2.4.divide-polynomials-by-using-synthetic-division",
+      "title": "2h: Divide polynomials by using synthetic division",
+      "reviewAction": "add misconception node and common_misconception_with edge when taxonomy is available"
+    },
+    {
+      "nodeId": "math.im3.skill.2.5.expand-powers-of-binomials-by-using-pascals-triangle-and-the",
+      "title": "2i: Expand powers of binomials by using Pascal's Triangle and the Binomial Theorem",
+      "reviewAction": "add misconception node and common_misconception_with edge when taxonomy is available"
+    },
+    {
+      "nodeId": "math.im3.skill.3.1.solve-polynomial-equations-by-graphing",
+      "title": "3a: Solve polynomial equations by graphing",
+      "reviewAction": "add misconception node and common_misconception_with edge when taxonomy is available"
+    },
+    {
+      "nodeId": "math.im3.skill.3.2.solve-polynomial-equations-by-factoring",
+      "title": "3b: Solve polynomial equations by factoring",
+      "reviewAction": "add misconception node and common_misconception_with edge when taxonomy is available"
+    },
+    {
+      "nodeId": "math.im3.skill.3.2.solve-polynomial-equations-by-writing-them-in-quadratic-form",
+      "title": "3c: Solve polynomial equations by writing them in quadratic form and factoring",
+      "reviewAction": "add misconception node and common_misconception_with edge when taxonomy is available"
+    },
+    {
+      "nodeId": "math.im3.skill.3.3.prove-polynomial-identities-and-use-them-to-describe-numeric",
+      "title": "3d: Prove polynomial identities and use them to describe numerical relationships",
+      "reviewAction": "add misconception node and common_misconception_with edge when taxonomy is available"
+    },
+    {
+      "nodeId": "math.im3.skill.3.4.evaluate-functions-by-using-synthetic-substitution",
+      "title": "3e: Evaluate functions by using synthetic substitution",
+      "reviewAction": "add misconception node and common_misconception_with edge when taxonomy is available"
+    },
+    {
+      "nodeId": "math.im3.skill.3.5.determine-the-number-and-type-of-roots-of-polynomial-equatio",
+      "title": "3h: Determine the number and type of roots of polynomial equations, find zeros, and use zeros to graph polynomial functions",
+      "reviewAction": "add misconception node and common_misconception_with edge when taxonomy is available"
+    },
+    {
+      "nodeId": "math.im3.skill.3.5.use-the-fundamental-theorem-of-algebra-to-determine-the-numb",
+      "title": "3g: Use the Fundamental Theorem of Algebra to determine the number and type of roots of polynomial equations",
+      "reviewAction": "add misconception node and common_misconception_with edge when taxonomy is available"
+    },
+    {
+      "nodeId": "math.im3.skill.4.1.find-compositions-of-functions",
+      "title": "4b: Find compositions of functions",
+      "reviewAction": "add misconception node and common_misconception_with edge when taxonomy is available"
+    },
+    {
+      "nodeId": "math.im3.skill.4.1.find-sums-differences-products-and-quotients-of-functions",
+      "title": "4a: Find sums, differences, products, and quotients of functions",
+      "reviewAction": "add misconception node and common_misconception_with edge when taxonomy is available"
+    },
+    {
+      "nodeId": "math.im3.skill.4.2.find-inverses-of-relations",
+      "title": "4c: Find inverses of relations",
+      "reviewAction": "add misconception node and common_misconception_with edge when taxonomy is available"
+    },
+    {
+      "nodeId": "math.im3.skill.4.2.verify-that-two-relations-are-inverses-by-using-compositions",
+      "title": "4d: Verify that two relations are inverses by using compositions",
+      "reviewAction": "add misconception node and common_misconception_with edge when taxonomy is available"
+    },
+    {
+      "nodeId": "math.im3.skill.4.3.simplify-expressions-in-exponential-or-radical-form",
+      "title": "4f: Simplify expressions in exponential or radical form",
+      "reviewAction": "add misconception node and common_misconception_with edge when taxonomy is available"
+    },
+    {
+      "nodeId": "math.im3.skill.4.3.simplify-expressions-involving-radicals-and-rational-exponen",
+      "title": "4e: Simplify expressions involving radicals and rational exponents",
+      "reviewAction": "add misconception node and common_misconception_with edge when taxonomy is available"
+    },
+    {
+      "nodeId": "math.im3.skill.4.4.graph-and-analyze-cube-root-functions",
+      "title": "4h: Graph and analyze cube root functions",
+      "reviewAction": "add misconception node and common_misconception_with edge when taxonomy is available"
+    },
+    {
+      "nodeId": "math.im3.skill.4.4.graph-and-analyze-square-root-functions",
+      "title": "4g: Graph and analyze square root functions",
+      "reviewAction": "add misconception node and common_misconception_with edge when taxonomy is available"
+    },
+    {
+      "nodeId": "math.im3.skill.4.5.add-subtract-and-multiply-radicals",
+      "title": "4j: Add, subtract, and multiply radicals",
+      "reviewAction": "add misconception node and common_misconception_with edge when taxonomy is available"
+    },
+    {
+      "nodeId": "math.im3.skill.4.5.divide-and-simplify-radical-expressions-by-rationalizing-the",
+      "title": "4k: Divide and simplify radical expressions by rationalizing the denominator",
+      "reviewAction": "add misconception node and common_misconception_with edge when taxonomy is available"
+    },
+    {
+      "nodeId": "math.im3.skill.4.5.simplify-radical-expressions",
+      "title": "4i: Simplify radical expressions",
+      "reviewAction": "add misconception node and common_misconception_with edge when taxonomy is available"
+    },
+    {
+      "nodeId": "math.im3.skill.4.6.solve-radical-equations-by-graphing-systems-of-equations",
+      "title": "4m: Solve radical equations by graphing systems of equations",
+      "reviewAction": "add misconception node and common_misconception_with edge when taxonomy is available"
+    },
+    {
+      "nodeId": "math.im3.skill.4.6.solve-radical-equations-in-one-variable-and-identify-extrane",
+      "title": "4l: Solve radical equations in one variable and identify extraneous solutions",
+      "reviewAction": "add misconception node and common_misconception_with edge when taxonomy is available"
+    },
+    {
+      "nodeId": "math.im3.skill.5.1.graph-exponential-decay-functions",
+      "title": "5b: Graph exponential decay functions",
+      "reviewAction": "add misconception node and common_misconception_with edge when taxonomy is available"
+    },
+    {
+      "nodeId": "math.im3.skill.5.1.graph-exponential-growth-functions",
+      "title": "5a: Graph exponential growth functions",
+      "reviewAction": "add misconception node and common_misconception_with edge when taxonomy is available"
+    },
+    {
+      "nodeId": "math.im3.skill.5.2.solve-exponential-equations-in-one-variable",
+      "title": "5c: Solve exponential equations in one variable",
+      "reviewAction": "add misconception node and common_misconception_with edge when taxonomy is available"
+    },
+    {
+      "nodeId": "math.im3.skill.5.2.solve-exponential-inequalities-in-one-variable",
+      "title": "5d: Solve exponential inequalities in one variable",
+      "reviewAction": "add misconception node and common_misconception_with edge when taxonomy is available"
+    },
+    {
+      "nodeId": "math.im3.skill.5.3.analyze-expressions-and-functions-involving-the-natural-base",
+      "title": "5e: Analyze expressions and functions involving the natural base \\e\\",
+      "reviewAction": "add misconception node and common_misconception_with edge when taxonomy is available"
+    },
+    {
+      "nodeId": "math.im3.skill.5.4.find-sums-of-geometric-series",
+      "title": "5g: Find sums of geometric series",
+      "reviewAction": "add misconception node and common_misconception_with edge when taxonomy is available"
+    },
+    {
+      "nodeId": "math.im3.skill.5.4.generate-geometric-sequences",
+      "title": "5f: Generate geometric sequences",
+      "reviewAction": "add misconception node and common_misconception_with edge when taxonomy is available"
+    },
+    {
+      "nodeId": "math.im3.skill.5.5.choose-the-best-function-type-to-model-sets-of-data",
+      "title": "5h: Choose the best function type to model sets of data",
+      "reviewAction": "add misconception node and common_misconception_with edge when taxonomy is available"
+    },
+    {
+      "nodeId": "math.im3.skill.6.1.write-logarithmic-expressions-in-exponential-form-and-write",
+      "title": "6a: Write logarithmic expressions in exponential form and write exponential expressions in logarithmic form",
+      "reviewAction": "add misconception node and common_misconception_with edge when taxonomy is available"
+    },
+    {
+      "nodeId": "math.im3.skill.6.2.solve-logarithmic-equations-using-properties-of-equality",
+      "title": "6c: Solve logarithmic equations using properties of equality",
+      "reviewAction": "add misconception node and common_misconception_with edge when taxonomy is available"
+    },
+    {
+      "nodeId": "math.im3.skill.6.3.solve-exponential-equations-by-using-common-logarithms",
+      "title": "6e: Solve exponential equations by using common logarithms",
+      "reviewAction": "add misconception node and common_misconception_with edge when taxonomy is available"
+    },
+    {
+      "nodeId": "math.im3.skill.6.4.simplify-expressions-with-natural-logarithms",
+      "title": "6g: Simplify expressions with natural logarithms",
+      "reviewAction": "add misconception node and common_misconception_with edge when taxonomy is available"
+    },
+    {
+      "nodeId": "math.im3.skill.6.4.solve-exponential-equations-by-using-natural-logarithms",
+      "title": "6h: Solve exponential equations by using natural logarithms",
+      "reviewAction": "add misconception node and common_misconception_with edge when taxonomy is available"
+    },
+    {
+      "nodeId": "math.im3.skill.6.5.write-and-solve-exponential-decay-equations",
+      "title": "6j: Write and solve exponential decay equations",
+      "reviewAction": "add misconception node and common_misconception_with edge when taxonomy is available"
+    },
+    {
+      "nodeId": "math.im3.skill.6.5.write-and-solve-exponential-growth-equations-and-inequalitie",
+      "title": "6i: Write and solve exponential growth equations and inequalities",
+      "reviewAction": "add misconception node and common_misconception_with edge when taxonomy is available"
+    },
+    {
+      "nodeId": "math.im3.skill.7.1.simplify-rational-expressions",
+      "title": "7a: Simplify rational expressions",
+      "reviewAction": "add misconception node and common_misconception_with edge when taxonomy is available"
+    },
+    {
+      "nodeId": "math.im3.skill.7.1.simplify-rational-expressions-by-multiplying-and-dividing",
+      "title": "7b: Simplify rational expressions by multiplying and dividing",
+      "reviewAction": "add misconception node and common_misconception_with edge when taxonomy is available"
+    },
+    {
+      "nodeId": "math.im3.skill.7.2.simplify-complex-fractions",
+      "title": "7d: Simplify complex fractions",
+      "reviewAction": "add misconception node and common_misconception_with edge when taxonomy is available"
+    },
+    {
+      "nodeId": "math.im3.skill.7.2.simplify-rational-expressions-by-adding-and-subtracting",
+      "title": "7c: Simplify rational expressions by adding and subtracting",
+      "reviewAction": "add misconception node and common_misconception_with edge when taxonomy is available"
+    },
+    {
+      "nodeId": "math.im3.skill.7.3.graph-and-write-reciprocal-functions-by-using-transformation",
+      "title": "7f: Graph and write reciprocal functions by using transformations",
+      "reviewAction": "add misconception node and common_misconception_with edge when taxonomy is available"
+    },
+    {
+      "nodeId": "math.im3.skill.7.3.graph-reciprocal-functions-by-making-tables-of-values",
+      "title": "7e: Graph reciprocal functions by making tables of values",
+      "reviewAction": "add misconception node and common_misconception_with edge when taxonomy is available"
+    },
+    {
+      "nodeId": "math.im3.skill.7.4.graph-and-analyze-rational-functions-with-oblique-asymptotes",
+      "title": "7h: Graph and analyze rational functions with oblique asymptotes",
+      "reviewAction": "add misconception node and common_misconception_with edge when taxonomy is available"
+    },
+    {
+      "nodeId": "math.im3.skill.7.4.graph-and-analyze-rational-functions-with-vertical-and-horiz",
+      "title": "7g: Graph and analyze rational functions with vertical and horizontal asymptotes",
+      "reviewAction": "add misconception node and common_misconception_with edge when taxonomy is available"
+    },
+    {
+      "nodeId": "math.im3.skill.7.5.recognize-and-solve-direct-and-joint-variation-equations",
+      "title": "7i: Recognize and solve direct and joint variation equations",
+      "reviewAction": "add misconception node and common_misconception_with edge when taxonomy is available"
+    },
+    {
+      "nodeId": "math.im3.skill.7.5.recognize-and-solve-inverse-and-combined-variation-equations",
+      "title": "7j: Recognize and solve inverse and combined variation equations",
+      "reviewAction": "add misconception node and common_misconception_with edge when taxonomy is available"
+    },
+    {
+      "nodeId": "math.im3.skill.7.6.solve-rational-equations-in-one-variable",
+      "title": "7k: Solve rational equations in one variable",
+      "reviewAction": "add misconception node and common_misconception_with edge when taxonomy is available"
+    },
+    {
+      "nodeId": "math.im3.skill.7.6.solve-rational-inequalities-in-one-variable",
+      "title": "7l: Solve rational inequalities in one variable",
+      "reviewAction": "add misconception node and common_misconception_with edge when taxonomy is available"
+    },
+    {
+      "nodeId": "math.im3.skill.8.1.classify-sampling-methods-and-identify-bias-in-samples-and-s",
+      "title": "8a: Classify sampling methods and identify bias in samples and survey questions",
+      "reviewAction": "add misconception node and common_misconception_with edge when taxonomy is available"
+    },
+    {
+      "nodeId": "math.im3.skill.8.1.distinguish-among-sample-surveys-experiments-and-observation",
+      "title": "8b: Distinguish among sample surveys, experiments, and observational studies",
+      "reviewAction": "add misconception node and common_misconception_with edge when taxonomy is available"
+    },
+    {
+      "nodeId": "math.im3.skill.8.2.compare-theoretical-and-experimental-probabilities",
+      "title": "8c: Compare theoretical and experimental probabilities",
+      "reviewAction": "add misconception node and common_misconception_with edge when taxonomy is available"
+    },
+    {
+      "nodeId": "math.im3.skill.8.2.determine-whether-models-are-consistent-with-results-from-si",
+      "title": "8d: Determine whether models are consistent with results from simulations of real-life situations",
+      "reviewAction": "add misconception node and common_misconception_with edge when taxonomy is available"
+    },
+    {
+      "nodeId": "math.im3.skill.8.3.describe-distributions-by-finding-their-mean-and-standard-de",
+      "title": "8e: Describe distributions by finding their mean and standard deviation",
+      "reviewAction": "add misconception node and common_misconception_with edge when taxonomy is available"
+    },
+    {
+      "nodeId": "math.im3.skill.8.4.analyze-normally-distributed-variables-by-using-the-empirica",
+      "title": "8g: Analyze normally distributed variables by using the Empirical Rule",
+      "reviewAction": "add misconception node and common_misconception_with edge when taxonomy is available"
+    },
+    {
+      "nodeId": "math.im3.skill.8.4.analyze-standardized-data-and-distributions-by-using-z-value",
+      "title": "8h: Analyze standardized data and distributions by using z-values",
+      "reviewAction": "add misconception node and common_misconception_with edge when taxonomy is available"
+    },
+    {
+      "nodeId": "math.im3.skill.8.4.classify-variables-and-analyze-probability-distributions-to",
+      "title": "8f: Classify variables and analyze probability distributions to determine expected outcomes",
+      "reviewAction": "add misconception node and common_misconception_with edge when taxonomy is available"
+    },
+    {
+      "nodeId": "math.im3.skill.8.5.use-sample-data-to-infer-a-population-mean-by-using-confiden",
+      "title": "8i: Use sample data to infer a population mean by using confidence intervals",
+      "reviewAction": "add misconception node and common_misconception_with edge when taxonomy is available"
+    },
+    {
+      "nodeId": "math.im3.skill.8.5.use-sample-data-to-infer-a-population-proportion-by-using-co",
+      "title": "8j: Use sample data to infer a population proportion by using confidence intervals",
+      "reviewAction": "add misconception node and common_misconception_with edge when taxonomy is available"
+    },
+    {
+      "nodeId": "math.im3.skill.9.1.convert-between-degree-and-radian-measures-and-find-arc-leng",
+      "title": "9b: Convert between degree and radian measures and find arc lengths by using central angles",
+      "reviewAction": "add misconception node and common_misconception_with edge when taxonomy is available"
+    },
+    {
+      "nodeId": "math.im3.skill.9.1.draw-angles-in-standard-position-and-identify-coterminal-ang",
+      "title": "9a: Draw angles in standard position and identify coterminal angles",
+      "reviewAction": "add misconception node and common_misconception_with edge when taxonomy is available"
+    },
+    {
+      "nodeId": "math.im3.skill.9.2.find-values-of-trigonometric-functions-by-using-reference-an",
+      "title": "9e: Find values of trigonometric functions by using reference angles",
+      "reviewAction": "add misconception node and common_misconception_with edge when taxonomy is available"
+    },
+    {
+      "nodeId": "math.im3.skill.9.2.find-values-of-trigonometric-functions-for-acute-angles",
+      "title": "9c: Find values of trigonometric functions for acute angles",
+      "reviewAction": "add misconception node and common_misconception_with edge when taxonomy is available"
+    },
+    {
+      "nodeId": "math.im3.skill.9.2.find-values-of-trigonometric-functions-of-general-angles",
+      "title": "9d: Find values of trigonometric functions of general angles",
+      "reviewAction": "add misconception node and common_misconception_with edge when taxonomy is available"
+    },
+    {
+      "nodeId": "math.im3.skill.9.3.find-values-of-trigonometric-functions-given-a-point-on-a-un",
+      "title": "9f: Find values of trigonometric functions given a point on a unit circle or the measure of a special angle",
+      "reviewAction": "add misconception node and common_misconception_with edge when taxonomy is available"
+    },
+    {
+      "nodeId": "math.im3.skill.9.3.find-values-of-trigonometric-functions-that-model-periodic-e",
+      "title": "9g: Find values of trigonometric functions that model periodic events",
+      "reviewAction": "add misconception node and common_misconception_with edge when taxonomy is available"
+    },
+    {
+      "nodeId": "math.im3.skill.9.4.graph-and-analyze-sine-and-cosine-functions",
+      "title": "9h: Graph and analyze sine and cosine functions",
+      "reviewAction": "add misconception node and common_misconception_with edge when taxonomy is available"
+    },
+    {
+      "nodeId": "math.im3.skill.9.4.model-periodic-real-world-situations-with-sine-and-cosine-fu",
+      "title": "9i: Model periodic real-world situations with sine and cosine functions",
+      "reviewAction": "add misconception node and common_misconception_with edge when taxonomy is available"
+    },
+    {
+      "nodeId": "math.im3.skill.9.5.graph-and-analyze-reciprocal-trigonometric-functions",
+      "title": "9k: Graph and analyze reciprocal trigonometric functions",
+      "reviewAction": "add misconception node and common_misconception_with edge when taxonomy is available"
+    },
+    {
+      "nodeId": "math.im3.skill.9.5.graph-and-analyze-tangent-functions",
+      "title": "9j: Graph and analyze tangent functions",
+      "reviewAction": "add misconception node and common_misconception_with edge when taxonomy is available"
+    },
+    {
+      "nodeId": "math.im3.skill.9.6.graph-horizontal-translations-of-trigonometric-functions",
+      "title": "9l: Graph horizontal translations of trigonometric functions",
+      "reviewAction": "add misconception node and common_misconception_with edge when taxonomy is available"
+    },
+    {
+      "nodeId": "math.im3.skill.9.6.graph-vertical-translations-of-trigonometric-functions",
+      "title": "9m: Graph vertical translations of trigonometric functions",
+      "reviewAction": "add misconception node and common_misconception_with edge when taxonomy is available"
+    },
+    {
+      "nodeId": "math.im3.skill.9.7.find-values-of-angle-measures-by-using-inverse-trigonometric",
+      "title": "9n: Find values of angle measures by using inverse trigonometric functions",
+      "reviewAction": "add misconception node and common_misconception_with edge when taxonomy is available"
+    }
+  ],
+  "counts": {
+    "lowConfidencePrerequisites": 44,
+    "skillsMissingRenderer": 80,
+    "skillsMissingMisconceptionTaxonomy": 96
+  }
+}

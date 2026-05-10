@@ -1,0 +1,5957 @@
+{
+  "meta": {
+    "course": "PreCalc",
+    "generatedAt": "2026-05-10",
+    "derivationMethod": "lesson-sequence-suggestion-v1",
+    "pilotEdgesPreserved": 0,
+    "suggestedEdges": 375,
+    "totalEdges": 375
+  },
+  "edges": [
+    {
+      "id": "math.precalc.edge.0001",
+      "type": "appears_in_context",
+      "sourceId": "math.precalc.example.1.1.001",
+      "targetId": "math.precalc.lesson.1.1",
+      "weight": 0.8,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "1",
+        "lesson": "1"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0002",
+      "type": "appears_in_context",
+      "sourceId": "math.precalc.example.1.1.002",
+      "targetId": "math.precalc.lesson.1.1",
+      "weight": 0.8,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "1",
+        "lesson": "1"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0003",
+      "type": "appears_in_context",
+      "sourceId": "math.precalc.example.1.10.001",
+      "targetId": "math.precalc.lesson.1.10",
+      "weight": 0.8,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "1",
+        "lesson": "10"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0004",
+      "type": "appears_in_context",
+      "sourceId": "math.precalc.example.1.10.002",
+      "targetId": "math.precalc.lesson.1.10",
+      "weight": 0.8,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "1",
+        "lesson": "10"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0005",
+      "type": "appears_in_context",
+      "sourceId": "math.precalc.example.1.10.003",
+      "targetId": "math.precalc.lesson.1.10",
+      "weight": 0.8,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "1",
+        "lesson": "10"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0006",
+      "type": "appears_in_context",
+      "sourceId": "math.precalc.example.1.11.001",
+      "targetId": "math.precalc.lesson.1.11",
+      "weight": 0.8,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "1",
+        "lesson": "11"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0007",
+      "type": "appears_in_context",
+      "sourceId": "math.precalc.example.1.11.002",
+      "targetId": "math.precalc.lesson.1.11",
+      "weight": 0.8,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "1",
+        "lesson": "11"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0008",
+      "type": "appears_in_context",
+      "sourceId": "math.precalc.example.1.11.003",
+      "targetId": "math.precalc.lesson.1.11",
+      "weight": 0.8,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "1",
+        "lesson": "11"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0009",
+      "type": "appears_in_context",
+      "sourceId": "math.precalc.example.1.12.001",
+      "targetId": "math.precalc.lesson.1.12",
+      "weight": 0.8,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "1",
+        "lesson": "12"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0010",
+      "type": "appears_in_context",
+      "sourceId": "math.precalc.example.1.12.002",
+      "targetId": "math.precalc.lesson.1.12",
+      "weight": 0.8,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "1",
+        "lesson": "12"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0011",
+      "type": "appears_in_context",
+      "sourceId": "math.precalc.example.1.12.003",
+      "targetId": "math.precalc.lesson.1.12",
+      "weight": 0.8,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "1",
+        "lesson": "12"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0012",
+      "type": "appears_in_context",
+      "sourceId": "math.precalc.example.1.13.001",
+      "targetId": "math.precalc.lesson.1.13",
+      "weight": 0.8,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "1",
+        "lesson": "13"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0013",
+      "type": "appears_in_context",
+      "sourceId": "math.precalc.example.1.13.002",
+      "targetId": "math.precalc.lesson.1.13",
+      "weight": 0.8,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "1",
+        "lesson": "13"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0014",
+      "type": "appears_in_context",
+      "sourceId": "math.precalc.example.1.14.001",
+      "targetId": "math.precalc.lesson.1.14",
+      "weight": 0.8,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "1",
+        "lesson": "14"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0015",
+      "type": "appears_in_context",
+      "sourceId": "math.precalc.example.1.14.002",
+      "targetId": "math.precalc.lesson.1.14",
+      "weight": 0.8,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "1",
+        "lesson": "14"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0016",
+      "type": "appears_in_context",
+      "sourceId": "math.precalc.example.1.14.003",
+      "targetId": "math.precalc.lesson.1.14",
+      "weight": 0.8,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "1",
+        "lesson": "14"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0017",
+      "type": "appears_in_context",
+      "sourceId": "math.precalc.example.1.2.001",
+      "targetId": "math.precalc.lesson.1.2",
+      "weight": 0.8,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "1",
+        "lesson": "2"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0018",
+      "type": "appears_in_context",
+      "sourceId": "math.precalc.example.1.2.002",
+      "targetId": "math.precalc.lesson.1.2",
+      "weight": 0.8,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "1",
+        "lesson": "2"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0019",
+      "type": "appears_in_context",
+      "sourceId": "math.precalc.example.1.2.003",
+      "targetId": "math.precalc.lesson.1.2",
+      "weight": 0.8,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "1",
+        "lesson": "2"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0020",
+      "type": "appears_in_context",
+      "sourceId": "math.precalc.example.1.3.001",
+      "targetId": "math.precalc.lesson.1.3",
+      "weight": 0.8,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "1",
+        "lesson": "3"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0021",
+      "type": "appears_in_context",
+      "sourceId": "math.precalc.example.1.3.002",
+      "targetId": "math.precalc.lesson.1.3",
+      "weight": 0.8,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "1",
+        "lesson": "3"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0022",
+      "type": "appears_in_context",
+      "sourceId": "math.precalc.example.1.4.001",
+      "targetId": "math.precalc.lesson.1.4",
+      "weight": 0.8,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "1",
+        "lesson": "4"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0023",
+      "type": "appears_in_context",
+      "sourceId": "math.precalc.example.1.4.002",
+      "targetId": "math.precalc.lesson.1.4",
+      "weight": 0.8,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "1",
+        "lesson": "4"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0024",
+      "type": "appears_in_context",
+      "sourceId": "math.precalc.example.1.4.003",
+      "targetId": "math.precalc.lesson.1.4",
+      "weight": 0.8,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "1",
+        "lesson": "4"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0025",
+      "type": "appears_in_context",
+      "sourceId": "math.precalc.example.1.4.004",
+      "targetId": "math.precalc.lesson.1.4",
+      "weight": 0.8,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "1",
+        "lesson": "4"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0026",
+      "type": "appears_in_context",
+      "sourceId": "math.precalc.example.1.5.001",
+      "targetId": "math.precalc.lesson.1.5",
+      "weight": 0.8,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "1",
+        "lesson": "5"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0027",
+      "type": "appears_in_context",
+      "sourceId": "math.precalc.example.1.5.002",
+      "targetId": "math.precalc.lesson.1.5",
+      "weight": 0.8,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "1",
+        "lesson": "5"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0028",
+      "type": "appears_in_context",
+      "sourceId": "math.precalc.example.1.5.003",
+      "targetId": "math.precalc.lesson.1.5",
+      "weight": 0.8,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "1",
+        "lesson": "5"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0029",
+      "type": "appears_in_context",
+      "sourceId": "math.precalc.example.1.6.001",
+      "targetId": "math.precalc.lesson.1.6",
+      "weight": 0.8,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "1",
+        "lesson": "6"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0030",
+      "type": "appears_in_context",
+      "sourceId": "math.precalc.example.1.6.002",
+      "targetId": "math.precalc.lesson.1.6",
+      "weight": 0.8,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "1",
+        "lesson": "6"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0031",
+      "type": "appears_in_context",
+      "sourceId": "math.precalc.example.1.6.003",
+      "targetId": "math.precalc.lesson.1.6",
+      "weight": 0.8,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "1",
+        "lesson": "6"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0032",
+      "type": "appears_in_context",
+      "sourceId": "math.precalc.example.1.7.001",
+      "targetId": "math.precalc.lesson.1.7",
+      "weight": 0.8,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "1",
+        "lesson": "7"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0033",
+      "type": "appears_in_context",
+      "sourceId": "math.precalc.example.1.7.002",
+      "targetId": "math.precalc.lesson.1.7",
+      "weight": 0.8,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "1",
+        "lesson": "7"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0034",
+      "type": "appears_in_context",
+      "sourceId": "math.precalc.example.1.7.003",
+      "targetId": "math.precalc.lesson.1.7",
+      "weight": 0.8,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "1",
+        "lesson": "7"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0035",
+      "type": "appears_in_context",
+      "sourceId": "math.precalc.example.1.8.001",
+      "targetId": "math.precalc.lesson.1.8",
+      "weight": 0.8,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "1",
+        "lesson": "8"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0036",
+      "type": "appears_in_context",
+      "sourceId": "math.precalc.example.1.8.002",
+      "targetId": "math.precalc.lesson.1.8",
+      "weight": 0.8,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "1",
+        "lesson": "8"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0037",
+      "type": "appears_in_context",
+      "sourceId": "math.precalc.example.1.9.001",
+      "targetId": "math.precalc.lesson.1.9",
+      "weight": 0.8,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "1",
+        "lesson": "9"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0038",
+      "type": "appears_in_context",
+      "sourceId": "math.precalc.example.1.9.002",
+      "targetId": "math.precalc.lesson.1.9",
+      "weight": 0.8,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "1",
+        "lesson": "9"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0039",
+      "type": "appears_in_context",
+      "sourceId": "math.precalc.example.1.9.003",
+      "targetId": "math.precalc.lesson.1.9",
+      "weight": 0.8,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "1",
+        "lesson": "9"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0040",
+      "type": "appears_in_context",
+      "sourceId": "math.precalc.example.2.1.001",
+      "targetId": "math.precalc.lesson.2.1",
+      "weight": 0.8,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "2",
+        "lesson": "1"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0041",
+      "type": "appears_in_context",
+      "sourceId": "math.precalc.example.2.1.002",
+      "targetId": "math.precalc.lesson.2.1",
+      "weight": 0.8,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "2",
+        "lesson": "1"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0042",
+      "type": "appears_in_context",
+      "sourceId": "math.precalc.example.2.10.001",
+      "targetId": "math.precalc.lesson.2.10",
+      "weight": 0.8,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "2",
+        "lesson": "10"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0043",
+      "type": "appears_in_context",
+      "sourceId": "math.precalc.example.2.10.002",
+      "targetId": "math.precalc.lesson.2.10",
+      "weight": 0.8,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "2",
+        "lesson": "10"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0044",
+      "type": "appears_in_context",
+      "sourceId": "math.precalc.example.2.10.003",
+      "targetId": "math.precalc.lesson.2.10",
+      "weight": 0.8,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "2",
+        "lesson": "10"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0045",
+      "type": "appears_in_context",
+      "sourceId": "math.precalc.example.2.10.004",
+      "targetId": "math.precalc.lesson.2.10",
+      "weight": 0.8,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "2",
+        "lesson": "10"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0046",
+      "type": "appears_in_context",
+      "sourceId": "math.precalc.example.2.11.001",
+      "targetId": "math.precalc.lesson.2.11",
+      "weight": 0.8,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "2",
+        "lesson": "11"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0047",
+      "type": "appears_in_context",
+      "sourceId": "math.precalc.example.2.11.002",
+      "targetId": "math.precalc.lesson.2.11",
+      "weight": 0.8,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "2",
+        "lesson": "11"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0048",
+      "type": "appears_in_context",
+      "sourceId": "math.precalc.example.2.11.003",
+      "targetId": "math.precalc.lesson.2.11",
+      "weight": 0.8,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "2",
+        "lesson": "11"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0049",
+      "type": "appears_in_context",
+      "sourceId": "math.precalc.example.2.11.004",
+      "targetId": "math.precalc.lesson.2.11",
+      "weight": 0.8,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "2",
+        "lesson": "11"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0050",
+      "type": "appears_in_context",
+      "sourceId": "math.precalc.example.2.12.001",
+      "targetId": "math.precalc.lesson.2.12",
+      "weight": 0.8,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "2",
+        "lesson": "12"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0051",
+      "type": "appears_in_context",
+      "sourceId": "math.precalc.example.2.12.002",
+      "targetId": "math.precalc.lesson.2.12",
+      "weight": 0.8,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "2",
+        "lesson": "12"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0052",
+      "type": "appears_in_context",
+      "sourceId": "math.precalc.example.2.12.003",
+      "targetId": "math.precalc.lesson.2.12",
+      "weight": 0.8,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "2",
+        "lesson": "12"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0053",
+      "type": "appears_in_context",
+      "sourceId": "math.precalc.example.2.12.004",
+      "targetId": "math.precalc.lesson.2.12",
+      "weight": 0.8,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "2",
+        "lesson": "12"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0054",
+      "type": "appears_in_context",
+      "sourceId": "math.precalc.example.2.13.001",
+      "targetId": "math.precalc.lesson.2.13",
+      "weight": 0.8,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "2",
+        "lesson": "13"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0055",
+      "type": "appears_in_context",
+      "sourceId": "math.precalc.example.2.13.002",
+      "targetId": "math.precalc.lesson.2.13",
+      "weight": 0.8,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "2",
+        "lesson": "13"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0056",
+      "type": "appears_in_context",
+      "sourceId": "math.precalc.example.2.13.003",
+      "targetId": "math.precalc.lesson.2.13",
+      "weight": 0.8,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "2",
+        "lesson": "13"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0057",
+      "type": "appears_in_context",
+      "sourceId": "math.precalc.example.2.13.004",
+      "targetId": "math.precalc.lesson.2.13",
+      "weight": 0.8,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "2",
+        "lesson": "13"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0058",
+      "type": "appears_in_context",
+      "sourceId": "math.precalc.example.2.13.005",
+      "targetId": "math.precalc.lesson.2.13",
+      "weight": 0.8,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "2",
+        "lesson": "13"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0059",
+      "type": "appears_in_context",
+      "sourceId": "math.precalc.example.2.14.001",
+      "targetId": "math.precalc.lesson.2.14",
+      "weight": 0.8,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "2",
+        "lesson": "14"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0060",
+      "type": "appears_in_context",
+      "sourceId": "math.precalc.example.2.14.002",
+      "targetId": "math.precalc.lesson.2.14",
+      "weight": 0.8,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "2",
+        "lesson": "14"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0061",
+      "type": "appears_in_context",
+      "sourceId": "math.precalc.example.2.14.003",
+      "targetId": "math.precalc.lesson.2.14",
+      "weight": 0.8,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "2",
+        "lesson": "14"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0062",
+      "type": "appears_in_context",
+      "sourceId": "math.precalc.example.2.15.001",
+      "targetId": "math.precalc.lesson.2.15",
+      "weight": 0.8,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "2",
+        "lesson": "15"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0063",
+      "type": "appears_in_context",
+      "sourceId": "math.precalc.example.2.15.002",
+      "targetId": "math.precalc.lesson.2.15",
+      "weight": 0.8,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "2",
+        "lesson": "15"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0064",
+      "type": "appears_in_context",
+      "sourceId": "math.precalc.example.2.15.003",
+      "targetId": "math.precalc.lesson.2.15",
+      "weight": 0.8,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "2",
+        "lesson": "15"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0065",
+      "type": "appears_in_context",
+      "sourceId": "math.precalc.example.2.2.001",
+      "targetId": "math.precalc.lesson.2.2",
+      "weight": 0.8,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "2",
+        "lesson": "2"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0066",
+      "type": "appears_in_context",
+      "sourceId": "math.precalc.example.2.2.002",
+      "targetId": "math.precalc.lesson.2.2",
+      "weight": 0.8,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "2",
+        "lesson": "2"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0067",
+      "type": "appears_in_context",
+      "sourceId": "math.precalc.example.2.3.001",
+      "targetId": "math.precalc.lesson.2.3",
+      "weight": 0.8,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "2",
+        "lesson": "3"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0068",
+      "type": "appears_in_context",
+      "sourceId": "math.precalc.example.2.3.002",
+      "targetId": "math.precalc.lesson.2.3",
+      "weight": 0.8,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "2",
+        "lesson": "3"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0069",
+      "type": "appears_in_context",
+      "sourceId": "math.precalc.example.2.3.003",
+      "targetId": "math.precalc.lesson.2.3",
+      "weight": 0.8,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "2",
+        "lesson": "3"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0070",
+      "type": "appears_in_context",
+      "sourceId": "math.precalc.example.2.4.001",
+      "targetId": "math.precalc.lesson.2.4",
+      "weight": 0.8,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "2",
+        "lesson": "4"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0071",
+      "type": "appears_in_context",
+      "sourceId": "math.precalc.example.2.4.002",
+      "targetId": "math.precalc.lesson.2.4",
+      "weight": 0.8,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "2",
+        "lesson": "4"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0072",
+      "type": "appears_in_context",
+      "sourceId": "math.precalc.example.2.4.003",
+      "targetId": "math.precalc.lesson.2.4",
+      "weight": 0.8,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "2",
+        "lesson": "4"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0073",
+      "type": "appears_in_context",
+      "sourceId": "math.precalc.example.2.5.001",
+      "targetId": "math.precalc.lesson.2.5",
+      "weight": 0.8,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "2",
+        "lesson": "5"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0074",
+      "type": "appears_in_context",
+      "sourceId": "math.precalc.example.2.5.002",
+      "targetId": "math.precalc.lesson.2.5",
+      "weight": 0.8,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "2",
+        "lesson": "5"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0075",
+      "type": "appears_in_context",
+      "sourceId": "math.precalc.example.2.5.003",
+      "targetId": "math.precalc.lesson.2.5",
+      "weight": 0.8,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "2",
+        "lesson": "5"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0076",
+      "type": "appears_in_context",
+      "sourceId": "math.precalc.example.2.6.001",
+      "targetId": "math.precalc.lesson.2.6",
+      "weight": 0.8,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "2",
+        "lesson": "6"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0077",
+      "type": "appears_in_context",
+      "sourceId": "math.precalc.example.2.6.002",
+      "targetId": "math.precalc.lesson.2.6",
+      "weight": 0.8,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "2",
+        "lesson": "6"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0078",
+      "type": "appears_in_context",
+      "sourceId": "math.precalc.example.2.7.001",
+      "targetId": "math.precalc.lesson.2.7",
+      "weight": 0.8,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "2",
+        "lesson": "7"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0079",
+      "type": "appears_in_context",
+      "sourceId": "math.precalc.example.2.7.002",
+      "targetId": "math.precalc.lesson.2.7",
+      "weight": 0.8,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "2",
+        "lesson": "7"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0080",
+      "type": "appears_in_context",
+      "sourceId": "math.precalc.example.2.7.003",
+      "targetId": "math.precalc.lesson.2.7",
+      "weight": 0.8,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "2",
+        "lesson": "7"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0081",
+      "type": "appears_in_context",
+      "sourceId": "math.precalc.example.2.7.004",
+      "targetId": "math.precalc.lesson.2.7",
+      "weight": 0.8,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "2",
+        "lesson": "7"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0082",
+      "type": "appears_in_context",
+      "sourceId": "math.precalc.example.2.8.001",
+      "targetId": "math.precalc.lesson.2.8",
+      "weight": 0.8,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "2",
+        "lesson": "8"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0083",
+      "type": "appears_in_context",
+      "sourceId": "math.precalc.example.2.8.002",
+      "targetId": "math.precalc.lesson.2.8",
+      "weight": 0.8,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "2",
+        "lesson": "8"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0084",
+      "type": "appears_in_context",
+      "sourceId": "math.precalc.example.2.8.003",
+      "targetId": "math.precalc.lesson.2.8",
+      "weight": 0.8,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "2",
+        "lesson": "8"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0085",
+      "type": "appears_in_context",
+      "sourceId": "math.precalc.example.2.9.001",
+      "targetId": "math.precalc.lesson.2.9",
+      "weight": 0.8,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "2",
+        "lesson": "9"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0086",
+      "type": "appears_in_context",
+      "sourceId": "math.precalc.example.2.9.002",
+      "targetId": "math.precalc.lesson.2.9",
+      "weight": 0.8,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "2",
+        "lesson": "9"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0087",
+      "type": "appears_in_context",
+      "sourceId": "math.precalc.example.2.9.003",
+      "targetId": "math.precalc.lesson.2.9",
+      "weight": 0.8,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "2",
+        "lesson": "9"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0088",
+      "type": "appears_in_context",
+      "sourceId": "math.precalc.example.2.9.004",
+      "targetId": "math.precalc.lesson.2.9",
+      "weight": 0.8,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "2",
+        "lesson": "9"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0089",
+      "type": "appears_in_context",
+      "sourceId": "math.precalc.example.3.1.001",
+      "targetId": "math.precalc.lesson.3.1",
+      "weight": 0.8,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "3",
+        "lesson": "1"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0090",
+      "type": "appears_in_context",
+      "sourceId": "math.precalc.example.3.1.002",
+      "targetId": "math.precalc.lesson.3.1",
+      "weight": 0.8,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "3",
+        "lesson": "1"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0091",
+      "type": "appears_in_context",
+      "sourceId": "math.precalc.example.3.1.003",
+      "targetId": "math.precalc.lesson.3.1",
+      "weight": 0.8,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "3",
+        "lesson": "1"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0092",
+      "type": "appears_in_context",
+      "sourceId": "math.precalc.example.3.10.001",
+      "targetId": "math.precalc.lesson.3.10",
+      "weight": 0.8,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "3",
+        "lesson": "10"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0093",
+      "type": "appears_in_context",
+      "sourceId": "math.precalc.example.3.10.002",
+      "targetId": "math.precalc.lesson.3.10",
+      "weight": 0.8,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "3",
+        "lesson": "10"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0094",
+      "type": "appears_in_context",
+      "sourceId": "math.precalc.example.3.10.003",
+      "targetId": "math.precalc.lesson.3.10",
+      "weight": 0.8,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "3",
+        "lesson": "10"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0095",
+      "type": "appears_in_context",
+      "sourceId": "math.precalc.example.3.11.001",
+      "targetId": "math.precalc.lesson.3.11",
+      "weight": 0.8,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "3",
+        "lesson": "11"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0096",
+      "type": "appears_in_context",
+      "sourceId": "math.precalc.example.3.11.002",
+      "targetId": "math.precalc.lesson.3.11",
+      "weight": 0.8,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "3",
+        "lesson": "11"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0097",
+      "type": "appears_in_context",
+      "sourceId": "math.precalc.example.3.11.003",
+      "targetId": "math.precalc.lesson.3.11",
+      "weight": 0.8,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "3",
+        "lesson": "11"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0098",
+      "type": "appears_in_context",
+      "sourceId": "math.precalc.example.3.12.001",
+      "targetId": "math.precalc.lesson.3.12",
+      "weight": 0.8,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "3",
+        "lesson": "12"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0099",
+      "type": "appears_in_context",
+      "sourceId": "math.precalc.example.3.12.002",
+      "targetId": "math.precalc.lesson.3.12",
+      "weight": 0.8,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "3",
+        "lesson": "12"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0100",
+      "type": "appears_in_context",
+      "sourceId": "math.precalc.example.3.12.003",
+      "targetId": "math.precalc.lesson.3.12",
+      "weight": 0.8,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "3",
+        "lesson": "12"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0101",
+      "type": "appears_in_context",
+      "sourceId": "math.precalc.example.3.12.004",
+      "targetId": "math.precalc.lesson.3.12",
+      "weight": 0.8,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "3",
+        "lesson": "12"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0102",
+      "type": "appears_in_context",
+      "sourceId": "math.precalc.example.3.13.001",
+      "targetId": "math.precalc.lesson.3.13",
+      "weight": 0.8,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "3",
+        "lesson": "13"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0103",
+      "type": "appears_in_context",
+      "sourceId": "math.precalc.example.3.13.002",
+      "targetId": "math.precalc.lesson.3.13",
+      "weight": 0.8,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "3",
+        "lesson": "13"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0104",
+      "type": "appears_in_context",
+      "sourceId": "math.precalc.example.3.13.003",
+      "targetId": "math.precalc.lesson.3.13",
+      "weight": 0.8,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "3",
+        "lesson": "13"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0105",
+      "type": "appears_in_context",
+      "sourceId": "math.precalc.example.3.13.004",
+      "targetId": "math.precalc.lesson.3.13",
+      "weight": 0.8,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "3",
+        "lesson": "13"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0106",
+      "type": "appears_in_context",
+      "sourceId": "math.precalc.example.3.14.001",
+      "targetId": "math.precalc.lesson.3.14",
+      "weight": 0.8,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "3",
+        "lesson": "14"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0107",
+      "type": "appears_in_context",
+      "sourceId": "math.precalc.example.3.14.002",
+      "targetId": "math.precalc.lesson.3.14",
+      "weight": 0.8,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "3",
+        "lesson": "14"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0108",
+      "type": "appears_in_context",
+      "sourceId": "math.precalc.example.3.14.003",
+      "targetId": "math.precalc.lesson.3.14",
+      "weight": 0.8,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "3",
+        "lesson": "14"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0109",
+      "type": "appears_in_context",
+      "sourceId": "math.precalc.example.3.14.004",
+      "targetId": "math.precalc.lesson.3.14",
+      "weight": 0.8,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "3",
+        "lesson": "14"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0110",
+      "type": "appears_in_context",
+      "sourceId": "math.precalc.example.3.15.001",
+      "targetId": "math.precalc.lesson.3.15",
+      "weight": 0.8,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "3",
+        "lesson": "15"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0111",
+      "type": "appears_in_context",
+      "sourceId": "math.precalc.example.3.15.002",
+      "targetId": "math.precalc.lesson.3.15",
+      "weight": 0.8,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "3",
+        "lesson": "15"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0112",
+      "type": "appears_in_context",
+      "sourceId": "math.precalc.example.3.15.003",
+      "targetId": "math.precalc.lesson.3.15",
+      "weight": 0.8,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "3",
+        "lesson": "15"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0113",
+      "type": "appears_in_context",
+      "sourceId": "math.precalc.example.3.15.004",
+      "targetId": "math.precalc.lesson.3.15",
+      "weight": 0.8,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "3",
+        "lesson": "15"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0114",
+      "type": "appears_in_context",
+      "sourceId": "math.precalc.example.3.2.001",
+      "targetId": "math.precalc.lesson.3.2",
+      "weight": 0.8,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "3",
+        "lesson": "2"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0115",
+      "type": "appears_in_context",
+      "sourceId": "math.precalc.example.3.2.002",
+      "targetId": "math.precalc.lesson.3.2",
+      "weight": 0.8,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "3",
+        "lesson": "2"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0116",
+      "type": "appears_in_context",
+      "sourceId": "math.precalc.example.3.2.003",
+      "targetId": "math.precalc.lesson.3.2",
+      "weight": 0.8,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "3",
+        "lesson": "2"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0117",
+      "type": "appears_in_context",
+      "sourceId": "math.precalc.example.3.2.004",
+      "targetId": "math.precalc.lesson.3.2",
+      "weight": 0.8,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "3",
+        "lesson": "2"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0118",
+      "type": "appears_in_context",
+      "sourceId": "math.precalc.example.3.3.001",
+      "targetId": "math.precalc.lesson.3.3",
+      "weight": 0.8,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "3",
+        "lesson": "3"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0119",
+      "type": "appears_in_context",
+      "sourceId": "math.precalc.example.3.3.002",
+      "targetId": "math.precalc.lesson.3.3",
+      "weight": 0.8,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "3",
+        "lesson": "3"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0120",
+      "type": "appears_in_context",
+      "sourceId": "math.precalc.example.3.3.003",
+      "targetId": "math.precalc.lesson.3.3",
+      "weight": 0.8,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "3",
+        "lesson": "3"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0121",
+      "type": "appears_in_context",
+      "sourceId": "math.precalc.example.3.3.004",
+      "targetId": "math.precalc.lesson.3.3",
+      "weight": 0.8,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "3",
+        "lesson": "3"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0122",
+      "type": "appears_in_context",
+      "sourceId": "math.precalc.example.3.4.001",
+      "targetId": "math.precalc.lesson.3.4",
+      "weight": 0.8,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "3",
+        "lesson": "4"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0123",
+      "type": "appears_in_context",
+      "sourceId": "math.precalc.example.3.4.002",
+      "targetId": "math.precalc.lesson.3.4",
+      "weight": 0.8,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "3",
+        "lesson": "4"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0124",
+      "type": "appears_in_context",
+      "sourceId": "math.precalc.example.3.4.003",
+      "targetId": "math.precalc.lesson.3.4",
+      "weight": 0.8,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "3",
+        "lesson": "4"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0125",
+      "type": "appears_in_context",
+      "sourceId": "math.precalc.example.3.5.001",
+      "targetId": "math.precalc.lesson.3.5",
+      "weight": 0.8,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "3",
+        "lesson": "5"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0126",
+      "type": "appears_in_context",
+      "sourceId": "math.precalc.example.3.5.002",
+      "targetId": "math.precalc.lesson.3.5",
+      "weight": 0.8,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "3",
+        "lesson": "5"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0127",
+      "type": "appears_in_context",
+      "sourceId": "math.precalc.example.3.5.003",
+      "targetId": "math.precalc.lesson.3.5",
+      "weight": 0.8,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "3",
+        "lesson": "5"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0128",
+      "type": "appears_in_context",
+      "sourceId": "math.precalc.example.3.6.001",
+      "targetId": "math.precalc.lesson.3.6",
+      "weight": 0.8,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "3",
+        "lesson": "6"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0129",
+      "type": "appears_in_context",
+      "sourceId": "math.precalc.example.3.6.002",
+      "targetId": "math.precalc.lesson.3.6",
+      "weight": 0.8,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "3",
+        "lesson": "6"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0130",
+      "type": "appears_in_context",
+      "sourceId": "math.precalc.example.3.6.003",
+      "targetId": "math.precalc.lesson.3.6",
+      "weight": 0.8,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "3",
+        "lesson": "6"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0131",
+      "type": "appears_in_context",
+      "sourceId": "math.precalc.example.3.7.001",
+      "targetId": "math.precalc.lesson.3.7",
+      "weight": 0.8,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "3",
+        "lesson": "7"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0132",
+      "type": "appears_in_context",
+      "sourceId": "math.precalc.example.3.7.002",
+      "targetId": "math.precalc.lesson.3.7",
+      "weight": 0.8,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "3",
+        "lesson": "7"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0133",
+      "type": "appears_in_context",
+      "sourceId": "math.precalc.example.3.7.003",
+      "targetId": "math.precalc.lesson.3.7",
+      "weight": 0.8,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "3",
+        "lesson": "7"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0134",
+      "type": "appears_in_context",
+      "sourceId": "math.precalc.example.3.8.001",
+      "targetId": "math.precalc.lesson.3.8",
+      "weight": 0.8,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "3",
+        "lesson": "8"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0135",
+      "type": "appears_in_context",
+      "sourceId": "math.precalc.example.3.8.002",
+      "targetId": "math.precalc.lesson.3.8",
+      "weight": 0.8,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "3",
+        "lesson": "8"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0136",
+      "type": "appears_in_context",
+      "sourceId": "math.precalc.example.3.8.003",
+      "targetId": "math.precalc.lesson.3.8",
+      "weight": 0.8,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "3",
+        "lesson": "8"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0137",
+      "type": "appears_in_context",
+      "sourceId": "math.precalc.example.3.8.004",
+      "targetId": "math.precalc.lesson.3.8",
+      "weight": 0.8,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "3",
+        "lesson": "8"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0138",
+      "type": "appears_in_context",
+      "sourceId": "math.precalc.example.3.9.001",
+      "targetId": "math.precalc.lesson.3.9",
+      "weight": 0.8,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "3",
+        "lesson": "9"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0139",
+      "type": "appears_in_context",
+      "sourceId": "math.precalc.example.3.9.002",
+      "targetId": "math.precalc.lesson.3.9",
+      "weight": 0.8,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "3",
+        "lesson": "9"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0140",
+      "type": "appears_in_context",
+      "sourceId": "math.precalc.example.3.9.003",
+      "targetId": "math.precalc.lesson.3.9",
+      "weight": 0.8,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "3",
+        "lesson": "9"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0141",
+      "type": "appears_in_context",
+      "sourceId": "math.precalc.example.4.1.001",
+      "targetId": "math.precalc.lesson.4.1",
+      "weight": 0.8,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "4",
+        "lesson": "1"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0142",
+      "type": "appears_in_context",
+      "sourceId": "math.precalc.example.4.1.002",
+      "targetId": "math.precalc.lesson.4.1",
+      "weight": 0.8,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "4",
+        "lesson": "1"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0143",
+      "type": "appears_in_context",
+      "sourceId": "math.precalc.example.4.10.001",
+      "targetId": "math.precalc.lesson.4.10",
+      "weight": 0.8,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "4",
+        "lesson": "10"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0144",
+      "type": "appears_in_context",
+      "sourceId": "math.precalc.example.4.10.002",
+      "targetId": "math.precalc.lesson.4.10",
+      "weight": 0.8,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "4",
+        "lesson": "10"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0145",
+      "type": "appears_in_context",
+      "sourceId": "math.precalc.example.4.11.001",
+      "targetId": "math.precalc.lesson.4.11",
+      "weight": 0.8,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "4",
+        "lesson": "11"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0146",
+      "type": "appears_in_context",
+      "sourceId": "math.precalc.example.4.11.002",
+      "targetId": "math.precalc.lesson.4.11",
+      "weight": 0.8,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "4",
+        "lesson": "11"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0147",
+      "type": "appears_in_context",
+      "sourceId": "math.precalc.example.4.12.001",
+      "targetId": "math.precalc.lesson.4.12",
+      "weight": 0.8,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "4",
+        "lesson": "12"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0148",
+      "type": "appears_in_context",
+      "sourceId": "math.precalc.example.4.12.002",
+      "targetId": "math.precalc.lesson.4.12",
+      "weight": 0.8,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "4",
+        "lesson": "12"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0149",
+      "type": "appears_in_context",
+      "sourceId": "math.precalc.example.4.13.001",
+      "targetId": "math.precalc.lesson.4.13",
+      "weight": 0.8,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "4",
+        "lesson": "13"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0150",
+      "type": "appears_in_context",
+      "sourceId": "math.precalc.example.4.4.001",
+      "targetId": "math.precalc.lesson.4.4",
+      "weight": 0.8,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "4",
+        "lesson": "4"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0151",
+      "type": "appears_in_context",
+      "sourceId": "math.precalc.example.4.4.002",
+      "targetId": "math.precalc.lesson.4.4",
+      "weight": 0.8,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "4",
+        "lesson": "4"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0152",
+      "type": "appears_in_context",
+      "sourceId": "math.precalc.example.4.5.001",
+      "targetId": "math.precalc.lesson.4.5",
+      "weight": 0.8,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "4",
+        "lesson": "5"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0153",
+      "type": "appears_in_context",
+      "sourceId": "math.precalc.example.4.5.002",
+      "targetId": "math.precalc.lesson.4.5",
+      "weight": 0.8,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "4",
+        "lesson": "5"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0154",
+      "type": "appears_in_context",
+      "sourceId": "math.precalc.example.4.6.001",
+      "targetId": "math.precalc.lesson.4.6",
+      "weight": 0.8,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "4",
+        "lesson": "6"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0155",
+      "type": "appears_in_context",
+      "sourceId": "math.precalc.example.4.6.002",
+      "targetId": "math.precalc.lesson.4.6",
+      "weight": 0.8,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "4",
+        "lesson": "6"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0156",
+      "type": "appears_in_context",
+      "sourceId": "math.precalc.example.4.7.001",
+      "targetId": "math.precalc.lesson.4.7",
+      "weight": 0.8,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "4",
+        "lesson": "7"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0157",
+      "type": "appears_in_context",
+      "sourceId": "math.precalc.example.4.7.002",
+      "targetId": "math.precalc.lesson.4.7",
+      "weight": 0.8,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "4",
+        "lesson": "7"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0158",
+      "type": "appears_in_context",
+      "sourceId": "math.precalc.example.4.8.001",
+      "targetId": "math.precalc.lesson.4.8",
+      "weight": 0.8,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "4",
+        "lesson": "8"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0159",
+      "type": "contains",
+      "sourceId": "math.precalc",
+      "targetId": "math.precalc.module.1",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Domain contains Unit 1",
+      "metadata": {
+        "course": "precalc",
+        "module": "1"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0160",
+      "type": "contains",
+      "sourceId": "math.precalc",
+      "targetId": "math.precalc.module.2",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Domain contains Unit 2",
+      "metadata": {
+        "course": "precalc",
+        "module": "2"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0161",
+      "type": "contains",
+      "sourceId": "math.precalc",
+      "targetId": "math.precalc.module.3",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Domain contains Unit 3",
+      "metadata": {
+        "course": "precalc",
+        "module": "3"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0162",
+      "type": "contains",
+      "sourceId": "math.precalc",
+      "targetId": "math.precalc.module.4",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Domain contains Unit 4",
+      "metadata": {
+        "course": "precalc",
+        "module": "4"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0163",
+      "type": "contains",
+      "sourceId": "math.precalc.lesson.1.1",
+      "targetId": "math.precalc.example.1.1.001",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "1",
+        "lesson": "1"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0164",
+      "type": "contains",
+      "sourceId": "math.precalc.lesson.1.1",
+      "targetId": "math.precalc.example.1.1.002",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "1",
+        "lesson": "1"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0165",
+      "type": "contains",
+      "sourceId": "math.precalc.lesson.1.10",
+      "targetId": "math.precalc.example.1.10.001",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "1",
+        "lesson": "10"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0166",
+      "type": "contains",
+      "sourceId": "math.precalc.lesson.1.10",
+      "targetId": "math.precalc.example.1.10.002",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "1",
+        "lesson": "10"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0167",
+      "type": "contains",
+      "sourceId": "math.precalc.lesson.1.10",
+      "targetId": "math.precalc.example.1.10.003",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "1",
+        "lesson": "10"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0168",
+      "type": "contains",
+      "sourceId": "math.precalc.lesson.1.11",
+      "targetId": "math.precalc.example.1.11.001",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "1",
+        "lesson": "11"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0169",
+      "type": "contains",
+      "sourceId": "math.precalc.lesson.1.11",
+      "targetId": "math.precalc.example.1.11.002",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "1",
+        "lesson": "11"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0170",
+      "type": "contains",
+      "sourceId": "math.precalc.lesson.1.11",
+      "targetId": "math.precalc.example.1.11.003",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "1",
+        "lesson": "11"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0171",
+      "type": "contains",
+      "sourceId": "math.precalc.lesson.1.12",
+      "targetId": "math.precalc.example.1.12.001",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "1",
+        "lesson": "12"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0172",
+      "type": "contains",
+      "sourceId": "math.precalc.lesson.1.12",
+      "targetId": "math.precalc.example.1.12.002",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "1",
+        "lesson": "12"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0173",
+      "type": "contains",
+      "sourceId": "math.precalc.lesson.1.12",
+      "targetId": "math.precalc.example.1.12.003",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "1",
+        "lesson": "12"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0174",
+      "type": "contains",
+      "sourceId": "math.precalc.lesson.1.13",
+      "targetId": "math.precalc.example.1.13.001",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "1",
+        "lesson": "13"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0175",
+      "type": "contains",
+      "sourceId": "math.precalc.lesson.1.13",
+      "targetId": "math.precalc.example.1.13.002",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "1",
+        "lesson": "13"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0176",
+      "type": "contains",
+      "sourceId": "math.precalc.lesson.1.14",
+      "targetId": "math.precalc.example.1.14.001",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "1",
+        "lesson": "14"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0177",
+      "type": "contains",
+      "sourceId": "math.precalc.lesson.1.14",
+      "targetId": "math.precalc.example.1.14.002",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "1",
+        "lesson": "14"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0178",
+      "type": "contains",
+      "sourceId": "math.precalc.lesson.1.14",
+      "targetId": "math.precalc.example.1.14.003",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "1",
+        "lesson": "14"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0179",
+      "type": "contains",
+      "sourceId": "math.precalc.lesson.1.2",
+      "targetId": "math.precalc.example.1.2.001",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "1",
+        "lesson": "2"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0180",
+      "type": "contains",
+      "sourceId": "math.precalc.lesson.1.2",
+      "targetId": "math.precalc.example.1.2.002",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "1",
+        "lesson": "2"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0181",
+      "type": "contains",
+      "sourceId": "math.precalc.lesson.1.2",
+      "targetId": "math.precalc.example.1.2.003",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "1",
+        "lesson": "2"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0182",
+      "type": "contains",
+      "sourceId": "math.precalc.lesson.1.3",
+      "targetId": "math.precalc.example.1.3.001",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "1",
+        "lesson": "3"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0183",
+      "type": "contains",
+      "sourceId": "math.precalc.lesson.1.3",
+      "targetId": "math.precalc.example.1.3.002",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "1",
+        "lesson": "3"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0184",
+      "type": "contains",
+      "sourceId": "math.precalc.lesson.1.4",
+      "targetId": "math.precalc.example.1.4.001",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "1",
+        "lesson": "4"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0185",
+      "type": "contains",
+      "sourceId": "math.precalc.lesson.1.4",
+      "targetId": "math.precalc.example.1.4.002",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "1",
+        "lesson": "4"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0186",
+      "type": "contains",
+      "sourceId": "math.precalc.lesson.1.4",
+      "targetId": "math.precalc.example.1.4.003",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "1",
+        "lesson": "4"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0187",
+      "type": "contains",
+      "sourceId": "math.precalc.lesson.1.4",
+      "targetId": "math.precalc.example.1.4.004",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "1",
+        "lesson": "4"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0188",
+      "type": "contains",
+      "sourceId": "math.precalc.lesson.1.5",
+      "targetId": "math.precalc.example.1.5.001",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "1",
+        "lesson": "5"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0189",
+      "type": "contains",
+      "sourceId": "math.precalc.lesson.1.5",
+      "targetId": "math.precalc.example.1.5.002",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "1",
+        "lesson": "5"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0190",
+      "type": "contains",
+      "sourceId": "math.precalc.lesson.1.5",
+      "targetId": "math.precalc.example.1.5.003",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "1",
+        "lesson": "5"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0191",
+      "type": "contains",
+      "sourceId": "math.precalc.lesson.1.6",
+      "targetId": "math.precalc.example.1.6.001",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "1",
+        "lesson": "6"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0192",
+      "type": "contains",
+      "sourceId": "math.precalc.lesson.1.6",
+      "targetId": "math.precalc.example.1.6.002",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "1",
+        "lesson": "6"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0193",
+      "type": "contains",
+      "sourceId": "math.precalc.lesson.1.6",
+      "targetId": "math.precalc.example.1.6.003",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "1",
+        "lesson": "6"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0194",
+      "type": "contains",
+      "sourceId": "math.precalc.lesson.1.7",
+      "targetId": "math.precalc.example.1.7.001",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "1",
+        "lesson": "7"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0195",
+      "type": "contains",
+      "sourceId": "math.precalc.lesson.1.7",
+      "targetId": "math.precalc.example.1.7.002",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "1",
+        "lesson": "7"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0196",
+      "type": "contains",
+      "sourceId": "math.precalc.lesson.1.7",
+      "targetId": "math.precalc.example.1.7.003",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "1",
+        "lesson": "7"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0197",
+      "type": "contains",
+      "sourceId": "math.precalc.lesson.1.8",
+      "targetId": "math.precalc.example.1.8.001",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "1",
+        "lesson": "8"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0198",
+      "type": "contains",
+      "sourceId": "math.precalc.lesson.1.8",
+      "targetId": "math.precalc.example.1.8.002",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "1",
+        "lesson": "8"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0199",
+      "type": "contains",
+      "sourceId": "math.precalc.lesson.1.9",
+      "targetId": "math.precalc.example.1.9.001",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "1",
+        "lesson": "9"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0200",
+      "type": "contains",
+      "sourceId": "math.precalc.lesson.1.9",
+      "targetId": "math.precalc.example.1.9.002",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "1",
+        "lesson": "9"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0201",
+      "type": "contains",
+      "sourceId": "math.precalc.lesson.1.9",
+      "targetId": "math.precalc.example.1.9.003",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "1",
+        "lesson": "9"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0202",
+      "type": "contains",
+      "sourceId": "math.precalc.lesson.2.1",
+      "targetId": "math.precalc.example.2.1.001",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "2",
+        "lesson": "1"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0203",
+      "type": "contains",
+      "sourceId": "math.precalc.lesson.2.1",
+      "targetId": "math.precalc.example.2.1.002",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "2",
+        "lesson": "1"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0204",
+      "type": "contains",
+      "sourceId": "math.precalc.lesson.2.10",
+      "targetId": "math.precalc.example.2.10.001",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "2",
+        "lesson": "10"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0205",
+      "type": "contains",
+      "sourceId": "math.precalc.lesson.2.10",
+      "targetId": "math.precalc.example.2.10.002",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "2",
+        "lesson": "10"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0206",
+      "type": "contains",
+      "sourceId": "math.precalc.lesson.2.10",
+      "targetId": "math.precalc.example.2.10.003",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "2",
+        "lesson": "10"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0207",
+      "type": "contains",
+      "sourceId": "math.precalc.lesson.2.10",
+      "targetId": "math.precalc.example.2.10.004",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "2",
+        "lesson": "10"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0208",
+      "type": "contains",
+      "sourceId": "math.precalc.lesson.2.11",
+      "targetId": "math.precalc.example.2.11.001",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "2",
+        "lesson": "11"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0209",
+      "type": "contains",
+      "sourceId": "math.precalc.lesson.2.11",
+      "targetId": "math.precalc.example.2.11.002",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "2",
+        "lesson": "11"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0210",
+      "type": "contains",
+      "sourceId": "math.precalc.lesson.2.11",
+      "targetId": "math.precalc.example.2.11.003",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "2",
+        "lesson": "11"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0211",
+      "type": "contains",
+      "sourceId": "math.precalc.lesson.2.11",
+      "targetId": "math.precalc.example.2.11.004",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "2",
+        "lesson": "11"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0212",
+      "type": "contains",
+      "sourceId": "math.precalc.lesson.2.12",
+      "targetId": "math.precalc.example.2.12.001",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "2",
+        "lesson": "12"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0213",
+      "type": "contains",
+      "sourceId": "math.precalc.lesson.2.12",
+      "targetId": "math.precalc.example.2.12.002",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "2",
+        "lesson": "12"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0214",
+      "type": "contains",
+      "sourceId": "math.precalc.lesson.2.12",
+      "targetId": "math.precalc.example.2.12.003",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "2",
+        "lesson": "12"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0215",
+      "type": "contains",
+      "sourceId": "math.precalc.lesson.2.12",
+      "targetId": "math.precalc.example.2.12.004",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "2",
+        "lesson": "12"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0216",
+      "type": "contains",
+      "sourceId": "math.precalc.lesson.2.13",
+      "targetId": "math.precalc.example.2.13.001",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "2",
+        "lesson": "13"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0217",
+      "type": "contains",
+      "sourceId": "math.precalc.lesson.2.13",
+      "targetId": "math.precalc.example.2.13.002",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "2",
+        "lesson": "13"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0218",
+      "type": "contains",
+      "sourceId": "math.precalc.lesson.2.13",
+      "targetId": "math.precalc.example.2.13.003",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "2",
+        "lesson": "13"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0219",
+      "type": "contains",
+      "sourceId": "math.precalc.lesson.2.13",
+      "targetId": "math.precalc.example.2.13.004",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "2",
+        "lesson": "13"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0220",
+      "type": "contains",
+      "sourceId": "math.precalc.lesson.2.13",
+      "targetId": "math.precalc.example.2.13.005",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "2",
+        "lesson": "13"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0221",
+      "type": "contains",
+      "sourceId": "math.precalc.lesson.2.14",
+      "targetId": "math.precalc.example.2.14.001",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "2",
+        "lesson": "14"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0222",
+      "type": "contains",
+      "sourceId": "math.precalc.lesson.2.14",
+      "targetId": "math.precalc.example.2.14.002",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "2",
+        "lesson": "14"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0223",
+      "type": "contains",
+      "sourceId": "math.precalc.lesson.2.14",
+      "targetId": "math.precalc.example.2.14.003",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "2",
+        "lesson": "14"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0224",
+      "type": "contains",
+      "sourceId": "math.precalc.lesson.2.15",
+      "targetId": "math.precalc.example.2.15.001",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "2",
+        "lesson": "15"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0225",
+      "type": "contains",
+      "sourceId": "math.precalc.lesson.2.15",
+      "targetId": "math.precalc.example.2.15.002",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "2",
+        "lesson": "15"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0226",
+      "type": "contains",
+      "sourceId": "math.precalc.lesson.2.15",
+      "targetId": "math.precalc.example.2.15.003",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "2",
+        "lesson": "15"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0227",
+      "type": "contains",
+      "sourceId": "math.precalc.lesson.2.2",
+      "targetId": "math.precalc.example.2.2.001",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "2",
+        "lesson": "2"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0228",
+      "type": "contains",
+      "sourceId": "math.precalc.lesson.2.2",
+      "targetId": "math.precalc.example.2.2.002",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "2",
+        "lesson": "2"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0229",
+      "type": "contains",
+      "sourceId": "math.precalc.lesson.2.3",
+      "targetId": "math.precalc.example.2.3.001",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "2",
+        "lesson": "3"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0230",
+      "type": "contains",
+      "sourceId": "math.precalc.lesson.2.3",
+      "targetId": "math.precalc.example.2.3.002",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "2",
+        "lesson": "3"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0231",
+      "type": "contains",
+      "sourceId": "math.precalc.lesson.2.3",
+      "targetId": "math.precalc.example.2.3.003",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "2",
+        "lesson": "3"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0232",
+      "type": "contains",
+      "sourceId": "math.precalc.lesson.2.4",
+      "targetId": "math.precalc.example.2.4.001",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "2",
+        "lesson": "4"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0233",
+      "type": "contains",
+      "sourceId": "math.precalc.lesson.2.4",
+      "targetId": "math.precalc.example.2.4.002",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "2",
+        "lesson": "4"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0234",
+      "type": "contains",
+      "sourceId": "math.precalc.lesson.2.4",
+      "targetId": "math.precalc.example.2.4.003",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "2",
+        "lesson": "4"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0235",
+      "type": "contains",
+      "sourceId": "math.precalc.lesson.2.5",
+      "targetId": "math.precalc.example.2.5.001",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "2",
+        "lesson": "5"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0236",
+      "type": "contains",
+      "sourceId": "math.precalc.lesson.2.5",
+      "targetId": "math.precalc.example.2.5.002",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "2",
+        "lesson": "5"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0237",
+      "type": "contains",
+      "sourceId": "math.precalc.lesson.2.5",
+      "targetId": "math.precalc.example.2.5.003",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "2",
+        "lesson": "5"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0238",
+      "type": "contains",
+      "sourceId": "math.precalc.lesson.2.6",
+      "targetId": "math.precalc.example.2.6.001",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "2",
+        "lesson": "6"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0239",
+      "type": "contains",
+      "sourceId": "math.precalc.lesson.2.6",
+      "targetId": "math.precalc.example.2.6.002",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "2",
+        "lesson": "6"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0240",
+      "type": "contains",
+      "sourceId": "math.precalc.lesson.2.7",
+      "targetId": "math.precalc.example.2.7.001",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "2",
+        "lesson": "7"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0241",
+      "type": "contains",
+      "sourceId": "math.precalc.lesson.2.7",
+      "targetId": "math.precalc.example.2.7.002",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "2",
+        "lesson": "7"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0242",
+      "type": "contains",
+      "sourceId": "math.precalc.lesson.2.7",
+      "targetId": "math.precalc.example.2.7.003",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "2",
+        "lesson": "7"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0243",
+      "type": "contains",
+      "sourceId": "math.precalc.lesson.2.7",
+      "targetId": "math.precalc.example.2.7.004",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "2",
+        "lesson": "7"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0244",
+      "type": "contains",
+      "sourceId": "math.precalc.lesson.2.8",
+      "targetId": "math.precalc.example.2.8.001",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "2",
+        "lesson": "8"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0245",
+      "type": "contains",
+      "sourceId": "math.precalc.lesson.2.8",
+      "targetId": "math.precalc.example.2.8.002",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "2",
+        "lesson": "8"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0246",
+      "type": "contains",
+      "sourceId": "math.precalc.lesson.2.8",
+      "targetId": "math.precalc.example.2.8.003",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "2",
+        "lesson": "8"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0247",
+      "type": "contains",
+      "sourceId": "math.precalc.lesson.2.9",
+      "targetId": "math.precalc.example.2.9.001",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "2",
+        "lesson": "9"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0248",
+      "type": "contains",
+      "sourceId": "math.precalc.lesson.2.9",
+      "targetId": "math.precalc.example.2.9.002",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "2",
+        "lesson": "9"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0249",
+      "type": "contains",
+      "sourceId": "math.precalc.lesson.2.9",
+      "targetId": "math.precalc.example.2.9.003",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "2",
+        "lesson": "9"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0250",
+      "type": "contains",
+      "sourceId": "math.precalc.lesson.2.9",
+      "targetId": "math.precalc.example.2.9.004",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "2",
+        "lesson": "9"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0251",
+      "type": "contains",
+      "sourceId": "math.precalc.lesson.3.1",
+      "targetId": "math.precalc.example.3.1.001",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "3",
+        "lesson": "1"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0252",
+      "type": "contains",
+      "sourceId": "math.precalc.lesson.3.1",
+      "targetId": "math.precalc.example.3.1.002",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "3",
+        "lesson": "1"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0253",
+      "type": "contains",
+      "sourceId": "math.precalc.lesson.3.1",
+      "targetId": "math.precalc.example.3.1.003",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "3",
+        "lesson": "1"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0254",
+      "type": "contains",
+      "sourceId": "math.precalc.lesson.3.10",
+      "targetId": "math.precalc.example.3.10.001",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "3",
+        "lesson": "10"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0255",
+      "type": "contains",
+      "sourceId": "math.precalc.lesson.3.10",
+      "targetId": "math.precalc.example.3.10.002",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "3",
+        "lesson": "10"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0256",
+      "type": "contains",
+      "sourceId": "math.precalc.lesson.3.10",
+      "targetId": "math.precalc.example.3.10.003",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "3",
+        "lesson": "10"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0257",
+      "type": "contains",
+      "sourceId": "math.precalc.lesson.3.11",
+      "targetId": "math.precalc.example.3.11.001",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "3",
+        "lesson": "11"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0258",
+      "type": "contains",
+      "sourceId": "math.precalc.lesson.3.11",
+      "targetId": "math.precalc.example.3.11.002",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "3",
+        "lesson": "11"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0259",
+      "type": "contains",
+      "sourceId": "math.precalc.lesson.3.11",
+      "targetId": "math.precalc.example.3.11.003",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "3",
+        "lesson": "11"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0260",
+      "type": "contains",
+      "sourceId": "math.precalc.lesson.3.12",
+      "targetId": "math.precalc.example.3.12.001",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "3",
+        "lesson": "12"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0261",
+      "type": "contains",
+      "sourceId": "math.precalc.lesson.3.12",
+      "targetId": "math.precalc.example.3.12.002",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "3",
+        "lesson": "12"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0262",
+      "type": "contains",
+      "sourceId": "math.precalc.lesson.3.12",
+      "targetId": "math.precalc.example.3.12.003",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "3",
+        "lesson": "12"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0263",
+      "type": "contains",
+      "sourceId": "math.precalc.lesson.3.12",
+      "targetId": "math.precalc.example.3.12.004",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "3",
+        "lesson": "12"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0264",
+      "type": "contains",
+      "sourceId": "math.precalc.lesson.3.13",
+      "targetId": "math.precalc.example.3.13.001",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "3",
+        "lesson": "13"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0265",
+      "type": "contains",
+      "sourceId": "math.precalc.lesson.3.13",
+      "targetId": "math.precalc.example.3.13.002",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "3",
+        "lesson": "13"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0266",
+      "type": "contains",
+      "sourceId": "math.precalc.lesson.3.13",
+      "targetId": "math.precalc.example.3.13.003",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "3",
+        "lesson": "13"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0267",
+      "type": "contains",
+      "sourceId": "math.precalc.lesson.3.13",
+      "targetId": "math.precalc.example.3.13.004",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "3",
+        "lesson": "13"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0268",
+      "type": "contains",
+      "sourceId": "math.precalc.lesson.3.14",
+      "targetId": "math.precalc.example.3.14.001",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "3",
+        "lesson": "14"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0269",
+      "type": "contains",
+      "sourceId": "math.precalc.lesson.3.14",
+      "targetId": "math.precalc.example.3.14.002",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "3",
+        "lesson": "14"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0270",
+      "type": "contains",
+      "sourceId": "math.precalc.lesson.3.14",
+      "targetId": "math.precalc.example.3.14.003",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "3",
+        "lesson": "14"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0271",
+      "type": "contains",
+      "sourceId": "math.precalc.lesson.3.14",
+      "targetId": "math.precalc.example.3.14.004",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "3",
+        "lesson": "14"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0272",
+      "type": "contains",
+      "sourceId": "math.precalc.lesson.3.15",
+      "targetId": "math.precalc.example.3.15.001",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "3",
+        "lesson": "15"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0273",
+      "type": "contains",
+      "sourceId": "math.precalc.lesson.3.15",
+      "targetId": "math.precalc.example.3.15.002",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "3",
+        "lesson": "15"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0274",
+      "type": "contains",
+      "sourceId": "math.precalc.lesson.3.15",
+      "targetId": "math.precalc.example.3.15.003",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "3",
+        "lesson": "15"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0275",
+      "type": "contains",
+      "sourceId": "math.precalc.lesson.3.15",
+      "targetId": "math.precalc.example.3.15.004",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "3",
+        "lesson": "15"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0276",
+      "type": "contains",
+      "sourceId": "math.precalc.lesson.3.2",
+      "targetId": "math.precalc.example.3.2.001",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "3",
+        "lesson": "2"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0277",
+      "type": "contains",
+      "sourceId": "math.precalc.lesson.3.2",
+      "targetId": "math.precalc.example.3.2.002",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "3",
+        "lesson": "2"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0278",
+      "type": "contains",
+      "sourceId": "math.precalc.lesson.3.2",
+      "targetId": "math.precalc.example.3.2.003",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "3",
+        "lesson": "2"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0279",
+      "type": "contains",
+      "sourceId": "math.precalc.lesson.3.2",
+      "targetId": "math.precalc.example.3.2.004",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "3",
+        "lesson": "2"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0280",
+      "type": "contains",
+      "sourceId": "math.precalc.lesson.3.3",
+      "targetId": "math.precalc.example.3.3.001",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "3",
+        "lesson": "3"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0281",
+      "type": "contains",
+      "sourceId": "math.precalc.lesson.3.3",
+      "targetId": "math.precalc.example.3.3.002",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "3",
+        "lesson": "3"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0282",
+      "type": "contains",
+      "sourceId": "math.precalc.lesson.3.3",
+      "targetId": "math.precalc.example.3.3.003",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "3",
+        "lesson": "3"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0283",
+      "type": "contains",
+      "sourceId": "math.precalc.lesson.3.3",
+      "targetId": "math.precalc.example.3.3.004",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "3",
+        "lesson": "3"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0284",
+      "type": "contains",
+      "sourceId": "math.precalc.lesson.3.4",
+      "targetId": "math.precalc.example.3.4.001",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "3",
+        "lesson": "4"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0285",
+      "type": "contains",
+      "sourceId": "math.precalc.lesson.3.4",
+      "targetId": "math.precalc.example.3.4.002",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "3",
+        "lesson": "4"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0286",
+      "type": "contains",
+      "sourceId": "math.precalc.lesson.3.4",
+      "targetId": "math.precalc.example.3.4.003",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "3",
+        "lesson": "4"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0287",
+      "type": "contains",
+      "sourceId": "math.precalc.lesson.3.5",
+      "targetId": "math.precalc.example.3.5.001",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "3",
+        "lesson": "5"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0288",
+      "type": "contains",
+      "sourceId": "math.precalc.lesson.3.5",
+      "targetId": "math.precalc.example.3.5.002",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "3",
+        "lesson": "5"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0289",
+      "type": "contains",
+      "sourceId": "math.precalc.lesson.3.5",
+      "targetId": "math.precalc.example.3.5.003",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "3",
+        "lesson": "5"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0290",
+      "type": "contains",
+      "sourceId": "math.precalc.lesson.3.6",
+      "targetId": "math.precalc.example.3.6.001",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "3",
+        "lesson": "6"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0291",
+      "type": "contains",
+      "sourceId": "math.precalc.lesson.3.6",
+      "targetId": "math.precalc.example.3.6.002",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "3",
+        "lesson": "6"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0292",
+      "type": "contains",
+      "sourceId": "math.precalc.lesson.3.6",
+      "targetId": "math.precalc.example.3.6.003",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "3",
+        "lesson": "6"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0293",
+      "type": "contains",
+      "sourceId": "math.precalc.lesson.3.7",
+      "targetId": "math.precalc.example.3.7.001",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "3",
+        "lesson": "7"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0294",
+      "type": "contains",
+      "sourceId": "math.precalc.lesson.3.7",
+      "targetId": "math.precalc.example.3.7.002",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "3",
+        "lesson": "7"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0295",
+      "type": "contains",
+      "sourceId": "math.precalc.lesson.3.7",
+      "targetId": "math.precalc.example.3.7.003",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "3",
+        "lesson": "7"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0296",
+      "type": "contains",
+      "sourceId": "math.precalc.lesson.3.8",
+      "targetId": "math.precalc.example.3.8.001",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "3",
+        "lesson": "8"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0297",
+      "type": "contains",
+      "sourceId": "math.precalc.lesson.3.8",
+      "targetId": "math.precalc.example.3.8.002",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "3",
+        "lesson": "8"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0298",
+      "type": "contains",
+      "sourceId": "math.precalc.lesson.3.8",
+      "targetId": "math.precalc.example.3.8.003",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "3",
+        "lesson": "8"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0299",
+      "type": "contains",
+      "sourceId": "math.precalc.lesson.3.8",
+      "targetId": "math.precalc.example.3.8.004",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "3",
+        "lesson": "8"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0300",
+      "type": "contains",
+      "sourceId": "math.precalc.lesson.3.9",
+      "targetId": "math.precalc.example.3.9.001",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "3",
+        "lesson": "9"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0301",
+      "type": "contains",
+      "sourceId": "math.precalc.lesson.3.9",
+      "targetId": "math.precalc.example.3.9.002",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "3",
+        "lesson": "9"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0302",
+      "type": "contains",
+      "sourceId": "math.precalc.lesson.3.9",
+      "targetId": "math.precalc.example.3.9.003",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "3",
+        "lesson": "9"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0303",
+      "type": "contains",
+      "sourceId": "math.precalc.lesson.4.1",
+      "targetId": "math.precalc.example.4.1.001",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "4",
+        "lesson": "1"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0304",
+      "type": "contains",
+      "sourceId": "math.precalc.lesson.4.1",
+      "targetId": "math.precalc.example.4.1.002",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "4",
+        "lesson": "1"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0305",
+      "type": "contains",
+      "sourceId": "math.precalc.lesson.4.10",
+      "targetId": "math.precalc.example.4.10.001",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "4",
+        "lesson": "10"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0306",
+      "type": "contains",
+      "sourceId": "math.precalc.lesson.4.10",
+      "targetId": "math.precalc.example.4.10.002",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "4",
+        "lesson": "10"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0307",
+      "type": "contains",
+      "sourceId": "math.precalc.lesson.4.11",
+      "targetId": "math.precalc.example.4.11.001",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "4",
+        "lesson": "11"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0308",
+      "type": "contains",
+      "sourceId": "math.precalc.lesson.4.11",
+      "targetId": "math.precalc.example.4.11.002",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "4",
+        "lesson": "11"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0309",
+      "type": "contains",
+      "sourceId": "math.precalc.lesson.4.12",
+      "targetId": "math.precalc.example.4.12.001",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "4",
+        "lesson": "12"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0310",
+      "type": "contains",
+      "sourceId": "math.precalc.lesson.4.12",
+      "targetId": "math.precalc.example.4.12.002",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "4",
+        "lesson": "12"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0311",
+      "type": "contains",
+      "sourceId": "math.precalc.lesson.4.13",
+      "targetId": "math.precalc.example.4.13.001",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "4",
+        "lesson": "13"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0312",
+      "type": "contains",
+      "sourceId": "math.precalc.lesson.4.4",
+      "targetId": "math.precalc.example.4.4.001",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "4",
+        "lesson": "4"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0313",
+      "type": "contains",
+      "sourceId": "math.precalc.lesson.4.4",
+      "targetId": "math.precalc.example.4.4.002",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "4",
+        "lesson": "4"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0314",
+      "type": "contains",
+      "sourceId": "math.precalc.lesson.4.5",
+      "targetId": "math.precalc.example.4.5.001",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "4",
+        "lesson": "5"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0315",
+      "type": "contains",
+      "sourceId": "math.precalc.lesson.4.5",
+      "targetId": "math.precalc.example.4.5.002",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "4",
+        "lesson": "5"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0316",
+      "type": "contains",
+      "sourceId": "math.precalc.lesson.4.6",
+      "targetId": "math.precalc.example.4.6.001",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "4",
+        "lesson": "6"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0317",
+      "type": "contains",
+      "sourceId": "math.precalc.lesson.4.6",
+      "targetId": "math.precalc.example.4.6.002",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "4",
+        "lesson": "6"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0318",
+      "type": "contains",
+      "sourceId": "math.precalc.lesson.4.7",
+      "targetId": "math.precalc.example.4.7.001",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "4",
+        "lesson": "7"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0319",
+      "type": "contains",
+      "sourceId": "math.precalc.lesson.4.7",
+      "targetId": "math.precalc.example.4.7.002",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "4",
+        "lesson": "7"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0320",
+      "type": "contains",
+      "sourceId": "math.precalc.lesson.4.8",
+      "targetId": "math.precalc.example.4.8.001",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "4",
+        "lesson": "8"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0321",
+      "type": "contains",
+      "sourceId": "math.precalc.module.1",
+      "targetId": "math.precalc.lesson.1.1",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Module 1 contains lesson",
+      "metadata": {
+        "module": "1"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0322",
+      "type": "contains",
+      "sourceId": "math.precalc.module.1",
+      "targetId": "math.precalc.lesson.1.10",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Module 1 contains lesson",
+      "metadata": {
+        "module": "1"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0323",
+      "type": "contains",
+      "sourceId": "math.precalc.module.1",
+      "targetId": "math.precalc.lesson.1.11",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Module 1 contains lesson",
+      "metadata": {
+        "module": "1"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0324",
+      "type": "contains",
+      "sourceId": "math.precalc.module.1",
+      "targetId": "math.precalc.lesson.1.12",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Module 1 contains lesson",
+      "metadata": {
+        "module": "1"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0325",
+      "type": "contains",
+      "sourceId": "math.precalc.module.1",
+      "targetId": "math.precalc.lesson.1.13",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Module 1 contains lesson",
+      "metadata": {
+        "module": "1"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0326",
+      "type": "contains",
+      "sourceId": "math.precalc.module.1",
+      "targetId": "math.precalc.lesson.1.14",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Module 1 contains lesson",
+      "metadata": {
+        "module": "1"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0327",
+      "type": "contains",
+      "sourceId": "math.precalc.module.1",
+      "targetId": "math.precalc.lesson.1.15",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Module 1 contains lesson",
+      "metadata": {
+        "module": "1"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0328",
+      "type": "contains",
+      "sourceId": "math.precalc.module.1",
+      "targetId": "math.precalc.lesson.1.2",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Module 1 contains lesson",
+      "metadata": {
+        "module": "1"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0329",
+      "type": "contains",
+      "sourceId": "math.precalc.module.1",
+      "targetId": "math.precalc.lesson.1.3",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Module 1 contains lesson",
+      "metadata": {
+        "module": "1"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0330",
+      "type": "contains",
+      "sourceId": "math.precalc.module.1",
+      "targetId": "math.precalc.lesson.1.4",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Module 1 contains lesson",
+      "metadata": {
+        "module": "1"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0331",
+      "type": "contains",
+      "sourceId": "math.precalc.module.1",
+      "targetId": "math.precalc.lesson.1.5",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Module 1 contains lesson",
+      "metadata": {
+        "module": "1"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0332",
+      "type": "contains",
+      "sourceId": "math.precalc.module.1",
+      "targetId": "math.precalc.lesson.1.6",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Module 1 contains lesson",
+      "metadata": {
+        "module": "1"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0333",
+      "type": "contains",
+      "sourceId": "math.precalc.module.1",
+      "targetId": "math.precalc.lesson.1.7",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Module 1 contains lesson",
+      "metadata": {
+        "module": "1"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0334",
+      "type": "contains",
+      "sourceId": "math.precalc.module.1",
+      "targetId": "math.precalc.lesson.1.8",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Module 1 contains lesson",
+      "metadata": {
+        "module": "1"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0335",
+      "type": "contains",
+      "sourceId": "math.precalc.module.1",
+      "targetId": "math.precalc.lesson.1.9",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Module 1 contains lesson",
+      "metadata": {
+        "module": "1"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0336",
+      "type": "contains",
+      "sourceId": "math.precalc.module.2",
+      "targetId": "math.precalc.lesson.2.1",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Module 2 contains lesson",
+      "metadata": {
+        "module": "2"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0337",
+      "type": "contains",
+      "sourceId": "math.precalc.module.2",
+      "targetId": "math.precalc.lesson.2.10",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Module 2 contains lesson",
+      "metadata": {
+        "module": "2"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0338",
+      "type": "contains",
+      "sourceId": "math.precalc.module.2",
+      "targetId": "math.precalc.lesson.2.11",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Module 2 contains lesson",
+      "metadata": {
+        "module": "2"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0339",
+      "type": "contains",
+      "sourceId": "math.precalc.module.2",
+      "targetId": "math.precalc.lesson.2.12",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Module 2 contains lesson",
+      "metadata": {
+        "module": "2"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0340",
+      "type": "contains",
+      "sourceId": "math.precalc.module.2",
+      "targetId": "math.precalc.lesson.2.13",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Module 2 contains lesson",
+      "metadata": {
+        "module": "2"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0341",
+      "type": "contains",
+      "sourceId": "math.precalc.module.2",
+      "targetId": "math.precalc.lesson.2.14",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Module 2 contains lesson",
+      "metadata": {
+        "module": "2"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0342",
+      "type": "contains",
+      "sourceId": "math.precalc.module.2",
+      "targetId": "math.precalc.lesson.2.15",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Module 2 contains lesson",
+      "metadata": {
+        "module": "2"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0343",
+      "type": "contains",
+      "sourceId": "math.precalc.module.2",
+      "targetId": "math.precalc.lesson.2.2",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Module 2 contains lesson",
+      "metadata": {
+        "module": "2"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0344",
+      "type": "contains",
+      "sourceId": "math.precalc.module.2",
+      "targetId": "math.precalc.lesson.2.3",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Module 2 contains lesson",
+      "metadata": {
+        "module": "2"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0345",
+      "type": "contains",
+      "sourceId": "math.precalc.module.2",
+      "targetId": "math.precalc.lesson.2.4",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Module 2 contains lesson",
+      "metadata": {
+        "module": "2"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0346",
+      "type": "contains",
+      "sourceId": "math.precalc.module.2",
+      "targetId": "math.precalc.lesson.2.5",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Module 2 contains lesson",
+      "metadata": {
+        "module": "2"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0347",
+      "type": "contains",
+      "sourceId": "math.precalc.module.2",
+      "targetId": "math.precalc.lesson.2.6",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Module 2 contains lesson",
+      "metadata": {
+        "module": "2"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0348",
+      "type": "contains",
+      "sourceId": "math.precalc.module.2",
+      "targetId": "math.precalc.lesson.2.7",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Module 2 contains lesson",
+      "metadata": {
+        "module": "2"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0349",
+      "type": "contains",
+      "sourceId": "math.precalc.module.2",
+      "targetId": "math.precalc.lesson.2.8",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Module 2 contains lesson",
+      "metadata": {
+        "module": "2"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0350",
+      "type": "contains",
+      "sourceId": "math.precalc.module.2",
+      "targetId": "math.precalc.lesson.2.9",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Module 2 contains lesson",
+      "metadata": {
+        "module": "2"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0351",
+      "type": "contains",
+      "sourceId": "math.precalc.module.3",
+      "targetId": "math.precalc.lesson.3.1",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Module 3 contains lesson",
+      "metadata": {
+        "module": "3"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0352",
+      "type": "contains",
+      "sourceId": "math.precalc.module.3",
+      "targetId": "math.precalc.lesson.3.10",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Module 3 contains lesson",
+      "metadata": {
+        "module": "3"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0353",
+      "type": "contains",
+      "sourceId": "math.precalc.module.3",
+      "targetId": "math.precalc.lesson.3.11",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Module 3 contains lesson",
+      "metadata": {
+        "module": "3"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0354",
+      "type": "contains",
+      "sourceId": "math.precalc.module.3",
+      "targetId": "math.precalc.lesson.3.12",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Module 3 contains lesson",
+      "metadata": {
+        "module": "3"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0355",
+      "type": "contains",
+      "sourceId": "math.precalc.module.3",
+      "targetId": "math.precalc.lesson.3.13",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Module 3 contains lesson",
+      "metadata": {
+        "module": "3"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0356",
+      "type": "contains",
+      "sourceId": "math.precalc.module.3",
+      "targetId": "math.precalc.lesson.3.14",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Module 3 contains lesson",
+      "metadata": {
+        "module": "3"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0357",
+      "type": "contains",
+      "sourceId": "math.precalc.module.3",
+      "targetId": "math.precalc.lesson.3.15",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Module 3 contains lesson",
+      "metadata": {
+        "module": "3"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0358",
+      "type": "contains",
+      "sourceId": "math.precalc.module.3",
+      "targetId": "math.precalc.lesson.3.2",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Module 3 contains lesson",
+      "metadata": {
+        "module": "3"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0359",
+      "type": "contains",
+      "sourceId": "math.precalc.module.3",
+      "targetId": "math.precalc.lesson.3.3",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Module 3 contains lesson",
+      "metadata": {
+        "module": "3"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0360",
+      "type": "contains",
+      "sourceId": "math.precalc.module.3",
+      "targetId": "math.precalc.lesson.3.4",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Module 3 contains lesson",
+      "metadata": {
+        "module": "3"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0361",
+      "type": "contains",
+      "sourceId": "math.precalc.module.3",
+      "targetId": "math.precalc.lesson.3.5",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Module 3 contains lesson",
+      "metadata": {
+        "module": "3"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0362",
+      "type": "contains",
+      "sourceId": "math.precalc.module.3",
+      "targetId": "math.precalc.lesson.3.6",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Module 3 contains lesson",
+      "metadata": {
+        "module": "3"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0363",
+      "type": "contains",
+      "sourceId": "math.precalc.module.3",
+      "targetId": "math.precalc.lesson.3.7",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Module 3 contains lesson",
+      "metadata": {
+        "module": "3"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0364",
+      "type": "contains",
+      "sourceId": "math.precalc.module.3",
+      "targetId": "math.precalc.lesson.3.8",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Module 3 contains lesson",
+      "metadata": {
+        "module": "3"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0365",
+      "type": "contains",
+      "sourceId": "math.precalc.module.3",
+      "targetId": "math.precalc.lesson.3.9",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Module 3 contains lesson",
+      "metadata": {
+        "module": "3"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0366",
+      "type": "contains",
+      "sourceId": "math.precalc.module.4",
+      "targetId": "math.precalc.lesson.4.1",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Module 4 contains lesson",
+      "metadata": {
+        "module": "4"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0367",
+      "type": "contains",
+      "sourceId": "math.precalc.module.4",
+      "targetId": "math.precalc.lesson.4.10",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Module 4 contains lesson",
+      "metadata": {
+        "module": "4"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0368",
+      "type": "contains",
+      "sourceId": "math.precalc.module.4",
+      "targetId": "math.precalc.lesson.4.11",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Module 4 contains lesson",
+      "metadata": {
+        "module": "4"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0369",
+      "type": "contains",
+      "sourceId": "math.precalc.module.4",
+      "targetId": "math.precalc.lesson.4.12",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Module 4 contains lesson",
+      "metadata": {
+        "module": "4"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0370",
+      "type": "contains",
+      "sourceId": "math.precalc.module.4",
+      "targetId": "math.precalc.lesson.4.13",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Module 4 contains lesson",
+      "metadata": {
+        "module": "4"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0371",
+      "type": "contains",
+      "sourceId": "math.precalc.module.4",
+      "targetId": "math.precalc.lesson.4.4",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Module 4 contains lesson",
+      "metadata": {
+        "module": "4"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0372",
+      "type": "contains",
+      "sourceId": "math.precalc.module.4",
+      "targetId": "math.precalc.lesson.4.5",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Module 4 contains lesson",
+      "metadata": {
+        "module": "4"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0373",
+      "type": "contains",
+      "sourceId": "math.precalc.module.4",
+      "targetId": "math.precalc.lesson.4.6",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Module 4 contains lesson",
+      "metadata": {
+        "module": "4"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0374",
+      "type": "contains",
+      "sourceId": "math.precalc.module.4",
+      "targetId": "math.precalc.lesson.4.7",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Module 4 contains lesson",
+      "metadata": {
+        "module": "4"
+      }
+    },
+    {
+      "id": "math.precalc.edge.0375",
+      "type": "contains",
+      "sourceId": "math.precalc.module.4",
+      "targetId": "math.precalc.lesson.4.8",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Module 4 contains lesson",
+      "metadata": {
+        "module": "4"
+      }
+    }
+  ]
+}

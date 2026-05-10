@@ -1,0 +1,15 @@
+{
+  "meta": {
+    "course": "precalc",
+    "generatedAt": "2026-05-10",
+    "description": "Low-confidence edges and missing mappings requiring human review"
+  },
+  "lowConfidencePrerequisites": [],
+  "skillsMissingRenderer": [],
+  "skillsMissingMisconceptionTaxonomy": [],
+  "counts": {
+    "lowConfidencePrerequisites": 0,
+    "skillsMissingRenderer": 0,
+    "skillsMissingMisconceptionTaxonomy": 0
+  }
+}
