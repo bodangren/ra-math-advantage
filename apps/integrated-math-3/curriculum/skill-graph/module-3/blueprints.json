@@ -1,0 +1,799 @@
+{
+  "blueprints": [
+    {
+      "nodeId": "math.im3.skill.3.1.solve-polynomial-equations-by-graphing",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "rendererKey": "graphing-explorer",
+      "rendererModeMap": {
+        "worked": "graphing-explorer",
+        "guidedPractice": "graphing-explorer",
+        "independentPractice": "graphing-explorer"
+      },
+      "workedExampleSpec": {
+        "prompt": "Worked example for 3a: Solve polynomial equations by graphing",
+        "givens": [
+          "See curriculum source"
+        ],
+        "target": {},
+        "steps": [
+          {
+            "description": "Step 1",
+            "expression": "See curriculum"
+          }
+        ],
+        "explanation": "See curriculum source material."
+      },
+      "guidedPracticeSpec": {
+        "scaffoldedPrompt": "Guided practice for 3a: Solve polynomial equations by graphing",
+        "stepPrompts": [
+          "Step 1"
+        ],
+        "hints": [
+          "Hint 1"
+        ],
+        "checksPerStep": [
+          {
+            "check": "See curriculum"
+          }
+        ],
+        "revealPolicy": "one_at_a_time"
+      },
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM3 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "3",
+        "lesson": "1"
+      }
+    },
+    {
+      "nodeId": "math.im3.skill.3.2.solve-polynomial-equations-by-factoring",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "rendererKey": "step-by-step-solver",
+      "rendererModeMap": {
+        "worked": "step-by-step-solver",
+        "guidedPractice": "step-by-step-solver",
+        "independentPractice": "step-by-step-solver"
+      },
+      "workedExampleSpec": {
+        "prompt": "Worked example for 3b: Solve polynomial equations by factoring",
+        "givens": [
+          "See curriculum source"
+        ],
+        "target": {},
+        "steps": [
+          {
+            "description": "Step 1",
+            "expression": "See curriculum"
+          }
+        ],
+        "explanation": "See curriculum source material."
+      },
+      "guidedPracticeSpec": {
+        "scaffoldedPrompt": "Guided practice for 3b: Solve polynomial equations by factoring",
+        "stepPrompts": [
+          "Step 1"
+        ],
+        "hints": [
+          "Hint 1"
+        ],
+        "checksPerStep": [
+          {
+            "check": "See curriculum"
+          }
+        ],
+        "revealPolicy": "one_at_a_time"
+      },
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM3 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "3",
+        "lesson": "2"
+      }
+    },
+    {
+      "nodeId": "math.im3.skill.3.2.solve-polynomial-equations-by-writing-them-in-quadratic-form",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "rendererKey": "step-by-step-solver",
+      "rendererModeMap": {
+        "worked": "step-by-step-solver",
+        "guidedPractice": "step-by-step-solver",
+        "independentPractice": "step-by-step-solver"
+      },
+      "workedExampleSpec": {
+        "prompt": "Worked example for 3c: Solve polynomial equations by writing them in quadratic form and factoring",
+        "givens": [
+          "See curriculum source"
+        ],
+        "target": {},
+        "steps": [
+          {
+            "description": "Step 1",
+            "expression": "See curriculum"
+          }
+        ],
+        "explanation": "See curriculum source material."
+      },
+      "guidedPracticeSpec": {
+        "scaffoldedPrompt": "Guided practice for 3c: Solve polynomial equations by writing them in quadratic form and factoring",
+        "stepPrompts": [
+          "Step 1"
+        ],
+        "hints": [
+          "Hint 1"
+        ],
+        "checksPerStep": [
+          {
+            "check": "See curriculum"
+          }
+        ],
+        "revealPolicy": "one_at_a_time"
+      },
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM3 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "3",
+        "lesson": "2"
+      }
+    },
+    {
+      "nodeId": "math.im3.skill.3.3.prove-polynomial-identities-and-use-them-to-describe-numeric",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "rendererKey": "step-by-step-solver",
+      "rendererModeMap": {
+        "worked": "step-by-step-solver",
+        "guidedPractice": "step-by-step-solver",
+        "independentPractice": "step-by-step-solver"
+      },
+      "workedExampleSpec": {
+        "prompt": "Worked example for 3d: Prove polynomial identities and use them to describe numerical relationships",
+        "givens": [
+          "See curriculum source"
+        ],
+        "target": {},
+        "steps": [
+          {
+            "description": "Step 1",
+            "expression": "See curriculum"
+          }
+        ],
+        "explanation": "See curriculum source material."
+      },
+      "guidedPracticeSpec": {
+        "scaffoldedPrompt": "Guided practice for 3d: Prove polynomial identities and use them to describe numerical relationships",
+        "stepPrompts": [
+          "Step 1"
+        ],
+        "hints": [
+          "Hint 1"
+        ],
+        "checksPerStep": [
+          {
+            "check": "See curriculum"
+          }
+        ],
+        "revealPolicy": "one_at_a_time"
+      },
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM3 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "3",
+        "lesson": "3"
+      }
+    },
+    {
+      "nodeId": "math.im3.skill.3.4.evaluate-functions-by-using-synthetic-substitution",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "rendererKey": "graphing-explorer",
+      "rendererModeMap": {
+        "worked": "graphing-explorer",
+        "guidedPractice": "graphing-explorer",
+        "independentPractice": "graphing-explorer"
+      },
+      "workedExampleSpec": {
+        "prompt": "Worked example for 3e: Evaluate functions by using synthetic substitution",
+        "givens": [
+          "See curriculum source"
+        ],
+        "target": {},
+        "steps": [
+          {
+            "description": "Step 1",
+            "expression": "See curriculum"
+          }
+        ],
+        "explanation": "See curriculum source material."
+      },
+      "guidedPracticeSpec": {
+        "scaffoldedPrompt": "Guided practice for 3e: Evaluate functions by using synthetic substitution",
+        "stepPrompts": [
+          "Step 1"
+        ],
+        "hints": [
+          "Hint 1"
+        ],
+        "checksPerStep": [
+          {
+            "check": "See curriculum"
+          }
+        ],
+        "revealPolicy": "one_at_a_time"
+      },
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM3 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "3",
+        "lesson": "4"
+      }
+    },
+    {
+      "nodeId": "math.im3.skill.3.5.determine-the-number-and-type-of-roots-of-polynomial-equatio",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "rendererKey": "graphing-explorer",
+      "rendererModeMap": {
+        "worked": "graphing-explorer",
+        "guidedPractice": "graphing-explorer",
+        "independentPractice": "graphing-explorer"
+      },
+      "workedExampleSpec": {
+        "prompt": "Worked example for 3h: Determine the number and type of roots of polynomial equations, find zeros, and use zeros to graph polynomial functions",
+        "givens": [
+          "See curriculum source"
+        ],
+        "target": {},
+        "steps": [
+          {
+            "description": "Step 1",
+            "expression": "See curriculum"
+          }
+        ],
+        "explanation": "See curriculum source material."
+      },
+      "guidedPracticeSpec": {
+        "scaffoldedPrompt": "Guided practice for 3h: Determine the number and type of roots of polynomial equations, find zeros, and use zeros to graph polynomial functions",
+        "stepPrompts": [
+          "Step 1"
+        ],
+        "hints": [
+          "Hint 1"
+        ],
+        "checksPerStep": [
+          {
+            "check": "See curriculum"
+          }
+        ],
+        "revealPolicy": "one_at_a_time"
+      },
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM3 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "3",
+        "lesson": "5"
+      }
+    },
+    {
+      "nodeId": "math.im3.skill.3.5.use-the-fundamental-theorem-of-algebra-to-determine-the-numb",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "rendererKey": "step-by-step-solver",
+      "rendererModeMap": {
+        "worked": "step-by-step-solver",
+        "guidedPractice": "step-by-step-solver",
+        "independentPractice": "step-by-step-solver"
+      },
+      "workedExampleSpec": {
+        "prompt": "Worked example for 3g: Use the Fundamental Theorem of Algebra to determine the number and type of roots of polynomial equations",
+        "givens": [
+          "See curriculum source"
+        ],
+        "target": {},
+        "steps": [
+          {
+            "description": "Step 1",
+            "expression": "See curriculum"
+          }
+        ],
+        "explanation": "See curriculum source material."
+      },
+      "guidedPracticeSpec": {
+        "scaffoldedPrompt": "Guided practice for 3g: Use the Fundamental Theorem of Algebra to determine the number and type of roots of polynomial equations",
+        "stepPrompts": [
+          "Step 1"
+        ],
+        "hints": [
+          "Hint 1"
+        ],
+        "checksPerStep": [
+          {
+            "check": "See curriculum"
+          }
+        ],
+        "revealPolicy": "one_at_a_time"
+      },
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM3 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "3",
+        "lesson": "5"
+      }
+    },
+    {
+      "nodeId": "math.im3.skill.3.aleks.factor-theorem-factor-testing",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "rendererKey": "comprehension-quiz",
+      "rendererModeMap": {
+        "worked": "comprehension-quiz",
+        "guidedPractice": "comprehension-quiz",
+        "independentPractice": "comprehension-quiz"
+      },
+      "workedExampleSpec": {
+        "prompt": "Worked example for concept: factor_theorem_factor_testing",
+        "givens": [
+          "See curriculum source"
+        ],
+        "target": {},
+        "steps": [
+          {
+            "description": "Step 1",
+            "expression": "See curriculum"
+          }
+        ],
+        "explanation": "See curriculum source material."
+      },
+      "guidedPracticeSpec": {
+        "scaffoldedPrompt": "Guided practice for concept: factor_theorem_factor_testing",
+        "stepPrompts": [
+          "Step 1"
+        ],
+        "hints": [
+          "Hint 1"
+        ],
+        "checksPerStep": [
+          {
+            "check": "See curriculum"
+          }
+        ],
+        "revealPolicy": "one_at_a_time"
+      },
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM3 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "3",
+        "lesson": "1"
+      }
+    },
+    {
+      "nodeId": "math.im3.skill.3.aleks.polynomial-equation-graph-solving",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "rendererKey": "graphing-explorer",
+      "rendererModeMap": {
+        "worked": "graphing-explorer",
+        "guidedPractice": "graphing-explorer",
+        "independentPractice": "graphing-explorer"
+      },
+      "workedExampleSpec": {
+        "prompt": "Worked example for concept: polynomial_equation_graph_solving",
+        "givens": [
+          "See curriculum source"
+        ],
+        "target": {},
+        "steps": [
+          {
+            "description": "Step 1",
+            "expression": "See curriculum"
+          }
+        ],
+        "explanation": "See curriculum source material."
+      },
+      "guidedPracticeSpec": {
+        "scaffoldedPrompt": "Guided practice for concept: polynomial_equation_graph_solving",
+        "stepPrompts": [
+          "Step 1"
+        ],
+        "hints": [
+          "Hint 1"
+        ],
+        "checksPerStep": [
+          {
+            "check": "See curriculum"
+          }
+        ],
+        "revealPolicy": "one_at_a_time"
+      },
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM3 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "3",
+        "lesson": "1"
+      }
+    },
+    {
+      "nodeId": "math.im3.skill.3.aleks.polynomial-factoring-structures",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "rendererKey": "comprehension-quiz",
+      "rendererModeMap": {
+        "worked": "comprehension-quiz",
+        "guidedPractice": "comprehension-quiz",
+        "independentPractice": "comprehension-quiz"
+      },
+      "workedExampleSpec": {
+        "prompt": "Worked example for concept: polynomial_factoring_structures",
+        "givens": [
+          "See curriculum source"
+        ],
+        "target": {},
+        "steps": [
+          {
+            "description": "Step 1",
+            "expression": "See curriculum"
+          }
+        ],
+        "explanation": "See curriculum source material."
+      },
+      "guidedPracticeSpec": {
+        "scaffoldedPrompt": "Guided practice for concept: polynomial_factoring_structures",
+        "stepPrompts": [
+          "Step 1"
+        ],
+        "hints": [
+          "Hint 1"
+        ],
+        "checksPerStep": [
+          {
+            "check": "See curriculum"
+          }
+        ],
+        "revealPolicy": "one_at_a_time"
+      },
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM3 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "3",
+        "lesson": "1"
+      }
+    },
+    {
+      "nodeId": "math.im3.skill.3.aleks.polynomial-identity-proof",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "rendererKey": "comprehension-quiz",
+      "rendererModeMap": {
+        "worked": "comprehension-quiz",
+        "guidedPractice": "comprehension-quiz",
+        "independentPractice": "comprehension-quiz"
+      },
+      "workedExampleSpec": {
+        "prompt": "Worked example for concept: polynomial_identity_proof",
+        "givens": [
+          "See curriculum source"
+        ],
+        "target": {},
+        "steps": [
+          {
+            "description": "Step 1",
+            "expression": "See curriculum"
+          }
+        ],
+        "explanation": "See curriculum source material."
+      },
+      "guidedPracticeSpec": {
+        "scaffoldedPrompt": "Guided practice for concept: polynomial_identity_proof",
+        "stepPrompts": [
+          "Step 1"
+        ],
+        "hints": [
+          "Hint 1"
+        ],
+        "checksPerStep": [
+          {
+            "check": "See curriculum"
+          }
+        ],
+        "revealPolicy": "one_at_a_time"
+      },
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM3 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "3",
+        "lesson": "1"
+      }
+    },
+    {
+      "nodeId": "math.im3.skill.3.aleks.polynomial-quadratic-form",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "rendererKey": "comprehension-quiz",
+      "rendererModeMap": {
+        "worked": "comprehension-quiz",
+        "guidedPractice": "comprehension-quiz",
+        "independentPractice": "comprehension-quiz"
+      },
+      "workedExampleSpec": {
+        "prompt": "Worked example for concept: polynomial_quadratic_form",
+        "givens": [
+          "See curriculum source"
+        ],
+        "target": {},
+        "steps": [
+          {
+            "description": "Step 1",
+            "expression": "See curriculum"
+          }
+        ],
+        "explanation": "See curriculum source material."
+      },
+      "guidedPracticeSpec": {
+        "scaffoldedPrompt": "Guided practice for concept: polynomial_quadratic_form",
+        "stepPrompts": [
+          "Step 1"
+        ],
+        "hints": [
+          "Hint 1"
+        ],
+        "checksPerStep": [
+          {
+            "check": "See curriculum"
+          }
+        ],
+        "revealPolicy": "one_at_a_time"
+      },
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM3 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "3",
+        "lesson": "1"
+      }
+    },
+    {
+      "nodeId": "math.im3.skill.3.aleks.root-type-analysis",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "rendererKey": "comprehension-quiz",
+      "rendererModeMap": {
+        "worked": "comprehension-quiz",
+        "guidedPractice": "comprehension-quiz",
+        "independentPractice": "comprehension-quiz"
+      },
+      "workedExampleSpec": {
+        "prompt": "Worked example for concept: root_type_analysis",
+        "givens": [
+          "See curriculum source"
+        ],
+        "target": {},
+        "steps": [
+          {
+            "description": "Step 1",
+            "expression": "See curriculum"
+          }
+        ],
+        "explanation": "See curriculum source material."
+      },
+      "guidedPracticeSpec": {
+        "scaffoldedPrompt": "Guided practice for concept: root_type_analysis",
+        "stepPrompts": [
+          "Step 1"
+        ],
+        "hints": [
+          "Hint 1"
+        ],
+        "checksPerStep": [
+          {
+            "check": "See curriculum"
+          }
+        ],
+        "revealPolicy": "one_at_a_time"
+      },
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM3 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "3",
+        "lesson": "1"
+      }
+    },
+    {
+      "nodeId": "math.im3.skill.3.aleks.synthetic-substitution-remainder",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "rendererKey": "comprehension-quiz",
+      "rendererModeMap": {
+        "worked": "comprehension-quiz",
+        "guidedPractice": "comprehension-quiz",
+        "independentPractice": "comprehension-quiz"
+      },
+      "workedExampleSpec": {
+        "prompt": "Worked example for concept: synthetic_substitution_remainder",
+        "givens": [
+          "See curriculum source"
+        ],
+        "target": {},
+        "steps": [
+          {
+            "description": "Step 1",
+            "expression": "See curriculum"
+          }
+        ],
+        "explanation": "See curriculum source material."
+      },
+      "guidedPracticeSpec": {
+        "scaffoldedPrompt": "Guided practice for concept: synthetic_substitution_remainder",
+        "stepPrompts": [
+          "Step 1"
+        ],
+        "hints": [
+          "Hint 1"
+        ],
+        "checksPerStep": [
+          {
+            "check": "See curriculum"
+          }
+        ],
+        "revealPolicy": "one_at_a_time"
+      },
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM3 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "3",
+        "lesson": "1"
+      }
+    },
+    {
+      "nodeId": "math.im3.skill.3.aleks.zeros-to-polynomial-graph",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "rendererKey": "graphing-explorer",
+      "rendererModeMap": {
+        "worked": "graphing-explorer",
+        "guidedPractice": "graphing-explorer",
+        "independentPractice": "graphing-explorer"
+      },
+      "workedExampleSpec": {
+        "prompt": "Worked example for concept: zeros_to_polynomial_graph",
+        "givens": [
+          "See curriculum source"
+        ],
+        "target": {},
+        "steps": [
+          {
+            "description": "Step 1",
+            "expression": "See curriculum"
+          }
+        ],
+        "explanation": "See curriculum source material."
+      },
+      "guidedPracticeSpec": {
+        "scaffoldedPrompt": "Guided practice for concept: zeros_to_polynomial_graph",
+        "stepPrompts": [
+          "Step 1"
+        ],
+        "hints": [
+          "Hint 1"
+        ],
+        "checksPerStep": [
+          {
+            "check": "See curriculum"
+          }
+        ],
+        "revealPolicy": "one_at_a_time"
+      },
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM3 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "3",
+        "lesson": "1"
+      }
+    }
+  ]
+}

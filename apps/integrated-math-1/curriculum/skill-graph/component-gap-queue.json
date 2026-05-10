@@ -1,0 +1,345 @@
+{
+  "queue": [
+    {
+      "nodeId": "math.im1.skill.10.1.differentiate-between-synthetic-geometry-and-analytic-geomet",
+      "title": "10b: Differentiate between synthetic geometry and analytic geometry based on their defining characteristics",
+      "module": "10",
+      "rendererKey": "fill-in-the-blank",
+      "componentType": "geometry-fill-in-blank",
+      "reason": "Geometry skills may require diagram-aware fill-in-the-blank component"
+    },
+    {
+      "nodeId": "math.im1.skill.10.1.understand-the-structure-of-an-axiomatic-system-and-distingu",
+      "title": "10a: Understand the structure of an axiomatic system and distinguish between axioms and conclusions",
+      "module": "10",
+      "rendererKey": "fill-in-the-blank",
+      "componentType": "geometry-fill-in-blank",
+      "reason": "Geometry skills may require diagram-aware fill-in-the-blank component"
+    },
+    {
+      "nodeId": "math.im1.skill.10.2.draw-and-label-figures-that-accurately-represent-given-geome",
+      "title": "10d: Draw and label figures that accurately represent given geometric relationships",
+      "module": "10",
+      "rendererKey": "fill-in-the-blank",
+      "componentType": "geometry-fill-in-blank",
+      "reason": "Geometry skills may require diagram-aware fill-in-the-blank component"
+    },
+    {
+      "nodeId": "math.im1.skill.10.2.identify-and-name-points-lines-and-planes-from-geometric-fig",
+      "title": "10c: Identify and name points, lines, and planes from geometric figures",
+      "module": "10",
+      "rendererKey": "fill-in-the-blank",
+      "componentType": "geometry-fill-in-blank",
+      "reason": "Geometry skills may require diagram-aware fill-in-the-blank component"
+    },
+    {
+      "nodeId": "math.im1.skill.10.3.apply-the-segment-addition-postulate-to-find-missing-segment",
+      "title": "10f: Apply the Segment Addition Postulate to find missing segment lengths",
+      "module": "10",
+      "rendererKey": "fill-in-the-blank",
+      "componentType": "geometry-fill-in-blank",
+      "reason": "Geometry skills may require diagram-aware fill-in-the-blank component"
+    },
+    {
+      "nodeId": "math.im1.skill.11.1.apply-the-angle-addition-postulate-and-the-definition-of-an",
+      "title": "11b: Apply the Angle Addition Postulate and the definition of an angle bisector to find unknown angle measures",
+      "module": "11",
+      "rendererKey": "fill-in-the-blank",
+      "componentType": "geometry-fill-in-blank",
+      "reason": "Geometry skills may require diagram-aware fill-in-the-blank component"
+    },
+    {
+      "nodeId": "math.im1.skill.11.5.identify-and-classify-three-dimensional-figures-as-polyhedra",
+      "title": "11i: Identify and classify three-dimensional figures as polyhedra or non-polyhedra",
+      "module": "11",
+      "rendererKey": "fill-in-the-blank",
+      "componentType": "geometry-fill-in-blank",
+      "reason": "Geometry skills may require diagram-aware fill-in-the-blank component"
+    },
+    {
+      "nodeId": "math.im1.skill.11.7.distinguish-between-accuracy-and-precision-in-measurement-co",
+      "title": "11m: Distinguish between accuracy and precision in measurement contexts",
+      "module": "11",
+      "rendererKey": "fill-in-the-blank",
+      "componentType": "geometry-fill-in-blank",
+      "reason": "Geometry skills may require diagram-aware fill-in-the-blank component"
+    },
+    {
+      "nodeId": "math.im1.skill.11.8.count-the-number-of-significant-digits-in-a-given-measuremen",
+      "title": "11n: Count the number of significant digits in a given measurement using the rules for significance",
+      "module": "11",
+      "rendererKey": "fill-in-the-blank",
+      "componentType": "geometry-fill-in-blank",
+      "reason": "Geometry skills may require diagram-aware fill-in-the-blank component"
+    },
+    {
+      "nodeId": "math.im1.skill.12.1.determine-whether-a-given-conjecture-is-true-or-false",
+      "title": "12b: Determine whether a given conjecture is true or false",
+      "module": "12",
+      "rendererKey": "fill-in-the-blank",
+      "componentType": "geometry-fill-in-blank",
+      "reason": "Geometry skills may require diagram-aware fill-in-the-blank component"
+    },
+    {
+      "nodeId": "math.im1.skill.12.1.recognize-patterns-in-numerical-geometric-and-real-world-seq",
+      "title": "12a: Recognize patterns in numerical, geometric, and real-world sequences and express them as conjectures",
+      "module": "12",
+      "rendererKey": "fill-in-the-blank",
+      "componentType": "geometry-fill-in-blank",
+      "reason": "Geometry skills may require diagram-aware fill-in-the-blank component"
+    },
+    {
+      "nodeId": "math.im1.skill.12.2.determine-the-truth-value-of-compound-statements-formed-by-c",
+      "title": "12c: Determine the truth value of compound statements formed by conjunction and disjunction",
+      "module": "12",
+      "rendererKey": "fill-in-the-blank",
+      "componentType": "geometry-fill-in-blank",
+      "reason": "Geometry skills may require diagram-aware fill-in-the-blank component"
+    },
+    {
+      "nodeId": "math.im1.skill.12.2.identify-the-hypothesis-and-conclusion-of-a-conditional-stat",
+      "title": "12d: Identify the hypothesis and conclusion of a conditional statement and write the converse, inverse, and contrapositive",
+      "module": "12",
+      "rendererKey": "fill-in-the-blank",
+      "componentType": "geometry-fill-in-blank",
+      "reason": "Geometry skills may require diagram-aware fill-in-the-blank component"
+    },
+    {
+      "nodeId": "math.im1.skill.12.3.apply-the-law-of-detachment-and-the-law-of-syllogism-to-draw",
+      "title": "12f: Apply the Law of Detachment and the Law of Syllogism to draw valid conclusions from conditional statements",
+      "module": "12",
+      "rendererKey": "fill-in-the-blank",
+      "componentType": "geometry-fill-in-blank",
+      "reason": "Geometry skills may require diagram-aware fill-in-the-blank component"
+    },
+    {
+      "nodeId": "math.im1.skill.12.3.distinguish-between-inductive-and-deductive-reasoning-in-giv",
+      "title": "12e: Distinguish between inductive and deductive reasoning in given arguments",
+      "module": "12",
+      "rendererKey": "fill-in-the-blank",
+      "componentType": "geometry-fill-in-blank",
+      "reason": "Geometry skills may require diagram-aware fill-in-the-blank component"
+    },
+    {
+      "nodeId": "math.im1.skill.12.4.apply-geometric-postulates-about-points-lines-and-planes-to",
+      "title": "12g: Apply geometric postulates about points, lines, and planes to justify statements",
+      "module": "12",
+      "rendererKey": "fill-in-the-blank",
+      "componentType": "geometry-fill-in-blank",
+      "reason": "Geometry skills may require diagram-aware fill-in-the-blank component"
+    },
+    {
+      "nodeId": "math.im1.skill.12.4.write-two-column-proofs-using-given-information-definitions",
+      "title": "12h: Write two-column proofs using given information, definitions, and properties",
+      "module": "12",
+      "rendererKey": "fill-in-the-blank",
+      "componentType": "geometry-fill-in-blank",
+      "reason": "Geometry skills may require diagram-aware fill-in-the-blank component"
+    },
+    {
+      "nodeId": "math.im1.skill.12.5.complete-two-column-proofs-by-supplying-missing-statements-a",
+      "title": "12i: Complete two-column proofs by supplying missing statements and reasons",
+      "module": "12",
+      "rendererKey": "fill-in-the-blank",
+      "componentType": "geometry-fill-in-blank",
+      "reason": "Geometry skills may require diagram-aware fill-in-the-blank component"
+    },
+    {
+      "nodeId": "math.im1.skill.12.6.write-two-column-proofs-to-justify-angle-relationships-inclu",
+      "title": "12j: Write two-column proofs to justify angle relationships including congruent supplements, congruent complements, and right angles",
+      "module": "12",
+      "rendererKey": "fill-in-the-blank",
+      "componentType": "geometry-fill-in-blank",
+      "reason": "Geometry skills may require diagram-aware fill-in-the-blank component"
+    },
+    {
+      "nodeId": "math.im1.skill.12.7.classify-angle-pairs-formed-by-two-lines-cut-by-a-transversa",
+      "title": "12k: Classify angle pairs formed by two lines cut by a transversal as alternate interior, alternate exterior, corresponding, or consecutive interior angles",
+      "module": "12",
+      "rendererKey": "fill-in-the-blank",
+      "componentType": "geometry-fill-in-blank",
+      "reason": "Geometry skills may require diagram-aware fill-in-the-blank component"
+    },
+    {
+      "nodeId": "math.im1.skill.12.7.use-properties-of-parallel-lines-and-transversals-to-find-un",
+      "title": "12l: Use properties of parallel lines and transversals to find unknown angle measures",
+      "module": "12",
+      "rendererKey": "fill-in-the-blank",
+      "componentType": "geometry-fill-in-blank",
+      "reason": "Geometry skills may require diagram-aware fill-in-the-blank component"
+    },
+    {
+      "nodeId": "math.im1.skill.12.9.apply-parallel-line-theorems-to-solve-real-world-and-geometr",
+      "title": "12p: Apply parallel line theorems to solve real-world and geometric problems",
+      "module": "12",
+      "rendererKey": "fill-in-the-blank",
+      "componentType": "geometry-fill-in-blank",
+      "reason": "Geometry skills may require diagram-aware fill-in-the-blank component"
+    },
+    {
+      "nodeId": "math.im1.skill.12.9.use-angle-relationships-formed-by-a-transversal-to-prove-tha",
+      "title": "12o: Use angle relationships formed by a transversal to prove that two lines are parallel",
+      "module": "12",
+      "rendererKey": "fill-in-the-blank",
+      "componentType": "geometry-fill-in-blank",
+      "reason": "Geometry skills may require diagram-aware fill-in-the-blank component"
+    },
+    {
+      "nodeId": "math.im1.skill.14.1.apply-the-triangle-angle-sum-theorem-to-find-unknown-interio",
+      "title": "14a: Apply the Triangle Angle-Sum Theorem to find unknown interior angle measures",
+      "module": "14",
+      "rendererKey": "fill-in-the-blank",
+      "componentType": "geometry-fill-in-blank",
+      "reason": "Geometry skills may require diagram-aware fill-in-the-blank component"
+    },
+    {
+      "nodeId": "math.im1.skill.14.1.use-the-exterior-angle-theorem-to-relate-exterior-and-remote",
+      "title": "14b: Use the Exterior Angle Theorem to relate exterior and remote interior angles",
+      "module": "14",
+      "rendererKey": "fill-in-the-blank",
+      "componentType": "geometry-fill-in-blank",
+      "reason": "Geometry skills may require diagram-aware fill-in-the-blank component"
+    },
+    {
+      "nodeId": "math.im1.skill.14.2.identify-all-congruent-corresponding-parts-of-polygons-and-w",
+      "title": "14c: Identify all congruent corresponding parts of polygons and write correct congruence statements",
+      "module": "14",
+      "rendererKey": "fill-in-the-blank",
+      "componentType": "geometry-fill-in-blank",
+      "reason": "Geometry skills may require diagram-aware fill-in-the-blank component"
+    },
+    {
+      "nodeId": "math.im1.skill.14.3.identify-the-included-angle-and-apply-the-sas-congruence-pos",
+      "title": "14f: Identify the included angle and apply the SAS Congruence Postulate correctly",
+      "module": "14",
+      "rendererKey": "fill-in-the-blank",
+      "componentType": "geometry-fill-in-blank",
+      "reason": "Geometry skills may require diagram-aware fill-in-the-blank component"
+    },
+    {
+      "nodeId": "math.im1.skill.14.4.use-properties-of-parallel-lines-midpoints-and-angle-bisecto",
+      "title": "14h: Use properties of parallel lines, midpoints, and angle bisectors to find congruent parts needed for ASA or AAS proofs",
+      "module": "14",
+      "rendererKey": "fill-in-the-blank",
+      "componentType": "geometry-fill-in-blank",
+      "reason": "Geometry skills may require diagram-aware fill-in-the-blank component"
+    },
+    {
+      "nodeId": "math.im1.skill.14.5.apply-the-leg-leg-ll-hypotenuse-angle-ha-leg-angle-la-and-hy",
+      "title": "14i: Apply the Leg-Leg (LL), Hypotenuse-Angle (HA), Leg-Angle (LA), and Hypotenuse-Leg (HL) theorems to prove right triangles congruent",
+      "module": "14",
+      "rendererKey": "fill-in-the-blank",
+      "componentType": "geometry-fill-in-blank",
+      "reason": "Geometry skills may require diagram-aware fill-in-the-blank component"
+    },
+    {
+      "nodeId": "math.im1.skill.14.6.write-two-column-proofs-using-the-isosceles-triangle-theorem",
+      "title": "14k: Write two-column proofs using the Isosceles Triangle Theorem and its converse",
+      "module": "14",
+      "rendererKey": "fill-in-the-blank",
+      "componentType": "geometry-fill-in-blank",
+      "reason": "Geometry skills may require diagram-aware fill-in-the-blank component"
+    },
+    {
+      "nodeId": "math.im1.skill.9.1.calculate-the-mean-median-and-mode-of-a-data-set",
+      "title": "9a: Calculate the mean, median, and mode of a data set",
+      "module": "9",
+      "rendererKey": "comprehension-quiz",
+      "componentType": "stats-comprehension-quiz",
+      "reason": "Statistics skills may require data-display-aware quiz component"
+    },
+    {
+      "nodeId": "math.im1.skill.9.2.analyze-data-displays-to-draw-conclusions-and-answer-questio",
+      "title": "9c: Analyze data displays to draw conclusions and answer questions about a data set",
+      "module": "9",
+      "rendererKey": "comprehension-quiz",
+      "componentType": "stats-comprehension-quiz",
+      "reason": "Statistics skills may require data-display-aware quiz component"
+    },
+    {
+      "nodeId": "math.im1.skill.9.2.construct-dot-plots-bar-graphs-and-histograms-to-represent-d",
+      "title": "9b: Construct dot plots, bar graphs, and histograms to represent data sets",
+      "module": "9",
+      "rendererKey": "comprehension-quiz",
+      "componentType": "stats-comprehension-quiz",
+      "reason": "Statistics skills may require data-display-aware quiz component"
+    },
+    {
+      "nodeId": "math.im1.skill.9.3.identify-sample-bias-in-survey-and-sampling-methods-and-expl",
+      "title": "9d: Identify sample bias in survey and sampling methods and explain how it affects results",
+      "module": "9",
+      "rendererKey": "comprehension-quiz",
+      "componentType": "stats-comprehension-quiz",
+      "reason": "Statistics skills may require data-display-aware quiz component"
+    },
+    {
+      "nodeId": "math.im1.skill.9.3.recognize-biased-survey-questions-and-identify-whose-interes",
+      "title": "9e: Recognize biased survey questions and identify whose interests they may serve",
+      "module": "9",
+      "rendererKey": "comprehension-quiz",
+      "componentType": "stats-comprehension-quiz",
+      "reason": "Statistics skills may require data-display-aware quiz component"
+    },
+    {
+      "nodeId": "math.im1.skill.9.4.calculate-the-range-interquartile-range-and-standard-deviati",
+      "title": "9f: Calculate the range, interquartile range, and standard deviation of a data set",
+      "module": "9",
+      "rendererKey": "comprehension-quiz",
+      "componentType": "stats-comprehension-quiz",
+      "reason": "Statistics skills may require data-display-aware quiz component"
+    },
+    {
+      "nodeId": "math.im1.skill.9.4.determine-the-five-number-summary-and-construct-a-box-plot-f",
+      "title": "9g: Determine the five-number summary and construct a box plot from a data set",
+      "module": "9",
+      "rendererKey": "comprehension-quiz",
+      "componentType": "stats-comprehension-quiz",
+      "reason": "Statistics skills may require data-display-aware quiz component"
+    },
+    {
+      "nodeId": "math.im1.skill.9.5.choose-appropriate-measures-of-center-and-spread-based-on-wh",
+      "title": "9i: Choose appropriate measures of center and spread based on whether a distribution is symmetric or skewed",
+      "module": "9",
+      "rendererKey": "comprehension-quiz",
+      "componentType": "stats-comprehension-quiz",
+      "reason": "Statistics skills may require data-display-aware quiz component"
+    },
+    {
+      "nodeId": "math.im1.skill.9.5.construct-and-interpret-histograms-and-box-plots-to-visualiz",
+      "title": "9h: Construct and interpret histograms and box plots to visualize the shape of a data distribution",
+      "module": "9",
+      "rendererKey": "comprehension-quiz",
+      "componentType": "stats-comprehension-quiz",
+      "reason": "Statistics skills may require data-display-aware quiz component"
+    },
+    {
+      "nodeId": "math.im1.skill.9.6.construct-and-interpret-box-plots-and-histograms-to-compare",
+      "title": "9k: Construct and interpret box plots and histograms to compare the shape, center, and spread of two data sets",
+      "module": "9",
+      "rendererKey": "comprehension-quiz",
+      "componentType": "stats-comprehension-quiz",
+      "reason": "Statistics skills may require data-display-aware quiz component"
+    },
+    {
+      "nodeId": "math.im1.skill.9.6.describe-how-adding-or-multiplying-every-value-in-a-data-set",
+      "title": "9j: Describe how adding or multiplying every value in a data set affects the mean, median, mode, range, and standard deviation",
+      "module": "9",
+      "rendererKey": "comprehension-quiz",
+      "componentType": "stats-comprehension-quiz",
+      "reason": "Statistics skills may require data-display-aware quiz component"
+    },
+    {
+      "nodeId": "math.im1.skill.9.7.construct-and-complete-two-way-frequency-tables-from-verbal",
+      "title": "9l: Construct and complete two-way frequency tables from verbal descriptions or given data",
+      "module": "9",
+      "rendererKey": "comprehension-quiz",
+      "componentType": "stats-comprehension-quiz",
+      "reason": "Statistics skills may require data-display-aware quiz component"
+    }
+  ],
+  "meta": {
+    "totalGaps": 42,
+    "needsDiagramSupport": true,
+    "needsStatsDisplaySupport": true
+  }
+}

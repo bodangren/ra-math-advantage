@@ -1,0 +1,4407 @@
+{
+  "edges": [
+    {
+      "id": "math.alignment.im3-example-2-1-001-to-ccss-hsa-apr-a-1",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.2.1.001",
+      "targetId": "math.standard.ccss.hsa-apr-a-1",
+      "weight": 0.75,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-2-lesson-1",
+          "note": "Mapped via lesson standard (primary)"
+        },
+        "family-objective:step-by-step-solver:polynomial-arithmetic",
+        "family-objective:step-by-step-solver:binomial-expansion",
+        "family-objective:step-by-step-solver:polynomial-division",
+        "family-objective:comprehension-quiz:polynomial-vocabulary"
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-2-lesson-1; Aligned via problem family step-by-step-solver:polynomial-arithmetic objective; Aligned via problem family step-by-step-solver:binomial-expansion objective; Aligned via problem family step-by-step-solver:polynomial-division objective; Aligned via problem family comprehension-quiz:polynomial-vocabulary objective",
+      "metadata": {
+        "isPrimary": true,
+        "course": "im3",
+        "originalWeight": 0.8,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-2-1-001-to-ccss-hsa-apr-b-2",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.2.1.001",
+      "targetId": "math.standard.ccss.hsa-apr-b-2",
+      "weight": 0.5,
+      "confidence": "medium",
+      "sourceRefs": [
+        "family-objective:step-by-step-solver:remainder-theorem",
+        "family-objective:step-by-step-solver:factor-theorem"
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via problem family step-by-step-solver:remainder-theorem objective; Aligned via problem family step-by-step-solver:factor-theorem objective",
+      "metadata": {
+        "isPrimary": false,
+        "course": "im3",
+        "originalWeight": 0.4,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-2-1-001-to-ccss-hsa-apr-b-3",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.2.1.001",
+      "targetId": "math.standard.ccss.hsa-apr-b-3",
+      "weight": 0.5,
+      "confidence": "medium",
+      "sourceRefs": [
+        "family-objective:graphing-explorer:graph-polynomial",
+        "family-objective:graphing-explorer:polynomial-turning-points",
+        "family-objective:step-by-step-solver:factor-theorem"
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via problem family graphing-explorer:graph-polynomial objective; Aligned via problem family graphing-explorer:polynomial-turning-points objective; Aligned via problem family step-by-step-solver:factor-theorem objective",
+      "metadata": {
+        "isPrimary": false,
+        "course": "im3",
+        "originalWeight": 0.4,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-2-1-001-to-ccss-hsf-if-b-4",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.2.1.001",
+      "targetId": "math.standard.ccss.hsf-if-b-4",
+      "weight": 0.75,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-2-lesson-1",
+          "note": "Mapped via lesson standard (primary)"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-2-lesson-1",
+      "metadata": {
+        "isPrimary": true,
+        "course": "im3",
+        "originalWeight": 0.8,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-2-1-001-to-ccss-hsf-if-c-7c",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.2.1.001",
+      "targetId": "math.standard.ccss.hsf-if-c-7c",
+      "weight": 0.5,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-2-lesson-1",
+          "note": "Mapped via lesson standard"
+        },
+        "family-objective:graphing-explorer:graph-polynomial",
+        "family-objective:graphing-explorer:polynomial-end-behavior",
+        "family-objective:graphing-explorer:polynomial-turning-points"
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-2-lesson-1; Aligned via problem family graphing-explorer:graph-polynomial objective; Aligned via problem family graphing-explorer:polynomial-end-behavior objective; Aligned via problem family graphing-explorer:polynomial-turning-points objective",
+      "metadata": {
+        "isPrimary": false,
+        "course": "im3"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-2-1-002-to-ccss-hsa-apr-a-1",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.2.1.002",
+      "targetId": "math.standard.ccss.hsa-apr-a-1",
+      "weight": 0.75,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-2-lesson-1",
+          "note": "Mapped via lesson standard (primary)"
+        },
+        "family-objective:step-by-step-solver:polynomial-arithmetic",
+        "family-objective:step-by-step-solver:binomial-expansion",
+        "family-objective:step-by-step-solver:polynomial-division",
+        "family-objective:comprehension-quiz:polynomial-vocabulary"
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-2-lesson-1; Aligned via problem family step-by-step-solver:polynomial-arithmetic objective; Aligned via problem family step-by-step-solver:binomial-expansion objective; Aligned via problem family step-by-step-solver:polynomial-division objective; Aligned via problem family comprehension-quiz:polynomial-vocabulary objective",
+      "metadata": {
+        "isPrimary": true,
+        "course": "im3",
+        "originalWeight": 0.8,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-2-1-002-to-ccss-hsa-apr-b-2",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.2.1.002",
+      "targetId": "math.standard.ccss.hsa-apr-b-2",
+      "weight": 0.5,
+      "confidence": "medium",
+      "sourceRefs": [
+        "family-objective:step-by-step-solver:remainder-theorem",
+        "family-objective:step-by-step-solver:factor-theorem"
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via problem family step-by-step-solver:remainder-theorem objective; Aligned via problem family step-by-step-solver:factor-theorem objective",
+      "metadata": {
+        "isPrimary": false,
+        "course": "im3",
+        "originalWeight": 0.4,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-2-1-002-to-ccss-hsa-apr-b-3",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.2.1.002",
+      "targetId": "math.standard.ccss.hsa-apr-b-3",
+      "weight": 0.5,
+      "confidence": "medium",
+      "sourceRefs": [
+        "family-objective:graphing-explorer:graph-polynomial",
+        "family-objective:graphing-explorer:polynomial-turning-points",
+        "family-objective:step-by-step-solver:factor-theorem"
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via problem family graphing-explorer:graph-polynomial objective; Aligned via problem family graphing-explorer:polynomial-turning-points objective; Aligned via problem family step-by-step-solver:factor-theorem objective",
+      "metadata": {
+        "isPrimary": false,
+        "course": "im3",
+        "originalWeight": 0.4,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-2-1-002-to-ccss-hsf-if-b-4",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.2.1.002",
+      "targetId": "math.standard.ccss.hsf-if-b-4",
+      "weight": 0.75,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-2-lesson-1",
+          "note": "Mapped via lesson standard (primary)"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-2-lesson-1",
+      "metadata": {
+        "isPrimary": true,
+        "course": "im3",
+        "originalWeight": 0.8,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-2-1-002-to-ccss-hsf-if-c-7c",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.2.1.002",
+      "targetId": "math.standard.ccss.hsf-if-c-7c",
+      "weight": 0.5,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-2-lesson-1",
+          "note": "Mapped via lesson standard"
+        },
+        "family-objective:graphing-explorer:graph-polynomial",
+        "family-objective:graphing-explorer:polynomial-end-behavior",
+        "family-objective:graphing-explorer:polynomial-turning-points"
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-2-lesson-1; Aligned via problem family graphing-explorer:graph-polynomial objective; Aligned via problem family graphing-explorer:polynomial-end-behavior objective; Aligned via problem family graphing-explorer:polynomial-turning-points objective",
+      "metadata": {
+        "isPrimary": false,
+        "course": "im3"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-2-1-003-to-ccss-hsa-apr-a-1",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.2.1.003",
+      "targetId": "math.standard.ccss.hsa-apr-a-1",
+      "weight": 0.75,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-2-lesson-1",
+          "note": "Mapped via lesson standard (primary)"
+        },
+        "family-objective:step-by-step-solver:polynomial-arithmetic",
+        "family-objective:step-by-step-solver:binomial-expansion",
+        "family-objective:step-by-step-solver:polynomial-division",
+        "family-objective:comprehension-quiz:polynomial-vocabulary"
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-2-lesson-1; Aligned via problem family step-by-step-solver:polynomial-arithmetic objective; Aligned via problem family step-by-step-solver:binomial-expansion objective; Aligned via problem family step-by-step-solver:polynomial-division objective; Aligned via problem family comprehension-quiz:polynomial-vocabulary objective",
+      "metadata": {
+        "isPrimary": true,
+        "course": "im3",
+        "originalWeight": 0.8,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-2-1-003-to-ccss-hsa-apr-b-2",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.2.1.003",
+      "targetId": "math.standard.ccss.hsa-apr-b-2",
+      "weight": 0.5,
+      "confidence": "medium",
+      "sourceRefs": [
+        "family-objective:step-by-step-solver:remainder-theorem",
+        "family-objective:step-by-step-solver:factor-theorem"
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via problem family step-by-step-solver:remainder-theorem objective; Aligned via problem family step-by-step-solver:factor-theorem objective",
+      "metadata": {
+        "isPrimary": false,
+        "course": "im3",
+        "originalWeight": 0.4,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-2-1-003-to-ccss-hsa-apr-b-3",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.2.1.003",
+      "targetId": "math.standard.ccss.hsa-apr-b-3",
+      "weight": 0.5,
+      "confidence": "medium",
+      "sourceRefs": [
+        "family-objective:graphing-explorer:graph-polynomial",
+        "family-objective:graphing-explorer:polynomial-turning-points",
+        "family-objective:step-by-step-solver:factor-theorem"
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via problem family graphing-explorer:graph-polynomial objective; Aligned via problem family graphing-explorer:polynomial-turning-points objective; Aligned via problem family step-by-step-solver:factor-theorem objective",
+      "metadata": {
+        "isPrimary": false,
+        "course": "im3",
+        "originalWeight": 0.4,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-2-1-003-to-ccss-hsf-if-b-4",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.2.1.003",
+      "targetId": "math.standard.ccss.hsf-if-b-4",
+      "weight": 0.75,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-2-lesson-1",
+          "note": "Mapped via lesson standard (primary)"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-2-lesson-1",
+      "metadata": {
+        "isPrimary": true,
+        "course": "im3",
+        "originalWeight": 0.8,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-2-1-003-to-ccss-hsf-if-c-7c",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.2.1.003",
+      "targetId": "math.standard.ccss.hsf-if-c-7c",
+      "weight": 0.5,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-2-lesson-1",
+          "note": "Mapped via lesson standard"
+        },
+        "family-objective:graphing-explorer:graph-polynomial",
+        "family-objective:graphing-explorer:polynomial-end-behavior",
+        "family-objective:graphing-explorer:polynomial-turning-points"
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-2-lesson-1; Aligned via problem family graphing-explorer:graph-polynomial objective; Aligned via problem family graphing-explorer:polynomial-end-behavior objective; Aligned via problem family graphing-explorer:polynomial-turning-points objective",
+      "metadata": {
+        "isPrimary": false,
+        "course": "im3"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-2-1-004-to-ccss-hsa-apr-a-1",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.2.1.004",
+      "targetId": "math.standard.ccss.hsa-apr-a-1",
+      "weight": 0.75,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-2-lesson-1",
+          "note": "Mapped via lesson standard (primary)"
+        },
+        "family-objective:step-by-step-solver:polynomial-arithmetic",
+        "family-objective:step-by-step-solver:binomial-expansion",
+        "family-objective:step-by-step-solver:polynomial-division",
+        "family-objective:comprehension-quiz:polynomial-vocabulary"
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-2-lesson-1; Aligned via problem family step-by-step-solver:polynomial-arithmetic objective; Aligned via problem family step-by-step-solver:binomial-expansion objective; Aligned via problem family step-by-step-solver:polynomial-division objective; Aligned via problem family comprehension-quiz:polynomial-vocabulary objective",
+      "metadata": {
+        "isPrimary": true,
+        "course": "im3",
+        "originalWeight": 0.8,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-2-1-004-to-ccss-hsa-apr-b-2",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.2.1.004",
+      "targetId": "math.standard.ccss.hsa-apr-b-2",
+      "weight": 0.5,
+      "confidence": "medium",
+      "sourceRefs": [
+        "family-objective:step-by-step-solver:remainder-theorem",
+        "family-objective:step-by-step-solver:factor-theorem"
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via problem family step-by-step-solver:remainder-theorem objective; Aligned via problem family step-by-step-solver:factor-theorem objective",
+      "metadata": {
+        "isPrimary": false,
+        "course": "im3",
+        "originalWeight": 0.4,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-2-1-004-to-ccss-hsa-apr-b-3",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.2.1.004",
+      "targetId": "math.standard.ccss.hsa-apr-b-3",
+      "weight": 0.5,
+      "confidence": "medium",
+      "sourceRefs": [
+        "family-objective:graphing-explorer:graph-polynomial",
+        "family-objective:graphing-explorer:polynomial-turning-points",
+        "family-objective:step-by-step-solver:factor-theorem"
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via problem family graphing-explorer:graph-polynomial objective; Aligned via problem family graphing-explorer:polynomial-turning-points objective; Aligned via problem family step-by-step-solver:factor-theorem objective",
+      "metadata": {
+        "isPrimary": false,
+        "course": "im3",
+        "originalWeight": 0.4,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-2-1-004-to-ccss-hsf-if-b-4",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.2.1.004",
+      "targetId": "math.standard.ccss.hsf-if-b-4",
+      "weight": 0.75,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-2-lesson-1",
+          "note": "Mapped via lesson standard (primary)"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-2-lesson-1",
+      "metadata": {
+        "isPrimary": true,
+        "course": "im3",
+        "originalWeight": 0.8,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-2-1-004-to-ccss-hsf-if-c-7c",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.2.1.004",
+      "targetId": "math.standard.ccss.hsf-if-c-7c",
+      "weight": 0.5,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-2-lesson-1",
+          "note": "Mapped via lesson standard"
+        },
+        "family-objective:graphing-explorer:graph-polynomial",
+        "family-objective:graphing-explorer:polynomial-end-behavior",
+        "family-objective:graphing-explorer:polynomial-turning-points"
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-2-lesson-1; Aligned via problem family graphing-explorer:graph-polynomial objective; Aligned via problem family graphing-explorer:polynomial-end-behavior objective; Aligned via problem family graphing-explorer:polynomial-turning-points objective",
+      "metadata": {
+        "isPrimary": false,
+        "course": "im3"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-2-1-005-to-ccss-hsa-apr-a-1",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.2.1.005",
+      "targetId": "math.standard.ccss.hsa-apr-a-1",
+      "weight": 0.75,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-2-lesson-1",
+          "note": "Mapped via lesson standard (primary)"
+        },
+        "family-objective:step-by-step-solver:polynomial-arithmetic",
+        "family-objective:step-by-step-solver:binomial-expansion",
+        "family-objective:step-by-step-solver:polynomial-division",
+        "family-objective:comprehension-quiz:polynomial-vocabulary"
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-2-lesson-1; Aligned via problem family step-by-step-solver:polynomial-arithmetic objective; Aligned via problem family step-by-step-solver:binomial-expansion objective; Aligned via problem family step-by-step-solver:polynomial-division objective; Aligned via problem family comprehension-quiz:polynomial-vocabulary objective",
+      "metadata": {
+        "isPrimary": true,
+        "course": "im3",
+        "originalWeight": 0.8,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-2-1-005-to-ccss-hsa-apr-b-2",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.2.1.005",
+      "targetId": "math.standard.ccss.hsa-apr-b-2",
+      "weight": 0.5,
+      "confidence": "medium",
+      "sourceRefs": [
+        "family-objective:step-by-step-solver:remainder-theorem",
+        "family-objective:step-by-step-solver:factor-theorem"
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via problem family step-by-step-solver:remainder-theorem objective; Aligned via problem family step-by-step-solver:factor-theorem objective",
+      "metadata": {
+        "isPrimary": false,
+        "course": "im3",
+        "originalWeight": 0.4,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-2-1-005-to-ccss-hsa-apr-b-3",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.2.1.005",
+      "targetId": "math.standard.ccss.hsa-apr-b-3",
+      "weight": 0.5,
+      "confidence": "medium",
+      "sourceRefs": [
+        "family-objective:graphing-explorer:graph-polynomial",
+        "family-objective:graphing-explorer:polynomial-turning-points",
+        "family-objective:step-by-step-solver:factor-theorem"
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via problem family graphing-explorer:graph-polynomial objective; Aligned via problem family graphing-explorer:polynomial-turning-points objective; Aligned via problem family step-by-step-solver:factor-theorem objective",
+      "metadata": {
+        "isPrimary": false,
+        "course": "im3",
+        "originalWeight": 0.4,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-2-1-005-to-ccss-hsf-if-b-4",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.2.1.005",
+      "targetId": "math.standard.ccss.hsf-if-b-4",
+      "weight": 0.75,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-2-lesson-1",
+          "note": "Mapped via lesson standard (primary)"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-2-lesson-1",
+      "metadata": {
+        "isPrimary": true,
+        "course": "im3",
+        "originalWeight": 0.8,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-2-1-005-to-ccss-hsf-if-c-7c",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.2.1.005",
+      "targetId": "math.standard.ccss.hsf-if-c-7c",
+      "weight": 0.5,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-2-lesson-1",
+          "note": "Mapped via lesson standard"
+        },
+        "family-objective:graphing-explorer:graph-polynomial",
+        "family-objective:graphing-explorer:polynomial-end-behavior",
+        "family-objective:graphing-explorer:polynomial-turning-points"
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-2-lesson-1; Aligned via problem family graphing-explorer:graph-polynomial objective; Aligned via problem family graphing-explorer:polynomial-end-behavior objective; Aligned via problem family graphing-explorer:polynomial-turning-points objective",
+      "metadata": {
+        "isPrimary": false,
+        "course": "im3"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-2-1-006-to-ccss-hsa-apr-a-1",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.2.1.006",
+      "targetId": "math.standard.ccss.hsa-apr-a-1",
+      "weight": 0.75,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-2-lesson-1",
+          "note": "Mapped via lesson standard (primary)"
+        },
+        "family-objective:step-by-step-solver:polynomial-arithmetic",
+        "family-objective:step-by-step-solver:binomial-expansion",
+        "family-objective:step-by-step-solver:polynomial-division",
+        "family-objective:comprehension-quiz:polynomial-vocabulary"
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-2-lesson-1; Aligned via problem family step-by-step-solver:polynomial-arithmetic objective; Aligned via problem family step-by-step-solver:binomial-expansion objective; Aligned via problem family step-by-step-solver:polynomial-division objective; Aligned via problem family comprehension-quiz:polynomial-vocabulary objective",
+      "metadata": {
+        "isPrimary": true,
+        "course": "im3",
+        "originalWeight": 0.8,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-2-1-006-to-ccss-hsa-apr-b-2",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.2.1.006",
+      "targetId": "math.standard.ccss.hsa-apr-b-2",
+      "weight": 0.5,
+      "confidence": "medium",
+      "sourceRefs": [
+        "family-objective:step-by-step-solver:remainder-theorem",
+        "family-objective:step-by-step-solver:factor-theorem"
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via problem family step-by-step-solver:remainder-theorem objective; Aligned via problem family step-by-step-solver:factor-theorem objective",
+      "metadata": {
+        "isPrimary": false,
+        "course": "im3",
+        "originalWeight": 0.4,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-2-1-006-to-ccss-hsa-apr-b-3",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.2.1.006",
+      "targetId": "math.standard.ccss.hsa-apr-b-3",
+      "weight": 0.5,
+      "confidence": "medium",
+      "sourceRefs": [
+        "family-objective:graphing-explorer:graph-polynomial",
+        "family-objective:graphing-explorer:polynomial-turning-points",
+        "family-objective:step-by-step-solver:factor-theorem"
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via problem family graphing-explorer:graph-polynomial objective; Aligned via problem family graphing-explorer:polynomial-turning-points objective; Aligned via problem family step-by-step-solver:factor-theorem objective",
+      "metadata": {
+        "isPrimary": false,
+        "course": "im3",
+        "originalWeight": 0.4,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-2-1-006-to-ccss-hsf-if-b-4",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.2.1.006",
+      "targetId": "math.standard.ccss.hsf-if-b-4",
+      "weight": 0.75,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-2-lesson-1",
+          "note": "Mapped via lesson standard (primary)"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-2-lesson-1",
+      "metadata": {
+        "isPrimary": true,
+        "course": "im3",
+        "originalWeight": 0.8,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-2-1-006-to-ccss-hsf-if-c-7c",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.2.1.006",
+      "targetId": "math.standard.ccss.hsf-if-c-7c",
+      "weight": 0.5,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-2-lesson-1",
+          "note": "Mapped via lesson standard"
+        },
+        "family-objective:graphing-explorer:graph-polynomial",
+        "family-objective:graphing-explorer:polynomial-end-behavior",
+        "family-objective:graphing-explorer:polynomial-turning-points"
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-2-lesson-1; Aligned via problem family graphing-explorer:graph-polynomial objective; Aligned via problem family graphing-explorer:polynomial-end-behavior objective; Aligned via problem family graphing-explorer:polynomial-turning-points objective",
+      "metadata": {
+        "isPrimary": false,
+        "course": "im3"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-2-2-007-to-ccss-hsf-if-b-4",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.2.2.007",
+      "targetId": "math.standard.ccss.hsf-if-b-4",
+      "weight": 0.75,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-2-lesson-2",
+          "note": "Mapped via lesson standard (primary)"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-2-lesson-2",
+      "metadata": {
+        "isPrimary": true,
+        "course": "im3",
+        "originalWeight": 0.8,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-2-2-008-to-ccss-hsf-if-b-4",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.2.2.008",
+      "targetId": "math.standard.ccss.hsf-if-b-4",
+      "weight": 0.75,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-2-lesson-2",
+          "note": "Mapped via lesson standard (primary)"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-2-lesson-2",
+      "metadata": {
+        "isPrimary": true,
+        "course": "im3",
+        "originalWeight": 0.8,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-2-3-009-to-ccss-hsa-apr-a-1",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.2.3.009",
+      "targetId": "math.standard.ccss.hsa-apr-a-1",
+      "weight": 0.75,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-2-lesson-3",
+          "note": "Mapped via lesson standard (primary)"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-2-lesson-3",
+      "metadata": {
+        "isPrimary": true,
+        "course": "im3",
+        "originalWeight": 0.8,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-2-3-010-to-ccss-hsa-apr-a-1",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.2.3.010",
+      "targetId": "math.standard.ccss.hsa-apr-a-1",
+      "weight": 0.75,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-2-lesson-3",
+          "note": "Mapped via lesson standard (primary)"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-2-lesson-3",
+      "metadata": {
+        "isPrimary": true,
+        "course": "im3",
+        "originalWeight": 0.8,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-2-3-011-to-ccss-hsa-apr-a-1",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.2.3.011",
+      "targetId": "math.standard.ccss.hsa-apr-a-1",
+      "weight": 0.75,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-2-lesson-3",
+          "note": "Mapped via lesson standard (primary)"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-2-lesson-3",
+      "metadata": {
+        "isPrimary": true,
+        "course": "im3",
+        "originalWeight": 0.8,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-2-3-012-to-ccss-hsa-apr-a-1",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.2.3.012",
+      "targetId": "math.standard.ccss.hsa-apr-a-1",
+      "weight": 0.75,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-2-lesson-3",
+          "note": "Mapped via lesson standard (primary)"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-2-lesson-3",
+      "metadata": {
+        "isPrimary": true,
+        "course": "im3",
+        "originalWeight": 0.8,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-2-4-013-to-ccss-hsa-apr-a-1",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.2.4.013",
+      "targetId": "math.standard.ccss.hsa-apr-a-1",
+      "weight": 0.75,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-2-lesson-4",
+          "note": "Mapped via lesson standard (primary)"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-2-lesson-4",
+      "metadata": {
+        "isPrimary": true,
+        "course": "im3",
+        "originalWeight": 0.8,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-2-4-014-to-ccss-hsa-apr-a-1",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.2.4.014",
+      "targetId": "math.standard.ccss.hsa-apr-a-1",
+      "weight": 0.75,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-2-lesson-4",
+          "note": "Mapped via lesson standard (primary)"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-2-lesson-4",
+      "metadata": {
+        "isPrimary": true,
+        "course": "im3",
+        "originalWeight": 0.8,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-2-4-015-to-ccss-hsa-apr-a-1",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.2.4.015",
+      "targetId": "math.standard.ccss.hsa-apr-a-1",
+      "weight": 0.75,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-2-lesson-4",
+          "note": "Mapped via lesson standard (primary)"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-2-lesson-4",
+      "metadata": {
+        "isPrimary": true,
+        "course": "im3",
+        "originalWeight": 0.8,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-2-4-016-to-ccss-hsa-apr-a-1",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.2.4.016",
+      "targetId": "math.standard.ccss.hsa-apr-a-1",
+      "weight": 0.75,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-2-lesson-4",
+          "note": "Mapped via lesson standard (primary)"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-2-lesson-4",
+      "metadata": {
+        "isPrimary": true,
+        "course": "im3",
+        "originalWeight": 0.8,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-2-4-017-to-ccss-hsa-apr-a-1",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.2.4.017",
+      "targetId": "math.standard.ccss.hsa-apr-a-1",
+      "weight": 0.75,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-2-lesson-4",
+          "note": "Mapped via lesson standard (primary)"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-2-lesson-4",
+      "metadata": {
+        "isPrimary": true,
+        "course": "im3",
+        "originalWeight": 0.8,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-2-5-018-to-ccss-hsa-apr-a-1",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.2.5.018",
+      "targetId": "math.standard.ccss.hsa-apr-a-1",
+      "weight": 0.75,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-2-lesson-5",
+          "note": "Mapped via lesson standard (primary)"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-2-lesson-5",
+      "metadata": {
+        "isPrimary": true,
+        "course": "im3",
+        "originalWeight": 0.8,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-2-5-019-to-ccss-hsa-apr-a-1",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.2.5.019",
+      "targetId": "math.standard.ccss.hsa-apr-a-1",
+      "weight": 0.75,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-2-lesson-5",
+          "note": "Mapped via lesson standard (primary)"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-2-lesson-5",
+      "metadata": {
+        "isPrimary": true,
+        "course": "im3",
+        "originalWeight": 0.8,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-2-5-020-to-ccss-hsa-apr-a-1",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.2.5.020",
+      "targetId": "math.standard.ccss.hsa-apr-a-1",
+      "weight": 0.75,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-2-lesson-5",
+          "note": "Mapped via lesson standard (primary)"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-2-lesson-5",
+      "metadata": {
+        "isPrimary": true,
+        "course": "im3",
+        "originalWeight": 0.8,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-skill-2-1-graph-and-analyze-polynomial-functions-to-ccss-hsa-apr-a-1",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.skill.2.1.graph-and-analyze-polynomial-functions",
+      "targetId": "math.standard.ccss.hsa-apr-a-1",
+      "weight": 0.75,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-2-lesson-1",
+          "note": "Mapped via lesson standard (primary)"
+        },
+        "family-objective:step-by-step-solver:polynomial-arithmetic",
+        "family-objective:step-by-step-solver:binomial-expansion",
+        "family-objective:step-by-step-solver:polynomial-division",
+        "family-objective:comprehension-quiz:polynomial-vocabulary"
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-2-lesson-1; Aligned via problem family step-by-step-solver:polynomial-arithmetic objective; Aligned via problem family step-by-step-solver:binomial-expansion objective; Aligned via problem family step-by-step-solver:polynomial-division objective; Aligned via problem family comprehension-quiz:polynomial-vocabulary objective",
+      "metadata": {
+        "isPrimary": true,
+        "course": "im3",
+        "originalWeight": 0.8,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-skill-2-1-graph-and-analyze-polynomial-functions-to-ccss-hsa-apr-b-2",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.skill.2.1.graph-and-analyze-polynomial-functions",
+      "targetId": "math.standard.ccss.hsa-apr-b-2",
+      "weight": 0.5,
+      "confidence": "medium",
+      "sourceRefs": [
+        "family-objective:step-by-step-solver:remainder-theorem",
+        "family-objective:step-by-step-solver:factor-theorem"
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via problem family step-by-step-solver:remainder-theorem objective; Aligned via problem family step-by-step-solver:factor-theorem objective",
+      "metadata": {
+        "isPrimary": false,
+        "course": "im3",
+        "originalWeight": 0.4,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-skill-2-1-graph-and-analyze-polynomial-functions-to-ccss-hsa-apr-b-3",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.skill.2.1.graph-and-analyze-polynomial-functions",
+      "targetId": "math.standard.ccss.hsa-apr-b-3",
+      "weight": 0.5,
+      "confidence": "medium",
+      "sourceRefs": [
+        "family-objective:graphing-explorer:graph-polynomial",
+        "family-objective:graphing-explorer:polynomial-turning-points",
+        "family-objective:step-by-step-solver:factor-theorem"
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via problem family graphing-explorer:graph-polynomial objective; Aligned via problem family graphing-explorer:polynomial-turning-points objective; Aligned via problem family step-by-step-solver:factor-theorem objective",
+      "metadata": {
+        "isPrimary": false,
+        "course": "im3",
+        "originalWeight": 0.4,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-skill-2-1-graph-and-analyze-polynomial-functions-to-ccss-hsf-if-b-4",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.skill.2.1.graph-and-analyze-polynomial-functions",
+      "targetId": "math.standard.ccss.hsf-if-b-4",
+      "weight": 0.75,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-2-lesson-1",
+          "note": "Mapped via lesson standard (primary)"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-2-lesson-1",
+      "metadata": {
+        "isPrimary": true,
+        "course": "im3",
+        "originalWeight": 0.8,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-skill-2-1-graph-and-analyze-polynomial-functions-to-ccss-hsf-if-c-7c",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.skill.2.1.graph-and-analyze-polynomial-functions",
+      "targetId": "math.standard.ccss.hsf-if-c-7c",
+      "weight": 0.5,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-2-lesson-1",
+          "note": "Mapped via lesson standard"
+        },
+        "family-objective:graphing-explorer:graph-polynomial",
+        "family-objective:graphing-explorer:polynomial-end-behavior",
+        "family-objective:graphing-explorer:polynomial-turning-points"
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-2-lesson-1; Aligned via problem family graphing-explorer:graph-polynomial objective; Aligned via problem family graphing-explorer:polynomial-end-behavior objective; Aligned via problem family graphing-explorer:polynomial-turning-points objective",
+      "metadata": {
+        "isPrimary": false,
+        "course": "im3"
+      }
+    },
+    {
+      "id": "math.alignment.im3-skill-2-1-graph-and-analyze-power-functions-to-ccss-hsa-apr-a-1",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.skill.2.1.graph-and-analyze-power-functions",
+      "targetId": "math.standard.ccss.hsa-apr-a-1",
+      "weight": 0.75,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-2-lesson-1",
+          "note": "Mapped via lesson standard (primary)"
+        },
+        "family-objective:step-by-step-solver:polynomial-arithmetic",
+        "family-objective:step-by-step-solver:binomial-expansion",
+        "family-objective:step-by-step-solver:polynomial-division",
+        "family-objective:comprehension-quiz:polynomial-vocabulary"
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-2-lesson-1; Aligned via problem family step-by-step-solver:polynomial-arithmetic objective; Aligned via problem family step-by-step-solver:binomial-expansion objective; Aligned via problem family step-by-step-solver:polynomial-division objective; Aligned via problem family comprehension-quiz:polynomial-vocabulary objective",
+      "metadata": {
+        "isPrimary": true,
+        "course": "im3",
+        "originalWeight": 0.8,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-skill-2-1-graph-and-analyze-power-functions-to-ccss-hsa-apr-b-2",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.skill.2.1.graph-and-analyze-power-functions",
+      "targetId": "math.standard.ccss.hsa-apr-b-2",
+      "weight": 0.5,
+      "confidence": "medium",
+      "sourceRefs": [
+        "family-objective:step-by-step-solver:remainder-theorem",
+        "family-objective:step-by-step-solver:factor-theorem"
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via problem family step-by-step-solver:remainder-theorem objective; Aligned via problem family step-by-step-solver:factor-theorem objective",
+      "metadata": {
+        "isPrimary": false,
+        "course": "im3",
+        "originalWeight": 0.4,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-skill-2-1-graph-and-analyze-power-functions-to-ccss-hsa-apr-b-3",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.skill.2.1.graph-and-analyze-power-functions",
+      "targetId": "math.standard.ccss.hsa-apr-b-3",
+      "weight": 0.5,
+      "confidence": "medium",
+      "sourceRefs": [
+        "family-objective:graphing-explorer:graph-polynomial",
+        "family-objective:graphing-explorer:polynomial-turning-points",
+        "family-objective:step-by-step-solver:factor-theorem"
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via problem family graphing-explorer:graph-polynomial objective; Aligned via problem family graphing-explorer:polynomial-turning-points objective; Aligned via problem family step-by-step-solver:factor-theorem objective",
+      "metadata": {
+        "isPrimary": false,
+        "course": "im3",
+        "originalWeight": 0.4,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-skill-2-1-graph-and-analyze-power-functions-to-ccss-hsf-if-b-4",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.skill.2.1.graph-and-analyze-power-functions",
+      "targetId": "math.standard.ccss.hsf-if-b-4",
+      "weight": 0.75,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-2-lesson-1",
+          "note": "Mapped via lesson standard (primary)"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-2-lesson-1",
+      "metadata": {
+        "isPrimary": true,
+        "course": "im3",
+        "originalWeight": 0.8,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-skill-2-1-graph-and-analyze-power-functions-to-ccss-hsf-if-c-7c",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.skill.2.1.graph-and-analyze-power-functions",
+      "targetId": "math.standard.ccss.hsf-if-c-7c",
+      "weight": 0.5,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-2-lesson-1",
+          "note": "Mapped via lesson standard"
+        },
+        "family-objective:graphing-explorer:graph-polynomial",
+        "family-objective:graphing-explorer:polynomial-end-behavior",
+        "family-objective:graphing-explorer:polynomial-turning-points"
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-2-lesson-1; Aligned via problem family graphing-explorer:graph-polynomial objective; Aligned via problem family graphing-explorer:polynomial-end-behavior objective; Aligned via problem family graphing-explorer:polynomial-turning-points objective",
+      "metadata": {
+        "isPrimary": false,
+        "course": "im3"
+      }
+    },
+    {
+      "id": "math.alignment.im3-skill-2-2-approximate-zeros-by-graphing-polynomial-functions-to-ccss-hsf-if-b-4",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.skill.2.2.approximate-zeros-by-graphing-polynomial-functions",
+      "targetId": "math.standard.ccss.hsf-if-b-4",
+      "weight": 0.75,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-2-lesson-2",
+          "note": "Mapped via lesson standard (primary)"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-2-lesson-2",
+      "metadata": {
+        "isPrimary": true,
+        "course": "im3",
+        "originalWeight": 0.8,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-skill-2-2-find-extrema-of-polynomial-functions-to-ccss-hsf-if-b-4",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.skill.2.2.find-extrema-of-polynomial-functions",
+      "targetId": "math.standard.ccss.hsf-if-b-4",
+      "weight": 0.75,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-2-lesson-2",
+          "note": "Mapped via lesson standard (primary)"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-2-lesson-2",
+      "metadata": {
+        "isPrimary": true,
+        "course": "im3",
+        "originalWeight": 0.8,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-skill-2-3-add-and-subtract-polynomials-to-ccss-hsa-apr-a-1",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.skill.2.3.add-and-subtract-polynomials",
+      "targetId": "math.standard.ccss.hsa-apr-a-1",
+      "weight": 0.75,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-2-lesson-3",
+          "note": "Mapped via lesson standard (primary)"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-2-lesson-3",
+      "metadata": {
+        "isPrimary": true,
+        "course": "im3",
+        "originalWeight": 0.8,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-skill-2-3-multiply-polynomials-to-ccss-hsa-apr-a-1",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.skill.2.3.multiply-polynomials",
+      "targetId": "math.standard.ccss.hsa-apr-a-1",
+      "weight": 0.75,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-2-lesson-3",
+          "note": "Mapped via lesson standard (primary)"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-2-lesson-3",
+      "metadata": {
+        "isPrimary": true,
+        "course": "im3",
+        "originalWeight": 0.8,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-skill-2-4-divide-polynomials-by-using-long-division-to-ccss-hsa-apr-a-1",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.skill.2.4.divide-polynomials-by-using-long-division",
+      "targetId": "math.standard.ccss.hsa-apr-a-1",
+      "weight": 0.75,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-2-lesson-4",
+          "note": "Mapped via lesson standard (primary)"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-2-lesson-4",
+      "metadata": {
+        "isPrimary": true,
+        "course": "im3",
+        "originalWeight": 0.8,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-skill-2-4-divide-polynomials-by-using-synthetic-division-to-ccss-hsa-apr-a-1",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.skill.2.4.divide-polynomials-by-using-synthetic-division",
+      "targetId": "math.standard.ccss.hsa-apr-a-1",
+      "weight": 0.75,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-2-lesson-4",
+          "note": "Mapped via lesson standard (primary)"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-2-lesson-4",
+      "metadata": {
+        "isPrimary": true,
+        "course": "im3",
+        "originalWeight": 0.8,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-skill-2-5-expand-powers-of-binomials-by-using-pascals-triangle-and-the-to-ccss-hsa-apr-a-1",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.skill.2.5.expand-powers-of-binomials-by-using-pascals-triangle-and-the",
+      "targetId": "math.standard.ccss.hsa-apr-a-1",
+      "weight": 0.75,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-2-lesson-5",
+          "note": "Mapped via lesson standard (primary)"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-2-lesson-5",
+      "metadata": {
+        "isPrimary": true,
+        "course": "im3",
+        "originalWeight": 0.8,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.im3.edge.m1.001",
+      "type": "contains",
+      "sourceId": "math.im3",
+      "targetId": "math.im3.module.1",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1"
+      },
+      "rationale": "Module 1 is contained in IM3 domain",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/modules/module-1-quadratic-functions.md"
+      ]
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0001",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.example.2.1.001",
+      "targetId": "math.im3.lesson.2.1",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "2",
+        "lesson": "1"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0002",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.example.2.1.002",
+      "targetId": "math.im3.lesson.2.1",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "2",
+        "lesson": "1"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0003",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.example.2.1.003",
+      "targetId": "math.im3.lesson.2.1",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "2",
+        "lesson": "1"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0004",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.example.2.1.004",
+      "targetId": "math.im3.lesson.2.1",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "2",
+        "lesson": "1"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0005",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.example.2.1.005",
+      "targetId": "math.im3.lesson.2.1",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "2",
+        "lesson": "1"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0006",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.example.2.1.006",
+      "targetId": "math.im3.lesson.2.1",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "2",
+        "lesson": "1"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0007",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.example.2.2.007",
+      "targetId": "math.im3.lesson.2.2",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "2",
+        "lesson": "2"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0008",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.example.2.2.008",
+      "targetId": "math.im3.lesson.2.2",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "2",
+        "lesson": "2"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0009",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.example.2.3.009",
+      "targetId": "math.im3.lesson.2.3",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "2",
+        "lesson": "3"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0010",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.example.2.3.010",
+      "targetId": "math.im3.lesson.2.3",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "2",
+        "lesson": "3"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0011",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.example.2.3.011",
+      "targetId": "math.im3.lesson.2.3",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "2",
+        "lesson": "3"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0012",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.example.2.3.012",
+      "targetId": "math.im3.lesson.2.3",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "2",
+        "lesson": "3"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0013",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.example.2.4.013",
+      "targetId": "math.im3.lesson.2.4",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "2",
+        "lesson": "4"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0014",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.example.2.4.014",
+      "targetId": "math.im3.lesson.2.4",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "2",
+        "lesson": "4"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0015",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.example.2.4.015",
+      "targetId": "math.im3.lesson.2.4",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "2",
+        "lesson": "4"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0016",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.example.2.4.016",
+      "targetId": "math.im3.lesson.2.4",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "2",
+        "lesson": "4"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0017",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.example.2.4.017",
+      "targetId": "math.im3.lesson.2.4",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "2",
+        "lesson": "4"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0018",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.example.2.5.018",
+      "targetId": "math.im3.lesson.2.5",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "2",
+        "lesson": "5"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0019",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.example.2.5.019",
+      "targetId": "math.im3.lesson.2.5",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "2",
+        "lesson": "5"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0020",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.example.2.5.020",
+      "targetId": "math.im3.lesson.2.5",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "2",
+        "lesson": "5"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0209",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.skill.2.1.graph-and-analyze-polynomial-functions",
+      "targetId": "math.im3.lesson.2.1",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Skill appears in lesson context",
+      "metadata": {
+        "module": "2",
+        "lesson": "1"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0210",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.skill.2.1.graph-and-analyze-power-functions",
+      "targetId": "math.im3.lesson.2.1",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Skill appears in lesson context",
+      "metadata": {
+        "module": "2",
+        "lesson": "1"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0211",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.skill.2.2.approximate-zeros-by-graphing-polynomial-functions",
+      "targetId": "math.im3.lesson.2.2",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Skill appears in lesson context",
+      "metadata": {
+        "module": "2",
+        "lesson": "2"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0212",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.skill.2.2.find-extrema-of-polynomial-functions",
+      "targetId": "math.im3.lesson.2.2",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Skill appears in lesson context",
+      "metadata": {
+        "module": "2",
+        "lesson": "2"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0213",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.skill.2.3.add-and-subtract-polynomials",
+      "targetId": "math.im3.lesson.2.3",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Skill appears in lesson context",
+      "metadata": {
+        "module": "2",
+        "lesson": "3"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0214",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.skill.2.3.multiply-polynomials",
+      "targetId": "math.im3.lesson.2.3",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Skill appears in lesson context",
+      "metadata": {
+        "module": "2",
+        "lesson": "3"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0215",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.skill.2.4.divide-polynomials-by-using-long-division",
+      "targetId": "math.im3.lesson.2.4",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Skill appears in lesson context",
+      "metadata": {
+        "module": "2",
+        "lesson": "4"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0216",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.skill.2.4.divide-polynomials-by-using-synthetic-division",
+      "targetId": "math.im3.lesson.2.4",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Skill appears in lesson context",
+      "metadata": {
+        "module": "2",
+        "lesson": "4"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0217",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.skill.2.5.expand-powers-of-binomials-by-using-pascals-triangle-and-the",
+      "targetId": "math.im3.lesson.2.5",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Skill appears in lesson context",
+      "metadata": {
+        "module": "2",
+        "lesson": "5"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0218",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.skill.2.aleks.binomial-theorem-expansion",
+      "targetId": "math.im3.module.2",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Concept appears in module context",
+      "metadata": {
+        "module": "2"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0219",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.skill.2.aleks.pascal-triangle-expansion",
+      "targetId": "math.im3.module.2",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Concept appears in module context",
+      "metadata": {
+        "module": "2"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0220",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.skill.2.aleks.polynomial-add-subtract",
+      "targetId": "math.im3.module.2",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Concept appears in module context",
+      "metadata": {
+        "module": "2"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0221",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.skill.2.aleks.polynomial-extrema-analysis",
+      "targetId": "math.im3.module.2",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Concept appears in module context",
+      "metadata": {
+        "module": "2"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0222",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.skill.2.aleks.polynomial-feature-analysis",
+      "targetId": "math.im3.module.2",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Concept appears in module context",
+      "metadata": {
+        "module": "2"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0223",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.skill.2.aleks.polynomial-long-division",
+      "targetId": "math.im3.module.2",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Concept appears in module context",
+      "metadata": {
+        "module": "2"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0224",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.skill.2.aleks.polynomial-multiplication",
+      "targetId": "math.im3.module.2",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Concept appears in module context",
+      "metadata": {
+        "module": "2"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0225",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.skill.2.aleks.polynomial-synthetic-division",
+      "targetId": "math.im3.module.2",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Concept appears in module context",
+      "metadata": {
+        "module": "2"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0226",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.skill.2.aleks.polynomial-zero-approximation",
+      "targetId": "math.im3.module.2",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Concept appears in module context",
+      "metadata": {
+        "module": "2"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0227",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.skill.2.aleks.power-function-graph-analysis",
+      "targetId": "math.im3.module.2",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Concept appears in module context",
+      "metadata": {
+        "module": "2"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0377",
+      "type": "contains",
+      "sourceId": "math.im3",
+      "targetId": "math.im3.module.2",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Domain contains Polynomials and Polynomial Functions",
+      "metadata": {
+        "course": "im3",
+        "module": "2"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0378",
+      "type": "contains",
+      "sourceId": "math.im3",
+      "targetId": "math.im3.module.3",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Domain contains Polynomial Equations",
+      "metadata": {
+        "course": "im3",
+        "module": "3"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0379",
+      "type": "contains",
+      "sourceId": "math.im3",
+      "targetId": "math.im3.module.4",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Domain contains Inverses and Radical Functions",
+      "metadata": {
+        "course": "im3",
+        "module": "4"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0380",
+      "type": "contains",
+      "sourceId": "math.im3",
+      "targetId": "math.im3.module.5",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Domain contains Exponential Functions and Geometric Series",
+      "metadata": {
+        "course": "im3",
+        "module": "5"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0381",
+      "type": "contains",
+      "sourceId": "math.im3",
+      "targetId": "math.im3.module.6",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Domain contains Logarithmic Functions",
+      "metadata": {
+        "course": "im3",
+        "module": "6"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0382",
+      "type": "contains",
+      "sourceId": "math.im3",
+      "targetId": "math.im3.module.7",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Domain contains Rational Functions and Equations",
+      "metadata": {
+        "course": "im3",
+        "module": "7"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0383",
+      "type": "contains",
+      "sourceId": "math.im3",
+      "targetId": "math.im3.module.8",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Domain contains Inferential Statistics",
+      "metadata": {
+        "course": "im3",
+        "module": "8"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0384",
+      "type": "contains",
+      "sourceId": "math.im3",
+      "targetId": "math.im3.module.9",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Domain contains Trigonometric Functions",
+      "metadata": {
+        "course": "im3",
+        "module": "9"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0385",
+      "type": "contains",
+      "sourceId": "math.im3.lesson.2.1",
+      "targetId": "math.im3.example.2.1.001",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "2",
+        "lesson": "1"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0386",
+      "type": "contains",
+      "sourceId": "math.im3.lesson.2.1",
+      "targetId": "math.im3.example.2.1.002",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "2",
+        "lesson": "1"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0387",
+      "type": "contains",
+      "sourceId": "math.im3.lesson.2.1",
+      "targetId": "math.im3.example.2.1.003",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "2",
+        "lesson": "1"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0388",
+      "type": "contains",
+      "sourceId": "math.im3.lesson.2.1",
+      "targetId": "math.im3.example.2.1.004",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "2",
+        "lesson": "1"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0389",
+      "type": "contains",
+      "sourceId": "math.im3.lesson.2.1",
+      "targetId": "math.im3.example.2.1.005",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "2",
+        "lesson": "1"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0390",
+      "type": "contains",
+      "sourceId": "math.im3.lesson.2.1",
+      "targetId": "math.im3.example.2.1.006",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "2",
+        "lesson": "1"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0391",
+      "type": "contains",
+      "sourceId": "math.im3.lesson.2.1",
+      "targetId": "math.im3.skill.2.1.graph-and-analyze-polynomial-functions",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains skill",
+      "metadata": {
+        "module": "2",
+        "lesson": "1"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0392",
+      "type": "contains",
+      "sourceId": "math.im3.lesson.2.1",
+      "targetId": "math.im3.skill.2.1.graph-and-analyze-power-functions",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains skill",
+      "metadata": {
+        "module": "2",
+        "lesson": "1"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0393",
+      "type": "contains",
+      "sourceId": "math.im3.lesson.2.2",
+      "targetId": "math.im3.example.2.2.007",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "2",
+        "lesson": "2"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0394",
+      "type": "contains",
+      "sourceId": "math.im3.lesson.2.2",
+      "targetId": "math.im3.example.2.2.008",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "2",
+        "lesson": "2"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0395",
+      "type": "contains",
+      "sourceId": "math.im3.lesson.2.2",
+      "targetId": "math.im3.skill.2.2.approximate-zeros-by-graphing-polynomial-functions",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains skill",
+      "metadata": {
+        "module": "2",
+        "lesson": "2"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0396",
+      "type": "contains",
+      "sourceId": "math.im3.lesson.2.2",
+      "targetId": "math.im3.skill.2.2.find-extrema-of-polynomial-functions",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains skill",
+      "metadata": {
+        "module": "2",
+        "lesson": "2"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0397",
+      "type": "contains",
+      "sourceId": "math.im3.lesson.2.3",
+      "targetId": "math.im3.example.2.3.009",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "2",
+        "lesson": "3"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0398",
+      "type": "contains",
+      "sourceId": "math.im3.lesson.2.3",
+      "targetId": "math.im3.example.2.3.010",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "2",
+        "lesson": "3"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0399",
+      "type": "contains",
+      "sourceId": "math.im3.lesson.2.3",
+      "targetId": "math.im3.example.2.3.011",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "2",
+        "lesson": "3"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0400",
+      "type": "contains",
+      "sourceId": "math.im3.lesson.2.3",
+      "targetId": "math.im3.example.2.3.012",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "2",
+        "lesson": "3"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0401",
+      "type": "contains",
+      "sourceId": "math.im3.lesson.2.3",
+      "targetId": "math.im3.skill.2.3.add-and-subtract-polynomials",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains skill",
+      "metadata": {
+        "module": "2",
+        "lesson": "3"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0402",
+      "type": "contains",
+      "sourceId": "math.im3.lesson.2.3",
+      "targetId": "math.im3.skill.2.3.multiply-polynomials",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains skill",
+      "metadata": {
+        "module": "2",
+        "lesson": "3"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0403",
+      "type": "contains",
+      "sourceId": "math.im3.lesson.2.4",
+      "targetId": "math.im3.example.2.4.013",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "2",
+        "lesson": "4"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0404",
+      "type": "contains",
+      "sourceId": "math.im3.lesson.2.4",
+      "targetId": "math.im3.example.2.4.014",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "2",
+        "lesson": "4"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0405",
+      "type": "contains",
+      "sourceId": "math.im3.lesson.2.4",
+      "targetId": "math.im3.example.2.4.015",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "2",
+        "lesson": "4"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0406",
+      "type": "contains",
+      "sourceId": "math.im3.lesson.2.4",
+      "targetId": "math.im3.example.2.4.016",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "2",
+        "lesson": "4"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0407",
+      "type": "contains",
+      "sourceId": "math.im3.lesson.2.4",
+      "targetId": "math.im3.example.2.4.017",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "2",
+        "lesson": "4"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0408",
+      "type": "contains",
+      "sourceId": "math.im3.lesson.2.4",
+      "targetId": "math.im3.skill.2.4.divide-polynomials-by-using-long-division",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains skill",
+      "metadata": {
+        "module": "2",
+        "lesson": "4"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0409",
+      "type": "contains",
+      "sourceId": "math.im3.lesson.2.4",
+      "targetId": "math.im3.skill.2.4.divide-polynomials-by-using-synthetic-division",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains skill",
+      "metadata": {
+        "module": "2",
+        "lesson": "4"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0410",
+      "type": "contains",
+      "sourceId": "math.im3.lesson.2.5",
+      "targetId": "math.im3.example.2.5.018",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "2",
+        "lesson": "5"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0411",
+      "type": "contains",
+      "sourceId": "math.im3.lesson.2.5",
+      "targetId": "math.im3.example.2.5.019",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "2",
+        "lesson": "5"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0412",
+      "type": "contains",
+      "sourceId": "math.im3.lesson.2.5",
+      "targetId": "math.im3.example.2.5.020",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "2",
+        "lesson": "5"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0413",
+      "type": "contains",
+      "sourceId": "math.im3.lesson.2.5",
+      "targetId": "math.im3.skill.2.5.expand-powers-of-binomials-by-using-pascals-triangle-and-the",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains skill",
+      "metadata": {
+        "module": "2",
+        "lesson": "5"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0673",
+      "type": "contains",
+      "sourceId": "math.im3.module.2",
+      "targetId": "math.im3.lesson.2.1",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Module 2 contains lesson",
+      "metadata": {
+        "module": "2"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0674",
+      "type": "contains",
+      "sourceId": "math.im3.module.2",
+      "targetId": "math.im3.lesson.2.2",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Module 2 contains lesson",
+      "metadata": {
+        "module": "2"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0675",
+      "type": "contains",
+      "sourceId": "math.im3.module.2",
+      "targetId": "math.im3.lesson.2.3",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Module 2 contains lesson",
+      "metadata": {
+        "module": "2"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0676",
+      "type": "contains",
+      "sourceId": "math.im3.module.2",
+      "targetId": "math.im3.lesson.2.4",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Module 2 contains lesson",
+      "metadata": {
+        "module": "2"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0677",
+      "type": "contains",
+      "sourceId": "math.im3.module.2",
+      "targetId": "math.im3.lesson.2.5",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Module 2 contains lesson",
+      "metadata": {
+        "module": "2"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0678",
+      "type": "contains",
+      "sourceId": "math.im3.module.2",
+      "targetId": "math.im3.skill.2.aleks.binomial-theorem-expansion",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Module 2 contains concept",
+      "metadata": {
+        "module": "2"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0679",
+      "type": "contains",
+      "sourceId": "math.im3.module.2",
+      "targetId": "math.im3.skill.2.aleks.pascal-triangle-expansion",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Module 2 contains concept",
+      "metadata": {
+        "module": "2"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0680",
+      "type": "contains",
+      "sourceId": "math.im3.module.2",
+      "targetId": "math.im3.skill.2.aleks.polynomial-add-subtract",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Module 2 contains concept",
+      "metadata": {
+        "module": "2"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0681",
+      "type": "contains",
+      "sourceId": "math.im3.module.2",
+      "targetId": "math.im3.skill.2.aleks.polynomial-extrema-analysis",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Module 2 contains concept",
+      "metadata": {
+        "module": "2"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0682",
+      "type": "contains",
+      "sourceId": "math.im3.module.2",
+      "targetId": "math.im3.skill.2.aleks.polynomial-feature-analysis",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Module 2 contains concept",
+      "metadata": {
+        "module": "2"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0683",
+      "type": "contains",
+      "sourceId": "math.im3.module.2",
+      "targetId": "math.im3.skill.2.aleks.polynomial-long-division",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Module 2 contains concept",
+      "metadata": {
+        "module": "2"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0684",
+      "type": "contains",
+      "sourceId": "math.im3.module.2",
+      "targetId": "math.im3.skill.2.aleks.polynomial-multiplication",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Module 2 contains concept",
+      "metadata": {
+        "module": "2"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0685",
+      "type": "contains",
+      "sourceId": "math.im3.module.2",
+      "targetId": "math.im3.skill.2.aleks.polynomial-synthetic-division",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Module 2 contains concept",
+      "metadata": {
+        "module": "2"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0686",
+      "type": "contains",
+      "sourceId": "math.im3.module.2",
+      "targetId": "math.im3.skill.2.aleks.polynomial-zero-approximation",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Module 2 contains concept",
+      "metadata": {
+        "module": "2"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0687",
+      "type": "contains",
+      "sourceId": "math.im3.module.2",
+      "targetId": "math.im3.skill.2.aleks.power-function-graph-analysis",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Module 2 contains concept",
+      "metadata": {
+        "module": "2"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0805",
+      "type": "prerequisite_for",
+      "sourceId": "math.im3.skill.2.1.graph-and-analyze-power-functions",
+      "targetId": "math.im3.skill.2.2.approximate-zeros-by-graphing-polynomial-functions",
+      "weight": 0.5,
+      "confidence": "low",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-prerequisite-v1",
+      "rationale": "Lesson-sequence prerequisite: lesson 1 precedes lesson 2 in module 2",
+      "metadata": {
+        "fromLesson": "2.1",
+        "toLesson": "2.2"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0806",
+      "type": "prerequisite_for",
+      "sourceId": "math.im3.skill.2.2.find-extrema-of-polynomial-functions",
+      "targetId": "math.im3.skill.2.3.add-and-subtract-polynomials",
+      "weight": 0.5,
+      "confidence": "low",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-prerequisite-v1",
+      "rationale": "Lesson-sequence prerequisite: lesson 2 precedes lesson 3 in module 2",
+      "metadata": {
+        "fromLesson": "2.2",
+        "toLesson": "2.3"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0807",
+      "type": "prerequisite_for",
+      "sourceId": "math.im3.skill.2.3.multiply-polynomials",
+      "targetId": "math.im3.skill.2.4.divide-polynomials-by-using-long-division",
+      "weight": 0.5,
+      "confidence": "low",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-prerequisite-v1",
+      "rationale": "Lesson-sequence prerequisite: lesson 3 precedes lesson 4 in module 2",
+      "metadata": {
+        "fromLesson": "2.3",
+        "toLesson": "2.4"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0808",
+      "type": "prerequisite_for",
+      "sourceId": "math.im3.skill.2.4.divide-polynomials-by-using-synthetic-division",
+      "targetId": "math.im3.skill.2.5.expand-powers-of-binomials-by-using-pascals-triangle-and-the",
+      "weight": 0.5,
+      "confidence": "low",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-prerequisite-v1",
+      "rationale": "Lesson-sequence prerequisite: lesson 4 precedes lesson 5 in module 2",
+      "metadata": {
+        "fromLesson": "2.4",
+        "toLesson": "2.5"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0809",
+      "type": "prerequisite_for",
+      "sourceId": "math.im3.skill.2.5.expand-powers-of-binomials-by-using-pascals-triangle-and-the",
+      "targetId": "math.im3.skill.3.1.solve-polynomial-equations-by-graphing",
+      "weight": 0.5,
+      "confidence": "low",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-prerequisite-v1",
+      "rationale": "Lesson-sequence prerequisite: last lesson of module 2 precedes first lesson of module 3",
+      "metadata": {
+        "fromLesson": "2.5",
+        "toLesson": "3.1"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0848",
+      "type": "supports",
+      "sourceId": "math.im3.skill.2.aleks.binomial-theorem-expansion",
+      "targetId": "math.im3.skill.2.1.graph-and-analyze-polynomial-functions",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 2",
+      "metadata": {
+        "module": "2"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0849",
+      "type": "supports",
+      "sourceId": "math.im3.skill.2.aleks.binomial-theorem-expansion",
+      "targetId": "math.im3.skill.2.1.graph-and-analyze-power-functions",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 2",
+      "metadata": {
+        "module": "2"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0850",
+      "type": "supports",
+      "sourceId": "math.im3.skill.2.aleks.binomial-theorem-expansion",
+      "targetId": "math.im3.skill.2.2.approximate-zeros-by-graphing-polynomial-functions",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 2",
+      "metadata": {
+        "module": "2"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0851",
+      "type": "supports",
+      "sourceId": "math.im3.skill.2.aleks.binomial-theorem-expansion",
+      "targetId": "math.im3.skill.2.2.find-extrema-of-polynomial-functions",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 2",
+      "metadata": {
+        "module": "2"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0852",
+      "type": "supports",
+      "sourceId": "math.im3.skill.2.aleks.binomial-theorem-expansion",
+      "targetId": "math.im3.skill.2.3.add-and-subtract-polynomials",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 2",
+      "metadata": {
+        "module": "2"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0853",
+      "type": "supports",
+      "sourceId": "math.im3.skill.2.aleks.binomial-theorem-expansion",
+      "targetId": "math.im3.skill.2.3.multiply-polynomials",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 2",
+      "metadata": {
+        "module": "2"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0854",
+      "type": "supports",
+      "sourceId": "math.im3.skill.2.aleks.binomial-theorem-expansion",
+      "targetId": "math.im3.skill.2.4.divide-polynomials-by-using-long-division",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 2",
+      "metadata": {
+        "module": "2"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0855",
+      "type": "supports",
+      "sourceId": "math.im3.skill.2.aleks.binomial-theorem-expansion",
+      "targetId": "math.im3.skill.2.4.divide-polynomials-by-using-synthetic-division",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 2",
+      "metadata": {
+        "module": "2"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0856",
+      "type": "supports",
+      "sourceId": "math.im3.skill.2.aleks.binomial-theorem-expansion",
+      "targetId": "math.im3.skill.2.5.expand-powers-of-binomials-by-using-pascals-triangle-and-the",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 2",
+      "metadata": {
+        "module": "2"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0857",
+      "type": "supports",
+      "sourceId": "math.im3.skill.2.aleks.pascal-triangle-expansion",
+      "targetId": "math.im3.skill.2.1.graph-and-analyze-polynomial-functions",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 2",
+      "metadata": {
+        "module": "2"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0858",
+      "type": "supports",
+      "sourceId": "math.im3.skill.2.aleks.pascal-triangle-expansion",
+      "targetId": "math.im3.skill.2.1.graph-and-analyze-power-functions",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 2",
+      "metadata": {
+        "module": "2"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0859",
+      "type": "supports",
+      "sourceId": "math.im3.skill.2.aleks.pascal-triangle-expansion",
+      "targetId": "math.im3.skill.2.2.approximate-zeros-by-graphing-polynomial-functions",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 2",
+      "metadata": {
+        "module": "2"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0860",
+      "type": "supports",
+      "sourceId": "math.im3.skill.2.aleks.pascal-triangle-expansion",
+      "targetId": "math.im3.skill.2.2.find-extrema-of-polynomial-functions",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 2",
+      "metadata": {
+        "module": "2"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0861",
+      "type": "supports",
+      "sourceId": "math.im3.skill.2.aleks.pascal-triangle-expansion",
+      "targetId": "math.im3.skill.2.3.add-and-subtract-polynomials",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 2",
+      "metadata": {
+        "module": "2"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0862",
+      "type": "supports",
+      "sourceId": "math.im3.skill.2.aleks.pascal-triangle-expansion",
+      "targetId": "math.im3.skill.2.3.multiply-polynomials",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 2",
+      "metadata": {
+        "module": "2"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0863",
+      "type": "supports",
+      "sourceId": "math.im3.skill.2.aleks.pascal-triangle-expansion",
+      "targetId": "math.im3.skill.2.4.divide-polynomials-by-using-long-division",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 2",
+      "metadata": {
+        "module": "2"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0864",
+      "type": "supports",
+      "sourceId": "math.im3.skill.2.aleks.pascal-triangle-expansion",
+      "targetId": "math.im3.skill.2.4.divide-polynomials-by-using-synthetic-division",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 2",
+      "metadata": {
+        "module": "2"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0865",
+      "type": "supports",
+      "sourceId": "math.im3.skill.2.aleks.pascal-triangle-expansion",
+      "targetId": "math.im3.skill.2.5.expand-powers-of-binomials-by-using-pascals-triangle-and-the",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 2",
+      "metadata": {
+        "module": "2"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0866",
+      "type": "supports",
+      "sourceId": "math.im3.skill.2.aleks.polynomial-add-subtract",
+      "targetId": "math.im3.skill.2.1.graph-and-analyze-polynomial-functions",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 2",
+      "metadata": {
+        "module": "2"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0867",
+      "type": "supports",
+      "sourceId": "math.im3.skill.2.aleks.polynomial-add-subtract",
+      "targetId": "math.im3.skill.2.1.graph-and-analyze-power-functions",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 2",
+      "metadata": {
+        "module": "2"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0868",
+      "type": "supports",
+      "sourceId": "math.im3.skill.2.aleks.polynomial-add-subtract",
+      "targetId": "math.im3.skill.2.2.approximate-zeros-by-graphing-polynomial-functions",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 2",
+      "metadata": {
+        "module": "2"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0869",
+      "type": "supports",
+      "sourceId": "math.im3.skill.2.aleks.polynomial-add-subtract",
+      "targetId": "math.im3.skill.2.2.find-extrema-of-polynomial-functions",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 2",
+      "metadata": {
+        "module": "2"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0870",
+      "type": "supports",
+      "sourceId": "math.im3.skill.2.aleks.polynomial-add-subtract",
+      "targetId": "math.im3.skill.2.3.add-and-subtract-polynomials",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 2",
+      "metadata": {
+        "module": "2"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0871",
+      "type": "supports",
+      "sourceId": "math.im3.skill.2.aleks.polynomial-add-subtract",
+      "targetId": "math.im3.skill.2.3.multiply-polynomials",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 2",
+      "metadata": {
+        "module": "2"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0872",
+      "type": "supports",
+      "sourceId": "math.im3.skill.2.aleks.polynomial-add-subtract",
+      "targetId": "math.im3.skill.2.4.divide-polynomials-by-using-long-division",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 2",
+      "metadata": {
+        "module": "2"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0873",
+      "type": "supports",
+      "sourceId": "math.im3.skill.2.aleks.polynomial-add-subtract",
+      "targetId": "math.im3.skill.2.4.divide-polynomials-by-using-synthetic-division",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 2",
+      "metadata": {
+        "module": "2"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0874",
+      "type": "supports",
+      "sourceId": "math.im3.skill.2.aleks.polynomial-add-subtract",
+      "targetId": "math.im3.skill.2.5.expand-powers-of-binomials-by-using-pascals-triangle-and-the",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 2",
+      "metadata": {
+        "module": "2"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0875",
+      "type": "supports",
+      "sourceId": "math.im3.skill.2.aleks.polynomial-extrema-analysis",
+      "targetId": "math.im3.skill.2.1.graph-and-analyze-polynomial-functions",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 2",
+      "metadata": {
+        "module": "2"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0876",
+      "type": "supports",
+      "sourceId": "math.im3.skill.2.aleks.polynomial-extrema-analysis",
+      "targetId": "math.im3.skill.2.1.graph-and-analyze-power-functions",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 2",
+      "metadata": {
+        "module": "2"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0877",
+      "type": "supports",
+      "sourceId": "math.im3.skill.2.aleks.polynomial-extrema-analysis",
+      "targetId": "math.im3.skill.2.2.approximate-zeros-by-graphing-polynomial-functions",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 2",
+      "metadata": {
+        "module": "2"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0878",
+      "type": "supports",
+      "sourceId": "math.im3.skill.2.aleks.polynomial-extrema-analysis",
+      "targetId": "math.im3.skill.2.2.find-extrema-of-polynomial-functions",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 2",
+      "metadata": {
+        "module": "2"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0879",
+      "type": "supports",
+      "sourceId": "math.im3.skill.2.aleks.polynomial-extrema-analysis",
+      "targetId": "math.im3.skill.2.3.add-and-subtract-polynomials",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 2",
+      "metadata": {
+        "module": "2"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0880",
+      "type": "supports",
+      "sourceId": "math.im3.skill.2.aleks.polynomial-extrema-analysis",
+      "targetId": "math.im3.skill.2.3.multiply-polynomials",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 2",
+      "metadata": {
+        "module": "2"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0881",
+      "type": "supports",
+      "sourceId": "math.im3.skill.2.aleks.polynomial-extrema-analysis",
+      "targetId": "math.im3.skill.2.4.divide-polynomials-by-using-long-division",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 2",
+      "metadata": {
+        "module": "2"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0882",
+      "type": "supports",
+      "sourceId": "math.im3.skill.2.aleks.polynomial-extrema-analysis",
+      "targetId": "math.im3.skill.2.4.divide-polynomials-by-using-synthetic-division",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 2",
+      "metadata": {
+        "module": "2"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0883",
+      "type": "supports",
+      "sourceId": "math.im3.skill.2.aleks.polynomial-extrema-analysis",
+      "targetId": "math.im3.skill.2.5.expand-powers-of-binomials-by-using-pascals-triangle-and-the",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 2",
+      "metadata": {
+        "module": "2"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0884",
+      "type": "supports",
+      "sourceId": "math.im3.skill.2.aleks.polynomial-feature-analysis",
+      "targetId": "math.im3.skill.2.1.graph-and-analyze-polynomial-functions",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 2",
+      "metadata": {
+        "module": "2"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0885",
+      "type": "supports",
+      "sourceId": "math.im3.skill.2.aleks.polynomial-feature-analysis",
+      "targetId": "math.im3.skill.2.1.graph-and-analyze-power-functions",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 2",
+      "metadata": {
+        "module": "2"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0886",
+      "type": "supports",
+      "sourceId": "math.im3.skill.2.aleks.polynomial-feature-analysis",
+      "targetId": "math.im3.skill.2.2.approximate-zeros-by-graphing-polynomial-functions",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 2",
+      "metadata": {
+        "module": "2"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0887",
+      "type": "supports",
+      "sourceId": "math.im3.skill.2.aleks.polynomial-feature-analysis",
+      "targetId": "math.im3.skill.2.2.find-extrema-of-polynomial-functions",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 2",
+      "metadata": {
+        "module": "2"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0888",
+      "type": "supports",
+      "sourceId": "math.im3.skill.2.aleks.polynomial-feature-analysis",
+      "targetId": "math.im3.skill.2.3.add-and-subtract-polynomials",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 2",
+      "metadata": {
+        "module": "2"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0889",
+      "type": "supports",
+      "sourceId": "math.im3.skill.2.aleks.polynomial-feature-analysis",
+      "targetId": "math.im3.skill.2.3.multiply-polynomials",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 2",
+      "metadata": {
+        "module": "2"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0890",
+      "type": "supports",
+      "sourceId": "math.im3.skill.2.aleks.polynomial-feature-analysis",
+      "targetId": "math.im3.skill.2.4.divide-polynomials-by-using-long-division",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 2",
+      "metadata": {
+        "module": "2"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0891",
+      "type": "supports",
+      "sourceId": "math.im3.skill.2.aleks.polynomial-feature-analysis",
+      "targetId": "math.im3.skill.2.4.divide-polynomials-by-using-synthetic-division",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 2",
+      "metadata": {
+        "module": "2"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0892",
+      "type": "supports",
+      "sourceId": "math.im3.skill.2.aleks.polynomial-feature-analysis",
+      "targetId": "math.im3.skill.2.5.expand-powers-of-binomials-by-using-pascals-triangle-and-the",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 2",
+      "metadata": {
+        "module": "2"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0893",
+      "type": "supports",
+      "sourceId": "math.im3.skill.2.aleks.polynomial-long-division",
+      "targetId": "math.im3.skill.2.1.graph-and-analyze-polynomial-functions",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 2",
+      "metadata": {
+        "module": "2"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0894",
+      "type": "supports",
+      "sourceId": "math.im3.skill.2.aleks.polynomial-long-division",
+      "targetId": "math.im3.skill.2.1.graph-and-analyze-power-functions",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 2",
+      "metadata": {
+        "module": "2"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0895",
+      "type": "supports",
+      "sourceId": "math.im3.skill.2.aleks.polynomial-long-division",
+      "targetId": "math.im3.skill.2.2.approximate-zeros-by-graphing-polynomial-functions",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 2",
+      "metadata": {
+        "module": "2"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0896",
+      "type": "supports",
+      "sourceId": "math.im3.skill.2.aleks.polynomial-long-division",
+      "targetId": "math.im3.skill.2.2.find-extrema-of-polynomial-functions",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 2",
+      "metadata": {
+        "module": "2"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0897",
+      "type": "supports",
+      "sourceId": "math.im3.skill.2.aleks.polynomial-long-division",
+      "targetId": "math.im3.skill.2.3.add-and-subtract-polynomials",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 2",
+      "metadata": {
+        "module": "2"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0898",
+      "type": "supports",
+      "sourceId": "math.im3.skill.2.aleks.polynomial-long-division",
+      "targetId": "math.im3.skill.2.3.multiply-polynomials",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 2",
+      "metadata": {
+        "module": "2"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0899",
+      "type": "supports",
+      "sourceId": "math.im3.skill.2.aleks.polynomial-long-division",
+      "targetId": "math.im3.skill.2.4.divide-polynomials-by-using-long-division",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 2",
+      "metadata": {
+        "module": "2"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0900",
+      "type": "supports",
+      "sourceId": "math.im3.skill.2.aleks.polynomial-long-division",
+      "targetId": "math.im3.skill.2.4.divide-polynomials-by-using-synthetic-division",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 2",
+      "metadata": {
+        "module": "2"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0901",
+      "type": "supports",
+      "sourceId": "math.im3.skill.2.aleks.polynomial-long-division",
+      "targetId": "math.im3.skill.2.5.expand-powers-of-binomials-by-using-pascals-triangle-and-the",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 2",
+      "metadata": {
+        "module": "2"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0902",
+      "type": "supports",
+      "sourceId": "math.im3.skill.2.aleks.polynomial-multiplication",
+      "targetId": "math.im3.skill.2.1.graph-and-analyze-polynomial-functions",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 2",
+      "metadata": {
+        "module": "2"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0903",
+      "type": "supports",
+      "sourceId": "math.im3.skill.2.aleks.polynomial-multiplication",
+      "targetId": "math.im3.skill.2.1.graph-and-analyze-power-functions",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 2",
+      "metadata": {
+        "module": "2"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0904",
+      "type": "supports",
+      "sourceId": "math.im3.skill.2.aleks.polynomial-multiplication",
+      "targetId": "math.im3.skill.2.2.approximate-zeros-by-graphing-polynomial-functions",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 2",
+      "metadata": {
+        "module": "2"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0905",
+      "type": "supports",
+      "sourceId": "math.im3.skill.2.aleks.polynomial-multiplication",
+      "targetId": "math.im3.skill.2.2.find-extrema-of-polynomial-functions",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 2",
+      "metadata": {
+        "module": "2"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0906",
+      "type": "supports",
+      "sourceId": "math.im3.skill.2.aleks.polynomial-multiplication",
+      "targetId": "math.im3.skill.2.3.add-and-subtract-polynomials",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 2",
+      "metadata": {
+        "module": "2"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0907",
+      "type": "supports",
+      "sourceId": "math.im3.skill.2.aleks.polynomial-multiplication",
+      "targetId": "math.im3.skill.2.3.multiply-polynomials",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 2",
+      "metadata": {
+        "module": "2"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0908",
+      "type": "supports",
+      "sourceId": "math.im3.skill.2.aleks.polynomial-multiplication",
+      "targetId": "math.im3.skill.2.4.divide-polynomials-by-using-long-division",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 2",
+      "metadata": {
+        "module": "2"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0909",
+      "type": "supports",
+      "sourceId": "math.im3.skill.2.aleks.polynomial-multiplication",
+      "targetId": "math.im3.skill.2.4.divide-polynomials-by-using-synthetic-division",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 2",
+      "metadata": {
+        "module": "2"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0910",
+      "type": "supports",
+      "sourceId": "math.im3.skill.2.aleks.polynomial-multiplication",
+      "targetId": "math.im3.skill.2.5.expand-powers-of-binomials-by-using-pascals-triangle-and-the",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 2",
+      "metadata": {
+        "module": "2"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0911",
+      "type": "supports",
+      "sourceId": "math.im3.skill.2.aleks.polynomial-synthetic-division",
+      "targetId": "math.im3.skill.2.1.graph-and-analyze-polynomial-functions",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 2",
+      "metadata": {
+        "module": "2"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0912",
+      "type": "supports",
+      "sourceId": "math.im3.skill.2.aleks.polynomial-synthetic-division",
+      "targetId": "math.im3.skill.2.1.graph-and-analyze-power-functions",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 2",
+      "metadata": {
+        "module": "2"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0913",
+      "type": "supports",
+      "sourceId": "math.im3.skill.2.aleks.polynomial-synthetic-division",
+      "targetId": "math.im3.skill.2.2.approximate-zeros-by-graphing-polynomial-functions",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 2",
+      "metadata": {
+        "module": "2"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0914",
+      "type": "supports",
+      "sourceId": "math.im3.skill.2.aleks.polynomial-synthetic-division",
+      "targetId": "math.im3.skill.2.2.find-extrema-of-polynomial-functions",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 2",
+      "metadata": {
+        "module": "2"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0915",
+      "type": "supports",
+      "sourceId": "math.im3.skill.2.aleks.polynomial-synthetic-division",
+      "targetId": "math.im3.skill.2.3.add-and-subtract-polynomials",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 2",
+      "metadata": {
+        "module": "2"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0916",
+      "type": "supports",
+      "sourceId": "math.im3.skill.2.aleks.polynomial-synthetic-division",
+      "targetId": "math.im3.skill.2.3.multiply-polynomials",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 2",
+      "metadata": {
+        "module": "2"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0917",
+      "type": "supports",
+      "sourceId": "math.im3.skill.2.aleks.polynomial-synthetic-division",
+      "targetId": "math.im3.skill.2.4.divide-polynomials-by-using-long-division",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 2",
+      "metadata": {
+        "module": "2"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0918",
+      "type": "supports",
+      "sourceId": "math.im3.skill.2.aleks.polynomial-synthetic-division",
+      "targetId": "math.im3.skill.2.4.divide-polynomials-by-using-synthetic-division",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 2",
+      "metadata": {
+        "module": "2"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0919",
+      "type": "supports",
+      "sourceId": "math.im3.skill.2.aleks.polynomial-synthetic-division",
+      "targetId": "math.im3.skill.2.5.expand-powers-of-binomials-by-using-pascals-triangle-and-the",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 2",
+      "metadata": {
+        "module": "2"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0920",
+      "type": "supports",
+      "sourceId": "math.im3.skill.2.aleks.polynomial-zero-approximation",
+      "targetId": "math.im3.skill.2.1.graph-and-analyze-polynomial-functions",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 2",
+      "metadata": {
+        "module": "2"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0921",
+      "type": "supports",
+      "sourceId": "math.im3.skill.2.aleks.polynomial-zero-approximation",
+      "targetId": "math.im3.skill.2.1.graph-and-analyze-power-functions",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 2",
+      "metadata": {
+        "module": "2"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0922",
+      "type": "supports",
+      "sourceId": "math.im3.skill.2.aleks.polynomial-zero-approximation",
+      "targetId": "math.im3.skill.2.2.approximate-zeros-by-graphing-polynomial-functions",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 2",
+      "metadata": {
+        "module": "2"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0923",
+      "type": "supports",
+      "sourceId": "math.im3.skill.2.aleks.polynomial-zero-approximation",
+      "targetId": "math.im3.skill.2.2.find-extrema-of-polynomial-functions",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 2",
+      "metadata": {
+        "module": "2"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0924",
+      "type": "supports",
+      "sourceId": "math.im3.skill.2.aleks.polynomial-zero-approximation",
+      "targetId": "math.im3.skill.2.3.add-and-subtract-polynomials",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 2",
+      "metadata": {
+        "module": "2"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0925",
+      "type": "supports",
+      "sourceId": "math.im3.skill.2.aleks.polynomial-zero-approximation",
+      "targetId": "math.im3.skill.2.3.multiply-polynomials",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 2",
+      "metadata": {
+        "module": "2"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0926",
+      "type": "supports",
+      "sourceId": "math.im3.skill.2.aleks.polynomial-zero-approximation",
+      "targetId": "math.im3.skill.2.4.divide-polynomials-by-using-long-division",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 2",
+      "metadata": {
+        "module": "2"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0927",
+      "type": "supports",
+      "sourceId": "math.im3.skill.2.aleks.polynomial-zero-approximation",
+      "targetId": "math.im3.skill.2.4.divide-polynomials-by-using-synthetic-division",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 2",
+      "metadata": {
+        "module": "2"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0928",
+      "type": "supports",
+      "sourceId": "math.im3.skill.2.aleks.polynomial-zero-approximation",
+      "targetId": "math.im3.skill.2.5.expand-powers-of-binomials-by-using-pascals-triangle-and-the",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 2",
+      "metadata": {
+        "module": "2"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0929",
+      "type": "supports",
+      "sourceId": "math.im3.skill.2.aleks.power-function-graph-analysis",
+      "targetId": "math.im3.skill.2.1.graph-and-analyze-polynomial-functions",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 2",
+      "metadata": {
+        "module": "2"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0930",
+      "type": "supports",
+      "sourceId": "math.im3.skill.2.aleks.power-function-graph-analysis",
+      "targetId": "math.im3.skill.2.1.graph-and-analyze-power-functions",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 2",
+      "metadata": {
+        "module": "2"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0931",
+      "type": "supports",
+      "sourceId": "math.im3.skill.2.aleks.power-function-graph-analysis",
+      "targetId": "math.im3.skill.2.2.approximate-zeros-by-graphing-polynomial-functions",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 2",
+      "metadata": {
+        "module": "2"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0932",
+      "type": "supports",
+      "sourceId": "math.im3.skill.2.aleks.power-function-graph-analysis",
+      "targetId": "math.im3.skill.2.2.find-extrema-of-polynomial-functions",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 2",
+      "metadata": {
+        "module": "2"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0933",
+      "type": "supports",
+      "sourceId": "math.im3.skill.2.aleks.power-function-graph-analysis",
+      "targetId": "math.im3.skill.2.3.add-and-subtract-polynomials",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 2",
+      "metadata": {
+        "module": "2"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0934",
+      "type": "supports",
+      "sourceId": "math.im3.skill.2.aleks.power-function-graph-analysis",
+      "targetId": "math.im3.skill.2.3.multiply-polynomials",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 2",
+      "metadata": {
+        "module": "2"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0935",
+      "type": "supports",
+      "sourceId": "math.im3.skill.2.aleks.power-function-graph-analysis",
+      "targetId": "math.im3.skill.2.4.divide-polynomials-by-using-long-division",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 2",
+      "metadata": {
+        "module": "2"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0936",
+      "type": "supports",
+      "sourceId": "math.im3.skill.2.aleks.power-function-graph-analysis",
+      "targetId": "math.im3.skill.2.4.divide-polynomials-by-using-synthetic-division",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 2",
+      "metadata": {
+        "module": "2"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0937",
+      "type": "supports",
+      "sourceId": "math.im3.skill.2.aleks.power-function-graph-analysis",
+      "targetId": "math.im3.skill.2.5.expand-powers-of-binomials-by-using-pascals-triangle-and-the",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 2",
+      "metadata": {
+        "module": "2"
+      }
+    }
+  ]
+}

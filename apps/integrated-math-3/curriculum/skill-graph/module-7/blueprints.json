@@ -1,0 +1,1329 @@
+{
+  "blueprints": [
+    {
+      "nodeId": "math.im3.skill.7.1.simplify-rational-expressions",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "rendererKey": "step-by-step-solver",
+      "rendererModeMap": {
+        "worked": "step-by-step-solver",
+        "guidedPractice": "step-by-step-solver",
+        "independentPractice": "step-by-step-solver"
+      },
+      "workedExampleSpec": {
+        "prompt": "Worked example for 7a: Simplify rational expressions",
+        "givens": [
+          "See curriculum source"
+        ],
+        "target": {},
+        "steps": [
+          {
+            "description": "Step 1",
+            "expression": "See curriculum"
+          }
+        ],
+        "explanation": "See curriculum source material."
+      },
+      "guidedPracticeSpec": {
+        "scaffoldedPrompt": "Guided practice for 7a: Simplify rational expressions",
+        "stepPrompts": [
+          "Step 1"
+        ],
+        "hints": [
+          "Hint 1"
+        ],
+        "checksPerStep": [
+          {
+            "check": "See curriculum"
+          }
+        ],
+        "revealPolicy": "one_at_a_time"
+      },
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM3 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "7",
+        "lesson": "1"
+      }
+    },
+    {
+      "nodeId": "math.im3.skill.7.1.simplify-rational-expressions-by-multiplying-and-dividing",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "rendererKey": "step-by-step-solver",
+      "rendererModeMap": {
+        "worked": "step-by-step-solver",
+        "guidedPractice": "step-by-step-solver",
+        "independentPractice": "step-by-step-solver"
+      },
+      "workedExampleSpec": {
+        "prompt": "Worked example for 7b: Simplify rational expressions by multiplying and dividing",
+        "givens": [
+          "See curriculum source"
+        ],
+        "target": {},
+        "steps": [
+          {
+            "description": "Step 1",
+            "expression": "See curriculum"
+          }
+        ],
+        "explanation": "See curriculum source material."
+      },
+      "guidedPracticeSpec": {
+        "scaffoldedPrompt": "Guided practice for 7b: Simplify rational expressions by multiplying and dividing",
+        "stepPrompts": [
+          "Step 1"
+        ],
+        "hints": [
+          "Hint 1"
+        ],
+        "checksPerStep": [
+          {
+            "check": "See curriculum"
+          }
+        ],
+        "revealPolicy": "one_at_a_time"
+      },
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM3 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "7",
+        "lesson": "1"
+      }
+    },
+    {
+      "nodeId": "math.im3.skill.7.2.simplify-complex-fractions",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "rendererKey": "step-by-step-solver",
+      "rendererModeMap": {
+        "worked": "step-by-step-solver",
+        "guidedPractice": "step-by-step-solver",
+        "independentPractice": "step-by-step-solver"
+      },
+      "workedExampleSpec": {
+        "prompt": "Worked example for 7d: Simplify complex fractions",
+        "givens": [
+          "See curriculum source"
+        ],
+        "target": {},
+        "steps": [
+          {
+            "description": "Step 1",
+            "expression": "See curriculum"
+          }
+        ],
+        "explanation": "See curriculum source material."
+      },
+      "guidedPracticeSpec": {
+        "scaffoldedPrompt": "Guided practice for 7d: Simplify complex fractions",
+        "stepPrompts": [
+          "Step 1"
+        ],
+        "hints": [
+          "Hint 1"
+        ],
+        "checksPerStep": [
+          {
+            "check": "See curriculum"
+          }
+        ],
+        "revealPolicy": "one_at_a_time"
+      },
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM3 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "7",
+        "lesson": "2"
+      }
+    },
+    {
+      "nodeId": "math.im3.skill.7.2.simplify-rational-expressions-by-adding-and-subtracting",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "rendererKey": "step-by-step-solver",
+      "rendererModeMap": {
+        "worked": "step-by-step-solver",
+        "guidedPractice": "step-by-step-solver",
+        "independentPractice": "step-by-step-solver"
+      },
+      "workedExampleSpec": {
+        "prompt": "Worked example for 7c: Simplify rational expressions by adding and subtracting",
+        "givens": [
+          "See curriculum source"
+        ],
+        "target": {},
+        "steps": [
+          {
+            "description": "Step 1",
+            "expression": "See curriculum"
+          }
+        ],
+        "explanation": "See curriculum source material."
+      },
+      "guidedPracticeSpec": {
+        "scaffoldedPrompt": "Guided practice for 7c: Simplify rational expressions by adding and subtracting",
+        "stepPrompts": [
+          "Step 1"
+        ],
+        "hints": [
+          "Hint 1"
+        ],
+        "checksPerStep": [
+          {
+            "check": "See curriculum"
+          }
+        ],
+        "revealPolicy": "one_at_a_time"
+      },
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM3 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "7",
+        "lesson": "2"
+      }
+    },
+    {
+      "nodeId": "math.im3.skill.7.3.graph-and-write-reciprocal-functions-by-using-transformation",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "rendererKey": "graphing-explorer",
+      "rendererModeMap": {
+        "worked": "graphing-explorer",
+        "guidedPractice": "graphing-explorer",
+        "independentPractice": "graphing-explorer"
+      },
+      "workedExampleSpec": {
+        "prompt": "Worked example for 7f: Graph and write reciprocal functions by using transformations",
+        "givens": [
+          "See curriculum source"
+        ],
+        "target": {},
+        "steps": [
+          {
+            "description": "Step 1",
+            "expression": "See curriculum"
+          }
+        ],
+        "explanation": "See curriculum source material."
+      },
+      "guidedPracticeSpec": {
+        "scaffoldedPrompt": "Guided practice for 7f: Graph and write reciprocal functions by using transformations",
+        "stepPrompts": [
+          "Step 1"
+        ],
+        "hints": [
+          "Hint 1"
+        ],
+        "checksPerStep": [
+          {
+            "check": "See curriculum"
+          }
+        ],
+        "revealPolicy": "one_at_a_time"
+      },
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM3 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "7",
+        "lesson": "3"
+      }
+    },
+    {
+      "nodeId": "math.im3.skill.7.3.graph-reciprocal-functions-by-making-tables-of-values",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "rendererKey": "graphing-explorer",
+      "rendererModeMap": {
+        "worked": "graphing-explorer",
+        "guidedPractice": "graphing-explorer",
+        "independentPractice": "graphing-explorer"
+      },
+      "workedExampleSpec": {
+        "prompt": "Worked example for 7e: Graph reciprocal functions by making tables of values",
+        "givens": [
+          "See curriculum source"
+        ],
+        "target": {},
+        "steps": [
+          {
+            "description": "Step 1",
+            "expression": "See curriculum"
+          }
+        ],
+        "explanation": "See curriculum source material."
+      },
+      "guidedPracticeSpec": {
+        "scaffoldedPrompt": "Guided practice for 7e: Graph reciprocal functions by making tables of values",
+        "stepPrompts": [
+          "Step 1"
+        ],
+        "hints": [
+          "Hint 1"
+        ],
+        "checksPerStep": [
+          {
+            "check": "See curriculum"
+          }
+        ],
+        "revealPolicy": "one_at_a_time"
+      },
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM3 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "7",
+        "lesson": "3"
+      }
+    },
+    {
+      "nodeId": "math.im3.skill.7.4.graph-and-analyze-rational-functions-with-oblique-asymptotes",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "rendererKey": "graphing-explorer",
+      "rendererModeMap": {
+        "worked": "graphing-explorer",
+        "guidedPractice": "graphing-explorer",
+        "independentPractice": "graphing-explorer"
+      },
+      "workedExampleSpec": {
+        "prompt": "Worked example for 7h: Graph and analyze rational functions with oblique asymptotes",
+        "givens": [
+          "See curriculum source"
+        ],
+        "target": {},
+        "steps": [
+          {
+            "description": "Step 1",
+            "expression": "See curriculum"
+          }
+        ],
+        "explanation": "See curriculum source material."
+      },
+      "guidedPracticeSpec": {
+        "scaffoldedPrompt": "Guided practice for 7h: Graph and analyze rational functions with oblique asymptotes",
+        "stepPrompts": [
+          "Step 1"
+        ],
+        "hints": [
+          "Hint 1"
+        ],
+        "checksPerStep": [
+          {
+            "check": "See curriculum"
+          }
+        ],
+        "revealPolicy": "one_at_a_time"
+      },
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM3 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "7",
+        "lesson": "4"
+      }
+    },
+    {
+      "nodeId": "math.im3.skill.7.4.graph-and-analyze-rational-functions-with-vertical-and-horiz",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "rendererKey": "graphing-explorer",
+      "rendererModeMap": {
+        "worked": "graphing-explorer",
+        "guidedPractice": "graphing-explorer",
+        "independentPractice": "graphing-explorer"
+      },
+      "workedExampleSpec": {
+        "prompt": "Worked example for 7g: Graph and analyze rational functions with vertical and horizontal asymptotes",
+        "givens": [
+          "See curriculum source"
+        ],
+        "target": {},
+        "steps": [
+          {
+            "description": "Step 1",
+            "expression": "See curriculum"
+          }
+        ],
+        "explanation": "See curriculum source material."
+      },
+      "guidedPracticeSpec": {
+        "scaffoldedPrompt": "Guided practice for 7g: Graph and analyze rational functions with vertical and horizontal asymptotes",
+        "stepPrompts": [
+          "Step 1"
+        ],
+        "hints": [
+          "Hint 1"
+        ],
+        "checksPerStep": [
+          {
+            "check": "See curriculum"
+          }
+        ],
+        "revealPolicy": "one_at_a_time"
+      },
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM3 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "7",
+        "lesson": "4"
+      }
+    },
+    {
+      "nodeId": "math.im3.skill.7.5.recognize-and-solve-direct-and-joint-variation-equations",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "rendererKey": "step-by-step-solver",
+      "rendererModeMap": {
+        "worked": "step-by-step-solver",
+        "guidedPractice": "step-by-step-solver",
+        "independentPractice": "step-by-step-solver"
+      },
+      "workedExampleSpec": {
+        "prompt": "Worked example for 7i: Recognize and solve direct and joint variation equations",
+        "givens": [
+          "See curriculum source"
+        ],
+        "target": {},
+        "steps": [
+          {
+            "description": "Step 1",
+            "expression": "See curriculum"
+          }
+        ],
+        "explanation": "See curriculum source material."
+      },
+      "guidedPracticeSpec": {
+        "scaffoldedPrompt": "Guided practice for 7i: Recognize and solve direct and joint variation equations",
+        "stepPrompts": [
+          "Step 1"
+        ],
+        "hints": [
+          "Hint 1"
+        ],
+        "checksPerStep": [
+          {
+            "check": "See curriculum"
+          }
+        ],
+        "revealPolicy": "one_at_a_time"
+      },
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM3 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "7",
+        "lesson": "5"
+      }
+    },
+    {
+      "nodeId": "math.im3.skill.7.5.recognize-and-solve-inverse-and-combined-variation-equations",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "rendererKey": "graphing-explorer",
+      "rendererModeMap": {
+        "worked": "graphing-explorer",
+        "guidedPractice": "graphing-explorer",
+        "independentPractice": "graphing-explorer"
+      },
+      "workedExampleSpec": {
+        "prompt": "Worked example for 7j: Recognize and solve inverse and combined variation equations",
+        "givens": [
+          "See curriculum source"
+        ],
+        "target": {},
+        "steps": [
+          {
+            "description": "Step 1",
+            "expression": "See curriculum"
+          }
+        ],
+        "explanation": "See curriculum source material."
+      },
+      "guidedPracticeSpec": {
+        "scaffoldedPrompt": "Guided practice for 7j: Recognize and solve inverse and combined variation equations",
+        "stepPrompts": [
+          "Step 1"
+        ],
+        "hints": [
+          "Hint 1"
+        ],
+        "checksPerStep": [
+          {
+            "check": "See curriculum"
+          }
+        ],
+        "revealPolicy": "one_at_a_time"
+      },
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM3 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "7",
+        "lesson": "5"
+      }
+    },
+    {
+      "nodeId": "math.im3.skill.7.6.solve-rational-equations-in-one-variable",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "rendererKey": "step-by-step-solver",
+      "rendererModeMap": {
+        "worked": "step-by-step-solver",
+        "guidedPractice": "step-by-step-solver",
+        "independentPractice": "step-by-step-solver"
+      },
+      "workedExampleSpec": {
+        "prompt": "Worked example for 7k: Solve rational equations in one variable",
+        "givens": [
+          "See curriculum source"
+        ],
+        "target": {},
+        "steps": [
+          {
+            "description": "Step 1",
+            "expression": "See curriculum"
+          }
+        ],
+        "explanation": "See curriculum source material."
+      },
+      "guidedPracticeSpec": {
+        "scaffoldedPrompt": "Guided practice for 7k: Solve rational equations in one variable",
+        "stepPrompts": [
+          "Step 1"
+        ],
+        "hints": [
+          "Hint 1"
+        ],
+        "checksPerStep": [
+          {
+            "check": "See curriculum"
+          }
+        ],
+        "revealPolicy": "one_at_a_time"
+      },
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM3 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "7",
+        "lesson": "6"
+      }
+    },
+    {
+      "nodeId": "math.im3.skill.7.6.solve-rational-inequalities-in-one-variable",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "rendererKey": "step-by-step-solver",
+      "rendererModeMap": {
+        "worked": "step-by-step-solver",
+        "guidedPractice": "step-by-step-solver",
+        "independentPractice": "step-by-step-solver"
+      },
+      "workedExampleSpec": {
+        "prompt": "Worked example for 7l: Solve rational inequalities in one variable",
+        "givens": [
+          "See curriculum source"
+        ],
+        "target": {},
+        "steps": [
+          {
+            "description": "Step 1",
+            "expression": "See curriculum"
+          }
+        ],
+        "explanation": "See curriculum source material."
+      },
+      "guidedPracticeSpec": {
+        "scaffoldedPrompt": "Guided practice for 7l: Solve rational inequalities in one variable",
+        "stepPrompts": [
+          "Step 1"
+        ],
+        "hints": [
+          "Hint 1"
+        ],
+        "checksPerStep": [
+          {
+            "check": "See curriculum"
+          }
+        ],
+        "revealPolicy": "one_at_a_time"
+      },
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM3 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "7",
+        "lesson": "6"
+      }
+    },
+    {
+      "nodeId": "math.im3.skill.7.aleks.complex-fraction-simplification",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "rendererKey": "comprehension-quiz",
+      "rendererModeMap": {
+        "worked": "comprehension-quiz",
+        "guidedPractice": "comprehension-quiz",
+        "independentPractice": "comprehension-quiz"
+      },
+      "workedExampleSpec": {
+        "prompt": "Worked example for concept: complex_fraction_simplification",
+        "givens": [
+          "See curriculum source"
+        ],
+        "target": {},
+        "steps": [
+          {
+            "description": "Step 1",
+            "expression": "See curriculum"
+          }
+        ],
+        "explanation": "See curriculum source material."
+      },
+      "guidedPracticeSpec": {
+        "scaffoldedPrompt": "Guided practice for concept: complex_fraction_simplification",
+        "stepPrompts": [
+          "Step 1"
+        ],
+        "hints": [
+          "Hint 1"
+        ],
+        "checksPerStep": [
+          {
+            "check": "See curriculum"
+          }
+        ],
+        "revealPolicy": "one_at_a_time"
+      },
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM3 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "7",
+        "lesson": "1"
+      }
+    },
+    {
+      "nodeId": "math.im3.skill.7.aleks.direct-joint-variation-modeling",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "rendererKey": "comprehension-quiz",
+      "rendererModeMap": {
+        "worked": "comprehension-quiz",
+        "guidedPractice": "comprehension-quiz",
+        "independentPractice": "comprehension-quiz"
+      },
+      "workedExampleSpec": {
+        "prompt": "Worked example for concept: direct_joint_variation_modeling",
+        "givens": [
+          "See curriculum source"
+        ],
+        "target": {},
+        "steps": [
+          {
+            "description": "Step 1",
+            "expression": "See curriculum"
+          }
+        ],
+        "explanation": "See curriculum source material."
+      },
+      "guidedPracticeSpec": {
+        "scaffoldedPrompt": "Guided practice for concept: direct_joint_variation_modeling",
+        "stepPrompts": [
+          "Step 1"
+        ],
+        "hints": [
+          "Hint 1"
+        ],
+        "checksPerStep": [
+          {
+            "check": "See curriculum"
+          }
+        ],
+        "revealPolicy": "one_at_a_time"
+      },
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM3 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "7",
+        "lesson": "1"
+      }
+    },
+    {
+      "nodeId": "math.im3.skill.7.aleks.inverse-combined-variation-modeling",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "rendererKey": "comprehension-quiz",
+      "rendererModeMap": {
+        "worked": "comprehension-quiz",
+        "guidedPractice": "comprehension-quiz",
+        "independentPractice": "comprehension-quiz"
+      },
+      "workedExampleSpec": {
+        "prompt": "Worked example for concept: inverse_combined_variation_modeling",
+        "givens": [
+          "See curriculum source"
+        ],
+        "target": {},
+        "steps": [
+          {
+            "description": "Step 1",
+            "expression": "See curriculum"
+          }
+        ],
+        "explanation": "See curriculum source material."
+      },
+      "guidedPracticeSpec": {
+        "scaffoldedPrompt": "Guided practice for concept: inverse_combined_variation_modeling",
+        "stepPrompts": [
+          "Step 1"
+        ],
+        "hints": [
+          "Hint 1"
+        ],
+        "checksPerStep": [
+          {
+            "check": "See curriculum"
+          }
+        ],
+        "revealPolicy": "one_at_a_time"
+      },
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM3 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "7",
+        "lesson": "1"
+      }
+    },
+    {
+      "nodeId": "math.im3.skill.7.aleks.rational-equation-applications",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "rendererKey": "step-by-step-solver",
+      "rendererModeMap": {
+        "worked": "step-by-step-solver",
+        "guidedPractice": "step-by-step-solver",
+        "independentPractice": "step-by-step-solver"
+      },
+      "workedExampleSpec": {
+        "prompt": "Worked example for concept: rational_equation_applications",
+        "givens": [
+          "See curriculum source"
+        ],
+        "target": {},
+        "steps": [
+          {
+            "description": "Step 1",
+            "expression": "See curriculum"
+          }
+        ],
+        "explanation": "See curriculum source material."
+      },
+      "guidedPracticeSpec": {
+        "scaffoldedPrompt": "Guided practice for concept: rational_equation_applications",
+        "stepPrompts": [
+          "Step 1"
+        ],
+        "hints": [
+          "Hint 1"
+        ],
+        "checksPerStep": [
+          {
+            "check": "See curriculum"
+          }
+        ],
+        "revealPolicy": "one_at_a_time"
+      },
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM3 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "7",
+        "lesson": "1"
+      }
+    },
+    {
+      "nodeId": "math.im3.skill.7.aleks.rational-equation-solving",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "rendererKey": "step-by-step-solver",
+      "rendererModeMap": {
+        "worked": "step-by-step-solver",
+        "guidedPractice": "step-by-step-solver",
+        "independentPractice": "step-by-step-solver"
+      },
+      "workedExampleSpec": {
+        "prompt": "Worked example for concept: rational_equation_solving",
+        "givens": [
+          "See curriculum source"
+        ],
+        "target": {},
+        "steps": [
+          {
+            "description": "Step 1",
+            "expression": "See curriculum"
+          }
+        ],
+        "explanation": "See curriculum source material."
+      },
+      "guidedPracticeSpec": {
+        "scaffoldedPrompt": "Guided practice for concept: rational_equation_solving",
+        "stepPrompts": [
+          "Step 1"
+        ],
+        "hints": [
+          "Hint 1"
+        ],
+        "checksPerStep": [
+          {
+            "check": "See curriculum"
+          }
+        ],
+        "revealPolicy": "one_at_a_time"
+      },
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM3 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "7",
+        "lesson": "1"
+      }
+    },
+    {
+      "nodeId": "math.im3.skill.7.aleks.rational-expression-add-subtract",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "rendererKey": "comprehension-quiz",
+      "rendererModeMap": {
+        "worked": "comprehension-quiz",
+        "guidedPractice": "comprehension-quiz",
+        "independentPractice": "comprehension-quiz"
+      },
+      "workedExampleSpec": {
+        "prompt": "Worked example for concept: rational_expression_add_subtract",
+        "givens": [
+          "See curriculum source"
+        ],
+        "target": {},
+        "steps": [
+          {
+            "description": "Step 1",
+            "expression": "See curriculum"
+          }
+        ],
+        "explanation": "See curriculum source material."
+      },
+      "guidedPracticeSpec": {
+        "scaffoldedPrompt": "Guided practice for concept: rational_expression_add_subtract",
+        "stepPrompts": [
+          "Step 1"
+        ],
+        "hints": [
+          "Hint 1"
+        ],
+        "checksPerStep": [
+          {
+            "check": "See curriculum"
+          }
+        ],
+        "revealPolicy": "one_at_a_time"
+      },
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM3 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "7",
+        "lesson": "1"
+      }
+    },
+    {
+      "nodeId": "math.im3.skill.7.aleks.rational-expression-multiply-divide",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "rendererKey": "comprehension-quiz",
+      "rendererModeMap": {
+        "worked": "comprehension-quiz",
+        "guidedPractice": "comprehension-quiz",
+        "independentPractice": "comprehension-quiz"
+      },
+      "workedExampleSpec": {
+        "prompt": "Worked example for concept: rational_expression_multiply_divide",
+        "givens": [
+          "See curriculum source"
+        ],
+        "target": {},
+        "steps": [
+          {
+            "description": "Step 1",
+            "expression": "See curriculum"
+          }
+        ],
+        "explanation": "See curriculum source material."
+      },
+      "guidedPracticeSpec": {
+        "scaffoldedPrompt": "Guided practice for concept: rational_expression_multiply_divide",
+        "stepPrompts": [
+          "Step 1"
+        ],
+        "hints": [
+          "Hint 1"
+        ],
+        "checksPerStep": [
+          {
+            "check": "See curriculum"
+          }
+        ],
+        "revealPolicy": "one_at_a_time"
+      },
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM3 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "7",
+        "lesson": "1"
+      }
+    },
+    {
+      "nodeId": "math.im3.skill.7.aleks.rational-expression-simplification",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "rendererKey": "comprehension-quiz",
+      "rendererModeMap": {
+        "worked": "comprehension-quiz",
+        "guidedPractice": "comprehension-quiz",
+        "independentPractice": "comprehension-quiz"
+      },
+      "workedExampleSpec": {
+        "prompt": "Worked example for concept: rational_expression_simplification",
+        "givens": [
+          "See curriculum source"
+        ],
+        "target": {},
+        "steps": [
+          {
+            "description": "Step 1",
+            "expression": "See curriculum"
+          }
+        ],
+        "explanation": "See curriculum source material."
+      },
+      "guidedPracticeSpec": {
+        "scaffoldedPrompt": "Guided practice for concept: rational_expression_simplification",
+        "stepPrompts": [
+          "Step 1"
+        ],
+        "hints": [
+          "Hint 1"
+        ],
+        "checksPerStep": [
+          {
+            "check": "See curriculum"
+          }
+        ],
+        "revealPolicy": "one_at_a_time"
+      },
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM3 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "7",
+        "lesson": "1"
+      }
+    },
+    {
+      "nodeId": "math.im3.skill.7.aleks.rational-function-asymptote-analysis",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "rendererKey": "comprehension-quiz",
+      "rendererModeMap": {
+        "worked": "comprehension-quiz",
+        "guidedPractice": "comprehension-quiz",
+        "independentPractice": "comprehension-quiz"
+      },
+      "workedExampleSpec": {
+        "prompt": "Worked example for concept: rational_function_asymptote_analysis",
+        "givens": [
+          "See curriculum source"
+        ],
+        "target": {},
+        "steps": [
+          {
+            "description": "Step 1",
+            "expression": "See curriculum"
+          }
+        ],
+        "explanation": "See curriculum source material."
+      },
+      "guidedPracticeSpec": {
+        "scaffoldedPrompt": "Guided practice for concept: rational_function_asymptote_analysis",
+        "stepPrompts": [
+          "Step 1"
+        ],
+        "hints": [
+          "Hint 1"
+        ],
+        "checksPerStep": [
+          {
+            "check": "See curriculum"
+          }
+        ],
+        "revealPolicy": "one_at_a_time"
+      },
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM3 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "7",
+        "lesson": "1"
+      }
+    },
+    {
+      "nodeId": "math.im3.skill.7.aleks.rational-function-oblique-asymptote",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "rendererKey": "comprehension-quiz",
+      "rendererModeMap": {
+        "worked": "comprehension-quiz",
+        "guidedPractice": "comprehension-quiz",
+        "independentPractice": "comprehension-quiz"
+      },
+      "workedExampleSpec": {
+        "prompt": "Worked example for concept: rational_function_oblique_asymptote",
+        "givens": [
+          "See curriculum source"
+        ],
+        "target": {},
+        "steps": [
+          {
+            "description": "Step 1",
+            "expression": "See curriculum"
+          }
+        ],
+        "explanation": "See curriculum source material."
+      },
+      "guidedPracticeSpec": {
+        "scaffoldedPrompt": "Guided practice for concept: rational_function_oblique_asymptote",
+        "stepPrompts": [
+          "Step 1"
+        ],
+        "hints": [
+          "Hint 1"
+        ],
+        "checksPerStep": [
+          {
+            "check": "See curriculum"
+          }
+        ],
+        "revealPolicy": "one_at_a_time"
+      },
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM3 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "7",
+        "lesson": "1"
+      }
+    },
+    {
+      "nodeId": "math.im3.skill.7.aleks.rational-inequality-solving",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "rendererKey": "comprehension-quiz",
+      "rendererModeMap": {
+        "worked": "comprehension-quiz",
+        "guidedPractice": "comprehension-quiz",
+        "independentPractice": "comprehension-quiz"
+      },
+      "workedExampleSpec": {
+        "prompt": "Worked example for concept: rational_inequality_solving",
+        "givens": [
+          "See curriculum source"
+        ],
+        "target": {},
+        "steps": [
+          {
+            "description": "Step 1",
+            "expression": "See curriculum"
+          }
+        ],
+        "explanation": "See curriculum source material."
+      },
+      "guidedPracticeSpec": {
+        "scaffoldedPrompt": "Guided practice for concept: rational_inequality_solving",
+        "stepPrompts": [
+          "Step 1"
+        ],
+        "hints": [
+          "Hint 1"
+        ],
+        "checksPerStep": [
+          {
+            "check": "See curriculum"
+          }
+        ],
+        "revealPolicy": "one_at_a_time"
+      },
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM3 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "7",
+        "lesson": "1"
+      }
+    },
+    {
+      "nodeId": "math.im3.skill.7.aleks.reciprocal-function-table-graphing",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "rendererKey": "graphing-explorer",
+      "rendererModeMap": {
+        "worked": "graphing-explorer",
+        "guidedPractice": "graphing-explorer",
+        "independentPractice": "graphing-explorer"
+      },
+      "workedExampleSpec": {
+        "prompt": "Worked example for concept: reciprocal_function_table_graphing",
+        "givens": [
+          "See curriculum source"
+        ],
+        "target": {},
+        "steps": [
+          {
+            "description": "Step 1",
+            "expression": "See curriculum"
+          }
+        ],
+        "explanation": "See curriculum source material."
+      },
+      "guidedPracticeSpec": {
+        "scaffoldedPrompt": "Guided practice for concept: reciprocal_function_table_graphing",
+        "stepPrompts": [
+          "Step 1"
+        ],
+        "hints": [
+          "Hint 1"
+        ],
+        "checksPerStep": [
+          {
+            "check": "See curriculum"
+          }
+        ],
+        "revealPolicy": "one_at_a_time"
+      },
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM3 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "7",
+        "lesson": "1"
+      }
+    },
+    {
+      "nodeId": "math.im3.skill.7.aleks.reciprocal-function-transformations",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "rendererKey": "comprehension-quiz",
+      "rendererModeMap": {
+        "worked": "comprehension-quiz",
+        "guidedPractice": "comprehension-quiz",
+        "independentPractice": "comprehension-quiz"
+      },
+      "workedExampleSpec": {
+        "prompt": "Worked example for concept: reciprocal_function_transformations",
+        "givens": [
+          "See curriculum source"
+        ],
+        "target": {},
+        "steps": [
+          {
+            "description": "Step 1",
+            "expression": "See curriculum"
+          }
+        ],
+        "explanation": "See curriculum source material."
+      },
+      "guidedPracticeSpec": {
+        "scaffoldedPrompt": "Guided practice for concept: reciprocal_function_transformations",
+        "stepPrompts": [
+          "Step 1"
+        ],
+        "hints": [
+          "Hint 1"
+        ],
+        "checksPerStep": [
+          {
+            "check": "See curriculum"
+          }
+        ],
+        "revealPolicy": "one_at_a_time"
+      },
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM3 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "7",
+        "lesson": "1"
+      }
+    }
+  ]
+}

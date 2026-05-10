@@ -1,0 +1,1943 @@
+{
+  "metadata": {
+    "course": "im1",
+    "generatedAt": "2026-05-10T06:41:48.272Z",
+    "description": "SRS projection entries for IM1 skills"
+  },
+  "srsInputs": [
+    {
+      "nodeId": "math.im1.skill.1.1.translate-verbal-descriptions-into-correct-numerical-express",
+      "blueprintId": "math.im1.skill.1.1.translate-verbal-descriptions-into-correct-numerical-express",
+      "standards": [
+        "math.standard.ccss.6-ee-a-1",
+        "math.standard.ccss.6-ee-a-2"
+      ],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "step-by-step-solver",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.1.2.translate-between-algebraic-expressions-and-verbal-expressio",
+      "blueprintId": "math.im1.skill.1.2.translate-between-algebraic-expressions-and-verbal-expressio",
+      "standards": [
+        "math.standard.ccss.6-ee-a-2",
+        "math.standard.ccss.a-sse-a-1"
+      ],
+      "prerequisites": [
+        "math.im1.skill.1.1.translate-verbal-descriptions-into-correct-numerical-express"
+      ],
+      "difficulty": 0.5,
+      "rendererKey": "step-by-step-solver",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.1.3.identify-and-apply-the-reflexive-symmetric-and-transitive-pr",
+      "blueprintId": "math.im1.skill.1.3.identify-and-apply-the-reflexive-symmetric-and-transitive-pr",
+      "standards": [
+        "math.standard.ccss.6-ee-a-2",
+        "math.standard.ccss.6-ee-a-3"
+      ],
+      "prerequisites": [
+        "math.im1.skill.1.2.translate-between-algebraic-expressions-and-verbal-expressio"
+      ],
+      "difficulty": 0.5,
+      "rendererKey": "fill-in-the-blank",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.1.4.apply-the-distributive-property-to-rewrite-and-evaluate-nume",
+      "blueprintId": "math.im1.skill.1.4.apply-the-distributive-property-to-rewrite-and-evaluate-nume",
+      "standards": [
+        "math.standard.ccss.6-ee-a-3",
+        "math.standard.ccss.7-ee-a-1"
+      ],
+      "prerequisites": [
+        "math.im1.skill.1.3.identify-and-apply-the-reflexive-symmetric-and-transitive-pr"
+      ],
+      "difficulty": 0.5,
+      "rendererKey": "step-by-step-solver",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.1.5.write-absolute-value-expressions-that-model-real-world-dista",
+      "blueprintId": "math.im1.skill.1.5.write-absolute-value-expressions-that-model-real-world-dista",
+      "standards": [
+        "math.standard.ccss.6-ee-a-2",
+        "math.standard.ccss.a-sse-a-1"
+      ],
+      "prerequisites": [
+        "math.im1.skill.1.4.apply-the-distributive-property-to-rewrite-and-evaluate-nume"
+      ],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.1.6.use-ratios-and-percentages-as-metrics-to-model-real-world-si",
+      "blueprintId": "math.im1.skill.1.6.use-ratios-and-percentages-as-metrics-to-model-real-world-si",
+      "standards": [
+        "math.standard.ccss.6-ee-a-2",
+        "math.standard.ccss.a-ced-a-1"
+      ],
+      "prerequisites": [
+        "math.im1.skill.1.5.write-absolute-value-expressions-that-model-real-world-dista"
+      ],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.10.1.differentiate-between-synthetic-geometry-and-analytic-geomet",
+      "blueprintId": "math.im1.skill.10.1.differentiate-between-synthetic-geometry-and-analytic-geomet",
+      "standards": [
+        "math.standard.ccss.g-co-a-1"
+      ],
+      "prerequisites": [
+        "math.im1.skill.9.7.construct-and-complete-two-way-frequency-tables-from-verbal"
+      ],
+      "difficulty": 0.5,
+      "rendererKey": "fill-in-the-blank",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.10.1.understand-the-structure-of-an-axiomatic-system-and-distingu",
+      "blueprintId": "math.im1.skill.10.1.understand-the-structure-of-an-axiomatic-system-and-distingu",
+      "standards": [
+        "math.standard.ccss.g-co-a-1"
+      ],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "fill-in-the-blank",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.10.2.draw-and-label-figures-that-accurately-represent-given-geome",
+      "blueprintId": "math.im1.skill.10.2.draw-and-label-figures-that-accurately-represent-given-geome",
+      "standards": [
+        "math.standard.ccss.g-co-a-2"
+      ],
+      "prerequisites": [
+        "math.im1.skill.10.1.understand-the-structure-of-an-axiomatic-system-and-distingu"
+      ],
+      "difficulty": 0.5,
+      "rendererKey": "fill-in-the-blank",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.10.2.identify-and-name-points-lines-and-planes-from-geometric-fig",
+      "blueprintId": "math.im1.skill.10.2.identify-and-name-points-lines-and-planes-from-geometric-fig",
+      "standards": [
+        "math.standard.ccss.g-co-a-2"
+      ],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "fill-in-the-blank",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.10.3.apply-the-segment-addition-postulate-to-find-missing-segment",
+      "blueprintId": "math.im1.skill.10.3.apply-the-segment-addition-postulate-to-find-missing-segment",
+      "standards": [
+        "math.standard.ccss.g-co-a-2",
+        "math.standard.ccss.g-gpe-b-4"
+      ],
+      "prerequisites": [
+        "math.im1.skill.10.2.identify-and-name-points-lines-and-planes-from-geometric-fig"
+      ],
+      "difficulty": 0.5,
+      "rendererKey": "fill-in-the-blank",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.10.3.find-the-length-of-a-segment-by-reading-coordinates-from-a-n",
+      "blueprintId": "math.im1.skill.10.3.find-the-length-of-a-segment-by-reading-coordinates-from-a-n",
+      "standards": [
+        "math.standard.ccss.g-co-a-2",
+        "math.standard.ccss.g-gpe-b-4"
+      ],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "graphing-explorer",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.10.4.apply-the-distance-formula-to-solve-real-world-problems",
+      "blueprintId": "math.im1.skill.10.4.apply-the-distance-formula-to-solve-real-world-problems",
+      "standards": [
+        "math.standard.ccss.g-gpe-b-4",
+        "math.standard.ccss.g-mg-a-1"
+      ],
+      "prerequisites": [
+        "math.im1.skill.10.3.find-the-length-of-a-segment-by-reading-coordinates-from-a-n"
+      ],
+      "difficulty": 0.5,
+      "rendererKey": "step-by-step-solver",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.10.4.use-the-distance-formula-to-find-the-distance-between-two-po",
+      "blueprintId": "math.im1.skill.10.4.use-the-distance-formula-to-find-the-distance-between-two-po",
+      "standards": [
+        "math.standard.ccss.g-gpe-b-4",
+        "math.standard.ccss.g-mg-a-1"
+      ],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "graphing-explorer",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.10.5.find-the-coordinate-of-a-point-located-at-a-fractional-dista",
+      "blueprintId": "math.im1.skill.10.5.find-the-coordinate-of-a-point-located-at-a-fractional-dista",
+      "standards": [
+        "math.standard.ccss.g-gpe-b-4",
+        "math.standard.ccss.g-gpe-b-6"
+      ],
+      "prerequisites": [
+        "math.im1.skill.10.4.use-the-distance-formula-to-find-the-distance-between-two-po"
+      ],
+      "difficulty": 0.5,
+      "rendererKey": "graphing-explorer",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.10.5.locate-a-point-that-divides-a-segment-on-a-number-line-in-a",
+      "blueprintId": "math.im1.skill.10.5.locate-a-point-that-divides-a-segment-on-a-number-line-in-a",
+      "standards": [
+        "math.standard.ccss.g-gpe-b-4",
+        "math.standard.ccss.g-gpe-b-6"
+      ],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "step-by-step-solver",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.10.6.find-the-coordinates-of-a-point-that-divides-a-segment-in-a",
+      "blueprintId": "math.im1.skill.10.6.find-the-coordinates-of-a-point-that-divides-a-segment-in-a",
+      "standards": [
+        "math.standard.ccss.g-gpe-b-5",
+        "math.standard.ccss.g-gpe-b-6"
+      ],
+      "prerequisites": [
+        "math.im1.skill.10.5.locate-a-point-that-divides-a-segment-on-a-number-line-in-a"
+      ],
+      "difficulty": 0.5,
+      "rendererKey": "graphing-explorer",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.10.7.find-the-coordinates-of-a-missing-endpoint-when-the-midpoint",
+      "blueprintId": "math.im1.skill.10.7.find-the-coordinates-of-a-missing-endpoint-when-the-midpoint",
+      "standards": [
+        "math.standard.ccss.g-co-c-9",
+        "math.standard.ccss.g-gpe-b-4"
+      ],
+      "prerequisites": [
+        "math.im1.skill.10.6.find-the-coordinates-of-a-point-that-divides-a-segment-in-a"
+      ],
+      "difficulty": 0.5,
+      "rendererKey": "graphing-explorer",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.10.7.use-the-midpoint-formula-to-find-the-coordinates-of-the-midp",
+      "blueprintId": "math.im1.skill.10.7.use-the-midpoint-formula-to-find-the-coordinates-of-the-midp",
+      "standards": [
+        "math.standard.ccss.g-co-c-9",
+        "math.standard.ccss.g-gpe-b-4"
+      ],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "graphing-explorer",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.11.1.apply-the-angle-addition-postulate-and-the-definition-of-an",
+      "blueprintId": "math.im1.skill.11.1.apply-the-angle-addition-postulate-and-the-definition-of-an",
+      "standards": [
+        "math.standard.ccss.g-co-a-1",
+        "math.standard.ccss.g-co-b-6"
+      ],
+      "prerequisites": [
+        "math.im1.skill.10.7.use-the-midpoint-formula-to-find-the-coordinates-of-the-midp"
+      ],
+      "difficulty": 0.5,
+      "rendererKey": "fill-in-the-blank",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.11.1.identify-and-name-the-parts-of-an-angle-including-the-vertex",
+      "blueprintId": "math.im1.skill.11.1.identify-and-name-the-parts-of-an-angle-including-the-vertex",
+      "standards": [
+        "math.standard.ccss.g-co-a-1",
+        "math.standard.ccss.g-co-b-6"
+      ],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "graphing-explorer",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.11.2.solve-problems-involving-complementary-supplementary-and-ver",
+      "blueprintId": "math.im1.skill.11.2.solve-problems-involving-complementary-supplementary-and-ver",
+      "standards": [
+        "math.standard.ccss.g-co-a-1",
+        "math.standard.ccss.g-co-b-7"
+      ],
+      "prerequisites": [
+        "math.im1.skill.11.1.identify-and-name-the-parts-of-an-angle-including-the-vertex"
+      ],
+      "difficulty": 0.5,
+      "rendererKey": "step-by-step-solver",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.11.2.use-the-fact-that-perpendicular-lines-form-right-angles-to-w",
+      "blueprintId": "math.im1.skill.11.2.use-the-fact-that-perpendicular-lines-form-right-angles-to-w",
+      "standards": [
+        "math.standard.ccss.g-co-a-1",
+        "math.standard.ccss.g-co-b-7"
+      ],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "step-by-step-solver",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.11.3.apply-coordinate-geometry-to-identify-figures-from-vertices",
+      "blueprintId": "math.im1.skill.11.3.apply-coordinate-geometry-to-identify-figures-from-vertices",
+      "standards": [
+        "math.standard.ccss.g-gpe-b-4",
+        "math.standard.ccss.g-gpe-b-7"
+      ],
+      "prerequisites": [
+        "math.im1.skill.11.2.use-the-fact-that-perpendicular-lines-form-right-angles-to-w"
+      ],
+      "difficulty": 0.5,
+      "rendererKey": "graphing-explorer",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.11.3.calculate-the-perimeter-circumference-and-area-of-two-dimens",
+      "blueprintId": "math.im1.skill.11.3.calculate-the-perimeter-circumference-and-area-of-two-dimens",
+      "standards": [
+        "math.standard.ccss.g-gpe-b-4",
+        "math.standard.ccss.g-gpe-b-7"
+      ],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "graphing-explorer",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.11.4.apply-reflections-translations-and-rotations-to-figures-on-t",
+      "blueprintId": "math.im1.skill.11.4.apply-reflections-translations-and-rotations-to-figures-on-t",
+      "standards": [
+        "math.standard.ccss.g-co-a-2",
+        "math.standard.ccss.g-co-a-5"
+      ],
+      "prerequisites": [
+        "math.im1.skill.11.3.calculate-the-perimeter-circumference-and-area-of-two-dimens"
+      ],
+      "difficulty": 0.5,
+      "rendererKey": "graphing-explorer",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.11.4.identify-rigid-motions-reflection-translation-rotation-from",
+      "blueprintId": "math.im1.skill.11.4.identify-rigid-motions-reflection-translation-rotation-from",
+      "standards": [
+        "math.standard.ccss.g-co-a-2",
+        "math.standard.ccss.g-co-a-5"
+      ],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "graphing-explorer",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.11.5.calculate-the-surface-area-and-volume-of-prisms-cylinders-py",
+      "blueprintId": "math.im1.skill.11.5.calculate-the-surface-area-and-volume-of-prisms-cylinders-py",
+      "standards": [
+        "math.standard.ccss.g-gmd-a-3",
+        "math.standard.ccss.g-gmd-b-4"
+      ],
+      "prerequisites": [
+        "math.im1.skill.11.4.identify-rigid-motions-reflection-translation-rotation-from"
+      ],
+      "difficulty": 0.5,
+      "rendererKey": "step-by-step-solver",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.11.5.identify-and-classify-three-dimensional-figures-as-polyhedra",
+      "blueprintId": "math.im1.skill.11.5.identify-and-classify-three-dimensional-figures-as-polyhedra",
+      "standards": [
+        "math.standard.ccss.g-gmd-a-3",
+        "math.standard.ccss.g-gmd-b-4"
+      ],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "fill-in-the-blank",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.11.6.interpret-orthographic-drawings-to-build-models-of-three-dim",
+      "blueprintId": "math.im1.skill.11.6.interpret-orthographic-drawings-to-build-models-of-three-dim",
+      "standards": [
+        "math.standard.ccss.g-mg-a-1"
+      ],
+      "prerequisites": [
+        "math.im1.skill.11.5.identify-and-classify-three-dimensional-figures-as-polyhedra"
+      ],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.11.6.use-nets-to-identify-solids-find-surface-area-and-construct",
+      "blueprintId": "math.im1.skill.11.6.use-nets-to-identify-solids-find-surface-area-and-construct",
+      "standards": [
+        "math.standard.ccss.g-mg-a-1"
+      ],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.11.7.distinguish-between-accuracy-and-precision-in-measurement-co",
+      "blueprintId": "math.im1.skill.11.7.distinguish-between-accuracy-and-precision-in-measurement-co",
+      "standards": [
+        "math.standard.ccss.g-mg-a-2",
+        "math.standard.ccss.g-mg-a-3"
+      ],
+      "prerequisites": [
+        "math.im1.skill.11.6.use-nets-to-identify-solids-find-surface-area-and-construct"
+      ],
+      "difficulty": 0.5,
+      "rendererKey": "fill-in-the-blank",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.11.8.count-the-number-of-significant-digits-in-a-given-measuremen",
+      "blueprintId": "math.im1.skill.11.8.count-the-number-of-significant-digits-in-a-given-measuremen",
+      "standards": [
+        "math.standard.ccss.g-mg-a-2",
+        "math.standard.ccss.g-mg-a-3"
+      ],
+      "prerequisites": [
+        "math.im1.skill.11.7.distinguish-between-accuracy-and-precision-in-measurement-co"
+      ],
+      "difficulty": 0.5,
+      "rendererKey": "fill-in-the-blank",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.12.1.determine-whether-a-given-conjecture-is-true-or-false",
+      "blueprintId": "math.im1.skill.12.1.determine-whether-a-given-conjecture-is-true-or-false",
+      "standards": [
+        "math.standard.ccss.g-co-a-1"
+      ],
+      "prerequisites": [
+        "math.im1.skill.11.8.count-the-number-of-significant-digits-in-a-given-measuremen"
+      ],
+      "difficulty": 0.5,
+      "rendererKey": "fill-in-the-blank",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.12.1.recognize-patterns-in-numerical-geometric-and-real-world-seq",
+      "blueprintId": "math.im1.skill.12.1.recognize-patterns-in-numerical-geometric-and-real-world-seq",
+      "standards": [
+        "math.standard.ccss.g-co-a-1"
+      ],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "fill-in-the-blank",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.12.10.find-the-distance-from-a-point-to-a-line-in-the-coordinate-p",
+      "blueprintId": "math.im1.skill.12.10.find-the-distance-from-a-point-to-a-line-in-the-coordinate-p",
+      "standards": [
+        "math.standard.ccss.g-gpe-b-4"
+      ],
+      "prerequisites": [
+        "math.im1.skill.12.9.use-angle-relationships-formed-by-a-transversal-to-prove-tha"
+      ],
+      "difficulty": 0.5,
+      "rendererKey": "graphing-explorer",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.12.2.determine-the-truth-value-of-compound-statements-formed-by-c",
+      "blueprintId": "math.im1.skill.12.2.determine-the-truth-value-of-compound-statements-formed-by-c",
+      "standards": [
+        "math.standard.ccss.g-co-a-3"
+      ],
+      "prerequisites": [
+        "math.im1.skill.12.1.recognize-patterns-in-numerical-geometric-and-real-world-seq"
+      ],
+      "difficulty": 0.5,
+      "rendererKey": "fill-in-the-blank",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.12.2.identify-the-hypothesis-and-conclusion-of-a-conditional-stat",
+      "blueprintId": "math.im1.skill.12.2.identify-the-hypothesis-and-conclusion-of-a-conditional-stat",
+      "standards": [
+        "math.standard.ccss.g-co-a-3"
+      ],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "fill-in-the-blank",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.12.3.apply-the-law-of-detachment-and-the-law-of-syllogism-to-draw",
+      "blueprintId": "math.im1.skill.12.3.apply-the-law-of-detachment-and-the-law-of-syllogism-to-draw",
+      "standards": [
+        "math.standard.ccss.g-co-a-2"
+      ],
+      "prerequisites": [
+        "math.im1.skill.12.2.identify-the-hypothesis-and-conclusion-of-a-conditional-stat"
+      ],
+      "difficulty": 0.5,
+      "rendererKey": "fill-in-the-blank",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.12.3.distinguish-between-inductive-and-deductive-reasoning-in-giv",
+      "blueprintId": "math.im1.skill.12.3.distinguish-between-inductive-and-deductive-reasoning-in-giv",
+      "standards": [
+        "math.standard.ccss.g-co-a-2"
+      ],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "fill-in-the-blank",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.12.4.apply-geometric-postulates-about-points-lines-and-planes-to",
+      "blueprintId": "math.im1.skill.12.4.apply-geometric-postulates-about-points-lines-and-planes-to",
+      "standards": [
+        "math.standard.ccss.g-co-a-4"
+      ],
+      "prerequisites": [
+        "math.im1.skill.12.3.distinguish-between-inductive-and-deductive-reasoning-in-giv"
+      ],
+      "difficulty": 0.5,
+      "rendererKey": "fill-in-the-blank",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.12.4.write-two-column-proofs-using-given-information-definitions",
+      "blueprintId": "math.im1.skill.12.4.write-two-column-proofs-using-given-information-definitions",
+      "standards": [
+        "math.standard.ccss.g-co-a-4"
+      ],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "fill-in-the-blank",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.12.5.complete-two-column-proofs-by-supplying-missing-statements-a",
+      "blueprintId": "math.im1.skill.12.5.complete-two-column-proofs-by-supplying-missing-statements-a",
+      "standards": [
+        "math.standard.ccss.g-co-b-6"
+      ],
+      "prerequisites": [
+        "math.im1.skill.12.4.write-two-column-proofs-using-given-information-definitions"
+      ],
+      "difficulty": 0.5,
+      "rendererKey": "fill-in-the-blank",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.12.6.write-two-column-proofs-to-justify-angle-relationships-inclu",
+      "blueprintId": "math.im1.skill.12.6.write-two-column-proofs-to-justify-angle-relationships-inclu",
+      "standards": [
+        "math.standard.ccss.g-co-b-7"
+      ],
+      "prerequisites": [
+        "math.im1.skill.12.5.complete-two-column-proofs-by-supplying-missing-statements-a"
+      ],
+      "difficulty": 0.5,
+      "rendererKey": "fill-in-the-blank",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.12.7.classify-angle-pairs-formed-by-two-lines-cut-by-a-transversa",
+      "blueprintId": "math.im1.skill.12.7.classify-angle-pairs-formed-by-two-lines-cut-by-a-transversa",
+      "standards": [
+        "math.standard.ccss.g-co-a-5"
+      ],
+      "prerequisites": [
+        "math.im1.skill.12.6.write-two-column-proofs-to-justify-angle-relationships-inclu"
+      ],
+      "difficulty": 0.5,
+      "rendererKey": "fill-in-the-blank",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.12.7.use-properties-of-parallel-lines-and-transversals-to-find-un",
+      "blueprintId": "math.im1.skill.12.7.use-properties-of-parallel-lines-and-transversals-to-find-un",
+      "standards": [
+        "math.standard.ccss.g-co-a-5"
+      ],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "fill-in-the-blank",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.12.8.calculate-the-slope-of-a-line-through-two-given-points-and-i",
+      "blueprintId": "math.im1.skill.12.8.calculate-the-slope-of-a-line-through-two-given-points-and-i",
+      "standards": [
+        "math.standard.ccss.g-gpe-b-5"
+      ],
+      "prerequisites": [
+        "math.im1.skill.12.7.use-properties-of-parallel-lines-and-transversals-to-find-un"
+      ],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.12.8.write-equations-of-lines-in-slope-intercept-form-that-are-pa",
+      "blueprintId": "math.im1.skill.12.8.write-equations-of-lines-in-slope-intercept-form-that-are-pa",
+      "standards": [
+        "math.standard.ccss.g-gpe-b-5"
+      ],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "graphing-explorer",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.12.9.apply-parallel-line-theorems-to-solve-real-world-and-geometr",
+      "blueprintId": "math.im1.skill.12.9.apply-parallel-line-theorems-to-solve-real-world-and-geometr",
+      "standards": [
+        "math.standard.ccss.g-co-a-4"
+      ],
+      "prerequisites": [
+        "math.im1.skill.12.8.write-equations-of-lines-in-slope-intercept-form-that-are-pa"
+      ],
+      "difficulty": 0.5,
+      "rendererKey": "fill-in-the-blank",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.12.9.use-angle-relationships-formed-by-a-transversal-to-prove-tha",
+      "blueprintId": "math.im1.skill.12.9.use-angle-relationships-formed-by-a-transversal-to-prove-tha",
+      "standards": [
+        "math.standard.ccss.g-co-a-4"
+      ],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "fill-in-the-blank",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.13.1.determine-the-coordinates-of-the-image-of-a-point-after-a-re",
+      "blueprintId": "math.im1.skill.13.1.determine-the-coordinates-of-the-image-of-a-point-after-a-re",
+      "standards": [
+        "math.standard.ccss.8-g-a-1",
+        "math.standard.ccss.g-co-a-2"
+      ],
+      "prerequisites": [
+        "math.im1.skill.12.10.find-the-distance-from-a-point-to-a-line-in-the-coordinate-p"
+      ],
+      "difficulty": 0.5,
+      "rendererKey": "graphing-explorer",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.13.1.graph-the-image-of-a-figure-after-a-reflection-over-a-given",
+      "blueprintId": "math.im1.skill.13.1.graph-the-image-of-a-figure-after-a-reflection-over-a-given",
+      "standards": [
+        "math.standard.ccss.8-g-a-1",
+        "math.standard.ccss.g-co-a-2"
+      ],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "graphing-explorer",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.13.2.determine-whether-a-given-transformation-between-two-figures",
+      "blueprintId": "math.im1.skill.13.2.determine-whether-a-given-transformation-between-two-figures",
+      "standards": [
+        "math.standard.ccss.8-g-a-1",
+        "math.standard.ccss.g-co-a-2"
+      ],
+      "prerequisites": [
+        "math.im1.skill.13.1.graph-the-image-of-a-figure-after-a-reflection-over-a-given"
+      ],
+      "difficulty": 0.5,
+      "rendererKey": "graphing-explorer",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.13.2.find-the-translation-vector-that-maps-a-preimage-to-its-imag",
+      "blueprintId": "math.im1.skill.13.2.find-the-translation-vector-that-maps-a-preimage-to-its-imag",
+      "standards": [
+        "math.standard.ccss.8-g-a-1",
+        "math.standard.ccss.g-co-a-2"
+      ],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "graphing-explorer",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.13.3.analyze-properties-preserved-under-rotations-and-identify-co",
+      "blueprintId": "math.im1.skill.13.3.analyze-properties-preserved-under-rotations-and-identify-co",
+      "standards": [
+        "math.standard.ccss.8-g-a-1",
+        "math.standard.ccss.g-co-a-2"
+      ],
+      "prerequisites": [
+        "math.im1.skill.13.2.find-the-translation-vector-that-maps-a-preimage-to-its-imag"
+      ],
+      "difficulty": 0.5,
+      "rendererKey": "graphing-explorer",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.13.3.graph-the-image-of-a-polygon-after-a-rotation-of-90-180-or-2",
+      "blueprintId": "math.im1.skill.13.3.graph-the-image-of-a-polygon-after-a-rotation-of-90-180-or-2",
+      "standards": [
+        "math.standard.ccss.8-g-a-1",
+        "math.standard.ccss.g-co-a-2"
+      ],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "graphing-explorer",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.13.4.graph-the-image-of-a-figure-after-a-glide-reflection-or-othe",
+      "blueprintId": "math.im1.skill.13.4.graph-the-image-of-a-figure-after-a-glide-reflection-or-othe",
+      "standards": [
+        "math.standard.ccss.g-co-a-2",
+        "math.standard.ccss.g-co-a-4"
+      ],
+      "prerequisites": [
+        "math.im1.skill.13.3.graph-the-image-of-a-polygon-after-a-rotation-of-90-180-or-2"
+      ],
+      "difficulty": 0.5,
+      "rendererKey": "graphing-explorer",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.13.4.identify-a-single-transformation-that-is-equivalent-to-a-com",
+      "blueprintId": "math.im1.skill.13.4.identify-a-single-transformation-that-is-equivalent-to-a-com",
+      "standards": [
+        "math.standard.ccss.g-co-a-2",
+        "math.standard.ccss.g-co-a-4"
+      ],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "graphing-explorer",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.13.5.determine-whether-a-regular-polygon-will-tessellate-the-plan",
+      "blueprintId": "math.im1.skill.13.5.determine-whether-a-regular-polygon-will-tessellate-the-plan",
+      "standards": [
+        "math.standard.ccss.8-g-a-4",
+        "math.standard.ccss.g-co-b-6"
+      ],
+      "prerequisites": [
+        "math.im1.skill.13.4.identify-a-single-transformation-that-is-equivalent-to-a-com"
+      ],
+      "difficulty": 0.5,
+      "rendererKey": "step-by-step-solver",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.13.5.determine-whether-a-tessellation-can-be-created-from-a-given",
+      "blueprintId": "math.im1.skill.13.5.determine-whether-a-tessellation-can-be-created-from-a-given",
+      "standards": [
+        "math.standard.ccss.8-g-a-4",
+        "math.standard.ccss.g-co-b-6"
+      ],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "graphing-explorer",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.13.6.determine-whether-a-figure-has-rotational-symmetry-and-justi",
+      "blueprintId": "math.im1.skill.13.6.determine-whether-a-figure-has-rotational-symmetry-and-justi",
+      "standards": [
+        "math.standard.ccss.8-g-a-2",
+        "math.standard.ccss.g-co-a-5"
+      ],
+      "prerequisites": [
+        "math.im1.skill.13.5.determine-whether-a-tessellation-can-be-created-from-a-given"
+      ],
+      "difficulty": 0.5,
+      "rendererKey": "graphing-explorer",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.13.6.identify-and-draw-lines-of-symmetry-for-two-dimensional-figu",
+      "blueprintId": "math.im1.skill.13.6.identify-and-draw-lines-of-symmetry-for-two-dimensional-figu",
+      "standards": [
+        "math.standard.ccss.8-g-a-2",
+        "math.standard.ccss.g-co-a-5"
+      ],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "graphing-explorer",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.14.1.apply-the-triangle-angle-sum-theorem-to-find-unknown-interio",
+      "blueprintId": "math.im1.skill.14.1.apply-the-triangle-angle-sum-theorem-to-find-unknown-interio",
+      "standards": [
+        "math.standard.ccss.8-g-a-5"
+      ],
+      "prerequisites": [
+        "math.im1.skill.13.6.identify-and-draw-lines-of-symmetry-for-two-dimensional-figu"
+      ],
+      "difficulty": 0.5,
+      "rendererKey": "fill-in-the-blank",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.14.1.use-the-exterior-angle-theorem-to-relate-exterior-and-remote",
+      "blueprintId": "math.im1.skill.14.1.use-the-exterior-angle-theorem-to-relate-exterior-and-remote",
+      "standards": [
+        "math.standard.ccss.8-g-a-5"
+      ],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "fill-in-the-blank",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.14.2.identify-all-congruent-corresponding-parts-of-polygons-and-w",
+      "blueprintId": "math.im1.skill.14.2.identify-all-congruent-corresponding-parts-of-polygons-and-w",
+      "standards": [
+        "math.standard.ccss.g-co-b-6"
+      ],
+      "prerequisites": [
+        "math.im1.skill.14.1.use-the-exterior-angle-theorem-to-relate-exterior-and-remote"
+      ],
+      "difficulty": 0.5,
+      "rendererKey": "fill-in-the-blank",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.14.2.write-two-column-proofs-and-paragraph-proofs-to-show-that-tw",
+      "blueprintId": "math.im1.skill.14.2.write-two-column-proofs-and-paragraph-proofs-to-show-that-tw",
+      "standards": [
+        "math.standard.ccss.g-co-b-6"
+      ],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "graphing-explorer",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.14.3.identify-the-included-angle-and-apply-the-sas-congruence-pos",
+      "blueprintId": "math.im1.skill.14.3.identify-the-included-angle-and-apply-the-sas-congruence-pos",
+      "standards": [
+        "math.standard.ccss.g-co-b-7"
+      ],
+      "prerequisites": [
+        "math.im1.skill.14.2.write-two-column-proofs-and-paragraph-proofs-to-show-that-tw"
+      ],
+      "difficulty": 0.5,
+      "rendererKey": "fill-in-the-blank",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.14.3.write-two-column-paragraph-and-flow-proofs-to-prove-triangle",
+      "blueprintId": "math.im1.skill.14.3.write-two-column-paragraph-and-flow-proofs-to-prove-triangle",
+      "standards": [
+        "math.standard.ccss.g-co-b-7"
+      ],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "graphing-explorer",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.14.4.use-properties-of-parallel-lines-midpoints-and-angle-bisecto",
+      "blueprintId": "math.im1.skill.14.4.use-properties-of-parallel-lines-midpoints-and-angle-bisecto",
+      "standards": [
+        "math.standard.ccss.g-co-b-8"
+      ],
+      "prerequisites": [
+        "math.im1.skill.14.3.write-two-column-paragraph-and-flow-proofs-to-prove-triangle"
+      ],
+      "difficulty": 0.5,
+      "rendererKey": "fill-in-the-blank",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.14.4.write-two-column-paragraph-and-flow-proofs-to-prove-triangle-2",
+      "blueprintId": "math.im1.skill.14.4.write-two-column-paragraph-and-flow-proofs-to-prove-triangle-2",
+      "standards": [
+        "math.standard.ccss.g-co-b-8"
+      ],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "graphing-explorer",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.14.5.apply-the-leg-leg-ll-hypotenuse-angle-ha-leg-angle-la-and-hy",
+      "blueprintId": "math.im1.skill.14.5.apply-the-leg-leg-ll-hypotenuse-angle-ha-leg-angle-la-and-hy",
+      "standards": [
+        "math.standard.ccss.g-co-c-9"
+      ],
+      "prerequisites": [
+        "math.im1.skill.14.4.write-two-column-paragraph-and-flow-proofs-to-prove-triangle-2"
+      ],
+      "difficulty": 0.5,
+      "rendererKey": "fill-in-the-blank",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.14.5.write-two-column-proofs-and-paragraph-proofs-for-right-trian",
+      "blueprintId": "math.im1.skill.14.5.write-two-column-proofs-and-paragraph-proofs-for-right-trian",
+      "standards": [
+        "math.standard.ccss.g-co-c-9"
+      ],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "graphing-explorer",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.14.6.solve-for-unknown-variables-using-properties-of-isosceles-an",
+      "blueprintId": "math.im1.skill.14.6.solve-for-unknown-variables-using-properties-of-isosceles-an",
+      "standards": [
+        "math.standard.ccss.g-co-c-10"
+      ],
+      "prerequisites": [
+        "math.im1.skill.14.5.write-two-column-proofs-and-paragraph-proofs-for-right-trian"
+      ],
+      "difficulty": 0.5,
+      "rendererKey": "step-by-step-solver",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.14.6.write-two-column-proofs-using-the-isosceles-triangle-theorem",
+      "blueprintId": "math.im1.skill.14.6.write-two-column-proofs-using-the-isosceles-triangle-theorem",
+      "standards": [
+        "math.standard.ccss.g-co-c-10"
+      ],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "fill-in-the-blank",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.14.7.position-and-label-triangles-on-the-coordinate-plane-using-g",
+      "blueprintId": "math.im1.skill.14.7.position-and-label-triangles-on-the-coordinate-plane-using-g",
+      "standards": [
+        "math.standard.ccss.g-gpe-b-4"
+      ],
+      "prerequisites": [
+        "math.im1.skill.14.6.write-two-column-proofs-using-the-isosceles-triangle-theorem"
+      ],
+      "difficulty": 0.5,
+      "rendererKey": "graphing-explorer",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.14.7.write-coordinate-proofs-for-geometric-statements-about-trian",
+      "blueprintId": "math.im1.skill.14.7.write-coordinate-proofs-for-geometric-statements-about-trian",
+      "standards": [
+        "math.standard.ccss.g-gpe-b-4"
+      ],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "graphing-explorer",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.2.1.translate-verbal-sentences-and-real-world-situations-into-al",
+      "blueprintId": "math.im1.skill.2.1.translate-verbal-sentences-and-real-world-situations-into-al",
+      "standards": [
+        "math.standard.ccss.a-ced-a-1",
+        "math.standard.ccss.a-ced-a-2"
+      ],
+      "prerequisites": [
+        "math.im1.skill.1.6.use-ratios-and-percentages-as-metrics-to-model-real-world-si"
+      ],
+      "difficulty": 0.5,
+      "rendererKey": "step-by-step-solver",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.2.2.solve-one-step-equations-involving-addition-subtraction-mult",
+      "blueprintId": "math.im1.skill.2.2.solve-one-step-equations-involving-addition-subtraction-mult",
+      "standards": [
+        "math.standard.ccss.7-ee-b-3",
+        "math.standard.ccss.8-ee-c-7"
+      ],
+      "prerequisites": [
+        "math.im1.skill.2.1.translate-verbal-sentences-and-real-world-situations-into-al"
+      ],
+      "difficulty": 0.5,
+      "rendererKey": "step-by-step-solver",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.2.3.solve-multi-step-linear-equations-using-properties-of-equali",
+      "blueprintId": "math.im1.skill.2.3.solve-multi-step-linear-equations-using-properties-of-equali",
+      "standards": [
+        "math.standard.ccss.a-ced-a-4",
+        "math.standard.ccss.a-rei-b-3"
+      ],
+      "prerequisites": [
+        "math.im1.skill.2.2.solve-one-step-equations-involving-addition-subtraction-mult"
+      ],
+      "difficulty": 0.5,
+      "rendererKey": "graphing-explorer",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.2.4.solve-linear-equations-that-have-the-variable-on-both-sides",
+      "blueprintId": "math.im1.skill.2.4.solve-linear-equations-that-have-the-variable-on-both-sides",
+      "standards": [
+        "math.standard.ccss.a-rei-a-1",
+        "math.standard.ccss.a-rei-b-3"
+      ],
+      "prerequisites": [
+        "math.im1.skill.2.3.solve-multi-step-linear-equations-using-properties-of-equali"
+      ],
+      "difficulty": 0.5,
+      "rendererKey": "graphing-explorer",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.2.5.graph-the-solution-set-of-an-absolute-value-equation-on-a-nu",
+      "blueprintId": "math.im1.skill.2.5.graph-the-solution-set-of-an-absolute-value-equation-on-a-nu",
+      "standards": [
+        "math.standard.ccss.a-ced-a-1",
+        "math.standard.ccss.a-rei-a-1"
+      ],
+      "prerequisites": [
+        "math.im1.skill.2.4.solve-linear-equations-that-have-the-variable-on-both-sides"
+      ],
+      "difficulty": 0.5,
+      "rendererKey": "graphing-explorer",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.2.5.solve-absolute-value-equations-of-the-form",
+      "blueprintId": "math.im1.skill.2.5.solve-absolute-value-equations-of-the-form",
+      "standards": [
+        "math.standard.ccss.a-ced-a-1",
+        "math.standard.ccss.a-rei-a-1"
+      ],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "step-by-step-solver",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.2.6.solve-proportions-algebraically-including-those-with-variabl",
+      "blueprintId": "math.im1.skill.2.6.solve-proportions-algebraically-including-those-with-variabl",
+      "standards": [
+        "math.standard.ccss.7-ee-b-3",
+        "math.standard.ccss.a-ced-a-1"
+      ],
+      "prerequisites": [
+        "math.im1.skill.2.5.solve-absolute-value-equations-of-the-form"
+      ],
+      "difficulty": 0.5,
+      "rendererKey": "step-by-step-solver",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.2.7.solve-literal-equations-and-formulas-for-a-specified-variabl",
+      "blueprintId": "math.im1.skill.2.7.solve-literal-equations-and-formulas-for-a-specified-variabl",
+      "standards": [
+        "math.standard.ccss.a-ced-a-4",
+        "math.standard.ccss.a-rei-b-3"
+      ],
+      "prerequisites": [
+        "math.im1.skill.2.6.solve-proportions-algebraically-including-those-with-variabl"
+      ],
+      "difficulty": 0.5,
+      "rendererKey": "step-by-step-solver",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.3.1.express-a-relation-as-a-table-a-graph-a-mapping-and-a-set-of",
+      "blueprintId": "math.im1.skill.3.1.express-a-relation-as-a-table-a-graph-a-mapping-and-a-set-of",
+      "standards": [
+        "math.standard.ccss.f-if-a-1",
+        "math.standard.ccss.f-if-a-2"
+      ],
+      "prerequisites": [
+        "math.im1.skill.2.7.solve-literal-equations-and-formulas-for-a-specified-variabl"
+      ],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.3.2.determine-whether-a-relation-represented-as-a-graph-table-ma",
+      "blueprintId": "math.im1.skill.3.2.determine-whether-a-relation-represented-as-a-graph-table-ma",
+      "standards": [
+        "math.standard.ccss.8-f-a-1",
+        "math.standard.ccss.8-f-a-2"
+      ],
+      "prerequisites": [
+        "math.im1.skill.3.1.express-a-relation-as-a-table-a-graph-a-mapping-and-a-set-of"
+      ],
+      "difficulty": 0.5,
+      "rendererKey": "graphing-explorer",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.3.3.determine-whether-a-function-represented-by-a-graph-equation",
+      "blueprintId": "math.im1.skill.3.3.determine-whether-a-function-represented-by-a-graph-equation",
+      "standards": [
+        "math.standard.ccss.8-f-b-4",
+        "math.standard.ccss.f-if-c-7"
+      ],
+      "prerequisites": [
+        "math.im1.skill.3.2.determine-whether-a-relation-represented-as-a-graph-table-ma"
+      ],
+      "difficulty": 0.5,
+      "rendererKey": "graphing-explorer",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.3.4.estimate-and-interpret-the-x-and-y-intercepts-of-a-function",
+      "blueprintId": "math.im1.skill.3.4.estimate-and-interpret-the-x-and-y-intercepts-of-a-function",
+      "standards": [
+        "math.standard.ccss.f-if-b-4",
+        "math.standard.ccss.f-if-b-5"
+      ],
+      "prerequisites": [
+        "math.im1.skill.3.3.determine-whether-a-function-represented-by-a-graph-equation"
+      ],
+      "difficulty": 0.5,
+      "rendererKey": "graphing-explorer",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.3.5.identify-line-symmetry-in-the-graph-of-a-function-and-determ",
+      "blueprintId": "math.im1.skill.3.5.identify-line-symmetry-in-the-graph-of-a-function-and-determ",
+      "standards": [
+        "math.standard.ccss.f-if-c-7",
+        "math.standard.ccss.f-if-c-9"
+      ],
+      "prerequisites": [
+        "math.im1.skill.3.4.estimate-and-interpret-the-x-and-y-intercepts-of-a-function"
+      ],
+      "difficulty": 0.5,
+      "rendererKey": "graphing-explorer",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.3.6.sketch-graphs-of-real-world-functions-from-verbal-descriptio",
+      "blueprintId": "math.im1.skill.3.6.sketch-graphs-of-real-world-functions-from-verbal-descriptio",
+      "standards": [
+        "math.standard.ccss.f-bf-a-1",
+        "math.standard.ccss.f-if-c-8"
+      ],
+      "prerequisites": [
+        "math.im1.skill.3.5.identify-line-symmetry-in-the-graph-of-a-function-and-determ"
+      ],
+      "difficulty": 0.5,
+      "rendererKey": "graphing-explorer",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.4.1.graph-linear-equations-by-making-a-table-of-values-and-by-fi",
+      "blueprintId": "math.im1.skill.4.1.graph-linear-equations-by-making-a-table-of-values-and-by-fi",
+      "standards": [
+        "math.standard.ccss.8-f-a-1",
+        "math.standard.ccss.8-f-b-4"
+      ],
+      "prerequisites": [
+        "math.im1.skill.3.6.sketch-graphs-of-real-world-functions-from-verbal-descriptio"
+      ],
+      "difficulty": 0.5,
+      "rendererKey": "graphing-explorer",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.4.2.calculate-the-rate-of-change-from-tables-graphs-and-real-wor",
+      "blueprintId": "math.im1.skill.4.2.calculate-the-rate-of-change-from-tables-graphs-and-real-wor",
+      "standards": [
+        "math.standard.ccss.8-f-a-2",
+        "math.standard.ccss.f-if-b-6"
+      ],
+      "prerequisites": [
+        "math.im1.skill.4.1.graph-linear-equations-by-making-a-table-of-values-and-by-fi"
+      ],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.4.2.interpret-slope-and-rate-of-change-in-real-world-contexts-in",
+      "blueprintId": "math.im1.skill.4.2.interpret-slope-and-rate-of-change-in-real-world-contexts-in",
+      "standards": [
+        "math.standard.ccss.8-f-a-2",
+        "math.standard.ccss.f-if-b-6"
+      ],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "rate-of-change-calculator",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.4.3.write-linear-equations-in-slope-intercept-form-given-the-slo",
+      "blueprintId": "math.im1.skill.4.3.write-linear-equations-in-slope-intercept-form-given-the-slo",
+      "standards": [
+        "math.standard.ccss.8-f-b-4",
+        "math.standard.ccss.f-if-c-8"
+      ],
+      "prerequisites": [
+        "math.im1.skill.4.2.interpret-slope-and-rate-of-change-in-real-world-contexts-in"
+      ],
+      "difficulty": 0.5,
+      "rendererKey": "graphing-explorer",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.4.4.describe-translations-dilations-and-reflections-of-linear-fu",
+      "blueprintId": "math.im1.skill.4.4.describe-translations-dilations-and-reflections-of-linear-fu",
+      "standards": [
+        "math.standard.ccss.f-bf-a-1",
+        "math.standard.ccss.f-bf-b-3"
+      ],
+      "prerequisites": [
+        "math.im1.skill.4.3.write-linear-equations-in-slope-intercept-form-given-the-slo"
+      ],
+      "difficulty": 0.5,
+      "rendererKey": "graphing-explorer",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.4.5.determine-whether-a-given-sequence-is-arithmetic-and-justify",
+      "blueprintId": "math.im1.skill.4.5.determine-whether-a-given-sequence-is-arithmetic-and-justify",
+      "standards": [
+        "math.standard.ccss.f-bf-a-2",
+        "math.standard.ccss.f-le-a-1"
+      ],
+      "prerequisites": [
+        "math.im1.skill.4.4.describe-translations-dilations-and-reflections-of-linear-fu"
+      ],
+      "difficulty": 0.5,
+      "rendererKey": "fill-in-the-blank",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.4.6.graph-piecewise-defined-functions-and-step-functions-greates",
+      "blueprintId": "math.im1.skill.4.6.graph-piecewise-defined-functions-and-step-functions-greates",
+      "standards": [
+        "math.standard.ccss.a-ced-a-2",
+        "math.standard.ccss.f-if-c-7"
+      ],
+      "prerequisites": [
+        "math.im1.skill.4.5.determine-whether-a-given-sequence-is-arithmetic-and-justify"
+      ],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.4.7.describe-translations-dilations-and-reflections-of-absolute",
+      "blueprintId": "math.im1.skill.4.7.describe-translations-dilations-and-reflections-of-absolute",
+      "standards": [
+        "math.standard.ccss.f-bf-a-1",
+        "math.standard.ccss.f-if-c-9"
+      ],
+      "prerequisites": [
+        "math.im1.skill.4.6.graph-piecewise-defined-functions-and-step-functions-greates"
+      ],
+      "difficulty": 0.5,
+      "rendererKey": "graphing-explorer",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.5.1.write-linear-equations-in-slope-intercept-form-given-a-point",
+      "blueprintId": "math.im1.skill.5.1.write-linear-equations-in-slope-intercept-form-given-a-point",
+      "standards": [
+        "math.standard.ccss.a-ced-a-1",
+        "math.standard.ccss.a-rei-d-10"
+      ],
+      "prerequisites": [
+        "math.im1.skill.4.7.describe-translations-dilations-and-reflections-of-absolute"
+      ],
+      "difficulty": 0.5,
+      "rendererKey": "graphing-explorer",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.5.2.write-linear-equations-in-point-slope-form-given-a-point-and",
+      "blueprintId": "math.im1.skill.5.2.write-linear-equations-in-point-slope-form-given-a-point-and",
+      "standards": [
+        "math.standard.ccss.a-ced-a-1",
+        "math.standard.ccss.a-ced-a-2"
+      ],
+      "prerequisites": [
+        "math.im1.skill.5.1.write-linear-equations-in-slope-intercept-form-given-a-point"
+      ],
+      "difficulty": 0.5,
+      "rendererKey": "graphing-explorer",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.5.3.analyze-scatter-plots-to-determine-whether-they-show-positiv",
+      "blueprintId": "math.im1.skill.5.3.analyze-scatter-plots-to-determine-whether-they-show-positiv",
+      "standards": [
+        "math.standard.ccss.8-sp-a-1",
+        "math.standard.ccss.s-id-b-6"
+      ],
+      "prerequisites": [
+        "math.im1.skill.5.2.write-linear-equations-in-point-slope-form-given-a-point-and"
+      ],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.5.4.distinguish-between-correlation-and-causation-in-real-world",
+      "blueprintId": "math.im1.skill.5.4.distinguish-between-correlation-and-causation-in-real-world",
+      "standards": [
+        "math.standard.ccss.8-sp-a-2",
+        "math.standard.ccss.s-id-c-9"
+      ],
+      "prerequisites": [
+        "math.im1.skill.5.3.analyze-scatter-plots-to-determine-whether-they-show-positiv"
+      ],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.5.5.use-technology-to-calculate-the-equation-of-a-best-fit-line",
+      "blueprintId": "math.im1.skill.5.5.use-technology-to-calculate-the-equation-of-a-best-fit-line",
+      "standards": [
+        "math.standard.ccss.s-id-c-7",
+        "math.standard.ccss.s-id-c-8"
+      ],
+      "prerequisites": [
+        "math.im1.skill.5.4.distinguish-between-correlation-and-causation-in-real-world"
+      ],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.5.6.find-the-inverse-of-a-relation-given-its-graph-table-or-set",
+      "blueprintId": "math.im1.skill.5.6.find-the-inverse-of-a-relation-given-its-graph-table-or-set",
+      "standards": [
+        "math.standard.ccss.f-bf-a-1",
+        "math.standard.ccss.f-bf-b-3"
+      ],
+      "prerequisites": [
+        "math.im1.skill.5.5.use-technology-to-calculate-the-equation-of-a-best-fit-line"
+      ],
+      "difficulty": 0.5,
+      "rendererKey": "graphing-explorer",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.6.1.graph-the-solution-set-of-a-one-step-inequality-on-a-number",
+      "blueprintId": "math.im1.skill.6.1.graph-the-solution-set-of-a-one-step-inequality-on-a-number",
+      "standards": [
+        "math.standard.ccss.6-ee-b-5",
+        "math.standard.ccss.a-rei-b-3"
+      ],
+      "prerequisites": [
+        "math.im1.skill.5.6.find-the-inverse-of-a-relation-given-its-graph-table-or-set"
+      ],
+      "difficulty": 0.5,
+      "rendererKey": "graphing-explorer",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.6.2.solve-multi-step-linear-inequalities-using-the-distributive",
+      "blueprintId": "math.im1.skill.6.2.solve-multi-step-linear-inequalities-using-the-distributive",
+      "standards": [
+        "math.standard.ccss.a-rei-b-3"
+      ],
+      "prerequisites": [
+        "math.im1.skill.6.1.graph-the-solution-set-of-a-one-step-inequality-on-a-number"
+      ],
+      "difficulty": 0.5,
+      "rendererKey": "step-by-step-solver",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.6.3.solve-compound-inequalities-involving-and-and-or-and-express",
+      "blueprintId": "math.im1.skill.6.3.solve-compound-inequalities-involving-and-and-or-and-express",
+      "standards": [
+        "math.standard.ccss.7-ee-b-4",
+        "math.standard.ccss.a-rei-b-3"
+      ],
+      "prerequisites": [
+        "math.im1.skill.6.2.solve-multi-step-linear-inequalities-using-the-distributive"
+      ],
+      "difficulty": 0.5,
+      "rendererKey": "step-by-step-solver",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.6.4.solve-absolute-value-inequalities-and-rewrite-them-as-compou",
+      "blueprintId": "math.im1.skill.6.4.solve-absolute-value-inequalities-and-rewrite-them-as-compou",
+      "standards": [
+        "math.standard.ccss.7-ee-b-4",
+        "math.standard.ccss.a-rei-b-3"
+      ],
+      "prerequisites": [
+        "math.im1.skill.6.3.solve-compound-inequalities-involving-and-and-or-and-express"
+      ],
+      "difficulty": 0.5,
+      "rendererKey": "step-by-step-solver",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.6.5.graph-linear-inequalities-in-two-variables-written-in-slope",
+      "blueprintId": "math.im1.skill.6.5.graph-linear-inequalities-in-two-variables-written-in-slope",
+      "standards": [
+        "math.standard.ccss.a-ced-a-3",
+        "math.standard.ccss.a-rei-d-12"
+      ],
+      "prerequisites": [
+        "math.im1.skill.6.4.solve-absolute-value-inequalities-and-rewrite-them-as-compou"
+      ],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.6.5.write-systems-of-inequalities-that-correspond-to-a-given-gra",
+      "blueprintId": "math.im1.skill.6.5.write-systems-of-inequalities-that-correspond-to-a-given-gra",
+      "standards": [
+        "math.standard.ccss.a-ced-a-3",
+        "math.standard.ccss.a-rei-d-12"
+      ],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "graphing-explorer",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.7.1.graph-systems-of-linear-equations-and-determine-the-number-o",
+      "blueprintId": "math.im1.skill.7.1.graph-systems-of-linear-equations-and-determine-the-number-o",
+      "standards": [
+        "math.standard.ccss.8-ee-c-8",
+        "math.standard.ccss.a-rei-d-10"
+      ],
+      "prerequisites": [
+        "math.im1.skill.6.5.write-systems-of-inequalities-that-correspond-to-a-given-gra"
+      ],
+      "difficulty": 0.5,
+      "rendererKey": "graphing-explorer",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.7.2.solve-systems-of-linear-equations-using-the-substitution-met",
+      "blueprintId": "math.im1.skill.7.2.solve-systems-of-linear-equations-using-the-substitution-met",
+      "standards": [
+        "math.standard.ccss.a-rei-c-6"
+      ],
+      "prerequisites": [
+        "math.im1.skill.7.1.graph-systems-of-linear-equations-and-determine-the-number-o"
+      ],
+      "difficulty": 0.5,
+      "rendererKey": "graphing-explorer",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.7.3.solve-systems-of-linear-equations-using-elimination-by-addit",
+      "blueprintId": "math.im1.skill.7.3.solve-systems-of-linear-equations-using-elimination-by-addit",
+      "standards": [
+        "math.standard.ccss.a-rei-c-6"
+      ],
+      "prerequisites": [
+        "math.im1.skill.7.2.solve-systems-of-linear-equations-using-the-substitution-met"
+      ],
+      "difficulty": 0.5,
+      "rendererKey": "graphing-explorer",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.7.4.solve-systems-of-linear-equations-using-elimination-when-mul",
+      "blueprintId": "math.im1.skill.7.4.solve-systems-of-linear-equations-using-elimination-when-mul",
+      "standards": [
+        "math.standard.ccss.a-rei-c-5"
+      ],
+      "prerequisites": [
+        "math.im1.skill.7.3.solve-systems-of-linear-equations-using-elimination-by-addit"
+      ],
+      "difficulty": 0.5,
+      "rendererKey": "graphing-explorer",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.7.5.graph-systems-of-linear-inequalities-and-identify-the-overla",
+      "blueprintId": "math.im1.skill.7.5.graph-systems-of-linear-inequalities-and-identify-the-overla",
+      "standards": [
+        "math.standard.ccss.a-ced-a-3",
+        "math.standard.ccss.a-rei-d-12"
+      ],
+      "prerequisites": [
+        "math.im1.skill.7.4.solve-systems-of-linear-equations-using-elimination-when-mul"
+      ],
+      "difficulty": 0.5,
+      "rendererKey": "graphing-explorer",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.7.5.solve-real-world-optimization-problems-by-defining-variables",
+      "blueprintId": "math.im1.skill.7.5.solve-real-world-optimization-problems-by-defining-variables",
+      "standards": [
+        "math.standard.ccss.a-ced-a-3",
+        "math.standard.ccss.a-rei-d-12"
+      ],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "graphing-explorer",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.8.1.identify-exponential-behavior-from-data-using-common-ratios",
+      "blueprintId": "math.im1.skill.8.1.identify-exponential-behavior-from-data-using-common-ratios",
+      "standards": [
+        "math.standard.ccss.f-if-c-7e",
+        "math.standard.ccss.f-le-a-1"
+      ],
+      "prerequisites": [
+        "math.im1.skill.7.5.solve-real-world-optimization-problems-by-defining-variables"
+      ],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.8.2.describe-transformations-of-exponential-functions-verbally-a",
+      "blueprintId": "math.im1.skill.8.2.describe-transformations-of-exponential-functions-verbally-a",
+      "standards": [
+        "math.standard.ccss.f-bf-a-1",
+        "math.standard.ccss.f-bf-b-3"
+      ],
+      "prerequisites": [
+        "math.im1.skill.8.1.identify-exponential-behavior-from-data-using-common-ratios"
+      ],
+      "difficulty": 0.5,
+      "rendererKey": "graphing-explorer",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.8.2.write-equations-for-transformed-exponential-functions-given",
+      "blueprintId": "math.im1.skill.8.2.write-equations-for-transformed-exponential-functions-given",
+      "standards": [
+        "math.standard.ccss.f-bf-a-1",
+        "math.standard.ccss.f-bf-b-3"
+      ],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "graphing-explorer",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.8.3.apply-the-compound-interest-formula-to-investment-and-deprec",
+      "blueprintId": "math.im1.skill.8.3.apply-the-compound-interest-formula-to-investment-and-deprec",
+      "standards": [
+        "math.standard.ccss.a-ced-a-1",
+        "math.standard.ccss.f-le-a-2"
+      ],
+      "prerequisites": [
+        "math.im1.skill.8.2.write-equations-for-transformed-exponential-functions-given"
+      ],
+      "difficulty": 0.5,
+      "rendererKey": "step-by-step-solver",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.8.3.write-an-exponential-function-given-two-points-on-its-graph",
+      "blueprintId": "math.im1.skill.8.3.write-an-exponential-function-given-two-points-on-its-graph",
+      "standards": [
+        "math.standard.ccss.a-ced-a-1",
+        "math.standard.ccss.f-le-a-2"
+      ],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "graphing-explorer",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.8.4.rewrite-exponential-functions-so-rates-share-the-same-time-u",
+      "blueprintId": "math.im1.skill.8.4.rewrite-exponential-functions-so-rates-share-the-same-time-u",
+      "standards": [
+        "math.standard.ccss.f-le-a-4",
+        "math.standard.ccss.f-le-b-5"
+      ],
+      "prerequisites": [
+        "math.im1.skill.8.3.write-an-exponential-function-given-two-points-on-its-graph"
+      ],
+      "difficulty": 0.5,
+      "rendererKey": "graphing-explorer",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.8.5.determine-whether-a-given-sequence-is-geometric-by-checking",
+      "blueprintId": "math.im1.skill.8.5.determine-whether-a-given-sequence-is-geometric-by-checking",
+      "standards": [
+        "math.standard.ccss.f-bf-a-2",
+        "math.standard.ccss.f-if-a-3"
+      ],
+      "prerequisites": [
+        "math.im1.skill.8.4.rewrite-exponential-functions-so-rates-share-the-same-time-u"
+      ],
+      "difficulty": 0.5,
+      "rendererKey": "step-by-step-solver",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.8.5.write-and-use-explicit-formulas-to-model-real-world-situatio",
+      "blueprintId": "math.im1.skill.8.5.write-and-use-explicit-formulas-to-model-real-world-situatio",
+      "standards": [
+        "math.standard.ccss.f-bf-a-2",
+        "math.standard.ccss.f-if-a-3"
+      ],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.8.6.convert-between-recursive-and-explicit-formulas-for-arithmet",
+      "blueprintId": "math.im1.skill.8.6.convert-between-recursive-and-explicit-formulas-for-arithmet",
+      "standards": [
+        "math.standard.ccss.f-bf-a-2",
+        "math.standard.ccss.f-if-a-3"
+      ],
+      "prerequisites": [
+        "math.im1.skill.8.5.write-and-use-explicit-formulas-to-model-real-world-situatio"
+      ],
+      "difficulty": 0.5,
+      "rendererKey": "step-by-step-solver",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.8.6.find-the-first-several-terms-of-a-sequence-given-a-recursive",
+      "blueprintId": "math.im1.skill.8.6.find-the-first-several-terms-of-a-sequence-given-a-recursive",
+      "standards": [
+        "math.standard.ccss.f-bf-a-2",
+        "math.standard.ccss.f-if-a-3"
+      ],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "step-by-step-solver",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.1.calculate-the-mean-median-and-mode-of-a-data-set",
+      "blueprintId": "math.im1.skill.9.1.calculate-the-mean-median-and-mode-of-a-data-set",
+      "standards": [
+        "math.standard.ccss.s-id-a-2"
+      ],
+      "prerequisites": [
+        "math.im1.skill.8.6.find-the-first-several-terms-of-a-sequence-given-a-recursive"
+      ],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.2.analyze-data-displays-to-draw-conclusions-and-answer-questio",
+      "blueprintId": "math.im1.skill.9.2.analyze-data-displays-to-draw-conclusions-and-answer-questio",
+      "standards": [
+        "math.standard.ccss.6-sp-b-4",
+        "math.standard.ccss.s-id-a-1"
+      ],
+      "prerequisites": [
+        "math.im1.skill.9.1.calculate-the-mean-median-and-mode-of-a-data-set"
+      ],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.2.construct-dot-plots-bar-graphs-and-histograms-to-represent-d",
+      "blueprintId": "math.im1.skill.9.2.construct-dot-plots-bar-graphs-and-histograms-to-represent-d",
+      "standards": [
+        "math.standard.ccss.6-sp-b-4",
+        "math.standard.ccss.s-id-a-1"
+      ],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.3.identify-sample-bias-in-survey-and-sampling-methods-and-expl",
+      "blueprintId": "math.im1.skill.9.3.identify-sample-bias-in-survey-and-sampling-methods-and-expl",
+      "standards": [
+        "math.standard.ccss.s-ic-a-1"
+      ],
+      "prerequisites": [
+        "math.im1.skill.9.2.construct-dot-plots-bar-graphs-and-histograms-to-represent-d"
+      ],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.3.recognize-biased-survey-questions-and-identify-whose-interes",
+      "blueprintId": "math.im1.skill.9.3.recognize-biased-survey-questions-and-identify-whose-interes",
+      "standards": [
+        "math.standard.ccss.s-ic-a-1"
+      ],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.4.calculate-the-range-interquartile-range-and-standard-deviati",
+      "blueprintId": "math.im1.skill.9.4.calculate-the-range-interquartile-range-and-standard-deviati",
+      "standards": [
+        "math.standard.ccss.6-sp-b-5d",
+        "math.standard.ccss.s-id-a-2"
+      ],
+      "prerequisites": [
+        "math.im1.skill.9.3.recognize-biased-survey-questions-and-identify-whose-interes"
+      ],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.4.determine-the-five-number-summary-and-construct-a-box-plot-f",
+      "blueprintId": "math.im1.skill.9.4.determine-the-five-number-summary-and-construct-a-box-plot-f",
+      "standards": [
+        "math.standard.ccss.6-sp-b-5d",
+        "math.standard.ccss.s-id-a-2"
+      ],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.5.choose-appropriate-measures-of-center-and-spread-based-on-wh",
+      "blueprintId": "math.im1.skill.9.5.choose-appropriate-measures-of-center-and-spread-based-on-wh",
+      "standards": [
+        "math.standard.ccss.6-sp-b-5",
+        "math.standard.ccss.s-id-a-3"
+      ],
+      "prerequisites": [
+        "math.im1.skill.9.4.determine-the-five-number-summary-and-construct-a-box-plot-f"
+      ],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.5.construct-and-interpret-histograms-and-box-plots-to-visualiz",
+      "blueprintId": "math.im1.skill.9.5.construct-and-interpret-histograms-and-box-plots-to-visualiz",
+      "standards": [
+        "math.standard.ccss.6-sp-b-5",
+        "math.standard.ccss.s-id-a-3"
+      ],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.6.construct-and-interpret-box-plots-and-histograms-to-compare",
+      "blueprintId": "math.im1.skill.9.6.construct-and-interpret-box-plots-and-histograms-to-compare",
+      "standards": [
+        "math.standard.ccss.s-id-a-2",
+        "math.standard.ccss.s-id-a-3"
+      ],
+      "prerequisites": [
+        "math.im1.skill.9.5.construct-and-interpret-histograms-and-box-plots-to-visualiz"
+      ],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.6.describe-how-adding-or-multiplying-every-value-in-a-data-set",
+      "blueprintId": "math.im1.skill.9.6.describe-how-adding-or-multiplying-every-value-in-a-data-set",
+      "standards": [
+        "math.standard.ccss.s-id-a-2",
+        "math.standard.ccss.s-id-a-3"
+      ],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.7.construct-and-complete-two-way-frequency-tables-from-verbal",
+      "blueprintId": "math.im1.skill.9.7.construct-and-complete-two-way-frequency-tables-from-verbal",
+      "standards": [
+        "math.standard.ccss.s-id-b-5",
+        "math.standard.ccss.s-id-b-6"
+      ],
+      "prerequisites": [
+        "math.im1.skill.9.6.describe-how-adding-or-multiplying-every-value-in-a-data-set"
+      ],
+      "difficulty": 0.5,
+      "rendererKey": "comprehension-quiz",
+      "generatorKey": null,
+      "generatorReady": false
+    }
+  ]
+}

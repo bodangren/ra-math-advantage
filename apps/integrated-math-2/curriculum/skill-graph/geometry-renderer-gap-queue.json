@@ -1,0 +1,1534 @@
+{
+  "meta": {
+    "course": "im2",
+    "generatedAt": "2026-05-10T06:45:49.000Z",
+    "description": "IM2 geometry renderer gap queue \u2014 skills needing dedicated geometry/diagram renderers",
+    "totalAffectedSkills": 107,
+    "availableRenderers": [
+      "step-by-step-solver",
+      "graphing-explorer",
+      "comprehension-quiz",
+      "fill-in-the-blank",
+      "rate-of-change-calculator",
+      "discriminant-analyzer"
+    ],
+    "missingRenderers": [
+      "interactive-diagram-solver",
+      "proof-builder",
+      "geometry-construction-tool",
+      "coordinate-geometry-canvas"
+    ]
+  },
+  "items": [
+    {
+      "nodeId": "math.im2.skill.1.1.apply-properties-of-circumcenters-and-perpendicular-bisector",
+      "title": "1b: Apply properties of circumcenters and perpendicular bisectors in real-world contexts",
+      "module": "1",
+      "lesson": "1",
+      "currentRenderer": "fill-in-the-blank",
+      "neededRendererTypes": [
+        "interactive-diagram-solver"
+      ],
+      "gap": "NO_GEOMETRY_RENDERER",
+      "reason": "No dedicated geometry renderer component exists. Current fallback renderers lack diagram authoring, construction tools, and proof scaffolding.",
+      "impact": "Geometry skills cannot generate rich interactive diagram-based activities",
+      "priority": "high"
+    },
+    {
+      "nodeId": "math.im2.skill.1.1.find-measures-of-segments-and-angles-using-perpendicular-bis",
+      "title": "1a: Find measures of segments and angles using perpendicular bisector and angle bisector theorems",
+      "module": "1",
+      "lesson": "1",
+      "currentRenderer": "fill-in-the-blank",
+      "neededRendererTypes": [
+        "interactive-diagram-solver"
+      ],
+      "gap": "NO_GEOMETRY_RENDERER",
+      "reason": "No dedicated geometry renderer component exists. Current fallback renderers lack diagram authoring, construction tools, and proof scaffolding.",
+      "impact": "Geometry skills cannot generate rich interactive diagram-based activities",
+      "priority": "high"
+    },
+    {
+      "nodeId": "math.im2.skill.1.2.solve-real-world-problems-involving-angle-bisectors-and-the",
+      "title": "1d: Solve real-world problems involving angle bisectors and the incenter",
+      "module": "1",
+      "lesson": "2",
+      "currentRenderer": "fill-in-the-blank",
+      "neededRendererTypes": [
+        "interactive-diagram-solver"
+      ],
+      "gap": "NO_GEOMETRY_RENDERER",
+      "reason": "No dedicated geometry renderer component exists. Current fallback renderers lack diagram authoring, construction tools, and proof scaffolding.",
+      "impact": "Geometry skills cannot generate rich interactive diagram-based activities",
+      "priority": "high"
+    },
+    {
+      "nodeId": "math.im2.skill.1.2.use-the-angle-bisector-theorem-to-find-angle-and-segment-mea",
+      "title": "1c: Use the Angle Bisector Theorem to find angle and segment measures",
+      "module": "1",
+      "lesson": "2",
+      "currentRenderer": "fill-in-the-blank",
+      "neededRendererTypes": [
+        "interactive-diagram-solver"
+      ],
+      "gap": "NO_GEOMETRY_RENDERER",
+      "reason": "No dedicated geometry renderer component exists. Current fallback renderers lack diagram authoring, construction tools, and proof scaffolding.",
+      "impact": "Geometry skills cannot generate rich interactive diagram-based activities",
+      "priority": "high"
+    },
+    {
+      "nodeId": "math.im2.skill.1.3.find-lengths-of-medians-using-the-centroid-theorem",
+      "title": "1e: Find lengths of medians using the Centroid Theorem",
+      "module": "1",
+      "lesson": "3",
+      "currentRenderer": "fill-in-the-blank",
+      "neededRendererTypes": [
+        "interactive-diagram-solver"
+      ],
+      "gap": "NO_GEOMETRY_RENDERER",
+      "reason": "No dedicated geometry renderer component exists. Current fallback renderers lack diagram authoring, construction tools, and proof scaffolding.",
+      "impact": "Geometry skills cannot generate rich interactive diagram-based activities",
+      "priority": "high"
+    },
+    {
+      "nodeId": "math.im2.skill.1.3.find-the-coordinates-of-the-orthocenter-and-compare-medians",
+      "title": "1f: Find the coordinates of the orthocenter and compare medians, perpendicular bisectors, and altitudes",
+      "module": "1",
+      "lesson": "3",
+      "currentRenderer": "fill-in-the-blank",
+      "neededRendererTypes": [
+        "coordinate-geometry-canvas",
+        "interactive-diagram-solver"
+      ],
+      "gap": "NO_GEOMETRY_RENDERER",
+      "reason": "No dedicated geometry renderer component exists. Current fallback renderers lack diagram authoring, construction tools, and proof scaffolding.",
+      "impact": "Geometry skills cannot generate rich interactive diagram-based activities",
+      "priority": "high"
+    },
+    {
+      "nodeId": "math.im2.skill.1.4.apply-triangle-inequality-relationships-in-proofs-and-real-w",
+      "title": "1h: Apply triangle inequality relationships in proofs and real-world contexts",
+      "module": "1",
+      "lesson": "4",
+      "currentRenderer": "fill-in-the-blank",
+      "neededRendererTypes": [
+        "proof-builder",
+        "interactive-diagram-solver"
+      ],
+      "gap": "NO_GEOMETRY_RENDERER",
+      "reason": "No dedicated geometry renderer component exists. Current fallback renderers lack diagram authoring, construction tools, and proof scaffolding.",
+      "impact": "Geometry skills cannot generate rich interactive diagram-based activities",
+      "priority": "high"
+    },
+    {
+      "nodeId": "math.im2.skill.1.4.order-angles-and-sides-of-a-triangle-from-smallest-to-larges",
+      "title": "1g: Order angles and sides of a triangle from smallest to largest using side-angle relationships",
+      "module": "1",
+      "lesson": "4",
+      "currentRenderer": "fill-in-the-blank",
+      "neededRendererTypes": [
+        "interactive-diagram-solver"
+      ],
+      "gap": "NO_GEOMETRY_RENDERER",
+      "reason": "No dedicated geometry renderer component exists. Current fallback renderers lack diagram authoring, construction tools, and proof scaffolding.",
+      "impact": "Geometry skills cannot generate rich interactive diagram-based activities",
+      "priority": "high"
+    },
+    {
+      "nodeId": "math.im2.skill.1.5.use-indirect-reasoning-with-integer-properties-and-geometry",
+      "title": "1j: Use indirect reasoning with integer properties and geometry",
+      "module": "1",
+      "lesson": "5",
+      "currentRenderer": "fill-in-the-blank",
+      "neededRendererTypes": [
+        "proof-builder"
+      ],
+      "gap": "NO_GEOMETRY_RENDERER",
+      "reason": "No dedicated geometry renderer component exists. Current fallback renderers lack diagram authoring, construction tools, and proof scaffolding.",
+      "impact": "Geometry skills cannot generate rich interactive diagram-based activities",
+      "priority": "high"
+    },
+    {
+      "nodeId": "math.im2.skill.1.5.write-indirect-proofs-of-algebraic-and-geometric-statements",
+      "title": "1i: Write indirect proofs of algebraic and geometric statements",
+      "module": "1",
+      "lesson": "5",
+      "currentRenderer": "fill-in-the-blank",
+      "neededRendererTypes": [
+        "proof-builder"
+      ],
+      "gap": "NO_GEOMETRY_RENDERER",
+      "reason": "No dedicated geometry renderer component exists. Current fallback renderers lack diagram authoring, construction tools, and proof scaffolding.",
+      "impact": "Geometry skills cannot generate rich interactive diagram-based activities",
+      "priority": "high"
+    },
+    {
+      "nodeId": "math.im2.skill.1.6.apply-the-triangle-inequality-theorem-in-proofs-and-real-wor",
+      "title": "1l: Apply the Triangle Inequality Theorem in proofs and real-world contexts",
+      "module": "1",
+      "lesson": "6",
+      "currentRenderer": "fill-in-the-blank",
+      "neededRendererTypes": [
+        "proof-builder",
+        "interactive-diagram-solver"
+      ],
+      "gap": "NO_GEOMETRY_RENDERER",
+      "reason": "No dedicated geometry renderer component exists. Current fallback renderers lack diagram authoring, construction tools, and proof scaffolding.",
+      "impact": "Geometry skills cannot generate rich interactive diagram-based activities",
+      "priority": "high"
+    },
+    {
+      "nodeId": "math.im2.skill.1.6.determine-whether-three-lengths-can-form-a-triangle-find-the",
+      "title": "1k: Determine whether three lengths can form a triangle; find the range of the third side",
+      "module": "1",
+      "lesson": "6",
+      "currentRenderer": "fill-in-the-blank",
+      "neededRendererTypes": [
+        "interactive-diagram-solver"
+      ],
+      "gap": "NO_GEOMETRY_RENDERER",
+      "reason": "No dedicated geometry renderer component exists. Current fallback renderers lack diagram authoring, construction tools, and proof scaffolding.",
+      "impact": "Geometry skills cannot generate rich interactive diagram-based activities",
+      "priority": "high"
+    },
+    {
+      "nodeId": "math.im2.skill.1.7.apply-the-hinge-theorem-to-compare-sides-and-angles-in-two-t",
+      "title": "1m: Apply the Hinge Theorem to compare sides and angles in two triangles",
+      "module": "1",
+      "lesson": "7",
+      "currentRenderer": "fill-in-the-blank",
+      "neededRendererTypes": [
+        "interactive-diagram-solver"
+      ],
+      "gap": "NO_GEOMETRY_RENDERER",
+      "reason": "No dedicated geometry renderer component exists. Current fallback renderers lack diagram authoring, construction tools, and proof scaffolding.",
+      "impact": "Geometry skills cannot generate rich interactive diagram-based activities",
+      "priority": "high"
+    },
+    {
+      "nodeId": "math.im2.skill.1.7.use-the-hinge-theorem-and-its-converse-to-find-ranges-of-val",
+      "title": "1n: Use the Hinge Theorem and its converse to find ranges of values and solve problems",
+      "module": "1",
+      "lesson": "7",
+      "currentRenderer": "fill-in-the-blank",
+      "neededRendererTypes": [
+        "interactive-diagram-solver"
+      ],
+      "gap": "NO_GEOMETRY_RENDERER",
+      "reason": "No dedicated geometry renderer component exists. Current fallback renderers lack diagram authoring, construction tools, and proof scaffolding.",
+      "impact": "Geometry skills cannot generate rich interactive diagram-based activities",
+      "priority": "high"
+    },
+    {
+      "nodeId": "math.im2.skill.10.5.apply-solving-radical-equations-to-real-world-problems-invol",
+      "title": "10j: Apply solving radical equations to real-world problems involving distance and measurement",
+      "module": "10",
+      "lesson": "5",
+      "currentRenderer": "fill-in-the-blank",
+      "neededRendererTypes": [
+        "interactive-diagram-solver"
+      ],
+      "gap": "NO_GEOMETRY_RENDERER",
+      "reason": "No dedicated geometry renderer component exists. Current fallback renderers lack diagram authoring, construction tools, and proof scaffolding.",
+      "impact": "Geometry skills cannot generate rich interactive diagram-based activities",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.im2.skill.11.2.apply-addition-of-polynomials-to-find-total-area-in-geometri",
+      "title": "11d: Apply addition of polynomials to find total area in geometric contexts",
+      "module": "11",
+      "lesson": "2",
+      "currentRenderer": "fill-in-the-blank",
+      "neededRendererTypes": [
+        "interactive-diagram-solver"
+      ],
+      "gap": "NO_GEOMETRY_RENDERER",
+      "reason": "No dedicated geometry renderer component exists. Current fallback renderers lack diagram authoring, construction tools, and proof scaffolding.",
+      "impact": "Geometry skills cannot generate rich interactive diagram-based activities",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.im2.skill.11.3.multiply-polynomials-in-real-world-area-and-geometric-contex",
+      "title": "11f: Multiply polynomials in real-world area and geometric contexts",
+      "module": "11",
+      "lesson": "3",
+      "currentRenderer": "fill-in-the-blank",
+      "neededRendererTypes": [
+        "interactive-diagram-solver"
+      ],
+      "gap": "NO_GEOMETRY_RENDERER",
+      "reason": "No dedicated geometry renderer component exists. Current fallback renderers lack diagram authoring, construction tools, and proof scaffolding.",
+      "impact": "Geometry skills cannot generate rich interactive diagram-based activities",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.im2.skill.11.5.factor-polynomials-using-gcf-grouping-trinomials-and-differe",
+      "title": "11h: Factor polynomials using GCF, grouping, trinomials, and difference of squares",
+      "module": "11",
+      "lesson": "5",
+      "currentRenderer": "fill-in-the-blank",
+      "neededRendererTypes": [
+        "interactive-diagram-solver"
+      ],
+      "gap": "NO_GEOMETRY_RENDERER",
+      "reason": "No dedicated geometry renderer component exists. Current fallback renderers lack diagram authoring, construction tools, and proof scaffolding.",
+      "impact": "Geometry skills cannot generate rich interactive diagram-based activities",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.im2.skill.12.1.identify-the-axis-of-symmetry-vertex-and-end-behavior-of-a-q",
+      "title": "12a: Identify the axis of symmetry, vertex, and end behavior of a quadratic function from its graph",
+      "module": "12",
+      "lesson": "1",
+      "currentRenderer": "fill-in-the-blank",
+      "neededRendererTypes": [
+        "coordinate-geometry-canvas"
+      ],
+      "gap": "NO_GEOMETRY_RENDERER",
+      "reason": "No dedicated geometry renderer component exists. Current fallback renderers lack diagram authoring, construction tools, and proof scaffolding.",
+      "impact": "Geometry skills cannot generate rich interactive diagram-based activities",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.im2.skill.12.2.describe-how-the-graph-of-a-quadratic-relates-to-y-x-based-o",
+      "title": "12c: Describe how the graph of a quadratic relates to y = x\u00b2 based on translations and dilations",
+      "module": "12",
+      "lesson": "2",
+      "currentRenderer": "fill-in-the-blank",
+      "neededRendererTypes": [
+        "coordinate-geometry-canvas"
+      ],
+      "gap": "NO_GEOMETRY_RENDERER",
+      "reason": "No dedicated geometry renderer component exists. Current fallback renderers lack diagram authoring, construction tools, and proof scaffolding.",
+      "impact": "Geometry skills cannot generate rich interactive diagram-based activities",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.im2.skill.12.2.write-quadratic-equations-given-a-graph-using-transformation",
+      "title": "12d: Write quadratic equations given a graph using transformations",
+      "module": "12",
+      "lesson": "2",
+      "currentRenderer": "fill-in-the-blank",
+      "neededRendererTypes": [
+        "coordinate-geometry-canvas"
+      ],
+      "gap": "NO_GEOMETRY_RENDERER",
+      "reason": "No dedicated geometry renderer component exists. Current fallback renderers lack diagram authoring, construction tools, and proof scaffolding.",
+      "impact": "Geometry skills cannot generate rich interactive diagram-based activities",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.im2.skill.12.5.apply-completing-the-square-to-real-world-problems-involving",
+      "title": "12l: Apply completing the square to real-world problems involving projectile motion and optimization",
+      "module": "12",
+      "lesson": "5",
+      "currentRenderer": "fill-in-the-blank",
+      "neededRendererTypes": [
+        "interactive-diagram-solver"
+      ],
+      "gap": "NO_GEOMETRY_RENDERER",
+      "reason": "No dedicated geometry renderer component exists. Current fallback renderers lack diagram authoring, construction tools, and proof scaffolding.",
+      "impact": "Geometry skills cannot generate rich interactive diagram-based activities",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.im2.skill.12.5.find-the-value-of-c-that-completes-the-square-for-a-trinomia",
+      "title": "12i: Find the value of c that completes the square for a trinomial in the form x\u00b2 + bx",
+      "module": "12",
+      "lesson": "5",
+      "currentRenderer": "fill-in-the-blank",
+      "neededRendererTypes": [
+        "interactive-diagram-solver"
+      ],
+      "gap": "NO_GEOMETRY_RENDERER",
+      "reason": "No dedicated geometry renderer component exists. Current fallback renderers lack diagram authoring, construction tools, and proof scaffolding.",
+      "impact": "Geometry skills cannot generate rich interactive diagram-based activities",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.im2.skill.12.5.solve-quadratic-equations-by-completing-the-square",
+      "title": "12j: Solve quadratic equations by completing the square",
+      "module": "12",
+      "lesson": "5",
+      "currentRenderer": "fill-in-the-blank",
+      "neededRendererTypes": [
+        "interactive-diagram-solver"
+      ],
+      "gap": "NO_GEOMETRY_RENDERER",
+      "reason": "No dedicated geometry renderer component exists. Current fallback renderers lack diagram authoring, construction tools, and proof scaffolding.",
+      "impact": "Geometry skills cannot generate rich interactive diagram-based activities",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.im2.skill.12.5.write-quadratic-functions-in-vertex-form-and-identify-extrem",
+      "title": "12k: Write quadratic functions in vertex form and identify extrema and axis of symmetry",
+      "module": "12",
+      "lesson": "5",
+      "currentRenderer": "fill-in-the-blank",
+      "neededRendererTypes": [
+        "interactive-diagram-solver"
+      ],
+      "gap": "NO_GEOMETRY_RENDERER",
+      "reason": "No dedicated geometry renderer component exists. Current fallback renderers lack diagram authoring, construction tools, and proof scaffolding.",
+      "impact": "Geometry skills cannot generate rich interactive diagram-based activities",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.im2.skill.13.1.apply-reciprocal-and-quotient-identities-to-simplify-and-eva",
+      "title": "13a: Apply reciprocal and quotient identities to simplify and evaluate trigonometric expressions",
+      "module": "13",
+      "lesson": "1",
+      "currentRenderer": "fill-in-the-blank",
+      "neededRendererTypes": [
+        "interactive-diagram-solver"
+      ],
+      "gap": "NO_GEOMETRY_RENDERER",
+      "reason": "No dedicated geometry renderer component exists. Current fallback renderers lack diagram authoring, construction tools, and proof scaffolding.",
+      "impact": "Geometry skills cannot generate rich interactive diagram-based activities",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.im2.skill.13.1.verify-trigonometric-identities-using-fundamental-relationsh",
+      "title": "13b: Verify trigonometric identities using fundamental relationships",
+      "module": "13",
+      "lesson": "1",
+      "currentRenderer": "fill-in-the-blank",
+      "neededRendererTypes": [
+        "interactive-diagram-solver"
+      ],
+      "gap": "NO_GEOMETRY_RENDERER",
+      "reason": "No dedicated geometry renderer component exists. Current fallback renderers lack diagram authoring, construction tools, and proof scaffolding.",
+      "impact": "Geometry skills cannot generate rich interactive diagram-based activities",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.im2.skill.13.2.apply-sin-cos-1-and-its-pythagorean-variants",
+      "title": "13c: Apply sin\u00b2\u03b8 + cos\u00b2\u03b8 = 1 and its Pythagorean variants",
+      "module": "13",
+      "lesson": "2",
+      "currentRenderer": "fill-in-the-blank",
+      "neededRendererTypes": [
+        "interactive-diagram-solver"
+      ],
+      "gap": "NO_GEOMETRY_RENDERER",
+      "reason": "No dedicated geometry renderer component exists. Current fallback renderers lack diagram authoring, construction tools, and proof scaffolding.",
+      "impact": "Geometry skills cannot generate rich interactive diagram-based activities",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.im2.skill.13.2.use-pythagorean-identities-to-find-missing-trig-values-and-s",
+      "title": "13d: Use Pythagorean identities to find missing trig values and simplify expressions",
+      "module": "13",
+      "lesson": "2",
+      "currentRenderer": "fill-in-the-blank",
+      "neededRendererTypes": [
+        "interactive-diagram-solver"
+      ],
+      "gap": "NO_GEOMETRY_RENDERER",
+      "reason": "No dedicated geometry renderer component exists. Current fallback renderers lack diagram authoring, construction tools, and proof scaffolding.",
+      "impact": "Geometry skills cannot generate rich interactive diagram-based activities",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.im2.skill.13.3.apply-sum-and-difference-identities-for-sine-cosine-and-tang",
+      "title": "13e: Apply sum and difference identities for sine, cosine, and tangent",
+      "module": "13",
+      "lesson": "3",
+      "currentRenderer": "fill-in-the-blank",
+      "neededRendererTypes": [
+        "interactive-diagram-solver"
+      ],
+      "gap": "NO_GEOMETRY_RENDERER",
+      "reason": "No dedicated geometry renderer component exists. Current fallback renderers lack diagram authoring, construction tools, and proof scaffolding.",
+      "impact": "Geometry skills cannot generate rich interactive diagram-based activities",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.im2.skill.13.4.apply-double-angle-identities-for-sine-cosine-all-three-form",
+      "title": "13g: Apply double-angle identities for sine, cosine (all three forms), and tangent",
+      "module": "13",
+      "lesson": "4",
+      "currentRenderer": "fill-in-the-blank",
+      "neededRendererTypes": [
+        "interactive-diagram-solver"
+      ],
+      "gap": "NO_GEOMETRY_RENDERER",
+      "reason": "No dedicated geometry renderer component exists. Current fallback renderers lack diagram authoring, construction tools, and proof scaffolding.",
+      "impact": "Geometry skills cannot generate rich interactive diagram-based activities",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.im2.skill.13.5.solve-trigonometric-equations-on-a-restricted-domain-using-a",
+      "title": "13i: Solve trigonometric equations on a restricted domain using algebraic manipulation and identities",
+      "module": "13",
+      "lesson": "5",
+      "currentRenderer": "fill-in-the-blank",
+      "neededRendererTypes": [
+        "interactive-diagram-solver"
+      ],
+      "gap": "NO_GEOMETRY_RENDERER",
+      "reason": "No dedicated geometry renderer component exists. Current fallback renderers lack diagram authoring, construction tools, and proof scaffolding.",
+      "impact": "Geometry skills cannot generate rich interactive diagram-based activities",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.im2.skill.13.5.use-graphical-methods-to-verify-solutions-of-trigonometric-e",
+      "title": "13k: Use graphical methods to verify solutions of trigonometric equations",
+      "module": "13",
+      "lesson": "5",
+      "currentRenderer": "fill-in-the-blank",
+      "neededRendererTypes": [
+        "coordinate-geometry-canvas"
+      ],
+      "gap": "NO_GEOMETRY_RENDERER",
+      "reason": "No dedicated geometry renderer component exists. Current fallback renderers lack diagram authoring, construction tools, and proof scaffolding.",
+      "impact": "Geometry skills cannot generate rich interactive diagram-based activities",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.im2.skill.2.1.find-the-sum-of-exterior-angles-and-apply-exterior-angle-rel",
+      "title": "2b: Find the sum of exterior angles and apply exterior angle relationships",
+      "module": "2",
+      "lesson": "1",
+      "currentRenderer": "fill-in-the-blank",
+      "neededRendererTypes": [
+        "interactive-diagram-solver"
+      ],
+      "gap": "NO_GEOMETRY_RENDERER",
+      "reason": "No dedicated geometry renderer component exists. Current fallback renderers lack diagram authoring, construction tools, and proof scaffolding.",
+      "impact": "Geometry skills cannot generate rich interactive diagram-based activities",
+      "priority": "high"
+    },
+    {
+      "nodeId": "math.im2.skill.2.1.find-the-sum-of-interior-angles-and-the-measure-of-each-inte",
+      "title": "2a: Find the sum of interior angles and the measure of each interior angle in regular polygons",
+      "module": "2",
+      "lesson": "1",
+      "currentRenderer": "fill-in-the-blank",
+      "neededRendererTypes": [
+        "interactive-diagram-solver"
+      ],
+      "gap": "NO_GEOMETRY_RENDERER",
+      "reason": "No dedicated geometry renderer component exists. Current fallback renderers lack diagram authoring, construction tools, and proof scaffolding.",
+      "impact": "Geometry skills cannot generate rich interactive diagram-based activities",
+      "priority": "high"
+    },
+    {
+      "nodeId": "math.im2.skill.2.2.find-the-area-and-perimeter-of-parallelograms-and-solve-for",
+      "title": "2d: Find the area and perimeter of parallelograms and solve for unknown values",
+      "module": "2",
+      "lesson": "2",
+      "currentRenderer": "fill-in-the-blank",
+      "neededRendererTypes": [
+        "interactive-diagram-solver"
+      ],
+      "gap": "NO_GEOMETRY_RENDERER",
+      "reason": "No dedicated geometry renderer component exists. Current fallback renderers lack diagram authoring, construction tools, and proof scaffolding.",
+      "impact": "Geometry skills cannot generate rich interactive diagram-based activities",
+      "priority": "high"
+    },
+    {
+      "nodeId": "math.im2.skill.2.2.use-properties-of-parallelograms-to-find-angle-measures-and",
+      "title": "2c: Use properties of parallelograms to find angle measures and side lengths",
+      "module": "2",
+      "lesson": "2",
+      "currentRenderer": "fill-in-the-blank",
+      "neededRendererTypes": [
+        "interactive-diagram-solver"
+      ],
+      "gap": "NO_GEOMETRY_RENDERER",
+      "reason": "No dedicated geometry renderer component exists. Current fallback renderers lack diagram authoring, construction tools, and proof scaffolding.",
+      "impact": "Geometry skills cannot generate rich interactive diagram-based activities",
+      "priority": "high"
+    },
+    {
+      "nodeId": "math.im2.skill.2.3.determine-whether-a-quadrilateral-is-a-parallelogram-using-s",
+      "title": "2e: Determine whether a quadrilateral is a parallelogram using side, angle, and diagonal properties",
+      "module": "2",
+      "lesson": "3",
+      "currentRenderer": "fill-in-the-blank",
+      "neededRendererTypes": [
+        "interactive-diagram-solver"
+      ],
+      "gap": "NO_GEOMETRY_RENDERER",
+      "reason": "No dedicated geometry renderer component exists. Current fallback renderers lack diagram authoring, construction tools, and proof scaffolding.",
+      "impact": "Geometry skills cannot generate rich interactive diagram-based activities",
+      "priority": "high"
+    },
+    {
+      "nodeId": "math.im2.skill.2.3.use-coordinate-geometry-to-verify-parallelograms-and-write-c",
+      "title": "2f: Use coordinate geometry to verify parallelograms and write coordinate proofs",
+      "module": "2",
+      "lesson": "3",
+      "currentRenderer": "fill-in-the-blank",
+      "neededRendererTypes": [
+        "proof-builder",
+        "coordinate-geometry-canvas"
+      ],
+      "gap": "NO_GEOMETRY_RENDERER",
+      "reason": "No dedicated geometry renderer component exists. Current fallback renderers lack diagram authoring, construction tools, and proof scaffolding.",
+      "impact": "Geometry skills cannot generate rich interactive diagram-based activities",
+      "priority": "high"
+    },
+    {
+      "nodeId": "math.im2.skill.2.4.apply-properties-of-rectangles-to-find-angle-measures-diagon",
+      "title": "2g: Apply properties of rectangles to find angle measures, diagonal lengths, and prove triangles congruent",
+      "module": "2",
+      "lesson": "4",
+      "currentRenderer": "fill-in-the-blank",
+      "neededRendererTypes": [
+        "proof-builder",
+        "interactive-diagram-solver"
+      ],
+      "gap": "NO_GEOMETRY_RENDERER",
+      "reason": "No dedicated geometry renderer component exists. Current fallback renderers lack diagram authoring, construction tools, and proof scaffolding.",
+      "impact": "Geometry skills cannot generate rich interactive diagram-based activities",
+      "priority": "high"
+    },
+    {
+      "nodeId": "math.im2.skill.2.4.use-coordinate-geometry-to-determine-whether-a-quadrilateral",
+      "title": "2h: Use coordinate geometry to determine whether a quadrilateral is a rectangle",
+      "module": "2",
+      "lesson": "4",
+      "currentRenderer": "fill-in-the-blank",
+      "neededRendererTypes": [
+        "coordinate-geometry-canvas",
+        "interactive-diagram-solver"
+      ],
+      "gap": "NO_GEOMETRY_RENDERER",
+      "reason": "No dedicated geometry renderer component exists. Current fallback renderers lack diagram authoring, construction tools, and proof scaffolding.",
+      "impact": "Geometry skills cannot generate rich interactive diagram-based activities",
+      "priority": "high"
+    },
+    {
+      "nodeId": "math.im2.skill.2.5.apply-properties-of-rhombi-and-squares-to-find-angle-measure",
+      "title": "2i: Apply properties of rhombi and squares to find angle measures and diagonal lengths",
+      "module": "2",
+      "lesson": "5",
+      "currentRenderer": "fill-in-the-blank",
+      "neededRendererTypes": [
+        "interactive-diagram-solver"
+      ],
+      "gap": "NO_GEOMETRY_RENDERER",
+      "reason": "No dedicated geometry renderer component exists. Current fallback renderers lack diagram authoring, construction tools, and proof scaffolding.",
+      "impact": "Geometry skills cannot generate rich interactive diagram-based activities",
+      "priority": "high"
+    },
+    {
+      "nodeId": "math.im2.skill.2.5.classify-quadrilaterals-and-prove-that-a-quadrilateral-is-a",
+      "title": "2j: Classify quadrilaterals and prove that a quadrilateral is a rhombus or square",
+      "module": "2",
+      "lesson": "5",
+      "currentRenderer": "fill-in-the-blank",
+      "neededRendererTypes": [
+        "proof-builder"
+      ],
+      "gap": "NO_GEOMETRY_RENDERER",
+      "reason": "No dedicated geometry renderer component exists. Current fallback renderers lack diagram authoring, construction tools, and proof scaffolding.",
+      "impact": "Geometry skills cannot generate rich interactive diagram-based activities",
+      "priority": "high"
+    },
+    {
+      "nodeId": "math.im2.skill.2.6.apply-kite-properties-and-solve-perimeterarea-problems",
+      "title": "2l: Apply kite properties and solve perimeter/area problems",
+      "module": "2",
+      "lesson": "6",
+      "currentRenderer": "fill-in-the-blank",
+      "neededRendererTypes": [
+        "interactive-diagram-solver"
+      ],
+      "gap": "NO_GEOMETRY_RENDERER",
+      "reason": "No dedicated geometry renderer component exists. Current fallback renderers lack diagram authoring, construction tools, and proof scaffolding.",
+      "impact": "Geometry skills cannot generate rich interactive diagram-based activities",
+      "priority": "high"
+    },
+    {
+      "nodeId": "math.im2.skill.2.6.apply-properties-of-trapezoids-and-isosceles-trapezoids-find",
+      "title": "2k: Apply properties of trapezoids and isosceles trapezoids; find midsegment length",
+      "module": "2",
+      "lesson": "6",
+      "currentRenderer": "fill-in-the-blank",
+      "neededRendererTypes": [
+        "interactive-diagram-solver"
+      ],
+      "gap": "NO_GEOMETRY_RENDERER",
+      "reason": "No dedicated geometry renderer component exists. Current fallback renderers lack diagram authoring, construction tools, and proof scaffolding.",
+      "impact": "Geometry skills cannot generate rich interactive diagram-based activities",
+      "priority": "high"
+    },
+    {
+      "nodeId": "math.im2.skill.2.6.compare-and-classify-quadrilaterals-based-on-their-propertie",
+      "title": "2m: Compare and classify quadrilaterals based on their properties",
+      "module": "2",
+      "lesson": "6",
+      "currentRenderer": "fill-in-the-blank",
+      "neededRendererTypes": [
+        "interactive-diagram-solver"
+      ],
+      "gap": "NO_GEOMETRY_RENDERER",
+      "reason": "No dedicated geometry renderer component exists. Current fallback renderers lack diagram authoring, construction tools, and proof scaffolding.",
+      "impact": "Geometry skills cannot generate rich interactive diagram-based activities",
+      "priority": "high"
+    },
+    {
+      "nodeId": "math.im2.skill.3.1.determine-whether-a-dilation-is-an-enlargement-or-reduction",
+      "title": "3a: Determine whether a dilation is an enlargement or reduction and find its scale factor",
+      "module": "3",
+      "lesson": "1",
+      "currentRenderer": "fill-in-the-blank",
+      "neededRendererTypes": [
+        "interactive-diagram-solver"
+      ],
+      "gap": "NO_GEOMETRY_RENDERER",
+      "reason": "No dedicated geometry renderer component exists. Current fallback renderers lack diagram authoring, construction tools, and proof scaffolding.",
+      "impact": "Geometry skills cannot generate rich interactive diagram-based activities",
+      "priority": "high"
+    },
+    {
+      "nodeId": "math.im2.skill.3.1.graph-dilated-images-and-find-perimeter-relationships",
+      "title": "3b: Graph dilated images and find perimeter relationships",
+      "module": "3",
+      "lesson": "1",
+      "currentRenderer": "fill-in-the-blank",
+      "neededRendererTypes": [
+        "coordinate-geometry-canvas",
+        "interactive-diagram-solver"
+      ],
+      "gap": "NO_GEOMETRY_RENDERER",
+      "reason": "No dedicated geometry renderer component exists. Current fallback renderers lack diagram authoring, construction tools, and proof scaffolding.",
+      "impact": "Geometry skills cannot generate rich interactive diagram-based activities",
+      "priority": "high"
+    },
+    {
+      "nodeId": "math.im2.skill.3.2.find-unknown-side-lengths-in-similar-polygons-using-proporti",
+      "title": "3d: Find unknown side lengths in similar polygons using proportions; apply to real-world problems",
+      "module": "3",
+      "lesson": "2",
+      "currentRenderer": "fill-in-the-blank",
+      "neededRendererTypes": [
+        "interactive-diagram-solver"
+      ],
+      "gap": "NO_GEOMETRY_RENDERER",
+      "reason": "No dedicated geometry renderer component exists. Current fallback renderers lack diagram authoring, construction tools, and proof scaffolding.",
+      "impact": "Geometry skills cannot generate rich interactive diagram-based activities",
+      "priority": "high"
+    },
+    {
+      "nodeId": "math.im2.skill.3.2.identify-pairs-of-congruent-angles-and-write-proportions-for",
+      "title": "3c: Identify pairs of congruent angles and write proportions for corresponding sides of similar polygons",
+      "module": "3",
+      "lesson": "2",
+      "currentRenderer": "fill-in-the-blank",
+      "neededRendererTypes": [
+        "interactive-diagram-solver"
+      ],
+      "gap": "NO_GEOMETRY_RENDERER",
+      "reason": "No dedicated geometry renderer component exists. Current fallback renderers lack diagram authoring, construction tools, and proof scaffolding.",
+      "impact": "Geometry skills cannot generate rich interactive diagram-based activities",
+      "priority": "high"
+    },
+    {
+      "nodeId": "math.im2.skill.3.3.determine-whether-two-triangles-are-similar-using-the-aa-sim",
+      "title": "3e: Determine whether two triangles are similar using the AA Similarity Postulate",
+      "module": "3",
+      "lesson": "3",
+      "currentRenderer": "fill-in-the-blank",
+      "neededRendererTypes": [
+        "interactive-diagram-solver"
+      ],
+      "gap": "NO_GEOMETRY_RENDERER",
+      "reason": "No dedicated geometry renderer component exists. Current fallback renderers lack diagram authoring, construction tools, and proof scaffolding.",
+      "impact": "Geometry skills cannot generate rich interactive diagram-based activities",
+      "priority": "high"
+    },
+    {
+      "nodeId": "math.im2.skill.3.4.apply-sss-and-sas-similarity-to-real-world-proportional-reas",
+      "title": "3g: Apply SSS and SAS similarity to real-world proportional reasoning problems",
+      "module": "3",
+      "lesson": "4",
+      "currentRenderer": "fill-in-the-blank",
+      "neededRendererTypes": [
+        "proof-builder"
+      ],
+      "gap": "NO_GEOMETRY_RENDERER",
+      "reason": "No dedicated geometry renderer component exists. Current fallback renderers lack diagram authoring, construction tools, and proof scaffolding.",
+      "impact": "Geometry skills cannot generate rich interactive diagram-based activities",
+      "priority": "high"
+    },
+    {
+      "nodeId": "math.im2.skill.3.4.determine-whether-triangles-are-similar-using-sss-and-sas-si",
+      "title": "3f: Determine whether triangles are similar using SSS and SAS Similarity Theorems",
+      "module": "3",
+      "lesson": "4",
+      "currentRenderer": "fill-in-the-blank",
+      "neededRendererTypes": [
+        "interactive-diagram-solver"
+      ],
+      "gap": "NO_GEOMETRY_RENDERER",
+      "reason": "No dedicated geometry renderer component exists. Current fallback renderers lack diagram authoring, construction tools, and proof scaffolding.",
+      "impact": "Geometry skills cannot generate rich interactive diagram-based activities",
+      "priority": "high"
+    },
+    {
+      "nodeId": "math.im2.skill.3.5.apply-the-triangle-proportionality-theorem-to-find-unknown-l",
+      "title": "3h: Apply the Triangle Proportionality Theorem to find unknown lengths; use the converse to identify parallel lines",
+      "module": "3",
+      "lesson": "5",
+      "currentRenderer": "fill-in-the-blank",
+      "neededRendererTypes": [
+        "interactive-diagram-solver"
+      ],
+      "gap": "NO_GEOMETRY_RENDERER",
+      "reason": "No dedicated geometry renderer component exists. Current fallback renderers lack diagram authoring, construction tools, and proof scaffolding.",
+      "impact": "Geometry skills cannot generate rich interactive diagram-based activities",
+      "priority": "high"
+    },
+    {
+      "nodeId": "math.im2.skill.3.5.find-lengths-using-midsegments-and-apply-triangle-proportion",
+      "title": "3i: Find lengths using midsegments and apply triangle proportionality to real-world problems",
+      "module": "3",
+      "lesson": "5",
+      "currentRenderer": "fill-in-the-blank",
+      "neededRendererTypes": [
+        "interactive-diagram-solver"
+      ],
+      "gap": "NO_GEOMETRY_RENDERER",
+      "reason": "No dedicated geometry renderer component exists. Current fallback renderers lack diagram authoring, construction tools, and proof scaffolding.",
+      "impact": "Geometry skills cannot generate rich interactive diagram-based activities",
+      "priority": "high"
+    },
+    {
+      "nodeId": "math.im2.skill.3.6.apply-the-triangle-angle-bisector-theorem-and-relate-special",
+      "title": "3k: Apply the Triangle Angle Bisector Theorem and relate special segments in similar triangles",
+      "module": "3",
+      "lesson": "6",
+      "currentRenderer": "fill-in-the-blank",
+      "neededRendererTypes": [
+        "interactive-diagram-solver"
+      ],
+      "gap": "NO_GEOMETRY_RENDERER",
+      "reason": "No dedicated geometry renderer component exists. Current fallback renderers lack diagram authoring, construction tools, and proof scaffolding.",
+      "impact": "Geometry skills cannot generate rich interactive diagram-based activities",
+      "priority": "high"
+    },
+    {
+      "nodeId": "math.im2.skill.3.6.find-unknown-side-lengths-and-altitudes-in-similar-triangles",
+      "title": "3j: Find unknown side lengths and altitudes in similar triangles using proportional reasoning",
+      "module": "3",
+      "lesson": "6",
+      "currentRenderer": "fill-in-the-blank",
+      "neededRendererTypes": [
+        "proof-builder",
+        "interactive-diagram-solver"
+      ],
+      "gap": "NO_GEOMETRY_RENDERER",
+      "reason": "No dedicated geometry renderer component exists. Current fallback renderers lack diagram authoring, construction tools, and proof scaffolding.",
+      "impact": "Geometry skills cannot generate rich interactive diagram-based activities",
+      "priority": "high"
+    },
+    {
+      "nodeId": "math.im2.skill.3.6.write-proofs-involving-similar-triangle-theorems-and-special",
+      "title": "3l: Write proofs involving similar triangle theorems and special segments",
+      "module": "3",
+      "lesson": "6",
+      "currentRenderer": "fill-in-the-blank",
+      "neededRendererTypes": [
+        "proof-builder",
+        "interactive-diagram-solver"
+      ],
+      "gap": "NO_GEOMETRY_RENDERER",
+      "reason": "No dedicated geometry renderer component exists. Current fallback renderers lack diagram authoring, construction tools, and proof scaffolding.",
+      "impact": "Geometry skills cannot generate rich interactive diagram-based activities",
+      "priority": "high"
+    },
+    {
+      "nodeId": "math.im2.skill.4.1.find-the-geometric-mean-between-two-numbers-and-write-simila",
+      "title": "4a: Find the geometric mean between two numbers and write similarity statements for the three similar right triangles",
+      "module": "4",
+      "lesson": "1",
+      "currentRenderer": "fill-in-the-blank",
+      "neededRendererTypes": [
+        "interactive-diagram-solver"
+      ],
+      "gap": "NO_GEOMETRY_RENDERER",
+      "reason": "No dedicated geometry renderer component exists. Current fallback renderers lack diagram authoring, construction tools, and proof scaffolding.",
+      "impact": "Geometry skills cannot generate rich interactive diagram-based activities",
+      "priority": "high"
+    },
+    {
+      "nodeId": "math.im2.skill.4.1.find-unknown-side-lengths-in-right-triangles-using-geometric",
+      "title": "4b: Find unknown side lengths in right triangles using geometric mean relationships",
+      "module": "4",
+      "lesson": "1",
+      "currentRenderer": "fill-in-the-blank",
+      "neededRendererTypes": [
+        "interactive-diagram-solver"
+      ],
+      "gap": "NO_GEOMETRY_RENDERER",
+      "reason": "No dedicated geometry renderer component exists. Current fallback renderers lack diagram authoring, construction tools, and proof scaffolding.",
+      "impact": "Geometry skills cannot generate rich interactive diagram-based activities",
+      "priority": "high"
+    },
+    {
+      "nodeId": "math.im2.skill.4.2.classify-triangles-as-acute-right-or-obtuse-using-the-conver",
+      "title": "4d: Classify triangles as acute, right, or obtuse using the converse of the Pythagorean Theorem",
+      "module": "4",
+      "lesson": "2",
+      "currentRenderer": "fill-in-the-blank",
+      "neededRendererTypes": [
+        "interactive-diagram-solver"
+      ],
+      "gap": "NO_GEOMETRY_RENDERER",
+      "reason": "No dedicated geometry renderer component exists. Current fallback renderers lack diagram authoring, construction tools, and proof scaffolding.",
+      "impact": "Geometry skills cannot generate rich interactive diagram-based activities",
+      "priority": "high"
+    },
+    {
+      "nodeId": "math.im2.skill.4.2.find-unknown-side-lengths-in-right-triangles-using-the-pytha",
+      "title": "4c: Find unknown side lengths in right triangles using the Pythagorean Theorem",
+      "module": "4",
+      "lesson": "2",
+      "currentRenderer": "fill-in-the-blank",
+      "neededRendererTypes": [
+        "interactive-diagram-solver"
+      ],
+      "gap": "NO_GEOMETRY_RENDERER",
+      "reason": "No dedicated geometry renderer component exists. Current fallback renderers lack diagram authoring, construction tools, and proof scaffolding.",
+      "impact": "Geometry skills cannot generate rich interactive diagram-based activities",
+      "priority": "high"
+    },
+    {
+      "nodeId": "math.im2.skill.4.3.find-the-midpoint-of-a-segment-in-three-dimensional-space-an",
+      "title": "4f: Find the midpoint of a segment in three-dimensional space and apply formulas in real-world contexts",
+      "module": "4",
+      "lesson": "3",
+      "currentRenderer": "fill-in-the-blank",
+      "neededRendererTypes": [
+        "interactive-diagram-solver"
+      ],
+      "gap": "NO_GEOMETRY_RENDERER",
+      "reason": "No dedicated geometry renderer component exists. Current fallback renderers lack diagram authoring, construction tools, and proof scaffolding.",
+      "impact": "Geometry skills cannot generate rich interactive diagram-based activities",
+      "priority": "high"
+    },
+    {
+      "nodeId": "math.im2.skill.4.3.graph-a-rectangular-solid-and-find-the-distance-between-two",
+      "title": "4e: Graph a rectangular solid and find the distance between two points in three-dimensional space",
+      "module": "4",
+      "lesson": "3",
+      "currentRenderer": "fill-in-the-blank",
+      "neededRendererTypes": [
+        "coordinate-geometry-canvas",
+        "interactive-diagram-solver"
+      ],
+      "gap": "NO_GEOMETRY_RENDERER",
+      "reason": "No dedicated geometry renderer component exists. Current fallback renderers lack diagram authoring, construction tools, and proof scaffolding.",
+      "impact": "Geometry skills cannot generate rich interactive diagram-based activities",
+      "priority": "high"
+    },
+    {
+      "nodeId": "math.im2.skill.4.4.apply-special-right-triangle-ratios-to-solve-real-world-prob",
+      "title": "4h: Apply special right triangle ratios to solve real-world problems",
+      "module": "4",
+      "lesson": "4",
+      "currentRenderer": "fill-in-the-blank",
+      "neededRendererTypes": [
+        "interactive-diagram-solver"
+      ],
+      "gap": "NO_GEOMETRY_RENDERER",
+      "reason": "No dedicated geometry renderer component exists. Current fallback renderers lack diagram authoring, construction tools, and proof scaffolding.",
+      "impact": "Geometry skills cannot generate rich interactive diagram-based activities",
+      "priority": "high"
+    },
+    {
+      "nodeId": "math.im2.skill.4.4.find-missing-side-lengths-in-45-45-90-and-30-60-90-triangles",
+      "title": "4g: Find missing side lengths in 45\u00b0-45\u00b0-90\u00b0 and 30\u00b0-60\u00b0-90\u00b0 triangles using special ratios",
+      "module": "4",
+      "lesson": "4",
+      "currentRenderer": "fill-in-the-blank",
+      "neededRendererTypes": [
+        "interactive-diagram-solver"
+      ],
+      "gap": "NO_GEOMETRY_RENDERER",
+      "reason": "No dedicated geometry renderer component exists. Current fallback renderers lack diagram authoring, construction tools, and proof scaffolding.",
+      "impact": "Geometry skills cannot generate rich interactive diagram-based activities",
+      "priority": "high"
+    },
+    {
+      "nodeId": "math.im2.skill.4.5.find-trigonometric-ratios-sine-cosine-tangent-for-acute-angl",
+      "title": "4i: Find trigonometric ratios (sine, cosine, tangent) for acute angles in right triangles",
+      "module": "4",
+      "lesson": "5",
+      "currentRenderer": "fill-in-the-blank",
+      "neededRendererTypes": [
+        "interactive-diagram-solver"
+      ],
+      "gap": "NO_GEOMETRY_RENDERER",
+      "reason": "No dedicated geometry renderer component exists. Current fallback renderers lack diagram authoring, construction tools, and proof scaffolding.",
+      "impact": "Geometry skills cannot generate rich interactive diagram-based activities",
+      "priority": "high"
+    },
+    {
+      "nodeId": "math.im2.skill.4.5.use-trigonometric-ratios-to-find-missing-side-lengths-and-an",
+      "title": "4j: Use trigonometric ratios to find missing side lengths and angle measures; solve right triangles",
+      "module": "4",
+      "lesson": "5",
+      "currentRenderer": "fill-in-the-blank",
+      "neededRendererTypes": [
+        "interactive-diagram-solver"
+      ],
+      "gap": "NO_GEOMETRY_RENDERER",
+      "reason": "No dedicated geometry renderer component exists. Current fallback renderers lack diagram authoring, construction tools, and proof scaffolding.",
+      "impact": "Geometry skills cannot generate rich interactive diagram-based activities",
+      "priority": "high"
+    },
+    {
+      "nodeId": "math.im2.skill.4.6.solve-problems-involving-angles-of-elevation-and-depression",
+      "title": "4k: Solve problems involving angles of elevation and depression",
+      "module": "4",
+      "lesson": "6",
+      "currentRenderer": "fill-in-the-blank",
+      "neededRendererTypes": [
+        "interactive-diagram-solver"
+      ],
+      "gap": "NO_GEOMETRY_RENDERER",
+      "reason": "No dedicated geometry renderer component exists. Current fallback renderers lack diagram authoring, construction tools, and proof scaffolding.",
+      "impact": "Geometry skills cannot generate rich interactive diagram-based activities",
+      "priority": "high"
+    },
+    {
+      "nodeId": "math.im2.skill.4.6.use-trigonometry-to-find-areas-of-triangles-and-solve-indire",
+      "title": "4l: Use trigonometry to find areas of triangles and solve indirect measurement problems with two angles",
+      "module": "4",
+      "lesson": "6",
+      "currentRenderer": "fill-in-the-blank",
+      "neededRendererTypes": [
+        "proof-builder",
+        "interactive-diagram-solver"
+      ],
+      "gap": "NO_GEOMETRY_RENDERER",
+      "reason": "No dedicated geometry renderer component exists. Current fallback renderers lack diagram authoring, construction tools, and proof scaffolding.",
+      "impact": "Geometry skills cannot generate rich interactive diagram-based activities",
+      "priority": "high"
+    },
+    {
+      "nodeId": "math.im2.skill.4.7.apply-the-law-of-sines-to-find-missing-sides-and-angles-in-o",
+      "title": "4m: Apply the Law of Sines to find missing sides and angles in oblique triangles",
+      "module": "4",
+      "lesson": "7",
+      "currentRenderer": "fill-in-the-blank",
+      "neededRendererTypes": [
+        "interactive-diagram-solver"
+      ],
+      "gap": "NO_GEOMETRY_RENDERER",
+      "reason": "No dedicated geometry renderer component exists. Current fallback renderers lack diagram authoring, construction tools, and proof scaffolding.",
+      "impact": "Geometry skills cannot generate rich interactive diagram-based activities",
+      "priority": "high"
+    },
+    {
+      "nodeId": "math.im2.skill.4.7.determine-whether-a-triangle-has-no-solution-one-solution-or",
+      "title": "4n: Determine whether a triangle has no solution, one solution, or two solutions (ambiguous case)",
+      "module": "4",
+      "lesson": "7",
+      "currentRenderer": "fill-in-the-blank",
+      "neededRendererTypes": [
+        "interactive-diagram-solver"
+      ],
+      "gap": "NO_GEOMETRY_RENDERER",
+      "reason": "No dedicated geometry renderer component exists. Current fallback renderers lack diagram authoring, construction tools, and proof scaffolding.",
+      "impact": "Geometry skills cannot generate rich interactive diagram-based activities",
+      "priority": "high"
+    },
+    {
+      "nodeId": "math.im2.skill.4.8.apply-the-law-of-cosines-to-find-missing-sides-and-angles-in",
+      "title": "4o: Apply the Law of Cosines to find missing sides and angles in oblique triangles",
+      "module": "4",
+      "lesson": "8",
+      "currentRenderer": "fill-in-the-blank",
+      "neededRendererTypes": [
+        "interactive-diagram-solver"
+      ],
+      "gap": "NO_GEOMETRY_RENDERER",
+      "reason": "No dedicated geometry renderer component exists. Current fallback renderers lack diagram authoring, construction tools, and proof scaffolding.",
+      "impact": "Geometry skills cannot generate rich interactive diagram-based activities",
+      "priority": "high"
+    },
+    {
+      "nodeId": "math.im2.skill.4.8.determine-whether-to-use-law-of-sines-or-law-of-cosines-and",
+      "title": "4p: Determine whether to use Law of Sines or Law of Cosines and apply to real-world problems",
+      "module": "4",
+      "lesson": "8",
+      "currentRenderer": "fill-in-the-blank",
+      "neededRendererTypes": [
+        "interactive-diagram-solver"
+      ],
+      "gap": "NO_GEOMETRY_RENDERER",
+      "reason": "No dedicated geometry renderer component exists. Current fallback renderers lack diagram authoring, construction tools, and proof scaffolding.",
+      "impact": "Geometry skills cannot generate rich interactive diagram-based activities",
+      "priority": "high"
+    },
+    {
+      "nodeId": "math.im2.skill.5.1.find-radius-diameter-and-circumference-given-any-one-of-thes",
+      "title": "5b: Find radius, diameter, and circumference given any one of these measures",
+      "module": "5",
+      "lesson": "1",
+      "currentRenderer": "fill-in-the-blank",
+      "neededRendererTypes": [
+        "interactive-diagram-solver"
+      ],
+      "gap": "NO_GEOMETRY_RENDERER",
+      "reason": "No dedicated geometry renderer component exists. Current fallback renderers lack diagram authoring, construction tools, and proof scaffolding.",
+      "impact": "Geometry skills cannot generate rich interactive diagram-based activities",
+      "priority": "high"
+    },
+    {
+      "nodeId": "math.im2.skill.5.1.identify-and-name-circles-radii-chords-and-diameters-use-the",
+      "title": "5a: Identify and name circles, radii, chords, and diameters; use the relationship between radii and diameter",
+      "module": "5",
+      "lesson": "1",
+      "currentRenderer": "fill-in-the-blank",
+      "neededRendererTypes": [
+        "interactive-diagram-solver"
+      ],
+      "gap": "NO_GEOMETRY_RENDERER",
+      "reason": "No dedicated geometry renderer component exists. Current fallback renderers lack diagram authoring, construction tools, and proof scaffolding.",
+      "impact": "Geometry skills cannot generate rich interactive diagram-based activities",
+      "priority": "high"
+    },
+    {
+      "nodeId": "math.im2.skill.5.2.find-central-angle-measures-and-arc-measures-in-degrees-clas",
+      "title": "5c: Find central angle measures and arc measures in degrees; classify arcs as major, minor, or semicircles",
+      "module": "5",
+      "lesson": "2",
+      "currentRenderer": "fill-in-the-blank",
+      "neededRendererTypes": [
+        "interactive-diagram-solver"
+      ],
+      "gap": "NO_GEOMETRY_RENDERER",
+      "reason": "No dedicated geometry renderer component exists. Current fallback renderers lack diagram authoring, construction tools, and proof scaffolding.",
+      "impact": "Geometry skills cannot generate rich interactive diagram-based activities",
+      "priority": "high"
+    },
+    {
+      "nodeId": "math.im2.skill.5.3.use-relationships-among-arcs-chords-and-central-angles-apply",
+      "title": "5e: Use relationships among arcs, chords, and central angles; apply Theorems 10.5 and 10.6",
+      "module": "5",
+      "lesson": "3",
+      "currentRenderer": "fill-in-the-blank",
+      "neededRendererTypes": [
+        "interactive-diagram-solver"
+      ],
+      "gap": "NO_GEOMETRY_RENDERER",
+      "reason": "No dedicated geometry renderer component exists. Current fallback renderers lack diagram authoring, construction tools, and proof scaffolding.",
+      "impact": "Geometry skills cannot generate rich interactive diagram-based activities",
+      "priority": "high"
+    },
+    {
+      "nodeId": "math.im2.skill.5.4.find-the-measure-of-inscribed-angles-and-their-intercepted-a",
+      "title": "5f: Find the measure of inscribed angles and their intercepted arcs",
+      "module": "5",
+      "lesson": "4",
+      "currentRenderer": "fill-in-the-blank",
+      "neededRendererTypes": [
+        "interactive-diagram-solver"
+      ],
+      "gap": "NO_GEOMETRY_RENDERER",
+      "reason": "No dedicated geometry renderer component exists. Current fallback renderers lack diagram authoring, construction tools, and proof scaffolding.",
+      "impact": "Geometry skills cannot generate rich interactive diagram-based activities",
+      "priority": "high"
+    },
+    {
+      "nodeId": "math.im2.skill.5.4.prove-theorems-about-inscribed-angles-and-apply-properties-o",
+      "title": "5g: Prove theorems about inscribed angles and apply properties of angles inscribed in semicircles",
+      "module": "5",
+      "lesson": "4",
+      "currentRenderer": "fill-in-the-blank",
+      "neededRendererTypes": [
+        "proof-builder",
+        "interactive-diagram-solver"
+      ],
+      "gap": "NO_GEOMETRY_RENDERER",
+      "reason": "No dedicated geometry renderer component exists. Current fallback renderers lack diagram authoring, construction tools, and proof scaffolding.",
+      "impact": "Geometry skills cannot generate rich interactive diagram-based activities",
+      "priority": "high"
+    },
+    {
+      "nodeId": "math.im2.skill.5.5.find-angle-measures-involving-tangents-find-perimeters-of-po",
+      "title": "5i: Find angle measures involving tangents; find perimeters of polygons circumscribed about circles",
+      "module": "5",
+      "lesson": "5",
+      "currentRenderer": "fill-in-the-blank",
+      "neededRendererTypes": [
+        "interactive-diagram-solver"
+      ],
+      "gap": "NO_GEOMETRY_RENDERER",
+      "reason": "No dedicated geometry renderer component exists. Current fallback renderers lack diagram authoring, construction tools, and proof scaffolding.",
+      "impact": "Geometry skills cannot generate rich interactive diagram-based activities",
+      "priority": "high"
+    },
+    {
+      "nodeId": "math.im2.skill.5.5.identify-the-number-of-common-tangents-to-pairs-of-circles-d",
+      "title": "5h: Identify the number of common tangents to pairs of circles; determine whether a segment is tangent",
+      "module": "5",
+      "lesson": "5",
+      "currentRenderer": "fill-in-the-blank",
+      "neededRendererTypes": [
+        "interactive-diagram-solver"
+      ],
+      "gap": "NO_GEOMETRY_RENDERER",
+      "reason": "No dedicated geometry renderer component exists. Current fallback renderers lack diagram authoring, construction tools, and proof scaffolding.",
+      "impact": "Geometry skills cannot generate rich interactive diagram-based activities",
+      "priority": "high"
+    },
+    {
+      "nodeId": "math.im2.skill.5.6.apply-angle-measure-relationships-to-find-arc-measures-and-u",
+      "title": "5k: Apply angle measure relationships to find arc measures and unknown angles; relate to real-world contexts",
+      "module": "5",
+      "lesson": "6",
+      "currentRenderer": "fill-in-the-blank",
+      "neededRendererTypes": [
+        "interactive-diagram-solver"
+      ],
+      "gap": "NO_GEOMETRY_RENDERER",
+      "reason": "No dedicated geometry renderer component exists. Current fallback renderers lack diagram authoring, construction tools, and proof scaffolding.",
+      "impact": "Geometry skills cannot generate rich interactive diagram-based activities",
+      "priority": "high"
+    },
+    {
+      "nodeId": "math.im2.skill.5.6.find-angle-measures-formed-by-chords-tangents-and-secants-in",
+      "title": "5j: Find angle measures formed by chords, tangents, and secants (inside, on, and outside circles)",
+      "module": "5",
+      "lesson": "6",
+      "currentRenderer": "fill-in-the-blank",
+      "neededRendererTypes": [
+        "interactive-diagram-solver"
+      ],
+      "gap": "NO_GEOMETRY_RENDERER",
+      "reason": "No dedicated geometry renderer component exists. Current fallback renderers lack diagram authoring, construction tools, and proof scaffolding.",
+      "impact": "Geometry skills cannot generate rich interactive diagram-based activities",
+      "priority": "high"
+    },
+    {
+      "nodeId": "math.im2.skill.5.7.find-points-of-intersection-between-a-circle-and-a-line-appl",
+      "title": "5m: Find points of intersection between a circle and a line; apply circle equations to real-world contexts",
+      "module": "5",
+      "lesson": "7",
+      "currentRenderer": "fill-in-the-blank",
+      "neededRendererTypes": [
+        "interactive-diagram-solver"
+      ],
+      "gap": "NO_GEOMETRY_RENDERER",
+      "reason": "No dedicated geometry renderer component exists. Current fallback renderers lack diagram authoring, construction tools, and proof scaffolding.",
+      "impact": "Geometry skills cannot generate rich interactive diagram-based activities",
+      "priority": "high"
+    },
+    {
+      "nodeId": "math.im2.skill.5.7.write-the-equation-of-a-circle-in-standard-form-given-center",
+      "title": "5l: Write the equation of a circle in standard form given center and radius, center and diameter, or center and a point on the circle",
+      "module": "5",
+      "lesson": "7",
+      "currentRenderer": "fill-in-the-blank",
+      "neededRendererTypes": [
+        "interactive-diagram-solver"
+      ],
+      "gap": "NO_GEOMETRY_RENDERER",
+      "reason": "No dedicated geometry renderer component exists. Current fallback renderers lack diagram authoring, construction tools, and proof scaffolding.",
+      "impact": "Geometry skills cannot generate rich interactive diagram-based activities",
+      "priority": "high"
+    },
+    {
+      "nodeId": "math.im2.skill.6.1.find-areas-of-parallelograms-and-rhombuses-using-appropriate",
+      "title": "6a: Find areas of parallelograms and rhombuses using appropriate formulas",
+      "module": "6",
+      "lesson": "1",
+      "currentRenderer": "fill-in-the-blank",
+      "neededRendererTypes": [
+        "interactive-diagram-solver"
+      ],
+      "gap": "NO_GEOMETRY_RENDERER",
+      "reason": "No dedicated geometry renderer component exists. Current fallback renderers lack diagram authoring, construction tools, and proof scaffolding.",
+      "impact": "Geometry skills cannot generate rich interactive diagram-based activities",
+      "priority": "high"
+    },
+    {
+      "nodeId": "math.im2.skill.6.1.find-areas-of-trapezoids-and-kites-solve-real-world-area-pro",
+      "title": "6b: Find areas of trapezoids and kites; solve real-world area problems",
+      "module": "6",
+      "lesson": "1",
+      "currentRenderer": "fill-in-the-blank",
+      "neededRendererTypes": [
+        "interactive-diagram-solver"
+      ],
+      "gap": "NO_GEOMETRY_RENDERER",
+      "reason": "No dedicated geometry renderer component exists. Current fallback renderers lack diagram authoring, construction tools, and proof scaffolding.",
+      "impact": "Geometry skills cannot generate rich interactive diagram-based activities",
+      "priority": "high"
+    },
+    {
+      "nodeId": "math.im2.skill.6.2.find-the-area-of-composite-figures-involving-regular-polygon",
+      "title": "6d: Find the area of composite figures involving regular polygons",
+      "module": "6",
+      "lesson": "2",
+      "currentRenderer": "fill-in-the-blank",
+      "neededRendererTypes": [
+        "interactive-diagram-solver"
+      ],
+      "gap": "NO_GEOMETRY_RENDERER",
+      "reason": "No dedicated geometry renderer component exists. Current fallback renderers lack diagram authoring, construction tools, and proof scaffolding.",
+      "impact": "Geometry skills cannot generate rich interactive diagram-based activities",
+      "priority": "high"
+    },
+    {
+      "nodeId": "math.im2.skill.6.2.identify-the-center-radius-apothem-and-central-angle-of-a-re",
+      "title": "6c: Identify the center, radius, apothem, and central angle of a regular polygon; find the area of regular polygons",
+      "module": "6",
+      "lesson": "2",
+      "currentRenderer": "fill-in-the-blank",
+      "neededRendererTypes": [
+        "interactive-diagram-solver"
+      ],
+      "gap": "NO_GEOMETRY_RENDERER",
+      "reason": "No dedicated geometry renderer component exists. Current fallback renderers lack diagram authoring, construction tools, and proof scaffolding.",
+      "impact": "Geometry skills cannot generate rich interactive diagram-based activities",
+      "priority": "high"
+    },
+    {
+      "nodeId": "math.im2.skill.6.3.find-the-area-of-a-circle-and-relate-diameter-and-radius",
+      "title": "6e: Find the area of a circle and relate diameter and radius",
+      "module": "6",
+      "lesson": "3",
+      "currentRenderer": "fill-in-the-blank",
+      "neededRendererTypes": [
+        "interactive-diagram-solver"
+      ],
+      "gap": "NO_GEOMETRY_RENDERER",
+      "reason": "No dedicated geometry renderer component exists. Current fallback renderers lack diagram authoring, construction tools, and proof scaffolding.",
+      "impact": "Geometry skills cannot generate rich interactive diagram-based activities",
+      "priority": "high"
+    },
+    {
+      "nodeId": "math.im2.skill.6.3.find-the-area-of-a-sector-of-a-circle",
+      "title": "6f: Find the area of a sector of a circle",
+      "module": "6",
+      "lesson": "3",
+      "currentRenderer": "fill-in-the-blank",
+      "neededRendererTypes": [
+        "interactive-diagram-solver"
+      ],
+      "gap": "NO_GEOMETRY_RENDERER",
+      "reason": "No dedicated geometry renderer component exists. Current fallback renderers lack diagram authoring, construction tools, and proof scaffolding.",
+      "impact": "Geometry skills cannot generate rich interactive diagram-based activities",
+      "priority": "high"
+    },
+    {
+      "nodeId": "math.im2.skill.6.4.find-lateral-areas-and-surface-areas-of-prisms-and-cylinders",
+      "title": "6g: Find lateral areas and surface areas of prisms and cylinders",
+      "module": "6",
+      "lesson": "4",
+      "currentRenderer": "fill-in-the-blank",
+      "neededRendererTypes": [
+        "interactive-diagram-solver"
+      ],
+      "gap": "NO_GEOMETRY_RENDERER",
+      "reason": "No dedicated geometry renderer component exists. Current fallback renderers lack diagram authoring, construction tools, and proof scaffolding.",
+      "impact": "Geometry skills cannot generate rich interactive diagram-based activities",
+      "priority": "high"
+    },
+    {
+      "nodeId": "math.im2.skill.6.4.find-lateral-areas-and-surface-areas-of-pyramids-and-cones",
+      "title": "6h: Find lateral areas and surface areas of pyramids and cones",
+      "module": "6",
+      "lesson": "4",
+      "currentRenderer": "fill-in-the-blank",
+      "neededRendererTypes": [
+        "interactive-diagram-solver"
+      ],
+      "gap": "NO_GEOMETRY_RENDERER",
+      "reason": "No dedicated geometry renderer component exists. Current fallback renderers lack diagram authoring, construction tools, and proof scaffolding.",
+      "impact": "Geometry skills cannot generate rich interactive diagram-based activities",
+      "priority": "high"
+    },
+    {
+      "nodeId": "math.im2.skill.6.4.find-surface-areas-of-spheres-and-composite-solids",
+      "title": "6i: Find surface areas of spheres and composite solids",
+      "module": "6",
+      "lesson": "4",
+      "currentRenderer": "fill-in-the-blank",
+      "neededRendererTypes": [
+        "interactive-diagram-solver"
+      ],
+      "gap": "NO_GEOMETRY_RENDERER",
+      "reason": "No dedicated geometry renderer component exists. Current fallback renderers lack diagram authoring, construction tools, and proof scaffolding.",
+      "impact": "Geometry skills cannot generate rich interactive diagram-based activities",
+      "priority": "high"
+    },
+    {
+      "nodeId": "math.im2.skill.6.5.describe-planes-of-symmetry-for-three-dimensional-solids-ide",
+      "title": "6j: Describe planes of symmetry for three-dimensional solids; identify shapes of cross sections",
+      "module": "6",
+      "lesson": "5",
+      "currentRenderer": "fill-in-the-blank",
+      "neededRendererTypes": [
+        "interactive-diagram-solver"
+      ],
+      "gap": "NO_GEOMETRY_RENDERER",
+      "reason": "No dedicated geometry renderer component exists. Current fallback renderers lack diagram authoring, construction tools, and proof scaffolding.",
+      "impact": "Geometry skills cannot generate rich interactive diagram-based activities",
+      "priority": "high"
+    },
+    {
+      "nodeId": "math.im2.skill.6.5.identify-solids-formed-by-rotating-two-dimensional-shapes-ab",
+      "title": "6k: Identify solids formed by rotating two-dimensional shapes about an axis; determine axis symmetry",
+      "module": "6",
+      "lesson": "5",
+      "currentRenderer": "fill-in-the-blank",
+      "neededRendererTypes": [
+        "interactive-diagram-solver"
+      ],
+      "gap": "NO_GEOMETRY_RENDERER",
+      "reason": "No dedicated geometry renderer component exists. Current fallback renderers lack diagram authoring, construction tools, and proof scaffolding.",
+      "impact": "Geometry skills cannot generate rich interactive diagram-based activities",
+      "priority": "high"
+    },
+    {
+      "nodeId": "math.im2.skill.6.6.find-volumes-of-composite-solids-and-solve-real-world-volume",
+      "title": "6m: Find volumes of composite solids and solve real-world volume problems",
+      "module": "6",
+      "lesson": "6",
+      "currentRenderer": "fill-in-the-blank",
+      "neededRendererTypes": [
+        "interactive-diagram-solver"
+      ],
+      "gap": "NO_GEOMETRY_RENDERER",
+      "reason": "No dedicated geometry renderer component exists. Current fallback renderers lack diagram authoring, construction tools, and proof scaffolding.",
+      "impact": "Geometry skills cannot generate rich interactive diagram-based activities",
+      "priority": "high"
+    },
+    {
+      "nodeId": "math.im2.skill.6.6.find-volumes-of-prisms-and-pyramids",
+      "title": "6l: Find volumes of prisms and pyramids",
+      "module": "6",
+      "lesson": "6",
+      "currentRenderer": "fill-in-the-blank",
+      "neededRendererTypes": [
+        "interactive-diagram-solver"
+      ],
+      "gap": "NO_GEOMETRY_RENDERER",
+      "reason": "No dedicated geometry renderer component exists. Current fallback renderers lack diagram authoring, construction tools, and proof scaffolding.",
+      "impact": "Geometry skills cannot generate rich interactive diagram-based activities",
+      "priority": "high"
+    },
+    {
+      "nodeId": "math.im2.skill.6.7.find-volumes-of-composite-solids-involving-cylinders-cones-a",
+      "title": "6o: Find volumes of composite solids involving cylinders, cones, and spheres; apply hemisphere volume",
+      "module": "6",
+      "lesson": "7",
+      "currentRenderer": "fill-in-the-blank",
+      "neededRendererTypes": [
+        "interactive-diagram-solver"
+      ],
+      "gap": "NO_GEOMETRY_RENDERER",
+      "reason": "No dedicated geometry renderer component exists. Current fallback renderers lack diagram authoring, construction tools, and proof scaffolding.",
+      "impact": "Geometry skills cannot generate rich interactive diagram-based activities",
+      "priority": "high"
+    },
+    {
+      "nodeId": "math.im2.skill.6.7.find-volumes-of-cylinders-cones-and-spheres",
+      "title": "6n: Find volumes of cylinders, cones, and spheres",
+      "module": "6",
+      "lesson": "7",
+      "currentRenderer": "fill-in-the-blank",
+      "neededRendererTypes": [
+        "interactive-diagram-solver"
+      ],
+      "gap": "NO_GEOMETRY_RENDERER",
+      "reason": "No dedicated geometry renderer component exists. Current fallback renderers lack diagram authoring, construction tools, and proof scaffolding.",
+      "impact": "Geometry skills cannot generate rich interactive diagram-based activities",
+      "priority": "high"
+    },
+    {
+      "nodeId": "math.im2.skill.6.8.find-missing-areas-given-similar-figures-find-scale-factors",
+      "title": "6p: Find missing areas given similar figures; find scale factors from areas of similar figures",
+      "module": "6",
+      "lesson": "8",
+      "currentRenderer": "fill-in-the-blank",
+      "neededRendererTypes": [
+        "interactive-diagram-solver"
+      ],
+      "gap": "NO_GEOMETRY_RENDERER",
+      "reason": "No dedicated geometry renderer component exists. Current fallback renderers lack diagram authoring, construction tools, and proof scaffolding.",
+      "impact": "Geometry skills cannot generate rich interactive diagram-based activities",
+      "priority": "high"
+    },
+    {
+      "nodeId": "math.im2.skill.6.8.find-volumes-of-similar-solids-and-apply-similarity-to-real",
+      "title": "6q: Find volumes of similar solids and apply similarity to real-world problems involving surface areas and volumes",
+      "module": "6",
+      "lesson": "8",
+      "currentRenderer": "fill-in-the-blank",
+      "neededRendererTypes": [
+        "interactive-diagram-solver"
+      ],
+      "gap": "NO_GEOMETRY_RENDERER",
+      "reason": "No dedicated geometry renderer component exists. Current fallback renderers lack diagram authoring, construction tools, and proof scaffolding.",
+      "impact": "Geometry skills cannot generate rich interactive diagram-based activities",
+      "priority": "high"
+    },
+    {
+      "nodeId": "math.im2.skill.8.5.graph-reflections-stretches-and-compressions-of-parent-funct",
+      "title": "8j: Graph reflections, stretches, and compressions of parent functions",
+      "module": "8",
+      "lesson": "5",
+      "currentRenderer": "fill-in-the-blank",
+      "neededRendererTypes": [
+        "coordinate-geometry-canvas"
+      ],
+      "gap": "NO_GEOMETRY_RENDERER",
+      "reason": "No dedicated geometry renderer component exists. Current fallback renderers lack diagram authoring, construction tools, and proof scaffolding.",
+      "impact": "Geometry skills cannot generate rich interactive diagram-based activities",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.im2.skill.9.3.interpret-solutions-of-linear-inequalities-in-context",
+      "title": "9f: Interpret solutions of linear inequalities in context",
+      "module": "9",
+      "lesson": "3",
+      "currentRenderer": "fill-in-the-blank",
+      "neededRendererTypes": [
+        "interactive-diagram-solver"
+      ],
+      "gap": "NO_GEOMETRY_RENDERER",
+      "reason": "No dedicated geometry renderer component exists. Current fallback renderers lack diagram authoring, construction tools, and proof scaffolding.",
+      "impact": "Geometry skills cannot generate rich interactive diagram-based activities",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.im2.skill.9.3.solve-and-graph-one-variable-and-two-variable-linear-inequal",
+      "title": "9e: Solve and graph one-variable and two-variable linear inequalities",
+      "module": "9",
+      "lesson": "3",
+      "currentRenderer": "fill-in-the-blank",
+      "neededRendererTypes": [
+        "coordinate-geometry-canvas"
+      ],
+      "gap": "NO_GEOMETRY_RENDERER",
+      "reason": "No dedicated geometry renderer component exists. Current fallback renderers lack diagram authoring, construction tools, and proof scaffolding.",
+      "impact": "Geometry skills cannot generate rich interactive diagram-based activities",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.im2.skill.9.5.graph-systems-of-linear-inequalities-and-identify-the-soluti",
+      "title": "9i: Graph systems of linear inequalities and identify the solution region",
+      "module": "9",
+      "lesson": "5",
+      "currentRenderer": "fill-in-the-blank",
+      "neededRendererTypes": [
+        "coordinate-geometry-canvas"
+      ],
+      "gap": "NO_GEOMETRY_RENDERER",
+      "reason": "No dedicated geometry renderer component exists. Current fallback renderers lack diagram authoring, construction tools, and proof scaffolding.",
+      "impact": "Geometry skills cannot generate rich interactive diagram-based activities",
+      "priority": "medium"
+    }
+  ]
+}

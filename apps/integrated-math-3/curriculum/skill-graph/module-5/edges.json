@@ -1,0 +1,5100 @@
+{
+  "edges": [
+    {
+      "id": "math.alignment.im3-example-5-1-001-to-ccss-hsf-bf-b-5",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.5.1.001",
+      "targetId": "math.standard.ccss.hsf-bf-b-5",
+      "weight": 0.5,
+      "confidence": "medium",
+      "sourceRefs": [
+        "family-objective:step-by-step-solver:exponential-models"
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via problem family step-by-step-solver:exponential-models objective",
+      "metadata": {
+        "isPrimary": false,
+        "course": "im3",
+        "originalWeight": 0.4,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-5-1-001-to-ccss-hsf-if-c-7e",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.5.1.001",
+      "targetId": "math.standard.ccss.hsf-if-c-7e",
+      "weight": 0.75,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-5-lesson-1",
+          "note": "Mapped via lesson standard (primary)"
+        },
+        "family-objective:graphing-explorer:exponential-growth",
+        "family-objective:graphing-explorer:exponential-decay",
+        "family-objective:graphing-explorer:exponential-base-e",
+        "family-objective:comprehension-quiz:exponential-vocabulary"
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-5-lesson-1; Aligned via problem family graphing-explorer:exponential-growth objective; Aligned via problem family graphing-explorer:exponential-decay objective; Aligned via problem family graphing-explorer:exponential-base-e objective; Aligned via problem family comprehension-quiz:exponential-vocabulary objective",
+      "metadata": {
+        "isPrimary": true,
+        "course": "im3",
+        "originalWeight": 0.8,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-5-1-001-to-ccss-hsf-le-a-1",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.5.1.001",
+      "targetId": "math.standard.ccss.hsf-le-a-1",
+      "weight": 0.75,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-5-lesson-1",
+          "note": "Mapped via lesson standard (primary)"
+        },
+        "family-objective:step-by-step-solver:natural-base-e",
+        "family-objective:graphing-explorer:exponential-base-e",
+        "family-objective:step-by-step-solver:compare-exponential-linear",
+        "family-objective:graphing-explorer:exponential-vs-linear"
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-5-lesson-1; Aligned via problem family step-by-step-solver:natural-base-e objective; Aligned via problem family graphing-explorer:exponential-base-e objective; Aligned via problem family step-by-step-solver:compare-exponential-linear objective; Aligned via problem family graphing-explorer:exponential-vs-linear objective",
+      "metadata": {
+        "isPrimary": true,
+        "course": "im3",
+        "originalWeight": 0.8,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-5-1-001-to-ccss-hsf-le-a-2",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.5.1.001",
+      "targetId": "math.standard.ccss.hsf-le-a-2",
+      "weight": 0.5,
+      "confidence": "medium",
+      "sourceRefs": [
+        "family-objective:step-by-step-solver:natural-base-e",
+        "family-objective:step-by-step-solver:geometric-sequences",
+        "family-objective:step-by-step-solver:geometric-series",
+        "family-objective:step-by-step-solver:compare-exponential-linear"
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via problem family step-by-step-solver:natural-base-e objective; Aligned via problem family step-by-step-solver:geometric-sequences objective; Aligned via problem family step-by-step-solver:geometric-series objective; Aligned via problem family step-by-step-solver:compare-exponential-linear objective",
+      "metadata": {
+        "isPrimary": false,
+        "course": "im3",
+        "originalWeight": 0.4,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-5-1-001-to-ccss-hsf-le-a-4",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.5.1.001",
+      "targetId": "math.standard.ccss.hsf-le-a-4",
+      "weight": 0.5,
+      "confidence": "medium",
+      "sourceRefs": [
+        "family-objective:step-by-step-solver:solve-exponential-equations",
+        "family-objective:step-by-step-solver:exponential-models",
+        "family-objective:comprehension-quiz:exponential-vocabulary"
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via problem family step-by-step-solver:solve-exponential-equations objective; Aligned via problem family step-by-step-solver:exponential-models objective; Aligned via problem family comprehension-quiz:exponential-vocabulary objective",
+      "metadata": {
+        "isPrimary": false,
+        "course": "im3",
+        "originalWeight": 0.4,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-5-1-002-to-ccss-hsf-bf-b-5",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.5.1.002",
+      "targetId": "math.standard.ccss.hsf-bf-b-5",
+      "weight": 0.5,
+      "confidence": "medium",
+      "sourceRefs": [
+        "family-objective:step-by-step-solver:exponential-models"
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via problem family step-by-step-solver:exponential-models objective",
+      "metadata": {
+        "isPrimary": false,
+        "course": "im3",
+        "originalWeight": 0.4,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-5-1-002-to-ccss-hsf-if-c-7e",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.5.1.002",
+      "targetId": "math.standard.ccss.hsf-if-c-7e",
+      "weight": 0.75,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-5-lesson-1",
+          "note": "Mapped via lesson standard (primary)"
+        },
+        "family-objective:graphing-explorer:exponential-growth",
+        "family-objective:graphing-explorer:exponential-decay",
+        "family-objective:graphing-explorer:exponential-base-e",
+        "family-objective:comprehension-quiz:exponential-vocabulary"
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-5-lesson-1; Aligned via problem family graphing-explorer:exponential-growth objective; Aligned via problem family graphing-explorer:exponential-decay objective; Aligned via problem family graphing-explorer:exponential-base-e objective; Aligned via problem family comprehension-quiz:exponential-vocabulary objective",
+      "metadata": {
+        "isPrimary": true,
+        "course": "im3",
+        "originalWeight": 0.8,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-5-1-002-to-ccss-hsf-le-a-1",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.5.1.002",
+      "targetId": "math.standard.ccss.hsf-le-a-1",
+      "weight": 0.75,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-5-lesson-1",
+          "note": "Mapped via lesson standard (primary)"
+        },
+        "family-objective:step-by-step-solver:natural-base-e",
+        "family-objective:graphing-explorer:exponential-base-e",
+        "family-objective:step-by-step-solver:compare-exponential-linear",
+        "family-objective:graphing-explorer:exponential-vs-linear"
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-5-lesson-1; Aligned via problem family step-by-step-solver:natural-base-e objective; Aligned via problem family graphing-explorer:exponential-base-e objective; Aligned via problem family step-by-step-solver:compare-exponential-linear objective; Aligned via problem family graphing-explorer:exponential-vs-linear objective",
+      "metadata": {
+        "isPrimary": true,
+        "course": "im3",
+        "originalWeight": 0.8,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-5-1-002-to-ccss-hsf-le-a-2",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.5.1.002",
+      "targetId": "math.standard.ccss.hsf-le-a-2",
+      "weight": 0.5,
+      "confidence": "medium",
+      "sourceRefs": [
+        "family-objective:step-by-step-solver:natural-base-e",
+        "family-objective:step-by-step-solver:geometric-sequences",
+        "family-objective:step-by-step-solver:geometric-series",
+        "family-objective:step-by-step-solver:compare-exponential-linear"
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via problem family step-by-step-solver:natural-base-e objective; Aligned via problem family step-by-step-solver:geometric-sequences objective; Aligned via problem family step-by-step-solver:geometric-series objective; Aligned via problem family step-by-step-solver:compare-exponential-linear objective",
+      "metadata": {
+        "isPrimary": false,
+        "course": "im3",
+        "originalWeight": 0.4,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-5-1-002-to-ccss-hsf-le-a-4",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.5.1.002",
+      "targetId": "math.standard.ccss.hsf-le-a-4",
+      "weight": 0.5,
+      "confidence": "medium",
+      "sourceRefs": [
+        "family-objective:step-by-step-solver:solve-exponential-equations",
+        "family-objective:step-by-step-solver:exponential-models",
+        "family-objective:comprehension-quiz:exponential-vocabulary"
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via problem family step-by-step-solver:solve-exponential-equations objective; Aligned via problem family step-by-step-solver:exponential-models objective; Aligned via problem family comprehension-quiz:exponential-vocabulary objective",
+      "metadata": {
+        "isPrimary": false,
+        "course": "im3",
+        "originalWeight": 0.4,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-5-1-003-to-ccss-hsf-bf-b-5",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.5.1.003",
+      "targetId": "math.standard.ccss.hsf-bf-b-5",
+      "weight": 0.5,
+      "confidence": "medium",
+      "sourceRefs": [
+        "family-objective:step-by-step-solver:exponential-models"
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via problem family step-by-step-solver:exponential-models objective",
+      "metadata": {
+        "isPrimary": false,
+        "course": "im3",
+        "originalWeight": 0.4,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-5-1-003-to-ccss-hsf-if-c-7e",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.5.1.003",
+      "targetId": "math.standard.ccss.hsf-if-c-7e",
+      "weight": 0.75,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-5-lesson-1",
+          "note": "Mapped via lesson standard (primary)"
+        },
+        "family-objective:graphing-explorer:exponential-growth",
+        "family-objective:graphing-explorer:exponential-decay",
+        "family-objective:graphing-explorer:exponential-base-e",
+        "family-objective:comprehension-quiz:exponential-vocabulary"
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-5-lesson-1; Aligned via problem family graphing-explorer:exponential-growth objective; Aligned via problem family graphing-explorer:exponential-decay objective; Aligned via problem family graphing-explorer:exponential-base-e objective; Aligned via problem family comprehension-quiz:exponential-vocabulary objective",
+      "metadata": {
+        "isPrimary": true,
+        "course": "im3",
+        "originalWeight": 0.8,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-5-1-003-to-ccss-hsf-le-a-1",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.5.1.003",
+      "targetId": "math.standard.ccss.hsf-le-a-1",
+      "weight": 0.75,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-5-lesson-1",
+          "note": "Mapped via lesson standard (primary)"
+        },
+        "family-objective:step-by-step-solver:natural-base-e",
+        "family-objective:graphing-explorer:exponential-base-e",
+        "family-objective:step-by-step-solver:compare-exponential-linear",
+        "family-objective:graphing-explorer:exponential-vs-linear"
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-5-lesson-1; Aligned via problem family step-by-step-solver:natural-base-e objective; Aligned via problem family graphing-explorer:exponential-base-e objective; Aligned via problem family step-by-step-solver:compare-exponential-linear objective; Aligned via problem family graphing-explorer:exponential-vs-linear objective",
+      "metadata": {
+        "isPrimary": true,
+        "course": "im3",
+        "originalWeight": 0.8,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-5-1-003-to-ccss-hsf-le-a-2",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.5.1.003",
+      "targetId": "math.standard.ccss.hsf-le-a-2",
+      "weight": 0.5,
+      "confidence": "medium",
+      "sourceRefs": [
+        "family-objective:step-by-step-solver:natural-base-e",
+        "family-objective:step-by-step-solver:geometric-sequences",
+        "family-objective:step-by-step-solver:geometric-series",
+        "family-objective:step-by-step-solver:compare-exponential-linear"
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via problem family step-by-step-solver:natural-base-e objective; Aligned via problem family step-by-step-solver:geometric-sequences objective; Aligned via problem family step-by-step-solver:geometric-series objective; Aligned via problem family step-by-step-solver:compare-exponential-linear objective",
+      "metadata": {
+        "isPrimary": false,
+        "course": "im3",
+        "originalWeight": 0.4,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-5-1-003-to-ccss-hsf-le-a-4",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.5.1.003",
+      "targetId": "math.standard.ccss.hsf-le-a-4",
+      "weight": 0.5,
+      "confidence": "medium",
+      "sourceRefs": [
+        "family-objective:step-by-step-solver:solve-exponential-equations",
+        "family-objective:step-by-step-solver:exponential-models",
+        "family-objective:comprehension-quiz:exponential-vocabulary"
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via problem family step-by-step-solver:solve-exponential-equations objective; Aligned via problem family step-by-step-solver:exponential-models objective; Aligned via problem family comprehension-quiz:exponential-vocabulary objective",
+      "metadata": {
+        "isPrimary": false,
+        "course": "im3",
+        "originalWeight": 0.4,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-5-1-004-to-ccss-hsf-bf-b-5",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.5.1.004",
+      "targetId": "math.standard.ccss.hsf-bf-b-5",
+      "weight": 0.5,
+      "confidence": "medium",
+      "sourceRefs": [
+        "family-objective:step-by-step-solver:exponential-models"
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via problem family step-by-step-solver:exponential-models objective",
+      "metadata": {
+        "isPrimary": false,
+        "course": "im3",
+        "originalWeight": 0.4,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-5-1-004-to-ccss-hsf-if-c-7e",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.5.1.004",
+      "targetId": "math.standard.ccss.hsf-if-c-7e",
+      "weight": 0.75,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-5-lesson-1",
+          "note": "Mapped via lesson standard (primary)"
+        },
+        "family-objective:graphing-explorer:exponential-growth",
+        "family-objective:graphing-explorer:exponential-decay",
+        "family-objective:graphing-explorer:exponential-base-e",
+        "family-objective:comprehension-quiz:exponential-vocabulary"
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-5-lesson-1; Aligned via problem family graphing-explorer:exponential-growth objective; Aligned via problem family graphing-explorer:exponential-decay objective; Aligned via problem family graphing-explorer:exponential-base-e objective; Aligned via problem family comprehension-quiz:exponential-vocabulary objective",
+      "metadata": {
+        "isPrimary": true,
+        "course": "im3",
+        "originalWeight": 0.8,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-5-1-004-to-ccss-hsf-le-a-1",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.5.1.004",
+      "targetId": "math.standard.ccss.hsf-le-a-1",
+      "weight": 0.75,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-5-lesson-1",
+          "note": "Mapped via lesson standard (primary)"
+        },
+        "family-objective:step-by-step-solver:natural-base-e",
+        "family-objective:graphing-explorer:exponential-base-e",
+        "family-objective:step-by-step-solver:compare-exponential-linear",
+        "family-objective:graphing-explorer:exponential-vs-linear"
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-5-lesson-1; Aligned via problem family step-by-step-solver:natural-base-e objective; Aligned via problem family graphing-explorer:exponential-base-e objective; Aligned via problem family step-by-step-solver:compare-exponential-linear objective; Aligned via problem family graphing-explorer:exponential-vs-linear objective",
+      "metadata": {
+        "isPrimary": true,
+        "course": "im3",
+        "originalWeight": 0.8,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-5-1-004-to-ccss-hsf-le-a-2",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.5.1.004",
+      "targetId": "math.standard.ccss.hsf-le-a-2",
+      "weight": 0.5,
+      "confidence": "medium",
+      "sourceRefs": [
+        "family-objective:step-by-step-solver:natural-base-e",
+        "family-objective:step-by-step-solver:geometric-sequences",
+        "family-objective:step-by-step-solver:geometric-series",
+        "family-objective:step-by-step-solver:compare-exponential-linear"
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via problem family step-by-step-solver:natural-base-e objective; Aligned via problem family step-by-step-solver:geometric-sequences objective; Aligned via problem family step-by-step-solver:geometric-series objective; Aligned via problem family step-by-step-solver:compare-exponential-linear objective",
+      "metadata": {
+        "isPrimary": false,
+        "course": "im3",
+        "originalWeight": 0.4,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-5-1-004-to-ccss-hsf-le-a-4",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.5.1.004",
+      "targetId": "math.standard.ccss.hsf-le-a-4",
+      "weight": 0.5,
+      "confidence": "medium",
+      "sourceRefs": [
+        "family-objective:step-by-step-solver:solve-exponential-equations",
+        "family-objective:step-by-step-solver:exponential-models",
+        "family-objective:comprehension-quiz:exponential-vocabulary"
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via problem family step-by-step-solver:solve-exponential-equations objective; Aligned via problem family step-by-step-solver:exponential-models objective; Aligned via problem family comprehension-quiz:exponential-vocabulary objective",
+      "metadata": {
+        "isPrimary": false,
+        "course": "im3",
+        "originalWeight": 0.4,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-5-1-005-to-ccss-hsf-bf-b-5",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.5.1.005",
+      "targetId": "math.standard.ccss.hsf-bf-b-5",
+      "weight": 0.5,
+      "confidence": "medium",
+      "sourceRefs": [
+        "family-objective:step-by-step-solver:exponential-models"
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via problem family step-by-step-solver:exponential-models objective",
+      "metadata": {
+        "isPrimary": false,
+        "course": "im3",
+        "originalWeight": 0.4,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-5-1-005-to-ccss-hsf-if-c-7e",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.5.1.005",
+      "targetId": "math.standard.ccss.hsf-if-c-7e",
+      "weight": 0.75,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-5-lesson-1",
+          "note": "Mapped via lesson standard (primary)"
+        },
+        "family-objective:graphing-explorer:exponential-growth",
+        "family-objective:graphing-explorer:exponential-decay",
+        "family-objective:graphing-explorer:exponential-base-e",
+        "family-objective:comprehension-quiz:exponential-vocabulary"
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-5-lesson-1; Aligned via problem family graphing-explorer:exponential-growth objective; Aligned via problem family graphing-explorer:exponential-decay objective; Aligned via problem family graphing-explorer:exponential-base-e objective; Aligned via problem family comprehension-quiz:exponential-vocabulary objective",
+      "metadata": {
+        "isPrimary": true,
+        "course": "im3",
+        "originalWeight": 0.8,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-5-1-005-to-ccss-hsf-le-a-1",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.5.1.005",
+      "targetId": "math.standard.ccss.hsf-le-a-1",
+      "weight": 0.75,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-5-lesson-1",
+          "note": "Mapped via lesson standard (primary)"
+        },
+        "family-objective:step-by-step-solver:natural-base-e",
+        "family-objective:graphing-explorer:exponential-base-e",
+        "family-objective:step-by-step-solver:compare-exponential-linear",
+        "family-objective:graphing-explorer:exponential-vs-linear"
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-5-lesson-1; Aligned via problem family step-by-step-solver:natural-base-e objective; Aligned via problem family graphing-explorer:exponential-base-e objective; Aligned via problem family step-by-step-solver:compare-exponential-linear objective; Aligned via problem family graphing-explorer:exponential-vs-linear objective",
+      "metadata": {
+        "isPrimary": true,
+        "course": "im3",
+        "originalWeight": 0.8,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-5-1-005-to-ccss-hsf-le-a-2",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.5.1.005",
+      "targetId": "math.standard.ccss.hsf-le-a-2",
+      "weight": 0.5,
+      "confidence": "medium",
+      "sourceRefs": [
+        "family-objective:step-by-step-solver:natural-base-e",
+        "family-objective:step-by-step-solver:geometric-sequences",
+        "family-objective:step-by-step-solver:geometric-series",
+        "family-objective:step-by-step-solver:compare-exponential-linear"
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via problem family step-by-step-solver:natural-base-e objective; Aligned via problem family step-by-step-solver:geometric-sequences objective; Aligned via problem family step-by-step-solver:geometric-series objective; Aligned via problem family step-by-step-solver:compare-exponential-linear objective",
+      "metadata": {
+        "isPrimary": false,
+        "course": "im3",
+        "originalWeight": 0.4,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-5-1-005-to-ccss-hsf-le-a-4",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.5.1.005",
+      "targetId": "math.standard.ccss.hsf-le-a-4",
+      "weight": 0.5,
+      "confidence": "medium",
+      "sourceRefs": [
+        "family-objective:step-by-step-solver:solve-exponential-equations",
+        "family-objective:step-by-step-solver:exponential-models",
+        "family-objective:comprehension-quiz:exponential-vocabulary"
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via problem family step-by-step-solver:solve-exponential-equations objective; Aligned via problem family step-by-step-solver:exponential-models objective; Aligned via problem family comprehension-quiz:exponential-vocabulary objective",
+      "metadata": {
+        "isPrimary": false,
+        "course": "im3",
+        "originalWeight": 0.4,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-5-1-006-to-ccss-hsf-bf-b-5",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.5.1.006",
+      "targetId": "math.standard.ccss.hsf-bf-b-5",
+      "weight": 0.5,
+      "confidence": "medium",
+      "sourceRefs": [
+        "family-objective:step-by-step-solver:exponential-models"
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via problem family step-by-step-solver:exponential-models objective",
+      "metadata": {
+        "isPrimary": false,
+        "course": "im3",
+        "originalWeight": 0.4,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-5-1-006-to-ccss-hsf-if-c-7e",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.5.1.006",
+      "targetId": "math.standard.ccss.hsf-if-c-7e",
+      "weight": 0.75,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-5-lesson-1",
+          "note": "Mapped via lesson standard (primary)"
+        },
+        "family-objective:graphing-explorer:exponential-growth",
+        "family-objective:graphing-explorer:exponential-decay",
+        "family-objective:graphing-explorer:exponential-base-e",
+        "family-objective:comprehension-quiz:exponential-vocabulary"
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-5-lesson-1; Aligned via problem family graphing-explorer:exponential-growth objective; Aligned via problem family graphing-explorer:exponential-decay objective; Aligned via problem family graphing-explorer:exponential-base-e objective; Aligned via problem family comprehension-quiz:exponential-vocabulary objective",
+      "metadata": {
+        "isPrimary": true,
+        "course": "im3",
+        "originalWeight": 0.8,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-5-1-006-to-ccss-hsf-le-a-1",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.5.1.006",
+      "targetId": "math.standard.ccss.hsf-le-a-1",
+      "weight": 0.75,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-5-lesson-1",
+          "note": "Mapped via lesson standard (primary)"
+        },
+        "family-objective:step-by-step-solver:natural-base-e",
+        "family-objective:graphing-explorer:exponential-base-e",
+        "family-objective:step-by-step-solver:compare-exponential-linear",
+        "family-objective:graphing-explorer:exponential-vs-linear"
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-5-lesson-1; Aligned via problem family step-by-step-solver:natural-base-e objective; Aligned via problem family graphing-explorer:exponential-base-e objective; Aligned via problem family step-by-step-solver:compare-exponential-linear objective; Aligned via problem family graphing-explorer:exponential-vs-linear objective",
+      "metadata": {
+        "isPrimary": true,
+        "course": "im3",
+        "originalWeight": 0.8,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-5-1-006-to-ccss-hsf-le-a-2",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.5.1.006",
+      "targetId": "math.standard.ccss.hsf-le-a-2",
+      "weight": 0.5,
+      "confidence": "medium",
+      "sourceRefs": [
+        "family-objective:step-by-step-solver:natural-base-e",
+        "family-objective:step-by-step-solver:geometric-sequences",
+        "family-objective:step-by-step-solver:geometric-series",
+        "family-objective:step-by-step-solver:compare-exponential-linear"
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via problem family step-by-step-solver:natural-base-e objective; Aligned via problem family step-by-step-solver:geometric-sequences objective; Aligned via problem family step-by-step-solver:geometric-series objective; Aligned via problem family step-by-step-solver:compare-exponential-linear objective",
+      "metadata": {
+        "isPrimary": false,
+        "course": "im3",
+        "originalWeight": 0.4,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-5-1-006-to-ccss-hsf-le-a-4",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.5.1.006",
+      "targetId": "math.standard.ccss.hsf-le-a-4",
+      "weight": 0.5,
+      "confidence": "medium",
+      "sourceRefs": [
+        "family-objective:step-by-step-solver:solve-exponential-equations",
+        "family-objective:step-by-step-solver:exponential-models",
+        "family-objective:comprehension-quiz:exponential-vocabulary"
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via problem family step-by-step-solver:solve-exponential-equations objective; Aligned via problem family step-by-step-solver:exponential-models objective; Aligned via problem family comprehension-quiz:exponential-vocabulary objective",
+      "metadata": {
+        "isPrimary": false,
+        "course": "im3",
+        "originalWeight": 0.4,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-5-1-007-to-ccss-hsf-bf-b-5",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.5.1.007",
+      "targetId": "math.standard.ccss.hsf-bf-b-5",
+      "weight": 0.5,
+      "confidence": "medium",
+      "sourceRefs": [
+        "family-objective:step-by-step-solver:exponential-models"
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via problem family step-by-step-solver:exponential-models objective",
+      "metadata": {
+        "isPrimary": false,
+        "course": "im3",
+        "originalWeight": 0.4,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-5-1-007-to-ccss-hsf-if-c-7e",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.5.1.007",
+      "targetId": "math.standard.ccss.hsf-if-c-7e",
+      "weight": 0.75,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-5-lesson-1",
+          "note": "Mapped via lesson standard (primary)"
+        },
+        "family-objective:graphing-explorer:exponential-growth",
+        "family-objective:graphing-explorer:exponential-decay",
+        "family-objective:graphing-explorer:exponential-base-e",
+        "family-objective:comprehension-quiz:exponential-vocabulary"
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-5-lesson-1; Aligned via problem family graphing-explorer:exponential-growth objective; Aligned via problem family graphing-explorer:exponential-decay objective; Aligned via problem family graphing-explorer:exponential-base-e objective; Aligned via problem family comprehension-quiz:exponential-vocabulary objective",
+      "metadata": {
+        "isPrimary": true,
+        "course": "im3",
+        "originalWeight": 0.8,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-5-1-007-to-ccss-hsf-le-a-1",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.5.1.007",
+      "targetId": "math.standard.ccss.hsf-le-a-1",
+      "weight": 0.75,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-5-lesson-1",
+          "note": "Mapped via lesson standard (primary)"
+        },
+        "family-objective:step-by-step-solver:natural-base-e",
+        "family-objective:graphing-explorer:exponential-base-e",
+        "family-objective:step-by-step-solver:compare-exponential-linear",
+        "family-objective:graphing-explorer:exponential-vs-linear"
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-5-lesson-1; Aligned via problem family step-by-step-solver:natural-base-e objective; Aligned via problem family graphing-explorer:exponential-base-e objective; Aligned via problem family step-by-step-solver:compare-exponential-linear objective; Aligned via problem family graphing-explorer:exponential-vs-linear objective",
+      "metadata": {
+        "isPrimary": true,
+        "course": "im3",
+        "originalWeight": 0.8,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-5-1-007-to-ccss-hsf-le-a-2",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.5.1.007",
+      "targetId": "math.standard.ccss.hsf-le-a-2",
+      "weight": 0.5,
+      "confidence": "medium",
+      "sourceRefs": [
+        "family-objective:step-by-step-solver:natural-base-e",
+        "family-objective:step-by-step-solver:geometric-sequences",
+        "family-objective:step-by-step-solver:geometric-series",
+        "family-objective:step-by-step-solver:compare-exponential-linear"
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via problem family step-by-step-solver:natural-base-e objective; Aligned via problem family step-by-step-solver:geometric-sequences objective; Aligned via problem family step-by-step-solver:geometric-series objective; Aligned via problem family step-by-step-solver:compare-exponential-linear objective",
+      "metadata": {
+        "isPrimary": false,
+        "course": "im3",
+        "originalWeight": 0.4,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-5-1-007-to-ccss-hsf-le-a-4",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.5.1.007",
+      "targetId": "math.standard.ccss.hsf-le-a-4",
+      "weight": 0.5,
+      "confidence": "medium",
+      "sourceRefs": [
+        "family-objective:step-by-step-solver:solve-exponential-equations",
+        "family-objective:step-by-step-solver:exponential-models",
+        "family-objective:comprehension-quiz:exponential-vocabulary"
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via problem family step-by-step-solver:solve-exponential-equations objective; Aligned via problem family step-by-step-solver:exponential-models objective; Aligned via problem family comprehension-quiz:exponential-vocabulary objective",
+      "metadata": {
+        "isPrimary": false,
+        "course": "im3",
+        "originalWeight": 0.4,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-5-1-008-to-ccss-hsf-bf-b-5",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.5.1.008",
+      "targetId": "math.standard.ccss.hsf-bf-b-5",
+      "weight": 0.5,
+      "confidence": "medium",
+      "sourceRefs": [
+        "family-objective:step-by-step-solver:exponential-models"
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via problem family step-by-step-solver:exponential-models objective",
+      "metadata": {
+        "isPrimary": false,
+        "course": "im3",
+        "originalWeight": 0.4,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-5-1-008-to-ccss-hsf-if-c-7e",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.5.1.008",
+      "targetId": "math.standard.ccss.hsf-if-c-7e",
+      "weight": 0.75,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-5-lesson-1",
+          "note": "Mapped via lesson standard (primary)"
+        },
+        "family-objective:graphing-explorer:exponential-growth",
+        "family-objective:graphing-explorer:exponential-decay",
+        "family-objective:graphing-explorer:exponential-base-e",
+        "family-objective:comprehension-quiz:exponential-vocabulary"
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-5-lesson-1; Aligned via problem family graphing-explorer:exponential-growth objective; Aligned via problem family graphing-explorer:exponential-decay objective; Aligned via problem family graphing-explorer:exponential-base-e objective; Aligned via problem family comprehension-quiz:exponential-vocabulary objective",
+      "metadata": {
+        "isPrimary": true,
+        "course": "im3",
+        "originalWeight": 0.8,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-5-1-008-to-ccss-hsf-le-a-1",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.5.1.008",
+      "targetId": "math.standard.ccss.hsf-le-a-1",
+      "weight": 0.75,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-5-lesson-1",
+          "note": "Mapped via lesson standard (primary)"
+        },
+        "family-objective:step-by-step-solver:natural-base-e",
+        "family-objective:graphing-explorer:exponential-base-e",
+        "family-objective:step-by-step-solver:compare-exponential-linear",
+        "family-objective:graphing-explorer:exponential-vs-linear"
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-5-lesson-1; Aligned via problem family step-by-step-solver:natural-base-e objective; Aligned via problem family graphing-explorer:exponential-base-e objective; Aligned via problem family step-by-step-solver:compare-exponential-linear objective; Aligned via problem family graphing-explorer:exponential-vs-linear objective",
+      "metadata": {
+        "isPrimary": true,
+        "course": "im3",
+        "originalWeight": 0.8,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-5-1-008-to-ccss-hsf-le-a-2",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.5.1.008",
+      "targetId": "math.standard.ccss.hsf-le-a-2",
+      "weight": 0.5,
+      "confidence": "medium",
+      "sourceRefs": [
+        "family-objective:step-by-step-solver:natural-base-e",
+        "family-objective:step-by-step-solver:geometric-sequences",
+        "family-objective:step-by-step-solver:geometric-series",
+        "family-objective:step-by-step-solver:compare-exponential-linear"
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via problem family step-by-step-solver:natural-base-e objective; Aligned via problem family step-by-step-solver:geometric-sequences objective; Aligned via problem family step-by-step-solver:geometric-series objective; Aligned via problem family step-by-step-solver:compare-exponential-linear objective",
+      "metadata": {
+        "isPrimary": false,
+        "course": "im3",
+        "originalWeight": 0.4,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-5-1-008-to-ccss-hsf-le-a-4",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.5.1.008",
+      "targetId": "math.standard.ccss.hsf-le-a-4",
+      "weight": 0.5,
+      "confidence": "medium",
+      "sourceRefs": [
+        "family-objective:step-by-step-solver:solve-exponential-equations",
+        "family-objective:step-by-step-solver:exponential-models",
+        "family-objective:comprehension-quiz:exponential-vocabulary"
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via problem family step-by-step-solver:solve-exponential-equations objective; Aligned via problem family step-by-step-solver:exponential-models objective; Aligned via problem family comprehension-quiz:exponential-vocabulary objective",
+      "metadata": {
+        "isPrimary": false,
+        "course": "im3",
+        "originalWeight": 0.4,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-5-2-009-to-ccss-hsf-le-a-2",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.5.2.009",
+      "targetId": "math.standard.ccss.hsf-le-a-2",
+      "weight": 0.75,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-5-lesson-2",
+          "note": "Mapped via lesson standard (primary)"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-5-lesson-2",
+      "metadata": {
+        "isPrimary": true,
+        "course": "im3",
+        "originalWeight": 0.8,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-5-2-009-to-ccss-hsf-le-b-5",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.5.2.009",
+      "targetId": "math.standard.ccss.hsf-le-b-5",
+      "weight": 0.5,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-5-lesson-2",
+          "note": "Mapped via lesson standard"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-5-lesson-2",
+      "metadata": {
+        "isPrimary": false,
+        "course": "im3"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-5-2-010-to-ccss-hsf-le-a-2",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.5.2.010",
+      "targetId": "math.standard.ccss.hsf-le-a-2",
+      "weight": 0.75,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-5-lesson-2",
+          "note": "Mapped via lesson standard (primary)"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-5-lesson-2",
+      "metadata": {
+        "isPrimary": true,
+        "course": "im3",
+        "originalWeight": 0.8,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-5-2-010-to-ccss-hsf-le-b-5",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.5.2.010",
+      "targetId": "math.standard.ccss.hsf-le-b-5",
+      "weight": 0.5,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-5-lesson-2",
+          "note": "Mapped via lesson standard"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-5-lesson-2",
+      "metadata": {
+        "isPrimary": false,
+        "course": "im3"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-5-2-011-to-ccss-hsf-le-a-2",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.5.2.011",
+      "targetId": "math.standard.ccss.hsf-le-a-2",
+      "weight": 0.75,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-5-lesson-2",
+          "note": "Mapped via lesson standard (primary)"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-5-lesson-2",
+      "metadata": {
+        "isPrimary": true,
+        "course": "im3",
+        "originalWeight": 0.8,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-5-2-011-to-ccss-hsf-le-b-5",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.5.2.011",
+      "targetId": "math.standard.ccss.hsf-le-b-5",
+      "weight": 0.5,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-5-lesson-2",
+          "note": "Mapped via lesson standard"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-5-lesson-2",
+      "metadata": {
+        "isPrimary": false,
+        "course": "im3"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-5-2-012-to-ccss-hsf-le-a-2",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.5.2.012",
+      "targetId": "math.standard.ccss.hsf-le-a-2",
+      "weight": 0.75,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-5-lesson-2",
+          "note": "Mapped via lesson standard (primary)"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-5-lesson-2",
+      "metadata": {
+        "isPrimary": true,
+        "course": "im3",
+        "originalWeight": 0.8,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-5-2-012-to-ccss-hsf-le-b-5",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.5.2.012",
+      "targetId": "math.standard.ccss.hsf-le-b-5",
+      "weight": 0.5,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-5-lesson-2",
+          "note": "Mapped via lesson standard"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-5-lesson-2",
+      "metadata": {
+        "isPrimary": false,
+        "course": "im3"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-5-3-013-to-ccss-hsf-le-a-2",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.5.3.013",
+      "targetId": "math.standard.ccss.hsf-le-a-2",
+      "weight": 0.75,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-5-lesson-3",
+          "note": "Mapped via lesson standard (primary)"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-5-lesson-3",
+      "metadata": {
+        "isPrimary": true,
+        "course": "im3",
+        "originalWeight": 0.8,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-5-3-013-to-ccss-hsf-le-b-5",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.5.3.013",
+      "targetId": "math.standard.ccss.hsf-le-b-5",
+      "weight": 0.5,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-5-lesson-3",
+          "note": "Mapped via lesson standard"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-5-lesson-3",
+      "metadata": {
+        "isPrimary": false,
+        "course": "im3"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-5-3-014-to-ccss-hsf-le-a-2",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.5.3.014",
+      "targetId": "math.standard.ccss.hsf-le-a-2",
+      "weight": 0.75,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-5-lesson-3",
+          "note": "Mapped via lesson standard (primary)"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-5-lesson-3",
+      "metadata": {
+        "isPrimary": true,
+        "course": "im3",
+        "originalWeight": 0.8,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-5-3-014-to-ccss-hsf-le-b-5",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.5.3.014",
+      "targetId": "math.standard.ccss.hsf-le-b-5",
+      "weight": 0.5,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-5-lesson-3",
+          "note": "Mapped via lesson standard"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-5-lesson-3",
+      "metadata": {
+        "isPrimary": false,
+        "course": "im3"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-5-3-015-to-ccss-hsf-le-a-2",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.5.3.015",
+      "targetId": "math.standard.ccss.hsf-le-a-2",
+      "weight": 0.75,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-5-lesson-3",
+          "note": "Mapped via lesson standard (primary)"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-5-lesson-3",
+      "metadata": {
+        "isPrimary": true,
+        "course": "im3",
+        "originalWeight": 0.8,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-5-3-015-to-ccss-hsf-le-b-5",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.5.3.015",
+      "targetId": "math.standard.ccss.hsf-le-b-5",
+      "weight": 0.5,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-5-lesson-3",
+          "note": "Mapped via lesson standard"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-5-lesson-3",
+      "metadata": {
+        "isPrimary": false,
+        "course": "im3"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-5-3-016-to-ccss-hsf-le-a-2",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.5.3.016",
+      "targetId": "math.standard.ccss.hsf-le-a-2",
+      "weight": 0.75,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-5-lesson-3",
+          "note": "Mapped via lesson standard (primary)"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-5-lesson-3",
+      "metadata": {
+        "isPrimary": true,
+        "course": "im3",
+        "originalWeight": 0.8,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-5-3-016-to-ccss-hsf-le-b-5",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.5.3.016",
+      "targetId": "math.standard.ccss.hsf-le-b-5",
+      "weight": 0.5,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-5-lesson-3",
+          "note": "Mapped via lesson standard"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-5-lesson-3",
+      "metadata": {
+        "isPrimary": false,
+        "course": "im3"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-5-4-017-to-ccss-hsf-le-a-1",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.5.4.017",
+      "targetId": "math.standard.ccss.hsf-le-a-1",
+      "weight": 0.75,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-5-lesson-4",
+          "note": "Mapped via lesson standard (primary)"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-5-lesson-4",
+      "metadata": {
+        "isPrimary": true,
+        "course": "im3",
+        "originalWeight": 0.8,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-5-4-017-to-ccss-hsf-le-b-5",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.5.4.017",
+      "targetId": "math.standard.ccss.hsf-le-b-5",
+      "weight": 0.5,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-5-lesson-4",
+          "note": "Mapped via lesson standard"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-5-lesson-4",
+      "metadata": {
+        "isPrimary": false,
+        "course": "im3"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-5-4-018-to-ccss-hsf-le-a-1",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.5.4.018",
+      "targetId": "math.standard.ccss.hsf-le-a-1",
+      "weight": 0.75,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-5-lesson-4",
+          "note": "Mapped via lesson standard (primary)"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-5-lesson-4",
+      "metadata": {
+        "isPrimary": true,
+        "course": "im3",
+        "originalWeight": 0.8,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-5-4-018-to-ccss-hsf-le-b-5",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.5.4.018",
+      "targetId": "math.standard.ccss.hsf-le-b-5",
+      "weight": 0.5,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-5-lesson-4",
+          "note": "Mapped via lesson standard"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-5-lesson-4",
+      "metadata": {
+        "isPrimary": false,
+        "course": "im3"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-5-4-019-to-ccss-hsf-le-a-1",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.5.4.019",
+      "targetId": "math.standard.ccss.hsf-le-a-1",
+      "weight": 0.75,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-5-lesson-4",
+          "note": "Mapped via lesson standard (primary)"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-5-lesson-4",
+      "metadata": {
+        "isPrimary": true,
+        "course": "im3",
+        "originalWeight": 0.8,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-5-4-019-to-ccss-hsf-le-b-5",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.5.4.019",
+      "targetId": "math.standard.ccss.hsf-le-b-5",
+      "weight": 0.5,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-5-lesson-4",
+          "note": "Mapped via lesson standard"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-5-lesson-4",
+      "metadata": {
+        "isPrimary": false,
+        "course": "im3"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-5-4-020-to-ccss-hsf-le-a-1",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.5.4.020",
+      "targetId": "math.standard.ccss.hsf-le-a-1",
+      "weight": 0.75,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-5-lesson-4",
+          "note": "Mapped via lesson standard (primary)"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-5-lesson-4",
+      "metadata": {
+        "isPrimary": true,
+        "course": "im3",
+        "originalWeight": 0.8,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-5-4-020-to-ccss-hsf-le-b-5",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.5.4.020",
+      "targetId": "math.standard.ccss.hsf-le-b-5",
+      "weight": 0.5,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-5-lesson-4",
+          "note": "Mapped via lesson standard"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-5-lesson-4",
+      "metadata": {
+        "isPrimary": false,
+        "course": "im3"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-5-4-021-to-ccss-hsf-le-a-1",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.5.4.021",
+      "targetId": "math.standard.ccss.hsf-le-a-1",
+      "weight": 0.75,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-5-lesson-4",
+          "note": "Mapped via lesson standard (primary)"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-5-lesson-4",
+      "metadata": {
+        "isPrimary": true,
+        "course": "im3",
+        "originalWeight": 0.8,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-5-4-021-to-ccss-hsf-le-b-5",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.5.4.021",
+      "targetId": "math.standard.ccss.hsf-le-b-5",
+      "weight": 0.5,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-5-lesson-4",
+          "note": "Mapped via lesson standard"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-5-lesson-4",
+      "metadata": {
+        "isPrimary": false,
+        "course": "im3"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-5-4-022-to-ccss-hsf-le-a-1",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.5.4.022",
+      "targetId": "math.standard.ccss.hsf-le-a-1",
+      "weight": 0.75,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-5-lesson-4",
+          "note": "Mapped via lesson standard (primary)"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-5-lesson-4",
+      "metadata": {
+        "isPrimary": true,
+        "course": "im3",
+        "originalWeight": 0.8,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-5-4-022-to-ccss-hsf-le-b-5",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.5.4.022",
+      "targetId": "math.standard.ccss.hsf-le-b-5",
+      "weight": 0.5,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-5-lesson-4",
+          "note": "Mapped via lesson standard"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-5-lesson-4",
+      "metadata": {
+        "isPrimary": false,
+        "course": "im3"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-5-4-023-to-ccss-hsf-le-a-1",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.5.4.023",
+      "targetId": "math.standard.ccss.hsf-le-a-1",
+      "weight": 0.75,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-5-lesson-4",
+          "note": "Mapped via lesson standard (primary)"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-5-lesson-4",
+      "metadata": {
+        "isPrimary": true,
+        "course": "im3",
+        "originalWeight": 0.8,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-5-4-023-to-ccss-hsf-le-b-5",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.5.4.023",
+      "targetId": "math.standard.ccss.hsf-le-b-5",
+      "weight": 0.5,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-5-lesson-4",
+          "note": "Mapped via lesson standard"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-5-lesson-4",
+      "metadata": {
+        "isPrimary": false,
+        "course": "im3"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-5-4-024-to-ccss-hsf-le-a-1",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.5.4.024",
+      "targetId": "math.standard.ccss.hsf-le-a-1",
+      "weight": 0.75,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-5-lesson-4",
+          "note": "Mapped via lesson standard (primary)"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-5-lesson-4",
+      "metadata": {
+        "isPrimary": true,
+        "course": "im3",
+        "originalWeight": 0.8,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-5-4-024-to-ccss-hsf-le-b-5",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.5.4.024",
+      "targetId": "math.standard.ccss.hsf-le-b-5",
+      "weight": 0.5,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-5-lesson-4",
+          "note": "Mapped via lesson standard"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-5-lesson-4",
+      "metadata": {
+        "isPrimary": false,
+        "course": "im3"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-5-4-025-to-ccss-hsf-le-a-1",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.5.4.025",
+      "targetId": "math.standard.ccss.hsf-le-a-1",
+      "weight": 0.75,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-5-lesson-4",
+          "note": "Mapped via lesson standard (primary)"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-5-lesson-4",
+      "metadata": {
+        "isPrimary": true,
+        "course": "im3",
+        "originalWeight": 0.8,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-5-4-025-to-ccss-hsf-le-b-5",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.5.4.025",
+      "targetId": "math.standard.ccss.hsf-le-b-5",
+      "weight": 0.5,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-5-lesson-4",
+          "note": "Mapped via lesson standard"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-5-lesson-4",
+      "metadata": {
+        "isPrimary": false,
+        "course": "im3"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-5-5-026-to-ccss-hsf-le-a-1",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.5.5.026",
+      "targetId": "math.standard.ccss.hsf-le-a-1",
+      "weight": 0.75,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-5-lesson-5",
+          "note": "Mapped via lesson standard (primary)"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-5-lesson-5",
+      "metadata": {
+        "isPrimary": true,
+        "course": "im3",
+        "originalWeight": 0.8,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-5-5-026-to-ccss-hsf-le-a-2",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.5.5.026",
+      "targetId": "math.standard.ccss.hsf-le-a-2",
+      "weight": 0.5,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-5-lesson-5",
+          "note": "Mapped via lesson standard"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-5-lesson-5",
+      "metadata": {
+        "isPrimary": false,
+        "course": "im3"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-5-5-027-to-ccss-hsf-le-a-1",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.5.5.027",
+      "targetId": "math.standard.ccss.hsf-le-a-1",
+      "weight": 0.75,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-5-lesson-5",
+          "note": "Mapped via lesson standard (primary)"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-5-lesson-5",
+      "metadata": {
+        "isPrimary": true,
+        "course": "im3",
+        "originalWeight": 0.8,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-5-5-027-to-ccss-hsf-le-a-2",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.5.5.027",
+      "targetId": "math.standard.ccss.hsf-le-a-2",
+      "weight": 0.5,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-5-lesson-5",
+          "note": "Mapped via lesson standard"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-5-lesson-5",
+      "metadata": {
+        "isPrimary": false,
+        "course": "im3"
+      }
+    },
+    {
+      "id": "math.alignment.im3-skill-5-1-graph-exponential-decay-functions-to-ccss-hsf-bf-b-5",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.skill.5.1.graph-exponential-decay-functions",
+      "targetId": "math.standard.ccss.hsf-bf-b-5",
+      "weight": 0.5,
+      "confidence": "medium",
+      "sourceRefs": [
+        "family-objective:step-by-step-solver:exponential-models"
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via problem family step-by-step-solver:exponential-models objective",
+      "metadata": {
+        "isPrimary": false,
+        "course": "im3",
+        "originalWeight": 0.4,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-skill-5-1-graph-exponential-decay-functions-to-ccss-hsf-if-c-7e",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.skill.5.1.graph-exponential-decay-functions",
+      "targetId": "math.standard.ccss.hsf-if-c-7e",
+      "weight": 0.75,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-5-lesson-1",
+          "note": "Mapped via lesson standard (primary)"
+        },
+        "family-objective:graphing-explorer:exponential-growth",
+        "family-objective:graphing-explorer:exponential-decay",
+        "family-objective:graphing-explorer:exponential-base-e",
+        "family-objective:comprehension-quiz:exponential-vocabulary"
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-5-lesson-1; Aligned via problem family graphing-explorer:exponential-growth objective; Aligned via problem family graphing-explorer:exponential-decay objective; Aligned via problem family graphing-explorer:exponential-base-e objective; Aligned via problem family comprehension-quiz:exponential-vocabulary objective",
+      "metadata": {
+        "isPrimary": true,
+        "course": "im3",
+        "originalWeight": 0.8,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-skill-5-1-graph-exponential-decay-functions-to-ccss-hsf-le-a-1",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.skill.5.1.graph-exponential-decay-functions",
+      "targetId": "math.standard.ccss.hsf-le-a-1",
+      "weight": 0.75,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-5-lesson-1",
+          "note": "Mapped via lesson standard (primary)"
+        },
+        "family-objective:step-by-step-solver:natural-base-e",
+        "family-objective:graphing-explorer:exponential-base-e",
+        "family-objective:step-by-step-solver:compare-exponential-linear",
+        "family-objective:graphing-explorer:exponential-vs-linear"
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-5-lesson-1; Aligned via problem family step-by-step-solver:natural-base-e objective; Aligned via problem family graphing-explorer:exponential-base-e objective; Aligned via problem family step-by-step-solver:compare-exponential-linear objective; Aligned via problem family graphing-explorer:exponential-vs-linear objective",
+      "metadata": {
+        "isPrimary": true,
+        "course": "im3",
+        "originalWeight": 0.8,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-skill-5-1-graph-exponential-decay-functions-to-ccss-hsf-le-a-2",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.skill.5.1.graph-exponential-decay-functions",
+      "targetId": "math.standard.ccss.hsf-le-a-2",
+      "weight": 0.5,
+      "confidence": "medium",
+      "sourceRefs": [
+        "family-objective:step-by-step-solver:natural-base-e",
+        "family-objective:step-by-step-solver:geometric-sequences",
+        "family-objective:step-by-step-solver:geometric-series",
+        "family-objective:step-by-step-solver:compare-exponential-linear"
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via problem family step-by-step-solver:natural-base-e objective; Aligned via problem family step-by-step-solver:geometric-sequences objective; Aligned via problem family step-by-step-solver:geometric-series objective; Aligned via problem family step-by-step-solver:compare-exponential-linear objective",
+      "metadata": {
+        "isPrimary": false,
+        "course": "im3",
+        "originalWeight": 0.4,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-skill-5-1-graph-exponential-decay-functions-to-ccss-hsf-le-a-4",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.skill.5.1.graph-exponential-decay-functions",
+      "targetId": "math.standard.ccss.hsf-le-a-4",
+      "weight": 0.5,
+      "confidence": "medium",
+      "sourceRefs": [
+        "family-objective:step-by-step-solver:solve-exponential-equations",
+        "family-objective:step-by-step-solver:exponential-models",
+        "family-objective:comprehension-quiz:exponential-vocabulary"
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via problem family step-by-step-solver:solve-exponential-equations objective; Aligned via problem family step-by-step-solver:exponential-models objective; Aligned via problem family comprehension-quiz:exponential-vocabulary objective",
+      "metadata": {
+        "isPrimary": false,
+        "course": "im3",
+        "originalWeight": 0.4,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-skill-5-1-graph-exponential-growth-functions-to-ccss-hsf-bf-b-5",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.skill.5.1.graph-exponential-growth-functions",
+      "targetId": "math.standard.ccss.hsf-bf-b-5",
+      "weight": 0.5,
+      "confidence": "medium",
+      "sourceRefs": [
+        "family-objective:step-by-step-solver:exponential-models"
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via problem family step-by-step-solver:exponential-models objective",
+      "metadata": {
+        "isPrimary": false,
+        "course": "im3",
+        "originalWeight": 0.4,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-skill-5-1-graph-exponential-growth-functions-to-ccss-hsf-if-c-7e",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.skill.5.1.graph-exponential-growth-functions",
+      "targetId": "math.standard.ccss.hsf-if-c-7e",
+      "weight": 0.75,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-5-lesson-1",
+          "note": "Mapped via lesson standard (primary)"
+        },
+        "family-objective:graphing-explorer:exponential-growth",
+        "family-objective:graphing-explorer:exponential-decay",
+        "family-objective:graphing-explorer:exponential-base-e",
+        "family-objective:comprehension-quiz:exponential-vocabulary"
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-5-lesson-1; Aligned via problem family graphing-explorer:exponential-growth objective; Aligned via problem family graphing-explorer:exponential-decay objective; Aligned via problem family graphing-explorer:exponential-base-e objective; Aligned via problem family comprehension-quiz:exponential-vocabulary objective",
+      "metadata": {
+        "isPrimary": true,
+        "course": "im3",
+        "originalWeight": 0.8,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-skill-5-1-graph-exponential-growth-functions-to-ccss-hsf-le-a-1",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.skill.5.1.graph-exponential-growth-functions",
+      "targetId": "math.standard.ccss.hsf-le-a-1",
+      "weight": 0.75,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-5-lesson-1",
+          "note": "Mapped via lesson standard (primary)"
+        },
+        "family-objective:step-by-step-solver:natural-base-e",
+        "family-objective:graphing-explorer:exponential-base-e",
+        "family-objective:step-by-step-solver:compare-exponential-linear",
+        "family-objective:graphing-explorer:exponential-vs-linear"
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-5-lesson-1; Aligned via problem family step-by-step-solver:natural-base-e objective; Aligned via problem family graphing-explorer:exponential-base-e objective; Aligned via problem family step-by-step-solver:compare-exponential-linear objective; Aligned via problem family graphing-explorer:exponential-vs-linear objective",
+      "metadata": {
+        "isPrimary": true,
+        "course": "im3",
+        "originalWeight": 0.8,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-skill-5-1-graph-exponential-growth-functions-to-ccss-hsf-le-a-2",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.skill.5.1.graph-exponential-growth-functions",
+      "targetId": "math.standard.ccss.hsf-le-a-2",
+      "weight": 0.5,
+      "confidence": "medium",
+      "sourceRefs": [
+        "family-objective:step-by-step-solver:natural-base-e",
+        "family-objective:step-by-step-solver:geometric-sequences",
+        "family-objective:step-by-step-solver:geometric-series",
+        "family-objective:step-by-step-solver:compare-exponential-linear"
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via problem family step-by-step-solver:natural-base-e objective; Aligned via problem family step-by-step-solver:geometric-sequences objective; Aligned via problem family step-by-step-solver:geometric-series objective; Aligned via problem family step-by-step-solver:compare-exponential-linear objective",
+      "metadata": {
+        "isPrimary": false,
+        "course": "im3",
+        "originalWeight": 0.4,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-skill-5-1-graph-exponential-growth-functions-to-ccss-hsf-le-a-4",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.skill.5.1.graph-exponential-growth-functions",
+      "targetId": "math.standard.ccss.hsf-le-a-4",
+      "weight": 0.5,
+      "confidence": "medium",
+      "sourceRefs": [
+        "family-objective:step-by-step-solver:solve-exponential-equations",
+        "family-objective:step-by-step-solver:exponential-models",
+        "family-objective:comprehension-quiz:exponential-vocabulary"
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via problem family step-by-step-solver:solve-exponential-equations objective; Aligned via problem family step-by-step-solver:exponential-models objective; Aligned via problem family comprehension-quiz:exponential-vocabulary objective",
+      "metadata": {
+        "isPrimary": false,
+        "course": "im3",
+        "originalWeight": 0.4,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-skill-5-2-solve-exponential-equations-in-one-variable-to-ccss-hsf-le-a-2",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.skill.5.2.solve-exponential-equations-in-one-variable",
+      "targetId": "math.standard.ccss.hsf-le-a-2",
+      "weight": 0.75,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-5-lesson-2",
+          "note": "Mapped via lesson standard (primary)"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-5-lesson-2",
+      "metadata": {
+        "isPrimary": true,
+        "course": "im3",
+        "originalWeight": 0.8,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-skill-5-2-solve-exponential-equations-in-one-variable-to-ccss-hsf-le-b-5",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.skill.5.2.solve-exponential-equations-in-one-variable",
+      "targetId": "math.standard.ccss.hsf-le-b-5",
+      "weight": 0.5,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-5-lesson-2",
+          "note": "Mapped via lesson standard"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-5-lesson-2",
+      "metadata": {
+        "isPrimary": false,
+        "course": "im3"
+      }
+    },
+    {
+      "id": "math.alignment.im3-skill-5-2-solve-exponential-inequalities-in-one-variable-to-ccss-hsf-le-a-2",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.skill.5.2.solve-exponential-inequalities-in-one-variable",
+      "targetId": "math.standard.ccss.hsf-le-a-2",
+      "weight": 0.75,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-5-lesson-2",
+          "note": "Mapped via lesson standard (primary)"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-5-lesson-2",
+      "metadata": {
+        "isPrimary": true,
+        "course": "im3",
+        "originalWeight": 0.8,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-skill-5-2-solve-exponential-inequalities-in-one-variable-to-ccss-hsf-le-b-5",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.skill.5.2.solve-exponential-inequalities-in-one-variable",
+      "targetId": "math.standard.ccss.hsf-le-b-5",
+      "weight": 0.5,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-5-lesson-2",
+          "note": "Mapped via lesson standard"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-5-lesson-2",
+      "metadata": {
+        "isPrimary": false,
+        "course": "im3"
+      }
+    },
+    {
+      "id": "math.alignment.im3-skill-5-3-analyze-expressions-and-functions-involving-the-natural-base-to-ccss-hsf-le-a-2",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.skill.5.3.analyze-expressions-and-functions-involving-the-natural-base",
+      "targetId": "math.standard.ccss.hsf-le-a-2",
+      "weight": 0.75,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-5-lesson-3",
+          "note": "Mapped via lesson standard (primary)"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-5-lesson-3",
+      "metadata": {
+        "isPrimary": true,
+        "course": "im3",
+        "originalWeight": 0.8,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-skill-5-3-analyze-expressions-and-functions-involving-the-natural-base-to-ccss-hsf-le-b-5",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.skill.5.3.analyze-expressions-and-functions-involving-the-natural-base",
+      "targetId": "math.standard.ccss.hsf-le-b-5",
+      "weight": 0.5,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-5-lesson-3",
+          "note": "Mapped via lesson standard"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-5-lesson-3",
+      "metadata": {
+        "isPrimary": false,
+        "course": "im3"
+      }
+    },
+    {
+      "id": "math.alignment.im3-skill-5-4-find-sums-of-geometric-series-to-ccss-hsf-le-a-1",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.skill.5.4.find-sums-of-geometric-series",
+      "targetId": "math.standard.ccss.hsf-le-a-1",
+      "weight": 0.75,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-5-lesson-4",
+          "note": "Mapped via lesson standard (primary)"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-5-lesson-4",
+      "metadata": {
+        "isPrimary": true,
+        "course": "im3",
+        "originalWeight": 0.8,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-skill-5-4-find-sums-of-geometric-series-to-ccss-hsf-le-b-5",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.skill.5.4.find-sums-of-geometric-series",
+      "targetId": "math.standard.ccss.hsf-le-b-5",
+      "weight": 0.5,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-5-lesson-4",
+          "note": "Mapped via lesson standard"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-5-lesson-4",
+      "metadata": {
+        "isPrimary": false,
+        "course": "im3"
+      }
+    },
+    {
+      "id": "math.alignment.im3-skill-5-4-generate-geometric-sequences-to-ccss-hsf-le-a-1",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.skill.5.4.generate-geometric-sequences",
+      "targetId": "math.standard.ccss.hsf-le-a-1",
+      "weight": 0.75,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-5-lesson-4",
+          "note": "Mapped via lesson standard (primary)"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-5-lesson-4",
+      "metadata": {
+        "isPrimary": true,
+        "course": "im3",
+        "originalWeight": 0.8,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-skill-5-4-generate-geometric-sequences-to-ccss-hsf-le-b-5",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.skill.5.4.generate-geometric-sequences",
+      "targetId": "math.standard.ccss.hsf-le-b-5",
+      "weight": 0.5,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-5-lesson-4",
+          "note": "Mapped via lesson standard"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-5-lesson-4",
+      "metadata": {
+        "isPrimary": false,
+        "course": "im3"
+      }
+    },
+    {
+      "id": "math.alignment.im3-skill-5-5-choose-the-best-function-type-to-model-sets-of-data-to-ccss-hsf-le-a-1",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.skill.5.5.choose-the-best-function-type-to-model-sets-of-data",
+      "targetId": "math.standard.ccss.hsf-le-a-1",
+      "weight": 0.75,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-5-lesson-5",
+          "note": "Mapped via lesson standard (primary)"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-5-lesson-5",
+      "metadata": {
+        "isPrimary": true,
+        "course": "im3",
+        "originalWeight": 0.8,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-skill-5-5-choose-the-best-function-type-to-model-sets-of-data-to-ccss-hsf-le-a-2",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.skill.5.5.choose-the-best-function-type-to-model-sets-of-data",
+      "targetId": "math.standard.ccss.hsf-le-a-2",
+      "weight": 0.5,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-5-lesson-5",
+          "note": "Mapped via lesson standard"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-5-lesson-5",
+      "metadata": {
+        "isPrimary": false,
+        "course": "im3"
+      }
+    },
+    {
+      "id": "math.im3.edge.m1.001",
+      "type": "contains",
+      "sourceId": "math.im3",
+      "targetId": "math.im3.module.1",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1"
+      },
+      "rationale": "Module 1 is contained in IM3 domain",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/modules/module-1-quadratic-functions.md"
+      ]
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0072",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.example.5.1.001",
+      "targetId": "math.im3.lesson.5.1",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "5",
+        "lesson": "1"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0073",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.example.5.1.002",
+      "targetId": "math.im3.lesson.5.1",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "5",
+        "lesson": "1"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0074",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.example.5.1.003",
+      "targetId": "math.im3.lesson.5.1",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "5",
+        "lesson": "1"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0075",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.example.5.1.004",
+      "targetId": "math.im3.lesson.5.1",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "5",
+        "lesson": "1"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0076",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.example.5.1.005",
+      "targetId": "math.im3.lesson.5.1",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "5",
+        "lesson": "1"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0077",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.example.5.1.006",
+      "targetId": "math.im3.lesson.5.1",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "5",
+        "lesson": "1"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0078",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.example.5.1.007",
+      "targetId": "math.im3.lesson.5.1",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "5",
+        "lesson": "1"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0079",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.example.5.1.008",
+      "targetId": "math.im3.lesson.5.1",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "5",
+        "lesson": "1"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0080",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.example.5.2.009",
+      "targetId": "math.im3.lesson.5.2",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "5",
+        "lesson": "2"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0081",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.example.5.2.010",
+      "targetId": "math.im3.lesson.5.2",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "5",
+        "lesson": "2"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0082",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.example.5.2.011",
+      "targetId": "math.im3.lesson.5.2",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "5",
+        "lesson": "2"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0083",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.example.5.2.012",
+      "targetId": "math.im3.lesson.5.2",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "5",
+        "lesson": "2"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0084",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.example.5.3.013",
+      "targetId": "math.im3.lesson.5.3",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "5",
+        "lesson": "3"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0085",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.example.5.3.014",
+      "targetId": "math.im3.lesson.5.3",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "5",
+        "lesson": "3"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0086",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.example.5.3.015",
+      "targetId": "math.im3.lesson.5.3",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "5",
+        "lesson": "3"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0087",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.example.5.3.016",
+      "targetId": "math.im3.lesson.5.3",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "5",
+        "lesson": "3"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0088",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.example.5.4.017",
+      "targetId": "math.im3.lesson.5.4",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "5",
+        "lesson": "4"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0089",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.example.5.4.018",
+      "targetId": "math.im3.lesson.5.4",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "5",
+        "lesson": "4"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0090",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.example.5.4.019",
+      "targetId": "math.im3.lesson.5.4",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "5",
+        "lesson": "4"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0091",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.example.5.4.020",
+      "targetId": "math.im3.lesson.5.4",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "5",
+        "lesson": "4"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0092",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.example.5.4.021",
+      "targetId": "math.im3.lesson.5.4",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "5",
+        "lesson": "4"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0093",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.example.5.4.022",
+      "targetId": "math.im3.lesson.5.4",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "5",
+        "lesson": "4"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0094",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.example.5.4.023",
+      "targetId": "math.im3.lesson.5.4",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "5",
+        "lesson": "4"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0095",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.example.5.4.024",
+      "targetId": "math.im3.lesson.5.4",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "5",
+        "lesson": "4"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0096",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.example.5.4.025",
+      "targetId": "math.im3.lesson.5.4",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "5",
+        "lesson": "4"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0097",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.example.5.5.026",
+      "targetId": "math.im3.lesson.5.5",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "5",
+        "lesson": "5"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0098",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.example.5.5.027",
+      "targetId": "math.im3.lesson.5.5",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "5",
+        "lesson": "5"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0269",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.skill.5.1.graph-exponential-decay-functions",
+      "targetId": "math.im3.lesson.5.1",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Skill appears in lesson context",
+      "metadata": {
+        "module": "5",
+        "lesson": "1"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0270",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.skill.5.1.graph-exponential-growth-functions",
+      "targetId": "math.im3.lesson.5.1",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Skill appears in lesson context",
+      "metadata": {
+        "module": "5",
+        "lesson": "1"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0271",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.skill.5.2.solve-exponential-equations-in-one-variable",
+      "targetId": "math.im3.lesson.5.2",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Skill appears in lesson context",
+      "metadata": {
+        "module": "5",
+        "lesson": "2"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0272",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.skill.5.2.solve-exponential-inequalities-in-one-variable",
+      "targetId": "math.im3.lesson.5.2",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Skill appears in lesson context",
+      "metadata": {
+        "module": "5",
+        "lesson": "2"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0273",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.skill.5.3.analyze-expressions-and-functions-involving-the-natural-base",
+      "targetId": "math.im3.lesson.5.3",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Skill appears in lesson context",
+      "metadata": {
+        "module": "5",
+        "lesson": "3"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0274",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.skill.5.4.find-sums-of-geometric-series",
+      "targetId": "math.im3.lesson.5.4",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Skill appears in lesson context",
+      "metadata": {
+        "module": "5",
+        "lesson": "4"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0275",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.skill.5.4.generate-geometric-sequences",
+      "targetId": "math.im3.lesson.5.4",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Skill appears in lesson context",
+      "metadata": {
+        "module": "5",
+        "lesson": "4"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0276",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.skill.5.5.choose-the-best-function-type-to-model-sets-of-data",
+      "targetId": "math.im3.lesson.5.5",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Skill appears in lesson context",
+      "metadata": {
+        "module": "5",
+        "lesson": "5"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0277",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.skill.5.aleks.data-model-family-selection",
+      "targetId": "math.im3.module.5",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Concept appears in module context",
+      "metadata": {
+        "module": "5"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0278",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.skill.5.aleks.exponential-decay-graph-analysis",
+      "targetId": "math.im3.module.5",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Concept appears in module context",
+      "metadata": {
+        "module": "5"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0279",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.skill.5.aleks.exponential-equation-solving",
+      "targetId": "math.im3.module.5",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Concept appears in module context",
+      "metadata": {
+        "module": "5"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0280",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.skill.5.aleks.exponential-growth-graph-analysis",
+      "targetId": "math.im3.module.5",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Concept appears in module context",
+      "metadata": {
+        "module": "5"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0281",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.skill.5.aleks.exponential-inequality-solving",
+      "targetId": "math.im3.module.5",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Concept appears in module context",
+      "metadata": {
+        "module": "5"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0282",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.skill.5.aleks.geometric-sequence-generation",
+      "targetId": "math.im3.module.5",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Concept appears in module context",
+      "metadata": {
+        "module": "5"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0283",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.skill.5.aleks.geometric-series-summation",
+      "targetId": "math.im3.module.5",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Concept appears in module context",
+      "metadata": {
+        "module": "5"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0284",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.skill.5.aleks.natural-base-e-analysis",
+      "targetId": "math.im3.module.5",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Concept appears in module context",
+      "metadata": {
+        "module": "5"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0377",
+      "type": "contains",
+      "sourceId": "math.im3",
+      "targetId": "math.im3.module.2",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Domain contains Polynomials and Polynomial Functions",
+      "metadata": {
+        "course": "im3",
+        "module": "2"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0378",
+      "type": "contains",
+      "sourceId": "math.im3",
+      "targetId": "math.im3.module.3",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Domain contains Polynomial Equations",
+      "metadata": {
+        "course": "im3",
+        "module": "3"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0379",
+      "type": "contains",
+      "sourceId": "math.im3",
+      "targetId": "math.im3.module.4",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Domain contains Inverses and Radical Functions",
+      "metadata": {
+        "course": "im3",
+        "module": "4"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0380",
+      "type": "contains",
+      "sourceId": "math.im3",
+      "targetId": "math.im3.module.5",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Domain contains Exponential Functions and Geometric Series",
+      "metadata": {
+        "course": "im3",
+        "module": "5"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0381",
+      "type": "contains",
+      "sourceId": "math.im3",
+      "targetId": "math.im3.module.6",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Domain contains Logarithmic Functions",
+      "metadata": {
+        "course": "im3",
+        "module": "6"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0382",
+      "type": "contains",
+      "sourceId": "math.im3",
+      "targetId": "math.im3.module.7",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Domain contains Rational Functions and Equations",
+      "metadata": {
+        "course": "im3",
+        "module": "7"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0383",
+      "type": "contains",
+      "sourceId": "math.im3",
+      "targetId": "math.im3.module.8",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Domain contains Inferential Statistics",
+      "metadata": {
+        "course": "im3",
+        "module": "8"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0384",
+      "type": "contains",
+      "sourceId": "math.im3",
+      "targetId": "math.im3.module.9",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Domain contains Trigonometric Functions",
+      "metadata": {
+        "course": "im3",
+        "module": "9"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0485",
+      "type": "contains",
+      "sourceId": "math.im3.lesson.5.1",
+      "targetId": "math.im3.example.5.1.001",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "5",
+        "lesson": "1"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0486",
+      "type": "contains",
+      "sourceId": "math.im3.lesson.5.1",
+      "targetId": "math.im3.example.5.1.002",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "5",
+        "lesson": "1"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0487",
+      "type": "contains",
+      "sourceId": "math.im3.lesson.5.1",
+      "targetId": "math.im3.example.5.1.003",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "5",
+        "lesson": "1"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0488",
+      "type": "contains",
+      "sourceId": "math.im3.lesson.5.1",
+      "targetId": "math.im3.example.5.1.004",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "5",
+        "lesson": "1"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0489",
+      "type": "contains",
+      "sourceId": "math.im3.lesson.5.1",
+      "targetId": "math.im3.example.5.1.005",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "5",
+        "lesson": "1"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0490",
+      "type": "contains",
+      "sourceId": "math.im3.lesson.5.1",
+      "targetId": "math.im3.example.5.1.006",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "5",
+        "lesson": "1"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0491",
+      "type": "contains",
+      "sourceId": "math.im3.lesson.5.1",
+      "targetId": "math.im3.example.5.1.007",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "5",
+        "lesson": "1"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0492",
+      "type": "contains",
+      "sourceId": "math.im3.lesson.5.1",
+      "targetId": "math.im3.example.5.1.008",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "5",
+        "lesson": "1"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0493",
+      "type": "contains",
+      "sourceId": "math.im3.lesson.5.1",
+      "targetId": "math.im3.skill.5.1.graph-exponential-decay-functions",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains skill",
+      "metadata": {
+        "module": "5",
+        "lesson": "1"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0494",
+      "type": "contains",
+      "sourceId": "math.im3.lesson.5.1",
+      "targetId": "math.im3.skill.5.1.graph-exponential-growth-functions",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains skill",
+      "metadata": {
+        "module": "5",
+        "lesson": "1"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0495",
+      "type": "contains",
+      "sourceId": "math.im3.lesson.5.2",
+      "targetId": "math.im3.example.5.2.009",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "5",
+        "lesson": "2"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0496",
+      "type": "contains",
+      "sourceId": "math.im3.lesson.5.2",
+      "targetId": "math.im3.example.5.2.010",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "5",
+        "lesson": "2"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0497",
+      "type": "contains",
+      "sourceId": "math.im3.lesson.5.2",
+      "targetId": "math.im3.example.5.2.011",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "5",
+        "lesson": "2"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0498",
+      "type": "contains",
+      "sourceId": "math.im3.lesson.5.2",
+      "targetId": "math.im3.example.5.2.012",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "5",
+        "lesson": "2"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0499",
+      "type": "contains",
+      "sourceId": "math.im3.lesson.5.2",
+      "targetId": "math.im3.skill.5.2.solve-exponential-equations-in-one-variable",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains skill",
+      "metadata": {
+        "module": "5",
+        "lesson": "2"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0500",
+      "type": "contains",
+      "sourceId": "math.im3.lesson.5.2",
+      "targetId": "math.im3.skill.5.2.solve-exponential-inequalities-in-one-variable",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains skill",
+      "metadata": {
+        "module": "5",
+        "lesson": "2"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0501",
+      "type": "contains",
+      "sourceId": "math.im3.lesson.5.3",
+      "targetId": "math.im3.example.5.3.013",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "5",
+        "lesson": "3"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0502",
+      "type": "contains",
+      "sourceId": "math.im3.lesson.5.3",
+      "targetId": "math.im3.example.5.3.014",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "5",
+        "lesson": "3"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0503",
+      "type": "contains",
+      "sourceId": "math.im3.lesson.5.3",
+      "targetId": "math.im3.example.5.3.015",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "5",
+        "lesson": "3"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0504",
+      "type": "contains",
+      "sourceId": "math.im3.lesson.5.3",
+      "targetId": "math.im3.example.5.3.016",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "5",
+        "lesson": "3"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0505",
+      "type": "contains",
+      "sourceId": "math.im3.lesson.5.3",
+      "targetId": "math.im3.skill.5.3.analyze-expressions-and-functions-involving-the-natural-base",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains skill",
+      "metadata": {
+        "module": "5",
+        "lesson": "3"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0506",
+      "type": "contains",
+      "sourceId": "math.im3.lesson.5.4",
+      "targetId": "math.im3.example.5.4.017",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "5",
+        "lesson": "4"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0507",
+      "type": "contains",
+      "sourceId": "math.im3.lesson.5.4",
+      "targetId": "math.im3.example.5.4.018",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "5",
+        "lesson": "4"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0508",
+      "type": "contains",
+      "sourceId": "math.im3.lesson.5.4",
+      "targetId": "math.im3.example.5.4.019",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "5",
+        "lesson": "4"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0509",
+      "type": "contains",
+      "sourceId": "math.im3.lesson.5.4",
+      "targetId": "math.im3.example.5.4.020",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "5",
+        "lesson": "4"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0510",
+      "type": "contains",
+      "sourceId": "math.im3.lesson.5.4",
+      "targetId": "math.im3.example.5.4.021",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "5",
+        "lesson": "4"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0511",
+      "type": "contains",
+      "sourceId": "math.im3.lesson.5.4",
+      "targetId": "math.im3.example.5.4.022",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "5",
+        "lesson": "4"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0512",
+      "type": "contains",
+      "sourceId": "math.im3.lesson.5.4",
+      "targetId": "math.im3.example.5.4.023",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "5",
+        "lesson": "4"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0513",
+      "type": "contains",
+      "sourceId": "math.im3.lesson.5.4",
+      "targetId": "math.im3.example.5.4.024",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "5",
+        "lesson": "4"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0514",
+      "type": "contains",
+      "sourceId": "math.im3.lesson.5.4",
+      "targetId": "math.im3.example.5.4.025",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "5",
+        "lesson": "4"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0515",
+      "type": "contains",
+      "sourceId": "math.im3.lesson.5.4",
+      "targetId": "math.im3.skill.5.4.find-sums-of-geometric-series",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains skill",
+      "metadata": {
+        "module": "5",
+        "lesson": "4"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0516",
+      "type": "contains",
+      "sourceId": "math.im3.lesson.5.4",
+      "targetId": "math.im3.skill.5.4.generate-geometric-sequences",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains skill",
+      "metadata": {
+        "module": "5",
+        "lesson": "4"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0517",
+      "type": "contains",
+      "sourceId": "math.im3.lesson.5.5",
+      "targetId": "math.im3.example.5.5.026",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "5",
+        "lesson": "5"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0518",
+      "type": "contains",
+      "sourceId": "math.im3.lesson.5.5",
+      "targetId": "math.im3.example.5.5.027",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "5",
+        "lesson": "5"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0519",
+      "type": "contains",
+      "sourceId": "math.im3.lesson.5.5",
+      "targetId": "math.im3.skill.5.5.choose-the-best-function-type-to-model-sets-of-data",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains skill",
+      "metadata": {
+        "module": "5",
+        "lesson": "5"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0720",
+      "type": "contains",
+      "sourceId": "math.im3.module.5",
+      "targetId": "math.im3.lesson.5.1",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Module 5 contains lesson",
+      "metadata": {
+        "module": "5"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0721",
+      "type": "contains",
+      "sourceId": "math.im3.module.5",
+      "targetId": "math.im3.lesson.5.2",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Module 5 contains lesson",
+      "metadata": {
+        "module": "5"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0722",
+      "type": "contains",
+      "sourceId": "math.im3.module.5",
+      "targetId": "math.im3.lesson.5.3",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Module 5 contains lesson",
+      "metadata": {
+        "module": "5"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0723",
+      "type": "contains",
+      "sourceId": "math.im3.module.5",
+      "targetId": "math.im3.lesson.5.4",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Module 5 contains lesson",
+      "metadata": {
+        "module": "5"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0724",
+      "type": "contains",
+      "sourceId": "math.im3.module.5",
+      "targetId": "math.im3.lesson.5.5",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Module 5 contains lesson",
+      "metadata": {
+        "module": "5"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0725",
+      "type": "contains",
+      "sourceId": "math.im3.module.5",
+      "targetId": "math.im3.skill.5.aleks.data-model-family-selection",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Module 5 contains concept",
+      "metadata": {
+        "module": "5"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0726",
+      "type": "contains",
+      "sourceId": "math.im3.module.5",
+      "targetId": "math.im3.skill.5.aleks.exponential-decay-graph-analysis",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Module 5 contains concept",
+      "metadata": {
+        "module": "5"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0727",
+      "type": "contains",
+      "sourceId": "math.im3.module.5",
+      "targetId": "math.im3.skill.5.aleks.exponential-equation-solving",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Module 5 contains concept",
+      "metadata": {
+        "module": "5"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0728",
+      "type": "contains",
+      "sourceId": "math.im3.module.5",
+      "targetId": "math.im3.skill.5.aleks.exponential-growth-graph-analysis",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Module 5 contains concept",
+      "metadata": {
+        "module": "5"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0729",
+      "type": "contains",
+      "sourceId": "math.im3.module.5",
+      "targetId": "math.im3.skill.5.aleks.exponential-inequality-solving",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Module 5 contains concept",
+      "metadata": {
+        "module": "5"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0730",
+      "type": "contains",
+      "sourceId": "math.im3.module.5",
+      "targetId": "math.im3.skill.5.aleks.geometric-sequence-generation",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Module 5 contains concept",
+      "metadata": {
+        "module": "5"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0731",
+      "type": "contains",
+      "sourceId": "math.im3.module.5",
+      "targetId": "math.im3.skill.5.aleks.geometric-series-summation",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Module 5 contains concept",
+      "metadata": {
+        "module": "5"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0732",
+      "type": "contains",
+      "sourceId": "math.im3.module.5",
+      "targetId": "math.im3.skill.5.aleks.natural-base-e-analysis",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Module 5 contains concept",
+      "metadata": {
+        "module": "5"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0820",
+      "type": "prerequisite_for",
+      "sourceId": "math.im3.skill.4.6.solve-radical-equations-in-one-variable-and-identify-extrane",
+      "targetId": "math.im3.skill.5.1.graph-exponential-decay-functions",
+      "weight": 0.5,
+      "confidence": "low",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-prerequisite-v1",
+      "rationale": "Lesson-sequence prerequisite: last lesson of module 4 precedes first lesson of module 5",
+      "metadata": {
+        "fromLesson": "4.6",
+        "toLesson": "5.1"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0821",
+      "type": "prerequisite_for",
+      "sourceId": "math.im3.skill.5.1.graph-exponential-growth-functions",
+      "targetId": "math.im3.skill.5.2.solve-exponential-equations-in-one-variable",
+      "weight": 0.5,
+      "confidence": "low",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-prerequisite-v1",
+      "rationale": "Lesson-sequence prerequisite: lesson 1 precedes lesson 2 in module 5",
+      "metadata": {
+        "fromLesson": "5.1",
+        "toLesson": "5.2"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0822",
+      "type": "prerequisite_for",
+      "sourceId": "math.im3.skill.5.2.solve-exponential-inequalities-in-one-variable",
+      "targetId": "math.im3.skill.5.3.analyze-expressions-and-functions-involving-the-natural-base",
+      "weight": 0.5,
+      "confidence": "low",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-prerequisite-v1",
+      "rationale": "Lesson-sequence prerequisite: lesson 2 precedes lesson 3 in module 5",
+      "metadata": {
+        "fromLesson": "5.2",
+        "toLesson": "5.3"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0823",
+      "type": "prerequisite_for",
+      "sourceId": "math.im3.skill.5.3.analyze-expressions-and-functions-involving-the-natural-base",
+      "targetId": "math.im3.skill.5.4.find-sums-of-geometric-series",
+      "weight": 0.5,
+      "confidence": "low",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-prerequisite-v1",
+      "rationale": "Lesson-sequence prerequisite: lesson 3 precedes lesson 4 in module 5",
+      "metadata": {
+        "fromLesson": "5.3",
+        "toLesson": "5.4"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0824",
+      "type": "prerequisite_for",
+      "sourceId": "math.im3.skill.5.4.generate-geometric-sequences",
+      "targetId": "math.im3.skill.5.5.choose-the-best-function-type-to-model-sets-of-data",
+      "weight": 0.5,
+      "confidence": "low",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-prerequisite-v1",
+      "rationale": "Lesson-sequence prerequisite: lesson 4 precedes lesson 5 in module 5",
+      "metadata": {
+        "fromLesson": "5.4",
+        "toLesson": "5.5"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0825",
+      "type": "prerequisite_for",
+      "sourceId": "math.im3.skill.5.5.choose-the-best-function-type-to-model-sets-of-data",
+      "targetId": "math.im3.skill.6.1.write-logarithmic-expressions-in-exponential-form-and-write",
+      "weight": 0.5,
+      "confidence": "low",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-prerequisite-v1",
+      "rationale": "Lesson-sequence prerequisite: last lesson of module 5 precedes first lesson of module 6",
+      "metadata": {
+        "fromLesson": "5.5",
+        "toLesson": "6.1"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.1163",
+      "type": "supports",
+      "sourceId": "math.im3.skill.5.aleks.data-model-family-selection",
+      "targetId": "math.im3.skill.5.1.graph-exponential-decay-functions",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 5",
+      "metadata": {
+        "module": "5"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.1164",
+      "type": "supports",
+      "sourceId": "math.im3.skill.5.aleks.data-model-family-selection",
+      "targetId": "math.im3.skill.5.1.graph-exponential-growth-functions",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 5",
+      "metadata": {
+        "module": "5"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.1165",
+      "type": "supports",
+      "sourceId": "math.im3.skill.5.aleks.data-model-family-selection",
+      "targetId": "math.im3.skill.5.2.solve-exponential-equations-in-one-variable",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 5",
+      "metadata": {
+        "module": "5"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.1166",
+      "type": "supports",
+      "sourceId": "math.im3.skill.5.aleks.data-model-family-selection",
+      "targetId": "math.im3.skill.5.2.solve-exponential-inequalities-in-one-variable",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 5",
+      "metadata": {
+        "module": "5"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.1167",
+      "type": "supports",
+      "sourceId": "math.im3.skill.5.aleks.data-model-family-selection",
+      "targetId": "math.im3.skill.5.3.analyze-expressions-and-functions-involving-the-natural-base",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 5",
+      "metadata": {
+        "module": "5"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.1168",
+      "type": "supports",
+      "sourceId": "math.im3.skill.5.aleks.data-model-family-selection",
+      "targetId": "math.im3.skill.5.4.find-sums-of-geometric-series",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 5",
+      "metadata": {
+        "module": "5"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.1169",
+      "type": "supports",
+      "sourceId": "math.im3.skill.5.aleks.data-model-family-selection",
+      "targetId": "math.im3.skill.5.4.generate-geometric-sequences",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 5",
+      "metadata": {
+        "module": "5"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.1170",
+      "type": "supports",
+      "sourceId": "math.im3.skill.5.aleks.data-model-family-selection",
+      "targetId": "math.im3.skill.5.5.choose-the-best-function-type-to-model-sets-of-data",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 5",
+      "metadata": {
+        "module": "5"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.1171",
+      "type": "supports",
+      "sourceId": "math.im3.skill.5.aleks.exponential-decay-graph-analysis",
+      "targetId": "math.im3.skill.5.1.graph-exponential-decay-functions",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 5",
+      "metadata": {
+        "module": "5"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.1172",
+      "type": "supports",
+      "sourceId": "math.im3.skill.5.aleks.exponential-decay-graph-analysis",
+      "targetId": "math.im3.skill.5.1.graph-exponential-growth-functions",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 5",
+      "metadata": {
+        "module": "5"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.1173",
+      "type": "supports",
+      "sourceId": "math.im3.skill.5.aleks.exponential-decay-graph-analysis",
+      "targetId": "math.im3.skill.5.2.solve-exponential-equations-in-one-variable",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 5",
+      "metadata": {
+        "module": "5"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.1174",
+      "type": "supports",
+      "sourceId": "math.im3.skill.5.aleks.exponential-decay-graph-analysis",
+      "targetId": "math.im3.skill.5.2.solve-exponential-inequalities-in-one-variable",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 5",
+      "metadata": {
+        "module": "5"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.1175",
+      "type": "supports",
+      "sourceId": "math.im3.skill.5.aleks.exponential-decay-graph-analysis",
+      "targetId": "math.im3.skill.5.3.analyze-expressions-and-functions-involving-the-natural-base",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 5",
+      "metadata": {
+        "module": "5"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.1176",
+      "type": "supports",
+      "sourceId": "math.im3.skill.5.aleks.exponential-decay-graph-analysis",
+      "targetId": "math.im3.skill.5.4.find-sums-of-geometric-series",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 5",
+      "metadata": {
+        "module": "5"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.1177",
+      "type": "supports",
+      "sourceId": "math.im3.skill.5.aleks.exponential-decay-graph-analysis",
+      "targetId": "math.im3.skill.5.4.generate-geometric-sequences",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 5",
+      "metadata": {
+        "module": "5"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.1178",
+      "type": "supports",
+      "sourceId": "math.im3.skill.5.aleks.exponential-decay-graph-analysis",
+      "targetId": "math.im3.skill.5.5.choose-the-best-function-type-to-model-sets-of-data",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 5",
+      "metadata": {
+        "module": "5"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.1179",
+      "type": "supports",
+      "sourceId": "math.im3.skill.5.aleks.exponential-equation-solving",
+      "targetId": "math.im3.skill.5.1.graph-exponential-decay-functions",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 5",
+      "metadata": {
+        "module": "5"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.1180",
+      "type": "supports",
+      "sourceId": "math.im3.skill.5.aleks.exponential-equation-solving",
+      "targetId": "math.im3.skill.5.1.graph-exponential-growth-functions",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 5",
+      "metadata": {
+        "module": "5"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.1181",
+      "type": "supports",
+      "sourceId": "math.im3.skill.5.aleks.exponential-equation-solving",
+      "targetId": "math.im3.skill.5.2.solve-exponential-equations-in-one-variable",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 5",
+      "metadata": {
+        "module": "5"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.1182",
+      "type": "supports",
+      "sourceId": "math.im3.skill.5.aleks.exponential-equation-solving",
+      "targetId": "math.im3.skill.5.2.solve-exponential-inequalities-in-one-variable",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 5",
+      "metadata": {
+        "module": "5"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.1183",
+      "type": "supports",
+      "sourceId": "math.im3.skill.5.aleks.exponential-equation-solving",
+      "targetId": "math.im3.skill.5.3.analyze-expressions-and-functions-involving-the-natural-base",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 5",
+      "metadata": {
+        "module": "5"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.1184",
+      "type": "supports",
+      "sourceId": "math.im3.skill.5.aleks.exponential-equation-solving",
+      "targetId": "math.im3.skill.5.4.find-sums-of-geometric-series",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 5",
+      "metadata": {
+        "module": "5"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.1185",
+      "type": "supports",
+      "sourceId": "math.im3.skill.5.aleks.exponential-equation-solving",
+      "targetId": "math.im3.skill.5.4.generate-geometric-sequences",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 5",
+      "metadata": {
+        "module": "5"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.1186",
+      "type": "supports",
+      "sourceId": "math.im3.skill.5.aleks.exponential-equation-solving",
+      "targetId": "math.im3.skill.5.5.choose-the-best-function-type-to-model-sets-of-data",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 5",
+      "metadata": {
+        "module": "5"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.1187",
+      "type": "supports",
+      "sourceId": "math.im3.skill.5.aleks.exponential-growth-graph-analysis",
+      "targetId": "math.im3.skill.5.1.graph-exponential-decay-functions",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 5",
+      "metadata": {
+        "module": "5"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.1188",
+      "type": "supports",
+      "sourceId": "math.im3.skill.5.aleks.exponential-growth-graph-analysis",
+      "targetId": "math.im3.skill.5.1.graph-exponential-growth-functions",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 5",
+      "metadata": {
+        "module": "5"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.1189",
+      "type": "supports",
+      "sourceId": "math.im3.skill.5.aleks.exponential-growth-graph-analysis",
+      "targetId": "math.im3.skill.5.2.solve-exponential-equations-in-one-variable",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 5",
+      "metadata": {
+        "module": "5"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.1190",
+      "type": "supports",
+      "sourceId": "math.im3.skill.5.aleks.exponential-growth-graph-analysis",
+      "targetId": "math.im3.skill.5.2.solve-exponential-inequalities-in-one-variable",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 5",
+      "metadata": {
+        "module": "5"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.1191",
+      "type": "supports",
+      "sourceId": "math.im3.skill.5.aleks.exponential-growth-graph-analysis",
+      "targetId": "math.im3.skill.5.3.analyze-expressions-and-functions-involving-the-natural-base",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 5",
+      "metadata": {
+        "module": "5"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.1192",
+      "type": "supports",
+      "sourceId": "math.im3.skill.5.aleks.exponential-growth-graph-analysis",
+      "targetId": "math.im3.skill.5.4.find-sums-of-geometric-series",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 5",
+      "metadata": {
+        "module": "5"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.1193",
+      "type": "supports",
+      "sourceId": "math.im3.skill.5.aleks.exponential-growth-graph-analysis",
+      "targetId": "math.im3.skill.5.4.generate-geometric-sequences",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 5",
+      "metadata": {
+        "module": "5"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.1194",
+      "type": "supports",
+      "sourceId": "math.im3.skill.5.aleks.exponential-growth-graph-analysis",
+      "targetId": "math.im3.skill.5.5.choose-the-best-function-type-to-model-sets-of-data",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 5",
+      "metadata": {
+        "module": "5"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.1195",
+      "type": "supports",
+      "sourceId": "math.im3.skill.5.aleks.exponential-inequality-solving",
+      "targetId": "math.im3.skill.5.1.graph-exponential-decay-functions",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 5",
+      "metadata": {
+        "module": "5"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.1196",
+      "type": "supports",
+      "sourceId": "math.im3.skill.5.aleks.exponential-inequality-solving",
+      "targetId": "math.im3.skill.5.1.graph-exponential-growth-functions",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 5",
+      "metadata": {
+        "module": "5"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.1197",
+      "type": "supports",
+      "sourceId": "math.im3.skill.5.aleks.exponential-inequality-solving",
+      "targetId": "math.im3.skill.5.2.solve-exponential-equations-in-one-variable",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 5",
+      "metadata": {
+        "module": "5"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.1198",
+      "type": "supports",
+      "sourceId": "math.im3.skill.5.aleks.exponential-inequality-solving",
+      "targetId": "math.im3.skill.5.2.solve-exponential-inequalities-in-one-variable",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 5",
+      "metadata": {
+        "module": "5"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.1199",
+      "type": "supports",
+      "sourceId": "math.im3.skill.5.aleks.exponential-inequality-solving",
+      "targetId": "math.im3.skill.5.3.analyze-expressions-and-functions-involving-the-natural-base",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 5",
+      "metadata": {
+        "module": "5"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.1200",
+      "type": "supports",
+      "sourceId": "math.im3.skill.5.aleks.exponential-inequality-solving",
+      "targetId": "math.im3.skill.5.4.find-sums-of-geometric-series",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 5",
+      "metadata": {
+        "module": "5"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.1201",
+      "type": "supports",
+      "sourceId": "math.im3.skill.5.aleks.exponential-inequality-solving",
+      "targetId": "math.im3.skill.5.4.generate-geometric-sequences",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 5",
+      "metadata": {
+        "module": "5"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.1202",
+      "type": "supports",
+      "sourceId": "math.im3.skill.5.aleks.exponential-inequality-solving",
+      "targetId": "math.im3.skill.5.5.choose-the-best-function-type-to-model-sets-of-data",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 5",
+      "metadata": {
+        "module": "5"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.1203",
+      "type": "supports",
+      "sourceId": "math.im3.skill.5.aleks.geometric-sequence-generation",
+      "targetId": "math.im3.skill.5.1.graph-exponential-decay-functions",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 5",
+      "metadata": {
+        "module": "5"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.1204",
+      "type": "supports",
+      "sourceId": "math.im3.skill.5.aleks.geometric-sequence-generation",
+      "targetId": "math.im3.skill.5.1.graph-exponential-growth-functions",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 5",
+      "metadata": {
+        "module": "5"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.1205",
+      "type": "supports",
+      "sourceId": "math.im3.skill.5.aleks.geometric-sequence-generation",
+      "targetId": "math.im3.skill.5.2.solve-exponential-equations-in-one-variable",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 5",
+      "metadata": {
+        "module": "5"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.1206",
+      "type": "supports",
+      "sourceId": "math.im3.skill.5.aleks.geometric-sequence-generation",
+      "targetId": "math.im3.skill.5.2.solve-exponential-inequalities-in-one-variable",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 5",
+      "metadata": {
+        "module": "5"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.1207",
+      "type": "supports",
+      "sourceId": "math.im3.skill.5.aleks.geometric-sequence-generation",
+      "targetId": "math.im3.skill.5.3.analyze-expressions-and-functions-involving-the-natural-base",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 5",
+      "metadata": {
+        "module": "5"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.1208",
+      "type": "supports",
+      "sourceId": "math.im3.skill.5.aleks.geometric-sequence-generation",
+      "targetId": "math.im3.skill.5.4.find-sums-of-geometric-series",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 5",
+      "metadata": {
+        "module": "5"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.1209",
+      "type": "supports",
+      "sourceId": "math.im3.skill.5.aleks.geometric-sequence-generation",
+      "targetId": "math.im3.skill.5.4.generate-geometric-sequences",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 5",
+      "metadata": {
+        "module": "5"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.1210",
+      "type": "supports",
+      "sourceId": "math.im3.skill.5.aleks.geometric-sequence-generation",
+      "targetId": "math.im3.skill.5.5.choose-the-best-function-type-to-model-sets-of-data",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 5",
+      "metadata": {
+        "module": "5"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.1211",
+      "type": "supports",
+      "sourceId": "math.im3.skill.5.aleks.geometric-series-summation",
+      "targetId": "math.im3.skill.5.1.graph-exponential-decay-functions",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 5",
+      "metadata": {
+        "module": "5"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.1212",
+      "type": "supports",
+      "sourceId": "math.im3.skill.5.aleks.geometric-series-summation",
+      "targetId": "math.im3.skill.5.1.graph-exponential-growth-functions",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 5",
+      "metadata": {
+        "module": "5"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.1213",
+      "type": "supports",
+      "sourceId": "math.im3.skill.5.aleks.geometric-series-summation",
+      "targetId": "math.im3.skill.5.2.solve-exponential-equations-in-one-variable",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 5",
+      "metadata": {
+        "module": "5"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.1214",
+      "type": "supports",
+      "sourceId": "math.im3.skill.5.aleks.geometric-series-summation",
+      "targetId": "math.im3.skill.5.2.solve-exponential-inequalities-in-one-variable",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 5",
+      "metadata": {
+        "module": "5"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.1215",
+      "type": "supports",
+      "sourceId": "math.im3.skill.5.aleks.geometric-series-summation",
+      "targetId": "math.im3.skill.5.3.analyze-expressions-and-functions-involving-the-natural-base",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 5",
+      "metadata": {
+        "module": "5"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.1216",
+      "type": "supports",
+      "sourceId": "math.im3.skill.5.aleks.geometric-series-summation",
+      "targetId": "math.im3.skill.5.4.find-sums-of-geometric-series",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 5",
+      "metadata": {
+        "module": "5"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.1217",
+      "type": "supports",
+      "sourceId": "math.im3.skill.5.aleks.geometric-series-summation",
+      "targetId": "math.im3.skill.5.4.generate-geometric-sequences",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 5",
+      "metadata": {
+        "module": "5"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.1218",
+      "type": "supports",
+      "sourceId": "math.im3.skill.5.aleks.geometric-series-summation",
+      "targetId": "math.im3.skill.5.5.choose-the-best-function-type-to-model-sets-of-data",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 5",
+      "metadata": {
+        "module": "5"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.1219",
+      "type": "supports",
+      "sourceId": "math.im3.skill.5.aleks.natural-base-e-analysis",
+      "targetId": "math.im3.skill.5.1.graph-exponential-decay-functions",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 5",
+      "metadata": {
+        "module": "5"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.1220",
+      "type": "supports",
+      "sourceId": "math.im3.skill.5.aleks.natural-base-e-analysis",
+      "targetId": "math.im3.skill.5.1.graph-exponential-growth-functions",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 5",
+      "metadata": {
+        "module": "5"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.1221",
+      "type": "supports",
+      "sourceId": "math.im3.skill.5.aleks.natural-base-e-analysis",
+      "targetId": "math.im3.skill.5.2.solve-exponential-equations-in-one-variable",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 5",
+      "metadata": {
+        "module": "5"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.1222",
+      "type": "supports",
+      "sourceId": "math.im3.skill.5.aleks.natural-base-e-analysis",
+      "targetId": "math.im3.skill.5.2.solve-exponential-inequalities-in-one-variable",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 5",
+      "metadata": {
+        "module": "5"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.1223",
+      "type": "supports",
+      "sourceId": "math.im3.skill.5.aleks.natural-base-e-analysis",
+      "targetId": "math.im3.skill.5.3.analyze-expressions-and-functions-involving-the-natural-base",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 5",
+      "metadata": {
+        "module": "5"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.1224",
+      "type": "supports",
+      "sourceId": "math.im3.skill.5.aleks.natural-base-e-analysis",
+      "targetId": "math.im3.skill.5.4.find-sums-of-geometric-series",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 5",
+      "metadata": {
+        "module": "5"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.1225",
+      "type": "supports",
+      "sourceId": "math.im3.skill.5.aleks.natural-base-e-analysis",
+      "targetId": "math.im3.skill.5.4.generate-geometric-sequences",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 5",
+      "metadata": {
+        "module": "5"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.1226",
+      "type": "supports",
+      "sourceId": "math.im3.skill.5.aleks.natural-base-e-analysis",
+      "targetId": "math.im3.skill.5.5.choose-the-best-function-type-to-model-sets-of-data",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 5",
+      "metadata": {
+        "module": "5"
+      }
+    }
+  ]
+}

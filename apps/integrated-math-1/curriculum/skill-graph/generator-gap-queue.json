@@ -1,0 +1,1250 @@
+{
+  "queue": [
+    {
+      "nodeId": "math.im1.skill.1.1.translate-verbal-descriptions-into-correct-numerical-express",
+      "title": "1a: Translate verbal descriptions into correct numerical expressions using operation symbols and grouping",
+      "module": "1",
+      "rendererKey": "step-by-step-solver",
+      "rendererAssignmentReason": "Algebra/computation skill → step-by-step-solver",
+      "gap": "No generator available for IM1",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.im1.skill.1.2.translate-between-algebraic-expressions-and-verbal-expressio",
+      "title": "1c: Translate between algebraic expressions and verbal expressions using correct mathematical terminology",
+      "module": "1",
+      "rendererKey": "step-by-step-solver",
+      "rendererAssignmentReason": "Algebra/computation skill → step-by-step-solver",
+      "gap": "No generator available for IM1",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.im1.skill.1.3.identify-and-apply-the-reflexive-symmetric-and-transitive-pr",
+      "title": "1e: Identify and apply the reflexive, symmetric, and transitive properties of equality",
+      "module": "1",
+      "rendererKey": "fill-in-the-blank",
+      "rendererAssignmentReason": "Geometry identification/concept skill → fill-in-the-blank",
+      "gap": "No generator available for IM1",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.im1.skill.1.4.apply-the-distributive-property-to-rewrite-and-evaluate-nume",
+      "title": "1g: Apply the Distributive Property to rewrite and evaluate numerical expressions, including mixed numbers and decimals",
+      "module": "1",
+      "rendererKey": "step-by-step-solver",
+      "rendererAssignmentReason": "Algebra/computation skill → step-by-step-solver",
+      "gap": "No generator available for IM1",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.im1.skill.1.5.write-absolute-value-expressions-that-model-real-world-dista",
+      "title": "1i: Write absolute value expressions that model real-world distances and accuracy as positive differences",
+      "module": "1",
+      "rendererKey": "comprehension-quiz",
+      "rendererAssignmentReason": "Statistics/data skill → comprehension-quiz",
+      "gap": "No generator available for IM1",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.im1.skill.1.6.use-ratios-and-percentages-as-metrics-to-model-real-world-si",
+      "title": "1k: Use ratios and percentages as metrics to model real-world situations and make decisions",
+      "module": "1",
+      "rendererKey": "comprehension-quiz",
+      "rendererAssignmentReason": "Statistics/data skill → comprehension-quiz",
+      "gap": "No generator available for IM1",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.im1.skill.10.1.differentiate-between-synthetic-geometry-and-analytic-geomet",
+      "title": "10b: Differentiate between synthetic geometry and analytic geometry based on their defining characteristics",
+      "module": "10",
+      "rendererKey": "fill-in-the-blank",
+      "rendererAssignmentReason": "Geometry identification/concept skill → fill-in-the-blank",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.10.1.understand-the-structure-of-an-axiomatic-system-and-distingu",
+      "title": "10a: Understand the structure of an axiomatic system and distinguish between axioms and conclusions",
+      "module": "10",
+      "rendererKey": "fill-in-the-blank",
+      "rendererAssignmentReason": "Proof/theorem/logic skill → fill-in-the-blank",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.10.2.draw-and-label-figures-that-accurately-represent-given-geome",
+      "title": "10d: Draw and label figures that accurately represent given geometric relationships",
+      "module": "10",
+      "rendererKey": "fill-in-the-blank",
+      "rendererAssignmentReason": "Geometry identification/concept skill → fill-in-the-blank",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.10.2.identify-and-name-points-lines-and-planes-from-geometric-fig",
+      "title": "10c: Identify and name points, lines, and planes from geometric figures",
+      "module": "10",
+      "rendererKey": "fill-in-the-blank",
+      "rendererAssignmentReason": "Geometry identification/concept skill → fill-in-the-blank",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.10.3.apply-the-segment-addition-postulate-to-find-missing-segment",
+      "title": "10f: Apply the Segment Addition Postulate to find missing segment lengths",
+      "module": "10",
+      "rendererKey": "fill-in-the-blank",
+      "rendererAssignmentReason": "Proof/theorem/logic skill → fill-in-the-blank",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.10.3.find-the-length-of-a-segment-by-reading-coordinates-from-a-n",
+      "title": "10e: Find the length of a segment by reading coordinates from a number line",
+      "module": "10",
+      "rendererKey": "graphing-explorer",
+      "rendererAssignmentReason": "Graphing/coordinate/transformation skill → graphing-explorer",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.10.4.apply-the-distance-formula-to-solve-real-world-problems",
+      "title": "10h: Apply the Distance Formula to solve real-world problems",
+      "module": "10",
+      "rendererKey": "step-by-step-solver",
+      "rendererAssignmentReason": "Algebra/computation skill → step-by-step-solver",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.10.4.use-the-distance-formula-to-find-the-distance-between-two-po",
+      "title": "10g: Use the Distance Formula to find the distance between two points in the coordinate plane",
+      "module": "10",
+      "rendererKey": "graphing-explorer",
+      "rendererAssignmentReason": "Graphing/coordinate/transformation skill → graphing-explorer",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.10.5.find-the-coordinate-of-a-point-located-at-a-fractional-dista",
+      "title": "10i: Find the coordinate of a point located at a fractional distance between two given points on a number line",
+      "module": "10",
+      "rendererKey": "graphing-explorer",
+      "rendererAssignmentReason": "Graphing/coordinate/transformation skill → graphing-explorer",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.10.5.locate-a-point-that-divides-a-segment-on-a-number-line-in-a",
+      "title": "10j: Locate a point that divides a segment on a number line in a given ratio",
+      "module": "10",
+      "rendererKey": "step-by-step-solver",
+      "rendererAssignmentReason": "Algebra/computation skill → step-by-step-solver",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.10.6.find-the-coordinates-of-a-point-that-divides-a-segment-in-a",
+      "title": "10k: Find the coordinates of a point that divides a segment in a given ratio on a coordinate plane",
+      "module": "10",
+      "rendererKey": "graphing-explorer",
+      "rendererAssignmentReason": "Graphing/coordinate/transformation skill → graphing-explorer",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.10.7.find-the-coordinates-of-a-missing-endpoint-when-the-midpoint",
+      "title": "10m: Find the coordinates of a missing endpoint when the midpoint and one endpoint are known",
+      "module": "10",
+      "rendererKey": "graphing-explorer",
+      "rendererAssignmentReason": "Graphing/coordinate/transformation skill → graphing-explorer",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.10.7.use-the-midpoint-formula-to-find-the-coordinates-of-the-midp",
+      "title": "10l: Use the Midpoint Formula to find the coordinates of the midpoint of a segment in the coordinate plane",
+      "module": "10",
+      "rendererKey": "graphing-explorer",
+      "rendererAssignmentReason": "Graphing/coordinate/transformation skill → graphing-explorer",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.11.1.apply-the-angle-addition-postulate-and-the-definition-of-an",
+      "title": "11b: Apply the Angle Addition Postulate and the definition of an angle bisector to find unknown angle measures",
+      "module": "11",
+      "rendererKey": "fill-in-the-blank",
+      "rendererAssignmentReason": "Proof/theorem/logic skill → fill-in-the-blank",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.11.1.identify-and-name-the-parts-of-an-angle-including-the-vertex",
+      "title": "11a: Identify and name the parts of an angle, including the vertex and sides",
+      "module": "11",
+      "rendererKey": "graphing-explorer",
+      "rendererAssignmentReason": "Graphing/coordinate/transformation skill → graphing-explorer",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.11.2.solve-problems-involving-complementary-supplementary-and-ver",
+      "title": "11c: Solve problems involving complementary, supplementary, and vertical angle relationships using algebra",
+      "module": "11",
+      "rendererKey": "step-by-step-solver",
+      "rendererAssignmentReason": "Algebra/computation skill → step-by-step-solver",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.11.2.use-the-fact-that-perpendicular-lines-form-right-angles-to-w",
+      "title": "11d: Use the fact that perpendicular lines form right angles to write and solve equations for unknown angle measures",
+      "module": "11",
+      "rendererKey": "step-by-step-solver",
+      "rendererAssignmentReason": "Algebra/computation skill → step-by-step-solver",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.11.3.apply-coordinate-geometry-to-identify-figures-from-vertices",
+      "title": "11f: Apply coordinate geometry to identify figures from vertices and compute their measurements",
+      "module": "11",
+      "rendererKey": "graphing-explorer",
+      "rendererAssignmentReason": "Graphing/coordinate/transformation skill → graphing-explorer",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.11.3.calculate-the-perimeter-circumference-and-area-of-two-dimens",
+      "title": "11e: Calculate the perimeter, circumference, and area of two-dimensional figures from coordinate grids and labeled diagrams",
+      "module": "11",
+      "rendererKey": "graphing-explorer",
+      "rendererAssignmentReason": "Graphing/coordinate/transformation skill → graphing-explorer",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.11.4.apply-reflections-translations-and-rotations-to-figures-on-t",
+      "title": "11h: Apply reflections, translations, and rotations to figures on the coordinate plane",
+      "module": "11",
+      "rendererKey": "graphing-explorer",
+      "rendererAssignmentReason": "Graphing/coordinate/transformation skill → graphing-explorer",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.11.4.identify-rigid-motions-reflection-translation-rotation-from",
+      "title": "11g: Identify rigid motions (reflection, translation, rotation) from diagrams",
+      "module": "11",
+      "rendererKey": "graphing-explorer",
+      "rendererAssignmentReason": "Graphing/coordinate/transformation skill → graphing-explorer",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.11.5.calculate-the-surface-area-and-volume-of-prisms-cylinders-py",
+      "title": "11j: Calculate the surface area and volume of prisms, cylinders, pyramids, and cones",
+      "module": "11",
+      "rendererKey": "step-by-step-solver",
+      "rendererAssignmentReason": "Algebra/computation skill → step-by-step-solver",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.11.5.identify-and-classify-three-dimensional-figures-as-polyhedra",
+      "title": "11i: Identify and classify three-dimensional figures as polyhedra or non-polyhedra",
+      "module": "11",
+      "rendererKey": "fill-in-the-blank",
+      "rendererAssignmentReason": "Geometry identification/concept skill → fill-in-the-blank",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.11.6.interpret-orthographic-drawings-to-build-models-of-three-dim",
+      "title": "11k: Interpret orthographic drawings to build models of three-dimensional figures",
+      "module": "11",
+      "rendererKey": "comprehension-quiz",
+      "rendererAssignmentReason": "Statistics/data skill → comprehension-quiz",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.11.6.use-nets-to-identify-solids-find-surface-area-and-construct",
+      "title": "11l: Use nets to identify solids, find surface area, and construct models",
+      "module": "11",
+      "rendererKey": "comprehension-quiz",
+      "rendererAssignmentReason": "Statistics/data skill → comprehension-quiz",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.11.7.distinguish-between-accuracy-and-precision-in-measurement-co",
+      "title": "11m: Distinguish between accuracy and precision in measurement contexts",
+      "module": "11",
+      "rendererKey": "fill-in-the-blank",
+      "rendererAssignmentReason": "Geometry identification/concept skill → fill-in-the-blank",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.11.8.count-the-number-of-significant-digits-in-a-given-measuremen",
+      "title": "11n: Count the number of significant digits in a given measurement using the rules for significance",
+      "module": "11",
+      "rendererKey": "fill-in-the-blank",
+      "rendererAssignmentReason": "Geometry identification/concept skill → fill-in-the-blank",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.12.1.determine-whether-a-given-conjecture-is-true-or-false",
+      "title": "12b: Determine whether a given conjecture is true or false",
+      "module": "12",
+      "rendererKey": "fill-in-the-blank",
+      "rendererAssignmentReason": "Proof/theorem/logic skill → fill-in-the-blank",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.12.1.recognize-patterns-in-numerical-geometric-and-real-world-seq",
+      "title": "12a: Recognize patterns in numerical, geometric, and real-world sequences and express them as conjectures",
+      "module": "12",
+      "rendererKey": "fill-in-the-blank",
+      "rendererAssignmentReason": "Proof/theorem/logic skill → fill-in-the-blank",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.12.10.find-the-distance-from-a-point-to-a-line-in-the-coordinate-p",
+      "title": "12q: Find the distance from a point to a line in the coordinate plane",
+      "module": "12",
+      "rendererKey": "graphing-explorer",
+      "rendererAssignmentReason": "Graphing/coordinate/transformation skill → graphing-explorer",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.12.2.determine-the-truth-value-of-compound-statements-formed-by-c",
+      "title": "12c: Determine the truth value of compound statements formed by conjunction and disjunction",
+      "module": "12",
+      "rendererKey": "fill-in-the-blank",
+      "rendererAssignmentReason": "Proof/theorem/logic skill → fill-in-the-blank",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.12.2.identify-the-hypothesis-and-conclusion-of-a-conditional-stat",
+      "title": "12d: Identify the hypothesis and conclusion of a conditional statement and write the converse, inverse, and contrapositive",
+      "module": "12",
+      "rendererKey": "fill-in-the-blank",
+      "rendererAssignmentReason": "Proof/theorem/logic skill → fill-in-the-blank",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.12.3.apply-the-law-of-detachment-and-the-law-of-syllogism-to-draw",
+      "title": "12f: Apply the Law of Detachment and the Law of Syllogism to draw valid conclusions from conditional statements",
+      "module": "12",
+      "rendererKey": "fill-in-the-blank",
+      "rendererAssignmentReason": "Proof/theorem/logic skill → fill-in-the-blank",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.12.3.distinguish-between-inductive-and-deductive-reasoning-in-giv",
+      "title": "12e: Distinguish between inductive and deductive reasoning in given arguments",
+      "module": "12",
+      "rendererKey": "fill-in-the-blank",
+      "rendererAssignmentReason": "Proof/theorem/logic skill → fill-in-the-blank",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.12.4.apply-geometric-postulates-about-points-lines-and-planes-to",
+      "title": "12g: Apply geometric postulates about points, lines, and planes to justify statements",
+      "module": "12",
+      "rendererKey": "fill-in-the-blank",
+      "rendererAssignmentReason": "Proof/theorem/logic skill → fill-in-the-blank",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.12.4.write-two-column-proofs-using-given-information-definitions",
+      "title": "12h: Write two-column proofs using given information, definitions, and properties",
+      "module": "12",
+      "rendererKey": "fill-in-the-blank",
+      "rendererAssignmentReason": "Proof/theorem/logic skill → fill-in-the-blank",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.12.5.complete-two-column-proofs-by-supplying-missing-statements-a",
+      "title": "12i: Complete two-column proofs by supplying missing statements and reasons",
+      "module": "12",
+      "rendererKey": "fill-in-the-blank",
+      "rendererAssignmentReason": "Proof/theorem/logic skill → fill-in-the-blank",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.12.6.write-two-column-proofs-to-justify-angle-relationships-inclu",
+      "title": "12j: Write two-column proofs to justify angle relationships including congruent supplements, congruent complements, and right angles",
+      "module": "12",
+      "rendererKey": "fill-in-the-blank",
+      "rendererAssignmentReason": "Proof/theorem/logic skill → fill-in-the-blank",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.12.7.classify-angle-pairs-formed-by-two-lines-cut-by-a-transversa",
+      "title": "12k: Classify angle pairs formed by two lines cut by a transversal as alternate interior, alternate exterior, corresponding, or consecutive interior angles",
+      "module": "12",
+      "rendererKey": "fill-in-the-blank",
+      "rendererAssignmentReason": "Geometry identification/concept skill → fill-in-the-blank",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.12.7.use-properties-of-parallel-lines-and-transversals-to-find-un",
+      "title": "12l: Use properties of parallel lines and transversals to find unknown angle measures",
+      "module": "12",
+      "rendererKey": "fill-in-the-blank",
+      "rendererAssignmentReason": "Geometry module fallback → fill-in-the-blank",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.12.8.calculate-the-slope-of-a-line-through-two-given-points-and-i",
+      "title": "12m: Calculate the slope of a line through two given points and interpret its meaning",
+      "module": "12",
+      "rendererKey": "comprehension-quiz",
+      "rendererAssignmentReason": "Statistics/data skill → comprehension-quiz",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.12.8.write-equations-of-lines-in-slope-intercept-form-that-are-pa",
+      "title": "12n: Write equations of lines in slope-intercept form that are parallel or perpendicular to a given line and pass through a given point",
+      "module": "12",
+      "rendererKey": "graphing-explorer",
+      "rendererAssignmentReason": "Graphing/coordinate/transformation skill → graphing-explorer",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.12.9.apply-parallel-line-theorems-to-solve-real-world-and-geometr",
+      "title": "12p: Apply parallel line theorems to solve real-world and geometric problems",
+      "module": "12",
+      "rendererKey": "fill-in-the-blank",
+      "rendererAssignmentReason": "Proof/theorem/logic skill → fill-in-the-blank",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.12.9.use-angle-relationships-formed-by-a-transversal-to-prove-tha",
+      "title": "12o: Use angle relationships formed by a transversal to prove that two lines are parallel",
+      "module": "12",
+      "rendererKey": "fill-in-the-blank",
+      "rendererAssignmentReason": "Geometry module fallback → fill-in-the-blank",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.13.1.determine-the-coordinates-of-the-image-of-a-point-after-a-re",
+      "title": "13b: Determine the coordinates of the image of a point after a reflection in a horizontal or vertical line",
+      "module": "13",
+      "rendererKey": "graphing-explorer",
+      "rendererAssignmentReason": "Graphing/coordinate/transformation skill → graphing-explorer",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.13.1.graph-the-image-of-a-figure-after-a-reflection-over-a-given",
+      "title": "13a: Graph the image of a figure after a reflection over a given line on the coordinate plane",
+      "module": "13",
+      "rendererKey": "graphing-explorer",
+      "rendererAssignmentReason": "Graphing/coordinate/transformation skill → graphing-explorer",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.13.2.determine-whether-a-given-transformation-between-two-figures",
+      "title": "13c: Determine whether a given transformation between two figures is a translation and justify the answer",
+      "module": "13",
+      "rendererKey": "graphing-explorer",
+      "rendererAssignmentReason": "Graphing/coordinate/transformation skill → graphing-explorer",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.13.2.find-the-translation-vector-that-maps-a-preimage-to-its-imag",
+      "title": "13d: Find the translation vector that maps a preimage to its image and apply it",
+      "module": "13",
+      "rendererKey": "graphing-explorer",
+      "rendererAssignmentReason": "Graphing/coordinate/transformation skill → graphing-explorer",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.13.3.analyze-properties-preserved-under-rotations-and-identify-co",
+      "title": "13f: Analyze properties preserved under rotations and identify common errors in reasoning about rotations",
+      "module": "13",
+      "rendererKey": "graphing-explorer",
+      "rendererAssignmentReason": "Graphing/coordinate/transformation skill → graphing-explorer",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.13.3.graph-the-image-of-a-polygon-after-a-rotation-of-90-180-or-2",
+      "title": "13e: Graph the image of a polygon after a rotation of 90°, 180°, or 270° about a given point on the coordinate plane",
+      "module": "13",
+      "rendererKey": "graphing-explorer",
+      "rendererAssignmentReason": "Graphing/coordinate/transformation skill → graphing-explorer",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.13.4.graph-the-image-of-a-figure-after-a-glide-reflection-or-othe",
+      "title": "13g: Graph the image of a figure after a glide reflection or other composition of transformations on the coordinate plane",
+      "module": "13",
+      "rendererKey": "graphing-explorer",
+      "rendererAssignmentReason": "Graphing/coordinate/transformation skill → graphing-explorer",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.13.4.identify-a-single-transformation-that-is-equivalent-to-a-com",
+      "title": "13h: Identify a single transformation that is equivalent to a composition of two reflections",
+      "module": "13",
+      "rendererKey": "graphing-explorer",
+      "rendererAssignmentReason": "Graphing/coordinate/transformation skill → graphing-explorer",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.13.5.determine-whether-a-regular-polygon-will-tessellate-the-plan",
+      "title": "13i: Determine whether a regular polygon will tessellate the plane by examining its interior angle measure",
+      "module": "13",
+      "rendererKey": "step-by-step-solver",
+      "rendererAssignmentReason": "Default fallback → step-by-step-solver",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.13.5.determine-whether-a-tessellation-can-be-created-from-a-given",
+      "title": "13j: Determine whether a tessellation can be created from a given figure and describe the transformation(s) used",
+      "module": "13",
+      "rendererKey": "graphing-explorer",
+      "rendererAssignmentReason": "Graphing/coordinate/transformation skill → graphing-explorer",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.13.6.determine-whether-a-figure-has-rotational-symmetry-and-justi",
+      "title": "13l: Determine whether a figure has rotational symmetry and justify the answer",
+      "module": "13",
+      "rendererKey": "graphing-explorer",
+      "rendererAssignmentReason": "Graphing/coordinate/transformation skill → graphing-explorer",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.13.6.identify-and-draw-lines-of-symmetry-for-two-dimensional-figu",
+      "title": "13k: Identify and draw lines of symmetry for two-dimensional figures",
+      "module": "13",
+      "rendererKey": "graphing-explorer",
+      "rendererAssignmentReason": "Graphing/coordinate/transformation skill → graphing-explorer",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.14.1.apply-the-triangle-angle-sum-theorem-to-find-unknown-interio",
+      "title": "14a: Apply the Triangle Angle-Sum Theorem to find unknown interior angle measures",
+      "module": "14",
+      "rendererKey": "fill-in-the-blank",
+      "rendererAssignmentReason": "Proof/theorem/logic skill → fill-in-the-blank",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.14.1.use-the-exterior-angle-theorem-to-relate-exterior-and-remote",
+      "title": "14b: Use the Exterior Angle Theorem to relate exterior and remote interior angles",
+      "module": "14",
+      "rendererKey": "fill-in-the-blank",
+      "rendererAssignmentReason": "Proof/theorem/logic skill → fill-in-the-blank",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.14.2.identify-all-congruent-corresponding-parts-of-polygons-and-w",
+      "title": "14c: Identify all congruent corresponding parts of polygons and write correct congruence statements",
+      "module": "14",
+      "rendererKey": "fill-in-the-blank",
+      "rendererAssignmentReason": "Proof/theorem/logic skill → fill-in-the-blank",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.14.2.write-two-column-proofs-and-paragraph-proofs-to-show-that-tw",
+      "title": "14d: Write two-column proofs and paragraph proofs to show that two triangles are congruent",
+      "module": "14",
+      "rendererKey": "graphing-explorer",
+      "rendererAssignmentReason": "Graphing/coordinate/transformation skill → graphing-explorer",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.14.3.identify-the-included-angle-and-apply-the-sas-congruence-pos",
+      "title": "14f: Identify the included angle and apply the SAS Congruence Postulate correctly",
+      "module": "14",
+      "rendererKey": "fill-in-the-blank",
+      "rendererAssignmentReason": "Proof/theorem/logic skill → fill-in-the-blank",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.14.3.write-two-column-paragraph-and-flow-proofs-to-prove-triangle",
+      "title": "14e: Write two-column, paragraph, and flow proofs to prove triangle congruence using the SSS and SAS postulates",
+      "module": "14",
+      "rendererKey": "graphing-explorer",
+      "rendererAssignmentReason": "Graphing/coordinate/transformation skill → graphing-explorer",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.14.4.use-properties-of-parallel-lines-midpoints-and-angle-bisecto",
+      "title": "14h: Use properties of parallel lines, midpoints, and angle bisectors to find congruent parts needed for ASA or AAS proofs",
+      "module": "14",
+      "rendererKey": "fill-in-the-blank",
+      "rendererAssignmentReason": "Proof/theorem/logic skill → fill-in-the-blank",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.14.4.write-two-column-paragraph-and-flow-proofs-to-prove-triangle-2",
+      "title": "14g: Write two-column, paragraph, and flow proofs to prove triangle congruence using the ASA and AAS theorems",
+      "module": "14",
+      "rendererKey": "graphing-explorer",
+      "rendererAssignmentReason": "Graphing/coordinate/transformation skill → graphing-explorer",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.14.5.apply-the-leg-leg-ll-hypotenuse-angle-ha-leg-angle-la-and-hy",
+      "title": "14i: Apply the Leg-Leg (LL), Hypotenuse-Angle (HA), Leg-Angle (LA), and Hypotenuse-Leg (HL) theorems to prove right triangles congruent",
+      "module": "14",
+      "rendererKey": "fill-in-the-blank",
+      "rendererAssignmentReason": "Proof/theorem/logic skill → fill-in-the-blank",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.14.5.write-two-column-proofs-and-paragraph-proofs-for-right-trian",
+      "title": "14j: Write two-column proofs and paragraph proofs for right triangle congruence in real-world contexts",
+      "module": "14",
+      "rendererKey": "graphing-explorer",
+      "rendererAssignmentReason": "Graphing/coordinate/transformation skill → graphing-explorer",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.14.6.solve-for-unknown-variables-using-properties-of-isosceles-an",
+      "title": "14l: Solve for unknown variables using properties of isosceles and equilateral triangles",
+      "module": "14",
+      "rendererKey": "step-by-step-solver",
+      "rendererAssignmentReason": "Algebra/computation skill → step-by-step-solver",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.14.6.write-two-column-proofs-using-the-isosceles-triangle-theorem",
+      "title": "14k: Write two-column proofs using the Isosceles Triangle Theorem and its converse",
+      "module": "14",
+      "rendererKey": "fill-in-the-blank",
+      "rendererAssignmentReason": "Proof/theorem/logic skill → fill-in-the-blank",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.14.7.position-and-label-triangles-on-the-coordinate-plane-using-g",
+      "title": "14m: Position and label triangles on the coordinate plane using given side lengths and properties",
+      "module": "14",
+      "rendererKey": "graphing-explorer",
+      "rendererAssignmentReason": "Graphing/coordinate/transformation skill → graphing-explorer",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.14.7.write-coordinate-proofs-for-geometric-statements-about-trian",
+      "title": "14n: Write coordinate proofs for geometric statements about triangles",
+      "module": "14",
+      "rendererKey": "graphing-explorer",
+      "rendererAssignmentReason": "Graphing/coordinate/transformation skill → graphing-explorer",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.2.1.translate-verbal-sentences-and-real-world-situations-into-al",
+      "title": "2a: Translate verbal sentences and real-world situations into algebraic equations and formulas",
+      "module": "2",
+      "rendererKey": "step-by-step-solver",
+      "rendererAssignmentReason": "Algebra/computation skill → step-by-step-solver",
+      "gap": "No generator available for IM1",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.im1.skill.2.2.solve-one-step-equations-involving-addition-subtraction-mult",
+      "title": "2c: Solve one-step equations involving addition, subtraction, multiplication, and division using the Properties of Equality",
+      "module": "2",
+      "rendererKey": "step-by-step-solver",
+      "rendererAssignmentReason": "Algebra/computation skill → step-by-step-solver",
+      "gap": "No generator available for IM1",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.im1.skill.2.3.solve-multi-step-linear-equations-using-properties-of-equali",
+      "title": "2e: Solve multi-step linear equations using properties of equality and check solutions by substitution",
+      "module": "2",
+      "rendererKey": "graphing-explorer",
+      "rendererAssignmentReason": "Graphing/coordinate/transformation skill → graphing-explorer",
+      "gap": "No generator available for IM1",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.im1.skill.2.4.solve-linear-equations-that-have-the-variable-on-both-sides",
+      "title": "2g: Solve linear equations that have the variable on both sides of the equation, including those with fractions and grouping symbols",
+      "module": "2",
+      "rendererKey": "graphing-explorer",
+      "rendererAssignmentReason": "Graphing/coordinate/transformation skill → graphing-explorer",
+      "gap": "No generator available for IM1",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.im1.skill.2.5.graph-the-solution-set-of-an-absolute-value-equation-on-a-nu",
+      "title": "2j: Graph the solution set of an absolute value equation on a number line and write absolute value equations from graphs",
+      "module": "2",
+      "rendererKey": "graphing-explorer",
+      "rendererAssignmentReason": "Graphing/coordinate/transformation skill → graphing-explorer",
+      "gap": "No generator available for IM1",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.im1.skill.2.5.solve-absolute-value-equations-of-the-form",
+      "title": "2i: Solve absolute value equations of the form",
+      "module": "2",
+      "rendererKey": "step-by-step-solver",
+      "rendererAssignmentReason": "Algebra/computation skill → step-by-step-solver",
+      "gap": "No generator available for IM1",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.im1.skill.2.6.solve-proportions-algebraically-including-those-with-variabl",
+      "title": "2k: Solve proportions algebraically, including those with variable expressions in numerators and denominators",
+      "module": "2",
+      "rendererKey": "step-by-step-solver",
+      "rendererAssignmentReason": "Algebra/computation skill → step-by-step-solver",
+      "gap": "No generator available for IM1",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.im1.skill.2.7.solve-literal-equations-and-formulas-for-a-specified-variabl",
+      "title": "2m: Solve literal equations and formulas for a specified variable using inverse operations",
+      "module": "2",
+      "rendererKey": "step-by-step-solver",
+      "rendererAssignmentReason": "Algebra/computation skill → step-by-step-solver",
+      "gap": "No generator available for IM1",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.im1.skill.3.1.express-a-relation-as-a-table-a-graph-a-mapping-and-a-set-of",
+      "title": "3a: Express a relation as a table, a graph, a mapping, and a set of ordered pairs and identify the domain and range",
+      "module": "3",
+      "rendererKey": "comprehension-quiz",
+      "rendererAssignmentReason": "Statistics/data skill → comprehension-quiz",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.3.2.determine-whether-a-relation-represented-as-a-graph-table-ma",
+      "title": "3c: Determine whether a relation represented as a graph, table, mapping, set of ordered pairs, or equation is a function",
+      "module": "3",
+      "rendererKey": "graphing-explorer",
+      "rendererAssignmentReason": "Graphing/coordinate/transformation skill → graphing-explorer",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.3.3.determine-whether-a-function-represented-by-a-graph-equation",
+      "title": "3e: Determine whether a function represented by a graph, equation, table, or real-world situation is discrete, continuous, or neither",
+      "module": "3",
+      "rendererKey": "graphing-explorer",
+      "rendererAssignmentReason": "Graphing/coordinate/transformation skill → graphing-explorer",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.3.4.estimate-and-interpret-the-x-and-y-intercepts-of-a-function",
+      "title": "3g: Estimate and interpret the x- and y-intercepts of a function from its graph and describe where the function is positive and negative",
+      "module": "3",
+      "rendererKey": "graphing-explorer",
+      "rendererAssignmentReason": "Graphing/coordinate/transformation skill → graphing-explorer",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.3.5.identify-line-symmetry-in-the-graph-of-a-function-and-determ",
+      "title": "3i: Identify line symmetry in the graph of a function and determine the intervals where a function is increasing, decreasing, or constant",
+      "module": "3",
+      "rendererKey": "graphing-explorer",
+      "rendererAssignmentReason": "Graphing/coordinate/transformation skill → graphing-explorer",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.3.6.sketch-graphs-of-real-world-functions-from-verbal-descriptio",
+      "title": "3k: Sketch graphs of real-world functions from verbal descriptions, identifying intercepts, intervals of increase and decrease, end behavior, extrema, and symmetry",
+      "module": "3",
+      "rendererKey": "graphing-explorer",
+      "rendererAssignmentReason": "Graphing/coordinate/transformation skill → graphing-explorer",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.4.1.graph-linear-equations-by-making-a-table-of-values-and-by-fi",
+      "title": "4a: Graph linear equations by making a table of values and by finding and plotting the x- and y-intercepts",
+      "module": "4",
+      "rendererKey": "graphing-explorer",
+      "rendererAssignmentReason": "Graphing/coordinate/transformation skill → graphing-explorer",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.4.2.calculate-the-rate-of-change-from-tables-graphs-and-real-wor",
+      "title": "4c: Calculate the rate of change from tables, graphs, and real-world data and compute the slope of a line passing through two given points",
+      "module": "4",
+      "rendererKey": "comprehension-quiz",
+      "rendererAssignmentReason": "Statistics/data skill → comprehension-quiz",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.4.2.interpret-slope-and-rate-of-change-in-real-world-contexts-in",
+      "title": "4e: Interpret slope and rate of change in real-world contexts including grade, elevation, and positioning",
+      "module": "4",
+      "rendererKey": "rate-of-change-calculator",
+      "rendererAssignmentReason": "Rate of change skill → rate-of-change-calculator",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.4.3.write-linear-equations-in-slope-intercept-form-given-the-slo",
+      "title": "4f: Write linear equations in slope-intercept form given the slope and y-intercept and rewrite linear equations from standard form into slope-intercept form",
+      "module": "4",
+      "rendererKey": "graphing-explorer",
+      "rendererAssignmentReason": "Graphing/coordinate/transformation skill → graphing-explorer",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.4.4.describe-translations-dilations-and-reflections-of-linear-fu",
+      "title": "4h: Describe translations, dilations, and reflections of linear functions in relation to the parent function f(x) = x",
+      "module": "4",
+      "rendererKey": "graphing-explorer",
+      "rendererAssignmentReason": "Graphing/coordinate/transformation skill → graphing-explorer",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.4.5.determine-whether-a-given-sequence-is-arithmetic-and-justify",
+      "title": "4j: Determine whether a given sequence is arithmetic and justify the reasoning using the common difference",
+      "module": "4",
+      "rendererKey": "fill-in-the-blank",
+      "rendererAssignmentReason": "Proof/theorem/logic skill → fill-in-the-blank",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.4.6.graph-piecewise-defined-functions-and-step-functions-greates",
+      "title": "4l: Graph piecewise-defined functions and step functions (greatest integer functions) and identify their domain and range",
+      "module": "4",
+      "rendererKey": "comprehension-quiz",
+      "rendererAssignmentReason": "Statistics/data skill → comprehension-quiz",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.4.7.describe-translations-dilations-and-reflections-of-absolute",
+      "title": "4n: Describe translations, dilations, and reflections of absolute value functions from their equations and graph absolute value functions",
+      "module": "4",
+      "rendererKey": "graphing-explorer",
+      "rendererAssignmentReason": "Graphing/coordinate/transformation skill → graphing-explorer",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.5.1.write-linear-equations-in-slope-intercept-form-given-a-point",
+      "title": "5a: Write linear equations in slope-intercept form given a point and a slope and given two points",
+      "module": "5",
+      "rendererKey": "graphing-explorer",
+      "rendererAssignmentReason": "Graphing/coordinate/transformation skill → graphing-explorer",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.5.2.write-linear-equations-in-point-slope-form-given-a-point-and",
+      "title": "5c: Write linear equations in point-slope form given a point and a slope or two points and convert equations between point-slope, slope-intercept, and standard forms",
+      "module": "5",
+      "rendererKey": "graphing-explorer",
+      "rendererAssignmentReason": "Graphing/coordinate/transformation skill → graphing-explorer",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.5.3.analyze-scatter-plots-to-determine-whether-they-show-positiv",
+      "title": "5e: Analyze scatter plots to determine whether they show positive, negative, or no correlation and interpret the meaning in context",
+      "module": "5",
+      "rendererKey": "comprehension-quiz",
+      "rendererAssignmentReason": "Statistics/data skill → comprehension-quiz",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.5.4.distinguish-between-correlation-and-causation-in-real-world",
+      "title": "5g: Distinguish between correlation and causation in real-world contexts and explain reasoning for whether a relationship is merely correlated or causal, identifying possible lurking variables",
+      "module": "5",
+      "rendererKey": "comprehension-quiz",
+      "rendererAssignmentReason": "Statistics/data skill → comprehension-quiz",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.5.5.use-technology-to-calculate-the-equation-of-a-best-fit-line",
+      "title": "5h: Use technology to calculate the equation of a best-fit line and the correlation coefficient for a bivariate data set and interpret the correlation coefficient r in context",
+      "module": "5",
+      "rendererKey": "comprehension-quiz",
+      "rendererAssignmentReason": "Statistics/data skill → comprehension-quiz",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.5.6.find-the-inverse-of-a-relation-given-its-graph-table-or-set",
+      "title": "5j: Find the inverse of a relation given its graph, table, or set of ordered pairs and find the inverse of a linear function algebraically using the switch-and-solve method",
+      "module": "5",
+      "rendererKey": "graphing-explorer",
+      "rendererAssignmentReason": "Graphing/coordinate/transformation skill → graphing-explorer",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.6.1.graph-the-solution-set-of-a-one-step-inequality-on-a-number",
+      "title": "6a: Graph the solution set of a one-step inequality on a number line and write an inequality that matches a given number-line graph",
+      "module": "6",
+      "rendererKey": "graphing-explorer",
+      "rendererAssignmentReason": "Graphing/coordinate/transformation skill → graphing-explorer",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.6.2.solve-multi-step-linear-inequalities-using-the-distributive",
+      "title": "6c: Solve multi-step linear inequalities using the Distributive Property, combining like terms, and inverse operations",
+      "module": "6",
+      "rendererKey": "step-by-step-solver",
+      "rendererAssignmentReason": "Algebra/computation skill → step-by-step-solver",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.6.3.solve-compound-inequalities-involving-and-and-or-and-express",
+      "title": "6e: Solve compound inequalities involving \"and\" and \"or\" and express the solution algebraically",
+      "module": "6",
+      "rendererKey": "step-by-step-solver",
+      "rendererAssignmentReason": "Algebra/computation skill → step-by-step-solver",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.6.4.solve-absolute-value-inequalities-and-rewrite-them-as-compou",
+      "title": "6g: Solve absolute value inequalities and rewrite them as compound inequalities using and or or",
+      "module": "6",
+      "rendererKey": "step-by-step-solver",
+      "rendererAssignmentReason": "Algebra/computation skill → step-by-step-solver",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.6.5.graph-linear-inequalities-in-two-variables-written-in-slope",
+      "title": "6i: Graph linear inequalities in two variables written in slope-intercept and standard form and write linear inequalities to model real-world constraints",
+      "module": "6",
+      "rendererKey": "comprehension-quiz",
+      "rendererAssignmentReason": "Statistics/data skill → comprehension-quiz",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.6.5.write-systems-of-inequalities-that-correspond-to-a-given-gra",
+      "title": "6k: Write systems of inequalities that correspond to a given graph and determine whether an ordered pair is a solution to a system without graphing",
+      "module": "6",
+      "rendererKey": "graphing-explorer",
+      "rendererAssignmentReason": "Graphing/coordinate/transformation skill → graphing-explorer",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.7.1.graph-systems-of-linear-equations-and-determine-the-number-o",
+      "title": "7a: Graph systems of linear equations and determine the number of solutions; classify systems as consistent or inconsistent and as independent or dependent",
+      "module": "7",
+      "rendererKey": "graphing-explorer",
+      "rendererAssignmentReason": "Graphing/coordinate/transformation skill → graphing-explorer",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.7.2.solve-systems-of-linear-equations-using-the-substitution-met",
+      "title": "7c: Solve systems of linear equations using the substitution method",
+      "module": "7",
+      "rendererKey": "graphing-explorer",
+      "rendererAssignmentReason": "Graphing/coordinate/transformation skill → graphing-explorer",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.7.3.solve-systems-of-linear-equations-using-elimination-by-addit",
+      "title": "7e: Solve systems of linear equations using elimination by addition or subtraction and recognize when adding or subtracting equations will eliminate a variable",
+      "module": "7",
+      "rendererKey": "graphing-explorer",
+      "rendererAssignmentReason": "Graphing/coordinate/transformation skill → graphing-explorer",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.7.4.solve-systems-of-linear-equations-using-elimination-when-mul",
+      "title": "7g: Solve systems of linear equations using elimination when multiplication of one or both equations is required",
+      "module": "7",
+      "rendererKey": "graphing-explorer",
+      "rendererAssignmentReason": "Graphing/coordinate/transformation skill → graphing-explorer",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.7.5.graph-systems-of-linear-inequalities-and-identify-the-overla",
+      "title": "7i: Graph systems of linear inequalities and identify the overlapping solution region (feasible region)",
+      "module": "7",
+      "rendererKey": "graphing-explorer",
+      "rendererAssignmentReason": "Graphing/coordinate/transformation skill → graphing-explorer",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.7.5.solve-real-world-optimization-problems-by-defining-variables",
+      "title": "7k: Solve real-world optimization problems by defining variables, writing a system of inequalities, graphing, and interpreting the feasible region",
+      "module": "7",
+      "rendererKey": "graphing-explorer",
+      "rendererAssignmentReason": "Graphing/coordinate/transformation skill → graphing-explorer",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.8.1.identify-exponential-behavior-from-data-using-common-ratios",
+      "title": "8a: Identify exponential behavior from data using common ratios",
+      "module": "8",
+      "rendererKey": "comprehension-quiz",
+      "rendererAssignmentReason": "Statistics/data skill → comprehension-quiz",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.8.2.describe-transformations-of-exponential-functions-verbally-a",
+      "title": "8c: Describe transformations of exponential functions verbally and in function notation",
+      "module": "8",
+      "rendererKey": "graphing-explorer",
+      "rendererAssignmentReason": "Graphing/coordinate/transformation skill → graphing-explorer",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.8.2.write-equations-for-transformed-exponential-functions-given",
+      "title": "8d: Write equations for transformed exponential functions given a graph",
+      "module": "8",
+      "rendererKey": "graphing-explorer",
+      "rendererAssignmentReason": "Graphing/coordinate/transformation skill → graphing-explorer",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.8.3.apply-the-compound-interest-formula-to-investment-and-deprec",
+      "title": "8f: Apply the compound-interest formula to investment and depreciation problems",
+      "module": "8",
+      "rendererKey": "step-by-step-solver",
+      "rendererAssignmentReason": "Algebra/computation skill → step-by-step-solver",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.8.3.write-an-exponential-function-given-two-points-on-its-graph",
+      "title": "8e: Write an exponential function given two points on its graph",
+      "module": "8",
+      "rendererKey": "graphing-explorer",
+      "rendererAssignmentReason": "Graphing/coordinate/transformation skill → graphing-explorer",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.8.4.rewrite-exponential-functions-so-rates-share-the-same-time-u",
+      "title": "8g: Rewrite exponential functions so rates share the same time unit for direct comparison",
+      "module": "8",
+      "rendererKey": "graphing-explorer",
+      "rendererAssignmentReason": "Graphing/coordinate/transformation skill → graphing-explorer",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.8.5.determine-whether-a-given-sequence-is-geometric-by-checking",
+      "title": "8h: Determine whether a given sequence is geometric by checking for a constant common ratio",
+      "module": "8",
+      "rendererKey": "step-by-step-solver",
+      "rendererAssignmentReason": "Algebra/computation skill → step-by-step-solver",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.8.5.write-and-use-explicit-formulas-to-model-real-world-situatio",
+      "title": "8i: Write and use explicit formulas to model real-world situations involving exponential growth and decay",
+      "module": "8",
+      "rendererKey": "comprehension-quiz",
+      "rendererAssignmentReason": "Statistics/data skill → comprehension-quiz",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.8.6.convert-between-recursive-and-explicit-formulas-for-arithmet",
+      "title": "8k: Convert between recursive and explicit formulas for arithmetic and geometric sequences",
+      "module": "8",
+      "rendererKey": "step-by-step-solver",
+      "rendererAssignmentReason": "Algebra/computation skill → step-by-step-solver",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.8.6.find-the-first-several-terms-of-a-sequence-given-a-recursive",
+      "title": "8j: Find the first several terms of a sequence given a recursive formula",
+      "module": "8",
+      "rendererKey": "step-by-step-solver",
+      "rendererAssignmentReason": "Algebra/computation skill → step-by-step-solver",
+      "gap": "No generator available for IM1",
+      "priority": "standard"
+    },
+    {
+      "nodeId": "math.im1.skill.9.1.calculate-the-mean-median-and-mode-of-a-data-set",
+      "title": "9a: Calculate the mean, median, and mode of a data set",
+      "module": "9",
+      "rendererKey": "comprehension-quiz",
+      "rendererAssignmentReason": "Statistics/data skill → comprehension-quiz",
+      "gap": "No generator available for IM1",
+      "priority": "high"
+    },
+    {
+      "nodeId": "math.im1.skill.9.2.analyze-data-displays-to-draw-conclusions-and-answer-questio",
+      "title": "9c: Analyze data displays to draw conclusions and answer questions about a data set",
+      "module": "9",
+      "rendererKey": "comprehension-quiz",
+      "rendererAssignmentReason": "Statistics/data skill → comprehension-quiz",
+      "gap": "No generator available for IM1",
+      "priority": "high"
+    },
+    {
+      "nodeId": "math.im1.skill.9.2.construct-dot-plots-bar-graphs-and-histograms-to-represent-d",
+      "title": "9b: Construct dot plots, bar graphs, and histograms to represent data sets",
+      "module": "9",
+      "rendererKey": "comprehension-quiz",
+      "rendererAssignmentReason": "Statistics/data skill → comprehension-quiz",
+      "gap": "No generator available for IM1",
+      "priority": "high"
+    },
+    {
+      "nodeId": "math.im1.skill.9.3.identify-sample-bias-in-survey-and-sampling-methods-and-expl",
+      "title": "9d: Identify sample bias in survey and sampling methods and explain how it affects results",
+      "module": "9",
+      "rendererKey": "comprehension-quiz",
+      "rendererAssignmentReason": "Statistics/data skill → comprehension-quiz",
+      "gap": "No generator available for IM1",
+      "priority": "high"
+    },
+    {
+      "nodeId": "math.im1.skill.9.3.recognize-biased-survey-questions-and-identify-whose-interes",
+      "title": "9e: Recognize biased survey questions and identify whose interests they may serve",
+      "module": "9",
+      "rendererKey": "comprehension-quiz",
+      "rendererAssignmentReason": "Statistics/data skill → comprehension-quiz",
+      "gap": "No generator available for IM1",
+      "priority": "high"
+    },
+    {
+      "nodeId": "math.im1.skill.9.4.calculate-the-range-interquartile-range-and-standard-deviati",
+      "title": "9f: Calculate the range, interquartile range, and standard deviation of a data set",
+      "module": "9",
+      "rendererKey": "comprehension-quiz",
+      "rendererAssignmentReason": "Statistics/data skill → comprehension-quiz",
+      "gap": "No generator available for IM1",
+      "priority": "high"
+    },
+    {
+      "nodeId": "math.im1.skill.9.4.determine-the-five-number-summary-and-construct-a-box-plot-f",
+      "title": "9g: Determine the five-number summary and construct a box plot from a data set",
+      "module": "9",
+      "rendererKey": "comprehension-quiz",
+      "rendererAssignmentReason": "Statistics/data skill → comprehension-quiz",
+      "gap": "No generator available for IM1",
+      "priority": "high"
+    },
+    {
+      "nodeId": "math.im1.skill.9.5.choose-appropriate-measures-of-center-and-spread-based-on-wh",
+      "title": "9i: Choose appropriate measures of center and spread based on whether a distribution is symmetric or skewed",
+      "module": "9",
+      "rendererKey": "comprehension-quiz",
+      "rendererAssignmentReason": "Statistics/data skill → comprehension-quiz",
+      "gap": "No generator available for IM1",
+      "priority": "high"
+    },
+    {
+      "nodeId": "math.im1.skill.9.5.construct-and-interpret-histograms-and-box-plots-to-visualiz",
+      "title": "9h: Construct and interpret histograms and box plots to visualize the shape of a data distribution",
+      "module": "9",
+      "rendererKey": "comprehension-quiz",
+      "rendererAssignmentReason": "Statistics/data skill → comprehension-quiz",
+      "gap": "No generator available for IM1",
+      "priority": "high"
+    },
+    {
+      "nodeId": "math.im1.skill.9.6.construct-and-interpret-box-plots-and-histograms-to-compare",
+      "title": "9k: Construct and interpret box plots and histograms to compare the shape, center, and spread of two data sets",
+      "module": "9",
+      "rendererKey": "comprehension-quiz",
+      "rendererAssignmentReason": "Statistics/data skill → comprehension-quiz",
+      "gap": "No generator available for IM1",
+      "priority": "high"
+    },
+    {
+      "nodeId": "math.im1.skill.9.6.describe-how-adding-or-multiplying-every-value-in-a-data-set",
+      "title": "9j: Describe how adding or multiplying every value in a data set affects the mean, median, mode, range, and standard deviation",
+      "module": "9",
+      "rendererKey": "comprehension-quiz",
+      "rendererAssignmentReason": "Statistics/data skill → comprehension-quiz",
+      "gap": "No generator available for IM1",
+      "priority": "high"
+    },
+    {
+      "nodeId": "math.im1.skill.9.7.construct-and-complete-two-way-frequency-tables-from-verbal",
+      "title": "9l: Construct and complete two-way frequency tables from verbal descriptions or given data",
+      "module": "9",
+      "rendererKey": "comprehension-quiz",
+      "rendererAssignmentReason": "Statistics/data skill → comprehension-quiz",
+      "gap": "No generator available for IM1",
+      "priority": "high"
+    }
+  ],
+  "meta": {
+    "totalSkills": 138,
+    "allNeedGenerators": true
+  }
+}

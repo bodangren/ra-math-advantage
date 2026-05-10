@@ -46,17 +46,17 @@ Dependencies:
 - [x] **Track 8: Skill Graph Program — IM3 Module 1 Pilot (depth-first slice)**
        *Prove the graph-to-runtime flow end-to-end on IM3 Module 1 before broad cross-course edge authoring or rollout. Authors its own IM3 M1 edges; T5 expands afterward. If the pilot finds contract issues, fix in T2/T6/T7 and re-run before expanding.*
        *Link: [./measure/tracks/skill-graph-pilot-im3-m1_20260509/](./measure/tracks/skill-graph-pilot-im3-m1_20260509/)*
-   - [ ] **Track 9: Skill Graph Program — Integrated Math 1 Rollout**
-      *Apply the approved pipeline to IM1 source catalogs, with explicit standards/generator/component gap handling.*
-      *Link: [./measure/tracks/skill-rollout-im1_20260509/](./measure/tracks/skill-rollout-im1_20260509/)*
-   - [ ] **Track 10: Skill Graph Program — Integrated Math 2 Rollout**
-      *Apply the approved pipeline to IM2, reconciling current worksheet catalogs against stale unit-based artifacts.*
-      *Link: [./measure/tracks/skill-rollout-im2_20260509/](./measure/tracks/skill-rollout-im2_20260509/)*
-   - [ ] **Track 11: Skill Graph Program — Integrated Math 3 Rollout**
-      *Expand the accepted IM3 Module 1 pilot across Modules 2-9.*
-      *Link: [./measure/tracks/skill-rollout-im3_20260509/](./measure/tracks/skill-rollout-im3_20260509/)*
+    - [x] **Track 9: Skill Graph Program — Integrated Math 1 Rollout** — **COMPLETED**
+       *Apply the approved pipeline to IM1 source catalogs, with explicit standards/generator/component gap handling. 724 nodes (138 skills); 138 STUB blueprints; 414 projected activities; 3 review queues; audit at measure/skill-graph-im1-rollout-audit.md.*
+       *Link: [./measure/tracks/skill-rollout-im1_20260509/](./measure/tracks/skill-rollout-im1_20260509/)*
+    - [x] **Track 10: Skill Graph Program — Integrated Math 2 Rollout** — **COMPLETED**
+       *Apply the approved pipeline to IM2, reconciling current worksheet catalogs against stale unit-based artifacts. 645 nodes (149 skills); 149 STUB blueprints; 447 projected activities; 4 review queues (incl. geometry-renderer gaps); audit at measure/skill-graph-im2-rollout-audit.md.*
+       *Link: [./measure/tracks/skill-rollout-im2_20260509/](./measure/tracks/skill-rollout-im2_20260509/)*
+    - [x] **Track 11: Skill Graph Program — Integrated Math 3 Rollout** — **COMPLETED**
+       *Expand the accepted IM3 Module 1 pilot across Modules 2-9. 574 course-level nodes (96 skills); 174 blueprints (6 M1 pilot + 168 M2-9 stubs); 351 projected activities; M1 pilot preserved; per-module artifacts for M2-9; 3 review queues; audit at measure/skill-graph-im3-rollout-audit.md.*
+       *Link: [./measure/tracks/skill-rollout-im3_20260509/](./measure/tracks/skill-rollout-im3_20260509/)*
     - [x] **Track 12: Skill Graph Program — AP Precalculus Rollout** — **COMPLETED**
-       *Apply the approved pipeline to AP Precalculus using CED/Passwater provenance, FRQ context, and Unit 4 exceptions. 73 skill nodes generated; 73 STUB blueprints; 4 review queues; audit at measure/skill-graph-precalc-rollout-audit.md.*
+       *Apply the approved pipeline to AP Precalculus using CED/Passwater provenance, FRQ context, and Unit 4 exceptions. 294 nodes (73 skills generated from 158 worked_examples); 73 STUB blueprints; 146 projected activities; 4 review queues; audit at measure/skill-graph-precalc-rollout-audit.md.*
        *Link: [./measure/tracks/skill-rollout-precalc_20260509/](./measure/tracks/skill-rollout-precalc_20260509/)*
    - [ ] **Track 13: Skill Graph Program — Cross-Course Equivalence**
       *Author equivalent_to edges across IM1/IM2/IM3/PreCalc knowledge spaces after all four rollouts complete. Wires SRS and teacher evidence projections to treat equivalence components as single learner-state targets.*

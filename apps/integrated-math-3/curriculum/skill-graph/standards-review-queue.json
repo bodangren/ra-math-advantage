@@ -1,1 +1,281 @@
-[]
+{
+  "description": "Standards alignment review queue for IM3 rollout",
+  "generatedAt": "2026-05-10T06:43:17.716899+00:00",
+  "entries": [
+    {
+      "type": "low_confidence_prerequisite",
+      "count": 44,
+      "entries": [
+        {
+          "id": "math.im3.edge.m1.066",
+          "sourceId": "math.im3.skill.1.7.graph-quadratic-inequalities-in-two-variables",
+          "targetId": "math.im3.skill.1.8.solve-systems-of-two-quadratic-equations",
+          "confidence": "low"
+        },
+        {
+          "id": "math.im3.edge.m2plus.edge.0805",
+          "sourceId": "math.im3.skill.2.1.graph-and-analyze-power-functions",
+          "targetId": "math.im3.skill.2.2.approximate-zeros-by-graphing-polynomial-functions",
+          "confidence": "low"
+        },
+        {
+          "id": "math.im3.edge.m2plus.edge.0806",
+          "sourceId": "math.im3.skill.2.2.find-extrema-of-polynomial-functions",
+          "targetId": "math.im3.skill.2.3.add-and-subtract-polynomials",
+          "confidence": "low"
+        },
+        {
+          "id": "math.im3.edge.m2plus.edge.0807",
+          "sourceId": "math.im3.skill.2.3.multiply-polynomials",
+          "targetId": "math.im3.skill.2.4.divide-polynomials-by-using-long-division",
+          "confidence": "low"
+        },
+        {
+          "id": "math.im3.edge.m2plus.edge.0808",
+          "sourceId": "math.im3.skill.2.4.divide-polynomials-by-using-synthetic-division",
+          "targetId": "math.im3.skill.2.5.expand-powers-of-binomials-by-using-pascals-triangle-and-the",
+          "confidence": "low"
+        },
+        {
+          "id": "math.im3.edge.m2plus.edge.0809",
+          "sourceId": "math.im3.skill.2.5.expand-powers-of-binomials-by-using-pascals-triangle-and-the",
+          "targetId": "math.im3.skill.3.1.solve-polynomial-equations-by-graphing",
+          "confidence": "low"
+        },
+        {
+          "id": "math.im3.edge.m2plus.edge.0810",
+          "sourceId": "math.im3.skill.3.1.solve-polynomial-equations-by-graphing",
+          "targetId": "math.im3.skill.3.2.solve-polynomial-equations-by-factoring",
+          "confidence": "low"
+        },
+        {
+          "id": "math.im3.edge.m2plus.edge.0811",
+          "sourceId": "math.im3.skill.3.2.solve-polynomial-equations-by-writing-them-in-quadratic-form",
+          "targetId": "math.im3.skill.3.3.prove-polynomial-identities-and-use-them-to-describe-numeric",
+          "confidence": "low"
+        },
+        {
+          "id": "math.im3.edge.m2plus.edge.0812",
+          "sourceId": "math.im3.skill.3.3.prove-polynomial-identities-and-use-them-to-describe-numeric",
+          "targetId": "math.im3.skill.3.4.evaluate-functions-by-using-synthetic-substitution",
+          "confidence": "low"
+        },
+        {
+          "id": "math.im3.edge.m2plus.edge.0813",
+          "sourceId": "math.im3.skill.3.4.evaluate-functions-by-using-synthetic-substitution",
+          "targetId": "math.im3.skill.3.5.determine-the-number-and-type-of-roots-of-polynomial-equatio",
+          "confidence": "low"
+        },
+        {
+          "id": "math.im3.edge.m2plus.edge.0814",
+          "sourceId": "math.im3.skill.3.5.use-the-fundamental-theorem-of-algebra-to-determine-the-numb",
+          "targetId": "math.im3.skill.4.1.find-compositions-of-functions",
+          "confidence": "low"
+        },
+        {
+          "id": "math.im3.edge.m2plus.edge.0815",
+          "sourceId": "math.im3.skill.4.1.find-sums-differences-products-and-quotients-of-functions",
+          "targetId": "math.im3.skill.4.2.find-inverses-of-relations",
+          "confidence": "low"
+        },
+        {
+          "id": "math.im3.edge.m2plus.edge.0816",
+          "sourceId": "math.im3.skill.4.2.verify-that-two-relations-are-inverses-by-using-compositions",
+          "targetId": "math.im3.skill.4.3.simplify-expressions-in-exponential-or-radical-form",
+          "confidence": "low"
+        },
+        {
+          "id": "math.im3.edge.m2plus.edge.0817",
+          "sourceId": "math.im3.skill.4.3.simplify-expressions-involving-radicals-and-rational-exponen",
+          "targetId": "math.im3.skill.4.4.graph-and-analyze-cube-root-functions",
+          "confidence": "low"
+        },
+        {
+          "id": "math.im3.edge.m2plus.edge.0818",
+          "sourceId": "math.im3.skill.4.4.graph-and-analyze-square-root-functions",
+          "targetId": "math.im3.skill.4.5.add-subtract-and-multiply-radicals",
+          "confidence": "low"
+        },
+        {
+          "id": "math.im3.edge.m2plus.edge.0819",
+          "sourceId": "math.im3.skill.4.5.simplify-radical-expressions",
+          "targetId": "math.im3.skill.4.6.solve-radical-equations-by-graphing-systems-of-equations",
+          "confidence": "low"
+        },
+        {
+          "id": "math.im3.edge.m2plus.edge.0820",
+          "sourceId": "math.im3.skill.4.6.solve-radical-equations-in-one-variable-and-identify-extrane",
+          "targetId": "math.im3.skill.5.1.graph-exponential-decay-functions",
+          "confidence": "low"
+        },
+        {
+          "id": "math.im3.edge.m2plus.edge.0821",
+          "sourceId": "math.im3.skill.5.1.graph-exponential-growth-functions",
+          "targetId": "math.im3.skill.5.2.solve-exponential-equations-in-one-variable",
+          "confidence": "low"
+        },
+        {
+          "id": "math.im3.edge.m2plus.edge.0822",
+          "sourceId": "math.im3.skill.5.2.solve-exponential-inequalities-in-one-variable",
+          "targetId": "math.im3.skill.5.3.analyze-expressions-and-functions-involving-the-natural-base",
+          "confidence": "low"
+        },
+        {
+          "id": "math.im3.edge.m2plus.edge.0823",
+          "sourceId": "math.im3.skill.5.3.analyze-expressions-and-functions-involving-the-natural-base",
+          "targetId": "math.im3.skill.5.4.find-sums-of-geometric-series",
+          "confidence": "low"
+        },
+        {
+          "id": "math.im3.edge.m2plus.edge.0824",
+          "sourceId": "math.im3.skill.5.4.generate-geometric-sequences",
+          "targetId": "math.im3.skill.5.5.choose-the-best-function-type-to-model-sets-of-data",
+          "confidence": "low"
+        },
+        {
+          "id": "math.im3.edge.m2plus.edge.0825",
+          "sourceId": "math.im3.skill.5.5.choose-the-best-function-type-to-model-sets-of-data",
+          "targetId": "math.im3.skill.6.1.write-logarithmic-expressions-in-exponential-form-and-write",
+          "confidence": "low"
+        },
+        {
+          "id": "math.im3.edge.m2plus.edge.0826",
+          "sourceId": "math.im3.skill.6.1.write-logarithmic-expressions-in-exponential-form-and-write",
+          "targetId": "math.im3.skill.6.2.solve-logarithmic-equations-using-properties-of-equality",
+          "confidence": "low"
+        },
+        {
+          "id": "math.im3.edge.m2plus.edge.0827",
+          "sourceId": "math.im3.skill.6.2.solve-logarithmic-equations-using-properties-of-equality",
+          "targetId": "math.im3.skill.6.3.solve-exponential-equations-by-using-common-logarithms",
+          "confidence": "low"
+        },
+        {
+          "id": "math.im3.edge.m2plus.edge.0828",
+          "sourceId": "math.im3.skill.6.3.solve-exponential-equations-by-using-common-logarithms",
+          "targetId": "math.im3.skill.6.4.simplify-expressions-with-natural-logarithms",
+          "confidence": "low"
+        },
+        {
+          "id": "math.im3.edge.m2plus.edge.0829",
+          "sourceId": "math.im3.skill.6.4.solve-exponential-equations-by-using-natural-logarithms",
+          "targetId": "math.im3.skill.6.5.write-and-solve-exponential-decay-equations",
+          "confidence": "low"
+        },
+        {
+          "id": "math.im3.edge.m2plus.edge.0830",
+          "sourceId": "math.im3.skill.6.5.write-and-solve-exponential-growth-equations-and-inequalitie",
+          "targetId": "math.im3.skill.7.1.simplify-rational-expressions",
+          "confidence": "low"
+        },
+        {
+          "id": "math.im3.edge.m2plus.edge.0831",
+          "sourceId": "math.im3.skill.7.1.simplify-rational-expressions-by-multiplying-and-dividing",
+          "targetId": "math.im3.skill.7.2.simplify-complex-fractions",
+          "confidence": "low"
+        },
+        {
+          "id": "math.im3.edge.m2plus.edge.0832",
+          "sourceId": "math.im3.skill.7.2.simplify-rational-expressions-by-adding-and-subtracting",
+          "targetId": "math.im3.skill.7.3.graph-and-write-reciprocal-functions-by-using-transformation",
+          "confidence": "low"
+        },
+        {
+          "id": "math.im3.edge.m2plus.edge.0833",
+          "sourceId": "math.im3.skill.7.3.graph-reciprocal-functions-by-making-tables-of-values",
+          "targetId": "math.im3.skill.7.4.graph-and-analyze-rational-functions-with-oblique-asymptotes",
+          "confidence": "low"
+        },
+        {
+          "id": "math.im3.edge.m2plus.edge.0834",
+          "sourceId": "math.im3.skill.7.4.graph-and-analyze-rational-functions-with-vertical-and-horiz",
+          "targetId": "math.im3.skill.7.5.recognize-and-solve-direct-and-joint-variation-equations",
+          "confidence": "low"
+        },
+        {
+          "id": "math.im3.edge.m2plus.edge.0835",
+          "sourceId": "math.im3.skill.7.5.recognize-and-solve-inverse-and-combined-variation-equations",
+          "targetId": "math.im3.skill.7.6.solve-rational-equations-in-one-variable",
+          "confidence": "low"
+        },
+        {
+          "id": "math.im3.edge.m2plus.edge.0836",
+          "sourceId": "math.im3.skill.7.6.solve-rational-inequalities-in-one-variable",
+          "targetId": "math.im3.skill.8.1.classify-sampling-methods-and-identify-bias-in-samples-and-s",
+          "confidence": "low"
+        },
+        {
+          "id": "math.im3.edge.m2plus.edge.0837",
+          "sourceId": "math.im3.skill.8.1.distinguish-among-sample-surveys-experiments-and-observation",
+          "targetId": "math.im3.skill.8.2.compare-theoretical-and-experimental-probabilities",
+          "confidence": "low"
+        },
+        {
+          "id": "math.im3.edge.m2plus.edge.0838",
+          "sourceId": "math.im3.skill.8.2.determine-whether-models-are-consistent-with-results-from-si",
+          "targetId": "math.im3.skill.8.3.describe-distributions-by-finding-their-mean-and-standard-de",
+          "confidence": "low"
+        },
+        {
+          "id": "math.im3.edge.m2plus.edge.0839",
+          "sourceId": "math.im3.skill.8.3.describe-distributions-by-finding-their-mean-and-standard-de",
+          "targetId": "math.im3.skill.8.4.analyze-normally-distributed-variables-by-using-the-empirica",
+          "confidence": "low"
+        },
+        {
+          "id": "math.im3.edge.m2plus.edge.0840",
+          "sourceId": "math.im3.skill.8.4.classify-variables-and-analyze-probability-distributions-to",
+          "targetId": "math.im3.skill.8.5.use-sample-data-to-infer-a-population-mean-by-using-confiden",
+          "confidence": "low"
+        },
+        {
+          "id": "math.im3.edge.m2plus.edge.0841",
+          "sourceId": "math.im3.skill.8.5.use-sample-data-to-infer-a-population-proportion-by-using-co",
+          "targetId": "math.im3.skill.9.1.convert-between-degree-and-radian-measures-and-find-arc-leng",
+          "confidence": "low"
+        },
+        {
+          "id": "math.im3.edge.m2plus.edge.0842",
+          "sourceId": "math.im3.skill.9.1.draw-angles-in-standard-position-and-identify-coterminal-ang",
+          "targetId": "math.im3.skill.9.2.find-values-of-trigonometric-functions-by-using-reference-an",
+          "confidence": "low"
+        },
+        {
+          "id": "math.im3.edge.m2plus.edge.0843",
+          "sourceId": "math.im3.skill.9.2.find-values-of-trigonometric-functions-of-general-angles",
+          "targetId": "math.im3.skill.9.3.find-values-of-trigonometric-functions-given-a-point-on-a-un",
+          "confidence": "low"
+        },
+        {
+          "id": "math.im3.edge.m2plus.edge.0844",
+          "sourceId": "math.im3.skill.9.3.find-values-of-trigonometric-functions-that-model-periodic-e",
+          "targetId": "math.im3.skill.9.4.graph-and-analyze-sine-and-cosine-functions",
+          "confidence": "low"
+        },
+        {
+          "id": "math.im3.edge.m2plus.edge.0845",
+          "sourceId": "math.im3.skill.9.4.model-periodic-real-world-situations-with-sine-and-cosine-fu",
+          "targetId": "math.im3.skill.9.5.graph-and-analyze-reciprocal-trigonometric-functions",
+          "confidence": "low"
+        },
+        {
+          "id": "math.im3.edge.m2plus.edge.0846",
+          "sourceId": "math.im3.skill.9.5.graph-and-analyze-tangent-functions",
+          "targetId": "math.im3.skill.9.6.graph-horizontal-translations-of-trigonometric-functions",
+          "confidence": "low"
+        },
+        {
+          "id": "math.im3.edge.m2plus.edge.0847",
+          "sourceId": "math.im3.skill.9.6.graph-vertical-translations-of-trigonometric-functions",
+          "targetId": "math.im3.skill.9.7.find-values-of-angle-measures-by-using-inverse-trigonometric",
+          "confidence": "low"
+        }
+      ]
+    },
+    {
+      "type": "missing_renderer",
+      "count": 0,
+      "entries": []
+    }
+  ]
+}

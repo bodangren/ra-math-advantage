@@ -1,1 +1,3562 @@
-[]
+{
+  "meta": {
+    "course": "im2",
+    "generatedAt": "2026-05-10T06:45:49.000Z",
+    "description": "IM2 standards alignment review queue",
+    "totalPlaceholderStandards": 41,
+    "totalKnownStandards": 36,
+    "nodesToReview": 307
+  },
+  "items": [
+    {
+      "nodeId": "math.im2.example.1.1.001",
+      "title": "Example 1: Find Segment Lengths Using Perpendicular Bisectors; Find Coordinates of the Circumcenter",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.g-co-c-9']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.g-co-c-9"
+      ],
+      "module": "1",
+      "lesson": "1"
+    },
+    {
+      "nodeId": "math.im2.example.1.1.002",
+      "title": "Example 2: Find Segment Lengths Using Perpendicular Bisectors; Find Coordinates of the Circumcenter",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.g-co-c-9']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.g-co-c-9"
+      ],
+      "module": "1",
+      "lesson": "1"
+    },
+    {
+      "nodeId": "math.im2.example.1.1.003",
+      "title": "Example 3: Apply Circumcenter in Coordinate Problems; Real-World Circumcenter Applications",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.g-co-c-9']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.g-co-c-9"
+      ],
+      "module": "1",
+      "lesson": "1"
+    },
+    {
+      "nodeId": "math.im2.example.1.1.004",
+      "title": "Example 4: Apply Circumcenter in Coordinate Problems; Real-World Circumcenter Applications",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.g-co-c-9']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.g-co-c-9"
+      ],
+      "module": "1",
+      "lesson": "1"
+    },
+    {
+      "nodeId": "math.im2.example.1.2.005",
+      "title": "Example 1: Find Angle and Segment Measures Using Angle Bisectors; Use the Incenter to Find Measures",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.g-co-c-9']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.g-co-c-9"
+      ],
+      "module": "1",
+      "lesson": "2"
+    },
+    {
+      "nodeId": "math.im2.example.1.2.006",
+      "title": "Example 2: Find Angle and Segment Measures Using Angle Bisectors; Use the Incenter to Find Measures",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.g-co-c-9']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.g-co-c-9"
+      ],
+      "module": "1",
+      "lesson": "2"
+    },
+    {
+      "nodeId": "math.im2.example.1.2.007",
+      "title": "Example 3: Incenter in Triangles; Real-World Angle Bisector Applications",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.g-co-c-9']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.g-co-c-9"
+      ],
+      "module": "1",
+      "lesson": "2"
+    },
+    {
+      "nodeId": "math.im2.example.1.2.008",
+      "title": "Example 4: Incenter in Triangles; Real-World Angle Bisector Applications",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.g-co-c-9']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.g-co-c-9"
+      ],
+      "module": "1",
+      "lesson": "2"
+    },
+    {
+      "nodeId": "math.im2.example.1.5.017",
+      "title": "Example 1: Indirect Proofs of Algebraic Statements; Indirect Proofs in Real-World Contexts",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.g-co-a-3']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.g-co-a-3"
+      ],
+      "module": "1",
+      "lesson": "5"
+    },
+    {
+      "nodeId": "math.im2.example.1.5.018",
+      "title": "Example 2: Indirect Proofs of Algebraic Statements; Indirect Proofs in Real-World Contexts",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.g-co-a-3']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.g-co-a-3"
+      ],
+      "module": "1",
+      "lesson": "5"
+    },
+    {
+      "nodeId": "math.im2.example.1.5.019",
+      "title": "Example 3: Indirect Proofs with Integer Properties; Indirect Proofs in Geometry",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.g-co-a-3']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.g-co-a-3"
+      ],
+      "module": "1",
+      "lesson": "5"
+    },
+    {
+      "nodeId": "math.im2.example.1.5.020",
+      "title": "Example 4: Indirect Proofs with Integer Properties; Indirect Proofs in Geometry",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.g-co-a-3']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.g-co-a-3"
+      ],
+      "module": "1",
+      "lesson": "5"
+    },
+    {
+      "nodeId": "math.im2.example.10.1.001",
+      "title": "Example 1: Product Rule; Quotient Rule; Power Rule",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.8-ee-a-1', 'math.standard.ccss.n-rn-a-2']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.8-ee-a-1",
+        "math.standard.ccss.n-rn-a-2"
+      ],
+      "module": "10",
+      "lesson": "1"
+    },
+    {
+      "nodeId": "math.im2.example.10.1.002",
+      "title": "Example 2: Product Rule; Quotient Rule; Power Rule",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.8-ee-a-1', 'math.standard.ccss.n-rn-a-2']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.8-ee-a-1",
+        "math.standard.ccss.n-rn-a-2"
+      ],
+      "module": "10",
+      "lesson": "1"
+    },
+    {
+      "nodeId": "math.im2.example.10.1.003",
+      "title": "Example 3: Product Rule; Quotient Rule; Power Rule",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.8-ee-a-1', 'math.standard.ccss.n-rn-a-2']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.8-ee-a-1",
+        "math.standard.ccss.n-rn-a-2"
+      ],
+      "module": "10",
+      "lesson": "1"
+    },
+    {
+      "nodeId": "math.im2.example.10.1.004",
+      "title": "Example 4: Combining Rules; Simplifying Expressions with Multiple Laws; Mixed Practice",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.8-ee-a-1', 'math.standard.ccss.n-rn-a-2']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.8-ee-a-1",
+        "math.standard.ccss.n-rn-a-2"
+      ],
+      "module": "10",
+      "lesson": "1"
+    },
+    {
+      "nodeId": "math.im2.example.10.1.005",
+      "title": "Example 5: Combining Rules; Simplifying Expressions with Multiple Laws; Mixed Practice",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.8-ee-a-1', 'math.standard.ccss.n-rn-a-2']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.8-ee-a-1",
+        "math.standard.ccss.n-rn-a-2"
+      ],
+      "module": "10",
+      "lesson": "1"
+    },
+    {
+      "nodeId": "math.im2.example.10.1.006",
+      "title": "Example 6: Combining Rules; Simplifying Expressions with Multiple Laws; Mixed Practice",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.8-ee-a-1', 'math.standard.ccss.n-rn-a-2']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.8-ee-a-1",
+        "math.standard.ccss.n-rn-a-2"
+      ],
+      "module": "10",
+      "lesson": "1"
+    },
+    {
+      "nodeId": "math.im2.example.10.2.007",
+      "title": "Example 1: Negative Exponent Definition; Simplify to Positive Exponents; Expressions with Negative Exponents",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.8-ee-a-1', 'math.standard.ccss.n-rn-a-2']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.8-ee-a-1",
+        "math.standard.ccss.n-rn-a-2"
+      ],
+      "module": "10",
+      "lesson": "2"
+    },
+    {
+      "nodeId": "math.im2.example.10.2.008",
+      "title": "Example 2: Negative Exponent Definition; Simplify to Positive Exponents; Expressions with Negative Exponents",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.8-ee-a-1', 'math.standard.ccss.n-rn-a-2']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.8-ee-a-1",
+        "math.standard.ccss.n-rn-a-2"
+      ],
+      "module": "10",
+      "lesson": "2"
+    },
+    {
+      "nodeId": "math.im2.example.10.2.009",
+      "title": "Example 3: Negative Exponent Definition; Simplify to Positive Exponents; Expressions with Negative Exponents",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.8-ee-a-1', 'math.standard.ccss.n-rn-a-2']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.8-ee-a-1",
+        "math.standard.ccss.n-rn-a-2"
+      ],
+      "module": "10",
+      "lesson": "2"
+    },
+    {
+      "nodeId": "math.im2.example.10.2.010",
+      "title": "Example 4: Rational Exponent to Radical; Radical to Rational Exponent; Simplify Rational Exponents",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.8-ee-a-1', 'math.standard.ccss.n-rn-a-2']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.8-ee-a-1",
+        "math.standard.ccss.n-rn-a-2"
+      ],
+      "module": "10",
+      "lesson": "2"
+    },
+    {
+      "nodeId": "math.im2.example.10.2.011",
+      "title": "Example 5: Rational Exponent to Radical; Radical to Rational Exponent; Simplify Rational Exponents",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.8-ee-a-1', 'math.standard.ccss.n-rn-a-2']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.8-ee-a-1",
+        "math.standard.ccss.n-rn-a-2"
+      ],
+      "module": "10",
+      "lesson": "2"
+    },
+    {
+      "nodeId": "math.im2.example.10.2.012",
+      "title": "Example 6: Rational Exponent to Radical; Radical to Rational Exponent; Simplify Rational Exponents",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.8-ee-a-1', 'math.standard.ccss.n-rn-a-2']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.8-ee-a-1",
+        "math.standard.ccss.n-rn-a-2"
+      ],
+      "module": "10",
+      "lesson": "2"
+    },
+    {
+      "nodeId": "math.im2.example.10.3.013",
+      "title": "Example 1: Standard to Scientific; Scientific to Standard; Identifying Appropriate Form",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.8-ee-a-1', 'math.standard.ccss.8-ee-a-2']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.8-ee-a-1",
+        "math.standard.ccss.8-ee-a-2"
+      ],
+      "module": "10",
+      "lesson": "3"
+    },
+    {
+      "nodeId": "math.im2.example.10.3.014",
+      "title": "Example 2: Standard to Scientific; Scientific to Standard; Identifying Appropriate Form",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.8-ee-a-1', 'math.standard.ccss.8-ee-a-2']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.8-ee-a-1",
+        "math.standard.ccss.8-ee-a-2"
+      ],
+      "module": "10",
+      "lesson": "3"
+    },
+    {
+      "nodeId": "math.im2.example.10.3.015",
+      "title": "Example 3: Standard to Scientific; Scientific to Standard; Identifying Appropriate Form",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.8-ee-a-1', 'math.standard.ccss.8-ee-a-2']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.8-ee-a-1",
+        "math.standard.ccss.8-ee-a-2"
+      ],
+      "module": "10",
+      "lesson": "3"
+    },
+    {
+      "nodeId": "math.im2.example.10.3.016",
+      "title": "Example 4: Multiply and Divide in Scientific Notation; Add and Subtract; Real-World Application",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.8-ee-a-1', 'math.standard.ccss.8-ee-a-2']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.8-ee-a-1",
+        "math.standard.ccss.8-ee-a-2"
+      ],
+      "module": "10",
+      "lesson": "3"
+    },
+    {
+      "nodeId": "math.im2.example.10.3.017",
+      "title": "Example 5: Multiply and Divide in Scientific Notation; Add and Subtract; Real-World Application",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.8-ee-a-1', 'math.standard.ccss.8-ee-a-2']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.8-ee-a-1",
+        "math.standard.ccss.8-ee-a-2"
+      ],
+      "module": "10",
+      "lesson": "3"
+    },
+    {
+      "nodeId": "math.im2.example.10.3.018",
+      "title": "Example 6: Multiply and Divide in Scientific Notation; Add and Subtract; Real-World Application",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.8-ee-a-1', 'math.standard.ccss.8-ee-a-2']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.8-ee-a-1",
+        "math.standard.ccss.8-ee-a-2"
+      ],
+      "module": "10",
+      "lesson": "3"
+    },
+    {
+      "nodeId": "math.im2.example.10.4.019",
+      "title": "Example 1: Simplify Square Roots and Cube Roots; Add and Subtract Radicals; Multiply Radical Expressions",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.n-rn-a-1', 'math.standard.ccss.n-rn-a-2']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.n-rn-a-1",
+        "math.standard.ccss.n-rn-a-2"
+      ],
+      "module": "10",
+      "lesson": "4"
+    },
+    {
+      "nodeId": "math.im2.example.10.4.020",
+      "title": "Example 2: Simplify Square Roots and Cube Roots; Add and Subtract Radicals; Multiply Radical Expressions",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.n-rn-a-1', 'math.standard.ccss.n-rn-a-2']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.n-rn-a-1",
+        "math.standard.ccss.n-rn-a-2"
+      ],
+      "module": "10",
+      "lesson": "4"
+    },
+    {
+      "nodeId": "math.im2.example.10.4.021",
+      "title": "Example 3: Simplify Square Roots and Cube Roots; Add and Subtract Radicals; Multiply Radical Expressions",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.n-rn-a-1', 'math.standard.ccss.n-rn-a-2']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.n-rn-a-1",
+        "math.standard.ccss.n-rn-a-2"
+      ],
+      "module": "10",
+      "lesson": "4"
+    },
+    {
+      "nodeId": "math.im2.example.10.4.022",
+      "title": "Example 4: Rationalize a Denominator; Simplify Radicals with Variables; Mixed Operations",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.n-rn-a-1', 'math.standard.ccss.n-rn-a-2']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.n-rn-a-1",
+        "math.standard.ccss.n-rn-a-2"
+      ],
+      "module": "10",
+      "lesson": "4"
+    },
+    {
+      "nodeId": "math.im2.example.10.4.023",
+      "title": "Example 5: Rationalize a Denominator; Simplify Radicals with Variables; Mixed Operations",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.n-rn-a-1', 'math.standard.ccss.n-rn-a-2']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.n-rn-a-1",
+        "math.standard.ccss.n-rn-a-2"
+      ],
+      "module": "10",
+      "lesson": "4"
+    },
+    {
+      "nodeId": "math.im2.example.10.4.024",
+      "title": "Example 6: Rationalize a Denominator; Simplify Radicals with Variables; Mixed Operations",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.n-rn-a-1', 'math.standard.ccss.n-rn-a-2']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.n-rn-a-1",
+        "math.standard.ccss.n-rn-a-2"
+      ],
+      "module": "10",
+      "lesson": "4"
+    },
+    {
+      "nodeId": "math.im2.example.10.5.025",
+      "title": "Example 1: Isolate and Square; Solve with Cube Roots; Check for Extraneous Solutions",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.n-rn-a-2', 'math.standard.ccss.8-ee-a-2']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.n-rn-a-2",
+        "math.standard.ccss.8-ee-a-2"
+      ],
+      "module": "10",
+      "lesson": "5"
+    },
+    {
+      "nodeId": "math.im2.example.10.5.026",
+      "title": "Example 2: Isolate and Square; Solve with Cube Roots; Check for Extraneous Solutions",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.n-rn-a-2', 'math.standard.ccss.8-ee-a-2']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.n-rn-a-2",
+        "math.standard.ccss.8-ee-a-2"
+      ],
+      "module": "10",
+      "lesson": "5"
+    },
+    {
+      "nodeId": "math.im2.example.10.5.027",
+      "title": "Example 3: Isolate and Square; Solve with Cube Roots; Check for Extraneous Solutions",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.n-rn-a-2', 'math.standard.ccss.8-ee-a-2']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.n-rn-a-2",
+        "math.standard.ccss.8-ee-a-2"
+      ],
+      "module": "10",
+      "lesson": "5"
+    },
+    {
+      "nodeId": "math.im2.example.10.5.028",
+      "title": "Example 4: Distance Formula Application; Geometric Application; Real-World Optimization",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.n-rn-a-2', 'math.standard.ccss.8-ee-a-2']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.n-rn-a-2",
+        "math.standard.ccss.8-ee-a-2"
+      ],
+      "module": "10",
+      "lesson": "5"
+    },
+    {
+      "nodeId": "math.im2.example.10.5.029",
+      "title": "Example 5: Distance Formula Application; Geometric Application; Real-World Optimization",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.n-rn-a-2', 'math.standard.ccss.8-ee-a-2']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.n-rn-a-2",
+        "math.standard.ccss.8-ee-a-2"
+      ],
+      "module": "10",
+      "lesson": "5"
+    },
+    {
+      "nodeId": "math.im2.example.10.5.030",
+      "title": "Example 6: Distance Formula Application; Geometric Application; Real-World Optimization",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.n-rn-a-2', 'math.standard.ccss.8-ee-a-2']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.n-rn-a-2",
+        "math.standard.ccss.8-ee-a-2"
+      ],
+      "module": "10",
+      "lesson": "5"
+    },
+    {
+      "nodeId": "math.im2.example.11.1.001",
+      "title": "Example 1: Classify by Degree and Terms; Write in Standard Form; Identify Leading Coefficient",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.hsa-apr-a-1', 'math.standard.ccss.hsa-sse-a-2']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.hsa-apr-a-1",
+        "math.standard.ccss.hsa-sse-a-2"
+      ],
+      "module": "11",
+      "lesson": "1"
+    },
+    {
+      "nodeId": "math.im2.example.11.1.002",
+      "title": "Example 2: Classify by Degree and Terms; Write in Standard Form; Identify Leading Coefficient",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.hsa-apr-a-1', 'math.standard.ccss.hsa-sse-a-2']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.hsa-apr-a-1",
+        "math.standard.ccss.hsa-sse-a-2"
+      ],
+      "module": "11",
+      "lesson": "1"
+    },
+    {
+      "nodeId": "math.im2.example.11.1.003",
+      "title": "Example 3: Classify by Degree and Terms; Write in Standard Form; Identify Leading Coefficient",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.hsa-apr-a-1', 'math.standard.ccss.hsa-sse-a-2']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.hsa-apr-a-1",
+        "math.standard.ccss.hsa-sse-a-2"
+      ],
+      "module": "11",
+      "lesson": "1"
+    },
+    {
+      "nodeId": "math.im2.example.11.1.004",
+      "title": "Example 4: Identifying Polynomials; Non-Polynomial Cases; Polynomial Evaluation",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.hsa-apr-a-1', 'math.standard.ccss.hsa-sse-a-2']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.hsa-apr-a-1",
+        "math.standard.ccss.hsa-sse-a-2"
+      ],
+      "module": "11",
+      "lesson": "1"
+    },
+    {
+      "nodeId": "math.im2.example.11.1.005",
+      "title": "Example 5: Identifying Polynomials; Non-Polynomial Cases; Polynomial Evaluation",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.hsa-apr-a-1', 'math.standard.ccss.hsa-sse-a-2']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.hsa-apr-a-1",
+        "math.standard.ccss.hsa-sse-a-2"
+      ],
+      "module": "11",
+      "lesson": "1"
+    },
+    {
+      "nodeId": "math.im2.example.11.1.006",
+      "title": "Example 6: Identifying Polynomials; Non-Polynomial Cases; Polynomial Evaluation",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.hsa-apr-a-1', 'math.standard.ccss.hsa-sse-a-2']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.hsa-apr-a-1",
+        "math.standard.ccss.hsa-sse-a-2"
+      ],
+      "module": "11",
+      "lesson": "1"
+    },
+    {
+      "nodeId": "math.im2.example.11.2.007",
+      "title": "Example 1: Add Polynomials; Subtract Polynomials; Add Three or More Polynomials",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.hsa-apr-a-1', 'math.standard.ccss.hsa-apr-b-2']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.hsa-apr-a-1",
+        "math.standard.ccss.hsa-apr-b-2"
+      ],
+      "module": "11",
+      "lesson": "2"
+    },
+    {
+      "nodeId": "math.im2.example.11.2.008",
+      "title": "Example 2: Add Polynomials; Subtract Polynomials; Add Three or More Polynomials",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.hsa-apr-a-1', 'math.standard.ccss.hsa-apr-b-2']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.hsa-apr-a-1",
+        "math.standard.ccss.hsa-apr-b-2"
+      ],
+      "module": "11",
+      "lesson": "2"
+    },
+    {
+      "nodeId": "math.im2.example.11.2.009",
+      "title": "Example 3: Add Polynomials; Subtract Polynomials; Add Three or More Polynomials",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.hsa-apr-a-1', 'math.standard.ccss.hsa-apr-b-2']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.hsa-apr-a-1",
+        "math.standard.ccss.hsa-apr-b-2"
+      ],
+      "module": "11",
+      "lesson": "2"
+    },
+    {
+      "nodeId": "math.im2.example.11.2.010",
+      "title": "Example 4: Area Model Addition; Real-World Area Application; Layered Polynomial Addition",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.hsa-apr-a-1', 'math.standard.ccss.hsa-apr-b-2']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.hsa-apr-a-1",
+        "math.standard.ccss.hsa-apr-b-2"
+      ],
+      "module": "11",
+      "lesson": "2"
+    },
+    {
+      "nodeId": "math.im2.example.11.2.011",
+      "title": "Example 5: Area Model Addition; Real-World Area Application; Layered Polynomial Addition",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.hsa-apr-a-1', 'math.standard.ccss.hsa-apr-b-2']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.hsa-apr-a-1",
+        "math.standard.ccss.hsa-apr-b-2"
+      ],
+      "module": "11",
+      "lesson": "2"
+    },
+    {
+      "nodeId": "math.im2.example.11.2.012",
+      "title": "Example 6: Area Model Addition; Real-World Area Application; Layered Polynomial Addition",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.hsa-apr-a-1', 'math.standard.ccss.hsa-apr-b-2']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.hsa-apr-a-1",
+        "math.standard.ccss.hsa-apr-b-2"
+      ],
+      "module": "11",
+      "lesson": "2"
+    },
+    {
+      "nodeId": "math.im2.example.11.3.013",
+      "title": "Example 1: Distributive Property (Monomial \u00d7 Polynomial); FOIL (Binomial \u00d7 Binomial); Polynomial \u00d7 Trinomial",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.hsa-apr-a-1', 'math.standard.ccss.hsa-apr-c-4']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.hsa-apr-a-1",
+        "math.standard.ccss.hsa-apr-c-4"
+      ],
+      "module": "11",
+      "lesson": "3"
+    },
+    {
+      "nodeId": "math.im2.example.11.3.014",
+      "title": "Example 2: Distributive Property (Monomial \u00d7 Polynomial); FOIL (Binomial \u00d7 Binomial); Polynomial \u00d7 Trinomial",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.hsa-apr-a-1', 'math.standard.ccss.hsa-apr-c-4']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.hsa-apr-a-1",
+        "math.standard.ccss.hsa-apr-c-4"
+      ],
+      "module": "11",
+      "lesson": "3"
+    },
+    {
+      "nodeId": "math.im2.example.11.3.015",
+      "title": "Example 3: Distributive Property (Monomial \u00d7 Polynomial); FOIL (Binomial \u00d7 Binomial); Polynomial \u00d7 Trinomial",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.hsa-apr-a-1', 'math.standard.ccss.hsa-apr-c-4']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.hsa-apr-a-1",
+        "math.standard.ccss.hsa-apr-c-4"
+      ],
+      "module": "11",
+      "lesson": "3"
+    },
+    {
+      "nodeId": "math.im2.example.11.3.016",
+      "title": "Example 4: Area Model Multiplication; Real-World Product Application; Mixed Multiplication",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.hsa-apr-a-1', 'math.standard.ccss.hsa-apr-c-4']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.hsa-apr-a-1",
+        "math.standard.ccss.hsa-apr-c-4"
+      ],
+      "module": "11",
+      "lesson": "3"
+    },
+    {
+      "nodeId": "math.im2.example.11.3.017",
+      "title": "Example 5: Area Model Multiplication; Real-World Product Application; Mixed Multiplication",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.hsa-apr-a-1', 'math.standard.ccss.hsa-apr-c-4']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.hsa-apr-a-1",
+        "math.standard.ccss.hsa-apr-c-4"
+      ],
+      "module": "11",
+      "lesson": "3"
+    },
+    {
+      "nodeId": "math.im2.example.11.3.018",
+      "title": "Example 6: Area Model Multiplication; Real-World Product Application; Mixed Multiplication",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.hsa-apr-a-1', 'math.standard.ccss.hsa-apr-c-4']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.hsa-apr-a-1",
+        "math.standard.ccss.hsa-apr-c-4"
+      ],
+      "module": "11",
+      "lesson": "3"
+    },
+    {
+      "nodeId": "math.im2.example.11.4.019",
+      "title": "Example 1: Perfect Square Trinomial (Sum); Perfect Square Trinomial (Difference); Difference of Squares",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.hsa-apr-c-4', 'math.standard.ccss.hsa-apr-b-3']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.hsa-apr-c-4",
+        "math.standard.ccss.hsa-apr-b-3"
+      ],
+      "module": "11",
+      "lesson": "4"
+    },
+    {
+      "nodeId": "math.im2.example.11.4.020",
+      "title": "Example 2: Perfect Square Trinomial (Sum); Perfect Square Trinomial (Difference); Difference of Squares",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.hsa-apr-c-4', 'math.standard.ccss.hsa-apr-b-3']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.hsa-apr-c-4",
+        "math.standard.ccss.hsa-apr-b-3"
+      ],
+      "module": "11",
+      "lesson": "4"
+    },
+    {
+      "nodeId": "math.im2.example.11.4.021",
+      "title": "Example 3: Perfect Square Trinomial (Sum); Perfect Square Trinomial (Difference); Difference of Squares",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.hsa-apr-c-4', 'math.standard.ccss.hsa-apr-b-3']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.hsa-apr-c-4",
+        "math.standard.ccss.hsa-apr-b-3"
+      ],
+      "module": "11",
+      "lesson": "4"
+    },
+    {
+      "nodeId": "math.im2.example.11.5.022",
+      "title": "Example 1: Factor Out GCF; Factor by Grouping; Factor Trinomials",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.hsa-apr-a-1', 'math.standard.ccss.hsa-sse-a-2']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.hsa-apr-a-1",
+        "math.standard.ccss.hsa-sse-a-2"
+      ],
+      "module": "11",
+      "lesson": "5"
+    },
+    {
+      "nodeId": "math.im2.example.11.5.023",
+      "title": "Example 2: Factor Out GCF; Factor by Grouping; Factor Trinomials",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.hsa-apr-a-1', 'math.standard.ccss.hsa-sse-a-2']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.hsa-apr-a-1",
+        "math.standard.ccss.hsa-sse-a-2"
+      ],
+      "module": "11",
+      "lesson": "5"
+    },
+    {
+      "nodeId": "math.im2.example.11.5.024",
+      "title": "Example 3: Factor Out GCF; Factor by Grouping; Factor Trinomials",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.hsa-apr-a-1', 'math.standard.ccss.hsa-sse-a-2']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.hsa-apr-a-1",
+        "math.standard.ccss.hsa-sse-a-2"
+      ],
+      "module": "11",
+      "lesson": "5"
+    },
+    {
+      "nodeId": "math.im2.example.11.5.025",
+      "title": "Example 4: Factor a \u2260 1; Factor Completely; Mixed Factoring Review",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.hsa-apr-a-1', 'math.standard.ccss.hsa-sse-a-2']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.hsa-apr-a-1",
+        "math.standard.ccss.hsa-sse-a-2"
+      ],
+      "module": "11",
+      "lesson": "5"
+    },
+    {
+      "nodeId": "math.im2.example.11.5.026",
+      "title": "Example 5: Factor a \u2260 1; Factor Completely; Mixed Factoring Review",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.hsa-apr-a-1', 'math.standard.ccss.hsa-sse-a-2']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.hsa-apr-a-1",
+        "math.standard.ccss.hsa-sse-a-2"
+      ],
+      "module": "11",
+      "lesson": "5"
+    },
+    {
+      "nodeId": "math.im2.example.11.5.027",
+      "title": "Example 6: Factor a \u2260 1; Factor Completely; Mixed Factoring Review",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.hsa-apr-a-1', 'math.standard.ccss.hsa-sse-a-2']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.hsa-apr-a-1",
+        "math.standard.ccss.hsa-sse-a-2"
+      ],
+      "module": "11",
+      "lesson": "5"
+    },
+    {
+      "nodeId": "math.im2.example.11.6.028",
+      "title": "Example 1: Zero Product Property; Solve Equations by Factoring; Check Solutions",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.hsa-apr-b-3', 'math.standard.ccss.hsa-apr-b-2']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.hsa-apr-b-3",
+        "math.standard.ccss.hsa-apr-b-2"
+      ],
+      "module": "11",
+      "lesson": "6"
+    },
+    {
+      "nodeId": "math.im2.example.11.6.029",
+      "title": "Example 2: Zero Product Property; Solve Equations by Factoring; Check Solutions",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.hsa-apr-b-3', 'math.standard.ccss.hsa-apr-b-2']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.hsa-apr-b-3",
+        "math.standard.ccss.hsa-apr-b-2"
+      ],
+      "module": "11",
+      "lesson": "6"
+    },
+    {
+      "nodeId": "math.im2.example.11.6.030",
+      "title": "Example 3: Zero Product Property; Solve Equations by Factoring; Check Solutions",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.hsa-apr-b-3', 'math.standard.ccss.hsa-apr-b-2']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.hsa-apr-b-3",
+        "math.standard.ccss.hsa-apr-b-2"
+      ],
+      "module": "11",
+      "lesson": "6"
+    },
+    {
+      "nodeId": "math.im2.example.11.6.031",
+      "title": "Example 4: Higher-Degree Equations; Real-World Application; GCF Before Solving",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.hsa-apr-b-3', 'math.standard.ccss.hsa-apr-b-2']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.hsa-apr-b-3",
+        "math.standard.ccss.hsa-apr-b-2"
+      ],
+      "module": "11",
+      "lesson": "6"
+    },
+    {
+      "nodeId": "math.im2.example.11.6.032",
+      "title": "Example 5: Higher-Degree Equations; Real-World Application; GCF Before Solving",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.hsa-apr-b-3', 'math.standard.ccss.hsa-apr-b-2']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.hsa-apr-b-3",
+        "math.standard.ccss.hsa-apr-b-2"
+      ],
+      "module": "11",
+      "lesson": "6"
+    },
+    {
+      "nodeId": "math.im2.example.11.6.033",
+      "title": "Example 6: Higher-Degree Equations; Real-World Application; GCF Before Solving",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.hsa-apr-b-3', 'math.standard.ccss.hsa-apr-b-2']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.hsa-apr-b-3",
+        "math.standard.ccss.hsa-apr-b-2"
+      ],
+      "module": "11",
+      "lesson": "6"
+    },
+    {
+      "nodeId": "math.im2.example.11.6.034",
+      "title": "Example 7: Write Equation from Zeros; Sketch from Zeros; Mixed Solving and Writing",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.hsa-apr-b-3', 'math.standard.ccss.hsa-apr-b-2']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.hsa-apr-b-3",
+        "math.standard.ccss.hsa-apr-b-2"
+      ],
+      "module": "11",
+      "lesson": "6"
+    },
+    {
+      "nodeId": "math.im2.example.11.6.035",
+      "title": "Example 8: Write Equation from Zeros; Sketch from Zeros; Mixed Solving and Writing",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.hsa-apr-b-3', 'math.standard.ccss.hsa-apr-b-2']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.hsa-apr-b-3",
+        "math.standard.ccss.hsa-apr-b-2"
+      ],
+      "module": "11",
+      "lesson": "6"
+    },
+    {
+      "nodeId": "math.im2.example.11.6.036",
+      "title": "Example 9: Write Equation from Zeros; Sketch from Zeros; Mixed Solving and Writing",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.hsa-apr-b-3', 'math.standard.ccss.hsa-apr-b-2']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.hsa-apr-b-3",
+        "math.standard.ccss.hsa-apr-b-2"
+      ],
+      "module": "11",
+      "lesson": "6"
+    },
+    {
+      "nodeId": "math.im2.example.12.1.001",
+      "title": "Example 1: Identify Key Features from a Graph; Axis of Symmetry and Vertex",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.f-if-c-7', 'math.standard.ccss.f-if-b-4']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.f-if-c-7",
+        "math.standard.ccss.f-if-b-4"
+      ],
+      "module": "12",
+      "lesson": "1"
+    },
+    {
+      "nodeId": "math.im2.example.12.1.002",
+      "title": "Example 2: Identify Key Features from a Graph; Axis of Symmetry and Vertex",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.f-if-c-7', 'math.standard.ccss.f-if-b-4']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.f-if-c-7",
+        "math.standard.ccss.f-if-b-4"
+      ],
+      "module": "12",
+      "lesson": "1"
+    },
+    {
+      "nodeId": "math.im2.example.12.1.003",
+      "title": "Example 3: Graph Using Key Features; Graph with a Table of Values",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.f-if-c-7', 'math.standard.ccss.f-if-b-4']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.f-if-c-7",
+        "math.standard.ccss.f-if-b-4"
+      ],
+      "module": "12",
+      "lesson": "1"
+    },
+    {
+      "nodeId": "math.im2.example.12.1.004",
+      "title": "Example 4: Graph Using Key Features; Graph with a Table of Values",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.f-if-c-7', 'math.standard.ccss.f-if-b-4']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.f-if-c-7",
+        "math.standard.ccss.f-if-b-4"
+      ],
+      "module": "12",
+      "lesson": "1"
+    },
+    {
+      "nodeId": "math.im2.example.12.2.005",
+      "title": "Example 1: Vertical and Horizontal Translations; Dilations from Coefficients",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.f-bf-b-3', 'math.standard.ccss.f-if-c-7']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.f-bf-b-3",
+        "math.standard.ccss.f-if-c-7"
+      ],
+      "module": "12",
+      "lesson": "2"
+    },
+    {
+      "nodeId": "math.im2.example.12.2.006",
+      "title": "Example 2: Vertical and Horizontal Translations; Dilations from Coefficients",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.f-bf-b-3', 'math.standard.ccss.f-if-c-7']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.f-bf-b-3",
+        "math.standard.ccss.f-if-c-7"
+      ],
+      "module": "12",
+      "lesson": "2"
+    },
+    {
+      "nodeId": "math.im2.example.12.2.007",
+      "title": "Example 3: Write Equation from Graph; Combined Transformations in Context",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.f-bf-b-3', 'math.standard.ccss.f-if-c-7']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.f-bf-b-3",
+        "math.standard.ccss.f-if-c-7"
+      ],
+      "module": "12",
+      "lesson": "2"
+    },
+    {
+      "nodeId": "math.im2.example.12.2.008",
+      "title": "Example 4: Write Equation from Graph; Combined Transformations in Context",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.f-bf-b-3', 'math.standard.ccss.f-if-c-7']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.f-bf-b-3",
+        "math.standard.ccss.f-if-c-7"
+      ],
+      "module": "12",
+      "lesson": "2"
+    },
+    {
+      "nodeId": "math.im2.example.12.3.009",
+      "title": "Example 1: Solve with Integer Solutions; Estimate Non-Integer Solutions",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.a-rei-d-10', 'math.standard.ccss.f-if-c-7']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.a-rei-d-10",
+        "math.standard.ccss.f-if-c-7"
+      ],
+      "module": "12",
+      "lesson": "3"
+    },
+    {
+      "nodeId": "math.im2.example.12.3.010",
+      "title": "Example 2: Solve with Integer Solutions; Estimate Non-Integer Solutions",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.a-rei-d-10', 'math.standard.ccss.f-if-c-7']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.a-rei-d-10",
+        "math.standard.ccss.f-if-c-7"
+      ],
+      "module": "12",
+      "lesson": "3"
+    },
+    {
+      "nodeId": "math.im2.example.12.3.011",
+      "title": "Example 3: Real-World Projectile Motion; Interpret Zeros in Context",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.a-rei-d-10', 'math.standard.ccss.f-if-c-7']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.a-rei-d-10",
+        "math.standard.ccss.f-if-c-7"
+      ],
+      "module": "12",
+      "lesson": "3"
+    },
+    {
+      "nodeId": "math.im2.example.12.3.012",
+      "title": "Example 4: Real-World Projectile Motion; Interpret Zeros in Context",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.a-rei-d-10', 'math.standard.ccss.f-if-c-7']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.a-rei-d-10",
+        "math.standard.ccss.f-if-c-7"
+      ],
+      "module": "12",
+      "lesson": "3"
+    },
+    {
+      "nodeId": "math.im2.example.12.4.013",
+      "title": "Example 1: Solve Equations with Squares and Simple Factors; Solve Trinomial Equations; Zero Product Property",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.a-apr-b-3', 'math.standard.ccss.a-rei-b-4']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.a-apr-b-3",
+        "math.standard.ccss.a-rei-b-4"
+      ],
+      "module": "12",
+      "lesson": "4"
+    },
+    {
+      "nodeId": "math.im2.example.12.4.014",
+      "title": "Example 2: Solve Equations with Squares and Simple Factors; Solve Trinomial Equations; Zero Product Property",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.a-apr-b-3', 'math.standard.ccss.a-rei-b-4']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.a-apr-b-3",
+        "math.standard.ccss.a-rei-b-4"
+      ],
+      "module": "12",
+      "lesson": "4"
+    },
+    {
+      "nodeId": "math.im2.example.12.4.015",
+      "title": "Example 3: Solve Equations with Squares and Simple Factors; Solve Trinomial Equations; Zero Product Property",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.a-apr-b-3', 'math.standard.ccss.a-rei-b-4']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.a-apr-b-3",
+        "math.standard.ccss.a-rei-b-4"
+      ],
+      "module": "12",
+      "lesson": "4"
+    },
+    {
+      "nodeId": "math.im2.example.12.4.016",
+      "title": "Example 4: Special Factoring Patterns; Write Quadratic from Zeros; Sketch from Roots",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.a-apr-b-3', 'math.standard.ccss.a-rei-b-4']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.a-apr-b-3",
+        "math.standard.ccss.a-rei-b-4"
+      ],
+      "module": "12",
+      "lesson": "4"
+    },
+    {
+      "nodeId": "math.im2.example.12.4.017",
+      "title": "Example 5: Special Factoring Patterns; Write Quadratic from Zeros; Sketch from Roots",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.a-apr-b-3', 'math.standard.ccss.a-rei-b-4']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.a-apr-b-3",
+        "math.standard.ccss.a-rei-b-4"
+      ],
+      "module": "12",
+      "lesson": "4"
+    },
+    {
+      "nodeId": "math.im2.example.12.4.018",
+      "title": "Example 6: Special Factoring Patterns; Write Quadratic from Zeros; Sketch from Roots",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.a-apr-b-3', 'math.standard.ccss.a-rei-b-4']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.a-apr-b-3",
+        "math.standard.ccss.a-rei-b-4"
+      ],
+      "module": "12",
+      "lesson": "4"
+    },
+    {
+      "nodeId": "math.im2.example.12.5.019",
+      "title": "Example 1: Find the Completing Square Constant; Verify a Perfect Square Trinomial",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.a-rei-b-4', 'math.standard.ccss.a-sse-b-3']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.a-rei-b-4",
+        "math.standard.ccss.a-sse-b-3"
+      ],
+      "module": "12",
+      "lesson": "5"
+    },
+    {
+      "nodeId": "math.im2.example.12.5.020",
+      "title": "Example 2: Find the Completing Square Constant; Verify a Perfect Square Trinomial",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.a-rei-b-4', 'math.standard.ccss.a-sse-b-3']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.a-rei-b-4",
+        "math.standard.ccss.a-sse-b-3"
+      ],
+      "module": "12",
+      "lesson": "5"
+    },
+    {
+      "nodeId": "math.im2.example.12.5.021",
+      "title": "Example 3: Solve by Completing the Square (a = 1); Solve When a \u2260 1",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.a-rei-b-4', 'math.standard.ccss.a-sse-b-3']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.a-rei-b-4",
+        "math.standard.ccss.a-sse-b-3"
+      ],
+      "module": "12",
+      "lesson": "5"
+    },
+    {
+      "nodeId": "math.im2.example.12.5.022",
+      "title": "Example 4: Solve by Completing the Square (a = 1); Solve When a \u2260 1",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.a-rei-b-4', 'math.standard.ccss.a-sse-b-3']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.a-rei-b-4",
+        "math.standard.ccss.a-sse-b-3"
+      ],
+      "module": "12",
+      "lesson": "5"
+    },
+    {
+      "nodeId": "math.im2.example.12.5.023",
+      "title": "Example 5: Write in Vertex Form; Identify Extrema and Axis from Vertex Form",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.a-rei-b-4', 'math.standard.ccss.a-sse-b-3']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.a-rei-b-4",
+        "math.standard.ccss.a-sse-b-3"
+      ],
+      "module": "12",
+      "lesson": "5"
+    },
+    {
+      "nodeId": "math.im2.example.12.5.024",
+      "title": "Example 6: Write in Vertex Form; Identify Extrema and Axis from Vertex Form",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.a-rei-b-4', 'math.standard.ccss.a-sse-b-3']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.a-rei-b-4",
+        "math.standard.ccss.a-sse-b-3"
+      ],
+      "module": "12",
+      "lesson": "5"
+    },
+    {
+      "nodeId": "math.im2.example.12.5.025",
+      "title": "Example 7: Projectile Motion Application; Optimization Application",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.a-rei-b-4', 'math.standard.ccss.a-sse-b-3']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.a-rei-b-4",
+        "math.standard.ccss.a-sse-b-3"
+      ],
+      "module": "12",
+      "lesson": "5"
+    },
+    {
+      "nodeId": "math.im2.example.12.5.026",
+      "title": "Example 8: Projectile Motion Application; Optimization Application",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.a-rei-b-4', 'math.standard.ccss.a-sse-b-3']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.a-rei-b-4",
+        "math.standard.ccss.a-sse-b-3"
+      ],
+      "module": "12",
+      "lesson": "5"
+    },
+    {
+      "nodeId": "math.im2.example.13.1.001",
+      "title": "Example 1: Reciprocal Identities (csc, sec, cot); Quotient Identities (tan, cot); Simplify Using Identities",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.f-tf-a-1', 'math.standard.ccss.f-tf-a-2']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.f-tf-a-1",
+        "math.standard.ccss.f-tf-a-2"
+      ],
+      "module": "13",
+      "lesson": "1"
+    },
+    {
+      "nodeId": "math.im2.example.13.1.002",
+      "title": "Example 2: Reciprocal Identities (csc, sec, cot); Quotient Identities (tan, cot); Simplify Using Identities",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.f-tf-a-1', 'math.standard.ccss.f-tf-a-2']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.f-tf-a-1",
+        "math.standard.ccss.f-tf-a-2"
+      ],
+      "module": "13",
+      "lesson": "1"
+    },
+    {
+      "nodeId": "math.im2.example.13.1.003",
+      "title": "Example 3: Reciprocal Identities (csc, sec, cot); Quotient Identities (tan, cot); Simplify Using Identities",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.f-tf-a-1', 'math.standard.ccss.f-tf-a-2']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.f-tf-a-1",
+        "math.standard.ccss.f-tf-a-2"
+      ],
+      "module": "13",
+      "lesson": "1"
+    },
+    {
+      "nodeId": "math.im2.example.13.1.004",
+      "title": "Example 4: Verify with Reciprocal Identities; Verify with Quotient Identities; Rewrite in Terms of sin and cos",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.f-tf-a-1', 'math.standard.ccss.f-tf-a-2']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.f-tf-a-1",
+        "math.standard.ccss.f-tf-a-2"
+      ],
+      "module": "13",
+      "lesson": "1"
+    },
+    {
+      "nodeId": "math.im2.example.13.1.005",
+      "title": "Example 5: Verify with Reciprocal Identities; Verify with Quotient Identities; Rewrite in Terms of sin and cos",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.f-tf-a-1', 'math.standard.ccss.f-tf-a-2']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.f-tf-a-1",
+        "math.standard.ccss.f-tf-a-2"
+      ],
+      "module": "13",
+      "lesson": "1"
+    },
+    {
+      "nodeId": "math.im2.example.13.1.006",
+      "title": "Example 6: Verify with Reciprocal Identities; Verify with Quotient Identities; Rewrite in Terms of sin and cos",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.f-tf-a-1', 'math.standard.ccss.f-tf-a-2']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.f-tf-a-1",
+        "math.standard.ccss.f-tf-a-2"
+      ],
+      "module": "13",
+      "lesson": "1"
+    },
+    {
+      "nodeId": "math.im2.example.13.2.007",
+      "title": "Example 1: Fundamental Pythagorean Identity; tan\u00b2\u03b8 + 1 = sec\u00b2\u03b8; 1 + cot\u00b2\u03b8 = csc\u00b2\u03b8",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.a-sse-a-2', 'math.standard.ccss.f-tf-c-9']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.a-sse-a-2",
+        "math.standard.ccss.f-tf-c-9"
+      ],
+      "module": "13",
+      "lesson": "2"
+    },
+    {
+      "nodeId": "math.im2.example.13.2.008",
+      "title": "Example 2: Fundamental Pythagorean Identity; tan\u00b2\u03b8 + 1 = sec\u00b2\u03b8; 1 + cot\u00b2\u03b8 = csc\u00b2\u03b8",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.a-sse-a-2', 'math.standard.ccss.f-tf-c-9']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.a-sse-a-2",
+        "math.standard.ccss.f-tf-c-9"
+      ],
+      "module": "13",
+      "lesson": "2"
+    },
+    {
+      "nodeId": "math.im2.example.13.2.009",
+      "title": "Example 3: Fundamental Pythagorean Identity; tan\u00b2\u03b8 + 1 = sec\u00b2\u03b8; 1 + cot\u00b2\u03b8 = csc\u00b2\u03b8",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.a-sse-a-2', 'math.standard.ccss.f-tf-c-9']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.a-sse-a-2",
+        "math.standard.ccss.f-tf-c-9"
+      ],
+      "module": "13",
+      "lesson": "2"
+    },
+    {
+      "nodeId": "math.im2.example.13.2.010",
+      "title": "Example 4: Find Missing Values; Simplify Expressions; Solve Equations Using Pythagorean Identities",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.a-sse-a-2', 'math.standard.ccss.f-tf-c-9']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.a-sse-a-2",
+        "math.standard.ccss.f-tf-c-9"
+      ],
+      "module": "13",
+      "lesson": "2"
+    },
+    {
+      "nodeId": "math.im2.example.13.2.011",
+      "title": "Example 5: Find Missing Values; Simplify Expressions; Solve Equations Using Pythagorean Identities",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.a-sse-a-2', 'math.standard.ccss.f-tf-c-9']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.a-sse-a-2",
+        "math.standard.ccss.f-tf-c-9"
+      ],
+      "module": "13",
+      "lesson": "2"
+    },
+    {
+      "nodeId": "math.im2.example.13.2.012",
+      "title": "Example 6: Find Missing Values; Simplify Expressions; Solve Equations Using Pythagorean Identities",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.a-sse-a-2', 'math.standard.ccss.f-tf-c-9']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.a-sse-a-2",
+        "math.standard.ccss.f-tf-c-9"
+      ],
+      "module": "13",
+      "lesson": "2"
+    },
+    {
+      "nodeId": "math.im2.example.13.3.013",
+      "title": "Example 1: sin(A \u00b1 B); cos(A \u00b1 B); tan(A \u00b1 B)",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.f-tf-c-8', 'math.standard.ccss.f-tf-a-2']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.f-tf-c-8",
+        "math.standard.ccss.f-tf-a-2"
+      ],
+      "module": "13",
+      "lesson": "3"
+    },
+    {
+      "nodeId": "math.im2.example.13.3.014",
+      "title": "Example 2: sin(A \u00b1 B); cos(A \u00b1 B); tan(A \u00b1 B)",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.f-tf-c-8', 'math.standard.ccss.f-tf-a-2']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.f-tf-c-8",
+        "math.standard.ccss.f-tf-a-2"
+      ],
+      "module": "13",
+      "lesson": "3"
+    },
+    {
+      "nodeId": "math.im2.example.13.3.015",
+      "title": "Example 3: sin(A \u00b1 B); cos(A \u00b1 B); tan(A \u00b1 B)",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.f-tf-c-8', 'math.standard.ccss.f-tf-a-2']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.f-tf-c-8",
+        "math.standard.ccss.f-tf-a-2"
+      ],
+      "module": "13",
+      "lesson": "3"
+    },
+    {
+      "nodeId": "math.im2.example.13.3.016",
+      "title": "Example 4: Exact Value at Non-Standard Angles; Verify Sum/Difference Identities; Simplify Compound Angle Expressions",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.f-tf-c-8', 'math.standard.ccss.f-tf-a-2']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.f-tf-c-8",
+        "math.standard.ccss.f-tf-a-2"
+      ],
+      "module": "13",
+      "lesson": "3"
+    },
+    {
+      "nodeId": "math.im2.example.13.3.017",
+      "title": "Example 5: Exact Value at Non-Standard Angles; Verify Sum/Difference Identities; Simplify Compound Angle Expressions",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.f-tf-c-8', 'math.standard.ccss.f-tf-a-2']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.f-tf-c-8",
+        "math.standard.ccss.f-tf-a-2"
+      ],
+      "module": "13",
+      "lesson": "3"
+    },
+    {
+      "nodeId": "math.im2.example.13.3.018",
+      "title": "Example 6: Exact Value at Non-Standard Angles; Verify Sum/Difference Identities; Simplify Compound Angle Expressions",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.f-tf-c-8', 'math.standard.ccss.f-tf-a-2']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.f-tf-c-8",
+        "math.standard.ccss.f-tf-a-2"
+      ],
+      "module": "13",
+      "lesson": "3"
+    },
+    {
+      "nodeId": "math.im2.example.13.4.019",
+      "title": "Example 1: sin(2\u03b8); cos(2\u03b8) in Three Forms; tan(2\u03b8)",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.f-tf-c-7', 'math.standard.ccss.f-tf-c-6']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.f-tf-c-7",
+        "math.standard.ccss.f-tf-c-6"
+      ],
+      "module": "13",
+      "lesson": "4"
+    },
+    {
+      "nodeId": "math.im2.example.13.4.020",
+      "title": "Example 2: sin(2\u03b8); cos(2\u03b8) in Three Forms; tan(2\u03b8)",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.f-tf-c-7', 'math.standard.ccss.f-tf-c-6']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.f-tf-c-7",
+        "math.standard.ccss.f-tf-c-6"
+      ],
+      "module": "13",
+      "lesson": "4"
+    },
+    {
+      "nodeId": "math.im2.example.13.4.021",
+      "title": "Example 3: sin(2\u03b8); cos(2\u03b8) in Three Forms; tan(2\u03b8)",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.f-tf-c-7', 'math.standard.ccss.f-tf-c-6']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.f-tf-c-7",
+        "math.standard.ccss.f-tf-c-6"
+      ],
+      "module": "13",
+      "lesson": "4"
+    },
+    {
+      "nodeId": "math.im2.example.13.4.022",
+      "title": "Example 4: Half-Angle Formula; Find Exact Values Using Half-Angle; Simplify with Half-Angle",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.f-tf-c-7', 'math.standard.ccss.f-tf-c-6']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.f-tf-c-7",
+        "math.standard.ccss.f-tf-c-6"
+      ],
+      "module": "13",
+      "lesson": "4"
+    },
+    {
+      "nodeId": "math.im2.example.13.4.023",
+      "title": "Example 5: Half-Angle Formula; Find Exact Values Using Half-Angle; Simplify with Half-Angle",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.f-tf-c-7', 'math.standard.ccss.f-tf-c-6']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.f-tf-c-7",
+        "math.standard.ccss.f-tf-c-6"
+      ],
+      "module": "13",
+      "lesson": "4"
+    },
+    {
+      "nodeId": "math.im2.example.13.4.024",
+      "title": "Example 6: Half-Angle Formula; Find Exact Values Using Half-Angle; Simplify with Half-Angle",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.f-tf-c-7', 'math.standard.ccss.f-tf-c-6']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.f-tf-c-7",
+        "math.standard.ccss.f-tf-c-6"
+      ],
+      "module": "13",
+      "lesson": "4"
+    },
+    {
+      "nodeId": "math.im2.example.13.5.025",
+      "title": "Example 1: Solve with Factoring; Solve with Quadratic Form; Solve Using Pythagorean Identities",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.f-tf-c-9', 'math.standard.ccss.f-tf-c-8']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.f-tf-c-9",
+        "math.standard.ccss.f-tf-c-8"
+      ],
+      "module": "13",
+      "lesson": "5"
+    },
+    {
+      "nodeId": "math.im2.example.13.5.026",
+      "title": "Example 2: Solve with Factoring; Solve with Quadratic Form; Solve Using Pythagorean Identities",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.f-tf-c-9', 'math.standard.ccss.f-tf-c-8']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.f-tf-c-9",
+        "math.standard.ccss.f-tf-c-8"
+      ],
+      "module": "13",
+      "lesson": "5"
+    },
+    {
+      "nodeId": "math.im2.example.13.5.027",
+      "title": "Example 3: Solve with Factoring; Solve with Quadratic Form; Solve Using Pythagorean Identities",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.f-tf-c-9', 'math.standard.ccss.f-tf-c-8']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.f-tf-c-9",
+        "math.standard.ccss.f-tf-c-8"
+      ],
+      "module": "13",
+      "lesson": "5"
+    },
+    {
+      "nodeId": "math.im2.example.13.5.028",
+      "title": "Example 4: General Solution (No Restriction); General Solution with Identities",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.f-tf-c-9', 'math.standard.ccss.f-tf-c-8']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.f-tf-c-9",
+        "math.standard.ccss.f-tf-c-8"
+      ],
+      "module": "13",
+      "lesson": "5"
+    },
+    {
+      "nodeId": "math.im2.example.13.5.029",
+      "title": "Example 5: General Solution (No Restriction); General Solution with Identities",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.f-tf-c-9', 'math.standard.ccss.f-tf-c-8']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.f-tf-c-9",
+        "math.standard.ccss.f-tf-c-8"
+      ],
+      "module": "13",
+      "lesson": "5"
+    },
+    {
+      "nodeId": "math.im2.example.13.5.030",
+      "title": "Example 6: Graphical Verification; Solve and Verify with Graph",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.f-tf-c-9', 'math.standard.ccss.f-tf-c-8']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.f-tf-c-9",
+        "math.standard.ccss.f-tf-c-8"
+      ],
+      "module": "13",
+      "lesson": "5"
+    },
+    {
+      "nodeId": "math.im2.example.13.5.031",
+      "title": "Example 7: Graphical Verification; Solve and Verify with Graph",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.f-tf-c-9', 'math.standard.ccss.f-tf-c-8']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.f-tf-c-9",
+        "math.standard.ccss.f-tf-c-8"
+      ],
+      "module": "13",
+      "lesson": "5"
+    },
+    {
+      "nodeId": "math.im2.example.2.6.023",
+      "title": "Example 1: Solve Problems with Trapezoids; Verify Trapezoids Using Coordinates; Find Midsegment Lengths",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.g-co-c-9']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.g-co-c-9"
+      ],
+      "module": "2",
+      "lesson": "6"
+    },
+    {
+      "nodeId": "math.im2.example.2.6.024",
+      "title": "Example 2: Solve Problems with Trapezoids; Verify Trapezoids Using Coordinates; Find Midsegment Lengths",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.g-co-c-9']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.g-co-c-9"
+      ],
+      "module": "2",
+      "lesson": "6"
+    },
+    {
+      "nodeId": "math.im2.example.2.6.025",
+      "title": "Example 3: Solve Problems with Trapezoids; Verify Trapezoids Using Coordinates; Find Midsegment Lengths",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.g-co-c-9']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.g-co-c-9"
+      ],
+      "module": "2",
+      "lesson": "6"
+    },
+    {
+      "nodeId": "math.im2.example.2.6.026",
+      "title": "Example 4: Find Angle Measures in Kites; Perimeter and Area Problems with Kites",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.g-co-c-9']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.g-co-c-9"
+      ],
+      "module": "2",
+      "lesson": "6"
+    },
+    {
+      "nodeId": "math.im2.example.2.6.027",
+      "title": "Example 5: Find Angle Measures in Kites; Perimeter and Area Problems with Kites",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.g-co-c-9']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.g-co-c-9"
+      ],
+      "module": "2",
+      "lesson": "6"
+    },
+    {
+      "nodeId": "math.im2.example.2.6.028",
+      "title": "Example 6: Find Angle Measures in Kites; Perimeter and Area Problems with Kites",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.g-co-c-9']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.g-co-c-9"
+      ],
+      "module": "2",
+      "lesson": "6"
+    },
+    {
+      "nodeId": "math.im2.example.4.2.005",
+      "title": "Example 1: Find the Value of x; Use Pythagorean Triples",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.8-g-b-6', 'math.standard.ccss.8-g-b-7']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.8-g-b-6",
+        "math.standard.ccss.8-g-b-7"
+      ],
+      "module": "4",
+      "lesson": "2"
+    },
+    {
+      "nodeId": "math.im2.example.4.2.006",
+      "title": "Example 2: Find the Value of x; Use Pythagorean Triples",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.8-g-b-6', 'math.standard.ccss.8-g-b-7']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.8-g-b-6",
+        "math.standard.ccss.8-g-b-7"
+      ],
+      "module": "4",
+      "lesson": "2"
+    },
+    {
+      "nodeId": "math.im2.example.4.2.007",
+      "title": "Example 3: Real-World Applications; Classify Triangles",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.8-g-b-6', 'math.standard.ccss.8-g-b-7']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.8-g-b-6",
+        "math.standard.ccss.8-g-b-7"
+      ],
+      "module": "4",
+      "lesson": "2"
+    },
+    {
+      "nodeId": "math.im2.example.4.2.008",
+      "title": "Example 4: Real-World Applications; Classify Triangles",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.8-g-b-6', 'math.standard.ccss.8-g-b-7']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.8-g-b-6",
+        "math.standard.ccss.8-g-b-7"
+      ],
+      "module": "4",
+      "lesson": "2"
+    },
+    {
+      "nodeId": "math.im2.example.4.5.017",
+      "title": "Example 1: Find Trigonometric Ratios; Special Triangle Trigonometry",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.g-srt-c-7']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.g-srt-c-7"
+      ],
+      "module": "4",
+      "lesson": "5"
+    },
+    {
+      "nodeId": "math.im2.example.4.5.018",
+      "title": "Example 2: Find Trigonometric Ratios; Special Triangle Trigonometry",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.g-srt-c-7']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.g-srt-c-7"
+      ],
+      "module": "4",
+      "lesson": "5"
+    },
+    {
+      "nodeId": "math.im2.example.4.5.019",
+      "title": "Example 3: Find the Value of x; Find Angle Measures; Solve Right Triangles",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.g-srt-c-7']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.g-srt-c-7"
+      ],
+      "module": "4",
+      "lesson": "5"
+    },
+    {
+      "nodeId": "math.im2.example.4.5.020",
+      "title": "Example 4: Find the Value of x; Find Angle Measures; Solve Right Triangles",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.g-srt-c-7']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.g-srt-c-7"
+      ],
+      "module": "4",
+      "lesson": "5"
+    },
+    {
+      "nodeId": "math.im2.example.4.5.021",
+      "title": "Example 5: Find the Value of x; Find Angle Measures; Solve Right Triangles",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.g-srt-c-7']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.g-srt-c-7"
+      ],
+      "module": "4",
+      "lesson": "5"
+    },
+    {
+      "nodeId": "math.im2.example.4.7.027",
+      "title": "Example 1: Find the Value of x (Law of Sines basics)",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.f-tf-a-1']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.f-tf-a-1"
+      ],
+      "module": "4",
+      "lesson": "7"
+    },
+    {
+      "nodeId": "math.im2.example.4.7.028",
+      "title": "Example 2: Find the Value of x (Law of Sines basics)",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.f-tf-a-1']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.f-tf-a-1"
+      ],
+      "module": "4",
+      "lesson": "7"
+    },
+    {
+      "nodeId": "math.im2.example.4.7.029",
+      "title": "Example 4: Ambiguous Case (SSA): no solution, one solution, two solutions",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.f-tf-a-1']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.f-tf-a-1"
+      ],
+      "module": "4",
+      "lesson": "7"
+    },
+    {
+      "nodeId": "math.im2.example.4.7.030",
+      "title": "Example 5: Ambiguous Case (SSA): no solution, one solution, two solutions",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.f-tf-a-1']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.f-tf-a-1"
+      ],
+      "module": "4",
+      "lesson": "7"
+    },
+    {
+      "nodeId": "math.im2.example.4.7.031",
+      "title": "Example 6: Ambiguous Case (SSA): no solution, one solution, two solutions",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.f-tf-a-1']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.f-tf-a-1"
+      ],
+      "module": "4",
+      "lesson": "7"
+    },
+    {
+      "nodeId": "math.im2.example.4.8.032",
+      "title": "Example 1: Find the Value of x (Law of Cosines); Solve Triangles (SAS, SSS)",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.n-cn-a-2']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.n-cn-a-2"
+      ],
+      "module": "4",
+      "lesson": "8"
+    },
+    {
+      "nodeId": "math.im2.example.4.8.033",
+      "title": "Example 2: Find the Value of x (Law of Cosines); Solve Triangles (SAS, SSS)",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.n-cn-a-2']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.n-cn-a-2"
+      ],
+      "module": "4",
+      "lesson": "8"
+    },
+    {
+      "nodeId": "math.im2.example.4.8.034",
+      "title": "Example 3: Real-World Applications; Solve Triangles; Choose Law of Sines or Law of Cosines",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.n-cn-a-2']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.n-cn-a-2"
+      ],
+      "module": "4",
+      "lesson": "8"
+    },
+    {
+      "nodeId": "math.im2.example.4.8.035",
+      "title": "Example 4: Real-World Applications; Solve Triangles; Choose Law of Sines or Law of Cosines",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.n-cn-a-2']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.n-cn-a-2"
+      ],
+      "module": "4",
+      "lesson": "8"
+    },
+    {
+      "nodeId": "math.im2.example.4.8.036",
+      "title": "Example 5: Real-World Applications; Solve Triangles; Choose Law of Sines or Law of Cosines",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.n-cn-a-2']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.n-cn-a-2"
+      ],
+      "module": "4",
+      "lesson": "8"
+    },
+    {
+      "nodeId": "math.im2.example.5.5.011",
+      "title": "Example 1: Identify Common Tangents; Determine Whether a Segment Is Tangent",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.g-c-a-4']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.g-c-a-4"
+      ],
+      "module": "5",
+      "lesson": "5"
+    },
+    {
+      "nodeId": "math.im2.example.5.5.012",
+      "title": "Example 2: Identify Common Tangents; Determine Whether a Segment Is Tangent",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.g-c-a-4']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.g-c-a-4"
+      ],
+      "module": "5",
+      "lesson": "5"
+    },
+    {
+      "nodeId": "math.im2.example.5.5.013",
+      "title": "Example 3: Find Values Involving Tangents; Find Perimeter of Circumscribed Polygons",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.g-c-a-4']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.g-c-a-4"
+      ],
+      "module": "5",
+      "lesson": "5"
+    },
+    {
+      "nodeId": "math.im2.example.5.5.014",
+      "title": "Example 4: Find Values Involving Tangents; Find Perimeter of Circumscribed Polygons",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.g-c-a-4']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.g-c-a-4"
+      ],
+      "module": "5",
+      "lesson": "5"
+    },
+    {
+      "nodeId": "math.im2.example.5.6.015",
+      "title": "Example 1: Find Angle Measures from Diagrams; Find Measures with Tangents and Secants",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.g-c-a-4']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.g-c-a-4"
+      ],
+      "module": "5",
+      "lesson": "6"
+    },
+    {
+      "nodeId": "math.im2.example.5.6.016",
+      "title": "Example 2: Find Angle Measures from Diagrams; Find Measures with Tangents and Secants",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.g-c-a-4']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.g-c-a-4"
+      ],
+      "module": "5",
+      "lesson": "6"
+    },
+    {
+      "nodeId": "math.im2.example.5.6.017",
+      "title": "Example 3: Find Angle Measures and Arc Measures",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.g-c-a-4']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.g-c-a-4"
+      ],
+      "module": "5",
+      "lesson": "6"
+    },
+    {
+      "nodeId": "math.im2.example.6.7.029",
+      "title": "Example 1: Volume of Cylinders; Volume of Cones; Volume of Spheres",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.g-gmd-a-2']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.g-gmd-a-2"
+      ],
+      "module": "6",
+      "lesson": "7"
+    },
+    {
+      "nodeId": "math.im2.example.6.7.030",
+      "title": "Example 2: Volume of Cylinders; Volume of Cones; Volume of Spheres",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.g-gmd-a-2']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.g-gmd-a-2"
+      ],
+      "module": "6",
+      "lesson": "7"
+    },
+    {
+      "nodeId": "math.im2.example.6.7.031",
+      "title": "Example 3: Volume of Cylinders; Volume of Cones; Volume of Spheres",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.g-gmd-a-2']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.g-gmd-a-2"
+      ],
+      "module": "6",
+      "lesson": "7"
+    },
+    {
+      "nodeId": "math.im2.example.6.7.032",
+      "title": "Example 4: Volume of Cones with Variables; Volume of Spheres with Variables; Volume of Composite Solids",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.g-gmd-a-2']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.g-gmd-a-2"
+      ],
+      "module": "6",
+      "lesson": "7"
+    },
+    {
+      "nodeId": "math.im2.example.6.7.033",
+      "title": "Example 5: Volume of Cones with Variables; Volume of Spheres with Variables; Volume of Composite Solids",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.g-gmd-a-2']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.g-gmd-a-2"
+      ],
+      "module": "6",
+      "lesson": "7"
+    },
+    {
+      "nodeId": "math.im2.example.6.7.034",
+      "title": "Example 6: Volume of Cones with Variables; Volume of Spheres with Variables; Volume of Composite Solids",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.g-gmd-a-2']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.g-gmd-a-2"
+      ],
+      "module": "6",
+      "lesson": "7"
+    },
+    {
+      "nodeId": "math.im2.example.6.7.035",
+      "title": "Example 7: Volume of Cones with Variables; Volume of Spheres with Variables; Volume of Composite Solids",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.g-gmd-a-2']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.g-gmd-a-2"
+      ],
+      "module": "6",
+      "lesson": "7"
+    },
+    {
+      "nodeId": "math.im2.example.6.7.036",
+      "title": "Example 8: Volume of Cones with Variables; Volume of Spheres with Variables; Volume of Composite Solids",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.g-gmd-a-2']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.g-gmd-a-2"
+      ],
+      "module": "6",
+      "lesson": "7"
+    },
+    {
+      "nodeId": "math.im2.example.7.3.010",
+      "title": "Example 1: Permutation Formula; nPr in Context; Permutations with Restrictions",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.7-sp-c-5']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.7-sp-c-5"
+      ],
+      "module": "7",
+      "lesson": "3"
+    },
+    {
+      "nodeId": "math.im2.example.7.3.011",
+      "title": "Example 2: Permutation Formula; nPr in Context; Permutations with Restrictions",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.7-sp-c-5']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.7-sp-c-5"
+      ],
+      "module": "7",
+      "lesson": "3"
+    },
+    {
+      "nodeId": "math.im2.example.7.3.012",
+      "title": "Example 3: Permutation Formula; nPr in Context; Permutations with Restrictions",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.7-sp-c-5']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.7-sp-c-5"
+      ],
+      "module": "7",
+      "lesson": "3"
+    },
+    {
+      "nodeId": "math.im2.example.7.4.013",
+      "title": "Example 1: Combination Formula; nCr in Context; Combinations vs. Permutations",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.s-cp-c-9']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.s-cp-c-9"
+      ],
+      "module": "7",
+      "lesson": "4"
+    },
+    {
+      "nodeId": "math.im2.example.7.4.014",
+      "title": "Example 2: Combination Formula; nCr in Context; Combinations vs. Permutations",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.s-cp-c-9']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.s-cp-c-9"
+      ],
+      "module": "7",
+      "lesson": "4"
+    },
+    {
+      "nodeId": "math.im2.example.7.4.015",
+      "title": "Example 3: Combination Formula; nCr in Context; Combinations vs. Permutations",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.s-cp-c-9']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.s-cp-c-9"
+      ],
+      "module": "7",
+      "lesson": "4"
+    },
+    {
+      "nodeId": "math.im2.example.7.4.016",
+      "title": "Example 4: Selection Problems; Mixed Permutation/Combination; Real-World Application",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.s-cp-c-9']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.s-cp-c-9"
+      ],
+      "module": "7",
+      "lesson": "4"
+    },
+    {
+      "nodeId": "math.im2.example.7.4.017",
+      "title": "Example 5: Selection Problems; Mixed Permutation/Combination; Real-World Application",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.s-cp-c-9']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.s-cp-c-9"
+      ],
+      "module": "7",
+      "lesson": "4"
+    },
+    {
+      "nodeId": "math.im2.example.7.4.018",
+      "title": "Example 6: Selection Problems; Mixed Permutation/Combination; Real-World Application",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.s-cp-c-9']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.s-cp-c-9"
+      ],
+      "module": "7",
+      "lesson": "4"
+    },
+    {
+      "nodeId": "math.im2.example.7.6.025",
+      "title": "Example 1: Expected Value Formula; Expected Value in Context; Evaluating a Game",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.s-cp-b-7']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.s-cp-b-7"
+      ],
+      "module": "7",
+      "lesson": "6"
+    },
+    {
+      "nodeId": "math.im2.example.7.6.026",
+      "title": "Example 2: Expected Value Formula; Expected Value in Context; Evaluating a Game",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.s-cp-b-7']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.s-cp-b-7"
+      ],
+      "module": "7",
+      "lesson": "6"
+    },
+    {
+      "nodeId": "math.im2.example.7.6.027",
+      "title": "Example 3: Expected Value Formula; Expected Value in Context; Evaluating a Game",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.s-cp-b-7']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.s-cp-b-7"
+      ],
+      "module": "7",
+      "lesson": "6"
+    },
+    {
+      "nodeId": "math.im2.example.7.6.028",
+      "title": "Example 4: Insurance Decision; Raffle Analysis; Fair Decision-Making Application",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.s-cp-b-7']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.s-cp-b-7"
+      ],
+      "module": "7",
+      "lesson": "6"
+    },
+    {
+      "nodeId": "math.im2.example.7.6.029",
+      "title": "Example 5: Insurance Decision; Raffle Analysis; Fair Decision-Making Application",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.s-cp-b-7']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.s-cp-b-7"
+      ],
+      "module": "7",
+      "lesson": "6"
+    },
+    {
+      "nodeId": "math.im2.example.7.6.030",
+      "title": "Example 6: Insurance Decision; Raffle Analysis; Fair Decision-Making Application",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.s-cp-b-7']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.s-cp-b-7"
+      ],
+      "module": "7",
+      "lesson": "6"
+    },
+    {
+      "nodeId": "math.im2.example.8.5.025",
+      "title": "Example 1: Vertical Shifts; Horizontal Shifts; Combined Shifts",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.hsa-ced-a-2', 'math.standard.ccss.hsa-ced-a-3']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.hsa-ced-a-2",
+        "math.standard.ccss.hsa-ced-a-3"
+      ],
+      "module": "8",
+      "lesson": "5"
+    },
+    {
+      "nodeId": "math.im2.example.8.5.026",
+      "title": "Example 2: Vertical Shifts; Horizontal Shifts; Combined Shifts",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.hsa-ced-a-2', 'math.standard.ccss.hsa-ced-a-3']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.hsa-ced-a-2",
+        "math.standard.ccss.hsa-ced-a-3"
+      ],
+      "module": "8",
+      "lesson": "5"
+    },
+    {
+      "nodeId": "math.im2.example.8.5.027",
+      "title": "Example 3: Vertical Shifts; Horizontal Shifts; Combined Shifts",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.hsa-ced-a-2', 'math.standard.ccss.hsa-ced-a-3']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.hsa-ced-a-2",
+        "math.standard.ccss.hsa-ced-a-3"
+      ],
+      "module": "8",
+      "lesson": "5"
+    },
+    {
+      "nodeId": "math.im2.example.8.5.028",
+      "title": "Example 4: Reflections Across Axes; Stretches and Compressions; Combined Transformations",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.hsa-ced-a-2', 'math.standard.ccss.hsa-ced-a-3']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.hsa-ced-a-2",
+        "math.standard.ccss.hsa-ced-a-3"
+      ],
+      "module": "8",
+      "lesson": "5"
+    },
+    {
+      "nodeId": "math.im2.example.8.5.029",
+      "title": "Example 5: Reflections Across Axes; Stretches and Compressions; Combined Transformations",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.hsa-ced-a-2', 'math.standard.ccss.hsa-ced-a-3']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.hsa-ced-a-2",
+        "math.standard.ccss.hsa-ced-a-3"
+      ],
+      "module": "8",
+      "lesson": "5"
+    },
+    {
+      "nodeId": "math.im2.example.8.5.030",
+      "title": "Example 6: Reflections Across Axes; Stretches and Compressions; Combined Transformations",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.hsa-ced-a-2', 'math.standard.ccss.hsa-ced-a-3']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.hsa-ced-a-2",
+        "math.standard.ccss.hsa-ced-a-3"
+      ],
+      "module": "8",
+      "lesson": "5"
+    },
+    {
+      "nodeId": "math.im2.example.8.6.031",
+      "title": "Example 1: Compare Rate of Change; Compare Intercepts; Compare Maxima/Minima",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.hsf-if-c-7b']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.hsf-if-c-7b"
+      ],
+      "module": "8",
+      "lesson": "6"
+    },
+    {
+      "nodeId": "math.im2.example.8.6.032",
+      "title": "Example 2: Compare Rate of Change; Compare Intercepts; Compare Maxima/Minima",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.hsf-if-c-7b']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.hsf-if-c-7b"
+      ],
+      "module": "8",
+      "lesson": "6"
+    },
+    {
+      "nodeId": "math.im2.example.8.6.033",
+      "title": "Example 3: Compare Rate of Change; Compare Intercepts; Compare Maxima/Minima",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.hsf-if-c-7b']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.hsf-if-c-7b"
+      ],
+      "module": "8",
+      "lesson": "6"
+    },
+    {
+      "nodeId": "math.im2.example.8.6.034",
+      "title": "Example 4: Real-World Comparison; Interpreting Key Features in Context; Choosing the Best Model",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.hsf-if-c-7b']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.hsf-if-c-7b"
+      ],
+      "module": "8",
+      "lesson": "6"
+    },
+    {
+      "nodeId": "math.im2.example.8.6.035",
+      "title": "Example 5: Real-World Comparison; Interpreting Key Features in Context; Choosing the Best Model",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.hsf-if-c-7b']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.hsf-if-c-7b"
+      ],
+      "module": "8",
+      "lesson": "6"
+    },
+    {
+      "nodeId": "math.im2.example.8.6.036",
+      "title": "Example 6: Real-World Comparison; Interpreting Key Features in Context; Choosing the Best Model",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.hsf-if-c-7b']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.hsf-if-c-7b"
+      ],
+      "module": "8",
+      "lesson": "6"
+    },
+    {
+      "nodeId": "math.im2.example.9.1.001",
+      "title": "Example 1: Variables on One Side; Variables on Both Sides; Distributive Property",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.a-rei-a-1']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.a-rei-a-1"
+      ],
+      "module": "9",
+      "lesson": "1"
+    },
+    {
+      "nodeId": "math.im2.example.9.1.002",
+      "title": "Example 2: Variables on One Side; Variables on Both Sides; Distributive Property",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.a-rei-a-1']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.a-rei-a-1"
+      ],
+      "module": "9",
+      "lesson": "1"
+    },
+    {
+      "nodeId": "math.im2.example.9.1.003",
+      "title": "Example 3: Variables on One Side; Variables on Both Sides; Distributive Property",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.a-rei-a-1']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.a-rei-a-1"
+      ],
+      "module": "9",
+      "lesson": "1"
+    },
+    {
+      "nodeId": "math.im2.example.9.1.004",
+      "title": "Example 4: No Solution Case; Infinitely Many Solutions; Classifying Solution Types",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.a-rei-a-1']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.a-rei-a-1"
+      ],
+      "module": "9",
+      "lesson": "1"
+    },
+    {
+      "nodeId": "math.im2.example.9.1.005",
+      "title": "Example 5: No Solution Case; Infinitely Many Solutions; Classifying Solution Types",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.a-rei-a-1']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.a-rei-a-1"
+      ],
+      "module": "9",
+      "lesson": "1"
+    },
+    {
+      "nodeId": "math.im2.example.9.1.006",
+      "title": "Example 6: No Solution Case; Infinitely Many Solutions; Classifying Solution Types",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.a-rei-a-1']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.a-rei-a-1"
+      ],
+      "module": "9",
+      "lesson": "1"
+    },
+    {
+      "nodeId": "math.im2.example.9.2.007",
+      "title": "Example 1: Slope-Intercept Form; Standard Form; Point-Slope Form",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.a-rei-b-3']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.a-rei-b-3"
+      ],
+      "module": "9",
+      "lesson": "2"
+    },
+    {
+      "nodeId": "math.im2.example.9.2.008",
+      "title": "Example 2: Slope-Intercept Form; Standard Form; Point-Slope Form",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.a-rei-b-3']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.a-rei-b-3"
+      ],
+      "module": "9",
+      "lesson": "2"
+    },
+    {
+      "nodeId": "math.im2.example.9.2.009",
+      "title": "Example 3: Slope-Intercept Form; Standard Form; Point-Slope Form",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.a-rei-b-3']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.a-rei-b-3"
+      ],
+      "module": "9",
+      "lesson": "2"
+    },
+    {
+      "nodeId": "math.im2.example.9.2.010",
+      "title": "Example 4: Equation from Two Points; Parallel Lines; Perpendicular Lines",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.a-rei-b-3']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.a-rei-b-3"
+      ],
+      "module": "9",
+      "lesson": "2"
+    },
+    {
+      "nodeId": "math.im2.example.9.2.011",
+      "title": "Example 5: Equation from Two Points; Parallel Lines; Perpendicular Lines",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.a-rei-b-3']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.a-rei-b-3"
+      ],
+      "module": "9",
+      "lesson": "2"
+    },
+    {
+      "nodeId": "math.im2.example.9.2.012",
+      "title": "Example 6: Equation from Two Points; Parallel Lines; Perpendicular Lines",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.a-rei-b-3']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.a-rei-b-3"
+      ],
+      "module": "9",
+      "lesson": "2"
+    },
+    {
+      "nodeId": "math.im2.example.9.3.013",
+      "title": "Example 1: Solve One-Variable; Graph Two-Variable; Compound Inequalities",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.a-ced-a-2']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.a-ced-a-2"
+      ],
+      "module": "9",
+      "lesson": "3"
+    },
+    {
+      "nodeId": "math.im2.example.9.3.014",
+      "title": "Example 2: Solve One-Variable; Graph Two-Variable; Compound Inequalities",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.a-ced-a-2']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.a-ced-a-2"
+      ],
+      "module": "9",
+      "lesson": "3"
+    },
+    {
+      "nodeId": "math.im2.example.9.3.015",
+      "title": "Example 3: Solve One-Variable; Graph Two-Variable; Compound Inequalities",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.a-ced-a-2']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.a-ced-a-2"
+      ],
+      "module": "9",
+      "lesson": "3"
+    },
+    {
+      "nodeId": "math.im2.example.9.3.016",
+      "title": "Example 4: Real-World Context; Testing Solutions; Interpreting Boundary Lines",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.a-ced-a-2']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.a-ced-a-2"
+      ],
+      "module": "9",
+      "lesson": "3"
+    },
+    {
+      "nodeId": "math.im2.example.9.3.017",
+      "title": "Example 5: Real-World Context; Testing Solutions; Interpreting Boundary Lines",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.a-ced-a-2']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.a-ced-a-2"
+      ],
+      "module": "9",
+      "lesson": "3"
+    },
+    {
+      "nodeId": "math.im2.example.9.3.018",
+      "title": "Example 6: Real-World Context; Testing Solutions; Interpreting Boundary Lines",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.a-ced-a-2']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.a-ced-a-2"
+      ],
+      "module": "9",
+      "lesson": "3"
+    },
+    {
+      "nodeId": "math.im2.example.9.4.019",
+      "title": "Example 1: Solve by Graphing; Solve by Substitution; Solve by Elimination",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.a-rei-d-10']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.a-rei-d-10"
+      ],
+      "module": "9",
+      "lesson": "4"
+    },
+    {
+      "nodeId": "math.im2.example.9.4.020",
+      "title": "Example 2: Solve by Graphing; Solve by Substitution; Solve by Elimination",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.a-rei-d-10']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.a-rei-d-10"
+      ],
+      "module": "9",
+      "lesson": "4"
+    },
+    {
+      "nodeId": "math.im2.example.9.4.021",
+      "title": "Example 3: Solve by Graphing; Solve by Substitution; Solve by Elimination",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.a-rei-d-10']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.a-rei-d-10"
+      ],
+      "module": "9",
+      "lesson": "4"
+    },
+    {
+      "nodeId": "math.im2.example.9.4.022",
+      "title": "Example 4: One Solution; No Solution; Infinitely Many Solutions",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.a-rei-d-10']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.a-rei-d-10"
+      ],
+      "module": "9",
+      "lesson": "4"
+    },
+    {
+      "nodeId": "math.im2.example.9.4.023",
+      "title": "Example 5: One Solution; No Solution; Infinitely Many Solutions",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.a-rei-d-10']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.a-rei-d-10"
+      ],
+      "module": "9",
+      "lesson": "4"
+    },
+    {
+      "nodeId": "math.im2.example.9.4.024",
+      "title": "Example 6: One Solution; No Solution; Infinitely Many Solutions",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.a-rei-d-10']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.a-rei-d-10"
+      ],
+      "module": "9",
+      "lesson": "4"
+    },
+    {
+      "nodeId": "math.im2.example.9.5.025",
+      "title": "Example 1: Graph a System of Inequalities; Identify Feasible Region; Test a Point in the Region",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.a-rei-c-6']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.a-rei-c-6"
+      ],
+      "module": "9",
+      "lesson": "5"
+    },
+    {
+      "nodeId": "math.im2.example.9.5.026",
+      "title": "Example 2: Graph a System of Inequalities; Identify Feasible Region; Test a Point in the Region",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.a-rei-c-6']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.a-rei-c-6"
+      ],
+      "module": "9",
+      "lesson": "5"
+    },
+    {
+      "nodeId": "math.im2.example.9.5.027",
+      "title": "Example 3: Graph a System of Inequalities; Identify Feasible Region; Test a Point in the Region",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.a-rei-c-6']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.a-rei-c-6"
+      ],
+      "module": "9",
+      "lesson": "5"
+    },
+    {
+      "nodeId": "math.im2.example.9.5.028",
+      "title": "Example 4: Linear Programming Setup; Find the Optimal Point; Interpret the Solution in Context",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.a-rei-c-6']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.a-rei-c-6"
+      ],
+      "module": "9",
+      "lesson": "5"
+    },
+    {
+      "nodeId": "math.im2.example.9.5.029",
+      "title": "Example 5: Linear Programming Setup; Find the Optimal Point; Interpret the Solution in Context",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.a-rei-c-6']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.a-rei-c-6"
+      ],
+      "module": "9",
+      "lesson": "5"
+    },
+    {
+      "nodeId": "math.im2.example.9.5.030",
+      "title": "Example 6: Linear Programming Setup; Find the Optimal Point; Interpret the Solution in Context",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.a-rei-c-6']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.a-rei-c-6"
+      ],
+      "module": "9",
+      "lesson": "5"
+    },
+    {
+      "nodeId": "math.im2.skill.1.1.apply-properties-of-circumcenters-and-perpendicular-bisector",
+      "title": "1b: Apply properties of circumcenters and perpendicular bisectors in real-world contexts",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.g-co-c-9']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.g-co-c-9"
+      ],
+      "module": "1",
+      "lesson": "1"
+    },
+    {
+      "nodeId": "math.im2.skill.1.1.find-measures-of-segments-and-angles-using-perpendicular-bis",
+      "title": "1a: Find measures of segments and angles using perpendicular bisector and angle bisector theorems",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.g-co-c-9']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.g-co-c-9"
+      ],
+      "module": "1",
+      "lesson": "1"
+    },
+    {
+      "nodeId": "math.im2.skill.1.2.solve-real-world-problems-involving-angle-bisectors-and-the",
+      "title": "1d: Solve real-world problems involving angle bisectors and the incenter",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.g-co-c-9']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.g-co-c-9"
+      ],
+      "module": "1",
+      "lesson": "2"
+    },
+    {
+      "nodeId": "math.im2.skill.1.2.use-the-angle-bisector-theorem-to-find-angle-and-segment-mea",
+      "title": "1c: Use the Angle Bisector Theorem to find angle and segment measures",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.g-co-c-9']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.g-co-c-9"
+      ],
+      "module": "1",
+      "lesson": "2"
+    },
+    {
+      "nodeId": "math.im2.skill.1.5.use-indirect-reasoning-with-integer-properties-and-geometry",
+      "title": "1j: Use indirect reasoning with integer properties and geometry",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.g-co-a-3']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.g-co-a-3"
+      ],
+      "module": "1",
+      "lesson": "5"
+    },
+    {
+      "nodeId": "math.im2.skill.1.5.write-indirect-proofs-of-algebraic-and-geometric-statements",
+      "title": "1i: Write indirect proofs of algebraic and geometric statements",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.g-co-a-3']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.g-co-a-3"
+      ],
+      "module": "1",
+      "lesson": "5"
+    },
+    {
+      "nodeId": "math.im2.skill.10.1.apply-the-product-rule-quotient-rule-and-power-rule-to-simpl",
+      "title": "10a: Apply the product rule, quotient rule, and power rule to simplify exponential expressions",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.8-ee-a-1', 'math.standard.ccss.n-rn-a-2']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.8-ee-a-1",
+        "math.standard.ccss.n-rn-a-2"
+      ],
+      "module": "10",
+      "lesson": "1"
+    },
+    {
+      "nodeId": "math.im2.skill.10.1.combine-multiple-laws-of-exponents-in-complex-expressions",
+      "title": "10b: Combine multiple laws of exponents in complex expressions",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.8-ee-a-1', 'math.standard.ccss.n-rn-a-2']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.8-ee-a-1",
+        "math.standard.ccss.n-rn-a-2"
+      ],
+      "module": "10",
+      "lesson": "1"
+    },
+    {
+      "nodeId": "math.im2.skill.10.2.rewrite-expressions-with-negative-exponents-using-positive-e",
+      "title": "10c: Rewrite expressions with negative exponents using positive exponents",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.8-ee-a-1', 'math.standard.ccss.n-rn-a-2']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.8-ee-a-1",
+        "math.standard.ccss.n-rn-a-2"
+      ],
+      "module": "10",
+      "lesson": "2"
+    },
+    {
+      "nodeId": "math.im2.skill.10.3.convert-between-standard-form-and-scientific-notation",
+      "title": "10e: Convert between standard form and scientific notation",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.8-ee-a-1', 'math.standard.ccss.8-ee-a-2']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.8-ee-a-1",
+        "math.standard.ccss.8-ee-a-2"
+      ],
+      "module": "10",
+      "lesson": "3"
+    },
+    {
+      "nodeId": "math.im2.skill.10.4.simplify-and-perform-operations-with-radical-expressions",
+      "title": "10g: Simplify and perform operations with radical expressions",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.n-rn-a-1', 'math.standard.ccss.n-rn-a-2']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.n-rn-a-1",
+        "math.standard.ccss.n-rn-a-2"
+      ],
+      "module": "10",
+      "lesson": "4"
+    },
+    {
+      "nodeId": "math.im2.skill.10.5.apply-solving-radical-equations-to-real-world-problems-invol",
+      "title": "10j: Apply solving radical equations to real-world problems involving distance and measurement",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.n-rn-a-2', 'math.standard.ccss.8-ee-a-2']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.n-rn-a-2",
+        "math.standard.ccss.8-ee-a-2"
+      ],
+      "module": "10",
+      "lesson": "5"
+    },
+    {
+      "nodeId": "math.im2.skill.10.5.solve-radical-equations-by-isolating-the-radical-and-squarin",
+      "title": "10i: Solve radical equations by isolating the radical and squaring both sides",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.n-rn-a-2', 'math.standard.ccss.8-ee-a-2']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.n-rn-a-2",
+        "math.standard.ccss.8-ee-a-2"
+      ],
+      "module": "10",
+      "lesson": "5"
+    },
+    {
+      "nodeId": "math.im2.skill.11.1.classify-polynomials-by-degree-number-of-terms-and-write-in",
+      "title": "11a: Classify polynomials by degree, number of terms, and write in standard form",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.hsa-apr-a-1', 'math.standard.ccss.hsa-sse-a-2']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.hsa-apr-a-1",
+        "math.standard.ccss.hsa-sse-a-2"
+      ],
+      "module": "11",
+      "lesson": "1"
+    },
+    {
+      "nodeId": "math.im2.skill.11.1.determine-whether-an-expression-is-a-polynomial-and-identify",
+      "title": "11b: Determine whether an expression is a polynomial and identify restrictions",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.hsa-apr-a-1', 'math.standard.ccss.hsa-sse-a-2']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.hsa-apr-a-1",
+        "math.standard.ccss.hsa-sse-a-2"
+      ],
+      "module": "11",
+      "lesson": "1"
+    },
+    {
+      "nodeId": "math.im2.skill.11.2.add-and-subtract-polynomials-by-combining-like-terms",
+      "title": "11c: Add and subtract polynomials by combining like terms",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.hsa-apr-a-1', 'math.standard.ccss.hsa-apr-b-2']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.hsa-apr-a-1",
+        "math.standard.ccss.hsa-apr-b-2"
+      ],
+      "module": "11",
+      "lesson": "2"
+    },
+    {
+      "nodeId": "math.im2.skill.11.2.apply-addition-of-polynomials-to-find-total-area-in-geometri",
+      "title": "11d: Apply addition of polynomials to find total area in geometric contexts",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.hsa-apr-a-1', 'math.standard.ccss.hsa-apr-b-2']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.hsa-apr-a-1",
+        "math.standard.ccss.hsa-apr-b-2"
+      ],
+      "module": "11",
+      "lesson": "2"
+    },
+    {
+      "nodeId": "math.im2.skill.11.3.multiply-polynomials-in-real-world-area-and-geometric-contex",
+      "title": "11f: Multiply polynomials in real-world area and geometric contexts",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.hsa-apr-a-1', 'math.standard.ccss.hsa-apr-c-4']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.hsa-apr-a-1",
+        "math.standard.ccss.hsa-apr-c-4"
+      ],
+      "module": "11",
+      "lesson": "3"
+    },
+    {
+      "nodeId": "math.im2.skill.11.3.multiply-polynomials-using-the-distributive-property-and-foi",
+      "title": "11e: Multiply polynomials using the distributive property and FOIL",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.hsa-apr-a-1', 'math.standard.ccss.hsa-apr-c-4']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.hsa-apr-a-1",
+        "math.standard.ccss.hsa-apr-c-4"
+      ],
+      "module": "11",
+      "lesson": "3"
+    },
+    {
+      "nodeId": "math.im2.skill.11.4.recognize-and-apply-special-product-patterns-ab-ab-abab",
+      "title": "11g: Recognize and apply special product patterns: (a+b)\u00b2, (a\u2212b)\u00b2, (a+b)(a\u2212b)",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.hsa-apr-c-4', 'math.standard.ccss.hsa-apr-b-3']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.hsa-apr-c-4",
+        "math.standard.ccss.hsa-apr-b-3"
+      ],
+      "module": "11",
+      "lesson": "4"
+    },
+    {
+      "nodeId": "math.im2.skill.11.5.factor-polynomials-using-gcf-grouping-trinomials-and-differe",
+      "title": "11h: Factor polynomials using GCF, grouping, trinomials, and difference of squares",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.hsa-apr-a-1', 'math.standard.ccss.hsa-sse-a-2']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.hsa-apr-a-1",
+        "math.standard.ccss.hsa-sse-a-2"
+      ],
+      "module": "11",
+      "lesson": "5"
+    },
+    {
+      "nodeId": "math.im2.skill.11.6.solve-polynomial-equations-by-factoring-using-the-zero-produ",
+      "title": "11j: Solve polynomial equations by factoring using the Zero Product Property",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.hsa-apr-b-3', 'math.standard.ccss.hsa-apr-b-2']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.hsa-apr-b-3",
+        "math.standard.ccss.hsa-apr-b-2"
+      ],
+      "module": "11",
+      "lesson": "6"
+    },
+    {
+      "nodeId": "math.im2.skill.11.6.write-polynomial-equations-given-zeros-or-a-graph-use-zeros",
+      "title": "11l: Write polynomial equations given zeros or a graph; use zeros to sketch a polynomial",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.hsa-apr-b-3', 'math.standard.ccss.hsa-apr-b-2']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.hsa-apr-b-3",
+        "math.standard.ccss.hsa-apr-b-2"
+      ],
+      "module": "11",
+      "lesson": "6"
+    },
+    {
+      "nodeId": "math.im2.skill.12.1.graph-quadratic-functions-using-key-features-or-a-table-of-v",
+      "title": "12b: Graph quadratic functions using key features or a table of values",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.f-if-c-7', 'math.standard.ccss.f-if-b-4']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.f-if-c-7",
+        "math.standard.ccss.f-if-b-4"
+      ],
+      "module": "12",
+      "lesson": "1"
+    },
+    {
+      "nodeId": "math.im2.skill.12.1.identify-the-axis-of-symmetry-vertex-and-end-behavior-of-a-q",
+      "title": "12a: Identify the axis of symmetry, vertex, and end behavior of a quadratic function from its graph",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.f-if-c-7', 'math.standard.ccss.f-if-b-4']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.f-if-c-7",
+        "math.standard.ccss.f-if-b-4"
+      ],
+      "module": "12",
+      "lesson": "1"
+    },
+    {
+      "nodeId": "math.im2.skill.12.2.describe-how-the-graph-of-a-quadratic-relates-to-y-x-based-o",
+      "title": "12c: Describe how the graph of a quadratic relates to y = x\u00b2 based on translations and dilations",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.f-bf-b-3', 'math.standard.ccss.f-if-c-7']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.f-bf-b-3",
+        "math.standard.ccss.f-if-c-7"
+      ],
+      "module": "12",
+      "lesson": "2"
+    },
+    {
+      "nodeId": "math.im2.skill.12.2.write-quadratic-equations-given-a-graph-using-transformation",
+      "title": "12d: Write quadratic equations given a graph using transformations",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.f-bf-b-3', 'math.standard.ccss.f-if-c-7']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.f-bf-b-3",
+        "math.standard.ccss.f-if-c-7"
+      ],
+      "module": "12",
+      "lesson": "2"
+    },
+    {
+      "nodeId": "math.im2.skill.12.3.interpret-zeros-of-a-quadratic-function-in-real-world-contex",
+      "title": "12f: Interpret zeros of a quadratic function in real-world contexts such as projectile motion",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.a-rei-d-10', 'math.standard.ccss.f-if-c-7']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.a-rei-d-10",
+        "math.standard.ccss.f-if-c-7"
+      ],
+      "module": "12",
+      "lesson": "3"
+    },
+    {
+      "nodeId": "math.im2.skill.12.3.solve-quadratic-equations-by-finding-x-intercepts-of-the-rel",
+      "title": "12e: Solve quadratic equations by finding x-intercepts of the related quadratic function",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.a-rei-d-10', 'math.standard.ccss.f-if-c-7']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.a-rei-d-10",
+        "math.standard.ccss.f-if-c-7"
+      ],
+      "module": "12",
+      "lesson": "3"
+    },
+    {
+      "nodeId": "math.im2.skill.12.4.solve-quadratic-equations-by-factoring-and-using-the-zero-pr",
+      "title": "12g: Solve quadratic equations by factoring and using the Zero Product Property",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.a-apr-b-3', 'math.standard.ccss.a-rei-b-4']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.a-apr-b-3",
+        "math.standard.ccss.a-rei-b-4"
+      ],
+      "module": "12",
+      "lesson": "4"
+    },
+    {
+      "nodeId": "math.im2.skill.12.5.apply-completing-the-square-to-real-world-problems-involving",
+      "title": "12l: Apply completing the square to real-world problems involving projectile motion and optimization",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.a-rei-b-4', 'math.standard.ccss.a-sse-b-3']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.a-rei-b-4",
+        "math.standard.ccss.a-sse-b-3"
+      ],
+      "module": "12",
+      "lesson": "5"
+    },
+    {
+      "nodeId": "math.im2.skill.12.5.find-the-value-of-c-that-completes-the-square-for-a-trinomia",
+      "title": "12i: Find the value of c that completes the square for a trinomial in the form x\u00b2 + bx",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.a-rei-b-4', 'math.standard.ccss.a-sse-b-3']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.a-rei-b-4",
+        "math.standard.ccss.a-sse-b-3"
+      ],
+      "module": "12",
+      "lesson": "5"
+    },
+    {
+      "nodeId": "math.im2.skill.12.5.solve-quadratic-equations-by-completing-the-square",
+      "title": "12j: Solve quadratic equations by completing the square",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.a-rei-b-4', 'math.standard.ccss.a-sse-b-3']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.a-rei-b-4",
+        "math.standard.ccss.a-sse-b-3"
+      ],
+      "module": "12",
+      "lesson": "5"
+    },
+    {
+      "nodeId": "math.im2.skill.12.5.write-quadratic-functions-in-vertex-form-and-identify-extrem",
+      "title": "12k: Write quadratic functions in vertex form and identify extrema and axis of symmetry",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.a-rei-b-4', 'math.standard.ccss.a-sse-b-3']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.a-rei-b-4",
+        "math.standard.ccss.a-sse-b-3"
+      ],
+      "module": "12",
+      "lesson": "5"
+    },
+    {
+      "nodeId": "math.im2.skill.13.1.apply-reciprocal-and-quotient-identities-to-simplify-and-eva",
+      "title": "13a: Apply reciprocal and quotient identities to simplify and evaluate trigonometric expressions",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.f-tf-a-1', 'math.standard.ccss.f-tf-a-2']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.f-tf-a-1",
+        "math.standard.ccss.f-tf-a-2"
+      ],
+      "module": "13",
+      "lesson": "1"
+    },
+    {
+      "nodeId": "math.im2.skill.13.1.verify-trigonometric-identities-using-fundamental-relationsh",
+      "title": "13b: Verify trigonometric identities using fundamental relationships",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.f-tf-a-1', 'math.standard.ccss.f-tf-a-2']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.f-tf-a-1",
+        "math.standard.ccss.f-tf-a-2"
+      ],
+      "module": "13",
+      "lesson": "1"
+    },
+    {
+      "nodeId": "math.im2.skill.13.2.apply-sin-cos-1-and-its-pythagorean-variants",
+      "title": "13c: Apply sin\u00b2\u03b8 + cos\u00b2\u03b8 = 1 and its Pythagorean variants",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.a-sse-a-2', 'math.standard.ccss.f-tf-c-9']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.a-sse-a-2",
+        "math.standard.ccss.f-tf-c-9"
+      ],
+      "module": "13",
+      "lesson": "2"
+    },
+    {
+      "nodeId": "math.im2.skill.13.2.use-pythagorean-identities-to-find-missing-trig-values-and-s",
+      "title": "13d: Use Pythagorean identities to find missing trig values and simplify expressions",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.a-sse-a-2', 'math.standard.ccss.f-tf-c-9']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.a-sse-a-2",
+        "math.standard.ccss.f-tf-c-9"
+      ],
+      "module": "13",
+      "lesson": "2"
+    },
+    {
+      "nodeId": "math.im2.skill.13.3.apply-sum-and-difference-identities-for-sine-cosine-and-tang",
+      "title": "13e: Apply sum and difference identities for sine, cosine, and tangent",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.f-tf-c-8', 'math.standard.ccss.f-tf-a-2']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.f-tf-c-8",
+        "math.standard.ccss.f-tf-a-2"
+      ],
+      "module": "13",
+      "lesson": "3"
+    },
+    {
+      "nodeId": "math.im2.skill.13.4.apply-double-angle-identities-for-sine-cosine-all-three-form",
+      "title": "13g: Apply double-angle identities for sine, cosine (all three forms), and tangent",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.f-tf-c-7', 'math.standard.ccss.f-tf-c-6']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.f-tf-c-7",
+        "math.standard.ccss.f-tf-c-6"
+      ],
+      "module": "13",
+      "lesson": "4"
+    },
+    {
+      "nodeId": "math.im2.skill.13.5.solve-trigonometric-equations-on-a-restricted-domain-using-a",
+      "title": "13i: Solve trigonometric equations on a restricted domain using algebraic manipulation and identities",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.f-tf-c-9', 'math.standard.ccss.f-tf-c-8']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.f-tf-c-9",
+        "math.standard.ccss.f-tf-c-8"
+      ],
+      "module": "13",
+      "lesson": "5"
+    },
+    {
+      "nodeId": "math.im2.skill.13.5.use-graphical-methods-to-verify-solutions-of-trigonometric-e",
+      "title": "13k: Use graphical methods to verify solutions of trigonometric equations",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.f-tf-c-9', 'math.standard.ccss.f-tf-c-8']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.f-tf-c-9",
+        "math.standard.ccss.f-tf-c-8"
+      ],
+      "module": "13",
+      "lesson": "5"
+    },
+    {
+      "nodeId": "math.im2.skill.2.6.apply-kite-properties-and-solve-perimeterarea-problems",
+      "title": "2l: Apply kite properties and solve perimeter/area problems",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.g-co-c-9']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.g-co-c-9"
+      ],
+      "module": "2",
+      "lesson": "6"
+    },
+    {
+      "nodeId": "math.im2.skill.2.6.apply-properties-of-trapezoids-and-isosceles-trapezoids-find",
+      "title": "2k: Apply properties of trapezoids and isosceles trapezoids; find midsegment length",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.g-co-c-9']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.g-co-c-9"
+      ],
+      "module": "2",
+      "lesson": "6"
+    },
+    {
+      "nodeId": "math.im2.skill.2.6.compare-and-classify-quadrilaterals-based-on-their-propertie",
+      "title": "2m: Compare and classify quadrilaterals based on their properties",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.g-co-c-9']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.g-co-c-9"
+      ],
+      "module": "2",
+      "lesson": "6"
+    },
+    {
+      "nodeId": "math.im2.skill.4.2.classify-triangles-as-acute-right-or-obtuse-using-the-conver",
+      "title": "4d: Classify triangles as acute, right, or obtuse using the converse of the Pythagorean Theorem",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.8-g-b-6', 'math.standard.ccss.8-g-b-7']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.8-g-b-6",
+        "math.standard.ccss.8-g-b-7"
+      ],
+      "module": "4",
+      "lesson": "2"
+    },
+    {
+      "nodeId": "math.im2.skill.4.2.find-unknown-side-lengths-in-right-triangles-using-the-pytha",
+      "title": "4c: Find unknown side lengths in right triangles using the Pythagorean Theorem",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.8-g-b-6', 'math.standard.ccss.8-g-b-7']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.8-g-b-6",
+        "math.standard.ccss.8-g-b-7"
+      ],
+      "module": "4",
+      "lesson": "2"
+    },
+    {
+      "nodeId": "math.im2.skill.4.5.find-trigonometric-ratios-sine-cosine-tangent-for-acute-angl",
+      "title": "4i: Find trigonometric ratios (sine, cosine, tangent) for acute angles in right triangles",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.g-srt-c-7']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.g-srt-c-7"
+      ],
+      "module": "4",
+      "lesson": "5"
+    },
+    {
+      "nodeId": "math.im2.skill.4.5.use-trigonometric-ratios-to-find-missing-side-lengths-and-an",
+      "title": "4j: Use trigonometric ratios to find missing side lengths and angle measures; solve right triangles",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.g-srt-c-7']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.g-srt-c-7"
+      ],
+      "module": "4",
+      "lesson": "5"
+    },
+    {
+      "nodeId": "math.im2.skill.4.7.apply-the-law-of-sines-to-find-missing-sides-and-angles-in-o",
+      "title": "4m: Apply the Law of Sines to find missing sides and angles in oblique triangles",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.f-tf-a-1']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.f-tf-a-1"
+      ],
+      "module": "4",
+      "lesson": "7"
+    },
+    {
+      "nodeId": "math.im2.skill.4.7.determine-whether-a-triangle-has-no-solution-one-solution-or",
+      "title": "4n: Determine whether a triangle has no solution, one solution, or two solutions (ambiguous case)",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.f-tf-a-1']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.f-tf-a-1"
+      ],
+      "module": "4",
+      "lesson": "7"
+    },
+    {
+      "nodeId": "math.im2.skill.4.8.apply-the-law-of-cosines-to-find-missing-sides-and-angles-in",
+      "title": "4o: Apply the Law of Cosines to find missing sides and angles in oblique triangles",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.n-cn-a-2']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.n-cn-a-2"
+      ],
+      "module": "4",
+      "lesson": "8"
+    },
+    {
+      "nodeId": "math.im2.skill.4.8.determine-whether-to-use-law-of-sines-or-law-of-cosines-and",
+      "title": "4p: Determine whether to use Law of Sines or Law of Cosines and apply to real-world problems",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.n-cn-a-2']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.n-cn-a-2"
+      ],
+      "module": "4",
+      "lesson": "8"
+    },
+    {
+      "nodeId": "math.im2.skill.5.5.find-angle-measures-involving-tangents-find-perimeters-of-po",
+      "title": "5i: Find angle measures involving tangents; find perimeters of polygons circumscribed about circles",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.g-c-a-4']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.g-c-a-4"
+      ],
+      "module": "5",
+      "lesson": "5"
+    },
+    {
+      "nodeId": "math.im2.skill.5.5.identify-the-number-of-common-tangents-to-pairs-of-circles-d",
+      "title": "5h: Identify the number of common tangents to pairs of circles; determine whether a segment is tangent",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.g-c-a-4']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.g-c-a-4"
+      ],
+      "module": "5",
+      "lesson": "5"
+    },
+    {
+      "nodeId": "math.im2.skill.5.6.apply-angle-measure-relationships-to-find-arc-measures-and-u",
+      "title": "5k: Apply angle measure relationships to find arc measures and unknown angles; relate to real-world contexts",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.g-c-a-4']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.g-c-a-4"
+      ],
+      "module": "5",
+      "lesson": "6"
+    },
+    {
+      "nodeId": "math.im2.skill.5.6.find-angle-measures-formed-by-chords-tangents-and-secants-in",
+      "title": "5j: Find angle measures formed by chords, tangents, and secants (inside, on, and outside circles)",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.g-c-a-4']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.g-c-a-4"
+      ],
+      "module": "5",
+      "lesson": "6"
+    },
+    {
+      "nodeId": "math.im2.skill.6.7.find-volumes-of-composite-solids-involving-cylinders-cones-a",
+      "title": "6o: Find volumes of composite solids involving cylinders, cones, and spheres; apply hemisphere volume",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.g-gmd-a-2']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.g-gmd-a-2"
+      ],
+      "module": "6",
+      "lesson": "7"
+    },
+    {
+      "nodeId": "math.im2.skill.6.7.find-volumes-of-cylinders-cones-and-spheres",
+      "title": "6n: Find volumes of cylinders, cones, and spheres",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.g-gmd-a-2']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.g-gmd-a-2"
+      ],
+      "module": "6",
+      "lesson": "7"
+    },
+    {
+      "nodeId": "math.im2.skill.7.3.compute-permutations-and-interpret-npr-in-context",
+      "title": "7d: Compute permutations and interpret nPr in context",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.7-sp-c-5']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.7-sp-c-5"
+      ],
+      "module": "7",
+      "lesson": "3"
+    },
+    {
+      "nodeId": "math.im2.skill.7.4.compute-combinations-and-interpret-ncr-in-context",
+      "title": "7e: Compute combinations and interpret nCr in context",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.s-cp-c-9']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.s-cp-c-9"
+      ],
+      "module": "7",
+      "lesson": "4"
+    },
+    {
+      "nodeId": "math.im2.skill.7.4.use-combinations-and-permutations-to-solve-real-world-select",
+      "title": "7f: Use combinations and permutations to solve real-world selection problems",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.s-cp-c-9']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.s-cp-c-9"
+      ],
+      "module": "7",
+      "lesson": "4"
+    },
+    {
+      "nodeId": "math.im2.skill.7.6.apply-expected-value-to-real-world-decisions-such-as-insuran",
+      "title": "7j: Apply expected value to real-world decisions such as insurance and raffles",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.s-cp-b-7']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.s-cp-b-7"
+      ],
+      "module": "7",
+      "lesson": "6"
+    },
+    {
+      "nodeId": "math.im2.skill.7.6.calculate-expected-value-to-evaluate-outcomes-of-random-proc",
+      "title": "7i: Calculate expected value to evaluate outcomes of random processes",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.s-cp-b-7']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.s-cp-b-7"
+      ],
+      "module": "7",
+      "lesson": "6"
+    },
+    {
+      "nodeId": "math.im2.skill.8.5.graph-reflections-stretches-and-compressions-of-parent-funct",
+      "title": "8j: Graph reflections, stretches, and compressions of parent functions",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.hsa-ced-a-2', 'math.standard.ccss.hsa-ced-a-3']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.hsa-ced-a-2",
+        "math.standard.ccss.hsa-ced-a-3"
+      ],
+      "module": "8",
+      "lesson": "5"
+    },
+    {
+      "nodeId": "math.im2.skill.8.5.graph-vertical-and-horizontal-shifts-of-parent-functions",
+      "title": "8i: Graph vertical and horizontal shifts of parent functions",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.hsa-ced-a-2', 'math.standard.ccss.hsa-ced-a-3']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.hsa-ced-a-2",
+        "math.standard.ccss.hsa-ced-a-3"
+      ],
+      "module": "8",
+      "lesson": "5"
+    },
+    {
+      "nodeId": "math.im2.skill.8.6.compare-two-or-more-functions-represented-as-graphs-tables-e",
+      "title": "8k: Compare two or more functions represented as graphs, tables, equations, and verbal descriptions",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.hsf-if-c-7b']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.hsf-if-c-7b"
+      ],
+      "module": "8",
+      "lesson": "6"
+    },
+    {
+      "nodeId": "math.im2.skill.9.1.identify-equations-with-no-solution-or-infinitely-many-solut",
+      "title": "9b: Identify equations with no solution or infinitely many solutions",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.a-rei-a-1']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.a-rei-a-1"
+      ],
+      "module": "9",
+      "lesson": "1"
+    },
+    {
+      "nodeId": "math.im2.skill.9.1.solve-multi-step-linear-equations-with-variables-on-one-or-b",
+      "title": "9a: Solve multi-step linear equations with variables on one or both sides",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.a-rei-a-1']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.a-rei-a-1"
+      ],
+      "module": "9",
+      "lesson": "1"
+    },
+    {
+      "nodeId": "math.im2.skill.9.2.graph-linear-equations-using-slope-intercept-standard-and-po",
+      "title": "9c: Graph linear equations using slope-intercept, standard, and point-slope form",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.a-rei-b-3']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.a-rei-b-3"
+      ],
+      "module": "9",
+      "lesson": "2"
+    },
+    {
+      "nodeId": "math.im2.skill.9.3.interpret-solutions-of-linear-inequalities-in-context",
+      "title": "9f: Interpret solutions of linear inequalities in context",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.a-ced-a-2']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.a-ced-a-2"
+      ],
+      "module": "9",
+      "lesson": "3"
+    },
+    {
+      "nodeId": "math.im2.skill.9.3.solve-and-graph-one-variable-and-two-variable-linear-inequal",
+      "title": "9e: Solve and graph one-variable and two-variable linear inequalities",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.a-ced-a-2']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.a-ced-a-2"
+      ],
+      "module": "9",
+      "lesson": "3"
+    },
+    {
+      "nodeId": "math.im2.skill.9.4.solve-systems-of-equations-by-graphing-substitution-and-elim",
+      "title": "9g: Solve systems of equations by graphing, substitution, and elimination",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.a-rei-d-10']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.a-rei-d-10"
+      ],
+      "module": "9",
+      "lesson": "4"
+    },
+    {
+      "nodeId": "math.im2.skill.9.5.apply-linear-programming-to-real-world-optimization-problems",
+      "title": "9j: Apply linear programming to real-world optimization problems",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.a-rei-c-6']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.a-rei-c-6"
+      ],
+      "module": "9",
+      "lesson": "5"
+    },
+    {
+      "nodeId": "math.im2.skill.9.5.graph-systems-of-linear-inequalities-and-identify-the-soluti",
+      "title": "9i: Graph systems of linear inequalities and identify the solution region",
+      "issue": "PLACEHOLDER_ALIGNMENT",
+      "reason": "Aligned only to placeholder standards: ['math.standard.ccss.a-rei-c-6']",
+      "placeholderStandardIds": [
+        "math.standard.ccss.a-rei-c-6"
+      ],
+      "module": "9",
+      "lesson": "5"
+    }
+  ]
+}

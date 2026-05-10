@@ -1,0 +1,929 @@
+{
+  "nodes": [
+    {
+      "id": "math.im3",
+      "kind": "domain",
+      "title": "Integrated Math 3",
+      "domain": "math.im3",
+      "description": "Students develop a deep understanding of quadratic relationships, multiple solution methods, and extend solutions into the complex number system. Emphasis is placed on connecting algebraic procedures with graphical meaning.",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md",
+        "apps/integrated-math-3/curriculum/module-2-class-period-plan.md",
+        "apps/integrated-math-3/curriculum/module-3-class-period-plan.md",
+        "apps/integrated-math-3/curriculum/module-4-class-period-plan.md",
+        "apps/integrated-math-3/curriculum/module-5-class-period-plan.md",
+        "apps/integrated-math-3/curriculum/module-6-class-period-plan.md",
+        "apps/integrated-math-3/curriculum/module-7-class-period-plan.md",
+        "apps/integrated-math-3/curriculum/module-8-class-period-plan.md",
+        "apps/integrated-math-3/curriculum/module-9-class-period-plan.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3"
+      }
+    },
+    {
+      "id": "math.im3.example.8.1.001",
+      "kind": "worked_example",
+      "title": "Example 1: Classify a Random Sample; Identify Sample Bias; Identify Biased Questions",
+      "domain": "math.im3",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-8-class-period-plan.md (8-1, Example 1)"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "8",
+        "lesson": "1",
+        "exampleNumber": 1,
+        "sourceLesson": "8-1",
+        "rawText": "8-1, Examples 1-3 \u2014 Classify a Random Sample; Identify Sample Bias; Identify Biased Questions"
+      }
+    },
+    {
+      "id": "math.im3.example.8.1.002",
+      "kind": "worked_example",
+      "title": "Example 2: Classify a Random Sample; Identify Sample Bias; Identify Biased Questions",
+      "domain": "math.im3",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-8-class-period-plan.md (8-1, Example 2)"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "8",
+        "lesson": "1",
+        "exampleNumber": 2,
+        "sourceLesson": "8-1",
+        "rawText": "8-1, Examples 1-3 \u2014 Classify a Random Sample; Identify Sample Bias; Identify Biased Questions"
+      }
+    },
+    {
+      "id": "math.im3.example.8.1.003",
+      "kind": "worked_example",
+      "title": "Example 3: Classify a Random Sample; Identify Sample Bias; Identify Biased Questions",
+      "domain": "math.im3",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-8-class-period-plan.md (8-1, Example 3)"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "8",
+        "lesson": "1",
+        "exampleNumber": 3,
+        "sourceLesson": "8-1",
+        "rawText": "8-1, Examples 1-3 \u2014 Classify a Random Sample; Identify Sample Bias; Identify Biased Questions"
+      }
+    },
+    {
+      "id": "math.im3.example.8.1.004",
+      "kind": "worked_example",
+      "title": "Example 4: Classify Study Types; Design a Survey; Draw Conclusions from a Study; Identify Bias in Studies",
+      "domain": "math.im3",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-8-class-period-plan.md (8-1, Example 4)"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "8",
+        "lesson": "1",
+        "exampleNumber": 4,
+        "sourceLesson": "8-1",
+        "rawText": "8-1, Examples 4-7 \u2014 Classify Study Types; Design a Survey; Draw Conclusions from a Study; Identify Bias in Studies"
+      }
+    },
+    {
+      "id": "math.im3.example.8.1.005",
+      "kind": "worked_example",
+      "title": "Example 5: Classify Study Types; Design a Survey; Draw Conclusions from a Study; Identify Bias in Studies",
+      "domain": "math.im3",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-8-class-period-plan.md (8-1, Example 5)"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "8",
+        "lesson": "1",
+        "exampleNumber": 5,
+        "sourceLesson": "8-1",
+        "rawText": "8-1, Examples 4-7 \u2014 Classify Study Types; Design a Survey; Draw Conclusions from a Study; Identify Bias in Studies"
+      }
+    },
+    {
+      "id": "math.im3.example.8.1.006",
+      "kind": "worked_example",
+      "title": "Example 6: Classify Study Types; Design a Survey; Draw Conclusions from a Study; Identify Bias in Studies",
+      "domain": "math.im3",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-8-class-period-plan.md (8-1, Example 6)"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "8",
+        "lesson": "1",
+        "exampleNumber": 6,
+        "sourceLesson": "8-1",
+        "rawText": "8-1, Examples 4-7 \u2014 Classify Study Types; Design a Survey; Draw Conclusions from a Study; Identify Bias in Studies"
+      }
+    },
+    {
+      "id": "math.im3.example.8.1.007",
+      "kind": "worked_example",
+      "title": "Example 7: Classify Study Types; Design a Survey; Draw Conclusions from a Study; Identify Bias in Studies",
+      "domain": "math.im3",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-8-class-period-plan.md (8-1, Example 7)"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "8",
+        "lesson": "1",
+        "exampleNumber": 7,
+        "sourceLesson": "8-1",
+        "rawText": "8-1, Examples 4-7 \u2014 Classify Study Types; Design a Survey; Draw Conclusions from a Study; Identify Bias in Studies"
+      }
+    },
+    {
+      "id": "math.im3.example.8.2.008",
+      "kind": "worked_example",
+      "title": "Example 1: Find Probabilities",
+      "domain": "math.im3",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-8-class-period-plan.md (8-2, Example 1)"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "8",
+        "lesson": "2",
+        "exampleNumber": 1,
+        "sourceLesson": "8-2",
+        "rawText": "8-2, Example 1 \u2014 Find Probabilities"
+      }
+    },
+    {
+      "id": "math.im3.example.8.2.009",
+      "kind": "worked_example",
+      "title": "Example 2: Design and Run a Simulation; Run and Evaluate a Simulation",
+      "domain": "math.im3",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-8-class-period-plan.md (8-2, Example 2)"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "8",
+        "lesson": "2",
+        "exampleNumber": 2,
+        "sourceLesson": "8-2",
+        "rawText": "8-2, Examples 2-3 \u2014 Design and Run a Simulation; Run and Evaluate a Simulation"
+      }
+    },
+    {
+      "id": "math.im3.example.8.2.010",
+      "kind": "worked_example",
+      "title": "Example 3: Design and Run a Simulation; Run and Evaluate a Simulation",
+      "domain": "math.im3",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-8-class-period-plan.md (8-2, Example 3)"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "8",
+        "lesson": "2",
+        "exampleNumber": 3,
+        "sourceLesson": "8-2",
+        "rawText": "8-2, Examples 2-3 \u2014 Design and Run a Simulation; Run and Evaluate a Simulation"
+      }
+    },
+    {
+      "id": "math.im3.example.8.3.011",
+      "kind": "worked_example",
+      "title": "Example 1: Find a Standard Deviation; Calculate Statistics; Compare Distributions",
+      "domain": "math.im3",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-8-class-period-plan.md (8-3, Example 1)"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "8",
+        "lesson": "3",
+        "exampleNumber": 1,
+        "sourceLesson": "8-3",
+        "rawText": "8-3, Examples 1-3 \u2014 Find a Standard Deviation; Calculate Statistics; Compare Distributions"
+      }
+    },
+    {
+      "id": "math.im3.example.8.3.012",
+      "kind": "worked_example",
+      "title": "Example 2: Find a Standard Deviation; Calculate Statistics; Compare Distributions",
+      "domain": "math.im3",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-8-class-period-plan.md (8-3, Example 2)"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "8",
+        "lesson": "3",
+        "exampleNumber": 2,
+        "sourceLesson": "8-3",
+        "rawText": "8-3, Examples 1-3 \u2014 Find a Standard Deviation; Calculate Statistics; Compare Distributions"
+      }
+    },
+    {
+      "id": "math.im3.example.8.3.013",
+      "kind": "worked_example",
+      "title": "Example 3: Find a Standard Deviation; Calculate Statistics; Compare Distributions",
+      "domain": "math.im3",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-8-class-period-plan.md (8-3, Example 3)"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "8",
+        "lesson": "3",
+        "exampleNumber": 3,
+        "sourceLesson": "8-3",
+        "rawText": "8-3, Examples 1-3 \u2014 Find a Standard Deviation; Calculate Statistics; Compare Distributions"
+      }
+    },
+    {
+      "id": "math.im3.example.8.4.014",
+      "kind": "worked_example",
+      "title": "Example 1: Classify Random Variables; Analyze a Probability Distribution; Misleading Distributions",
+      "domain": "math.im3",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-8-class-period-plan.md (8-4, Example 1)"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "8",
+        "lesson": "4",
+        "exampleNumber": 1,
+        "sourceLesson": "8-4",
+        "rawText": "8-4, Examples 1-3 \u2014 Classify Random Variables; Analyze a Probability Distribution; Misleading Distributions"
+      }
+    },
+    {
+      "id": "math.im3.example.8.4.015",
+      "kind": "worked_example",
+      "title": "Example 2: Classify Random Variables; Analyze a Probability Distribution; Misleading Distributions",
+      "domain": "math.im3",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-8-class-period-plan.md (8-4, Example 2)"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "8",
+        "lesson": "4",
+        "exampleNumber": 2,
+        "sourceLesson": "8-4",
+        "rawText": "8-4, Examples 1-3 \u2014 Classify Random Variables; Analyze a Probability Distribution; Misleading Distributions"
+      }
+    },
+    {
+      "id": "math.im3.example.8.4.016",
+      "kind": "worked_example",
+      "title": "Example 3: Classify Random Variables; Analyze a Probability Distribution; Misleading Distributions",
+      "domain": "math.im3",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-8-class-period-plan.md (8-4, Example 3)"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "8",
+        "lesson": "4",
+        "exampleNumber": 3,
+        "sourceLesson": "8-4",
+        "rawText": "8-4, Examples 1-3 \u2014 Classify Random Variables; Analyze a Probability Distribution; Misleading Distributions"
+      }
+    },
+    {
+      "id": "math.im3.example.8.4.017",
+      "kind": "worked_example",
+      "title": "Example 4: Approximate Data by Using a Normal Distribution; Use the Empirical Rule to Analyze Data",
+      "domain": "math.im3",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-8-class-period-plan.md (8-4, Example 4)"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "8",
+        "lesson": "4",
+        "exampleNumber": 4,
+        "sourceLesson": "8-4",
+        "rawText": "8-4, Examples 4-5 \u2014 Approximate Data by Using a Normal Distribution; Use the Empirical Rule to Analyze Data"
+      }
+    },
+    {
+      "id": "math.im3.example.8.4.018",
+      "kind": "worked_example",
+      "title": "Example 5: Approximate Data by Using a Normal Distribution; Use the Empirical Rule to Analyze Data",
+      "domain": "math.im3",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-8-class-period-plan.md (8-4, Example 5)"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "8",
+        "lesson": "4",
+        "exampleNumber": 5,
+        "sourceLesson": "8-4",
+        "rawText": "8-4, Examples 4-5 \u2014 Approximate Data by Using a Normal Distribution; Use the Empirical Rule to Analyze Data"
+      }
+    },
+    {
+      "id": "math.im3.example.8.4.019",
+      "kind": "worked_example",
+      "title": "Example 6: Use z-Values to Locate Position; Find Area Under the Standard Normal Curve by Using a Table; Find Area Under the Standard Normal Curve by Using a Calculator",
+      "domain": "math.im3",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-8-class-period-plan.md (8-4, Example 6)"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "8",
+        "lesson": "4",
+        "exampleNumber": 6,
+        "sourceLesson": "8-4",
+        "rawText": "8-4, Examples 6-8 \u2014 Use z-Values to Locate Position; Find Area Under the Standard Normal Curve by Using a Table; Find Area Under the Standard Normal Curve by Using a Calculator"
+      }
+    },
+    {
+      "id": "math.im3.example.8.4.020",
+      "kind": "worked_example",
+      "title": "Example 7: Use z-Values to Locate Position; Find Area Under the Standard Normal Curve by Using a Table; Find Area Under the Standard Normal Curve by Using a Calculator",
+      "domain": "math.im3",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-8-class-period-plan.md (8-4, Example 7)"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "8",
+        "lesson": "4",
+        "exampleNumber": 7,
+        "sourceLesson": "8-4",
+        "rawText": "8-4, Examples 6-8 \u2014 Use z-Values to Locate Position; Find Area Under the Standard Normal Curve by Using a Table; Find Area Under the Standard Normal Curve by Using a Calculator"
+      }
+    },
+    {
+      "id": "math.im3.example.8.4.021",
+      "kind": "worked_example",
+      "title": "Example 8: Use z-Values to Locate Position; Find Area Under the Standard Normal Curve by Using a Table; Find Area Under the Standard Normal Curve by Using a Calculator",
+      "domain": "math.im3",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-8-class-period-plan.md (8-4, Example 8)"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "8",
+        "lesson": "4",
+        "exampleNumber": 8,
+        "sourceLesson": "8-4",
+        "rawText": "8-4, Examples 6-8 \u2014 Use z-Values to Locate Position; Find Area Under the Standard Normal Curve by Using a Table; Find Area Under the Standard Normal Curve by Using a Calculator"
+      }
+    },
+    {
+      "id": "math.im3.example.8.5.022",
+      "kind": "worked_example",
+      "title": "Example 1: Find the Maximum Error of the Estimate; Estimate a Population Mean",
+      "domain": "math.im3",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-8-class-period-plan.md (8-5, Example 1)"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "8",
+        "lesson": "5",
+        "exampleNumber": 1,
+        "sourceLesson": "8-5",
+        "rawText": "8-5, Examples 1-2 \u2014 Find the Maximum Error of the Estimate; Estimate a Population Mean"
+      }
+    },
+    {
+      "id": "math.im3.example.8.5.023",
+      "kind": "worked_example",
+      "title": "Example 2: Find the Maximum Error of the Estimate; Estimate a Population Mean",
+      "domain": "math.im3",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-8-class-period-plan.md (8-5, Example 2)"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "8",
+        "lesson": "5",
+        "exampleNumber": 2,
+        "sourceLesson": "8-5",
+        "rawText": "8-5, Examples 1-2 \u2014 Find the Maximum Error of the Estimate; Estimate a Population Mean"
+      }
+    },
+    {
+      "id": "math.im3.lesson.8.1",
+      "kind": "instructional_unit",
+      "title": "Random Sampling",
+      "domain": "math.im3",
+      "description": "Bias and representative samples.",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-8-class-period-plan.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "8",
+        "lesson": "1"
+      }
+    },
+    {
+      "id": "math.im3.lesson.8.2",
+      "kind": "instructional_unit",
+      "title": "Using Statistical Experiments",
+      "domain": "math.im3",
+      "description": "Simulations and experimental design.",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-8-class-period-plan.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "8",
+        "lesson": "2"
+      }
+    },
+    {
+      "id": "math.im3.lesson.8.3",
+      "kind": "instructional_unit",
+      "title": "Analyzing Population Data",
+      "domain": "math.im3",
+      "description": "Measures of center and spread.",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-8-class-period-plan.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "8",
+        "lesson": "3"
+      }
+    },
+    {
+      "id": "math.im3.lesson.8.4",
+      "kind": "instructional_unit",
+      "title": "Normal Distributions",
+      "domain": "math.im3",
+      "description": "Bell curve, z-scores, and probabilities.",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-8-class-period-plan.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "8",
+        "lesson": "4"
+      }
+    },
+    {
+      "id": "math.im3.lesson.8.5",
+      "kind": "instructional_unit",
+      "title": "Estimating Population Parameters",
+      "domain": "math.im3",
+      "description": "Confidence intervals and inference.",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-8-class-period-plan.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "8",
+        "lesson": "5"
+      }
+    },
+    {
+      "id": "math.im3.module.8",
+      "kind": "content_group",
+      "title": "Inferential Statistics",
+      "domain": "math.im3",
+      "description": "Students use data and probability to draw conclusions about populations.",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-8-class-period-plan.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "8"
+      }
+    },
+    {
+      "id": "math.im3.skill.8.1.classify-sampling-methods-and-identify-bias-in-samples-and-s",
+      "kind": "skill",
+      "title": "8a: Classify sampling methods and identify bias in samples and survey questions",
+      "domain": "math.im3",
+      "description": "Classify sampling methods and identify bias in samples and survey questions",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-8-class-period-plan.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "8",
+        "lesson": "1"
+      }
+    },
+    {
+      "id": "math.im3.skill.8.1.distinguish-among-sample-surveys-experiments-and-observation",
+      "kind": "skill",
+      "title": "8b: Distinguish among sample surveys, experiments, and observational studies",
+      "domain": "math.im3",
+      "description": "Distinguish among sample surveys, experiments, and observational studies",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-8-class-period-plan.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "8",
+        "lesson": "1"
+      }
+    },
+    {
+      "id": "math.im3.skill.8.2.compare-theoretical-and-experimental-probabilities",
+      "kind": "skill",
+      "title": "8c: Compare theoretical and experimental probabilities",
+      "domain": "math.im3",
+      "description": "Compare theoretical and experimental probabilities",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-8-class-period-plan.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "8",
+        "lesson": "2"
+      }
+    },
+    {
+      "id": "math.im3.skill.8.2.determine-whether-models-are-consistent-with-results-from-si",
+      "kind": "skill",
+      "title": "8d: Determine whether models are consistent with results from simulations of real-life situations",
+      "domain": "math.im3",
+      "description": "Determine whether models are consistent with results from simulations of real-life situations",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-8-class-period-plan.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "8",
+        "lesson": "2"
+      }
+    },
+    {
+      "id": "math.im3.skill.8.3.describe-distributions-by-finding-their-mean-and-standard-de",
+      "kind": "skill",
+      "title": "8e: Describe distributions by finding their mean and standard deviation",
+      "domain": "math.im3",
+      "description": "Describe distributions by finding their mean and standard deviation",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-8-class-period-plan.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "8",
+        "lesson": "3"
+      }
+    },
+    {
+      "id": "math.im3.skill.8.4.analyze-normally-distributed-variables-by-using-the-empirica",
+      "kind": "skill",
+      "title": "8g: Analyze normally distributed variables by using the Empirical Rule",
+      "domain": "math.im3",
+      "description": "Analyze normally distributed variables by using the Empirical Rule",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-8-class-period-plan.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "8",
+        "lesson": "4"
+      }
+    },
+    {
+      "id": "math.im3.skill.8.4.analyze-standardized-data-and-distributions-by-using-z-value",
+      "kind": "skill",
+      "title": "8h: Analyze standardized data and distributions by using z-values",
+      "domain": "math.im3",
+      "description": "Analyze standardized data and distributions by using z-values",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-8-class-period-plan.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "8",
+        "lesson": "4"
+      }
+    },
+    {
+      "id": "math.im3.skill.8.4.classify-variables-and-analyze-probability-distributions-to",
+      "kind": "skill",
+      "title": "8f: Classify variables and analyze probability distributions to determine expected outcomes",
+      "domain": "math.im3",
+      "description": "Classify variables and analyze probability distributions to determine expected outcomes",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-8-class-period-plan.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "8",
+        "lesson": "4"
+      }
+    },
+    {
+      "id": "math.im3.skill.8.5.use-sample-data-to-infer-a-population-mean-by-using-confiden",
+      "kind": "skill",
+      "title": "8i: Use sample data to infer a population mean by using confidence intervals",
+      "domain": "math.im3",
+      "description": "Use sample data to infer a population mean by using confidence intervals",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-8-class-period-plan.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "8",
+        "lesson": "5"
+      }
+    },
+    {
+      "id": "math.im3.skill.8.5.use-sample-data-to-infer-a-population-proportion-by-using-co",
+      "kind": "skill",
+      "title": "8j: Use sample data to infer a population proportion by using confidence intervals",
+      "domain": "math.im3",
+      "description": "Use sample data to infer a population proportion by using confidence intervals",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-8-class-period-plan.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "8",
+        "lesson": "5"
+      }
+    },
+    {
+      "id": "math.im3.skill.8.aleks.confidence-interval-mean",
+      "kind": "concept",
+      "title": "confidence_interval_mean",
+      "domain": "math.im3",
+      "description": "Maximum error and population mean intervals.",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-8-class-period-plan.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "8",
+        "source": "aleks-registry",
+        "familyKey": "confidence_interval_mean",
+        "objectives": [
+          "8i"
+        ],
+        "sourceExamples": "8-5, Examples 1-2",
+        "interactionShape": "interval calculator + interpretation",
+        "status": "planned"
+      }
+    },
+    {
+      "id": "math.im3.skill.8.aleks.confidence-interval-proportion",
+      "kind": "concept",
+      "title": "confidence_interval_proportion",
+      "domain": "math.im3",
+      "description": "Population proportion intervals and misleading estimate critique.",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-8-class-period-plan.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "8",
+        "source": "aleks-registry",
+        "familyKey": "confidence_interval_proportion",
+        "objectives": [
+          "8j",
+          "8i"
+        ],
+        "sourceExamples": "8-5, Apply Example 3 and Example 4",
+        "interactionShape": "interval calculator + critique",
+        "status": "planned"
+      }
+    },
+    {
+      "id": "math.im3.skill.8.aleks.distribution-mean-standard-deviation",
+      "kind": "concept",
+      "title": "distribution_mean_standard_deviation",
+      "domain": "math.im3",
+      "description": "Mean, variance/standard deviation, and distribution comparison.",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-8-class-period-plan.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "8",
+        "source": "aleks-registry",
+        "familyKey": "distribution_mean_standard_deviation",
+        "objectives": [
+          "8e"
+        ],
+        "sourceExamples": "8-3, Examples 1-3",
+        "interactionShape": "statistics table + comparison",
+        "status": "planned"
+      }
+    },
+    {
+      "id": "math.im3.skill.8.aleks.normal-distribution-empirical-rule",
+      "kind": "concept",
+      "title": "normal_distribution_empirical_rule",
+      "domain": "math.im3",
+      "description": "Approximate data and apply the 68-95-99.7 rule.",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-8-class-period-plan.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "8",
+        "source": "aleks-registry",
+        "familyKey": "normal_distribution_empirical_rule",
+        "objectives": [
+          "8g"
+        ],
+        "sourceExamples": "8-4, Examples 4-5",
+        "interactionShape": "normal-curve interval tool",
+        "status": "planned"
+      }
+    },
+    {
+      "id": "math.im3.skill.8.aleks.probability-distribution-analysis",
+      "kind": "concept",
+      "title": "probability_distribution_analysis",
+      "domain": "math.im3",
+      "description": "Variable types, valid distributions, expected outcomes, misleading displays.",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-8-class-period-plan.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "8",
+        "source": "aleks-registry",
+        "familyKey": "probability_distribution_analysis",
+        "objectives": [
+          "8f"
+        ],
+        "sourceExamples": "8-4, Examples 1-3",
+        "interactionShape": "classification + expected value table",
+        "status": "planned"
+      }
+    },
+    {
+      "id": "math.im3.skill.8.aleks.sampling-bias-classification",
+      "kind": "concept",
+      "title": "sampling_bias_classification",
+      "domain": "math.im3",
+      "description": "Sampling methods, sample bias, biased questions, and study bias.",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-8-class-period-plan.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "8",
+        "source": "aleks-registry",
+        "familyKey": "sampling_bias_classification",
+        "objectives": [
+          "8a"
+        ],
+        "sourceExamples": "8-1, Examples 1-3 and 7",
+        "interactionShape": "classification + written explanation",
+        "status": "planned"
+      }
+    },
+    {
+      "id": "math.im3.skill.8.aleks.simulation-model-evaluation",
+      "kind": "concept",
+      "title": "simulation_model_evaluation",
+      "domain": "math.im3",
+      "description": "Define simulation, run/evaluate trials, and decide model consistency.",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-8-class-period-plan.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "8",
+        "source": "aleks-registry",
+        "familyKey": "simulation_model_evaluation",
+        "objectives": [
+          "8d",
+          "8c"
+        ],
+        "sourceExamples": "8-2, Examples 2-3",
+        "interactionShape": "simulation design + table analysis",
+        "status": "planned"
+      }
+    },
+    {
+      "id": "math.im3.skill.8.aleks.study-design-classification",
+      "kind": "concept",
+      "title": "study_design_classification",
+      "domain": "math.im3",
+      "description": "Survey, experiment, observational study, and conclusion validity.",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-8-class-period-plan.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "8",
+        "source": "aleks-registry",
+        "familyKey": "study_design_classification",
+        "objectives": [
+          "8b",
+          "8a"
+        ],
+        "sourceExamples": "8-1, Examples 4-6",
+        "interactionShape": "classification + explanation",
+        "status": "planned"
+      }
+    },
+    {
+      "id": "math.im3.skill.8.aleks.theoretical-experimental-probability",
+      "kind": "concept",
+      "title": "theoretical_experimental_probability",
+      "domain": "math.im3",
+      "description": "Compute and compare theoretical and experimental probabilities.",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-8-class-period-plan.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "8",
+        "source": "aleks-registry",
+        "familyKey": "theoretical_experimental_probability",
+        "objectives": [
+          "8c"
+        ],
+        "sourceExamples": "8-2, Example 1",
+        "interactionShape": "numeric solver + comparison",
+        "status": "planned"
+      }
+    },
+    {
+      "id": "math.im3.skill.8.aleks.z-score-standard-normal-analysis",
+      "kind": "concept",
+      "title": "z_score_standard_normal_analysis",
+      "domain": "math.im3",
+      "description": "Locate position, table area, and calculator area.",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-8-class-period-plan.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "8",
+        "source": "aleks-registry",
+        "familyKey": "z_score_standard_normal_analysis",
+        "objectives": [
+          "8h",
+          "8g"
+        ],
+        "sourceExamples": "8-4, Examples 6-8",
+        "interactionShape": "z-score solver + normal table",
+        "status": "planned"
+      }
+    }
+  ]
+}

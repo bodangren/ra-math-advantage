@@ -74,11 +74,11 @@
       }
     },
     {
-      "id": "math.precalc.unit.1",
+      "id": "math.precalc.module.1",
       "kind": "content_group",
-      "title": "Unit 1: Polynomial and Rational Functions",
+      "title": "Module 1: Polynomial and Rational Functions",
       "domain": "math.precalc",
-      "description": "AP Precalculus Unit 1: Polynomial and Rational Functions",
+      "description": "AP Precalculus Module 1: Polynomial and Rational Functions",
       "sourceRefs": [
         "apps/pre-calculus/curriculum/unit-1-class-period-plan.md"
       ],
@@ -89,11 +89,11 @@
       }
     },
     {
-      "id": "math.precalc.unit.2",
+      "id": "math.precalc.module.2",
       "kind": "content_group",
-      "title": "Unit 2: Exponential and Logarithmic Functions",
+      "title": "Module 2: Exponential and Logarithmic Functions",
       "domain": "math.precalc",
-      "description": "AP Precalculus Unit 2: Exponential and Logarithmic Functions",
+      "description": "AP Precalculus Module 2: Exponential and Logarithmic Functions",
       "sourceRefs": [
         "apps/pre-calculus/curriculum/unit-2-class-period-plan.md"
       ],
@@ -104,11 +104,11 @@
       }
     },
     {
-      "id": "math.precalc.unit.3",
+      "id": "math.precalc.module.3",
       "kind": "content_group",
-      "title": "Unit 3: Trigonometric and Polar Functions",
+      "title": "Module 3: Trigonometric and Polar Functions",
       "domain": "math.precalc",
-      "description": "AP Precalculus Unit 3: Trigonometric and Polar Functions",
+      "description": "AP Precalculus Module 3: Trigonometric and Polar Functions",
       "sourceRefs": [
         "apps/pre-calculus/curriculum/unit-3-class-period-plan.md"
       ],
@@ -119,11 +119,11 @@
       }
     },
     {
-      "id": "math.precalc.unit.4",
+      "id": "math.precalc.module.4",
       "kind": "content_group",
-      "title": "Unit 4: Functions Involving Parameters, Vectors, and Matrices",
+      "title": "Module 4: Functions Involving Parameters, Vectors, and Matrices",
       "domain": "math.precalc",
-      "description": "AP Precalculus Unit 4: Functions Involving Parameters, Vectors, and Matrices",
+      "description": "AP Precalculus Module 4: Functions Involving Parameters, Vectors, and Matrices",
       "sourceRefs": [
         "apps/pre-calculus/curriculum/unit-4-class-period-plan.md"
       ],
@@ -369,6 +369,18 @@
         "course": "precalc",
         "unit": "1",
         "lesson": "14"
+      }
+    },
+    {
+      "id": "math.precalc.lesson.1.15",
+      "kind": "instructional_unit",
+      "title": "Unit 1 Review / Assessment",
+      "domain": "math.precalc",
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "precalc",
+        "unit": "1",
+        "lesson": "15"
       }
     },
     {
@@ -5039,7 +5051,8 @@
       "metadata": {
         "course": "precalc",
         "unit": "4",
-        "lesson": "1"
+        "lesson": "1",
+        "sourceNotes": "source-limited"
       },
       "rendererKey": "comprehension-quiz",
       "exceptions": [
@@ -5065,7 +5078,8 @@
       "metadata": {
         "course": "precalc",
         "unit": "4",
-        "lesson": "2"
+        "lesson": "2",
+        "sourceNotes": "source-limited"
       },
       "rendererKey": "comprehension-quiz",
       "exceptions": [
@@ -5091,7 +5105,8 @@
       "metadata": {
         "course": "precalc",
         "unit": "4",
-        "lesson": "3"
+        "lesson": "3",
+        "sourceNotes": "source-limited"
       },
       "rendererKey": "rate-of-change-calculator",
       "exceptions": [
@@ -5117,7 +5132,8 @@
       "metadata": {
         "course": "precalc",
         "unit": "4",
-        "lesson": "4"
+        "lesson": "4",
+        "sourceNotes": "source-limited"
       },
       "rendererKey": "graphing-explorer",
       "exceptions": [
@@ -5143,7 +5159,8 @@
       "metadata": {
         "course": "precalc",
         "unit": "4",
-        "lesson": "5"
+        "lesson": "5",
+        "sourceNotes": "source-limited"
       },
       "rendererKey": "comprehension-quiz",
       "exceptions": [
@@ -5169,7 +5186,8 @@
       "metadata": {
         "course": "precalc",
         "unit": "4",
-        "lesson": "6"
+        "lesson": "6",
+        "sourceNotes": "source-limited"
       },
       "rendererKey": "comprehension-quiz",
       "exceptions": [
@@ -5195,7 +5213,8 @@
       "metadata": {
         "course": "precalc",
         "unit": "4",
-        "lesson": "7"
+        "lesson": "7",
+        "sourceNotes": "source-limited"
       },
       "rendererKey": "graphing-explorer",
       "exceptions": [
@@ -5221,7 +5240,8 @@
       "metadata": {
         "course": "precalc",
         "unit": "4",
-        "lesson": "8"
+        "lesson": "8",
+        "sourceNotes": "source-limited"
       },
       "rendererKey": "comprehension-quiz",
       "exceptions": [
@@ -5247,7 +5267,8 @@
       "metadata": {
         "course": "precalc",
         "unit": "4",
-        "lesson": "9"
+        "lesson": "9",
+        "sourceNotes": "source-limited"
       },
       "rendererKey": "comprehension-quiz",
       "exceptions": [
@@ -5273,7 +5294,8 @@
       "metadata": {
         "course": "precalc",
         "unit": "4",
-        "lesson": "10"
+        "lesson": "10",
+        "sourceNotes": "source-limited"
       },
       "rendererKey": "step-by-step-solver",
       "exceptions": [
@@ -5299,7 +5321,8 @@
       "metadata": {
         "course": "precalc",
         "unit": "4",
-        "lesson": "11"
+        "lesson": "11",
+        "sourceNotes": "source-limited"
       },
       "rendererKey": "step-by-step-solver",
       "exceptions": [
@@ -5325,7 +5348,8 @@
       "metadata": {
         "course": "precalc",
         "unit": "4",
-        "lesson": "12"
+        "lesson": "12",
+        "sourceNotes": "source-limited"
       },
       "rendererKey": "comprehension-quiz",
       "exceptions": [
@@ -5351,7 +5375,8 @@
       "metadata": {
         "course": "precalc",
         "unit": "4",
-        "lesson": "13"
+        "lesson": "13",
+        "sourceNotes": "source-limited"
       },
       "rendererKey": "comprehension-quiz",
       "exceptions": [
@@ -5377,7 +5402,8 @@
       "metadata": {
         "course": "precalc",
         "unit": "4",
-        "lesson": "14"
+        "lesson": "14",
+        "sourceNotes": "source-limited"
       },
       "rendererKey": "comprehension-quiz",
       "exceptions": [
@@ -5388,6 +5414,618 @@
           "date": "2026-05-10"
         }
       ]
+    },
+    {
+      "id": "math.standard.ccss.hsf-if-b-4",
+      "kind": "standard",
+      "title": "HSF-IF.B.4: For a function that models a relationship between two quantities, interpret key features of graphs and tables in terms of the quantities",
+      "domain": "math",
+      "description": "For a function that models a relationship between two quantities, interpret key features of graphs and tables in terms of the quantities",
+      "sourceRefs": [
+        {
+          "source": "seed-standards:ccss",
+          "note": "HSF-IF.B.4"
+        }
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "framework": "ccss",
+        "code": "HSF-IF.B.4"
+      }
+    },
+    {
+      "id": "math.standard.ccss.hsf-bf-a-1",
+      "kind": "standard",
+      "title": "HSF-BF.A.1: Write a function that describes a relationship between two quantities",
+      "domain": "math",
+      "description": "Write a function that describes a relationship between two quantities",
+      "sourceRefs": [
+        {
+          "source": "seed-standards:ccss",
+          "note": "HSF-BF.A.1"
+        }
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "framework": "ccss",
+        "code": "HSF-BF.A.1"
+      }
+    },
+    {
+      "id": "math.standard.ccss.hsf-if-c-7d",
+      "kind": "standard",
+      "title": "HSF-IF.C.7d: Graph rational functions, identifying zeros and asymptotes when suitable factorizations are available, and showing end behavior",
+      "domain": "math",
+      "description": "Graph rational functions, identifying zeros and asymptotes when suitable factorizations are available, and showing end behavior",
+      "sourceRefs": [
+        {
+          "source": "seed-standards:ccss",
+          "note": "HSF-IF.C.7d"
+        }
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "framework": "ccss",
+        "code": "HSF-IF.C.7d"
+      }
+    },
+    {
+      "id": "math.standard.ccss.hsa-apr-a-1",
+      "kind": "standard",
+      "title": "HSA-APR.A.1: Understand that polynomials form a system analogous to the integers; add, subtract, and multiply polynomials",
+      "domain": "math",
+      "description": "Understand that polynomials form a system analogous to the integers; add, subtract, and multiply polynomials",
+      "sourceRefs": [
+        {
+          "source": "seed-standards:ccss",
+          "note": "HSA-APR.A.1"
+        }
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "framework": "ccss",
+        "code": "HSA-APR.A.1"
+      }
+    },
+    {
+      "id": "math.standard.ccss.hsa-apr-d-6",
+      "kind": "standard",
+      "title": "HSA-APR.D.6: Rewrite simple rational expressions in different forms; write a(x)/b(x) in the form q(x) + r(x)/b(x)",
+      "domain": "math",
+      "description": "Rewrite simple rational expressions in different forms; write a(x)/b(x) in the form q(x) + r(x)/b(x)",
+      "sourceRefs": [
+        {
+          "source": "seed-standards:ccss",
+          "note": "HSA-APR.D.6"
+        }
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "framework": "ccss",
+        "code": "HSA-APR.D.6"
+      }
+    },
+    {
+      "id": "math.standard.ccss.hsf-bf-b-3",
+      "kind": "standard",
+      "title": "HSF-BF.B.3: Identify the effect on the graph of replacing f(x) by f(x) + k, k f(x), f(kx), and f(x + k) for specific values of k",
+      "domain": "math",
+      "description": "Identify the effect on the graph of replacing f(x) by f(x) + k, k f(x), f(kx), and f(x + k) for specific values of k",
+      "sourceRefs": [
+        {
+          "source": "seed-standards:ccss",
+          "note": "HSF-BF.B.3"
+        }
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "framework": "ccss",
+        "code": "HSF-BF.B.3"
+      }
+    },
+    {
+      "id": "math.standard.ccss.hsf-if-c-7c",
+      "kind": "standard",
+      "title": "HSF-IF.C.7c: Graph polynomial functions, identifying zeros when suitable factorizations are available, and showing end behavior",
+      "domain": "math",
+      "description": "Graph polynomial functions, identifying zeros when suitable factorizations are available, and showing end behavior",
+      "sourceRefs": [
+        {
+          "source": "seed-standards:ccss",
+          "note": "HSF-IF.C.7c"
+        }
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "framework": "ccss",
+        "code": "HSF-IF.C.7c"
+      }
+    },
+    {
+      "id": "math.standard.ccss.hsa-apr-b-2",
+      "kind": "standard",
+      "title": "HSA-APR.B.2: Know and apply the Remainder Theorem: for a polynomial p(x) and a number a, the remainder on division by x − a is p(a)",
+      "domain": "math",
+      "description": "Know and apply the Remainder Theorem: for a polynomial p(x) and a number a, the remainder on division by x − a is p(a)",
+      "sourceRefs": [
+        {
+          "source": "seed-standards:ccss",
+          "note": "HSA-APR.B.2"
+        }
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "framework": "ccss",
+        "code": "HSA-APR.B.2"
+      }
+    },
+    {
+      "id": "math.standard.ccss.hsa-apr-b-3",
+      "kind": "standard",
+      "title": "HSA-APR.B.3: Identify zeros of polynomials when suitable factorizations are available, and use the zeros to construct a rough graph of the function",
+      "domain": "math",
+      "description": "Identify zeros of polynomials when suitable factorizations are available, and use the zeros to construct a rough graph of the function",
+      "sourceRefs": [
+        {
+          "source": "seed-standards:ccss",
+          "note": "HSA-APR.B.3"
+        }
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "framework": "ccss",
+        "code": "HSA-APR.B.3"
+      }
+    },
+    {
+      "id": "math.standard.ccss.hsa-rei-a-2",
+      "kind": "standard",
+      "title": "HSA-REI.A.2: Solve simple rational and radical equations in one variable, and give examples showing how extraneous solutions may arise",
+      "domain": "math",
+      "description": "Solve simple rational and radical equations in one variable, and give examples showing how extraneous solutions may arise",
+      "sourceRefs": [
+        {
+          "source": "seed-standards:ccss",
+          "note": "HSA-REI.A.2"
+        }
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "framework": "ccss",
+        "code": "HSA-REI.A.2"
+      }
+    },
+    {
+      "id": "math.standard.ccss.hsf-le-a-2",
+      "kind": "standard",
+      "title": "HSF-LE.A.2: Construct linear and exponential functions, including arithmetic and geometric sequences, given a graph, a description, or two input-output pairs",
+      "domain": "math",
+      "description": "Construct linear and exponential functions, including arithmetic and geometric sequences, given a graph, a description, or two input-output pairs",
+      "sourceRefs": [
+        {
+          "source": "seed-standards:ccss",
+          "note": "HSF-LE.A.2"
+        }
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "framework": "ccss",
+        "code": "HSF-LE.A.2"
+      }
+    },
+    {
+      "id": "math.standard.ccss.hsf-le-a-1",
+      "kind": "standard",
+      "title": "HSF-LE.A.1: Distinguish between situations that can be modeled with linear functions and with exponential functions",
+      "domain": "math",
+      "description": "Distinguish between situations that can be modeled with linear functions and with exponential functions",
+      "sourceRefs": [
+        {
+          "source": "seed-standards:ccss",
+          "note": "HSF-LE.A.1"
+        }
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "framework": "ccss",
+        "code": "HSF-LE.A.1"
+      }
+    },
+    {
+      "id": "math.standard.ccss.hsf-if-c-7e",
+      "kind": "standard",
+      "title": "HSF-IF.C.7e: Graph exponential and logarithmic functions, showing intercepts and end behavior",
+      "domain": "math",
+      "description": "Graph exponential and logarithmic functions, showing intercepts and end behavior",
+      "sourceRefs": [
+        {
+          "source": "seed-standards:ccss",
+          "note": "HSF-IF.C.7e"
+        }
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "framework": "ccss",
+        "code": "HSF-IF.C.7e"
+      }
+    },
+    {
+      "id": "math.standard.ccss.hsf-bf-b-4",
+      "kind": "standard",
+      "title": "HSF-BF.B.4: Find inverse functions",
+      "domain": "math",
+      "description": "Find inverse functions",
+      "sourceRefs": [
+        {
+          "source": "seed-standards:ccss",
+          "note": "HSF-BF.B.4"
+        }
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "framework": "ccss",
+        "code": "HSF-BF.B.4"
+      }
+    },
+    {
+      "id": "math.standard.ccss.hsf-bf-b-5",
+      "kind": "standard",
+      "title": "HSF-BF.B.5: Understand the inverse relationship between exponents and logarithms and use this relationship to solve problems",
+      "domain": "math",
+      "description": "Understand the inverse relationship between exponents and logarithms and use this relationship to solve problems",
+      "sourceRefs": [
+        {
+          "source": "seed-standards:ccss",
+          "note": "HSF-BF.B.5"
+        }
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "framework": "ccss",
+        "code": "HSF-BF.B.5"
+      }
+    },
+    {
+      "id": "math.standard.ccss.hsf-le-a-4",
+      "kind": "standard",
+      "title": "HSF-LE.A.4: For exponential models, express as a logarithm the solution to a b^(ct) = d where a, c, and d are numbers and the base b is 2, 10, or e",
+      "domain": "math",
+      "description": "For exponential models, express as a logarithm the solution to a b^(ct) = d where a, c, and d are numbers and the base b is 2, 10, or e",
+      "sourceRefs": [
+        {
+          "source": "seed-standards:ccss",
+          "note": "HSF-LE.A.4"
+        }
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "framework": "ccss",
+        "code": "HSF-LE.A.4"
+      }
+    },
+    {
+      "id": "math.standard.ccss.hsf-le-b-5",
+      "kind": "standard",
+      "title": "HSF-LE.B.5: Interpret the parameters in an exponential function in terms of a context",
+      "domain": "math",
+      "description": "Interpret the parameters in an exponential function in terms of a context",
+      "sourceRefs": [
+        {
+          "source": "seed-standards:ccss",
+          "note": "HSF-LE.B.5"
+        }
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "framework": "ccss",
+        "code": "HSF-LE.B.5"
+      }
+    },
+    {
+      "id": "math.standard.ccss.hsf-bf-a-1a",
+      "kind": "standard",
+      "title": "HSF-BF.A.1a: Determine an explicit expression, a recursive process, or steps for calculation from a context",
+      "domain": "math",
+      "description": "Determine an explicit expression, a recursive process, or steps for calculation from a context",
+      "sourceRefs": [
+        {
+          "source": "seed-standards:ccss",
+          "note": "HSF-BF.A.1a"
+        }
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "framework": "ccss",
+        "code": "HSF-BF.A.1a"
+      }
+    },
+    {
+      "id": "math.standard.ccss.hsf-if-a-2",
+      "kind": "standard",
+      "title": "HSF-IF.A.2: Use function notation, evaluate functions for inputs in their domains, and interpret statements that use function notation in terms of a context",
+      "domain": "math",
+      "description": "Use function notation, evaluate functions for inputs in their domains, and interpret statements that use function notation in terms of a context",
+      "sourceRefs": [
+        {
+          "source": "seed-standards:ccss",
+          "note": "HSF-IF.A.2"
+        }
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "framework": "ccss",
+        "code": "HSF-IF.A.2"
+      }
+    },
+    {
+      "id": "math.standard.ccss.hsf-tf-b-5",
+      "kind": "standard",
+      "title": "HSF-TF.B.5: Choose trigonometric functions to model periodic phenomena with specified amplitude, frequency, and midline",
+      "domain": "math",
+      "description": "Choose trigonometric functions to model periodic phenomena with specified amplitude, frequency, and midline",
+      "sourceRefs": [
+        {
+          "source": "seed-standards:ccss",
+          "note": "HSF-TF.B.5"
+        }
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "framework": "ccss",
+        "code": "HSF-TF.B.5"
+      }
+    },
+    {
+      "id": "math.standard.ccss.hsf-tf-a-4",
+      "kind": "standard",
+      "title": "HSF-TF.A.4: Use the unit circle to explain symmetry (odd and even) and periodicity of trigonometric functions",
+      "domain": "math",
+      "description": "Use the unit circle to explain symmetry (odd and even) and periodicity of trigonometric functions",
+      "sourceRefs": [
+        {
+          "source": "seed-standards:ccss",
+          "note": "HSF-TF.A.4"
+        }
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "framework": "ccss",
+        "code": "HSF-TF.A.4"
+      }
+    },
+    {
+      "id": "math.standard.ccss.hsf-tf-a-1",
+      "kind": "standard",
+      "title": "HSF-TF.A.1: Understand radian measure of an angle as the length of the arc on the unit circle subtended by the angle",
+      "domain": "math",
+      "description": "Understand radian measure of an angle as the length of the arc on the unit circle subtended by the angle",
+      "sourceRefs": [
+        {
+          "source": "seed-standards:ccss",
+          "note": "HSF-TF.A.1"
+        }
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "framework": "ccss",
+        "code": "HSF-TF.A.1"
+      }
+    },
+    {
+      "id": "math.standard.ccss.hsf-tf-a-2",
+      "kind": "standard",
+      "title": "HSF-TF.A.2: Explain how the unit circle enables the extension of trigonometric functions to all real numbers",
+      "domain": "math",
+      "description": "Explain how the unit circle enables the extension of trigonometric functions to all real numbers",
+      "sourceRefs": [
+        {
+          "source": "seed-standards:ccss",
+          "note": "HSF-TF.A.2"
+        }
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "framework": "ccss",
+        "code": "HSF-TF.A.2"
+      }
+    },
+    {
+      "id": "math.standard.ccss.hsn-vm-c-6",
+      "kind": "standard",
+      "title": "HSN-VM.C.6: Use matrices to represent and manipulate data, e.g., to represent payoffs or incidence relationships in a network",
+      "domain": "math",
+      "description": "Use matrices to represent and manipulate data, e.g., to represent payoffs or incidence relationships in a network",
+      "sourceRefs": [
+        {
+          "source": "seed-standards:ccss",
+          "note": "HSN-VM.C.6"
+        }
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "framework": "ccss",
+        "code": "HSN-VM.C.6"
+      }
+    },
+    {
+      "id": "math.standard.ccss.hsn-vm-c-7",
+      "kind": "standard",
+      "title": "HSN-VM.C.7: Multiply matrices by scalars to produce new matrices, e.g., as when all of the payoffs in a game are doubled",
+      "domain": "math",
+      "description": "Multiply matrices by scalars to produce new matrices, e.g., as when all of the payoffs in a game are doubled",
+      "sourceRefs": [
+        {
+          "source": "seed-standards:ccss",
+          "note": "HSN-VM.C.7"
+        }
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "framework": "ccss",
+        "code": "HSN-VM.C.7"
+      }
+    },
+    {
+      "id": "math.standard.ccss.hsn-vm-c-8",
+      "kind": "standard",
+      "title": "HSN-VM.C.8: Add, subtract, and multiply matrices of appropriate dimensions",
+      "domain": "math",
+      "description": "Add, subtract, and multiply matrices of appropriate dimensions",
+      "sourceRefs": [
+        {
+          "source": "seed-standards:ccss",
+          "note": "HSN-VM.C.8"
+        }
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "framework": "ccss",
+        "code": "HSN-VM.C.8"
+      }
+    },
+    {
+      "id": "math.standard.ccss.hsn-vm-c-11",
+      "kind": "standard",
+      "title": "HSN-VM.C.11: Multiply a vector (regarded as a matrix with one column) by a matrix of suitable dimensions to produce another vector; work with matrices as transformations of vectors",
+      "domain": "math",
+      "description": "Multiply a vector (regarded as a matrix with one column) by a matrix of suitable dimensions to produce another vector; work with matrices as transformations of vectors",
+      "sourceRefs": [
+        {
+          "source": "seed-standards:ccss",
+          "note": "HSN-VM.C.11"
+        }
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "framework": "ccss",
+        "code": "HSN-VM.C.11"
+      }
+    },
+    {
+      "id": "math.standard.ccss.hsn-vm-c-9",
+      "kind": "standard",
+      "title": "HSN-VM.C.9: Understand that, unlike multiplication of numbers, matrix multiplication for square matrices is not a commutative operation, but still satisfies the associative and distributive properties",
+      "domain": "math",
+      "description": "Understand that, unlike multiplication of numbers, matrix multiplication for square matrices is not a commutative operation, but still satisfies the associative and distributive properties",
+      "sourceRefs": [
+        {
+          "source": "seed-standards:ccss",
+          "note": "HSN-VM.C.9"
+        }
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "framework": "ccss",
+        "code": "HSN-VM.C.9"
+      }
+    },
+    {
+      "id": "math.standard.ccss.hsa-rei-c-8",
+      "kind": "standard",
+      "title": "HSA-REI.C.8: Represent a system of linear equations as a single matrix equation in a vector variable",
+      "domain": "math",
+      "description": "Represent a system of linear equations as a single matrix equation in a vector variable",
+      "sourceRefs": [
+        {
+          "source": "seed-standards:ccss",
+          "note": "HSA-REI.C.8"
+        }
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "framework": "ccss",
+        "code": "HSA-REI.C.8"
+      }
+    },
+    {
+      "id": "math.standard.ccss.hsn-vm-c-10",
+      "kind": "standard",
+      "title": "HSN-VM.C.10: Understand that the zero and identity matrices play a role in matrix addition and multiplication similar to the role of 0 and 1 in the real numbers; the determinant of a square matrix is nonzero if and only if the matrix has a multiplicative inverse",
+      "domain": "math",
+      "description": "Understand that the zero and identity matrices play a role in matrix addition and multiplication similar to the role of 0 and 1 in the real numbers; the determinant of a square matrix is nonzero if and only if the matrix has a multiplicative inverse",
+      "sourceRefs": [
+        {
+          "source": "seed-standards:ccss",
+          "note": "HSN-VM.C.10"
+        }
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "framework": "ccss",
+        "code": "HSN-VM.C.10"
+      }
+    },
+    {
+      "id": "math.standard.ccss.hsa-rei-c-9",
+      "kind": "standard",
+      "title": "HSA-REI.C.9: Find the inverse of a matrix if it exists and use it to solve systems of linear equations (using technology for matrices of dimension 3 × 3 or greater)",
+      "domain": "math",
+      "description": "Find the inverse of a matrix if it exists and use it to solve systems of linear equations (using technology for matrices of dimension 3 × 3 or greater)",
+      "sourceRefs": [
+        {
+          "source": "seed-standards:ccss",
+          "note": "HSA-REI.C.9"
+        }
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "framework": "ccss",
+        "code": "HSA-REI.C.9"
+      }
+    },
+    {
+      "id": "math.standard.ccss.hsn-vm-a-1",
+      "kind": "standard",
+      "title": "HSN-VM.A.1: Recognize vector quantities as having both magnitude and direction; represent vector quantities by directed line segments",
+      "domain": "math",
+      "description": "Recognize vector quantities as having both magnitude and direction; represent vector quantities by directed line segments",
+      "sourceRefs": [
+        {
+          "source": "seed-standards:ccss",
+          "note": "HSN-VM.A.1"
+        }
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "framework": "ccss",
+        "code": "HSN-VM.A.1"
+      }
+    },
+    {
+      "id": "math.standard.ccss.hsn-vm-a-2",
+      "kind": "standard",
+      "title": "HSN-VM.A.2: Find the components of a vector by subtracting the coordinates of an initial point from the coordinates of a terminal point",
+      "domain": "math",
+      "description": "Find the components of a vector by subtracting the coordinates of an initial point from the coordinates of a terminal point",
+      "sourceRefs": [
+        {
+          "source": "seed-standards:ccss",
+          "note": "HSN-VM.A.2"
+        }
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "framework": "ccss",
+        "code": "HSN-VM.A.2"
+      }
+    },
+    {
+      "id": "math.standard.ccss.hsn-vm-b-4",
+      "kind": "standard",
+      "title": "HSN-VM.B.4: Add and subtract vectors; multiply a vector by a scalar",
+      "domain": "math",
+      "description": "Add and subtract vectors; multiply a vector by a scalar",
+      "sourceRefs": [
+        {
+          "source": "seed-standards:ccss",
+          "note": "HSN-VM.B.4"
+        }
+      ],
+      "reviewStatus": "reviewed",
+      "metadata": {
+        "framework": "ccss",
+        "code": "HSN-VM.B.4"
+      }
     }
   ]
 }

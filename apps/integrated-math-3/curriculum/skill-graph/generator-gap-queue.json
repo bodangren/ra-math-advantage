@@ -1,0 +1,1204 @@
+{
+  "description": "Generator gap queue \u2014 blueprints missing generator implementations",
+  "generatedAt": "2026-05-10T06:43:17.726968+00:00",
+  "totalGaps": 171,
+  "entries": [
+    {
+      "nodeId": "math.im3.skill.1.4.solve-quadratic-equations-by-factoring",
+      "module": "1",
+      "rendererKey": "step-by-step-solver",
+      "status": "generator_missing",
+      "notes": "Generator not yet implemented for IM3 rollout"
+    },
+    {
+      "nodeId": "math.im3.skill.1.6.use-the-discriminant-to-determine-the-number-and-type-of-sol",
+      "module": "1",
+      "rendererKey": "discriminant-analyzer",
+      "status": "generator_missing",
+      "notes": "Generator not yet implemented for IM3 rollout"
+    },
+    {
+      "nodeId": "math.im3.skill.1.7.graph-quadratic-inequalities-in-two-variables",
+      "module": "1",
+      "rendererKey": "graphing-explorer",
+      "status": "generator_missing",
+      "notes": "Generator not yet implemented for IM3 rollout"
+    },
+    {
+      "nodeId": "math.im3.skill.2.1.graph-and-analyze-polynomial-functions",
+      "module": "2",
+      "rendererKey": "graphing-explorer",
+      "status": "generator_missing",
+      "notes": "Generator not yet implemented for IM3 rollout"
+    },
+    {
+      "nodeId": "math.im3.skill.2.1.graph-and-analyze-power-functions",
+      "module": "2",
+      "rendererKey": "graphing-explorer",
+      "status": "generator_missing",
+      "notes": "Generator not yet implemented for IM3 rollout"
+    },
+    {
+      "nodeId": "math.im3.skill.2.2.approximate-zeros-by-graphing-polynomial-functions",
+      "module": "2",
+      "rendererKey": "graphing-explorer",
+      "status": "generator_missing",
+      "notes": "Generator not yet implemented for IM3 rollout"
+    },
+    {
+      "nodeId": "math.im3.skill.2.2.find-extrema-of-polynomial-functions",
+      "module": "2",
+      "rendererKey": "graphing-explorer",
+      "status": "generator_missing",
+      "notes": "Generator not yet implemented for IM3 rollout"
+    },
+    {
+      "nodeId": "math.im3.skill.2.3.add-and-subtract-polynomials",
+      "module": "2",
+      "rendererKey": "step-by-step-solver",
+      "status": "generator_missing",
+      "notes": "Generator not yet implemented for IM3 rollout"
+    },
+    {
+      "nodeId": "math.im3.skill.2.3.multiply-polynomials",
+      "module": "2",
+      "rendererKey": "step-by-step-solver",
+      "status": "generator_missing",
+      "notes": "Generator not yet implemented for IM3 rollout"
+    },
+    {
+      "nodeId": "math.im3.skill.2.4.divide-polynomials-by-using-long-division",
+      "module": "2",
+      "rendererKey": "step-by-step-solver",
+      "status": "generator_missing",
+      "notes": "Generator not yet implemented for IM3 rollout"
+    },
+    {
+      "nodeId": "math.im3.skill.2.4.divide-polynomials-by-using-synthetic-division",
+      "module": "2",
+      "rendererKey": "step-by-step-solver",
+      "status": "generator_missing",
+      "notes": "Generator not yet implemented for IM3 rollout"
+    },
+    {
+      "nodeId": "math.im3.skill.2.5.expand-powers-of-binomials-by-using-pascals-triangle-and-the",
+      "module": "2",
+      "rendererKey": "step-by-step-solver",
+      "status": "generator_missing",
+      "notes": "Generator not yet implemented for IM3 rollout"
+    },
+    {
+      "nodeId": "math.im3.skill.2.aleks.binomial-theorem-expansion",
+      "module": "2",
+      "rendererKey": "comprehension-quiz",
+      "status": "generator_missing",
+      "notes": "Generator not yet implemented for IM3 rollout"
+    },
+    {
+      "nodeId": "math.im3.skill.2.aleks.pascal-triangle-expansion",
+      "module": "2",
+      "rendererKey": "comprehension-quiz",
+      "status": "generator_missing",
+      "notes": "Generator not yet implemented for IM3 rollout"
+    },
+    {
+      "nodeId": "math.im3.skill.2.aleks.polynomial-add-subtract",
+      "module": "2",
+      "rendererKey": "comprehension-quiz",
+      "status": "generator_missing",
+      "notes": "Generator not yet implemented for IM3 rollout"
+    },
+    {
+      "nodeId": "math.im3.skill.2.aleks.polynomial-extrema-analysis",
+      "module": "2",
+      "rendererKey": "comprehension-quiz",
+      "status": "generator_missing",
+      "notes": "Generator not yet implemented for IM3 rollout"
+    },
+    {
+      "nodeId": "math.im3.skill.2.aleks.polynomial-feature-analysis",
+      "module": "2",
+      "rendererKey": "comprehension-quiz",
+      "status": "generator_missing",
+      "notes": "Generator not yet implemented for IM3 rollout"
+    },
+    {
+      "nodeId": "math.im3.skill.2.aleks.polynomial-long-division",
+      "module": "2",
+      "rendererKey": "comprehension-quiz",
+      "status": "generator_missing",
+      "notes": "Generator not yet implemented for IM3 rollout"
+    },
+    {
+      "nodeId": "math.im3.skill.2.aleks.polynomial-multiplication",
+      "module": "2",
+      "rendererKey": "comprehension-quiz",
+      "status": "generator_missing",
+      "notes": "Generator not yet implemented for IM3 rollout"
+    },
+    {
+      "nodeId": "math.im3.skill.2.aleks.polynomial-synthetic-division",
+      "module": "2",
+      "rendererKey": "comprehension-quiz",
+      "status": "generator_missing",
+      "notes": "Generator not yet implemented for IM3 rollout"
+    },
+    {
+      "nodeId": "math.im3.skill.2.aleks.polynomial-zero-approximation",
+      "module": "2",
+      "rendererKey": "comprehension-quiz",
+      "status": "generator_missing",
+      "notes": "Generator not yet implemented for IM3 rollout"
+    },
+    {
+      "nodeId": "math.im3.skill.2.aleks.power-function-graph-analysis",
+      "module": "2",
+      "rendererKey": "graphing-explorer",
+      "status": "generator_missing",
+      "notes": "Generator not yet implemented for IM3 rollout"
+    },
+    {
+      "nodeId": "math.im3.skill.3.1.solve-polynomial-equations-by-graphing",
+      "module": "3",
+      "rendererKey": "graphing-explorer",
+      "status": "generator_missing",
+      "notes": "Generator not yet implemented for IM3 rollout"
+    },
+    {
+      "nodeId": "math.im3.skill.3.2.solve-polynomial-equations-by-factoring",
+      "module": "3",
+      "rendererKey": "step-by-step-solver",
+      "status": "generator_missing",
+      "notes": "Generator not yet implemented for IM3 rollout"
+    },
+    {
+      "nodeId": "math.im3.skill.3.2.solve-polynomial-equations-by-writing-them-in-quadratic-form",
+      "module": "3",
+      "rendererKey": "step-by-step-solver",
+      "status": "generator_missing",
+      "notes": "Generator not yet implemented for IM3 rollout"
+    },
+    {
+      "nodeId": "math.im3.skill.3.3.prove-polynomial-identities-and-use-them-to-describe-numeric",
+      "module": "3",
+      "rendererKey": "step-by-step-solver",
+      "status": "generator_missing",
+      "notes": "Generator not yet implemented for IM3 rollout"
+    },
+    {
+      "nodeId": "math.im3.skill.3.4.evaluate-functions-by-using-synthetic-substitution",
+      "module": "3",
+      "rendererKey": "graphing-explorer",
+      "status": "generator_missing",
+      "notes": "Generator not yet implemented for IM3 rollout"
+    },
+    {
+      "nodeId": "math.im3.skill.3.5.determine-the-number-and-type-of-roots-of-polynomial-equatio",
+      "module": "3",
+      "rendererKey": "graphing-explorer",
+      "status": "generator_missing",
+      "notes": "Generator not yet implemented for IM3 rollout"
+    },
+    {
+      "nodeId": "math.im3.skill.3.5.use-the-fundamental-theorem-of-algebra-to-determine-the-numb",
+      "module": "3",
+      "rendererKey": "step-by-step-solver",
+      "status": "generator_missing",
+      "notes": "Generator not yet implemented for IM3 rollout"
+    },
+    {
+      "nodeId": "math.im3.skill.3.aleks.factor-theorem-factor-testing",
+      "module": "3",
+      "rendererKey": "comprehension-quiz",
+      "status": "generator_missing",
+      "notes": "Generator not yet implemented for IM3 rollout"
+    },
+    {
+      "nodeId": "math.im3.skill.3.aleks.polynomial-equation-graph-solving",
+      "module": "3",
+      "rendererKey": "graphing-explorer",
+      "status": "generator_missing",
+      "notes": "Generator not yet implemented for IM3 rollout"
+    },
+    {
+      "nodeId": "math.im3.skill.3.aleks.polynomial-factoring-structures",
+      "module": "3",
+      "rendererKey": "comprehension-quiz",
+      "status": "generator_missing",
+      "notes": "Generator not yet implemented for IM3 rollout"
+    },
+    {
+      "nodeId": "math.im3.skill.3.aleks.polynomial-identity-proof",
+      "module": "3",
+      "rendererKey": "comprehension-quiz",
+      "status": "generator_missing",
+      "notes": "Generator not yet implemented for IM3 rollout"
+    },
+    {
+      "nodeId": "math.im3.skill.3.aleks.polynomial-quadratic-form",
+      "module": "3",
+      "rendererKey": "comprehension-quiz",
+      "status": "generator_missing",
+      "notes": "Generator not yet implemented for IM3 rollout"
+    },
+    {
+      "nodeId": "math.im3.skill.3.aleks.root-type-analysis",
+      "module": "3",
+      "rendererKey": "comprehension-quiz",
+      "status": "generator_missing",
+      "notes": "Generator not yet implemented for IM3 rollout"
+    },
+    {
+      "nodeId": "math.im3.skill.3.aleks.synthetic-substitution-remainder",
+      "module": "3",
+      "rendererKey": "comprehension-quiz",
+      "status": "generator_missing",
+      "notes": "Generator not yet implemented for IM3 rollout"
+    },
+    {
+      "nodeId": "math.im3.skill.3.aleks.zeros-to-polynomial-graph",
+      "module": "3",
+      "rendererKey": "graphing-explorer",
+      "status": "generator_missing",
+      "notes": "Generator not yet implemented for IM3 rollout"
+    },
+    {
+      "nodeId": "math.im3.skill.4.1.find-compositions-of-functions",
+      "module": "4",
+      "rendererKey": "graphing-explorer",
+      "status": "generator_missing",
+      "notes": "Generator not yet implemented for IM3 rollout"
+    },
+    {
+      "nodeId": "math.im3.skill.4.1.find-sums-differences-products-and-quotients-of-functions",
+      "module": "4",
+      "rendererKey": "graphing-explorer",
+      "status": "generator_missing",
+      "notes": "Generator not yet implemented for IM3 rollout"
+    },
+    {
+      "nodeId": "math.im3.skill.4.2.find-inverses-of-relations",
+      "module": "4",
+      "rendererKey": "graphing-explorer",
+      "status": "generator_missing",
+      "notes": "Generator not yet implemented for IM3 rollout"
+    },
+    {
+      "nodeId": "math.im3.skill.4.2.verify-that-two-relations-are-inverses-by-using-compositions",
+      "module": "4",
+      "rendererKey": "graphing-explorer",
+      "status": "generator_missing",
+      "notes": "Generator not yet implemented for IM3 rollout"
+    },
+    {
+      "nodeId": "math.im3.skill.4.3.simplify-expressions-in-exponential-or-radical-form",
+      "module": "4",
+      "rendererKey": "step-by-step-solver",
+      "status": "generator_missing",
+      "notes": "Generator not yet implemented for IM3 rollout"
+    },
+    {
+      "nodeId": "math.im3.skill.4.3.simplify-expressions-involving-radicals-and-rational-exponen",
+      "module": "4",
+      "rendererKey": "step-by-step-solver",
+      "status": "generator_missing",
+      "notes": "Generator not yet implemented for IM3 rollout"
+    },
+    {
+      "nodeId": "math.im3.skill.4.4.graph-and-analyze-cube-root-functions",
+      "module": "4",
+      "rendererKey": "graphing-explorer",
+      "status": "generator_missing",
+      "notes": "Generator not yet implemented for IM3 rollout"
+    },
+    {
+      "nodeId": "math.im3.skill.4.4.graph-and-analyze-square-root-functions",
+      "module": "4",
+      "rendererKey": "graphing-explorer",
+      "status": "generator_missing",
+      "notes": "Generator not yet implemented for IM3 rollout"
+    },
+    {
+      "nodeId": "math.im3.skill.4.5.add-subtract-and-multiply-radicals",
+      "module": "4",
+      "rendererKey": "step-by-step-solver",
+      "status": "generator_missing",
+      "notes": "Generator not yet implemented for IM3 rollout"
+    },
+    {
+      "nodeId": "math.im3.skill.4.5.divide-and-simplify-radical-expressions-by-rationalizing-the",
+      "module": "4",
+      "rendererKey": "step-by-step-solver",
+      "status": "generator_missing",
+      "notes": "Generator not yet implemented for IM3 rollout"
+    },
+    {
+      "nodeId": "math.im3.skill.4.5.simplify-radical-expressions",
+      "module": "4",
+      "rendererKey": "step-by-step-solver",
+      "status": "generator_missing",
+      "notes": "Generator not yet implemented for IM3 rollout"
+    },
+    {
+      "nodeId": "math.im3.skill.4.6.solve-radical-equations-by-graphing-systems-of-equations",
+      "module": "4",
+      "rendererKey": "graphing-explorer",
+      "status": "generator_missing",
+      "notes": "Generator not yet implemented for IM3 rollout"
+    },
+    {
+      "nodeId": "math.im3.skill.4.6.solve-radical-equations-in-one-variable-and-identify-extrane",
+      "module": "4",
+      "rendererKey": "step-by-step-solver",
+      "status": "generator_missing",
+      "notes": "Generator not yet implemented for IM3 rollout"
+    },
+    {
+      "nodeId": "math.im3.skill.4.aleks.cube-root-function-graph-analysis",
+      "module": "4",
+      "rendererKey": "graphing-explorer",
+      "status": "generator_missing",
+      "notes": "Generator not yet implemented for IM3 rollout"
+    },
+    {
+      "nodeId": "math.im3.skill.4.aleks.function-composition",
+      "module": "4",
+      "rendererKey": "comprehension-quiz",
+      "status": "generator_missing",
+      "notes": "Generator not yet implemented for IM3 rollout"
+    },
+    {
+      "nodeId": "math.im3.skill.4.aleks.function-operations",
+      "module": "4",
+      "rendererKey": "comprehension-quiz",
+      "status": "generator_missing",
+      "notes": "Generator not yet implemented for IM3 rollout"
+    },
+    {
+      "nodeId": "math.im3.skill.4.aleks.inverse-relation-function",
+      "module": "4",
+      "rendererKey": "comprehension-quiz",
+      "status": "generator_missing",
+      "notes": "Generator not yet implemented for IM3 rollout"
+    },
+    {
+      "nodeId": "math.im3.skill.4.aleks.inverse-verification-by-composition",
+      "module": "4",
+      "rendererKey": "comprehension-quiz",
+      "status": "generator_missing",
+      "notes": "Generator not yet implemented for IM3 rollout"
+    },
+    {
+      "nodeId": "math.im3.skill.4.aleks.radical-equation-graphing-systems",
+      "module": "4",
+      "rendererKey": "graphing-explorer",
+      "status": "generator_missing",
+      "notes": "Generator not yet implemented for IM3 rollout"
+    },
+    {
+      "nodeId": "math.im3.skill.4.aleks.radical-equation-solving",
+      "module": "4",
+      "rendererKey": "step-by-step-solver",
+      "status": "generator_missing",
+      "notes": "Generator not yet implemented for IM3 rollout"
+    },
+    {
+      "nodeId": "math.im3.skill.4.aleks.radical-operations",
+      "module": "4",
+      "rendererKey": "comprehension-quiz",
+      "status": "generator_missing",
+      "notes": "Generator not yet implemented for IM3 rollout"
+    },
+    {
+      "nodeId": "math.im3.skill.4.aleks.radical-rational-exponent-conversion",
+      "module": "4",
+      "rendererKey": "comprehension-quiz",
+      "status": "generator_missing",
+      "notes": "Generator not yet implemented for IM3 rollout"
+    },
+    {
+      "nodeId": "math.im3.skill.4.aleks.radical-simplification",
+      "module": "4",
+      "rendererKey": "comprehension-quiz",
+      "status": "generator_missing",
+      "notes": "Generator not yet implemented for IM3 rollout"
+    },
+    {
+      "nodeId": "math.im3.skill.4.aleks.rational-exponent-simplification",
+      "module": "4",
+      "rendererKey": "comprehension-quiz",
+      "status": "generator_missing",
+      "notes": "Generator not yet implemented for IM3 rollout"
+    },
+    {
+      "nodeId": "math.im3.skill.4.aleks.rationalize-denominator",
+      "module": "4",
+      "rendererKey": "comprehension-quiz",
+      "status": "generator_missing",
+      "notes": "Generator not yet implemented for IM3 rollout"
+    },
+    {
+      "nodeId": "math.im3.skill.4.aleks.square-root-function-graph-analysis",
+      "module": "4",
+      "rendererKey": "graphing-explorer",
+      "status": "generator_missing",
+      "notes": "Generator not yet implemented for IM3 rollout"
+    },
+    {
+      "nodeId": "math.im3.skill.5.1.graph-exponential-decay-functions",
+      "module": "5",
+      "rendererKey": "graphing-explorer",
+      "status": "generator_missing",
+      "notes": "Generator not yet implemented for IM3 rollout"
+    },
+    {
+      "nodeId": "math.im3.skill.5.1.graph-exponential-growth-functions",
+      "module": "5",
+      "rendererKey": "graphing-explorer",
+      "status": "generator_missing",
+      "notes": "Generator not yet implemented for IM3 rollout"
+    },
+    {
+      "nodeId": "math.im3.skill.5.2.solve-exponential-equations-in-one-variable",
+      "module": "5",
+      "rendererKey": "step-by-step-solver",
+      "status": "generator_missing",
+      "notes": "Generator not yet implemented for IM3 rollout"
+    },
+    {
+      "nodeId": "math.im3.skill.5.2.solve-exponential-inequalities-in-one-variable",
+      "module": "5",
+      "rendererKey": "step-by-step-solver",
+      "status": "generator_missing",
+      "notes": "Generator not yet implemented for IM3 rollout"
+    },
+    {
+      "nodeId": "math.im3.skill.5.3.analyze-expressions-and-functions-involving-the-natural-base",
+      "module": "5",
+      "rendererKey": "graphing-explorer",
+      "status": "generator_missing",
+      "notes": "Generator not yet implemented for IM3 rollout"
+    },
+    {
+      "nodeId": "math.im3.skill.5.4.find-sums-of-geometric-series",
+      "module": "5",
+      "rendererKey": "comprehension-quiz",
+      "status": "generator_missing",
+      "notes": "Generator not yet implemented for IM3 rollout"
+    },
+    {
+      "nodeId": "math.im3.skill.5.4.generate-geometric-sequences",
+      "module": "5",
+      "rendererKey": "comprehension-quiz",
+      "status": "generator_missing",
+      "notes": "Generator not yet implemented for IM3 rollout"
+    },
+    {
+      "nodeId": "math.im3.skill.5.5.choose-the-best-function-type-to-model-sets-of-data",
+      "module": "5",
+      "rendererKey": "graphing-explorer",
+      "status": "generator_missing",
+      "notes": "Generator not yet implemented for IM3 rollout"
+    },
+    {
+      "nodeId": "math.im3.skill.5.aleks.data-model-family-selection",
+      "module": "5",
+      "rendererKey": "comprehension-quiz",
+      "status": "generator_missing",
+      "notes": "Generator not yet implemented for IM3 rollout"
+    },
+    {
+      "nodeId": "math.im3.skill.5.aleks.exponential-decay-graph-analysis",
+      "module": "5",
+      "rendererKey": "graphing-explorer",
+      "status": "generator_missing",
+      "notes": "Generator not yet implemented for IM3 rollout"
+    },
+    {
+      "nodeId": "math.im3.skill.5.aleks.exponential-equation-solving",
+      "module": "5",
+      "rendererKey": "step-by-step-solver",
+      "status": "generator_missing",
+      "notes": "Generator not yet implemented for IM3 rollout"
+    },
+    {
+      "nodeId": "math.im3.skill.5.aleks.exponential-growth-graph-analysis",
+      "module": "5",
+      "rendererKey": "graphing-explorer",
+      "status": "generator_missing",
+      "notes": "Generator not yet implemented for IM3 rollout"
+    },
+    {
+      "nodeId": "math.im3.skill.5.aleks.exponential-inequality-solving",
+      "module": "5",
+      "rendererKey": "comprehension-quiz",
+      "status": "generator_missing",
+      "notes": "Generator not yet implemented for IM3 rollout"
+    },
+    {
+      "nodeId": "math.im3.skill.5.aleks.geometric-sequence-generation",
+      "module": "5",
+      "rendererKey": "comprehension-quiz",
+      "status": "generator_missing",
+      "notes": "Generator not yet implemented for IM3 rollout"
+    },
+    {
+      "nodeId": "math.im3.skill.5.aleks.geometric-series-summation",
+      "module": "5",
+      "rendererKey": "comprehension-quiz",
+      "status": "generator_missing",
+      "notes": "Generator not yet implemented for IM3 rollout"
+    },
+    {
+      "nodeId": "math.im3.skill.5.aleks.natural-base-e-analysis",
+      "module": "5",
+      "rendererKey": "comprehension-quiz",
+      "status": "generator_missing",
+      "notes": "Generator not yet implemented for IM3 rollout"
+    },
+    {
+      "nodeId": "math.im3.skill.6.1.write-logarithmic-expressions-in-exponential-form-and-write",
+      "module": "6",
+      "rendererKey": "step-by-step-solver",
+      "status": "generator_missing",
+      "notes": "Generator not yet implemented for IM3 rollout"
+    },
+    {
+      "nodeId": "math.im3.skill.6.2.solve-logarithmic-equations-using-properties-of-equality",
+      "module": "6",
+      "rendererKey": "step-by-step-solver",
+      "status": "generator_missing",
+      "notes": "Generator not yet implemented for IM3 rollout"
+    },
+    {
+      "nodeId": "math.im3.skill.6.3.solve-exponential-equations-by-using-common-logarithms",
+      "module": "6",
+      "rendererKey": "step-by-step-solver",
+      "status": "generator_missing",
+      "notes": "Generator not yet implemented for IM3 rollout"
+    },
+    {
+      "nodeId": "math.im3.skill.6.4.simplify-expressions-with-natural-logarithms",
+      "module": "6",
+      "rendererKey": "step-by-step-solver",
+      "status": "generator_missing",
+      "notes": "Generator not yet implemented for IM3 rollout"
+    },
+    {
+      "nodeId": "math.im3.skill.6.4.solve-exponential-equations-by-using-natural-logarithms",
+      "module": "6",
+      "rendererKey": "step-by-step-solver",
+      "status": "generator_missing",
+      "notes": "Generator not yet implemented for IM3 rollout"
+    },
+    {
+      "nodeId": "math.im3.skill.6.5.write-and-solve-exponential-decay-equations",
+      "module": "6",
+      "rendererKey": "step-by-step-solver",
+      "status": "generator_missing",
+      "notes": "Generator not yet implemented for IM3 rollout"
+    },
+    {
+      "nodeId": "math.im3.skill.6.5.write-and-solve-exponential-growth-equations-and-inequalitie",
+      "module": "6",
+      "rendererKey": "step-by-step-solver",
+      "status": "generator_missing",
+      "notes": "Generator not yet implemented for IM3 rollout"
+    },
+    {
+      "nodeId": "math.im3.skill.6.aleks.change-of-base-evaluation",
+      "module": "6",
+      "rendererKey": "comprehension-quiz",
+      "status": "generator_missing",
+      "notes": "Generator not yet implemented for IM3 rollout"
+    },
+    {
+      "nodeId": "math.im3.skill.6.aleks.common-log-exponential-solving",
+      "module": "6",
+      "rendererKey": "comprehension-quiz",
+      "status": "generator_missing",
+      "notes": "Generator not yet implemented for IM3 rollout"
+    },
+    {
+      "nodeId": "math.im3.skill.6.aleks.continuous-exponential-decay-modeling",
+      "module": "6",
+      "rendererKey": "comprehension-quiz",
+      "status": "generator_missing",
+      "notes": "Generator not yet implemented for IM3 rollout"
+    },
+    {
+      "nodeId": "math.im3.skill.6.aleks.continuous-exponential-growth-modeling",
+      "module": "6",
+      "rendererKey": "comprehension-quiz",
+      "status": "generator_missing",
+      "notes": "Generator not yet implemented for IM3 rollout"
+    },
+    {
+      "nodeId": "math.im3.skill.6.aleks.log-exp-form-conversion",
+      "module": "6",
+      "rendererKey": "comprehension-quiz",
+      "status": "generator_missing",
+      "notes": "Generator not yet implemented for IM3 rollout"
+    },
+    {
+      "nodeId": "math.im3.skill.6.aleks.logarithm-property-simplification",
+      "module": "6",
+      "rendererKey": "comprehension-quiz",
+      "status": "generator_missing",
+      "notes": "Generator not yet implemented for IM3 rollout"
+    },
+    {
+      "nodeId": "math.im3.skill.6.aleks.logarithmic-equation-solving",
+      "module": "6",
+      "rendererKey": "step-by-step-solver",
+      "status": "generator_missing",
+      "notes": "Generator not yet implemented for IM3 rollout"
+    },
+    {
+      "nodeId": "math.im3.skill.6.aleks.logarithmic-graph-analysis",
+      "module": "6",
+      "rendererKey": "graphing-explorer",
+      "status": "generator_missing",
+      "notes": "Generator not yet implemented for IM3 rollout"
+    },
+    {
+      "nodeId": "math.im3.skill.6.aleks.natural-log-equation-solving",
+      "module": "6",
+      "rendererKey": "step-by-step-solver",
+      "status": "generator_missing",
+      "notes": "Generator not yet implemented for IM3 rollout"
+    },
+    {
+      "nodeId": "math.im3.skill.6.aleks.natural-log-model-analysis",
+      "module": "6",
+      "rendererKey": "comprehension-quiz",
+      "status": "generator_missing",
+      "notes": "Generator not yet implemented for IM3 rollout"
+    },
+    {
+      "nodeId": "math.im3.skill.6.aleks.natural-log-simplification",
+      "module": "6",
+      "rendererKey": "comprehension-quiz",
+      "status": "generator_missing",
+      "notes": "Generator not yet implemented for IM3 rollout"
+    },
+    {
+      "nodeId": "math.im3.skill.7.1.simplify-rational-expressions",
+      "module": "7",
+      "rendererKey": "step-by-step-solver",
+      "status": "generator_missing",
+      "notes": "Generator not yet implemented for IM3 rollout"
+    },
+    {
+      "nodeId": "math.im3.skill.7.1.simplify-rational-expressions-by-multiplying-and-dividing",
+      "module": "7",
+      "rendererKey": "step-by-step-solver",
+      "status": "generator_missing",
+      "notes": "Generator not yet implemented for IM3 rollout"
+    },
+    {
+      "nodeId": "math.im3.skill.7.2.simplify-complex-fractions",
+      "module": "7",
+      "rendererKey": "step-by-step-solver",
+      "status": "generator_missing",
+      "notes": "Generator not yet implemented for IM3 rollout"
+    },
+    {
+      "nodeId": "math.im3.skill.7.2.simplify-rational-expressions-by-adding-and-subtracting",
+      "module": "7",
+      "rendererKey": "step-by-step-solver",
+      "status": "generator_missing",
+      "notes": "Generator not yet implemented for IM3 rollout"
+    },
+    {
+      "nodeId": "math.im3.skill.7.3.graph-and-write-reciprocal-functions-by-using-transformation",
+      "module": "7",
+      "rendererKey": "graphing-explorer",
+      "status": "generator_missing",
+      "notes": "Generator not yet implemented for IM3 rollout"
+    },
+    {
+      "nodeId": "math.im3.skill.7.3.graph-reciprocal-functions-by-making-tables-of-values",
+      "module": "7",
+      "rendererKey": "graphing-explorer",
+      "status": "generator_missing",
+      "notes": "Generator not yet implemented for IM3 rollout"
+    },
+    {
+      "nodeId": "math.im3.skill.7.4.graph-and-analyze-rational-functions-with-oblique-asymptotes",
+      "module": "7",
+      "rendererKey": "graphing-explorer",
+      "status": "generator_missing",
+      "notes": "Generator not yet implemented for IM3 rollout"
+    },
+    {
+      "nodeId": "math.im3.skill.7.4.graph-and-analyze-rational-functions-with-vertical-and-horiz",
+      "module": "7",
+      "rendererKey": "graphing-explorer",
+      "status": "generator_missing",
+      "notes": "Generator not yet implemented for IM3 rollout"
+    },
+    {
+      "nodeId": "math.im3.skill.7.5.recognize-and-solve-direct-and-joint-variation-equations",
+      "module": "7",
+      "rendererKey": "step-by-step-solver",
+      "status": "generator_missing",
+      "notes": "Generator not yet implemented for IM3 rollout"
+    },
+    {
+      "nodeId": "math.im3.skill.7.5.recognize-and-solve-inverse-and-combined-variation-equations",
+      "module": "7",
+      "rendererKey": "graphing-explorer",
+      "status": "generator_missing",
+      "notes": "Generator not yet implemented for IM3 rollout"
+    },
+    {
+      "nodeId": "math.im3.skill.7.6.solve-rational-equations-in-one-variable",
+      "module": "7",
+      "rendererKey": "step-by-step-solver",
+      "status": "generator_missing",
+      "notes": "Generator not yet implemented for IM3 rollout"
+    },
+    {
+      "nodeId": "math.im3.skill.7.6.solve-rational-inequalities-in-one-variable",
+      "module": "7",
+      "rendererKey": "step-by-step-solver",
+      "status": "generator_missing",
+      "notes": "Generator not yet implemented for IM3 rollout"
+    },
+    {
+      "nodeId": "math.im3.skill.7.aleks.complex-fraction-simplification",
+      "module": "7",
+      "rendererKey": "comprehension-quiz",
+      "status": "generator_missing",
+      "notes": "Generator not yet implemented for IM3 rollout"
+    },
+    {
+      "nodeId": "math.im3.skill.7.aleks.direct-joint-variation-modeling",
+      "module": "7",
+      "rendererKey": "comprehension-quiz",
+      "status": "generator_missing",
+      "notes": "Generator not yet implemented for IM3 rollout"
+    },
+    {
+      "nodeId": "math.im3.skill.7.aleks.inverse-combined-variation-modeling",
+      "module": "7",
+      "rendererKey": "comprehension-quiz",
+      "status": "generator_missing",
+      "notes": "Generator not yet implemented for IM3 rollout"
+    },
+    {
+      "nodeId": "math.im3.skill.7.aleks.rational-equation-applications",
+      "module": "7",
+      "rendererKey": "step-by-step-solver",
+      "status": "generator_missing",
+      "notes": "Generator not yet implemented for IM3 rollout"
+    },
+    {
+      "nodeId": "math.im3.skill.7.aleks.rational-equation-solving",
+      "module": "7",
+      "rendererKey": "step-by-step-solver",
+      "status": "generator_missing",
+      "notes": "Generator not yet implemented for IM3 rollout"
+    },
+    {
+      "nodeId": "math.im3.skill.7.aleks.rational-expression-add-subtract",
+      "module": "7",
+      "rendererKey": "comprehension-quiz",
+      "status": "generator_missing",
+      "notes": "Generator not yet implemented for IM3 rollout"
+    },
+    {
+      "nodeId": "math.im3.skill.7.aleks.rational-expression-multiply-divide",
+      "module": "7",
+      "rendererKey": "comprehension-quiz",
+      "status": "generator_missing",
+      "notes": "Generator not yet implemented for IM3 rollout"
+    },
+    {
+      "nodeId": "math.im3.skill.7.aleks.rational-expression-simplification",
+      "module": "7",
+      "rendererKey": "comprehension-quiz",
+      "status": "generator_missing",
+      "notes": "Generator not yet implemented for IM3 rollout"
+    },
+    {
+      "nodeId": "math.im3.skill.7.aleks.rational-function-asymptote-analysis",
+      "module": "7",
+      "rendererKey": "comprehension-quiz",
+      "status": "generator_missing",
+      "notes": "Generator not yet implemented for IM3 rollout"
+    },
+    {
+      "nodeId": "math.im3.skill.7.aleks.rational-function-oblique-asymptote",
+      "module": "7",
+      "rendererKey": "comprehension-quiz",
+      "status": "generator_missing",
+      "notes": "Generator not yet implemented for IM3 rollout"
+    },
+    {
+      "nodeId": "math.im3.skill.7.aleks.rational-inequality-solving",
+      "module": "7",
+      "rendererKey": "comprehension-quiz",
+      "status": "generator_missing",
+      "notes": "Generator not yet implemented for IM3 rollout"
+    },
+    {
+      "nodeId": "math.im3.skill.7.aleks.reciprocal-function-table-graphing",
+      "module": "7",
+      "rendererKey": "graphing-explorer",
+      "status": "generator_missing",
+      "notes": "Generator not yet implemented for IM3 rollout"
+    },
+    {
+      "nodeId": "math.im3.skill.7.aleks.reciprocal-function-transformations",
+      "module": "7",
+      "rendererKey": "comprehension-quiz",
+      "status": "generator_missing",
+      "notes": "Generator not yet implemented for IM3 rollout"
+    },
+    {
+      "nodeId": "math.im3.skill.8.1.classify-sampling-methods-and-identify-bias-in-samples-and-s",
+      "module": "8",
+      "rendererKey": "comprehension-quiz",
+      "status": "generator_missing",
+      "notes": "Generator not yet implemented for IM3 rollout"
+    },
+    {
+      "nodeId": "math.im3.skill.8.1.distinguish-among-sample-surveys-experiments-and-observation",
+      "module": "8",
+      "rendererKey": "comprehension-quiz",
+      "status": "generator_missing",
+      "notes": "Generator not yet implemented for IM3 rollout"
+    },
+    {
+      "nodeId": "math.im3.skill.8.2.compare-theoretical-and-experimental-probabilities",
+      "module": "8",
+      "rendererKey": "comprehension-quiz",
+      "status": "generator_missing",
+      "notes": "Generator not yet implemented for IM3 rollout"
+    },
+    {
+      "nodeId": "math.im3.skill.8.2.determine-whether-models-are-consistent-with-results-from-si",
+      "module": "8",
+      "rendererKey": "comprehension-quiz",
+      "status": "generator_missing",
+      "notes": "Generator not yet implemented for IM3 rollout"
+    },
+    {
+      "nodeId": "math.im3.skill.8.3.describe-distributions-by-finding-their-mean-and-standard-de",
+      "module": "8",
+      "rendererKey": "graphing-explorer",
+      "status": "generator_missing",
+      "notes": "Generator not yet implemented for IM3 rollout"
+    },
+    {
+      "nodeId": "math.im3.skill.8.4.analyze-normally-distributed-variables-by-using-the-empirica",
+      "module": "8",
+      "rendererKey": "comprehension-quiz",
+      "status": "generator_missing",
+      "notes": "Generator not yet implemented for IM3 rollout"
+    },
+    {
+      "nodeId": "math.im3.skill.8.4.analyze-standardized-data-and-distributions-by-using-z-value",
+      "module": "8",
+      "rendererKey": "graphing-explorer",
+      "status": "generator_missing",
+      "notes": "Generator not yet implemented for IM3 rollout"
+    },
+    {
+      "nodeId": "math.im3.skill.8.4.classify-variables-and-analyze-probability-distributions-to",
+      "module": "8",
+      "rendererKey": "comprehension-quiz",
+      "status": "generator_missing",
+      "notes": "Generator not yet implemented for IM3 rollout"
+    },
+    {
+      "nodeId": "math.im3.skill.8.5.use-sample-data-to-infer-a-population-mean-by-using-confiden",
+      "module": "8",
+      "rendererKey": "comprehension-quiz",
+      "status": "generator_missing",
+      "notes": "Generator not yet implemented for IM3 rollout"
+    },
+    {
+      "nodeId": "math.im3.skill.8.5.use-sample-data-to-infer-a-population-proportion-by-using-co",
+      "module": "8",
+      "rendererKey": "comprehension-quiz",
+      "status": "generator_missing",
+      "notes": "Generator not yet implemented for IM3 rollout"
+    },
+    {
+      "nodeId": "math.im3.skill.8.aleks.confidence-interval-mean",
+      "module": "8",
+      "rendererKey": "comprehension-quiz",
+      "status": "generator_missing",
+      "notes": "Generator not yet implemented for IM3 rollout"
+    },
+    {
+      "nodeId": "math.im3.skill.8.aleks.confidence-interval-proportion",
+      "module": "8",
+      "rendererKey": "comprehension-quiz",
+      "status": "generator_missing",
+      "notes": "Generator not yet implemented for IM3 rollout"
+    },
+    {
+      "nodeId": "math.im3.skill.8.aleks.distribution-mean-standard-deviation",
+      "module": "8",
+      "rendererKey": "comprehension-quiz",
+      "status": "generator_missing",
+      "notes": "Generator not yet implemented for IM3 rollout"
+    },
+    {
+      "nodeId": "math.im3.skill.8.aleks.normal-distribution-empirical-rule",
+      "module": "8",
+      "rendererKey": "comprehension-quiz",
+      "status": "generator_missing",
+      "notes": "Generator not yet implemented for IM3 rollout"
+    },
+    {
+      "nodeId": "math.im3.skill.8.aleks.probability-distribution-analysis",
+      "module": "8",
+      "rendererKey": "comprehension-quiz",
+      "status": "generator_missing",
+      "notes": "Generator not yet implemented for IM3 rollout"
+    },
+    {
+      "nodeId": "math.im3.skill.8.aleks.sampling-bias-classification",
+      "module": "8",
+      "rendererKey": "comprehension-quiz",
+      "status": "generator_missing",
+      "notes": "Generator not yet implemented for IM3 rollout"
+    },
+    {
+      "nodeId": "math.im3.skill.8.aleks.simulation-model-evaluation",
+      "module": "8",
+      "rendererKey": "comprehension-quiz",
+      "status": "generator_missing",
+      "notes": "Generator not yet implemented for IM3 rollout"
+    },
+    {
+      "nodeId": "math.im3.skill.8.aleks.study-design-classification",
+      "module": "8",
+      "rendererKey": "comprehension-quiz",
+      "status": "generator_missing",
+      "notes": "Generator not yet implemented for IM3 rollout"
+    },
+    {
+      "nodeId": "math.im3.skill.8.aleks.theoretical-experimental-probability",
+      "module": "8",
+      "rendererKey": "comprehension-quiz",
+      "status": "generator_missing",
+      "notes": "Generator not yet implemented for IM3 rollout"
+    },
+    {
+      "nodeId": "math.im3.skill.8.aleks.z-score-standard-normal-analysis",
+      "module": "8",
+      "rendererKey": "comprehension-quiz",
+      "status": "generator_missing",
+      "notes": "Generator not yet implemented for IM3 rollout"
+    },
+    {
+      "nodeId": "math.im3.skill.9.1.convert-between-degree-and-radian-measures-and-find-arc-leng",
+      "module": "9",
+      "rendererKey": "comprehension-quiz",
+      "status": "generator_missing",
+      "notes": "Generator not yet implemented for IM3 rollout"
+    },
+    {
+      "nodeId": "math.im3.skill.9.1.draw-angles-in-standard-position-and-identify-coterminal-ang",
+      "module": "9",
+      "rendererKey": "comprehension-quiz",
+      "status": "generator_missing",
+      "notes": "Generator not yet implemented for IM3 rollout"
+    },
+    {
+      "nodeId": "math.im3.skill.9.2.find-values-of-trigonometric-functions-by-using-reference-an",
+      "module": "9",
+      "rendererKey": "comprehension-quiz",
+      "status": "generator_missing",
+      "notes": "Generator not yet implemented for IM3 rollout"
+    },
+    {
+      "nodeId": "math.im3.skill.9.2.find-values-of-trigonometric-functions-for-acute-angles",
+      "module": "9",
+      "rendererKey": "comprehension-quiz",
+      "status": "generator_missing",
+      "notes": "Generator not yet implemented for IM3 rollout"
+    },
+    {
+      "nodeId": "math.im3.skill.9.2.find-values-of-trigonometric-functions-of-general-angles",
+      "module": "9",
+      "rendererKey": "comprehension-quiz",
+      "status": "generator_missing",
+      "notes": "Generator not yet implemented for IM3 rollout"
+    },
+    {
+      "nodeId": "math.im3.skill.9.3.find-values-of-trigonometric-functions-given-a-point-on-a-un",
+      "module": "9",
+      "rendererKey": "comprehension-quiz",
+      "status": "generator_missing",
+      "notes": "Generator not yet implemented for IM3 rollout"
+    },
+    {
+      "nodeId": "math.im3.skill.9.3.find-values-of-trigonometric-functions-that-model-periodic-e",
+      "module": "9",
+      "rendererKey": "graphing-explorer",
+      "status": "generator_missing",
+      "notes": "Generator not yet implemented for IM3 rollout"
+    },
+    {
+      "nodeId": "math.im3.skill.9.4.graph-and-analyze-sine-and-cosine-functions",
+      "module": "9",
+      "rendererKey": "graphing-explorer",
+      "status": "generator_missing",
+      "notes": "Generator not yet implemented for IM3 rollout"
+    },
+    {
+      "nodeId": "math.im3.skill.9.4.model-periodic-real-world-situations-with-sine-and-cosine-fu",
+      "module": "9",
+      "rendererKey": "graphing-explorer",
+      "status": "generator_missing",
+      "notes": "Generator not yet implemented for IM3 rollout"
+    },
+    {
+      "nodeId": "math.im3.skill.9.5.graph-and-analyze-reciprocal-trigonometric-functions",
+      "module": "9",
+      "rendererKey": "graphing-explorer",
+      "status": "generator_missing",
+      "notes": "Generator not yet implemented for IM3 rollout"
+    },
+    {
+      "nodeId": "math.im3.skill.9.5.graph-and-analyze-tangent-functions",
+      "module": "9",
+      "rendererKey": "graphing-explorer",
+      "status": "generator_missing",
+      "notes": "Generator not yet implemented for IM3 rollout"
+    },
+    {
+      "nodeId": "math.im3.skill.9.6.graph-horizontal-translations-of-trigonometric-functions",
+      "module": "9",
+      "rendererKey": "graphing-explorer",
+      "status": "generator_missing",
+      "notes": "Generator not yet implemented for IM3 rollout"
+    },
+    {
+      "nodeId": "math.im3.skill.9.6.graph-vertical-translations-of-trigonometric-functions",
+      "module": "9",
+      "rendererKey": "graphing-explorer",
+      "status": "generator_missing",
+      "notes": "Generator not yet implemented for IM3 rollout"
+    },
+    {
+      "nodeId": "math.im3.skill.9.7.find-values-of-angle-measures-by-using-inverse-trigonometric",
+      "module": "9",
+      "rendererKey": "comprehension-quiz",
+      "status": "generator_missing",
+      "notes": "Generator not yet implemented for IM3 rollout"
+    },
+    {
+      "nodeId": "math.im3.skill.9.aleks.acute-angle-trig-ratios",
+      "module": "9",
+      "rendererKey": "comprehension-quiz",
+      "status": "generator_missing",
+      "notes": "Generator not yet implemented for IM3 rollout"
+    },
+    {
+      "nodeId": "math.im3.skill.9.aleks.angle-standard-position-coterminal",
+      "module": "9",
+      "rendererKey": "comprehension-quiz",
+      "status": "generator_missing",
+      "notes": "Generator not yet implemented for IM3 rollout"
+    },
+    {
+      "nodeId": "math.im3.skill.9.aleks.degree-radian-arc-length",
+      "module": "9",
+      "rendererKey": "comprehension-quiz",
+      "status": "generator_missing",
+      "notes": "Generator not yet implemented for IM3 rollout"
+    },
+    {
+      "nodeId": "math.im3.skill.9.aleks.general-angle-trig-values",
+      "module": "9",
+      "rendererKey": "comprehension-quiz",
+      "status": "generator_missing",
+      "notes": "Generator not yet implemented for IM3 rollout"
+    },
+    {
+      "nodeId": "math.im3.skill.9.aleks.inverse-trig-angle-solving",
+      "module": "9",
+      "rendererKey": "comprehension-quiz",
+      "status": "generator_missing",
+      "notes": "Generator not yet implemented for IM3 rollout"
+    },
+    {
+      "nodeId": "math.im3.skill.9.aleks.periodic-event-trig-modeling",
+      "module": "9",
+      "rendererKey": "comprehension-quiz",
+      "status": "generator_missing",
+      "notes": "Generator not yet implemented for IM3 rollout"
+    },
+    {
+      "nodeId": "math.im3.skill.9.aleks.reciprocal-trig-graph-analysis",
+      "module": "9",
+      "rendererKey": "graphing-explorer",
+      "status": "generator_missing",
+      "notes": "Generator not yet implemented for IM3 rollout"
+    },
+    {
+      "nodeId": "math.im3.skill.9.aleks.reference-angle-trig-values",
+      "module": "9",
+      "rendererKey": "comprehension-quiz",
+      "status": "generator_missing",
+      "notes": "Generator not yet implemented for IM3 rollout"
+    },
+    {
+      "nodeId": "math.im3.skill.9.aleks.sine-cosine-feature-analysis",
+      "module": "9",
+      "rendererKey": "comprehension-quiz",
+      "status": "generator_missing",
+      "notes": "Generator not yet implemented for IM3 rollout"
+    },
+    {
+      "nodeId": "math.im3.skill.9.aleks.sine-cosine-graph-construction",
+      "module": "9",
+      "rendererKey": "graphing-explorer",
+      "status": "generator_missing",
+      "notes": "Generator not yet implemented for IM3 rollout"
+    },
+    {
+      "nodeId": "math.im3.skill.9.aleks.sinusoidal-modeling",
+      "module": "9",
+      "rendererKey": "comprehension-quiz",
+      "status": "generator_missing",
+      "notes": "Generator not yet implemented for IM3 rollout"
+    },
+    {
+      "nodeId": "math.im3.skill.9.aleks.tangent-graph-analysis",
+      "module": "9",
+      "rendererKey": "graphing-explorer",
+      "status": "generator_missing",
+      "notes": "Generator not yet implemented for IM3 rollout"
+    },
+    {
+      "nodeId": "math.im3.skill.9.aleks.trig-phase-shift-graphing",
+      "module": "9",
+      "rendererKey": "graphing-explorer",
+      "status": "generator_missing",
+      "notes": "Generator not yet implemented for IM3 rollout"
+    },
+    {
+      "nodeId": "math.im3.skill.9.aleks.trig-vertical-shift-graphing",
+      "module": "9",
+      "rendererKey": "graphing-explorer",
+      "status": "generator_missing",
+      "notes": "Generator not yet implemented for IM3 rollout"
+    },
+    {
+      "nodeId": "math.im3.skill.9.aleks.unit-circle-special-angle-values",
+      "module": "9",
+      "rendererKey": "comprehension-quiz",
+      "status": "generator_missing",
+      "notes": "Generator not yet implemented for IM3 rollout"
+    }
+  ]
+}

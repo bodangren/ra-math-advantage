@@ -1,0 +1,1322 @@
+{
+  "nodes": [
+    {
+      "id": "math.im3",
+      "kind": "domain",
+      "title": "Integrated Math 3",
+      "domain": "math.im3",
+      "description": "Students develop a deep understanding of quadratic relationships, multiple solution methods, and extend solutions into the complex number system. Emphasis is placed on connecting algebraic procedures with graphical meaning.",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md",
+        "apps/integrated-math-3/curriculum/module-2-class-period-plan.md",
+        "apps/integrated-math-3/curriculum/module-3-class-period-plan.md",
+        "apps/integrated-math-3/curriculum/module-4-class-period-plan.md",
+        "apps/integrated-math-3/curriculum/module-5-class-period-plan.md",
+        "apps/integrated-math-3/curriculum/module-6-class-period-plan.md",
+        "apps/integrated-math-3/curriculum/module-7-class-period-plan.md",
+        "apps/integrated-math-3/curriculum/module-8-class-period-plan.md",
+        "apps/integrated-math-3/curriculum/module-9-class-period-plan.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3"
+      }
+    },
+    {
+      "id": "math.im3.example.9.1.001",
+      "kind": "worked_example",
+      "title": "Example 1: Draw an Angle in Standard Position; Draw an Angle with More Than One Rotation; Identify Coterminal Angles",
+      "domain": "math.im3",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-9-class-period-plan.md (9-1, Example 1)"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "9",
+        "lesson": "1",
+        "exampleNumber": 1,
+        "sourceLesson": "9-1",
+        "rawText": "9-1, Examples 1-3 \u2014 Draw an Angle in Standard Position; Draw an Angle with More Than One Rotation; Identify Coterminal Angles"
+      }
+    },
+    {
+      "id": "math.im3.example.9.1.002",
+      "kind": "worked_example",
+      "title": "Example 2: Draw an Angle in Standard Position; Draw an Angle with More Than One Rotation; Identify Coterminal Angles",
+      "domain": "math.im3",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-9-class-period-plan.md (9-1, Example 2)"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "9",
+        "lesson": "1",
+        "exampleNumber": 2,
+        "sourceLesson": "9-1",
+        "rawText": "9-1, Examples 1-3 \u2014 Draw an Angle in Standard Position; Draw an Angle with More Than One Rotation; Identify Coterminal Angles"
+      }
+    },
+    {
+      "id": "math.im3.example.9.1.003",
+      "kind": "worked_example",
+      "title": "Example 3: Draw an Angle in Standard Position; Draw an Angle with More Than One Rotation; Identify Coterminal Angles",
+      "domain": "math.im3",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-9-class-period-plan.md (9-1, Example 3)"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "9",
+        "lesson": "1",
+        "exampleNumber": 3,
+        "sourceLesson": "9-1",
+        "rawText": "9-1, Examples 1-3 \u2014 Draw an Angle in Standard Position; Draw an Angle with More Than One Rotation; Identify Coterminal Angles"
+      }
+    },
+    {
+      "id": "math.im3.example.9.1.004",
+      "kind": "worked_example",
+      "title": "Example 4: Convert Degrees to Radians; Convert Radians to Degrees; Find Arc Length",
+      "domain": "math.im3",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-9-class-period-plan.md (9-1, Example 4)"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "9",
+        "lesson": "1",
+        "exampleNumber": 4,
+        "sourceLesson": "9-1",
+        "rawText": "9-1, Examples 4-6 \u2014 Convert Degrees to Radians; Convert Radians to Degrees; Find Arc Length"
+      }
+    },
+    {
+      "id": "math.im3.example.9.1.005",
+      "kind": "worked_example",
+      "title": "Example 5: Convert Degrees to Radians; Convert Radians to Degrees; Find Arc Length",
+      "domain": "math.im3",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-9-class-period-plan.md (9-1, Example 5)"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "9",
+        "lesson": "1",
+        "exampleNumber": 5,
+        "sourceLesson": "9-1",
+        "rawText": "9-1, Examples 4-6 \u2014 Convert Degrees to Radians; Convert Radians to Degrees; Find Arc Length"
+      }
+    },
+    {
+      "id": "math.im3.example.9.1.006",
+      "kind": "worked_example",
+      "title": "Example 6: Convert Degrees to Radians; Convert Radians to Degrees; Find Arc Length",
+      "domain": "math.im3",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-9-class-period-plan.md (9-1, Example 6)"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "9",
+        "lesson": "1",
+        "exampleNumber": 6,
+        "sourceLesson": "9-1",
+        "rawText": "9-1, Examples 4-6 \u2014 Convert Degrees to Radians; Convert Radians to Degrees; Find Arc Length"
+      }
+    },
+    {
+      "id": "math.im3.example.9.2.007",
+      "kind": "worked_example",
+      "title": "Example 1: Evaluate Trigonometric Functions; Find Trigonometric Ratios",
+      "domain": "math.im3",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-9-class-period-plan.md (9-2, Example 1)"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "9",
+        "lesson": "2",
+        "exampleNumber": 1,
+        "sourceLesson": "9-2",
+        "rawText": "9-2, Examples 1-2 \u2014 Evaluate Trigonometric Functions; Find Trigonometric Ratios"
+      }
+    },
+    {
+      "id": "math.im3.example.9.2.008",
+      "kind": "worked_example",
+      "title": "Example 2: Evaluate Trigonometric Functions; Find Trigonometric Ratios",
+      "domain": "math.im3",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-9-class-period-plan.md (9-2, Example 2)"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "9",
+        "lesson": "2",
+        "exampleNumber": 2,
+        "sourceLesson": "9-2",
+        "rawText": "9-2, Examples 1-2 \u2014 Evaluate Trigonometric Functions; Find Trigonometric Ratios"
+      }
+    },
+    {
+      "id": "math.im3.example.9.2.009",
+      "kind": "worked_example",
+      "title": "Example 3: Evaluate Trigonometric Functions Given a Point; Evaluate Trigonometric Functions of Quadrantal Angles",
+      "domain": "math.im3",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-9-class-period-plan.md (9-2, Example 3)"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "9",
+        "lesson": "2",
+        "exampleNumber": 3,
+        "sourceLesson": "9-2",
+        "rawText": "9-2, Examples 3-4 \u2014 Evaluate Trigonometric Functions Given a Point; Evaluate Trigonometric Functions of Quadrantal Angles"
+      }
+    },
+    {
+      "id": "math.im3.example.9.2.010",
+      "kind": "worked_example",
+      "title": "Example 4: Evaluate Trigonometric Functions Given a Point; Evaluate Trigonometric Functions of Quadrantal Angles",
+      "domain": "math.im3",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-9-class-period-plan.md (9-2, Example 4)"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "9",
+        "lesson": "2",
+        "exampleNumber": 4,
+        "sourceLesson": "9-2",
+        "rawText": "9-2, Examples 3-4 \u2014 Evaluate Trigonometric Functions Given a Point; Evaluate Trigonometric Functions of Quadrantal Angles"
+      }
+    },
+    {
+      "id": "math.im3.example.9.2.011",
+      "kind": "worked_example",
+      "title": "Example 5: Find Reference Angles; Use a Reference Angle to Find a Trigonometric Value; Use Trigonometric Functions",
+      "domain": "math.im3",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-9-class-period-plan.md (9-2, Example 5)"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "9",
+        "lesson": "2",
+        "exampleNumber": 5,
+        "sourceLesson": "9-2",
+        "rawText": "9-2, Examples 5-7 \u2014 Find Reference Angles; Use a Reference Angle to Find a Trigonometric Value; Use Trigonometric Functions"
+      }
+    },
+    {
+      "id": "math.im3.example.9.2.012",
+      "kind": "worked_example",
+      "title": "Example 6: Find Reference Angles; Use a Reference Angle to Find a Trigonometric Value; Use Trigonometric Functions",
+      "domain": "math.im3",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-9-class-period-plan.md (9-2, Example 6)"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "9",
+        "lesson": "2",
+        "exampleNumber": 6,
+        "sourceLesson": "9-2",
+        "rawText": "9-2, Examples 5-7 \u2014 Find Reference Angles; Use a Reference Angle to Find a Trigonometric Value; Use Trigonometric Functions"
+      }
+    },
+    {
+      "id": "math.im3.example.9.2.013",
+      "kind": "worked_example",
+      "title": "Example 7: Find Reference Angles; Use a Reference Angle to Find a Trigonometric Value; Use Trigonometric Functions",
+      "domain": "math.im3",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-9-class-period-plan.md (9-2, Example 7)"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "9",
+        "lesson": "2",
+        "exampleNumber": 7,
+        "sourceLesson": "9-2",
+        "rawText": "9-2, Examples 5-7 \u2014 Find Reference Angles; Use a Reference Angle to Find a Trigonometric Value; Use Trigonometric Functions"
+      }
+    },
+    {
+      "id": "math.im3.example.9.4.014",
+      "kind": "worked_example",
+      "title": "Example 1: Identify the Amplitude and Period from a Graph; Identify the Amplitude and Period from an Equation",
+      "domain": "math.im3",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-9-class-period-plan.md (9-4, Example 1)"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "9",
+        "lesson": "4",
+        "exampleNumber": 1,
+        "sourceLesson": "9-4",
+        "rawText": "9-4, Examples 1-2 \u2014 Identify the Amplitude and Period from a Graph; Identify the Amplitude and Period from an Equation"
+      }
+    },
+    {
+      "id": "math.im3.example.9.4.015",
+      "kind": "worked_example",
+      "title": "Example 2: Identify the Amplitude and Period from a Graph; Identify the Amplitude and Period from an Equation",
+      "domain": "math.im3",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-9-class-period-plan.md (9-4, Example 2)"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "9",
+        "lesson": "4",
+        "exampleNumber": 2,
+        "sourceLesson": "9-4",
+        "rawText": "9-4, Examples 1-2 \u2014 Identify the Amplitude and Period from a Graph; Identify the Amplitude and Period from an Equation"
+      }
+    },
+    {
+      "id": "math.im3.example.9.4.016",
+      "kind": "worked_example",
+      "title": "Example 3: Graph a Sine Function; Graph a Cosine Function; Characteristics of the Sine and Cosine Functions",
+      "domain": "math.im3",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-9-class-period-plan.md (9-4, Example 3)"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "9",
+        "lesson": "4",
+        "exampleNumber": 3,
+        "sourceLesson": "9-4",
+        "rawText": "9-4, Examples 3-5 \u2014 Graph a Sine Function; Graph a Cosine Function; Characteristics of the Sine and Cosine Functions"
+      }
+    },
+    {
+      "id": "math.im3.example.9.4.017",
+      "kind": "worked_example",
+      "title": "Example 4: Graph a Sine Function; Graph a Cosine Function; Characteristics of the Sine and Cosine Functions",
+      "domain": "math.im3",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-9-class-period-plan.md (9-4, Example 4)"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "9",
+        "lesson": "4",
+        "exampleNumber": 4,
+        "sourceLesson": "9-4",
+        "rawText": "9-4, Examples 3-5 \u2014 Graph a Sine Function; Graph a Cosine Function; Characteristics of the Sine and Cosine Functions"
+      }
+    },
+    {
+      "id": "math.im3.example.9.4.018",
+      "kind": "worked_example",
+      "title": "Example 5: Graph a Sine Function; Graph a Cosine Function; Characteristics of the Sine and Cosine Functions",
+      "domain": "math.im3",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-9-class-period-plan.md (9-4, Example 5)"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "9",
+        "lesson": "4",
+        "exampleNumber": 5,
+        "sourceLesson": "9-4",
+        "rawText": "9-4, Examples 3-5 \u2014 Graph a Sine Function; Graph a Cosine Function; Characteristics of the Sine and Cosine Functions"
+      }
+    },
+    {
+      "id": "math.im3.example.9.4.019",
+      "kind": "worked_example",
+      "title": "Example 6: Model Periodic Situations",
+      "domain": "math.im3",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-9-class-period-plan.md (9-4, Example 6)"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "9",
+        "lesson": "4",
+        "exampleNumber": 6,
+        "sourceLesson": "9-4",
+        "rawText": "9-4, Example 6 \u2014 Model Periodic Situations"
+      }
+    },
+    {
+      "id": "math.im3.example.9.5.020",
+      "kind": "worked_example",
+      "title": "Example 1: Graph a Tangent Function with a Dilation; Graph a Tangent Function with a Dilation and a Reflection",
+      "domain": "math.im3",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-9-class-period-plan.md (9-5, Example 1)"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "9",
+        "lesson": "5",
+        "exampleNumber": 1,
+        "sourceLesson": "9-5",
+        "rawText": "9-5, Examples 1-2 \u2014 Graph a Tangent Function with a Dilation; Graph a Tangent Function with a Dilation and a Reflection"
+      }
+    },
+    {
+      "id": "math.im3.example.9.5.021",
+      "kind": "worked_example",
+      "title": "Example 2: Graph a Tangent Function with a Dilation; Graph a Tangent Function with a Dilation and a Reflection",
+      "domain": "math.im3",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-9-class-period-plan.md (9-5, Example 2)"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "9",
+        "lesson": "5",
+        "exampleNumber": 2,
+        "sourceLesson": "9-5",
+        "rawText": "9-5, Examples 1-2 \u2014 Graph a Tangent Function with a Dilation; Graph a Tangent Function with a Dilation and a Reflection"
+      }
+    },
+    {
+      "id": "math.im3.example.9.5.022",
+      "kind": "worked_example",
+      "title": "Example 3: Graph a Cosecant Function; Graph a Cotangent Function; Apply a Reciprocal Trigonometric Function",
+      "domain": "math.im3",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-9-class-period-plan.md (9-5, Example 3)"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "9",
+        "lesson": "5",
+        "exampleNumber": 3,
+        "sourceLesson": "9-5",
+        "rawText": "9-5, Examples 3-5 \u2014 Graph a Cosecant Function; Graph a Cotangent Function; Apply a Reciprocal Trigonometric Function"
+      }
+    },
+    {
+      "id": "math.im3.example.9.5.023",
+      "kind": "worked_example",
+      "title": "Example 4: Graph a Cosecant Function; Graph a Cotangent Function; Apply a Reciprocal Trigonometric Function",
+      "domain": "math.im3",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-9-class-period-plan.md (9-5, Example 4)"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "9",
+        "lesson": "5",
+        "exampleNumber": 4,
+        "sourceLesson": "9-5",
+        "rawText": "9-5, Examples 3-5 \u2014 Graph a Cosecant Function; Graph a Cotangent Function; Apply a Reciprocal Trigonometric Function"
+      }
+    },
+    {
+      "id": "math.im3.example.9.5.024",
+      "kind": "worked_example",
+      "title": "Example 5: Graph a Cosecant Function; Graph a Cotangent Function; Apply a Reciprocal Trigonometric Function",
+      "domain": "math.im3",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-9-class-period-plan.md (9-5, Example 5)"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "9",
+        "lesson": "5",
+        "exampleNumber": 5,
+        "sourceLesson": "9-5",
+        "rawText": "9-5, Examples 3-5 \u2014 Graph a Cosecant Function; Graph a Cotangent Function; Apply a Reciprocal Trigonometric Function"
+      }
+    },
+    {
+      "id": "math.im3.example.9.6.025",
+      "kind": "worked_example",
+      "title": "Example 1: Graph a Phase Shift; Graph a Transformation of a Trigonometric Function",
+      "domain": "math.im3",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-9-class-period-plan.md (9-6, Example 1)"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "9",
+        "lesson": "6",
+        "exampleNumber": 1,
+        "sourceLesson": "9-6",
+        "rawText": "9-6, Examples 1-2 \u2014 Graph a Phase Shift; Graph a Transformation of a Trigonometric Function"
+      }
+    },
+    {
+      "id": "math.im3.example.9.6.026",
+      "kind": "worked_example",
+      "title": "Example 2: Graph a Phase Shift; Graph a Transformation of a Trigonometric Function",
+      "domain": "math.im3",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-9-class-period-plan.md (9-6, Example 2)"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "9",
+        "lesson": "6",
+        "exampleNumber": 2,
+        "sourceLesson": "9-6",
+        "rawText": "9-6, Examples 1-2 \u2014 Graph a Phase Shift; Graph a Transformation of a Trigonometric Function"
+      }
+    },
+    {
+      "id": "math.im3.example.9.6.027",
+      "kind": "worked_example",
+      "title": "Example 3: Graph a Vertical Shift; Model Translations of Trigonometric Functions; Write a Trigonometric Function from a Graph",
+      "domain": "math.im3",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-9-class-period-plan.md (9-6, Example 3)"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "9",
+        "lesson": "6",
+        "exampleNumber": 3,
+        "sourceLesson": "9-6",
+        "rawText": "9-6, Examples 3-5 \u2014 Graph a Vertical Shift; Model Translations of Trigonometric Functions; Write a Trigonometric Function from a Graph"
+      }
+    },
+    {
+      "id": "math.im3.example.9.6.028",
+      "kind": "worked_example",
+      "title": "Example 4: Graph a Vertical Shift; Model Translations of Trigonometric Functions; Write a Trigonometric Function from a Graph",
+      "domain": "math.im3",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-9-class-period-plan.md (9-6, Example 4)"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "9",
+        "lesson": "6",
+        "exampleNumber": 4,
+        "sourceLesson": "9-6",
+        "rawText": "9-6, Examples 3-5 \u2014 Graph a Vertical Shift; Model Translations of Trigonometric Functions; Write a Trigonometric Function from a Graph"
+      }
+    },
+    {
+      "id": "math.im3.example.9.6.029",
+      "kind": "worked_example",
+      "title": "Example 5: Graph a Vertical Shift; Model Translations of Trigonometric Functions; Write a Trigonometric Function from a Graph",
+      "domain": "math.im3",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-9-class-period-plan.md (9-6, Example 5)"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "9",
+        "lesson": "6",
+        "exampleNumber": 5,
+        "sourceLesson": "9-6",
+        "rawText": "9-6, Examples 3-5 \u2014 Graph a Vertical Shift; Model Translations of Trigonometric Functions; Write a Trigonometric Function from a Graph"
+      }
+    },
+    {
+      "id": "math.im3.example.9.7.030",
+      "kind": "worked_example",
+      "title": "Example 1: Evaluate Inverse Trigonometric Functions; Find a Trigonometric Value by Using a Calculator",
+      "domain": "math.im3",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-9-class-period-plan.md (9-7, Example 1)"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "9",
+        "lesson": "7",
+        "exampleNumber": 1,
+        "sourceLesson": "9-7",
+        "rawText": "9-7, Examples 1-2 \u2014 Evaluate Inverse Trigonometric Functions; Find a Trigonometric Value by Using a Calculator"
+      }
+    },
+    {
+      "id": "math.im3.example.9.7.031",
+      "kind": "worked_example",
+      "title": "Example 2: Evaluate Inverse Trigonometric Functions; Find a Trigonometric Value by Using a Calculator",
+      "domain": "math.im3",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-9-class-period-plan.md (9-7, Example 2)"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "9",
+        "lesson": "7",
+        "exampleNumber": 2,
+        "sourceLesson": "9-7",
+        "rawText": "9-7, Examples 1-2 \u2014 Evaluate Inverse Trigonometric Functions; Find a Trigonometric Value by Using a Calculator"
+      }
+    },
+    {
+      "id": "math.im3.example.9.7.032",
+      "kind": "worked_example",
+      "title": "Example 3: Find an Angle Measure by Using a Graphing Calculator; Use Inverse Trigonometric Functions",
+      "domain": "math.im3",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-9-class-period-plan.md (9-7, Example 3)"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "9",
+        "lesson": "7",
+        "exampleNumber": 3,
+        "sourceLesson": "9-7",
+        "rawText": "9-7, Examples 3-4 \u2014 Find an Angle Measure by Using a Graphing Calculator; Use Inverse Trigonometric Functions"
+      }
+    },
+    {
+      "id": "math.im3.example.9.7.033",
+      "kind": "worked_example",
+      "title": "Example 4: Find an Angle Measure by Using a Graphing Calculator; Use Inverse Trigonometric Functions",
+      "domain": "math.im3",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-9-class-period-plan.md (9-7, Example 4)"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "9",
+        "lesson": "7",
+        "exampleNumber": 4,
+        "sourceLesson": "9-7",
+        "rawText": "9-7, Examples 3-4 \u2014 Find an Angle Measure by Using a Graphing Calculator; Use Inverse Trigonometric Functions"
+      }
+    },
+    {
+      "id": "math.im3.lesson.9.1",
+      "kind": "instructional_unit",
+      "title": "Angles and Angle Measure",
+      "domain": "math.im3",
+      "description": "Degrees, radians, and arc length.",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-9-class-period-plan.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "9",
+        "lesson": "1"
+      }
+    },
+    {
+      "id": "math.im3.lesson.9.2",
+      "kind": "instructional_unit",
+      "title": "Trigonometric Functions of General Angles",
+      "domain": "math.im3",
+      "description": "Extending ratios beyond right triangles.",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-9-class-period-plan.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "9",
+        "lesson": "2"
+      }
+    },
+    {
+      "id": "math.im3.lesson.9.3",
+      "kind": "instructional_unit",
+      "title": "Circular and Periodic Functions",
+      "domain": "math.im3",
+      "description": "Unit circle and special angles.",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-9-class-period-plan.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "9",
+        "lesson": "3"
+      }
+    },
+    {
+      "id": "math.im3.lesson.9.4",
+      "kind": "instructional_unit",
+      "title": "Graphing Sine and Cosine Functions",
+      "domain": "math.im3",
+      "description": "Amplitude, period, and midline.",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-9-class-period-plan.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "9",
+        "lesson": "4"
+      }
+    },
+    {
+      "id": "math.im3.lesson.9.5",
+      "kind": "instructional_unit",
+      "title": "Graphing Other Trigonometric Functions",
+      "domain": "math.im3",
+      "description": "Tangent and reciprocal functions.",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-9-class-period-plan.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "9",
+        "lesson": "5"
+      }
+    },
+    {
+      "id": "math.im3.lesson.9.6",
+      "kind": "instructional_unit",
+      "title": "Translations of Trigonometric Graphs",
+      "domain": "math.im3",
+      "description": "Phase shift and vertical shifts.",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-9-class-period-plan.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "9",
+        "lesson": "6"
+      }
+    },
+    {
+      "id": "math.im3.lesson.9.7",
+      "kind": "instructional_unit",
+      "title": "Inverse Trigonometric Functions",
+      "domain": "math.im3",
+      "description": "Restricting domains and solving equations.",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-9-class-period-plan.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "9",
+        "lesson": "7"
+      }
+    },
+    {
+      "id": "math.im3.module.9",
+      "kind": "content_group",
+      "title": "Trigonometric Functions",
+      "domain": "math.im3",
+      "description": "Students explore periodic phenomena and trigonometric relationships using the unit circle.",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-9-class-period-plan.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "9"
+      }
+    },
+    {
+      "id": "math.im3.skill.9.1.convert-between-degree-and-radian-measures-and-find-arc-leng",
+      "kind": "skill",
+      "title": "9b: Convert between degree and radian measures and find arc lengths by using central angles",
+      "domain": "math.im3",
+      "description": "Convert between degree and radian measures and find arc lengths by using central angles",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-9-class-period-plan.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "9",
+        "lesson": "1"
+      }
+    },
+    {
+      "id": "math.im3.skill.9.1.draw-angles-in-standard-position-and-identify-coterminal-ang",
+      "kind": "skill",
+      "title": "9a: Draw angles in standard position and identify coterminal angles",
+      "domain": "math.im3",
+      "description": "Draw angles in standard position and identify coterminal angles",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-9-class-period-plan.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "9",
+        "lesson": "1"
+      }
+    },
+    {
+      "id": "math.im3.skill.9.2.find-values-of-trigonometric-functions-by-using-reference-an",
+      "kind": "skill",
+      "title": "9e: Find values of trigonometric functions by using reference angles",
+      "domain": "math.im3",
+      "description": "Find values of trigonometric functions by using reference angles",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-9-class-period-plan.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "9",
+        "lesson": "2"
+      }
+    },
+    {
+      "id": "math.im3.skill.9.2.find-values-of-trigonometric-functions-for-acute-angles",
+      "kind": "skill",
+      "title": "9c: Find values of trigonometric functions for acute angles",
+      "domain": "math.im3",
+      "description": "Find values of trigonometric functions for acute angles",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-9-class-period-plan.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "9",
+        "lesson": "2"
+      }
+    },
+    {
+      "id": "math.im3.skill.9.2.find-values-of-trigonometric-functions-of-general-angles",
+      "kind": "skill",
+      "title": "9d: Find values of trigonometric functions of general angles",
+      "domain": "math.im3",
+      "description": "Find values of trigonometric functions of general angles",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-9-class-period-plan.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "9",
+        "lesson": "2"
+      }
+    },
+    {
+      "id": "math.im3.skill.9.3.find-values-of-trigonometric-functions-given-a-point-on-a-un",
+      "kind": "skill",
+      "title": "9f: Find values of trigonometric functions given a point on a unit circle or the measure of a special angle",
+      "domain": "math.im3",
+      "description": "Find values of trigonometric functions given a point on a unit circle or the measure of a special angle",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-9-class-period-plan.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "9",
+        "lesson": "3"
+      }
+    },
+    {
+      "id": "math.im3.skill.9.3.find-values-of-trigonometric-functions-that-model-periodic-e",
+      "kind": "skill",
+      "title": "9g: Find values of trigonometric functions that model periodic events",
+      "domain": "math.im3",
+      "description": "Find values of trigonometric functions that model periodic events",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-9-class-period-plan.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "9",
+        "lesson": "3"
+      }
+    },
+    {
+      "id": "math.im3.skill.9.4.graph-and-analyze-sine-and-cosine-functions",
+      "kind": "skill",
+      "title": "9h: Graph and analyze sine and cosine functions",
+      "domain": "math.im3",
+      "description": "Graph and analyze sine and cosine functions",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-9-class-period-plan.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "9",
+        "lesson": "4"
+      }
+    },
+    {
+      "id": "math.im3.skill.9.4.model-periodic-real-world-situations-with-sine-and-cosine-fu",
+      "kind": "skill",
+      "title": "9i: Model periodic real-world situations with sine and cosine functions",
+      "domain": "math.im3",
+      "description": "Model periodic real-world situations with sine and cosine functions",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-9-class-period-plan.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "9",
+        "lesson": "4"
+      }
+    },
+    {
+      "id": "math.im3.skill.9.5.graph-and-analyze-reciprocal-trigonometric-functions",
+      "kind": "skill",
+      "title": "9k: Graph and analyze reciprocal trigonometric functions",
+      "domain": "math.im3",
+      "description": "Graph and analyze reciprocal trigonometric functions",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-9-class-period-plan.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "9",
+        "lesson": "5"
+      }
+    },
+    {
+      "id": "math.im3.skill.9.5.graph-and-analyze-tangent-functions",
+      "kind": "skill",
+      "title": "9j: Graph and analyze tangent functions",
+      "domain": "math.im3",
+      "description": "Graph and analyze tangent functions",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-9-class-period-plan.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "9",
+        "lesson": "5"
+      }
+    },
+    {
+      "id": "math.im3.skill.9.6.graph-horizontal-translations-of-trigonometric-functions",
+      "kind": "skill",
+      "title": "9l: Graph horizontal translations of trigonometric functions",
+      "domain": "math.im3",
+      "description": "Graph horizontal translations of trigonometric functions",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-9-class-period-plan.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "9",
+        "lesson": "6"
+      }
+    },
+    {
+      "id": "math.im3.skill.9.6.graph-vertical-translations-of-trigonometric-functions",
+      "kind": "skill",
+      "title": "9m: Graph vertical translations of trigonometric functions",
+      "domain": "math.im3",
+      "description": "Graph vertical translations of trigonometric functions",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-9-class-period-plan.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "9",
+        "lesson": "6"
+      }
+    },
+    {
+      "id": "math.im3.skill.9.7.find-values-of-angle-measures-by-using-inverse-trigonometric",
+      "kind": "skill",
+      "title": "9n: Find values of angle measures by using inverse trigonometric functions",
+      "domain": "math.im3",
+      "description": "Find values of angle measures by using inverse trigonometric functions",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-9-class-period-plan.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "9",
+        "lesson": "7"
+      }
+    },
+    {
+      "id": "math.im3.skill.9.aleks.acute-angle-trig-ratios",
+      "kind": "concept",
+      "title": "acute_angle_trig_ratios",
+      "domain": "math.im3",
+      "description": "Right-triangle sine/cosine/tangent ratios.",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-9-class-period-plan.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "9",
+        "source": "aleks-registry",
+        "familyKey": "acute_angle_trig_ratios",
+        "objectives": [
+          "9c"
+        ],
+        "sourceExamples": "9-2, Examples 1-2",
+        "interactionShape": "triangle diagram + numeric/exact input",
+        "status": "planned"
+      }
+    },
+    {
+      "id": "math.im3.skill.9.aleks.angle-standard-position-coterminal",
+      "kind": "concept",
+      "title": "angle_standard_position_coterminal",
+      "domain": "math.im3",
+      "description": "Draw standard-position angles and identify coterminal angles.",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-9-class-period-plan.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "9",
+        "source": "aleks-registry",
+        "familyKey": "angle_standard_position_coterminal",
+        "objectives": [
+          "9a"
+        ],
+        "sourceExamples": "9-1, Examples 1-3",
+        "interactionShape": "diagram + numeric input",
+        "status": "planned"
+      }
+    },
+    {
+      "id": "math.im3.skill.9.aleks.degree-radian-arc-length",
+      "kind": "concept",
+      "title": "degree_radian_arc_length",
+      "domain": "math.im3",
+      "description": "Convert measures and compute arc length.",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-9-class-period-plan.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "9",
+        "source": "aleks-registry",
+        "familyKey": "degree_radian_arc_length",
+        "objectives": [
+          "9b"
+        ],
+        "sourceExamples": "9-1, Examples 4-6",
+        "interactionShape": "step-by-step solver + diagram",
+        "status": "planned"
+      }
+    },
+    {
+      "id": "math.im3.skill.9.aleks.general-angle-trig-values",
+      "kind": "concept",
+      "title": "general_angle_trig_values",
+      "domain": "math.im3",
+      "description": "Coordinate-based and quadrantal-angle trig values.",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-9-class-period-plan.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "9",
+        "source": "aleks-registry",
+        "familyKey": "general_angle_trig_values",
+        "objectives": [
+          "9d",
+          "9c"
+        ],
+        "sourceExamples": "9-2, Examples 3-4",
+        "interactionShape": "coordinate diagram + exact input",
+        "status": "planned"
+      }
+    },
+    {
+      "id": "math.im3.skill.9.aleks.inverse-trig-angle-solving",
+      "kind": "concept",
+      "title": "inverse_trig_angle_solving",
+      "domain": "math.im3",
+      "description": "Inverse trig values, calculator use, angle-measure solving, and applications.",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-9-class-period-plan.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "9",
+        "source": "aleks-registry",
+        "familyKey": "inverse_trig_angle_solving",
+        "objectives": [
+          "9n"
+        ],
+        "sourceExamples": "9-7, Examples 1-4",
+        "interactionShape": "step-by-step solver + calculator prompt",
+        "status": "planned"
+      }
+    },
+    {
+      "id": "math.im3.skill.9.aleks.periodic-event-trig-modeling",
+      "kind": "concept",
+      "title": "periodic_event_trig_modeling",
+      "domain": "math.im3",
+      "description": "Period identification and periodic-function graphing.",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-9-class-period-plan.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "9",
+        "source": "aleks-registry",
+        "familyKey": "periodic_event_trig_modeling",
+        "objectives": [
+          "9g",
+          "9f"
+        ],
+        "sourceExamples": "9-3, Example 3 and Apply Example 4",
+        "interactionShape": "graphing explorer + model interpretation",
+        "status": "planned"
+      }
+    },
+    {
+      "id": "math.im3.skill.9.aleks.reciprocal-trig-graph-analysis",
+      "kind": "concept",
+      "title": "reciprocal_trig_graph_analysis",
+      "domain": "math.im3",
+      "description": "Cosecant/cotangent graphs and contextual feature analysis.",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-9-class-period-plan.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "9",
+        "source": "aleks-registry",
+        "familyKey": "reciprocal_trig_graph_analysis",
+        "objectives": [
+          "9k",
+          "9j"
+        ],
+        "sourceExamples": "9-5, Examples 3-5",
+        "interactionShape": "graphing explorer",
+        "status": "planned"
+      }
+    },
+    {
+      "id": "math.im3.skill.9.aleks.reference-angle-trig-values",
+      "kind": "concept",
+      "title": "reference_angle_trig_values",
+      "domain": "math.im3",
+      "description": "Reference angles, quadrant signs, and contextual trig use.",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-9-class-period-plan.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "9",
+        "source": "aleks-registry",
+        "familyKey": "reference_angle_trig_values",
+        "objectives": [
+          "9e",
+          "9d"
+        ],
+        "sourceExamples": "9-2, Examples 5-7",
+        "interactionShape": "step-by-step solver + unit-circle support",
+        "status": "planned"
+      }
+    },
+    {
+      "id": "math.im3.skill.9.aleks.sine-cosine-feature-analysis",
+      "kind": "concept",
+      "title": "sine_cosine_feature_analysis",
+      "domain": "math.im3",
+      "description": "Amplitude and period from graph/equation.",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-9-class-period-plan.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "9",
+        "source": "aleks-registry",
+        "familyKey": "sine_cosine_feature_analysis",
+        "objectives": [
+          "9h"
+        ],
+        "sourceExamples": "9-4, Examples 1-2",
+        "interactionShape": "graphing explorer + feature table",
+        "status": "planned"
+      }
+    },
+    {
+      "id": "math.im3.skill.9.aleks.sine-cosine-graph-construction",
+      "kind": "concept",
+      "title": "sine_cosine_graph_construction",
+      "domain": "math.im3",
+      "description": "Graph sine/cosine and analyze characteristics.",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-9-class-period-plan.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "9",
+        "source": "aleks-registry",
+        "familyKey": "sine_cosine_graph_construction",
+        "objectives": [
+          "9h"
+        ],
+        "sourceExamples": "9-4, Examples 3-5",
+        "interactionShape": "graphing explorer",
+        "status": "planned"
+      }
+    },
+    {
+      "id": "math.im3.skill.9.aleks.sinusoidal-modeling",
+      "kind": "concept",
+      "title": "sinusoidal_modeling",
+      "domain": "math.im3",
+      "description": "Periodic real-world sine/cosine models.",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-9-class-period-plan.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "9",
+        "source": "aleks-registry",
+        "familyKey": "sinusoidal_modeling",
+        "objectives": [
+          "9i",
+          "9h"
+        ],
+        "sourceExamples": "9-4, Example 6",
+        "interactionShape": "model builder + graphing explorer",
+        "status": "planned"
+      }
+    },
+    {
+      "id": "math.im3.skill.9.aleks.tangent-graph-analysis",
+      "kind": "concept",
+      "title": "tangent_graph_analysis",
+      "domain": "math.im3",
+      "description": "Tangent transformations, period, and asymptotes.",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-9-class-period-plan.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "9",
+        "source": "aleks-registry",
+        "familyKey": "tangent_graph_analysis",
+        "objectives": [
+          "9j"
+        ],
+        "sourceExamples": "9-5, Examples 1-2",
+        "interactionShape": "graphing explorer",
+        "status": "planned"
+      }
+    },
+    {
+      "id": "math.im3.skill.9.aleks.trig-phase-shift-graphing",
+      "kind": "concept",
+      "title": "trig_phase_shift_graphing",
+      "domain": "math.im3",
+      "description": "Horizontal translations, phase shift, models, and graph-to-function writing.",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-9-class-period-plan.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "9",
+        "source": "aleks-registry",
+        "familyKey": "trig_phase_shift_graphing",
+        "objectives": [
+          "9l"
+        ],
+        "sourceExamples": "9-6, Examples 1-2 and 4-5",
+        "interactionShape": "graphing explorer",
+        "status": "planned"
+      }
+    },
+    {
+      "id": "math.im3.skill.9.aleks.trig-vertical-shift-graphing",
+      "kind": "concept",
+      "title": "trig_vertical_shift_graphing",
+      "domain": "math.im3",
+      "description": "Vertical translations, midline, models, and graph-to-function writing.",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-9-class-period-plan.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "9",
+        "source": "aleks-registry",
+        "familyKey": "trig_vertical_shift_graphing",
+        "objectives": [
+          "9m",
+          "9l"
+        ],
+        "sourceExamples": "9-6, Examples 3-5",
+        "interactionShape": "graphing explorer",
+        "status": "planned"
+      }
+    },
+    {
+      "id": "math.im3.skill.9.aleks.unit-circle-special-angle-values",
+      "kind": "concept",
+      "title": "unit_circle_special_angle_values",
+      "domain": "math.im3",
+      "description": "Unit-circle points, special angles, and expression evaluation.",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-9-class-period-plan.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "9",
+        "source": "aleks-registry",
+        "familyKey": "unit_circle_special_angle_values",
+        "objectives": [
+          "9f"
+        ],
+        "sourceExamples": "9-3, Examples 1-2 and 5",
+        "interactionShape": "unit-circle selector + exact input",
+        "status": "planned"
+      }
+    }
+  ]
+}

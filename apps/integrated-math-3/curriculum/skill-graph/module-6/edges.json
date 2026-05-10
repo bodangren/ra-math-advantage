@@ -1,0 +1,5077 @@
+{
+  "edges": [
+    {
+      "id": "math.alignment.im3-example-6-1-001-to-ccss-hsf-bf-b-5",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.6.1.001",
+      "targetId": "math.standard.ccss.hsf-bf-b-5",
+      "weight": 0.75,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-6-lesson-1",
+          "note": "Mapped via lesson standard (primary)"
+        },
+        "family-objective:step-by-step-solver:logarithmic-exponential-form",
+        "family-objective:graphing-explorer:exponential-functions-log",
+        "family-objective:comprehension-quiz:logarithmic-vocabulary"
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-6-lesson-1; Aligned via problem family step-by-step-solver:logarithmic-exponential-form objective; Aligned via problem family graphing-explorer:exponential-functions-log objective; Aligned via problem family comprehension-quiz:logarithmic-vocabulary objective",
+      "metadata": {
+        "isPrimary": true,
+        "course": "im3",
+        "originalWeight": 0.8,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-6-1-001-to-ccss-hsf-if-c-7e",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.6.1.001",
+      "targetId": "math.standard.ccss.hsf-if-c-7e",
+      "weight": 0.75,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-6-lesson-1",
+          "note": "Mapped via lesson standard (primary)"
+        },
+        "family-objective:graphing-explorer:logarithmic-functions",
+        "family-objective:graphing-explorer:exponential-functions-log"
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-6-lesson-1; Aligned via problem family graphing-explorer:logarithmic-functions objective; Aligned via problem family graphing-explorer:exponential-functions-log objective",
+      "metadata": {
+        "isPrimary": true,
+        "course": "im3",
+        "originalWeight": 0.8,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-6-1-001-to-ccss-hsf-le-a-1",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.6.1.001",
+      "targetId": "math.standard.ccss.hsf-le-a-1",
+      "weight": 0.5,
+      "confidence": "medium",
+      "sourceRefs": [
+        "family-objective:step-by-step-solver:natural-logarithms",
+        "family-objective:step-by-step-solver:compare-exponential-logarithmic"
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via problem family step-by-step-solver:natural-logarithms objective; Aligned via problem family step-by-step-solver:compare-exponential-logarithmic objective",
+      "metadata": {
+        "isPrimary": false,
+        "course": "im3",
+        "originalWeight": 0.4,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-6-1-001-to-ccss-hsf-le-a-2",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.6.1.001",
+      "targetId": "math.standard.ccss.hsf-le-a-2",
+      "weight": 0.5,
+      "confidence": "medium",
+      "sourceRefs": [
+        "family-objective:step-by-step-solver:natural-logarithms",
+        "family-objective:step-by-step-solver:continuous-growth-decay",
+        "family-objective:step-by-step-solver:compare-exponential-logarithmic"
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via problem family step-by-step-solver:natural-logarithms objective; Aligned via problem family step-by-step-solver:continuous-growth-decay objective; Aligned via problem family step-by-step-solver:compare-exponential-logarithmic objective",
+      "metadata": {
+        "isPrimary": false,
+        "course": "im3",
+        "originalWeight": 0.4,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-6-1-001-to-ccss-hsf-le-a-4",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.6.1.001",
+      "targetId": "math.standard.ccss.hsf-le-a-4",
+      "weight": 0.5,
+      "confidence": "medium",
+      "sourceRefs": [
+        "family-objective:step-by-step-solver:logarithmic-exponential-form",
+        "family-objective:step-by-step-solver:solve-logarithmic-equations",
+        "family-objective:comprehension-quiz:logarithmic-vocabulary"
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via problem family step-by-step-solver:logarithmic-exponential-form objective; Aligned via problem family step-by-step-solver:solve-logarithmic-equations objective; Aligned via problem family comprehension-quiz:logarithmic-vocabulary objective",
+      "metadata": {
+        "isPrimary": false,
+        "course": "im3",
+        "originalWeight": 0.4,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-6-1-001-to-ccss-hsf-le-b-5",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.6.1.001",
+      "targetId": "math.standard.ccss.hsf-le-b-5",
+      "weight": 0.5,
+      "confidence": "medium",
+      "sourceRefs": [
+        "family-objective:step-by-step-solver:properties-of-logarithms",
+        "family-objective:step-by-step-solver:change-of-base"
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via problem family step-by-step-solver:properties-of-logarithms objective; Aligned via problem family step-by-step-solver:change-of-base objective",
+      "metadata": {
+        "isPrimary": false,
+        "course": "im3",
+        "originalWeight": 0.4,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-6-1-002-to-ccss-hsf-bf-b-5",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.6.1.002",
+      "targetId": "math.standard.ccss.hsf-bf-b-5",
+      "weight": 0.75,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-6-lesson-1",
+          "note": "Mapped via lesson standard (primary)"
+        },
+        "family-objective:step-by-step-solver:logarithmic-exponential-form",
+        "family-objective:graphing-explorer:exponential-functions-log",
+        "family-objective:comprehension-quiz:logarithmic-vocabulary"
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-6-lesson-1; Aligned via problem family step-by-step-solver:logarithmic-exponential-form objective; Aligned via problem family graphing-explorer:exponential-functions-log objective; Aligned via problem family comprehension-quiz:logarithmic-vocabulary objective",
+      "metadata": {
+        "isPrimary": true,
+        "course": "im3",
+        "originalWeight": 0.8,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-6-1-002-to-ccss-hsf-if-c-7e",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.6.1.002",
+      "targetId": "math.standard.ccss.hsf-if-c-7e",
+      "weight": 0.75,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-6-lesson-1",
+          "note": "Mapped via lesson standard (primary)"
+        },
+        "family-objective:graphing-explorer:logarithmic-functions",
+        "family-objective:graphing-explorer:exponential-functions-log"
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-6-lesson-1; Aligned via problem family graphing-explorer:logarithmic-functions objective; Aligned via problem family graphing-explorer:exponential-functions-log objective",
+      "metadata": {
+        "isPrimary": true,
+        "course": "im3",
+        "originalWeight": 0.8,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-6-1-002-to-ccss-hsf-le-a-1",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.6.1.002",
+      "targetId": "math.standard.ccss.hsf-le-a-1",
+      "weight": 0.5,
+      "confidence": "medium",
+      "sourceRefs": [
+        "family-objective:step-by-step-solver:natural-logarithms",
+        "family-objective:step-by-step-solver:compare-exponential-logarithmic"
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via problem family step-by-step-solver:natural-logarithms objective; Aligned via problem family step-by-step-solver:compare-exponential-logarithmic objective",
+      "metadata": {
+        "isPrimary": false,
+        "course": "im3",
+        "originalWeight": 0.4,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-6-1-002-to-ccss-hsf-le-a-2",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.6.1.002",
+      "targetId": "math.standard.ccss.hsf-le-a-2",
+      "weight": 0.5,
+      "confidence": "medium",
+      "sourceRefs": [
+        "family-objective:step-by-step-solver:natural-logarithms",
+        "family-objective:step-by-step-solver:continuous-growth-decay",
+        "family-objective:step-by-step-solver:compare-exponential-logarithmic"
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via problem family step-by-step-solver:natural-logarithms objective; Aligned via problem family step-by-step-solver:continuous-growth-decay objective; Aligned via problem family step-by-step-solver:compare-exponential-logarithmic objective",
+      "metadata": {
+        "isPrimary": false,
+        "course": "im3",
+        "originalWeight": 0.4,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-6-1-002-to-ccss-hsf-le-a-4",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.6.1.002",
+      "targetId": "math.standard.ccss.hsf-le-a-4",
+      "weight": 0.5,
+      "confidence": "medium",
+      "sourceRefs": [
+        "family-objective:step-by-step-solver:logarithmic-exponential-form",
+        "family-objective:step-by-step-solver:solve-logarithmic-equations",
+        "family-objective:comprehension-quiz:logarithmic-vocabulary"
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via problem family step-by-step-solver:logarithmic-exponential-form objective; Aligned via problem family step-by-step-solver:solve-logarithmic-equations objective; Aligned via problem family comprehension-quiz:logarithmic-vocabulary objective",
+      "metadata": {
+        "isPrimary": false,
+        "course": "im3",
+        "originalWeight": 0.4,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-6-1-002-to-ccss-hsf-le-b-5",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.6.1.002",
+      "targetId": "math.standard.ccss.hsf-le-b-5",
+      "weight": 0.5,
+      "confidence": "medium",
+      "sourceRefs": [
+        "family-objective:step-by-step-solver:properties-of-logarithms",
+        "family-objective:step-by-step-solver:change-of-base"
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via problem family step-by-step-solver:properties-of-logarithms objective; Aligned via problem family step-by-step-solver:change-of-base objective",
+      "metadata": {
+        "isPrimary": false,
+        "course": "im3",
+        "originalWeight": 0.4,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-6-1-003-to-ccss-hsf-bf-b-5",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.6.1.003",
+      "targetId": "math.standard.ccss.hsf-bf-b-5",
+      "weight": 0.75,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-6-lesson-1",
+          "note": "Mapped via lesson standard (primary)"
+        },
+        "family-objective:step-by-step-solver:logarithmic-exponential-form",
+        "family-objective:graphing-explorer:exponential-functions-log",
+        "family-objective:comprehension-quiz:logarithmic-vocabulary"
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-6-lesson-1; Aligned via problem family step-by-step-solver:logarithmic-exponential-form objective; Aligned via problem family graphing-explorer:exponential-functions-log objective; Aligned via problem family comprehension-quiz:logarithmic-vocabulary objective",
+      "metadata": {
+        "isPrimary": true,
+        "course": "im3",
+        "originalWeight": 0.8,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-6-1-003-to-ccss-hsf-if-c-7e",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.6.1.003",
+      "targetId": "math.standard.ccss.hsf-if-c-7e",
+      "weight": 0.75,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-6-lesson-1",
+          "note": "Mapped via lesson standard (primary)"
+        },
+        "family-objective:graphing-explorer:logarithmic-functions",
+        "family-objective:graphing-explorer:exponential-functions-log"
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-6-lesson-1; Aligned via problem family graphing-explorer:logarithmic-functions objective; Aligned via problem family graphing-explorer:exponential-functions-log objective",
+      "metadata": {
+        "isPrimary": true,
+        "course": "im3",
+        "originalWeight": 0.8,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-6-1-003-to-ccss-hsf-le-a-1",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.6.1.003",
+      "targetId": "math.standard.ccss.hsf-le-a-1",
+      "weight": 0.5,
+      "confidence": "medium",
+      "sourceRefs": [
+        "family-objective:step-by-step-solver:natural-logarithms",
+        "family-objective:step-by-step-solver:compare-exponential-logarithmic"
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via problem family step-by-step-solver:natural-logarithms objective; Aligned via problem family step-by-step-solver:compare-exponential-logarithmic objective",
+      "metadata": {
+        "isPrimary": false,
+        "course": "im3",
+        "originalWeight": 0.4,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-6-1-003-to-ccss-hsf-le-a-2",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.6.1.003",
+      "targetId": "math.standard.ccss.hsf-le-a-2",
+      "weight": 0.5,
+      "confidence": "medium",
+      "sourceRefs": [
+        "family-objective:step-by-step-solver:natural-logarithms",
+        "family-objective:step-by-step-solver:continuous-growth-decay",
+        "family-objective:step-by-step-solver:compare-exponential-logarithmic"
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via problem family step-by-step-solver:natural-logarithms objective; Aligned via problem family step-by-step-solver:continuous-growth-decay objective; Aligned via problem family step-by-step-solver:compare-exponential-logarithmic objective",
+      "metadata": {
+        "isPrimary": false,
+        "course": "im3",
+        "originalWeight": 0.4,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-6-1-003-to-ccss-hsf-le-a-4",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.6.1.003",
+      "targetId": "math.standard.ccss.hsf-le-a-4",
+      "weight": 0.5,
+      "confidence": "medium",
+      "sourceRefs": [
+        "family-objective:step-by-step-solver:logarithmic-exponential-form",
+        "family-objective:step-by-step-solver:solve-logarithmic-equations",
+        "family-objective:comprehension-quiz:logarithmic-vocabulary"
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via problem family step-by-step-solver:logarithmic-exponential-form objective; Aligned via problem family step-by-step-solver:solve-logarithmic-equations objective; Aligned via problem family comprehension-quiz:logarithmic-vocabulary objective",
+      "metadata": {
+        "isPrimary": false,
+        "course": "im3",
+        "originalWeight": 0.4,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-6-1-003-to-ccss-hsf-le-b-5",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.6.1.003",
+      "targetId": "math.standard.ccss.hsf-le-b-5",
+      "weight": 0.5,
+      "confidence": "medium",
+      "sourceRefs": [
+        "family-objective:step-by-step-solver:properties-of-logarithms",
+        "family-objective:step-by-step-solver:change-of-base"
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via problem family step-by-step-solver:properties-of-logarithms objective; Aligned via problem family step-by-step-solver:change-of-base objective",
+      "metadata": {
+        "isPrimary": false,
+        "course": "im3",
+        "originalWeight": 0.4,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-6-1-004-to-ccss-hsf-bf-b-5",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.6.1.004",
+      "targetId": "math.standard.ccss.hsf-bf-b-5",
+      "weight": 0.75,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-6-lesson-1",
+          "note": "Mapped via lesson standard (primary)"
+        },
+        "family-objective:step-by-step-solver:logarithmic-exponential-form",
+        "family-objective:graphing-explorer:exponential-functions-log",
+        "family-objective:comprehension-quiz:logarithmic-vocabulary"
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-6-lesson-1; Aligned via problem family step-by-step-solver:logarithmic-exponential-form objective; Aligned via problem family graphing-explorer:exponential-functions-log objective; Aligned via problem family comprehension-quiz:logarithmic-vocabulary objective",
+      "metadata": {
+        "isPrimary": true,
+        "course": "im3",
+        "originalWeight": 0.8,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-6-1-004-to-ccss-hsf-if-c-7e",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.6.1.004",
+      "targetId": "math.standard.ccss.hsf-if-c-7e",
+      "weight": 0.75,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-6-lesson-1",
+          "note": "Mapped via lesson standard (primary)"
+        },
+        "family-objective:graphing-explorer:logarithmic-functions",
+        "family-objective:graphing-explorer:exponential-functions-log"
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-6-lesson-1; Aligned via problem family graphing-explorer:logarithmic-functions objective; Aligned via problem family graphing-explorer:exponential-functions-log objective",
+      "metadata": {
+        "isPrimary": true,
+        "course": "im3",
+        "originalWeight": 0.8,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-6-1-004-to-ccss-hsf-le-a-1",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.6.1.004",
+      "targetId": "math.standard.ccss.hsf-le-a-1",
+      "weight": 0.5,
+      "confidence": "medium",
+      "sourceRefs": [
+        "family-objective:step-by-step-solver:natural-logarithms",
+        "family-objective:step-by-step-solver:compare-exponential-logarithmic"
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via problem family step-by-step-solver:natural-logarithms objective; Aligned via problem family step-by-step-solver:compare-exponential-logarithmic objective",
+      "metadata": {
+        "isPrimary": false,
+        "course": "im3",
+        "originalWeight": 0.4,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-6-1-004-to-ccss-hsf-le-a-2",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.6.1.004",
+      "targetId": "math.standard.ccss.hsf-le-a-2",
+      "weight": 0.5,
+      "confidence": "medium",
+      "sourceRefs": [
+        "family-objective:step-by-step-solver:natural-logarithms",
+        "family-objective:step-by-step-solver:continuous-growth-decay",
+        "family-objective:step-by-step-solver:compare-exponential-logarithmic"
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via problem family step-by-step-solver:natural-logarithms objective; Aligned via problem family step-by-step-solver:continuous-growth-decay objective; Aligned via problem family step-by-step-solver:compare-exponential-logarithmic objective",
+      "metadata": {
+        "isPrimary": false,
+        "course": "im3",
+        "originalWeight": 0.4,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-6-1-004-to-ccss-hsf-le-a-4",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.6.1.004",
+      "targetId": "math.standard.ccss.hsf-le-a-4",
+      "weight": 0.5,
+      "confidence": "medium",
+      "sourceRefs": [
+        "family-objective:step-by-step-solver:logarithmic-exponential-form",
+        "family-objective:step-by-step-solver:solve-logarithmic-equations",
+        "family-objective:comprehension-quiz:logarithmic-vocabulary"
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via problem family step-by-step-solver:logarithmic-exponential-form objective; Aligned via problem family step-by-step-solver:solve-logarithmic-equations objective; Aligned via problem family comprehension-quiz:logarithmic-vocabulary objective",
+      "metadata": {
+        "isPrimary": false,
+        "course": "im3",
+        "originalWeight": 0.4,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-6-1-004-to-ccss-hsf-le-b-5",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.6.1.004",
+      "targetId": "math.standard.ccss.hsf-le-b-5",
+      "weight": 0.5,
+      "confidence": "medium",
+      "sourceRefs": [
+        "family-objective:step-by-step-solver:properties-of-logarithms",
+        "family-objective:step-by-step-solver:change-of-base"
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via problem family step-by-step-solver:properties-of-logarithms objective; Aligned via problem family step-by-step-solver:change-of-base objective",
+      "metadata": {
+        "isPrimary": false,
+        "course": "im3",
+        "originalWeight": 0.4,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-6-1-005-to-ccss-hsf-bf-b-5",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.6.1.005",
+      "targetId": "math.standard.ccss.hsf-bf-b-5",
+      "weight": 0.75,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-6-lesson-1",
+          "note": "Mapped via lesson standard (primary)"
+        },
+        "family-objective:step-by-step-solver:logarithmic-exponential-form",
+        "family-objective:graphing-explorer:exponential-functions-log",
+        "family-objective:comprehension-quiz:logarithmic-vocabulary"
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-6-lesson-1; Aligned via problem family step-by-step-solver:logarithmic-exponential-form objective; Aligned via problem family graphing-explorer:exponential-functions-log objective; Aligned via problem family comprehension-quiz:logarithmic-vocabulary objective",
+      "metadata": {
+        "isPrimary": true,
+        "course": "im3",
+        "originalWeight": 0.8,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-6-1-005-to-ccss-hsf-if-c-7e",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.6.1.005",
+      "targetId": "math.standard.ccss.hsf-if-c-7e",
+      "weight": 0.75,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-6-lesson-1",
+          "note": "Mapped via lesson standard (primary)"
+        },
+        "family-objective:graphing-explorer:logarithmic-functions",
+        "family-objective:graphing-explorer:exponential-functions-log"
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-6-lesson-1; Aligned via problem family graphing-explorer:logarithmic-functions objective; Aligned via problem family graphing-explorer:exponential-functions-log objective",
+      "metadata": {
+        "isPrimary": true,
+        "course": "im3",
+        "originalWeight": 0.8,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-6-1-005-to-ccss-hsf-le-a-1",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.6.1.005",
+      "targetId": "math.standard.ccss.hsf-le-a-1",
+      "weight": 0.5,
+      "confidence": "medium",
+      "sourceRefs": [
+        "family-objective:step-by-step-solver:natural-logarithms",
+        "family-objective:step-by-step-solver:compare-exponential-logarithmic"
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via problem family step-by-step-solver:natural-logarithms objective; Aligned via problem family step-by-step-solver:compare-exponential-logarithmic objective",
+      "metadata": {
+        "isPrimary": false,
+        "course": "im3",
+        "originalWeight": 0.4,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-6-1-005-to-ccss-hsf-le-a-2",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.6.1.005",
+      "targetId": "math.standard.ccss.hsf-le-a-2",
+      "weight": 0.5,
+      "confidence": "medium",
+      "sourceRefs": [
+        "family-objective:step-by-step-solver:natural-logarithms",
+        "family-objective:step-by-step-solver:continuous-growth-decay",
+        "family-objective:step-by-step-solver:compare-exponential-logarithmic"
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via problem family step-by-step-solver:natural-logarithms objective; Aligned via problem family step-by-step-solver:continuous-growth-decay objective; Aligned via problem family step-by-step-solver:compare-exponential-logarithmic objective",
+      "metadata": {
+        "isPrimary": false,
+        "course": "im3",
+        "originalWeight": 0.4,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-6-1-005-to-ccss-hsf-le-a-4",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.6.1.005",
+      "targetId": "math.standard.ccss.hsf-le-a-4",
+      "weight": 0.5,
+      "confidence": "medium",
+      "sourceRefs": [
+        "family-objective:step-by-step-solver:logarithmic-exponential-form",
+        "family-objective:step-by-step-solver:solve-logarithmic-equations",
+        "family-objective:comprehension-quiz:logarithmic-vocabulary"
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via problem family step-by-step-solver:logarithmic-exponential-form objective; Aligned via problem family step-by-step-solver:solve-logarithmic-equations objective; Aligned via problem family comprehension-quiz:logarithmic-vocabulary objective",
+      "metadata": {
+        "isPrimary": false,
+        "course": "im3",
+        "originalWeight": 0.4,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-6-1-005-to-ccss-hsf-le-b-5",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.6.1.005",
+      "targetId": "math.standard.ccss.hsf-le-b-5",
+      "weight": 0.5,
+      "confidence": "medium",
+      "sourceRefs": [
+        "family-objective:step-by-step-solver:properties-of-logarithms",
+        "family-objective:step-by-step-solver:change-of-base"
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via problem family step-by-step-solver:properties-of-logarithms objective; Aligned via problem family step-by-step-solver:change-of-base objective",
+      "metadata": {
+        "isPrimary": false,
+        "course": "im3",
+        "originalWeight": 0.4,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-6-1-006-to-ccss-hsf-bf-b-5",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.6.1.006",
+      "targetId": "math.standard.ccss.hsf-bf-b-5",
+      "weight": 0.75,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-6-lesson-1",
+          "note": "Mapped via lesson standard (primary)"
+        },
+        "family-objective:step-by-step-solver:logarithmic-exponential-form",
+        "family-objective:graphing-explorer:exponential-functions-log",
+        "family-objective:comprehension-quiz:logarithmic-vocabulary"
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-6-lesson-1; Aligned via problem family step-by-step-solver:logarithmic-exponential-form objective; Aligned via problem family graphing-explorer:exponential-functions-log objective; Aligned via problem family comprehension-quiz:logarithmic-vocabulary objective",
+      "metadata": {
+        "isPrimary": true,
+        "course": "im3",
+        "originalWeight": 0.8,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-6-1-006-to-ccss-hsf-if-c-7e",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.6.1.006",
+      "targetId": "math.standard.ccss.hsf-if-c-7e",
+      "weight": 0.75,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-6-lesson-1",
+          "note": "Mapped via lesson standard (primary)"
+        },
+        "family-objective:graphing-explorer:logarithmic-functions",
+        "family-objective:graphing-explorer:exponential-functions-log"
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-6-lesson-1; Aligned via problem family graphing-explorer:logarithmic-functions objective; Aligned via problem family graphing-explorer:exponential-functions-log objective",
+      "metadata": {
+        "isPrimary": true,
+        "course": "im3",
+        "originalWeight": 0.8,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-6-1-006-to-ccss-hsf-le-a-1",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.6.1.006",
+      "targetId": "math.standard.ccss.hsf-le-a-1",
+      "weight": 0.5,
+      "confidence": "medium",
+      "sourceRefs": [
+        "family-objective:step-by-step-solver:natural-logarithms",
+        "family-objective:step-by-step-solver:compare-exponential-logarithmic"
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via problem family step-by-step-solver:natural-logarithms objective; Aligned via problem family step-by-step-solver:compare-exponential-logarithmic objective",
+      "metadata": {
+        "isPrimary": false,
+        "course": "im3",
+        "originalWeight": 0.4,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-6-1-006-to-ccss-hsf-le-a-2",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.6.1.006",
+      "targetId": "math.standard.ccss.hsf-le-a-2",
+      "weight": 0.5,
+      "confidence": "medium",
+      "sourceRefs": [
+        "family-objective:step-by-step-solver:natural-logarithms",
+        "family-objective:step-by-step-solver:continuous-growth-decay",
+        "family-objective:step-by-step-solver:compare-exponential-logarithmic"
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via problem family step-by-step-solver:natural-logarithms objective; Aligned via problem family step-by-step-solver:continuous-growth-decay objective; Aligned via problem family step-by-step-solver:compare-exponential-logarithmic objective",
+      "metadata": {
+        "isPrimary": false,
+        "course": "im3",
+        "originalWeight": 0.4,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-6-1-006-to-ccss-hsf-le-a-4",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.6.1.006",
+      "targetId": "math.standard.ccss.hsf-le-a-4",
+      "weight": 0.5,
+      "confidence": "medium",
+      "sourceRefs": [
+        "family-objective:step-by-step-solver:logarithmic-exponential-form",
+        "family-objective:step-by-step-solver:solve-logarithmic-equations",
+        "family-objective:comprehension-quiz:logarithmic-vocabulary"
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via problem family step-by-step-solver:logarithmic-exponential-form objective; Aligned via problem family step-by-step-solver:solve-logarithmic-equations objective; Aligned via problem family comprehension-quiz:logarithmic-vocabulary objective",
+      "metadata": {
+        "isPrimary": false,
+        "course": "im3",
+        "originalWeight": 0.4,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-6-1-006-to-ccss-hsf-le-b-5",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.6.1.006",
+      "targetId": "math.standard.ccss.hsf-le-b-5",
+      "weight": 0.5,
+      "confidence": "medium",
+      "sourceRefs": [
+        "family-objective:step-by-step-solver:properties-of-logarithms",
+        "family-objective:step-by-step-solver:change-of-base"
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via problem family step-by-step-solver:properties-of-logarithms objective; Aligned via problem family step-by-step-solver:change-of-base objective",
+      "metadata": {
+        "isPrimary": false,
+        "course": "im3",
+        "originalWeight": 0.4,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-6-1-007-to-ccss-hsf-bf-b-5",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.6.1.007",
+      "targetId": "math.standard.ccss.hsf-bf-b-5",
+      "weight": 0.75,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-6-lesson-1",
+          "note": "Mapped via lesson standard (primary)"
+        },
+        "family-objective:step-by-step-solver:logarithmic-exponential-form",
+        "family-objective:graphing-explorer:exponential-functions-log",
+        "family-objective:comprehension-quiz:logarithmic-vocabulary"
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-6-lesson-1; Aligned via problem family step-by-step-solver:logarithmic-exponential-form objective; Aligned via problem family graphing-explorer:exponential-functions-log objective; Aligned via problem family comprehension-quiz:logarithmic-vocabulary objective",
+      "metadata": {
+        "isPrimary": true,
+        "course": "im3",
+        "originalWeight": 0.8,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-6-1-007-to-ccss-hsf-if-c-7e",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.6.1.007",
+      "targetId": "math.standard.ccss.hsf-if-c-7e",
+      "weight": 0.75,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-6-lesson-1",
+          "note": "Mapped via lesson standard (primary)"
+        },
+        "family-objective:graphing-explorer:logarithmic-functions",
+        "family-objective:graphing-explorer:exponential-functions-log"
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-6-lesson-1; Aligned via problem family graphing-explorer:logarithmic-functions objective; Aligned via problem family graphing-explorer:exponential-functions-log objective",
+      "metadata": {
+        "isPrimary": true,
+        "course": "im3",
+        "originalWeight": 0.8,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-6-1-007-to-ccss-hsf-le-a-1",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.6.1.007",
+      "targetId": "math.standard.ccss.hsf-le-a-1",
+      "weight": 0.5,
+      "confidence": "medium",
+      "sourceRefs": [
+        "family-objective:step-by-step-solver:natural-logarithms",
+        "family-objective:step-by-step-solver:compare-exponential-logarithmic"
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via problem family step-by-step-solver:natural-logarithms objective; Aligned via problem family step-by-step-solver:compare-exponential-logarithmic objective",
+      "metadata": {
+        "isPrimary": false,
+        "course": "im3",
+        "originalWeight": 0.4,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-6-1-007-to-ccss-hsf-le-a-2",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.6.1.007",
+      "targetId": "math.standard.ccss.hsf-le-a-2",
+      "weight": 0.5,
+      "confidence": "medium",
+      "sourceRefs": [
+        "family-objective:step-by-step-solver:natural-logarithms",
+        "family-objective:step-by-step-solver:continuous-growth-decay",
+        "family-objective:step-by-step-solver:compare-exponential-logarithmic"
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via problem family step-by-step-solver:natural-logarithms objective; Aligned via problem family step-by-step-solver:continuous-growth-decay objective; Aligned via problem family step-by-step-solver:compare-exponential-logarithmic objective",
+      "metadata": {
+        "isPrimary": false,
+        "course": "im3",
+        "originalWeight": 0.4,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-6-1-007-to-ccss-hsf-le-a-4",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.6.1.007",
+      "targetId": "math.standard.ccss.hsf-le-a-4",
+      "weight": 0.5,
+      "confidence": "medium",
+      "sourceRefs": [
+        "family-objective:step-by-step-solver:logarithmic-exponential-form",
+        "family-objective:step-by-step-solver:solve-logarithmic-equations",
+        "family-objective:comprehension-quiz:logarithmic-vocabulary"
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via problem family step-by-step-solver:logarithmic-exponential-form objective; Aligned via problem family step-by-step-solver:solve-logarithmic-equations objective; Aligned via problem family comprehension-quiz:logarithmic-vocabulary objective",
+      "metadata": {
+        "isPrimary": false,
+        "course": "im3",
+        "originalWeight": 0.4,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-6-1-007-to-ccss-hsf-le-b-5",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.6.1.007",
+      "targetId": "math.standard.ccss.hsf-le-b-5",
+      "weight": 0.5,
+      "confidence": "medium",
+      "sourceRefs": [
+        "family-objective:step-by-step-solver:properties-of-logarithms",
+        "family-objective:step-by-step-solver:change-of-base"
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via problem family step-by-step-solver:properties-of-logarithms objective; Aligned via problem family step-by-step-solver:change-of-base objective",
+      "metadata": {
+        "isPrimary": false,
+        "course": "im3",
+        "originalWeight": 0.4,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-6-1-008-to-ccss-hsf-bf-b-5",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.6.1.008",
+      "targetId": "math.standard.ccss.hsf-bf-b-5",
+      "weight": 0.75,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-6-lesson-1",
+          "note": "Mapped via lesson standard (primary)"
+        },
+        "family-objective:step-by-step-solver:logarithmic-exponential-form",
+        "family-objective:graphing-explorer:exponential-functions-log",
+        "family-objective:comprehension-quiz:logarithmic-vocabulary"
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-6-lesson-1; Aligned via problem family step-by-step-solver:logarithmic-exponential-form objective; Aligned via problem family graphing-explorer:exponential-functions-log objective; Aligned via problem family comprehension-quiz:logarithmic-vocabulary objective",
+      "metadata": {
+        "isPrimary": true,
+        "course": "im3",
+        "originalWeight": 0.8,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-6-1-008-to-ccss-hsf-if-c-7e",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.6.1.008",
+      "targetId": "math.standard.ccss.hsf-if-c-7e",
+      "weight": 0.75,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-6-lesson-1",
+          "note": "Mapped via lesson standard (primary)"
+        },
+        "family-objective:graphing-explorer:logarithmic-functions",
+        "family-objective:graphing-explorer:exponential-functions-log"
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-6-lesson-1; Aligned via problem family graphing-explorer:logarithmic-functions objective; Aligned via problem family graphing-explorer:exponential-functions-log objective",
+      "metadata": {
+        "isPrimary": true,
+        "course": "im3",
+        "originalWeight": 0.8,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-6-1-008-to-ccss-hsf-le-a-1",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.6.1.008",
+      "targetId": "math.standard.ccss.hsf-le-a-1",
+      "weight": 0.5,
+      "confidence": "medium",
+      "sourceRefs": [
+        "family-objective:step-by-step-solver:natural-logarithms",
+        "family-objective:step-by-step-solver:compare-exponential-logarithmic"
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via problem family step-by-step-solver:natural-logarithms objective; Aligned via problem family step-by-step-solver:compare-exponential-logarithmic objective",
+      "metadata": {
+        "isPrimary": false,
+        "course": "im3",
+        "originalWeight": 0.4,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-6-1-008-to-ccss-hsf-le-a-2",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.6.1.008",
+      "targetId": "math.standard.ccss.hsf-le-a-2",
+      "weight": 0.5,
+      "confidence": "medium",
+      "sourceRefs": [
+        "family-objective:step-by-step-solver:natural-logarithms",
+        "family-objective:step-by-step-solver:continuous-growth-decay",
+        "family-objective:step-by-step-solver:compare-exponential-logarithmic"
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via problem family step-by-step-solver:natural-logarithms objective; Aligned via problem family step-by-step-solver:continuous-growth-decay objective; Aligned via problem family step-by-step-solver:compare-exponential-logarithmic objective",
+      "metadata": {
+        "isPrimary": false,
+        "course": "im3",
+        "originalWeight": 0.4,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-6-1-008-to-ccss-hsf-le-a-4",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.6.1.008",
+      "targetId": "math.standard.ccss.hsf-le-a-4",
+      "weight": 0.5,
+      "confidence": "medium",
+      "sourceRefs": [
+        "family-objective:step-by-step-solver:logarithmic-exponential-form",
+        "family-objective:step-by-step-solver:solve-logarithmic-equations",
+        "family-objective:comprehension-quiz:logarithmic-vocabulary"
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via problem family step-by-step-solver:logarithmic-exponential-form objective; Aligned via problem family step-by-step-solver:solve-logarithmic-equations objective; Aligned via problem family comprehension-quiz:logarithmic-vocabulary objective",
+      "metadata": {
+        "isPrimary": false,
+        "course": "im3",
+        "originalWeight": 0.4,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-6-1-008-to-ccss-hsf-le-b-5",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.6.1.008",
+      "targetId": "math.standard.ccss.hsf-le-b-5",
+      "weight": 0.5,
+      "confidence": "medium",
+      "sourceRefs": [
+        "family-objective:step-by-step-solver:properties-of-logarithms",
+        "family-objective:step-by-step-solver:change-of-base"
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via problem family step-by-step-solver:properties-of-logarithms objective; Aligned via problem family step-by-step-solver:change-of-base objective",
+      "metadata": {
+        "isPrimary": false,
+        "course": "im3",
+        "originalWeight": 0.4,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-6-2-009-to-ccss-hsf-bf-b-5",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.6.2.009",
+      "targetId": "math.standard.ccss.hsf-bf-b-5",
+      "weight": 0.75,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-6-lesson-2",
+          "note": "Mapped via lesson standard (primary)"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-6-lesson-2",
+      "metadata": {
+        "isPrimary": true,
+        "course": "im3",
+        "originalWeight": 0.8,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-6-2-010-to-ccss-hsf-bf-b-5",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.6.2.010",
+      "targetId": "math.standard.ccss.hsf-bf-b-5",
+      "weight": 0.75,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-6-lesson-2",
+          "note": "Mapped via lesson standard (primary)"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-6-lesson-2",
+      "metadata": {
+        "isPrimary": true,
+        "course": "im3",
+        "originalWeight": 0.8,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-6-2-011-to-ccss-hsf-bf-b-5",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.6.2.011",
+      "targetId": "math.standard.ccss.hsf-bf-b-5",
+      "weight": 0.75,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-6-lesson-2",
+          "note": "Mapped via lesson standard (primary)"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-6-lesson-2",
+      "metadata": {
+        "isPrimary": true,
+        "course": "im3",
+        "originalWeight": 0.8,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-6-3-012-to-ccss-hsf-bf-b-5",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.6.3.012",
+      "targetId": "math.standard.ccss.hsf-bf-b-5",
+      "weight": 0.5,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-6-lesson-3",
+          "note": "Mapped via lesson standard"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-6-lesson-3",
+      "metadata": {
+        "isPrimary": false,
+        "course": "im3"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-6-3-012-to-ccss-hsf-le-a-4",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.6.3.012",
+      "targetId": "math.standard.ccss.hsf-le-a-4",
+      "weight": 0.75,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-6-lesson-3",
+          "note": "Mapped via lesson standard (primary)"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-6-lesson-3",
+      "metadata": {
+        "isPrimary": true,
+        "course": "im3",
+        "originalWeight": 0.8,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-6-3-013-to-ccss-hsf-bf-b-5",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.6.3.013",
+      "targetId": "math.standard.ccss.hsf-bf-b-5",
+      "weight": 0.5,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-6-lesson-3",
+          "note": "Mapped via lesson standard"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-6-lesson-3",
+      "metadata": {
+        "isPrimary": false,
+        "course": "im3"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-6-3-013-to-ccss-hsf-le-a-4",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.6.3.013",
+      "targetId": "math.standard.ccss.hsf-le-a-4",
+      "weight": 0.75,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-6-lesson-3",
+          "note": "Mapped via lesson standard (primary)"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-6-lesson-3",
+      "metadata": {
+        "isPrimary": true,
+        "course": "im3",
+        "originalWeight": 0.8,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-6-3-014-to-ccss-hsf-bf-b-5",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.6.3.014",
+      "targetId": "math.standard.ccss.hsf-bf-b-5",
+      "weight": 0.5,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-6-lesson-3",
+          "note": "Mapped via lesson standard"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-6-lesson-3",
+      "metadata": {
+        "isPrimary": false,
+        "course": "im3"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-6-3-014-to-ccss-hsf-le-a-4",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.6.3.014",
+      "targetId": "math.standard.ccss.hsf-le-a-4",
+      "weight": 0.75,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-6-lesson-3",
+          "note": "Mapped via lesson standard (primary)"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-6-lesson-3",
+      "metadata": {
+        "isPrimary": true,
+        "course": "im3",
+        "originalWeight": 0.8,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-6-3-015-to-ccss-hsf-bf-b-5",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.6.3.015",
+      "targetId": "math.standard.ccss.hsf-bf-b-5",
+      "weight": 0.5,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-6-lesson-3",
+          "note": "Mapped via lesson standard"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-6-lesson-3",
+      "metadata": {
+        "isPrimary": false,
+        "course": "im3"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-6-3-015-to-ccss-hsf-le-a-4",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.6.3.015",
+      "targetId": "math.standard.ccss.hsf-le-a-4",
+      "weight": 0.75,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-6-lesson-3",
+          "note": "Mapped via lesson standard (primary)"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-6-lesson-3",
+      "metadata": {
+        "isPrimary": true,
+        "course": "im3",
+        "originalWeight": 0.8,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-6-3-016-to-ccss-hsf-bf-b-5",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.6.3.016",
+      "targetId": "math.standard.ccss.hsf-bf-b-5",
+      "weight": 0.5,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-6-lesson-3",
+          "note": "Mapped via lesson standard"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-6-lesson-3",
+      "metadata": {
+        "isPrimary": false,
+        "course": "im3"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-6-3-016-to-ccss-hsf-le-a-4",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.6.3.016",
+      "targetId": "math.standard.ccss.hsf-le-a-4",
+      "weight": 0.75,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-6-lesson-3",
+          "note": "Mapped via lesson standard (primary)"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-6-lesson-3",
+      "metadata": {
+        "isPrimary": true,
+        "course": "im3",
+        "originalWeight": 0.8,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-6-3-017-to-ccss-hsf-bf-b-5",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.6.3.017",
+      "targetId": "math.standard.ccss.hsf-bf-b-5",
+      "weight": 0.5,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-6-lesson-3",
+          "note": "Mapped via lesson standard"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-6-lesson-3",
+      "metadata": {
+        "isPrimary": false,
+        "course": "im3"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-6-3-017-to-ccss-hsf-le-a-4",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.6.3.017",
+      "targetId": "math.standard.ccss.hsf-le-a-4",
+      "weight": 0.75,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-6-lesson-3",
+          "note": "Mapped via lesson standard (primary)"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-6-lesson-3",
+      "metadata": {
+        "isPrimary": true,
+        "course": "im3",
+        "originalWeight": 0.8,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-6-4-018-to-ccss-hsf-if-c-7e",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.6.4.018",
+      "targetId": "math.standard.ccss.hsf-if-c-7e",
+      "weight": 0.5,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-6-lesson-4",
+          "note": "Mapped via lesson standard"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-6-lesson-4",
+      "metadata": {
+        "isPrimary": false,
+        "course": "im3"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-6-4-018-to-ccss-hsf-le-a-4",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.6.4.018",
+      "targetId": "math.standard.ccss.hsf-le-a-4",
+      "weight": 0.75,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-6-lesson-4",
+          "note": "Mapped via lesson standard (primary)"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-6-lesson-4",
+      "metadata": {
+        "isPrimary": true,
+        "course": "im3",
+        "originalWeight": 0.8,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-6-4-019-to-ccss-hsf-if-c-7e",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.6.4.019",
+      "targetId": "math.standard.ccss.hsf-if-c-7e",
+      "weight": 0.5,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-6-lesson-4",
+          "note": "Mapped via lesson standard"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-6-lesson-4",
+      "metadata": {
+        "isPrimary": false,
+        "course": "im3"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-6-4-019-to-ccss-hsf-le-a-4",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.6.4.019",
+      "targetId": "math.standard.ccss.hsf-le-a-4",
+      "weight": 0.75,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-6-lesson-4",
+          "note": "Mapped via lesson standard (primary)"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-6-lesson-4",
+      "metadata": {
+        "isPrimary": true,
+        "course": "im3",
+        "originalWeight": 0.8,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-6-4-020-to-ccss-hsf-if-c-7e",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.6.4.020",
+      "targetId": "math.standard.ccss.hsf-if-c-7e",
+      "weight": 0.5,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-6-lesson-4",
+          "note": "Mapped via lesson standard"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-6-lesson-4",
+      "metadata": {
+        "isPrimary": false,
+        "course": "im3"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-6-4-020-to-ccss-hsf-le-a-4",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.6.4.020",
+      "targetId": "math.standard.ccss.hsf-le-a-4",
+      "weight": 0.75,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-6-lesson-4",
+          "note": "Mapped via lesson standard (primary)"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-6-lesson-4",
+      "metadata": {
+        "isPrimary": true,
+        "course": "im3",
+        "originalWeight": 0.8,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-6-4-021-to-ccss-hsf-if-c-7e",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.6.4.021",
+      "targetId": "math.standard.ccss.hsf-if-c-7e",
+      "weight": 0.5,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-6-lesson-4",
+          "note": "Mapped via lesson standard"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-6-lesson-4",
+      "metadata": {
+        "isPrimary": false,
+        "course": "im3"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-6-4-021-to-ccss-hsf-le-a-4",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.6.4.021",
+      "targetId": "math.standard.ccss.hsf-le-a-4",
+      "weight": 0.75,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-6-lesson-4",
+          "note": "Mapped via lesson standard (primary)"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-6-lesson-4",
+      "metadata": {
+        "isPrimary": true,
+        "course": "im3",
+        "originalWeight": 0.8,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-6-4-022-to-ccss-hsf-if-c-7e",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.6.4.022",
+      "targetId": "math.standard.ccss.hsf-if-c-7e",
+      "weight": 0.5,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-6-lesson-4",
+          "note": "Mapped via lesson standard"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-6-lesson-4",
+      "metadata": {
+        "isPrimary": false,
+        "course": "im3"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-6-4-022-to-ccss-hsf-le-a-4",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.6.4.022",
+      "targetId": "math.standard.ccss.hsf-le-a-4",
+      "weight": 0.75,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-6-lesson-4",
+          "note": "Mapped via lesson standard (primary)"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-6-lesson-4",
+      "metadata": {
+        "isPrimary": true,
+        "course": "im3",
+        "originalWeight": 0.8,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-6-4-023-to-ccss-hsf-if-c-7e",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.6.4.023",
+      "targetId": "math.standard.ccss.hsf-if-c-7e",
+      "weight": 0.5,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-6-lesson-4",
+          "note": "Mapped via lesson standard"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-6-lesson-4",
+      "metadata": {
+        "isPrimary": false,
+        "course": "im3"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-6-4-023-to-ccss-hsf-le-a-4",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.6.4.023",
+      "targetId": "math.standard.ccss.hsf-le-a-4",
+      "weight": 0.75,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-6-lesson-4",
+          "note": "Mapped via lesson standard (primary)"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-6-lesson-4",
+      "metadata": {
+        "isPrimary": true,
+        "course": "im3",
+        "originalWeight": 0.8,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-6-4-024-to-ccss-hsf-if-c-7e",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.6.4.024",
+      "targetId": "math.standard.ccss.hsf-if-c-7e",
+      "weight": 0.5,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-6-lesson-4",
+          "note": "Mapped via lesson standard"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-6-lesson-4",
+      "metadata": {
+        "isPrimary": false,
+        "course": "im3"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-6-4-024-to-ccss-hsf-le-a-4",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.6.4.024",
+      "targetId": "math.standard.ccss.hsf-le-a-4",
+      "weight": 0.75,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-6-lesson-4",
+          "note": "Mapped via lesson standard (primary)"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-6-lesson-4",
+      "metadata": {
+        "isPrimary": true,
+        "course": "im3",
+        "originalWeight": 0.8,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-6-5-025-to-ccss-hsf-le-a-4",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.6.5.025",
+      "targetId": "math.standard.ccss.hsf-le-a-4",
+      "weight": 0.75,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-6-lesson-5",
+          "note": "Mapped via lesson standard (primary)"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-6-lesson-5",
+      "metadata": {
+        "isPrimary": true,
+        "course": "im3",
+        "originalWeight": 0.8,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-skill-6-1-write-logarithmic-expressions-in-exponential-form-and-write-to-ccss-hsf-bf-b-5",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.skill.6.1.write-logarithmic-expressions-in-exponential-form-and-write",
+      "targetId": "math.standard.ccss.hsf-bf-b-5",
+      "weight": 0.75,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-6-lesson-1",
+          "note": "Mapped via lesson standard (primary)"
+        },
+        "family-objective:step-by-step-solver:logarithmic-exponential-form",
+        "family-objective:graphing-explorer:exponential-functions-log",
+        "family-objective:comprehension-quiz:logarithmic-vocabulary"
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-6-lesson-1; Aligned via problem family step-by-step-solver:logarithmic-exponential-form objective; Aligned via problem family graphing-explorer:exponential-functions-log objective; Aligned via problem family comprehension-quiz:logarithmic-vocabulary objective",
+      "metadata": {
+        "isPrimary": true,
+        "course": "im3",
+        "originalWeight": 0.8,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-skill-6-1-write-logarithmic-expressions-in-exponential-form-and-write-to-ccss-hsf-if-c-7e",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.skill.6.1.write-logarithmic-expressions-in-exponential-form-and-write",
+      "targetId": "math.standard.ccss.hsf-if-c-7e",
+      "weight": 0.75,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-6-lesson-1",
+          "note": "Mapped via lesson standard (primary)"
+        },
+        "family-objective:graphing-explorer:logarithmic-functions",
+        "family-objective:graphing-explorer:exponential-functions-log"
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-6-lesson-1; Aligned via problem family graphing-explorer:logarithmic-functions objective; Aligned via problem family graphing-explorer:exponential-functions-log objective",
+      "metadata": {
+        "isPrimary": true,
+        "course": "im3",
+        "originalWeight": 0.8,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-skill-6-1-write-logarithmic-expressions-in-exponential-form-and-write-to-ccss-hsf-le-a-1",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.skill.6.1.write-logarithmic-expressions-in-exponential-form-and-write",
+      "targetId": "math.standard.ccss.hsf-le-a-1",
+      "weight": 0.5,
+      "confidence": "medium",
+      "sourceRefs": [
+        "family-objective:step-by-step-solver:natural-logarithms",
+        "family-objective:step-by-step-solver:compare-exponential-logarithmic"
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via problem family step-by-step-solver:natural-logarithms objective; Aligned via problem family step-by-step-solver:compare-exponential-logarithmic objective",
+      "metadata": {
+        "isPrimary": false,
+        "course": "im3",
+        "originalWeight": 0.4,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-skill-6-1-write-logarithmic-expressions-in-exponential-form-and-write-to-ccss-hsf-le-a-2",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.skill.6.1.write-logarithmic-expressions-in-exponential-form-and-write",
+      "targetId": "math.standard.ccss.hsf-le-a-2",
+      "weight": 0.5,
+      "confidence": "medium",
+      "sourceRefs": [
+        "family-objective:step-by-step-solver:natural-logarithms",
+        "family-objective:step-by-step-solver:continuous-growth-decay",
+        "family-objective:step-by-step-solver:compare-exponential-logarithmic"
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via problem family step-by-step-solver:natural-logarithms objective; Aligned via problem family step-by-step-solver:continuous-growth-decay objective; Aligned via problem family step-by-step-solver:compare-exponential-logarithmic objective",
+      "metadata": {
+        "isPrimary": false,
+        "course": "im3",
+        "originalWeight": 0.4,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-skill-6-1-write-logarithmic-expressions-in-exponential-form-and-write-to-ccss-hsf-le-a-4",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.skill.6.1.write-logarithmic-expressions-in-exponential-form-and-write",
+      "targetId": "math.standard.ccss.hsf-le-a-4",
+      "weight": 0.5,
+      "confidence": "medium",
+      "sourceRefs": [
+        "family-objective:step-by-step-solver:logarithmic-exponential-form",
+        "family-objective:step-by-step-solver:solve-logarithmic-equations",
+        "family-objective:comprehension-quiz:logarithmic-vocabulary"
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via problem family step-by-step-solver:logarithmic-exponential-form objective; Aligned via problem family step-by-step-solver:solve-logarithmic-equations objective; Aligned via problem family comprehension-quiz:logarithmic-vocabulary objective",
+      "metadata": {
+        "isPrimary": false,
+        "course": "im3",
+        "originalWeight": 0.4,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-skill-6-1-write-logarithmic-expressions-in-exponential-form-and-write-to-ccss-hsf-le-b-5",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.skill.6.1.write-logarithmic-expressions-in-exponential-form-and-write",
+      "targetId": "math.standard.ccss.hsf-le-b-5",
+      "weight": 0.5,
+      "confidence": "medium",
+      "sourceRefs": [
+        "family-objective:step-by-step-solver:properties-of-logarithms",
+        "family-objective:step-by-step-solver:change-of-base"
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via problem family step-by-step-solver:properties-of-logarithms objective; Aligned via problem family step-by-step-solver:change-of-base objective",
+      "metadata": {
+        "isPrimary": false,
+        "course": "im3",
+        "originalWeight": 0.4,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-skill-6-2-solve-logarithmic-equations-using-properties-of-equality-to-ccss-hsf-bf-b-5",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.skill.6.2.solve-logarithmic-equations-using-properties-of-equality",
+      "targetId": "math.standard.ccss.hsf-bf-b-5",
+      "weight": 0.75,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-6-lesson-2",
+          "note": "Mapped via lesson standard (primary)"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-6-lesson-2",
+      "metadata": {
+        "isPrimary": true,
+        "course": "im3",
+        "originalWeight": 0.8,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-skill-6-3-solve-exponential-equations-by-using-common-logarithms-to-ccss-hsf-bf-b-5",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.skill.6.3.solve-exponential-equations-by-using-common-logarithms",
+      "targetId": "math.standard.ccss.hsf-bf-b-5",
+      "weight": 0.5,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-6-lesson-3",
+          "note": "Mapped via lesson standard"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-6-lesson-3",
+      "metadata": {
+        "isPrimary": false,
+        "course": "im3"
+      }
+    },
+    {
+      "id": "math.alignment.im3-skill-6-3-solve-exponential-equations-by-using-common-logarithms-to-ccss-hsf-le-a-4",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.skill.6.3.solve-exponential-equations-by-using-common-logarithms",
+      "targetId": "math.standard.ccss.hsf-le-a-4",
+      "weight": 0.75,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-6-lesson-3",
+          "note": "Mapped via lesson standard (primary)"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-6-lesson-3",
+      "metadata": {
+        "isPrimary": true,
+        "course": "im3",
+        "originalWeight": 0.8,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-skill-6-4-simplify-expressions-with-natural-logarithms-to-ccss-hsf-if-c-7e",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.skill.6.4.simplify-expressions-with-natural-logarithms",
+      "targetId": "math.standard.ccss.hsf-if-c-7e",
+      "weight": 0.5,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-6-lesson-4",
+          "note": "Mapped via lesson standard"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-6-lesson-4",
+      "metadata": {
+        "isPrimary": false,
+        "course": "im3"
+      }
+    },
+    {
+      "id": "math.alignment.im3-skill-6-4-simplify-expressions-with-natural-logarithms-to-ccss-hsf-le-a-4",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.skill.6.4.simplify-expressions-with-natural-logarithms",
+      "targetId": "math.standard.ccss.hsf-le-a-4",
+      "weight": 0.75,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-6-lesson-4",
+          "note": "Mapped via lesson standard (primary)"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-6-lesson-4",
+      "metadata": {
+        "isPrimary": true,
+        "course": "im3",
+        "originalWeight": 0.8,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-skill-6-4-solve-exponential-equations-by-using-natural-logarithms-to-ccss-hsf-if-c-7e",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.skill.6.4.solve-exponential-equations-by-using-natural-logarithms",
+      "targetId": "math.standard.ccss.hsf-if-c-7e",
+      "weight": 0.5,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-6-lesson-4",
+          "note": "Mapped via lesson standard"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-6-lesson-4",
+      "metadata": {
+        "isPrimary": false,
+        "course": "im3"
+      }
+    },
+    {
+      "id": "math.alignment.im3-skill-6-4-solve-exponential-equations-by-using-natural-logarithms-to-ccss-hsf-le-a-4",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.skill.6.4.solve-exponential-equations-by-using-natural-logarithms",
+      "targetId": "math.standard.ccss.hsf-le-a-4",
+      "weight": 0.75,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-6-lesson-4",
+          "note": "Mapped via lesson standard (primary)"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-6-lesson-4",
+      "metadata": {
+        "isPrimary": true,
+        "course": "im3",
+        "originalWeight": 0.8,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-skill-6-5-write-and-solve-exponential-decay-equations-to-ccss-hsf-le-a-4",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.skill.6.5.write-and-solve-exponential-decay-equations",
+      "targetId": "math.standard.ccss.hsf-le-a-4",
+      "weight": 0.75,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-6-lesson-5",
+          "note": "Mapped via lesson standard (primary)"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-6-lesson-5",
+      "metadata": {
+        "isPrimary": true,
+        "course": "im3",
+        "originalWeight": 0.8,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-skill-6-5-write-and-solve-exponential-growth-equations-and-inequalitie-to-ccss-hsf-le-a-4",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.skill.6.5.write-and-solve-exponential-growth-equations-and-inequalitie",
+      "targetId": "math.standard.ccss.hsf-le-a-4",
+      "weight": 0.75,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-6-lesson-5",
+          "note": "Mapped via lesson standard (primary)"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-6-lesson-5",
+      "metadata": {
+        "isPrimary": true,
+        "course": "im3",
+        "originalWeight": 0.8,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.im3.edge.m1.001",
+      "type": "contains",
+      "sourceId": "math.im3",
+      "targetId": "math.im3.module.1",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1"
+      },
+      "rationale": "Module 1 is contained in IM3 domain",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/modules/module-1-quadratic-functions.md"
+      ]
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0099",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.example.6.1.001",
+      "targetId": "math.im3.lesson.6.1",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "6",
+        "lesson": "1"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0100",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.example.6.1.002",
+      "targetId": "math.im3.lesson.6.1",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "6",
+        "lesson": "1"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0101",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.example.6.1.003",
+      "targetId": "math.im3.lesson.6.1",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "6",
+        "lesson": "1"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0102",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.example.6.1.004",
+      "targetId": "math.im3.lesson.6.1",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "6",
+        "lesson": "1"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0103",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.example.6.1.005",
+      "targetId": "math.im3.lesson.6.1",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "6",
+        "lesson": "1"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0104",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.example.6.1.006",
+      "targetId": "math.im3.lesson.6.1",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "6",
+        "lesson": "1"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0105",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.example.6.1.007",
+      "targetId": "math.im3.lesson.6.1",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "6",
+        "lesson": "1"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0106",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.example.6.1.008",
+      "targetId": "math.im3.lesson.6.1",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "6",
+        "lesson": "1"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0107",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.example.6.2.009",
+      "targetId": "math.im3.lesson.6.2",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "6",
+        "lesson": "2"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0108",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.example.6.2.010",
+      "targetId": "math.im3.lesson.6.2",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "6",
+        "lesson": "2"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0109",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.example.6.2.011",
+      "targetId": "math.im3.lesson.6.2",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "6",
+        "lesson": "2"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0110",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.example.6.3.012",
+      "targetId": "math.im3.lesson.6.3",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "6",
+        "lesson": "3"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0111",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.example.6.3.013",
+      "targetId": "math.im3.lesson.6.3",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "6",
+        "lesson": "3"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0112",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.example.6.3.014",
+      "targetId": "math.im3.lesson.6.3",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "6",
+        "lesson": "3"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0113",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.example.6.3.015",
+      "targetId": "math.im3.lesson.6.3",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "6",
+        "lesson": "3"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0114",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.example.6.3.016",
+      "targetId": "math.im3.lesson.6.3",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "6",
+        "lesson": "3"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0115",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.example.6.3.017",
+      "targetId": "math.im3.lesson.6.3",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "6",
+        "lesson": "3"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0116",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.example.6.4.018",
+      "targetId": "math.im3.lesson.6.4",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "6",
+        "lesson": "4"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0117",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.example.6.4.019",
+      "targetId": "math.im3.lesson.6.4",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "6",
+        "lesson": "4"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0118",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.example.6.4.020",
+      "targetId": "math.im3.lesson.6.4",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "6",
+        "lesson": "4"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0119",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.example.6.4.021",
+      "targetId": "math.im3.lesson.6.4",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "6",
+        "lesson": "4"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0120",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.example.6.4.022",
+      "targetId": "math.im3.lesson.6.4",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "6",
+        "lesson": "4"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0121",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.example.6.4.023",
+      "targetId": "math.im3.lesson.6.4",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "6",
+        "lesson": "4"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0122",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.example.6.4.024",
+      "targetId": "math.im3.lesson.6.4",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "6",
+        "lesson": "4"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0123",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.example.6.5.025",
+      "targetId": "math.im3.lesson.6.5",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "6",
+        "lesson": "5"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0285",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.skill.6.1.write-logarithmic-expressions-in-exponential-form-and-write",
+      "targetId": "math.im3.lesson.6.1",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Skill appears in lesson context",
+      "metadata": {
+        "module": "6",
+        "lesson": "1"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0286",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.skill.6.2.solve-logarithmic-equations-using-properties-of-equality",
+      "targetId": "math.im3.lesson.6.2",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Skill appears in lesson context",
+      "metadata": {
+        "module": "6",
+        "lesson": "2"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0287",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.skill.6.3.solve-exponential-equations-by-using-common-logarithms",
+      "targetId": "math.im3.lesson.6.3",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Skill appears in lesson context",
+      "metadata": {
+        "module": "6",
+        "lesson": "3"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0288",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.skill.6.4.simplify-expressions-with-natural-logarithms",
+      "targetId": "math.im3.lesson.6.4",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Skill appears in lesson context",
+      "metadata": {
+        "module": "6",
+        "lesson": "4"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0289",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.skill.6.4.solve-exponential-equations-by-using-natural-logarithms",
+      "targetId": "math.im3.lesson.6.4",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Skill appears in lesson context",
+      "metadata": {
+        "module": "6",
+        "lesson": "4"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0290",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.skill.6.5.write-and-solve-exponential-decay-equations",
+      "targetId": "math.im3.lesson.6.5",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Skill appears in lesson context",
+      "metadata": {
+        "module": "6",
+        "lesson": "5"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0291",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.skill.6.5.write-and-solve-exponential-growth-equations-and-inequalitie",
+      "targetId": "math.im3.lesson.6.5",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Skill appears in lesson context",
+      "metadata": {
+        "module": "6",
+        "lesson": "5"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0292",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.skill.6.aleks.change-of-base-evaluation",
+      "targetId": "math.im3.module.6",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Concept appears in module context",
+      "metadata": {
+        "module": "6"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0293",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.skill.6.aleks.common-log-exponential-solving",
+      "targetId": "math.im3.module.6",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Concept appears in module context",
+      "metadata": {
+        "module": "6"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0294",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.skill.6.aleks.continuous-exponential-decay-modeling",
+      "targetId": "math.im3.module.6",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Concept appears in module context",
+      "metadata": {
+        "module": "6"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0295",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.skill.6.aleks.continuous-exponential-growth-modeling",
+      "targetId": "math.im3.module.6",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Concept appears in module context",
+      "metadata": {
+        "module": "6"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0296",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.skill.6.aleks.log-exp-form-conversion",
+      "targetId": "math.im3.module.6",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Concept appears in module context",
+      "metadata": {
+        "module": "6"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0297",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.skill.6.aleks.logarithm-property-simplification",
+      "targetId": "math.im3.module.6",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Concept appears in module context",
+      "metadata": {
+        "module": "6"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0298",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.skill.6.aleks.logarithmic-equation-solving",
+      "targetId": "math.im3.module.6",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Concept appears in module context",
+      "metadata": {
+        "module": "6"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0299",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.skill.6.aleks.logarithmic-graph-analysis",
+      "targetId": "math.im3.module.6",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Concept appears in module context",
+      "metadata": {
+        "module": "6"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0300",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.skill.6.aleks.natural-log-equation-solving",
+      "targetId": "math.im3.module.6",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Concept appears in module context",
+      "metadata": {
+        "module": "6"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0301",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.skill.6.aleks.natural-log-model-analysis",
+      "targetId": "math.im3.module.6",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Concept appears in module context",
+      "metadata": {
+        "module": "6"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0302",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.skill.6.aleks.natural-log-simplification",
+      "targetId": "math.im3.module.6",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Concept appears in module context",
+      "metadata": {
+        "module": "6"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0377",
+      "type": "contains",
+      "sourceId": "math.im3",
+      "targetId": "math.im3.module.2",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Domain contains Polynomials and Polynomial Functions",
+      "metadata": {
+        "course": "im3",
+        "module": "2"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0378",
+      "type": "contains",
+      "sourceId": "math.im3",
+      "targetId": "math.im3.module.3",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Domain contains Polynomial Equations",
+      "metadata": {
+        "course": "im3",
+        "module": "3"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0379",
+      "type": "contains",
+      "sourceId": "math.im3",
+      "targetId": "math.im3.module.4",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Domain contains Inverses and Radical Functions",
+      "metadata": {
+        "course": "im3",
+        "module": "4"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0380",
+      "type": "contains",
+      "sourceId": "math.im3",
+      "targetId": "math.im3.module.5",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Domain contains Exponential Functions and Geometric Series",
+      "metadata": {
+        "course": "im3",
+        "module": "5"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0381",
+      "type": "contains",
+      "sourceId": "math.im3",
+      "targetId": "math.im3.module.6",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Domain contains Logarithmic Functions",
+      "metadata": {
+        "course": "im3",
+        "module": "6"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0382",
+      "type": "contains",
+      "sourceId": "math.im3",
+      "targetId": "math.im3.module.7",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Domain contains Rational Functions and Equations",
+      "metadata": {
+        "course": "im3",
+        "module": "7"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0383",
+      "type": "contains",
+      "sourceId": "math.im3",
+      "targetId": "math.im3.module.8",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Domain contains Inferential Statistics",
+      "metadata": {
+        "course": "im3",
+        "module": "8"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0384",
+      "type": "contains",
+      "sourceId": "math.im3",
+      "targetId": "math.im3.module.9",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Domain contains Trigonometric Functions",
+      "metadata": {
+        "course": "im3",
+        "module": "9"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0520",
+      "type": "contains",
+      "sourceId": "math.im3.lesson.6.1",
+      "targetId": "math.im3.example.6.1.001",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "6",
+        "lesson": "1"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0521",
+      "type": "contains",
+      "sourceId": "math.im3.lesson.6.1",
+      "targetId": "math.im3.example.6.1.002",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "6",
+        "lesson": "1"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0522",
+      "type": "contains",
+      "sourceId": "math.im3.lesson.6.1",
+      "targetId": "math.im3.example.6.1.003",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "6",
+        "lesson": "1"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0523",
+      "type": "contains",
+      "sourceId": "math.im3.lesson.6.1",
+      "targetId": "math.im3.example.6.1.004",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "6",
+        "lesson": "1"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0524",
+      "type": "contains",
+      "sourceId": "math.im3.lesson.6.1",
+      "targetId": "math.im3.example.6.1.005",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "6",
+        "lesson": "1"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0525",
+      "type": "contains",
+      "sourceId": "math.im3.lesson.6.1",
+      "targetId": "math.im3.example.6.1.006",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "6",
+        "lesson": "1"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0526",
+      "type": "contains",
+      "sourceId": "math.im3.lesson.6.1",
+      "targetId": "math.im3.example.6.1.007",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "6",
+        "lesson": "1"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0527",
+      "type": "contains",
+      "sourceId": "math.im3.lesson.6.1",
+      "targetId": "math.im3.example.6.1.008",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "6",
+        "lesson": "1"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0528",
+      "type": "contains",
+      "sourceId": "math.im3.lesson.6.1",
+      "targetId": "math.im3.skill.6.1.write-logarithmic-expressions-in-exponential-form-and-write",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains skill",
+      "metadata": {
+        "module": "6",
+        "lesson": "1"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0529",
+      "type": "contains",
+      "sourceId": "math.im3.lesson.6.2",
+      "targetId": "math.im3.example.6.2.009",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "6",
+        "lesson": "2"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0530",
+      "type": "contains",
+      "sourceId": "math.im3.lesson.6.2",
+      "targetId": "math.im3.example.6.2.010",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "6",
+        "lesson": "2"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0531",
+      "type": "contains",
+      "sourceId": "math.im3.lesson.6.2",
+      "targetId": "math.im3.example.6.2.011",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "6",
+        "lesson": "2"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0532",
+      "type": "contains",
+      "sourceId": "math.im3.lesson.6.2",
+      "targetId": "math.im3.skill.6.2.solve-logarithmic-equations-using-properties-of-equality",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains skill",
+      "metadata": {
+        "module": "6",
+        "lesson": "2"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0533",
+      "type": "contains",
+      "sourceId": "math.im3.lesson.6.3",
+      "targetId": "math.im3.example.6.3.012",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "6",
+        "lesson": "3"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0534",
+      "type": "contains",
+      "sourceId": "math.im3.lesson.6.3",
+      "targetId": "math.im3.example.6.3.013",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "6",
+        "lesson": "3"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0535",
+      "type": "contains",
+      "sourceId": "math.im3.lesson.6.3",
+      "targetId": "math.im3.example.6.3.014",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "6",
+        "lesson": "3"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0536",
+      "type": "contains",
+      "sourceId": "math.im3.lesson.6.3",
+      "targetId": "math.im3.example.6.3.015",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "6",
+        "lesson": "3"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0537",
+      "type": "contains",
+      "sourceId": "math.im3.lesson.6.3",
+      "targetId": "math.im3.example.6.3.016",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "6",
+        "lesson": "3"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0538",
+      "type": "contains",
+      "sourceId": "math.im3.lesson.6.3",
+      "targetId": "math.im3.example.6.3.017",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "6",
+        "lesson": "3"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0539",
+      "type": "contains",
+      "sourceId": "math.im3.lesson.6.3",
+      "targetId": "math.im3.skill.6.3.solve-exponential-equations-by-using-common-logarithms",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains skill",
+      "metadata": {
+        "module": "6",
+        "lesson": "3"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0540",
+      "type": "contains",
+      "sourceId": "math.im3.lesson.6.4",
+      "targetId": "math.im3.example.6.4.018",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "6",
+        "lesson": "4"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0541",
+      "type": "contains",
+      "sourceId": "math.im3.lesson.6.4",
+      "targetId": "math.im3.example.6.4.019",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "6",
+        "lesson": "4"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0542",
+      "type": "contains",
+      "sourceId": "math.im3.lesson.6.4",
+      "targetId": "math.im3.example.6.4.020",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "6",
+        "lesson": "4"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0543",
+      "type": "contains",
+      "sourceId": "math.im3.lesson.6.4",
+      "targetId": "math.im3.example.6.4.021",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "6",
+        "lesson": "4"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0544",
+      "type": "contains",
+      "sourceId": "math.im3.lesson.6.4",
+      "targetId": "math.im3.example.6.4.022",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "6",
+        "lesson": "4"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0545",
+      "type": "contains",
+      "sourceId": "math.im3.lesson.6.4",
+      "targetId": "math.im3.example.6.4.023",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "6",
+        "lesson": "4"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0546",
+      "type": "contains",
+      "sourceId": "math.im3.lesson.6.4",
+      "targetId": "math.im3.example.6.4.024",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "6",
+        "lesson": "4"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0547",
+      "type": "contains",
+      "sourceId": "math.im3.lesson.6.4",
+      "targetId": "math.im3.skill.6.4.simplify-expressions-with-natural-logarithms",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains skill",
+      "metadata": {
+        "module": "6",
+        "lesson": "4"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0548",
+      "type": "contains",
+      "sourceId": "math.im3.lesson.6.4",
+      "targetId": "math.im3.skill.6.4.solve-exponential-equations-by-using-natural-logarithms",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains skill",
+      "metadata": {
+        "module": "6",
+        "lesson": "4"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0549",
+      "type": "contains",
+      "sourceId": "math.im3.lesson.6.5",
+      "targetId": "math.im3.example.6.5.025",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "6",
+        "lesson": "5"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0550",
+      "type": "contains",
+      "sourceId": "math.im3.lesson.6.5",
+      "targetId": "math.im3.skill.6.5.write-and-solve-exponential-decay-equations",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains skill",
+      "metadata": {
+        "module": "6",
+        "lesson": "5"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0551",
+      "type": "contains",
+      "sourceId": "math.im3.lesson.6.5",
+      "targetId": "math.im3.skill.6.5.write-and-solve-exponential-growth-equations-and-inequalitie",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains skill",
+      "metadata": {
+        "module": "6",
+        "lesson": "5"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0733",
+      "type": "contains",
+      "sourceId": "math.im3.module.6",
+      "targetId": "math.im3.lesson.6.1",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Module 6 contains lesson",
+      "metadata": {
+        "module": "6"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0734",
+      "type": "contains",
+      "sourceId": "math.im3.module.6",
+      "targetId": "math.im3.lesson.6.2",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Module 6 contains lesson",
+      "metadata": {
+        "module": "6"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0735",
+      "type": "contains",
+      "sourceId": "math.im3.module.6",
+      "targetId": "math.im3.lesson.6.3",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Module 6 contains lesson",
+      "metadata": {
+        "module": "6"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0736",
+      "type": "contains",
+      "sourceId": "math.im3.module.6",
+      "targetId": "math.im3.lesson.6.4",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Module 6 contains lesson",
+      "metadata": {
+        "module": "6"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0737",
+      "type": "contains",
+      "sourceId": "math.im3.module.6",
+      "targetId": "math.im3.lesson.6.5",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Module 6 contains lesson",
+      "metadata": {
+        "module": "6"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0738",
+      "type": "contains",
+      "sourceId": "math.im3.module.6",
+      "targetId": "math.im3.skill.6.aleks.change-of-base-evaluation",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Module 6 contains concept",
+      "metadata": {
+        "module": "6"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0739",
+      "type": "contains",
+      "sourceId": "math.im3.module.6",
+      "targetId": "math.im3.skill.6.aleks.common-log-exponential-solving",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Module 6 contains concept",
+      "metadata": {
+        "module": "6"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0740",
+      "type": "contains",
+      "sourceId": "math.im3.module.6",
+      "targetId": "math.im3.skill.6.aleks.continuous-exponential-decay-modeling",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Module 6 contains concept",
+      "metadata": {
+        "module": "6"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0741",
+      "type": "contains",
+      "sourceId": "math.im3.module.6",
+      "targetId": "math.im3.skill.6.aleks.continuous-exponential-growth-modeling",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Module 6 contains concept",
+      "metadata": {
+        "module": "6"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0742",
+      "type": "contains",
+      "sourceId": "math.im3.module.6",
+      "targetId": "math.im3.skill.6.aleks.log-exp-form-conversion",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Module 6 contains concept",
+      "metadata": {
+        "module": "6"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0743",
+      "type": "contains",
+      "sourceId": "math.im3.module.6",
+      "targetId": "math.im3.skill.6.aleks.logarithm-property-simplification",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Module 6 contains concept",
+      "metadata": {
+        "module": "6"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0744",
+      "type": "contains",
+      "sourceId": "math.im3.module.6",
+      "targetId": "math.im3.skill.6.aleks.logarithmic-equation-solving",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Module 6 contains concept",
+      "metadata": {
+        "module": "6"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0745",
+      "type": "contains",
+      "sourceId": "math.im3.module.6",
+      "targetId": "math.im3.skill.6.aleks.logarithmic-graph-analysis",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Module 6 contains concept",
+      "metadata": {
+        "module": "6"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0746",
+      "type": "contains",
+      "sourceId": "math.im3.module.6",
+      "targetId": "math.im3.skill.6.aleks.natural-log-equation-solving",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Module 6 contains concept",
+      "metadata": {
+        "module": "6"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0747",
+      "type": "contains",
+      "sourceId": "math.im3.module.6",
+      "targetId": "math.im3.skill.6.aleks.natural-log-model-analysis",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Module 6 contains concept",
+      "metadata": {
+        "module": "6"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0748",
+      "type": "contains",
+      "sourceId": "math.im3.module.6",
+      "targetId": "math.im3.skill.6.aleks.natural-log-simplification",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Module 6 contains concept",
+      "metadata": {
+        "module": "6"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0825",
+      "type": "prerequisite_for",
+      "sourceId": "math.im3.skill.5.5.choose-the-best-function-type-to-model-sets-of-data",
+      "targetId": "math.im3.skill.6.1.write-logarithmic-expressions-in-exponential-form-and-write",
+      "weight": 0.5,
+      "confidence": "low",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-prerequisite-v1",
+      "rationale": "Lesson-sequence prerequisite: last lesson of module 5 precedes first lesson of module 6",
+      "metadata": {
+        "fromLesson": "5.5",
+        "toLesson": "6.1"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0826",
+      "type": "prerequisite_for",
+      "sourceId": "math.im3.skill.6.1.write-logarithmic-expressions-in-exponential-form-and-write",
+      "targetId": "math.im3.skill.6.2.solve-logarithmic-equations-using-properties-of-equality",
+      "weight": 0.5,
+      "confidence": "low",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-prerequisite-v1",
+      "rationale": "Lesson-sequence prerequisite: lesson 1 precedes lesson 2 in module 6",
+      "metadata": {
+        "fromLesson": "6.1",
+        "toLesson": "6.2"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0827",
+      "type": "prerequisite_for",
+      "sourceId": "math.im3.skill.6.2.solve-logarithmic-equations-using-properties-of-equality",
+      "targetId": "math.im3.skill.6.3.solve-exponential-equations-by-using-common-logarithms",
+      "weight": 0.5,
+      "confidence": "low",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-prerequisite-v1",
+      "rationale": "Lesson-sequence prerequisite: lesson 2 precedes lesson 3 in module 6",
+      "metadata": {
+        "fromLesson": "6.2",
+        "toLesson": "6.3"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0828",
+      "type": "prerequisite_for",
+      "sourceId": "math.im3.skill.6.3.solve-exponential-equations-by-using-common-logarithms",
+      "targetId": "math.im3.skill.6.4.simplify-expressions-with-natural-logarithms",
+      "weight": 0.5,
+      "confidence": "low",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-prerequisite-v1",
+      "rationale": "Lesson-sequence prerequisite: lesson 3 precedes lesson 4 in module 6",
+      "metadata": {
+        "fromLesson": "6.3",
+        "toLesson": "6.4"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0829",
+      "type": "prerequisite_for",
+      "sourceId": "math.im3.skill.6.4.solve-exponential-equations-by-using-natural-logarithms",
+      "targetId": "math.im3.skill.6.5.write-and-solve-exponential-decay-equations",
+      "weight": 0.5,
+      "confidence": "low",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-prerequisite-v1",
+      "rationale": "Lesson-sequence prerequisite: lesson 4 precedes lesson 5 in module 6",
+      "metadata": {
+        "fromLesson": "6.4",
+        "toLesson": "6.5"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0830",
+      "type": "prerequisite_for",
+      "sourceId": "math.im3.skill.6.5.write-and-solve-exponential-growth-equations-and-inequalitie",
+      "targetId": "math.im3.skill.7.1.simplify-rational-expressions",
+      "weight": 0.5,
+      "confidence": "low",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-prerequisite-v1",
+      "rationale": "Lesson-sequence prerequisite: last lesson of module 6 precedes first lesson of module 7",
+      "metadata": {
+        "fromLesson": "6.5",
+        "toLesson": "7.1"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.1227",
+      "type": "supports",
+      "sourceId": "math.im3.skill.6.aleks.change-of-base-evaluation",
+      "targetId": "math.im3.skill.6.1.write-logarithmic-expressions-in-exponential-form-and-write",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 6",
+      "metadata": {
+        "module": "6"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.1228",
+      "type": "supports",
+      "sourceId": "math.im3.skill.6.aleks.change-of-base-evaluation",
+      "targetId": "math.im3.skill.6.2.solve-logarithmic-equations-using-properties-of-equality",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 6",
+      "metadata": {
+        "module": "6"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.1229",
+      "type": "supports",
+      "sourceId": "math.im3.skill.6.aleks.change-of-base-evaluation",
+      "targetId": "math.im3.skill.6.3.solve-exponential-equations-by-using-common-logarithms",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 6",
+      "metadata": {
+        "module": "6"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.1230",
+      "type": "supports",
+      "sourceId": "math.im3.skill.6.aleks.change-of-base-evaluation",
+      "targetId": "math.im3.skill.6.4.simplify-expressions-with-natural-logarithms",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 6",
+      "metadata": {
+        "module": "6"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.1231",
+      "type": "supports",
+      "sourceId": "math.im3.skill.6.aleks.change-of-base-evaluation",
+      "targetId": "math.im3.skill.6.4.solve-exponential-equations-by-using-natural-logarithms",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 6",
+      "metadata": {
+        "module": "6"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.1232",
+      "type": "supports",
+      "sourceId": "math.im3.skill.6.aleks.change-of-base-evaluation",
+      "targetId": "math.im3.skill.6.5.write-and-solve-exponential-decay-equations",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 6",
+      "metadata": {
+        "module": "6"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.1233",
+      "type": "supports",
+      "sourceId": "math.im3.skill.6.aleks.change-of-base-evaluation",
+      "targetId": "math.im3.skill.6.5.write-and-solve-exponential-growth-equations-and-inequalitie",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 6",
+      "metadata": {
+        "module": "6"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.1234",
+      "type": "supports",
+      "sourceId": "math.im3.skill.6.aleks.common-log-exponential-solving",
+      "targetId": "math.im3.skill.6.1.write-logarithmic-expressions-in-exponential-form-and-write",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 6",
+      "metadata": {
+        "module": "6"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.1235",
+      "type": "supports",
+      "sourceId": "math.im3.skill.6.aleks.common-log-exponential-solving",
+      "targetId": "math.im3.skill.6.2.solve-logarithmic-equations-using-properties-of-equality",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 6",
+      "metadata": {
+        "module": "6"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.1236",
+      "type": "supports",
+      "sourceId": "math.im3.skill.6.aleks.common-log-exponential-solving",
+      "targetId": "math.im3.skill.6.3.solve-exponential-equations-by-using-common-logarithms",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 6",
+      "metadata": {
+        "module": "6"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.1237",
+      "type": "supports",
+      "sourceId": "math.im3.skill.6.aleks.common-log-exponential-solving",
+      "targetId": "math.im3.skill.6.4.simplify-expressions-with-natural-logarithms",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 6",
+      "metadata": {
+        "module": "6"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.1238",
+      "type": "supports",
+      "sourceId": "math.im3.skill.6.aleks.common-log-exponential-solving",
+      "targetId": "math.im3.skill.6.4.solve-exponential-equations-by-using-natural-logarithms",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 6",
+      "metadata": {
+        "module": "6"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.1239",
+      "type": "supports",
+      "sourceId": "math.im3.skill.6.aleks.common-log-exponential-solving",
+      "targetId": "math.im3.skill.6.5.write-and-solve-exponential-decay-equations",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 6",
+      "metadata": {
+        "module": "6"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.1240",
+      "type": "supports",
+      "sourceId": "math.im3.skill.6.aleks.common-log-exponential-solving",
+      "targetId": "math.im3.skill.6.5.write-and-solve-exponential-growth-equations-and-inequalitie",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 6",
+      "metadata": {
+        "module": "6"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.1241",
+      "type": "supports",
+      "sourceId": "math.im3.skill.6.aleks.continuous-exponential-decay-modeling",
+      "targetId": "math.im3.skill.6.1.write-logarithmic-expressions-in-exponential-form-and-write",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 6",
+      "metadata": {
+        "module": "6"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.1242",
+      "type": "supports",
+      "sourceId": "math.im3.skill.6.aleks.continuous-exponential-decay-modeling",
+      "targetId": "math.im3.skill.6.2.solve-logarithmic-equations-using-properties-of-equality",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 6",
+      "metadata": {
+        "module": "6"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.1243",
+      "type": "supports",
+      "sourceId": "math.im3.skill.6.aleks.continuous-exponential-decay-modeling",
+      "targetId": "math.im3.skill.6.3.solve-exponential-equations-by-using-common-logarithms",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 6",
+      "metadata": {
+        "module": "6"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.1244",
+      "type": "supports",
+      "sourceId": "math.im3.skill.6.aleks.continuous-exponential-decay-modeling",
+      "targetId": "math.im3.skill.6.4.simplify-expressions-with-natural-logarithms",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 6",
+      "metadata": {
+        "module": "6"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.1245",
+      "type": "supports",
+      "sourceId": "math.im3.skill.6.aleks.continuous-exponential-decay-modeling",
+      "targetId": "math.im3.skill.6.4.solve-exponential-equations-by-using-natural-logarithms",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 6",
+      "metadata": {
+        "module": "6"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.1246",
+      "type": "supports",
+      "sourceId": "math.im3.skill.6.aleks.continuous-exponential-decay-modeling",
+      "targetId": "math.im3.skill.6.5.write-and-solve-exponential-decay-equations",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 6",
+      "metadata": {
+        "module": "6"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.1247",
+      "type": "supports",
+      "sourceId": "math.im3.skill.6.aleks.continuous-exponential-decay-modeling",
+      "targetId": "math.im3.skill.6.5.write-and-solve-exponential-growth-equations-and-inequalitie",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 6",
+      "metadata": {
+        "module": "6"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.1248",
+      "type": "supports",
+      "sourceId": "math.im3.skill.6.aleks.continuous-exponential-growth-modeling",
+      "targetId": "math.im3.skill.6.1.write-logarithmic-expressions-in-exponential-form-and-write",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 6",
+      "metadata": {
+        "module": "6"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.1249",
+      "type": "supports",
+      "sourceId": "math.im3.skill.6.aleks.continuous-exponential-growth-modeling",
+      "targetId": "math.im3.skill.6.2.solve-logarithmic-equations-using-properties-of-equality",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 6",
+      "metadata": {
+        "module": "6"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.1250",
+      "type": "supports",
+      "sourceId": "math.im3.skill.6.aleks.continuous-exponential-growth-modeling",
+      "targetId": "math.im3.skill.6.3.solve-exponential-equations-by-using-common-logarithms",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 6",
+      "metadata": {
+        "module": "6"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.1251",
+      "type": "supports",
+      "sourceId": "math.im3.skill.6.aleks.continuous-exponential-growth-modeling",
+      "targetId": "math.im3.skill.6.4.simplify-expressions-with-natural-logarithms",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 6",
+      "metadata": {
+        "module": "6"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.1252",
+      "type": "supports",
+      "sourceId": "math.im3.skill.6.aleks.continuous-exponential-growth-modeling",
+      "targetId": "math.im3.skill.6.4.solve-exponential-equations-by-using-natural-logarithms",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 6",
+      "metadata": {
+        "module": "6"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.1253",
+      "type": "supports",
+      "sourceId": "math.im3.skill.6.aleks.continuous-exponential-growth-modeling",
+      "targetId": "math.im3.skill.6.5.write-and-solve-exponential-decay-equations",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 6",
+      "metadata": {
+        "module": "6"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.1254",
+      "type": "supports",
+      "sourceId": "math.im3.skill.6.aleks.continuous-exponential-growth-modeling",
+      "targetId": "math.im3.skill.6.5.write-and-solve-exponential-growth-equations-and-inequalitie",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 6",
+      "metadata": {
+        "module": "6"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.1255",
+      "type": "supports",
+      "sourceId": "math.im3.skill.6.aleks.log-exp-form-conversion",
+      "targetId": "math.im3.skill.6.1.write-logarithmic-expressions-in-exponential-form-and-write",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 6",
+      "metadata": {
+        "module": "6"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.1256",
+      "type": "supports",
+      "sourceId": "math.im3.skill.6.aleks.log-exp-form-conversion",
+      "targetId": "math.im3.skill.6.2.solve-logarithmic-equations-using-properties-of-equality",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 6",
+      "metadata": {
+        "module": "6"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.1257",
+      "type": "supports",
+      "sourceId": "math.im3.skill.6.aleks.log-exp-form-conversion",
+      "targetId": "math.im3.skill.6.3.solve-exponential-equations-by-using-common-logarithms",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 6",
+      "metadata": {
+        "module": "6"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.1258",
+      "type": "supports",
+      "sourceId": "math.im3.skill.6.aleks.log-exp-form-conversion",
+      "targetId": "math.im3.skill.6.4.simplify-expressions-with-natural-logarithms",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 6",
+      "metadata": {
+        "module": "6"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.1259",
+      "type": "supports",
+      "sourceId": "math.im3.skill.6.aleks.log-exp-form-conversion",
+      "targetId": "math.im3.skill.6.4.solve-exponential-equations-by-using-natural-logarithms",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 6",
+      "metadata": {
+        "module": "6"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.1260",
+      "type": "supports",
+      "sourceId": "math.im3.skill.6.aleks.log-exp-form-conversion",
+      "targetId": "math.im3.skill.6.5.write-and-solve-exponential-decay-equations",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 6",
+      "metadata": {
+        "module": "6"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.1261",
+      "type": "supports",
+      "sourceId": "math.im3.skill.6.aleks.log-exp-form-conversion",
+      "targetId": "math.im3.skill.6.5.write-and-solve-exponential-growth-equations-and-inequalitie",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 6",
+      "metadata": {
+        "module": "6"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.1262",
+      "type": "supports",
+      "sourceId": "math.im3.skill.6.aleks.logarithm-property-simplification",
+      "targetId": "math.im3.skill.6.1.write-logarithmic-expressions-in-exponential-form-and-write",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 6",
+      "metadata": {
+        "module": "6"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.1263",
+      "type": "supports",
+      "sourceId": "math.im3.skill.6.aleks.logarithm-property-simplification",
+      "targetId": "math.im3.skill.6.2.solve-logarithmic-equations-using-properties-of-equality",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 6",
+      "metadata": {
+        "module": "6"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.1264",
+      "type": "supports",
+      "sourceId": "math.im3.skill.6.aleks.logarithm-property-simplification",
+      "targetId": "math.im3.skill.6.3.solve-exponential-equations-by-using-common-logarithms",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 6",
+      "metadata": {
+        "module": "6"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.1265",
+      "type": "supports",
+      "sourceId": "math.im3.skill.6.aleks.logarithm-property-simplification",
+      "targetId": "math.im3.skill.6.4.simplify-expressions-with-natural-logarithms",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 6",
+      "metadata": {
+        "module": "6"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.1266",
+      "type": "supports",
+      "sourceId": "math.im3.skill.6.aleks.logarithm-property-simplification",
+      "targetId": "math.im3.skill.6.4.solve-exponential-equations-by-using-natural-logarithms",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 6",
+      "metadata": {
+        "module": "6"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.1267",
+      "type": "supports",
+      "sourceId": "math.im3.skill.6.aleks.logarithm-property-simplification",
+      "targetId": "math.im3.skill.6.5.write-and-solve-exponential-decay-equations",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 6",
+      "metadata": {
+        "module": "6"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.1268",
+      "type": "supports",
+      "sourceId": "math.im3.skill.6.aleks.logarithm-property-simplification",
+      "targetId": "math.im3.skill.6.5.write-and-solve-exponential-growth-equations-and-inequalitie",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 6",
+      "metadata": {
+        "module": "6"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.1269",
+      "type": "supports",
+      "sourceId": "math.im3.skill.6.aleks.logarithmic-equation-solving",
+      "targetId": "math.im3.skill.6.1.write-logarithmic-expressions-in-exponential-form-and-write",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 6",
+      "metadata": {
+        "module": "6"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.1270",
+      "type": "supports",
+      "sourceId": "math.im3.skill.6.aleks.logarithmic-equation-solving",
+      "targetId": "math.im3.skill.6.2.solve-logarithmic-equations-using-properties-of-equality",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 6",
+      "metadata": {
+        "module": "6"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.1271",
+      "type": "supports",
+      "sourceId": "math.im3.skill.6.aleks.logarithmic-equation-solving",
+      "targetId": "math.im3.skill.6.3.solve-exponential-equations-by-using-common-logarithms",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 6",
+      "metadata": {
+        "module": "6"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.1272",
+      "type": "supports",
+      "sourceId": "math.im3.skill.6.aleks.logarithmic-equation-solving",
+      "targetId": "math.im3.skill.6.4.simplify-expressions-with-natural-logarithms",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 6",
+      "metadata": {
+        "module": "6"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.1273",
+      "type": "supports",
+      "sourceId": "math.im3.skill.6.aleks.logarithmic-equation-solving",
+      "targetId": "math.im3.skill.6.4.solve-exponential-equations-by-using-natural-logarithms",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 6",
+      "metadata": {
+        "module": "6"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.1274",
+      "type": "supports",
+      "sourceId": "math.im3.skill.6.aleks.logarithmic-equation-solving",
+      "targetId": "math.im3.skill.6.5.write-and-solve-exponential-decay-equations",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 6",
+      "metadata": {
+        "module": "6"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.1275",
+      "type": "supports",
+      "sourceId": "math.im3.skill.6.aleks.logarithmic-equation-solving",
+      "targetId": "math.im3.skill.6.5.write-and-solve-exponential-growth-equations-and-inequalitie",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 6",
+      "metadata": {
+        "module": "6"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.1276",
+      "type": "supports",
+      "sourceId": "math.im3.skill.6.aleks.logarithmic-graph-analysis",
+      "targetId": "math.im3.skill.6.1.write-logarithmic-expressions-in-exponential-form-and-write",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 6",
+      "metadata": {
+        "module": "6"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.1277",
+      "type": "supports",
+      "sourceId": "math.im3.skill.6.aleks.logarithmic-graph-analysis",
+      "targetId": "math.im3.skill.6.2.solve-logarithmic-equations-using-properties-of-equality",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 6",
+      "metadata": {
+        "module": "6"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.1278",
+      "type": "supports",
+      "sourceId": "math.im3.skill.6.aleks.logarithmic-graph-analysis",
+      "targetId": "math.im3.skill.6.3.solve-exponential-equations-by-using-common-logarithms",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 6",
+      "metadata": {
+        "module": "6"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.1279",
+      "type": "supports",
+      "sourceId": "math.im3.skill.6.aleks.logarithmic-graph-analysis",
+      "targetId": "math.im3.skill.6.4.simplify-expressions-with-natural-logarithms",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 6",
+      "metadata": {
+        "module": "6"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.1280",
+      "type": "supports",
+      "sourceId": "math.im3.skill.6.aleks.logarithmic-graph-analysis",
+      "targetId": "math.im3.skill.6.4.solve-exponential-equations-by-using-natural-logarithms",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 6",
+      "metadata": {
+        "module": "6"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.1281",
+      "type": "supports",
+      "sourceId": "math.im3.skill.6.aleks.logarithmic-graph-analysis",
+      "targetId": "math.im3.skill.6.5.write-and-solve-exponential-decay-equations",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 6",
+      "metadata": {
+        "module": "6"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.1282",
+      "type": "supports",
+      "sourceId": "math.im3.skill.6.aleks.logarithmic-graph-analysis",
+      "targetId": "math.im3.skill.6.5.write-and-solve-exponential-growth-equations-and-inequalitie",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 6",
+      "metadata": {
+        "module": "6"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.1283",
+      "type": "supports",
+      "sourceId": "math.im3.skill.6.aleks.natural-log-equation-solving",
+      "targetId": "math.im3.skill.6.1.write-logarithmic-expressions-in-exponential-form-and-write",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 6",
+      "metadata": {
+        "module": "6"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.1284",
+      "type": "supports",
+      "sourceId": "math.im3.skill.6.aleks.natural-log-equation-solving",
+      "targetId": "math.im3.skill.6.2.solve-logarithmic-equations-using-properties-of-equality",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 6",
+      "metadata": {
+        "module": "6"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.1285",
+      "type": "supports",
+      "sourceId": "math.im3.skill.6.aleks.natural-log-equation-solving",
+      "targetId": "math.im3.skill.6.3.solve-exponential-equations-by-using-common-logarithms",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 6",
+      "metadata": {
+        "module": "6"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.1286",
+      "type": "supports",
+      "sourceId": "math.im3.skill.6.aleks.natural-log-equation-solving",
+      "targetId": "math.im3.skill.6.4.simplify-expressions-with-natural-logarithms",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 6",
+      "metadata": {
+        "module": "6"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.1287",
+      "type": "supports",
+      "sourceId": "math.im3.skill.6.aleks.natural-log-equation-solving",
+      "targetId": "math.im3.skill.6.4.solve-exponential-equations-by-using-natural-logarithms",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 6",
+      "metadata": {
+        "module": "6"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.1288",
+      "type": "supports",
+      "sourceId": "math.im3.skill.6.aleks.natural-log-equation-solving",
+      "targetId": "math.im3.skill.6.5.write-and-solve-exponential-decay-equations",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 6",
+      "metadata": {
+        "module": "6"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.1289",
+      "type": "supports",
+      "sourceId": "math.im3.skill.6.aleks.natural-log-equation-solving",
+      "targetId": "math.im3.skill.6.5.write-and-solve-exponential-growth-equations-and-inequalitie",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 6",
+      "metadata": {
+        "module": "6"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.1290",
+      "type": "supports",
+      "sourceId": "math.im3.skill.6.aleks.natural-log-model-analysis",
+      "targetId": "math.im3.skill.6.1.write-logarithmic-expressions-in-exponential-form-and-write",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 6",
+      "metadata": {
+        "module": "6"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.1291",
+      "type": "supports",
+      "sourceId": "math.im3.skill.6.aleks.natural-log-model-analysis",
+      "targetId": "math.im3.skill.6.2.solve-logarithmic-equations-using-properties-of-equality",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 6",
+      "metadata": {
+        "module": "6"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.1292",
+      "type": "supports",
+      "sourceId": "math.im3.skill.6.aleks.natural-log-model-analysis",
+      "targetId": "math.im3.skill.6.3.solve-exponential-equations-by-using-common-logarithms",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 6",
+      "metadata": {
+        "module": "6"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.1293",
+      "type": "supports",
+      "sourceId": "math.im3.skill.6.aleks.natural-log-model-analysis",
+      "targetId": "math.im3.skill.6.4.simplify-expressions-with-natural-logarithms",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 6",
+      "metadata": {
+        "module": "6"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.1294",
+      "type": "supports",
+      "sourceId": "math.im3.skill.6.aleks.natural-log-model-analysis",
+      "targetId": "math.im3.skill.6.4.solve-exponential-equations-by-using-natural-logarithms",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 6",
+      "metadata": {
+        "module": "6"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.1295",
+      "type": "supports",
+      "sourceId": "math.im3.skill.6.aleks.natural-log-model-analysis",
+      "targetId": "math.im3.skill.6.5.write-and-solve-exponential-decay-equations",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 6",
+      "metadata": {
+        "module": "6"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.1296",
+      "type": "supports",
+      "sourceId": "math.im3.skill.6.aleks.natural-log-model-analysis",
+      "targetId": "math.im3.skill.6.5.write-and-solve-exponential-growth-equations-and-inequalitie",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 6",
+      "metadata": {
+        "module": "6"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.1297",
+      "type": "supports",
+      "sourceId": "math.im3.skill.6.aleks.natural-log-simplification",
+      "targetId": "math.im3.skill.6.1.write-logarithmic-expressions-in-exponential-form-and-write",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 6",
+      "metadata": {
+        "module": "6"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.1298",
+      "type": "supports",
+      "sourceId": "math.im3.skill.6.aleks.natural-log-simplification",
+      "targetId": "math.im3.skill.6.2.solve-logarithmic-equations-using-properties-of-equality",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 6",
+      "metadata": {
+        "module": "6"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.1299",
+      "type": "supports",
+      "sourceId": "math.im3.skill.6.aleks.natural-log-simplification",
+      "targetId": "math.im3.skill.6.3.solve-exponential-equations-by-using-common-logarithms",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 6",
+      "metadata": {
+        "module": "6"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.1300",
+      "type": "supports",
+      "sourceId": "math.im3.skill.6.aleks.natural-log-simplification",
+      "targetId": "math.im3.skill.6.4.simplify-expressions-with-natural-logarithms",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 6",
+      "metadata": {
+        "module": "6"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.1301",
+      "type": "supports",
+      "sourceId": "math.im3.skill.6.aleks.natural-log-simplification",
+      "targetId": "math.im3.skill.6.4.solve-exponential-equations-by-using-natural-logarithms",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 6",
+      "metadata": {
+        "module": "6"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.1302",
+      "type": "supports",
+      "sourceId": "math.im3.skill.6.aleks.natural-log-simplification",
+      "targetId": "math.im3.skill.6.5.write-and-solve-exponential-decay-equations",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 6",
+      "metadata": {
+        "module": "6"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.1303",
+      "type": "supports",
+      "sourceId": "math.im3.skill.6.aleks.natural-log-simplification",
+      "targetId": "math.im3.skill.6.5.write-and-solve-exponential-growth-equations-and-inequalitie",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 6",
+      "metadata": {
+        "module": "6"
+      }
+    }
+  ]
+}

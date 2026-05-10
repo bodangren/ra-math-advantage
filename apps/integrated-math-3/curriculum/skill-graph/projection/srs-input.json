@@ -1,0 +1,1430 @@
+{
+  "srsInputs": [
+    {
+      "nodeId": "math.im3.skill.1.1.graph-quadratic-functions",
+      "blueprintId": "math.im3.skill.1.1.graph-quadratic-functions",
+      "standards": [
+        "math.standard.ccss.hsf-if-c-7c",
+        "math.standard.ccss.hsa-sse-b-3",
+        "math.standard.ccss.hsa-rei-b-4",
+        "math.standard.ccss.hsf-if-a-2",
+        "math.standard.ccss.n-cn-a-1",
+        "math.standard.ccss.n-cn-c-7"
+      ],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": true,
+      "generatorKey": "quadratic-graph-analysis"
+    },
+    {
+      "nodeId": "math.im3.skill.1.1.find-and-interpret-the-average-rate-of-change",
+      "blueprintId": "math.im3.skill.1.1.find-and-interpret-the-average-rate-of-change",
+      "standards": [
+        "math.standard.ccss.hsf-if-c-7c",
+        "math.standard.ccss.hsa-sse-b-3",
+        "math.standard.ccss.hsa-rei-b-4",
+        "math.standard.ccss.hsf-if-a-2",
+        "math.standard.ccss.n-cn-a-1",
+        "math.standard.ccss.n-cn-c-7"
+      ],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": true,
+      "generatorKey": "average-rate-of-change"
+    },
+    {
+      "nodeId": "math.im3.skill.1.2.solve-quadratic-equations-by-graphing",
+      "blueprintId": "math.im3.skill.1.2.solve-quadratic-equations-by-graphing",
+      "standards": [
+        "math.standard.ccss.hsa-rei-b-4"
+      ],
+      "prerequisites": [
+        "math.im3.skill.1.1.graph-quadratic-functions"
+      ],
+      "difficulty": 0.5,
+      "generatorReady": true,
+      "generatorKey": "solve-quadratic-by-graphing"
+    },
+    {
+      "nodeId": "math.im3.skill.1.4.solve-quadratic-equations-by-factoring",
+      "blueprintId": "math.im3.skill.1.4.solve-quadratic-equations-by-factoring",
+      "standards": [
+        "math.standard.ccss.hsa-rei-b-4"
+      ],
+      "prerequisites": [
+        "math.im3.skill.1.2.solve-quadratic-equations-by-graphing"
+      ],
+      "difficulty": 0.5,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im3.skill.1.6.use-the-discriminant-to-determine-the-number-and-type-of-sol",
+      "blueprintId": "math.im3.skill.1.6.use-the-discriminant-to-determine-the-number-and-type-of-sol",
+      "standards": [
+        "math.standard.ccss.hsa-rei-b-4"
+      ],
+      "prerequisites": [
+        "math.im3.skill.1.6.use-the-quadratic-formula-to-solve-equations"
+      ],
+      "difficulty": 0.5,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im3.skill.1.7.graph-quadratic-inequalities-in-two-variables",
+      "blueprintId": "math.im3.skill.1.7.graph-quadratic-inequalities-in-two-variables",
+      "standards": [
+        "math.standard.ccss.hsa-ced-a-1",
+        "math.standard.ccss.hsa-ced-a-3"
+      ],
+      "prerequisites": [
+        "math.im3.skill.1.1.graph-quadratic-functions"
+      ],
+      "difficulty": 0.5,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im3.skill.2.1.graph-and-analyze-polynomial-functions",
+      "blueprintId": "math.im3.skill.2.1.graph-and-analyze-polynomial-functions",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im3.skill.2.1.graph-and-analyze-power-functions",
+      "blueprintId": "math.im3.skill.2.1.graph-and-analyze-power-functions",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im3.skill.2.2.approximate-zeros-by-graphing-polynomial-functions",
+      "blueprintId": "math.im3.skill.2.2.approximate-zeros-by-graphing-polynomial-functions",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im3.skill.2.2.find-extrema-of-polynomial-functions",
+      "blueprintId": "math.im3.skill.2.2.find-extrema-of-polynomial-functions",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im3.skill.2.3.add-and-subtract-polynomials",
+      "blueprintId": "math.im3.skill.2.3.add-and-subtract-polynomials",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im3.skill.2.3.multiply-polynomials",
+      "blueprintId": "math.im3.skill.2.3.multiply-polynomials",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im3.skill.2.4.divide-polynomials-by-using-long-division",
+      "blueprintId": "math.im3.skill.2.4.divide-polynomials-by-using-long-division",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im3.skill.2.4.divide-polynomials-by-using-synthetic-division",
+      "blueprintId": "math.im3.skill.2.4.divide-polynomials-by-using-synthetic-division",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im3.skill.2.5.expand-powers-of-binomials-by-using-pascals-triangle-and-the",
+      "blueprintId": "math.im3.skill.2.5.expand-powers-of-binomials-by-using-pascals-triangle-and-the",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im3.skill.2.aleks.binomial-theorem-expansion",
+      "blueprintId": "math.im3.skill.2.aleks.binomial-theorem-expansion",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im3.skill.2.aleks.pascal-triangle-expansion",
+      "blueprintId": "math.im3.skill.2.aleks.pascal-triangle-expansion",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im3.skill.2.aleks.polynomial-add-subtract",
+      "blueprintId": "math.im3.skill.2.aleks.polynomial-add-subtract",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im3.skill.2.aleks.polynomial-extrema-analysis",
+      "blueprintId": "math.im3.skill.2.aleks.polynomial-extrema-analysis",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im3.skill.2.aleks.polynomial-feature-analysis",
+      "blueprintId": "math.im3.skill.2.aleks.polynomial-feature-analysis",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im3.skill.2.aleks.polynomial-long-division",
+      "blueprintId": "math.im3.skill.2.aleks.polynomial-long-division",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im3.skill.2.aleks.polynomial-multiplication",
+      "blueprintId": "math.im3.skill.2.aleks.polynomial-multiplication",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im3.skill.2.aleks.polynomial-synthetic-division",
+      "blueprintId": "math.im3.skill.2.aleks.polynomial-synthetic-division",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im3.skill.2.aleks.polynomial-zero-approximation",
+      "blueprintId": "math.im3.skill.2.aleks.polynomial-zero-approximation",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im3.skill.2.aleks.power-function-graph-analysis",
+      "blueprintId": "math.im3.skill.2.aleks.power-function-graph-analysis",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im3.skill.3.1.solve-polynomial-equations-by-graphing",
+      "blueprintId": "math.im3.skill.3.1.solve-polynomial-equations-by-graphing",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im3.skill.3.2.solve-polynomial-equations-by-factoring",
+      "blueprintId": "math.im3.skill.3.2.solve-polynomial-equations-by-factoring",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im3.skill.3.2.solve-polynomial-equations-by-writing-them-in-quadratic-form",
+      "blueprintId": "math.im3.skill.3.2.solve-polynomial-equations-by-writing-them-in-quadratic-form",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im3.skill.3.3.prove-polynomial-identities-and-use-them-to-describe-numeric",
+      "blueprintId": "math.im3.skill.3.3.prove-polynomial-identities-and-use-them-to-describe-numeric",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im3.skill.3.4.evaluate-functions-by-using-synthetic-substitution",
+      "blueprintId": "math.im3.skill.3.4.evaluate-functions-by-using-synthetic-substitution",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im3.skill.3.5.determine-the-number-and-type-of-roots-of-polynomial-equatio",
+      "blueprintId": "math.im3.skill.3.5.determine-the-number-and-type-of-roots-of-polynomial-equatio",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im3.skill.3.5.use-the-fundamental-theorem-of-algebra-to-determine-the-numb",
+      "blueprintId": "math.im3.skill.3.5.use-the-fundamental-theorem-of-algebra-to-determine-the-numb",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im3.skill.3.aleks.factor-theorem-factor-testing",
+      "blueprintId": "math.im3.skill.3.aleks.factor-theorem-factor-testing",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im3.skill.3.aleks.polynomial-equation-graph-solving",
+      "blueprintId": "math.im3.skill.3.aleks.polynomial-equation-graph-solving",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im3.skill.3.aleks.polynomial-factoring-structures",
+      "blueprintId": "math.im3.skill.3.aleks.polynomial-factoring-structures",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im3.skill.3.aleks.polynomial-identity-proof",
+      "blueprintId": "math.im3.skill.3.aleks.polynomial-identity-proof",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im3.skill.3.aleks.polynomial-quadratic-form",
+      "blueprintId": "math.im3.skill.3.aleks.polynomial-quadratic-form",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im3.skill.3.aleks.root-type-analysis",
+      "blueprintId": "math.im3.skill.3.aleks.root-type-analysis",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im3.skill.3.aleks.synthetic-substitution-remainder",
+      "blueprintId": "math.im3.skill.3.aleks.synthetic-substitution-remainder",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im3.skill.3.aleks.zeros-to-polynomial-graph",
+      "blueprintId": "math.im3.skill.3.aleks.zeros-to-polynomial-graph",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im3.skill.4.1.find-compositions-of-functions",
+      "blueprintId": "math.im3.skill.4.1.find-compositions-of-functions",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im3.skill.4.1.find-sums-differences-products-and-quotients-of-functions",
+      "blueprintId": "math.im3.skill.4.1.find-sums-differences-products-and-quotients-of-functions",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im3.skill.4.2.find-inverses-of-relations",
+      "blueprintId": "math.im3.skill.4.2.find-inverses-of-relations",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im3.skill.4.2.verify-that-two-relations-are-inverses-by-using-compositions",
+      "blueprintId": "math.im3.skill.4.2.verify-that-two-relations-are-inverses-by-using-compositions",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im3.skill.4.3.simplify-expressions-in-exponential-or-radical-form",
+      "blueprintId": "math.im3.skill.4.3.simplify-expressions-in-exponential-or-radical-form",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im3.skill.4.3.simplify-expressions-involving-radicals-and-rational-exponen",
+      "blueprintId": "math.im3.skill.4.3.simplify-expressions-involving-radicals-and-rational-exponen",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im3.skill.4.4.graph-and-analyze-cube-root-functions",
+      "blueprintId": "math.im3.skill.4.4.graph-and-analyze-cube-root-functions",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im3.skill.4.4.graph-and-analyze-square-root-functions",
+      "blueprintId": "math.im3.skill.4.4.graph-and-analyze-square-root-functions",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im3.skill.4.5.add-subtract-and-multiply-radicals",
+      "blueprintId": "math.im3.skill.4.5.add-subtract-and-multiply-radicals",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im3.skill.4.5.divide-and-simplify-radical-expressions-by-rationalizing-the",
+      "blueprintId": "math.im3.skill.4.5.divide-and-simplify-radical-expressions-by-rationalizing-the",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im3.skill.4.5.simplify-radical-expressions",
+      "blueprintId": "math.im3.skill.4.5.simplify-radical-expressions",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im3.skill.4.6.solve-radical-equations-by-graphing-systems-of-equations",
+      "blueprintId": "math.im3.skill.4.6.solve-radical-equations-by-graphing-systems-of-equations",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im3.skill.4.6.solve-radical-equations-in-one-variable-and-identify-extrane",
+      "blueprintId": "math.im3.skill.4.6.solve-radical-equations-in-one-variable-and-identify-extrane",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im3.skill.4.aleks.cube-root-function-graph-analysis",
+      "blueprintId": "math.im3.skill.4.aleks.cube-root-function-graph-analysis",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im3.skill.4.aleks.function-composition",
+      "blueprintId": "math.im3.skill.4.aleks.function-composition",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im3.skill.4.aleks.function-operations",
+      "blueprintId": "math.im3.skill.4.aleks.function-operations",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im3.skill.4.aleks.inverse-relation-function",
+      "blueprintId": "math.im3.skill.4.aleks.inverse-relation-function",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im3.skill.4.aleks.inverse-verification-by-composition",
+      "blueprintId": "math.im3.skill.4.aleks.inverse-verification-by-composition",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im3.skill.4.aleks.radical-equation-graphing-systems",
+      "blueprintId": "math.im3.skill.4.aleks.radical-equation-graphing-systems",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im3.skill.4.aleks.radical-equation-solving",
+      "blueprintId": "math.im3.skill.4.aleks.radical-equation-solving",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im3.skill.4.aleks.radical-operations",
+      "blueprintId": "math.im3.skill.4.aleks.radical-operations",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im3.skill.4.aleks.radical-rational-exponent-conversion",
+      "blueprintId": "math.im3.skill.4.aleks.radical-rational-exponent-conversion",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im3.skill.4.aleks.radical-simplification",
+      "blueprintId": "math.im3.skill.4.aleks.radical-simplification",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im3.skill.4.aleks.rational-exponent-simplification",
+      "blueprintId": "math.im3.skill.4.aleks.rational-exponent-simplification",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im3.skill.4.aleks.rationalize-denominator",
+      "blueprintId": "math.im3.skill.4.aleks.rationalize-denominator",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im3.skill.4.aleks.square-root-function-graph-analysis",
+      "blueprintId": "math.im3.skill.4.aleks.square-root-function-graph-analysis",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im3.skill.5.1.graph-exponential-decay-functions",
+      "blueprintId": "math.im3.skill.5.1.graph-exponential-decay-functions",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im3.skill.5.1.graph-exponential-growth-functions",
+      "blueprintId": "math.im3.skill.5.1.graph-exponential-growth-functions",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im3.skill.5.2.solve-exponential-equations-in-one-variable",
+      "blueprintId": "math.im3.skill.5.2.solve-exponential-equations-in-one-variable",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im3.skill.5.2.solve-exponential-inequalities-in-one-variable",
+      "blueprintId": "math.im3.skill.5.2.solve-exponential-inequalities-in-one-variable",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im3.skill.5.3.analyze-expressions-and-functions-involving-the-natural-base",
+      "blueprintId": "math.im3.skill.5.3.analyze-expressions-and-functions-involving-the-natural-base",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im3.skill.5.4.find-sums-of-geometric-series",
+      "blueprintId": "math.im3.skill.5.4.find-sums-of-geometric-series",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im3.skill.5.4.generate-geometric-sequences",
+      "blueprintId": "math.im3.skill.5.4.generate-geometric-sequences",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im3.skill.5.5.choose-the-best-function-type-to-model-sets-of-data",
+      "blueprintId": "math.im3.skill.5.5.choose-the-best-function-type-to-model-sets-of-data",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im3.skill.5.aleks.data-model-family-selection",
+      "blueprintId": "math.im3.skill.5.aleks.data-model-family-selection",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im3.skill.5.aleks.exponential-decay-graph-analysis",
+      "blueprintId": "math.im3.skill.5.aleks.exponential-decay-graph-analysis",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im3.skill.5.aleks.exponential-equation-solving",
+      "blueprintId": "math.im3.skill.5.aleks.exponential-equation-solving",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im3.skill.5.aleks.exponential-growth-graph-analysis",
+      "blueprintId": "math.im3.skill.5.aleks.exponential-growth-graph-analysis",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im3.skill.5.aleks.exponential-inequality-solving",
+      "blueprintId": "math.im3.skill.5.aleks.exponential-inequality-solving",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im3.skill.5.aleks.geometric-sequence-generation",
+      "blueprintId": "math.im3.skill.5.aleks.geometric-sequence-generation",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im3.skill.5.aleks.geometric-series-summation",
+      "blueprintId": "math.im3.skill.5.aleks.geometric-series-summation",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im3.skill.5.aleks.natural-base-e-analysis",
+      "blueprintId": "math.im3.skill.5.aleks.natural-base-e-analysis",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im3.skill.6.1.write-logarithmic-expressions-in-exponential-form-and-write",
+      "blueprintId": "math.im3.skill.6.1.write-logarithmic-expressions-in-exponential-form-and-write",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im3.skill.6.2.solve-logarithmic-equations-using-properties-of-equality",
+      "blueprintId": "math.im3.skill.6.2.solve-logarithmic-equations-using-properties-of-equality",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im3.skill.6.3.solve-exponential-equations-by-using-common-logarithms",
+      "blueprintId": "math.im3.skill.6.3.solve-exponential-equations-by-using-common-logarithms",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im3.skill.6.4.simplify-expressions-with-natural-logarithms",
+      "blueprintId": "math.im3.skill.6.4.simplify-expressions-with-natural-logarithms",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im3.skill.6.4.solve-exponential-equations-by-using-natural-logarithms",
+      "blueprintId": "math.im3.skill.6.4.solve-exponential-equations-by-using-natural-logarithms",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im3.skill.6.5.write-and-solve-exponential-decay-equations",
+      "blueprintId": "math.im3.skill.6.5.write-and-solve-exponential-decay-equations",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im3.skill.6.5.write-and-solve-exponential-growth-equations-and-inequalitie",
+      "blueprintId": "math.im3.skill.6.5.write-and-solve-exponential-growth-equations-and-inequalitie",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im3.skill.6.aleks.change-of-base-evaluation",
+      "blueprintId": "math.im3.skill.6.aleks.change-of-base-evaluation",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im3.skill.6.aleks.common-log-exponential-solving",
+      "blueprintId": "math.im3.skill.6.aleks.common-log-exponential-solving",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im3.skill.6.aleks.continuous-exponential-decay-modeling",
+      "blueprintId": "math.im3.skill.6.aleks.continuous-exponential-decay-modeling",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im3.skill.6.aleks.continuous-exponential-growth-modeling",
+      "blueprintId": "math.im3.skill.6.aleks.continuous-exponential-growth-modeling",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im3.skill.6.aleks.log-exp-form-conversion",
+      "blueprintId": "math.im3.skill.6.aleks.log-exp-form-conversion",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im3.skill.6.aleks.logarithm-property-simplification",
+      "blueprintId": "math.im3.skill.6.aleks.logarithm-property-simplification",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im3.skill.6.aleks.logarithmic-equation-solving",
+      "blueprintId": "math.im3.skill.6.aleks.logarithmic-equation-solving",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im3.skill.6.aleks.logarithmic-graph-analysis",
+      "blueprintId": "math.im3.skill.6.aleks.logarithmic-graph-analysis",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im3.skill.6.aleks.natural-log-equation-solving",
+      "blueprintId": "math.im3.skill.6.aleks.natural-log-equation-solving",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im3.skill.6.aleks.natural-log-model-analysis",
+      "blueprintId": "math.im3.skill.6.aleks.natural-log-model-analysis",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im3.skill.6.aleks.natural-log-simplification",
+      "blueprintId": "math.im3.skill.6.aleks.natural-log-simplification",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im3.skill.7.1.simplify-rational-expressions",
+      "blueprintId": "math.im3.skill.7.1.simplify-rational-expressions",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im3.skill.7.1.simplify-rational-expressions-by-multiplying-and-dividing",
+      "blueprintId": "math.im3.skill.7.1.simplify-rational-expressions-by-multiplying-and-dividing",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im3.skill.7.2.simplify-complex-fractions",
+      "blueprintId": "math.im3.skill.7.2.simplify-complex-fractions",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im3.skill.7.2.simplify-rational-expressions-by-adding-and-subtracting",
+      "blueprintId": "math.im3.skill.7.2.simplify-rational-expressions-by-adding-and-subtracting",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im3.skill.7.3.graph-and-write-reciprocal-functions-by-using-transformation",
+      "blueprintId": "math.im3.skill.7.3.graph-and-write-reciprocal-functions-by-using-transformation",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im3.skill.7.3.graph-reciprocal-functions-by-making-tables-of-values",
+      "blueprintId": "math.im3.skill.7.3.graph-reciprocal-functions-by-making-tables-of-values",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im3.skill.7.4.graph-and-analyze-rational-functions-with-oblique-asymptotes",
+      "blueprintId": "math.im3.skill.7.4.graph-and-analyze-rational-functions-with-oblique-asymptotes",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im3.skill.7.4.graph-and-analyze-rational-functions-with-vertical-and-horiz",
+      "blueprintId": "math.im3.skill.7.4.graph-and-analyze-rational-functions-with-vertical-and-horiz",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im3.skill.7.5.recognize-and-solve-direct-and-joint-variation-equations",
+      "blueprintId": "math.im3.skill.7.5.recognize-and-solve-direct-and-joint-variation-equations",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im3.skill.7.5.recognize-and-solve-inverse-and-combined-variation-equations",
+      "blueprintId": "math.im3.skill.7.5.recognize-and-solve-inverse-and-combined-variation-equations",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im3.skill.7.6.solve-rational-equations-in-one-variable",
+      "blueprintId": "math.im3.skill.7.6.solve-rational-equations-in-one-variable",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im3.skill.7.6.solve-rational-inequalities-in-one-variable",
+      "blueprintId": "math.im3.skill.7.6.solve-rational-inequalities-in-one-variable",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im3.skill.7.aleks.complex-fraction-simplification",
+      "blueprintId": "math.im3.skill.7.aleks.complex-fraction-simplification",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im3.skill.7.aleks.direct-joint-variation-modeling",
+      "blueprintId": "math.im3.skill.7.aleks.direct-joint-variation-modeling",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im3.skill.7.aleks.inverse-combined-variation-modeling",
+      "blueprintId": "math.im3.skill.7.aleks.inverse-combined-variation-modeling",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im3.skill.7.aleks.rational-equation-applications",
+      "blueprintId": "math.im3.skill.7.aleks.rational-equation-applications",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im3.skill.7.aleks.rational-equation-solving",
+      "blueprintId": "math.im3.skill.7.aleks.rational-equation-solving",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im3.skill.7.aleks.rational-expression-add-subtract",
+      "blueprintId": "math.im3.skill.7.aleks.rational-expression-add-subtract",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im3.skill.7.aleks.rational-expression-multiply-divide",
+      "blueprintId": "math.im3.skill.7.aleks.rational-expression-multiply-divide",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im3.skill.7.aleks.rational-expression-simplification",
+      "blueprintId": "math.im3.skill.7.aleks.rational-expression-simplification",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im3.skill.7.aleks.rational-function-asymptote-analysis",
+      "blueprintId": "math.im3.skill.7.aleks.rational-function-asymptote-analysis",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im3.skill.7.aleks.rational-function-oblique-asymptote",
+      "blueprintId": "math.im3.skill.7.aleks.rational-function-oblique-asymptote",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im3.skill.7.aleks.rational-inequality-solving",
+      "blueprintId": "math.im3.skill.7.aleks.rational-inequality-solving",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im3.skill.7.aleks.reciprocal-function-table-graphing",
+      "blueprintId": "math.im3.skill.7.aleks.reciprocal-function-table-graphing",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im3.skill.7.aleks.reciprocal-function-transformations",
+      "blueprintId": "math.im3.skill.7.aleks.reciprocal-function-transformations",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im3.skill.8.1.classify-sampling-methods-and-identify-bias-in-samples-and-s",
+      "blueprintId": "math.im3.skill.8.1.classify-sampling-methods-and-identify-bias-in-samples-and-s",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im3.skill.8.1.distinguish-among-sample-surveys-experiments-and-observation",
+      "blueprintId": "math.im3.skill.8.1.distinguish-among-sample-surveys-experiments-and-observation",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im3.skill.8.2.compare-theoretical-and-experimental-probabilities",
+      "blueprintId": "math.im3.skill.8.2.compare-theoretical-and-experimental-probabilities",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im3.skill.8.2.determine-whether-models-are-consistent-with-results-from-si",
+      "blueprintId": "math.im3.skill.8.2.determine-whether-models-are-consistent-with-results-from-si",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im3.skill.8.3.describe-distributions-by-finding-their-mean-and-standard-de",
+      "blueprintId": "math.im3.skill.8.3.describe-distributions-by-finding-their-mean-and-standard-de",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im3.skill.8.4.analyze-normally-distributed-variables-by-using-the-empirica",
+      "blueprintId": "math.im3.skill.8.4.analyze-normally-distributed-variables-by-using-the-empirica",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im3.skill.8.4.analyze-standardized-data-and-distributions-by-using-z-value",
+      "blueprintId": "math.im3.skill.8.4.analyze-standardized-data-and-distributions-by-using-z-value",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im3.skill.8.4.classify-variables-and-analyze-probability-distributions-to",
+      "blueprintId": "math.im3.skill.8.4.classify-variables-and-analyze-probability-distributions-to",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im3.skill.8.5.use-sample-data-to-infer-a-population-mean-by-using-confiden",
+      "blueprintId": "math.im3.skill.8.5.use-sample-data-to-infer-a-population-mean-by-using-confiden",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im3.skill.8.5.use-sample-data-to-infer-a-population-proportion-by-using-co",
+      "blueprintId": "math.im3.skill.8.5.use-sample-data-to-infer-a-population-proportion-by-using-co",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im3.skill.8.aleks.confidence-interval-mean",
+      "blueprintId": "math.im3.skill.8.aleks.confidence-interval-mean",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im3.skill.8.aleks.confidence-interval-proportion",
+      "blueprintId": "math.im3.skill.8.aleks.confidence-interval-proportion",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im3.skill.8.aleks.distribution-mean-standard-deviation",
+      "blueprintId": "math.im3.skill.8.aleks.distribution-mean-standard-deviation",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im3.skill.8.aleks.normal-distribution-empirical-rule",
+      "blueprintId": "math.im3.skill.8.aleks.normal-distribution-empirical-rule",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im3.skill.8.aleks.probability-distribution-analysis",
+      "blueprintId": "math.im3.skill.8.aleks.probability-distribution-analysis",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im3.skill.8.aleks.sampling-bias-classification",
+      "blueprintId": "math.im3.skill.8.aleks.sampling-bias-classification",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im3.skill.8.aleks.simulation-model-evaluation",
+      "blueprintId": "math.im3.skill.8.aleks.simulation-model-evaluation",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im3.skill.8.aleks.study-design-classification",
+      "blueprintId": "math.im3.skill.8.aleks.study-design-classification",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im3.skill.8.aleks.theoretical-experimental-probability",
+      "blueprintId": "math.im3.skill.8.aleks.theoretical-experimental-probability",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im3.skill.8.aleks.z-score-standard-normal-analysis",
+      "blueprintId": "math.im3.skill.8.aleks.z-score-standard-normal-analysis",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im3.skill.9.1.convert-between-degree-and-radian-measures-and-find-arc-leng",
+      "blueprintId": "math.im3.skill.9.1.convert-between-degree-and-radian-measures-and-find-arc-leng",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im3.skill.9.1.draw-angles-in-standard-position-and-identify-coterminal-ang",
+      "blueprintId": "math.im3.skill.9.1.draw-angles-in-standard-position-and-identify-coterminal-ang",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im3.skill.9.2.find-values-of-trigonometric-functions-by-using-reference-an",
+      "blueprintId": "math.im3.skill.9.2.find-values-of-trigonometric-functions-by-using-reference-an",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im3.skill.9.2.find-values-of-trigonometric-functions-for-acute-angles",
+      "blueprintId": "math.im3.skill.9.2.find-values-of-trigonometric-functions-for-acute-angles",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im3.skill.9.2.find-values-of-trigonometric-functions-of-general-angles",
+      "blueprintId": "math.im3.skill.9.2.find-values-of-trigonometric-functions-of-general-angles",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im3.skill.9.3.find-values-of-trigonometric-functions-given-a-point-on-a-un",
+      "blueprintId": "math.im3.skill.9.3.find-values-of-trigonometric-functions-given-a-point-on-a-un",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im3.skill.9.3.find-values-of-trigonometric-functions-that-model-periodic-e",
+      "blueprintId": "math.im3.skill.9.3.find-values-of-trigonometric-functions-that-model-periodic-e",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im3.skill.9.4.graph-and-analyze-sine-and-cosine-functions",
+      "blueprintId": "math.im3.skill.9.4.graph-and-analyze-sine-and-cosine-functions",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im3.skill.9.4.model-periodic-real-world-situations-with-sine-and-cosine-fu",
+      "blueprintId": "math.im3.skill.9.4.model-periodic-real-world-situations-with-sine-and-cosine-fu",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im3.skill.9.5.graph-and-analyze-reciprocal-trigonometric-functions",
+      "blueprintId": "math.im3.skill.9.5.graph-and-analyze-reciprocal-trigonometric-functions",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im3.skill.9.5.graph-and-analyze-tangent-functions",
+      "blueprintId": "math.im3.skill.9.5.graph-and-analyze-tangent-functions",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im3.skill.9.6.graph-horizontal-translations-of-trigonometric-functions",
+      "blueprintId": "math.im3.skill.9.6.graph-horizontal-translations-of-trigonometric-functions",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im3.skill.9.6.graph-vertical-translations-of-trigonometric-functions",
+      "blueprintId": "math.im3.skill.9.6.graph-vertical-translations-of-trigonometric-functions",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im3.skill.9.7.find-values-of-angle-measures-by-using-inverse-trigonometric",
+      "blueprintId": "math.im3.skill.9.7.find-values-of-angle-measures-by-using-inverse-trigonometric",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im3.skill.9.aleks.acute-angle-trig-ratios",
+      "blueprintId": "math.im3.skill.9.aleks.acute-angle-trig-ratios",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im3.skill.9.aleks.angle-standard-position-coterminal",
+      "blueprintId": "math.im3.skill.9.aleks.angle-standard-position-coterminal",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im3.skill.9.aleks.degree-radian-arc-length",
+      "blueprintId": "math.im3.skill.9.aleks.degree-radian-arc-length",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im3.skill.9.aleks.general-angle-trig-values",
+      "blueprintId": "math.im3.skill.9.aleks.general-angle-trig-values",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im3.skill.9.aleks.inverse-trig-angle-solving",
+      "blueprintId": "math.im3.skill.9.aleks.inverse-trig-angle-solving",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im3.skill.9.aleks.periodic-event-trig-modeling",
+      "blueprintId": "math.im3.skill.9.aleks.periodic-event-trig-modeling",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im3.skill.9.aleks.reciprocal-trig-graph-analysis",
+      "blueprintId": "math.im3.skill.9.aleks.reciprocal-trig-graph-analysis",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im3.skill.9.aleks.reference-angle-trig-values",
+      "blueprintId": "math.im3.skill.9.aleks.reference-angle-trig-values",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im3.skill.9.aleks.sine-cosine-feature-analysis",
+      "blueprintId": "math.im3.skill.9.aleks.sine-cosine-feature-analysis",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im3.skill.9.aleks.sine-cosine-graph-construction",
+      "blueprintId": "math.im3.skill.9.aleks.sine-cosine-graph-construction",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im3.skill.9.aleks.sinusoidal-modeling",
+      "blueprintId": "math.im3.skill.9.aleks.sinusoidal-modeling",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im3.skill.9.aleks.tangent-graph-analysis",
+      "blueprintId": "math.im3.skill.9.aleks.tangent-graph-analysis",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im3.skill.9.aleks.trig-phase-shift-graphing",
+      "blueprintId": "math.im3.skill.9.aleks.trig-phase-shift-graphing",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im3.skill.9.aleks.trig-vertical-shift-graphing",
+      "blueprintId": "math.im3.skill.9.aleks.trig-vertical-shift-graphing",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false
+    },
+    {
+      "nodeId": "math.im3.skill.9.aleks.unit-circle-special-angle-values",
+      "blueprintId": "math.im3.skill.9.aleks.unit-circle-special-angle-values",
+      "standards": [],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false
+    }
+  ]
+}

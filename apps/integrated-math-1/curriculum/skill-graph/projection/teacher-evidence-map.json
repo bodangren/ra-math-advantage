@@ -1,0 +1,3347 @@
+{
+  "standards": [
+    {
+      "standardId": "math.standard.ccss.6-ee-a-1",
+      "standardTitle": "math.standard.ccss.6-ee-a-1",
+      "nodeIds": [
+        "math.im1.example.1.1.001",
+        "math.im1.example.1.1.002",
+        "math.im1.example.1.1.003",
+        "math.im1.example.1.1.004",
+        "math.im1.example.1.1.005",
+        "math.im1.example.1.1.006",
+        "math.im1.skill.1.1.translate-verbal-descriptions-into-correct-numerical-express"
+      ],
+      "workedExampleCount": 6,
+      "guidedPracticeCount": 1,
+      "independentPracticeCount": 0
+    },
+    {
+      "standardId": "math.standard.ccss.6-ee-a-2",
+      "standardTitle": "math.standard.ccss.6-ee-a-2",
+      "nodeIds": [
+        "math.im1.example.1.1.001",
+        "math.im1.example.1.1.002",
+        "math.im1.example.1.1.003",
+        "math.im1.example.1.1.004",
+        "math.im1.example.1.1.005",
+        "math.im1.example.1.1.006",
+        "math.im1.example.1.2.007",
+        "math.im1.example.1.2.008",
+        "math.im1.example.1.2.009",
+        "math.im1.example.1.2.010",
+        "math.im1.example.1.2.011",
+        "math.im1.example.1.2.012",
+        "math.im1.example.1.3.013",
+        "math.im1.example.1.3.014",
+        "math.im1.example.1.3.015",
+        "math.im1.example.1.3.016",
+        "math.im1.example.1.3.017",
+        "math.im1.example.1.3.018",
+        "math.im1.example.1.5.026",
+        "math.im1.example.1.5.027",
+        "math.im1.example.1.5.028",
+        "math.im1.example.1.5.029",
+        "math.im1.example.1.6.030",
+        "math.im1.example.1.6.031",
+        "math.im1.example.1.6.032",
+        "math.im1.example.1.6.033",
+        "math.im1.example.1.6.034",
+        "math.im1.skill.1.1.translate-verbal-descriptions-into-correct-numerical-express",
+        "math.im1.skill.1.2.translate-between-algebraic-expressions-and-verbal-expressio",
+        "math.im1.skill.1.3.identify-and-apply-the-reflexive-symmetric-and-transitive-pr",
+        "math.im1.skill.1.5.write-absolute-value-expressions-that-model-real-world-dista",
+        "math.im1.skill.1.6.use-ratios-and-percentages-as-metrics-to-model-real-world-si"
+      ],
+      "workedExampleCount": 27,
+      "guidedPracticeCount": 5,
+      "independentPracticeCount": 0
+    },
+    {
+      "standardId": "math.standard.ccss.a-sse-a-1",
+      "standardTitle": "math.standard.ccss.a-sse-a-1",
+      "nodeIds": [
+        "math.im1.example.1.2.007",
+        "math.im1.example.1.2.008",
+        "math.im1.example.1.2.009",
+        "math.im1.example.1.2.010",
+        "math.im1.example.1.2.011",
+        "math.im1.example.1.2.012",
+        "math.im1.example.1.5.026",
+        "math.im1.example.1.5.027",
+        "math.im1.example.1.5.028",
+        "math.im1.example.1.5.029",
+        "math.im1.skill.1.2.translate-between-algebraic-expressions-and-verbal-expressio",
+        "math.im1.skill.1.5.write-absolute-value-expressions-that-model-real-world-dista"
+      ],
+      "workedExampleCount": 10,
+      "guidedPracticeCount": 2,
+      "independentPracticeCount": 0
+    },
+    {
+      "standardId": "math.standard.ccss.6-ee-a-3",
+      "standardTitle": "math.standard.ccss.6-ee-a-3",
+      "nodeIds": [
+        "math.im1.example.1.3.013",
+        "math.im1.example.1.3.014",
+        "math.im1.example.1.3.015",
+        "math.im1.example.1.3.016",
+        "math.im1.example.1.3.017",
+        "math.im1.example.1.3.018",
+        "math.im1.example.1.4.019",
+        "math.im1.example.1.4.020",
+        "math.im1.example.1.4.021",
+        "math.im1.example.1.4.022",
+        "math.im1.example.1.4.023",
+        "math.im1.example.1.4.024",
+        "math.im1.example.1.4.025",
+        "math.im1.skill.1.3.identify-and-apply-the-reflexive-symmetric-and-transitive-pr",
+        "math.im1.skill.1.4.apply-the-distributive-property-to-rewrite-and-evaluate-nume"
+      ],
+      "workedExampleCount": 13,
+      "guidedPracticeCount": 2,
+      "independentPracticeCount": 0
+    },
+    {
+      "standardId": "math.standard.ccss.7-ee-a-1",
+      "standardTitle": "math.standard.ccss.7-ee-a-1",
+      "nodeIds": [
+        "math.im1.example.1.4.019",
+        "math.im1.example.1.4.020",
+        "math.im1.example.1.4.021",
+        "math.im1.example.1.4.022",
+        "math.im1.example.1.4.023",
+        "math.im1.example.1.4.024",
+        "math.im1.example.1.4.025",
+        "math.im1.skill.1.4.apply-the-distributive-property-to-rewrite-and-evaluate-nume"
+      ],
+      "workedExampleCount": 7,
+      "guidedPracticeCount": 1,
+      "independentPracticeCount": 0
+    },
+    {
+      "standardId": "math.standard.ccss.a-ced-a-1",
+      "standardTitle": "math.standard.ccss.a-ced-a-1",
+      "nodeIds": [
+        "math.im1.example.1.6.030",
+        "math.im1.example.1.6.031",
+        "math.im1.example.1.6.032",
+        "math.im1.example.1.6.033",
+        "math.im1.example.1.6.034",
+        "math.im1.example.2.1.001",
+        "math.im1.example.2.1.002",
+        "math.im1.example.2.1.003",
+        "math.im1.example.2.1.004",
+        "math.im1.example.2.1.005",
+        "math.im1.example.2.1.006",
+        "math.im1.example.2.5.020",
+        "math.im1.example.2.5.021",
+        "math.im1.example.2.6.022",
+        "math.im1.example.2.6.023",
+        "math.im1.example.2.6.024",
+        "math.im1.example.2.6.025",
+        "math.im1.example.2.6.026",
+        "math.im1.example.5.1.001",
+        "math.im1.example.5.1.002",
+        "math.im1.example.5.1.003",
+        "math.im1.example.5.1.004",
+        "math.im1.example.5.1.005",
+        "math.im1.example.5.1.006",
+        "math.im1.example.5.2.007",
+        "math.im1.example.5.2.008",
+        "math.im1.example.5.2.009",
+        "math.im1.example.5.2.010",
+        "math.im1.example.5.2.011",
+        "math.im1.example.5.2.012",
+        "math.im1.example.5.2.013",
+        "math.im1.example.8.3.007",
+        "math.im1.example.8.3.008",
+        "math.im1.example.8.3.009",
+        "math.im1.example.8.3.010",
+        "math.im1.example.8.3.011",
+        "math.im1.example.8.3.012",
+        "math.im1.skill.1.6.use-ratios-and-percentages-as-metrics-to-model-real-world-si",
+        "math.im1.skill.2.1.translate-verbal-sentences-and-real-world-situations-into-al",
+        "math.im1.skill.2.5.graph-the-solution-set-of-an-absolute-value-equation-on-a-nu",
+        "math.im1.skill.2.5.solve-absolute-value-equations-of-the-form",
+        "math.im1.skill.2.6.solve-proportions-algebraically-including-those-with-variabl",
+        "math.im1.skill.5.1.write-linear-equations-in-slope-intercept-form-given-a-point",
+        "math.im1.skill.5.2.write-linear-equations-in-point-slope-form-given-a-point-and",
+        "math.im1.skill.8.3.apply-the-compound-interest-formula-to-investment-and-deprec",
+        "math.im1.skill.8.3.write-an-exponential-function-given-two-points-on-its-graph"
+      ],
+      "workedExampleCount": 37,
+      "guidedPracticeCount": 9,
+      "independentPracticeCount": 0
+    },
+    {
+      "standardId": "math.standard.ccss.g-co-a-1",
+      "standardTitle": "math.standard.ccss.g-co-a-1",
+      "nodeIds": [
+        "math.im1.example.10.1.001",
+        "math.im1.example.10.1.002",
+        "math.im1.example.11.1.001",
+        "math.im1.example.11.1.002",
+        "math.im1.example.11.1.003",
+        "math.im1.example.11.2.004",
+        "math.im1.example.11.2.005",
+        "math.im1.example.11.2.006",
+        "math.im1.example.12.1.001",
+        "math.im1.example.12.1.002",
+        "math.im1.example.12.1.003",
+        "math.im1.example.12.1.004",
+        "math.im1.skill.10.1.differentiate-between-synthetic-geometry-and-analytic-geomet",
+        "math.im1.skill.10.1.understand-the-structure-of-an-axiomatic-system-and-distingu",
+        "math.im1.skill.11.1.apply-the-angle-addition-postulate-and-the-definition-of-an",
+        "math.im1.skill.11.1.identify-and-name-the-parts-of-an-angle-including-the-vertex",
+        "math.im1.skill.11.2.solve-problems-involving-complementary-supplementary-and-ver",
+        "math.im1.skill.11.2.use-the-fact-that-perpendicular-lines-form-right-angles-to-w",
+        "math.im1.skill.12.1.determine-whether-a-given-conjecture-is-true-or-false",
+        "math.im1.skill.12.1.recognize-patterns-in-numerical-geometric-and-real-world-seq"
+      ],
+      "workedExampleCount": 12,
+      "guidedPracticeCount": 8,
+      "independentPracticeCount": 0
+    },
+    {
+      "standardId": "math.standard.ccss.g-co-a-2",
+      "standardTitle": "math.standard.ccss.g-co-a-2",
+      "nodeIds": [
+        "math.im1.example.10.2.003",
+        "math.im1.example.10.2.004",
+        "math.im1.example.10.2.005",
+        "math.im1.example.10.2.006",
+        "math.im1.example.10.2.007",
+        "math.im1.example.10.3.008",
+        "math.im1.example.10.3.009",
+        "math.im1.example.10.3.010",
+        "math.im1.example.10.3.011",
+        "math.im1.example.11.4.010",
+        "math.im1.example.11.4.011",
+        "math.im1.example.11.4.012",
+        "math.im1.example.11.4.013",
+        "math.im1.example.12.3.012",
+        "math.im1.example.12.3.013",
+        "math.im1.example.12.3.014",
+        "math.im1.example.13.1.001",
+        "math.im1.example.13.1.002",
+        "math.im1.example.13.1.003",
+        "math.im1.example.13.1.004",
+        "math.im1.example.13.2.005",
+        "math.im1.example.13.2.006",
+        "math.im1.example.13.2.007",
+        "math.im1.example.13.2.008",
+        "math.im1.example.13.3.009",
+        "math.im1.example.13.3.010",
+        "math.im1.example.13.3.011",
+        "math.im1.example.13.3.012",
+        "math.im1.example.13.3.013",
+        "math.im1.example.13.4.014",
+        "math.im1.example.13.4.015",
+        "math.im1.example.13.4.016",
+        "math.im1.example.13.4.017",
+        "math.im1.example.13.4.018",
+        "math.im1.skill.10.2.draw-and-label-figures-that-accurately-represent-given-geome",
+        "math.im1.skill.10.2.identify-and-name-points-lines-and-planes-from-geometric-fig",
+        "math.im1.skill.10.3.apply-the-segment-addition-postulate-to-find-missing-segment",
+        "math.im1.skill.10.3.find-the-length-of-a-segment-by-reading-coordinates-from-a-n",
+        "math.im1.skill.11.4.apply-reflections-translations-and-rotations-to-figures-on-t",
+        "math.im1.skill.11.4.identify-rigid-motions-reflection-translation-rotation-from",
+        "math.im1.skill.12.3.apply-the-law-of-detachment-and-the-law-of-syllogism-to-draw",
+        "math.im1.skill.12.3.distinguish-between-inductive-and-deductive-reasoning-in-giv",
+        "math.im1.skill.13.1.determine-the-coordinates-of-the-image-of-a-point-after-a-re",
+        "math.im1.skill.13.1.graph-the-image-of-a-figure-after-a-reflection-over-a-given",
+        "math.im1.skill.13.2.determine-whether-a-given-transformation-between-two-figures",
+        "math.im1.skill.13.2.find-the-translation-vector-that-maps-a-preimage-to-its-imag",
+        "math.im1.skill.13.3.analyze-properties-preserved-under-rotations-and-identify-co",
+        "math.im1.skill.13.3.graph-the-image-of-a-polygon-after-a-rotation-of-90-180-or-2",
+        "math.im1.skill.13.4.graph-the-image-of-a-figure-after-a-glide-reflection-or-othe",
+        "math.im1.skill.13.4.identify-a-single-transformation-that-is-equivalent-to-a-com"
+      ],
+      "workedExampleCount": 34,
+      "guidedPracticeCount": 16,
+      "independentPracticeCount": 0
+    },
+    {
+      "standardId": "math.standard.ccss.g-gpe-b-4",
+      "standardTitle": "math.standard.ccss.g-gpe-b-4",
+      "nodeIds": [
+        "math.im1.example.10.3.008",
+        "math.im1.example.10.3.009",
+        "math.im1.example.10.3.010",
+        "math.im1.example.10.3.011",
+        "math.im1.example.10.4.012",
+        "math.im1.example.10.4.013",
+        "math.im1.example.10.4.014",
+        "math.im1.example.10.4.015",
+        "math.im1.example.10.5.016",
+        "math.im1.example.10.5.017",
+        "math.im1.example.10.5.018",
+        "math.im1.example.10.5.019",
+        "math.im1.example.10.7.022",
+        "math.im1.example.10.7.023",
+        "math.im1.example.10.7.024",
+        "math.im1.example.10.7.025",
+        "math.im1.example.10.7.026",
+        "math.im1.example.10.7.027",
+        "math.im1.example.11.3.007",
+        "math.im1.example.11.3.008",
+        "math.im1.example.11.3.009",
+        "math.im1.example.12.10.005",
+        "math.im1.example.12.10.006",
+        "math.im1.example.14.7.023",
+        "math.im1.example.14.7.024",
+        "math.im1.example.14.7.025",
+        "math.im1.example.14.7.026",
+        "math.im1.skill.10.3.apply-the-segment-addition-postulate-to-find-missing-segment",
+        "math.im1.skill.10.3.find-the-length-of-a-segment-by-reading-coordinates-from-a-n",
+        "math.im1.skill.10.4.apply-the-distance-formula-to-solve-real-world-problems",
+        "math.im1.skill.10.4.use-the-distance-formula-to-find-the-distance-between-two-po",
+        "math.im1.skill.10.5.find-the-coordinate-of-a-point-located-at-a-fractional-dista",
+        "math.im1.skill.10.5.locate-a-point-that-divides-a-segment-on-a-number-line-in-a",
+        "math.im1.skill.10.7.find-the-coordinates-of-a-missing-endpoint-when-the-midpoint",
+        "math.im1.skill.10.7.use-the-midpoint-formula-to-find-the-coordinates-of-the-midp",
+        "math.im1.skill.11.3.apply-coordinate-geometry-to-identify-figures-from-vertices",
+        "math.im1.skill.11.3.calculate-the-perimeter-circumference-and-area-of-two-dimens",
+        "math.im1.skill.12.10.find-the-distance-from-a-point-to-a-line-in-the-coordinate-p",
+        "math.im1.skill.14.7.position-and-label-triangles-on-the-coordinate-plane-using-g",
+        "math.im1.skill.14.7.write-coordinate-proofs-for-geometric-statements-about-trian"
+      ],
+      "workedExampleCount": 27,
+      "guidedPracticeCount": 13,
+      "independentPracticeCount": 0
+    },
+    {
+      "standardId": "math.standard.ccss.g-mg-a-1",
+      "standardTitle": "math.standard.ccss.g-mg-a-1",
+      "nodeIds": [
+        "math.im1.example.10.4.012",
+        "math.im1.example.10.4.013",
+        "math.im1.example.10.4.014",
+        "math.im1.example.10.4.015",
+        "math.im1.example.11.6.019",
+        "math.im1.example.11.6.020",
+        "math.im1.example.11.6.021",
+        "math.im1.example.11.6.022",
+        "math.im1.example.11.6.023",
+        "math.im1.skill.10.4.apply-the-distance-formula-to-solve-real-world-problems",
+        "math.im1.skill.10.4.use-the-distance-formula-to-find-the-distance-between-two-po",
+        "math.im1.skill.11.6.interpret-orthographic-drawings-to-build-models-of-three-dim",
+        "math.im1.skill.11.6.use-nets-to-identify-solids-find-surface-area-and-construct"
+      ],
+      "workedExampleCount": 9,
+      "guidedPracticeCount": 4,
+      "independentPracticeCount": 0
+    },
+    {
+      "standardId": "math.standard.ccss.g-gpe-b-6",
+      "standardTitle": "math.standard.ccss.g-gpe-b-6",
+      "nodeIds": [
+        "math.im1.example.10.5.016",
+        "math.im1.example.10.5.017",
+        "math.im1.example.10.5.018",
+        "math.im1.example.10.5.019",
+        "math.im1.example.10.6.020",
+        "math.im1.example.10.6.021",
+        "math.im1.skill.10.5.find-the-coordinate-of-a-point-located-at-a-fractional-dista",
+        "math.im1.skill.10.5.locate-a-point-that-divides-a-segment-on-a-number-line-in-a",
+        "math.im1.skill.10.6.find-the-coordinates-of-a-point-that-divides-a-segment-in-a"
+      ],
+      "workedExampleCount": 6,
+      "guidedPracticeCount": 3,
+      "independentPracticeCount": 0
+    },
+    {
+      "standardId": "math.standard.ccss.g-gpe-b-5",
+      "standardTitle": "math.standard.ccss.g-gpe-b-5",
+      "nodeIds": [
+        "math.im1.example.10.6.020",
+        "math.im1.example.10.6.021",
+        "math.im1.example.12.8.030",
+        "math.im1.example.12.8.031",
+        "math.im1.example.12.8.032",
+        "math.im1.example.12.8.033",
+        "math.im1.example.12.8.034",
+        "math.im1.skill.10.6.find-the-coordinates-of-a-point-that-divides-a-segment-in-a",
+        "math.im1.skill.12.8.calculate-the-slope-of-a-line-through-two-given-points-and-i",
+        "math.im1.skill.12.8.write-equations-of-lines-in-slope-intercept-form-that-are-pa"
+      ],
+      "workedExampleCount": 7,
+      "guidedPracticeCount": 3,
+      "independentPracticeCount": 0
+    },
+    {
+      "standardId": "math.standard.ccss.g-co-c-9",
+      "standardTitle": "math.standard.ccss.g-co-c-9",
+      "nodeIds": [
+        "math.im1.example.10.7.022",
+        "math.im1.example.10.7.023",
+        "math.im1.example.10.7.024",
+        "math.im1.example.10.7.025",
+        "math.im1.example.10.7.026",
+        "math.im1.example.10.7.027",
+        "math.im1.example.14.5.014",
+        "math.im1.example.14.5.015",
+        "math.im1.example.14.5.016",
+        "math.im1.example.14.5.017",
+        "math.im1.example.14.5.018",
+        "math.im1.skill.10.7.find-the-coordinates-of-a-missing-endpoint-when-the-midpoint",
+        "math.im1.skill.10.7.use-the-midpoint-formula-to-find-the-coordinates-of-the-midp",
+        "math.im1.skill.14.5.apply-the-leg-leg-ll-hypotenuse-angle-ha-leg-angle-la-and-hy",
+        "math.im1.skill.14.5.write-two-column-proofs-and-paragraph-proofs-for-right-trian"
+      ],
+      "workedExampleCount": 11,
+      "guidedPracticeCount": 4,
+      "independentPracticeCount": 0
+    },
+    {
+      "standardId": "math.standard.ccss.g-co-b-6",
+      "standardTitle": "math.standard.ccss.g-co-b-6",
+      "nodeIds": [
+        "math.im1.example.11.1.001",
+        "math.im1.example.11.1.002",
+        "math.im1.example.11.1.003",
+        "math.im1.example.12.5.019",
+        "math.im1.example.12.5.020",
+        "math.im1.example.13.5.019",
+        "math.im1.example.13.5.020",
+        "math.im1.example.13.5.021",
+        "math.im1.example.13.5.022",
+        "math.im1.example.14.2.004",
+        "math.im1.example.14.2.005",
+        "math.im1.example.14.2.006",
+        "math.im1.example.14.2.007",
+        "math.im1.skill.11.1.apply-the-angle-addition-postulate-and-the-definition-of-an",
+        "math.im1.skill.11.1.identify-and-name-the-parts-of-an-angle-including-the-vertex",
+        "math.im1.skill.12.5.complete-two-column-proofs-by-supplying-missing-statements-a",
+        "math.im1.skill.13.5.determine-whether-a-regular-polygon-will-tessellate-the-plan",
+        "math.im1.skill.13.5.determine-whether-a-tessellation-can-be-created-from-a-given",
+        "math.im1.skill.14.2.identify-all-congruent-corresponding-parts-of-polygons-and-w",
+        "math.im1.skill.14.2.write-two-column-proofs-and-paragraph-proofs-to-show-that-tw"
+      ],
+      "workedExampleCount": 13,
+      "guidedPracticeCount": 7,
+      "independentPracticeCount": 0
+    },
+    {
+      "standardId": "math.standard.ccss.g-co-b-7",
+      "standardTitle": "math.standard.ccss.g-co-b-7",
+      "nodeIds": [
+        "math.im1.example.11.2.004",
+        "math.im1.example.11.2.005",
+        "math.im1.example.11.2.006",
+        "math.im1.example.12.6.021",
+        "math.im1.example.12.6.022",
+        "math.im1.example.12.6.023",
+        "math.im1.example.12.6.024",
+        "math.im1.example.14.3.008",
+        "math.im1.example.14.3.009",
+        "math.im1.example.14.3.010",
+        "math.im1.skill.11.2.solve-problems-involving-complementary-supplementary-and-ver",
+        "math.im1.skill.11.2.use-the-fact-that-perpendicular-lines-form-right-angles-to-w",
+        "math.im1.skill.12.6.write-two-column-proofs-to-justify-angle-relationships-inclu",
+        "math.im1.skill.14.3.identify-the-included-angle-and-apply-the-sas-congruence-pos",
+        "math.im1.skill.14.3.write-two-column-paragraph-and-flow-proofs-to-prove-triangle"
+      ],
+      "workedExampleCount": 10,
+      "guidedPracticeCount": 5,
+      "independentPracticeCount": 0
+    },
+    {
+      "standardId": "math.standard.ccss.g-gpe-b-7",
+      "standardTitle": "math.standard.ccss.g-gpe-b-7",
+      "nodeIds": [
+        "math.im1.example.11.3.007",
+        "math.im1.example.11.3.008",
+        "math.im1.example.11.3.009",
+        "math.im1.skill.11.3.apply-coordinate-geometry-to-identify-figures-from-vertices",
+        "math.im1.skill.11.3.calculate-the-perimeter-circumference-and-area-of-two-dimens"
+      ],
+      "workedExampleCount": 3,
+      "guidedPracticeCount": 2,
+      "independentPracticeCount": 0
+    },
+    {
+      "standardId": "math.standard.ccss.g-co-a-5",
+      "standardTitle": "math.standard.ccss.g-co-a-5",
+      "nodeIds": [
+        "math.im1.example.11.4.010",
+        "math.im1.example.11.4.011",
+        "math.im1.example.11.4.012",
+        "math.im1.example.11.4.013",
+        "math.im1.example.12.7.025",
+        "math.im1.example.12.7.026",
+        "math.im1.example.12.7.027",
+        "math.im1.example.12.7.028",
+        "math.im1.example.12.7.029",
+        "math.im1.example.13.6.023",
+        "math.im1.example.13.6.024",
+        "math.im1.example.13.6.025",
+        "math.im1.skill.11.4.apply-reflections-translations-and-rotations-to-figures-on-t",
+        "math.im1.skill.11.4.identify-rigid-motions-reflection-translation-rotation-from",
+        "math.im1.skill.12.7.classify-angle-pairs-formed-by-two-lines-cut-by-a-transversa",
+        "math.im1.skill.12.7.use-properties-of-parallel-lines-and-transversals-to-find-un",
+        "math.im1.skill.13.6.determine-whether-a-figure-has-rotational-symmetry-and-justi",
+        "math.im1.skill.13.6.identify-and-draw-lines-of-symmetry-for-two-dimensional-figu"
+      ],
+      "workedExampleCount": 12,
+      "guidedPracticeCount": 6,
+      "independentPracticeCount": 0
+    },
+    {
+      "standardId": "math.standard.ccss.g-gmd-a-3",
+      "standardTitle": "math.standard.ccss.g-gmd-a-3",
+      "nodeIds": [
+        "math.im1.example.11.5.014",
+        "math.im1.example.11.5.015",
+        "math.im1.example.11.5.016",
+        "math.im1.example.11.5.017",
+        "math.im1.example.11.5.018",
+        "math.im1.skill.11.5.calculate-the-surface-area-and-volume-of-prisms-cylinders-py",
+        "math.im1.skill.11.5.identify-and-classify-three-dimensional-figures-as-polyhedra"
+      ],
+      "workedExampleCount": 5,
+      "guidedPracticeCount": 2,
+      "independentPracticeCount": 0
+    },
+    {
+      "standardId": "math.standard.ccss.g-gmd-b-4",
+      "standardTitle": "math.standard.ccss.g-gmd-b-4",
+      "nodeIds": [
+        "math.im1.example.11.5.014",
+        "math.im1.example.11.5.015",
+        "math.im1.example.11.5.016",
+        "math.im1.example.11.5.017",
+        "math.im1.example.11.5.018",
+        "math.im1.skill.11.5.calculate-the-surface-area-and-volume-of-prisms-cylinders-py",
+        "math.im1.skill.11.5.identify-and-classify-three-dimensional-figures-as-polyhedra"
+      ],
+      "workedExampleCount": 5,
+      "guidedPracticeCount": 2,
+      "independentPracticeCount": 0
+    },
+    {
+      "standardId": "math.standard.ccss.g-mg-a-2",
+      "standardTitle": "math.standard.ccss.g-mg-a-2",
+      "nodeIds": [
+        "math.im1.example.11.7.024",
+        "math.im1.example.11.7.025",
+        "math.im1.example.11.8.026",
+        "math.im1.example.11.8.027",
+        "math.im1.skill.11.7.distinguish-between-accuracy-and-precision-in-measurement-co",
+        "math.im1.skill.11.8.count-the-number-of-significant-digits-in-a-given-measuremen"
+      ],
+      "workedExampleCount": 4,
+      "guidedPracticeCount": 2,
+      "independentPracticeCount": 0
+    },
+    {
+      "standardId": "math.standard.ccss.g-mg-a-3",
+      "standardTitle": "math.standard.ccss.g-mg-a-3",
+      "nodeIds": [
+        "math.im1.example.11.7.024",
+        "math.im1.example.11.7.025",
+        "math.im1.example.11.8.026",
+        "math.im1.example.11.8.027",
+        "math.im1.skill.11.7.distinguish-between-accuracy-and-precision-in-measurement-co",
+        "math.im1.skill.11.8.count-the-number-of-significant-digits-in-a-given-measuremen"
+      ],
+      "workedExampleCount": 4,
+      "guidedPracticeCount": 2,
+      "independentPracticeCount": 0
+    },
+    {
+      "standardId": "math.standard.ccss.g-co-a-3",
+      "standardTitle": "math.standard.ccss.g-co-a-3",
+      "nodeIds": [
+        "math.im1.example.12.2.007",
+        "math.im1.example.12.2.008",
+        "math.im1.example.12.2.009",
+        "math.im1.example.12.2.010",
+        "math.im1.example.12.2.011",
+        "math.im1.skill.12.2.determine-the-truth-value-of-compound-statements-formed-by-c",
+        "math.im1.skill.12.2.identify-the-hypothesis-and-conclusion-of-a-conditional-stat"
+      ],
+      "workedExampleCount": 5,
+      "guidedPracticeCount": 2,
+      "independentPracticeCount": 0
+    },
+    {
+      "standardId": "math.standard.ccss.g-co-a-4",
+      "standardTitle": "math.standard.ccss.g-co-a-4",
+      "nodeIds": [
+        "math.im1.example.12.4.015",
+        "math.im1.example.12.4.016",
+        "math.im1.example.12.4.017",
+        "math.im1.example.12.4.018",
+        "math.im1.example.12.9.035",
+        "math.im1.example.12.9.036",
+        "math.im1.example.12.9.037",
+        "math.im1.example.13.4.014",
+        "math.im1.example.13.4.015",
+        "math.im1.example.13.4.016",
+        "math.im1.example.13.4.017",
+        "math.im1.example.13.4.018",
+        "math.im1.skill.12.4.apply-geometric-postulates-about-points-lines-and-planes-to",
+        "math.im1.skill.12.4.write-two-column-proofs-using-given-information-definitions",
+        "math.im1.skill.12.9.apply-parallel-line-theorems-to-solve-real-world-and-geometr",
+        "math.im1.skill.12.9.use-angle-relationships-formed-by-a-transversal-to-prove-tha",
+        "math.im1.skill.13.4.graph-the-image-of-a-figure-after-a-glide-reflection-or-othe",
+        "math.im1.skill.13.4.identify-a-single-transformation-that-is-equivalent-to-a-com"
+      ],
+      "workedExampleCount": 12,
+      "guidedPracticeCount": 6,
+      "independentPracticeCount": 0
+    },
+    {
+      "standardId": "math.standard.ccss.8-g-a-1",
+      "standardTitle": "math.standard.ccss.8-g-a-1",
+      "nodeIds": [
+        "math.im1.example.13.1.001",
+        "math.im1.example.13.1.002",
+        "math.im1.example.13.1.003",
+        "math.im1.example.13.1.004",
+        "math.im1.example.13.2.005",
+        "math.im1.example.13.2.006",
+        "math.im1.example.13.2.007",
+        "math.im1.example.13.2.008",
+        "math.im1.example.13.3.009",
+        "math.im1.example.13.3.010",
+        "math.im1.example.13.3.011",
+        "math.im1.example.13.3.012",
+        "math.im1.example.13.3.013",
+        "math.im1.skill.13.1.determine-the-coordinates-of-the-image-of-a-point-after-a-re",
+        "math.im1.skill.13.1.graph-the-image-of-a-figure-after-a-reflection-over-a-given",
+        "math.im1.skill.13.2.determine-whether-a-given-transformation-between-two-figures",
+        "math.im1.skill.13.2.find-the-translation-vector-that-maps-a-preimage-to-its-imag",
+        "math.im1.skill.13.3.analyze-properties-preserved-under-rotations-and-identify-co",
+        "math.im1.skill.13.3.graph-the-image-of-a-polygon-after-a-rotation-of-90-180-or-2"
+      ],
+      "workedExampleCount": 13,
+      "guidedPracticeCount": 6,
+      "independentPracticeCount": 0
+    },
+    {
+      "standardId": "math.standard.ccss.8-g-a-4",
+      "standardTitle": "math.standard.ccss.8-g-a-4",
+      "nodeIds": [
+        "math.im1.example.13.5.019",
+        "math.im1.example.13.5.020",
+        "math.im1.example.13.5.021",
+        "math.im1.example.13.5.022",
+        "math.im1.skill.13.5.determine-whether-a-regular-polygon-will-tessellate-the-plan",
+        "math.im1.skill.13.5.determine-whether-a-tessellation-can-be-created-from-a-given"
+      ],
+      "workedExampleCount": 4,
+      "guidedPracticeCount": 2,
+      "independentPracticeCount": 0
+    },
+    {
+      "standardId": "math.standard.ccss.8-g-a-2",
+      "standardTitle": "math.standard.ccss.8-g-a-2",
+      "nodeIds": [
+        "math.im1.example.13.6.023",
+        "math.im1.example.13.6.024",
+        "math.im1.example.13.6.025",
+        "math.im1.skill.13.6.determine-whether-a-figure-has-rotational-symmetry-and-justi",
+        "math.im1.skill.13.6.identify-and-draw-lines-of-symmetry-for-two-dimensional-figu"
+      ],
+      "workedExampleCount": 3,
+      "guidedPracticeCount": 2,
+      "independentPracticeCount": 0
+    },
+    {
+      "standardId": "math.standard.ccss.8-g-a-5",
+      "standardTitle": "math.standard.ccss.8-g-a-5",
+      "nodeIds": [
+        "math.im1.example.14.1.001",
+        "math.im1.example.14.1.002",
+        "math.im1.example.14.1.003",
+        "math.im1.skill.14.1.apply-the-triangle-angle-sum-theorem-to-find-unknown-interio",
+        "math.im1.skill.14.1.use-the-exterior-angle-theorem-to-relate-exterior-and-remote"
+      ],
+      "workedExampleCount": 3,
+      "guidedPracticeCount": 2,
+      "independentPracticeCount": 0
+    },
+    {
+      "standardId": "math.standard.ccss.g-co-b-8",
+      "standardTitle": "math.standard.ccss.g-co-b-8",
+      "nodeIds": [
+        "math.im1.example.14.4.011",
+        "math.im1.example.14.4.012",
+        "math.im1.example.14.4.013",
+        "math.im1.skill.14.4.use-properties-of-parallel-lines-midpoints-and-angle-bisecto",
+        "math.im1.skill.14.4.write-two-column-paragraph-and-flow-proofs-to-prove-triangle-2"
+      ],
+      "workedExampleCount": 3,
+      "guidedPracticeCount": 2,
+      "independentPracticeCount": 0
+    },
+    {
+      "standardId": "math.standard.ccss.g-co-c-10",
+      "standardTitle": "math.standard.ccss.g-co-c-10",
+      "nodeIds": [
+        "math.im1.example.14.6.019",
+        "math.im1.example.14.6.020",
+        "math.im1.example.14.6.021",
+        "math.im1.example.14.6.022",
+        "math.im1.skill.14.6.solve-for-unknown-variables-using-properties-of-isosceles-an",
+        "math.im1.skill.14.6.write-two-column-proofs-using-the-isosceles-triangle-theorem"
+      ],
+      "workedExampleCount": 4,
+      "guidedPracticeCount": 2,
+      "independentPracticeCount": 0
+    },
+    {
+      "standardId": "math.standard.ccss.a-ced-a-2",
+      "standardTitle": "math.standard.ccss.a-ced-a-2",
+      "nodeIds": [
+        "math.im1.example.2.1.001",
+        "math.im1.example.2.1.002",
+        "math.im1.example.2.1.003",
+        "math.im1.example.2.1.004",
+        "math.im1.example.2.1.005",
+        "math.im1.example.2.1.006",
+        "math.im1.example.4.6.031",
+        "math.im1.example.4.6.032",
+        "math.im1.example.4.6.033",
+        "math.im1.example.5.2.007",
+        "math.im1.example.5.2.008",
+        "math.im1.example.5.2.009",
+        "math.im1.example.5.2.010",
+        "math.im1.example.5.2.011",
+        "math.im1.example.5.2.012",
+        "math.im1.example.5.2.013",
+        "math.im1.skill.2.1.translate-verbal-sentences-and-real-world-situations-into-al",
+        "math.im1.skill.4.6.graph-piecewise-defined-functions-and-step-functions-greates",
+        "math.im1.skill.5.2.write-linear-equations-in-point-slope-form-given-a-point-and"
+      ],
+      "workedExampleCount": 16,
+      "guidedPracticeCount": 3,
+      "independentPracticeCount": 0
+    },
+    {
+      "standardId": "math.standard.ccss.7-ee-b-3",
+      "standardTitle": "math.standard.ccss.7-ee-b-3",
+      "nodeIds": [
+        "math.im1.example.2.2.007",
+        "math.im1.example.2.2.008",
+        "math.im1.example.2.2.009",
+        "math.im1.example.2.2.010",
+        "math.im1.example.2.2.011",
+        "math.im1.example.2.6.022",
+        "math.im1.example.2.6.023",
+        "math.im1.example.2.6.024",
+        "math.im1.example.2.6.025",
+        "math.im1.example.2.6.026",
+        "math.im1.skill.2.2.solve-one-step-equations-involving-addition-subtraction-mult",
+        "math.im1.skill.2.6.solve-proportions-algebraically-including-those-with-variabl"
+      ],
+      "workedExampleCount": 10,
+      "guidedPracticeCount": 2,
+      "independentPracticeCount": 0
+    },
+    {
+      "standardId": "math.standard.ccss.8-ee-c-7",
+      "standardTitle": "math.standard.ccss.8-ee-c-7",
+      "nodeIds": [
+        "math.im1.example.2.2.007",
+        "math.im1.example.2.2.008",
+        "math.im1.example.2.2.009",
+        "math.im1.example.2.2.010",
+        "math.im1.example.2.2.011",
+        "math.im1.skill.2.2.solve-one-step-equations-involving-addition-subtraction-mult"
+      ],
+      "workedExampleCount": 5,
+      "guidedPracticeCount": 1,
+      "independentPracticeCount": 0
+    },
+    {
+      "standardId": "math.standard.ccss.a-ced-a-4",
+      "standardTitle": "math.standard.ccss.a-ced-a-4",
+      "nodeIds": [
+        "math.im1.example.2.3.012",
+        "math.im1.example.2.3.013",
+        "math.im1.example.2.3.014",
+        "math.im1.example.2.3.015",
+        "math.im1.example.2.7.027",
+        "math.im1.example.2.7.028",
+        "math.im1.example.2.7.029",
+        "math.im1.example.2.7.030",
+        "math.im1.example.2.7.031",
+        "math.im1.example.2.7.032",
+        "math.im1.example.2.7.033",
+        "math.im1.skill.2.3.solve-multi-step-linear-equations-using-properties-of-equali",
+        "math.im1.skill.2.7.solve-literal-equations-and-formulas-for-a-specified-variabl"
+      ],
+      "workedExampleCount": 11,
+      "guidedPracticeCount": 2,
+      "independentPracticeCount": 0
+    },
+    {
+      "standardId": "math.standard.ccss.a-rei-b-3",
+      "standardTitle": "math.standard.ccss.a-rei-b-3",
+      "nodeIds": [
+        "math.im1.example.2.3.012",
+        "math.im1.example.2.3.013",
+        "math.im1.example.2.3.014",
+        "math.im1.example.2.3.015",
+        "math.im1.example.2.4.016",
+        "math.im1.example.2.4.017",
+        "math.im1.example.2.4.018",
+        "math.im1.example.2.4.019",
+        "math.im1.example.2.7.027",
+        "math.im1.example.2.7.028",
+        "math.im1.example.2.7.029",
+        "math.im1.example.2.7.030",
+        "math.im1.example.2.7.031",
+        "math.im1.example.2.7.032",
+        "math.im1.example.2.7.033",
+        "math.im1.example.6.1.001",
+        "math.im1.example.6.1.002",
+        "math.im1.example.6.1.003",
+        "math.im1.example.6.1.004",
+        "math.im1.example.6.1.005",
+        "math.im1.example.6.1.006",
+        "math.im1.example.6.1.007",
+        "math.im1.example.6.2.008",
+        "math.im1.example.6.2.009",
+        "math.im1.example.6.2.010",
+        "math.im1.example.6.2.011",
+        "math.im1.example.6.2.012",
+        "math.im1.example.6.3.013",
+        "math.im1.example.6.3.014",
+        "math.im1.example.6.3.015",
+        "math.im1.example.6.3.016",
+        "math.im1.example.6.4.017",
+        "math.im1.example.6.4.018",
+        "math.im1.example.6.4.019",
+        "math.im1.example.6.4.020",
+        "math.im1.example.6.4.021",
+        "math.im1.skill.2.3.solve-multi-step-linear-equations-using-properties-of-equali",
+        "math.im1.skill.2.4.solve-linear-equations-that-have-the-variable-on-both-sides",
+        "math.im1.skill.2.7.solve-literal-equations-and-formulas-for-a-specified-variabl",
+        "math.im1.skill.6.1.graph-the-solution-set-of-a-one-step-inequality-on-a-number",
+        "math.im1.skill.6.2.solve-multi-step-linear-inequalities-using-the-distributive",
+        "math.im1.skill.6.3.solve-compound-inequalities-involving-and-and-or-and-express",
+        "math.im1.skill.6.4.solve-absolute-value-inequalities-and-rewrite-them-as-compou"
+      ],
+      "workedExampleCount": 36,
+      "guidedPracticeCount": 7,
+      "independentPracticeCount": 0
+    },
+    {
+      "standardId": "math.standard.ccss.a-rei-a-1",
+      "standardTitle": "math.standard.ccss.a-rei-a-1",
+      "nodeIds": [
+        "math.im1.example.2.4.016",
+        "math.im1.example.2.4.017",
+        "math.im1.example.2.4.018",
+        "math.im1.example.2.4.019",
+        "math.im1.example.2.5.020",
+        "math.im1.example.2.5.021",
+        "math.im1.skill.2.4.solve-linear-equations-that-have-the-variable-on-both-sides",
+        "math.im1.skill.2.5.graph-the-solution-set-of-an-absolute-value-equation-on-a-nu",
+        "math.im1.skill.2.5.solve-absolute-value-equations-of-the-form"
+      ],
+      "workedExampleCount": 6,
+      "guidedPracticeCount": 3,
+      "independentPracticeCount": 0
+    },
+    {
+      "standardId": "math.standard.ccss.f-if-a-1",
+      "standardTitle": "math.standard.ccss.f-if-a-1",
+      "nodeIds": [
+        "math.im1.example.3.1.001",
+        "math.im1.example.3.1.002",
+        "math.im1.example.3.1.003",
+        "math.im1.example.3.1.004",
+        "math.im1.example.3.1.005",
+        "math.im1.skill.3.1.express-a-relation-as-a-table-a-graph-a-mapping-and-a-set-of"
+      ],
+      "workedExampleCount": 5,
+      "guidedPracticeCount": 1,
+      "independentPracticeCount": 0
+    },
+    {
+      "standardId": "math.standard.ccss.f-if-a-2",
+      "standardTitle": "math.standard.ccss.f-if-a-2",
+      "nodeIds": [
+        "math.im1.example.3.1.001",
+        "math.im1.example.3.1.002",
+        "math.im1.example.3.1.003",
+        "math.im1.example.3.1.004",
+        "math.im1.example.3.1.005",
+        "math.im1.skill.3.1.express-a-relation-as-a-table-a-graph-a-mapping-and-a-set-of"
+      ],
+      "workedExampleCount": 5,
+      "guidedPracticeCount": 1,
+      "independentPracticeCount": 0
+    },
+    {
+      "standardId": "math.standard.ccss.8-f-a-1",
+      "standardTitle": "math.standard.ccss.8-f-a-1",
+      "nodeIds": [
+        "math.im1.example.3.2.006",
+        "math.im1.example.3.2.007",
+        "math.im1.example.3.2.008",
+        "math.im1.example.3.2.009",
+        "math.im1.example.4.1.001",
+        "math.im1.example.4.1.002",
+        "math.im1.example.4.1.003",
+        "math.im1.example.4.1.004",
+        "math.im1.skill.3.2.determine-whether-a-relation-represented-as-a-graph-table-ma",
+        "math.im1.skill.4.1.graph-linear-equations-by-making-a-table-of-values-and-by-fi"
+      ],
+      "workedExampleCount": 8,
+      "guidedPracticeCount": 2,
+      "independentPracticeCount": 0
+    },
+    {
+      "standardId": "math.standard.ccss.8-f-a-2",
+      "standardTitle": "math.standard.ccss.8-f-a-2",
+      "nodeIds": [
+        "math.im1.example.3.2.006",
+        "math.im1.example.3.2.007",
+        "math.im1.example.3.2.008",
+        "math.im1.example.3.2.009",
+        "math.im1.example.4.2.005",
+        "math.im1.example.4.2.006",
+        "math.im1.example.4.2.007",
+        "math.im1.example.4.2.008",
+        "math.im1.example.4.2.009",
+        "math.im1.example.4.2.010",
+        "math.im1.example.4.2.011",
+        "math.im1.skill.3.2.determine-whether-a-relation-represented-as-a-graph-table-ma",
+        "math.im1.skill.4.2.calculate-the-rate-of-change-from-tables-graphs-and-real-wor",
+        "math.im1.skill.4.2.interpret-slope-and-rate-of-change-in-real-world-contexts-in"
+      ],
+      "workedExampleCount": 11,
+      "guidedPracticeCount": 3,
+      "independentPracticeCount": 0
+    },
+    {
+      "standardId": "math.standard.ccss.8-f-b-4",
+      "standardTitle": "math.standard.ccss.8-f-b-4",
+      "nodeIds": [
+        "math.im1.example.3.3.010",
+        "math.im1.example.3.3.011",
+        "math.im1.example.3.3.012",
+        "math.im1.example.3.3.013",
+        "math.im1.example.3.3.014",
+        "math.im1.example.4.1.001",
+        "math.im1.example.4.1.002",
+        "math.im1.example.4.1.003",
+        "math.im1.example.4.1.004",
+        "math.im1.example.4.3.012",
+        "math.im1.example.4.3.013",
+        "math.im1.example.4.3.014",
+        "math.im1.example.4.3.015",
+        "math.im1.example.4.3.016",
+        "math.im1.example.4.3.017",
+        "math.im1.example.4.3.018",
+        "math.im1.skill.3.3.determine-whether-a-function-represented-by-a-graph-equation",
+        "math.im1.skill.4.1.graph-linear-equations-by-making-a-table-of-values-and-by-fi",
+        "math.im1.skill.4.3.write-linear-equations-in-slope-intercept-form-given-the-slo"
+      ],
+      "workedExampleCount": 16,
+      "guidedPracticeCount": 3,
+      "independentPracticeCount": 0
+    },
+    {
+      "standardId": "math.standard.ccss.f-if-c-7",
+      "standardTitle": "math.standard.ccss.f-if-c-7",
+      "nodeIds": [
+        "math.im1.example.3.3.010",
+        "math.im1.example.3.3.011",
+        "math.im1.example.3.3.012",
+        "math.im1.example.3.3.013",
+        "math.im1.example.3.3.014",
+        "math.im1.example.3.5.022",
+        "math.im1.example.3.5.023",
+        "math.im1.example.3.5.024",
+        "math.im1.example.3.5.025",
+        "math.im1.example.3.5.026",
+        "math.im1.example.3.5.027",
+        "math.im1.example.3.5.028",
+        "math.im1.example.4.6.031",
+        "math.im1.example.4.6.032",
+        "math.im1.example.4.6.033",
+        "math.im1.skill.3.3.determine-whether-a-function-represented-by-a-graph-equation",
+        "math.im1.skill.3.5.identify-line-symmetry-in-the-graph-of-a-function-and-determ",
+        "math.im1.skill.4.6.graph-piecewise-defined-functions-and-step-functions-greates"
+      ],
+      "workedExampleCount": 15,
+      "guidedPracticeCount": 3,
+      "independentPracticeCount": 0
+    },
+    {
+      "standardId": "math.standard.ccss.f-if-b-4",
+      "standardTitle": "math.standard.ccss.f-if-b-4",
+      "nodeIds": [
+        "math.im1.example.3.4.015",
+        "math.im1.example.3.4.016",
+        "math.im1.example.3.4.017",
+        "math.im1.example.3.4.018",
+        "math.im1.example.3.4.019",
+        "math.im1.example.3.4.020",
+        "math.im1.example.3.4.021",
+        "math.im1.skill.3.4.estimate-and-interpret-the-x-and-y-intercepts-of-a-function"
+      ],
+      "workedExampleCount": 7,
+      "guidedPracticeCount": 1,
+      "independentPracticeCount": 0
+    },
+    {
+      "standardId": "math.standard.ccss.f-if-b-5",
+      "standardTitle": "math.standard.ccss.f-if-b-5",
+      "nodeIds": [
+        "math.im1.example.3.4.015",
+        "math.im1.example.3.4.016",
+        "math.im1.example.3.4.017",
+        "math.im1.example.3.4.018",
+        "math.im1.example.3.4.019",
+        "math.im1.example.3.4.020",
+        "math.im1.example.3.4.021",
+        "math.im1.skill.3.4.estimate-and-interpret-the-x-and-y-intercepts-of-a-function"
+      ],
+      "workedExampleCount": 7,
+      "guidedPracticeCount": 1,
+      "independentPracticeCount": 0
+    },
+    {
+      "standardId": "math.standard.ccss.f-if-c-9",
+      "standardTitle": "math.standard.ccss.f-if-c-9",
+      "nodeIds": [
+        "math.im1.example.3.5.022",
+        "math.im1.example.3.5.023",
+        "math.im1.example.3.5.024",
+        "math.im1.example.3.5.025",
+        "math.im1.example.3.5.026",
+        "math.im1.example.3.5.027",
+        "math.im1.example.3.5.028",
+        "math.im1.example.4.7.034",
+        "math.im1.example.4.7.035",
+        "math.im1.example.4.7.036",
+        "math.im1.example.4.7.037",
+        "math.im1.example.4.7.038",
+        "math.im1.example.4.7.039",
+        "math.im1.example.4.7.040",
+        "math.im1.skill.3.5.identify-line-symmetry-in-the-graph-of-a-function-and-determ",
+        "math.im1.skill.4.7.describe-translations-dilations-and-reflections-of-absolute"
+      ],
+      "workedExampleCount": 14,
+      "guidedPracticeCount": 2,
+      "independentPracticeCount": 0
+    },
+    {
+      "standardId": "math.standard.ccss.f-bf-a-1",
+      "standardTitle": "math.standard.ccss.f-bf-a-1",
+      "nodeIds": [
+        "math.im1.example.3.6.029",
+        "math.im1.example.3.6.030",
+        "math.im1.example.3.6.031",
+        "math.im1.example.3.6.032",
+        "math.im1.example.4.4.019",
+        "math.im1.example.4.4.020",
+        "math.im1.example.4.4.021",
+        "math.im1.example.4.4.022",
+        "math.im1.example.4.4.023",
+        "math.im1.example.4.4.024",
+        "math.im1.example.4.4.025",
+        "math.im1.example.4.4.026",
+        "math.im1.example.4.7.034",
+        "math.im1.example.4.7.035",
+        "math.im1.example.4.7.036",
+        "math.im1.example.4.7.037",
+        "math.im1.example.4.7.038",
+        "math.im1.example.4.7.039",
+        "math.im1.example.4.7.040",
+        "math.im1.example.5.6.022",
+        "math.im1.example.5.6.023",
+        "math.im1.example.5.6.024",
+        "math.im1.example.5.6.025",
+        "math.im1.example.5.6.026",
+        "math.im1.example.5.6.027",
+        "math.im1.example.8.2.004",
+        "math.im1.example.8.2.005",
+        "math.im1.example.8.2.006",
+        "math.im1.skill.3.6.sketch-graphs-of-real-world-functions-from-verbal-descriptio",
+        "math.im1.skill.4.4.describe-translations-dilations-and-reflections-of-linear-fu",
+        "math.im1.skill.4.7.describe-translations-dilations-and-reflections-of-absolute",
+        "math.im1.skill.5.6.find-the-inverse-of-a-relation-given-its-graph-table-or-set",
+        "math.im1.skill.8.2.describe-transformations-of-exponential-functions-verbally-a",
+        "math.im1.skill.8.2.write-equations-for-transformed-exponential-functions-given"
+      ],
+      "workedExampleCount": 28,
+      "guidedPracticeCount": 6,
+      "independentPracticeCount": 0
+    },
+    {
+      "standardId": "math.standard.ccss.f-if-c-8",
+      "standardTitle": "math.standard.ccss.f-if-c-8",
+      "nodeIds": [
+        "math.im1.example.3.6.029",
+        "math.im1.example.3.6.030",
+        "math.im1.example.3.6.031",
+        "math.im1.example.3.6.032",
+        "math.im1.example.4.3.012",
+        "math.im1.example.4.3.013",
+        "math.im1.example.4.3.014",
+        "math.im1.example.4.3.015",
+        "math.im1.example.4.3.016",
+        "math.im1.example.4.3.017",
+        "math.im1.example.4.3.018",
+        "math.im1.skill.3.6.sketch-graphs-of-real-world-functions-from-verbal-descriptio",
+        "math.im1.skill.4.3.write-linear-equations-in-slope-intercept-form-given-the-slo"
+      ],
+      "workedExampleCount": 11,
+      "guidedPracticeCount": 2,
+      "independentPracticeCount": 0
+    },
+    {
+      "standardId": "math.standard.ccss.f-if-b-6",
+      "standardTitle": "math.standard.ccss.f-if-b-6",
+      "nodeIds": [
+        "math.im1.example.4.2.005",
+        "math.im1.example.4.2.006",
+        "math.im1.example.4.2.007",
+        "math.im1.example.4.2.008",
+        "math.im1.example.4.2.009",
+        "math.im1.example.4.2.010",
+        "math.im1.example.4.2.011",
+        "math.im1.skill.4.2.calculate-the-rate-of-change-from-tables-graphs-and-real-wor",
+        "math.im1.skill.4.2.interpret-slope-and-rate-of-change-in-real-world-contexts-in"
+      ],
+      "workedExampleCount": 7,
+      "guidedPracticeCount": 2,
+      "independentPracticeCount": 0
+    },
+    {
+      "standardId": "math.standard.ccss.f-bf-b-3",
+      "standardTitle": "math.standard.ccss.f-bf-b-3",
+      "nodeIds": [
+        "math.im1.example.4.4.019",
+        "math.im1.example.4.4.020",
+        "math.im1.example.4.4.021",
+        "math.im1.example.4.4.022",
+        "math.im1.example.4.4.023",
+        "math.im1.example.4.4.024",
+        "math.im1.example.4.4.025",
+        "math.im1.example.4.4.026",
+        "math.im1.example.5.6.022",
+        "math.im1.example.5.6.023",
+        "math.im1.example.5.6.024",
+        "math.im1.example.5.6.025",
+        "math.im1.example.5.6.026",
+        "math.im1.example.5.6.027",
+        "math.im1.example.8.2.004",
+        "math.im1.example.8.2.005",
+        "math.im1.example.8.2.006",
+        "math.im1.skill.4.4.describe-translations-dilations-and-reflections-of-linear-fu",
+        "math.im1.skill.5.6.find-the-inverse-of-a-relation-given-its-graph-table-or-set",
+        "math.im1.skill.8.2.describe-transformations-of-exponential-functions-verbally-a",
+        "math.im1.skill.8.2.write-equations-for-transformed-exponential-functions-given"
+      ],
+      "workedExampleCount": 17,
+      "guidedPracticeCount": 4,
+      "independentPracticeCount": 0
+    },
+    {
+      "standardId": "math.standard.ccss.f-bf-a-2",
+      "standardTitle": "math.standard.ccss.f-bf-a-2",
+      "nodeIds": [
+        "math.im1.example.4.5.027",
+        "math.im1.example.4.5.028",
+        "math.im1.example.4.5.029",
+        "math.im1.example.4.5.030",
+        "math.im1.example.8.5.014",
+        "math.im1.example.8.5.015",
+        "math.im1.example.8.5.016",
+        "math.im1.example.8.5.017",
+        "math.im1.example.8.5.018",
+        "math.im1.example.8.6.019",
+        "math.im1.example.8.6.020",
+        "math.im1.example.8.6.021",
+        "math.im1.example.8.6.022",
+        "math.im1.example.8.6.023",
+        "math.im1.example.8.6.024",
+        "math.im1.skill.4.5.determine-whether-a-given-sequence-is-arithmetic-and-justify",
+        "math.im1.skill.8.5.determine-whether-a-given-sequence-is-geometric-by-checking",
+        "math.im1.skill.8.5.write-and-use-explicit-formulas-to-model-real-world-situatio",
+        "math.im1.skill.8.6.convert-between-recursive-and-explicit-formulas-for-arithmet",
+        "math.im1.skill.8.6.find-the-first-several-terms-of-a-sequence-given-a-recursive"
+      ],
+      "workedExampleCount": 15,
+      "guidedPracticeCount": 5,
+      "independentPracticeCount": 0
+    },
+    {
+      "standardId": "math.standard.ccss.f-le-a-1",
+      "standardTitle": "math.standard.ccss.f-le-a-1",
+      "nodeIds": [
+        "math.im1.example.4.5.027",
+        "math.im1.example.4.5.028",
+        "math.im1.example.4.5.029",
+        "math.im1.example.4.5.030",
+        "math.im1.example.8.1.001",
+        "math.im1.example.8.1.002",
+        "math.im1.example.8.1.003",
+        "math.im1.skill.4.5.determine-whether-a-given-sequence-is-arithmetic-and-justify",
+        "math.im1.skill.8.1.identify-exponential-behavior-from-data-using-common-ratios"
+      ],
+      "workedExampleCount": 7,
+      "guidedPracticeCount": 2,
+      "independentPracticeCount": 0
+    },
+    {
+      "standardId": "math.standard.ccss.a-rei-d-10",
+      "standardTitle": "math.standard.ccss.a-rei-d-10",
+      "nodeIds": [
+        "math.im1.example.5.1.001",
+        "math.im1.example.5.1.002",
+        "math.im1.example.5.1.003",
+        "math.im1.example.5.1.004",
+        "math.im1.example.5.1.005",
+        "math.im1.example.5.1.006",
+        "math.im1.example.7.1.001",
+        "math.im1.example.7.1.002",
+        "math.im1.example.7.1.003",
+        "math.im1.example.7.1.004",
+        "math.im1.example.7.1.005",
+        "math.im1.example.7.1.006",
+        "math.im1.example.7.1.007",
+        "math.im1.skill.5.1.write-linear-equations-in-slope-intercept-form-given-a-point",
+        "math.im1.skill.7.1.graph-systems-of-linear-equations-and-determine-the-number-o"
+      ],
+      "workedExampleCount": 13,
+      "guidedPracticeCount": 2,
+      "independentPracticeCount": 0
+    },
+    {
+      "standardId": "math.standard.ccss.8-sp-a-1",
+      "standardTitle": "math.standard.ccss.8-sp-a-1",
+      "nodeIds": [
+        "math.im1.example.5.3.014",
+        "math.im1.example.5.3.015",
+        "math.im1.example.5.3.016",
+        "math.im1.skill.5.3.analyze-scatter-plots-to-determine-whether-they-show-positiv"
+      ],
+      "workedExampleCount": 3,
+      "guidedPracticeCount": 1,
+      "independentPracticeCount": 0
+    },
+    {
+      "standardId": "math.standard.ccss.s-id-b-6",
+      "standardTitle": "math.standard.ccss.s-id-b-6",
+      "nodeIds": [
+        "math.im1.example.5.3.014",
+        "math.im1.example.5.3.015",
+        "math.im1.example.5.3.016",
+        "math.im1.example.9.7.023",
+        "math.im1.example.9.7.024",
+        "math.im1.skill.5.3.analyze-scatter-plots-to-determine-whether-they-show-positiv",
+        "math.im1.skill.9.7.construct-and-complete-two-way-frequency-tables-from-verbal"
+      ],
+      "workedExampleCount": 5,
+      "guidedPracticeCount": 2,
+      "independentPracticeCount": 0
+    },
+    {
+      "standardId": "math.standard.ccss.8-sp-a-2",
+      "standardTitle": "math.standard.ccss.8-sp-a-2",
+      "nodeIds": [
+        "math.im1.example.5.4.017",
+        "math.im1.example.5.4.018",
+        "math.im1.skill.5.4.distinguish-between-correlation-and-causation-in-real-world"
+      ],
+      "workedExampleCount": 2,
+      "guidedPracticeCount": 1,
+      "independentPracticeCount": 0
+    },
+    {
+      "standardId": "math.standard.ccss.s-id-c-9",
+      "standardTitle": "math.standard.ccss.s-id-c-9",
+      "nodeIds": [
+        "math.im1.example.5.4.017",
+        "math.im1.example.5.4.018",
+        "math.im1.skill.5.4.distinguish-between-correlation-and-causation-in-real-world"
+      ],
+      "workedExampleCount": 2,
+      "guidedPracticeCount": 1,
+      "independentPracticeCount": 0
+    },
+    {
+      "standardId": "math.standard.ccss.s-id-c-7",
+      "standardTitle": "math.standard.ccss.s-id-c-7",
+      "nodeIds": [
+        "math.im1.example.5.5.019",
+        "math.im1.example.5.5.020",
+        "math.im1.example.5.5.021",
+        "math.im1.skill.5.5.use-technology-to-calculate-the-equation-of-a-best-fit-line"
+      ],
+      "workedExampleCount": 3,
+      "guidedPracticeCount": 1,
+      "independentPracticeCount": 0
+    },
+    {
+      "standardId": "math.standard.ccss.s-id-c-8",
+      "standardTitle": "math.standard.ccss.s-id-c-8",
+      "nodeIds": [
+        "math.im1.example.5.5.019",
+        "math.im1.example.5.5.020",
+        "math.im1.example.5.5.021",
+        "math.im1.skill.5.5.use-technology-to-calculate-the-equation-of-a-best-fit-line"
+      ],
+      "workedExampleCount": 3,
+      "guidedPracticeCount": 1,
+      "independentPracticeCount": 0
+    },
+    {
+      "standardId": "math.standard.ccss.6-ee-b-5",
+      "standardTitle": "math.standard.ccss.6-ee-b-5",
+      "nodeIds": [
+        "math.im1.example.6.1.001",
+        "math.im1.example.6.1.002",
+        "math.im1.example.6.1.003",
+        "math.im1.example.6.1.004",
+        "math.im1.example.6.1.005",
+        "math.im1.example.6.1.006",
+        "math.im1.example.6.1.007",
+        "math.im1.skill.6.1.graph-the-solution-set-of-a-one-step-inequality-on-a-number"
+      ],
+      "workedExampleCount": 7,
+      "guidedPracticeCount": 1,
+      "independentPracticeCount": 0
+    },
+    {
+      "standardId": "math.standard.ccss.7-ee-b-4",
+      "standardTitle": "math.standard.ccss.7-ee-b-4",
+      "nodeIds": [
+        "math.im1.example.6.3.013",
+        "math.im1.example.6.3.014",
+        "math.im1.example.6.3.015",
+        "math.im1.example.6.3.016",
+        "math.im1.example.6.4.017",
+        "math.im1.example.6.4.018",
+        "math.im1.example.6.4.019",
+        "math.im1.example.6.4.020",
+        "math.im1.example.6.4.021",
+        "math.im1.skill.6.3.solve-compound-inequalities-involving-and-and-or-and-express",
+        "math.im1.skill.6.4.solve-absolute-value-inequalities-and-rewrite-them-as-compou"
+      ],
+      "workedExampleCount": 9,
+      "guidedPracticeCount": 2,
+      "independentPracticeCount": 0
+    },
+    {
+      "standardId": "math.standard.ccss.a-ced-a-3",
+      "standardTitle": "math.standard.ccss.a-ced-a-3",
+      "nodeIds": [
+        "math.im1.example.6.5.022",
+        "math.im1.example.6.5.023",
+        "math.im1.example.6.5.024",
+        "math.im1.example.6.5.025",
+        "math.im1.example.6.5.026",
+        "math.im1.example.7.5.016",
+        "math.im1.example.7.5.017",
+        "math.im1.example.7.5.018",
+        "math.im1.example.7.5.019",
+        "math.im1.skill.6.5.graph-linear-inequalities-in-two-variables-written-in-slope",
+        "math.im1.skill.6.5.write-systems-of-inequalities-that-correspond-to-a-given-gra",
+        "math.im1.skill.7.5.graph-systems-of-linear-inequalities-and-identify-the-overla",
+        "math.im1.skill.7.5.solve-real-world-optimization-problems-by-defining-variables"
+      ],
+      "workedExampleCount": 9,
+      "guidedPracticeCount": 4,
+      "independentPracticeCount": 0
+    },
+    {
+      "standardId": "math.standard.ccss.a-rei-d-12",
+      "standardTitle": "math.standard.ccss.a-rei-d-12",
+      "nodeIds": [
+        "math.im1.example.6.5.022",
+        "math.im1.example.6.5.023",
+        "math.im1.example.6.5.024",
+        "math.im1.example.6.5.025",
+        "math.im1.example.6.5.026",
+        "math.im1.example.7.5.016",
+        "math.im1.example.7.5.017",
+        "math.im1.example.7.5.018",
+        "math.im1.example.7.5.019",
+        "math.im1.skill.6.5.graph-linear-inequalities-in-two-variables-written-in-slope",
+        "math.im1.skill.6.5.write-systems-of-inequalities-that-correspond-to-a-given-gra",
+        "math.im1.skill.7.5.graph-systems-of-linear-inequalities-and-identify-the-overla",
+        "math.im1.skill.7.5.solve-real-world-optimization-problems-by-defining-variables"
+      ],
+      "workedExampleCount": 9,
+      "guidedPracticeCount": 4,
+      "independentPracticeCount": 0
+    },
+    {
+      "standardId": "math.standard.ccss.8-ee-c-8",
+      "standardTitle": "math.standard.ccss.8-ee-c-8",
+      "nodeIds": [
+        "math.im1.example.7.1.001",
+        "math.im1.example.7.1.002",
+        "math.im1.example.7.1.003",
+        "math.im1.example.7.1.004",
+        "math.im1.example.7.1.005",
+        "math.im1.example.7.1.006",
+        "math.im1.example.7.1.007",
+        "math.im1.skill.7.1.graph-systems-of-linear-equations-and-determine-the-number-o"
+      ],
+      "workedExampleCount": 7,
+      "guidedPracticeCount": 1,
+      "independentPracticeCount": 0
+    },
+    {
+      "standardId": "math.standard.ccss.a-rei-c-6",
+      "standardTitle": "math.standard.ccss.a-rei-c-6",
+      "nodeIds": [
+        "math.im1.example.7.2.008",
+        "math.im1.example.7.2.009",
+        "math.im1.example.7.3.010",
+        "math.im1.example.7.3.011",
+        "math.im1.example.7.3.012",
+        "math.im1.example.7.3.013",
+        "math.im1.skill.7.2.solve-systems-of-linear-equations-using-the-substitution-met",
+        "math.im1.skill.7.3.solve-systems-of-linear-equations-using-elimination-by-addit"
+      ],
+      "workedExampleCount": 6,
+      "guidedPracticeCount": 2,
+      "independentPracticeCount": 0
+    },
+    {
+      "standardId": "math.standard.ccss.a-rei-c-5",
+      "standardTitle": "math.standard.ccss.a-rei-c-5",
+      "nodeIds": [
+        "math.im1.example.7.4.014",
+        "math.im1.example.7.4.015",
+        "math.im1.skill.7.4.solve-systems-of-linear-equations-using-elimination-when-mul"
+      ],
+      "workedExampleCount": 2,
+      "guidedPracticeCount": 1,
+      "independentPracticeCount": 0
+    },
+    {
+      "standardId": "math.standard.ccss.f-if-c-7e",
+      "standardTitle": "math.standard.ccss.f-if-c-7e",
+      "nodeIds": [
+        "math.im1.example.8.1.001",
+        "math.im1.example.8.1.002",
+        "math.im1.example.8.1.003",
+        "math.im1.skill.8.1.identify-exponential-behavior-from-data-using-common-ratios"
+      ],
+      "workedExampleCount": 3,
+      "guidedPracticeCount": 1,
+      "independentPracticeCount": 0
+    },
+    {
+      "standardId": "math.standard.ccss.f-le-a-2",
+      "standardTitle": "math.standard.ccss.f-le-a-2",
+      "nodeIds": [
+        "math.im1.example.8.3.007",
+        "math.im1.example.8.3.008",
+        "math.im1.example.8.3.009",
+        "math.im1.example.8.3.010",
+        "math.im1.example.8.3.011",
+        "math.im1.example.8.3.012",
+        "math.im1.skill.8.3.apply-the-compound-interest-formula-to-investment-and-deprec",
+        "math.im1.skill.8.3.write-an-exponential-function-given-two-points-on-its-graph"
+      ],
+      "workedExampleCount": 6,
+      "guidedPracticeCount": 2,
+      "independentPracticeCount": 0
+    },
+    {
+      "standardId": "math.standard.ccss.f-le-a-4",
+      "standardTitle": "math.standard.ccss.f-le-a-4",
+      "nodeIds": [
+        "math.im1.example.8.4.013",
+        "math.im1.skill.8.4.rewrite-exponential-functions-so-rates-share-the-same-time-u"
+      ],
+      "workedExampleCount": 1,
+      "guidedPracticeCount": 1,
+      "independentPracticeCount": 0
+    },
+    {
+      "standardId": "math.standard.ccss.f-le-b-5",
+      "standardTitle": "math.standard.ccss.f-le-b-5",
+      "nodeIds": [
+        "math.im1.example.8.4.013",
+        "math.im1.skill.8.4.rewrite-exponential-functions-so-rates-share-the-same-time-u"
+      ],
+      "workedExampleCount": 1,
+      "guidedPracticeCount": 1,
+      "independentPracticeCount": 0
+    },
+    {
+      "standardId": "math.standard.ccss.f-if-a-3",
+      "standardTitle": "math.standard.ccss.f-if-a-3",
+      "nodeIds": [
+        "math.im1.example.8.5.014",
+        "math.im1.example.8.5.015",
+        "math.im1.example.8.5.016",
+        "math.im1.example.8.5.017",
+        "math.im1.example.8.5.018",
+        "math.im1.example.8.6.019",
+        "math.im1.example.8.6.020",
+        "math.im1.example.8.6.021",
+        "math.im1.example.8.6.022",
+        "math.im1.example.8.6.023",
+        "math.im1.example.8.6.024",
+        "math.im1.skill.8.5.determine-whether-a-given-sequence-is-geometric-by-checking",
+        "math.im1.skill.8.5.write-and-use-explicit-formulas-to-model-real-world-situatio",
+        "math.im1.skill.8.6.convert-between-recursive-and-explicit-formulas-for-arithmet",
+        "math.im1.skill.8.6.find-the-first-several-terms-of-a-sequence-given-a-recursive"
+      ],
+      "workedExampleCount": 11,
+      "guidedPracticeCount": 4,
+      "independentPracticeCount": 0
+    },
+    {
+      "standardId": "math.standard.ccss.s-id-a-2",
+      "standardTitle": "math.standard.ccss.s-id-a-2",
+      "nodeIds": [
+        "math.im1.example.9.1.001",
+        "math.im1.example.9.1.002",
+        "math.im1.example.9.4.011",
+        "math.im1.example.9.4.012",
+        "math.im1.example.9.4.013",
+        "math.im1.example.9.4.014",
+        "math.im1.example.9.6.019",
+        "math.im1.example.9.6.020",
+        "math.im1.example.9.6.021",
+        "math.im1.example.9.6.022",
+        "math.im1.skill.9.1.calculate-the-mean-median-and-mode-of-a-data-set",
+        "math.im1.skill.9.4.calculate-the-range-interquartile-range-and-standard-deviati",
+        "math.im1.skill.9.4.determine-the-five-number-summary-and-construct-a-box-plot-f",
+        "math.im1.skill.9.6.construct-and-interpret-box-plots-and-histograms-to-compare",
+        "math.im1.skill.9.6.describe-how-adding-or-multiplying-every-value-in-a-data-set"
+      ],
+      "workedExampleCount": 10,
+      "guidedPracticeCount": 5,
+      "independentPracticeCount": 0
+    },
+    {
+      "standardId": "math.standard.ccss.6-sp-b-4",
+      "standardTitle": "math.standard.ccss.6-sp-b-4",
+      "nodeIds": [
+        "math.im1.example.9.2.003",
+        "math.im1.example.9.2.004",
+        "math.im1.example.9.2.005",
+        "math.im1.example.9.2.006",
+        "math.im1.example.9.2.007",
+        "math.im1.skill.9.2.analyze-data-displays-to-draw-conclusions-and-answer-questio",
+        "math.im1.skill.9.2.construct-dot-plots-bar-graphs-and-histograms-to-represent-d"
+      ],
+      "workedExampleCount": 5,
+      "guidedPracticeCount": 2,
+      "independentPracticeCount": 0
+    },
+    {
+      "standardId": "math.standard.ccss.s-id-a-1",
+      "standardTitle": "math.standard.ccss.s-id-a-1",
+      "nodeIds": [
+        "math.im1.example.9.2.003",
+        "math.im1.example.9.2.004",
+        "math.im1.example.9.2.005",
+        "math.im1.example.9.2.006",
+        "math.im1.example.9.2.007",
+        "math.im1.skill.9.2.analyze-data-displays-to-draw-conclusions-and-answer-questio",
+        "math.im1.skill.9.2.construct-dot-plots-bar-graphs-and-histograms-to-represent-d"
+      ],
+      "workedExampleCount": 5,
+      "guidedPracticeCount": 2,
+      "independentPracticeCount": 0
+    },
+    {
+      "standardId": "math.standard.ccss.s-ic-a-1",
+      "standardTitle": "math.standard.ccss.s-ic-a-1",
+      "nodeIds": [
+        "math.im1.example.9.3.008",
+        "math.im1.example.9.3.009",
+        "math.im1.example.9.3.010",
+        "math.im1.skill.9.3.identify-sample-bias-in-survey-and-sampling-methods-and-expl",
+        "math.im1.skill.9.3.recognize-biased-survey-questions-and-identify-whose-interes"
+      ],
+      "workedExampleCount": 3,
+      "guidedPracticeCount": 2,
+      "independentPracticeCount": 0
+    },
+    {
+      "standardId": "math.standard.ccss.6-sp-b-5d",
+      "standardTitle": "math.standard.ccss.6-sp-b-5d",
+      "nodeIds": [
+        "math.im1.example.9.4.011",
+        "math.im1.example.9.4.012",
+        "math.im1.example.9.4.013",
+        "math.im1.example.9.4.014",
+        "math.im1.skill.9.4.calculate-the-range-interquartile-range-and-standard-deviati",
+        "math.im1.skill.9.4.determine-the-five-number-summary-and-construct-a-box-plot-f"
+      ],
+      "workedExampleCount": 4,
+      "guidedPracticeCount": 2,
+      "independentPracticeCount": 0
+    },
+    {
+      "standardId": "math.standard.ccss.6-sp-b-5",
+      "standardTitle": "math.standard.ccss.6-sp-b-5",
+      "nodeIds": [
+        "math.im1.example.9.5.015",
+        "math.im1.example.9.5.016",
+        "math.im1.example.9.5.017",
+        "math.im1.example.9.5.018",
+        "math.im1.skill.9.5.choose-appropriate-measures-of-center-and-spread-based-on-wh",
+        "math.im1.skill.9.5.construct-and-interpret-histograms-and-box-plots-to-visualiz"
+      ],
+      "workedExampleCount": 4,
+      "guidedPracticeCount": 2,
+      "independentPracticeCount": 0
+    },
+    {
+      "standardId": "math.standard.ccss.s-id-a-3",
+      "standardTitle": "math.standard.ccss.s-id-a-3",
+      "nodeIds": [
+        "math.im1.example.9.5.015",
+        "math.im1.example.9.5.016",
+        "math.im1.example.9.5.017",
+        "math.im1.example.9.5.018",
+        "math.im1.example.9.6.019",
+        "math.im1.example.9.6.020",
+        "math.im1.example.9.6.021",
+        "math.im1.example.9.6.022",
+        "math.im1.skill.9.5.choose-appropriate-measures-of-center-and-spread-based-on-wh",
+        "math.im1.skill.9.5.construct-and-interpret-histograms-and-box-plots-to-visualiz",
+        "math.im1.skill.9.6.construct-and-interpret-box-plots-and-histograms-to-compare",
+        "math.im1.skill.9.6.describe-how-adding-or-multiplying-every-value-in-a-data-set"
+      ],
+      "workedExampleCount": 8,
+      "guidedPracticeCount": 4,
+      "independentPracticeCount": 0
+    },
+    {
+      "standardId": "math.standard.ccss.s-id-b-5",
+      "standardTitle": "math.standard.ccss.s-id-b-5",
+      "nodeIds": [
+        "math.im1.example.9.7.023",
+        "math.im1.example.9.7.024",
+        "math.im1.skill.9.7.construct-and-complete-two-way-frequency-tables-from-verbal"
+      ],
+      "workedExampleCount": 2,
+      "guidedPracticeCount": 1,
+      "independentPracticeCount": 0
+    }
+  ],
+  "skills": [
+    {
+      "nodeId": "math.im1.skill.1.1.translate-verbal-descriptions-into-correct-numerical-express",
+      "title": "1a: Translate verbal descriptions into correct numerical expressions using operation symbols and grouping",
+      "kind": "skill",
+      "standardsCovered": [
+        "math.standard.ccss.6-ee-a-1",
+        "math.standard.ccss.6-ee-a-2"
+      ],
+      "prerequisitesMet": false,
+      "independentPracticeReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.1.2.translate-between-algebraic-expressions-and-verbal-expressio",
+      "title": "1c: Translate between algebraic expressions and verbal expressions using correct mathematical terminology",
+      "kind": "skill",
+      "standardsCovered": [
+        "math.standard.ccss.6-ee-a-2",
+        "math.standard.ccss.a-sse-a-1"
+      ],
+      "prerequisitesMet": true,
+      "independentPracticeReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.1.3.identify-and-apply-the-reflexive-symmetric-and-transitive-pr",
+      "title": "1e: Identify and apply the reflexive, symmetric, and transitive properties of equality",
+      "kind": "skill",
+      "standardsCovered": [
+        "math.standard.ccss.6-ee-a-2",
+        "math.standard.ccss.6-ee-a-3"
+      ],
+      "prerequisitesMet": true,
+      "independentPracticeReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.1.4.apply-the-distributive-property-to-rewrite-and-evaluate-nume",
+      "title": "1g: Apply the Distributive Property to rewrite and evaluate numerical expressions, including mixed numbers and decimals",
+      "kind": "skill",
+      "standardsCovered": [
+        "math.standard.ccss.6-ee-a-3",
+        "math.standard.ccss.7-ee-a-1"
+      ],
+      "prerequisitesMet": true,
+      "independentPracticeReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.1.5.write-absolute-value-expressions-that-model-real-world-dista",
+      "title": "1i: Write absolute value expressions that model real-world distances and accuracy as positive differences",
+      "kind": "skill",
+      "standardsCovered": [
+        "math.standard.ccss.6-ee-a-2",
+        "math.standard.ccss.a-sse-a-1"
+      ],
+      "prerequisitesMet": true,
+      "independentPracticeReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.1.6.use-ratios-and-percentages-as-metrics-to-model-real-world-si",
+      "title": "1k: Use ratios and percentages as metrics to model real-world situations and make decisions",
+      "kind": "skill",
+      "standardsCovered": [
+        "math.standard.ccss.6-ee-a-2",
+        "math.standard.ccss.a-ced-a-1"
+      ],
+      "prerequisitesMet": true,
+      "independentPracticeReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.10.1.differentiate-between-synthetic-geometry-and-analytic-geomet",
+      "title": "10b: Differentiate between synthetic geometry and analytic geometry based on their defining characteristics",
+      "kind": "skill",
+      "standardsCovered": [
+        "math.standard.ccss.g-co-a-1"
+      ],
+      "prerequisitesMet": true,
+      "independentPracticeReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.10.1.understand-the-structure-of-an-axiomatic-system-and-distingu",
+      "title": "10a: Understand the structure of an axiomatic system and distinguish between axioms and conclusions",
+      "kind": "skill",
+      "standardsCovered": [
+        "math.standard.ccss.g-co-a-1"
+      ],
+      "prerequisitesMet": false,
+      "independentPracticeReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.10.2.draw-and-label-figures-that-accurately-represent-given-geome",
+      "title": "10d: Draw and label figures that accurately represent given geometric relationships",
+      "kind": "skill",
+      "standardsCovered": [
+        "math.standard.ccss.g-co-a-2"
+      ],
+      "prerequisitesMet": true,
+      "independentPracticeReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.10.2.identify-and-name-points-lines-and-planes-from-geometric-fig",
+      "title": "10c: Identify and name points, lines, and planes from geometric figures",
+      "kind": "skill",
+      "standardsCovered": [
+        "math.standard.ccss.g-co-a-2"
+      ],
+      "prerequisitesMet": false,
+      "independentPracticeReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.10.3.apply-the-segment-addition-postulate-to-find-missing-segment",
+      "title": "10f: Apply the Segment Addition Postulate to find missing segment lengths",
+      "kind": "skill",
+      "standardsCovered": [
+        "math.standard.ccss.g-co-a-2",
+        "math.standard.ccss.g-gpe-b-4"
+      ],
+      "prerequisitesMet": true,
+      "independentPracticeReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.10.3.find-the-length-of-a-segment-by-reading-coordinates-from-a-n",
+      "title": "10e: Find the length of a segment by reading coordinates from a number line",
+      "kind": "skill",
+      "standardsCovered": [
+        "math.standard.ccss.g-co-a-2",
+        "math.standard.ccss.g-gpe-b-4"
+      ],
+      "prerequisitesMet": false,
+      "independentPracticeReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.10.4.apply-the-distance-formula-to-solve-real-world-problems",
+      "title": "10h: Apply the Distance Formula to solve real-world problems",
+      "kind": "skill",
+      "standardsCovered": [
+        "math.standard.ccss.g-gpe-b-4",
+        "math.standard.ccss.g-mg-a-1"
+      ],
+      "prerequisitesMet": true,
+      "independentPracticeReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.10.4.use-the-distance-formula-to-find-the-distance-between-two-po",
+      "title": "10g: Use the Distance Formula to find the distance between two points in the coordinate plane",
+      "kind": "skill",
+      "standardsCovered": [
+        "math.standard.ccss.g-gpe-b-4",
+        "math.standard.ccss.g-mg-a-1"
+      ],
+      "prerequisitesMet": false,
+      "independentPracticeReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.10.5.find-the-coordinate-of-a-point-located-at-a-fractional-dista",
+      "title": "10i: Find the coordinate of a point located at a fractional distance between two given points on a number line",
+      "kind": "skill",
+      "standardsCovered": [
+        "math.standard.ccss.g-gpe-b-4",
+        "math.standard.ccss.g-gpe-b-6"
+      ],
+      "prerequisitesMet": true,
+      "independentPracticeReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.10.5.locate-a-point-that-divides-a-segment-on-a-number-line-in-a",
+      "title": "10j: Locate a point that divides a segment on a number line in a given ratio",
+      "kind": "skill",
+      "standardsCovered": [
+        "math.standard.ccss.g-gpe-b-4",
+        "math.standard.ccss.g-gpe-b-6"
+      ],
+      "prerequisitesMet": false,
+      "independentPracticeReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.10.6.find-the-coordinates-of-a-point-that-divides-a-segment-in-a",
+      "title": "10k: Find the coordinates of a point that divides a segment in a given ratio on a coordinate plane",
+      "kind": "skill",
+      "standardsCovered": [
+        "math.standard.ccss.g-gpe-b-5",
+        "math.standard.ccss.g-gpe-b-6"
+      ],
+      "prerequisitesMet": true,
+      "independentPracticeReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.10.7.find-the-coordinates-of-a-missing-endpoint-when-the-midpoint",
+      "title": "10m: Find the coordinates of a missing endpoint when the midpoint and one endpoint are known",
+      "kind": "skill",
+      "standardsCovered": [
+        "math.standard.ccss.g-co-c-9",
+        "math.standard.ccss.g-gpe-b-4"
+      ],
+      "prerequisitesMet": true,
+      "independentPracticeReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.10.7.use-the-midpoint-formula-to-find-the-coordinates-of-the-midp",
+      "title": "10l: Use the Midpoint Formula to find the coordinates of the midpoint of a segment in the coordinate plane",
+      "kind": "skill",
+      "standardsCovered": [
+        "math.standard.ccss.g-co-c-9",
+        "math.standard.ccss.g-gpe-b-4"
+      ],
+      "prerequisitesMet": false,
+      "independentPracticeReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.11.1.apply-the-angle-addition-postulate-and-the-definition-of-an",
+      "title": "11b: Apply the Angle Addition Postulate and the definition of an angle bisector to find unknown angle measures",
+      "kind": "skill",
+      "standardsCovered": [
+        "math.standard.ccss.g-co-a-1",
+        "math.standard.ccss.g-co-b-6"
+      ],
+      "prerequisitesMet": true,
+      "independentPracticeReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.11.1.identify-and-name-the-parts-of-an-angle-including-the-vertex",
+      "title": "11a: Identify and name the parts of an angle, including the vertex and sides",
+      "kind": "skill",
+      "standardsCovered": [
+        "math.standard.ccss.g-co-a-1",
+        "math.standard.ccss.g-co-b-6"
+      ],
+      "prerequisitesMet": false,
+      "independentPracticeReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.11.2.solve-problems-involving-complementary-supplementary-and-ver",
+      "title": "11c: Solve problems involving complementary, supplementary, and vertical angle relationships using algebra",
+      "kind": "skill",
+      "standardsCovered": [
+        "math.standard.ccss.g-co-a-1",
+        "math.standard.ccss.g-co-b-7"
+      ],
+      "prerequisitesMet": true,
+      "independentPracticeReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.11.2.use-the-fact-that-perpendicular-lines-form-right-angles-to-w",
+      "title": "11d: Use the fact that perpendicular lines form right angles to write and solve equations for unknown angle measures",
+      "kind": "skill",
+      "standardsCovered": [
+        "math.standard.ccss.g-co-a-1",
+        "math.standard.ccss.g-co-b-7"
+      ],
+      "prerequisitesMet": false,
+      "independentPracticeReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.11.3.apply-coordinate-geometry-to-identify-figures-from-vertices",
+      "title": "11f: Apply coordinate geometry to identify figures from vertices and compute their measurements",
+      "kind": "skill",
+      "standardsCovered": [
+        "math.standard.ccss.g-gpe-b-4",
+        "math.standard.ccss.g-gpe-b-7"
+      ],
+      "prerequisitesMet": true,
+      "independentPracticeReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.11.3.calculate-the-perimeter-circumference-and-area-of-two-dimens",
+      "title": "11e: Calculate the perimeter, circumference, and area of two-dimensional figures from coordinate grids and labeled diagrams",
+      "kind": "skill",
+      "standardsCovered": [
+        "math.standard.ccss.g-gpe-b-4",
+        "math.standard.ccss.g-gpe-b-7"
+      ],
+      "prerequisitesMet": false,
+      "independentPracticeReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.11.4.apply-reflections-translations-and-rotations-to-figures-on-t",
+      "title": "11h: Apply reflections, translations, and rotations to figures on the coordinate plane",
+      "kind": "skill",
+      "standardsCovered": [
+        "math.standard.ccss.g-co-a-2",
+        "math.standard.ccss.g-co-a-5"
+      ],
+      "prerequisitesMet": true,
+      "independentPracticeReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.11.4.identify-rigid-motions-reflection-translation-rotation-from",
+      "title": "11g: Identify rigid motions (reflection, translation, rotation) from diagrams",
+      "kind": "skill",
+      "standardsCovered": [
+        "math.standard.ccss.g-co-a-2",
+        "math.standard.ccss.g-co-a-5"
+      ],
+      "prerequisitesMet": false,
+      "independentPracticeReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.11.5.calculate-the-surface-area-and-volume-of-prisms-cylinders-py",
+      "title": "11j: Calculate the surface area and volume of prisms, cylinders, pyramids, and cones",
+      "kind": "skill",
+      "standardsCovered": [
+        "math.standard.ccss.g-gmd-a-3",
+        "math.standard.ccss.g-gmd-b-4"
+      ],
+      "prerequisitesMet": true,
+      "independentPracticeReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.11.5.identify-and-classify-three-dimensional-figures-as-polyhedra",
+      "title": "11i: Identify and classify three-dimensional figures as polyhedra or non-polyhedra",
+      "kind": "skill",
+      "standardsCovered": [
+        "math.standard.ccss.g-gmd-a-3",
+        "math.standard.ccss.g-gmd-b-4"
+      ],
+      "prerequisitesMet": false,
+      "independentPracticeReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.11.6.interpret-orthographic-drawings-to-build-models-of-three-dim",
+      "title": "11k: Interpret orthographic drawings to build models of three-dimensional figures",
+      "kind": "skill",
+      "standardsCovered": [
+        "math.standard.ccss.g-mg-a-1"
+      ],
+      "prerequisitesMet": true,
+      "independentPracticeReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.11.6.use-nets-to-identify-solids-find-surface-area-and-construct",
+      "title": "11l: Use nets to identify solids, find surface area, and construct models",
+      "kind": "skill",
+      "standardsCovered": [
+        "math.standard.ccss.g-mg-a-1"
+      ],
+      "prerequisitesMet": false,
+      "independentPracticeReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.11.7.distinguish-between-accuracy-and-precision-in-measurement-co",
+      "title": "11m: Distinguish between accuracy and precision in measurement contexts",
+      "kind": "skill",
+      "standardsCovered": [
+        "math.standard.ccss.g-mg-a-2",
+        "math.standard.ccss.g-mg-a-3"
+      ],
+      "prerequisitesMet": true,
+      "independentPracticeReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.11.8.count-the-number-of-significant-digits-in-a-given-measuremen",
+      "title": "11n: Count the number of significant digits in a given measurement using the rules for significance",
+      "kind": "skill",
+      "standardsCovered": [
+        "math.standard.ccss.g-mg-a-2",
+        "math.standard.ccss.g-mg-a-3"
+      ],
+      "prerequisitesMet": true,
+      "independentPracticeReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.12.1.determine-whether-a-given-conjecture-is-true-or-false",
+      "title": "12b: Determine whether a given conjecture is true or false",
+      "kind": "skill",
+      "standardsCovered": [
+        "math.standard.ccss.g-co-a-1"
+      ],
+      "prerequisitesMet": true,
+      "independentPracticeReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.12.1.recognize-patterns-in-numerical-geometric-and-real-world-seq",
+      "title": "12a: Recognize patterns in numerical, geometric, and real-world sequences and express them as conjectures",
+      "kind": "skill",
+      "standardsCovered": [
+        "math.standard.ccss.g-co-a-1"
+      ],
+      "prerequisitesMet": false,
+      "independentPracticeReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.12.10.find-the-distance-from-a-point-to-a-line-in-the-coordinate-p",
+      "title": "12q: Find the distance from a point to a line in the coordinate plane",
+      "kind": "skill",
+      "standardsCovered": [
+        "math.standard.ccss.g-gpe-b-4"
+      ],
+      "prerequisitesMet": true,
+      "independentPracticeReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.12.2.determine-the-truth-value-of-compound-statements-formed-by-c",
+      "title": "12c: Determine the truth value of compound statements formed by conjunction and disjunction",
+      "kind": "skill",
+      "standardsCovered": [
+        "math.standard.ccss.g-co-a-3"
+      ],
+      "prerequisitesMet": true,
+      "independentPracticeReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.12.2.identify-the-hypothesis-and-conclusion-of-a-conditional-stat",
+      "title": "12d: Identify the hypothesis and conclusion of a conditional statement and write the converse, inverse, and contrapositive",
+      "kind": "skill",
+      "standardsCovered": [
+        "math.standard.ccss.g-co-a-3"
+      ],
+      "prerequisitesMet": false,
+      "independentPracticeReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.12.3.apply-the-law-of-detachment-and-the-law-of-syllogism-to-draw",
+      "title": "12f: Apply the Law of Detachment and the Law of Syllogism to draw valid conclusions from conditional statements",
+      "kind": "skill",
+      "standardsCovered": [
+        "math.standard.ccss.g-co-a-2"
+      ],
+      "prerequisitesMet": true,
+      "independentPracticeReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.12.3.distinguish-between-inductive-and-deductive-reasoning-in-giv",
+      "title": "12e: Distinguish between inductive and deductive reasoning in given arguments",
+      "kind": "skill",
+      "standardsCovered": [
+        "math.standard.ccss.g-co-a-2"
+      ],
+      "prerequisitesMet": false,
+      "independentPracticeReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.12.4.apply-geometric-postulates-about-points-lines-and-planes-to",
+      "title": "12g: Apply geometric postulates about points, lines, and planes to justify statements",
+      "kind": "skill",
+      "standardsCovered": [
+        "math.standard.ccss.g-co-a-4"
+      ],
+      "prerequisitesMet": true,
+      "independentPracticeReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.12.4.write-two-column-proofs-using-given-information-definitions",
+      "title": "12h: Write two-column proofs using given information, definitions, and properties",
+      "kind": "skill",
+      "standardsCovered": [
+        "math.standard.ccss.g-co-a-4"
+      ],
+      "prerequisitesMet": false,
+      "independentPracticeReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.12.5.complete-two-column-proofs-by-supplying-missing-statements-a",
+      "title": "12i: Complete two-column proofs by supplying missing statements and reasons",
+      "kind": "skill",
+      "standardsCovered": [
+        "math.standard.ccss.g-co-b-6"
+      ],
+      "prerequisitesMet": true,
+      "independentPracticeReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.12.6.write-two-column-proofs-to-justify-angle-relationships-inclu",
+      "title": "12j: Write two-column proofs to justify angle relationships including congruent supplements, congruent complements, and right angles",
+      "kind": "skill",
+      "standardsCovered": [
+        "math.standard.ccss.g-co-b-7"
+      ],
+      "prerequisitesMet": true,
+      "independentPracticeReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.12.7.classify-angle-pairs-formed-by-two-lines-cut-by-a-transversa",
+      "title": "12k: Classify angle pairs formed by two lines cut by a transversal as alternate interior, alternate exterior, corresponding, or consecutive interior angles",
+      "kind": "skill",
+      "standardsCovered": [
+        "math.standard.ccss.g-co-a-5"
+      ],
+      "prerequisitesMet": true,
+      "independentPracticeReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.12.7.use-properties-of-parallel-lines-and-transversals-to-find-un",
+      "title": "12l: Use properties of parallel lines and transversals to find unknown angle measures",
+      "kind": "skill",
+      "standardsCovered": [
+        "math.standard.ccss.g-co-a-5"
+      ],
+      "prerequisitesMet": false,
+      "independentPracticeReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.12.8.calculate-the-slope-of-a-line-through-two-given-points-and-i",
+      "title": "12m: Calculate the slope of a line through two given points and interpret its meaning",
+      "kind": "skill",
+      "standardsCovered": [
+        "math.standard.ccss.g-gpe-b-5"
+      ],
+      "prerequisitesMet": true,
+      "independentPracticeReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.12.8.write-equations-of-lines-in-slope-intercept-form-that-are-pa",
+      "title": "12n: Write equations of lines in slope-intercept form that are parallel or perpendicular to a given line and pass through a given point",
+      "kind": "skill",
+      "standardsCovered": [
+        "math.standard.ccss.g-gpe-b-5"
+      ],
+      "prerequisitesMet": false,
+      "independentPracticeReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.12.9.apply-parallel-line-theorems-to-solve-real-world-and-geometr",
+      "title": "12p: Apply parallel line theorems to solve real-world and geometric problems",
+      "kind": "skill",
+      "standardsCovered": [
+        "math.standard.ccss.g-co-a-4"
+      ],
+      "prerequisitesMet": true,
+      "independentPracticeReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.12.9.use-angle-relationships-formed-by-a-transversal-to-prove-tha",
+      "title": "12o: Use angle relationships formed by a transversal to prove that two lines are parallel",
+      "kind": "skill",
+      "standardsCovered": [
+        "math.standard.ccss.g-co-a-4"
+      ],
+      "prerequisitesMet": false,
+      "independentPracticeReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.13.1.determine-the-coordinates-of-the-image-of-a-point-after-a-re",
+      "title": "13b: Determine the coordinates of the image of a point after a reflection in a horizontal or vertical line",
+      "kind": "skill",
+      "standardsCovered": [
+        "math.standard.ccss.8-g-a-1",
+        "math.standard.ccss.g-co-a-2"
+      ],
+      "prerequisitesMet": true,
+      "independentPracticeReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.13.1.graph-the-image-of-a-figure-after-a-reflection-over-a-given",
+      "title": "13a: Graph the image of a figure after a reflection over a given line on the coordinate plane",
+      "kind": "skill",
+      "standardsCovered": [
+        "math.standard.ccss.8-g-a-1",
+        "math.standard.ccss.g-co-a-2"
+      ],
+      "prerequisitesMet": false,
+      "independentPracticeReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.13.2.determine-whether-a-given-transformation-between-two-figures",
+      "title": "13c: Determine whether a given transformation between two figures is a translation and justify the answer",
+      "kind": "skill",
+      "standardsCovered": [
+        "math.standard.ccss.8-g-a-1",
+        "math.standard.ccss.g-co-a-2"
+      ],
+      "prerequisitesMet": true,
+      "independentPracticeReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.13.2.find-the-translation-vector-that-maps-a-preimage-to-its-imag",
+      "title": "13d: Find the translation vector that maps a preimage to its image and apply it",
+      "kind": "skill",
+      "standardsCovered": [
+        "math.standard.ccss.8-g-a-1",
+        "math.standard.ccss.g-co-a-2"
+      ],
+      "prerequisitesMet": false,
+      "independentPracticeReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.13.3.analyze-properties-preserved-under-rotations-and-identify-co",
+      "title": "13f: Analyze properties preserved under rotations and identify common errors in reasoning about rotations",
+      "kind": "skill",
+      "standardsCovered": [
+        "math.standard.ccss.8-g-a-1",
+        "math.standard.ccss.g-co-a-2"
+      ],
+      "prerequisitesMet": true,
+      "independentPracticeReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.13.3.graph-the-image-of-a-polygon-after-a-rotation-of-90-180-or-2",
+      "title": "13e: Graph the image of a polygon after a rotation of 90°, 180°, or 270° about a given point on the coordinate plane",
+      "kind": "skill",
+      "standardsCovered": [
+        "math.standard.ccss.8-g-a-1",
+        "math.standard.ccss.g-co-a-2"
+      ],
+      "prerequisitesMet": false,
+      "independentPracticeReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.13.4.graph-the-image-of-a-figure-after-a-glide-reflection-or-othe",
+      "title": "13g: Graph the image of a figure after a glide reflection or other composition of transformations on the coordinate plane",
+      "kind": "skill",
+      "standardsCovered": [
+        "math.standard.ccss.g-co-a-2",
+        "math.standard.ccss.g-co-a-4"
+      ],
+      "prerequisitesMet": true,
+      "independentPracticeReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.13.4.identify-a-single-transformation-that-is-equivalent-to-a-com",
+      "title": "13h: Identify a single transformation that is equivalent to a composition of two reflections",
+      "kind": "skill",
+      "standardsCovered": [
+        "math.standard.ccss.g-co-a-2",
+        "math.standard.ccss.g-co-a-4"
+      ],
+      "prerequisitesMet": false,
+      "independentPracticeReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.13.5.determine-whether-a-regular-polygon-will-tessellate-the-plan",
+      "title": "13i: Determine whether a regular polygon will tessellate the plane by examining its interior angle measure",
+      "kind": "skill",
+      "standardsCovered": [
+        "math.standard.ccss.8-g-a-4",
+        "math.standard.ccss.g-co-b-6"
+      ],
+      "prerequisitesMet": true,
+      "independentPracticeReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.13.5.determine-whether-a-tessellation-can-be-created-from-a-given",
+      "title": "13j: Determine whether a tessellation can be created from a given figure and describe the transformation(s) used",
+      "kind": "skill",
+      "standardsCovered": [
+        "math.standard.ccss.8-g-a-4",
+        "math.standard.ccss.g-co-b-6"
+      ],
+      "prerequisitesMet": false,
+      "independentPracticeReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.13.6.determine-whether-a-figure-has-rotational-symmetry-and-justi",
+      "title": "13l: Determine whether a figure has rotational symmetry and justify the answer",
+      "kind": "skill",
+      "standardsCovered": [
+        "math.standard.ccss.8-g-a-2",
+        "math.standard.ccss.g-co-a-5"
+      ],
+      "prerequisitesMet": true,
+      "independentPracticeReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.13.6.identify-and-draw-lines-of-symmetry-for-two-dimensional-figu",
+      "title": "13k: Identify and draw lines of symmetry for two-dimensional figures",
+      "kind": "skill",
+      "standardsCovered": [
+        "math.standard.ccss.8-g-a-2",
+        "math.standard.ccss.g-co-a-5"
+      ],
+      "prerequisitesMet": false,
+      "independentPracticeReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.14.1.apply-the-triangle-angle-sum-theorem-to-find-unknown-interio",
+      "title": "14a: Apply the Triangle Angle-Sum Theorem to find unknown interior angle measures",
+      "kind": "skill",
+      "standardsCovered": [
+        "math.standard.ccss.8-g-a-5"
+      ],
+      "prerequisitesMet": true,
+      "independentPracticeReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.14.1.use-the-exterior-angle-theorem-to-relate-exterior-and-remote",
+      "title": "14b: Use the Exterior Angle Theorem to relate exterior and remote interior angles",
+      "kind": "skill",
+      "standardsCovered": [
+        "math.standard.ccss.8-g-a-5"
+      ],
+      "prerequisitesMet": false,
+      "independentPracticeReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.14.2.identify-all-congruent-corresponding-parts-of-polygons-and-w",
+      "title": "14c: Identify all congruent corresponding parts of polygons and write correct congruence statements",
+      "kind": "skill",
+      "standardsCovered": [
+        "math.standard.ccss.g-co-b-6"
+      ],
+      "prerequisitesMet": true,
+      "independentPracticeReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.14.2.write-two-column-proofs-and-paragraph-proofs-to-show-that-tw",
+      "title": "14d: Write two-column proofs and paragraph proofs to show that two triangles are congruent",
+      "kind": "skill",
+      "standardsCovered": [
+        "math.standard.ccss.g-co-b-6"
+      ],
+      "prerequisitesMet": false,
+      "independentPracticeReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.14.3.identify-the-included-angle-and-apply-the-sas-congruence-pos",
+      "title": "14f: Identify the included angle and apply the SAS Congruence Postulate correctly",
+      "kind": "skill",
+      "standardsCovered": [
+        "math.standard.ccss.g-co-b-7"
+      ],
+      "prerequisitesMet": true,
+      "independentPracticeReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.14.3.write-two-column-paragraph-and-flow-proofs-to-prove-triangle",
+      "title": "14e: Write two-column, paragraph, and flow proofs to prove triangle congruence using the SSS and SAS postulates",
+      "kind": "skill",
+      "standardsCovered": [
+        "math.standard.ccss.g-co-b-7"
+      ],
+      "prerequisitesMet": false,
+      "independentPracticeReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.14.4.use-properties-of-parallel-lines-midpoints-and-angle-bisecto",
+      "title": "14h: Use properties of parallel lines, midpoints, and angle bisectors to find congruent parts needed for ASA or AAS proofs",
+      "kind": "skill",
+      "standardsCovered": [
+        "math.standard.ccss.g-co-b-8"
+      ],
+      "prerequisitesMet": true,
+      "independentPracticeReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.14.4.write-two-column-paragraph-and-flow-proofs-to-prove-triangle-2",
+      "title": "14g: Write two-column, paragraph, and flow proofs to prove triangle congruence using the ASA and AAS theorems",
+      "kind": "skill",
+      "standardsCovered": [
+        "math.standard.ccss.g-co-b-8"
+      ],
+      "prerequisitesMet": false,
+      "independentPracticeReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.14.5.apply-the-leg-leg-ll-hypotenuse-angle-ha-leg-angle-la-and-hy",
+      "title": "14i: Apply the Leg-Leg (LL), Hypotenuse-Angle (HA), Leg-Angle (LA), and Hypotenuse-Leg (HL) theorems to prove right triangles congruent",
+      "kind": "skill",
+      "standardsCovered": [
+        "math.standard.ccss.g-co-c-9"
+      ],
+      "prerequisitesMet": true,
+      "independentPracticeReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.14.5.write-two-column-proofs-and-paragraph-proofs-for-right-trian",
+      "title": "14j: Write two-column proofs and paragraph proofs for right triangle congruence in real-world contexts",
+      "kind": "skill",
+      "standardsCovered": [
+        "math.standard.ccss.g-co-c-9"
+      ],
+      "prerequisitesMet": false,
+      "independentPracticeReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.14.6.solve-for-unknown-variables-using-properties-of-isosceles-an",
+      "title": "14l: Solve for unknown variables using properties of isosceles and equilateral triangles",
+      "kind": "skill",
+      "standardsCovered": [
+        "math.standard.ccss.g-co-c-10"
+      ],
+      "prerequisitesMet": true,
+      "independentPracticeReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.14.6.write-two-column-proofs-using-the-isosceles-triangle-theorem",
+      "title": "14k: Write two-column proofs using the Isosceles Triangle Theorem and its converse",
+      "kind": "skill",
+      "standardsCovered": [
+        "math.standard.ccss.g-co-c-10"
+      ],
+      "prerequisitesMet": false,
+      "independentPracticeReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.14.7.position-and-label-triangles-on-the-coordinate-plane-using-g",
+      "title": "14m: Position and label triangles on the coordinate plane using given side lengths and properties",
+      "kind": "skill",
+      "standardsCovered": [
+        "math.standard.ccss.g-gpe-b-4"
+      ],
+      "prerequisitesMet": true,
+      "independentPracticeReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.14.7.write-coordinate-proofs-for-geometric-statements-about-trian",
+      "title": "14n: Write coordinate proofs for geometric statements about triangles",
+      "kind": "skill",
+      "standardsCovered": [
+        "math.standard.ccss.g-gpe-b-4"
+      ],
+      "prerequisitesMet": false,
+      "independentPracticeReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.2.1.translate-verbal-sentences-and-real-world-situations-into-al",
+      "title": "2a: Translate verbal sentences and real-world situations into algebraic equations and formulas",
+      "kind": "skill",
+      "standardsCovered": [
+        "math.standard.ccss.a-ced-a-1",
+        "math.standard.ccss.a-ced-a-2"
+      ],
+      "prerequisitesMet": true,
+      "independentPracticeReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.2.2.solve-one-step-equations-involving-addition-subtraction-mult",
+      "title": "2c: Solve one-step equations involving addition, subtraction, multiplication, and division using the Properties of Equality",
+      "kind": "skill",
+      "standardsCovered": [
+        "math.standard.ccss.7-ee-b-3",
+        "math.standard.ccss.8-ee-c-7"
+      ],
+      "prerequisitesMet": true,
+      "independentPracticeReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.2.3.solve-multi-step-linear-equations-using-properties-of-equali",
+      "title": "2e: Solve multi-step linear equations using properties of equality and check solutions by substitution",
+      "kind": "skill",
+      "standardsCovered": [
+        "math.standard.ccss.a-ced-a-4",
+        "math.standard.ccss.a-rei-b-3"
+      ],
+      "prerequisitesMet": true,
+      "independentPracticeReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.2.4.solve-linear-equations-that-have-the-variable-on-both-sides",
+      "title": "2g: Solve linear equations that have the variable on both sides of the equation, including those with fractions and grouping symbols",
+      "kind": "skill",
+      "standardsCovered": [
+        "math.standard.ccss.a-rei-a-1",
+        "math.standard.ccss.a-rei-b-3"
+      ],
+      "prerequisitesMet": true,
+      "independentPracticeReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.2.5.graph-the-solution-set-of-an-absolute-value-equation-on-a-nu",
+      "title": "2j: Graph the solution set of an absolute value equation on a number line and write absolute value equations from graphs",
+      "kind": "skill",
+      "standardsCovered": [
+        "math.standard.ccss.a-ced-a-1",
+        "math.standard.ccss.a-rei-a-1"
+      ],
+      "prerequisitesMet": true,
+      "independentPracticeReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.2.5.solve-absolute-value-equations-of-the-form",
+      "title": "2i: Solve absolute value equations of the form",
+      "kind": "skill",
+      "standardsCovered": [
+        "math.standard.ccss.a-ced-a-1",
+        "math.standard.ccss.a-rei-a-1"
+      ],
+      "prerequisitesMet": false,
+      "independentPracticeReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.2.6.solve-proportions-algebraically-including-those-with-variabl",
+      "title": "2k: Solve proportions algebraically, including those with variable expressions in numerators and denominators",
+      "kind": "skill",
+      "standardsCovered": [
+        "math.standard.ccss.7-ee-b-3",
+        "math.standard.ccss.a-ced-a-1"
+      ],
+      "prerequisitesMet": true,
+      "independentPracticeReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.2.7.solve-literal-equations-and-formulas-for-a-specified-variabl",
+      "title": "2m: Solve literal equations and formulas for a specified variable using inverse operations",
+      "kind": "skill",
+      "standardsCovered": [
+        "math.standard.ccss.a-ced-a-4",
+        "math.standard.ccss.a-rei-b-3"
+      ],
+      "prerequisitesMet": true,
+      "independentPracticeReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.3.1.express-a-relation-as-a-table-a-graph-a-mapping-and-a-set-of",
+      "title": "3a: Express a relation as a table, a graph, a mapping, and a set of ordered pairs and identify the domain and range",
+      "kind": "skill",
+      "standardsCovered": [
+        "math.standard.ccss.f-if-a-1",
+        "math.standard.ccss.f-if-a-2"
+      ],
+      "prerequisitesMet": true,
+      "independentPracticeReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.3.2.determine-whether-a-relation-represented-as-a-graph-table-ma",
+      "title": "3c: Determine whether a relation represented as a graph, table, mapping, set of ordered pairs, or equation is a function",
+      "kind": "skill",
+      "standardsCovered": [
+        "math.standard.ccss.8-f-a-1",
+        "math.standard.ccss.8-f-a-2"
+      ],
+      "prerequisitesMet": true,
+      "independentPracticeReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.3.3.determine-whether-a-function-represented-by-a-graph-equation",
+      "title": "3e: Determine whether a function represented by a graph, equation, table, or real-world situation is discrete, continuous, or neither",
+      "kind": "skill",
+      "standardsCovered": [
+        "math.standard.ccss.8-f-b-4",
+        "math.standard.ccss.f-if-c-7"
+      ],
+      "prerequisitesMet": true,
+      "independentPracticeReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.3.4.estimate-and-interpret-the-x-and-y-intercepts-of-a-function",
+      "title": "3g: Estimate and interpret the x- and y-intercepts of a function from its graph and describe where the function is positive and negative",
+      "kind": "skill",
+      "standardsCovered": [
+        "math.standard.ccss.f-if-b-4",
+        "math.standard.ccss.f-if-b-5"
+      ],
+      "prerequisitesMet": true,
+      "independentPracticeReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.3.5.identify-line-symmetry-in-the-graph-of-a-function-and-determ",
+      "title": "3i: Identify line symmetry in the graph of a function and determine the intervals where a function is increasing, decreasing, or constant",
+      "kind": "skill",
+      "standardsCovered": [
+        "math.standard.ccss.f-if-c-7",
+        "math.standard.ccss.f-if-c-9"
+      ],
+      "prerequisitesMet": true,
+      "independentPracticeReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.3.6.sketch-graphs-of-real-world-functions-from-verbal-descriptio",
+      "title": "3k: Sketch graphs of real-world functions from verbal descriptions, identifying intercepts, intervals of increase and decrease, end behavior, extrema, and symmetry",
+      "kind": "skill",
+      "standardsCovered": [
+        "math.standard.ccss.f-bf-a-1",
+        "math.standard.ccss.f-if-c-8"
+      ],
+      "prerequisitesMet": true,
+      "independentPracticeReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.4.1.graph-linear-equations-by-making-a-table-of-values-and-by-fi",
+      "title": "4a: Graph linear equations by making a table of values and by finding and plotting the x- and y-intercepts",
+      "kind": "skill",
+      "standardsCovered": [
+        "math.standard.ccss.8-f-a-1",
+        "math.standard.ccss.8-f-b-4"
+      ],
+      "prerequisitesMet": true,
+      "independentPracticeReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.4.2.calculate-the-rate-of-change-from-tables-graphs-and-real-wor",
+      "title": "4c: Calculate the rate of change from tables, graphs, and real-world data and compute the slope of a line passing through two given points",
+      "kind": "skill",
+      "standardsCovered": [
+        "math.standard.ccss.8-f-a-2",
+        "math.standard.ccss.f-if-b-6"
+      ],
+      "prerequisitesMet": true,
+      "independentPracticeReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.4.2.interpret-slope-and-rate-of-change-in-real-world-contexts-in",
+      "title": "4e: Interpret slope and rate of change in real-world contexts including grade, elevation, and positioning",
+      "kind": "skill",
+      "standardsCovered": [
+        "math.standard.ccss.8-f-a-2",
+        "math.standard.ccss.f-if-b-6"
+      ],
+      "prerequisitesMet": false,
+      "independentPracticeReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.4.3.write-linear-equations-in-slope-intercept-form-given-the-slo",
+      "title": "4f: Write linear equations in slope-intercept form given the slope and y-intercept and rewrite linear equations from standard form into slope-intercept form",
+      "kind": "skill",
+      "standardsCovered": [
+        "math.standard.ccss.8-f-b-4",
+        "math.standard.ccss.f-if-c-8"
+      ],
+      "prerequisitesMet": true,
+      "independentPracticeReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.4.4.describe-translations-dilations-and-reflections-of-linear-fu",
+      "title": "4h: Describe translations, dilations, and reflections of linear functions in relation to the parent function f(x) = x",
+      "kind": "skill",
+      "standardsCovered": [
+        "math.standard.ccss.f-bf-a-1",
+        "math.standard.ccss.f-bf-b-3"
+      ],
+      "prerequisitesMet": true,
+      "independentPracticeReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.4.5.determine-whether-a-given-sequence-is-arithmetic-and-justify",
+      "title": "4j: Determine whether a given sequence is arithmetic and justify the reasoning using the common difference",
+      "kind": "skill",
+      "standardsCovered": [
+        "math.standard.ccss.f-bf-a-2",
+        "math.standard.ccss.f-le-a-1"
+      ],
+      "prerequisitesMet": true,
+      "independentPracticeReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.4.6.graph-piecewise-defined-functions-and-step-functions-greates",
+      "title": "4l: Graph piecewise-defined functions and step functions (greatest integer functions) and identify their domain and range",
+      "kind": "skill",
+      "standardsCovered": [
+        "math.standard.ccss.a-ced-a-2",
+        "math.standard.ccss.f-if-c-7"
+      ],
+      "prerequisitesMet": true,
+      "independentPracticeReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.4.7.describe-translations-dilations-and-reflections-of-absolute",
+      "title": "4n: Describe translations, dilations, and reflections of absolute value functions from their equations and graph absolute value functions",
+      "kind": "skill",
+      "standardsCovered": [
+        "math.standard.ccss.f-bf-a-1",
+        "math.standard.ccss.f-if-c-9"
+      ],
+      "prerequisitesMet": true,
+      "independentPracticeReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.5.1.write-linear-equations-in-slope-intercept-form-given-a-point",
+      "title": "5a: Write linear equations in slope-intercept form given a point and a slope and given two points",
+      "kind": "skill",
+      "standardsCovered": [
+        "math.standard.ccss.a-ced-a-1",
+        "math.standard.ccss.a-rei-d-10"
+      ],
+      "prerequisitesMet": true,
+      "independentPracticeReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.5.2.write-linear-equations-in-point-slope-form-given-a-point-and",
+      "title": "5c: Write linear equations in point-slope form given a point and a slope or two points and convert equations between point-slope, slope-intercept, and standard forms",
+      "kind": "skill",
+      "standardsCovered": [
+        "math.standard.ccss.a-ced-a-1",
+        "math.standard.ccss.a-ced-a-2"
+      ],
+      "prerequisitesMet": true,
+      "independentPracticeReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.5.3.analyze-scatter-plots-to-determine-whether-they-show-positiv",
+      "title": "5e: Analyze scatter plots to determine whether they show positive, negative, or no correlation and interpret the meaning in context",
+      "kind": "skill",
+      "standardsCovered": [
+        "math.standard.ccss.8-sp-a-1",
+        "math.standard.ccss.s-id-b-6"
+      ],
+      "prerequisitesMet": true,
+      "independentPracticeReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.5.4.distinguish-between-correlation-and-causation-in-real-world",
+      "title": "5g: Distinguish between correlation and causation in real-world contexts and explain reasoning for whether a relationship is merely correlated or causal, identifying possible lurking variables",
+      "kind": "skill",
+      "standardsCovered": [
+        "math.standard.ccss.8-sp-a-2",
+        "math.standard.ccss.s-id-c-9"
+      ],
+      "prerequisitesMet": true,
+      "independentPracticeReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.5.5.use-technology-to-calculate-the-equation-of-a-best-fit-line",
+      "title": "5h: Use technology to calculate the equation of a best-fit line and the correlation coefficient for a bivariate data set and interpret the correlation coefficient r in context",
+      "kind": "skill",
+      "standardsCovered": [
+        "math.standard.ccss.s-id-c-7",
+        "math.standard.ccss.s-id-c-8"
+      ],
+      "prerequisitesMet": true,
+      "independentPracticeReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.5.6.find-the-inverse-of-a-relation-given-its-graph-table-or-set",
+      "title": "5j: Find the inverse of a relation given its graph, table, or set of ordered pairs and find the inverse of a linear function algebraically using the switch-and-solve method",
+      "kind": "skill",
+      "standardsCovered": [
+        "math.standard.ccss.f-bf-a-1",
+        "math.standard.ccss.f-bf-b-3"
+      ],
+      "prerequisitesMet": true,
+      "independentPracticeReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.6.1.graph-the-solution-set-of-a-one-step-inequality-on-a-number",
+      "title": "6a: Graph the solution set of a one-step inequality on a number line and write an inequality that matches a given number-line graph",
+      "kind": "skill",
+      "standardsCovered": [
+        "math.standard.ccss.6-ee-b-5",
+        "math.standard.ccss.a-rei-b-3"
+      ],
+      "prerequisitesMet": true,
+      "independentPracticeReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.6.2.solve-multi-step-linear-inequalities-using-the-distributive",
+      "title": "6c: Solve multi-step linear inequalities using the Distributive Property, combining like terms, and inverse operations",
+      "kind": "skill",
+      "standardsCovered": [
+        "math.standard.ccss.a-rei-b-3"
+      ],
+      "prerequisitesMet": true,
+      "independentPracticeReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.6.3.solve-compound-inequalities-involving-and-and-or-and-express",
+      "title": "6e: Solve compound inequalities involving \"and\" and \"or\" and express the solution algebraically",
+      "kind": "skill",
+      "standardsCovered": [
+        "math.standard.ccss.7-ee-b-4",
+        "math.standard.ccss.a-rei-b-3"
+      ],
+      "prerequisitesMet": true,
+      "independentPracticeReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.6.4.solve-absolute-value-inequalities-and-rewrite-them-as-compou",
+      "title": "6g: Solve absolute value inequalities and rewrite them as compound inequalities using and or or",
+      "kind": "skill",
+      "standardsCovered": [
+        "math.standard.ccss.7-ee-b-4",
+        "math.standard.ccss.a-rei-b-3"
+      ],
+      "prerequisitesMet": true,
+      "independentPracticeReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.6.5.graph-linear-inequalities-in-two-variables-written-in-slope",
+      "title": "6i: Graph linear inequalities in two variables written in slope-intercept and standard form and write linear inequalities to model real-world constraints",
+      "kind": "skill",
+      "standardsCovered": [
+        "math.standard.ccss.a-ced-a-3",
+        "math.standard.ccss.a-rei-d-12"
+      ],
+      "prerequisitesMet": true,
+      "independentPracticeReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.6.5.write-systems-of-inequalities-that-correspond-to-a-given-gra",
+      "title": "6k: Write systems of inequalities that correspond to a given graph and determine whether an ordered pair is a solution to a system without graphing",
+      "kind": "skill",
+      "standardsCovered": [
+        "math.standard.ccss.a-ced-a-3",
+        "math.standard.ccss.a-rei-d-12"
+      ],
+      "prerequisitesMet": false,
+      "independentPracticeReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.7.1.graph-systems-of-linear-equations-and-determine-the-number-o",
+      "title": "7a: Graph systems of linear equations and determine the number of solutions; classify systems as consistent or inconsistent and as independent or dependent",
+      "kind": "skill",
+      "standardsCovered": [
+        "math.standard.ccss.8-ee-c-8",
+        "math.standard.ccss.a-rei-d-10"
+      ],
+      "prerequisitesMet": true,
+      "independentPracticeReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.7.2.solve-systems-of-linear-equations-using-the-substitution-met",
+      "title": "7c: Solve systems of linear equations using the substitution method",
+      "kind": "skill",
+      "standardsCovered": [
+        "math.standard.ccss.a-rei-c-6"
+      ],
+      "prerequisitesMet": true,
+      "independentPracticeReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.7.3.solve-systems-of-linear-equations-using-elimination-by-addit",
+      "title": "7e: Solve systems of linear equations using elimination by addition or subtraction and recognize when adding or subtracting equations will eliminate a variable",
+      "kind": "skill",
+      "standardsCovered": [
+        "math.standard.ccss.a-rei-c-6"
+      ],
+      "prerequisitesMet": true,
+      "independentPracticeReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.7.4.solve-systems-of-linear-equations-using-elimination-when-mul",
+      "title": "7g: Solve systems of linear equations using elimination when multiplication of one or both equations is required",
+      "kind": "skill",
+      "standardsCovered": [
+        "math.standard.ccss.a-rei-c-5"
+      ],
+      "prerequisitesMet": true,
+      "independentPracticeReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.7.5.graph-systems-of-linear-inequalities-and-identify-the-overla",
+      "title": "7i: Graph systems of linear inequalities and identify the overlapping solution region (feasible region)",
+      "kind": "skill",
+      "standardsCovered": [
+        "math.standard.ccss.a-ced-a-3",
+        "math.standard.ccss.a-rei-d-12"
+      ],
+      "prerequisitesMet": true,
+      "independentPracticeReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.7.5.solve-real-world-optimization-problems-by-defining-variables",
+      "title": "7k: Solve real-world optimization problems by defining variables, writing a system of inequalities, graphing, and interpreting the feasible region",
+      "kind": "skill",
+      "standardsCovered": [
+        "math.standard.ccss.a-ced-a-3",
+        "math.standard.ccss.a-rei-d-12"
+      ],
+      "prerequisitesMet": false,
+      "independentPracticeReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.8.1.identify-exponential-behavior-from-data-using-common-ratios",
+      "title": "8a: Identify exponential behavior from data using common ratios",
+      "kind": "skill",
+      "standardsCovered": [
+        "math.standard.ccss.f-if-c-7e",
+        "math.standard.ccss.f-le-a-1"
+      ],
+      "prerequisitesMet": true,
+      "independentPracticeReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.8.2.describe-transformations-of-exponential-functions-verbally-a",
+      "title": "8c: Describe transformations of exponential functions verbally and in function notation",
+      "kind": "skill",
+      "standardsCovered": [
+        "math.standard.ccss.f-bf-a-1",
+        "math.standard.ccss.f-bf-b-3"
+      ],
+      "prerequisitesMet": true,
+      "independentPracticeReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.8.2.write-equations-for-transformed-exponential-functions-given",
+      "title": "8d: Write equations for transformed exponential functions given a graph",
+      "kind": "skill",
+      "standardsCovered": [
+        "math.standard.ccss.f-bf-a-1",
+        "math.standard.ccss.f-bf-b-3"
+      ],
+      "prerequisitesMet": false,
+      "independentPracticeReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.8.3.apply-the-compound-interest-formula-to-investment-and-deprec",
+      "title": "8f: Apply the compound-interest formula to investment and depreciation problems",
+      "kind": "skill",
+      "standardsCovered": [
+        "math.standard.ccss.a-ced-a-1",
+        "math.standard.ccss.f-le-a-2"
+      ],
+      "prerequisitesMet": true,
+      "independentPracticeReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.8.3.write-an-exponential-function-given-two-points-on-its-graph",
+      "title": "8e: Write an exponential function given two points on its graph",
+      "kind": "skill",
+      "standardsCovered": [
+        "math.standard.ccss.a-ced-a-1",
+        "math.standard.ccss.f-le-a-2"
+      ],
+      "prerequisitesMet": false,
+      "independentPracticeReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.8.4.rewrite-exponential-functions-so-rates-share-the-same-time-u",
+      "title": "8g: Rewrite exponential functions so rates share the same time unit for direct comparison",
+      "kind": "skill",
+      "standardsCovered": [
+        "math.standard.ccss.f-le-a-4",
+        "math.standard.ccss.f-le-b-5"
+      ],
+      "prerequisitesMet": true,
+      "independentPracticeReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.8.5.determine-whether-a-given-sequence-is-geometric-by-checking",
+      "title": "8h: Determine whether a given sequence is geometric by checking for a constant common ratio",
+      "kind": "skill",
+      "standardsCovered": [
+        "math.standard.ccss.f-bf-a-2",
+        "math.standard.ccss.f-if-a-3"
+      ],
+      "prerequisitesMet": true,
+      "independentPracticeReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.8.5.write-and-use-explicit-formulas-to-model-real-world-situatio",
+      "title": "8i: Write and use explicit formulas to model real-world situations involving exponential growth and decay",
+      "kind": "skill",
+      "standardsCovered": [
+        "math.standard.ccss.f-bf-a-2",
+        "math.standard.ccss.f-if-a-3"
+      ],
+      "prerequisitesMet": false,
+      "independentPracticeReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.8.6.convert-between-recursive-and-explicit-formulas-for-arithmet",
+      "title": "8k: Convert between recursive and explicit formulas for arithmetic and geometric sequences",
+      "kind": "skill",
+      "standardsCovered": [
+        "math.standard.ccss.f-bf-a-2",
+        "math.standard.ccss.f-if-a-3"
+      ],
+      "prerequisitesMet": true,
+      "independentPracticeReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.8.6.find-the-first-several-terms-of-a-sequence-given-a-recursive",
+      "title": "8j: Find the first several terms of a sequence given a recursive formula",
+      "kind": "skill",
+      "standardsCovered": [
+        "math.standard.ccss.f-bf-a-2",
+        "math.standard.ccss.f-if-a-3"
+      ],
+      "prerequisitesMet": false,
+      "independentPracticeReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.1.calculate-the-mean-median-and-mode-of-a-data-set",
+      "title": "9a: Calculate the mean, median, and mode of a data set",
+      "kind": "skill",
+      "standardsCovered": [
+        "math.standard.ccss.s-id-a-2"
+      ],
+      "prerequisitesMet": true,
+      "independentPracticeReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.2.analyze-data-displays-to-draw-conclusions-and-answer-questio",
+      "title": "9c: Analyze data displays to draw conclusions and answer questions about a data set",
+      "kind": "skill",
+      "standardsCovered": [
+        "math.standard.ccss.6-sp-b-4",
+        "math.standard.ccss.s-id-a-1"
+      ],
+      "prerequisitesMet": true,
+      "independentPracticeReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.2.construct-dot-plots-bar-graphs-and-histograms-to-represent-d",
+      "title": "9b: Construct dot plots, bar graphs, and histograms to represent data sets",
+      "kind": "skill",
+      "standardsCovered": [
+        "math.standard.ccss.6-sp-b-4",
+        "math.standard.ccss.s-id-a-1"
+      ],
+      "prerequisitesMet": false,
+      "independentPracticeReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.3.identify-sample-bias-in-survey-and-sampling-methods-and-expl",
+      "title": "9d: Identify sample bias in survey and sampling methods and explain how it affects results",
+      "kind": "skill",
+      "standardsCovered": [
+        "math.standard.ccss.s-ic-a-1"
+      ],
+      "prerequisitesMet": true,
+      "independentPracticeReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.3.recognize-biased-survey-questions-and-identify-whose-interes",
+      "title": "9e: Recognize biased survey questions and identify whose interests they may serve",
+      "kind": "skill",
+      "standardsCovered": [
+        "math.standard.ccss.s-ic-a-1"
+      ],
+      "prerequisitesMet": false,
+      "independentPracticeReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.4.calculate-the-range-interquartile-range-and-standard-deviati",
+      "title": "9f: Calculate the range, interquartile range, and standard deviation of a data set",
+      "kind": "skill",
+      "standardsCovered": [
+        "math.standard.ccss.6-sp-b-5d",
+        "math.standard.ccss.s-id-a-2"
+      ],
+      "prerequisitesMet": true,
+      "independentPracticeReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.4.determine-the-five-number-summary-and-construct-a-box-plot-f",
+      "title": "9g: Determine the five-number summary and construct a box plot from a data set",
+      "kind": "skill",
+      "standardsCovered": [
+        "math.standard.ccss.6-sp-b-5d",
+        "math.standard.ccss.s-id-a-2"
+      ],
+      "prerequisitesMet": false,
+      "independentPracticeReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.5.choose-appropriate-measures-of-center-and-spread-based-on-wh",
+      "title": "9i: Choose appropriate measures of center and spread based on whether a distribution is symmetric or skewed",
+      "kind": "skill",
+      "standardsCovered": [
+        "math.standard.ccss.6-sp-b-5",
+        "math.standard.ccss.s-id-a-3"
+      ],
+      "prerequisitesMet": true,
+      "independentPracticeReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.5.construct-and-interpret-histograms-and-box-plots-to-visualiz",
+      "title": "9h: Construct and interpret histograms and box plots to visualize the shape of a data distribution",
+      "kind": "skill",
+      "standardsCovered": [
+        "math.standard.ccss.6-sp-b-5",
+        "math.standard.ccss.s-id-a-3"
+      ],
+      "prerequisitesMet": false,
+      "independentPracticeReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.6.construct-and-interpret-box-plots-and-histograms-to-compare",
+      "title": "9k: Construct and interpret box plots and histograms to compare the shape, center, and spread of two data sets",
+      "kind": "skill",
+      "standardsCovered": [
+        "math.standard.ccss.s-id-a-2",
+        "math.standard.ccss.s-id-a-3"
+      ],
+      "prerequisitesMet": true,
+      "independentPracticeReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.6.describe-how-adding-or-multiplying-every-value-in-a-data-set",
+      "title": "9j: Describe how adding or multiplying every value in a data set affects the mean, median, mode, range, and standard deviation",
+      "kind": "skill",
+      "standardsCovered": [
+        "math.standard.ccss.s-id-a-2",
+        "math.standard.ccss.s-id-a-3"
+      ],
+      "prerequisitesMet": false,
+      "independentPracticeReady": false
+    },
+    {
+      "nodeId": "math.im1.skill.9.7.construct-and-complete-two-way-frequency-tables-from-verbal",
+      "title": "9l: Construct and complete two-way frequency tables from verbal descriptions or given data",
+      "kind": "skill",
+      "standardsCovered": [
+        "math.standard.ccss.s-id-b-5",
+        "math.standard.ccss.s-id-b-6"
+      ],
+      "prerequisitesMet": true,
+      "independentPracticeReady": false
+    }
+  ],
+  "prerequisiteGaps": [
+    {
+      "nodeId": "math.im1.skill.1.1.translate-verbal-descriptions-into-correct-numerical-express",
+      "gap": "no_prerequisite_skills_assigned",
+      "description": "Skill has no prerequisite skills in the graph"
+    },
+    {
+      "nodeId": "math.im1.skill.10.1.understand-the-structure-of-an-axiomatic-system-and-distingu",
+      "gap": "no_prerequisite_skills_assigned",
+      "description": "Skill has no prerequisite skills in the graph"
+    },
+    {
+      "nodeId": "math.im1.skill.10.2.identify-and-name-points-lines-and-planes-from-geometric-fig",
+      "gap": "no_prerequisite_skills_assigned",
+      "description": "Skill has no prerequisite skills in the graph"
+    },
+    {
+      "nodeId": "math.im1.skill.10.3.find-the-length-of-a-segment-by-reading-coordinates-from-a-n",
+      "gap": "no_prerequisite_skills_assigned",
+      "description": "Skill has no prerequisite skills in the graph"
+    },
+    {
+      "nodeId": "math.im1.skill.10.4.use-the-distance-formula-to-find-the-distance-between-two-po",
+      "gap": "no_prerequisite_skills_assigned",
+      "description": "Skill has no prerequisite skills in the graph"
+    },
+    {
+      "nodeId": "math.im1.skill.10.5.locate-a-point-that-divides-a-segment-on-a-number-line-in-a",
+      "gap": "no_prerequisite_skills_assigned",
+      "description": "Skill has no prerequisite skills in the graph"
+    },
+    {
+      "nodeId": "math.im1.skill.10.7.use-the-midpoint-formula-to-find-the-coordinates-of-the-midp",
+      "gap": "no_prerequisite_skills_assigned",
+      "description": "Skill has no prerequisite skills in the graph"
+    },
+    {
+      "nodeId": "math.im1.skill.11.1.identify-and-name-the-parts-of-an-angle-including-the-vertex",
+      "gap": "no_prerequisite_skills_assigned",
+      "description": "Skill has no prerequisite skills in the graph"
+    },
+    {
+      "nodeId": "math.im1.skill.11.2.use-the-fact-that-perpendicular-lines-form-right-angles-to-w",
+      "gap": "no_prerequisite_skills_assigned",
+      "description": "Skill has no prerequisite skills in the graph"
+    },
+    {
+      "nodeId": "math.im1.skill.11.3.calculate-the-perimeter-circumference-and-area-of-two-dimens",
+      "gap": "no_prerequisite_skills_assigned",
+      "description": "Skill has no prerequisite skills in the graph"
+    },
+    {
+      "nodeId": "math.im1.skill.11.4.identify-rigid-motions-reflection-translation-rotation-from",
+      "gap": "no_prerequisite_skills_assigned",
+      "description": "Skill has no prerequisite skills in the graph"
+    },
+    {
+      "nodeId": "math.im1.skill.11.5.identify-and-classify-three-dimensional-figures-as-polyhedra",
+      "gap": "no_prerequisite_skills_assigned",
+      "description": "Skill has no prerequisite skills in the graph"
+    },
+    {
+      "nodeId": "math.im1.skill.11.6.use-nets-to-identify-solids-find-surface-area-and-construct",
+      "gap": "no_prerequisite_skills_assigned",
+      "description": "Skill has no prerequisite skills in the graph"
+    },
+    {
+      "nodeId": "math.im1.skill.12.1.recognize-patterns-in-numerical-geometric-and-real-world-seq",
+      "gap": "no_prerequisite_skills_assigned",
+      "description": "Skill has no prerequisite skills in the graph"
+    },
+    {
+      "nodeId": "math.im1.skill.12.2.identify-the-hypothesis-and-conclusion-of-a-conditional-stat",
+      "gap": "no_prerequisite_skills_assigned",
+      "description": "Skill has no prerequisite skills in the graph"
+    },
+    {
+      "nodeId": "math.im1.skill.12.3.distinguish-between-inductive-and-deductive-reasoning-in-giv",
+      "gap": "no_prerequisite_skills_assigned",
+      "description": "Skill has no prerequisite skills in the graph"
+    },
+    {
+      "nodeId": "math.im1.skill.12.4.write-two-column-proofs-using-given-information-definitions",
+      "gap": "no_prerequisite_skills_assigned",
+      "description": "Skill has no prerequisite skills in the graph"
+    },
+    {
+      "nodeId": "math.im1.skill.12.7.use-properties-of-parallel-lines-and-transversals-to-find-un",
+      "gap": "no_prerequisite_skills_assigned",
+      "description": "Skill has no prerequisite skills in the graph"
+    },
+    {
+      "nodeId": "math.im1.skill.12.8.write-equations-of-lines-in-slope-intercept-form-that-are-pa",
+      "gap": "no_prerequisite_skills_assigned",
+      "description": "Skill has no prerequisite skills in the graph"
+    },
+    {
+      "nodeId": "math.im1.skill.12.9.use-angle-relationships-formed-by-a-transversal-to-prove-tha",
+      "gap": "no_prerequisite_skills_assigned",
+      "description": "Skill has no prerequisite skills in the graph"
+    },
+    {
+      "nodeId": "math.im1.skill.13.1.graph-the-image-of-a-figure-after-a-reflection-over-a-given",
+      "gap": "no_prerequisite_skills_assigned",
+      "description": "Skill has no prerequisite skills in the graph"
+    },
+    {
+      "nodeId": "math.im1.skill.13.2.find-the-translation-vector-that-maps-a-preimage-to-its-imag",
+      "gap": "no_prerequisite_skills_assigned",
+      "description": "Skill has no prerequisite skills in the graph"
+    },
+    {
+      "nodeId": "math.im1.skill.13.3.graph-the-image-of-a-polygon-after-a-rotation-of-90-180-or-2",
+      "gap": "no_prerequisite_skills_assigned",
+      "description": "Skill has no prerequisite skills in the graph"
+    },
+    {
+      "nodeId": "math.im1.skill.13.4.identify-a-single-transformation-that-is-equivalent-to-a-com",
+      "gap": "no_prerequisite_skills_assigned",
+      "description": "Skill has no prerequisite skills in the graph"
+    },
+    {
+      "nodeId": "math.im1.skill.13.5.determine-whether-a-tessellation-can-be-created-from-a-given",
+      "gap": "no_prerequisite_skills_assigned",
+      "description": "Skill has no prerequisite skills in the graph"
+    },
+    {
+      "nodeId": "math.im1.skill.13.6.identify-and-draw-lines-of-symmetry-for-two-dimensional-figu",
+      "gap": "no_prerequisite_skills_assigned",
+      "description": "Skill has no prerequisite skills in the graph"
+    },
+    {
+      "nodeId": "math.im1.skill.14.1.use-the-exterior-angle-theorem-to-relate-exterior-and-remote",
+      "gap": "no_prerequisite_skills_assigned",
+      "description": "Skill has no prerequisite skills in the graph"
+    },
+    {
+      "nodeId": "math.im1.skill.14.2.write-two-column-proofs-and-paragraph-proofs-to-show-that-tw",
+      "gap": "no_prerequisite_skills_assigned",
+      "description": "Skill has no prerequisite skills in the graph"
+    },
+    {
+      "nodeId": "math.im1.skill.14.3.write-two-column-paragraph-and-flow-proofs-to-prove-triangle",
+      "gap": "no_prerequisite_skills_assigned",
+      "description": "Skill has no prerequisite skills in the graph"
+    },
+    {
+      "nodeId": "math.im1.skill.14.4.write-two-column-paragraph-and-flow-proofs-to-prove-triangle-2",
+      "gap": "no_prerequisite_skills_assigned",
+      "description": "Skill has no prerequisite skills in the graph"
+    },
+    {
+      "nodeId": "math.im1.skill.14.5.write-two-column-proofs-and-paragraph-proofs-for-right-trian",
+      "gap": "no_prerequisite_skills_assigned",
+      "description": "Skill has no prerequisite skills in the graph"
+    },
+    {
+      "nodeId": "math.im1.skill.14.6.write-two-column-proofs-using-the-isosceles-triangle-theorem",
+      "gap": "no_prerequisite_skills_assigned",
+      "description": "Skill has no prerequisite skills in the graph"
+    },
+    {
+      "nodeId": "math.im1.skill.14.7.write-coordinate-proofs-for-geometric-statements-about-trian",
+      "gap": "no_prerequisite_skills_assigned",
+      "description": "Skill has no prerequisite skills in the graph"
+    },
+    {
+      "nodeId": "math.im1.skill.2.5.solve-absolute-value-equations-of-the-form",
+      "gap": "no_prerequisite_skills_assigned",
+      "description": "Skill has no prerequisite skills in the graph"
+    },
+    {
+      "nodeId": "math.im1.skill.4.2.interpret-slope-and-rate-of-change-in-real-world-contexts-in",
+      "gap": "no_prerequisite_skills_assigned",
+      "description": "Skill has no prerequisite skills in the graph"
+    },
+    {
+      "nodeId": "math.im1.skill.6.5.write-systems-of-inequalities-that-correspond-to-a-given-gra",
+      "gap": "no_prerequisite_skills_assigned",
+      "description": "Skill has no prerequisite skills in the graph"
+    },
+    {
+      "nodeId": "math.im1.skill.7.5.solve-real-world-optimization-problems-by-defining-variables",
+      "gap": "no_prerequisite_skills_assigned",
+      "description": "Skill has no prerequisite skills in the graph"
+    },
+    {
+      "nodeId": "math.im1.skill.8.2.write-equations-for-transformed-exponential-functions-given",
+      "gap": "no_prerequisite_skills_assigned",
+      "description": "Skill has no prerequisite skills in the graph"
+    },
+    {
+      "nodeId": "math.im1.skill.8.3.write-an-exponential-function-given-two-points-on-its-graph",
+      "gap": "no_prerequisite_skills_assigned",
+      "description": "Skill has no prerequisite skills in the graph"
+    },
+    {
+      "nodeId": "math.im1.skill.8.5.write-and-use-explicit-formulas-to-model-real-world-situatio",
+      "gap": "no_prerequisite_skills_assigned",
+      "description": "Skill has no prerequisite skills in the graph"
+    },
+    {
+      "nodeId": "math.im1.skill.8.6.find-the-first-several-terms-of-a-sequence-given-a-recursive",
+      "gap": "no_prerequisite_skills_assigned",
+      "description": "Skill has no prerequisite skills in the graph"
+    },
+    {
+      "nodeId": "math.im1.skill.9.2.construct-dot-plots-bar-graphs-and-histograms-to-represent-d",
+      "gap": "no_prerequisite_skills_assigned",
+      "description": "Skill has no prerequisite skills in the graph"
+    },
+    {
+      "nodeId": "math.im1.skill.9.3.recognize-biased-survey-questions-and-identify-whose-interes",
+      "gap": "no_prerequisite_skills_assigned",
+      "description": "Skill has no prerequisite skills in the graph"
+    },
+    {
+      "nodeId": "math.im1.skill.9.4.determine-the-five-number-summary-and-construct-a-box-plot-f",
+      "gap": "no_prerequisite_skills_assigned",
+      "description": "Skill has no prerequisite skills in the graph"
+    },
+    {
+      "nodeId": "math.im1.skill.9.5.construct-and-interpret-histograms-and-box-plots-to-visualiz",
+      "gap": "no_prerequisite_skills_assigned",
+      "description": "Skill has no prerequisite skills in the graph"
+    },
+    {
+      "nodeId": "math.im1.skill.9.6.describe-how-adding-or-multiplying-every-value-in-a-data-set",
+      "gap": "no_prerequisite_skills_assigned",
+      "description": "Skill has no prerequisite skills in the graph"
+    }
+  ],
+  "attemptArtifacts": []
+}

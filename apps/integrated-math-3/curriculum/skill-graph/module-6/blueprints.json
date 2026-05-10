@@ -1,0 +1,958 @@
+{
+  "blueprints": [
+    {
+      "nodeId": "math.im3.skill.6.1.write-logarithmic-expressions-in-exponential-form-and-write",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "rendererKey": "step-by-step-solver",
+      "rendererModeMap": {
+        "worked": "step-by-step-solver",
+        "guidedPractice": "step-by-step-solver",
+        "independentPractice": "step-by-step-solver"
+      },
+      "workedExampleSpec": {
+        "prompt": "Worked example for 6a: Write logarithmic expressions in exponential form and write exponential expressions in logarithmic form",
+        "givens": [
+          "See curriculum source"
+        ],
+        "target": {},
+        "steps": [
+          {
+            "description": "Step 1",
+            "expression": "See curriculum"
+          }
+        ],
+        "explanation": "See curriculum source material."
+      },
+      "guidedPracticeSpec": {
+        "scaffoldedPrompt": "Guided practice for 6a: Write logarithmic expressions in exponential form and write exponential expressions in logarithmic form",
+        "stepPrompts": [
+          "Step 1"
+        ],
+        "hints": [
+          "Hint 1"
+        ],
+        "checksPerStep": [
+          {
+            "check": "See curriculum"
+          }
+        ],
+        "revealPolicy": "one_at_a_time"
+      },
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM3 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "6",
+        "lesson": "1"
+      }
+    },
+    {
+      "nodeId": "math.im3.skill.6.2.solve-logarithmic-equations-using-properties-of-equality",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "rendererKey": "step-by-step-solver",
+      "rendererModeMap": {
+        "worked": "step-by-step-solver",
+        "guidedPractice": "step-by-step-solver",
+        "independentPractice": "step-by-step-solver"
+      },
+      "workedExampleSpec": {
+        "prompt": "Worked example for 6c: Solve logarithmic equations using properties of equality",
+        "givens": [
+          "See curriculum source"
+        ],
+        "target": {},
+        "steps": [
+          {
+            "description": "Step 1",
+            "expression": "See curriculum"
+          }
+        ],
+        "explanation": "See curriculum source material."
+      },
+      "guidedPracticeSpec": {
+        "scaffoldedPrompt": "Guided practice for 6c: Solve logarithmic equations using properties of equality",
+        "stepPrompts": [
+          "Step 1"
+        ],
+        "hints": [
+          "Hint 1"
+        ],
+        "checksPerStep": [
+          {
+            "check": "See curriculum"
+          }
+        ],
+        "revealPolicy": "one_at_a_time"
+      },
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM3 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "6",
+        "lesson": "2"
+      }
+    },
+    {
+      "nodeId": "math.im3.skill.6.3.solve-exponential-equations-by-using-common-logarithms",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "rendererKey": "step-by-step-solver",
+      "rendererModeMap": {
+        "worked": "step-by-step-solver",
+        "guidedPractice": "step-by-step-solver",
+        "independentPractice": "step-by-step-solver"
+      },
+      "workedExampleSpec": {
+        "prompt": "Worked example for 6e: Solve exponential equations by using common logarithms",
+        "givens": [
+          "See curriculum source"
+        ],
+        "target": {},
+        "steps": [
+          {
+            "description": "Step 1",
+            "expression": "See curriculum"
+          }
+        ],
+        "explanation": "See curriculum source material."
+      },
+      "guidedPracticeSpec": {
+        "scaffoldedPrompt": "Guided practice for 6e: Solve exponential equations by using common logarithms",
+        "stepPrompts": [
+          "Step 1"
+        ],
+        "hints": [
+          "Hint 1"
+        ],
+        "checksPerStep": [
+          {
+            "check": "See curriculum"
+          }
+        ],
+        "revealPolicy": "one_at_a_time"
+      },
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM3 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "6",
+        "lesson": "3"
+      }
+    },
+    {
+      "nodeId": "math.im3.skill.6.4.simplify-expressions-with-natural-logarithms",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "rendererKey": "step-by-step-solver",
+      "rendererModeMap": {
+        "worked": "step-by-step-solver",
+        "guidedPractice": "step-by-step-solver",
+        "independentPractice": "step-by-step-solver"
+      },
+      "workedExampleSpec": {
+        "prompt": "Worked example for 6g: Simplify expressions with natural logarithms",
+        "givens": [
+          "See curriculum source"
+        ],
+        "target": {},
+        "steps": [
+          {
+            "description": "Step 1",
+            "expression": "See curriculum"
+          }
+        ],
+        "explanation": "See curriculum source material."
+      },
+      "guidedPracticeSpec": {
+        "scaffoldedPrompt": "Guided practice for 6g: Simplify expressions with natural logarithms",
+        "stepPrompts": [
+          "Step 1"
+        ],
+        "hints": [
+          "Hint 1"
+        ],
+        "checksPerStep": [
+          {
+            "check": "See curriculum"
+          }
+        ],
+        "revealPolicy": "one_at_a_time"
+      },
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM3 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "6",
+        "lesson": "4"
+      }
+    },
+    {
+      "nodeId": "math.im3.skill.6.4.solve-exponential-equations-by-using-natural-logarithms",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "rendererKey": "step-by-step-solver",
+      "rendererModeMap": {
+        "worked": "step-by-step-solver",
+        "guidedPractice": "step-by-step-solver",
+        "independentPractice": "step-by-step-solver"
+      },
+      "workedExampleSpec": {
+        "prompt": "Worked example for 6h: Solve exponential equations by using natural logarithms",
+        "givens": [
+          "See curriculum source"
+        ],
+        "target": {},
+        "steps": [
+          {
+            "description": "Step 1",
+            "expression": "See curriculum"
+          }
+        ],
+        "explanation": "See curriculum source material."
+      },
+      "guidedPracticeSpec": {
+        "scaffoldedPrompt": "Guided practice for 6h: Solve exponential equations by using natural logarithms",
+        "stepPrompts": [
+          "Step 1"
+        ],
+        "hints": [
+          "Hint 1"
+        ],
+        "checksPerStep": [
+          {
+            "check": "See curriculum"
+          }
+        ],
+        "revealPolicy": "one_at_a_time"
+      },
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM3 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "6",
+        "lesson": "4"
+      }
+    },
+    {
+      "nodeId": "math.im3.skill.6.5.write-and-solve-exponential-decay-equations",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "rendererKey": "step-by-step-solver",
+      "rendererModeMap": {
+        "worked": "step-by-step-solver",
+        "guidedPractice": "step-by-step-solver",
+        "independentPractice": "step-by-step-solver"
+      },
+      "workedExampleSpec": {
+        "prompt": "Worked example for 6j: Write and solve exponential decay equations",
+        "givens": [
+          "See curriculum source"
+        ],
+        "target": {},
+        "steps": [
+          {
+            "description": "Step 1",
+            "expression": "See curriculum"
+          }
+        ],
+        "explanation": "See curriculum source material."
+      },
+      "guidedPracticeSpec": {
+        "scaffoldedPrompt": "Guided practice for 6j: Write and solve exponential decay equations",
+        "stepPrompts": [
+          "Step 1"
+        ],
+        "hints": [
+          "Hint 1"
+        ],
+        "checksPerStep": [
+          {
+            "check": "See curriculum"
+          }
+        ],
+        "revealPolicy": "one_at_a_time"
+      },
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM3 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "6",
+        "lesson": "5"
+      }
+    },
+    {
+      "nodeId": "math.im3.skill.6.5.write-and-solve-exponential-growth-equations-and-inequalitie",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "rendererKey": "step-by-step-solver",
+      "rendererModeMap": {
+        "worked": "step-by-step-solver",
+        "guidedPractice": "step-by-step-solver",
+        "independentPractice": "step-by-step-solver"
+      },
+      "workedExampleSpec": {
+        "prompt": "Worked example for 6i: Write and solve exponential growth equations and inequalities",
+        "givens": [
+          "See curriculum source"
+        ],
+        "target": {},
+        "steps": [
+          {
+            "description": "Step 1",
+            "expression": "See curriculum"
+          }
+        ],
+        "explanation": "See curriculum source material."
+      },
+      "guidedPracticeSpec": {
+        "scaffoldedPrompt": "Guided practice for 6i: Write and solve exponential growth equations and inequalities",
+        "stepPrompts": [
+          "Step 1"
+        ],
+        "hints": [
+          "Hint 1"
+        ],
+        "checksPerStep": [
+          {
+            "check": "See curriculum"
+          }
+        ],
+        "revealPolicy": "one_at_a_time"
+      },
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM3 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "6",
+        "lesson": "5"
+      }
+    },
+    {
+      "nodeId": "math.im3.skill.6.aleks.change-of-base-evaluation",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "rendererKey": "comprehension-quiz",
+      "rendererModeMap": {
+        "worked": "comprehension-quiz",
+        "guidedPractice": "comprehension-quiz",
+        "independentPractice": "comprehension-quiz"
+      },
+      "workedExampleSpec": {
+        "prompt": "Worked example for concept: change_of_base_evaluation",
+        "givens": [
+          "See curriculum source"
+        ],
+        "target": {},
+        "steps": [
+          {
+            "description": "Step 1",
+            "expression": "See curriculum"
+          }
+        ],
+        "explanation": "See curriculum source material."
+      },
+      "guidedPracticeSpec": {
+        "scaffoldedPrompt": "Guided practice for concept: change_of_base_evaluation",
+        "stepPrompts": [
+          "Step 1"
+        ],
+        "hints": [
+          "Hint 1"
+        ],
+        "checksPerStep": [
+          {
+            "check": "See curriculum"
+          }
+        ],
+        "revealPolicy": "one_at_a_time"
+      },
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM3 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "6",
+        "lesson": "1"
+      }
+    },
+    {
+      "nodeId": "math.im3.skill.6.aleks.common-log-exponential-solving",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "rendererKey": "comprehension-quiz",
+      "rendererModeMap": {
+        "worked": "comprehension-quiz",
+        "guidedPractice": "comprehension-quiz",
+        "independentPractice": "comprehension-quiz"
+      },
+      "workedExampleSpec": {
+        "prompt": "Worked example for concept: common_log_exponential_solving",
+        "givens": [
+          "See curriculum source"
+        ],
+        "target": {},
+        "steps": [
+          {
+            "description": "Step 1",
+            "expression": "See curriculum"
+          }
+        ],
+        "explanation": "See curriculum source material."
+      },
+      "guidedPracticeSpec": {
+        "scaffoldedPrompt": "Guided practice for concept: common_log_exponential_solving",
+        "stepPrompts": [
+          "Step 1"
+        ],
+        "hints": [
+          "Hint 1"
+        ],
+        "checksPerStep": [
+          {
+            "check": "See curriculum"
+          }
+        ],
+        "revealPolicy": "one_at_a_time"
+      },
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM3 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "6",
+        "lesson": "1"
+      }
+    },
+    {
+      "nodeId": "math.im3.skill.6.aleks.continuous-exponential-decay-modeling",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "rendererKey": "comprehension-quiz",
+      "rendererModeMap": {
+        "worked": "comprehension-quiz",
+        "guidedPractice": "comprehension-quiz",
+        "independentPractice": "comprehension-quiz"
+      },
+      "workedExampleSpec": {
+        "prompt": "Worked example for concept: continuous_exponential_decay_modeling",
+        "givens": [
+          "See curriculum source"
+        ],
+        "target": {},
+        "steps": [
+          {
+            "description": "Step 1",
+            "expression": "See curriculum"
+          }
+        ],
+        "explanation": "See curriculum source material."
+      },
+      "guidedPracticeSpec": {
+        "scaffoldedPrompt": "Guided practice for concept: continuous_exponential_decay_modeling",
+        "stepPrompts": [
+          "Step 1"
+        ],
+        "hints": [
+          "Hint 1"
+        ],
+        "checksPerStep": [
+          {
+            "check": "See curriculum"
+          }
+        ],
+        "revealPolicy": "one_at_a_time"
+      },
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM3 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "6",
+        "lesson": "1"
+      }
+    },
+    {
+      "nodeId": "math.im3.skill.6.aleks.continuous-exponential-growth-modeling",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "rendererKey": "comprehension-quiz",
+      "rendererModeMap": {
+        "worked": "comprehension-quiz",
+        "guidedPractice": "comprehension-quiz",
+        "independentPractice": "comprehension-quiz"
+      },
+      "workedExampleSpec": {
+        "prompt": "Worked example for concept: continuous_exponential_growth_modeling",
+        "givens": [
+          "See curriculum source"
+        ],
+        "target": {},
+        "steps": [
+          {
+            "description": "Step 1",
+            "expression": "See curriculum"
+          }
+        ],
+        "explanation": "See curriculum source material."
+      },
+      "guidedPracticeSpec": {
+        "scaffoldedPrompt": "Guided practice for concept: continuous_exponential_growth_modeling",
+        "stepPrompts": [
+          "Step 1"
+        ],
+        "hints": [
+          "Hint 1"
+        ],
+        "checksPerStep": [
+          {
+            "check": "See curriculum"
+          }
+        ],
+        "revealPolicy": "one_at_a_time"
+      },
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM3 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "6",
+        "lesson": "1"
+      }
+    },
+    {
+      "nodeId": "math.im3.skill.6.aleks.log-exp-form-conversion",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "rendererKey": "comprehension-quiz",
+      "rendererModeMap": {
+        "worked": "comprehension-quiz",
+        "guidedPractice": "comprehension-quiz",
+        "independentPractice": "comprehension-quiz"
+      },
+      "workedExampleSpec": {
+        "prompt": "Worked example for concept: log_exp_form_conversion",
+        "givens": [
+          "See curriculum source"
+        ],
+        "target": {},
+        "steps": [
+          {
+            "description": "Step 1",
+            "expression": "See curriculum"
+          }
+        ],
+        "explanation": "See curriculum source material."
+      },
+      "guidedPracticeSpec": {
+        "scaffoldedPrompt": "Guided practice for concept: log_exp_form_conversion",
+        "stepPrompts": [
+          "Step 1"
+        ],
+        "hints": [
+          "Hint 1"
+        ],
+        "checksPerStep": [
+          {
+            "check": "See curriculum"
+          }
+        ],
+        "revealPolicy": "one_at_a_time"
+      },
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM3 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "6",
+        "lesson": "1"
+      }
+    },
+    {
+      "nodeId": "math.im3.skill.6.aleks.logarithm-property-simplification",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "rendererKey": "comprehension-quiz",
+      "rendererModeMap": {
+        "worked": "comprehension-quiz",
+        "guidedPractice": "comprehension-quiz",
+        "independentPractice": "comprehension-quiz"
+      },
+      "workedExampleSpec": {
+        "prompt": "Worked example for concept: logarithm_property_simplification",
+        "givens": [
+          "See curriculum source"
+        ],
+        "target": {},
+        "steps": [
+          {
+            "description": "Step 1",
+            "expression": "See curriculum"
+          }
+        ],
+        "explanation": "See curriculum source material."
+      },
+      "guidedPracticeSpec": {
+        "scaffoldedPrompt": "Guided practice for concept: logarithm_property_simplification",
+        "stepPrompts": [
+          "Step 1"
+        ],
+        "hints": [
+          "Hint 1"
+        ],
+        "checksPerStep": [
+          {
+            "check": "See curriculum"
+          }
+        ],
+        "revealPolicy": "one_at_a_time"
+      },
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM3 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "6",
+        "lesson": "1"
+      }
+    },
+    {
+      "nodeId": "math.im3.skill.6.aleks.logarithmic-equation-solving",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "rendererKey": "step-by-step-solver",
+      "rendererModeMap": {
+        "worked": "step-by-step-solver",
+        "guidedPractice": "step-by-step-solver",
+        "independentPractice": "step-by-step-solver"
+      },
+      "workedExampleSpec": {
+        "prompt": "Worked example for concept: logarithmic_equation_solving",
+        "givens": [
+          "See curriculum source"
+        ],
+        "target": {},
+        "steps": [
+          {
+            "description": "Step 1",
+            "expression": "See curriculum"
+          }
+        ],
+        "explanation": "See curriculum source material."
+      },
+      "guidedPracticeSpec": {
+        "scaffoldedPrompt": "Guided practice for concept: logarithmic_equation_solving",
+        "stepPrompts": [
+          "Step 1"
+        ],
+        "hints": [
+          "Hint 1"
+        ],
+        "checksPerStep": [
+          {
+            "check": "See curriculum"
+          }
+        ],
+        "revealPolicy": "one_at_a_time"
+      },
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM3 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "6",
+        "lesson": "1"
+      }
+    },
+    {
+      "nodeId": "math.im3.skill.6.aleks.logarithmic-graph-analysis",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "rendererKey": "graphing-explorer",
+      "rendererModeMap": {
+        "worked": "graphing-explorer",
+        "guidedPractice": "graphing-explorer",
+        "independentPractice": "graphing-explorer"
+      },
+      "workedExampleSpec": {
+        "prompt": "Worked example for concept: logarithmic_graph_analysis",
+        "givens": [
+          "See curriculum source"
+        ],
+        "target": {},
+        "steps": [
+          {
+            "description": "Step 1",
+            "expression": "See curriculum"
+          }
+        ],
+        "explanation": "See curriculum source material."
+      },
+      "guidedPracticeSpec": {
+        "scaffoldedPrompt": "Guided practice for concept: logarithmic_graph_analysis",
+        "stepPrompts": [
+          "Step 1"
+        ],
+        "hints": [
+          "Hint 1"
+        ],
+        "checksPerStep": [
+          {
+            "check": "See curriculum"
+          }
+        ],
+        "revealPolicy": "one_at_a_time"
+      },
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM3 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "6",
+        "lesson": "1"
+      }
+    },
+    {
+      "nodeId": "math.im3.skill.6.aleks.natural-log-equation-solving",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "rendererKey": "step-by-step-solver",
+      "rendererModeMap": {
+        "worked": "step-by-step-solver",
+        "guidedPractice": "step-by-step-solver",
+        "independentPractice": "step-by-step-solver"
+      },
+      "workedExampleSpec": {
+        "prompt": "Worked example for concept: natural_log_equation_solving",
+        "givens": [
+          "See curriculum source"
+        ],
+        "target": {},
+        "steps": [
+          {
+            "description": "Step 1",
+            "expression": "See curriculum"
+          }
+        ],
+        "explanation": "See curriculum source material."
+      },
+      "guidedPracticeSpec": {
+        "scaffoldedPrompt": "Guided practice for concept: natural_log_equation_solving",
+        "stepPrompts": [
+          "Step 1"
+        ],
+        "hints": [
+          "Hint 1"
+        ],
+        "checksPerStep": [
+          {
+            "check": "See curriculum"
+          }
+        ],
+        "revealPolicy": "one_at_a_time"
+      },
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM3 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "6",
+        "lesson": "1"
+      }
+    },
+    {
+      "nodeId": "math.im3.skill.6.aleks.natural-log-model-analysis",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "rendererKey": "comprehension-quiz",
+      "rendererModeMap": {
+        "worked": "comprehension-quiz",
+        "guidedPractice": "comprehension-quiz",
+        "independentPractice": "comprehension-quiz"
+      },
+      "workedExampleSpec": {
+        "prompt": "Worked example for concept: natural_log_model_analysis",
+        "givens": [
+          "See curriculum source"
+        ],
+        "target": {},
+        "steps": [
+          {
+            "description": "Step 1",
+            "expression": "See curriculum"
+          }
+        ],
+        "explanation": "See curriculum source material."
+      },
+      "guidedPracticeSpec": {
+        "scaffoldedPrompt": "Guided practice for concept: natural_log_model_analysis",
+        "stepPrompts": [
+          "Step 1"
+        ],
+        "hints": [
+          "Hint 1"
+        ],
+        "checksPerStep": [
+          {
+            "check": "See curriculum"
+          }
+        ],
+        "revealPolicy": "one_at_a_time"
+      },
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM3 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "6",
+        "lesson": "1"
+      }
+    },
+    {
+      "nodeId": "math.im3.skill.6.aleks.natural-log-simplification",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "rendererKey": "comprehension-quiz",
+      "rendererModeMap": {
+        "worked": "comprehension-quiz",
+        "guidedPractice": "comprehension-quiz",
+        "independentPractice": "comprehension-quiz"
+      },
+      "workedExampleSpec": {
+        "prompt": "Worked example for concept: natural_log_simplification",
+        "givens": [
+          "See curriculum source"
+        ],
+        "target": {},
+        "steps": [
+          {
+            "description": "Step 1",
+            "expression": "See curriculum"
+          }
+        ],
+        "explanation": "See curriculum source material."
+      },
+      "guidedPracticeSpec": {
+        "scaffoldedPrompt": "Guided practice for concept: natural_log_simplification",
+        "stepPrompts": [
+          "Step 1"
+        ],
+        "hints": [
+          "Hint 1"
+        ],
+        "checksPerStep": [
+          {
+            "check": "See curriculum"
+          }
+        ],
+        "revealPolicy": "one_at_a_time"
+      },
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM3 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "6",
+        "lesson": "1"
+      }
+    }
+  ]
+}

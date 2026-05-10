@@ -1,0 +1,709 @@
+{
+  "nodes": [
+    {
+      "id": "math.im3",
+      "kind": "domain",
+      "title": "Integrated Math 3",
+      "domain": "math.im3",
+      "description": "Students develop a deep understanding of quadratic relationships, multiple solution methods, and extend solutions into the complex number system. Emphasis is placed on connecting algebraic procedures with graphical meaning.",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md",
+        "apps/integrated-math-3/curriculum/module-2-class-period-plan.md",
+        "apps/integrated-math-3/curriculum/module-3-class-period-plan.md",
+        "apps/integrated-math-3/curriculum/module-4-class-period-plan.md",
+        "apps/integrated-math-3/curriculum/module-5-class-period-plan.md",
+        "apps/integrated-math-3/curriculum/module-6-class-period-plan.md",
+        "apps/integrated-math-3/curriculum/module-7-class-period-plan.md",
+        "apps/integrated-math-3/curriculum/module-8-class-period-plan.md",
+        "apps/integrated-math-3/curriculum/module-9-class-period-plan.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3"
+      }
+    },
+    {
+      "id": "math.im3.example.3.1.001",
+      "kind": "worked_example",
+      "title": "Example 1: Solve a Polynomial Equation by Graphing; Solve a Polynomial Equation by Using a System",
+      "domain": "math.im3",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-3-class-period-plan.md (3-1, Example 1)"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "3",
+        "lesson": "1",
+        "exampleNumber": 1,
+        "sourceLesson": "3-1",
+        "rawText": "3-1, Examples 1-2 \u2014 Solve a Polynomial Equation by Graphing; Solve a Polynomial Equation by Using a System"
+      }
+    },
+    {
+      "id": "math.im3.example.3.1.002",
+      "kind": "worked_example",
+      "title": "Example 2: Solve a Polynomial Equation by Graphing; Solve a Polynomial Equation by Using a System",
+      "domain": "math.im3",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-3-class-period-plan.md (3-1, Example 2)"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "3",
+        "lesson": "1",
+        "exampleNumber": 2,
+        "sourceLesson": "3-1",
+        "rawText": "3-1, Examples 1-2 \u2014 Solve a Polynomial Equation by Graphing; Solve a Polynomial Equation by Using a System"
+      }
+    },
+    {
+      "id": "math.im3.example.3.2.003",
+      "kind": "worked_example",
+      "title": "Example 1: Factor Sums and Differences of Cubes; Factor by Grouping; Combine Cubes and Squares; Solve a Polynomial Equation by Factoring; Write and Solve a Polynomial Equation by Factoring",
+      "domain": "math.im3",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-3-class-period-plan.md (3-2, Example 1)"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "3",
+        "lesson": "2",
+        "exampleNumber": 1,
+        "sourceLesson": "3-2",
+        "rawText": "3-2, Examples 1-5 \u2014 Factor Sums and Differences of Cubes; Factor by Grouping; Combine Cubes and Squares; Solve a Polynomial Equation by Factoring; Write and Solve a Polynomial Equation by Factoring"
+      }
+    },
+    {
+      "id": "math.im3.example.3.2.004",
+      "kind": "worked_example",
+      "title": "Example 2: Factor Sums and Differences of Cubes; Factor by Grouping; Combine Cubes and Squares; Solve a Polynomial Equation by Factoring; Write and Solve a Polynomial Equation by Factoring",
+      "domain": "math.im3",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-3-class-period-plan.md (3-2, Example 2)"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "3",
+        "lesson": "2",
+        "exampleNumber": 2,
+        "sourceLesson": "3-2",
+        "rawText": "3-2, Examples 1-5 \u2014 Factor Sums and Differences of Cubes; Factor by Grouping; Combine Cubes and Squares; Solve a Polynomial Equation by Factoring; Write and Solve a Polynomial Equation by Factoring"
+      }
+    },
+    {
+      "id": "math.im3.example.3.2.005",
+      "kind": "worked_example",
+      "title": "Example 3: Factor Sums and Differences of Cubes; Factor by Grouping; Combine Cubes and Squares; Solve a Polynomial Equation by Factoring; Write and Solve a Polynomial Equation by Factoring",
+      "domain": "math.im3",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-3-class-period-plan.md (3-2, Example 3)"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "3",
+        "lesson": "2",
+        "exampleNumber": 3,
+        "sourceLesson": "3-2",
+        "rawText": "3-2, Examples 1-5 \u2014 Factor Sums and Differences of Cubes; Factor by Grouping; Combine Cubes and Squares; Solve a Polynomial Equation by Factoring; Write and Solve a Polynomial Equation by Factoring"
+      }
+    },
+    {
+      "id": "math.im3.example.3.2.006",
+      "kind": "worked_example",
+      "title": "Example 4: Factor Sums and Differences of Cubes; Factor by Grouping; Combine Cubes and Squares; Solve a Polynomial Equation by Factoring; Write and Solve a Polynomial Equation by Factoring",
+      "domain": "math.im3",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-3-class-period-plan.md (3-2, Example 4)"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "3",
+        "lesson": "2",
+        "exampleNumber": 4,
+        "sourceLesson": "3-2",
+        "rawText": "3-2, Examples 1-5 \u2014 Factor Sums and Differences of Cubes; Factor by Grouping; Combine Cubes and Squares; Solve a Polynomial Equation by Factoring; Write and Solve a Polynomial Equation by Factoring"
+      }
+    },
+    {
+      "id": "math.im3.example.3.2.007",
+      "kind": "worked_example",
+      "title": "Example 5: Factor Sums and Differences of Cubes; Factor by Grouping; Combine Cubes and Squares; Solve a Polynomial Equation by Factoring; Write and Solve a Polynomial Equation by Factoring",
+      "domain": "math.im3",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-3-class-period-plan.md (3-2, Example 5)"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "3",
+        "lesson": "2",
+        "exampleNumber": 5,
+        "sourceLesson": "3-2",
+        "rawText": "3-2, Examples 1-5 \u2014 Factor Sums and Differences of Cubes; Factor by Grouping; Combine Cubes and Squares; Solve a Polynomial Equation by Factoring; Write and Solve a Polynomial Equation by Factoring"
+      }
+    },
+    {
+      "id": "math.im3.example.3.2.008",
+      "kind": "worked_example",
+      "title": "Example 6: Write Expressions in Quadratic Form; Solve Equations in Quadratic Form",
+      "domain": "math.im3",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-3-class-period-plan.md (3-2, Example 6)"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "3",
+        "lesson": "2",
+        "exampleNumber": 6,
+        "sourceLesson": "3-2",
+        "rawText": "3-2, Examples 6-7 \u2014 Write Expressions in Quadratic Form; Solve Equations in Quadratic Form"
+      }
+    },
+    {
+      "id": "math.im3.example.3.2.009",
+      "kind": "worked_example",
+      "title": "Example 7: Write Expressions in Quadratic Form; Solve Equations in Quadratic Form",
+      "domain": "math.im3",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-3-class-period-plan.md (3-2, Example 7)"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "3",
+        "lesson": "2",
+        "exampleNumber": 7,
+        "sourceLesson": "3-2",
+        "rawText": "3-2, Examples 6-7 \u2014 Write Expressions in Quadratic Form; Solve Equations in Quadratic Form"
+      }
+    },
+    {
+      "id": "math.im3.example.3.3.010",
+      "kind": "worked_example",
+      "title": "Example 1: Transform One Side; Use Polynomial Identities",
+      "domain": "math.im3",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-3-class-period-plan.md (3-3, Example 1)"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "3",
+        "lesson": "3",
+        "exampleNumber": 1,
+        "sourceLesson": "3-3",
+        "rawText": "3-3, Examples 1-2 \u2014 Transform One Side; Use Polynomial Identities"
+      }
+    },
+    {
+      "id": "math.im3.example.3.3.011",
+      "kind": "worked_example",
+      "title": "Example 2: Transform One Side; Use Polynomial Identities",
+      "domain": "math.im3",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-3-class-period-plan.md (3-3, Example 2)"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "3",
+        "lesson": "3",
+        "exampleNumber": 2,
+        "sourceLesson": "3-3",
+        "rawText": "3-3, Examples 1-2 \u2014 Transform One Side; Use Polynomial Identities"
+      }
+    },
+    {
+      "id": "math.im3.example.3.4.012",
+      "kind": "worked_example",
+      "title": "Example 1: Synthetic Substitution; Apply the Remainder Theorem",
+      "domain": "math.im3",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-3-class-period-plan.md (3-4, Example 1)"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "3",
+        "lesson": "4",
+        "exampleNumber": 1,
+        "sourceLesson": "3-4",
+        "rawText": "3-4, Examples 1-2 \u2014 Synthetic Substitution; Apply the Remainder Theorem"
+      }
+    },
+    {
+      "id": "math.im3.example.3.4.013",
+      "kind": "worked_example",
+      "title": "Example 2: Synthetic Substitution; Apply the Remainder Theorem",
+      "domain": "math.im3",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-3-class-period-plan.md (3-4, Example 2)"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "3",
+        "lesson": "4",
+        "exampleNumber": 2,
+        "sourceLesson": "3-4",
+        "rawText": "3-4, Examples 1-2 \u2014 Synthetic Substitution; Apply the Remainder Theorem"
+      }
+    },
+    {
+      "id": "math.im3.example.3.4.014",
+      "kind": "worked_example",
+      "title": "Example 3: Use the Factor Theorem",
+      "domain": "math.im3",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-3-class-period-plan.md (3-4, Example 3)"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "3",
+        "lesson": "4",
+        "exampleNumber": 3,
+        "sourceLesson": "3-4",
+        "rawText": "3-4, Example 3 \u2014 Use the Factor Theorem"
+      }
+    },
+    {
+      "id": "math.im3.example.3.5.015",
+      "kind": "worked_example",
+      "title": "Example 1: Determine the Number and Type of Roots; Find the Number of Positive and Negative Zeros",
+      "domain": "math.im3",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-3-class-period-plan.md (3-5, Example 1)"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "3",
+        "lesson": "5",
+        "exampleNumber": 1,
+        "sourceLesson": "3-5",
+        "rawText": "3-5, Examples 1-2 \u2014 Determine the Number and Type of Roots; Find the Number of Positive and Negative Zeros"
+      }
+    },
+    {
+      "id": "math.im3.example.3.5.016",
+      "kind": "worked_example",
+      "title": "Example 2: Determine the Number and Type of Roots; Find the Number of Positive and Negative Zeros",
+      "domain": "math.im3",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-3-class-period-plan.md (3-5, Example 2)"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "3",
+        "lesson": "5",
+        "exampleNumber": 2,
+        "sourceLesson": "3-5",
+        "rawText": "3-5, Examples 1-2 \u2014 Determine the Number and Type of Roots; Find the Number of Positive and Negative Zeros"
+      }
+    },
+    {
+      "id": "math.im3.lesson.3.1",
+      "kind": "instructional_unit",
+      "title": "Solving Polynomial Equations by Graphing",
+      "domain": "math.im3",
+      "description": "Using graphs to approximate solutions and understand multiplicity.",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-3-class-period-plan.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "3",
+        "lesson": "1"
+      }
+    },
+    {
+      "id": "math.im3.lesson.3.2",
+      "kind": "instructional_unit",
+      "title": "Solving Polynomial Equations Algebraically",
+      "domain": "math.im3",
+      "description": "Factoring, substitution, and decomposition strategies.",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-3-class-period-plan.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "3",
+        "lesson": "2"
+      }
+    },
+    {
+      "id": "math.im3.lesson.3.3",
+      "kind": "instructional_unit",
+      "title": "Proving Polynomial Identities",
+      "domain": "math.im3",
+      "description": "Understanding and proving identities conceptually.",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-3-class-period-plan.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "3",
+        "lesson": "3"
+      }
+    },
+    {
+      "id": "math.im3.lesson.3.4",
+      "kind": "instructional_unit",
+      "title": "The Remainder and Factor Theorems",
+      "domain": "math.im3",
+      "description": "Using division to test factors and evaluate functions.",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-3-class-period-plan.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "3",
+        "lesson": "4"
+      }
+    },
+    {
+      "id": "math.im3.lesson.3.5",
+      "kind": "instructional_unit",
+      "title": "Roots and Zeros",
+      "domain": "math.im3",
+      "description": "Connecting roots, factors, and graph behavior.",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-3-class-period-plan.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "3",
+        "lesson": "5"
+      }
+    },
+    {
+      "id": "math.im3.module.3",
+      "kind": "content_group",
+      "title": "Polynomial Equations",
+      "domain": "math.im3",
+      "description": "Students focus on solving higher-degree equations and understanding polynomial structure deeply.",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-3-class-period-plan.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "3"
+      }
+    },
+    {
+      "id": "math.im3.skill.3.1.solve-polynomial-equations-by-graphing",
+      "kind": "skill",
+      "title": "3a: Solve polynomial equations by graphing",
+      "domain": "math.im3",
+      "description": "Solve polynomial equations by graphing",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-3-class-period-plan.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "3",
+        "lesson": "1"
+      }
+    },
+    {
+      "id": "math.im3.skill.3.2.solve-polynomial-equations-by-factoring",
+      "kind": "skill",
+      "title": "3b: Solve polynomial equations by factoring",
+      "domain": "math.im3",
+      "description": "Solve polynomial equations by factoring",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-3-class-period-plan.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "3",
+        "lesson": "2"
+      }
+    },
+    {
+      "id": "math.im3.skill.3.2.solve-polynomial-equations-by-writing-them-in-quadratic-form",
+      "kind": "skill",
+      "title": "3c: Solve polynomial equations by writing them in quadratic form and factoring",
+      "domain": "math.im3",
+      "description": "Solve polynomial equations by writing them in quadratic form and factoring",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-3-class-period-plan.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "3",
+        "lesson": "2"
+      }
+    },
+    {
+      "id": "math.im3.skill.3.3.prove-polynomial-identities-and-use-them-to-describe-numeric",
+      "kind": "skill",
+      "title": "3d: Prove polynomial identities and use them to describe numerical relationships",
+      "domain": "math.im3",
+      "description": "Prove polynomial identities and use them to describe numerical relationships",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-3-class-period-plan.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "3",
+        "lesson": "3"
+      }
+    },
+    {
+      "id": "math.im3.skill.3.4.evaluate-functions-by-using-synthetic-substitution",
+      "kind": "skill",
+      "title": "3e: Evaluate functions by using synthetic substitution",
+      "domain": "math.im3",
+      "description": "Evaluate functions by using synthetic substitution",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-3-class-period-plan.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "3",
+        "lesson": "4"
+      }
+    },
+    {
+      "id": "math.im3.skill.3.5.determine-the-number-and-type-of-roots-of-polynomial-equatio",
+      "kind": "skill",
+      "title": "3h: Determine the number and type of roots of polynomial equations, find zeros, and use zeros to graph polynomial functions",
+      "domain": "math.im3",
+      "description": "Determine the number and type of roots of polynomial equations, find zeros, and use zeros to graph polynomial functions",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-3-class-period-plan.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "3",
+        "lesson": "5"
+      }
+    },
+    {
+      "id": "math.im3.skill.3.5.use-the-fundamental-theorem-of-algebra-to-determine-the-numb",
+      "kind": "skill",
+      "title": "3g: Use the Fundamental Theorem of Algebra to determine the number and type of roots of polynomial equations",
+      "domain": "math.im3",
+      "description": "Use the Fundamental Theorem of Algebra to determine the number and type of roots of polynomial equations",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-3-class-period-plan.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "3",
+        "lesson": "5"
+      }
+    },
+    {
+      "id": "math.im3.skill.3.aleks.factor-theorem-factor-testing",
+      "kind": "concept",
+      "title": "factor_theorem_factor_testing",
+      "domain": "math.im3",
+      "description": "Test candidate zeros and identify factors.",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-3-class-period-plan.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "3",
+        "source": "aleks-registry",
+        "familyKey": "factor_theorem_factor_testing",
+        "objectives": [
+          "3f",
+          "3e"
+        ],
+        "sourceExamples": "3-4, Example 3",
+        "interactionShape": "step-by-step solver",
+        "status": "planned"
+      }
+    },
+    {
+      "id": "math.im3.skill.3.aleks.polynomial-equation-graph-solving",
+      "kind": "concept",
+      "title": "polynomial_equation_graph_solving",
+      "domain": "math.im3",
+      "description": "Real zeros by graphing and solving via systems.",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-3-class-period-plan.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "3",
+        "source": "aleks-registry",
+        "familyKey": "polynomial_equation_graph_solving",
+        "objectives": [
+          "3a"
+        ],
+        "sourceExamples": "3-1, Examples 1-2",
+        "interactionShape": "graphing explorer",
+        "status": "planned"
+      }
+    },
+    {
+      "id": "math.im3.skill.3.aleks.polynomial-factoring-structures",
+      "kind": "concept",
+      "title": "polynomial_factoring_structures",
+      "domain": "math.im3",
+      "description": "Sums/differences of cubes, grouping, mixed structures, and equation solving.",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-3-class-period-plan.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "3",
+        "source": "aleks-registry",
+        "familyKey": "polynomial_factoring_structures",
+        "objectives": [
+          "3b"
+        ],
+        "sourceExamples": "3-2, Examples 1-5",
+        "interactionShape": "step-by-step solver",
+        "status": "planned"
+      }
+    },
+    {
+      "id": "math.im3.skill.3.aleks.polynomial-identity-proof",
+      "kind": "concept",
+      "title": "polynomial_identity_proof",
+      "domain": "math.im3",
+      "description": "Transform one side and justify identities.",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-3-class-period-plan.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "3",
+        "source": "aleks-registry",
+        "familyKey": "polynomial_identity_proof",
+        "objectives": [
+          "3d"
+        ],
+        "sourceExamples": "3-3, Examples 1-2",
+        "interactionShape": "proof builder + explanation",
+        "status": "planned"
+      }
+    },
+    {
+      "id": "math.im3.skill.3.aleks.polynomial-quadratic-form",
+      "kind": "concept",
+      "title": "polynomial_quadratic_form",
+      "domain": "math.im3",
+      "description": "Substitute, solve quadratic form, convert back.",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-3-class-period-plan.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "3",
+        "source": "aleks-registry",
+        "familyKey": "polynomial_quadratic_form",
+        "objectives": [
+          "3c",
+          "3b"
+        ],
+        "sourceExamples": "3-2, Examples 6-7",
+        "interactionShape": "step-by-step solver",
+        "status": "planned"
+      }
+    },
+    {
+      "id": "math.im3.skill.3.aleks.root-type-analysis",
+      "kind": "concept",
+      "title": "root_type_analysis",
+      "domain": "math.im3",
+      "description": "Degree, root count, positive/negative zero analysis.",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-3-class-period-plan.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "3",
+        "source": "aleks-registry",
+        "familyKey": "root_type_analysis",
+        "objectives": [
+          "3g"
+        ],
+        "sourceExamples": "3-5, Examples 1-2",
+        "interactionShape": "classification + step-by-step reasoning",
+        "status": "planned"
+      }
+    },
+    {
+      "id": "math.im3.skill.3.aleks.synthetic-substitution-remainder",
+      "kind": "concept",
+      "title": "synthetic_substitution_remainder",
+      "domain": "math.im3",
+      "description": "Evaluate polynomials and interpret remainder theorem.",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-3-class-period-plan.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "3",
+        "source": "aleks-registry",
+        "familyKey": "synthetic_substitution_remainder",
+        "objectives": [
+          "3e",
+          "3f"
+        ],
+        "sourceExamples": "3-4, Examples 1-2",
+        "interactionShape": "step-by-step solver",
+        "status": "planned"
+      }
+    },
+    {
+      "id": "math.im3.skill.3.aleks.zeros-to-polynomial-graph",
+      "kind": "concept",
+      "title": "zeros_to_polynomial_graph",
+      "domain": "math.im3",
+      "description": "Synthetic substitution, graph-to-function, and zeros-to-graph synthesis.",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-3-class-period-plan.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "3",
+        "source": "aleks-registry",
+        "familyKey": "zeros_to_polynomial_graph",
+        "objectives": [
+          "3h",
+          "3g"
+        ],
+        "sourceExamples": "3-5, Examples 3-5",
+        "interactionShape": "graphing explorer + step-by-step solver",
+        "status": "planned"
+      }
+    }
+  ]
+}

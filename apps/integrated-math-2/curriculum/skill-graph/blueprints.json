@@ -1,0 +1,4283 @@
+{
+  "blueprints": [
+    {
+      "nodeId": "math.im2.skill.1.1.apply-properties-of-circumcenters-and-perpendicular-bisector",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "math.standard.ccss.g-co-c-9",
+        "math.standard.ccss.g-gpe-b-4"
+      ],
+      "rendererKey": "step-by-step-solver",
+      "rendererModeMap": {
+        "worked": "step-by-step-solver",
+        "guidedPractice": "step-by-step-solver",
+        "independentPractice": "step-by-step-solver"
+      },
+      "workedExampleSpec": {},
+      "guidedPracticeSpec": {},
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM2 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "1",
+        "lesson": "1"
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.1.1.find-measures-of-segments-and-angles-using-perpendicular-bis",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "math.standard.ccss.g-co-c-9",
+        "math.standard.ccss.g-gpe-b-4"
+      ],
+      "rendererKey": "step-by-step-solver",
+      "rendererModeMap": {
+        "worked": "step-by-step-solver",
+        "guidedPractice": "step-by-step-solver",
+        "independentPractice": "step-by-step-solver"
+      },
+      "workedExampleSpec": {},
+      "guidedPracticeSpec": {},
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM2 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "1",
+        "lesson": "1"
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.1.2.solve-real-world-problems-involving-angle-bisectors-and-the",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "math.standard.ccss.g-co-c-9",
+        "math.standard.ccss.g-gpe-b-4"
+      ],
+      "rendererKey": "step-by-step-solver",
+      "rendererModeMap": {
+        "worked": "step-by-step-solver",
+        "guidedPractice": "step-by-step-solver",
+        "independentPractice": "step-by-step-solver"
+      },
+      "workedExampleSpec": {},
+      "guidedPracticeSpec": {},
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM2 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "1",
+        "lesson": "2"
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.1.2.use-the-angle-bisector-theorem-to-find-angle-and-segment-mea",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "math.standard.ccss.g-co-c-9",
+        "math.standard.ccss.g-gpe-b-4"
+      ],
+      "rendererKey": "step-by-step-solver",
+      "rendererModeMap": {
+        "worked": "step-by-step-solver",
+        "guidedPractice": "step-by-step-solver",
+        "independentPractice": "step-by-step-solver"
+      },
+      "workedExampleSpec": {},
+      "guidedPracticeSpec": {},
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM2 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "1",
+        "lesson": "2"
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.1.3.find-lengths-of-medians-using-the-centroid-theorem",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "math.standard.ccss.g-co-c-10",
+        "math.standard.ccss.g-gpe-b-4"
+      ],
+      "rendererKey": "step-by-step-solver",
+      "rendererModeMap": {
+        "worked": "step-by-step-solver",
+        "guidedPractice": "step-by-step-solver",
+        "independentPractice": "step-by-step-solver"
+      },
+      "workedExampleSpec": {},
+      "guidedPracticeSpec": {},
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM2 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "1",
+        "lesson": "3"
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.1.3.find-the-coordinates-of-the-orthocenter-and-compare-medians",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "math.standard.ccss.g-co-c-10",
+        "math.standard.ccss.g-gpe-b-4"
+      ],
+      "rendererKey": "graphing-explorer",
+      "rendererModeMap": {
+        "worked": "graphing-explorer",
+        "guidedPractice": "graphing-explorer",
+        "independentPractice": "graphing-explorer"
+      },
+      "workedExampleSpec": {},
+      "guidedPracticeSpec": {},
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM2 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "1",
+        "lesson": "3"
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.1.4.apply-triangle-inequality-relationships-in-proofs-and-real-w",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "math.standard.ccss.g-co-b-7"
+      ],
+      "rendererKey": "graphing-explorer",
+      "rendererModeMap": {
+        "worked": "graphing-explorer",
+        "guidedPractice": "graphing-explorer",
+        "independentPractice": "graphing-explorer"
+      },
+      "workedExampleSpec": {},
+      "guidedPracticeSpec": {},
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM2 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "1",
+        "lesson": "4"
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.1.4.order-angles-and-sides-of-a-triangle-from-smallest-to-larges",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "math.standard.ccss.g-co-b-7"
+      ],
+      "rendererKey": "fill-in-the-blank",
+      "rendererModeMap": {
+        "worked": "fill-in-the-blank",
+        "guidedPractice": "fill-in-the-blank",
+        "independentPractice": "fill-in-the-blank"
+      },
+      "workedExampleSpec": {},
+      "guidedPracticeSpec": {},
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM2 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "1",
+        "lesson": "4"
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.1.5.use-indirect-reasoning-with-integer-properties-and-geometry",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "math.standard.ccss.g-co-a-3"
+      ],
+      "rendererKey": "fill-in-the-blank",
+      "rendererModeMap": {
+        "worked": "fill-in-the-blank",
+        "guidedPractice": "fill-in-the-blank",
+        "independentPractice": "fill-in-the-blank"
+      },
+      "workedExampleSpec": {},
+      "guidedPracticeSpec": {},
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM2 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "1",
+        "lesson": "5"
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.1.5.write-indirect-proofs-of-algebraic-and-geometric-statements",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "math.standard.ccss.g-co-a-3"
+      ],
+      "rendererKey": "step-by-step-solver",
+      "rendererModeMap": {
+        "worked": "step-by-step-solver",
+        "guidedPractice": "step-by-step-solver",
+        "independentPractice": "step-by-step-solver"
+      },
+      "workedExampleSpec": {},
+      "guidedPracticeSpec": {},
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM2 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "1",
+        "lesson": "5"
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.1.6.apply-the-triangle-inequality-theorem-in-proofs-and-real-wor",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "math.standard.ccss.g-co-b-7"
+      ],
+      "rendererKey": "graphing-explorer",
+      "rendererModeMap": {
+        "worked": "graphing-explorer",
+        "guidedPractice": "graphing-explorer",
+        "independentPractice": "graphing-explorer"
+      },
+      "workedExampleSpec": {},
+      "guidedPracticeSpec": {},
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM2 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "1",
+        "lesson": "6"
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.1.6.determine-whether-three-lengths-can-form-a-triangle-find-the",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "math.standard.ccss.g-co-b-7"
+      ],
+      "rendererKey": "comprehension-quiz",
+      "rendererModeMap": {
+        "worked": "comprehension-quiz",
+        "guidedPractice": "comprehension-quiz",
+        "independentPractice": "comprehension-quiz"
+      },
+      "workedExampleSpec": {},
+      "guidedPracticeSpec": {},
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM2 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "1",
+        "lesson": "6"
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.1.7.apply-the-hinge-theorem-to-compare-sides-and-angles-in-two-t",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "math.standard.ccss.g-co-b-8"
+      ],
+      "rendererKey": "step-by-step-solver",
+      "rendererModeMap": {
+        "worked": "step-by-step-solver",
+        "guidedPractice": "step-by-step-solver",
+        "independentPractice": "step-by-step-solver"
+      },
+      "workedExampleSpec": {},
+      "guidedPracticeSpec": {},
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM2 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "1",
+        "lesson": "7"
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.1.7.use-the-hinge-theorem-and-its-converse-to-find-ranges-of-val",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "math.standard.ccss.g-co-b-8"
+      ],
+      "rendererKey": "step-by-step-solver",
+      "rendererModeMap": {
+        "worked": "step-by-step-solver",
+        "guidedPractice": "step-by-step-solver",
+        "independentPractice": "step-by-step-solver"
+      },
+      "workedExampleSpec": {},
+      "guidedPracticeSpec": {},
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM2 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "1",
+        "lesson": "7"
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.2.1.find-the-sum-of-exterior-angles-and-apply-exterior-angle-rel",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "math.standard.ccss.g-co-c-10"
+      ],
+      "rendererKey": "step-by-step-solver",
+      "rendererModeMap": {
+        "worked": "step-by-step-solver",
+        "guidedPractice": "step-by-step-solver",
+        "independentPractice": "step-by-step-solver"
+      },
+      "workedExampleSpec": {},
+      "guidedPracticeSpec": {},
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM2 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "2",
+        "lesson": "1"
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.2.1.find-the-sum-of-interior-angles-and-the-measure-of-each-inte",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "math.standard.ccss.g-co-c-10"
+      ],
+      "rendererKey": "step-by-step-solver",
+      "rendererModeMap": {
+        "worked": "step-by-step-solver",
+        "guidedPractice": "step-by-step-solver",
+        "independentPractice": "step-by-step-solver"
+      },
+      "workedExampleSpec": {},
+      "guidedPracticeSpec": {},
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM2 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "2",
+        "lesson": "1"
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.2.2.find-the-area-and-perimeter-of-parallelograms-and-solve-for",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "math.standard.ccss.g-co-c-11",
+        "math.standard.ccss.g-co-a-1"
+      ],
+      "rendererKey": "step-by-step-solver",
+      "rendererModeMap": {
+        "worked": "step-by-step-solver",
+        "guidedPractice": "step-by-step-solver",
+        "independentPractice": "step-by-step-solver"
+      },
+      "workedExampleSpec": {},
+      "guidedPracticeSpec": {},
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM2 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "2",
+        "lesson": "2"
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.2.2.use-properties-of-parallelograms-to-find-angle-measures-and",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "math.standard.ccss.g-co-c-11",
+        "math.standard.ccss.g-co-a-1"
+      ],
+      "rendererKey": "step-by-step-solver",
+      "rendererModeMap": {
+        "worked": "step-by-step-solver",
+        "guidedPractice": "step-by-step-solver",
+        "independentPractice": "step-by-step-solver"
+      },
+      "workedExampleSpec": {},
+      "guidedPracticeSpec": {},
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM2 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "2",
+        "lesson": "2"
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.2.3.determine-whether-a-quadrilateral-is-a-parallelogram-using-s",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "math.standard.ccss.g-gpe-b-4",
+        "math.standard.ccss.g-co-a-2"
+      ],
+      "rendererKey": "comprehension-quiz",
+      "rendererModeMap": {
+        "worked": "comprehension-quiz",
+        "guidedPractice": "comprehension-quiz",
+        "independentPractice": "comprehension-quiz"
+      },
+      "workedExampleSpec": {},
+      "guidedPracticeSpec": {},
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM2 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "2",
+        "lesson": "3"
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.2.3.use-coordinate-geometry-to-verify-parallelograms-and-write-c",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "math.standard.ccss.g-gpe-b-4",
+        "math.standard.ccss.g-co-a-2"
+      ],
+      "rendererKey": "graphing-explorer",
+      "rendererModeMap": {
+        "worked": "graphing-explorer",
+        "guidedPractice": "graphing-explorer",
+        "independentPractice": "graphing-explorer"
+      },
+      "workedExampleSpec": {},
+      "guidedPracticeSpec": {},
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM2 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "2",
+        "lesson": "3"
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.2.4.apply-properties-of-rectangles-to-find-angle-measures-diagon",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "math.standard.ccss.g-co-c-11"
+      ],
+      "rendererKey": "comprehension-quiz",
+      "rendererModeMap": {
+        "worked": "comprehension-quiz",
+        "guidedPractice": "comprehension-quiz",
+        "independentPractice": "comprehension-quiz"
+      },
+      "workedExampleSpec": {},
+      "guidedPracticeSpec": {},
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM2 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "2",
+        "lesson": "4"
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.2.4.use-coordinate-geometry-to-determine-whether-a-quadrilateral",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "math.standard.ccss.g-co-c-11"
+      ],
+      "rendererKey": "graphing-explorer",
+      "rendererModeMap": {
+        "worked": "graphing-explorer",
+        "guidedPractice": "graphing-explorer",
+        "independentPractice": "graphing-explorer"
+      },
+      "workedExampleSpec": {},
+      "guidedPracticeSpec": {},
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM2 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "2",
+        "lesson": "4"
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.2.5.apply-properties-of-rhombi-and-squares-to-find-angle-measure",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "math.standard.ccss.g-co-c-11"
+      ],
+      "rendererKey": "step-by-step-solver",
+      "rendererModeMap": {
+        "worked": "step-by-step-solver",
+        "guidedPractice": "step-by-step-solver",
+        "independentPractice": "step-by-step-solver"
+      },
+      "workedExampleSpec": {},
+      "guidedPracticeSpec": {},
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM2 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "2",
+        "lesson": "5"
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.2.5.classify-quadrilaterals-and-prove-that-a-quadrilateral-is-a",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "math.standard.ccss.g-co-c-11"
+      ],
+      "rendererKey": "comprehension-quiz",
+      "rendererModeMap": {
+        "worked": "comprehension-quiz",
+        "guidedPractice": "comprehension-quiz",
+        "independentPractice": "comprehension-quiz"
+      },
+      "workedExampleSpec": {},
+      "guidedPracticeSpec": {},
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM2 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "2",
+        "lesson": "5"
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.2.6.apply-kite-properties-and-solve-perimeterarea-problems",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "math.standard.ccss.g-co-c-9"
+      ],
+      "rendererKey": "step-by-step-solver",
+      "rendererModeMap": {
+        "worked": "step-by-step-solver",
+        "guidedPractice": "step-by-step-solver",
+        "independentPractice": "step-by-step-solver"
+      },
+      "workedExampleSpec": {},
+      "guidedPracticeSpec": {},
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM2 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "2",
+        "lesson": "6"
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.2.6.apply-properties-of-trapezoids-and-isosceles-trapezoids-find",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "math.standard.ccss.g-co-c-9"
+      ],
+      "rendererKey": "step-by-step-solver",
+      "rendererModeMap": {
+        "worked": "step-by-step-solver",
+        "guidedPractice": "step-by-step-solver",
+        "independentPractice": "step-by-step-solver"
+      },
+      "workedExampleSpec": {},
+      "guidedPracticeSpec": {},
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM2 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "2",
+        "lesson": "6"
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.2.6.compare-and-classify-quadrilaterals-based-on-their-propertie",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "math.standard.ccss.g-co-c-9"
+      ],
+      "rendererKey": "comprehension-quiz",
+      "rendererModeMap": {
+        "worked": "comprehension-quiz",
+        "guidedPractice": "comprehension-quiz",
+        "independentPractice": "comprehension-quiz"
+      },
+      "workedExampleSpec": {},
+      "guidedPracticeSpec": {},
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM2 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "2",
+        "lesson": "6"
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.3.1.determine-whether-a-dilation-is-an-enlargement-or-reduction",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "math.standard.ccss.g-srt-a-1",
+        "math.standard.ccss.g-co-a-2"
+      ],
+      "rendererKey": "step-by-step-solver",
+      "rendererModeMap": {
+        "worked": "step-by-step-solver",
+        "guidedPractice": "step-by-step-solver",
+        "independentPractice": "step-by-step-solver"
+      },
+      "workedExampleSpec": {},
+      "guidedPracticeSpec": {},
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM2 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "3",
+        "lesson": "1"
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.3.1.graph-dilated-images-and-find-perimeter-relationships",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "math.standard.ccss.g-srt-a-1",
+        "math.standard.ccss.g-co-a-2"
+      ],
+      "rendererKey": "graphing-explorer",
+      "rendererModeMap": {
+        "worked": "graphing-explorer",
+        "guidedPractice": "graphing-explorer",
+        "independentPractice": "graphing-explorer"
+      },
+      "workedExampleSpec": {},
+      "guidedPracticeSpec": {},
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM2 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "3",
+        "lesson": "1"
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.3.2.find-unknown-side-lengths-in-similar-polygons-using-proporti",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "math.standard.ccss.g-srt-a-2",
+        "math.standard.ccss.g-srt-b-5"
+      ],
+      "rendererKey": "step-by-step-solver",
+      "rendererModeMap": {
+        "worked": "step-by-step-solver",
+        "guidedPractice": "step-by-step-solver",
+        "independentPractice": "step-by-step-solver"
+      },
+      "workedExampleSpec": {},
+      "guidedPracticeSpec": {},
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM2 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "3",
+        "lesson": "2"
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.3.2.identify-pairs-of-congruent-angles-and-write-proportions-for",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "math.standard.ccss.g-srt-a-2",
+        "math.standard.ccss.g-srt-b-5"
+      ],
+      "rendererKey": "comprehension-quiz",
+      "rendererModeMap": {
+        "worked": "comprehension-quiz",
+        "guidedPractice": "comprehension-quiz",
+        "independentPractice": "comprehension-quiz"
+      },
+      "workedExampleSpec": {},
+      "guidedPracticeSpec": {},
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM2 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "3",
+        "lesson": "2"
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.3.3.determine-whether-two-triangles-are-similar-using-the-aa-sim",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "math.standard.ccss.g-srt-a-3",
+        "math.standard.ccss.g-srt-b-5"
+      ],
+      "rendererKey": "comprehension-quiz",
+      "rendererModeMap": {
+        "worked": "comprehension-quiz",
+        "guidedPractice": "comprehension-quiz",
+        "independentPractice": "comprehension-quiz"
+      },
+      "workedExampleSpec": {},
+      "guidedPracticeSpec": {},
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM2 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "3",
+        "lesson": "3"
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.3.4.apply-sss-and-sas-similarity-to-real-world-proportional-reas",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "math.standard.ccss.g-srt-a-3",
+        "math.standard.ccss.g-srt-b-4"
+      ],
+      "rendererKey": "step-by-step-solver",
+      "rendererModeMap": {
+        "worked": "step-by-step-solver",
+        "guidedPractice": "step-by-step-solver",
+        "independentPractice": "step-by-step-solver"
+      },
+      "workedExampleSpec": {},
+      "guidedPracticeSpec": {},
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM2 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "3",
+        "lesson": "4"
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.3.4.determine-whether-triangles-are-similar-using-sss-and-sas-si",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "math.standard.ccss.g-srt-a-3",
+        "math.standard.ccss.g-srt-b-4"
+      ],
+      "rendererKey": "step-by-step-solver",
+      "rendererModeMap": {
+        "worked": "step-by-step-solver",
+        "guidedPractice": "step-by-step-solver",
+        "independentPractice": "step-by-step-solver"
+      },
+      "workedExampleSpec": {},
+      "guidedPracticeSpec": {},
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM2 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "3",
+        "lesson": "4"
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.3.5.apply-the-triangle-proportionality-theorem-to-find-unknown-l",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "math.standard.ccss.g-srt-b-4",
+        "math.standard.ccss.g-srt-b-5"
+      ],
+      "rendererKey": "step-by-step-solver",
+      "rendererModeMap": {
+        "worked": "step-by-step-solver",
+        "guidedPractice": "step-by-step-solver",
+        "independentPractice": "step-by-step-solver"
+      },
+      "workedExampleSpec": {},
+      "guidedPracticeSpec": {},
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM2 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "3",
+        "lesson": "5"
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.3.5.find-lengths-using-midsegments-and-apply-triangle-proportion",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "math.standard.ccss.g-srt-b-4",
+        "math.standard.ccss.g-srt-b-5"
+      ],
+      "rendererKey": "step-by-step-solver",
+      "rendererModeMap": {
+        "worked": "step-by-step-solver",
+        "guidedPractice": "step-by-step-solver",
+        "independentPractice": "step-by-step-solver"
+      },
+      "workedExampleSpec": {},
+      "guidedPracticeSpec": {},
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM2 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "3",
+        "lesson": "5"
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.3.6.apply-the-triangle-angle-bisector-theorem-and-relate-special",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "math.standard.ccss.g-srt-b-5",
+        "math.standard.ccss.g-srt-a-2"
+      ],
+      "rendererKey": "step-by-step-solver",
+      "rendererModeMap": {
+        "worked": "step-by-step-solver",
+        "guidedPractice": "step-by-step-solver",
+        "independentPractice": "step-by-step-solver"
+      },
+      "workedExampleSpec": {},
+      "guidedPracticeSpec": {},
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM2 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "3",
+        "lesson": "6"
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.3.6.find-unknown-side-lengths-and-altitudes-in-similar-triangles",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "math.standard.ccss.g-srt-b-5",
+        "math.standard.ccss.g-srt-a-2"
+      ],
+      "rendererKey": "step-by-step-solver",
+      "rendererModeMap": {
+        "worked": "step-by-step-solver",
+        "guidedPractice": "step-by-step-solver",
+        "independentPractice": "step-by-step-solver"
+      },
+      "workedExampleSpec": {},
+      "guidedPracticeSpec": {},
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM2 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "3",
+        "lesson": "6"
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.3.6.write-proofs-involving-similar-triangle-theorems-and-special",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "math.standard.ccss.g-srt-b-5",
+        "math.standard.ccss.g-srt-a-2"
+      ],
+      "rendererKey": "step-by-step-solver",
+      "rendererModeMap": {
+        "worked": "step-by-step-solver",
+        "guidedPractice": "step-by-step-solver",
+        "independentPractice": "step-by-step-solver"
+      },
+      "workedExampleSpec": {},
+      "guidedPracticeSpec": {},
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM2 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "3",
+        "lesson": "6"
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.4.1.find-the-geometric-mean-between-two-numbers-and-write-simila",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "math.standard.ccss.g-srt-b-4",
+        "math.standard.ccss.g-srt-b-5"
+      ],
+      "rendererKey": "step-by-step-solver",
+      "rendererModeMap": {
+        "worked": "step-by-step-solver",
+        "guidedPractice": "step-by-step-solver",
+        "independentPractice": "step-by-step-solver"
+      },
+      "workedExampleSpec": {},
+      "guidedPracticeSpec": {},
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM2 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "4",
+        "lesson": "1"
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.4.1.find-unknown-side-lengths-in-right-triangles-using-geometric",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "math.standard.ccss.g-srt-b-4",
+        "math.standard.ccss.g-srt-b-5"
+      ],
+      "rendererKey": "step-by-step-solver",
+      "rendererModeMap": {
+        "worked": "step-by-step-solver",
+        "guidedPractice": "step-by-step-solver",
+        "independentPractice": "step-by-step-solver"
+      },
+      "workedExampleSpec": {},
+      "guidedPracticeSpec": {},
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM2 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "4",
+        "lesson": "1"
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.4.2.classify-triangles-as-acute-right-or-obtuse-using-the-conver",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "math.standard.ccss.8-g-b-6",
+        "math.standard.ccss.8-g-b-7"
+      ],
+      "rendererKey": "step-by-step-solver",
+      "rendererModeMap": {
+        "worked": "step-by-step-solver",
+        "guidedPractice": "step-by-step-solver",
+        "independentPractice": "step-by-step-solver"
+      },
+      "workedExampleSpec": {},
+      "guidedPracticeSpec": {},
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM2 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "4",
+        "lesson": "2"
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.4.2.find-unknown-side-lengths-in-right-triangles-using-the-pytha",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "math.standard.ccss.8-g-b-6",
+        "math.standard.ccss.8-g-b-7"
+      ],
+      "rendererKey": "step-by-step-solver",
+      "rendererModeMap": {
+        "worked": "step-by-step-solver",
+        "guidedPractice": "step-by-step-solver",
+        "independentPractice": "step-by-step-solver"
+      },
+      "workedExampleSpec": {},
+      "guidedPracticeSpec": {},
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM2 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "4",
+        "lesson": "2"
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.4.3.find-the-midpoint-of-a-segment-in-three-dimensional-space-an",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "math.standard.ccss.g-gpe-b-4",
+        "math.standard.ccss.g-gpe-b-5"
+      ],
+      "rendererKey": "step-by-step-solver",
+      "rendererModeMap": {
+        "worked": "step-by-step-solver",
+        "guidedPractice": "step-by-step-solver",
+        "independentPractice": "step-by-step-solver"
+      },
+      "workedExampleSpec": {},
+      "guidedPracticeSpec": {},
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM2 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "4",
+        "lesson": "3"
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.4.3.graph-a-rectangular-solid-and-find-the-distance-between-two",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "math.standard.ccss.g-gpe-b-4",
+        "math.standard.ccss.g-gpe-b-5"
+      ],
+      "rendererKey": "graphing-explorer",
+      "rendererModeMap": {
+        "worked": "graphing-explorer",
+        "guidedPractice": "graphing-explorer",
+        "independentPractice": "graphing-explorer"
+      },
+      "workedExampleSpec": {},
+      "guidedPracticeSpec": {},
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM2 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "4",
+        "lesson": "3"
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.4.4.apply-special-right-triangle-ratios-to-solve-real-world-prob",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "math.standard.ccss.g-srt-c-6",
+        "math.standard.ccss.g-srt-c-8"
+      ],
+      "rendererKey": "step-by-step-solver",
+      "rendererModeMap": {
+        "worked": "step-by-step-solver",
+        "guidedPractice": "step-by-step-solver",
+        "independentPractice": "step-by-step-solver"
+      },
+      "workedExampleSpec": {},
+      "guidedPracticeSpec": {},
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM2 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "4",
+        "lesson": "4"
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.4.4.find-missing-side-lengths-in-45-45-90-and-30-60-90-triangles",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "math.standard.ccss.g-srt-c-6",
+        "math.standard.ccss.g-srt-c-8"
+      ],
+      "rendererKey": "step-by-step-solver",
+      "rendererModeMap": {
+        "worked": "step-by-step-solver",
+        "guidedPractice": "step-by-step-solver",
+        "independentPractice": "step-by-step-solver"
+      },
+      "workedExampleSpec": {},
+      "guidedPracticeSpec": {},
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM2 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "4",
+        "lesson": "4"
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.4.5.find-trigonometric-ratios-sine-cosine-tangent-for-acute-angl",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "math.standard.ccss.g-srt-c-6",
+        "math.standard.ccss.g-srt-c-7"
+      ],
+      "rendererKey": "step-by-step-solver",
+      "rendererModeMap": {
+        "worked": "step-by-step-solver",
+        "guidedPractice": "step-by-step-solver",
+        "independentPractice": "step-by-step-solver"
+      },
+      "workedExampleSpec": {},
+      "guidedPracticeSpec": {},
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM2 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "4",
+        "lesson": "5"
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.4.5.use-trigonometric-ratios-to-find-missing-side-lengths-and-an",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "math.standard.ccss.g-srt-c-6",
+        "math.standard.ccss.g-srt-c-7"
+      ],
+      "rendererKey": "step-by-step-solver",
+      "rendererModeMap": {
+        "worked": "step-by-step-solver",
+        "guidedPractice": "step-by-step-solver",
+        "independentPractice": "step-by-step-solver"
+      },
+      "workedExampleSpec": {},
+      "guidedPracticeSpec": {},
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM2 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "4",
+        "lesson": "5"
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.4.6.solve-problems-involving-angles-of-elevation-and-depression",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "math.standard.ccss.g-srt-c-8",
+        "math.standard.ccss.g-mg-a-1"
+      ],
+      "rendererKey": "step-by-step-solver",
+      "rendererModeMap": {
+        "worked": "step-by-step-solver",
+        "guidedPractice": "step-by-step-solver",
+        "independentPractice": "step-by-step-solver"
+      },
+      "workedExampleSpec": {},
+      "guidedPracticeSpec": {},
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM2 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "4",
+        "lesson": "6"
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.4.6.use-trigonometry-to-find-areas-of-triangles-and-solve-indire",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "math.standard.ccss.g-srt-c-8",
+        "math.standard.ccss.g-mg-a-1"
+      ],
+      "rendererKey": "step-by-step-solver",
+      "rendererModeMap": {
+        "worked": "step-by-step-solver",
+        "guidedPractice": "step-by-step-solver",
+        "independentPractice": "step-by-step-solver"
+      },
+      "workedExampleSpec": {},
+      "guidedPracticeSpec": {},
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM2 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "4",
+        "lesson": "6"
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.4.7.apply-the-law-of-sines-to-find-missing-sides-and-angles-in-o",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "math.standard.ccss.g-srt-c-8",
+        "math.standard.ccss.f-tf-a-1"
+      ],
+      "rendererKey": "step-by-step-solver",
+      "rendererModeMap": {
+        "worked": "step-by-step-solver",
+        "guidedPractice": "step-by-step-solver",
+        "independentPractice": "step-by-step-solver"
+      },
+      "workedExampleSpec": {},
+      "guidedPracticeSpec": {},
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM2 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "4",
+        "lesson": "7"
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.4.7.determine-whether-a-triangle-has-no-solution-one-solution-or",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "math.standard.ccss.g-srt-c-8",
+        "math.standard.ccss.f-tf-a-1"
+      ],
+      "rendererKey": "comprehension-quiz",
+      "rendererModeMap": {
+        "worked": "comprehension-quiz",
+        "guidedPractice": "comprehension-quiz",
+        "independentPractice": "comprehension-quiz"
+      },
+      "workedExampleSpec": {},
+      "guidedPracticeSpec": {},
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM2 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "4",
+        "lesson": "7"
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.4.8.apply-the-law-of-cosines-to-find-missing-sides-and-angles-in",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "math.standard.ccss.g-srt-c-8",
+        "math.standard.ccss.n-cn-a-2"
+      ],
+      "rendererKey": "step-by-step-solver",
+      "rendererModeMap": {
+        "worked": "step-by-step-solver",
+        "guidedPractice": "step-by-step-solver",
+        "independentPractice": "step-by-step-solver"
+      },
+      "workedExampleSpec": {},
+      "guidedPracticeSpec": {},
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM2 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "4",
+        "lesson": "8"
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.4.8.determine-whether-to-use-law-of-sines-or-law-of-cosines-and",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "math.standard.ccss.g-srt-c-8",
+        "math.standard.ccss.n-cn-a-2"
+      ],
+      "rendererKey": "comprehension-quiz",
+      "rendererModeMap": {
+        "worked": "comprehension-quiz",
+        "guidedPractice": "comprehension-quiz",
+        "independentPractice": "comprehension-quiz"
+      },
+      "workedExampleSpec": {},
+      "guidedPracticeSpec": {},
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM2 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "4",
+        "lesson": "8"
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.5.1.find-radius-diameter-and-circumference-given-any-one-of-thes",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "math.standard.ccss.g-c-a-1"
+      ],
+      "rendererKey": "step-by-step-solver",
+      "rendererModeMap": {
+        "worked": "step-by-step-solver",
+        "guidedPractice": "step-by-step-solver",
+        "independentPractice": "step-by-step-solver"
+      },
+      "workedExampleSpec": {},
+      "guidedPracticeSpec": {},
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM2 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "5",
+        "lesson": "1"
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.5.1.identify-and-name-circles-radii-chords-and-diameters-use-the",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "math.standard.ccss.g-c-a-1"
+      ],
+      "rendererKey": "comprehension-quiz",
+      "rendererModeMap": {
+        "worked": "comprehension-quiz",
+        "guidedPractice": "comprehension-quiz",
+        "independentPractice": "comprehension-quiz"
+      },
+      "workedExampleSpec": {},
+      "guidedPracticeSpec": {},
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM2 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "5",
+        "lesson": "1"
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.5.2.convert-between-degree-measure-and-radian-measure-find-arc-l",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "math.standard.ccss.g-c-a-2",
+        "math.standard.ccss.g-c-b-5"
+      ],
+      "rendererKey": "step-by-step-solver",
+      "rendererModeMap": {
+        "worked": "step-by-step-solver",
+        "guidedPractice": "step-by-step-solver",
+        "independentPractice": "step-by-step-solver"
+      },
+      "workedExampleSpec": {},
+      "guidedPracticeSpec": {},
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM2 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "5",
+        "lesson": "2"
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.5.2.find-central-angle-measures-and-arc-measures-in-degrees-clas",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "math.standard.ccss.g-c-a-2",
+        "math.standard.ccss.g-c-b-5"
+      ],
+      "rendererKey": "comprehension-quiz",
+      "rendererModeMap": {
+        "worked": "comprehension-quiz",
+        "guidedPractice": "comprehension-quiz",
+        "independentPractice": "comprehension-quiz"
+      },
+      "workedExampleSpec": {},
+      "guidedPracticeSpec": {},
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM2 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "5",
+        "lesson": "2"
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.5.3.use-relationships-among-arcs-chords-and-central-angles-apply",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "math.standard.ccss.g-c-a-2",
+        "math.standard.ccss.g-c-b-5"
+      ],
+      "rendererKey": "step-by-step-solver",
+      "rendererModeMap": {
+        "worked": "step-by-step-solver",
+        "guidedPractice": "step-by-step-solver",
+        "independentPractice": "step-by-step-solver"
+      },
+      "workedExampleSpec": {},
+      "guidedPracticeSpec": {},
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM2 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "5",
+        "lesson": "3"
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.5.4.find-the-measure-of-inscribed-angles-and-their-intercepted-a",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "math.standard.ccss.g-c-a-2",
+        "math.standard.ccss.g-c-a-3"
+      ],
+      "rendererKey": "step-by-step-solver",
+      "rendererModeMap": {
+        "worked": "step-by-step-solver",
+        "guidedPractice": "step-by-step-solver",
+        "independentPractice": "step-by-step-solver"
+      },
+      "workedExampleSpec": {},
+      "guidedPracticeSpec": {},
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM2 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "5",
+        "lesson": "4"
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.5.4.prove-theorems-about-inscribed-angles-and-apply-properties-o",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "math.standard.ccss.g-c-a-2",
+        "math.standard.ccss.g-c-a-3"
+      ],
+      "rendererKey": "step-by-step-solver",
+      "rendererModeMap": {
+        "worked": "step-by-step-solver",
+        "guidedPractice": "step-by-step-solver",
+        "independentPractice": "step-by-step-solver"
+      },
+      "workedExampleSpec": {},
+      "guidedPracticeSpec": {},
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM2 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "5",
+        "lesson": "4"
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.5.5.find-angle-measures-involving-tangents-find-perimeters-of-po",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "math.standard.ccss.g-c-a-3",
+        "math.standard.ccss.g-c-a-4"
+      ],
+      "rendererKey": "step-by-step-solver",
+      "rendererModeMap": {
+        "worked": "step-by-step-solver",
+        "guidedPractice": "step-by-step-solver",
+        "independentPractice": "step-by-step-solver"
+      },
+      "workedExampleSpec": {},
+      "guidedPracticeSpec": {},
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM2 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "5",
+        "lesson": "5"
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.5.5.identify-the-number-of-common-tangents-to-pairs-of-circles-d",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "math.standard.ccss.g-c-a-3",
+        "math.standard.ccss.g-c-a-4"
+      ],
+      "rendererKey": "comprehension-quiz",
+      "rendererModeMap": {
+        "worked": "comprehension-quiz",
+        "guidedPractice": "comprehension-quiz",
+        "independentPractice": "comprehension-quiz"
+      },
+      "workedExampleSpec": {},
+      "guidedPracticeSpec": {},
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM2 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "5",
+        "lesson": "5"
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.5.6.apply-angle-measure-relationships-to-find-arc-measures-and-u",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "math.standard.ccss.g-c-a-3",
+        "math.standard.ccss.g-c-a-4"
+      ],
+      "rendererKey": "step-by-step-solver",
+      "rendererModeMap": {
+        "worked": "step-by-step-solver",
+        "guidedPractice": "step-by-step-solver",
+        "independentPractice": "step-by-step-solver"
+      },
+      "workedExampleSpec": {},
+      "guidedPracticeSpec": {},
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM2 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "5",
+        "lesson": "6"
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.5.6.find-angle-measures-formed-by-chords-tangents-and-secants-in",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "math.standard.ccss.g-c-a-3",
+        "math.standard.ccss.g-c-a-4"
+      ],
+      "rendererKey": "step-by-step-solver",
+      "rendererModeMap": {
+        "worked": "step-by-step-solver",
+        "guidedPractice": "step-by-step-solver",
+        "independentPractice": "step-by-step-solver"
+      },
+      "workedExampleSpec": {},
+      "guidedPracticeSpec": {},
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM2 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "5",
+        "lesson": "6"
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.5.7.find-points-of-intersection-between-a-circle-and-a-line-appl",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "math.standard.ccss.g-gpe-a-1",
+        "math.standard.ccss.g-gpe-b-4"
+      ],
+      "rendererKey": "step-by-step-solver",
+      "rendererModeMap": {
+        "worked": "step-by-step-solver",
+        "guidedPractice": "step-by-step-solver",
+        "independentPractice": "step-by-step-solver"
+      },
+      "workedExampleSpec": {},
+      "guidedPracticeSpec": {},
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM2 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "5",
+        "lesson": "7"
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.5.7.write-the-equation-of-a-circle-in-standard-form-given-center",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "math.standard.ccss.g-gpe-a-1",
+        "math.standard.ccss.g-gpe-b-4"
+      ],
+      "rendererKey": "graphing-explorer",
+      "rendererModeMap": {
+        "worked": "graphing-explorer",
+        "guidedPractice": "graphing-explorer",
+        "independentPractice": "graphing-explorer"
+      },
+      "workedExampleSpec": {},
+      "guidedPracticeSpec": {},
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM2 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "5",
+        "lesson": "7"
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.5.8.apply-parabolic-equations-to-real-world-contexts-highways-tu",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "math.standard.ccss.g-gpe-b-4",
+        "math.standard.ccss.g-gpe-b-5"
+      ],
+      "rendererKey": "step-by-step-solver",
+      "rendererModeMap": {
+        "worked": "step-by-step-solver",
+        "guidedPractice": "step-by-step-solver",
+        "independentPractice": "step-by-step-solver"
+      },
+      "workedExampleSpec": {},
+      "guidedPracticeSpec": {},
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM2 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "5",
+        "lesson": "8"
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.5.8.write-the-equation-of-a-parabola-given-the-focus-and-directr",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "math.standard.ccss.g-gpe-b-4",
+        "math.standard.ccss.g-gpe-b-5"
+      ],
+      "rendererKey": "graphing-explorer",
+      "rendererModeMap": {
+        "worked": "graphing-explorer",
+        "guidedPractice": "graphing-explorer",
+        "independentPractice": "graphing-explorer"
+      },
+      "workedExampleSpec": {},
+      "guidedPracticeSpec": {},
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM2 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "5",
+        "lesson": "8"
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.6.1.find-areas-of-parallelograms-and-rhombuses-using-appropriate",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "math.standard.ccss.g-gpe-b-4",
+        "math.standard.ccss.g-mg-a-1"
+      ],
+      "rendererKey": "step-by-step-solver",
+      "rendererModeMap": {
+        "worked": "step-by-step-solver",
+        "guidedPractice": "step-by-step-solver",
+        "independentPractice": "step-by-step-solver"
+      },
+      "workedExampleSpec": {},
+      "guidedPracticeSpec": {},
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM2 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "6",
+        "lesson": "1"
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.6.1.find-areas-of-trapezoids-and-kites-solve-real-world-area-pro",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "math.standard.ccss.g-gpe-b-4",
+        "math.standard.ccss.g-mg-a-1"
+      ],
+      "rendererKey": "step-by-step-solver",
+      "rendererModeMap": {
+        "worked": "step-by-step-solver",
+        "guidedPractice": "step-by-step-solver",
+        "independentPractice": "step-by-step-solver"
+      },
+      "workedExampleSpec": {},
+      "guidedPracticeSpec": {},
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM2 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "6",
+        "lesson": "1"
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.6.2.find-the-area-of-composite-figures-involving-regular-polygon",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "math.standard.ccss.g-srt-c-6",
+        "math.standard.ccss.g-gmd-a-1"
+      ],
+      "rendererKey": "step-by-step-solver",
+      "rendererModeMap": {
+        "worked": "step-by-step-solver",
+        "guidedPractice": "step-by-step-solver",
+        "independentPractice": "step-by-step-solver"
+      },
+      "workedExampleSpec": {},
+      "guidedPracticeSpec": {},
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM2 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "6",
+        "lesson": "2"
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.6.2.identify-the-center-radius-apothem-and-central-angle-of-a-re",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "math.standard.ccss.g-srt-c-6",
+        "math.standard.ccss.g-gmd-a-1"
+      ],
+      "rendererKey": "comprehension-quiz",
+      "rendererModeMap": {
+        "worked": "comprehension-quiz",
+        "guidedPractice": "comprehension-quiz",
+        "independentPractice": "comprehension-quiz"
+      },
+      "workedExampleSpec": {},
+      "guidedPracticeSpec": {},
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM2 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "6",
+        "lesson": "2"
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.6.3.find-the-area-of-a-circle-and-relate-diameter-and-radius",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "math.standard.ccss.g-c-b-5",
+        "math.standard.ccss.g-gmd-a-1"
+      ],
+      "rendererKey": "step-by-step-solver",
+      "rendererModeMap": {
+        "worked": "step-by-step-solver",
+        "guidedPractice": "step-by-step-solver",
+        "independentPractice": "step-by-step-solver"
+      },
+      "workedExampleSpec": {},
+      "guidedPracticeSpec": {},
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM2 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "6",
+        "lesson": "3"
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.6.3.find-the-area-of-a-sector-of-a-circle",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "math.standard.ccss.g-c-b-5",
+        "math.standard.ccss.g-gmd-a-1"
+      ],
+      "rendererKey": "step-by-step-solver",
+      "rendererModeMap": {
+        "worked": "step-by-step-solver",
+        "guidedPractice": "step-by-step-solver",
+        "independentPractice": "step-by-step-solver"
+      },
+      "workedExampleSpec": {},
+      "guidedPracticeSpec": {},
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM2 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "6",
+        "lesson": "3"
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.6.4.find-lateral-areas-and-surface-areas-of-prisms-and-cylinders",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "math.standard.ccss.g-gmd-a-3",
+        "math.standard.ccss.g-gmd-a-1"
+      ],
+      "rendererKey": "step-by-step-solver",
+      "rendererModeMap": {
+        "worked": "step-by-step-solver",
+        "guidedPractice": "step-by-step-solver",
+        "independentPractice": "step-by-step-solver"
+      },
+      "workedExampleSpec": {},
+      "guidedPracticeSpec": {},
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM2 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "6",
+        "lesson": "4"
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.6.4.find-lateral-areas-and-surface-areas-of-pyramids-and-cones",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "math.standard.ccss.g-gmd-a-3",
+        "math.standard.ccss.g-gmd-a-1"
+      ],
+      "rendererKey": "step-by-step-solver",
+      "rendererModeMap": {
+        "worked": "step-by-step-solver",
+        "guidedPractice": "step-by-step-solver",
+        "independentPractice": "step-by-step-solver"
+      },
+      "workedExampleSpec": {},
+      "guidedPracticeSpec": {},
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM2 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "6",
+        "lesson": "4"
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.6.4.find-surface-areas-of-spheres-and-composite-solids",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "math.standard.ccss.g-gmd-a-3",
+        "math.standard.ccss.g-gmd-a-1"
+      ],
+      "rendererKey": "step-by-step-solver",
+      "rendererModeMap": {
+        "worked": "step-by-step-solver",
+        "guidedPractice": "step-by-step-solver",
+        "independentPractice": "step-by-step-solver"
+      },
+      "workedExampleSpec": {},
+      "guidedPracticeSpec": {},
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM2 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "6",
+        "lesson": "4"
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.6.5.describe-planes-of-symmetry-for-three-dimensional-solids-ide",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "math.standard.ccss.g-gmd-b-4"
+      ],
+      "rendererKey": "comprehension-quiz",
+      "rendererModeMap": {
+        "worked": "comprehension-quiz",
+        "guidedPractice": "comprehension-quiz",
+        "independentPractice": "comprehension-quiz"
+      },
+      "workedExampleSpec": {},
+      "guidedPracticeSpec": {},
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM2 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "6",
+        "lesson": "5"
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.6.5.identify-solids-formed-by-rotating-two-dimensional-shapes-ab",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "math.standard.ccss.g-gmd-b-4"
+      ],
+      "rendererKey": "comprehension-quiz",
+      "rendererModeMap": {
+        "worked": "comprehension-quiz",
+        "guidedPractice": "comprehension-quiz",
+        "independentPractice": "comprehension-quiz"
+      },
+      "workedExampleSpec": {},
+      "guidedPracticeSpec": {},
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM2 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "6",
+        "lesson": "5"
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.6.6.find-volumes-of-composite-solids-and-solve-real-world-volume",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "math.standard.ccss.g-gmd-a-1"
+      ],
+      "rendererKey": "step-by-step-solver",
+      "rendererModeMap": {
+        "worked": "step-by-step-solver",
+        "guidedPractice": "step-by-step-solver",
+        "independentPractice": "step-by-step-solver"
+      },
+      "workedExampleSpec": {},
+      "guidedPracticeSpec": {},
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM2 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "6",
+        "lesson": "6"
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.6.6.find-volumes-of-prisms-and-pyramids",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "math.standard.ccss.g-gmd-a-1"
+      ],
+      "rendererKey": "step-by-step-solver",
+      "rendererModeMap": {
+        "worked": "step-by-step-solver",
+        "guidedPractice": "step-by-step-solver",
+        "independentPractice": "step-by-step-solver"
+      },
+      "workedExampleSpec": {},
+      "guidedPracticeSpec": {},
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM2 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "6",
+        "lesson": "6"
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.6.7.find-volumes-of-composite-solids-involving-cylinders-cones-a",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "math.standard.ccss.g-gmd-a-2"
+      ],
+      "rendererKey": "step-by-step-solver",
+      "rendererModeMap": {
+        "worked": "step-by-step-solver",
+        "guidedPractice": "step-by-step-solver",
+        "independentPractice": "step-by-step-solver"
+      },
+      "workedExampleSpec": {},
+      "guidedPracticeSpec": {},
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM2 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "6",
+        "lesson": "7"
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.6.7.find-volumes-of-cylinders-cones-and-spheres",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "math.standard.ccss.g-gmd-a-2"
+      ],
+      "rendererKey": "step-by-step-solver",
+      "rendererModeMap": {
+        "worked": "step-by-step-solver",
+        "guidedPractice": "step-by-step-solver",
+        "independentPractice": "step-by-step-solver"
+      },
+      "workedExampleSpec": {},
+      "guidedPracticeSpec": {},
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM2 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "6",
+        "lesson": "7"
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.6.8.find-missing-areas-given-similar-figures-find-scale-factors",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "math.standard.ccss.g-mg-a-1",
+        "math.standard.ccss.g-mg-a-3"
+      ],
+      "rendererKey": "step-by-step-solver",
+      "rendererModeMap": {
+        "worked": "step-by-step-solver",
+        "guidedPractice": "step-by-step-solver",
+        "independentPractice": "step-by-step-solver"
+      },
+      "workedExampleSpec": {},
+      "guidedPracticeSpec": {},
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM2 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "6",
+        "lesson": "8"
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.6.8.find-volumes-of-similar-solids-and-apply-similarity-to-real",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "math.standard.ccss.g-mg-a-1",
+        "math.standard.ccss.g-mg-a-3"
+      ],
+      "rendererKey": "step-by-step-solver",
+      "rendererModeMap": {
+        "worked": "step-by-step-solver",
+        "guidedPractice": "step-by-step-solver",
+        "independentPractice": "step-by-step-solver"
+      },
+      "workedExampleSpec": {},
+      "guidedPracticeSpec": {},
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM2 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "6",
+        "lesson": "8"
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.6.9.find-population-density-and-mass-density-solve-real-world-de",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "math.standard.ccss.g-mg-a-2"
+      ],
+      "rendererKey": "step-by-step-solver",
+      "rendererModeMap": {
+        "worked": "step-by-step-solver",
+        "guidedPractice": "step-by-step-solver",
+        "independentPractice": "step-by-step-solver"
+      },
+      "workedExampleSpec": {},
+      "guidedPracticeSpec": {},
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM2 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "6",
+        "lesson": "9"
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.7.1.understand-experimental-vs-theoretical-probability-and-sampl",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "math.standard.ccss.s-cp-a-1"
+      ],
+      "rendererKey": "comprehension-quiz",
+      "rendererModeMap": {
+        "worked": "comprehension-quiz",
+        "guidedPractice": "comprehension-quiz",
+        "independentPractice": "comprehension-quiz"
+      },
+      "workedExampleSpec": {},
+      "guidedPracticeSpec": {},
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM2 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "7",
+        "lesson": "1"
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.7.2.apply-the-fundamental-counting-principle-to-determine-the-nu",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "math.standard.ccss.s-cp-a-2"
+      ],
+      "rendererKey": "comprehension-quiz",
+      "rendererModeMap": {
+        "worked": "comprehension-quiz",
+        "guidedPractice": "comprehension-quiz",
+        "independentPractice": "comprehension-quiz"
+      },
+      "workedExampleSpec": {},
+      "guidedPracticeSpec": {},
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM2 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "7",
+        "lesson": "2"
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.7.3.compute-permutations-and-interpret-npr-in-context",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "math.standard.ccss.7-sp-c-5"
+      ],
+      "rendererKey": "comprehension-quiz",
+      "rendererModeMap": {
+        "worked": "comprehension-quiz",
+        "guidedPractice": "comprehension-quiz",
+        "independentPractice": "comprehension-quiz"
+      },
+      "workedExampleSpec": {},
+      "guidedPracticeSpec": {},
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM2 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "7",
+        "lesson": "3"
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.7.4.compute-combinations-and-interpret-ncr-in-context",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "math.standard.ccss.s-cp-c-9"
+      ],
+      "rendererKey": "comprehension-quiz",
+      "rendererModeMap": {
+        "worked": "comprehension-quiz",
+        "guidedPractice": "comprehension-quiz",
+        "independentPractice": "comprehension-quiz"
+      },
+      "workedExampleSpec": {},
+      "guidedPracticeSpec": {},
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM2 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "7",
+        "lesson": "4"
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.7.4.use-combinations-and-permutations-to-solve-real-world-select",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "math.standard.ccss.s-cp-c-9"
+      ],
+      "rendererKey": "step-by-step-solver",
+      "rendererModeMap": {
+        "worked": "step-by-step-solver",
+        "guidedPractice": "step-by-step-solver",
+        "independentPractice": "step-by-step-solver"
+      },
+      "workedExampleSpec": {},
+      "guidedPracticeSpec": {},
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM2 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "7",
+        "lesson": "4"
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.7.5.find-probabilities-of-independent-and-dependent-events",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "math.standard.ccss.s-cp-b-6"
+      ],
+      "rendererKey": "comprehension-quiz",
+      "rendererModeMap": {
+        "worked": "comprehension-quiz",
+        "guidedPractice": "comprehension-quiz",
+        "independentPractice": "comprehension-quiz"
+      },
+      "workedExampleSpec": {},
+      "guidedPracticeSpec": {},
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM2 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "7",
+        "lesson": "5"
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.7.6.apply-expected-value-to-real-world-decisions-such-as-insuran",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "math.standard.ccss.s-cp-b-7"
+      ],
+      "rendererKey": "comprehension-quiz",
+      "rendererModeMap": {
+        "worked": "comprehension-quiz",
+        "guidedPractice": "comprehension-quiz",
+        "independentPractice": "comprehension-quiz"
+      },
+      "workedExampleSpec": {},
+      "guidedPracticeSpec": {},
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM2 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "7",
+        "lesson": "6"
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.7.6.calculate-expected-value-to-evaluate-outcomes-of-random-proc",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "math.standard.ccss.s-cp-b-7"
+      ],
+      "rendererKey": "comprehension-quiz",
+      "rendererModeMap": {
+        "worked": "comprehension-quiz",
+        "guidedPractice": "comprehension-quiz",
+        "independentPractice": "comprehension-quiz"
+      },
+      "workedExampleSpec": {},
+      "guidedPracticeSpec": {},
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM2 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "7",
+        "lesson": "6"
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.8.1.determine-whether-a-relation-is-a-function-using-tables-mapp",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "math.standard.ccss.hsf-if-a-1",
+        "math.standard.ccss.hsf-if-a-2"
+      ],
+      "rendererKey": "graphing-explorer",
+      "rendererModeMap": {
+        "worked": "graphing-explorer",
+        "guidedPractice": "graphing-explorer",
+        "independentPractice": "graphing-explorer"
+      },
+      "workedExampleSpec": {},
+      "guidedPracticeSpec": {},
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM2 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "8",
+        "lesson": "1"
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.8.1.identify-domain-and-range-from-various-representations",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "math.standard.ccss.hsf-if-a-1",
+        "math.standard.ccss.hsf-if-a-2"
+      ],
+      "rendererKey": "comprehension-quiz",
+      "rendererModeMap": {
+        "worked": "comprehension-quiz",
+        "guidedPractice": "comprehension-quiz",
+        "independentPractice": "comprehension-quiz"
+      },
+      "workedExampleSpec": {},
+      "guidedPracticeSpec": {},
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM2 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "8",
+        "lesson": "1"
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.8.2.describe-domain-and-range-restrictions-in-terms-of-real-worl",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "math.standard.ccss.hsf-if-c-9",
+        "math.standard.ccss.hsf-if-b-4"
+      ],
+      "rendererKey": "comprehension-quiz",
+      "rendererModeMap": {
+        "worked": "comprehension-quiz",
+        "guidedPractice": "comprehension-quiz",
+        "independentPractice": "comprehension-quiz"
+      },
+      "workedExampleSpec": {},
+      "guidedPracticeSpec": {},
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM2 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "8",
+        "lesson": "2"
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.8.2.find-domain-and-range-from-graphs-tables-equations-and-word",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "math.standard.ccss.hsf-if-c-9",
+        "math.standard.ccss.hsf-if-b-4"
+      ],
+      "rendererKey": "graphing-explorer",
+      "rendererModeMap": {
+        "worked": "graphing-explorer",
+        "guidedPractice": "graphing-explorer",
+        "independentPractice": "graphing-explorer"
+      },
+      "workedExampleSpec": {},
+      "guidedPracticeSpec": {},
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM2 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "8",
+        "lesson": "2"
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.8.3.interpret-and-evaluate-function-notation-fx",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "math.standard.ccss.hsf-if-b-4",
+        "math.standard.ccss.hsf-if-b-5"
+      ],
+      "rendererKey": "graphing-explorer",
+      "rendererModeMap": {
+        "worked": "graphing-explorer",
+        "guidedPractice": "graphing-explorer",
+        "independentPractice": "graphing-explorer"
+      },
+      "workedExampleSpec": {},
+      "guidedPracticeSpec": {},
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM2 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "8",
+        "lesson": "3"
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.8.4.distinguish-linear-from-nonlinear-functions-using-rate-of-ch",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "math.standard.ccss.hsf-if-c-7",
+        "math.standard.ccss.hsf-if-b-6"
+      ],
+      "rendererKey": "rate-of-change-calculator",
+      "rendererModeMap": {
+        "worked": "rate-of-change-calculator",
+        "guidedPractice": "rate-of-change-calculator",
+        "independentPractice": "rate-of-change-calculator"
+      },
+      "workedExampleSpec": {},
+      "guidedPracticeSpec": {},
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM2 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "8",
+        "lesson": "4"
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.8.5.graph-reflections-stretches-and-compressions-of-parent-funct",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "math.standard.ccss.hsa-ced-a-2",
+        "math.standard.ccss.hsa-ced-a-3"
+      ],
+      "rendererKey": "graphing-explorer",
+      "rendererModeMap": {
+        "worked": "graphing-explorer",
+        "guidedPractice": "graphing-explorer",
+        "independentPractice": "graphing-explorer"
+      },
+      "workedExampleSpec": {},
+      "guidedPracticeSpec": {},
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM2 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "8",
+        "lesson": "5"
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.8.5.graph-vertical-and-horizontal-shifts-of-parent-functions",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "math.standard.ccss.hsa-ced-a-2",
+        "math.standard.ccss.hsa-ced-a-3"
+      ],
+      "rendererKey": "graphing-explorer",
+      "rendererModeMap": {
+        "worked": "graphing-explorer",
+        "guidedPractice": "graphing-explorer",
+        "independentPractice": "graphing-explorer"
+      },
+      "workedExampleSpec": {},
+      "guidedPracticeSpec": {},
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM2 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "8",
+        "lesson": "5"
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.8.6.compare-two-or-more-functions-represented-as-graphs-tables-e",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "math.standard.ccss.hsf-if-c-7b",
+        "math.standard.ccss.hsf-if-a-2"
+      ],
+      "rendererKey": "graphing-explorer",
+      "rendererModeMap": {
+        "worked": "graphing-explorer",
+        "guidedPractice": "graphing-explorer",
+        "independentPractice": "graphing-explorer"
+      },
+      "workedExampleSpec": {},
+      "guidedPracticeSpec": {},
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM2 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "8",
+        "lesson": "6"
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.9.1.identify-equations-with-no-solution-or-infinitely-many-solut",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "math.standard.ccss.a-rei-a-1"
+      ],
+      "rendererKey": "step-by-step-solver",
+      "rendererModeMap": {
+        "worked": "step-by-step-solver",
+        "guidedPractice": "step-by-step-solver",
+        "independentPractice": "step-by-step-solver"
+      },
+      "workedExampleSpec": {},
+      "guidedPracticeSpec": {},
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM2 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "9",
+        "lesson": "1"
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.9.1.solve-multi-step-linear-equations-with-variables-on-one-or-b",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "math.standard.ccss.a-rei-a-1"
+      ],
+      "rendererKey": "graphing-explorer",
+      "rendererModeMap": {
+        "worked": "graphing-explorer",
+        "guidedPractice": "graphing-explorer",
+        "independentPractice": "graphing-explorer"
+      },
+      "workedExampleSpec": {},
+      "guidedPracticeSpec": {},
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM2 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "9",
+        "lesson": "1"
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.9.2.graph-linear-equations-using-slope-intercept-standard-and-po",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "math.standard.ccss.a-rei-b-3"
+      ],
+      "rendererKey": "rate-of-change-calculator",
+      "rendererModeMap": {
+        "worked": "rate-of-change-calculator",
+        "guidedPractice": "rate-of-change-calculator",
+        "independentPractice": "rate-of-change-calculator"
+      },
+      "workedExampleSpec": {},
+      "guidedPracticeSpec": {},
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM2 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "9",
+        "lesson": "2"
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.9.3.interpret-solutions-of-linear-inequalities-in-context",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "math.standard.ccss.a-ced-a-2"
+      ],
+      "rendererKey": "graphing-explorer",
+      "rendererModeMap": {
+        "worked": "graphing-explorer",
+        "guidedPractice": "graphing-explorer",
+        "independentPractice": "graphing-explorer"
+      },
+      "workedExampleSpec": {},
+      "guidedPracticeSpec": {},
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM2 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "9",
+        "lesson": "3"
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.9.3.solve-and-graph-one-variable-and-two-variable-linear-inequal",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "math.standard.ccss.a-ced-a-2"
+      ],
+      "rendererKey": "graphing-explorer",
+      "rendererModeMap": {
+        "worked": "graphing-explorer",
+        "guidedPractice": "graphing-explorer",
+        "independentPractice": "graphing-explorer"
+      },
+      "workedExampleSpec": {},
+      "guidedPracticeSpec": {},
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM2 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "9",
+        "lesson": "3"
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.9.4.solve-systems-of-equations-by-graphing-substitution-and-elim",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "math.standard.ccss.a-rei-d-10"
+      ],
+      "rendererKey": "graphing-explorer",
+      "rendererModeMap": {
+        "worked": "graphing-explorer",
+        "guidedPractice": "graphing-explorer",
+        "independentPractice": "graphing-explorer"
+      },
+      "workedExampleSpec": {},
+      "guidedPracticeSpec": {},
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM2 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "9",
+        "lesson": "4"
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.9.5.apply-linear-programming-to-real-world-optimization-problems",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "math.standard.ccss.a-rei-c-6"
+      ],
+      "rendererKey": "graphing-explorer",
+      "rendererModeMap": {
+        "worked": "graphing-explorer",
+        "guidedPractice": "graphing-explorer",
+        "independentPractice": "graphing-explorer"
+      },
+      "workedExampleSpec": {},
+      "guidedPracticeSpec": {},
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM2 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "9",
+        "lesson": "5"
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.9.5.graph-systems-of-linear-inequalities-and-identify-the-soluti",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "math.standard.ccss.a-rei-c-6"
+      ],
+      "rendererKey": "graphing-explorer",
+      "rendererModeMap": {
+        "worked": "graphing-explorer",
+        "guidedPractice": "graphing-explorer",
+        "independentPractice": "graphing-explorer"
+      },
+      "workedExampleSpec": {},
+      "guidedPracticeSpec": {},
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM2 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "9",
+        "lesson": "5"
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.10.1.apply-the-product-rule-quotient-rule-and-power-rule-to-simpl",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "math.standard.ccss.8-ee-a-1",
+        "math.standard.ccss.n-rn-a-2"
+      ],
+      "rendererKey": "step-by-step-solver",
+      "rendererModeMap": {
+        "worked": "step-by-step-solver",
+        "guidedPractice": "step-by-step-solver",
+        "independentPractice": "step-by-step-solver"
+      },
+      "workedExampleSpec": {},
+      "guidedPracticeSpec": {},
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM2 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "10",
+        "lesson": "1"
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.10.1.combine-multiple-laws-of-exponents-in-complex-expressions",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "math.standard.ccss.8-ee-a-1",
+        "math.standard.ccss.n-rn-a-2"
+      ],
+      "rendererKey": "step-by-step-solver",
+      "rendererModeMap": {
+        "worked": "step-by-step-solver",
+        "guidedPractice": "step-by-step-solver",
+        "independentPractice": "step-by-step-solver"
+      },
+      "workedExampleSpec": {},
+      "guidedPracticeSpec": {},
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM2 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "10",
+        "lesson": "1"
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.10.2.rewrite-expressions-with-negative-exponents-using-positive-e",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "math.standard.ccss.8-ee-a-1",
+        "math.standard.ccss.n-rn-a-2"
+      ],
+      "rendererKey": "step-by-step-solver",
+      "rendererModeMap": {
+        "worked": "step-by-step-solver",
+        "guidedPractice": "step-by-step-solver",
+        "independentPractice": "step-by-step-solver"
+      },
+      "workedExampleSpec": {},
+      "guidedPracticeSpec": {},
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM2 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "10",
+        "lesson": "2"
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.10.3.convert-between-standard-form-and-scientific-notation",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "math.standard.ccss.8-ee-a-1",
+        "math.standard.ccss.8-ee-a-2"
+      ],
+      "rendererKey": "graphing-explorer",
+      "rendererModeMap": {
+        "worked": "graphing-explorer",
+        "guidedPractice": "graphing-explorer",
+        "independentPractice": "graphing-explorer"
+      },
+      "workedExampleSpec": {},
+      "guidedPracticeSpec": {},
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM2 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "10",
+        "lesson": "3"
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.10.4.simplify-and-perform-operations-with-radical-expressions",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "math.standard.ccss.n-rn-a-1",
+        "math.standard.ccss.n-rn-a-2"
+      ],
+      "rendererKey": "step-by-step-solver",
+      "rendererModeMap": {
+        "worked": "step-by-step-solver",
+        "guidedPractice": "step-by-step-solver",
+        "independentPractice": "step-by-step-solver"
+      },
+      "workedExampleSpec": {},
+      "guidedPracticeSpec": {},
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM2 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "10",
+        "lesson": "4"
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.10.5.apply-solving-radical-equations-to-real-world-problems-invol",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "math.standard.ccss.n-rn-a-2",
+        "math.standard.ccss.8-ee-a-2"
+      ],
+      "rendererKey": "step-by-step-solver",
+      "rendererModeMap": {
+        "worked": "step-by-step-solver",
+        "guidedPractice": "step-by-step-solver",
+        "independentPractice": "step-by-step-solver"
+      },
+      "workedExampleSpec": {},
+      "guidedPracticeSpec": {},
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM2 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "10",
+        "lesson": "5"
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.10.5.solve-radical-equations-by-isolating-the-radical-and-squarin",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "math.standard.ccss.n-rn-a-2",
+        "math.standard.ccss.8-ee-a-2"
+      ],
+      "rendererKey": "step-by-step-solver",
+      "rendererModeMap": {
+        "worked": "step-by-step-solver",
+        "guidedPractice": "step-by-step-solver",
+        "independentPractice": "step-by-step-solver"
+      },
+      "workedExampleSpec": {},
+      "guidedPracticeSpec": {},
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM2 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "10",
+        "lesson": "5"
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.11.1.classify-polynomials-by-degree-number-of-terms-and-write-in",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "math.standard.ccss.hsa-apr-a-1",
+        "math.standard.ccss.hsa-sse-a-2"
+      ],
+      "rendererKey": "graphing-explorer",
+      "rendererModeMap": {
+        "worked": "graphing-explorer",
+        "guidedPractice": "graphing-explorer",
+        "independentPractice": "graphing-explorer"
+      },
+      "workedExampleSpec": {},
+      "guidedPracticeSpec": {},
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM2 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "11",
+        "lesson": "1"
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.11.1.determine-whether-an-expression-is-a-polynomial-and-identify",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "math.standard.ccss.hsa-apr-a-1",
+        "math.standard.ccss.hsa-sse-a-2"
+      ],
+      "rendererKey": "step-by-step-solver",
+      "rendererModeMap": {
+        "worked": "step-by-step-solver",
+        "guidedPractice": "step-by-step-solver",
+        "independentPractice": "step-by-step-solver"
+      },
+      "workedExampleSpec": {},
+      "guidedPracticeSpec": {},
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM2 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "11",
+        "lesson": "1"
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.11.2.add-and-subtract-polynomials-by-combining-like-terms",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "math.standard.ccss.hsa-apr-a-1",
+        "math.standard.ccss.hsa-apr-b-2"
+      ],
+      "rendererKey": "step-by-step-solver",
+      "rendererModeMap": {
+        "worked": "step-by-step-solver",
+        "guidedPractice": "step-by-step-solver",
+        "independentPractice": "step-by-step-solver"
+      },
+      "workedExampleSpec": {},
+      "guidedPracticeSpec": {},
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM2 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "11",
+        "lesson": "2"
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.11.2.apply-addition-of-polynomials-to-find-total-area-in-geometri",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "math.standard.ccss.hsa-apr-a-1",
+        "math.standard.ccss.hsa-apr-b-2"
+      ],
+      "rendererKey": "step-by-step-solver",
+      "rendererModeMap": {
+        "worked": "step-by-step-solver",
+        "guidedPractice": "step-by-step-solver",
+        "independentPractice": "step-by-step-solver"
+      },
+      "workedExampleSpec": {},
+      "guidedPracticeSpec": {},
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM2 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "11",
+        "lesson": "2"
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.11.3.multiply-polynomials-in-real-world-area-and-geometric-contex",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "math.standard.ccss.hsa-apr-a-1",
+        "math.standard.ccss.hsa-apr-c-4"
+      ],
+      "rendererKey": "step-by-step-solver",
+      "rendererModeMap": {
+        "worked": "step-by-step-solver",
+        "guidedPractice": "step-by-step-solver",
+        "independentPractice": "step-by-step-solver"
+      },
+      "workedExampleSpec": {},
+      "guidedPracticeSpec": {},
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM2 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "11",
+        "lesson": "3"
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.11.3.multiply-polynomials-using-the-distributive-property-and-foi",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "math.standard.ccss.hsa-apr-a-1",
+        "math.standard.ccss.hsa-apr-c-4"
+      ],
+      "rendererKey": "step-by-step-solver",
+      "rendererModeMap": {
+        "worked": "step-by-step-solver",
+        "guidedPractice": "step-by-step-solver",
+        "independentPractice": "step-by-step-solver"
+      },
+      "workedExampleSpec": {},
+      "guidedPracticeSpec": {},
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM2 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "11",
+        "lesson": "3"
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.11.4.recognize-and-apply-special-product-patterns-ab-ab-abab",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "math.standard.ccss.hsa-apr-c-4",
+        "math.standard.ccss.hsa-apr-b-3"
+      ],
+      "rendererKey": "comprehension-quiz",
+      "rendererModeMap": {
+        "worked": "comprehension-quiz",
+        "guidedPractice": "comprehension-quiz",
+        "independentPractice": "comprehension-quiz"
+      },
+      "workedExampleSpec": {},
+      "guidedPracticeSpec": {},
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM2 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "11",
+        "lesson": "4"
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.11.5.factor-polynomials-using-gcf-grouping-trinomials-and-differe",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "math.standard.ccss.hsa-apr-a-1",
+        "math.standard.ccss.hsa-sse-a-2"
+      ],
+      "rendererKey": "step-by-step-solver",
+      "rendererModeMap": {
+        "worked": "step-by-step-solver",
+        "guidedPractice": "step-by-step-solver",
+        "independentPractice": "step-by-step-solver"
+      },
+      "workedExampleSpec": {},
+      "guidedPracticeSpec": {},
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM2 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "11",
+        "lesson": "5"
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.11.6.solve-polynomial-equations-by-factoring-using-the-zero-produ",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "math.standard.ccss.hsa-apr-b-3",
+        "math.standard.ccss.hsa-apr-b-2"
+      ],
+      "rendererKey": "step-by-step-solver",
+      "rendererModeMap": {
+        "worked": "step-by-step-solver",
+        "guidedPractice": "step-by-step-solver",
+        "independentPractice": "step-by-step-solver"
+      },
+      "workedExampleSpec": {},
+      "guidedPracticeSpec": {},
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM2 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "11",
+        "lesson": "6"
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.11.6.write-polynomial-equations-given-zeros-or-a-graph-use-zeros",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "math.standard.ccss.hsa-apr-b-3",
+        "math.standard.ccss.hsa-apr-b-2"
+      ],
+      "rendererKey": "graphing-explorer",
+      "rendererModeMap": {
+        "worked": "graphing-explorer",
+        "guidedPractice": "graphing-explorer",
+        "independentPractice": "graphing-explorer"
+      },
+      "workedExampleSpec": {},
+      "guidedPracticeSpec": {},
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM2 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "11",
+        "lesson": "6"
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.12.1.graph-quadratic-functions-using-key-features-or-a-table-of-v",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "math.standard.ccss.f-if-c-7",
+        "math.standard.ccss.f-if-b-4"
+      ],
+      "rendererKey": "graphing-explorer",
+      "rendererModeMap": {
+        "worked": "graphing-explorer",
+        "guidedPractice": "graphing-explorer",
+        "independentPractice": "graphing-explorer"
+      },
+      "workedExampleSpec": {},
+      "guidedPracticeSpec": {},
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM2 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "12",
+        "lesson": "1"
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.12.1.identify-the-axis-of-symmetry-vertex-and-end-behavior-of-a-q",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "math.standard.ccss.f-if-c-7",
+        "math.standard.ccss.f-if-b-4"
+      ],
+      "rendererKey": "graphing-explorer",
+      "rendererModeMap": {
+        "worked": "graphing-explorer",
+        "guidedPractice": "graphing-explorer",
+        "independentPractice": "graphing-explorer"
+      },
+      "workedExampleSpec": {},
+      "guidedPracticeSpec": {},
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM2 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "12",
+        "lesson": "1"
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.12.2.describe-how-the-graph-of-a-quadratic-relates-to-y-x-based-o",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "math.standard.ccss.f-bf-b-3",
+        "math.standard.ccss.f-if-c-7"
+      ],
+      "rendererKey": "graphing-explorer",
+      "rendererModeMap": {
+        "worked": "graphing-explorer",
+        "guidedPractice": "graphing-explorer",
+        "independentPractice": "graphing-explorer"
+      },
+      "workedExampleSpec": {},
+      "guidedPracticeSpec": {},
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM2 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "12",
+        "lesson": "2"
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.12.2.write-quadratic-equations-given-a-graph-using-transformation",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "math.standard.ccss.f-bf-b-3",
+        "math.standard.ccss.f-if-c-7"
+      ],
+      "rendererKey": "graphing-explorer",
+      "rendererModeMap": {
+        "worked": "graphing-explorer",
+        "guidedPractice": "graphing-explorer",
+        "independentPractice": "graphing-explorer"
+      },
+      "workedExampleSpec": {},
+      "guidedPracticeSpec": {},
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM2 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "12",
+        "lesson": "2"
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.12.3.interpret-zeros-of-a-quadratic-function-in-real-world-contex",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "math.standard.ccss.a-rei-d-10",
+        "math.standard.ccss.f-if-c-7"
+      ],
+      "rendererKey": "graphing-explorer",
+      "rendererModeMap": {
+        "worked": "graphing-explorer",
+        "guidedPractice": "graphing-explorer",
+        "independentPractice": "graphing-explorer"
+      },
+      "workedExampleSpec": {},
+      "guidedPracticeSpec": {},
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM2 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "12",
+        "lesson": "3"
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.12.3.solve-quadratic-equations-by-finding-x-intercepts-of-the-rel",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "math.standard.ccss.a-rei-d-10",
+        "math.standard.ccss.f-if-c-7"
+      ],
+      "rendererKey": "graphing-explorer",
+      "rendererModeMap": {
+        "worked": "graphing-explorer",
+        "guidedPractice": "graphing-explorer",
+        "independentPractice": "graphing-explorer"
+      },
+      "workedExampleSpec": {},
+      "guidedPracticeSpec": {},
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM2 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "12",
+        "lesson": "3"
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.12.4.solve-quadratic-equations-by-factoring-and-using-the-zero-pr",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "math.standard.ccss.a-apr-b-3",
+        "math.standard.ccss.a-rei-b-4"
+      ],
+      "rendererKey": "graphing-explorer",
+      "rendererModeMap": {
+        "worked": "graphing-explorer",
+        "guidedPractice": "graphing-explorer",
+        "independentPractice": "graphing-explorer"
+      },
+      "workedExampleSpec": {},
+      "guidedPracticeSpec": {},
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM2 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "12",
+        "lesson": "4"
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.12.5.apply-completing-the-square-to-real-world-problems-involving",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "math.standard.ccss.a-rei-b-4",
+        "math.standard.ccss.a-sse-b-3"
+      ],
+      "rendererKey": "step-by-step-solver",
+      "rendererModeMap": {
+        "worked": "step-by-step-solver",
+        "guidedPractice": "step-by-step-solver",
+        "independentPractice": "step-by-step-solver"
+      },
+      "workedExampleSpec": {},
+      "guidedPracticeSpec": {},
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM2 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "12",
+        "lesson": "5"
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.12.5.find-the-value-of-c-that-completes-the-square-for-a-trinomia",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "math.standard.ccss.a-rei-b-4",
+        "math.standard.ccss.a-sse-b-3"
+      ],
+      "rendererKey": "step-by-step-solver",
+      "rendererModeMap": {
+        "worked": "step-by-step-solver",
+        "guidedPractice": "step-by-step-solver",
+        "independentPractice": "step-by-step-solver"
+      },
+      "workedExampleSpec": {},
+      "guidedPracticeSpec": {},
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM2 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "12",
+        "lesson": "5"
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.12.5.solve-quadratic-equations-by-completing-the-square",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "math.standard.ccss.a-rei-b-4",
+        "math.standard.ccss.a-sse-b-3"
+      ],
+      "rendererKey": "graphing-explorer",
+      "rendererModeMap": {
+        "worked": "graphing-explorer",
+        "guidedPractice": "graphing-explorer",
+        "independentPractice": "graphing-explorer"
+      },
+      "workedExampleSpec": {},
+      "guidedPracticeSpec": {},
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM2 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "12",
+        "lesson": "5"
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.12.5.write-quadratic-functions-in-vertex-form-and-identify-extrem",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "math.standard.ccss.a-rei-b-4",
+        "math.standard.ccss.a-sse-b-3"
+      ],
+      "rendererKey": "graphing-explorer",
+      "rendererModeMap": {
+        "worked": "graphing-explorer",
+        "guidedPractice": "graphing-explorer",
+        "independentPractice": "graphing-explorer"
+      },
+      "workedExampleSpec": {},
+      "guidedPracticeSpec": {},
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM2 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "12",
+        "lesson": "5"
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.13.1.apply-reciprocal-and-quotient-identities-to-simplify-and-eva",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "math.standard.ccss.f-tf-a-1",
+        "math.standard.ccss.f-tf-a-2"
+      ],
+      "rendererKey": "step-by-step-solver",
+      "rendererModeMap": {
+        "worked": "step-by-step-solver",
+        "guidedPractice": "step-by-step-solver",
+        "independentPractice": "step-by-step-solver"
+      },
+      "workedExampleSpec": {},
+      "guidedPracticeSpec": {},
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM2 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "13",
+        "lesson": "1"
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.13.1.verify-trigonometric-identities-using-fundamental-relationsh",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "math.standard.ccss.f-tf-a-1",
+        "math.standard.ccss.f-tf-a-2"
+      ],
+      "rendererKey": "fill-in-the-blank",
+      "rendererModeMap": {
+        "worked": "fill-in-the-blank",
+        "guidedPractice": "fill-in-the-blank",
+        "independentPractice": "fill-in-the-blank"
+      },
+      "workedExampleSpec": {},
+      "guidedPracticeSpec": {},
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM2 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "13",
+        "lesson": "1"
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.13.2.apply-sin-cos-1-and-its-pythagorean-variants",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "math.standard.ccss.a-sse-a-2",
+        "math.standard.ccss.f-tf-c-9"
+      ],
+      "rendererKey": "step-by-step-solver",
+      "rendererModeMap": {
+        "worked": "step-by-step-solver",
+        "guidedPractice": "step-by-step-solver",
+        "independentPractice": "step-by-step-solver"
+      },
+      "workedExampleSpec": {},
+      "guidedPracticeSpec": {},
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM2 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "13",
+        "lesson": "2"
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.13.2.use-pythagorean-identities-to-find-missing-trig-values-and-s",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "math.standard.ccss.a-sse-a-2",
+        "math.standard.ccss.f-tf-c-9"
+      ],
+      "rendererKey": "step-by-step-solver",
+      "rendererModeMap": {
+        "worked": "step-by-step-solver",
+        "guidedPractice": "step-by-step-solver",
+        "independentPractice": "step-by-step-solver"
+      },
+      "workedExampleSpec": {},
+      "guidedPracticeSpec": {},
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM2 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "13",
+        "lesson": "2"
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.13.3.apply-sum-and-difference-identities-for-sine-cosine-and-tang",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "math.standard.ccss.f-tf-c-8",
+        "math.standard.ccss.f-tf-a-2"
+      ],
+      "rendererKey": "step-by-step-solver",
+      "rendererModeMap": {
+        "worked": "step-by-step-solver",
+        "guidedPractice": "step-by-step-solver",
+        "independentPractice": "step-by-step-solver"
+      },
+      "workedExampleSpec": {},
+      "guidedPracticeSpec": {},
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM2 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "13",
+        "lesson": "3"
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.13.4.apply-double-angle-identities-for-sine-cosine-all-three-form",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "math.standard.ccss.f-tf-c-7",
+        "math.standard.ccss.f-tf-c-6"
+      ],
+      "rendererKey": "step-by-step-solver",
+      "rendererModeMap": {
+        "worked": "step-by-step-solver",
+        "guidedPractice": "step-by-step-solver",
+        "independentPractice": "step-by-step-solver"
+      },
+      "workedExampleSpec": {},
+      "guidedPracticeSpec": {},
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM2 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "13",
+        "lesson": "4"
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.13.5.solve-trigonometric-equations-on-a-restricted-domain-using-a",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "math.standard.ccss.f-tf-c-9",
+        "math.standard.ccss.f-tf-c-8"
+      ],
+      "rendererKey": "step-by-step-solver",
+      "rendererModeMap": {
+        "worked": "step-by-step-solver",
+        "guidedPractice": "step-by-step-solver",
+        "independentPractice": "step-by-step-solver"
+      },
+      "workedExampleSpec": {},
+      "guidedPracticeSpec": {},
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM2 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "13",
+        "lesson": "5"
+      }
+    },
+    {
+      "nodeId": "math.im2.skill.13.5.use-graphical-methods-to-verify-solutions-of-trigonometric-e",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [
+        "math.standard.ccss.f-tf-c-9",
+        "math.standard.ccss.f-tf-c-8"
+      ],
+      "rendererKey": "graphing-explorer",
+      "rendererModeMap": {
+        "worked": "graphing-explorer",
+        "guidedPractice": "graphing-explorer",
+        "independentPractice": "graphing-explorer"
+      },
+      "workedExampleSpec": {},
+      "guidedPracticeSpec": {},
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM2 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im2",
+        "module": "13",
+        "lesson": "5"
+      }
+    }
+  ]
+}

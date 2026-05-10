@@ -1,0 +1,1382 @@
+{
+  "blueprints": [
+    {
+      "nodeId": "math.im3.skill.4.1.find-compositions-of-functions",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "rendererKey": "graphing-explorer",
+      "rendererModeMap": {
+        "worked": "graphing-explorer",
+        "guidedPractice": "graphing-explorer",
+        "independentPractice": "graphing-explorer"
+      },
+      "workedExampleSpec": {
+        "prompt": "Worked example for 4b: Find compositions of functions",
+        "givens": [
+          "See curriculum source"
+        ],
+        "target": {},
+        "steps": [
+          {
+            "description": "Step 1",
+            "expression": "See curriculum"
+          }
+        ],
+        "explanation": "See curriculum source material."
+      },
+      "guidedPracticeSpec": {
+        "scaffoldedPrompt": "Guided practice for 4b: Find compositions of functions",
+        "stepPrompts": [
+          "Step 1"
+        ],
+        "hints": [
+          "Hint 1"
+        ],
+        "checksPerStep": [
+          {
+            "check": "See curriculum"
+          }
+        ],
+        "revealPolicy": "one_at_a_time"
+      },
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM3 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "4",
+        "lesson": "1"
+      }
+    },
+    {
+      "nodeId": "math.im3.skill.4.1.find-sums-differences-products-and-quotients-of-functions",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "rendererKey": "graphing-explorer",
+      "rendererModeMap": {
+        "worked": "graphing-explorer",
+        "guidedPractice": "graphing-explorer",
+        "independentPractice": "graphing-explorer"
+      },
+      "workedExampleSpec": {
+        "prompt": "Worked example for 4a: Find sums, differences, products, and quotients of functions",
+        "givens": [
+          "See curriculum source"
+        ],
+        "target": {},
+        "steps": [
+          {
+            "description": "Step 1",
+            "expression": "See curriculum"
+          }
+        ],
+        "explanation": "See curriculum source material."
+      },
+      "guidedPracticeSpec": {
+        "scaffoldedPrompt": "Guided practice for 4a: Find sums, differences, products, and quotients of functions",
+        "stepPrompts": [
+          "Step 1"
+        ],
+        "hints": [
+          "Hint 1"
+        ],
+        "checksPerStep": [
+          {
+            "check": "See curriculum"
+          }
+        ],
+        "revealPolicy": "one_at_a_time"
+      },
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM3 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "4",
+        "lesson": "1"
+      }
+    },
+    {
+      "nodeId": "math.im3.skill.4.2.find-inverses-of-relations",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "rendererKey": "graphing-explorer",
+      "rendererModeMap": {
+        "worked": "graphing-explorer",
+        "guidedPractice": "graphing-explorer",
+        "independentPractice": "graphing-explorer"
+      },
+      "workedExampleSpec": {
+        "prompt": "Worked example for 4c: Find inverses of relations",
+        "givens": [
+          "See curriculum source"
+        ],
+        "target": {},
+        "steps": [
+          {
+            "description": "Step 1",
+            "expression": "See curriculum"
+          }
+        ],
+        "explanation": "See curriculum source material."
+      },
+      "guidedPracticeSpec": {
+        "scaffoldedPrompt": "Guided practice for 4c: Find inverses of relations",
+        "stepPrompts": [
+          "Step 1"
+        ],
+        "hints": [
+          "Hint 1"
+        ],
+        "checksPerStep": [
+          {
+            "check": "See curriculum"
+          }
+        ],
+        "revealPolicy": "one_at_a_time"
+      },
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM3 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "4",
+        "lesson": "2"
+      }
+    },
+    {
+      "nodeId": "math.im3.skill.4.2.verify-that-two-relations-are-inverses-by-using-compositions",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "rendererKey": "graphing-explorer",
+      "rendererModeMap": {
+        "worked": "graphing-explorer",
+        "guidedPractice": "graphing-explorer",
+        "independentPractice": "graphing-explorer"
+      },
+      "workedExampleSpec": {
+        "prompt": "Worked example for 4d: Verify that two relations are inverses by using compositions",
+        "givens": [
+          "See curriculum source"
+        ],
+        "target": {},
+        "steps": [
+          {
+            "description": "Step 1",
+            "expression": "See curriculum"
+          }
+        ],
+        "explanation": "See curriculum source material."
+      },
+      "guidedPracticeSpec": {
+        "scaffoldedPrompt": "Guided practice for 4d: Verify that two relations are inverses by using compositions",
+        "stepPrompts": [
+          "Step 1"
+        ],
+        "hints": [
+          "Hint 1"
+        ],
+        "checksPerStep": [
+          {
+            "check": "See curriculum"
+          }
+        ],
+        "revealPolicy": "one_at_a_time"
+      },
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM3 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "4",
+        "lesson": "2"
+      }
+    },
+    {
+      "nodeId": "math.im3.skill.4.3.simplify-expressions-in-exponential-or-radical-form",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "rendererKey": "step-by-step-solver",
+      "rendererModeMap": {
+        "worked": "step-by-step-solver",
+        "guidedPractice": "step-by-step-solver",
+        "independentPractice": "step-by-step-solver"
+      },
+      "workedExampleSpec": {
+        "prompt": "Worked example for 4f: Simplify expressions in exponential or radical form",
+        "givens": [
+          "See curriculum source"
+        ],
+        "target": {},
+        "steps": [
+          {
+            "description": "Step 1",
+            "expression": "See curriculum"
+          }
+        ],
+        "explanation": "See curriculum source material."
+      },
+      "guidedPracticeSpec": {
+        "scaffoldedPrompt": "Guided practice for 4f: Simplify expressions in exponential or radical form",
+        "stepPrompts": [
+          "Step 1"
+        ],
+        "hints": [
+          "Hint 1"
+        ],
+        "checksPerStep": [
+          {
+            "check": "See curriculum"
+          }
+        ],
+        "revealPolicy": "one_at_a_time"
+      },
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM3 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "4",
+        "lesson": "3"
+      }
+    },
+    {
+      "nodeId": "math.im3.skill.4.3.simplify-expressions-involving-radicals-and-rational-exponen",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "rendererKey": "step-by-step-solver",
+      "rendererModeMap": {
+        "worked": "step-by-step-solver",
+        "guidedPractice": "step-by-step-solver",
+        "independentPractice": "step-by-step-solver"
+      },
+      "workedExampleSpec": {
+        "prompt": "Worked example for 4e: Simplify expressions involving radicals and rational exponents",
+        "givens": [
+          "See curriculum source"
+        ],
+        "target": {},
+        "steps": [
+          {
+            "description": "Step 1",
+            "expression": "See curriculum"
+          }
+        ],
+        "explanation": "See curriculum source material."
+      },
+      "guidedPracticeSpec": {
+        "scaffoldedPrompt": "Guided practice for 4e: Simplify expressions involving radicals and rational exponents",
+        "stepPrompts": [
+          "Step 1"
+        ],
+        "hints": [
+          "Hint 1"
+        ],
+        "checksPerStep": [
+          {
+            "check": "See curriculum"
+          }
+        ],
+        "revealPolicy": "one_at_a_time"
+      },
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM3 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "4",
+        "lesson": "3"
+      }
+    },
+    {
+      "nodeId": "math.im3.skill.4.4.graph-and-analyze-cube-root-functions",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "rendererKey": "graphing-explorer",
+      "rendererModeMap": {
+        "worked": "graphing-explorer",
+        "guidedPractice": "graphing-explorer",
+        "independentPractice": "graphing-explorer"
+      },
+      "workedExampleSpec": {
+        "prompt": "Worked example for 4h: Graph and analyze cube root functions",
+        "givens": [
+          "See curriculum source"
+        ],
+        "target": {},
+        "steps": [
+          {
+            "description": "Step 1",
+            "expression": "See curriculum"
+          }
+        ],
+        "explanation": "See curriculum source material."
+      },
+      "guidedPracticeSpec": {
+        "scaffoldedPrompt": "Guided practice for 4h: Graph and analyze cube root functions",
+        "stepPrompts": [
+          "Step 1"
+        ],
+        "hints": [
+          "Hint 1"
+        ],
+        "checksPerStep": [
+          {
+            "check": "See curriculum"
+          }
+        ],
+        "revealPolicy": "one_at_a_time"
+      },
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM3 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "4",
+        "lesson": "4"
+      }
+    },
+    {
+      "nodeId": "math.im3.skill.4.4.graph-and-analyze-square-root-functions",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "rendererKey": "graphing-explorer",
+      "rendererModeMap": {
+        "worked": "graphing-explorer",
+        "guidedPractice": "graphing-explorer",
+        "independentPractice": "graphing-explorer"
+      },
+      "workedExampleSpec": {
+        "prompt": "Worked example for 4g: Graph and analyze square root functions",
+        "givens": [
+          "See curriculum source"
+        ],
+        "target": {},
+        "steps": [
+          {
+            "description": "Step 1",
+            "expression": "See curriculum"
+          }
+        ],
+        "explanation": "See curriculum source material."
+      },
+      "guidedPracticeSpec": {
+        "scaffoldedPrompt": "Guided practice for 4g: Graph and analyze square root functions",
+        "stepPrompts": [
+          "Step 1"
+        ],
+        "hints": [
+          "Hint 1"
+        ],
+        "checksPerStep": [
+          {
+            "check": "See curriculum"
+          }
+        ],
+        "revealPolicy": "one_at_a_time"
+      },
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM3 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "4",
+        "lesson": "4"
+      }
+    },
+    {
+      "nodeId": "math.im3.skill.4.5.add-subtract-and-multiply-radicals",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "rendererKey": "step-by-step-solver",
+      "rendererModeMap": {
+        "worked": "step-by-step-solver",
+        "guidedPractice": "step-by-step-solver",
+        "independentPractice": "step-by-step-solver"
+      },
+      "workedExampleSpec": {
+        "prompt": "Worked example for 4j: Add, subtract, and multiply radicals",
+        "givens": [
+          "See curriculum source"
+        ],
+        "target": {},
+        "steps": [
+          {
+            "description": "Step 1",
+            "expression": "See curriculum"
+          }
+        ],
+        "explanation": "See curriculum source material."
+      },
+      "guidedPracticeSpec": {
+        "scaffoldedPrompt": "Guided practice for 4j: Add, subtract, and multiply radicals",
+        "stepPrompts": [
+          "Step 1"
+        ],
+        "hints": [
+          "Hint 1"
+        ],
+        "checksPerStep": [
+          {
+            "check": "See curriculum"
+          }
+        ],
+        "revealPolicy": "one_at_a_time"
+      },
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM3 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "4",
+        "lesson": "5"
+      }
+    },
+    {
+      "nodeId": "math.im3.skill.4.5.divide-and-simplify-radical-expressions-by-rationalizing-the",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "rendererKey": "step-by-step-solver",
+      "rendererModeMap": {
+        "worked": "step-by-step-solver",
+        "guidedPractice": "step-by-step-solver",
+        "independentPractice": "step-by-step-solver"
+      },
+      "workedExampleSpec": {
+        "prompt": "Worked example for 4k: Divide and simplify radical expressions by rationalizing the denominator",
+        "givens": [
+          "See curriculum source"
+        ],
+        "target": {},
+        "steps": [
+          {
+            "description": "Step 1",
+            "expression": "See curriculum"
+          }
+        ],
+        "explanation": "See curriculum source material."
+      },
+      "guidedPracticeSpec": {
+        "scaffoldedPrompt": "Guided practice for 4k: Divide and simplify radical expressions by rationalizing the denominator",
+        "stepPrompts": [
+          "Step 1"
+        ],
+        "hints": [
+          "Hint 1"
+        ],
+        "checksPerStep": [
+          {
+            "check": "See curriculum"
+          }
+        ],
+        "revealPolicy": "one_at_a_time"
+      },
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM3 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "4",
+        "lesson": "5"
+      }
+    },
+    {
+      "nodeId": "math.im3.skill.4.5.simplify-radical-expressions",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "rendererKey": "step-by-step-solver",
+      "rendererModeMap": {
+        "worked": "step-by-step-solver",
+        "guidedPractice": "step-by-step-solver",
+        "independentPractice": "step-by-step-solver"
+      },
+      "workedExampleSpec": {
+        "prompt": "Worked example for 4i: Simplify radical expressions",
+        "givens": [
+          "See curriculum source"
+        ],
+        "target": {},
+        "steps": [
+          {
+            "description": "Step 1",
+            "expression": "See curriculum"
+          }
+        ],
+        "explanation": "See curriculum source material."
+      },
+      "guidedPracticeSpec": {
+        "scaffoldedPrompt": "Guided practice for 4i: Simplify radical expressions",
+        "stepPrompts": [
+          "Step 1"
+        ],
+        "hints": [
+          "Hint 1"
+        ],
+        "checksPerStep": [
+          {
+            "check": "See curriculum"
+          }
+        ],
+        "revealPolicy": "one_at_a_time"
+      },
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM3 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "4",
+        "lesson": "5"
+      }
+    },
+    {
+      "nodeId": "math.im3.skill.4.6.solve-radical-equations-by-graphing-systems-of-equations",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "rendererKey": "graphing-explorer",
+      "rendererModeMap": {
+        "worked": "graphing-explorer",
+        "guidedPractice": "graphing-explorer",
+        "independentPractice": "graphing-explorer"
+      },
+      "workedExampleSpec": {
+        "prompt": "Worked example for 4m: Solve radical equations by graphing systems of equations",
+        "givens": [
+          "See curriculum source"
+        ],
+        "target": {},
+        "steps": [
+          {
+            "description": "Step 1",
+            "expression": "See curriculum"
+          }
+        ],
+        "explanation": "See curriculum source material."
+      },
+      "guidedPracticeSpec": {
+        "scaffoldedPrompt": "Guided practice for 4m: Solve radical equations by graphing systems of equations",
+        "stepPrompts": [
+          "Step 1"
+        ],
+        "hints": [
+          "Hint 1"
+        ],
+        "checksPerStep": [
+          {
+            "check": "See curriculum"
+          }
+        ],
+        "revealPolicy": "one_at_a_time"
+      },
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM3 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "4",
+        "lesson": "6"
+      }
+    },
+    {
+      "nodeId": "math.im3.skill.4.6.solve-radical-equations-in-one-variable-and-identify-extrane",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "rendererKey": "step-by-step-solver",
+      "rendererModeMap": {
+        "worked": "step-by-step-solver",
+        "guidedPractice": "step-by-step-solver",
+        "independentPractice": "step-by-step-solver"
+      },
+      "workedExampleSpec": {
+        "prompt": "Worked example for 4l: Solve radical equations in one variable and identify extraneous solutions",
+        "givens": [
+          "See curriculum source"
+        ],
+        "target": {},
+        "steps": [
+          {
+            "description": "Step 1",
+            "expression": "See curriculum"
+          }
+        ],
+        "explanation": "See curriculum source material."
+      },
+      "guidedPracticeSpec": {
+        "scaffoldedPrompt": "Guided practice for 4l: Solve radical equations in one variable and identify extraneous solutions",
+        "stepPrompts": [
+          "Step 1"
+        ],
+        "hints": [
+          "Hint 1"
+        ],
+        "checksPerStep": [
+          {
+            "check": "See curriculum"
+          }
+        ],
+        "revealPolicy": "one_at_a_time"
+      },
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM3 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "4",
+        "lesson": "6"
+      }
+    },
+    {
+      "nodeId": "math.im3.skill.4.aleks.cube-root-function-graph-analysis",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "rendererKey": "graphing-explorer",
+      "rendererModeMap": {
+        "worked": "graphing-explorer",
+        "guidedPractice": "graphing-explorer",
+        "independentPractice": "graphing-explorer"
+      },
+      "workedExampleSpec": {
+        "prompt": "Worked example for concept: cube_root_function_graph_analysis",
+        "givens": [
+          "See curriculum source"
+        ],
+        "target": {},
+        "steps": [
+          {
+            "description": "Step 1",
+            "expression": "See curriculum"
+          }
+        ],
+        "explanation": "See curriculum source material."
+      },
+      "guidedPracticeSpec": {
+        "scaffoldedPrompt": "Guided practice for concept: cube_root_function_graph_analysis",
+        "stepPrompts": [
+          "Step 1"
+        ],
+        "hints": [
+          "Hint 1"
+        ],
+        "checksPerStep": [
+          {
+            "check": "See curriculum"
+          }
+        ],
+        "revealPolicy": "one_at_a_time"
+      },
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM3 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "4",
+        "lesson": "1"
+      }
+    },
+    {
+      "nodeId": "math.im3.skill.4.aleks.function-composition",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "rendererKey": "comprehension-quiz",
+      "rendererModeMap": {
+        "worked": "comprehension-quiz",
+        "guidedPractice": "comprehension-quiz",
+        "independentPractice": "comprehension-quiz"
+      },
+      "workedExampleSpec": {
+        "prompt": "Worked example for concept: function_composition",
+        "givens": [
+          "See curriculum source"
+        ],
+        "target": {},
+        "steps": [
+          {
+            "description": "Step 1",
+            "expression": "See curriculum"
+          }
+        ],
+        "explanation": "See curriculum source material."
+      },
+      "guidedPracticeSpec": {
+        "scaffoldedPrompt": "Guided practice for concept: function_composition",
+        "stepPrompts": [
+          "Step 1"
+        ],
+        "hints": [
+          "Hint 1"
+        ],
+        "checksPerStep": [
+          {
+            "check": "See curriculum"
+          }
+        ],
+        "revealPolicy": "one_at_a_time"
+      },
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM3 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "4",
+        "lesson": "1"
+      }
+    },
+    {
+      "nodeId": "math.im3.skill.4.aleks.function-operations",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "rendererKey": "comprehension-quiz",
+      "rendererModeMap": {
+        "worked": "comprehension-quiz",
+        "guidedPractice": "comprehension-quiz",
+        "independentPractice": "comprehension-quiz"
+      },
+      "workedExampleSpec": {
+        "prompt": "Worked example for concept: function_operations",
+        "givens": [
+          "See curriculum source"
+        ],
+        "target": {},
+        "steps": [
+          {
+            "description": "Step 1",
+            "expression": "See curriculum"
+          }
+        ],
+        "explanation": "See curriculum source material."
+      },
+      "guidedPracticeSpec": {
+        "scaffoldedPrompt": "Guided practice for concept: function_operations",
+        "stepPrompts": [
+          "Step 1"
+        ],
+        "hints": [
+          "Hint 1"
+        ],
+        "checksPerStep": [
+          {
+            "check": "See curriculum"
+          }
+        ],
+        "revealPolicy": "one_at_a_time"
+      },
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM3 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "4",
+        "lesson": "1"
+      }
+    },
+    {
+      "nodeId": "math.im3.skill.4.aleks.inverse-relation-function",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "rendererKey": "comprehension-quiz",
+      "rendererModeMap": {
+        "worked": "comprehension-quiz",
+        "guidedPractice": "comprehension-quiz",
+        "independentPractice": "comprehension-quiz"
+      },
+      "workedExampleSpec": {
+        "prompt": "Worked example for concept: inverse_relation_function",
+        "givens": [
+          "See curriculum source"
+        ],
+        "target": {},
+        "steps": [
+          {
+            "description": "Step 1",
+            "expression": "See curriculum"
+          }
+        ],
+        "explanation": "See curriculum source material."
+      },
+      "guidedPracticeSpec": {
+        "scaffoldedPrompt": "Guided practice for concept: inverse_relation_function",
+        "stepPrompts": [
+          "Step 1"
+        ],
+        "hints": [
+          "Hint 1"
+        ],
+        "checksPerStep": [
+          {
+            "check": "See curriculum"
+          }
+        ],
+        "revealPolicy": "one_at_a_time"
+      },
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM3 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "4",
+        "lesson": "1"
+      }
+    },
+    {
+      "nodeId": "math.im3.skill.4.aleks.inverse-verification-by-composition",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "rendererKey": "comprehension-quiz",
+      "rendererModeMap": {
+        "worked": "comprehension-quiz",
+        "guidedPractice": "comprehension-quiz",
+        "independentPractice": "comprehension-quiz"
+      },
+      "workedExampleSpec": {
+        "prompt": "Worked example for concept: inverse_verification_by_composition",
+        "givens": [
+          "See curriculum source"
+        ],
+        "target": {},
+        "steps": [
+          {
+            "description": "Step 1",
+            "expression": "See curriculum"
+          }
+        ],
+        "explanation": "See curriculum source material."
+      },
+      "guidedPracticeSpec": {
+        "scaffoldedPrompt": "Guided practice for concept: inverse_verification_by_composition",
+        "stepPrompts": [
+          "Step 1"
+        ],
+        "hints": [
+          "Hint 1"
+        ],
+        "checksPerStep": [
+          {
+            "check": "See curriculum"
+          }
+        ],
+        "revealPolicy": "one_at_a_time"
+      },
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM3 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "4",
+        "lesson": "1"
+      }
+    },
+    {
+      "nodeId": "math.im3.skill.4.aleks.radical-equation-graphing-systems",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "rendererKey": "graphing-explorer",
+      "rendererModeMap": {
+        "worked": "graphing-explorer",
+        "guidedPractice": "graphing-explorer",
+        "independentPractice": "graphing-explorer"
+      },
+      "workedExampleSpec": {
+        "prompt": "Worked example for concept: radical_equation_graphing_systems",
+        "givens": [
+          "See curriculum source"
+        ],
+        "target": {},
+        "steps": [
+          {
+            "description": "Step 1",
+            "expression": "See curriculum"
+          }
+        ],
+        "explanation": "See curriculum source material."
+      },
+      "guidedPracticeSpec": {
+        "scaffoldedPrompt": "Guided practice for concept: radical_equation_graphing_systems",
+        "stepPrompts": [
+          "Step 1"
+        ],
+        "hints": [
+          "Hint 1"
+        ],
+        "checksPerStep": [
+          {
+            "check": "See curriculum"
+          }
+        ],
+        "revealPolicy": "one_at_a_time"
+      },
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM3 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "4",
+        "lesson": "1"
+      }
+    },
+    {
+      "nodeId": "math.im3.skill.4.aleks.radical-equation-solving",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "rendererKey": "step-by-step-solver",
+      "rendererModeMap": {
+        "worked": "step-by-step-solver",
+        "guidedPractice": "step-by-step-solver",
+        "independentPractice": "step-by-step-solver"
+      },
+      "workedExampleSpec": {
+        "prompt": "Worked example for concept: radical_equation_solving",
+        "givens": [
+          "See curriculum source"
+        ],
+        "target": {},
+        "steps": [
+          {
+            "description": "Step 1",
+            "expression": "See curriculum"
+          }
+        ],
+        "explanation": "See curriculum source material."
+      },
+      "guidedPracticeSpec": {
+        "scaffoldedPrompt": "Guided practice for concept: radical_equation_solving",
+        "stepPrompts": [
+          "Step 1"
+        ],
+        "hints": [
+          "Hint 1"
+        ],
+        "checksPerStep": [
+          {
+            "check": "See curriculum"
+          }
+        ],
+        "revealPolicy": "one_at_a_time"
+      },
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM3 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "4",
+        "lesson": "1"
+      }
+    },
+    {
+      "nodeId": "math.im3.skill.4.aleks.radical-operations",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "rendererKey": "comprehension-quiz",
+      "rendererModeMap": {
+        "worked": "comprehension-quiz",
+        "guidedPractice": "comprehension-quiz",
+        "independentPractice": "comprehension-quiz"
+      },
+      "workedExampleSpec": {
+        "prompt": "Worked example for concept: radical_operations",
+        "givens": [
+          "See curriculum source"
+        ],
+        "target": {},
+        "steps": [
+          {
+            "description": "Step 1",
+            "expression": "See curriculum"
+          }
+        ],
+        "explanation": "See curriculum source material."
+      },
+      "guidedPracticeSpec": {
+        "scaffoldedPrompt": "Guided practice for concept: radical_operations",
+        "stepPrompts": [
+          "Step 1"
+        ],
+        "hints": [
+          "Hint 1"
+        ],
+        "checksPerStep": [
+          {
+            "check": "See curriculum"
+          }
+        ],
+        "revealPolicy": "one_at_a_time"
+      },
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM3 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "4",
+        "lesson": "1"
+      }
+    },
+    {
+      "nodeId": "math.im3.skill.4.aleks.radical-rational-exponent-conversion",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "rendererKey": "comprehension-quiz",
+      "rendererModeMap": {
+        "worked": "comprehension-quiz",
+        "guidedPractice": "comprehension-quiz",
+        "independentPractice": "comprehension-quiz"
+      },
+      "workedExampleSpec": {
+        "prompt": "Worked example for concept: radical_rational_exponent_conversion",
+        "givens": [
+          "See curriculum source"
+        ],
+        "target": {},
+        "steps": [
+          {
+            "description": "Step 1",
+            "expression": "See curriculum"
+          }
+        ],
+        "explanation": "See curriculum source material."
+      },
+      "guidedPracticeSpec": {
+        "scaffoldedPrompt": "Guided practice for concept: radical_rational_exponent_conversion",
+        "stepPrompts": [
+          "Step 1"
+        ],
+        "hints": [
+          "Hint 1"
+        ],
+        "checksPerStep": [
+          {
+            "check": "See curriculum"
+          }
+        ],
+        "revealPolicy": "one_at_a_time"
+      },
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM3 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "4",
+        "lesson": "1"
+      }
+    },
+    {
+      "nodeId": "math.im3.skill.4.aleks.radical-simplification",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "rendererKey": "comprehension-quiz",
+      "rendererModeMap": {
+        "worked": "comprehension-quiz",
+        "guidedPractice": "comprehension-quiz",
+        "independentPractice": "comprehension-quiz"
+      },
+      "workedExampleSpec": {
+        "prompt": "Worked example for concept: radical_simplification",
+        "givens": [
+          "See curriculum source"
+        ],
+        "target": {},
+        "steps": [
+          {
+            "description": "Step 1",
+            "expression": "See curriculum"
+          }
+        ],
+        "explanation": "See curriculum source material."
+      },
+      "guidedPracticeSpec": {
+        "scaffoldedPrompt": "Guided practice for concept: radical_simplification",
+        "stepPrompts": [
+          "Step 1"
+        ],
+        "hints": [
+          "Hint 1"
+        ],
+        "checksPerStep": [
+          {
+            "check": "See curriculum"
+          }
+        ],
+        "revealPolicy": "one_at_a_time"
+      },
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM3 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "4",
+        "lesson": "1"
+      }
+    },
+    {
+      "nodeId": "math.im3.skill.4.aleks.rational-exponent-simplification",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "rendererKey": "comprehension-quiz",
+      "rendererModeMap": {
+        "worked": "comprehension-quiz",
+        "guidedPractice": "comprehension-quiz",
+        "independentPractice": "comprehension-quiz"
+      },
+      "workedExampleSpec": {
+        "prompt": "Worked example for concept: rational_exponent_simplification",
+        "givens": [
+          "See curriculum source"
+        ],
+        "target": {},
+        "steps": [
+          {
+            "description": "Step 1",
+            "expression": "See curriculum"
+          }
+        ],
+        "explanation": "See curriculum source material."
+      },
+      "guidedPracticeSpec": {
+        "scaffoldedPrompt": "Guided practice for concept: rational_exponent_simplification",
+        "stepPrompts": [
+          "Step 1"
+        ],
+        "hints": [
+          "Hint 1"
+        ],
+        "checksPerStep": [
+          {
+            "check": "See curriculum"
+          }
+        ],
+        "revealPolicy": "one_at_a_time"
+      },
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM3 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "4",
+        "lesson": "1"
+      }
+    },
+    {
+      "nodeId": "math.im3.skill.4.aleks.rationalize-denominator",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "rendererKey": "comprehension-quiz",
+      "rendererModeMap": {
+        "worked": "comprehension-quiz",
+        "guidedPractice": "comprehension-quiz",
+        "independentPractice": "comprehension-quiz"
+      },
+      "workedExampleSpec": {
+        "prompt": "Worked example for concept: rationalize_denominator",
+        "givens": [
+          "See curriculum source"
+        ],
+        "target": {},
+        "steps": [
+          {
+            "description": "Step 1",
+            "expression": "See curriculum"
+          }
+        ],
+        "explanation": "See curriculum source material."
+      },
+      "guidedPracticeSpec": {
+        "scaffoldedPrompt": "Guided practice for concept: rationalize_denominator",
+        "stepPrompts": [
+          "Step 1"
+        ],
+        "hints": [
+          "Hint 1"
+        ],
+        "checksPerStep": [
+          {
+            "check": "See curriculum"
+          }
+        ],
+        "revealPolicy": "one_at_a_time"
+      },
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM3 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "4",
+        "lesson": "1"
+      }
+    },
+    {
+      "nodeId": "math.im3.skill.4.aleks.square-root-function-graph-analysis",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "rendererKey": "graphing-explorer",
+      "rendererModeMap": {
+        "worked": "graphing-explorer",
+        "guidedPractice": "graphing-explorer",
+        "independentPractice": "graphing-explorer"
+      },
+      "workedExampleSpec": {
+        "prompt": "Worked example for concept: square_root_function_graph_analysis",
+        "givens": [
+          "See curriculum source"
+        ],
+        "target": {},
+        "steps": [
+          {
+            "description": "Step 1",
+            "expression": "See curriculum"
+          }
+        ],
+        "explanation": "See curriculum source material."
+      },
+      "guidedPracticeSpec": {
+        "scaffoldedPrompt": "Guided practice for concept: square_root_function_graph_analysis",
+        "stepPrompts": [
+          "Step 1"
+        ],
+        "hints": [
+          "Hint 1"
+        ],
+        "checksPerStep": [
+          {
+            "check": "See curriculum"
+          }
+        ],
+        "revealPolicy": "one_at_a_time"
+      },
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM3 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "4",
+        "lesson": "1"
+      }
+    }
+  ]
+}

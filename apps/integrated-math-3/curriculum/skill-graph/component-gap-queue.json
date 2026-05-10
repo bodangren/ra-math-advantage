@@ -1,0 +1,77 @@
+{
+  "description": "Component gap queue \u2014 renderers used in blueprints that need component implementation",
+  "generatedAt": "2026-05-10T06:43:17.737172+00:00",
+  "entries": [
+    {
+      "rendererKey": "comprehension-quiz",
+      "usedBy": 84,
+      "sampleNodeIds": [
+        "math.im3.skill.2.aleks.binomial-theorem-expansion",
+        "math.im3.skill.2.aleks.pascal-triangle-expansion",
+        "math.im3.skill.2.aleks.polynomial-add-subtract",
+        "math.im3.skill.2.aleks.polynomial-extrema-analysis",
+        "math.im3.skill.2.aleks.polynomial-feature-analysis"
+      ],
+      "componentExists": true,
+      "notes": "Component registered but not verified against graph"
+    },
+    {
+      "rendererKey": "discriminant-analyzer",
+      "usedBy": 1,
+      "sampleNodeIds": [
+        "math.im3.skill.1.6.use-the-discriminant-to-determine-the-number-and-type-of-sol"
+      ],
+      "componentExists": true,
+      "notes": "Component registered but not verified against graph"
+    },
+    {
+      "rendererKey": "graphing-explorer",
+      "usedBy": 50,
+      "sampleNodeIds": [
+        "math.im3.skill.1.1.graph-quadratic-functions",
+        "math.im3.skill.1.2.solve-quadratic-equations-by-graphing",
+        "math.im3.skill.1.7.graph-quadratic-inequalities-in-two-variables",
+        "math.im3.skill.2.1.graph-and-analyze-polynomial-functions",
+        "math.im3.skill.2.1.graph-and-analyze-power-functions"
+      ],
+      "componentExists": true,
+      "notes": "Component registered but not verified against graph"
+    },
+    {
+      "rendererKey": "rate-of-change-calculator",
+      "usedBy": 1,
+      "sampleNodeIds": [
+        "math.im3.skill.1.1.find-and-interpret-the-average-rate-of-change"
+      ],
+      "componentExists": true,
+      "notes": "Component registered but not verified against graph"
+    },
+    {
+      "rendererKey": "step-by-step-solver",
+      "usedBy": 38,
+      "sampleNodeIds": [
+        "math.im3.skill.1.4.solve-quadratic-equations-by-factoring",
+        "math.im3.skill.2.3.add-and-subtract-polynomials",
+        "math.im3.skill.2.3.multiply-polynomials",
+        "math.im3.skill.2.4.divide-polynomials-by-using-long-division",
+        "math.im3.skill.2.4.divide-polynomials-by-using-synthetic-division"
+      ],
+      "componentExists": true,
+      "notes": "Component registered but not verified against graph"
+    },
+    {
+      "rendererKey": "trig-unit-circle-visualizer",
+      "usedBy": 0,
+      "sampleNodeIds": [],
+      "componentExists": false,
+      "notes": "Trigonometry skills need unit circle visualizer; graphing-explorer is a fallback but suboptimal for periodic/angle concepts"
+    },
+    {
+      "rendererKey": "stats-distribution-plotter",
+      "usedBy": 0,
+      "sampleNodeIds": [],
+      "componentExists": false,
+      "notes": "Statistics skills need distribution plotter for normal/empirical-rule concepts; comprehension-quiz is a fallback"
+    }
+  ]
+}

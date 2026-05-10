@@ -1,0 +1,852 @@
+{
+  "blueprints": [
+    {
+      "nodeId": "math.im3.skill.5.1.graph-exponential-decay-functions",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "rendererKey": "graphing-explorer",
+      "rendererModeMap": {
+        "worked": "graphing-explorer",
+        "guidedPractice": "graphing-explorer",
+        "independentPractice": "graphing-explorer"
+      },
+      "workedExampleSpec": {
+        "prompt": "Worked example for 5b: Graph exponential decay functions",
+        "givens": [
+          "See curriculum source"
+        ],
+        "target": {},
+        "steps": [
+          {
+            "description": "Step 1",
+            "expression": "See curriculum"
+          }
+        ],
+        "explanation": "See curriculum source material."
+      },
+      "guidedPracticeSpec": {
+        "scaffoldedPrompt": "Guided practice for 5b: Graph exponential decay functions",
+        "stepPrompts": [
+          "Step 1"
+        ],
+        "hints": [
+          "Hint 1"
+        ],
+        "checksPerStep": [
+          {
+            "check": "See curriculum"
+          }
+        ],
+        "revealPolicy": "one_at_a_time"
+      },
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM3 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "5",
+        "lesson": "1"
+      }
+    },
+    {
+      "nodeId": "math.im3.skill.5.1.graph-exponential-growth-functions",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "rendererKey": "graphing-explorer",
+      "rendererModeMap": {
+        "worked": "graphing-explorer",
+        "guidedPractice": "graphing-explorer",
+        "independentPractice": "graphing-explorer"
+      },
+      "workedExampleSpec": {
+        "prompt": "Worked example for 5a: Graph exponential growth functions",
+        "givens": [
+          "See curriculum source"
+        ],
+        "target": {},
+        "steps": [
+          {
+            "description": "Step 1",
+            "expression": "See curriculum"
+          }
+        ],
+        "explanation": "See curriculum source material."
+      },
+      "guidedPracticeSpec": {
+        "scaffoldedPrompt": "Guided practice for 5a: Graph exponential growth functions",
+        "stepPrompts": [
+          "Step 1"
+        ],
+        "hints": [
+          "Hint 1"
+        ],
+        "checksPerStep": [
+          {
+            "check": "See curriculum"
+          }
+        ],
+        "revealPolicy": "one_at_a_time"
+      },
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM3 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "5",
+        "lesson": "1"
+      }
+    },
+    {
+      "nodeId": "math.im3.skill.5.2.solve-exponential-equations-in-one-variable",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "rendererKey": "step-by-step-solver",
+      "rendererModeMap": {
+        "worked": "step-by-step-solver",
+        "guidedPractice": "step-by-step-solver",
+        "independentPractice": "step-by-step-solver"
+      },
+      "workedExampleSpec": {
+        "prompt": "Worked example for 5c: Solve exponential equations in one variable",
+        "givens": [
+          "See curriculum source"
+        ],
+        "target": {},
+        "steps": [
+          {
+            "description": "Step 1",
+            "expression": "See curriculum"
+          }
+        ],
+        "explanation": "See curriculum source material."
+      },
+      "guidedPracticeSpec": {
+        "scaffoldedPrompt": "Guided practice for 5c: Solve exponential equations in one variable",
+        "stepPrompts": [
+          "Step 1"
+        ],
+        "hints": [
+          "Hint 1"
+        ],
+        "checksPerStep": [
+          {
+            "check": "See curriculum"
+          }
+        ],
+        "revealPolicy": "one_at_a_time"
+      },
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM3 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "5",
+        "lesson": "2"
+      }
+    },
+    {
+      "nodeId": "math.im3.skill.5.2.solve-exponential-inequalities-in-one-variable",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "rendererKey": "step-by-step-solver",
+      "rendererModeMap": {
+        "worked": "step-by-step-solver",
+        "guidedPractice": "step-by-step-solver",
+        "independentPractice": "step-by-step-solver"
+      },
+      "workedExampleSpec": {
+        "prompt": "Worked example for 5d: Solve exponential inequalities in one variable",
+        "givens": [
+          "See curriculum source"
+        ],
+        "target": {},
+        "steps": [
+          {
+            "description": "Step 1",
+            "expression": "See curriculum"
+          }
+        ],
+        "explanation": "See curriculum source material."
+      },
+      "guidedPracticeSpec": {
+        "scaffoldedPrompt": "Guided practice for 5d: Solve exponential inequalities in one variable",
+        "stepPrompts": [
+          "Step 1"
+        ],
+        "hints": [
+          "Hint 1"
+        ],
+        "checksPerStep": [
+          {
+            "check": "See curriculum"
+          }
+        ],
+        "revealPolicy": "one_at_a_time"
+      },
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM3 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "5",
+        "lesson": "2"
+      }
+    },
+    {
+      "nodeId": "math.im3.skill.5.3.analyze-expressions-and-functions-involving-the-natural-base",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "rendererKey": "graphing-explorer",
+      "rendererModeMap": {
+        "worked": "graphing-explorer",
+        "guidedPractice": "graphing-explorer",
+        "independentPractice": "graphing-explorer"
+      },
+      "workedExampleSpec": {
+        "prompt": "Worked example for 5e: Analyze expressions and functions involving the natural base \\e\\",
+        "givens": [
+          "See curriculum source"
+        ],
+        "target": {},
+        "steps": [
+          {
+            "description": "Step 1",
+            "expression": "See curriculum"
+          }
+        ],
+        "explanation": "See curriculum source material."
+      },
+      "guidedPracticeSpec": {
+        "scaffoldedPrompt": "Guided practice for 5e: Analyze expressions and functions involving the natural base \\e\\",
+        "stepPrompts": [
+          "Step 1"
+        ],
+        "hints": [
+          "Hint 1"
+        ],
+        "checksPerStep": [
+          {
+            "check": "See curriculum"
+          }
+        ],
+        "revealPolicy": "one_at_a_time"
+      },
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM3 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "5",
+        "lesson": "3"
+      }
+    },
+    {
+      "nodeId": "math.im3.skill.5.4.find-sums-of-geometric-series",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "rendererKey": "comprehension-quiz",
+      "rendererModeMap": {
+        "worked": "comprehension-quiz",
+        "guidedPractice": "comprehension-quiz",
+        "independentPractice": "comprehension-quiz"
+      },
+      "workedExampleSpec": {
+        "prompt": "Worked example for 5g: Find sums of geometric series",
+        "givens": [
+          "See curriculum source"
+        ],
+        "target": {},
+        "steps": [
+          {
+            "description": "Step 1",
+            "expression": "See curriculum"
+          }
+        ],
+        "explanation": "See curriculum source material."
+      },
+      "guidedPracticeSpec": {
+        "scaffoldedPrompt": "Guided practice for 5g: Find sums of geometric series",
+        "stepPrompts": [
+          "Step 1"
+        ],
+        "hints": [
+          "Hint 1"
+        ],
+        "checksPerStep": [
+          {
+            "check": "See curriculum"
+          }
+        ],
+        "revealPolicy": "one_at_a_time"
+      },
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM3 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "5",
+        "lesson": "4"
+      }
+    },
+    {
+      "nodeId": "math.im3.skill.5.4.generate-geometric-sequences",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "rendererKey": "comprehension-quiz",
+      "rendererModeMap": {
+        "worked": "comprehension-quiz",
+        "guidedPractice": "comprehension-quiz",
+        "independentPractice": "comprehension-quiz"
+      },
+      "workedExampleSpec": {
+        "prompt": "Worked example for 5f: Generate geometric sequences",
+        "givens": [
+          "See curriculum source"
+        ],
+        "target": {},
+        "steps": [
+          {
+            "description": "Step 1",
+            "expression": "See curriculum"
+          }
+        ],
+        "explanation": "See curriculum source material."
+      },
+      "guidedPracticeSpec": {
+        "scaffoldedPrompt": "Guided practice for 5f: Generate geometric sequences",
+        "stepPrompts": [
+          "Step 1"
+        ],
+        "hints": [
+          "Hint 1"
+        ],
+        "checksPerStep": [
+          {
+            "check": "See curriculum"
+          }
+        ],
+        "revealPolicy": "one_at_a_time"
+      },
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM3 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "5",
+        "lesson": "4"
+      }
+    },
+    {
+      "nodeId": "math.im3.skill.5.5.choose-the-best-function-type-to-model-sets-of-data",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "rendererKey": "graphing-explorer",
+      "rendererModeMap": {
+        "worked": "graphing-explorer",
+        "guidedPractice": "graphing-explorer",
+        "independentPractice": "graphing-explorer"
+      },
+      "workedExampleSpec": {
+        "prompt": "Worked example for 5h: Choose the best function type to model sets of data",
+        "givens": [
+          "See curriculum source"
+        ],
+        "target": {},
+        "steps": [
+          {
+            "description": "Step 1",
+            "expression": "See curriculum"
+          }
+        ],
+        "explanation": "See curriculum source material."
+      },
+      "guidedPracticeSpec": {
+        "scaffoldedPrompt": "Guided practice for 5h: Choose the best function type to model sets of data",
+        "stepPrompts": [
+          "Step 1"
+        ],
+        "hints": [
+          "Hint 1"
+        ],
+        "checksPerStep": [
+          {
+            "check": "See curriculum"
+          }
+        ],
+        "revealPolicy": "one_at_a_time"
+      },
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM3 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "5",
+        "lesson": "5"
+      }
+    },
+    {
+      "nodeId": "math.im3.skill.5.aleks.data-model-family-selection",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "rendererKey": "comprehension-quiz",
+      "rendererModeMap": {
+        "worked": "comprehension-quiz",
+        "guidedPractice": "comprehension-quiz",
+        "independentPractice": "comprehension-quiz"
+      },
+      "workedExampleSpec": {
+        "prompt": "Worked example for concept: data_model_family_selection",
+        "givens": [
+          "See curriculum source"
+        ],
+        "target": {},
+        "steps": [
+          {
+            "description": "Step 1",
+            "expression": "See curriculum"
+          }
+        ],
+        "explanation": "See curriculum source material."
+      },
+      "guidedPracticeSpec": {
+        "scaffoldedPrompt": "Guided practice for concept: data_model_family_selection",
+        "stepPrompts": [
+          "Step 1"
+        ],
+        "hints": [
+          "Hint 1"
+        ],
+        "checksPerStep": [
+          {
+            "check": "See curriculum"
+          }
+        ],
+        "revealPolicy": "one_at_a_time"
+      },
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM3 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "5",
+        "lesson": "1"
+      }
+    },
+    {
+      "nodeId": "math.im3.skill.5.aleks.exponential-decay-graph-analysis",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "rendererKey": "graphing-explorer",
+      "rendererModeMap": {
+        "worked": "graphing-explorer",
+        "guidedPractice": "graphing-explorer",
+        "independentPractice": "graphing-explorer"
+      },
+      "workedExampleSpec": {
+        "prompt": "Worked example for concept: exponential_decay_graph_analysis",
+        "givens": [
+          "See curriculum source"
+        ],
+        "target": {},
+        "steps": [
+          {
+            "description": "Step 1",
+            "expression": "See curriculum"
+          }
+        ],
+        "explanation": "See curriculum source material."
+      },
+      "guidedPracticeSpec": {
+        "scaffoldedPrompt": "Guided practice for concept: exponential_decay_graph_analysis",
+        "stepPrompts": [
+          "Step 1"
+        ],
+        "hints": [
+          "Hint 1"
+        ],
+        "checksPerStep": [
+          {
+            "check": "See curriculum"
+          }
+        ],
+        "revealPolicy": "one_at_a_time"
+      },
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM3 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "5",
+        "lesson": "1"
+      }
+    },
+    {
+      "nodeId": "math.im3.skill.5.aleks.exponential-equation-solving",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "rendererKey": "step-by-step-solver",
+      "rendererModeMap": {
+        "worked": "step-by-step-solver",
+        "guidedPractice": "step-by-step-solver",
+        "independentPractice": "step-by-step-solver"
+      },
+      "workedExampleSpec": {
+        "prompt": "Worked example for concept: exponential_equation_solving",
+        "givens": [
+          "See curriculum source"
+        ],
+        "target": {},
+        "steps": [
+          {
+            "description": "Step 1",
+            "expression": "See curriculum"
+          }
+        ],
+        "explanation": "See curriculum source material."
+      },
+      "guidedPracticeSpec": {
+        "scaffoldedPrompt": "Guided practice for concept: exponential_equation_solving",
+        "stepPrompts": [
+          "Step 1"
+        ],
+        "hints": [
+          "Hint 1"
+        ],
+        "checksPerStep": [
+          {
+            "check": "See curriculum"
+          }
+        ],
+        "revealPolicy": "one_at_a_time"
+      },
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM3 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "5",
+        "lesson": "1"
+      }
+    },
+    {
+      "nodeId": "math.im3.skill.5.aleks.exponential-growth-graph-analysis",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "rendererKey": "graphing-explorer",
+      "rendererModeMap": {
+        "worked": "graphing-explorer",
+        "guidedPractice": "graphing-explorer",
+        "independentPractice": "graphing-explorer"
+      },
+      "workedExampleSpec": {
+        "prompt": "Worked example for concept: exponential_growth_graph_analysis",
+        "givens": [
+          "See curriculum source"
+        ],
+        "target": {},
+        "steps": [
+          {
+            "description": "Step 1",
+            "expression": "See curriculum"
+          }
+        ],
+        "explanation": "See curriculum source material."
+      },
+      "guidedPracticeSpec": {
+        "scaffoldedPrompt": "Guided practice for concept: exponential_growth_graph_analysis",
+        "stepPrompts": [
+          "Step 1"
+        ],
+        "hints": [
+          "Hint 1"
+        ],
+        "checksPerStep": [
+          {
+            "check": "See curriculum"
+          }
+        ],
+        "revealPolicy": "one_at_a_time"
+      },
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM3 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "5",
+        "lesson": "1"
+      }
+    },
+    {
+      "nodeId": "math.im3.skill.5.aleks.exponential-inequality-solving",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "rendererKey": "comprehension-quiz",
+      "rendererModeMap": {
+        "worked": "comprehension-quiz",
+        "guidedPractice": "comprehension-quiz",
+        "independentPractice": "comprehension-quiz"
+      },
+      "workedExampleSpec": {
+        "prompt": "Worked example for concept: exponential_inequality_solving",
+        "givens": [
+          "See curriculum source"
+        ],
+        "target": {},
+        "steps": [
+          {
+            "description": "Step 1",
+            "expression": "See curriculum"
+          }
+        ],
+        "explanation": "See curriculum source material."
+      },
+      "guidedPracticeSpec": {
+        "scaffoldedPrompt": "Guided practice for concept: exponential_inequality_solving",
+        "stepPrompts": [
+          "Step 1"
+        ],
+        "hints": [
+          "Hint 1"
+        ],
+        "checksPerStep": [
+          {
+            "check": "See curriculum"
+          }
+        ],
+        "revealPolicy": "one_at_a_time"
+      },
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM3 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "5",
+        "lesson": "1"
+      }
+    },
+    {
+      "nodeId": "math.im3.skill.5.aleks.geometric-sequence-generation",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "rendererKey": "comprehension-quiz",
+      "rendererModeMap": {
+        "worked": "comprehension-quiz",
+        "guidedPractice": "comprehension-quiz",
+        "independentPractice": "comprehension-quiz"
+      },
+      "workedExampleSpec": {
+        "prompt": "Worked example for concept: geometric_sequence_generation",
+        "givens": [
+          "See curriculum source"
+        ],
+        "target": {},
+        "steps": [
+          {
+            "description": "Step 1",
+            "expression": "See curriculum"
+          }
+        ],
+        "explanation": "See curriculum source material."
+      },
+      "guidedPracticeSpec": {
+        "scaffoldedPrompt": "Guided practice for concept: geometric_sequence_generation",
+        "stepPrompts": [
+          "Step 1"
+        ],
+        "hints": [
+          "Hint 1"
+        ],
+        "checksPerStep": [
+          {
+            "check": "See curriculum"
+          }
+        ],
+        "revealPolicy": "one_at_a_time"
+      },
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM3 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "5",
+        "lesson": "1"
+      }
+    },
+    {
+      "nodeId": "math.im3.skill.5.aleks.geometric-series-summation",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "rendererKey": "comprehension-quiz",
+      "rendererModeMap": {
+        "worked": "comprehension-quiz",
+        "guidedPractice": "comprehension-quiz",
+        "independentPractice": "comprehension-quiz"
+      },
+      "workedExampleSpec": {
+        "prompt": "Worked example for concept: geometric_series_summation",
+        "givens": [
+          "See curriculum source"
+        ],
+        "target": {},
+        "steps": [
+          {
+            "description": "Step 1",
+            "expression": "See curriculum"
+          }
+        ],
+        "explanation": "See curriculum source material."
+      },
+      "guidedPracticeSpec": {
+        "scaffoldedPrompt": "Guided practice for concept: geometric_series_summation",
+        "stepPrompts": [
+          "Step 1"
+        ],
+        "hints": [
+          "Hint 1"
+        ],
+        "checksPerStep": [
+          {
+            "check": "See curriculum"
+          }
+        ],
+        "revealPolicy": "one_at_a_time"
+      },
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM3 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "5",
+        "lesson": "1"
+      }
+    },
+    {
+      "nodeId": "math.im3.skill.5.aleks.natural-base-e-analysis",
+      "sourceNodeIds": [],
+      "alignmentNodeIds": [],
+      "rendererKey": "comprehension-quiz",
+      "rendererModeMap": {
+        "worked": "comprehension-quiz",
+        "guidedPractice": "comprehension-quiz",
+        "independentPractice": "comprehension-quiz"
+      },
+      "workedExampleSpec": {
+        "prompt": "Worked example for concept: natural_base_e_analysis",
+        "givens": [
+          "See curriculum source"
+        ],
+        "target": {},
+        "steps": [
+          {
+            "description": "Step 1",
+            "expression": "See curriculum"
+          }
+        ],
+        "explanation": "See curriculum source material."
+      },
+      "guidedPracticeSpec": {
+        "scaffoldedPrompt": "Guided practice for concept: natural_base_e_analysis",
+        "stepPrompts": [
+          "Step 1"
+        ],
+        "hints": [
+          "Hint 1"
+        ],
+        "checksPerStep": [
+          {
+            "check": "See curriculum"
+          }
+        ],
+        "revealPolicy": "one_at_a_time"
+      },
+      "independentPracticeSpec": {},
+      "exceptions": [
+        {
+          "type": "generator",
+          "reason": "Generator not yet implemented for IM3 rollout"
+        }
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "5",
+        "lesson": "1"
+      }
+    }
+  ]
+}

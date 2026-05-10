@@ -1,0 +1,944 @@
+{
+  "nodes": [
+    {
+      "id": "math.im3",
+      "kind": "domain",
+      "title": "Integrated Math 3",
+      "domain": "math.im3",
+      "description": "Students develop a deep understanding of quadratic relationships, multiple solution methods, and extend solutions into the complex number system. Emphasis is placed on connecting algebraic procedures with graphical meaning.",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-1-class-period-plan.md",
+        "apps/integrated-math-3/curriculum/module-2-class-period-plan.md",
+        "apps/integrated-math-3/curriculum/module-3-class-period-plan.md",
+        "apps/integrated-math-3/curriculum/module-4-class-period-plan.md",
+        "apps/integrated-math-3/curriculum/module-5-class-period-plan.md",
+        "apps/integrated-math-3/curriculum/module-6-class-period-plan.md",
+        "apps/integrated-math-3/curriculum/module-7-class-period-plan.md",
+        "apps/integrated-math-3/curriculum/module-8-class-period-plan.md",
+        "apps/integrated-math-3/curriculum/module-9-class-period-plan.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3"
+      }
+    },
+    {
+      "id": "math.im3.example.6.1.001",
+      "kind": "worked_example",
+      "title": "Example 1: Logarithmic to Exponential Form; Exponential to Logarithmic Form; Evaluate Logarithmic Expressions; Find Inverses of Exponential Functions",
+      "domain": "math.im3",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-6-class-period-plan.md (6-1, Example 1)"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "6",
+        "lesson": "1",
+        "exampleNumber": 1,
+        "sourceLesson": "6-1",
+        "rawText": "6-1, Examples 1-4 \u2014 Logarithmic to Exponential Form; Exponential to Logarithmic Form; Evaluate Logarithmic Expressions; Find Inverses of Exponential Functions"
+      }
+    },
+    {
+      "id": "math.im3.example.6.1.002",
+      "kind": "worked_example",
+      "title": "Example 2: Logarithmic to Exponential Form; Exponential to Logarithmic Form; Evaluate Logarithmic Expressions; Find Inverses of Exponential Functions",
+      "domain": "math.im3",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-6-class-period-plan.md (6-1, Example 2)"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "6",
+        "lesson": "1",
+        "exampleNumber": 2,
+        "sourceLesson": "6-1",
+        "rawText": "6-1, Examples 1-4 \u2014 Logarithmic to Exponential Form; Exponential to Logarithmic Form; Evaluate Logarithmic Expressions; Find Inverses of Exponential Functions"
+      }
+    },
+    {
+      "id": "math.im3.example.6.1.003",
+      "kind": "worked_example",
+      "title": "Example 3: Logarithmic to Exponential Form; Exponential to Logarithmic Form; Evaluate Logarithmic Expressions; Find Inverses of Exponential Functions",
+      "domain": "math.im3",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-6-class-period-plan.md (6-1, Example 3)"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "6",
+        "lesson": "1",
+        "exampleNumber": 3,
+        "sourceLesson": "6-1",
+        "rawText": "6-1, Examples 1-4 \u2014 Logarithmic to Exponential Form; Exponential to Logarithmic Form; Evaluate Logarithmic Expressions; Find Inverses of Exponential Functions"
+      }
+    },
+    {
+      "id": "math.im3.example.6.1.004",
+      "kind": "worked_example",
+      "title": "Example 4: Logarithmic to Exponential Form; Exponential to Logarithmic Form; Evaluate Logarithmic Expressions; Find Inverses of Exponential Functions",
+      "domain": "math.im3",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-6-class-period-plan.md (6-1, Example 4)"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "6",
+        "lesson": "1",
+        "exampleNumber": 4,
+        "sourceLesson": "6-1",
+        "rawText": "6-1, Examples 1-4 \u2014 Logarithmic to Exponential Form; Exponential to Logarithmic Form; Evaluate Logarithmic Expressions; Find Inverses of Exponential Functions"
+      }
+    },
+    {
+      "id": "math.im3.example.6.1.005",
+      "kind": "worked_example",
+      "title": "Example 5: Graph Logarithmic Functions; Graph Transformations of Logarithmic Functions; Compare Logarithmic Functions; Write Logarithmic Functions From Graphs",
+      "domain": "math.im3",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-6-class-period-plan.md (6-1, Example 5)"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "6",
+        "lesson": "1",
+        "exampleNumber": 5,
+        "sourceLesson": "6-1",
+        "rawText": "6-1, Examples 5-8 \u2014 Graph Logarithmic Functions; Graph Transformations of Logarithmic Functions; Compare Logarithmic Functions; Write Logarithmic Functions From Graphs"
+      }
+    },
+    {
+      "id": "math.im3.example.6.1.006",
+      "kind": "worked_example",
+      "title": "Example 6: Graph Logarithmic Functions; Graph Transformations of Logarithmic Functions; Compare Logarithmic Functions; Write Logarithmic Functions From Graphs",
+      "domain": "math.im3",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-6-class-period-plan.md (6-1, Example 6)"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "6",
+        "lesson": "1",
+        "exampleNumber": 6,
+        "sourceLesson": "6-1",
+        "rawText": "6-1, Examples 5-8 \u2014 Graph Logarithmic Functions; Graph Transformations of Logarithmic Functions; Compare Logarithmic Functions; Write Logarithmic Functions From Graphs"
+      }
+    },
+    {
+      "id": "math.im3.example.6.1.007",
+      "kind": "worked_example",
+      "title": "Example 7: Graph Logarithmic Functions; Graph Transformations of Logarithmic Functions; Compare Logarithmic Functions; Write Logarithmic Functions From Graphs",
+      "domain": "math.im3",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-6-class-period-plan.md (6-1, Example 7)"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "6",
+        "lesson": "1",
+        "exampleNumber": 7,
+        "sourceLesson": "6-1",
+        "rawText": "6-1, Examples 5-8 \u2014 Graph Logarithmic Functions; Graph Transformations of Logarithmic Functions; Compare Logarithmic Functions; Write Logarithmic Functions From Graphs"
+      }
+    },
+    {
+      "id": "math.im3.example.6.1.008",
+      "kind": "worked_example",
+      "title": "Example 8: Graph Logarithmic Functions; Graph Transformations of Logarithmic Functions; Compare Logarithmic Functions; Write Logarithmic Functions From Graphs",
+      "domain": "math.im3",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-6-class-period-plan.md (6-1, Example 8)"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "6",
+        "lesson": "1",
+        "exampleNumber": 8,
+        "sourceLesson": "6-1",
+        "rawText": "6-1, Examples 5-8 \u2014 Graph Logarithmic Functions; Graph Transformations of Logarithmic Functions; Compare Logarithmic Functions; Write Logarithmic Functions From Graphs"
+      }
+    },
+    {
+      "id": "math.im3.example.6.2.009",
+      "kind": "worked_example",
+      "title": "Example 3: Product Property of Logarithms; Quotient Property of Logarithms; Power Property of Logarithms",
+      "domain": "math.im3",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-6-class-period-plan.md (6-2, Example 3)"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "6",
+        "lesson": "2",
+        "exampleNumber": 3,
+        "sourceLesson": "6-2",
+        "rawText": "6-2, Examples 3-5 \u2014 Product Property of Logarithms; Quotient Property of Logarithms; Power Property of Logarithms"
+      }
+    },
+    {
+      "id": "math.im3.example.6.2.010",
+      "kind": "worked_example",
+      "title": "Example 4: Product Property of Logarithms; Quotient Property of Logarithms; Power Property of Logarithms",
+      "domain": "math.im3",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-6-class-period-plan.md (6-2, Example 4)"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "6",
+        "lesson": "2",
+        "exampleNumber": 4,
+        "sourceLesson": "6-2",
+        "rawText": "6-2, Examples 3-5 \u2014 Product Property of Logarithms; Quotient Property of Logarithms; Power Property of Logarithms"
+      }
+    },
+    {
+      "id": "math.im3.example.6.2.011",
+      "kind": "worked_example",
+      "title": "Example 5: Product Property of Logarithms; Quotient Property of Logarithms; Power Property of Logarithms",
+      "domain": "math.im3",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-6-class-period-plan.md (6-2, Example 5)"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "6",
+        "lesson": "2",
+        "exampleNumber": 5,
+        "sourceLesson": "6-2",
+        "rawText": "6-2, Examples 3-5 \u2014 Product Property of Logarithms; Quotient Property of Logarithms; Power Property of Logarithms"
+      }
+    },
+    {
+      "id": "math.im3.example.6.3.012",
+      "kind": "worked_example",
+      "title": "Example 1: Find Common Logarithms by Using Technology; Solve a Logarithmic Equation by Using Exponential Form; Solve an Exponential Equation by Using Logarithms; Solve an Exponential Inequality by Using Logarithms",
+      "domain": "math.im3",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-6-class-period-plan.md (6-3, Example 1)"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "6",
+        "lesson": "3",
+        "exampleNumber": 1,
+        "sourceLesson": "6-3",
+        "rawText": "6-3, Examples 1-4 \u2014 Find Common Logarithms by Using Technology; Solve a Logarithmic Equation by Using Exponential Form; Solve an Exponential Equation by Using Logarithms; Solve an Exponential Inequality by Using Logarithms"
+      }
+    },
+    {
+      "id": "math.im3.example.6.3.013",
+      "kind": "worked_example",
+      "title": "Example 2: Find Common Logarithms by Using Technology; Solve a Logarithmic Equation by Using Exponential Form; Solve an Exponential Equation by Using Logarithms; Solve an Exponential Inequality by Using Logarithms",
+      "domain": "math.im3",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-6-class-period-plan.md (6-3, Example 2)"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "6",
+        "lesson": "3",
+        "exampleNumber": 2,
+        "sourceLesson": "6-3",
+        "rawText": "6-3, Examples 1-4 \u2014 Find Common Logarithms by Using Technology; Solve a Logarithmic Equation by Using Exponential Form; Solve an Exponential Equation by Using Logarithms; Solve an Exponential Inequality by Using Logarithms"
+      }
+    },
+    {
+      "id": "math.im3.example.6.3.014",
+      "kind": "worked_example",
+      "title": "Example 3: Find Common Logarithms by Using Technology; Solve a Logarithmic Equation by Using Exponential Form; Solve an Exponential Equation by Using Logarithms; Solve an Exponential Inequality by Using Logarithms",
+      "domain": "math.im3",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-6-class-period-plan.md (6-3, Example 3)"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "6",
+        "lesson": "3",
+        "exampleNumber": 3,
+        "sourceLesson": "6-3",
+        "rawText": "6-3, Examples 1-4 \u2014 Find Common Logarithms by Using Technology; Solve a Logarithmic Equation by Using Exponential Form; Solve an Exponential Equation by Using Logarithms; Solve an Exponential Inequality by Using Logarithms"
+      }
+    },
+    {
+      "id": "math.im3.example.6.3.015",
+      "kind": "worked_example",
+      "title": "Example 4: Find Common Logarithms by Using Technology; Solve a Logarithmic Equation by Using Exponential Form; Solve an Exponential Equation by Using Logarithms; Solve an Exponential Inequality by Using Logarithms",
+      "domain": "math.im3",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-6-class-period-plan.md (6-3, Example 4)"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "6",
+        "lesson": "3",
+        "exampleNumber": 4,
+        "sourceLesson": "6-3",
+        "rawText": "6-3, Examples 1-4 \u2014 Find Common Logarithms by Using Technology; Solve a Logarithmic Equation by Using Exponential Form; Solve an Exponential Equation by Using Logarithms; Solve an Exponential Inequality by Using Logarithms"
+      }
+    },
+    {
+      "id": "math.im3.example.6.3.016",
+      "kind": "worked_example",
+      "title": "Example 5: Change of Base Formula; Use the Change of Base Formula",
+      "domain": "math.im3",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-6-class-period-plan.md (6-3, Example 5)"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "6",
+        "lesson": "3",
+        "exampleNumber": 5,
+        "sourceLesson": "6-3",
+        "rawText": "6-3, Examples 5-6 \u2014 Change of Base Formula; Use the Change of Base Formula"
+      }
+    },
+    {
+      "id": "math.im3.example.6.3.017",
+      "kind": "worked_example",
+      "title": "Example 6: Change of Base Formula; Use the Change of Base Formula",
+      "domain": "math.im3",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-6-class-period-plan.md (6-3, Example 6)"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "6",
+        "lesson": "3",
+        "exampleNumber": 6,
+        "sourceLesson": "6-3",
+        "rawText": "6-3, Examples 5-6 \u2014 Change of Base Formula; Use the Change of Base Formula"
+      }
+    },
+    {
+      "id": "math.im3.example.6.4.018",
+      "kind": "worked_example",
+      "title": "Example 1: Write Equivalent Logarithmic Equations; Write Equivalent Exponential Equations; Simplify Logarithmic Expressions",
+      "domain": "math.im3",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-6-class-period-plan.md (6-4, Example 1)"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "6",
+        "lesson": "4",
+        "exampleNumber": 1,
+        "sourceLesson": "6-4",
+        "rawText": "6-4, Examples 1-3 \u2014 Write Equivalent Logarithmic Equations; Write Equivalent Exponential Equations; Simplify Logarithmic Expressions"
+      }
+    },
+    {
+      "id": "math.im3.example.6.4.019",
+      "kind": "worked_example",
+      "title": "Example 2: Write Equivalent Logarithmic Equations; Write Equivalent Exponential Equations; Simplify Logarithmic Expressions",
+      "domain": "math.im3",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-6-class-period-plan.md (6-4, Example 2)"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "6",
+        "lesson": "4",
+        "exampleNumber": 2,
+        "sourceLesson": "6-4",
+        "rawText": "6-4, Examples 1-3 \u2014 Write Equivalent Logarithmic Equations; Write Equivalent Exponential Equations; Simplify Logarithmic Expressions"
+      }
+    },
+    {
+      "id": "math.im3.example.6.4.020",
+      "kind": "worked_example",
+      "title": "Example 3: Write Equivalent Logarithmic Equations; Write Equivalent Exponential Equations; Simplify Logarithmic Expressions",
+      "domain": "math.im3",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-6-class-period-plan.md (6-4, Example 3)"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "6",
+        "lesson": "4",
+        "exampleNumber": 3,
+        "sourceLesson": "6-4",
+        "rawText": "6-4, Examples 1-3 \u2014 Write Equivalent Logarithmic Equations; Write Equivalent Exponential Equations; Simplify Logarithmic Expressions"
+      }
+    },
+    {
+      "id": "math.im3.example.6.4.021",
+      "kind": "worked_example",
+      "title": "Example 4: Solve Exponential Equations with Base \\e\\; Solve Natural Logarithmic Equations",
+      "domain": "math.im3",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-6-class-period-plan.md (6-4, Example 4)"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "6",
+        "lesson": "4",
+        "exampleNumber": 4,
+        "sourceLesson": "6-4",
+        "rawText": "6-4, Examples 4-5 \u2014 Solve Exponential Equations with Base \\e\\; Solve Natural Logarithmic Equations"
+      }
+    },
+    {
+      "id": "math.im3.example.6.4.022",
+      "kind": "worked_example",
+      "title": "Example 5: Solve Exponential Equations with Base \\e\\; Solve Natural Logarithmic Equations",
+      "domain": "math.im3",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-6-class-period-plan.md (6-4, Example 5)"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "6",
+        "lesson": "4",
+        "exampleNumber": 5,
+        "sourceLesson": "6-4",
+        "rawText": "6-4, Examples 4-5 \u2014 Solve Exponential Equations with Base \\e\\; Solve Natural Logarithmic Equations"
+      }
+    },
+    {
+      "id": "math.im3.example.6.4.023",
+      "kind": "worked_example",
+      "title": "Example 6: Apply Functions with Base \\e\\; Examine Logarithmic Data",
+      "domain": "math.im3",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-6-class-period-plan.md (6-4, Example 6)"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "6",
+        "lesson": "4",
+        "exampleNumber": 6,
+        "sourceLesson": "6-4",
+        "rawText": "6-4, Examples 6-7 \u2014 Apply Functions with Base \\e\\; Examine Logarithmic Data"
+      }
+    },
+    {
+      "id": "math.im3.example.6.4.024",
+      "kind": "worked_example",
+      "title": "Example 7: Apply Functions with Base \\e\\; Examine Logarithmic Data",
+      "domain": "math.im3",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-6-class-period-plan.md (6-4, Example 7)"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "6",
+        "lesson": "4",
+        "exampleNumber": 7,
+        "sourceLesson": "6-4",
+        "rawText": "6-4, Examples 6-7 \u2014 Apply Functions with Base \\e\\; Examine Logarithmic Data"
+      }
+    },
+    {
+      "id": "math.im3.example.6.5.025",
+      "kind": "worked_example",
+      "title": "Example 1: Continuous Exponential Growth (Parts A-B)",
+      "domain": "math.im3",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-6-class-period-plan.md (6-5, Example 1)"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "6",
+        "lesson": "5",
+        "exampleNumber": 1,
+        "sourceLesson": "6-5",
+        "rawText": "6-5, Example 1 \u2014 Continuous Exponential Growth (Parts A-B)"
+      }
+    },
+    {
+      "id": "math.im3.lesson.6.1",
+      "kind": "instructional_unit",
+      "title": "Logarithms and Logarithmic Functions",
+      "domain": "math.im3",
+      "description": "Definition, graphs, and transformations.",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-6-class-period-plan.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "6",
+        "lesson": "1"
+      }
+    },
+    {
+      "id": "math.im3.lesson.6.2",
+      "kind": "instructional_unit",
+      "title": "Properties of Logarithms",
+      "domain": "math.im3",
+      "description": "Product, quotient, and power rules.",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-6-class-period-plan.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "6",
+        "lesson": "2"
+      }
+    },
+    {
+      "id": "math.im3.lesson.6.3",
+      "kind": "instructional_unit",
+      "title": "Common Logarithms",
+      "domain": "math.im3",
+      "description": "Base-10 applications.",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-6-class-period-plan.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "6",
+        "lesson": "3"
+      }
+    },
+    {
+      "id": "math.im3.lesson.6.4",
+      "kind": "instructional_unit",
+      "title": "Natural Logarithms",
+      "domain": "math.im3",
+      "description": "Base e and applications.",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-6-class-period-plan.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "6",
+        "lesson": "4"
+      }
+    },
+    {
+      "id": "math.im3.lesson.6.5",
+      "kind": "instructional_unit",
+      "title": "Using Exponential and Logarithmic Functions",
+      "domain": "math.im3",
+      "description": "Solving real-world problems.",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-6-class-period-plan.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "6",
+        "lesson": "5"
+      }
+    },
+    {
+      "id": "math.im3.module.6",
+      "kind": "content_group",
+      "title": "Logarithmic Functions",
+      "domain": "math.im3",
+      "description": "Students formalize logarithms as inverses of exponentials and apply them to solve complex equations.",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-6-class-period-plan.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "6"
+      }
+    },
+    {
+      "id": "math.im3.skill.6.1.write-logarithmic-expressions-in-exponential-form-and-write",
+      "kind": "skill",
+      "title": "6a: Write logarithmic expressions in exponential form and write exponential expressions in logarithmic form",
+      "domain": "math.im3",
+      "description": "Write logarithmic expressions in exponential form and write exponential expressions in logarithmic form",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-6-class-period-plan.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "6",
+        "lesson": "1"
+      }
+    },
+    {
+      "id": "math.im3.skill.6.2.solve-logarithmic-equations-using-properties-of-equality",
+      "kind": "skill",
+      "title": "6c: Solve logarithmic equations using properties of equality",
+      "domain": "math.im3",
+      "description": "Solve logarithmic equations using properties of equality",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-6-class-period-plan.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "6",
+        "lesson": "2"
+      }
+    },
+    {
+      "id": "math.im3.skill.6.3.solve-exponential-equations-by-using-common-logarithms",
+      "kind": "skill",
+      "title": "6e: Solve exponential equations by using common logarithms",
+      "domain": "math.im3",
+      "description": "Solve exponential equations by using common logarithms",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-6-class-period-plan.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "6",
+        "lesson": "3"
+      }
+    },
+    {
+      "id": "math.im3.skill.6.4.simplify-expressions-with-natural-logarithms",
+      "kind": "skill",
+      "title": "6g: Simplify expressions with natural logarithms",
+      "domain": "math.im3",
+      "description": "Simplify expressions with natural logarithms",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-6-class-period-plan.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "6",
+        "lesson": "4"
+      }
+    },
+    {
+      "id": "math.im3.skill.6.4.solve-exponential-equations-by-using-natural-logarithms",
+      "kind": "skill",
+      "title": "6h: Solve exponential equations by using natural logarithms",
+      "domain": "math.im3",
+      "description": "Solve exponential equations by using natural logarithms",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-6-class-period-plan.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "6",
+        "lesson": "4"
+      }
+    },
+    {
+      "id": "math.im3.skill.6.5.write-and-solve-exponential-decay-equations",
+      "kind": "skill",
+      "title": "6j: Write and solve exponential decay equations",
+      "domain": "math.im3",
+      "description": "Write and solve exponential decay equations",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-6-class-period-plan.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "6",
+        "lesson": "5"
+      }
+    },
+    {
+      "id": "math.im3.skill.6.5.write-and-solve-exponential-growth-equations-and-inequalitie",
+      "kind": "skill",
+      "title": "6i: Write and solve exponential growth equations and inequalities",
+      "domain": "math.im3",
+      "description": "Write and solve exponential growth equations and inequalities",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-6-class-period-plan.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "6",
+        "lesson": "5"
+      }
+    },
+    {
+      "id": "math.im3.skill.6.aleks.change-of-base-evaluation",
+      "kind": "concept",
+      "title": "change_of_base_evaluation",
+      "domain": "math.im3",
+      "description": "Change-of-base computation and application.",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-6-class-period-plan.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "6",
+        "source": "aleks-registry",
+        "familyKey": "change_of_base_evaluation",
+        "objectives": [
+          "6f",
+          "6e"
+        ],
+        "sourceExamples": "6-3, Examples 5-6",
+        "interactionShape": "step-by-step solver",
+        "status": "planned"
+      }
+    },
+    {
+      "id": "math.im3.skill.6.aleks.common-log-exponential-solving",
+      "kind": "concept",
+      "title": "common_log_exponential_solving",
+      "domain": "math.im3",
+      "description": "Common logarithms, equations, inequalities, and technology.",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-6-class-period-plan.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "6",
+        "source": "aleks-registry",
+        "familyKey": "common_log_exponential_solving",
+        "objectives": [
+          "6e",
+          "6f"
+        ],
+        "sourceExamples": "6-3, Examples 1-4",
+        "interactionShape": "step-by-step solver",
+        "status": "planned"
+      }
+    },
+    {
+      "id": "math.im3.skill.6.aleks.continuous-exponential-decay-modeling",
+      "kind": "concept",
+      "title": "continuous_exponential_decay_modeling",
+      "domain": "math.im3",
+      "description": "Decay equations, half-life interpretation, and radiocarbon dating.",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-6-class-period-plan.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "6",
+        "source": "aleks-registry",
+        "familyKey": "continuous_exponential_decay_modeling",
+        "objectives": [
+          "6j"
+        ],
+        "sourceExamples": "6-5, Example 2 and Apply Example 3",
+        "interactionShape": "model builder + step-by-step solver",
+        "status": "planned"
+      }
+    },
+    {
+      "id": "math.im3.skill.6.aleks.continuous-exponential-growth-modeling",
+      "kind": "concept",
+      "title": "continuous_exponential_growth_modeling",
+      "domain": "math.im3",
+      "description": "Continuous growth equations, time solving, and inequality-style comparisons.",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-6-class-period-plan.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "6",
+        "source": "aleks-registry",
+        "familyKey": "continuous_exponential_growth_modeling",
+        "objectives": [
+          "6i"
+        ],
+        "sourceExamples": "6-5, Example 1",
+        "interactionShape": "model builder + step-by-step solver",
+        "status": "planned"
+      }
+    },
+    {
+      "id": "math.im3.skill.6.aleks.log-exp-form-conversion",
+      "kind": "concept",
+      "title": "log_exp_form_conversion",
+      "domain": "math.im3",
+      "description": "Convert logarithmic/exponential forms, evaluate logs, and connect inverses.",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-6-class-period-plan.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "6",
+        "source": "aleks-registry",
+        "familyKey": "log_exp_form_conversion",
+        "objectives": [
+          "6a",
+          "6b"
+        ],
+        "sourceExamples": "6-1, Examples 1-4",
+        "interactionShape": "step-by-step solver",
+        "status": "planned"
+      }
+    },
+    {
+      "id": "math.im3.skill.6.aleks.logarithm-property-simplification",
+      "kind": "concept",
+      "title": "logarithm_property_simplification",
+      "domain": "math.im3",
+      "description": "Product, quotient, and power properties.",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-6-class-period-plan.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "6",
+        "source": "aleks-registry",
+        "familyKey": "logarithm_property_simplification",
+        "objectives": [
+          "6d",
+          "6c"
+        ],
+        "sourceExamples": "6-2, Examples 3-5",
+        "interactionShape": "step-by-step solver",
+        "status": "planned"
+      }
+    },
+    {
+      "id": "math.im3.skill.6.aleks.logarithmic-equation-solving",
+      "kind": "concept",
+      "title": "logarithmic_equation_solving",
+      "domain": "math.im3",
+      "description": "Definition/equality/property solving with domain checks.",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-6-class-period-plan.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "6",
+        "source": "aleks-registry",
+        "familyKey": "logarithmic_equation_solving",
+        "objectives": [
+          "6c",
+          "6d"
+        ],
+        "sourceExamples": "6-2, Examples 1-2 and Apply Example 6",
+        "interactionShape": "step-by-step solver",
+        "status": "planned"
+      }
+    },
+    {
+      "id": "math.im3.skill.6.aleks.logarithmic-graph-analysis",
+      "kind": "concept",
+      "title": "logarithmic_graph_analysis",
+      "domain": "math.im3",
+      "description": "Graphs, transformations, comparisons, and graph-to-rule.",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-6-class-period-plan.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "6",
+        "source": "aleks-registry",
+        "familyKey": "logarithmic_graph_analysis",
+        "objectives": [
+          "6b",
+          "6a"
+        ],
+        "sourceExamples": "6-1, Examples 5-8",
+        "interactionShape": "graphing explorer",
+        "status": "planned"
+      }
+    },
+    {
+      "id": "math.im3.skill.6.aleks.natural-log-equation-solving",
+      "kind": "concept",
+      "title": "natural_log_equation_solving",
+      "domain": "math.im3",
+      "description": "Equations with base e and natural logs.",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-6-class-period-plan.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "6",
+        "source": "aleks-registry",
+        "familyKey": "natural_log_equation_solving",
+        "objectives": [
+          "6h",
+          "6g"
+        ],
+        "sourceExamples": "6-4, Examples 4-5",
+        "interactionShape": "step-by-step solver",
+        "status": "planned"
+      }
+    },
+    {
+      "id": "math.im3.skill.6.aleks.natural-log-model-analysis",
+      "kind": "concept",
+      "title": "natural_log_model_analysis",
+      "domain": "math.im3",
+      "description": "Applied e functions and logarithmic data analysis.",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-6-class-period-plan.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "6",
+        "source": "aleks-registry",
+        "familyKey": "natural_log_model_analysis",
+        "objectives": [
+          "6h",
+          "6g"
+        ],
+        "sourceExamples": "6-4, Examples 6-7",
+        "interactionShape": "data model + step-by-step solver",
+        "status": "planned"
+      }
+    },
+    {
+      "id": "math.im3.skill.6.aleks.natural-log-simplification",
+      "kind": "concept",
+      "title": "natural_log_simplification",
+      "domain": "math.im3",
+      "description": "Equivalent log/exponential statements and ln simplification.",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/module-6-class-period-plan.md"
+      ],
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "6",
+        "source": "aleks-registry",
+        "familyKey": "natural_log_simplification",
+        "objectives": [
+          "6g"
+        ],
+        "sourceExamples": "6-4, Examples 1-3",
+        "interactionShape": "step-by-step solver",
+        "status": "planned"
+      }
+    }
+  ]
+}

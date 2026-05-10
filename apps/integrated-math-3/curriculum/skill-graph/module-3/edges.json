@@ -1,0 +1,3415 @@
+{
+  "edges": [
+    {
+      "id": "math.alignment.im3-example-3-1-001-to-ccss-hsa-apr-b-2",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.3.1.001",
+      "targetId": "math.standard.ccss.hsa-apr-b-2",
+      "weight": 0.5,
+      "confidence": "medium",
+      "sourceRefs": [
+        "family-objective:step-by-step-solver:synthetic-substitution",
+        "family-objective:step-by-step-solver:find-zeros-polynomials"
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via problem family step-by-step-solver:synthetic-substitution objective; Aligned via problem family step-by-step-solver:find-zeros-polynomials objective",
+      "metadata": {
+        "isPrimary": false,
+        "course": "im3",
+        "originalWeight": 0.4,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-3-1-001-to-ccss-hsa-apr-b-3",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.3.1.001",
+      "targetId": "math.standard.ccss.hsa-apr-b-3",
+      "weight": 0.5,
+      "confidence": "medium",
+      "sourceRefs": [
+        "family-objective:step-by-step-solver:find-zeros-polynomials",
+        "family-objective:step-by-step-solver:fundamental-theorem-algebra"
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via problem family step-by-step-solver:find-zeros-polynomials objective; Aligned via problem family step-by-step-solver:fundamental-theorem-algebra objective",
+      "metadata": {
+        "isPrimary": false,
+        "course": "im3",
+        "originalWeight": 0.4,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-3-1-001-to-ccss-hsa-apr-c-4",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.3.1.001",
+      "targetId": "math.standard.ccss.hsa-apr-c-4",
+      "weight": 0.5,
+      "confidence": "medium",
+      "sourceRefs": [
+        "family-objective:step-by-step-solver:solve-polynomial-equations",
+        "family-objective:step-by-step-solver:prove-polynomial-identities",
+        "family-objective:step-by-step-solver:numerical-relationships",
+        "family-objective:comprehension-quiz:polynomial-equations-vocabulary"
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via problem family step-by-step-solver:solve-polynomial-equations objective; Aligned via problem family step-by-step-solver:prove-polynomial-identities objective; Aligned via problem family step-by-step-solver:numerical-relationships objective; Aligned via problem family comprehension-quiz:polynomial-equations-vocabulary objective",
+      "metadata": {
+        "isPrimary": false,
+        "course": "im3",
+        "originalWeight": 0.4,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-3-1-001-to-ccss-hsa-rei-b-4",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.3.1.001",
+      "targetId": "math.standard.ccss.hsa-rei-b-4",
+      "weight": 0.75,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-3-lesson-1",
+          "note": "Mapped via lesson standard (primary)"
+        },
+        "family-objective:step-by-step-solver:solve-polynomial-equations",
+        "family-objective:graphing-explorer:solve-polynomial-by-graphing"
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-3-lesson-1; Aligned via problem family step-by-step-solver:solve-polynomial-equations objective; Aligned via problem family graphing-explorer:solve-polynomial-by-graphing objective",
+      "metadata": {
+        "isPrimary": true,
+        "course": "im3",
+        "originalWeight": 0.8,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-3-1-001-to-ccss-hsa-rei-c-7",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.3.1.001",
+      "targetId": "math.standard.ccss.hsa-rei-c-7",
+      "weight": 0.5,
+      "confidence": "medium",
+      "sourceRefs": [
+        "family-objective:step-by-step-solver:linear-quadratic-systems",
+        "family-objective:graphing-explorer:linear-quadratic-systems"
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via problem family step-by-step-solver:linear-quadratic-systems objective; Aligned via problem family graphing-explorer:linear-quadratic-systems objective",
+      "metadata": {
+        "isPrimary": false,
+        "course": "im3",
+        "originalWeight": 0.4,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-3-1-001-to-ccss-hsf-if-a-2",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.3.1.001",
+      "targetId": "math.standard.ccss.hsf-if-a-2",
+      "weight": 0.5,
+      "confidence": "medium",
+      "sourceRefs": [
+        "family-objective:graphing-explorer:solve-polynomial-by-graphing",
+        "family-objective:step-by-step-solver:synthetic-substitution"
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via problem family graphing-explorer:solve-polynomial-by-graphing objective; Aligned via problem family step-by-step-solver:synthetic-substitution objective",
+      "metadata": {
+        "isPrimary": false,
+        "course": "im3",
+        "originalWeight": 0.4,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-3-1-001-to-ccss-n-cn-a-1",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.3.1.001",
+      "targetId": "math.standard.ccss.n-cn-a-1",
+      "weight": 0.5,
+      "confidence": "medium",
+      "sourceRefs": [
+        "family-objective:step-by-step-solver:fundamental-theorem-algebra"
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via problem family step-by-step-solver:fundamental-theorem-algebra objective",
+      "metadata": {
+        "isPrimary": false,
+        "course": "im3",
+        "originalWeight": 0.4,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-3-1-002-to-ccss-hsa-apr-b-2",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.3.1.002",
+      "targetId": "math.standard.ccss.hsa-apr-b-2",
+      "weight": 0.5,
+      "confidence": "medium",
+      "sourceRefs": [
+        "family-objective:step-by-step-solver:synthetic-substitution",
+        "family-objective:step-by-step-solver:find-zeros-polynomials"
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via problem family step-by-step-solver:synthetic-substitution objective; Aligned via problem family step-by-step-solver:find-zeros-polynomials objective",
+      "metadata": {
+        "isPrimary": false,
+        "course": "im3",
+        "originalWeight": 0.4,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-3-1-002-to-ccss-hsa-apr-b-3",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.3.1.002",
+      "targetId": "math.standard.ccss.hsa-apr-b-3",
+      "weight": 0.5,
+      "confidence": "medium",
+      "sourceRefs": [
+        "family-objective:step-by-step-solver:find-zeros-polynomials",
+        "family-objective:step-by-step-solver:fundamental-theorem-algebra"
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via problem family step-by-step-solver:find-zeros-polynomials objective; Aligned via problem family step-by-step-solver:fundamental-theorem-algebra objective",
+      "metadata": {
+        "isPrimary": false,
+        "course": "im3",
+        "originalWeight": 0.4,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-3-1-002-to-ccss-hsa-apr-c-4",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.3.1.002",
+      "targetId": "math.standard.ccss.hsa-apr-c-4",
+      "weight": 0.5,
+      "confidence": "medium",
+      "sourceRefs": [
+        "family-objective:step-by-step-solver:solve-polynomial-equations",
+        "family-objective:step-by-step-solver:prove-polynomial-identities",
+        "family-objective:step-by-step-solver:numerical-relationships",
+        "family-objective:comprehension-quiz:polynomial-equations-vocabulary"
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via problem family step-by-step-solver:solve-polynomial-equations objective; Aligned via problem family step-by-step-solver:prove-polynomial-identities objective; Aligned via problem family step-by-step-solver:numerical-relationships objective; Aligned via problem family comprehension-quiz:polynomial-equations-vocabulary objective",
+      "metadata": {
+        "isPrimary": false,
+        "course": "im3",
+        "originalWeight": 0.4,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-3-1-002-to-ccss-hsa-rei-b-4",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.3.1.002",
+      "targetId": "math.standard.ccss.hsa-rei-b-4",
+      "weight": 0.75,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-3-lesson-1",
+          "note": "Mapped via lesson standard (primary)"
+        },
+        "family-objective:step-by-step-solver:solve-polynomial-equations",
+        "family-objective:graphing-explorer:solve-polynomial-by-graphing"
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-3-lesson-1; Aligned via problem family step-by-step-solver:solve-polynomial-equations objective; Aligned via problem family graphing-explorer:solve-polynomial-by-graphing objective",
+      "metadata": {
+        "isPrimary": true,
+        "course": "im3",
+        "originalWeight": 0.8,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-3-1-002-to-ccss-hsa-rei-c-7",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.3.1.002",
+      "targetId": "math.standard.ccss.hsa-rei-c-7",
+      "weight": 0.5,
+      "confidence": "medium",
+      "sourceRefs": [
+        "family-objective:step-by-step-solver:linear-quadratic-systems",
+        "family-objective:graphing-explorer:linear-quadratic-systems"
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via problem family step-by-step-solver:linear-quadratic-systems objective; Aligned via problem family graphing-explorer:linear-quadratic-systems objective",
+      "metadata": {
+        "isPrimary": false,
+        "course": "im3",
+        "originalWeight": 0.4,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-3-1-002-to-ccss-hsf-if-a-2",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.3.1.002",
+      "targetId": "math.standard.ccss.hsf-if-a-2",
+      "weight": 0.5,
+      "confidence": "medium",
+      "sourceRefs": [
+        "family-objective:graphing-explorer:solve-polynomial-by-graphing",
+        "family-objective:step-by-step-solver:synthetic-substitution"
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via problem family graphing-explorer:solve-polynomial-by-graphing objective; Aligned via problem family step-by-step-solver:synthetic-substitution objective",
+      "metadata": {
+        "isPrimary": false,
+        "course": "im3",
+        "originalWeight": 0.4,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-3-1-002-to-ccss-n-cn-a-1",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.3.1.002",
+      "targetId": "math.standard.ccss.n-cn-a-1",
+      "weight": 0.5,
+      "confidence": "medium",
+      "sourceRefs": [
+        "family-objective:step-by-step-solver:fundamental-theorem-algebra"
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via problem family step-by-step-solver:fundamental-theorem-algebra objective",
+      "metadata": {
+        "isPrimary": false,
+        "course": "im3",
+        "originalWeight": 0.4,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-3-2-003-to-ccss-hsa-apr-b-3",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.3.2.003",
+      "targetId": "math.standard.ccss.hsa-apr-b-3",
+      "weight": 0.75,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-3-lesson-2",
+          "note": "Mapped via lesson standard (primary)"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-3-lesson-2",
+      "metadata": {
+        "isPrimary": true,
+        "course": "im3",
+        "originalWeight": 0.8,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-3-2-003-to-ccss-hsa-rei-b-4",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.3.2.003",
+      "targetId": "math.standard.ccss.hsa-rei-b-4",
+      "weight": 0.5,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-3-lesson-2",
+          "note": "Mapped via lesson standard"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-3-lesson-2",
+      "metadata": {
+        "isPrimary": false,
+        "course": "im3"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-3-2-004-to-ccss-hsa-apr-b-3",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.3.2.004",
+      "targetId": "math.standard.ccss.hsa-apr-b-3",
+      "weight": 0.75,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-3-lesson-2",
+          "note": "Mapped via lesson standard (primary)"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-3-lesson-2",
+      "metadata": {
+        "isPrimary": true,
+        "course": "im3",
+        "originalWeight": 0.8,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-3-2-004-to-ccss-hsa-rei-b-4",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.3.2.004",
+      "targetId": "math.standard.ccss.hsa-rei-b-4",
+      "weight": 0.5,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-3-lesson-2",
+          "note": "Mapped via lesson standard"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-3-lesson-2",
+      "metadata": {
+        "isPrimary": false,
+        "course": "im3"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-3-2-005-to-ccss-hsa-apr-b-3",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.3.2.005",
+      "targetId": "math.standard.ccss.hsa-apr-b-3",
+      "weight": 0.75,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-3-lesson-2",
+          "note": "Mapped via lesson standard (primary)"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-3-lesson-2",
+      "metadata": {
+        "isPrimary": true,
+        "course": "im3",
+        "originalWeight": 0.8,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-3-2-005-to-ccss-hsa-rei-b-4",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.3.2.005",
+      "targetId": "math.standard.ccss.hsa-rei-b-4",
+      "weight": 0.5,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-3-lesson-2",
+          "note": "Mapped via lesson standard"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-3-lesson-2",
+      "metadata": {
+        "isPrimary": false,
+        "course": "im3"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-3-2-006-to-ccss-hsa-apr-b-3",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.3.2.006",
+      "targetId": "math.standard.ccss.hsa-apr-b-3",
+      "weight": 0.75,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-3-lesson-2",
+          "note": "Mapped via lesson standard (primary)"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-3-lesson-2",
+      "metadata": {
+        "isPrimary": true,
+        "course": "im3",
+        "originalWeight": 0.8,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-3-2-006-to-ccss-hsa-rei-b-4",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.3.2.006",
+      "targetId": "math.standard.ccss.hsa-rei-b-4",
+      "weight": 0.5,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-3-lesson-2",
+          "note": "Mapped via lesson standard"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-3-lesson-2",
+      "metadata": {
+        "isPrimary": false,
+        "course": "im3"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-3-2-007-to-ccss-hsa-apr-b-3",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.3.2.007",
+      "targetId": "math.standard.ccss.hsa-apr-b-3",
+      "weight": 0.75,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-3-lesson-2",
+          "note": "Mapped via lesson standard (primary)"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-3-lesson-2",
+      "metadata": {
+        "isPrimary": true,
+        "course": "im3",
+        "originalWeight": 0.8,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-3-2-007-to-ccss-hsa-rei-b-4",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.3.2.007",
+      "targetId": "math.standard.ccss.hsa-rei-b-4",
+      "weight": 0.5,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-3-lesson-2",
+          "note": "Mapped via lesson standard"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-3-lesson-2",
+      "metadata": {
+        "isPrimary": false,
+        "course": "im3"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-3-2-008-to-ccss-hsa-apr-b-3",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.3.2.008",
+      "targetId": "math.standard.ccss.hsa-apr-b-3",
+      "weight": 0.75,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-3-lesson-2",
+          "note": "Mapped via lesson standard (primary)"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-3-lesson-2",
+      "metadata": {
+        "isPrimary": true,
+        "course": "im3",
+        "originalWeight": 0.8,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-3-2-008-to-ccss-hsa-rei-b-4",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.3.2.008",
+      "targetId": "math.standard.ccss.hsa-rei-b-4",
+      "weight": 0.5,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-3-lesson-2",
+          "note": "Mapped via lesson standard"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-3-lesson-2",
+      "metadata": {
+        "isPrimary": false,
+        "course": "im3"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-3-2-009-to-ccss-hsa-apr-b-3",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.3.2.009",
+      "targetId": "math.standard.ccss.hsa-apr-b-3",
+      "weight": 0.75,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-3-lesson-2",
+          "note": "Mapped via lesson standard (primary)"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-3-lesson-2",
+      "metadata": {
+        "isPrimary": true,
+        "course": "im3",
+        "originalWeight": 0.8,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-3-2-009-to-ccss-hsa-rei-b-4",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.3.2.009",
+      "targetId": "math.standard.ccss.hsa-rei-b-4",
+      "weight": 0.5,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-3-lesson-2",
+          "note": "Mapped via lesson standard"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-3-lesson-2",
+      "metadata": {
+        "isPrimary": false,
+        "course": "im3"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-3-3-010-to-ccss-hsa-apr-c-4",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.3.3.010",
+      "targetId": "math.standard.ccss.hsa-apr-c-4",
+      "weight": 0.75,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-3-lesson-3",
+          "note": "Mapped via lesson standard (primary)"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-3-lesson-3",
+      "metadata": {
+        "isPrimary": true,
+        "course": "im3",
+        "originalWeight": 0.8,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-3-3-011-to-ccss-hsa-apr-c-4",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.3.3.011",
+      "targetId": "math.standard.ccss.hsa-apr-c-4",
+      "weight": 0.75,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-3-lesson-3",
+          "note": "Mapped via lesson standard (primary)"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-3-lesson-3",
+      "metadata": {
+        "isPrimary": true,
+        "course": "im3",
+        "originalWeight": 0.8,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-3-4-012-to-ccss-hsa-apr-b-2",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.3.4.012",
+      "targetId": "math.standard.ccss.hsa-apr-b-2",
+      "weight": 0.75,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-3-lesson-4",
+          "note": "Mapped via lesson standard (primary)"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-3-lesson-4",
+      "metadata": {
+        "isPrimary": true,
+        "course": "im3",
+        "originalWeight": 0.8,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-3-4-012-to-ccss-hsa-apr-b-3",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.3.4.012",
+      "targetId": "math.standard.ccss.hsa-apr-b-3",
+      "weight": 0.5,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-3-lesson-4",
+          "note": "Mapped via lesson standard"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-3-lesson-4",
+      "metadata": {
+        "isPrimary": false,
+        "course": "im3"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-3-4-013-to-ccss-hsa-apr-b-2",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.3.4.013",
+      "targetId": "math.standard.ccss.hsa-apr-b-2",
+      "weight": 0.75,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-3-lesson-4",
+          "note": "Mapped via lesson standard (primary)"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-3-lesson-4",
+      "metadata": {
+        "isPrimary": true,
+        "course": "im3",
+        "originalWeight": 0.8,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-3-4-013-to-ccss-hsa-apr-b-3",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.3.4.013",
+      "targetId": "math.standard.ccss.hsa-apr-b-3",
+      "weight": 0.5,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-3-lesson-4",
+          "note": "Mapped via lesson standard"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-3-lesson-4",
+      "metadata": {
+        "isPrimary": false,
+        "course": "im3"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-3-4-014-to-ccss-hsa-apr-b-2",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.3.4.014",
+      "targetId": "math.standard.ccss.hsa-apr-b-2",
+      "weight": 0.75,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-3-lesson-4",
+          "note": "Mapped via lesson standard (primary)"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-3-lesson-4",
+      "metadata": {
+        "isPrimary": true,
+        "course": "im3",
+        "originalWeight": 0.8,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-3-4-014-to-ccss-hsa-apr-b-3",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.3.4.014",
+      "targetId": "math.standard.ccss.hsa-apr-b-3",
+      "weight": 0.5,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-3-lesson-4",
+          "note": "Mapped via lesson standard"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-3-lesson-4",
+      "metadata": {
+        "isPrimary": false,
+        "course": "im3"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-3-5-015-to-ccss-hsa-apr-b-3",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.3.5.015",
+      "targetId": "math.standard.ccss.hsa-apr-b-3",
+      "weight": 0.75,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-3-lesson-5",
+          "note": "Mapped via lesson standard (primary)"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-3-lesson-5",
+      "metadata": {
+        "isPrimary": true,
+        "course": "im3",
+        "originalWeight": 0.8,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-example-3-5-016-to-ccss-hsa-apr-b-3",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.example.3.5.016",
+      "targetId": "math.standard.ccss.hsa-apr-b-3",
+      "weight": 0.75,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-3-lesson-5",
+          "note": "Mapped via lesson standard (primary)"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-3-lesson-5",
+      "metadata": {
+        "isPrimary": true,
+        "course": "im3",
+        "originalWeight": 0.8,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-skill-3-1-solve-polynomial-equations-by-graphing-to-ccss-hsa-apr-b-2",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.skill.3.1.solve-polynomial-equations-by-graphing",
+      "targetId": "math.standard.ccss.hsa-apr-b-2",
+      "weight": 0.5,
+      "confidence": "medium",
+      "sourceRefs": [
+        "family-objective:step-by-step-solver:synthetic-substitution",
+        "family-objective:step-by-step-solver:find-zeros-polynomials"
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via problem family step-by-step-solver:synthetic-substitution objective; Aligned via problem family step-by-step-solver:find-zeros-polynomials objective",
+      "metadata": {
+        "isPrimary": false,
+        "course": "im3",
+        "originalWeight": 0.4,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-skill-3-1-solve-polynomial-equations-by-graphing-to-ccss-hsa-apr-b-3",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.skill.3.1.solve-polynomial-equations-by-graphing",
+      "targetId": "math.standard.ccss.hsa-apr-b-3",
+      "weight": 0.5,
+      "confidence": "medium",
+      "sourceRefs": [
+        "family-objective:step-by-step-solver:find-zeros-polynomials",
+        "family-objective:step-by-step-solver:fundamental-theorem-algebra"
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via problem family step-by-step-solver:find-zeros-polynomials objective; Aligned via problem family step-by-step-solver:fundamental-theorem-algebra objective",
+      "metadata": {
+        "isPrimary": false,
+        "course": "im3",
+        "originalWeight": 0.4,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-skill-3-1-solve-polynomial-equations-by-graphing-to-ccss-hsa-apr-c-4",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.skill.3.1.solve-polynomial-equations-by-graphing",
+      "targetId": "math.standard.ccss.hsa-apr-c-4",
+      "weight": 0.5,
+      "confidence": "medium",
+      "sourceRefs": [
+        "family-objective:step-by-step-solver:solve-polynomial-equations",
+        "family-objective:step-by-step-solver:prove-polynomial-identities",
+        "family-objective:step-by-step-solver:numerical-relationships",
+        "family-objective:comprehension-quiz:polynomial-equations-vocabulary"
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via problem family step-by-step-solver:solve-polynomial-equations objective; Aligned via problem family step-by-step-solver:prove-polynomial-identities objective; Aligned via problem family step-by-step-solver:numerical-relationships objective; Aligned via problem family comprehension-quiz:polynomial-equations-vocabulary objective",
+      "metadata": {
+        "isPrimary": false,
+        "course": "im3",
+        "originalWeight": 0.4,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-skill-3-1-solve-polynomial-equations-by-graphing-to-ccss-hsa-rei-b-4",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.skill.3.1.solve-polynomial-equations-by-graphing",
+      "targetId": "math.standard.ccss.hsa-rei-b-4",
+      "weight": 0.75,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-3-lesson-1",
+          "note": "Mapped via lesson standard (primary)"
+        },
+        "family-objective:step-by-step-solver:solve-polynomial-equations",
+        "family-objective:graphing-explorer:solve-polynomial-by-graphing"
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-3-lesson-1; Aligned via problem family step-by-step-solver:solve-polynomial-equations objective; Aligned via problem family graphing-explorer:solve-polynomial-by-graphing objective",
+      "metadata": {
+        "isPrimary": true,
+        "course": "im3",
+        "originalWeight": 0.8,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-skill-3-1-solve-polynomial-equations-by-graphing-to-ccss-hsa-rei-c-7",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.skill.3.1.solve-polynomial-equations-by-graphing",
+      "targetId": "math.standard.ccss.hsa-rei-c-7",
+      "weight": 0.5,
+      "confidence": "medium",
+      "sourceRefs": [
+        "family-objective:step-by-step-solver:linear-quadratic-systems",
+        "family-objective:graphing-explorer:linear-quadratic-systems"
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via problem family step-by-step-solver:linear-quadratic-systems objective; Aligned via problem family graphing-explorer:linear-quadratic-systems objective",
+      "metadata": {
+        "isPrimary": false,
+        "course": "im3",
+        "originalWeight": 0.4,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-skill-3-1-solve-polynomial-equations-by-graphing-to-ccss-hsf-if-a-2",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.skill.3.1.solve-polynomial-equations-by-graphing",
+      "targetId": "math.standard.ccss.hsf-if-a-2",
+      "weight": 0.5,
+      "confidence": "medium",
+      "sourceRefs": [
+        "family-objective:graphing-explorer:solve-polynomial-by-graphing",
+        "family-objective:step-by-step-solver:synthetic-substitution"
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via problem family graphing-explorer:solve-polynomial-by-graphing objective; Aligned via problem family step-by-step-solver:synthetic-substitution objective",
+      "metadata": {
+        "isPrimary": false,
+        "course": "im3",
+        "originalWeight": 0.4,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-skill-3-1-solve-polynomial-equations-by-graphing-to-ccss-n-cn-a-1",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.skill.3.1.solve-polynomial-equations-by-graphing",
+      "targetId": "math.standard.ccss.n-cn-a-1",
+      "weight": 0.5,
+      "confidence": "medium",
+      "sourceRefs": [
+        "family-objective:step-by-step-solver:fundamental-theorem-algebra"
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via problem family step-by-step-solver:fundamental-theorem-algebra objective",
+      "metadata": {
+        "isPrimary": false,
+        "course": "im3",
+        "originalWeight": 0.4,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-skill-3-2-solve-polynomial-equations-by-factoring-to-ccss-hsa-apr-b-3",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.skill.3.2.solve-polynomial-equations-by-factoring",
+      "targetId": "math.standard.ccss.hsa-apr-b-3",
+      "weight": 0.75,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-3-lesson-2",
+          "note": "Mapped via lesson standard (primary)"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-3-lesson-2",
+      "metadata": {
+        "isPrimary": true,
+        "course": "im3",
+        "originalWeight": 0.8,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-skill-3-2-solve-polynomial-equations-by-factoring-to-ccss-hsa-rei-b-4",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.skill.3.2.solve-polynomial-equations-by-factoring",
+      "targetId": "math.standard.ccss.hsa-rei-b-4",
+      "weight": 0.5,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-3-lesson-2",
+          "note": "Mapped via lesson standard"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-3-lesson-2",
+      "metadata": {
+        "isPrimary": false,
+        "course": "im3"
+      }
+    },
+    {
+      "id": "math.alignment.im3-skill-3-2-solve-polynomial-equations-by-writing-them-in-quadratic-form-to-ccss-hsa-apr-b-3",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.skill.3.2.solve-polynomial-equations-by-writing-them-in-quadratic-form",
+      "targetId": "math.standard.ccss.hsa-apr-b-3",
+      "weight": 0.75,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-3-lesson-2",
+          "note": "Mapped via lesson standard (primary)"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-3-lesson-2",
+      "metadata": {
+        "isPrimary": true,
+        "course": "im3",
+        "originalWeight": 0.8,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-skill-3-2-solve-polynomial-equations-by-writing-them-in-quadratic-form-to-ccss-hsa-rei-b-4",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.skill.3.2.solve-polynomial-equations-by-writing-them-in-quadratic-form",
+      "targetId": "math.standard.ccss.hsa-rei-b-4",
+      "weight": 0.5,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-3-lesson-2",
+          "note": "Mapped via lesson standard"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-3-lesson-2",
+      "metadata": {
+        "isPrimary": false,
+        "course": "im3"
+      }
+    },
+    {
+      "id": "math.alignment.im3-skill-3-3-prove-polynomial-identities-and-use-them-to-describe-numeric-to-ccss-hsa-apr-c-4",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.skill.3.3.prove-polynomial-identities-and-use-them-to-describe-numeric",
+      "targetId": "math.standard.ccss.hsa-apr-c-4",
+      "weight": 0.75,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-3-lesson-3",
+          "note": "Mapped via lesson standard (primary)"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-3-lesson-3",
+      "metadata": {
+        "isPrimary": true,
+        "course": "im3",
+        "originalWeight": 0.8,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-skill-3-4-evaluate-functions-by-using-synthetic-substitution-to-ccss-hsa-apr-b-2",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.skill.3.4.evaluate-functions-by-using-synthetic-substitution",
+      "targetId": "math.standard.ccss.hsa-apr-b-2",
+      "weight": 0.75,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-3-lesson-4",
+          "note": "Mapped via lesson standard (primary)"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-3-lesson-4",
+      "metadata": {
+        "isPrimary": true,
+        "course": "im3",
+        "originalWeight": 0.8,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-skill-3-4-evaluate-functions-by-using-synthetic-substitution-to-ccss-hsa-apr-b-3",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.skill.3.4.evaluate-functions-by-using-synthetic-substitution",
+      "targetId": "math.standard.ccss.hsa-apr-b-3",
+      "weight": 0.5,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-3-lesson-4",
+          "note": "Mapped via lesson standard"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-3-lesson-4",
+      "metadata": {
+        "isPrimary": false,
+        "course": "im3"
+      }
+    },
+    {
+      "id": "math.alignment.im3-skill-3-5-determine-the-number-and-type-of-roots-of-polynomial-equatio-to-ccss-hsa-apr-b-3",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.skill.3.5.determine-the-number-and-type-of-roots-of-polynomial-equatio",
+      "targetId": "math.standard.ccss.hsa-apr-b-3",
+      "weight": 0.75,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-3-lesson-5",
+          "note": "Mapped via lesson standard (primary)"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-3-lesson-5",
+      "metadata": {
+        "isPrimary": true,
+        "course": "im3",
+        "originalWeight": 0.8,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.alignment.im3-skill-3-5-use-the-fundamental-theorem-of-algebra-to-determine-the-numb-to-ccss-hsa-apr-b-3",
+      "type": "aligned_to_standard",
+      "sourceId": "math.im3.skill.3.5.use-the-fundamental-theorem-of-algebra-to-determine-the-numb",
+      "targetId": "math.standard.ccss.hsa-apr-b-3",
+      "weight": 0.75,
+      "confidence": "high",
+      "sourceRefs": [
+        {
+          "source": "lesson-standards",
+          "location": "module-3-lesson-5",
+          "note": "Mapped via lesson standard (primary)"
+        }
+      ],
+      "derived": true,
+      "derivationMethod": "standards-alignment-script",
+      "reviewStatus": "draft",
+      "rationale": "Aligned via lesson standard mapping for module-3-lesson-5",
+      "metadata": {
+        "isPrimary": true,
+        "course": "im3",
+        "originalWeight": 0.8,
+        "weightNormalization": "t5-review-remediation"
+      }
+    },
+    {
+      "id": "math.im3.edge.m1.001",
+      "type": "contains",
+      "sourceId": "math.im3",
+      "targetId": "math.im3.module.1",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "metadata": {
+        "course": "im3",
+        "module": "1"
+      },
+      "rationale": "Module 1 is contained in IM3 domain",
+      "sourceRefs": [
+        "apps/integrated-math-3/curriculum/modules/module-1-quadratic-functions.md"
+      ]
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0021",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.example.3.1.001",
+      "targetId": "math.im3.lesson.3.1",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "3",
+        "lesson": "1"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0022",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.example.3.1.002",
+      "targetId": "math.im3.lesson.3.1",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "3",
+        "lesson": "1"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0023",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.example.3.2.003",
+      "targetId": "math.im3.lesson.3.2",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "3",
+        "lesson": "2"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0024",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.example.3.2.004",
+      "targetId": "math.im3.lesson.3.2",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "3",
+        "lesson": "2"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0025",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.example.3.2.005",
+      "targetId": "math.im3.lesson.3.2",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "3",
+        "lesson": "2"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0026",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.example.3.2.006",
+      "targetId": "math.im3.lesson.3.2",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "3",
+        "lesson": "2"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0027",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.example.3.2.007",
+      "targetId": "math.im3.lesson.3.2",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "3",
+        "lesson": "2"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0028",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.example.3.2.008",
+      "targetId": "math.im3.lesson.3.2",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "3",
+        "lesson": "2"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0029",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.example.3.2.009",
+      "targetId": "math.im3.lesson.3.2",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "3",
+        "lesson": "2"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0030",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.example.3.3.010",
+      "targetId": "math.im3.lesson.3.3",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "3",
+        "lesson": "3"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0031",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.example.3.3.011",
+      "targetId": "math.im3.lesson.3.3",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "3",
+        "lesson": "3"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0032",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.example.3.4.012",
+      "targetId": "math.im3.lesson.3.4",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "3",
+        "lesson": "4"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0033",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.example.3.4.013",
+      "targetId": "math.im3.lesson.3.4",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "3",
+        "lesson": "4"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0034",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.example.3.4.014",
+      "targetId": "math.im3.lesson.3.4",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "3",
+        "lesson": "4"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0035",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.example.3.5.015",
+      "targetId": "math.im3.lesson.3.5",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "3",
+        "lesson": "5"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0036",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.example.3.5.016",
+      "targetId": "math.im3.lesson.3.5",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Worked example appears in lesson context",
+      "metadata": {
+        "module": "3",
+        "lesson": "5"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0228",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.skill.3.1.solve-polynomial-equations-by-graphing",
+      "targetId": "math.im3.lesson.3.1",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Skill appears in lesson context",
+      "metadata": {
+        "module": "3",
+        "lesson": "1"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0229",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.skill.3.2.solve-polynomial-equations-by-factoring",
+      "targetId": "math.im3.lesson.3.2",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Skill appears in lesson context",
+      "metadata": {
+        "module": "3",
+        "lesson": "2"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0230",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.skill.3.2.solve-polynomial-equations-by-writing-them-in-quadratic-form",
+      "targetId": "math.im3.lesson.3.2",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Skill appears in lesson context",
+      "metadata": {
+        "module": "3",
+        "lesson": "2"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0231",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.skill.3.3.prove-polynomial-identities-and-use-them-to-describe-numeric",
+      "targetId": "math.im3.lesson.3.3",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Skill appears in lesson context",
+      "metadata": {
+        "module": "3",
+        "lesson": "3"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0232",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.skill.3.4.evaluate-functions-by-using-synthetic-substitution",
+      "targetId": "math.im3.lesson.3.4",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Skill appears in lesson context",
+      "metadata": {
+        "module": "3",
+        "lesson": "4"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0233",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.skill.3.5.determine-the-number-and-type-of-roots-of-polynomial-equatio",
+      "targetId": "math.im3.lesson.3.5",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Skill appears in lesson context",
+      "metadata": {
+        "module": "3",
+        "lesson": "5"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0234",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.skill.3.5.use-the-fundamental-theorem-of-algebra-to-determine-the-numb",
+      "targetId": "math.im3.lesson.3.5",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Skill appears in lesson context",
+      "metadata": {
+        "module": "3",
+        "lesson": "5"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0235",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.skill.3.aleks.factor-theorem-factor-testing",
+      "targetId": "math.im3.module.3",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Concept appears in module context",
+      "metadata": {
+        "module": "3"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0236",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.skill.3.aleks.polynomial-equation-graph-solving",
+      "targetId": "math.im3.module.3",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Concept appears in module context",
+      "metadata": {
+        "module": "3"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0237",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.skill.3.aleks.polynomial-factoring-structures",
+      "targetId": "math.im3.module.3",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Concept appears in module context",
+      "metadata": {
+        "module": "3"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0238",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.skill.3.aleks.polynomial-identity-proof",
+      "targetId": "math.im3.module.3",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Concept appears in module context",
+      "metadata": {
+        "module": "3"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0239",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.skill.3.aleks.polynomial-quadratic-form",
+      "targetId": "math.im3.module.3",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Concept appears in module context",
+      "metadata": {
+        "module": "3"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0240",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.skill.3.aleks.root-type-analysis",
+      "targetId": "math.im3.module.3",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Concept appears in module context",
+      "metadata": {
+        "module": "3"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0241",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.skill.3.aleks.synthetic-substitution-remainder",
+      "targetId": "math.im3.module.3",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Concept appears in module context",
+      "metadata": {
+        "module": "3"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0242",
+      "type": "appears_in_context",
+      "sourceId": "math.im3.skill.3.aleks.zeros-to-polynomial-graph",
+      "targetId": "math.im3.module.3",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-placement-v1",
+      "rationale": "Concept appears in module context",
+      "metadata": {
+        "module": "3"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0377",
+      "type": "contains",
+      "sourceId": "math.im3",
+      "targetId": "math.im3.module.2",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Domain contains Polynomials and Polynomial Functions",
+      "metadata": {
+        "course": "im3",
+        "module": "2"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0378",
+      "type": "contains",
+      "sourceId": "math.im3",
+      "targetId": "math.im3.module.3",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Domain contains Polynomial Equations",
+      "metadata": {
+        "course": "im3",
+        "module": "3"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0379",
+      "type": "contains",
+      "sourceId": "math.im3",
+      "targetId": "math.im3.module.4",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Domain contains Inverses and Radical Functions",
+      "metadata": {
+        "course": "im3",
+        "module": "4"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0380",
+      "type": "contains",
+      "sourceId": "math.im3",
+      "targetId": "math.im3.module.5",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Domain contains Exponential Functions and Geometric Series",
+      "metadata": {
+        "course": "im3",
+        "module": "5"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0381",
+      "type": "contains",
+      "sourceId": "math.im3",
+      "targetId": "math.im3.module.6",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Domain contains Logarithmic Functions",
+      "metadata": {
+        "course": "im3",
+        "module": "6"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0382",
+      "type": "contains",
+      "sourceId": "math.im3",
+      "targetId": "math.im3.module.7",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Domain contains Rational Functions and Equations",
+      "metadata": {
+        "course": "im3",
+        "module": "7"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0383",
+      "type": "contains",
+      "sourceId": "math.im3",
+      "targetId": "math.im3.module.8",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Domain contains Inferential Statistics",
+      "metadata": {
+        "course": "im3",
+        "module": "8"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0384",
+      "type": "contains",
+      "sourceId": "math.im3",
+      "targetId": "math.im3.module.9",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Domain contains Trigonometric Functions",
+      "metadata": {
+        "course": "im3",
+        "module": "9"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0414",
+      "type": "contains",
+      "sourceId": "math.im3.lesson.3.1",
+      "targetId": "math.im3.example.3.1.001",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "3",
+        "lesson": "1"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0415",
+      "type": "contains",
+      "sourceId": "math.im3.lesson.3.1",
+      "targetId": "math.im3.example.3.1.002",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "3",
+        "lesson": "1"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0416",
+      "type": "contains",
+      "sourceId": "math.im3.lesson.3.1",
+      "targetId": "math.im3.skill.3.1.solve-polynomial-equations-by-graphing",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains skill",
+      "metadata": {
+        "module": "3",
+        "lesson": "1"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0417",
+      "type": "contains",
+      "sourceId": "math.im3.lesson.3.2",
+      "targetId": "math.im3.example.3.2.003",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "3",
+        "lesson": "2"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0418",
+      "type": "contains",
+      "sourceId": "math.im3.lesson.3.2",
+      "targetId": "math.im3.example.3.2.004",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "3",
+        "lesson": "2"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0419",
+      "type": "contains",
+      "sourceId": "math.im3.lesson.3.2",
+      "targetId": "math.im3.example.3.2.005",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "3",
+        "lesson": "2"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0420",
+      "type": "contains",
+      "sourceId": "math.im3.lesson.3.2",
+      "targetId": "math.im3.example.3.2.006",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "3",
+        "lesson": "2"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0421",
+      "type": "contains",
+      "sourceId": "math.im3.lesson.3.2",
+      "targetId": "math.im3.example.3.2.007",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "3",
+        "lesson": "2"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0422",
+      "type": "contains",
+      "sourceId": "math.im3.lesson.3.2",
+      "targetId": "math.im3.example.3.2.008",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "3",
+        "lesson": "2"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0423",
+      "type": "contains",
+      "sourceId": "math.im3.lesson.3.2",
+      "targetId": "math.im3.example.3.2.009",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "3",
+        "lesson": "2"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0424",
+      "type": "contains",
+      "sourceId": "math.im3.lesson.3.2",
+      "targetId": "math.im3.skill.3.2.solve-polynomial-equations-by-factoring",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains skill",
+      "metadata": {
+        "module": "3",
+        "lesson": "2"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0425",
+      "type": "contains",
+      "sourceId": "math.im3.lesson.3.2",
+      "targetId": "math.im3.skill.3.2.solve-polynomial-equations-by-writing-them-in-quadratic-form",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains skill",
+      "metadata": {
+        "module": "3",
+        "lesson": "2"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0426",
+      "type": "contains",
+      "sourceId": "math.im3.lesson.3.3",
+      "targetId": "math.im3.example.3.3.010",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "3",
+        "lesson": "3"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0427",
+      "type": "contains",
+      "sourceId": "math.im3.lesson.3.3",
+      "targetId": "math.im3.example.3.3.011",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "3",
+        "lesson": "3"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0428",
+      "type": "contains",
+      "sourceId": "math.im3.lesson.3.3",
+      "targetId": "math.im3.skill.3.3.prove-polynomial-identities-and-use-them-to-describe-numeric",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains skill",
+      "metadata": {
+        "module": "3",
+        "lesson": "3"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0429",
+      "type": "contains",
+      "sourceId": "math.im3.lesson.3.4",
+      "targetId": "math.im3.example.3.4.012",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "3",
+        "lesson": "4"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0430",
+      "type": "contains",
+      "sourceId": "math.im3.lesson.3.4",
+      "targetId": "math.im3.example.3.4.013",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "3",
+        "lesson": "4"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0431",
+      "type": "contains",
+      "sourceId": "math.im3.lesson.3.4",
+      "targetId": "math.im3.example.3.4.014",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "3",
+        "lesson": "4"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0432",
+      "type": "contains",
+      "sourceId": "math.im3.lesson.3.4",
+      "targetId": "math.im3.skill.3.4.evaluate-functions-by-using-synthetic-substitution",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains skill",
+      "metadata": {
+        "module": "3",
+        "lesson": "4"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0433",
+      "type": "contains",
+      "sourceId": "math.im3.lesson.3.5",
+      "targetId": "math.im3.example.3.5.015",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "3",
+        "lesson": "5"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0434",
+      "type": "contains",
+      "sourceId": "math.im3.lesson.3.5",
+      "targetId": "math.im3.example.3.5.016",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains worked example",
+      "metadata": {
+        "module": "3",
+        "lesson": "5"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0435",
+      "type": "contains",
+      "sourceId": "math.im3.lesson.3.5",
+      "targetId": "math.im3.skill.3.5.determine-the-number-and-type-of-roots-of-polynomial-equatio",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains skill",
+      "metadata": {
+        "module": "3",
+        "lesson": "5"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0436",
+      "type": "contains",
+      "sourceId": "math.im3.lesson.3.5",
+      "targetId": "math.im3.skill.3.5.use-the-fundamental-theorem-of-algebra-to-determine-the-numb",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Lesson contains skill",
+      "metadata": {
+        "module": "3",
+        "lesson": "5"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0688",
+      "type": "contains",
+      "sourceId": "math.im3.module.3",
+      "targetId": "math.im3.lesson.3.1",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Module 3 contains lesson",
+      "metadata": {
+        "module": "3"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0689",
+      "type": "contains",
+      "sourceId": "math.im3.module.3",
+      "targetId": "math.im3.lesson.3.2",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Module 3 contains lesson",
+      "metadata": {
+        "module": "3"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0690",
+      "type": "contains",
+      "sourceId": "math.im3.module.3",
+      "targetId": "math.im3.lesson.3.3",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Module 3 contains lesson",
+      "metadata": {
+        "module": "3"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0691",
+      "type": "contains",
+      "sourceId": "math.im3.module.3",
+      "targetId": "math.im3.lesson.3.4",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Module 3 contains lesson",
+      "metadata": {
+        "module": "3"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0692",
+      "type": "contains",
+      "sourceId": "math.im3.module.3",
+      "targetId": "math.im3.lesson.3.5",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Module 3 contains lesson",
+      "metadata": {
+        "module": "3"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0693",
+      "type": "contains",
+      "sourceId": "math.im3.module.3",
+      "targetId": "math.im3.skill.3.aleks.factor-theorem-factor-testing",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Module 3 contains concept",
+      "metadata": {
+        "module": "3"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0694",
+      "type": "contains",
+      "sourceId": "math.im3.module.3",
+      "targetId": "math.im3.skill.3.aleks.polynomial-equation-graph-solving",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Module 3 contains concept",
+      "metadata": {
+        "module": "3"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0695",
+      "type": "contains",
+      "sourceId": "math.im3.module.3",
+      "targetId": "math.im3.skill.3.aleks.polynomial-factoring-structures",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Module 3 contains concept",
+      "metadata": {
+        "module": "3"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0696",
+      "type": "contains",
+      "sourceId": "math.im3.module.3",
+      "targetId": "math.im3.skill.3.aleks.polynomial-identity-proof",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Module 3 contains concept",
+      "metadata": {
+        "module": "3"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0697",
+      "type": "contains",
+      "sourceId": "math.im3.module.3",
+      "targetId": "math.im3.skill.3.aleks.polynomial-quadratic-form",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Module 3 contains concept",
+      "metadata": {
+        "module": "3"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0698",
+      "type": "contains",
+      "sourceId": "math.im3.module.3",
+      "targetId": "math.im3.skill.3.aleks.root-type-analysis",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Module 3 contains concept",
+      "metadata": {
+        "module": "3"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0699",
+      "type": "contains",
+      "sourceId": "math.im3.module.3",
+      "targetId": "math.im3.skill.3.aleks.synthetic-substitution-remainder",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Module 3 contains concept",
+      "metadata": {
+        "module": "3"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0700",
+      "type": "contains",
+      "sourceId": "math.im3.module.3",
+      "targetId": "math.im3.skill.3.aleks.zeros-to-polynomial-graph",
+      "weight": 1,
+      "confidence": "high",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-containment-v1",
+      "rationale": "Module 3 contains concept",
+      "metadata": {
+        "module": "3"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0809",
+      "type": "prerequisite_for",
+      "sourceId": "math.im3.skill.2.5.expand-powers-of-binomials-by-using-pascals-triangle-and-the",
+      "targetId": "math.im3.skill.3.1.solve-polynomial-equations-by-graphing",
+      "weight": 0.5,
+      "confidence": "low",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-prerequisite-v1",
+      "rationale": "Lesson-sequence prerequisite: last lesson of module 2 precedes first lesson of module 3",
+      "metadata": {
+        "fromLesson": "2.5",
+        "toLesson": "3.1"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0810",
+      "type": "prerequisite_for",
+      "sourceId": "math.im3.skill.3.1.solve-polynomial-equations-by-graphing",
+      "targetId": "math.im3.skill.3.2.solve-polynomial-equations-by-factoring",
+      "weight": 0.5,
+      "confidence": "low",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-prerequisite-v1",
+      "rationale": "Lesson-sequence prerequisite: lesson 1 precedes lesson 2 in module 3",
+      "metadata": {
+        "fromLesson": "3.1",
+        "toLesson": "3.2"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0811",
+      "type": "prerequisite_for",
+      "sourceId": "math.im3.skill.3.2.solve-polynomial-equations-by-writing-them-in-quadratic-form",
+      "targetId": "math.im3.skill.3.3.prove-polynomial-identities-and-use-them-to-describe-numeric",
+      "weight": 0.5,
+      "confidence": "low",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-prerequisite-v1",
+      "rationale": "Lesson-sequence prerequisite: lesson 2 precedes lesson 3 in module 3",
+      "metadata": {
+        "fromLesson": "3.2",
+        "toLesson": "3.3"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0812",
+      "type": "prerequisite_for",
+      "sourceId": "math.im3.skill.3.3.prove-polynomial-identities-and-use-them-to-describe-numeric",
+      "targetId": "math.im3.skill.3.4.evaluate-functions-by-using-synthetic-substitution",
+      "weight": 0.5,
+      "confidence": "low",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-prerequisite-v1",
+      "rationale": "Lesson-sequence prerequisite: lesson 3 precedes lesson 4 in module 3",
+      "metadata": {
+        "fromLesson": "3.3",
+        "toLesson": "3.4"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0813",
+      "type": "prerequisite_for",
+      "sourceId": "math.im3.skill.3.4.evaluate-functions-by-using-synthetic-substitution",
+      "targetId": "math.im3.skill.3.5.determine-the-number-and-type-of-roots-of-polynomial-equatio",
+      "weight": 0.5,
+      "confidence": "low",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-prerequisite-v1",
+      "rationale": "Lesson-sequence prerequisite: lesson 4 precedes lesson 5 in module 3",
+      "metadata": {
+        "fromLesson": "3.4",
+        "toLesson": "3.5"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0814",
+      "type": "prerequisite_for",
+      "sourceId": "math.im3.skill.3.5.use-the-fundamental-theorem-of-algebra-to-determine-the-numb",
+      "targetId": "math.im3.skill.4.1.find-compositions-of-functions",
+      "weight": 0.5,
+      "confidence": "low",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "lesson-sequence-prerequisite-v1",
+      "rationale": "Lesson-sequence prerequisite: last lesson of module 3 precedes first lesson of module 4",
+      "metadata": {
+        "fromLesson": "3.5",
+        "toLesson": "4.1"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0938",
+      "type": "supports",
+      "sourceId": "math.im3.skill.3.aleks.factor-theorem-factor-testing",
+      "targetId": "math.im3.skill.3.1.solve-polynomial-equations-by-graphing",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 3",
+      "metadata": {
+        "module": "3"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0939",
+      "type": "supports",
+      "sourceId": "math.im3.skill.3.aleks.factor-theorem-factor-testing",
+      "targetId": "math.im3.skill.3.2.solve-polynomial-equations-by-factoring",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 3",
+      "metadata": {
+        "module": "3"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0940",
+      "type": "supports",
+      "sourceId": "math.im3.skill.3.aleks.factor-theorem-factor-testing",
+      "targetId": "math.im3.skill.3.2.solve-polynomial-equations-by-writing-them-in-quadratic-form",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 3",
+      "metadata": {
+        "module": "3"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0941",
+      "type": "supports",
+      "sourceId": "math.im3.skill.3.aleks.factor-theorem-factor-testing",
+      "targetId": "math.im3.skill.3.3.prove-polynomial-identities-and-use-them-to-describe-numeric",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 3",
+      "metadata": {
+        "module": "3"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0942",
+      "type": "supports",
+      "sourceId": "math.im3.skill.3.aleks.factor-theorem-factor-testing",
+      "targetId": "math.im3.skill.3.4.evaluate-functions-by-using-synthetic-substitution",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 3",
+      "metadata": {
+        "module": "3"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0943",
+      "type": "supports",
+      "sourceId": "math.im3.skill.3.aleks.factor-theorem-factor-testing",
+      "targetId": "math.im3.skill.3.5.determine-the-number-and-type-of-roots-of-polynomial-equatio",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 3",
+      "metadata": {
+        "module": "3"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0944",
+      "type": "supports",
+      "sourceId": "math.im3.skill.3.aleks.factor-theorem-factor-testing",
+      "targetId": "math.im3.skill.3.5.use-the-fundamental-theorem-of-algebra-to-determine-the-numb",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 3",
+      "metadata": {
+        "module": "3"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0945",
+      "type": "supports",
+      "sourceId": "math.im3.skill.3.aleks.polynomial-equation-graph-solving",
+      "targetId": "math.im3.skill.3.1.solve-polynomial-equations-by-graphing",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 3",
+      "metadata": {
+        "module": "3"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0946",
+      "type": "supports",
+      "sourceId": "math.im3.skill.3.aleks.polynomial-equation-graph-solving",
+      "targetId": "math.im3.skill.3.2.solve-polynomial-equations-by-factoring",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 3",
+      "metadata": {
+        "module": "3"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0947",
+      "type": "supports",
+      "sourceId": "math.im3.skill.3.aleks.polynomial-equation-graph-solving",
+      "targetId": "math.im3.skill.3.2.solve-polynomial-equations-by-writing-them-in-quadratic-form",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 3",
+      "metadata": {
+        "module": "3"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0948",
+      "type": "supports",
+      "sourceId": "math.im3.skill.3.aleks.polynomial-equation-graph-solving",
+      "targetId": "math.im3.skill.3.3.prove-polynomial-identities-and-use-them-to-describe-numeric",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 3",
+      "metadata": {
+        "module": "3"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0949",
+      "type": "supports",
+      "sourceId": "math.im3.skill.3.aleks.polynomial-equation-graph-solving",
+      "targetId": "math.im3.skill.3.4.evaluate-functions-by-using-synthetic-substitution",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 3",
+      "metadata": {
+        "module": "3"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0950",
+      "type": "supports",
+      "sourceId": "math.im3.skill.3.aleks.polynomial-equation-graph-solving",
+      "targetId": "math.im3.skill.3.5.determine-the-number-and-type-of-roots-of-polynomial-equatio",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 3",
+      "metadata": {
+        "module": "3"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0951",
+      "type": "supports",
+      "sourceId": "math.im3.skill.3.aleks.polynomial-equation-graph-solving",
+      "targetId": "math.im3.skill.3.5.use-the-fundamental-theorem-of-algebra-to-determine-the-numb",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 3",
+      "metadata": {
+        "module": "3"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0952",
+      "type": "supports",
+      "sourceId": "math.im3.skill.3.aleks.polynomial-factoring-structures",
+      "targetId": "math.im3.skill.3.1.solve-polynomial-equations-by-graphing",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 3",
+      "metadata": {
+        "module": "3"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0953",
+      "type": "supports",
+      "sourceId": "math.im3.skill.3.aleks.polynomial-factoring-structures",
+      "targetId": "math.im3.skill.3.2.solve-polynomial-equations-by-factoring",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 3",
+      "metadata": {
+        "module": "3"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0954",
+      "type": "supports",
+      "sourceId": "math.im3.skill.3.aleks.polynomial-factoring-structures",
+      "targetId": "math.im3.skill.3.2.solve-polynomial-equations-by-writing-them-in-quadratic-form",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 3",
+      "metadata": {
+        "module": "3"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0955",
+      "type": "supports",
+      "sourceId": "math.im3.skill.3.aleks.polynomial-factoring-structures",
+      "targetId": "math.im3.skill.3.3.prove-polynomial-identities-and-use-them-to-describe-numeric",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 3",
+      "metadata": {
+        "module": "3"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0956",
+      "type": "supports",
+      "sourceId": "math.im3.skill.3.aleks.polynomial-factoring-structures",
+      "targetId": "math.im3.skill.3.4.evaluate-functions-by-using-synthetic-substitution",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 3",
+      "metadata": {
+        "module": "3"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0957",
+      "type": "supports",
+      "sourceId": "math.im3.skill.3.aleks.polynomial-factoring-structures",
+      "targetId": "math.im3.skill.3.5.determine-the-number-and-type-of-roots-of-polynomial-equatio",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 3",
+      "metadata": {
+        "module": "3"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0958",
+      "type": "supports",
+      "sourceId": "math.im3.skill.3.aleks.polynomial-factoring-structures",
+      "targetId": "math.im3.skill.3.5.use-the-fundamental-theorem-of-algebra-to-determine-the-numb",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 3",
+      "metadata": {
+        "module": "3"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0959",
+      "type": "supports",
+      "sourceId": "math.im3.skill.3.aleks.polynomial-identity-proof",
+      "targetId": "math.im3.skill.3.1.solve-polynomial-equations-by-graphing",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 3",
+      "metadata": {
+        "module": "3"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0960",
+      "type": "supports",
+      "sourceId": "math.im3.skill.3.aleks.polynomial-identity-proof",
+      "targetId": "math.im3.skill.3.2.solve-polynomial-equations-by-factoring",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 3",
+      "metadata": {
+        "module": "3"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0961",
+      "type": "supports",
+      "sourceId": "math.im3.skill.3.aleks.polynomial-identity-proof",
+      "targetId": "math.im3.skill.3.2.solve-polynomial-equations-by-writing-them-in-quadratic-form",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 3",
+      "metadata": {
+        "module": "3"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0962",
+      "type": "supports",
+      "sourceId": "math.im3.skill.3.aleks.polynomial-identity-proof",
+      "targetId": "math.im3.skill.3.3.prove-polynomial-identities-and-use-them-to-describe-numeric",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 3",
+      "metadata": {
+        "module": "3"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0963",
+      "type": "supports",
+      "sourceId": "math.im3.skill.3.aleks.polynomial-identity-proof",
+      "targetId": "math.im3.skill.3.4.evaluate-functions-by-using-synthetic-substitution",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 3",
+      "metadata": {
+        "module": "3"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0964",
+      "type": "supports",
+      "sourceId": "math.im3.skill.3.aleks.polynomial-identity-proof",
+      "targetId": "math.im3.skill.3.5.determine-the-number-and-type-of-roots-of-polynomial-equatio",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 3",
+      "metadata": {
+        "module": "3"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0965",
+      "type": "supports",
+      "sourceId": "math.im3.skill.3.aleks.polynomial-identity-proof",
+      "targetId": "math.im3.skill.3.5.use-the-fundamental-theorem-of-algebra-to-determine-the-numb",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 3",
+      "metadata": {
+        "module": "3"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0966",
+      "type": "supports",
+      "sourceId": "math.im3.skill.3.aleks.polynomial-quadratic-form",
+      "targetId": "math.im3.skill.3.1.solve-polynomial-equations-by-graphing",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 3",
+      "metadata": {
+        "module": "3"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0967",
+      "type": "supports",
+      "sourceId": "math.im3.skill.3.aleks.polynomial-quadratic-form",
+      "targetId": "math.im3.skill.3.2.solve-polynomial-equations-by-factoring",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 3",
+      "metadata": {
+        "module": "3"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0968",
+      "type": "supports",
+      "sourceId": "math.im3.skill.3.aleks.polynomial-quadratic-form",
+      "targetId": "math.im3.skill.3.2.solve-polynomial-equations-by-writing-them-in-quadratic-form",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 3",
+      "metadata": {
+        "module": "3"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0969",
+      "type": "supports",
+      "sourceId": "math.im3.skill.3.aleks.polynomial-quadratic-form",
+      "targetId": "math.im3.skill.3.3.prove-polynomial-identities-and-use-them-to-describe-numeric",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 3",
+      "metadata": {
+        "module": "3"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0970",
+      "type": "supports",
+      "sourceId": "math.im3.skill.3.aleks.polynomial-quadratic-form",
+      "targetId": "math.im3.skill.3.4.evaluate-functions-by-using-synthetic-substitution",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 3",
+      "metadata": {
+        "module": "3"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0971",
+      "type": "supports",
+      "sourceId": "math.im3.skill.3.aleks.polynomial-quadratic-form",
+      "targetId": "math.im3.skill.3.5.determine-the-number-and-type-of-roots-of-polynomial-equatio",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 3",
+      "metadata": {
+        "module": "3"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0972",
+      "type": "supports",
+      "sourceId": "math.im3.skill.3.aleks.polynomial-quadratic-form",
+      "targetId": "math.im3.skill.3.5.use-the-fundamental-theorem-of-algebra-to-determine-the-numb",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 3",
+      "metadata": {
+        "module": "3"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0973",
+      "type": "supports",
+      "sourceId": "math.im3.skill.3.aleks.root-type-analysis",
+      "targetId": "math.im3.skill.3.1.solve-polynomial-equations-by-graphing",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 3",
+      "metadata": {
+        "module": "3"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0974",
+      "type": "supports",
+      "sourceId": "math.im3.skill.3.aleks.root-type-analysis",
+      "targetId": "math.im3.skill.3.2.solve-polynomial-equations-by-factoring",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 3",
+      "metadata": {
+        "module": "3"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0975",
+      "type": "supports",
+      "sourceId": "math.im3.skill.3.aleks.root-type-analysis",
+      "targetId": "math.im3.skill.3.2.solve-polynomial-equations-by-writing-them-in-quadratic-form",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 3",
+      "metadata": {
+        "module": "3"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0976",
+      "type": "supports",
+      "sourceId": "math.im3.skill.3.aleks.root-type-analysis",
+      "targetId": "math.im3.skill.3.3.prove-polynomial-identities-and-use-them-to-describe-numeric",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 3",
+      "metadata": {
+        "module": "3"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0977",
+      "type": "supports",
+      "sourceId": "math.im3.skill.3.aleks.root-type-analysis",
+      "targetId": "math.im3.skill.3.4.evaluate-functions-by-using-synthetic-substitution",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 3",
+      "metadata": {
+        "module": "3"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0978",
+      "type": "supports",
+      "sourceId": "math.im3.skill.3.aleks.root-type-analysis",
+      "targetId": "math.im3.skill.3.5.determine-the-number-and-type-of-roots-of-polynomial-equatio",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 3",
+      "metadata": {
+        "module": "3"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0979",
+      "type": "supports",
+      "sourceId": "math.im3.skill.3.aleks.root-type-analysis",
+      "targetId": "math.im3.skill.3.5.use-the-fundamental-theorem-of-algebra-to-determine-the-numb",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 3",
+      "metadata": {
+        "module": "3"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0980",
+      "type": "supports",
+      "sourceId": "math.im3.skill.3.aleks.synthetic-substitution-remainder",
+      "targetId": "math.im3.skill.3.1.solve-polynomial-equations-by-graphing",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 3",
+      "metadata": {
+        "module": "3"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0981",
+      "type": "supports",
+      "sourceId": "math.im3.skill.3.aleks.synthetic-substitution-remainder",
+      "targetId": "math.im3.skill.3.2.solve-polynomial-equations-by-factoring",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 3",
+      "metadata": {
+        "module": "3"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0982",
+      "type": "supports",
+      "sourceId": "math.im3.skill.3.aleks.synthetic-substitution-remainder",
+      "targetId": "math.im3.skill.3.2.solve-polynomial-equations-by-writing-them-in-quadratic-form",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 3",
+      "metadata": {
+        "module": "3"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0983",
+      "type": "supports",
+      "sourceId": "math.im3.skill.3.aleks.synthetic-substitution-remainder",
+      "targetId": "math.im3.skill.3.3.prove-polynomial-identities-and-use-them-to-describe-numeric",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 3",
+      "metadata": {
+        "module": "3"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0984",
+      "type": "supports",
+      "sourceId": "math.im3.skill.3.aleks.synthetic-substitution-remainder",
+      "targetId": "math.im3.skill.3.4.evaluate-functions-by-using-synthetic-substitution",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 3",
+      "metadata": {
+        "module": "3"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0985",
+      "type": "supports",
+      "sourceId": "math.im3.skill.3.aleks.synthetic-substitution-remainder",
+      "targetId": "math.im3.skill.3.5.determine-the-number-and-type-of-roots-of-polynomial-equatio",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 3",
+      "metadata": {
+        "module": "3"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0986",
+      "type": "supports",
+      "sourceId": "math.im3.skill.3.aleks.synthetic-substitution-remainder",
+      "targetId": "math.im3.skill.3.5.use-the-fundamental-theorem-of-algebra-to-determine-the-numb",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 3",
+      "metadata": {
+        "module": "3"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0987",
+      "type": "supports",
+      "sourceId": "math.im3.skill.3.aleks.zeros-to-polynomial-graph",
+      "targetId": "math.im3.skill.3.1.solve-polynomial-equations-by-graphing",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 3",
+      "metadata": {
+        "module": "3"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0988",
+      "type": "supports",
+      "sourceId": "math.im3.skill.3.aleks.zeros-to-polynomial-graph",
+      "targetId": "math.im3.skill.3.2.solve-polynomial-equations-by-factoring",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 3",
+      "metadata": {
+        "module": "3"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0989",
+      "type": "supports",
+      "sourceId": "math.im3.skill.3.aleks.zeros-to-polynomial-graph",
+      "targetId": "math.im3.skill.3.2.solve-polynomial-equations-by-writing-them-in-quadratic-form",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 3",
+      "metadata": {
+        "module": "3"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0990",
+      "type": "supports",
+      "sourceId": "math.im3.skill.3.aleks.zeros-to-polynomial-graph",
+      "targetId": "math.im3.skill.3.3.prove-polynomial-identities-and-use-them-to-describe-numeric",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 3",
+      "metadata": {
+        "module": "3"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0991",
+      "type": "supports",
+      "sourceId": "math.im3.skill.3.aleks.zeros-to-polynomial-graph",
+      "targetId": "math.im3.skill.3.4.evaluate-functions-by-using-synthetic-substitution",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 3",
+      "metadata": {
+        "module": "3"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0992",
+      "type": "supports",
+      "sourceId": "math.im3.skill.3.aleks.zeros-to-polynomial-graph",
+      "targetId": "math.im3.skill.3.5.determine-the-number-and-type-of-roots-of-polynomial-equatio",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 3",
+      "metadata": {
+        "module": "3"
+      }
+    },
+    {
+      "id": "math.im3.edge.m2plus.edge.0993",
+      "type": "supports",
+      "sourceId": "math.im3.skill.3.aleks.zeros-to-polynomial-graph",
+      "targetId": "math.im3.skill.3.5.use-the-fundamental-theorem-of-algebra-to-determine-the-numb",
+      "weight": 0.75,
+      "confidence": "medium",
+      "reviewStatus": "draft",
+      "derived": true,
+      "derivationMethod": "concept-supports-skill-v1",
+      "rationale": "ALEKS concept supports lesson-level skill in module 3",
+      "metadata": {
+        "module": "3"
+      }
+    }
+  ]
+}
