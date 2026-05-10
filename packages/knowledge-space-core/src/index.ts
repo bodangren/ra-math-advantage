@@ -36,3 +36,15 @@ export { syntheticMathFixture, syntheticEnglishGseFixture } from './fixtures';
 
 export { suggestEdges } from './edge-suggestions';
 export type { EdgeSuggestionInput } from './edge-suggestions';
+
+export {
+  findCrossCourseEquivalences,
+  validateCrossCourseEdges,
+  computeEquivalenceComponents,
+} from './cross-course-equivalence';
+export type {
+  CrossCourseCourse,
+  CrossCourseInput,
+  CrossCourseValidationResult,
+  EquivalenceComponent,
+} from './cross-course-equivalence';
