@@ -1,0 +1,779 @@
+{
+  "metadata": {
+    "course": "precalc",
+    "generatedAt": "2026-05-10T06:50:05.604Z",
+    "description": "Teacher evidence map for AP Precalculus skill graph"
+  },
+  "topicCoverage": [
+    {
+      "cedTopic": "1.1",
+      "title": "Describe covariation and tandem change of functions",
+      "unit": "1",
+      "lesson": "1",
+      "skillCount": 2,
+      "sourceType": "CED + Passwater",
+      "examAssessed": true,
+      "frqTaskModels": [
+        "FRQ 1",
+        "FRQ 2"
+      ],
+      "calculatorRequired": false
+    },
+    {
+      "cedTopic": "1.2",
+      "title": "Compute and interpret the average rate of change",
+      "unit": "1",
+      "lesson": "2",
+      "skillCount": 2,
+      "sourceType": "CED + Passwater",
+      "examAssessed": true,
+      "frqTaskModels": [
+        "FRQ 1",
+        "FRQ 2"
+      ],
+      "calculatorRequired": false
+    },
+    {
+      "cedTopic": "1.3",
+      "title": "Classify linear vs quadratic functions from rate-of-change patterns",
+      "unit": "1",
+      "lesson": "3",
+      "skillCount": 2,
+      "sourceType": "CED + Passwater",
+      "examAssessed": true,
+      "frqTaskModels": [
+        "FRQ 1",
+        "FRQ 2"
+      ],
+      "calculatorRequired": false
+    },
+    {
+      "cedTopic": "1.4",
+      "title": "Identify polynomial degree, leading coefficient, extrema, and inflection points",
+      "unit": "1",
+      "lesson": "4",
+      "skillCount": 3,
+      "sourceType": "CED + Passwater",
+      "examAssessed": true,
+      "frqTaskModels": [
+        "FRQ 1",
+        "FRQ 2"
+      ],
+      "calculatorRequired": false
+    },
+    {
+      "cedTopic": "1.5",
+      "title": "Find polynomial zeros with multiplicity and determine graph behavior",
+      "unit": "1",
+      "lesson": "5",
+      "skillCount": 3,
+      "sourceType": "CED + Passwater",
+      "examAssessed": true,
+      "frqTaskModels": [
+        "FRQ 1",
+        "FRQ 2"
+      ],
+      "calculatorRequired": false
+    },
+    {
+      "cedTopic": "1.6",
+      "title": "Write limit statements for polynomial end behavior",
+      "unit": "1",
+      "lesson": "6",
+      "skillCount": 1,
+      "sourceType": "CED + Passwater",
+      "examAssessed": true,
+      "frqTaskModels": [
+        "FRQ 1",
+        "FRQ 2"
+      ],
+      "calculatorRequired": false
+    },
+    {
+      "cedTopic": "1.7",
+      "title": "Classify rational function end behavior using the three cases",
+      "unit": "1",
+      "lesson": "7",
+      "skillCount": 2,
+      "sourceType": "CED + Passwater",
+      "examAssessed": true,
+      "frqTaskModels": [
+        "FRQ 1",
+        "FRQ 2"
+      ],
+      "calculatorRequired": false
+    },
+    {
+      "cedTopic": "1.8",
+      "title": "Find rational function zeros with domain restrictions",
+      "unit": "1",
+      "lesson": "8",
+      "skillCount": 2,
+      "sourceType": "CED + Passwater",
+      "examAssessed": true,
+      "frqTaskModels": [
+        "FRQ 1",
+        "FRQ 2"
+      ],
+      "calculatorRequired": false
+    },
+    {
+      "cedTopic": "1.9",
+      "title": "Identify vertical asymptotes by factoring and canceling",
+      "unit": "1",
+      "lesson": "9",
+      "skillCount": 2,
+      "sourceType": "CED + Passwater",
+      "examAssessed": true,
+      "frqTaskModels": [
+        "FRQ 1",
+        "FRQ 2"
+      ],
+      "calculatorRequired": false
+    },
+    {
+      "cedTopic": "1.10",
+      "title": "Distinguish holes from vertical asymptotes in rational functions",
+      "unit": "1",
+      "lesson": "10",
+      "skillCount": 2,
+      "sourceType": "CED + Passwater",
+      "examAssessed": true,
+      "frqTaskModels": [
+        "FRQ 1",
+        "FRQ 2"
+      ],
+      "calculatorRequired": false
+    },
+    {
+      "cedTopic": "1.11",
+      "title": "Convert between equivalent representations of rational functions",
+      "unit": "1",
+      "lesson": "11",
+      "skillCount": 2,
+      "sourceType": "CED + Passwater",
+      "examAssessed": true,
+      "frqTaskModels": [
+        "FRQ 1",
+        "FRQ 2"
+      ],
+      "calculatorRequired": false
+    },
+    {
+      "cedTopic": "1.12",
+      "title": "Apply function transformations to polynomial and rational functions",
+      "unit": "1",
+      "lesson": "12",
+      "skillCount": 2,
+      "sourceType": "CED + Passwater",
+      "examAssessed": true,
+      "frqTaskModels": [
+        "FRQ 1",
+        "FRQ 2"
+      ],
+      "calculatorRequired": false
+    },
+    {
+      "cedTopic": "1.13",
+      "title": "Select function models using successive differences",
+      "unit": "1",
+      "lesson": "13",
+      "skillCount": 2,
+      "sourceType": "CED + Passwater",
+      "examAssessed": true,
+      "frqTaskModels": [
+        "FRQ 1",
+        "FRQ 2"
+      ],
+      "calculatorRequired": true
+    },
+    {
+      "cedTopic": "1.14",
+      "title": "Construct regression models and evaluate appropriateness",
+      "unit": "1",
+      "lesson": "14",
+      "skillCount": 1,
+      "sourceType": "CED + Passwater",
+      "examAssessed": true,
+      "frqTaskModels": [
+        "FRQ 1",
+        "FRQ 2"
+      ],
+      "calculatorRequired": true
+    },
+    {
+      "cedTopic": "2.1",
+      "title": "Construct arithmetic and geometric sequences from given terms",
+      "unit": "2",
+      "lesson": "1",
+      "skillCount": 1,
+      "sourceType": "CED + Passwater",
+      "examAssessed": true,
+      "frqTaskModels": [
+        "FRQ 1",
+        "FRQ 2"
+      ],
+      "calculatorRequired": false
+    },
+    {
+      "cedTopic": "2.2",
+      "title": "Classify sequences as arithmetic, geometric, or neither",
+      "unit": "2",
+      "lesson": "2",
+      "skillCount": 1,
+      "sourceType": "CED + Passwater",
+      "examAssessed": true,
+      "frqTaskModels": [
+        "FRQ 1",
+        "FRQ 2"
+      ],
+      "calculatorRequired": false
+    },
+    {
+      "cedTopic": "2.3",
+      "title": "Analyze exponential function growth, decay, and end behavior",
+      "unit": "2",
+      "lesson": "3",
+      "skillCount": 1,
+      "sourceType": "CED + Passwater",
+      "examAssessed": true,
+      "frqTaskModels": [
+        "FRQ 1",
+        "FRQ 2"
+      ],
+      "calculatorRequired": false
+    },
+    {
+      "cedTopic": "2.4",
+      "title": "Manipulate exponential expressions into a·b^x standard form",
+      "unit": "2",
+      "lesson": "4",
+      "skillCount": 1,
+      "sourceType": "CED + Passwater",
+      "examAssessed": true,
+      "frqTaskModels": [
+        "FRQ 1",
+        "FRQ 2"
+      ],
+      "calculatorRequired": false
+    },
+    {
+      "cedTopic": "2.5",
+      "title": "Model with exponential functions including hidden proportionality",
+      "unit": "2",
+      "lesson": "5",
+      "skillCount": 1,
+      "sourceType": "CED + Passwater",
+      "examAssessed": true,
+      "frqTaskModels": [
+        "FRQ 1",
+        "FRQ 2"
+      ],
+      "calculatorRequired": true
+    },
+    {
+      "cedTopic": "2.6",
+      "title": "Validate competing function models with residual analysis",
+      "unit": "2",
+      "lesson": "6",
+      "skillCount": 1,
+      "sourceType": "CED + Passwater",
+      "examAssessed": true,
+      "frqTaskModels": [
+        "FRQ 1",
+        "FRQ 2"
+      ],
+      "calculatorRequired": true
+    },
+    {
+      "cedTopic": "2.7",
+      "title": "Compute and analyze function compositions",
+      "unit": "2",
+      "lesson": "7",
+      "skillCount": 1,
+      "sourceType": "CED + Passwater",
+      "examAssessed": true,
+      "frqTaskModels": [
+        "FRQ 1",
+        "FRQ 2"
+      ],
+      "calculatorRequired": false
+    },
+    {
+      "cedTopic": "2.8",
+      "title": "Find and verify inverse functions analytically and graphically",
+      "unit": "2",
+      "lesson": "8",
+      "skillCount": 1,
+      "sourceType": "CED + Passwater",
+      "examAssessed": true,
+      "frqTaskModels": [
+        "FRQ 1",
+        "FRQ 2"
+      ],
+      "calculatorRequired": false
+    },
+    {
+      "cedTopic": "2.9",
+      "title": "Evaluate logarithmic expressions and convert between forms",
+      "unit": "2",
+      "lesson": "9",
+      "skillCount": 1,
+      "sourceType": "CED + Passwater",
+      "examAssessed": true,
+      "frqTaskModels": [
+        "FRQ 1",
+        "FRQ 2"
+      ],
+      "calculatorRequired": false
+    },
+    {
+      "cedTopic": "2.10",
+      "title": "Identify inverses of exponential functions from tables and graphs",
+      "unit": "2",
+      "lesson": "10",
+      "skillCount": 1,
+      "sourceType": "CED + Passwater",
+      "examAssessed": true,
+      "frqTaskModels": [
+        "FRQ 1",
+        "FRQ 2"
+      ],
+      "calculatorRequired": false
+    },
+    {
+      "cedTopic": "2.11",
+      "title": "Analyze logarithmic function properties and end behavior",
+      "unit": "2",
+      "lesson": "11",
+      "skillCount": 1,
+      "sourceType": "CED + Passwater",
+      "examAssessed": true,
+      "frqTaskModels": [
+        "FRQ 1",
+        "FRQ 2"
+      ],
+      "calculatorRequired": false
+    },
+    {
+      "cedTopic": "2.12",
+      "title": "Expand and condense logarithmic expressions",
+      "unit": "2",
+      "lesson": "12",
+      "skillCount": 1,
+      "sourceType": "CED + Passwater",
+      "examAssessed": true,
+      "frqTaskModels": [
+        "FRQ 1",
+        "FRQ 2"
+      ],
+      "calculatorRequired": false
+    },
+    {
+      "cedTopic": "2.13",
+      "title": "Solve exponential and logarithmic equations",
+      "unit": "2",
+      "lesson": "13",
+      "skillCount": 2,
+      "sourceType": "CED + Passwater",
+      "examAssessed": true,
+      "frqTaskModels": [
+        "FRQ 1",
+        "FRQ 2"
+      ],
+      "calculatorRequired": false
+    },
+    {
+      "cedTopic": "2.14",
+      "title": "Construct logarithmic models from two points and regression",
+      "unit": "2",
+      "lesson": "14",
+      "skillCount": 1,
+      "sourceType": "CED + Passwater",
+      "examAssessed": true,
+      "frqTaskModels": [
+        "FRQ 1",
+        "FRQ 2"
+      ],
+      "calculatorRequired": true
+    },
+    {
+      "cedTopic": "2.15",
+      "title": "Use semi-log plots to linearize exponential data",
+      "unit": "2",
+      "lesson": "15",
+      "skillCount": 1,
+      "sourceType": "CED + Passwater",
+      "examAssessed": true,
+      "frqTaskModels": [
+        "FRQ 1",
+        "FRQ 2"
+      ],
+      "calculatorRequired": true
+    },
+    {
+      "cedTopic": "3.1",
+      "title": "Analyze periodic phenomena and evaluate periodic functions",
+      "unit": "3",
+      "lesson": "1",
+      "skillCount": 1,
+      "sourceType": "CED + Passwater",
+      "examAssessed": true,
+      "frqTaskModels": [
+        "FRQ 3",
+        "FRQ 4"
+      ],
+      "calculatorRequired": false
+    },
+    {
+      "cedTopic": "3.2",
+      "title": "Evaluate sine, cosine, and tangent using the unit circle",
+      "unit": "3",
+      "lesson": "2",
+      "skillCount": 1,
+      "sourceType": "CED + Passwater",
+      "examAssessed": true,
+      "frqTaskModels": [
+        "FRQ 3",
+        "FRQ 4"
+      ],
+      "calculatorRequired": false
+    },
+    {
+      "cedTopic": "3.3",
+      "title": "Find exact trigonometric values at special angles",
+      "unit": "3",
+      "lesson": "3",
+      "skillCount": 1,
+      "sourceType": "CED + Passwater",
+      "examAssessed": true,
+      "frqTaskModels": [
+        "FRQ 3",
+        "FRQ 4"
+      ],
+      "calculatorRequired": false
+    },
+    {
+      "cedTopic": "3.4",
+      "title": "Graph sine and cosine parent functions and identify key features",
+      "unit": "3",
+      "lesson": "4",
+      "skillCount": 1,
+      "sourceType": "CED + Passwater",
+      "examAssessed": true,
+      "frqTaskModels": [
+        "FRQ 3",
+        "FRQ 4"
+      ],
+      "calculatorRequired": false
+    },
+    {
+      "cedTopic": "3.5",
+      "title": "Identify sinusoidal function parameters from graphs and max-min data",
+      "unit": "3",
+      "lesson": "5",
+      "skillCount": 1,
+      "sourceType": "CED + Passwater",
+      "examAssessed": true,
+      "frqTaskModels": [
+        "FRQ 3",
+        "FRQ 4"
+      ],
+      "calculatorRequired": false
+    },
+    {
+      "cedTopic": "3.6",
+      "title": "Write and graph sinusoidal function transformations",
+      "unit": "3",
+      "lesson": "6",
+      "skillCount": 1,
+      "sourceType": "CED + Passwater",
+      "examAssessed": true,
+      "frqTaskModels": [
+        "FRQ 3",
+        "FRQ 4"
+      ],
+      "calculatorRequired": false
+    },
+    {
+      "cedTopic": "3.7",
+      "title": "Model periodic contexts with sinusoidal functions",
+      "unit": "3",
+      "lesson": "7",
+      "skillCount": 1,
+      "sourceType": "CED + Passwater",
+      "examAssessed": true,
+      "frqTaskModels": [
+        "FRQ 3",
+        "FRQ 4"
+      ],
+      "calculatorRequired": false
+    },
+    {
+      "cedTopic": "3.8",
+      "title": "Analyze the tangent function and its transformations",
+      "unit": "3",
+      "lesson": "8",
+      "skillCount": 1,
+      "sourceType": "CED + Passwater",
+      "examAssessed": true,
+      "frqTaskModels": [
+        "FRQ 3",
+        "FRQ 4"
+      ],
+      "calculatorRequired": false
+    },
+    {
+      "cedTopic": "3.9",
+      "title": "Evaluate inverse trigonometric functions and compositions",
+      "unit": "3",
+      "lesson": "9",
+      "skillCount": 1,
+      "sourceType": "CED + Passwater",
+      "examAssessed": true,
+      "frqTaskModels": [
+        "FRQ 3",
+        "FRQ 4"
+      ],
+      "calculatorRequired": false
+    },
+    {
+      "cedTopic": "3.10",
+      "title": "Solve trigonometric equations on specified intervals",
+      "unit": "3",
+      "lesson": "10",
+      "skillCount": 1,
+      "sourceType": "CED + Passwater",
+      "examAssessed": true,
+      "frqTaskModels": [
+        "FRQ 3",
+        "FRQ 4"
+      ],
+      "calculatorRequired": false
+    },
+    {
+      "cedTopic": "3.11",
+      "title": "Analyze secant, cosecant, and cotangent functions",
+      "unit": "3",
+      "lesson": "11",
+      "skillCount": 1,
+      "sourceType": "CED + Passwater",
+      "examAssessed": true,
+      "frqTaskModels": [
+        "FRQ 3",
+        "FRQ 4"
+      ],
+      "calculatorRequired": false
+    },
+    {
+      "cedTopic": "3.12",
+      "title": "Apply Pythagorean, double-angle, and sum/difference identities",
+      "unit": "3",
+      "lesson": "12",
+      "skillCount": 1,
+      "sourceType": "CED + Passwater",
+      "examAssessed": true,
+      "frqTaskModels": [
+        "FRQ 3",
+        "FRQ 4"
+      ],
+      "calculatorRequired": false
+    },
+    {
+      "cedTopic": "3.13",
+      "title": "Convert between polar and rectangular coordinate forms",
+      "unit": "3",
+      "lesson": "13",
+      "skillCount": 1,
+      "sourceType": "CED + Passwater",
+      "examAssessed": true,
+      "frqTaskModels": [
+        "FRQ 3",
+        "FRQ 4"
+      ],
+      "calculatorRequired": false
+    },
+    {
+      "cedTopic": "3.14",
+      "title": "Classify and graph rose curves, limaçons, and other polar functions",
+      "unit": "3",
+      "lesson": "14",
+      "skillCount": 1,
+      "sourceType": "CED + Passwater",
+      "examAssessed": true,
+      "frqTaskModels": [
+        "FRQ 3",
+        "FRQ 4"
+      ],
+      "calculatorRequired": false
+    },
+    {
+      "cedTopic": "3.15",
+      "title": "Analyze rates of change in polar functions",
+      "unit": "3",
+      "lesson": "15",
+      "skillCount": 1,
+      "sourceType": "CED + Passwater",
+      "examAssessed": true,
+      "frqTaskModels": [
+        "FRQ 3",
+        "FRQ 4"
+      ],
+      "calculatorRequired": false
+    },
+    {
+      "cedTopic": "4.1",
+      "title": "Represent curves using parametric functions",
+      "unit": "4",
+      "lesson": "1",
+      "skillCount": 1,
+      "sourceType": "CED-only",
+      "examAssessed": false,
+      "frqTaskModels": [],
+      "calculatorRequired": false
+    },
+    {
+      "cedTopic": "4.2",
+      "title": "Model planar motion with parametric functions",
+      "unit": "4",
+      "lesson": "2",
+      "skillCount": 1,
+      "sourceType": "CED-only",
+      "examAssessed": false,
+      "frqTaskModels": [],
+      "calculatorRequired": false
+    },
+    {
+      "cedTopic": "4.3",
+      "title": "Compute rates of change for parametric functions",
+      "unit": "4",
+      "lesson": "3",
+      "skillCount": 1,
+      "sourceType": "CED-only",
+      "examAssessed": false,
+      "frqTaskModels": [],
+      "calculatorRequired": false
+    },
+    {
+      "cedTopic": "4.4",
+      "title": "Parametrize lines and circles",
+      "unit": "4",
+      "lesson": "4",
+      "skillCount": 1,
+      "sourceType": "CED-only",
+      "examAssessed": false,
+      "frqTaskModels": [],
+      "calculatorRequired": false
+    },
+    {
+      "cedTopic": "4.5",
+      "title": "Work with implicitly defined functions",
+      "unit": "4",
+      "lesson": "5",
+      "skillCount": 1,
+      "sourceType": "CED-only",
+      "examAssessed": false,
+      "frqTaskModels": [],
+      "calculatorRequired": false
+    },
+    {
+      "cedTopic": "4.6",
+      "title": "Classify and analyze conic sections",
+      "unit": "4",
+      "lesson": "6",
+      "skillCount": 1,
+      "sourceType": "CED-only",
+      "examAssessed": false,
+      "frqTaskModels": [],
+      "calculatorRequired": false
+    },
+    {
+      "cedTopic": "4.7",
+      "title": "Parametrize implicitly defined conics using trigonometric functions",
+      "unit": "4",
+      "lesson": "7",
+      "skillCount": 1,
+      "sourceType": "CED-only",
+      "examAssessed": false,
+      "frqTaskModels": [],
+      "calculatorRequired": false
+    },
+    {
+      "cedTopic": "4.8",
+      "title": "Perform vector operations including magnitude and direction",
+      "unit": "4",
+      "lesson": "8",
+      "skillCount": 1,
+      "sourceType": "CED-only",
+      "examAssessed": false,
+      "frqTaskModels": [],
+      "calculatorRequired": false
+    },
+    {
+      "cedTopic": "4.9",
+      "title": "Analyze vector-valued functions",
+      "unit": "4",
+      "lesson": "9",
+      "skillCount": 1,
+      "sourceType": "CED-only",
+      "examAssessed": false,
+      "frqTaskModels": [],
+      "calculatorRequired": false
+    },
+    {
+      "cedTopic": "4.10",
+      "title": "Perform matrix operations including multiplication",
+      "unit": "4",
+      "lesson": "10",
+      "skillCount": 1,
+      "sourceType": "CED-only",
+      "examAssessed": false,
+      "frqTaskModels": [],
+      "calculatorRequired": false
+    },
+    {
+      "cedTopic": "4.11",
+      "title": "Compute determinant and inverse of 2×2 matrices",
+      "unit": "4",
+      "lesson": "11",
+      "skillCount": 1,
+      "sourceType": "CED-only",
+      "examAssessed": false,
+      "frqTaskModels": [],
+      "calculatorRequired": false
+    },
+    {
+      "cedTopic": "4.12",
+      "title": "Apply linear transformations using matrices",
+      "unit": "4",
+      "lesson": "12",
+      "skillCount": 1,
+      "sourceType": "CED-only",
+      "examAssessed": false,
+      "frqTaskModels": [],
+      "calculatorRequired": false
+    },
+    {
+      "cedTopic": "4.13",
+      "title": "Interpret matrices as functions and compose transformations",
+      "unit": "4",
+      "lesson": "13",
+      "skillCount": 1,
+      "sourceType": "CED-only",
+      "examAssessed": false,
+      "frqTaskModels": [],
+      "calculatorRequired": false
+    },
+    {
+      "cedTopic": "4.14",
+      "title": "Model real-world contexts with matrices",
+      "unit": "4",
+      "lesson": "14",
+      "skillCount": 1,
+      "sourceType": "CED-only",
+      "examAssessed": false,
+      "frqTaskModels": [],
+      "calculatorRequired": false
+    }
+  ]
+}

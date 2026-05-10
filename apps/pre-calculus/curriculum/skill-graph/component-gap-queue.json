@@ -1,0 +1,58 @@
+{
+  "metadata": {
+    "course": "precalc",
+    "generatedAt": "2026-05-10T06:50:05.615Z",
+    "description": "Component gap queue. Polar, parametric, vector, and matrix renderer gaps identified."
+  },
+  "items": [
+    {
+      "componentType": "polar-renderer",
+      "title": "Polar Coordinate/Graph Renderer",
+      "affectedNodeIds": [
+        "math.precalc.skill.3.13.convert-between-polar-and-rectangular-coordinates",
+        "math.precalc.skill.3.14.classify-and-graph-polar-functions",
+        "math.precalc.skill.3.15.analyze-rates-of-change-in-polar-functions"
+      ],
+      "reason": "No polar coordinate or polar function graph renderer exists. Current fallback is comprehension-quiz.",
+      "priority": "medium"
+    },
+    {
+      "componentType": "parametric-renderer",
+      "title": "Parametric/Conic Function Renderer",
+      "affectedNodeIds": [
+        "math.precalc.skill.4.1.represent-curves-using-parametric-functions",
+        "math.precalc.skill.4.2.model-planar-motion-with-parametric-functions",
+        "math.precalc.skill.4.3.compute-rates-of-change-for-parametric-functions",
+        "math.precalc.skill.4.4.parametrize-lines-and-circles",
+        "math.precalc.skill.4.5.work-with-implicitly-defined-functions",
+        "math.precalc.skill.4.6.classify-and-analyze-conic-sections",
+        "math.precalc.skill.4.7.parametrize-implicitly-defined-conics"
+      ],
+      "reason": "No parametric function or conic section renderer exists. Current fallback is comprehension-quiz.",
+      "priority": "low"
+    },
+    {
+      "componentType": "vector-renderer",
+      "title": "Vector/Vector-Valued Function Renderer",
+      "affectedNodeIds": [
+        "math.precalc.skill.4.8.perform-vector-operations",
+        "math.precalc.skill.4.9.analyze-vector-valued-functions"
+      ],
+      "reason": "No vector or vector-valued function renderer exists. Current fallback is comprehension-quiz.",
+      "priority": "low"
+    },
+    {
+      "componentType": "matrix-renderer",
+      "title": "Matrix Operations Renderer",
+      "affectedNodeIds": [
+        "math.precalc.skill.4.10.perform-matrix-operations",
+        "math.precalc.skill.4.11.compute-determinant-and-inverse-of-matrices",
+        "math.precalc.skill.4.12.apply-linear-transformations-using-matrices",
+        "math.precalc.skill.4.13.interpret-matrices-as-functions",
+        "math.precalc.skill.4.14.model-contexts-with-matrices"
+      ],
+      "reason": "No matrix operations renderer exists. Current fallback is comprehension-quiz.",
+      "priority": "low"
+    }
+  ]
+}

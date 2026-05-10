@@ -1,0 +1,739 @@
+{
+  "metadata": {
+    "course": "precalc",
+    "generatedAt": "2026-05-10T06:50:05.613Z",
+    "description": "PreCalc generator gap queue. All skills have STUB blueprints; 0% generator readiness."
+  },
+  "items": [
+    {
+      "nodeId": "math.precalc.skill.1.1.describe-covariation-in-tandem-change",
+      "title": "Describe covariation and tandem change of functions",
+      "unit": "1",
+      "lesson": "1",
+      "rendererKey": "comprehension-quiz",
+      "gapType": "generator",
+      "reason": "No generator exists for PreCalc. All blueprints are STUB placeholders.",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.precalc.skill.1.1.identify-intervals-of-increase-decrease-from-graphs",
+      "title": "Identify intervals of increase, decrease, and constant behavior from graphs",
+      "unit": "1",
+      "lesson": "1",
+      "rendererKey": "graphing-explorer",
+      "gapType": "generator",
+      "reason": "No generator exists for PreCalc. All blueprints are STUB placeholders.",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.precalc.skill.1.2.compute-and-interpret-average-rate-of-change",
+      "title": "Compute and interpret the average rate of change",
+      "unit": "1",
+      "lesson": "2",
+      "rendererKey": "rate-of-change-calculator",
+      "gapType": "generator",
+      "reason": "No generator exists for PreCalc. All blueprints are STUB placeholders.",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.precalc.skill.1.2.compare-rates-of-change-across-intervals",
+      "title": "Compare rates of change across multiple intervals",
+      "unit": "1",
+      "lesson": "2",
+      "rendererKey": "rate-of-change-calculator",
+      "gapType": "generator",
+      "reason": "No generator exists for PreCalc. All blueprints are STUB placeholders.",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.precalc.skill.1.3.classify-linear-vs-quadratic-from-rate-patterns",
+      "title": "Classify linear vs quadratic functions from rate-of-change patterns",
+      "unit": "1",
+      "lesson": "3",
+      "rendererKey": "comprehension-quiz",
+      "gapType": "generator",
+      "reason": "No generator exists for PreCalc. All blueprints are STUB placeholders.",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.precalc.skill.1.3.determine-concavity-from-rate-of-change",
+      "title": "Determine concavity from rate-of-change behavior",
+      "unit": "1",
+      "lesson": "3",
+      "rendererKey": "rate-of-change-calculator",
+      "gapType": "generator",
+      "reason": "No generator exists for PreCalc. All blueprints are STUB placeholders.",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.precalc.skill.1.4.identify-polynomial-features-degree-leading-coefficient-extrema",
+      "title": "Identify polynomial degree, leading coefficient, extrema, and inflection points",
+      "unit": "1",
+      "lesson": "4",
+      "rendererKey": "comprehension-quiz",
+      "gapType": "generator",
+      "reason": "No generator exists for PreCalc. All blueprints are STUB placeholders.",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.precalc.skill.1.4.describe-rate-of-change-behavior-on-intervals",
+      "title": "Describe rate-of-change behavior on intervals using precise language",
+      "unit": "1",
+      "lesson": "4",
+      "rendererKey": "rate-of-change-calculator",
+      "gapType": "generator",
+      "reason": "No generator exists for PreCalc. All blueprints are STUB placeholders.",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.precalc.skill.1.4.determine-end-behavior-from-leading-term",
+      "title": "Determine polynomial end behavior from the leading term",
+      "unit": "1",
+      "lesson": "4",
+      "rendererKey": "graphing-explorer",
+      "gapType": "generator",
+      "reason": "No generator exists for PreCalc. All blueprints are STUB placeholders.",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.precalc.skill.1.5.find-zeros-with-multiplicity-and-graph-behavior",
+      "title": "Find polynomial zeros with multiplicity and determine graph behavior",
+      "unit": "1",
+      "lesson": "5",
+      "rendererKey": "graphing-explorer",
+      "gapType": "generator",
+      "reason": "No generator exists for PreCalc. All blueprints are STUB placeholders.",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.precalc.skill.1.5.apply-complex-conjugate-zeros-theorem",
+      "title": "Apply the Complex Conjugate Zeros Theorem",
+      "unit": "1",
+      "lesson": "5",
+      "rendererKey": "comprehension-quiz",
+      "gapType": "generator",
+      "reason": "No generator exists for PreCalc. All blueprints are STUB placeholders.",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.precalc.skill.1.5.solve-polynomial-inequalities-using-sign-charts",
+      "title": "Solve polynomial inequalities using sign charts",
+      "unit": "1",
+      "lesson": "5",
+      "rendererKey": "step-by-step-solver",
+      "gapType": "generator",
+      "reason": "No generator exists for PreCalc. All blueprints are STUB placeholders.",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.precalc.skill.1.6.write-limit-statements-for-polynomial-end-behavior",
+      "title": "Write limit statements for polynomial end behavior",
+      "unit": "1",
+      "lesson": "6",
+      "rendererKey": "graphing-explorer",
+      "gapType": "generator",
+      "reason": "No generator exists for PreCalc. All blueprints are STUB placeholders.",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.precalc.skill.1.7.classify-rational-end-behavior-three-cases",
+      "title": "Classify rational function end behavior using the three cases",
+      "unit": "1",
+      "lesson": "7",
+      "rendererKey": "graphing-explorer",
+      "gapType": "generator",
+      "reason": "No generator exists for PreCalc. All blueprints are STUB placeholders.",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.precalc.skill.1.7.find-slant-asymptotes-by-long-division",
+      "title": "Find slant asymptotes using polynomial long division",
+      "unit": "1",
+      "lesson": "7",
+      "rendererKey": "graphing-explorer",
+      "gapType": "generator",
+      "reason": "No generator exists for PreCalc. All blueprints are STUB placeholders.",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.precalc.skill.1.8.find-rational-function-zeros-with-domain-restrictions",
+      "title": "Find rational function zeros with domain restrictions",
+      "unit": "1",
+      "lesson": "8",
+      "rendererKey": "graphing-explorer",
+      "gapType": "generator",
+      "reason": "No generator exists for PreCalc. All blueprints are STUB placeholders.",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.precalc.skill.1.8.solve-rational-inequalities-by-sign-chart",
+      "title": "Solve rational inequalities using sign charts",
+      "unit": "1",
+      "lesson": "8",
+      "rendererKey": "step-by-step-solver",
+      "gapType": "generator",
+      "reason": "No generator exists for PreCalc. All blueprints are STUB placeholders.",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.precalc.skill.1.9.identify-vertical-asymptotes-by-factoring",
+      "title": "Identify vertical asymptotes by factoring and canceling",
+      "unit": "1",
+      "lesson": "9",
+      "rendererKey": "graphing-explorer",
+      "gapType": "generator",
+      "reason": "No generator exists for PreCalc. All blueprints are STUB placeholders.",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.precalc.skill.1.9.write-one-sided-limit-statements-at-vertical-asymptotes",
+      "title": "Write one-sided limit statements at vertical asymptotes",
+      "unit": "1",
+      "lesson": "9",
+      "rendererKey": "comprehension-quiz",
+      "gapType": "generator",
+      "reason": "No generator exists for PreCalc. All blueprints are STUB placeholders.",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.precalc.skill.1.10.distinguish-holes-from-vertical-asymptotes",
+      "title": "Distinguish holes from vertical asymptotes in rational functions",
+      "unit": "1",
+      "lesson": "10",
+      "rendererKey": "comprehension-quiz",
+      "gapType": "generator",
+      "reason": "No generator exists for PreCalc. All blueprints are STUB placeholders.",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.precalc.skill.1.10.construct-rational-functions-with-specified-discontinuities",
+      "title": "Construct rational functions with specified holes and asymptotes",
+      "unit": "1",
+      "lesson": "10",
+      "rendererKey": "comprehension-quiz",
+      "gapType": "generator",
+      "reason": "No generator exists for PreCalc. All blueprints are STUB placeholders.",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.precalc.skill.1.11.convert-between-equivalent-representations-of-rational-functions",
+      "title": "Convert between equivalent representations of rational functions",
+      "unit": "1",
+      "lesson": "11",
+      "rendererKey": "step-by-step-solver",
+      "gapType": "generator",
+      "reason": "No generator exists for PreCalc. All blueprints are STUB placeholders.",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.precalc.skill.1.11.apply-binomial-theorem-and-pascal-triangle",
+      "title": "Apply the Binomial Theorem and Pascal Triangle",
+      "unit": "1",
+      "lesson": "11",
+      "rendererKey": "step-by-step-solver",
+      "gapType": "generator",
+      "reason": "No generator exists for PreCalc. All blueprints are STUB placeholders.",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.precalc.skill.1.12.apply-function-transformations-to-polynomial-functions",
+      "title": "Apply function transformations to polynomial and rational functions",
+      "unit": "1",
+      "lesson": "12",
+      "rendererKey": "comprehension-quiz",
+      "gapType": "generator",
+      "reason": "No generator exists for PreCalc. All blueprints are STUB placeholders.",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.precalc.skill.1.12.determine-domain-and-range-under-transformations",
+      "title": "Determine domain and range under transformations",
+      "unit": "1",
+      "lesson": "12",
+      "rendererKey": "comprehension-quiz",
+      "gapType": "generator",
+      "reason": "No generator exists for PreCalc. All blueprints are STUB placeholders.",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.precalc.skill.1.13.select-function-models-using-successive-differences",
+      "title": "Select function models using successive differences",
+      "unit": "1",
+      "lesson": "13",
+      "rendererKey": "comprehension-quiz",
+      "gapType": "generator",
+      "reason": "No generator exists for PreCalc. All blueprints are STUB placeholders.",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.precalc.skill.1.13.distinguish-interpolation-from-extrapolation",
+      "title": "Distinguish interpolation from extrapolation",
+      "unit": "1",
+      "lesson": "13",
+      "rendererKey": "comprehension-quiz",
+      "gapType": "generator",
+      "reason": "No generator exists for PreCalc. All blueprints are STUB placeholders.",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.precalc.skill.1.14.construct-regression-models-and-evaluate-appropriateness",
+      "title": "Construct regression models and evaluate appropriateness",
+      "unit": "1",
+      "lesson": "14",
+      "rendererKey": "comprehension-quiz",
+      "gapType": "generator",
+      "reason": "No generator exists for PreCalc. All blueprints are STUB placeholders.",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.precalc.skill.2.1.construct-arithmetic-and-geometric-sequences",
+      "title": "Construct arithmetic and geometric sequences from given terms",
+      "unit": "2",
+      "lesson": "1",
+      "rendererKey": "comprehension-quiz",
+      "gapType": "generator",
+      "reason": "No generator exists for PreCalc. All blueprints are STUB placeholders.",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.precalc.skill.2.2.classify-sequences-as-arithmetic-or-geometric",
+      "title": "Classify sequences as arithmetic, geometric, or neither",
+      "unit": "2",
+      "lesson": "2",
+      "rendererKey": "comprehension-quiz",
+      "gapType": "generator",
+      "reason": "No generator exists for PreCalc. All blueprints are STUB placeholders.",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.precalc.skill.2.3.analyze-exponential-function-growth-and-decay",
+      "title": "Analyze exponential function growth, decay, and end behavior",
+      "unit": "2",
+      "lesson": "3",
+      "rendererKey": "comprehension-quiz",
+      "gapType": "generator",
+      "reason": "No generator exists for PreCalc. All blueprints are STUB placeholders.",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.precalc.skill.2.4.manipulate-exponential-expressions-into-standard-form",
+      "title": "Manipulate exponential expressions into a·b^x standard form",
+      "unit": "2",
+      "lesson": "4",
+      "rendererKey": "comprehension-quiz",
+      "gapType": "generator",
+      "reason": "No generator exists for PreCalc. All blueprints are STUB placeholders.",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.precalc.skill.2.5.model-with-exponential-functions-and-handle-hidden-proportionality",
+      "title": "Model with exponential functions including hidden proportionality",
+      "unit": "2",
+      "lesson": "5",
+      "rendererKey": "comprehension-quiz",
+      "gapType": "generator",
+      "reason": "No generator exists for PreCalc. All blueprints are STUB placeholders.",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.precalc.skill.2.6.validate-function-models-with-residual-analysis",
+      "title": "Validate competing function models with residual analysis",
+      "unit": "2",
+      "lesson": "6",
+      "rendererKey": "comprehension-quiz",
+      "gapType": "generator",
+      "reason": "No generator exists for PreCalc. All blueprints are STUB placeholders.",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.precalc.skill.2.7.compute-and-analyze-function-compositions",
+      "title": "Compute and analyze function compositions",
+      "unit": "2",
+      "lesson": "7",
+      "rendererKey": "comprehension-quiz",
+      "gapType": "generator",
+      "reason": "No generator exists for PreCalc. All blueprints are STUB placeholders.",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.precalc.skill.2.8.find-and-verify-inverse-functions",
+      "title": "Find and verify inverse functions analytically and graphically",
+      "unit": "2",
+      "lesson": "8",
+      "rendererKey": "comprehension-quiz",
+      "gapType": "generator",
+      "reason": "No generator exists for PreCalc. All blueprints are STUB placeholders.",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.precalc.skill.2.9.evaluate-and-convert-logarithmic-expressions",
+      "title": "Evaluate logarithmic expressions and convert between forms",
+      "unit": "2",
+      "lesson": "9",
+      "rendererKey": "step-by-step-solver",
+      "gapType": "generator",
+      "reason": "No generator exists for PreCalc. All blueprints are STUB placeholders.",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.precalc.skill.2.10.identify-inverses-of-exponential-functions",
+      "title": "Identify inverses of exponential functions from tables and graphs",
+      "unit": "2",
+      "lesson": "10",
+      "rendererKey": "comprehension-quiz",
+      "gapType": "generator",
+      "reason": "No generator exists for PreCalc. All blueprints are STUB placeholders.",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.precalc.skill.2.11.analyze-logarithmic-function-properties",
+      "title": "Analyze logarithmic function properties and end behavior",
+      "unit": "2",
+      "lesson": "11",
+      "rendererKey": "comprehension-quiz",
+      "gapType": "generator",
+      "reason": "No generator exists for PreCalc. All blueprints are STUB placeholders.",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.precalc.skill.2.12.expand-and-condense-logarithmic-expressions",
+      "title": "Expand and condense logarithmic expressions",
+      "unit": "2",
+      "lesson": "12",
+      "rendererKey": "step-by-step-solver",
+      "gapType": "generator",
+      "reason": "No generator exists for PreCalc. All blueprints are STUB placeholders.",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.precalc.skill.2.13.solve-exponential-and-logarithmic-equations",
+      "title": "Solve exponential and logarithmic equations",
+      "unit": "2",
+      "lesson": "13",
+      "rendererKey": "step-by-step-solver",
+      "gapType": "generator",
+      "reason": "No generator exists for PreCalc. All blueprints are STUB placeholders.",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.precalc.skill.2.13.find-inverses-of-exponential-and-logarithmic-functions",
+      "title": "Find inverses of exponential and logarithmic functions",
+      "unit": "2",
+      "lesson": "13",
+      "rendererKey": "comprehension-quiz",
+      "gapType": "generator",
+      "reason": "No generator exists for PreCalc. All blueprints are STUB placeholders.",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.precalc.skill.2.14.construct-logarithmic-models-from-data",
+      "title": "Construct logarithmic models from two points and regression",
+      "unit": "2",
+      "lesson": "14",
+      "rendererKey": "comprehension-quiz",
+      "gapType": "generator",
+      "reason": "No generator exists for PreCalc. All blueprints are STUB placeholders.",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.precalc.skill.2.15.use-semi-log-plots-to-linearize-exponential-data",
+      "title": "Use semi-log plots to linearize exponential data",
+      "unit": "2",
+      "lesson": "15",
+      "rendererKey": "comprehension-quiz",
+      "gapType": "generator",
+      "reason": "No generator exists for PreCalc. All blueprints are STUB placeholders.",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.precalc.skill.3.1.analyze-periodic-phenomena-and-periodic-functions",
+      "title": "Analyze periodic phenomena and evaluate periodic functions",
+      "unit": "3",
+      "lesson": "1",
+      "rendererKey": "comprehension-quiz",
+      "gapType": "generator",
+      "reason": "No generator exists for PreCalc. All blueprints are STUB placeholders.",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.precalc.skill.3.2.evaluate-sine-cosine-and-tangent-using-the-unit-circle",
+      "title": "Evaluate sine, cosine, and tangent using the unit circle",
+      "unit": "3",
+      "lesson": "2",
+      "rendererKey": "comprehension-quiz",
+      "gapType": "generator",
+      "reason": "No generator exists for PreCalc. All blueprints are STUB placeholders.",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.precalc.skill.3.3.find-exact-trigonometric-values-at-special-angles",
+      "title": "Find exact trigonometric values at special angles",
+      "unit": "3",
+      "lesson": "3",
+      "rendererKey": "step-by-step-solver",
+      "gapType": "generator",
+      "reason": "No generator exists for PreCalc. All blueprints are STUB placeholders.",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.precalc.skill.3.4.graph-sine-and-cosine-parent-functions",
+      "title": "Graph sine and cosine parent functions and identify key features",
+      "unit": "3",
+      "lesson": "4",
+      "rendererKey": "graphing-explorer",
+      "gapType": "generator",
+      "reason": "No generator exists for PreCalc. All blueprints are STUB placeholders.",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.precalc.skill.3.5.identify-sinusoidal-function-parameters",
+      "title": "Identify sinusoidal function parameters from graphs and max-min data",
+      "unit": "3",
+      "lesson": "5",
+      "rendererKey": "graphing-explorer",
+      "gapType": "generator",
+      "reason": "No generator exists for PreCalc. All blueprints are STUB placeholders.",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.precalc.skill.3.6.write-and-graph-sinusoidal-function-transformations",
+      "title": "Write and graph sinusoidal function transformations",
+      "unit": "3",
+      "lesson": "6",
+      "rendererKey": "graphing-explorer",
+      "gapType": "generator",
+      "reason": "No generator exists for PreCalc. All blueprints are STUB placeholders.",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.precalc.skill.3.7.model-periodic-contexts-with-sinusoidal-functions",
+      "title": "Model periodic contexts with sinusoidal functions",
+      "unit": "3",
+      "lesson": "7",
+      "rendererKey": "comprehension-quiz",
+      "gapType": "generator",
+      "reason": "No generator exists for PreCalc. All blueprints are STUB placeholders.",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.precalc.skill.3.8.analyze-the-tangent-function-and-its-transformations",
+      "title": "Analyze the tangent function and its transformations",
+      "unit": "3",
+      "lesson": "8",
+      "rendererKey": "comprehension-quiz",
+      "gapType": "generator",
+      "reason": "No generator exists for PreCalc. All blueprints are STUB placeholders.",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.precalc.skill.3.9.evaluate-inverse-trigonometric-functions",
+      "title": "Evaluate inverse trigonometric functions and compositions",
+      "unit": "3",
+      "lesson": "9",
+      "rendererKey": "step-by-step-solver",
+      "gapType": "generator",
+      "reason": "No generator exists for PreCalc. All blueprints are STUB placeholders.",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.precalc.skill.3.10.solve-trigonometric-equations-on-specified-intervals",
+      "title": "Solve trigonometric equations on specified intervals",
+      "unit": "3",
+      "lesson": "10",
+      "rendererKey": "step-by-step-solver",
+      "gapType": "generator",
+      "reason": "No generator exists for PreCalc. All blueprints are STUB placeholders.",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.precalc.skill.3.11.analyze-reciprocal-trigonometric-functions",
+      "title": "Analyze secant, cosecant, and cotangent functions",
+      "unit": "3",
+      "lesson": "11",
+      "rendererKey": "comprehension-quiz",
+      "gapType": "generator",
+      "reason": "No generator exists for PreCalc. All blueprints are STUB placeholders.",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.precalc.skill.3.12.apply-trigonometric-identities-and-equivalent-representations",
+      "title": "Apply Pythagorean, double-angle, and sum/difference identities",
+      "unit": "3",
+      "lesson": "12",
+      "rendererKey": "comprehension-quiz",
+      "gapType": "generator",
+      "reason": "No generator exists for PreCalc. All blueprints are STUB placeholders.",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.precalc.skill.3.13.convert-between-polar-and-rectangular-coordinates",
+      "title": "Convert between polar and rectangular coordinate forms",
+      "unit": "3",
+      "lesson": "13",
+      "rendererKey": "step-by-step-solver",
+      "gapType": "generator",
+      "reason": "No generator exists for PreCalc. All blueprints are STUB placeholders.",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.precalc.skill.3.14.classify-and-graph-polar-functions",
+      "title": "Classify and graph rose curves, limaçons, and other polar functions",
+      "unit": "3",
+      "lesson": "14",
+      "rendererKey": "graphing-explorer",
+      "gapType": "generator",
+      "reason": "No generator exists for PreCalc. All blueprints are STUB placeholders.",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.precalc.skill.3.15.analyze-rates-of-change-in-polar-functions",
+      "title": "Analyze rates of change in polar functions",
+      "unit": "3",
+      "lesson": "15",
+      "rendererKey": "rate-of-change-calculator",
+      "gapType": "generator",
+      "reason": "No generator exists for PreCalc. All blueprints are STUB placeholders.",
+      "priority": "medium"
+    },
+    {
+      "nodeId": "math.precalc.skill.4.1.represent-curves-using-parametric-functions",
+      "title": "Represent curves using parametric functions",
+      "unit": "4",
+      "lesson": "1",
+      "rendererKey": "comprehension-quiz",
+      "gapType": "generator",
+      "reason": "No generator exists for PreCalc. All blueprints are STUB placeholders.",
+      "priority": "low"
+    },
+    {
+      "nodeId": "math.precalc.skill.4.2.model-planar-motion-with-parametric-functions",
+      "title": "Model planar motion with parametric functions",
+      "unit": "4",
+      "lesson": "2",
+      "rendererKey": "comprehension-quiz",
+      "gapType": "generator",
+      "reason": "No generator exists for PreCalc. All blueprints are STUB placeholders.",
+      "priority": "low"
+    },
+    {
+      "nodeId": "math.precalc.skill.4.3.compute-rates-of-change-for-parametric-functions",
+      "title": "Compute rates of change for parametric functions",
+      "unit": "4",
+      "lesson": "3",
+      "rendererKey": "rate-of-change-calculator",
+      "gapType": "generator",
+      "reason": "No generator exists for PreCalc. All blueprints are STUB placeholders.",
+      "priority": "low"
+    },
+    {
+      "nodeId": "math.precalc.skill.4.4.parametrize-lines-and-circles",
+      "title": "Parametrize lines and circles",
+      "unit": "4",
+      "lesson": "4",
+      "rendererKey": "graphing-explorer",
+      "gapType": "generator",
+      "reason": "No generator exists for PreCalc. All blueprints are STUB placeholders.",
+      "priority": "low"
+    },
+    {
+      "nodeId": "math.precalc.skill.4.5.work-with-implicitly-defined-functions",
+      "title": "Work with implicitly defined functions",
+      "unit": "4",
+      "lesson": "5",
+      "rendererKey": "comprehension-quiz",
+      "gapType": "generator",
+      "reason": "No generator exists for PreCalc. All blueprints are STUB placeholders.",
+      "priority": "low"
+    },
+    {
+      "nodeId": "math.precalc.skill.4.6.classify-and-analyze-conic-sections",
+      "title": "Classify and analyze conic sections",
+      "unit": "4",
+      "lesson": "6",
+      "rendererKey": "comprehension-quiz",
+      "gapType": "generator",
+      "reason": "No generator exists for PreCalc. All blueprints are STUB placeholders.",
+      "priority": "low"
+    },
+    {
+      "nodeId": "math.precalc.skill.4.7.parametrize-implicitly-defined-conics",
+      "title": "Parametrize implicitly defined conics using trigonometric functions",
+      "unit": "4",
+      "lesson": "7",
+      "rendererKey": "graphing-explorer",
+      "gapType": "generator",
+      "reason": "No generator exists for PreCalc. All blueprints are STUB placeholders.",
+      "priority": "low"
+    },
+    {
+      "nodeId": "math.precalc.skill.4.8.perform-vector-operations",
+      "title": "Perform vector operations including magnitude and direction",
+      "unit": "4",
+      "lesson": "8",
+      "rendererKey": "comprehension-quiz",
+      "gapType": "generator",
+      "reason": "No generator exists for PreCalc. All blueprints are STUB placeholders.",
+      "priority": "low"
+    },
+    {
+      "nodeId": "math.precalc.skill.4.9.analyze-vector-valued-functions",
+      "title": "Analyze vector-valued functions",
+      "unit": "4",
+      "lesson": "9",
+      "rendererKey": "comprehension-quiz",
+      "gapType": "generator",
+      "reason": "No generator exists for PreCalc. All blueprints are STUB placeholders.",
+      "priority": "low"
+    },
+    {
+      "nodeId": "math.precalc.skill.4.10.perform-matrix-operations",
+      "title": "Perform matrix operations including multiplication",
+      "unit": "4",
+      "lesson": "10",
+      "rendererKey": "step-by-step-solver",
+      "gapType": "generator",
+      "reason": "No generator exists for PreCalc. All blueprints are STUB placeholders.",
+      "priority": "low"
+    },
+    {
+      "nodeId": "math.precalc.skill.4.11.compute-determinant-and-inverse-of-matrices",
+      "title": "Compute determinant and inverse of 2×2 matrices",
+      "unit": "4",
+      "lesson": "11",
+      "rendererKey": "step-by-step-solver",
+      "gapType": "generator",
+      "reason": "No generator exists for PreCalc. All blueprints are STUB placeholders.",
+      "priority": "low"
+    },
+    {
+      "nodeId": "math.precalc.skill.4.12.apply-linear-transformations-using-matrices",
+      "title": "Apply linear transformations using matrices",
+      "unit": "4",
+      "lesson": "12",
+      "rendererKey": "comprehension-quiz",
+      "gapType": "generator",
+      "reason": "No generator exists for PreCalc. All blueprints are STUB placeholders.",
+      "priority": "low"
+    },
+    {
+      "nodeId": "math.precalc.skill.4.13.interpret-matrices-as-functions",
+      "title": "Interpret matrices as functions and compose transformations",
+      "unit": "4",
+      "lesson": "13",
+      "rendererKey": "comprehension-quiz",
+      "gapType": "generator",
+      "reason": "No generator exists for PreCalc. All blueprints are STUB placeholders.",
+      "priority": "low"
+    },
+    {
+      "nodeId": "math.precalc.skill.4.14.model-contexts-with-matrices",
+      "title": "Model real-world contexts with matrices",
+      "unit": "4",
+      "lesson": "14",
+      "rendererKey": "comprehension-quiz",
+      "gapType": "generator",
+      "reason": "No generator exists for PreCalc. All blueprints are STUB placeholders.",
+      "priority": "low"
+    }
+  ]
+}

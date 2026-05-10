@@ -1,0 +1,1033 @@
+{
+  "metadata": {
+    "course": "precalc",
+    "generatedAt": "2026-05-10T06:50:05.602Z",
+    "description": "SRS input projection for AP Precalculus skill graph"
+  },
+  "inputs": [
+    {
+      "nodeId": "math.precalc.skill.1.1.describe-covariation-in-tandem-change",
+      "blueprintId": "math.precalc.skill.1.1.describe-covariation-in-tandem-change",
+      "standards": [
+        "math.standard.ccss.hsf-if-a-2",
+        "math.standard.ccss.hsf-if-b-4"
+      ],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false,
+      "apTopic": "AP-aligned",
+      "calculatorRequired": false,
+      "frqTaskModel": null
+    },
+    {
+      "nodeId": "math.precalc.skill.1.1.identify-intervals-of-increase-decrease-from-graphs",
+      "blueprintId": "math.precalc.skill.1.1.identify-intervals-of-increase-decrease-from-graphs",
+      "standards": [
+        "math.standard.ccss.hsf-if-a-2",
+        "math.standard.ccss.hsf-if-b-4"
+      ],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false,
+      "apTopic": "AP-aligned",
+      "calculatorRequired": false,
+      "frqTaskModel": null
+    },
+    {
+      "nodeId": "math.precalc.skill.1.2.compute-and-interpret-average-rate-of-change",
+      "blueprintId": "math.precalc.skill.1.2.compute-and-interpret-average-rate-of-change",
+      "standards": [
+        "math.standard.ccss.hsf-if-a-2",
+        "math.standard.ccss.hsf-if-b-4"
+      ],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false,
+      "apTopic": "AP-aligned",
+      "calculatorRequired": false,
+      "frqTaskModel": null
+    },
+    {
+      "nodeId": "math.precalc.skill.1.2.compare-rates-of-change-across-intervals",
+      "blueprintId": "math.precalc.skill.1.2.compare-rates-of-change-across-intervals",
+      "standards": [
+        "math.standard.ccss.hsf-if-a-2",
+        "math.standard.ccss.hsf-if-b-4"
+      ],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false,
+      "apTopic": "AP-aligned",
+      "calculatorRequired": false,
+      "frqTaskModel": null
+    },
+    {
+      "nodeId": "math.precalc.skill.1.3.classify-linear-vs-quadratic-from-rate-patterns",
+      "blueprintId": "math.precalc.skill.1.3.classify-linear-vs-quadratic-from-rate-patterns",
+      "standards": [
+        "math.standard.ccss.hsf-if-b-4",
+        "math.standard.ccss.hsf-le-a-1"
+      ],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false,
+      "apTopic": "AP-aligned",
+      "calculatorRequired": false,
+      "frqTaskModel": null
+    },
+    {
+      "nodeId": "math.precalc.skill.1.3.determine-concavity-from-rate-of-change",
+      "blueprintId": "math.precalc.skill.1.3.determine-concavity-from-rate-of-change",
+      "standards": [
+        "math.standard.ccss.hsf-if-b-4",
+        "math.standard.ccss.hsf-le-a-1"
+      ],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false,
+      "apTopic": "AP-aligned",
+      "calculatorRequired": false,
+      "frqTaskModel": null
+    },
+    {
+      "nodeId": "math.precalc.skill.1.4.identify-polynomial-features-degree-leading-coefficient-extrema",
+      "blueprintId": "math.precalc.skill.1.4.identify-polynomial-features-degree-leading-coefficient-extrema",
+      "standards": [
+        "math.standard.ccss.hsf-if-c-7c",
+        "math.standard.ccss.hsf-if-b-4"
+      ],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false,
+      "apTopic": "AP-aligned",
+      "calculatorRequired": false,
+      "frqTaskModel": null
+    },
+    {
+      "nodeId": "math.precalc.skill.1.4.describe-rate-of-change-behavior-on-intervals",
+      "blueprintId": "math.precalc.skill.1.4.describe-rate-of-change-behavior-on-intervals",
+      "standards": [
+        "math.standard.ccss.hsf-if-c-7c",
+        "math.standard.ccss.hsf-if-b-4"
+      ],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false,
+      "apTopic": "AP-aligned",
+      "calculatorRequired": false,
+      "frqTaskModel": null
+    },
+    {
+      "nodeId": "math.precalc.skill.1.4.determine-end-behavior-from-leading-term",
+      "blueprintId": "math.precalc.skill.1.4.determine-end-behavior-from-leading-term",
+      "standards": [
+        "math.standard.ccss.hsf-if-c-7c",
+        "math.standard.ccss.hsf-if-b-4"
+      ],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false,
+      "apTopic": "AP-aligned",
+      "calculatorRequired": false,
+      "frqTaskModel": null
+    },
+    {
+      "nodeId": "math.precalc.skill.1.5.find-zeros-with-multiplicity-and-graph-behavior",
+      "blueprintId": "math.precalc.skill.1.5.find-zeros-with-multiplicity-and-graph-behavior",
+      "standards": [
+        "math.standard.ccss.hsa-apr-b-3",
+        "math.standard.ccss.n-cn-c-7"
+      ],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false,
+      "apTopic": "AP-aligned",
+      "calculatorRequired": false,
+      "frqTaskModel": null
+    },
+    {
+      "nodeId": "math.precalc.skill.1.5.apply-complex-conjugate-zeros-theorem",
+      "blueprintId": "math.precalc.skill.1.5.apply-complex-conjugate-zeros-theorem",
+      "standards": [
+        "math.standard.ccss.hsa-apr-b-3",
+        "math.standard.ccss.n-cn-c-7"
+      ],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false,
+      "apTopic": "AP-aligned",
+      "calculatorRequired": false,
+      "frqTaskModel": null
+    },
+    {
+      "nodeId": "math.precalc.skill.1.5.solve-polynomial-inequalities-using-sign-charts",
+      "blueprintId": "math.precalc.skill.1.5.solve-polynomial-inequalities-using-sign-charts",
+      "standards": [
+        "math.standard.ccss.hsa-apr-b-3",
+        "math.standard.ccss.n-cn-c-7"
+      ],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false,
+      "apTopic": "AP-aligned",
+      "calculatorRequired": false,
+      "frqTaskModel": null
+    },
+    {
+      "nodeId": "math.precalc.skill.1.6.write-limit-statements-for-polynomial-end-behavior",
+      "blueprintId": "math.precalc.skill.1.6.write-limit-statements-for-polynomial-end-behavior",
+      "standards": [
+        "math.standard.ccss.hsf-if-c-7c",
+        "math.standard.ccss.hsa-apr-b-3"
+      ],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false,
+      "apTopic": "AP-aligned",
+      "calculatorRequired": false,
+      "frqTaskModel": null
+    },
+    {
+      "nodeId": "math.precalc.skill.1.7.classify-rational-end-behavior-three-cases",
+      "blueprintId": "math.precalc.skill.1.7.classify-rational-end-behavior-three-cases",
+      "standards": [
+        "math.standard.ccss.hsf-if-c-7d",
+        "math.standard.ccss.hsa-apr-d-6"
+      ],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false,
+      "apTopic": "AP-aligned",
+      "calculatorRequired": false,
+      "frqTaskModel": null
+    },
+    {
+      "nodeId": "math.precalc.skill.1.7.find-slant-asymptotes-by-long-division",
+      "blueprintId": "math.precalc.skill.1.7.find-slant-asymptotes-by-long-division",
+      "standards": [
+        "math.standard.ccss.hsf-if-c-7d",
+        "math.standard.ccss.hsa-apr-d-6"
+      ],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false,
+      "apTopic": "AP-aligned",
+      "calculatorRequired": false,
+      "frqTaskModel": null
+    },
+    {
+      "nodeId": "math.precalc.skill.1.8.find-rational-function-zeros-with-domain-restrictions",
+      "blueprintId": "math.precalc.skill.1.8.find-rational-function-zeros-with-domain-restrictions",
+      "standards": [
+        "math.standard.ccss.hsf-if-c-7d",
+        "math.standard.ccss.hsa-rei-a-2"
+      ],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false,
+      "apTopic": "AP-aligned",
+      "calculatorRequired": false,
+      "frqTaskModel": null
+    },
+    {
+      "nodeId": "math.precalc.skill.1.8.solve-rational-inequalities-by-sign-chart",
+      "blueprintId": "math.precalc.skill.1.8.solve-rational-inequalities-by-sign-chart",
+      "standards": [
+        "math.standard.ccss.hsf-if-c-7d",
+        "math.standard.ccss.hsa-rei-a-2"
+      ],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false,
+      "apTopic": "AP-aligned",
+      "calculatorRequired": false,
+      "frqTaskModel": null
+    },
+    {
+      "nodeId": "math.precalc.skill.1.9.identify-vertical-asymptotes-by-factoring",
+      "blueprintId": "math.precalc.skill.1.9.identify-vertical-asymptotes-by-factoring",
+      "standards": [
+        "math.standard.ccss.hsf-if-c-7d",
+        "math.standard.ccss.hsa-apr-d-6"
+      ],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false,
+      "apTopic": "AP-aligned",
+      "calculatorRequired": false,
+      "frqTaskModel": null
+    },
+    {
+      "nodeId": "math.precalc.skill.1.9.write-one-sided-limit-statements-at-vertical-asymptotes",
+      "blueprintId": "math.precalc.skill.1.9.write-one-sided-limit-statements-at-vertical-asymptotes",
+      "standards": [
+        "math.standard.ccss.hsf-if-c-7d",
+        "math.standard.ccss.hsa-apr-d-6"
+      ],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false,
+      "apTopic": "AP-aligned",
+      "calculatorRequired": false,
+      "frqTaskModel": null
+    },
+    {
+      "nodeId": "math.precalc.skill.1.10.distinguish-holes-from-vertical-asymptotes",
+      "blueprintId": "math.precalc.skill.1.10.distinguish-holes-from-vertical-asymptotes",
+      "standards": [
+        "math.standard.ccss.hsf-if-c-7d",
+        "math.standard.ccss.hsa-apr-d-6"
+      ],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false,
+      "apTopic": "AP-aligned",
+      "calculatorRequired": false,
+      "frqTaskModel": null
+    },
+    {
+      "nodeId": "math.precalc.skill.1.10.construct-rational-functions-with-specified-discontinuities",
+      "blueprintId": "math.precalc.skill.1.10.construct-rational-functions-with-specified-discontinuities",
+      "standards": [
+        "math.standard.ccss.hsf-if-c-7d",
+        "math.standard.ccss.hsa-apr-d-6"
+      ],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false,
+      "apTopic": "AP-aligned",
+      "calculatorRequired": false,
+      "frqTaskModel": null
+    },
+    {
+      "nodeId": "math.precalc.skill.1.11.convert-between-equivalent-representations-of-rational-functions",
+      "blueprintId": "math.precalc.skill.1.11.convert-between-equivalent-representations-of-rational-functions",
+      "standards": [
+        "math.standard.ccss.hsa-apr-c-4",
+        "math.standard.ccss.hsa-apr-d-6",
+        "math.standard.ccss.hsa-apr-b-2"
+      ],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false,
+      "apTopic": "AP-aligned",
+      "calculatorRequired": false,
+      "frqTaskModel": null
+    },
+    {
+      "nodeId": "math.precalc.skill.1.11.apply-binomial-theorem-and-pascal-triangle",
+      "blueprintId": "math.precalc.skill.1.11.apply-binomial-theorem-and-pascal-triangle",
+      "standards": [
+        "math.standard.ccss.hsa-apr-c-4",
+        "math.standard.ccss.hsa-apr-d-6",
+        "math.standard.ccss.hsa-apr-b-2"
+      ],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false,
+      "apTopic": "AP-aligned",
+      "calculatorRequired": false,
+      "frqTaskModel": null
+    },
+    {
+      "nodeId": "math.precalc.skill.1.12.apply-function-transformations-to-polynomial-functions",
+      "blueprintId": "math.precalc.skill.1.12.apply-function-transformations-to-polynomial-functions",
+      "standards": [
+        "math.standard.ccss.hsf-bf-b-3",
+        "math.standard.ccss.hsf-bf-a-1"
+      ],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false,
+      "apTopic": "AP-aligned",
+      "calculatorRequired": false,
+      "frqTaskModel": null
+    },
+    {
+      "nodeId": "math.precalc.skill.1.12.determine-domain-and-range-under-transformations",
+      "blueprintId": "math.precalc.skill.1.12.determine-domain-and-range-under-transformations",
+      "standards": [
+        "math.standard.ccss.hsf-bf-b-3",
+        "math.standard.ccss.hsf-bf-a-1"
+      ],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false,
+      "apTopic": "AP-aligned",
+      "calculatorRequired": false,
+      "frqTaskModel": null
+    },
+    {
+      "nodeId": "math.precalc.skill.1.13.select-function-models-using-successive-differences",
+      "blueprintId": "math.precalc.skill.1.13.select-function-models-using-successive-differences",
+      "standards": [
+        "math.standard.ccss.hss-id-b-6",
+        "math.standard.ccss.hsf-bf-a-1a"
+      ],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false,
+      "apTopic": "AP-aligned",
+      "calculatorRequired": true,
+      "frqTaskModel": null
+    },
+    {
+      "nodeId": "math.precalc.skill.1.13.distinguish-interpolation-from-extrapolation",
+      "blueprintId": "math.precalc.skill.1.13.distinguish-interpolation-from-extrapolation",
+      "standards": [
+        "math.standard.ccss.hss-id-b-6",
+        "math.standard.ccss.hsf-bf-a-1a"
+      ],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false,
+      "apTopic": "AP-aligned",
+      "calculatorRequired": true,
+      "frqTaskModel": null
+    },
+    {
+      "nodeId": "math.precalc.skill.1.14.construct-regression-models-and-evaluate-appropriateness",
+      "blueprintId": "math.precalc.skill.1.14.construct-regression-models-and-evaluate-appropriateness",
+      "standards": [
+        "math.standard.ccss.hss-id-b-6",
+        "math.standard.ccss.hsf-bf-a-1a"
+      ],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false,
+      "apTopic": "AP-aligned",
+      "calculatorRequired": true,
+      "frqTaskModel": null
+    },
+    {
+      "nodeId": "math.precalc.skill.2.1.construct-arithmetic-and-geometric-sequences",
+      "blueprintId": "math.precalc.skill.2.1.construct-arithmetic-and-geometric-sequences",
+      "standards": [
+        "math.standard.ccss.hsf-le-a-2",
+        "math.standard.ccss.hsf-bf-a-1a"
+      ],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false,
+      "apTopic": "AP-aligned",
+      "calculatorRequired": false,
+      "frqTaskModel": null
+    },
+    {
+      "nodeId": "math.precalc.skill.2.2.classify-sequences-as-arithmetic-or-geometric",
+      "blueprintId": "math.precalc.skill.2.2.classify-sequences-as-arithmetic-or-geometric",
+      "standards": [
+        "math.standard.ccss.hsf-le-a-1",
+        "math.standard.ccss.hsf-le-a-2"
+      ],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false,
+      "apTopic": "AP-aligned",
+      "calculatorRequired": false,
+      "frqTaskModel": null
+    },
+    {
+      "nodeId": "math.precalc.skill.2.3.analyze-exponential-function-growth-and-decay",
+      "blueprintId": "math.precalc.skill.2.3.analyze-exponential-function-growth-and-decay",
+      "standards": [
+        "math.standard.ccss.hsf-if-c-7e",
+        "math.standard.ccss.hsf-if-b-4"
+      ],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false,
+      "apTopic": "AP-aligned",
+      "calculatorRequired": false,
+      "frqTaskModel": null
+    },
+    {
+      "nodeId": "math.precalc.skill.2.4.manipulate-exponential-expressions-into-standard-form",
+      "blueprintId": "math.precalc.skill.2.4.manipulate-exponential-expressions-into-standard-form",
+      "standards": [
+        "math.standard.ccss.hsf-if-c-7e",
+        "math.standard.ccss.n-rn-a-2"
+      ],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false,
+      "apTopic": "AP-aligned",
+      "calculatorRequired": false,
+      "frqTaskModel": null
+    },
+    {
+      "nodeId": "math.precalc.skill.2.5.model-with-exponential-functions-and-handle-hidden-proportionality",
+      "blueprintId": "math.precalc.skill.2.5.model-with-exponential-functions-and-handle-hidden-proportionality",
+      "standards": [
+        "math.standard.ccss.hsf-le-a-2",
+        "math.standard.ccss.hsf-le-b-5"
+      ],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false,
+      "apTopic": "AP-aligned",
+      "calculatorRequired": true,
+      "frqTaskModel": null
+    },
+    {
+      "nodeId": "math.precalc.skill.2.6.validate-function-models-with-residual-analysis",
+      "blueprintId": "math.precalc.skill.2.6.validate-function-models-with-residual-analysis",
+      "standards": [
+        "math.standard.ccss.hss-id-b-6",
+        "math.standard.ccss.hsf-le-a-1"
+      ],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false,
+      "apTopic": "AP-aligned",
+      "calculatorRequired": true,
+      "frqTaskModel": null
+    },
+    {
+      "nodeId": "math.precalc.skill.2.7.compute-and-analyze-function-compositions",
+      "blueprintId": "math.precalc.skill.2.7.compute-and-analyze-function-compositions",
+      "standards": [
+        "math.standard.ccss.hsf-bf-a-1",
+        "math.standard.ccss.hsf-bf-b-4"
+      ],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false,
+      "apTopic": "AP-aligned",
+      "calculatorRequired": false,
+      "frqTaskModel": null
+    },
+    {
+      "nodeId": "math.precalc.skill.2.8.find-and-verify-inverse-functions",
+      "blueprintId": "math.precalc.skill.2.8.find-and-verify-inverse-functions",
+      "standards": [
+        "math.standard.ccss.hsf-bf-b-4",
+        "math.standard.ccss.hsf-bf-b-5"
+      ],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false,
+      "apTopic": "AP-aligned",
+      "calculatorRequired": false,
+      "frqTaskModel": null
+    },
+    {
+      "nodeId": "math.precalc.skill.2.9.evaluate-and-convert-logarithmic-expressions",
+      "blueprintId": "math.precalc.skill.2.9.evaluate-and-convert-logarithmic-expressions",
+      "standards": [
+        "math.standard.ccss.hsf-bf-b-5",
+        "math.standard.ccss.n-rn-a-1"
+      ],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false,
+      "apTopic": "AP-aligned",
+      "calculatorRequired": false,
+      "frqTaskModel": null
+    },
+    {
+      "nodeId": "math.precalc.skill.2.10.identify-inverses-of-exponential-functions",
+      "blueprintId": "math.precalc.skill.2.10.identify-inverses-of-exponential-functions",
+      "standards": [
+        "math.standard.ccss.hsf-bf-b-5",
+        "math.standard.ccss.hsf-le-a-4"
+      ],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false,
+      "apTopic": "AP-aligned",
+      "calculatorRequired": false,
+      "frqTaskModel": null
+    },
+    {
+      "nodeId": "math.precalc.skill.2.11.analyze-logarithmic-function-properties",
+      "blueprintId": "math.precalc.skill.2.11.analyze-logarithmic-function-properties",
+      "standards": [
+        "math.standard.ccss.hsf-if-c-7e",
+        "math.standard.ccss.hsf-bf-b-5"
+      ],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false,
+      "apTopic": "AP-aligned",
+      "calculatorRequired": false,
+      "frqTaskModel": null
+    },
+    {
+      "nodeId": "math.precalc.skill.2.12.expand-and-condense-logarithmic-expressions",
+      "blueprintId": "math.precalc.skill.2.12.expand-and-condense-logarithmic-expressions",
+      "standards": [
+        "math.standard.ccss.hsf-bf-b-5",
+        "math.standard.ccss.hsf-le-a-4"
+      ],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false,
+      "apTopic": "AP-aligned",
+      "calculatorRequired": false,
+      "frqTaskModel": null
+    },
+    {
+      "nodeId": "math.precalc.skill.2.13.solve-exponential-and-logarithmic-equations",
+      "blueprintId": "math.precalc.skill.2.13.solve-exponential-and-logarithmic-equations",
+      "standards": [
+        "math.standard.ccss.hsf-le-a-4",
+        "math.standard.ccss.hsa-rei-a-2"
+      ],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false,
+      "apTopic": "AP-aligned",
+      "calculatorRequired": false,
+      "frqTaskModel": null
+    },
+    {
+      "nodeId": "math.precalc.skill.2.13.find-inverses-of-exponential-and-logarithmic-functions",
+      "blueprintId": "math.precalc.skill.2.13.find-inverses-of-exponential-and-logarithmic-functions",
+      "standards": [
+        "math.standard.ccss.hsf-le-a-4",
+        "math.standard.ccss.hsa-rei-a-2"
+      ],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false,
+      "apTopic": "AP-aligned",
+      "calculatorRequired": false,
+      "frqTaskModel": null
+    },
+    {
+      "nodeId": "math.precalc.skill.2.14.construct-logarithmic-models-from-data",
+      "blueprintId": "math.precalc.skill.2.14.construct-logarithmic-models-from-data",
+      "standards": [
+        "math.standard.ccss.hsf-le-a-4",
+        "math.standard.ccss.hsf-le-b-5"
+      ],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false,
+      "apTopic": "AP-aligned",
+      "calculatorRequired": true,
+      "frqTaskModel": null
+    },
+    {
+      "nodeId": "math.precalc.skill.2.15.use-semi-log-plots-to-linearize-exponential-data",
+      "blueprintId": "math.precalc.skill.2.15.use-semi-log-plots-to-linearize-exponential-data",
+      "standards": [
+        "math.standard.ccss.hsf-le-a-4",
+        "math.standard.ccss.hss-id-b-6"
+      ],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false,
+      "apTopic": "AP-aligned",
+      "calculatorRequired": true,
+      "frqTaskModel": null
+    },
+    {
+      "nodeId": "math.precalc.skill.3.1.analyze-periodic-phenomena-and-periodic-functions",
+      "blueprintId": "math.precalc.skill.3.1.analyze-periodic-phenomena-and-periodic-functions",
+      "standards": [
+        "math.standard.ccss.hsf-tf-b-5",
+        "math.standard.ccss.hsf-tf-a-2"
+      ],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false,
+      "apTopic": "AP-aligned",
+      "calculatorRequired": false,
+      "frqTaskModel": null
+    },
+    {
+      "nodeId": "math.precalc.skill.3.2.evaluate-sine-cosine-and-tangent-using-the-unit-circle",
+      "blueprintId": "math.precalc.skill.3.2.evaluate-sine-cosine-and-tangent-using-the-unit-circle",
+      "standards": [
+        "math.standard.ccss.hsf-tf-a-1",
+        "math.standard.ccss.hsf-tf-a-2"
+      ],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false,
+      "apTopic": "AP-aligned",
+      "calculatorRequired": false,
+      "frqTaskModel": null
+    },
+    {
+      "nodeId": "math.precalc.skill.3.3.find-exact-trigonometric-values-at-special-angles",
+      "blueprintId": "math.precalc.skill.3.3.find-exact-trigonometric-values-at-special-angles",
+      "standards": [
+        "math.standard.ccss.hsf-tf-a-1",
+        "math.standard.ccss.hsf-tf-a-2"
+      ],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false,
+      "apTopic": "AP-aligned",
+      "calculatorRequired": false,
+      "frqTaskModel": null
+    },
+    {
+      "nodeId": "math.precalc.skill.3.4.graph-sine-and-cosine-parent-functions",
+      "blueprintId": "math.precalc.skill.3.4.graph-sine-and-cosine-parent-functions",
+      "standards": [
+        "math.standard.ccss.hsf-if-c-7e",
+        "math.standard.ccss.hsf-tf-a-2"
+      ],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false,
+      "apTopic": "AP-aligned",
+      "calculatorRequired": false,
+      "frqTaskModel": null
+    },
+    {
+      "nodeId": "math.precalc.skill.3.5.identify-sinusoidal-function-parameters",
+      "blueprintId": "math.precalc.skill.3.5.identify-sinusoidal-function-parameters",
+      "standards": [
+        "math.standard.ccss.hsf-tf-b-5",
+        "math.standard.ccss.hsf-tf-a-2"
+      ],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false,
+      "apTopic": "AP-aligned",
+      "calculatorRequired": false,
+      "frqTaskModel": null
+    },
+    {
+      "nodeId": "math.precalc.skill.3.6.write-and-graph-sinusoidal-function-transformations",
+      "blueprintId": "math.precalc.skill.3.6.write-and-graph-sinusoidal-function-transformations",
+      "standards": [
+        "math.standard.ccss.hsf-tf-b-5",
+        "math.standard.ccss.hsf-bf-b-3"
+      ],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false,
+      "apTopic": "AP-aligned",
+      "calculatorRequired": false,
+      "frqTaskModel": null
+    },
+    {
+      "nodeId": "math.precalc.skill.3.7.model-periodic-contexts-with-sinusoidal-functions",
+      "blueprintId": "math.precalc.skill.3.7.model-periodic-contexts-with-sinusoidal-functions",
+      "standards": [
+        "math.standard.ccss.hsf-tf-b-5",
+        "math.standard.ccss.hsf-bf-a-1"
+      ],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false,
+      "apTopic": "AP-aligned",
+      "calculatorRequired": false,
+      "frqTaskModel": null
+    },
+    {
+      "nodeId": "math.precalc.skill.3.8.analyze-the-tangent-function-and-its-transformations",
+      "blueprintId": "math.precalc.skill.3.8.analyze-the-tangent-function-and-its-transformations",
+      "standards": [
+        "math.standard.ccss.hsf-if-c-7e",
+        "math.standard.ccss.hsf-tf-a-4"
+      ],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false,
+      "apTopic": "AP-aligned",
+      "calculatorRequired": false,
+      "frqTaskModel": null
+    },
+    {
+      "nodeId": "math.precalc.skill.3.9.evaluate-inverse-trigonometric-functions",
+      "blueprintId": "math.precalc.skill.3.9.evaluate-inverse-trigonometric-functions",
+      "standards": [
+        "math.standard.ccss.hsf-tf-a-4",
+        "math.standard.ccss.hsf-bf-b-4"
+      ],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false,
+      "apTopic": "AP-aligned",
+      "calculatorRequired": false,
+      "frqTaskModel": null
+    },
+    {
+      "nodeId": "math.precalc.skill.3.10.solve-trigonometric-equations-on-specified-intervals",
+      "blueprintId": "math.precalc.skill.3.10.solve-trigonometric-equations-on-specified-intervals",
+      "standards": [
+        "math.standard.ccss.hsf-tf-a-4",
+        "math.standard.ccss.hsa-rei-a-2"
+      ],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false,
+      "apTopic": "AP-aligned",
+      "calculatorRequired": false,
+      "frqTaskModel": null
+    },
+    {
+      "nodeId": "math.precalc.skill.3.11.analyze-reciprocal-trigonometric-functions",
+      "blueprintId": "math.precalc.skill.3.11.analyze-reciprocal-trigonometric-functions",
+      "standards": [
+        "math.standard.ccss.hsf-if-c-7e",
+        "math.standard.ccss.hsf-tf-a-4"
+      ],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false,
+      "apTopic": "AP-aligned",
+      "calculatorRequired": false,
+      "frqTaskModel": null
+    },
+    {
+      "nodeId": "math.precalc.skill.3.12.apply-trigonometric-identities-and-equivalent-representations",
+      "blueprintId": "math.precalc.skill.3.12.apply-trigonometric-identities-and-equivalent-representations",
+      "standards": [
+        "math.standard.ccss.hsf-tf-a-4",
+        "math.standard.ccss.hsa-sse-b-3"
+      ],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false,
+      "apTopic": "AP-aligned",
+      "calculatorRequired": false,
+      "frqTaskModel": null
+    },
+    {
+      "nodeId": "math.precalc.skill.3.13.convert-between-polar-and-rectangular-coordinates",
+      "blueprintId": "math.precalc.skill.3.13.convert-between-polar-and-rectangular-coordinates",
+      "standards": [
+        "math.standard.ccss.hsf-tf-a-1",
+        "math.standard.ccss.hsf-tf-a-2"
+      ],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false,
+      "apTopic": "AP-aligned",
+      "calculatorRequired": false,
+      "frqTaskModel": null
+    },
+    {
+      "nodeId": "math.precalc.skill.3.14.classify-and-graph-polar-functions",
+      "blueprintId": "math.precalc.skill.3.14.classify-and-graph-polar-functions",
+      "standards": [
+        "math.standard.ccss.hsf-if-c-7e",
+        "math.standard.ccss.hsf-tf-a-2"
+      ],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false,
+      "apTopic": "AP-aligned",
+      "calculatorRequired": false,
+      "frqTaskModel": null
+    },
+    {
+      "nodeId": "math.precalc.skill.3.15.analyze-rates-of-change-in-polar-functions",
+      "blueprintId": "math.precalc.skill.3.15.analyze-rates-of-change-in-polar-functions",
+      "standards": [
+        "math.standard.ccss.hsf-tf-a-2",
+        "math.standard.ccss.hsf-tf-b-5"
+      ],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false,
+      "apTopic": "AP-aligned",
+      "calculatorRequired": false,
+      "frqTaskModel": null
+    },
+    {
+      "nodeId": "math.precalc.skill.4.1.represent-curves-using-parametric-functions",
+      "blueprintId": "math.precalc.skill.4.1.represent-curves-using-parametric-functions",
+      "standards": [
+        "math.standard.ccss.hsf-bf-a-1",
+        "math.standard.ccss.hsa-ced-a-2"
+      ],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false,
+      "apTopic": "AP-aligned",
+      "calculatorRequired": false,
+      "frqTaskModel": null
+    },
+    {
+      "nodeId": "math.precalc.skill.4.2.model-planar-motion-with-parametric-functions",
+      "blueprintId": "math.precalc.skill.4.2.model-planar-motion-with-parametric-functions",
+      "standards": [
+        "math.standard.ccss.hsf-bf-a-1",
+        "math.standard.ccss.hsa-ced-a-2"
+      ],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false,
+      "apTopic": "AP-aligned",
+      "calculatorRequired": false,
+      "frqTaskModel": null
+    },
+    {
+      "nodeId": "math.precalc.skill.4.3.compute-rates-of-change-for-parametric-functions",
+      "blueprintId": "math.precalc.skill.4.3.compute-rates-of-change-for-parametric-functions",
+      "standards": [
+        "math.standard.ccss.hsf-bf-a-1",
+        "math.standard.ccss.hsf-if-a-2"
+      ],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false,
+      "apTopic": "AP-aligned",
+      "calculatorRequired": false,
+      "frqTaskModel": null
+    },
+    {
+      "nodeId": "math.precalc.skill.4.4.parametrize-lines-and-circles",
+      "blueprintId": "math.precalc.skill.4.4.parametrize-lines-and-circles",
+      "standards": [
+        "math.standard.ccss.hsf-bf-a-1",
+        "math.standard.ccss.hsa-ced-a-2"
+      ],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false,
+      "apTopic": "AP-aligned",
+      "calculatorRequired": false,
+      "frqTaskModel": null
+    },
+    {
+      "nodeId": "math.precalc.skill.4.5.work-with-implicitly-defined-functions",
+      "blueprintId": "math.precalc.skill.4.5.work-with-implicitly-defined-functions",
+      "standards": [
+        "math.standard.ccss.hsf-bf-b-3",
+        "math.standard.ccss.hsf-if-c-7d"
+      ],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false,
+      "apTopic": "AP-aligned",
+      "calculatorRequired": false,
+      "frqTaskModel": null
+    },
+    {
+      "nodeId": "math.precalc.skill.4.6.classify-and-analyze-conic-sections",
+      "blueprintId": "math.precalc.skill.4.6.classify-and-analyze-conic-sections",
+      "standards": [
+        "math.standard.ccss.hsf-if-c-7d",
+        "math.standard.ccss.hsa-ced-a-2"
+      ],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false,
+      "apTopic": "AP-aligned",
+      "calculatorRequired": false,
+      "frqTaskModel": null
+    },
+    {
+      "nodeId": "math.precalc.skill.4.7.parametrize-implicitly-defined-conics",
+      "blueprintId": "math.precalc.skill.4.7.parametrize-implicitly-defined-conics",
+      "standards": [
+        "math.standard.ccss.hsf-bf-a-1",
+        "math.standard.ccss.hsf-bf-b-3"
+      ],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false,
+      "apTopic": "AP-aligned",
+      "calculatorRequired": false,
+      "frqTaskModel": null
+    },
+    {
+      "nodeId": "math.precalc.skill.4.8.perform-vector-operations",
+      "blueprintId": "math.precalc.skill.4.8.perform-vector-operations",
+      "standards": [
+        "math.standard.ccss.hsn-vm-a-1",
+        "math.standard.ccss.hsn-vm-a-2"
+      ],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false,
+      "apTopic": "AP-aligned",
+      "calculatorRequired": false,
+      "frqTaskModel": null
+    },
+    {
+      "nodeId": "math.precalc.skill.4.9.analyze-vector-valued-functions",
+      "blueprintId": "math.precalc.skill.4.9.analyze-vector-valued-functions",
+      "standards": [
+        "math.standard.ccss.hsn-vm-a-3",
+        "math.standard.ccss.hsn-vm-b-4"
+      ],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false,
+      "apTopic": "AP-aligned",
+      "calculatorRequired": false,
+      "frqTaskModel": null
+    },
+    {
+      "nodeId": "math.precalc.skill.4.10.perform-matrix-operations",
+      "blueprintId": "math.precalc.skill.4.10.perform-matrix-operations",
+      "standards": [
+        "math.standard.ccss.hsn-vm-c-6",
+        "math.standard.ccss.hsn-vm-c-7"
+      ],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false,
+      "apTopic": "AP-aligned",
+      "calculatorRequired": false,
+      "frqTaskModel": null
+    },
+    {
+      "nodeId": "math.precalc.skill.4.11.compute-determinant-and-inverse-of-matrices",
+      "blueprintId": "math.precalc.skill.4.11.compute-determinant-and-inverse-of-matrices",
+      "standards": [
+        "math.standard.ccss.hsn-vm-c-8",
+        "math.standard.ccss.hsn-vm-c-9"
+      ],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false,
+      "apTopic": "AP-aligned",
+      "calculatorRequired": false,
+      "frqTaskModel": null
+    },
+    {
+      "nodeId": "math.precalc.skill.4.12.apply-linear-transformations-using-matrices",
+      "blueprintId": "math.precalc.skill.4.12.apply-linear-transformations-using-matrices",
+      "standards": [
+        "math.standard.ccss.hsn-vm-c-10",
+        "math.standard.ccss.hsn-vm-c-11"
+      ],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false,
+      "apTopic": "AP-aligned",
+      "calculatorRequired": false,
+      "frqTaskModel": null
+    },
+    {
+      "nodeId": "math.precalc.skill.4.13.interpret-matrices-as-functions",
+      "blueprintId": "math.precalc.skill.4.13.interpret-matrices-as-functions",
+      "standards": [
+        "math.standard.ccss.hsa-rei-c-9",
+        "math.standard.ccss.hsn-vm-c-6"
+      ],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false,
+      "apTopic": "AP-aligned",
+      "calculatorRequired": false,
+      "frqTaskModel": null
+    },
+    {
+      "nodeId": "math.precalc.skill.4.14.model-contexts-with-matrices",
+      "blueprintId": "math.precalc.skill.4.14.model-contexts-with-matrices",
+      "standards": [
+        "math.standard.ccss.hsn-vm-c-6",
+        "math.standard.ccss.hsa-rei-c-9"
+      ],
+      "prerequisites": [],
+      "difficulty": 0.5,
+      "generatorReady": false,
+      "apTopic": "AP-aligned",
+      "calculatorRequired": false,
+      "frqTaskModel": null
+    }
+  ]
+}

@@ -1,0 +1,121 @@
+{
+  "metadata": {
+    "course": "precalc",
+    "generatedAt": "2026-05-10T06:50:05.614Z",
+    "description": "Unit 4 (Parameters, Vectors, Matrices) source gap queue. No Passwater source; CED-only derivation."
+  },
+  "items": [
+    {
+      "nodeId": "math.precalc.skill.4.1.represent-curves-using-parametric-functions",
+      "title": "Represent curves using parametric functions",
+      "lesson": "1",
+      "sourceType": "CED-only",
+      "reason": "Unit 4 is not assessed on the AP Exam. No Passwater source. Skill derived from CED topic descriptions only.",
+      "remediationRecommendation": "Supplement with textbook or teacher-created materials. Lowest priority for generator development."
+    },
+    {
+      "nodeId": "math.precalc.skill.4.2.model-planar-motion-with-parametric-functions",
+      "title": "Model planar motion with parametric functions",
+      "lesson": "2",
+      "sourceType": "CED-only",
+      "reason": "Unit 4 is not assessed on the AP Exam. No Passwater source. Skill derived from CED topic descriptions only.",
+      "remediationRecommendation": "Supplement with textbook or teacher-created materials. Lowest priority for generator development."
+    },
+    {
+      "nodeId": "math.precalc.skill.4.3.compute-rates-of-change-for-parametric-functions",
+      "title": "Compute rates of change for parametric functions",
+      "lesson": "3",
+      "sourceType": "CED-only",
+      "reason": "Unit 4 is not assessed on the AP Exam. No Passwater source. Skill derived from CED topic descriptions only.",
+      "remediationRecommendation": "Supplement with textbook or teacher-created materials. Lowest priority for generator development."
+    },
+    {
+      "nodeId": "math.precalc.skill.4.4.parametrize-lines-and-circles",
+      "title": "Parametrize lines and circles",
+      "lesson": "4",
+      "sourceType": "CED-only",
+      "reason": "Unit 4 is not assessed on the AP Exam. No Passwater source. Skill derived from CED topic descriptions only.",
+      "remediationRecommendation": "Supplement with textbook or teacher-created materials. Lowest priority for generator development."
+    },
+    {
+      "nodeId": "math.precalc.skill.4.5.work-with-implicitly-defined-functions",
+      "title": "Work with implicitly defined functions",
+      "lesson": "5",
+      "sourceType": "CED-only",
+      "reason": "Unit 4 is not assessed on the AP Exam. No Passwater source. Skill derived from CED topic descriptions only.",
+      "remediationRecommendation": "Supplement with textbook or teacher-created materials. Lowest priority for generator development."
+    },
+    {
+      "nodeId": "math.precalc.skill.4.6.classify-and-analyze-conic-sections",
+      "title": "Classify and analyze conic sections",
+      "lesson": "6",
+      "sourceType": "CED-only",
+      "reason": "Unit 4 is not assessed on the AP Exam. No Passwater source. Skill derived from CED topic descriptions only.",
+      "remediationRecommendation": "Supplement with textbook or teacher-created materials. Lowest priority for generator development."
+    },
+    {
+      "nodeId": "math.precalc.skill.4.7.parametrize-implicitly-defined-conics",
+      "title": "Parametrize implicitly defined conics using trigonometric functions",
+      "lesson": "7",
+      "sourceType": "CED-only",
+      "reason": "Unit 4 is not assessed on the AP Exam. No Passwater source. Skill derived from CED topic descriptions only.",
+      "remediationRecommendation": "Supplement with textbook or teacher-created materials. Lowest priority for generator development."
+    },
+    {
+      "nodeId": "math.precalc.skill.4.8.perform-vector-operations",
+      "title": "Perform vector operations including magnitude and direction",
+      "lesson": "8",
+      "sourceType": "CED-only",
+      "reason": "Unit 4 is not assessed on the AP Exam. No Passwater source. Skill derived from CED topic descriptions only.",
+      "remediationRecommendation": "Supplement with textbook or teacher-created materials. Lowest priority for generator development."
+    },
+    {
+      "nodeId": "math.precalc.skill.4.9.analyze-vector-valued-functions",
+      "title": "Analyze vector-valued functions",
+      "lesson": "9",
+      "sourceType": "CED-only",
+      "reason": "Unit 4 is not assessed on the AP Exam. No Passwater source. Skill derived from CED topic descriptions only.",
+      "remediationRecommendation": "Supplement with textbook or teacher-created materials. Lowest priority for generator development."
+    },
+    {
+      "nodeId": "math.precalc.skill.4.10.perform-matrix-operations",
+      "title": "Perform matrix operations including multiplication",
+      "lesson": "10",
+      "sourceType": "CED-only",
+      "reason": "Unit 4 is not assessed on the AP Exam. No Passwater source. Skill derived from CED topic descriptions only.",
+      "remediationRecommendation": "Supplement with textbook or teacher-created materials. Lowest priority for generator development."
+    },
+    {
+      "nodeId": "math.precalc.skill.4.11.compute-determinant-and-inverse-of-matrices",
+      "title": "Compute determinant and inverse of 2×2 matrices",
+      "lesson": "11",
+      "sourceType": "CED-only",
+      "reason": "Unit 4 is not assessed on the AP Exam. No Passwater source. Skill derived from CED topic descriptions only.",
+      "remediationRecommendation": "Supplement with textbook or teacher-created materials. Lowest priority for generator development."
+    },
+    {
+      "nodeId": "math.precalc.skill.4.12.apply-linear-transformations-using-matrices",
+      "title": "Apply linear transformations using matrices",
+      "lesson": "12",
+      "sourceType": "CED-only",
+      "reason": "Unit 4 is not assessed on the AP Exam. No Passwater source. Skill derived from CED topic descriptions only.",
+      "remediationRecommendation": "Supplement with textbook or teacher-created materials. Lowest priority for generator development."
+    },
+    {
+      "nodeId": "math.precalc.skill.4.13.interpret-matrices-as-functions",
+      "title": "Interpret matrices as functions and compose transformations",
+      "lesson": "13",
+      "sourceType": "CED-only",
+      "reason": "Unit 4 is not assessed on the AP Exam. No Passwater source. Skill derived from CED topic descriptions only.",
+      "remediationRecommendation": "Supplement with textbook or teacher-created materials. Lowest priority for generator development."
+    },
+    {
+      "nodeId": "math.precalc.skill.4.14.model-contexts-with-matrices",
+      "title": "Model real-world contexts with matrices",
+      "lesson": "14",
+      "sourceType": "CED-only",
+      "reason": "Unit 4 is not assessed on the AP Exam. No Passwater source. Skill derived from CED topic descriptions only.",
+      "remediationRecommendation": "Supplement with textbook or teacher-created materials. Lowest priority for generator development."
+    }
+  ]
+}

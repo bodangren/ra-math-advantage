@@ -55,9 +55,9 @@ Dependencies:
    - [ ] **Track 11: Skill Graph Program — Integrated Math 3 Rollout**
       *Expand the accepted IM3 Module 1 pilot across Modules 2-9.*
       *Link: [./measure/tracks/skill-rollout-im3_20260509/](./measure/tracks/skill-rollout-im3_20260509/)*
-   - [ ] **Track 12: Skill Graph Program — AP Precalculus Rollout**
-      *Apply the approved pipeline to AP Precalculus using CED/Passwater provenance, FRQ context, and Unit 4 exceptions.*
-      *Link: [./measure/tracks/skill-rollout-precalc_20260509/](./measure/tracks/skill-rollout-precalc_20260509/)*
+    - [x] **Track 12: Skill Graph Program — AP Precalculus Rollout** — **COMPLETED**
+       *Apply the approved pipeline to AP Precalculus using CED/Passwater provenance, FRQ context, and Unit 4 exceptions. 73 skill nodes generated; 73 STUB blueprints; 4 review queues; audit at measure/skill-graph-precalc-rollout-audit.md.*
+       *Link: [./measure/tracks/skill-rollout-precalc_20260509/](./measure/tracks/skill-rollout-precalc_20260509/)*
    - [ ] **Track 13: Skill Graph Program — Cross-Course Equivalence**
       *Author equivalent_to edges across IM1/IM2/IM3/PreCalc knowledge spaces after all four rollouts complete. Wires SRS and teacher evidence projections to treat equivalence components as single learner-state targets.*
       *Link: [./measure/tracks/skill-cross-course-equivalence_20260509/](./measure/tracks/skill-cross-course-equivalence_20260509/)*
