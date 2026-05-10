@@ -3,8 +3,8 @@
   "title": "Skill Graph Program: Cross-Course Equivalence",
   "description": "Author cross-course equivalent_to edges across IM1, IM2, IM3, and AP Precalculus knowledge spaces after all four rollouts are complete. Resolves the previous sequencing bug where rollouts authored cross-course edges to nodes that did not yet exist.",
   "type": "feature",
-  "status": "pending",
+  "status": "completed",
   "created_at": "2026-05-09",
-  "updated_at": "2026-05-09",
+  "updated_at": "2026-05-10",
   "estimated_tasks": 8
 }

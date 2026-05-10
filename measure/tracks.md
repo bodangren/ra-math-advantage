@@ -58,9 +58,33 @@ Dependencies:
     - [x] **Track 12: Skill Graph Program — AP Precalculus Rollout** — **COMPLETED**
        *Apply the approved pipeline to AP Precalculus using CED/Passwater provenance, FRQ context, and Unit 4 exceptions. 294 nodes (73 skills generated from 158 worked_examples); 73 STUB blueprints; 146 projected activities; 4 review queues; audit at measure/skill-graph-precalc-rollout-audit.md.*
        *Link: [./measure/tracks/skill-rollout-precalc_20260509/](./measure/tracks/skill-rollout-precalc_20260509/)*
-   - [ ] **Track 13: Skill Graph Program — Cross-Course Equivalence**
+   - [x] **Track 13: Skill Graph Program — Cross-Course Equivalence** — **COMPLETED**
       *Author equivalent_to edges across IM1/IM2/IM3/PreCalc knowledge spaces after all four rollouts complete. Wires SRS and teacher evidence projections to treat equivalence components as single learner-state targets.*
       *Link: [./measure/tracks/skill-cross-course-equivalence_20260509/](./measure/tracks/skill-cross-course-equivalence_20260509/)*
+
+- [ ] **Program: Skill Graph Runtime Enablement**
+   *This phase builds the infrastructure, UI visualization components, and ~450 deterministic math generators required to turn the graph blueprints into functional activities, allowing the graph projections to safely replace the legacy activity maps.*
+   - [ ] **Track 14: Skill Graph Program — Blueprint QA & Authoring Harness**
+      *Build a developer and curriculum-author UI to manually preview, interact with, and QA the graph-derived blueprints.*
+      *Link: [./measure/tracks/blueprint-qa-harness_20260510/](./measure/tracks/blueprint-qa-harness_20260510/)*
+   - [ ] **Track 15: Skill Graph Program — Geometry & Statistics Renderers**
+      *Implement specialized React components `stats-distribution-plotter` and `geometry-diagram-explorer` to address component gaps.*
+      *Link: [./measure/tracks/geometry-stats-renderers_20260510/](./measure/tracks/geometry-stats-renderers_20260510/)*
+   - [ ] **Track 16: Skill Graph Program — Trigonometry & Advanced Function Renderers**
+      *Implement `trig-unit-circle-visualizer`, `trig-graph-builder`, and `polar-renderer` to address advanced function component gaps.*
+      *Link: [./measure/tracks/trig-advanced-renderers_20260510/](./measure/tracks/trig-advanced-renderers_20260510/)*
+   - [ ] **Track 17: Skill Graph Program — Core Algebra Generators**
+      *Implement deterministic generators for foundational algebra skills (linear equations, inequalities, systems, quadratics).*
+      *Link: [./measure/tracks/core-algebra-generators_20260510/](./measure/tracks/core-algebra-generators_20260510/)*
+   - [ ] **Track 18: Skill Graph Program — Advanced Math Generators**
+      *Implement deterministic generators for polynomials, exponentials, logarithms, and rational functions.*
+      *Link: [./measure/tracks/advanced-math-generators_20260510/](./measure/tracks/advanced-math-generators_20260510/)*
+   - [ ] **Track 19: Skill Graph Program — Geometry, Stats & Trig Generators**
+      *Implement generators that output complex visual/data parameters explicitly built for the new visualization components in T15 and T16.*
+      *Link: [./measure/tracks/geometry-stats-trig-generators_20260510/](./measure/tracks/geometry-stats-trig-generators_20260510/)*
+   - [ ] **Track 20: Skill Graph Program — PreCalc Standards & Concept Taxonomy**
+      *Perform manual AP CED standards alignment for the 73 PreCalc skills and define/remediate the architecture for concept-level blueprints.*
+      *Link: [./measure/tracks/precalc-alignment-concept-taxonomy_20260510/](./measure/tracks/precalc-alignment-concept-taxonomy_20260510/)*
 
 - [x] **Track: Practice Worksheet Example Import** — **COMPLETED**
    *Import IM1, IM2, and IM3 Practice Worksheet Student Bundles as reviewed Markdown problem set catalogs. 244 DOCX → 241 reviewed lesson files (IM1: 93, IM2: 96, IM3: 52). Full regeneration of IM2 and IM3 from canonical DOCX sources.*
