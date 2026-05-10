@@ -84,7 +84,7 @@
 
 ## Review Remediation
 
-- [x] **Task R1: Apply T5 review fixes** [checkpoint: pending]
+- [x] **Task R1: Apply T5 review fixes** [checkpoint: e6722aa]
   - Merge standard alignment nodes/edges into generated course graph artifacts so `validateKnowledgeSpace` can validate the generated `edges.json` files directly.
   - Normalize generated edge weights to the spec-defined values.
   - Make Phase 3 plan/audit language truthful to the current renderer/generator/misconception registry coverage.
