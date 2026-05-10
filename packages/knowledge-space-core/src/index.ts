@@ -33,3 +33,6 @@ export {
 } from './validation';
 
 export { syntheticMathFixture, syntheticEnglishGseFixture } from './fixtures';
+
+export { suggestEdges } from './edge-suggestions';
+export type { EdgeSuggestionInput } from './edge-suggestions';
