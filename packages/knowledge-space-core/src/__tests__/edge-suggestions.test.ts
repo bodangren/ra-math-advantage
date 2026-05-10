@@ -136,14 +136,14 @@ describe('suggestEdges — appears_in_context', () => {
     expect(placements.some((e) => e.sourceId === 'math.test.example.1.1.001' && e.targetId === 'math.test.lesson.1.1')).toBe(true);
   });
 
-  it('appears_in_context edges have medium confidence and weight 0.8', () => {
+  it('appears_in_context edges have medium confidence and weight 0.75', () => {
     const nodes = buildSyntheticNodes();
     const edges = suggestEdges({ nodes, coursePrefix: COURSE_PREFIX });
     const placements = edges.filter((e) => e.type === 'appears_in_context');
     expect(placements.length).toBeGreaterThan(0);
     for (const e of placements) {
       expect(e.confidence).toBe('medium');
-      expect(e.weight).toBe(0.8);
+      expect(e.weight).toBe(0.75);
     }
   });
 });
@@ -235,6 +235,23 @@ describe('suggestEdges — schema conformance', () => {
       expect(['low', 'medium', 'high']).toContain(e.confidence);
       expect(e.reviewStatus).toBe('draft');
     }
+  });
+
+  it('uses only spec-defined edge weights', () => {
+    const nodesWithConcept = [
+      ...buildSyntheticNodes(),
+      makeNode('math.test.skill.1.aleks.alpha-concept', 'concept', {
+        module: '1',
+        familyKey: 'alpha',
+      }),
+      makeNode('math.test.skill.1.aleks.beta-concept', 'concept', {
+        module: '1',
+        familyKey: 'alpha',
+      }),
+    ];
+    const edges = suggestEdges({ nodes: nodesWithConcept, coursePrefix: COURSE_PREFIX });
+    const allowedWeights = new Set([1.0, 0.75, 0.5, 0.25]);
+    expect(edges.every((e) => allowedWeights.has(e.weight))).toBe(true);
   });
 
   it('handles a graph with no skills or concepts gracefully (PreCalc-style)', () => {

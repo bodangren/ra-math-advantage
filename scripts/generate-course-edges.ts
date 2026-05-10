@@ -21,7 +21,7 @@
 import { readFileSync, writeFileSync } from 'node:fs';
 import { resolve, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { suggestEdges } from '@math-platform/knowledge-space-core';
+import { suggestEdges, validateKnowledgeSpace } from '@math-platform/knowledge-space-core';
 import type { KnowledgeSpaceNode, KnowledgeSpaceEdge } from '@math-platform/knowledge-space-core';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -44,8 +44,10 @@ interface CourseConfig {
   name: string;
   prefix: string;
   nodesPath: string;
+  standardEdgesPath: string;
   outputPath: string;
   pilotEdgesPath?: string;    // existing reviewed edges to preserve
+  pilotNodesPath?: string;    // existing pilot registry nodes needed by pilot edges
   pilotModuleKey?: string;    // metadata.module value to exclude from suggestion
 }
 
@@ -54,26 +56,31 @@ const COURSES: CourseConfig[] = [
     name: 'IM1',
     prefix: 'math.im1',
     nodesPath: 'apps/integrated-math-1/curriculum/skill-graph/draft-nodes.json',
+    standardEdgesPath: 'apps/integrated-math-1/curriculum/skill-graph/standard-edges.json',
     outputPath: 'apps/integrated-math-1/curriculum/skill-graph/edges.json',
   },
   {
     name: 'IM2',
     prefix: 'math.im2',
     nodesPath: 'apps/integrated-math-2/curriculum/skill-graph/draft-nodes.json',
+    standardEdgesPath: 'apps/integrated-math-2/curriculum/skill-graph/standard-edges.json',
     outputPath: 'apps/integrated-math-2/curriculum/skill-graph/edges.json',
   },
   {
     name: 'IM3',
     prefix: 'math.im3',
     nodesPath: 'apps/integrated-math-3/curriculum/skill-graph/draft-nodes.json',
+    standardEdgesPath: 'apps/integrated-math-3/curriculum/skill-graph/standard-edges.json',
     outputPath: 'apps/integrated-math-3/curriculum/skill-graph/edges.json',
     pilotEdgesPath: 'apps/integrated-math-3/curriculum/skill-graph/module-1/edges.json',
+    pilotNodesPath: 'apps/integrated-math-3/curriculum/skill-graph/module-1/nodes.json',
     pilotModuleKey: '1',
   },
   {
     name: 'PreCalc',
     prefix: 'math.precalc',
     nodesPath: 'apps/pre-calculus/curriculum/skill-graph/draft-nodes.json',
+    standardEdgesPath: 'apps/pre-calculus/curriculum/skill-graph/standard-edges.json',
     outputPath: 'apps/pre-calculus/curriculum/skill-graph/edges.json',
   },
 ];
@@ -84,7 +91,88 @@ const COURSES: CourseConfig[] = [
 
 interface EdgeFile {
   edges: KnowledgeSpaceEdge[];
+  nodes?: KnowledgeSpaceNode[];
   meta?: Record<string, unknown>;
+  metadata?: Record<string, unknown>;
+}
+
+const SPEC_WEIGHTS = [0.25, 0.5, 0.75, 1.0] as const;
+
+function normalizeWeight(weight: number): number {
+  return SPEC_WEIGHTS.reduce((closest, candidate) =>
+    Math.abs(candidate - weight) < Math.abs(closest - weight) ? candidate : closest,
+  );
+}
+
+function normalizeEdgeWeight(edge: KnowledgeSpaceEdge): KnowledgeSpaceEdge {
+  const normalizedWeight = normalizeWeight(edge.weight);
+  if (normalizedWeight === edge.weight) return edge;
+  return {
+    ...edge,
+    weight: normalizedWeight,
+    metadata: {
+      ...(edge.metadata ?? {}),
+      originalWeight: edge.weight,
+      weightNormalization: 't5-review-remediation',
+    },
+  };
+}
+
+function normalizePilotEndpoint(
+  id: string,
+  config: CourseConfig,
+): string {
+  if (!config.pilotModuleKey) return id;
+  const legacyLessonPrefix = `${config.prefix}.lesson.`;
+  if (!id.startsWith(legacyLessonPrefix)) return id;
+  const lesson = id.slice(legacyLessonPrefix.length);
+  if (!/^\d+$/.test(lesson)) return id;
+  return `${config.prefix}.lesson.${config.pilotModuleKey}.${lesson}`;
+}
+
+function normalizePilotEdge(
+  edge: KnowledgeSpaceEdge,
+  config: CourseConfig,
+): KnowledgeSpaceEdge {
+  const sourceId = normalizePilotEndpoint(edge.sourceId, config);
+  const targetId = normalizePilotEndpoint(edge.targetId, config);
+  if (sourceId === edge.sourceId && targetId === edge.targetId) return edge;
+  return {
+    ...edge,
+    sourceId,
+    targetId,
+    metadata: {
+      ...(edge.metadata ?? {}),
+      originalSourceId: edge.sourceId,
+      originalTargetId: edge.targetId,
+      endpointNormalization: 't5-review-remediation',
+    },
+  };
+}
+
+function dedupeNodes(nodes: KnowledgeSpaceNode[]): KnowledgeSpaceNode[] {
+  const seen = new Set<string>();
+  const deduped: KnowledgeSpaceNode[] = [];
+  for (const node of nodes) {
+    if (seen.has(node.id)) continue;
+    seen.add(node.id);
+    deduped.push(node);
+  }
+  return deduped.sort((a, b) => a.id.localeCompare(b.id));
+}
+
+function dedupeEdges(edges: KnowledgeSpaceEdge[]): KnowledgeSpaceEdge[] {
+  const seenIds = new Set<string>();
+  const seenTriples = new Set<string>();
+  const deduped: KnowledgeSpaceEdge[] = [];
+  for (const edge of edges) {
+    const tripleKey = `${edge.type}::${edge.sourceId}::${edge.targetId}`;
+    if (seenIds.has(edge.id) || seenTriples.has(tripleKey)) continue;
+    seenIds.add(edge.id);
+    seenTriples.add(tripleKey);
+    deduped.push(normalizeEdgeWeight(edge));
+  }
+  return deduped.sort((a, b) => a.id.localeCompare(b.id));
 }
 
 function generateCourse(config: CourseConfig): void {
@@ -97,14 +185,27 @@ function generateCourse(config: CourseConfig): void {
   const allNodes = nodesData.nodes;
   console.log(`   Loaded ${allNodes.length} nodes`);
 
+  const standardData = loadJson<EdgeFile>(resolve(ROOT, config.standardEdgesPath));
+  const standardNodes = standardData.nodes ?? [];
+  const standardEdges = standardData.edges ?? [];
+  console.log(`   Loaded ${standardEdges.length} standards alignment edges`);
+
   // Load pilot edges if present (preserve reviewed M1 edges for IM3)
   let pilotEdges: KnowledgeSpaceEdge[] = [];
+  let pilotNodes: KnowledgeSpaceNode[] = [];
   let pilotEdgeIds = new Set<string>();
   if (config.pilotEdgesPath) {
     const pilotData = loadJson<EdgeFile>(resolve(ROOT, config.pilotEdgesPath));
-    pilotEdges = pilotData.edges ?? [];
+    pilotEdges = (pilotData.edges ?? []).map((edge) => normalizePilotEdge(edge, config));
     pilotEdgeIds = new Set(pilotEdges.map((e) => e.id));
     console.log(`   Loaded ${pilotEdges.length} pilot edges from ${config.pilotEdgesPath}`);
+  }
+  if (config.pilotNodesPath) {
+    const pilotNodeData = loadJson<{ nodes: KnowledgeSpaceNode[] }>(
+      resolve(ROOT, config.pilotNodesPath),
+    );
+    pilotNodes = pilotNodeData.nodes ?? [];
+    console.log(`   Loaded ${pilotNodes.length} pilot nodes from ${config.pilotNodesPath}`);
   }
 
   // For courses with pilot edges, exclude pilot module nodes from suggestion
@@ -138,15 +239,22 @@ function generateCourse(config: CourseConfig): void {
   // Merge: pilot edges (preserved) + suggested edges (deduped against pilot)
   const mergedEdges: KnowledgeSpaceEdge[] = [
     ...pilotEdges,
+    ...standardEdges,
     ...suggestedEdges.filter((e) => !pilotEdgeIds.has(e.id)),
   ];
+  const dedupedEdges = dedupeEdges(mergedEdges);
+  const mergedNodes = dedupeNodes([
+    ...allNodes,
+    ...standardNodes,
+    ...pilotNodes,
+  ]);
 
   // Summary by type
   const byType: Record<string, number> = {};
-  for (const e of mergedEdges) {
+  for (const e of dedupedEdges) {
     byType[e.type] = (byType[e.type] ?? 0) + 1;
   }
-  console.log(`   Total edges: ${mergedEdges.length}`);
+  console.log(`   Total edges: ${dedupedEdges.length}`);
   for (const [type, count] of Object.entries(byType).sort()) {
     console.log(`     ${type}: ${count}`);
   }
@@ -157,7 +265,7 @@ function generateCourse(config: CourseConfig): void {
   // Noted as review queue items (see edge-review-queue.json).
   const skillsWithoutRenderer = nodesToSuggest.filter((n) =>
     n.kind === 'skill' &&
-    !mergedEdges.some((e) => e.type === 'rendered_by' && e.sourceId === n.id),
+    !dedupedEdges.some((e) => e.type === 'rendered_by' && e.sourceId === n.id),
   );
   if (skillsWithoutRenderer.length > 0) {
     console.log(`   ⚠  ${skillsWithoutRenderer.length} skills without renderer edge (review queue)`);
@@ -177,11 +285,26 @@ function generateCourse(config: CourseConfig): void {
       generatedAt: new Date().toISOString().split('T')[0],
       derivationMethod: 'lesson-sequence-suggestion-v1',
       pilotEdgesPreserved: pilotEdges.length,
+      standardEdgesMerged: standardEdges.length,
       suggestedEdges: suggestedEdges.length,
-      totalEdges: mergedEdges.length,
+      totalEdges: dedupedEdges.length,
+      totalNodes: mergedNodes.length,
+      normalizedWeights: dedupedEdges.filter((e) =>
+        e.metadata?.weightNormalization === 't5-review-remediation',
+      ).length,
     },
-    edges: mergedEdges,
+    nodes: mergedNodes,
+    edges: dedupedEdges,
   };
+  const validation = validateKnowledgeSpace({
+    nodes: mergedNodes,
+    edges: dedupedEdges,
+  });
+  if (!validation.valid) {
+    throw new Error(
+      `${config.name} generated graph failed validation: ${JSON.stringify(validation.errors, null, 2)}`,
+    );
+  }
   writeJson(resolve(ROOT, config.outputPath), output);
   console.log(`   ✓  Written to ${config.outputPath}`);
 }

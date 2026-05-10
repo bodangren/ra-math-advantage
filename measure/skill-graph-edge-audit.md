@@ -1,22 +1,23 @@
 # Skill Graph Edge Audit
 
-Generated: 2026-05-10  
-Track: `skill-graph-edge-authoring_20260509`  
+Generated: 2026-05-10
+Track: `skill-graph-edge-authoring_20260509`
 Derivation method: `lesson-sequence-suggestion-v1`
+Review remediation: standard alignment nodes/edges merged into generated course graphs; edge weights normalized to the T5 weight scale.
 
 ---
 
 ## Summary by Course
 
-| Course | Total Edges | Contains | appears_in_context | prerequisite_for | supports | rendered_by | generated_by |
-|--------|-------------|----------|--------------------|------------------|----------|-------------|--------------|
-| IM1    | 1,277       | 646      | 539                | 92               | —        | —           | —            |
-| IM2    | 1,274       | 644      | 549                | 81               | —        | —           | —            |
-| IM3    | 1,913       | 453      | 411                | 53               | 938      | 46          | 12           |
-| PreCalc| 375         | 217      | 158                | —                | —        | —           | —            |
-| **Total** | **4,839** | **1,960** | **1,657**       | **226**          | **938**  | **46**      | **12**       |
+| Course | Total Edges | aligned_to_standard | Contains | appears_in_context | prerequisite_for | supports | rendered_by | generated_by |
+|--------|-------------|---------------------|----------|--------------------|------------------|----------|-------------|--------------|
+| IM1    | 2,218       | 941                 | 646      | 539                | 92               | —        | —           | —            |
+| IM2    | 2,212       | 938                 | 644      | 549                | 81               | —        | —           | —            |
+| IM3    | 2,708       | 809                 | 453      | 411                | 53               | 938      | 32          | 12           |
+| PreCalc| 669         | 294                 | 217      | 158                | —                | —        | —           | —            |
+| **Total** | **7,807** | **2,982**        | **1,960** | **1,657**       | **226**          | **938**  | **32**      | **12**       |
 
-IM3 total includes 144 pilot edges (Module 1, manually reviewed in T8) plus 1,769 machine-suggested edges for Modules 2–9.
+IM3 total includes 144 pilot edges (Module 1, manually reviewed in T8), 809 standards alignment edges, and 1,769 machine-suggested edges for Modules 2–9. The generated graph artifact also includes merged node registries so `validateKnowledgeSpace` can run directly against `edges.json`.
 
 ---
 
@@ -24,16 +25,28 @@ IM3 total includes 144 pilot edges (Module 1, manually reviewed in T8) plus 1,76
 
 | Course | High  | Medium | Low |
 |--------|-------|--------|-----|
-| IM1    | 646   | 539    | 92  |
-| IM2    | 644   | 549    | 81  |
-| IM3    | 537   | 1,332  | 44  |
-| PreCalc| 217   | 158    | 0   |
+| IM1    | 1,587 | 539    | 92  |
+| IM2    | 1,582 | 549    | 81  |
+| IM3    | 1,071 | 1,593  | 44  |
+| PreCalc| 511   | 158    | 0   |
 
-- **High** = containment edges (`contains`): structurally certain from curriculum hierarchy.
+- **High** = containment and standards alignment edges (`contains`, `aligned_to_standard`): structurally certain or source-backed.
 - **Medium** = placement and support edges (`appears_in_context`, `supports`): derived from module/lesson metadata; reliable but review-ready.
 - **Low** = sequential prerequisite chains (`prerequisite_for`, `equivalent_to`): lesson-sequence inference; must be human-reviewed before use in mastery gating.
+- Generated edge files use only the T5 weight scale: `1.0`, `0.75`, `0.5`, `0.25`.
 
 ---
+
+## Validation and Cycle Report
+
+`validateKnowledgeSpace` was run directly against each generated course graph artifact (`nodes` + `edges` from `edges.json`).
+
+| Course | Result |
+|--------|--------|
+| IM1 | valid |
+| IM2 | valid |
+| IM3 | valid |
+| PreCalc | valid |
 
 ## Cycle Report (high-confidence prerequisite_for)
 
@@ -138,9 +151,9 @@ No prerequisite or support edges generated — PreCalc has no `skill` nodes, onl
 
 | Item | Severity | Details |
 |------|----------|---------|
-| Renderer edges (Task 3.1) | Medium | 367 skills across IM1/IM2/IM3 have no `rendered_by` edge. Blocked on renderer registry. |
-| Generator edges (Task 3.2) | Medium | Generator-ready skills need `generated_by` edges. IM3 M1 has 12 (pilot). Others blocked on generator registry. |
-| Misconception taxonomy (Task 3.3) | Low | No evidence base for any course. Deferred until distractor analysis available. |
+| Renderer registry coverage | Medium | 367 skills across IM1/IM2/IM3 have no `rendered_by` edge because the draft nodes do not expose renderer/component keys. They are queued in `edge-review-queue.json`. |
+| Generator registry coverage | Medium | IM3 M1 has 12 `generated_by` edges from the pilot. No non-pilot nodes are marked `independentPracticeReady`; future rollout tracks must add generator keys before enabling runtime projections. |
+| Misconception taxonomy | Low | No evidence base exists for any course. Skills are queued for later taxonomy authoring from distractor analysis. |
 
 ---
 
@@ -148,4 +161,4 @@ No prerequisite or support edges generated — PreCalc has no `skill` nodes, onl
 
 - All course edge files use `reviewStatus: "draft"` — no edge is considered approved for production gating without human review.
 - `prerequisite_for` edges are intentionally low-confidence. Before using them in mastery gating, a curriculum reviewer must confirm or reassign each entry in the course's `edge-review-queue.json`.
-- IM3 Module 1 edges (pilot, 144 edges) were authored and reviewed in track `skill-graph-edge-authoring_20260509` Phase T8. Their IDs and payloads are preserved verbatim in the merged output.
+- IM3 Module 1 edges (pilot, 144 edges) were authored and reviewed in track `skill-graph-pilot-im3-m1_20260509`. The merged T5 output preserves pilot edge IDs while normalizing legacy lesson endpoints and weights so the generated course graph validates.

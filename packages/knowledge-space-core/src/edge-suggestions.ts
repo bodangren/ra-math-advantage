@@ -213,7 +213,7 @@ function suggestPlacementEdges(
     const lesson = lessonsByKey.get(`${modNum}.${lesNum}`);
     if (!lesson) continue;
     candidates.push(makeCandidate(
-      'appears_in_context', skill.id, lesson.id, 0.8, 'medium', true, METHOD,
+      'appears_in_context', skill.id, lesson.id, 0.75, 'medium', true, METHOD,
       `Skill appears in lesson context`,
       { module: modNum, lesson: lesNum },
     ));
@@ -226,7 +226,7 @@ function suggestPlacementEdges(
     const mod = modulesByKey.get(modNum);
     if (!mod) continue;
     candidates.push(makeCandidate(
-      'appears_in_context', concept.id, mod.id, 0.8, 'medium', true, METHOD,
+      'appears_in_context', concept.id, mod.id, 0.75, 'medium', true, METHOD,
       `Concept appears in module context`,
       { module: modNum },
     ));
@@ -240,7 +240,7 @@ function suggestPlacementEdges(
     const lesson = lessonsByKey.get(`${modNum}.${lesNum}`);
     if (!lesson) continue;
     candidates.push(makeCandidate(
-      'appears_in_context', example.id, lesson.id, 0.8, 'medium', true, METHOD,
+      'appears_in_context', example.id, lesson.id, 0.75, 'medium', true, METHOD,
       `Worked example appears in lesson context`,
       { module: modNum, lesson: lesNum },
     ));
@@ -315,8 +315,6 @@ function suggestSupportEdges(
   const METHOD = 'concept-supports-skill-v1';
 
   const concepts = nodes.filter((n) => n.kind === 'concept');
-  const skills = nodes.filter((n) => n.kind === 'skill');
-
   // Group skills by module
   const skillsByModule = groupByMeta(nodes, ['skill'], (n) =>
     metaStr(n, 'module'),

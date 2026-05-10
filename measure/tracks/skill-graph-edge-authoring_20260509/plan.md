@@ -3,7 +3,6 @@
 ## Phase 1: Validation Tests
 
 - [x] **Task 1.1: Add prerequisite cycle tests** [checkpoint: fe458e8]
-  
 
 - [x] **Task 1.2: Add edge type endpoint tests** [checkpoint: fe458e8]
   - `rendered_by`: skill/worked_example -> renderer only.
@@ -35,36 +34,37 @@
 
 ## Phase 3: Renderer, Generator, and Misconception Edges
 
-- [x] **Task 3.1: Add renderer edges** [checkpoint: pending]
-  - Map componentKey to renderer node.
-  - Skills without renderer mapping become exceptions logged in review queue.
+- [x] **Task 3.1: Preserve renderer edges and queue renderer gaps** [checkpoint: pending]
+  - Preserved IM3 M1 pilot `rendered_by` edges.
+  - Draft nodes outside the pilot do not expose renderer/component keys; skills without mappings are logged in review queues.
 
-- [x] **Task 3.2: Add generator edges** [checkpoint: pending]
-  - Map generatorKey to generator node only for generator-ready skills.
-  - Skills marked independent-practice-ready without generator edge must fail validation.
+- [x] **Task 3.2: Preserve generator edges and validate generator readiness** [checkpoint: pending]
+  - Preserved IM3 M1 pilot `generated_by` edges.
+  - Non-pilot nodes are not marked `independentPracticeReady`; future rollout tracks must add generator keys before enabling runtime projections.
 
-- [x] **Task 3.3: Add misconception placeholders** [checkpoint: pending]
-  - No misconception taxonomy exists; all skills flagged in review queue for later authoring.
+- [x] **Task 3.3: Queue misconception taxonomy gaps** [checkpoint: pending]
+  - No misconception taxonomy exists; all skills are flagged in review queues for later authoring.
 
 ## Phase 4: Course Edge Files
 
 - [x] **Task 4.1: Generate IM1 edges** [checkpoint: pending]
-  - Write `apps/integrated-math-1/curriculum/skill-graph/edges.json`. (1,277 edges)
+  - Write `apps/integrated-math-1/curriculum/skill-graph/edges.json`. (724 nodes, 2,218 edges)
 
 - [x] **Task 4.2: Generate IM2 edges** [checkpoint: pending]
-  - Write `apps/integrated-math-2/curriculum/skill-graph/edges.json`. (1,274 edges)
+  - Write `apps/integrated-math-2/curriculum/skill-graph/edges.json`. (722 nodes, 2,212 edges)
 
 - [x] **Task 4.3: Generate IM3 edges** [checkpoint: pending]
-  - Write `apps/integrated-math-3/curriculum/skill-graph/edges.json`. (1,913 edges; 144 pilot preserved)
+  - Write `apps/integrated-math-3/curriculum/skill-graph/edges.json`. (574 nodes, 2,708 edges; 144 pilot edges merged, 32 unique renderer edges preserved)
 
 - [x] **Task 4.4: Generate PreCalc edges** [checkpoint: pending]
-  - Write `apps/pre-calculus/curriculum/skill-graph/edges.json`. (375 edges)
+  - Write `apps/pre-calculus/curriculum/skill-graph/edges.json`. (252 nodes, 669 edges)
 
 ## Phase 5: Audit and Review Queue
 
 - [x] **Task 5.1: Write edge audit** [checkpoint: pending]
   - Created `measure/skill-graph-edge-audit.md`.
   - Counts by course/type/confidence; 0 high-confidence cycles detected.
+  - Updated after review remediation to include merged standard alignment edges and direct graph validation results.
 
 - [x] **Task 5.2: Write review queues** [checkpoint: pending]
   - Created `apps/<course>/curriculum/skill-graph/edge-review-queue.json` for all 4 courses.
@@ -73,13 +73,20 @@
 ## Phase 6: Verification
 
 - [x] **Task 6.1: Run graph validation** [checkpoint: pending]
-  - Ran `validateKnowledgeSpace` on all 4 course graphs.
-  - All errors are pre-existing cross-vocabulary gaps (standard/renderer/generator nodes live outside draft-nodes.json), not T5 regressions.
-  - IM1: 941 dangling (standard nodes). IM2: 938 dangling. IM3: 903 dangling + 14 dup (pre-existing in M1 pilot file). PreCalc: 158 missing alignment (T4 out of scope).
-  - Logged as tech debt — requires shared vocabulary registry.
+  - Ran `validateKnowledgeSpace` on all 4 generated course graph artifacts after merging standard/pilot node registries.
+  - IM1, IM2, IM3, and PreCalc all validate with 0 errors.
 
 - [x] **Task 6.2: Run tests** [checkpoint: pending]
-  - 75/75 knowledge-space-core tests pass (18 edge-suggestion, 57 other).
+  - 76/76 knowledge-space-core tests pass (19 edge-suggestion, 57 other).
 
 - [x] **Task 6.3: Manual sample review** [checkpoint: pending]
   - 10 edges sampled per course. All correct. Recorded in `measure/skill-graph-edge-audit.md`.
+
+## Review Remediation
+
+- [x] **Task R1: Apply T5 review fixes** [checkpoint: pending]
+  - Merge standard alignment nodes/edges into generated course graph artifacts so `validateKnowledgeSpace` can validate the generated `edges.json` files directly.
+  - Normalize generated edge weights to the spec-defined values.
+  - Make Phase 3 plan/audit language truthful to the current renderer/generator/misconception registry coverage.
+  - Restore package lint/typecheck/test and whitespace gates.
+  - Verification: `npx tsx scripts/generate-course-edges.ts`; direct `validateKnowledgeSpace` check for IM1/IM2/IM3/PreCalc; spec-weight check; `CI=true npm test --workspace=packages/knowledge-space-core`; `CI=true npm run lint --workspace=packages/knowledge-space-core`; `CI=true npm run typecheck --workspace=packages/knowledge-space-core`; `git diff --check`.
