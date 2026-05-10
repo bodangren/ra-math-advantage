@@ -22,6 +22,8 @@ export interface SrsProjectionEntry {
   difficulty: number;
   generatorKey?: string;
   generatorReady: boolean;
+  /** Nodes from other courses considered equivalent (via equivalent_to edges). */
+  equivalentNodeIds: string[];
 }
 
 // ---------------------------------------------------------------------------
@@ -33,6 +35,15 @@ export interface TeacherEvidence {
   skills: SkillCoverage[];
   prerequisiteGaps: PrerequisiteGap[];
   attemptArtifacts: AttemptArtifact[];
+  /** Connected components of equivalent skills across courses. */
+  equivalentComponents: EquivalentComponentSummary[];
+}
+
+export interface EquivalentComponentSummary {
+  componentId: string;
+  nodeIds: string[];
+  coursesCovered: string[];
+  edgeCount: number;
 }
 
 export interface StandardCoverage {
@@ -51,6 +62,8 @@ export interface SkillCoverage {
   standardsCovered: string[];
   prerequisitesMet: boolean;
   independentPracticeReady: boolean;
+  /** Equivalent skills from other courses (via equivalent_to edges). */
+  equivalentNodeIds: string[];
 }
 
 export interface PrerequisiteGap {

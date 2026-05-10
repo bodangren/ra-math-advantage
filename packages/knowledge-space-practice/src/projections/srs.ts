@@ -73,6 +73,13 @@ export function projectSrsInputs(
       difficulty,
       generatorKey,
       generatorReady,
+      equivalentNodeIds: edges
+        .filter(
+          (e) =>
+            e.type === 'equivalent_to' &&
+            (e.sourceId === node.id || e.targetId === node.id),
+        )
+        .map((e) => (e.sourceId === node.id ? e.targetId : e.sourceId)),
     });
   }
 

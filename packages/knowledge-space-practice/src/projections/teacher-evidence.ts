@@ -5,6 +5,7 @@ import type {
   SkillCoverage,
   PrerequisiteGap,
   AttemptArtifact,
+  EquivalentComponentSummary,
 } from './types';
 
 /**
@@ -82,6 +83,13 @@ export function projectTeacherEvidence(
       standardsCovered,
       prerequisitesMet,
       independentPracticeReady: node.independentPracticeReady ?? false,
+      equivalentNodeIds: edges
+        .filter(
+          (e) =>
+            e.type === 'equivalent_to' &&
+            (e.sourceId === node.id || e.targetId === node.id),
+        )
+        .map((e) => (e.sourceId === node.id ? e.targetId : e.sourceId)),
     });
   }
 
@@ -130,5 +138,44 @@ export function projectTeacherEvidence(
 
   attemptArtifacts.sort((a, b) => a.nodeId.localeCompare(b.nodeId));
 
-  return { standards, skills, prerequisiteGaps, attemptArtifacts };
+  // --- Equivalent components ---
+  const equivEdges = edges.filter((e) => e.type === 'equivalent_to');
+  const equivalentComponents: EquivalentComponentSummary[] = [];
+  const equivAdj = new Map<string, Set<string>>();
+  for (const e of equivEdges) {
+    if (!equivAdj.has(e.sourceId)) equivAdj.set(e.sourceId, new Set());
+    if (!equivAdj.has(e.targetId)) equivAdj.set(e.targetId, new Set());
+    equivAdj.get(e.sourceId)!.add(e.targetId);
+    equivAdj.get(e.targetId)!.add(e.sourceId);
+  }
+  const visited = new Set<string>();
+  let compIdx = 0;
+  for (const nodeId of equivAdj.keys()) {
+    if (visited.has(nodeId)) continue;
+    const compNodes: string[] = [];
+    const queue = [nodeId];
+    visited.add(nodeId);
+    while (queue.length > 0) {
+      const cur = queue.shift()!;
+      compNodes.push(cur);
+      for (const nb of equivAdj.get(cur) ?? []) {
+        if (!visited.has(nb)) { visited.add(nb); queue.push(nb); }
+      }
+    }
+    const compNodeSet = new Set(compNodes);
+    const compEdges = equivEdges.filter(
+      (e) => compNodeSet.has(e.sourceId) && compNodeSet.has(e.targetId),
+    );
+    const courses = [...new Set(compNodes.map((n) => nodeMap.get(n)?.domain ?? n.split('.').slice(0, 2).join('.')))].sort();
+    equivalentComponents.push({
+      componentId: `equiv-comp-${String(compIdx + 1).padStart(3, '0')}`,
+      nodeIds: [...compNodes].sort(),
+      coursesCovered: courses,
+      edgeCount: compEdges.length,
+    });
+    compIdx++;
+  }
+  equivalentComponents.sort((a, b) => a.componentId.localeCompare(b.componentId));
+
+  return { standards, skills, prerequisiteGaps, attemptArtifacts, equivalentComponents };
 }

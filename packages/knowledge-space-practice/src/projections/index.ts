@@ -9,6 +9,7 @@ export type {
   SkillCoverage,
   PrerequisiteGap,
   AttemptArtifact,
+  EquivalentComponentSummary,
   VisualNodeV1,
   VisualEdgeV1,
   StudentVisualizationV1,
