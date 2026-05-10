@@ -72,12 +72,14 @@
 
 ## Phase 6: Verification
 
-- [ ] **Task 6.1: Run graph validation**
-  - Validate all course graphs.
+- [x] **Task 6.1: Run graph validation** [checkpoint: pending]
+  - Ran `validateKnowledgeSpace` on all 4 course graphs.
+  - All errors are pre-existing cross-vocabulary gaps (standard/renderer/generator nodes live outside draft-nodes.json), not T5 regressions.
+  - IM1: 941 dangling (standard nodes). IM2: 938 dangling. IM3: 903 dangling + 14 dup (pre-existing in M1 pilot file). PreCalc: 158 missing alignment (T4 out of scope).
+  - Logged as tech debt — requires shared vocabulary registry.
 
-- [ ] **Task 6.2: Run tests**
-  - Run skill graph contract and edge-generation tests.
+- [x] **Task 6.2: Run tests** [checkpoint: pending]
+  - 75/75 knowledge-space-core tests pass (18 edge-suggestion, 57 other).
 
-- [ ] **Task 6.3: Manual sample review**
-  - Review at least 10 edges per course.
-  - Record examples in audit report.
+- [x] **Task 6.3: Manual sample review** [checkpoint: pending]
+  - 10 edges sampled per course. All correct. Recorded in `measure/skill-graph-edge-audit.md`.

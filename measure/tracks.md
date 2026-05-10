@@ -34,8 +34,8 @@ Dependencies:
    - [x] **Track 4: Skill Graph Program — Skill-Level Standards Alignment**
       *Assign standards to skill nodes with confidence, provenance, review queues, and exceptions.*
       *Link: [./measure/tracks/skill-standards-alignment_20260509/](./measure/tracks/skill-standards-alignment_20260509/)*
-   - [ ] **Track 5: Skill Graph Program — Directed Edge Authoring (post-pilot horizontal expansion)**
-      *Apply the pilot-validated edge-authoring approach across IM1, IM2, IM3 Modules 2–9, and PreCalc. Runs **after** T8 pilot acceptance. Cross-course equivalence is **out of scope** here; that lives in T13.*
+   - [x] **Track 5: Skill Graph Program — Directed Edge Authoring (post-pilot horizontal expansion)** — **COMPLETED**
+      *Apply the pilot-validated edge-authoring approach across IM1, IM2, IM3 Modules 2–9, and PreCalc. 4,839 edges generated; 144 IM3 M1 pilot edges preserved. Review queues written for all 4 courses. Audit at `measure/skill-graph-edge-audit.md`.*
       *Link: [./measure/tracks/skill-graph-edge-authoring_20260509/](./measure/tracks/skill-graph-edge-authoring_20260509/)*
     - [x] **Track 6: Skill Graph Program — Knowledge Space Blueprint and Generator Contract**
       *Define reusable worked-example, guided-practice, and independent-practice blueprint contracts plus deterministic generator requirements.*

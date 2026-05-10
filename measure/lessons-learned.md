@@ -40,6 +40,9 @@
 - (2026-04-29, review-31) Reverting N+1 "fix" — full table scans (`.collect()`) replace N indexed queries but are worse for large tables. Use `Promise.all` with per-student `.withIndex()` queries instead. `Array.includes()` → `Set.has()` for O(1) lookup in hot loops
 - (2026-05-03, tech-debt-cleanup) After a tech-debt resolution track, prune tech-debt.md aggressively — remove all Resolved items, keep only Open. Historical record lives in git history, not working memory.
 
+- (2026-05-10, edge-authoring) `validateKnowledgeSpace` treats the graph as a closed system — all referenced node IDs must exist in the nodes array. Standard, renderer, and generator nodes live in separate registries and will always produce dangling-edge errors when validated against course-only draft-nodes. Validation at the course level is meaningful only for structural edges (contains, appears_in_context, prerequisite_for); cross-vocabulary validation requires a merged registry.
+- (2026-05-10, edge-authoring) `import.meta.dirname` is undefined in CJS-mode tsx — always use `fileURLToPath(import.meta.url)` + `dirname()` for `__dirname`-equivalent in scripts.
+
 ## Curriculum Authoring
 
 - (2026-05-01, precalc-depth-remediation) Curriculum artifacts from generic generation are NOT equivalent to source-grounded authoring. Always extract from primary sources (PDFs) before writing curriculum.
