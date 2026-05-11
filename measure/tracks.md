@@ -67,7 +67,7 @@ Dependencies:
    - [x] **Track: Blueprint QA Harness — Workspace Dependency Import** — **COMPLETED**
       *Add @math-platform/math-content, @math-platform/activity-components, @math-platform/knowledge-space-practice to BM2 deps.*
       *Link: [./measure/tracks/blueprint-qa-deps_20260511/](./measure/tracks/blueprint-qa-deps_20260511/)*
-   - [~] **Track 14: Skill Graph Program — Blueprint QA & Authoring Harness**
+   - [x] **Track 14: Skill Graph Program — Blueprint QA & Authoring Harness** — **COMPLETED**
       *Build a developer and curriculum-author UI to manually preview, interact with, and QA the graph-derived blueprints.*
       *Link: [./measure/tracks/blueprint-qa-harness_20260510/](./measure/tracks/blueprint-qa-harness_20260510/)*
    - [ ] **Track 15: Skill Graph Program — Geometry & Statistics Renderers**

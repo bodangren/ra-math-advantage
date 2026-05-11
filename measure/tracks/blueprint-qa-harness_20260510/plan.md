@@ -24,3 +24,5 @@
 - [x] **Phase 5: UX & Polish**
   - [x] Add a search bar to the Node List sidebar to filter by skill ID or title.
   - [x] Add visual indicators (green/red dot) in the sidebar based on whether the blueprint/skill has a `generatorKey` assigned.
+
+[checkpoint: df1afb6]
