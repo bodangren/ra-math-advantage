@@ -64,6 +64,9 @@ Dependencies:
 
 - [ ] **Program: Skill Graph Runtime Enablement**
    *This phase builds the infrastructure, UI visualization components, and ~450 deterministic math generators required to turn the graph blueprints into functional activities, allowing the graph projections to safely replace the legacy activity maps.*
+   - [x] **Track: Blueprint QA Harness — Workspace Dependency Import** — **COMPLETED**
+      *Add @math-platform/math-content, @math-platform/activity-components, @math-platform/knowledge-space-practice to BM2 deps.*
+      *Link: [./measure/tracks/blueprint-qa-deps_20260511/](./measure/tracks/blueprint-qa-deps_20260511/)*
    - [ ] **Track 14: Skill Graph Program — Blueprint QA & Authoring Harness**
       *Build a developer and curriculum-author UI to manually preview, interact with, and QA the graph-derived blueprints.*
       *Link: [./measure/tracks/blueprint-qa-harness_20260510/](./measure/tracks/blueprint-qa-harness_20260510/)*
