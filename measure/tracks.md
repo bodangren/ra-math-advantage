@@ -21,55 +21,55 @@ Dependencies:
    *Program rule: skill graph artifacts are source truth; practice activity maps, SRS inputs, visualization payloads, component props, and seed data are generated projections.*
    - [x] **Track 1: Skill Graph Program — Deprecation and Canonical Direction**
       *Audit overlapping earlier specs; preserve source evidence; mark stale activity-map/problem-family/lesson-seed directions as deprecated.*
-      *Link: [./measure/tracks/skill-graph-deprecation_20260509/](./measure/tracks/skill-graph-deprecation_20260509/)*
+      *Link: [./measure/archive/skill-graph-deprecation_20260509/](./measure/archive/skill-graph-deprecation_20260509/)*
     - [x] **Track 2: Skill Graph Program — Knowledge Space Core Contract**
       *Define domain-neutral knowledge-space.v1 node, edge, weight, provenance, ID, validation, and adapter contracts for reusable learning graphs. Includes a boundary lint that fails the build if reusable packages import app/domain code.*
-      *Link: [./measure/tracks/skill-graph-contract_20260509/](./measure/tracks/skill-graph-contract_20260509/)*
+      *Link: [./measure/archive/skill-graph-contract_20260509/](./measure/archive/skill-graph-contract_20260509/)*
     - [x] **Track 2.5: Skill Graph Program — Math Domain Adapter**
        *Implement the math-domain adapter against the Track 2 contract: ID rules, metadata schema, generator/renderer registries, and the practice.v1 evidence bridge. This is the seam math rollouts consume; sibling projects implement their own domain adapter (English/GSE, Chinese, science) without touching reusable packages.*
-       *Link: [./measure/tracks/skill-math-adapter_20260509/](./measure/tracks/skill-math-adapter_20260509/)*
+       *Link: [./measure/archive/skill-math-adapter_20260509/](./measure/archive/skill-math-adapter_20260509/)*
     - [x] **Track 3: Skill Graph Program — Skill Inventory Extraction**
       *Extract atomic skill and worked-example candidates from IM1, IM2, IM3, and AP Precalculus source artifacts using the math-adapter ID constructors.*
-      *Link: [./measure/tracks/skill-inventory-extraction_20260509/](./measure/tracks/skill-inventory-extraction_20260509/)*
+      *Link: [./measure/archive/skill-inventory-extraction_20260509/](./measure/archive/skill-inventory-extraction_20260509/)*
    - [x] **Track 4: Skill Graph Program — Skill-Level Standards Alignment**
       *Assign standards to skill nodes with confidence, provenance, review queues, and exceptions.*
-      *Link: [./measure/tracks/skill-standards-alignment_20260509/](./measure/tracks/skill-standards-alignment_20260509/)*
+      *Link: [./measure/archive/skill-standards-alignment_20260509/](./measure/archive/skill-standards-alignment_20260509/)*
    - [x] **Track 5: Skill Graph Program — Directed Edge Authoring (post-pilot horizontal expansion)** — **COMPLETED**
       *Apply the pilot-validated edge-authoring approach across IM1, IM2, IM3 Modules 2–9, and PreCalc. 4,839 edges generated; 144 IM3 M1 pilot edges preserved. Review queues written for all 4 courses. Audit at `measure/skill-graph-edge-audit.md`.*
-      *Link: [./measure/tracks/skill-graph-edge-authoring_20260509/](./measure/tracks/skill-graph-edge-authoring_20260509/)*
+      *Link: [./measure/archive/skill-graph-edge-authoring_20260509/](./measure/archive/skill-graph-edge-authoring_20260509/)*
     - [x] **Track 6: Skill Graph Program — Knowledge Space Blueprint and Generator Contract**
       *Define reusable worked-example, guided-practice, and independent-practice blueprint contracts plus deterministic generator requirements.*
-      *Link: [./measure/tracks/skill-blueprint-generator-contract_20260509/](./measure/tracks/skill-blueprint-generator-contract_20260509/)*
+      *Link: [./measure/archive/skill-blueprint-generator-contract_20260509/](./measure/archive/skill-blueprint-generator-contract_20260509/)*
     - [x] **Track 7: Skill Graph Program — Knowledge Space Practice Projections**
       *Generate practice.v1 activity maps, SRS inputs, teacher evidence maps, versioned visualization.v1 payloads (student/parent/teacher), component props, and seed projections through reusable projection adapters. Includes a cross-domain smoke test proving the pipeline runs on a synthetic non-math fixture with no math/app imports.*
-      *Link: [./measure/tracks/skill-runtime-projection_20260509/](./measure/tracks/skill-runtime-projection_20260509/)*
+      *Link: [./measure/archive/skill-runtime-projection_20260509/](./measure/archive/skill-runtime-projection_20260509/)*
 - [x] **Track 8: Skill Graph Program — IM3 Module 1 Pilot (depth-first slice)**
        *Prove the graph-to-runtime flow end-to-end on IM3 Module 1 before broad cross-course edge authoring or rollout. Authors its own IM3 M1 edges; T5 expands afterward. If the pilot finds contract issues, fix in T2/T6/T7 and re-run before expanding.*
-       *Link: [./measure/tracks/skill-graph-pilot-im3-m1_20260509/](./measure/tracks/skill-graph-pilot-im3-m1_20260509/)*
+       *Link: [./measure/archive/skill-graph-pilot-im3-m1_20260509/](./measure/archive/skill-graph-pilot-im3-m1_20260509/)*
     - [x] **Track 9: Skill Graph Program — Integrated Math 1 Rollout** — **COMPLETED**
        *Apply the approved pipeline to IM1 source catalogs, with explicit standards/generator/component gap handling. 724 nodes (138 skills); 138 STUB blueprints; 414 projected activities; 3 review queues; audit at measure/skill-graph-im1-rollout-audit.md.*
-       *Link: [./measure/tracks/skill-rollout-im1_20260509/](./measure/tracks/skill-rollout-im1_20260509/)*
+       *Link: [./measure/archive/skill-rollout-im1_20260509/](./measure/archive/skill-rollout-im1_20260509/)*
     - [x] **Track 10: Skill Graph Program — Integrated Math 2 Rollout** — **COMPLETED**
        *Apply the approved pipeline to IM2, reconciling current worksheet catalogs against stale unit-based artifacts. 645 nodes (149 skills); 149 STUB blueprints; 447 projected activities; 4 review queues (incl. geometry-renderer gaps); audit at measure/skill-graph-im2-rollout-audit.md.*
-       *Link: [./measure/tracks/skill-rollout-im2_20260509/](./measure/tracks/skill-rollout-im2_20260509/)*
+       *Link: [./measure/archive/skill-rollout-im2_20260509/](./measure/archive/skill-rollout-im2_20260509/)*
     - [x] **Track 11: Skill Graph Program — Integrated Math 3 Rollout** — **COMPLETED**
        *Expand the accepted IM3 Module 1 pilot across Modules 2-9. 574 course-level nodes (96 skills); 174 blueprints (6 M1 pilot + 168 M2-9 stubs); 351 projected activities; M1 pilot preserved; per-module artifacts for M2-9; 3 review queues; audit at measure/skill-graph-im3-rollout-audit.md.*
-       *Link: [./measure/tracks/skill-rollout-im3_20260509/](./measure/tracks/skill-rollout-im3_20260509/)*
+       *Link: [./measure/archive/skill-rollout-im3_20260509/](./measure/archive/skill-rollout-im3_20260509/)*
     - [x] **Track 12: Skill Graph Program — AP Precalculus Rollout** — **COMPLETED**
        *Apply the approved pipeline to AP Precalculus using CED/Passwater provenance, FRQ context, and Unit 4 exceptions. 294 nodes (73 skills generated from 158 worked_examples); 73 STUB blueprints; 146 projected activities; 4 review queues; audit at measure/skill-graph-precalc-rollout-audit.md.*
-       *Link: [./measure/tracks/skill-rollout-precalc_20260509/](./measure/tracks/skill-rollout-precalc_20260509/)*
+       *Link: [./measure/archive/skill-rollout-precalc_20260509/](./measure/archive/skill-rollout-precalc_20260509/)*
    - [x] **Track 13: Skill Graph Program — Cross-Course Equivalence** — **COMPLETED**
       *Author equivalent_to edges across IM1/IM2/IM3/PreCalc knowledge spaces after all four rollouts complete. Wires SRS and teacher evidence projections to treat equivalence components as single learner-state targets.*
-      *Link: [./measure/tracks/skill-cross-course-equivalence_20260509/](./measure/tracks/skill-cross-course-equivalence_20260509/)*
+      *Link: [./measure/archive/skill-cross-course-equivalence_20260509/](./measure/archive/skill-cross-course-equivalence_20260509/)*
 
 - [ ] **Program: Skill Graph Runtime Enablement**
    *This phase builds the infrastructure, UI visualization components, and ~450 deterministic math generators required to turn the graph blueprints into functional activities, allowing the graph projections to safely replace the legacy activity maps.*
    - [x] **Track: Blueprint QA Harness — Workspace Dependency Import** — **COMPLETED**
       *Add @math-platform/math-content, @math-platform/activity-components, @math-platform/knowledge-space-practice to BM2 deps.*
-      *Link: [./measure/tracks/blueprint-qa-deps_20260511/](./measure/tracks/blueprint-qa-deps_20260511/)*
+      *Link: [./measure/archive/blueprint-qa-deps_20260511/](./measure/archive/blueprint-qa-deps_20260511/)*
    - [x] **Track 14: Skill Graph Program — Blueprint QA & Authoring Harness** — **COMPLETED**
       *Build a developer and curriculum-author UI to manually preview, interact with, and QA the graph-derived blueprints.*
-      *Link: [./measure/tracks/blueprint-qa-harness_20260510/](./measure/tracks/blueprint-qa-harness_20260510/)*
+      *Link: [./measure/archive/blueprint-qa-harness_20260510/](./measure/archive/blueprint-qa-harness_20260510/)*
    - [ ] **Track 15: Skill Graph Program — Geometry & Statistics Renderers**
       *Implement specialized React components `stats-distribution-plotter` and `geometry-diagram-explorer` to address component gaps.*
       *Link: [./measure/tracks/geometry-stats-renderers_20260510/](./measure/tracks/geometry-stats-renderers_20260510/)*
@@ -91,7 +91,7 @@ Dependencies:
 
 - [x] **Track: Practice Worksheet Example Import** — **COMPLETED**
    *Import IM1, IM2, and IM3 Practice Worksheet Student Bundles as reviewed Markdown problem set catalogs. 244 DOCX → 241 reviewed lesson files (IM1: 93, IM2: 96, IM3: 52). Full regeneration of IM2 and IM3 from canonical DOCX sources.*
-   *Link: [./measure/tracks/practice-worksheet-example-import_20260507/](./measure/tracks/practice-worksheet-example-import_20260507/)*
+   *Link: [./measure/archive/practice-worksheet-example-import_20260507/](./measure/archive/practice-worksheet-example-import_20260507/)*
    - Phases 1-7: All complete (extraction, naming, template, IM1 greenfield, IM2 verification/amendment, IM3 verification/amendment, cross-course validation)
 
 - [x] **Track: Fix Pre-existing Lint Errors Across All Apps**
