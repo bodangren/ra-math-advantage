@@ -1,8 +1,9 @@
 'use client';
 
-import { useMemo, createContext, useContext } from 'react';
-import { Monitor, Send, AlertTriangle, Puzzle } from 'lucide-react';
-import { getActivityComponent } from '@math-platform/activity-components';
+import { Suspense, useEffect, useMemo, createContext, useContext, type ReactNode } from 'react';
+import { Monitor, Send, AlertTriangle, Puzzle, Loader2 } from 'lucide-react';
+import { getActivityComponent } from '@math-platform/activity-components/registry';
+import { ensureActivitiesRegistered } from './register-activities';
 import type { HarnessState, SkillNode, SubmissionEntry } from '../types';
 import type { KnowledgeBlueprint, GradingMetadata } from '@math-platform/knowledge-space-practice';
 
@@ -49,7 +50,36 @@ function gradeAnswerLocally(
   return false;
 }
 
+function buildComponentProps(
+  rendererKey: string,
+  generatorOutput: Record<string, unknown>,
+): Record<string, unknown> {
+  const data = (generatorOutput.data ?? {}) as Record<string, unknown>;
+  const prompt = generatorOutput.prompt as string ?? '';
+
+  switch (rendererKey) {
+    case 'graphing-explorer':
+      return { equation: data?.equation ?? 'y = x^2' };
+    case 'step-by-step-solver':
+      return { steps: generatorOutput.solutionSteps, equation: data?.equation ?? '', problemType: data?.problemType };
+    case 'comprehension-quiz':
+      return { questions: data?.questions ?? [] };
+    case 'fill-in-the-blank':
+      return { template: prompt, blanks: data?.blanks ?? [] };
+    case 'rate-of-change-calculator':
+      return { sourceType: data?.sourceType, data: data?.data, interval: data?.interval };
+    case 'discriminant-analyzer':
+      return { ...data };
+    default:
+      return { ...data };
+  }
+}
+
 export function RendererPreview({ state, selectedNode, selectedBlueprint, onIntercept }: RendererPreviewProps) {
+  useEffect(() => {
+    ensureActivitiesRegistered();
+  }, []);
+
   const gradingMetadata = (state.generatorOutput?.gradingMetadata ?? null) as GradingMetadata | null;
 
   const mockContext = useMemo<MockSubmissionContextValue>(
@@ -74,7 +104,32 @@ export function RendererPreview({ state, selectedNode, selectedBlueprint, onInte
   const rendererKey = selectedBlueprint?.rendererKey ?? selectedNode?.rendererKey ?? null;
   const Component = rendererKey ? getActivityComponent(rendererKey) : null;
   const hasOutput = !!state.generatorOutput;
-  const componentProps = hasOutput ? (state.generatorOutput?.data as Record<string, unknown> ?? {}) : {};
+
+  const handleSubmit = (payload: unknown) => {
+    if (!gradingMetadata) {
+      onIntercept({ partId: 'unknown', rawAnswer: payload, isCorrect: false });
+      return;
+    }
+    const payloadObj = payload as Record<string, unknown>;
+    const partIds = Object.keys(gradingMetadata.partAnswers);
+    for (const partId of partIds) {
+      const rawAnswer = payloadObj[partId] ?? payloadObj.answer ?? payloadObj.value ?? payload;
+      const expected = gradingMetadata.partAnswers[partId];
+      const rule = gradingMetadata.partGradingRules[partId] ?? 'exact_match';
+      const tolerance = gradingMetadata.partTolerances?.[partId];
+      const isCorrect = gradeAnswerLocally(rawAnswer, expected, rule, tolerance);
+      onIntercept({ partId, rawAnswer, isCorrect });
+    }
+  };
+
+  const handleComplete = () => {
+    onIntercept({ partId: '__complete__', rawAnswer: null, isCorrect: true });
+  };
+
+  const componentProps = hasOutput
+    ? buildComponentProps(rendererKey ?? '', state.generatorOutput)
+    : {};
+  const activityId = `qa-${selectedNode?.id ?? 'none'}-${state.seed}`;
 
   return (
     <div className="space-y-4 rounded-2xl border bg-white/90 p-6 shadow-sm">
@@ -93,9 +148,12 @@ export function RendererPreview({ state, selectedNode, selectedBlueprint, onInte
       ) : !Component ? (
         <div className="flex items-start gap-2 rounded-lg border border-red-200 bg-red-50 p-3">
           <Puzzle className="size-4 shrink-0 text-red-500 mt-0.5" />
-          <p className="text-xs text-red-700">
-            Component <code className="rounded bg-red-100 px-1 font-mono">{rendererKey}</code> not registered in the activity components registry.
-          </p>
+          <div className="text-xs text-red-700">
+            <p>Component <code className="rounded bg-red-100 px-1 font-mono">{rendererKey}</code> not registered.</p>
+            <p className="mt-1 text-red-500">
+              Run <code className="rounded bg-red-100 px-1 font-mono">getRegisteredActivityKeys()</code> to see available keys.
+            </p>
+          </div>
         </div>
       ) : !hasOutput ? (
         <p className="text-xs text-slate-400">Generate output first to preview the component.</p>
@@ -108,7 +166,20 @@ export function RendererPreview({ state, selectedNode, selectedBlueprint, onInte
                 {rendererKey}
               </code>
             </div>
-            <Component {...componentProps} />
+            <Suspense fallback={
+              <div className="flex items-center gap-2 py-4 text-xs text-slate-400">
+                <Loader2 className="size-3 animate-spin" />
+                Loading component...
+              </div>
+            }>
+              <Component
+                activityId={activityId}
+                mode={state.mode === 'worked_example' ? 'teaching' : state.mode === 'guided_practice' ? 'guided' : 'practice'}
+                onSubmit={handleSubmit}
+                onComplete={handleComplete}
+                {...componentProps}
+              />
+            </Suspense>
           </div>
         </MockSubmissionContext.Provider>
       )}

@@ -40,7 +40,7 @@ export function GeneratorPanel({ state, selectedNode, selectedBlueprint, onUpdat
     } catch (err) {
       onUpdateState({
         generatorOutput: null,
-        generatorError: err instanceof Error ? err.message : String(err),
+        generatorError: err instanceof Error ? (err.stack ?? err.message) : String(err),
       });
     } finally {
       setIsGenerating(false);
