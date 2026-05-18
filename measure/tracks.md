@@ -113,39 +113,39 @@ Dependencies:
 
 - [x] **[URGENT] Fix: Promise Type Mismatch in PhaseCompleteButton.test.tsx** — **COMPLETED**
    *Verify TypeScript error resolved - no changes needed*
-   *Link: [./measure/tracks/fix-phase-complete-button-type_20260412/](./measure/tracks/fix-phase-complete-button-type_20260412/)*
+   *Link: [./measure/archive/fix-phase-complete-button-type_20260412/](./measure/archive/fix-phase-complete-button-type_20260412/)*
 
 - [x] **[LOW] Fix: GraphingExplorer Test Type Errors** — **COMPLETED**
    *Fix 11 TypeScript errors - comparisonAnswer prop type mismatch in test fixtures*
-   *Link: [./measure/tracks/fix-graphing-test-types_20260412/](./measure/tracks/fix-graphing-test-types_20260412/)*
+   *Link: [./measure/archive/fix-graphing-test-types_20260412/](./measure/archive/fix-graphing-test-types_20260412/)*
 
 - [x] **[URGENT] Fix: Type Error in graphing-explorer.schema.ts** — **COMPLETED**
    *Fix TypeScript error - parts array type inference issue*
-   *Link: [./measure/tracks/fix-graphing-schema-type_20260412/](./measure/tracks/fix-graphing-schema-type_20260412/)*
+   *Link: [./measure/archive/fix-graphing-schema-type_20260412/](./measure/archive/fix-graphing-schema-type_20260412/)*
 
 - [x] **[URGENT] Fix: Zod Schema Type Errors in submission.schema.ts** — **COMPLETED**
    *Fix 3 TypeScript errors caused by incorrect z.record() usage in Zod 4.x*
-   *Link: [./measure/tracks/fix-submission-schema-types_20260412/](./measure/tracks/fix-submission-schema-types_20260412/)*
+   *Link: [./measure/archive/fix-submission-schema-types_20260412/](./measure/archive/fix-submission-schema-types_20260412/)*
 
 - [x] **[URGENT] Fix: Bundle Size - Reduce RSC Entry Chunk** — **COMPLETED**
    *Reduce Facade RSC entry chunk from 687 KB to under 500 KB via code-splitting*
-   *Link: [./measure/tracks/fix-bundle-size_20260411/](./measure/tracks/fix-bundle-size_20260411/)*
+   *Link: [./measure/archive/fix-bundle-size_20260411/](./measure/archive/fix-bundle-size_20260411/)*
 
 - [x] **[URGENT] Fix: InterceptIdentification Test Failures** — **COMPLETED**
    *Fix 13/23 failing tests in InterceptIdentification component*
-   *Link: [./measure/tracks/fix-intercept-tests_20260411/](./measure/tracks/fix-intercept-tests_20260411/)*
+   *Link: [./measure/archive/fix-intercept-tests_20260411/](./measure/archive/fix-intercept-tests_20260411/)*
 
 - [x] **[URGENT] Fix: Missing student_spreadsheet_responses Table** — **COMPLETED**
    *Add missing table to convex/schema.ts to resolve 38 TypeScript errors*
-   *Link: [./measure/tracks/fix-spreadsheet-table_20260408/](./measure/tracks/fix-spreadsheet-table_20260408/)*
+   *Link: [./measure/archive/fix-spreadsheet-table_20260408/](./measure/archive/fix-spreadsheet-table_20260408/)*
 
 - [x] **Track 1: Flexible Phase Model** — **COMPLETED**
    *Replace hardcoded 6-phase assumptions with a typed, variable-length phase system*
-   *Link: [./measure/tracks/flexible-phase-model_20260406/](./measure/tracks/flexible-phase-model_20260406/)*
+   *Link: [./measure/archive/flexible-phase-model_20260406/](./measure/archive/flexible-phase-model_20260406/)*
 
   - [x] **Track: Scaffold Component Infrastructure** — **COMPLETED**
      *Create student, teacher, and dashboard component directories with basic infrastructure*
-     *Link: [./measure/tracks/scaffold-component-infrastructure_20260408/](./measure/tracks/scaffold-component-infrastructure_20260408/)*
+     *Link: [./measure/archive/scaffold-component-infrastructure_20260408/](./measure/archive/scaffold-component-infrastructure_20260408/)*
 
 
 - [x] **Track 3: Lesson Rendering Engine** — **COMPLETED**
@@ -155,12 +155,12 @@ Dependencies:
 
 - [x] **Track 4: Activity Infrastructure** — **COMPLETED**
   *Registry, mode system, props schemas, submission pipeline, completion tracking*
-  *Link: [./measure/tracks/activity-infrastructure_20260406/](./measure/tracks/activity-infrastructure_20260406/)*
+  *Link: [./measure/archive/activity-infrastructure_20260406/](./measure/archive/activity-infrastructure_20260406/)*
 
 - [x] **Track 5: Graphing Components**
    *graphing-explorer component — interactive coordinate plane in teaching/guided/practice modes*
    *Depends on: Tracks 2, 4*
-   *Link: [./measure/tracks/graphing-components_20260406/](./measure/tracks/graphing-components_20260406/)*
+   *Link: [./measure/archive/graphing-components_20260406/](./measure/archive/graphing-components_20260406/)*
    - Phase 1: Core Canvas [COMPLETE]
    - Phase 2: Guided Interaction Workflows [COMPLETE]
    - Phase 3: Problem Variant Types [COMPLETE]
@@ -168,18 +168,18 @@ Dependencies:
 
 - [x] **Track 5b: Graphing Explorer Explore Mode** (continuation of Track 5)
    *Implement Explore mode with parameter sliders for quadratic exploration in Explore phases*
-   *Link: [./measure/tracks/graphing-explore-mode_20260414/](./measure/tracks/graphing-explore-mode_20260414/)*
+   *Link: [./measure/archive/graphing-explore-mode_20260414/](./measure/archive/graphing-explore-mode_20260414/)*
    - Phase 1: Explore Mode with Parameter Sliders [COMPLETE]
 
 - [x] **Track 6: Algebraic Worked-Example Components** — **COMPLETED**
   *step-by-step-solver — all 11 algebraic problem types in teaching/guided/practice modes*
   *Depends on: Tracks 2, 4*
-  *Link: [./measure/tracks/algebraic-examples_20260406/](./measure/tracks/algebraic-examples_20260406/)*
+  *Link: [./measure/archive/algebraic-examples_20260406/](./measure/archive/algebraic-examples_20260406/)*
 
 - [x] **Track 7: Supporting Activity Components** — **COMPLETED**
    *comprehension-quiz, fill-in-the-blank, rate-of-change-calculator, discriminant-analyzer*
    *Depends on: Tracks 2, 4*
-   *Link: [./measure/tracks/supporting-activities_20260406/](./measure/tracks/supporting-activities_20260406/)*
+   *Link: [./measure/archive/supporting-activities_20260406/](./measure/archive/supporting-activities_20260406/)*
    - Phase 1: Comprehension Quiz [COMPLETE]
    - Phase 2: Fill-in-the-Blank [COMPLETE]
    - Phase 3: Rate-of-Change Calculator [COMPLETE]
@@ -188,7 +188,7 @@ Dependencies:
 - [x] **Track 8: Module 1 Curriculum Seed**
    *All 8 lessons seeded with phases, sections, activities, standards, and demo environment*
    *Depends on: Tracks 1, 4 (activity keys must be defined before seeding)*
-   *Link: [./measure/tracks/module-1-seed_20260406/](./measure/tracks/module-1-seed_20260406/)*
+   *Link: [./measure/archive/module-1-seed_20260406/](./measure/archive/module-1-seed_20260406/)*
    - Phase 1: Infrastructure & Types [COMPLETE]
    - Phase 2: Lesson 1-7 Content Authoring [COMPLETE]
    - Phase 3: Standards & Demo Environment [COMPLETE]
@@ -198,7 +198,7 @@ Dependencies:
 - [x] **Track 9: Student Lesson Flow** [Phase 4 Complete]
    *End-to-end: dashboard → lesson → phases → activities → completion → progress persistence*
    *Depends on: Tracks 3, 5, 6, 7, 8*
-   *Link: [./measure/tracks/student-lesson-flow_20260406/](./measure/tracks/student-lesson-flow_20260406/)*
+   *Link: [./measure/archive/student-lesson-flow_20260406/](./measure/archive/student-lesson-flow_20260406/)*
    - Phase 1: Dashboard Enhancements [COMPLETE]
    - Phase 2: Lesson Entry & Phase Navigation [COMPLETE]
    - Phase 3: Activity Interaction & Submission Flow [COMPLETE]
@@ -207,7 +207,7 @@ Dependencies:
 - [x] **Track 10: Teacher Module 1 Experience** — **COMPLETED**
    *Dashboard, gradebook, student detail, submission review, lesson preview, course overview*
    *Depends on: Tracks 3, 5, 6, 7, 8*
-   *Link: [./measure/tracks/teacher-module1_20260406/](./measure/tracks/teacher-module1_20260406/)*
+   *Link: [./measure/archive/teacher-module1_20260406/](./measure/archive/teacher-module1_20260406/)*
    - Phase 1: Teacher Dashboard [COMPLETE]
    - Phase 2: Gradebook [COMPLETE]
    - Phase 3: Student Detail View [COMPLETE]
@@ -215,19 +215,19 @@ Dependencies:
 
  - [x] **Track: Curriculum Gap Remediation** — **COMPLETED**
    *Remediate curriculum completeness gaps across ALEKS extraction, lesson source quality, daily phase packaging, non-instruction day authoring, and practice.v1 activity mapping*
-   *Link: [./measure/tracks/curriculum-gap-remediation_20260411/](./measure/tracks/curriculum-gap-remediation_20260411/)*
+   *Link: [./measure/archive/curriculum-gap-remediation_20260411/](./measure/archive/curriculum-gap-remediation_20260411/)*
 
  - [x] **Track: Refactor — Extract Quadratic Regex** — **COMPLETED**
    *Extract duplicated quadratic regex from canvas-utils, HintPanel, InterceptIdentification to shared utility*
-   *Link: [./measure/tracks/extract-quadratic-regex_20260411/](./measure/tracks/extract-quadratic-regex_20260411/)*
+   *Link: [./measure/archive/extract-quadratic-regex_20260411/](./measure/archive/extract-quadratic-regex_20260411/)*
 
  - [x] **Track: Refactor — Extract Linear Regex** — **COMPLETED**
    *Extract duplicated linear regex from canvas-utils, InterceptIdentification to shared utility*
-   *Link: [./measure/tracks/extract-linear-regex_20260412/](./measure/tracks/extract-linear-regex_20260412/)*
+   *Link: [./measure/archive/extract-linear-regex_20260412/](./measure/archive/extract-linear-regex_20260412/)*
 
   - [x] **Track: Component Approval**
     *Developer-only approval workflow for example, activity, and practice components with structured review notes for later LLM audits*
-    *Link: [./measure/tracks/component-approval_20260413/](./measure/tracks/component-approval_20260413/)*
+    *Link: [./measure/archive/component-approval_20260413/](./measure/archive/component-approval_20260413/)*
     - Phase 3: Developer-Only Access Guard [COMPLETE]
     - Phase 4: Review Queue UI [COMPLETE]
     - Phase 5: Component Review Harnesses [COMPLETE]
@@ -244,23 +244,23 @@ Dependencies:
 
 - [x] **Track: Reconcile Activity Schemas** — **COMPLETED**
    *Align Zod schemas for comprehension-quiz and fill-in-the-blank with actual component props (Critical — blocks curriculum authoring)*
-   *Link: [./measure/tracks/reconcile-activity-schemas_20260414/](./measure/tracks/reconcile-activity-schemas_20260414/)*
+   *Link: [./measure/archive/reconcile-activity-schemas_20260414/](./measure/archive/reconcile-activity-schemas_20260414/)*
    - Phase 1: ComprehensionQuiz Schema Reconciliation [COMPLETE]
    - Phase 2: FillInTheBlank Schema Reconciliation [COMPLETE]
 
 - [x] **Track: Wire StepByStepSolverActivity to Real Props** — **COMPLETED**
    *Replace hardcoded steps with real props, wire onSubmit/onComplete, integrate distractors.ts (Priority 3)*
-   *Link: [./measure/tracks/wire-step-by-step-solver_20260414/](./measure/tracks/wire-step-by-step-solver_20260414/)*
+   *Link: [./measure/archive/wire-step-by-step-solver_20260414/](./measure/archive/wire-step-by-step-solver_20260414/)*
    - Phase 1: Prop Interface & Submission Wiring [COMPLETE]
    - Phase 2: Integrate distractors.ts into StepByStepper [COMPLETE]
 
  - [x] **Track: Phase Skip UI Wiring** — **COMPLETED**
     *Wire existing phase skip infrastructure to PhaseCompleteButton UI — show Skip button for explore and discourse phases*
-    *Link: [./measure/tracks/phase-skip-ui_20260414/](./measure/tracks/phase-skip-ui_20260414/)*
+    *Link: [./measure/archive/phase-skip-ui_20260414/](./measure/archive/phase-skip-ui_20260414/)*
 
 - [x] **Track: Module 2 Curriculum Seed**
       *Seed Module 2 lessons (2-1 through 2-5) into Convex database following module-1-seed pattern*
-      *Link: [./measure/tracks/module-2-seed_20260415/](./measure/tracks/module-2-seed_20260415/)*
+      *Link: [./measure/archive/module-2-seed_20260415/](./measure/archive/module-2-seed_20260415/)*
       - Phase 1: Seed Lesson 2-1 (Polynomial Functions) [COMPLETE]
       - Phase 2: Seed Lesson 2-2 (Analyzing Graphs of Polynomial Functions) [COMPLETE]
       - Phase 3: Seed Lesson 2-3 (Operations with Polynomials) [COMPLETE]
@@ -269,7 +269,7 @@ Dependencies:
 
 - [x] **Track: Module 3 Curriculum Seed**
         *Seed Module 3 polynomial equations lessons (3-1 through 3-5) into Convex database*
-        *Link: [./measure/tracks/module-3-seed_20260415/](./measure/tracks/module-3-seed_20260415/)*
+        *Link: [./measure/archive/module-3-seed_20260415/](./measure/archive/module-3-seed_20260415/)*
         - Phase 1: Seed Lesson 3-1 (Solving Polynomial Equations by Graphing) [COMPLETE]
         - Phase 2: Seed Lesson 3-2 (Solving Polynomial Equations Algebraically) [COMPLETE]
         - Phase 3: Seed Lesson 3-3 (Proving Polynomial Identities) [COMPLETE]
@@ -300,7 +300,7 @@ Dependencies:
 
 - [x] **Track: Module 6 Curriculum Seed** — **COMPLETED**
         *Seed Module 6 logarithmic functions lessons (6-1 through 6-5) into Convex database*
-        *Link: [./measure/tracks/module-6-seed_20260415/](./measure/tracks/module-6-seed_20260415/)*
+        *Link: [./measure/archive/module-6-seed_20260415/](./measure/archive/module-6-seed_20260415/)*
         - Phase 1: Seed Lesson 6-1 [COMPLETE]
         - Phase 2: Seed Lesson 6-2 [COMPLETE]
         - Phase 3: Seed Lesson 6-3 [COMPLETE]
@@ -321,7 +321,7 @@ Dependencies:
 
 - [x] **Track: Module 8 Curriculum Seed**
       *Seed Module 8 inferential statistics lessons (8-1 through 8-5) into Convex database*
-      *Link: [./measure/tracks/module-8-seed_20260415/](./measure/tracks/module-8-seed_20260415/)*
+      *Link: [./measure/archive/module-8-seed_20260415/](./measure/archive/module-8-seed_20260415/)*
        - Phase 1: Seed Lesson 8-1 [COMPLETE]
        - Phase 2: Seed Lesson 8-2 [COMPLETE]
        - Phase 3: Seed Lesson 8-3 [COMPLETE]
@@ -344,7 +344,7 @@ Dependencies:
 - [x] **Track: Practice Timing Telemetry** — **COMPLETED**
      *Add canonical wall-clock, active-time, idle-time, and timing-confidence evidence to practice.v1 submissions for future SRS scoring*
      *Depends on: Module 9 Curriculum Seed completion*
-     *Link: [./measure/tracks/practice-timing-telemetry_20260415/](./measure/tracks/practice-timing-telemetry_20260415/)*
+     *Link: [./measure/archive/practice-timing-telemetry_20260415/](./measure/archive/practice-timing-telemetry_20260415/)*
        - Phase 1: Canonical Contract and Schema Reconciliation [COMPLETE] [checkpoint: 790e2f5]
        - Phase 2: Reusable Timing Core and React Instrumentation [COMPLETE] [checkpoint: a973651]
        - Phase 3: Activity Submission Integration [COMPLETE] [checkpoint: 733bef3]
@@ -383,20 +383,20 @@ Implementation order: **Wave 0 done → Wave 1 (parallel) → Wave 2 → Wave 3 
 ### Wave 0 — Completed
 
 - [x] **Track 3: Practice Timing Telemetry** — **COMPLETED**
-     *Link: [./measure/tracks/practice-timing-telemetry_20260415/](./measure/tracks/practice-timing-telemetry_20260415/)*
+     *Link: [./measure/archive/practice-timing-telemetry_20260415/](./measure/archive/practice-timing-telemetry_20260415/)*
 
 - [x] **Track 7: Practice Timing Baselines** — **COMPLETED**
-     *Link: [./measure/tracks/practice-timing-baselines_20260415/](./measure/tracks/practice-timing-baselines_20260415/)*
+     *Link: [./measure/archive/practice-timing-baselines_20260415/](./measure/archive/practice-timing-baselines_20260415/)*
 
 ### Wave 1 — Foundations (start immediately, 3 tracks in parallel)
 
 - [x] **Track 1: Daily Practice SRS Product Contract** — **COMPLETED**
      *Consolidate existing types into canonical lib/srs/contract.ts; define card state, review log, session types; version as srs.contract.v1*
-     *Link: [./measure/tracks/srs-product-contract_20260416/](./measure/tracks/srs-product-contract_20260416/)*
+     *Link: [./measure/archive/srs-product-contract_20260416/](./measure/archive/srs-product-contract_20260416/)*
 
 - [x] **Track 2: Reusable SRS Core Library**
          *FSRS scheduler wrapper, review processor bridging srs-rating.ts to card state, queue primitives, adapter interfaces*
-         *Link: [./measure/tracks/srs-core-library_20260416/](./measure/tracks/srs-core-library_20260416/)*
+         *Link: [./measure/archive/srs-core-library_20260416/](./measure/archive/srs-core-library_20260416/)*
          - Phase 1: FSRS Dependency and Scheduler Foundation [COMPLETE]
          - Phase 2: Review Processor [COMPLETE]
          - Phase 3: Queue Primitives [COMPLETE]
@@ -405,7 +405,7 @@ Implementation order: **Wave 0 done → Wave 1 (parallel) → Wave 2 → Wave 3 
 
 - [x] **Track 4: Practice Item and Objective Blueprint Model** — **COMPLETED**
        *Map practice activities to problem families and objectives; assign objective policies; seed data for all 9 modules*
-       *Link: [./measure/tracks/practice-item-blueprint_20260416/](./measure/tracks/practice-item-blueprint_20260416/)*
+       *Link: [./measure/archive/practice-item-blueprint_20260416/](./measure/archive/practice-item-blueprint_20260416/)*
        - Phase 1: Type Definitions and Zod Schemas [COMPLETE]
        - Phase 2: Convex Schema Extension [COMPLETE]
        - Phase 3: Objective Policy Assignment [COMPLETE]
@@ -431,7 +431,7 @@ Implementation order: **Wave 0 done → Wave 1 (parallel) → Wave 2 → Wave 3 
 - [x] **Track 6: Submission-to-SRS Rating Adapter**
        *Wire practice.v1 submissions through srs-rating.ts to FSRS card state updates; handle first-seen items; integrate timing baselines*
        *Depends on: Wave 2 (Track 5)*
-       *Link: [./measure/tracks/submission-srs-adapter_20260416/](./measure/tracks/submission-srs-adapter_20260416/)*
+       *Link: [./measure/archive/submission-srs-adapter_20260416/](./measure/archive/submission-srs-adapter_20260416/)*
        - Phase 1: Adapter Interface Design [COMPLETE]
        - Phase 2: Problem Family Resolution [COMPLETE]
        - Phase 3: First-Seen Card Creation [COMPLETE]
@@ -490,7 +490,7 @@ Implementation order: **Wave 0 done → Wave 1 (parallel) → Wave 2 → Wave 3 
 - [x] **Track 12: Cross-Course Extraction and Developer Docs** — **COMPLETED**
         *Boundary audit, interface documentation, integration guide (INTEGRATION.md), adapter verification*
         *Depends on: All tracks 1-11*
-        *Link: [./measure/tracks/cross-course-extraction_20260416/](./measure/tracks/cross-course-extraction_20260416/)*
+        *Link: [./measure/archive/cross-course-extraction_20260416/](./measure/archive/cross-course-extraction_20260416/)*
          - Phase 1: Boundary Audit [COMPLETE] [checkpoint: d3475cd]
          - Phase 2: Interface Documentation [COMPLETE] [checkpoint: ad4afe8]
          - Phase 3: Integration Guide [COMPLETE] [checkpoint: e76b1b3]
@@ -524,11 +524,11 @@ Tracks ported from `bus-math-v2` per the BM2 Alignment Report. Ordered by recomm
 
 - [x] **Track: Security & Auth Hardening** — **COMPLETED**
      *Port fail-closed auth guards, Convex-layer authorization, credential revocation, middleware role checks from bus-math-v2*
-     *Link: [./measure/tracks/security-auth-hardening_20260416/](./measure/tracks/security-auth-hardening_20260416/)*
+     *Link: [./measure/archive/security-auth-hardening_20260416/](./measure/archive/security-auth-hardening_20260416/)*
 
 - [x] **Track: Cloudflare CI/CD Hardening** — **COMPLETED**
      *Port GitHub Actions pipeline with lint/test/build gates, Cloudflare Workers deployment, concurrency control*
-     *Link: [./measure/tracks/ci-cd-hardening_20260416/](./measure/tracks/ci-cd-hardening_20260416/)*
+     *Link: [./measure/archive/ci-cd-hardening_20260416/](./measure/archive/ci-cd-hardening_20260416/)*
 
 ### Wave B — High-Value Classroom Features (after SRS Wave 1)
 
@@ -577,7 +577,7 @@ Tracks ported from `bus-math-v2` per the BM2 Alignment Report. Ordered by recomm
 
 - [x] **Track: Fix Teacher Dashboard N+1 Queries** — **COMPLETED**
      *Batch per-student SRS dashboard queries to remove sequential N+1 behavior in teacher analytics.*
-     *Link: [./measure/tracks/fix-teacher-dashboard-n1-queries_20260417/](./measure/tracks/fix-teacher-dashboard-n1-queries_20260417/)*
+     *Link: [./measure/archive/fix-teacher-dashboard-n1-queries_20260417/](./measure/archive/fix-teacher-dashboard-n1-queries_20260417/)*
 
 - [x] **Track: CCSS Standards Seeding for M6-M9** — **COMPLETED**
        *Audit module 6-9 lesson-standard coverage and reconcile any missing competency standards/descriptions.*
@@ -828,7 +828,7 @@ AI Tutoring and Workbook scope is explicitly **import/adopt from BM2**, not gree
 
 - [x] **Track: Rate Limiting API Endpoints** — **COMPLETED**
       *Add per-user rate limiting to 5 unprotected BM2 API endpoints: phases/complete, assessment, activities, error-summary, ai-error-summary*
-      *Link: [./measure/tracks/rate_limiting_api_endpoints_20260424/](./measure/tracks/rate_limiting_api_endpoints_20260424/)*
+      *Link: [./measure/archive/rate_limiting_api_endpoints_20260424/](./measure/archive/rate_limiting_api_endpoints_20260424/)*
       - Phase 1: Rate Limiter Core [COMPLETE]
       - Phase 2: Endpoint Integration [COMPLETE] (minimax-m2)
       - Phase 3: Configuration and Monitoring [COMPLETE] (minimax-m2)
@@ -897,7 +897,7 @@ AI Tutoring and Workbook scope is explicitly **import/adopt from BM2**, not gree
 
 - [x] **Track: Reliability Contracts and DB Boundary Enforcement** — **COMPLETED**
    *Enforce strict data contracts at the database boundary, introduce branded types for IDs, and export canonical test fixtures*
-   *Link: [./measure/tracks/reliability-contracts_20260504/](./measure/tracks/reliability-contracts_20260504/)*
+   *Link: [./measure/archive/reliability-contracts_20260504/](./measure/archive/reliability-contracts_20260504/)*
    - Phase 1: Branded Types & Test Fixtures [COMPLETE] [checkpoint: eaf6fe8]
    - Phase 2: Convex Schema Boundary Enforcement [COMPLETE] [checkpoint: e2366a8]
    - Phase 3: SRS State Transition Validation [COMPLETE] [checkpoint: 76059dd]
