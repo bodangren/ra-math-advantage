@@ -1,0 +1,38 @@
+# Track 3: Edge Calibration Loop — Implementation Plan
+
+Workflow: Contract-First, then per-task TDD (red/green). >80% coverage.
+Depends on: Track 1 (proficiency verdicts, knowledge state).
+
+## Phase 1 — Contract & Schema
+
+- [ ] Task: Define calibration types
+    - [ ] Observation type (paired proficiency verdicts), contingency table, edge calibration record (α, β, status)
+    - [ ] necessity / informativeness result types; calibration status enum (confirmed / refuted / untested)
+- [ ] Task: Define Convex schema for calibration state and review queue
+    - [ ] edge_calibration table (α, β, lastUpdated, status); calibration_review_queue table
+- [ ] Task: Measure - User Manual Verification 'Phase 1' (Protocol in workflow.md)
+
+## Phase 2 — Calibration Core
+
+- [ ] Task: Implement observation extraction (TDD)
+    - [ ] Pair per-student objective-proficiency verdicts into (A, B) observations
+- [ ] Task: Implement contingency table + necessity + informativeness (TDD)
+- [ ] Task: Implement Beta-Bernoulli posterior update + recency decay (TDD)
+    - [ ] Incremental α/β update; posterior mean → weight; variance → confidence; λ decay
+- [ ] Task: Implement confounding guardrail and untested classification (TDD)
+- [ ] Task: Measure - User Manual Verification 'Phase 2' (Protocol in workflow.md)
+
+## Phase 3 — Review Queue and Persistence
+
+- [ ] Task: Implement calibration review-queue builder (TDD)
+    - [ ] Flag edges diverging from authored weight/confidence beyond threshold; attach contingency table
+- [ ] Task: Implement Convex persistence adapter for calibration state + queue (TDD)
+    - [ ] Batch reads/writes with Promise.all (avoid N+1)
+- [ ] Task: Measure - User Manual Verification 'Phase 3' (Protocol in workflow.md)
+
+## Phase 4 — Docs & Doctor
+
+- [ ] Task: Update in-repo kst-srs.v2 spec §6 (Edge Calibration) with the implemented model
+- [ ] Task: Run measure/generate.sh and measure/doctor.sh; fix architectural lint
+- [ ] Task: Final verification — boundary lints, npm run lint, tsc --noEmit, CI=true npm run test
+- [ ] Task: Measure - User Manual Verification 'Phase 4' (Protocol in workflow.md)

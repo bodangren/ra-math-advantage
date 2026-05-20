@@ -20,13 +20,27 @@ Dependencies:
    - [ ] **Track 1: Wire the KST Pipeline + v2 Mastery Model**
       *Wire knowledge-space packages into an IM3 production route: SRS→KST bridge, time-aware `getKnowledgeState` with hysteresis, standalone `getOuterFringe`, learner-state producer. Brings kst-srs.v2 `SPECIFICATION.md` into the repo as canonical contract. (Improvement Plan Item 1 + v1 wiring.)*
       *Link: [./tracks/wire-kst-pipeline_20260521/](./tracks/wire-kst-pipeline_20260521/)*
-   - [ ] **Track 2: Weighted Readiness** — *planned (Improvement Plan Item 2): make `edge.weight` a live field; weighted readiness score replaces binary prerequisite gating.*
-   - [ ] **Track 3: Edge Calibration Loop** — *planned (Item 3): Beta-Bernoulli posterior on paired proficiency verdicts; recency decay; confounding guardrail; human review queue.*
-   - [ ] **Track 4: Next-Skill Planner** — *planned (Item 4): composite priority score (readiness + unlock value + goal proximity + weakness fit); top-N `recommendedNext`.*
-   - [ ] **Track 5: Adaptive Placement** — *planned (Item 5): adaptive tree-walk cold-start; abstract probe interface; IM3 problem-bank reference implementation.*
-   - [ ] **Track 6: Misconception Remediation Loop** — *planned (Item 6): `remediated_by` edge type, rating-cap reconciliation, per-student active/resolved lifecycle.*
-   - [ ] **Track 7: Practice-Variant Rename** — *planned (Item 7): rename "problem family" → "practice variant" across practice-core/srs-engine; `Card` keyed by `variantKey`; subdivision optional.*
-   - [ ] **Track 8: Lesser Holes** — *planned (Item 8): `transfers_to` edge type, presentation-only Level Projection, `progressTrend` static-ratio → time-delta fix.*
+   - [ ] **Track 2: Weighted Readiness**
+      *Make `edge.weight` a live field: a weighted readiness score (`Σ(wᵢ·mᵢ)/Σ(wᵢ)`) replaces binary prerequisite gating, modeling compensatory learning paths. (Improvement Plan Item 2.) Depends on Track 1.*
+      *Link: [./tracks/weighted-readiness_20260521/](./tracks/weighted-readiness_20260521/)*
+   - [ ] **Track 3: Edge Calibration Loop**
+      *Data-driven prerequisite-edge validation: a Beta-Bernoulli posterior per `prerequisite_for` edge from paired proficiency verdicts, with recency decay and a curriculum-order confounding guardrail, producing a human review queue. (Item 3.) Depends on Track 1.*
+      *Link: [./tracks/edge-calibration_20260521/](./tracks/edge-calibration_20260521/)*
+   - [ ] **Track 4: Next-Skill Planner**
+      *Rank the outer-fringe ready set by a composite priority score (readiness + downstream unlock value + goal proximity + weakness fit); `recommendedNext` becomes top-N by priority. (Item 4.) Depends on Track 2; weaknessFit integrates Track 6.*
+      *Link: [./tracks/next-skill-planner_20260521/](./tracks/next-skill-planner_20260521/)*
+   - [ ] **Track 5: Adaptive Placement**
+      *Cold-start diagnostic: an adaptive tree-walk that locates a new student's mastery frontier in O(log n) probes, with an abstract probe interface and an IM3 problem-bank reference implementation. (Item 5.) Depends on Track 1.*
+      *Link: [./tracks/adaptive-placement_20260521/](./tracks/adaptive-placement_20260521/)*
+   - [ ] **Track 6: Misconception Remediation Loop**
+      *Close the misconception loop: `remediated_by` edge type, SRS rating-cap reconciliation (cap at Hard, Again only if severe), per-student active/resolved lifecycle, and planner injection of remediation activities. (Item 6.) Depends on Track 1.*
+      *Link: [./tracks/misconception-loop_20260521/](./tracks/misconception-loop_20260521/)*
+   - [ ] **Track 7: Practice-Variant Rename**
+      *Rename the math-specific "problem family" to domain-neutral "practice variant" across practice-core/srs-engine/knowledge-space-practice; `Card` keyed by `variantKey`; subdivision optional. (Item 7.) Depends on Track 1.*
+      *Link: [./tracks/practice-variant-rename_20260521/](./tracks/practice-variant-rename_20260521/)*
+   - [ ] **Track 8: Lesser Holes**
+      *Three smaller v2 items: a `transfers_to` cross-domain edge type, a presentation-only Level Projection, and the `progressTrend` static-ratio → time-delta fix; plus documenting the FSRS per-card limitation. (Item 8.) Independent; runs last.*
+      *Link: [./tracks/kst-lesser-holes_20260521/](./tracks/kst-lesser-holes_20260521/)*
 
 - [ ] **Program: Skill Graph and Algorithmic Practice Rollout**
    *Before implementing any track in this program, read [Knowledge Space Architecture](./knowledge-space.md). Reusable packages own domain-neutral mechanisms only; proprietary math maps, English/GSE maps, standards catalogs, descriptors, and generated app outputs remain in app/domain content packages.*
