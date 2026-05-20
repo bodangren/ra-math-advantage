@@ -15,6 +15,19 @@ Dependencies:
 
 ## Active Tracks
 
+- [ ] **Program: Knowledge Space Engine Alignment (kst-srs.v2)**
+   *Bring the implementation into alignment with the `kst-srs.v2` specification. The KST packages (`knowledge-space-core`, `knowledge-space-practice`) implement the v1 contract but are wired into no production route; the SRS half is live but nothing converts proficiency output into a knowledge-space learner state. This program wires the KST pipeline end-to-end and adds the v2 improvements: time-aware mastery, weighted readiness, edge calibration, a next-skill planner, adaptive placement, the misconception remediation loop, and the practice-variant rename. Source: gse-knowledge-space `SPECIFICATION.md` (kst-srs.v2) + `IMPROVEMENT-PLAN.md`.*
+   - [ ] **Track 1: Wire the KST Pipeline + v2 Mastery Model**
+      *Wire knowledge-space packages into an IM3 production route: SRS→KST bridge, time-aware `getKnowledgeState` with hysteresis, standalone `getOuterFringe`, learner-state producer. Brings kst-srs.v2 `SPECIFICATION.md` into the repo as canonical contract. (Improvement Plan Item 1 + v1 wiring.)*
+      *Link: [./tracks/wire-kst-pipeline_20260521/](./tracks/wire-kst-pipeline_20260521/)*
+   - [ ] **Track 2: Weighted Readiness** — *planned (Improvement Plan Item 2): make `edge.weight` a live field; weighted readiness score replaces binary prerequisite gating.*
+   - [ ] **Track 3: Edge Calibration Loop** — *planned (Item 3): Beta-Bernoulli posterior on paired proficiency verdicts; recency decay; confounding guardrail; human review queue.*
+   - [ ] **Track 4: Next-Skill Planner** — *planned (Item 4): composite priority score (readiness + unlock value + goal proximity + weakness fit); top-N `recommendedNext`.*
+   - [ ] **Track 5: Adaptive Placement** — *planned (Item 5): adaptive tree-walk cold-start; abstract probe interface; IM3 problem-bank reference implementation.*
+   - [ ] **Track 6: Misconception Remediation Loop** — *planned (Item 6): `remediated_by` edge type, rating-cap reconciliation, per-student active/resolved lifecycle.*
+   - [ ] **Track 7: Practice-Variant Rename** — *planned (Item 7): rename "problem family" → "practice variant" across practice-core/srs-engine; `Card` keyed by `variantKey`; subdivision optional.*
+   - [ ] **Track 8: Lesser Holes** — *planned (Item 8): `transfers_to` edge type, presentation-only Level Projection, `progressTrend` static-ratio → time-delta fix.*
+
 - [ ] **Program: Skill Graph and Algorithmic Practice Rollout**
    *Before implementing any track in this program, read [Knowledge Space Architecture](./knowledge-space.md). Reusable packages own domain-neutral mechanisms only; proprietary math maps, English/GSE maps, standards catalogs, descriptors, and generated app outputs remain in app/domain content packages.*
    *Create a canonical directed weighted knowledge graph where skills are nodes and relationships are typed weighted edges, then project that graph into worked examples, guided practice, independent algorithmic practice, SRS inputs, teacher evidence, role-specific visualizations, and practice.v1 runtime activity maps.*
