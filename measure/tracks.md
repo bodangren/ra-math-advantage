@@ -99,7 +99,7 @@ Dependencies:
       *Link: [./measure/archive/blueprint-qa-harness_20260510/](./measure/archive/blueprint-qa-harness_20260510/)*
    - [ ] **Track 15: Skill Graph Program — Geometry & Statistics Renderers**
       *Implement specialized React components `stats-distribution-plotter` and `geometry-diagram-explorer` to address component gaps.*
-      *Link: [./measure/tracks/geometry-stats-renderers_20260510/](./measure/tracks/geometry-stats-renderers_20260510/)*
+      *Link: [./measure/archive/geometry-stats-renderers_20260510/](./measure/archive/geometry-stats-renderers_20260510/)*
    - [ ] **Track 16: Skill Graph Program — Trigonometry & Advanced Function Renderers**
       *Implement `trig-unit-circle-visualizer`, `trig-graph-builder`, and `polar-renderer` to address advanced function component gaps.*
       *Link: [./measure/tracks/trig-advanced-renderers_20260510/](./measure/tracks/trig-advanced-renderers_20260510/)*
@@ -127,7 +127,7 @@ Dependencies:
 
 - [ ] **Track: Review Remediation — 2026-05-05 Daily Work**
    *Remediate issues found during Measure review: dead import in seed_lesson_standards.ts, SRS validator structural drift, missing drift detection, missing checkpoints, as never anti-pattern*
-   *Link: [./measure/tracks/review-remediation_20260505/](./measure/tracks/review-remediation_20260505/)*
+   *Link: [./measure/archive/review-remediation_20260505/](./measure/archive/review-remediation_20260505/)*
 
 - [x] **Track: Review Remediation — 2026-05-04 Daily Work**
    *Remediate issues found during Measure review: failing accessibility tests, code duplication drift risk, partial schema compliance, seed-file type regression, under-documented validation gaps*
@@ -920,7 +920,7 @@ AI Tutoring and Workbook scope is explicitly **import/adopt from BM2**, not gree
 
 - [ ] **Track: BM2 Activity Prop Validators** — **DEFERRED**
   *Create Convex validators for 40+ BM2 component types and replace v.record(v.string(), v.any()) with discriminated unions*
-  *Link: [./measure/tracks/bm2-activity-prop-validators/](./measure/tracks/bm2-activity-prop-validators/)*
+  *Link: [./measure/archive/bm2-activity-prop-validators/](./measure/archive/bm2-activity-prop-validators/)*
 
 - [x] **Track: Reliability Contracts and DB Boundary Enforcement** — **COMPLETED**
    *Enforce strict data contracts at the database boundary, introduce branded types for IDs, and export canonical test fixtures*
