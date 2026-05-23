@@ -918,7 +918,7 @@ AI Tutoring and Workbook scope is explicitly **import/adopt from BM2**, not gree
 
 ## Upcoming Tracks
 
-- [ ] **Track: BM2 Activity Prop Validators** — **DEFERRED**
+- [x] **Track: BM2 Activity Prop Validators** — **DEFERRED**
   *Create Convex validators for 40+ BM2 component types and replace v.record(v.string(), v.any()) with discriminated unions*
   *Link: [./measure/archive/bm2-activity-prop-validators/](./measure/archive/bm2-activity-prop-validators/)*
 
