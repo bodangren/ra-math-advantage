@@ -36,6 +36,14 @@ export interface SubmissionExportRow {
   submittedAt: number;
 }
 
+/**
+ * Filters an array of objects by a date range on a specified date field.
+ * @param rows - The array of objects to filter
+ * @param startDate - The start of the date range (inclusive), or undefined
+ * @param endDate - The end of the date range (inclusive), or undefined
+ * @param dateField - Which date field to filter on
+ * @returns The filtered array
+ */
 function filterByDateRange<T extends { createdAt?: number; updatedAt?: number; submittedAt?: number }>(
   rows: T[],
   startDate?: number,
@@ -51,6 +59,12 @@ function filterByDateRange<T extends { createdAt?: number; updatedAt?: number; s
   });
 }
 
+/**
+ * Retrieves export data for a specific student within a date range.
+ * @param ctx - The query context
+ * @param args - Student ID with optional start and end dates
+ * @returns Student name and export rows, or null if student not found
+ */
 export async function getStudentExportHandler(
   ctx: QueryCtx,
   args: { studentId: Id<"profiles">; startDate?: number; endDate?: number },
@@ -184,6 +198,12 @@ export const getStudentExport = internalQuery({
   handler: async (ctx, args) => getStudentExportHandler(ctx, args),
 });
 
+/**
+ * Retrieves export data for all active students in a class within a date range.
+ * @param ctx - The query context
+ * @param args - Class ID with optional start and end dates
+ * @returns Array of class export rows, or null if class not found
+ */
 export async function getClassExportHandler(
   ctx: QueryCtx,
   args: { classId: Id<"classes">; startDate?: number; endDate?: number },
@@ -319,6 +339,12 @@ export const getClassExport = internalQuery({
   handler: async (ctx, args) => getClassExportHandler(ctx, args),
 });
 
+/**
+ * Retrieves paginated submission export data for a class within a date range.
+ * @param ctx - The query context
+ * @param args - Class ID, date range, and optional result limit
+ * @returns Export rows and hasMore flag for pagination
+ */
 export async function getSubmissionExportHandler(
   ctx: QueryCtx,
   args: {

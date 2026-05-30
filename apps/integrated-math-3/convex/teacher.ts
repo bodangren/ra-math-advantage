@@ -35,6 +35,11 @@ interface TeacherProgressSnapshot {
 
 type AtGlanceStatus = 'on-track' | 'behind' | 'not-started';
 
+/**
+ * Determines at-a-glance status from progress percentage.
+ * @param progressPercentage - The percentage of progress completed
+ * @returns atGlanceStatus string: 'not-started', 'on-track', or 'behind'
+ */
 function computeAtGlanceStatus(progressPercentage: number): AtGlanceStatus {
   if (progressPercentage === 0) return 'not-started';
   if (progressPercentage >= 50) return 'on-track';
@@ -99,6 +104,11 @@ const DEFAULT_PHASE_NAMES: Record<number, string> = {
   6: 'Closing',
 };
 
+/**
+ * Sorts students alphabetically by display name or username.
+ * @param students - Array of student objects with username and displayName
+ * @returns Sorted copy of the students array
+ */
 function sortStudentsByName<
   T extends {
     username: string;
@@ -313,6 +323,12 @@ export const getTeacherDashboardData = internalQuery({
   },
 });
 
+/**
+ * Retrieves course overview data for a teacher's students.
+ * @param ctx - The query context
+ * @param args - The teacher user ID
+ * @returns Course overview rows and unit columns, or null if unauthorized
+ */
 export async function getTeacherCourseOverviewDataHandler(
   ctx: QueryCtx,
   args: { userId: Id<"profiles"> },

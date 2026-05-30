@@ -98,6 +98,13 @@ const VALID_STATE_TRANSITIONS: Record<string, string[]> = {
   relearning: ['learning', 'review'],
 };
 
+/**
+ * Validates an SRS state transition by enforcing business rules.
+ * @param stateBefore - The SRS state before the review
+ * @param stateAfter - The SRS state after the review
+ * @throws Error if reps does not increase by 1, lapses decreases,
+ *         or state transition is invalid
+ */
 function validateSrsTransition(
   stateBefore: SrsStatePick,
   stateAfter: SrsStatePick,
@@ -120,6 +127,13 @@ function validateSrsTransition(
   }
 }
 
+/**
+ * Processes an SRS review by updating card state and creating a log entry.
+ * @param ctx - The mutation context
+ * @param args - The card state and review entry to process
+ * @returns The processed card ID and the review log entry ID
+ * @throws Error if studentId mismatch between card and review
+ */
 export async function processReviewHandler(
   ctx: MutationCtx,
   args: ProcessReviewArgs
@@ -201,6 +215,9 @@ export async function processReviewHandler(
   };
 }
 
+/**
+ * Internal mutation for processing SRS reviews and updating card state.
+ */
 export const processReview = internalMutation({
   args: {
     cardState: cardStateValidator,

@@ -7,6 +7,12 @@ import type {
   TeacherProficiencyView,
 } from "@math-platform/srs-engine";
 
+/**
+ * Retrieves an authorized teacher profile for a user.
+ * @param ctx - The query context
+ * @param userId - The profile ID to check
+ * @returns The teacher/admin profile, or null if not authorized
+ */
 async function getAuthorizedTeacher(
   ctx: QueryCtx,
   userId: Id<"profiles">,
@@ -280,6 +286,12 @@ const PRIORITY_ORDER: Record<ObjectivePriority, number> = {
   triaged: 3,
 };
 
+/**
+ * Retrieves objectives with proficiency below 50% for a class.
+ * @param ctx - The query context
+ * @param args - The class ID and optional proficiency provider
+ * @returns Array of weak objective views sorted by priority
+ */
 export async function getWeakObjectivesHandler(
   ctx: QueryCtx,
   args: { classId: string },
@@ -364,6 +376,12 @@ export type StrugglingStudentView = {
   weakestObjective: string;
 };
 
+/**
+ * Retrieves students with high overdue counts and low retention for a class.
+ * @param ctx - The query context
+ * @param args - The class ID and optional result limit
+ * @returns Array of struggling student views sorted by overdue count
+ */
 export async function getStrugglingStudentsHandler(
   ctx: QueryCtx,
   args: { classId: string; limit?: number }
@@ -496,6 +514,12 @@ export type MisconceptionView = {
   affectedObjectives: string[];
 };
 
+/**
+ * Retrieves misconception tags from recent reviews for a class.
+ * @param ctx - The query context
+ * @param args - The class ID and optional lookback period in days
+ * @returns Array of misconception views sorted by count
+ */
 export async function getMisconceptionSummaryHandler(
   ctx: QueryCtx,
   args: { classId: string; sinceDays?: number }

@@ -2,6 +2,12 @@ import { internalMutation, internalQuery, type MutationCtx, type QueryCtx } from
 import { v } from "convex/values";
 import { Id, type Doc } from "../_generated/dataModel";
 
+/**
+ * Retrieves an authorized teacher profile for a user.
+ * @param ctx - The query or mutation context
+ * @param userId - The profile ID to check
+ * @returns The teacher/admin profile, or null if not authorized
+ */
 async function getAuthorizedTeacher(
   ctx: QueryCtx | MutationCtx,
   userId: Id<"profiles">,
@@ -13,6 +19,13 @@ async function getAuthorizedTeacher(
   return teacher;
 }
 
+/**
+ * Validates that a teacher owns a specific class.
+ * @param ctx - The query or mutation context
+ * @param userId - The teacher profile ID
+ * @param classId - The class to validate ownership of
+ * @returns True if the teacher owns the class, false otherwise
+ */
 async function validateTeacherOwnsClass(
   ctx: QueryCtx | MutationCtx,
   userId: Id<"profiles">,
@@ -33,6 +46,12 @@ export interface ClassWithLessons {
   assignedLessonIds: string[];
 }
 
+/**
+ * Retrieves classes owned by a teacher with their assigned lesson IDs.
+ * @param ctx - The query context
+ * @param args - The teacher user ID
+ * @returns Array of classes with their assigned lesson IDs
+ */
 export async function getTeacherClassesWithLessonsHandler(
   ctx: QueryCtx,
   args: { userId: Id<"profiles"> },

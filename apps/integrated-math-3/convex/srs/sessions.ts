@@ -2,6 +2,11 @@ import { internalMutation, internalQuery, type MutationCtx, type QueryCtx } from
 import { v } from "convex/values";
 import { Id } from "../_generated/dataModel";
 
+/**
+ * Maps a database SRS session to the public contract format.
+ * @param session - The raw database session object
+ * @returns The session in contract format with ISO date strings
+ */
 function mapDbSessionToContract(session: {
   _id: Id<"srs_sessions">;
   studentId: Id<"profiles">;
@@ -55,6 +60,12 @@ export type CompleteSessionArgs = {
   completedCards: number;
 };
 
+/**
+ * Creates a new SRS study session for a student.
+ * @param ctx - The mutation context
+ * @param args - The session creation arguments
+ * @returns The ID of the newly created session
+ */
 export async function createSessionHandler(
   ctx: MutationCtx,
   args: CreateSessionArgs
@@ -75,6 +86,13 @@ export const createSession = internalMutation({
   handler: createSessionHandler,
 });
 
+/**
+ * Marks an SRS study session as complete.
+ * @param ctx - The mutation context
+ * @param args - The session ID and completed card count
+ * @returns The ID of the completed session
+ * @throws Error if the session is not found
+ */
 export async function completeSessionHandler(
   ctx: MutationCtx,
   args: CompleteSessionArgs
@@ -98,6 +116,12 @@ export const completeSession = internalMutation({
   handler: completeSessionHandler,
 });
 
+/**
+ * Retrieves the active (incomplete) SRS session for a student.
+ * @param ctx - The query context
+ * @param args - The student ID
+ * @returns The active session in contract format, or null if none exists
+ */
 export async function getActiveSessionHandler(
   ctx: QueryCtx,
   args: { studentId: string }
@@ -127,6 +151,12 @@ export type GetSessionHistoryArgs = {
   cursor?: string;
 };
 
+/**
+ * Retrieves paginated session history for a student.
+ * @param ctx - The query context
+ * @param args - The student ID with optional limit and cursor
+ * @returns Paginated sessions in contract format
+ */
 export async function getSessionHistoryHandler(
   ctx: QueryCtx,
   args: GetSessionHistoryArgs

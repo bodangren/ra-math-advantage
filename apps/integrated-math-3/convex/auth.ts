@@ -177,6 +177,11 @@ export const ensureProfileByUsername = internalMutation({
 
 type TeacherProfile = Doc<'profiles'>;
 
+/**
+ * Normalizes a string input by trimming and limiting to 50 characters.
+ * @param value - The string to normalize
+ * @returns The normalized string, or undefined if empty/invalid
+ */
 function normalizeInput(value?: string): string | undefined {
   if (!value || typeof value !== 'string') {
     return undefined;
@@ -186,6 +191,11 @@ function normalizeInput(value?: string): string | undefined {
   return normalized.length > 0 ? normalized : undefined;
 }
 
+/**
+ * Converts a value to a URL-safe slug.
+ * @param value - The string to slugify
+ * @returns The slugified string (max 24 chars, lowercase, underscores)
+ */
 function slugify(value?: string): string {
   if (!value) return '';
   return value
@@ -198,12 +208,24 @@ function slugify(value?: string): string {
     .slice(0, 24);
 }
 
+/**
+ * Builds a display name from first name, last name, and fallback.
+ * @param firstName - The first name
+ * @param lastName - The last name
+ * @param fallback - The fallback name if both are empty
+ * @returns The display name string
+ */
 function buildDisplayName(firstName: string | undefined, lastName: string | undefined, fallback: string): string {
   const capitalize = (v: string) => (v ? v.charAt(0).toUpperCase() + v.slice(1) : '');
   const combined = [capitalize(firstName ?? ''), capitalize(lastName ?? '')].filter(Boolean).join(' ');
   return combined || fallback;
 }
 
+/**
+ * Type guard that validates a value is a plain metadata record object.
+ * @param value - The value to check
+ * @returns The value cast as a metadata record, or empty object if invalid
+ */
 function asMetadataRecord(value: unknown): Record<string, unknown> {
   if (typeof value !== 'object' || value === null || Array.isArray(value)) {
     return {};
@@ -211,6 +233,12 @@ function asMetadataRecord(value: unknown): Record<string, unknown> {
   return value as Record<string, unknown>;
 }
 
+/**
+ * Retrieves an authorized teacher profile for a user.
+ * @param ctx - The query context
+ * @param userId - The profile ID to check
+ * @returns The teacher/admin profile, or null if not authorized
+ */
 export async function getAuthorizedTeacher(
   ctx: QueryCtx,
   userId: Id<'profiles'>,
@@ -227,6 +255,13 @@ export async function getAuthorizedTeacher(
   return teacher;
 }
 
+/**
+ * Retrieves a student profile if found in the teacher's organization.
+ * @param ctx - The mutation context
+ * @param studentProfileId - The student's profile ID
+ * @param teacher - The teacher profile to check org membership
+ * @returns The student profile, or null if not found/invalid
+ */
 export async function getStudentInTeacherOrg(
   ctx: MutationCtx,
   studentProfileId: Id<'profiles'>,
@@ -240,6 +275,12 @@ export async function getStudentInTeacherOrg(
   return student;
 }
 
+/**
+ * Retrieves a teacher profile if authorized, or an error result.
+ * @param ctx - The mutation context
+ * @param teacherProfileId - The profile ID to check
+ * @returns Object with ok=true and teacher, or ok=false with reason
+ */
 async function getTeacherProfile(ctx: MutationCtx, teacherProfileId: Id<'profiles'>) {
   const teacher = await ctx.db.get(teacherProfileId);
   if (!teacher) {
@@ -253,6 +294,13 @@ async function getTeacherProfile(ctx: MutationCtx, teacherProfileId: Id<'profile
   return { ok: true as const, teacher };
 }
 
+/**
+ * Retrieves a student profile if found in the teacher's organization.
+ * @param ctx - The mutation context
+ * @param studentProfileId - The student's profile ID
+ * @param teacher - The teacher profile to check org membership
+ * @returns Object with ok=true and student, or ok=false with reason
+ */
 async function getStudentInTeacherOrgInternal(
   ctx: MutationCtx,
   studentProfileId: Id<'profiles'>,
@@ -271,6 +319,13 @@ async function getStudentInTeacherOrgInternal(
 // In high-collision environments (e.g., 100 students all named "john_smith") worst-case
 // is 50 reads/student → ~5,000 reads for a full batch. Convex does not support
 // multi-key index reads so sequential probing is currently unavoidable.
+/**
+ * Generates a unique username by sequential probing with slugified base.
+ * @param ctx - The mutation context
+ * @param opts - Username preferences and name components
+ * @param reserved - Set of already-reserved usernames
+ * @returns A unique username string
+ */
 async function generateUniqueUsername(
   ctx: MutationCtx,
   opts: { preferredUsername?: string; firstName?: string; lastName?: string },

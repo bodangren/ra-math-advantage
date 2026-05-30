@@ -17,6 +17,12 @@ const PRIORITY_NUMERIC: Record<ObjectivePriority, number> = {
   triaged: 3,
 };
 
+/**
+ * Retrieves an authorized teacher profile for a user.
+ * @param ctx - The mutation context
+ * @param userId - The profile ID to check
+ * @returns The teacher/admin profile, or null if not authorized
+ */
 async function getAuthorizedTeacher(
   ctx: MutationCtx,
   userId: Id<"profiles">
@@ -28,6 +34,13 @@ async function getAuthorizedTeacher(
   return teacher;
 }
 
+/**
+ * Validates that a teacher owns a specific class.
+ * @param ctx - The mutation context
+ * @param userId - The teacher profile ID
+ * @param classId - The class to validate ownership of
+ * @returns True if the teacher owns the class, false otherwise
+ */
 async function validateTeacherOwnsClass(
   ctx: MutationCtx,
   userId: Id<"profiles">,
@@ -42,6 +55,13 @@ async function validateTeacherOwnsClass(
   return classDoc.teacherId === teacher._id;
 }
 
+/**
+ * Validates that a student is actively enrolled in a class.
+ * @param ctx - The mutation context
+ * @param classId - The class to check enrollment in
+ * @param studentId - The student profile ID
+ * @returns True if the student is actively enrolled, false otherwise
+ */
 async function validateStudentInClass(
   ctx: MutationCtx,
   classId: Id<"classes">,
@@ -64,6 +84,13 @@ export type UpdateObjectivePriorityArgs = {
   courseKey: string;
 };
 
+/**
+ * Updates the priority of an objective for a class.
+ * @param ctx - The mutation context
+ * @param args - The update arguments including user, class, objective, and priority
+ * @returns Success flag or error message
+ * @throws Error if the priority value is invalid
+ */
 export async function updateObjectivePriorityHandler(
   ctx: MutationCtx,
   args: UpdateObjectivePriorityArgs
@@ -130,6 +157,12 @@ export type ResetStudentCardsResult =
   | { success: true; resetCount: number }
   | { success: false; error: string };
 
+/**
+ * Resets all SRS cards for a student on a specific objective.
+ * @param ctx - The mutation context
+ * @param args - The reset arguments including user, class, student, and objective
+ * @returns Success with reset count, or error
+ */
 export async function resetStudentCardsHandler(
   ctx: MutationCtx,
   args: ResetStudentCardsArgs
@@ -218,6 +251,12 @@ export type AddExtraCardsArgs = {
   objectiveId: string;
 };
 
+/**
+ * Adds an extra SRS card for a student on a specific objective.
+ * @param ctx - The mutation context
+ * @param args - The arguments including user, class, student, and objective
+ * @returns Success with card ID, or error
+ */
 export async function addExtraCardsHandler(
   ctx: MutationCtx,
   args: AddExtraCardsArgs

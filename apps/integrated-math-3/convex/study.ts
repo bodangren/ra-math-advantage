@@ -163,6 +163,12 @@ export async function processReviewHandler(
   return { success: true };
 }
 
+/**
+ * Retrieves all due glossary terms for a user's study session.
+ * @param ctx - The query context
+ * @param args - The user ID and optional current timestamp
+ * @returns Array of due term reviews with FSRS state and schedule
+ */
 export async function getDueTermsHandler(
   ctx: QueryCtx,
   args: GetDueTermsArgs
@@ -186,6 +192,12 @@ export async function getDueTermsHandler(
   return dueTerms;
 }
 
+/**
+ * Retrieves term mastery records for a specific module.
+ * @param ctx - The query context
+ * @param args - The user ID and module number
+ * @returns Array of mastery records for terms in the module
+ */
 export async function getTermMasteryByUnitHandler(
   ctx: QueryCtx,
   args: GetTermMasteryByUnitArgs
@@ -237,6 +249,13 @@ export async function getRecentStudySessionsHandler(
   return sessions;
 }
 
+/**
+ * Saves a practice test result for a user.
+ * @param ctx - The mutation context
+ * @param args - The test result data
+ * @returns Object with the result ID
+ * @throws Error if score is invalid, question count is not positive, or module is invalid
+ */
 export async function savePracticeTestResultHandler(
   ctx: MutationCtx,
   args: SavePracticeTestResultArgs
@@ -267,6 +286,12 @@ export async function savePracticeTestResultHandler(
   return { resultId };
 }
 
+/**
+ * Records a study session for a user.
+ * @param ctx - The mutation context
+ * @param args - The session data including activity type and results
+ * @returns Object with the session ID
+ */
 export async function recordStudySessionHandler(
   ctx: MutationCtx,
   args: RecordStudySessionArgs

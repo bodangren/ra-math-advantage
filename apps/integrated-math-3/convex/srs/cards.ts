@@ -3,6 +3,11 @@ import { v } from "convex/values";
 import { Id } from "../_generated/dataModel";
 import { srsCardStateLiteralValidator } from "./validators";
 
+/**
+ * Maps a database SRS card to the public contract format.
+ * @param card - The raw database card object
+ * @returns The card in contract format with ISO date strings
+ */
 function mapDbCardToContract(
   card: {
     _id: Id<"srs_cards">;
@@ -59,6 +64,12 @@ export type SaveCardArgs = {
   updatedAt: string;
 };
 
+/**
+ * Saves or updates an SRS card for a student.
+ * @param ctx - The mutation context
+ * @param args - The card data to save
+ * @returns The ID of the saved or created card
+ */
 export async function saveCardHandler(
   ctx: MutationCtx,
   args: SaveCardArgs
@@ -228,6 +239,12 @@ export const saveCards = internalMutation({
   handler: saveCardsHandler,
 });
 
+/**
+ * Retrieves an SRS card by its ID.
+ * @param ctx - The query context
+ * @param args - The card ID
+ * @returns The card in contract format, or null if not found
+ */
 export async function getCardHandler(
   ctx: QueryCtx,
   args: { id: string }
@@ -242,6 +259,12 @@ export const getCard = internalQuery({
   handler: getCardHandler,
 });
 
+/**
+ * Retrieves all SRS cards for a specific student.
+ * @param ctx - The query context
+ * @param args - The student ID
+ * @returns Array of cards in contract format
+ */
 export async function getCardsByStudentHandler(
   ctx: QueryCtx,
   args: { studentId: Id<"profiles"> }
@@ -260,6 +283,12 @@ export const getCardsByStudent = internalQuery({
   handler: getCardsByStudentHandler,
 });
 
+/**
+ * Retrieves an SRS card by student ID and problem family ID.
+ * @param ctx - The query context
+ * @param args - The student ID and problem family ID
+ * @returns The card in contract format, or null if not found
+ */
 export async function getCardByStudentAndFamilyHandler(
   ctx: QueryCtx,
   args: { studentId: Id<"profiles">; problemFamilyId: string }

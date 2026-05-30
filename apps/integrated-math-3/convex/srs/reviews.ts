@@ -24,6 +24,13 @@ const VALID_STATE_TRANSITIONS: Record<string, string[]> = {
   relearning: ['learning', 'review'],
 };
 
+/**
+ * Validates an SRS state transition by enforcing business rules.
+ * @param stateBefore - The SRS state before the review
+ * @param stateAfter - The SRS state after the review
+ * @throws Error if reps does not increase by 1, lapses decreases,
+ *         or state transition is invalid
+ */
 function validateSrsTransition(
   stateBefore: SrsStatePick,
   stateAfter: SrsStatePick,
@@ -46,6 +53,13 @@ function validateSrsTransition(
   }
 }
 
+/**
+ * Saves a review log entry for an SRS card.
+ * @param ctx - The mutation context
+ * @param args - Review details including card, student, rating, evidence, and state transitions
+ * @returns The ID of the inserted review log entry
+ * @throws Error if reviewedAt is an invalid date or if state transition validation fails
+ */
 export async function saveReviewHandler(
   ctx: MutationCtx,
   args: {
@@ -84,6 +98,10 @@ export async function saveReviewHandler(
   return id;
 }
 
+/**
+ * Internal mutation for saving SRS review log entries.
+ * @param args - Review arguments matching internalMutation schema
+ */
 export const saveReview = internalMutation({
   args: {
     reviewId: v.optional(v.string()),
@@ -99,6 +117,12 @@ export const saveReview = internalMutation({
   handler: saveReviewHandler,
 });
 
+/**
+ * Retrieves all review log entries for a specific SRS card.
+ * @param ctx - The query context
+ * @param args - The card ID to query reviews for
+ * @returns Array of review entries sorted by reviewedAt timestamp
+ */
 export async function getReviewsByCardHandler(
   ctx: QueryCtx,
   args: { cardId: Id<"srs_cards"> }
@@ -129,6 +153,13 @@ export const getReviewsByCard = internalQuery({
   handler: getReviewsByCardHandler,
 });
 
+/**
+ * Retrieves all review log entries for a specific student.
+ * @param ctx - The query context
+ * @param args - The student ID and optional since filter
+ * @returns Array of review entries sorted by reviewedAt timestamp
+ * @throws Error if since date is invalid
+ */
 export async function getReviewsByStudentHandler(
   ctx: QueryCtx,
   args: { studentId: Id<"profiles">; since?: string }
