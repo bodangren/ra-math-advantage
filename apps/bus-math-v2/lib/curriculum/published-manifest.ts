@@ -433,6 +433,11 @@ const GENERATED_PHASE_LABELS: Record<PublishedPhaseKey, string> = {
 const AUTHORED_WAVE1_UNIT_NUMBERS = new Set([2, 3, 4]);
 const AUTHORED_WAVE2_UNIT_NUMBERS = new Set([5, 6, 7, 8]);
 
+/**
+ * Creates a text section with markdown content.
+ * @param markdown - The markdown content for the section
+ * @returns A published section with text type
+ */
 function textSection(markdown: string): PublishedSection {
   return {
     sectionType: 'text',
@@ -440,10 +445,20 @@ function textSection(markdown: string): PublishedSection {
   };
 }
 
+/**
+ * Formats an array of strings as a bullet list.
+ * @param items - Array of strings to format as bullet points
+ * @returns A newline-separated string of bullet points
+ */
 function bulletList(items: readonly string[]): string {
   return items.map((item) => `- ${item}`).join('\n');
 }
 
+/**
+ * Cleans authoring text by removing markdown formatting and extra whitespace.
+ * @param value - The raw authoring text
+ * @returns Cleaned text with formatting removed
+ */
 function cleanAuthoringText(value: string | null | undefined): string {
   return (value ?? '')
     .replace(/\*\*/g, '')
@@ -452,6 +467,12 @@ function cleanAuthoringText(value: string | null | undefined): string {
     .trim();
 }
 
+/**
+ * Creates a callout section with variant styling.
+ * @param content - The text content of the callout
+ * @param variant - The callout variant ('why-this-matters' or 'example')
+ * @returns A published section with callout type
+ */
 function calloutSection(
   content: string,
   variant: 'why-this-matters' | 'example' = 'why-this-matters',
@@ -465,6 +486,13 @@ function calloutSection(
   };
 }
 
+/**
+ * Normalizes a section by validating its type and remapping legacy activity IDs.
+ * @param section - The section to normalize
+ * @param activityKeyByLegacyId - Map of legacy activity IDs to current keys
+ * @returns A normalized published section
+ * @throws Error if the section type is not supported
+ */
 function normalizeSection(
   section: {
     sectionType: string;
@@ -494,6 +522,12 @@ function normalizeSection(
   };
 }
 
+/**
+ * Builds complete unit content from a unit plan.
+ * @param plan - The unit plan with all configuration
+ * @param nextSectionHref - Optional link to the next section
+ * @returns A complete UnitContent object
+ */
 function buildUnitContent(plan: {
   unitNumber: number;
   title: string;
@@ -658,6 +692,12 @@ function buildUnitContent(plan: {
   };
 }
 
+/**
+ * Builds lesson metadata from unit content and optional tags.
+ * @param unitContent - The unit content to include in metadata
+ * @param tags - Optional array of tags for the lesson
+ * @returns A configured LessonMetadata object
+ */
 function buildMetadata(unitContent: UnitContent, tags: string[] = ['curriculum']): LessonMetadata {
   return {
     duration: 50,
@@ -668,6 +708,11 @@ function buildMetadata(unitContent: UnitContent, tags: string[] = ['curriculum']
   };
 }
 
+/**
+ * Converts a lesson to generated section format with title, description, and callout.
+ * @param lesson - The lesson with title, description, learningObjectives, and phaseKey
+ * @returns Array of published sections for the lesson
+ */
 function toGeneratedSections(lesson: {
   unitTitle: string;
   title: string;
@@ -686,6 +731,11 @@ function toGeneratedSections(lesson: {
   ];
 }
 
+/**
+ * Determines the lesson type based on order index in the unit.
+ * @param orderIndex - The index of the lesson within the unit (1-based)
+ * @returns The appropriate PublishedLessonType
+ */
 function buildGeneratedLessonType(orderIndex: number): PublishedLessonType {
   if (orderIndex >= 1 && orderIndex <= 7) {
     return 'core_instruction';
@@ -696,6 +746,12 @@ function buildGeneratedLessonType(orderIndex: number): PublishedLessonType {
   return 'summative_mastery';
 }
 
+/**
+ * Builds a complete generated lesson from a unit plan and order index.
+ * @param plan - The unit plan containing lesson titles and metadata
+ * @param orderIndex - The index of the lesson within the unit (1-based)
+ * @returns A complete PublishedCurriculumLesson
+ */
 function buildGeneratedLesson(plan: UnitPlan, orderIndex: number): PublishedCurriculumLesson {
   const title = plan.lessonTitles[orderIndex - 1] ?? `${plan.title} Lesson ${orderIndex}`;
   const lessonType = buildGeneratedLessonType(orderIndex);
@@ -755,6 +811,12 @@ function buildGeneratedLesson(plan: UnitPlan, orderIndex: number): PublishedCurr
   };
 }
 
+/**
+ * Builds a lesson description from a wave1 plan and blueprint.
+ * @param plan - The unit plan
+ * @param blueprint - The wave1 authored lesson blueprint
+ * @returns A formatted lesson description string
+ */
 function buildWave1LessonDescription(
   plan: UnitPlan,
   blueprint: Wave1AuthoredLessonBlueprint,
@@ -766,6 +828,11 @@ function buildWave1LessonDescription(
   return `${objective}. Students use ${excelSkillFocus} to support ${accountingFocus} in ${plan.title}.`;
 }
 
+/**
+ * Builds learning objectives from a wave1 authored lesson blueprint.
+ * @param blueprint - The wave1 authored lesson blueprint
+ * @returns Array of three learning objective strings
+ */
 function buildWave1LearningObjectives(
   blueprint: Wave1AuthoredLessonBlueprint,
 ): string[] {
@@ -776,6 +843,15 @@ function buildWave1LearningObjectives(
   ];
 }
 
+/**
+ * Builds phase sections for wave1 lessons based on phase type.
+ * @param plan - The unit plan
+ * @param title - The lesson title
+ * @param description - The lesson description
+ * @param blueprint - The wave1 authored lesson blueprint
+ * @param phaseKey - The phase type key
+ * @returns Array of published sections for the phase
+ */
 function buildWave1PhaseSections(
   plan: UnitPlan,
   title: string,
@@ -909,6 +985,12 @@ function buildWave1PhaseSections(
   }
 }
 
+/**
+ * Builds a lesson description from a wave2 plan and blueprint.
+ * @param plan - The unit plan
+ * @param blueprint - The wave2 authored lesson blueprint
+ * @returns A formatted lesson description string
+ */
 function buildWave2LessonDescription(
   plan: UnitPlan,
   blueprint: Wave2AuthoredLessonBlueprint,
@@ -920,6 +1002,12 @@ function buildWave2LessonDescription(
   return `${objective}. Students use ${excelSkillFocus} to support ${accountingFocus} in ${plan.title}.`;
 }
 
+/**
+ * Builds learning objectives from a wave2 authored lesson blueprint.
+ * @param blueprint - The wave2 authored lesson blueprint
+ * @param unitBlueprint - The wave2 authored unit blueprint
+ * @returns Array of learning objective strings
+ */
 function buildWave2LearningObjectives(
   blueprint: Wave2AuthoredLessonBlueprint,
   unitBlueprint: Wave2AuthoredUnitBlueprint,
@@ -971,6 +1059,16 @@ function buildWave2LearningObjectives(
   ];
 }
 
+/**
+ * Builds phase sections for wave2 lessons based on phase type and lesson number.
+ * @param plan - The unit plan
+ * @param title - The lesson title
+ * @param description - The lesson description
+ * @param unitBlueprint - The wave2 authored unit blueprint
+ * @param blueprint - The wave2 authored lesson blueprint
+ * @param phaseKey - The phase type key
+ * @returns Array of published sections for the phase
+ */
 function buildWave2PhaseSections(
   plan: UnitPlan,
   title: string,
@@ -1324,6 +1422,13 @@ function buildWave2PhaseSections(
   });
 }
 
+/**
+ * Builds a complete authored lesson from wave2 blueprints.
+ * @param plan - The unit plan
+ * @param unitBlueprint - The wave2 authored unit blueprint
+ * @param blueprint - The wave2 authored lesson blueprint
+ * @returns A complete published curriculum lesson
+ */
 function buildWave2AuthoredLesson(
   plan: UnitPlan,
   unitBlueprint: Wave2AuthoredUnitBlueprint,
@@ -1375,6 +1480,12 @@ function buildWave2AuthoredLesson(
   };
 }
 
+/**
+ * Builds all wave2 authored lessons for a unit plan.
+ * @param plan - The unit plan
+ * @returns Array of 11 published curriculum lessons
+ * @throws Error if wave2 authored lesson blueprints are missing
+ */
 function buildWave2AuthoredLessons(plan: UnitPlan): PublishedCurriculumLesson[] {
   const unitBlueprint = WAVE2_AUTHORED_UNITS[plan.unitNumber as keyof typeof WAVE2_AUTHORED_UNITS];
   if (!unitBlueprint || unitBlueprint.lessons.length !== 11) {
@@ -1384,6 +1495,12 @@ function buildWave2AuthoredLessons(plan: UnitPlan): PublishedCurriculumLesson[] 
   return unitBlueprint.lessons.map((blueprint) => buildWave2AuthoredLesson(plan, unitBlueprint, blueprint));
 }
 
+/**
+ * Builds a complete authored lesson from a wave1 blueprint.
+ * @param plan - The unit plan
+ * @param blueprint - The wave1 authored lesson blueprint
+ * @returns A complete published curriculum lesson
+ */
 function buildWave1AuthoredLesson(
   plan: UnitPlan,
   blueprint: Wave1AuthoredLessonBlueprint,
@@ -1434,6 +1551,12 @@ function buildWave1AuthoredLesson(
   };
 }
 
+/**
+ * Builds all wave1 authored lessons for a unit plan.
+ * @param plan - The unit plan
+ * @returns Array of 11 published curriculum lessons
+ * @throws Error if wave1 authored lesson blueprints are missing
+ */
 function buildWave1AuthoredLessons(plan: UnitPlan): PublishedCurriculumLesson[] {
   const blueprints = WAVE1_AUTHORED_BLUEPRINTS[plan.unitNumber as keyof typeof WAVE1_AUTHORED_BLUEPRINTS];
   if (!blueprints || blueprints.length !== 11) {
@@ -1443,6 +1566,11 @@ function buildWave1AuthoredLessons(plan: UnitPlan): PublishedCurriculumLesson[] 
   return blueprints.map((blueprint) => buildWave1AuthoredLesson(plan, blueprint));
 }
 
+/**
+ * Builds phase sections for capstone lessons based on phase type.
+ * @param phaseKey - The capstone phase key ('brief', 'workshop', 'checkpoint', 'reflection')
+ * @returns Array of published sections for the capstone phase
+ */
 function buildCapstonePhaseSections(phaseKey: PublishedPhaseKey): PublishedSection[] {
   const [milestone1, milestone2] = AUTHORED_CAPSTONE_BLUEPRINT.milestones;
 
@@ -1494,6 +1622,10 @@ function buildCapstonePhaseSections(phaseKey: PublishedPhaseKey): PublishedSecti
   }
 }
 
+/**
+ * Builds the capstone lesson that synthesizes all units.
+ * @returns A complete capstone published curriculum lesson
+ */
 function buildCapstoneLesson(): PublishedCurriculumLesson {
   const unitContent = buildUnitContent(CAPSTONE_PLAN);
   const title = CAPSTONE_PLAN.lessonTitle;
@@ -1538,16 +1670,32 @@ function buildCapstoneLesson(): PublishedCurriculumLesson {
   };
 }
 
+/**
+ * Sorts lessons by unit number then order index.
+ * @param lessons - Array of lessons with unitNumber and orderIndex
+ * @returns A new sorted array of lessons
+ */
 function sortLessons<T extends { unitNumber: number; orderIndex: number }>(lessons: T[]): T[] {
   return [...lessons].sort((a, b) => a.unitNumber - b.unitNumber || a.orderIndex - b.orderIndex);
 }
 
+/**
+ * Infers the authored lesson type based on order index.
+ * @param orderIndex - The lesson order index within the unit (1-based)
+ * @returns The appropriate published lesson type
+ */
 function inferAuthoredLessonType(orderIndex: number): PublishedLessonType {
   if (orderIndex >= 1 && orderIndex <= 7) return 'core_instruction';
   if (orderIndex >= 8 && orderIndex <= 10) return 'project_sprint';
   return 'summative_mastery';
 }
 
+/**
+ * Infers the legacy phase key from lesson type and phase number.
+ * @param lessonType - The published lesson type
+ * @param phaseNumber - The phase number (1-based)
+ * @returns The appropriate published phase key
+ */
 function inferLegacyPhaseKey(
   lessonType: PublishedLessonType,
   phaseNumber: number,
@@ -1556,10 +1704,20 @@ function inferLegacyPhaseKey(
   return sequence[phaseNumber - 1] ?? sequence[sequence.length - 1] ?? 'reflection';
 }
 
+/**
+ * Builds a map of unit numbers to their unit plans.
+ * @returns A map from unit number to unit plan
+ */
 function buildAuthoredLessonMap(): Map<number, UnitPlan> {
   return new Map(UNIT_PLANS.map((plan) => [plan.unitNumber, plan]));
 }
 
+/**
+ * Normalizes a legacy authored lesson into published curriculum format.
+ * @param rawLesson - The raw authored lesson from AUTHORED_UNIT_1_LESSONS
+ * @param plan - The corresponding unit plan
+ * @returns A normalized published curriculum lesson
+ */
 function normalizeAuthoredLesson(
   rawLesson: (typeof AUTHORED_UNIT_1_LESSONS)[number],
   plan: UnitPlan,
@@ -1626,10 +1784,21 @@ function normalizeAuthoredLesson(
   };
 }
 
+/**
+ * Gets allowed phase key sequences for a given lesson type.
+ * @param lesson - The published curriculum lesson
+ * @returns Array of allowed phase key sequences
+ */
 function getAllowedPhaseKeySequences(lesson: PublishedCurriculumLesson): PublishedPhaseKey[][] {
   return [[...GENERATED_PHASE_SEQUENCES[lesson.lessonType]]];
 }
 
+/**
+ * Checks if an actual phase sequence matches an allowed sequence.
+ * @param actual - The actual phase sequence to check
+ * @param allowed - The allowed phase sequences to match against
+ * @returns True if the actual sequence matches any allowed sequence
+ */
 function matchesAllowedSequence(
   actual: PublishedPhaseKey[],
   allowed: PublishedPhaseKey[][],
