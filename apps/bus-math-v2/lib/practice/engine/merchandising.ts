@@ -60,6 +60,11 @@ export interface MerchandisingTimelineSolution {
 
 const GROSS_DISCOUNT_RATES = [0.02, 0.05, 0.1] as const;
 
+/**
+ * Generates a pseudorandom number generator using the mulberry32 algorithm.
+ * @param seed - The seed value for the RNG
+ * @returns A function that returns numbers in [0, 1)
+ */
 function mulberry32(seed: number) {
   let t = seed >>> 0;
   return () => {
@@ -70,6 +75,13 @@ function mulberry32(seed: number) {
   };
 }
 
+/**
+ * Generates a random integer between min and max (inclusive) using the RNG.
+ * @param rng - The random number generator to use
+ * @param min - The minimum value (inclusive)
+ * @param max - The maximum value (inclusive)
+ * @returns A random integer in the range [min, max]
+ */
 function randomInt(rng: () => number, min: number, max: number) {
   const lower = Math.ceil(min);
   const upper = Math.floor(max);
@@ -80,20 +92,44 @@ function randomInt(rng: () => number, min: number, max: number) {
   return Math.floor(rng() * (upper - lower + 1)) + lower;
 }
 
+/**
+ * Picks a random element from an array using the given RNG.
+ * @param items - The array to pick from
+ * @param rng - The random number generator to use
+ * @returns A randomly selected element
+ */
 function pick<T>(items: readonly T[], rng: () => number) {
   return items[randomInt(rng, 0, items.length - 1)];
 }
 
+/**
+ * Adds an offset in days to a base date string.
+ * @param baseDate - The base date string in ISO format (YYYY-MM-DD)
+ * @param offset - The number of days to add (can be negative)
+ * @returns A new date string in ISO format
+ */
 function addDays(baseDate: string, offset: number) {
   const date = new Date(`${baseDate}T00:00:00Z`);
   date.setUTCDate(date.getUTCDate() + offset);
   return date.toISOString().slice(0, 10);
 }
 
+/**
+ * Formats a numeric amount as a locale string for display.
+ * @param amount - The numeric amount to format
+ * @returns The formatted amount string
+ */
 function formatAmount(amount: number) {
   return amount.toLocaleString('en-US');
 }
 
+/**
+ * Resolves the debit/credit side for an account based on its normal balance and direction.
+ * @param accountId - The account ID to resolve
+ * @param direction - Whether the transaction increases or decreases the account
+ * @returns 'debit' or 'credit' based on the account's normal balance
+ * @throws Error if the account is not found
+ */
 function resolveSide(accountId: string, direction: 'increase' | 'decrease') {
   const account = getAccountById(accountId);
   if (!account) {
@@ -109,6 +145,17 @@ function resolveSide(accountId: string, direction: 'increase' | 'decrease') {
       : 'debit';
 }
 
+/**
+ * Creates a merchandising journal line with debit/credit assignment based on account normal balance.
+ * @param date - The date of the journal line
+ * @param eventId - The ID of the timeline event this line belongs to
+ * @param accountId - The account ID for the line
+ * @param direction - Whether this line increases or decreases the account
+ * @param amount - The dollar amount of the line
+ * @param memo - A description for the line
+ * @returns A configured MerchandisingJournalLine
+ * @throws Error if the account is not found
+ */
 function line(
   date: string,
   eventId: string,
@@ -135,6 +182,12 @@ function line(
   };
 }
 
+/**
+ * Builds a timeline event by combining event metadata with journal lines.
+ * @param event - The event metadata (without journal lines)
+ * @param journalLines - The journal lines for this event
+ * @returns A complete MerchandisingTimelineEvent
+ */
 function buildEvent(
   event: MerchandisingTimelineEvent,
   journalLines: MerchandisingJournalLine[],
@@ -145,6 +198,11 @@ function buildEvent(
   };
 }
 
+/**
+ * Builds a seller-side perpetual merchandising timeline with sale, return, freight, and collection.
+ * @param definition - The timeline definition without events
+ * @returns A complete MerchandisingTimelineDefinition with all events
+ */
 function buildSellerTimeline(definition: Omit<MerchandisingTimelineDefinition, 'events'>) {
   const saleDate = '2026-03-01';
   const returnDate = addDays(saleDate, 1);
@@ -339,6 +397,11 @@ function buildSellerTimeline(definition: Omit<MerchandisingTimelineDefinition, '
   };
 }
 
+/**
+ * Builds a buyer-side perpetual merchandising timeline with purchase, return, freight, and payment.
+ * @param definition - The timeline definition without events
+ * @returns A complete MerchandisingTimelineDefinition with all events
+ */
 function buildBuyerTimeline(definition: Omit<MerchandisingTimelineDefinition, 'events'>) {
   const purchaseDate = '2026-03-01';
   const returnDate = addDays(purchaseDate, 1);
