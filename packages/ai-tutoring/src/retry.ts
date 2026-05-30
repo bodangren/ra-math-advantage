@@ -34,6 +34,11 @@ export function isRetryableStatus(status: number): boolean {
   return status === 429 || (status >= 500 && status < 600);
 }
 
+/**
+ * Checks if an error is retryable based on error type and message patterns.
+ * @param error - Error to check
+ * @returns True if the error should trigger a retry
+ */
 function isRetryableError(error: unknown): boolean {
   if (error instanceof EmptyResponseError) {
     return true;
@@ -66,6 +71,13 @@ function isRetryableError(error: unknown): boolean {
   return false;
 }
 
+/**
+ * Resolves an AbortSignal-aware delay with cleanup on abort.
+ * @param ms - Delay duration in milliseconds
+ * @param signal - Optional AbortSignal to cancel the delay
+ * @returns Promise that resolves after ms or rejects on abort
+ * @throws {DOMException} Rejects with AbortError if signal is aborted
+ */
 function sleep(ms: number, signal?: AbortSignal): Promise<void> {
   return new Promise((resolve, reject) => {
     if (signal?.aborted) {

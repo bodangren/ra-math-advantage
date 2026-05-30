@@ -6,6 +6,10 @@ import { Laptop, Moon, Sun } from 'lucide-react';
 
 const ICON_SIZE = 16;
 
+/**
+ * Renders a theme selector dropdown (light/dark/system) with icon.
+ * @returns Theme selector element or null during SSR mount
+ */
 export function ThemeSwitcher() {
   const [mounted, setMounted] = useState(false);
   const { theme, setTheme } = useTheme();

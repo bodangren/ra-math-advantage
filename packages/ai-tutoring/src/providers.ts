@@ -13,6 +13,11 @@ export interface OpenRouterProviderOptions {
   timeoutMs?: number;
 }
 
+/**
+ * Creates an OpenRouter provider function for single-prompt chat completion.
+ * @param options - Provider configuration (apiKey, model, baseUrl, timeoutMs)
+ * @returns Async provider function (prompt, abortSignal?) => response text
+ */
 export function createOpenRouterProvider(options: OpenRouterProviderOptions) {
   const {
     apiKey,
@@ -84,6 +89,11 @@ export interface ChatMessage {
   content: string;
 }
 
+/**
+ * Creates an OpenRouter provider function for multi-message chat completion.
+ * @param options - Provider configuration (apiKey, model, baseUrl, timeoutMs)
+ * @returns Async provider function (messages, abortSignal?) => response text
+ */
 export function createOpenRouterProviderWithMessages(options: OpenRouterProviderOptions) {
   const {
     apiKey,
@@ -152,10 +162,20 @@ export function createOpenRouterProviderWithMessages(options: OpenRouterProvider
 
 export { EmptyResponseError } from './retry';
 
+/**
+ * Type guard to check if an error is an OpenRouter API error.
+ * @param error - Error to check
+ * @returns True if error has OpenRouter API error format
+ */
 export function isOpenRouterError(error: unknown): error is Error & { status?: number } {
   return error instanceof Error && error.message.startsWith('OpenRouter API error:');
 }
 
+/**
+ * Extracts HTTP status code from an OpenRouter error message.
+ * @param error - Error with message containing status code
+ * @returns Status code number or null if not found
+ */
 export function getErrorStatus(error: Error): number | null {
   const match = error.message.match(/error:\s*(\d{3})/);
   return match ? parseInt(match[1], 10) : null;
@@ -165,11 +185,18 @@ let cachedProvider: ((prompt: string, abortSignal?: AbortSignal) => Promise<stri
 
 let cachedMessagesProvider: ((messages: ChatMessage[], abortSignal?: AbortSignal) => Promise<string>) | null = null;
 
+/**
+ * Clears the cached OpenRouter providers (prompt and messages variants).
+ */
 export function clearProviderCache(): void {
   cachedProvider = null;
   cachedMessagesProvider = null;
 }
 
+/**
+ * Resolves OpenRouter provider from environment variables (single-prompt variant).
+ * @returns Provider function or null if OPENROUTER_API_KEY not set
+ */
 export function resolveOpenRouterProviderFromEnv(): ((prompt: string, abortSignal?: AbortSignal) => Promise<string>) | null {
   const apiKey = process.env.OPENROUTER_API_KEY;
   if (!apiKey || apiKey.trim().length === 0) {

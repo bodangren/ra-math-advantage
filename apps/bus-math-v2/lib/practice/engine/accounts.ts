@@ -486,22 +486,47 @@ export type PracticeAccountRecord = (typeof practiceAccounts)[number];
 
 const accountById = new Map<string, PracticeAccountRecord>(practiceAccounts.map((account) => [account.id, account]));
 
+/**
+ * Looks up a practice account by its ID string.
+ * @param accountId - The account ID to look up
+ * @returns The account record or undefined if not found
+ */
 export function getAccountById(accountId: string) {
   return accountById.get(accountId);
 }
 
+/**
+ * Filters practice accounts by account type.
+ * @param accountType - The account type to filter by (asset, liability, equity, revenue, expense)
+ * @returns Array of accounts matching the specified type
+ */
 export function byType(accountType: AccountType) {
   return practiceAccounts.filter((account) => account.accountType === accountType);
 }
 
+/**
+ * Filters practice accounts by statement placement.
+ * @param statementPlacement - The statement placement to filter by
+ * @returns Array of accounts matching the specified placement
+ */
 export function byStatement(statementPlacement: StatementPlacement) {
   return practiceAccounts.filter((account) => account.statementPlacement === statementPlacement);
 }
 
+/**
+ * Filters practice accounts by normal balance direction.
+ * @param normalBalance - The normal balance to filter by (debit or credit)
+ * @returns Array of accounts matching the specified normal balance
+ */
 export function byNormalBalance(normalBalance: NormalBalance) {
   return practiceAccounts.filter((account) => account.normalBalance === normalBalance);
 }
 
+/**
+ * Checks whether an account or account ID represents a contra account.
+ * @param accountOrId - An account object or account ID string
+ * @returns True if the account is a contra account (has contraOf property)
+ */
 export function isContra(accountOrId: PracticeAccount | PracticeAccountRecord | string) {
   const account =
     typeof accountOrId === 'string' ? getAccountById(accountOrId) : accountOrId;

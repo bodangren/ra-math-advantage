@@ -1,5 +1,10 @@
 import type { UserRole } from './session';
 
+/**
+ * Returns the password requirement text for a given user role.
+ * @param role - User role (student, teacher, admin)
+ * @returns Human-readable requirement string
+ */
 export function getPasswordRequirementText(role: UserRole): string {
   if (role === 'student') {
     return 'Use at least 6 characters.';
@@ -8,6 +13,12 @@ export function getPasswordRequirementText(role: UserRole): string {
   return 'Use at least 8 characters with at least one letter and one number.';
 }
 
+/**
+ * Validates a password against role-specific requirements.
+ * @param role - User role (student, teacher, admin)
+ * @param password - Password to validate
+ * @returns Error message string or null if valid
+ */
 export function validatePasswordForRole(role: UserRole, password: string): string | null {
   if (password !== password.trim()) {
     return 'Password must not start or end with spaces.';

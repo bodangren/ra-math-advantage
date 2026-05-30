@@ -1,5 +1,10 @@
 import { PracticeTestQuestion, PracticeTestLesson, PracticeTestPhaseContent, PracticeTestMessaging, PracticeTestUnitConfig } from './types';
 
+/**
+ * Shuffles an array using Fisher-Yates algorithm.
+ * @param array - The array to shuffle
+ * @returns A new shuffled array (does not mutate original)
+ */
 function fisherYatesShuffle<T>(array: T[]): T[] {
   const shuffled = [...array];
   for (let i = shuffled.length - 1; i > 0; i--) {
@@ -9,16 +14,33 @@ function fisherYatesShuffle<T>(array: T[]): T[] {
   return shuffled;
 }
 
+/**
+ * Filters questions to only those belonging to the specified lesson IDs.
+ * @param questions - Array of practice test questions
+ * @param lessonIds - Array of lesson IDs to filter by
+ * @returns Filtered array of questions from specified lessons
+ */
 export function filterQuestionsByLessonIds(questions: PracticeTestQuestion[], lessonIds: string[]): PracticeTestQuestion[] {
   return questions.filter(q => lessonIds.includes(q.lessonId));
 }
 
+/**
+ * Randomly draws a specified number of questions from the pool.
+ * @param questions - Array of available questions
+ * @param count - Number of questions to draw
+ * @returns Array of randomly selected questions
+ */
 export function drawRandomQuestions(questions: PracticeTestQuestion[], count: number): PracticeTestQuestion[] {
   const clampedCount = Math.max(0, Math.min(count, questions.length));
   const shuffled = fisherYatesShuffle(questions);
   return shuffled.slice(0, clampedCount);
 }
 
+/**
+ * Shuffles the answer choices for a question and returns the new correct index.
+ * @param question - The practice test question
+ * @returns Object with shuffled choices and new correct index position
+ */
 export function shuffleAnswers(question: PracticeTestQuestion): { correctIndex: number; choices: string[] } {
   const choices = [question.correctAnswer, ...question.distractors];
   const shuffled = fisherYatesShuffle(choices);
@@ -610,6 +632,11 @@ export const UNIT8_CONFIG: PracticeTestUnitConfig = {
   messaging: UNIT8_MESSAGING,
 };
 
+/**
+ * Gets the unit configuration for a given unit number.
+ * @param unitNumber - The unit number (1-8)
+ * @returns The unit config or undefined if not found
+ */
 export const getUnitConfig = (unitNumber: number): PracticeTestUnitConfig | undefined => {
   switch (unitNumber) {
     case 1:

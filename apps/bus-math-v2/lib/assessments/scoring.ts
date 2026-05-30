@@ -44,7 +44,7 @@ export interface ScoreResult {
   feedback: string;
 }
 
-/** Normalize answers for comparison regardless of whitespace/case/order */
+/** Normalizes answers for comparison regardless of whitespace/case/order */
 function normalizeAnswer(value: unknown): string {
   if (Array.isArray(value)) {
     return value
@@ -68,6 +68,7 @@ function normalizeAnswer(value: unknown): string {
   return JSON.stringify(value);
 }
 
+/** Calculates percentage score from correct and total values */
 function calculatePercentage(correct: number, total: number): number {
   if (total <= 0) {
     return 0;
@@ -76,6 +77,7 @@ function calculatePercentage(correct: number, total: number): number {
   return Math.round((correct / total) * 100);
 }
 
+/** Builds feedback message based on percentage and passing score */
 function buildFeedback(percentage: number, passingScore: number): string {
   if (percentage >= passingScore) {
     return `Great work! You scored ${percentage}% which meets the goal.`;
@@ -88,6 +90,7 @@ function buildFeedback(percentage: number, passingScore: number): string {
   return `You scored ${percentage}%. Review the hints and give it another shot.`;
 }
 
+/** Computes a stable hash of a string for consistent problem seeding */
 function stableHash(value: string): number {
   let hash = 0;
   for (let index = 0; index < value.length; index += 1) {
@@ -96,18 +99,21 @@ function stableHash(value: string): number {
   return hash;
 }
 
+/** Type guard to check if props has a questions array */
 function hasQuestionBank(props: Activity['props']): props is Activity['props'] & {
   questions: Question[];
 } {
   return Boolean(props && typeof props === 'object' && Array.isArray((props as { questions?: unknown }).questions));
 }
 
+/** Type guard to check if props has a sentences array */
 function hasSentences(props: Activity['props']): props is Activity['props'] & {
   sentences: Sentence[];
 } {
   return Boolean(props && typeof props === 'object' && Array.isArray((props as { sentences?: unknown }).sentences));
 }
 
+/** Type guard to check if props has an applicationProblems array */
 function hasApplicationProblems(props: Activity['props']): props is Activity['props'] & {
   applicationProblems: ApplicationProblem[];
 } {
@@ -118,6 +124,7 @@ function hasApplicationProblems(props: Activity['props']): props is Activity['pr
   );
 }
 
+/** Scores a question bank by comparing answers against correct responses */
 function scoreQuestions(questions: Question[], answers: Record<string, unknown>) {
   const parsed = questions.map((question) => questionSchema.parse(question));
 
@@ -142,6 +149,7 @@ function scoreQuestions(questions: Question[], answers: Record<string, unknown>)
   return { correct, total: parsed.length };
 }
 
+/** Scores a sentence-fill-in-blank activity */
 function scoreSentences(sentences: Sentence[], answers: Record<string, unknown>) {
   const parsed = sentences.map((sentence) => sentenceSchema.parse(sentence));
 
@@ -164,6 +172,7 @@ function scoreSentences(sentences: Sentence[], answers: Record<string, unknown>)
   return { correct, total: parsed.length };
 }
 
+/** Scores application problems by generating expected answers and comparing */
 function scoreApplicationProblems(
   activityId: string,
   applicationProblems: ApplicationProblem[],
@@ -202,6 +211,13 @@ function scoreApplicationProblems(
   return { correct, total: parsed.length };
 }
 
+/**
+ * Calculates the score for an auto-graded activity.
+ * @param activity - The activity with grading configuration
+ * @param answers - Map of question IDs to student answers
+ * @returns Score result with score, maxScore, percentage, and feedback
+ * @throws Error if activity is not configured for auto-grading or type unsupported
+ */
 export function calculateScore(
   activity: Activity,
   answers: Record<string, unknown>,

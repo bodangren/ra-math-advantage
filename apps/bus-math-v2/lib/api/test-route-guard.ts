@@ -1,5 +1,11 @@
 import { NextResponse } from 'next/server';
 
+/**
+ * Enforces test route guard restrictions for API endpoints.
+ * In production, test APIs are disabled. In development, an API key may be required.
+ * @param request - The incoming request object
+ * @returns Error NextResponse if restricted, null if allowed
+ */
 export function enforceTestRouteGuard(request: Request) {
   if (process.env.NODE_ENV === 'production') {
     return NextResponse.json(

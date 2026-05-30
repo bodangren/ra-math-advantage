@@ -16,6 +16,11 @@ export interface OpenAIProviderOptions {
   timeoutMs?: number;
 }
 
+/**
+ * Creates an OpenAI provider function for error analysis.
+ * @param options - Provider configuration options
+ * @returns Provider function that takes a prompt and returns AI response
+ */
 export function createOpenAIProvider(options: OpenAIProviderOptions) {
   const { apiKey, model = 'gpt-4o-mini', baseUrl = OPENAI_API_BASE, timeoutMs = 15000 } = options;
 
@@ -70,6 +75,10 @@ export function createOpenAIProvider(options: OpenAIProviderOptions) {
   };
 }
 
+/**
+ * Creates an AI provider from environment variables if OPENAI_API_KEY is set.
+ * @returns Provider function or null if API key is not configured
+ */
 export function resolveAIProviderFromEnv(): ((prompt: string) => Promise<string>) | null {
   const apiKey = process.env.OPENAI_API_KEY;
   if (!apiKey || apiKey.trim().length === 0) {

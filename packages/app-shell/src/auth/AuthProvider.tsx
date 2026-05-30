@@ -29,6 +29,11 @@ export interface AuthContextValue {
 
 const AuthContext = createContext<AuthContextValue | undefined>(undefined);
 
+/**
+ * Converts a username to an internal email address format.
+ * @param username - Username to convert
+ * @returns Email address in internal domain format
+ */
 export function usernameToEmail(username: string): string {
   return `${username}@internal.domain`;
 }
@@ -126,6 +131,11 @@ export function AuthProvider({ children }: AuthProviderProps) {
   );
 }
 
+/**
+ * React hook to access auth context (user, profile, signIn, signOut).
+ * @returns AuthContextValue with user/profile/loading and auth methods
+ * @throws {Error} If used outside of an AuthProvider
+ */
 export function useAuth() {
   const context = useContext(AuthContext);
   if (context === undefined) {

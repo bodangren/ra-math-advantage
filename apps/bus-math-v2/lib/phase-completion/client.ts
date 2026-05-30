@@ -14,6 +14,12 @@ export class PhaseCompletionError extends Error {
   }
 }
 
+/**
+ * Checks if an HTTP status code represents a transient error.
+ * Transient errors include 5xx server errors, 408 timeout, and 429 rate limit.
+ * @param status - The HTTP status code
+ * @returns True if the status represents a transient error
+ */
 function isTransientStatus(status?: number): boolean {
   if (!status) return true;
   if (status >= 500 && status < 600) return true;
@@ -21,6 +27,12 @@ function isTransientStatus(status?: number): boolean {
   return false;
 }
 
+/**
+ * Extracts an error message from an unknown payload object.
+ * @param payload - The response payload to parse
+ * @param fallback - Fallback message if extraction fails
+ * @returns Extracted error message or fallback
+ */
 function extractMessage(payload: unknown, fallback: string): string {
   if (payload && typeof payload === 'object') {
     const record = payload as Record<string, unknown>;
@@ -32,6 +44,12 @@ function extractMessage(payload: unknown, fallback: string): string {
   return fallback;
 }
 
+/**
+ * Sends a phase completion request to the API.
+ * @param payload - The complete phase request data
+ * @returns Response containing completion confirmation
+ * @throws PhaseCompletionError on non-OK responses
+ */
 export async function completePhaseRequest(
   payload: CompletePhaseRequest,
 ): Promise<CompletePhaseResponse> {

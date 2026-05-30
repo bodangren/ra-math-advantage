@@ -13,6 +13,11 @@ interface UserMenuProps {
   dashboardHref?: string;
 }
 
+/**
+ * User menu dropdown with display name, initials, settings, and logout.
+ * @param props - logoutRedirectTo, settingsHref, dashboardHref
+ * @returns User menu element
+ */
 export function UserMenu({
   logoutRedirectTo = '/',
   settingsHref = '/settings',

@@ -3,6 +3,11 @@ export const SESSION_TTL_SECONDS = 60 * 60 * 12;
 export const PASSWORD_HASH_ITERATIONS = 120000;
 export const PASSWORD_ALPHABET = 'ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz23456789';
 
+/**
+ * Gets the JWT secret from AUTH_JWT_SECRET env var or dev fallback.
+ * @returns JWT secret string
+ * @throws {Error} If AUTH_JWT_SECRET is missing in production
+ */
 export function getAuthJwtSecret(): string {
   const envSecret = process.env.AUTH_JWT_SECRET;
   if (envSecret && envSecret.trim().length > 0) {

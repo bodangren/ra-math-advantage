@@ -26,6 +26,16 @@ export interface GraphingCanvasProps {
   height?: number;
 }
 
+/**
+ * Transforms data coordinates to canvas pixel coordinates.
+ * @param x - Data x coordinate
+ * @param y - Data y coordinate
+ * @param domain - X axis [min, max] range
+ * @param range - Y axis [min, max] range
+ * @param width - Canvas pixel width
+ * @param height - Canvas pixel height
+ * @returns Canvas coordinates (canvasX, canvasY)
+ */
 export function transformDataToCanvas(
   x: number,
   y: number,
@@ -46,6 +56,16 @@ export function transformDataToCanvas(
   return { canvasX, canvasY };
 }
 
+/**
+ * Transforms canvas pixel coordinates back to data coordinates.
+ * @param canvasX - Canvas pixel x coordinate
+ * @param canvasY - Canvas pixel y coordinate
+ * @param domain - X axis [min, max] range
+ * @param range - Y axis [min, max] range
+ * @param width - Canvas pixel width
+ * @param height - Canvas pixel height
+ * @returns Data coordinates (x, y)
+ */
 export function transformCanvasToData(
   canvasX: number,
   canvasY: number,
@@ -66,6 +86,12 @@ export function transformCanvasToData(
   return { x, y };
 }
 
+/**
+ * Snaps a value to the nearest grid step.
+ * @param value - Numeric value to snap
+ * @param step - Grid step size (default 1)
+ * @returns Value snapped to nearest step
+ */
 export function snapToGridValue(
   value: number,
   step: number = 1,
@@ -73,6 +99,14 @@ export function snapToGridValue(
   return Math.round(value / step) * step;
 }
 
+/**
+ * Evaluates a quadratic function at a given x value.
+ * @param x - Input value
+ * @param a - Coefficient of x^2
+ * @param b - Coefficient of x
+ * @param c - Constant term
+ * @returns The quadratic result a*x^2 + b*x + c
+ */
 export function evaluateQuadratic(
   x: number,
   a: number,
@@ -82,6 +116,13 @@ export function evaluateQuadratic(
   return a * x * x + b * x + c;
 }
 
+/**
+ * Evaluates a linear function at a given x value.
+ * @param x - Input value
+ * @param m - Slope
+ * @param b - Y intercept
+ * @returns The linear result m*x + b
+ */
 export function evaluateLinear(
   x: number,
   m: number,
@@ -90,6 +131,12 @@ export function evaluateLinear(
   return m * x + b;
 }
 
+/**
+ * Evaluates a mathematical expression (linear or quadratic) at x.
+ * @param expression - Math expression string (e.g., "2x^2+3x-1" or "mx+b")
+ * @param x - Input value
+ * @returns Evaluated result, or 0 if unparseable
+ */
 export function evaluateFunction(
   expression: string,
   x: number,
@@ -109,6 +156,13 @@ export function evaluateFunction(
   return parseFloat(expression) || 0;
 }
 
+/**
+ * Generates an SVG path string for a function over a domain.
+ * @param expression - Math expression string
+ * @param domain - X axis [min, max] range
+ * @param width - Canvas pixel width (determines point density)
+ * @returns Space-separated "x,y" point pairs for SVG path
+ */
 export function generateFunctionPath(
   expression: string,
   domain: [number, number],

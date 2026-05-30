@@ -4,6 +4,11 @@ export interface QuadraticCoefficients {
   c: number;
 }
 
+/**
+ * Parses a quadratic expression string into coefficients.
+ * @param expression - Quadratic string (e.g., "2x^2+3x-1")
+ * @returns QuadraticCoefficients or null if not parseable
+ */
 export function parseQuadratic(expression: string): QuadraticCoefficients | null {
   const match = expression.match(/(-?\d*\.?\d*)?x\^2(?:\s*([+-]\s*\d*\.?\d*)?x)?(?:\s*([+-]\s*\d*\.?\d*)?)?/);
   if (match) {

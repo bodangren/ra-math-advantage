@@ -48,6 +48,11 @@ export interface TeacherStudentDetailViewModel {
   }>;
 }
 
+/**
+ * Returns the Tailwind classes for a student status badge.
+ * @param status - The status value (at_risk, inactive, on_track, completed)
+ * @returns Tailwind class string for the status badge
+ */
 function statusClassName(status: TeacherStudentDetailViewModel['status']['value']) {
   switch (status) {
     case 'completed':
@@ -62,6 +67,13 @@ function statusClassName(status: TeacherStudentDetailViewModel['status']['value'
   }
 }
 
+/**
+ * Builds a guidance message for a student based on their progress summary.
+ * @param studentLabel - Display name or username for the student
+ * @param summary - Dashboard summary with lesson completion data
+ * @param status - The student's intervention status
+ * @returns Guidance message string
+ */
 function buildGuidance(
   studentLabel: string,
   summary: StudentDashboardSummary,
@@ -90,6 +102,11 @@ function buildGuidance(
   return `${studentLabel} is progressing through the published curriculum and has a clear next lesson to continue.`;
 }
 
+/**
+ * Builds the complete view model for the teacher student detail page.
+ * @param input - Student identity, progress snapshot, and unit data
+ * @returns Complete view model with student info, status, and unit summaries
+ */
 export function buildTeacherStudentDetailViewModel(
   input: TeacherStudentDetailInput,
 ): TeacherStudentDetailViewModel {

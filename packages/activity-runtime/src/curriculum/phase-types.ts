@@ -23,6 +23,11 @@ export const PHASE_TYPES: readonly PhaseType[] = [
   'reflection',
 ] as const;
 
+/**
+ * Type guard to validate a PhaseType value.
+ * @param value - Value to check
+ * @returns True if value is a valid PhaseType
+ */
 export function isValidPhaseType(value: unknown): value is PhaseType {
   return typeof value === 'string' && PHASE_TYPES.includes(value as PhaseType);
 }
@@ -97,6 +102,11 @@ const PHASE_DISPLAY_INFO: Record<PhaseType, PhaseDisplayInfo> = {
   },
 };
 
+/**
+ * Gets the display info for a phase type (label, icon, colors).
+ * @param phaseType - The phase type to look up
+ * @returns PhaseDisplayInfo with label, icon, color, and bgColor
+ */
 export function getPhaseDisplayInfo(phaseType: PhaseType): PhaseDisplayInfo {
   return PHASE_DISPLAY_INFO[phaseType];
 }
@@ -106,6 +116,11 @@ export const SKIPPABLE_PHASE_TYPES: readonly PhaseType[] = [
   'discourse',
 ] as const;
 
+/**
+ * Checks if a phase type is skippable by students.
+ * @param phaseType - The phase type to check
+ * @returns True if the phase type can be skipped
+ */
 export function isSkippable(phaseType: PhaseType): boolean {
   return SKIPPABLE_PHASE_TYPES.includes(phaseType);
 }

@@ -25,6 +25,11 @@ export interface GenerateAiFeedbackOptions {
   activityName?: string;
 }
 
+/**
+ * Formats target cells into a human-readable string for the prompt.
+ * @param targetCells - Array of target cell information
+ * @returns Formatted string describing target cells and expected values
+ */
 function formatTargetCells(targetCells: TargetCell[]): string {
   return targetCells.map(cell => {
     let line = `- ${cell.cell}: Expected ${cell.expectedValue}`;
@@ -35,6 +40,11 @@ function formatTargetCells(targetCells: TargetCell[]): string {
   }).join('\n');
 }
 
+/**
+ * Formats a validation result into a human-readable summary string.
+ * @param validationResult - The validation result to format
+ * @returns Formatted string with correct count and cell details
+ */
 function formatValidationResult(validationResult: ValidationResult): string {
   const correctCells = validationResult.feedback.filter(f => f.isCorrect).length;
   const totalCells = validationResult.totalCells;
@@ -48,6 +58,11 @@ function formatValidationResult(validationResult: ValidationResult): string {
   return `Correct: ${correctCells}/${totalCells}\n\nCell Details:\n${cellDetails}`;
 }
 
+/**
+ * Builds the AI feedback prompt from spreadsheet submission data.
+ * @param options - Feedback generation options including validation results
+ * @returns The formatted prompt string for the AI provider
+ */
 function buildFeedbackPrompt(options: GenerateAiFeedbackOptions): string {
   const { validationResult, targetCells, activityName } = options;
 
@@ -82,6 +97,12 @@ ${formatValidationResult(validationResult)}
 Respond only with the JSON object, no other text.`;
 }
 
+/**
+ * Generates AI feedback for a spreadsheet submission.
+ * @param options - Feedback generation options with spreadsheet data and validation
+ * @returns AI feedback object with score, strengths, improvements, and next steps
+ * @throws Error if AI provider is configured but fails
+ */
 export async function generateAiFeedback(options: GenerateAiFeedbackOptions): Promise<AiFeedback> {
   const provider = resolveOpenRouterProviderFromEnv();
 

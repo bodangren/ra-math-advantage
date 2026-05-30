@@ -108,6 +108,11 @@ const DEFAULT_COVERAGE_MONTHS = [6, 9, 12] as const;
 const DEFAULT_USEFUL_LIFE_MONTHS = [12, 24, 36, 60] as const;
 const DEFAULT_SCENARIO_KINDS: AdjustmentScenarioKind[] = ['deferral', 'accrual', 'depreciation'];
 
+/**
+ * Generates a seeded pseudo-random number generator using mulberry32 algorithm.
+ * @param seed - The seed value for the RNG
+ * @returns A function that returns seeded random numbers in [0, 1)
+ */
 function mulberry32(seed: number) {
   let t = seed >>> 0;
   return () => {
@@ -118,6 +123,7 @@ function mulberry32(seed: number) {
   };
 }
 
+/** Generates a random integer between min and max (inclusive) using the provided RNG. */
 function randomInt(rng: () => number, min: number, max: number) {
   const lower = Math.ceil(min);
   const upper = Math.floor(max);
@@ -128,10 +134,12 @@ function randomInt(rng: () => number, min: number, max: number) {
   return Math.floor(rng() * (upper - lower + 1)) + lower;
 }
 
+/** Picks a random item from an array using the provided RNG. */
 function pick<T>(items: readonly T[], rng: () => number) {
   return items[randomInt(rng, 0, items.length - 1)];
 }
 
+/** Parses an ISO date string and validates it, throwing on invalid input. */
 function parseIsoDate(value: string) {
   const date = new Date(`${value}T00:00:00Z`);
   if (Number.isNaN(date.getTime())) {
@@ -140,22 +148,26 @@ function parseIsoDate(value: string) {
   return date;
 }
 
+/** Converts a Date object to an ISO date string (YYYY-MM-DD). */
 function toIsoDate(date: Date) {
   return date.toISOString().slice(0, 10);
 }
 
+/** Adds a number of days to a base date string. */
 function addDays(baseDate: string, offset: number) {
   const date = parseIsoDate(baseDate);
   date.setUTCDate(date.getUTCDate() + offset);
   return toIsoDate(date);
 }
 
+/** Adds a number of months to a base date string. */
 function addMonths(baseDate: string, offset: number) {
   const date = parseIsoDate(baseDate);
   date.setUTCMonth(date.getUTCMonth() + offset);
   return toIsoDate(date);
 }
 
+/** Calculates the difference in days between two dates (inclusive). */
 function differenceInDays(startDate: string, endDate: string) {
   const start = parseIsoDate(startDate);
   const end = parseIsoDate(endDate);
@@ -163,6 +175,7 @@ function differenceInDays(startDate: string, endDate: string) {
   return Math.max(1, Math.round((end.getTime() - start.getTime()) / millisecondsPerDay) + 1);
 }
 
+/** Calculates the difference in months between two dates (inclusive). */
 function differenceInMonthsInclusive(startDate: string, endDate: string) {
   const start = parseIsoDate(startDate);
   const end = parseIsoDate(endDate);
@@ -170,10 +183,12 @@ function differenceInMonthsInclusive(startDate: string, endDate: string) {
   return Math.max(1, monthDiff);
 }
 
+/** Formats a number as a US locale currency string. */
 function formatAmount(amount: number) {
   return amount.toLocaleString('en-US');
 }
 
+/** Builds asset and expense account labels for a prepaid account. */
 function buildPrepaidLabels(accountLabel: string) {
   const baseLabel = accountLabel.trim();
   return {
@@ -182,6 +197,7 @@ function buildPrepaidLabels(accountLabel: string) {
   };
 }
 
+/** Builds the liability account label for an accrual scenario. */
 function buildAccrualCounterLabel(accountLabel: string) {
   const trimmed = accountLabel.trim();
 
@@ -196,10 +212,12 @@ function buildAccrualCounterLabel(accountLabel: string) {
   return `${trimmed} Payable`;
 }
 
+/** Builds the accumulated depreciation account label for an asset category. */
 function buildDepreciationCreditLabel(assetCategory: string) {
   return `Accumulated Depreciation - ${assetCategory.trim()}`;
 }
 
+/** Picks a scenario kind based on seed or requested preference. */
 function buildScenarioPicker(seed: number, requestedKind?: AdjustmentScenarioKind) {
   if (requestedKind) {
     return requestedKind;
@@ -209,6 +227,7 @@ function buildScenarioPicker(seed: number, requestedKind?: AdjustmentScenarioKin
   return pick(DEFAULT_SCENARIO_KINDS, rng);
 }
 
+/** Builds default values for a deferral adjustment scenario. */
 function buildDeferralDefaults(seed: number, config: DeferralAdjustmentConfig = {}): Required<DeferralAdjustmentConfig> {
   const rng = mulberry32(seed ^ 0x1a2b3c4d);
   const accountLabel = config.accountLabel ?? pick(DEFAULT_DEFERRAL_LABELS, rng);
@@ -231,6 +250,7 @@ function buildDeferralDefaults(seed: number, config: DeferralAdjustmentConfig = 
   };
 }
 
+/** Builds default values for an accrual adjustment scenario. */
 function buildAccrualDefaults(seed: number, config: AccrualAdjustmentConfig = {}): Required<AccrualAdjustmentConfig> {
   const rng = mulberry32(seed ^ 0x9e3779b9);
   const accrualKind = config.accrualKind ?? (seed % 2 === 0 ? 'revenue' : 'expense');
@@ -253,6 +273,7 @@ function buildAccrualDefaults(seed: number, config: AccrualAdjustmentConfig = {}
   };
 }
 
+/** Builds default values for a depreciation adjustment scenario. */
 function buildDepreciationDefaults(seed: number, config: DepreciationAdjustmentConfig = {}): Required<DepreciationAdjustmentConfig> {
   const rng = mulberry32(seed ^ 0x85ebca6b);
   const assetCategory = config.assetCategory ?? pick(DEFAULT_ASSET_CATEGORIES, rng);
@@ -280,6 +301,12 @@ function buildDepreciationDefaults(seed: number, config: DepreciationAdjustmentC
   };
 }
 
+/**
+ * Generates a deferral adjustment scenario (prepaid insurance, rent, etc.).
+ * @param seed - Random seed for reproducible generation
+ * @param config - Optional configuration overrides
+ * @returns A complete deferral adjustment scenario object
+ */
 export function generateDeferralAdjustmentScenario(
   seed: number,
   config: DeferralAdjustmentConfig = {},
@@ -326,6 +353,12 @@ export function generateDeferralAdjustmentScenario(
   };
 }
 
+/**
+ * Generates an accrual adjustment scenario (accrued revenue or expenses).
+ * @param seed - Random seed for reproducible generation
+ * @param config - Optional configuration overrides
+ * @returns A complete accrual adjustment scenario object
+ */
 export function generateAccrualAdjustmentScenario(
   seed: number,
   config: AccrualAdjustmentConfig = {},
@@ -368,6 +401,12 @@ export function generateAccrualAdjustmentScenario(
   };
 }
 
+/**
+ * Generates a depreciation adjustment scenario for fixed assets.
+ * @param seed - Random seed for reproducible generation
+ * @param config - Optional configuration overrides
+ * @returns A complete depreciation adjustment scenario object
+ */
 export function generateDepreciationAdjustmentScenario(
   seed: number,
   config: DepreciationAdjustmentConfig = {},
@@ -412,6 +451,12 @@ export function generateDepreciationAdjustmentScenario(
   };
 }
 
+/**
+ * Generates an adjustment scenario of the specified or randomly chosen kind.
+ * @param seed - Random seed for reproducible generation
+ * @param config - Optional configuration with scenario kind and type-specific options
+ * @returns An adjustment scenario (deferral, accrual, or depreciation)
+ */
 export function generateAdjustmentScenario(
   seed: number,
   config: AdjustmentScenarioConfig = {},

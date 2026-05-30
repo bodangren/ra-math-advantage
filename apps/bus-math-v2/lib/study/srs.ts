@@ -28,6 +28,11 @@ export interface ReviewResult {
 
 const fsrs = new FSRS({});
 
+/**
+ * Serializes a card state to a JSON-compatible format for storage.
+ * @param card - The FSRS card state to serialize
+ * @returns Serialized card state with string dates
+ */
 export function serializeCard(card: Card): SerializedCardState {
   return {
     due: card.due.toISOString(),
@@ -43,6 +48,11 @@ export function serializeCard(card: Card): SerializedCardState {
   };
 }
 
+/**
+ * Deserializes a stored card state back into an FSRS Card object.
+ * @param state - The serialized card state
+ * @returns Deserialized Card object
+ */
 export function deserializeCard(state: SerializedCardState): Card {
   return {
     due: new Date(state.due),
@@ -58,6 +68,11 @@ export function deserializeCard(state: SerializedCardState): Card {
   };
 }
 
+/**
+ * Creates a new scheduled term with initial FSRS card state.
+ * @param termSlug - The term slug identifier
+ * @returns Scheduled term with initial card state and due time
+ */
 export function scheduleNewTerm(termSlug: string): ScheduledTerm {
   const card = createEmptyCard();
   const now = new Date();
@@ -70,6 +85,12 @@ export function scheduleNewTerm(termSlug: string): ScheduledTerm {
   };
 }
 
+/**
+ * Processes a review rating for a scheduled term and returns updated state.
+ * @param scheduledTerm - The scheduled term being reviewed
+ * @param rating - The review rating (again, hard, good, easy)
+ * @returns Review result with mastery delta and updated card state
+ */
 export function processReview(
   scheduledTerm: ScheduledTerm,
   rating: 'again' | 'hard' | 'good' | 'easy'
@@ -100,6 +121,12 @@ export function processReview(
   };
 }
 
+/**
+ * Filters scheduled terms to find those that are due for review.
+ * @param scheduledTerms - Array of scheduled terms
+ * @param now - Current timestamp in milliseconds (defaults to Date.now())
+ * @returns Array of terms that are due
+ */
 export function getDueTerms(
   scheduledTerms: ScheduledTerm[],
   now: number = Date.now()
@@ -107,6 +134,11 @@ export function getDueTerms(
   return scheduledTerms.filter((term) => term.scheduledFor <= now);
 }
 
+/**
+ * Maps a numeric mastery score to a proficiency band category.
+ * @param masteryScore - Numeric mastery score (0-1 range)
+ * @returns Proficiency band category string
+ */
 export function proficiencyBand(masteryScore: number): 'new' | 'learning' | 'familiar' | 'mastered' {
   if (masteryScore === 0) return 'new';
   if (masteryScore < 0.3) return 'learning';
@@ -114,6 +146,12 @@ export function proficiencyBand(masteryScore: number): 'new' | 'learning' | 'fam
   return 'mastered';
 }
 
+/**
+ * Applies a delta to the current mastery score, clamped to [0, 1].
+ * @param currentScore - The current mastery score
+ * @param delta - The delta to apply
+ * @returns Updated mastery score clamped to valid range
+ */
 export function updateMastery(currentScore: number, delta: number): number {
   const newScore = currentScore + delta;
   return Math.max(0, Math.min(1, newScore));

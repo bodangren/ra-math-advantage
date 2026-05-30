@@ -11,10 +11,20 @@ export interface ConvexAdminAuth {
   token: string;
 }
 
+/**
+ * Checks if the current runtime environment is production.
+ * @param env - Environment object
+ * @returns True if NODE_ENV or VERCEL_ENV is 'production'
+ */
 function isProductionRuntime(env: EnvLike): boolean {
   return env.NODE_ENV === 'production' || env.VERCEL_ENV === 'production';
 }
 
+/**
+ * Searches config directories for a Convex admin key file.
+ * @param configRoot - Root directory to search for config.json files
+ * @returns Admin key string or null if not found
+ */
 async function findAdminKeyInConfigRoot(configRoot: string): Promise<string | null> {
   const fs = await import('node:fs/promises');
   const path = await import('node:path');
@@ -46,6 +56,12 @@ async function findAdminKeyInConfigRoot(configRoot: string): Promise<string | nu
   return null;
 }
 
+/**
+ * Searches local .convex directories for a Convex admin key.
+ * @param cwd - Current working directory to search from
+ * @param homeDir - Optional home directory path
+ * @returns Admin key string or null if not found
+ */
 async function readLocalConvexAdminKey(
   cwd: string,
   homeDir?: string,
@@ -68,6 +84,12 @@ async function readLocalConvexAdminKey(
   return null;
 }
 
+/**
+ * Resolves Convex admin auth from deploy key or local config.
+ * @param options - Options including cwd, env, and homeDir
+ * @returns ConvexAdminAuth with source and token
+ * @throws {Error} If no auth found in production
+ */
 export async function resolveConvexAdminAuth(
   options: ResolveConvexAdminAuthOptions = {},
 ): Promise<ConvexAdminAuth> {

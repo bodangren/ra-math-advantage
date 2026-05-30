@@ -6,6 +6,12 @@ export interface QueueOptions {
   now?: string;
 }
 
+/**
+ * Builds a daily review queue from a list of SRS cards.
+ * @param cards - Array of SRS card states
+ * @param options - Queue options (sessionSize, now)
+ * @returns Daily queue with cards due and session metadata
+ */
 export function buildDailyQueue(cards: SrsCardState[], options: QueueOptions = {}): DailyQueue {
   const { sessionSize = 10, now = new Date().toISOString() } = options;
   const nowMs = new Date(now).getTime();
@@ -22,6 +28,12 @@ export function buildDailyQueue(cards: SrsCardState[], options: QueueOptions = {
   };
 }
 
+/**
+ * Gets summary statistics for a card queue.
+ * @param cards - Array of SRS card states
+ * @param now - Optional current time ISO string
+ * @returns Queue summary with total due, total cards, and average overdue time
+ */
 export function getQueueSummary(cards: SrsCardState[], now?: string): {
   totalDue: number;
   totalCards: number;

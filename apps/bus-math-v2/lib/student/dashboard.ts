@@ -45,11 +45,21 @@ export interface StudentDashboardViewModel {
   units: StudentDashboardUnitView[];
 }
 
+/**
+ * Clamps a percentage value to the valid range of 0-100.
+ * @param value - The value to clamp
+ * @returns Clamped percentage value (0-100)
+ */
 function clampPercentage(value: number) {
   if (Number.isNaN(value)) return 0;
   return Math.max(0, Math.min(100, Math.round(value)));
 }
 
+/**
+ * Determines the lesson status based on completion data.
+ * @param lesson - The lesson to evaluate
+ * @returns LessonStatus string (not_started, in_progress, or completed)
+ */
 function getLessonStatus(lesson: StudentDashboardLesson): LessonStatus {
   if (lesson.totalPhases > 0 && lesson.completedPhases >= lesson.totalPhases) {
     return 'completed';
@@ -62,6 +72,11 @@ function getLessonStatus(lesson: StudentDashboardLesson): LessonStatus {
   return 'not_started';
 }
 
+/**
+ * Converts a lesson to a DashboardLessonAction with status and action label.
+ * @param lesson - The lesson to convert
+ * @returns DashboardLessonAction or null if not applicable
+ */
 function toLessonAction(lesson: StudentDashboardLesson): DashboardLessonAction | null {
   const status = getLessonStatus(lesson);
 
@@ -72,6 +87,13 @@ function toLessonAction(lesson: StudentDashboardLesson): DashboardLessonAction |
   };
 }
 
+/**
+ * Determines the overall unit status based on lesson progress.
+ * @param lessons - Array of lessons in the unit
+ * @param completedLessons - Number of lessons completed
+ * @param nextLesson - The next recommended lesson or null
+ * @returns UnitStatus string
+ */
 function getUnitStatus(
   lessons: StudentDashboardLesson[],
   completedLessons: number,
@@ -92,6 +114,11 @@ function getUnitStatus(
   return 'not_started';
 }
 
+/**
+ * Builds the complete student dashboard view model from unit data.
+ * @param units - Array of student dashboard units with lesson information
+ * @returns Complete view model with summary, next lesson, and unit details
+ */
 export function buildStudentDashboardViewModel(
   units: StudentDashboardUnit[],
 ): StudentDashboardViewModel {
