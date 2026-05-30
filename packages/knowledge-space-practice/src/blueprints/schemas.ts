@@ -163,6 +163,12 @@ export const generatorRegistrySchema = z.record(
 // Validation helpers
 // ---------------------------------------------------------------------------
 
+/**
+ * Validates a generator output against a Zod schema.
+ * @param output - Generator output to validate
+ * @param schema - Zod schema to validate against
+ * @returns ValidationResult with valid flag and any errors
+ */
 export function validateGeneratorOutput(
   output: GeneratorOutput,
   schema: z.ZodSchema,
@@ -182,6 +188,11 @@ export function validateGeneratorOutput(
   return { valid: false, errors };
 }
 
+/**
+ * Checks if a blueprint is ready for generation (has generatorKey if needed).
+ * @param blueprint - Knowledge blueprint to validate
+ * @returns ValidationResult with valid flag and any errors
+ */
 export function validateBlueprintGeneratorReadiness(
   blueprint: KnowledgeBlueprint,
 ): ValidationResult {
@@ -198,6 +209,12 @@ export function validateBlueprintGeneratorReadiness(
   return { valid: errors.length === 0, errors: errors.length > 0 ? errors : undefined };
 }
 
+/**
+ * Validates that a blueprint's rendererKey is accepted by a schema adapter.
+ * @param blueprint - Knowledge blueprint to validate
+ * @param adapter - Schema adapter with acceptRendererKey method
+ * @returns ValidationResult with valid flag and any errors
+ */
 export function validateRendererCompatibility(
   blueprint: KnowledgeBlueprint,
   adapter: SchemaAdapter,
@@ -217,6 +234,11 @@ export function validateRendererCompatibility(
   return { valid: true };
 }
 
+/**
+ * Validates that a blueprint's mode map aligns with its spec definitions.
+ * @param blueprint - Knowledge blueprint to validate
+ * @returns ValidationResult with valid flag and any errors
+ */
 export function validateModeSupport(
   blueprint: KnowledgeBlueprint,
 ): ValidationResult {
@@ -247,6 +269,11 @@ export function validateModeSupport(
   return { valid: errors.length === 0, errors: errors.length > 0 ? errors : undefined };
 }
 
+/**
+ * Validates grading consistency between gradingSpec and independentPracticeSpec.
+ * @param blueprint - Knowledge blueprint to validate
+ * @returns ValidationResult with valid flag and any errors
+ */
 export function validateGradingCompatibility(
   blueprint: KnowledgeBlueprint,
 ): ValidationResult {

@@ -85,6 +85,12 @@ type PreFetchedData = {
 
 
 
+/**
+ * Fetches timing baselines for problem families from the database.
+ * @param ctx - The query context
+ * @param familyIds - Set of problem family IDs to fetch baselines for
+ * @returns Map of timing baselines keyed by problem family ID
+ */
 async function fetchTimingBaselines(
   ctx: QueryCtx,
   familyIds: Set<string>
@@ -119,6 +125,13 @@ async function fetchTimingBaselines(
   return baselines;
 }
 
+/**
+ * Fetches submission timings from activity submissions for review logs.
+ * @param ctx - The query context
+ * @param studentId - The student's profile ID
+ * @param relevantReviews - Array of reviews to extract timings from
+ * @returns Map of submission ID to active time in milliseconds
+ */
 async function fetchSubmissionTimings(
   ctx: QueryCtx,
   studentId: Id<"profiles">,
@@ -172,6 +185,13 @@ async function fetchSubmissionTimings(
   return submissionTimings;
 }
 
+/**
+ * Derives submission timings from pre-fetched student submissions.
+ * @param studentId - The student's profile ID
+ * @param relevantReviews - Array of reviews to extract timings from
+ * @param preFetched - Pre-fetched data including submissions
+ * @returns Map of submission ID to active time in milliseconds
+ */
 function deriveSubmissionTimingsFromPreFetched(
   studentId: Id<"profiles">,
   relevantReviews: Array<{
@@ -211,6 +231,13 @@ function deriveSubmissionTimingsFromPreFetched(
   return submissionTimings;
 }
 
+/**
+ * Pre-fetches all data needed for teacher class proficiency computation.
+ * @param ctx - The query context
+ * @param studentIds - Array of student profile IDs
+ * @param allStudentCards - Map of student ID to their SRS cards
+ * @returns Pre-fetched data bundle for proficiency computation
+ */
 async function preFetchTeacherClassData(
   ctx: QueryCtx,
   studentIds: Id<"profiles">[],

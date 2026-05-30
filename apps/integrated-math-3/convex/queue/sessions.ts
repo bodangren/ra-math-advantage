@@ -4,6 +4,11 @@ import { Id } from "../_generated/dataModel";
 import { resolveDailyPracticeQueue, type ResolvedQueueItem } from "./queue";
 import type { SrsSession, SrsSessionConfig } from "@math-platform/srs-engine";
 
+/**
+ * Maps a database SRS session to the public contract format.
+ * @param session - The raw database session object
+ * @returns The session in contract format with ISO date strings
+ */
 function mapDbSessionToContract(session: {
   _id: Id<"srs_sessions">;
   studentId: Id<"profiles">;
@@ -26,6 +31,12 @@ function mapDbSessionToContract(session: {
   };
 }
 
+/**
+ * Checks if two timestamps represent the same calendar day in UTC.
+ * @param a - First timestamp in milliseconds
+ * @param b - Second timestamp in milliseconds
+ * @returns True if both timestamps are on the same UTC day
+ */
 function isSameDay(a: number, b: number): boolean {
   const d1 = new Date(a);
   const d2 = new Date(b);
