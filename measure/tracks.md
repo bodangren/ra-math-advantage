@@ -887,6 +887,21 @@ AI Tutoring and Workbook scope is explicitly **import/adopt from BM2**, not gree
 
 ## Test Suite Maintenance
 
+## Documentation Tracks
+
+- [ ] **Track: JSDoc Comments — All Functions**
+   *Add standard JSDoc comments (summary, @param, @returns, @throws) to all 2,108 undocumented functions across IM3, BM2, and packages. Work proceeds directory-by-directory, exported functions first.*
+   *Link: [./tracks/jsdoc-comments_20260526/](./tracks/jsdoc-comments_20260526/)*
+   - Phase 1: BM2 lib/ [ ]
+   - Phase 2: BM2 components/ [ ]
+   - Phase 3: BM2 app/convex/scripts/other/ [ ]
+   - Phase 4: IM3 convex/ [ ]
+   - Phase 5: IM3 components/ [ ]
+   - Phase 6: IM3 lib/ [ ]
+   - Phase 7: IM3 app/scripts/other/ [ ]
+   - Phase 8: Packages src/ [ ]
+   - Phase 9: Packages components/lib/other/ [ ]
+
 ## Archived Tracks
 
 - [x] **Track: Scaffold App Pages & Layouts**
