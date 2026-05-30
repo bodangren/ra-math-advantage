@@ -143,6 +143,11 @@ export const transactionArchetypeCatalog = [
 
 const transactionArchetypeById = new Map(transactionArchetypeCatalog.map((archetype) => [archetype.id, archetype]));
 
+/**
+ * Generates a pseudorandom number generator using the mulberry32 algorithm.
+ * @param seed - The seed value for the RNG
+ * @returns A function that returns numbers in [0, 1)
+ */
 function mulberry32(seed: number) {
   let t = seed >>> 0;
   return () => {
@@ -153,6 +158,13 @@ function mulberry32(seed: number) {
   };
 }
 
+/**
+ * Generates a random integer between min and max (inclusive) using the RNG.
+ * @param rng - The random number generator to use
+ * @param min - The minimum value (inclusive)
+ * @param max - The maximum value (inclusive)
+ * @returns A random integer in the range [min, max]
+ */
 function randomInt(rng: () => number, min: number, max: number) {
   const lower = Math.ceil(min);
   const upper = Math.floor(max);
@@ -163,14 +175,33 @@ function randomInt(rng: () => number, min: number, max: number) {
   return Math.floor(rng() * (upper - lower + 1)) + lower;
 }
 
+/**
+ * Picks a random element from an array using the given RNG.
+ * @param items - The array to pick from
+ * @param rng - The random number generator to use
+ * @returns A randomly selected element
+ */
 function pick<T>(items: readonly T[], rng: () => number) {
   return items[randomInt(rng, 0, items.length - 1)];
 }
 
+/**
+ * Formats a numeric amount as a locale string for display.
+ * @param amount - The numeric amount to format
+ * @returns The formatted amount string
+ */
 function formatAmount(amount: number) {
   return amount.toLocaleString('en-US');
 }
 
+/**
+ * Resolves a role string to an account ID based on context and options.
+ * @param role - The role string to resolve
+ * @param options - Transaction build options containing assetKind and expenseAccountId
+ * @param context - The transaction context ('service' or 'merchandise')
+ * @returns The resolved account ID
+ * @throws Error if the role is not supported
+ */
 function resolveAccountId(role: string, options: TransactionBuildOptions, context: TransactionContext) {
   switch (role) {
     case 'cash':
@@ -204,6 +235,16 @@ function resolveAccountId(role: string, options: TransactionBuildOptions, contex
   }
 }
 
+/**
+ * Builds a transaction effect for a given role, direction, and amount.
+ * @param role - The account role for the effect
+ * @param direction - Whether this effect increases or decreases the account
+ * @param amount - The dollar amount of the effect
+ * @param options - Transaction build options
+ * @param context - The transaction context
+ * @returns A TransactionEffect object describing the effect
+ * @throws Error if the account cannot be resolved
+ */
 function buildEffect(
   role: string,
   direction: TransactionEffectDirection,
@@ -239,6 +280,12 @@ function buildEffect(
   };
 }
 
+/**
+ * Builds journal lines from transaction effects with debit/credit assignment.
+ * @param effects - The array of transaction effects
+ * @param memo - The memo/narrative to attach to each line
+ * @returns Array of TransactionJournalLine objects
+ */
 function buildJournalLines(effects: TransactionEffect[], memo: string): TransactionJournalLine[] {
   return effects.map((effect) => ({
     accountId: effect.accountId,
@@ -249,6 +296,11 @@ function buildJournalLines(effects: TransactionEffect[], memo: string): Transact
   }));
 }
 
+/**
+ * Builds the base transaction event object from provided data.
+ * @param args - All event parameters including archetypeId, title, narrative, context, amount, effects, and optional settlement/assetKind/tags
+ * @returns A complete TransactionEvent object
+ */
 function buildEventBase(args: {
   archetypeId: TransactionArchetypeId;
   title: string;
@@ -281,6 +333,13 @@ function buildEventBase(args: {
   };
 }
 
+/**
+ * Builds an owner investment transaction event.
+ * @param amount - The dollar amount invested
+ * @param context - The transaction context
+ * @param options - Transaction build options
+ * @returns A TransactionEvent for owner investment
+ */
 function buildOwnerInvestment(amount: number, context: TransactionContext, options: TransactionBuildOptions) {
   const effects = [
     buildEffect('cash', 'increase', amount, options, context),
@@ -300,6 +359,14 @@ function buildOwnerInvestment(amount: number, context: TransactionContext, optio
   });
 }
 
+/**
+ * Builds a revenue recognition transaction event.
+ * @param amount - The dollar amount of revenue
+ * @param context - The transaction context
+ * @param settlement - Whether cash was received or revenue is on account
+ * @param options - Transaction build options
+ * @returns A TransactionEvent for revenue recognition
+ */
 function buildRevenueEvent(amount: number, context: TransactionContext, settlement: TransactionSettlement, options: TransactionBuildOptions) {
   const revenueEffect = buildEffect('revenue', 'increase', amount, options, context);
   const offsetRole = settlement === 'cash' ? 'cash' : 'receivable';
@@ -323,6 +390,13 @@ function buildRevenueEvent(amount: number, context: TransactionContext, settleme
   });
 }
 
+/**
+ * Builds a receivable collection transaction event.
+ * @param amount - The dollar amount collected
+ * @param context - The transaction context
+ * @param options - Transaction build options
+ * @returns A TransactionEvent for collecting a receivable
+ */
 function buildCollectReceivable(amount: number, context: TransactionContext, options: TransactionBuildOptions) {
   const effects = [
     buildEffect('cash', 'increase', amount, options, context),
@@ -342,6 +416,13 @@ function buildCollectReceivable(amount: number, context: TransactionContext, opt
   });
 }
 
+/**
+ * Builds a payable payment transaction event.
+ * @param amount - The dollar amount paid
+ * @param context - The transaction context
+ * @param options - Transaction build options
+ * @returns A TransactionEvent for paying a payable
+ */
 function buildPayPayable(amount: number, context: TransactionContext, options: TransactionBuildOptions) {
   const effects = [
     buildEffect('payable', 'decrease', amount, options, context),
@@ -361,6 +442,14 @@ function buildPayPayable(amount: number, context: TransactionContext, options: T
   });
 }
 
+/**
+ * Builds an expense payment transaction event.
+ * @param amount - The dollar amount of the expense
+ * @param context - The transaction context
+ * @param settlement - Whether cash was paid or expense is on account
+ * @param options - Transaction build options
+ * @returns A TransactionEvent for paying an expense
+ */
 function buildPayExpense(
   amount: number,
   context: TransactionContext,
@@ -391,6 +480,15 @@ function buildPayExpense(
   });
 }
 
+/**
+ * Builds an asset purchase transaction event.
+ * @param amount - The dollar amount of the purchase
+ * @param context - The transaction context
+ * @param settlement - Whether cash was paid or purchase is on account
+ * @param assetKind - The type of asset being purchased
+ * @param options - Transaction build options
+ * @returns A TransactionEvent for purchasing an asset
+ */
 function buildPurchaseAsset(
   amount: number,
   context: TransactionContext,
@@ -423,6 +521,13 @@ function buildPurchaseAsset(
   });
 }
 
+/**
+ * Builds a customer advance receipt transaction event.
+ * @param amount - The dollar amount of the advance
+ * @param context - The transaction context
+ * @param options - Transaction build options
+ * @returns A TransactionEvent for receiving a customer advance
+ */
 function buildReceiveAdvance(amount: number, context: TransactionContext, options: TransactionBuildOptions) {
   const effects = [
     buildEffect('cash', 'increase', amount, options, context),
@@ -442,6 +547,13 @@ function buildReceiveAdvance(amount: number, context: TransactionContext, option
   });
 }
 
+/**
+ * Builds an owner withdrawal transaction event.
+ * @param amount - The dollar amount withdrawn
+ * @param context - The transaction context
+ * @param options - Transaction build options
+ * @returns A TransactionEvent for owner withdrawal
+ */
 function buildOwnerWithdrawal(amount: number, context: TransactionContext, options: TransactionBuildOptions) {
   const effects = [
     buildEffect('withdrawals', 'increase', amount, options, context),
