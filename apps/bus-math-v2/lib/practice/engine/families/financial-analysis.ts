@@ -48,6 +48,11 @@ export interface FinancialAnalysisReviewFeedback {
   message?: string;
 }
 
+/**
+ * Generates a pseudorandom number generator using the mulberry32 algorithm.
+ * @param seed - The seed value for the RNG
+ * @returns A function that returns numbers in [0, 1)
+ */
 function mulberry32(seed: number) {
   let t = seed >>> 0;
   return () => {
@@ -58,26 +63,59 @@ function mulberry32(seed: number) {
   };
 }
 
+/**
+ * Picks a random element from an array using the given RNG.
+ * @param items - The array to pick from
+ * @param rng - The random number generator to use
+ * @returns A randomly selected element
+ */
 function pick<T>(items: readonly T[], rng: () => number): T {
   return items[Math.floor(rng() * items.length)];
 }
 
+/**
+ * Rounds a number to 4 decimal places.
+ * @param n - The number to round
+ * @returns The number rounded to 4 decimal places
+ */
 function round4(n: number) {
   return Math.round(n * 10000) / 10000;
 }
 
+/**
+ * Rounds a number to 2 decimal places.
+ * @param n - The number to round
+ * @returns The number rounded to 2 decimal places
+ */
 function round2(n: number) {
   return Math.round(n * 100) / 100;
 }
 
+/**
+ * Formats a ratio number to 4 decimal places.
+ * @param n - The ratio number to format
+ * @returns The formatted ratio string
+ */
 function formatRatio(n: number) {
   return n.toFixed(4);
 }
 
+/**
+ * Formats a numeric amount as a locale string for display.
+ * @param n - The numeric amount to format
+ * @returns The formatted amount string
+ */
 function formatAmount(n: number) {
   return n.toLocaleString('en-US');
 }
 
+/**
+ * Scores a numeric part by comparing expected value against student response within tolerance.
+ * @param expected - The expected numeric value
+ * @param actual - The student's actual response
+ * @param tolerance - The acceptable difference threshold
+ * @returns An object with isCorrect, score, and normalizedAnswer
+ */
 function scoreNumericPart(expected: number, actual: unknown, tolerance: number) {
   const parsed = Number(actual);
   if (!Number.isFinite(parsed)) {
@@ -87,6 +125,12 @@ function scoreNumericPart(expected: number, actual: unknown, tolerance: number) 
   return { isCorrect, score: isCorrect ? 1 : 0, normalizedAnswer: normalizePracticeValue(parsed) };
 }
 
+/**
+ * Builds profitability analysis parts (profit margin and return on assets).
+ * @param ledger - The mini ledger containing financial data
+ * @param tolerance - The numeric tolerance for grading
+ * @returns Array of FinancialAnalysisPart definitions
+ */
 function buildProfitabilityParts(ledger: MiniLedger, tolerance: number): FinancialAnalysisPart[] {
   const revenue = ledger.totals.revenue;
   const netIncome = ledger.totals.netIncome;
@@ -134,6 +178,12 @@ function buildProfitabilityParts(ledger: MiniLedger, tolerance: number): Financi
   ];
 }
 
+/**
+ * Builds liquidity analysis parts (current ratio and working capital).
+ * @param ledger - The mini ledger containing financial data
+ * @param tolerance - The numeric tolerance for grading
+ * @returns Array of FinancialAnalysisPart definitions
+ */
 function buildLiquidityParts(ledger: MiniLedger, tolerance: number): FinancialAnalysisPart[] {
   const totalAssets = ledger.totals.netAssets;
   const totalLiabilities = ledger.totals.liabilities;
@@ -179,6 +229,12 @@ function buildLiquidityParts(ledger: MiniLedger, tolerance: number): FinancialAn
   ];
 }
 
+/**
+ * Builds leverage analysis parts (debt ratio and debt-to-equity ratio).
+ * @param ledger - The mini ledger containing financial data
+ * @param tolerance - The numeric tolerance for grading
+ * @returns Array of FinancialAnalysisPart definitions
+ */
 function buildLeverageParts(ledger: MiniLedger, tolerance: number): FinancialAnalysisPart[] {
   const totalAssets = ledger.totals.netAssets;
   const totalLiabilities = ledger.totals.liabilities;

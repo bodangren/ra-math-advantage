@@ -81,6 +81,11 @@ interface MerchandisingEntryScenarioBuilder {
   build(seed: number): MerchandisingEntryScenario;
 }
 
+/**
+ * Generates a pseudorandom number generator using the mulberry32 algorithm.
+ * @param seed - The seed value for the RNG
+ * @returns A function that returns numbers in [0, 1)
+ */
 function mulberry32(seed: number) {
   let t = seed >>> 0;
   return () => {
@@ -91,18 +96,39 @@ function mulberry32(seed: number) {
   };
 }
 
+/**
+ * Picks a random element from an array using the given RNG.
+ * @param items - The array to pick from
+ * @param rng - The random number generator to use
+ * @returns A randomly selected element
+ */
 function pick<T>(items: readonly T[], rng: () => number) {
   return items[Math.floor(rng() * items.length)];
 }
 
+/**
+ * Formats a numeric amount as a locale string for display.
+ * @param amount - The numeric amount to format
+ * @returns The formatted amount string
+ */
 function formatAmount(amount: number) {
   return amount.toLocaleString('en-US');
 }
 
+/**
+ * Creates a shallow clone of a merchandising entry line.
+ * @param line - The line to clone
+ * @returns A new line with the same properties
+ */
 function cloneLine(line: MerchandisingEntryLine): MerchandisingEntryLine {
   return { ...line };
 }
 
+/**
+ * Creates a normalized signature string for a line for comparison.
+ * @param line - The merchandising entry line to sign
+ * @returns A pipe-delimited normalized string
+ */
 function lineSignature(line: MerchandisingEntryLine) {
   return [
     line.date.trim().toLowerCase(),
@@ -112,20 +138,42 @@ function lineSignature(line: MerchandisingEntryLine) {
   ].join('|');
 }
 
+/**
+ * Checks if an expected line matches an actual line by comparing signatures.
+ * @param expected - The expected merchandising entry line
+ * @param actual - The actual line to check
+ * @returns True if the lines match, false otherwise
+ */
 function lineMatches(expected: MerchandisingEntryLine, actual?: MerchandisingEntryLine) {
   return !!actual && lineSignature(expected) === lineSignature(actual);
 }
 
+/**
+ * Checks if an expected line is present anywhere in the actual lines array.
+ * @param expected - The expected merchandising entry line
+ * @param actualLines - Array of actual lines to search
+ * @returns True if the expected line is present in any position
+ */
 function linePresentAnywhere(expected: MerchandisingEntryLine, actualLines: MerchandisingEntryLine[]) {
   const expectedSignature = lineSignature(expected);
   return actualLines.some((line) => lineSignature(line) === expectedSignature);
 }
 
+/**
+ * Builds a scenario title based on the role.
+ * @param role - Either 'seller' or 'buyer'
+ * @returns A human-readable scenario title
+ */
 function buildScenarioTitle(role: 'seller' | 'buyer') {
   const action = role === 'seller' ? 'Seller perpetual merchandising entries' : 'Buyer perpetual merchandising entries';
   return `${action}`;
 }
 
+/**
+ * Builds a focus description highlighting the key accounting challenges in the timeline.
+ * @param timeline - The merchandising timeline definition
+ * @returns A pipe-delimited string of trap descriptions
+ */
 function buildFocus(timeline: MerchandisingTimelineDefinition) {
   const traps = [];
   if (timeline.role === 'seller') {
@@ -145,6 +193,11 @@ function buildFocus(timeline: MerchandisingTimelineDefinition) {
   return traps.join(' • ');
 }
 
+/**
+ * Enriches a timeline with scenario metadata, journal lines, and available accounts.
+ * @param timeline - The merchandising timeline to enrich
+ * @returns A complete MerchandisingEntryScenario
+ */
 function enrichTimeline(timeline: MerchandisingTimelineDefinition): MerchandisingEntryScenario {
   const solution = solveMerchandisingTimeline(timeline);
   const journalLines = solution.journalLines.map((line, index) => ({
@@ -191,6 +244,11 @@ function enrichTimeline(timeline: MerchandisingTimelineDefinition): Merchandisin
   };
 }
 
+/**
+ * Builds a seller-side perpetual merchandising timeline scenario.
+ * @param seed - The seed for randomization
+ * @returns A configured MerchandisingEntryScenario
+ */
 function buildSellerScenario(seed: number): MerchandisingEntryScenario {
   const rng = mulberry32(seed ^ 0x632be59b);
   const saleAmount = pick([1200, 1500, 1800, 2400, 3000], rng);
@@ -209,6 +267,11 @@ function buildSellerScenario(seed: number): MerchandisingEntryScenario {
   );
 }
 
+/**
+ * Builds a buyer-side perpetual merchandising timeline scenario.
+ * @param seed - The seed for randomization
+ * @returns A configured MerchandisingEntryScenario
+ */
 function buildBuyerScenario(seed: number): MerchandisingEntryScenario {
   const rng = mulberry32(seed ^ 0x94d049bb);
   const saleAmount = pick([900, 1200, 1500, 1800, 2400], rng);
@@ -232,17 +295,33 @@ export const merchandisingEntryScenarioCatalog = [
   { kind: 'buyer-timeline', build: buildBuyerScenario },
 ] as const satisfies readonly MerchandisingEntryScenarioBuilder[];
 
+/**
+ * Selects a random scenario kind from the catalog using the seed.
+ * @param seed - The seed for randomization
+ * @returns A randomly selected MerchandisingEntryScenarioKind
+ */
 function pickScenarioKind(seed: number) {
   const rng = mulberry32(seed ^ 0x3c6ef372);
   return merchandisingEntryScenarioCatalog[Math.floor(rng() * merchandisingEntryScenarioCatalog.length)].kind;
 }
 
+/**
+ * Builds a complete scenario by selecting and invoking the appropriate scenario builder.
+ * @param seed - The seed for randomization
+ * @param config - Configuration options including optional scenarioKey
+ * @returns A configured MerchandisingEntryScenario
+ */
 function buildScenario(seed: number, config: MerchandisingEntryConfig): MerchandisingEntryScenario {
   const scenarioKey = config.scenarioKey ?? pickScenarioKind(seed);
   const builder = merchandisingEntryScenarioCatalog.find((entry) => entry.kind === scenarioKey) ?? merchandisingEntryScenarioCatalog[0];
   return builder.build(seed);
 }
 
+/**
+ * Builds the problem parts from a scenario, mapping each journal line to a part.
+ * @param scenario - The scenario to build parts from
+ * @returns Array of MerchandisingEntryPart definitions
+ */
 function buildParts(scenario: MerchandisingEntryScenario): MerchandisingEntryPart[] {
   return scenario.journalLines.map((line, index) => {
     const accountLabel = getAccountById(line.accountId)?.label ?? line.accountId;
@@ -273,10 +352,24 @@ function buildParts(scenario: MerchandisingEntryScenario): MerchandisingEntryPar
   });
 }
 
+/**
+ * Builds the canonical response by cloning all journal lines from the definition.
+ * @param definition - The problem definition
+ * @returns Array of cloned merchandising entry lines
+ */
 function buildResponse(definition: MerchandisingEntryDefinition): MerchandisingEntryResponse {
   return definition.journalLines.map(cloneLine);
 }
 
+/**
+ * Builds feedback for a single part comparing student response to expected values.
+ * @param part - The part definition
+ * @param studentResponse - The student's response array
+ * @param gradeResultPart - The grade result for this part
+ * @param expectedLine - The expected merchandising entry line
+ * @param studentLine - The student's submitted line
+ * @returns Feedback object with status and message
+ */
 function buildPartFeedback(
   part: MerchandisingEntryPart,
   studentResponse: MerchandisingEntryResponse,

@@ -49,6 +49,11 @@ interface CandidateAccount {
   priority: number;
 }
 
+/**
+ * Generates a pseudorandom number generator using the mulberry32 algorithm.
+ * @param seed - The seed value for the RNG
+ * @returns A function that returns numbers in [0, 1)
+ */
 function mulberry32(seed: number) {
   let t = seed >>> 0;
   return () => {
@@ -59,10 +64,23 @@ function mulberry32(seed: number) {
   };
 }
 
+/**
+ * Clamps a value between min and max bounds.
+ * @param value - The value to clamp
+ * @param min - The minimum bound
+ * @param max - The maximum bound
+ * @returns The clamped value
+ */
 function clamp(value: number, min: number, max: number) {
   return Math.max(min, Math.min(max, value));
 }
 
+/**
+ * Shuffles an array using the Fisher-Yates algorithm.
+ * @param items - The array to shuffle
+ * @param rng - The random number generator to use
+ * @returns A new shuffled array
+ */
 function shuffle<T>(items: T[], rng: () => number) {
   const clone = [...items];
   for (let index = clone.length - 1; index > 0; index -= 1) {
@@ -72,6 +90,13 @@ function shuffle<T>(items: T[], rng: () => number) {
   return clone;
 }
 
+/**
+ * Builds candidate accounts with computed selection priority weights.
+ * @param companyScope - The company scope filter ('service' or 'retail')
+ * @param includeContraAccounts - Whether to include contra accounts
+ * @param rng - The random number generator to use
+ * @returns Array of candidate accounts with priority values
+ */
 function buildCandidates(
   companyScope: NormalBalanceCompanyScope,
   includeContraAccounts: boolean,
@@ -92,6 +117,13 @@ function buildCandidates(
     });
 }
 
+/**
+ * Selects a balanced set of accounts ensuring both debit and credit normal balance representation.
+ * @param candidates - The array of candidate accounts with priorities
+ * @param accountCount - The total number of accounts to select
+ * @param rng - The random number generator to use
+ * @returns Array of randomly selected candidate accounts
+ */
 function selectBalancedAccounts(
   candidates: CandidateAccount[],
   accountCount: number,
@@ -142,6 +174,12 @@ function selectBalancedAccounts(
   return shuffle(selected.slice(0, accountCount), rng);
 }
 
+/**
+ * Builds normal balance parts from selected candidate accounts.
+ * @param selected - Array of selected candidate accounts
+ * @param companyScope - The company scope for the problem
+ * @returns Array of NormalBalancePart definitions
+ */
 function buildParts(selected: CandidateAccount[], companyScope: NormalBalanceCompanyScope): NormalBalancePart[] {
   return selected.map((candidate) => ({
     id: candidate.account.id,
@@ -174,10 +212,20 @@ function buildParts(selected: CandidateAccount[], companyScope: NormalBalanceCom
   }));
 }
 
+/**
+ * Builds the canonical response by mapping part IDs to their target normal balance sides.
+ * @param definition - The problem definition
+ * @returns Response object mapping account IDs to normal balance sides
+ */
 function buildNormalBalanceResponse(definition: NormalBalanceDefinition): NormalBalanceResponse {
   return Object.fromEntries(definition.parts.map((part) => [part.id, part.targetId]));
 }
 
+/**
+ * Looks up the normal balance side of a contra account's parent account.
+ * @param part - The normal balance part to get the contra parent for
+ * @returns The parent account's normal balance side, or null if not found
+ */
 function getContraParentBalance(part: NormalBalancePart) {
   if (!part.details.contraOf) {
     return null;
@@ -186,6 +234,11 @@ function getContraParentBalance(part: NormalBalancePart) {
   return practiceAccounts.find((account) => account.id === part.details.contraOf)?.normalBalance ?? null;
 }
 
+/**
+ * Generates an explanation of why an account has its normal balance side.
+ * @param part - The normal balance part to explain
+ * @returns A string explaining the account's normal balance
+ */
 function explainNormalBalance(part: NormalBalancePart) {
   if (part.details.isContraAccount && part.details.contraOf) {
     return `${part.label} is a contra account, so it uses the opposite side from ${part.details.contraOf}.`;
@@ -207,6 +260,13 @@ function explainNormalBalance(part: NormalBalancePart) {
   }
 }
 
+/**
+ * Builds feedback for a single part comparing student response to expected values.
+ * @param part - The part definition
+ * @param studentResponse - The student's response map
+ * @param gradeResult - The grade result for this part
+ * @returns Feedback object with status and message
+ */
 function buildPartFeedback(part: NormalBalancePart, studentResponse: NormalBalanceResponse, gradeResult: GradeResult['parts'][number]) {
   const selectedBalance = normalizePracticeValue(studentResponse[part.id]) as NormalBalanceSide;
   const expectedBalance = part.targetId;

@@ -66,6 +66,11 @@ export interface PostingBalanceReviewFeedback {
   message?: string;
 }
 
+/**
+ * Generates a pseudorandom number generator using the mulberry32 algorithm.
+ * @param seed - The seed value for the RNG
+ * @returns A function that returns numbers in [0, 1)
+ */
 function mulberry32(seed: number) {
   let t = seed >>> 0;
   return () => {
@@ -76,6 +81,13 @@ function mulberry32(seed: number) {
   };
 }
 
+/**
+ * Generates a random integer between min and max (inclusive) using the RNG.
+ * @param rng - The random number generator to use
+ * @param min - The minimum value (inclusive)
+ * @param max - The maximum value (inclusive)
+ * @returns A random integer in the range [min, max]
+ */
 function randomInt(rng: () => number, min: number, max: number) {
   const lower = Math.ceil(min);
   const upper = Math.floor(max);
@@ -86,6 +98,12 @@ function randomInt(rng: () => number, min: number, max: number) {
   return Math.floor(rng() * (upper - lower + 1)) + lower;
 }
 
+/**
+ * Shuffles an array using the Fisher-Yates algorithm.
+ * @param items - The array to shuffle
+ * @param rng - The random number generator to use
+ * @returns A new shuffled array
+ */
 function shuffle<T>(items: T[], rng: () => number) {
   const clone = [...items];
   for (let index = clone.length - 1; index > 0; index -= 1) {
@@ -95,19 +113,47 @@ function shuffle<T>(items: T[], rng: () => number) {
   return clone;
 }
 
+/**
+ * Formats a numeric amount as a locale string for display.
+ * @param amount - The numeric amount to format
+ * @returns The formatted amount string
+ */
 function formatAmount(amount: number) {
   return amount.toLocaleString('en-US');
 }
 
+/**
+ * Converts a value to a positive amount with a minimum of 1.
+ * @param value - The numeric value to convert
+ * @returns The positive amount (minimum 1)
+ */
 function toPositiveAmount(value: number) {
   return Math.max(1, Math.round(Math.abs(value)));
 }
 
+/**
+ * Builds an effect label describing how a posting affects an account balance.
+ * @param normalSide - The account's normal balance side
+ * @param direction - Whether the posting increases or decreases the balance
+ * @param amount - The posting amount
+ * @returns A formatted effect label string
+ */
 function buildReferenceEffectLabel(normalSide: PostingBalanceNormalSide, direction: 'increase' | 'decrease', amount: number) {
   const effectSide = direction === 'increase' ? normalSide : normalSide === 'debit' ? 'credit' : 'debit';
   return `${effectSide[0].toUpperCase()}${effectSide.slice(1)} ${formatAmount(amount)}`;
 }
 
+/**
+ * Builds a single posting reference line for the posting sequence display.
+ * @param seed - The seed for generating the line ID
+ * @param accountId - The account ID
+ * @param accountLabel - The account display label
+ * @param normalSide - The account's normal balance side
+ * @param direction - Whether this posting increases or decreases the balance
+ * @param amount - The posting amount
+ * @param index - The index of this posting in the sequence
+ * @returns A configured PostingBalanceReferenceLine
+ */
 function buildPostingLine(
   seed: number,
   accountId: PostingBalanceAccountId,
@@ -132,12 +178,26 @@ function buildPostingLine(
   };
 }
 
+/**
+ * Builds the account selection from the mini ledger based on account count and eligibility.
+ * @param miniLedger - The mini ledger containing account data
+ * @param seed - The seed for randomization
+ * @param targetAccountCount - The number of accounts to select
+ * @returns Array of selected accounts
+ */
 function buildAccountSelection(miniLedger: MiniLedger, seed: number, targetAccountCount: number) {
   const rng = mulberry32(seed ^ 0x6d2b79f5);
   const eligible = miniLedger.accounts.filter((account) => account.retailApplicable || miniLedger.companyType === 'service');
   return shuffle(eligible, rng).slice(0, Math.max(3, Math.min(targetAccountCount, eligible.length)));
 }
 
+/**
+ * Builds the posting balance rows with posting lines and ending balance targets.
+ * @param seed - The seed for randomization
+ * @param miniLedger - The mini ledger containing account data
+ * @param config - The problem configuration
+ * @returns Array of PostingBalanceRow definitions
+ */
 function buildRows(seed: number, miniLedger: MiniLedger, config: PostingBalanceConfig) {
   const rng = mulberry32(seed ^ 0x4cf5ad43);
   const targetAccountCount = config.targetAccountCount ?? 4;
@@ -207,10 +267,22 @@ function buildRows(seed: number, miniLedger: MiniLedger, config: PostingBalanceC
   });
 }
 
+/**
+ * Builds the canonical response by mapping row IDs to their target ending balances.
+ * @param definition - The problem definition
+ * @returns Response object mapping account IDs to ending balances
+ */
 function buildResponse(definition: PostingBalanceDefinition): PostingBalanceResponse {
   return Object.fromEntries(definition.rows.map((row) => [row.id, row.targetId]));
 }
 
+/**
+ * Scores a numeric part by comparing expected value against student response within tolerance.
+ * @param expected - The expected numeric value
+ * @param actual - The student's actual response
+ * @param tolerance - The acceptable difference threshold
+ * @returns An object with isCorrect, score, and normalizedAnswer
+ */
 function scoreNumericPart(expected: number, actual: unknown, tolerance: number) {
   const parsed = Number(actual);
   if (!Number.isFinite(parsed)) {
@@ -229,6 +301,13 @@ function scoreNumericPart(expected: number, actual: unknown, tolerance: number) 
   };
 }
 
+/**
+ * Builds feedback for a single part comparing student response to expected values.
+ * @param part - The part definition
+ * @param studentResponse - The student's response map
+ * @param gradeResultPart - The grade result for this part
+ * @returns Feedback object with status and message
+ */
 function buildPartFeedback(
   part: PostingBalanceRow,
   studentResponse: PostingBalanceResponse,

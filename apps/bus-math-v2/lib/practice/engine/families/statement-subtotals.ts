@@ -64,6 +64,11 @@ export interface StatementSubtotalsReviewFeedback {
   message?: string;
 }
 
+/**
+ * Generates a pseudorandom number generator using the mulberry32 algorithm.
+ * @param seed - The seed value for the RNG
+ * @returns A function that returns numbers in [0, 1)
+ */
 function mulberry32(seed: number) {
   let t = seed >>> 0;
   return () => {
@@ -74,14 +79,32 @@ function mulberry32(seed: number) {
   };
 }
 
+/**
+ * Picks a random element from an array using the given RNG.
+ * @param items - The array to pick from
+ * @param rng - The random number generator to use
+ * @returns A randomly selected element
+ */
 function pick<T>(items: readonly T[], rng: () => number) {
   return items[Math.floor(rng() * items.length)];
 }
 
+/**
+ * Formats a numeric amount as a locale string for display.
+ * @param amount - The numeric amount to format
+ * @returns The formatted amount string
+ */
 function formatAmount(amount: number) {
   return amount.toLocaleString('en-US');
 }
 
+/**
+ * Scores a numeric part by comparing expected value against student response within tolerance.
+ * @param expected - The expected numeric value
+ * @param actual - The student's actual response
+ * @param tolerance - The acceptable difference threshold
+ * @returns An object with isCorrect, score, and normalizedAnswer
+ */
 function scoreNumericPart(expected: number, actual: unknown, tolerance: number) {
   const parsed = Number(actual);
   if (!Number.isFinite(parsed)) {
@@ -100,6 +123,15 @@ function scoreNumericPart(expected: number, actual: unknown, tolerance: number) 
   };
 }
 
+/**
+ * Creates a prefilled row for a statement with a known value.
+ * @param statementKind - The type of statement
+ * @param id - Unique identifier for the row
+ * @param label - Display label for the row
+ * @param value - The prefilled numeric value
+ * @param note - Optional note describing the row
+ * @returns A configured StatementSubtotalsRow
+ */
 function createPrefilledRow(
   statementKind: StatementSubtotalsKind,
   id: string,
@@ -130,6 +162,11 @@ function createPrefilledRow(
   };
 }
 
+/**
+ * Creates an editable subtotal row that students must compute.
+ * @param params - Row creation parameters including statementKind, sectionId, id, label, expectedValue, sumOf, tolerance, explanation, and optional note
+ * @returns A configured StatementSubtotalsRow
+ */
 function createEditableSubtotalRow(params: {
   statementKind: StatementSubtotalsKind;
   sectionId: string;
@@ -167,6 +204,12 @@ function createEditableSubtotalRow(params: {
   };
 }
 
+/**
+ * Builds an income statement body with revenue, expense, and net income sections.
+ * @param ledger - The mini ledger containing account data
+ * @param tolerance - The numeric tolerance for grading
+ * @returns Statement body with sections, rows, parts, and scaffolding
+ */
 function buildServiceIncomeStatement(ledger: MiniLedger, tolerance: number) {
   const revenueAccounts = ledger.accounts.filter((account) => account.accountType === 'revenue');
   const expenseAccounts = ledger.accounts.filter((account) => account.accountType === 'expense');
@@ -249,6 +292,12 @@ function buildServiceIncomeStatement(ledger: MiniLedger, tolerance: number) {
   };
 }
 
+/**
+ * Builds a balance sheet body with asset and claims sections.
+ * @param ledger - The mini ledger containing account data
+ * @param tolerance - The numeric tolerance for grading
+ * @returns Statement body with sections, rows, parts, and scaffolding
+ */
 function buildBalanceSheetSubtotals(ledger: MiniLedger, tolerance: number) {
   const assetRows = ledger.accounts
     .filter((account) => account.accountType === 'asset')
@@ -321,6 +370,12 @@ function buildBalanceSheetSubtotals(ledger: MiniLedger, tolerance: number) {
   };
 }
 
+/**
+ * Builds an equity statement body with beginning capital, net income, dividends, and ending capital.
+ * @param ledger - The mini ledger containing account data
+ * @param tolerance - The numeric tolerance for grading
+ * @returns Statement body with sections, rows, parts, and scaffolding
+ */
 function buildEquityStatement(ledger: MiniLedger, tolerance: number) {
   const beginningCapital = createPrefilledRow(
     'equity-statement',
@@ -364,6 +419,13 @@ function buildEquityStatement(ledger: MiniLedger, tolerance: number) {
   };
 }
 
+/**
+ * Builds a retail income statement body with sales, cost of goods sold, and operating expenses.
+ * @param seed - The seed for randomization
+ * @param ledger - The mini ledger containing expense data
+ * @param tolerance - The numeric tolerance for grading
+ * @returns Statement body with sections, rows, parts, and scaffolding
+ */
 function buildRetailIncomeStatement(seed: number, ledger: MiniLedger, tolerance: number) {
   const rng = mulberry32(seed ^ 0x53ad2fc1);
   const timeline = generateMerchandisingTimeline(seed, {
@@ -462,6 +524,12 @@ function buildRetailIncomeStatement(seed: number, ledger: MiniLedger, tolerance:
   };
 }
 
+/**
+ * Builds a low-density income statement where only net income is editable.
+ * @param ledger - The mini ledger containing account data
+ * @param tolerance - The numeric tolerance for grading
+ * @returns Statement body with sections, rows, parts, and scaffolding
+ */
 function buildLowDensityIncomeStatement(ledger: MiniLedger, tolerance: number) {
   const revenueAccounts = ledger.accounts.filter((account) => account.accountType === 'revenue');
   const expenseAccounts = ledger.accounts.filter((account) => account.accountType === 'expense');
@@ -525,6 +593,15 @@ function buildLowDensityIncomeStatement(ledger: MiniLedger, tolerance: number) {
   };
 }
 
+/**
+ * Builds the statement body based on the statement kind, selecting the appropriate builder.
+ * @param kind - The type of statement to build
+ * @param seed - The seed for randomization (used for retail income statement)
+ * @param ledger - The mini ledger containing account data
+ * @param tolerance - The numeric tolerance for grading
+ * @param density - The density mode ('low' or 'standard')
+ * @returns Statement body with sections, rows, parts, and scaffolding
+ */
 function buildStatementBody(kind: StatementSubtotalsKind, seed: number, ledger: MiniLedger, tolerance: number, density: 'low' | 'standard' = 'standard') {
   if (kind === 'balance-sheet') {
     return buildBalanceSheetSubtotals(ledger, tolerance);
@@ -545,6 +622,12 @@ function buildStatementBody(kind: StatementSubtotalsKind, seed: number, ledger: 
   return buildServiceIncomeStatement(ledger, tolerance);
 }
 
+/**
+ * Builds a computation chain string showing how a subtotal is calculated.
+ * @param definition - The problem definition
+ * @param part - The part to build the chain for
+ * @returns A formatted computation chain string or null if not applicable
+ */
 function buildComputationChain(
   definition: StatementSubtotalsDefinition,
   part: StatementSubtotalsRow,
@@ -629,6 +712,14 @@ function buildComputationChain(
   return null;
 }
 
+/**
+ * Builds feedback for a single part comparing student response to expected values.
+ * @param definition - The problem definition
+ * @param part - The part to build feedback for
+ * @param studentResponse - The student's response map
+ * @param gradeResultPart - The grade result for this part
+ * @returns Feedback object with status and message
+ */
 function buildReviewFeedback(
   definition: StatementSubtotalsDefinition,
   part: StatementSubtotalsRow,

@@ -78,6 +78,11 @@ export interface StatementConstructionReviewFeedback {
   message?: string;
 }
 
+/**
+ * Generates a pseudorandom number generator using the mulberry32 algorithm.
+ * @param seed - The seed value for the RNG
+ * @returns A function that returns numbers in [0, 1)
+ */
 function mulberry32(seed: number) {
   let t = seed >>> 0;
   return () => {
@@ -88,10 +93,22 @@ function mulberry32(seed: number) {
   };
 }
 
+/**
+ * Picks a random element from an array using the given RNG.
+ * @param items - The array to pick from
+ * @param rng - The random number generator to use
+ * @returns A randomly selected element
+ */
 function pick<T>(items: readonly T[], rng: () => number) {
   return items[Math.floor(rng() * items.length)];
 }
 
+/**
+ * Shuffles an array using the Fisher-Yates algorithm.
+ * @param items - The array to shuffle
+ * @param rng - The random number generator to use
+ * @returns A new shuffled array
+ */
 function shuffle<T>(items: T[], rng: () => number) {
   const clone = [...items];
   for (let index = clone.length - 1; index > 0; index -= 1) {
@@ -101,10 +118,22 @@ function shuffle<T>(items: T[], rng: () => number) {
   return clone;
 }
 
+/**
+ * Formats a numeric amount as a locale string for display.
+ * @param amount - The numeric amount to format
+ * @returns The formatted amount string
+ */
 function formatAmount(amount: number) {
   return amount.toLocaleString('en-US');
 }
 
+/**
+ * Scores a numeric part by comparing expected value against student response within tolerance.
+ * @param expected - The expected numeric value
+ * @param actual - The student's actual response
+ * @param tolerance - The acceptable difference threshold
+ * @returns An object with isCorrect, score, and normalizedAnswer
+ */
 function scoreNumericPart(expected: number, actual: unknown, tolerance: number) {
   const parsed = Number(actual);
   if (!Number.isFinite(parsed)) {
@@ -123,6 +152,12 @@ function scoreNumericPart(expected: number, actual: unknown, tolerance: number) 
   };
 }
 
+/**
+ * Scores a label part by comparing normalized expected and actual strings.
+ * @param expected - The expected label string
+ * @param actual - The student's actual response
+ * @returns An object with isCorrect, score, and normalizedAnswer
+ */
 function scoreLabelPart(expected: string, actual: unknown) {
   const normalized = normalizePracticeValue(actual);
   const isCorrect = normalized === normalizePracticeValue(expected);
@@ -133,6 +168,11 @@ function scoreLabelPart(expected: string, actual: unknown) {
   };
 }
 
+/**
+ * Creates a placement row for an account that students select from the bank.
+ * @param params - Row creation parameters including statementKind, sectionId, rowId, prompt, expectedLabel, accountId, accountType, amount, bankStatus, tolerance, explanation, and optional placeholder/note
+ * @returns A configured StatementConstructionRow
+ */
 function makePlacementRow(params: {
   statementKind: StatementConstructionKind;
   sectionId: string;
@@ -179,6 +219,11 @@ function makePlacementRow(params: {
   };
 }
 
+/**
+ * Creates a subtotal row that students must compute by summing other rows.
+ * @param params - Row creation parameters including statementKind, sectionId, rowId, label, expectedValue, sumOf, tolerance, explanation, and optional note
+ * @returns A configured StatementConstructionRow
+ */
 function makeSubtotalRow(params: {
   statementKind: StatementConstructionKind;
   sectionId: string;
@@ -219,10 +264,24 @@ function makeSubtotalRow(params: {
   };
 }
 
+/**
+ * Randomly selects a subset of accounts from the available accounts.
+ * @param accounts - The array of accounts to choose from
+ * @param count - The number of accounts to select
+ * @param rng - The random number generator to use
+ * @returns An array of randomly selected accounts
+ */
 function chooseAccounts(accounts: MiniLedgerAccount[], count: number, rng: () => number) {
   return shuffle(accounts, rng).slice(0, Math.max(1, Math.min(count, accounts.length)));
 }
 
+/**
+ * Builds the account bank with included accounts and distractors.
+ * @param selectedAccounts - The accounts to include in the statement
+ * @param distractorAccounts - The distractor accounts to add to the bank
+ * @param rng - The random number generator to use
+ * @returns Array of bank items with included flag
+ */
 function buildBank(
   selectedAccounts: MiniLedgerAccount[],
   distractorAccounts: MiniLedgerAccount[],
@@ -250,6 +309,13 @@ function buildBank(
   return shuffle(bankItems.map((item) => ({ ...item })), rng);
 }
 
+/**
+ * Builds a balance sheet construction body with asset and claims sections.
+ * @param ledger - The mini ledger containing account data
+ * @param tolerance - The numeric tolerance for grading
+ * @param rng - The random number generator to use
+ * @returns Statement body with sections, rows, parts, account bank, and scaffolding
+ */
 function buildBalanceSheetConstruction(ledger: MiniLedger, tolerance: number, rng: () => number) {
   const assetAccounts = ledger.accounts.filter((account) => account.accountType === 'asset');
   const liabilityAccounts = ledger.accounts.filter((account) => account.accountType === 'liability');
@@ -376,6 +442,13 @@ function buildBalanceSheetConstruction(ledger: MiniLedger, tolerance: number, rn
   };
 }
 
+/**
+ * Builds an income statement construction body with revenue, expense, and bottom line sections.
+ * @param ledger - The mini ledger containing account data
+ * @param tolerance - The numeric tolerance for grading
+ * @param rng - The random number generator to use
+ * @returns Statement body with sections, rows, parts, account bank, and scaffolding
+ */
 function buildIncomeStatementConstruction(ledger: MiniLedger, tolerance: number, rng: () => number) {
   const revenueAccounts = ledger.accounts.filter((account) => account.accountType === 'revenue');
   const expenseAccounts = ledger.accounts.filter((account) => account.accountType === 'expense');
@@ -503,6 +576,14 @@ function buildIncomeStatementConstruction(ledger: MiniLedger, tolerance: number,
   };
 }
 
+/**
+ * Builds the statement construction body based on the statement kind.
+ * @param kind - The type of statement to build
+ * @param ledger - The mini ledger containing account data
+ * @param tolerance - The numeric tolerance for grading
+ * @param rng - The random number generator to use
+ * @returns Statement body with sections, rows, parts, account bank, and scaffolding
+ */
 function buildStatementConstructionBody(kind: StatementConstructionKind, ledger: MiniLedger, tolerance: number, rng: () => number) {
   if (kind === 'income-statement') {
     return buildIncomeStatementConstruction(ledger, tolerance, rng);
@@ -511,6 +592,14 @@ function buildStatementConstructionBody(kind: StatementConstructionKind, ledger:
   return buildBalanceSheetConstruction(ledger, tolerance, rng);
 }
 
+/**
+ * Builds feedback for a single part comparing student response to expected values.
+ * @param definition - The problem definition
+ * @param part - The part to build feedback for
+ * @param studentResponse - The student's response map
+ * @param gradeResultPart - The grade result for this part
+ * @returns Feedback object with status and message
+ */
 function buildReviewFeedback(
   definition: StatementConstructionDefinition,
   part: StatementConstructionRow,

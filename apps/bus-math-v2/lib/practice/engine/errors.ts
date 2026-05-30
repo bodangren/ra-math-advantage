@@ -93,6 +93,11 @@ const TRIAL_BALANCE_ARCHETYPE_CATALOG: TrialBalanceErrorArchetype[] = [
 
 const DEBIT_ACCOUNTS = practiceAccounts.filter((account) => account.normalBalance === 'debit');
 const CREDIT_ACCOUNTS = practiceAccounts.filter((account) => account.normalBalance === 'credit');
+/**
+ * Generates a pseudorandom number generator using the mulberry32 algorithm.
+ * @param seed - The seed value for the RNG
+ * @returns A function that returns numbers in [0, 1)
+ */
 function mulberry32(seed: number) {
   let t = seed >>> 0;
   return () => {
@@ -103,6 +108,13 @@ function mulberry32(seed: number) {
   };
 }
 
+/**
+ * Generates a random integer between min and max (inclusive) using the RNG.
+ * @param rng - The random number generator to use
+ * @param min - The minimum value (inclusive)
+ * @param max - The maximum value (inclusive)
+ * @returns A random integer in the range [min, max]
+ */
 function randomInt(rng: () => number, min: number, max: number) {
   const lower = Math.ceil(min);
   const upper = Math.floor(max);
@@ -114,26 +126,59 @@ function randomInt(rng: () => number, min: number, max: number) {
   return Math.floor(rng() * (upper - lower + 1)) + lower;
 }
 
+/**
+ * Picks a random element from an array using the given RNG.
+ * @param items - The array to pick from
+ * @param rng - The random number generator to use
+ * @returns A randomly selected element
+ */
 function pick<T>(items: readonly T[], rng: () => number) {
   return items[Math.floor(rng() * items.length)];
 }
 
+/**
+ * Capitalizes the first character of a string.
+ * @param value - The string to capitalize
+ * @returns The string with the first character uppercased
+ */
 function capitalize(value: string) {
   return value.replace(/^[a-z]/, (char) => char.toUpperCase());
 }
 
+/**
+ * Formats a numeric amount as a currency string.
+ * @param amount - The numeric amount to format
+ * @returns The formatted currency string (e.g., "$1,234")
+ */
 function formatAmount(amount: number) {
   return `$${amount.toLocaleString('en-US')}`;
 }
 
+/**
+ * Clamps a value between min and max bounds.
+ * @param amount - The value to clamp
+ * @param min - The minimum bound
+ * @param max - The maximum bound
+ * @returns The clamped value
+ */
 function clampAmount(amount: number, min: number, max: number) {
   return Math.max(min, Math.min(max, amount));
 }
 
+/**
+ * Rounds an amount to the nearest multiple of 5 (minimum 5).
+ * @param amount - The amount to round
+ * @returns The amount rounded to the nearest 5
+ */
 function roundToNearestFive(amount: number) {
   return Math.max(5, Math.round(amount / 5) * 5);
 }
 
+/**
+ * Selects a random debit account and credit account pair for trial balance errors.
+ * @param rng - The random number generator to use
+ * @returns A trial balance entry with selected accounts
+ */
 function pickAccountPair(rng: () => number): TrialBalanceEntry {
   const debitAccount = pick(DEBIT_ACCOUNTS, rng);
   const creditAccount = pick(CREDIT_ACCOUNTS, rng);
@@ -151,6 +196,11 @@ function pickAccountPair(rng: () => number): TrialBalanceEntry {
   };
 }
 
+/**
+ * Transposes the first two digits of an amount (e.g., 123 becomes 213).
+ * @param amount - The amount to transpose
+ * @returns The transposed amount
+ */
 function transposeAmount(amount: number) {
   const digits = String(Math.abs(Math.trunc(amount)));
 
@@ -163,6 +213,11 @@ function transposeAmount(amount: number) {
   return Number.isFinite(transposed) && transposed > 0 ? transposed : amount + 9;
 }
 
+/**
+ * Creates a slide error by removing the last digit (e.g., 1230 becomes 123).
+ * @param amount - The amount to slide
+ * @returns The slid amount
+ */
 function slideAmount(amount: number) {
   const digits = String(Math.abs(Math.trunc(amount)));
   if (digits.length < 2) {
@@ -174,11 +229,25 @@ function slideAmount(amount: number) {
   return Number.isFinite(slid) && slid > 0 ? slid : Math.floor(amount / 10);
 }
 
+/**
+ * Picks a random amount rounded to the nearest 5 within the given range.
+ * @param rng - The random number generator to use
+ * @param min - The minimum amount
+ * @param max - The maximum amount
+ * @returns A random amount rounded to nearest 5
+ */
 function pickGenericAmount(rng: () => number, min: number, max: number) {
   const raw = randomInt(rng, min, max);
   return clampAmount(roundToNearestFive(raw), min, max);
 }
 
+/**
+ * Picks an amount that will produce a valid transposition error when transposed.
+ * @param rng - The random number generator to use
+ * @param min - The minimum amount
+ * @param max - The maximum amount
+ * @returns A valid amount for transposition
+ */
 function pickTranspositionAmount(rng: () => number, min: number, max: number) {
   for (let attempt = 0; attempt < 24; attempt += 1) {
     const hundreds = randomInt(rng, 1, 9);
@@ -195,6 +264,13 @@ function pickTranspositionAmount(rng: () => number, min: number, max: number) {
   return pickGenericAmount(rng, min, max);
 }
 
+/**
+ * Picks an amount that will produce a valid slide error when slid.
+ * @param rng - The random number generator to use
+ * @param min - The minimum amount
+ * @param max - The maximum amount
+ * @returns A valid amount for sliding
+ */
 function pickSlideAmount(rng: () => number, min: number, max: number) {
   for (let attempt = 0; attempt < 24; attempt += 1) {
     const base = randomInt(rng, Math.max(1, Math.ceil(min / 10)), Math.max(1, Math.floor(max / 10)));
@@ -210,6 +286,13 @@ function pickSlideAmount(rng: () => number, min: number, max: number) {
   return fallback + (fallback % 10 === 0 ? 0 : 10 - (fallback % 10));
 }
 
+/**
+ * Generates difference options including zero and plausible error amounts.
+ * @param rng - The random number generator to use
+ * @param difference - The actual difference to include
+ * @param isBalanced - Whether the scenario results in a balanced trial balance
+ * @returns Array of 4 difference options
+ */
 function generateDifferenceOptions(rng: () => number, difference: number, isBalanced: boolean) {
   const options = new Set<number>();
   options.add(0);
@@ -232,6 +315,12 @@ function generateDifferenceOptions(rng: () => number, difference: number, isBala
   return Array.from(options).slice(0, 4).sort((left, right) => left - right);
 }
 
+/**
+ * Builds the trial balance error outcome from debit and credit totals.
+ * @param debitTotal - The total of debit amounts
+ * @param creditTotal - The total of credit amounts
+ * @returns An outcome object with balanced flag, difference, and larger column
+ */
 function buildOutcome(debitTotal: number, creditTotal: number): TrialBalanceErrorOutcome {
   const balanced = debitTotal === creditTotal;
   const difference = Math.abs(debitTotal - creditTotal);
@@ -243,6 +332,11 @@ function buildOutcome(debitTotal: number, creditTotal: number): TrialBalanceErro
   };
 }
 
+/**
+ * Builds a complete trial balance error scenario from raw outcome data.
+ * @param input - All scenario parameters including archetype, amounts, and totals
+ * @returns A complete TrialBalanceErrorScenario
+ */
 function buildScenarioFromOutcome(input: {
   id: string;
   rowId: string;
@@ -293,6 +387,13 @@ function buildScenarioFromOutcome(input: {
   };
 }
 
+/**
+ * Builds a wrong-side error scenario where an amount is posted to the wrong column.
+ * @param seed - The seed for randomization
+ * @param options - The generation configuration with amount range
+ * @param rowIndex - The index of this scenario in the generation
+ * @returns A configured TrialBalanceErrorScenario
+ */
 function buildWrongSideScenario(seed: number, options: Required<TrialBalanceErrorGenerationConfig>, rowIndex: number) {
   const rng = mulberry32(seed ^ 0x9e3779b9 ^ rowIndex);
   const correctEntry = pickAccountPair(rng);
@@ -323,6 +424,13 @@ function buildWrongSideScenario(seed: number, options: Required<TrialBalanceErro
   });
 }
 
+/**
+ * Builds a wrong-amount error scenario where a side is posted for an incorrect dollar amount.
+ * @param seed - The seed for randomization
+ * @param options - The generation configuration with amount range
+ * @param rowIndex - The index of this scenario in the generation
+ * @returns A configured TrialBalanceErrorScenario
+ */
 function buildWrongAmountScenario(seed: number, options: Required<TrialBalanceErrorGenerationConfig>, rowIndex: number) {
   const rng = mulberry32(seed ^ 0x51ed270b ^ rowIndex);
   const correctEntry = pickAccountPair(rng);
@@ -357,6 +465,13 @@ function buildWrongAmountScenario(seed: number, options: Required<TrialBalanceEr
   });
 }
 
+/**
+ * Builds a double-post error scenario where one side is recorded twice.
+ * @param seed - The seed for randomization
+ * @param options - The generation configuration with amount range
+ * @param rowIndex - The index of this scenario in the generation
+ * @returns A configured TrialBalanceErrorScenario
+ */
 function buildDoublePostScenario(seed: number, options: Required<TrialBalanceErrorGenerationConfig>, rowIndex: number) {
   const rng = mulberry32(seed ^ 0x94d049bb ^ rowIndex);
   const correctEntry = pickAccountPair(rng);
@@ -386,6 +501,13 @@ function buildDoublePostScenario(seed: number, options: Required<TrialBalanceErr
   });
 }
 
+/**
+ * Builds a both-sides-wrong error scenario where both columns use the same wrong amount.
+ * @param seed - The seed for randomization
+ * @param options - The generation configuration with amount range
+ * @param rowIndex - The index of this scenario in the generation
+ * @returns A configured TrialBalanceErrorScenario
+ */
 function buildBothSidesWrongScenario(seed: number, options: Required<TrialBalanceErrorGenerationConfig>, rowIndex: number) {
   const rng = mulberry32(seed ^ 0xc2b2ae35 ^ rowIndex);
   const correctEntry = pickAccountPair(rng);
@@ -416,6 +538,13 @@ function buildBothSidesWrongScenario(seed: number, options: Required<TrialBalanc
   });
 }
 
+/**
+ * Builds an omission error scenario where one side is entirely left out.
+ * @param seed - The seed for randomization
+ * @param options - The generation configuration with amount range
+ * @param rowIndex - The index of this scenario in the generation
+ * @returns A configured TrialBalanceErrorScenario
+ */
 function buildOmissionScenario(seed: number, options: Required<TrialBalanceErrorGenerationConfig>, rowIndex: number) {
   const rng = mulberry32(seed ^ 0x165667b1 ^ rowIndex);
   const correctEntry = pickAccountPair(rng);
@@ -445,6 +574,13 @@ function buildOmissionScenario(seed: number, options: Required<TrialBalanceError
   });
 }
 
+/**
+ * Builds a transposition error scenario where digits are reversed in an amount.
+ * @param seed - The seed for randomization
+ * @param options - The generation configuration with amount range
+ * @param rowIndex - The index of this scenario in the generation
+ * @returns A configured TrialBalanceErrorScenario
+ */
 function buildTranspositionScenario(seed: number, options: Required<TrialBalanceErrorGenerationConfig>, rowIndex: number) {
   const rng = mulberry32(seed ^ 0x27d4eb2f ^ rowIndex);
   const correctEntry = pickAccountPair(rng);
@@ -475,6 +611,13 @@ function buildTranspositionScenario(seed: number, options: Required<TrialBalance
   });
 }
 
+/**
+ * Builds a slide error scenario where a digit slips out of an amount.
+ * @param seed - The seed for randomization
+ * @param options - The generation configuration with amount range
+ * @param rowIndex - The index of this scenario in the generation
+ * @returns A configured TrialBalanceErrorScenario
+ */
 function buildSlideScenario(seed: number, options: Required<TrialBalanceErrorGenerationConfig>, rowIndex: number) {
   const rng = mulberry32(seed ^ 0x85ebca77 ^ rowIndex);
   const correctEntry = pickAccountPair(rng);
@@ -551,6 +694,13 @@ export function buildTrialBalanceErrorScenario(
   }
 }
 
+/**
+ * Selects an archetype using weighted random selection.
+ * @param rng - The random number generator to use
+ * @param weights - Partial map of archetype IDs to selection weights
+ * @param allowBalancedScenarios - Whether to allow balanced scenarios
+ * @returns The selected archetype ID
+ */
 function pickWeightedArchetype(
   rng: () => number,
   weights: Partial<Record<TrialBalanceErrorType, number>>,

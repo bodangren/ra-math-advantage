@@ -94,6 +94,11 @@ const ACCRUAL_REVENUE_LABELS = ['Service Revenue', 'Consulting Revenue', 'Intere
 const ACCRUAL_EXPENSE_LABELS = ['Insurance Expense', 'Rent Expense', 'Salaries Expense', 'Utilities Expense', 'Depreciation Expense'] as const;
 const DEPRECIATION_ASSET_LABELS = ['Equipment', 'Buildings'] as const;
 
+/**
+ * Generates a pseudorandom number generator using the mulberry32 algorithm.
+ * @param seed - The seed value for the RNG
+ * @returns A function that returns numbers in [0, 1)
+ */
 function mulberry32(seed: number) {
   let t = seed >>> 0;
   return () => {
@@ -104,23 +109,50 @@ function mulberry32(seed: number) {
   };
 }
 
+/**
+ * Picks a random element from an array using the given RNG.
+ * @param items - The array to pick from
+ * @param rng - The random number generator to use
+ * @returns A randomly selected element
+ */
 function pick<T>(items: readonly T[], rng: () => number) {
   return items[Math.floor(rng() * items.length)];
 }
 
+/**
+ * Formats a numeric amount as a locale string for display.
+ * @param amount - The numeric amount to format
+ * @returns The formatted amount string
+ */
 function formatAmount(amount: number) {
   return amount.toLocaleString('en-US');
 }
 
+/**
+ * Normalizes a label for matching by lowercasing and removing non-alphanumeric characters.
+ * @param value - The label string to normalize
+ * @returns The normalized label string
+ */
 function normalizeLabel(value: string) {
   return value.toLowerCase().replace(/[^a-z0-9]+/g, '');
 }
 
+/**
+ * Finds an account ID by matching a normalized label against account labels.
+ * @param label - The account label to search for
+ * @returns The account ID if found, null otherwise
+ */
 function findAccountIdByLabel(label: string) {
   const target = normalizeLabel(label);
   return practiceAccounts.find((account) => normalizeLabel(account.label) === target)?.id ?? null;
 }
 
+/**
+ * Builds configuration for generating an adjustment scenario based on kind.
+ * @param seed - The seed for randomization
+ * @param scenarioKind - The type of adjustment scenario to build
+ * @returns Configuration object for generating the scenario
+ */
 function buildScenarioConfig(seed: number, scenarioKind: AdjustmentScenarioKind): AdjustmentScenarioConfig {
   const rng = mulberry32(seed ^ 0x4f6c1b23);
 
@@ -156,6 +188,12 @@ function buildScenarioConfig(seed: number, scenarioKind: AdjustmentScenarioKind)
   };
 }
 
+/**
+ * Builds a numeric calculation part from an adjustment scenario.
+ * @param scenario - The adjustment scenario
+ * @param tolerance - The numeric tolerance for grading
+ * @returns A configured AdjustingCalculationsPart
+ */
 function buildCalculationPart(scenario: AdjustmentScenario, tolerance: number): AdjustingCalculationsPart {
   const label = CALCULATION_LABELS[scenario.kind];
   return {
@@ -190,6 +228,12 @@ function buildCalculationPart(scenario: AdjustmentScenario, tolerance: number): 
   };
 }
 
+/**
+ * Builds journal entry lines for an adjustment scenario based on its kind.
+ * @param scenario - The adjustment scenario
+ * @returns Array of journal entry lines for the adjustment
+ * @throws Error if account resolution fails for the scenario type
+ */
 function buildJournalEntryLines(scenario: AdjustmentScenario): AdjustingCalculationsJournalLine[] {
   const reportingDate = scenario.reportingDate;
   const adjustmentAmount = scenario.amount;
@@ -285,6 +329,12 @@ function buildJournalEntryLines(scenario: AdjustmentScenario): AdjustingCalculat
   ];
 }
 
+/**
+ * Shuffles an array in place using the Fisher-Yates algorithm.
+ * @param items - The array to shuffle
+ * @param rng - The random number generator to use
+ * @returns A new shuffled array
+ */
 function shuffleAccounts<T>(items: readonly T[], rng: () => number) {
   const nextItems = [...items];
   for (let index = nextItems.length - 1; index > 0; index -= 1) {
@@ -295,6 +345,12 @@ function shuffleAccounts<T>(items: readonly T[], rng: () => number) {
   return nextItems;
 }
 
+/**
+ * Builds available account options including entry lines and distractors.
+ * @param seed - The seed for randomization
+ * @param entryLines - The journal entry lines in the scenario
+ * @returns Array of account options with id and label
+ */
 function buildAvailableAccounts(seed: number, entryLines: AdjustingCalculationsJournalLine[]) {
   const usedAccountIds = new Set(entryLines.map((line) => line.accountId));
   const usedAccountTypes = new Set(
@@ -337,6 +393,14 @@ function buildAvailableAccounts(seed: number, entryLines: AdjustingCalculationsJ
   );
 }
 
+/**
+ * Builds a journal entry part from a journal line.
+ * @param line - The journal entry line
+ * @param lineIndex - The index of the line in the entry
+ * @param scenario - The adjustment scenario
+ * @param tolerance - The numeric tolerance for grading
+ * @returns A configured AdjustingCalculationsPart
+ */
 function buildEntryPart(line: AdjustingCalculationsJournalLine, lineIndex: number, scenario: AdjustmentScenario, tolerance: number): AdjustingCalculationsPart {
   const account = getAccountById(line.accountId);
   const lineRole = line.debit > 0 ? 'debit' : 'credit';
@@ -366,12 +430,22 @@ function buildEntryPart(line: AdjustingCalculationsJournalLine, lineIndex: numbe
   };
 }
 
+/**
+ * Formats a journal entry line as a human-readable label.
+ * @param line - The journal entry line to format
+ * @returns A formatted string describing the line
+ */
 function formatJournalEntryLine(line: AdjustingCalculationsJournalLine) {
   const accountLabel = getAccountById(line.accountId)?.label ?? line.accountId;
   const movement = line.debit > 0 ? `debit $${formatAmount(line.debit)}` : `credit $${formatAmount(line.credit)}`;
   return `${line.date} • ${accountLabel} ${movement}`;
 }
 
+/**
+ * Creates a normalized signature string for a journal line for comparison.
+ * @param line - The journal entry line to sign
+ * @returns A pipe-delimited normalized string
+ */
 function lineSignature(line: AdjustingCalculationsJournalLine) {
   return [
     line.date.trim().toLowerCase(),
@@ -382,6 +456,13 @@ function lineSignature(line: AdjustingCalculationsJournalLine) {
   ].join('|');
 }
 
+/**
+ * Scores a numeric part by comparing expected value against student response within tolerance.
+ * @param expected - The expected numeric value
+ * @param actual - The student's actual response
+ * @param tolerance - The acceptable difference threshold
+ * @returns An object with isCorrect, score, and normalizedAnswer
+ */
 function scoreNumericPart(expected: number, actual: unknown, tolerance: number) {
   const parsed = Number(actual);
   if (!Number.isFinite(parsed)) {
@@ -400,6 +481,13 @@ function scoreNumericPart(expected: number, actual: unknown, tolerance: number) 
   };
 }
 
+/**
+ * Scores a journal line by comparing account, date, debit, and credit against tolerance.
+ * @param expected - The expected journal entry line
+ * @param actual - The student's actual response
+ * @param tolerance - The acceptable numeric difference threshold
+ * @returns An object with isCorrect, score, and normalizedAnswer
+ */
 function scoreJournalLine(expected: AdjustingCalculationsJournalLine, actual: unknown, tolerance: number) {
   const line = actual as AdjustingCalculationsJournalLine | undefined;
   if (!line) {
@@ -423,6 +511,14 @@ function scoreJournalLine(expected: AdjustingCalculationsJournalLine, actual: un
   };
 }
 
+/**
+ * Builds feedback for a single part comparing student response to expected values.
+ * @param definition - The problem definition
+ * @param part - The part to build feedback for
+ * @param studentResponse - The student's response map
+ * @param gradeResultPart - The grade result for this part
+ * @returns Feedback object with status and message
+ */
 function buildReviewFeedback(
   definition: AdjustingCalculationsDefinition,
   part: AdjustingCalculationsPart,
@@ -492,6 +588,13 @@ export function buildAdjustingCalculationsReviewFeedback(
   );
 }
 
+/**
+ * Builds a calculation-mode problem definition from a scenario.
+ * @param seed - The seed for randomization
+ * @param config - The problem configuration
+ * @param scenario - The adjustment scenario
+ * @returns A calculation-mode AdjustingCalculationsDefinition
+ */
 function buildCalculationDefinition(seed: number, config: AdjustingCalculationsConfig, scenario: AdjustmentScenario) {
   const part = buildCalculationPart(scenario, config.tolerance ?? 0);
 
@@ -528,6 +631,13 @@ function buildCalculationDefinition(seed: number, config: AdjustingCalculationsC
   } satisfies AdjustingCalculationsDefinition;
 }
 
+/**
+ * Builds a journal-entry-mode problem definition from a scenario.
+ * @param seed - The seed for randomization
+ * @param config - The problem configuration
+ * @param scenario - The adjustment scenario
+ * @returns A journal-entry-mode AdjustingCalculationsDefinition
+ */
 function buildJournalEntryDefinition(seed: number, config: AdjustingCalculationsConfig, scenario: AdjustmentScenario) {
   const entryLines = buildJournalEntryLines(scenario);
   const parts = entryLines.map((line, index) => buildEntryPart(line, index, scenario, config.tolerance ?? 0));

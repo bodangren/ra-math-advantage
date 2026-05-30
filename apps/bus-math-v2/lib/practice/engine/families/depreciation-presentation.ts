@@ -76,20 +76,43 @@ export interface DepreciationPresentationReviewFeedback {
   message?: string;
 }
 
+/**
+ * Formats a numeric amount as a locale string for display.
+ * @param amount - The numeric amount to format
+ * @returns The formatted amount string
+ */
 function formatAmount(amount: number) {
   return amount.toLocaleString('en-US');
 }
 
+/**
+ * Builds the computation chain for accumulated depreciation using the scenario parameters.
+ * @param scenario - The depreciation adjustment scenario
+ * @returns A formatted string showing the depreciation calculation
+ */
 function buildDepreciationChain(scenario: DepreciationAdjustmentScenario): string {
   const originalCost = scenario.depreciableBase + scenario.salvageValue;
   return `($${formatAmount(originalCost)} − $${formatAmount(scenario.salvageValue)}) ÷ ${scenario.usefulLifeMonths} × ${scenario.monthsUsed} = $${formatAmount(scenario.accumulatedDepreciation)}`;
 }
 
+/**
+ * Builds the computation chain for net book value using the scenario parameters.
+ * @param scenario - The depreciation adjustment scenario
+ * @returns A formatted string showing the net book value calculation
+ */
 function buildNetBookValueChain(scenario: DepreciationAdjustmentScenario): string {
   const originalCost = scenario.depreciableBase + scenario.salvageValue;
   return `$${formatAmount(originalCost)} − $${formatAmount(scenario.accumulatedDepreciation)} = $${formatAmount(scenario.carryingAmount)}`;
 }
 
+/**
+ * Builds feedback for a single part comparing student response to expected values.
+ * @param definition - The problem definition
+ * @param part - The part to build feedback for
+ * @param studentResponse - The student's response map
+ * @param gradeResultPart - The grade result for this part
+ * @returns Feedback object with status and message
+ */
 function buildReviewFeedback(
   definition: DepreciationPresentationDefinition,
   part: DepreciationPresentationPart,
@@ -120,6 +143,11 @@ function buildReviewFeedback(
   };
 }
 
+/**
+ * Generates a pseudorandom number generator using the mulberry32 algorithm.
+ * @param seed - The seed value for the RNG
+ * @returns A function that returns numbers in [0, 1)
+ */
 function mulberry32(seed: number) {
   let t = seed >>> 0;
   return () => {
@@ -130,10 +158,23 @@ function mulberry32(seed: number) {
   };
 }
 
+/**
+ * Picks a random element from an array using the given RNG.
+ * @param items - The array to pick from
+ * @param rng - The random number generator to use
+ * @returns A randomly selected element
+ */
 function pick<T>(items: readonly T[], rng: () => number) {
   return items[Math.floor(rng() * items.length)];
 }
 
+/**
+ * Scores a numeric part by comparing expected value against student response within tolerance.
+ * @param expected - The expected numeric value
+ * @param actual - The student's actual response
+ * @param tolerance - The acceptable difference threshold
+ * @returns An object with isCorrect, score, and normalizedAnswer
+ */
 function scoreNumericPart(expected: number, actual: unknown, tolerance: number) {
   const parsed = Number(actual);
   if (!Number.isFinite(parsed)) {
@@ -152,6 +193,11 @@ function scoreNumericPart(expected: number, actual: unknown, tolerance: number) 
   };
 }
 
+/**
+ * Builds configuration for generating a depreciation scenario.
+ * @param seed - The seed for randomization
+ * @returns Configuration object with depreciation settings
+ */
 function buildScenarioConfig(seed: number) {
   const rng = mulberry32(seed ^ 0x7bb94f1d);
   return {
@@ -162,10 +208,25 @@ function buildScenarioConfig(seed: number) {
   };
 }
 
+/**
+ * Calculates the original asset cost by adding depreciable base and salvage value.
+ * @param scenario - The depreciation adjustment scenario
+ * @returns The original asset cost
+ */
 function getOriginalAssetCost(scenario: DepreciationAdjustmentScenario) {
   return scenario.depreciableBase + scenario.salvageValue;
 }
 
+/**
+ * Creates a section row for the depreciation presentation.
+ * @param id - Unique identifier for the row
+ * @param label - Display label for the row
+ * @param value - The numeric value (or undefined for editable)
+ * @param kind - The row kind ('editable', 'prefilled', or 'subtotal')
+ * @param note - Optional note describing the row
+ * @param sumOf - Optional array of row IDs that this subtotal sums
+ * @returns A configured DepreciationPresentationRow
+ */
 function createSectionRow(
   id: string,
   label: string,
@@ -185,6 +246,12 @@ function createSectionRow(
   };
 }
 
+/**
+ * Builds the asset register with land and depreciable asset information.
+ * @param scenario - The depreciation adjustment scenario
+ * @param layout - The presentation layout ('direct' or 'derived')
+ * @returns Array of asset register items
+ */
 function buildAssetRegister(scenario: DepreciationAdjustmentScenario, layout: DepreciationPresentationLayout): DepreciationPresentationAssetRegisterItem[] {
   const originalCost = getOriginalAssetCost(scenario);
   const landValue = Math.max(1200, Math.round(originalCost * 0.35));
@@ -227,6 +294,13 @@ function buildAssetRegister(scenario: DepreciationAdjustmentScenario, layout: De
   ];
 }
 
+/**
+ * Builds the problem parts from a scenario based on the layout.
+ * @param scenario - The depreciation adjustment scenario
+ * @param layout - The presentation layout ('direct' or 'derived')
+ * @param tolerance - The numeric tolerance for grading
+ * @returns Array of DepreciationPresentationPart definitions
+ */
 function buildParts(
   scenario: DepreciationAdjustmentScenario,
   layout: DepreciationPresentationLayout,
@@ -282,6 +356,12 @@ function buildParts(
   ];
 }
 
+/**
+ * Builds the statement sections with rows based on the presentation layout.
+ * @param scenario - The depreciation adjustment scenario
+ * @param layout - The presentation layout ('direct' or 'derived')
+ * @returns Statement body with sections and rows
+ */
 function buildStatementSections(
   scenario: DepreciationAdjustmentScenario,
   layout: DepreciationPresentationLayout,

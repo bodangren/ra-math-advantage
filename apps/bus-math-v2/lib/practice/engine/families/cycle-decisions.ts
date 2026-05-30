@@ -92,6 +92,11 @@ interface CycleDecisionScenarioBuilder {
   build(seed: number): CycleDecisionScenario;
 }
 
+/**
+ * Generates a pseudorandom number generator using the mulberry32 algorithm.
+ * @param seed - The seed value for the RNG
+ * @returns A function that returns numbers in [0, 1)
+ */
 function mulberry32(seed: number) {
   let t = seed >>> 0;
   return () => {
@@ -102,22 +107,53 @@ function mulberry32(seed: number) {
   };
 }
 
+/**
+ * Picks a random element from an array using the given RNG.
+ * @param items - The array to pick from
+ * @param rng - The random number generator to use
+ * @returns A randomly selected element
+ */
 function pick<T>(items: readonly T[], rng: () => number) {
   return items[Math.floor(rng() * items.length)];
 }
 
+/**
+ * Formats a numeric amount as a locale string for display.
+ * @param amount - The numeric amount to format
+ * @returns The formatted amount string
+ */
 function formatAmount(amount: number) {
   return amount.toLocaleString('en-US');
 }
 
+/**
+ * Creates a shallow clone of a journal entry line.
+ * @param line - The line to clone
+ * @returns A new line with the same properties
+ */
 function cloneLine(line: JournalEntryLine): JournalEntryLine {
   return { ...line };
 }
 
+/**
+ * Builds a new journal entry line with the given properties.
+ * @param id - Unique identifier for the line
+ * @param date - The date string for the line
+ * @param accountId - The account ID
+ * @param debit - The debit amount
+ * @param credit - The credit amount
+ * @param memo - A description for the line
+ * @returns A new JournalEntryLine object
+ */
 function buildLine(id: string, date: string, accountId: string, debit: number, credit: number, memo: string): JournalEntryLine {
   return { id, date, accountId, debit, credit, memo };
 }
 
+/**
+ * Builds account options from a list of account IDs, resolving labels from the account registry.
+ * @param accountIds - Array of account IDs to build options for
+ * @returns Array of account options with id and label properties
+ */
 function buildAccountOptions(accountIds: string[]) {
   return Array.from(new Set(accountIds)).map((accountId) => ({
     id: accountId,
@@ -125,6 +161,11 @@ function buildAccountOptions(accountIds: string[]) {
   }));
 }
 
+/**
+ * Creates a normalized signature string for a line for comparison.
+ * @param line - The journal entry line to sign
+ * @returns A pipe-delimited normalized string
+ */
 function lineSignature(line: JournalEntryLine) {
   return [
     line.date.trim().toLowerCase(),
@@ -134,15 +175,36 @@ function lineSignature(line: JournalEntryLine) {
   ].join('|');
 }
 
+/**
+ * Checks if an expected line matches an actual line by comparing signatures.
+ * @param expected - The expected journal entry line
+ * @param actual - The actual line to check
+ * @returns True if the lines match, false otherwise
+ */
 function lineMatches(expected: JournalEntryLine, actual?: JournalEntryLine) {
   return !!actual && lineSignature(expected) === lineSignature(actual);
 }
 
+/**
+ * Checks if an expected line is present anywhere in the actual lines array.
+ * @param expected - The expected journal entry line
+ * @param actualLines - Array of actual lines to search
+ * @returns True if the expected line is present in any position
+ */
 function linePresentAnywhere(expected: JournalEntryLine, actualLines: JournalEntryLine[]) {
   const expectedSignature = lineSignature(expected);
   return actualLines.some((line) => lineSignature(line) === expectedSignature);
 }
 
+/**
+ * Builds a selection row for the cycle decision matrix.
+ * @param id - Unique identifier for the row
+ * @param label - Display label for the row
+ * @param description - Description of the entry type
+ * @param reversingRecommended - Whether this entry type should typically be reversed
+ * @param hint - Hint text for the student
+ * @returns A configured CycleDecisionSelectionRow
+ */
 function buildSelectionRow(
   id: string,
   label: string,
@@ -160,6 +222,11 @@ function buildSelectionRow(
   };
 }
 
+/**
+ * Builds a reversing selection scenario with three entry types to classify.
+ * @param seed - The seed for randomization
+ * @returns A configured CycleDecisionScenario
+ */
 function buildReversingSelectionScenario(seed: number): CycleDecisionScenario {
   const rng = mulberry32(seed ^ 0x9e3779b9);
   const rows = [
@@ -209,6 +276,11 @@ function buildReversingSelectionScenario(seed: number): CycleDecisionScenario {
   };
 }
 
+/**
+ * Builds a closing entry scenario from a generated mini ledger.
+ * @param seed - The seed for randomization
+ * @returns A configured CycleDecisionScenario
+ */
 function buildClosingScenario(seed: number): CycleDecisionScenario {
   const ledger = generateMiniLedger(seed, {
     companyType: 'service',
@@ -270,17 +342,33 @@ export const cycleDecisionScenarioCatalog = [
   { kind: 'closing-entry', build: buildClosingScenario },
 ] as const satisfies readonly CycleDecisionScenarioBuilder[];
 
+/**
+ * Selects a random scenario kind from the catalog using the seed.
+ * @param seed - The seed for randomization
+ * @returns A randomly selected CycleDecisionScenarioKind
+ */
 function pickScenarioKind(seed: number) {
   const rng = mulberry32(seed ^ 0x3c6ef372);
   return cycleDecisionScenarioCatalog[Math.floor(rng() * cycleDecisionScenarioCatalog.length)].kind;
 }
 
+/**
+ * Builds a complete scenario by selecting and invoking the appropriate scenario builder.
+ * @param seed - The seed for randomization
+ * @param config - Configuration options including optional scenarioKey
+ * @returns A configured CycleDecisionScenario
+ */
 function buildScenario(seed: number, config: CycleDecisionConfig): CycleDecisionScenario {
   const scenarioKey = config.scenarioKey ?? pickScenarioKind(seed);
   const builder = cycleDecisionScenarioCatalog.find((entry) => entry.kind === scenarioKey) ?? cycleDecisionScenarioCatalog[0];
   return builder.build(seed);
 }
 
+/**
+ * Builds the problem parts from a scenario, creating selection and journal entry parts.
+ * @param scenario - The scenario to build parts from
+ * @returns Array of CycleDecisionPart definitions
+ */
 function buildParts(scenario: CycleDecisionScenario): CycleDecisionPart[] {
   const selectionParts: CycleDecisionPart[] = scenario.selectionRows.map((row) => ({
     id: row.id,
@@ -334,6 +422,11 @@ function buildParts(scenario: CycleDecisionScenario): CycleDecisionPart[] {
   return [...selectionParts, ...journalParts];
 }
 
+/**
+ * Builds the canonical response with selections and journal lines from the definition.
+ * @param definition - The problem definition
+ * @returns Response object with selections map and cloned journal lines
+ */
 function buildResponse(definition: CycleDecisionDefinition): CycleDecisionResponse {
   const selections: Record<string, string> = {};
 
@@ -347,6 +440,16 @@ function buildResponse(definition: CycleDecisionDefinition): CycleDecisionRespon
   };
 }
 
+/**
+ * Builds feedback for a single part comparing student response to expected values.
+ * @param part - The part definition
+ * @param studentResponse - The student's complete response
+ * @param gradeResultPart - The grade result for this part
+ * @param expectedLine - The expected journal line (for journal-entry parts)
+ * @param studentLine - The student's submitted line
+ * @param journalLines - All journal lines for equivalence checking
+ * @returns Feedback object with status and message
+ */
 function buildPartFeedback(
   part: CycleDecisionPart,
   studentResponse: CycleDecisionResponse,

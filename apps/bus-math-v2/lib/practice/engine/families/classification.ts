@@ -104,6 +104,11 @@ const CLASSIFICATION_PRESETS: Record<ClassificationCategorySetKey, Classificatio
   },
 };
 
+/**
+ * Generates a pseudorandom number generator using the mulberry32 algorithm.
+ * @param seed - The seed value for the RNG
+ * @returns A function that returns numbers in [0, 1)
+ */
 function mulberry32(seed: number) {
   let t = seed >>> 0;
   return () => {
@@ -114,6 +119,12 @@ function mulberry32(seed: number) {
   };
 }
 
+/**
+ * Shuffles an array using the Fisher-Yates algorithm.
+ * @param items - The array to shuffle
+ * @param rng - The random number generator to use
+ * @returns A new shuffled array
+ */
 function shuffle<T>(items: T[], rng: () => number) {
   const clone = [...items];
   for (let index = clone.length - 1; index > 0; index -= 1) {
@@ -123,14 +134,33 @@ function shuffle<T>(items: T[], rng: () => number) {
   return clone;
 }
 
+/**
+ * Clamps a value between min and max bounds.
+ * @param value - The value to clamp
+ * @param min - The minimum bound
+ * @param max - The maximum bound
+ * @returns The clamped value
+ */
 function clamp(value: number, min: number, max: number) {
   return Math.max(min, Math.min(max, value));
 }
 
+/**
+ * Looks up the preset configuration for a category set key.
+ * @param categorySet - The category set key
+ * @returns The classification preset for the category set
+ */
 function getPreset(categorySet: ClassificationCategorySetKey) {
   return CLASSIFICATION_PRESETS[categorySet];
 }
 
+/**
+ * Builds candidate items from practice accounts with computed confusion scores and priorities.
+ * @param categorySet - The category set key determining classification type
+ * @param confusionPairDensity - Weight factor for confusion pairs in selection priority
+ * @param rng - The random number generator to use
+ * @returns Array of candidate items with account, target, confusion score, and priority
+ */
 function buildCandidateItems(
   categorySet: ClassificationCategorySetKey,
   confusionPairDensity: number,
@@ -162,6 +192,15 @@ function buildCandidateItems(
   });
 }
 
+/**
+ * Builds the ordered selection of candidates for classification items.
+ * @param candidates - The array of candidate items with priorities
+ * @param categorySet - The category set key
+ * @param evenlyDistributed - Whether to balance selection across categories
+ * @param rng - The random number generator to use
+ * @param itemCount - The number of items to select
+ * @returns Array of selected candidate items in selection order
+ */
 function buildSelectionOrder(
   candidates: CandidateItem[],
   categorySet: ClassificationCategorySetKey,
@@ -211,6 +250,12 @@ function buildSelectionOrder(
   return selected;
 }
 
+/**
+ * Builds classification parts from selected candidate items.
+ * @param selected - Array of selected candidate items
+ * @param categorySet - The category set key
+ * @returns Array of ClassificationPart definitions
+ */
 function buildParts(
   selected: CandidateItem[],
   categorySet: ClassificationCategorySetKey,
@@ -242,12 +287,23 @@ function buildParts(
   }));
 }
 
+/**
+ * Looks up the expected category ID for an account based on the category set.
+ * @param categorySet - The category set key
+ * @param accountId - The account ID to look up
+ * @returns The expected category ID or empty string if account not found
+ */
 function getExpectedCategoryId(categorySet: ClassificationCategorySetKey, accountId: string) {
   const preset = getPreset(categorySet);
   const account = practiceAccounts.find((entry) => entry.id === accountId);
   return account ? preset.resolveCategoryId(account) : '';
 }
 
+/**
+ * Builds the canonical response by mapping part IDs to their target category IDs.
+ * @param definition - The problem definition
+ * @returns Response object mapping account IDs to category IDs
+ */
 function buildClassificationResponse(definition: ClassificationDefinition): ClassificationResponse {
   return Object.fromEntries(definition.parts.map((part) => [part.id, part.targetId]));
 }

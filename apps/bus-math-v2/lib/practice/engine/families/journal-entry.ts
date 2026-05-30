@@ -94,6 +94,11 @@ interface JournalEntryScenarioBuilder {
   build(seed: number): JournalEntryScenario;
 }
 
+/**
+ * Generates a pseudorandom number generator using the mulberry32 algorithm.
+ * @param seed - The seed value for the RNG
+ * @returns A function that returns numbers in [0, 1)
+ */
 function mulberry32(seed: number) {
   let t = seed >>> 0;
   return () => {
@@ -104,20 +109,41 @@ function mulberry32(seed: number) {
   };
 }
 
+/**
+ * Picks a random element from an array using the given RNG.
+ * @param items - The array to pick from
+ * @param rng - The random number generator to use
+ * @returns A randomly selected element
+ */
 function pick<T>(items: readonly T[], rng: () => number) {
   return items[Math.floor(rng() * items.length)];
 }
 
+/**
+ * Formats a numeric amount as a locale string for display.
+ * @param amount - The numeric amount to format
+ * @returns The formatted amount string
+ */
 function formatAmount(amount: number) {
   return amount.toLocaleString('en-US');
 }
 
+/**
+ * Formats a journal entry line as a human-readable label.
+ * @param line - The journal entry line to format
+ * @returns A formatted string describing the line
+ */
 function formatLineLabel(line: JournalEntryLine) {
   const account = getAccountById(line.accountId)?.label ?? line.accountId;
   const movement = line.debit > 0 ? `debit $${formatAmount(line.debit)}` : `credit $${formatAmount(line.credit)}`;
   return `${line.date} • ${account} ${movement}`;
 }
 
+/**
+ * Normalizes a journal entry line for comparison by lowercasing and standardizing formatting.
+ * @param line - The journal entry line to normalize
+ * @returns A pipe-delimited string suitable for comparison
+ */
 function normalizeLine(line: JournalEntryLine) {
   return [
     line.date.trim().toLowerCase(),
@@ -127,12 +153,27 @@ function normalizeLine(line: JournalEntryLine) {
   ].join('|');
 }
 
+/**
+ * Creates a shallow clone of a journal entry line.
+ * @param line - The journal entry line to clone
+ * @returns A new journal entry line with the same properties
+ */
 function cloneLine(line: JournalEntryLine): JournalEntryLine {
   return {
     ...line,
   };
 }
 
+/**
+ * Builds a new journal entry line with the given properties.
+ * @param id - Unique identifier for the line
+ * @param date - The date string for the line
+ * @param accountId - The account ID for the line
+ * @param debit - The debit amount
+ * @param credit - The credit amount
+ * @param memo - A description or note for the line
+ * @returns A new JournalEntryLine object
+ */
 function buildLine(id: string, date: string, accountId: string, debit: number, credit: number, memo: string): JournalEntryLine {
   return {
     id,
@@ -144,6 +185,11 @@ function buildLine(id: string, date: string, accountId: string, debit: number, c
   };
 }
 
+/**
+ * Builds a list of account options from a list of account IDs, resolving labels from the account registry.
+ * @param accountIds - Array of account IDs to build options for
+ * @returns Array of account options with id and label properties
+ */
 function buildAccountOptions(accountIds: string[]) {
   const uniqueIds = Array.from(new Set(accountIds));
   return uniqueIds.map((accountId) => ({
@@ -152,6 +198,13 @@ function buildAccountOptions(accountIds: string[]) {
   }));
 }
 
+/**
+ * Builds a scenario from a transaction event, mapping journal lines and available accounts.
+ * @param kind - The scenario kind to create
+ * @param seed - The seed for randomization
+ * @param options - Transaction build options
+ * @returns A configured JournalEntryScenario
+ */
 function buildScenarioFromEvent(kind: JournalEntryScenarioKind, seed: number, options: TransactionBuildOptions): JournalEntryScenario {
   const event = buildTransactionEvent(options.archetypeId ?? 'earn-revenue', {
     ...options,
@@ -186,6 +239,11 @@ function buildScenarioFromEvent(kind: JournalEntryScenarioKind, seed: number, op
   };
 }
 
+/**
+ * Builds a service revenue scenario using the earn-revenue archetype.
+ * @param seed - The seed for randomization
+ * @returns A configured JournalEntryScenario
+ */
 function buildServiceRevenueScenario(seed: number): JournalEntryScenario {
   return buildScenarioFromEvent('service-revenue', seed, {
     archetypeId: 'earn-revenue',
@@ -194,6 +252,11 @@ function buildServiceRevenueScenario(seed: number): JournalEntryScenario {
   });
 }
 
+/**
+ * Builds an owner contribution scenario using the owner-invests-cash archetype.
+ * @param seed - The seed for randomization
+ * @returns A configured JournalEntryScenario
+ */
 function buildOwnerContributionScenario(seed: number): JournalEntryScenario {
   return buildScenarioFromEvent('owner-contribution', seed, {
     archetypeId: 'owner-invests-cash',
@@ -201,6 +264,11 @@ function buildOwnerContributionScenario(seed: number): JournalEntryScenario {
   });
 }
 
+/**
+ * Builds an asset purchase scenario with a randomly selected asset kind.
+ * @param seed - The seed for randomization
+ * @returns A configured JournalEntryScenario
+ */
 function buildAssetPurchaseScenario(seed: number): JournalEntryScenario {
   const rng = mulberry32(seed ^ 0x1b873593);
   const assetKind = pick(['supplies', 'equipment', 'inventory'] as const, rng);
@@ -238,6 +306,11 @@ function buildAssetPurchaseScenario(seed: number): JournalEntryScenario {
   };
 }
 
+/**
+ * Builds a liability settlement scenario using the pay-payable archetype.
+ * @param seed - The seed for randomization
+ * @returns A configured JournalEntryScenario
+ */
 function buildLiabilitySettlementScenario(seed: number): JournalEntryScenario {
   return buildScenarioFromEvent('liability-settlement', seed, {
     archetypeId: 'pay-payable',
@@ -245,6 +318,11 @@ function buildLiabilitySettlementScenario(seed: number): JournalEntryScenario {
   });
 }
 
+/**
+ * Builds an accrual adjustment scenario with randomly selected expense and payable accounts.
+ * @param seed - The seed for randomization
+ * @returns A configured JournalEntryScenario
+ */
 function buildAccrualAdjustmentScenario(seed: number): JournalEntryScenario {
   const rng = mulberry32(seed ^ 0x9e3779b9);
   const amount = pick([240, 360, 480, 600, 750, 900], rng);
@@ -269,6 +347,11 @@ function buildAccrualAdjustmentScenario(seed: number): JournalEntryScenario {
   };
 }
 
+/**
+ * Builds a depreciation adjustment scenario for year-end recording.
+ * @param seed - The seed for randomization
+ * @returns A configured JournalEntryScenario
+ */
 function buildDepreciationScenario(seed: number): JournalEntryScenario {
   const rng = mulberry32(seed ^ 0x85ebca6b);
   const amount = pick([180, 240, 300, 360, 450, 600], rng);
@@ -290,6 +373,11 @@ function buildDepreciationScenario(seed: number): JournalEntryScenario {
   };
 }
 
+/**
+ * Builds a closing entry scenario for closing temporary accounts at year-end.
+ * @param seed - The seed for randomization
+ * @returns A configured JournalEntryScenario
+ */
 function buildClosingScenario(seed: number): JournalEntryScenario {
   const rng = mulberry32(seed ^ 0x4cf5ad43);
   const revenue = pick([4800, 5400, 6000, 7200, 8400], rng);
@@ -314,6 +402,11 @@ function buildClosingScenario(seed: number): JournalEntryScenario {
   };
 }
 
+/**
+ * Builds a correcting entry scenario to fix an earlier accounting mistake.
+ * @param seed - The seed for randomization
+ * @returns A configured JournalEntryScenario
+ */
 function buildCorrectingScenario(seed: number): JournalEntryScenario {
   const rng = mulberry32(seed ^ 0xc2b2ae35);
   const amount = pick([300, 450, 600, 750, 900, 1200], rng);
@@ -335,6 +428,11 @@ function buildCorrectingScenario(seed: number): JournalEntryScenario {
   };
 }
 
+/**
+ * Builds a reversing entry scenario for reversing prior period accruals.
+ * @param seed - The seed for randomization
+ * @returns A configured JournalEntryScenario
+ */
 function buildReversingScenario(seed: number): JournalEntryScenario {
   const rng = mulberry32(seed ^ 0x27d4eb2f);
   const amount = pick([240, 360, 480, 600, 750], rng);
@@ -356,6 +454,11 @@ function buildReversingScenario(seed: number): JournalEntryScenario {
   };
 }
 
+/**
+ * Builds a merchandising sale scenario using perpetual inventory for the seller side.
+ * @param seed - The seed for randomization
+ * @returns A configured JournalEntryScenario
+ */
 function buildMerchandisingSaleScenario(seed: number): JournalEntryScenario {
   const rng = mulberry32(seed ^ 0x632be59b);
   const saleAmount = pick([1200, 1500, 1800, 2400, 3000], rng);
@@ -380,6 +483,11 @@ function buildMerchandisingSaleScenario(seed: number): JournalEntryScenario {
   };
 }
 
+/**
+ * Builds a merchandising purchase scenario using perpetual inventory for the buyer side.
+ * @param seed - The seed for randomization
+ * @returns A configured JournalEntryScenario
+ */
 function buildMerchandisingPurchaseScenario(seed: number): JournalEntryScenario {
   const rng = mulberry32(seed ^ 0x94d049bb);
   const purchaseAmount = pick([900, 1200, 1500, 1800, 2400], rng);
@@ -404,6 +512,11 @@ function buildMerchandisingPurchaseScenario(seed: number): JournalEntryScenario 
   };
 }
 
+/**
+ * Builds a return and allowance scenario with original sale, return, and collection entries.
+ * @param seed - The seed for randomization
+ * @returns A configured JournalEntryScenario
+ */
 function buildReturnAllowanceScenario(seed: number): JournalEntryScenario {
   const rng = mulberry32(seed ^ 0xdeb43b03);
   const saleAmount = pick([1200, 1500, 1800, 2400], rng);
@@ -443,6 +556,11 @@ function buildReturnAllowanceScenario(seed: number): JournalEntryScenario {
   };
 }
 
+/**
+ * Builds a discount settlement scenario for cash collection within the discount period.
+ * @param seed - The seed for randomization
+ * @returns A configured JournalEntryScenario
+ */
 function buildDiscountSettlementScenario(seed: number): JournalEntryScenario {
   const rng = mulberry32(seed ^ 0x2545f491);
   const gross = pick([1200, 1500, 1800, 2400], rng);
@@ -484,17 +602,33 @@ export const journalEntryScenarioCatalog = [
   { kind: 'discount-settlement', build: buildDiscountSettlementScenario },
 ] as const satisfies readonly JournalEntryScenarioBuilder[];
 
+/**
+ * Selects a random scenario kind from the catalog using the seed.
+ * @param seed - The seed for randomization
+ * @returns A randomly selected JournalEntryScenarioKind
+ */
 function pickScenarioKind(seed: number) {
   const rng = mulberry32(seed ^ 0x3c6ef372);
   return journalEntryScenarioCatalog[Math.floor(rng() * journalEntryScenarioCatalog.length)].kind;
 }
 
+/**
+ * Builds a complete scenario by selecting and invoking the appropriate scenario builder.
+ * @param seed - The seed for randomization
+ * @param config - Configuration options including optional scenarioKey
+ * @returns A configured JournalEntryScenario
+ */
 function buildScenario(seed: number, config: JournalEntryConfig): JournalEntryScenario {
   const scenarioKey = config.scenarioKey ?? pickScenarioKind(seed);
   const builder = journalEntryScenarioCatalog.find((entry) => entry.kind === scenarioKey) ?? journalEntryScenarioCatalog[0];
   return builder.build(seed);
 }
 
+/**
+ * Builds the problem parts from a scenario, mapping each journal line to a part.
+ * @param scenario - The scenario to build parts from
+ * @returns Array of JournalEntryPart definitions
+ */
 function buildParts(scenario: JournalEntryScenario): JournalEntryPart[] {
   return scenario.journalLines.map((line, index) => {
     const accountLabel = getAccountById(line.accountId)?.label ?? line.accountId;
@@ -524,19 +658,45 @@ function buildParts(scenario: JournalEntryScenario): JournalEntryPart[] {
   });
 }
 
+/**
+ * Builds the canonical response by cloning all journal lines from the definition.
+ * @param definition - The problem definition
+ * @returns Array of cloned journal entry lines
+ */
 function buildResponse(definition: JournalEntryDefinition): JournalEntryResponse {
   return definition.journalLines.map(cloneLine);
 }
 
+/**
+ * Checks if an expected line matches an actual line by comparing normalized signatures.
+ * @param expected - The expected journal entry line
+ * @param actual - The actual journal entry line to check
+ * @returns True if the lines match, false otherwise
+ */
 function lineMatches(expected: JournalEntryLine, actual?: JournalEntryLine) {
   return !!actual && normalizeLine(expected) === normalizeLine(actual);
 }
 
+/**
+ * Checks if an expected line is present anywhere in the actual lines array.
+ * @param expected - The expected journal entry line
+ * @param actualLines - Array of actual lines to search
+ * @returns True if the expected line is present in any position
+ */
 function linePresentAnywhere(expected: JournalEntryLine, actualLines: JournalEntryLine[]) {
   const expectedSignature = normalizeLine(expected);
   return actualLines.some((line) => normalizeLine(line) === expectedSignature);
 }
 
+/**
+ * Builds feedback for a single part, comparing expected and actual journal lines.
+ * @param part - The part definition
+ * @param expectedLine - The expected journal entry line
+ * @param studentLine - The student's submitted line
+ * @param studentLines - All student-submitted lines
+ * @param gradeResultPart - The grade result for this part
+ * @returns Feedback object with status and message
+ */
 function buildPartFeedback(
   part: JournalEntryPart,
   expectedLine: JournalEntryLine,
