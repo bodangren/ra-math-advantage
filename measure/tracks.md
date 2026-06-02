@@ -99,7 +99,7 @@ Dependencies:
       *Link: [./measure/archive/blueprint-qa-harness_20260510/](./measure/archive/blueprint-qa-harness_20260510/)*
    - [ ] **Track 15: Skill Graph Program — Geometry & Statistics Renderers**
       *Implement specialized React components `stats-distribution-plotter` and `geometry-diagram-explorer` to address component gaps.*
-      *Link: [./measure/archive/geometry-stats-renderers_20260510/](./measure/archive/geometry-stats-renderers_20260510/)*
+      *Link: [./measure/tracks/geometry-stats-renderers_20260510/](./measure/tracks/geometry-stats-renderers_20260510/)*
    - [ ] **Track 16: Skill Graph Program — Trigonometry & Advanced Function Renderers**
       *Implement `trig-unit-circle-visualizer`, `trig-graph-builder`, and `polar-renderer` to address advanced function component gaps.*
       *Link: [./measure/tracks/trig-advanced-renderers_20260510/](./measure/tracks/trig-advanced-renderers_20260510/)*
@@ -125,7 +125,7 @@ Dependencies:
    *Fix lint errors in all 5 apps and add CI lint gates for IM1, IM2, and PreCalc*
    *Link: [./measure/archive/fix-lint-errors_20260505/](./measure/archive/fix-lint-errors_20260505/)*
 
-- [ ] **Track: Review Remediation — 2026-05-05 Daily Work**
+- [x] **Track: Review Remediation — 2026-05-05 Daily Work**
    *Remediate issues found during Measure review: dead import in seed_lesson_standards.ts, SRS validator structural drift, missing drift detection, missing checkpoints, as never anti-pattern*
    *Link: [./measure/archive/review-remediation_20260505/](./measure/archive/review-remediation_20260505/)*
 
@@ -901,6 +901,17 @@ AI Tutoring and Workbook scope is explicitly **import/adopt from BM2**, not gree
    - Phase 7: IM3 app/scripts/other/ [ ]
    - Phase 8: Packages src/ [ ]
    - Phase 9: Packages components/lib/other/ [ ]
+
+- [~] **Track: Graph-vs-Tracks Review Remediation**
+   *Remediate 25 findings from the 2026-06-02 codebase-vs-tracks review: fix data tooling bugs, sync track statuses, fix student-visible bugs, reconcile spec/impl drift, and address JSDoc/test coverage gaps. Source: `measure/reports/graph-vs-tracks-review_20260602.md`.*
+   *Link: [./tracks/graph-vs-tracks-remediation_20260602/](./tracks/graph-vs-tracks-remediation_20260602/)*
+   - Phase 1: P0 — Fix Data Tooling & KST Program Decision [ ]
+   - Phase 2: P1 — Block New Bugs [ ]
+   - Phase 3: P2 — JSDoc Debt (High-Priority Surfaces) [ ]
+   - Phase 4: P3 — Test Coverage Gaps [ ]
+   - Phase 5: P4 — Graph Construction Improvements [ ]
+   - Phase 6: P5 — Hygiene [ ]
+   - Phase 7: Final Verification [ ]
 
 ## Archived Tracks
 
