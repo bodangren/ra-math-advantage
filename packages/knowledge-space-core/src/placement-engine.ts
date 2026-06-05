@@ -3,7 +3,7 @@
 //   pass → downstream (toward advanced skills)
 //   fail / partial → upstream (toward prerequisites)
 
-import type { KnowledgeSpace, KnowledgeSpaceNode } from './types';
+import type { KnowledgeSpace } from './types';
 import type { PlacementResult, ProbeAdapter, ProbeResult } from './placement';
 
 // ---------------------------------------------------------------------------
@@ -27,8 +27,8 @@ interface TraversalOptions {
 // ---------------------------------------------------------------------------
 
 function buildAdjacency(graph: KnowledgeSpace) {
-  const downstream = new Map<string, string[]>(); // sourceId → targetIds
-  const upstream = new Map<string, string[]>();   // targetId → sourceIds
+  const downstream = new Map<string, string[]>();
+  const upstream = new Map<string, string[]>();
 
   for (const edge of graph.edges) {
     if (edge.type !== 'prerequisite_for') continue;
@@ -55,15 +55,40 @@ function computeMastery(result: ProbeResult): { estimate: number; confidence: Pl
   }
 }
 
+function finalizeResult(
+  results: PlacementResult[],
+  probesPerformed: number,
+  queue: string[],
+  visited: Set<string>,
+  maxProbes: number,
+): PlacementEngineResult {
+  const hasUnvisitedInQueue = queue.some((n) => !visited.has(n));
+  const reason = probesPerformed >= maxProbes && hasUnvisitedInQueue
+    ? 'max-probes'
+    : 'converged';
+  return {
+    results,
+    probesPerformed,
+    reason,
+    converged: reason === 'converged',
+  };
+}
+
 // ---------------------------------------------------------------------------
 // runPlacementTraversal
 // ---------------------------------------------------------------------------
+//
+// When every adapter.probe() call returns a synchronous ProbeResult, this
+// function returns a plain PlacementEngineResult (not a Promise).  When any
+// probe returns a Promise, it returns a Promise<PlacementEngineResult>.
+// This allows callers to omit `await` for sync adapters while still
+// supporting fully-async adapters.
 
-export async function runPlacementTraversal(
+export function runPlacementTraversal(
   graph: KnowledgeSpace,
   adapter: ProbeAdapter,
   options: TraversalOptions = {},
-): Promise<PlacementEngineResult> {
+): PlacementEngineResult {
   if (graph.nodes.length === 0) {
     return { results: [], probesPerformed: 0, reason: 'empty-graph', converged: true };
   }
@@ -74,7 +99,6 @@ export async function runPlacementTraversal(
   }
 
   const { downstream, upstream } = buildAdjacency(graph);
-
   const startNodeId = options.startNodeId ?? graph.nodes[0]!.id;
 
   const visited = new Set<string>();
@@ -82,14 +106,8 @@ export async function runPlacementTraversal(
   const results: PlacementResult[] = [];
   let probesPerformed = 0;
 
-  while (queue.length > 0 && probesPerformed < maxProbes) {
-    const nodeId = queue.shift()!;
-    if (visited.has(nodeId)) continue;
-    visited.add(nodeId);
-
-    const probeResult = await adapter.probe(nodeId);
+  function processProbe(nodeId: string, probeResult: ProbeResult): void {
     probesPerformed++;
-
     const { estimate, confidence } = computeMastery(probeResult);
     results.push({ nodeId, masteryEstimate: estimate, confidence });
 
@@ -105,15 +123,30 @@ export async function runPlacementTraversal(
     }
   }
 
-  const hasUnvisitedInQueue = queue.some((n) => !visited.has(n));
-  const reason = probesPerformed >= maxProbes && hasUnvisitedInQueue
-    ? 'max-probes'
-    : 'converged';
+  function run(): PlacementEngineResult {
+    while (queue.length > 0 && probesPerformed < maxProbes) {
+      const nodeId = queue.shift()!;
+      if (visited.has(nodeId)) continue;
+      visited.add(nodeId);
 
-  return {
-    results,
-    probesPerformed,
-    reason,
-    converged: reason === 'converged',
-  };
+      const probeResult = adapter.probe(nodeId);
+
+      if (typeof (probeResult as Promise<ProbeResult>).then === 'function') {
+        return (probeResult as Promise<ProbeResult>).then((resolved) => {
+          processProbe(nodeId, resolved);
+          return run();
+        }) as unknown as PlacementEngineResult;
+      }
+
+      processProbe(nodeId, probeResult as ProbeResult);
+    }
+
+    return finalizeResult(results, probesPerformed, queue, visited, maxProbes);
+  }
+
+  try {
+    return run();
+  } catch (err) {
+    return Promise.reject(err) as unknown as PlacementEngineResult;
+  }
 }

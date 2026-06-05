@@ -26,14 +26,16 @@ Depends on: Track 1 (knowledge state, graph availability).
 
 ## Phase 3 — IM3 Reference Implementation
 
-- [~] Task: Implement the IM3 problem-bank probe adapter (TDD)
-    - [~] 20–30 problems mapped to graph nodes; implements probe(nodeId)
-    - [~] Multi-branch IM3 graph end-to-end traversal (pass-one-branch / fail-another)
-    - [~] Full 25-entry problem bank end-to-end property: probe count is bounded regardless of preset
-- [~] Task: Seed placement results into the knowledge state (TDD)
-    - [~] Low-to-medium-confidence mastery estimates feeding getKnowledgeState
-    - [~] Pure factory + edge cases: buildPlacementKnowledgeStateSeed does not mutate input; empty input is a no-op; store is reusable
+- [x] Task: Implement the IM3 problem-bank probe adapter (TDD) (f9daf664)
+    - [x] 20–30 problems mapped to graph nodes; implements probe(nodeId)
+    - [x] Multi-branch IM3 graph end-to-end traversal (pass-one-branch / fail-another)
+    - [x] Full 25-entry problem bank end-to-end property: probe count is bounded regardless of preset
+- [x] Task: Seed placement results into the knowledge state (TDD) (f9daf664)
+    - [x] Low-to-medium-confidence mastery estimates feeding getKnowledgeState
+    - [x] Pure factory + edge cases: buildPlacementKnowledgeStateSeed does not mutate input; empty input is a no-op; store is reusable
 - [ ] Task: Measure - User Manual Verification 'Phase 3' (Protocol in workflow.md)
+
+> **Known tech debt (1 test):** `seedPlacementResultsIntoStore` returning-student guard test conflicts with upsert semantics test. Always-upsert implemented; guard logic deferred to Phase 4 caller. See `measure/tech-debt.md` item tagged `Track 5 P3`.
 
 ## Phase 4 — Production Wiring
 

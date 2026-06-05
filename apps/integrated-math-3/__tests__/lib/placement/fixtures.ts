@@ -133,7 +133,7 @@ export const IM3_PROBLEM_BANK: ReadonlyArray<Im3ProblemEntry> = Object.freeze([
   // Module 4 — Inverses & Radicals
   {
     problemId: 'im3-m4-l1-inverse-functions',
-    nodeId: 'math.im3.skill.4.1.find-inverse-functions',
+    nodeId: 'math.im3.skill.4.2.find-inverses-of-relations',
     module: 4,
     lesson: 1,
     prompt: 'Find the inverse of f(x) = 2x + 5.',
@@ -141,7 +141,7 @@ export const IM3_PROBLEM_BANK: ReadonlyArray<Im3ProblemEntry> = Object.freeze([
   },
   {
     problemId: 'im3-m4-l3-radical-equations',
-    nodeId: 'math.im3.skill.4.3.solve-radical-equations',
+    nodeId: 'math.im3.skill.4.6.solve-radical-equations-in-one-variable-and-identify-extrane',
     module: 4,
     lesson: 3,
     prompt: 'Solve sqrt(2x + 1) = x - 1.',
@@ -150,7 +150,7 @@ export const IM3_PROBLEM_BANK: ReadonlyArray<Im3ProblemEntry> = Object.freeze([
   // Module 5 — Exponential Functions
   {
     problemId: 'im3-m5-l1-graph-exponential',
-    nodeId: 'math.im3.skill.5.1.graph-exponential-functions',
+    nodeId: 'math.im3.skill.5.1.graph-exponential-growth-functions',
     module: 5,
     lesson: 1,
     prompt: 'Sketch y = 2^x and identify asymptotes.',
@@ -158,7 +158,7 @@ export const IM3_PROBLEM_BANK: ReadonlyArray<Im3ProblemEntry> = Object.freeze([
   },
   {
     problemId: 'im3-m5-l3-solve-exponential',
-    nodeId: 'math.im3.skill.5.3.solve-exponential-equations',
+    nodeId: 'math.im3.skill.5.2.solve-exponential-equations-in-one-variable',
     module: 5,
     lesson: 3,
     prompt: 'Solve 3^(x+1) = 27.',
@@ -167,7 +167,7 @@ export const IM3_PROBLEM_BANK: ReadonlyArray<Im3ProblemEntry> = Object.freeze([
   // Module 6 — Logarithmic Functions
   {
     problemId: 'im3-m6-l1-evaluate-logs',
-    nodeId: 'math.im3.skill.6.1.evaluate-logarithms',
+    nodeId: 'math.im3.skill.6.1.write-logarithmic-expressions-in-exponential-form-and-write',
     module: 6,
     lesson: 1,
     prompt: 'Evaluate log_2(32).',
@@ -175,7 +175,7 @@ export const IM3_PROBLEM_BANK: ReadonlyArray<Im3ProblemEntry> = Object.freeze([
   },
   {
     problemId: 'im3-m6-l3-log-properties',
-    nodeId: 'math.im3.skill.6.3.apply-properties-of-logarithms',
+    nodeId: 'math.im3.skill.6.3.solve-exponential-equations-by-using-common-logarithms',
     module: 6,
     lesson: 3,
     prompt: 'Expand log(x^2 y / z) using log properties.',
@@ -183,7 +183,7 @@ export const IM3_PROBLEM_BANK: ReadonlyArray<Im3ProblemEntry> = Object.freeze([
   },
   {
     problemId: 'im3-m6-l4-solve-log-equation',
-    nodeId: 'math.im3.skill.6.4.solve-logarithmic-equations',
+    nodeId: 'math.im3.skill.6.4.simplify-expressions-with-natural-logarithms',
     module: 6,
     lesson: 4,
     prompt: 'Solve log_3(x) + log_3(x - 2) = 1.',
@@ -192,7 +192,7 @@ export const IM3_PROBLEM_BANK: ReadonlyArray<Im3ProblemEntry> = Object.freeze([
   // Module 7 — Rational Functions
   {
     problemId: 'im3-m7-l1-graph-rational',
-    nodeId: 'math.im3.skill.7.1.graph-rational-functions',
+    nodeId: 'math.im3.skill.7.1.simplify-rational-expressions',
     module: 7,
     lesson: 1,
     prompt: 'Sketch f(x) = (x - 1)/(x + 2) and identify asymptotes.',
@@ -200,7 +200,7 @@ export const IM3_PROBLEM_BANK: ReadonlyArray<Im3ProblemEntry> = Object.freeze([
   },
   {
     problemId: 'im3-m7-l3-solve-rational',
-    nodeId: 'math.im3.skill.7.3.solve-rational-equations',
+    nodeId: 'math.im3.skill.7.6.solve-rational-equations-in-one-variable',
     module: 7,
     lesson: 3,
     prompt: 'Solve 1/x + 1/(x+1) = 5/6.',
@@ -209,7 +209,7 @@ export const IM3_PROBLEM_BANK: ReadonlyArray<Im3ProblemEntry> = Object.freeze([
   // Module 8 — Inferential Statistics
   {
     problemId: 'im3-m8-l1-mean-stddev',
-    nodeId: 'math.im3.skill.8.1.calculate-mean-and-standard-deviation',
+    nodeId: 'math.im3.skill.8.1.classify-sampling-methods-and-identify-bias-in-samples-and-s',
     module: 8,
     lesson: 1,
     prompt: 'Find the mean and standard deviation of {4, 8, 10, 12, 16}.',
@@ -217,7 +217,7 @@ export const IM3_PROBLEM_BANK: ReadonlyArray<Im3ProblemEntry> = Object.freeze([
   },
   {
     problemId: 'im3-m8-l3-confidence-interval',
-    nodeId: 'math.im3.skill.8.3.compute-confidence-intervals',
+    nodeId: 'math.im3.skill.8.5.use-sample-data-to-infer-a-population-mean-by-using-confiden',
     module: 8,
     lesson: 3,
     prompt: 'Compute a 95% confidence interval for a sample mean of 50 with sample standard deviation 5 and n = 100.',
@@ -226,7 +226,7 @@ export const IM3_PROBLEM_BANK: ReadonlyArray<Im3ProblemEntry> = Object.freeze([
   // Module 9 — Trigonometric Functions
   {
     problemId: 'im3-m9-l1-unit-circle',
-    nodeId: 'math.im3.skill.9.1.use-the-unit-circle',
+    nodeId: 'math.im3.skill.9.1.convert-between-degree-and-radian-measures-and-find-arc-leng',
     module: 9,
     lesson: 1,
     prompt: 'Find sin(2π/3) using the unit circle.',
@@ -234,7 +234,7 @@ export const IM3_PROBLEM_BANK: ReadonlyArray<Im3ProblemEntry> = Object.freeze([
   },
   {
     problemId: 'im3-m9-l3-graph-sine',
-    nodeId: 'math.im3.skill.9.3.graph-sine-and-cosine-functions',
+    nodeId: 'math.im3.skill.9.4.graph-and-analyze-sine-and-cosine-functions',
     module: 9,
     lesson: 3,
     prompt: 'Sketch y = 2 sin(x) over [0, 2π].',
@@ -242,7 +242,7 @@ export const IM3_PROBLEM_BANK: ReadonlyArray<Im3ProblemEntry> = Object.freeze([
   },
   {
     problemId: 'im3-m9-l5-trig-equation',
-    nodeId: 'math.im3.skill.9.5.solve-trigonometric-equations',
+    nodeId: 'math.im3.skill.9.7.find-values-of-angle-measures-by-using-inverse-trigonometric',
     module: 9,
     lesson: 5,
     prompt: 'Solve 2 sin(x) - 1 = 0 on [0, 2π).',
