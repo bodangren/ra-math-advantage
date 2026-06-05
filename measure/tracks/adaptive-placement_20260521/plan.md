@@ -39,7 +39,7 @@ Depends on: Track 1 (knowledge state, graph availability).
 
 ## Phase 4 — Production Wiring
 
-- [x] Task: Wire the IM3 new-student placement flow
+- [x] Task: Wire the IM3 new-student placement flow (ad1515c4)
     - [x] Run traversal; persist initial knowledge state; route for new students (36 tests passing)
 - [ ] Task: Measure - User Manual Verification 'Phase 4' (Protocol in workflow.md)
 
