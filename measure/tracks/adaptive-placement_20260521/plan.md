@@ -63,5 +63,6 @@ Depends on: Track 1 (knowledge state, graph availability).
 These were tracked as durable tech debt but are really in-flight gaps owned by this track. Recorded here so the registry stays scoped to cross-track durable items.
 
 - **End-to-end integration deferred (blocked on KST Track 1):** the `PlacementResult → getKnowledgeState` integration test cannot be written until `wire-kst-pipeline` defines `getKnowledgeState`. **Do not mark this track fully done** until Track 1 lands and this seam is verified. (Was "Track 5 P1".)
-- **`schema-placement.test.ts` indexes shape mismatch:** Phase 1 test expects `Record<string, ReadonlyArray<string>>` but Convex `TableDefinition.indexes` is `Array<{ indexDescriptor, fields }>`. Surfaces on `tsc --noEmit`. Fix the test's expected shape. (Was "Track 5 P2".)
+- **``schema-placement.test.ts`` indexes shape mismatch:** Resolved in commit 72dfb23c. Test now expects `Array<{ indexDescriptor, fields }>`. (Was "Track 5 P2").
 - **Placement contract documentation location:** resolved — the implemented contract now lives in kst-srs.v2 spec §8 (commit cbc48616). (Was "Track 5 P5 §8/§11".)
+- **Review fix (322ba825):** Resolved `ProbeResult | Promise<ProbeResult>` union type mismatch in `im3-probe-adapter.test.ts` that surfaced during final review `tsc --noEmit`.
