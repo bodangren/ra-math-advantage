@@ -12,9 +12,9 @@ Depends on: Track 1 (knowledge state, graph availability).
 
 ## Phase 2 — Adaptive Tree-Walk Engine
 
-- [ ] Task: Implement the adaptive tree-walk traversal (TDD)
+- [~] Task: Implement the adaptive tree-walk traversal (TDD)
     - [ ] Pass → toward advanced; fail → toward prerequisites; domain-neutral, pure
-- [ ] Task: Implement convergence / frontier detection with bounded probe count (TDD)
+- [~] Task: Implement convergence / frontier detection with bounded probe count (TDD)
 - [ ] Task: Measure - User Manual Verification 'Phase 2' (Protocol in workflow.md)
 
 ## Phase 3 — IM3 Reference Implementation
