@@ -32,29 +32,32 @@ describe('placement_results table schema', () => {
 
   it('has a by_student index for fetching a student\'s placement results', () => {
     const table = schema.tables.placement_results as unknown as {
-      indexes?: Record<string, ReadonlyArray<string>>;
+      indexes?: Array<{ indexDescriptor: string; fields: string[] }>;
     };
     expect(table.indexes).toBeDefined();
-    expect(table.indexes!['by_student']).toBeDefined();
-    expect(table.indexes!['by_student']).toContain('studentId');
+    const byStudent = table.indexes!.find((i) => i.indexDescriptor === 'by_student');
+    expect(byStudent).toBeDefined();
+    expect(byStudent!.fields).toContain('studentId');
   });
 
   it('has a by_student_and_node composite index for idempotent upsert', () => {
     const table = schema.tables.placement_results as unknown as {
-      indexes?: Record<string, ReadonlyArray<string>>;
+      indexes?: Array<{ indexDescriptor: string; fields: string[] }>;
     };
-    expect(table.indexes!['by_student_and_node']).toBeDefined();
-    expect(table.indexes!['by_student_and_node']).toEqual(
+    const byStudentAndNode = table.indexes!.find((i) => i.indexDescriptor === 'by_student_and_node');
+    expect(byStudentAndNode).toBeDefined();
+    expect(byStudentAndNode!.fields).toEqual(
       expect.arrayContaining(['studentId', 'nodeId']),
     );
   });
 
   it('has a by_student_and_createdAt index for the latest-placement lookup', () => {
     const table = schema.tables.placement_results as unknown as {
-      indexes?: Record<string, ReadonlyArray<string>>;
+      indexes?: Array<{ indexDescriptor: string; fields: string[] }>;
     };
-    expect(table.indexes!['by_student_and_createdAt']).toBeDefined();
-    expect(table.indexes!['by_student_and_createdAt']).toEqual(
+    const byStudentAndCreatedAt = table.indexes!.find((i) => i.indexDescriptor === 'by_student_and_createdAt');
+    expect(byStudentAndCreatedAt).toBeDefined();
+    expect(byStudentAndCreatedAt!.fields).toEqual(
       expect.arrayContaining(['studentId', 'createdAt']),
     );
   });
