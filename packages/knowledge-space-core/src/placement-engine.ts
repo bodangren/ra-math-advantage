@@ -59,11 +59,11 @@ function computeMastery(result: ProbeResult): { estimate: number; confidence: Pl
 // runPlacementTraversal
 // ---------------------------------------------------------------------------
 
-export function runPlacementTraversal(
+export async function runPlacementTraversal(
   graph: KnowledgeSpace,
   adapter: ProbeAdapter,
   options: TraversalOptions = {},
-): PlacementEngineResult {
+): Promise<PlacementEngineResult> {
   if (graph.nodes.length === 0) {
     return { results: [], probesPerformed: 0, reason: 'empty-graph', converged: true };
   }
@@ -87,7 +87,7 @@ export function runPlacementTraversal(
     if (visited.has(nodeId)) continue;
     visited.add(nodeId);
 
-    const probeResult = adapter.probe(nodeId) as ProbeResult;
+    const probeResult = await adapter.probe(nodeId);
     probesPerformed++;
 
     const { estimate, confidence } = computeMastery(probeResult);

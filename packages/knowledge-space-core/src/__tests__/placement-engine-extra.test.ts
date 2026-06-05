@@ -108,14 +108,14 @@ function buildDiamond(): KnowledgeSpace {
 }
 
 describe('runPlacementTraversal — diamond / convergent DAGs', () => {
-  it('on a 4-node diamond, a pass-all walk probes every node and never double-probes the merge', () => {
+  it('on a 4-node diamond, a pass-all walk probes every node and never double-probes the merge', async () => {
     const graph = buildDiamond();
     const adapter = createDeterministicProbeAdapter(
       {},
       { defaultResult: 'pass' },
     );
 
-    const result = runPlacementTraversal(graph, adapter, {
+    const result = await runPlacementTraversal(graph, adapter, {
       startNodeId: 'math.test.diamond.a',
     });
 
@@ -132,7 +132,7 @@ describe('runPlacementTraversal — diamond / convergent DAGs', () => {
     expect(idxD).toBeGreaterThan(idxC);
   });
 
-  it('on a diamond, failing both branches still converges without probing the merge', () => {
+  it('on a diamond, failing both branches still converges without probing the merge', async () => {
     // a pass → b, c; b fail → no upstream; c fail → no upstream; never reaches d
     const graph = buildDiamond();
     const adapter = createDeterministicProbeAdapter({
@@ -141,7 +141,7 @@ describe('runPlacementTraversal — diamond / convergent DAGs', () => {
       'math.test.diamond.c': 'fail',
     });
 
-    const result = runPlacementTraversal(graph, adapter, {
+    const result = await runPlacementTraversal(graph, adapter, {
       startNodeId: 'math.test.diamond.a',
     });
 
@@ -175,11 +175,11 @@ function buildMultiPrereq(): KnowledgeSpace {
 }
 
 describe('runPlacementTraversal — multi-prerequisite nodes', () => {
-  it('reaches a 2-prereq node via at least one of its prerequisites and probes it exactly once', () => {
+  it('reaches a 2-prereq node via at least one of its prerequisites and probes it exactly once', async () => {
     const graph = buildMultiPrereq();
     const adapter = createDeterministicProbeAdapter({});
 
-    const result = runPlacementTraversal(graph, adapter, {
+    const result = await runPlacementTraversal(graph, adapter, {
       startNodeId: 'math.test.multi.a',
     });
 
@@ -190,7 +190,7 @@ describe('runPlacementTraversal — multi-prerequisite nodes', () => {
     expect(ids).not.toContain('math.test.multi.b');
   });
 
-  it('on a 3-prereq fan-in, walk reaches the merge node from any starting prerequisite', () => {
+  it('on a 3-prereq fan-in, walk reaches the merge node from any starting prerequisite', async () => {
     // a → x, b → x, c → x
     const graph: KnowledgeSpace = {
       nodes: [
@@ -210,7 +210,7 @@ describe('runPlacementTraversal — multi-prerequisite nodes', () => {
       { defaultResult: 'pass' },
     );
 
-    const result = runPlacementTraversal(graph, adapter, {
+    const result = await runPlacementTraversal(graph, adapter, {
       startNodeId: 'math.test.fanin.b',
     });
 
@@ -228,7 +228,7 @@ describe('runPlacementTraversal — multi-prerequisite nodes', () => {
 // ---------------------------------------------------------------------------
 
 describe('runPlacementTraversal — non-prerequisite edge types are ignored', () => {
-  it('walk only follows `prerequisite_for` edges and ignores `appears_in_context`, `supports`, and `extends`', () => {
+  it('walk only follows `prerequisite_for` edges and ignores `appears_in_context`, `supports`, and `extends`', async () => {
     const graph: KnowledgeSpace = {
       nodes: [
         makeNode('math.test.edges.a'),
@@ -249,7 +249,7 @@ describe('runPlacementTraversal — non-prerequisite edge types are ignored', ()
       { defaultResult: 'pass' },
     );
 
-    const result = runPlacementTraversal(graph, adapter, {
+    const result = await runPlacementTraversal(graph, adapter, {
       startNodeId: 'math.test.edges.a',
     });
 
@@ -271,7 +271,7 @@ describe('runPlacementTraversal — non-prerequisite edge types are ignored', ()
 // ---------------------------------------------------------------------------
 
 describe('runPlacementTraversal — self-loops', () => {
-  it('terminates on a single-node graph with a self-loop edge', () => {
+  it('terminates on a single-node graph with a self-loop edge', async () => {
     const graph: KnowledgeSpace = {
       nodes: [makeNode('math.test.loop.a')],
       edges: [prereqEdge('math.test.loop.a', 'math.test.loop.a')],
@@ -280,7 +280,7 @@ describe('runPlacementTraversal — self-loops', () => {
       'math.test.loop.a': 'pass',
     });
 
-    const result = runPlacementTraversal(graph, adapter, {
+    const result = await runPlacementTraversal(graph, adapter, {
       startNodeId: 'math.test.loop.a',
     });
 
@@ -316,7 +316,7 @@ describe('runPlacementTraversal — async probe support', () => {
       },
     };
 
-    const result = runPlacementTraversal(graph, adapter, {
+    const result = await runPlacementTraversal(graph, adapter, {
       startNodeId: 'math.test.chain.n1',
     });
 
@@ -339,7 +339,7 @@ describe('runPlacementTraversal — async probe support', () => {
       },
     };
 
-    const result = runPlacementTraversal(graph, adapter, {
+    const result = await runPlacementTraversal(graph, adapter, {
       startNodeId: 'math.test.chain.n3',
     });
 
@@ -361,7 +361,7 @@ describe('runPlacementTraversal — async probe support', () => {
 // ---------------------------------------------------------------------------
 
 describe('runPlacementTraversal — probe error propagation', () => {
-  it('surfaces a thrown error from `probe` to the caller', () => {
+  it('surfaces a thrown error from `probe` to the caller', async () => {
     const graph = buildLinearPlacementChain(2);
     const adapter: ProbeAdapter = {
       domain: 'math.test.extension',
@@ -373,11 +373,11 @@ describe('runPlacementTraversal — probe error propagation', () => {
       },
     };
 
-    expect(() =>
+    await expect(
       runPlacementTraversal(graph, adapter, {
         startNodeId: 'math.test.chain.n1',
       }),
-    ).toThrow(/probe backend unavailable/);
+    ).rejects.toThrow(/probe backend unavailable/);
   });
 });
 
@@ -389,7 +389,7 @@ describe('runPlacementTraversal — probe error propagation', () => {
 // ---------------------------------------------------------------------------
 
 describe('runPlacementTraversal — property-based termination', () => {
-  it('terminates with probe count ≤ total node count on 5 randomly-generated linear chains', () => {
+  it('terminates with probe count ≤ total node count on 5 randomly-generated linear chains', async () => {
     // Deterministic "random" lengths: 1, 3, 7, 12, 25
     const lengths = [1, 3, 7, 12, 25];
     for (const length of lengths) {
@@ -399,7 +399,7 @@ describe('runPlacementTraversal — property-based termination', () => {
           graph.nodes.map((n) => [n.id, 'pass' as ProbeResult]),
         ),
       );
-      const result = runPlacementTraversal(graph, adapter, {
+      const result = await runPlacementTraversal(graph, adapter, {
         startNodeId: graph.nodes[0]!.id,
       });
       expect(
@@ -410,7 +410,7 @@ describe('runPlacementTraversal — property-based termination', () => {
     }
   });
 
-  it('terminates on a generated binary tree of depth 4 (15 nodes) with probe count ≤ 15', () => {
+  it('terminates on a generated binary tree of depth 4 (15 nodes) with probe count ≤ 15', async () => {
     // Build a 15-node binary tree:
     //   1 → 2, 3; 2 → 4, 5; 3 → 6, 7; 4 → 8, 9; 5 → 10, 11; 6 → 12, 13; 7 → 14, 15
     const totalNodes = 15;
@@ -435,7 +435,7 @@ describe('runPlacementTraversal — property-based termination', () => {
       ),
     );
 
-    const result = runPlacementTraversal(graph, adapter, {
+    const result = await runPlacementTraversal(graph, adapter, {
       startNodeId: 'math.test.tree.n1',
     });
 

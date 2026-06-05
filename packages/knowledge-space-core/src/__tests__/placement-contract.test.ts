@@ -388,7 +388,7 @@ describe('ProbeAdapter', () => {
     };
     for (const id of ['node.a', 'node.b', 'node.c']) {
       const result = adapter.probe(id);
-      expect(validResults.has(result), `adapter returned non-canonical value for ${id}`).toBe(true);
+      expect(validResults.has(result as ProbeResult), `adapter returned non-canonical value for ${id}`).toBe(true);
     }
   });
 
@@ -409,7 +409,7 @@ describe('ProbeAdapter', () => {
         return 'pass';
       },
     };
-    return expect(asyncAdapter.probe('x')).resolves.toBe<ProbeResult>('pass');
+    return expect(asyncAdapter.probe('x')).resolves.toBe('pass');
   });
 });
 
