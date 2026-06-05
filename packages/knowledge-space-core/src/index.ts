@@ -38,6 +38,19 @@ export { suggestEdges } from './edge-suggestions';
 export type { EdgeSuggestionInput } from './edge-suggestions';
 
 export {
+  placementResultSchema,
+  placementResultsSchema,
+  isPlacementResult,
+  PROBE_RESULTS,
+  probeResultSchema,
+} from './placement';
+export type {
+  PlacementResult,
+  ProbeResult,
+  ProbeAdapter,
+} from './placement';
+
+export {
   findCrossCourseEquivalences,
   validateCrossCourseEdges,
   computeEquivalenceComponents,

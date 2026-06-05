@@ -45,6 +45,8 @@ const graphingExplorerPropsValidator = v.object({
   variant: v.optional(v.union(
     v.literal("plot_from_equation"), v.literal("compare_functions"),
     v.literal("find_intercepts"), v.literal("graph_system"),
+    v.literal("explore"), v.literal("find_zeros"),
+    v.literal("compare"), v.literal("rate_of_change"),
   )),
   equation: v.string(),
   domain: v.optional(v.array(v.number())),
@@ -60,7 +62,7 @@ const stepByStepSolverPropsValidator = v.object({
   problemType: v.union(
     v.literal("quadratic_formula"), v.literal("factoring"),
     v.literal("completing_the_square"), v.literal("square_root_property"),
-    v.literal("graphing"),
+    v.literal("graphing"), v.literal("polynomial"), v.literal("rate_of_change"),
   ),
   equation: v.string(),
   steps: v.optional(v.array(v.object({
@@ -710,6 +712,18 @@ export default defineSchema({
     createdAt: v.number(),
     updatedAt: v.number(),
   }).index("by_user", ["userId"]),
+
+  placement_results: defineTable({
+    studentId: v.id("profiles"),
+    nodeId: v.string(),
+    masteryEstimate: v.number(),
+    confidence: v.union(v.literal("low"), v.literal("medium")),
+    source: v.string(),
+    createdAt: v.number(),
+  })
+    .index("by_student", ["studentId"])
+    .index("by_student_and_node", ["studentId", "nodeId"])
+    .index("by_student_and_createdAt", ["studentId", "createdAt"]),
 
   chatbot_rate_limits: defineTable({
     userId: v.id("profiles"),
