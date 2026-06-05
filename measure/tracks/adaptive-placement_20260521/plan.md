@@ -10,7 +10,7 @@ Depends on: Track 1 (knowledge state, graph availability).
     - [x] Convex schema for persisted initial knowledge state
 - [x] Task: Measure - User Manual Verification 'Phase 1' (037090ce)
 
-## Phase 2 — Adaptive Tree-Walk Engine
+## Phase 2 — Adaptive Tree-Walk Engine [checkpoint: 5b97e05f]
 
 - [x] Task: Implement the adaptive tree-walk traversal (TDD) (81307209)
     - [x] Pass → toward advanced; fail → toward prerequisites; domain-neutral, pure
@@ -24,7 +24,7 @@ Depends on: Track 1 (knowledge state, graph availability).
     - [x] Async probe rejection propagation (regression lock-in; current behavior correct)
     - [x] Sync probe result validation (non-canonical string, null, undefined, number, uppercase variant) — engine surfaces `/invalid probe result/i` error with the offending value
     - [x] Async probe result validation (resolves to non-canonical value) — engine surfaces `/invalid probe result/i` error with the offending value
-- [~] Task: Measure - User Manual Verification 'Phase 2' (Protocol in workflow.md)
+- [x] Task: Measure - User Manual Verification 'Phase 2' (5b97e05f)
 
 > **Known test debt (3 tests):** Resolved in 73bb4752 — bare node IDs fixed to dot-separated format; adapter preset corrected; engine made async. See `measure/tech-debt.md` items tagged `Track 5 P2` (all Resolved).
 
