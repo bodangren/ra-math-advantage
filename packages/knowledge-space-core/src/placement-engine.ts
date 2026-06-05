@@ -44,6 +44,16 @@ function buildAdjacency(graph: KnowledgeSpace) {
   return { downstream, upstream };
 }
 
+const VALID_PROBE_RESULTS: ReadonlySet<string> = new Set(['pass', 'fail', 'partial']);
+
+function validateProbeResult(value: unknown): asserts value is ProbeResult {
+  if (typeof value !== 'string' || !VALID_PROBE_RESULTS.has(value)) {
+    throw new Error(
+      `Invalid probe result: ${JSON.stringify(value)}. Expected one of: pass, fail, partial.`,
+    );
+  }
+}
+
 function computeMastery(result: ProbeResult): { estimate: number; confidence: PlacementResult['confidence'] } {
   switch (result) {
     case 'pass':
@@ -131,13 +141,20 @@ export function runPlacementTraversal(
 
       const probeResult = adapter.probe(nodeId);
 
+      // Validate null/undefined before .then access (avoids TypeError)
+      if (probeResult == null) {
+        validateProbeResult(probeResult);
+      }
+
       if (typeof (probeResult as Promise<ProbeResult>).then === 'function') {
         return (probeResult as Promise<ProbeResult>).then((resolved) => {
+          validateProbeResult(resolved);
           processProbe(nodeId, resolved);
           return run();
         }) as unknown as PlacementEngineResult;
       }
 
+      validateProbeResult(probeResult);
       processProbe(nodeId, probeResult as ProbeResult);
     }
 
