@@ -5,6 +5,8 @@
     "packages/*"
   ],
   "scripts": {
+    "lint": "npm run --workspace=packages/knowledge-space-core lint && npm run --workspace=apps/integrated-math-3 lint",
+    "build": "npm run --workspace=packages/knowledge-space-core build && npm run --workspace=apps/integrated-math-3 build",
     "test": "npm run test --workspace=packages/knowledge-space-core",
     "ws:im3:lint": "npm run --workspace=apps/integrated-math-3 lint 2>/dev/null || npm run lint --prefix apps/integrated-math-3",
     "ws:im3:test": "npm run --workspace=apps/integrated-math-3 test 2>/dev/null || npm run test --prefix apps/integrated-math-3",

@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import { knowledgeSpaceSchema, validateKnowledgeSpace, getNodesMissingRequiredAlignments, getIndependentPracticeNodesMissingGenerators, getInvalidEdgePairings } from '@math-platform/knowledge-space-core';
-import { validateMathNodeMetadata, mathDomainAdapter } from '@math-platform/math-content/knowledge-space';
+import { validateMathNodeMetadata } from '@math-platform/math-content/knowledge-space';
 import type { KnowledgeSpace, KnowledgeSpaceNode, KnowledgeSpaceEdge } from '@math-platform/knowledge-space-core';
 import nodesJson from '../module-1/nodes.json';
 import edgesJson from '../module-1/edges.json';
@@ -12,11 +12,6 @@ function loadModule1Graph(): KnowledgeSpace {
   const module1NodeIds = new Set(module1Nodes.map(n => n.id));
   const module1Edges = (edgesJson as { edges: KnowledgeSpaceEdge[] }).edges
     .filter(e => module1NodeIds.has(e.sourceId) && module1NodeIds.has(e.targetId));
-  const standardEdgeSourceIds = new Set(
-    (standardEdgesJson as { edges: KnowledgeSpaceEdge[] }).edges
-      .filter(e => module1NodeIds.has(e.sourceId))
-      .map(e => e.sourceId),
-  );
   const standardNodes = (standardEdgesJson as { nodes: KnowledgeSpaceNode[] }).nodes
     .filter(n => n.kind === 'standard' || module1NodeIds.has(n.id));
   const allNodes = [...module1Nodes];

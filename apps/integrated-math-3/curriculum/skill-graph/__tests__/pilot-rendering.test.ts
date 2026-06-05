@@ -80,7 +80,7 @@ describe('Module 1 Pilot Rendering', () => {
 
   it('all renderer mode maps reference valid renderers', () => {
     for (const bp of blueprints) {
-      for (const [mode, rendererKey] of Object.entries(bp.rendererModeMap)) {
+      for (const [, rendererKey] of Object.entries(bp.rendererModeMap)) {
         expect(mathSchemaAdapter.acceptRendererKey(rendererKey)).toBe(true);
       }
     }

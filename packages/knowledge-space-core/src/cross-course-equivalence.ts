@@ -93,18 +93,7 @@ export function validateCrossCourseEdges(
 /**
  * Extract standard IDs a node is aligned to (via aligned_to_standard edges).
  */
-function getStandardIds(
-  nodeId: string,
-  edges: KnowledgeSpaceEdge[],
-): Set<string> {
-  const standards = new Set<string>();
-  for (const e of edges) {
-    if (e.type === 'aligned_to_standard' && e.sourceId === nodeId) {
-      standards.add(e.targetId);
-    }
-  }
-  return standards;
-}
+// function getStandardIds(nodeId: string, edges: KnowledgeSpaceEdge[]): Set<string> { ... }
 
 /**
  * Build a global lookup of standard IDs per node across all courses.

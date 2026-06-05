@@ -146,7 +146,7 @@ describe('buildKnowledgeStateSeed (Phase 1 deferred integration test prerequisit
         confidence: 'high' as const,
       },
     ];
-    expect(() => buildKnowledgeStateSeed(input)).toThrow();
+    expect(() => buildKnowledgeStateSeed(input as unknown as PlacementResult[])).toThrow();
   });
 
   it('rejects a result whose masteryEstimate is out of [0, 1]', () => {
