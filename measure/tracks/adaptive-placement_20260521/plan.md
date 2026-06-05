@@ -12,10 +12,17 @@ Depends on: Track 1 (knowledge state, graph availability).
 
 ## Phase 2 — Adaptive Tree-Walk Engine
 
-- [~] Task: Implement the adaptive tree-walk traversal (TDD)
-    - [ ] Pass → toward advanced; fail → toward prerequisites; domain-neutral, pure
-- [~] Task: Implement convergence / frontier detection with bounded probe count (TDD)
+- [x] Task: Implement the adaptive tree-walk traversal (TDD) (81307209)
+    - [x] Pass → toward advanced; fail → toward prerequisites; domain-neutral, pure
+- [x] Task: Implement convergence / frontier detection with bounded probe count (TDD) (81307209)
+- [~] Task: Extend tree-walk test coverage for structural patterns and async probes (TDD, Red)
+    - [~] Diamond/convergent DAGs, multi-prerequisite nodes, non-prereq edge filtering, self-loops
+    - [~] Async `ProbeAdapter` support (engine type allows `Promise<ProbeResult>`)
+    - [~] Property-based termination on small generated DAGs
+    - [~] Probe error propagation (probe throws → engine surfaces error, not silent crash)
 - [ ] Task: Measure - User Manual Verification 'Phase 2' (Protocol in workflow.md)
+
+> **Known test debt (3 tests):** 2 schema-validation failures from bare node IDs in `buildChain3()`/`buildBranch()` helpers; 1 adapter preset mismatch in "fail-all" test. See `measure/tech-debt.md` items tagged `Track 5 P2`.
 
 ## Phase 3 — IM3 Reference Implementation
 
