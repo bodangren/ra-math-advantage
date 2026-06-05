@@ -50,6 +50,9 @@ export type {
   ProbeAdapter,
 } from './placement';
 
+export { runPlacementTraversal } from './placement-engine';
+export type { PlacementEngineResult } from './placement-engine';
+
 export {
   findCrossCourseEquivalences,
   validateCrossCourseEdges,
