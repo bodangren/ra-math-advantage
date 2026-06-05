@@ -1,3 +1,12 @@
+/**
+ * New-student placement flow orchestrator.
+ *
+ * Runs the adaptive tree-walk traversal for a cold-start learner, persists
+ * the resulting PlacementResult[] into the knowledge state store, and returns
+ * a PlacementFlowOutcome.  Returning students (already-placed) are skipped
+ * unless `force` is set.
+ */
+
 import type {
   KnowledgeSpace,
   ProbeAdapter,
