@@ -33,7 +33,7 @@ export function buildPlacementKnowledgeStateSeed(
     if (r.confidence !== 'low' && r.confidence !== 'medium') {
       throw new Error(`Invalid confidence value: "${r.confidence}". Placement seeds must be low or medium.`);
     }
-    if (r.masteryEstimate < 0 || r.masteryEstimate > 1) {
+    if (!Number.isFinite(r.masteryEstimate) || r.masteryEstimate < 0 || r.masteryEstimate > 1) {
       throw new Error(`Invalid masteryEstimate: ${r.masteryEstimate}. Must be in [0, 1].`);
     }
   }

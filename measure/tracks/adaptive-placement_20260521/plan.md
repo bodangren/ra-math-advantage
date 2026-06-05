@@ -40,7 +40,7 @@ Depends on: Track 1 (knowledge state, graph availability).
 - [x] Task: Phase 3 Red-phase regression hardening — non-finite masteryEstimate rejection (200f0184)
     - [x] Red-phase tests for NaN / non-numeric masteryEstimate rejection in buildPlacementKnowledgeStateSeed (5 tests: 2 fail Red, 3 regression locks)
     - [x] Locks the test strategy §3 "must remain explicit" spirit for seed-builder edge cases
-    - [ ] **Green-phase follow-up (deferred):** the Red-phase NaN/non-numeric tests will go Green once a `Number.isFinite()` guard is added to the range check in `apps/integrated-math-3/lib/placement/seed-knowledge-state.ts`. Tracked here for the next implementer; not blocking Phase 3 Manual Verification.
+    - [x] **Green-phase follow-up (13362e28):** `Number.isFinite()` guard added to range check in `apps/integrated-math-3/lib/placement/seed-knowledge-state.ts`; NaN and non-numeric masteryEstimate values now rejected.
 - [~] Task: Measure - User Manual Verification 'Phase 3' (Protocol in workflow.md)
 
 > **Resolved (Phase 4):** `seedPlacementResultsIntoStore` returning-student guard test conflicted with upsert semantics. Always-upsert implemented; guard logic now lives in the Phase 4 caller `runNewStudentPlacementFlow`. (Was Tech Debt Registry row "Track 5 P3".)
