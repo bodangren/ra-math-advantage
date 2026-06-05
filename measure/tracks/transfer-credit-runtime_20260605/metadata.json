@@ -1,0 +1,12 @@
+{
+  "track_id": "transfer-credit-runtime_20260605",
+  "type": "feature",
+  "status": "new",
+  "created_at": "2026-06-05T00:00:00Z",
+  "updated_at": "2026-06-05T00:00:00Z",
+  "description": "Surface equivalent_to mastery to students at runtime ('already mastered in IM2 -> skip'). Verified: equivalence edges authored in Skill Graph T13 but unused at runtime. Tier 2 backlog. Depends on wire-kst-pipeline (KST learner state).",
+  "program": "High-Leverage Backlog",
+  "estimated_tasks": 13,
+  "actual_tasks": null,
+  "deviation_notes": ""
+}

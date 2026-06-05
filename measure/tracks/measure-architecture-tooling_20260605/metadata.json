@@ -1,0 +1,12 @@
+{
+  "track_id": "measure-architecture-tooling_20260605",
+  "type": "chore",
+  "status": "new",
+  "created_at": "2026-06-05T00:00:00Z",
+  "updated_at": "2026-06-05T00:00:00Z",
+  "description": "Build the real Measure generate + doctor scripts and the measure/generated/ facts (architecture.json, routes.md) so /measure:doctor stops HALTing. Phantom generate.sh/doctor.sh are referenced by multiple plans but never existed. Tier 1 backlog; sourced from Tech Debt Registry.",
+  "program": "Quality & Completion Backlog",
+  "estimated_tasks": 12,
+  "actual_tasks": null,
+  "deviation_notes": ""
+}

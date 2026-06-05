@@ -1,0 +1,12 @@
+{
+  "track_id": "learning-efficacy-analytics_20260605",
+  "type": "feature",
+  "status": "new",
+  "created_at": "2026-06-05T00:00:00Z",
+  "updated_at": "2026-06-05T00:00:00Z",
+  "description": "Instrument learning outcomes (retention curves, time-to-mastery, cohort comparison) and an A/B harness to measure whether the SRS/KST engine improves learning. Verified: no efficacy/experiment/cohort instrumentation exists. Tier 2 backlog.",
+  "program": "High-Leverage Backlog",
+  "estimated_tasks": 16,
+  "actual_tasks": null,
+  "deviation_notes": ""
+}

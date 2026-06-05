@@ -1,0 +1,12 @@
+{
+  "track_id": "e2e-coverage-expansion_20260605",
+  "type": "chore",
+  "status": "new",
+  "created_at": "2026-06-05T00:00:00Z",
+  "updated_at": "2026-06-05T00:00:00Z",
+  "description": "Expand Playwright E2E coverage beyond the 9 infrastructure tests to fully cover login, lesson navigation, activity interaction, daily practice, and teacher dashboard flows. Tier 1 backlog (finish half-done work).",
+  "program": "Quality & Completion Backlog",
+  "estimated_tasks": 16,
+  "actual_tasks": null,
+  "deviation_notes": ""
+}

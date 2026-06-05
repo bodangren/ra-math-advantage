@@ -54,6 +54,6 @@ Boundary rule: `knowledge-space-core` / `-practice` stay domain-neutral.
 ## Phase 5 — Docs, Audit & Doctor
 
 - [ ] Task: Update knowledge-space-practice-projection-audit.md from placeholder to wired Math (IM3) status
-- [ ] Task: Run measure/generate.sh and measure/doctor.sh; fix architectural lint findings
+- [ ] Task: Run architectural lint (`node scripts/check-monorepo-boundaries.mjs`) + per-package `tsc --noEmit`; fix findings (note: `measure/generate.sh`/`doctor.sh` do not exist — use the real boundary linter)
 - [ ] Task: Final verification — boundary lints, npm run lint, tsc --noEmit, CI=true npm run test
 - [ ] Task: Measure - User Manual Verification 'Phase 5' (Protocol in workflow.md)

@@ -35,7 +35,7 @@ Depends on: Track 1 (knowledge state, graph availability).
     - [x] Pure factory + edge cases: buildPlacementKnowledgeStateSeed does not mutate input; empty input is a no-op; store is reusable
 - [ ] Task: Measure - User Manual Verification 'Phase 3' (Protocol in workflow.md)
 
-> **Known tech debt (1 test):** `seedPlacementResultsIntoStore` returning-student guard test conflicts with upsert semantics test. Always-upsert implemented; guard logic deferred to Phase 4 caller. See `measure/tech-debt.md` item tagged `Track 5 P3`.
+> **Resolved (Phase 4):** `seedPlacementResultsIntoStore` returning-student guard test conflicted with upsert semantics. Always-upsert implemented; guard logic now lives in the Phase 4 caller `runNewStudentPlacementFlow`. (Was Tech Debt Registry row "Track 5 P3".)
 
 ## Phase 4 — Production Wiring
 
@@ -45,7 +45,15 @@ Depends on: Track 1 (knowledge state, graph availability).
 
 ## Phase 5 — Docs & Doctor
 
-- [x] Task: Update in-repo kst-srs.v2 spec §8 (Placement) with the implemented contract
-- [x] Task: Run measure/generate.sh and measure/doctor.sh; fix architectural lint
-- [x] Task: Final verification — boundary lints, npm run lint, tsc --noEmit, CI=true npm run test
+- [x] Task: Update in-repo kst-srs.v2 spec §8 (Placement) with the implemented contract (cbc48616)
+- [x] Task: Run architectural lint (`node scripts/check-monorepo-boundaries.mjs`) + per-package `tsc --noEmit`; fix findings (`measure/generate.sh`/`doctor.sh` do not exist — substituted the real boundary linter)
+- [x] Task: Final verification — boundary lints, per-app lint, tsc --noEmit, CI=true npm run test
 - [ ] Task: Measure - User Manual Verification 'Phase 5' (Protocol in workflow.md)
+
+## Known Gaps (relocated from Tech Debt Registry, 2026-06-05)
+
+These were tracked as durable tech debt but are really in-flight gaps owned by this track. Recorded here so the registry stays scoped to cross-track durable items.
+
+- **End-to-end integration deferred (blocked on KST Track 1):** the `PlacementResult → getKnowledgeState` integration test cannot be written until `wire-kst-pipeline` defines `getKnowledgeState`. **Do not mark this track fully done** until Track 1 lands and this seam is verified. (Was "Track 5 P1".)
+- **`schema-placement.test.ts` indexes shape mismatch:** Phase 1 test expects `Record<string, ReadonlyArray<string>>` but Convex `TableDefinition.indexes` is `Array<{ indexDescriptor, fields }>`. Surfaces on `tsc --noEmit`. Fix the test's expected shape. (Was "Track 5 P2".)
+- **Placement contract documentation location:** resolved — the implemented contract now lives in kst-srs.v2 spec §8 (commit cbc48616). (Was "Track 5 P5 §8/§11".)

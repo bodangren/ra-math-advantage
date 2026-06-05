@@ -902,9 +902,9 @@ AI Tutoring and Workbook scope is explicitly **import/adopt from BM2**, not gree
    - Phase 8: Packages src/ [ ]
    - Phase 9: Packages components/lib/other/ [ ]
 
-- [~] **Track: Graph-vs-Tracks Review Remediation**
-   *Remediate 25 findings from the 2026-06-02 codebase-vs-tracks review: fix data tooling bugs, sync track statuses, fix student-visible bugs, reconcile spec/impl drift, and address JSDoc/test coverage gaps. Source: `measure/reports/graph-vs-tracks-review_20260602.md`.*
-   *Link: [./tracks/graph-vs-tracks-remediation_20260602/](./tracks/graph-vs-tracks-remediation_20260602/)*
+- [ ] **Track: Graph-vs-Tracks Review Remediation** — **BLOCKED: artifacts missing**
+   *Intended to remediate 25 findings from a 2026-06-02 codebase-vs-tracks review. **Reconciliation note (2026-06-05):** this track was marked in-progress but has no track directory, no `spec.md`/`plan.md`, and its cited source report `measure/reports/graph-vs-tracks-review_20260602.md` never existed in git history. Reset to not-started. Before any work proceeds, regenerate the review report and scaffold the track via `new-track`; until then there is nothing to execute.*
+   *Link (does not yet exist): `./tracks/graph-vs-tracks-remediation_20260602/`*
    - Phase 1: P0 — Fix Data Tooling & KST Program Decision [ ]
    - Phase 2: P1 — Block New Bugs [ ]
    - Phase 3: P2 — JSDoc Debt (High-Priority Surfaces) [ ]
@@ -912,6 +912,80 @@ AI Tutoring and Workbook scope is explicitly **import/adopt from BM2**, not gree
    - Phase 5: P4 — Graph Construction Improvements [ ]
    - Phase 6: P5 — Hygiene [ ]
    - Phase 7: Final Verification [ ]
+
+## Backlog — Planned Tracks (2026-06-05 brainstorm)
+
+Sixteen candidate tracks identified from a full-roadmap review. Each is registry-only for now: scaffold `spec.md`/`plan.md` via `new-track` when work begins. Grounded gaps were verified against the codebase (no golden-answer generator tests, no efficacy instrumentation, no parent/roster/transfer-credit runtime). Recommended starting order: **Generated-Math Correctness QA → Measure Architecture Tooling → Vertical Slice Value Proof**.
+
+### Tier 1 — Finish work that is explicitly half-done
+
+- [ ] **Track: WCAG 2.1 AA Remediation** — **PLANNED**
+   *Remediate the issues found by the accessibility audit (keyboard nav, screen-reader, contrast, activity-component a11y). Audit track is "PHASE 1 COMPLETE (baseline only)" — findings exist, none fixed. Size: M. Depends on: accessibility-audit baseline (done). Readiness: ready now.*
+   *Link: [./tracks/wcag-aa-remediation_20260605/](./tracks/wcag-aa-remediation_20260605/)*
+
+- [ ] **Track: E2E Coverage Expansion** — **PLANNED**
+   *Expand Playwright E2E beyond the 9 infrastructure tests to fully cover login, lesson nav, activity interaction, daily practice, and teacher dashboard. E2E track is "INFRASTRUCTURE COMPLETE." Size: M. Depends on: e2e-student-flows (infra done). Readiness: ready now.*
+   *Link: [./tracks/e2e-coverage-expansion_20260605/](./tracks/e2e-coverage-expansion_20260605/)*
+
+- [ ] **Track: Data Export Teacher UI** — **PLANNED**
+   *Build the teacher-facing UI for student-progress/gradebook/submission CSV+JSON export. Backend is "COMPLETE, UI pending" (queries + CSV util + 12 tests exist). Size: S. Depends on: data-export-api (backend done). Readiness: ready now.*
+   *Link: [./tracks/data-export-teacher-ui_20260605/](./tracks/data-export-teacher-ui_20260605/)*
+
+- [ ] **Track: Study Hub Games Adoption** — **PLANNED**
+   *Wire the matching and speed-round games into IM3 via real routes/pages. Games track Phase 3 is "pending — requires game routes/pages in IM3." Size: S. Depends on: student-study-hub-games (logic done). Readiness: ready now.*
+   *Link: [./tracks/study-hub-games-adoption_20260605/](./tracks/study-hub-games-adoption_20260605/)*
+
+- [ ] **Track: IM1/IM2 Standards Backfill** — **PLANNED**
+   *Author the missing competency-standard definitions: IM1 has 77 placeholder standard nodes with no descriptions; IM2 references 91 codes but defines only 48 (41 missing). Source: Tech Debt Registry. Size: M. Depends on: none. Readiness: ready now.*
+   *Link: [./tracks/im1-im2-standards-backfill_20260605/](./tracks/im1-im2-standards-backfill_20260605/)*
+
+- [ ] **Track: Measure Architecture Tooling** — **PLANNED**
+   *Build the real `generate` + `doctor` scripts and the `measure/generated/` facts (architecture.json, routes.md) so `/measure:doctor` stops HALTing. Phantom `generate.sh`/`doctor.sh` are referenced by multiple plans but never existed (Tech Debt Registry). Size: S. Depends on: none. Readiness: ready now.*
+   *Link: [./tracks/measure-architecture-tooling_20260605/](./tracks/measure-architecture-tooling_20260605/)*
+
+### Tier 2 — Missing but high-leverage
+
+- [ ] **Track: Generated-Math Correctness QA** — **PLANNED**
+   *Property-based / golden-answer verification harness for deterministic generators: every generated instance must have a unique correct answer, wrong distractors, and a solvable configuration. Verified: zero such tests exist today. Should gate the T17–T19 generator program before ~450 generators ship math to students. Size: L. Depends on: none (start against existing generators). Readiness: ready now.*
+   *Link: [./tracks/generated-math-correctness-qa_20260605/](./tracks/generated-math-correctness-qa_20260605/)*
+
+- [ ] **Track: Vertical Slice Value Proof** — **PLANNED**
+   *Take one module (IM3 M1) end-to-end to a student route: minimal KST Track 1 wiring + real generators for M1 skills + live KST-derived state. Directly attacks the "built-but-not-wired" gap (graph asset has zero production routes). Size: L. Depends on: wire-kst-pipeline (KST T1), core-algebra-generators (T17). Readiness: blocked on KST T1 start.*
+   *Link: [./tracks/vertical-slice-value-proof_20260605/](./tracks/vertical-slice-value-proof_20260605/)*
+
+- [ ] **Track: Learning Efficacy & Analytics** — **PLANNED**
+   *Instrument learning outcomes (retention curves, time-to-mastery, cohort comparison) and an A/B harness to measure whether the SRS/KST engine actually improves learning. Verified: no efficacy/experiment/cohort instrumentation exists. Closes the loop on which KST v2 improvements matter. Size: M–L. Depends on: KST pipeline wired (for KST-state signals). Readiness: partial now (SRS signals exist), full after KST T1.*
+   *Link: [./tracks/learning-efficacy-analytics_20260605/](./tracks/learning-efficacy-analytics_20260605/)*
+
+- [ ] **Track: Load / Scale Testing** — **PLANNED**
+   *Proactive load harness simulating a 30-student class and a 1,000-student school against Convex, using `npx convex insights` to catch read/write-cost and N+1 regressions before production. 10+ prior tracks fixed N+1 reactively. Size: M. Depends on: none. Readiness: ready now.*
+   *Link: [./tracks/load-scale-testing_20260605/](./tracks/load-scale-testing_20260605/)*
+
+- [ ] **Track: Transfer-Credit Runtime** — **PLANNED**
+   *Surface `equivalent_to` mastery to students ("already mastered in IM2 → skip") at runtime. Verified: equivalence edges authored in Skill Graph T13 but unused at runtime. High payoff from an existing asset. Size: M. Depends on: wire-kst-pipeline (KST learner state). Readiness: blocked on KST T1.*
+   *Link: [./tracks/transfer-credit-runtime_20260605/](./tracks/transfer-credit-runtime_20260605/)*
+
+- [ ] **Track: Misconception Content Authoring** — **PLANNED**
+   *Author the misconception taxonomy + remediation content that feeds the KST T6 mechanism (`remediated_by` edges, lifecycle). T6 builds the machinery; without content it is inert. Size: M. Depends on: misconception-loop (KST T6) mechanism. Readiness: pairs with KST T6.*
+   *Link: [./tracks/misconception-content-authoring_20260605/](./tracks/misconception-content-authoring_20260605/)*
+
+### Tier 3 — Strategic / longer-horizon (i18n intentionally excluded)
+
+- [ ] **Track: Onboarding + Roster Import** — **PLANNED**
+   *New-student/teacher onboarding flow and bulk student roster import (CSV/SIS). Verified: none exists — teachers can assign lessons but cannot bulk-enroll students. Natural companion to the placement engine. Size: M. Depends on: adaptive-placement (for new-student diagnostic). Readiness: partial now.*
+   *Link: [./tracks/onboarding-roster-import_20260605/](./tracks/onboarding-roster-import_20260605/)*
+
+- [ ] **Track: Parent Portal** — **PLANNED**
+   *Parent-facing progress views. The visualization layer already versions a `parent` role payload (lessons-learned 2026-05-09) but no parent UI exists. Size: M. Depends on: visualization.v1 parent projections (done). Readiness: ready now.*
+   *Link: [./tracks/parent-portal_20260605/](./tracks/parent-portal_20260605/)*
+
+- [ ] **Track: Responsive / Mobile Audit** — **PLANNED**
+   *Audit and remediate student/teacher routes and activity components for tablet/phone use. Size: M. Depends on: none. Readiness: ready now.*
+   *Link: [./tracks/responsive-mobile-audit_20260605/](./tracks/responsive-mobile-audit_20260605/)*
+
+- [ ] **Track: Teacher Content Authoring** — **PLANNED**
+   *Tools for teachers to create/edit lesson content and activities, not just assign existing ones. Size: L. Depends on: component-approval workflow, activity schemas (done). Readiness: ready now.*
+   *Link: [./tracks/teacher-content-authoring_20260605/](./tracks/teacher-content-authoring_20260605/)*
 
 ## Archived Tracks
 

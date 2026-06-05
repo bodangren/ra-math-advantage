@@ -1,0 +1,12 @@
+{
+  "track_id": "load-scale-testing_20260605",
+  "type": "chore",
+  "status": "new",
+  "created_at": "2026-06-05T00:00:00Z",
+  "updated_at": "2026-06-05T00:00:00Z",
+  "description": "Proactive load harness simulating a 30-student class and a 1,000-student school against Convex, using npx convex insights to catch read/write-cost and N+1 regressions before production. 10+ prior tracks fixed N+1 reactively. Tier 2 backlog.",
+  "program": "High-Leverage Backlog",
+  "estimated_tasks": 12,
+  "actual_tasks": null,
+  "deviation_notes": ""
+}

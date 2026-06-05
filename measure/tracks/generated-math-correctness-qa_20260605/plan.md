@@ -1,0 +1,33 @@
+# Track: Generated-Math Correctness QA — Implementation Plan
+
+Workflow: Contract-First (correctness contract + harness API), then per-task TDD with property-based tests. >80% coverage on harness.
+Boundary rule: harness core domain-neutral; math oracles in math-content/app.
+Verification: boundary lints + `tsc --noEmit` + harness test suite.
+
+## Phase 1 — Correctness Contract & Harness API
+
+- [ ] Task: Define the generator correctness contract type (seed → problem/answer/distractors/invariants)
+- [ ] Task: Define `verifyGenerator(gen, opts)` API + result/report shape (Contract-First)
+- [ ] Task: Measure - User Manual Verification 'Phase 1' (Protocol in workflow.md)
+
+## Phase 2 — Core Properties (TDD)
+
+- [ ] Task: Determinism property (same seed → identical output) (Red→Green)
+- [ ] Task: Unique-correct-answer property via oracle/structural check (Red→Green)
+- [ ] Task: Distractor-validity property (wrong, distinct, typed) (Red→Green)
+- [ ] Task: Solvability/range invariant assertions (Red→Green)
+- [ ] Task: Negative tests — injected bad generator fails each property
+- [ ] Task: Measure - User Manual Verification 'Phase 2' (Protocol in workflow.md)
+
+## Phase 3 — Registry Sweep
+
+- [ ] Task: Registry test runs all existing generators through `verifyGenerator`
+- [ ] Task: Triage failures — fix or quarantine with tracked debt rows
+- [ ] Task: Measure - User Manual Verification 'Phase 3' (Protocol in workflow.md)
+
+## Phase 4 — CI Gate & Verification
+
+- [ ] Task: Wire the harness as a generator gate in CI; prove it blocks a contract violation
+- [ ] Task: Document how T17–T19 authors plug a generator into the harness
+- [ ] Task: Final verification — boundary lints, tsc --noEmit, CI=true npm run test
+- [ ] Task: Measure - User Manual Verification 'Phase 4' (Protocol in workflow.md)

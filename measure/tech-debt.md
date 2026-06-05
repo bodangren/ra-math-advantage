@@ -6,7 +6,7 @@
 > **Severity:** `Critical` | `High` | `Medium` | `Low`
 > **Status:** `Open` | `Resolved`
 >
-> **Latest structural audit:** [`measure/reports/structural-audit_20260526.md`](./reports/structural-audit_20260526.md)
+> _(No standing structural-audit report. A prior reference to `measure/reports/structural-audit_20260526.md` was removed on 2026-06-05 — that file never existed in git.)_
 
 | Item | Sev | Status | Notes |
 |------|-----|--------|-------|
@@ -19,9 +19,5 @@
 | math-content package lint gate missing | Medium | Open | `npm run lint --workspace=packages/math-content` fails; no ESLint flat config. 23 pre-existing violations. |
 | PreCalc standards alignment missing | Medium | Open | PreCalc was out of scope for T4 (standards alignment). 158 worked_example nodes have no aligned_to_standard edges. |
 | SRS contract type drift (ISO string vs v.number()) | High | Open | Intentional adapter pattern: contract uses ISO string, Convex stores number. Schema alignment deferred. |
-| Track 5 P1: `PlacementResult → getKnowledgeState` integration test deferred | Low | Open | Blocked on Track 1 `getKnowledgeState` definition. |
-| Track 5 P1: `schema-placement.test.ts` indexes shape mismatch | Medium | Open | Test expects `Record<string, ReadonlyArray<string>>` but Convex `TableDefinition.indexes` is `Array<{ indexDescriptor, fields }>`. |
-| Track 5 P3: returning-student guard vs upsert test conflict | Medium | Resolved | Guard logic implemented in Phase 4 caller `runNewStudentPlacementFlow`; `seedPlacementResultsIntoStore` remains always-upsert. |
-| Track 5 P5: plan §11 vs spec §8 for placement documentation | Low | Open | Plan says "Update in-repo kst-srs.v2 spec §11 (Placement)" but `kst-srs.v2/SPECIFICATION.md` §11 is "Lesser Holes (v2 Item 8)" and §8 is "Adaptive Placement (v2 Item 5)". Phase 5 test asserts the placement contract is documented in §8 (where it lives) with the full implemented contract. Green-phase author may keep §8 or relocate Placement into §11 — both are acceptable; test is section-flexible. |
-| Track 5 P5: `measure/generate.sh` and `measure/doctor.sh` do not exist | Medium | Open | Plan refers to `measure/generate.sh` and `measure/doctor.sh` but neither file is present. The Doctor workflow runs `npm run generate` / `npm run doctor` instead (see `measure/references/doctor.md`). Phase 5 test substitutes the existing `scripts/check-monorepo-boundaries.mjs` linter and the per-package `npm run lint` / `tsc --noEmit` for doctor verification. |
-| Track 5 P5: `schema-placement.test.ts` indexes shape mismatch | Medium | Open | Pre-existing Phase 1 test expects `Record<string, ReadonlyArray<string>>` but Convex `TableDefinition.indexes` is `Array<{ indexDescriptor, fields }>`. Surfaces in Phase 5 final verification when `tsc --noEmit` is rerun. |
+| Cross-track: placement ↔ KST Track 1 integration unverified | High | Open | Adaptive Placement (`adaptive-placement_20260521`) seeds a `getKnowledgeState` that does not exist yet. Whoever implements `wire-kst-pipeline` (KST Track 1) MUST wire placement output into `getKnowledgeState` and add the deferred end-to-end test; do not close the placement track until then. In-track gaps live in that track's plan "Known Gaps" section. |
+| Measure tooling gap: `generate.sh` / `doctor.sh` referenced but absent | Medium | Open | Multiple track plans reference `measure/generate.sh` / `measure/doctor.sh`; neither exists and no `npm run generate`/`doctor` script exists. Substitute the real tooling: `node scripts/check-monorepo-boundaries.mjs` + per-app `npm run ws:<app>:lint`/`:test` + `tsc --noEmit`. Fix new plans to cite these directly. |

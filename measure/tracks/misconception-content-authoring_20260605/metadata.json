@@ -1,0 +1,12 @@
+{
+  "track_id": "misconception-content-authoring_20260605",
+  "type": "feature",
+  "status": "new",
+  "created_at": "2026-06-05T00:00:00Z",
+  "updated_at": "2026-06-05T00:00:00Z",
+  "description": "Author the misconception taxonomy + remediation content that feeds the KST Track 6 mechanism (remediated_by edges, lifecycle). T6 builds the machinery; without content it is inert. Tier 2 backlog. Pairs with misconception-loop (KST T6).",
+  "program": "High-Leverage Backlog",
+  "estimated_tasks": 14,
+  "actual_tasks": null,
+  "deviation_notes": ""
+}

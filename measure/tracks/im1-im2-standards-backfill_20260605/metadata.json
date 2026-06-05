@@ -1,0 +1,12 @@
+{
+  "track_id": "im1-im2-standards-backfill_20260605",
+  "type": "chore",
+  "status": "new",
+  "created_at": "2026-06-05T00:00:00Z",
+  "updated_at": "2026-06-05T00:00:00Z",
+  "description": "Author the missing competency-standard definitions for IM1 (77 placeholder standard nodes, no descriptions) and IM2 (91 referenced codes vs 48 defined; 41 missing). Tier 1 backlog; sourced from the Tech Debt Registry.",
+  "program": "Quality & Completion Backlog",
+  "estimated_tasks": 12,
+  "actual_tasks": null,
+  "deviation_notes": ""
+}

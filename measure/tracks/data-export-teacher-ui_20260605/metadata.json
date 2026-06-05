@@ -1,0 +1,12 @@
+{
+  "track_id": "data-export-teacher-ui_20260605",
+  "type": "feature",
+  "status": "new",
+  "created_at": "2026-06-05T00:00:00Z",
+  "updated_at": "2026-06-05T00:00:00Z",
+  "description": "Build the teacher-facing UI for exporting student progress, class gradebook, and submission data as CSV/JSON. Backend (Convex queries + CSV util + 12 tests) is complete; UI is pending. Tier 1 backlog (finish half-done work).",
+  "program": "Quality & Completion Backlog",
+  "estimated_tasks": 10,
+  "actual_tasks": null,
+  "deviation_notes": ""
+}

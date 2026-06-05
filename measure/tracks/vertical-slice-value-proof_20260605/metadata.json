@@ -1,0 +1,12 @@
+{
+  "track_id": "vertical-slice-value-proof_20260605",
+  "type": "feature",
+  "status": "new",
+  "created_at": "2026-06-05T00:00:00Z",
+  "updated_at": "2026-06-05T00:00:00Z",
+  "description": "Take one module (IM3 M1) end-to-end to a student route: minimal KST Track 1 wiring + real generators for M1 skills + live KST-derived state. Attacks the built-but-not-wired gap. Tier 2 backlog. Depends on wire-kst-pipeline (KST T1) and core-algebra-generators (T17).",
+  "program": "High-Leverage Backlog",
+  "estimated_tasks": 16,
+  "actual_tasks": null,
+  "deviation_notes": ""
+}

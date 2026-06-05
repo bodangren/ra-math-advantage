@@ -1,0 +1,12 @@
+{
+  "track_id": "generated-math-correctness-qa_20260605",
+  "type": "chore",
+  "status": "new",
+  "created_at": "2026-06-05T00:00:00Z",
+  "updated_at": "2026-06-05T00:00:00Z",
+  "description": "Property-based / golden-answer verification harness for deterministic math generators: every generated instance must have a unique correct answer, wrong distractors, and a solvable configuration. Verified: no such tests exist. Should gate the T17-T19 generator program. Tier 2 backlog.",
+  "program": "High-Leverage Backlog",
+  "estimated_tasks": 16,
+  "actual_tasks": null,
+  "deviation_notes": ""
+}

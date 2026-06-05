@@ -1,0 +1,12 @@
+{
+  "track_id": "onboarding-roster-import_20260605",
+  "type": "feature",
+  "status": "new",
+  "created_at": "2026-06-05T00:00:00Z",
+  "updated_at": "2026-06-05T00:00:00Z",
+  "description": "New-student/teacher onboarding flow and bulk student roster import (CSV/SIS). Verified: none exists - teachers can assign lessons but cannot bulk-enroll students. Tier 3 backlog. Pairs with adaptive-placement for the new-student diagnostic.",
+  "program": "Strategic Backlog",
+  "estimated_tasks": 16,
+  "actual_tasks": null,
+  "deviation_notes": ""
+}
