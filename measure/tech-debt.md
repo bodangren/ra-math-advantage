@@ -5,6 +5,8 @@
 >
 > **Severity:** `Critical` | `High` | `Medium` | `Low`
 > **Status:** `Open` | `Resolved`
+>
+> **Latest structural audit:** [`measure/reports/structural-audit_20260526.md`](./reports/structural-audit_20260526.md)
 
 | Item | Sev | Status | Notes |
 |------|-----|--------|-------|
@@ -21,3 +23,12 @@
 | math-content package lint gate missing | Medium | Open | `npm run lint --workspace=packages/math-content` fails because the package has no ESLint flat config; adding the sibling config exposes 23 pre-existing lint violations. Needs a focused lint cleanup track before enabling the gate. |
 | IM3 M1 pilot duplicate edges (14) | Low | Open | `module-1/edges.json` contains 14 duplicate (sourceId,targetId,type) triples for rendered_by edges. Generated course-level `edges.json` now dedupes these during merge, but the raw pilot file still needs cleanup before standalone promotion. |
 | PreCalc standards alignment missing | Medium | Open | PreCalc was out of scope for T4 (standards alignment). 158 worked_example nodes have no aligned_to_standard edges. Needs a T4-style alignment pass. |
+| `file_track_map.json` join picks wrong track for BM2 | Critical | Resolved | Join script created with min-distance date join. Source: review #5. |
+| `activities-simulation.ts` has 0 tests (905L, 262 entities) | High | Resolved | Test file created with 32 tests. Source: review #4. |
+| `convex/teacher.ts` is 1,554-LOC monolith | High | Resolved | Split into shared.ts (200 LOC), gradebook-queries.ts (580 LOC), competency-queries.ts (590 LOC). Source: review #11. |
+| 0/141 routes tagged with `mode` (practice.v1 contract) | Medium | Resolved | 19 routes tagged with `export const mode`, 20 routes tagged in graph DB. Source: review #13. |
+| SRS contract type drift (ISO string vs v.number()) | High | Open | Intentional adapter pattern: contract uses ISO string, Convex stores number, bridge code in cards.ts/processReview.ts converts between them. Schema alignment deferred to dedicated migration track. Source: review #17. |
+| `SeedActivityContent.props` typed as `Record<string, unknown>` | High | Resolved | Discriminated union types defined; 52 `as never` casts removed; Convex schema extended with new literals. Source: review #24. |
+| 18 POST routes lack Zod schemas | Medium | Resolved | Zod schemas added to 11 routes; 5 logout routes annotated; 2 skipped (deprecated/no-body). Source: review #19. |
+| Track 5 P1: `PlacementResult → getKnowledgeState` integration test deferred | Low | Open | Test strategy §5 lists "Verify `PlacementResult` can feed into `getKnowledgeState` shape" as a Phase 1 test, but Track 1 (`wire-kst-pipeline_20260521`) has not yet defined `getKnowledgeState`. Red-phase contract tests in `placement-contract.test.ts` cover the Zod schema and `isPlacementResult` guard; the cross-track integration test must be added once Track 1 Phase 1 lands. Source: track 5 test-strategy §5. |
+| Track 5 P1: `createMockPlacementResult` factory not introduced in P1 | Low | Open | Test strategy §2 lists `createMockPlacementResult` as a shared fixture for P1/P3/P4. P1 contract tests use inline literals for clarity; factory should be added when P2 or P3 needs to author repeated placement results, not preemptively. Source: track 5 test-strategy §2. |
