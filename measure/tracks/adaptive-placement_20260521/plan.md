@@ -8,7 +8,7 @@ Depends on: Track 1 (knowledge state, graph availability).
 - [x] Task: Define placement contract types (dd335a66)
     - [x] Placement result ({ nodeId, masteryEstimate, confidence }); abstract probe interface (pass/fail/partial)
     - [x] Convex schema for persisted initial knowledge state
-- [ ] Task: Measure - User Manual Verification 'Phase 1' (Protocol in workflow.md)
+- [~] Task: Measure - User Manual Verification 'Phase 1' (Protocol in workflow.md)
 
 ## Phase 2 — Adaptive Tree-Walk Engine
 
