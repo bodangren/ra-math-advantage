@@ -15,9 +15,9 @@ Depends on: Track 1 (knowledge state, graph availability).
 - [x] Task: Implement the adaptive tree-walk traversal (TDD) (81307209)
     - [x] Pass → toward advanced; fail → toward prerequisites; domain-neutral, pure
 - [x] Task: Implement convergence / frontier detection with bounded probe count (TDD) (81307209)
-- [~] Task: Extend tree-walk test coverage for structural patterns and async probes (TDD, Red)
+- [~] Task: Extend tree-walk test coverage for structural patterns and async probes (TDD, Red) (d261e1f1)
     - [~] Diamond/convergent DAGs, multi-prerequisite nodes, non-prereq edge filtering, self-loops
-    - [~] Async `ProbeAdapter` support (engine type allows `Promise<ProbeResult>`)
+    - [~] Async `ProbeAdapter` support (engine type allows `Promise<ProbeResult>`) — RED
     - [~] Property-based termination on small generated DAGs
     - [~] Probe error propagation (probe throws → engine surfaces error, not silent crash)
 - [ ] Task: Measure - User Manual Verification 'Phase 2' (Protocol in workflow.md)
