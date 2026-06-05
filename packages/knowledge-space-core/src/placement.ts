@@ -62,3 +62,44 @@ export interface ProbeAdapter {
   domain: string;
   probe(nodeId: string): ProbeResult | Promise<ProbeResult>;
 }
+
+// ---------------------------------------------------------------------------
+// KnowledgeStateSeed — PlacementResult enriched with provenance metadata
+// ---------------------------------------------------------------------------
+
+export interface KnowledgeStateSeed extends PlacementResult {
+  source: 'placement';
+  seededAt: number;
+}
+
+export interface BuildSeedOptions {
+  now?: number;
+}
+
+export function buildKnowledgeStateSeed(
+  results: ReadonlyArray<PlacementResult>,
+  options: BuildSeedOptions = {},
+): KnowledgeStateSeed[] {
+  const now = options.now ?? Date.now();
+
+  for (const r of results) {
+    if (r.confidence !== 'low' && r.confidence !== 'medium') {
+      throw new Error(
+        `Invalid confidence value: "${r.confidence}". Placement seeds must be low or medium.`,
+      );
+    }
+    if (r.masteryEstimate < 0 || r.masteryEstimate > 1) {
+      throw new Error(
+        `Invalid masteryEstimate: ${r.masteryEstimate}. Must be in [0, 1].`,
+      );
+    }
+  }
+
+  return results.map((r) => ({
+    nodeId: r.nodeId,
+    masteryEstimate: r.masteryEstimate,
+    confidence: r.confidence,
+    source: 'placement' as const,
+    seededAt: now,
+  }));
+}
