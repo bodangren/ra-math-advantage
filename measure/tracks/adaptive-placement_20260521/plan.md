@@ -45,7 +45,7 @@ Depends on: Track 1 (knowledge state, graph availability).
 
 ## Phase 5 — Docs & Doctor
 
-- [ ] Task: Update in-repo kst-srs.v2 spec §11 (Placement) with the implemented contract
-- [ ] Task: Run measure/generate.sh and measure/doctor.sh; fix architectural lint
-- [ ] Task: Final verification — boundary lints, npm run lint, tsc --noEmit, CI=true npm run test
+- [~] Task: Update in-repo kst-srs.v2 spec §11 (Placement) with the implemented contract
+- [~] Task: Run measure/generate.sh and measure/doctor.sh; fix architectural lint
+- [~] Task: Final verification — boundary lints, npm run lint, tsc --noEmit, CI=true npm run test
 - [ ] Task: Measure - User Manual Verification 'Phase 5' (Protocol in workflow.md)
