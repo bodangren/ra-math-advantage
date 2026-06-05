@@ -20,7 +20,11 @@ Depends on: Track 1 (knowledge state, graph availability).
     - [x] Async `ProbeAdapter` support (engine type allows `Promise<ProbeResult>`) — GREEN
     - [x] Property-based termination on small generated DAGs
     - [x] Probe error propagation (probe throws → engine surfaces error, not silent crash)
-- [ ] Task: Measure - User Manual Verification 'Phase 2' (Protocol in workflow.md)
+- [~] Task: Extend tree-walk test coverage round 2 — invalid probe result handling (TDD, Red)
+    - [x] Async probe rejection propagation (regression lock-in; current behavior correct)
+    - [ ] Sync probe result validation (non-canonical string, null, undefined, number, uppercase variant) — engine should surface a clear `/invalid probe result/i` error rather than the current cryptic `TypeError: Cannot destructure property 'estimate' of 'undefined'`
+    - [ ] Async probe result validation (resolves to non-canonical value) — engine should surface a clear `/invalid probe result/i` error rather than the current cryptic `TypeError` propagated through the `.then` chain
+- [~] Task: Measure - User Manual Verification 'Phase 2' (Protocol in workflow.md)
 
 > **Known test debt (3 tests):** Resolved in 73bb4752 — bare node IDs fixed to dot-separated format; adapter preset corrected; engine made async. See `measure/tech-debt.md` items tagged `Track 5 P2` (all Resolved).
 
