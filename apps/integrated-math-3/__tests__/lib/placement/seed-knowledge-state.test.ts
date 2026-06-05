@@ -292,25 +292,32 @@ describe('seedPlacementResultsIntoStore — idempotency', () => {
 });
 
 // ---------------------------------------------------------------------------
-// Task 3.2.e — Returning-student guard
+// Task 3.2.e — Always-upsert contract (no returning-student guard in seed)
 // ---------------------------------------------------------------------------
 //
-// Per test strategy §3: "Knowledge-state already populated → Skip placement
-// for returning students."
+// Per plan.md "Resolved (Phase 4)": "seedPlacementResultsIntoStore
+// returning-student guard test conflicted with upsert semantics. Always-upsert
+// implemented; guard logic now lives in the Phase 4 caller
+// runNewStudentPlacementFlow."
 //
-// seedPlacementResultsIntoStore must expose a skip flag (or
-// invocation of an existence check) so the caller can decide whether to
-// run placement at all. The minimum surface area: if the student already
-// has seeds, the function should report and (by default) not overwrite.
+// This block is the Red-phase replacement for the older "returning-student
+// guard" describe block. The new contract locks in:
+//   1. seedPlacementResultsIntoStore ALWAYS upserts (never skips).
+//   2. The function does NOT call store.getPlacementSeeds — there is no
+//      existence pre-check, so the guard cannot creep back in.
+//   3. The { force: true } option is a no-op (kept for source compatibility
+//      with the resolved design).
+// The returning-student guard itself is exercised by
+//   __tests__/lib/placement/placement-flow.test.ts > "returning-student guard".
 
-describe('seedPlacementResultsIntoStore — returning-student guard', () => {
+describe('seedPlacementResultsIntoStore — always-upsert contract (no guard)', () => {
   let store: InMemoryKnowledgeStateStore;
 
   beforeEach(() => {
     store = createInMemoryKnowledgeStateStore();
   });
 
-  it('skips re-seeding by default when the student already has placement seeds', async () => {
+  it('always upserts when re-seeding a student who already has seeds (no skip)', async () => {
     const initial: PlacementResult[] = [
       createMockIm3PlacementResult({
         nodeId: 'math.im3.skill.1.1.graph-quadratic-functions',
@@ -318,7 +325,7 @@ describe('seedPlacementResultsIntoStore — returning-student guard', () => {
         confidence: 'low',
       }),
     ];
-    const wouldOverwrite: PlacementResult[] = [
+    const overwrite: PlacementResult[] = [
       createMockIm3PlacementResult({
         nodeId: 'math.im3.skill.1.1.graph-quadratic-functions',
         masteryEstimate: 0.9,
@@ -330,42 +337,88 @@ describe('seedPlacementResultsIntoStore — returning-student guard', () => {
     const outcome = await seedPlacementResultsIntoStore(
       store,
       STUDENT_A,
-      wouldOverwrite,
+      overwrite,
       { now: FIXED_NOW_MS + 10_000 },
     );
 
-    expect(outcome.skipped).toBe(true);
-    expect(outcome.reason).toBe('already-placed');
+    expect(outcome.skipped).toBe(false);
+    expect(outcome.reason).toBeUndefined();
+    expect(outcome.seedsWritten).toBe(1);
 
     const seeds = await store.getPlacementSeeds(STUDENT_A);
-    expect(seeds[0]!.masteryEstimate).toBe(0.3);
+    expect(seeds).toHaveLength(1);
+    expect(seeds[0]!.masteryEstimate).toBe(0.9);
+    expect(seeds[0]!.confidence).toBe('medium');
+    expect(seeds[0]!.seededAt).toBe(FIXED_NOW_MS + 10_000);
   });
 
-  it('allows force-reseed when { force: true } is passed', async () => {
-    const initial = makeResults();
-    await seedPlacementResultsIntoStore(store, STUDENT_A, initial, { now: FIXED_NOW_MS });
+  it('does NOT call store.getPlacementSeeds (no existence pre-check → no guard)', async () => {
+    // Wraps the in-memory store to count getPlacementSeeds calls. The seed
+    // helper MUST NOT consult the store to decide whether to skip — the
+    // returning-student guard is the caller's responsibility.
+    const inner = createInMemoryKnowledgeStateStore();
+    let getCalls = 0;
+    const trackingStore: InMemoryKnowledgeStateStore = {
+      ...inner,
+      async getPlacementSeeds(studentId) {
+        getCalls++;
+        return inner.getPlacementSeeds(studentId);
+      },
+    };
 
+    await seedPlacementResultsIntoStore(
+      trackingStore,
+      STUDENT_A,
+      makeResults(),
+      { now: FIXED_NOW_MS },
+    );
+
+    expect(getCalls).toBe(0);
+  });
+
+  it('force option is a no-op (force:true and force:false are equivalent)', async () => {
+    // Per resolved design, seedPlacementResultsIntoStore always upserts. The
+    // { force: true } option is preserved on the type for caller compatibility
+    // but is intentionally ignored by the implementation.
+    const initial: PlacementResult[] = [
+      createMockIm3PlacementResult({
+        nodeId: 'math.im3.skill.1.1.graph-quadratic-functions',
+        masteryEstimate: 0.5,
+        confidence: 'low',
+      }),
+    ];
     const replacement: PlacementResult[] = [
       createMockIm3PlacementResult({
         nodeId: 'math.im3.skill.1.1.graph-quadratic-functions',
-        masteryEstimate: 0.95,
+        masteryEstimate: 0.7,
         confidence: 'medium',
       }),
     ];
-    const outcome = await seedPlacementResultsIntoStore(
+
+    // First upsert (no force).
+    await seedPlacementResultsIntoStore(store, STUDENT_A, initial, { now: FIXED_NOW_MS });
+    // Second upsert without force — must also overwrite (no guard).
+    const noForce = await seedPlacementResultsIntoStore(
+      store,
+      STUDENT_A,
+      replacement,
+      { now: FIXED_NOW_MS + 5_000 },
+    );
+    // Third upsert with force — must produce the same observable outcome.
+    const withForce = await seedPlacementResultsIntoStore(
       store,
       STUDENT_A,
       replacement,
       { now: FIXED_NOW_MS + 10_000, force: true },
     );
 
-    expect(outcome.skipped).toBe(false);
+    expect(noForce.skipped).toBe(false);
+    expect(withForce.skipped).toBe(false);
+    expect(noForce.seedsWritten).toBe(withForce.seedsWritten);
+
     const seeds = await store.getPlacementSeeds(STUDENT_A);
-    // Existing seeds are upserted, not wiped; replacement overrides the one shared nodeId.
-    const updated = seeds.find(
-      (s) => s.nodeId === 'math.im3.skill.1.1.graph-quadratic-functions',
-    );
-    expect(updated?.masteryEstimate).toBe(0.95);
+    expect(seeds).toHaveLength(1);
+    expect(seeds[0]!.masteryEstimate).toBe(0.7);
   });
 
   it('reports seedsWritten count when the student is new', async () => {

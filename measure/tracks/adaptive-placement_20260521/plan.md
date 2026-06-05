@@ -37,7 +37,7 @@ Depends on: Track 1 (knowledge state, graph availability).
 - [x] Task: Seed placement results into the knowledge state (TDD) (fb574831)
     - [x] Low-to-medium-confidence mastery estimates feeding getKnowledgeState
     - [x] Pure factory + edge cases: buildPlacementKnowledgeStateSeed does not mutate input; empty input is a no-op; store is reusable
-- [ ] Task: Measure - User Manual Verification 'Phase 3' (Protocol in workflow.md)
+- [~] Task: Measure - User Manual Verification 'Phase 3' (Protocol in workflow.md)
 
 > **Resolved (Phase 4):** `seedPlacementResultsIntoStore` returning-student guard test conflicted with upsert semantics. Always-upsert implemented; guard logic now lives in the Phase 4 caller `runNewStudentPlacementFlow`. (Was Tech Debt Registry row "Track 5 P3".)
 
