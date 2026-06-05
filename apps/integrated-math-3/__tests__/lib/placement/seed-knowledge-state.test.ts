@@ -614,3 +614,107 @@ describe('seedPlacementResultsIntoStore — edge cases', () => {
     }
   });
 });
+
+// ---------------------------------------------------------------------------
+// Task 3.2.i — Non-finite masteryEstimate rejection (Phase 3 Red phase)
+// ---------------------------------------------------------------------------
+//
+// Per test strategy §3 cross-phase edge cases: "maxProbes <= 0, bounded
+// traversal, and max-probe non-convergence must remain explicit." The same
+// "explicit edge case" spirit applies to the seed builder's masteryEstimate
+// range check. The current implementation
+//
+//     if (r.masteryEstimate < 0 || r.masteryEstimate > 1) { throw … }
+//
+// returns false for NaN (all NaN comparisons are false), so a NaN value would
+// slip through and produce a corrupted seed with masteryEstimate=NaN. The
+// same gap affects non-numeric values (strings, objects) that bypass the
+// comparison. +Infinity and -Infinity already throw under the current check,
+// but they are locked in here as regression coverage so future refactors
+// cannot silently remove the rejection.
+//
+// Red-phase status as of 2026-06-05:
+//   - "rejects NaN masteryEstimate" — FAILS in current implementation.
+//   - "rejects non-numeric masteryEstimate values" — FAILS in current
+//     implementation (string "0.5" slips through the range comparison).
+//   - The remaining tests are regression locks (currently pass).
+// The Green-phase fix belongs to a future iteration; this Red-phase test
+// commit locks the contract.
+
+describe('buildPlacementKnowledgeStateSeed — non-finite masteryEstimate rejection (Red)', () => {
+  it('rejects NaN masteryEstimate (current code accepts — Red)', () => {
+    const nan = [
+      {
+        nodeId: 'math.im3.skill.1.1.graph-quadratic-functions',
+        masteryEstimate: Number.NaN,
+        confidence: 'low' as const,
+      },
+    ];
+
+    expect(() => buildPlacementKnowledgeStateSeed(nan, { now: FIXED_NOW_MS })).toThrowError(
+      /masteryEstimate/i,
+    );
+  });
+
+  it('rejects +Infinity masteryEstimate (regression lock)', () => {
+    const posInf = [
+      {
+        nodeId: 'math.im3.skill.1.1.graph-quadratic-functions',
+        masteryEstimate: Number.POSITIVE_INFINITY,
+        confidence: 'low' as const,
+      },
+    ];
+
+    expect(() => buildPlacementKnowledgeStateSeed(posInf, { now: FIXED_NOW_MS })).toThrowError(
+      /masteryEstimate/i,
+    );
+  });
+
+  it('rejects -Infinity masteryEstimate (regression lock)', () => {
+    const negInf = [
+      {
+        nodeId: 'math.im3.skill.1.1.graph-quadratic-functions',
+        masteryEstimate: Number.NEGATIVE_INFINITY,
+        confidence: 'low' as const,
+      },
+    ];
+
+    expect(() => buildPlacementKnowledgeStateSeed(negInf, { now: FIXED_NOW_MS })).toThrowError(
+      /masteryEstimate/i,
+    );
+  });
+
+  it('rejects non-numeric masteryEstimate values (current code accepts — Red)', () => {
+    const stringy = [
+      {
+        nodeId: 'math.im3.skill.1.1.graph-quadratic-functions',
+        masteryEstimate: '0.5' as unknown as number,
+        confidence: 'low' as const,
+      },
+    ];
+
+    expect(() => buildPlacementKnowledgeStateSeed(stringy, { now: FIXED_NOW_MS })).toThrowError(
+      /masteryEstimate/i,
+    );
+  });
+
+  it('accepts boundary masteryEstimate values 0 and 1 (regression lock)', () => {
+    const lowerBound = [
+      {
+        nodeId: 'math.im3.skill.1.1.graph-quadratic-functions',
+        masteryEstimate: 0,
+        confidence: 'low' as const,
+      },
+    ];
+    const upperBound = [
+      {
+        nodeId: 'math.im3.skill.1.1.graph-quadratic-functions',
+        masteryEstimate: 1,
+        confidence: 'low' as const,
+      },
+    ];
+
+    expect(() => buildPlacementKnowledgeStateSeed(lowerBound, { now: FIXED_NOW_MS })).not.toThrow();
+    expect(() => buildPlacementKnowledgeStateSeed(upperBound, { now: FIXED_NOW_MS })).not.toThrow();
+  });
+});
