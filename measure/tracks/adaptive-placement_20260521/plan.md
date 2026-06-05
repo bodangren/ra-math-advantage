@@ -45,7 +45,7 @@ Depends on: Track 1 (knowledge state, graph availability).
 
 > **Resolved (Phase 4):** `seedPlacementResultsIntoStore` returning-student guard test conflicted with upsert semantics. Always-upsert implemented; guard logic now lives in the Phase 4 caller `runNewStudentPlacementFlow`. (Was Tech Debt Registry row "Track 5 P3".)
 
-## Phase 4 — Production Wiring
+## Phase 4 — Production Wiring [checkpoint: 0878bdd0]
 
 - [x] Task: Wire the IM3 new-student placement flow (ad1515c4)
     - [x] Run traversal; persist initial knowledge state; route for new students (36 tests passing)
