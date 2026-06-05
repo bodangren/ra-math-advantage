@@ -439,3 +439,125 @@ describe('seedPlacementResultsIntoStore — round-trip', () => {
     }
   });
 });
+
+// ---------------------------------------------------------------------------
+// Task 3.2.h — Pure factory + edge cases
+// ---------------------------------------------------------------------------
+//
+// Per test strategy §4 anti-patterns, the seeding pipeline must be pure and
+// must not mutate inputs. The existing tests cover the "no input mutation"
+// property for makeResults() — this section adds coverage for:
+//   - buildPlacementKnowledgeStateSeed returns a NEW array (not the same
+//     reference) so callers can safely mutate the result
+//   - the store can be created multiple times with independent state
+//   - empty input is a no-op (zero seeds, but no error)
+//   - calling the seed functions in a different order does not affect the
+//     persisted shape (idempotency under reordering)
+
+describe('buildPlacementKnowledgeStateSeed — pure factory semantics', () => {
+  it('returns a new array, not the same reference as the input', () => {
+    const results = makeResults();
+    const seeds = buildPlacementKnowledgeStateSeed(results, { now: FIXED_NOW_MS });
+
+    expect(seeds).not.toBe(results);
+    expect(Array.isArray(seeds)).toBe(true);
+  });
+
+  it('does not deep-mutate nested fields on the input PlacementResult[]', () => {
+    const results = makeResults();
+    const snapshot = JSON.parse(JSON.stringify(results));
+
+    buildPlacementKnowledgeStateSeed(results, { now: FIXED_NOW_MS });
+
+    for (let i = 0; i < results.length; i++) {
+      expect(results[i]).toEqual(snapshot[i]);
+    }
+  });
+});
+
+describe('createInMemoryKnowledgeStateStore — factory semantics', () => {
+  it('two stores created independently do not share state', async () => {
+    const storeA = createInMemoryKnowledgeStateStore();
+    const storeB = createInMemoryKnowledgeStateStore();
+
+    await seedPlacementResultsIntoStore(storeA, STUDENT_A, makeResults(), { now: FIXED_NOW_MS });
+
+    const seedsA = await storeA.getPlacementSeeds(STUDENT_A);
+    const seedsB = await storeB.getPlacementSeeds(STUDENT_A);
+
+    expect(seedsA).toHaveLength(makeResults().length);
+    expect(seedsB).toEqual([]);
+    expect(storeA.size).toBeGreaterThan(0);
+    expect(storeB.size).toBe(0);
+  });
+
+  it('clear() on one store does not affect another', async () => {
+    const storeA = createInMemoryKnowledgeStateStore();
+    const storeB = createInMemoryKnowledgeStateStore();
+    await seedPlacementResultsIntoStore(storeA, STUDENT_A, makeResults(), { now: FIXED_NOW_MS });
+    await seedPlacementResultsIntoStore(storeB, STUDENT_B, makeResults(), { now: FIXED_NOW_MS });
+
+    storeA.clear();
+
+    expect(storeA.size).toBe(0);
+    expect(storeB.size).toBeGreaterThan(0);
+    const seedsB = await storeB.getPlacementSeeds(STUDENT_B);
+    expect(seedsB.length).toBeGreaterThan(0);
+  });
+});
+
+describe('seedPlacementResultsIntoStore — edge cases', () => {
+  let store: InMemoryKnowledgeStateStore;
+
+  beforeEach(() => {
+    store = createInMemoryKnowledgeStateStore();
+  });
+
+  it('empty PlacementResult[] is a no-op (writes 0 seeds)', async () => {
+    const outcome = await seedPlacementResultsIntoStore(store, STUDENT_A, [], {
+      now: FIXED_NOW_MS,
+    });
+
+    expect(outcome.skipped).toBe(false);
+    expect(outcome.seedsWritten).toBe(0);
+
+    const seeds = await store.getPlacementSeeds(STUDENT_A);
+    expect(seeds).toEqual([]);
+  });
+
+  it('buildPlacementKnowledgeStateSeed with empty input returns an empty array', () => {
+    const seeds = buildPlacementKnowledgeStateSeed([], { now: FIXED_NOW_MS });
+    expect(seeds).toEqual([]);
+  });
+
+  it('re-running with the same studentId+nodeId and same now is byte-identical', async () => {
+    const results = makeResults();
+    await seedPlacementResultsIntoStore(store, STUDENT_A, results, { now: FIXED_NOW_MS });
+    const first = await store.getPlacementSeeds(STUDENT_A);
+    await seedPlacementResultsIntoStore(store, STUDENT_A, results, { now: FIXED_NOW_MS });
+    const second = await store.getPlacementSeeds(STUDENT_A);
+
+    expect(first).toEqual(second);
+  });
+
+  it('re-running with the same inputs in a different order produces the same final state', async () => {
+    const results = makeResults();
+    const reordered = [results[2]!, results[0]!, results[1]!];
+
+    await seedPlacementResultsIntoStore(store, STUDENT_A, results, { now: FIXED_NOW_MS });
+    const first = new Map(
+      (await store.getPlacementSeeds(STUDENT_A)).map((s) => [s.nodeId, s] as const),
+    );
+
+    await store.clear();
+    await seedPlacementResultsIntoStore(store, STUDENT_A, reordered, { now: FIXED_NOW_MS });
+    const second = new Map(
+      (await store.getPlacementSeeds(STUDENT_A)).map((s) => [s.nodeId, s] as const),
+    );
+
+    expect(first.size).toBe(second.size);
+    for (const [nodeId, seed] of first) {
+      expect(second.get(nodeId)).toEqual(seed);
+    }
+  });
+});
