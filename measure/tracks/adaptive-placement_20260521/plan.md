@@ -19,10 +19,10 @@ Depends on: Track 1 (knowledge state, graph availability).
 
 ## Phase 3 — IM3 Reference Implementation
 
-- [ ] Task: Implement the IM3 problem-bank probe adapter (TDD)
-    - [ ] 20–30 problems mapped to graph nodes; implements probe(nodeId)
-- [ ] Task: Seed placement results into the knowledge state (TDD)
-    - [ ] Low-to-medium-confidence mastery estimates feeding getKnowledgeState
+- [~] Task: Implement the IM3 problem-bank probe adapter (TDD)
+    - [~] 20–30 problems mapped to graph nodes; implements probe(nodeId)
+- [~] Task: Seed placement results into the knowledge state (TDD)
+    - [~] Low-to-medium-confidence mastery estimates feeding getKnowledgeState
 - [ ] Task: Measure - User Manual Verification 'Phase 3' (Protocol in workflow.md)
 
 ## Phase 4 — Production Wiring
