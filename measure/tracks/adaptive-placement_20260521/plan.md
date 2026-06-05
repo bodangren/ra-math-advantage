@@ -15,14 +15,14 @@ Depends on: Track 1 (knowledge state, graph availability).
 - [x] Task: Implement the adaptive tree-walk traversal (TDD) (81307209)
     - [x] Pass → toward advanced; fail → toward prerequisites; domain-neutral, pure
 - [x] Task: Implement convergence / frontier detection with bounded probe count (TDD) (81307209)
-- [~] Task: Extend tree-walk test coverage for structural patterns and async probes (TDD, Red) (d261e1f1)
-    - [~] Diamond/convergent DAGs, multi-prerequisite nodes, non-prereq edge filtering, self-loops
-    - [~] Async `ProbeAdapter` support (engine type allows `Promise<ProbeResult>`) — RED
-    - [~] Property-based termination on small generated DAGs
-    - [~] Probe error propagation (probe throws → engine surfaces error, not silent crash)
+- [x] Task: Extend tree-walk test coverage for structural patterns and async probes (TDD, Red) (d261e1f1) (73bb4752)
+    - [x] Diamond/convergent DAGs, multi-prerequisite nodes, non-prereq edge filtering, self-loops
+    - [x] Async `ProbeAdapter` support (engine type allows `Promise<ProbeResult>`) — GREEN
+    - [x] Property-based termination on small generated DAGs
+    - [x] Probe error propagation (probe throws → engine surfaces error, not silent crash)
 - [ ] Task: Measure - User Manual Verification 'Phase 2' (Protocol in workflow.md)
 
-> **Known test debt (3 tests):** 2 schema-validation failures from bare node IDs in `buildChain3()`/`buildBranch()` helpers; 1 adapter preset mismatch in "fail-all" test. See `measure/tech-debt.md` items tagged `Track 5 P2`.
+> **Known test debt (3 tests):** Resolved in 73bb4752 — bare node IDs fixed to dot-separated format; adapter preset corrected; engine made async. See `measure/tech-debt.md` items tagged `Track 5 P2` (all Resolved).
 
 ## Phase 3 — IM3 Reference Implementation
 
