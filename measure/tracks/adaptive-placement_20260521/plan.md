@@ -54,8 +54,8 @@ Depends on: Track 1 (knowledge state, graph availability).
 ## Phase 5 — Docs & Doctor [checkpoint: fc48210a]
 
 - [x] Task: Update in-repo kst-srs.v2 spec §8 (Placement) with the implemented contract (cbc48616)
-- [x] Task: Run architectural lint (`node scripts/check-monorepo-boundaries.mjs`) + per-package `tsc --noEmit`; fix findings (`measure/generate.sh`/`doctor.sh` do not exist — substituted the real boundary linter)
-- [x] Task: Final verification — boundary lints, per-app lint, tsc --noEmit, CI=true npm run test
+- [x] Task: Run architectural lint (`node scripts/check-monorepo-boundaries.mjs`) + per-package `tsc --noEmit`; fix findings (`measure/generate.sh`/`doctor.sh` do not exist — substituted the real boundary linter) (692cf6d1)
+- [x] Task: Final verification — boundary lints, per-app lint, tsc --noEmit, CI=true npm run test (72dfb23c)
 - [x] Task: Measure - User Manual Verification 'Phase 5' (fc48210)
 
 ## Known Gaps (relocated from Tech Debt Registry, 2026-06-05)
