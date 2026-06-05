@@ -177,7 +177,7 @@ describe('createIm3ProbeAdapter — probe(nodeId) for known problems', () => {
     const valid = new Set<ProbeResult>(PROBE_RESULTS);
 
     for (const entry of IM3_PROBLEM_BANK) {
-      const result = adapter.probe(entry.nodeId);
+      const result = adapter.probe(entry.nodeId) as ProbeResult;
       expect(valid.has(result), `nodeId ${entry.nodeId} returned non-canonical ${result}`).toBe(true);
     }
   });
