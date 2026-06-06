@@ -3,7 +3,7 @@
 Workflow: Contract-First, then per-task TDD (red/green). >80% coverage.
 Depends on: Track 1 (proficiency verdicts, knowledge state).
 
-## Phase 1 — Contract & Schema
+## Phase 1 — Contract & Schema [checkpoint: 592b074b]
 
 - [x] Task: Define calibration types [red: 5c5974d0, b43c504c, 391add96] [green: 293394c2]
     - [x] Observation type (paired proficiency verdicts), contingency table, edge calibration record (α, β, status)
