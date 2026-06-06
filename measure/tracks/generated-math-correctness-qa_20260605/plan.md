@@ -12,11 +12,11 @@ Verification: boundary lints + `tsc --noEmit` + harness test suite.
 
 ## Phase 2 — Core Properties (TDD)
 
-- [~] Task: Determinism property (same seed → identical output) (Red→Green)
-- [~] Task: Unique-correct-answer property via oracle/structural check (Red→Green)
-- [~] Task: Distractor-validity property (wrong, distinct, typed) (Red→Green)
-- [~] Task: Solvability/range invariant assertions (Red→Green)
-- [~] Task: Negative tests — injected bad generator fails each property
+- [x] Task: Determinism property (same seed → identical output) (Red→Green) [green: e51c7153]
+- [x] Task: Unique-correct-answer property via oracle/structural check (Red→Green) [green: e51c7153]
+- [x] Task: Distractor-validity property (wrong, distinct, typed) (Red→Green) [green: e51c7153]
+- [x] Task: Solvability/range invariant assertions (Red→Green) [green: e51c7153]
+- [x] Task: Negative tests — injected bad generator fails each property [green: e51c7153]
 - [ ] Task: Measure - User Manual Verification 'Phase 2' (Protocol in workflow.md)
 
 ## Phase 3 — Registry Sweep
