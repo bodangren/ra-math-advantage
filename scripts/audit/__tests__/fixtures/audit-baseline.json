@@ -1,0 +1,116 @@
+{
+  "schema_version": 1,
+  "captured_at": "2026-06-07T00:00:00Z",
+  "captured_by": "measure:dependency-security-upgrades_20260607",
+  "purpose": "Frozen pre-upgrade snapshot. Every wave diffs against this fixture. The audit-contract suite (scripts/audit/__tests__/audit-contract.test.ts) must keep this file as the source of truth for first-class app coverage, security totals, and open-range violations.",
+
+  "first_class_apps": [
+    { "workspace": "apps/bus-math-v2",       "external_dep_count": 52 },
+    { "workspace": "apps/integrated-math-1",  "external_dep_count": 34 },
+    { "workspace": "apps/integrated-math-2",  "external_dep_count": 34 },
+    { "workspace": "apps/integrated-math-3",  "external_dep_count": 52 },
+    { "workspace": "apps/pre-calculus",       "external_dep_count": 34 }
+  ],
+
+  "shared_packages": [
+    { "workspace": "packages/activity-components",        "external_dep_count": 12 },
+    { "workspace": "packages/activity-runtime",          "external_dep_count": 5  },
+    { "workspace": "packages/ai-tutoring",               "external_dep_count": 5  },
+    { "workspace": "packages/app-shell",                 "external_dep_count": 11 },
+    { "workspace": "packages/component-approval",        "external_dep_count": 5  },
+    { "workspace": "packages/core-auth",                 "external_dep_count": 5  },
+    { "workspace": "packages/core-convex",               "external_dep_count": 6  },
+    { "workspace": "packages/graphing-core",             "external_dep_count": 5  },
+    { "workspace": "packages/knowledge-space-core",      "external_dep_count": 6  },
+    { "workspace": "packages/knowledge-space-practice",  "external_dep_count": 6  },
+    { "workspace": "packages/lesson-renderer",           "external_dep_count": 17 },
+    { "workspace": "packages/math-content",              "external_dep_count": 6  },
+    { "workspace": "packages/practice-core",             "external_dep_count": 6  },
+    { "workspace": "packages/practice-test-engine",      "external_dep_count": 1  },
+    { "workspace": "packages/rate-limiter",              "external_dep_count": 5  },
+    { "workspace": "packages/srs-engine",                "external_dep_count": 6  },
+    { "workspace": "packages/study-hub-core",            "external_dep_count": 7  },
+    { "workspace": "packages/teacher-reporting-core",    "external_dep_count": 5  },
+    { "workspace": "packages/workbook-pipeline",         "external_dep_count": 5  }
+  ],
+
+  "totals": {
+    "first_class_app_count": 5,
+    "shared_package_count": 21,
+    "workspace_manifest_count": 26,
+    "direct_external_dep_count_apps_only": 62,
+    "upgrade_candidate_families": 36
+  },
+
+  "security_totals": {
+    "critical": 1,
+    "high": 3,
+    "moderate": 14,
+    "total": 18
+  },
+
+  "open_range_violations": [
+    { "package": "next", "workspace": "apps/bus-math-v2",      "range": "latest" },
+    { "package": "next", "workspace": "apps/integrated-math-1", "range": "latest" },
+    { "package": "next", "workspace": "apps/integrated-math-2", "range": "latest" },
+    { "package": "next", "workspace": "apps/integrated-math-3", "range": "latest" },
+    { "package": "next", "workspace": "apps/pre-calculus",      "range": "latest" }
+  ],
+
+  "drizzle_kit_floor": {
+    "package": "drizzle-kit",
+    "workspace": "apps/bus-math-v2",
+    "current_range": "^0.31.10",
+    "downgrade_blocked_below": "0.31.10"
+  },
+
+  "declaration_drift_examples": [
+    {
+      "package": "vitest",
+      "expected_versions": [
+        { "workspace": "apps/bus-math-v2",                       "range": "^4.0.16" },
+        { "workspace": "apps/integrated-math-1",                  "range": "^4.0.16" },
+        { "workspace": "apps/integrated-math-2",                  "range": "^4.0.16" },
+        { "workspace": "apps/integrated-math-3",                  "range": "^4.0.16" },
+        { "workspace": "apps/pre-calculus",                       "range": "^4.0.16" },
+        { "workspace": "packages/activity-components",            "range": "^4.0.16" },
+        { "workspace": "packages/activity-runtime",               "range": "^4.0.16" },
+        { "workspace": "packages/ai-tutoring",                    "range": "^4.0.16" },
+        { "workspace": "packages/component-approval",            "range": "^4.0.16" },
+        { "workspace": "packages/core-auth",                      "range": "^4.0.16" },
+        { "workspace": "packages/core-convex",                    "range": "^4.0.16" },
+        { "workspace": "packages/graphing-core",                  "range": "^4.0.16" },
+        { "workspace": "packages/knowledge-space-core",           "range": "^4.0.16" },
+        { "workspace": "packages/knowledge-space-practice",       "range": "^4.0.16" },
+        { "workspace": "packages/math-content",                   "range": "^4.0.16" },
+        { "workspace": "packages/practice-core",                  "range": "^4.0.16" },
+        { "workspace": "packages/practice-test-engine",           "range": "^2.0.0",  "drift": "intentional — PTE on Vitest 2.x per security wave P2" },
+        { "workspace": "packages/rate-limiter",                   "range": "^4.0.16" },
+        { "workspace": "packages/srs-engine",                     "range": "^4.0.16" },
+        { "workspace": "packages/study-hub-core",                 "range": "^4.0.16" },
+        { "workspace": "packages/teacher-reporting-core",         "range": "^4.0.16" },
+        { "workspace": "packages/workbook-pipeline",              "range": "^4.0.16" }
+      ]
+    },
+    {
+      "package": "katex",
+      "expected_versions": [
+        { "workspace": "apps/integrated-math-3",        "range": "^0.16.45" },
+        { "workspace": "packages/activity-components",  "range": "^0.16.21" },
+        { "workspace": "packages/lesson-renderer",     "range": "^0.16.21" }
+      ]
+    },
+    {
+      "package": "lucide-react",
+      "expected_versions": [
+        { "workspace": "apps/bus-math-v2",             "range": "^0.511.0" },
+        { "workspace": "apps/integrated-math-1",        "range": "^0.511.0" },
+        { "workspace": "apps/integrated-math-2",        "range": "^0.511.0" },
+        { "workspace": "apps/integrated-math-3",        "range": "^0.511.0" },
+        { "workspace": "apps/pre-calculus",             "range": "^0.511.0" },
+        { "workspace": "packages/app-shell",           "range": "^0.468.0" },
+        { "workspace": "packages/lesson-renderer",     "range": "^0.475.0" }
+      ]
+    }
+  ]
+}

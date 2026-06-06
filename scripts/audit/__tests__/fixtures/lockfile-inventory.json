@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "captured_at": "2026-06-07T00:00:00Z",
+  "captured_by": "measure:dependency-security-upgrades_20260607",
+  "purpose": "Single-root-lockfile invariant. The audit-contract suite must assert that the repo contains exactly one package-lock.json and that no .npmrc pins a peer-deps workaround. Wave verification (P3/P4/P5) re-runs this check.",
+
+  "single_root_lockfile": {
+    "expected_count": 1,
+    "expected_paths": ["./package-lock.json"],
+    "forbidden_paths": [
+      "apps/*/package-lock.json",
+      "packages/*/package-lock.json",
+      "node_modules/*/package-lock.json"
+    ]
+  },
+
+  "npmrc_invariant": {
+    "expected_files": [],
+    "forbidden_keys": [
+      "legacy-peer-deps=true",
+      "legacy-peer-deps",
+      "force"
+    ],
+    "notes": "No .npmrc is present. Adding one (especially with --legacy-peer-deps) is a workaround that must be justified in tech-debt.md."
+  },
+
+  "workspaces_invariant": {
+    "root_workspaces_field": ["apps/*", "packages/*"],
+    "forbidden_new_globs": [
+      "apps",
+      "apps/**",
+      "packages",
+      "packages/**"
+    ],
+    "notes": "No new workspace globs. Adding nested workspaces (e.g., apps/integrated-math-3/*) violates the flat workspace rule."
+  }
+}

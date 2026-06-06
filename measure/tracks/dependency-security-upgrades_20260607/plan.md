@@ -10,14 +10,14 @@ Verification substitute for Doctor: `node scripts/check-monorepo-boundaries.mjs`
 
 ## Phase 1 — Audit Contract & Baseline
 
-- [ ] Task: Define the durable repo-wide dependency-audit contract and expected report schema
-    - [ ] Cover all app/package manifests, the root lockfile, registry latest versions, range compatibility, declaration drift, and security totals
-    - [ ] Add a regression fixture/assertion proving first-class app dependencies are not under-reported
-- [ ] Task: Capture the pre-upgrade package-wave matrix under this track
-    - [ ] Assign every one of the 36 direct upgrade candidates to security, in-range, vinext/runtime, or remaining-major wave
-    - [ ] Record current/target versions, manifest owners, compatibility notes, and baseline verification state
-- [ ] Task: Capture baseline quality-gate results and separate pre-existing failures from upgrade regressions
-- [ ] Task: Measure - User Manual Verification 'Phase 1 — Audit Contract & Baseline' (Protocol in workflow.md)
+- [~] Task: Define the durable repo-wide dependency-audit contract and expected report schema
+    - [~] Cover all app/package manifests, the root lockfile, registry latest versions, range compatibility, declaration drift, and security totals
+    - [~] Add a regression fixture/assertion proving first-class app dependencies are not under-reported
+- [~] Task: Capture the pre-upgrade package-wave matrix under this track
+    - [~] Assign every one of the 36 direct upgrade candidates to security, in-range, vinext/runtime, or remaining-major wave
+    - [~] Record current/target versions, manifest owners, compatibility notes, and baseline verification state
+- [~] Task: Capture baseline quality-gate results and separate pre-existing failures from upgrade regressions
+- [ ] Task: Measure - User Manual Verification 'Phase 1 — Audit Contract & Baseline' (Protocol in workflow.md) — deferred to supervisor after Red+Green land
 
 ## Phase 2 — Urgent Security Remediation
 
