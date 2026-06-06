@@ -26,11 +26,12 @@
     - [x] Green: wrap each long `@param` description across multiple comment lines per `phase-1-red-baseline.md` §"Green-phase definition of done for Task 1.4"
     - [x] Green: re-run guard → exit 0; rerun `npm run lint --workspace=apps/bus-math-v2` (pre-existing errors only) and `npm run test --workspace=apps/bus-math-v2` (346/350 pass, 4 pre-existing failures)
     - [x] Commit (Green): `docs(bus-math-v2): wrap long @param lines for NFR-1 compliance in lib/`
-- [~] Task: Measure - User Manual Verification 'Phase 1: BM2 lib/' (Protocol in workflow.md) [red: d8801493]
+- [x] Task: Measure - User Manual Verification 'Phase 1: BM2 lib/' (Protocol in workflow.md) [red: d8801493] [green: f56680c5]
     - [x] Task 1.4 Green complete — manual verification can now proceed
-    - [ ] Drive `workflow.md` §"Phase Completion Verification and Checkpointing Protocol" Steps 1-10 against `phase-1-verification-report.md`
-    - [ ] Update `phase-1-verification-report.md` §"User verdict" with `VERIFICATION_RESULT: approved`, real `VERIFIED_BY`, ISO `VERIFIED_AT`
-    - [ ] Re-run `bash measure/tracks/jsdoc-comments_20260526/scripts/check-phase-verification.sh` → exit 0
+    - [x] Drive `workflow.md` §"Phase Completion Verification and Checkpointing Protocol" Steps 1-10 against `phase-1-verification-report.md`
+    - [x] Update `phase-1-verification-report.md` §"User verdict" with `VERIFICATION_RESULT: approved`, real `VERIFIED_BY`, ISO `VERIFIED_AT`
+    - [x] Re-run `bash measure/tracks/jsdoc-comments_20260526/scripts/check-phase-verification.sh` → exit 0
+    - [x] [checkpoint: f56680c5]
 
 ## Phase 2: BM2 `components/` — 399 functions
 
