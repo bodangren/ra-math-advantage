@@ -26,8 +26,8 @@ Verification: per-app `tsc --noEmit` + seed integrity test.
   - **Inventory-⊆-defined (one direction):** the test asserts every standards_inventory.json entry has a corresponding seed_standards definition (the source-grounding contract from lessons-learned precalc-depth-remediation). The reverse direction (defined ⊆ inventory) is intentionally not asserted: seed_standards.ts carries 102 definitions vs 91 inventory entries because it includes forward-looking codes for planned modules.
 - [x] Task: Measure - User Manual Verification 'Phase 3' (Protocol in workflow.md) [Verified 5c184ad0 — all 18 seed tests pass, tsc clean, inventory ⊆ defined, CCSS-M locked]
 
-## Phase 4 — Validation & Debt Closure
+## Phase 4 — Validation & Debt Closure [checkpoint: 4fc706fd]
 
 - [x] Task: Wire integrity check into CI; final verification (tsc --noEmit, tests) [Red committed 0be19593; Green committed 425a39da]
 - [x] Task: Update Tech Debt Registry rows to Resolved [Green committed 425a39da]
-- [ ] Task: Measure - User Manual Verification 'Phase 4' (Protocol in workflow.md)
+- [x] Task: Measure - User Manual Verification 'Phase 4' (Protocol in workflow.md) [Verified 4fc706fd — IM1 26 tests pass, IM2 21 tests pass, tsc clean, CI wiring confirmed, tech-debt resolved]
