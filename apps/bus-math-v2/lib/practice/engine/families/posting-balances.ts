@@ -325,6 +325,12 @@ function buildPartFeedback(
   };
 }
 
+/**
+ * Builds review feedback for a posting balance practice submission.
+ * @param submission - The student submission to evaluate
+ * @param scenario - The posting balance scenario
+ * @returns Structured review feedback
+ */
 export function buildPostingBalanceReviewFeedback(
   definition: PostingBalanceDefinition,
   studentResponse: PostingBalanceResponse,

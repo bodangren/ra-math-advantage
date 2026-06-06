@@ -411,6 +411,12 @@ function buildStatementSections(
   };
 }
 
+/**
+ * Builds review feedback for a depreciation presentation practice submission.
+ * @param submission - The student submission to evaluate
+ * @param scenario - The depreciation scenario
+ * @returns Structured review feedback
+ */
 export function buildDepreciationPresentationReviewFeedback(
   definition: DepreciationPresentationDefinition,
   studentResponse: DepreciationPresentationResponse,

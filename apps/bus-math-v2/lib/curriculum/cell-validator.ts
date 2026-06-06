@@ -18,10 +18,20 @@ export type CellValidationResult = {
   perCell: PerCellValidationResult[];
 };
 
+/**
+ * Normalizes string
+ * @param value - Input value
+ * @returns Function result
+ */
 function normalizeString(value: unknown): string {
   return String(value).trim().toLowerCase();
 }
 
+/**
+ * Parses numeric
+ * @param value - Input value
+ * @returns Parsed result
+ */
 function parseNumeric(value: unknown): number | null {
   if (typeof value === 'number' && Number.isFinite(value)) {
     return value;
@@ -35,6 +45,12 @@ function parseNumeric(value: unknown): number | null {
   return null;
 }
 
+/**
+ * Validates cell values
+ * @param expected - expected
+ * @param submitted - submitted
+ * @returns Validation result
+ */
 export function validateCellValues(
   expected: CellExpectation[],
   submitted: Record<string, unknown>,

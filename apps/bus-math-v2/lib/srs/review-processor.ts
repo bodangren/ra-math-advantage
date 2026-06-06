@@ -6,6 +6,15 @@ import { createCard, reviewCard } from './scheduler';
 import type { SrsCardState } from '@math-platform/srs-engine';
 import type { SrsReviewLog, SrsReviewResult } from './contract';
 
+/**
+ * Processes practice submission
+ * @param envelope - envelope
+ * @param cardState - card state
+ * @param timing - timing
+ * @param baseline - baseline
+ * @param studentId - Student identifier
+ * @returns Function result
+ */
 export function processPracticeSubmission(
   envelope: PracticeSubmissionEnvelope,
   cardState: SrsCardState | null,

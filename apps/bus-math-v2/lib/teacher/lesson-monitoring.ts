@@ -82,10 +82,20 @@ export interface TeacherPublishedPhase {
   updatedAt: Date;
 }
 
+/**
+ * Builds lesson href
+ * @param unitNumber - Unit number
+ * @param lessonId - Lesson identifier
+ */
 function buildLessonHref(unitNumber: number, lessonId: string) {
   return `/teacher/units/${unitNumber}/lessons/${lessonId}`;
 }
 
+/**
+ * Builds teacher lesson monitoring view model
+ * @param input - Input value
+ * @returns The constructed result
+ */
 export function buildTeacherLessonMonitoringViewModel(
   input: TeacherLessonMonitoringQueryData,
 ): TeacherLessonMonitoringViewModel {

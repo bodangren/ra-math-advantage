@@ -56,6 +56,10 @@ export interface DepreciationSchedulesReviewFeedback {
   message?: string;
 }
 
+/**
+ * Mulberry32.
+ * @param seed - Random seed
+ */
 function mulberry32(seed: number) {
   let t = seed >>> 0;
   return () => {
@@ -66,16 +70,32 @@ function mulberry32(seed: number) {
   };
 }
 
+/**
+ * Picks
+ * @param items - Collection of items
+ * @param rng - rng
+ * @returns Function result
+ */
 function pick<T>(items: readonly T[], rng: () => number): T {
   return items[Math.floor(rng() * items.length)];
 }
 
+/**
+ * Formats amount
+ * @param amount - Amount value
+ */
 function formatAmount(amount: number) {
   return amount.toLocaleString('en-US');
 }
 
 const ASSET_NAMES = ['delivery truck', 'office equipment', 'manufacturing machine', 'warehouse forklift', 'computer system'] as const;
 
+/**
+ * Builds asset
+ * @param seed - Random seed
+ * @param method - Method name
+ * @returns The constructed result
+ */
 function buildAsset(seed: number, method: DepreciationMethod): DepreciationAsset {
   const rng = mulberry32(seed ^ 0x4a5b6c7d);
   const cost = pick([10000, 15000, 20000, 25000, 30000, 40000, 50000], rng);
@@ -95,6 +115,12 @@ function buildAsset(seed: number, method: DepreciationMethod): DepreciationAsset
   };
 }
 
+/**
+ * Builds straight line parts
+ * @param asset - Asset value
+ * @param tolerance - Tolerance value
+ * @returns The constructed result
+ */
 function buildStraightLineParts(asset: DepreciationAsset, tolerance: number): DepreciationSchedulesPart[] {
   const depreciableBase = asset.cost - asset.salvageValue;
   const annualDepreciation = Math.round(depreciableBase / (asset.usefulLifeYears || 1));
@@ -144,6 +170,12 @@ function buildStraightLineParts(asset: DepreciationAsset, tolerance: number): De
   ];
 }
 
+/**
+ * Builds d d b parts
+ * @param asset - Asset value
+ * @param tolerance - Tolerance value
+ * @returns The constructed result
+ */
 function buildDDBParts(asset: DepreciationAsset, tolerance: number): DepreciationSchedulesPart[] {
   const slRate = 1 / (asset.usefulLifeYears || 1);
   const ddbRate = slRate * 2;
@@ -196,6 +228,12 @@ function buildDDBParts(asset: DepreciationAsset, tolerance: number): Depreciatio
   ];
 }
 
+/**
+ * Builds u o p parts
+ * @param asset - Asset value
+ * @param tolerance - Tolerance value
+ * @returns The constructed result
+ */
 function buildUOPParts(asset: DepreciationAsset, tolerance: number): DepreciationSchedulesPart[] {
   const depreciableBase = asset.cost - asset.salvageValue;
   const ratePerUnit = depreciableBase / (asset.totalUnits || 1);
@@ -246,6 +284,12 @@ function buildUOPParts(asset: DepreciationAsset, tolerance: number): Depreciatio
   ];
 }
 
+/**
+ * Scores numeric part
+ * @param expected - expected
+ * @param actual - actual
+ * @param tolerance - Tolerance value
+ */
 function scoreNumericPart(expected: number, actual: unknown, tolerance: number) {
   const parsed = Number(actual);
   if (!Number.isFinite(parsed)) {
@@ -255,6 +299,11 @@ function scoreNumericPart(expected: number, actual: unknown, tolerance: number) 
   return { isCorrect, score: isCorrect ? 1 : 0, normalizedAnswer: normalizePracticeValue(parsed) };
 }
 
+/**
+ * Builds chain text
+ * @param definition - definition
+ * @param part - part
+ */
 function buildChainText(definition: DepreciationSchedulesDefinition, part: DepreciationSchedulesPart) {
   const asset = definition.asset;
   const depreciableBase = asset.cost - asset.salvageValue;
@@ -310,6 +359,13 @@ const FORMULA_HINTS: Record<DepreciationMethod, string> = {
   'units-of-production': 'Dep = (Cost − Salvage) ÷ Total Units × Units Produced',
 };
 
+/**
+ * Builds depreciation schedules review feedback
+ * @param definition - definition
+ * @param studentResponse - student response
+ * @param gradeResult - grade result
+ * @returns The constructed result
+ */
 export function buildDepreciationSchedulesReviewFeedback(
   definition: DepreciationSchedulesDefinition,
   studentResponse: DepreciationSchedulesResponse,

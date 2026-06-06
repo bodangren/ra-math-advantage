@@ -70,6 +70,10 @@ vi.mock('@hello-pangea/dnd', () => {
   };
 });
 
+/**
+ * Triggers drag
+ * @param result - Result value
+ */
 export function triggerDrag(result: DropResult) {
   dragHandlers.onDragEnd?.(result);
 }

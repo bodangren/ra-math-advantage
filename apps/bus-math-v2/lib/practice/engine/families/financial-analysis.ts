@@ -288,6 +288,12 @@ const GUIDANCE: Record<FinancialAnalysisVariant, string> = {
   leverage: 'Compare liabilities to assets and equity to measure financial leverage.',
 };
 
+/**
+ * Builds review feedback for a financial analysis practice submission.
+ * @param submission - The student submission to evaluate
+ * @param scenario - The financial analysis scenario
+ * @returns Structured review feedback
+ */
 export function buildFinancialAnalysisReviewFeedback(
   definition: FinancialAnalysisDefinition,
   studentResponse: FinancialAnalysisResponse,

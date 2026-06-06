@@ -16,6 +16,10 @@ export interface SpreadsheetEvaluatorEnvelopeInput {
   mode?: SpreadsheetPracticeMode;
 }
 
+/**
+ * Builds spreadsheet evaluator submission
+ * @param input - Input value
+ */
 export function buildSpreadsheetEvaluatorSubmission(input: SpreadsheetEvaluatorEnvelopeInput) {
   const answers = Object.fromEntries(
     input.targetCells.map((target) => [target.cell, getCellValue(input.spreadsheetData, target.cell)]),

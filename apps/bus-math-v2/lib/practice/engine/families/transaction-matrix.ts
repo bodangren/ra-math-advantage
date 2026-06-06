@@ -75,6 +75,10 @@ const MATRIX_COLUMNS: TransactionMatrixColumn[] = [
   { id: 'not-affected', label: 'Not affected', description: 'This row is not part of the transaction' },
 ];
 
+/**
+ * Mulberry32.
+ * @param seed - Random seed
+ */
 function mulberry32(seed: number) {
   let t = seed >>> 0;
   return () => {
@@ -85,6 +89,12 @@ function mulberry32(seed: number) {
   };
 }
 
+/**
+ * Shuffles array
+ * @param arr - arr
+ * @param rng - rng
+ * @returns Array of results
+ */
 function shuffleArray<T>(arr: T[], rng: () => number): T[] {
   const result = [...arr];
   for (let i = result.length - 1; i > 0; i--) {
@@ -94,6 +104,12 @@ function shuffleArray<T>(arr: T[], rng: () => number): T[] {
   return result;
 }
 
+/**
+ * Picks distractor accounts
+ * @param event - Event object
+ * @param seed - Random seed
+ * @returns Function result
+ */
 function pickDistractorAccounts(event: TransactionEvent, seed: number): Array<{ id: string; label: string }> {
   const involvedIds = new Set(event.effects.map((e) => e.accountId));
   const candidates = practiceAccounts.filter((a) => !involvedIds.has(a.id) && a.retailApplicable);
@@ -102,6 +118,11 @@ function pickDistractorAccounts(event: TransactionEvent, seed: number): Array<{ 
   return shuffled.slice(0, 2).map((a) => ({ id: a.id, label: a.label }));
 }
 
+/**
+ * Builds rows
+ * @param event - Event object
+ * @param seed - Random seed
+ */
 function buildRows(event: TransactionEvent, seed: number) {
   const cashEffect = event.effects.find((effect) => effect.accountId === 'cash') ?? event.effects[0];
   const offsetEffect = event.effects.find((effect) => effect.accountId !== 'cash') ?? event.effects[1] ?? event.effects[0];
@@ -146,6 +167,12 @@ function buildRows(event: TransactionEvent, seed: number) {
   return shuffleArray([...effectRows, ...distractorRows], rng);
 }
 
+/**
+ * Builds parts
+ * @param event - Event object
+ * @param seed - Random seed
+ * @returns The constructed result
+ */
 function buildParts(event: TransactionEvent, seed: number): TransactionMatrixPart[] {
   const reason = transactionReasonColumns.find((entry) => entry.id === getReasonTag(event).slice('reason:'.length)) ?? transactionReasonColumns[1];
   const offsetEffect = event.effects[1] ?? event.effects[0];
@@ -271,10 +298,22 @@ function buildParts(event: TransactionEvent, seed: number): TransactionMatrixPar
   return [...realParts, ...distractorParts];
 }
 
+/**
+ * Builds response
+ * @param definition - definition
+ * @returns The constructed result
+ */
 function buildResponse(definition: TransactionMatrixDefinition): TransactionMatrixResponse {
   return Object.fromEntries(definition.parts.map((part) => [part.id, part.targetId])) as TransactionMatrixResponse;
 }
 
+/**
+ * Builds part feedback
+ * @param part - part
+ * @param studentResponse - student response
+ * @param gradeResultPart - grade result part
+ * @returns The constructed result
+ */
 function buildPartFeedback(
   part: TransactionMatrixPart,
   studentResponse: TransactionMatrixResponse,
@@ -293,6 +332,13 @@ function buildPartFeedback(
   };
 }
 
+/**
+ * Builds transaction matrix review feedback
+ * @param definition - definition
+ * @param studentResponse - student response
+ * @param gradeResult - grade result
+ * @returns The constructed result
+ */
 export function buildTransactionMatrixReviewFeedback(
   definition: TransactionMatrixDefinition,
   studentResponse: TransactionMatrixResponse,

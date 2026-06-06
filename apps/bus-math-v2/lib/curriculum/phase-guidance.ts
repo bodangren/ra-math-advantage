@@ -3,6 +3,11 @@ import { getLessonTypeFromOrderIndex, type LessonType } from '@/lib/curriculum/t
 export const SKIPPABLE_PHASE_TYPES = ['explore', 'discourse'] as const;
 export type SkippablePhaseType = typeof SKIPPABLE_PHASE_TYPES[number];
 
+/**
+ * Checks if skippable phase type
+ * @param phaseType - phase type
+ * @returns True if the condition is met
+ */
 export function isSkippablePhaseType(phaseType: string | undefined): boolean {
   return SKIPPABLE_PHASE_TYPES.includes(phaseType as SkippablePhaseType);
 }
@@ -162,6 +167,12 @@ const PHASE_GUIDANCE_BY_TYPE: Record<LessonType, Record<number, Omit<PhaseGuidan
   },
 };
 
+/**
+ * Gets phase guidance
+ * @param lessonType - lesson type
+ * @param phaseNumber - phase number
+ * @returns The requested value
+ */
 export function getPhaseGuidance(
   lessonType: LessonType,
   phaseNumber: number,
@@ -178,6 +189,12 @@ export function getPhaseGuidance(
   };
 }
 
+/**
+ * Gets lesson phase guidance
+ * @param orderIndex - order index
+ * @param phaseNumber - phase number
+ * @returns The requested value
+ */
 export function getLessonPhaseGuidance(
   orderIndex: number,
   phaseNumber: number,

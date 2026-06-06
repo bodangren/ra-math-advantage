@@ -43,6 +43,11 @@ export const practiceFamilyRegistry = {
 
 export type PracticeFamilyRegistryKey = keyof typeof practiceFamilyRegistry;
 
+/**
+ * Gets practice family
+ * @param familyKey - family key
+ * @returns The requested value
+ */
 export function getPracticeFamily(familyKey: string): ProblemFamily<unknown, unknown, unknown> | null {
   return practiceFamilyRegistry[familyKey as PracticeFamilyRegistryKey] ?? null;
 }

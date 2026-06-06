@@ -405,6 +405,12 @@ function buildPartFeedback(
   };
 }
 
+/**
+ * Builds review feedback for a merchandising entry practice submission.
+ * @param submission - The student submission to evaluate
+ * @param scenario - The merchandising entry scenario
+ * @returns Structured review feedback
+ */
 export function buildMerchandisingEntryReviewFeedback(
   definition: MerchandisingEntryDefinition,
   studentResponse: MerchandisingEntryResponse,

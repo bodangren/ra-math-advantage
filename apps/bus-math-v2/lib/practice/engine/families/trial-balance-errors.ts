@@ -76,6 +76,10 @@ export interface TrialBalanceErrorScenarioReviewFeedback {
   message?: string;
 }
 
+/**
+ * Formats part label
+ * @param answerKind - answer kind
+ */
 function formatPartLabel(answerKind: TrialBalanceErrorPart['details']['answerKind']) {
   switch (answerKind) {
     case 'balanced':
@@ -87,6 +91,10 @@ function formatPartLabel(answerKind: TrialBalanceErrorPart['details']['answerKin
   }
 }
 
+/**
+ * Formats selection value
+ * @param value - Input value
+ */
 function formatSelectionValue(value: string | number | undefined) {
   if (typeof value === 'number') {
     return formatTrialBalanceDifference(value);
@@ -114,6 +122,10 @@ function formatSelectionValue(value: string | number | undefined) {
     .join(' ');
 }
 
+/**
+ * Exercises scenario
+ * @param scenario - scenario
+ */
 function explainScenario(scenario: TrialBalanceErrorScenario) {
   if (scenario.archetypeId === 'transposition') {
     return `${scenario.narrative} The digit swap follows 10a + b vs 10b + a, so the difference is 9|a - b|.`;
@@ -122,6 +134,11 @@ function explainScenario(scenario: TrialBalanceErrorScenario) {
   return scenario.narrative;
 }
 
+/**
+ * Builds scenario parts
+ * @param scenario - scenario
+ * @returns The constructed result
+ */
 function buildScenarioParts(scenario: TrialBalanceErrorScenario): TrialBalanceErrorPart[] {
   return [
     {
@@ -202,6 +219,11 @@ function buildScenarioParts(scenario: TrialBalanceErrorScenario): TrialBalanceEr
   ];
 }
 
+/**
+ * Builds response
+ * @param definition - definition
+ * @returns The constructed result
+ */
 function buildResponse(definition: TrialBalanceErrorDefinition): TrialBalanceErrorResponse {
   return Object.fromEntries(
     definition.scenarios.flatMap((scenario) => [
@@ -212,6 +234,11 @@ function buildResponse(definition: TrialBalanceErrorDefinition): TrialBalanceErr
   ) as TrialBalanceErrorResponse;
 }
 
+/**
+ * Gets scenario misconception tags
+ * @param scenario - scenario
+ * @param answerKind - answer kind
+ */
 function getScenarioMisconceptionTags(scenario: TrialBalanceErrorScenario, answerKind: TrialBalanceErrorPart['details']['answerKind']) {
   const baseTags = new Set(scenario.misconceptionTags);
 
@@ -230,6 +257,14 @@ function getScenarioMisconceptionTags(scenario: TrialBalanceErrorScenario, answe
   return Array.from(baseTags);
 }
 
+/**
+ * Builds part feedback
+ * @param part - part
+ * @param scenario - scenario
+ * @param studentResponse - student response
+ * @param gradeResultPart - grade result part
+ * @returns The constructed result
+ */
 function buildPartFeedback(
   part: TrialBalanceErrorPart,
   scenario: TrialBalanceErrorScenario,
@@ -270,6 +305,13 @@ function buildPartFeedback(
   };
 }
 
+/**
+ * Builds trial balance error review feedback
+ * @param definition - definition
+ * @param studentResponse - student response
+ * @param gradeResult - grade result
+ * @returns The constructed result
+ */
 export function buildTrialBalanceErrorReviewFeedback(
   definition: TrialBalanceErrorDefinition,
   studentResponse: TrialBalanceErrorResponse,
@@ -300,6 +342,13 @@ export function buildTrialBalanceErrorReviewFeedback(
   );
 }
 
+/**
+ * Builds trial balance error scenario review feedback
+ * @param definition - definition
+ * @param studentResponse - student response
+ * @param gradeResult - grade result
+ * @returns The constructed result
+ */
 export function buildTrialBalanceErrorScenarioReviewFeedback(
   definition: TrialBalanceErrorDefinition,
   studentResponse: TrialBalanceErrorResponse,

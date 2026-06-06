@@ -3,6 +3,12 @@ import { z } from 'zod';
 import { resolveActivityComponentKey } from '../../activities/component-keys';
 import { activityPropsSchemas, gradingConfigSchema } from './activity-props';
 
+/**
+ * Adds activity props issues
+ * @param ctx - ctx
+ * @param componentKey - component key
+ * @param props - Properties object
+ */
 function addActivityPropsIssues(
   ctx: z.RefinementCtx,
   componentKey: string,

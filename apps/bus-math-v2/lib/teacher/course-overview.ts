@@ -38,6 +38,14 @@ export interface RawCOCompetency     { studentId: string; standardId: string; ma
 // assembleCourseOverviewRows (pure)
 // ---------------------------------------------------------------------------
 
+/**
+ * Assembles course overview rows
+ * @param students - students
+ * @param rawLessons - raw lessons
+ * @param rawLessonVersions - raw lesson versions
+ * @param rawPrimaryStandards - raw primary standards
+ * @param competencyRows - competency rows
+ */
 export function assembleCourseOverviewRows(
   students: RawCOStudent[],
   rawLessons: RawCOLesson[],

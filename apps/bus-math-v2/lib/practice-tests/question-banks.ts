@@ -637,7 +637,7 @@ export const UNIT8_CONFIG: PracticeTestUnitConfig = {
  * @param unitNumber - The unit number (1-8)
  * @returns The unit config or undefined if not found
  */
-export const getUnitConfig = (unitNumber: number): PracticeTestUnitConfig | undefined => {
+export function getUnitConfig(unitNumber: number): PracticeTestUnitConfig | undefined {
   switch (unitNumber) {
     case 1:
       return UNIT1_CONFIG;
@@ -658,4 +658,4 @@ export const getUnitConfig = (unitNumber: number): PracticeTestUnitConfig | unde
     default:
       return undefined;
   }
-};
+}

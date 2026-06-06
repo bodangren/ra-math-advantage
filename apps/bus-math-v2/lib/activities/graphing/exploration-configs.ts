@@ -97,10 +97,19 @@ export const EXPLORATION_CONFIGS: Record<string, ExplorationConfig> = {
   [DEPRECIATION_CONFIG.id]: DEPRECIATION_CONFIG,
 };
 
+/**
+ * Gets exploration config
+ * @param id - Identifier
+ * @returns The requested value
+ */
 export function getExplorationConfig(id: string): ExplorationConfig | undefined {
   return EXPLORATION_CONFIGS[id];
 }
 
+/**
+ * Gets all exploration configs
+ * @returns The requested value
+ */
 export function getAllExplorationConfigs(): ExplorationConfig[] {
   return Object.values(EXPLORATION_CONFIGS);
 }

@@ -99,6 +99,10 @@ const COLUMNS: AdjustmentEffectsColumn[] = [
   { id: 'no-effect', label: 'No effect', description: 'No change to the statement element' },
 ];
 
+/**
+ * Mulberry32.
+ * @param seed - Random seed
+ */
 function mulberry32(seed: number) {
   let t = seed >>> 0;
   return () => {
@@ -109,6 +113,12 @@ function mulberry32(seed: number) {
   };
 }
 
+/**
+ * Clamps
+ * @param value - Input value
+ * @param min - Minimum value
+ * @param max - Maximum value
+ */
 function clamp(value: number, min: number, max: number) {
   return Math.max(min, Math.min(max, value));
 }
@@ -266,6 +276,10 @@ const SCENARIO_TEMPLATES: ScenarioTemplate[] = [
   },
 ];
 
+/**
+ * Gets template
+ * @param kind - kind
+ */
 function getTemplate(kind: AdjustmentScenarioKind) {
   const template = SCENARIO_TEMPLATES.find((entry) => entry.kind === kind);
   if (!template) {
@@ -275,6 +289,11 @@ function getTemplate(kind: AdjustmentScenarioKind) {
   return template;
 }
 
+/**
+ * Picks scenario kind
+ * @param seed - Random seed
+ * @param requestedKind - requested kind
+ */
 function pickScenarioKind(seed: number, requestedKind?: AdjustmentScenarioKind) {
   if (requestedKind) {
     return requestedKind;
@@ -284,6 +303,12 @@ function pickScenarioKind(seed: number, requestedKind?: AdjustmentScenarioKind) 
   return SCENARIO_TEMPLATES[Math.floor(rng() * SCENARIO_TEMPLATES.length)]?.kind ?? SCENARIO_TEMPLATES[0].kind;
 }
 
+/**
+ * Builds scenario
+ * @param seed - Random seed
+ * @param kind - kind
+ * @returns The constructed result
+ */
 function buildScenario(seed: number, kind: AdjustmentScenarioKind): AdjustmentEffectsScenario {
   const template = getTemplate(kind);
   const rng = mulberry32(seed ^ 0x5f3759df);
@@ -300,6 +325,11 @@ function buildScenario(seed: number, kind: AdjustmentScenarioKind): AdjustmentEf
   };
 }
 
+/**
+ * Builds parts
+ * @param scenario - scenario
+ * @returns The constructed result
+ */
 function buildParts(scenario: AdjustmentEffectsScenario): AdjustmentEffectsPart[] {
   const template = getTemplate(scenario.kind);
 
@@ -329,14 +359,30 @@ function buildParts(scenario: AdjustmentEffectsScenario): AdjustmentEffectsPart[
   }));
 }
 
+/**
+ * Builds effects response
+ * @param definition - definition
+ * @returns The constructed result
+ */
 function buildEffectsResponse(definition: AdjustmentEffectsDefinition): AdjustmentEffectsResponse {
   return Object.fromEntries(definition.parts.map((part) => [part.id, part.targetId])) as AdjustmentEffectsResponse;
 }
 
+/**
+ * Builds effect label
+ * @param effect - effect
+ */
 function buildEffectLabel(effect: AdjustmentEffect) {
   return effect === 'no-effect' ? 'No effect' : effect[0].toUpperCase() + effect.slice(1);
 }
 
+/**
+ * Builds part feedback
+ * @param part - part
+ * @param studentResponse - student response
+ * @param gradeResultPart - grade result part
+ * @returns The constructed result
+ */
 function buildPartFeedback(
   part: AdjustmentEffectsPart,
   studentResponse: AdjustmentEffectsResponse,
@@ -358,6 +404,13 @@ function buildPartFeedback(
   };
 }
 
+/**
+ * Builds adjustment effects review feedback
+ * @param definition - definition
+ * @param studentResponse - student response
+ * @param gradeResult - grade result
+ * @returns The constructed result
+ */
 export function buildAdjustmentEffectsReviewFeedback(
   definition: AdjustmentEffectsDefinition,
   studentResponse: AdjustmentEffectsResponse,

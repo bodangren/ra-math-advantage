@@ -287,6 +287,12 @@ function buildPartFeedback(part: NormalBalancePart, studentResponse: NormalBalan
   };
 }
 
+/**
+ * Builds review feedback for a normal balance practice submission.
+ * @param submission - The student submission to evaluate
+ * @param scenario - The normal balance scenario
+ * @returns Structured review feedback
+ */
 export function buildNormalBalanceReviewFeedback(
   definition: NormalBalanceDefinition,
   studentResponse: NormalBalanceResponse,

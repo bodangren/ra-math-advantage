@@ -60,6 +60,15 @@ const RATING_VALUES: Record<string, number> = {
   Easy: 4,
 };
 
+/**
+ * Computes class health
+ * @param students - students
+ * @param cards - cards
+ * @param now - now
+ * @param startOfDay - start of day
+ * @param endOfDay - end of day
+ * @returns Computed result
+ */
 export function computeClassHealth(
   students: StudentInfo[],
   cards: SrsCardData[],
@@ -103,6 +112,11 @@ export function computeClassHealth(
   };
 }
 
+/**
+ * Computes family performance
+ * @param reviews - reviews
+ * @returns Computed result
+ */
 export function computeFamilyPerformance(
   reviews: SrsReviewLogEntry[]
 ): FamilyPerformance[] {
@@ -151,6 +165,14 @@ export function computeFamilyPerformance(
   return results.sort((a, b) => b.againRate - a.againRate);
 }
 
+/**
+ * Computes struggling students
+ * @param students - students
+ * @param cards - cards
+ * @param reviews - reviews
+ * @param now - now
+ * @returns Computed result
+ */
 export function computeStrugglingStudents(
   students: StudentInfo[],
   cards: SrsCardData[],
@@ -223,6 +245,11 @@ export function computeStrugglingStudents(
   return results.slice(0, 10);
 }
 
+/**
+ * Formats family display name
+ * @param problemFamilyId - problem family id
+ * @returns Formatted string
+ */
 export function formatFamilyDisplayName(problemFamilyId: string): string {
   // Convert kebab-case to title case
   // e.g., "transaction-effects" -> "Transaction Effects"

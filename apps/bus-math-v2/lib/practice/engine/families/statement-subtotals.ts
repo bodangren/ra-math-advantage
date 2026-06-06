@@ -742,6 +742,12 @@ function buildReviewFeedback(
   };
 }
 
+/**
+ * Builds review feedback for a statement subtotals practice submission.
+ * @param submission - The student submission to evaluate
+ * @param scenario - The statement subtotals scenario
+ * @returns Structured review feedback
+ */
 export function buildStatementSubtotalsReviewFeedback(
   definition: StatementSubtotalsDefinition,
   studentResponse: StatementSubtotalsResponse,

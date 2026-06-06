@@ -36,10 +36,20 @@ export type ProblemTemplate = z.infer<typeof problemTemplateSchema>;
 export type CellValueExpectation = z.infer<typeof cellValueExpectationSchema>;
 export type SpreadsheetProblemTemplate = z.infer<typeof spreadsheetProblemTemplateSchema>;
 
+/**
+ * Parses problem template
+ * @param input - Input value
+ * @returns Parsed result
+ */
 export function parseProblemTemplate(input: unknown): ProblemTemplate {
   return problemTemplateSchema.parse(input);
 }
 
+/**
+ * Parses spreadsheet problem template
+ * @param input - Input value
+ * @returns Parsed result
+ */
 export function parseSpreadsheetProblemTemplate(input: unknown): SpreadsheetProblemTemplate {
   return spreadsheetProblemTemplateSchema.parse(input);
 }

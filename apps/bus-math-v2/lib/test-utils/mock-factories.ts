@@ -60,22 +60,42 @@ import {
   type UnitContent
 } from '@/lib/db/schema/lessons';
 
-const now = () => new Date();
+/**
+ * Returns the current date.
+ */
+function now() {
+  return new Date();
+}
 
-const defaultLessonMetadata = () => ({
-  duration: 45,
-  difficulty: 'beginner' as const,
-  tags: ['foundations']
-});
+/**
+ * Returns default lesson metadata for testing.
+ */
+function defaultLessonMetadata() {
+  return {
+    duration: 45,
+    difficulty: 'beginner' as const,
+    tags: ['foundations']
+  };
+}
 
-const defaultPhaseContent = () => [
-  {
-    id: randomUUID(),
-    type: 'markdown' as const,
-    content: 'Sample content block'
-  }
-];
+/**
+ * Returns default phase content blocks for testing.
+ */
+function defaultPhaseContent() {
+  return [
+    {
+      id: randomUUID(),
+      type: 'markdown' as const,
+      content: 'Sample content block'
+    }
+  ];
+}
 
+/**
+ * Builds lesson input
+ * @param overrides - overrides
+ * @returns The constructed result
+ */
 export function buildLessonInput(overrides: Partial<NewLesson> = {}): NewLesson {
   const payload = {
     id: overrides.id ?? randomUUID(),
@@ -94,6 +114,11 @@ export function buildLessonInput(overrides: Partial<NewLesson> = {}): NewLesson 
   return payload;
 }
 
+/**
+ * Creates lesson
+ * @param overrides - overrides
+ * @returns The constructed result
+ */
 export function createLesson(overrides: Partial<Lesson> = {}): Lesson {
   const payload = {
     ...buildLessonInput(overrides),
@@ -103,6 +128,11 @@ export function createLesson(overrides: Partial<Lesson> = {}): Lesson {
   return selectLessonSchema.parse(payload);
 }
 
+/**
+ * Builds phase input
+ * @param overrides - overrides
+ * @returns The constructed result
+ */
 export function buildPhaseInput(overrides: Partial<NewPhase> = {}): NewPhase {
   const payload = {
     id: overrides.id ?? randomUUID(),
@@ -119,6 +149,11 @@ export function buildPhaseInput(overrides: Partial<NewPhase> = {}): NewPhase {
   return payload;
 }
 
+/**
+ * Creates phase
+ * @param overrides - overrides
+ * @returns The constructed result
+ */
 export function createPhase(overrides: Partial<Phase> = {}): Phase {
   const payload = {
     ...buildPhaseInput(overrides),
@@ -128,6 +163,11 @@ export function createPhase(overrides: Partial<Phase> = {}): Phase {
   return selectPhaseSchema.parse(payload);
 }
 
+/**
+ * Builds unit content
+ * @param overrides - overrides
+ * @returns The constructed result
+ */
 export function buildUnitContent(overrides: Partial<UnitContent> = {}): UnitContent {
   const hasOverride = <K extends keyof UnitContent>(key: K) =>
     Object.prototype.hasOwnProperty.call(overrides, key);
@@ -252,6 +292,11 @@ export function buildUnitContent(overrides: Partial<UnitContent> = {}): UnitCont
   return unitContentSchema.parse(payload);
 }
 
+/**
+ * Builds activity input
+ * @param overrides - overrides
+ * @returns The constructed result
+ */
 export function buildActivityInput(overrides: Partial<NewActivity> = {}): NewActivity {
   const defaultQuestions = [
     {
@@ -370,6 +415,11 @@ export function buildActivityInput(overrides: Partial<NewActivity> = {}): NewAct
   return payload;
 }
 
+/**
+ * Creates activity
+ * @param overrides - overrides
+ * @returns The constructed result
+ */
 export function createActivity(overrides: Partial<Activity> = {}): Activity {
   const payload = {
     ...buildActivityInput(overrides),
@@ -379,6 +429,11 @@ export function createActivity(overrides: Partial<Activity> = {}): Activity {
   return selectActivitySchema.parse(payload);
 }
 
+/**
+ * Builds resource input
+ * @param overrides - overrides
+ * @returns The constructed result
+ */
 export function buildResourceInput(overrides: Partial<NewResource> = {}): NewResource {
   const payload = {
     id: overrides.id ?? randomUUID(),
@@ -397,6 +452,11 @@ export function buildResourceInput(overrides: Partial<NewResource> = {}): NewRes
   return payload;
 }
 
+/**
+ * Creates resource
+ * @param overrides - overrides
+ * @returns The constructed result
+ */
 export function createResource(overrides: Partial<Resource> = {}): Resource {
   const payload = {
     ...buildResourceInput(overrides),
@@ -406,6 +466,11 @@ export function createResource(overrides: Partial<Resource> = {}): Resource {
   return selectResourceSchema.parse(payload);
 }
 
+/**
+ * Builds profile input
+ * @param overrides - overrides
+ * @returns The constructed result
+ */
 export function buildProfileInput(overrides: Partial<NewProfile> = {}): NewProfile {
   return insertProfileSchema.parse({
     id: overrides.id ?? randomUUID(),
@@ -418,6 +483,11 @@ export function buildProfileInput(overrides: Partial<NewProfile> = {}): NewProfi
   });
 }
 
+/**
+ * Creates profile
+ * @param overrides - overrides
+ * @returns The constructed result
+ */
 export function createProfile(overrides: Partial<Profile> = {}): Profile {
   const payload = {
     ...buildProfileInput(overrides),
@@ -427,6 +497,11 @@ export function createProfile(overrides: Partial<Profile> = {}): Profile {
   return selectProfileSchema.parse(payload);
 }
 
+/**
+ * Builds student progress input
+ * @param overrides - overrides
+ * @returns The constructed result
+ */
 export function buildStudentProgressInput(overrides: Partial<NewStudentProgress> = {}): NewStudentProgress {
   const payload = {
     id: overrides.id ?? randomUUID(),
@@ -444,6 +519,11 @@ export function buildStudentProgressInput(overrides: Partial<NewStudentProgress>
   return payload;
 }
 
+/**
+ * Creates student progress
+ * @param overrides - overrides
+ * @returns The constructed result
+ */
 export function createStudentProgress(overrides: Partial<StudentProgress> = {}): StudentProgress {
   const payload = {
     ...buildStudentProgressInput(overrides),
@@ -453,6 +533,11 @@ export function createStudentProgress(overrides: Partial<StudentProgress> = {}):
   return selectStudentProgressSchema.parse(payload);
 }
 
+/**
+ * Builds activity submission input
+ * @param overrides - overrides
+ * @returns The constructed result
+ */
 export function buildActivitySubmissionInput(
   overrides: Partial<NewActivitySubmission> = {},
 ): NewActivitySubmission {
@@ -494,6 +579,11 @@ export function buildActivitySubmissionInput(
   return payload;
 }
 
+/**
+ * Creates activity submission
+ * @param overrides - overrides
+ * @returns The constructed result
+ */
 export function createActivitySubmission(overrides: Partial<ActivitySubmission> = {}): ActivitySubmission {
   const payload = {
     ...buildActivitySubmissionInput(overrides),
@@ -503,6 +593,11 @@ export function createActivitySubmission(overrides: Partial<ActivitySubmission> 
   return selectActivitySubmissionSchema.parse(payload);
 }
 
+/**
+ * Builds class input
+ * @param overrides - overrides
+ * @returns The constructed result
+ */
 export function buildClassInput(overrides: Partial<NewClass> = {}): NewClass {
   const payload = {
     id: overrides.id ?? randomUUID(),
@@ -519,6 +614,11 @@ export function buildClassInput(overrides: Partial<NewClass> = {}): NewClass {
   return payload;
 }
 
+/**
+ * Creates class
+ * @param overrides - overrides
+ * @returns The constructed result
+ */
 export function createClass(overrides: Partial<Class> = {}): Class {
   const payload = {
     ...buildClassInput(overrides),
@@ -528,6 +628,11 @@ export function createClass(overrides: Partial<Class> = {}): Class {
   return selectClassSchema.parse(payload);
 }
 
+/**
+ * Builds class enrollment input
+ * @param overrides - overrides
+ * @returns The constructed result
+ */
 export function buildClassEnrollmentInput(
   overrides: Partial<NewClassEnrollment> = {},
 ): NewClassEnrollment {
@@ -544,6 +649,11 @@ export function buildClassEnrollmentInput(
   return payload;
 }
 
+/**
+ * Creates class enrollment
+ * @param overrides - overrides
+ * @returns The constructed result
+ */
 export function createClassEnrollment(overrides: Partial<ClassEnrollment> = {}): ClassEnrollment {
   const payload = {
     ...buildClassEnrollmentInput(overrides),
@@ -553,6 +663,11 @@ export function createClassEnrollment(overrides: Partial<ClassEnrollment> = {}):
   return selectClassEnrollmentSchema.parse(payload);
 }
 
+/**
+ * Builds live session input
+ * @param overrides - overrides
+ * @returns The constructed result
+ */
 export function buildLiveSessionInput(overrides: Partial<NewLiveSession> = {}): NewLiveSession {
   const payload = {
     id: overrides.id ?? randomUUID(),
@@ -570,6 +685,11 @@ export function buildLiveSessionInput(overrides: Partial<NewLiveSession> = {}): 
   return payload;
 }
 
+/**
+ * Creates live session
+ * @param overrides - overrides
+ * @returns The constructed result
+ */
 export function createLiveSession(overrides: Partial<LiveSession> = {}): LiveSession {
   const payload = {
     ...buildLiveSessionInput(overrides),
@@ -579,6 +699,11 @@ export function createLiveSession(overrides: Partial<LiveSession> = {}): LiveSes
   return selectLiveSessionSchema.parse(payload);
 }
 
+/**
+ * Builds live response input
+ * @param overrides - overrides
+ * @returns The constructed result
+ */
 export function buildLiveResponseInput(overrides: Partial<NewLiveResponse> = {}): NewLiveResponse {
   const payload = {
     id: overrides.id ?? randomUUID(),
@@ -595,6 +720,11 @@ export function buildLiveResponseInput(overrides: Partial<NewLiveResponse> = {})
   return payload;
 }
 
+/**
+ * Creates live response
+ * @param overrides - overrides
+ * @returns The constructed result
+ */
 export function createLiveResponse(overrides: Partial<LiveResponse> = {}): LiveResponse {
   const payload = {
     ...buildLiveResponseInput(overrides),
@@ -603,6 +733,11 @@ export function createLiveResponse(overrides: Partial<LiveResponse> = {}): LiveR
   return selectLiveResponseSchema.parse(payload);
 }
 
+/**
+ * Builds session leaderboard entry input
+ * @param overrides - overrides
+ * @returns The constructed result
+ */
 export function buildSessionLeaderboardEntryInput(
   overrides: Partial<NewSessionLeaderboardEntry> = {},
 ): NewSessionLeaderboardEntry {
@@ -620,6 +755,11 @@ export function buildSessionLeaderboardEntryInput(
   return payload;
 }
 
+/**
+ * Creates session leaderboard entry
+ * @param overrides - overrides
+ * @returns The constructed result
+ */
 export function createSessionLeaderboardEntry(
   overrides: Partial<SessionLeaderboardEntry> = {},
 ): SessionLeaderboardEntry {
@@ -630,6 +770,11 @@ export function createSessionLeaderboardEntry(
   return selectSessionLeaderboardEntrySchema.parse(payload);
 }
 
+/**
+ * Builds content revision input
+ * @param overrides - overrides
+ * @returns The constructed result
+ */
 export function buildContentRevisionInput(
   overrides: Partial<NewContentRevision> = {},
 ): NewContentRevision {
@@ -654,6 +799,11 @@ export function buildContentRevisionInput(
   return payload;
 }
 
+/**
+ * Creates content revision
+ * @param overrides - overrides
+ * @returns The constructed result
+ */
 export function createContentRevision(overrides: Partial<ContentRevision> = {}): ContentRevision {
   const payload = {
     ...buildContentRevisionInput(overrides),

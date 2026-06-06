@@ -104,6 +104,11 @@ export interface RawCHLesson {
 
 export type CompetencyCellColor = "green" | "yellow" | "red" | "gray";
 
+/**
+ * Computes competency color
+ * @param masteryLevel - mastery level
+ * @returns Computed result
+ */
 export function computeCompetencyColor(masteryLevel: number | null): CompetencyCellColor {
   if (masteryLevel == null) {
     return "gray";
@@ -121,6 +126,13 @@ export function computeCompetencyColor(masteryLevel: number | null): CompetencyC
 // assembleCompetencyHeatmapRows (pure)
 // ---------------------------------------------------------------------------
 
+/**
+ * Assembles competency heatmap rows
+ * @param students - students
+ * @param standards - standards
+ * @param competencyRows - competency rows
+ * @returns Function result
+ */
 export function assembleCompetencyHeatmapRows(
   students: RawCHStudent[],
   standards: RawCHStandard[],
@@ -176,6 +188,16 @@ export function assembleCompetencyHeatmapRows(
 // assembleStudentCompetencyDetail (pure)
 // ---------------------------------------------------------------------------
 
+/**
+ * Assembles student competency detail
+ * @param student - student
+ * @param standards - standards
+ * @param competencyRows - competency rows
+ * @param lessonStandards - lesson standards
+ * @param lessonVersions - lesson versions
+ * @param lessons - lessons
+ * @returns Function result
+ */
 export function assembleStudentCompetencyDetail(
   student: RawCHStudent,
   standards: RawCHStandard[],

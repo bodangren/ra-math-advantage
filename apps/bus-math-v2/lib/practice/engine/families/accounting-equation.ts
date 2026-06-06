@@ -75,6 +75,10 @@ const ACCOUNTING_EQUATION_TERMS: Array<{ id: AccountingEquationTermId; label: st
   { id: 'equity', label: "Owner's Equity" },
 ];
 
+/**
+ * Mulberry32.
+ * @param seed - Random seed
+ */
 function mulberry32(seed: number) {
   let t = seed >>> 0;
   return () => {
@@ -85,10 +89,19 @@ function mulberry32(seed: number) {
   };
 }
 
+/**
+ * Picks
+ * @param items - Collection of items
+ * @param rng - rng
+ */
 function pick<T>(items: readonly T[], rng: () => number) {
   return items[Math.floor(rng() * items.length)];
 }
 
+/**
+ * Builds equation values
+ * @param miniLedger - mini ledger
+ */
 function buildEquationValues(miniLedger: MiniLedger) {
   return {
     assets: miniLedger.totals.netAssets,
@@ -97,6 +110,11 @@ function buildEquationValues(miniLedger: MiniLedger) {
   };
 }
 
+/**
+ * Builds hidden term
+ * @param seed - Random seed
+ * @param requested - requested
+ */
 function buildHiddenTerm(seed: number, requested?: AccountingEquationTermId) {
   if (requested) {
     return requested;
@@ -109,6 +127,11 @@ function buildHiddenTerm(seed: number, requested?: AccountingEquationTermId) {
   );
 }
 
+/**
+ * Builds visible facts
+ * @param hiddenTermId - hidden term id
+ * @param values - values
+ */
 function buildVisibleFacts(hiddenTermId: AccountingEquationTermId, values: Record<AccountingEquationTermId, number>) {
   return ACCOUNTING_EQUATION_TERMS.filter((term) => term.id !== hiddenTermId).map((term) => ({
     id: term.id,
@@ -117,6 +140,14 @@ function buildVisibleFacts(hiddenTermId: AccountingEquationTermId, values: Recor
   }));
 }
 
+/**
+ * Builds parts
+ * @param hiddenTermId - hidden term id
+ * @param values - values
+ * @param companyType - company type
+ * @param tolerance - Tolerance value
+ * @returns The constructed result
+ */
 function buildParts(
   hiddenTermId: AccountingEquationTermId,
   values: Record<AccountingEquationTermId, number>,
@@ -162,6 +193,11 @@ function buildParts(
   ];
 }
 
+/**
+ * Builds response
+ * @param definition - definition
+ * @returns The constructed result
+ */
 function buildResponse(definition: AccountingEquationDefinition): AccountingEquationResponse {
   return {
     assets: definition.equation.assets,
@@ -170,6 +206,12 @@ function buildResponse(definition: AccountingEquationDefinition): AccountingEqua
   };
 }
 
+/**
+ * Scores numeric part
+ * @param expected - expected
+ * @param actual - actual
+ * @param tolerance - Tolerance value
+ */
 function scoreNumericPart(expected: number, actual: unknown, tolerance: number) {
   const parsed = Number(actual);
   if (!Number.isFinite(parsed)) {
@@ -188,6 +230,13 @@ function scoreNumericPart(expected: number, actual: unknown, tolerance: number) 
   };
 }
 
+/**
+ * Builds part feedback
+ * @param part - part
+ * @param studentResponse - student response
+ * @param gradeResultPart - grade result part
+ * @returns The constructed result
+ */
 function buildPartFeedback(
   part: AccountingEquationPart,
   studentResponse: AccountingEquationResponse,
@@ -205,6 +254,12 @@ function buildPartFeedback(
   };
 }
 
+/**
+ * Builds accounting equation review feedback
+ * @param definition - definition
+ * @param studentResponse - student response
+ * @param gradeResult - grade result
+ */
 export function buildAccountingEquationReviewFeedback(
   definition: AccountingEquationDefinition,
   studentResponse: AccountingEquationResponse,

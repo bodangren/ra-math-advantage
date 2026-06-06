@@ -57,6 +57,10 @@ export interface CvpAnalysisReviewFeedback {
   message?: string;
 }
 
+/**
+ * Mulberry32.
+ * @param seed - Random seed
+ */
 function mulberry32(seed: number) {
   let t = seed >>> 0;
   return () => {
@@ -67,10 +71,20 @@ function mulberry32(seed: number) {
   };
 }
 
+/**
+ * Picks
+ * @param items - Collection of items
+ * @param rng - rng
+ * @returns Function result
+ */
 function pick<T>(items: readonly T[], rng: () => number): T {
   return items[Math.floor(rng() * items.length)];
 }
 
+/**
+ * Formats amount
+ * @param amount - Amount value
+ */
 function formatAmount(amount: number) {
   return amount.toLocaleString('en-US');
 }
@@ -78,6 +92,11 @@ function formatAmount(amount: number) {
 const COMPANY_NAMES = ['Riverside Crafts', 'Summit Products', 'Lakewood Manufacturing', 'Prairie Goods', 'Valley Enterprises'] as const;
 const PRODUCT_NAMES = ['widgets', 'units', 'assemblies', 'kits', 'packages'] as const;
 
+/**
+ * Builds scenario
+ * @param seed - Random seed
+ * @returns The constructed result
+ */
 function buildScenario(seed: number): CvpScenario {
   const rng = mulberry32(seed ^ 0x7a3b1c2d);
   const sellingPrice = pick([20, 25, 30, 40, 50, 60, 75, 100], rng);
@@ -96,6 +115,10 @@ function buildScenario(seed: number): CvpScenario {
   };
 }
 
+/**
+ * Computes values
+ * @param scenario - scenario
+ */
 function computeValues(scenario: CvpScenario) {
   const contributionMarginPerUnit = scenario.sellingPricePerUnit - scenario.variableCostPerUnit;
   const contributionMarginRatio = contributionMarginPerUnit / scenario.sellingPricePerUnit;
@@ -114,6 +137,14 @@ function computeValues(scenario: CvpScenario) {
   };
 }
 
+/**
+ * Builds parts
+ * @param variant - variant
+ * @param scenario - scenario
+ * @param values - values
+ * @param tolerance - Tolerance value
+ * @returns The constructed result
+ */
 function buildParts(variant: CvpVariant, scenario: CvpScenario, values: ReturnType<typeof computeValues>, tolerance: number): CvpAnalysisPart[] {
   const base = {
     kind: 'numeric' as const,
@@ -293,6 +324,12 @@ const FORMULA_HINTS: Record<CvpVariant, string> = {
   'target-profit-units': 'Target units = (FC + Target Profit) ÷ CM per unit',
 };
 
+/**
+ * Scores numeric part
+ * @param expected - expected
+ * @param actual - actual
+ * @param tolerance - Tolerance value
+ */
 function scoreNumericPart(expected: number, actual: unknown, tolerance: number) {
   const parsed = Number(actual);
   if (!Number.isFinite(parsed)) {
@@ -302,6 +339,13 @@ function scoreNumericPart(expected: number, actual: unknown, tolerance: number) 
   return { isCorrect, score: isCorrect ? 1 : 0, normalizedAnswer: normalizePracticeValue(parsed) };
 }
 
+/**
+ * Builds cvp analysis review feedback
+ * @param definition - definition
+ * @param studentResponse - student response
+ * @param gradeResult - grade result
+ * @returns The constructed result
+ */
 export function buildCvpAnalysisReviewFeedback(
   definition: CvpAnalysisDefinition,
   studentResponse: CvpAnalysisResponse,

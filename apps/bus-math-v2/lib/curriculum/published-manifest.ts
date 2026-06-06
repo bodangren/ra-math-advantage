@@ -1809,6 +1809,12 @@ function matchesAllowedSequence(
   ));
 }
 
+/**
+ * Validates a published curriculum lesson has correct phase sequences and activity schemas.
+ * @param lesson - The lesson to validate
+ * @returns The validated lesson
+ * @throws {Error} If phase sequence is invalid or activity props fail schema validation
+ */
 export function validatePublishedCurriculumLesson(lesson: PublishedCurriculumLesson): PublishedCurriculumLesson {
   const phaseSequence = lesson.phases
     .slice()
@@ -1841,6 +1847,10 @@ export function validatePublishedCurriculumLesson(lesson: PublishedCurriculumLes
   return lesson;
 }
 
+/**
+ * Builds the complete published curriculum manifest from authored and generated lessons.
+ * @returns The manifest with all lessons sorted by unit and order index
+ */
 export function buildPublishedCurriculumManifest(): PublishedCurriculumManifest {
   const authoredPlanByUnit = buildAuthoredLessonMap();
   const lessons: PublishedCurriculumLesson[] = [];
@@ -1885,6 +1895,10 @@ export function buildPublishedCurriculumManifest(): PublishedCurriculumManifest 
   };
 }
 
+/**
+ * Builds and returns the published curriculum manifest as a seed plan.
+ * @returns The published curriculum manifest
+ */
 export function buildPublishedCurriculumSeedPlan() {
   return buildPublishedCurriculumManifest();
 }

@@ -556,6 +556,11 @@ function buildBuyerTimeline(definition: Omit<MerchandisingTimelineDefinition, 'e
   };
 }
 
+/**
+ * Generates a merchandising timeline scenario with buyer and seller events.
+ * @param seed - Random seed for reproducibility
+ * @returns A complete merchandising timeline with events and solution
+ */
 export function generateMerchandisingTimeline(
   seed: number,
   config: MerchandisingTimelineConfig = {},
@@ -589,6 +594,11 @@ export function generateMerchandisingTimeline(
   return role === 'seller' ? buildSellerTimeline(baseDefinition) : buildBuyerTimeline(baseDefinition);
 }
 
+/**
+ * Solves a merchandising timeline by computing the correct accounting entries.
+ * @param timeline - The merchandising timeline to solve
+ * @returns Solution with correct entries and explanations
+ */
 export function solveMerchandisingTimeline(definition: MerchandisingTimelineDefinition): MerchandisingTimelineSolution {
   const journalLines = definition.events
     .flatMap((event) => event.journalLines)

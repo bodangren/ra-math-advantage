@@ -6,6 +6,10 @@ export interface ComponentId {
   componentId: string;
 }
 
+/**
+ * Gets all activity component ids
+ * @returns The requested value
+ */
 export function getAllActivityComponentIds(): ComponentId[] {
   return Object.keys(activityRegistry).map((componentId) => ({
     componentType: 'activity' as const,
@@ -13,6 +17,10 @@ export function getAllActivityComponentIds(): ComponentId[] {
   }));
 }
 
+/**
+ * Gets all practice component ids
+ * @returns The requested value
+ */
 export function getAllPracticeComponentIds(): ComponentId[] {
   return Object.keys(practiceFamilyRegistry).map((componentId) => ({
     componentType: 'practice' as const,
@@ -20,10 +28,18 @@ export function getAllPracticeComponentIds(): ComponentId[] {
   }));
 }
 
+/**
+ * Gets all example component ids
+ * @returns The requested value
+ */
 export function getAllExampleComponentIds(): ComponentId[] {
   return [];
 }
 
+/**
+ * Gets all reviewable component ids
+ * @returns The requested value
+ */
 export function getAllReviewableComponentIds(): ComponentId[] {
   return [
     ...getAllExampleComponentIds(),

@@ -8,14 +8,29 @@ const PRECEDENCE: Record<string, number> = {
 };
 const RIGHT_ASSOCIATIVE = new Set(['u-']);
 
+/**
+ * Checks if number token
+ * @param token - Authentication token
+ * @returns True if the condition is met
+ */
 function isNumberToken(token: string): boolean {
   return /^\d+(?:\.\d+)?$/.test(token);
 }
 
+/**
+ * Checks if identifier token
+ * @param token - Authentication token
+ * @returns True if the condition is met
+ */
 function isIdentifierToken(token: string): boolean {
   return /^[A-Za-z_]\w*$/.test(token);
 }
 
+/**
+ * Tokenize.
+ * @param formula - formula
+ * @returns Array of results
+ */
 function tokenize(formula: string): string[] {
   const normalized = formula.replace(/\s+/g, '');
   if (!normalized) {
@@ -40,6 +55,11 @@ function tokenize(formula: string): string[] {
   return tokens;
 }
 
+/**
+ * To rpn.
+ * @param tokens - tokens
+ * @returns Array of results
+ */
 function toRpn(tokens: string[]): string[] {
   const output: string[] = [];
   const operators: string[] = [];
@@ -111,6 +131,12 @@ function toRpn(tokens: string[]): string[] {
   return output;
 }
 
+/**
+ * Evaluate formula.
+ * @param formula - formula
+ * @param parameters - parameters
+ * @returns Function result
+ */
 export function evaluateFormula(
   formula: string,
   parameters: Record<string, number>,

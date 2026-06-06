@@ -18,6 +18,12 @@ import { studentProgress } from './student-progress';
 
 const jsonRecordSchema = z.record(z.string(), z.unknown());
 
+/**
+ * Adds activity props issues
+ * @param ctx - ctx
+ * @param componentKey - component key
+ * @param props - Properties object
+ */
 function addActivityPropsIssues(
   ctx: z.RefinementCtx,
   componentKey: string,

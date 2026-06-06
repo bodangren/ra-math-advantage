@@ -72,6 +72,10 @@ export interface TransactionEffectsReviewFeedback {
   message?: string;
 }
 
+/**
+ * Builds effect rows
+ * @param event - Event object
+ */
 function buildEffectRows(event: TransactionEvent) {
   const effectRows: TransactionEffectsRow[] = event.effects.map((effect) => ({
     id: effect.accountId,
@@ -101,6 +105,11 @@ function buildEffectRows(event: TransactionEvent) {
   return [...effectRows, ...summaryRows];
 }
 
+/**
+ * Builds parts
+ * @param event - Event object
+ * @returns The constructed result
+ */
 function buildParts(event: TransactionEvent): TransactionEffectsPart[] {
   const reason = transactionReasonColumns.find((entry) => entry.id === getReasonTag(event).slice('reason:'.length)) ?? transactionReasonColumns[1];
 
@@ -239,6 +248,11 @@ function buildParts(event: TransactionEvent): TransactionEffectsPart[] {
   return [...effectParts, ...summaryParts];
 }
 
+/**
+ * Builds response
+ * @param definition - definition
+ * @returns The constructed result
+ */
 function buildResponse(definition: TransactionEffectsDefinition): TransactionEffectsResponse {
   const response: TransactionEffectsResponse = {};
   for (const effect of definition.event.effects) {
@@ -254,6 +268,13 @@ function buildResponse(definition: TransactionEffectsDefinition): TransactionEff
   return response;
 }
 
+/**
+ * Builds part feedback
+ * @param part - part
+ * @param studentResponse - student response
+ * @param gradeResultPart - grade result part
+ * @returns The constructed result
+ */
 function buildPartFeedback(
   part: TransactionEffectsPart,
   studentResponse: TransactionEffectsResponse,
@@ -297,6 +318,13 @@ function buildPartFeedback(
   };
 }
 
+/**
+ * Builds transaction effects review feedback
+ * @param definition - definition
+ * @param studentResponse - student response
+ * @param gradeResult - grade result
+ * @returns The constructed result
+ */
 export function buildTransactionEffectsReviewFeedback(
   definition: TransactionEffectsDefinition,
   studentResponse: TransactionEffectsResponse,

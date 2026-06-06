@@ -493,6 +493,12 @@ function buildPartFeedback(
   };
 }
 
+/**
+ * Builds review feedback for a cycle decision practice submission.
+ * @param submission - The student submission to evaluate
+ * @param scenario - The cycle decision scenario
+ * @returns Structured review feedback
+ */
 export function buildCycleDecisionReviewFeedback(
   definition: CycleDecisionDefinition,
   studentResponse: CycleDecisionResponse,

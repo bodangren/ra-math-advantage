@@ -176,6 +176,14 @@ async function callAIProvider(
   });
 }
 
+/**
+ * Calls open a i
+ * @param prompt - prompt
+ * @param apiKey - api key
+ * @param maxTokens - max tokens
+ * @param signal - signal
+ * @returns Promise resolving to the result
+ */
 async function callOpenAI(
   prompt: string,
   apiKey: string,
@@ -206,6 +214,14 @@ async function callOpenAI(
   return data.choices?.[0]?.message?.content ?? '';
 }
 
+/**
+ * Calls anthropic
+ * @param prompt - prompt
+ * @param apiKey - api key
+ * @param maxTokens - max tokens
+ * @param signal - signal
+ * @returns Promise resolving to the result
+ */
 async function callAnthropic(
   prompt: string,
   apiKey: string,

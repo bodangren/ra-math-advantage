@@ -75,6 +75,14 @@ export interface ProblemFamily<TDefinition, TResponse, TConfig = unknown> {
   toEnvelope(definition: TDefinition, studentResponse: TResponse, gradeResult: GradeResult): PracticeSubmissionEnvelope;
 }
 
+/**
+ * Builds practice submission envelope from grade
+ * @param definition - definition
+ * @param studentResponse - student response
+ * @param gradeResult - grade result
+ * @param submittedAt - submitted at
+ * @returns The constructed result
+ */
 export function buildPracticeSubmissionEnvelopeFromGrade(
   definition: Pick<ProblemDefinition, 'activityId' | 'mode'>,
   studentResponse: Record<string, unknown>,

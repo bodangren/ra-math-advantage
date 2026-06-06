@@ -308,6 +308,12 @@ function buildClassificationResponse(definition: ClassificationDefinition): Clas
   return Object.fromEntries(definition.parts.map((part) => [part.id, part.targetId]));
 }
 
+/**
+ * Builds review feedback for a classification practice submission.
+ * @param submission - The student submission to evaluate
+ * @param scenario - The classification scenario
+ * @returns Structured review feedback
+ */
 export function buildClassificationReviewFeedback(
   definition: ClassificationDefinition,
   studentResponse: ClassificationResponse,
@@ -343,6 +349,11 @@ export function buildClassificationReviewFeedback(
   );
 }
 
+/**
+ * Builds the expected placements for a classification review.
+ * @param scenario - The classification scenario
+ * @returns Array of expected account placements
+ */
 export function buildClassificationReviewPlacements(definition: ClassificationDefinition, studentResponse: ClassificationResponse) {
   return definition.categories.reduce<Record<string, ClassificationPart[]>>((acc, category) => {
     acc[category.id] = definition.parts.filter((part) => normalizePracticeValue(studentResponse[part.id]) === category.id);

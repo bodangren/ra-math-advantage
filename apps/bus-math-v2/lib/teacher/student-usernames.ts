@@ -4,6 +4,11 @@ interface UsernameCandidate {
   username?: string;
 }
 
+/**
+ * Slugifies username
+ * @param value - Input value
+ * @returns Function result
+ */
 function slugifyUsername(value?: string): string {
   if (!value) {
     return '';
@@ -19,6 +24,11 @@ function slugifyUsername(value?: string): string {
     .slice(0, 24);
 }
 
+/**
+ * Builds username preview
+ * @param candidates - candidates
+ * @returns The constructed result
+ */
 export function buildUsernamePreview(
   candidates: UsernameCandidate[],
 ): string[] {

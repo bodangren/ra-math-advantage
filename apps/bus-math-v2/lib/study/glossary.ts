@@ -343,24 +343,47 @@ export const GLOSSARY: GlossaryTerm[] = [
   },
 ];
 
+/**
+ * Gets glossary term by slug
+ * @param slug - slug
+ * @returns The requested value
+ */
 export function getGlossaryTermBySlug(slug: string): GlossaryTerm | undefined {
   return GLOSSARY.find(term => term.slug === slug);
 }
 
+/**
+ * Gets glossary terms by unit
+ * @param unitNumber - Unit number
+ * @returns The requested value
+ */
 export function getGlossaryTermsByUnit(unitNumber: number): GlossaryTerm[] {
   return GLOSSARY.filter(term => term.units.includes(unitNumber));
 }
 
+/**
+ * Gets glossary terms by topic
+ * @param topic - topic
+ * @returns The requested value
+ */
 export function getGlossaryTermsByTopic(topic: string): GlossaryTerm[] {
   return GLOSSARY.filter(term => term.topics.includes(topic));
 }
 
+/**
+ * Gets all glossary topics
+ * @returns The requested value
+ */
 export function getAllGlossaryTopics(): string[] {
   const topics = new Set<string>();
   GLOSSARY.forEach(term => term.topics.forEach(topic => topics.add(topic)));
   return Array.from(topics).sort();
 }
 
+/**
+ * Gets all glossary units
+ * @returns The requested value
+ */
 export function getAllGlossaryUnits(): number[] {
   const units = new Set<number>();
   GLOSSARY.forEach(term => term.units.forEach(unit => units.add(unit)));

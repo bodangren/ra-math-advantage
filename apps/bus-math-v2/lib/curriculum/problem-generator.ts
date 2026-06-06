@@ -16,6 +16,11 @@ export type GeneratedProblemInstance = {
 
 let fallbackCounter = 0;
 
+/**
+ * Creates rng
+ * @param seed - Random seed
+ * @returns The constructed result
+ */
 function createRng(seed: number): SeededRng {
   let state = seed >>> 0;
   return () => {
@@ -27,6 +32,11 @@ function createRng(seed: number): SeededRng {
   };
 }
 
+/**
+ * Resolves seed
+ * @param seed - Random seed
+ * @returns Resolved value
+ */
 function resolveSeed(seed?: number): number {
   if (typeof seed === 'number' && Number.isFinite(seed)) {
     return Math.trunc(seed);
@@ -36,6 +46,14 @@ function resolveSeed(seed?: number): number {
   return Date.now() + fallbackCounter;
 }
 
+/**
+ * Sample parameter value.
+ * @param min - Minimum value
+ * @param max - Maximum value
+ * @param step - step
+ * @param rng - rng
+ * @returns Function result
+ */
 function sampleParameterValue(
   min: number,
   max: number,
@@ -47,6 +65,12 @@ function sampleParameterValue(
   return min + offset * step;
 }
 
+/**
+ * Replace template placeholders.
+ * @param questionTemplate - question template
+ * @param parameters - parameters
+ * @returns Function result
+ */
 function replaceTemplatePlaceholders(
   questionTemplate: string,
   parameters: Record<string, number>,
@@ -60,6 +84,12 @@ function replaceTemplatePlaceholders(
   });
 }
 
+/**
+ * With computed cell expectations.
+ * @param template - Template string
+ * @param parameters - parameters
+ * @returns Function result
+ */
 function withComputedCellExpectations(
   template: SpreadsheetProblemTemplate,
   parameters: Record<string, number>,
@@ -73,6 +103,12 @@ function withComputedCellExpectations(
   });
 }
 
+/**
+ * Generates problem instance
+ * @param templateInput - template input
+ * @param seed - Random seed
+ * @returns Generated result
+ */
 export function generateProblemInstance(
   templateInput: unknown,
   seed?: number,

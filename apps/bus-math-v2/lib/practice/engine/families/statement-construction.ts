@@ -634,6 +634,12 @@ function buildReviewFeedback(
   };
 }
 
+/**
+ * Builds review feedback for a statement construction practice submission.
+ * @param submission - The student submission to evaluate
+ * @param scenario - The statement construction scenario
+ * @returns Structured review feedback
+ */
 export function buildStatementConstructionReviewFeedback(
   definition: StatementConstructionDefinition,
   studentResponse: StatementConstructionResponse,

@@ -76,6 +76,11 @@ export interface LessonPhaseProgressStatusRow {
   timeSpentSeconds: number | null;
 }
 
+/**
+ * Resolves latest published lesson version
+ * @param lessonVersions - lesson versions
+ * @returns Resolved value
+ */
 export function resolveLatestPublishedLessonVersion<T extends LessonVersionLike>(
   lessonVersions: readonly T[],
 ): T | null {
@@ -94,6 +99,12 @@ export function resolveLatestPublishedLessonVersion<T extends LessonVersionLike>
   return latestPublished;
 }
 
+/**
+ * Builds latest published lesson version map
+ * @param lessonVersions - lesson versions
+ * @param lessonIds - lesson ids
+ * @returns The constructed result
+ */
 export function buildLatestPublishedLessonVersionMap<T extends LessonVersionLike>(
   lessonVersions: readonly T[],
   lessonIds?: readonly string[],
@@ -119,6 +130,9 @@ export function buildLatestPublishedLessonVersionMap<T extends LessonVersionLike
   return versionsByLessonId;
 }
 
+/**
+ * Builds published lesson phase ids by lesson id
+ */
 export function buildPublishedLessonPhaseIdsByLessonId<
   TLessonVersion extends LessonVersionLike,
   TPhaseVersion extends PhaseVersionLike,
@@ -158,6 +172,9 @@ export function buildPublishedLessonPhaseIdsByLessonId<
   return phaseIdsByLessonId;
 }
 
+/**
+ * Builds published phase id set
+ */
 export function buildPublishedPhaseIdSet<
   TLessonVersion extends LessonVersionLike,
   TPhaseVersion extends PhaseVersionLike,
@@ -181,6 +198,11 @@ export function buildPublishedPhaseIdSet<
   );
 }
 
+/**
+ * Builds published progress snapshot
+ * @param options - Configuration options
+ * @returns The constructed result
+ */
 export function buildPublishedProgressSnapshot({
   activePhaseIds,
   progressRows,
@@ -222,10 +244,18 @@ export function buildPublishedProgressSnapshot({
   };
 }
 
+/**
+ * To iso string.
+ * @param timestamp - Timestamp value
+ * @returns Function result
+ */
 function toIsoString(timestamp?: number | null): string | null {
   return typeof timestamp === "number" ? new Date(timestamp).toISOString() : null;
 }
 
+/**
+ * Builds published unit progress rows
+ */
 export function buildPublishedUnitProgressRows<
   TLesson extends LessonLike,
   TLessonVersion extends LessonVersionLike & {
@@ -307,6 +337,9 @@ export function buildPublishedUnitProgressRows<
   return [...units.values()].sort((a, b) => a.unitNumber - b.unitNumber);
 }
 
+/**
+ * Builds lesson phase progress
+ */
 export function buildLessonPhaseProgress<
   TPhase extends LessonPhaseLike,
   TProgressRow extends LessonPhaseProgressRow,

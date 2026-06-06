@@ -52,6 +52,11 @@ export interface LessonErrorSummary {
 // Pure assembly functions (no DB access — fully unit-testable)
 // ---------------------------------------------------------------------------
 
+/**
+ * Extracts parts from evidence
+ * @param evidence - evidence
+ * @returns Array of results
+ */
 function extractPartsFromEvidence(evidence: SubmissionEvidence): Record<string, unknown>[] {
   if (evidence.kind !== 'practice') return [];
   const submissionData = evidence.submissionData as Record<string, unknown>;
@@ -60,12 +65,22 @@ function extractPartsFromEvidence(evidence: SubmissionEvidence): Record<string, 
     : [];
 }
 
+/**
+ * Gets activity mode
+ * @param evidence - evidence
+ * @returns The requested value
+ */
 function getActivityMode(evidence: SubmissionEvidence): string | null {
   if (evidence.kind !== 'practice') return null;
   const submissionData = evidence.submissionData as Record<string, unknown>;
   return typeof submissionData.mode === 'string' ? submissionData.mode : null;
 }
 
+/**
+ * Computes misconception frequencies
+ * @param parts - parts
+ * @returns Computed result
+ */
 function computeMisconceptionFrequencies(parts: Record<string, unknown>[]): MisconceptionFrequency[] {
   const tagMap = new Map<string, { count: number; partIds: string[] }>();
 
@@ -93,6 +108,10 @@ function computeMisconceptionFrequencies(parts: Record<string, unknown>[]): Misc
     .sort((a, b) => b.count - a.count);
 }
 
+/**
+ * Computes scaffold metrics
+ * @param parts - parts
+ */
 function computeScaffoldMetrics(parts: Record<string, unknown>[]): {
   hintsUsed: number;
   revealStepsSeen: number;

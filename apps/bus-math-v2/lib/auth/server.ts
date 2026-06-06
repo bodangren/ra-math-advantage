@@ -17,6 +17,12 @@ export async function getServerSessionClaims(): Promise<SessionClaims | null> {
   return verifySessionToken(token, getAuthJwtSecret());
 }
 
+/**
+ * Gets cookie value from header
+ * @param cookieHeader - cookie header
+ * @param key - Key identifier
+ * @returns The requested value
+ */
 function getCookieValueFromHeader(cookieHeader: string | null, key: string): string | null {
   if (!cookieHeader) return null;
 
@@ -47,14 +53,26 @@ export async function getRequestSessionClaims(request: Request): Promise<Session
   return verifySessionToken(token, getAuthJwtSecret());
 }
 
+/**
+ * Builds request unauthorized response
+ * @param message - Message string
+ */
 function buildRequestUnauthorizedResponse(message = 'Unauthorized') {
   return NextResponse.json({ error: message }, { status: 401 });
 }
 
+/**
+ * Builds request forbidden response
+ * @param message - Message string
+ */
 function buildRequestForbiddenResponse(message = 'Forbidden') {
   return NextResponse.json({ error: message }, { status: 403 });
 }
 
+/**
+ * Builds request service unavailable response
+ * @param message - Message string
+ */
 function buildRequestServiceUnavailableResponse(message = 'Service temporarily unavailable') {
   return NextResponse.json({ error: message }, { status: 503 });
 }
@@ -114,6 +132,11 @@ export async function requireAdminRequestClaims(
   return claimsOrResponse;
 }
 
+/**
+ * Builds login redirect
+ * @param loginRedirectPath - login redirect path
+ * @returns The constructed result
+ */
 function buildLoginRedirect(loginRedirectPath: string): string {
   return `/auth/login?redirect=${loginRedirectPath}`;
 }

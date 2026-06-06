@@ -573,14 +573,29 @@ function buildOwnerWithdrawal(amount: number, context: TransactionContext, optio
   });
 }
 
+/**
+ * Lists all available transaction archetypes.
+ * @returns Array of transaction archetype definitions
+ */
 export function listTransactionArchetypes() {
   return transactionArchetypeCatalog;
 }
 
+/**
+ * Gets a transaction archetype by its identifier.
+ * @param id - The archetype identifier
+ * @returns The matching archetype or undefined
+ */
 export function getTransactionArchetype(archetypeId: TransactionArchetypeId) {
   return transactionArchetypeById.get(archetypeId) ?? null;
 }
 
+/**
+ * Builds a transaction event from the specified archetype and seed.
+ * @param archetypeId - The archetype to use
+ * @param seed - Random seed for reproducibility
+ * @returns A complete transaction event with journal lines and solution
+ */
 export function buildTransactionEvent(
   archetypeId: TransactionArchetypeId,
   options: TransactionBuildOptions = {},
@@ -611,6 +626,11 @@ export function buildTransactionEvent(
   }
 }
 
+/**
+ * Generates a random transaction event using a randomly selected archetype.
+ * @param seed - Random seed for reproducibility
+ * @returns A complete transaction event
+ */
 export function generateTransactionEvent(seed: number, options: TransactionBuildOptions = {}) {
   const rng = mulberry32(seed);
   const archetypeId = options.archetypeId ?? pick(transactionArchetypeCatalog, rng).id;

@@ -73,6 +73,10 @@ const CONTRA_IDS = [
   'dividends',
 ];
 
+/**
+ * Mulberry32.
+ * @param seed - Random seed
+ */
 function mulberry32(seed: number) {
   let t = seed >>> 0;
   return () => {
@@ -83,6 +87,10 @@ function mulberry32(seed: number) {
   };
 }
 
+/**
+ * Random int.
+ * @param rng - rng
+ */
 function randomInt(rng: () => number, min: number, max: number) {
   const lower = Math.ceil(min);
   const upper = Math.floor(max);
@@ -93,6 +101,11 @@ function randomInt(rng: () => number, min: number, max: number) {
   return Math.floor(rng() * (upper - lower + 1)) + lower;
 }
 
+/**
+ * Shuffled.
+ * @param items - Collection of items
+ * @param rng - rng
+ */
 function shuffled<T>(items: T[], rng: () => number) {
   const clone = [...items];
   for (let index = clone.length - 1; index > 0; index -= 1) {
@@ -102,6 +115,12 @@ function shuffled<T>(items: T[], rng: () => number) {
   return clone;
 }
 
+/**
+ * Splits total
+ * @param total - Total value
+ * @param count - Count value
+ * @param rng - rng
+ */
 function splitTotal(total: number, count: number, rng: () => number) {
   if (count <= 0) {
     return [];
@@ -121,6 +140,12 @@ function splitTotal(total: number, count: number, rng: () => number) {
   return points.slice(1).map((point, index) => Math.max(1, point - points[index]));
 }
 
+/**
+ * Picks unique
+ * @param ids - ids
+ * @param count - Count value
+ * @param rng - rng
+ */
 function pickUnique(ids: string[], count: number, rng: () => number, exclude = new Set<string>()) {
   const pool = shuffled(
     ids.filter((id) => !exclude.has(id)),
@@ -129,6 +154,10 @@ function pickUnique(ids: string[], count: number, rng: () => number, exclude = n
   return pool.slice(0, count);
 }
 
+/**
+ * Account sign.
+ * @param account - Account identifier
+ */
 function accountSign(account: PracticeAccount) {
   if (account.accountType === 'expense') {
     return -1;
@@ -149,6 +178,13 @@ function accountSign(account: PracticeAccount) {
   return 1;
 }
 
+/**
+ * Builds selected ids
+ * @param companyType - company type
+ * @param accountCount - account count
+ * @param includeContraAccounts - include contra accounts
+ * @param rng - rng
+ */
 function buildSelectedIds(
   companyType: MiniLedgerCompanyType,
   accountCount: number,
@@ -183,6 +219,12 @@ function buildSelectedIds(
   return selected;
 }
 
+/**
+ * Assigns balances
+ * @param accounts - accounts
+ * @param totals - totals
+ * @param rng - rng
+ */
 function assignBalances(
   accounts: PracticeAccount[],
   totals: MiniLedgerTotals,
@@ -273,6 +315,12 @@ function assignBalances(
   return accountBalances;
 }
 
+/**
+ * Generates mini ledger
+ * @param seed - Random seed
+ * @param config - Configuration object
+ * @returns Generated result
+ */
 export function generateMiniLedger(seed: number, config: MiniLedgerConfig = {}): MiniLedger {
   const rng = mulberry32(seed);
   const companyType = config.companyType ?? (seed % 2 === 0 ? 'service' : 'retail');
@@ -337,6 +385,10 @@ export function generateMiniLedger(seed: number, config: MiniLedgerConfig = {}):
   };
 }
 
+/**
+ * Summarize mini ledger.
+ * @param ledger - ledger
+ */
 export function summarizeMiniLedger(ledger: MiniLedger) {
   const totals = ledger.accounts.reduce(
     (acc, account) => {

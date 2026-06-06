@@ -8,6 +8,10 @@ const dateTimeFormatter = new Intl.DateTimeFormat('en-US', {
   timeStyle: 'short',
 });
 
+/**
+ * Clamps teacher progress percentage
+ * @param value - Input value
+ */
 export function clampTeacherProgressPercentage(value: number) {
   if (!Number.isFinite(value)) {
     return 0;
@@ -16,10 +20,18 @@ export function clampTeacherProgressPercentage(value: number) {
   return Math.max(0, Math.min(100, value));
 }
 
+/**
+ * Formats teacher progress percentage
+ * @param value - Input value
+ */
 export function formatTeacherProgressPercentage(value: number) {
   return `${percentageFormatter.format(clampTeacherProgressPercentage(value))}%`;
 }
 
+/**
+ * Formats teacher last active
+ * @param value - Input value
+ */
 export function formatTeacherLastActive(value: string | null) {
   if (!value) {
     return 'No activity recorded';
@@ -33,6 +45,10 @@ export function formatTeacherLastActive(value: string | null) {
   return dateTimeFormatter.format(parsed);
 }
 
+/**
+ * Formats teacher last active date
+ * @param value - Input value
+ */
 export function formatTeacherLastActiveDate(value: string | null) {
   if (!value) {
     return '';

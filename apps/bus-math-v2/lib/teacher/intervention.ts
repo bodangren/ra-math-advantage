@@ -26,6 +26,10 @@ const RECENT_ACTIVITY_WINDOW_DAYS = 7;
 const COMPLETED_THRESHOLD = 99.5;
 const AT_RISK_THRESHOLD = 50;
 
+/**
+ * Clamps percentage
+ * @param value - Input value
+ */
 function clampPercentage(value: number) {
   if (!Number.isFinite(value)) {
     return 0;
@@ -34,6 +38,10 @@ function clampPercentage(value: number) {
   return Math.max(0, Math.min(100, value));
 }
 
+/**
+ * Gets last active timestamp
+ * @param value - Input value
+ */
 function getLastActiveTimestamp(value: string | null) {
   if (!value) {
     return null;
@@ -47,6 +55,11 @@ function getLastActiveTimestamp(value: string | null) {
   return parsed.getTime();
 }
 
+/**
+ * Checks if active within days
+ * @param value - Input value
+ * @param days - days
+ */
 function isActiveWithinDays(value: string | null, days: number) {
   const timestamp = getLastActiveTimestamp(value);
   if (timestamp === null) {
@@ -56,6 +69,11 @@ function isActiveWithinDays(value: string | null, days: number) {
   return Date.now() - timestamp <= days * 24 * 60 * 60 * 1000;
 }
 
+/**
+ * Derives student intervention
+ * @param student - student
+ * @returns Function result
+ */
 export function deriveStudentIntervention(
   student: StudentDashboardRow,
 ): DerivedStudentIntervention {
@@ -92,6 +110,10 @@ export function deriveStudentIntervention(
   };
 }
 
+/**
+ * Intervention priority.
+ * @param student - student
+ */
 function interventionPriority(student: DerivedStudentIntervention) {
   if (student.isAtRisk && student.isInactive) return 0;
   if (student.isAtRisk) return 1;
@@ -100,6 +122,11 @@ function interventionPriority(student: DerivedStudentIntervention) {
   return 3;
 }
 
+/**
+ * Prioritizes intervention rows
+ * @param students - students
+ * @returns Array of results
+ */
 export function prioritizeInterventionRows(
   students: StudentDashboardRow[],
 ): DerivedStudentIntervention[] {
@@ -125,6 +152,12 @@ export function prioritizeInterventionRows(
     });
 }
 
+/**
+ * Applies intervention filter
+ * @param students - students
+ * @param filter - Filter criteria
+ * @returns Array of results
+ */
 export function applyInterventionFilter(
   students: StudentDashboardRow[],
   filter: InterventionFilter,
@@ -149,6 +182,10 @@ export function applyInterventionFilter(
   }
 }
 
+/**
+ * Builds intervention summary
+ * @param students - students
+ */
 export function buildInterventionSummary(students: StudentDashboardRow[]) {
   const derived = students.map(deriveStudentIntervention);
 
@@ -166,6 +203,10 @@ export function buildInterventionSummary(students: StudentDashboardRow[]) {
   };
 }
 
+/**
+ * Intervention status label.
+ * @param status - Status value
+ */
 export function interventionStatusLabel(status: InterventionStatus) {
   switch (status) {
     case "at_risk":

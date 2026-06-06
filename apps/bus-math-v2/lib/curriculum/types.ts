@@ -81,6 +81,11 @@ export const CURRICULUM_LESSON_TYPE_SPECS: Record<LessonType, LessonTypeSpec> = 
   },
 };
 
+/**
+ * Gets lesson type from order index
+ * @param orderIndex - order index
+ * @returns The requested value
+ */
 export function getLessonTypeFromOrderIndex(orderIndex: number): LessonType {
   if (orderIndex >= 1 && orderIndex <= 4) {
     return 'accounting';

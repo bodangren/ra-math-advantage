@@ -741,6 +741,12 @@ function buildPartFeedback(
   };
 }
 
+/**
+ * Builds review feedback for a journal entry practice submission.
+ * @param submission - The student submission to evaluate
+ * @param scenario - The journal entry scenario
+ * @returns Structured review feedback
+ */
 export function buildJournalEntryReviewFeedback(
   definition: JournalEntryDefinition,
   studentResponse: JournalEntryResponse,

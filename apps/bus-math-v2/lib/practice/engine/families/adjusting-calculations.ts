@@ -562,6 +562,12 @@ function buildReviewFeedback(
   };
 }
 
+/**
+ * Builds review feedback for an adjusting calculations practice submission.
+ * @param submission - The student submission to evaluate
+ * @param scenario - The scenario that was presented
+ * @returns Structured review feedback
+ */
 export function buildAdjustingCalculationsReviewFeedback(
   definition: AdjustingCalculationsDefinition,
   studentResponse: AdjustingCalculationsResponse,

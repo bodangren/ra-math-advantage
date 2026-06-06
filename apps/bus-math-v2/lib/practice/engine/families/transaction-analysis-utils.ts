@@ -33,6 +33,11 @@ export const transactionReasonColumns = [
   { id: 'owner-withdrawal', label: 'Owner withdrawal', description: 'Owner cash left the business' },
 ] as const satisfies readonly TransactionReasonChoice[];
 
+/**
+ * Builds transaction reason choice
+ * @param event - Event object
+ * @returns The constructed result
+ */
 export function buildTransactionReasonChoice(event: TransactionEvent): TransactionReasonChoice {
   switch (event.archetypeId) {
     case 'owner-invests-cash':
@@ -56,6 +61,11 @@ export function buildTransactionReasonChoice(event: TransactionEvent): Transacti
   }
 }
 
+/**
+ * Builds account effect summary
+ * @param event - Event object
+ * @param accountType - Account type
+ */
 export function buildAccountEffectSummary(event: TransactionEvent, accountType: 'asset' | 'liability' | 'equity' | 'revenue' | 'expense') {
   const effects = event.effects.filter((effect) => effect.accountType === accountType);
   if (!effects.length) {
@@ -77,14 +87,26 @@ export function buildAccountEffectSummary(event: TransactionEvent, accountType: 
   return 'no-effect' as TransactionDirection;
 }
 
+/**
+ * Formats transaction amount
+ * @param amount - Amount value
+ */
 export function formatTransactionAmount(amount: number) {
   return amount.toLocaleString('en-US');
 }
 
+/**
+ * Formats direction label
+ * @param direction - Direction value
+ */
 export function formatDirectionLabel(direction: TransactionDirection) {
   return direction === 'no-effect' ? 'No effect' : direction[0].toUpperCase() + direction.slice(1);
 }
 
+/**
+ * Describes transaction focus
+ * @param event - Event object
+ */
 export function describeTransactionFocus(event: TransactionEvent) {
   const reason = buildTransactionReasonChoice(event);
 
@@ -96,22 +118,40 @@ export function describeTransactionFocus(event: TransactionEvent) {
   };
 }
 
+/**
+ * Builds effect description
+ * @param event - Event object
+ * @param accountLabel - account label
+ * @param direction - Direction value
+ */
 export function buildEffectDescription(event: TransactionEvent, accountLabel: string, direction: TransactionDirection) {
   const amount = `$${formatTransactionAmount(event.amount)}`;
   const reason = buildTransactionReasonChoice(event);
   return `${accountLabel} ${direction} ${amount} • Why equity changes: ${reason.label}`;
 }
 
+/**
+ * Builds reason message
+ * @param event - Event object
+ */
 export function buildReasonMessage(event: TransactionEvent) {
   const reason = buildTransactionReasonChoice(event);
   return `${reason.label}: ${reason.description}`;
 }
 
+/**
+ * Gets reason tag
+ * @param event - Event object
+ */
 export function getReasonTag(event: TransactionEvent) {
   const reason = buildTransactionReasonChoice(event);
   return `reason:${reason.id}`;
 }
 
+/**
+ * Gets archetype label
+ * @param archetypeId - archetype id
+ */
 export function getArchetypeLabel(archetypeId: TransactionArchetypeId) {
   switch (archetypeId) {
     case 'owner-invests-cash':

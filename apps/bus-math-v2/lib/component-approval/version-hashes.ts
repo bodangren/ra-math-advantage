@@ -13,6 +13,12 @@ export interface ComponentInfo {
   currentVersionHash: string;
 }
 
+/**
+ * Computes activity version hash
+ * @param componentId - component id
+ * @param props - Properties object
+ * @returns Computed result
+ */
 export async function computeActivityVersionHash(
   componentId: string,
   props?: Record<string, unknown>
@@ -24,6 +30,13 @@ export async function computeActivityVersionHash(
   });
 }
 
+/**
+ * Computes practice version hash
+ * @param componentId - component id
+ * @param props - Properties object
+ * @param gradingConfig - grading config
+ * @returns Computed result
+ */
 export async function computePracticeVersionHash(
   componentId: string,
   props?: Record<string, unknown>,
@@ -37,6 +50,12 @@ export async function computePracticeVersionHash(
   });
 }
 
+/**
+ * Computes example version hash
+ * @param componentId - component id
+ * @param props - Properties object
+ * @returns Computed result
+ */
 export async function computeExampleVersionHash(
   componentId: string,
   props?: Record<string, unknown>
@@ -48,6 +67,14 @@ export async function computeExampleVersionHash(
   });
 }
 
+/**
+ * Computes component version hash
+ * @param componentType - component type
+ * @param componentId - component id
+ * @param props - Properties object
+ * @param gradingConfig - grading config
+ * @returns Computed result
+ */
 export async function computeComponentVersionHash(
   componentType: 'example' | 'activity' | 'practice',
   componentId: string,
@@ -66,6 +93,11 @@ export async function computeComponentVersionHash(
   }
 }
 
+/**
+ * Gets all activity components
+ * @param getActivityProps - get activity props
+ * @returns The requested value
+ */
 export async function getAllActivityComponents(
   getActivityProps?: (componentId: string) => Promise<Record<string, unknown> | undefined>
 ): Promise<ComponentInfo[]> {
@@ -106,6 +138,11 @@ export async function getAllActivityComponents(
   return components;
 }
 
+/**
+ * Gets all practice components
+ * @param getPracticeProps - get practice props
+ * @returns The requested value
+ */
 export async function getAllPracticeComponents(
   getPracticeProps?: (componentId: string) => Promise<{ props?: Record<string, unknown>; gradingConfig?: Record<string, unknown> } | undefined>
 ): Promise<ComponentInfo[]> {
@@ -136,10 +173,18 @@ export async function getAllPracticeComponents(
   return components;
 }
 
+/**
+ * Gets all example components
+ * @returns The requested value
+ */
 export function getAllExampleComponents(): ComponentInfo[] {
   return [];
 }
 
+/**
+ * Gets all reviewable components
+ * @returns The requested value
+ */
 export async function getAllReviewableComponents(): Promise<ComponentInfo[]> {
   return [
     ...getAllExampleComponents(),

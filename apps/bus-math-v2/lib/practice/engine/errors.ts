@@ -650,6 +650,12 @@ function buildSlideScenario(seed: number, options: Required<TrialBalanceErrorGen
 
 export const trialBalanceErrorArchetypes = [...TRIAL_BALANCE_ARCHETYPE_CATALOG];
 
+/**
+ * Builds a single trial balance error scenario using the specified or random archetype.
+ * @param seed - Random seed for reproducibility
+ * @param config - Optional configuration for archetype, amount range, and balanced scenarios
+ * @returns A complete trial balance error scenario
+ */
 export function buildTrialBalanceErrorScenario(
   seed: number,
   config: {
@@ -733,6 +739,12 @@ function pickWeightedArchetype(
   return candidates[candidates.length - 1]?.archetype.id ?? 'wrong-side';
 }
 
+/**
+ * Generates multiple trial balance error scenarios using weighted random selection.
+ * @param seed - Random seed for reproducibility
+ * @param config - Optional configuration for scenario count, amount range, and error type weights
+ * @returns Array of trial balance error scenarios
+ */
 export function generateTrialBalanceErrorScenarios(
   seed: number,
   config: TrialBalanceErrorGenerationConfig = {},
@@ -788,10 +800,20 @@ export function generateTrialBalanceErrorScenarios(
   }));
 }
 
+/**
+ * Formats the balance answer label for display.
+ * @param answer - The balance answer type
+ * @returns Human-readable label string
+ */
 export function formatTrialBalanceBalanceAnswer(value: TrialBalanceBalanceAnswer) {
   return value === 'still-balances' ? 'Still balances' : 'Out of balance';
 }
 
+/**
+ * Formats the larger column label for display.
+ * @param column - The column identifier
+ * @returns Human-readable column label
+ */
 export function formatTrialBalanceLargerColumn(value: TrialBalanceLargerColumn) {
   if (value === 'neither') {
     return 'Neither';
@@ -800,6 +822,11 @@ export function formatTrialBalanceLargerColumn(value: TrialBalanceLargerColumn) 
   return capitalize(value);
 }
 
+/**
+ * Formats the numeric difference for display.
+ * @param value - The numeric difference value
+ * @returns Formatted difference string
+ */
 export function formatTrialBalanceDifference(value: number) {
   return formatAmount(value);
 }

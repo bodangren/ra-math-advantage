@@ -16,6 +16,11 @@ const PHASE_TYPE_BY_NUMBER = {
   6: 'reflection',
 } as const satisfies Record<number, PhaseMetadata['phaseType']>;
 
+/**
+ * Fallback published phase title.
+ * @param phaseNumber - phase number
+ * @returns Function result
+ */
 export function fallbackPublishedPhaseTitle(phaseNumber: number): string {
   const labels: Record<number, string> = {
     1: 'Hook',
@@ -29,6 +34,11 @@ export function fallbackPublishedPhaseTitle(phaseNumber: number): string {
   return labels[phaseNumber] ?? `Phase ${phaseNumber}`;
 }
 
+/**
+ * Published phase metadata.
+ * @param phaseNumber - phase number
+ * @returns Function result
+ */
 export function publishedPhaseMetadata(phaseNumber: number): PhaseMetadata {
   return {
     phaseType:
@@ -36,6 +46,11 @@ export function publishedPhaseMetadata(phaseNumber: number): PhaseMetadata {
   };
 }
 
+/**
+ * As record.
+ * @param value - Input value
+ * @returns Function result
+ */
 function asRecord(value: unknown): Record<string, unknown> | null {
   if (!value || typeof value !== 'object') {
     return null;
@@ -44,6 +59,11 @@ function asRecord(value: unknown): Record<string, unknown> | null {
   return value as Record<string, unknown>;
 }
 
+/**
+ * Content to text.
+ * @param content - Content data
+ * @returns Function result
+ */
 function contentToText(content: unknown): string {
   if (typeof content === 'string') {
     return content;
@@ -60,6 +80,12 @@ function contentToText(content: unknown): string {
   return typeof value === 'string' ? value : '';
 }
 
+/**
+ * To published content block.
+ * @param section - section
+ * @param fallbackOrder - fallback order
+ * @returns Function result
+ */
 export function toPublishedContentBlock(
   section: PublishedLessonSectionLike,
   fallbackOrder: number,

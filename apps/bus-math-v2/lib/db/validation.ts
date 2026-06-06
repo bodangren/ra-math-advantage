@@ -14,12 +14,23 @@ export type ValidationResult = {
   errors: ValidationError[];
 };
 
-const formatZodIssues = (issues: ZodIssue[]): ValidationError[] =>
-  issues.map((issue) => ({
+/**
+ * Formats Zod validation issues into structured error objects.
+ * @param issues - Array of Zod issues to format
+ * @returns Array of formatted validation errors
+ */
+function formatZodIssues(issues: ZodIssue[]): ValidationError[] {
+  return issues.map((issue) => ({
     path: issue.path.join('.') || '(root)',
     message: issue.message,
   }));
+}
 
+/**
+ * Validates content blocks
+ * @param blocks - blocks
+ * @returns Validation result
+ */
 export function validateContentBlocks(blocks: unknown[]): ValidationResult {
   const errors: ValidationError[] = [];
 
@@ -39,6 +50,12 @@ export function validateContentBlocks(blocks: unknown[]): ValidationResult {
   return { valid: errors.length === 0, errors };
 }
 
+/**
+ * Validates activity props
+ * @param componentKey - component key
+ * @param props - Properties object
+ * @returns Validation result
+ */
 export function validateActivityProps(componentKey: string, props: unknown): ValidationResult {
   const canonicalComponentKey = resolveActivityComponentKey(componentKey);
   const schema =

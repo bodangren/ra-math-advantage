@@ -56,6 +56,10 @@ export interface InterestSchedulesReviewFeedback {
   message?: string;
 }
 
+/**
+ * Mulberry32.
+ * @param seed - Random seed
+ */
 function mulberry32(seed: number) {
   let t = seed >>> 0;
   return () => {
@@ -66,18 +70,38 @@ function mulberry32(seed: number) {
   };
 }
 
+/**
+ * Picks
+ * @param items - Collection of items
+ * @param rng - rng
+ * @returns Function result
+ */
 function pick<T>(items: readonly T[], rng: () => number): T {
   return items[Math.floor(rng() * items.length)];
 }
 
+/**
+ * Formats amount
+ * @param amount - Amount value
+ */
 function formatAmount(amount: number) {
   return amount.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 }
 
+/**
+ * Round2.
+ * @param n - n
+ */
 function round2(n: number) {
   return Math.round(n * 100) / 100;
 }
 
+/**
+ * Builds scenario
+ * @param seed - Random seed
+ * @param variant - variant
+ * @returns The constructed result
+ */
 function buildScenario(seed: number, variant: InterestVariant): InterestScenario {
   const rng = mulberry32(seed ^ 0x5e4d3c2b);
   const principal = pick([1000, 2000, 3000, 5000, 8000, 10000, 15000, 20000], rng);
@@ -95,6 +119,12 @@ function buildScenario(seed: number, variant: InterestVariant): InterestScenario
   return { principal, annualRate, periods, compoundingPerYear, loanPayment };
 }
 
+/**
+ * Builds simple interest parts
+ * @param scenario - scenario
+ * @param tolerance - Tolerance value
+ * @returns The constructed result
+ */
 function buildSimpleInterestParts(scenario: InterestScenario, tolerance: number): InterestSchedulesPart[] {
   const interest = round2(scenario.principal * scenario.annualRate * scenario.periods);
   const totalAmount = round2(scenario.principal + interest);
@@ -138,6 +168,12 @@ function buildSimpleInterestParts(scenario: InterestScenario, tolerance: number)
   ];
 }
 
+/**
+ * Builds compound interest parts
+ * @param scenario - scenario
+ * @param tolerance - Tolerance value
+ * @returns The constructed result
+ */
 function buildCompoundInterestParts(scenario: InterestScenario, tolerance: number): InterestSchedulesPart[] {
   const n = scenario.compoundingPerYear ?? 1;
   const totalPeriods = n * scenario.periods;
@@ -184,6 +220,12 @@ function buildCompoundInterestParts(scenario: InterestScenario, tolerance: numbe
   ];
 }
 
+/**
+ * Builds amortization parts
+ * @param scenario - scenario
+ * @param tolerance - Tolerance value
+ * @returns The constructed result
+ */
 function buildAmortizationParts(scenario: InterestScenario, tolerance: number): InterestSchedulesPart[] {
   const payment = scenario.loanPayment!;
   const firstInterest = round2(scenario.principal * scenario.annualRate);
@@ -265,6 +307,12 @@ function buildAmortizationParts(scenario: InterestScenario, tolerance: number): 
   ];
 }
 
+/**
+ * Scores numeric part
+ * @param expected - expected
+ * @param actual - actual
+ * @param tolerance - Tolerance value
+ */
 function scoreNumericPart(expected: number, actual: unknown, tolerance: number) {
   const parsed = Number(actual);
   if (!Number.isFinite(parsed)) {
@@ -286,6 +334,13 @@ const FORMULA_HINTS: Record<InterestVariant, string> = {
   'loan-amortization': 'PMT = P × r(1+r)^n / ((1+r)^n − 1)',
 };
 
+/**
+ * Builds interest schedules review feedback
+ * @param definition - definition
+ * @param studentResponse - student response
+ * @param gradeResult - grade result
+ * @returns The constructed result
+ */
 export function buildInterestSchedulesReviewFeedback(
   definition: InterestSchedulesDefinition,
   studentResponse: InterestSchedulesResponse,
