@@ -3,9 +3,9 @@ import { readFileSync, existsSync } from 'node:fs';
 import path from 'node:path';
 
 const SEED_MODULE_CANDIDATES = [
-  'apps/integrated-math-3/convex/seed/seed_demo_e2e.ts',
-  'apps/integrated-math-3/convex/seed/seedDemoE2E.ts',
-  'apps/integrated-math-3/convex/seed_demo_e2e.ts',
+  'convex/seed/seed_demo_e2e.ts',
+  'convex/seed/seedDemoE2E.ts',
+  'convex/seed_demo_e2e.ts',
 ];
 
 function findSeedModulePath(): string | null {
@@ -59,7 +59,7 @@ describe('convex seed — Phase 1 Red: seedDemoE2E entry point', () => {
       expect(
         source,
         'seedDemoE2E should import E2E_SEED_KEY from the shared selectors module',
-      ).toMatch(/import\s*\{[^}]*\bE2E_SEED_KEY\b[^}]*\}\s*from\s*['"]@\/e2e\/selectors['"]/);
+      ).toMatch(/import\s*\{[^}]*\bE2E_SEED_KEY\b[^}]*\}\s*from\s*['"][^'"]*e2e\/selectors['"]/);
     });
 
     itIfPresent('composes the existing demo seed mutations (no duplication)', () => {

@@ -32,7 +32,7 @@ export default async function StudentDashboardPage({ searchParams }: PageProps) 
 
   if (showModuleComplete && vm.summary.completedLessons === vm.summary.totalLessons) {
     return (
-      <div className="max-w-4xl mx-auto space-y-10 py-8">
+    <div className="max-w-4xl mx-auto space-y-10 py-8" data-testid="student-dashboard">
         <ModuleCompleteScreen
           moduleLabel="Module 1: Linear Functions"
           lessonsCompleted={vm.summary.completedLessons}
@@ -117,7 +117,7 @@ export default async function StudentDashboardPage({ searchParams }: PageProps) 
       )}
 
       {/* Units */}
-      <div className="space-y-6">
+      <div className="space-y-6" data-testid="student-dashboard-lesson-list">
         {vm.units.map((unit) => (
           <div key={unit.unitNumber} className="space-y-3">
             <div className="flex items-center justify-between">
@@ -147,6 +147,7 @@ export default async function StudentDashboardPage({ searchParams }: PageProps) 
                   <Link
                     key={lesson.id}
                     href={isLocked ? '#' : `/student/lesson/${lesson.slug}`}
+                    data-testid="student-dashboard-lesson-link"
                     className={`flex items-center justify-between p-3 rounded-lg border transition-colors ${
                       isLocked
                         ? 'border-border bg-muted/20 cursor-not-allowed opacity-60'

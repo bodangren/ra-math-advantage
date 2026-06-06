@@ -44,7 +44,7 @@ export default function RootLayout({
               disableTransitionOnChange
             >
               <HeaderSimple />
-              <main id="main-content" className="flex-1" tabIndex={-1}>
+              <main id="main-content" data-testid="app-shell" className="flex-1" tabIndex={-1}>
                 {children}
               </main>
               <Footer />
