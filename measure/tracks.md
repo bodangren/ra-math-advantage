@@ -935,8 +935,8 @@ Sixteen candidate tracks identified from a full-roadmap review. Each is registry
    *Wire the matching and speed-round games into IM3 via real routes/pages. Games track Phase 3 is "pending — requires game routes/pages in IM3." Size: S. Depends on: student-study-hub-games (logic done). Readiness: ready now.*
    *Link: [./tracks/study-hub-games-adoption_20260605/](./tracks/study-hub-games-adoption_20260605/)*
 
-- [ ] **Track: IM1/IM2 Standards Backfill** — **PLANNED**
-   *Author the missing competency-standard definitions: IM1 has 77 placeholder standard nodes with no descriptions; IM2 references 91 codes but defines only 48 (41 missing). Source: Tech Debt Registry. Size: M. Depends on: none. Readiness: ready now.*
+- [ ] **Track: IM1/IM2 Standards Backfill** — **PHASE 1 RED COMMITTED**
+   *Author the missing competency-standard definitions: IM1 has 77 placeholder standard nodes with no descriptions; IM2 references 91 codes but defines only 48 (54 missing per current state, 41 per older spec). Source: Tech Debt Registry. Size: M. Depends on: none. Readiness: ready now. Phase 1 Red: per-app reference-code collector + failing `standards-integrity.test.ts` and `standards-inventory.test.ts` committed at `f0a78f2`. Phase 2/3 will author the missing definitions and inventory entries to flip both integrity tests green.*
    *Link: [./tracks/im1-im2-standards-backfill_20260605/](./tracks/im1-im2-standards-backfill_20260605/)*
 
 - [ ] **Track: Measure Architecture Tooling** — **PLANNED**
