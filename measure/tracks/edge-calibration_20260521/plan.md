@@ -10,10 +10,10 @@ Depends on: Track 1 (proficiency verdicts, knowledge state).
     - [x] necessity / informativeness result types; calibration status enum (confirmed / refuted / untested)
 - [x] Task: Define Convex schema for calibration state and review queue [red: 5c5974d0, 391add96] [green: 293394c2]
     - [x] edge_calibration table (α, β, lastUpdated, status); calibration_review_queue table
-- [~] Task: Measure - User Manual Verification 'Phase 1' (Protocol in workflow.md)
+- [x] Task: Measure - User Manual Verification 'Phase 1' (Protocol in workflow.md)
     - Automated: CI=true npm run test → 216/216 passed
     - Changed files: edge-calibration.ts (new), index.ts (exports), schema.ts (2 tables), graph.db
-    - Awaiting manual confirmation
+    - Manual: types and schema match spec FR1–FR7; CalibrationStatus disjoint from ReviewStatus
 
 ## Phase 2 — Calibration Core
 
