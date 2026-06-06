@@ -21,8 +21,8 @@ Verification: boundary lints + `tsc --noEmit` + harness test suite.
 
 ## Phase 3 — Registry Sweep
 
-- [ ] Task: Registry test runs all existing generators through `verifyGenerator`
-- [ ] Task: Triage failures — fix or quarantine with tracked debt rows
+- [~] Task: Registry test runs all existing generators through `verifyGenerator` [red: pending]
+- [~] Task: Triage failures — fix or quarantine with tracked debt rows [red: pending]
 - [ ] Task: Measure - User Manual Verification 'Phase 3' (Protocol in workflow.md)
 
 ## Phase 4 — CI Gate & Verification
