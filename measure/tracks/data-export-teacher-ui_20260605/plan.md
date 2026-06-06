@@ -5,8 +5,8 @@ Verification: `npm run ws:im3:lint`/`:test` + `tsc --noEmit`.
 
 ## Phase 1 — Helpers & Scope Mapping
 
-- [ ] Task: Define scope→query mapping + filename builder pure helpers (TDD Red→Green)
-- [ ] Task: Confirm CSV util contract via snapshot test (column order, escaping)
+- [~] Task: Define scope→query mapping + filename builder pure helpers (TDD Red→Green) — Red committed; awaiting Green
+- [~] Task: Confirm CSV util contract via snapshot test (column order, escaping) — Red committed; awaiting Green
 - [ ] Task: Measure - User Manual Verification 'Phase 1' (Protocol in workflow.md)
 
 ## Phase 2 — Export Panel UI
