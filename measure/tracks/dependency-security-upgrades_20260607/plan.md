@@ -19,6 +19,9 @@ Verification substitute for Doctor: `node scripts/check-monorepo-boundaries.mjs`
 - [~] Task: Capture baseline quality-gate results and separate pre-existing failures from upgrade regressions
 - [ ] Task: Measure - User Manual Verification 'Phase 1 — Audit Contract & Baseline' (Protocol in workflow.md) — deferred to supervisor after Red+Green land
 
+Phase 1 Red SHA: `ec6b97df` (test(audit-contract): add Red-phase TDD suite for dependency audit contract).
+Suite is Red on missing `scripts/audit/audit-contract.ts`; Green is owed by a separate commit.
+
 ## Phase 2 — Urgent Security Remediation
 
 - [ ] Task: Obtain explicit approval for dependency installation and manifest changes before starting upgrade execution
