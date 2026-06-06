@@ -18,8 +18,8 @@ Verification: `npm run ws:im3:test` + E2E job + `tsc --noEmit`.
 
 ## Phase 3 — Activities & Daily Practice
 
-- [ ] Task: E2E assertions per major activity type (Red→Green)
-- [ ] Task: E2E spec for a daily-practice session incl. SRS completion/streak (Red→Green)
+- [x] Task: E2E assertions per major activity type (Red→Green) (Red: `0367d7a6`)
+- [x] Task: E2E spec for a daily-practice session incl. SRS completion/streak (Red→Green) (Red: `0367d7a6`)
 - [ ] Task: Measure - User Manual Verification 'Phase 3' (Protocol in workflow.md)
 
 ## Phase 4 — Teacher Flow & CI
