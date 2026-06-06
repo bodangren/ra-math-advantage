@@ -42,7 +42,7 @@ Depends on: Track 1 (proficiency verdicts, knowledge state).
     - Changed files: edgeCalibration.ts (new Convex adapter), srs-engine/src/index.ts (+10 exports), graph.db
     - Manual: N+1 guard verified (single batched read + single Promise.all); only touches edge_calibration + calibration_review_queue; divergence thresholds (0.5 weight, 1.5 confidence) match test fixtures; untested edges excluded from queue
 
-## Phase 4 — Docs & Doctor
+## Phase 4 — Docs & Doctor [checkpoint: a35c29d5]
 
 - [x] Task: Update in-repo kst-srs.v2 spec §6 (Edge Calibration) with the implemented model [green: 4cff5b38]
     - Red: bb08f51c — `packages/knowledge-space-core/src/__tests__/phase4-spec-section-6-implementation.test.ts` (new, 9 tests) asserts §6 documents the implemented CalibrationStatus enum, contingency-table field names, Beta(α,β) parameters, persistence tables, divergence thresholds, N+1 guard, and NFR "graph never auto-edited".
