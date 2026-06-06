@@ -177,7 +177,7 @@ afterEach(() => {
 describe('ExportPanel — Task 1: role-gate + render controls', () => {
   it('returns null (or forbidden notice) when isTeacher is false', async () => {
     const ExportPanel = await loadExportPanel();
-    const { container } = render(<ExportPanel isTeacher={false} classId="class_001" className="Period 1" />);
+    const { container } = render(<ExportPanel isTeacher={false} classId={"class_001" as Id<'classes'>} className="Period 1" />);
 
     // Either the component renders nothing, or it renders a forbidden notice
     // — but it must not render the export controls.
@@ -193,7 +193,7 @@ describe('ExportPanel — Task 1: role-gate + render controls', () => {
 
   it('renders dataset, scope, and format controls with accessible labels', async () => {
     const ExportPanel = await loadExportPanel();
-    render(<ExportPanel isTeacher={true} classId="class_001" className="Period 1" />);
+    render(<ExportPanel isTeacher={true} classId={"class_001" as Id<'classes'>} className="Period 1" />);
 
     // Dataset selector (student | class | submissions)
     const dataset = screen.getByLabelText(/dataset/i);
@@ -222,7 +222,7 @@ describe('ExportPanel — Task 1: role-gate + render controls', () => {
 
   it('enables the export button once a valid scope is provided', async () => {
     const ExportPanel = await loadExportPanel();
-    render(<ExportPanel isTeacher={true} classId="class_001" className="Period 1" />);
+    render(<ExportPanel isTeacher={true} classId={"class_001" as Id<'classes'>} className="Period 1" />);
 
     const exportButton = screen.getByRole('button', { name: /export/i });
     expect(exportButton).toBeEnabled();
@@ -238,7 +238,7 @@ describe('ExportPanel — Task 2: client download wiring', () => {
     convex.useQuery.setResult(Q_CLASS, CLASS_SCOPE_ARGS, classExportFixture);
 
     const user = userEvent.setup();
-    render(<ExportPanel isTeacher={true} classId="class_001" className="Period 1 — Algebra" />);
+    render(<ExportPanel isTeacher={true} classId={"class_001" as Id<'classes'>} className="Period 1 — Algebra" />);
 
     const exportButton = screen.getByRole('button', { name: /export/i });
     await user.click(exportButton);
@@ -269,7 +269,7 @@ describe('ExportPanel — Task 2: client download wiring', () => {
     render(
       <ExportPanel
         isTeacher={true}
-        classId="class_001"
+        classId={"class_001" as Id<'classes'>}
         className="Period 1"
         studentId={'student_001' as Id<'profiles'>}
       />,
@@ -299,7 +299,7 @@ describe('ExportPanel — Task 2: client download wiring', () => {
     convex.useQuery.setResult(Q_CLASS, CLASS_SCOPE_ARGS, []);
 
     const user = userEvent.setup();
-    render(<ExportPanel isTeacher={true} classId="class_001" className="Period 1" />);
+    render(<ExportPanel isTeacher={true} classId={"class_001" as Id<'classes'>} className="Period 1" />);
 
     const exportButton = screen.getByRole('button', { name: /export/i });
     // When the query returns empty, the button may be disabled OR remain
@@ -319,7 +319,7 @@ describe('ExportPanel — Task 3: empty / large / error states', () => {
     const ExportPanel = await loadExportPanel();
     convex.useQuery.setResult(Q_CLASS, CLASS_SCOPE_ARGS, []);
 
-    render(<ExportPanel isTeacher={true} classId="class_001" className="Period 1" />);
+    render(<ExportPanel isTeacher={true} classId={"class_001" as Id<'classes'>} className="Period 1" />);
 
     await waitFor(() => {
       expect(screen.getByText(/no data available|no results|empty/i)).toBeInTheDocument();
@@ -336,7 +336,7 @@ describe('ExportPanel — Task 3: empty / large / error states', () => {
       hasMore: true,
     });
 
-    render(<ExportPanel isTeacher={true} classId="class_001" className="Period 1" />);
+    render(<ExportPanel isTeacher={true} classId={"class_001" as Id<'classes'>} className="Period 1" />);
 
     // Switch dataset to submissions to trigger the hasMore branch.
     const dataset = screen.getByLabelText(/dataset/i) as HTMLSelectElement;
@@ -353,7 +353,7 @@ describe('ExportPanel — Task 3: empty / large / error states', () => {
       throw new Error('internal: db connection refused at host 10.0.0.5:8080');
     });
 
-    render(<ExportPanel isTeacher={true} classId="class_001" className="Period 1" />);
+    render(<ExportPanel isTeacher={true} classId={"class_001" as Id<'classes'>} className="Period 1" />);
 
     await waitFor(() => {
       expect(screen.getByText(/unable to load|export failed|something went wrong|try again/i)).toBeInTheDocument();

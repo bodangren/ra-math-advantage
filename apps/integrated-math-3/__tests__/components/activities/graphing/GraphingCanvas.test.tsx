@@ -244,7 +244,7 @@ describe('GraphingCanvas', () => {
     it('point markers are focusable with tabIndex=0', () => {
       const points = [{ x: 0, y: 0, label: 'test' }];
       render(<GraphingCanvas {...defaultProps} points={points} />);
-      const group = document.querySelector('.point-marker')?.closest('g') as HTMLElement;
+      const group = document.querySelector('.point-marker')?.closest('g') as SVGGElement;
       group.focus();
       expect(group).toHaveFocus();
     });
@@ -253,7 +253,7 @@ describe('GraphingCanvas', () => {
       const user = userEvent.setup();
       const points = [{ x: 0, y: 0, label: 'test' }];
       render(<GraphingCanvas {...defaultProps} points={points} />);
-      const group = document.querySelector('.point-marker')?.closest('g') as HTMLElement;
+      const group = document.querySelector('.point-marker')?.closest('g') as SVGGElement;
 
       group.focus();
       await user.keyboard('{Delete}');
@@ -265,7 +265,7 @@ describe('GraphingCanvas', () => {
       const user = userEvent.setup();
       const points = [{ x: 0, y: 0, label: 'test' }];
       render(<GraphingCanvas {...defaultProps} points={points} />);
-      const group = document.querySelector('.point-marker')?.closest('g') as HTMLElement;
+      const group = document.querySelector('.point-marker')?.closest('g') as SVGGElement;
 
       group.focus();
       await user.keyboard('{Backspace}');
@@ -277,7 +277,7 @@ describe('GraphingCanvas', () => {
       const user = userEvent.setup();
       const points = [{ x: 0, y: 0, label: 'test' }];
       render(<GraphingCanvas {...defaultProps} points={points} readonly={true} />);
-      const group = document.querySelector('.point-marker')?.closest('g') as HTMLElement;
+      const group = document.querySelector('.point-marker')?.closest('g') as SVGGElement;
 
       group.focus();
       await user.keyboard('{Delete}');

@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useMemo } from 'react';
 import { useQuery } from 'convex/react';
 import { api } from '@/convex/_generated/api';
 import type { Id } from '@/convex/_generated/dataModel';
@@ -77,13 +77,12 @@ export function ExportPanel({
   }
 
   const isArray = Array.isArray(normalizedData);
-  const rows: unknown[] =
-    normalizedData === undefined
-      ? []
-      : isArray
-        ? (normalizedData as unknown[])
-        : ((normalizedData as { rows?: unknown[] }).rows ?? []);
   const hasMore = !isArray && normalizedData !== undefined && (normalizedData as { hasMore?: boolean }).hasMore === true;
+  const rows = useMemo<unknown[]>(() => {
+    if (normalizedData === undefined) return [];
+    if (isArray) return normalizedData as unknown[];
+    return ((normalizedData as { rows?: unknown[] }).rows ?? []);
+  }, [normalizedData, isArray]);
   const isEmpty = rows.length === 0;
 
   const hasScope = dataset === 'student' ? !!selectedStudentId : !!classId;

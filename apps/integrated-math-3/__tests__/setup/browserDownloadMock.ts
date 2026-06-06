@@ -16,7 +16,7 @@
  * `lib/teacher/gradebook-export.ts:5`, which is the canonical client-download
  * pattern in IM3.
  */
-import { afterEach, beforeEach, vi, type MockInstance } from 'vitest';
+import { afterEach, vi, type MockInstance } from 'vitest';
 
 export interface CapturedDownload {
   filename: string;
