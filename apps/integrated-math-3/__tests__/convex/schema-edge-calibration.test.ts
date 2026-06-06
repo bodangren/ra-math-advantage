@@ -29,6 +29,16 @@ describe('edge_calibration table schema', () => {
     expect(() => (table as unknown as { lastUpdated: unknown }).lastUpdated).not.toThrow();
     expect(() => (table as unknown as { status: unknown }).status).not.toThrow();
   });
+
+  it('has a by_edge index for Phase 3 batch read by edgeId', () => {
+    const table = schema.tables.edge_calibration as unknown as {
+      indexes?: Array<{ indexDescriptor: string; fields: string[] }>;
+    };
+    expect(table.indexes).toBeDefined();
+    const byEdge = table.indexes!.find((i) => i.indexDescriptor === 'by_edge');
+    expect(byEdge).toBeDefined();
+    expect(byEdge!.fields).toEqual(expect.arrayContaining(['edgeId']));
+  });
 });
 
 describe('calibration_review_queue table schema', () => {
@@ -46,5 +56,25 @@ describe('calibration_review_queue table schema', () => {
     expect(() => (table as unknown as { calibratedConfidence: unknown }).calibratedConfidence).not.toThrow();
     expect(() => (table as unknown as { divergence: unknown }).divergence).not.toThrow();
     expect(() => (table as unknown as { flaggedAt: unknown }).flaggedAt).not.toThrow();
+  });
+
+  it('has a by_edge index for looking up an edge\'s queued review items', () => {
+    const table = schema.tables.calibration_review_queue as unknown as {
+      indexes?: Array<{ indexDescriptor: string; fields: string[] }>;
+    };
+    expect(table.indexes).toBeDefined();
+    const byEdge = table.indexes!.find((i) => i.indexDescriptor === 'by_edge');
+    expect(byEdge).toBeDefined();
+    expect(byEdge!.fields).toEqual(expect.arrayContaining(['edgeId']));
+  });
+
+  it('has a by_flagged_at index for ordering the human review queue (FR6)', () => {
+    const table = schema.tables.calibration_review_queue as unknown as {
+      indexes?: Array<{ indexDescriptor: string; fields: string[] }>;
+    };
+    expect(table.indexes).toBeDefined();
+    const byFlaggedAt = table.indexes!.find((i) => i.indexDescriptor === 'by_flagged_at');
+    expect(byFlaggedAt).toBeDefined();
+    expect(byFlaggedAt!.fields).toEqual(expect.arrayContaining(['flaggedAt']));
   });
 });
