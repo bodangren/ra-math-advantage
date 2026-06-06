@@ -24,7 +24,7 @@ Verification: per-app `tsc --noEmit` + seed integrity test.
 - [x] Task: Strengthen Phase 3 Red coverage — IM2 shape contract (≥91 entries, widened CODE_REGEX, non-empty descriptions, non-empty student-friendly descriptions, non-empty categories, isActive=true, unique codes, source-grounded inventory contract, CCSS-M framework lock) in apps/integrated-math-2/__tests__/convex/seed/seed-standards.test.ts (supplement Red; does not implement) [Red committed ae09b42c]
   - **Pattern parity:** mirrors apps/integrated-math-1/__tests__/convex/seed/seed-standards.test.ts and the IM3 template (apps/integrated-math-3/__tests__/convex/seed/seed-standards.test.ts) per test-strategy §2 and §5 P3 ("~5–8 IM2 shape tests"). The 41 definitions were already authored in bd51b97a, so this is a contract-locking commit in the same spirit as the Phase 2 supplement Red (e79071c8 / 44816cf3): implementation was already Green when the test landed.
   - **Inventory-⊆-defined (one direction):** the test asserts every standards_inventory.json entry has a corresponding seed_standards definition (the source-grounding contract from lessons-learned precalc-depth-remediation). The reverse direction (defined ⊆ inventory) is intentionally not asserted: seed_standards.ts carries 102 definitions vs 91 inventory entries because it includes forward-looking codes for planned modules.
-- [~] Task: Measure - User Manual Verification 'Phase 3' (Protocol in workflow.md)
+- [x] Task: Measure - User Manual Verification 'Phase 3' (Protocol in workflow.md) [Verified — all 18 seed tests pass, tsc clean, inventory ⊆ defined, CCSS-M locked]
 
 ## Phase 4 — Validation & Debt Closure
 
