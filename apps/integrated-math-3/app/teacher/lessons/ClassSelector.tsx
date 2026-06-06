@@ -38,7 +38,7 @@ export function ClassSelector({ classes, selectedClassId }: ClassSelectorProps) 
         onChange={handleChange}
       >
         {classes.map((cls) => (
-          <option key={cls.classId} value={cls.classId}>
+          <option key={cls.classId} value={cls.classId} data-testid={`teacher-class-option-${cls.classId}`}>
             {cls.className}
           </option>
         ))}
