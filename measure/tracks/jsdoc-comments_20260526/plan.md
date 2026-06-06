@@ -19,14 +19,14 @@
     - [x] Run `bash measure/tracks/jsdoc-comments_20260526/scripts/check-jsdoc-coverage.sh` — PASS: 0 NULL summaries
     - [x] Run `build-graph scan . ./graph.db` — graph refreshed
     - [x] Commit: `measure(checkpoint): Checkpoint end of Phase 1`
-- [~] Task 1.4: Enforce NFR-1 (JSDoc line length ≤120) in BM2 `lib/` [red: b85930f5]
+- [x] Task 1.4: Enforce NFR-1 (JSDoc line length ≤120) in BM2 `lib/` [red: b85930f5] [green: a331ea1b]
     - [x] Red: add `scripts/check-jsdoc-line-length.sh` and document baseline in `phase-1-red-baseline.md` §"Task 1.4 supplement"
     - [x] Red: confirm guard FAILS for 4 known long `@param` lines (statement-construction.ts:173, :224; statement-subtotals.ts:167; transactions.ts:301)
-    - [ ] Green: wrap each long `@param` description across multiple comment lines per `phase-1-red-baseline.md` §"Green-phase definition of done for Task 1.4"
-    - [ ] Green: re-run guard → exit 0; rerun `npm run lint --workspace=apps/bus-math-v2` and `npm run test --workspace=apps/bus-math-v2`; confirm both still pass
-    - [ ] Commit (Green): `docs(bus-math-v2): wrap long @param lines for NFR-1 compliance in lib/`
+    - [x] Green: wrap each long `@param` description across multiple comment lines per `phase-1-red-baseline.md` §"Green-phase definition of done for Task 1.4"
+    - [x] Green: re-run guard → exit 0; rerun `npm run lint --workspace=apps/bus-math-v2` (pre-existing errors only) and `npm run test --workspace=apps/bus-math-v2` (346/350 pass, 4 pre-existing failures)
+    - [x] Commit (Green): `docs(bus-math-v2): wrap long @param lines for NFR-1 compliance in lib/`
 - [ ] Task: Measure - User Manual Verification 'Phase 1: BM2 lib/' (Protocol in workflow.md)
-    - [ ] Depends on Task 1.4 Green — manual verification cannot complete while NFR-1 guard fails
+    - [ ] Task 1.4 Green complete — manual verification can now proceed
 
 ## Phase 2: BM2 `components/` — 399 functions
 
