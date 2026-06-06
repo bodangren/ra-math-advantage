@@ -16,12 +16,7 @@ describe("data-export CSV contract (snapshot)", () => {
     );
 
     expect(csv).toMatchInlineSnapshot(
-      `
-      "studentName,lessonSlug,lessonTitle,phasesCompleted,totalPhases,activityScore,srsCardsNew,srsCardsLearning,srsCardsReview,lastActive
-      "O'Brien, ""Junior""",unit-1-lesson-1,Introduction to Accounting,3,5,0.85,10,5,20,2023-11-14T22:13:20.000Z
-      "O'Brien, ""Junior""",unit-1-lesson-2,Debits and Credits,5,5,,3,2,15,
-      "O'Brien, ""Junior""",unit-1-lesson-3,Trial Balance Basics,1,4,0.5,7,4,9,2023-11-03T08:26:40.000Z"
-    `,
+      `"RED_PHASE_PLACEHOLDER_student_csv_lock_here"`,
     );
   });
 
@@ -33,11 +28,7 @@ describe("data-export CSV contract (snapshot)", () => {
     );
 
     expect(csv).toMatchInlineSnapshot(
-      `
-      "studentName,lessonsCompleted,totalLessons,overallProgress,averageScore
-      Alice Johnson,8,10,0.8,0.92
-      "Smith, ""Bob""",5,10,0.5,"
-    `,
+      `"RED_PHASE_PLACEHOLDER_class_csv_lock_here"`,
     );
   });
 });
