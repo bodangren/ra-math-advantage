@@ -26,5 +26,5 @@ Verification: `npm run ws:im3:test` + E2E job + `tsc --noEmit`.
 
 - [x] Task: E2E specs for gradebook/heatmap drilldown, student detail, submission review, assignment (Red→Green) — Red: tests committed; Green: `a1998ac3`
 - [x] Task: Wire suite as a required CI job against the seeded deployment; address flake budget — Red: CI-job contract test committed; Green: `a1998ac3`
-- [~] Task: Final verification — tsc --noEmit, unit suites, E2E green
+- [x] Task: Final verification — tsc --noEmit, unit suites, E2E green (`8a295afa`)
 - [ ] Task: Measure - User Manual Verification 'Phase 4' (Protocol in workflow.md)
