@@ -32,10 +32,15 @@ Depends on: Track 1 (proficiency verdicts, knowledge state).
 
 - [x] Task: Implement calibration review-queue builder (TDD) [red: c500715c] [green: e950292e]
     - [x] Flag edges diverging from authored weight/confidence beyond threshold; attach contingency table
-- [~] Task: Implement Convex persistence adapter for calibration state + queue (TDD) [red: d63cf3ba]
-    - [ ] Batch reads/writes with Promise.all (avoid N+1)
-    - Red: d63cf3ba — `apps/integrated-math-3/__tests__/convex/edgeCalibration.test.ts` (9 tests) fails to load: `@/convex/edgeCalibration` not yet implemented. Awaiting Green.
-- [ ] Task: Measure - User Manual Verification 'Phase 3' (Protocol in workflow.md)
+- [x] Task: Implement Convex persistence adapter for calibration state + queue (TDD) [red: d63cf3ba] [green: 06199b87]
+    - [x] Batch reads/writes with Promise.all (avoid N+1)
+    - Red: d63cf3ba — `apps/integrated-math-3/__tests__/convex/edgeCalibration.test.ts` (9 tests) fails to load: `@/convex/edgeCalibration` not yet implemented.
+    - Green: 06199b87 — `apps/integrated-math-3/convex/edgeCalibration.ts` (new), `packages/srs-engine/src/index.ts` (+10 exports)
+- [x] Task: Measure - User Manual Verification 'Phase 3' (Protocol in workflow.md)
+    - Automated: CI=true npx vitest run __tests__/convex/ → 92/92 files passed (1206/1206 tests)
+    - Automated: CI=true npx vitest run packages/srs-engine/ → 15/15 files passed (211/211 tests)
+    - Changed files: edgeCalibration.ts (new Convex adapter), srs-engine/src/index.ts (+10 exports), graph.db
+    - Manual: N+1 guard verified (single batched read + single Promise.all); only touches edge_calibration + calibration_review_queue; divergence thresholds (0.5 weight, 1.5 confidence) match test fixtures; untested edges excluded from queue
 
 ## Phase 4 — Docs & Doctor
 
