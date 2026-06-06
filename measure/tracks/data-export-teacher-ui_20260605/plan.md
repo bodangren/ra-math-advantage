@@ -18,6 +18,6 @@ Verification: `npm run ws:im3:lint`/`:test` + `tsc --noEmit`.
 
 ## Phase 3 — Authorization & Verification
 
-- [ ] Task: Test cross-class denial reuses teacher-of-class guard (Red→Green)
+- [~] Task: Test cross-class denial reuses teacher-of-class guard (Red→Green) — Red in progress (mid role)
 - [ ] Task: Final verification — lint, tsc --noEmit, CI=true npm run test
 - [ ] Task: Measure - User Manual Verification 'Phase 3' (Protocol in workflow.md)
