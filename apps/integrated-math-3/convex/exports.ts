@@ -1,4 +1,4 @@
-import { internalQuery, type QueryCtx } from "./_generated/server";
+import { query, type QueryCtx } from "./_generated/server";
 import { v } from "convex/values";
 import type { Id } from "./_generated/dataModel";
 
@@ -189,13 +189,30 @@ export async function getStudentExportHandler(
   return { studentName, rows };
 }
 
-export const getStudentExport = internalQuery({
+export const getStudentExport = query({
   args: {
+    userId: v.id("profiles"),
     studentId: v.id("profiles"),
     startDate: v.optional(v.number()),
     endDate: v.optional(v.number()),
   },
-  handler: async (ctx, args) => getStudentExportHandler(ctx, args),
+  handler: async (ctx, args) => {
+    const caller = await ctx.db.get(args.userId);
+    if (!caller || (caller.role !== "teacher" && caller.role !== "admin")) {
+      throw new Error("Unauthorized: caller is not a teacher");
+    }
+
+    const student = await ctx.db.get(args.studentId);
+    if (!student || student.role !== "student") {
+      throw new Error("Unauthorized: target is not a student");
+    }
+
+    if (student.organizationId !== caller.organizationId) {
+      throw new Error("Unauthorized: student is in a different organization");
+    }
+
+    return getStudentExportHandler(ctx, args);
+  },
 });
 
 /**
@@ -330,13 +347,30 @@ export async function getClassExportHandler(
   return rows;
 }
 
-export const getClassExport = internalQuery({
+export const getClassExport = query({
   args: {
+    userId: v.id("profiles"),
     classId: v.id("classes"),
     startDate: v.optional(v.number()),
     endDate: v.optional(v.number()),
   },
-  handler: async (ctx, args) => getClassExportHandler(ctx, args),
+  handler: async (ctx, args) => {
+    const caller = await ctx.db.get(args.userId);
+    if (!caller || (caller.role !== "teacher" && caller.role !== "admin")) {
+      throw new Error("Unauthorized: caller is not a teacher");
+    }
+
+    const classDoc = await ctx.db.get("classes", args.classId);
+    if (!classDoc) {
+      throw new Error("Unauthorized: class not found");
+    }
+
+    if (classDoc.teacherId !== caller._id) {
+      throw new Error("Forbidden: teacher does not own this class");
+    }
+
+    return getClassExportHandler(ctx, args);
+  },
 });
 
 /**
@@ -439,12 +473,29 @@ export async function getSubmissionExportHandler(
   return { rows: allRows.slice(0, limit), hasMore };
 }
 
-export const getSubmissionExport = internalQuery({
+export const getSubmissionExport = query({
   args: {
+    userId: v.id("profiles"),
     classId: v.id("classes"),
     startDate: v.optional(v.number()),
     endDate: v.number(),
     limit: v.optional(v.number()),
   },
-  handler: async (ctx, args) => getSubmissionExportHandler(ctx, args),
+  handler: async (ctx, args) => {
+    const caller = await ctx.db.get(args.userId);
+    if (!caller || (caller.role !== "teacher" && caller.role !== "admin")) {
+      throw new Error("Unauthorized: caller is not a teacher");
+    }
+
+    const classDoc = await ctx.db.get("classes", args.classId);
+    if (!classDoc) {
+      throw new Error("Unauthorized: class not found");
+    }
+
+    if (classDoc.teacherId !== caller._id) {
+      throw new Error("Forbidden: teacher does not own this class");
+    }
+
+    return getSubmissionExportHandler(ctx, args);
+  },
 });
