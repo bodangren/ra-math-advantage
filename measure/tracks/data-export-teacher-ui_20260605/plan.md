@@ -16,7 +16,7 @@ Verification: `npm run ws:im3:lint`/`:test` + `tsc --noEmit`.
 - [x] Task: Empty/large/error states (TDD) — Green committed [red: ee9c046e, 571017ff; green: c5739ac5]
 - [x] Task: Measure - User Manual Verification 'Phase 2' (Protocol in workflow.md) — Checkpoint: e495494b
 
-## Phase 3 — Authorization & Verification
+## Phase 3 — Authorization & Verification [checkpoint: 7db21282]
 
 - [x] Task: Test cross-class denial reuses teacher-of-class guard (Red→Green) — Green committed [red: 06ce3d5f, e60e147d; green: 3cae734e]
 - [x] Task: Final verification — 46/46 export tests pass (CI=true); 0 tsc/lint errors in exports.ts; 13 pre-existing tsc + 2 lint errors in unrelated files (GraphingCanvas.test, ExportPanel.test, browserDownloadMock, ExportPanel.tsx)
