@@ -13,7 +13,7 @@ Verification: per-app `tsc --noEmit` + seed integrity test.
 
 - [x] Task: Author 77 IM1 standard definitions (code/title/description) from source into seed_standards.ts [Green committed bd51b97]
 - [x] Task: Wire into seed orchestration idempotently; integrity check passes for IM1 (Green) [Green committed bd51b97]
-- [ ] Task: Measure - User Manual Verification 'Phase 2' (Protocol in workflow.md)
+- [~] Task: Measure - User Manual Verification 'Phase 2' (Protocol in workflow.md)
 
 ## Phase 3 — IM2 Reconciliation
 
