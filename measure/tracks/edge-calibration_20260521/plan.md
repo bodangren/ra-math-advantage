@@ -44,11 +44,14 @@ Depends on: Track 1 (proficiency verdicts, knowledge state).
 
 ## Phase 4 — Docs & Doctor
 
-- [~] Task: Update in-repo kst-srs.v2 spec §6 (Edge Calibration) with the implemented model
-    - Red: bb08f51c — `packages/knowledge-space-core/src/__tests__/phase4-spec-section-6-implementation.test.ts` (new, 9 tests) asserts §6 documents the implemented CalibrationStatus enum, contingency-table field names, Beta(α,β) parameters, persistence tables, divergence thresholds, N+1 guard, and NFR "graph never auto-edited". Currently fails: §6 has the high-level FR1–FR6 narrative but is missing the implementation-level details (5 of 9 tests fail).
-- [~] Task: Run measure/generate.sh and measure/doctor.sh; fix architectural lint
-    - Red: bb08f51c — `packages/knowledge-space-core/src/__tests__/phase4-doctor-generate-scripts.test.ts` (new, 6 tests) asserts `measure/scripts/doctor.{sh,mjs,js}` and `measure/scripts/generate.{sh,mjs,js}` exist and exit 0. Currently fails: neither script is present in `measure/scripts/` (2 of 6 tests fail).
-- [~] Task: Final verification — boundary lints, npm run lint, tsc --noEmit, CI=true npm run test
-    - Red: bb08f51c — `packages/knowledge-space-core/src/__tests__/phase4-final-verification.test.ts` (new, 2 tests) runs `scripts/check-monorepo-boundaries.mjs` as a subprocess and asserts exit code 0 (boundary lint must be green). Currently fails: the boundary linter flags false positives in existing test fixtures (e.g. `packages/knowledge-space-core/src/__tests__/boundary.test.ts:89` contains the `apps/` fixture pattern as a string literal). Phase 4 Green must either scope the linter to source-only or add a `--exclude-tests` flag (1 of 2 tests fails).
+- [x] Task: Update in-repo kst-srs.v2 spec §6 (Edge Calibration) with the implemented model [green: 4cff5b38]
+    - Red: bb08f51c — `packages/knowledge-space-core/src/__tests__/phase4-spec-section-6-implementation.test.ts` (new, 9 tests) asserts §6 documents the implemented CalibrationStatus enum, contingency-table field names, Beta(α,β) parameters, persistence tables, divergence thresholds, N+1 guard, and NFR "graph never auto-edited".
+    - Green: 4cff5b38 — `kst-srs.v2/SPECIFICATION.md` §6 updated with CalibrationStatus literals, camelCase contingency-table fields, alpha/beta/lastUpdated, persistence table names (edge_calibration, calibration_review_queue), divergence threshold, N+1 guard (Promise.all batched), and NFR "never auto-edited".
+- [x] Task: Run measure/generate.sh and measure/doctor.sh; fix architectural lint [green: 4cff5b38]
+    - Red: bb08f51c — `packages/knowledge-space-core/src/__tests__/phase4-doctor-generate-scripts.test.ts` (new, 6 tests) asserts `measure/scripts/doctor.{sh,mjs,js}` and `measure/scripts/generate.{sh,mjs,js}` exist and exit 0.
+    - Green: 4cff5b38 — `measure/scripts/doctor.sh` and `measure/scripts/generate.sh` added; boundary linter fixed to exclude `__tests__/` and `*.test.ts` files.
+- [x] Task: Final verification — boundary lints, npm run lint, tsc --noEmit, CI=true npm run test [green: 4cff5b38]
+    - Red: bb08f51c — `packages/knowledge-space-core/src/__tests__/phase4-final-verification.test.ts` (new, 2 tests) runs `scripts/check-monorepo-boundaries.mjs` as a subprocess and asserts exit code 0.
+    - Green: 4cff5b38 — boundary linter now excludes test files (`--exclude-dir __tests__`, `--exclude *.test.ts`, `--exclude *.test.tsx`).
 - [~] Task: Measure - User Manual Verification 'Phase 4' (Protocol in workflow.md)
     - No automated test; manual protocol per `measure/workflow.md` §Phase Completion Verification. Mid-role writes the proposed manual verification plan and the user (supervisor) executes it.
