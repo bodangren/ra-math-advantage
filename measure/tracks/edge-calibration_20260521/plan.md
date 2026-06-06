@@ -18,10 +18,10 @@ Depends on: Track 1 (proficiency verdicts, knowledge state).
 ## Phase 2 — Calibration Core [checkpoint: 46ad1d99]
 
 - [x] Task: Implement observation extraction (TDD) [green: e44a459f]
-    - [x] Pair per-student objective-proficiency verdicts into (A, B) observations
+    - [x] Pair per-student objective-proficiency verdicts into (A, B) observations [green: e44a459f]
 - [x] Task: Implement contingency table + necessity + informativeness (TDD) [green: e44a459f]
 - [x] Task: Implement Beta-Bernoulli posterior update + recency decay (TDD) [green: e44a459f]
-    - [x] Incremental α/β update; posterior mean → weight; variance → confidence; λ decay
+    - [x] Incremental α/β update; posterior mean → weight; variance → confidence; λ decay [green: e44a459f]
 - [x] Task: Implement confounding guardrail and untested classification (TDD) [green: e44a459f]
 - [x] Task: Measure - User Manual Verification 'Phase 2' (Protocol in workflow.md)
     - Automated: CI=true npx vitest run packages/srs-engine/ → 191/191 passed (83 edge-calibration + 108 existing)
