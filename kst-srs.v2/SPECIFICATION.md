@@ -159,8 +159,8 @@ Per edge `A → B`, maintain:
 
 |  | B proficient | B not proficient |
 |--|-------------|-----------------|
-| **A proficient** | n₁₁ | n₁₀ |
-| **A not proficient** | n₀₁ | n₀₀ |
+| **A proficient** | n₁₁ (`proficientAProficientB`) | n₁₀ (`proficientANotProficientB`) |
+| **A not proficient** | n₀₁ (`notProficientAProficientB`) | n₀₀ (`notProficientANotProficientB`) |
 
 ### 6.3 Statistics
 
@@ -175,6 +175,8 @@ Model edge necessity as `Beta(α, β)`:
 - `weight ← posterior mean`
 - `confidence ← bucketed posterior variance`
 
+Each edge carries a calibration record with fields `edgeId`, `alpha`, `beta`, `lastUpdated`, and a `CalibrationStatus` that is one of `confirmed`, `refuted`, or `untested`.
+
 ### 6.5 Recency Decay
 
 Periodically multiply `α, β` by `λ < 1` so the posterior tracks recent cohorts.
@@ -185,7 +187,16 @@ If no student has attempted `B` without a verdict on `A`, necessity is `untested
 
 ### 6.7 Review Queue
 
-Edges whose calibrated posterior diverges from authored weight/confidence beyond a threshold are flagged for human review. The graph is never auto-edited.
+Edges whose calibrated posterior diverges from authored weight/confidence beyond a divergence threshold are flagged for human review. The graph is never auto-edited.
+
+### 6.8 Persistence
+
+Calibration state is persisted in two Convex tables:
+
+- `edge_calibration` — stores per-edge calibration records (`edgeId`, `alpha`, `beta`, `lastUpdated`, `status`)
+- `calibration_review_queue` — stores edges flagged for human review, including the contingency table snapshot, authored vs. calibrated weight/confidence, and divergence score
+
+The Convex adapter uses batched reads and writes with `Promise.all` to avoid N+1 query patterns when processing multiple edges in a single pass.
 
 ## 7. Next-Skill Planner (v2 Item 4)
 

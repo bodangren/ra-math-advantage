@@ -25,6 +25,12 @@ for (const rule of rules) {
     grepArgs.push('--include', `*${ext}`);
   }
 
+  // Exclude test files and fixtures — they contain boundary patterns as
+  // string literals for validation, not as real imports.
+  grepArgs.push('--exclude-dir', '__tests__');
+  grepArgs.push('--exclude', '*.test.ts');
+  grepArgs.push('--exclude', '*.test.tsx');
+
   grepArgs.push('-E', rule.pattern, searchDir);
 
   const result = spawnSync('grep', grepArgs, {
