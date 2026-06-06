@@ -5,10 +5,10 @@ Depends on: Track 1 (proficiency verdicts, knowledge state).
 
 ## Phase 1 — Contract & Schema
 
-- [~] Task: Define calibration types
+- [~] Task: Define calibration types [red: 5c5974d0, b43c504c, 391add96]
     - [~] Observation type (paired proficiency verdicts), contingency table, edge calibration record (α, β, status)
     - [~] necessity / informativeness result types; calibration status enum (confirmed / refuted / untested)
-- [~] Task: Define Convex schema for calibration state and review queue
+- [~] Task: Define Convex schema for calibration state and review queue [red: 5c5974d0, 391add96]
     - [~] edge_calibration table (α, β, lastUpdated, status); calibration_review_queue table
 - [ ] Task: Measure - User Manual Verification 'Phase 1' (Protocol in workflow.md)
 
