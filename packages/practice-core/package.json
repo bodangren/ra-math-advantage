@@ -20,6 +20,7 @@
   "scripts": {
     "test": "vitest run",
     "test:watch": "vitest watch",
+    "test:generators": "vitest run src/generator-qa/__tests__/ci-gate.test.ts",
     "lint": "eslint src --max-warnings 0",
     "typecheck": "tsc --noEmit",
     "build": "tsc --noEmit"
