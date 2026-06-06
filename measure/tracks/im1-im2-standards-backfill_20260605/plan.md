@@ -14,6 +14,7 @@ Verification: per-app `tsc --noEmit` + seed integrity test.
 - [x] Task: Author 77 IM1 standard definitions (code/title/description) from source into seed_standards.ts [Green committed bd51b97]
 - [x] Task: Wire into seed orchestration idempotently; integrity check passes for IM1 (Green) [Green committed bd51b97]
 - [~] Task: Strengthen Phase 2 Red coverage — strict `runMutation` pattern, after-`seedUnits` ordering, try/catch wrapping in apps/integrated-math-1/convex/seed.ts:seedAll (supplement Red; does not implement)
+  - **Red-phase boundary fix:** mid-attempt-1 ran `build-graph update ./graph.db <test-file>` after the test-file commit, modifying `graph.db` (a non-test/non-Measure artifact, tracked at `bd51b97a`). Restored via `git checkout HEAD -- graph.db`. Going forward, the Red phase may use only read-only build-graph queries (`stats`, `search`, `inspect`, `files`, `deps`, `callers`, `path`, `audit`, `query`); the mutating subcommands `update`, `scan`, and `init` are out of scope.
 - [~] Task: Measure - User Manual Verification 'Phase 2' (Protocol in workflow.md)
 
 ## Phase 3 — IM2 Reconciliation
