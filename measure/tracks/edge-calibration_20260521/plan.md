@@ -44,7 +44,11 @@ Depends on: Track 1 (proficiency verdicts, knowledge state).
 
 ## Phase 4 — Docs & Doctor
 
-- [ ] Task: Update in-repo kst-srs.v2 spec §6 (Edge Calibration) with the implemented model
-- [ ] Task: Run measure/generate.sh and measure/doctor.sh; fix architectural lint
-- [ ] Task: Final verification — boundary lints, npm run lint, tsc --noEmit, CI=true npm run test
-- [ ] Task: Measure - User Manual Verification 'Phase 4' (Protocol in workflow.md)
+- [~] Task: Update in-repo kst-srs.v2 spec §6 (Edge Calibration) with the implemented model
+    - Red: pending mid-role handoff — `packages/knowledge-space-core/src/__tests__/phase4-spec-section-6-implementation.test.ts` (new) asserts §6 documents the implemented CalibrationStatus enum, contingency-table field names, Beta(α,β) parameters, persistence tables, divergence thresholds, N+1 guard, and NFR "graph never auto-edited". Currently fails: §6 has the high-level FR1–FR6 narrative but is missing the implementation-level details.
+- [~] Task: Run measure/generate.sh and measure/doctor.sh; fix architectural lint
+    - Red: pending mid-role handoff — `packages/knowledge-space-core/src/__tests__/phase4-doctor-generate-scripts.test.ts` (new) asserts `measure/scripts/doctor.{sh,mjs}` and `measure/scripts/generate.{sh,mjs}` exist and exit 0. Currently fails: neither script is present in `measure/scripts/`.
+- [~] Task: Final verification — boundary lints, npm run lint, tsc --noEmit, CI=true npm run test
+    - Red: pending mid-role handoff — `packages/knowledge-space-core/src/__tests__/phase4-final-verification.test.ts` (new) runs `scripts/check-monorepo-boundaries.mjs` as a subprocess and asserts exit code 0 (boundary lint must be green). Currently fails: the boundary linter flags false positives in existing test fixtures (e.g. `packages/knowledge-space-core/src/__tests__/boundary.test.ts:89` contains the `apps/` fixture pattern as a string literal). Phase 4 Green must either scope the linter to source-only or add a `--exclude-tests` flag.
+- [~] Task: Measure - User Manual Verification 'Phase 4' (Protocol in workflow.md)
+    - No automated test; manual protocol per `measure/workflow.md` §Phase Completion Verification. Mid-role writes the proposed manual verification plan and the user (supervisor) executes it.
