@@ -327,6 +327,9 @@ describe('ExportPanel — Task 3: empty / large / error states', () => {
   });
 
   it('shows a large-state notice when the query reports hasMore: true', async () => {
+    // The submission query uses Date.now() as the default endDate.
+    // Mock it to match the test fixture's expected args.
+    vi.spyOn(Date, 'now').mockReturnValue(1700000020000);
     const ExportPanel = await loadExportPanel();
     convex.useQuery.setResult(Q_SUBMISSION, SUBMISSION_SCOPE_ARGS, {
       rows: submissionExportFixture,

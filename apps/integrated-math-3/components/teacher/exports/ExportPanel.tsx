@@ -22,6 +22,8 @@ interface ExportPanelProps {
   classId?: Id<'classes'>;
   className?: string;
   studentId?: Id<'profiles'>;
+  endDate?: number;
+  limit?: number;
   onComplete?: () => void;
 }
 
@@ -30,22 +32,28 @@ export function ExportPanel({
   classId,
   className = '',
   studentId,
+  endDate,
+  limit = 200,
   onComplete,
 }: ExportPanelProps) {
-  if (!isTeacher) return null;
-
   const [dataset, setDataset] = useState<ExportDataset>(studentId ? 'student' : 'class');
   const [format, setFormat] = useState<ExportFormat>('csv');
   const [selectedStudentId, setSelectedStudentId] = useState<string>(studentId ?? '');
+
+  const effectiveEndDate = endDate ?? Date.now();
 
   const scopeArgs =
     dataset === 'student'
       ? selectedStudentId
         ? { studentId: selectedStudentId }
         : undefined
-      : classId
-        ? { classId }
-        : undefined;
+      : dataset === 'submissions'
+        ? classId
+          ? { classId, endDate: effectiveEndDate, limit }
+          : undefined
+        : classId
+          ? { classId }
+          : undefined;
 
   const queryRef =
     dataset === 'student'
@@ -54,26 +62,28 @@ export function ExportPanel({
         ? exportApi.getClassExport
         : exportApi.getSubmissionExport;
 
-  let rawData: unknown = undefined;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const rawData = useQuery(scopeArgs ? (queryRef as any) : ('skip' as any), scopeArgs ?? {});
+
   let queryError = false;
-  try {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    rawData = useQuery(scopeArgs ? (queryRef as any) : ('skip' as any), scopeArgs ?? {});
-    if (typeof rawData === 'function') {
-      rawData = (rawData as () => unknown)();
+  let normalizedData: unknown = rawData;
+  if (typeof rawData === 'function') {
+    try {
+      normalizedData = (rawData as () => unknown)();
+    } catch {
+      queryError = true;
+      normalizedData = undefined;
     }
-  } catch {
-    queryError = true;
   }
 
-  const isArray = Array.isArray(rawData);
+  const isArray = Array.isArray(normalizedData);
   const rows: unknown[] =
-    rawData === undefined
+    normalizedData === undefined
       ? []
       : isArray
-        ? (rawData as unknown[])
-        : ((rawData as { rows?: unknown[] }).rows ?? []);
-  const hasMore = !isArray && rawData !== undefined && (rawData as { hasMore?: boolean }).hasMore === true;
+        ? (normalizedData as unknown[])
+        : ((normalizedData as { rows?: unknown[] }).rows ?? []);
+  const hasMore = !isArray && normalizedData !== undefined && (normalizedData as { hasMore?: boolean }).hasMore === true;
   const isEmpty = rows.length === 0;
 
   const hasScope = dataset === 'student' ? !!selectedStudentId : !!classId;
@@ -112,6 +122,8 @@ export function ExportPanel({
     URL.revokeObjectURL(url);
     onComplete?.();
   }, [hasScope, isEmpty, format, rows, className, dataset, onComplete]);
+
+  if (!isTeacher) return null;
 
   return (
     <div data-testid="export-panel">
