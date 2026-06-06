@@ -2,17 +2,19 @@
 
 > Captured: 2026-06-07 from `graph.db` (mtime 2026-06-07 02:17, scanned <24h before this baseline).
 > Track: [`jsdoc-comments_20260526`](./spec.md) — documentation-only (FR-6).
+> Supplemented: 2026-06-07 with NFR-1 line-length baseline (4 violations) — see §"Task 1.4 supplement" below.
 
 ## Why this baseline exists
 
 This track is documentation-only (see [`test-strategy.md`](./test-strategy.md) §1). The strategy explicitly bans new vitest files for doc text and names **"Graph delta checks (build-graph + summary count query)"** as the appropriate test tier. The Red phase therefore consists of:
 
 1. This baseline doc (the documented failing assertion).
-2. [`scripts/check-jsdoc-coverage.sh`](./scripts/check-jsdoc-coverage.sh) — executable graph-delta guard that wraps the assertion.
+2. [`scripts/check-jsdoc-coverage.sh`](./scripts/check-jsdoc-coverage.sh) — executable graph-delta guard that wraps the FR-1/FR-2 summary-coverage assertion.
+3. [`scripts/check-jsdoc-line-length.sh`](./scripts/check-jsdoc-line-length.sh) — executable static guard that wraps the NFR-1 line-length assertion (Task 1.4 supplement, added after Tasks 1.1–1.3 were Green).
 
-Both reflect the same invariant: every `function` node in `apps/bus-math-v2/lib/**` must have a non-NULL `summary` after Phase 1 completes.
+All three reflect the same Phase 1 acceptance surface: every `function` node in `apps/bus-math-v2/lib/**` must have a non-NULL `summary` (FR-1/FR-2) AND every JSDoc comment line in scope must be ≤120 chars (NFR-1).
 
-> **Boundary note:** The guard script lives under `measure/tracks/jsdoc-comments_20260526/scripts/` (Measure-owned test artifact), **not** under `apps/bus-math-v2/scripts/`. The Red phase only permits changes to test paths (`__tests__/`) or Measure paths (`measure/`); application script directories are application source territory.
+> **Boundary note:** The guard scripts live under `measure/tracks/jsdoc-comments_20260526/scripts/` (Measure-owned test artifacts), **not** under `apps/bus-math-v2/scripts/`. The Red phase only permits changes to test paths (`__tests__/`) or Measure paths (`measure/`); application script directories are application source territory. graph.db is repo-root and treated as application territory — never modify or commit it from a Red-phase attempt.
 
 ## Current state — Phase 1 scope
 
@@ -82,22 +84,67 @@ bash measure/tracks/jsdoc-comments_20260526/scripts/check-jsdoc-coverage.sh
 ## Reproducibility
 
 ```bash
-# Refresh graph (required before re-running guard after edits):
+# Refresh graph (required before re-running summary guard after edits):
 build-graph scan . ./graph.db
 
-# Run guard (human):
+# Summary-coverage guard (FR-1 / FR-2) — human / machine-readable:
 bash measure/tracks/jsdoc-comments_20260526/scripts/check-jsdoc-coverage.sh
-
-# Run guard (machine-readable):
 bash measure/tracks/jsdoc-comments_20260526/scripts/check-jsdoc-coverage.sh --json
+
+# Line-length guard (NFR-1) — human / machine-readable:
+bash measure/tracks/jsdoc-comments_20260526/scripts/check-jsdoc-line-length.sh
+bash measure/tracks/jsdoc-comments_20260526/scripts/check-jsdoc-line-length.sh --json
 ```
+
+## Task 1.4 supplement — NFR-1 line-length baseline
+
+**Pass condition:** No JSDoc comment line under `apps/bus-math-v2/lib/**` exceeds 120 chars (spec.md NFR-1).
+
+**Reproducible probe** (no graph.db required — pure AST-adjacent regex on source):
+```bash
+find apps/bus-math-v2/lib -type f \( -name '*.ts' -o -name '*.tsx' \) -print0 \
+  | xargs -0 awk '/^[[:space:]]*\*/ && length > 120 {print FILENAME ":" FNR ":" length}'
+```
+
+**Current result (Red):** 4 violations. Captured 2026-06-07 against working-tree source (post-`b18b3ce6` Phase 1 Green):
+
+| File | Line | Length | JSDoc tag |
+|---|---:|---:|---|
+| `apps/bus-math-v2/lib/practice/engine/families/statement-construction.ts` | 173 | 206 | `@param params - Row creation parameters including statementKind, sectionId, rowId, prompt, expectedLabel, accountId, accountType, amount, bankStatus, tolerance, explanation, and optional placeholder/note` |
+| `apps/bus-math-v2/lib/practice/engine/families/statement-construction.ts` | 224 | 156 | `@param params - Row creation parameters including statementKind, sectionId, rowId, label, expectedValue, sumOf, tolerance, explanation, and optional note` |
+| `apps/bus-math-v2/lib/practice/engine/families/statement-subtotals.ts` | 167 | 153 | `@param params - Row creation parameters including statementKind, sectionId, id, label, expectedValue, sumOf, tolerance, explanation, and optional note` |
+| `apps/bus-math-v2/lib/practice/engine/transactions.ts` | 301 | 143 | `@param args - All event parameters including archetypeId, title, narrative, context, amount, effects, and optional settlement/assetKind/tags` |
+
+**Why this gap exists:** Tasks 1.1 / 1.2 (Red `4f873ab4`, Green `b18b3ce6`) prioritised summary coverage (FR-1/FR-2). NFR-1 was named in [`test-strategy.md`](./test-strategy.md) §3 as a per-phase spot-check ("Existing eslint config does not enforce this on comments, so spot-check with `awk 'length > 120' <file>` during each phase") but had no executable guard wrapping it — so the four long-`@param` lines slipped past Phase 1 verification.
+
+**Executable wrapper (Task 1.4 gate):**
+```bash
+bash measure/tracks/jsdoc-comments_20260526/scripts/check-jsdoc-line-length.sh
+# Exit 0 = NFR-1 met for BM2 lib/; non-zero = work remains (Green: wrap long @param lines).
+```
+
+**Green-phase definition of done for Task 1.4:**
+
+1. Wrap each of the 4 long `@param` lines onto multiple comment lines, e.g.:
+   ```ts
+   /**
+    * @param params - Row creation parameters including statementKind, sectionId, rowId,
+    *   prompt, expectedLabel, accountId, accountType, amount, bankStatus, tolerance,
+    *   explanation, and optional placeholder/note.
+    */
+   ```
+2. Verify guard passes: `bash measure/tracks/jsdoc-comments_20260526/scripts/check-jsdoc-line-length.sh && echo OK`.
+3. FR-6 invariant: no signature/logic edits — only JSDoc block changes.
+4. Existing summary guard must still pass (refresh graph.db first if needed): `bash measure/tracks/jsdoc-comments_20260526/scripts/check-jsdoc-coverage.sh`.
+5. Lint + tests must still pass: `npm run lint --workspace=apps/bus-math-v2 && npm run test --workspace=apps/bus-math-v2`.
 
 ## What this Red phase does NOT introduce
 
 - **No new vitest files.** Per `test-strategy.md` §1 ban.
-- **No new dependencies.** Guard uses `build-graph` (already on PATH) + bash.
-- **No application source-code edits.** Only added: Measure-owned shell guard script (under `measure/tracks/<track>/scripts/`), plan.md task markers, this baseline doc.
-- **No prose-content assertions.** Guard only asserts `summary IS NOT NULL` (structural), not the text of the summary.
+- **No new dependencies.** Guards use `build-graph` (already on PATH) + bash/awk only.
+- **No application source-code edits.** Only added: Measure-owned shell guard scripts (under `measure/tracks/<track>/scripts/`), plan.md task markers, this baseline doc.
+- **No prose-content assertions.** Summary guard only asserts `summary IS NOT NULL` (structural); line-length guard only asserts char-count (mechanical) — neither inspects the prose itself.
+- **No graph.db edits.** Both guards read graph.db / source files but never write. graph.db must not appear in the Red-phase diff.
 
 ## Green-phase definition of done (for the assistant taking Tasks 1.1 / 1.2)
 
