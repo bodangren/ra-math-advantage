@@ -7,8 +7,8 @@ Verification: `npm run ws:im3:test` + E2E job + `tsc --noEmit`.
 
 - [x] Task: Define/commit deterministic E2E seed fixtures (student, teacher, class, assigned lessons) — Red: structural test for `seedDemoE2E` action (`4d7c6baa`)
 - [x] Task: Add stable data-test selectors to the routes/components under test — Red: selectors module unit test + E2E smoke spec (`4d7c6baa`)
-- [ ] Task: Document the selector + seed conventions
-- [ ] Task: Measure - User Manual Verification 'Phase 1' (Protocol in workflow.md)
+- [x] Task: Document the selector + seed conventions (`e7a2228d`)
+- [x] Task: Measure - User Manual Verification 'Phase 1' (Protocol in workflow.md) (`e7a2228d`)
 
 ## Phase 2 — Auth & Student Lesson Flow
 
