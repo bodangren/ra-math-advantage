@@ -23,7 +23,10 @@ Depends on: Track 1 (proficiency verdicts, knowledge state).
 - [x] Task: Implement Beta-Bernoulli posterior update + recency decay (TDD) [green: e44a459f]
     - [x] Incremental α/β update; posterior mean → weight; variance → confidence; λ decay
 - [x] Task: Implement confounding guardrail and untested classification (TDD) [green: e44a459f]
-- [ ] Task: Measure - User Manual Verification 'Phase 2' (Protocol in workflow.md)
+- [x] Task: Measure - User Manual Verification 'Phase 2' (Protocol in workflow.md)
+    - Automated: CI=true npx vitest run packages/srs-engine/ → 191/191 passed (83 edge-calibration + 108 existing)
+    - Changed files: edge-calibration.ts (+10 functions), edge-calibration-contingency.test.ts, edge-calibration-posterior.test.ts, graph.db
+    - Manual: all Phase 2 functions match spec FR1–FR5; classifyStatus enforces confounding guardrail with paired-obs requirement; necessity = P(profB | !A); informativeness = lift with NaN-free sentinels; decay preserves mean ratio
 
 ## Phase 3 — Review Queue and Persistence
 
