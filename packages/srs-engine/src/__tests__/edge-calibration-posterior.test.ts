@@ -248,14 +248,12 @@ describe('applyDecay (FR4, AC4)', () => {
     expect(before).toEqual(snapshot);
   });
 
-  it('reduces posterior variance as evidence accumulates when λ < 1 then a new observation arrives', () => {
-    // Establish a moderate posterior then decay — variance should NOT increase
-    // (it can only stay equal or decrease; the post-decay mean is unchanged
-    // when α = β). The "variance increases" property in test-strategy.md
-    // applies when total evidence (α+β) decreases toward the prior.
+  it('increases posterior variance when λ < 1 (decay removes evidence → wider posterior)', () => {
+    // Decay reduces α+β, moving the posterior back toward the uniform prior.
+    // With α = β the mean stays at 0.5 but variance increases.
     const established = makeCalibration({ alpha: 100, beta: 100 });
     const decayed = applyDecay(established, 0.5, 2000);
-    expect(posteriorVariance(decayed.alpha, decayed.beta)).toBeLessThan(
+    expect(posteriorVariance(decayed.alpha, decayed.beta)).toBeGreaterThan(
       posteriorVariance(established.alpha, established.beta)
     );
   });
@@ -281,7 +279,10 @@ describe('applyDecay (FR4, AC4)', () => {
     }
   });
 
-  it('mean relaxes toward 0.5 when α ≠ β and decay is applied', () => {
+  it('mean is preserved under symmetric decay (decay scales α and β equally)', () => {
+    // Symmetric decay multiplies both α and β by the same λ, so the ratio
+    // α/(α+β) — and therefore the posterior mean — is unchanged. The mean
+    // only shifts toward 0.5 when new observations arrive at the prior mean.
     let state = makeCalibration({ alpha: 100, beta: 10 });
     const startMean = posteriorMean(state.alpha, state.beta);
     expect(startMean).toBeGreaterThan(0.5);
@@ -289,7 +290,7 @@ describe('applyDecay (FR4, AC4)', () => {
       state = applyDecay(state, 0.5, 2000 + i);
     }
     const endMean = posteriorMean(state.alpha, state.beta);
-    expect(endMean).toBeCloseTo(0.5, 1);
+    expect(endMean).toBeCloseTo(startMean, 10);
   });
 });
 

@@ -135,9 +135,9 @@ describe('computeNecessity (FR2, AC2)', () => {
   });
 
   it('returns the correct ratio for a mixed table', () => {
-    // notProficientA = np + nn = 3 + 7 = 10; profB | !A = 3/10 → necessity = 0.7
+    // notProficientA = np + nn = 3 + 7 = 10; P(profB | !A) = 3/10 = 0.3
     const table = makeContingency(5, 2, 3, 7);
-    expect(computeNecessity(table)).toBeCloseTo(0.7, 10);
+    expect(computeNecessity(table)).toBeCloseTo(0.3, 10);
   });
 
   it('returns the safe sentinel 0 when the not-proficient-A row is empty', () => {
