@@ -38,11 +38,11 @@
 > **Red baseline:** 350 functions with NULL summaries (190 exported + 160 internal; 9 already documented). See [`phase-2-red-baseline.md`](./phase-2-red-baseline.md). Guards: `scripts/check-jsdoc-coverage-components.sh`, `scripts/check-jsdoc-line-length-components.sh`, `scripts/check-phase-verification-2.sh`. Plan-vs-graph delta documented in `phase-2-red-baseline.md` §"Plan-vs-graph scope delta".
 > **Red baseline (NFR-1 supplement):** 0 JSDoc lines currently exceed 120 chars in scope (the 9 already-documented functions all stay within the cap). The line-length guard is included from the start as a regression net — Green acceptance requires it to remain at 0 violations after Phase 2.
 
-- [~] Task 2.1: Add JSDoc to exported functions in BM2 `components/` [red: <this-commit>]
+- [~] Task 2.1: Add JSDoc to exported functions in BM2 `components/` [red: 23ab09e2]
     - [ ] Run `grep -rn "export function\|export async function\|export default function" apps/bus-math-v2/components/`
     - [ ] Add standard JSDoc (summary, @param, @returns, @throws) to each exported function
     - [ ] Commit: `docs(bus-math-v2): Add JSDoc to exported functions in components/`
-- [~] Task 2.2: Add JSDoc to internal functions in BM2 `components/` [red: <this-commit>]
+- [~] Task 2.2: Add JSDoc to internal functions in BM2 `components/` [red: 23ab09e2]
     - [ ] Identify internal helper functions, event handlers, and callbacks
     - [ ] Add standard JSDoc to each internal function
     - [ ] Commit: `docs(bus-math-v2): Add JSDoc to internal functions in components/`
@@ -53,7 +53,7 @@
     - [ ] Re-run `bash measure/tracks/jsdoc-comments_20260526/scripts/check-jsdoc-coverage-components.sh` — must PASS
     - [ ] Re-run `bash measure/tracks/jsdoc-comments_20260526/scripts/check-jsdoc-line-length-components.sh` — must PASS
     - [ ] Commit: `measure(checkpoint): Checkpoint end of Phase 2`
-- [~] Task: Measure - User Manual Verification 'Phase 2: BM2 components/' (Protocol in workflow.md) [red: <this-commit>]
+- [~] Task: Measure - User Manual Verification 'Phase 2: BM2 components/' (Protocol in workflow.md) [red: 23ab09e2]
 
 ## Phase 3: BM2 `app/`, `convex/`, `scripts/`, `other/` — 253 functions
 
