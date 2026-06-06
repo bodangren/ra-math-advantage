@@ -30,9 +30,9 @@ Depends on: Track 1 (proficiency verdicts, knowledge state).
 
 ## Phase 3 — Review Queue and Persistence
 
-- [ ] Task: Implement calibration review-queue builder (TDD)
+- [~] Task: Implement calibration review-queue builder (TDD)
     - [ ] Flag edges diverging from authored weight/confidence beyond threshold; attach contingency table
-- [ ] Task: Implement Convex persistence adapter for calibration state + queue (TDD)
+- [~] Task: Implement Convex persistence adapter for calibration state + queue (TDD)
     - [ ] Batch reads/writes with Promise.all (avoid N+1)
 - [ ] Task: Measure - User Manual Verification 'Phase 3' (Protocol in workflow.md)
 
