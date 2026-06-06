@@ -17,7 +17,7 @@ Verification: per-app `tsc --noEmit` + seed integrity test.
   - **Red-phase boundary fix:** mid-attempt-1 ran `build-graph update ./graph.db <test-file>` after the test-file commit, modifying `graph.db` (a non-test/non-Measure artifact, tracked at `bd51b97a`). Restored via `git checkout HEAD -- graph.db`. Going forward, the Red phase may use only read-only build-graph queries (`stats`, `search`, `inspect`, `files`, `deps`, `callers`, `path`, `audit`, `query`); the mutating subcommands `update`, `scan`, and `init` are out of scope.
 - [x] Task: Measure - User Manual Verification 'Phase 2' (Protocol in workflow.md) [Verified 607d3909]
 
-## Phase 3 — IM2 Reconciliation
+## Phase 3 — IM2 Reconciliation [checkpoint: 5c184ad0]
 
 - [x] Task: Author the 41 missing IM2 definitions; correct miscoded references [Green committed bd51b97]
 - [x] Task: Integrity check passes for IM2 (Green) [Green committed bd51b97]
