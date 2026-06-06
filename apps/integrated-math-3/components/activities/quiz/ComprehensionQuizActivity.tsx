@@ -54,12 +54,14 @@ export function ComprehensionQuizActivity({
   ];
 
   return (
-    <ComprehensionQuiz
-      activityId={activityId}
-      mode={mode}
-      questions={sampleQuestions}
-      onSubmit={handleSubmit}
-      onComplete={onComplete}
-    />
+    <div data-testid="comprehension-quiz">
+      <ComprehensionQuiz
+        activityId={activityId}
+        mode={mode}
+        questions={sampleQuestions}
+        onSubmit={handleSubmit}
+        onComplete={onComplete}
+      />
+    </div>
   );
 }

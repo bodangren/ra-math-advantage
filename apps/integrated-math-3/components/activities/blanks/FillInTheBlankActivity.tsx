@@ -33,14 +33,16 @@ export function FillInTheBlankActivity({
   };
 
   return (
-    <FillInTheBlank
-      activityId={activityId}
-      mode={mode}
-      template={template}
-      blanks={blanks}
-      wordBank={wordBank}
-      onSubmit={handleSubmit}
-      onComplete={onComplete}
-    />
+    <div data-testid="fill-in-the-blank">
+      <FillInTheBlank
+        activityId={activityId}
+        mode={mode}
+        template={template}
+        blanks={blanks}
+        wordBank={wordBank}
+        onSubmit={handleSubmit}
+        onComplete={onComplete}
+      />
+    </div>
   );
 }

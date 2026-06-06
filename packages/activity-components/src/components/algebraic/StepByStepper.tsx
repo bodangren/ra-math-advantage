@@ -312,7 +312,7 @@ function PracticeMode({ steps, scaffoldLevel, onComplete }: { steps: AlgebraicSt
             showValidation={false}
           />
           <button
-            type="button"
+            type="submit"
             onClick={() => handleSubmit(currentStepIndex)}
             disabled={!userAnswers[currentStepIndex]?.trim()}
             className="px-4 py-2 bg-primary text-primary-foreground rounded-md hover:bg-primary/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"

@@ -78,12 +78,14 @@ export function StepByStepSolverActivity({
   );
 
   return (
-    <StepByStepper
-      mode={mode}
-      steps={steps}
-      problemType={problemType}
-      generateDistractors={handleGenerateDistractors}
-      onPracticeComplete={mode === 'practice' ? handlePracticeComplete : undefined}
-    />
+    <div data-testid="step-by-step-solver">
+      <StepByStepper
+        mode={mode}
+        steps={steps}
+        problemType={problemType}
+        generateDistractors={handleGenerateDistractors}
+        onPracticeComplete={mode === 'practice' ? handlePracticeComplete : undefined}
+      />
+    </div>
   );
 }

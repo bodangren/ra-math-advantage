@@ -434,6 +434,7 @@ export function FillInTheBlank({
               </div>
             </div>
             <button
+              type="submit"
               onClick={handlePracticeSubmit}
               disabled={!allAnswered}
               className="px-6 py-2 bg-primary text-primary-foreground rounded-md disabled:opacity-50"
@@ -490,6 +491,7 @@ export function FillInTheBlank({
           </div>
         </div>
         <button
+          type="submit"
           onClick={handlePracticeSubmit}
           disabled={!allAnswered}
           className="px-6 py-2 bg-primary text-primary-foreground rounded-md disabled:opacity-50"

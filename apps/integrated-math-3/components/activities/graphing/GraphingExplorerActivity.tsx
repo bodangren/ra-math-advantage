@@ -21,12 +21,14 @@ export function GraphingExplorerActivity({
   };
 
   return (
-    <GraphingExplorer
-      activityId={activityId}
-      mode={mode}
-      variant="plot_from_equation"
-      equation="y = x^2"
-      onSubmit={handleSubmit}
-    />
+    <div data-testid="graphing-explorer">
+      <GraphingExplorer
+        activityId={activityId}
+        mode={mode}
+        variant="plot_from_equation"
+        equation="y = x^2"
+        onSubmit={handleSubmit}
+      />
+    </div>
   );
 }
