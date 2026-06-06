@@ -4,20 +4,20 @@
 
 > **Red baseline:** 495 functions with NULL summaries (147 exported + 348 internal). See [`phase-1-red-baseline.md`](./phase-1-red-baseline.md). Guard script: `measure/tracks/jsdoc-comments_20260526/scripts/check-jsdoc-coverage.sh`.
 
-- [~] Task 1.1: Add JSDoc to exported functions in BM2 `lib/` [red: 4f873ab4]
-    - [ ] Run `grep -rn "export function\|export async function" apps/bus-math-v2/lib/` to identify exported functions
-    - [ ] Add standard JSDoc (summary, @param, @returns, @throws) to each exported function
-    - [ ] Commit: `docs(bus-math-v2): Add JSDoc to exported functions in lib/`
-- [~] Task 1.2: Add JSDoc to internal functions in BM2 `lib/` [red: 4f873ab4]
-    - [ ] Run `grep -rn "^function\|^async function\|^const .* = (" apps/bus-math-v2/lib/` to identify internal functions
-    - [ ] Add standard JSDoc to each internal function
-    - [ ] Commit: `docs(bus-math-v2): Add JSDoc to internal functions in lib/`
-- [ ] Task 1.3: Verify phase
-    - [ ] Run `npm run lint --workspace=apps/bus-math-v2`
-    - [ ] Run `npm run test --workspace=apps/bus-math-v2`
-    - [ ] Run `bash measure/tracks/jsdoc-comments_20260526/scripts/check-jsdoc-coverage.sh` — must exit 0 (0 NULL summaries in BM2 lib/)
-    - [ ] Run `build-graph scan . ./graph.db` to refresh graph
-    - [ ] Commit: `measure(checkpoint): Checkpoint end of Phase 1`
+- [x] Task 1.1: Add JSDoc to exported functions in BM2 `lib/` [red: 4f873ab4] [green: b18b3ce6]
+    - [x] Run `grep -rn "export function\|export async function" apps/bus-math-v2/lib/` to identify exported functions
+    - [x] Add standard JSDoc (summary, @param, @returns, @throws) to each exported function
+    - [x] Commit: `docs(bus-math-v2): Add JSDoc to exported functions in lib/`
+- [x] Task 1.2: Add JSDoc to internal functions in BM2 `lib/` [red: 4f873ab4] [green: b18b3ce6]
+    - [x] Run `grep -rn "^function\|^async function\|^const .* = (" apps/bus-math-v2/lib/` to identify internal functions
+    - [x] Add standard JSDoc to each internal function
+    - [x] Commit: `docs(bus-math-v2): Add JSDoc to internal functions in lib/`
+- [x] Task 1.3: Verify phase [green: b18b3ce6]
+    - [x] Run `npm run lint --workspace=apps/bus-math-v2` — pre-existing errors only (harness.test.tsx, RendererPreview.tsx)
+    - [x] Run `npm run test --workspace=apps/bus-math-v2` — 346/350 files pass; 4 failures are pre-existing (UserMenu, convex-provider)
+    - [x] Run `bash measure/tracks/jsdoc-comments_20260526/scripts/check-jsdoc-coverage.sh` — PASS: 0 NULL summaries
+    - [x] Run `build-graph scan . ./graph.db` — graph refreshed
+    - [x] Commit: `measure(checkpoint): Checkpoint end of Phase 1`
 - [ ] Task: Measure - User Manual Verification 'Phase 1: BM2 lib/' (Protocol in workflow.md)
 
 ## Phase 2: BM2 `components/` — 399 functions
