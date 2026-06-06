@@ -20,6 +20,10 @@ Verification substitute for Doctor: `node scripts/check-monorepo-boundaries.mjs`
 - [ ] Task: Measure - User Manual Verification 'Phase 1 — Audit Contract & Baseline' (Protocol in workflow.md) — deferred to supervisor after Red+Green land
 
 Phase 1 Red SHA: `ec6b97df` (test(audit-contract): add Red-phase TDD suite for dependency audit contract).
+Follow-up fix: `93acaf9a` removed `scripts/audit/vitest.config.ts` and `scripts/audit/tsconfig.json` to honor the Red-phase boundary (only test files and Measure docs may be added in this phase). The suite is runnable with vitest CLI flags alone — no project-local config required:
+
+  npx vitest run scripts/audit/__tests__/audit-contract.test.ts
+
 Suite is Red on missing `scripts/audit/audit-contract.ts`; Green is owed by a separate commit.
 
 ## Phase 2 — Urgent Security Remediation
