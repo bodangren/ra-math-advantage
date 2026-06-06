@@ -9,7 +9,7 @@ const mockCookies = vi.fn(() => Promise.resolve({ set: mockCookiesSet }));
 vi.mock('next/headers', () => ({ cookies: mockCookies }));
 vi.mock('@/lib/convex/server', () => ({
   fetchInternalQuery: mockFetchInternalQuery,
-  internal: { auth: { getCredentialByUsername: 'auth:getCredentialByUsername' } },
+  internal: { auth: { getCredentialByUsername: 'auth:getCredentialByUsername', getCredentialByUsernameIncludingInactive: 'auth:getCredentialByUsernameIncludingInactive' } },
 }));
 vi.mock('@math-platform/core-auth', () => ({
   signSessionToken: mockSignSessionToken,
@@ -59,6 +59,7 @@ describe('POST /api/auth/login', () => {
       passwordHash: 'hash',
       passwordSalt: 'salt',
       passwordHashIterations: 120000,
+      isActive: true,
     });
     mockVerifyPassword.mockResolvedValue(false);
     const { POST } = await import('@/app/api/auth/login/route');
@@ -71,6 +72,29 @@ describe('POST /api/auth/login', () => {
     expect(res.status).toBe(401);
   });
 
+  it('returns 403 when credential is deactivated', async () => {
+    mockFetchInternalQuery.mockResolvedValue({
+      profileId: 'p1',
+      username: 'deactivated',
+      role: 'student',
+      organizationId: 'org1',
+      passwordHash: 'hash',
+      passwordSalt: 'salt',
+      passwordHashIterations: 120000,
+      isActive: false,
+    });
+    const { POST } = await import('@/app/api/auth/login/route');
+    const req = new Request('http://localhost/api/auth/login', {
+      method: 'POST',
+      body: JSON.stringify({ username: 'deactivated', password: 'secret' }),
+      headers: { 'Content-Type': 'application/json' },
+    });
+    const res = await POST(req);
+    expect(res.status).toBe(403);
+    const body = await res.json();
+    expect(body.code).toBe('deactivated');
+  });
+
   it('returns 200 and sets cookie on valid credentials', async () => {
     mockFetchInternalQuery.mockResolvedValue({
       profileId: 'p1',
@@ -80,6 +104,7 @@ describe('POST /api/auth/login', () => {
       passwordHash: 'hash',
       passwordSalt: 'salt',
       passwordHashIterations: 120000,
+      isActive: true,
     });
     mockVerifyPassword.mockResolvedValue(true);
     const { POST } = await import('@/app/api/auth/login/route');

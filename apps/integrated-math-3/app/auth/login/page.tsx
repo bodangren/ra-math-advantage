@@ -36,7 +36,10 @@ export default function LoginPage() {
 
       <form onSubmit={handleSubmit} data-testid="login-form" className="space-y-4">
         {error && (
-          <div className="rounded-md bg-destructive/10 px-4 py-3 text-sm text-destructive">
+          <div
+            className="rounded-md bg-destructive/10 px-4 py-3 text-sm text-destructive"
+            {...(error === 'Account is deactivated' ? { 'data-testid': 'deactivated-login-error' } : {})}
+          >
             {error}
           </div>
         )}

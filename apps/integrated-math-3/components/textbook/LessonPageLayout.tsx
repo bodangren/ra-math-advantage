@@ -38,7 +38,7 @@ export function LessonPageLayout({
     : 0;
 
   return (
-    <div className="min-h-screen bg-background flex flex-col">
+    <div className="min-h-screen bg-background flex flex-col" data-testid="lesson-renderer">
       {/* Skip link for lesson content */}
       <a
         href="#lesson-content"
@@ -71,7 +71,7 @@ export function LessonPageLayout({
               <span>·</span>
               <span>Lesson {lessonNumber}</span>
             </div>
-            <h1 className="font-display text-xl font-semibold text-foreground truncate">
+            <h1 className="font-display text-xl font-semibold text-foreground truncate" data-testid="lesson-title">
               {lessonTitle}
             </h1>
             {showTeacherPreviewBadge && (

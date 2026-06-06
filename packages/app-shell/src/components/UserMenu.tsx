@@ -83,6 +83,7 @@ export function UserMenu({
           <div className="h-px bg-border my-1" />
           <button
             onClick={handleLogout}
+            data-testid="logout-button"
             className="w-full flex items-center rounded-sm px-2 py-1.5 text-sm hover:bg-accent text-left"
           >
             Log out

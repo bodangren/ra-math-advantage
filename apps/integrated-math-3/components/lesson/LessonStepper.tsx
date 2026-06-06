@@ -30,7 +30,7 @@ export function LessonStepper({ phases, currentPhase, onPhaseClick, className }:
   };
 
   return (
-    <nav aria-label="Lesson phases" className={cn('w-full', className)}>
+    <nav aria-label="Lesson phases" className={cn('w-full', className)} data-testid="phase-stepper">
       {/* Desktop: horizontal stepper with connectors */}
       <ol className="hidden md:flex items-center justify-between gap-2">
         {phases.map((phase, idx) => (
@@ -109,6 +109,7 @@ function StepButton({
         aria-label={`Phase ${phase.phaseNumber}: ${phase.title}`}
         aria-current={isCurrent ? 'step' : undefined}
         title={phase.status === 'locked' ? 'Complete previous phase to unlock' : phase.title}
+        data-testid="phase-stepper-dot"
         className={cn(
           'flex items-center justify-center rounded-full border-2 transition-all',
           'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2',

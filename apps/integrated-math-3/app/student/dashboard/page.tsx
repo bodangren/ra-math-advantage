@@ -49,7 +49,7 @@ export default async function StudentDashboardPage({ searchParams }: PageProps) 
         <p className="text-sm text-muted-foreground font-mono-num">
           Welcome back, {claims.username}
         </p>
-        <h1 className="text-3xl font-display font-bold text-foreground">Dashboard</h1>
+        <h1 className="text-3xl font-display font-bold text-foreground" data-testid="student-dashboard-heading">Dashboard</h1>
       </div>
 
       {/* Summary strip */}

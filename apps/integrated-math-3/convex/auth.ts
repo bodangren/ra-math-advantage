@@ -32,6 +32,34 @@ export const getCredentialByUsername = internalQuery({
   },
 });
 
+export const getCredentialByUsernameIncludingInactive = internalQuery({
+  args: {
+    username: v.string(),
+  },
+  handler: async (ctx, args) => {
+    const credential = await ctx.db
+      .query('auth_credentials')
+      .withIndex('by_username', (q) => q.eq('username', args.username))
+      .unique();
+
+    if (!credential) {
+      return null;
+    }
+
+    return {
+      id: credential._id,
+      profileId: credential.profileId,
+      username: credential.username,
+      role: credential.role,
+      organizationId: credential.organizationId,
+      passwordHash: credential.passwordHash,
+      passwordSalt: credential.passwordSalt,
+      passwordHashIterations: credential.passwordHashIterations,
+      isActive: credential.isActive,
+    };
+  },
+});
+
 export const getAccountSettingsContext = internalQuery({
   args: {
     profileId: v.id("profiles"),

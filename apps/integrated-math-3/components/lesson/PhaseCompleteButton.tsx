@@ -97,13 +97,14 @@ export function PhaseCompleteButton({
   }, [isDisabled, canSkip, lessonId, phaseNumber, onStatusChange]);
 
   return (
-    <div className={cn('w-full max-w-sm space-y-2', className)}>
+    <div className={cn('w-full max-w-sm space-y-2', className)} data-testid="phase-complete-status" data-status={status}>
       <Button
         type="button"
         variant={isCompleted ? 'outline' : 'default'}
         aria-pressed={isCompleted}
         disabled={isDisabled}
         onClick={handleComplete}
+        data-testid="phase-complete-button"
         className={cn(
           'w-full justify-center font-semibold',
           isCompleted ? 'border-green-300 text-green-700 dark:text-green-300' : '',

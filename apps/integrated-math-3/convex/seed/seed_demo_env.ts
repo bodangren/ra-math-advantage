@@ -199,6 +199,50 @@ export const seedDemoEnv = internalMutation({
       });
     }
 
+    // Seed deactivated student for E2E auth tests
+    const deactivatedUsername = 'deactivated@demo';
+    const deactivatedDisplayName = 'Deactivated Student';
+    const deactivatedPassword = 'Demo1234!';
+    const deactivatedSalt = generateSalt();
+    const deactivatedPasswordHash = await hashPassword(deactivatedPassword, deactivatedSalt);
+
+    const existingDeactivatedProfile = await ctx.db
+      .query('profiles')
+      .withIndex('by_username', (q) => q.eq('username', deactivatedUsername))
+      .unique();
+
+    const deactivatedProfileId: Id<'profiles'> = existingDeactivatedProfile
+      ? existingDeactivatedProfile._id
+      : await ctx.db.insert('profiles', {
+          organizationId,
+          username: deactivatedUsername,
+          role: 'student',
+          displayName: deactivatedDisplayName,
+          metadata: { isDeactivated: true },
+          createdAt: now,
+          updatedAt: now,
+        });
+
+    const existingDeactivatedAuth = await ctx.db
+      .query('auth_credentials')
+      .withIndex('by_username', (q) => q.eq('username', deactivatedUsername))
+      .unique();
+
+    if (!existingDeactivatedAuth) {
+      await ctx.db.insert('auth_credentials', {
+        profileId: deactivatedProfileId,
+        username: deactivatedUsername,
+        role: 'student',
+        organizationId,
+        passwordHash: deactivatedPasswordHash,
+        passwordSalt: deactivatedSalt,
+        passwordHashIterations: PASSWORD_HASH_ITERATIONS,
+        isActive: false,
+        createdAt: now,
+        updatedAt: now,
+      });
+    }
+
     const existingClass = await ctx.db
       .query('classes')
       .withIndex('by_teacher', (q) => q.eq('teacherId', teacherProfileId))

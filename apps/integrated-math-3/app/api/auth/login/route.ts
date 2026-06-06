@@ -32,9 +32,13 @@ export async function POST(request: Request) {
   }
 
   try {
-    const credential = await fetchInternalQuery(internal.auth.getCredentialByUsername, { username });
+    const credential = await fetchInternalQuery(internal.auth.getCredentialByUsernameIncludingInactive, { username });
     if (!credential) {
       return NextResponse.json({ error: 'Invalid login credentials' }, { status: 401 });
+    }
+
+    if (!credential.isActive) {
+      return NextResponse.json({ error: 'Account is deactivated', code: 'deactivated' }, { status: 403 });
     }
 
     const isValidPassword = await verifyPassword(password, {
