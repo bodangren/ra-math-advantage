@@ -82,6 +82,122 @@ function runDeterminismCheck(gen: GeneratorLike<unknown>, numSeeds: number): Ver
   return { name: 'determinism', passed: true };
 }
 
+function runUniqueAnswerCheck(
+  gen: GeneratorLike<unknown>,
+  numSeeds: number,
+  oracle?: (output: GeneratorCorrectnessContract) => boolean,
+): VerifyGeneratorCheck {
+  for (let i = 0; i < numSeeds; i++) {
+    const input = { nodeId: 'test-node', seed: i, difficulty: 1 };
+    const output = gen.generate(input) as GeneratorCorrectnessContract;
+
+    // Skip if output doesn't conform to GeneratorCorrectnessContract
+    const rec = output as unknown as Record<string, unknown>;
+    if (!('correctAnswer' in rec)) {
+      continue;
+    }
+
+    if (output.correctAnswer === undefined || output.correctAnswer === null) {
+      return {
+        name: 'unique-answer',
+        passed: false,
+        message: `Missing correctAnswer for seed ${i}`,
+      };
+    }
+
+    if (oracle) {
+      if (!oracle(output)) {
+        return {
+          name: 'unique-answer',
+          passed: false,
+          message: `Oracle rejected correctAnswer for seed ${i}`,
+        };
+      }
+    }
+  }
+  return { name: 'unique-answer', passed: true };
+}
+
+function runDistractorValidityCheck(gen: GeneratorLike<unknown>, numSeeds: number): VerifyGeneratorCheck {
+  for (let i = 0; i < numSeeds; i++) {
+    const input = { nodeId: 'test-node', seed: i, difficulty: 1 };
+    const output = gen.generate(input) as GeneratorCorrectnessContract;
+
+    // Skip if output doesn't conform to GeneratorCorrectnessContract
+    const rec = output as unknown as Record<string, unknown>;
+    if (!('distractors' in rec)) {
+      continue;
+    }
+
+    if (!Array.isArray(output.distractors)) {
+      return {
+        name: 'distractor-validity',
+        passed: false,
+        message: `distractors is not an array for seed ${i}`,
+      };
+    }
+
+    const correct = output.correctAnswer;
+    const correctType = typeof correct;
+
+    const seen = new Set<unknown>([correct]);
+    for (const d of output.distractors) {
+      if (d === correct) {
+        return {
+          name: 'distractor-validity',
+          passed: false,
+          message: `Distractor collides with correctAnswer for seed ${i}`,
+        };
+      }
+      if (seen.has(d)) {
+        return {
+          name: 'distractor-validity',
+          passed: false,
+          message: `Duplicate distractor for seed ${i}`,
+        };
+      }
+      if (typeof d !== correctType) {
+        return {
+          name: 'distractor-validity',
+          passed: false,
+          message: `Distractor type mismatch for seed ${i}`,
+        };
+      }
+      seen.add(d);
+    }
+  }
+  return { name: 'distractor-validity', passed: true };
+}
+
+function runInvariantsCheck(gen: GeneratorLike<unknown>, numSeeds: number): VerifyGeneratorCheck {
+  for (let i = 0; i < numSeeds; i++) {
+    const input = { nodeId: 'test-node', seed: i, difficulty: 1 };
+    const output = gen.generate(input) as GeneratorCorrectnessContract;
+
+    // Skip if output doesn't conform to GeneratorCorrectnessContract
+    const rec = output as unknown as Record<string, unknown>;
+    if (!('invariants' in rec)) {
+      continue;
+    }
+
+    if (!output.invariants || !Array.isArray(output.invariants)) {
+      continue;
+    }
+
+    for (const raw of output.invariants) {
+      const inv = raw as { readonly name?: string; readonly passed?: boolean };
+      if (inv.passed === false) {
+        return {
+          name: 'invariants',
+          passed: false,
+          message: `Invariant "${inv.name ?? 'unknown'}" failed for seed ${i}`,
+        };
+      }
+    }
+  }
+  return { name: 'invariants', passed: true };
+}
+
 // ── Public API ───────────────────────────────────────────────────────
 
 export function verifyGenerator(
@@ -91,8 +207,17 @@ export function verifyGenerator(
   const numSeeds = opts.numSeeds ?? 1;
   const checks: VerifyGeneratorCheck[] = [];
 
-  // Determinism check (always runs)
+  // FR2: Determinism check (always runs)
   checks.push(runDeterminismCheck(gen, numSeeds));
+
+  // FR3: Unique correct answer check
+  checks.push(runUniqueAnswerCheck(gen, numSeeds, opts.oracle));
+
+  // FR4: Distractor validity check
+  checks.push(runDistractorValidityCheck(gen, numSeeds));
+
+  // FR5: Solvability / range invariants check
+  checks.push(runInvariantsCheck(gen, numSeeds));
 
   const errors: VerifyGeneratorError[] = checks
     .filter((c) => !c.passed)
