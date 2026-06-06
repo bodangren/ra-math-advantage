@@ -138,6 +138,16 @@ export type {
 
 export {
   CALIBRATION_STATUS_VALUES,
+  extractObservations,
+  buildContingencyTable,
+  computeNecessity,
+  computeInformativeness,
+  posteriorMean,
+  posteriorVariance,
+  updatePosterior,
+  applyDecay,
+  bucketVariance,
+  classifyStatus,
   buildReviewQueueItem,
   buildReviewQueue,
 } from './srs/edge-calibration';
