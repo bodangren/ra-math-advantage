@@ -11,9 +11,9 @@ Verification: `npm run ws:im3:lint`/`:test` + `tsc --noEmit`.
 
 ## Phase 2 — Export Panel UI
 
-- [~] Task: Build teacher-only export panel (dataset/scope/format controls), role-gated (TDD on render + guard) — Red committed
-- [~] Task: Wire client download with descriptive filename — Red committed
-- [~] Task: Empty/large/error states (TDD) — Red committed
+- [~] Task: Build teacher-only export panel (dataset/scope/format controls), role-gated (TDD on render + guard) — Red committed [red: ee9c046e]
+- [~] Task: Wire client download with descriptive filename — Red committed [red: ee9c046e]
+- [~] Task: Empty/large/error states (TDD) — Red committed [red: ee9c046e]
 - [ ] Task: Measure - User Manual Verification 'Phase 2' (Protocol in workflow.md)
 
 ## Phase 3 — Authorization & Verification
