@@ -83,7 +83,19 @@ export const seedAll = internalAction({
     // 1. Seed org, teacher, student
     await ctx.runMutation(seedInternal.seedUnits, {});
 
-    // 2. Seed all lesson content (modules 1-14)
+    // 2. Seed standards
+    try {
+      await ctx.runMutation(seedInternal.seedStandards, {});
+      results.standards.push({ module: 0, success: true });
+    } catch (error) {
+      results.standards.push({
+        module: 0,
+        success: false,
+        error: error instanceof Error ? error.message : "Unknown error",
+      });
+    }
+
+    // 3. Seed all lesson content (modules 1-14)
     const lessonSeedFns: Array<{ module: number; fn: string }> = [
       { module: 1, fn: "seedModule1Lessons" },
       { module: 2, fn: "seedModule2Lessons" },

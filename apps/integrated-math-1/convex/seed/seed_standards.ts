@@ -64,13 +64,6 @@ export const seedStandards = internalMutation({
         category: "Statistics and Probability",
         isActive: true,
       },
-      {
-        code: "6.SP.B.5d",
-        description: "Relate the choice of measures of center and variability to the shape of the data distribution and the context in which the data were gathered",
-        studentFriendlyDescription: "I can choose the right way to describe data based on its shape.",
-        category: "Statistics and Probability",
-        isActive: true,
-      },
 
       // Expressions and Equations — Grade 7 (7.EE)
       {
