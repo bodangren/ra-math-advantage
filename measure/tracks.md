@@ -923,8 +923,8 @@ Sixteen candidate tracks identified from a full-roadmap review. Each is registry
    *Remediate the issues found by the accessibility audit (keyboard nav, screen-reader, contrast, activity-component a11y). Audit track is "PHASE 1 COMPLETE (baseline only)" — findings exist, none fixed. Size: M. Depends on: accessibility-audit baseline (done). Readiness: ready now.*
    *Link: [./tracks/wcag-aa-remediation_20260605/](./tracks/wcag-aa-remediation_20260605/)*
 
-- [ ] **Track: E2E Coverage Expansion** — **PLANNED**
-   *Expand Playwright E2E beyond the 9 infrastructure tests to fully cover login, lesson nav, activity interaction, daily practice, and teacher dashboard. E2E track is "INFRASTRUCTURE COMPLETE." Size: M. Depends on: e2e-student-flows (infra done). Readiness: ready now.*
+- [x] **Track: E2E Coverage Expansion** — **COMPLETED**
+   *Expand Playwright E2E beyond the 9 infrastructure tests to fully cover login, lesson nav, activity interaction, daily practice, and teacher dashboard. All 4 phases complete: deterministic seed & selectors, auth & lesson flow, activities & daily practice, teacher flow & CI. Review commit: `41a35a7c`.*
    *Link: [./tracks/e2e-coverage-expansion_20260605/](./tracks/e2e-coverage-expansion_20260605/)*
 
 - [ ] **Track: Data Export Teacher UI** — **PLANNED**
