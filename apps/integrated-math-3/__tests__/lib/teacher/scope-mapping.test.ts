@@ -202,4 +202,35 @@ describe("resolveExportScope", () => {
       expect(resolved.query).toMatch(/^exports\.[a-zA-Z]+$/);
     }
   });
+
+  it("throws when given an unknown dataset literal (defensive contract)", () => {
+    expect(() =>
+      resolveExportScope({
+        dataset: "unknown",
+        studentId: STUDENT_ID,
+      } as unknown as ExportScope),
+    ).toThrow();
+  });
+
+  it("excludes limit from the student dataset args even when provided in scope", () => {
+    const resolved = resolveExportScope({
+      dataset: "student",
+      studentId: STUDENT_ID,
+      limit: 50,
+    });
+
+    expect(resolved.query).toBe("exports.getStudentExport");
+    expect(resolved.args).not.toHaveProperty("limit");
+  });
+
+  it("excludes limit from the class dataset args even when provided in scope", () => {
+    const resolved = resolveExportScope({
+      dataset: "class",
+      classId: CLASS_ID,
+      limit: 50,
+    });
+
+    expect(resolved.query).toBe("exports.getClassExport");
+    expect(resolved.args).not.toHaveProperty("limit");
+  });
 });

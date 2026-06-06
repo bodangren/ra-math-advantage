@@ -157,4 +157,47 @@ describe("buildExportFilename", () => {
     expect(filename.startsWith(" ")).toBe(false);
     expect(filename.startsWith("\u00c1lgebra")).toBe(true);
   });
+
+  it("produces a different filename when only the format changes (csv vs json)", () => {
+    const base = {
+      className: "Algebra 1",
+      dataset: "class" as ExportDataset,
+      date: NOV_14_2023_UTC,
+    };
+
+    const csv = buildExportFilename({ ...base, format: "csv" });
+    const json = buildExportFilename({ ...base, format: "json" });
+
+    expect(csv).not.toBe(json);
+    expect(csv.endsWith(".csv")).toBe(true);
+    expect(json.endsWith(".json")).toBe(true);
+  });
+
+  it("sanitizes tabs, newlines, and carriage returns in the class name as whitespace", () => {
+    const filename = buildExportFilename({
+      className: "Algebra\t1\nSection\r2",
+      dataset: "student",
+      format: "csv",
+      date: NOV_14_2023_UTC,
+    });
+
+    expect(filename).toBe("Algebra 1 Section 2-student-2023-11-14.csv");
+    expect(filename).not.toMatch(/[\t\n\r]/);
+  });
+
+  it("never emits filesystem-unsafe whitespace characters in the sanitized output", () => {
+    const filename = buildExportFilename({
+      className: "  Algebra\t\t1\n\n",
+      dataset: "submissions",
+      format: "json",
+      date: JAN_5_2024_UTC,
+    });
+
+    expect(filename).not.toContain("\t");
+    expect(filename).not.toContain("\n");
+    expect(filename).not.toContain("\r");
+    expect(filename).not.toContain("\0");
+    expect(filename.startsWith(" ")).toBe(false);
+    expect(filename.startsWith("Algebra")).toBe(true);
+  });
 });
