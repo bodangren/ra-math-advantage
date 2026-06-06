@@ -132,8 +132,12 @@ export type {
   EdgeCalibration,
   CalibrationNecessityResult,
   CalibrationReviewQueueItem,
+  ReviewQueueBuildInput,
+  ReviewQueueBuildOptions,
 } from './srs/edge-calibration';
 
 export {
   CALIBRATION_STATUS_VALUES,
+  buildReviewQueueItem,
+  buildReviewQueue,
 } from './srs/edge-calibration';

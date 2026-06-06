@@ -257,6 +257,26 @@ export function bucketVariance(
 }
 
 // ============================================
+// Review Queue Build Types (FR6)
+// ============================================
+
+export type ReviewQueueBuildInput = {
+  edgeId: string;
+  authoredWeight: number;
+  authoredConfidence: string;
+  calibration: EdgeCalibration;
+  observations: ReadonlyArray<CalibrationObservation>;
+  derived?: boolean;
+};
+
+export type ReviewQueueBuildOptions = {
+  now?: number;
+  weightThreshold?: number;
+  confidenceThreshold?: number;
+  includeDerived?: boolean;
+};
+
+// ============================================
 // Status Classification (FR5) — Confounding Guardrail
 // ============================================
 
@@ -286,4 +306,83 @@ export function classifyStatus(
     return { ...state, status: 'refuted' };
   }
   return { ...state, status: 'untested' };
+}
+
+// ============================================
+// Review Queue Builder (FR6)
+// ============================================
+
+const CONFIDENCE_ORDINAL: Record<string, number> = {
+  none: 0,
+  low: 0,
+  medium: 1,
+  high: 2,
+};
+
+const DEFAULT_WEIGHT_THRESHOLD = 0.05;
+const DEFAULT_CONFIDENCE_THRESHOLD = 1.0;
+const MAX_CONFIDENCE_DISTANCE = 2;
+
+function confidenceOrdinal(conf: string): number {
+  return CONFIDENCE_ORDINAL[conf] ?? 0;
+}
+
+function meanToConfidence(mean: number): string {
+  if (mean < 0.33) return 'low';
+  if (mean < 0.67) return 'medium';
+  return 'high';
+}
+
+export function buildReviewQueueItem(
+  input: ReviewQueueBuildInput,
+  opts?: ReviewQueueBuildOptions,
+): CalibrationReviewQueueItem | null {
+  if (input.calibration.status === 'untested') return null;
+  if (input.derived && !opts?.includeDerived) return null;
+
+  const weightThreshold = opts?.weightThreshold ?? DEFAULT_WEIGHT_THRESHOLD;
+  const confidenceThreshold = opts?.confidenceThreshold ?? DEFAULT_CONFIDENCE_THRESHOLD;
+
+  const calibratedWeight = posteriorMean(input.calibration.alpha, input.calibration.beta);
+  const calibratedConfidence = meanToConfidence(calibratedWeight);
+
+  const weightDiff = Math.abs(input.authoredWeight - calibratedWeight);
+  const confDistance = Math.abs(
+    confidenceOrdinal(input.authoredConfidence) - confidenceOrdinal(calibratedConfidence),
+  );
+
+  const divergence = Math.max(weightDiff, confDistance / MAX_CONFIDENCE_DISTANCE);
+
+  if (weightDiff <= weightThreshold && confDistance <= confidenceThreshold) {
+    return null;
+  }
+
+  const table = buildContingencyTable(input.observations);
+
+  return {
+    edgeId: input.edgeId,
+    contingencyTable: table,
+    authoredWeight: input.authoredWeight,
+    authoredConfidence: input.authoredConfidence,
+    calibratedWeight,
+    calibratedConfidence,
+    necessity: computeNecessity(table),
+    informativeness: computeInformativeness(table),
+    divergence,
+    flaggedAt: opts?.now ?? Date.now(),
+  };
+}
+
+export function buildReviewQueue(
+  inputs: ReadonlyArray<ReviewQueueBuildInput>,
+  opts?: ReviewQueueBuildOptions,
+): CalibrationReviewQueueItem[] {
+  const queue: CalibrationReviewQueueItem[] = [];
+  for (const input of inputs) {
+    const item = buildReviewQueueItem(input, opts);
+    if (item !== null) {
+      queue.push(item);
+    }
+  }
+  return queue;
 }

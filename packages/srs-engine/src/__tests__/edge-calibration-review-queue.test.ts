@@ -176,6 +176,7 @@ describe('buildReviewQueueItem (FR6, AC6)', () => {
         makeObs(false, false),
         makeObs(false, false),
         makeObs(false, false),
+        makeObs(false, false),
       ],
       authoredWeight: 0.9,
       authoredConfidence: 'high',
