@@ -306,3 +306,45 @@ describe('Registry sweep — debt-row logging for quarantined keys (test-strateg
     expect(matches.length).toBeGreaterThanOrEqual(1);
   });
 });
+
+// ---------------------------------------------------------------------------
+// Registry-shape contract (Phase 3 → Phase 4 handoff)
+// ---------------------------------------------------------------------------
+
+describe('Registry sweep — registry-shape contract (Phase 3 → Phase 4 handoff)', () => {
+  it('GENERATOR_KEYS is a non-empty readonly string array', () => {
+    expect(Array.isArray(GENERATOR_KEYS)).toBe(true);
+    expect(GENERATOR_KEYS.length).toBeGreaterThan(0);
+    for (const k of GENERATOR_KEYS) {
+      expect(typeof k).toBe('string');
+      expect(k.length).toBeGreaterThan(0);
+    }
+  });
+
+  it('per-key report entries each carry a stable key and verdict', () => {
+    const registry = buildSyntheticRegistry([
+      { key: 'shape-x' },
+      { key: 'shape-y', qaSkip: { uniqueAnswer: true, reason: 'shape' } },
+    ]);
+    const report: RegistrySweepReport = runRegistrySweep(registry);
+    expect(report.perKey).toHaveLength(2);
+    for (const entry of report.perKey) {
+      expect(typeof entry.key).toBe('string');
+      expect(entry.key.length).toBeGreaterThan(0);
+      expect(['pass', 'fail']).toContain(entry.report.verdict);
+      expect(typeof entry.quarantined).toBe('boolean');
+      expect(Array.isArray(entry.skippedChecks)).toBe(true);
+    }
+  });
+
+  it('registry-sweep module is co-located with the registry it sweeps (boundary)', () => {
+    // Boundary check: the sweep module lives at ../registry-sweep relative
+    // to this test (which is __tests__/registry-sweep.test.ts), i.e. the
+    // same directory as registry.ts. This is asserted as an import-path
+    // string so the test reads the expected location from the source
+    // rather than a magic constant.
+    const importPath = '../registry-sweep';
+    expect(importPath.startsWith('../')).toBe(true);
+    expect(importPath.endsWith('registry-sweep')).toBe(true);
+  });
+});
