@@ -12,8 +12,8 @@ Verification: `npm run ws:im3:test` + E2E job + `tsc --noEmit`.
 
 ## Phase 2 — Auth & Student Lesson Flow
 
-- [ ] Task: E2E specs for login/logout/role redirects/deactivated denial (Red→Green)
-- [ ] Task: E2E spec for full lesson flow incl. reload-persistence (Red→Green)
+- [~] Task: E2E specs for login/logout/role redirects/deactivated denial (Red→Green)
+- [~] Task: E2E spec for full lesson flow incl. reload-persistence (Red→Green)
 - [ ] Task: Measure - User Manual Verification 'Phase 2' (Protocol in workflow.md)
 
 ## Phase 3 — Activities & Daily Practice

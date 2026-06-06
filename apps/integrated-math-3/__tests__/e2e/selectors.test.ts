@@ -79,6 +79,38 @@ describe('e2e/selectors module — Phase 1 Red', () => {
         ).toBeGreaterThan(0);
       }
     });
+
+    it('exposes the Phase 2 selector set the auth and lesson-flow specs depend on', () => {
+      // Phase 2 Red: the auth (logout/role-redirect/deactivated-denial) and
+      // lesson-flow (full lesson + reload-persistence) specs use these keys.
+      // The implementation must adopt them via data-testid={SEL.x}; until it
+      // does, the E2E specs fail to find elements — which is the Red state.
+      const requiredKeys: Array<keyof typeof SEL> = [
+        'studentDashboardHeading',
+        'loginError',
+        'logoutButton',
+        'userMenu',
+        'lessonRenderer',
+        'lessonHeader',
+        'lessonTitle',
+        'phaseStepper',
+        'phaseStepperDot',
+        'phaseCompleteButton',
+        'phaseCompleteStatus',
+        'lessonCompleteScreen',
+        'lessonCompleteContinueBtn',
+        'deactivatedLoginError',
+      ];
+
+      for (const key of requiredKeys) {
+        expect(SEL[key], `SEL.${String(key)} should be defined`).toBeDefined();
+        expect(typeof SEL[key], `SEL.${String(key)} should be a string`).toBe('string');
+        expect(
+          (SEL[key] as string).length,
+          `SEL.${String(key)} should be a non-empty string`,
+        ).toBeGreaterThan(0);
+      }
+    });
   });
 
   describe('E2E_SEED_KEY is a stable identifier', () => {
