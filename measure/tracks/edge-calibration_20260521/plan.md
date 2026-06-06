@@ -17,12 +17,12 @@ Depends on: Track 1 (proficiency verdicts, knowledge state).
 
 ## Phase 2 — Calibration Core
 
-- [ ] Task: Implement observation extraction (TDD)
+- [~] Task: Implement observation extraction (TDD)
     - [ ] Pair per-student objective-proficiency verdicts into (A, B) observations
-- [ ] Task: Implement contingency table + necessity + informativeness (TDD)
-- [ ] Task: Implement Beta-Bernoulli posterior update + recency decay (TDD)
+- [~] Task: Implement contingency table + necessity + informativeness (TDD)
+- [~] Task: Implement Beta-Bernoulli posterior update + recency decay (TDD)
     - [ ] Incremental α/β update; posterior mean → weight; variance → confidence; λ decay
-- [ ] Task: Implement confounding guardrail and untested classification (TDD)
+- [~] Task: Implement confounding guardrail and untested classification (TDD)
 - [ ] Task: Measure - User Manual Verification 'Phase 2' (Protocol in workflow.md)
 
 ## Phase 3 — Review Queue and Persistence
