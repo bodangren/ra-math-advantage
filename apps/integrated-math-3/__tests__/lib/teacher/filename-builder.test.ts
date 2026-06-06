@@ -142,4 +142,19 @@ describe("buildExportFilename", () => {
     expect(filename).toContain("-2024-01-05.");
     expect(filename).not.toContain("2024-1-5");
   });
+
+  it("combines all sanitization rules: trim, collapse whitespace, replace slashes, preserve unicode", () => {
+    const filename = buildExportFilename({
+      className: "  \u00c1lgebra   /  1  ",
+      dataset: "student",
+      format: "csv",
+      date: NOV_14_2023_UTC,
+    });
+
+    expect(filename).toBe("\u00c1lgebra - 1-student-2023-11-14.csv");
+    expect(filename).not.toMatch(/\s\s/);
+    expect(filename).not.toContain("/");
+    expect(filename.startsWith(" ")).toBe(false);
+    expect(filename.startsWith("\u00c1lgebra")).toBe(true);
+  });
 });

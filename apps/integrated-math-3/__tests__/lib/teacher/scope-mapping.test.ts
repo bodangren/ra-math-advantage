@@ -162,4 +162,44 @@ describe("resolveExportScope", () => {
     ]);
     expect(queries.size).toBe(3);
   });
+
+  it("returns an object with exactly the query and args keys and no extra fields, for every dataset", () => {
+    const student = resolveExportScope({
+      dataset: "student",
+      studentId: STUDENT_ID,
+    });
+    const classResolved = resolveExportScope({
+      dataset: "class",
+      classId: CLASS_ID,
+    });
+    const submissions = resolveExportScope({
+      dataset: "submissions",
+      classId: CLASS_ID,
+      endDate: 999,
+    });
+
+    for (const resolved of [student, classResolved, submissions]) {
+      expect(Object.keys(resolved).sort()).toEqual(["args", "query"]);
+    }
+  });
+
+  it("names each query under the exports module path (e.g. exports.getXxxExport)", () => {
+    const student = resolveExportScope({
+      dataset: "student",
+      studentId: STUDENT_ID,
+    });
+    const classResolved = resolveExportScope({
+      dataset: "class",
+      classId: CLASS_ID,
+    });
+    const submissions = resolveExportScope({
+      dataset: "submissions",
+      classId: CLASS_ID,
+      endDate: 999,
+    });
+
+    for (const resolved of [student, classResolved, submissions]) {
+      expect(resolved.query).toMatch(/^exports\.[a-zA-Z]+$/);
+    }
+  });
 });
