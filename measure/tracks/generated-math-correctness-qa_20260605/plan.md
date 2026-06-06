@@ -6,8 +6,8 @@ Verification: boundary lints + `tsc --noEmit` + harness test suite.
 
 ## Phase 1 — Correctness Contract & Harness API
 
-- [ ] Task: Define the generator correctness contract type (seed → problem/answer/distractors/invariants)
-- [ ] Task: Define `verifyGenerator(gen, opts)` API + result/report shape (Contract-First)
+- [~] Task: Define the generator correctness contract type (seed → problem/answer/distractors/invariants)
+- [~] Task: Define `verifyGenerator(gen, opts)` API + result/report shape (Contract-First)
 - [ ] Task: Measure - User Manual Verification 'Phase 1' (Protocol in workflow.md)
 
 ## Phase 2 — Core Properties (TDD)
