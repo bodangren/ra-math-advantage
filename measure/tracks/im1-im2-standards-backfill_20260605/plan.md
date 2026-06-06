@@ -5,8 +5,8 @@ Verification: per-app `tsc --noEmit` + seed integrity test.
 
 ## Phase 1 — Integrity Check & Source Inventory
 
-- [ ] Task: Write a failing integrity check that lists undefined referenced codes for IM1 + IM2 (Red)
-- [ ] Task: Inventory canonical standards sources for IM1 and IM2; record provenance
+- [~] Task: Write a failing integrity check that lists undefined referenced codes for IM1 + IM2 (Red)
+- [~] Task: Inventory canonical standards sources for IM1 and IM2; record provenance
 - [ ] Task: Measure - User Manual Verification 'Phase 1' (Protocol in workflow.md)
 
 ## Phase 2 — IM1 Definitions
