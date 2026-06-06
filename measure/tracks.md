@@ -945,8 +945,8 @@ Sixteen candidate tracks identified from a full-roadmap review. Each is registry
 
 ### Tier 2 — Missing but high-leverage
 
-- [ ] **Track: Generated-Math Correctness QA** — **PLANNED**
-   *Property-based / golden-answer verification harness for deterministic generators: every generated instance must have a unique correct answer, wrong distractors, and a solvable configuration. Verified: zero such tests exist today. Should gate the T17–T19 generator program before ~450 generators ship math to students. Size: L. Depends on: none (start against existing generators). Readiness: ready now.*
+- [x] **Track: Generated-Math Correctness QA** — **COMPLETED**
+   *Property-based / golden-answer verification harness for deterministic generators. All 4 phases complete: contract & harness API (15 tests), core properties (134 tests), registry sweep (206 math-content + 134 practice-core tests), CI gate & verification. 163 practice-core tests pass. CI gate wired. Zero boundary violations.*
    *Link: [./tracks/generated-math-correctness-qa_20260605/](./tracks/generated-math-correctness-qa_20260605/)*
 
 - [ ] **Track: Vertical Slice Value Proof** — **PLANNED**
