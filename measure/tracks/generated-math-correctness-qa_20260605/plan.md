@@ -17,7 +17,7 @@ Verification: boundary lints + `tsc --noEmit` + harness test suite.
 - [x] Task: Distractor-validity property (wrong, distinct, typed) (Red→Green) [green: e51c7153]
 - [x] Task: Solvability/range invariant assertions (Red→Green) [green: e51c7153]
 - [x] Task: Negative tests — injected bad generator fails each property [green: e51c7153]
-- [ ] Task: Measure - User Manual Verification 'Phase 2' (Protocol in workflow.md)
+- [x] Task: Measure - User Manual Verification 'Phase 2' (Protocol in workflow.md) — All 134 tests pass (13 files). tsc clean. [checkpoint: 4eace0b4]
 
 ## Phase 3 — Registry Sweep
 
