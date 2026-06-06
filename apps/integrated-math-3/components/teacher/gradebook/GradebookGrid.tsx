@@ -35,7 +35,7 @@ export function GradebookGrid({ rows, lessons, onCellClick }: GradebookGridProps
   const sortedRows = sortRowsByName(rows);
 
   return (
-    <div className="rounded-xl border border-border overflow-x-auto">
+    <div className="rounded-xl border border-border overflow-x-auto" data-testid="teacher-gradebook">
       <table className="w-full text-xs">
         <thead className="bg-muted/50 border-b border-border">
           <tr>
@@ -76,6 +76,7 @@ export function GradebookGrid({ rows, lessons, onCellClick }: GradebookGridProps
                       onClick={() => onCellClick(row.studentId, cell.lesson.lessonId)}
                       className="block w-full hover:opacity-80 transition-opacity"
                       title={`${cell.lesson.lessonTitle} - ${cell.completionStatus}`}
+                      data-testid="teacher-gradebook-cell"
                     >
                       {cell.masteryLevel !== null ? `${cell.masteryLevel}%` : '—'}
                     </button>
@@ -84,6 +85,7 @@ export function GradebookGrid({ rows, lessons, onCellClick }: GradebookGridProps
                       href={`/teacher/students?id=${row.studentId}&lesson=${cellIndex}`}
                       className="block hover:opacity-80 transition-opacity"
                       title={`${cell.lesson.lessonTitle} - ${cell.completionStatus}`}
+                      data-testid="teacher-gradebook-cell"
                     >
                       {cell.masteryLevel !== null ? `${cell.masteryLevel}%` : '—'}
                     </Link>

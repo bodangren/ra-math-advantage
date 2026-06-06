@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { requireTeacherSessionClaims } from '@/lib/auth/server';
 import { fetchInternalQuery, internal } from '@/lib/convex/server';
+import { SubmissionReviewPanel } from '@/components/teacher/SubmissionReviewPanel';
 
 interface StudentRow {
   id: string;
@@ -83,6 +84,7 @@ function LessonCard({
     <div
       id={`lesson-${index}`}
       data-lesson-index={index}
+      data-testid="teacher-student-detail-lesson-card"
       className={[
         'card-workbook p-4 space-y-3 border',
         isTarget ? 'border-primary/50 ring-2 ring-primary/20' : 'border-border',
@@ -152,11 +154,12 @@ function StudentDetailView({
   const { student, snapshot, units } = detail;
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6" data-testid="teacher-student-detail">
       <div className="flex items-center gap-4">
         <Link
           href="/teacher/students"
           className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+          data-testid="teacher-student-detail-back-link"
         >
           ← Back to all students
         </Link>
@@ -217,7 +220,7 @@ function StudentDetailView({
               <h3 className="text-lg font-semibold text-foreground">{unit.unitTitle}</h3>
               <span className="text-sm text-muted-foreground">Module {unit.unitNumber}</span>
             </div>
-            <div className="grid gap-3">
+        <div className="grid gap-3">
               {unit.lessons.map((lesson, index) => (
                 <LessonCard
                   key={lesson.id}
@@ -230,6 +233,8 @@ function StudentDetailView({
           </div>
         ))}
       </div>
+
+      <SubmissionReviewPanel evidence={null} errorSummary={null} />
     </div>
   );
 }
@@ -273,7 +278,7 @@ export default async function StudentsPage({ searchParams }: PageProps) {
       {showDetail ? (
         <StudentDetailView detail={detail!} scrollTarget={scrollTarget} />
       ) : (
-        <div className="grid gap-3">
+        <div className="grid gap-3" data-testid="teacher-student-list">
           {students.length === 0 ? (
             <p className="text-center text-muted-foreground py-12">No students enrolled.</p>
           ) : (
@@ -282,6 +287,7 @@ export default async function StudentsPage({ searchParams }: PageProps) {
               return (
                 <div
                   key={student.id}
+                  data-testid="teacher-student-list-row"
                   className={[
                     'card-workbook p-4 space-y-2 transition-all',
                     isSelected ? 'border-primary/50 bg-primary/5' : '',

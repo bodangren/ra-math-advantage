@@ -44,7 +44,7 @@ export default function CompetencyHeatmapClient({ heatmapData }: CompetencyHeatm
         </p>
       </header>
 
-      <section aria-label="Competency heatmap">
+      <section aria-label="Competency heatmap" data-testid="teacher-competency-heatmap">
         <CompetencyHeatmapGrid
           rows={rows}
           standards={standards}

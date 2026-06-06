@@ -173,6 +173,32 @@ jobs:
         env:
           CI: true
 
+  # Phase 4b: E2E tests for IM3 (after IM3 gates pass)
+  # Flake budget: retries=1 in CI
+  e2e-im3:
+    # Flake budget: retries=1 in CI
+    name: E2E IM3
+    runs-on: ubuntu-latest
+    needs: [im3]
+    env:
+      CI: true
+      PLAYWRIGHT_RETRIES: 1
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run IM3 E2E suite
+        run: npm run test:e2e --prefix apps/integrated-math-3
+
   # Phase 5: IM1, IM2, PreCalc lint/typecheck/build gates
   # Test gates are deferred due to pre-existing test failures (Convex provider tests).
   # Apps share the same step structure; matrix deduplicates the config.

@@ -20,7 +20,9 @@ export function SubmissionReviewPanel({
   const [expanded, setExpanded] = useState(isOpen);
 
   if (!evidence) {
-    return null;
+    return (
+      <div data-testid="teacher-submission-review" />
+    );
   }
 
   const handleReviewClick = () => {
@@ -212,7 +214,7 @@ export function SubmissionReviewPanel({
   }
 
   return (
-    <div className="space-y-2">
+    <div className="space-y-2" data-testid="teacher-submission-review">
       <button
         onClick={handleReviewClick}
         className="flex items-center gap-2 px-3 py-1.5 text-sm font-medium rounded-md bg-primary/10 text-primary hover:bg-primary/20 transition-colors"

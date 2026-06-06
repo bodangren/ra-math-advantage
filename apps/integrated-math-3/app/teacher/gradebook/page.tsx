@@ -25,7 +25,7 @@ export default async function GradebookPage({ searchParams }: PageProps) {
   const lessons = data?.lessons ?? [];
 
   return (
-    <div className="max-w-6xl mx-auto space-y-8 py-8">
+    <div className="max-w-6xl mx-auto space-y-8 py-8" data-testid="teacher-gradebook">
       <div className="flex items-center justify-between">
         <div className="space-y-1">
           <h1 className="text-3xl font-display font-bold text-foreground">Gradebook</h1>
@@ -97,6 +97,7 @@ export default async function GradebookPage({ searchParams }: PageProps) {
                         href={`/teacher/students?id=${row.studentId}&lesson=${cellIndex}`}
                         className="block hover:opacity-80 transition-opacity"
                         title={`${cell.lesson.lessonTitle} - ${cell.completionStatus}`}
+                        data-testid="teacher-gradebook-cell"
                       >
                         {cell.masteryLevel !== null ? `${cell.masteryLevel}%` : '—'}
                       </Link>

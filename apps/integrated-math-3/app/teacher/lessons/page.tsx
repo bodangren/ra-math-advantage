@@ -68,7 +68,7 @@ export default async function TeacherLessonsPage({ searchParams }: PageProps) {
     <div className="flex min-h-screen">
       <TeacherNavigation activeRoute="/teacher/lessons" />
       <main className="flex-1 ml-64 p-8">
-        <div className="max-w-4xl mx-auto space-y-8">
+        <div className="max-w-4xl mx-auto space-y-8" data-testid="teacher-lessons">
           <div className="space-y-1">
             <h1 className="text-3xl font-display font-bold text-foreground">
               Lesson Assignments
@@ -149,6 +149,7 @@ function LessonAssignmentToggle({ classId, lessonId, isAssigned }: LessonAssignm
       <input type="hidden" name="isAssigned" value={String(isAssigned)} />
       <button
         type="submit"
+        data-testid="teacher-assign-toggle"
         className={`px-3 py-1.5 rounded-md text-sm font-medium transition-colors ${
           isAssigned
             ? 'bg-red-100 text-red-700 hover:bg-red-200'

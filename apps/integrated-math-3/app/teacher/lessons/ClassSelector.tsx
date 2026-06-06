@@ -24,7 +24,7 @@ export function ClassSelector({ classes, selectedClassId }: ClassSelectorProps) 
   }
 
   return (
-    <div className="space-y-2">
+    <div className="space-y-2" data-testid="teacher-class-selector">
       <label
         htmlFor="class-select"
         className="text-sm font-medium text-foreground"
