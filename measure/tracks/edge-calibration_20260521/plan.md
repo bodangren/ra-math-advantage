@@ -15,7 +15,7 @@ Depends on: Track 1 (proficiency verdicts, knowledge state).
     - Changed files: edge-calibration.ts (new), index.ts (exports), schema.ts (2 tables), graph.db
     - Manual: types and schema match spec FR1–FR7; CalibrationStatus disjoint from ReviewStatus
 
-## Phase 2 — Calibration Core
+## Phase 2 — Calibration Core [checkpoint: 46ad1d99]
 
 - [x] Task: Implement observation extraction (TDD) [green: e44a459f]
     - [x] Pair per-student objective-proficiency verdicts into (A, B) observations
