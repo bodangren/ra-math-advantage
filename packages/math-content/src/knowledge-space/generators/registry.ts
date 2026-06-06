@@ -6,10 +6,16 @@
 
 import type { GeneratorInput, GeneratorOutput, GradingMetadata } from '@math-platform/knowledge-space-practice';
 
+export interface QaSkipSpec {
+  readonly uniqueAnswer?: boolean;
+  readonly reason: string;
+}
+
 export interface MathGenerator {
   key: string;
   nodeIds: string[];
   description?: string;
+  readonly qaSkip?: QaSkipSpec;
   generate: (input: GeneratorInput) => GeneratorOutput;
 }
 

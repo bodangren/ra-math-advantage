@@ -14,7 +14,8 @@
     "./srs-rating": "./src/practice/srs-rating.ts",
     "./problem-family": "./src/practice/problem-family.ts",
     "./practice-item": "./src/practice/practice-item.ts",
-    "./error-analysis": "./src/practice/error-analysis/index.ts"
+    "./error-analysis": "./src/practice/error-analysis/index.ts",
+    "./generator-qa": "./src/generator-qa/verify-generator.ts"
   },
   "scripts": {
     "test": "vitest run",
