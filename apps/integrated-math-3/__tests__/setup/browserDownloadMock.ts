@@ -121,13 +121,10 @@ export function uninstallBrowserDownloadMock(): void {
 }
 
 export function useBrowserDownloadMock(): BrowserDownloadHandle {
-  let handle: BrowserDownloadHandle | null = null;
-  beforeEach(() => {
-    handle = installBrowserDownloadMock();
-  });
+  const handle = installBrowserDownloadMock();
   afterEach(() => {
-    handle?.clear();
+    handle.clear();
     uninstallBrowserDownloadMock();
   });
-  return handle!;
+  return handle;
 }
