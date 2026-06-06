@@ -5,8 +5,8 @@ Verification: `npm run ws:im3:test` + E2E job + `tsc --noEmit`.
 
 ## Phase 1 — Deterministic Seed & Selectors
 
-- [ ] Task: Define/commit deterministic E2E seed fixtures (student, teacher, class, assigned lessons)
-- [ ] Task: Add stable data-test selectors to the routes/components under test
+- [~] Task: Define/commit deterministic E2E seed fixtures (student, teacher, class, assigned lessons) — Red: structural test for `seedDemoE2E` action
+- [~] Task: Add stable data-test selectors to the routes/components under test — Red: selectors module unit test + E2E smoke spec
 - [ ] Task: Document the selector + seed conventions
 - [ ] Task: Measure - User Manual Verification 'Phase 1' (Protocol in workflow.md)
 
