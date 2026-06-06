@@ -28,6 +28,6 @@ Verification: per-app `tsc --noEmit` + seed integrity test.
 
 ## Phase 4 — Validation & Debt Closure
 
-- [ ] Task: Wire integrity check into CI; final verification (tsc --noEmit, tests)
+- [~] Task: Wire integrity check into CI; final verification (tsc --noEmit, tests) [Red committed 0be19593]
 - [ ] Task: Update Tech Debt Registry rows to Resolved
 - [ ] Task: Measure - User Manual Verification 'Phase 4' (Protocol in workflow.md)
