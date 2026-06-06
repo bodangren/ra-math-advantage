@@ -919,6 +919,10 @@ Sixteen candidate tracks identified from a full-roadmap review. Each is registry
 
 ### Tier 1 — Finish work that is explicitly half-done
 
+- [ ] **Track: Dependency Security & Package Upgrades** — **PLANNED**
+   *Remediate 1 critical, 3 high, and 14 moderate dependency advisories; refresh compatible packages; align workspace declarations; then execute vinext/Vite, Next.js, TypeScript/ESLint, Tailwind, KaTeX, Lucide, and jsdom major migrations as isolated verified waves. Size: L. Depends on: none. Readiness: ready after explicit dependency-change approval.*
+   *Link: [./tracks/dependency-security-upgrades_20260607/](./tracks/dependency-security-upgrades_20260607/)*
+
 - [ ] **Track: WCAG 2.1 AA Remediation** — **PLANNED**
    *Remediate the issues found by the accessibility audit (keyboard nav, screen-reader, contrast, activity-component a11y). Audit track is "PHASE 1 COMPLETE (baseline only)" — findings exist, none fixed. Size: M. Depends on: accessibility-audit baseline (done). Readiness: ready now.*
    *Link: [./tracks/wcag-aa-remediation_20260605/](./tracks/wcag-aa-remediation_20260605/)*
