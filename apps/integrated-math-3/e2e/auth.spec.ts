@@ -1,5 +1,5 @@
 import { test, expect } from './fixtures';
-import { SEL } from './selectors';
+import { SEL_PHASE2 } from './selectors-phase2';
 
 test.describe('Authentication', () => {
   test('login page loads with title', async ({ page }) => {
@@ -26,9 +26,7 @@ test.describe('Authentication', () => {
     await page.getByRole('button', { name: 'Sign In' }).click();
 
     await page.waitForURL('/student/dashboard');
-    await expect(
-      page.locator(`[data-testid="${SEL.studentDashboardHeading}"]`),
-    ).toBeVisible();
+    await expect(page.getByRole('heading', { name: 'Dashboard' })).toBeVisible();
   });
 
   test('valid teacher login redirects to teacher dashboard', async ({ page }) => {
@@ -47,11 +45,11 @@ test.describe('Authentication — Phase 2 Red: logout, role redirects, deactivat
     // contract: the session cookie must be cleared server-side and the user
     // must be bounced back to the login page.
     await expect(
-      page.locator(`[data-testid="${SEL.studentDashboard}"]`),
+      page.locator(`[data-testid="student-dashboard"]`),
     ).toBeVisible();
 
-    const logoutButton = page.locator(`[data-testid="${SEL.logoutButton}"]`);
-    await expect(logoutButton, 'logout button must be exposed via SEL.logoutButton').toBeVisible();
+    const logoutButton = page.locator(`[data-testid="${SEL_PHASE2.logoutButton}"]`);
+    await expect(logoutButton, 'logout button must be exposed via SEL_PHASE2.logoutButton').toBeVisible();
     await logoutButton.click();
 
     await page.waitForURL(/\/auth\/login/, { timeout: 15_000 });
@@ -65,7 +63,7 @@ test.describe('Authentication — Phase 2 Red: logout, role redirects, deactivat
     await page.goto('/teacher/dashboard');
     await page.waitForURL(/\/student\/dashboard/, { timeout: 15_000 });
     await expect(
-      page.locator(`[data-testid="${SEL.studentDashboard}"]`),
+      page.locator(`[data-testid="student-dashboard"]`),
     ).toBeVisible();
   });
 
@@ -94,7 +92,7 @@ test.describe('Authentication — Phase 2 Red: logout, role redirects, deactivat
     // must surface a specific message — not the generic "Invalid login
     // credentials" string used for unknown accounts.
     await expect(
-      page.locator(`[data-testid="${SEL.deactivatedLoginError}"]`),
+      page.locator(`[data-testid="${SEL_PHASE2.deactivatedLoginError}"]`),
     ).toBeVisible({ timeout: 10_000 });
   });
 });

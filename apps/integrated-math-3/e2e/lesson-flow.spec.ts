@@ -1,5 +1,5 @@
 import { test, expect } from './fixtures';
-import { SEL } from './selectors';
+import { SEL_PHASE2 } from './selectors-phase2';
 
 test.describe('Lesson Flow — Phase 2 Red: full lesson + reload-persistence', () => {
   test('student can open a lesson, complete a phase, and progress persists across reload', async ({ studentPage: page }) => {
@@ -11,18 +11,18 @@ test.describe('Lesson Flow — Phase 2 Red: full lesson + reload-persistence', (
     //
     // Red: the dashboard heading, lesson renderer, and stepper dots do not
     // yet carry the data-testid attributes that the stable selector contract
-    // demands. The spec will fail on the first SEL lookup.
+    // demands. The spec will fail on the first SEL_PHASE2 lookup.
 
     // 1. Land on the dashboard and open the first available lesson.
     await page.goto('/student/dashboard');
     await page.waitForLoadState('networkidle');
 
     await expect(
-      page.locator(`[data-testid="${SEL.studentDashboard}"]`),
+      page.locator(`[data-testid="student-dashboard"]`),
     ).toBeVisible();
 
     const firstLesson = page
-      .locator(`[data-testid="${SEL.studentDashboardLessonLink}"]:not([aria-disabled="true"])`)
+      .locator(`[data-testid="student-dashboard-lesson-link"]:not([aria-disabled="true"])`)
       .first();
     await expect(firstLesson).toBeVisible({ timeout: 15_000 });
 
@@ -34,21 +34,21 @@ test.describe('Lesson Flow — Phase 2 Red: full lesson + reload-persistence', (
 
     // 2. The lesson renderer + stepper must be visible.
     await expect(
-      page.locator(`[data-testid="${SEL.lessonRenderer}"]`),
+      page.locator(`[data-testid="${SEL_PHASE2.lessonRenderer}"]`),
     ).toBeVisible();
 
     await expect(
-      page.locator(`[data-testid="${SEL.lessonTitle}"]`),
+      page.locator(`[data-testid="${SEL_PHASE2.lessonTitle}"]`),
     ).toBeVisible();
 
     await expect(
-      page.locator(`[data-testid="${SEL.phaseStepper}"]`),
+      page.locator(`[data-testid="${SEL_PHASE2.phaseStepper}"]`),
     ).toBeVisible();
 
     // 3. Capture the first phase dot's label so we can verify it stays
     //    completed after reload.
     const firstDot = page
-      .locator(`[data-testid="${SEL.phaseStepperDot}"]`)
+      .locator(`[data-testid="${SEL_PHASE2.phaseStepperDot}"]`)
       .first();
     await expect(firstDot).toBeVisible();
 
@@ -58,7 +58,7 @@ test.describe('Lesson Flow — Phase 2 Red: full lesson + reload-persistence', (
     // 4. Click the phase-complete button. The button starts as "not_started"
     //    and must transition to "completed" (the post-completion label).
     const completeButton = page.locator(
-      `[data-testid="${SEL.phaseCompleteButton}"]`,
+      `[data-testid="${SEL_PHASE2.phaseCompleteButton}"]`,
     );
     await expect(completeButton).toBeVisible();
     await expect(completeButton).toBeEnabled();
@@ -68,7 +68,7 @@ test.describe('Lesson Flow — Phase 2 Red: full lesson + reload-persistence', (
     // 5. The completion status region must report the new state. We assert
     //    via the stable selector — not via getByText — so a copy rewrite
     //    cannot silently break the contract.
-    const status = page.locator(`[data-testid="${SEL.phaseCompleteStatus}"]`);
+    const status = page.locator(`[data-testid="${SEL_PHASE2.phaseCompleteStatus}"]`);
     await expect(status).toBeVisible({ timeout: 15_000 });
     await expect(status).toHaveAttribute('data-status', /completed|skipped/, {
       timeout: 15_000,
@@ -84,12 +84,12 @@ test.describe('Lesson Flow — Phase 2 Red: full lesson + reload-persistence', (
     await page.waitForURL(/\/student\/lesson\/.+/, { timeout: 15_000 });
 
     await expect(
-      page.locator(`[data-testid="${SEL.lessonRenderer}"]`),
+      page.locator(`[data-testid="${SEL_PHASE2.lessonRenderer}"]`),
     ).toBeVisible();
 
     // The completed-phase dot must still be marked completed after reload.
     const firstDotAfter = page
-      .locator(`[data-testid="${SEL.phaseStepperDot}"]`)
+      .locator(`[data-testid="${SEL_PHASE2.phaseStepperDot}"]`)
       .first();
     await expect(firstDotAfter).toBeVisible();
     const firstDotAriaLabelAfter = await firstDotAfter.getAttribute('aria-label');
@@ -97,7 +97,7 @@ test.describe('Lesson Flow — Phase 2 Red: full lesson + reload-persistence', (
 
     // The phase-complete button must NOT be enabled (already completed).
     const completeButtonAfter = page.locator(
-      `[data-testid="${SEL.phaseCompleteButton}"]`,
+      `[data-testid="${SEL_PHASE2.phaseCompleteButton}"]`,
     );
     await expect(completeButtonAfter).toBeVisible();
     await expect(completeButtonAfter).toBeDisabled();
