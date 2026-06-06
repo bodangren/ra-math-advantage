@@ -155,3 +155,69 @@ describe("seed-standards (IM1) — Phase 2 seedAll orchestration wiring", () => 
     ).toBe(true);
   });
 });
+
+describe("seed-standards (IM1) — Phase 2 seedAll strict wiring contract", () => {
+  const orchestratorSource = fs.readFileSync(SEED_ORCHESTRATOR_PATH, "utf8");
+
+  it("seed.ts:seedAll calls runMutation(seedInternal.seedStandards, {}) mirroring IM2's pattern", () => {
+    // IM2's reference pattern (apps/integrated-math-2/convex/seed.ts:90):
+    //   await ctx.runMutation(seedInternal.seedStandards, {})
+    // The substring test in the previous block accepts stray occurrences
+    // (e.g. a comment). This test rejects those by requiring the full
+    // Convex mutation-call signature with runMutation wrapper.
+    const strictCall = /runMutation\(\s*seedInternal\.seedStandards\s*,\s*\{\s*\}\s*\)/;
+    expect(
+      orchestratorSource,
+      "seedAll must runMutation(seedInternal.seedStandards, {}) (IM2 pattern) so the Convex runtime actually executes the seedStandards mutation"
+    ).toMatch(strictCall);
+  });
+
+  it("seed.ts:seedAll positions the seedStandards call AFTER the seedUnits call", () => {
+    // IM2's order: seedUnits → seedStandards → lessons → lessonStandards.
+    // The previous ordering block only checks seedStandards < lesson_standards.
+    // This test pins the upstream boundary: seedUnits must run first so the
+    // demo-org / profiles rows exist before any other seeding that might
+    // depend on them.
+    const seedUnitsIndex = orchestratorSource.indexOf(
+      "runMutation(seedInternal.seedUnits"
+    );
+    const seedStandardsIndex = orchestratorSource.indexOf(
+      "seedInternal.seedStandards"
+    );
+    expect(
+      seedUnitsIndex,
+      "seedAll must runMutation(seedInternal.seedUnits, {}) first"
+    ).toBeGreaterThanOrEqual(0);
+    expect(
+      seedStandardsIndex,
+      "seedStandards invocation not found in seed.ts"
+    ).toBeGreaterThanOrEqual(0);
+    expect(
+      seedUnitsIndex < seedStandardsIndex,
+      "seedUnits must run BEFORE seedStandards so demo-org/profiles are seeded first (IM2 order)"
+    ).toBe(true);
+  });
+
+  it("seed.ts:seedAll wraps the seedStandards call in try/catch for failure observability", () => {
+    // IM2 wraps the call (apps/integrated-math-2/convex/seed.ts:89-100) in
+    // try { ... } catch (error) { ... } and pushes a failure row to
+    // results.standards. A bare `await runMutation(...)` would let the
+    // internalAction abort mid-loop and skip the lesson_standards inserts,
+    // hiding the silent-gap bug that originally motivated this track.
+    const tryIndex = orchestratorSource.indexOf("try {");
+    const callIndex = orchestratorSource.indexOf("seedInternal.seedStandards");
+    const catchIndex = orchestratorSource.indexOf("catch (");
+    const allPresent =
+      tryIndex >= 0 && callIndex >= 0 && catchIndex >= 0;
+    expect(
+      allPresent,
+      "seedAll must contain try { ... seedInternal.seedStandards ... } catch (...) so a seedStandards failure is surfaced via results.standards (IM2 pattern)"
+    ).toBe(true);
+    if (allPresent) {
+      expect(
+        tryIndex < callIndex && callIndex < catchIndex,
+        "try-block must contain the seedInternal.seedStandards call, and the catch clause must follow (IM2 pattern)"
+      ).toBe(true);
+    }
+  });
+});
