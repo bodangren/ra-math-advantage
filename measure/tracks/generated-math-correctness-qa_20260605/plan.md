@@ -8,7 +8,7 @@ Verification: boundary lints + `tsc --noEmit` + harness test suite.
 
 - [x] Task: Define the generator correctness contract type (seed → problem/answer/distractors/invariants) [red: 57db87e] [green: b613a5ab]
 - [x] Task: Define `verifyGenerator(gen, opts)` API + result/report shape (Contract-First) [red: 57db87e] [green: b613a5ab]
-- [ ] Task: Measure - User Manual Verification 'Phase 1' (Protocol in workflow.md)
+- [x] Task: Measure - User Manual Verification 'Phase 1' (Protocol in workflow.md) — All 116 tests pass (15 Phase 1). tsc + lint clean. [checkpoint: 3d262112]
 
 ## Phase 2 — Core Properties (TDD)
 
