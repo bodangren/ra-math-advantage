@@ -247,6 +247,11 @@ jobs:
         env:
           CI: true
 
+      - name: Run ${{ matrix.app.name }} tests
+        run: npm test --prefix ${{ matrix.app.prefix }}
+        env:
+          CI: true
+
   # Phase 6: Deploy (only on main/master push, after IM3 and BM2 gates pass)
   deploy:
     name: Deploy to Cloudflare

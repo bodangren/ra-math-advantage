@@ -28,7 +28,7 @@ function readCiWorkflow(): string {
 
 function extractJobSection(workflowText: string, jobId: string): string {
   const pattern = new RegExp(
-    `^  ${jobId}:[\\s\\S]*?(?=\\n  [a-zA-Z][a-zA-Z0-9_-]*:|$)`,
+    `^  ${jobId}:[\\s\\S]*?(?=\\n  [a-zA-Z][a-zA-Z0-9_-]*:)`,
     "m"
   );
   const match = workflowText.match(pattern);
