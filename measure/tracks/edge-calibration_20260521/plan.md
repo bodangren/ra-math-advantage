@@ -30,7 +30,7 @@ Depends on: Track 1 (proficiency verdicts, knowledge state).
 
 ## Phase 3 — Review Queue and Persistence
 
-- [~] Task: Implement calibration review-queue builder (TDD)
+- [~] Task: Implement calibration review-queue builder (TDD) [red: c500715c]
     - [ ] Flag edges diverging from authored weight/confidence beyond threshold; attach contingency table
 - [~] Task: Implement Convex persistence adapter for calibration state + queue (TDD)
     - [ ] Batch reads/writes with Promise.all (avoid N+1)
