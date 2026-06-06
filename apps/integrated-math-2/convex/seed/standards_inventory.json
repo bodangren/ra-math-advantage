@@ -1,0 +1,457 @@
+[
+  {
+    "code": "7.SP.C.5",
+    "source": "Common Core State Standards Initiative",
+    "framework": "CCSS-M"
+  },
+  {
+    "code": "8.EE.A.1",
+    "source": "Common Core State Standards Initiative",
+    "framework": "CCSS-M"
+  },
+  {
+    "code": "8.EE.A.2",
+    "source": "Common Core State Standards Initiative",
+    "framework": "CCSS-M"
+  },
+  {
+    "code": "8.G.B.6",
+    "source": "Common Core State Standards Initiative",
+    "framework": "CCSS-M"
+  },
+  {
+    "code": "8.G.B.7",
+    "source": "Common Core State Standards Initiative",
+    "framework": "CCSS-M"
+  },
+  {
+    "code": "A-APR.B.3",
+    "source": "Common Core State Standards Initiative",
+    "framework": "CCSS-M"
+  },
+  {
+    "code": "A-CED.A.1",
+    "source": "Common Core State Standards Initiative",
+    "framework": "CCSS-M"
+  },
+  {
+    "code": "A-CED.A.2",
+    "source": "Common Core State Standards Initiative",
+    "framework": "CCSS-M"
+  },
+  {
+    "code": "A-CED.A.3",
+    "source": "Common Core State Standards Initiative",
+    "framework": "CCSS-M"
+  },
+  {
+    "code": "A-REI.A.1",
+    "source": "Common Core State Standards Initiative",
+    "framework": "CCSS-M"
+  },
+  {
+    "code": "A-REI.B.3",
+    "source": "Common Core State Standards Initiative",
+    "framework": "CCSS-M"
+  },
+  {
+    "code": "A-REI.B.4",
+    "source": "Common Core State Standards Initiative",
+    "framework": "CCSS-M"
+  },
+  {
+    "code": "A-REI.C.6",
+    "source": "Common Core State Standards Initiative",
+    "framework": "CCSS-M"
+  },
+  {
+    "code": "A-REI.C.7",
+    "source": "Common Core State Standards Initiative",
+    "framework": "CCSS-M"
+  },
+  {
+    "code": "A-REI.C.9",
+    "source": "Common Core State Standards Initiative",
+    "framework": "CCSS-M"
+  },
+  {
+    "code": "A-REI.D.10",
+    "source": "Common Core State Standards Initiative",
+    "framework": "CCSS-M"
+  },
+  {
+    "code": "A-REI.D.12",
+    "source": "Common Core State Standards Initiative",
+    "framework": "CCSS-M"
+  },
+  {
+    "code": "A-SSE.A.1",
+    "source": "Common Core State Standards Initiative",
+    "framework": "CCSS-M"
+  },
+  {
+    "code": "A-SSE.A.2",
+    "source": "Common Core State Standards Initiative",
+    "framework": "CCSS-M"
+  },
+  {
+    "code": "A-SSE.B.3",
+    "source": "Common Core State Standards Initiative",
+    "framework": "CCSS-M"
+  },
+  {
+    "code": "F-BF.A.1",
+    "source": "Common Core State Standards Initiative",
+    "framework": "CCSS-M"
+  },
+  {
+    "code": "F-BF.B.3",
+    "source": "Common Core State Standards Initiative",
+    "framework": "CCSS-M"
+  },
+  {
+    "code": "F-IF.B.4",
+    "source": "Common Core State Standards Initiative",
+    "framework": "CCSS-M"
+  },
+  {
+    "code": "F-IF.C.7",
+    "source": "Common Core State Standards Initiative",
+    "framework": "CCSS-M"
+  },
+  {
+    "code": "F-IF.C.9",
+    "source": "Common Core State Standards Initiative",
+    "framework": "CCSS-M"
+  },
+  {
+    "code": "F-LE.A.2",
+    "source": "Common Core State Standards Initiative",
+    "framework": "CCSS-M"
+  },
+  {
+    "code": "F-LE.B.5",
+    "source": "Common Core State Standards Initiative",
+    "framework": "CCSS-M"
+  },
+  {
+    "code": "F-TF.A.1",
+    "source": "Common Core State Standards Initiative",
+    "framework": "CCSS-M"
+  },
+  {
+    "code": "F-TF.A.2",
+    "source": "Common Core State Standards Initiative",
+    "framework": "CCSS-M"
+  },
+  {
+    "code": "F-TF.C.6",
+    "source": "Common Core State Standards Initiative",
+    "framework": "CCSS-M"
+  },
+  {
+    "code": "F-TF.C.7",
+    "source": "Common Core State Standards Initiative",
+    "framework": "CCSS-M"
+  },
+  {
+    "code": "F-TF.C.8",
+    "source": "Common Core State Standards Initiative",
+    "framework": "CCSS-M"
+  },
+  {
+    "code": "F-TF.C.9",
+    "source": "Common Core State Standards Initiative",
+    "framework": "CCSS-M"
+  },
+  {
+    "code": "G-C.A.1",
+    "source": "Common Core State Standards Initiative",
+    "framework": "CCSS-M"
+  },
+  {
+    "code": "G-C.A.2",
+    "source": "Common Core State Standards Initiative",
+    "framework": "CCSS-M"
+  },
+  {
+    "code": "G-C.A.3",
+    "source": "Common Core State Standards Initiative",
+    "framework": "CCSS-M"
+  },
+  {
+    "code": "G-C.A.4",
+    "source": "Common Core State Standards Initiative",
+    "framework": "CCSS-M"
+  },
+  {
+    "code": "G-C.B.5",
+    "source": "Common Core State Standards Initiative",
+    "framework": "CCSS-M"
+  },
+  {
+    "code": "G-CO.A.1",
+    "source": "Common Core State Standards Initiative",
+    "framework": "CCSS-M"
+  },
+  {
+    "code": "G-CO.A.2",
+    "source": "Common Core State Standards Initiative",
+    "framework": "CCSS-M"
+  },
+  {
+    "code": "G-CO.A.3",
+    "source": "Common Core State Standards Initiative",
+    "framework": "CCSS-M"
+  },
+  {
+    "code": "G-CO.B.7",
+    "source": "Common Core State Standards Initiative",
+    "framework": "CCSS-M"
+  },
+  {
+    "code": "G-CO.B.8",
+    "source": "Common Core State Standards Initiative",
+    "framework": "CCSS-M"
+  },
+  {
+    "code": "G-CO.C.10",
+    "source": "Common Core State Standards Initiative",
+    "framework": "CCSS-M"
+  },
+  {
+    "code": "G-CO.C.11",
+    "source": "Common Core State Standards Initiative",
+    "framework": "CCSS-M"
+  },
+  {
+    "code": "G-CO.C.9",
+    "source": "Common Core State Standards Initiative",
+    "framework": "CCSS-M"
+  },
+  {
+    "code": "G-GMD.A.1",
+    "source": "Common Core State Standards Initiative",
+    "framework": "CCSS-M"
+  },
+  {
+    "code": "G-GMD.A.2",
+    "source": "Common Core State Standards Initiative",
+    "framework": "CCSS-M"
+  },
+  {
+    "code": "G-GMD.A.3",
+    "source": "Common Core State Standards Initiative",
+    "framework": "CCSS-M"
+  },
+  {
+    "code": "G-GMD.B.4",
+    "source": "Common Core State Standards Initiative",
+    "framework": "CCSS-M"
+  },
+  {
+    "code": "G-GPE.A.1",
+    "source": "Common Core State Standards Initiative",
+    "framework": "CCSS-M"
+  },
+  {
+    "code": "G-GPE.B.4",
+    "source": "Common Core State Standards Initiative",
+    "framework": "CCSS-M"
+  },
+  {
+    "code": "G-GPE.B.5",
+    "source": "Common Core State Standards Initiative",
+    "framework": "CCSS-M"
+  },
+  {
+    "code": "G-MG.A.1",
+    "source": "Common Core State Standards Initiative",
+    "framework": "CCSS-M"
+  },
+  {
+    "code": "G-MG.A.2",
+    "source": "Common Core State Standards Initiative",
+    "framework": "CCSS-M"
+  },
+  {
+    "code": "G-MG.A.3",
+    "source": "Common Core State Standards Initiative",
+    "framework": "CCSS-M"
+  },
+  {
+    "code": "G-SRT.A.1",
+    "source": "Common Core State Standards Initiative",
+    "framework": "CCSS-M"
+  },
+  {
+    "code": "G-SRT.A.2",
+    "source": "Common Core State Standards Initiative",
+    "framework": "CCSS-M"
+  },
+  {
+    "code": "G-SRT.A.3",
+    "source": "Common Core State Standards Initiative",
+    "framework": "CCSS-M"
+  },
+  {
+    "code": "G-SRT.B.4",
+    "source": "Common Core State Standards Initiative",
+    "framework": "CCSS-M"
+  },
+  {
+    "code": "G-SRT.B.5",
+    "source": "Common Core State Standards Initiative",
+    "framework": "CCSS-M"
+  },
+  {
+    "code": "G-SRT.C.6",
+    "source": "Common Core State Standards Initiative",
+    "framework": "CCSS-M"
+  },
+  {
+    "code": "G-SRT.C.7",
+    "source": "Common Core State Standards Initiative",
+    "framework": "CCSS-M"
+  },
+  {
+    "code": "G-SRT.C.8",
+    "source": "Common Core State Standards Initiative",
+    "framework": "CCSS-M"
+  },
+  {
+    "code": "HSA-APR.A.1",
+    "source": "Common Core State Standards Initiative",
+    "framework": "CCSS-M"
+  },
+  {
+    "code": "HSA-APR.B.2",
+    "source": "Common Core State Standards Initiative",
+    "framework": "CCSS-M"
+  },
+  {
+    "code": "HSA-APR.B.3",
+    "source": "Common Core State Standards Initiative",
+    "framework": "CCSS-M"
+  },
+  {
+    "code": "HSA-APR.C.4",
+    "source": "Common Core State Standards Initiative",
+    "framework": "CCSS-M"
+  },
+  {
+    "code": "HSA-CED.A.2",
+    "source": "Common Core State Standards Initiative",
+    "framework": "CCSS-M"
+  },
+  {
+    "code": "HSA-CED.A.3",
+    "source": "Common Core State Standards Initiative",
+    "framework": "CCSS-M"
+  },
+  {
+    "code": "HSA-SSE.A.2",
+    "source": "Common Core State Standards Initiative",
+    "framework": "CCSS-M"
+  },
+  {
+    "code": "HSF-BF.A.1",
+    "source": "Common Core State Standards Initiative",
+    "framework": "CCSS-M"
+  },
+  {
+    "code": "HSF-BF.A.2",
+    "source": "Common Core State Standards Initiative",
+    "framework": "CCSS-M"
+  },
+  {
+    "code": "HSF-IF.A.1",
+    "source": "Common Core State Standards Initiative",
+    "framework": "CCSS-M"
+  },
+  {
+    "code": "HSF-IF.A.2",
+    "source": "Common Core State Standards Initiative",
+    "framework": "CCSS-M"
+  },
+  {
+    "code": "HSF-IF.B.4",
+    "source": "Common Core State Standards Initiative",
+    "framework": "CCSS-M"
+  },
+  {
+    "code": "HSF-IF.B.5",
+    "source": "Common Core State Standards Initiative",
+    "framework": "CCSS-M"
+  },
+  {
+    "code": "HSF-IF.B.6",
+    "source": "Common Core State Standards Initiative",
+    "framework": "CCSS-M"
+  },
+  {
+    "code": "HSF-IF.C.7",
+    "source": "Common Core State Standards Initiative",
+    "framework": "CCSS-M"
+  },
+  {
+    "code": "HSF-IF.C.7b",
+    "source": "Common Core State Standards Initiative",
+    "framework": "CCSS-M"
+  },
+  {
+    "code": "HSF-IF.C.9",
+    "source": "Common Core State Standards Initiative",
+    "framework": "CCSS-M"
+  },
+  {
+    "code": "N-CN.A.2",
+    "source": "Common Core State Standards Initiative",
+    "framework": "CCSS-M"
+  },
+  {
+    "code": "N-RN.A.1",
+    "source": "Common Core State Standards Initiative",
+    "framework": "CCSS-M"
+  },
+  {
+    "code": "N-RN.A.2",
+    "source": "Common Core State Standards Initiative",
+    "framework": "CCSS-M"
+  },
+  {
+    "code": "S-CP.A.1",
+    "source": "Common Core State Standards Initiative",
+    "framework": "CCSS-M"
+  },
+  {
+    "code": "S-CP.A.2",
+    "source": "Common Core State Standards Initiative",
+    "framework": "CCSS-M"
+  },
+  {
+    "code": "S-CP.B.6",
+    "source": "Common Core State Standards Initiative",
+    "framework": "CCSS-M"
+  },
+  {
+    "code": "S-CP.B.7",
+    "source": "Common Core State Standards Initiative",
+    "framework": "CCSS-M"
+  },
+  {
+    "code": "S-CP.B.8",
+    "source": "Common Core State Standards Initiative",
+    "framework": "CCSS-M"
+  },
+  {
+    "code": "S-CP.B.9",
+    "source": "Common Core State Standards Initiative",
+    "framework": "CCSS-M"
+  },
+  {
+    "code": "S-CP.C.9",
+    "source": "Common Core State Standards Initiative",
+    "framework": "CCSS-M"
+  }
+]

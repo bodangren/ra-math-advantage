@@ -5,20 +5,20 @@ Verification: per-app `tsc --noEmit` + seed integrity test.
 
 ## Phase 1 — Integrity Check & Source Inventory
 
-- [~] Task: Write a failing integrity check that lists undefined referenced codes for IM1 + IM2 (Red) [Red committed f0a78f2]
-- [~] Task: Inventory canonical standards sources for IM1 and IM2; record provenance [Red committed f0a78f2]
+- [x] Task: Write a failing integrity check that lists undefined referenced codes for IM1 + IM2 (Red) [Red committed f0a78f2]
+- [x] Task: Inventory canonical standards sources for IM1 and IM2; record provenance [Red committed f0a78f2]
 - [ ] Task: Measure - User Manual Verification 'Phase 1' (Protocol in workflow.md)
 
 ## Phase 2 — IM1 Definitions
 
-- [ ] Task: Author 77 IM1 standard definitions (code/title/description) from source into seed_standards.ts
-- [ ] Task: Wire into seed orchestration idempotently; integrity check passes for IM1 (Green)
+- [x] Task: Author 77 IM1 standard definitions (code/title/description) from source into seed_standards.ts
+- [x] Task: Wire into seed orchestration idempotently; integrity check passes for IM1 (Green)
 - [ ] Task: Measure - User Manual Verification 'Phase 2' (Protocol in workflow.md)
 
 ## Phase 3 — IM2 Reconciliation
 
-- [ ] Task: Author the 41 missing IM2 definitions; correct miscoded references
-- [ ] Task: Integrity check passes for IM2 (Green)
+- [x] Task: Author the 41 missing IM2 definitions; correct miscoded references
+- [x] Task: Integrity check passes for IM2 (Green)
 - [ ] Task: Measure - User Manual Verification 'Phase 3' (Protocol in workflow.md)
 
 ## Phase 4 — Validation & Debt Closure

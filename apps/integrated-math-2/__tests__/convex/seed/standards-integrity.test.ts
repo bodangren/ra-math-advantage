@@ -25,8 +25,4 @@ describe("standards-integrity (IM2)", () => {
   it(`every referenced standard code is defined in ${APP_NAME} seed_standards (referencedCodes ⊆ definedCodes)`, () => {
     expect(missingCodes).toEqual([]);
   });
-
-  it("integrity gap is non-empty in Red phase (locks the count for the track)", () => {
-    expect(missingCodes.length).toBeGreaterThan(0);
-  });
 });

@@ -365,6 +365,430 @@ export const seedStandards = internalMutation({
         category: "Functions",
         isActive: true,
       },
+
+      // Statistics and Probability — Grade 7 (7.SP)
+      {
+        code: "7.SP.C.5",
+        description: "Understand that the probability of a chance event is a number between 0 and 1 that expresses the likelihood of the event occurring",
+        studentFriendlyDescription: "I understand that probability is a number between 0 and 1.",
+        category: "Statistics and Probability",
+        isActive: true,
+      },
+
+      // Expressions and Equations — Grade 8 (8.EE)
+      {
+        code: "8.EE.A.1",
+        description: "Know and apply the properties of integer exponents to generate equivalent numerical expressions",
+        studentFriendlyDescription: "I can use exponent rules to simplify expressions.",
+        category: "Expressions and Equations",
+        isActive: true,
+      },
+      {
+        code: "8.EE.A.2",
+        description: "Use square root and cube root symbols to represent solutions to equations of the form x^2 = p and x^3 = p",
+        studentFriendlyDescription: "I can use square roots and cube roots to solve equations.",
+        category: "Expressions and Equations",
+        isActive: true,
+      },
+
+      // Geometry — Grade 8 (8.G)
+      {
+        code: "8.G.B.6",
+        description: "Explain a proof of the Pythagorean Theorem and its converse",
+        studentFriendlyDescription: "I can prove the Pythagorean Theorem and its converse.",
+        category: "Geometry",
+        isActive: true,
+      },
+      {
+        code: "8.G.B.7",
+        description: "Apply the Pythagorean Theorem to determine unknown side lengths in right triangles in real-world and mathematical problems",
+        studentFriendlyDescription: "I can use the Pythagorean Theorem to find missing sides.",
+        category: "Geometry",
+        isActive: true,
+      },
+
+      // Algebra — Arithmetic with Polynomials and Rational Expressions (A-APR)
+      {
+        code: "A-APR.B.3",
+        description: "Identify zeros of polynomials when suitable factorizations are available, and use the zeros to construct a rough graph of the function",
+        studentFriendlyDescription: "I can find zeros of polynomials and sketch their graphs.",
+        category: "Algebra",
+        isActive: true,
+      },
+
+      // Algebra — Creating Equations (A-CED)
+      {
+        code: "A-CED.A.1",
+        description: "Create equations and inequalities in one variable and use them to solve problems",
+        studentFriendlyDescription: "I can write equations to model and solve problems.",
+        category: "Algebra",
+        isActive: true,
+      },
+      {
+        code: "A-CED.A.2",
+        description: "Create equations in two or more variables to represent relationships between quantities",
+        studentFriendlyDescription: "I can write equations with multiple variables.",
+        category: "Algebra",
+        isActive: true,
+      },
+      {
+        code: "A-CED.A.3",
+        description: "Represent constraints by equations or inequalities, and by systems of equations and/or inequalities",
+        studentFriendlyDescription: "I can model real-world limits with equations and inequalities.",
+        category: "Algebra",
+        isActive: true,
+      },
+
+      // Algebra — Reasoning with Equations and Inequalities (A-REI)
+      {
+        code: "A-REI.A.1",
+        description: "Explain each step in solving a simple equation as following from the equality of numbers asserted at the previous step",
+        studentFriendlyDescription: "I can explain each step when solving an equation.",
+        category: "Algebra",
+        isActive: true,
+      },
+      {
+        code: "A-REI.B.3",
+        description: "Solve linear equations and inequalities in one variable, including equations with coefficients represented by letters",
+        studentFriendlyDescription: "I can solve linear equations and inequalities.",
+        category: "Algebra",
+        isActive: true,
+      },
+      {
+        code: "A-REI.B.4",
+        description: "Use the method of completing the square to transform any quadratic equation in x into an equation of the form (x - p)^2 = q",
+        studentFriendlyDescription: "I can complete the square to solve quadratic equations.",
+        category: "Algebra",
+        isActive: true,
+      },
+      {
+        code: "A-REI.C.6",
+        description: "Solve systems of linear equations exactly and approximately",
+        studentFriendlyDescription: "I can solve systems of equations using different methods.",
+        category: "Algebra",
+        isActive: true,
+      },
+      {
+        code: "A-REI.C.7",
+        description: "Solve a simple system consisting of a linear equation and a quadratic equation in two variables algebraically and graphically",
+        studentFriendlyDescription: "I can solve systems with one linear and one quadratic equation.",
+        category: "Algebra",
+        isActive: true,
+      },
+      {
+        code: "A-REI.C.9",
+        description: "Find the inverse of a matrix if it exists and use it to solve systems of linear equations",
+        studentFriendlyDescription: "I can use matrices to solve systems of equations.",
+        category: "Algebra",
+        isActive: true,
+      },
+      {
+        code: "A-REI.D.10",
+        description: "Understand that the graph of an equation in two variables is the set of all its solutions plotted in the coordinate plane",
+        studentFriendlyDescription: "I know that a graph shows all the solutions to an equation.",
+        category: "Algebra",
+        isActive: true,
+      },
+      {
+        code: "A-REI.D.12",
+        description: "Graph the solutions to a linear inequality in two variables as a half-plane, and graph the solution set to a system of linear inequalities",
+        studentFriendlyDescription: "I can graph inequalities and systems of inequalities.",
+        category: "Algebra",
+        isActive: true,
+      },
+
+      // Algebra — Seeing Structure in Expressions (A-SSE)
+      {
+        code: "A-SSE.A.1",
+        description: "Interpret expressions that represent a quantity in terms of its context",
+        studentFriendlyDescription: "I can explain what each part of an expression means.",
+        category: "Algebra",
+        isActive: true,
+      },
+      {
+        code: "A-SSE.A.2",
+        description: "Use the structure of an expression to identify ways to rewrite it",
+        studentFriendlyDescription: "I can use the structure of expressions to rewrite them.",
+        category: "Algebra",
+        isActive: true,
+      },
+      {
+        code: "A-SSE.B.3",
+        description: "Choose and produce an equivalent form of an expression to reveal and explain properties of the quantity represented",
+        studentFriendlyDescription: "I can rewrite expressions to reveal their properties.",
+        category: "Algebra",
+        isActive: true,
+      },
+
+      // Functions — Building Functions (F-BF)
+      {
+        code: "F-BF.A.1",
+        description: "Write a function that describes a relationship between two quantities",
+        studentFriendlyDescription: "I can write functions that model relationships.",
+        category: "Functions",
+        isActive: true,
+      },
+      {
+        code: "F-BF.B.3",
+        description: "Identify the effect on the graph of replacing f(x) by f(x) + k, k f(x), f(kx), and f(x + k) for specific values of k",
+        studentFriendlyDescription: "I can describe how changes to a function affect its graph.",
+        category: "Functions",
+        isActive: true,
+      },
+
+      // Functions — Interpreting Functions (F-IF)
+      {
+        code: "F-IF.B.4",
+        description: "For a function that models a relationship between two quantities, interpret key features of graphs and tables in terms of the quantities",
+        studentFriendlyDescription: "I can interpret key features of function graphs like intercepts and maxima.",
+        category: "Functions",
+        isActive: true,
+      },
+      {
+        code: "F-IF.C.7",
+        description: "Graph functions expressed symbolically and show key features of the graph",
+        studentFriendlyDescription: "I can graph functions and identify their key features.",
+        category: "Functions",
+        isActive: true,
+      },
+      {
+        code: "F-IF.C.9",
+        description: "Compare properties of two functions each represented in a different way",
+        studentFriendlyDescription: "I can compare functions shown in different formats.",
+        category: "Functions",
+        isActive: true,
+      },
+
+      // Functions — Linear, Quadratic, and Exponential Models (F-LE)
+      {
+        code: "F-LE.A.2",
+        description: "Construct linear and exponential functions, including arithmetic and geometric sequences, given a graph, a description of a relationship, or two input-output pairs",
+        studentFriendlyDescription: "I can build linear and exponential functions from different representations.",
+        category: "Functions",
+        isActive: true,
+      },
+      {
+        code: "F-LE.B.5",
+        description: "Interpret the parameters in a linear function or an exponential function in terms of a context",
+        studentFriendlyDescription: "I can explain what the numbers in a function mean in real life.",
+        category: "Functions",
+        isActive: true,
+      },
+
+      // Functions — Trigonometric Functions (F-TF)
+      {
+        code: "F-TF.A.1",
+        description: "Understand radian measure of an angle as the length of the arc on the unit circle subtended by the angle",
+        studentFriendlyDescription: "I can explain what a radian measures.",
+        category: "Functions",
+        isActive: true,
+      },
+      {
+        code: "F-TF.A.2",
+        description: "Explain how the unit circle in the coordinate plane enables the extension of trigonometric functions to all real numbers",
+        studentFriendlyDescription: "I can use the unit circle to find trig values for any angle.",
+        category: "Functions",
+        isActive: true,
+      },
+      {
+        code: "F-TF.C.6",
+        description: "Understand that restricting a trigonometric function to a domain on which it is always increasing or always decreasing allows its inverse to be constructed",
+        studentFriendlyDescription: "I can explain how inverse trig functions are defined.",
+        category: "Functions",
+        isActive: true,
+      },
+      {
+        code: "F-TF.C.7",
+        description: "Use inverse functions to solve trigonometric equations that arise in modeling contexts",
+        studentFriendlyDescription: "I can use inverse trig functions to solve equations.",
+        category: "Functions",
+        isActive: true,
+      },
+      {
+        code: "F-TF.C.8",
+        description: "Prove the Pythagorean identity sin^2(θ) + cos^2(θ) = 1 and use it to find sin(θ), cos(θ), or tan(θ) given one of them and the quadrant",
+        studentFriendlyDescription: "I can use the Pythagorean identity to find trig values.",
+        category: "Functions",
+        isActive: true,
+      },
+      {
+        code: "F-TF.C.9",
+        description: "Prove the addition and subtraction formulas for sine, cosine, and tangent and use them to solve problems",
+        studentFriendlyDescription: "I can use addition and subtraction formulas for trig functions.",
+        category: "Functions",
+        isActive: true,
+      },
+
+      // Geometry — Circles (G-C)
+      {
+        code: "G-C.A.4",
+        description: "Construct a tangent line from a point outside a given circle to the circle",
+        studentFriendlyDescription: "I can construct a tangent line to a circle from an outside point.",
+        category: "Geometry",
+        isActive: true,
+      },
+
+      // Geometry — Congruence (G-CO)
+      {
+        code: "G-CO.A.3",
+        description: "Given a rectangle, parallelogram, trapezoid, or regular polygon, describe the rotations and reflections that carry it onto itself",
+        studentFriendlyDescription: "I can find the symmetries of geometric shapes.",
+        category: "Geometry",
+        isActive: true,
+      },
+      {
+        code: "G-CO.C.9",
+        description: "Prove theorems about lines and angles, including that vertical angles are congruent and that when a transversal crosses parallel lines, alternate interior angles are congruent",
+        studentFriendlyDescription: "I can prove theorems about lines and angles.",
+        category: "Geometry",
+        isActive: true,
+      },
+
+      // Geometric Measurement and Dimension (G-GMD)
+      {
+        code: "G-GMD.A.2",
+        description: "Give an informal argument using Cavalieri's principle for the formulas for the volume of a sphere and other solid figures",
+        studentFriendlyDescription: "I can explain volume formulas using Cavalieri's principle.",
+        category: "Geometry",
+        isActive: true,
+      },
+
+      // Geometry — Similarity, Right Triangles, and Trigonometry (G-SRT)
+      {
+        code: "G-SRT.C.7",
+        description: "Explain and use the relationship between the sine and cosine of complementary angles",
+        studentFriendlyDescription: "I can explain how sine and cosine of complementary angles are related.",
+        category: "Geometry",
+        isActive: true,
+      },
+
+      // High School Algebra — Arithmetic with Polynomials (HSA-APR)
+      {
+        code: "HSA-APR.A.1",
+        description: "Understand that polynomials form a system analogous to the integers, namely, they are closed under the operations of addition, subtraction, and multiplication",
+        studentFriendlyDescription: "I can add, subtract, and multiply polynomials.",
+        category: "Algebra",
+        isActive: true,
+      },
+      {
+        code: "HSA-APR.B.2",
+        description: "Know and apply the Remainder Theorem: for a polynomial p(x) and a number a, the remainder on division by x - a is p(a)",
+        studentFriendlyDescription: "I can use the Remainder Theorem to evaluate polynomials.",
+        category: "Algebra",
+        isActive: true,
+      },
+      {
+        code: "HSA-APR.B.3",
+        description: "Identify zeros of polynomials when suitable factorizations are available, and use the zeros to construct a rough graph of the function",
+        studentFriendlyDescription: "I can find zeros of polynomials and sketch their graphs.",
+        category: "Algebra",
+        isActive: true,
+      },
+      {
+        code: "HSA-APR.C.4",
+        description: "Prove polynomial identities and use them to describe numerical relationships",
+        studentFriendlyDescription: "I can prove polynomial identities.",
+        category: "Algebra",
+        isActive: true,
+      },
+
+      // High School Algebra — Creating Equations (HSA-CED)
+      {
+        code: "HSA-CED.A.2",
+        description: "Create equations in two or more variables to represent relationships between quantities",
+        studentFriendlyDescription: "I can write equations with multiple variables.",
+        category: "Algebra",
+        isActive: true,
+      },
+      {
+        code: "HSA-CED.A.3",
+        description: "Represent constraints by equations or inequalities, and by systems of equations and/or inequalities",
+        studentFriendlyDescription: "I can model real-world limits with equations and inequalities.",
+        category: "Algebra",
+        isActive: true,
+      },
+
+      // High School Algebra — Seeing Structure in Expressions (HSA-SSE)
+      {
+        code: "HSA-SSE.A.2",
+        description: "Use the structure of an expression to identify ways to rewrite it",
+        studentFriendlyDescription: "I can use the structure of expressions to rewrite them.",
+        category: "Algebra",
+        isActive: true,
+      },
+
+      // High School Functions — Building Functions (HSF-BF)
+      {
+        code: "HSF-BF.A.2",
+        description: "Write arithmetic and geometric sequences both recursively and with an explicit formula",
+        studentFriendlyDescription: "I can write sequences in different forms.",
+        category: "Functions",
+        isActive: true,
+      },
+
+      // High School Functions — Interpreting Functions (HSF-IF)
+      {
+        code: "HSF-IF.C.7b",
+        description: "Graph square root, cube root, and piecewise-defined functions, including step functions and absolute value functions",
+        studentFriendlyDescription: "I can graph square root, cube root, and piecewise functions.",
+        category: "Functions",
+        isActive: true,
+      },
+
+      // Number and Quantity — The Complex Number System (N-CN)
+      {
+        code: "N-CN.A.2",
+        description: "Use the relation i^2 = -1 and the commutative, associative, and distributive properties to add, subtract, and multiply complex numbers",
+        studentFriendlyDescription: "I can add, subtract, and multiply complex numbers.",
+        category: "Number and Quantity",
+        isActive: true,
+      },
+
+      // Number and Quantity — The Real Number System (N-RN)
+      {
+        code: "N-RN.A.1",
+        description: "Explain how the definition of the meaning of rational exponents follows from extending the properties of integer exponents to those values",
+        studentFriendlyDescription: "I can explain what rational exponents mean.",
+        category: "Number and Quantity",
+        isActive: true,
+      },
+      {
+        code: "N-RN.A.2",
+        description: "Rewrite expressions involving radicals and rational exponents using the properties of exponents",
+        studentFriendlyDescription: "I can convert between radical and exponential forms.",
+        category: "Number and Quantity",
+        isActive: true,
+      },
+
+      // Statistics and Probability — Conditional Probability (S-CP)
+      {
+        code: "S-CP.B.7",
+        description: "Apply the Addition Rule, P(A or B) = P(A) + P(B) - P(A and B), and interpret the answer in terms of the model",
+        studentFriendlyDescription: "I can use the Addition Rule to find probabilities.",
+        category: "Statistics",
+        isActive: true,
+      },
+      {
+        code: "S-CP.B.8",
+        description: "Apply the general Multiplication Rule in a uniform probability model, P(A and B) = P(A)P(B|A) = P(B)P(A|B)",
+        studentFriendlyDescription: "I can use the Multiplication Rule to find probabilities.",
+        category: "Statistics",
+        isActive: true,
+      },
+      {
+        code: "S-CP.B.9",
+        description: "Use permutations and combinations to compute probabilities of compound events and solve problems",
+        studentFriendlyDescription: "I can use permutations and combinations to find probabilities.",
+        category: "Statistics",
+        isActive: true,
+      },
+      {
+        code: "S-CP.C.9",
+        description: "Use permutations and combinations to compute probabilities of compound events and solve problems",
+        studentFriendlyDescription: "I can use counting methods to solve probability problems.",
+        category: "Statistics",
+        isActive: true,
+      },
     ];
 
     const results: { code: string; id: string }[] = [];

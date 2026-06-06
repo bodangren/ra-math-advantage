@@ -6,7 +6,7 @@ const SEED_DIR = path.join(APP_ROOT, "convex/seed");
 const APP_PREFIX = "im2";
 const MODULE_FILE_RE = new RegExp(`^seed_${APP_PREFIX}_module_\\d+_standards\\.ts$`);
 const REFERENCED_CODE_RE = /standardCode:\s*"([^"]+)"/g;
-const DEFINED_CODE_RE = /\bcode:\s*"([A-Z0-9][A-Z0-9.\-]*)"/g;
+const DEFINED_CODE_RE = /\bcode:\s*"([A-Za-z0-9][A-Za-z0-9.\-]*)"/g;
 
 export const APP_NAME = "IM2" as const;
 export const INTEGRITY_RED_TRACK_ID = "im1-im2-standards-backfill_20260605" as const;
