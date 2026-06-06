@@ -164,7 +164,8 @@ function createPrefilledRow(
 
 /**
  * Creates an editable subtotal row that students must compute.
- * @param params - Row creation parameters including statementKind, sectionId, id, label, expectedValue, sumOf, tolerance, explanation, and optional note
+ * @param params - Row creation parameters including statementKind, sectionId,
+ *   id, label, expectedValue, sumOf, tolerance, explanation, and optional note.
  * @returns A configured StatementSubtotalsRow
  */
 function createEditableSubtotalRow(params: {

@@ -298,7 +298,8 @@ function buildJournalLines(effects: TransactionEffect[], memo: string): Transact
 
 /**
  * Builds the base transaction event object from provided data.
- * @param args - All event parameters including archetypeId, title, narrative, context, amount, effects, and optional settlement/assetKind/tags
+ * @param args - All event parameters including archetypeId, title, narrative,
+ *   context, amount, effects, and optional settlement/assetKind/tags.
  * @returns A complete TransactionEvent object
  */
 function buildEventBase(args: {

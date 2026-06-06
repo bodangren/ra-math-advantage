@@ -170,7 +170,9 @@ function scoreLabelPart(expected: string, actual: unknown) {
 
 /**
  * Creates a placement row for an account that students select from the bank.
- * @param params - Row creation parameters including statementKind, sectionId, rowId, prompt, expectedLabel, accountId, accountType, amount, bankStatus, tolerance, explanation, and optional placeholder/note
+ * @param params - Row creation parameters including statementKind, sectionId,
+ *   rowId, prompt, expectedLabel, accountId, accountType, amount, bankStatus,
+ *   tolerance, explanation, and optional placeholder/note.
  * @returns A configured StatementConstructionRow
  */
 function makePlacementRow(params: {
@@ -221,7 +223,8 @@ function makePlacementRow(params: {
 
 /**
  * Creates a subtotal row that students must compute by summing other rows.
- * @param params - Row creation parameters including statementKind, sectionId, rowId, label, expectedValue, sumOf, tolerance, explanation, and optional note
+ * @param params - Row creation parameters including statementKind, sectionId,
+ *   rowId, label, expectedValue, sumOf, tolerance, explanation, and optional note.
  * @returns A configured StatementConstructionRow
  */
 function makeSubtotalRow(params: {
