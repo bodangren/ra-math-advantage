@@ -1,8 +1,8 @@
 import { describe, it, expect, beforeEach } from 'vitest';
-import { readFileSync } from 'fs';
-import { resolve } from 'path';
+import { readFileSync } from 'node:fs';
+import { resolve } from 'node:path';
 
-const CI_WORKFLOW_PATH = resolve(process.cwd(), '../../.github/workflows/ci.yml');
+const CI_WORKFLOW_PATH = resolve(__dirname, '../../../../.github/workflows/ci.yml');
 
 describe('CI Workflow — e2e-im3 job (Phase 4 Red)', () => {
   let ciContent: string;
