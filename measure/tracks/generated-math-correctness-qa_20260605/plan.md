@@ -23,7 +23,7 @@ Verification: boundary lints + `tsc --noEmit` + harness test suite.
 
 - [x] Task: Registry test runs all existing generators through `verifyGenerator` [red: 29ad6d76] [green: d876dfa3]
 - [x] Task: Triage failures — fix or quarantine with tracked debt rows [red: 29ad6d76] [green: d876dfa3]
-- [ ] Task: Measure - User Manual Verification 'Phase 3' (Protocol in workflow.md)
+- [x] Task: Measure - User Manual Verification 'Phase 3' (Protocol in workflow.md) — All 206 math-content + 134 practice-core tests pass (20 Phase 3). tsc clean. [checkpoint: 8d8688af]
 
 ## Phase 4 — CI Gate & Verification
 
