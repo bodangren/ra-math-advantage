@@ -3,6 +3,7 @@
 > Captured: 2026-06-07 from `graph.db` (mtime 2026-06-07 02:17, scanned <24h before this baseline).
 > Track: [`jsdoc-comments_20260526`](./spec.md) — documentation-only (FR-6).
 > Supplemented: 2026-06-07 with NFR-1 line-length baseline (4 violations) — see §"Task 1.4 supplement" below.
+> Supplemented: 2026-06-07 with Manual Verification completion baseline (verification pending) — see §"User Manual Verification supplement" below.
 
 ## Why this baseline exists
 
@@ -11,8 +12,9 @@ This track is documentation-only (see [`test-strategy.md`](./test-strategy.md) �
 1. This baseline doc (the documented failing assertion).
 2. [`scripts/check-jsdoc-coverage.sh`](./scripts/check-jsdoc-coverage.sh) — executable graph-delta guard that wraps the FR-1/FR-2 summary-coverage assertion.
 3. [`scripts/check-jsdoc-line-length.sh`](./scripts/check-jsdoc-line-length.sh) — executable static guard that wraps the NFR-1 line-length assertion (Task 1.4 supplement, added after Tasks 1.1–1.3 were Green).
+4. [`scripts/check-phase-verification.sh`](./scripts/check-phase-verification.sh) — executable process guard that wraps the User Manual Verification completion assertion (Manual Verification supplement, added after Task 1.4 was Green so the per-task `[~]` marker has an executable acceptance gate).
 
-All three reflect the same Phase 1 acceptance surface: every `function` node in `apps/bus-math-v2/lib/**` must have a non-NULL `summary` (FR-1/FR-2) AND every JSDoc comment line in scope must be ≤120 chars (NFR-1).
+All four reflect the same Phase 1 acceptance surface: every `function` node in `apps/bus-math-v2/lib/**` must have a non-NULL `summary` (FR-1/FR-2), every JSDoc comment line in scope must be ≤120 chars (NFR-1), AND the User Manual Verification protocol must be recorded as `approved` in [`phase-1-verification-report.md`](./phase-1-verification-report.md).
 
 > **Boundary note:** The guard scripts live under `measure/tracks/jsdoc-comments_20260526/scripts/` (Measure-owned test artifacts), **not** under `apps/bus-math-v2/scripts/`. The Red phase only permits changes to test paths (`__tests__/`) or Measure paths (`measure/`); application script directories are application source territory. graph.db is repo-root and treated as application territory — never modify or commit it from a Red-phase attempt.
 
@@ -94,6 +96,10 @@ bash measure/tracks/jsdoc-comments_20260526/scripts/check-jsdoc-coverage.sh --js
 # Line-length guard (NFR-1) — human / machine-readable:
 bash measure/tracks/jsdoc-comments_20260526/scripts/check-jsdoc-line-length.sh
 bash measure/tracks/jsdoc-comments_20260526/scripts/check-jsdoc-line-length.sh --json
+
+# Manual-verification guard (process / workflow.md Step 5) — human / machine-readable:
+bash measure/tracks/jsdoc-comments_20260526/scripts/check-phase-verification.sh
+bash measure/tracks/jsdoc-comments_20260526/scripts/check-phase-verification.sh --json
 ```
 
 ## Task 1.4 supplement — NFR-1 line-length baseline
@@ -138,13 +144,50 @@ bash measure/tracks/jsdoc-comments_20260526/scripts/check-jsdoc-line-length.sh
 4. Existing summary guard must still pass (refresh graph.db first if needed): `bash measure/tracks/jsdoc-comments_20260526/scripts/check-jsdoc-coverage.sh`.
 5. Lint + tests must still pass: `npm run lint --workspace=apps/bus-math-v2 && npm run test --workspace=apps/bus-math-v2`.
 
+## User Manual Verification supplement
+
+**Pass condition:** The user has driven the `measure/workflow.md` §"Phase Completion Verification and Checkpointing Protocol" (Steps 1-10) for Phase 1 and recorded the result as `approved` in [`phase-1-verification-report.md`](./phase-1-verification-report.md).
+
+**Reproducible probe** (no graph.db required — pure file-content parse):
+```bash
+awk '/^VERIFICATION_RESULT:/' measure/tracks/jsdoc-comments_20260526/phase-1-verification-report.md
+# Expected at Green: VERIFICATION_RESULT: approved
+# Expected at Red:   VERIFICATION_RESULT: pending  (or missing)
+```
+
+**Current result (Red):** `VERIFICATION_RESULT: pending` — verification has not yet been performed. `VERIFIED_BY` and `VERIFIED_AT` are still placeholder values.
+
+**Why this gap exists:** Tasks 1.1–1.4 closed Phase 1's *code* surface (FR-1/FR-2/NFR-1) but the plan.md task `Measure - User Manual Verification 'Phase 1: BM2 lib/'` remained `[ ]` with no executable acceptance gate. The two existing guards (`check-jsdoc-coverage.sh`, `check-jsdoc-line-length.sh`) verify mechanical invariants but cannot attest that a human reviewer has confirmed the spec.md acceptance criteria (especially FR-6 doc-only diff inspection and out-of-scope-app untouched verification, which the existing guards don't cover).
+
+**Executable wrapper (User Manual Verification gate):**
+```bash
+bash measure/tracks/jsdoc-comments_20260526/scripts/check-phase-verification.sh
+# Exit 0 = User Manual Verification recorded as approved; non-zero = pending/rejected/missing.
+```
+
+**Green-phase definition of done for User Manual Verification:**
+
+1. Run the protocol (workflow.md Steps 1-10) end-to-end:
+   - Step 3: execute `CI=true npm run test --workspace=apps/bus-math-v2`, `npm run lint --workspace=apps/bus-math-v2`, and `npx tsc --noEmit`; record results in §"Automated test summary" of [`phase-1-verification-report.md`](./phase-1-verification-report.md).
+   - Step 4: walk the user through §"Manual verification plan" (5 spot-checks).
+   - Step 5: pause for the user's "yes" verdict.
+2. Fill §"User verdict" of `phase-1-verification-report.md`:
+   ```
+   VERIFICATION_RESULT: approved
+   VERIFIED_BY: <real name or "automation">
+   VERIFIED_AT: <ISO 8601 timestamp, e.g. 2026-06-07T05:00:00Z>
+   NOTES: <freeform>
+   ```
+3. Re-run guard: `bash measure/tracks/jsdoc-comments_20260526/scripts/check-phase-verification.sh && echo OK`.
+4. Steps 6-10: create checkpoint commit (or reuse `0b45e4fe`), attach report via `git notes`, append `[checkpoint: <sha>]` to the Phase 1 heading in plan.md, mark the User Manual Verification task `[x]`, commit plan update.
+
 ## What this Red phase does NOT introduce
 
 - **No new vitest files.** Per `test-strategy.md` §1 ban.
 - **No new dependencies.** Guards use `build-graph` (already on PATH) + bash/awk only.
-- **No application source-code edits.** Only added: Measure-owned shell guard scripts (under `measure/tracks/<track>/scripts/`), plan.md task markers, this baseline doc.
-- **No prose-content assertions.** Summary guard only asserts `summary IS NOT NULL` (structural); line-length guard only asserts char-count (mechanical) — neither inspects the prose itself.
-- **No graph.db edits.** Both guards read graph.db / source files but never write. graph.db must not appear in the Red-phase diff.
+- **No application source-code edits.** Only added: Measure-owned shell guard scripts (under `measure/tracks/<track>/scripts/`), Measure-owned report template (under `measure/tracks/<track>/`), plan.md task markers, this baseline doc.
+- **No prose-content assertions.** Summary guard only asserts `summary IS NOT NULL` (structural); line-length guard only asserts char-count (mechanical); verification guard only asserts a status field is `approved` (process) — none inspect the JSDoc prose itself.
+- **No graph.db edits.** All three guards read graph.db / source files / a Measure report but never write. graph.db must not appear in the Red-phase diff.
 
 ## Green-phase definition of done (for the assistant taking Tasks 1.1 / 1.2)
 
