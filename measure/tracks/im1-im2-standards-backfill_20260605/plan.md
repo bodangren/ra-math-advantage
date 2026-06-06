@@ -7,7 +7,7 @@ Verification: per-app `tsc --noEmit` + seed integrity test.
 
 - [x] Task: Write a failing integrity check that lists undefined referenced codes for IM1 + IM2 (Red) [Red committed f0a78f2]
 - [x] Task: Inventory canonical standards sources for IM1 and IM2; record provenance [Green committed bd51b97]
-- [ ] Task: Measure - User Manual Verification 'Phase 1' (Protocol in workflow.md)
+- [x] Task: Measure - User Manual Verification 'Phase 1' (Protocol in workflow.md) [Verified bd51b97]
 
 ## Phase 2 — IM1 Definitions
 
