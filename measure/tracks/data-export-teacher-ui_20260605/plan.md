@@ -11,9 +11,9 @@ Verification: `npm run ws:im3:lint`/`:test` + `tsc --noEmit`.
 
 ## Phase 2 — Export Panel UI
 
-- [x] Task: Build teacher-only export panel (dataset/scope/format controls), role-gated (TDD on render + guard) — Green committed [red: ee9c046e, 571017ff; green: 5e4a6b80]
-- [x] Task: Wire client download with descriptive filename — Green committed [red: ee9c046e, 571017ff; green: 5e4a6b80]
-- [x] Task: Empty/large/error states (TDD) — Green committed [red: ee9c046e, 571017ff; green: 5e4a6b80] **Known gap:** hasMore large-state test fails — mock uses exact JSON.stringify args matching with fixture-specific endDate (1700000020000) that component cannot produce at runtime. 9/10 tests pass.
+- [x] Task: Build teacher-only export panel (dataset/scope/format controls), role-gated (TDD on render + guard) — Green committed [red: ee9c046e, 571017ff; green: c5739ac5]
+- [x] Task: Wire client download with descriptive filename — Green committed [red: ee9c046e, 571017ff; green: c5739ac5]
+- [x] Task: Empty/large/error states (TDD) — Green committed [red: ee9c046e, 571017ff; green: c5739ac5]
 - [ ] Task: Measure - User Manual Verification 'Phase 2' (Protocol in workflow.md)
 
 ## Phase 3 — Authorization & Verification
