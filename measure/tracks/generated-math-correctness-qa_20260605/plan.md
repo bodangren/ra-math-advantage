@@ -27,7 +27,7 @@ Verification: boundary lints + `tsc --noEmit` + harness test suite.
 
 ## Phase 4 — CI Gate & Verification
 
-- [~] Task: Wire the harness as a generator gate in CI; prove it blocks a contract violation [red: c0e0d1e8]
-- [~] Task: Document how T17–T19 authors plug a generator into the harness [red: c0e0d1e8]
-- [~] Task: Final verification — boundary lints, tsc --noEmit, CI=true npm run test [red: c0e0d1e8]
+- [x] Task: Wire the harness as a generator gate in CI; prove it blocks a contract violation [red: c0e0d1e8] [green: f2d2e2b2]
+- [x] Task: Document how T17–T19 authors plug a generator into the harness [red: c0e0d1e8] [green: f2d2e2b2]
+- [x] Task: Final verification — boundary lints, tsc --noEmit, CI=true npm run test [red: c0e0d1e8] [green: f2d2e2b2]
 - [~] Task: Measure - User Manual Verification 'Phase 4' (Protocol in workflow.md)
