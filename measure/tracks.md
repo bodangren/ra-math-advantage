@@ -935,10 +935,6 @@ Sixteen candidate tracks identified from a full-roadmap review. Each is registry
    *Wire the matching and speed-round games into IM3 via real routes/pages. Games track Phase 3 is "pending — requires game routes/pages in IM3." Size: S. Depends on: student-study-hub-games (logic done). Readiness: ready now.*
    *Link: [./tracks/study-hub-games-adoption_20260605/](./tracks/study-hub-games-adoption_20260605/)*
 
-- [ ] **Track: IM1/IM2 Standards Backfill** — **PHASE 1 RED COMMITTED**
-   *Author the missing competency-standard definitions: IM1 has 77 placeholder standard nodes with no descriptions; IM2 references 91 codes but defines only 48 (54 missing per current state, 41 per older spec). Source: Tech Debt Registry. Size: M. Depends on: none. Readiness: ready now. Phase 1 Red: per-app reference-code collector + failing `standards-integrity.test.ts` and `standards-inventory.test.ts` committed at `f0a78f2`. Phase 2/3 will author the missing definitions and inventory entries to flip both integrity tests green.*
-   *Link: [./tracks/im1-im2-standards-backfill_20260605/](./tracks/im1-im2-standards-backfill_20260605/)*
-
 - [ ] **Track: Measure Architecture Tooling** — **PLANNED**
    *Build the real `generate` + `doctor` scripts and the `measure/generated/` facts (architecture.json, routes.md) so `/measure:doctor` stops HALTing. Phantom `generate.sh`/`doctor.sh` are referenced by multiple plans but never existed (Tech Debt Registry). Size: S. Depends on: none. Readiness: ready now.*
    *Link: [./tracks/measure-architecture-tooling_20260605/](./tracks/measure-architecture-tooling_20260605/)*
@@ -999,6 +995,10 @@ Sixteen candidate tracks identified from a full-roadmap review. Each is registry
   *Audit and repair the test suite to ensure all tests are meaningful, non-trivial, and correctly verify behavior.*
   *IM3: 267/267 pass. BM2: Convex generated type stubs added; 28 pre-existing infra failures remain (outside spec scope).*
   *Link: [./measure/archive/harden-test-suite_20260419/](./measure/archive/harden-test-suite_20260419/)*
+
+- [x] **Track: IM1/IM2 Standards Backfill** — **COMPLETED**
+  *Author 77 IM1 and 41 IM2 competency-standard definitions, wire integrity checks into CI, resolve Tech Debt Registry items.*
+  *Link: [./measure/archive/im1-im2-standards-backfill_20260605/](./measure/archive/im1-im2-standards-backfill_20260605/)*
 
 ## Tech Debt Resolution (2026-04-29)
 
