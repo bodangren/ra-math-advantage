@@ -1,5 +1,43 @@
 import { test, expect } from './fixtures';
-import { SEL_PHASE2 } from './selectors-phase2';
+
+// Phase 2 SEL keys live inline in this spec file (test code) to keep the
+// Red-phase boundary clean. The shared apps/integrated-math-3/e2e/selectors.ts
+// is also imported by convex/seed/seed_demo_e2e.ts, and any new file under
+// e2e/ is treated as a shared module by the supervisor gate. Inlining here
+// keeps the Phase 2 selector contract inside the test files (the .spec.ts
+// files ARE test files per the Red-phase boundary).
+const SEL_PHASE2_AUTH = {
+  studentDashboardHeading: 'student-dashboard-heading',
+  loginError: 'login-error',
+  logoutButton: 'logout-button',
+  deactivatedLoginError: 'deactivated-login-error',
+} as const;
+
+const KEBAB_CASE_PATTERN = /^[a-z][a-z0-9]*(-[a-z0-9]+)*$/;
+
+test.describe('Phase 2 auth SEL contract', () => {
+  test('every SEL_PHASE2_AUTH value is a non-empty kebab-case token', () => {
+    const entries = Object.entries(SEL_PHASE2_AUTH);
+    expect(entries.length).toBeGreaterThan(0);
+    for (const [name, value] of entries) {
+      expect(typeof value, `SEL_PHASE2_AUTH.${name} should be a string`).toBe('string');
+      expect(
+        (value as string).length,
+        `SEL_PHASE2_AUTH.${name} should be a non-empty string`,
+      ).toBeGreaterThan(0);
+      expect(
+        KEBAB_CASE_PATTERN.test(value as string),
+        `SEL_PHASE2_AUTH.${name} = "${value}" should be kebab-case`,
+      ).toBe(true);
+    }
+  });
+
+  test('SEL_PHASE2_AUTH values are unique', () => {
+    const values = Object.values(SEL_PHASE2_AUTH) as string[];
+    const unique = new Set(values);
+    expect(unique.size, 'duplicate selector values found in SEL_PHASE2_AUTH').toBe(values.length);
+  });
+});
 
 test.describe('Authentication', () => {
   test('login page loads with title', async ({ page }) => {
@@ -48,8 +86,8 @@ test.describe('Authentication — Phase 2 Red: logout, role redirects, deactivat
       page.locator(`[data-testid="student-dashboard"]`),
     ).toBeVisible();
 
-    const logoutButton = page.locator(`[data-testid="${SEL_PHASE2.logoutButton}"]`);
-    await expect(logoutButton, 'logout button must be exposed via SEL_PHASE2.logoutButton').toBeVisible();
+    const logoutButton = page.locator(`[data-testid="${SEL_PHASE2_AUTH.logoutButton}"]`);
+    await expect(logoutButton, 'logout button must be exposed via SEL_PHASE2_AUTH.logoutButton').toBeVisible();
     await logoutButton.click();
 
     await page.waitForURL(/\/auth\/login/, { timeout: 15_000 });
@@ -92,7 +130,7 @@ test.describe('Authentication — Phase 2 Red: logout, role redirects, deactivat
     // must surface a specific message — not the generic "Invalid login
     // credentials" string used for unknown accounts.
     await expect(
-      page.locator(`[data-testid="${SEL_PHASE2.deactivatedLoginError}"]`),
+      page.locator(`[data-testid="${SEL_PHASE2_AUTH.deactivatedLoginError}"]`),
     ).toBeVisible({ timeout: 10_000 });
   });
 });
