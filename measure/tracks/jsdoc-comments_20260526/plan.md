@@ -2,17 +2,20 @@
 
 ## Phase 1: BM2 `lib/` — 635 functions
 
-- [ ] Task 1.1: Add JSDoc to exported functions in BM2 `lib/`
+> **Red baseline:** 495 functions with NULL summaries (147 exported + 348 internal). See [`phase-1-red-baseline.md`](./phase-1-red-baseline.md). Guard script: `apps/bus-math-v2/scripts/check-jsdoc-coverage.sh`.
+
+- [~] Task 1.1: Add JSDoc to exported functions in BM2 `lib/`
     - [ ] Run `grep -rn "export function\|export async function" apps/bus-math-v2/lib/` to identify exported functions
     - [ ] Add standard JSDoc (summary, @param, @returns, @throws) to each exported function
     - [ ] Commit: `docs(bus-math-v2): Add JSDoc to exported functions in lib/`
-- [ ] Task 1.2: Add JSDoc to internal functions in BM2 `lib/`
+- [~] Task 1.2: Add JSDoc to internal functions in BM2 `lib/`
     - [ ] Run `grep -rn "^function\|^async function\|^const .* = (" apps/bus-math-v2/lib/` to identify internal functions
     - [ ] Add standard JSDoc to each internal function
     - [ ] Commit: `docs(bus-math-v2): Add JSDoc to internal functions in lib/`
 - [ ] Task 1.3: Verify phase
     - [ ] Run `npm run lint --workspace=apps/bus-math-v2`
     - [ ] Run `npm run test --workspace=apps/bus-math-v2`
+    - [ ] Run `bash apps/bus-math-v2/scripts/check-jsdoc-coverage.sh` — must exit 0 (0 NULL summaries in BM2 lib/)
     - [ ] Run `build-graph scan . ./graph.db` to refresh graph
     - [ ] Commit: `measure(checkpoint): Checkpoint end of Phase 1`
 - [ ] Task: Measure - User Manual Verification 'Phase 1: BM2 lib/' (Protocol in workflow.md)

@@ -1,0 +1,86 @@
+#!/usr/bin/env bash
+# Phase 1 JSDoc Coverage Guard — Red baseline test for jsdoc-comments_20260526.
+#
+# Per measure/tracks/jsdoc-comments_20260526/test-strategy.md §1, this script is the
+# "Graph delta checks" test tier (build-graph + summary count query). It is intentionally
+# a shell guard, NOT a vitest file, because the strategy bans new vitest files for doc text.
+#
+# Asserts: zero functions in apps/bus-math-v2/lib/** have NULL summaries in graph.db.
+# Exit 0 = pass (Phase 1 acceptance met). Non-zero = fail (functions still undocumented).
+#
+# Usage:
+#   bash apps/bus-math-v2/scripts/check-jsdoc-coverage.sh
+#   bash apps/bus-math-v2/scripts/check-jsdoc-coverage.sh --json
+#
+# Requires: build-graph on PATH, ./graph.db at repo root, BM2 lib/ files scanned.
+
+set -euo pipefail
+
+REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../../.." && pwd)"
+GRAPH_DB="${GRAPH_DB:-${REPO_ROOT}/graph.db}"
+SCOPE_PATTERN="%/apps/bus-math-v2/lib/%"
+SCOPE_LABEL="apps/bus-math-v2/lib/"
+PHASE_LABEL="Phase 1 (BM2 lib/)"
+
+if ! command -v build-graph >/dev/null 2>&1; then
+    echo "ERROR: build-graph not on PATH. Install per measure/lessons-learned.md or skip per Graph-Aware Mode rules." >&2
+    exit 3
+fi
+
+if [ ! -f "${GRAPH_DB}" ]; then
+    echo "ERROR: graph.db not found at ${GRAPH_DB}. Run 'build-graph scan ${REPO_ROOT} ${GRAPH_DB}' first." >&2
+    exit 3
+fi
+
+JSON_MODE=0
+if [ "${1:-}" = "--json" ]; then
+    JSON_MODE=1
+fi
+
+QUERY_TOTAL="SELECT COUNT(*) FROM nodes WHERE type='function' AND file_path LIKE '${SCOPE_PATTERN}'"
+QUERY_NULL="SELECT COUNT(*) FROM nodes WHERE type='function' AND file_path LIKE '${SCOPE_PATTERN}' AND summary IS NULL"
+QUERY_EXPORTED_NULL="SELECT COUNT(*) FROM nodes WHERE type='function' AND file_path LIKE '${SCOPE_PATTERN}' AND tags LIKE '%exported%' AND summary IS NULL"
+QUERY_INTERNAL_NULL="SELECT COUNT(*) FROM nodes WHERE type='function' AND file_path LIKE '${SCOPE_PATTERN}' AND (tags NOT LIKE '%exported%' OR tags IS NULL) AND summary IS NULL"
+
+extract_count() {
+    build-graph query "${GRAPH_DB}" "$1" 2>/dev/null | tail -n 1 | tr -d ' '
+}
+
+TOTAL="$(extract_count "${QUERY_TOTAL}")"
+NULL_TOTAL="$(extract_count "${QUERY_NULL}")"
+NULL_EXPORTED="$(extract_count "${QUERY_EXPORTED_NULL}")"
+NULL_INTERNAL="$(extract_count "${QUERY_INTERNAL_NULL}")"
+
+if [ "${JSON_MODE}" = "1" ]; then
+    cat <<EOF
+{"phase":"${PHASE_LABEL}","scope":"${SCOPE_LABEL}","total_functions":${TOTAL},"null_summary_total":${NULL_TOTAL},"null_summary_exported":${NULL_EXPORTED},"null_summary_internal":${NULL_INTERNAL},"pass":$([ "${NULL_TOTAL}" = "0" ] && echo true || echo false)}
+EOF
+else
+    echo "JSDoc Coverage Guard — ${PHASE_LABEL}"
+    echo "==========================================="
+    echo "Scope:                    ${SCOPE_LABEL}"
+    echo "Total functions:          ${TOTAL}"
+    echo "NULL summaries (total):   ${NULL_TOTAL}"
+    echo "  - exported:             ${NULL_EXPORTED}  (Task 1.1 target)"
+    echo "  - internal:             ${NULL_INTERNAL}  (Task 1.2 target)"
+    echo ""
+fi
+
+if [ "${NULL_TOTAL}" = "0" ]; then
+    [ "${JSON_MODE}" = "0" ] && echo "PASS: All ${TOTAL} functions in ${SCOPE_LABEL} have JSDoc summaries."
+    exit 0
+fi
+
+if [ "${JSON_MODE}" = "0" ]; then
+    echo "FAIL: ${NULL_TOTAL} function(s) in ${SCOPE_LABEL} still missing JSDoc summaries."
+    echo ""
+    echo "Per measure/tracks/jsdoc-comments_20260526/spec.md FR-1/FR-2, every exported AND internal"
+    echo "function in scope must have a JSDoc block (summary, @param, @returns, @throws if applicable)."
+    echo ""
+    echo "Reproduce manually:"
+    echo "  build-graph query ./graph.db \"${QUERY_NULL}\""
+    echo ""
+    echo "Refresh graph after edits:"
+    echo "  build-graph scan . ./graph.db"
+fi
+exit 1
