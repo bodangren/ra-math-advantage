@@ -5,18 +5,23 @@
 # "Graph delta checks" test tier (build-graph + summary count query). It is intentionally
 # a shell guard, NOT a vitest file, because the strategy bans new vitest files for doc text.
 #
+# Lives under measure/tracks/<track>/scripts/ (Measure-owned test artifact, not an app
+# script) to honor the Red-phase boundary: tests and Measure docs only, no application
+# source paths modified.
+#
 # Asserts: zero functions in apps/bus-math-v2/lib/** have NULL summaries in graph.db.
 # Exit 0 = pass (Phase 1 acceptance met). Non-zero = fail (functions still undocumented).
 #
 # Usage:
-#   bash apps/bus-math-v2/scripts/check-jsdoc-coverage.sh
-#   bash apps/bus-math-v2/scripts/check-jsdoc-coverage.sh --json
+#   bash measure/tracks/jsdoc-comments_20260526/scripts/check-jsdoc-coverage.sh
+#   bash measure/tracks/jsdoc-comments_20260526/scripts/check-jsdoc-coverage.sh --json
 #
 # Requires: build-graph on PATH, ./graph.db at repo root, BM2 lib/ files scanned.
 
 set -euo pipefail
 
-REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../../.." && pwd)"
+# Script lives at measure/tracks/jsdoc-comments_20260526/scripts/, so 4 levels up = repo root.
+REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../../../.." && pwd)"
 GRAPH_DB="${GRAPH_DB:-${REPO_ROOT}/graph.db}"
 SCOPE_PATTERN="%/apps/bus-math-v2/lib/%"
 SCOPE_LABEL="apps/bus-math-v2/lib/"

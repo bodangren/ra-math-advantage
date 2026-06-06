@@ -8,9 +8,11 @@
 This track is documentation-only (see [`test-strategy.md`](./test-strategy.md) §1). The strategy explicitly bans new vitest files for doc text and names **"Graph delta checks (build-graph + summary count query)"** as the appropriate test tier. The Red phase therefore consists of:
 
 1. This baseline doc (the documented failing assertion).
-2. [`apps/bus-math-v2/scripts/check-jsdoc-coverage.sh`](../../../apps/bus-math-v2/scripts/check-jsdoc-coverage.sh) — executable graph-delta guard that wraps the assertion.
+2. [`scripts/check-jsdoc-coverage.sh`](./scripts/check-jsdoc-coverage.sh) — executable graph-delta guard that wraps the assertion.
 
 Both reflect the same invariant: every `function` node in `apps/bus-math-v2/lib/**` must have a non-NULL `summary` after Phase 1 completes.
+
+> **Boundary note:** The guard script lives under `measure/tracks/jsdoc-comments_20260526/scripts/` (Measure-owned test artifact), **not** under `apps/bus-math-v2/scripts/`. The Red phase only permits changes to test paths (`__tests__/`) or Measure paths (`measure/`); application script directories are application source territory.
 
 ## Current state — Phase 1 scope
 
@@ -73,7 +75,7 @@ WHERE type='function'
 
 **Executable wrapper (Task 1.3 gate):**
 ```bash
-bash apps/bus-math-v2/scripts/check-jsdoc-coverage.sh
+bash measure/tracks/jsdoc-comments_20260526/scripts/check-jsdoc-coverage.sh
 # Exit 0 = Phase 1 acceptance met; non-zero = work remains.
 ```
 
@@ -84,17 +86,17 @@ bash apps/bus-math-v2/scripts/check-jsdoc-coverage.sh
 build-graph scan . ./graph.db
 
 # Run guard (human):
-bash apps/bus-math-v2/scripts/check-jsdoc-coverage.sh
+bash measure/tracks/jsdoc-comments_20260526/scripts/check-jsdoc-coverage.sh
 
 # Run guard (machine-readable):
-bash apps/bus-math-v2/scripts/check-jsdoc-coverage.sh --json
+bash measure/tracks/jsdoc-comments_20260526/scripts/check-jsdoc-coverage.sh --json
 ```
 
 ## What this Red phase does NOT introduce
 
 - **No new vitest files.** Per `test-strategy.md` §1 ban.
 - **No new dependencies.** Guard uses `build-graph` (already on PATH) + bash.
-- **No source-code edits.** Only added: shell guard script, plan.md task markers, this baseline doc.
+- **No application source-code edits.** Only added: Measure-owned shell guard script (under `measure/tracks/<track>/scripts/`), plan.md task markers, this baseline doc.
 - **No prose-content assertions.** Guard only asserts `summary IS NOT NULL` (structural), not the text of the summary.
 
 ## Green-phase definition of done (for the assistant taking Tasks 1.1 / 1.2)
@@ -106,6 +108,6 @@ bash apps/bus-math-v2/scripts/check-jsdoc-coverage.sh --json
    ORDER BY file_path, line_start;
    ```
 2. Re-scan: `build-graph scan . ./graph.db`.
-3. Guard must pass: `bash apps/bus-math-v2/scripts/check-jsdoc-coverage.sh && echo OK` → prints `OK`.
+3. Guard must pass: `bash measure/tracks/jsdoc-comments_20260526/scripts/check-jsdoc-coverage.sh && echo OK` → prints `OK`.
 4. Lint + tests must still pass: `npm run lint --workspace=apps/bus-math-v2 && npm run test --workspace=apps/bus-math-v2`.
 5. Existing test suite must show no logic regressions (FR-6 invariant).
