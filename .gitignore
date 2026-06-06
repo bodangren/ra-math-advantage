@@ -7,6 +7,7 @@ node_modules/
 # testing
 /coverage
 /playwright-report
+**/playwright-report/
 **/test-results/
 
 # next.js
@@ -44,3 +45,10 @@ drizzle/meta/
 
 # wrangler
 .wrangler/
+
+# build-graph scratch artifacts (graph.db itself is tracked; these are not)
+*.db.backup
+graph-bm2.db
+
+# measure automation-supervisor run outputs
+/measure/runs/

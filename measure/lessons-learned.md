@@ -18,7 +18,7 @@
 - (2026-04-19, review-10) Always validate + parse request body BEFORE consuming rate limits — malformed requests burn quota
 - (2026-04-29, review-25) Converting Convex public mutations to `internalMutation` requires: (1) updating generated `api.d.ts`, (2) updating ALL test mock setups from `fetchMutation` + `api.*` to `fetchInternalMutation` + `internal.*`, (3) removing stale `Id` imports
 - (2026-05-03, vitest-aliases) New monorepo packages need vitest `resolve.alias` entries in each app until `npm install` creates workspace symlinks. Without aliases, imports resolve to nothing and tests fail with opaque transform errors. Once symlink exists, remove aliases immediately — they mask broken workspace resolution.
-- (2026-06-06, edge-calibration-red) `graph.db` is a tracked binary; running `build-graph stats` / `build-graph search` / `build-graph inspect` mutates it (file size + node counts drift). During the Red phase, run any of these from a scratch path (e.g. `cp graph.db /tmp/agent-graph.db` and read that) or `git restore graph.db` before committing. Never leave graph.db as a working-tree modification — supervisors reject it as a non-test/non-Measure change.
+- (2026-06-06, edge-calibration-red; recurred 4+× through 2026-06-07 review) `graph.db` is a tracked binary; running `build-graph stats` / `search` / `inspect` mutates it (file size + node counts drift). Run these from a scratch path (e.g. `cp graph.db /tmp/agent-graph.db` and read that) or `git restore graph.db` before committing. Never leave graph.db as a working-tree modification — supervisors reject it as a non-test/non-Measure change. **Manual discipline keeps failing here — enforce with a pre-commit hook that blocks a dirty tracked `graph.db`.**
 
 ## Patterns That Worked Well
 
