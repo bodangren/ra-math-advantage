@@ -14,12 +14,9 @@
 import { internalMutation, internalQuery } from "./_generated/server";
 import { v } from "convex/values";
 import {
-  buildContingencyTable,
-  classifyStatus,
   updatePosterior,
   buildReviewQueueItem,
   posteriorMean,
-  bucketVariance,
   type EdgeCalibration,
   type CalibrationObservation,
   type ReviewQueueBuildInput,
@@ -179,7 +176,8 @@ export const refreshCalibrationReviewQueue = internalMutation({
 
 export async function listCalibrationReviewQueueHandler(
   ctx: QueryCtx,
-  args: { courseKey: string },
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  _args: { courseKey: string },
 ) {
   const rows = await ctx.db
     .query("calibration_review_queue")
