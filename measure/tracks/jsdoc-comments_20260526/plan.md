@@ -4,11 +4,11 @@
 
 > **Red baseline:** 495 functions with NULL summaries (147 exported + 348 internal). See [`phase-1-red-baseline.md`](./phase-1-red-baseline.md). Guard script: `apps/bus-math-v2/scripts/check-jsdoc-coverage.sh`.
 
-- [~] Task 1.1: Add JSDoc to exported functions in BM2 `lib/`
+- [~] Task 1.1: Add JSDoc to exported functions in BM2 `lib/` [red: 4f873ab4]
     - [ ] Run `grep -rn "export function\|export async function" apps/bus-math-v2/lib/` to identify exported functions
     - [ ] Add standard JSDoc (summary, @param, @returns, @throws) to each exported function
     - [ ] Commit: `docs(bus-math-v2): Add JSDoc to exported functions in lib/`
-- [~] Task 1.2: Add JSDoc to internal functions in BM2 `lib/`
+- [~] Task 1.2: Add JSDoc to internal functions in BM2 `lib/` [red: 4f873ab4]
     - [ ] Run `grep -rn "^function\|^async function\|^const .* = (" apps/bus-math-v2/lib/` to identify internal functions
     - [ ] Add standard JSDoc to each internal function
     - [ ] Commit: `docs(bus-math-v2): Add JSDoc to internal functions in lib/`
