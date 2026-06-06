@@ -37,6 +37,35 @@ import {
   getSubmissionExport,
 } from '@/convex/exports';
 
+/**
+ * The Convex `internalQuery` / `query` builders return a `FunctionReference`
+ * type that is not directly callable in TypeScript — it is meant to be
+ * passed to `useQuery` from the React client. In these tests we invoke
+ * the functions directly (bypassing the Convex runtime) so we cast to a
+ * plain callable signature.
+ *
+ * For Red phase, the existing exports are `internalQuery` definitions; the
+ * Green phase will replace them with public `query` wrappers that accept
+ * a `userId` arg. The cast below uses the GREEN-phase arg shape so the
+ * test compiles against the public-wrapper contract.
+ */
+type ClassExportCallable = (
+  ctx: QueryCtx,
+  args: { userId: Id<'profiles'>; classId: Id<'classes'>; startDate?: number; endDate?: number },
+) => Promise<unknown>;
+type StudentExportCallable = (
+  ctx: QueryCtx,
+  args: { userId: Id<'profiles'>; studentId: Id<'profiles'>; startDate?: number; endDate?: number },
+) => Promise<unknown>;
+type SubmissionExportCallable = (
+  ctx: QueryCtx,
+  args: { userId: Id<'profiles'>; classId: Id<'classes'>; endDate: number; limit?: number },
+) => Promise<unknown>;
+
+const callGetClassExport = getClassExport as unknown as ClassExportCallable;
+const callGetStudentExport = getStudentExport as unknown as StudentExportCallable;
+const callGetSubmissionExport = getSubmissionExport as unknown as SubmissionExportCallable;
+
 /* ------------------------------------------------------------------ *
  * Mock ctx factory — extends the `makeTeacherSrsMockCtx` pattern from
  * `__tests__/convex/teacher/srs-dashboard.test.ts`. The export handlers
@@ -133,11 +162,11 @@ function makeExportsMockCtx(options: {
 
   const mockGet = vi.fn().mockImplementation((...args: unknown[]) => {
     if (args.length === 2) {
-      const [table, id] = args as [string, Id<unknown>];
+      const [table, id] = args as [string, string];
       return Promise.resolve(tableRows[table]?.get(id) ?? null);
     }
     if (args.length === 1) {
-      const id = args[0] as Id<unknown>;
+      const id = args[0] as string;
       for (const table of Object.values(tableRows)) {
         const row = table.get(id);
         if (row) return Promise.resolve(row);
@@ -334,7 +363,7 @@ describe('Phase 3 — public export query wrappers (Red)', () => {
         enrollments: baseEnrollments,
       });
 
-      const result = await getClassExport(mockCtx, {
+      const result = await callGetClassExport(mockCtx, {
         userId: TEACHER_A_ID,
         classId: CLASS_A_ID,
       });
@@ -352,7 +381,7 @@ describe('Phase 3 — public export query wrappers (Red)', () => {
 
       // Teacher A asks for Teacher B's class — must be denied.
       await expect(
-        getClassExport(mockCtx, {
+        callGetClassExport(mockCtx, {
           userId: TEACHER_A_ID,
           classId: CLASS_B_ID,
         }),
@@ -367,7 +396,7 @@ describe('Phase 3 — public export query wrappers (Red)', () => {
       });
 
       await expect(
-        getClassExport(mockCtx, {
+        callGetClassExport(mockCtx, {
           userId: STUDENT_A1_ID,
           classId: CLASS_A_ID,
         }),
@@ -382,7 +411,7 @@ describe('Phase 3 — public export query wrappers (Red)', () => {
       });
 
       await expect(
-        getClassExport(mockCtx, {
+        callGetClassExport(mockCtx, {
           userId: 'ghost_teacher' as Id<'profiles'>,
           classId: CLASS_A_ID,
         }),
@@ -397,7 +426,7 @@ describe('Phase 3 — public export query wrappers (Red)', () => {
       });
 
       await expect(
-        getClassExport(mockCtx, {
+        callGetClassExport(mockCtx, {
           userId: TEACHER_A_ID,
           classId: CLASS_B_ID,
         }),
@@ -422,11 +451,11 @@ describe('Phase 3 — public export query wrappers (Red)', () => {
         enrollments: baseEnrollments,
       });
 
-      const result = await getSubmissionExport(mockCtx, {
+      const result = (await callGetSubmissionExport(mockCtx, {
         userId: TEACHER_A_ID,
         classId: CLASS_A_ID,
         endDate: 1_700_000_000_000,
-      });
+      })) as { rows: unknown[]; hasMore: boolean };
 
       expect(result).toBeDefined();
       expect(result.rows).toEqual([]);
@@ -441,7 +470,7 @@ describe('Phase 3 — public export query wrappers (Red)', () => {
       });
 
       await expect(
-        getSubmissionExport(mockCtx, {
+        callGetSubmissionExport(mockCtx, {
           userId: TEACHER_A_ID,
           classId: CLASS_B_ID,
           endDate: 1_700_000_000_000,
@@ -457,7 +486,7 @@ describe('Phase 3 — public export query wrappers (Red)', () => {
       });
 
       await expect(
-        getSubmissionExport(mockCtx, {
+        callGetSubmissionExport(mockCtx, {
           userId: TEACHER_A_ID,
           classId: CLASS_B_ID,
           endDate: 1_700_000_000_000,
@@ -479,7 +508,7 @@ describe('Phase 3 — public export query wrappers (Red)', () => {
         enrollments: baseEnrollments,
       });
 
-      const result = await getStudentExport(mockCtx, {
+      const result = await callGetStudentExport(mockCtx, {
         userId: TEACHER_A_ID,
         studentId: STUDENT_A1_ID,
       });
@@ -496,7 +525,7 @@ describe('Phase 3 — public export query wrappers (Red)', () => {
 
       // Teacher A is in ORG_A; Student B1 is in ORG_B — must be denied.
       await expect(
-        getStudentExport(mockCtx, {
+        callGetStudentExport(mockCtx, {
           userId: TEACHER_A_ID,
           studentId: STUDENT_B1_ID,
         }),
@@ -512,7 +541,7 @@ describe('Phase 3 — public export query wrappers (Red)', () => {
 
       // Teacher A asks for Teacher B's profile — not a student.
       await expect(
-        getStudentExport(mockCtx, {
+        callGetStudentExport(mockCtx, {
           userId: TEACHER_A_ID,
           studentId: TEACHER_B_ID,
         }),
@@ -528,7 +557,7 @@ describe('Phase 3 — public export query wrappers (Red)', () => {
 
       // Student A1 tries to read their own export without teacher rights.
       await expect(
-        getStudentExport(mockCtx, {
+        callGetStudentExport(mockCtx, {
           userId: STUDENT_A1_ID,
           studentId: STUDENT_A1_ID,
         }),
