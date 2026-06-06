@@ -733,4 +733,35 @@ export default defineSchema({
     updatedAt: v.number(),
   })
     .index("by_user", ["userId"]),
+
+  edge_calibration: defineTable({
+    edgeId: v.string(),
+    alpha: v.number(),
+    beta: v.number(),
+    lastUpdated: v.number(),
+    status: v.union(
+      v.literal("confirmed"),
+      v.literal("refuted"),
+      v.literal("untested"),
+    ),
+  })
+    .index("by_edge", ["edgeId"]),
+
+  calibration_review_queue: defineTable({
+    edgeId: v.string(),
+    contingencyTable: v.object({
+      proficientAProficientB: v.number(),
+      proficientANotProficientB: v.number(),
+      notProficientAProficientB: v.number(),
+      notProficientANotProficientB: v.number(),
+    }),
+    authoredWeight: v.number(),
+    authoredConfidence: v.string(),
+    calibratedWeight: v.number(),
+    calibratedConfidence: v.string(),
+    divergence: v.number(),
+    flaggedAt: v.number(),
+  })
+    .index("by_edge", ["edgeId"])
+    .index("by_flagged_at", ["flaggedAt"]),
 });

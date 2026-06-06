@@ -122,3 +122,18 @@ export {
   stabilityToRetention,
   aggregateCardsToEvidence,
 } from './srs/srs-proficiency';
+
+// Edge Calibration
+export type {
+  CalibrationStatus,
+  CalibrationVerdict,
+  CalibrationObservation,
+  CalibrationContingencyTable,
+  EdgeCalibration,
+  CalibrationNecessityResult,
+  CalibrationReviewQueueItem,
+} from './srs/edge-calibration';
+
+export {
+  CALIBRATION_STATUS_VALUES,
+} from './srs/edge-calibration';
