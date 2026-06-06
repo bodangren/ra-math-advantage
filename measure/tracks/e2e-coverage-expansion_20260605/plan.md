@@ -10,7 +10,7 @@ Verification: `npm run ws:im3:test` + E2E job + `tsc --noEmit`.
 - [x] Task: Document the selector + seed conventions (`e7a2228d`)
 - [x] Task: Measure - User Manual Verification 'Phase 1' (Protocol in workflow.md) (`e7a2228d`)
 
-## Phase 2 — Auth & Student Lesson Flow
+## Phase 2 — Auth & Student Lesson Flow [checkpoint: ce055f4f]
 
 - [x] Task: E2E specs for login/logout/role redirects/deactivated denial (Red→Green) (Red: `5cb403dd`, `69e0469e`, `872d00e7`, Green: `3cb6f8b6`)
 - [x] Task: E2E spec for full lesson flow incl. reload-persistence (Red→Green) (Red: `5cb403dd`, `69e0469e`, `872d00e7`, Green: `3cb6f8b6`)
