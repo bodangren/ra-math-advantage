@@ -30,6 +30,16 @@
     "ws:im1:build": "npm run --workspace=apps/integrated-math-1 build 2>/dev/null || npm run build --prefix apps/integrated-math-1"
   },
   "devDependencies": {
-    "react-server-dom-webpack": "^19.2.7"
+    "@eslint/js": "^10",
+    "@vitejs/plugin-react": "^6.0.0",
+    "next": "^16.0.0",
+    "react-server-dom-webpack": "^19.2.7",
+    "typescript": "^6",
+    "vinext": "^0.0.55"
+  },
+  "overrides": {
+    "eslint": "^10.0.0",
+    "next": "^16.0.0",
+    "typescript": "^6"
   }
 }
