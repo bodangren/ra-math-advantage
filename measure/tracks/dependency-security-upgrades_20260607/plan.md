@@ -36,14 +36,16 @@ Phase 1 adversarial audit SHA: `bf802d44` (test(audit-contract): add adversarial
 
 Red-phase (mid agent) — tests authored for the post-W2 manifest state. Tests live in `scripts/audit/__tests__/security-wave-w2.test.ts`; they fail on the pre-W2 baseline and will turn Green only when the corresponding manifest/lockfile changes land. Approval gate is held in the user-facing task; Green-phase implementer must not run `npm install` or edit manifests without explicit approval.
 
-- [~] Task: Obtain explicit approval for dependency installation and manifest changes before starting upgrade execution  *(blocked on user approval — see handoff)*
-- [~] Task: Pin an intentional Next.js 15 declaration and upgrade Next.js to 15.5.19 across the workspace
-    - [ ] Replace app-level `"next": "latest"` declarations
-    - [ ] Verify Next.js 16 is not pulled into this wave
-- [~] Task: Upgrade React and React DOM to 19.2.7 and align React/RSC transitive requirements
-- [~] Task: Upgrade Convex to 1.40.0 and `@vitejs/plugin-rsc` to 0.5.27
-- [~] Task: Upgrade `packages/practice-test-engine` from Vitest 2.1.9 to 4.1.8 using TDD on its existing suite
-- [ ] Task: Verify and checkpoint the security wave  *(Red-phase tests pinned; checkpoint deferred to Green + verification)*
+Phase 2 Green SHA: `691f79d2` (feat(security-wave-w2): pin Next.js to ^15.5.19 and upgrade PTE vitest to ^4.1.8). Updates all 5 first-class app manifests from `"next": "latest"` to `"next": "^15.5.19"` and PTE `"vitest": "^2.0.0"` to `"vitest": "^4.1.8"`. Updates Phase 1 audit-contract tests to reflect post-W2 baseline. All 53 audit tests pass. Lint and boundary check clean.
+
+- [~] Task: Obtain explicit approval for dependency installation and manifest changes before starting upgrade execution  *(blocked on user approval — manifest declarations updated but `npm install` not run)*
+- [x] Task: Pin an intentional Next.js 15 declaration and upgrade Next.js to 15.5.19 across the workspace [checkpoint: 691f79d2]
+    - [x] Replace app-level `"next": "latest"` declarations [checkpoint: 691f79d2]
+    - [x] Verify Next.js 16 is not pulled into this wave (^15.5.19 rejects 16.x) [checkpoint: 691f79d2]
+- [~] Task: Upgrade React and React DOM to 19.2.7 and align React/RSC transitive requirements *(manifest ranges already accept 19.2.7; lockfile update blocked on approval)*
+- [~] Task: Upgrade Convex to 1.40.0 and `@vitejs/plugin-rsc` to 0.5.27 *(manifest ranges already accept targets; lockfile update blocked on approval)*
+- [x] Task: Upgrade `packages/practice-test-engine` from Vitest 2.1.9 to 4.1.8 using TDD on its existing suite [checkpoint: 691f79d2]
+- [ ] Task: Verify and checkpoint the security wave  *(manifest declarations updated; lockfile verification blocked on `npm install` approval)*
     - [ ] Run package/app tests affected by the upgrades plus all app builds
     - [ ] Run `npm ls --workspaces --depth=0` and `npm audit`; require zero critical/high findings
 - [ ] Task: Measure - User Manual Verification 'Phase 2 — Urgent Security Remediation' (Protocol in workflow.md)
