@@ -26,6 +26,8 @@ Follow-up fix: `93acaf9a` removed `scripts/audit/vitest.config.ts` and `scripts/
 
 Suite is Red on missing `scripts/audit/audit-contract.ts`; Green is owed by a separate commit.
 
+Phase 1 Red expansion SHA: `2acf4282` (test(audit-contract): expand Red coverage for Task 1.1/2.2/3 sub-tasks). Adds four new describe blocks to the same suite — registry-latest versions (Task 1.1), range-compatibility classification 22-in-range / 14-requires-manifest-change (Task 1.1), matrix field completeness + manifest_owners boundary check (Task 2.2), and baseline quality-gates capture (Task 3) — plus two new fixtures (`registry-stub.json`, `baseline-quality-gates.json`) and the previously untracked test-strategy.md. Same Red behavior: file fails on missing `../audit-contract`; verified with a one-shot stub that the 22 new tests fail individually with `TypeError: <new function> is not a function`. No source code modified.
+
 ## Phase 2 — Urgent Security Remediation
 
 - [ ] Task: Obtain explicit approval for dependency installation and manifest changes before starting upgrade execution
