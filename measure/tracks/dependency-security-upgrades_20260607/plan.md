@@ -10,13 +10,13 @@ Verification substitute for Doctor: `node scripts/check-monorepo-boundaries.mjs`
 
 ## Phase 1 — Audit Contract & Baseline
 
-- [x] Task: Define the durable repo-wide dependency-audit contract and expected report schema
-    - [x] Cover all app/package manifests, the root lockfile, registry latest versions, range compatibility, declaration drift, and security totals
-    - [x] Add a regression fixture/assertion proving first-class app dependencies are not under-reported
-- [x] Task: Capture the pre-upgrade package-wave matrix under this track
-    - [x] Assign every one of the 36 direct upgrade candidates to security, in-range, vinext/runtime, or remaining-major wave
-    - [x] Record current/target versions, manifest owners, compatibility notes, and baseline verification state
-- [x] Task: Capture baseline quality-gate results and separate pre-existing failures from upgrade regressions
+- [x] Task: Define the durable repo-wide dependency-audit contract and expected report schema [checkpoint: a156ad0d]
+    - [x] Cover all app/package manifests, the root lockfile, registry latest versions, range compatibility, declaration drift, and security totals [checkpoint: a156ad0d]
+    - [x] Add a regression fixture/assertion proving first-class app dependencies are not under-reported [checkpoint: a156ad0d]
+- [x] Task: Capture the pre-upgrade package-wave matrix under this track [checkpoint: a156ad0d]
+    - [x] Assign every one of the 36 direct upgrade candidates to security, in-range, vinext/runtime, or remaining-major wave [checkpoint: a156ad0d]
+    - [x] Record current/target versions, manifest owners, compatibility notes, and baseline verification state [checkpoint: a156ad0d]
+- [x] Task: Capture baseline quality-gate results and separate pre-existing failures from upgrade regressions [checkpoint: a156ad0d]
 - [ ] Task: Measure - User Manual Verification 'Phase 1 — Audit Contract & Baseline' (Protocol in workflow.md) — deferred to supervisor after Red+Green land
 
 Phase 1 Red SHA: `ec6b97df` (test(audit-contract): add Red-phase TDD suite for dependency audit contract).
