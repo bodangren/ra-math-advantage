@@ -8,8 +8,8 @@
  */
 
 import { readFileSync, readdirSync, existsSync } from 'node:fs';
-import { resolve, join } from 'node:path';
-import { satisfies, coerce } from 'semver';
+import { resolve, join, relative } from 'node:path';
+import { satisfies, coerce, lt } from 'semver';
 
 // ---------------------------------------------------------------------------
 // Types
@@ -219,24 +219,29 @@ export function assertNoNestedLockfiles(
   _config: { expected_count: number; expected_paths: string[] }
 ): { ok: boolean; violations: string[] } {
   const violations: string[] = [];
-
   const rootLockfile = join(repoRoot, 'package-lock.json');
+  const allowedRoot = resolve(rootLockfile);
+
   if (!existsSync(rootLockfile)) {
     violations.push('missing root package-lock.json');
   }
 
-  for (const dir of ['apps', 'packages']) {
-    const dirPath = join(repoRoot, dir);
-    if (!existsSync(dirPath)) continue;
+  const visit = (dirPath: string) => {
+    if (!existsSync(dirPath)) return;
     for (const entry of readdirSync(dirPath, { withFileTypes: true })) {
-      if (!entry.isDirectory()) continue;
-      if (EXCLUDED_PACKAGE_DIRS.has(entry.name)) continue;
-      const nested = join(dirPath, entry.name, 'package-lock.json');
-      if (existsSync(nested)) {
-        violations.push(`${dir}/${entry.name}/package-lock.json`);
+      const entryPath = join(dirPath, entry.name);
+      if (entry.isDirectory()) {
+        if (['.git', '.next', '.vinext', '.wrangler', 'build', 'dist', 'node_modules'].includes(entry.name)) continue;
+        visit(entryPath);
+        continue;
+      }
+      if (entry.isFile() && entry.name === 'package-lock.json' && resolve(entryPath) !== allowedRoot) {
+        violations.push(relative(repoRoot, entryPath));
       }
     }
-  }
+  };
+
+  visit(repoRoot);
 
   return { ok: violations.length === 0, violations };
 }
@@ -255,7 +260,7 @@ export function assertNoDrizzleKitDowngrade(
     if (!range) continue;
     const cleaned = range.replace(/^[\^~>=<]*/, '');
     const current = coerce(cleaned);
-    if (current && current.version < floorVersion.version) {
+    if (current && lt(current, floorVersion)) {
       violations.push({ workspace: manifest.workspace_path, range, floor });
     }
   }

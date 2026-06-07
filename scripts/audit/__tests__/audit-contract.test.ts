@@ -26,9 +26,9 @@
  */
 
 import { describe, it, expect, beforeAll } from 'vitest';
-import { readFileSync, existsSync } from 'node:fs';
-import { resolve, dirname } from 'node:path';
-import { fileURLToPath } from 'node:url';
+import { mkdtempSync, mkdirSync, readFileSync, rmSync, writeFileSync, existsSync } from 'node:fs';
+import { tmpdir } from 'node:os';
+import { resolve } from 'node:path';
 
 import {
   getAuditReport,
@@ -56,9 +56,8 @@ import {
   type MatrixRow,
 } from '../audit-contract';
 
-const __dirname = dirname(fileURLToPath(import.meta.url));
-const REPO_ROOT = resolve(__dirname, '..', '..', '..');
-const FIXTURES_DIR = resolve(__dirname, 'fixtures');
+const REPO_ROOT = process.cwd();
+const FIXTURES_DIR = resolve(REPO_ROOT, 'scripts/audit/__tests__/fixtures');
 
 const BASELINE = JSON.parse(
   readFileSync(resolve(FIXTURES_DIR, 'audit-baseline.json'), 'utf-8')
@@ -84,7 +83,7 @@ const BASELINE = JSON.parse(
 const MATRIX = JSON.parse(
   readFileSync(resolve(FIXTURES_DIR, 'package-wave-matrix.json'), 'utf-8')
 ) as {
-  rows: Array<{ package: string; primary_wave: string; waves: string[] }>;
+  rows: MatrixRow[];
 };
 
 const LOCKFILE_INVENTORY = JSON.parse(
@@ -244,6 +243,21 @@ describe('audit-contract — single-root-lockfile invariant (AC7, FR10)', () => 
     expect(result.violations).toEqual([]);
   });
 
+  it('detects any non-root package-lock.json recursively (negative test)', () => {
+    const tempRoot = mkdtempSync(resolve(tmpdir(), 'audit-contract-lockfile-'));
+    try {
+      writeFileSync(resolve(tempRoot, 'package-lock.json'), '{}');
+      mkdirSync(resolve(tempRoot, 'apps/example/nested'), { recursive: true });
+      writeFileSync(resolve(tempRoot, 'apps/example/nested/package-lock.json'), '{}');
+
+      const result = assertNoNestedLockfiles(tempRoot, LOCKFILE_INVENTORY.single_root_lockfile);
+      expect(result.ok).toBe(false);
+      expect(result.violations).toContain('apps/example/nested/package-lock.json');
+    } finally {
+      rmSync(tempRoot, { recursive: true, force: true });
+    }
+  });
+
   it('does not allow a .npmrc file (would indicate a peer-deps workaround)', () => {
     for (const forbidden of LOCKFILE_INVENTORY.npmrc_invariant.expected_files.length === 0
       ? ['.npmrc']
@@ -258,6 +272,23 @@ describe('audit-contract — drizzle-kit downgrade guard (FR9)', () => {
     const manifests = getAppManifests(REPO_ROOT);
     const result = assertNoDrizzleKitDowngrade(manifests, BASELINE.drizzle_kit_floor.downgrade_blocked_below);
     expect(result.ok, `drizzle-kit violations: ${JSON.stringify(result.violations)}`).toBe(true);
+  });
+
+  it('detects a drizzle-kit downgrade below the floor (negative test)', () => {
+    const mockManifests: AppManifest[] = [
+      {
+        workspace: 'package',
+        workspace_path: 'packages/test-pkg',
+        package_json_path: 'packages/test-pkg/package.json',
+        dependencies: { 'drizzle-kit': '^0.31.9' },
+        devDependencies: {},
+      },
+    ];
+    const result = assertNoDrizzleKitDowngrade(mockManifests, '0.31.10');
+    expect(result.ok).toBe(false);
+    expect(result.violations.length).toBe(1);
+    expect(result.violations[0].workspace).toBe('packages/test-pkg');
+    expect(result.violations[0].floor).toBe('0.31.10');
   });
 });
 
