@@ -27,7 +27,13 @@
  *     in W2 turns Red.
  *
  * After the W2 wave lands:
- *   - "next" declarations in all 5 first-class apps become `^15.5.19`.
+ *   - "next" declarations in all 5 first-class apps become an intentional,
+ *     non-`latest` range (FR4/AC4). NOTE (post-W4): the W4 framework wave
+ *     deliberately moved Next from 15.5.19 to 16, so this suite no longer
+ *     asserts a frozen 15.x snapshot. The durable W2 contract is FR4/AC4 —
+ *     never `latest`/`*`/empty, and the range must admit the installed Next —
+ *     which is version-agnostic across the 15→16 migration. The specific
+ *     installed major is owned by the wave that set it (W4 for Next 16).
  *   - PTE vitest declaration becomes `^4.x.x` (4.1.8 in lockfile).
  *   - vitest declaration drift between PTE and the rest of the workspace
  *     is removed.
@@ -65,7 +71,6 @@ const FIRST_CLASS_APP_WORKSPACES = [
 
 const PTE_WORKSPACE = 'packages/practice-test-engine';
 
-const POST_W2_NEXT_TARGET = '15.5.19';
 const POST_W2_PTE_VITEST_TARGET_MAJOR = 4;
 
 interface MatrixFixture {
@@ -97,6 +102,13 @@ const PACKAGE_LOCK = JSON.parse(
   readFileSync(resolve(REPO_ROOT, 'package-lock.json'), 'utf-8')
 ) as PackageLock;
 
+// The Next version actually installed in the lockfile. W2 pinned 15.5.19; the
+// W4 framework wave lifted it to 16.x. The W2 FR4/AC4 guard is version-agnostic:
+// it asserts each app's manifest range admits whatever Next is installed, rather
+// than a frozen 15.x literal that W4 intentionally superseded.
+const INSTALLED_NEXT_VERSION =
+  PACKAGE_LOCK.packages['node_modules/next']?.version ?? '';
+
 function firstClassApps(manifests: AppManifest[]): AppManifest[] {
   return manifests.filter((m) => m.workspace === 'app');
 }
@@ -125,23 +137,27 @@ function expectPostW2NextPin(
     `${workspacePath} must declare "next" after W2`
   ).toHaveLength(1);
   const range = ranges[0];
+  // FR4 / AC4: the declaration must be an intentional, controlled range — never
+  // an uncontrolled "latest" / "*" / empty that could silently cross a major
+  // boundary on a routine lockfile refresh. The specific Next major is owned by
+  // the wave that set it (15 in W2, 16 after the W4 framework wave); this guard
+  // is deliberately version-agnostic and asserts only the durable contract.
   expect(
     range,
-    `${workspacePath} next range must not be "latest" or "*" after W2 (FR4)`
+    `${workspacePath} next range must not be "latest" (FR4/AC4)`
   ).not.toBe('latest');
-  expect(range, `${workspacePath} next range must not be "*" after W2`).not.toBe('*');
+  expect(range, `${workspacePath} next range must not be "*" (FR4/AC4)`).not.toBe('*');
   expect(
     range,
-    `${workspacePath} next range must not be empty after W2`
+    `${workspacePath} next range must not be empty (FR4/AC4)`
   ).not.toBe('');
-  const resolved = REGISTRY_STUB.registry_latest.next;
   expect(
-    satisfies(resolved, range),
-    `${workspacePath} declares next as "${range}"; registry latest ${POST_W2_NEXT_TARGET} must satisfy that range (AC4)`
-  ).toBe(true);
+    INSTALLED_NEXT_VERSION,
+    'installed next version missing from package-lock.json'
+  ).not.toBe('');
   expect(
-    resolved.startsWith(`${POST_W2_NEXT_TARGET.split('.')[0]}.`),
-    `${workspacePath} next target ${POST_W2_NEXT_TARGET} must remain in the 15.x line (16.x is the W4 migration)`
+    satisfies(INSTALLED_NEXT_VERSION, range),
+    `${workspacePath} declares next as "${range}"; the installed Next ${INSTALLED_NEXT_VERSION} must satisfy that range (AC4)`
   ).toBe(true);
 }
 
@@ -153,7 +169,7 @@ describe('security-wave (W2) — next pinning (FR4 / AC4)', () => {
   });
 
   it.each(FIRST_CLASS_APP_WORKSPACES)(
-    '%s declares "next" as an intentional 15.x range (no "latest" / "*" / "")',
+    '%s declares "next" as an intentional, controlled range (no "latest" / "*" / "")',
     (workspacePath) => {
       expectPostW2NextPin(manifests, workspacePath);
     }
@@ -412,8 +428,18 @@ describe('security-wave (W2) — FR3 @vitejs/plugin-rsc minimum 0.5.27 (GHSA-w94
 });
 
 describe('security-wave (W2) — lockfile sync proves installed versions match FR3/FR4', () => {
+  it('installed next never regresses below the W2 security floor (>= 15.5.19), regardless of later major waves', () => {
+    expect(
+      INSTALLED_NEXT_VERSION,
+      'next missing from package-lock.json'
+    ).not.toBe('');
+    expect(
+      satisfies(INSTALLED_NEXT_VERSION, '>=15.5.19'),
+      `installed Next ${INSTALLED_NEXT_VERSION} must stay at or above the W2 security floor 15.5.19`
+    ).toBe(true);
+  });
+
   it.each([
-    ['next', 'node_modules/next', '15.5.19'],
     ['react', 'node_modules/react', '19.2.7'],
     ['react-dom', 'node_modules/react-dom', '19.2.7'],
     ['convex', 'node_modules/convex', '1.40.0'],
@@ -428,11 +454,21 @@ describe('security-wave (W2) — lockfile sync proves installed versions match F
 
   it('workspace package-lock declarations are synced for PTE vitest and first-class app Next pins', () => {
     expect(PACKAGE_LOCK.packages['packages/practice-test-engine']?.devDependencies?.vitest).toBe('^4.1.8');
+    // FR4/AC4 + manifest↔lockfile sync, version-agnostic: each app's lockfile
+    // next declaration must mirror its manifest range and never be "latest".
+    const manifests = getAppManifests(REPO_ROOT);
     for (const workspacePath of FIRST_CLASS_APP_WORKSPACES) {
+      const manifest = manifestByWorkspace(manifests, workspacePath);
+      const manifestRange = manifest ? allDeclaredRanges(manifest, 'next')[0] : undefined;
+      const lockRange = PACKAGE_LOCK.packages[workspacePath]?.dependencies?.next;
       expect(
-        PACKAGE_LOCK.packages[workspacePath]?.dependencies?.next,
-        `${workspacePath} package-lock declaration must pin Next 15`
-      ).toBe('^15.5.19');
+        lockRange,
+        `${workspacePath} package-lock next declaration must not be "latest" (FR4/AC4)`
+      ).not.toBe('latest');
+      expect(
+        lockRange,
+        `${workspacePath} package-lock next declaration must stay in sync with its manifest range`
+      ).toBe(manifestRange);
     }
   });
 });
