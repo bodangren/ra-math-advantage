@@ -36,8 +36,8 @@
 
   "totals": {
     "first_class_app_count": 5,
-    "shared_package_count": 21,
-    "workspace_manifest_count": 26,
+    "shared_package_count": 19,
+    "workspace_manifest_count": 24,
     "direct_external_dep_count_apps_only": 62,
     "upgrade_candidate_families": 36
   },

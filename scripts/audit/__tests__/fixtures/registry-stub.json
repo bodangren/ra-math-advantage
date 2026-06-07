@@ -49,7 +49,6 @@
       "react-dom",
       "convex",
       "@vitejs/plugin-rsc",
-      "vitest",
       "@cloudflare/vite-plugin",
       "@playwright/test",
       "@radix-ui/react-avatar",
@@ -83,7 +82,7 @@
       "typescript",
       "vinext",
       "vite",
-      "vitest-pte-only"
+      "vitest"
     ]
   }
 }
