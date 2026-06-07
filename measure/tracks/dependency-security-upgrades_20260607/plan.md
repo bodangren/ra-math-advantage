@@ -136,6 +136,28 @@ Phase 4 mid-attempt-10 supervisor-feedback fix (2026-06-07T19:30Z) — Red mid a
 
 Phase 4 phase-acceptance audit (2026-06-07T20:04Z) — Independent Phase Acceptance Auditor re-verified the committed post-W4 baseline. Attempt-1 timed out (exit 124) during `CI=true npm run lint` after all test suites had already passed; attempt-2 re-ran the key gates with optimized timeouts. Results: W4 main 35/35 + W4-audit 15/15 + P1 audit-contract 36/36 + W3 in-range 38/38 = **124/124 pass** (combined single run). W2 security 40/47 (7 expected post-W4 next 15→16 baseline flips). Boundary check clean. npm ls clean. Single root lockfile confirmed. Lockfile versions: next 16.2.7, vite 8.0.16, vinext 0.0.55, typescript 6.0.3, eslint 10.4.1, @vitejs/plugin-react 6.0.2, eslint-config-next 16.2.7, @eslint/js 10.0.1. **Status: pass.** No blocking findings. Result written to `measure/runs/20260607T111519Z/dependency-security-upgrades_20260607/phase-1-Phase_4_Coordinated_Framework_Toolchain_Majors/phase-acceptance/phase_acceptance-result.json`.
 
+## Phase: Review Fixes (2026-06-07 Measure review)
+
+A `/measure` review of the past-24h commits verified Phases 1–4 against the spec
+(lockfile versions, single root lockfile, FR4/AC4 no-`latest`, AC2 0 critical/0
+high, AC3/AC8 boundary + `npm ls` clean — all confirmed) and found one defect:
+the W2 security suite was committed permanently Red. After W4 lifted Next from
+15.5.19 to 16, `security-wave-w2.test.ts` still asserted a frozen Next-15.x pin
+(`POST_W2_NEXT_TARGET = '15.5.19'`, the lockfile-version row, and the workspace
+mirror = `^15.5.19`), so 7 tests failed on `master`. Earlier waves updated their
+assertions forward (W2 Green updated P1's tests; W3 did the same); the same was
+not done when W4 landed.
+
+- [x] Task: Apply review suggestion — generalize W2 next assertions to the durable FR4/AC4 contract
+    - [x] `expectPostW2NextPin` now asserts no `latest`/`*`/empty + range admits the **installed** Next (version-agnostic across the 15→16 migration), dropping the 15.x-line assertion and the shared-`registry-stub` coupling
+    - [x] Lockfile-version table replaces the exact `next` row with a security-floor guard (installed Next `>=15.5.19`, never regresses); workspace-mirror test now asserts lockfile↔manifest sync + no `latest` instead of `^15.5.19`
+    - [x] All five audit suites green: 171/171 (was 7 failing). Boundary check clean.
+
+Two lower-severity items deferred to Phase 5 closure (AC8 already requires a
+final audit): the `npm audit` headline drifted 14 → 11 moderate (0 critical/0
+high holds) and `w3-advisory-disposition.json` over-counts the live set; and a
+lessons-learned entry was logged on forward-updating wave-based suites.
+
 ## Phase 5 — Remaining Majors, Final Audit & Closure
 
 - [ ] Task: Upgrade Tailwind CSS 3 → 4 with visual and build verification across all five apps
