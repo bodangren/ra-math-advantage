@@ -78,13 +78,7 @@
         "apps/integrated-math-3",
         "apps/pre-calculus"
       ],
-      "families_touched": ["tailwindcss"],
-      "results": {
-        "lint":      { "exit_status": 0 },
-        "test":      { "exit_status": 0 },
-        "typecheck": { "exit_status": 0 },
-        "build":     { "exit_status": 0 }
-      }
+      "families_touched": ["tailwindcss"]
     },
     "W5-T2_katex_lucide": {
       "expected_clean_apps": [
@@ -94,13 +88,7 @@
         "apps/integrated-math-3",
         "apps/pre-calculus"
       ],
-      "families_touched": ["katex", "lucide-react"],
-      "results": {
-        "lint":      { "exit_status": 0 },
-        "test":      { "exit_status": 0 },
-        "typecheck": { "exit_status": 0 },
-        "build":     { "exit_status": 0 }
-      }
+      "families_touched": ["katex", "lucide-react"]
     },
     "W5-T3_jsdom": {
       "expected_clean_apps": [
@@ -111,13 +99,7 @@
         "apps/pre-calculus"
       ],
       "families_touched": ["jsdom"],
-      "tsc_and_vitest_required": true,
-      "results": {
-        "lint":      { "exit_status": 0 },
-        "test":      { "exit_status": 0 },
-        "typecheck": { "exit_status": 0 },
-        "build":     { "exit_status": 0 }
-      }
+      "tsc_and_vitest_required": true
     }
   },
 
@@ -132,74 +114,7 @@
   "deferral_evidence_artifact": "scripts/audit/__tests__/fixtures/w5-deferral-evidence.json",
 
   "pre_existing_failures": {
-    "failures": [
-      {
-        "workspace": "apps/bus-math-v2",
-        "rule": "react-hooks/set-state-in-effect",
-        "count": 5,
-        "attribution": "eslint-config-next@16 React Compiler rules (W4 pre-existing; carried into W5)"
-      },
-      {
-        "workspace": "apps/bus-math-v2",
-        "rule": "react-hooks/purity",
-        "count": 2,
-        "attribution": "eslint-config-next@16 React Compiler rules (W4 pre-existing)"
-      },
-      {
-        "workspace": "apps/integrated-math-1",
-        "rule": "react-hooks/set-state-in-effect",
-        "count": 1,
-        "attribution": "eslint-config-next@16 React Compiler rules (W4 pre-existing)"
-      },
-      {
-        "workspace": "apps/integrated-math-2",
-        "rule": "react-hooks/set-state-in-effect",
-        "count": 1,
-        "attribution": "eslint-config-next@16 React Compiler rules (W4 pre-existing)"
-      },
-      {
-        "workspace": "apps/integrated-math-3",
-        "rule": "react-hooks/set-state-in-effect",
-        "count": 3,
-        "attribution": "eslint-config-next@16 React Compiler rules (W4 pre-existing)"
-      },
-      {
-        "workspace": "apps/integrated-math-3",
-        "rule": "react-hooks/static-components",
-        "count": 2,
-        "attribution": "eslint-config-next@16 React Compiler rules (W4 pre-existing)"
-      },
-      {
-        "workspace": "apps/integrated-math-3",
-        "rule": "react-hooks/refs",
-        "count": 1,
-        "attribution": "eslint-config-next@16 React Compiler rules (W4 pre-existing)"
-      },
-      {
-        "workspace": "apps/integrated-math-3",
-        "rule": "react-hooks/purity",
-        "count": 1,
-        "attribution": "eslint-config-next@16 React Compiler rules (W4 pre-existing)"
-      },
-      {
-        "workspace": "apps/pre-calculus",
-        "rule": "react-hooks/set-state-in-effect",
-        "count": 2,
-        "attribution": "eslint-config-next@16 React Compiler rules (W4 pre-existing)"
-      },
-      {
-        "workspace": "apps/pre-calculus",
-        "rule": "react-hooks/purity",
-        "count": 1,
-        "attribution": "eslint-config-next@16 React Compiler rules (W4 pre-existing)"
-      },
-      {
-        "workspace": "apps/pre-calculus",
-        "rule": "react-hooks/static-components",
-        "count": 1,
-        "attribution": "eslint-config-next@16 React Compiler rules (W4 pre-existing)"
-      }
-    ],
-    "policy": "Per spec Out-of-Scope, pre-existing failures unrelated to the upgrade are not auto-fixed; they are recorded here for attribution. W5 must not introduce NEW pre-existing failures (count delta must be zero). If a wave resolves one of these as a side effect, mark it resolved with the wave SHA."
+    "failures": [],
+    "policy": "Per spec Out-of-Scope, pre-existing failures unrelated to the upgrade are not auto-fixed; they are recorded here for attribution. W5 must not introduce NEW pre-existing failures (count delta must be zero). If a wave resolves one of these as a side effect, mark it resolved with the wave SHA. Green-time fixture population owed by a follow-up commit (per W4-audit pattern)."
   }
 }
