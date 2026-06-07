@@ -1,0 +1,63 @@
+{
+  "schema_version": 1,
+  "captured_at": "2026-06-07T00:00:00Z",
+  "captured_by": "measure:dependency-security-upgrades_20260607",
+  "purpose": "Phase 4 — Coordinated Framework & Toolchain Majors (Task 5.1 / FR7/FR8 / AC7/AC8). Per-migration quality-gate schema; the w4 Red-phase TDD suite asserts this fixture exists with the four required top-level categories (npm_ls, npm_audit, boundary_check, per_app_quality_gates) and per-migration subsections (W4-T1 vinext, W4-T2 vite+plugin-react, W4-T3 next+eslint-config-next, W4-T4 typescript+eslint+@eslint/js). Green behavior: a w4 Green commit (per-migration) runs the actual quality-gate commands for that migration and writes the results into the matching per_migration_quality_gates entry.",
+
+  "npm_ls": {
+    "command": "npm ls --workspaces --depth=0",
+    "expected_exit_status": 0,
+    "expected_clean": true,
+    "summary": "Clean. No dependency-tree problems across the 5 apps and 19 active shared packages. Required to hold after EACH W4 per-migration install."
+  },
+
+  "npm_audit": {
+    "command": "npm audit --json",
+    "expected_exit_status": 1,
+    "expected_critical": 0,
+    "expected_high": 0,
+    "expected_moderate": "dispositioned_in_w3",
+    "force_fix_used": false,
+    "summary": "0 critical / 0 high; the 14 moderate advisories are dispositioned in w3-advisory-disposition.json. W4 majors must not introduce new critical/high findings."
+  },
+
+  "boundary_check": {
+    "command": "node scripts/check-monorepo-boundaries.mjs",
+    "expected_exit_status": 0,
+    "expected_clean": true,
+    "summary": "No monorepo boundary violations after W4 framework majors. W4 must not introduce a new cross-boundary import (test-strategy.md §4)."
+  },
+
+  "per_app_quality_gates": {
+    "purpose": "Per-app lint/test/typecheck/build status captured after EACH W4 per-migration install (Task 5.1). Each migration commit re-runs the full per-app gate so a wave that flips a previously-green app to red is attributable to that migration.",
+    "apps": [
+      { "workspace": "apps/bus-math-v2",        "lint": { "expected_exit_status": 0, "command": "npm run ws:bm2:lint" }, "test": { "expected_exit_status": 0, "command": "npm run ws:bm2:test" }, "typecheck": { "expected_exit_status": 0, "command": "npm run ws:bm2:typecheck" }, "build": { "expected_exit_status": 0, "command": "npm run ws:bm2:build" } },
+      { "workspace": "apps/integrated-math-1",  "lint": { "expected_exit_status": 0, "command": "npm run ws:im1:lint" }, "test": { "expected_exit_status": 0, "command": "npm run ws:im1:test" }, "typecheck": { "expected_exit_status": 0, "command": "npm run ws:im1:typecheck" }, "build": { "expected_exit_status": 0, "command": "npm run ws:im1:build" } },
+      { "workspace": "apps/integrated-math-2",  "lint": { "expected_exit_status": 0, "command": "npm run ws:im2:lint" }, "test": { "expected_exit_status": 0, "command": "npm run ws:im2:test" }, "typecheck": { "expected_exit_status": 0, "command": "npm run ws:im2:typecheck" }, "build": { "expected_exit_status": 0, "command": "npm run ws:im2:build" } },
+      { "workspace": "apps/integrated-math-3",  "lint": { "expected_exit_status": 0, "command": "npm run ws:im3:lint" }, "test": { "expected_exit_status": 0, "command": "npm run ws:im3:test" }, "typecheck": { "expected_exit_status": 0, "command": "npm run ws:im3:typecheck" }, "build": { "expected_exit_status": 0, "command": "npm run ws:im3:build" } },
+      { "workspace": "apps/pre-calculus",       "lint": { "expected_exit_status": 0, "command": "npm run ws:pc:lint" },  "test": { "expected_exit_status": 0, "command": "npm run ws:pc:test" },  "typecheck": { "expected_exit_status": 0, "command": "npm run ws:pc:typecheck" },  "build": { "expected_exit_status": 0, "command": "npm run ws:pc:build" } }
+    ]
+  },
+
+  "per_migration_quality_gates": {
+    "purpose": "Task 5.1 — One migration per commit; quality gates are recorded per migration in this section so a failure is attributable to a specific migration.",
+    "W4-T1_vinext":            { "expected_clean_apps": ["apps/bus-math-v2", "apps/integrated-math-1", "apps/integrated-math-2", "apps/integrated-math-3", "apps/pre-calculus"], "families_touched": ["vinext"] },
+    "W4-T2_vite_plugin":      { "expected_clean_apps": ["apps/bus-math-v2", "apps/integrated-math-1", "apps/integrated-math-2", "apps/integrated-math-3", "apps/pre-calculus"], "families_touched": ["vite", "@vitejs/plugin-react"] },
+    "W4-T3_next":              { "expected_clean_apps": ["apps/bus-math-v2", "apps/integrated-math-1", "apps/integrated-math-2", "apps/integrated-math-3", "apps/pre-calculus"], "families_touched": ["next", "eslint-config-next"] },
+    "W4-T4_toolchain":         { "expected_clean_apps": ["apps/bus-math-v2", "apps/integrated-math-1", "apps/integrated-math-2", "apps/integrated-math-3", "apps/pre-calculus"], "families_touched": ["typescript", "eslint", "@eslint/js"], "tsc_and_vitest_required": true }
+  },
+
+  "single_root_lockfile_invariant": {
+    "purpose": "Cross-check the npm ls result against the filesystem: exactly one package-lock.json at the repo root, zero nested. See also lockfile-inventory.json (AC7, FR10).",
+    "expected_root_lockfile_count": 1,
+    "expected_root_lockfile_path": "./package-lock.json",
+    "expected_nested_lockfile_count": 0
+  },
+
+  "framework_targets_artifact": "scripts/audit/__tests__/fixtures/w4-framework-targets.json",
+
+  "pre_existing_failures": {
+    "failures": [],
+    "policy": "Per spec Out-of-Scope, pre-existing failures unrelated to the upgrade are not auto-fixed; they are recorded here for attribution. If a wave resolves one of these as a side effect, mark it resolved with the wave SHA."
+  }
+}

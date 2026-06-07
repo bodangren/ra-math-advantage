@@ -74,13 +74,15 @@ Phase 3 adversarial audit SHA: `fdbe2b62` (test(in-range-wave-w3): verify actual
 
 ## Phase 4 — Coordinated Framework & Toolchain Majors
 
-- [ ] Task: Upgrade vinext 0.0.5 → 0.0.55 with its required React/RSC peers
-- [ ] Task: Upgrade Vite 7 → 8 and `@vitejs/plugin-react` 4 → 6; verify each first-class app independently
-- [ ] Task: Upgrade Next.js 15 → 16 and `eslint-config-next` 15 → 16 as an isolated migration
-- [ ] Task: Upgrade TypeScript 5 → 6 and ESLint/`@eslint/js` 9 → 10 as isolated toolchain migrations
-- [ ] Task: Verify and checkpoint each framework/toolchain migration independently
-    - [ ] Run all package suites and all five app lint/test/typecheck/build scripts after each migration
+- [~] Task: Upgrade vinext 0.0.5 → 0.0.55 with its required React/RSC peers (mid agent: Red-phase TDD authored; awaits W4 Green install)
+- [~] Task: Upgrade Vite 7 → 8 and `@vitejs/plugin-react` 4 → 6; verify each first-class app independently (mid agent: Red-phase TDD authored; awaits W4 Green install)
+- [~] Task: Upgrade Next.js 15 → 16 and `eslint-config-next` 15 → 16 as an isolated migration (mid agent: Red-phase TDD authored; awaits W4 Green install)
+- [~] Task: Upgrade TypeScript 5 → 6 and ESLint/`@eslint/js` 9 → 10 as isolated toolchain migrations (mid agent: Red-phase TDD authored; awaits W4 Green install)
+- [~] Task: Verify and checkpoint each framework/toolchain migration independently (mid agent: Red-phase TDD authored; awaits W4 Green install)
+    - [~] Run all package suites and all five app lint/test/typecheck/build scripts after each migration (mid agent: per-migration quality-gate fixture authored; awaits W4 Green run)
 - [ ] Task: Measure - User Manual Verification 'Phase 4 — Coordinated Framework & Toolchain Majors' (Protocol in workflow.md)
+
+Phase 4 Red-phase (mid agent) — TDD suite authored at `scripts/audit/__tests__/framework-wave-w4.test.ts`. The suite pins the post-W4 manifest and lockfile state declared in plan.md Phase 4 and spec.md FR7/FR8/AC5/AC7/AC8. Tests fail Red on the pre-W4 (post-W3) baseline and turn Green only when the four framework/toolchain majors land. Approval gate is held in the user-facing task; Green-phase implementer must not run `npm install` or edit manifests without explicit approval. New Measure artifacts: `w4-framework-targets.json`, `w4-quality-gates.json`. No source code modified.
 
 ## Phase 5 — Remaining Majors, Final Audit & Closure
 

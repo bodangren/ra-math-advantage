@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "captured_at": "2026-06-07T00:00:00Z",
+  "captured_by": "measure:dependency-security-upgrades_20260607",
+  "purpose": "Phase 4 — Coordinated Framework & Toolchain Majors (FR7/FR8). Enumerates the post-W4 concrete target version for every W4-framework family and the manifest-owner set. The w4 Red-phase TDD suite asserts (a) this fixture exists, (b) it carries every W4-framework family from the matrix, (c) every listed target satisfies the spec target_after_all_waves major floor, and (d) the installed lockfile version equals the target. Green behavior: a w4 Green commit (per-migration commits T1/T2/T3/T4) refreshes the lockfile to these versions and re-runs the audit contract.",
+
+  "framework_families_count": 9,
+  "registry_stub_baseline": "scripts/audit/__tests__/fixtures/registry-stub.json",
+
+  "compatibility_requirement": "Every target must satisfy the post-W4 declared manifest range for every owner workspace. Vinext 0.0.55, Vite 8.x, @vitejs/plugin-react 6.x, Next 16.x, eslint-config-next 16.x, TypeScript 6.x, ESLint 10.x, @eslint/js 10.x. @types/node stays at a single major floor across the workspace (post-W3 invariant).",
+
+  "per_migration_scope": {
+    "W4-T1_vinext":      ["vinext"],
+    "W4-T2_vite_plugin": ["vite", "@vitejs/plugin-react"],
+    "W4-T3_next":        ["next", "eslint-config-next"],
+    "W4-T4_toolchain":   ["typescript", "eslint", "@eslint/js"]
+  },
+
+  "targets": [
+    { "package": "vinext",             "target_version": "0.0.55",   "owners": ["apps/bus-math-v2", "apps/integrated-math-1", "apps/integrated-math-2", "apps/integrated-math-3", "apps/pre-calculus"], "primary_wave": "W4-framework", "peer_dependencies": ["react ^19.2.7", "react-dom ^19.2.7", "@vitejs/plugin-rsc ^0.5.27"], "notes": "T1 isolated upgrade; React/RSC peers already pinned in W2 (FR3)." },
+    { "package": "vite",               "target_version": "8.0.0",    "owners": ["apps/bus-math-v2", "apps/integrated-math-1", "apps/integrated-math-2", "apps/integrated-math-3", "apps/pre-calculus"], "primary_wave": "W4-framework", "peer_dependencies": ["@vitejs/plugin-react 6.x"], "notes": "T2; verify each first-class app independently per P4 isolation rule (test-strategy.md §3)." },
+    { "package": "@vitejs/plugin-react", "target_version": "6.0.0",  "owners": ["apps/bus-math-v2", "apps/integrated-math-1", "apps/integrated-math-2", "apps/integrated-math-3", "apps/pre-calculus"], "primary_wave": "W4-framework", "peer_dependencies": ["vite 8.x"], "notes": "T2; verify each first-class app independently per P4 isolation rule (test-strategy.md §3)." },
+    { "package": "next",               "target_version": "16.0.0",   "owners": ["apps/bus-math-v2", "apps/integrated-math-1", "apps/integrated-math-2", "apps/integrated-math-3", "apps/pre-calculus"], "primary_wave": "W4-framework", "peer_dependencies": ["react ^19.2.7", "react-dom ^19.2.7"], "notes": "T3 isolated migration; W2 ^15.5.19 pin is replaced by ^16.0.0 (or 16.x range) as a single transition." },
+    { "package": "eslint-config-next", "target_version": "16.0.0",   "owners": ["apps/bus-math-v2", "apps/integrated-math-1", "apps/integrated-math-2", "apps/integrated-math-3", "apps/pre-calculus"], "primary_wave": "W4-framework", "peer_dependencies": ["next ^16.x", "eslint ^10.x"], "notes": "T3 isolated migration; W3 ^15.3.1 range must not pin 15 in a way that blocks T3 (test-strategy.md §3)." },
+    { "package": "typescript",         "target_version": "6.0.0",    "owners": ["apps/bus-math-v2", "apps/integrated-math-1", "apps/integrated-math-2", "apps/integrated-math-3", "apps/pre-calculus", "packages/*"], "primary_wave": "W4-framework", "peer_dependencies": ["@types/node >= ^22"], "notes": "T4 isolated toolchain; run `tsc --noEmit` together with vitest (test-strategy.md §3, §5)." },
+    { "package": "eslint",             "target_version": "10.0.0",   "owners": ["apps/bus-math-v2", "apps/integrated-math-1", "apps/integrated-math-2", "apps/integrated-math-3", "apps/pre-calculus", "packages/*"], "primary_wave": "W4-framework", "peer_dependencies": ["typescript-eslint ^8.x"], "notes": "T4 isolated toolchain; pairs with @eslint/js 10.x." },
+    { "package": "@eslint/js",         "target_version": "10.0.0",   "owners": ["packages/*"],      "primary_wave": "W4-framework", "peer_dependencies": ["eslint ^10.x"], "notes": "T4 isolated toolchain; tracks ESLint 9→10." }
+  ],
+
+  "@types/node_invariant": {
+    "purpose": "P3 reconciled @types/node to a single major floor; P4 must not regress (FR6/AC6).",
+    "expected_single_major_floor": 22,
+    "expected_no_two_x_declaration_anywhere": true,
+    "owners": ["apps/bus-math-v2", "apps/integrated-math-1", "apps/integrated-math-2", "apps/integrated-math-3", "apps/pre-calculus", "packages/lesson-renderer"]
+  },
+
+  "deferred_to_other_waves": [
+    { "package": "react",       "reason": "W2 already at 19.2.7; W4 re-verifies peer satisfaction after vinext 0.0.55 bump (test-strategy.md §3).", "primary_wave": "W2-security" },
+    { "package": "react-dom",   "reason": "W2 already at 19.2.7; same as react.",                                                  "primary_wave": "W2-security" },
+    { "package": "@vitejs/plugin-rsc", "reason": "W2 already at 0.5.27; W4 re-verifies peer satisfaction.",                    "primary_wave": "W2-security" }
+  ]
+}
