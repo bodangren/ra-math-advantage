@@ -1,0 +1,91 @@
+{
+  "schema_version": 1,
+  "captured_at": "2026-06-07T00:00:00Z",
+  "captured_by": "measure:dependency-security-upgrades_20260607",
+  "purpose": "Frozen pre-upgrade snapshot of the four quality gates per test-strategy.md §1 and §5. Every wave diffs against this baseline; pre-existing failures are recorded separately so P2+ regressions are attributable. Captured via 'npm ls --workspaces --depth=0', 'npm audit --json', 'node scripts/check-monorepo-boundaries.mjs', and the per-app CI scripts (lint/test/typecheck/build).",
+
+  "npm_ls": {
+    "command": "npm ls --workspaces --depth=0",
+    "exit_status": 0,
+    "summary": "Clean. No dependency-tree problems across the 5 apps and 19 active shared packages (20 total non-root workspaces, 1 _template excluded).",
+    "expected_clean": true
+  },
+
+  "npm_audit": {
+    "command": "npm audit --json",
+    "exit_status": 1,
+    "summary": "18 advisories (1 critical, 3 high, 14 moderate). The critical advisory targets vitest 2.x isolated in packages/practice-test-engine. The 3 high advisories are the installed Next.js, React Server Components, and Vite RSC plugin versions. See audit-baseline.json security_totals for the canonical breakdown.",
+    "expected_critical": 1,
+    "expected_high": 3,
+    "expected_moderate": 14,
+    "expected_total": 18,
+    "force_fix_used": false
+  },
+
+  "boundary_check": {
+    "command": "node scripts/check-monorepo-boundaries.mjs",
+    "exit_status": 0,
+    "summary": "No monorepo boundary violations. Shared packages do not import from apps/* or convex/_generated/*. The scripts/ directory is outside the boundary-check searchIn, so audit scripts are not subject to the rule.",
+    "expected_clean": true
+  },
+
+  "per_app_quality_gates": {
+    "purpose": "Per-app lint/test/typecheck/build status captured before any upgrade wave. Each app's CI scripts are run; results are recorded so a wave that flips a previously-green app to red is attributable.",
+    "apps": [
+      {
+        "workspace": "apps/bus-math-v2",
+        "lint":      { "exit_status": 0, "command": "npm run ws:bm2:lint" },
+        "test":      { "exit_status": 0, "command": "npm run ws:bm2:test" },
+        "typecheck": { "exit_status": 0, "command": "npm run ws:bm2:typecheck" },
+        "build":     { "exit_status": 0, "command": "npm run ws:bm2:build" }
+      },
+      {
+        "workspace": "apps/integrated-math-1",
+        "lint":      { "exit_status": 0, "command": "npm run ws:im1:lint" },
+        "test":      { "exit_status": 0, "command": "npm run ws:im1:test" },
+        "typecheck": { "exit_status": 0, "command": "npm run ws:im1:typecheck" },
+        "build":     { "exit_status": 0, "command": "npm run ws:im1:build" }
+      },
+      {
+        "workspace": "apps/integrated-math-2",
+        "lint":      { "exit_status": 0, "command": "npm run ws:im2:lint" },
+        "test":      { "exit_status": 0, "command": "npm run ws:im2:test" },
+        "typecheck": { "exit_status": 0, "command": "npm run ws:im2:typecheck" },
+        "build":     { "exit_status": 0, "command": "npm run ws:im2:build" }
+      },
+      {
+        "workspace": "apps/integrated-math-3",
+        "lint":      { "exit_status": 0, "command": "npm run ws:im3:lint" },
+        "test":      { "exit_status": 0, "command": "npm run ws:im3:test" },
+        "typecheck": { "exit_status": 0, "command": "npm run ws:im3:typecheck" },
+        "build":     { "exit_status": 0, "command": "npm run ws:im3:build" }
+      },
+      {
+        "workspace": "apps/pre-calculus",
+        "lint":      { "exit_status": 0, "command": "npm run ws:pc:lint" },
+        "test":      { "exit_status": 0, "command": "npm run ws:pc:test" },
+        "typecheck": { "exit_status": 0, "command": "npm run ws:pc:typecheck" },
+        "build":     { "exit_status": 0, "command": "npm run ws:pc:build" }
+      }
+    ]
+  },
+
+  "pre_existing_failures": {
+    "purpose": "Failures known to exist before any upgrade wave. Any new failure introduced in a wave is an upgrade regression attributable to that wave. The label/owner/track field links back to the in-flight track so the failure is not silently dropped.",
+    "failures": [],
+    "policy": "Per spec Out-of-Scope, pre-existing failures unrelated to the upgrade are not auto-fixed; they are recorded here for attribution. If a wave resolves one of these as a side effect, mark it resolved with the wave SHA."
+  },
+
+  "single_root_lockfile_invariant": {
+    "purpose": "Cross-check the npm ls result against the filesystem: exactly one package-lock.json at the repo root, zero nested. See also lockfile-inventory.json (AC7, FR10).",
+    "expected_root_lockfile_count": 1,
+    "expected_root_lockfile_path": "./package-lock.json",
+    "expected_nested_lockfile_count": 0
+  },
+
+  "wave_attribution_rules": [
+    "A failure introduced in wave W is an upgrade regression; fix or revert before moving to W+1.",
+    "A failure that exists in this baseline and persists after a wave is NOT a wave regression; it remains in pre_existing_failures.",
+    "If a wave resolves a pre-existing failure, the failure row is moved out of pre_existing_failures and tagged with the wave SHA."
+  ]
+}

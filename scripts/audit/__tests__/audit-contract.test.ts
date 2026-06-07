@@ -40,10 +40,20 @@ import {
   assertNoNestedLockfiles,
   assertNoDrizzleKitDowngrade,
   getUpgradeCandidatesFromMatrix,
+  getRegistryLatestVersions,
+  getRangeCompatibility,
+  parseMatrixRows,
+  assertMatrixFieldCompleteness,
+  assertManifestOwnersAreReal,
+  assertBaselineQualityGatesCaptured,
   type AuditReport,
   type AppManifest,
   type DriftEntry,
   type OpenRangeViolation,
+  type RegistryLatestEntry,
+  type RangeCompatibility,
+  type RangeCompatibilityClass,
+  type MatrixRow,
 } from '../audit-contract';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -83,6 +93,29 @@ const LOCKFILE_INVENTORY = JSON.parse(
   single_root_lockfile: { expected_count: number; expected_paths: string[] };
   npmrc_invariant: { expected_files: string[]; forbidden_keys: string[] };
   workspaces_invariant: { root_workspaces_field: string[]; forbidden_new_globs: string[] };
+};
+
+const REGISTRY_STUB = JSON.parse(
+  readFileSync(resolve(FIXTURES_DIR, 'registry-stub.json'), 'utf-8')
+) as {
+  registry_latest: Record<string, string>;
+  range_classification_expectations: {
+    in_range_count: number;
+    requires_manifest_change_count: number;
+    in_range_packages: string[];
+    requires_manifest_change_packages: string[];
+  };
+};
+
+const BASELINE_QUALITY_GATES = JSON.parse(
+  readFileSync(resolve(FIXTURES_DIR, 'baseline-quality-gates.json'), 'utf-8')
+) as {
+  npm_ls: { exit_status: number; expected_clean: boolean };
+  npm_audit: { exit_status: number; expected_critical: number; expected_high: number; expected_moderate: number; expected_total: number; force_fix_used: boolean };
+  boundary_check: { exit_status: number; expected_clean: boolean };
+  per_app_quality_gates: { apps: Array<{ workspace: string }> };
+  pre_existing_failures: { failures: unknown[] };
+  single_root_lockfile_invariant: { expected_root_lockfile_count: number; expected_nested_lockfile_count: number };
 };
 
 describe('audit-contract module surface', () => {
@@ -268,5 +301,198 @@ describe('audit-contract — full report integration', () => {
     expect(report.upgradeCandidates.length).toBe(BASELINE.totals.upgrade_candidate_families);
     expect(report.drizzleKitFloor.downgradeBlockedBelow).toBe('0.31.10');
     expect(report.lockfileInventory.rootLockfileCount).toBe(1);
+  });
+});
+
+describe('audit-contract — registry latest versions (Task 1.1, hermetic — uses registry-stub fixture)', () => {
+  it('getRegistryLatestVersions returns an entry for every direct upgrade candidate', () => {
+    const latest: RegistryLatestEntry[] = getRegistryLatestVersions(REGISTRY_STUB);
+    const matrixPackages = new Set(MATRIX.rows.map((r) => r.package));
+    const stubPackages = new Set(Object.keys(REGISTRY_STUB.registry_latest));
+    const missing = [...matrixPackages].filter((p) => !stubPackages.has(p));
+    expect(
+      missing,
+      `registry-stub fixture is missing latest-version entries for: ${missing.join(', ')}`
+    ).toEqual([]);
+  });
+
+  it('every latest-version entry is a valid semver (X.Y.Z) — no tags like "latest" or "*"', () => {
+    const latest: RegistryLatestEntry[] = getRegistryLatestVersions(REGISTRY_STUB);
+    for (const entry of latest) {
+      expect(entry.latest).toMatch(/^\d+\.\d+\.\d+([-+].+)?$/);
+      expect(entry.package).toBeTruthy();
+    }
+  });
+
+  it('the contract reads the stubbed registry, not the live npm registry (test-strategy.md §2)', () => {
+    const latest: RegistryLatestEntry[] = getRegistryLatestVersions(REGISTRY_STUB);
+    const names = latest.map((e) => e.package);
+    expect(names).toContain('next');
+    expect(names).toContain('vitest');
+    expect(names).toContain('react');
+    expect(names.length).toBe(Object.keys(REGISTRY_STUB.registry_latest).length);
+  });
+});
+
+describe('audit-contract — range compatibility classification (Task 1.1)', () => {
+  it('getRangeCompatibility returns exactly 22 in-range and 14 requires-manifest-change', () => {
+    const compat: RangeCompatibility = getRangeCompatibility(
+      MATRIX,
+      REGISTRY_STUB
+    );
+    expect(compat.inRange.length).toBe(REGISTRY_STUB.range_classification_expectations.in_range_count);
+    expect(compat.requiresManifestChange.length).toBe(
+      REGISTRY_STUB.range_classification_expectations.requires_manifest_change_count
+    );
+    expect(compat.inRange.length + compat.requiresManifestChange.length).toBe(MATRIX.rows.length);
+  });
+
+  it('in-range classification matches the spec §"Confirmed Upgrade Inventory" Compatible table', () => {
+    const compat: RangeCompatibility = getRangeCompatibility(MATRIX, REGISTRY_STUB);
+    const inRangePackages = new Set(compat.inRange.map((c) => c.package));
+    for (const pkg of REGISTRY_STUB.range_classification_expectations.in_range_packages) {
+      expect(
+        inRangePackages.has(pkg),
+        `${pkg} expected to be classified as in-range`
+      ).toBe(true);
+    }
+  });
+
+  it('requires-manifest-change classification matches the spec §"Confirmed Upgrade Inventory" Requires table', () => {
+    const compat: RangeCompatibility = getRangeCompatibility(MATRIX, REGISTRY_STUB);
+    const majorPackages = new Set(compat.requiresManifestChange.map((c) => c.package));
+    for (const pkg of REGISTRY_STUB.range_classification_expectations.requires_manifest_change_packages) {
+      expect(
+        majorPackages.has(pkg),
+        `${pkg} expected to be classified as requires-manifest-change`
+      ).toBe(true);
+    }
+  });
+
+  it('every classification row carries a class from the closed set {in-range, requires-manifest-change}', () => {
+    const compat: RangeCompatibility = getRangeCompatibility(MATRIX, REGISTRY_STUB);
+    const allowed: ReadonlyArray<RangeCompatibilityClass> = ['in-range', 'requires-manifest-change'];
+    for (const c of [...compat.inRange, ...compat.requiresManifestChange]) {
+      expect(allowed).toContain(c.class);
+    }
+  });
+});
+
+describe('audit-contract — matrix field completeness (Task 2.2)', () => {
+  it('parseMatrixRows returns 36 rows with the 7 required fields populated', () => {
+    const rows: MatrixRow[] = parseMatrixRows(MATRIX);
+    expect(rows.length).toBe(36);
+    const required: Array<keyof MatrixRow> = [
+      'package',
+      'current_declarations',
+      'target_after_all_waves',
+      'primary_wave',
+      'waves',
+      'manifest_owners',
+      'compatibility_notes',
+      'baseline_verification_state',
+    ];
+    for (const row of rows) {
+      for (const field of required) {
+        const value = row[field];
+        if (Array.isArray(value)) {
+          expect(value.length, `${row.package}.${String(field)} is empty`).toBeGreaterThan(0);
+        } else {
+          expect(
+            value,
+            `${row.package}.${String(field)} is empty or missing`
+          ).toBeTruthy();
+        }
+      }
+    }
+  });
+
+  it('assertMatrixFieldCompleteness returns ok=true for the frozen matrix fixture', () => {
+    const result = assertMatrixFieldCompleteness(MATRIX);
+    expect(result.ok, `matrix completeness violations: ${JSON.stringify(result.violations)}`).toBe(true);
+    expect(result.violations).toEqual([]);
+  });
+
+  it('every manifest_owner path actually exists on disk — boundary check', () => {
+    const result = assertManifestOwnersAreReal(MATRIX, REPO_ROOT);
+    expect(
+      result.ok,
+      `manifest_owners reference non-existent paths: ${JSON.stringify(result.missing, null, 2)}`
+    ).toBe(true);
+    expect(result.missing).toEqual([]);
+  });
+
+  it('major-migration rows (W4/W5) carry a non-trivial compatibility_notes (not just "in-range")', () => {
+    const rows: MatrixRow[] = parseMatrixRows(MATRIX);
+    const majorRows = rows.filter(
+      (r) => r.primary_wave === 'W4-framework' || r.primary_wave === 'W5-remaining'
+    );
+    expect(majorRows.length).toBeGreaterThan(0);
+    for (const r of majorRows) {
+      expect(r.compatibility_notes.length, `${r.package} compatibility_notes is empty`).toBeGreaterThan(0);
+      expect(
+        r.compatibility_notes,
+        `${r.package} compatibility_notes should describe migration risk`
+      ).not.toMatch(/^In-range of/);
+    }
+  });
+
+  it('every matrix row has a baseline_verification_state in the closed set {verified, unverified, deferred}', () => {
+    const rows: MatrixRow[] = parseMatrixRows(MATRIX);
+    const allowed = new Set(['verified', 'unverified', 'deferred']);
+    for (const r of rows) {
+      expect(
+        allowed.has(r.baseline_verification_state),
+        `${r.package} has unknown baseline_verification_state: ${r.baseline_verification_state}`
+      ).toBe(true);
+    }
+  });
+});
+
+describe('audit-contract — baseline quality gates captured (Task 3)', () => {
+  it('assertBaselineQualityGatesCaptured returns ok=true for the frozen baseline fixture', () => {
+    const result = assertBaselineQualityGatesCaptured(BASELINE_QUALITY_GATES);
+    expect(
+      result.ok,
+      `baseline-quality-gates fixture is incomplete: ${JSON.stringify(result.missingCategories, null, 2)}`
+    ).toBe(true);
+    expect(result.missingCategories).toEqual([]);
+  });
+
+  it('the baseline fixture carries the four required gate categories plus the single-lockfile invariant', () => {
+    const categories = [
+      'npm_ls',
+      'npm_audit',
+      'boundary_check',
+      'per_app_quality_gates',
+      'single_root_lockfile_invariant',
+    ] as const;
+    for (const cat of categories) {
+      expect(BASELINE_QUALITY_GATES, `baseline-quality-gates fixture missing category: ${cat}`).toHaveProperty(cat);
+    }
+  });
+
+  it('npm_audit baseline captures the 1C/3H/14M severity breakdown and force_fix_used=false', () => {
+    expect(BASELINE_QUALITY_GATES.npm_audit.force_fix_used).toBe(false);
+    expect(BASELINE_QUALITY_GATES.npm_audit.expected_critical).toBe(1);
+    expect(BASELINE_QUALITY_GATES.npm_audit.expected_high).toBe(3);
+    expect(BASELINE_QUALITY_GATES.npm_audit.expected_moderate).toBe(14);
+    expect(BASELINE_QUALITY_GATES.npm_audit.expected_total).toBe(18);
+  });
+
+  it('boundary_check baseline expects a clean exit (no monorepo boundary violations)', () => {
+    expect(BASELINE_QUALITY_GATES.boundary_check.exit_status).toBe(0);
+    expect(BASELINE_QUALITY_GATES.boundary_check.expected_clean).toBe(true);
+  });
+
+  it('per_app_quality_gates baseline covers all 5 first-class apps', () => {
+    const apps = BASELINE_QUALITY_GATES.per_app_quality_gates.apps.map((a) => a.workspace).sort();
+    expect(apps).toEqual(
+      BASELINE.first_class_apps.map((a) => a.workspace).sort()
+    );
+  });
+
+  it('pre_existing_failures is a labeled list (never a free-form blob)', () => {
+    expect(Array.isArray(BASELINE_QUALITY_GATES.pre_existing_failures.failures)).toBe(true);
   });
 });
