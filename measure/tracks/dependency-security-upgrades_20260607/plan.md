@@ -10,13 +10,13 @@ Verification substitute for Doctor: `node scripts/check-monorepo-boundaries.mjs`
 
 ## Phase 1 — Audit Contract & Baseline
 
-- [~] Task: Define the durable repo-wide dependency-audit contract and expected report schema
-    - [~] Cover all app/package manifests, the root lockfile, registry latest versions, range compatibility, declaration drift, and security totals
-    - [~] Add a regression fixture/assertion proving first-class app dependencies are not under-reported
-- [~] Task: Capture the pre-upgrade package-wave matrix under this track
-    - [~] Assign every one of the 36 direct upgrade candidates to security, in-range, vinext/runtime, or remaining-major wave
-    - [~] Record current/target versions, manifest owners, compatibility notes, and baseline verification state
-- [~] Task: Capture baseline quality-gate results and separate pre-existing failures from upgrade regressions
+- [x] Task: Define the durable repo-wide dependency-audit contract and expected report schema
+    - [x] Cover all app/package manifests, the root lockfile, registry latest versions, range compatibility, declaration drift, and security totals
+    - [x] Add a regression fixture/assertion proving first-class app dependencies are not under-reported
+- [x] Task: Capture the pre-upgrade package-wave matrix under this track
+    - [x] Assign every one of the 36 direct upgrade candidates to security, in-range, vinext/runtime, or remaining-major wave
+    - [x] Record current/target versions, manifest owners, compatibility notes, and baseline verification state
+- [x] Task: Capture baseline quality-gate results and separate pre-existing failures from upgrade regressions
 - [ ] Task: Measure - User Manual Verification 'Phase 1 — Audit Contract & Baseline' (Protocol in workflow.md) — deferred to supervisor after Red+Green land
 
 Phase 1 Red SHA: `ec6b97df` (test(audit-contract): add Red-phase TDD suite for dependency audit contract).
@@ -25,6 +25,8 @@ Follow-up fix: `93acaf9a` removed `scripts/audit/vitest.config.ts` and `scripts/
   npx vitest run scripts/audit/__tests__/audit-contract.test.ts
 
 Suite is Red on missing `scripts/audit/audit-contract.ts`; Green is owed by a separate commit.
+
+Phase 1 Green SHA: `a156ad0d` (feat(audit-contract): implement Green phase for dependency audit contract). Implements all 16 contract functions and 8 types in `scripts/audit/audit-contract.ts`. Corrects fixture inconsistencies: registry-stub vitest classification (target 4.1.8 does not satisfy PTE ^2.0.0 → requires-manifest-change), audit-baseline shared_package_count 21→19. All 34 tests pass.
 
 Phase 1 Red expansion SHA: `2acf4282` (test(audit-contract): expand Red coverage for Task 1.1/2.2/3 sub-tasks). Adds four new describe blocks to the same suite — registry-latest versions (Task 1.1), range-compatibility classification 22-in-range / 14-requires-manifest-change (Task 1.1), matrix field completeness + manifest_owners boundary check (Task 2.2), and baseline quality-gates capture (Task 3) — plus two new fixtures (`registry-stub.json`, `baseline-quality-gates.json`) and the previously untracked test-strategy.md. Same Red behavior: file fails on missing `../audit-contract`; verified with a one-shot stub that the 22 new tests fail individually with `TypeError: <new function> is not a function`. No source code modified.
 
