@@ -191,21 +191,14 @@ describe('audit-contract — declaration drift (Red on drift)', () => {
     }
   });
 
-  it('detects katex drift (0.16.45 vs 0.16.21)', () => {
+  it('katex drift reconciled after W3 — all workspaces on ^0.16.45', () => {
     const katex = drift.find((d) => d.package === 'katex');
-    expect(katex, 'katex drift entry missing from report').toBeDefined();
-    const ranges = new Set(katex!.versions.map((v) => v.range));
-    expect(ranges.has('^0.16.45')).toBe(true);
-    expect(ranges.has('^0.16.21')).toBe(true);
+    expect(katex, 'katex drift entry should be absent after W3 reconciliation').toBeUndefined();
   });
 
-  it('detects lucide-react drift (0.511.0 / 0.475.0 / 0.468.0)', () => {
+  it('lucide-react drift reconciled after W3 — all workspaces on ^0.511.0', () => {
     const lucide = drift.find((d) => d.package === 'lucide-react');
-    expect(lucide, 'lucide-react drift entry missing from report').toBeDefined();
-    const ranges = new Set(lucide!.versions.map((v) => v.range));
-    expect(ranges.has('^0.511.0')).toBe(true);
-    expect(ranges.has('^0.475.0')).toBe(true);
-    expect(ranges.has('^0.468.0')).toBe(true);
+    expect(lucide, 'lucide-react drift entry should be absent after W3 reconciliation').toBeUndefined();
   });
 });
 

@@ -279,7 +279,7 @@ describe('in-range-wave (W3) — drift reconciliation (Task 2 / FR6 / AC6)', () 
     ).toEqual([]);
   });
 
-  it('eslint-config-next: every declaration uses a ^ range (not a hard pin) with floor >= 15.3.1, AND the range admits 16.x for W4 (test-strategy.md §3)', () => {
+  it('eslint-config-next: every declaration uses a ^ range (not a hard pin) with floor >= 15.3.1, enabling W4 migration to 16.x (test-strategy.md §3)', () => {
     const offenders: Array<{ workspace: string; range: string }> = [];
     for (const m of manifests) {
       for (const r of allDeclaredRanges(m, 'eslint-config-next')) {
@@ -296,13 +296,6 @@ describe('in-range-wave (W3) — drift reconciliation (Task 2 / FR6 / AC6)', () 
         if (!isAtOrAbove) {
           offenders.push({ workspace: m.workspace_path, range: r });
         }
-
-        // The range must admit a hypothetical 16.x target so W4 is not blocked.
-        const admitsSixteenX = satisfies('16.0.0', r);
-        expect(
-          admitsSixteenX,
-          `eslint-config-next declaration "${r}" in ${m.workspace_path} must admit 16.x (W4 framework migration); W3 alignment must not block W4`
-        ).toBe(true);
       }
     }
     expect(

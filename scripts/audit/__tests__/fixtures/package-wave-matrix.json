@@ -38,8 +38,8 @@
         { "workspace": "apps/pre-calculus",      "range": "^19.0.0" }
       ],
       "target_after_all_waves": "19.2.7",
-      "primary_wave": "W2-security",
-      "waves": ["W2-security"],
+      "primary_wave": "W3-in-range",
+      "waves": ["W2-security", "W3-in-range"],
       "manifest_owners": ["apps/*/package.json"],
       "compatibility_notes": "19.2.7 is in-range of ^19.0.0; aligns with RSC peer requirements for vinext 0.0.55 (W4).",
       "baseline_verification_state": "unverified"
@@ -54,8 +54,8 @@
         { "workspace": "apps/pre-calculus",      "range": "^19.0.0" }
       ],
       "target_after_all_waves": "19.2.7",
-      "primary_wave": "W2-security",
-      "waves": ["W2-security"],
+      "primary_wave": "W3-in-range",
+      "waves": ["W2-security", "W3-in-range"],
       "manifest_owners": ["apps/*/package.json"],
       "compatibility_notes": "Tracks react 19.2.7.",
       "baseline_verification_state": "unverified"
@@ -71,8 +71,8 @@
         { "workspace": "packages/app-shell",               "range": "^1.32.0" }
       ],
       "target_after_all_waves": "1.40.0",
-      "primary_wave": "W2-security",
-      "waves": ["W2-security"],
+      "primary_wave": "W3-in-range",
+      "waves": ["W2-security", "W3-in-range"],
       "manifest_owners": ["apps/*/package.json", "packages/app-shell/package.json"],
       "compatibility_notes": "1.40.0 is in-range of ^1.32.0; verified by app build per plan P2.",
       "baseline_verification_state": "unverified"
@@ -87,8 +87,8 @@
         { "workspace": "apps/pre-calculus",      "range": "^0.5.20" }
       ],
       "target_after_all_waves": "0.5.27",
-      "primary_wave": "W2-security",
-      "waves": ["W2-security"],
+      "primary_wave": "W3-in-range",
+      "waves": ["W2-security", "W3-in-range"],
       "manifest_owners": ["apps/*/package.json"],
       "compatibility_notes": "0.5.27 is in-range of ^0.5.20; required peer for vinext 0.0.55 in W4.",
       "baseline_verification_state": "unverified"
@@ -120,7 +120,7 @@
         { "workspace": "packages/workbook-pipeline",   "range": "^4.0.16" }
       ],
       "target_after_all_waves": "4.1.8",
-      "primary_wave": "W2-security",
+      "primary_wave": "W3-in-range",
       "waves": ["W2-security", "W3-in-range"],
       "manifest_owners": ["apps/*/package.json", "packages/*/package.json"],
       "compatibility_notes": "PTE Vitest 2.x is the critical security finding (CVE class). W2 migrates PTE to 4.1.8 using TDD on its existing suite. Other workspaces are already on 4.x; W3 reconciles the 2.x→4.x drift post-W2.",
