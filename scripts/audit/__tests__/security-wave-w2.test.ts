@@ -79,12 +79,23 @@ interface RegistryStub {
   registry_latest: Record<string, string>;
 }
 
+interface PackageLock {
+  packages: Record<string, {
+    version?: string;
+    dependencies?: Record<string, string>;
+    devDependencies?: Record<string, string>;
+  }>;
+}
+
 const MATRIX = JSON.parse(
   readFileSync(resolve(FIXTURES_DIR, 'package-wave-matrix.json'), 'utf-8')
 ) as MatrixFixture;
 const REGISTRY_STUB = JSON.parse(
   readFileSync(resolve(FIXTURES_DIR, 'registry-stub.json'), 'utf-8')
 ) as RegistryStub;
+const PACKAGE_LOCK = JSON.parse(
+  readFileSync(resolve(REPO_ROOT, 'package-lock.json'), 'utf-8')
+) as PackageLock;
 
 function firstClassApps(manifests: AppManifest[]): AppManifest[] {
   return manifests.filter((m) => m.workspace === 'app');
@@ -398,4 +409,30 @@ describe('security-wave (W2) — FR3 @vitejs/plugin-rsc minimum 0.5.27 (GHSA-w94
       ).toBe(true);
     }
   );
+});
+
+describe('security-wave (W2) — lockfile sync proves installed versions match FR3/FR4', () => {
+  it.each([
+    ['next', 'node_modules/next', '15.5.19'],
+    ['react', 'node_modules/react', '19.2.7'],
+    ['react-dom', 'node_modules/react-dom', '19.2.7'],
+    ['convex', 'node_modules/convex', '1.40.0'],
+    ['@vitejs/plugin-rsc', 'node_modules/@vitejs/plugin-rsc', '0.5.27'],
+    ['vitest', 'node_modules/vitest', '4.1.8'],
+    ['react-server-dom-webpack', 'node_modules/react-server-dom-webpack', '19.2.7'],
+  ])('%s resolves to %s in package-lock.json', (pkg, lockPath, expectedVersion) => {
+    const entry = PACKAGE_LOCK.packages[lockPath];
+    expect(entry, `${lockPath} missing from package-lock.json`).toBeDefined();
+    expect(entry.version, `${pkg} installed lockfile version`).toBe(expectedVersion);
+  });
+
+  it('workspace package-lock declarations are synced for PTE vitest and first-class app Next pins', () => {
+    expect(PACKAGE_LOCK.packages['packages/practice-test-engine']?.devDependencies?.vitest).toBe('^4.1.8');
+    for (const workspacePath of FIRST_CLASS_APP_WORKSPACES) {
+      expect(
+        PACKAGE_LOCK.packages[workspacePath]?.dependencies?.next,
+        `${workspacePath} package-lock declaration must pin Next 15`
+      ).toBe('^15.5.19');
+    }
+  });
 });
