@@ -70,6 +70,8 @@ Phase 2 FR3 test SHA: `ee435d44` (test(security-wave-w2): add FR3 assertions for
 
 Phase 3 Green SHA: `a9e7e1f1` (feat(in-range-refresh): reconcile declaration drift and refresh in-range dependencies (W3)). Reconciles 8 drift families (katex, lucide-react, tailwind-merge, ts-fsrs, vitest, eslint-config-next, @types/node, eslint) across 23 workspace manifests. Syncs registry-stub.json and w3-in-range-targets.json with current lockfile. Adds W3-in-range wave marker to all 22 in-range packages in package-wave-matrix.json. Fixes P1 audit-contract drift tests for post-W3 state and removes contradictory eslint-config-next admitsSixteenX assertion. All 120 audit tests pass. npm audit: 0 critical, 0 high, 14 moderate. Boundary check clean.
 
+Phase 3 adversarial audit SHA: `fdbe2b62` (test(in-range-wave-w3): verify actual audit advisory disposition rows). Replaces placeholder W3 advisory disposition rows with the exact 14 post-W3 `npm audit --json` vulnerability packages and adds a regression guard that fails if placeholders return or package identities drift. Focused W3 audit suite and full audit-contract suite pass; `CI=true npm test`, `CI=true npm run lint`, boundary check, and `npm ls --workspaces --depth=0` pass. `npm audit` remains 0 critical / 0 high / 14 moderate as dispositioned. Known baseline failure remains root `npx tsc --noEmit` TS18003 from empty root tsconfig include.
+
 ## Phase 4 — Coordinated Framework & Toolchain Majors
 
 - [ ] Task: Upgrade vinext 0.0.5 → 0.0.55 with its required React/RSC peers
