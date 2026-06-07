@@ -1,0 +1,178 @@
+{
+  "schema_version": 1,
+  "captured_at": "2026-06-07T00:00:00Z",
+  "captured_by": "measure:dependency-security-upgrades_20260607",
+  "purpose": "Phase 3 — In-Range Refresh & Declaration Alignment. Documents (a) every declaration-drift family that was reconciled in W3 to a single floor, and (b) every drift entry that was intentionally retained (with a justification). The w3 Red-phase TDD suite asserts this fixture exists, has the documented schema, and that no drift row claims a family outside the W3 reconciliation scope. Green behavior: a w3 Green commit writes the reconciled manifest floors and intentional retentions here so future waves can re-verify AC6 (version declaration drift is either reconciled or documented as intentional).",
+
+  "reconciled": [
+    {
+      "package": "katex",
+      "post_w3_floor": "^0.16.45",
+      "reconciliation_strategy": "Tighten the floor in packages/activity-components and packages/lesson-renderer from ^0.16.21 to ^0.16.45 to match apps/integrated-math-3. Activity-components and lesson-renderer are W5-remaining candidates for the 0.16→0.17 major migration, so the P3 floor must still admit that target (^0.16.45 admits 0.17 only as a breaking change; W5 handles it).",
+      "previously_drifted_workspaces": [
+        "packages/activity-components/package.json",
+        "packages/lesson-renderer/package.json"
+      ]
+    },
+    {
+      "package": "lucide-react",
+      "post_w3_floor": "^0.511.0",
+      "reconciliation_strategy": "Tighten packages/lesson-renderer (^0.475.0) and packages/app-shell (^0.468.0) to ^0.511.0 to match the five first-class apps. lucide-react is a W5-remaining candidate (0.x→1.x), so the W3 floor does not need to admit 1.x; W5 is the major migration.",
+      "previously_drifted_workspaces": [
+        "packages/app-shell/package.json",
+        "packages/lesson-renderer/package.json"
+      ]
+    },
+    {
+      "package": "tailwind-merge",
+      "post_w3_floor": "^3.3.0",
+      "reconciliation_strategy": "Tighten packages/lesson-renderer from ^3.0.2 to ^3.3.0 to match the five first-class apps. tailwind-merge is a stable 3.x line; the lesson-renderer floor was lagging by three minor versions.",
+      "previously_drifted_workspaces": [
+        "packages/lesson-renderer/package.json"
+      ]
+    },
+    {
+      "package": "ts-fsrs",
+      "post_w3_floor": "^5.3.2",
+      "reconciliation_strategy": "Tighten packages/srs-engine from ^5.0.0 to ^5.3.2 to match the apps. The srs-engine floor was lagging because srs-engine tracks the FSRS algorithm stable major; the apps were ahead on a patch.",
+      "previously_drifted_workspaces": [
+        "packages/srs-engine/package.json"
+      ]
+    },
+    {
+      "package": "vitest",
+      "post_w3_floor": "^4.1.8",
+      "reconciliation_strategy": "Tighten the 19 first-class apps + shared packages (currently ^4.0.16) to ^4.1.8 to match packages/practice-test-engine post-W2. The vitest 2.x→4.x drift was resolved by W2 (security wave); W3 closes the residual 4.0.16 vs 4.1.8 floor drift.",
+      "previously_drifted_workspaces": [
+        "apps/bus-math-v2/package.json",
+        "apps/integrated-math-1/package.json",
+        "apps/integrated-math-2/package.json",
+        "apps/integrated-math-3/package.json",
+        "apps/pre-calculus/package.json",
+        "packages/activity-components/package.json",
+        "packages/activity-runtime/package.json",
+        "packages/ai-tutoring/package.json",
+        "packages/component-approval/package.json",
+        "packages/core-auth/package.json",
+        "packages/core-convex/package.json",
+        "packages/graphing-core/package.json",
+        "packages/knowledge-space-core/package.json",
+        "packages/knowledge-space-practice/package.json",
+        "packages/math-content/package.json",
+        "packages/practice-core/package.json",
+        "packages/rate-limiter/package.json",
+        "packages/srs-engine/package.json",
+        "packages/study-hub-core/package.json",
+        "packages/teacher-reporting-core/package.json",
+        "packages/workbook-pipeline/package.json"
+      ]
+    },
+    {
+      "package": "eslint-config-next",
+      "post_w3_floor": "^15.3.1",
+      "reconciliation_strategy": "Convert the four hard-pinned `15.3.1` declarations in apps/integrated-math-{1,2,3} and apps/pre-calculus to a `^15.3.1` range that matches apps/bus-math-v2. test-strategy.md §3 explicitly requires that the P3 alignment does NOT pin eslint-config-next@15 in a way that blocks W4; a `^` range admits 16.x.",
+      "previously_drifted_workspaces": [
+        "apps/integrated-math-1/package.json",
+        "apps/integrated-math-2/package.json",
+        "apps/integrated-math-3/package.json",
+        "apps/pre-calculus/package.json"
+      ]
+    },
+    {
+      "package": "@types/node",
+      "post_w3_floor": "^22",
+      "reconciliation_strategy": "Tighten the five first-class apps (^20) to ^22 to match packages/lesson-renderer. TypeScript 5→6 (W4) and Node 22 LTS are the post-W3 baseline; keeping apps on ^20 would force a W4 double-bump.",
+      "previously_drifted_workspaces": [
+        "apps/bus-math-v2/package.json",
+        "apps/integrated-math-1/package.json",
+        "apps/integrated-math-2/package.json",
+        "apps/integrated-math-3/package.json",
+        "apps/pre-calculus/package.json"
+      ]
+    },
+    {
+      "package": "eslint",
+      "post_w3_floor": "^9.39.4",
+      "reconciliation_strategy": "Tighten the four first-class apps currently on `^9` to `^9.39.4` to match apps/bus-math-v2. The `^9` floor was lagging by 39 minor versions; bumping to bm2's floor eliminates a long-running W4 blocker for the ESLint 9→10 migration.",
+      "previously_drifted_workspaces": [
+        "apps/integrated-math-1/package.json",
+        "apps/integrated-math-2/package.json",
+        "apps/integrated-math-3/package.json",
+        "apps/pre-calculus/package.json"
+      ]
+    }
+  ],
+
+  "intentional_retentions": [
+    {
+      "package": "next",
+      "rationale": "W2 pinned all 5 apps to ^15.5.19; the W4 migration to 16.x is a separate task. Retention is short-term and tracked in the matrix primary_wave = W4-framework. No drift exists today (all five apps share ^15.5.19).",
+      "wave": "W2-security → W4-framework"
+    },
+    {
+      "package": "react",
+      "rationale": "W2 lifted all 5 apps to ^19.2.7 (FR3). vinext 0.0.55 (W4) may force a React 19.2.x→19.x bump; defer to W4.",
+      "wave": "W2-security → W4-framework"
+    },
+    {
+      "package": "react-dom",
+      "rationale": "Tracks react; W4 handles any vinext-driven bump.",
+      "wave": "W2-security → W4-framework"
+    },
+    {
+      "package": "convex",
+      "rationale": "W2 lifted to ^1.40.0 (FR3). Remaining transitive ws/@cloudflare/vite-plugin advisories are in 14 moderate bucket (deferred to W3 disposition).",
+      "wave": "W2-security → W3-advisory-disposition"
+    },
+    {
+      "package": "@vitejs/plugin-rsc",
+      "rationale": "W2 lifted to ^0.5.27 (FR3). Peer for vinext 0.0.55 (W4).",
+      "wave": "W2-security → W4-framework"
+    },
+    {
+      "package": "vinext",
+      "rationale": "W4-framework; 0.0.5 → 0.0.55 is the W4 framework migration.",
+      "wave": "W4-framework"
+    },
+    {
+      "package": "vite",
+      "rationale": "W4-framework; 7 → 8 is the W4 framework migration.",
+      "wave": "W4-framework"
+    },
+    {
+      "package": "@vitejs/plugin-react",
+      "rationale": "W4-framework; 4 → 6 is the W4 framework migration.",
+      "wave": "W4-framework"
+    },
+    {
+      "package": "typescript",
+      "rationale": "W4-framework; 5 → 6 is the W4 toolchain migration.",
+      "wave": "W4-framework"
+    },
+    {
+      "package": "@eslint/js",
+      "rationale": "W4-framework; 9 → 10 tracks ESLint 9 → 10.",
+      "wave": "W4-framework"
+    },
+    {
+      "package": "tailwindcss",
+      "rationale": "W5-remaining; 3 → 4 is the W5 remaining-major migration. test-strategy.md §3 flags breaking config + PostCSS pipeline; per-app build verification required.",
+      "wave": "W5-remaining"
+    },
+    {
+      "package": "katex",
+      "rationale": "W5-remaining; 0.16 → 0.17 is the W5 remaining-major migration. The P3 floor (^0.16.45) admits the 0.16.x line; 0.17 is breaking and is the W5 task.",
+      "wave": "W5-remaining"
+    },
+    {
+      "package": "lucide-react",
+      "rationale": "W5-remaining; 0.x → 1.x is the W5 remaining-major migration. The P3 floor (^0.511.0) admits 0.x; 1.x is breaking and is the W5 task.",
+      "wave": "W5-remaining"
+    },
+    {
+      "package": "jsdom",
+      "rationale": "W5-remaining; 26 → 29 is the W5 remaining-major migration (test-environment compatibility changes likely; verify per-app vitest suite).",
+      "wave": "W5-remaining"
+    }
+  ]
+}

@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "captured_at": "2026-06-07T00:00:00Z",
+  "captured_by": "measure:dependency-security-upgrades_20260607",
+  "purpose": "Phase 3 — In-Range Refresh verification (Task 4). The w3 Red-phase TDD suite asserts this fixture exists, carries the four required quality-gate categories (npm_ls, npm_audit, boundary_check, per_app_quality_gates), and pins 0 critical / 0 high with force_fix_used=false. Green behavior: a w3 Green commit runs the actual quality-gate commands post-refresh and writes their post-W3 results here so a future wave (P4/P5) can re-verify AC8 (full quality gate passes).",
+
+  "npm_ls": {
+    "command": "npm ls --workspaces --depth=0",
+    "expected_exit_status": 0,
+    "expected_clean": true,
+    "summary": "Clean. No dependency-tree problems across the 5 apps and 19 active shared packages (24 active workspace manifests; 1 _template excluded). Post-W3 invariant."
+  },
+
+  "npm_audit": {
+    "command": "npm audit --json",
+    "expected_exit_status": 1,
+    "expected_critical": 0,
+    "expected_high": 0,
+    "expected_moderate": 14,
+    "expected_total": 14,
+    "force_fix_used": false,
+    "disposition_artifact": "scripts/audit/__tests__/fixtures/w3-advisory-disposition.json",
+    "summary": "0 critical / 0 high; 14 moderate (all transitive) dispositioned in w3-advisory-disposition.json. 13 deferred to W4 framework majors, 1 rejected (drizzle-kit downgrade per FR9)."
+  },
+
+  "boundary_check": {
+    "command": "node scripts/check-monorepo-boundaries.mjs",
+    "expected_exit_status": 0,
+    "expected_clean": true,
+    "summary": "No monorepo boundary violations after W3 refresh."
+  },
+
+  "per_app_quality_gates": {
+    "purpose": "Per-app lint/test/typecheck/build status captured after W3 refresh. Each app's CI scripts are run; results are recorded so a wave that flips a previously-green app to red is attributable to that wave.",
+    "apps": [
+      { "workspace": "apps/bus-math-v2",        "lint": { "expected_exit_status": 0, "command": "npm run ws:bm2:lint" }, "test": { "expected_exit_status": 0, "command": "npm run ws:bm2:test" }, "typecheck": { "expected_exit_status": 0, "command": "npm run ws:bm2:typecheck" }, "build": { "expected_exit_status": 0, "command": "npm run ws:bm2:build" } },
+      { "workspace": "apps/integrated-math-1",  "lint": { "expected_exit_status": 0, "command": "npm run ws:im1:lint" }, "test": { "expected_exit_status": 0, "command": "npm run ws:im1:test" }, "typecheck": { "expected_exit_status": 0, "command": "npm run ws:im1:typecheck" }, "build": { "expected_exit_status": 0, "command": "npm run ws:im1:build" } },
+      { "workspace": "apps/integrated-math-2",  "lint": { "expected_exit_status": 0, "command": "npm run ws:im2:lint" }, "test": { "expected_exit_status": 0, "command": "npm run ws:im2:test" }, "typecheck": { "expected_exit_status": 0, "command": "npm run ws:im2:typecheck" }, "build": { "expected_exit_status": 0, "command": "npm run ws:im2:build" } },
+      { "workspace": "apps/integrated-math-3",  "lint": { "expected_exit_status": 0, "command": "npm run ws:im3:lint" }, "test": { "expected_exit_status": 0, "command": "npm run ws:im3:test" }, "typecheck": { "expected_exit_status": 0, "command": "npm run ws:im3:typecheck" }, "build": { "expected_exit_status": 0, "command": "npm run ws:im3:build" } },
+      { "workspace": "apps/pre-calculus",       "lint": { "expected_exit_status": 0, "command": "npm run ws:pc:lint" },  "test": { "expected_exit_status": 0, "command": "npm run ws:pc:test" },  "typecheck": { "expected_exit_status": 0, "command": "npm run ws:pc:typecheck" },  "build": { "expected_exit_status": 0, "command": "npm run ws:pc:build" } }
+    ]
+  },
+
+  "single_root_lockfile_invariant": {
+    "purpose": "Cross-check the npm ls result against the filesystem: exactly one package-lock.json at the repo root, zero nested. See also lockfile-inventory.json (AC7, FR10).",
+    "expected_root_lockfile_count": 1,
+    "expected_root_lockfile_path": "./package-lock.json",
+    "expected_nested_lockfile_count": 0
+  },
+
+  "drift_disposition_artifact": "scripts/audit/__tests__/fixtures/w3-drift-disposition.json",
+  "in_range_targets_artifact": "scripts/audit/__tests__/fixtures/w3-in-range-targets.json",
+
+  "pre_existing_failures": {
+    "failures": [],
+    "policy": "Per spec Out-of-Scope, pre-existing failures unrelated to the upgrade are not auto-fixed; they are recorded here for attribution. If a wave resolves one of these as a side effect, mark it resolved with the wave SHA."
+  }
+}

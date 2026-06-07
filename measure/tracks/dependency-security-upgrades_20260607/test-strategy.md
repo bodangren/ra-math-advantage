@@ -11,7 +11,7 @@ suite (per-app + per-package) as the regression net, and adds one small
 |---|---|---|---|
 | P1 Audit Contract | Heavy — audit-report schema + fixture parser | Light — `scripts/check-monorepo-boundaries.mjs` smoke | `npm ls --workspaces --depth=0`, `npm audit` baseline snapshot |
 | P2 Security | None new | Re-run PTE suite (post-Vitest 4 migration) + apps affected by Next/React/Convex | All 5 app `build` + `npm audit` (0 critical/high) |
-| P3 In-Range Refresh | None new | All package + app `test` suites | All 5 app lint/test/typecheck/build + boundary check |
+| P3 In-Range Refresh | Red-phase TDD suite pinning the four P3 deliverables (drift disposition, advisory disposition, in-range targets, quality-gates fixtures) — see `__tests__/in-range-wave-w3.test.ts` | All package + app `test` suites | All 5 app lint/test/typecheck/build + boundary check |
 | P4 Framework Majors | None new | Per-migration: package suites then 5 app suites, isolated per migration | All 5 app build, audit, `npm ls` after each major |
 | P5 Remaining Majors | Extend P1 audit-contract fixture for deferral evidence | Tailwind v4 visual snapshots (where present), KaTeX/Lucide consumer tests | Full repo gate (AC8) |
 
@@ -86,7 +86,16 @@ silently dropped.
 - **P3:** Batch the in-range refresh in one install, then run the full
   per-app `lint/test/typecheck/build` matrix once. Drift reconciliation is
   verified by re-running the P1 audit contract (it should report zero
-  unintentional drift rows).
+  unintentional drift rows) and by the new
+  `__tests__/in-range-wave-w3.test.ts` Red-phase suite, which pins the four
+  P3 Measure deliverables (`w3-drift-disposition.json`,
+  `w3-in-range-targets.json`, `w3-advisory-disposition.json`,
+  `w3-quality-gates.json`). The drift suite asserts the per-package floor
+  for KaTeX (≥0.16.45), Lucide React (≥0.511.0), tailwind-merge (≥3.3.0),
+  ts-fsrs (≥5.3.2), Vitest (≥4.1.8), ESLint (≥9.39.4), and `eslint-config-next`
+  (≥15.3.1 with a `^` range that admits 16.x for W4), plus a single-major
+  invariant for `@types/node`. The advisory suite guards `drizzle-kit`
+  (FR9) and pins the post-W3 fixture shape.
 - **P4:** One migration per commit. After each, full per-app matrix + audit
   + `npm ls`. If a single app fails an isolated migration, revert that
   install — do not patch downstream.

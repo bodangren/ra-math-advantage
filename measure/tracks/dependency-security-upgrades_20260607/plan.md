@@ -58,14 +58,14 @@ Phase 2 FR3 test SHA: `ee435d44` (test(security-wave-w2): add FR3 assertions for
 
 ## Phase 3 — In-Range Refresh & Declaration Alignment
 
-- [ ] Task: Refresh all audit-confirmed in-range direct dependencies without crossing declared major boundaries
-    - [ ] Include Cloudflare/Vite tooling, Playwright, Radix UI, React types, baseline-browser-mapping, Geist, PostCSS, tailwind-merge, ts-fsrs, tsx, typescript-eslint, Wrangler, and Zod
-- [ ] Task: Reconcile avoidable version declaration drift across apps and shared packages
-    - [ ] Align KaTeX, Lucide, tailwind-merge, ts-fsrs, Vitest, ESLint declarations, `eslint-config-next`, and Node types where compatible
-    - [ ] Document every intentionally retained difference
-- [ ] Task: Investigate residual moderate advisories, including the `drizzle-kit` recommendation, and record resolution/defer evidence
-- [ ] Task: Verify and checkpoint the in-range refresh
-    - [ ] Run repo boundary checks, relevant package suites, all app lint/test/typecheck/build scripts, dependency tree, and audit
+- [~] Task: Refresh all audit-confirmed in-range direct dependencies without crossing declared major boundaries
+    - [~] Include Cloudflare/Vite tooling, Playwright, Radix UI, React types, baseline-browser-mapping, Geist, PostCSS, tailwind-merge, ts-fsrs, tsx, typescript-eslint, Wrangler, and Zod
+- [~] Task: Reconcile avoidable version declaration drift across apps and shared packages
+    - [~] Align KaTeX, Lucide, tailwind-merge, ts-fsrs, Vitest, ESLint declarations, `eslint-config-next`, and Node types where compatible
+    - [~] Document every intentionally retained difference
+- [~] Task: Investigate residual moderate advisories, including the `drizzle-kit` recommendation, and record resolution/defer evidence
+- [~] Task: Verify and checkpoint the in-range refresh
+    - [~] Run repo boundary checks, relevant package suites, all app lint/test/typecheck/build scripts, dependency tree, and audit
 - [ ] Task: Measure - User Manual Verification 'Phase 3 — In-Range Refresh & Declaration Alignment' (Protocol in workflow.md)
 
 ## Phase 4 — Coordinated Framework & Toolchain Majors

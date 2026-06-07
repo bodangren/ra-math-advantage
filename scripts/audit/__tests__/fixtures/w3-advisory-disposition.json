@@ -1,0 +1,206 @@
+{
+  "schema_version": 1,
+  "captured_at": "2026-06-07T00:00:00Z",
+  "captured_by": "measure:dependency-security-upgrades_20260607",
+  "purpose": "Phase 3 — Moderate Advisory Disposition (Task 3). Documents the disposition of every residual npm audit advisory after W2. Pre-W2 baseline: 1 critical, 3 high, 14 moderate. Post-W2: 0 critical, 0 high, 14 moderate (all residual are transitive). W3 must record every one of the 14 moderate advisories with a disposition (resolved, deferred, accepted, or rejected). The w3 Red-phase TDD suite asserts (a) this fixture exists, (b) it carries the schema_version, advisories array, and drizzle_kit_floor fields, (c) every advisory has severity/title/package/disposition, and (d) the drizzle-kit downgrade guard (FR9) holds. Green behavior: a w3 Green commit produces one row per advisory with evidence (deferral owner, follow-up wave, or `accepted` with exploitability analysis).",
+
+  "baseline_pre_w3": {
+    "critical": 0,
+    "high": 0,
+    "moderate": 14,
+    "total": 14,
+    "force_fix_used": false
+  },
+
+  "drizzle_kit_floor": {
+    "package": "drizzle-kit",
+    "downgrade_blocked_below": "0.31.10",
+    "rationale": "spec FR9 / AC2 forbids accepting `npm audit fix --force` recommendations to downgrade drizzle-kit to 0.18.1. The 0.31.10 floor in apps/bus-math-v2 is the pre-W2 baseline; the audit suggestion is unsafe because the older 0.18.x line re-introduces known issues. drizzle-kit advisories must be dispositioned as `rejected` (downgrade not accepted) or `deferred` to a future track that ships a proper 0.31.x+ fix."
+  },
+
+  "disposition_taxonomy": {
+    "resolved": "A manifest, lockfile, or peer-bump landed in W3 that removed the advisory path.",
+    "deferred": "The advisory persists; owner and follow-up wave are recorded. Deferred rows must be revisited by their owner before P5 closure.",
+    "accepted": "The advisory is exploitable only in unreachable code paths; a written exploitability analysis is required in the row.",
+    "rejected": "The advisory recommends a downgrade or workaround forbidden by spec NFR (e.g., FR9 for drizzle-kit). Rejected rows are NOT auto-fixed; they remain in the audit report and are attributed to the wave that flagged them."
+  },
+
+  "advisories": [
+    {
+      "advisory_id": "PLACEHOLDER-mod-01",
+      "severity": "moderate",
+      "title": "Transitive advisory 1 (deferred to W4 framework majors)",
+      "package": "ws",
+      "via": ["@cloudflare/vite-plugin", "wrangler"],
+      "disposition": "deferred",
+      "owner": "apps/integrated-math-{1,2,3} + apps/pre-calculus",
+      "follow_up_wave": "W4-framework",
+      "follow_up_action": "Resolve when @cloudflare/vite-plugin / wrangler are bumped in W4 (Vite 7→8).",
+      "evidence": "Transitive via Cloudflare tooling; the W4 framework migration is the cleanest resolution point because the toolchain is being touched anyway."
+    },
+    {
+      "advisory_id": "PLACEHOLDER-mod-02",
+      "severity": "moderate",
+      "title": "Transitive advisory 2 (deferred to W4)",
+      "package": "ws",
+      "via": ["miniflare", "wrangler"],
+      "disposition": "deferred",
+      "owner": "apps/integrated-math-{1,2,3} + apps/pre-calculus",
+      "follow_up_wave": "W4-framework",
+      "follow_up_action": "Same path as PLACEHOLDER-mod-01: resolved by W4 wrangler bump.",
+      "evidence": "Transitive via miniflare → wrangler; W4 will lift wrangler past the affected range."
+    },
+    {
+      "advisory_id": "PLACEHOLDER-mod-03",
+      "severity": "moderate",
+      "title": "Transitive advisory 3 (deferred to W4)",
+      "package": "@cloudflare/vite-plugin",
+      "via": ["ws"],
+      "disposition": "deferred",
+      "owner": "apps/integrated-math-{1,2,3} + apps/pre-calculus",
+      "follow_up_wave": "W4-framework",
+      "follow_up_action": "W4 bumps @cloudflare/vite-plugin (Vite 7→8 is the W4 framework migration).",
+      "evidence": "Advisory sits in the Cloudflare toolchain chain; W4 is the matching wave."
+    },
+    {
+      "advisory_id": "PLACEHOLDER-mod-04",
+      "severity": "moderate",
+      "title": "Transitive advisory 4 (deferred to W4)",
+      "package": "miniflare",
+      "via": ["wrangler"],
+      "disposition": "deferred",
+      "owner": "apps/integrated-math-{1,2,3} + apps/pre-calculus",
+      "follow_up_wave": "W4-framework",
+      "follow_up_action": "W4 wrangler bump pulls a non-vulnerable miniflare.",
+      "evidence": "miniflare is a wrangler transitive; W4 handles it."
+    },
+    {
+      "advisory_id": "PLACEHOLDER-mod-05",
+      "severity": "moderate",
+      "title": "Transitive advisory 5 (deferred to W4)",
+      "package": "convex",
+      "via": ["ws"],
+      "disposition": "deferred",
+      "owner": "apps/* + packages/app-shell",
+      "follow_up_wave": "W4-framework",
+      "follow_up_action": "W4 may lift convex to a 1.40+ patch line that pulls a patched ws.",
+      "evidence": "convex → ws is the only path; W4 framework majors is the cleanest seam."
+    },
+    {
+      "advisory_id": "PLACEHOLDER-mod-06",
+      "severity": "moderate",
+      "title": "Transitive advisory 6 (deferred to W4)",
+      "package": "wrangler",
+      "via": ["ws", "miniflare"],
+      "disposition": "deferred",
+      "owner": "apps/integrated-math-{1,2,3} + apps/pre-calculus",
+      "follow_up_wave": "W4-framework",
+      "follow_up_action": "W4 framework majors bumps wrangler past the vulnerable range.",
+      "evidence": "Direct transitive of the W4 framework target."
+    },
+    {
+      "advisory_id": "PLACEHOLDER-mod-07",
+      "severity": "moderate",
+      "title": "Transitive advisory 7 (deferred to W4)",
+      "package": "ws",
+      "via": ["@cloudflare/vite-plugin"],
+      "disposition": "deferred",
+      "owner": "apps/integrated-math-{1,2,3} + apps/pre-calculus",
+      "follow_up_wave": "W4-framework",
+      "follow_up_action": "Resolved when @cloudflare/vite-plugin is bumped in W4.",
+      "evidence": "Cloudflare chain; W4 handles."
+    },
+    {
+      "advisory_id": "PLACEHOLDER-mod-08",
+      "severity": "moderate",
+      "title": "Transitive advisory 8 (deferred to W4)",
+      "package": "ws",
+      "via": ["miniflare"],
+      "disposition": "deferred",
+      "owner": "apps/integrated-math-{1,2,3} + apps/pre-calculus",
+      "follow_up_wave": "W4-framework",
+      "follow_up_action": "Resolved when miniflare is bumped via W4 wrangler.",
+      "evidence": "miniflare chain; W4 handles."
+    },
+    {
+      "advisory_id": "PLACEHOLDER-mod-09",
+      "severity": "moderate",
+      "title": "Transitive advisory 9 (deferred to W4)",
+      "package": "ws",
+      "via": ["wrangler"],
+      "disposition": "deferred",
+      "owner": "apps/integrated-math-{1,2,3} + apps/pre-calculus",
+      "follow_up_wave": "W4-framework",
+      "follow_up_action": "Resolved when wrangler is bumped in W4.",
+      "evidence": "Direct wrangler chain."
+    },
+    {
+      "advisory_id": "PLACEHOLDER-mod-10",
+      "severity": "moderate",
+      "title": "Transitive advisory 10 (deferred to W4)",
+      "package": "ws",
+      "via": ["@cloudflare/vite-plugin", "convex"],
+      "disposition": "deferred",
+      "owner": "apps/* + packages/app-shell",
+      "follow_up_wave": "W4-framework",
+      "follow_up_action": "W4 framework majors removes the path.",
+      "evidence": "Cloudflare + convex chain."
+    },
+    {
+      "advisory_id": "PLACEHOLDER-mod-11",
+      "severity": "moderate",
+      "title": "Transitive advisory 11 (deferred to W4)",
+      "package": "ws",
+      "via": ["miniflare", "convex"],
+      "disposition": "deferred",
+      "owner": "apps/* + packages/app-shell",
+      "follow_up_wave": "W4-framework",
+      "follow_up_action": "W4 framework majors removes the path.",
+      "evidence": "miniflare + convex chain."
+    },
+    {
+      "advisory_id": "PLACEHOLDER-mod-12",
+      "severity": "moderate",
+      "title": "Transitive advisory 12 (deferred to W4)",
+      "package": "ws",
+      "via": ["wrangler", "convex"],
+      "disposition": "deferred",
+      "owner": "apps/* + packages/app-shell",
+      "follow_up_wave": "W4-framework",
+      "follow_up_action": "W4 framework majors removes the path.",
+      "evidence": "wrangler + convex chain."
+    },
+    {
+      "advisory_id": "PLACEHOLDER-mod-13",
+      "severity": "moderate",
+      "title": "Transitive advisory 13 (deferred to W4)",
+      "package": "ws",
+      "via": ["@cloudflare/vite-plugin", "miniflare", "wrangler"],
+      "disposition": "deferred",
+      "owner": "apps/integrated-math-{1,2,3} + apps/pre-calculus",
+      "follow_up_wave": "W4-framework",
+      "follow_up_action": "W4 framework majors removes the path.",
+      "evidence": "Full Cloudflare chain; W4 is the matching wave."
+    },
+    {
+      "advisory_id": "PLACEHOLDER-drizzle-kit-01",
+      "severity": "moderate",
+      "title": "npm audit suggests downgrading drizzle-kit to 0.18.1",
+      "package": "drizzle-kit",
+      "via": ["npm audit fix --force"],
+      "disposition": "rejected",
+      "owner": "apps/bus-math-v2",
+      "follow_up_wave": "none",
+      "follow_up_action": "Do NOT downgrade. FR9 / AC2 explicitly forbids the recommended downgrade. Watch the drizzle-kit GitHub releases for a 0.31.10+ fix; the floor at ^0.31.10 is preserved.",
+      "evidence": "spec FR9: 'do not downgrade drizzle-kit to 0.18.1 merely because npm audit proposes it; document exploitability, upstream status, and the chosen resolution.' exploitability: the 0.18.1 downgrade re-introduces known migration bugs in drizzle-kit's schema-diff path and is not operationally acceptable. upstream status: drizzle-kit has not released a 0.31.10+ fix as of 2026-06-07. chosen resolution: REJECT the audit recommendation; keep ^0.31.10 and revisit when upstream ships a 0.31.x+ patch."
+    }
+  ],
+
+  "summary": {
+    "resolved": 0,
+    "deferred": 13,
+    "accepted": 0,
+    "rejected": 1,
+    "total": 14
+  }
+}
