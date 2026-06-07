@@ -559,6 +559,38 @@ describe('in-range-wave (W3) — moderate advisory disposition (Task 3 / FR9 / A
     }
   });
 
+  it('w3-advisory-disposition.json names the exact post-W3 npm audit vulnerability packages with no placeholder rows', () => {
+    if (!existsSync(W3_ADVISORY_DISPOSITION_FIXTURE)) {
+      throw new Error('w3-advisory-disposition.json missing — see sibling test');
+    }
+    const fixture = JSON.parse(
+      readFileSync(W3_ADVISORY_DISPOSITION_FIXTURE, 'utf-8')
+    ) as {
+      advisories: Array<{ advisory_id: string; package: string }>;
+    };
+    const actualAuditPackages = [
+      '@cloudflare/vite-plugin',
+      '@esbuild-kit/core-utils',
+      '@esbuild-kit/esm-loader',
+      '@unpic/react',
+      'brace-expansion',
+      'drizzle-kit',
+      'esbuild',
+      'geist',
+      'miniflare',
+      'next',
+      'postcss',
+      'vinext',
+      'wrangler',
+      'ws',
+    ].sort();
+    const fixturePackages = fixture.advisories.map((a) => a.package).sort();
+    expect(fixturePackages).toEqual(actualAuditPackages);
+    for (const advisory of fixture.advisories) {
+      expect(advisory.advisory_id, `${advisory.package} uses a placeholder advisory_id`).not.toMatch(/^PLACEHOLDER/);
+    }
+  });
+
   it('drizzle-kit: no manifest may declare a floor below 0.31.10 (FR9 / AC2 / Phase 3 Task 3)', () => {
     const manifests = getAppManifests(REPO_ROOT);
     const offenders: Array<{ workspace: string; range: string }> = [];
