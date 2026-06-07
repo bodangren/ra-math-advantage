@@ -929,7 +929,7 @@ Sixteen candidate tracks identified from a full-roadmap review. Each is registry
 
 - [x] **Track: E2E Coverage Expansion** — **COMPLETED**
    *Expand Playwright E2E beyond the 9 infrastructure tests to fully cover login, lesson nav, activity interaction, daily practice, and teacher dashboard. All 4 phases complete: deterministic seed & selectors, auth & lesson flow, activities & daily practice, teacher flow & CI. Review commit: `41a35a7c`.*
-   *Link: [./tracks/e2e-coverage-expansion_20260605/](./tracks/e2e-coverage-expansion_20260605/)*
+   *Link: [./archive/e2e-coverage-expansion_20260605/](./archive/e2e-coverage-expansion_20260605/)*
 
 - [ ] **Track: Data Export Teacher UI** — **PLANNED**
    *Build the teacher-facing UI for student-progress/gradebook/submission CSV+JSON export. Backend is "COMPLETE, UI pending" (queries + CSV util + 12 tests exist). Size: S. Depends on: data-export-api (backend done). Readiness: ready now.*
@@ -947,7 +947,7 @@ Sixteen candidate tracks identified from a full-roadmap review. Each is registry
 
 - [x] **Track: Generated-Math Correctness QA** — **COMPLETED**
    *Property-based / golden-answer verification harness for deterministic generators. All 4 phases complete: contract & harness API (15 tests), core properties (134 tests), registry sweep (206 math-content + 134 practice-core tests), CI gate & verification. 163 practice-core tests pass. CI gate wired. Zero boundary violations.*
-   *Link: [./tracks/generated-math-correctness-qa_20260605/](./tracks/generated-math-correctness-qa_20260605/)*
+   *Link: [./archive/generated-math-correctness-qa_20260605/](./archive/generated-math-correctness-qa_20260605/)*
 
 - [ ] **Track: Vertical Slice Value Proof** — **PLANNED**
    *Take one module (IM3 M1) end-to-end to a student route: minimal KST Track 1 wiring + real generators for M1 skills + live KST-derived state. Directly attacks the "built-but-not-wired" gap (graph asset has zero production routes). Size: L. Depends on: wire-kst-pipeline (KST T1), core-algebra-generators (T17). Readiness: blocked on KST T1 start.*
