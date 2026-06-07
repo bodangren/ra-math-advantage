@@ -40,7 +40,6 @@
   },
 
   "per_migration_quality_gates": {
-    "purpose": "Task 5.1 — One migration per commit; quality gates are recorded per migration in this section so a failure is attributable to a specific migration.",
     "W4-T1_vinext":            { "expected_clean_apps": ["apps/bus-math-v2", "apps/integrated-math-1", "apps/integrated-math-2", "apps/integrated-math-3", "apps/pre-calculus"], "families_touched": ["vinext"] },
     "W4-T2_vite_plugin":      { "expected_clean_apps": ["apps/bus-math-v2", "apps/integrated-math-1", "apps/integrated-math-2", "apps/integrated-math-3", "apps/pre-calculus"], "families_touched": ["vite", "@vitejs/plugin-react"] },
     "W4-T3_next":              { "expected_clean_apps": ["apps/bus-math-v2", "apps/integrated-math-1", "apps/integrated-math-2", "apps/integrated-math-3", "apps/pre-calculus"], "families_touched": ["next", "eslint-config-next"] },

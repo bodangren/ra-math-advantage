@@ -52,12 +52,51 @@
 import { describe, it, expect, beforeAll } from 'vitest';
 import { readFileSync, existsSync } from 'node:fs';
 import { resolve } from 'node:path';
-import { satisfies } from 'semver';
 
 import {
   getAppManifests,
   type AppManifest,
 } from '../audit-contract';
+
+function _semverTriplet(v: string): [number, number, number] {
+  const parts = v.replace(/^[\^~>=<]*/, '').split('-')[0].split('.');
+  return [
+    parseInt(parts[0] || '0', 10),
+    parseInt(parts[1] || '0', 10),
+    parseInt(parts[2] || '0', 10),
+  ];
+}
+
+function _semverCmp(a: string, b: string): number {
+  const [a1, a2, a3] = _semverTriplet(a);
+  const [b1, b2, b3] = _semverTriplet(b);
+  if (a1 !== b1) return a1 - b1;
+  if (a2 !== b2) return a2 - b2;
+  return a3 - b3;
+}
+
+function satisfies(version: string, range: string): boolean {
+  const r = range.trim();
+  if (r.startsWith('>=')) return _semverCmp(version, r.slice(2).trim()) >= 0;
+  if (r.startsWith('>'))  return _semverCmp(version, r.slice(1).trim()) > 0;
+  if (r.startsWith('<=')) return _semverCmp(version, r.slice(2).trim()) <= 0;
+  if (r.startsWith('<'))  return _semverCmp(version, r.slice(1).trim()) < 0;
+  if (r.startsWith('^')) {
+    const base = r.slice(1).trim();
+    const [maj, min, pat] = _semverTriplet(base);
+    if (_semverCmp(version, base) < 0) return false;
+    if (maj > 0) return _semverCmp(version, `${maj + 1}.0.0`) < 0;
+    if (min > 0) return _semverCmp(version, `0.${min + 1}.0`) < 0;
+    return _semverCmp(version, `0.0.${pat + 1}`) < 0;
+  }
+  if (r.startsWith('~')) {
+    const base = r.slice(1).trim();
+    const [maj, min] = _semverTriplet(base);
+    if (_semverCmp(version, base) < 0) return false;
+    return _semverCmp(version, `${maj}.${min + 1}.0`) < 0;
+  }
+  return _semverCmp(version, r) === 0;
+}
 
 const REPO_ROOT = process.cwd();
 const FIXTURES_DIR = resolve(REPO_ROOT, 'scripts/audit/__tests__/fixtures');

@@ -4,7 +4,7 @@
   "captured_by": "measure:dependency-security-upgrades_20260607",
   "purpose": "Phase 4 — Coordinated Framework & Toolchain Majors (FR7/FR8). Enumerates the post-W4 concrete target version for every W4-framework family and the manifest-owner set. The w4 Red-phase TDD suite asserts (a) this fixture exists, (b) it carries every W4-framework family from the matrix, (c) every listed target satisfies the spec target_after_all_waves major floor, and (d) the installed lockfile version equals the target. Green behavior: a w4 Green commit (per-migration commits T1/T2/T3/T4) refreshes the lockfile to these versions and re-runs the audit contract.",
 
-  "framework_families_count": 9,
+  "framework_families_count": 8,
   "registry_stub_baseline": "scripts/audit/__tests__/fixtures/registry-stub.json",
 
   "compatibility_requirement": "Every target must satisfy the post-W4 declared manifest range for every owner workspace. Vinext 0.0.55, Vite 8.x, @vitejs/plugin-react 6.x, Next 16.x, eslint-config-next 16.x, TypeScript 6.x, ESLint 10.x, @eslint/js 10.x. @types/node stays at a single major floor across the workspace (post-W3 invariant).",
