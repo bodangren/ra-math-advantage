@@ -578,9 +578,7 @@ describe('in-range-wave (W3) — moderate advisory disposition (Task 3 / FR9 / A
       'esbuild',
       'geist',
       'miniflare',
-      'next',
       'postcss',
-      'vinext',
       'wrangler',
       'ws',
     ].sort();

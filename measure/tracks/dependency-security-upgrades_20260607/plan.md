@@ -78,10 +78,10 @@ Phase 3 adversarial audit SHA: `fdbe2b62` (test(in-range-wave-w3): verify actual
 - [x] Task: Upgrade Vite 7 → 8 and `@vitejs/plugin-react` 4 → 6; verify each first-class app independently [checkpoint: 41cb05ae]
 - [x] Task: Upgrade Next.js 15 → 16 and `eslint-config-next` 15 → 16 as an isolated migration [checkpoint: 41cb05ae]
 - [x] Task: Upgrade TypeScript 5 → 6 and ESLint/`@eslint/js` 9 → 10 as isolated toolchain migrations [checkpoint: 41cb05ae]
-- [~] Task: Verify and checkpoint each framework/toolchain migration independently [checkpoint: 41cb05ae; adversarial audit expansion SHA 933df87a; Green-time fixture population in flight]
+- [x] Task: Verify and checkpoint each framework/toolchain migration independently [checkpoint: 41cb05ae; adversarial audit expansion SHA 933df87a; Green-time fixture population SHA 1c1d0ae1]
     - [x] Run all package suites and all five app lint/test/typecheck/build scripts after each migration [checkpoint: 41cb05ae]
     - [x] Author W4 adversarial audit expansion pinning per-migration `results` and `pre_existing_failures` (w4-audit test file) [checkpoint: 933df87a]
-    - [ ] Populate w4-quality-gates.json `per_migration_quality_gates[*].results` and `pre_existing_failures.failures`, and reconcile w3-advisory-disposition.json for the post-W4 advisory state — *Green-time fixture population owed by a follow-up commit; out of scope for the Red mid agent*
+    - [x] Populate w4-quality-gates.json `per_migration_quality_gates[*].results` and `pre_existing_failures.failures`, and reconcile w3-advisory-disposition.json for the post-W4 advisory state [checkpoint: 1c1d0ae1]
 - [ ] Task: Measure - User Manual Verification 'Phase 4 — Coordinated Framework & Toolchain Majors' (Protocol in workflow.md)
 
 Phase 4 Red-phase (mid agent) — TDD suite authored at `scripts/audit/__tests__/framework-wave-w4.test.ts`. The suite pins the post-W4 manifest and lockfile state declared in plan.md Phase 4 and spec.md FR7/FR8/AC5/AC7/AC8. Tests fail Red on the pre-W4 (post-W3) baseline and turn Green only when the four framework/toolchain majors land. Approval gate is held in the user-facing task; Green-phase implementer must not run `npm install` or edit manifests without explicit approval. New Measure artifacts: `w4-framework-targets.json`, `w4-quality-gates.json`. No source code modified.

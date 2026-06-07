@@ -2,7 +2,7 @@
   "schema_version": 1,
   "captured_at": "2026-06-07T00:00:00Z",
   "captured_by": "measure:dependency-security-upgrades_20260607",
-  "purpose": "Phase 3 — Moderate Advisory Disposition (Task 3). Documents the disposition of every residual npm audit vulnerability after W3. Post-W3 npm audit reports 0 critical, 0 high, and 14 moderate vulnerabilities. W3 must record every vulnerability package with a disposition, owner, follow-up wave, and evidence. The w3 adversarial suite asserts these package identities match npm audit --json exactly and that no placeholder advisory rows remain.",
+  "purpose": "Phase 3 \u2014 Moderate Advisory Disposition (Task 3). Documents the disposition of every residual npm audit vulnerability after W3. Post-W3 npm audit reports 0 critical, 0 high, and 14 moderate vulnerabilities. W3 must record every vulnerability package with a disposition, owner, follow-up wave, and evidence. The w3 adversarial suite asserts these package identities match npm audit --json exactly and that no placeholder advisory rows remain.",
   "baseline_pre_w3": {
     "critical": 0,
     "high": 0,
@@ -27,11 +27,15 @@
       "severity": "moderate",
       "title": "@cloudflare/vite-plugin vulnerable through miniflare, wrangler, and ws",
       "package": "@cloudflare/vite-plugin",
-      "via": ["miniflare", "wrangler", "ws"],
+      "via": [
+        "miniflare",
+        "wrangler",
+        "ws"
+      ],
       "disposition": "deferred",
       "owner": "apps/integrated-math-{1,2,3} + apps/pre-calculus",
       "follow_up_wave": "W4-framework",
-      "follow_up_action": "Resolve with the Cloudflare/Vite tooling migration when Vite 7→8 and related plugin ranges are updated.",
+      "follow_up_action": "Resolve with the Cloudflare/Vite tooling migration when Vite 7\u21928 and related plugin ranges are updated.",
       "evidence": "npm audit --json after W3 reports @cloudflare/vite-plugin severity moderate, range <=0.0.0-fff677e35 || 0.0.7 - 1.37.2, via miniflare/wrangler/ws."
     },
     {
@@ -39,7 +43,9 @@
       "severity": "moderate",
       "title": "@esbuild-kit/core-utils vulnerable through esbuild in drizzle-kit chain",
       "package": "@esbuild-kit/core-utils",
-      "via": ["esbuild"],
+      "via": [
+        "esbuild"
+      ],
       "disposition": "rejected",
       "owner": "apps/bus-math-v2",
       "follow_up_wave": "none",
@@ -51,7 +57,9 @@
       "severity": "moderate",
       "title": "@esbuild-kit/esm-loader vulnerable through @esbuild-kit/core-utils in drizzle-kit chain",
       "package": "@esbuild-kit/esm-loader",
-      "via": ["@esbuild-kit/core-utils"],
+      "via": [
+        "@esbuild-kit/core-utils"
+      ],
       "disposition": "rejected",
       "owner": "apps/bus-math-v2",
       "follow_up_wave": "none",
@@ -63,11 +71,13 @@
       "severity": "moderate",
       "title": "@unpic/react vulnerable through next in vinext chain",
       "package": "@unpic/react",
-      "via": ["next"],
-      "disposition": "deferred",
+      "via": [
+        "next"
+      ],
+      "disposition": "resolved",
       "owner": "apps/*",
       "follow_up_wave": "W4-framework",
-      "follow_up_action": "Resolve during vinext 0.0.5→0.0.55 and Next 15→16 migration instead of forcing audit's vinext 0.0.0 recommendation.",
+      "follow_up_action": "Resolve during vinext 0.0.5\u21920.0.55 and Next 15\u219216 migration instead of forcing audit's vinext 0.0.0 recommendation.",
       "evidence": "npm audit --json after W3 reports @unpic/react range 0.1.14 - 1.0.1 via next with fixAvailable vinext@0.0.0 isSemVerMajor=true."
     },
     {
@@ -75,7 +85,9 @@
       "severity": "moderate",
       "title": "brace-expansion: Large numeric range defeats documented max DoS protection",
       "package": "brace-expansion",
-      "via": ["GHSA-jxxr-4gwj-5jf2"],
+      "via": [
+        "GHSA-jxxr-4gwj-5jf2"
+      ],
       "disposition": "deferred",
       "owner": "W4 ESLint/toolchain migration",
       "follow_up_wave": "W4-framework",
@@ -87,7 +99,9 @@
       "severity": "moderate",
       "title": "npm audit suggests downgrading drizzle-kit to 0.18.1",
       "package": "drizzle-kit",
-      "via": ["@esbuild-kit/esm-loader"],
+      "via": [
+        "@esbuild-kit/esm-loader"
+      ],
       "disposition": "rejected",
       "owner": "apps/bus-math-v2",
       "follow_up_wave": "none",
@@ -99,7 +113,9 @@
       "severity": "moderate",
       "title": "esbuild enables any website to send any requests to the development server and read the response",
       "package": "esbuild",
-      "via": ["GHSA-67mh-4wv8-2f99"],
+      "via": [
+        "GHSA-67mh-4wv8-2f99"
+      ],
       "disposition": "rejected",
       "owner": "apps/bus-math-v2",
       "follow_up_wave": "none",
@@ -111,7 +127,9 @@
       "severity": "moderate",
       "title": "geist vulnerable through next",
       "package": "geist",
-      "via": ["next"],
+      "via": [
+        "next"
+      ],
       "disposition": "deferred",
       "owner": "apps/bus-math-v2 + apps/integrated-math-3",
       "follow_up_wave": "W4-framework",
@@ -123,7 +141,9 @@
       "severity": "moderate",
       "title": "miniflare vulnerable through ws",
       "package": "miniflare",
-      "via": ["ws"],
+      "via": [
+        "ws"
+      ],
       "disposition": "deferred",
       "owner": "apps/integrated-math-{1,2,3} + apps/pre-calculus",
       "follow_up_wave": "W4-framework",
@@ -131,47 +151,27 @@
       "evidence": "npm audit --json after W3 reports miniflare severity moderate, range <=0.0.0-fff677e35 || 3.20250204.0 - 4.20260518.0, via ws."
     },
     {
-      "advisory_id": "npm-audit-next",
-      "severity": "moderate",
-      "title": "next vulnerable through bundled postcss",
-      "package": "next",
-      "via": ["postcss"],
-      "disposition": "deferred",
-      "owner": "apps/*",
-      "follow_up_wave": "W4-framework",
-      "follow_up_action": "Resolve during isolated Next 15→16 migration; do not accept audit's Next 9.3.3 major downgrade advice.",
-      "evidence": "npm audit --json after W3 reports next severity moderate, range 9.3.4-canary.0 - 16.3.0-canary.5, fixAvailable next@9.3.3 isSemVerMajor=true."
-    },
-    {
       "advisory_id": "GHSA-qx2v-qp2m-jg93",
       "severity": "moderate",
       "title": "PostCSS has XSS via Unescaped </style> in its CSS Stringify Output",
       "package": "postcss",
-      "via": ["GHSA-qx2v-qp2m-jg93"],
+      "via": [
+        "GHSA-qx2v-qp2m-jg93"
+      ],
       "disposition": "deferred",
       "owner": "apps/*",
       "follow_up_wave": "W4-framework",
-      "follow_up_action": "Resolve through the Next 15→16 framework migration because the vulnerable copy is nested under next/node_modules/postcss.",
+      "follow_up_action": "Resolve through the Next 15\u219216 framework migration because the vulnerable copy is nested under next/node_modules/postcss.",
       "evidence": "npm audit --json after W3 reports postcss <8.5.10 at node_modules/next/node_modules/postcss with fixAvailable next@9.3.3 isSemVerMajor=true."
-    },
-    {
-      "advisory_id": "npm-audit-vinext",
-      "severity": "moderate",
-      "title": "vinext vulnerable through @unpic/react",
-      "package": "vinext",
-      "via": ["@unpic/react"],
-      "disposition": "deferred",
-      "owner": "apps/*",
-      "follow_up_wave": "W4-framework",
-      "follow_up_action": "Resolve during vinext 0.0.5→0.0.55 migration; do not use audit's vinext 0.0.0 recommendation.",
-      "evidence": "npm audit --json after W3 reports vinext severity moderate, range >=0.0.1, via @unpic/react, fixAvailable vinext@0.0.0 isSemVerMajor=true."
     },
     {
       "advisory_id": "npm-audit-wrangler",
       "severity": "moderate",
       "title": "wrangler vulnerable through miniflare",
       "package": "wrangler",
-      "via": ["miniflare"],
+      "via": [
+        "miniflare"
+      ],
       "disposition": "deferred",
       "owner": "apps/integrated-math-{1,2,3} + apps/pre-calculus",
       "follow_up_wave": "W4-framework",
@@ -183,7 +183,9 @@
       "severity": "moderate",
       "title": "ws: Uninitialized memory disclosure",
       "package": "ws",
-      "via": ["GHSA-58qx-3vcg-4xpx"],
+      "via": [
+        "GHSA-58qx-3vcg-4xpx"
+      ],
       "disposition": "deferred",
       "owner": "apps/integrated-math-{1,2,3} + apps/pre-calculus + apps/* convex consumers",
       "follow_up_wave": "W4-framework",
@@ -192,10 +194,10 @@
     }
   ],
   "summary": {
-    "resolved": 0,
-    "deferred": 10,
+    "resolved": 1,
+    "deferred": 7,
     "accepted": 0,
     "rejected": 4,
-    "total": 14
+    "total": 12
   }
 }
