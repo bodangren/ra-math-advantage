@@ -303,3 +303,99 @@ describe('security-wave (W2) — in-range matrix classification preserved (react
     expect(MATRIX.rows.length).toBe(36);
   });
 });
+
+describe('security-wave (W2) — FR3 React/React DOM minimum 19.2.7 (GHSA-rv78-f8rc-xrxh)', () => {
+  let manifests: AppManifest[];
+
+  beforeAll(() => {
+    manifests = getAppManifests(REPO_ROOT);
+  });
+
+  it.each(FIRST_CLASS_APP_WORKSPACES)(
+    '%s declares react >= ^19.2.7 (resolves react-server-dom-webpack HIGH advisory)',
+    (workspacePath) => {
+      const manifest = manifestByWorkspace(manifests, workspacePath);
+      expect(manifest, `${workspacePath} manifest missing`).toBeDefined();
+      const ranges = allDeclaredRanges(manifest, 'react');
+      expect(ranges, `${workspacePath} must declare react`).toHaveLength(1);
+      const range = ranges[0];
+      const major = parseInt(range.replace(/^[\^~>=<]*/, '').split('.')[0], 10);
+      const minor = parseInt(range.replace(/^[\^~>=<]*/, '').split('.')[1] || '0', 10);
+      const patch = parseInt(range.replace(/^[\^~>=<]*/, '').split('.')[2] || '0', 10);
+      expect(
+        major > 19 || (major === 19 && minor > 2) || (major === 19 && minor === 2 && patch >= 7),
+        `${workspacePath} react range "${range}" must be >= ^19.2.7 (FR3)`
+      ).toBe(true);
+    }
+  );
+
+  it.each(FIRST_CLASS_APP_WORKSPACES)(
+    '%s declares react-dom >= ^19.2.7',
+    (workspacePath) => {
+      const manifest = manifestByWorkspace(manifests, workspacePath);
+      expect(manifest, `${workspacePath} manifest missing`).toBeDefined();
+      const ranges = allDeclaredRanges(manifest, 'react-dom');
+      expect(ranges, `${workspacePath} must declare react-dom`).toHaveLength(1);
+      const range = ranges[0];
+      const major = parseInt(range.replace(/^[\^~>=<]*/, '').split('.')[0], 10);
+      const minor = parseInt(range.replace(/^[\^~>=<]*/, '').split('.')[1] || '0', 10);
+      const patch = parseInt(range.replace(/^[\^~>=<]*/, '').split('.')[2] || '0', 10);
+      expect(
+        major > 19 || (major === 19 && minor > 2) || (major === 19 && minor === 2 && patch >= 7),
+        `${workspacePath} react-dom range "${range}" must be >= ^19.2.7 (FR3)`
+      ).toBe(true);
+    }
+  );
+});
+
+describe('security-wave (W2) — FR3 Convex minimum 1.40.0 (ws advisory)', () => {
+  let manifests: AppManifest[];
+
+  beforeAll(() => {
+    manifests = getAppManifests(REPO_ROOT);
+  });
+
+  it.each([...FIRST_CLASS_APP_WORKSPACES, 'packages/app-shell', 'packages/core-convex'])(
+    '%s declares convex >= ^1.40.0 (leaves vulnerable ws range 1.31.8-alpha.0 - 1.39.1)',
+    (workspacePath) => {
+      const manifest = manifests.find((m) => m.workspace_path === workspacePath);
+      expect(manifest, `${workspacePath} manifest missing`).toBeDefined();
+      const ranges = allDeclaredRanges(manifest!, 'convex');
+      expect(ranges, `${workspacePath} must declare convex`).toHaveLength(1);
+      const range = ranges[0];
+      const major = parseInt(range.replace(/^[\^~>=<]*/, '').split('.')[0], 10);
+      const minor = parseInt(range.replace(/^[\^~>=<]*/, '').split('.')[1] || '0', 10);
+      expect(
+        major > 1 || (major === 1 && minor >= 40),
+        `${workspacePath} convex range "${range}" must be >= ^1.40.0 (FR3)`
+      ).toBe(true);
+    }
+  );
+});
+
+describe('security-wave (W2) — FR3 @vitejs/plugin-rsc minimum 0.5.27 (GHSA-w94c-4vhp-22gx)', () => {
+  let manifests: AppManifest[];
+
+  beforeAll(() => {
+    manifests = getAppManifests(REPO_ROOT);
+  });
+
+  it.each(FIRST_CLASS_APP_WORKSPACES)(
+    '%s declares @vitejs/plugin-rsc >= ^0.5.27 (resolves HIGH DoS advisory)',
+    (workspacePath) => {
+      const manifest = manifestByWorkspace(manifests, workspacePath);
+      expect(manifest, `${workspacePath} manifest missing`).toBeDefined();
+      const ranges = allDeclaredRanges(manifest, '@vitejs/plugin-rsc');
+      expect(ranges, `${workspacePath} must declare @vitejs/plugin-rsc`).toHaveLength(1);
+      const range = ranges[0];
+      const parts = range.replace(/^[\^~>=<]*/, '').split('.');
+      const major = parseInt(parts[0], 10);
+      const minor = parseInt(parts[1] || '0', 10);
+      const patch = parseInt(parts[2] || '0', 10);
+      expect(
+        major > 0 || (major === 0 && minor > 5) || (major === 0 && minor === 5 && patch >= 27),
+        `${workspacePath} @vitejs/plugin-rsc range "${range}" must be >= ^0.5.27 (FR3)`
+      ).toBe(true);
+    }
+  );
+});
