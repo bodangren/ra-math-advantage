@@ -180,13 +180,15 @@ describe('audit-contract — declaration drift (Red on drift)', () => {
     drift = getDeclarationDrift(manifests);
   });
 
-  it('detects vitest drift between PTE 2.x and the rest of the workspace 4.x', () => {
+  it('vitest drift resolved after W2 — all workspaces on 4.x (PTE upgraded from ^2.0.0 to ^4.1.8)', () => {
     const vitest = drift.find((d) => d.package === 'vitest');
-    expect(vitest, 'vitest drift entry missing from report').toBeDefined();
-    const ranges = new Set(vitest!.versions.map((v) => v.range));
-    expect(ranges.size).toBeGreaterThan(1);
-    expect(ranges.has('^2.0.0')).toBe(true);
-    expect(ranges.has('^4.0.16')).toBe(true);
+    if (vitest) {
+      const uniqueMajors = new Set(
+        vitest.versions.map((v) => parseInt(v.range.replace(/^[\^~>=<]*/, ''), 10))
+      );
+      expect(uniqueMajors.size).toBe(1);
+      expect(uniqueMajors.has(4)).toBe(true);
+    }
   });
 
   it('detects katex drift (0.16.45 vs 0.16.21)', () => {
@@ -207,7 +209,7 @@ describe('audit-contract — declaration drift (Red on drift)', () => {
   });
 });
 
-describe('audit-contract — open-range violations (Red on "next": "latest")', () => {
+describe('audit-contract — open-range violations (post-W2: "next" pinned to ^15.5.19)', () => {
   let violations: OpenRangeViolation[];
 
   beforeAll(() => {
@@ -215,16 +217,9 @@ describe('audit-contract — open-range violations (Red on "next": "latest")', (
     violations = getOpenRangeViolations(manifests);
   });
 
-  it('flags all 5 apps that declare "next": "latest" (FR4 baseline state)', () => {
+  it('zero "next" open-range violations after W2 pinning (was 5 with "latest")', () => {
     const nextViolations = violations.filter((v) => v.package === 'next');
-    expect(nextViolations.length).toBe(5);
-    for (const v of nextViolations) {
-      expect(v.range).toBe('latest');
-    }
-    const workspaces = new Set(nextViolations.map((v) => v.workspace));
-    expect(workspaces).toEqual(
-      new Set(BASELINE.open_range_violations.map((b) => b.workspace))
-    );
+    expect(nextViolations.length).toBe(0);
   });
 });
 
@@ -328,7 +323,7 @@ describe('audit-contract — full report integration', () => {
     expect(report.firstClassApps.length).toBe(BASELINE.totals.first_class_app_count);
     expect(report.sharedPackages.length).toBe(BASELINE.totals.shared_package_count);
     expect(report.securityTotals).toEqual(BASELINE.security_totals);
-    expect(report.openRangeViolations.filter((v) => v.package === 'next').length).toBe(5);
+    expect(report.openRangeViolations.filter((v) => v.package === 'next').length).toBe(0);
     expect(report.upgradeCandidates.length).toBe(BASELINE.totals.upgrade_candidate_families);
     expect(report.drizzleKitFloor.downgradeBlockedBelow).toBe('0.31.10');
     expect(report.lockfileInventory.rootLockfileCount).toBe(1);
