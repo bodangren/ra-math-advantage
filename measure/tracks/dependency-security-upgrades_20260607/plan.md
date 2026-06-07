@@ -40,17 +40,21 @@ Phase 2 Green SHA: `691f79d2` (feat(security-wave-w2): pin Next.js to ^15.5.19 a
 
 Phase 2 lockfile sync SHA: `59d22d10` (chore(security-wave-w2): sync lockfile after manifest declaration updates). Runs `npm install` to sync lockfile with updated manifests. PTE vitest resolved to 4.1.8 (was 2.1.9). Vulnerabilities reduced from 18 (1 critical, 3 high, 14 moderate) to 17 (2 high, 15 moderate) — critical ws advisory resolved. Remaining 17 are transitive (ws/@cloudflare/vite-plugin/convex/miniflare/wrangler) — deferred to Phase 3/4.
 
+Phase 2 FR3 remediation SHA: `aadfc94c` (fix(security-wave-w2): upgrade React 19.2.7, Convex 1.40.0, @vitejs/plugin-rsc 0.5.27 to resolve HIGH advisories). Tightens manifest ranges for React/React DOM (^19.2.7), Convex (^1.40.0), @vitejs/plugin-rsc (^0.5.27) across all 5 apps and shared packages. Adds root devDep react-server-dom-webpack ^19.2.7 to override vinext@0.0.5 transitive. npm audit: 0 critical, 0 high, 14 moderate.
+
+Phase 2 FR3 test SHA: `ee435d44` (test(security-wave-w2): add FR3 assertions for React 19.2.7, Convex 1.40.0, @vitejs/plugin-rsc 0.5.27). Adds 22 new test assertions covering FR3 minimum version requirements. W2 suite: 39 tests (was 17). All pass.
+
 - [x] Task: Obtain explicit approval for dependency installation and manifest changes before starting upgrade execution [checkpoint: 59d22d10]
 - [x] Task: Pin an intentional Next.js 15 declaration and upgrade Next.js to 15.5.19 across the workspace [checkpoint: 691f79d2]
     - [x] Replace app-level `"next": "latest"` declarations [checkpoint: 691f79d2]
     - [x] Verify Next.js 16 is not pulled into this wave (^15.5.19 rejects 16.x) [checkpoint: 691f79d2]
-- [x] Task: Upgrade React and React DOM to 19.2.7 and align React/RSC transitive requirements [checkpoint: 59d22d10]
-- [x] Task: Upgrade Convex to 1.40.0 and `@vitejs/plugin-rsc` to 0.5.27 [checkpoint: 59d22d10]
+- [x] Task: Upgrade React and React DOM to 19.2.7 and align React/RSC transitive requirements [checkpoint: aadfc94c]
+- [x] Task: Upgrade Convex to 1.40.0 and `@vitejs/plugin-rsc` to 0.5.27 [checkpoint: aadfc94c]
 - [x] Task: Upgrade `packages/practice-test-engine` from Vitest 2.1.9 to 4.1.8 using TDD on its existing suite [checkpoint: 691f79d2]
-- [x] Task: Verify and checkpoint the security wave [checkpoint: 59d22d10]
-    - [x] Run package/app tests affected by the upgrades plus all app builds [checkpoint: 59d22d10]
-    - [x] Run `npm ls --workspaces --depth=0` and `npm audit`; require zero critical/high findings [checkpoint: 59d22d10]
-- [ ] Task: Measure - User Manual Verification 'Phase 2 — Urgent Security Remediation' (Protocol in workflow.md) — *deferred to supervisor: automated verification complete, 17 residual moderate/high transitive vulnerabilities deferred to Phase 3/4*
+- [x] Task: Verify and checkpoint the security wave [checkpoint: ee435d44]
+    - [x] Run package/app tests affected by the upgrades plus all app builds [checkpoint: ee435d44]
+    - [x] Run `npm ls --workspaces --depth=0` and `npm audit`; require zero critical/high findings [checkpoint: aadfc94c]
+- [ ] Task: Measure - User Manual Verification 'Phase 2 — Urgent Security Remediation' (Protocol in workflow.md) — *deferred to supervisor: automated verification complete, 14 residual moderate transitive vulnerabilities deferred to Phase 3/4*
 
 ## Phase 3 — In-Range Refresh & Declaration Alignment
 
