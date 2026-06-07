@@ -30,6 +30,8 @@ Phase 1 Green SHA: `a156ad0d` (feat(audit-contract): implement Green phase for d
 
 Phase 1 Red expansion SHA: `2acf4282` (test(audit-contract): expand Red coverage for Task 1.1/2.2/3 sub-tasks). Adds four new describe blocks to the same suite — registry-latest versions (Task 1.1), range-compatibility classification 22-in-range / 14-requires-manifest-change (Task 1.1), matrix field completeness + manifest_owners boundary check (Task 2.2), and baseline quality-gates capture (Task 3) — plus two new fixtures (`registry-stub.json`, `baseline-quality-gates.json`) and the previously untracked test-strategy.md. Same Red behavior: file fails on missing `../audit-contract`; verified with a one-shot stub that the 22 new tests fail individually with `TypeError: <new function> is not a function`. No source code modified.
 
+Phase 1 adversarial audit SHA: `bf802d44` (test(audit-contract): add adversarial dependency guards). Adds negative tests for `drizzle-kit` downgrade floors and recursive non-root `package-lock.json` detection; fixes semver comparison and lockfile invariant scanning. Focused audit suite, direct audit typecheck, `npm test`, lint, build, boundary check, and `npm ls` pass. Known baseline failures remain: root `npx tsc --noEmit` TS18003 from empty root tsconfig include, and `npm audit` baseline vulnerabilities deferred to later waves.
+
 ## Phase 2 — Urgent Security Remediation
 
 - [ ] Task: Obtain explicit approval for dependency installation and manifest changes before starting upgrade execution
