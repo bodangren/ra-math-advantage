@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "captured_at": "2026-06-07T00:00:00Z",
+  "captured_by": "measure:dependency-security-upgrades_20260607",
+  "purpose": "Phase 5 — Remaining Majors (FR8). Enumerates the post-W5 concrete target version for every W5-remaining family and the manifest-owner set. The w5 Red-phase TDD suite asserts (a) this fixture exists, (b) it carries every W5-remaining family from the matrix (Tailwind CSS, KaTeX, Lucide React, jsdom), (c) every listed target satisfies the spec target_after_all_waves major floor, and (d) the installed lockfile version equals the target. Green behavior: a w5 Green commit refreshes the lockfile to these versions and re-runs the audit contract.",
+
+  "remaining_families_count": 4,
+  "registry_stub_baseline": "scripts/audit/__tests__/fixtures/registry-stub.json",
+
+  "compatibility_requirement": "Every target must satisfy the post-W5 declared manifest range for every owner workspace. Tailwind 4.x (config + PostCSS pipeline break — test-strategy.md §3), KaTeX 0.17.x (0.16→0.17 breaking, may affect packages/lesson-renderer and packages/activity-components consumers), Lucide React 1.x (0.x→1.x breaking, may affect packages/lesson-renderer suite), jsdom 29.x (test-environment compatibility changes likely — verify per-app vitest suite).",
+
+  "per_migration_scope": {
+    "W5-T1_tailwind":     ["tailwindcss"],
+    "W5-T2_katex_lucide": ["katex", "lucide-react"],
+    "W5-T3_jsdom":        ["jsdom"]
+  },
+
+  "targets": [
+    {
+      "package": "tailwindcss",
+      "target_version": "4.0.0",
+      "owners": ["apps/bus-math-v2", "apps/integrated-math-1", "apps/integrated-math-2", "apps/integrated-math-3", "apps/pre-calculus"],
+      "primary_wave": "W5-remaining",
+      "peer_dependencies": ["@tailwindcss/postcss 4.x", "postcss ^8"],
+      "notes": "T1 isolated upgrade. Breaking config + PostCSS pipeline — test-strategy.md §3. Requires per-app build verification, not just unit tests. Postcss v4 (the new engine) requires @tailwindcss/postcss as a separate package. The five apps' tailwind.config.ts files use TypeScript Config imports; v4 prefers CSS-first config (theme tokens, no JS config)."
+    },
+    {
+      "package": "katex",
+      "target_version": "0.17.0",
+      "owners": ["apps/integrated-math-3", "packages/activity-components", "packages/lesson-renderer"],
+      "primary_wave": "W5-remaining",
+      "peer_dependencies": [],
+      "notes": "T2 isolated upgrade. 0.16→0.17 breaking per KaTeX changelog. test-strategy.md §3 requires running packages/lesson-renderer and packages/activity-components suites first. May break shared component consumers (IM3 uses @matejmazur/react-katex which has a ^3.1.3 peer on katex — verify peer satisfaction)."
+    },
+    {
+      "package": "lucide-react",
+      "target_version": "1.0.0",
+      "owners": ["apps/bus-math-v2", "apps/integrated-math-1", "apps/integrated-math-2", "apps/integrated-math-3", "apps/pre-calculus", "packages/app-shell", "packages/lesson-renderer"],
+      "primary_wave": "W5-remaining",
+      "peer_dependencies": ["react ^19"],
+      "notes": "T2 isolated upgrade. 0.x→1.x breaking — lucide-react v1.0 promotes a stable API, removes tree-shaking workaround imports, and re-exports the icon set as ESM. test-strategy.md §3 requires running packages/lesson-renderer suite first. P3 floor (^0.511.0) does NOT admit 1.x; W5 is the major migration."
+    },
+    {
+      "package": "jsdom",
+      "target_version": "29.0.0",
+      "owners": ["apps/bus-math-v2", "apps/integrated-math-1", "apps/integrated-math-2", "apps/integrated-math-3", "apps/pre-calculus"],
+      "primary_wave": "W5-remaining",
+      "peer_dependencies": ["vitest ^4.1.8"],
+      "notes": "T3 isolated upgrade. 26→29 carries test-environment compatibility changes (jsdom 27 added CSS.supports polyfill, 28 modernized URL/URLSearchParams, 29 dropped legacy Node <18 support). Verify per-app vitest suite; test-strategy.md §3 calls this out explicitly."
+    }
+  ],
+
+  "deferred_to_other_waves": [
+    { "package": "next",                       "reason": "W4 landed at 16.x; W5 re-verifies peer satisfaction after lucide-react 1.x bump (no expected interaction).", "primary_wave": "W4-framework" },
+    { "package": "react",                      "reason": "W2 already at 19.2.7; W5 re-verifies peer satisfaction for lucide-react 1.x.",                                "primary_wave": "W2-security" },
+    { "package": "react-dom",                  "reason": "Tracks react; same as above.",                                                                          "primary_wave": "W2-security" },
+    { "package": "vite",                       "reason": "W4 already at 8.x; W5 re-verifies peer satisfaction for tailwindcss 4.x PostCSS pipeline.",                  "primary_wave": "W4-framework" },
+    { "package": "typescript",                 "reason": "W4 already at 6.x; W5 re-verifies typecheck under Tailwind/KaTeX/Lucide/jsdom bumps.",                      "primary_wave": "W4-framework" }
+  ]
+}

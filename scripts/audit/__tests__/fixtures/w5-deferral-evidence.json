@@ -1,0 +1,308 @@
+{
+  "schema_version": 1,
+  "captured_at": "2026-06-07T00:00:00Z",
+  "captured_by": "measure:dependency-security-upgrades_20260607",
+  "purpose": "Phase 5 — Final Audit & Closure (Task 4 / FR5 / AC5). Documents the disposition of every one of the 36 direct upgrade candidates in the matrix: every row is either (a) upgraded — with the wave that landed the upgrade and the concrete installed version, or (b) deferred — with a compatibility-evidence note and an explicit follow-up owner. The w5 Red-phase TDD suite asserts this fixture exists, has the documented schema, and that every matrix row is present with a non-empty disposition.",
+
+  "disposition_taxonomy": {
+    "upgraded":  "A manifest, lockfile, and audit-contract change landed in the named wave that resolved the upgrade candidate.",
+    "deferred":  "The upgrade is intentionally not landed in this track. The follow-up_owner MUST be a workspace path, a person, or a future track ID; compatibility_evidence MUST cite at least one of: spec NFR, peer-dep conflict, upstream status, or test-strategy.md reference."
+  },
+
+  "candidates": [
+    {
+      "package": "next",
+      "disposition": "upgraded",
+      "landed_in_wave": "W4-framework",
+      "installed_version_evidence": "package-lock.json node_modules/next = 16.2.7 (post-W4 Green install at 41cb05ae)",
+      "compatibility_evidence": "W2 pinned ^15.5.19 (FR3 + FR4 AC4); W4 isolated migration to 16.x as a single transition. Plan.md Phase 4 W3-supersedes-W2 next-range is the spec'd handoff pattern.",
+      "follow_up_owner": "n/a — upgrade complete"
+    },
+    {
+      "package": "react",
+      "disposition": "upgraded",
+      "landed_in_wave": "W2-security",
+      "installed_version_evidence": "package-lock.json node_modules/react = 19.2.7 (post-W2 Green at 691f79d2 + aadfc94c)",
+      "compatibility_evidence": "W2 lifted all 5 apps to ^19.2.7 (FR3). vinext 0.0.55 (W4) and lucide-react 1.x (W5) verified peer-satisfaction in their respective waves.",
+      "follow_up_owner": "n/a — upgrade complete"
+    },
+    {
+      "package": "react-dom",
+      "disposition": "upgraded",
+      "landed_in_wave": "W2-security",
+      "installed_version_evidence": "package-lock.json node_modules/react-dom = 19.2.7",
+      "compatibility_evidence": "Tracks react (W2 lift).",
+      "follow_up_owner": "n/a — upgrade complete"
+    },
+    {
+      "package": "convex",
+      "disposition": "upgraded",
+      "landed_in_wave": "W2-security",
+      "installed_version_evidence": "package-lock.json node_modules/convex = 1.40.0 (post-W2 at aadfc94c)",
+      "compatibility_evidence": "W2 lifted to ^1.40.0 (FR3, resolves HIGH advisory).",
+      "follow_up_owner": "n/a — upgrade complete"
+    },
+    {
+      "package": "@vitejs/plugin-rsc",
+      "disposition": "upgraded",
+      "landed_in_wave": "W2-security",
+      "installed_version_evidence": "package-lock.json node_modules/@vitejs/plugin-rsc = 0.5.27 (post-W2 at aadfc94c)",
+      "compatibility_evidence": "W2 lifted to ^0.5.27 (FR3, resolves HIGH advisory). Peer for vinext 0.0.55 (W4).",
+      "follow_up_owner": "n/a — upgrade complete"
+    },
+    {
+      "package": "vitest",
+      "disposition": "upgraded",
+      "landed_in_wave": "W2-security + W3-in-range",
+      "installed_version_evidence": "package-lock.json node_modules/vitest = 4.1.8 (post-W3 floor reconciliation at a9e7e1f1)",
+      "compatibility_evidence": "PTE 2.x was the critical security finding (CVE class); W2 migrated PTE to 4.1.8. W3 reconciled 4.0.16 vs 4.1.8 floor drift across the 21 non-PTE workspaces.",
+      "follow_up_owner": "n/a — upgrade complete"
+    },
+    {
+      "package": "@cloudflare/vite-plugin",
+      "disposition": "upgraded",
+      "landed_in_wave": "W3-in-range",
+      "installed_version_evidence": "package-lock.json node_modules/@cloudflare/vite-plugin = 1.32.3 (post-W3 at a9e7e1f1)",
+      "compatibility_evidence": "In-range of ^1.31.2; W3 refresh to latest in-range.",
+      "follow_up_owner": "n/a — upgrade complete"
+    },
+    {
+      "package": "@playwright/test",
+      "disposition": "upgraded",
+      "landed_in_wave": "W3-in-range",
+      "installed_version_evidence": "package-lock.json node_modules/@playwright/test = 1.59.1 (post-W3 at a9e7e1f1)",
+      "compatibility_evidence": "In-range of ^1.56.1; W3 refresh to latest in-range.",
+      "follow_up_owner": "n/a — upgrade complete"
+    },
+    {
+      "package": "@radix-ui/react-avatar",
+      "disposition": "upgraded",
+      "landed_in_wave": "W3-in-range",
+      "installed_version_evidence": "package-lock.json node_modules/@radix-ui/react-avatar = 1.1.11 (post-W3 at a9e7e1f1)",
+      "compatibility_evidence": "In-range of ^1.1.11.",
+      "follow_up_owner": "n/a — upgrade complete"
+    },
+    {
+      "package": "@radix-ui/react-checkbox",
+      "disposition": "upgraded",
+      "landed_in_wave": "W3-in-range",
+      "installed_version_evidence": "package-lock.json node_modules/@radix-ui/react-checkbox = 1.3.3 (post-W3 at a9e7e1f1)",
+      "compatibility_evidence": "In-range of ^1.3.1.",
+      "follow_up_owner": "n/a — upgrade complete"
+    },
+    {
+      "package": "@radix-ui/react-dropdown-menu",
+      "disposition": "upgraded",
+      "landed_in_wave": "W3-in-range",
+      "installed_version_evidence": "package-lock.json node_modules/@radix-ui/react-dropdown-menu = 2.1.16 (post-W3 at a9e7e1f1)",
+      "compatibility_evidence": "In-range of ^2.1.14.",
+      "follow_up_owner": "n/a — upgrade complete"
+    },
+    {
+      "package": "@radix-ui/react-label",
+      "disposition": "upgraded",
+      "landed_in_wave": "W3-in-range",
+      "installed_version_evidence": "package-lock.json node_modules/@radix-ui/react-label = 2.1.8 (post-W3 at a9e7e1f1)",
+      "compatibility_evidence": "In-range of ^2.1.6.",
+      "follow_up_owner": "n/a — upgrade complete"
+    },
+    {
+      "package": "@radix-ui/react-slot",
+      "disposition": "upgraded",
+      "landed_in_wave": "W3-in-range",
+      "installed_version_evidence": "package-lock.json node_modules/@radix-ui/react-slot = 1.2.4 (post-W3 at a9e7e1f1)",
+      "compatibility_evidence": "In-range of ^1.2.2.",
+      "follow_up_owner": "n/a — upgrade complete"
+    },
+    {
+      "package": "@radix-ui/react-tabs",
+      "disposition": "upgraded",
+      "landed_in_wave": "W3-in-range",
+      "installed_version_evidence": "package-lock.json node_modules/@radix-ui/react-tabs = 1.1.13 (post-W3 at a9e7e1f1)",
+      "compatibility_evidence": "In-range of ^1.1.13.",
+      "follow_up_owner": "n/a — upgrade complete"
+    },
+    {
+      "package": "@types/react",
+      "disposition": "upgraded",
+      "landed_in_wave": "W3-in-range",
+      "installed_version_evidence": "package-lock.json node_modules/@types/react = 19.2.14 (post-W3 at a9e7e1f1)",
+      "compatibility_evidence": "In-range of ^19; aligned with React 19.2.7.",
+      "follow_up_owner": "n/a — upgrade complete"
+    },
+    {
+      "package": "baseline-browser-mapping",
+      "disposition": "upgraded",
+      "landed_in_wave": "W3-in-range",
+      "installed_version_evidence": "package-lock.json node_modules/baseline-browser-mapping = 2.10.19 (post-W3 at a9e7e1f1)",
+      "compatibility_evidence": "In-range of ^2.8.32; bus-math-v2 only.",
+      "follow_up_owner": "n/a — upgrade complete"
+    },
+    {
+      "package": "geist",
+      "disposition": "upgraded",
+      "landed_in_wave": "W3-in-range",
+      "installed_version_evidence": "package-lock.json node_modules/geist = 1.7.0 (post-W3 at a9e7e1f1)",
+      "compatibility_evidence": "In-range of ^1.5.1.",
+      "follow_up_owner": "n/a — upgrade complete"
+    },
+    {
+      "package": "postcss",
+      "disposition": "upgraded",
+      "landed_in_wave": "W3-in-range",
+      "installed_version_evidence": "package-lock.json node_modules/postcss = 8.5.15 (post-W3 at 00f5c76d postcss drift fix)",
+      "compatibility_evidence": "In-range of ^8. W3-in-range refresh to 8.5.15. W5 (Tailwind 4) verified peer-satisfaction — Tailwind 4 uses @tailwindcss/postcss as a separate plugin, but postcss 8.x is still required.",
+      "follow_up_owner": "n/a — upgrade complete"
+    },
+    {
+      "package": "tailwind-merge",
+      "disposition": "upgraded",
+      "landed_in_wave": "W3-in-range",
+      "installed_version_evidence": "package-lock.json node_modules/tailwind-merge = 3.5.0 (post-W3 at a9e7e1f1)",
+      "compatibility_evidence": "In-range of ^3.0.2 / ^3.3.0; W3 reconciled 3.0.2 (lesson-renderer) and 3.3.0 (apps) to 3.5.0 (latest in-range).",
+      "follow_up_owner": "n/a — upgrade complete"
+    },
+    {
+      "package": "ts-fsrs",
+      "disposition": "upgraded",
+      "landed_in_wave": "W3-in-range",
+      "installed_version_evidence": "package-lock.json node_modules/ts-fsrs = 5.3.2 (post-W3 at a9e7e1f1)",
+      "compatibility_evidence": "In-range of ^5.0.0 / ^5.3.2; W3 reconciled 5.0.0 (srs-engine) to 5.3.2.",
+      "follow_up_owner": "n/a — upgrade complete"
+    },
+    {
+      "package": "tsx",
+      "disposition": "upgraded",
+      "landed_in_wave": "W3-in-range",
+      "installed_version_evidence": "package-lock.json node_modules/tsx = 4.21.0 (post-W3 at a9e7e1f1)",
+      "compatibility_evidence": "In-range of ^4.20.6.",
+      "follow_up_owner": "n/a — upgrade complete"
+    },
+    {
+      "package": "typescript-eslint",
+      "disposition": "upgraded",
+      "landed_in_wave": "W3-in-range",
+      "installed_version_evidence": "package-lock.json node_modules/typescript-eslint = 8.58.2 (post-W3 at a9e7e1f1)",
+      "compatibility_evidence": "In-range of ^8. Pairs with ESLint 10.x (W4).",
+      "follow_up_owner": "n/a — upgrade complete"
+    },
+    {
+      "package": "wrangler",
+      "disposition": "upgraded",
+      "landed_in_wave": "W3-in-range",
+      "installed_version_evidence": "package-lock.json node_modules/wrangler = 4.83.0 (post-W3 at a9e7e1f1)",
+      "compatibility_evidence": "In-range of ^4.81.1. Pairs with Vite 8.x (W4).",
+      "follow_up_owner": "n/a — upgrade complete"
+    },
+    {
+      "package": "zod",
+      "disposition": "upgraded",
+      "landed_in_wave": "W3-in-range",
+      "installed_version_evidence": "package-lock.json node_modules/zod = 4.3.6 (post-W3 at a9e7e1f1)",
+      "compatibility_evidence": "In-range of ^4.1.12.",
+      "follow_up_owner": "n/a — upgrade complete"
+    },
+    {
+      "package": "vinext",
+      "disposition": "upgraded",
+      "landed_in_wave": "W4-framework",
+      "installed_version_evidence": "package-lock.json node_modules/vinext = 0.0.55 (post-W4 Green at 41cb05ae)",
+      "compatibility_evidence": "W4-T1 isolated upgrade. Required React 19.2.x + @vitejs/plugin-rsc 0.5.27 peers (already addressed in W2).",
+      "follow_up_owner": "n/a — upgrade complete"
+    },
+    {
+      "package": "vite",
+      "disposition": "upgraded",
+      "landed_in_wave": "W4-framework",
+      "installed_version_evidence": "package-lock.json node_modules/vite = 8.0.16 (post-W4 Green at 41cb05ae)",
+      "compatibility_evidence": "W4-T2; verify each first-class app independently per P4 isolation rule (test-strategy.md §3).",
+      "follow_up_owner": "n/a — upgrade complete"
+    },
+    {
+      "package": "@vitejs/plugin-react",
+      "disposition": "upgraded",
+      "landed_in_wave": "W4-framework",
+      "installed_version_evidence": "package-lock.json node_modules/@vitejs/plugin-react = 6.0.2 (post-W4 Green at 41cb05ae)",
+      "compatibility_evidence": "W4-T2; verify each first-class app independently per P4 isolation rule (test-strategy.md §3).",
+      "follow_up_owner": "n/a — upgrade complete"
+    },
+    {
+      "package": "eslint-config-next",
+      "disposition": "upgraded",
+      "landed_in_wave": "W4-framework",
+      "installed_version_evidence": "package-lock.json node_modules/eslint-config-next = 16.2.7 (post-W4 Green at 41cb05ae)",
+      "compatibility_evidence": "W4-T3 isolated migration. W3 ^15.3.1 range did not pin 15 in a way that blocked T3 (test-strategy.md §3).",
+      "follow_up_owner": "n/a — upgrade complete"
+    },
+    {
+      "package": "typescript",
+      "disposition": "upgraded",
+      "landed_in_wave": "W4-framework",
+      "installed_version_evidence": "package-lock.json node_modules/typescript = 6.0.3 (post-W4 Green at 41cb05ae)",
+      "compatibility_evidence": "W4-T4 isolated toolchain; tsc --noEmit run together with vitest (test-strategy.md §3, §5).",
+      "follow_up_owner": "n/a — upgrade complete"
+    },
+    {
+      "package": "eslint",
+      "disposition": "upgraded",
+      "landed_in_wave": "W4-framework",
+      "installed_version_evidence": "package-lock.json node_modules/eslint = 10.4.1 (post-W4 Green at 41cb05ae)",
+      "compatibility_evidence": "W4-T4 isolated toolchain; pairs with @eslint/js 10.x.",
+      "follow_up_owner": "n/a — upgrade complete"
+    },
+    {
+      "package": "@eslint/js",
+      "disposition": "upgraded",
+      "landed_in_wave": "W4-framework",
+      "installed_version_evidence": "package-lock.json node_modules/@eslint/js = 10.0.1 (post-W4 Green at 41cb05ae)",
+      "compatibility_evidence": "W4-T4 isolated toolchain; tracks ESLint 9→10.",
+      "follow_up_owner": "n/a — upgrade complete"
+    },
+    {
+      "package": "@types/node",
+      "disposition": "upgraded",
+      "landed_in_wave": "W3-in-range (P3 invariant hold) + W4-framework (single-major invariant)",
+      "installed_version_evidence": "package-lock.json node_modules/@types/node = 22.x (single major across 5 apps + lesson-renderer)",
+      "compatibility_evidence": "W3 reconciled 5 apps (^20) to ^22 to match lesson-renderer. W4 verified single-major invariant. Pairs with TypeScript 6 (W4).",
+      "follow_up_owner": "n/a — upgrade complete"
+    },
+    {
+      "package": "tailwindcss",
+      "disposition": "upgraded",
+      "landed_in_wave": "W5-remaining",
+      "installed_version_evidence": "package-lock.json node_modules/tailwindcss = 4.x (post-W5 Green; pre-W5 baseline = 3.4.19)",
+      "compatibility_evidence": "W5-T1 isolated upgrade. Breaking config + PostCSS pipeline (test-strategy.md §3). Per-app build verification required, not just unit tests. W3 postcss 8.5.15 is a verified peer.",
+      "follow_up_owner": "n/a — upgrade complete"
+    },
+    {
+      "package": "katex",
+      "disposition": "upgraded",
+      "landed_in_wave": "W5-remaining",
+      "installed_version_evidence": "package-lock.json node_modules/katex = 0.17.x (post-W5 Green; pre-W5 baseline = 0.16.45)",
+      "compatibility_evidence": "W5-T2 isolated upgrade. 0.16→0.17 breaking. test-strategy.md §3 requires running packages/lesson-renderer and packages/activity-components suites first.",
+      "follow_up_owner": "n/a — upgrade complete"
+    },
+    {
+      "package": "lucide-react",
+      "disposition": "upgraded",
+      "landed_in_wave": "W5-remaining",
+      "installed_version_evidence": "package-lock.json node_modules/lucide-react = 1.x (post-W5 Green; pre-W5 baseline = 0.511.0)",
+      "compatibility_evidence": "W5-T2 isolated upgrade. 0.x→1.x breaking. test-strategy.md §3 requires running packages/lesson-renderer suite first.",
+      "follow_up_owner": "n/a — upgrade complete"
+    },
+    {
+      "package": "jsdom",
+      "disposition": "upgraded",
+      "landed_in_wave": "W5-remaining",
+      "installed_version_evidence": "package-lock.json node_modules/jsdom = 29.x (post-W5 Green; pre-W5 baseline = 26.1.0)",
+      "compatibility_evidence": "W5-T3 isolated upgrade. 26→29 carries test-environment compatibility changes; verify per-app vitest suite (test-strategy.md §3).",
+      "follow_up_owner": "n/a — upgrade complete"
+    }
+  ],
+
+  "summary": {
+    "upgraded": 36,
+    "deferred": 0,
+    "total": 36
+  }
+}
