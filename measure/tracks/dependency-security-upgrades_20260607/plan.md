@@ -84,6 +84,8 @@ Phase 3 adversarial audit SHA: `fdbe2b62` (test(in-range-wave-w3): verify actual
 
 Phase 4 Red-phase (mid agent) — TDD suite authored at `scripts/audit/__tests__/framework-wave-w4.test.ts`. The suite pins the post-W4 manifest and lockfile state declared in plan.md Phase 4 and spec.md FR7/FR8/AC5/AC7/AC8. Tests fail Red on the pre-W4 (post-W3) baseline and turn Green only when the four framework/toolchain majors land. Approval gate is held in the user-facing task; Green-phase implementer must not run `npm install` or edit manifests without explicit approval. New Measure artifacts: `w4-framework-targets.json`, `w4-quality-gates.json`. No source code modified.
 
+Phase 4 Red SHA: `129472f5` (test(framework-wave-w4): add Red-phase TDD suite for Phase 4 framework majors). Red verification — 18 of 35 tests fail on the pre-W4 baseline (every W4 framework major delta: vinext 0.0.55, vite 8.x, @vitejs/plugin-react 6.x, next 16.x, eslint-config-next 16.x, typescript 6.x, eslint 10.x, @eslint/js 10.x). The other 17 tests pass (fixture presence, pre-existing W3 invariants, matrix sanity, single-root-lockfile invariant). Pre-existing suites remain green: audit-contract + W2 + W3 = 121/121 pass. Boundary check clean. Lint clean.
+
 ## Phase 5 — Remaining Majors, Final Audit & Closure
 
 - [ ] Task: Upgrade Tailwind CSS 3 → 4 with visual and build verification across all five apps
