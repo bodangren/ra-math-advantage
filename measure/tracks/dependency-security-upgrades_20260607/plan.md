@@ -66,7 +66,7 @@ Phase 2 FR3 test SHA: `ee435d44` (test(security-wave-w2): add FR3 assertions for
 - [x] Task: Investigate residual moderate advisories, including the `drizzle-kit` recommendation, and record resolution/defer evidence [checkpoint: a9e7e1f1]
 - [x] Task: Verify and checkpoint the in-range refresh [checkpoint: a9e7e1f1]
     - [x] Run repo boundary checks, relevant package suites, all app lint/test/typecheck/build scripts, dependency tree, and audit [checkpoint: a9e7e1f1]
-- [ ] Task: Measure - User Manual Verification 'Phase 3 — In-Range Refresh & Declaration Alignment' (Protocol in workflow.md)
+- [ ] Task: Measure - User Manual Verification 'Phase 3 — In-Range Refresh & Declaration Alignment' (Protocol in workflow.md) — *deferred to supervisor: automated verification complete, all 120 audit tests pass, 14 residual moderate transitive advisories dispositioned in w3-advisory-disposition.json*
 
 Phase 3 Green SHA: `a9e7e1f1` (feat(in-range-refresh): reconcile declaration drift and refresh in-range dependencies (W3)). Reconciles 8 drift families (katex, lucide-react, tailwind-merge, ts-fsrs, vitest, eslint-config-next, @types/node, eslint) across 23 workspace manifests. Syncs registry-stub.json and w3-in-range-targets.json with current lockfile. Adds W3-in-range wave marker to all 22 in-range packages in package-wave-matrix.json. Fixes P1 audit-contract drift tests for post-W3 state and removes contradictory eslint-config-next admitsSixteenX assertion. All 120 audit tests pass. npm audit: 0 critical, 0 high, 14 moderate. Boundary check clean.
 
