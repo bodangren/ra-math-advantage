@@ -3,14 +3,12 @@
   "captured_at": "2026-06-07T00:00:00Z",
   "captured_by": "measure:dependency-security-upgrades_20260607",
   "purpose": "Phase 5 — Final Audit & Closure (Task 5 / AC8). Final full-repo quality-gate schema. The w5 Red-phase TDD suite asserts this fixture exists with the required top-level categories (npm_ls, npm_audit, boundary_check, per_app_quality_gates, single_root_lockfile_invariant) and per-migration subsections (W5-T1 tailwind, W5-T2 katex+lucide, W5-T3 jsdom). Green behavior: a w5 Green commit (per-migration) runs the actual quality-gate commands for that migration and writes the results into the matching per_migration_quality_gates entry.",
-
   "npm_ls": {
     "command": "npm ls --workspaces --depth=0",
     "expected_exit_status": 0,
     "expected_clean": true,
     "summary": "Clean. No dependency-tree problems across the 5 apps and 19 active shared packages. Required to hold after EACH W5 per-migration install. AC3 invariant."
   },
-
   "npm_audit": {
     "command": "npm audit --json",
     "expected_exit_status": 1,
@@ -20,55 +18,112 @@
     "force_fix_used": false,
     "summary": "0 critical / 0 high. The 14 moderate advisories dispositioned in w3-advisory-disposition.json remain dispositioned; W5 majors must not introduce new critical/high findings. AC2 invariant."
   },
-
   "boundary_check": {
     "command": "node scripts/check-monorepo-boundaries.mjs",
     "expected_exit_status": 0,
     "expected_clean": true,
     "summary": "No monorepo boundary violations after W5 final majors. W5 must not introduce a new cross-boundary import (test-strategy.md §4)."
   },
-
   "per_app_quality_gates": {
     "purpose": "Per-app lint/test/typecheck/build status captured after EACH W5 per-migration install (Task 5.1). Each migration commit re-runs the full per-app gate so a wave that flips a previously-green app to red is attributable to that migration.",
     "apps": [
       {
         "workspace": "apps/bus-math-v2",
-        "lint":      { "expected_exit_status": 0, "command": "npm run ws:bm2:lint" },
-        "test":      { "expected_exit_status": 0, "command": "npm run ws:bm2:test" },
-        "typecheck": { "expected_exit_status": 0, "command": "npm run ws:bm2:typecheck" },
-        "build":     { "expected_exit_status": 0, "command": "npm run ws:bm2:build" }
+        "lint": {
+          "expected_exit_status": 0,
+          "command": "npm run ws:bm2:lint"
+        },
+        "test": {
+          "expected_exit_status": 0,
+          "command": "npm run ws:bm2:test"
+        },
+        "typecheck": {
+          "expected_exit_status": 0,
+          "command": "npm run ws:bm2:typecheck"
+        },
+        "build": {
+          "expected_exit_status": 0,
+          "command": "npm run ws:bm2:build"
+        }
       },
       {
         "workspace": "apps/integrated-math-1",
-        "lint":      { "expected_exit_status": 0, "command": "npm run ws:im1:lint" },
-        "test":      { "expected_exit_status": 0, "command": "npm run ws:im1:test" },
-        "typecheck": { "expected_exit_status": 0, "command": "npm run ws:im1:typecheck" },
-        "build":     { "expected_exit_status": 0, "command": "npm run ws:im1:build" }
+        "lint": {
+          "expected_exit_status": 0,
+          "command": "npm run ws:im1:lint"
+        },
+        "test": {
+          "expected_exit_status": 0,
+          "command": "npm run ws:im1:test"
+        },
+        "typecheck": {
+          "expected_exit_status": 0,
+          "command": "npm run ws:im1:typecheck"
+        },
+        "build": {
+          "expected_exit_status": 0,
+          "command": "npm run ws:im1:build"
+        }
       },
       {
         "workspace": "apps/integrated-math-2",
-        "lint":      { "expected_exit_status": 0, "command": "npm run ws:im2:lint" },
-        "test":      { "expected_exit_status": 0, "command": "npm run ws:im2:test" },
-        "typecheck": { "expected_exit_status": 0, "command": "npm run ws:im2:typecheck" },
-        "build":     { "expected_exit_status": 0, "command": "npm run ws:im2:build" }
+        "lint": {
+          "expected_exit_status": 0,
+          "command": "npm run ws:im2:lint"
+        },
+        "test": {
+          "expected_exit_status": 0,
+          "command": "npm run ws:im2:test"
+        },
+        "typecheck": {
+          "expected_exit_status": 0,
+          "command": "npm run ws:im2:typecheck"
+        },
+        "build": {
+          "expected_exit_status": 0,
+          "command": "npm run ws:im2:build"
+        }
       },
       {
         "workspace": "apps/integrated-math-3",
-        "lint":      { "expected_exit_status": 0, "command": "npm run ws:im3:lint" },
-        "test":      { "expected_exit_status": 0, "command": "npm run ws:im3:test" },
-        "typecheck": { "expected_exit_status": 0, "command": "npm run ws:im3:typecheck" },
-        "build":     { "expected_exit_status": 0, "command": "npm run ws:im3:build" }
+        "lint": {
+          "expected_exit_status": 0,
+          "command": "npm run ws:im3:lint"
+        },
+        "test": {
+          "expected_exit_status": 0,
+          "command": "npm run ws:im3:test"
+        },
+        "typecheck": {
+          "expected_exit_status": 0,
+          "command": "npm run ws:im3:typecheck"
+        },
+        "build": {
+          "expected_exit_status": 0,
+          "command": "npm run ws:im3:build"
+        }
       },
       {
         "workspace": "apps/pre-calculus",
-        "lint":      { "expected_exit_status": 0, "command": "npm run ws:pc:lint" },
-        "test":      { "expected_exit_status": 0, "command": "npm run ws:pc:test" },
-        "typecheck": { "expected_exit_status": 0, "command": "npm run ws:pc:typecheck" },
-        "build":     { "expected_exit_status": 0, "command": "npm run ws:pc:build" }
+        "lint": {
+          "expected_exit_status": 0,
+          "command": "npm run ws:pc:lint"
+        },
+        "test": {
+          "expected_exit_status": 0,
+          "command": "npm run ws:pc:test"
+        },
+        "typecheck": {
+          "expected_exit_status": 0,
+          "command": "npm run ws:pc:typecheck"
+        },
+        "build": {
+          "expected_exit_status": 0,
+          "command": "npm run ws:pc:build"
+        }
       }
     ]
   },
-
   "per_migration_quality_gates": {
     "W5-T1_tailwind": {
       "expected_clean_apps": [
@@ -78,7 +133,24 @@
         "apps/integrated-math-3",
         "apps/pre-calculus"
       ],
-      "families_touched": ["tailwindcss"]
+      "families_touched": [
+        "tailwindcss"
+      ],
+      "results": {
+        "lint": {
+          "exit_status": 1,
+          "summary": "Same 20 pre-existing eslint-config-next@16 React Compiler lint failures carried from W4"
+        },
+        "test": {
+          "exit_status": 0
+        },
+        "typecheck": {
+          "exit_status": 0
+        },
+        "build": {
+          "exit_status": 0
+        }
+      }
     },
     "W5-T2_katex_lucide": {
       "expected_clean_apps": [
@@ -88,7 +160,25 @@
         "apps/integrated-math-3",
         "apps/pre-calculus"
       ],
-      "families_touched": ["katex", "lucide-react"]
+      "families_touched": [
+        "katex",
+        "lucide-react"
+      ],
+      "results": {
+        "lint": {
+          "exit_status": 1,
+          "summary": "Same 20 pre-existing eslint-config-next@16 React Compiler lint failures carried from W4"
+        },
+        "test": {
+          "exit_status": 0
+        },
+        "typecheck": {
+          "exit_status": 0
+        },
+        "build": {
+          "exit_status": 0
+        }
+      }
     },
     "W5-T3_jsdom": {
       "expected_clean_apps": [
@@ -98,23 +188,104 @@
         "apps/integrated-math-3",
         "apps/pre-calculus"
       ],
-      "families_touched": ["jsdom"],
-      "tsc_and_vitest_required": true
+      "families_touched": [
+        "jsdom"
+      ],
+      "tsc_and_vitest_required": true,
+      "results": {
+        "lint": {
+          "exit_status": 1,
+          "summary": "Same 20 pre-existing eslint-config-next@16 React Compiler lint failures carried from W4"
+        },
+        "test": {
+          "exit_status": 0
+        },
+        "typecheck": {
+          "exit_status": 0
+        },
+        "build": {
+          "exit_status": 0
+        }
+      }
     }
   },
-
   "single_root_lockfile_invariant": {
     "purpose": "Cross-check the npm ls result against the filesystem: exactly one package-lock.json at the repo root, zero nested. See also lockfile-inventory.json (AC7, FR10).",
     "expected_root_lockfile_count": 1,
     "expected_root_lockfile_path": "./package-lock.json",
     "expected_nested_lockfile_count": 0
   },
-
   "remaining_targets_artifact": "scripts/audit/__tests__/fixtures/w5-remaining-targets.json",
   "deferral_evidence_artifact": "scripts/audit/__tests__/fixtures/w5-deferral-evidence.json",
-
   "pre_existing_failures": {
-    "failures": [],
-    "policy": "Per spec Out-of-Scope, pre-existing failures unrelated to the upgrade are not auto-fixed; they are recorded here for attribution. W5 must not introduce NEW pre-existing failures (count delta must be zero). If a wave resolves one of these as a side effect, mark it resolved with the wave SHA. Green-time fixture population owed by a follow-up commit (per W4-audit pattern)."
+    "failures": [
+      {
+        "workspace": "apps/bus-math-v2",
+        "rule": "react-hooks/set-state-in-effect",
+        "count": 5,
+        "attribution": "eslint-config-next@16 React Compiler rules"
+      },
+      {
+        "workspace": "apps/bus-math-v2",
+        "rule": "react-hooks/purity",
+        "count": 2,
+        "attribution": "eslint-config-next@16 React Compiler rules"
+      },
+      {
+        "workspace": "apps/integrated-math-1",
+        "rule": "react-hooks/set-state-in-effect",
+        "count": 1,
+        "attribution": "eslint-config-next@16 React Compiler rules"
+      },
+      {
+        "workspace": "apps/integrated-math-2",
+        "rule": "react-hooks/set-state-in-effect",
+        "count": 1,
+        "attribution": "eslint-config-next@16 React Compiler rules"
+      },
+      {
+        "workspace": "apps/integrated-math-3",
+        "rule": "react-hooks/set-state-in-effect",
+        "count": 3,
+        "attribution": "eslint-config-next@16 React Compiler rules"
+      },
+      {
+        "workspace": "apps/integrated-math-3",
+        "rule": "react-hooks/static-components",
+        "count": 2,
+        "attribution": "eslint-config-next@16 React Compiler rules"
+      },
+      {
+        "workspace": "apps/integrated-math-3",
+        "rule": "react-hooks/refs",
+        "count": 1,
+        "attribution": "eslint-config-next@16 React Compiler rules"
+      },
+      {
+        "workspace": "apps/integrated-math-3",
+        "rule": "react-hooks/purity",
+        "count": 1,
+        "attribution": "eslint-config-next@16 React Compiler rules"
+      },
+      {
+        "workspace": "apps/pre-calculus",
+        "rule": "react-hooks/set-state-in-effect",
+        "count": 2,
+        "attribution": "eslint-config-next@16 React Compiler rules"
+      },
+      {
+        "workspace": "apps/pre-calculus",
+        "rule": "react-hooks/purity",
+        "count": 1,
+        "attribution": "eslint-config-next@16 React Compiler rules"
+      },
+      {
+        "workspace": "apps/pre-calculus",
+        "rule": "react-hooks/static-components",
+        "count": 1,
+        "attribution": "eslint-config-next@16 React Compiler rules"
+      }
+    ],
+    "policy": "W4 carry-in: 20 eslint-config-next@16 React Compiler lint failures across 5 apps."
   }
 }

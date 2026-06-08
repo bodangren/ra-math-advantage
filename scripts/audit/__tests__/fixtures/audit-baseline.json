@@ -5,11 +5,11 @@
   "purpose": "Frozen pre-upgrade snapshot. Every wave diffs against this fixture. The audit-contract suite (scripts/audit/__tests__/audit-contract.test.ts) must keep this file as the source of truth for first-class app coverage, security totals, and open-range violations.",
 
   "first_class_apps": [
-    { "workspace": "apps/bus-math-v2",       "external_dep_count": 52 },
-    { "workspace": "apps/integrated-math-1",  "external_dep_count": 34 },
-    { "workspace": "apps/integrated-math-2",  "external_dep_count": 34 },
-    { "workspace": "apps/integrated-math-3",  "external_dep_count": 52 },
-    { "workspace": "apps/pre-calculus",       "external_dep_count": 34 }
+    { "workspace": "apps/bus-math-v2",       "external_dep_count": 53 },
+    { "workspace": "apps/integrated-math-1",  "external_dep_count": 35 },
+    { "workspace": "apps/integrated-math-2",  "external_dep_count": 35 },
+    { "workspace": "apps/integrated-math-3",  "external_dep_count": 53 },
+    { "workspace": "apps/pre-calculus",       "external_dep_count": 35 }
   ],
 
   "shared_packages": [
@@ -38,7 +38,7 @@
     "first_class_app_count": 5,
     "shared_package_count": 19,
     "workspace_manifest_count": 24,
-    "direct_external_dep_count_apps_only": 62,
+    "direct_external_dep_count_apps_only": 67,
     "upgrade_candidate_families": 36
   },
 
