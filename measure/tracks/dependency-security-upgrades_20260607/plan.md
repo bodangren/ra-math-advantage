@@ -478,3 +478,15 @@ Phase 5 Green-phase JR verification (2026-06-08T14:04Z) — JR agent re-verified
 - `graph.db` not mutated (mtime unchanged).
 
 Marked the "Run final quality gates" parent task as `[x]` — all 4 operational sub-tasks were already `[x]` and all gates verified Green on this re-run. The only remaining `[ ]` task is the supervisor-deferred `Measure - User Manual Verification 'Phase 5'` per workflow.md.
+
+Phase 5 adversarial continuation (2026-06-08T14:47Z) — Re-invoked after supervisor feedback that the prior adversarial command exited with status 124. The requested issue was the harness timeout, not a new Phase 5 implementation defect. Preserved the prior adversarial commit `2804bb88` (hardened W5 evidence tests + `knowledge-space-core` build fix) and reran bounded checks with explicit timeouts so the session completed without another status-124 loop:
+- W5 audit suite: `PATH="/opt/codex-desktop/resources/node-runtime/bin:$PATH" node_modules/.bin/vitest run scripts/audit/__tests__/remaining-majors-w5.test.ts` → **21/21 pass**.
+- Prior dependency audit suites: P1 + W2 + W3 + W4 + W4-audit → **171/171 pass**.
+- Required root test: `npm test` → `packages/knowledge-space-core` **233/233 pass**.
+- Boundary check: `node scripts/check-monorepo-boundaries.mjs` → `[OK] No monorepo boundary violations found.`
+- Build: `npm run build` → pass (knowledge-space-core `tsc --noEmit` + IM3 `vinext build`).
+- Dependency tree: `npm ls --workspaces --depth=0` → exit 0.
+- Security audit: `npm audit --json` → exit 1 with **0 critical / 0 high / 9 moderate**.
+- Root TypeScript guardrail: `npx tsc --noEmit` → known TS18003 root `tsconfig.json` `include: []` baseline failure.
+
+No source, fixture, manifest, lockfile, or test changes were needed in this continuation. The only change is this Measure plan note documenting the bounded re-run and status-124 resolution. Phase 5 automated evidence remains preserved at `2804bb88`; remaining non-green gates are the already-known/documented root lint/tsc/audit disposition items, not introduced by this continuation.
