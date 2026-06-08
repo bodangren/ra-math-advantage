@@ -5,6 +5,17 @@ import { Button } from '@/components/ui/button';
 import type { DailyPracticeAnswerInputProps } from '@/lib/srs/answer-inputs/registry';
 import type { NormalBalanceDefinition, NormalBalanceResponse, NormalBalanceSide } from '@/lib/practice/engine/families/normal-balance';
 
+
+/**
+ * Renders an answer input for normal balance problems, showing accounts
+ * with debit/credit toggle buttons.
+ *
+ * @param props - Component props.
+ * @param props.family - The practice family object with grade/toEnvelope methods.
+ * @param props.definition - The normal balance problem definition.
+ * @param props.onSubmit - Callback to submit the graded practice envelope.
+ * @returns A problem display with debit/credit buttons and submit/grade result.
+ */
 export function NormalBalanceInput({ family, definition, onSubmit }: DailyPracticeAnswerInputProps) {
   const def = definition as NormalBalanceDefinition;
   const submittedRef = useRef(false);
@@ -16,11 +27,22 @@ export function NormalBalanceInput({ family, definition, onSubmit }: DailyPracti
     parts: Array<{ partId: string; isCorrect: boolean }>;
   } | null>(null);
 
+
+  /**
+   * Updates the debit/credit selection for a given part.
+   *
+   * @param partId - The part ID to update.
+   * @param side - The selected side ("debit" or "credit").
+   */
   const handleSelect = (partId: string, side: NormalBalanceSide) => {
     if (submittedRef.current) return;
     setSelections((prev) => ({ ...prev, [partId]: side }));
   };
 
+
+  /**
+   * Grades all selections and submits the practice envelope.
+   */
   const handleSubmit = () => {
     if (submittedRef.current) return;
     submittedRef.current = true;

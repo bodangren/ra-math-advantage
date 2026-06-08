@@ -19,6 +19,13 @@ interface NextLessonCardProps {
   emptyMessage: string;
 }
 
+
+/**
+ * Displays a card with the next recommended lesson and a link to start it.
+ *
+ * @param props - Heading, description, lesson data, and empty-state message
+ * @returns A card component showing the next lesson or an empty-state message
+ */
 export function NextLessonCard({
   heading,
   description,

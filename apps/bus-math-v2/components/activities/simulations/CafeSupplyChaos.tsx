@@ -46,6 +46,15 @@ export interface CafeSupplyChaosProps {
   onSubmit?: (payload: PracticeSubmissionCallbackPayload) => void
 }
 
+
+/**
+ * Renders a café supply chain simulation where students choose between
+ * FIFO and LIFO inventory methods and see how rising prices affect profit.
+ *
+ * @param activity - The cafe supply chaos activity configuration
+ * @param onComplete - Callback with the chosen method and daily sales
+ * @param onSubmit - Callback to submit practice results
+ */
 export function CafeSupplyChaos({ activity, onComplete, onSubmit }: CafeSupplyChaosProps) {
   const { days, shipments, orders } = activity.props
   const [currentDay, setCurrentDay] = useState(1)
@@ -56,6 +65,13 @@ export function CafeSupplyChaos({ activity, onComplete, onSubmit }: CafeSupplyCh
   const submittedRef = useRef(false)
 
   // Start the simulation by picking a method
+
+  /**
+   * Starts the simulation by selecting an inventory method and
+   * loading the first day's shipment.
+   *
+   * @param selectedMethod - The inventory method to use ('FIFO' or 'LIFO')
+   */
   const startSimulation = (selectedMethod: 'FIFO' | 'LIFO') => {
     setMethod(selectedMethod)
     // Add Day 1 shipment if it exists
@@ -70,6 +86,11 @@ export function CafeSupplyChaos({ activity, onComplete, onSubmit }: CafeSupplyCh
     }
   }
 
+
+  /**
+   * Processes the current day's order using the selected inventory method,
+   * calculates revenue and COGS, and advances to the next day.
+   */
   const handleNextDay = () => {
     if (submittedRef.current) return
     if (!method) {

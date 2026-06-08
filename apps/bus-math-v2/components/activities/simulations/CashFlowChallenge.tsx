@@ -69,6 +69,14 @@ interface CashFlowChallengeProps {
   onSubmit?: (payload: PracticeSubmissionCallbackPayload) => void
 }
 
+
+/**
+ * Renders a cash flow management challenge where students manage incoming
+ * and outgoing payments, use strategic actions, and try to stay solvent.
+ *
+ * @param activity - The cash flow challenge activity configuration
+ * @param onSubmit - Callback to submit practice results
+ */
 export function CashFlowChallenge({ activity, onSubmit }: CashFlowChallengeProps) {
   const [gameState, setGameState] = useState<GameState>({
     cashPosition: activity.initialState.cashPosition,
@@ -106,6 +114,13 @@ export function CashFlowChallenge({ activity, onSubmit }: CashFlowChallengeProps
     return () => { timeouts.forEach(clearTimeout) }
   }, [])
 
+
+  /**
+   * Adds a temporary notification toast that auto-dismisses after 5 seconds.
+   *
+   * @param message - The notification message text
+   * @param type - The notification severity type
+   */
   const addNotification = useCallback((message: string, type: 'success' | 'warning' | 'error' | 'info') => {
     const id = Date.now().toString()
     setNotifications(prev => [...prev, { id, message, type }])
@@ -115,6 +130,13 @@ export function CashFlowChallenge({ activity, onSubmit }: CashFlowChallengeProps
     notificationTimeoutsRef.current.push(timeoutId)
   }, [])
 
+
+  /**
+   * Returns a health status label and color classes based on cash position.
+   *
+   * @param cash - The current cash position
+   * @returns An object with status label, text color, and background color
+   */
   const getCashHealthStatus = (cash: number) => {
     if (cash >= 20000) return { status: 'Healthy', color: 'text-green-600', bgColor: 'bg-green-50' }
     if (cash >= 10000) return { status: 'Good', color: 'text-blue-700', bgColor: 'bg-blue-50' }
@@ -123,6 +145,11 @@ export function CashFlowChallenge({ activity, onSubmit }: CashFlowChallengeProps
     return { status: 'Bankrupt', color: 'text-red-600', bgColor: 'bg-red-50' }
   }
 
+
+  /**
+   * Advances the simulation by one day, processing incoming and outgoing
+   * payments that are due, deducting interest, and checking win/loss.
+   */
   const advanceDay = useCallback(() => {
     if (gameState.gameStatus !== 'playing') return
 
@@ -191,6 +218,11 @@ export function CashFlowChallenge({ activity, onSubmit }: CashFlowChallengeProps
     }
   }, [gameState.gameStatus, addNotification])
 
+
+  /**
+   * Attempts to expedite an incoming payment by calling the customer,
+   * reducing wait time in exchange for a 5% fee.
+   */
   const requestPayment = useCallback(() => {
     const availableFlows = gameState.incomingFlows.filter(flow =>
       flow.canModify && flow.daysLeft > 2
@@ -223,6 +255,11 @@ export function CashFlowChallenge({ activity, onSubmit }: CashFlowChallengeProps
     addNotification(action, 'success')
   }, [gameState, addNotification])
 
+
+  /**
+   * Negotiates extended payment terms on an outgoing payment,
+   * adding 7 days in exchange for a 2% penalty.
+   */
   const negotiateTerms = useCallback(() => {
     const availableFlows = gameState.outgoingFlows.filter(flow =>
       flow.canModify && flow.daysLeft <= 5
@@ -284,6 +321,12 @@ export function CashFlowChallenge({ activity, onSubmit }: CashFlowChallengeProps
     addNotification(action, 'success')
   }, [gameState, addNotification])
 
+
+  /**
+   * Draws funds from the available line of credit into cash.
+   *
+   * @param amount - The amount to draw (capped at available credit)
+   */
   const drawCredit = useCallback((amount: number) => {
     const available = gameState.lineOfCredit - gameState.creditUsed
     const amountToUse = Math.min(amount, available)
@@ -302,6 +345,11 @@ export function CashFlowChallenge({ activity, onSubmit }: CashFlowChallengeProps
     addNotification(`Used $${amountToUse.toLocaleString()} from line of credit`, 'info')
   }, [gameState, addNotification])
 
+
+  /**
+   * Delays an outgoing payment by 5 days in exchange for a 3% penalty.
+   * Payroll cannot be delayed.
+   */
   const delayExpense = useCallback(() => {
     const availableFlows = gameState.outgoingFlows.filter(flow =>
       flow.canModify && flow.daysLeft <= 7 && flow.description !== 'Payroll'

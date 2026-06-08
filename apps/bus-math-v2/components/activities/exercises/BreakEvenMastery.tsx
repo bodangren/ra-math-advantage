@@ -34,10 +34,25 @@ const productPool = [
   { name: 'sticker pack', fixedRange: [100, 500], variableRange: [0.3, 1.5], sellingRange: [4, 10] },
 ]
 
+
+/**
+ * Generates a random integer between min and max, inclusive.
+ *
+ * @param min - Lower bound (inclusive)
+ * @param max - Upper bound (inclusive)
+ * @returns A random integer in the given range
+ */
 function randInt(min: number, max: number): number {
   return Math.floor(Math.random() * (max - min + 1)) + min
 }
 
+
+/**
+ * Generates a random break-even problem with realistic product data
+ * and common calculation errors as distractors.
+ *
+ * @returns A new BreakEvenProblem with computed break-even values
+ */
 function generateProblem(): BreakEvenProblem {
   const product = productPool[Math.floor(Math.random() * productPool.length)]
   const fixedCosts = randInt(product.fixedRange[0], product.fixedRange[1])
@@ -100,6 +115,15 @@ export interface BreakEvenMasteryProps {
   onComplete?: () => void
 }
 
+
+/**
+ * Renders a break-even mastery activity where users calculate break-even
+ * points in units and dollars for various products.
+ *
+ * @param activity - Activity configuration with optional mastery threshold
+ * @param onSubmit - Callback fired when the user submits an answer
+ * @param onComplete - Callback fired when mastery is achieved
+ */
 export function BreakEvenMastery({ activity, onSubmit, onComplete }: BreakEvenMasteryProps) {
   const masteryTarget = activity.props?.masteryThreshold ?? 5
   const [problem, setProblem] = useState<BreakEvenProblem>(generateProblem)
@@ -142,6 +166,11 @@ export function BreakEvenMastery({ activity, onSubmit, onComplete }: BreakEvenMa
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [problem.id])
 
+
+  /**
+   * Validates the selected answer, updates streak state, and submits
+   * the result envelope.
+   */
   const handleSubmit = useCallback(() => {
     if (submittedRef.current) return
     const selectedOption = shuffledOptions.find(o => o.label === userAnswer)
@@ -192,6 +221,10 @@ export function BreakEvenMastery({ activity, onSubmit, onComplete }: BreakEvenMa
     }
   }, [userAnswer, shuffledOptions, onSubmit, activity.id, problem])
 
+
+  /**
+   * Resets the component state and generates a new random break-even problem.
+   */
   const handleNewProblem = useCallback(() => {
     setProblem(generateProblem())
     setUserAnswer('')
@@ -202,6 +235,10 @@ export function BreakEvenMastery({ activity, onSubmit, onComplete }: BreakEvenMa
     submittedRef.current = false
   }, [])
 
+
+  /**
+   * Displays a worked example showing the break-even formula steps.
+   */
   const handleShowExample = useCallback(() => {
     setShowWorkedExample(true)
   }, [])

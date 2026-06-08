@@ -1,3 +1,8 @@
+/**
+ * Renders the Next.js logotype as an inline SVG.
+ *
+ * @returns An SVG element with the Next.js logo
+ */
 export function NextLogo() {
   return (
     <svg

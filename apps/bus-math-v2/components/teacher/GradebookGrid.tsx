@@ -36,6 +36,14 @@ interface GradebookGridProps {
 // Sub-components
 // ---------------------------------------------------------------------------
 
+
+/**
+ * Renders a centered empty-state message in a dashed border container.
+ *
+ * @param props - Component props.
+ * @param props.message - The message to display.
+ * @returns A styled empty-state div.
+ */
 function EmptyState({ message }: { message: string }) {
   return (
     <div className="rounded-md border border-dashed border-muted-foreground/30 p-8 text-center text-muted-foreground">
@@ -50,11 +58,24 @@ function EmptyState({ message }: { message: string }) {
 
 type SortDirection = 'asc' | 'desc';
 
+
+/**
+ * Renders a unit-level gradebook grid showing student progress per lesson.
+ *
+ * @param props - Component props containing student rows, lessons, and unit number.
+ * @returns A sortable table with lesson cells and a submission detail modal.
+ */
 export function GradebookGrid({ rows, lessons, unitNumber }: GradebookGridProps) {
   const [managedRows, setManagedRows] = useState(rows);
   const [sortDir, setSortDir] = useState<SortDirection>('asc');
   const [selectedCell, setSelectedCell] = useState<SelectedCell | null>(null);
 
+
+  /**
+   * Applies a student account update to the local managed rows.
+   *
+   * @param update - The student account update to apply.
+   */
   function handleStudentUpdated(update: StudentAccountUpdate) {
     setManagedRows(current => applyStudentRowUpdate(current, update));
   }
@@ -70,6 +91,10 @@ export function GradebookGrid({ rows, lessons, unitNumber }: GradebookGridProps)
   const sorted = sortRowsByName(managedRows);
   const displayRows = sortDir === 'asc' ? sorted : [...sorted].reverse();
 
+
+  /**
+   * Toggles the sort direction between ascending and descending.
+   */
   function toggleSort() {
     setSortDir(d => (d === 'asc' ? 'desc' : 'asc'));
   }

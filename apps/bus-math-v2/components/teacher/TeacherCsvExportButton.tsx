@@ -10,9 +10,21 @@ interface TeacherCsvExportButtonProps {
   students: StudentDashboardRow[];
 }
 
+
+/**
+ * Renders a button that exports student dashboard data to a CSV file download.
+ *
+ * @param props - Component props.
+ * @param props.students - Array of student dashboard rows to export.
+ * @returns A styled export button.
+ */
 export function TeacherCsvExportButton({ students }: TeacherCsvExportButtonProps) {
   const [isExporting, setIsExporting] = useState(false);
 
+
+  /**
+   * Generates a CSV from student data and triggers a file download.
+   */
   const handleExport = useCallback(() => {
     if (isExporting) {
       return;

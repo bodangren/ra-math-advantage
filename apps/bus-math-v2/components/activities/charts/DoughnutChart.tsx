@@ -34,6 +34,13 @@ export interface DoughnutChartProps {
   totalLabel?: string;
 }
 
+
+/**
+ * Renders a doughnut chart with a centered total label and category segments.
+ *
+ * @param props - Segment data, formatting, and display options
+ * @returns A doughnut chart visualization
+ */
 export function DoughnutChart({
   title,
   description,

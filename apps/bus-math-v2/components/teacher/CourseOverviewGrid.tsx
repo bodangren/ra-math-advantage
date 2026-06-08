@@ -18,10 +18,23 @@ interface CourseOverviewGridProps {
 
 type SortDirection = 'asc' | 'desc';
 
+
+/**
+ * Renders a course-level gradebook grid showing student mastery per unit.
+ *
+ * @param props - Component props containing student rows and unit columns.
+ * @returns A sortable table with unit cells linking to unit gradebooks.
+ */
 export function CourseOverviewGrid({ rows, units }: CourseOverviewGridProps) {
   const [managedRows, setManagedRows] = useState(rows);
   const [sortDir, setSortDir] = useState<SortDirection>('asc');
 
+
+  /**
+   * Applies a student account update to the local row state.
+   *
+   * @param update - The student account update to apply.
+   */
   function handleStudentUpdated(update: StudentAccountUpdate) {
     setManagedRows(current => applyStudentRowUpdate(current, update));
   }

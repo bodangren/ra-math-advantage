@@ -59,6 +59,15 @@ const defaultPrompts: ReflectionPrompt[] = [
   },
 ]
 
+
+/**
+ * Reflection journal activity with categorized prompts for courage,
+ * adaptability, and persistence reflections.
+ *
+ * @param props - Activity configuration, optional class name, and submit
+ *   callback.
+ * @returns A Card with reflection prompt text areas and a save button.
+ */
 export function ReflectionJournal({ activity, className = '', onSubmit }: ReflectionJournalProps) {
   const prompts = activity.props.prompts.length ? activity.props.prompts : defaultPrompts
   const unitTitle = activity.props.unitTitle ?? activity.displayName ?? 'Learning Reflection'
@@ -68,6 +77,13 @@ export function ReflectionJournal({ activity, className = '', onSubmit }: Reflec
   const completedCount = Object.values(responses).filter((value) => value.trim()).length
   const totalCount = prompts.length
 
+
+  /**
+   * Handle a change to a reflection prompt response.
+   *
+   * @param promptId - The prompt being edited.
+   * @param value - The new response text.
+   */
   const handleResponseChange = (promptId: string, value: string) => {
     setResponses((prev) => ({
       ...prev,
@@ -76,6 +92,11 @@ export function ReflectionJournal({ activity, className = '', onSubmit }: Reflec
     if (isSaved) setIsSaved(false)
   }
 
+
+  /**
+   * Save the reflection journal, building the practice submission envelope
+   * with all prompt responses and artifact data.
+   */
   const handleSave = () => {
     const parts = buildPracticeSubmissionParts(responses)
 
@@ -111,6 +132,13 @@ export function ReflectionJournal({ activity, className = '', onSubmit }: Reflec
     }
   }
 
+
+  /**
+   * Get the color classes for a reflection category badge.
+   *
+   * @param category - The reflection category.
+   * @returns Tailwind color classes for the badge.
+   */
   const getCategoryColor = (category: ReflectionPrompt['category']) => {
     switch (category) {
       case 'courage':

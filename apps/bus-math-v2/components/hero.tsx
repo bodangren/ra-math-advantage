@@ -12,6 +12,13 @@ interface HeroProps {
   stats: CurriculumStats | null;
 }
 
+
+/**
+ * Renders the landing-page hero section with headline, stats, CTAs, and textbook cover.
+ *
+ * @param props - Curriculum statistics to display as badges
+ * @returns The hero section element
+ */
 export function Hero({ stats }: HeroProps) {
   return (
     <section

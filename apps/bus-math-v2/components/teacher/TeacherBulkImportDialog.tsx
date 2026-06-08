@@ -35,6 +35,13 @@ type Step = "input" | "review" | "submitting" | "success";
 const FOCUSABLE_SELECTORS =
   'a[href], button:not([disabled]), textarea, input, select, [tabindex]:not([tabindex="-1"])';
 
+
+/**
+ * Renders a bulk import dialog for creating multiple student accounts from
+ * pasted names, with review step and credentials sheet output.
+ *
+ * @returns A button that opens the bulk import modal dialog.
+ */
 export function TeacherBulkImportDialog() {
   const [isMounted, setIsMounted] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
@@ -89,12 +96,20 @@ export function TeacherBulkImportDialog() {
     };
   }, [isOpen]);
 
+
+  /**
+   * Closes the dialog and resets the form if not currently submitting.
+   */
   const closeDialog = () => {
     if (isSubmitting) return;
     setIsOpen(false);
     resetForm();
   };
 
+
+  /**
+   * Resets all form state to initial values.
+   */
   const resetForm = () => {
     setStep("input");
     setInputText("");
@@ -103,6 +118,10 @@ export function TeacherBulkImportDialog() {
     setResult(null);
   };
 
+
+  /**
+   * Parses the input text into student names and generates username previews.
+   */
   const handleParse = () => {
     const lines = inputText.split("\n").filter((line) => line.trim().length > 0);
     const parsed = lines.map((line) => {
@@ -136,6 +155,10 @@ export function TeacherBulkImportDialog() {
     setError(null);
   };
 
+
+  /**
+   * Submits the parsed student list to the bulk-create API endpoint.
+   */
   const handleSubmit = async () => {
     setError(null);
     setIsSubmitting(true);
@@ -166,6 +189,13 @@ export function TeacherBulkImportDialog() {
     }
   };
 
+
+  /**
+   * Updates a student's username at the given index and re-normalizes all usernames.
+   *
+   * @param index - The index of the student to update.
+   * @param newUsername - The new username value.
+   */
   const handleUsernameChange = (index: number, newUsername: string) => {
     const updated = students.map((student, studentIndex) => ({
       ...student,

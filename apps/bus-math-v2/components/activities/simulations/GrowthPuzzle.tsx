@@ -59,6 +59,15 @@ const ICON_MAP: Record<string, LucideIcon> = {
   user: User
 }
 
+
+/**
+ * Renders a growth puzzle where students allocate business profit between
+ * reinvestment and distribution options to balance equity growth and rewards.
+ *
+ * @param activity - The growth puzzle activity configuration
+ * @param onComplete - Callback with selected options and reinvestment/distribution stats
+ * @param onSubmit - Callback to submit practice results
+ */
 export function GrowthPuzzle({ activity, onComplete, onSubmit }: GrowthPuzzleProps) {
   const { totalProfit, options, successMessage } = activity.props
   const [selections, setSelections] = useState<string[]>([])
@@ -85,6 +94,13 @@ export function GrowthPuzzle({ activity, onComplete, onSubmit }: GrowthPuzzlePro
     return { reinvestment, distribution }
   }, [selections, options])
 
+
+  /**
+   * Toggles an allocation option on or off, checking affordability
+   * against remaining profit.
+   *
+   * @param id - The option ID to toggle
+   */
   const handleToggleOption = (id: string) => {
     if (selections.includes(id)) {
       setSelections(prev => prev.filter(item => item !== id))

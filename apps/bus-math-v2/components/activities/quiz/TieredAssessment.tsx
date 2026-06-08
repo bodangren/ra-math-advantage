@@ -39,6 +39,13 @@ type PreparedApplicationProblem = ApplicationProblem & {
   tolerance: number;
 };
 
+
+/**
+ * Compute a stable unsigned 32-bit hash of a string value.
+ *
+ * @param value - The string to hash.
+ * @returns A non-negative integer hash.
+ */
 function stableHash(value: string) {
   let hash = 0;
   for (let index = 0; index < value.length; index += 1) {
@@ -47,7 +54,18 @@ function stableHash(value: string) {
   return hash;
 }
 
-const sortOptionsDeterministically = (questionId: string, options: string[]) =>
+
+/**
+ * Sort multiple-choice options in a deterministic order based on a question
+ * identifier hash.
+ *
+ * @param questionId - The question identifier used as a seed.
+ * @param options - The options to sort.
+ * @returns A new array of options in deterministic order.
+ */
+function sortOptionsDeterministically(questionId: string, options: string[]) {
+  return ;
+}
   [...options]
     .map((option, index) => ({
       option,
@@ -62,6 +80,16 @@ const sortOptionsDeterministically = (questionId: string, options: string[]) =>
     })
     .map((entry) => entry.option);
 
+
+/**
+ * Check whether a provided numeric response matches the expected value within
+ * a tolerance.
+ *
+ * @param expected - The correct numeric answer.
+ * @param provided - The student's response (number or string).
+ * @param tolerance - The acceptable deviation.
+ * @returns `true` if the response is within tolerance.
+ */
 function isCorrectNumericResponse(expected: number, provided: unknown, tolerance: number): boolean {
   if (typeof provided === 'number' && Number.isFinite(provided)) {
     return Math.abs(provided - expected) <= tolerance;
@@ -84,6 +112,15 @@ function isCorrectNumericResponse(expected: number, provided: unknown, tolerance
   return Math.abs(parsed - expected) <= tolerance;
 }
 
+
+/**
+ * Tiered assessment activity with shuffled options and application problems
+ * that generate from templates.
+ *
+ * @param props - Activity configuration and optional submit callback.
+ * @returns A Card with questions, application problems, scoring, and retry
+ *   support.
+ */
 export function TieredAssessment({ activity, onSubmit }: TieredAssessmentProps) {
   const [selectedAnswers, setSelectedAnswers] = useState<Record<string, string>>({});
   const [submitted, setSubmitted] = useState(false);
@@ -158,11 +195,23 @@ export function TieredAssessment({ activity, onSubmit }: TieredAssessmentProps) 
     return count + 1;
   }, 0);
 
+
+  /**
+   * Record a student's response to a question or application problem.
+   *
+   * @param questionId - The item being answered.
+   * @param answer - The selected or entered answer value.
+   */
   const recordResponse = (questionId: string, answer: string) => {
     if (submitted) return;
     setSelectedAnswers((prev) => ({ ...prev, [questionId]: answer }));
   };
 
+
+  /**
+   * Submit the assessment, building the practice submission envelope with
+   * scored question and application parts.
+   */
   const handleSubmit = () => {
     const questionParts = buildPracticeSubmissionParts(selectedAnswers).map((part) => {
       const evaluation = questionEvaluations.find((entry) => entry.question.id === part.partId);
@@ -212,6 +261,10 @@ export function TieredAssessment({ activity, onSubmit }: TieredAssessmentProps) 
     }
   };
 
+
+  /**
+   * Reset the assessment to allow a retry attempt.
+   */
   const resetAssessment = () => {
     setSelectedAnswers({});
     setSubmitted(false);

@@ -12,6 +12,15 @@ import {
 
 export type { Point, FunctionPlot } from '@/lib/activities/graphing/canvas-utils';
 
+
+/**
+ * Interactive SVG coordinate plane for plotting functions and placing points.
+ *
+ * @param props - Configuration for domain, range, functions, points, and
+ *   interaction callbacks.
+ * @returns A responsive SVG canvas with grid, axes, tick labels, function
+ *   curves, and interactive point markers.
+ */
 export function GraphingCanvas({
   domain = [-10, 10],
   range = [-10, 10],
@@ -44,6 +53,13 @@ export function GraphingCanvas({
     return () => resizeObserver.disconnect();
   }, []);
 
+
+  /**
+   * Handle a click on the SVG canvas to add a new point.
+   *
+   * Converts screen coordinates to data coordinates, optionally snaps to the
+   * grid, and invokes onPointAdd when the point is valid.
+   */
   const handleClick = (event: React.MouseEvent<SVGSVGElement>) => {
     if (readonly) {
       event.preventDefault();
@@ -75,6 +91,13 @@ export function GraphingCanvas({
     }
   };
 
+
+  /**
+   * Handle a click on an existing point to remove it.
+   *
+   * @param point - The point that was clicked.
+   * @param event - The mouse event to stop propagation on.
+   */
   const handlePointClick = (point: Point, event: React.MouseEvent) => {
     event.stopPropagation();
 
@@ -85,6 +108,12 @@ export function GraphingCanvas({
     }
   };
 
+
+  /**
+   * Render horizontal and vertical grid lines across the canvas.
+   *
+   * @returns An array of SVG line elements forming the grid.
+   */
   const renderGrid = () => {
     const { width: w, height: h } = canvasSize;
     const [xMin, xMax] = domain;
@@ -130,6 +159,12 @@ export function GraphingCanvas({
     return gridLines;
   };
 
+
+  /**
+   * Render the x-axis and y-axis lines through the origin.
+   *
+   * @returns SVG line elements for both axes.
+   */
   const renderAxes = () => {
     const { width: w, height: h } = canvasSize;
 
@@ -160,6 +195,12 @@ export function GraphingCanvas({
     );
   };
 
+
+  /**
+   * Render numeric tick labels along both axes.
+   *
+   * @returns An array of SVG text elements positioned at tick intervals.
+   */
   const renderTickLabels = () => {
     const { width: w, height: h } = canvasSize;
     const [xMin, xMax] = domain;
@@ -209,6 +250,12 @@ export function GraphingCanvas({
     return labels;
   };
 
+
+  /**
+   * Render SVG path elements for each configured function expression.
+   *
+   * @returns An array of SVG path elements, one per function.
+   */
   const renderFunctions = () => {
     const { width: w, height: h } = canvasSize;
 
@@ -228,6 +275,13 @@ export function GraphingCanvas({
     });
   };
 
+
+  /**
+   * Render interactive point markers on the canvas.
+   *
+   * @returns An array of SVG group elements, each containing a circle and
+   *   optional label.
+   */
   const renderPoints = () => {
     const { width: w, height: h } = canvasSize;
 

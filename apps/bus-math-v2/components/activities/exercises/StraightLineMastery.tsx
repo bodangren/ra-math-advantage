@@ -37,14 +37,35 @@ const assetPool = [
   { name: 'packaging machine', costRange: [20000, 40000], lifeRange: [8, 12], salvageRange: [2000, 5000] },
 ]
 
+
+/**
+ * Generate a random integer between min and max inclusive.
+ *
+ * @param min - Lower bound (inclusive).
+ * @param max - Upper bound (inclusive).
+ * @returns A random integer in the range [min, max].
+ */
 function randInt(min: number, max: number): number {
   return Math.floor(Math.random() * (max - min + 1)) + min
 }
 
+
+/**
+ * Round a numeric value to the nearest whole dollar.
+ *
+ * @param val - The amount to round.
+ * @returns The value rounded to the nearest integer.
+ */
 function roundToNearestDollar(val: number): number {
   return Math.round(val)
 }
 
+
+/**
+ * Generate a random straight-line depreciation problem with plausible distractors.
+ *
+ * @returns A DepreciationProblem with random asset values and wrong-answer options.
+ */
 function generateProblem(): DepreciationProblem {
   const asset = assetPool[Math.floor(Math.random() * assetPool.length)]
   const cost = randInt(asset.costRange[0], asset.costRange[1])
@@ -109,6 +130,17 @@ export interface StraightLineMasteryProps {
   onComplete?: () => void
 }
 
+
+/**
+ * Straight-line depreciation mastery component that quizzes students on annual
+ * expense, accumulated depreciation, and book value calculations.
+ *
+ * @param props - Component props.
+ * @param props.activity - Activity configuration with optional mastery threshold.
+ * @param props.onSubmit - Callback fired with the submission envelope on answer.
+ * @param props.onComplete - Callback fired when mastery target is reached.
+ * @returns A card-based quiz UI for straight-line depreciation problems.
+ */
 export function StraightLineMastery({ activity, onSubmit, onComplete }: StraightLineMasteryProps) {
   const masteryTarget = activity.props?.masteryThreshold ?? 5
   const [problem, setProblem] = useState<DepreciationProblem>(generateProblem)

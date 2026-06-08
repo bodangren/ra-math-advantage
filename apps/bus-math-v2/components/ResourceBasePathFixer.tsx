@@ -7,6 +7,13 @@ export interface ResourceBasePathFixerProps {
   productionBasePath?: string
 }
 
+
+/**
+ * Rewrites resource links to include the production base path when deployed.
+ *
+ * @param props - Configuration for the selector and base path
+ * @returns null (side-effect only component)
+ */
 export function ResourceBasePathFixer({
   selector = 'a[href^="/resources/"]',
   productionBasePath = '/Business-Operations'

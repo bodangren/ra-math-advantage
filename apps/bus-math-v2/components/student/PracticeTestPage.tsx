@@ -12,6 +12,15 @@ interface PracticeTestPageProps {
   unitNumber: number;
 }
 
+
+/**
+ * Renders a practice test page for a specific unit, wiring the test engine
+ * to result-saving and session-recording hooks.
+ *
+ * @param props - Component props.
+ * @param props.unitNumber - The unit number to test.
+ * @returns A practice test page with back navigation and the test engine.
+ */
 export function PracticeTestPage({ unitNumber }: PracticeTestPageProps) {
   const unitConfig = getUnitConfig(unitNumber);
   const savePracticeTestResult = useSavePracticeTestResult();
@@ -22,6 +31,12 @@ export function PracticeTestPage({ unitNumber }: PracticeTestPageProps) {
     notFound();
   }
 
+
+  /**
+   * Saves the test result and records the study session when a test completes.
+   *
+   * @param result - The test completion result with scores and breakdown.
+   */
   const handleTestComplete = async (result: {
     unitNumber: number;
     lessonsTested: string[];

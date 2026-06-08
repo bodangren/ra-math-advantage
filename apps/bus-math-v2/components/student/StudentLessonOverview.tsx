@@ -46,11 +46,29 @@ const defaultPedagogy = [
   'Hands-on spreadsheets with immediate instructor feedback'
 ];
 
-const formattedDuration = (lesson: Lesson) => {
+
+/**
+ * Formats a lesson's duration metadata into hours as a number.
+ *
+ * @param lesson - The lesson with duration metadata.
+ * @returns Duration in hours rounded to one decimal place.
+ */
+function formattedDuration(lesson: Lesson) {
   const hours = (lesson.metadata?.duration ?? 60) / 60;
   return Math.round(hours * 10) / 10;
-};
+}
 
+
+/**
+ * Renders a student-facing lesson overview with breadcrumbs, learning objectives,
+ * key concepts, phase list, and pedagogy description.
+ *
+ * @param props - Component props.
+ * @param props.lesson - The lesson data.
+ * @param props.unit - The unit summary for breadcrumb display.
+ * @param props.phases - Array of lesson phases.
+ * @returns A lesson overview page with phase navigation links.
+ */
 export function StudentLessonOverview({ lesson, unit, phases = [] }: StudentLessonOverviewProps) {
   const lessonNumber = lesson.orderIndex;
   const concepts = lesson.metadata?.tags ?? [];

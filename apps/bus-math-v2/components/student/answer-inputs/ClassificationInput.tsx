@@ -5,6 +5,17 @@ import { Button } from '@/components/ui/button';
 import type { DailyPracticeAnswerInputProps } from '@/lib/srs/answer-inputs/registry';
 import type { ClassificationDefinition, ClassificationResponse } from '@/lib/practice/engine/families/classification';
 
+
+/**
+ * Renders an answer input for classification problems, showing items to
+ * classify into categories via select dropdowns.
+ *
+ * @param props - Component props.
+ * @param props.family - The practice family object with grade/toEnvelope methods.
+ * @param props.definition - The classification problem definition.
+ * @param props.onSubmit - Callback to submit the graded practice envelope.
+ * @returns A problem display with category selects and submit/grade result.
+ */
 export function ClassificationInput({ family, definition, onSubmit }: DailyPracticeAnswerInputProps) {
   const def = definition as ClassificationDefinition;
   const submittedRef = useRef(false);
@@ -16,11 +27,22 @@ export function ClassificationInput({ family, definition, onSubmit }: DailyPract
     parts: Array<{ partId: string; isCorrect: boolean }>;
   } | null>(null);
 
+
+  /**
+   * Updates the category selection for a given part.
+   *
+   * @param partId - The part ID to update.
+   * @param categoryId - The selected category ID.
+   */
   const handleSelect = (partId: string, categoryId: string) => {
     if (submittedRef.current) return;
     setSelections((prev) => ({ ...prev, [partId]: categoryId }));
   };
 
+
+  /**
+   * Grades all selections and submits the practice envelope.
+   */
   const handleSubmit = () => {
     if (submittedRef.current) return;
     submittedRef.current = true;

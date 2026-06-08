@@ -82,6 +82,15 @@ interface PeerCritiqueFormProps {
   onSubmit?: (payload: PracticeSubmissionCallbackPayload) => void
 }
 
+
+/**
+ * Structured peer critique form for rubric-aligned feedback with ratings and
+ * comments across multiple categories.
+ *
+ * @param props - Activity configuration, optional class name, and submit
+ *   callback.
+ * @returns A Card with category sections, star ratings, and comment fields.
+ */
 export function PeerCritiqueForm({ activity, className = '', onSubmit }: PeerCritiqueFormProps) {
   const projectTitle = activity.props.projectTitle ?? activity.displayName ?? 'Project Review'
   const peerName = activity.props.peerName ?? 'Peer'
@@ -136,6 +145,11 @@ export function PeerCritiqueForm({ activity, className = '', onSubmit }: PeerCri
     Object.values(ratings).every((rating) => rating > 0) &&
     Object.values(comments).every((text) => text.trim().length > 0)
 
+
+  /**
+   * Submit the peer critique feedback, building the practice submission
+   * envelope with per-category parts and artifact data.
+   */
   const handleSubmit = () => {
     if (!allComplete) return
 

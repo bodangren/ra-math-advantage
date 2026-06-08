@@ -20,7 +20,16 @@ export interface UnitSidebarProps {
   getLessonHref?: (lesson: Lesson) => string
 }
 
-const defaultLessonHref = (lesson: Lesson) => `/lessons/${lesson.slug}`
+
+/**
+ * Returns the default URL path for a lesson based on its slug.
+ *
+ * @param lesson - The lesson to generate a URL for
+ * @returns The lesson's URL path
+ */
+function defaultLessonHref(lesson: Lesson) {
+  return `/lessons/${lesson.slug}`;
+}
 
 const statusScore: Record<StudentProgress['status'], number> = {
   completed: 1,
@@ -28,6 +37,13 @@ const statusScore: Record<StudentProgress['status'], number> = {
   not_started: 0
 }
 
+
+/**
+ * Renders a unit sidebar with overall progress, lesson list, and quick actions.
+ *
+ * @param props - Unit data, lessons, phases, progress entries, and navigation
+ * @returns A sidebar element with unit overview and lesson links
+ */
 export function UnitSidebar({
   unitNumber,
   unitTitle,
@@ -41,8 +57,22 @@ export function UnitSidebar({
 
   const totalDuration = sortedLessons.reduce((sum, lesson) => sum + (lesson.metadata?.duration ?? 0), 0)
 
+
+  /**
+   * Returns the phases belonging to a specific lesson.
+   *
+   * @param lessonId - The lesson ID to filter phases for
+   * @returns Array of phases for the given lesson
+   */
   const getLessonPhases = (lessonId: string) => phases.filter((phase) => phase.lessonId === lessonId)
 
+
+  /**
+   * Calculates a lesson's completion percentage from its phase progress entries.
+   *
+   * @param lessonId - The lesson ID to calculate progress for
+   * @returns A percentage between 0 and 100
+   */
   const getLessonProgress = (lessonId: string) => {
     const lessonPhases = getLessonPhases(lessonId)
     if (lessonPhases.length === 0) return 0
@@ -60,6 +90,13 @@ export function UnitSidebar({
     ? Math.round(lessonProgressValues.reduce((sum, value) => sum + value, 0) / lessonProgressValues.length)
     : 0
 
+
+  /**
+   * Formats a duration in minutes as a human-readable string.
+   *
+   * @param duration - Duration in minutes
+   * @returns A formatted duration string
+   */
   const formatDuration = (duration: number) => {
     if (duration <= 0) return 'Flexible pacing'
     return `${duration} min`

@@ -6,6 +6,13 @@ interface DrivingQuestionProps {
   drivingQuestion?: UnitDrivingQuestion;
 }
 
+
+/**
+ * Renders the unit's driving question with context and optional scenario.
+ *
+ * @param props - The driving question data
+ * @returns A section with the driving question card or null
+ */
 export function DrivingQuestion({ drivingQuestion }: DrivingQuestionProps) {
   if (!drivingQuestion) {
     return null;

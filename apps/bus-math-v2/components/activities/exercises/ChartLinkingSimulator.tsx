@@ -21,6 +21,14 @@ const initialState: FinancialState = {
   dividends: 50000,
 }
 
+
+/**
+ * Computes simplified income statement and balance sheet figures
+ * from the given financial state inputs.
+ *
+ * @param state - The financial state with revenue, COGS, operating expenses, and dividends
+ * @returns Object containing income statement and balance sheet line items
+ */
 function calculateStatements(state: FinancialState) {
   const grossProfit = state.revenue - state.costOfGoodsSold
   const operatingIncome = grossProfit - state.operatingExpenses
@@ -56,6 +64,15 @@ export interface ChartLinkingSimulatorProps {
   onComplete?: () => void
 }
 
+
+/**
+ * Renders a financial statement linking simulator where users adjust
+ * inputs and see how income statement and balance sheet changes relate.
+ *
+ * @param activity - Activity configuration with optional mastery threshold
+ * @param onSubmit - Callback fired when the user completes the analysis
+ * @param onComplete - Callback fired when the analysis is finalized
+ */
 export function ChartLinkingSimulator({ activity, onSubmit, onComplete }: ChartLinkingSimulatorProps) {
   const [financialState, setFinancialState] = useState<FinancialState>(initialState)
   const [insights, setInsights] = useState<string[]>([])
@@ -65,16 +82,32 @@ export function ChartLinkingSimulator({ activity, onSubmit, onComplete }: ChartL
 
   const statements = calculateStatements(financialState)
 
+
+  /**
+   * Updates a specific financial input field, clamping the value to a minimum of zero.
+   *
+   * @param field - The financial state field to update
+   * @param value - The new numeric value for the field
+   */
   const handleUpdate = useCallback((field: keyof FinancialState, value: number) => {
     setFinancialState(prev => ({ ...prev, [field]: Math.max(0, value) }))
   }, [])
 
+
+  /**
+   * Adds the current insight text to the insights list and clears the input.
+   */
   const handleAddInsight = useCallback(() => {
     if (!currentInsight.trim()) return
     setInsights(prev => [...prev, currentInsight])
     setCurrentInsight('')
   }, [currentInsight])
 
+
+  /**
+   * Finalizes the analysis, marks the activity as completed, and submits
+   * the result envelope with financial state and insights.
+   */
   const handleComplete = useCallback(() => {
     if (submittedRef.current) return
     submittedRef.current = true

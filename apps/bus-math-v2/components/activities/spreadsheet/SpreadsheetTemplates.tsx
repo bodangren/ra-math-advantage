@@ -561,12 +561,26 @@ export const spreadsheetTemplates = {
 };
 
 // Helper function to get template by key
-export const getTemplateByKey = (templateKey: string): SpreadsheetTemplate | null => {
+
+/**
+ * Retrieves a spreadsheet template by its key name.
+ *
+ * @param templateKey - The template key (e.g. 't-account', 'trial-balance')
+ * @returns The matching SpreadsheetTemplate, or null if not found
+ */
+export function getTemplateByKey(templateKey: string) : SpreadsheetTemplate | null {
   return spreadsheetTemplates[templateKey as keyof typeof spreadsheetTemplates] || null;
-};
+}
 
 // Helper function to get template by unit
-export const getTemplateByUnit = (unitNumber: number): SpreadsheetTemplate[] => {
+
+/**
+ * Retrieves all spreadsheet templates associated with a given unit number.
+ *
+ * @param unitNumber - The curriculum unit number (1-6)
+ * @returns An array of matching SpreadsheetTemplate objects
+ */
+export function getTemplateByUnit(unitNumber: number) : SpreadsheetTemplate[] {
   switch (unitNumber) {
     case 1:
       return [tAccountTemplate, balanceSheetTemplate, transactionLogTemplate];
@@ -583,4 +597,4 @@ export const getTemplateByUnit = (unitNumber: number): SpreadsheetTemplate[] => 
     default:
       return [];
   }
-};
+}

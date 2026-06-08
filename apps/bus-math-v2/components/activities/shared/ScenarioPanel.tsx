@@ -12,6 +12,13 @@ export interface ScenarioPanelProps {
   className?: string;
 }
 
+
+/**
+ * Display a labeled panel of scenario facts or context for an activity.
+ *
+ * @param props - Rows of label/value pairs and optional guidance text.
+ * @returns A styled panel with a grid of labeled entries.
+ */
 export function ScenarioPanel({ rows, guidance, labelWidth = 132, className }: ScenarioPanelProps) {
   return (
     <div className={className ?? 'rounded-2xl border bg-muted/15 px-4 py-4'}>
@@ -25,6 +32,13 @@ export function ScenarioPanel({ rows, guidance, labelWidth = 132, className }: S
   );
 }
 
+
+/**
+ * Single label/value entry within a ScenarioPanel.
+ *
+ * @param props - The label and value to display.
+ * @returns A grid row with a bold label and value.
+ */
 function ScenarioPanelEntry({ label, value }: ScenarioPanelRow) {
   return (
     <>

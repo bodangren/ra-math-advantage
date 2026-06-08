@@ -19,6 +19,13 @@ export interface UsePracticeTimingReturn {
   isTracking: () => boolean;
 }
 
+
+/**
+ * Hook that tracks active practice time, idle periods, and visibility events.
+ *
+ * @param options - Idle threshold and optional submit callback
+ * @returns Timing getter, interaction recorder, and tracking state checker
+ */
 export function usePracticeTiming(
   options: UsePracticeTimingOptions = {},
 ): UsePracticeTimingReturn {
@@ -27,6 +34,12 @@ export function usePracticeTiming(
   const startTimeRef = useRef<number | null>(null);
   const [isTracking, setIsTracking] = useState(false);
 
+
+  /**
+   * Returns the current timing summary by finalizing the accumulator.
+   *
+   * @returns The current timing summary or null if not tracking
+   */
   const getTiming = useCallback((): PracticeTimingSummary | null => {
     if (!accumulatorRef.current || startTimeRef.current === null) {
       return null;
@@ -34,6 +47,10 @@ export function usePracticeTiming(
     return accumulatorRef.current.finalize(performance.now());
   }, []);
 
+
+  /**
+   * Records a user interaction event in the timing accumulator.
+   */
   const recordInteraction = useCallback(() => {
     if (accumulatorRef.current) {
       accumulatorRef.current.addEvent({
@@ -43,6 +60,10 @@ export function usePracticeTiming(
     }
   }, []);
 
+
+  /**
+   * Tracks document visibility changes as timing events.
+   */
   const handleVisibilityChange = useCallback(() => {
     if (!accumulatorRef.current) return;
 
@@ -59,6 +80,10 @@ export function usePracticeTiming(
     }
   }, []);
 
+
+  /**
+   * Tracks window focus and blur events as timing events.
+   */
   const handleFocusChange = useCallback(() => {
     if (!accumulatorRef.current) return;
 
@@ -75,6 +100,10 @@ export function usePracticeTiming(
     }
   }, []);
 
+
+  /**
+   * Finalizes timing and submits on page hide events.
+   */
   const handlePageHide = useCallback(() => {
     if (!accumulatorRef.current) return;
 

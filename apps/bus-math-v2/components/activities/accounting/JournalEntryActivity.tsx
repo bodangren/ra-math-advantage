@@ -125,6 +125,14 @@ const DEFAULT_SCENARIOS: Scenario[] = [
   }
 ]
 
+
+/**
+ * Create a set of blank journal entry rows for a scenario.
+ *
+ * @param scenario - The scenario whose correct entry determines
+ *   the minimum number of rows.
+ * @returns An array of empty journal entry rows.
+ */
 function buildEmptyRows(scenario: Scenario): JournalEntryRow[] {
   return Array.from({ length: Math.max(2, scenario.correctEntry.length) }, () => ({
     account: '',
@@ -133,6 +141,14 @@ function buildEmptyRows(scenario: Scenario): JournalEntryRow[] {
   }))
 }
 
+
+/**
+ * Compute debit and credit totals for a set of journal entry rows.
+ *
+ * @param rows - The journal entry rows to total.
+ * @returns An object with totalDebits, totalCredits, and
+ *   whether the entry is balanced.
+ */
 function summarizeTotals(rows: JournalEntryRow[]) {
   const totalDebits = rows.reduce((sum, entry) => sum + (entry.debit || 0), 0)
   const totalCredits = rows.reduce((sum, entry) => sum + (entry.credit || 0), 0)
@@ -143,14 +159,38 @@ function summarizeTotals(rows: JournalEntryRow[]) {
   }
 }
 
+
+/**
+ * Check whether a journal entry row has both an account name
+ * and at least one non-zero amount.
+ *
+ * @param row - The journal entry row to check.
+ * @returns True if the row has an account and a debit or credit.
+ */
 function isRowComplete(row: JournalEntryRow) {
   return row.account.trim().length > 0 && (row.debit > 0 || row.credit > 0)
 }
 
+
+/**
+ * Determine the practice mode based on whether instructions
+ * default to open.
+ *
+ * @param showInstructionsDefaultOpen - Whether instructions
+ *   are shown open by default.
+ * @returns The resolved practice mode.
+ */
 function resolveMode(showInstructionsDefaultOpen: boolean): JournalEntryPracticeMode {
   return showInstructionsDefaultOpen ? 'guided_practice' : 'independent_practice'
 }
 
+
+/**
+ * Build a structured artifact object capturing the student's journal entry attempt.
+ *
+ * @param args - Scenario, student entries, totals, and attempt count
+ * @returns An artifact object suitable for submission storage
+ */
 function buildSubmissionArtifact(args: {
   scenario: Scenario
   journalEntries: JournalEntryRow[]
@@ -179,6 +219,13 @@ function buildSubmissionArtifact(args: {
   }
 }
 
+
+/**
+ * Build a complete practice submission envelope for a journal entry activity.
+ *
+ * @param args - Activity data, scenario, student entries, attempts, and mode
+ * @returns A fully formed practice submission envelope
+ */
 function buildJournalEntrySubmission(args: {
   activity: JournalEntryActivityData
   scenario: Scenario
@@ -245,6 +292,14 @@ function buildJournalEntrySubmission(args: {
   })
 }
 
+
+/**
+ * Renders an interactive journal entry building exercise with drag-and-drop
+ * accounts, debit/credit inputs, and balance validation.
+ *
+ * @param props - Activity data, optional className, and submission callback
+ * @returns The full journal entry practice workspace
+ */
 export function JournalEntryActivity({ activity, className = '', onSubmit }: JournalEntryComponentProps) {
   const {
     props: {
@@ -328,6 +383,13 @@ export function JournalEntryActivity({ activity, className = '', onSubmit }: Jou
 
   const currentAttempt = exerciseState.attempts + 1
 
+
+  /**
+   * Set the account name for a specific journal entry row.
+   *
+   * @param rowIndex - Index of the row to update
+   * @param account - Account name to assign
+   */
   const assignAccount = useCallback((rowIndex: number, account: string) => {
     setExerciseState((prev) => ({
       ...prev,
@@ -337,6 +399,12 @@ export function JournalEntryActivity({ activity, className = '', onSubmit }: Jou
     }))
   }, [])
 
+
+  /**
+   * Place an account into the focused or first incomplete journal row.
+   *
+   * @param account - Account name to insert
+   */
   const handleAccountInsert = useCallback((account: string) => {
     const targetRowIndex = focusedRowIndex >= 0
       ? focusedRowIndex
@@ -347,11 +415,25 @@ export function JournalEntryActivity({ activity, className = '', onSubmit }: Jou
     assignAccount(targetRowIndex, account)
   }, [assignAccount, firstIncompleteRowIndex, focusedRowIndex])
 
+
+  /**
+   * Initiate a drag operation by setting the account name in the data transfer.
+   *
+   * @param event - The drag event from the account button
+   * @param account - Account name being dragged
+   */
   const handleDragStart = useCallback((event: DragEvent<HTMLButtonElement>, account: string) => {
     event.dataTransfer.setData('text/plain', account)
     event.dataTransfer.effectAllowed = 'copy'
   }, [])
 
+
+  /**
+   * Handle dropping a dragged account onto a journal entry row.
+   *
+   * @param event - The drop event on the row
+   * @param rowIndex - Index of the target row
+   */
   const handleDrop = useCallback((event: DragEvent<HTMLDivElement>, rowIndex: number) => {
     event.preventDefault()
     const account = event.dataTransfer.getData('text/plain')
@@ -361,6 +443,15 @@ export function JournalEntryActivity({ activity, className = '', onSubmit }: Jou
     }
   }, [assignAccount])
 
+
+  /**
+   * Update the debit or credit amount for a journal entry row,
+   * clearing the opposite field when a value is entered.
+   *
+   * @param rowIndex - Index of the row to update
+   * @param field - Whether the debit or credit column changed
+   * @param value - The new string value from the input
+   */
   const handleAmountChange = useCallback((
     rowIndex: number,
     field: 'debit' | 'credit',
@@ -383,6 +474,11 @@ export function JournalEntryActivity({ activity, className = '', onSubmit }: Jou
     }))
   }, [])
 
+
+  /**
+   * Validate the student's journal entry against the scenario,
+   * providing feedback on balance, accounts, and amounts.
+   */
   const evaluateEntry = useCallback(() => {
     const { currentScenario, journalEntries } = exerciseState
     const attemptNumber = exerciseState.attempts + 1

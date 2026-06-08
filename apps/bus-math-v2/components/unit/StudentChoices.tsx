@@ -7,6 +7,13 @@ interface StudentChoicesProps {
   studentChoices?: UnitStudentChoices;
 }
 
+
+/**
+ * Renders student voice and choice options for ventures, roles, and presentation formats.
+ *
+ * @param props - Optional student choices data
+ * @returns A section with choice cards or null if no content
+ */
 export function StudentChoices({ studentChoices }: StudentChoicesProps) {
   const ventures = studentChoices?.ventures ?? [];
   const roles = studentChoices?.roles ?? [];

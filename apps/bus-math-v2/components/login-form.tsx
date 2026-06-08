@@ -16,6 +16,13 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { useState, useEffect, useRef } from "react";
 import { InfoIcon } from "lucide-react";
 
+
+/**
+ * Renders a login form with demo account shortcuts and role-based redirect.
+ *
+ * @param props - Standard div props with optional className
+ * @returns A card containing the login form
+ */
 export function LoginForm({
   className,
   ...props
@@ -29,6 +36,10 @@ export function LoginForm({
   const { signIn, profile, user } = useAuth();
   const shouldRedirectRef = useRef(false);
 
+
+  /**
+   * Provisions demo users if needed before attempting sign-in.
+   */
   const ensureDemoUsers = async () => {
     const response = await fetch('/api/users/ensure-demo', { method: 'POST' });
     if (!response.ok) {
@@ -36,6 +47,13 @@ export function LoginForm({
     }
   };
 
+
+  /**
+   * Attempts to sign in, provisioning demo users for demo credentials first.
+   *
+   * @param loginUsername - The username to authenticate with
+   * @param loginPassword - The password to authenticate with
+   */
   const trySignIn = async (loginUsername: string, loginPassword: string) => {
     const isDemoLogin =
       (loginUsername === 'demo_student' || loginUsername === 'demo_teacher') &&
@@ -52,6 +70,12 @@ export function LoginForm({
     await signIn(loginUsername, loginPassword);
   };
 
+
+  /**
+   * Handles the login form submission with error messaging.
+   *
+   * @param e - The form submission event
+   */
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
@@ -103,6 +127,13 @@ export function LoginForm({
     }
   }, [profile, user, router, searchParams]);
 
+
+  /**
+   * Populates the login form with demo credentials.
+   *
+   * @param demoUsername - The demo username to set
+   * @param demoPassword - The demo password to set
+   */
   const handleDemoLogin = (demoUsername: string, demoPassword: string) => {
     setUsername(demoUsername);
     setPassword(demoPassword);

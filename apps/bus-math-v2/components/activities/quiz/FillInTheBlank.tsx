@@ -38,6 +38,14 @@ interface SentenceState {
   isCorrect: boolean;
 }
 
+
+/**
+ * Sort words into a deterministic order using a seed-based scoring function.
+ *
+ * @param words - The words to sort.
+ * @param seed - A seed string to produce stable ordering.
+ * @returns A new array of words in deterministic order.
+ */
 function createDeterministicOrder(words: string[], seed: string): string[] {
   return [...words].sort((a, b) => {
     const scoreA = `${seed}:${a}`.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
@@ -49,6 +57,14 @@ function createDeterministicOrder(words: string[], seed: string): string[] {
   });
 }
 
+
+/**
+ * Fill-in-the-blank activity where students complete sentences with correct
+ * vocabulary or concepts.
+ *
+ * @param props - Activity configuration with sentences and optional word bank.
+ * @returns A Card with sentence inputs, word bank, hints, and scoring.
+ */
 export function FillInTheBlank({ activity, onSubmit }: FillInTheBlankProps) {
   const { sentences, showWordList, randomizeWordOrder, showHints } = activity.props;
   const [answers, setAnswers] = useState<Record<string, string>>({});
@@ -75,6 +91,11 @@ export function FillInTheBlank({ activity, onSubmit }: FillInTheBlankProps) {
     return createDeterministicOrder(uniqueWords, activity.id);
   }, [activity.id, sentences, showWordList, randomizeWordOrder]);
 
+
+  /**
+   * Submit answers, evaluate correctness against accepted answers, and
+   * build the practice submission envelope.
+   */
   const handleSubmit = () => {
     const updatedStates: SentenceState[] = sentences.map((sentence) => {
       const userAnswer = answers[sentence.id] ?? '';
@@ -127,6 +148,10 @@ export function FillInTheBlank({ activity, onSubmit }: FillInTheBlankProps) {
     }
   };
 
+
+  /**
+   * Reset all answers and submission state for a fresh attempt.
+   */
   const reset = () => {
     setAnswers({});
     setSentenceStates([]);

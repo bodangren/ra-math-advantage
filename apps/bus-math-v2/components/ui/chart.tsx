@@ -24,6 +24,12 @@ type ChartContextProps = {
 
 const ChartContext = React.createContext<ChartContextProps | null>(null);
 
+
+/**
+ * Retrieves the chart context, throwing if used outside a ChartContainer.
+ *
+ * @returns The current chart configuration context
+ */
 function useChart() {
   const context = React.useContext(ChartContext);
 
@@ -34,6 +40,13 @@ function useChart() {
   return context;
 }
 
+
+/**
+ * Wraps a Recharts ResponsiveContainer with themed CSS variables for chart colors.
+ *
+ * @param props - Chart config, children render function, and div props
+ * @returns A themed chart container element
+ */
 function ChartContainer({
   id,
   className,
@@ -65,7 +78,14 @@ function ChartContainer({
   );
 }
 
-const ChartStyle = ({ id, config }: { id: string; config: ChartConfig }) => {
+
+/**
+ * Injects CSS custom properties for chart theme colors based on config.
+ *
+ * @param props - Chart ID and configuration
+ * @returns A style element with chart CSS variables or null
+ */
+function ChartStyle({ id, config }: { id: string; config: ChartConfig }) {
   const colorConfig = Object.entries(config).filter(([, value]) => value.theme || value.color);
 
   if (!colorConfig.length) {
@@ -93,7 +113,7 @@ ${colorConfig
       }}
     />
   );
-};
+}
 
 const ChartTooltip = RechartsPrimitive.Tooltip;
 
@@ -116,6 +136,13 @@ type ChartTooltipContentProps = React.ComponentProps<typeof RechartsPrimitive.To
     payload?: Array<Record<string, unknown>>;
   };
 
+
+/**
+ * Renders custom tooltip content for Recharts charts with indicator and formatting.
+ *
+ * @param props - Tooltip payload, formatter, indicator style, and display options
+ * @returns A styled tooltip content element or null
+ */
 function ChartTooltipContent({
   active,
   payload = [],
@@ -261,6 +288,13 @@ type LegendContentPayload = Array<{
   payload?: Record<string, unknown>;
 }>;
 
+
+/**
+ * Renders custom legend content for Recharts charts with color indicators.
+ *
+ * @param props - Legend payload, nameKey, hideIcon, and alignment
+ * @returns A styled legend element or null
+ */
 function ChartLegendContent({
   className,
   hideIcon = false,
@@ -314,6 +348,15 @@ function ChartLegendContent({
   );
 }
 
+
+/**
+ * Extracts the chart config entry for a given payload item by matching keys.
+ *
+ * @param config - The full chart configuration
+ * @param payload - The tooltip/legend payload object
+ * @param key - The data key to look up
+ * @returns The matching config entry or undefined
+ */
 function getPayloadConfigFromPayload(config: ChartConfig, payload: unknown, key: string) {
   if (typeof payload !== "object" || payload === null) {
     return undefined;

@@ -26,6 +26,17 @@ const CANVAS_RANGE: [number, number] = [-10, 10];
 const CANVAS_WIDTH = 600;
 const CANVAS_HEIGHT = 400;
 
+
+/**
+ * Interactive canvas for identifying x-intercepts of a function.
+ *
+ * Displays the function curve on an SVG and lets students click near
+ * intercepts to identify them, with feedback on accuracy.
+ *
+ * @param props - Function expression, intercept callback, and read-only flag.
+ * @returns An SVG canvas with intercept markers and a "no real solutions"
+ *   button.
+ */
 export function InterceptIdentification({
   functionExpression,
   onInterceptIdentified,
@@ -35,6 +46,13 @@ export function InterceptIdentification({
   const [feedback, setFeedback] = useState<{ message: string; type: 'success' | 'error' } | null>(null);
   const svgRef = useRef<SVGSVGElement>(null);
 
+
+  /**
+   * Calculate the real x-intercepts of a function expression.
+   *
+   * @param expr - The function expression string.
+   * @returns An array of x-values where the function crosses the x-axis.
+   */
   const calculateXIntercepts = useCallback((expr: string): number[] => {
     const trimmedExpr = expr.trim();
 
@@ -79,11 +97,25 @@ export function InterceptIdentification({
     return [];
   }, []);
 
+
+  /**
+   * Check whether the current function has real x-intercepts.
+   *
+   * @returns `true` if at least one intercept exists.
+   */
   const hasRealIntercepts = useCallback(() => {
     const intercepts = calculateXIntercepts(functionExpression);
     return intercepts.length > 0;
   }, [functionExpression, calculateXIntercepts]);
 
+
+  /**
+   * Find the nearest x-intercept to a canvas click position.
+   *
+   * @param clickCanvasX - The x-coordinate in canvas space.
+   * @param clickCanvasY - The y-coordinate in canvas space.
+   * @returns The nearest intercept point, or null if none are within range.
+   */
   const findNearestIntercept = useCallback((clickCanvasX: number, clickCanvasY: number): { x: number; y: number } | null => {
     const intercepts = calculateXIntercepts(functionExpression);
     if (intercepts.length === 0) return null;
@@ -120,6 +152,12 @@ export function InterceptIdentification({
     return nearest;
   }, [functionExpression, calculateXIntercepts]);
 
+
+  /**
+   * Handle a click on the intercept identification canvas.
+   *
+   * Checks proximity to known intercepts and provides feedback.
+   */
   const handleCanvasClick = useCallback(
     (event: React.MouseEvent<SVGSVGElement>) => {
       if (readonly) return;
@@ -157,6 +195,10 @@ export function InterceptIdentification({
     [readonly, identifiedIntercepts, findNearestIntercept, onInterceptIdentified]
   );
 
+
+  /**
+   * Handle clicking the "No Real Solutions" button when no intercepts exist.
+   */
   const handleNoInterceptsClick = useCallback(() => {
     if (readonly || hasRealIntercepts()) return;
 

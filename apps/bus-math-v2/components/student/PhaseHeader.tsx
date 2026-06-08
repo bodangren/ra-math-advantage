@@ -94,6 +94,19 @@ export interface PhaseHeaderProps {
   navigationOverrides?: PhaseHeaderNavigationOverrides;
 }
 
+
+/**
+ * Renders a phase header with breadcrumb navigation, progress bar,
+ * and a themed phase title card.
+ *
+ * @param props - Component props.
+ * @param props.lesson - The lesson data.
+ * @param props.phase - The current phase.
+ * @param props.phases - All phases in the lesson.
+ * @param props.unit - Optional unit info for breadcrumb display.
+ * @param props.navigationOverrides - Optional overrides for navigation labels and hrefs.
+ * @returns A header section with breadcrumbs, progress bar, and phase title.
+ */
 export function PhaseHeader({ lesson, phase, phases, unit, navigationOverrides }: PhaseHeaderProps) {
   const sortedPhases = [...phases].sort((a, b) => a.phaseNumber - b.phaseNumber);
   const phaseIndex = Math.max(

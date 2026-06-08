@@ -9,18 +9,23 @@ type SpreadsheetActivityComponentProps = Omit<SpreadsheetActivityProps, "initial
   initialData?: SpreadsheetData;
 };
 
-export const SpreadsheetActivity = ({
-  title,
-  description,
-  template,
-  customTemplate,
-  initialData,
-  showColumnLabels = true,
-  showRowLabels = true,
-  readOnly = false,
-  validateFormulas = true,
-  onSubmit,
-}: SpreadsheetActivityComponentProps) => {
+
+/**
+ * Renders a configurable spreadsheet activity with optional template,
+ * formula validation, and submission support.
+ *
+ * @param title - The activity title
+ * @param description - The activity description
+ * @param template - The template key to use
+ * @param customTemplate - Custom template data if template is 'custom'
+ * @param initialData - Optional initial spreadsheet data
+ * @param showColumnLabels - Whether to show column headers
+ * @param showRowLabels - Whether to show row numbers
+ * @param readOnly - Whether the spreadsheet is read-only
+ * @param validateFormulas - Whether to validate formula syntax
+ * @param onSubmit - Callback to submit the spreadsheet data
+ */
+export function SpreadsheetActivity({ title, description, template, customTemplate, initialData, showColumnLabels = true, showRowLabels = true, readOnly = false, validateFormulas = true, onSubmit, }: SpreadsheetActivityComponentProps) {
   const [data, setData] = useState<SpreadsheetData>(() => {
     // Use initialData if provided, otherwise use template
     if (initialData) return initialData;
@@ -46,6 +51,12 @@ export const SpreadsheetActivity = ({
     }
   }, [initialData]);
 
+
+  /**
+   * Handles spreadsheet data changes, updating state and validating formulas.
+   *
+   * @param newData - The updated spreadsheet data
+   */
   const handleChange = (newData: SpreadsheetData) => {
     setData(newData);
     
@@ -129,6 +140,6 @@ export const SpreadsheetActivity = ({
       )}
     </div>
   );
-};
+}
 
 export default SpreadsheetActivity;

@@ -23,6 +23,14 @@ import {
 } from "@/hooks/useStudy";
 import { getAllGlossaryUnits, getGlossaryTermsByUnit } from "@/lib/study/glossary";
 
+
+/**
+ * Renders a per-unit progress card showing term mastery stats and a progress bar.
+ *
+ * @param props - Component props.
+ * @param props.unitNumber - The unit number to display progress for.
+ * @returns A card with mastery stats and badge counts.
+ */
 function UnitProgressCard({ unitNumber }: { unitNumber: number }) {
   const termMastery = useTermMastery(unitNumber);
 
@@ -80,6 +88,13 @@ function UnitProgressCard({ unitNumber }: { unitNumber: number }) {
   );
 }
 
+
+/**
+ * Renders a progress dashboard with overall stats, per-unit mastery cards,
+ * and a recent study session history list.
+ *
+ * @returns A progress dashboard page with charts and session history.
+ */
 export function ProgressDashboard() {
   const termMastery = useTermMastery();
   const recentSessions = useRecentSessions(10);

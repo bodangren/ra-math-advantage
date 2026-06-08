@@ -34,6 +34,14 @@ type InventoryLot = InventoryScenario['lots'][number];
 export const INVENTORY_AVAILABLE_DROPPABLE = 'inventory-available';
 export const INVENTORY_ARRANGEMENT_DROPPABLE = 'inventory-arrangement';
 
+
+/**
+ * Renders an inventory flow diagram exercise where students arrange
+ * lots in the correct cost-flow order (e.g., FIFO, LIFO).
+ *
+ * @param props - Activity configuration and submission callback
+ * @returns An interactive inventory flow arrangement exercise
+ */
 export function InventoryFlowDiagram({ activity, onSubmit }: InventoryFlowDiagramProps) {
   const scenarios = activity.props.scenarios;
   const [scenarioId, setScenarioId] = useState(scenarios[0]?.id ?? '');
@@ -75,6 +83,14 @@ export function InventoryFlowDiagram({ activity, onSubmit }: InventoryFlowDiagra
     resetBoard();
   }, [resetBoard, activeMode]);
 
+
+  /**
+   * Score the current arrangement against the target order and
+   * submit when all lots are correctly placed.
+   *
+   * @param nextArrangement - The current lot arrangement
+   * @param upcomingAttempts - The attempt count after this evaluation
+   */
   const evaluate = useCallback(
     (nextArrangement: InventoryLot[], upcomingAttempts: number) => {
       if (!activeMode) return;
@@ -132,6 +148,13 @@ export function InventoryFlowDiagram({ activity, onSubmit }: InventoryFlowDiagra
     [activity.componentKey, activity.id, activeMode, activeScenario.id, completed, onSubmit]
   );
 
+
+  /**
+   * Handle drag-end events by moving lots between the available
+   * pool and the arrangement area.
+   *
+   * @param result - The drag-and-drop result with source and destination
+   */
   const handleDragEnd = useCallback(
     (result: DropResult) => {
       const { source, destination } = result;

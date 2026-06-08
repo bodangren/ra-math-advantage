@@ -86,6 +86,24 @@ interface UnitLessonPlanProps {
   nextUnitPrep?: string[];
 }
 
+
+/**
+ * Renders a comprehensive unit-level lesson plan with desired results,
+ * assessment evidence, learning experiences, and differentiation strategies.
+ *
+ * @param props - Component props.
+ * @param props.lesson - The lesson object with unit content metadata.
+ * @param props.gradeLevel - Grade level label (defaults to "9-12").
+ * @param props.course - Course name (defaults to "Business Operations").
+ * @param props.dailyLessons - Array of daily lesson plans.
+ * @param props.assessmentStrategies - Assessment strategy groups.
+ * @param props.differentiation - Differentiation support groups.
+ * @param props.resources - Resource categories.
+ * @param props.reflectionQuestions - Post-unit reflection questions.
+ * @param props.dataCollection - Data collection strategies.
+ * @param props.nextUnitPrep - Preparation steps for the next unit.
+ * @returns A structured unit lesson plan page.
+ */
 export function UnitLessonPlan({
   lesson,
   gradeLevel = "9-12",
@@ -591,7 +609,21 @@ export function UnitLessonPlan({
 }
 
 // Separate component for daily lesson cards
+
+/**
+ * Renders a daily lesson card with activities, callouts, and materials.
+ *
+ * @param props - Component props.
+ * @param props.lesson - The daily lesson data to render.
+ * @returns A card element with the daily lesson content.
+ */
 function DailyLessonCard({ lesson }: { lesson: DailyLesson }) {
+  /**
+   * Returns a Lucide icon component for the given callout type.
+   *
+   * @param type - The callout type string.
+   * @returns A JSX icon element.
+   */
   const getCalloutIcon = (type: string) => {
     switch (type) {
       case 'tip': return <Lightbulb className="h-5 w-5" />
@@ -608,6 +640,13 @@ function DailyLessonCard({ lesson }: { lesson: DailyLesson }) {
     }
   }
 
+
+  /**
+   * Returns Tailwind border/background/text classes for the given callout type.
+   *
+   * @param type - The callout type string.
+   * @returns A Tailwind class string for callout styling.
+   */
   const getCalloutColors = (type: string) => {
     switch (type) {
       case 'tip': return 'border-blue-200 bg-blue-50 dark:bg-blue-950/10 text-blue-800 dark:text-blue-200'

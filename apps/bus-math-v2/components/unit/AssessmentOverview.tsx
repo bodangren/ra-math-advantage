@@ -7,6 +7,13 @@ interface AssessmentOverviewProps {
   assessment: UnitAssessment;
 }
 
+
+/**
+ * Renders the assessment overview section with performance task, milestones, and rubric.
+ *
+ * @param props - The unit assessment data
+ * @returns A section containing assessment details and grading rubric
+ */
 export function AssessmentOverview({ assessment }: AssessmentOverviewProps) {
   return (
     <section className="space-y-6">

@@ -12,6 +12,13 @@ interface CarouselProps {
   gap?: string
 }
 
+
+/**
+ * Renders a navigable carousel with prev/next buttons and dot indicators.
+ *
+ * @param props - Child slides, itemsPerView, gap, and className
+ * @returns A carousel component with navigation controls
+ */
 export function Carousel({ 
   children, 
   className,
@@ -21,10 +28,18 @@ export function Carousel({
   const [currentIndex, setCurrentIndex] = React.useState(0)
   const maxIndex = Math.max(0, children.length - itemsPerView)
 
+
+  /**
+   * Advances the carousel to the next slide.
+   */
   const next = () => {
     setCurrentIndex((prev) => Math.min(prev + 1, maxIndex))
   }
 
+
+  /**
+   * Moves the carousel to the previous slide.
+   */
   const prev = () => {
     setCurrentIndex((prev) => Math.max(prev - 1, 0))
   }

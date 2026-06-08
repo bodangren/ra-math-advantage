@@ -50,12 +50,27 @@ export interface ErrorCheckingSystemProps {
   onComplete?: () => void
 }
 
+
+/**
+ * Renders an error checking activity where users identify and mark
+ * data quality issues in a sample dataset.
+ *
+ * @param activity - Activity configuration with optional validation categories
+ * @param onSubmit - Callback fired when the user completes the audit
+ * @param onComplete - Callback fired when the audit is finalized
+ */
 export function ErrorCheckingSystem({ activity, onSubmit, onComplete }: ErrorCheckingSystemProps) {
   const [checkedRows, setCheckedRows] = useState<Set<string>>(new Set())
   const [markedIssues, setMarkedIssues] = useState<Set<string>>(new Set())
   const [completed, setCompleted] = useState(false)
   const submittedRef = useRef(false)
 
+
+  /**
+   * Toggles the checked state of a data row.
+   *
+   * @param rowId - The ID of the row to toggle
+   */
   const handleRowCheck = useCallback((rowId: string) => {
     setCheckedRows(prev => {
       const next = new Set(prev)
@@ -68,6 +83,13 @@ export function ErrorCheckingSystem({ activity, onSubmit, onComplete }: ErrorChe
     })
   }, [])
 
+
+  /**
+   * Toggles the marked state of a specific issue within a data row.
+   *
+   * @param rowId - The ID of the row containing the issue
+   * @param issueIndex - The index of the issue within the row
+   */
   const handleIssueMark = useCallback((rowId: string, issueIndex: number) => {
     const key = `${rowId}-${issueIndex}`
     setMarkedIssues(prev => {
@@ -81,6 +103,11 @@ export function ErrorCheckingSystem({ activity, onSubmit, onComplete }: ErrorChe
     })
   }, [])
 
+
+  /**
+   * Finalizes the audit, evaluates whether all issues were found, and submits
+   * the result envelope.
+   */
   const handleComplete = useCallback(() => {
     if (submittedRef.current) return
     submittedRef.current = true

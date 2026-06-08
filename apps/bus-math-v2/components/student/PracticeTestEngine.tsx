@@ -27,6 +27,13 @@ interface PracticeTestEngineProps {
 
 type Phase = 'hook' | 'introduction' | 'guided-practice' | 'independent-practice' | 'assessment' | 'closing';
 
+/**
+ * Renders a multi-phase practice test engine with question selection,
+ * answer feedback, and score tracking.
+ *
+ * @param unitConfig - The unit's question bank and lesson configuration
+ * @param onComplete - Optional callback fired when the test finishes
+ */
 export default function PracticeTestEngine({ unitConfig, onComplete }: PracticeTestEngineProps) {
   const [currentPhase, setCurrentPhase] = useState<Phase>('hook');
   const [selectedLessonIds, setSelectedLessonIds] = useState<string[]>(unitConfig.lessons.map((l) => l.id));
@@ -43,6 +50,10 @@ export default function PracticeTestEngine({ unitConfig, onComplete }: PracticeT
   const breakdownRef = useRef<Record<string, { correct: number; total: number }>>({});
   const hasCalledOnCompleteRef = useRef(false);
 
+
+  /**
+   * Advances to the next phase in the test sequence.
+   */
   const handleNextPhase = () => {
     const phases: Phase[] = ['hook', 'introduction', 'guided-practice', 'independent-practice', 'assessment', 'closing'];
     const currentIndex = phases.indexOf(currentPhase);
@@ -51,6 +62,10 @@ export default function PracticeTestEngine({ unitConfig, onComplete }: PracticeT
     }
   };
 
+
+  /**
+   * Returns to the previous phase in the test sequence.
+   */
   const handlePreviousPhase = () => {
     const phases: Phase[] = ['hook', 'introduction', 'guided-practice', 'independent-practice', 'assessment', 'closing'];
     const currentIndex = phases.indexOf(currentPhase);
@@ -59,20 +74,38 @@ export default function PracticeTestEngine({ unitConfig, onComplete }: PracticeT
     }
   };
 
+
+  /**
+   * Toggles a lesson's inclusion in the selected lesson set.
+   *
+   * @param lessonId - The lesson ID to toggle.
+   */
   const handleToggleLesson = (lessonId: string) => {
     setSelectedLessonIds((prev) =>
       prev.includes(lessonId) ? prev.filter((id) => id !== lessonId) : [...prev, lessonId]
     );
   };
 
+
+  /**
+   * Selects all available lessons for the test.
+   */
   const handleSelectAllLessons = () => {
     setSelectedLessonIds(unitConfig.lessons.map((l) => l.id));
   };
 
+
+  /**
+   * Clears all selected lessons.
+   */
   const handleClearAllLessons = () => {
     setSelectedLessonIds([]);
   };
 
+
+  /**
+   * Draws random questions from the selected lessons and starts the test.
+   */
   const handleStartTest = () => {
     const filteredQuestions = filterQuestionsByLessonIds(unitConfig.questions, selectedLessonIds);
     const drawnQuestions = drawRandomQuestions(filteredQuestions, questionCount);
@@ -98,6 +131,12 @@ export default function PracticeTestEngine({ unitConfig, onComplete }: PracticeT
     setCurrentPhase('assessment');
   };
 
+
+  /**
+   * Processes the user's answer selection and shows feedback.
+   *
+   * @param selectedAnswer - The answer choice string selected by the user.
+   */
   const handleAnswerQuestion = (selectedAnswer: string) => {
     const current = testQuestions[currentQuestionIndex];
     if (!current || hasSeenFeedback) return;
@@ -126,6 +165,10 @@ export default function PracticeTestEngine({ unitConfig, onComplete }: PracticeT
     setHasSeenFeedback(true);
   };
 
+
+  /**
+   * Advances to the next question or transitions to the closing phase.
+   */
   const handleContinueQuestion = () => {
     if (currentQuestionIndex < testQuestions.length - 1) {
       setCurrentQuestionIndex((prev) => prev + 1);
@@ -152,6 +195,10 @@ export default function PracticeTestEngine({ unitConfig, onComplete }: PracticeT
     }
   };
 
+
+  /**
+   * Resets the test state and returns to the introduction phase.
+   */
   const handleRetryTest = () => {
     scoreRef.current = 0;
     breakdownRef.current = {};

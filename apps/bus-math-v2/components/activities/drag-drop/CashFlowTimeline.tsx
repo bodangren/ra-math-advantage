@@ -44,6 +44,14 @@ const currencyFormatter = new Intl.NumberFormat('en-US', {
   maximumFractionDigits: 0
 });
 
+
+/**
+ * Renders a drag-and-drop cash flow timeline where students schedule
+ * inflows and outflows into weekly periods.
+ *
+ * @param props - Activity configuration and submission callback
+ * @returns An interactive cash flow timeline exercise
+ */
 export function CashFlowTimeline({ activity, onSubmit }: CashFlowTimelineProps) {
   const [showHints, setShowHints] = useState(activity.props.showHintsByDefault);
   const practiceMode = activity.props.showHintsByDefault ? 'guided_practice' : 'independent_practice';
@@ -62,6 +70,12 @@ export function CashFlowTimeline({ activity, onSubmit }: CashFlowTimelineProps) 
     [activity.props.cashFlowItems]
   );
 
+
+  /**
+   * Build and submit the practice submission when the exercise is completed.
+   *
+   * @param payload - Score, attempt count, and final placements
+   */
   const handleCompletion = useCallback(
     ({ score, attempts, placements }: { score: number; attempts: number; placements: Record<string, CashFlowItem[]> }) => {
       try {

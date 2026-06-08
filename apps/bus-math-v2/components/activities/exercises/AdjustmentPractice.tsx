@@ -58,6 +58,12 @@ const scenarioPool = [
   },
 ]
 
+
+/**
+ * Generates a random adjustment entry problem from the scenario pool.
+ *
+ * @returns A new AdjustmentProblem with a random scenario and distractors
+ */
 function generateProblem(): AdjustmentProblem {
   const scenario = scenarioPool[Math.floor(Math.random() * scenarioPool.length)]
   return {
@@ -81,6 +87,15 @@ export interface AdjustmentPracticeProps {
   onComplete?: () => void
 }
 
+
+/**
+ * Renders an adjustment entry practice activity where users identify correct
+ * adjusting entries for deferrals, accruals, and depreciation scenarios.
+ *
+ * @param activity - Activity configuration with optional mastery threshold
+ * @param onSubmit - Callback fired when the user submits an answer
+ * @param onComplete - Callback fired when mastery is achieved
+ */
 export function AdjustmentPractice({ activity, onSubmit, onComplete }: AdjustmentPracticeProps) {
   const masteryTarget = activity.props?.masteryThreshold ?? 5
   const [problem, setProblem] = useState<AdjustmentProblem>(generateProblem)
@@ -123,6 +138,11 @@ export function AdjustmentPractice({ activity, onSubmit, onComplete }: Adjustmen
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [problem.id])
 
+
+  /**
+   * Validates the selected answer, updates streak state, and submits
+   * the result envelope.
+   */
   const handleSubmit = useCallback(() => {
     if (submittedRef.current) return
     const selectedOption = shuffledOptions.find(o => o.label === userAnswer)
@@ -169,6 +189,10 @@ export function AdjustmentPractice({ activity, onSubmit, onComplete }: Adjustmen
     }
   }, [userAnswer, shuffledOptions, onSubmit, activity.id, problem])
 
+
+  /**
+   * Resets the component state and generates a new random adjustment problem.
+   */
   const handleNewProblem = useCallback(() => {
     setProblem(generateProblem())
     setUserAnswer('')
@@ -179,6 +203,10 @@ export function AdjustmentPractice({ activity, onSubmit, onComplete }: Adjustmen
     submittedRef.current = false
   }, [])
 
+
+  /**
+   * Displays a worked example showing the rules for adjusting entries.
+   */
   const handleShowExample = useCallback(() => {
     setShowWorkedExample(true)
   }, [])

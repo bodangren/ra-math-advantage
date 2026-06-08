@@ -12,6 +12,13 @@ interface ErrorFallbackProps {
   showRefreshFallback?: boolean;
 }
 
+
+/**
+ * Renders a user-friendly error card with optional reset and refresh actions.
+ *
+ * @param props - Error details, reset handler, title, description, and refresh flag
+ * @returns An error fallback UI with action buttons
+ */
 export function ErrorFallback({
   error,
   reset,

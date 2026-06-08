@@ -19,14 +19,29 @@ const difficultyConfig: Record<NonNullable<LessonMetadata['difficulty']>, { colo
   advanced: { color: 'bg-red-100 text-red-800', icon: '🔴', label: 'Advanced' }
 };
 
-const formatDuration = (durationLabel?: string | null, durationMinutes?: number | null) => {
+
+/**
+ * Formats a duration from a label string or numeric minutes value.
+ *
+ * @param durationLabel - Optional explicit duration label
+ * @param durationMinutes - Optional duration in minutes
+ * @returns A formatted duration string or null
+ */
+function formatDuration(durationLabel?: string | null, durationMinutes?: number | null) {
   if (durationLabel) return durationLabel;
   if (typeof durationMinutes === 'number' && Number.isFinite(durationMinutes)) {
     return `${durationMinutes} min`;
   }
   return null;
-};
+}
 
+
+/**
+ * Renders the unit header with title, description, duration badge, and difficulty level.
+ *
+ * @param props - Unit number, title, metadata, and className
+ * @returns A header element with unit badges and title
+ */
 export function UnitHeader({
   unitNumber,
   title,

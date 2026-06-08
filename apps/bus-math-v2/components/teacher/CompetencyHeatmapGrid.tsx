@@ -15,6 +15,13 @@ interface CompetencyHeatmapGridProps {
 
 type SortDirection = 'asc' | 'desc';
 
+
+/**
+ * Renders a heatmap grid showing student mastery levels across competency standards.
+ *
+ * @param props - Component props containing rows, standards, and click handlers.
+ * @returns A sortable table with color-coded mastery cells.
+ */
 export function CompetencyHeatmapGrid({ rows, standards, onStudentClick, onStandardClick, onCellClick }: CompetencyHeatmapGridProps) {
   const [sortDir, setSortDir] = useState<SortDirection>('asc');
 

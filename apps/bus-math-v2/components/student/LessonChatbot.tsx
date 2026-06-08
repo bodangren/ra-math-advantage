@@ -13,6 +13,15 @@ interface LessonChatbotProps {
 
 type ChatState = 'closed' | 'open' | 'loading' | 'response' | 'error';
 
+
+/**
+ * Renders a floating chatbot widget for asking questions about the current lesson.
+ *
+ * @param props - Component props.
+ * @param props.lessonId - The lesson ID for context.
+ * @param props.phaseNumber - The current phase number.
+ * @returns A floating chat button that expands into a chat card.
+ */
 export function LessonChatbot({ lessonId, phaseNumber }: LessonChatbotProps) {
   const [chatState, setChatState] = useState<ChatState>('closed');
   const [question, setQuestion] = useState('');
@@ -20,11 +29,19 @@ export function LessonChatbot({ lessonId, phaseNumber }: LessonChatbotProps) {
   const [error, setError] = useState('');
   const inputRef = useRef<HTMLInputElement>(null);
 
+
+  /**
+   * Opens the chatbot and focuses the input field.
+   */
   const handleOpen = () => {
     setChatState('open');
     setTimeout(() => inputRef.current?.focus(), 0);
   };
 
+
+  /**
+   * Closes the chatbot and clears all state.
+   */
   const handleClose = () => {
     setChatState('closed');
     setQuestion('');
@@ -32,6 +49,10 @@ export function LessonChatbot({ lessonId, phaseNumber }: LessonChatbotProps) {
     setError('');
   };
 
+
+  /**
+   * Resets the chat state to allow asking a new question.
+   */
   const handleReset = () => {
     setChatState('open');
     setQuestion('');
@@ -40,6 +61,12 @@ export function LessonChatbot({ lessonId, phaseNumber }: LessonChatbotProps) {
     setTimeout(() => inputRef.current?.focus(), 0);
   };
 
+
+  /**
+   * Submits the question to the lesson chatbot API and displays the response.
+   *
+   * @param e - The form submission event.
+   */
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!question.trim()) return;

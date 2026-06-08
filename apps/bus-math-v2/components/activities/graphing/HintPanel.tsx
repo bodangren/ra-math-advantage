@@ -15,6 +15,13 @@ export interface HintPanelProps {
   readonly?: boolean;
 }
 
+
+/**
+ * Panel displaying hint buttons for quadratic function analysis.
+ *
+ * @param props - Function expression and hint callback configuration.
+ * @returns A set of hint buttons with usage tracking.
+ */
 export function HintPanel({
   functionExpression,
   onHintUsed,
@@ -22,6 +29,13 @@ export function HintPanel({
 }: HintPanelProps) {
   const [usedHints, setUsedHints] = useState<Set<string>>(new Set());
 
+
+  /**
+   * Handle a hint button click by computing the hint data and notifying the
+   * parent.
+   *
+   * @param type - The type of hint to compute.
+   */
   const handleHintClick = useCallback(
     (type: HintData['type']) => {
       if (readonly || usedHints.has(type)) return;
@@ -64,6 +78,13 @@ export function HintPanel({
     [functionExpression, readonly, usedHints, onHintUsed]
   );
 
+
+  /**
+   * Get the CSS class for a hint button based on its usage state.
+   *
+   * @param type - The hint type identifier.
+   * @returns A CSS class string.
+   */
   const getButtonClass = (type: string) => {
     const isUsed = usedHints.has(type);
     return `px-4 py-2 rounded-md text-sm font-medium transition-all ${

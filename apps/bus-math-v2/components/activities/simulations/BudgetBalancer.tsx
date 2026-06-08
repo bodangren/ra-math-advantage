@@ -130,7 +130,16 @@ const EXPENSE_ICONS: Record<string, LucideIcon> = {
   'shopping-bag': ShoppingBag
 }
 
-const buildExpenseState = (expenses: BudgetBalancerActivityProps['expenses']): Record<string, BudgetBalancerExpense> =>
+
+/**
+ * Builds the initial expense state map from activity configuration.
+ *
+ * @param expenses - The expense definitions from the activity config
+ * @returns A record mapping expense IDs to their runtime state
+ */
+function buildExpenseState(expenses: BudgetBalancerActivityProps['expenses']) : Record<string, BudgetBalancerExpense> {
+  return ;
+}
   Object.fromEntries(
     expenses.map((expense) => [
       expense.id,
@@ -144,7 +153,16 @@ const buildExpenseState = (expenses: BudgetBalancerActivityProps['expenses']): R
     ])
   )
 
-const cloneExpenses = (expenses: Record<string, BudgetBalancerExpense>): Record<string, BudgetBalancerExpense> =>
+
+/**
+ * Creates a deep copy of the expenses record to avoid mutation.
+ *
+ * @param expenses - The expenses record to clone
+ * @returns A new record with copied expense objects
+ */
+function cloneExpenses(expenses: Record<string, BudgetBalancerExpense>) : Record<string, BudgetBalancerExpense> {
+  return ;
+}
   Object.fromEntries(
     Object.entries(expenses).map(([key, expense]) => [
       key,
@@ -152,10 +170,17 @@ const cloneExpenses = (expenses: Record<string, BudgetBalancerExpense>): Record<
     ])
   )
 
-const cloneBudgetStateFromConfig = (
-  state: BudgetBalancerActivityProps['initialState'],
-  expenses: BudgetBalancerActivityProps['expenses']
-): BudgetBalancerState => ({
+
+/**
+ * Clones a full budget state from the activity configuration defaults.
+ *
+ * @param state - The initial state from the activity config
+ * @param expenses - The expense definitions from the activity config
+ * @returns A fresh BudgetBalancerState instance
+ */
+function cloneBudgetStateFromConfig( state: BudgetBalancerActivityProps['initialState'], expenses: BudgetBalancerActivityProps['expenses'] ) : BudgetBalancerState {
+  return ({;
+}
   monthlyIncome: state.monthlyIncome,
   month: state.month,
   totalSavings: state.totalSavings,
@@ -164,10 +189,16 @@ const cloneBudgetStateFromConfig = (
   financialHealth: state.financialHealth
 })
 
-const mergeBudgetState = (
-  base: BudgetBalancerState,
-  override?: Partial<BudgetBalancerState>
-): BudgetBalancerState => {
+
+/**
+ * Merges a base budget state with optional partial overrides,
+ * deep-cloning expenses to avoid mutation.
+ *
+ * @param base - The base budget state
+ * @param override - Optional partial state to merge on top
+ * @returns A new merged BudgetBalancerState
+ */
+function mergeBudgetState( base: BudgetBalancerState, override?: Partial<BudgetBalancerState> ) : BudgetBalancerState {
   const mergedExpenses = cloneExpenses(base.expenses)
 
   if (override?.expenses) {
@@ -195,6 +226,16 @@ const mergeBudgetState = (
   }
 }
 
+
+/**
+ * Renders an interactive budget balancing game where students manage monthly
+ * income, required and optional expenses, savings, and financial health.
+ *
+ * @param activity - The budget balancer activity configuration
+ * @param initialState - Optional partial state override
+ * @param onStateChange - Callback fired when game state changes
+ * @param onSubmit - Callback to submit practice results
+ */
 export function BudgetBalancer({ activity, initialState, onStateChange, onSubmit }: BudgetBalancerProps) {
   const baseState = useMemo(
     () => cloneBudgetStateFromConfig(activity.props.initialState, activity.props.expenses),
@@ -225,6 +266,13 @@ export function BudgetBalancer({ activity, initialState, onStateChange, onSubmit
     .filter(expense => expense.required)
     .reduce((sum, expense) => sum + expense.amount, 0)
 
+
+  /**
+   * Updates a single expense amount in the temporary input state.
+   *
+   * @param expenseKey - The expense identifier to update
+   * @param newAmount - The new amount value (clamped to 0 minimum)
+   */
   const updateExpense = (expenseKey: string, newAmount: number) => {
     setTempExpenses(prev => ({
       ...prev,
@@ -340,6 +388,13 @@ export function BudgetBalancer({ activity, initialState, onStateChange, onSubmit
     }
   }
 
+
+  /**
+   * Returns a Tailwind text color class based on the financial health score.
+   *
+   * @param health - The health score (0-100)
+   * @returns A Tailwind color class string
+   */
   const getHealthColor = (health: number) => {
     if (health >= 80) return 'text-green-600'
     if (health >= 60) return 'text-yellow-600'

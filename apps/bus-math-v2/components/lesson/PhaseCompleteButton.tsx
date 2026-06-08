@@ -36,6 +36,13 @@ interface PhaseCompleteButtonProps {
 const DEFAULT_IDLE_LABEL = 'Mark Complete';
 const DEFAULT_COMPLETED_LABEL = 'Completed';
 
+
+/**
+ * Renders a button to mark a lesson phase as complete with optimistic updates and toast feedback.
+ *
+ * @param props - Lesson/phase identifiers, labels, and status callbacks
+ * @returns A completion button with helper text and optional toast notification
+ */
 export function PhaseCompleteButton({
   lessonId,
   phaseNumber,
@@ -52,6 +59,12 @@ export function PhaseCompleteButton({
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const previousStatusRef = useRef<ProgressStatus>(initialStatus);
 
+
+  /**
+   * Updates the local status and fires the onStatusChange callback.
+   *
+   * @param nextStatus - The new progress status to apply
+   */
   const handleStatusChange = useCallback(
     (nextStatus: ProgressStatus) => {
       setStatus(nextStatus);
@@ -60,6 +73,12 @@ export function PhaseCompleteButton({
     [onStatusChange],
   );
 
+
+  /**
+   * Displays a temporary toast notification.
+   *
+   * @param payload - Toast message, description, and variant
+   */
   const showToast = useCallback((payload: ToastState) => {
     setToast(payload);
   }, []);
@@ -106,6 +125,10 @@ export function PhaseCompleteButton({
 
   const buttonLabel = isCompleted ? completedLabel : idleLabel;
 
+
+  /**
+   * Optimistically marks the phase as complete and calls the server mutation.
+   */
   const markPhaseComplete = useCallback(async () => {
     if (isButtonDisabled) {
       return;
@@ -172,6 +195,13 @@ interface ToastProps extends ToastState {
   onDismiss: () => void;
 }
 
+
+/**
+ * Renders a portal-based toast notification with success or error styling.
+ *
+ * @param props - Toast message, description, variant, and dismiss handler
+ * @returns A portal-rendered toast element or null on the server
+ */
 function Toast({ message, description, variant, onDismiss }: ToastProps) {
   if (typeof document === 'undefined') {
     return null;

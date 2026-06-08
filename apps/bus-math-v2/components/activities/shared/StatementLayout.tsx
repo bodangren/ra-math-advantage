@@ -56,6 +56,12 @@ export interface StatementLayoutProps {
   mode?: PracticeMode;
 }
 
+/**
+ * Returns Tailwind CSS classes for row border and background based on feedback status.
+ *
+ * @param status - The feedback status of the row
+ * @returns CSS class string for the row's visual state
+ */
 function getRowStatusClasses(status?: StatementLayoutFeedback['status']) {
   if (status === 'correct') {
     return 'border-emerald-500/40 bg-emerald-50/70';
@@ -72,6 +78,14 @@ function getRowStatusClasses(status?: StatementLayoutFeedback['status']) {
   return 'border-border bg-background';
 }
 
+
+/**
+ * Renders a small chip displaying a label-value pair used in the
+ * review summary grid.
+ *
+ * @param props - The label and formatted value to display.
+ * @returns A styled chip element.
+ */
 function SummaryChip({ label, value }: StatementLayoutSummaryItem) {
   return (
     <div className="min-w-0 rounded-lg border border-border bg-muted/30 px-3 py-2">
@@ -81,14 +95,36 @@ function SummaryChip({ label, value }: StatementLayoutSummaryItem) {
   );
 }
 
+
+/**
+ * Checks whether a row's label text is user-editable.
+ *
+ * @param row - The statement layout row to test.
+ * @returns `true` if the row is editable and targets the label field.
+ */
 function isLabelEditableRow(row: StatementLayoutRow) {
   return row.kind === 'editable' && row.editableField === 'label';
 }
 
+
+/**
+ * Checks whether a row's amount value is user-editable.
+ *
+ * @param row - The statement layout row to test.
+ * @returns `true` if the row is editable and targets the amount field.
+ */
 function isAmountEditableRow(row: StatementLayoutRow) {
   return row.kind === 'editable' && row.editableField !== 'label';
 }
 
+
+/**
+ * Format a statement amount for display, wrapping negative values in
+ * parentheses.
+ *
+ * @param value - The amount to format.
+ * @returns A formatted string or a dash for empty values.
+ */
 function formatStatementAmount(value: number | string | '' | null | undefined) {
   if (value === '' || value === null || value === undefined) {
     return '—';
@@ -102,6 +138,15 @@ function formatStatementAmount(value: number | string | '' | null | undefined) {
   return formatAccountingAmount(value);
 }
 
+
+/**
+ * Determine the border rule for a subtotal row.
+ *
+ * @param row - The statement layout row.
+ * @param index - The row's position in the section.
+ * @param rows - All rows in the section.
+ * @returns `'single'`, `'double'`, or `'none'`.
+ */
 function getRowRule(row: StatementLayoutRow, index: number, rows: StatementLayoutRow[]) {
   if (row.kind !== 'subtotal') {
     return 'none';
@@ -110,6 +155,15 @@ function getRowRule(row: StatementLayoutRow, index: number, rows: StatementLayou
   return index === rows.length - 1 ? 'double' : 'single';
 }
 
+
+/**
+ * Financial statement layout with editable line items, subtotal computation,
+ * section grouping, and teacher feedback.
+ *
+ * @param props - Title, sections, values, mode, and feedback configuration.
+ * @returns A Card containing the statement grid with desktop and mobile
+ *   layouts.
+ */
 export function StatementLayout({
   title,
   description,
@@ -135,6 +189,12 @@ export function StatementLayout({
     }
   }, [defaultValues, values]);
 
+
+  /**
+   * Update the current values and propagate to controlled state.
+   *
+   * @param nextValues - The new values record.
+   */
   const updateValues = (nextValues: Record<string, string>) => {
     if (values === undefined) {
       setInternalValues(nextValues);
@@ -177,6 +237,13 @@ export function StatementLayout({
     ];
   }, [reviewSummary, teacherView, sections, rowCount, rowFeedback]);
 
+
+  /**
+   * Compute a subtotal row's value by summing its referenced rows.
+   *
+   * @param row - The subtotal row with a sumOf reference list.
+   * @returns The computed subtotal value.
+   */
   const computeSubtotal = (row: StatementLayoutRow) => {
     if (!row.sumOf?.length) {
       return row.value ?? '';
@@ -185,6 +252,13 @@ export function StatementLayout({
     return row.sumOf.reduce((sum, rowId) => sum + toNumber(currentValues[rowId] ?? rowLookup.get(rowId)?.value ?? 0), 0);
   };
 
+
+  /**
+   * Resolve the raw value to display for a statement row.
+   *
+   * @param row - The statement layout row.
+   * @returns The value to display or edit.
+   */
   const renderAmountValue = (row: StatementLayoutRow) => {
     if (row.kind === 'subtotal') {
       const subtotal = computeSubtotal(row);
@@ -202,6 +276,14 @@ export function StatementLayout({
     return row.value ?? '';
   };
 
+
+  /**
+   * Format a row value for display.
+   *
+   * @param row - The statement layout row.
+   * @param value - The raw value to format.
+   * @returns A formatted display string.
+   */
   const renderDisplayValue = (row: StatementLayoutRow, value: number | string | '') => {
     if (isLabelEditableRow(row) || isAmountEditableRow(row)) {
       return formatStatementAmount(value);
@@ -210,6 +292,17 @@ export function StatementLayout({
     return formatStatementAmount(value);
   };
 
+
+  /**
+   * Render a single statement row in desktop or mobile variant.
+   *
+   * @param row - The statement layout row.
+   * @param rowIndex - The row's position in the section.
+   * @param rows - All rows in the section.
+   * @param rowFeedbackForRow - Optional feedback for this row.
+   * @param variant - Whether to render the desktop or mobile layout.
+   * @returns A JSX element for the row.
+   */
   const renderRow = (
     row: StatementLayoutRow,
     rowIndex: number,

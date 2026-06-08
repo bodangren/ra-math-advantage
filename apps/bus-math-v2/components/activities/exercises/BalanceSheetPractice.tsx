@@ -80,6 +80,12 @@ const scenarioPool = [
   },
 ]
 
+
+/**
+ * Generates a random balance sheet problem from the scenario pool.
+ *
+ * @returns A new BalanceSheetProblem with a random scenario and distractors
+ */
 function generateProblem(): BalanceSheetProblem {
   const scenario = scenarioPool[Math.floor(Math.random() * scenarioPool.length)]
   return {
@@ -103,6 +109,15 @@ export interface BalanceSheetPracticeProps {
   onComplete?: () => void
 }
 
+
+/**
+ * Renders a balance sheet practice activity where users answer questions
+ * about assets, liabilities, equity, and the accounting equation.
+ *
+ * @param activity - Activity configuration with optional mastery threshold
+ * @param onSubmit - Callback fired when the user submits an answer
+ * @param onComplete - Callback fired when mastery is achieved
+ */
 export function BalanceSheetPractice({ activity, onSubmit, onComplete }: BalanceSheetPracticeProps) {
   const masteryTarget = activity.props?.masteryThreshold ?? 5
   const [problem, setProblem] = useState<BalanceSheetProblem>(generateProblem)
@@ -145,6 +160,11 @@ export function BalanceSheetPractice({ activity, onSubmit, onComplete }: Balance
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [problem.id])
 
+
+  /**
+   * Validates the selected answer, updates streak state, and submits
+   * the result envelope.
+   */
   const handleSubmit = useCallback(() => {
     if (submittedRef.current) return
     const selectedOption = shuffledOptions.find(o => o.label === userAnswer)
@@ -191,6 +211,10 @@ export function BalanceSheetPractice({ activity, onSubmit, onComplete }: Balance
     }
   }, [userAnswer, shuffledOptions, onSubmit, activity.id, problem])
 
+
+  /**
+   * Resets the component state and generates a new random balance sheet problem.
+   */
   const handleNewProblem = useCallback(() => {
     setProblem(generateProblem())
     setUserAnswer('')
@@ -201,6 +225,10 @@ export function BalanceSheetPractice({ activity, onSubmit, onComplete }: Balance
     submittedRef.current = false
   }, [])
 
+
+  /**
+   * Displays a worked example with balance sheet reminders and formulas.
+   */
   const handleShowExample = useCallback(() => {
     setShowWorkedExample(true)
   }, [])

@@ -2,6 +2,13 @@
 
 import { BaseReviewSession } from "./BaseReviewSession";
 
+
+/**
+ * Renders a flashcard review session using the BaseReviewSession component
+ * with flashcard-specific headers and messaging.
+ *
+ * @returns A flashcard player page.
+ */
 export function FlashcardPlayer() {
   return (
     <BaseReviewSession

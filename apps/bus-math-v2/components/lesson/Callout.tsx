@@ -42,6 +42,13 @@ const variantConfig = {
   },
 };
 
+
+/**
+ * Renders a styled callout box for tips, warnings, examples, or key insights.
+ *
+ * @param props - Variant type, content text, and optional className
+ * @returns A themed callout alert component
+ */
 export function Callout({ variant, content, className }: CalloutProps) {
   const config = variantConfig[variant];
   const Icon = config.icon;

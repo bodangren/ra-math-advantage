@@ -22,6 +22,15 @@ interface ClassHealthCardProps {
   health: ClassHealthSummary | null;
 }
 
+
+/**
+ * Renders a class health summary card showing SRS metrics like retention rate,
+ * overdue cards, and cards due today.
+ *
+ * @param props - Component props.
+ * @param props.health - The class health summary data, or null while loading.
+ * @returns A styled card with class SRS health metrics.
+ */
 export function ClassHealthCard({ health }: ClassHealthCardProps) {
   if (!health) {
     return (

@@ -142,13 +142,30 @@ const STAGE_ICONS: Record<string, LucideIcon> = {
   zap: Zap
 }
 
-const cloneStateFromConfig = (state: StartupJourneyActivityProps['initialState']): StartupJourneyState => ({
+
+/**
+ * Clones the initial startup state from the activity configuration.
+ *
+ * @param state - The initial state from the activity config
+ * @returns A fresh StartupJourneyState instance
+ */
+function cloneStateFromConfig(state: StartupJourneyActivityProps['initialState']) : StartupJourneyState {
+  return ({;
+}
   ...state,
   decisions: [...state.decisions],
   currentDecisionId: state.currentDecisionId ?? null
 })
 
-const mergeStartupState = (base: StartupJourneyState, override?: Partial<StartupJourneyState>): StartupJourneyState => {
+
+/**
+ * Merges a base startup state with optional partial overrides.
+ *
+ * @param base - The base game state
+ * @param override - Optional partial state to merge on top
+ * @returns A new merged StartupJourneyState
+ */
+function mergeStartupState(base: StartupJourneyState, override?: Partial<StartupJourneyState>) : StartupJourneyState {
   if (!override) {
     return {
       ...base,
@@ -172,6 +189,16 @@ const mergeStartupState = (base: StartupJourneyState, override?: Partial<Startup
   }
 }
 
+
+/**
+ * Renders an interactive startup journey simulation where students make
+ * strategic funding, team, and product decisions to grow a tech startup.
+ *
+ * @param activity - The startup journey activity configuration
+ * @param initialState - Optional partial state override
+ * @param onStateChange - Callback fired when game state changes
+ * @param onSubmit - Callback to submit practice results
+ */
 export function StartupJourney({ activity, initialState, onStateChange, onSubmit }: StartupJourneyProps) {
   const baseState = useMemo(() => cloneStateFromConfig(activity.props.initialState), [activity.props.initialState])
   const [gameState, setGameState] = useState<StartupJourneyState>(() => mergeStartupState(baseState, initialState))
@@ -258,11 +285,25 @@ export function StartupJourney({ activity, initialState, onStateChange, onSubmit
     return () => { timeouts.forEach(clearTimeout) }
   }, [])
 
+
+  /**
+   * Returns a Tailwind badge class for a given stage ID.
+   *
+   * @param stageId - The stage identifier
+   * @returns Tailwind classes for badge styling
+   */
   const getStageBadgeClass = useCallback(
     (stageId: string) => stageMap.get(stageId)?.badgeClassName ?? 'bg-slate-100 text-slate-800 border-slate-300',
     [stageMap]
   )
 
+
+  /**
+   * Returns the next stage ID after the current stage in the stage order.
+   *
+   * @param currentStage - The current stage ID
+   * @returns The next stage ID, or the current if at the end
+   */
   const advanceStage = useCallback(
     (currentStage: string) => {
       const index = stageOrder.indexOf(currentStage)
@@ -274,6 +315,14 @@ export function StartupJourney({ activity, initialState, onStateChange, onSubmit
     [stageOrder]
   )
 
+
+  /**
+   * Returns the next uncompleted decision ID for a given stage.
+   *
+   * @param stageId - The stage to check
+   * @param completed - Array of already-completed decision IDs
+   * @returns The next decision ID, or null if all are complete
+   */
   const getNextDecisionId = useCallback(
     (stageId: string, completed: string[]) => {
       const flow = decisionFlowMap.get(stageId) ?? []
@@ -282,6 +331,12 @@ export function StartupJourney({ activity, initialState, onStateChange, onSubmit
     [decisionFlowMap]
   )
 
+
+  /**
+   * Calculates the number of months of runway remaining at the current burn rate.
+   *
+   * @returns Months of runway (or 999 if burn is zero)
+   */
   const calculateRunway = useCallback(() => {
     return gameState.monthlyBurn > 0 ? Math.floor(gameState.funding / gameState.monthlyBurn) : 999
   }, [gameState.funding, gameState.monthlyBurn])
@@ -293,6 +348,13 @@ export function StartupJourney({ activity, initialState, onStateChange, onSubmit
   const stageProgress = stageInfo?.progress ?? 0
   const successStageName = stageMap.get(winConditions.successStageId)?.name ?? winConditions.successStageId
 
+
+  /**
+   * Adds a temporary notification toast that auto-dismisses after 5 seconds.
+   *
+   * @param message - The notification message text
+   * @param type - The notification severity type
+   */
   const addNotification = useCallback((message: string, type: 'success' | 'warning' | 'error' | 'info') => {
     const id = `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`
     setNotifications(prev => [...prev, { id, message, type }])
@@ -302,6 +364,14 @@ export function StartupJourney({ activity, initialState, onStateChange, onSubmit
     notificationTimeoutsRef.current.push(timeoutId)
   }, [])
 
+
+  /**
+   * Applies a strategic decision option, updating funding, burn, users,
+   * revenue, and potentially advancing the startup stage.
+   *
+   * @param decisionId - The decision to resolve
+   * @param optionId - The chosen option within the decision
+   */
   const makeDecision = useCallback(
     (decisionId: string, optionId: string) => {
       const decision = decisionMap.get(decisionId)
@@ -364,6 +434,11 @@ export function StartupJourney({ activity, initialState, onStateChange, onSubmit
     [advanceStage, addNotification, decisionFlowMap, decisionMap, getNextDecisionId]
   )
 
+
+  /**
+   * Advances the simulation by one month, growing users, generating
+   * revenue, deducting burn, and checking win/loss conditions.
+   */
   const advanceMonth = useCallback(() => {
     if (gameState.gameStatus !== 'playing') return
 

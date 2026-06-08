@@ -19,12 +19,24 @@ interface LessonStepperProps {
   className?: string;
 }
 
+
+/**
+ * Renders a horizontal stepper showing lesson phase progress with clickable steps.
+ *
+ * @param props - Phase list, current phase, click handler, and className
+ * @returns A navigation stepper with desktop and mobile layouts
+ */
 export function LessonStepper({
   phases,
   currentPhase,
   onPhaseClick,
   className,
 }: LessonStepperProps) {
+  /**
+   * Handles clicks on a stepper phase, delegating to onPhaseClick if allowed.
+   *
+   * @param phase - The stepper phase that was clicked
+   */
   const handlePhaseClick = (phase: StepperPhase) => {
     // Allow clicking on completed, current, or available phases
     if (phase.status === 'completed' || phase.status === 'current' || phase.status === 'available') {
@@ -78,6 +90,13 @@ interface StepButtonProps {
   compact?: boolean;
 }
 
+
+/**
+ * Renders a single phase button in the lesson stepper.
+ *
+ * @param props - Phase data, current state, click handler, and compact flag
+ * @returns A circular step button with status icon
+ */
 function StepButton({ phase, isCurrent, onClick, compact = false }: StepButtonProps) {
   const isClickable = phase.status === 'completed' || phase.status === 'current' || phase.status === 'available';
   const isLocked = phase.status === 'locked';
@@ -139,6 +158,13 @@ interface StepConnectorProps {
   completed: boolean;
 }
 
+
+/**
+ * Renders a horizontal connector line between stepper steps.
+ *
+ * @param props - Whether the preceding step is completed
+ * @returns A colored horizontal line element
+ */
 function StepConnector({ completed }: StepConnectorProps) {
   return (
     <div

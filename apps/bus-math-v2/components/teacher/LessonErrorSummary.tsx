@@ -44,16 +44,37 @@ interface LessonErrorSummaryProps {
 // Helpers
 // ---------------------------------------------------------------------------
 
+
+/**
+ * Formats an accuracy rate as a percentage string with no decimal places.
+ *
+ * @param rate - Accuracy rate as a decimal (0 to 1).
+ * @returns A formatted percentage string (e.g. "85%").
+ */
 function formatAccuracy(rate: number): string {
   return `${(rate * 100).toFixed(0)}%`;
 }
 
+
+/**
+ * Returns a Tailwind text color class based on an accuracy rate threshold.
+ *
+ * @param rate - Accuracy rate as a decimal (0 to 1).
+ * @returns A Tailwind text color class string.
+ */
 function accuracyColor(rate: number): string {
   if (rate >= 0.8) return 'text-green-700';
   if (rate >= 0.6) return 'text-amber-600';
   return 'text-red-600';
 }
 
+
+/**
+ * Returns a Tailwind progress bar color class based on an accuracy rate threshold.
+ *
+ * @param rate - Accuracy rate as a decimal (0 to 1).
+ * @returns A Tailwind class for the progress bar fill color.
+ */
 function progressColor(rate: number): string {
   if (rate >= 0.8) return '[&>div]:bg-green-500';
   if (rate >= 0.6) return '[&>div]:bg-amber-500';
@@ -64,6 +85,14 @@ function progressColor(rate: number): string {
 // Sub-components
 // ---------------------------------------------------------------------------
 
+
+/**
+ * Renders a single misconception row with tag label, category badge, and count.
+ *
+ * @param props - Component props.
+ * @param props.misconception - The misconception summary to display.
+ * @returns A styled misconception row element.
+ */
 function MisconceptionRow({
   misconception,
 }: {
@@ -96,6 +125,14 @@ function MisconceptionRow({
   );
 }
 
+
+/**
+ * Renders a single part accuracy row with a progress bar and correct/total counts.
+ *
+ * @param props - Component props.
+ * @param props.part - The part outcome summary to display.
+ * @returns A styled part accuracy element.
+ */
 function PartAccuracyRow({ part }: { part: PartOutcomeSummary }) {
   return (
     <div className="space-y-1.5">

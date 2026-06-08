@@ -16,6 +16,13 @@ type SpeedRoundQuestion = {
   termSlug: string;
 };
 
+
+/**
+ * Renders a timed speed-round quiz game where students answer as many
+ * multiple-choice term-definition questions as possible before time runs out.
+ *
+ * @returns A speed round game page with timer, lives, streak, and score display.
+ */
 export function SpeedRoundGame() {
   const { languageMode } = useStudyPreferences();
   const recordSession = useRecordSession();
@@ -51,6 +58,13 @@ export function SpeedRoundGame() {
     return availableTerms;
   }, [unitParam]);
 
+
+  /**
+   * Generates a new speed-round question from available terms.
+   *
+   * @param excludeTerms - Set of term slugs to exclude from selection.
+   * @returns A question object with term, options, and updated exclusion set.
+   */
   const generateQuestion = useMemo(() => {
     return (excludeTerms: Set<string>) => {
       const availableTerms = terms.filter((t) => !excludeTerms.has(t.slug));
@@ -114,6 +128,12 @@ export function SpeedRoundGame() {
     };
   }, []);
 
+
+  /**
+   * Processes the user's answer, updates streak/lives, and advances the game.
+   *
+   * @param selectedOption - The selected answer option string.
+   */
   const handleAnswer = (selectedOption: string) => {
     if (!currentQuestion || feedback) return;
     setTotalQuestions((prev) => prev + 1);
@@ -176,6 +196,10 @@ export function SpeedRoundGame() {
     }
   };
 
+
+  /**
+   * Resets all game state to start a fresh speed round.
+   */
   const resetGame = () => {
     if (feedbackTimeoutRef.current) {
       clearTimeout(feedbackTimeoutRef.current);
@@ -199,6 +223,13 @@ export function SpeedRoundGame() {
     });
   };
 
+
+  /**
+   * Formats seconds into a "M:SS" time string.
+   *
+   * @param seconds - Time in seconds.
+   * @returns A formatted time string.
+   */
   const formatTime = (seconds: number) => {
     const mins = Math.floor(seconds / 60);
     const secs = seconds % 60;

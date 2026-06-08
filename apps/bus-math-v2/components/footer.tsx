@@ -24,6 +24,12 @@ const sections = [
   },
 ];
 
+
+/**
+ * Renders the site footer with quick links, teacher resources, and branding.
+ *
+ * @returns The shared footer component configured for this app
+ */
 export function Footer() {
   return (
     <SharedFooter

@@ -18,6 +18,13 @@ type CardItem = {
 
 type MatchState = "idle" | "selected" | "matched" | "wrong";
 
+
+/**
+ * Renders a term-definition matching game where students pair terms with
+ * their correct definitions by clicking cards.
+ *
+ * @returns A matching game page with card grid, timer, and reset controls.
+ */
 export function MatchingGame() {
   const { languageMode } = useStudyPreferences();
   const recordSession = useRecordSession();
@@ -84,6 +91,13 @@ export function MatchingGame() {
     };
   }, []);
 
+
+  /**
+   * Determines the visual state of a card (idle, selected, matched, or wrong).
+   *
+   * @param card - The card item to check.
+   * @returns The current match state for the card.
+   */
   const getCardState = (card: CardItem): MatchState => {
     if (matchedPairs.has(card.pairId)) return "matched";
     if (wrongPair.has(card.id)) return "wrong";
@@ -91,6 +105,12 @@ export function MatchingGame() {
     return "idle";
   };
 
+
+  /**
+   * Handles a card click: selects, deselects, matches, or marks as wrong.
+   *
+   * @param card - The clicked card item.
+   */
   const handleCardClick = (card: CardItem) => {
     if (matchedPairs.has(card.pairId)) return;
     if (wrongPair.size > 0) return;
@@ -131,6 +151,10 @@ export function MatchingGame() {
     }
   };
 
+
+  /**
+   * Resets the game with freshly shuffled cards.
+   */
   const resetGame = () => {
     if (wrongPairTimeoutRef.current) {
       clearTimeout(wrongPairTimeoutRef.current);
@@ -163,6 +187,13 @@ export function MatchingGame() {
     setElapsedTime(0);
   };
 
+
+  /**
+   * Formats milliseconds into a "M:SS" time string.
+   *
+   * @param ms - Time in milliseconds.
+   * @returns A formatted time string.
+   */
   const formatTime = (ms: number) => {
     const seconds = Math.floor(ms / 1000);
     const minutes = Math.floor(seconds / 60);

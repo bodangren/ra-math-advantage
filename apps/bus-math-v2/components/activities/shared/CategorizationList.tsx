@@ -70,10 +70,24 @@ export interface CategorizationListProps<T extends CategorizationListItem> {
   describeItem?: (item: T) => { label: string; description?: string; details?: Record<string, unknown> };
 }
 
+
+/**
+ * Normalize a string by trimming whitespace and converting to lowercase.
+ *
+ * @param value - The string to normalize.
+ * @returns The lowercased, trimmed string.
+ */
 function normalizeText(value: string) {
   return value.trim().toLowerCase();
 }
 
+
+/**
+ * Determine the layout preset based on zone names for specialized grid arrangements.
+ *
+ * @param zones - The list of categorization zones to inspect.
+ * @returns A layout preset identifier matching the zone configuration.
+ */
 function getLayoutPreset(zones: CategorizationListZone[]): CategorizationLayoutPreset {
   const names = zones.flatMap((zone) => [normalizeText(zone.id), normalizeText(zone.label)]);
 
@@ -92,6 +106,13 @@ function getLayoutPreset(zones: CategorizationListZone[]): CategorizationLayoutP
   return 'default';
 }
 
+
+/**
+ * Convert a details record into an array of "key: value" display strings.
+ *
+ * @param details - Optional record of detail entries to format.
+ * @returns An array of formatted label/value strings, or an empty array.
+ */
 function formatDetailLines(details?: Record<string, unknown>) {
   if (!details) {
     return [];
@@ -114,6 +135,14 @@ function formatDetailLines(details?: Record<string, unknown>) {
   });
 }
 
+
+/**
+ * Render a definition list of item detail entries.
+ *
+ * @param props - Component props.
+ * @param props.details - Optional record of key/value details to display.
+ * @returns A `<dl>` element or null when no details are provided.
+ */
 function ItemDetails({ details }: { details?: Record<string, unknown> }) {
   const lines = formatDetailLines(details);
   if (lines.length === 0) {
@@ -135,6 +164,17 @@ function ItemDetails({ details }: { details?: Record<string, unknown> }) {
   );
 }
 
+
+/**
+ * Wrapper section for a categorization zone with themed border and header.
+ *
+ * @param props - Component props.
+ * @param props.zone - Zone metadata (id, label, description, emoji).
+ * @param props.showHints - Whether to display the "why it matters" hint.
+ * @param props.highlighted - Whether to apply a highlight ring.
+ * @param props.children - Content rendered inside the zone body.
+ * @returns A styled `<section>` element representing the zone.
+ */
 function ZoneShell({
   zone,
   showHints,
@@ -183,6 +223,19 @@ function ZoneShell({
   );
 }
 
+
+/**
+ * Build a read-only review card for a single categorization item.
+ *
+ * @typeParam T - The concrete item type extending CategorizationListItem.
+ * @param options - Review card configuration.
+ * @param options.item - The categorization item to display.
+ * @param options.showHints - Whether to show item detail hints.
+ * @param options.teacherView - Whether to display teacher feedback badges.
+ * @param options.feedback - Optional review feedback for this item.
+ * @param options.zoneLabel - Display label of the zone the item was placed in.
+ * @returns A JSX element representing the review card.
+ */
 function buildReviewCard<T extends CategorizationListItem>({
   item,
   showHints,
@@ -238,6 +291,19 @@ function buildReviewCard<T extends CategorizationListItem>({
   );
 }
 
+
+/**
+ * Build a draggable interactive card for a categorization item.
+ *
+ * @typeParam T - The concrete item type extending CategorizationListItem.
+ * @param options - Interactive card configuration.
+ * @param options.item - The categorization item to render.
+ * @param options.index - Position index within the droppable list.
+ * @param options.describeItem - Optional override for item display metadata.
+ * @param options.showHints - Whether to show item detail hints.
+ * @param options.renderMoveControl - Callback to render the move-to-zone control.
+ * @returns A Draggable-wrapped JSX element for the item.
+ */
 function buildInteractiveCard<T extends CategorizationListItem>({
   item,
   index,
@@ -277,6 +343,18 @@ function buildInteractiveCard<T extends CategorizationListItem>({
   );
 }
 
+
+/**
+ * Build the zone grid layout, applying a specialized arrangement for
+ * the account-type preset when applicable.
+ *
+ * @param options - Zone list configuration.
+ * @param options.zones - All categorization zones to render.
+ * @param options.layoutPreset - Layout preset controlling grid arrangement.
+ * @param options.showHints - Whether to display zone-level hints.
+ * @param options.renderZone - Callback that renders content inside each zone.
+ * @returns A JSX element containing the zone grid.
+ */
 function buildZoneList({
   zones,
   layoutPreset,
@@ -342,6 +420,17 @@ function buildZoneList({
   );
 }
 
+
+/**
+ * Read-only review view of a completed categorization exercise.
+ *
+ * Displays items in their placed zones with optional teacher feedback
+ * and a submission summary dashboard.
+ *
+ * @typeParam T - The concrete item type extending CategorizationListItem.
+ * @param props - Categorization list props including review data.
+ * @returns A Card component showing the review layout.
+ */
 function CategorizationReview<T extends CategorizationListItem>({
   title,
   description,
@@ -483,6 +572,17 @@ function CategorizationReview<T extends CategorizationListItem>({
   );
 }
 
+
+/**
+ * Interactive drag-and-drop categorization exercise.
+ *
+ * Manages item placement via drag-and-drop and select controls,
+ * tracks score and attempts, and announces moves for accessibility.
+ *
+ * @typeParam T - The concrete item type extending CategorizationListItem.
+ * @param props - Categorization list props for the interactive mode.
+ * @returns A Card component with the full interactive exercise UI.
+ */
 function CategorizationInteractive<T extends CategorizationListItem>({
   title,
   description,
@@ -693,6 +793,17 @@ function CategorizationInteractive<T extends CategorizationListItem>({
   );
 }
 
+
+/**
+ * Top-level categorization list component.
+ *
+ * Delegates to the interactive drag-and-drop view or the read-only
+ * review view based on the `readOnly` prop.
+ *
+ * @typeParam T - The concrete item type extending CategorizationListItem.
+ * @param props - Categorization list configuration and callbacks.
+ * @returns The interactive or review categorization component.
+ */
 export function CategorizationList<T extends CategorizationListItem>(props: CategorizationListProps<T>) {
   if (props.readOnly) {
     return <CategorizationReview {...props} />;

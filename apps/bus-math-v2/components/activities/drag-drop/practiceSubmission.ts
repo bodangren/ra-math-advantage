@@ -28,6 +28,14 @@ export type CategorizationSupportedModes = readonly ['guided_practice', 'indepen
 export const CATEGORIZATION_SUPPORTED_MODES = ['guided_practice', 'independent_practice'] as const satisfies CategorizationSupportedModes;
 export const SEQUENCE_SUPPORTED_MODES = ['independent_practice'] as const;
 
+
+/**
+ * Build item metadata with id, targetId, label, description, and details.
+ *
+ * @param item - The categorization item
+ * @param describeItem - Function to extract metadata from the item
+ * @returns An item details object for the submission artifact
+ */
 function buildItemDetails<T extends { id: string; targetId?: string }>(
   item: T,
   describeItem: (item: T) => ItemMetadata,
@@ -42,6 +50,13 @@ function buildItemDetails<T extends { id: string; targetId?: string }>(
   };
 }
 
+
+/**
+ * Build a practice submission envelope for a categorization (drag-and-drop) exercise.
+ *
+ * @param args - Activity id, mode, items, placements, zones, and metadata
+ * @returns A fully formed practice submission envelope
+ */
 export function buildCategorizationPracticeSubmission<T extends CategorizationItem>(args: {
   activityId: string;
   mode: PracticeMode;
@@ -106,6 +121,13 @@ export function buildCategorizationPracticeSubmission<T extends CategorizationIt
   });
 }
 
+
+/**
+ * Build a practice submission envelope for a sequential ordering exercise.
+ *
+ * @param args - Activity id, mode, arrangement, expected order, and metadata
+ * @returns A fully formed practice submission envelope
+ */
 export function buildSequentialPracticeSubmission<T extends { id: string }>(args: {
   activityId: string;
   mode: PracticeMode;

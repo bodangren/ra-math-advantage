@@ -14,6 +14,15 @@ export interface TeachingModePanelProps {
   className?: string;
 }
 
+
+/**
+ * Step-by-step teaching mode panel for guided instruction with a next-step
+ * button and highlighted active step.
+ *
+ * @param props - Title, summary, steps, action label, and optional class
+ *   name.
+ * @returns A styled panel with numbered steps and navigation controls.
+ */
 export function TeachingModePanel({
   title = 'Teaching mode',
   summary,

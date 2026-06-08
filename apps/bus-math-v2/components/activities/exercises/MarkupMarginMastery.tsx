@@ -33,14 +33,36 @@ const productPool = [
   { name: 'phone case', costRange: [3, 8], sellingRange: [10, 20] },
 ]
 
+
+/**
+ * Generates a random integer between min and max, inclusive.
+ *
+ * @param min - Lower bound (inclusive)
+ * @param max - Upper bound (inclusive)
+ * @returns A random integer in the given range
+ */
 function randInt(min: number, max: number): number {
   return Math.floor(Math.random() * (max - min + 1)) + min
 }
 
+
+/**
+ * Rounds a decimal value to the nearest whole percent.
+ *
+ * @param val - The decimal value to convert (e.g., 0.456)
+ * @returns The value rounded to the nearest integer percent (e.g., 46)
+ */
 function roundToNearestPercent(val: number): number {
   return Math.round(val * 100)
 }
 
+
+/**
+ * Generates a random markup and margin problem with a product,
+ * cost price, selling price, and common calculation errors as distractors.
+ *
+ * @returns A new MarkupMarginProblem with computed markup and margin values
+ */
 function generateProblem(): MarkupMarginProblem {
   const product = productPool[Math.floor(Math.random() * productPool.length)]
   const costPrice = randInt(product.costRange[0] * 100, product.costRange[1] * 100) / 100
@@ -98,6 +120,15 @@ export interface MarkupMarginMasteryProps {
   onComplete?: () => void
 }
 
+
+/**
+ * Renders a markup and margin mastery activity where users calculate
+ * markup percentage and margin percentage for various products.
+ *
+ * @param activity - Activity configuration with optional mastery threshold
+ * @param onSubmit - Callback fired when the user submits an answer
+ * @param onComplete - Callback fired when mastery is achieved
+ */
 export function MarkupMarginMastery({ activity, onSubmit, onComplete }: MarkupMarginMasteryProps) {
   const masteryTarget = activity.props?.masteryThreshold ?? 5
   const [problem, setProblem] = useState<MarkupMarginProblem>(generateProblem)
@@ -140,6 +171,11 @@ export function MarkupMarginMastery({ activity, onSubmit, onComplete }: MarkupMa
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [problem.id])
 
+
+  /**
+   * Validates the selected answer, updates streak state, and submits
+   * the result envelope.
+   */
   const handleSubmit = useCallback(() => {
     if (submittedRef.current) return
     const selectedOption = shuffledOptions.find(o => o.label === userAnswer)
@@ -189,6 +225,10 @@ export function MarkupMarginMastery({ activity, onSubmit, onComplete }: MarkupMa
     }
   }, [userAnswer, shuffledOptions, onSubmit, activity.id, problem])
 
+
+  /**
+   * Resets the component state and generates a new random markup/margin problem.
+   */
   const handleNewProblem = useCallback(() => {
     setProblem(generateProblem())
     setUserAnswer('')
@@ -199,6 +239,10 @@ export function MarkupMarginMastery({ activity, onSubmit, onComplete }: MarkupMa
     submittedRef.current = false
   }, [])
 
+
+  /**
+   * Displays a worked example showing the markup vs margin formulas.
+   */
   const handleShowExample = useCallback(() => {
     setShowWorkedExample(true)
   }, [])

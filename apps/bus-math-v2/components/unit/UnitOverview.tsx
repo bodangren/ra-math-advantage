@@ -27,6 +27,13 @@ const sections = [
   }
 ];
 
+
+/**
+ * Renders a three-column overview of learning objectives, tools/skills, and deliverables.
+ *
+ * @param props - The unit objectives data
+ * @returns A section with objective cards
+ */
 export function UnitOverview({ objectives }: UnitOverviewProps) {
   return (
     <section className="space-y-6">

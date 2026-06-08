@@ -14,6 +14,13 @@ import { Label } from "@/components/ui/label";
 import Link from "next/link";
 import { useState } from "react";
 
+
+/**
+ * Renders a password-help form that directs users to their admin for resets.
+ *
+ * @param props - Standard div props with optional className
+ * @returns A card containing the forgot-password form
+ */
 export function ForgotPasswordForm({
   className,
   ...props
@@ -21,6 +28,12 @@ export function ForgotPasswordForm({
   const [identifier, setIdentifier] = useState("");
   const [message, setMessage] = useState<string | null>(null);
 
+
+  /**
+   * Handles the forgot-password form submission by showing admin-contact instructions.
+   *
+   * @param e - The form submission event
+   */
   const handleForgotPassword = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!identifier.trim()) {

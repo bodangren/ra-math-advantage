@@ -7,6 +7,14 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { useExportData } from "@/hooks/useStudy";
 
+
+/**
+ * Triggers a file download by creating a temporary anchor element.
+ *
+ * @param data - The file content as a string.
+ * @param filename - The desired download filename.
+ * @param mimeType - The MIME type of the file.
+ */
 function downloadFile(data: string, filename: string, mimeType: string) {
   const blob = new Blob([data], { type: mimeType });
   const url = URL.createObjectURL(blob);
@@ -19,6 +27,14 @@ function downloadFile(data: string, filename: string, mimeType: string) {
   URL.revokeObjectURL(url);
 }
 
+
+/**
+ * Converts headers and rows into a CSV string with proper escaping.
+ *
+ * @param headers - Array of column header strings.
+ * @param rows - Array of row arrays with cell values.
+ * @returns A complete CSV string.
+ */
 function toCSV(headers: string[], rows: (string | number | null | undefined)[][]) {
   const escapeCell = (cell: string | number | null | undefined) => {
     if (cell == null) return "";
@@ -31,10 +47,20 @@ function toCSV(headers: string[], rows: (string | number | null | undefined)[][]
   return [headers.map(escapeCell).join(","), ...rows.map(row => row.map(escapeCell).join(","))].join("\n");
 }
 
+
+/**
+ * Renders a study data export page with JSON and CSV download options.
+ *
+ * @returns An export page with download buttons for study data.
+ */
 export function ExportPage() {
   const exportData = useExportData();
   const [isDownloading, setIsDownloading] = useState<string | null>(null);
 
+
+  /**
+   * Downloads the export data as a formatted JSON file.
+   */
   const handleDownloadJSON = () => {
     if (!exportData) return;
     setIsDownloading("json");
@@ -46,6 +72,10 @@ export function ExportPage() {
     }
   };
 
+
+  /**
+   * Downloads the export data as a CSV file with term mastery and session sheets.
+   */
   const handleDownloadCSV = () => {
     if (!exportData) return;
     setIsDownloading("csv");

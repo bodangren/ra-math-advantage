@@ -26,6 +26,13 @@ export const DEFAULT_CHART_COLORS = [
   "hsl(271, 90%, 65%)"
 ];
 
+
+/**
+ * Build a Recharts ChartConfig from an array of series definitions.
+ *
+ * @param series - Array of series with key, label, and optional color
+ * @returns A ChartConfig mapping keys to label and color
+ */
 export function buildChartConfig(series: ChartSeries[]): ChartConfig {
   return series.reduce<ChartConfig>((config, item, index) => {
     config[item.key] = {
@@ -36,11 +43,19 @@ export function buildChartConfig(series: ChartSeries[]): ChartConfig {
   }, {});
 }
 
-export const formatCurrency = (value: number, currency = "USD"): string => {
+
+/**
+ * Format a numeric value as a localized currency string.
+ *
+ * @param value - The amount to format
+ * @param currency - ISO 4217 currency code (default "USD")
+ * @returns A formatted currency string or "—" for non-finite values
+ */
+export function formatCurrency(value: number, currency = "USD") : string {
   if (!Number.isFinite(value)) return "—";
   return new Intl.NumberFormat("en-US", {
     style: "currency",
     currency,
     maximumFractionDigits: 0
   }).format(value);
-};
+}

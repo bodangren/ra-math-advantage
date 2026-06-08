@@ -74,6 +74,15 @@ export interface DynamicMethodSelectorProps {
   onComplete?: () => void
 }
 
+
+/**
+ * Renders a dynamic method selector for inventory costing, guiding students
+ * through controls, lookups, KPIs, and audit checks with scenario switching.
+ *
+ * @param activity - The activity configuration
+ * @param onSubmit - Callback to submit practice results
+ * @param onComplete - Callback when the activity is finished
+ */
 export function DynamicMethodSelector({ activity, onSubmit, onComplete }: DynamicMethodSelectorProps) {
   const [activeStage, setActiveStage] = useState(0)
   const [selectedScenario, setSelectedScenario] = useState('Base')

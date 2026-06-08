@@ -23,6 +23,17 @@ export interface ProfitCalculatorProps {
   onComplete?: () => void
 }
 
+
+/**
+ * Interactive profit calculator component that computes net profit and profit
+ * margin from user-supplied revenue and expenses.
+ *
+ * @param props - Component props.
+ * @param props.activity - Activity configuration with optional initial values.
+ * @param props.onSubmit - Callback fired with the submission envelope on completion.
+ * @param props.onComplete - Callback fired when the calculation is completed.
+ * @returns A card-based calculator UI showing profit and margin results.
+ */
 export function ProfitCalculator({ activity, onSubmit, onComplete }: ProfitCalculatorProps) {
   const {
     initialRevenue = 100000,

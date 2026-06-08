@@ -80,6 +80,12 @@ const scenarioPool = [
   },
 ]
 
+
+/**
+ * Generates a random cash flow problem from the scenario pool.
+ *
+ * @returns A new CashFlowProblem with a random scenario and distractors
+ */
 function generateProblem(): CashFlowProblem {
   const scenario = scenarioPool[Math.floor(Math.random() * scenarioPool.length)]
   return {
@@ -103,6 +109,15 @@ export interface CashFlowPracticeProps {
   onComplete?: () => void
 }
 
+
+/**
+ * Renders a cash flow practice activity where users answer questions
+ * about operating, investing, and financing cash flows.
+ *
+ * @param activity - Activity configuration with optional mastery threshold
+ * @param onSubmit - Callback fired when the user submits an answer
+ * @param onComplete - Callback fired when mastery is achieved
+ */
 export function CashFlowPractice({ activity, onSubmit, onComplete }: CashFlowPracticeProps) {
   const masteryTarget = activity.props?.masteryThreshold ?? 5
   const [problem, setProblem] = useState<CashFlowProblem>(generateProblem)
@@ -145,6 +160,11 @@ export function CashFlowPractice({ activity, onSubmit, onComplete }: CashFlowPra
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [problem.id])
 
+
+  /**
+   * Validates the selected answer, updates streak state, and submits
+   * the result envelope.
+   */
   const handleSubmit = useCallback(() => {
     if (submittedRef.current) return
     const selectedOption = shuffledOptions.find(o => o.label === userAnswer)
@@ -191,6 +211,10 @@ export function CashFlowPractice({ activity, onSubmit, onComplete }: CashFlowPra
     }
   }, [userAnswer, shuffledOptions, onSubmit, activity.id, problem])
 
+
+  /**
+   * Resets the component state and generates a new random cash flow problem.
+   */
   const handleNewProblem = useCallback(() => {
     setProblem(generateProblem())
     setUserAnswer('')
@@ -201,6 +225,10 @@ export function CashFlowPractice({ activity, onSubmit, onComplete }: CashFlowPra
     submittedRef.current = false
   }, [])
 
+
+  /**
+   * Displays a worked example showing cash flow statement classification rules.
+   */
   const handleShowExample = useCallback(() => {
     setShowWorkedExample(true)
   }, [])

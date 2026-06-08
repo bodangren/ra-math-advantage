@@ -36,6 +36,13 @@ const ACCOUNT_TYPE_SYMBOLS: Record<JournalEntryLine['accountType'], string> = {
   expense: 'X'
 };
 
+
+/**
+ * Renders a journal entry card with debits, credits, and balance validation.
+ *
+ * @param props - Journal entry configuration including lines and display options
+ * @returns A card displaying the formatted journal entry
+ */
 export function JournalEntry({
   entryNumber,
   date,

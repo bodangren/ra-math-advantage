@@ -79,23 +79,53 @@ const practiceTestMessages: Record<
   }
 };
 
-const uniqueSkills = (lessons: Lesson[]) => {
+
+/**
+ * Extracts unique skill tags from an array of lessons.
+ *
+ * @param lessons - Array of lessons to extract tags from.
+ * @returns An array of up to 8 unique skill tag strings.
+ */
+function uniqueSkills(lessons: Lesson[]) {
   const tags = lessons.flatMap((lesson) => lesson.metadata?.tags ?? []);
   return Array.from(new Set(tags)).slice(0, 8);
-};
+}
 
-const buildingGoals = (lessons: Lesson[]) =>
+
+/**
+ * Extracts the first 4 learning objectives from an array of lessons.
+ *
+ * @param lessons - Array of lessons to extract objectives from.
+ * @returns An array of up to 4 learning objective strings.
+ */
+function buildingGoals(lessons: Lesson[]) {
+  return ;
+}
   lessons
     .flatMap((lesson) => lesson.learningObjectives ?? [])
     .filter(Boolean)
     .slice(0, 4);
 
-const totalHours = (lessons: Lesson[]) => {
+
+/**
+ * Computes the total instructional hours from an array of lessons.
+ *
+ * @param lessons - Array of lessons to sum durations from.
+ * @returns Total hours rounded to one decimal place.
+ */
+function totalHours(lessons: Lesson[]) {
   const minutes = lessons.reduce((sum, lesson) => sum + (lesson.metadata?.duration ?? 45), 0);
   return Math.round((minutes / 60) * 10) / 10;
-};
+}
 
-const lessonPath = (lesson: Lesson) => {
+
+/**
+ * Builds the student-facing navigation path for a lesson.
+ *
+ * @param lesson - The lesson to build a path for.
+ * @returns A URL path string for the lesson page.
+ */
+function lessonPath(lesson: Lesson) {
   if (lesson.slug) {
     return lesson.slug.startsWith('/student') ? lesson.slug : studentLessonPath(lesson.slug);
   }
@@ -103,8 +133,18 @@ const lessonPath = (lesson: Lesson) => {
   const unit = lesson.unitNumber.toString().padStart(2, '0');
   const lessonNumber = lesson.orderIndex.toString().padStart(2, '0');
   return studentLessonPath(`unit${unit}-lesson${lessonNumber}`);
-};
+}
 
+
+/**
+ * Renders a student-facing unit overview with business challenge description,
+ * learning targets, skills, lessons list, and practice test launch.
+ *
+ * @param props - Component props.
+ * @param props.unit - The unit overview data.
+ * @param props.lessons - Array of lessons in the unit.
+ * @returns A unit overview page with lesson links and practice test launch.
+ */
 export function StudentUnitOverview({ unit, lessons }: StudentUnitOverviewProps) {
   const practiceTest = practiceTestMessages[unit.sequence] ?? {
     title: 'Practice Test Ready',

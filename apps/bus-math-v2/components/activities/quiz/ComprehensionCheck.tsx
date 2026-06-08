@@ -37,15 +37,33 @@ type Question = ComprehensionQuizActivityProps['questions'][number];
 
 type ShuffledQuestion = Question & { options: string[] };
 
-const stableHash = (value: string) => {
+
+/**
+ * Compute a stable unsigned 32-bit hash of a string value.
+ *
+ * @param value - The string to hash.
+ * @returns A non-negative integer hash.
+ */
+function stableHash(value: string) {
   let hash = 0;
   for (let index = 0; index < value.length; index += 1) {
     hash = (hash * 31 + value.charCodeAt(index)) >>> 0;
   }
   return hash;
-};
+}
 
-const sortOptionsDeterministically = (questionId: string, options: string[]) =>
+
+/**
+ * Sort multiple-choice options in a deterministic order based on a question
+ * identifier hash.
+ *
+ * @param questionId - The question identifier used as a seed.
+ * @param options - The options to sort.
+ * @returns A new array of options in deterministic order.
+ */
+function sortOptionsDeterministically(questionId: string, options: string[]) {
+  return ;
+}
   [...options]
     .map((option, index) => ({
       option,
@@ -60,6 +78,14 @@ const sortOptionsDeterministically = (questionId: string, options: string[]) =>
     })
     .map((entry) => entry.option);
 
+
+/**
+ * Comprehension quiz activity with shuffled options, score tracking, and
+ * submission via the practice contract.
+ *
+ * @param props - Activity configuration and optional submit callback.
+ * @returns A Card containing multiple-choice and free-response questions.
+ */
 export function ComprehensionCheck({ activity, onSubmit }: ComprehensionCheckProps) {
   const [selectedAnswers, setSelectedAnswers] = useState<Record<string, string>>({});
   const [submitted, setSubmitted] = useState(false);
@@ -103,11 +129,23 @@ export function ComprehensionCheck({ activity, onSubmit }: ComprehensionCheckPro
   const score = questionEvaluations.reduce((count, evaluation) => (evaluation.isCorrect ? count + 1 : count), 0);
   const percentage = totalQuestions === 0 ? 0 : Math.round((score / totalQuestions) * 100);
 
+
+  /**
+   * Record a student's response to a question.
+   *
+   * @param questionId - The question being answered.
+   * @param answer - The selected or entered answer value.
+   */
   const recordResponse = (questionId: string, answer: string) => {
     if (submitted) return;
     setSelectedAnswers((prev) => ({ ...prev, [questionId]: answer }));
   };
 
+
+  /**
+   * Submit the quiz, building the practice submission envelope with scored
+   * parts and analytics.
+   */
   const handleSubmit = () => {
     const parts = buildPracticeSubmissionParts(selectedAnswers).map((part) => {
       const evaluation = questionEvaluations.find((entry) => entry.question.id === part.partId);
@@ -143,6 +181,10 @@ export function ComprehensionCheck({ activity, onSubmit }: ComprehensionCheckPro
     }
   };
 
+
+  /**
+   * Reset the quiz to allow a retry attempt.
+   */
   const resetQuiz = () => {
     setSelectedAnswers({});
     setSubmitted(false);

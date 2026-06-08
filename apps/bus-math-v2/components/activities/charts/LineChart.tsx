@@ -32,8 +32,23 @@ export interface LineChartProps {
   formatValue?: (value: number) => string;
 }
 
-const DEFAULT_LINE_VALUE = (value: number) => value.toLocaleString();
+/**
+ * Default formatter for line chart values, converting numbers to locale strings.
+ *
+ * @param value - The numeric value to format
+ * @returns A locale-formatted string representation
+ */
+function DEFAULT_LINE_VALUE(value: number) {
+  return value.toLocaleString();
+}
 
+
+/**
+ * Renders a line chart with one or more data series and optional card wrapper.
+ *
+ * @param props - Chart data, series, axes, and display options
+ * @returns A line chart visualization
+ */
 export function LineChart({
   title,
   description,

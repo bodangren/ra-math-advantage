@@ -6,6 +6,13 @@ import { Button } from "@/components/ui/button";
 import { BookOpen } from "lucide-react";
 import { getUnitConfig } from "@/lib/practice-tests/question-banks";
 
+
+/**
+ * Renders a practice test selection page with unit cards linking to
+ * individual practice test pages.
+ *
+ * @returns A grid of unit practice test cards.
+ */
 export function PracticeTestSelection() {
   const units = [1, 2, 3, 4, 5, 6, 7, 8];
 

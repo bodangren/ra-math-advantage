@@ -155,14 +155,31 @@ interface LemonadeStandProps {
 
 type SupplyId = LemonadeStandActivityProps['supplyOptions'][number]['id']
 
-const cloneStateFromConfig = (state: LemonadeStandActivityProps['initialState']): LemonadeStandState => ({
+
+/**
+ * Clones the initial lemonade stand state from the activity configuration.
+ *
+ * @param state - The initial state from the activity config
+ * @returns A fresh LemonadeStandState instance
+ */
+function cloneStateFromConfig(state: LemonadeStandActivityProps['initialState']) : LemonadeStandState {
+  return ({;
+}
   ...state,
   inventory: { ...state.inventory },
   recipe: { ...state.recipe },
   dailySales: { ...state.dailySales }
 })
 
-const mergeState = (base: LemonadeStandState, override?: Partial<LemonadeStandState>): LemonadeStandState => {
+
+/**
+ * Merges a base lemonade stand state with optional partial overrides.
+ *
+ * @param base - The base game state
+ * @param override - Optional partial state to merge on top
+ * @returns A new merged LemonadeStandState
+ */
+function mergeState(base: LemonadeStandState, override?: Partial<LemonadeStandState>) : LemonadeStandState {
   if (!override) {
     return { ...base, inventory: { ...base.inventory }, recipe: { ...base.recipe }, dailySales: { ...base.dailySales } }
   }
@@ -194,6 +211,16 @@ const mergeState = (base: LemonadeStandState, override?: Partial<LemonadeStandSt
   }
 }
 
+
+/**
+ * Renders an interactive lemonade stand simulation where students manage
+ * inventory, recipes, pricing, and weather-driven demand to maximize profit.
+ *
+ * @param activity - The lemonade stand activity configuration
+ * @param initialState - Optional partial state override
+ * @param onStateChange - Callback fired when game state changes
+ * @param onSubmit - Callback to submit practice results
+ */
 export function LemonadeStand({ activity, initialState, onStateChange, onSubmit }: LemonadeStandProps) {
   const baseState = useMemo(() => cloneStateFromConfig(activity.props.initialState), [activity.props.initialState])
   const [gameState, setGameState] = useState<LemonadeStandState>(() => mergeState(baseState, initialState))
@@ -248,6 +275,13 @@ export function LemonadeStand({ activity, initialState, onStateChange, onSubmit 
     onStateChange?.(gameState)
   }, [gameState, onStateChange])
 
+
+  /**
+   * Adds a temporary notification toast that auto-dismisses after 4 seconds.
+   *
+   * @param message - The notification message text
+   * @param type - The notification severity type
+   */
   const addNotification = useCallback((message: string, type: 'success' | 'warning' | 'error' | 'info') => {
     const id = `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`
     setNotifications(prev => [...prev, { id, message, type }])
@@ -257,6 +291,12 @@ export function LemonadeStand({ activity, initialState, onStateChange, onSubmit 
     notificationTimeoutsRef.current.push(timeoutId)
   }, [])
 
+
+  /**
+   * Purchases a supply option, deducting cost from cash and adding to inventory.
+   *
+   * @param supplyId - The supply option ID to purchase
+   */
   const buySupply = useCallback((supplyId: SupplyId) => {
     const config = supplyLookup[supplyId]
     if (!config) {
@@ -281,6 +321,13 @@ export function LemonadeStand({ activity, initialState, onStateChange, onSubmit 
     addNotification(`Bought ${config.quantity} ${config.label} for $${config.cost.toFixed(2)}`, 'success')
   }, [gameState.cash, supplyLookup, addNotification])
 
+
+  /**
+   * Updates a single recipe field (lemons, sugar, or price).
+   *
+   * @param field - The recipe field to update
+   * @param value - The new value for the field
+   */
   const updateRecipe = useCallback((field: keyof LemonadeStandState['recipe'], value: number) => {
     setGameState(prev => ({
       ...prev,
@@ -291,6 +338,12 @@ export function LemonadeStand({ activity, initialState, onStateChange, onSubmit 
     }))
   }, [])
 
+
+  /**
+   * Evaluates the current recipe and returns feedback on quality and pricing.
+   *
+   * @returns An object with feedback message, color class, and icon
+   */
   const getRecipeFeedback = useCallback(() => {
     const { lemons, sugar, price } = gameState.recipe
     const totalIngredients = lemons + sugar
@@ -308,6 +361,13 @@ export function LemonadeStand({ activity, initialState, onStateChange, onSubmit 
     }
   }, [gameState.recipe, recipeGuidance])
 
+
+  /**
+   * Calculates the maximum cups of lemonade producible from current
+   * inventory given the current recipe ratios.
+   *
+   * @returns The maximum number of cups
+   */
   const getMaxCupsFromInventory = useCallback(() => {
     const { lemons, sugar, cups } = gameState.inventory
     const { lemons: lemonsPerCup, sugar: sugarPerCup } = gameState.recipe
@@ -319,6 +379,12 @@ export function LemonadeStand({ activity, initialState, onStateChange, onSubmit 
     )
   }, [gameState.inventory, gameState.recipe])
 
+
+  /**
+   * Generates a random weather pattern for the current day.
+   *
+   * @returns The weather pattern ID
+   */
   const generateRandomWeather = useCallback(() => {
     if (weatherPatterns.length === 0) {
       return gameState.weather
@@ -327,6 +393,12 @@ export function LemonadeStand({ activity, initialState, onStateChange, onSubmit 
     return weatherPatterns[index]?.id ?? gameState.weather
   }, [weatherPatterns, gameState.weather])
 
+
+  /**
+   * Completes a sales day, updating revenue, inventory, and daily sales records.
+   *
+   * @param cupsSold - The number of cups sold during the day
+   */
   const completeSales = useCallback((cupsSold: number) => {
     const dailyRevenue = cupsSold * gameState.recipe.price
     const ingredientCost =
@@ -362,6 +434,11 @@ export function LemonadeStand({ activity, initialState, onStateChange, onSubmit 
     addNotification(`Sold ${cupsSold} cups for $${dailyRevenue.toFixed(2)}!`, 'success')
   }, [addNotification, gameState.recipe, ingredientCosts])
 
+
+  /**
+   * Starts the sales simulation, calculating demand based on weather,
+   * recipe quality, and price, then animating sales progress.
+   */
   const simulateSales = useCallback(() => {
     const maxCups = getMaxCupsFromInventory()
     if (maxCups <= 0) {

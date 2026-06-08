@@ -41,6 +41,13 @@ export interface TrialBalanceErrorMatrixProps {
   submissionSummary?: TrialBalanceErrorMatrixSubmissionSummary;
 }
 
+
+/**
+ * Format a trial balance response value for display in the summary.
+ *
+ * @param value - The response value (number, balance answer, or column).
+ * @returns A human-readable string representation.
+ */
 function getSummaryValue(value: unknown) {
   if (typeof value === 'number') {
     return formatAccountingAmount(value);
@@ -57,10 +64,27 @@ function getSummaryValue(value: unknown) {
   return 'Not selected';
 }
 
+
+/**
+ * Check whether a trial balance error scenario has the required fields to
+ * render.
+ *
+ * @param scenario - The scenario to validate.
+ * @returns `true` if the scenario is renderable.
+ */
 function isRenderableScenario(scenario: TrialBalanceErrorScenario | undefined) {
   return !!scenario && typeof scenario.rowId === 'string' && Array.isArray(scenario.differenceOptions) && scenario.differenceOptions.length > 0;
 }
 
+
+/**
+ * Trial balance error analysis matrix where students classify error scenarios
+ * by balanced state, difference amount, and larger column.
+ *
+ * @param props - Title, scenarios, values, mode, and feedback configuration.
+ * @returns A Card with scenario rows, selection buttons, and teacher review
+ *   panels.
+ */
 export function TrialBalanceErrorMatrix({
   title,
   description,
@@ -92,6 +116,12 @@ export function TrialBalanceErrorMatrix({
     submissionSummary?.misconceptionCount ??
     new Set(Object.values(rowFeedback).flatMap((feedback) => feedback.misconceptionTags ?? [])).size;
 
+
+  /**
+   * Update the response values and propagate to controlled state.
+   *
+   * @param nextValue - The new response record.
+   */
   const updateValue = (nextValue: TrialBalanceErrorResponse) => {
     if (value === undefined) {
       setInternalValue(nextValue);
@@ -99,18 +129,40 @@ export function TrialBalanceErrorMatrix({
     onValueChange?.(nextValue);
   };
 
+
+  /**
+   * Move keyboard focus to a specific cell in the matrix.
+   *
+   * @param rowIndex - The scenario row index.
+   * @param target - The cell target identifier.
+   */
   const focusCell = (rowIndex: number, target: string) => {
     const scenario = scenarios[rowIndex];
     if (!scenario) return;
     cellRefs.current.get(`${scenario.rowId}:${target}`)?.focus();
   };
 
+
+  /**
+   * Move focus to the balanced cell of the next row after completing a
+   * scenario.
+   *
+   * @param rowId - The current scenario row identifier.
+   */
   const focusNextRowBalanced = (rowId: string) => {
     const rowIndex = rowIndexes.get(rowId);
     if (rowIndex === undefined) return;
     focusCell(rowIndex + 1, 'balanced:still-balances');
   };
 
+
+  /**
+   * Handle selecting a value for a scenario part and advance focus.
+   *
+   * @param scenario - The error scenario being answered.
+   * @param partId - The response part identifier.
+   * @param nextValue - The selected value.
+   */
   const selectValue = (scenario: TrialBalanceErrorScenario, partId: string, nextValue: TrialBalanceResponseValue) => {
     if (readOnly) return;
 

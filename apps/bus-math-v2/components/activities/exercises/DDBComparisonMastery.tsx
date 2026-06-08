@@ -33,10 +33,27 @@ const assetPool = [
   { name: 'fleet of laptops', costRange: [5000, 12000], lifeRange: [3, 5], salvageRange: [500, 1500] },
 ]
 
+
+/**
+ * Generates a random integer between min and max, inclusive.
+ *
+ * @param min - Lower bound (inclusive)
+ * @param max - Upper bound (inclusive)
+ * @returns A random integer in the given range
+ */
 function randInt(min: number, max: number): number {
   return Math.floor(Math.random() * (max - min + 1)) + min
 }
 
+
+/**
+ * Computes a full double-declining balance depreciation schedule.
+ *
+ * @param cost - The original cost of the asset
+ * @param salvage - The salvage value at end of useful life
+ * @param life - The useful life in years
+ * @returns Array of yearly depreciation entries with expense, accumulated, and book value
+ */
 function computeDDBSchedule(cost: number, salvage: number, life: number) {
   if (life <= 0) return []
   const slRate = 1 / life
@@ -56,6 +73,15 @@ function computeDDBSchedule(cost: number, salvage: number, life: number) {
   return schedule
 }
 
+
+/**
+ * Computes a full straight-line depreciation schedule.
+ *
+ * @param cost - The original cost of the asset
+ * @param salvage - The salvage value at end of useful life
+ * @param life - The useful life in years
+ * @returns Array of yearly depreciation entries with expense, accumulated, and book value
+ */
 function computeSLSchedule(cost: number, salvage: number, life: number) {
   if (life <= 0) return []
   const annualExpense = Math.round((cost - salvage) / life)
@@ -67,6 +93,13 @@ function computeSLSchedule(cost: number, salvage: number, life: number) {
   }))
 }
 
+
+/**
+ * Generates a random DDB comparison problem with a random asset,
+ * year, and question method (DDB, straight-line, or compare).
+ *
+ * @returns A new DDBProblem with computed depreciation values and distractors
+ */
 function generateProblem(): DDBProblem {
   const asset = assetPool[Math.floor(Math.random() * assetPool.length)]
   const cost = randInt(asset.costRange[0], asset.costRange[1])
@@ -137,6 +170,15 @@ export interface DDBComparisonMasteryProps {
   onComplete?: () => void
 }
 
+
+/**
+ * Renders a DDB vs straight-line comparison activity where users calculate
+ * and compare depreciation under both methods.
+ *
+ * @param activity - Activity configuration with optional mastery threshold
+ * @param onSubmit - Callback fired when the user submits an answer
+ * @param onComplete - Callback fired when mastery is achieved
+ */
 export function DDBComparisonMastery({ activity, onSubmit, onComplete }: DDBComparisonMasteryProps) {
   const masteryTarget = activity.props?.masteryThreshold ?? 5
   const [problem, setProblem] = useState<DDBProblem>(generateProblem)
@@ -156,6 +198,11 @@ export function DDBComparisonMastery({ activity, onSubmit, onComplete }: DDBComp
     }
   }, [consecutiveCorrect, masteryTarget, onComplete])
 
+
+  /**
+   * Validates the selected answer, updates streak state, and submits
+   * the result envelope.
+   */
   const handleSubmit = useCallback(() => {
     if (submittedRef.current) return
     const selectedOption = problem.distractors.find(o => o.label === userAnswer)
@@ -183,6 +230,10 @@ export function DDBComparisonMastery({ activity, onSubmit, onComplete }: DDBComp
     }
   }, [userAnswer, problem, onSubmit, activity.id])
 
+
+  /**
+   * Resets the component state and generates a new random DDB problem.
+   */
   const handleNewProblem = useCallback(() => {
     setProblem(generateProblem()); setUserAnswer(''); setSubmitted(false); setCorrect(null); setShowWorkedExample(false); submittedRef.current = false
   }, [])

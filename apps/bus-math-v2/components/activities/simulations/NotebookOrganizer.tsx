@@ -70,6 +70,14 @@ const ITEM_ICONS: Record<string, LucideIcon> = {
   receivable: FileText
 }
 
+
+/**
+ * Resolves a stable activity ID from the activity object, falling back
+ * to a slugified title.
+ *
+ * @param activity - The notebook organizer activity
+ * @returns A URL-safe activity ID string
+ */
 function resolveActivityId(activity: NotebookOrganizerProps['activity']) {
   if (typeof activity.id === 'string' && activity.id.trim()) {
     return activity.id
@@ -80,6 +88,13 @@ function resolveActivityId(activity: NotebookOrganizerProps['activity']) {
     .replace(/[^a-z0-9]+/g, '-')
 }
 
+
+/**
+ * Builds a practice submission envelope from the notebook organizer state.
+ *
+ * @param args - The submission data including activity, items, placements, and totals
+ * @returns A PracticeSubmissionEnvelope ready to send
+ */
 function buildSubmission(args: {
   activity: NotebookOrganizerProps['activity']
   items: NotebookItem[]
@@ -124,10 +139,24 @@ function buildSubmission(args: {
   })
 }
 
+
+/**
+ * Returns the droppable ID for a notebook folder category.
+ *
+ * @param category - The item category ('asset', 'liability', or 'equity')
+ * @returns The droppable ID string for that folder
+ */
 export function getNotebookFolderDroppableId(category: NotebookItem['category']) {
   return NOTEBOOK_FOLDER_DROPPABLES[category]
 }
 
+
+/**
+ * Resolves a droppable ID back to its notebook category.
+ *
+ * @param droppableId - The droppable ID to resolve
+ * @returns The category or null if not a folder droppable
+ */
 function resolveNotebookCategory(droppableId: string): NotebookItem['category'] | null {
   const entry = Object.entries(NOTEBOOK_FOLDER_DROPPABLES).find(([, value]) => value === droppableId)
   if (!entry) {
@@ -137,6 +166,15 @@ function resolveNotebookCategory(droppableId: string): NotebookItem['category'] 
   return entry[0] as NotebookItem['category']
 }
 
+
+/**
+ * Renders a drag-and-drop notebook organizer where students sort financial
+ * items into assets, liabilities, and equity to balance the accounting equation.
+ *
+ * @param activity - The notebook organizer activity configuration
+ * @param onComplete - Callback with totals and item placements
+ * @param onSubmit - Callback to submit practice results
+ */
 export function NotebookOrganizer({ activity, onComplete, onSubmit }: NotebookOrganizerProps) {
   const { items, successMessage, initialMessage } = activity.props
   const [placedItems, setPlacedItems] = useState<Record<string, string>>({})
@@ -190,6 +228,13 @@ export function NotebookOrganizer({ activity, onComplete, onSubmit }: NotebookOr
     }
   }, [activity, allItemsPlaced, correctPlacements, equationBalanced, initialMessage, isComplete, items, onComplete, onSubmit, placedItems, successMessage, totals])
 
+
+  /**
+   * Places an item into a category folder.
+   *
+   * @param itemId - The item to place
+   * @param category - The target category
+   */
   const handlePlaceItem = (itemId: string, category: NotebookItem['category']) => {
     setPlacedItems((prev) => {
       if (prev[itemId] === category) {
@@ -200,6 +245,12 @@ export function NotebookOrganizer({ activity, onComplete, onSubmit }: NotebookOr
     })
   }
 
+
+  /**
+   * Removes an item from its category folder back to the unplaced queue.
+   *
+   * @param itemId - The item to remove
+   */
   const handleRemoveItem = (itemId: string) => {
     setPlacedItems((prev) => {
       if (!(itemId in prev)) {
@@ -212,6 +263,15 @@ export function NotebookOrganizer({ activity, onComplete, onSubmit }: NotebookOr
     })
   }
 
+
+  /**
+   * Handles the end of a drag operation, placing or removing items
+   * based on the drop destination.
+   *
+   * @param destination - The drop destination
+   * @param draggableId - The dragged item ID
+   * @param source - The drag source
+   */
   const handleDragEnd = ({ destination, draggableId, source }: DropResult) => {
     if (!destination || destination.droppableId === source.droppableId) {
       return
@@ -263,6 +323,16 @@ export function NotebookOrganizer({ activity, onComplete, onSubmit }: NotebookOr
     }
   }
 
+
+  /**
+   * Renders a droppable folder card for a given category.
+   *
+   * @param id - The category identifier
+   * @param title - The display title for the folder
+   * @param colorClass - Tailwind border/background classes
+   * @param icon - The Lucide icon component
+   * @returns The rendered folder JSX
+   */
   const renderFolder = (id: 'asset' | 'liability' | 'equity', title: string, colorClass: string, icon: LucideIcon) => {
     const Icon = icon
     const folderItems = items.filter((item) => placedItems[item.id] === id)

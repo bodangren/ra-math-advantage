@@ -37,9 +37,30 @@ const expenseItems = [
   { desc: 'monthly software subscription', costRange: [30, 150], reason: 'Subscription fees are period expenses, not capital assets.' },
 ]
 
+
+/**
+ * Selects a random element from the given array.
+ *
+ * @param arr - The array to pick from
+ * @returns A randomly selected element
+ */
 function pickRandom<T>(arr: T[]): T { return arr[Math.floor(Math.random() * arr.length)] }
+/**
+ * Generates a random integer between min and max, inclusive.
+ *
+ * @param min - Lower bound (inclusive)
+ * @param max - Upper bound (inclusive)
+ * @returns A random integer in the given range
+ */
 function randInt(min: number, max: number): number { return Math.floor(Math.random() * (max - min + 1)) + min }
 
+
+/**
+ * Generates a random purchase scenario that is either a capital asset
+ * or an operating expense, with appropriate distractor explanations.
+ *
+ * @returns A new PurchaseScenario with classification details
+ */
 function generateScenario(): PurchaseScenario {
   const isCapital = Math.random() > 0.45
   if (isCapital) {
@@ -73,6 +94,15 @@ export interface CapitalizationExpenseMasteryProps {
   onComplete?: () => void
 }
 
+
+/**
+ * Renders a capitalize-or-expense practice activity where users classify
+ * purchases as capital assets or operating expenses.
+ *
+ * @param activity - Activity configuration with optional mastery threshold
+ * @param onSubmit - Callback fired when the user submits an answer
+ * @param onComplete - Callback fired when mastery is achieved
+ */
 export function CapitalizationExpenseMastery({ activity, onSubmit, onComplete }: CapitalizationExpenseMasteryProps) {
   const masteryTarget = activity.props?.masteryThreshold ?? 5
   const [scenario, setScenario] = useState<PurchaseScenario>(generateScenario)
@@ -92,6 +122,11 @@ export function CapitalizationExpenseMastery({ activity, onSubmit, onComplete }:
     }
   }, [consecutiveCorrect, masteryTarget, onComplete])
 
+
+  /**
+   * Validates the selected classification, updates streak state, and submits
+   * the result envelope.
+   */
   const handleSubmit = useCallback(() => {
     if (submittedRef.current) return
     const isCorrect = userAnswer === (scenario.isCapital ? 'capitalize' : 'expense')
@@ -118,6 +153,10 @@ export function CapitalizationExpenseMastery({ activity, onSubmit, onComplete }:
     }
   }, [userAnswer, scenario, onSubmit, activity.id])
 
+
+  /**
+   * Resets the component state and generates a new random purchase scenario.
+   */
   const handleNewScenario = useCallback(() => {
     setScenario(generateScenario()); setUserAnswer(''); setSubmitted(false); setCorrect(null); setShowWorkedExample(false); submittedRef.current = false
   }, [])

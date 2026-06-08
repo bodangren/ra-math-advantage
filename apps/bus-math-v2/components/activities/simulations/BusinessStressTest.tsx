@@ -50,6 +50,15 @@ export interface BusinessStressTestProps {
   onSubmit?: (payload: PracticeSubmissionCallbackPayload) => void
 }
 
+
+/**
+ * Renders a business stress-test simulation where students respond to market
+ * crises by choosing financial levers to keep a business solvent.
+ *
+ * @param activity - The stress-test activity configuration
+ * @param onComplete - Callback with final cash and rounds survived
+ * @param onSubmit - Callback to submit practice results
+ */
 export function BusinessStressTest({ activity, onComplete, onSubmit }: BusinessStressTestProps) {
   const initialState = activity?.props.initialState ?? defaultInitialState
   const disasters = activity?.props.disasters ?? defaultDisasters
@@ -69,6 +78,11 @@ export function BusinessStressTest({ activity, onComplete, onSubmit }: BusinessS
 
   const profit = revenue - expenses
 
+
+  /**
+   * Advances to the next crisis round, applying disaster impacts to
+   * cash, revenue, and expenses, or completing the simulation.
+   */
   const handleNextRound = () => {
     if (submittedRef.current) return
     if (round >= disasters.length) {
@@ -135,6 +149,13 @@ export function BusinessStressTest({ activity, onComplete, onSubmit }: BusinessS
     setRound(prev => prev + 1)
   }
 
+
+  /**
+   * Applies a strategic response lever (price, volume, or staff) to
+   * adjust revenue and expenses after a disaster.
+   *
+   * @param type - The lever type to pull
+   */
   const adjustStats = (type: 'price' | 'volume' | 'staff') => {
     if (type === 'price') {
       // Raising price increases revenue but might hurt volume later (simplified here)

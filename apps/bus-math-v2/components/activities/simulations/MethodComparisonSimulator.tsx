@@ -17,8 +17,34 @@ const defaultScenarios: ComparisonScenario[] = [
   { id: 'M-003', name: 'Forklift', cost: 18000, usefulLife: 6, salvageValue: 3000, totalUnits: 20000, unitsYear1: 4500 },
 ]
 
+
+/**
+ * Computes straight-line Year 1 depreciation expense.
+ *
+ * @param cost - Asset cost
+ * @param salvage - Salvage value
+ * @param life - Useful life in years
+ * @returns The rounded annual SL expense
+ */
 function computeSL(cost: number, salvage: number, life: number) { if (life <= 0) return 0; return Math.round((cost - salvage) / life) }
+/**
+ * Computes double-declining balance Year 1 depreciation expense.
+ *
+ * @param cost - Asset cost
+ * @param salvage - Salvage value
+ * @param life - Useful life in years
+ * @returns The rounded Year 1 DDB expense, capped at depreciable base
+ */
 function computeDDB(cost: number, salvage: number, life: number) { if (life <= 0) return 0; const bv = cost; const expense = Math.round(bv * (2 / life)); return Math.min(expense, cost - salvage) }
+/**
+ * Computes units-of-production Year 1 depreciation expense.
+ *
+ * @param cost - Asset cost
+ * @param salvage - Salvage value
+ * @param totalUnits - Total expected units over asset life
+ * @param unitsYear1 - Units produced in Year 1
+ * @returns The rounded Year 1 UOP expense
+ */
 function computeUOP(cost: number, salvage: number, totalUnits: number, unitsYear1: number) { if (totalUnits <= 0) return 0; return Math.round(((cost - salvage) / totalUnits) * unitsYear1) }
 
 export interface MethodComparisonSimulatorProps {
@@ -27,6 +53,15 @@ export interface MethodComparisonSimulatorProps {
   onComplete?: () => void
 }
 
+
+/**
+ * Renders a method comparison simulator where students predict Year 1
+ * depreciation under SL, DDB, and optionally UOP, then see explanations.
+ *
+ * @param activity - The activity configuration with optional scenarios
+ * @param onSubmit - Callback to submit practice results
+ * @param onComplete - Callback when the activity is finished
+ */
 export function MethodComparisonSimulator({ activity, onSubmit, onComplete }: MethodComparisonSimulatorProps) {
   const scenarios = activity.props?.scenarios ?? defaultScenarios
   const [scenarioIndex, setScenarioIndex] = useState(0)

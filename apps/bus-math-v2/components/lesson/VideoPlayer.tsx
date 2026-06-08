@@ -12,11 +12,25 @@ interface VideoPlayerProps {
   thumbnailUrl?: string;
 }
 
+
+/**
+ * Renders an embedded YouTube video with an optional collapsible transcript.
+ *
+ * @param props - Video URL, duration, and optional transcript text
+ * @returns A card containing the video player and transcript toggle
+ */
 export function VideoPlayer({ videoUrl, duration, transcript }: VideoPlayerProps) {
   const [transcriptOpen, setTranscriptOpen] = useState(false);
   const [videoLoaded, setVideoLoaded] = useState(false);
 
   // Extract YouTube video ID from various URL formats
+
+  /**
+   * Extracts a YouTube video ID from various URL formats.
+   *
+   * @param url - A YouTube URL (watch, share, or embed)
+   * @returns The video ID string or null if not found
+   */
   const getYouTubeId = (url: string): string | null => {
     const patterns = [
       /(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/embed\/)([^&\n?#]+)/,

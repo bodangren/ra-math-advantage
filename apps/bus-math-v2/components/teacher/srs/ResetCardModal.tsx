@@ -29,6 +29,20 @@ interface ResetCardModalProps {
 const FOCUSABLE_SELECTORS =
   'a[href], button:not([disabled]), textarea, input, select, [tabindex]:not([tabindex="-1"])';
 
+
+/**
+ * Renders a modal dialog for resetting a student's SRS card progress
+ * for a selected problem family.
+ *
+ * @param props - Component props.
+ * @param props.isOpen - Whether the modal is visible.
+ * @param props.onClose - Callback when the modal requests to close.
+ * @param props.studentId - The student's unique ID.
+ * @param props.studentName - The student's display name.
+ * @param props.families - Available problem families to choose from.
+ * @param props.onReset - Async callback when the user confirms the reset.
+ * @returns A portal-rendered modal dialog, or null if closed.
+ */
 export function ResetCardModal({
   isOpen,
   onClose,
@@ -90,6 +104,12 @@ export function ResetCardModal({
     }
   }, [isOpen]);
 
+
+  /**
+   * Validates selection and calls onReset with the selected family ID.
+   *
+   * @param e - The form submission event.
+   */
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!selectedFamily) {

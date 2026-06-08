@@ -69,9 +69,26 @@ type CommonResult = {
   net: number
 }
 
-const formatMoney = (val: number) => `$${val.toFixed(2)}`
 
-const computeFIT = (wages: number) => {
+/**
+ * Formats a numeric value as a US dollar string with two decimal places.
+ *
+ * @param val - The numeric amount to format.
+ * @returns A string like "$1234.56".
+ */
+function formatMoney(val: number) {
+  return `$${val.toFixed(2)}`;
+}
+
+
+/**
+ * Computes simplified federal income tax for a single filer on a biweekly paycheck
+ * using 2024 bracket thresholds.
+ *
+ * @param wages - Gross biweekly wages in dollars.
+ * @returns The estimated federal income tax withholding.
+ */
+function computeFIT(wages: number) {
   // Simplified single filer biweekly slice
   if (wages <= 596) return 0
   if (wages <= 1909) return (wages - 596) * 0.12
@@ -79,7 +96,16 @@ const computeFIT = (wages: number) => {
   return 533.73 + (wages - 4021) * 0.24
 }
 
-const computeHourly = (inputs: HourlyInputs): CommonResult & { regularHours: number; overtimeHours: number } => {
+
+/**
+ * Calculates payroll details for an hourly employee across two work weeks,
+ * including regular hours, overtime, and all tax withholdings.
+ *
+ * @param inputs - Hourly pay inputs including hours, rate, YTD wages,
+ *   SS cap, and state tax rate.
+ * @returns Common payroll result fields plus regularHours and overtimeHours.
+ */
+function computeHourly(inputs: HourlyInputs) : CommonResult & { regularHours: number; overtimeHours: number } {
   const overtimeHours = Math.max(inputs.week1 - 40, 0) + Math.max(inputs.week2 - 40, 0)
   const regularHours = inputs.week1 + inputs.week2 - overtimeHours
   const regularPay = regularHours * inputs.rate
@@ -97,7 +123,16 @@ const computeHourly = (inputs: HourlyInputs): CommonResult & { regularHours: num
   return { gross, ssTaxable, ssTax, medicare, fit, stateTax, net, regularHours, overtimeHours }
 }
 
-const computeSalary = (inputs: SalaryInputs): CommonResult => {
+
+/**
+ * Calculates payroll details for a salaried employee on a biweekly pay schedule
+ * (26 pay periods per year), including all tax withholdings.
+ *
+ * @param inputs - Salary inputs including annual salary, YTD wages,
+ *   SS cap, and state tax rate.
+ * @returns Common payroll result fields for the biweekly paycheck.
+ */
+function computeSalary(inputs: SalaryInputs) : CommonResult {
   const gross = inputs.annualSalary / 26
   const remainingCap = Math.max(inputs.ssCap - inputs.ytdWages, 0)
   const ssTaxable = Math.max(Math.min(gross, remainingCap), 0)
@@ -109,7 +144,15 @@ const computeSalary = (inputs: SalaryInputs): CommonResult => {
   return { gross, ssTaxable, ssTax, medicare, fit, stateTax, net }
 }
 
-const computeCommission = (inputs: CommissionInputs): CommonResult & { commissionEarned: number; paycheckCommission: number } => {
+
+/**
+ * Calculates payroll details for a commission-based employee, factoring
+ * in sales, commission rate, draw, and base pay.
+ *
+ * @param inputs - Commission pay inputs including sales, rate, draw, and base
+ * @returns Common payroll result fields plus commissionEarned and paycheckCommission
+ */
+function computeCommission(inputs: CommissionInputs) : CommonResult & { commissionEarned: number; paycheckCommission: number } {
   const commissionEarned = inputs.sales * inputs.commissionRate
   const netCommission = Math.max(commissionEarned - inputs.draw, 0)
   const drawApplied = Math.min(commissionEarned, inputs.draw)
@@ -127,7 +170,17 @@ const computeCommission = (inputs: CommissionInputs): CommonResult & { commissio
   return { gross, ssTaxable, ssTax, medicare, fit, stateTax, net, commissionEarned, paycheckCommission }
 }
 
-const hourlySheet = (inputs: HourlyInputs, result: ReturnType<typeof computeHourly>): SpreadsheetData => [
+
+/**
+ * Builds a spreadsheet data layout for hourly pay inputs and results.
+ *
+ * @param inputs - The hourly pay input values
+ * @param result - The computed hourly payroll result
+ * @returns Spreadsheet data for display
+ */
+function hourlySheet(inputs: HourlyInputs, result: ReturnType<typeof computeHourly>) : SpreadsheetData {
+  return [;
+}
   [
     { value: "Input", readOnly: true },
     { value: "Value", readOnly: true },
@@ -175,7 +228,17 @@ const hourlySheet = (inputs: HourlyInputs, result: ReturnType<typeof computeHour
   ],
 ]
 
-const salarySheet = (inputs: SalaryInputs, result: ReturnType<typeof computeSalary>): SpreadsheetData => [
+
+/**
+ * Builds a spreadsheet data layout for salary pay inputs and results.
+ *
+ * @param inputs - The salary input values
+ * @param result - The computed salary payroll result
+ * @returns Spreadsheet data for display
+ */
+function salarySheet(inputs: SalaryInputs, result: ReturnType<typeof computeSalary>) : SpreadsheetData {
+  return [;
+}
   [
     { value: "Item", readOnly: true },
     { value: "Value", readOnly: true },
@@ -198,10 +261,17 @@ const salarySheet = (inputs: SalaryInputs, result: ReturnType<typeof computeSala
   ],
 ]
 
-const commissionSheet = (
-  inputs: CommissionInputs,
-  result: ReturnType<typeof computeCommission>
-): SpreadsheetData => [
+
+/**
+ * Builds a spreadsheet data layout for commission pay inputs and results.
+ *
+ * @param inputs - The commission input values
+ * @param result - The computed commission payroll result
+ * @returns Spreadsheet data for display
+ */
+function commissionSheet( inputs: CommissionInputs, result: ReturnType<typeof computeCommission> ) : SpreadsheetData {
+  return [;
+}
   [
     { value: "Item", readOnly: true },
     { value: "Value", readOnly: true },
@@ -332,6 +402,14 @@ export interface PayStructureDecisionLabProps {
   onSubmit?: (payload: PracticeSubmissionCallbackPayload) => void
 }
 
+
+/**
+ * Renders a pay structure decision lab where students step through hourly,
+ * salary, and commission scenarios, entering assumptions and viewing payroll math.
+ *
+ * @param activity - The pay structure lab activity configuration
+ * @param onSubmit - Callback to submit practice results
+ */
 export function PayStructureDecisionLab({ activity, onSubmit }: PayStructureDecisionLabProps) {
   const [current, setCurrent] = useState(0)
   const [submitted, setSubmitted] = useState(false)
@@ -357,6 +435,14 @@ export function PayStructureDecisionLab({ activity, onSubmit }: PayStructureDeci
     setCommissionInputs(activity?.props.initialCommission ?? defaultInitialCommission)
   }
 
+
+  /**
+   * Creates a numeric input change handler for a given state setter and field.
+   *
+   * @param setter - The state setter function
+   * @param field - The field key to update
+   * @returns An input change event handler
+   */
   const onNumericChange = <T extends object>(setter: React.Dispatch<React.SetStateAction<T>>, field: keyof T) =>
     (e: React.ChangeEvent<HTMLInputElement>) => {
       const value = parseFloat(e.target.value) || 0
@@ -617,6 +703,16 @@ type InputWithLabelProps = {
   suffix?: string
 }
 
+
+/**
+ * Renders a labeled numeric input with optional prefix/suffix decorations.
+ *
+ * @param label - The input label text
+ * @param value - The current numeric value
+ * @param onChange - The change event handler
+ * @param prefix - Optional prefix string (e.g. "$")
+ * @param suffix - Optional suffix string (e.g. "%")
+ */
 function InputWithLabel({ label, value, onChange, prefix, suffix }: InputWithLabelProps) {
   const displayValue = Number.isFinite(value) ? value : 0
   return (

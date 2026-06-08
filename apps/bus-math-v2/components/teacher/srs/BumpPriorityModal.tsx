@@ -28,6 +28,19 @@ interface BumpPriorityModalProps {
 const FOCUSABLE_SELECTORS =
   'a[href], button:not([disabled]), textarea, input, select, [tabindex]:not([tabindex="-1"])';
 
+
+/**
+ * Renders a modal dialog for bumping a problem family's priority, making
+ * all cards in that family due immediately for all students in the class.
+ *
+ * @param props - Component props.
+ * @param props.isOpen - Whether the modal is visible.
+ * @param props.onClose - Callback when the modal requests to close.
+ * @param props.families - Available problem families to choose from.
+ * @param props.affectedStudentCount - Number of students who will be affected.
+ * @param props.onBump - Async callback when the user confirms the bump.
+ * @returns A portal-rendered modal dialog, or null if closed.
+ */
 export function BumpPriorityModal({
   isOpen,
   onClose,
@@ -89,6 +102,12 @@ export function BumpPriorityModal({
     }
   }, [isOpen]);
 
+
+  /**
+   * Validates selection and calls onBump with the selected family ID.
+   *
+   * @param e - The form submission event.
+   */
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!selectedFamily) {

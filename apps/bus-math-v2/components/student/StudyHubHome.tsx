@@ -31,6 +31,16 @@ import {
 import { getAllGlossaryUnits, getGlossaryTermBySlug } from "@/lib/study/glossary";
 import type { GlossaryTerm } from "@/lib/study/glossary";
 
+
+/**
+ * Renders a weak topic item showing the term, its definition, and mastery score.
+ *
+ * @param props - Component props.
+ * @param props.term - The glossary term.
+ * @param props.mastery - The mastery score as a decimal (0 to 1).
+ * @param props.languageMode - The current language mode for display.
+ * @returns A styled list item with term info and mastery badge.
+ */
 function WeakTopicItem({
   term,
   mastery,
@@ -57,6 +67,13 @@ function WeakTopicItem({
   );
 }
 
+
+/**
+ * Renders the study hub home page with study mode cards, unit filter,
+ * recent sessions, and weak topics.
+ *
+ * @returns The study hub home page with navigation to all study tools.
+ */
 export function StudyHubHome() {
   const { languageMode } = useStudyPreferences();
   const [selectedUnit, setSelectedUnit] = useState<number | "all">("all");

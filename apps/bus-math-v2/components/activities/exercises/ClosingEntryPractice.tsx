@@ -80,6 +80,12 @@ const scenarioPool = [
   },
 ]
 
+
+/**
+ * Generates a random closing entry problem from the scenario pool.
+ *
+ * @returns A new ClosingProblem with a random scenario and distractors
+ */
 function generateProblem(): ClosingProblem {
   const scenario = scenarioPool[Math.floor(Math.random() * scenarioPool.length)]
   return {
@@ -103,6 +109,15 @@ export interface ClosingEntryPracticeProps {
   onComplete?: () => void
 }
 
+
+/**
+ * Renders a closing entry practice activity where users identify correct
+ * closing entries for revenue, expenses, income summary, and dividends.
+ *
+ * @param activity - Activity configuration with optional mastery threshold
+ * @param onSubmit - Callback fired when the user submits an answer
+ * @param onComplete - Callback fired when mastery is achieved
+ */
 export function ClosingEntryPractice({ activity, onSubmit, onComplete }: ClosingEntryPracticeProps) {
   const masteryTarget = activity.props?.masteryThreshold ?? 5
   const [problem, setProblem] = useState<ClosingProblem>(generateProblem)
@@ -145,6 +160,11 @@ export function ClosingEntryPractice({ activity, onSubmit, onComplete }: Closing
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [problem.id])
 
+
+  /**
+   * Validates the selected answer, updates streak state, and submits
+   * the result envelope.
+   */
   const handleSubmit = useCallback(() => {
     if (submittedRef.current) return
     const selectedOption = shuffledOptions.find(o => o.label === userAnswer)
@@ -191,6 +211,10 @@ export function ClosingEntryPractice({ activity, onSubmit, onComplete }: Closing
     }
   }, [userAnswer, shuffledOptions, onSubmit, activity.id, problem])
 
+
+  /**
+   * Resets the component state and generates a new random closing entry problem.
+   */
   const handleNewProblem = useCallback(() => {
     setProblem(generateProblem())
     setUserAnswer('')
@@ -201,6 +225,10 @@ export function ClosingEntryPractice({ activity, onSubmit, onComplete }: Closing
     submittedRef.current = false
   }, [])
 
+
+  /**
+   * Displays a worked example showing the closing entry rules and steps.
+   */
   const handleShowExample = useCallback(() => {
     setShowWorkedExample(true)
   }, [])

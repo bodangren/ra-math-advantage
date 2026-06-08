@@ -17,6 +17,14 @@ type TeacherLessonPlanPageContentProps = TeacherLessonMonitoringViewModel & {
   unitNumber: number;
 };
 
+
+/**
+ * Renders the lesson plan page content with breadcrumb navigation, lesson plan,
+ * and error summary. Handles lesson switching and phase navigation.
+ *
+ * @param props - Component props including lesson data, phases, and navigation state.
+ * @returns The full lesson plan page layout.
+ */
 export function TeacherLessonPlanPageContent({
   lesson,
   phases,
@@ -30,6 +38,12 @@ export function TeacherLessonPlanPageContent({
 }: TeacherLessonPlanPageContentProps) {
   const router = useRouter();
 
+
+  /**
+   * Navigates to the given href if it is non-null.
+   *
+   * @param href - The target URL, or null to skip navigation.
+   */
   function navigateToHref(href: string | null) {
     if (!href) {
       return;
@@ -38,6 +52,12 @@ export function TeacherLessonPlanPageContent({
     router.push(href);
   }
 
+
+  /**
+   * Navigates to a different lesson by its number.
+   *
+   * @param nextLessonNumber - The lesson number to navigate to.
+   */
   function handleLessonChange(nextLessonNumber: number) {
     const href = lessonHrefByNumber[nextLessonNumber];
     if (href) {

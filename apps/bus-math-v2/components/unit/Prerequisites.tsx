@@ -12,16 +12,38 @@ interface PrerequisitesProps {
   differentiation?: UnitDifferentiation;
 }
 
-const getResourceIcon = (type: UnitResource['type']) => {
+
+/**
+ * Returns an icon element for a given resource type.
+ *
+ * @param type - The resource type (download or external link)
+ * @returns A Lucide icon element
+ */
+function getResourceIcon(type: UnitResource['type']) {
   switch (type) {
     case 'download':
       return <Download className="h-4 w-4" />;
     default:
       return <ExternalLink className="h-4 w-4" />;
   }
-};
+}
 
+
+/**
+ * Renders prerequisites, technology requirements, resources, and differentiation support.
+ *
+ * @param props - Prerequisites and optional differentiation data
+ * @returns A section with preparation and support information
+ */
 export function Prerequisites({ prerequisites, differentiation }: PrerequisitesProps) {
+  /**
+   * Renders a labeled bulleted support list with accent coloring.
+   *
+   * @param label - Section heading text
+   * @param items - List of support items to render
+   * @param accentClass - Tailwind color class for the heading
+   * @returns A div with heading and list, or null if empty
+   */
   const renderSupportList = (label: string, items: string[], accentClass: string) =>
     items.length ? (
       <div>

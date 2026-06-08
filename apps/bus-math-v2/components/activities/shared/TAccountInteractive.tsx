@@ -52,6 +52,14 @@ export interface TAccountInteractiveProps {
   rowFeedback?: Partial<Record<string, PostingBalanceFeedback>>;
 }
 
+
+/**
+ * Map a posting balance feedback status to Tailwind border and background
+ * classes.
+ *
+ * @param status - The feedback status value.
+ * @returns A CSS class string for the status.
+ */
 function getRowTone(status?: PostingBalanceFeedback['status']) {
   if (status === 'correct') {
     return 'border-emerald-300 bg-emerald-50/70';
@@ -68,10 +76,24 @@ function getRowTone(status?: PostingBalanceFeedback['status']) {
   return 'border-border/70 bg-background';
 }
 
+
+/**
+ * Format a normal side label for display.
+ *
+ * @param normalSide - The normal side value.
+ * @returns A capitalized label string.
+ */
 function formatNormalSide(normalSide: PostingBalanceRow['normalSide']) {
   return `${normalSide[0].toUpperCase()}${normalSide.slice(1)} balance`;
 }
 
+
+/**
+ * Format an amount for plain display, showing a dash for empty values.
+ *
+ * @param value - The amount to format.
+ * @returns A formatted string or a dash.
+ */
 function formatPlainAmount(value: number | string | undefined) {
   if (value === '' || value === undefined) {
     return '—';
@@ -80,6 +102,15 @@ function formatPlainAmount(value: number | string | undefined) {
   return formatAccountingAmount(value);
 }
 
+
+/**
+ * Interactive T-account board for posting reference lines and entering ending
+ * balances with teacher feedback.
+ *
+ * @param props - Title, reference lines, rows, mode, and feedback
+ *   configuration.
+ * @returns A Card with T-account sections, posting cues, and balance inputs.
+ */
 export function TAccountInteractive({
   title,
   description,
@@ -103,6 +134,12 @@ export function TAccountInteractive({
     }
   }, [defaultValues, values]);
 
+
+  /**
+   * Update the current values and propagate to controlled state.
+   *
+   * @param nextValues - The new values record.
+   */
   const updateValues = (nextValues: Record<string, string>) => {
     if (values === undefined) {
       setInternalValues(nextValues);

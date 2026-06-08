@@ -36,6 +36,14 @@ interface BreakEvenDataPoint {
   profit: number;
 }
 
+
+/**
+ * Renders an interactive break-even analysis chart showing revenue,
+ * total costs, and profit lines with optional input controls.
+ *
+ * @param props - Cost structure parameters and display options
+ * @returns A break-even chart with summary statistics
+ */
 export function BreakEvenChart({
   fixedCosts: defaultFixedCosts = 10000,
   variableCostRate: defaultVariableRate = 0.6,

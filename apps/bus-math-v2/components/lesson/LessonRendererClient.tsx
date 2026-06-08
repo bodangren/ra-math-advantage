@@ -34,6 +34,13 @@ interface LessonRendererClientProps {
   recommendedLesson?: DashboardLessonActionLink | null;
 }
 
+
+/**
+ * Client wrapper that renders the lesson inside an error boundary.
+ *
+ * @param props - Lesson data, phases, and navigation state
+ * @returns The lesson renderer wrapped in an error boundary
+ */
 export function LessonRendererClient(props: LessonRendererClientProps) {
   return (
     <LessonRendererErrorBoundary>

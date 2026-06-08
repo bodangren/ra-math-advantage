@@ -53,6 +53,15 @@ export interface CrossSheetLinkSimulatorProps {
   onComplete?: () => void
 }
 
+
+/**
+ * Renders a cross-sheet linking simulator where users explore how cells
+ * in one spreadsheet can reference cells in another via formulas.
+ *
+ * @param activity - Activity configuration with optional mastery threshold
+ * @param onSubmit - Callback fired when the user completes the analysis
+ * @param onComplete - Callback fired when the analysis is finalized
+ */
 export function CrossSheetLinkSimulator({ activity, onSubmit, onComplete }: CrossSheetLinkSimulatorProps) {
   const [sheet1, setSheet1] = useState<SheetState>(initialSheet1)
   const [sheet2, setSheet2] = useState<SheetState>(initialSheet2)
@@ -61,6 +70,14 @@ export function CrossSheetLinkSimulator({ activity, onSubmit, onComplete }: Cros
   const [completed, setCompleted] = useState(false)
   const submittedRef = useRef(false)
 
+
+  /**
+   * Recalculates Sheet 2 values based on the current Sheet 1 state,
+   * propagating the cross-sheet formula references.
+   *
+   * @param newSheet1 - The updated Sheet 1 state
+   * @returns A new Sheet 2 state with recalculated formula cells
+   */
   const calculateSheet2 = useCallback((newSheet1: SheetState) => {
     const sheet1B4 = newSheet1.cells.B4?.value ?? '0'
     const sheet1B4Num = parseFloat(sheet1B4) || 0
@@ -77,6 +94,13 @@ export function CrossSheetLinkSimulator({ activity, onSubmit, onComplete }: Cros
     }
   }, [sheet2])
 
+
+  /**
+   * Updates a cell in Sheet 1 and recalculates dependent cells in both sheets.
+   *
+   * @param cellKey - The cell identifier to update (e.g., 'B2')
+   * @param value - The new cell value as a string
+   */
   const handleSheet1CellChange = useCallback((cellKey: string, value: string) => {
     const newSheet1 = {
       ...sheet1,
@@ -96,12 +120,21 @@ export function CrossSheetLinkSimulator({ activity, onSubmit, onComplete }: Cros
     setSheet2(calculateSheet2(newSheet1))
   }, [sheet1, calculateSheet2])
 
+
+  /**
+   * Adds the current insight text to the insights list and clears the input.
+   */
   const handleAddInsight = useCallback(() => {
     if (!currentInsight.trim()) return
     setInsights(prev => [...prev, currentInsight])
     setCurrentInsight('')
   }, [currentInsight])
 
+
+  /**
+   * Finalizes the analysis, marks the activity as completed, and submits
+   * the result envelope with sheet states and insights.
+   */
   const handleComplete = useCallback(() => {
     if (submittedRef.current) return
     submittedRef.current = true
@@ -142,6 +175,15 @@ export function CrossSheetLinkSimulator({ activity, onSubmit, onComplete }: Cros
     }
   }, [sheet1, sheet2, insights, onSubmit, onComplete, activity.id])
 
+
+  /**
+   * Renders a spreadsheet card with editable or read-only cells.
+   *
+   * @param sheet - The sheet state to render
+   * @param sheetName - Display name for the sheet
+   * @param onCellChange - Optional callback for editable cells
+   * @returns JSX element representing the spreadsheet card
+   */
   const renderSheet = (sheet: SheetState, sheetName: string, onCellChange?: (key: string, value: string) => void) => {
     const cells = [
       ['A1', 'B1'],

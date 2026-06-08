@@ -5,6 +5,13 @@ import * as TabsPrimitive from "@radix-ui/react-tabs"
 
 import { cn } from "@/lib/utils"
 
+
+/**
+ * Renders a Radix tabs root container with column layout.
+ *
+ * @param props - Radix Tabs root props with optional className
+ * @returns A tabs container element
+ */
 function Tabs({
   className,
   ...props
@@ -18,6 +25,13 @@ function Tabs({
   )
 }
 
+
+/**
+ * Renders the tab list bar containing tab triggers.
+ *
+ * @param props - Radix TabsList props with optional className
+ * @returns A styled tabs list element
+ */
 function TabsList({
   className,
   ...props
@@ -34,6 +48,13 @@ function TabsList({
   )
 }
 
+
+/**
+ * Renders an individual tab trigger button within the tab list.
+ *
+ * @param props - Radix TabsTrigger props with optional className
+ * @returns A styled tab trigger button
+ */
 function TabsTrigger({
   className,
   ...props
@@ -50,6 +71,13 @@ function TabsTrigger({
   )
 }
 
+
+/**
+ * Renders the content panel associated with a tab.
+ *
+ * @param props - Radix TabsContent props with optional className
+ * @returns A styled tab content panel
+ */
 function TabsContent({
   className,
   ...props

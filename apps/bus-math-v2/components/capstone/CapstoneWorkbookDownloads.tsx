@@ -4,6 +4,12 @@ import Link from 'next/link';
 import { FileSpreadsheet, Download } from 'lucide-react';
 import { useAuth } from '@/components/auth/AuthProvider';
 
+
+/**
+ * Renders download links for capstone workbooks, showing the teacher workbook only for teachers.
+ *
+ * @returns Download buttons for capstone Excel workbooks
+ */
 export function CapstoneWorkbookDownloads() {
   const { profile } = useAuth();
   const isTeacher = profile?.role === 'teacher';

@@ -44,8 +44,23 @@ export interface BarChartProps {
   yAxisProps?: Partial<YAxisProps>;
 }
 
-const DEFAULT_BAR_FORMAT = (value: number) => value.toLocaleString();
+/**
+ * Default formatter for bar chart values, converting numbers to locale strings.
+ *
+ * @param value - The numeric value to format
+ * @returns A locale-formatted string representation
+ */
+function DEFAULT_BAR_FORMAT(value: number) {
+  return value.toLocaleString();
+}
 
+
+/**
+ * Renders a bar chart with configurable axes, stacking, and optional card wrapper.
+ *
+ * @param props - Chart data, series, layout, and display options
+ * @returns A bar chart visualization
+ */
 export function BarChart({
   title,
   description,

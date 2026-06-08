@@ -26,6 +26,18 @@ interface TeacherSRSDashboardClientProps {
   initialClassId?: string;
 }
 
+
+/**
+ * Renders the SRS practice analytics dashboard for teachers, with class health,
+ * weak families, and struggling students panels. Supports card reset and
+ * family priority bump actions.
+ *
+ * @param props - Component props.
+ * @param props.organizationName - The organization display name.
+ * @param props.classes - Array of teacher's classes.
+ * @param props.initialClassId - Optional initial class ID to select.
+ * @returns The full SRS analytics dashboard page.
+ */
 export function TeacherSRSDashboardClient({
   organizationName,
   classes,
@@ -45,6 +57,12 @@ export function TeacherSRSDashboardClient({
 
   const [isBumpModalOpen, setIsBumpModalOpen] = useState(false);
 
+
+  /**
+   * Loads SRS health, weak families, and struggling students for the given class.
+   *
+   * @param classId - The class ID to load data for.
+   */
   const loadClassData = useCallback(async (classId: string) => {
     setIsLoadingData(true);
     try {
@@ -72,10 +90,22 @@ export function TeacherSRSDashboardClient({
     }
   }, [selectedClassId, loadClassData]);
 
+
+  /**
+   * Updates the selected class and triggers a data reload.
+   *
+   * @param newClassId - The new class ID to select.
+   */
   const handleClassChange = (newClassId: string) => {
     setSelectedClassId(newClassId);
   };
 
+
+  /**
+   * Resets a student's SRS card for the given problem family.
+   *
+   * @param problemFamilyId - The problem family ID to reset.
+   */
   const handleResetCard = async (problemFamilyId: string) => {
     try {
       await fetchInternalMutation(api.srs.resetStudentCard, {
@@ -89,6 +119,12 @@ export function TeacherSRSDashboardClient({
     }
   };
 
+
+  /**
+   * Bumps the priority for a problem family, making cards due immediately.
+   *
+   * @param problemFamilyId - The problem family ID to bump.
+   */
   const handleBumpPriority = async (problemFamilyId: string) => {
     try {
       await fetchInternalMutation(api.srs.bumpFamilyPriority, {
@@ -102,12 +138,23 @@ export function TeacherSRSDashboardClient({
     }
   };
 
+
+  /**
+   * Opens the reset card modal for the given student.
+   *
+   * @param studentId - The student's unique ID.
+   * @param studentName - The student's display name.
+   */
   const openResetModal = (studentId: string, studentName: string) => {
     setResetStudentId(studentId);
     setResetStudentName(studentName);
     setIsResetModalOpen(true);
   };
 
+
+  /**
+   * Opens the bump priority modal.
+   */
   const openBumpModal = () => {
     setIsBumpModalOpen(true);
   };

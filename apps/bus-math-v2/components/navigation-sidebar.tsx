@@ -46,21 +46,60 @@ const defaultAdditionalLinks: NavigationSidebarLink[] = [
 
 const unitIcons = [Calculator, TrendingUp, BarChart3, PieChart, DollarSign, Target, Briefcase, BookOpen]
 
-const formatDuration = (lesson: Lesson) => {
+
+/**
+ * Formats a lesson's duration metadata as a display string.
+ *
+ * @param lesson - The lesson whose duration to format
+ * @returns A human-readable duration string
+ */
+function formatDuration(lesson: Lesson) {
   const duration = lesson.metadata?.duration
   if (!duration) return 'Flexible duration'
   return `${duration} min`
 }
 
-const formatDifficulty = (lesson: Lesson) => {
+
+/**
+ * Formats a lesson's difficulty metadata as a capitalized display string.
+ *
+ * @param lesson - The lesson whose difficulty to format
+ * @returns A capitalized difficulty label
+ */
+function formatDifficulty(lesson: Lesson) {
   const difficulty = lesson.metadata?.difficulty
   return difficulty ? `${difficulty.charAt(0).toUpperCase()}${difficulty.slice(1)}` : 'Mixed level'
 }
 
-const getLessonIcon = (lesson: Lesson) => unitIcons[(lesson.unitNumber - 1) % unitIcons.length] ?? Calculator
 
-const defaultLessonUrl = (lesson: Lesson) => `/units/${lesson.slug}`
+/**
+ * Returns an icon component based on the lesson's unit number.
+ *
+ * @param lesson - The lesson to get an icon for
+ * @returns A Lucide icon component
+ */
+function getLessonIcon(lesson: Lesson) {
+  return unitIcons[(lesson.unitNumber - 1) % unitIcons.length] ?? Calculator;
+}
 
+
+/**
+ * Returns the default URL path for a lesson based on its slug.
+ *
+ * @param lesson - The lesson to generate a URL for
+ * @returns The lesson's URL path
+ */
+function defaultLessonUrl(lesson: Lesson) {
+  return `/units/${lesson.slug}`;
+}
+
+
+/**
+ * Renders a course navigation sidebar with lesson list, quick links, and resources.
+ *
+ * @param props - Lessons, link groups, URL generator, and className
+ * @returns A sidebar navigation element
+ */
 export function NavigationSidebar({
   lessons,
   mainLinks = defaultMainLinks,
@@ -70,6 +109,13 @@ export function NavigationSidebar({
 }: NavigationSidebarProps) {
   const sortedLessons = [...lessons].sort((a, b) => a.unitNumber - b.unitNumber)
 
+
+  /**
+   * Renders a list of navigation links with icons.
+   *
+   * @param links - Array of sidebar links to render
+   * @returns An unordered list of link elements
+   */
   const renderLinks = (links: NavigationSidebarLink[]) => (
     <ul className="space-y-1">
       {links.map((link) => {

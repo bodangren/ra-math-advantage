@@ -12,6 +12,12 @@ const navItems = [
   { href: '/search', label: 'Search' },
 ];
 
+
+/**
+ * Renders a simplified site header with navigation links and user menu.
+ *
+ * @returns The shared header component configured for this app
+ */
 export function HeaderSimple() {
   return (
     <SharedHeaderSimple

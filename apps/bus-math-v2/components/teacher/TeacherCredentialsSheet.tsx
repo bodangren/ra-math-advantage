@@ -16,11 +16,25 @@ interface TeacherCredentialsSheetProps {
   organizationName?: string;
 }
 
+
+/**
+ * Renders a printable credentials sheet for student accounts, showing
+ * username and password cards for each student.
+ *
+ * @param props - Component props.
+ * @param props.students - Array of student credential objects.
+ * @param props.onClose - Callback when the sheet is closed.
+ * @param props.organizationName - Name shown in the header (defaults to app name).
+ * @returns A full-screen overlay with printable credential cards.
+ */
 export function TeacherCredentialsSheet({
   students,
   onClose,
   organizationName = "Math for Business Operations",
 }: TeacherCredentialsSheetProps) {
+  /**
+   * Opens a new window with self-contained HTML for printing student credentials.
+   */
   const handlePrint = () => {
     // Open a fresh window with self-contained HTML so print layout is never
     // constrained by the parent dashboard's DOM nesting or Tailwind classes.

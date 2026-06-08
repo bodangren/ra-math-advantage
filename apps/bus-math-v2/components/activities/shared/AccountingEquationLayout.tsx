@@ -53,6 +53,13 @@ export interface AccountingEquationLayoutProps {
   feedback?: Partial<Record<AccountingEquationTermId, AccountingEquationFeedback>>;
 }
 
+
+/**
+ * Map a feedback status to Tailwind border and background classes.
+ *
+ * @param status - The feedback status value.
+ * @returns A CSS class string for the status.
+ */
 function getStatusClasses(status?: AccountingEquationFeedback['status']) {
   if (status === 'correct') {
     return 'border-emerald-500/60 bg-emerald-50/80';
@@ -69,6 +76,13 @@ function getStatusClasses(status?: AccountingEquationFeedback['status']) {
   return 'border-border bg-background';
 }
 
+
+/**
+ * Single term in the accounting equation (Assets = Liabilities + Equity).
+ *
+ * @param props - Term metadata, current value, editability, and feedback.
+ * @returns A styled card showing the term label and value or input.
+ */
 function EquationToken({
   term,
   value,
@@ -116,6 +130,14 @@ function EquationToken({
   );
 }
 
+
+/**
+ * Accounting equation layout component displaying Assets = Liabilities +
+ * Owner's Equity with editable terms and feedback.
+ *
+ * @param props - Title, facts, terms, mode, and feedback configuration.
+ * @returns A Card with the equation workbench and teacher review panel.
+ */
 export function AccountingEquationLayout({
   title,
   description,
@@ -148,6 +170,12 @@ export function AccountingEquationLayout({
     [terms],
   );
 
+
+  /**
+   * Update the current values and propagate to controlled state if needed.
+   *
+   * @param nextValues - The new values record.
+   */
   const updateValues = (nextValues: Record<string, string>) => {
     if (values === undefined) {
       setInternalValues(nextValues);

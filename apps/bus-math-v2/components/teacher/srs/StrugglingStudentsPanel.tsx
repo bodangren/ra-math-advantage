@@ -27,6 +27,13 @@ interface StrugglingStudentsPanelProps {
   isLoading?: boolean;
 }
 
+
+/**
+ * Formats a Unix timestamp into a human-readable relative time string.
+ *
+ * @param timestamp - Unix timestamp in milliseconds, or null.
+ * @returns A string like "Today", "Yesterday", "3 days ago", etc.
+ */
 function formatLastActive(timestamp: number | null): string {
   if (!timestamp) return "Never";
   const date = new Date(timestamp);
@@ -41,6 +48,14 @@ function formatLastActive(timestamp: number | null): string {
   return date.toLocaleDateString();
 }
 
+
+/**
+ * Determines the struggle severity level based on overdue card count and again rate.
+ *
+ * @param overdueCards - Number of overdue cards.
+ * @param againRate - The "again" response rate as a decimal.
+ * @returns An object with label and className for the struggle badge.
+ */
 function getStruggleLevel(overdueCards: number, againRate: number): { label: string; className: string } {
   if (overdueCards >= 10 || againRate >= 0.4) {
     return { label: "Critical", className: "text-red-600 bg-red-50 border-red-200" };
@@ -54,6 +69,17 @@ function getStruggleLevel(overdueCards: number, againRate: number): { label: str
   return { label: "On Track", className: "text-emerald-600 bg-emerald-50 border-emerald-200" };
 }
 
+
+/**
+ * Renders a panel listing students with struggling SRS cards, sorted by
+ * overdue count, with struggle level badges and reset actions.
+ *
+ * @param props - Component props.
+ * @param props.students - Array of student struggle metrics, or null while loading.
+ * @param props.onResetCard - Optional callback to reset a student's card.
+ * @param props.isLoading - Whether the data is still loading.
+ * @returns A card with the struggling students list.
+ */
 export function StrugglingStudentsPanel({
   students,
   onResetCard,

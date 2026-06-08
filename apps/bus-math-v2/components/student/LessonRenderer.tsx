@@ -50,6 +50,14 @@ interface LessonRendererProps {
   recommendedLesson?: DashboardLessonActionLink | null;
 }
 
+
+/**
+ * Builds a fallback phase guidance object when no curriculum-defined guidance exists.
+ *
+ * @param phase - The current phase.
+ * @param lesson - The parent lesson.
+ * @returns A PhaseGuidance with generic goal and success criteria.
+ */
 function buildFallbackPhaseGuidance(phase: Phase, lesson: Lesson): PhaseGuidance {
   return {
     lessonType: 'accounting',
@@ -141,6 +149,11 @@ export function LessonRenderer({
   });
 
   // Handle phase navigation
+  /**
+   * Navigates to a specific phase by number.
+   *
+   * @param phaseNumber - The phase number to navigate to.
+   */
   const handlePhaseClick = (phaseNumber: number) => {
     router.push(`/student/lesson/${lessonSlug}?phase=${phaseNumber}`);
   };
@@ -160,12 +173,20 @@ export function LessonRenderer({
     nextPhaseStatus === 'current' ||
     nextPhaseStatus === 'completed';
 
+
+  /**
+   * Navigates to the previous phase if available.
+   */
   const handlePrevious = () => {
     if (canGoPrevious) {
       router.push(`/student/lesson/${lessonSlug}?phase=${currentPhaseNumber - 1}`);
     }
   };
 
+
+  /**
+   * Navigates to the next phase if unlocked.
+   */
   const handleNext = () => {
     if (canGoNext && isNextPhaseUnlocked) {
       router.push(`/student/lesson/${lessonSlug}?phase=${currentPhaseNumber + 1}`);

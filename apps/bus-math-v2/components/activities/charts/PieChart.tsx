@@ -33,6 +33,13 @@ export interface PieChartProps {
   showPercentages?: boolean;
 }
 
+
+/**
+ * Renders a pie chart with optional percentage labels and legend.
+ *
+ * @param props - Segment data, formatting, and display options
+ * @returns A pie chart visualization
+ */
 export function PieChart({
   title,
   description,

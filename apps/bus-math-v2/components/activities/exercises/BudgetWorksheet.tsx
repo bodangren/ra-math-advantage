@@ -24,6 +24,15 @@ export interface BudgetWorksheetProps {
   onComplete?: () => void
 }
 
+
+/**
+ * Renders a budget worksheet where users allocate a total budget across
+ * categories and track remaining funds.
+ *
+ * @param activity - Activity configuration with categories, total budget, and constraints
+ * @param onSubmit - Callback fired when the user completes the budget
+ * @param onComplete - Callback fired when the budget is finalized
+ */
 export function BudgetWorksheet({ activity, onSubmit, onComplete }: BudgetWorksheetProps) {
   const {
     categories = defaultCategories,
@@ -44,10 +53,22 @@ export function BudgetWorksheet({ activity, onSubmit, onComplete }: BudgetWorksh
   const isOverBudget = remaining < 0
   const isUnderBudget = remaining > 0
 
+
+  /**
+   * Updates the budget allocation for a specific category.
+   *
+   * @param category - The budget category to update
+   * @param value - The new value as a string from the input field
+   */
   const handleCategoryChange = useCallback((category: string, value: string) => {
     setCategoryBudgets(prev => ({ ...prev, [category]: value }))
   }, [])
 
+
+  /**
+   * Finalizes the budget, marks the activity as completed, and submits
+   * the result envelope.
+   */
   const handleComplete = useCallback(() => {
     if (submittedRef.current) return
     submittedRef.current = true

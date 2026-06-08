@@ -20,6 +20,18 @@ interface BaseReviewSessionProps {
   noTermsMessage: string;
 }
 
+
+/**
+ * Renders a base review session with flashcard-style term display,
+ * flip-to-reveal, SRS rating buttons, and session tracking.
+ *
+ * @param props - Component props.
+ * @param props.activityType - The type of review activity ("flashcards" or "srs_review").
+ * @param props.renderHeader - Render function for the session header.
+ * @param props.noTermsTitle - Title shown when no terms are due.
+ * @param props.noTermsMessage - Message shown when no terms are due.
+ * @returns A review session page with card display and rating controls.
+ */
 export function BaseReviewSession({
   activityType,
   renderHeader,
@@ -57,6 +69,13 @@ export function BaseReviewSession({
     );
   }
 
+
+  /**
+   * Processes a user's SRS rating for the current term and advances to the
+   * next term or completes the session.
+   *
+   * @param rating - The user's rating: "again", "hard", "good", or "easy".
+   */
   const handleRating = async (rating: "again" | "hard" | "good" | "easy") => {
     if (!currentTermSlug || isSubmittingRef.current) return;
     isSubmittingRef.current = true;
@@ -86,6 +105,10 @@ export function BaseReviewSession({
     }
   };
 
+
+  /**
+   * Resets the session to start reviewing from the beginning.
+   */
   const resetSession = () => {
     setCurrentIndex(0);
     setIsFlipped(false);

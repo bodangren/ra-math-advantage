@@ -80,7 +80,14 @@ interface InventoryManagerProps {
   onSubmit?: (payload: PracticeSubmissionCallbackPayload) => void
 }
 
-const getIconForProduct = (iconName: string) => {
+
+/**
+ * Returns a Lucide icon component for the given product icon name.
+ *
+ * @param iconName - The icon identifier string
+ * @returns A React element for the matching icon
+ */
+function getIconForProduct(iconName: string) {
   switch (iconName) {
     case 'laptop':
       return <Laptop className="w-5 h-5" />
@@ -93,6 +100,14 @@ const getIconForProduct = (iconName: string) => {
   }
 }
 
+
+/**
+ * Renders an inventory management simulation where students order stock,
+ * respond to market events, and try to hit a profit target over N days.
+ *
+ * @param activity - The inventory manager activity configuration
+ * @param onSubmit - Callback to submit practice results
+ */
 export function InventoryManager({ activity, onSubmit }: InventoryManagerProps) {
   const { title, description, initialState, products } = activity.props
   const runtimeIdCounterRef = useRef(0)
@@ -105,6 +120,13 @@ export function InventoryManager({ activity, onSubmit }: InventoryManagerProps) 
     return () => { timeouts.forEach(clearTimeout) }
   }, [])
 
+
+  /**
+   * Generates a unique runtime ID for events and notifications.
+   *
+   * @param prefix - The prefix for the ID ('event' or 'notification')
+   * @returns A unique string ID
+   */
   const generateRuntimeId = useCallback((prefix: 'event' | 'notification') => {
     runtimeIdCounterRef.current += 1
     return `${prefix}-${Date.now()}-${runtimeIdCounterRef.current}`
@@ -135,6 +157,13 @@ export function InventoryManager({ activity, onSubmit }: InventoryManagerProps) 
 
   const [showInstructions, setShowInstructions] = useState(false)
 
+
+  /**
+   * Adds a temporary notification toast that auto-dismisses after 5 seconds.
+   *
+   * @param message - The notification message text
+   * @param type - The notification severity type
+   */
   const addNotification = useCallback((message: string, type: 'success' | 'warning' | 'error' | 'info') => {
     const id = generateRuntimeId('notification')
     setNotifications(prev => [...prev, { id, message, type }])
@@ -144,6 +173,13 @@ export function InventoryManager({ activity, onSubmit }: InventoryManagerProps) 
     notificationTimeoutsRef.current.push(timeoutId)
   }, [generateRuntimeId])
 
+
+  /**
+   * Returns Tailwind classes for demand-level badge coloring.
+   *
+   * @param demand - The demand level string
+   * @returns Tailwind classes for text, background, and border colors
+   */
   const getDemandColor = (demand: string) => {
     switch (demand) {
       case 'high': return 'text-green-600 bg-green-50 border-green-200'
@@ -153,6 +189,13 @@ export function InventoryManager({ activity, onSubmit }: InventoryManagerProps) 
     }
   }
 
+
+  /**
+   * Returns a demand multiplier for sales simulation based on demand level.
+   *
+   * @param demand - The demand level string
+   * @returns A numeric multiplier (e.g. 1.5 for high demand)
+   */
   const getDemandMultiplier = (demand: string) => {
     switch (demand) {
       case 'high': return 1.5
@@ -162,6 +205,14 @@ export function InventoryManager({ activity, onSubmit }: InventoryManagerProps) 
     }
   }
 
+
+  /**
+   * Simulates customer demand for a product based on base units,
+   * demand level, and a random factor.
+   *
+   * @param product - The product to simulate demand for
+   * @returns The number of units demanded
+   */
   const simulateDemand = useCallback((product: Product) => {
     const baseUnits = product.name === 'Phones' ? 8 : product.name === 'Laptops' ? 3 : 5
     const demandMultiplier = getDemandMultiplier(product.demand)
@@ -170,6 +221,13 @@ export function InventoryManager({ activity, onSubmit }: InventoryManagerProps) 
     return Math.floor(baseUnits * demandMultiplier * randomFactor)
   }, [])
 
+
+  /**
+   * Generates a random market event (demand spike, demand drop,
+   * price change, or storage discount).
+   *
+   * @returns A new MarketEvent object with a unique ID
+   */
   const generateMarketEvent = useCallback(() => {
     const eventTypes = ['demand_spike', 'demand_drop', 'price_change', 'storage_discount']
     const eventType = eventTypes[Math.floor(Math.random() * eventTypes.length)] as MarketEvent['type']
@@ -213,6 +271,13 @@ export function InventoryManager({ activity, onSubmit }: InventoryManagerProps) 
     }
   }, [gameState.products, generateRuntimeId])
 
+
+  /**
+   * Orders additional stock for a product, deducting the cost from cash.
+   *
+   * @param productId - The product ID to order
+   * @param quantity - The number of units to order
+   */
   const orderStock = useCallback((productId: string, quantity: number) => {
     setGameState(prev => {
       const product = prev.products.find(p => p.id === productId)
@@ -248,6 +313,11 @@ export function InventoryManager({ activity, onSubmit }: InventoryManagerProps) 
     })
   }, [addNotification])
 
+
+  /**
+   * Advances the simulation by one day, processing sales, applying market
+   * events, deducting storage costs, and checking win/loss conditions.
+   */
   const advanceDay = useCallback(() => {
     if (gameState.gameStatus !== 'playing') return
 

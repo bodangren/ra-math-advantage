@@ -40,6 +40,20 @@ interface TeacherLessonPlanProps {
   availableLessons?: Array<{ number: number; title: string }>;
 }
 
+
+/**
+ * Renders a detailed lesson plan for teachers, including learning objectives,
+ * phase-by-phase guidance, workbook materials, and differentiation strategies.
+ *
+ * @param props - Component props.
+ * @param props.lesson - The published lesson data.
+ * @param props.phases - Array of published lesson phases.
+ * @param props.lessonNumber - The lesson number within the unit.
+ * @param props.onNavigate - Callback for navigating to previous/next lesson.
+ * @param props.onLessonChange - Callback when selecting a different lesson.
+ * @param props.availableLessons - Array of available lessons for the selector.
+ * @returns A structured lesson plan page.
+ */
 export function TeacherLessonPlan({
   lesson,
   phases = [],
@@ -59,6 +73,13 @@ export function TeacherLessonPlan({
     'Formative assessment'
   ];
 
+
+  /**
+   * Returns a Lucide icon component for the given phase number.
+   *
+   * @param phaseNumber - The phase number (1-6).
+   * @returns A JSX icon element.
+   */
   const getPhaseIcon = (phaseNumber: number) => {
     switch (phaseNumber) {
       case 1: return <PlayCircle className="h-5 w-5" />
@@ -71,6 +92,13 @@ export function TeacherLessonPlan({
     }
   }
 
+
+  /**
+   * Returns a Tailwind border/background class for the given phase number.
+   *
+   * @param phaseNumber - The phase number (1-6).
+   * @returns A Tailwind class string for phase coloring.
+   */
   const getPhaseColor = (phaseNumber: number) => {
     switch (phaseNumber) {
       case 1: return 'border-red-200 bg-red-50 dark:bg-red-950/10'
@@ -83,6 +111,13 @@ export function TeacherLessonPlan({
     }
   }
 
+
+  /**
+   * Returns an estimated timing string for the given phase number.
+   *
+   * @param phaseNumber - The phase number (1-6).
+   * @returns A time range string (e.g. "5-8 min").
+   */
   const getPhaseTiming = (phaseNumber: number) => {
     switch (phaseNumber) {
       case 1: return '5-8 min'
@@ -95,6 +130,13 @@ export function TeacherLessonPlan({
     }
   }
 
+
+  /**
+   * Returns the human-readable name for the given phase number.
+   *
+   * @param phaseNumber - The phase number (1-6).
+   * @returns The phase name string.
+   */
   const getPhaseName = (phaseNumber: number) => {
     switch (phaseNumber) {
       case 1: return 'Hook'
@@ -427,6 +469,14 @@ export function TeacherLessonPlan({
 }
 
 // Helper component for phase-specific teacher guidance
+
+/**
+ * Renders phase-specific teacher guidance including teaching tips, timing, and materials.
+ *
+ * @param props - Component props.
+ * @param props.phaseNumber - The phase number to display guidance for.
+ * @returns A guidance card, or null if no guidance exists for the phase.
+ */
 function TeacherGuidance({ phaseNumber }: { phaseNumber: number }) {
   const guidance: Record<number, { tips: string[]; timing: string; materials: string }> = {
     1: {

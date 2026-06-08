@@ -35,6 +35,15 @@ interface DailyPracticeSessionProps {
   studentId: string;
 }
 
+
+/**
+ * Renders a daily SRS practice session that presents due cards one at a time
+ * with family-specific answer inputs and review submission.
+ *
+ * @param props - Component props.
+ * @param props.studentId - The student's unique ID.
+ * @returns A practice session page with card display and answer submission.
+ */
 export function DailyPracticeSession({ studentId }: DailyPracticeSessionProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [completed, setCompleted] = useState(false);
@@ -106,6 +115,13 @@ export function DailyPracticeSession({ studentId }: DailyPracticeSessionProps) {
     );
   }
 
+
+  /**
+   * Processes a practice submission envelope, grades the answer, records
+   * the SRS review, and shows the next button.
+   *
+   * @param envelope - The practice submission envelope with answers and timing.
+   */
   const handleSubmit = async (envelope: PracticeSubmissionEnvelope) => {
     if (submittedRef.current) return;
     submittedRef.current = true;
@@ -147,6 +163,10 @@ export function DailyPracticeSession({ studentId }: DailyPracticeSessionProps) {
     }
   };
 
+
+  /**
+   * Advances to the next card or marks the session as complete.
+   */
   const handleAdvance = () => {
     setShowNext(false);
     submittedRef.current = false;
@@ -221,6 +241,19 @@ export function DailyPracticeSession({ studentId }: DailyPracticeSessionProps) {
   );
 }
 
+
+/**
+ * Renders a fallback problem display with grading when no registered answer
+ * input component exists for the practice family.
+ *
+ * @param props - Component props.
+ * @param props.familyKey - The problem family key string.
+ * @param props.family - The practice family definition object.
+ * @param props.definition - The generated problem definition.
+ * @param props.response - The expected response from the family solver.
+ * @param props.onSubmit - Callback to submit the graded practice envelope.
+ * @returns A problem display with submit button and grade results.
+ */
 function ProblemRenderer({
   familyKey,
   family,
@@ -239,6 +272,10 @@ function ProblemRenderer({
   const [submitted, setSubmitted] = useState(false);
   const [gradeResult, setGradeResult] = useState<{ parts: Array<{ partId: string; rawAnswer?: unknown; isCorrect?: boolean }> } | null>(null);
 
+
+  /**
+   * Grades the current problem and submits the result envelope.
+   */
   const handleGrade = () => {
     if (submittedRef.current) return;
     submittedRef.current = true;
@@ -262,6 +299,14 @@ function ProblemRenderer({
     onSubmit(envelope);
   };
 
+
+  /**
+   * Recursively renders a problem definition as nested JSX elements.
+   *
+   * @param def - The definition value to render.
+   * @param path - Unique key path for React reconciliation.
+   * @returns A React node representing the definition.
+   */
   const renderDef = (def: unknown, path: string = ''): React.ReactNode => {
     if (def === null || def === undefined) return null;
     if (typeof def === 'string' || typeof def === 'number' || typeof def === 'boolean') {

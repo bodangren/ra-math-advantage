@@ -71,6 +71,14 @@ interface SubmissionSnapshot {
 // Helpers
 // ---------------------------------------------------------------------------
 
+
+/**
+ * Renders an icon representing a phase's completion status.
+ *
+ * @param props - Component props.
+ * @param props.status - The current phase status to visualize.
+ * @returns A check, bullet, or circle icon depending on status.
+ */
 function PhaseStatusIcon({ status }: { status: PhaseStatus }) {
   if (status === 'completed') {
     return <CheckCircle2 className="size-4 shrink-0 text-green-600" aria-hidden="true" />;
@@ -81,6 +89,13 @@ function PhaseStatusIcon({ status }: { status: PhaseStatus }) {
   return <Circle className="size-4 shrink-0 text-muted-foreground/50" aria-hidden="true" />;
 }
 
+
+/**
+ * Formats an ISO timestamp string into a human-readable locale string.
+ *
+ * @param value - ISO date string, or null if no timestamp exists.
+ * @returns A formatted date string, or a fallback message when absent.
+ */
 function formatTimestamp(value: string | null) {
   if (!value) return 'No submission time';
   const date = new Date(value);
@@ -88,6 +103,13 @@ function formatTimestamp(value: string | null) {
   return date.toLocaleString();
 }
 
+
+/**
+ * Converts an unknown value into a display-friendly string.
+ *
+ * @param value - The value to format (string, number, boolean, object, or nullish).
+ * @returns A human-readable string representation, or an em-dash for empty values.
+ */
 function formatValue(value: unknown): string {
   if (value === null || value === undefined || value === '') return '—';
   if (typeof value === 'string') return value;
@@ -95,6 +117,13 @@ function formatValue(value: unknown): string {
   return JSON.stringify(value);
 }
 
+
+/**
+ * Determines a human-readable label for the artifact type of submission evidence.
+ *
+ * @param evidence - The submission evidence whose artifact kind to label.
+ * @returns A display label such as "Spreadsheet", "Journal Entry", etc.
+ */
 function getArtifactLabel(evidence: SubmissionEvidence) {
   if (evidence.kind === 'spreadsheet') return 'Spreadsheet';
 
@@ -125,6 +154,14 @@ function getArtifactLabel(evidence: SubmissionEvidence) {
   }
 }
 
+
+/**
+ * Extracts submission evidence from a phase, synthesizing a spreadsheet entry
+ * if the phase has spreadsheet data but no explicit evidence array.
+ *
+ * @param phase - The phase detail to normalize.
+ * @returns An array of submission evidence items for the phase.
+ */
 function normalizeEvidence(phase: PhaseDetail): SubmissionEvidence[] {
   if (phase.evidence && phase.evidence.length > 0) {
     return phase.evidence;
@@ -146,6 +183,14 @@ function normalizeEvidence(phase: PhaseDetail): SubmissionEvidence[] {
   ];
 }
 
+
+/**
+ * Aggregates a submission detail into a summary snapshot, computing overall
+ * scores, scaffold usage, misconception tags, and artifact metadata.
+ *
+ * @param detail - The full submission detail to summarize.
+ * @returns A {@link SubmissionSnapshot} with aggregated metrics.
+ */
 function buildSnapshot(detail: SubmissionDetail): SubmissionSnapshot {
   const evidence = detail.phases.flatMap((phase) => normalizeEvidence(phase));
   const completedPhases = detail.phases.filter((phase) => phase.status === 'completed').length;
@@ -213,6 +258,15 @@ function buildSnapshot(detail: SubmissionDetail): SubmissionSnapshot {
   };
 }
 
+
+/**
+ * Displays a small labeled value chip used in the submission summary grid.
+ *
+ * @param props - Component props.
+ * @param props.label - The uppercase label text (e.g. "Score", "Attempt").
+ * @param props.value - The display value to render beneath the label.
+ * @returns A styled chip element.
+ */
 function SummaryChip({
   label,
   value,
@@ -228,6 +282,15 @@ function SummaryChip({
   );
 }
 
+
+/**
+ * Renders an evidence value as badges (for arrays), a definition list (for objects),
+ * or plain text (for primitives).
+ *
+ * @param props - Component props.
+ * @param props.value - The evidence value to render.
+ * @returns A rendered representation of the value.
+ */
 function EvidenceValue({ value }: { value: unknown }) {
   if (Array.isArray(value)) {
     return (
@@ -262,6 +325,17 @@ function EvidenceValue({ value }: { value: unknown }) {
   return <span className="break-words text-sm text-foreground">{formatValue(value)}</span>;
 }
 
+
+/**
+ * Renders a single answer part row showing correctness, score, hints, edits,
+ * misconception tags, and raw answer details.
+ *
+ * @param props - Component props.
+ * @param props.part - The part data object from the submission.
+ * @param props.index - Zero-based index of this part in the list.
+ * @param props.showAll - When false, parts at index >= 4 are hidden.
+ * @returns A styled part row element, or null if hidden.
+ */
 function PartRow({
   part,
   index,
@@ -351,6 +425,15 @@ function PartRow({
   );
 }
 
+
+/**
+ * Renders a card displaying a single piece of submission evidence, including
+ * part-by-part answers, spreadsheet data, AI feedback, and teacher overrides.
+ *
+ * @param props - Component props.
+ * @param props.evidence - The submission evidence to display.
+ * @returns A card element with the evidence details.
+ */
 function PracticeEvidenceCard({
   evidence,
 }: {
@@ -589,6 +672,17 @@ function PracticeEvidenceCard({
 // SubmissionDetailModal
 // ---------------------------------------------------------------------------
 
+
+/**
+ * Modal dialog showing detailed submission evidence for a single student/lesson
+ * cell, with filtering by practice mode and summary metrics.
+ *
+ * @param props - Component props.
+ * @param props.selected - The selected cell containing student and lesson info.
+ * @param props.onClose - Callback invoked when the modal requests to close.
+ * @returns A full-screen modal with submission detail content.
+ * @throws Logs errors to console if the submission data fetch fails.
+ */
 export function SubmissionDetailModal({
   selected,
   onClose,

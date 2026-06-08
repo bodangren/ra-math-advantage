@@ -18,6 +18,13 @@ const scenarios: AssetScenario[] = [
   { id: 'A-003', name: 'Server Rack', cost: 8000, usefulLife: 3, salvageValue: 800 },
 ]
 
+
+/**
+ * Calculates a side-by-side SL and DDB depreciation comparison schedule.
+ *
+ * @param asset - The asset scenario with cost, useful life, and salvage value
+ * @returns An array of yearly rows with SL and DDB figures
+ */
 function calculateComparison(asset: AssetScenario): ScheduleRow[] {
   if (asset.usefulLife <= 0) return []
   const slAnnual = (asset.cost - asset.salvageValue) / asset.usefulLife
@@ -40,6 +47,15 @@ export interface DepreciationMethodComparisonSimulatorProps {
   onComplete?: () => void
 }
 
+
+/**
+ * Renders a depreciation method comparison simulator where students predict
+ * Year 1 expenses under SL and DDB, then view a full side-by-side schedule.
+ *
+ * @param activity - The activity configuration with optional asset scenarios
+ * @param onSubmit - Callback to submit practice results
+ * @param onComplete - Callback when the activity is finished
+ */
 export function DepreciationMethodComparisonSimulator({ activity, onSubmit, onComplete }: DepreciationMethodComparisonSimulatorProps) {
   const assetList = activity.props?.scenarios ?? scenarios
   const [scenarioIndex, setScenarioIndex] = useState(0)

@@ -7,6 +7,13 @@ interface LearningSequenceProps {
   learningSequence: UnitLearningSequence;
 }
 
+
+/**
+ * Renders the unit's weekly learning sequence with day-by-day activities and resources.
+ *
+ * @param props - The learning sequence data
+ * @returns A section containing week and day breakdown cards
+ */
 export function LearningSequence({ learningSequence }: LearningSequenceProps) {
   return (
     <section className="space-y-6">

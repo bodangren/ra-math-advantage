@@ -9,6 +9,16 @@ interface PhaseGuidanceCardProps {
   learningObjectives: string[] | null;
 }
 
+
+/**
+ * Renders a phase guidance card showing the phase focus, success criteria,
+ * and related learning objectives.
+ *
+ * @param props - Component props.
+ * @param props.guidance - The phase guidance data.
+ * @param props.learningObjectives - Optional lesson learning objectives.
+ * @returns A styled guidance card with criteria and objectives.
+ */
 export function PhaseGuidanceCard({
   guidance,
   learningObjectives,

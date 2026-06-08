@@ -57,6 +57,14 @@ export interface SelectionMatrixProps {
   submissionSummary?: SelectionMatrixReviewSummary;
 }
 
+
+/**
+ * Normalize a selection entry into its expected shape based on selection mode.
+ *
+ * @param entry - The raw selection value.
+ * @param selectionMode - Whether the row allows single or multiple selections.
+ * @returns A string for single mode, or an array for multiple mode.
+ */
 function getSelectedValues(entry: string | string[] | undefined, selectionMode: SelectionMode) {
   if (selectionMode === 'multiple') {
     return Array.isArray(entry) ? entry : entry ? [entry] : [];
@@ -65,6 +73,16 @@ function getSelectedValues(entry: string | string[] | undefined, selectionMode: 
   return typeof entry === 'string' ? entry : undefined;
 }
 
+
+/**
+ * Toggle a column selection for a row, supporting both single and multiple
+ * selection modes.
+ *
+ * @param current - The current selections record.
+ * @param row - The matrix row being toggled.
+ * @param columnId - The column identifier to toggle.
+ * @returns A new selections record with the toggle applied.
+ */
 function toggleSelectedValue(
   current: Record<string, string | string[]>,
   row: SelectionMatrixRow,
@@ -93,6 +111,15 @@ function toggleSelectedValue(
   };
 }
 
+
+/**
+ * Selection matrix for classifying rows against columns with single or
+ * multiple selection, keyboard navigation, and teacher feedback.
+ *
+ * @param props - Title, rows, columns, mode, and feedback configuration.
+ * @returns A Card containing the matrix grid with accessible radio/checkbox
+ *   controls.
+ */
 export function SelectionMatrix({
   title,
   description,
@@ -139,6 +166,12 @@ export function SelectionMatrix({
     [],
   );
 
+
+  /**
+   * Update the selection values and propagate to controlled state.
+   *
+   * @param nextValue - The new selections record.
+   */
   const updateValue = (nextValue: Record<string, string | string[]>) => {
     if (value === undefined) {
       setInternalValue(nextValue);
@@ -146,6 +179,14 @@ export function SelectionMatrix({
     onValueChange?.(nextValue);
   };
 
+
+  /**
+   * Move keyboard focus to an adjacent cell in the matrix.
+   *
+   * @param rowId - The current row identifier.
+   * @param columnId - The current column identifier.
+   * @param direction - The arrow key direction.
+   */
   const moveFocus = (rowId: string, columnId: string, direction: 'up' | 'down' | 'left' | 'right') => {
     const rowIndex = rowIndexes.get(rowId);
     const columnIndex = columnIndexes.get(columnId);
@@ -165,6 +206,12 @@ export function SelectionMatrix({
     nextCell?.focus();
   };
 
+
+  /**
+   * Move focus to the first cell in the next row after a single selection.
+   *
+   * @param rowId - The current row identifier.
+   */
   const moveToFirstCellInNextRow = (rowId: string) => {
     const rowIndex = rowIndexes.get(rowId);
     const firstColumn = columns[0];
@@ -177,6 +224,14 @@ export function SelectionMatrix({
     cellRefs.current.get(`${nextRow.id}:${firstColumn.id}`)?.focus();
   };
 
+
+  /**
+   * Render a single cell button in the selection matrix.
+   *
+   * @param row - The matrix row.
+   * @param column - The matrix column.
+   * @returns A button element for the cell.
+   */
   const renderCell = (row: SelectionMatrixRow, column: SelectionMatrixColumn) => {
     const selectionMode = row.selectionMode ?? 'single';
     const rowValue = selectedValues[row.id];

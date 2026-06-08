@@ -20,6 +20,13 @@ export interface UnitTemplateProps {
   className?: string;
 }
 
+
+/**
+ * Renders the full unit page layout composing all unit subsections.
+ *
+ * @param props - Unit metadata and content data
+ * @returns A stacked layout of unit header, overview, and content sections
+ */
 export function UnitTemplate({
   unitNumber,
   title,

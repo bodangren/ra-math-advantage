@@ -80,6 +80,12 @@ const scenarioPool = [
   },
 ]
 
+
+/**
+ * Generates a random income statement problem from the scenario pool.
+ *
+ * @returns A new IncomeStatementProblem with a random scenario and distractors
+ */
 function generateProblem(): IncomeStatementProblem {
   const scenario = scenarioPool[Math.floor(Math.random() * scenarioPool.length)]
   return {
@@ -103,6 +109,15 @@ export interface IncomeStatementPracticeProps {
   onComplete?: () => void
 }
 
+
+/**
+ * Renders an income statement practice activity where users answer questions
+ * about revenue, gross profit, operating income, and net income.
+ *
+ * @param activity - Activity configuration with optional mastery threshold
+ * @param onSubmit - Callback fired when the user submits an answer
+ * @param onComplete - Callback fired when mastery is achieved
+ */
 export function IncomeStatementPractice({ activity, onSubmit, onComplete }: IncomeStatementPracticeProps) {
   const masteryTarget = activity.props?.masteryThreshold ?? 5
   const [problem, setProblem] = useState<IncomeStatementProblem>(generateProblem)
@@ -145,6 +160,11 @@ export function IncomeStatementPractice({ activity, onSubmit, onComplete }: Inco
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [problem.id])
 
+
+  /**
+   * Validates the selected answer, updates streak state, and submits
+   * the result envelope.
+   */
   const handleSubmit = useCallback(() => {
     if (submittedRef.current) return
     const selectedOption = shuffledOptions.find(o => o.label === userAnswer)
@@ -191,6 +211,10 @@ export function IncomeStatementPractice({ activity, onSubmit, onComplete }: Inco
     }
   }, [userAnswer, shuffledOptions, onSubmit, activity.id, problem])
 
+
+  /**
+   * Resets the component state and generates a new random income statement problem.
+   */
   const handleNewProblem = useCallback(() => {
     setProblem(generateProblem())
     setUserAnswer('')
@@ -201,6 +225,10 @@ export function IncomeStatementPractice({ activity, onSubmit, onComplete }: Inco
     submittedRef.current = false
   }, [])
 
+
+  /**
+   * Displays a worked example showing income statement formula reminders.
+   */
   const handleShowExample = useCallback(() => {
     setShowWorkedExample(true)
   }, [])

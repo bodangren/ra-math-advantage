@@ -3,6 +3,11 @@ import { Button } from "./ui/button";
 import { getServerSessionClaims } from "@/lib/auth/server";
 import { LogoutButton } from "./logout-button";
 
+/**
+ * Renders a sign-in button or a greeting with logout for authenticated users.
+ *
+ * @returns Server-rendered auth UI based on session claims
+ */
 export async function AuthButton() {
   const claims = await getServerSessionClaims();
 

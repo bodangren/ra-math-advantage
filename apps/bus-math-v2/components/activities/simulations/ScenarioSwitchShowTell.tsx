@@ -30,6 +30,15 @@ export interface ScenarioSwitchShowTellProps {
   onComplete?: () => void
 }
 
+
+/**
+ * Renders a scenario switch show-and-tell activity where students toggle
+ * between business scenarios, compare tradeoffs, and document insights.
+ *
+ * @param activity - The scenario switch activity configuration
+ * @param onSubmit - Callback to submit practice results
+ * @param onComplete - Callback when the activity is finished
+ */
 export function ScenarioSwitchShowTell({ activity, onSubmit, onComplete }: ScenarioSwitchShowTellProps) {
   const scenarios = activity.props.scenarios ?? defaultScenarios
   const [activeIndex, setActiveIndex] = useState(0)
@@ -40,6 +49,12 @@ export function ScenarioSwitchShowTell({ activity, onSubmit, onComplete }: Scena
 
   const active = scenarios[activeIndex]
 
+
+  /**
+   * Adds a comparison note between the active scenario and another.
+   *
+   * @param currentNote - The insight text to record
+   */
   const handleAddComparison = useCallback(() => {
     if (!currentNote.trim()) return
     const otherIndex = activeIndex === 0 ? 1 : 0

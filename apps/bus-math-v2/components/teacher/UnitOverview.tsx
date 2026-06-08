@@ -19,6 +19,18 @@ interface UnitOverviewProps {
   capstoneConnection?: string;
 }
 
+
+/**
+ * Renders a student-facing unit overview with essential question, learning targets,
+ * skills, assessments, and capstone connection.
+ *
+ * @param props - Component props.
+ * @param props.lesson - The lesson object with unit content metadata.
+ * @param props.gradeLevel - Grade level label (defaults to "9-12").
+ * @param props.course - Course name (defaults to "Business Operations").
+ * @param props.capstoneConnection - Optional override for capstone connection text.
+ * @returns A structured unit overview page.
+ */
 export function UnitOverview({ lesson, gradeLevel = "9-12", course = "Business Operations", capstoneConnection }: UnitOverviewProps) {
   // Extract unit content from lesson metadata
   const unitContent = lesson.metadata?.unitContent;

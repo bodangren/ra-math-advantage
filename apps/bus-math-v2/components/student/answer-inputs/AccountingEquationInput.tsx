@@ -6,6 +6,17 @@ import { Input } from '@/components/ui/input';
 import type { DailyPracticeAnswerInputProps } from '@/lib/srs/answer-inputs/registry';
 import type { AccountingEquationDefinition, AccountingEquationResponse } from '@/lib/practice/engine/families/accounting-equation';
 
+
+/**
+ * Renders an answer input for accounting equation problems, showing visible
+ * facts and a numeric input for the hidden term.
+ *
+ * @param props - Component props.
+ * @param props.family - The practice family object with grade/toEnvelope methods.
+ * @param props.definition - The accounting equation problem definition.
+ * @param props.onSubmit - Callback to submit the graded practice envelope.
+ * @returns A problem display with numeric input and submit/grade result.
+ */
 export function AccountingEquationInput({ family, definition, onSubmit }: DailyPracticeAnswerInputProps) {
   const def = definition as AccountingEquationDefinition;
   const submittedRef = useRef(false);
@@ -20,6 +31,10 @@ export function AccountingEquationInput({ family, definition, onSubmit }: DailyP
   const visibleFacts = def.facts;
   const hiddenTermLabel = def.terms[hiddenTermId]?.label ?? hiddenTermId;
 
+
+  /**
+   * Grades the submitted value and submits the practice envelope.
+   */
   const handleSubmit = () => {
     if (submittedRef.current) return;
     submittedRef.current = true;

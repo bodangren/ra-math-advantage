@@ -36,7 +36,14 @@ interface PercentageCalculationSortingProps {
 
 type ScenarioItem = PercentageCalculationSortingActivityProps['scenarios'][number] & CategorizationItem;
 
-const difficultyBadge = (difficulty: ScenarioItem['difficulty']) => {
+
+/**
+ * Map a scenario difficulty level to a Badge variant.
+ *
+ * @param difficulty - The difficulty level string
+ * @returns The corresponding Badge variant
+ */
+function difficultyBadge(difficulty: ScenarioItem['difficulty']) {
   switch (difficulty) {
     case 'easy':
       return 'secondary';
@@ -45,8 +52,16 @@ const difficultyBadge = (difficulty: ScenarioItem['difficulty']) => {
     default:
       return 'outline';
   }
-};
+}
 
+
+/**
+ * Renders a drag-and-drop exercise where students sort business
+ * scenarios into the correct percentage calculation types.
+ *
+ * @param props - Activity configuration and submission callback
+ * @returns An interactive percentage calculation sorting exercise
+ */
 export function PercentageCalculationSorting({ activity, onSubmit }: PercentageCalculationSortingProps) {
   const [showHints, setShowHints] = useState(activity.props.showHintsByDefault);
   const practiceMode = activity.props.showHintsByDefault ? 'guided_practice' : 'independent_practice';
@@ -62,6 +77,12 @@ export function PercentageCalculationSorting({ activity, onSubmit }: PercentageC
     [activity.props.scenarios]
   );
 
+
+  /**
+   * Build and submit the practice submission when the sorting exercise is completed.
+   *
+   * @param payload - Score, attempt count, and final placements
+   */
   const handleCompletion = useCallback(
     ({ score, attempts, placements }: { score: number; attempts: number; placements: Record<string, ScenarioItem[]> }) => {
       try {

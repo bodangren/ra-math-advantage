@@ -39,14 +39,39 @@ const ACCOUNT_TYPE_COLORS: Record<AccountType, string> = {
   expense: 'bg-orange-100 text-orange-800 border-orange-200'
 };
 
-export const getAccountTypeColor = (type: AccountType | string): string => {
+
+/**
+ * Return Tailwind CSS classes for the given account type badge color.
+ *
+ * @param type - An AccountType or arbitrary string
+ * @returns CSS class string for the badge
+ */
+export function getAccountTypeColor(type: AccountType | string) : string {
   if ((type as AccountType) in ACCOUNT_TYPE_COLORS) {
     return ACCOUNT_TYPE_COLORS[type as AccountType];
   }
   return 'bg-gray-100 text-gray-800 border-gray-200';
-};
+}
 
-export const getNormalBalanceSide = (accountType: AccountType): NormalBalanceSide =>
+
+/**
+ * Determine the normal balance side (debit or credit) for an account type.
+ *
+ * @param accountType - The account type to evaluate
+ * @returns The normal balance side for that account type
+ */
+export function getNormalBalanceSide(accountType: AccountType) : NormalBalanceSide {
+  return ;
+}
   accountType === 'asset' || accountType === 'expense' ? 'debit' : 'credit';
 
-export const formatCurrency = (value: number): string => `$${value.toLocaleString()}`;
+
+/**
+ * Format a numeric value as a US dollar currency string.
+ *
+ * @param value - The amount to format
+ * @returns A string like "$1,500"
+ */
+export function formatCurrency(value: number) : string {
+  return `$${value.toLocaleString()}`;
+}

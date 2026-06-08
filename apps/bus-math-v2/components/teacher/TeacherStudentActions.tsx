@@ -39,6 +39,16 @@ interface UpdateStudentResponse {
   deactivated: boolean;
 }
 
+
+/**
+ * Renders a reusable modal dialog shell with a title bar and close button.
+ *
+ * @param props - Component props.
+ * @param props.title - The dialog title text.
+ * @param props.onClose - Callback when the dialog requests to close.
+ * @param props.children - Content rendered inside the dialog body.
+ * @returns A full-screen overlay with a centered dialog.
+ */
 function DialogShell({
   title,
   onClose,
@@ -73,6 +83,18 @@ function DialogShell({
   );
 }
 
+
+/**
+ * Renders a dropdown menu with student management actions (reset password,
+ * edit details) and their associated dialog workflows.
+ *
+ * @param props - Component props.
+ * @param props.studentId - The student's unique ID.
+ * @param props.username - The student's username.
+ * @param props.displayName - The student's display name.
+ * @param props.onStudentUpdated - Callback when a student is updated.
+ * @returns A dropdown menu with action items and dialogs.
+ */
 export function TeacherStudentActions({
   studentId,
   username,

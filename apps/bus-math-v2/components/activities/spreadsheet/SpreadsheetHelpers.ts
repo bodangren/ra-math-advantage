@@ -2,7 +2,15 @@ import type { SpreadsheetData, SpreadsheetCell } from "./SpreadsheetWrapper";
 export type { SpreadsheetData, SpreadsheetCell } from "./SpreadsheetWrapper";
 
 // Formula validation helper
-export const validateFormula = (formula: string): { isValid: boolean; error?: string } => {
+
+/**
+ * Validates a spreadsheet formula string against allowed functions
+ * and balanced parentheses.
+ *
+ * @param formula - The formula string to validate (must start with "=")
+ * @returns An object with `isValid` flag and optional `error` message
+ */
+export function validateFormula(formula: string) : { isValid: boolean; error?: string } {
   if (!formula.startsWith("=")) {
     return { isValid: false, error: "Formula must start with =" };
   }
@@ -43,18 +51,35 @@ export const validateFormula = (formula: string): { isValid: boolean; error?: st
   }
 
   return { isValid: true };
-};
+}
 
 // Cell reference validation
-export const validateCellReference = (reference: string): boolean => {
+
+/**
+ * Checks whether a string is a valid cell reference or cell range
+ * in A1 notation (e.g. "A1", "B2", "A1:C5").
+ *
+ * @param reference - The cell reference string to validate
+ * @returns `true` if the reference matches A1 or range notation
+ */
+export function validateCellReference(reference: string) : boolean {
   const cellPattern = /^[A-Z]+[0-9]+$/;
   const rangePattern = /^[A-Z]+[0-9]+:[A-Z]+[0-9]+$/;
   
   return cellPattern.test(reference) || rangePattern.test(reference);
-};
+}
 
 // Convert cell coordinates to A1 notation
-export const coordinatesToA1 = (row: number, col: number): string => {
+
+/**
+ * Converts zero-based row and column indices to A1 notation.
+ * For example, (0, 0) → "A1", (2, 25) → "Z3".
+ *
+ * @param row - Zero-based row index
+ * @param col - Zero-based column index
+ * @returns The cell reference in A1 notation
+ */
+export function coordinatesToA1(row: number, col: number) : string {
   let colString = "";
   let colNum = col;
   
@@ -64,10 +89,19 @@ export const coordinatesToA1 = (row: number, col: number): string => {
   }
   
   return colString + (row + 1);
-};
+}
 
 // Convert A1 notation to coordinates
-export const a1ToCoordinates = (a1: string): { row: number; col: number } => {
+
+/**
+ * Converts an A1-notation cell reference to zero-based row and
+ * column indices.
+ *
+ * @param a1 - Cell reference in A1 notation (e.g. "B3")
+ * @returns An object with zero-based `row` and `col`
+ * @throws {Error} If the input is not valid A1 notation
+ */
+export function a1ToCoordinates(a1: string) : { row: number; col: number } {
   const match = a1.match(/^([A-Z]+)([0-9]+)$/);
   if (!match) throw new Error("Invalid A1 notation");
   
@@ -83,10 +117,19 @@ export const a1ToCoordinates = (a1: string): { row: number; col: number } => {
   const row = parseInt(rowString) - 1; // Convert to 0-based
   
   return { row, col };
-};
+}
 
 // Create empty spreadsheet data
-export const createEmptySpreadsheet = (rows: number, cols: number): SpreadsheetData => {
+
+/**
+ * Creates an empty spreadsheet grid with the specified dimensions.
+ * Each cell is initialized with an empty string value.
+ *
+ * @param rows - Number of rows in the spreadsheet
+ * @param cols - Number of columns in the spreadsheet
+ * @returns A new {@link SpreadsheetData} grid
+ */
+export function createEmptySpreadsheet(rows: number, cols: number) : SpreadsheetData {
   const data: SpreadsheetData = [];
   
   for (let r = 0; r < rows; r++) {
@@ -98,16 +141,22 @@ export const createEmptySpreadsheet = (rows: number, cols: number): SpreadsheetD
   }
   
   return data;
-};
+}
 
 // Set cell value at specific coordinates
-export const setCellValue = (
-  data: SpreadsheetData,
-  row: number,
-  col: number,
-  value: string | number,
-  readOnly = false
-): SpreadsheetData => {
+
+/**
+ * Returns a new spreadsheet with the value set at the specified
+ * coordinates. Rows and columns are expanded as needed.
+ *
+ * @param data - The current spreadsheet data
+ * @param row - Zero-based row index
+ * @param col - Zero-based column index
+ * @param value - The value to set (string or number)
+ * @param readOnly - Whether the cell should be read-only
+ * @returns A new {@link SpreadsheetData} with the updated cell
+ */
+export function setCellValue( data: SpreadsheetData, row: number, col: number, value: string | number, readOnly = false ) : SpreadsheetData {
   const newData = [...data];
   
   // Ensure the row exists
@@ -123,26 +172,37 @@ export const setCellValue = (
   newData[row][col] = { value, readOnly };
   
   return newData;
-};
+}
 
 // Get cell value at specific coordinates
-export const getCellValue = (
-  data: SpreadsheetData,
-  row: number,
-  col: number
-): string | number | undefined => {
+
+/**
+ * Retrieves the value of a cell at the specified coordinates.
+ *
+ * @param data - The spreadsheet data to read from
+ * @param row - Zero-based row index
+ * @param col - Zero-based column index
+ * @returns The cell value, or `undefined` if out of bounds
+ */
+export function getCellValue( data: SpreadsheetData, row: number, col: number ) : string | number | undefined {
   if (row >= data.length || row < 0) return undefined;
   if (col >= data[row].length || col < 0) return undefined;
   
   return data[row][col]?.value;
-};
+}
 
 // Extract numeric value from cell (handles formulas)
-export const getNumericValue = (
-  data: SpreadsheetData,
-  row: number,
-  col: number
-): number => {
+
+/**
+ * Extracts a numeric value from a cell, parsing string values as
+ * numbers. Returns 0 for non-numeric or missing values.
+ *
+ * @param data - The spreadsheet data to read from
+ * @param row - Zero-based row index
+ * @param col - Zero-based column index
+ * @returns The numeric value of the cell, or 0 if not numeric
+ */
+export function getNumericValue( data: SpreadsheetData, row: number, col: number ) : number {
   const value = getCellValue(data, row, col);
   
   if (typeof value === "number") return value;
@@ -152,10 +212,18 @@ export const getNumericValue = (
   }
   
   return 0;
-};
+}
 
 // Validate spreadsheet data structure
-export const validateSpreadsheetData = (data: SpreadsheetData): { isValid: boolean; errors: string[] } => {
+
+/**
+ * Validates the structure of spreadsheet data, checking that rows
+ * and cells are correctly typed and formulas are valid.
+ *
+ * @param data - The spreadsheet data to validate
+ * @returns An object with `isValid` flag and an array of `errors`
+ */
+export function validateSpreadsheetData(data: SpreadsheetData) : { isValid: boolean; errors: string[] } {
   const errors: string[] = [];
   
   if (!Array.isArray(data)) {
@@ -196,10 +264,18 @@ export const validateSpreadsheetData = (data: SpreadsheetData): { isValid: boole
   }
   
   return { isValid: errors.length === 0, errors };
-};
+}
 
 // Export spreadsheet data to CSV
-export const exportToCSV = (data: SpreadsheetData): string => {
+
+/**
+ * Converts spreadsheet data to a CSV-formatted string. Commas
+ * and double quotes in values are properly escaped.
+ *
+ * @param data - The spreadsheet data to export
+ * @returns A CSV-formatted string
+ */
+export function exportToCSV(data: SpreadsheetData) : string {
   return data.map(row => 
     row.map(cell => {
       const value = cell?.value || "";
@@ -210,10 +286,18 @@ export const exportToCSV = (data: SpreadsheetData): string => {
       return value;
     }).join(",")
   ).join("\n");
-};
+}
 
 // Import CSV data to spreadsheet format
-export const importFromCSV = (csvString: string): SpreadsheetData => {
+
+/**
+ * Parses a CSV-formatted string into spreadsheet data. Handles
+ * quoted fields, escaped quotes, and automatic number parsing.
+ *
+ * @param csvString - The raw CSV string to parse
+ * @returns A {@link SpreadsheetData} grid populated from the CSV
+ */
+export function importFromCSV(csvString: string) : SpreadsheetData {
   const lines = csvString.split("\n");
   const data: SpreadsheetData = [];
   
@@ -271,10 +355,18 @@ export const importFromCSV = (csvString: string): SpreadsheetData => {
   }
   
   return data;
-};
+}
 
 // Create column labels (A, B, C, ... AA, AB, etc.)
-export const generateColumnLabels = (count: number): string[] => {
+
+/**
+ * Generates an array of column labels in spreadsheet order
+ * (A, B, ..., Z, AA, AB, ...).
+ *
+ * @param count - The number of column labels to generate
+ * @returns An array of column label strings
+ */
+export function generateColumnLabels(count: number) : string[] {
   const labels: string[] = [];
   
   for (let i = 0; i < count; i++) {
@@ -291,10 +383,17 @@ export const generateColumnLabels = (count: number): string[] => {
   }
   
   return labels;
-};
+}
 
 // Create row labels (1, 2, 3, ...)
-export const generateRowLabels = (count: number): string[] => {
+
+/**
+ * Generates an array of sequential row labels starting from 1.
+ *
+ * @param count - The number of row labels to generate
+ * @returns An array of row label strings ("1", "2", ...)
+ */
+export function generateRowLabels(count: number) : string[] {
   const labels: string[] = [];
   
   for (let i = 0; i < count; i++) {
@@ -302,4 +401,4 @@ export const generateRowLabels = (count: number): string[] => {
   }
   
   return labels;
-};
+}

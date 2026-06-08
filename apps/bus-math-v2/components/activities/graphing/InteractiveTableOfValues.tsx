@@ -18,6 +18,16 @@ interface TableRow {
   isEmpty: boolean;
 }
 
+
+/**
+ * Interactive table for entering y-values for given x-values of a function.
+ *
+ * Validates each entry against the computed expected value and signals
+ * completion when all rows are correct.
+ *
+ * @param props - X-values, function expression, and completion callback.
+ * @returns A table with numeric inputs and color-coded correctness feedback.
+ */
 export function InteractiveTableOfValues({
   xValues,
   functionExpression,
@@ -47,6 +57,13 @@ export function InteractiveTableOfValues({
     }
   }, [rows, onTableComplete]);
 
+
+  /**
+   * Handle a change to a table row's y-value input.
+   *
+   * @param index - The row index being edited.
+   * @param value - The raw input value from the text field.
+   */
   const handleInputChange = (index: number, value: string) => {
     const x = rows[index].x;
 
@@ -72,6 +89,13 @@ export function InteractiveTableOfValues({
     });
   };
 
+
+  /**
+   * Get the row background class based on correctness state.
+   *
+   * @param row - The table row to evaluate.
+   * @returns A Tailwind background class string.
+   */
   const getRowClassName = (row: TableRow) => {
     if (readonly) return '';
     if (row.isEmpty) return '';

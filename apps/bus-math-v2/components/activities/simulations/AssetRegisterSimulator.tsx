@@ -19,6 +19,15 @@ const sampleAssets: AssetInput[] = [
   { id: 'A-003', name: 'Server Rack', cost: 8000, usefulLife: 3, salvageValue: 800, method: 'DDB' },
 ]
 
+
+/**
+ * Calculates a straight-line depreciation schedule for an asset.
+ *
+ * @param cost - The original cost of the asset
+ * @param salvageValue - The estimated salvage value at end of useful life
+ * @param usefulLife - The number of years the asset is expected to be used
+ * @returns An array of yearly depreciation schedule rows
+ */
 function calculateSL(cost: number, salvageValue: number, usefulLife: number): ScheduleRow[] {
   if (usefulLife <= 0) return []
   const annualExpense = (cost - salvageValue) / usefulLife
@@ -27,6 +36,15 @@ function calculateSL(cost: number, salvageValue: number, usefulLife: number): Sc
   return rows
 }
 
+
+/**
+ * Calculates a double-declining balance depreciation schedule for an asset.
+ *
+ * @param cost - The original cost of the asset
+ * @param salvageValue - The estimated salvage value at end of useful life
+ * @param usefulLife - The number of years the asset is expected to be used
+ * @returns An array of yearly depreciation schedule rows
+ */
 function calculateDDB(cost: number, salvageValue: number, usefulLife: number): ScheduleRow[] {
   if (usefulLife <= 0) return []
   const rate = 2 / usefulLife; const rows: ScheduleRow[] = []; let accum = 0; let bv = cost
@@ -40,6 +58,15 @@ export interface AssetRegisterSimulatorProps {
   onComplete?: () => void
 }
 
+
+/**
+ * Renders an interactive asset register simulator where students predict
+ * depreciation expenses and book values, then review full schedules.
+ *
+ * @param activity - The activity configuration with optional asset list
+ * @param onSubmit - Callback to submit practice results
+ * @param onComplete - Callback when the activity is finished
+ */
 export function AssetRegisterSimulator({ activity, onSubmit, onComplete }: AssetRegisterSimulatorProps) {
   const assets = activity.props?.assets ?? sampleAssets
   const [selectedAssetIndex, setSelectedAssetIndex] = useState(0)

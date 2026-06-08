@@ -71,6 +71,14 @@ const CASHFLOW_SERIES: ChartSeries[] = [
   { key: "cashFlow", label: "Cash Flow" }
 ];
 
+
+/**
+ * Renders a financial dashboard with KPI cards, line/bar/doughnut charts,
+ * and optional refresh and export controls.
+ *
+ * @param props - Monthly metrics, series, KPIs, and action callbacks
+ * @returns A full financial dashboard layout
+ */
 export function FinancialDashboard({
   title = "Financial Dashboard",
   description = "Track revenue, expenses, cash flow, and key KPIs.",
@@ -97,6 +105,10 @@ export function FinancialDashboard({
     };
   }, [monthlyMetrics]);
 
+
+  /**
+   * Trigger the refresh callback and manage the refreshing state.
+   */
   const handleRefresh = async () => {
     if (!refreshable) {
       return;

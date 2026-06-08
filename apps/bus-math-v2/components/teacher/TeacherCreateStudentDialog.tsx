@@ -38,6 +38,13 @@ const DEFAULT_FORM_STATE: FormState = {
 const FOCUSABLE_SELECTORS =
   'a[href], button:not([disabled]), textarea, input, select, [tabindex]:not([tabindex="-1"])';
 
+
+/**
+ * Renders a dialog for creating a single student account with auto-generated
+ * username and password credentials.
+ *
+ * @returns A button that opens the create-student modal dialog.
+ */
 export function TeacherCreateStudentDialog() {
   const [isMounted, setIsMounted] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
@@ -98,21 +105,44 @@ export function TeacherCreateStudentDialog() {
     };
   }, [isOpen]);
 
+
+  /**
+   * Closes the dialog and clears any error state.
+   */
   const closeDialog = () => {
     setIsOpen(false);
     setError(null);
   };
 
+
+  /**
+   * Closes the dialog when clicking on the overlay background.
+   *
+   * @param event - The mouse click event.
+   */
   const handleOverlayClick = (event: MouseEvent<HTMLDivElement>) => {
     if (event.target === event.currentTarget) {
       closeDialog();
     }
   };
 
+
+  /**
+   * Returns an input change handler for the given form field.
+   *
+   * @param field - The form field name to update.
+   * @returns A change event handler for the input.
+   */
   const handleChange = (field: keyof FormState) => (event: ChangeEvent<HTMLInputElement>) => {
     setFormState((current) => ({ ...current, [field]: event.target.value }));
   };
 
+
+  /**
+   * Submits the form to create a new student account via the API.
+   *
+   * @param event - The form submission event.
+   */
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setError(null);

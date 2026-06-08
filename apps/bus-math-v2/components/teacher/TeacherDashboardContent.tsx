@@ -48,10 +48,24 @@ const FILTER_OPTIONS: Array<{ value: InterventionFilter; label: string }> = [
   { value: "completed", label: "Completed" },
 ];
 
+
+/**
+ * Formats a last-active timestamp into a human-readable relative time string.
+ *
+ * @param value - ISO date string or null.
+ * @returns A formatted relative time string.
+ */
 export function formatLastActive(value: string | null) {
   return formatTeacherLastActive(value);
 }
 
+
+/**
+ * Computes dashboard-level metrics from the student roster.
+ *
+ * @param students - Array of student dashboard rows.
+ * @returns An object with totalStudents, averageProgress, and intervention counts.
+ */
 function getDashboardMetrics(students: StudentDashboardRow[]) {
   const summary = buildInterventionSummary(students);
 
@@ -84,6 +98,13 @@ function getDashboardMetrics(students: StudentDashboardRow[]) {
   };
 }
 
+
+/**
+ * Returns a Tailwind badge class string based on a student's intervention status.
+ *
+ * @param student - The derived student intervention data.
+ * @returns A Tailwind class string for the status badge.
+ */
 function statusBadgeClassName(student: DerivedStudentIntervention) {
   if (student.isAtRisk) {
     return "border-red-200 bg-red-50 text-red-700";
@@ -100,6 +121,17 @@ function statusBadgeClassName(student: DerivedStudentIntervention) {
   return "border-sky-200 bg-sky-50 text-sky-700";
 }
 
+
+/**
+ * Renders the main teacher dashboard with summary metrics, intervention queue,
+ * student roster, and course overview grid.
+ *
+ * @param props - Component props.
+ * @param props.teacher - The teacher's username and organization name.
+ * @param props.students - Array of student dashboard rows.
+ * @param props.courseOverview - Course overview rows and unit columns.
+ * @returns The full teacher dashboard page.
+ */
 export function TeacherDashboardContent({
   teacher,
   students,

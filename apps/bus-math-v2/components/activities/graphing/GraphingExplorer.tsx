@@ -32,6 +32,16 @@ export interface GraphingExplorerProps {
 const DEFAULT_DOMAIN: [number, number] = [-10, 10];
 const DEFAULT_RANGE: [number, number] = [-10, 10];
 
+
+/**
+ * Full graphing explorer activity combining canvas, table of values, hints,
+ * intercept identification, and submission logic.
+ *
+ * @param props - Activity configuration including equation, mode, variant,
+ *   and optional comparison or exploration parameters.
+ * @returns A composed UI with interactive graphing, guided practice, and
+ *   assessment features.
+ */
 export function GraphingExplorer({
   activityId,
   mode,
@@ -64,10 +74,23 @@ export function GraphingExplorer({
   const [sliderB, setSliderB] = useState(sliderDefaults?.b ?? 0);
   const [sliderC, setSliderC] = useState(sliderDefaults?.c ?? 0);
 
+
+  /**
+   * Record an interaction event in the activity history.
+   *
+   * @param type - The interaction type identifier.
+   * @param data - Optional payload associated with the interaction.
+   */
   const addInteraction = useCallback((type: string, data?: unknown) => {
     setInteractionHistory(prev => [...prev, { type, timestamp: Date.now(), data }]);
   }, []);
 
+
+  /**
+   * Handle adding a point to the graph canvas.
+   *
+   * @param point - The data-space coordinates of the placed point.
+   */
   const handlePointAdd = useCallback((point: Point) => {
     setPlacedPoints(prev => [...prev, { ...point, label: `${point.x.toFixed(1)}, ${point.y.toFixed(1)}` }]);
     addInteraction('point_placed', point);
@@ -87,6 +110,12 @@ export function GraphingExplorer({
     }
   }, [addInteraction, variant]);
 
+
+  /**
+   * Handle removing a point from the graph canvas by its label.
+   *
+   * @param label - The display label identifying the point to remove.
+   */
   const handlePointRemove = useCallback((label: string) => {
     setPlacedPoints(prev => prev.filter(p => p.label !== label));
     if (variant === 'find_intercepts') {
@@ -103,26 +132,56 @@ export function GraphingExplorer({
     addInteraction('point_removed', { label });
   }, [addInteraction, variant]);
 
+
+  /**
+   * Handle completion of the interactive table of values.
+   *
+   * @param points - The computed table points.
+   */
   const handleTableComplete = useCallback((points: Array<{ x: number; y: number }>) => {
     setTableComplete(true);
     addInteraction('table_complete', { points });
   }, [addInteraction]);
 
+
+  /**
+   * Handle a hint being used by the student.
+   *
+   * @param hint - The hint data that was revealed.
+   */
   const handleHintUsed = useCallback((hint: HintData) => {
     setHints(prev => [...prev, hint]);
     addInteraction('hint_used', { hintType: hint.type, data: hint.data });
   }, [addInteraction]);
 
+
+  /**
+   * Handle identification of an x-intercept by the student.
+   *
+   * @param intercept - The identified intercept data.
+   */
   const handleInterceptIdentified = useCallback((intercept: InterceptData) => {
     setIntercepts(prev => [...prev, intercept]);
     addInteraction('intercept_identified', intercept);
   }, [addInteraction]);
 
+
+  /**
+   * Handle selection of a comparison answer in the compare-functions variant.
+   *
+   * @param answer - The selected comparison answer.
+   */
   const handleComparisonAnswerSelect = useCallback((answer: 'first' | 'second') => {
     setComparisonAnswerSelected(answer);
     addInteraction('comparison_answer_selected', { answer });
   }, [addInteraction]);
 
+
+  /**
+   * Assess whether all placed points match the expected initial points.
+   *
+   * @returns `true` if every expected point has a matching placed point.
+   */
   const assessPointsCorrectness = useCallback((): boolean => {
     if (initialPoints.length === 0) return true;
     if (placedPoints.length === 0) return false;
@@ -132,15 +191,33 @@ export function GraphingExplorer({
     );
   }, [initialPoints, placedPoints]);
 
+
+  /**
+   * Assess whether at least one intercept has been identified.
+   *
+   * @returns `true` if intercepts were found.
+   */
   const assessInterceptsCorrectness = useCallback((): boolean => {
     return intercepts.length > 0;
   }, [intercepts]);
 
+
+  /**
+   * Assess whether the selected comparison answer is correct.
+   *
+   * @returns `true` if the selected answer matches the expected answer.
+   */
   const assessComparisonCorrectness = useCallback((): boolean => {
     if (!comparisonAnswer || !comparisonAnswerSelected) return false;
     return comparisonAnswerSelected === comparisonAnswer;
   }, [comparisonAnswer, comparisonAnswerSelected]);
 
+
+  /**
+   * Check whether the quadratic equation has real x-intercepts.
+   *
+   * @returns `true` if the discriminant is non-negative.
+   */
   const hasRealIntercepts = useCallback((): boolean => {
     const coeffs = parseQuadratic(equation.replace(/^y\s*=\s*/, '').trim());
     if (!coeffs || coeffs.a === 0) return true;
@@ -149,6 +226,13 @@ export function GraphingExplorer({
     return discriminant >= 0;
   }, [equation]);
 
+
+  /**
+   * Check whether the quadratic and linear equations have real intersection
+   * points.
+   *
+   * @returns `true` if the system discriminant is non-negative.
+   */
   const hasRealIntersections = useCallback((): boolean => {
     if (!linearEquation) return true;
 
@@ -176,6 +260,10 @@ export function GraphingExplorer({
     return discriminant >= 0;
   }, [equation, linearEquation]);
 
+
+  /**
+   * Build and submit the practice submission envelope with all activity data.
+   */
   const handleSubmit = useCallback(() => {
     if (!onSubmit) return;
 
@@ -293,6 +381,15 @@ export function GraphingExplorer({
   const isPractice = mode === 'practice';
   const isExplore = mode === 'explore';
 
+
+  /**
+   * Format a coefficient and variable into a display string for an equation.
+   *
+   * @param coeff - The numeric coefficient.
+   * @param variable - The variable string (e.g. "x²").
+   * @param isFirst - Whether this is the first term (omits leading sign).
+   * @returns The formatted term string.
+   */
   const formatCoefficient = (coeff: number, variable: string, isFirst: boolean): string => {
     if (coeff === 0) return '';
     const sign = coeff > 0 ? (isFirst ? '' : ' + ') : ' - ';
@@ -310,6 +407,10 @@ export function GraphingExplorer({
     return result || 'y = 0';
   })();
 
+
+  /**
+   * Reset exploration sliders to their default values.
+   */
   const handleSliderReset = () => {
     setSliderA(sliderDefaults?.a ?? 1);
     setSliderB(sliderDefaults?.b ?? 0);
@@ -318,6 +419,12 @@ export function GraphingExplorer({
 
   const exploreFunctions: FunctionPlot[] = [{ expression: exploreEquation, color: '#3b82f6' }];
 
+
+  /**
+   * Get the display title for the current graphing variant.
+   *
+   * @returns A human-readable title string.
+   */
   const getVariantTitle = () => {
     switch (variant) {
       case 'compare_functions':

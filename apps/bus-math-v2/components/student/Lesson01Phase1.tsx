@@ -17,7 +17,14 @@ const calloutVariants: Record<CalloutVariant, string> = {
   example: 'border-green-300 bg-green-50 dark:bg-green-950/20 dark:border-green-900/30'
 };
 
-const renderMarkdown = (content: string) => {
+
+/**
+ * Renders a markdown content block as a styled card with paragraph splitting.
+ *
+ * @param content - The markdown content string.
+ * @returns A card element with rendered paragraphs.
+ */
+function renderMarkdown(content: string) {
   const paragraphs = content.split('\n').filter(Boolean);
   return (
     <Card className="border-border/40 bg-card/60 shadow-sm">
@@ -28,9 +35,18 @@ const renderMarkdown = (content: string) => {
       </CardContent>
     </Card>
   );
-};
+}
 
-const renderCallout = (block: Extract<ContentBlock, { type: 'callout' }>) => (
+
+/**
+ * Renders a callout content block with variant-specific styling.
+ *
+ * @param block - The callout content block to render.
+ * @returns A styled callout card element.
+ */
+function renderCallout(block: Extract<ContentBlock, { type: 'callout' }>) {
+  return (;
+}
   <Card className={`${calloutVariants[block.variant]} border-2`}>
     <CardHeader>
       <CardTitle className="text-base font-semibold capitalize text-foreground">
@@ -43,7 +59,16 @@ const renderCallout = (block: Extract<ContentBlock, { type: 'callout' }>) => (
   </Card>
 );
 
-const renderVideo = (block: Extract<ContentBlock, { type: 'video' }>) => (
+
+/**
+ * Renders a video content block as an embedded iframe with optional transcript.
+ *
+ * @param block - The video content block to render.
+ * @returns A video embed element with optional transcript.
+ */
+function renderVideo(block: Extract<ContentBlock, { type: 'video' }>) {
+  return (;
+}
   <div className="overflow-hidden rounded-xl border border-border/50 shadow-lg">
     <iframe
       src={block.props.videoUrl}
@@ -59,7 +84,16 @@ const renderVideo = (block: Extract<ContentBlock, { type: 'video' }>) => (
   </div>
 );
 
-const renderActivity = (block: Extract<ContentBlock, { type: 'activity' }>) => (
+
+/**
+ * Renders an interactive activity content block placeholder.
+ *
+ * @param block - The activity content block to render.
+ * @returns A card element with activity metadata.
+ */
+function renderActivity(block: Extract<ContentBlock, { type: 'activity' }>) {
+  return (;
+}
   <Card className="border-dashed border-primary/40">
     <CardHeader>
       <CardTitle className="text-base font-semibold text-primary">Interactive Activity</CardTitle>
@@ -71,7 +105,16 @@ const renderActivity = (block: Extract<ContentBlock, { type: 'activity' }>) => (
   </Card>
 );
 
-const renderImage = (block: Extract<ContentBlock, { type: 'image' }>) => (
+
+/**
+ * Renders an image content block with optional caption.
+ *
+ * @param block - The image content block to render.
+ * @returns A figure element with image and optional caption.
+ */
+function renderImage(block: Extract<ContentBlock, { type: 'image' }>) {
+  return (;
+}
   <figure className="overflow-hidden rounded-xl border border-border/40 bg-background shadow-sm">
     <Image
       src={block.props.imageUrl}
@@ -89,7 +132,14 @@ const renderImage = (block: Extract<ContentBlock, { type: 'image' }>) => (
   </figure>
 );
 
-const renderBlock = (block: ContentBlock): ReactNode => {
+
+/**
+ * Dispatches a content block to the appropriate renderer based on its type.
+ *
+ * @param block - The content block to render.
+ * @returns A React node for the block, or null for unknown types.
+ */
+function renderBlock(block: ContentBlock) : ReactNode {
   switch (block.type) {
     case 'markdown':
       return renderMarkdown(block.content);
@@ -104,7 +154,7 @@ const renderBlock = (block: ContentBlock): ReactNode => {
     default:
       return null;
   }
-};
+}
 
 export interface Lesson01Phase1Props {
   lesson: Lesson;
@@ -118,6 +168,16 @@ export interface Lesson01Phase1Props {
   contentBlocks?: ContentBlock[];
 }
 
+/**
+ * Renders the first lesson phase with content blocks (markdown, callouts,
+ * videos, activities, images) and phase navigation.
+ *
+ * @param lesson - The lesson data
+ * @param unit - The parent unit metadata
+ * @param phase - The current phase data
+ * @param phases - All phases in the lesson
+ * @param contentBlocks - Optional override for phase content blocks
+ */
 export default function Lesson01Phase1({
   lesson,
   unit,

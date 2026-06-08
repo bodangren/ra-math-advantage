@@ -51,6 +51,15 @@ interface AssetTimeMachineResult {
   history: AssetHistoryEntry[]
 }
 
+
+/**
+ * Renders a time-machine simulation where students make repair, upgrade,
+ * or ignore decisions for an asset over multiple years and see depreciation impact.
+ *
+ * @param activity - The activity configuration with asset details and scenarios
+ * @param onComplete - Callback with final simulation results
+ * @param onSubmit - Callback to submit practice results
+ */
 export function AssetTimeMachine({ activity, onComplete, onSubmit }: AssetTimeMachineProps) {
   const { assetName, initialCost, years, scenarios } = activity.props
   const [currentYear, setCurrentYear] = useState(0)
@@ -62,6 +71,13 @@ export function AssetTimeMachine({ activity, onComplete, onSubmit }: AssetTimeMa
 
   const currentScenario = scenarios.find(s => s.year === currentYear + 1)
 
+
+  /**
+   * Handles a student's asset action (repair, upgrade, or ignore) for the
+   * current year, updating value and expenses accordingly.
+   *
+   * @param type - The action type chosen by the student
+   */
   const handleAction = (type: 'repair' | 'upgrade' | 'ignore') => {
     if (submittedRef.current) return
     let cost = 0

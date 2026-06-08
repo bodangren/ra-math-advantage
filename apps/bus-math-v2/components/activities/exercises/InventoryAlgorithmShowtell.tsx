@@ -118,6 +118,15 @@ export interface InventoryAlgorithmShowtellProps {
   onComplete?: () => void
 }
 
+
+/**
+ * Renders an inventory cost flow show-and-tell activity where users explore
+ * FIFO, LIFO, and weighted average costing methods and document insights.
+ *
+ * @param activity - Activity configuration with optional mastery threshold
+ * @param onSubmit - Callback fired when the user completes the analysis
+ * @param onComplete - Callback fired when the analysis is finalized
+ */
 export function InventoryAlgorithmShowtell({ activity, onSubmit, onComplete }: InventoryAlgorithmShowtellProps) {
   const [activeMethodId, setActiveMethodId] = useState<string>(methods[0].id)
   const [insights, setInsights] = useState<string[]>([])
@@ -128,12 +137,21 @@ export function InventoryAlgorithmShowtell({ activity, onSubmit, onComplete }: I
   const activeMethod = methods.find(m => m.id === activeMethodId) || methods[0]
   const result = activeMethod.calculateCostOfGoodsSold(sampleLots, salesQuantity)
 
+
+  /**
+   * Adds the current insight text to the insights list and clears the input.
+   */
   const handleAddInsight = useCallback(() => {
     if (!currentInsight.trim()) return
     setInsights(prev => [...prev, currentInsight])
     setCurrentInsight('')
   }, [currentInsight])
 
+
+  /**
+   * Finalizes the analysis, marks the activity as completed, and submits
+   * the result envelope with method results and insights.
+   */
   const handleComplete = useCallback(() => {
     if (submittedRef.current) return
     submittedRef.current = true

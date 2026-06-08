@@ -19,6 +19,14 @@ const HEADERS = [
   "Last Active",
 ] as const;
 
+
+/**
+ * Escapes a CSV field value by wrapping in quotes if it contains commas,
+ * quotes, or newlines.
+ *
+ * @param value - The raw string value to escape.
+ * @returns The escaped CSV-safe string.
+ */
 function escapeCsvValue(value: string) {
   if (/[",\n]/.test(value)) {
     return `"${value.replace(/"/g, '""')}"`;
@@ -27,6 +35,13 @@ function escapeCsvValue(value: string) {
   return value;
 }
 
+
+/**
+ * Converts an array of student dashboard rows into a CSV string with headers.
+ *
+ * @param students - Array of student dashboard rows to serialize.
+ * @returns A complete CSV string with header row and data rows.
+ */
 export function studentRowsToCsv(students: StudentDashboardRow[]) {
   const rows = [HEADERS.join(",")];
 
@@ -51,6 +66,13 @@ export function studentRowsToCsv(students: StudentDashboardRow[]) {
   return rows.join("\n");
 }
 
+
+/**
+ * Builds a timestamped CSV filename for a student progress export.
+ *
+ * @param referenceDate - The date to use for the timestamp (defaults to now).
+ * @returns A filename string like "bus-math-grades-2026-06-08-1430.csv".
+ */
 export function buildCsvFilename(referenceDate = new Date()) {
   const pad = (value: number) => value.toString().padStart(2, "0");
 

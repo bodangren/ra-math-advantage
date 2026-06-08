@@ -47,16 +47,44 @@ export interface PhaseFooterProps {
   navigationOverrides?: PhaseFooterNavigationOverrides;
 }
 
-const formatNumber = (value: number) => value.toString().padStart(2, '0');
 
-const buildLessonHref = (lesson: Lesson) => {
+/**
+ * Pads a number to at least two digits with leading zeros.
+ *
+ * @param value - The number to pad.
+ * @returns A zero-padded string.
+ */
+function formatNumber(value: number) {
+  return value.toString().padStart(2, '0');
+}
+
+
+/**
+ * Builds the student-facing lesson href from a lesson object.
+ *
+ * @param lesson - The lesson to build a path for.
+ * @returns A URL path string for the lesson.
+ */
+function buildLessonHref(lesson: Lesson) {
   if (lesson.slug) {
     return lesson.slug.startsWith('/student') ? lesson.slug : `/student/${lesson.slug}`;
   }
 
   return `/student/unit${formatNumber(lesson.unitNumber)}/lesson${formatNumber(lesson.orderIndex)}`;
-};
+}
 
+
+/**
+ * Renders a phase footer with previous/next navigation, lesson overview link,
+ * and a phase navigation grid showing completion status.
+ *
+ * @param props - Component props.
+ * @param props.lesson - The lesson data.
+ * @param props.phase - The current phase.
+ * @param props.phases - All phases in the lesson.
+ * @param props.navigationOverrides - Optional overrides for navigation labels and hrefs.
+ * @returns A footer section with phase navigation controls.
+ */
 export function PhaseFooter({ lesson, phase, phases, navigationOverrides }: PhaseFooterProps) {
   const sortedPhases = [...phases].sort((a, b) => a.phaseNumber - b.phaseNumber);
   const currentIndex = Math.max(

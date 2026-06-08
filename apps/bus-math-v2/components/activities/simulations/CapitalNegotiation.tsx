@@ -47,6 +47,15 @@ export interface CapitalNegotiationProps {
   onSubmit?: (payload: PracticeSubmissionCallbackPayload) => void
 }
 
+
+/**
+ * Renders a capital negotiation simulation where students analyze debt vs.
+ * equity funding options, reveal deal terms, and sign a financing agreement.
+ *
+ * @param activity - The capital negotiation activity configuration
+ * @param onComplete - Callback with the selected option ID
+ * @param onSubmit - Callback to submit practice results
+ */
 export function CapitalNegotiation({ activity, onComplete, onSubmit }: CapitalNegotiationProps) {
   const { options } = activity.props
   const [selectedOption, setSelectedOption] = useState<CapitalOption | null>(null)
@@ -55,12 +64,24 @@ export function CapitalNegotiation({ activity, onComplete, onSubmit }: CapitalNe
   const [simulationStep, setSimulationStep] = useState(0)
   const submittedRef = useRef(false)
 
+
+  /**
+   * Selects a capital option and moves to the term analysis step.
+   *
+   * @param option - The capital option chosen by the student
+   */
   const handleSelect = (option: CapitalOption) => {
     setSelectedOption(option)
     setRevealedTerms([])
     setSimulationStep(1)
   }
 
+
+  /**
+   * Reveals a deal term's pros/cons when the student clicks on it.
+   *
+   * @param termLabel - The label of the term to reveal
+   */
   const handleReveal = (termLabel: string) => {
     if (!revealedTerms.includes(termLabel)) {
       setRevealedTerms(prev => [...prev, termLabel])

@@ -13,9 +13,26 @@ import {
 
 type UnitIntroductionProps = UnitIntroductionData;
 
-const buildEmbedUrl = (youtubeId: string) =>
+
+/**
+ * Builds a privacy-enhanced YouTube embed URL from a video ID.
+ *
+ * @param youtubeId - The YouTube video ID
+ * @returns The full embed URL string
+ */
+function buildEmbedUrl(youtubeId: string) {
+  return ;
+}
   `https://www.youtube-nocookie.com/embed/${youtubeId}?rel=0&modestbranding=1`;
 
+
+/**
+ * Renders the full unit introduction with driving question, video, entry event,
+ * project overview, and learning objectives.
+ *
+ * @param props - All unit introduction data including video and objectives
+ * @returns A section containing the complete unit introduction layout
+ */
 export function UnitIntroduction({
   unitNumber,
   unitTitle,

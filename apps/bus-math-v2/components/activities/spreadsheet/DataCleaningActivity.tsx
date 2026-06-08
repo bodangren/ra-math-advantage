@@ -23,6 +23,20 @@ interface DataCleaningActivityProps {
   onSubmit?: (payload: PracticeSubmissionCallbackPayload) => void;
 }
 
+
+/**
+ * Renders a data cleaning activity where students work through cleaning
+ * steps on messy data, revealing the cleaned output upon completion.
+ *
+ * @param title - The activity title
+ * @param description - The activity description
+ * @param messyData - The source data before cleaning
+ * @param cleanData - The target cleaned data snapshot
+ * @param cleaningSteps - Ordered list of cleaning steps to complete
+ * @param activityId - Optional unique activity identifier
+ * @param onComplete - Callback when all steps are finished
+ * @param onSubmit - Callback to submit practice results
+ */
 export function DataCleaningActivity({
   title,
   description,
@@ -41,6 +55,12 @@ export function DataCleaningActivity({
   const completedSteps = userProgress.filter(Boolean).length;
   const progressPercentage = cleaningSteps.length === 0 ? 0 : (completedSteps / cleaningSteps.length) * 100;
 
+
+  /**
+   * Marks a cleaning step as complete and submits results if it is the final step.
+   *
+   * @param stepIndex - The index of the step to complete
+   */
   const handleStepComplete = (stepIndex: number) => {
     const nextProgress = [...userProgress];
     nextProgress[stepIndex] = true;

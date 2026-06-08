@@ -165,6 +165,14 @@ const ICON_MAP: Record<string, React.ReactNode> = {
   'dollar-sign': <DollarSign className="w-5 h-5" />
 }
 
+
+/**
+ * Renders an interactive pitch presentation builder where students create,
+ * practice, and export a 4-minute investor pitch deck.
+ *
+ * @param activity - The pitch presentation builder activity configuration
+ * @param onSubmit - Callback to submit practice results
+ */
 export function PitchPresentationBuilder({ activity, onSubmit }: PitchPresentationBuilderProps) {
   const { title, description, initialState, sectionDefinitions } = activity.props
   const [pitchState, setPitchState] = useState<PitchState>({
@@ -185,6 +193,16 @@ export function PitchPresentationBuilder({ activity, onSubmit }: PitchPresentati
   const submittedRef = useRef(false)
   const timerRef = useRef<NodeJS.Timeout | null>(null)
 
+
+  /**
+   * Calculates a completeness score (0-100) for a pitch section based
+   * on title, content, and speaking notes length.
+   *
+   * @param content - The section content text
+   * @param speakingNotes - The speaking notes text
+   * @param title - The section title text
+   * @returns A completeness percentage
+   */
   const calculateCompleteness = useCallback((content: string, speakingNotes: string, title: string) => {
     let score = 0
     if (title.trim().length > 0) score += 25
@@ -193,6 +211,14 @@ export function PitchPresentationBuilder({ activity, onSubmit }: PitchPresentati
     return Math.min(score, 100)
   }, [])
 
+
+  /**
+   * Updates a field on a pitch section and recalculates completeness.
+   *
+   * @param section - The section to update
+   * @param field - The field within the section
+   * @param value - The new value
+   */
   const updateSectionContent = useCallback((section: PitchSection, field: keyof PitchContent, value: string | number) => {
     setPitchState(prev => {
       const updatedSection = { ...prev.sections[section], [field]: value }
@@ -257,12 +283,26 @@ export function PitchPresentationBuilder({ activity, onSubmit }: PitchPresentati
     }))
   }, [])
 
+
+  /**
+   * Formats a number of seconds as a M:SS time string.
+   *
+   * @param seconds - The total seconds to format
+   * @returns A formatted time string
+   */
   const formatTime = useCallback((seconds: number) => {
     const mins = Math.floor(seconds / 60)
     const secs = seconds % 60
     return `${mins}:${secs.toString().padStart(2, '0')}`
   }, [])
 
+
+  /**
+   * Calculates the overall pitch progress as an average of all section
+   * completeness scores.
+   *
+   * @returns The overall progress percentage
+   */
   const calculateOverallProgress = useCallback(() => {
     const sections = Object.values(pitchState.sections)
     const totalCompleteness = sections.reduce((sum, section) => sum + section.completeness, 0)

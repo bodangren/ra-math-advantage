@@ -54,16 +54,37 @@ interface CellFeedback {
 
 const AUTO_SAVE_DELAY = 30000;
 
+
+/**
+ * Normalizes a cell value to a lowercase trimmed string for comparison.
+ *
+ * @param value - The value to normalize
+ * @returns A normalized string
+ */
 function normalizeValue(value: string | number): string {
   return typeof value === 'number' ? value.toString().toLowerCase().trim() : value.toString().toLowerCase().trim();
 }
 
+
+/**
+ * Creates a 10x10 empty spreadsheet with all cells set to empty strings.
+ *
+ * @returns A new empty SpreadsheetData grid
+ */
 function getEmptySpreadsheet(): SpreadsheetData {
   return Array.from({ length: 10 }, () =>
     Array.from({ length: 10 }, () => ({ value: '' })),
   );
 }
 
+
+/**
+ * Initializes a spreadsheet from optional initial data, normalizing
+ * cell values to SpreadsheetCell objects.
+ *
+ * @param initialData - Optional raw initial data
+ * @returns A normalized SpreadsheetData grid
+ */
 function initializeSpreadsheet(initialData?: SpreadsheetData): SpreadsheetData {
   if (initialData && Array.isArray(initialData)) {
     return initialData.map((row) =>
@@ -108,6 +129,14 @@ interface SpreadsheetAttempt {
   gradedAt?: number;
 }
 
+
+/**
+ * Renders a spreadsheet evaluator activity where students fill in target
+ * cells, validate against expected values, and receive AI feedback.
+ *
+ * @param activity - The spreadsheet evaluator activity configuration
+ * @param onSubmit - Callback to submit practice results
+ */
 export function SpreadsheetEvaluator({ activity, onSubmit }: SpreadsheetEvaluatorProps) {
   const [data, setData] = useState<SpreadsheetData>(() => initializeSpreadsheet(activity.props.initialData));
   const [feedback, setFeedback] = useState<CellFeedback[]>([]);
@@ -151,6 +180,12 @@ export function SpreadsheetEvaluator({ activity, onSubmit }: SpreadsheetEvaluato
     }
   }, [activity.id, data]);
 
+
+  /**
+   * Handles spreadsheet data changes, setting up auto-save timers.
+   *
+   * @param newData - The updated spreadsheet data
+   */
   const handleChange = useCallback((newData: SpreadsheetData) => {
     setData(newData);
     hasUnsavedChanges.current = true;
@@ -229,6 +264,13 @@ export function SpreadsheetEvaluator({ activity, onSubmit }: SpreadsheetEvaluato
     void loadDraft();
   }, [activity.id, isInitialLoaded, submitted]);
 
+
+  /**
+   * Retrieves the value of a cell by its A1 reference.
+   *
+   * @param cellRef - The cell reference in A1 notation (e.g. "B3")
+   * @returns The cell value, or empty string if not found
+   */
   const getCellValue = useCallback((cellRef: string): string | number => {
     try {
       const { row, col } = a1ToCoordinates(cellRef);
@@ -239,6 +281,12 @@ export function SpreadsheetEvaluator({ activity, onSubmit }: SpreadsheetEvaluato
     }
   }, [data]);
 
+
+  /**
+   * Validates all target cells against their expected values.
+   *
+   * @returns An array of CellFeedback for each target cell
+   */
   const validateSpreadsheet = useCallback((): CellFeedback[] => {
     return targetCells.map((target) => {
       const actualValue = getCellValue(target.cell);
@@ -254,6 +302,14 @@ export function SpreadsheetEvaluator({ activity, onSubmit }: SpreadsheetEvaluato
     });
   }, [getCellValue, targetCells]);
 
+
+  /**
+   * Returns spreadsheet data with cells highlighted based on validation
+   * feedback (green for correct, red for incorrect).
+   *
+   * @param currentFeedback - The validation feedback array
+   * @returns A new SpreadsheetData with highlight classes applied
+   */
   const getHighlightedData = useCallback((currentFeedback: CellFeedback[]): SpreadsheetData => {
     if (!submitted || currentFeedback.length === 0) {
       return data;
@@ -319,6 +375,11 @@ export function SpreadsheetEvaluator({ activity, onSubmit }: SpreadsheetEvaluato
       ? 'Unsaved changes are present.'
       : 'Worksheet ready for review.';
 
+
+  /**
+   * Submits the spreadsheet for server-side validation and AI feedback,
+   * updating attempt history and feedback state.
+   */
   const handleSubmit = useCallback(async () => {
     setIsSubmitting(true);
     setError(null);

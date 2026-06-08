@@ -29,6 +29,13 @@ interface WeakFamiliesPanelProps {
   isLoading?: boolean;
 }
 
+
+/**
+ * Returns a Tailwind class string for the again-rate severity color.
+ *
+ * @param againRate - The again rate as a decimal (0 to 1).
+ * @returns A Tailwind class string for badge styling.
+ */
 function getAgainRateColor(againRate: number): string {
   if (againRate >= 0.4) return "text-red-600 bg-red-50 border-red-200";
   if (againRate >= 0.25) return "text-amber-600 bg-amber-50 border-amber-200";
@@ -40,6 +47,14 @@ interface ExpandedFamilyProps {
   family: FamilyPerformance;
 }
 
+
+/**
+ * Renders the expanded detail row for a weak family showing rating breakdown.
+ *
+ * @param props - Component props.
+ * @param props.family - The family performance data to display.
+ * @returns A detail row with again/hard/good/easy counts.
+ */
 function ExpandedFamilyRow({ family }: ExpandedFamilyProps) {
   return (
     <div className="bg-muted/30 p-3 text-sm">
@@ -68,9 +83,26 @@ function ExpandedFamilyRow({ family }: ExpandedFamilyProps) {
   );
 }
 
+
+/**
+ * Renders a panel listing weak problem families sorted by again rate,
+ * with expandable detail rows and bump-priority actions.
+ *
+ * @param props - Component props.
+ * @param props.families - Array of family performance data, or null while loading.
+ * @param props.onBumpPriority - Optional callback to bump a family's priority.
+ * @param props.isLoading - Whether the data is still loading.
+ * @returns A card with the weak families list.
+ */
 export function WeakFamiliesPanel({ families, onBumpPriority, isLoading }: WeakFamiliesPanelProps) {
   const [expandedFamilies, setExpandedFamilies] = useState<Set<string>>(new Set());
 
+
+  /**
+   * Toggles the expanded state for a given family ID.
+   *
+   * @param familyId - The problem family ID to toggle.
+   */
   const toggleExpanded = (familyId: string) => {
     setExpandedFamilies((prev) => {
       const next = new Set(prev);

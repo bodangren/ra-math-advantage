@@ -18,6 +18,13 @@ interface ClassificationItem extends CategorizationListItem {
   categoryId: string;
 }
 
+
+/**
+ * Renders a drag-and-drop classification activity using shared CategorizationList.
+ *
+ * @param props - The activity configuration and optional submit callback
+ * @returns A classification activity UI or an empty-state message
+ */
 export function ClassificationActivity({ activity, onSubmit }: ClassificationActivityComponentProps) {
   const { title, description, categories, accounts } = activity;
   
@@ -50,6 +57,12 @@ export function ClassificationActivity({ activity, onSubmit }: ClassificationAct
 
   const [isComplete, setIsComplete] = useState(false);
 
+
+  /**
+   * Converts CategorizationList placements to simplified format and fires onSubmit.
+   *
+   * @param payload - Completion data including score and zone placements
+   */
   const handleComplete = (payload: { score: number; attempts: number; placements: Record<string, CategorizationListItem[]> }) => {
     setIsComplete(true);
 

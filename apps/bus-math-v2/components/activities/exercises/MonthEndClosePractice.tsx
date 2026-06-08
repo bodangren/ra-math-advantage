@@ -80,6 +80,12 @@ const scenarioPool = [
   },
 ]
 
+
+/**
+ * Generate a random month-end close scenario problem from the scenario pool.
+ *
+ * @returns A CloseProblem with a randomly selected scenario and shuffled distractors.
+ */
 function generateProblem(): CloseProblem {
   const scenario = scenarioPool[Math.floor(Math.random() * scenarioPool.length)]
   return {
@@ -103,6 +109,17 @@ export interface MonthEndClosePracticeProps {
   onComplete?: () => void
 }
 
+
+/**
+ * Interactive month-end close practice component that quizzes students on the
+ * correct order of adjusting and closing entries.
+ *
+ * @param props - Component props.
+ * @param props.activity - Activity configuration with optional mastery threshold.
+ * @param props.onSubmit - Callback fired with the submission envelope on answer.
+ * @param props.onComplete - Callback fired when mastery target is reached.
+ * @returns A card-based quiz UI for month-end close scenarios.
+ */
 export function MonthEndClosePractice({ activity, onSubmit, onComplete }: MonthEndClosePracticeProps) {
   const masteryTarget = activity.props?.masteryThreshold ?? 5
   const [problem, setProblem] = useState<CloseProblem>(generateProblem)

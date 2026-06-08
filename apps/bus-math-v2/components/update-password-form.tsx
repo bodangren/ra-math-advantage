@@ -22,6 +22,13 @@ interface UpdatePasswordFormProps extends React.ComponentPropsWithoutRef<"div"> 
   organizationName?: string;
 }
 
+
+/**
+ * Renders a password update form with current/new/confirm fields and policy validation.
+ *
+ * @param props - Username, role, organization name, and standard div props
+ * @returns A card containing the password update form
+ */
 export function UpdatePasswordForm({
   username,
   role,

@@ -18,27 +18,63 @@ interface AccessibilityToolbarProps {
   className?: string
 }
 
+
+/**
+ * Renders a floating toolbar for accessibility preferences including language,
+ * font size, high contrast, reading level, and vocabulary toggles.
+ *
+ * @param props - Component props.
+ * @param props.preferences - Current accessibility preferences.
+ * @param props.onPreferencesChange - Callback to update preferences.
+ * @param props.className - Optional additional CSS class.
+ * @returns A fixed-position toolbar card.
+ */
 export function AccessibilityToolbar({
   preferences,
   onPreferencesChange,
   className = ''
 }: AccessibilityToolbarProps) {
+  /**
+   * Updates the language preference.
+   *
+   * @param language - The new language code.
+   */
   const handleLanguageChange = (language: 'en' | 'zh') => {
     onPreferencesChange({ language })
   }
 
+
+  /**
+   * Updates the font size preference.
+   *
+   * @param fontSize - The new font size setting.
+   */
   const handleFontSizeChange = (fontSize: 'small' | 'medium' | 'large') => {
     onPreferencesChange({ fontSize })
   }
 
+
+  /**
+   * Toggles the high contrast preference.
+   */
   const handleHighContrastToggle = () => {
     onPreferencesChange({ highContrast: !preferences.highContrast })
   }
 
+
+  /**
+   * Updates the reading level preference.
+   *
+   * @param readingLevel - The new reading level setting.
+   */
   const handleReadingLevelChange = (readingLevel: 'basic' | 'intermediate' | 'advanced') => {
     onPreferencesChange({ readingLevel })
   }
 
+
+  /**
+   * Toggles the vocabulary display preference.
+   */
   const handleVocabularyToggle = () => {
     onPreferencesChange({ showVocabulary: !preferences.showVocabulary })
   }

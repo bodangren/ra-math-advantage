@@ -24,20 +24,21 @@ export interface SpreadsheetWrapperProps {
   showRowLabels?: boolean;
 }
 
-export const SpreadsheetWrapper = ({
-  initialData = [
-    [{ value: "" }, { value: "" }, { value: "" }],
-    [{ value: "" }, { value: "" }, { value: "" }],
-    [{ value: "" }, { value: "" }, { value: "" }],
-  ],
-  columnLabels,
-  rowLabels,
-  onChange,
-  readOnly = false,
-  className = "",
-  showColumnLabels = true,
-  showRowLabels = true,
-}: SpreadsheetWrapperProps) => {
+
+/**
+ * Renders a wrapper around the react-spreadsheet library, providing
+ * auto-generated labels, read-only mode, and change propagation.
+ *
+ * @param initialData - The initial spreadsheet cell data
+ * @param columnLabels - Optional custom column labels
+ * @param rowLabels - Optional custom row labels
+ * @param onChange - Callback fired when cell data changes
+ * @param readOnly - Whether the spreadsheet is read-only
+ * @param className - Additional CSS classes
+ * @param showColumnLabels - Whether to show column headers
+ * @param showRowLabels - Whether to show row numbers
+ */
+export function SpreadsheetWrapper({ initialData = [ [{ value: "" }, { value: "" }, { value: "" }], [{ value: "" }, { value: "" }, { value: "" }], [{ value: "" }, { value: "" }, { value: "" }], ], columnLabels, rowLabels, onChange, readOnly = false, className = "", showColumnLabels = true, showRowLabels = true, }: SpreadsheetWrapperProps) {
   const [data, setData] = useState<SpreadsheetData>(initialData);
 
   // Sync internal data when initialData changes
@@ -59,6 +60,13 @@ export const SpreadsheetWrapper = ({
     return generateRowLabels(Math.max(data.length, 10));
   }, [rowLabels, data.length, showRowLabels]);
 
+
+  /**
+   * Handles spreadsheet data changes, propagating to the onChange callback
+   * when not in read-only mode.
+   *
+   * @param newData - The updated spreadsheet data
+   */
   const handleChange = (newData: SpreadsheetData) => {
     if (!readOnly) {
       setData(newData);
@@ -77,6 +85,6 @@ export const SpreadsheetWrapper = ({
       />
     </div>
   );
-};
+}
 
 export default SpreadsheetWrapper;

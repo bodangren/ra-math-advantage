@@ -48,6 +48,13 @@ export interface JournalEntryTableProps {
   mode?: PracticeMode;
 }
 
+
+/**
+ * Create a blank journal entry line with empty fields.
+ *
+ * @param index - The zero-based line index used to generate the id.
+ * @returns A blank JournalEntryLine object.
+ */
 function createBlankLine(index: number): JournalEntryLine {
   return {
     id: `line-${index + 1}`,
@@ -59,6 +66,13 @@ function createBlankLine(index: number): JournalEntryLine {
   };
 }
 
+
+/**
+ * Determine which side (debit or credit) a journal entry line represents.
+ *
+ * @param line - The journal entry line to inspect.
+ * @returns `'debit'`, `'credit'`, or `'neutral'`.
+ */
 function getLineSide(line: JournalEntryLine) {
   if (toNumber(line.debit) > 0 && toNumber(line.credit) === 0) {
     return 'debit';
@@ -71,6 +85,13 @@ function getLineSide(line: JournalEntryLine) {
   return 'neutral';
 }
 
+
+/**
+ * Format a journal entry amount for display, showing a dash for empty values.
+ *
+ * @param value - The amount to format.
+ * @returns A formatted currency string or a dash.
+ */
 function renderAmount(value: string | number | undefined) {
   if (value === '' || value === undefined) {
     return '—';
@@ -79,6 +100,14 @@ function renderAmount(value: string | number | undefined) {
   return formatAccountingAmount(value);
 }
 
+
+/**
+ * General journal table for recording debit and credit journal entries with
+ * account selection, balance checking, and teacher feedback.
+ *
+ * @param props - Title, accounts, expected line count, mode, and feedback.
+ * @returns A Card containing the journal entry grid with add-line support.
+ */
 export function JournalEntryTable({
   title,
   description,
@@ -113,6 +142,12 @@ export function JournalEntryTable({
     return nextLines;
   }, [expectedLineCount, lines]);
 
+
+  /**
+   * Update the journal entry lines and propagate to controlled state.
+   *
+   * @param nextLines - The new array of journal entry lines.
+   */
   const updateLines = (nextLines: JournalEntryLine[]) => {
     if (value === undefined) {
       setInternalValue(nextLines);
