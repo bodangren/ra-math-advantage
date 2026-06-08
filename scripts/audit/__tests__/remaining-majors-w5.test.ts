@@ -46,8 +46,8 @@
  */
 
 import { describe, it, expect, beforeAll } from 'vitest';
-import { readFileSync, existsSync } from 'node:fs';
-import { resolve } from 'node:path';
+import { readFileSync, existsSync, readdirSync, lstatSync } from 'node:fs';
+import { resolve, relative } from 'node:path';
 
 import {
   getAppManifests,
@@ -127,6 +127,23 @@ function installedLockfileVersion(pkg: string): string | undefined {
   return PACKAGE_LOCK.packages[`node_modules/${pkg}`]?.version;
 }
 
+function collectPackageLockfiles(dir: string, results: string[] = []): string[] {
+  for (const entry of readdirSync(dir)) {
+    if (entry === '.git' || entry === 'node_modules') continue;
+    const fullPath = resolve(dir, entry);
+    const stats = lstatSync(fullPath);
+    if (stats.isSymbolicLink()) continue;
+    if (stats.isDirectory()) {
+      collectPackageLockfiles(fullPath, results);
+      continue;
+    }
+    if (entry === 'package-lock.json') {
+      results.push(relative(REPO_ROOT, fullPath));
+    }
+  }
+  return results.sort();
+}
+
 function loadW5Targets(): {
   remaining_families_count: number;
   targets: Array<{
@@ -153,7 +170,14 @@ function loadW5Targets(): {
 }
 
 function loadW5DeferralEvidence(): {
-  candidates: Array<{ package: string; disposition: string; landed_in_wave?: string }>;
+  candidates: Array<{
+    package: string;
+    disposition: string;
+    landed_in_wave?: string;
+    installed_version_evidence?: string;
+    compatibility_evidence?: string;
+    follow_up_owner?: string;
+  }>;
   summary: { upgraded: number; deferred: number; total: number };
 } {
   if (!existsSync(W5_DEFERRAL_FIXTURE)) {
@@ -162,13 +186,24 @@ function loadW5DeferralEvidence(): {
     );
   }
   return JSON.parse(readFileSync(W5_DEFERRAL_FIXTURE, 'utf-8')) as {
-    candidates: Array<{ package: string; disposition: string; landed_in_wave?: string }>;
+    candidates: Array<{
+      package: string;
+      disposition: string;
+      landed_in_wave?: string;
+      installed_version_evidence?: string;
+      compatibility_evidence?: string;
+      follow_up_owner?: string;
+    }>;
     summary: { upgraded: number; deferred: number; total: number };
   };
 }
 
 function loadW5QualityGates(): {
+  npm_ls: { command: string; expected_exit_status: number; expected_clean: boolean };
+  npm_audit: { command: string; expected_critical: number; expected_high: number; force_fix_used: boolean };
+  boundary_check: { command: string; expected_exit_status: number; expected_clean: boolean };
   per_migration_quality_gates: Record<string, { results: { lint: unknown; test: unknown; typecheck: unknown; build: unknown } }>;
+  single_root_lockfile_invariant: { expected_root_lockfile_count: number; expected_nested_lockfile_count: number };
   pre_existing_failures: { failures: Array<unknown> };
 } {
   if (!existsSync(W5_QUALITY_GATES_FIXTURE)) {
@@ -177,7 +212,11 @@ function loadW5QualityGates(): {
     );
   }
   return JSON.parse(readFileSync(W5_QUALITY_GATES_FIXTURE, 'utf-8')) as {
+    npm_ls: { command: string; expected_exit_status: number; expected_clean: boolean };
+    npm_audit: { command: string; expected_critical: number; expected_high: number; force_fix_used: boolean };
+    boundary_check: { command: string; expected_exit_status: number; expected_clean: boolean };
     per_migration_quality_gates: Record<string, { results: { lint: unknown; test: unknown; typecheck: unknown; build: unknown } }>;
+    single_root_lockfile_invariant: { expected_root_lockfile_count: number; expected_nested_lockfile_count: number };
     pre_existing_failures: { failures: Array<unknown> };
   };
 }
@@ -247,17 +286,34 @@ describe('remaining-majors (W5) — deferral evidence (Task 4 / AC5)', () => {
     }
   });
 
-  it('w5-deferral-evidence.json upgraded rows carry landed_in_wave; deferred rows carry follow_up_owner (AC5 evidence)', () => {
+  it('w5-deferral-evidence.json upgraded and deferred rows carry concrete evidence (AC5 evidence)', () => {
     if (!existsSync(W5_DEFERRAL_FIXTURE)) {
       throw new Error('w5-deferral-evidence.json missing — see sibling test');
     }
     const evidence = loadW5DeferralEvidence();
     for (const row of evidence.candidates) {
+      expect(
+        row.compatibility_evidence,
+        `${row.package} missing compatibility_evidence (AC5 evidence)`
+      ).toBeTruthy();
+      expect(
+        row.follow_up_owner,
+        `${row.package} missing follow_up_owner (AC5 evidence)`
+      ).toBeTruthy();
       if (row.disposition === 'upgraded') {
         expect(
           row.landed_in_wave,
           `upgraded row ${row.package} missing landed_in_wave (AC5 evidence)`
         ).toBeTruthy();
+        expect(
+          row.installed_version_evidence,
+          `upgraded row ${row.package} missing installed_version_evidence (AC5 evidence)`
+        ).toBeTruthy();
+      } else {
+        expect(
+          row.follow_up_owner,
+          `deferred row ${row.package} missing follow_up_owner (AC5 evidence)`
+        ).not.toMatch(/^n\/a/i);
       }
     }
   });
@@ -282,8 +338,12 @@ describe('remaining-majors (W5) — deferral evidence (Task 4 / AC5)', () => {
       expect(row, `w5-deferral-evidence.json missing W5 major ${pkg}`).toBeDefined();
       expect(
         row!.disposition,
-        `W5 major ${pkg} must be dispositioned as "upgraded" or "deferred"`
-      ).toMatch(/^(upgraded|deferred)$/);
+        `W5 major ${pkg} must be dispositioned as upgraded after Phase 5 closure`
+      ).toBe('upgraded');
+      expect(
+        row!.landed_in_wave,
+        `W5 major ${pkg} must land in W5-remaining, not documentation-only closure`
+      ).toBe('W5-remaining');
     }
   });
 });
@@ -473,6 +533,23 @@ describe('remaining-majors (W5) — quality gates (Task 5 / AC8)', () => {
       'W5 pre_existing_failures must carry forward the 20 W4 eslint-config-next@16 React Compiler failures (Green-time fixture population)'
     ).toBeGreaterThanOrEqual(11);
   });
+
+  it('w5-quality-gates.json records live final gate commands without fake harnesses or force audit fixes', () => {
+    if (!existsSync(W5_QUALITY_GATES_FIXTURE)) {
+      throw new Error('w5-quality-gates.json missing — see sibling test');
+    }
+    const gates = loadW5QualityGates();
+    expect(gates.npm_ls.command).toBe('npm ls --workspaces --depth=0');
+    expect(gates.npm_ls.expected_exit_status).toBe(0);
+    expect(gates.npm_ls.expected_clean).toBe(true);
+    expect(gates.npm_audit.command).toBe('npm audit --json');
+    expect(gates.npm_audit.expected_critical).toBe(0);
+    expect(gates.npm_audit.expected_high).toBe(0);
+    expect(gates.npm_audit.force_fix_used).toBe(false);
+    expect(gates.boundary_check.command).toBe('node scripts/check-monorepo-boundaries.mjs');
+    expect(gates.boundary_check.expected_exit_status).toBe(0);
+    expect(gates.boundary_check.expected_clean).toBe(true);
+  });
 });
 
 // ===========================================================================
@@ -481,10 +558,13 @@ describe('remaining-majors (W5) — quality gates (Task 5 / AC8)', () => {
 
 describe('remaining-majors (W5) — single-root-lockfile invariant (AC7 / FR10)', () => {
   it('root package-lock.json is the only lockfile; no nested dependency workaround introduced', () => {
-    const lockfileRootPath = resolve(REPO_ROOT, 'package-lock.json');
+    const gates = loadW5QualityGates();
+    const lockfiles = collectPackageLockfiles(REPO_ROOT);
     expect(
-      existsSync(lockfileRootPath),
-      'root package-lock.json must exist'
-    ).toBe(true);
+      lockfiles,
+      `Expected exactly one root package-lock.json and zero nested lockfiles; got ${lockfiles.join(', ')}`
+    ).toEqual(['package-lock.json']);
+    expect(gates.single_root_lockfile_invariant.expected_root_lockfile_count).toBe(1);
+    expect(gates.single_root_lockfile_invariant.expected_nested_lockfile_count).toBe(0);
   });
 });
