@@ -45,19 +45,19 @@ function renderMarkdown(content: string) {
  * @returns A styled callout card element.
  */
 function renderCallout(block: Extract<ContentBlock, { type: 'callout' }>) {
-  return (;
+  return (
+    <Card className={`${calloutVariants[block.variant]} border-2`}>
+      <CardHeader>
+        <CardTitle className="text-base font-semibold capitalize text-foreground">
+          {block.variant.replace(/-/g, ' ')}
+        </CardTitle>
+      </CardHeader>
+      <CardContent>
+        <p className="text-sm leading-relaxed text-muted-foreground">{block.content}</p>
+      </CardContent>
+    </Card>
+  );
 }
-  <Card className={`${calloutVariants[block.variant]} border-2`}>
-    <CardHeader>
-      <CardTitle className="text-base font-semibold capitalize text-foreground">
-        {block.variant.replace(/-/g, ' ')}
-      </CardTitle>
-    </CardHeader>
-    <CardContent>
-      <p className="text-sm leading-relaxed text-muted-foreground">{block.content}</p>
-    </CardContent>
-  </Card>
-);
 
 
 /**
@@ -67,22 +67,22 @@ function renderCallout(block: Extract<ContentBlock, { type: 'callout' }>) {
  * @returns A video embed element with optional transcript.
  */
 function renderVideo(block: Extract<ContentBlock, { type: 'video' }>) {
-  return (;
+  return (
+    <div className="overflow-hidden rounded-xl border border-border/50 shadow-lg">
+      <iframe
+        src={block.props.videoUrl}
+        title={`Video block: ${block.id}`}
+        className="aspect-video w-full"
+        allowFullScreen
+      />
+      {block.props.transcript && (
+        <div className="border-t border-border/50 bg-muted/50 p-4 text-sm text-muted-foreground">
+          <p>{block.props.transcript}</p>
+        </div>
+      )}
+    </div>
+  );
 }
-  <div className="overflow-hidden rounded-xl border border-border/50 shadow-lg">
-    <iframe
-      src={block.props.videoUrl}
-      title={`Video block: ${block.id}`}
-      className="aspect-video w-full"
-      allowFullScreen
-    />
-    {block.props.transcript && (
-      <div className="border-t border-border/50 bg-muted/50 p-4 text-sm text-muted-foreground">
-        <p>{block.props.transcript}</p>
-      </div>
-    )}
-  </div>
-);
 
 
 /**
@@ -92,18 +92,18 @@ function renderVideo(block: Extract<ContentBlock, { type: 'video' }>) {
  * @returns A card element with activity metadata.
  */
 function renderActivity(block: Extract<ContentBlock, { type: 'activity' }>) {
-  return (;
+  return (
+    <Card className="border-dashed border-primary/40">
+      <CardHeader>
+        <CardTitle className="text-base font-semibold text-primary">Interactive Activity</CardTitle>
+      </CardHeader>
+      <CardContent className="space-y-2 text-sm text-muted-foreground">
+        <p>Activity ID: {block.activityId}</p>
+        <p>{block.required ? 'Required to advance' : 'Optional enrichment'}</p>
+      </CardContent>
+    </Card>
+  );
 }
-  <Card className="border-dashed border-primary/40">
-    <CardHeader>
-      <CardTitle className="text-base font-semibold text-primary">Interactive Activity</CardTitle>
-    </CardHeader>
-    <CardContent className="space-y-2 text-sm text-muted-foreground">
-      <p>Activity ID: {block.activityId}</p>
-      <p>{block.required ? 'Required to advance' : 'Optional enrichment'}</p>
-    </CardContent>
-  </Card>
-);
 
 
 /**
@@ -113,24 +113,24 @@ function renderActivity(block: Extract<ContentBlock, { type: 'activity' }>) {
  * @returns A figure element with image and optional caption.
  */
 function renderImage(block: Extract<ContentBlock, { type: 'image' }>) {
-  return (;
+  return (
+    <figure className="overflow-hidden rounded-xl border border-border/40 bg-background shadow-sm">
+      <Image
+        src={block.props.imageUrl}
+        alt={block.props.alt}
+        width={1200}
+        height={675}
+        className="h-auto w-full object-cover"
+        sizes="(max-width: 768px) 100vw, 768px"
+      />
+      {block.props.caption && (
+        <figcaption className="border-t border-border/40 bg-muted/40 px-4 py-2 text-sm text-muted-foreground">
+          {block.props.caption}
+        </figcaption>
+      )}
+    </figure>
+  );
 }
-  <figure className="overflow-hidden rounded-xl border border-border/40 bg-background shadow-sm">
-    <Image
-      src={block.props.imageUrl}
-      alt={block.props.alt}
-      width={1200}
-      height={675}
-      className="h-auto w-full object-cover"
-      sizes="(max-width: 768px) 100vw, 768px"
-    />
-    {block.props.caption && (
-      <figcaption className="border-t border-border/40 bg-muted/40 px-4 py-2 text-sm text-muted-foreground">
-        {block.props.caption}
-      </figcaption>
-    )}
-  </figure>
-);
 
 
 /**

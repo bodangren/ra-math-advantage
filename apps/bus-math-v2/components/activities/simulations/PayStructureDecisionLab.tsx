@@ -179,54 +179,54 @@ function computeCommission(inputs: CommissionInputs) : CommonResult & { commissi
  * @returns Spreadsheet data for display
  */
 function hourlySheet(inputs: HourlyInputs, result: ReturnType<typeof computeHourly>) : SpreadsheetData {
-  return [;
+  return [
+    [
+      { value: "Input", readOnly: true },
+      { value: "Value", readOnly: true },
+      { value: "Excel idea", readOnly: true },
+    ],
+    [
+      { value: "Week 1 hours", readOnly: true },
+      { value: inputs.week1 },
+      { value: "'=MIN(40,Wk1)" },
+    ],
+    [
+      { value: "Week 2 hours", readOnly: true },
+      { value: inputs.week2 },
+      { value: "'=MIN(40,Wk2)" },
+    ],
+    [
+      { value: "Regular hours", readOnly: true },
+      { value: result.regularHours, readOnly: true },
+      { value: "'=SUM(MIN(Wk1,40),MIN(Wk2,40))" },
+    ],
+    [
+      { value: "Overtime hours", readOnly: true },
+      { value: result.overtimeHours, readOnly: true },
+      { value: "'=SUM(MAX(Wk1-40,0),MAX(Wk2-40,0))" },
+    ],
+    [
+      { value: "OT pay", readOnly: true },
+      { value: (result.overtimeHours * inputs.rate * 1.5).toFixed(2), readOnly: true },
+      { value: "'=OTHours*Rate*1.5" },
+    ],
+    [
+      { value: "Social Security cap", readOnly: true },
+      { value: inputs.ssCap, readOnly: true },
+      { value: "2024 cap" },
+    ],
+    [
+      { value: "YTD wages", readOnly: true },
+      { value: inputs.ytdWages, readOnly: true },
+      { value: "Track this every check" },
+    ],
+    [
+      { value: "SS taxable", readOnly: true },
+      { value: result.ssTaxable.toFixed(2), readOnly: true },
+      { value: "'=MIN(Gross, Cap - YTD)" },
+    ],
+  ];
 }
-  [
-    { value: "Input", readOnly: true },
-    { value: "Value", readOnly: true },
-    { value: "Excel idea", readOnly: true },
-  ],
-  [
-    { value: "Week 1 hours", readOnly: true },
-    { value: inputs.week1 },
-    { value: "'=MIN(40,Wk1)" },
-  ],
-  [
-    { value: "Week 2 hours", readOnly: true },
-    { value: inputs.week2 },
-    { value: "'=MIN(40,Wk2)" },
-  ],
-  [
-    { value: "Regular hours", readOnly: true },
-    { value: result.regularHours, readOnly: true },
-    { value: "'=SUM(MIN(Wk1,40),MIN(Wk2,40))" },
-  ],
-  [
-    { value: "Overtime hours", readOnly: true },
-    { value: result.overtimeHours, readOnly: true },
-    { value: "'=SUM(MAX(Wk1-40,0),MAX(Wk2-40,0))" },
-  ],
-  [
-    { value: "OT pay", readOnly: true },
-    { value: (result.overtimeHours * inputs.rate * 1.5).toFixed(2), readOnly: true },
-    { value: "'=OTHours*Rate*1.5" },
-  ],
-  [
-    { value: "Social Security cap", readOnly: true },
-    { value: inputs.ssCap, readOnly: true },
-    { value: "2024 cap" },
-  ],
-  [
-    { value: "YTD wages", readOnly: true },
-    { value: inputs.ytdWages, readOnly: true },
-    { value: "Track this every check" },
-  ],
-  [
-    { value: "SS taxable", readOnly: true },
-    { value: result.ssTaxable.toFixed(2), readOnly: true },
-    { value: "'=MIN(Gross, Cap - YTD)" },
-  ],
-]
 
 
 /**
@@ -237,29 +237,29 @@ function hourlySheet(inputs: HourlyInputs, result: ReturnType<typeof computeHour
  * @returns Spreadsheet data for display
  */
 function salarySheet(inputs: SalaryInputs, result: ReturnType<typeof computeSalary>) : SpreadsheetData {
-  return [;
+  return [
+    [
+      { value: "Item", readOnly: true },
+      { value: "Value", readOnly: true },
+      { value: "Excel idea", readOnly: true },
+    ],
+    [
+      { value: "Annual salary", readOnly: true },
+      { value: inputs.annualSalary },
+      { value: "" },
+    ],
+    [
+      { value: "Per paycheck", readOnly: true },
+      { value: result.gross.toFixed(2), readOnly: true },
+      { value: "'=Annual/26" },
+    ],
+    [
+      { value: "SS taxable", readOnly: true },
+      { value: result.ssTaxable.toFixed(2), readOnly: true },
+      { value: "'=MIN(Gross, Cap - YTD)" },
+    ],
+  ];
 }
-  [
-    { value: "Item", readOnly: true },
-    { value: "Value", readOnly: true },
-    { value: "Excel idea", readOnly: true },
-  ],
-  [
-    { value: "Annual salary", readOnly: true },
-    { value: inputs.annualSalary },
-    { value: "" },
-  ],
-  [
-    { value: "Per paycheck", readOnly: true },
-    { value: result.gross.toFixed(2), readOnly: true },
-    { value: "'=Annual/26" },
-  ],
-  [
-    { value: "SS taxable", readOnly: true },
-    { value: result.ssTaxable.toFixed(2), readOnly: true },
-    { value: "'=MIN(Gross, Cap - YTD)" },
-  ],
-]
 
 
 /**
@@ -270,49 +270,49 @@ function salarySheet(inputs: SalaryInputs, result: ReturnType<typeof computeSala
  * @returns Spreadsheet data for display
  */
 function commissionSheet( inputs: CommissionInputs, result: ReturnType<typeof computeCommission> ) : SpreadsheetData {
-  return [;
+  return [
+    [
+      { value: "Item", readOnly: true },
+      { value: "Value", readOnly: true },
+      { value: "Excel idea", readOnly: true },
+    ],
+    [
+      { value: "Sales", readOnly: true },
+      { value: inputs.sales },
+      { value: "" },
+    ],
+    [
+      { value: "Commission rate", readOnly: true },
+      { value: `${(inputs.commissionRate * 100).toFixed(1)}%`, readOnly: true },
+      { value: "" },
+    ],
+    [
+      { value: "Commission earned", readOnly: true },
+      { value: result.commissionEarned.toFixed(2), readOnly: true },
+      { value: "'=Sales*Rate" },
+    ],
+    [
+      { value: "Draw applied", readOnly: true },
+      { value: Math.min(result.commissionEarned, inputs.draw).toFixed(2), readOnly: true },
+      { value: "'=MIN(Commission,Draw)" },
+    ],
+    [
+      { value: "Net commission", readOnly: true },
+      { value: Math.max(result.commissionEarned - inputs.draw, 0).toFixed(2), readOnly: true },
+      { value: "'=MAX(Commission-Draw,0)" },
+    ],
+    [
+      { value: "Paycheck commission", readOnly: true },
+      { value: result.paycheckCommission.toFixed(2), readOnly: true },
+      { value: "'=NetCommission+DrawApplied+Base" },
+    ],
+    [
+      { value: "SS taxable", readOnly: true },
+      { value: result.ssTaxable.toFixed(2), readOnly: true },
+      { value: "'=MIN(Gross, Cap - YTD)" },
+    ],
+  ];
 }
-  [
-    { value: "Item", readOnly: true },
-    { value: "Value", readOnly: true },
-    { value: "Excel idea", readOnly: true },
-  ],
-  [
-    { value: "Sales", readOnly: true },
-    { value: inputs.sales },
-    { value: "" },
-  ],
-  [
-    { value: "Commission rate", readOnly: true },
-    { value: `${(inputs.commissionRate * 100).toFixed(1)}%`, readOnly: true },
-    { value: "" },
-  ],
-  [
-    { value: "Commission earned", readOnly: true },
-    { value: result.commissionEarned.toFixed(2), readOnly: true },
-    { value: "'=Sales*Rate" },
-  ],
-  [
-    { value: "Draw applied", readOnly: true },
-    { value: Math.min(result.commissionEarned, inputs.draw).toFixed(2), readOnly: true },
-    { value: "'=MIN(Commission,Draw)" },
-  ],
-  [
-    { value: "Net commission", readOnly: true },
-    { value: Math.max(result.commissionEarned - inputs.draw, 0).toFixed(2), readOnly: true },
-    { value: "'=MAX(Commission-Draw,0)" },
-  ],
-  [
-    { value: "Paycheck commission", readOnly: true },
-    { value: result.paycheckCommission.toFixed(2), readOnly: true },
-    { value: "'=NetCommission+DrawApplied+Base" },
-  ],
-  [
-    { value: "SS taxable", readOnly: true },
-    { value: result.ssTaxable.toFixed(2), readOnly: true },
-    { value: "'=MIN(Gross, Cap - YTD)" },
-  ],
-]
 
 const defaultScenarios: ScenarioConfig[] = [
   {

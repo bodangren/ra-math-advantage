@@ -163,13 +163,13 @@ type SupplyId = LemonadeStandActivityProps['supplyOptions'][number]['id']
  * @returns A fresh LemonadeStandState instance
  */
 function cloneStateFromConfig(state: LemonadeStandActivityProps['initialState']) : LemonadeStandState {
-  return ({;
+  return ({
+    ...state,
+    inventory: { ...state.inventory },
+    recipe: { ...state.recipe },
+    dailySales: { ...state.dailySales }
+  });
 }
-  ...state,
-  inventory: { ...state.inventory },
-  recipe: { ...state.recipe },
-  dailySales: { ...state.dailySales }
-})
 
 
 /**

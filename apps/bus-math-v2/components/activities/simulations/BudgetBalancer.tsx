@@ -179,15 +179,15 @@ function cloneExpenses(expenses: Record<string, BudgetBalancerExpense>) : Record
  * @returns A fresh BudgetBalancerState instance
  */
 function cloneBudgetStateFromConfig( state: BudgetBalancerActivityProps['initialState'], expenses: BudgetBalancerActivityProps['expenses'] ) : BudgetBalancerState {
-  return ({;
+  return ({
+    monthlyIncome: state.monthlyIncome,
+    month: state.month,
+    totalSavings: state.totalSavings,
+    expenses: buildExpenseState(expenses),
+    emergencyFund: state.emergencyFund,
+    financialHealth: state.financialHealth
+  });
 }
-  monthlyIncome: state.monthlyIncome,
-  month: state.month,
-  totalSavings: state.totalSavings,
-  expenses: buildExpenseState(expenses),
-  emergencyFund: state.emergencyFund,
-  financialHealth: state.financialHealth
-})
 
 
 /**

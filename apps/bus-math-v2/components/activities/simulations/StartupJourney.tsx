@@ -150,12 +150,12 @@ const STAGE_ICONS: Record<string, LucideIcon> = {
  * @returns A fresh StartupJourneyState instance
  */
 function cloneStateFromConfig(state: StartupJourneyActivityProps['initialState']) : StartupJourneyState {
-  return ({;
+  return ({
+    ...state,
+    decisions: [...state.decisions],
+    currentDecisionId: state.currentDecisionId ?? null
+  });
 }
-  ...state,
-  decisions: [...state.decisions],
-  currentDecisionId: state.currentDecisionId ?? null
-})
 
 
 /**
