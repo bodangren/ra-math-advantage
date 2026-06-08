@@ -919,7 +919,7 @@ Sixteen candidate tracks identified from a full-roadmap review. Each is registry
 
 ### Tier 1 — Finish work that is explicitly half-done
 
-- [ ] **Track: Dependency Security & Package Upgrades** — **PLANNED**
+- [ ] **Track: Dependency Security & Package Upgrades** — **IN PROGRESS** *(Phases 1–5 implementation complete; awaiting user manual verification per workflow.md)*
    *Remediate 1 critical, 3 high, and 14 moderate dependency advisories; refresh compatible packages; align workspace declarations; then execute vinext/Vite, Next.js, TypeScript/ESLint, Tailwind, KaTeX, Lucide, and jsdom major migrations as isolated verified waves. Size: L. Depends on: none. Readiness: ready after explicit dependency-change approval.*
    *Link: [./tracks/dependency-security-upgrades_20260607/](./tracks/dependency-security-upgrades_20260607/)*
 
