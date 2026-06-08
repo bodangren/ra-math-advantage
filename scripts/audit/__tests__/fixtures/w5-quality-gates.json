@@ -2,7 +2,7 @@
   "schema_version": 1,
   "captured_at": "2026-06-07T00:00:00Z",
   "captured_by": "measure:dependency-security-upgrades_20260607",
-  "purpose": "Phase 5 — Final Audit & Closure (Task 5 / AC8). Final full-repo quality-gate schema. The w5 Red-phase TDD suite asserts this fixture exists with the required top-level categories (npm_ls, npm_audit, boundary_check, per_app_quality_gates, single_root_lockfile_invariant) and per-migration subsections (W5-T1 tailwind, W5-T2 katex+lucide, W5-T3 jsdom). Green behavior: a w5 Green commit (per-migration) runs the actual quality-gate commands for that migration and writes the results into the matching per_migration_quality_gates entry.",
+  "purpose": "Phase 5 \u2014 Final Audit & Closure (Task 5 / AC8). Final full-repo quality-gate schema. The w5 Red-phase TDD suite asserts this fixture exists with the required top-level categories (npm_ls, npm_audit, boundary_check, per_app_quality_gates, single_root_lockfile_invariant) and per-migration subsections (W5-T1 tailwind, W5-T2 katex+lucide, W5-T3 jsdom). Green behavior: a w5 Green commit (per-migration) runs the actual quality-gate commands for that migration and writes the results into the matching per_migration_quality_gates entry.",
   "npm_ls": {
     "command": "npm ls --workspaces --depth=0",
     "expected_exit_status": 0,
@@ -22,7 +22,7 @@
     "command": "node scripts/check-monorepo-boundaries.mjs",
     "expected_exit_status": 0,
     "expected_clean": true,
-    "summary": "No monorepo boundary violations after W5 final majors. W5 must not introduce a new cross-boundary import (test-strategy.md §4)."
+    "summary": "No monorepo boundary violations after W5 final majors. W5 must not introduce a new cross-boundary import (test-strategy.md \u00a74)."
   },
   "per_app_quality_gates": {
     "purpose": "Per-app lint/test/typecheck/build status captured after EACH W5 per-migration install (Task 5.1). Each migration commit re-runs the full per-app gate so a wave that flips a previously-green app to red is attributable to that migration.",
@@ -284,8 +284,26 @@
         "rule": "react-hooks/static-components",
         "count": 1,
         "attribution": "eslint-config-next@16 React Compiler rules"
+      },
+      {
+        "workspace": "apps/integrated-math-3",
+        "rule": "tsc:tailwind.config.ts:TS2322(DarkModeStrategy)",
+        "count": 1,
+        "attribution": "tailwindcss@4 stricter DarkModeStrategy type \u2014 pre-existing darkMode: ['class'] code pattern surfaced by W5-T1 Tailwind 3->4 upgrade"
+      },
+      {
+        "workspace": "packages/activity-components",
+        "rule": "tsc:FillInTheBlank.tsx:TS2322(DraggingStyle vs CSSProperties)",
+        "count": 1,
+        "attribution": "react-beautiful-dnd DraggingStyle vs React 19/Radix `--radix-${string}` CSS variable index signature \u2014 pre-existing component code surfaced by W2 React 19.2.7 + W3 Radix refresh"
+      },
+      {
+        "workspace": "apps/integrated-math-3",
+        "rule": "tsc:edgeCalibration.test.ts:TS2344(TableNames constraint)",
+        "count": 1,
+        "attribution": "Id<typeof tableName> generic in test mock \u2014 pre-existing test pattern surfaced by W2 Convex 1.40.0 upgrade (stricter TableNames constraint)"
       }
     ],
-    "policy": "W4 carry-in: 20 eslint-config-next@16 React Compiler lint failures across 5 apps."
+    "policy": "W4 carry-in: 20 eslint-config-next@16 React Compiler lint failures across 5 apps. W5 carry-in: 3 typecheck failures on pre-existing code patterns surfaced by W2/W3/W5 upgrades (tailwind 4 DarkModeStrategy, React 19/Radix DraggingStyle, Convex 1.40 TableNames). All recorded here per spec Out-of-Scope policy: baseline failures attributable to the named upgrade but on pre-existing code patterns; not fixed by this track."
   }
 }

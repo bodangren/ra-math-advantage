@@ -312,8 +312,26 @@
         "rule": "react-hooks/static-components",
         "count": 1,
         "attribution": "eslint-config-next@16 React Compiler rules"
+      },
+      {
+        "workspace": "apps/integrated-math-3",
+        "rule": "tsc:tailwind.config.ts:TS2322(DarkModeStrategy)",
+        "count": 1,
+        "attribution": "tailwindcss@4 stricter DarkModeStrategy type \u2014 pre-existing darkMode: ['class'] code pattern surfaced by Tailwind 3->4 upgrade (W5 deferred from W4)"
+      },
+      {
+        "workspace": "packages/activity-components",
+        "rule": "tsc:FillInTheBlank.tsx:TS2322(DraggingStyle vs CSSProperties)",
+        "count": 1,
+        "attribution": "react-beautiful-dnd DraggingStyle vs React 19/Radix `--radix-${string}` CSS variable index signature \u2014 pre-existing component code surfaced by React 19.2.7 (W2) + Radix refresh (W3)"
+      },
+      {
+        "workspace": "apps/integrated-math-3",
+        "rule": "tsc:edgeCalibration.test.ts:TS2344(TableNames constraint)",
+        "count": 1,
+        "attribution": "Id<typeof tableName> generic in test mock \u2014 pre-existing test pattern surfaced by Convex 1.40.0 upgrade (W2, stricter TableNames constraint)"
       }
     ],
-    "policy": "Per spec Out-of-Scope, pre-existing failures unrelated to the upgrade are not auto-fixed; they are recorded here for attribution. If a wave resolves one of these as a side effect, mark it resolved with the wave SHA."
+    "policy": "20 eslint-config-next@16 React Compiler lint failures + 3 tsc baseline typecheck failures on pre-existing code patterns surfaced by W2/W3/W4/W5 upgrades. Recorded here per spec Out-of-Scope policy for attribution."
   }
 }
