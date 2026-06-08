@@ -160,9 +160,9 @@ lessons-learned entry was logged on forward-updating wave-based suites.
 
 ## Phase 5 — Remaining Majors, Final Audit & Closure
 
-- [x] Task: Upgrade Tailwind CSS 3 → 4 with visual and build verification across all five apps
-- [x] Task: Upgrade KaTeX 0.16 → 0.17 and Lucide React 0.x → 1.x with shared-component and app verification
-- [x] Task: Upgrade jsdom 26 → 29 and resolve test-environment compatibility changes
+- [x] Task: Upgrade Tailwind CSS 3 → 4 with visual and build verification across all five apps [checkpoint: 746bb701]
+- [x] Task: Upgrade KaTeX 0.16 → 0.17 and Lucide React 0.x → 1.x with shared-component and app verification [checkpoint: 746bb701]
+- [x] Task: Upgrade jsdom 26 → 29 and resolve test-environment compatibility changes [checkpoint: 746bb701]
 - [x] Task: Run the durable audit [checkpoint: 746bb701] and document every upgraded or deferred candidate
     - [x] Require explicit compatibility evidence and follow-up owner for any deferral
 - [x] Task: Run final quality gates [checkpoint: 746bb701] and reconcile Measure artifacts [Green-phase JR agent verified at 024e8efe; all 191 audit tests pass, boundary clean, npm ls clean, npm audit 0 critical/0 high/9 moderate]
@@ -170,7 +170,7 @@ lessons-learned entry was logged on forward-updating wave-based suites.
     - [x] Run root/package tests and all five app lint/test/typecheck/build scripts
     - [x] Run `npm ls --workspaces --depth=0` and `npm audit`
     - [x] Confirm the root `package-lock.json` is the only lockfile and no nested dependency workaround was introduced
-- [ ] Task: Measure - User Manual Verification 'Phase 5 — Remaining Majors, Final Audit & Closure' (Protocol in workflow.md)
+- [~] Task: Measure - User Manual Verification 'Phase 5 — Remaining Majors, Final Audit & Closure' (Protocol in workflow.md) — deferred to supervisor; all automated gates verified green by JR agent
 
 Phase 5 mid-attempt-1 re-verification (2026-06-07T14:41:11Z) — Red mid agent was invoked but the agent command exited with status 70 before doing any work; output.log contains only `STARTED_AT`. No source code, test, or Measure artifact modified. Awaiting re-invocation.
 
