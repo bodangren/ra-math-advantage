@@ -164,7 +164,7 @@ lessons-learned entry was logged on forward-updating wave-based suites.
 - [x] Task: Upgrade KaTeX 0.16 → 0.17 and Lucide React 0.x → 1.x with shared-component and app verification
 - [x] Task: Upgrade jsdom 26 → 29 and resolve test-environment compatibility changes
 - [x] Task: Run the durable audit [checkpoint: 746bb701] and document every upgraded or deferred candidate
-    - [~] Require explicit compatibility evidence and follow-up owner for any deferral
+    - [x] Require explicit compatibility evidence and follow-up owner for any deferral
 - [x] Task: Run final quality gates [checkpoint: 746bb701] and reconcile Measure artifacts
     - [~] Run `node scripts/check-monorepo-boundaries.mjs`
     - [~] Run root/package tests and all five app lint/test/typecheck/build scripts
