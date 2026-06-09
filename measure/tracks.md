@@ -42,10 +42,32 @@ Dependencies:
       *Three smaller v2 items: a `transfers_to` cross-domain edge type, a presentation-only Level Projection, and the `progressTrend` static-ratio → time-delta fix; plus documenting the FSRS per-card limitation. (Item 8.) Independent; runs last.*
       *Link: [./tracks/kst-lesser-holes_20260521/](./tracks/kst-lesser-holes_20260521/)*
 
+## Audit Remediation (2026-06-09)
+
+Tracks opened from the 2026-06-09 structural audit. The audit's six claims were
+verified against the tree: #1 (graph engine not wired) is already owned by
+`wire-kst-pipeline_20260521` + Vertical Slice Value Proof; #3 (BM2 dual DB) was
+**true at HEAD** and is being finished here; #4 (phantom tooling) is resolved
+(`measure-architecture-tooling_20260605`, checkpoint 0edad3f5). The three below
+own #2/#6, #3, and #5.
+
+- [~] **Track: BM2 Drizzle Dead-Layer Removal** — **IN PROGRESS**
+   *Finish the half-applied, build-breaking BM2 Drizzle prune: re-home the live zod schemas/types tangled into the deleted `lib/db/schema/*`, rewire ~15 importers, then drop the tables + `drizzle-*`/`postgres` deps cleanly. Audit #3.*
+   *Link: [./tracks/bm2-drizzle-removal_20260609/](./tracks/bm2-drizzle-removal_20260609/)*
+
+- [ ] **Track: Unified Auth Across the Monorepo** — **PLANNED**
+   *Consolidate shared auth onto `packages/core-auth`: promote BM2 `server.ts` local logic into the package (parameterized), thin the app wrappers, remove duplication/indirection. Audit #5.*
+   *Link: [./tracks/unified-auth-monorepo_20260609/](./tracks/unified-auth-monorepo_20260609/)*
+
+- [ ] **Track: IM1 Practice Readiness** — **PLANNED**
+   *Take IM1 from 0% generator coverage (0/138 skills, STUB blueprints, no `problem-families/im1`) to working practice: coverage matrix, IM1 generators, real blueprints, and a vertical slice to a student route. Audit #2/#6.*
+   *Link: [./tracks/im1-practice-readiness_20260609/](./tracks/im1-practice-readiness_20260609/)*
+
 - [ ] **Program: Skill Graph and Algorithmic Practice Rollout**
    *Before implementing any track in this program, read [Knowledge Space Architecture](./knowledge-space.md). Reusable packages own domain-neutral mechanisms only; proprietary math maps, English/GSE maps, standards catalogs, descriptors, and generated app outputs remain in app/domain content packages.*
    *Create a canonical directed weighted knowledge graph where skills are nodes and relationships are typed weighted edges, then project that graph into worked examples, guided practice, independent algorithmic practice, SRS inputs, teacher evidence, role-specific visualizations, and practice.v1 runtime activity maps.*
    *Program rule: skill graph artifacts are source truth; practice activity maps, SRS inputs, visualization payloads, component props, and seed data are generated projections.*
+   *RUNTIME STATUS: DATA-COMPLETE. All graph artifacts (nodes, edges, blueprints) are authored and validated in JSON, but the runtime engine (knowledge-space-core) is not yet wired to any production student route.*
    - [x] **Track 1: Skill Graph Program — Deprecation and Canonical Direction**
       *Audit overlapping earlier specs; preserve source evidence; mark stale activity-map/problem-family/lesson-seed directions as deprecated.*
       *Link: [./measure/archive/skill-graph-deprecation_20260509/](./measure/archive/skill-graph-deprecation_20260509/)*
@@ -902,16 +924,9 @@ AI Tutoring and Workbook scope is explicitly **import/adopt from BM2**, not gree
    - Phase 8: Packages src/ [ ]
    - Phase 9: Packages components/lib/other/ [ ]
 
-- [ ] **Track: Graph-vs-Tracks Review Remediation** — **BLOCKED: artifacts missing**
-   *Intended to remediate 25 findings from a 2026-06-02 codebase-vs-tracks review. **Reconciliation note (2026-06-05):** this track was marked in-progress but has no track directory, no `spec.md`/`plan.md`, and its cited source report `measure/reports/graph-vs-tracks-review_20260602.md` never existed in git history. Reset to not-started. Before any work proceeds, regenerate the review report and scaffold the track via `new-track`; until then there is nothing to execute.*
-   *Link (does not yet exist): `./tracks/graph-vs-tracks-remediation_20260602/`*
-   - Phase 1: P0 — Fix Data Tooling & KST Program Decision [ ]
-   - Phase 2: P1 — Block New Bugs [ ]
-   - Phase 3: P2 — JSDoc Debt (High-Priority Surfaces) [ ]
-   - Phase 4: P3 — Test Coverage Gaps [ ]
-   - Phase 5: P4 — Graph Construction Improvements [ ]
-   - Phase 6: P5 — Hygiene [ ]
-   - Phase 7: Final Verification [ ]
+- [ ] **Track: Graph-vs-Tracks Review Remediation** — **STALE / BLOCKED**
+   *Remediate 25 findings from a 2026-06-02 codebase-vs-tracks review. **Reconciliation note (2026-06-05):** this track was marked in-progress but has no track directory, no `spec.md`/`plan.md`, and its cited source report `measure/reports/graph-vs-tracks-review_20260602.md` never existed in git history. Marked as STALE. Regenerate review before proceeding.*
+   *Link: (none)*
 
 ## Backlog — Planned Tracks (2026-06-05 brainstorm)
 

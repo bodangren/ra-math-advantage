@@ -1,0 +1,12 @@
+{
+  "track_id": "bm2-drizzle-removal_20260609",
+  "type": "chore",
+  "status": "in_progress",
+  "created_at": "2026-06-09T00:00:00Z",
+  "updated_at": "2026-06-09T00:00:00Z",
+  "description": "Finish removing the dead BM2 Drizzle/Postgres layer. A prior session deleted lib/db/schema/* + drizzle.config.ts and dropped drizzle-*/postgres deps, but ~15 files still import live zod schemas/types that were co-located in those files, so BM2 no longer typechecks/builds. Re-home the live schemas off drizzle, rewire importers, then drop the tables and deps cleanly.",
+  "program": "Monorepo Migration Program (cleanup)",
+  "estimated_tasks": 18,
+  "actual_tasks": null,
+  "deviation_notes": "Started from a half-applied, build-breaking working-tree deletion rather than a clean baseline."
+}
