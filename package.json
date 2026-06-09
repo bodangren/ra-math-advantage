@@ -27,7 +27,9 @@
     "ws:im1:lint": "npm run --workspace=apps/integrated-math-1 lint 2>/dev/null || npm run lint --prefix apps/integrated-math-1",
     "ws:im1:test": "npm run --workspace=apps/integrated-math-1 test 2>/dev/null || npm run test --prefix apps/integrated-math-1",
     "ws:im1:typecheck": "npm run --workspace=apps/integrated-math-1 typecheck 2>/dev/null || npx tsc --noEmit --project apps/integrated-math-1/tsconfig.json",
-    "ws:im1:build": "npm run --workspace=apps/integrated-math-1 build 2>/dev/null || npm run build --prefix apps/integrated-math-1"
+    "ws:im1:build": "npm run --workspace=apps/integrated-math-1 build 2>/dev/null || npm run build --prefix apps/integrated-math-1",
+    "generate": "bash measure/scripts/generate.sh",
+    "doctor": "bash measure/scripts/doctor.sh"
   },
   "devDependencies": {
     "@eslint/js": "^10",

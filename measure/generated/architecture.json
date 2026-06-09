@@ -1,0 +1,107 @@
+{
+  "apps": [
+    {
+      "name": "bus-math-v2",
+      "path": "apps/bus-math-v2"
+    },
+    {
+      "name": "integrated-math-1",
+      "path": "apps/integrated-math-1"
+    },
+    {
+      "name": "integrated-math-2",
+      "path": "apps/integrated-math-2"
+    },
+    {
+      "name": "integrated-math-3",
+      "path": "apps/integrated-math-3"
+    },
+    {
+      "name": "pre-calculus",
+      "path": "apps/pre-calculus"
+    }
+  ],
+  "packages": [
+    {
+      "name": "_template",
+      "path": "packages/_template"
+    },
+    {
+      "name": "activity-components",
+      "path": "packages/activity-components"
+    },
+    {
+      "name": "activity-runtime",
+      "path": "packages/activity-runtime"
+    },
+    {
+      "name": "ai-tutoring",
+      "path": "packages/ai-tutoring"
+    },
+    {
+      "name": "app-shell",
+      "path": "packages/app-shell"
+    },
+    {
+      "name": "component-approval",
+      "path": "packages/component-approval"
+    },
+    {
+      "name": "core-auth",
+      "path": "packages/core-auth"
+    },
+    {
+      "name": "core-convex",
+      "path": "packages/core-convex"
+    },
+    {
+      "name": "graphing-core",
+      "path": "packages/graphing-core"
+    },
+    {
+      "name": "knowledge-space-core",
+      "path": "packages/knowledge-space-core"
+    },
+    {
+      "name": "knowledge-space-practice",
+      "path": "packages/knowledge-space-practice"
+    },
+    {
+      "name": "lesson-renderer",
+      "path": "packages/lesson-renderer"
+    },
+    {
+      "name": "math-content",
+      "path": "packages/math-content"
+    },
+    {
+      "name": "practice-core",
+      "path": "packages/practice-core"
+    },
+    {
+      "name": "practice-test-engine",
+      "path": "packages/practice-test-engine"
+    },
+    {
+      "name": "rate-limiter",
+      "path": "packages/rate-limiter"
+    },
+    {
+      "name": "srs-engine",
+      "path": "packages/srs-engine"
+    },
+    {
+      "name": "study-hub-core",
+      "path": "packages/study-hub-core"
+    },
+    {
+      "name": "teacher-reporting-core",
+      "path": "packages/teacher-reporting-core"
+    },
+    {
+      "name": "workbook-pipeline",
+      "path": "packages/workbook-pipeline"
+    }
+  ],
+  "timestamp": "2026-06-09T11:58:50.091Z"
+}
