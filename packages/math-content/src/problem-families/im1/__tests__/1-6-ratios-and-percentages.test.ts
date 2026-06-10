@@ -104,4 +104,35 @@ describe(`IM1 generator — ${SKILL_ID} (Phase 2 Task 2)`, () => {
       expect((out.solutionSteps ?? []).length).toBeGreaterThan(0);
     }
   });
+
+  it('ratio answers match the relationship stated in each prompt', () => {
+    const entry = findEntryForSkill();
+    for (let seed = 0; seed < 100; seed += 1) {
+      const out = entry.generate({
+        nodeId: SKILL_ID,
+        seed,
+        difficulty: 0.5,
+      }) as GeneratorOutput;
+      const prompt = out.prompt;
+      const answer = out.expectedAnswer as {
+        ratio?: string;
+        simplifiedRatio?: string;
+        percentage?: number;
+      };
+      const values = prompt.match(/\d+/g)?.map(Number) ?? [];
+      expect(values.length).toBeGreaterThanOrEqual(2);
+      const [part, total] = values;
+      expect(answer.percentage).toBeCloseTo(Math.round((part / total) * 10000) / 100, 10);
+
+      if (prompt.includes('out of') && prompt.includes('prefer option A')) {
+        expect(answer.ratio).toBe(`${part}:${total}`);
+      } else if (
+        prompt.includes('passed to those who did not') ||
+        prompt.includes('sold-to-remaining') ||
+        prompt.includes('sugar to other ingredients')
+      ) {
+        expect(answer.ratio).toBe(`${part}:${total - part}`);
+      }
+    }
+  });
 });

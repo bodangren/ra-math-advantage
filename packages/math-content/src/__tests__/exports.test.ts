@@ -21,6 +21,14 @@ describe('Export map entry points resolve', () => {
     expect(mod).toBeDefined();
   }, 30000); // large data module may be slow on cold start if loaded before index
 
+  it('IM1 problem-families package subpath resolves', async () => {
+    const mod = await import('@math-platform/math-content/problem-families/im1');
+    expect(mod.IM1_PROBLEM_FAMILIES).toBeDefined();
+    expect(mod.IM1_GENERATORS).toBeDefined();
+    expect(mod.IM1_PROBLEM_FAMILIES.length).toBeGreaterThan(0);
+    expect(mod.IM1_GENERATORS.length).toBeGreaterThan(0);
+  });
+
   it('glossary entry point resolves', async () => {
     const mod = await import('../glossary');
     expect(mod).toBeDefined();

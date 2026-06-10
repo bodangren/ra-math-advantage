@@ -59,6 +59,7 @@ Verification gate each phase: correctness-QA harness + `tsc --noEmit` + boundary
   - Red signal: `ci-gate.test.ts` imports `IM1_GENERATORS` from `../generators`; module does not exist → all 6 `it` blocks fail at import. When Tasks 1 + 2 Green land, the gate iterates real entries, calls `verifyGenerator(adapt(entry), { numSeeds: 50 })`, and asserts (a) every vertical-slice Module-1 skillId is registered, (b) every entry has `verdict === 'pass'` with zero failed checks across all seeds, (c) no entry behaves like a stub.
   - Fail count at the Red commit: ci-gate.test.ts → 0 tests collected (suite-level fail at line 70). Counted as 1 of 8 failed test files under the targeted command.
   - Green landed: ci-gate passes — all 6 generators pass verifyGenerator at numSeeds=50, anti-stub guard confirms seed-dependent output, registration coverage verified.
+  - Adversarial follow-up: added a public package subpath export test for `@math-platform/math-content/problem-families/im1` and a ratio prompt/answer oracle over 100 seeds; fixed the survey ratio branch to consistently use prefer-A-to-total denominator.
 - Phase 2 Green commit: `9b90f867` — `feat(im1-generators): implement Phase 2 Green — scaffold + 6 Module-1 generators`
   - `npm run -w packages/math-content test -- problem-families/im1` → **Test Files 9 passed (9); Tests 68 passed (68)**
   - `npm run -w packages/math-content test -- src/__tests__/exports.test.ts` → **Test Files 1 passed (1); Tests 17 passed (17)**

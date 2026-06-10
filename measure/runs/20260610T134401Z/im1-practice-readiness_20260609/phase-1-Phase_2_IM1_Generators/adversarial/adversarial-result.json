@@ -1,0 +1,17 @@
+{
+  "status": "pass",
+  "summary": "Adversarial audit added a package export-map regression test for the IM1 problem-families subpath and tightened ratio prompt/answer oracle coverage; the detected ratio denominator mismatch was fixed. Supervisor gate log shows npm test passed with 12 files and 233 tests. No blocking Phase 2 issues remain.",
+  "findings": [],
+  "evidence": [
+    "Reviewed measure/tracks/im1-practice-readiness_20260609/spec.md",
+    "Reviewed measure/tracks/im1-practice-readiness_20260609/plan.md",
+    "Reviewed measure/tracks/im1-practice-readiness_20260609/test-strategy.md",
+    "Inspected git diff since 78b94084a39be226d5b0b9ef1a06920c144bdc37",
+    "Added packages/math-content/src/__tests__/exports.test.ts coverage for @math-platform/math-content/problem-families/im1",
+    "Added packages/math-content/src/problem-families/im1/__tests__/1-6-ratios-and-percentages.test.ts prompt-to-answer ratio oracle over 100 seeds",
+    "Fixed packages/math-content/src/problem-families/im1/generators.ts survey prompt ratio answer to use preferred-to-total denominator consistently",
+    "Supervisor gate log measure/runs/20260610T134401Z/im1-practice-readiness_20260609/phase-1-Phase_2_IM1_Generators/adversarial/adversarial-attempt-1/gates.log: npm test EXIT_STATUS 0; 12 files passed; 233 tests passed",
+    "Attempted local rerun: npm run -w packages/math-content test -- src/__tests__/exports.test.ts problem-families/im1 -> blocked in tool shell: /bin/bash: line 1: npm: command not found",
+    "Attempted local rerun: npm test -> blocked in tool shell: /bin/bash: line 1: npm: command not found"
+  ]
+}

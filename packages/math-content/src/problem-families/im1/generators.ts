@@ -496,7 +496,9 @@ const ratiosAndPercentages: IM1GeneratorEntry = {
     const ratio = `${part}:${total - part}`;
     const simplifiedGcd = (x: number, y: number): number => (y === 0 ? x : simplifiedGcd(y, x % y));
     const g = simplifiedGcd(part, total - part);
+    const totalG = simplifiedGcd(part, total);
     const simplifiedRatio = `${part / g}:${(total - part) / g}`;
+    const simplifiedPartToTotalRatio = `${part / totalG}:${total / totalG}`;
 
     type RatioTemplate = {
       prompt: string;
@@ -525,8 +527,8 @@ const ratiosAndPercentages: IM1GeneratorEntry = {
         ],
       },
       {
-        prompt: `A survey found that ${part} out of ${total} people prefer option A. Express this as a ratio and a percentage.`,
-        answer: { ratio, percentage: pct, simplifiedRatio },
+        prompt: `A survey found that ${part} out of ${total} people prefer option A. Express the prefer-A-to-total ratio and the percentage.`,
+        answer: { ratio: `${part}:${total}`, percentage: pct, simplifiedRatio: simplifiedPartToTotalRatio },
         steps: [
           { description: 'Write the ratio (prefer A : total)', expression: `${part}:${total}`, value: `${part}:${total}` },
           { description: 'Calculate the percentage', expression: `(${part} / ${total}) × 100 = ${pct}%`, value: pct },
