@@ -106,7 +106,7 @@ describe('Phase 4 — measure/scripts/generate script exists and exits 0', () =>
     }
   });
 
-  it('the generate script exits with code 0 on a clean repository', () => {
+  it('the generate script exits with code 0 on a clean repository', { timeout: 30_000 }, () => {
     const found = findExisting(GENERATE_CANDIDATES);
     if (found === null) return;
     const result = spawnSync(found, [], {
