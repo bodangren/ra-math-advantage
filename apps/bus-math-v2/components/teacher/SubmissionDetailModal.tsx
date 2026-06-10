@@ -722,7 +722,7 @@ export function SubmissionDetailModal({
   }, [selected.studentId, selected.lessonId]);
 
   useEffect(() => {
-    loadDetail();
+    queueMicrotask(() => loadDetail());
   }, [loadDetail]);
 
   useEffect(() => {

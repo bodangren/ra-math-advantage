@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useRef, useMemo } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -46,8 +46,7 @@ interface DailyPracticeSessionProps {
  */
 export function DailyPracticeSession({ studentId }: DailyPracticeSessionProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [completed, setCompleted] = useState(false);
-  const [sessionCards, setSessionCards] = useState<FlatSrsCard[]>([]);
+  const [sessionCompleted, setSessionCompleted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showNext, setShowNext] = useState(false);
   const submittedRef = useRef(false);
@@ -57,14 +56,13 @@ export function DailyPracticeSession({ studentId }: DailyPracticeSessionProps) {
   const dueCards = useQuery(api.srs.getDueCards, { studentId: studentId as any });
   const recordReview = useMutation(api.srs.recordSrsReview);
 
-  useEffect(() => {
-    if (dueCards && dueCards.length > 0 && sessionCards.length === 0) {
-      setSessionCards((dueCards as FlatSrsCard[]).slice(0, 10));
-    }
-    if (dueCards && dueCards.length === 0) {
-      setCompleted(true);
-    }
-  }, [dueCards, sessionCards.length]);
+  const sessionCards = useMemo(() => {
+    if (!dueCards) return [];
+    return (dueCards as FlatSrsCard[]).slice(0, 10);
+  }, [dueCards]);
+
+  const isEmpty = dueCards !== undefined && dueCards.length === 0;
+  const completed = sessionCompleted || isEmpty;
 
   const currentCard = sessionCards[currentIndex];
 
@@ -173,7 +171,7 @@ export function DailyPracticeSession({ studentId }: DailyPracticeSessionProps) {
     if (currentIndex < sessionCards.length - 1) {
       setCurrentIndex(currentIndex + 1);
     } else {
-      setCompleted(true);
+      setSessionCompleted(true);
     }
     setTimeout(() => {
       cardRef.current?.focus();

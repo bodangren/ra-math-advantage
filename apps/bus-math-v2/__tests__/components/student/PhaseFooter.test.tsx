@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 
-import { type Lesson, type Phase } from '@/lib/db/schema/validators';
+import { type Lesson, type Phase } from '@/lib/schemas/validators';
 import { PhaseFooter } from '../../../components/student/PhaseFooter';
 import { createLesson, createPhase } from '@/__tests__/utils/lessonBuilders';
 

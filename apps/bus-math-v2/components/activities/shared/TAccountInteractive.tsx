@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useMemo, useState } from 'react';
+import { useMemo, useState } from 'react';
 
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -127,12 +127,6 @@ export function TAccountInteractive({
 }: TAccountInteractiveProps) {
   const [internalValues, setInternalValues] = useState<Record<string, string>>(defaultValues ?? {});
   const currentValues = values ?? internalValues;
-
-  useEffect(() => {
-    if (values === undefined && defaultValues) {
-      setInternalValues(defaultValues);
-    }
-  }, [defaultValues, values]);
 
 
   /**

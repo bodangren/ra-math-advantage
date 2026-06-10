@@ -61,9 +61,8 @@ export function getAccountTypeColor(type: AccountType | string) : string {
  * @returns The normal balance side for that account type
  */
 export function getNormalBalanceSide(accountType: AccountType) : NormalBalanceSide {
-  return ;
+  return accountType === 'asset' || accountType === 'expense' ? 'debit' : 'credit';
 }
-  accountType === 'asset' || accountType === 'expense' ? 'debit' : 'credit';
 
 
 /**

@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import PracticeTestEngine from "@/components/student/PracticeTestEngine";
 import { getUnitConfig } from "@/lib/practice-tests/question-banks";
 import { useSavePracticeTestResult, useRecordSession } from "@/hooks/useStudy";
-import { useRef } from "react";
+import { useState } from "react";
 
 interface PracticeTestPageProps {
   unitNumber: number;
@@ -25,7 +25,7 @@ export function PracticeTestPage({ unitNumber }: PracticeTestPageProps) {
   const unitConfig = getUnitConfig(unitNumber);
   const savePracticeTestResult = useSavePracticeTestResult();
   const recordSession = useRecordSession();
-  const startedAtRef = useRef<number>(Date.now());
+  const [startedAt] = useState(() => Date.now());
 
   if (!unitConfig) {
     notFound();
@@ -61,9 +61,9 @@ export function PracticeTestPage({ unitNumber }: PracticeTestPageProps) {
             itemsSeen: result.questionCount,
             itemsCorrect: result.score,
             itemsIncorrect: result.questionCount - result.score,
-            durationSeconds: Math.floor((Date.now() - startedAtRef.current) / 1000),
+            durationSeconds: Math.floor((Date.now() - startedAt) / 1000),
           },
-          startedAt: startedAtRef.current,
+          startedAt: startedAt,
           endedAt: Date.now(),
         }),
       ]);

@@ -8,7 +8,7 @@ import { Badge } from "@/components/ui/badge"
 import { Input } from "@/components/ui/input"
 import { SpreadsheetWrapper, type SpreadsheetData } from "@/components/activities/spreadsheet/SpreadsheetWrapper"
 import { ArrowLeft, ArrowRight, CheckCircle2, Info, ShieldCheck, Target } from "lucide-react"
-import type { Activity } from '@/lib/db/schema/validators'
+import type { Activity } from '@/lib/schemas/validators'
 import type { PayStructureDecisionLabActivityProps } from '@/types/activities'
 import { buildPracticeSubmissionEnvelope, buildPracticeSubmissionParts, type PracticeSubmissionCallbackPayload } from '@/lib/practice/contract'
 

@@ -1,6 +1,6 @@
 'use client';
 
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 import { DragDropContext, Draggable, Droppable, type DropResult } from '@hello-pangea/dnd';
 import { ArrowRight, BarChart3, Package, RotateCcw, Warehouse } from 'lucide-react';
 
@@ -9,7 +9,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
 import { cn } from '@/lib/utils';
-import type { Activity } from '@/lib/db/schema/validators';
+import type { Activity } from '@/lib/schemas/validators';
 import { type InventoryFlowDiagramActivityProps } from '@/types/activities';
 import {
   SEQUENCE_SUPPORTED_MODES,
@@ -52,36 +52,48 @@ export function InventoryFlowDiagram({ activity, onSubmit }: InventoryFlowDiagra
     [scenarioId, scenarios]
   );
 
-  const [methodId, setMethodId] = useState(activeScenario?.flowModes[0]?.id ?? '');
-
-  useEffect(() => {
-    if (!activeScenario) return;
-    setMethodId(activeScenario.flowModes[0]?.id ?? '');
-  }, [activeScenario]);
+  const [methodId, setMethodId] = useState(() => activeScenario?.flowModes[0]?.id ?? '');
 
   const activeMode = useMemo(
     () => activeScenario?.flowModes.find((mode) => mode.id === methodId) ?? activeScenario?.flowModes[0],
     [activeScenario, methodId]
   );
 
-  const [availableLots, setAvailableLots] = useState<InventoryLot[]>([]);
+  const [availableLots, setAvailableLots] = useState<InventoryLot[]>(() => {
+    if (!activeScenario) return [];
+    return [...activeScenario.lots].sort(() => Math.random() - 0.5);
+  });
   const [arrangement, setArrangement] = useState<InventoryLot[]>([]);
   const [attempts, setAttempts] = useState(0);
   const [score, setScore] = useState(0);
   const [completed, setCompleted] = useState(false);
 
-  const resetBoard = useCallback(() => {
-    if (!activeScenario) return;
-    setAvailableLots([...activeScenario.lots].sort(() => Math.random() - 0.5));
+  const doReset = useCallback((scenario: InventoryScenario | undefined) => {
+    if (!scenario) return;
+    setAvailableLots([...scenario.lots].sort(() => Math.random() - 0.5));
     setArrangement([]);
     setAttempts(0);
     setScore(0);
     setCompleted(false);
-  }, [activeScenario]);
+  }, []);
 
-  useEffect(() => {
-    resetBoard();
-  }, [resetBoard, activeMode]);
+  const resetBoard = useCallback(() => {
+    doReset(activeScenario);
+  }, [activeScenario, doReset]);
+
+  const handleScenarioChange = useCallback((newScenarioId: string) => {
+    setScenarioId(newScenarioId);
+    const newScenario = scenarios.find((s) => s.id === newScenarioId);
+    if (newScenario) {
+      setMethodId(newScenario.flowModes[0]?.id ?? '');
+      doReset(newScenario);
+    }
+  }, [scenarios, doReset]);
+
+  const handleMethodChange = useCallback((newMethodId: string) => {
+    setMethodId(newMethodId);
+    doReset(activeScenario);
+  }, [activeScenario, doReset]);
 
 
   /**
@@ -221,8 +233,8 @@ export function InventoryFlowDiagram({ activity, onSubmit }: InventoryFlowDiagra
           <label className="flex items-center gap-2 text-sm text-muted-foreground">
             Scenario
             <select
-              value={activeScenario.id}
-              onChange={(event) => setScenarioId(event.target.value)}
+              value={scenarioId}
+              onChange={(event) => handleScenarioChange(event.target.value)}
               className="rounded-md border bg-background px-2 py-1 text-sm"
             >
               {scenarios.map((scenario) => (
@@ -235,8 +247,8 @@ export function InventoryFlowDiagram({ activity, onSubmit }: InventoryFlowDiagra
           <label className="flex items-center gap-2 text-sm text-muted-foreground">
             Method
             <select
-              value={activeMode.id}
-              onChange={(event) => setMethodId(event.target.value)}
+              value={methodId}
+              onChange={(event) => handleMethodChange(event.target.value)}
               className="rounded-md border bg-background px-2 py-1 text-sm"
             >
               {activeScenario.flowModes.map((mode) => (
@@ -291,6 +303,7 @@ export function InventoryFlowDiagram({ activity, onSubmit }: InventoryFlowDiagra
                           <div
                             ref={dragProvided.innerRef}
                             {...dragProvided.draggableProps}
+                            style={dragProvided.draggableProps.style as React.CSSProperties}
                             {...dragProvided.dragHandleProps}
                             className={cn(
                               'rounded-lg border bg-card p-3 transition',
@@ -339,6 +352,7 @@ export function InventoryFlowDiagram({ activity, onSubmit }: InventoryFlowDiagra
                             <div
                               ref={dragProvided.innerRef}
                               {...dragProvided.draggableProps}
+                            style={dragProvided.draggableProps.style as React.CSSProperties}
                               {...dragProvided.dragHandleProps}
                               className={cn(
                                 'rounded-lg border bg-card p-3 transition',

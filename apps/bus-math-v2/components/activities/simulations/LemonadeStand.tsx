@@ -110,7 +110,7 @@ import {
   Frown
 } from 'lucide-react'
 
-import type { Activity } from '@/lib/db/schema/validators'
+import type { Activity } from '@/lib/schemas/validators'
 import type { LemonadeStandActivityProps } from '@/types/activities'
 
 import { buildPracticeSubmissionEnvelope, buildPracticeSubmissionParts, type PracticeSubmissionCallbackPayload } from '@/lib/practice/contract'
@@ -250,16 +250,6 @@ export function LemonadeStand({ activity, initialState, onStateChange, onSubmit 
   const ingredientCosts = activity.props.ingredientCosts
   const demandConfig = activity.props.demand
   const recipeGuidance = activity.props.recipeGuidance
-
-  useEffect(() => {
-    setGameState(mergeState(baseState, initialState))
-    setSalesProgress(0)
-    setNotifications([])
-    if (salesIntervalRef.current) {
-      clearInterval(salesIntervalRef.current)
-      salesIntervalRef.current = null
-    }
-  }, [baseState, initialState])
 
   useEffect(() => {
     const timeouts = notificationTimeoutsRef.current

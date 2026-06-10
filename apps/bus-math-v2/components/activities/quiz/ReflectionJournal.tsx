@@ -7,7 +7,7 @@ import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Label } from '@/components/ui/label'
 import { type ReflectionJournalActivityProps } from '@/types/activities'
-import { type Activity } from '@/lib/db/schema/validators'
+import { type Activity } from '@/lib/schemas/validators'
 import {
   buildPracticeSubmissionEnvelope,
   buildPracticeSubmissionParts,

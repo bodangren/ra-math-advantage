@@ -20,7 +20,7 @@ import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { cn } from '@/lib/utils'
-import { type Activity } from '@/lib/db/schema/validators'
+import { type Activity } from '@/lib/schemas/validators'
 import { type JournalEntryActivityProps } from '@/types/activities'
 import {
   buildPracticeSubmissionEnvelope,

@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useMemo, useRef, useState } from 'react';
 
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -100,12 +100,6 @@ export function TrialBalanceErrorMatrix({
   const [internalValue, setInternalValue] = useState<TrialBalanceErrorResponse>(defaultValue ?? {});
   const [announcement, setAnnouncement] = useState('');
   const cellRefs = useRef(new Map<string, HTMLButtonElement>());
-
-  useEffect(() => {
-    if (value === undefined && defaultValue) {
-      setInternalValue(defaultValue);
-    }
-  }, [defaultValue, value]);
 
   const selectedValues = value ?? internalValue;
   const rowIndexes = useMemo(() => new Map(scenarios.map((scenario, index) => [scenario.rowId, index])), [scenarios]);

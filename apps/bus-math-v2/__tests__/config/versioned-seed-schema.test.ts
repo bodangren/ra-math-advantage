@@ -6,6 +6,9 @@ import { describe, expect, it } from 'vitest';
 const seedDir = path.join(process.cwd(), 'supabase', 'seed');
 
 function listSeedFiles(dir: string): string[] {
+  if (!fs.existsSync(dir)) {
+    return [];
+  }
   return fs
     .readdirSync(dir)
     .filter((file) => file.endsWith('.sql') || file.endsWith('.ts'))

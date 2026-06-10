@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef, useCallback, useState } from 'react';
+import { useEffect, useRef, useCallback } from 'react';
 import {
   createTimingAccumulator,
   DEFAULT_IDLE_THRESHOLD_MS,
@@ -32,7 +32,7 @@ export function usePracticeTiming(
   const { idleThresholdMs = DEFAULT_IDLE_THRESHOLD_MS, onSubmit } = options;
   const accumulatorRef = useRef<TimingAccumulator | null>(null);
   const startTimeRef = useRef<number | null>(null);
-  const [isTracking, setIsTracking] = useState(false);
+  const isTrackingRef = useRef(false);
 
 
   /**
@@ -116,14 +116,14 @@ export function usePracticeTiming(
     if (timing && onSubmit) {
       onSubmit(timing);
     }
-    setIsTracking(false);
+    isTrackingRef.current = false;
   }, [onSubmit]);
 
   useEffect(() => {
     accumulatorRef.current = createTimingAccumulator({ idleThresholdMs });
     startTimeRef.current = Date.now();
     accumulatorRef.current.start(performance.now());
-    setIsTracking(true);
+    isTrackingRef.current = true;
 
     document.addEventListener('visibilitychange', handleVisibilityChange);
     window.addEventListener('focus', handleFocusChange);
@@ -145,13 +145,13 @@ export function usePracticeTiming(
 
       accumulatorRef.current = null;
       startTimeRef.current = null;
-      setIsTracking(false);
+      isTrackingRef.current = false;
     };
   }, [idleThresholdMs, handleVisibilityChange, handleFocusChange, handlePageHide, onSubmit]);
 
   return {
     getTiming,
     recordInteraction,
-    isTracking: () => isTracking,
+    isTracking: () => isTrackingRef.current,
   };
 }

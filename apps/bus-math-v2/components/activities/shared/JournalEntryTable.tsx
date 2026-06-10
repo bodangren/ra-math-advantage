@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useMemo, useState, type ReactNode } from 'react';
+import { useMemo, useState, type ReactNode } from 'react';
 
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -127,12 +127,6 @@ export function JournalEntryTable({
     defaultValue ?? Array.from({ length: expectedLineCount }, (_, index) => createBlankLine(index)),
   );
   const lines = value ?? internalValue;
-
-  useEffect(() => {
-    if (value === undefined && defaultValue) {
-      setInternalValue(defaultValue);
-    }
-  }, [defaultValue, value]);
 
   const normalizedLines = useMemo(() => {
     const nextLines = [...lines];

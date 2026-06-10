@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useMemo, useState, type ReactNode } from 'react';
+import { useMemo, useState, type ReactNode } from 'react';
 
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -182,12 +182,6 @@ export function StatementLayout({
   const [internalValues, setInternalValues] = useState<Record<string, string>>(defaultValues ?? {});
   const currentValues = values ?? internalValues;
   const [announcement, setAnnouncement] = useState('');
-
-  useEffect(() => {
-    if (values === undefined && defaultValues) {
-      setInternalValues(defaultValues);
-    }
-  }, [defaultValues, values]);
 
 
   /**

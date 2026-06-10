@@ -8,7 +8,7 @@ import {
   getPhase,
 } from './unit1-fixtures';
 import { buildPublishedCurriculumManifest } from '@/lib/curriculum/published-manifest';
-import { activityPropsSchemas } from '@/lib/db/schema/activities-core';
+import { activityPropsSchemas } from '@/lib/schemas/activity-props';
 import { activityRegistry } from '@/lib/activities/registry';
 
 describe('curriculum/activity-completeness', () => {

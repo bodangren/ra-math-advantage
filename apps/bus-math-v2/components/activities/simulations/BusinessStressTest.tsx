@@ -16,7 +16,7 @@ import {
   ShieldCheck
 } from 'lucide-react'
 
-import type { Activity } from '@/lib/db/schema/validators'
+import type { Activity } from '@/lib/schemas/validators'
 import type { BusinessStressTestActivityProps } from '@/types/activities'
 import { buildPracticeSubmissionEnvelope, buildPracticeSubmissionParts, type PracticeSubmissionCallbackPayload } from '@/lib/practice/contract'
 
@@ -219,8 +219,10 @@ export function BusinessStressTest({ activity, onComplete, onSubmit }: BusinessS
       } catch (err) {
         console.error('BusinessStressTest submission failed:', err)
         submittedRef.current = false
-        setSubmitted(false)
-        setIsGameOver(false)
+        queueMicrotask(() => {
+          setSubmitted(false)
+          setIsGameOver(false)
+        })
       }
     }
   }, [cash, isGameOver, round, activity, activityArtifactTitle, disasters.length, onSubmit, onComplete])

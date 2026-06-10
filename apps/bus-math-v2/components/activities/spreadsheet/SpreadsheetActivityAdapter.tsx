@@ -2,7 +2,7 @@
 
 import { useCallback, useRef } from 'react';
 import { SpreadsheetActivity } from './SpreadsheetActivity';
-import type { Activity } from '@/lib/db/schema/validators';
+import type { Activity } from '@/lib/schemas/validators';
 import type { SpreadsheetActivityProps } from '@/types/activities';
 import {
   buildPracticeSubmissionEnvelope,

@@ -1,6 +1,6 @@
 'use client';
 
-import { useCallback, useMemo, useRef, useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 import { DragDropContext, Draggable, Droppable } from '@hello-pangea/dnd';
 import { Calculator, Percent, RotateCcw } from 'lucide-react';
 
@@ -8,7 +8,7 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { cn } from '@/lib/utils';
-import type { Activity } from '@/lib/db/schema/validators';
+import type { Activity } from '@/lib/schemas/validators';
 import { type PercentageCalculationSortingActivityProps } from '@/types/activities';
 import {
   CATEGORIZATION_SUPPORTED_MODES,
@@ -120,19 +120,16 @@ export function PercentageCalculationSorting({ activity, onSubmit }: PercentageC
         });
       } catch (err) {
         console.error('PercentageCalculationSorting submission failed:', err);
-        resetRef.current();
       }
     },
     [activity.componentKey, activity.id, calculationTypes, onSubmit, practiceMode, scenarios, showHints]
   );
 
-  const resetRef = useRef<() => void>(() => {});
   const { availableItems, placements, attempts, score, completed, handleDragEnd, reset } = useCategorizationExercise(scenarios, zoneIds, {
     shuffleItems: activity.props.shuffleItems,
     resetKey: activity.id,
     onComplete: handleCompletion
   });
-  resetRef.current = reset;
 
   return (
     <Card className="w-full">
@@ -184,6 +181,7 @@ export function PercentageCalculationSorting({ activity, onSubmit }: PercentageC
                           <div
                             ref={dragProvided.innerRef}
                             {...dragProvided.draggableProps}
+                            style={dragProvided.draggableProps.style as React.CSSProperties}
                             {...dragProvided.dragHandleProps}
                             className={cn(
                               'rounded-lg border bg-card p-3 transition',
@@ -241,6 +239,7 @@ export function PercentageCalculationSorting({ activity, onSubmit }: PercentageC
                                 <div
                                   ref={dragProvided.innerRef}
                                   {...dragProvided.draggableProps}
+                            style={dragProvided.draggableProps.style as React.CSSProperties}
                                   {...dragProvided.dragHandleProps}
                                   className={cn(
                                     'rounded-lg border bg-card p-3 transition',

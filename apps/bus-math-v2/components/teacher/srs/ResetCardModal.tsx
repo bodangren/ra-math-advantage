@@ -98,9 +98,11 @@ export function ResetCardModal({
 
   useEffect(() => {
     if (isOpen) {
-      setSelectedFamily("");
-      setError(null);
-      setIsSubmitting(false);
+      queueMicrotask(() => {
+        setSelectedFamily("");
+        setError(null);
+        setIsSubmitting(false);
+      });
     }
   }, [isOpen]);
 

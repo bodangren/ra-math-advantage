@@ -7,6 +7,7 @@ import { Progress } from '@/components/ui/progress'
 import { CheckCircle, XCircle, RefreshCw, HelpCircle, Target, Calculator } from 'lucide-react'
 import type { PracticeSubmissionEnvelope } from '@/lib/practice/contract'
 import { buildSimulationSubmissionEnvelope, createSimulationPart } from '@/lib/practice/simulation-submission'
+import { seededShuffle } from '@/lib/study/utils'
 
 interface DepreciationProblem {
   id: string
@@ -183,7 +184,7 @@ export function StraightLineMastery({ activity, onSubmit, onComplete }: Straight
         distractorLabel: d.label,
       })),
     ]
-    return opts.sort(() => Math.random() - 0.5)
+    return seededShuffle(opts, problem.id)
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [problem.id])
 

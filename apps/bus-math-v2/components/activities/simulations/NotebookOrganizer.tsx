@@ -17,7 +17,7 @@ import {
   Scale
 } from 'lucide-react'
 
-import type { Activity } from '@/lib/db/schema/validators'
+import type { Activity } from '@/lib/schemas/validators'
 import type { NotebookOrganizerActivityProps } from '@/types/activities'
 import { buildPracticeSubmissionEnvelope, buildPracticeSubmissionParts, type PracticeSubmissionCallbackPayload } from '@/lib/practice/contract'
 import { Badge } from '@/components/ui/badge'
@@ -222,8 +222,10 @@ export function NotebookOrganizer({ activity, onComplete, onSubmit }: NotebookOr
       } catch (err) {
         console.error('NotebookOrganizer submission failed:', err)
         submittedRef.current = false
-        setIsComplete(false)
-        setSubmitted(false)
+        queueMicrotask(() => {
+          setIsComplete(false)
+          setSubmitted(false)
+        })
       }
     }
   }, [activity, allItemsPlaced, correctPlacements, equationBalanced, initialMessage, isComplete, items, onComplete, onSubmit, placedItems, successMessage, totals])
@@ -366,6 +368,7 @@ export function NotebookOrganizer({ activity, onComplete, onSubmit }: NotebookOr
                         <div
                           ref={dragProvided.innerRef}
                           {...dragProvided.draggableProps}
+                            style={dragProvided.draggableProps.style as React.CSSProperties}
                           {...dragProvided.dragHandleProps}
                           className={cn(
                             'group flex flex-wrap items-start gap-2 rounded border bg-white p-2 shadow-sm transition-shadow',
@@ -532,6 +535,7 @@ export function NotebookOrganizer({ activity, onComplete, onSubmit }: NotebookOr
                             <Card
                               ref={dragProvided.innerRef}
                               {...dragProvided.draggableProps}
+                            style={dragProvided.draggableProps.style as React.CSSProperties}
                               {...dragProvided.dragHandleProps}
                               className={cn(
                                 'min-w-0 cursor-grab transition-shadow hover:shadow-md active:cursor-grabbing',

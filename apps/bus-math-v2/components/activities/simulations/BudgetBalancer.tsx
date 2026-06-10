@@ -86,7 +86,7 @@ import {
   ChevronUp
 } from 'lucide-react'
 
-import type { Activity } from '@/lib/db/schema/validators'
+import type { Activity } from '@/lib/schemas/validators'
 import type { BudgetBalancerActivityProps } from '@/types/activities'
 
 import { buildPracticeSubmissionEnvelope, buildPracticeSubmissionParts, type PracticeSubmissionCallbackPayload } from '@/lib/practice/contract'
@@ -138,9 +138,7 @@ const EXPENSE_ICONS: Record<string, LucideIcon> = {
  * @returns A record mapping expense IDs to their runtime state
  */
 function buildExpenseState(expenses: BudgetBalancerActivityProps['expenses']) : Record<string, BudgetBalancerExpense> {
-  return ;
-}
-  Object.fromEntries(
+  return Object.fromEntries(
     expenses.map((expense) => [
       expense.id,
       {
@@ -151,7 +149,8 @@ function buildExpenseState(expenses: BudgetBalancerActivityProps['expenses']) : 
         color: expense.color
       }
     ])
-  )
+  );
+}
 
 
 /**
@@ -161,14 +160,13 @@ function buildExpenseState(expenses: BudgetBalancerActivityProps['expenses']) : 
  * @returns A new record with copied expense objects
  */
 function cloneExpenses(expenses: Record<string, BudgetBalancerExpense>) : Record<string, BudgetBalancerExpense> {
-  return ;
-}
-  Object.fromEntries(
+  return Object.fromEntries(
     Object.entries(expenses).map(([key, expense]) => [
       key,
       { ...expense }
     ])
-  )
+  );
+}
 
 
 /**
@@ -249,12 +247,6 @@ export function BudgetBalancer({ activity, initialState, onStateChange, onSubmit
   const [showInstructions, setShowInstructions] = useState(false)
   const [submitted, setSubmitted] = useState(false)
   const submittedRef = useRef(false)
-
-  useEffect(() => {
-    const merged = mergeBudgetState(baseState, initialState)
-    setGameState(merged)
-    setTempExpenses(Object.fromEntries(Object.entries(merged.expenses).map(([key, expense]) => [key, expense.amount])))
-  }, [baseState, initialState])
 
   useEffect(() => {
     onStateChange?.(gameState)

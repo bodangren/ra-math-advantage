@@ -2,7 +2,7 @@ import { describe, it, expect, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { TeacherLessonPlan } from '../../../components/teacher/TeacherLessonPlan';
-import { type Lesson } from '@/lib/db/schema/validators';
+import { type Lesson } from '@/lib/schemas/validators';
 import type { TeacherPublishedPhase } from '@/lib/teacher/lesson-monitoring';
 
 describe('TeacherLessonPlan', () => {

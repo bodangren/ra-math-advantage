@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useRef } from 'react';
+import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import type { DailyPracticeAnswerInputProps } from '@/lib/srs/answer-inputs/registry';
 import type { ClassificationDefinition, ClassificationResponse } from '@/lib/practice/engine/families/classification';
@@ -18,7 +18,7 @@ import type { ClassificationDefinition, ClassificationResponse } from '@/lib/pra
  */
 export function ClassificationInput({ family, definition, onSubmit }: DailyPracticeAnswerInputProps) {
   const def = definition as ClassificationDefinition;
-  const submittedRef = useRef(false);
+  const [submitted, setSubmitted] = useState(false);
   const [selections, setSelections] = useState<Record<string, string>>({});
   const [gradeResult, setGradeResult] = useState<{
     isCorrect: boolean;
@@ -35,7 +35,7 @@ export function ClassificationInput({ family, definition, onSubmit }: DailyPract
    * @param categoryId - The selected category ID.
    */
   const handleSelect = (partId: string, categoryId: string) => {
-    if (submittedRef.current) return;
+    if (submitted) return;
     setSelections((prev) => ({ ...prev, [partId]: categoryId }));
   };
 
@@ -44,8 +44,8 @@ export function ClassificationInput({ family, definition, onSubmit }: DailyPract
    * Grades all selections and submits the practice envelope.
    */
   const handleSubmit = () => {
-    if (submittedRef.current) return;
-    submittedRef.current = true;
+    if (submitted) return;
+    setSubmitted(true);
 
     const response: ClassificationResponse = selections;
 
@@ -81,7 +81,7 @@ export function ClassificationInput({ family, definition, onSubmit }: DailyPract
               <select
                 value={selections[part.id] ?? ''}
                 onChange={(e) => handleSelect(part.id, e.target.value)}
-                disabled={submittedRef.current}
+                disabled={submitted}
                 data-testid={`${part.id}-select`}
                 className="flex h-9 rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm"
               >
@@ -122,7 +122,7 @@ export function ClassificationInput({ family, definition, onSubmit }: DailyPract
           </div>
         </div>
       ) : (
-        <Button onClick={handleSubmit} disabled={submittedRef.current || !allSelected}>
+        <Button onClick={handleSubmit} disabled={submitted || !allSelected}>
           Submit Answer
         </Button>
       )}

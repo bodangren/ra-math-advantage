@@ -1,6 +1,6 @@
 'use client';
 
-import { useCallback, useMemo, useRef, useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 import { DragDropContext, Draggable, Droppable } from '@hello-pangea/dnd';
 import { ArrowDownRight, ArrowUpRight, Calendar, PiggyBank, RotateCcw, TrendingDown } from 'lucide-react';
 
@@ -9,7 +9,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
 import { cn } from '@/lib/utils';
-import type { Activity } from '@/lib/db/schema/validators';
+import type { Activity } from '@/lib/schemas/validators';
 import { type CashFlowTimelineActivityProps } from '@/types/activities';
 import {
   CATEGORIZATION_SUPPORTED_MODES,
@@ -114,33 +114,33 @@ export function CashFlowTimeline({ activity, onSubmit }: CashFlowTimelineProps) 
         });
       } catch (err) {
         console.error('CashFlowTimeline submission failed:', err);
-        resetRef.current();
       }
     },
     [activity.componentKey, activity.id, activity.props.startingCash, items, onSubmit, practiceMode, showHints, sortedPeriods]
   );
 
-  const resetRef = useRef<() => void>(() => {});
   const { availableItems, placements, attempts, score, completed, handleDragEnd, reset } = useCategorizationExercise(items, zoneIds, {
     shuffleItems: activity.props.shuffleItems,
     resetKey: activity.id,
     onComplete: handleCompletion
   });
-  resetRef.current = reset;
 
   const timelineStats = useMemo(() => {
-    let runningBalance = activity.props.startingCash ?? 0;
-    return sortedPeriods.map((period) => {
-      const periodItems = placements[period.id] ?? [];
-      const netFlow = periodItems.reduce((sum, item) => sum + (item.direction === 'inflow' ? item.amount : -item.amount), 0);
-      runningBalance += netFlow;
-      return {
-        period,
-        items: periodItems,
-        netFlow,
-        endingBalance: runningBalance
-      };
-    });
+    return sortedPeriods.reduce<{
+      stats: { period: TimelinePeriod; items: CashFlowItem[]; netFlow: number; endingBalance: number }[];
+      balance: number;
+    }>(
+      (acc, period) => {
+        const periodItems = placements[period.id] ?? [];
+        const netFlow = periodItems.reduce((sum, item) => sum + (item.direction === 'inflow' ? item.amount : -item.amount), 0);
+        const endingBalance = acc.balance + netFlow;
+        return {
+          stats: [...acc.stats, { period, items: periodItems, netFlow, endingBalance }],
+          balance: endingBalance,
+        };
+      },
+      { stats: [], balance: activity.props.startingCash ?? 0 }
+    ).stats;
   }, [activity.props.startingCash, placements, sortedPeriods]);
 
   return (
@@ -197,6 +197,7 @@ export function CashFlowTimeline({ activity, onSubmit }: CashFlowTimelineProps) 
                           <div
                             ref={dragProvided.innerRef}
                             {...dragProvided.draggableProps}
+                            style={dragProvided.draggableProps.style as React.CSSProperties}
                             {...dragProvided.dragHandleProps}
                             className={cn('rounded-lg border bg-card p-3 transition', snapshot.isDragging && 'ring-2 ring-primary')}
                           >
@@ -262,6 +263,7 @@ export function CashFlowTimeline({ activity, onSubmit }: CashFlowTimelineProps) 
                               <div
                                 ref={dragProvided.innerRef}
                                 {...dragProvided.draggableProps}
+                            style={dragProvided.draggableProps.style as React.CSSProperties}
                                 {...dragProvided.dragHandleProps}
                                 className={cn(
                                   'rounded-lg border bg-card p-3 transition',

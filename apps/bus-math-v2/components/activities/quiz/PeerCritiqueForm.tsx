@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useMemo, useState } from 'react'
+import { useMemo, useState } from 'react'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
@@ -9,7 +9,7 @@ import { Input } from '@/components/ui/input'
 import { AlertCircle, FileText, Send, Star, User } from 'lucide-react'
 
 import { type PeerCritiqueActivityProps } from '@/types/activities'
-import { type Activity } from '@/lib/db/schema/validators'
+import { type Activity } from '@/lib/schemas/validators'
 import {
   buildPracticeSubmissionEnvelope,
   normalizePracticeValue,
@@ -124,8 +124,9 @@ export function PeerCritiqueForm({ activity, className = '', onSubmit }: PeerCri
 
   const overallTextareaId = `${activity.id}-overall`
   const reviewerInputId = `${activity.id}-reviewer`
-
-  useEffect(() => {
+  const [prevCategories, setPrevCategories] = useState(categories)
+  if (categories !== prevCategories) {
+    setPrevCategories(categories)
     setRatings(
       categories.reduce<Record<string, number>>((acc, category) => {
         acc[category.id] = 0
@@ -139,7 +140,7 @@ export function PeerCritiqueForm({ activity, className = '', onSubmit }: PeerCri
       }, {})
     )
     setSubmitted(false)
-  }, [categories])
+  }
 
   const allComplete =
     Object.values(ratings).every((rating) => rating > 0) &&

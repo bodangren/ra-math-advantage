@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest';
 
 import { calculateScore } from '@/lib/assessments/scoring';
 import { generateProblemInstance } from '@/lib/curriculum/problem-generator';
-import type { Activity } from '@/lib/db/schema/validators';
+import type { Activity } from '@/lib/schemas/validators';
 
 const baseTieredActivity: Activity = {
   id: '11111111-1111-4111-8111-111111111111',

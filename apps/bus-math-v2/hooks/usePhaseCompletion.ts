@@ -135,7 +135,7 @@ export function usePhaseCompletion({
   const { user } = useAuth();
   const userId = user?.id ?? null;
 
-  const startTimeRef = useRef<number>(Date.now());
+  const startTimeRef = useRef<number>(0);
   const idempotencyKeyRef = useRef<string | null>(null);
   const processedQueueRef = useRef(false);
 
@@ -209,6 +209,9 @@ export function usePhaseCompletion({
     setError(null);
 
     try {
+      if (startTimeRef.current === 0) {
+        startTimeRef.current = Date.now();
+      }
       const timeSpent = Math.floor((Date.now() - startTimeRef.current) / 1000);
 
       if (!idempotencyKeyRef.current) {

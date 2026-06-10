@@ -123,7 +123,7 @@ export function LoginForm({
         }
       }
       // Reset loading state
-      setIsLoading(false);
+      queueMicrotask(() => setIsLoading(false));
     }
   }, [profile, user, router, searchParams]);
 

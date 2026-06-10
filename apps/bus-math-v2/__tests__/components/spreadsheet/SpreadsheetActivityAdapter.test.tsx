@@ -2,7 +2,7 @@ import { describe, it, expect, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { SpreadsheetActivityAdapter } from '../../../components/activities/spreadsheet/SpreadsheetActivityAdapter';
-import type { Activity } from '@/lib/db/schema/validators';
+import type { Activity } from '@/lib/schemas/validators';
 
 // Mirror the SpreadsheetActivity mock so the adapter renders without real spreadsheet deps
 vi.mock('../../../components/activities/spreadsheet/SpreadsheetActivity', () => ({

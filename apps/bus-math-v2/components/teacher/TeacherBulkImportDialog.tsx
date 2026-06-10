@@ -5,6 +5,7 @@ import {
   useId,
   useRef,
   useState,
+  useSyncExternalStore,
 } from "react";
 import { createPortal } from "react-dom";
 import { Users, FileText, CheckCircle2, AlertCircle } from "lucide-react";
@@ -43,7 +44,11 @@ const FOCUSABLE_SELECTORS =
  * @returns A button that opens the bulk import modal dialog.
  */
 export function TeacherBulkImportDialog() {
-  const [isMounted, setIsMounted] = useState(false);
+  const isMounted = useSyncExternalStore(
+    () => () => {},
+    () => true,
+    () => false,
+  );
   const [isOpen, setIsOpen] = useState(false);
   const [step, setStep] = useState<Step>("input");
   const [inputText, setInputText] = useState("");
@@ -56,10 +61,6 @@ export function TeacherBulkImportDialog() {
   const titleId = useId();
   const descriptionId = useId();
   const dialogRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
 
   useEffect(() => {
     if (!isOpen) return;

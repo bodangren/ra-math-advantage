@@ -13,7 +13,7 @@ import {
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import type { Lesson, Phase } from '@/lib/db/schema/validators';
+import type { Lesson, Phase } from '@/lib/schemas/validators';
 import {
   studentDashboardPath,
   studentLessonPhasePath,

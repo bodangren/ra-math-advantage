@@ -14,7 +14,7 @@ import {
   type SpreadsheetCell,
   a1ToCoordinates,
 } from '@/components/activities/spreadsheet';
-import type { Activity } from '@/lib/db/schema/validators';
+import type { Activity } from '@/lib/schemas/validators';
 import type { PracticeSubmissionCallbackPayload } from '@/lib/practice/contract';
 import { buildSpreadsheetEvaluatorSubmission } from '@/lib/activities/spreadsheet-practice';
 
@@ -152,12 +152,13 @@ export function SpreadsheetEvaluator({ activity, onSubmit }: SpreadsheetEvaluato
   const [isInitialLoaded, setIsInitialLoaded] = useState(false);
 
   const autoSaveTimerRef = useRef<NodeJS.Timeout | null>(null);
-  const hasUnsavedChanges = useRef(false);
+  const [hasUnsavedChanges, setHasUnsavedChanges] = useState(false);
+  const hasUnsavedChangesRef = useRef(false);
 
   const targetCells = activity.props.targetCells;
 
   const saveAsDraft = useCallback(async () => {
-    if (!hasUnsavedChanges.current) {
+    if (!hasUnsavedChangesRef.current) {
       return;
     }
 
@@ -171,7 +172,8 @@ export function SpreadsheetEvaluator({ activity, onSubmit }: SpreadsheetEvaluato
 
       if (response.ok) {
         setLastSaved(new Date());
-        hasUnsavedChanges.current = false;
+        hasUnsavedChangesRef.current = false;
+        setHasUnsavedChanges(false);
       }
     } catch (saveError) {
       console.error('Auto-save failed:', saveError);
@@ -188,7 +190,8 @@ export function SpreadsheetEvaluator({ activity, onSubmit }: SpreadsheetEvaluato
    */
   const handleChange = useCallback((newData: SpreadsheetData) => {
     setData(newData);
-    hasUnsavedChanges.current = true;
+    hasUnsavedChangesRef.current = true;
+    setHasUnsavedChanges(true);
     setError(null);
 
     if (autoSaveTimerRef.current) {
@@ -371,7 +374,7 @@ export function SpreadsheetEvaluator({ activity, onSubmit }: SpreadsheetEvaluato
     ? feedback.every((entry) => entry.isCorrect)
       ? 'All target cells are correct.'
       : `${feedback.filter((entry) => entry.isCorrect).length} of ${feedback.length} target cells are correct.`
-    : hasUnsavedChanges.current
+    : hasUnsavedChanges
       ? 'Unsaved changes are present.'
       : 'Worksheet ready for review.';
 
@@ -411,7 +414,8 @@ export function SpreadsheetEvaluator({ activity, onSubmit }: SpreadsheetEvaluato
       if (result.aiFeedback) {
         setAiFeedback(result.aiFeedback);
       }
-      hasUnsavedChanges.current = false;
+      hasUnsavedChangesRef.current = false;
+      setHasUnsavedChanges(false);
 
       // Update attempt history
       setAttemptHistory((prev) => [
@@ -701,7 +705,7 @@ You have used all {maxAttempts} attempts. Your teacher will review your work and
                 <div className="flex items-center justify-between">
                   <span>Draft status</span>
                   <span className="font-medium text-foreground">
-                    {hasUnsavedChanges.current ? 'Unsaved changes' : 'Saved'}
+                    {hasUnsavedChanges ? 'Unsaved changes' : 'Saved'}
                   </span>
                 </div>
                 <div className="flex items-center justify-between">
@@ -718,7 +722,7 @@ You have used all {maxAttempts} attempts. Your teacher will review your work and
         <div className="sticky bottom-0 -mx-6 border-t bg-background/95 px-6 py-4 backdrop-blur supports-[backdrop-filter]:bg-background/80">
           <div className="flex flex-wrap items-center justify-between gap-3">
             <div className="text-sm text-muted-foreground">
-              {hasUnsavedChanges.current && !submitted ? (
+              {hasUnsavedChanges && !submitted ? (
                 <span className="flex items-center gap-1">
                   <Save className="h-3 w-3" />
                   Unsaved changes
@@ -733,7 +737,7 @@ You have used all {maxAttempts} attempts. Your teacher will review your work and
                   <Button
                     onClick={saveAsDraft}
                     variant="outline"
-                    disabled={isSaving || !hasUnsavedChanges.current}
+                    disabled={isSaving || !hasUnsavedChanges}
                   >
                     {isSaving ? (
                       <>

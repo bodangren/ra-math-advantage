@@ -1,6 +1,6 @@
 'use client';
 
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useReducer } from 'react';
 import type { DropResult } from '@hello-pangea/dnd';
 
 const AVAILABLE_ITEMS_DROPPABLE = 'available-items';
@@ -17,6 +17,19 @@ interface UseCategorizationExerciseOptions<T extends CategorizationItem> {
   resetKey?: string;
   onComplete?: (payload: { score: number; attempts: number; placements: ZonePlacements<T> }) => void;
 }
+
+interface State<T extends CategorizationItem> {
+  availableItems: T[];
+  placements: ZonePlacements<T>;
+  attempts: number;
+  score: number;
+  completed: boolean;
+}
+
+type Action<T extends CategorizationItem> =
+  | { type: 'reset'; items: T[]; zoneIds: string[]; shuffleItems: boolean }
+  | { type: 'moveItem'; itemId: string; destinationZoneId: string | null; items: T[]; zoneIds: string[] }
+  | { type: 'evaluate'; totalItems: number; onComplete?: (payload: { score: number; attempts: number; placements: ZonePlacements<T> }) => void };
 
 
 /**
@@ -42,12 +55,11 @@ function shuffle<T,>(items: T[]) {
  * @returns A ZonePlacements map with empty arrays
  */
 function buildPlacements<T extends CategorizationItem>(zoneIds: string[]) : ZonePlacements<T> {
-  return ;
-}
-  zoneIds.reduce<ZonePlacements<T>>((acc, zoneId) => {
+  return zoneIds.reduce<ZonePlacements<T>>((acc, zoneId) => {
     acc[zoneId] = [];
     return acc;
   }, {});
+}
 
 
 /**
@@ -57,9 +69,8 @@ function buildPlacements<T extends CategorizationItem>(zoneIds: string[]) : Zone
  * @returns The zone id or null if not a zone droppable
  */
 function zoneFromDroppableId(droppableId: string) : string | null {
-  return ;
+  return droppableId.startsWith('zone-') ? droppableId.replace('zone-', '') : null;
 }
-  droppableId.startsWith('zone-') ? droppableId.replace('zone-', '') : null;
 
 
 /**
@@ -82,53 +93,119 @@ export function getZoneDroppableId(zoneId: string) {
  * @param options - Shuffle, reset key, and completion callback options
  * @returns Exercise state and handlers for the drag-and-drop UI
  */
-export function useCategorizationExercise<T extends CategorizationItem>(items: T[], zoneIds: string[], options: UseCategorizationExerciseOptions<T> = {}) {
-  const { shuffleItems = true, resetKey, onComplete } = options;
+function reducer<T extends CategorizationItem>(state: State<T>, action: Action<T>): State<T> {
+  switch (action.type) {
+    case 'reset': {
+      return {
+        availableItems: action.shuffleItems ? shuffle(action.items) : [...action.items],
+        placements: buildPlacements<T>(action.zoneIds),
+        attempts: 0,
+        score: 0,
+        completed: false,
+      };
+    }
+    case 'moveItem': {
+      const updatedAvailable = [...state.availableItems];
+      const updatedPlacements = Object.keys(state.placements).reduce<ZonePlacements<T>>((acc, key) => {
+        acc[key] = [...state.placements[key]];
+        return acc;
+      }, {});
 
-  const [availableItems, setAvailableItems] = useState<T[]>([]);
-  const [placements, setPlacements] = useState<ZonePlacements<T>>(() => buildPlacements<T>(zoneIds));
-  const [attempts, setAttempts] = useState(0);
-  const [score, setScore] = useState(0);
-  const [completed, setCompleted] = useState(false);
-  const totalItems = items.length;
+      let movingItem: T | undefined;
+      const availableIndex = updatedAvailable.findIndex((item) => item.id === action.itemId);
 
-  useEffect(() => {
-    const initialPlacements = buildPlacements<T>(zoneIds);
-    setPlacements(initialPlacements);
-    setAvailableItems(shuffleItems ? shuffle(items) : [...items]);
-    setAttempts(0);
-    setScore(0);
-    setCompleted(false);
-  }, [items, zoneIds, shuffleItems, resetKey]);
+      if (availableIndex >= 0) {
+        movingItem = updatedAvailable.splice(availableIndex, 1)[0];
+      } else {
+        for (const zoneId of action.zoneIds) {
+          const zoneIndex = updatedPlacements[zoneId]?.findIndex((item) => item.id === action.itemId) ?? -1;
+          if (zoneIndex >= 0) {
+            movingItem = updatedPlacements[zoneId].splice(zoneIndex, 1)[0];
+            break;
+          }
+        }
+      }
 
+      if (!movingItem) {
+        return state;
+      }
 
-  /**
-   * Score the current placements and trigger completion if all items are correct.
-   *
-   * @param candidatePlacements - The placements to evaluate
-   * @param upcomingAttempts - The attempt count after this evaluation
-   */
-  const evaluate = useCallback(
-    (candidatePlacements: ZonePlacements<T>, upcomingAttempts: number) => {
-      const correct = Object.entries(candidatePlacements).reduce((sum, [zoneId, zoneItems]) => {
+      if (action.destinationZoneId && updatedPlacements[action.destinationZoneId]) {
+        updatedPlacements[action.destinationZoneId].splice(updatedPlacements[action.destinationZoneId].length, 0, movingItem);
+      } else {
+        updatedAvailable.splice(updatedAvailable.length, 0, movingItem);
+      }
+
+      return {
+        ...state,
+        availableItems: updatedAvailable,
+        placements: updatedPlacements,
+        attempts: state.attempts + 1,
+      };
+    }
+    case 'evaluate': {
+      const correct = Object.entries(state.placements).reduce((sum, [zoneId, zoneItems]) => {
         const zoneCorrect = zoneItems.filter((item) => item.targetId === zoneId).length;
         return sum + zoneCorrect;
       }, 0);
 
-      const nextScore = totalItems === 0 ? 0 : Math.round((correct / totalItems) * 100);
-      setScore(nextScore);
+      const nextScore = action.totalItems === 0 ? 0 : Math.round((correct / action.totalItems) * 100);
 
-      if (!completed && totalItems > 0 && correct === totalItems) {
-        setCompleted(true);
-        onComplete?.({
+      if (!state.completed && action.totalItems > 0 && correct === action.totalItems) {
+        action.onComplete?.({
           score: nextScore,
-          attempts: upcomingAttempts,
-          placements: candidatePlacements
+          attempts: state.attempts,
+          placements: state.placements,
         });
       }
-    },
-    [completed, onComplete, totalItems]
+
+      return {
+        ...state,
+        score: nextScore,
+        completed: state.completed || (action.totalItems > 0 && correct === action.totalItems),
+      };
+    }
+    default:
+      return state;
+  }
+}
+
+function initState<T extends CategorizationItem>(items: T[], zoneIds: string[], shuffleItems: boolean): State<T> {
+  return {
+    availableItems: shuffleItems ? shuffle(items) : [...items],
+    placements: buildPlacements<T>(zoneIds),
+    attempts: 0,
+    score: 0,
+    completed: false,
+  };
+}
+
+
+/**
+ * React hook that manages drag-and-drop state for a categorization exercise,
+ * including item placement, scoring, and completion detection.
+ *
+ * @param items - The items to categorize
+ * @param zoneIds - The available zone identifiers
+ * @param options - Shuffle, reset key, and completion callback options
+ * @returns Exercise state and handlers for the drag-and-drop UI
+ */
+export function useCategorizationExercise<T extends CategorizationItem>(items: T[], zoneIds: string[], options: UseCategorizationExerciseOptions<T> = {}) {
+  const { shuffleItems = true, resetKey, onComplete } = options;
+  const totalItems = items.length;
+
+  const [state, dispatch] = useReducer(
+    reducer as (state: State<T>, action: Action<T>) => State<T>,
+    { items, zoneIds, shuffleItems },
+    ({ items, zoneIds, shuffleItems }: { items: T[]; zoneIds: string[]; shuffleItems: boolean }) => initState(items, zoneIds, shuffleItems)
   );
+
+  // Reset when dependencies change
+  useEffect(() => {
+    dispatch({ type: 'reset', items, zoneIds, shuffleItems });
+  }, [items, zoneIds, shuffleItems, resetKey]);
+
+  const { availableItems, placements, attempts, score, completed } = state;
 
 
   /**
@@ -140,44 +217,10 @@ export function useCategorizationExercise<T extends CategorizationItem>(items: T
    */
   const moveItemToZone = useCallback(
     (itemId: string, destinationZoneId: string | null) => {
-      const updatedAvailable = [...availableItems];
-      const updatedPlacements = Object.keys(placements).reduce<ZonePlacements<T>>((acc, key) => {
-        acc[key] = [...placements[key]];
-        return acc;
-      }, {});
-
-      let movingItem: T | undefined;
-      const availableIndex = updatedAvailable.findIndex((item) => item.id === itemId);
-
-      if (availableIndex >= 0) {
-        movingItem = updatedAvailable.splice(availableIndex, 1)[0];
-      } else {
-        for (const zoneId of zoneIds) {
-          const zoneIndex = updatedPlacements[zoneId]?.findIndex((item) => item.id === itemId) ?? -1;
-          if (zoneIndex >= 0) {
-            movingItem = updatedPlacements[zoneId].splice(zoneIndex, 1)[0];
-            break;
-          }
-        }
-      }
-
-      if (!movingItem) {
-        return;
-      }
-
-      if (destinationZoneId && updatedPlacements[destinationZoneId]) {
-        updatedPlacements[destinationZoneId].splice(updatedPlacements[destinationZoneId].length, 0, movingItem);
-      } else {
-        updatedAvailable.splice(updatedAvailable.length, 0, movingItem);
-      }
-
-      const upcomingAttempts = attempts + 1;
-      setAvailableItems(updatedAvailable);
-      setPlacements(updatedPlacements);
-      setAttempts(upcomingAttempts);
-      evaluate(updatedPlacements, upcomingAttempts);
+      dispatch({ type: 'moveItem', itemId, destinationZoneId, items, zoneIds });
+      dispatch({ type: 'evaluate', totalItems, onComplete });
     },
-    [attempts, availableItems, evaluate, placements, zoneIds],
+    [items, zoneIds, totalItems, onComplete],
   );
 
 
@@ -202,21 +245,16 @@ export function useCategorizationExercise<T extends CategorizationItem>(items: T
 
       moveItemToZone(
         sourceZone
-          ? (placements[sourceZone][source.index]?.id ?? '')
-          : availableItems[source.index]?.id ?? '',
+          ? (state.placements[sourceZone][source.index]?.id ?? '')
+          : state.availableItems[source.index]?.id ?? '',
         destinationZone,
       );
     },
-    [availableItems, moveItemToZone, placements]
+    [state.placements, state.availableItems, moveItemToZone]
   );
 
   const reset = useCallback(() => {
-    const initialPlacements = buildPlacements<T>(zoneIds);
-    setPlacements(initialPlacements);
-    setAvailableItems(shuffleItems ? shuffle(items) : [...items]);
-    setAttempts(0);
-    setScore(0);
-    setCompleted(false);
+    dispatch({ type: 'reset', items, zoneIds, shuffleItems });
   }, [items, shuffleItems, zoneIds]);
 
   return {

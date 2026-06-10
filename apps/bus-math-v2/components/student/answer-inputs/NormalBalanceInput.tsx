@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useRef } from 'react';
+import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import type { DailyPracticeAnswerInputProps } from '@/lib/srs/answer-inputs/registry';
 import type { NormalBalanceDefinition, NormalBalanceResponse, NormalBalanceSide } from '@/lib/practice/engine/families/normal-balance';
@@ -18,7 +18,7 @@ import type { NormalBalanceDefinition, NormalBalanceResponse, NormalBalanceSide 
  */
 export function NormalBalanceInput({ family, definition, onSubmit }: DailyPracticeAnswerInputProps) {
   const def = definition as NormalBalanceDefinition;
-  const submittedRef = useRef(false);
+  const [submitted, setSubmitted] = useState(false);
   const [selections, setSelections] = useState<Record<string, NormalBalanceSide>>({});
   const [gradeResult, setGradeResult] = useState<{
     isCorrect: boolean;
@@ -35,7 +35,7 @@ export function NormalBalanceInput({ family, definition, onSubmit }: DailyPracti
    * @param side - The selected side ("debit" or "credit").
    */
   const handleSelect = (partId: string, side: NormalBalanceSide) => {
-    if (submittedRef.current) return;
+    if (submitted) return;
     setSelections((prev) => ({ ...prev, [partId]: side }));
   };
 
@@ -44,8 +44,8 @@ export function NormalBalanceInput({ family, definition, onSubmit }: DailyPracti
    * Grades all selections and submits the practice envelope.
    */
   const handleSubmit = () => {
-    if (submittedRef.current) return;
-    submittedRef.current = true;
+    if (submitted) return;
+    setSubmitted(true);
 
     const response: NormalBalanceResponse = selections;
 
@@ -86,7 +86,7 @@ export function NormalBalanceInput({ family, definition, onSubmit }: DailyPracti
                     variant={selections[part.id] === side ? 'default' : 'outline'}
                     size="sm"
                     onClick={() => handleSelect(part.id, side)}
-                    disabled={submittedRef.current}
+                    disabled={submitted}
                     data-testid={`${part.id}-${side}`}
                   >
                     {side.charAt(0).toUpperCase() + side.slice(1)}
@@ -122,7 +122,7 @@ export function NormalBalanceInput({ family, definition, onSubmit }: DailyPracti
           </div>
         </div>
       ) : (
-        <Button onClick={handleSubmit} disabled={submittedRef.current || !allSelected}>
+        <Button onClick={handleSubmit} disabled={submitted || !allSelected}>
           Submit Answer
         </Button>
       )}

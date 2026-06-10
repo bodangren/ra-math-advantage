@@ -31,13 +31,13 @@ export function MatchingGame() {
   const searchParams = useSearchParams();
   const unitParam = searchParams.get("unit");
 
-  const [cards, setCards] = useState<CardItem[]>([]);
   const [selectedCard, setSelectedCard] = useState<CardItem | null>(null);
   const [matchedPairs, setMatchedPairs] = useState<Set<string>>(new Set());
   const [wrongPair, setWrongPair] = useState<Set<string>>(new Set());
   const [gameComplete, setGameComplete] = useState(false);
-  const [startTime, setStartTime] = useState<number>(Date.now());
+  const [startTime, setStartTime] = useState<number>(() => Date.now());
   const [elapsedTime, setElapsedTime] = useState(0);
+  const [shuffleKey, setShuffleKey] = useState(0);
   const wrongPairTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const terms = useMemo(() => {
@@ -50,7 +50,7 @@ export function MatchingGame() {
     return shuffleArray(availableTerms).slice(0, 6);
   }, [unitParam]);
 
-  useEffect(() => {
+  const cards = useMemo(() => {
     const termCards: CardItem[] = terms.map((term) => {
       const display = getGlossaryTermDisplay(term, languageMode);
       return {
@@ -69,13 +69,9 @@ export function MatchingGame() {
         type: "definition",
       };
     });
-    setCards(shuffleArray([...termCards, ...defCards]));
-    setMatchedPairs(new Set());
-    setSelectedCard(null);
-    setWrongPair(new Set());
-    setGameComplete(false);
-    setStartTime(Date.now());
-  }, [terms, languageMode]);
+    return shuffleArray([...termCards, ...defCards]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- shuffleKey is a seed to force reshuffle on reset
+  }, [terms, languageMode, shuffleKey]);
 
   useEffect(() => {
     if (gameComplete) return;
@@ -160,25 +156,7 @@ export function MatchingGame() {
       clearTimeout(wrongPairTimeoutRef.current);
       wrongPairTimeoutRef.current = null;
     }
-    const termCards: CardItem[] = terms.map((term) => {
-      const display = getGlossaryTermDisplay(term, languageMode);
-      return {
-        id: `term-${term.slug}`,
-        content: display.prompt,
-        pairId: term.slug,
-        type: "term",
-      };
-    });
-    const defCards: CardItem[] = terms.map((term) => {
-      const display = getGlossaryTermDisplay(term, languageMode);
-      return {
-        id: `def-${term.slug}`,
-        content: display.answer,
-        pairId: term.slug,
-        type: "definition",
-      };
-    });
-    setCards(shuffleArray([...termCards, ...defCards]));
+    setShuffleKey((prev) => prev + 1);
     setMatchedPairs(new Set());
     setSelectedCard(null);
     setWrongPair(new Set());

@@ -7,7 +7,7 @@ import {
   ReflectionJournal,
 } from '../../../components/activities/quiz/ReflectionJournal'
 import type { ReflectionJournalActivityProps } from '@/types/activities'
-import type { Activity } from '@/lib/db/schema/validators'
+import type { Activity } from '@/lib/schemas/validators'
 
 type ReflectionJournalActivity = Omit<Activity, 'componentKey' | 'props'> & {
   componentKey: 'reflection-journal'

@@ -1,10 +1,10 @@
 'use client';
 
-import { useCallback, useEffect, useState } from 'react';
+import { createElement, useCallback, useEffect, useState } from 'react';
 import { Loader2 } from 'lucide-react';
 
 import { getActivityComponent } from '@/lib/activities/registry';
-import type { Activity } from '@/lib/db/schema/validators';
+import type { Activity } from '@/lib/schemas/validators';
 import { Badge } from '@/components/ui/badge';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -89,17 +89,6 @@ export function ActivityRenderer({
   });
 
   useEffect(() => {
-    if (initialStatus === 'completed' && !completionResult) {
-      setCompletionResult({
-        success: true,
-        nextPhaseUnlocked: true,
-        message: 'Activity already completed',
-        phaseId: '',
-      });
-    }
-  }, [initialStatus, completionResult]);
-
-  useEffect(() => {
     async function fetchActivity() {
       try {
         setLoading(true);
@@ -126,9 +115,12 @@ export function ActivityRenderer({
   }, [activityId]);
 
   useEffect(() => {
-    setSubmissionResult(null);
-    setSubmissionError(null);
-    setSubmitting(false);
+    const timer = setTimeout(() => {
+      setSubmissionResult(null);
+      setSubmissionError(null);
+      setSubmitting(false);
+    }, 0);
+    return () => clearTimeout(timer);
   }, [activityId]);
 
   const handleAssessmentSubmit = useCallback(
@@ -254,9 +246,9 @@ export function ActivityRenderer({
     );
   }
 
-  const ActivityComponent = getActivityComponent(activity.componentKey);
+  const activityComponent = getActivityComponent(activity.componentKey);
 
-  if (!ActivityComponent) {
+  if (!activityComponent) {
     return (
       <Card className="my-4 border-yellow-200 bg-yellow-50">
         <CardContent className="py-4">
@@ -282,11 +274,11 @@ export function ActivityRenderer({
         )}
       </CardHeader>
       <CardContent className="space-y-4">
-        <ActivityComponent
-          activity={activity}
-          onSubmit={handleActivitySubmit}
-          onComplete={handleActivityComplete}
-        />
+        {createElement(activityComponent, {
+          activity,
+          onSubmit: handleActivitySubmit,
+          onComplete: handleActivityComplete,
+        })}
         {submitting && (
           <Alert>
             <Loader2 className="h-4 w-4 animate-spin" />

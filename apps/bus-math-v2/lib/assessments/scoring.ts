@@ -1,7 +1,7 @@
 import { z } from 'zod';
 
 import { generateProblemInstance } from '@/lib/curriculum/problem-generator';
-import type { Activity } from '@/lib/db/schema/validators';
+import type { Activity } from '@/lib/schemas/validators';
 
 const DEFAULT_PASSING_SCORE = 70;
 

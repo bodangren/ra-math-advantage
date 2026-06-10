@@ -18,7 +18,7 @@ import {
   Briefcase,
   GraduationCap
 } from "lucide-react"
-import { type Lesson } from '@/lib/db/schema/validators';
+import { type Lesson } from '@/lib/schemas/validators';
 import { formatCurriculumSegmentTitle } from '@/lib/curriculum/segment-labels';
 
 interface DailyLessonActivity {

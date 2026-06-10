@@ -7,7 +7,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Progress } from '@/components/ui/progress'
 import { Separator } from '@/components/ui/separator'
 import { cn } from '@/lib/utils'
-import type { Lesson, Phase, StudentProgress } from '@/lib/db/schema/validators'
+import type { Lesson, Phase, StudentProgress } from '@/lib/schemas/validators'
 
 export interface UnitSidebarProps {
   unitId: string

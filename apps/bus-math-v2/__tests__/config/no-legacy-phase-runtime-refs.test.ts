@@ -4,7 +4,7 @@ import path from 'node:path';
 import { describe, expect, it } from 'vitest';
 
 const runtimeRoots = ['app', 'lib', 'components'];
-const excludedRootPrefixes = ['lib/db/schema/'];
+const excludedRootPrefixes: string[] = [];
 const includeExtensions = new Set(['.ts', '.tsx', '.js', '.jsx', '.sql']);
 
 function listRuntimeFiles(rootDir: string): string[] {

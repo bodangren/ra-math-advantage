@@ -17,7 +17,7 @@ import {
 } from 'lucide-react'
 
 import { cn } from '@/lib/utils'
-import type { Lesson } from '@/lib/db/schema/validators'
+import type { Lesson } from '@/lib/schemas/validators'
 
 export interface NavigationSidebarLink {
   title: string

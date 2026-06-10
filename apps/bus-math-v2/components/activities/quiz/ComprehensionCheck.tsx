@@ -8,7 +8,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { type ComprehensionQuizActivityProps } from '@/types/activities';
-import { type Activity } from '@/lib/db/schema/validators';
+import { type Activity } from '@/lib/schemas/validators';
 import {
   buildPracticeSubmissionEnvelope,
   buildPracticeSubmissionParts,
@@ -62,9 +62,7 @@ function stableHash(value: string) {
  * @returns A new array of options in deterministic order.
  */
 function sortOptionsDeterministically(questionId: string, options: string[]) {
-  return ;
-}
-  [...options]
+  return [...options]
     .map((option, index) => ({
       option,
       index,
@@ -77,6 +75,7 @@ function sortOptionsDeterministically(questionId: string, options: string[]) {
       return a.index - b.index;
     })
     .map((entry) => entry.option);
+}
 
 
 /**

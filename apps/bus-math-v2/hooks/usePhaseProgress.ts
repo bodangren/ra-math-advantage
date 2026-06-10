@@ -124,7 +124,15 @@ export function usePhaseProgress(lessonId: string | undefined): UsePhaseProgress
   }, [lessonId]);
 
   useEffect(() => {
-    fetchProgress();
+    let cancelled = false;
+
+    const runFetch = async () => {
+      if (cancelled) return;
+      await fetchProgress();
+    };
+
+    // Defer to avoid synchronous setState in effect
+    const timeoutId = setTimeout(runFetch, 0);
 
     // Refetch on window focus
     const handleFocus = () => {
@@ -134,6 +142,8 @@ export function usePhaseProgress(lessonId: string | undefined): UsePhaseProgress
     window.addEventListener('focus', handleFocus);
 
     return () => {
+      cancelled = true;
+      clearTimeout(timeoutId);
       window.removeEventListener('focus', handleFocus);
     };
   }, [fetchProgress]);

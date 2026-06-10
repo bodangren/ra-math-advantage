@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useId, useMemo, useRef, useState, type ReactNode } from 'react';
+import { useId, useMemo, useRef, useState, type ReactNode } from 'react';
 
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -141,12 +141,6 @@ export function SelectionMatrix({
   const cellRefs = useRef(new Map<string, HTMLButtonElement>());
   const lastInteractionRef = useRef<'keyboard' | 'pointer' | 'touch' | null>(null);
   const matrixId = useId();
-
-  useEffect(() => {
-    if (value === undefined && defaultValue) {
-      setInternalValue(defaultValue);
-    }
-  }, [defaultValue, value]);
 
   const rowIndexes = useMemo(() => new Map(rows.map((row, index) => [row.id, index])), [rows]);
   const columnIndexes = useMemo(() => new Map(columns.map((column, index) => [column.id, index])), [columns]);

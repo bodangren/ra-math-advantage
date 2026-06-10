@@ -1,6 +1,8 @@
-import type { InferInsertModel, InferSelectModel } from 'drizzle-orm';
-import { lessons } from '../lib/db/schema/lessons';
-import type { Phase as SchemaPhase, NewPhase as SchemaNewPhase } from '../lib/db/schema/validators';
+import type {
+  ContentBlock as SchemaContentBlock,
+  PhaseMetadata as SchemaPhaseMetadata,
+} from '../lib/schemas/phase-content';
+import { contentBlockSchema as schemaContentBlockSchema } from '../lib/schemas/phase-content';
 import type {
   LessonMetadata as SchemaLessonMetadata,
   UnitAssessment as SchemaUnitAssessment,
@@ -13,18 +15,25 @@ import type {
   UnitPrerequisites as SchemaUnitPrerequisites,
   UnitStudentChoices as SchemaUnitStudentChoices,
   UnitIntroduction as SchemaUnitIntroduction,
-} from '../lib/db/schema/lessons';
-import type {
-  ContentBlock as SchemaContentBlock,
-  PhaseMetadata as SchemaPhaseMetadata,
-} from '../lib/db/schema/phase-content';
-import { contentBlockSchema as schemaContentBlockSchema } from '../lib/db/schema/phase-content';
+} from '../lib/schemas/lessons';
+import type { Phase as SchemaPhase, NewPhase as SchemaNewPhase } from '../lib/schemas/validators';
 
 export const CURRICULUM_PHASE_COUNT = 6;
 export const contentBlockSchema = schemaContentBlockSchema;
 
-export type LessonRow = InferSelectModel<typeof lessons>;
-export type NewLessonRow = InferInsertModel<typeof lessons>;
+export type LessonRow = {
+  id: string;
+  unitNumber: number;
+  title: string;
+  slug: string;
+  description: string | null;
+  learningObjectives: string[] | null;
+  orderIndex: number;
+  metadata: LessonMetadata | null;
+  createdAt: Date;
+  updatedAt: Date;
+};
+export type NewLessonRow = Partial<LessonRow>;
 export type PhaseRow = SchemaPhase;
 export type NewPhaseRow = SchemaNewPhase;
 

@@ -1,14 +1,11 @@
-import { describe, it, expect, vi } from 'vitest';
-
-// Mock DB so importing submission-detail doesn't require DATABASE_URL
-vi.mock('@/lib/db/drizzle', () => ({ db: {} }));
+import { describe, it, expect } from 'vitest';
 
 import {
   assembleSubmissionDetail,
   type RawPhaseVersion,
   type RawProgressRow,
 } from '@/lib/teacher/submission-detail';
-import type { SpreadsheetData } from '@/lib/db/schema/spreadsheet-responses';
+import type { SpreadsheetData } from '@/lib/schemas/spreadsheet-responses';
 
 // ---------------------------------------------------------------------------
 // Fixtures

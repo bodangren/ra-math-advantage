@@ -17,7 +17,7 @@ import {
   ThumbsDown
 } from 'lucide-react'
 
-import type { Activity } from '@/lib/db/schema/validators'
+import type { Activity } from '@/lib/schemas/validators'
 import type { CapitalNegotiationActivityProps } from '@/types/activities'
 import { buildPracticeSubmissionEnvelope, buildPracticeSubmissionParts, type PracticeSubmissionCallbackPayload } from '@/lib/practice/contract'
 

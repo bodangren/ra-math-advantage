@@ -16,7 +16,7 @@ import {
   selectActivitySchema,
   selectLessonSchema,
   selectPhaseSchema
-} from '@/lib/db/schema/validators';
+} from '@/lib/schemas/validators';
 
 describe('mock factories', () => {
   it('creates linked lesson and phase objects that satisfy select schemas', () => {

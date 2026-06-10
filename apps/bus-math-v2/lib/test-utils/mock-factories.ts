@@ -54,11 +54,11 @@ import {
   type Resource,
   type SessionLeaderboardEntry,
   type StudentProgress
-} from '@/lib/db/schema/validators';
+} from '@/lib/schemas/validators';
 import {
   unitContentSchema,
   type UnitContent
-} from '@/lib/db/schema/lessons';
+} from '@/lib/schemas/lessons';
 
 /**
  * Returns the current date.

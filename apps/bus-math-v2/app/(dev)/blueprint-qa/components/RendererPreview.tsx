@@ -1,6 +1,6 @@
 'use client';
 
-import { Suspense, useEffect, useMemo, createContext, useContext, type ReactNode } from 'react';
+import { Suspense, useEffect, useMemo, createContext, useContext, createElement } from 'react';
 import { Monitor, Send, AlertTriangle, Puzzle, Loader2 } from 'lucide-react';
 import { getActivityComponent } from '@math-platform/activity-components/registry';
 import { ensureActivitiesRegistered } from './register-activities';
@@ -102,7 +102,7 @@ export function RendererPreview({ state, selectedNode, selectedBlueprint, onInte
   );
 
   const rendererKey = selectedBlueprint?.rendererKey ?? selectedNode?.rendererKey ?? null;
-  const Component = rendererKey ? getActivityComponent(rendererKey) : null;
+  const activityComponent = rendererKey ? getActivityComponent(rendererKey) : null;
   const hasOutput = !!state.generatorOutput;
 
   const handleSubmit = (payload: unknown) => {
@@ -126,7 +126,7 @@ export function RendererPreview({ state, selectedNode, selectedBlueprint, onInte
     onIntercept({ partId: '__complete__', rawAnswer: null, isCorrect: true });
   };
 
-  const componentProps = hasOutput
+  const componentProps = hasOutput && state.generatorOutput
     ? buildComponentProps(rendererKey ?? '', state.generatorOutput)
     : {};
   const activityId = `qa-${selectedNode?.id ?? 'none'}-${state.seed}`;
@@ -145,7 +145,7 @@ export function RendererPreview({ state, selectedNode, selectedBlueprint, onInte
           <AlertTriangle className="size-4 shrink-0 text-amber-500 mt-0.5" />
           <p className="text-xs text-amber-700">No renderer key assigned.</p>
         </div>
-      ) : !Component ? (
+      ) : !activityComponent ? (
         <div className="flex items-start gap-2 rounded-lg border border-red-200 bg-red-50 p-3">
           <Puzzle className="size-4 shrink-0 text-red-500 mt-0.5" />
           <div className="text-xs text-red-700">
@@ -172,13 +172,13 @@ export function RendererPreview({ state, selectedNode, selectedBlueprint, onInte
                 Loading component...
               </div>
             }>
-              <Component
-                activityId={activityId}
-                mode={state.mode === 'worked_example' ? 'teaching' : state.mode === 'guided_practice' ? 'guided' : 'practice'}
-                onSubmit={handleSubmit}
-                onComplete={handleComplete}
-                {...componentProps}
-              />
+              {createElement(activityComponent, {
+                activityId,
+                mode: state.mode === 'worked_example' ? 'teaching' : state.mode === 'guided_practice' ? 'guided' : 'practice',
+                onSubmit: handleSubmit,
+                onComplete: handleComplete,
+                ...componentProps,
+              })}
             </Suspense>
           </div>
         </MockSubmissionContext.Provider>

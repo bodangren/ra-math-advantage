@@ -36,14 +36,20 @@ export function SpeedRoundGame() {
   const [totalQuestions, setTotalQuestions] = useState(0);
   const [timeLeft, setTimeLeft] = useState(90);
   const [gameState, setGameState] = useState<"idle" | "playing" | "gameOver">("playing");
-  const gameStateRef = useRef(gameState);
-  gameStateRef.current = gameState;
-  const correctAnswersRef = useRef(correctAnswers);
-  correctAnswersRef.current = correctAnswers;
-  const totalQuestionsRef = useRef(totalQuestions);
-  totalQuestionsRef.current = totalQuestions;
-  const maxStreakRef = useRef(maxStreak);
-  maxStreakRef.current = maxStreak;
+  const gameDataRef = useRef({
+    gameState,
+    correctAnswers,
+    totalQuestions,
+    maxStreak,
+  });
+  useEffect(() => {
+    gameDataRef.current = {
+      gameState,
+      correctAnswers,
+      totalQuestions,
+      maxStreak,
+    };
+  }, [gameState, correctAnswers, totalQuestions, maxStreak]);
   const [answeredTerms, setAnsweredTerms] = useState<Set<string>>(new Set());
   const [feedback, setFeedback] = useState<"correct" | "wrong" | null>(null);
   const feedbackTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -110,9 +116,9 @@ export function SpeedRoundGame() {
           setGameState("gameOver");
           recordSession({
             activityType: "speed_round",
-            correctCount: correctAnswersRef.current,
-            totalCount: totalQuestionsRef.current,
-            maxStreak: maxStreakRef.current,
+            correctCount: gameDataRef.current.correctAnswers,
+            totalCount: gameDataRef.current.totalQuestions,
+            maxStreak: gameDataRef.current.maxStreak,
           });
           return 0;
         }
@@ -149,7 +155,7 @@ export function SpeedRoundGame() {
       setAnsweredTerms(newExclude);
       if (feedbackTimeoutRef.current) clearTimeout(feedbackTimeoutRef.current);
       feedbackTimeoutRef.current = setTimeout(() => {
-        if (gameStateRef.current !== "playing") return;
+        if (gameDataRef.current.gameState !== "playing") return;
         setFeedback(null);
         const question = generateQuestion(newExclude);
         setCurrentQuestion({
@@ -169,9 +175,9 @@ export function SpeedRoundGame() {
           setGameState("gameOver");
           recordSession({
             activityType: "speed_round",
-            correctCount: correctAnswersRef.current,
-            totalCount: totalQuestionsRef.current + 1,
-            maxStreak: maxStreakRef.current,
+            correctCount: gameDataRef.current.correctAnswers,
+            totalCount: gameDataRef.current.totalQuestions + 1,
+            maxStreak: gameDataRef.current.maxStreak,
           });
         }
         return newLives;
@@ -180,7 +186,7 @@ export function SpeedRoundGame() {
       setFeedback("wrong");
       if (feedbackTimeoutRef.current) clearTimeout(feedbackTimeoutRef.current);
       feedbackTimeoutRef.current = setTimeout(() => {
-        if (gameStateRef.current !== "playing") return;
+        if (gameDataRef.current.gameState !== "playing") return;
         setFeedback(null);
         const question = generateQuestion(answeredTerms);
         setCurrentQuestion({

@@ -40,8 +40,8 @@ export default function PracticeTestEngine({ unitConfig, onComplete }: PracticeT
   const [questionCount, setQuestionCount] = useState<number>(Math.min(10, unitConfig.questions.length));
   const [testQuestions, setTestQuestions] = useState<{ question: ReturnType<typeof shuffleAnswers>; original: typeof unitConfig.questions[0] }[]>([]);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState<number>(0);
-  const [, setScore] = useState<number>(0);
-  const [, setPerLessonBreakdown] = useState<Record<string, { correct: number; total: number }>>({});
+  const [score, setScore] = useState<number>(0);
+  const [perLessonBreakdown, setPerLessonBreakdown] = useState<Record<string, { correct: number; total: number }>>({});
   const [hasSeenFeedback, setHasSeenFeedback] = useState(false);
   const [lastAnswerCorrect, setLastAnswerCorrect] = useState(false);
 
@@ -340,13 +340,13 @@ export default function PracticeTestEngine({ unitConfig, onComplete }: PracticeT
               <p className="text-lg mb-6">{unitConfig.phaseContent.closing}</p>
               <div className="mb-6">
                 <h3 className="text-md font-semibold mb-3">Your Score</h3>
-                <div className="text-4xl font-bold mb-2">{scoreRef.current}/{testQuestions.length}</div>
-                <div className="text-lg text-gray-600">{testQuestions.length > 0 ? Math.round((scoreRef.current / testQuestions.length) * 100) : 0}%</div>
+                <div className="text-4xl font-bold mb-2">{score}/{testQuestions.length}</div>
+                <div className="text-lg text-gray-600">{testQuestions.length > 0 ? Math.round((score / testQuestions.length) * 100) : 0}%</div>
               </div>
               <div className="mb-6">
                 <h3 className="text-md font-semibold mb-3">Per-lesson breakdown</h3>
                 <div className="space-y-2">
-                  {Object.entries(breakdownRef.current).map(([lessonId, data]) => {
+                  {Object.entries(perLessonBreakdown).map(([lessonId, data]) => {
                     const lesson = unitConfig.lessons.find((l) => l.id === lessonId);
                     return (
                       <div key={lessonId} className="flex justify-between">

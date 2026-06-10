@@ -1,4 +1,4 @@
-import type { Lesson, Phase } from '@/lib/db/schema/validators';
+import type { Lesson, Phase } from '@/lib/schemas/validators';
 import type { ContentBlock, PhaseMetadata } from '@/types/curriculum';
 
 type PartialDeep<T> = {

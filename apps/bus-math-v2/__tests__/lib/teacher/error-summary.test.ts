@@ -1,7 +1,4 @@
-import { describe, it, expect, vi } from 'vitest';
-
-// Mock DB so importing submission-detail doesn't require DATABASE_URL
-vi.mock('@/lib/db/drizzle', () => ({ db: {} }));
+import { describe, it, expect } from 'vitest';
 
 import {
   assembleSubmissionDetail,

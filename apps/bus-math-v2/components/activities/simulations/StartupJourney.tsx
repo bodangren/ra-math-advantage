@@ -98,7 +98,7 @@ import {
   Zap
 } from 'lucide-react'
 
-import type { Activity } from '@/lib/db/schema/validators'
+import type { Activity } from '@/lib/schemas/validators'
 import type { StartupJourneyActivityProps } from '@/types/activities'
 
 import { buildPracticeSubmissionEnvelope, buildPracticeSubmissionParts, type PracticeSubmissionCallbackPayload } from '@/lib/practice/contract'
@@ -217,10 +217,6 @@ export function StartupJourney({ activity, initialState, onStateChange, onSubmit
   )
   const heroDescription = activity.description ?? activity.props.description
   const winConditions = activity.props.winConditions
-
-  useEffect(() => {
-    setGameState(mergeStartupState(baseState, initialState))
-  }, [baseState, initialState])
 
   useEffect(() => {
     onStateChange?.(gameState)

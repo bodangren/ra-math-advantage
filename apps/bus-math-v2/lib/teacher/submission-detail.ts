@@ -6,7 +6,7 @@
  * called from server components or API routes.
  */
 
-import type { SpreadsheetData } from '@/lib/db/schema/spreadsheet-responses';
+import type { SpreadsheetData } from '@/lib/schemas/spreadsheet-responses';
 import type { PracticeSubmissionEnvelope } from '@/lib/practice/contract';
 
 // ---------------------------------------------------------------------------

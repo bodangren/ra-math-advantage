@@ -1,15 +1,3 @@
-import type { InferInsertModel, InferSelectModel } from 'drizzle-orm';
-import {
-  activities,
-  lessonVersions,
-  lessons,
-  organizations,
-  phaseSections,
-  phaseVersions,
-  profiles,
-  studentProgress,
-} from '@/lib/db/schema';
-
 export const DATABASE_TABLE_NAMES = [
   'organizations',
   'lessons',
@@ -23,29 +11,102 @@ export const DATABASE_TABLE_NAMES = [
 
 export type DatabaseTableName = (typeof DATABASE_TABLE_NAMES)[number];
 
-export type OrganizationRow = InferSelectModel<typeof organizations>;
-export type NewOrganizationRow = InferInsertModel<typeof organizations>;
+export type OrganizationRow = {
+  id: string;
+  name: string;
+  slug: string;
+  settings: Record<string, unknown> | null;
+  createdAt: Date;
+  updatedAt: Date;
+};
+export type NewOrganizationRow = Partial<OrganizationRow>;
 
-export type LessonRow = InferSelectModel<typeof lessons>;
-export type NewLessonRow = InferInsertModel<typeof lessons>;
+export type LessonRow = {
+  id: string;
+  unitNumber: number;
+  title: string;
+  slug: string;
+  description: string | null;
+  learningObjectives: string[] | null;
+  orderIndex: number;
+  metadata: Record<string, unknown> | null;
+  createdAt: Date;
+  updatedAt: Date;
+};
+export type NewLessonRow = Partial<LessonRow>;
 
-export type LessonVersionRow = InferSelectModel<typeof lessonVersions>;
-export type NewLessonVersionRow = InferInsertModel<typeof lessonVersions>;
+export type LessonVersionRow = {
+  id: string;
+  lessonId: string;
+  version: number;
+  title: string;
+  status: string;
+  createdAt: Date;
+  updatedAt: Date;
+};
+export type NewLessonVersionRow = Partial<LessonVersionRow>;
 
-export type PhaseVersionRow = InferSelectModel<typeof phaseVersions>;
-export type NewPhaseVersionRow = InferInsertModel<typeof phaseVersions>;
+export type PhaseVersionRow = {
+  id: string;
+  lessonVersionId: string;
+  phaseNumber: number;
+  title: string | null;
+  contentBlocks: unknown[] | null;
+  createdAt: Date;
+  updatedAt: Date;
+};
+export type NewPhaseVersionRow = Partial<PhaseVersionRow>;
 
-export type PhaseSectionRow = InferSelectModel<typeof phaseSections>;
-export type NewPhaseSectionRow = InferInsertModel<typeof phaseSections>;
+export type PhaseSectionRow = {
+  id: string;
+  phaseVersionId: string;
+  sequenceOrder: number;
+  sectionType: string;
+  content: Record<string, unknown> | null;
+  createdAt: Date;
+  updatedAt: Date;
+};
+export type NewPhaseSectionRow = Partial<PhaseSectionRow>;
 
-export type ProfileRow = InferSelectModel<typeof profiles>;
-export type NewProfileRow = InferInsertModel<typeof profiles>;
+export type ProfileRow = {
+  id: string;
+  organizationId: string;
+  username: string;
+  role: string;
+  displayName: string | null;
+  avatarUrl: string | null;
+  metadata: Record<string, unknown> | null;
+  createdAt: Date;
+  updatedAt: Date;
+};
+export type NewProfileRow = Partial<ProfileRow>;
 
-export type ActivityRow = InferSelectModel<typeof activities>;
-export type NewActivityRow = InferInsertModel<typeof activities>;
+export type ActivityRow = {
+  id: string;
+  componentKey: string;
+  displayName: string;
+  description: string | null;
+  props: unknown;
+  gradingConfig: Record<string, unknown> | null;
+  standardId: string | null;
+  createdAt: Date;
+  updatedAt: Date;
+};
+export type NewActivityRow = Partial<ActivityRow>;
 
-export type StudentProgressRow = InferSelectModel<typeof studentProgress>;
-export type NewStudentProgressRow = InferInsertModel<typeof studentProgress>;
+export type StudentProgressRow = {
+  id: string;
+  userId: string;
+  phaseId: string;
+  status: string;
+  startedAt: Date | null;
+  completedAt: Date | null;
+  timeSpentSeconds: number | null;
+  idempotencyKey: string | null;
+  createdAt: Date;
+  updatedAt: Date;
+};
+export type NewStudentProgressRow = Partial<StudentProgressRow>;
 
 export interface DatabaseTables {
   organizations: { row: OrganizationRow; insert: NewOrganizationRow };

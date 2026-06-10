@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useMemo, useState } from 'react';
+import { useMemo, useState } from 'react';
 import { Lightbulb, RotateCcw } from 'lucide-react';
 
 import { Badge } from '@/components/ui/badge';
@@ -8,7 +8,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { type FillInTheBlankActivityProps } from '@/types/activities';
-import { type Activity } from '@/lib/db/schema/validators';
+import { type Activity } from '@/lib/schemas/validators';
 import {
   buildPracticeSubmissionEnvelope,
   buildPracticeSubmissionParts,
@@ -72,12 +72,13 @@ export function FillInTheBlank({ activity, onSubmit }: FillInTheBlankProps) {
   const [sentenceStates, setSentenceStates] = useState<SentenceState[]>([]);
   const [hintsEnabled, setHintsEnabled] = useState(showHints);
   const practiceMode = showHints || showWordList ? 'guided_practice' : 'independent_practice';
-
-  useEffect(() => {
+  const [prevSentences, setPrevSentences] = useState(sentences);
+  if (sentences !== prevSentences) {
+    setPrevSentences(sentences);
     setAnswers({});
     setSentenceStates([]);
     setSubmitted(false);
-  }, [sentences]);
+  }
 
   const wordBank = useMemo(() => {
     if (!showWordList) return [];

@@ -47,7 +47,7 @@ export function SpreadsheetActivity({ title, description, template, customTempla
   // Sync with initialData changes
   useEffect(() => {
     if (initialData) {
-      setData(initialData);
+      queueMicrotask(() => setData(initialData));
     }
   }, [initialData]);
 

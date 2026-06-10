@@ -2,7 +2,7 @@ import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 
 import { ActivityRenderer } from '../../../components/lesson/ActivityRenderer';
-import type { Activity } from '@/lib/db/schema/validators';
+import type { Activity } from '@/lib/schemas/validators';
 import { buildPracticeSubmissionEnvelope } from '@/lib/practice/contract';
 
 const mockFetch = vi.fn();

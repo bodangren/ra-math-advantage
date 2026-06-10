@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { buildPublishedCurriculumManifest } from '@/lib/curriculum/published-manifest';
 import { activityRegistry } from '@/lib/activities/registry';
-import { activityPropsSchemas } from '@/lib/db/schema/activities-core';
+import { activityPropsSchemas } from '@/lib/schemas/activity-props';
 
 describe('Phase 4: Units 5-6 Curriculum Audit', () => {
   const manifest = buildPublishedCurriculumManifest();

@@ -4,7 +4,7 @@ import { useMemo, useState } from 'react';
 
 import { CategorizationList, type CategorizationListZone, type CategorizationListItem } from '@/components/activities/shared/CategorizationList';
 import type { z } from 'zod';
-import type { activityPropsSchemas } from '@/lib/db/schema/activities-core';
+import type { activityPropsSchemas } from '@/lib/schemas/activity-props';
 
 type ClassificationActivityProps = z.infer<typeof activityPropsSchemas['classification']>;
 

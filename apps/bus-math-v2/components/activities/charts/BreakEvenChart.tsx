@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import { CartesianGrid, Line, LineChart as RechartsLineChart, ReferenceLine, XAxis, YAxis } from "recharts";
 
 import { Button } from "@/components/ui/button";
@@ -58,17 +58,26 @@ export function BreakEvenChart({
   const [variableCostRate, setVariableCostRate] = useState(defaultVariableRate);
   const [sellingPrice, setSellingPrice] = useState(defaultSellingPrice);
 
-  useEffect(() => {
+  const [prevDefaults, setPrevDefaults] = useState({
+    fixedCosts: defaultFixedCosts,
+    variableCostRate: defaultVariableRate,
+    sellingPrice: defaultSellingPrice
+  });
+
+  if (
+    prevDefaults.fixedCosts !== defaultFixedCosts ||
+    prevDefaults.variableCostRate !== defaultVariableRate ||
+    prevDefaults.sellingPrice !== defaultSellingPrice
+  ) {
     setFixedCosts(defaultFixedCosts);
-  }, [defaultFixedCosts]);
-
-  useEffect(() => {
     setVariableCostRate(defaultVariableRate);
-  }, [defaultVariableRate]);
-
-  useEffect(() => {
     setSellingPrice(defaultSellingPrice);
-  }, [defaultSellingPrice]);
+    setPrevDefaults({
+      fixedCosts: defaultFixedCosts,
+      variableCostRate: defaultVariableRate,
+      sellingPrice: defaultSellingPrice
+    });
+  }
 
   const clampedVariableRate = Math.min(Math.max(variableCostRate, 0), 1);
 

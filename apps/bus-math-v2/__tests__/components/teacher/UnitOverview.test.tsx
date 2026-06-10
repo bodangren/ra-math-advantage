@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import { UnitOverview } from '../../../components/teacher/UnitOverview';
-import { type Lesson } from '@/lib/db/schema/validators';
+import { type Lesson } from '@/lib/schemas/validators';
 
 describe('UnitOverview', () => {
   const mockLesson: Lesson = {

@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 
-import { type Lesson } from '@/lib/db/schema/validators';
+import { type Lesson } from '@/lib/schemas/validators';
 import { StudentUnitOverview } from '../../../components/student/StudentUnitOverview';
 import { createLesson } from '@/__tests__/utils/lessonBuilders';
 

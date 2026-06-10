@@ -1,5 +1,5 @@
 import { describe, it, expect, vi } from 'vitest';
-import { render, screen } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { SpreadsheetActivity } from '../../../components/activities/spreadsheet/SpreadsheetActivity';
 import type { SpreadsheetActivityProps } from '@/types/activities';
@@ -264,28 +264,30 @@ describe('SpreadsheetActivity', () => {
     expect(spreadsheetWrapper).toHaveClass('spreadsheet-wrapper');
   });
 
-  it('syncs with initialData changes', () => {
+  it('syncs with initialData changes', async () => {
     const { rerender } = render(
-      <SpreadsheetActivity 
-        {...defaultProps} 
+      <SpreadsheetActivity
+        {...defaultProps}
         initialData={[
           [{ value: 'Initial' }],
         ]}
       />
     );
-    
+
     expect(screen.getByTestId('cell-count')).toHaveTextContent('1');
-    
+
     rerender(
-      <SpreadsheetActivity 
-        {...defaultProps} 
+      <SpreadsheetActivity
+        {...defaultProps}
         initialData={[
           [{ value: 'Updated' }, { value: 'Data' }],
           [{ value: 'More' }, { value: 'Here' }],
         ]}
       />
     );
-    
-    expect(screen.getByTestId('cell-count')).toHaveTextContent('4');
+
+    await waitFor(() => {
+      expect(screen.getByTestId('cell-count')).toHaveTextContent('4');
+    });
   });
 });

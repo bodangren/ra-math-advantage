@@ -21,9 +21,8 @@ type UnitIntroductionProps = UnitIntroductionData;
  * @returns The full embed URL string
  */
 function buildEmbedUrl(youtubeId: string) {
-  return ;
+  return `https://www.youtube-nocookie.com/embed/${youtubeId}?rel=0&modestbranding=1`;
 }
-  `https://www.youtube-nocookie.com/embed/${youtubeId}?rel=0&modestbranding=1`;
 
 
 /**

@@ -1,6 +1,6 @@
 'use client'
 
-import type { Activity } from '@/lib/db/schema/validators'
+import type { Activity } from '@/lib/schemas/validators'
 import type { ScenarioSwitchShowtellActivityProps } from '@/types/activities'
 import { useCallback, useRef, useState } from 'react'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'

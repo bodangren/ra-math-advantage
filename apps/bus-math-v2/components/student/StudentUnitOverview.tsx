@@ -4,7 +4,7 @@ import { ArrowRight, BookOpen, Clock, Rocket, Target, Trophy, Wrench } from 'luc
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import type { Lesson } from '@/lib/db/schema/validators';
+import type { Lesson } from '@/lib/schemas/validators';
 import { studentLessonPath } from '@/lib/student/navigation';
 
 interface UnitOverview {
@@ -99,12 +99,11 @@ function uniqueSkills(lessons: Lesson[]) {
  * @returns An array of up to 4 learning objective strings.
  */
 function buildingGoals(lessons: Lesson[]) {
-  return ;
-}
-  lessons
+  return lessons
     .flatMap((lesson) => lesson.learningObjectives ?? [])
     .filter(Boolean)
     .slice(0, 4);
+}
 
 
 /**

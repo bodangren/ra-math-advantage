@@ -52,9 +52,7 @@ export default defineConfig(async () => ({
             if (id.includes('clsx') || id.includes('tailwind-merge')) {
               return 'vendor-utils';
             }
-            if (id.includes('drizzle-orm') || id.includes('drizzle-zod') || id.includes('postgres')) {
-              return 'vendor-drizzle';
-            }
+
           }
           if (id.includes('/packages/')) {
             if (id.includes('srs-engine')) return 'vendor-srs';

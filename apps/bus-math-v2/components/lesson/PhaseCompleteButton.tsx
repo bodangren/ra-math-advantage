@@ -112,8 +112,11 @@ export function PhaseCompleteButton({
   const isButtonDisabled = disabled || isCompleting || isCompleted;
 
   useEffect(() => {
-    setStatus(initialStatus);
-    previousStatusRef.current = initialStatus;
+    const timer = setTimeout(() => {
+      setStatus(initialStatus);
+      previousStatusRef.current = initialStatus;
+    }, 0);
+    return () => clearTimeout(timer);
   }, [initialStatus]);
 
   useEffect(() => {

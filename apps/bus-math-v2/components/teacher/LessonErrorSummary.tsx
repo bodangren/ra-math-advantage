@@ -172,9 +172,13 @@ export function LessonErrorSummary({ lessonId }: LessonErrorSummaryProps) {
   useEffect(() => {
     let cancelled = false;
 
-    setIsLoading(true);
-    setError(null);
-    setSummary(null);
+    queueMicrotask(() => {
+      if (!cancelled) {
+        setIsLoading(true);
+        setError(null);
+        setSummary(null);
+      }
+    });
 
     fetch(`/api/teacher/error-summary?lessonId=${encodeURIComponent(lessonId)}`)
       .then((res) => {

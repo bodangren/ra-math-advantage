@@ -97,6 +97,19 @@ interface StepButtonProps {
  * @param props - Phase data, current state, click handler, and compact flag
  * @returns A circular step button with status icon
  */
+function getStepIcon(status: PhaseStatus) {
+  switch (status) {
+    case 'completed':
+      return <Check className="h-4 w-4" aria-hidden="true" />;
+    case 'current':
+      return <CircleDot className="h-4 w-4" aria-hidden="true" />;
+    case 'locked':
+      return <Lock className="h-4 w-4" aria-hidden="true" />;
+    default:
+      return <Circle className="h-4 w-4" aria-hidden="true" />;
+  }
+}
+
 function StepButton({ phase, isCurrent, onClick, compact = false }: StepButtonProps) {
   const isClickable = phase.status === 'completed' || phase.status === 'current' || phase.status === 'available';
   const isLocked = phase.status === 'locked';
@@ -114,19 +127,6 @@ function StepButton({ phase, isCurrent, onClick, compact = false }: StepButtonPr
   const tooltipText = isLocked
     ? 'Complete previous phase to unlock'
     : phase.title;
-
-  const StepIcon = () => {
-    switch (effectiveStatus) {
-      case 'completed':
-        return <Check className="h-4 w-4" aria-hidden="true" />;
-      case 'current':
-        return <CircleDot className="h-4 w-4" aria-hidden="true" />;
-      case 'locked':
-        return <Lock className="h-4 w-4" aria-hidden="true" />;
-      default:
-        return <Circle className="h-4 w-4" aria-hidden="true" />;
-    }
-  };
 
   return (
     <button
@@ -149,7 +149,7 @@ function StepButton({ phase, isCurrent, onClick, compact = false }: StepButtonPr
       ) : (
         <span className="sr-only">Phase {phase.phaseNumber}</span>
       )}
-      {!compact && <StepIcon />}
+      {!compact && getStepIcon(effectiveStatus)}
     </button>
   );
 }

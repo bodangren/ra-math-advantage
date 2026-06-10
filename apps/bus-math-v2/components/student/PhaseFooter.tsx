@@ -12,7 +12,7 @@ import {
 
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import type { Lesson } from '@/lib/db/schema/validators';
+import type { Lesson } from '@/lib/schemas/validators';
 import type { PhaseMetadata } from '@/types/curriculum';
 import { ResourceBasePathFixer } from '@/components/ResourceBasePathFixer';
 

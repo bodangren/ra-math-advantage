@@ -1,30 +1,23 @@
-import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
+import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import path from 'node:path';
-import { fileURLToPath } from 'node:url';
+
 
 // ---------------------------------------------------------------------------
 // Path resolution tests (actions.ts REPO_ROOT calculation)
 // ---------------------------------------------------------------------------
 
 describe('actions.ts — REPO_ROOT path resolution', () => {
-  it('resolves to the monorepo root (contains package.json with workspaces)', () => {
-    // Replicate the logic from actions.ts
-    const __dirname = path.dirname(fileURLToPath(import.meta.url));
-    const dirParts = __dirname.split(path.sep);
-    const actionsFileDir = path.join(
-      process.cwd(),
-      'apps',
-      'bus-math-v2',
-      'app',
-      '(dev)',
-      'blueprint-qa',
-    );
-    const repoRoot = path.resolve(actionsFileDir, '../../../../../');
+  it('resolves to the monorepo root (contains package.json with workspaces)', async () => {
+    // process.cwd() is apps/bus-math-v2, so we need to go up 2 levels to reach monorepo root
+    const repoRoot = path.resolve(process.cwd(), '../..');
 
     // The monorepo root should contain package.json with workspaces
     const fs = await import('node:fs');
-    const pkgJson = JSON.parse(fs.readFileSync(path.join(repoRoot, 'package.json'), 'utf-8'));
+    const pkgJsonPath = path.join(repoRoot, 'package.json');
+    expect(fs.existsSync(pkgJsonPath)).toBe(true);
+    
+    const pkgJson = JSON.parse(fs.readFileSync(pkgJsonPath, 'utf-8'));
     expect(pkgJson.workspaces).toBeDefined();
     expect(pkgJson.workspaces).toContain('apps/*');
 
@@ -95,7 +88,7 @@ describe('gradeAnswerLocally', () => {
 // ---------------------------------------------------------------------------
 
 vi.mock('@math-platform/activity-components/registry', () => ({
-  getActivityComponent: vi.fn(),
+  getActivityComponent: vi.fn((key: string) => key === 'unregistered-component' ? null : () => null),
   registerActivity: vi.fn(),
   getRegisteredActivityKeys: vi.fn(() => []),
   clearActivityRegistry: vi.fn(),
@@ -179,10 +172,6 @@ describe('NodeList', () => {
       />,
     );
     expect(screen.getByText('\uD83D\uDFE2')).toBeInTheDocument();
-    expect(screen.getByText('no generator')).toBeInTheDocument();
-    // ^ because generatorKey is on the node but we look for the label text
-    // Wait — the check is: hasGen ? shows generator key : shows "no generator"
-    // The green dot renders but the text below still checks for the exact text
     expect(screen.getByText('test-generator')).toBeInTheDocument();
   });
 
@@ -250,7 +239,7 @@ describe('NodeList', () => {
         onSelectNode={vi.fn()}
       />,
     );
-    expect(screen.getByText('M3.L5')).toBeInTheDocument();
+    expect(screen.getByText(/M3\.L5/)).toBeInTheDocument();
   });
 });
 
@@ -320,7 +309,7 @@ describe('GeneratorPanel', () => {
         onUpdateState={vi.fn()}
       />,
     );
-    expect(screen.getByText('No generator key assigned to this skill.')).toBeInTheDocument();
+    expect(screen.getByText(/No generator key assigned/)).toBeInTheDocument();
   });
 
   it('renders seed, difficulty, and mode controls when generator key exists', () => {
@@ -337,7 +326,7 @@ describe('GeneratorPanel', () => {
     expect(screen.getByRole('slider')).toBeInTheDocument();
   });
 
-  it('displays generator error with stack trace', () => {
+  it('displays generator error with stack trace', async () => {
     const onUpdateState = vi.fn();
     mockGetGenerator.mockImplementation(() => {
       const err = new Error('Generator failed');
@@ -355,7 +344,7 @@ describe('GeneratorPanel', () => {
     );
 
     // Wait for debounced generator call
-    waitFor(() => {
+    await waitFor(() => {
       expect(onUpdateState).toHaveBeenCalledWith(
         expect.objectContaining({
           generatorError: expect.stringContaining('Generator failed'),
@@ -365,11 +354,11 @@ describe('GeneratorPanel', () => {
 
     // Verify stack trace is included (not just message)
     const errorCall = onUpdateState.mock.calls.find(
-      (call: [Partial<ReturnType<typeof vi.fn>>]) => call[0]?.generatorError != null,
+      (call: unknown[]) => (call[0] as Record<string, unknown>)?.generatorError != null,
     );
     expect(errorCall).toBeDefined();
-    expect(errorCall[0].generatorError).toContain('Error: Generator failed');
-    expect(errorCall[0].generatorError).toContain('at generate');
+    expect((errorCall![0] as Record<string, unknown>).generatorError).toContain('Error: Generator failed');
+    expect((errorCall![0] as Record<string, unknown>).generatorError).toContain('at generate');
   });
 
   it('displays JSON output when generator succeeds', () => {

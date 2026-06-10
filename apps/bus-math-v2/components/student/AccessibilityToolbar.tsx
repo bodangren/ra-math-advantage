@@ -10,7 +10,7 @@ import {
   BookOpen,
   Palette
 } from 'lucide-react'
-import type { AccessibilityPreferences } from '@/lib/db/schema/profiles'
+import type { AccessibilityPreferences } from '@/lib/schemas/profiles'
 
 interface AccessibilityToolbarProps {
   preferences: AccessibilityPreferences

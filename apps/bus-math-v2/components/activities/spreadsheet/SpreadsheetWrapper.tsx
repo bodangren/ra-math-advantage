@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo, useEffect } from "react";
+import { useMemo } from "react";
 import Spreadsheet from "react-spreadsheet";
 import type { Matrix, CellBase } from "react-spreadsheet";
 import { generateColumnLabels, generateRowLabels } from "./SpreadsheetHelpers";
@@ -39,26 +39,19 @@ export interface SpreadsheetWrapperProps {
  * @param showRowLabels - Whether to show row numbers
  */
 export function SpreadsheetWrapper({ initialData = [ [{ value: "" }, { value: "" }, { value: "" }], [{ value: "" }, { value: "" }, { value: "" }], [{ value: "" }, { value: "" }, { value: "" }], ], columnLabels, rowLabels, onChange, readOnly = false, className = "", showColumnLabels = true, showRowLabels = true, }: SpreadsheetWrapperProps) {
-  const [data, setData] = useState<SpreadsheetData>(initialData);
-
-  // Sync internal data when initialData changes
-  useEffect(() => {
-    setData(initialData);
-  }, [initialData]);
-
   // Generate standard Excel-like labels if not provided
   const finalColumnLabels = useMemo(() => {
     if (!showColumnLabels) return [];
     if (columnLabels) return columnLabels;
-    const maxCols = Math.max(...data.map(row => row.length), 10);
+    const maxCols = Math.max(...initialData.map(row => row.length), 10);
     return generateColumnLabels(maxCols);
-  }, [columnLabels, data, showColumnLabels]);
+  }, [columnLabels, initialData, showColumnLabels]);
 
   const finalRowLabels = useMemo(() => {
     if (!showRowLabels) return [];
     if (rowLabels) return rowLabels;
-    return generateRowLabels(Math.max(data.length, 10));
-  }, [rowLabels, data.length, showRowLabels]);
+    return generateRowLabels(Math.max(initialData.length, 10));
+  }, [rowLabels, initialData.length, showRowLabels]);
 
 
   /**
@@ -69,7 +62,6 @@ export function SpreadsheetWrapper({ initialData = [ [{ value: "" }, { value: ""
    */
   const handleChange = (newData: SpreadsheetData) => {
     if (!readOnly) {
-      setData(newData);
       onChange?.(newData);
     }
   };
@@ -77,7 +69,7 @@ export function SpreadsheetWrapper({ initialData = [ [{ value: "" }, { value: ""
   return (
     <div className={`spreadsheet-wrapper ${className}`}>
       <Spreadsheet
-        data={data}
+        data={initialData}
         onChange={readOnly ? undefined : handleChange}
         columnLabels={finalColumnLabels}
         rowLabels={finalRowLabels}

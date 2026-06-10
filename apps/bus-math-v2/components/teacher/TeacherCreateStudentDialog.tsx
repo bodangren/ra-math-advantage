@@ -8,6 +8,7 @@ import {
   useId,
   useRef,
   useState,
+  useSyncExternalStore,
 } from "react";
 import { createPortal } from "react-dom";
 import { UserPlus } from "lucide-react";
@@ -46,7 +47,11 @@ const FOCUSABLE_SELECTORS =
  * @returns A button that opens the create-student modal dialog.
  */
 export function TeacherCreateStudentDialog() {
-  const [isMounted, setIsMounted] = useState(false);
+  const isMounted = useSyncExternalStore(
+    () => () => {},
+    () => true,
+    () => false,
+  );
   const [isOpen, setIsOpen] = useState(false);
   const [formState, setFormState] = useState<FormState>(DEFAULT_FORM_STATE);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -56,10 +61,6 @@ export function TeacherCreateStudentDialog() {
   const descriptionId = useId();
   const dialogRef = useRef<HTMLDivElement>(null);
   const firstFieldRef = useRef<HTMLInputElement>(null);
-
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
 
   useEffect(() => {
     if (!isOpen) {

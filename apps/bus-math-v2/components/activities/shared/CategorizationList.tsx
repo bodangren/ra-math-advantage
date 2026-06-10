@@ -327,6 +327,7 @@ function buildInteractiveCard<T extends CategorizationListItem>({
         <div
           ref={dragProvided.innerRef}
           {...dragProvided.draggableProps}
+                            style={dragProvided.draggableProps.style as React.CSSProperties}
           {...dragProvided.dragHandleProps}
           className={cn(
             'rounded-2xl border border-slate-200 bg-white p-3 shadow-sm transition',
@@ -695,6 +696,7 @@ function CategorizationInteractive<T extends CategorizationListItem>({
                   <div
                     ref={dragProvided.innerRef}
                     {...dragProvided.draggableProps}
+                            style={dragProvided.draggableProps.style as React.CSSProperties}
                     {...dragProvided.dragHandleProps}
                     className={cn(
                       'rounded-2xl border border-slate-200 bg-white p-3 shadow-sm transition',

@@ -3,7 +3,7 @@ import path from 'path';
 
 import { describe, expect, it } from 'vitest';
 
-import { submissionDataSchema } from '@/lib/db/schema/activity-submissions';
+import { submissionDataSchema } from '@/lib/schemas/activity-submissions';
 
 const REPO_ROOT = path.resolve(__dirname, '../../../..');
 const BM2_ROOT = path.resolve(__dirname, '../..');

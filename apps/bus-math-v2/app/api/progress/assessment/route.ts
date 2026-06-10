@@ -3,7 +3,7 @@ import { NextResponse } from 'next/server';
 import { calculateScore } from '@/lib/assessments/scoring';
 import { requireActiveStudentRequestClaims } from '@/lib/auth/server';
 import { practiceSubmissionEnvelopeSchema as submissionDataSchema } from '@/lib/practice/contract';
-import { selectActivitySchema } from '@/lib/db/schema/activity-schemas';
+import { selectActivitySchema } from '@/lib/schemas/activity-schemas';
 import { fetchInternalQuery, fetchInternalMutation, internal } from '@/lib/convex/server';
 import { formatRateLimitError } from '@/convex/apiRateLimits';
 import type { Id } from '@/convex/_generated/dataModel';

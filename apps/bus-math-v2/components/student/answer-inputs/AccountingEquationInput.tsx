@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useRef } from 'react';
+import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import type { DailyPracticeAnswerInputProps } from '@/lib/srs/answer-inputs/registry';
@@ -19,7 +19,7 @@ import type { AccountingEquationDefinition, AccountingEquationResponse } from '@
  */
 export function AccountingEquationInput({ family, definition, onSubmit }: DailyPracticeAnswerInputProps) {
   const def = definition as AccountingEquationDefinition;
-  const submittedRef = useRef(false);
+  const [submitted, setSubmitted] = useState(false);
   const [value, setValue] = useState('');
   const [gradeResult, setGradeResult] = useState<{
     isCorrect: boolean;
@@ -36,8 +36,8 @@ export function AccountingEquationInput({ family, definition, onSubmit }: DailyP
    * Grades the submitted value and submits the practice envelope.
    */
   const handleSubmit = () => {
-    if (submittedRef.current) return;
-    submittedRef.current = true;
+    if (submitted) return;
+    setSubmitted(true);
 
     const parsedValue = Number(value);
     const response: AccountingEquationResponse = {
@@ -82,7 +82,7 @@ export function AccountingEquationInput({ family, definition, onSubmit }: DailyP
           type="number"
           value={value}
           onChange={(e) => setValue(e.target.value)}
-          disabled={submittedRef.current}
+          disabled={submitted}
           placeholder={`Enter ${hiddenTermLabel.toLowerCase()}`}
         />
       </div>
@@ -103,7 +103,7 @@ export function AccountingEquationInput({ family, definition, onSubmit }: DailyP
           )}
         </div>
       ) : (
-        <Button onClick={handleSubmit} disabled={submittedRef.current}>
+        <Button onClick={handleSubmit} disabled={submitted}>
           Submit Answer
         </Button>
       )}

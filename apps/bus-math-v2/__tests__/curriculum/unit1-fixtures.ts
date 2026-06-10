@@ -1,12 +1,4 @@
-import { LESSON_01_SEED_DATA } from '../../supabase/seed/unit1/lesson-01';
-import { LESSON_02_SEED_DATA } from '../../supabase/seed/unit1/lesson-02';
-import { LESSON_03_SEED_DATA } from '../../supabase/seed/unit1/lesson-03';
-import { LESSON_04_SEED_DATA } from '../../supabase/seed/unit1/lesson-04';
-import { LESSON_05_SEED_DATA } from '../../supabase/seed/unit1/lesson-05';
-import { LESSON_06_SEED_DATA } from '../../supabase/seed/unit1/lesson-06';
-import { LESSON_07_SEED_DATA } from '../../supabase/seed/unit1/lesson-07';
-import { LESSON_08_SEED_DATA, LESSON_09_SEED_DATA, LESSON_10_SEED_DATA } from '../../supabase/seed/unit1/lessons-08-10';
-import { LESSON_11_SEED_DATA } from '../../supabase/seed/unit1/lesson-11';
+import { AUTHORED_UNIT_1_LESSONS } from '../../lib/curriculum/generated/unit1-authored';
 
 export type Section = {
   sectionType: string;
@@ -42,19 +34,7 @@ export type LessonSeed = {
   activities: Activity[];
 };
 
-export const UNIT_1_LESSON_SEEDS: LessonSeed[] = [
-  LESSON_01_SEED_DATA,
-  LESSON_02_SEED_DATA,
-  LESSON_03_SEED_DATA,
-  LESSON_04_SEED_DATA,
-  LESSON_05_SEED_DATA,
-  LESSON_06_SEED_DATA,
-  LESSON_07_SEED_DATA,
-  LESSON_08_SEED_DATA,
-  LESSON_09_SEED_DATA,
-  LESSON_10_SEED_DATA,
-  LESSON_11_SEED_DATA,
-] as unknown as LessonSeed[];
+export const UNIT_1_LESSON_SEEDS = AUTHORED_UNIT_1_LESSONS as unknown as LessonSeed[];
 
 export const ACCOUNTING_LESSONS = UNIT_1_LESSON_SEEDS.filter(
   (lesson) => lesson.lesson.orderIndex >= 1 && lesson.lesson.orderIndex <= 4,

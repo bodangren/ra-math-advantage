@@ -86,7 +86,7 @@ export function TeacherSRSDashboardClient({
 
   useEffect(() => {
     if (selectedClassId) {
-      loadClassData(selectedClassId);
+      queueMicrotask(() => loadClassData(selectedClassId));
     }
   }, [selectedClassId, loadClassData]);
 
