@@ -27,7 +27,7 @@
 - (2026-04-16, srs-product-contract) Single canonical contract module with re-exports; downstream imports from one surface
 - (2026-04-29, saveCards-batch) Two-phase Promise.all: lookups in parallel first, then writes in parallel. Sequential await = 2N DB round trips; two-phase = 2 round trips
 - (2026-05-03, rate-limiter-extraction) Extract pure algorithm logic (sliding window check, config constants) to packages; keep Convex-specific handlers thin in apps. 15 package-level tests + per-app handler tests = high confidence without mocking Convex.
-- (2026-05-03, governance-tests) BM2 governance tests using `process.cwd()` broke in monorepo. Fix: `const REPO_ROOT = path.resolve(__dirname, '../../..')` for monorepo-root paths, keep `path.resolve(__dirname, '..')` for app-local paths.
+- (2026-05-03, governance-tests; recurred 2026-06 bm2-drizzle-removal) BM2 governance tests using `process.cwd()` broke in monorepo. Fix: `const REPO_ROOT = path.resolve(__dirname, '../../..')` for monorepo-root paths, keep `path.resolve(__dirname, '..')` for app-local paths. Recurrence reintroduced `process.cwd()` in `harness.test.tsx` + `convex-auth-boundary.test.ts`; refixed via `fileURLToPath(import.meta.url)`. **Resolve from the test file, never cwd** — cwd is the repo root under the monorepo runner, not the app dir.
 - (2026-05-03, vany-typing) Replace `v.any()` with `v.record(v.string(), v.any())` in Convex schemas — validates object shape without constraining properties. Intentionally untyped fields (polymorphic rawAnswer, interactionHistory) are acceptable exceptions.
 
 ## Planning Improvements
