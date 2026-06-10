@@ -9,14 +9,10 @@ Remediate fundamental monorepo holes and wire the Knowledge Space Engine (KST) v
   `measure-architecture-tooling_20260605` (manual-verification gates pending).
 - [x] **Status Re-classification**: `measure/tracks.md` reflects Skill Graph
   tracks as "Data-Complete" but not "Runtime-Active".
-- [~] **Prune BM2 Legacy**: **NOT complete — in progress.** The Drizzle/Postgres
-  deletion was half-applied and is **build-breaking**: the deleted
-  `lib/db/schema/*` files mixed dead tables with live zod schemas/types that ~15
-  files still import. Re-scoped under track `bm2-drizzle-removal_20260609`.
-
-## Priority 1: Finish BM2 Drizzle Removal (unblock BM2 build)
-- **Track**: `measure/tracks/bm2-drizzle-removal_20260609/`
-- **Goal**: Re-home live schemas off drizzle, rewire importers, drop dead layer; BM2 green.
+- [x] **Prune BM2 Legacy**: **COMPLETE.** Live zod schemas re-homed to
+  `lib/schemas/`, ~15 importers rewired, `lib/db/` and drizzle deps fully
+  removed. BM2 typechecks, lints, builds, and passes `npm run doctor`.
+  Track `bm2-drizzle-removal_20260609` closed.
 
 ## Priority 2: Wire KST Pipeline (KST Track 1)
 The primary blocker for the Skill Graph value proposition is the "built but not wired" gap.

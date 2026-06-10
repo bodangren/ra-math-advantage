@@ -51,7 +51,7 @@ verified against the tree: #1 (graph engine not wired) is already owned by
 (`measure-architecture-tooling_20260605`, checkpoint 0edad3f5). The three below
 own #2/#6, #3, and #5.
 
-- [~] **Track: BM2 Drizzle Dead-Layer Removal** — **IN PROGRESS**
+- [x] **Track: BM2 Drizzle Dead-Layer Removal** — **COMPLETED**
    *Finish the half-applied, build-breaking BM2 Drizzle prune: re-home the live zod schemas/types tangled into the deleted `lib/db/schema/*`, rewire ~15 importers, then drop the tables + `drizzle-*`/`postgres` deps cleanly. Audit #3.*
    *Link: [./tracks/bm2-drizzle-removal_20260609/](./tracks/bm2-drizzle-removal_20260609/)*
 
