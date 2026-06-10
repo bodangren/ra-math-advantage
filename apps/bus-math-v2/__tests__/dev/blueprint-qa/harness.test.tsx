@@ -1,6 +1,7 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 
 
 // ---------------------------------------------------------------------------
@@ -9,8 +10,12 @@ import path from 'node:path';
 
 describe('actions.ts — REPO_ROOT path resolution', () => {
   it('resolves to the monorepo root (contains package.json with workspaces)', async () => {
-    // process.cwd() is apps/bus-math-v2, so we need to go up 2 levels to reach monorepo root
-    const repoRoot = path.resolve(process.cwd(), '../..');
+    // Resolve from this test file's own location, never process.cwd() — cwd
+    // depends on invocation (repo root vs app dir) and broke this test under
+    // the monorepo runner. This file is
+    // apps/bus-math-v2/__tests__/dev/blueprint-qa/ → up 5 to the repo root.
+    const testDir = path.dirname(fileURLToPath(import.meta.url));
+    const repoRoot = path.resolve(testDir, '../../../../..');
 
     // The monorepo root should contain package.json with workspaces
     const fs = await import('node:fs');

@@ -1,11 +1,15 @@
 import { describe, expect, it } from 'vitest';
 import fs from 'node:fs';
 import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 
-const repoRoot = process.cwd();
+// Resolve from this test file's location, never process.cwd(): under the
+// monorepo runner cwd is the repo root, but these sources live under the app.
+// This file is apps/bus-math-v2/__tests__/config/ → up 2 to the app root.
+const appRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
 
 function readFile(relativePath: string) {
-  return fs.readFileSync(path.join(repoRoot, relativePath), 'utf8');
+  return fs.readFileSync(path.join(appRoot, relativePath), 'utf8');
 }
 
 function expectInternalExport(
