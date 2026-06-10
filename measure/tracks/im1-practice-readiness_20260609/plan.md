@@ -70,7 +70,7 @@ Verification gate each phase: correctness-QA harness + `tsc --noEmit` + boundary
 
 ## Phase 3 — Real Blueprints
 
-- [~] Task: Replace IM1 STUB blueprints with real worked-example/guided/independent blueprints wired to generators
+- [x] Task: Replace IM1 STUB blueprints with real worked-example/guided/independent blueprints wired to generators [checkpoint: 73f5956d]
   - Red test landed: `packages/math-content/src/problem-families/im1/__tests__/blueprints.test.ts`
   - Targeted Red command: `npm run -w packages/math-content test -- problem-families/im1/__tests__/blueprints` (Kind B — `projectActivityMap` runs over the live rollout graph + the production zod schema, per test-strategy §7 row Phase 3)
   - Red signal: every IM1 vertical-slice blueprint in
@@ -117,7 +117,8 @@ Verification gate each phase: correctness-QA harness + `tsc --noEmit` + boundary
     schema (sibling `packages/*`, explicitly permitted by the
     boundary rule which forbids `apps/*` and `convex/_generated/*`
     only). No app imports; no new dependency.
-- [~] Task: Re-run projection; verify activities resolve to live generators, not stubs
+  - Green landed: replaced 6 Module-1 STUB blueprints with real specs. Each blueprint now has generatorKey matching IM1_GENERATORS, workedExampleSpec with prompt, guidedPracticeSpec with scaffoldedPrompt, independentPracticeSpec with answerSchema. No STUB exception remains.
+- [x] Task: Re-run projection; verify activities resolve to live generators, not stubs [checkpoint: 73f5956d]
   - Live-behavior Red coverage: assertions (6) and (7) above run
     the production `projectActivityMap` from
     `@math-platform/knowledge-space-practice` over the real
@@ -135,6 +136,10 @@ Verification gate each phase: correctness-QA harness + `tsc --noEmit` + boundary
     the Green role. The Red file already enforces the equivalent
     contract inside vitest so a Green script re-implementing the
     logic cannot silently diverge.
+  - Green landed: projection assertions now pass — projectActivityMap emits real props.prompt for worked_example rows and real props.answerSchema for independent_practice rows. The vitest contract is the live-behavior proof.
+- Phase 3 Green commit: `73f5956d` — `feat(im1-blueprints): replace Module 1 STUB blueprints with real specs`
+  - `npm run -w packages/math-content test -- problem-families/im1/__tests__/blueprints` → **Test Files 1 passed (1); Tests 9 passed (9)**
+  - `npm run -w packages/math-content test` → **Test Files 19 passed (19); Tests 288 passed (288)**
 
 ## Phase 4 — Vertical Slice to a Student Route
 
