@@ -610,17 +610,22 @@ describe('in-range-wave (W3) — moderate advisory disposition (Task 3 / FR9 / A
     ).toEqual([]);
   });
 
-  it('drizzle-kit: the installed lockfile version is >= 0.31.10 (FR9)', () => {
+  it('drizzle-kit: if present, installed lockfile version is >= 0.31.10 (FR9)', () => {
     const entry = PACKAGE_LOCK.packages['node_modules/drizzle-kit'];
-    expect(entry, 'drizzle-kit missing from lockfile').toBeDefined();
-    const f = declaredRangeFloor(entry!.version!);
+    if (!entry) {
+      // drizzle-kit was removed from the project in the BM2 Drizzle Dead-Layer
+      // Removal track (dependency-security-upgrades prerequisite). Absence is
+      // a stronger resolution than the FR9 downgrade-rejection guard.
+      return;
+    }
+    const f = declaredRangeFloor(entry.version!);
     const isAtOrAbove =
       f.major > 0 ||
       (f.major === 0 && f.minor > 31) ||
       (f.major === 0 && f.minor === 31 && f.patch >= 10);
     expect(
       isAtOrAbove,
-      `installed drizzle-kit must be >= 0.31.10, found ${entry!.version}`
+      `installed drizzle-kit must be >= 0.31.10, found ${entry.version}`
     ).toBe(true);
   });
 
