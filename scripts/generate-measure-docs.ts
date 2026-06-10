@@ -10,6 +10,15 @@ if (!fs.existsSync(OUTPUT_DIR)) {
   fs.mkdirSync(OUTPUT_DIR, { recursive: true });
 }
 
+function hasBuildGraph(): boolean {
+  try {
+    execSync('which build-graph', { stdio: 'ignore' });
+    return true;
+  } catch {
+    return false;
+  }
+}
+
 function runQuery(sql: string) {
   const cmd = `build-graph query --json ${GRAPH_DB} "${sql.replace(/"/g, '\\"')}"`;
   const output = execSync(cmd).toString();
@@ -59,6 +68,11 @@ function generateArchitecture() {
   };
 
   fs.writeFileSync(path.join(OUTPUT_DIR, 'architecture.json'), JSON.stringify(arch, null, 2));
+}
+
+if (!hasBuildGraph()) {
+  console.warn('[generate] build-graph CLI not found — skipping generation.');
+  process.exit(0);
 }
 
 try {
