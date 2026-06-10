@@ -121,7 +121,14 @@ describe(`IM1 generator — ${SKILL_ID} (Phase 2 Task 2)`, () => {
       };
       const values = prompt.match(/\d+/g)?.map(Number) ?? [];
       expect(values.length).toBeGreaterThanOrEqual(2);
-      const [part, total] = values;
+      // Prompts state the two quantities in varying order — e.g. template 1
+      // reads "a class of {total} students, {part} passed" (total first),
+      // while others list part first. The part-of-whole is always the
+      // smaller value (part ∈ [5,40], total ∈ [50,200]), so recover by
+      // magnitude rather than positional order.
+      const [a, b] = values;
+      const part = Math.min(a, b);
+      const total = Math.max(a, b);
       expect(answer.percentage).toBeCloseTo(Math.round((part / total) * 10000) / 100, 10);
 
       if (prompt.includes('out of') && prompt.includes('prefer option A')) {
