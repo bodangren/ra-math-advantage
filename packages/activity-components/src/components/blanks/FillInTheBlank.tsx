@@ -353,6 +353,7 @@ export function FillInTheBlank({
                               ref={provided.innerRef}
                               {...provided.draggableProps}
                               {...provided.dragHandleProps}
+                              style={provided.draggableProps.style as React.CSSProperties}
                               aria-label={`Assign "${item.text}" to a blank. Press Enter to select, then arrow keys to choose a blank, Enter again to confirm.`}
                               className={`px-3 py-1 bg-white border border-gray-300 rounded cursor-move focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 ${
                                 snapshot.isDragging ? 'shadow-lg' : ''
