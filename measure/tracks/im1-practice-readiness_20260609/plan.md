@@ -6,9 +6,30 @@ Verification gate each phase: correctness-QA harness + `tsc --noEmit` + boundary
 
 ## Phase 1 — Coverage Matrix (Contract-First)
 
-- [ ] Task: Enumerate the 138 IM1 skills from the rollout artifacts; record skill→family mapping
-- [ ] Task: Cross-reference T17–T19 generator scope; classify each skill served / gap / needs-new-component
-- [ ] Task: Prioritize a vertical-slice module + highest-traffic skills for first implementation
+- [~] Task: Enumerate the 138 IM1 skills from the rollout artifacts; record skill→family mapping
+  - Red test landed: `packages/math-content/src/problem-families/im1/__tests__/coverage-matrix.test.ts`
+  - Targeted Red command: `npm run -w packages/math-content test -- coverage-matrix` (Kind A — artifact/contract)
+  - Red fails for the expected missing behavior: the `../coverage-matrix` module
+    and `im1-coverage-matrix.json` do not exist yet, so the file's value
+    imports fail at module-resolution time. When the Green phase lands the
+    builder + JSON, the imports resolve and the assertions evaluate against
+    the real rollout artifacts (`nodes.json`, `generator-gap-queue.json`,
+    `blueprints.json`) — a live-behavior proof paired with the matrix
+    snapshot per test-strategy §7.
+  - Fail count at the Red commit: every test in the file fails on
+    `import { buildCoverageMatrix, ... } from '../coverage-matrix'`
+    (module-not-found). The tests are bounded to the file path
+    `coverage-matrix` — no watch mode, no full-suite smoke.
+- [~] Task: Cross-reference T17–T19 generator scope; classify each skill served / gap / needs-new-component
+  - Red coverage: the test asserts the per-skill `status ∈ {served, gap, newComponent}`
+    and `tier ∈ {t17, t18, t19, none}` shape, plus the `served + gap + newComponent == 138`
+    invariant and per-module breakdown. Initial-classification test pins
+    0 served / 138 gap / 0 newComponent to mirror the audit's 0/138
+    generator readiness.
+- [~] Task: Prioritize a vertical-slice module + highest-traffic skills for first implementation
+  - Red coverage: the test asserts `metadata.json.verticalSliceModule`
+    is a single module id drawn from `{1..14}`. Locking this in Phase 1
+    prevents Phase 4 fixture rework (test-strategy §3).
 - [ ] Task: Measure - User Manual Verification 'Phase 1'
 
 ## Phase 2 — IM1 Generators
