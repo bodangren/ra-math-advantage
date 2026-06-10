@@ -1,8 +1,8 @@
 // Phase 2 — Task 2 (Module-1 vertical-slice): per-skill Red test.
 //
-// Skill ID: math.im1.skill.1.5.write-absolute-value-expressions-that-model-real-world-dista
-// Skill title: "1i: Write absolute value expressions that model real-
-//   world distances and accuracy as positive differences"
+// Skill ID: math.im1.skill.1.6.use-ratios-and-percentages-as-metrics-to-model-real-world-si
+// Skill title: "1k: Use ratios and percentages as metrics to model
+//   real-world situations and make decisions"
 // Renderer key: comprehension-quiz
 // Priority: medium
 // Source: apps/integrated-math-1/curriculum/skill-graph/generator-gap-queue.json
@@ -20,12 +20,12 @@ import {
 } from '@math-platform/practice-core/generator-qa';
 
 // Intentional: non-existent module → Red.
-import { IM1_GENERATORS, type IM1GeneratorEntry } from '../../generators';
+import { IM1_GENERATORS, type IM1GeneratorEntry } from '../generators';
 
 import type { GeneratorOutput } from '@math-platform/knowledge-space-practice';
 
 const SKILL_ID =
-  'math.im1.skill.1.5.write-absolute-value-expressions-that-model-real-world-dista' as const;
+  'math.im1.skill.1.6.use-ratios-and-percentages-as-metrics-to-model-real-world-si' as const;
 const RENDERER_KEY = 'comprehension-quiz' as const;
 
 function adapt(entry: IM1GeneratorEntry): GeneratorLike {
@@ -64,7 +64,7 @@ describe(`IM1 generator — ${SKILL_ID} (Phase 2 Task 2)`, () => {
 
   it('skillIdKey matches the file-level ownership convention', () => {
     const entry = findEntryForSkill();
-    expect(entry.skillIdKey).toMatch(/^1[._-]5[._-]/);
+    expect(entry.skillIdKey).toMatch(/^1[._-]6[._-]/);
   });
 
   it('passes verifyGenerator with numSeeds = 50 (FR2 determinism + FR3/4/5)', () => {

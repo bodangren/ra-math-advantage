@@ -1,9 +1,9 @@
 // Phase 2 — Task 2 (Module-1 vertical-slice): per-skill Red test.
 //
-// Skill ID: math.im1.skill.1.2.translate-between-algebraic-expressions-and-verbal-expressio
-// Skill title: "1c: Translate between algebraic expressions and verbal
-//   expressions using correct mathematical terminology"
-// Renderer key: step-by-step-solver
+// Skill ID: math.im1.skill.1.5.write-absolute-value-expressions-that-model-real-world-dista
+// Skill title: "1i: Write absolute value expressions that model real-
+//   world distances and accuracy as positive differences"
+// Renderer key: comprehension-quiz
 // Priority: medium
 // Source: apps/integrated-math-1/curriculum/skill-graph/generator-gap-queue.json
 //
@@ -20,13 +20,13 @@ import {
 } from '@math-platform/practice-core/generator-qa';
 
 // Intentional: non-existent module → Red.
-import { IM1_GENERATORS, type IM1GeneratorEntry } from '../../generators';
+import { IM1_GENERATORS, type IM1GeneratorEntry } from '../generators';
 
 import type { GeneratorOutput } from '@math-platform/knowledge-space-practice';
 
 const SKILL_ID =
-  'math.im1.skill.1.2.translate-between-algebraic-expressions-and-verbal-expressio' as const;
-const RENDERER_KEY = 'step-by-step-solver' as const;
+  'math.im1.skill.1.5.write-absolute-value-expressions-that-model-real-world-dista' as const;
+const RENDERER_KEY = 'comprehension-quiz' as const;
 
 function adapt(entry: IM1GeneratorEntry): GeneratorLike {
   return {
@@ -64,7 +64,7 @@ describe(`IM1 generator — ${SKILL_ID} (Phase 2 Task 2)`, () => {
 
   it('skillIdKey matches the file-level ownership convention', () => {
     const entry = findEntryForSkill();
-    expect(entry.skillIdKey).toMatch(/^1[._-]2[._-]/);
+    expect(entry.skillIdKey).toMatch(/^1[._-]5[._-]/);
   });
 
   it('passes verifyGenerator with numSeeds = 50 (FR2 determinism + FR3/4/5)', () => {
@@ -90,7 +90,7 @@ describe(`IM1 generator — ${SKILL_ID} (Phase 2 Task 2)`, () => {
 
   it('every seed yields the documented renderer key componentry shape', () => {
     const entry = findEntryForSkill();
-    expect(RENDERER_KEY).toBe('step-by-step-solver');
+    expect(RENDERER_KEY).toBe('comprehension-quiz');
     for (let seed = 0; seed < 10; seed += 1) {
       const out = entry.generate({
         nodeId: SKILL_ID,

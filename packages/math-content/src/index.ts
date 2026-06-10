@@ -47,7 +47,7 @@ export {
 export type { GlossaryTerm, GlossaryFilter } from './glossary';
 
 // Problem families
-export { IM3_PROBLEM_FAMILIES, IM2_PROBLEM_FAMILIES, PRECALC_PROBLEM_FAMILIES } from './problem-families';
+export { IM3_PROBLEM_FAMILIES, IM2_PROBLEM_FAMILIES, IM1_PROBLEM_FAMILIES, PRECALC_PROBLEM_FAMILIES } from './problem-families';
 export type { ProblemFamilyInput } from './problem-families';
 
 // Seeds

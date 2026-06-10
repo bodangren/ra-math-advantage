@@ -1,9 +1,9 @@
 // Phase 2 — Task 2 (Module-1 vertical-slice): per-skill Red test.
 //
-// Skill ID: math.im1.skill.1.4.apply-the-distributive-property-to-rewrite-and-evaluate-nume
-// Skill title: "1g: Apply the Distributive Property to rewrite and
-//   evaluate numerical expressions, including mixed numbers and decimals"
-// Renderer key: step-by-step-solver
+// Skill ID: math.im1.skill.1.3.identify-and-apply-the-reflexive-symmetric-and-transitive-pr
+// Skill title: "1e: Identify and apply the reflexive, symmetric, and
+//   transitive properties of equality"
+// Renderer key: fill-in-the-blank
 // Priority: medium
 // Source: apps/integrated-math-1/curriculum/skill-graph/generator-gap-queue.json
 //
@@ -20,13 +20,13 @@ import {
 } from '@math-platform/practice-core/generator-qa';
 
 // Intentional: non-existent module → Red.
-import { IM1_GENERATORS, type IM1GeneratorEntry } from '../../generators';
+import { IM1_GENERATORS, type IM1GeneratorEntry } from '../generators';
 
 import type { GeneratorOutput } from '@math-platform/knowledge-space-practice';
 
 const SKILL_ID =
-  'math.im1.skill.1.4.apply-the-distributive-property-to-rewrite-and-evaluate-nume' as const;
-const RENDERER_KEY = 'step-by-step-solver' as const;
+  'math.im1.skill.1.3.identify-and-apply-the-reflexive-symmetric-and-transitive-pr' as const;
+const RENDERER_KEY = 'fill-in-the-blank' as const;
 
 function adapt(entry: IM1GeneratorEntry): GeneratorLike {
   return {
@@ -64,7 +64,7 @@ describe(`IM1 generator — ${SKILL_ID} (Phase 2 Task 2)`, () => {
 
   it('skillIdKey matches the file-level ownership convention', () => {
     const entry = findEntryForSkill();
-    expect(entry.skillIdKey).toMatch(/^1[._-]4[._-]/);
+    expect(entry.skillIdKey).toMatch(/^1[._-]3[._-]/);
   });
 
   it('passes verifyGenerator with numSeeds = 50 (FR2 determinism + FR3/4/5)', () => {
@@ -90,7 +90,7 @@ describe(`IM1 generator — ${SKILL_ID} (Phase 2 Task 2)`, () => {
 
   it('every seed yields the documented renderer key componentry shape', () => {
     const entry = findEntryForSkill();
-    expect(RENDERER_KEY).toBe('step-by-step-solver');
+    expect(RENDERER_KEY).toBe('fill-in-the-blank');
     for (let seed = 0; seed < 10; seed += 1) {
       const out = entry.generate({
         nodeId: SKILL_ID,

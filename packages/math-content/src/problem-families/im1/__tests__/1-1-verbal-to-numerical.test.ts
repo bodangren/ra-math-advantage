@@ -63,7 +63,7 @@ import {
 } from '@math-platform/practice-core/generator-qa';
 
 // Intentional: non-existent module → Red.
-import { IM1_GENERATORS, type IM1GeneratorEntry } from '../../generators';
+import { IM1_GENERATORS, type IM1GeneratorEntry } from '../generators';
 
 import type { GeneratorOutput } from '@math-platform/knowledge-space-practice';
 
