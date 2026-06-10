@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+# pre-commit — block accidental commits of a mutated tracked graph.db.
+#
+# Why: `build-graph` commands (stats/search/inspect/query) mutate the tracked
+# binary graph.db as a side effect, so it keeps showing up as a stray
+# working-tree change and riding along in unrelated commits. This has recurred
+# repeatedly (see measure/lessons-learned.md). Reject any commit that stages
+# graph.db unless it is genuinely intentional.
+#
+# Install (per clone):  git config core.hooksPath scripts/git-hooks
+# Override (intentional graph.db update):  ALLOW_GRAPH_DB=1 git commit ...
+set -euo pipefail
+
+if git diff --cached --name-only | grep -qx 'graph.db'; then
+  if [ "${ALLOW_GRAPH_DB:-0}" != "1" ]; then
+    echo "pre-commit: refusing to commit a modified 'graph.db'." >&2
+    echo "  build-graph commands mutate this tracked binary as a side effect." >&2
+    echo "  Unstage and discard it:" >&2
+    echo "    git restore --staged graph.db && git checkout -- graph.db" >&2
+    echo "  If this graph.db update is intentional, re-run with:" >&2
+    echo "    ALLOW_GRAPH_DB=1 git commit ..." >&2
+    exit 1
+  fi
+fi
+exit 0
