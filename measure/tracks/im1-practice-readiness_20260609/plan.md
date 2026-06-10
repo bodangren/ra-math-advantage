@@ -70,8 +70,71 @@ Verification gate each phase: correctness-QA harness + `tsc --noEmit` + boundary
 
 ## Phase 3 — Real Blueprints
 
-- [ ] Task: Replace IM1 STUB blueprints with real worked-example/guided/independent blueprints wired to generators
-- [ ] Task: Re-run projection; verify activities resolve to live generators, not stubs
+- [~] Task: Replace IM1 STUB blueprints with real worked-example/guided/independent blueprints wired to generators
+  - Red test landed: `packages/math-content/src/problem-families/im1/__tests__/blueprints.test.ts`
+  - Targeted Red command: `npm run -w packages/math-content test -- problem-families/im1/__tests__/blueprints` (Kind B — `projectActivityMap` runs over the live rollout graph + the production zod schema, per test-strategy §7 row Phase 3)
+  - Red signal: every IM1 vertical-slice blueprint in
+    `apps/integrated-math-1/curriculum/skill-graph/blueprints.json`
+    (locked to module 1 via `metadata.json:verticalSliceModule = "1"`)
+    still carries
+    `"exceptions": [{ "type": "generator", "reason": "Generator not yet implemented for IM1 rollout" }]`,
+    has empty `workedExampleSpec` / `guidedPracticeSpec` /
+    `independentPracticeSpec` (`{}`), and is missing `generatorKey`.
+    When Phase 3 Task 1 Green replaces the six module-1 STUBs with
+    real worked/guided/independent specs and a `generatorKey` that
+    resolves to an entry in `IM1_GENERATORS`, the spec-content and
+    generatorKey-resolve assertions flip green. The live-behavior
+    projection assertions (Phase 3 Task 2) flip when
+    `projectActivityMap` starts emitting non-empty `props.prompt`
+    and `props.answerSchema` for the slice.
+  - Fail count at the Red commit: **Test Files 1 failed (1);
+    Tests 7 failed | 2 passed (9); exit code 1**. The 7 failures
+    are: (1) no STUB generator exception in slice, (2) every slice
+    blueprint has a non-empty `generatorKey` resolving to an
+    `IM1GeneratorEntry`, (3) every `rendererModeMap.worked` entry
+    has a non-empty `workedExampleSpec.prompt`, (4) every
+    `rendererModeMap.guidedPractice` entry has a non-empty
+    `guidedPracticeSpec.scaffoldedPrompt`, (5) every
+    `rendererModeMap.independentPractice` entry has a non-empty
+    `independentPracticeSpec.answerSchema`, (6) every projected
+    `independent_practice` row has a non-empty
+    `props.answerSchema` (live generator wired — stronger signal
+    than `srsEligible` which is true for STUBs that ship the empty
+    object `{}`), (7) every projected `worked_example` row has a
+    non-empty `props.prompt`. The 2 passes are intentional: a
+    vertical-slice non-empty sanity check and a forward-looking
+    placeholder-prompt regression guard paired with the live-
+    behavior assertions in the same `describe` block.
+  - Bounded scope (test-strategy §3 / §7): the file filter reads
+    `metadata.json.verticalSliceModule` and reads the rollout
+    artifacts directly — a Green commit that "fixes" a non-vertical-
+    slice blueprint does not flip these tests, so the contract is
+    tight to the locked scope.
+  - Boundary lint (test-strategy §4): the file lives under
+    `packages/math-content/src/problem-families/im1/` and only
+    imports siblings (`../generators`, `../index`) plus
+    `@math-platform/knowledge-space-practice` for the projection +
+    schema (sibling `packages/*`, explicitly permitted by the
+    boundary rule which forbids `apps/*` and `convex/_generated/*`
+    only). No app imports; no new dependency.
+- [~] Task: Re-run projection; verify activities resolve to live generators, not stubs
+  - Live-behavior Red coverage: assertions (6) and (7) above run
+    the production `projectActivityMap` from
+    `@math-platform/knowledge-space-practice` over the real
+    `apps/integrated-math-1/curriculum/skill-graph/{nodes,edges,
+    blueprints}.json` and assert the projected activity rows
+    contain real `props.prompt` / `props.answerSchema` for the
+    vertical slice. At HEAD the projector yields `undefined` for
+    every prompt/answerSchema on the STUB blueprints because the
+    underlying spec is the empty object `{}`. This is the
+    test-strategy §5 P3 "0 STUBs in vertical slice" live-behavior
+    proof.
+  - Phase 3 closeout gate (per test-strategy §7): bounded
+    projection smoke `node scripts/project-im1-vertical-slice.ts
+    --module=<locked>` (exits non-zero on any STUB) is owned by
+    the Green role. The Red file already enforces the equivalent
+    contract inside vitest so a Green script re-implementing the
+    logic cannot silently diverge.
 
 ## Phase 4 — Vertical Slice to a Student Route
 
