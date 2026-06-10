@@ -954,8 +954,8 @@ Sixteen candidate tracks identified from a full-roadmap review. Each is registry
    *Wire the matching and speed-round games into IM3 via real routes/pages. Games track Phase 3 is "pending — requires game routes/pages in IM3." Size: S. Depends on: student-study-hub-games (logic done). Readiness: ready now.*
    *Link: [./tracks/study-hub-games-adoption_20260605/](./tracks/study-hub-games-adoption_20260605/)*
 
-- [ ] **Track: Measure Architecture Tooling** — **PLANNED**
-   *Build the real `generate` + `doctor` scripts and the `measure/generated/` facts (architecture.json, routes.md) so `/measure:doctor` stops HALTing. Phantom `generate.sh`/`doctor.sh` are referenced by multiple plans but never existed (Tech Debt Registry). Size: S. Depends on: none. Readiness: ready now.*
+- [x] **Track: Measure Architecture Tooling** — **COMPLETED**
+   *Build the real `generate` + `doctor` scripts and the `measure/generated/` facts (architecture.json, routes.md) so `/measure:doctor` stops HALTing. All 3 phases complete: generate script (architecture.json + routes.md), doctor script (boundary lint + freshness check + pass/fail exit), reconciliation (tech-debt resolved, phantom references updated). Verification: doctor green, BM2 tsc green, generate deterministic.*
    *Link: [./tracks/measure-architecture-tooling_20260605/](./tracks/measure-architecture-tooling_20260605/)*
 
 ### Tier 2 — Missing but high-leverage
