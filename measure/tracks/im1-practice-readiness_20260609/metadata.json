@@ -8,5 +8,6 @@
   "program": "Skill Graph Runtime Enablement",
   "estimated_tasks": 20,
   "actual_tasks": null,
-  "deviation_notes": ""
+  "deviation_notes": "",
+  "verticalSliceModule": "1"
 }

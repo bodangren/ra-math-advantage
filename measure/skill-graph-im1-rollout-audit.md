@@ -44,7 +44,7 @@ This audit documents the skill graph artifacts generated for Integrated Math 1 a
 | 12: Reasoning & Logic | 10 | 17 | 37 | 9 | 0/17 (0%) |
 | 13: Transformations | 6 | 12 | 25 | 7 | 0/12 (0%) |
 | 14: Congruent Figures | 6 | 14 | 26 | 7 | 0/14 (0%) |
-| **Total** | **93** | **138** | **401** | **77** | **0/138 (0%)** |
+| Total | 93 | 138 | 401 | 77 | 0/138 (0%) |
 
 ## Standard Coverage
 

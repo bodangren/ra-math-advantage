@@ -63,7 +63,7 @@ import {
 // ---------------------------------------------------------------------------
 
 const HERE = fileURLToPath(import.meta.url);
-const PKG_ROOT = resolve(HERE, '../../../../..');
+const PKG_ROOT = resolve(HERE, '../../../../../../..');
 const IM1_ROLLOUT_DIR = resolve(
   PKG_ROOT,
   'apps/integrated-math-1/curriculum/skill-graph',
