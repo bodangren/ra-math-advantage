@@ -30,7 +30,7 @@ Verification gate each phase: correctness-QA harness + `tsc --noEmit` + boundary
   - Red coverage: the test asserts `metadata.json.verticalSliceModule`
     is a single module id drawn from `{1..14}`. Locking this in Phase 1
     prevents Phase 4 fixture rework (test-strategy §3).
-- [ ] Task: Measure - User Manual Verification 'Phase 1'
+- [x] Task: Measure - User Manual Verification 'Phase 1' [checkpoint: 11277545]
 
 ## Phase 2 — IM1 Generators
 
