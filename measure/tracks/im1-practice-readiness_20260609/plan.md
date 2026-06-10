@@ -6,7 +6,7 @@ Verification gate each phase: correctness-QA harness + `tsc --noEmit` + boundary
 
 ## Phase 1 — Coverage Matrix (Contract-First)
 
-- [~] Task: Enumerate the 138 IM1 skills from the rollout artifacts; record skill→family mapping
+- [x] Task: Enumerate the 138 IM1 skills from the rollout artifacts; record skill→family mapping [checkpoint: cc8fbf8b]
   - Red test landed: `packages/math-content/src/problem-families/im1/__tests__/coverage-matrix.test.ts`
   - Targeted Red command: `npm run -w packages/math-content test -- coverage-matrix` (Kind A — artifact/contract)
   - Red fails for the expected missing behavior: the `../coverage-matrix` module
@@ -20,13 +20,13 @@ Verification gate each phase: correctness-QA harness + `tsc --noEmit` + boundary
     `import { buildCoverageMatrix, ... } from '../coverage-matrix'`
     (module-not-found). The tests are bounded to the file path
     `coverage-matrix` — no watch mode, no full-suite smoke.
-- [~] Task: Cross-reference T17–T19 generator scope; classify each skill served / gap / needs-new-component
+- [x] Task: Cross-reference T17–T19 generator scope; classify each skill served / gap / needs-new-component [checkpoint: cc8fbf8b]
   - Red coverage: the test asserts the per-skill `status ∈ {served, gap, newComponent}`
     and `tier ∈ {t17, t18, t19, none}` shape, plus the `served + gap + newComponent == 138`
     invariant and per-module breakdown. Initial-classification test pins
     0 served / 138 gap / 0 newComponent to mirror the audit's 0/138
     generator readiness.
-- [~] Task: Prioritize a vertical-slice module + highest-traffic skills for first implementation
+- [x] Task: Prioritize a vertical-slice module + highest-traffic skills for first implementation [checkpoint: cc8fbf8b]
   - Red coverage: the test asserts `metadata.json.verticalSliceModule`
     is a single module id drawn from `{1..14}`. Locking this in Phase 1
     prevents Phase 4 fixture rework (test-strategy §3).
