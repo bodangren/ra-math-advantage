@@ -140,6 +140,7 @@ Verification gate each phase: correctness-QA harness + `tsc --noEmit` + boundary
 - Phase 3 Green commit: `73f5956d` — `feat(im1-blueprints): replace Module 1 STUB blueprints with real specs`
   - `npm run -w packages/math-content test -- problem-families/im1/__tests__/blueprints` → **Test Files 1 passed (1); Tests 9 passed (9)**
   - `npm run -w packages/math-content test` → **Test Files 19 passed (19); Tests 288 passed (288)**
+  - Adversarial follow-up commit: `f4a8b018` — added a live `knowledgeBlueprintSchema.safeParse` assertion for every vertical-slice blueprint so the advertised Phase 3 schema contract cannot pass via hand-rolled shape checks only. Local shell lacked `npm`/`npx`, but supervisor gate ran `npm test` successfully: **Test Files 12 passed (12); Tests 233 passed (233)**.
 
 ## Phase 4 — Vertical Slice to a Student Route
 
