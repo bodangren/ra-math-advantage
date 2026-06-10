@@ -144,7 +144,7 @@ Verification gate each phase: correctness-QA harness + `tsc --noEmit` + boundary
 
 ## Phase 4 — Vertical Slice to a Student Route
 
-- [x] Task: Wire one IM1 module's practice to a student route (seeded or KST-derived state) [checkpoint: <SHA>]
+- [x] Task: Wire one IM1 module's practice to a student route (seeded or KST-derived state) [checkpoint: 17d9b18f]
   - Red test landed: `apps/integrated-math-1/__tests__/practice/vertical-slice.test.tsx`
   - Targeted Red command: `bunx vitest run apps/integrated-math-1/__tests__/practice/vertical-slice.test.tsx` (Kind B — route-loader unit test that mocks `@/lib/auth/server` and `@/lib/convex/server` then imports the IM1 practice page, mirroring the IM3 `apps/integrated-math-3/__tests__/app/student/practice.test.tsx` pattern that test-strategy §4 / §5 P4 calls out as the route-smoke scaffold)
   - Red signal: the IM1 app does not yet contain `app/student/practice/page.tsx`, `components/student/PracticeSessionProvider.tsx`, or `convex/queue/queue.ts` and `convex/queue/sessions.ts`. The vitest module-resolution chain `apps/integrated-math-1/__tests__/practice/vertical-slice.test.tsx → @/app/student/practice/page → @/lib/auth/server + @/lib/convex/server + @/components/student/PracticeSessionProvider + @/convex/queue/queue` fails at the page import (module-not-found), so the suite reports 0 tests collected for the file. The mocks cover auth, convex, the provider, and the resolved-queue type, so when the Green role lands the page + queue/sessions/queue/ResolvedQueueItem trio the test goes from suite-level fail to 6 live-behavior assertions in the same file.
