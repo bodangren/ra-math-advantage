@@ -11,6 +11,8 @@
 import type * as activities from "../activities.js";
 import type * as auth from "../auth.js";
 import type * as public_ from "../public.js";
+import type * as queue_queue from "../queue/queue.js";
+import type * as queue_sessions from "../queue/sessions.js";
 import type * as seed from "../seed.js";
 import type * as seed_standards from "../seed/standards.js";
 import type * as seed_units from "../seed/units.js";
@@ -27,6 +29,8 @@ declare const fullApi: ApiFromModules<{
   activities: typeof activities;
   auth: typeof auth;
   public: typeof public_;
+  "queue/queue": typeof queue_queue;
+  "queue/sessions": typeof queue_sessions;
   seed: typeof seed;
   "seed/standards": typeof seed_standards;
   "seed/units": typeof seed_units;
