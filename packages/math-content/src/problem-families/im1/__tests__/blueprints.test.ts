@@ -85,6 +85,7 @@ import { fileURLToPath } from 'node:url';
 
 import { IM1_GENERATORS, type IM1GeneratorEntry } from '../generators';
 import {
+  knowledgeBlueprintSchema,
   projectActivityMap,
   type ProjectedActivity,
   type KnowledgeBlueprint,
@@ -267,6 +268,19 @@ describe('IM1 vertical-slice blueprints — STUB removal (Phase 3 Task 1)', () =
 // ---------------------------------------------------------------------------
 
 describe('IM1 vertical-slice blueprints — spec content (Phase 3 Task 1)', () => {
+  it('every vertical-slice blueprint validates against knowledgeBlueprintSchema', () => {
+    const slice = loadVerticalSliceBlueprints();
+    const offenders = slice
+      .map((b) => ({ blueprint: b, result: knowledgeBlueprintSchema.safeParse(asBlueprint(b)) }))
+      .filter(({ result }) => !result.success)
+      .map(({ blueprint, result }) => ({
+        nodeId: blueprint.nodeId,
+        issues: result.error?.issues.map((issue) => issue.message) ?? [],
+      }));
+
+    expect(offenders).toEqual([]);
+  });
+
   it('every worked rendererModeMap entry has a non-empty workedExampleSpec.prompt', () => {
     const slice = loadVerticalSliceBlueprints();
     const offenders: Array<{ nodeId: string; reason: string }> = [];
