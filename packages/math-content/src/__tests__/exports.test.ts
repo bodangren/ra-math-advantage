@@ -47,6 +47,30 @@ describe('Problem family ID uniqueness', () => {
     expect(uniqueIds.size).toBe(ids.length);
   });
 
+  // Phase 2 Task 1 (track im1-practice-readiness_20260609) — Red phase.
+  // Mirrors the IM3/IM2 uniqueness pattern. test-strategy §6 §B.6 calls
+  // out that wiring IM1_PROBLEM_FAMILIES needs both the export AND a
+  // matching uniqueness case here, because static checks otherwise miss
+  // a miss-wire (consumers bind dynamically through seed scripts).
+  //
+  // Red signal at HEAD: `IM1_PROBLEM_FAMILIES` is NOT yet re-exported
+  // from `../index` (only IM3/IM2/PRECALC are wired). The destructure
+  // yields `undefined`, and the subsequent `.map(...)` throws "Cannot
+  // read properties of undefined (reading 'map')" — a clear Red.
+  it('IM1 family IDs are unique', async () => {
+    const mod = await import('../index') as Record<string, unknown>;
+    const IM1_PROBLEM_FAMILIES = mod.IM1_PROBLEM_FAMILIES as
+      | Array<{ problemFamilyId: string }>
+      | undefined;
+    expect(IM1_PROBLEM_FAMILIES).toBeDefined();
+    expect(Array.isArray(IM1_PROBLEM_FAMILIES)).toBe(true);
+    const ids = (IM1_PROBLEM_FAMILIES ?? []).map(
+      (f: { problemFamilyId: string }) => f.problemFamilyId,
+    );
+    const uniqueIds = new Set(ids);
+    expect(uniqueIds.size).toBe(ids.length);
+  });
+
   it('PreCalc family IDs are unique', async () => {
     const { PRECALC_PROBLEM_FAMILIES } = await import('../index');
     const ids = PRECALC_PROBLEM_FAMILIES.map((f: { problemFamilyId: string }) => f.problemFamilyId);
@@ -88,6 +112,48 @@ describe('Problem family ID uniqueness', () => {
     // Document the count but don't block on it
     expect(dupCount).toBe(dupCount);
   });
+
+  // Phase 2 Task 1 (track im1-practice-readiness_20260609) — Red phase.
+  // Cross-course uniqueness scoped across IM3/IM2/IM1/PreCalc. Mirrors
+  // the prior "No duplicate family IDs across IM3/IM2/PreCalc" test but
+  // adds IM1 to the join. Like its sibling, this documents (does not
+  // block) the count — a Red signal is produced upstream by the
+  // `IM1 family IDs are unique` case when `IM1_PROBLEM_FAMILIES` is
+  // missing or empty.
+  //
+  // Red signal at HEAD: destructuring `IM1_PROBLEM_FAMILIES` from the
+  // module yields `undefined`, the spread `...IM1_PROBLEM_FAMILIES`
+  // throws "Cannot read properties of undefined (reading
+  // Symbol(Symbol.iterator))" — clear Red.
+  it('No duplicate family IDs across IM3/IM2/IM1/PreCalc', async () => {
+    const mod = await import('../index') as Record<string, unknown>;
+    const IM1_PROBLEM_FAMILIES = mod.IM1_PROBLEM_FAMILIES as
+      | Array<{ problemFamilyId: string }>
+      | undefined;
+    expect(IM1_PROBLEM_FAMILIES).toBeDefined();
+
+    const { IM3_PROBLEM_FAMILIES, IM2_PROBLEM_FAMILIES, PRECALC_PROBLEM_FAMILIES } = await import('../index');
+    const all = [
+      ...IM3_PROBLEM_FAMILIES,
+      ...IM2_PROBLEM_FAMILIES,
+      ...(IM1_PROBLEM_FAMILIES as Array<{ problemFamilyId: string }>),
+      ...PRECALC_PROBLEM_FAMILIES,
+    ];
+    const ids = all.map((f: { problemFamilyId: string }) => f.problemFamilyId);
+    const uniqueIds = new Set(ids);
+    const dupCount = ids.length - uniqueIds.size;
+
+    if (dupCount > 0) {
+      const seen = new Map<string, number>();
+      for (const id of ids) {
+        seen.set(id, (seen.get(id) || 0) + 1);
+      }
+      const dups = [...seen.entries()].filter(([, c]) => c > 1).map(([id, c]) => `${id} (${c}×)`);
+      console.log(`Cross-app (incl. IM1) duplicate IDs (${dupCount} out of ${ids.length}): ${dups.join(', ')}`);
+    }
+
+    expect(dupCount).toBe(dupCount);
+  });
 });
 
 describe('Seed imports use package exports', () => {
@@ -107,6 +173,20 @@ describe('Seed imports use package exports', () => {
     const { PRECALC_PROBLEM_FAMILIES } = await import('../index');
     expect(PRECALC_PROBLEM_FAMILIES).toBeDefined();
     expect(PRECALC_PROBLEM_FAMILIES.length).toBeGreaterThan(0);
+  });
+
+  // Phase 2 Task 1 (track im1-practice-readiness_20260609) — Red phase.
+  // Red signal at HEAD: `IM1_PROBLEM_FAMILIES` is not exported from
+  // `../index`, so the destructure yields `undefined` and both length
+  // and defined checks fail.
+  it('IM1 seed imports problem families from math-content package', async () => {
+    const mod = await import('../index') as Record<string, unknown>;
+    const IM1_PROBLEM_FAMILIES = mod.IM1_PROBLEM_FAMILIES as
+      | Array<unknown>
+      | undefined;
+    expect(IM1_PROBLEM_FAMILIES).toBeDefined();
+    expect(Array.isArray(IM1_PROBLEM_FAMILIES)).toBe(true);
+    expect((IM1_PROBLEM_FAMILIES ?? []).length).toBeGreaterThan(0);
   });
 });
 
