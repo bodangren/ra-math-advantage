@@ -64,7 +64,6 @@ function generateArchitecture() {
       name: pkg,
       path: `packages/${pkg}`,
     })),
-    timestamp: new Date().toISOString()
   };
 
   fs.writeFileSync(path.join(OUTPUT_DIR, 'architecture.json'), JSON.stringify(arch, null, 2));
