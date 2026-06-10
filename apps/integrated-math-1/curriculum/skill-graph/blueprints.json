@@ -13,21 +13,92 @@
         "guidedPractice": "step-by-step-solver",
         "independentPractice": "step-by-step-solver"
       },
-      "workedExampleSpec": {},
-      "guidedPracticeSpec": {},
-      "independentPracticeSpec": {},
-      "exceptions": [
-        {
-          "type": "generator",
-          "reason": "Generator not yet implemented for IM1 rollout"
-        }
-      ],
+      "workedExampleSpec": {
+        "prompt": "Write a numerical expression for: the sum of 5 and 8. Then evaluate it.",
+        "givens": [
+          "the sum of 5 and 8"
+        ],
+        "steps": [
+          {
+            "description": "Identify the operation",
+            "expression": "\"sum\" means addition",
+            "explanation": "The word sum tells us to add."
+          },
+          {
+            "description": "Write the expression",
+            "expression": "5 + 8",
+            "explanation": "Replace the verbal phrases with numbers and operators."
+          },
+          {
+            "description": "Evaluate",
+            "expression": "5 + 8 = 13",
+            "explanation": "Add the numbers."
+          }
+        ],
+        "explanation": "The sum of 5 and 8 is written as 5 + 8, which equals 13."
+      },
+      "guidedPracticeSpec": {
+        "scaffoldedPrompt": "Write a numerical expression for the verbal phrase, then evaluate it.",
+        "stepPrompts": [
+          "Identify the operation words",
+          "Write the numerical expression",
+          "Evaluate the expression"
+        ],
+        "hints": [
+          "Look for keywords like sum, difference, product, quotient",
+          "Replace words with math symbols",
+          "Perform the arithmetic"
+        ],
+        "checksPerStep": [
+          {
+            "check": "Operation identified correctly"
+          },
+          {
+            "check": "Expression uses correct operators and numbers"
+          },
+          {
+            "check": "Final value is correct"
+          }
+        ],
+        "revealPolicy": "one_at_a_time"
+      },
+      "independentPracticeSpec": {
+        "variantParameters": {
+          "a": {
+            "type": "integer",
+            "min": 2,
+            "max": 20,
+            "step": 1,
+            "description": "First number"
+          },
+          "b": {
+            "type": "integer",
+            "min": 2,
+            "max": 20,
+            "step": 1,
+            "description": "Second number"
+          }
+        },
+        "answerSchema": {
+          "result": "number"
+        },
+        "gradingRules": [
+          {
+            "partId": "result",
+            "ruleType": "numeric_tolerance",
+            "tolerance": 0.01,
+            "maxScore": 5
+          }
+        ],
+        "replayPolicy": "unique_seeds"
+      },
       "reviewStatus": "draft",
       "metadata": {
         "course": "im1",
         "module": "1",
         "lesson": "1"
-      }
+      },
+      "generatorKey": "1-1-verbal-to-numerical"
     },
     {
       "nodeId": "math.im1.skill.1.2.translate-between-algebraic-expressions-and-verbal-expressio",
@@ -42,21 +113,104 @@
         "guidedPractice": "step-by-step-solver",
         "independentPractice": "step-by-step-solver"
       },
-      "workedExampleSpec": {},
-      "guidedPracticeSpec": {},
-      "independentPracticeSpec": {},
-      "exceptions": [
-        {
-          "type": "generator",
-          "reason": "Generator not yet implemented for IM1 rollout"
-        }
-      ],
+      "workedExampleSpec": {
+        "prompt": "Translate the algebraic expression 3x + 5 into a verbal description.",
+        "givens": [
+          "3x + 5"
+        ],
+        "steps": [
+          {
+            "description": "Identify terms",
+            "expression": "3x and 5",
+            "explanation": "The expression has two terms separated by +."
+          },
+          {
+            "description": "Describe 3x",
+            "expression": "3 times x",
+            "explanation": "The coefficient 3 multiplies the variable x."
+          },
+          {
+            "description": "Describe the full expression",
+            "expression": "the sum of 3 times x and 5",
+            "explanation": "Combine the descriptions."
+          }
+        ],
+        "explanation": "3x + 5 is read as \"the sum of 3 times x and 5.\""
+      },
+      "guidedPracticeSpec": {
+        "scaffoldedPrompt": "Translate between algebraic expressions and verbal descriptions.",
+        "stepPrompts": [
+          "Identify the terms in the expression",
+          "Describe each term verbally",
+          "Combine into a complete verbal description"
+        ],
+        "hints": [
+          "Terms are separated by + or -",
+          "Coefficients multiply variables",
+          "Use sum, difference, product, quotient"
+        ],
+        "checksPerStep": [
+          {
+            "check": "Terms identified correctly"
+          },
+          {
+            "check": "Each term described accurately"
+          },
+          {
+            "check": "Complete description uses correct operation words"
+          }
+        ],
+        "revealPolicy": "one_at_a_time"
+      },
+      "independentPracticeSpec": {
+        "variantParameters": {
+          "a": {
+            "type": "integer",
+            "min": 2,
+            "max": 12,
+            "step": 1,
+            "description": "Coefficient of variable"
+          },
+          "b": {
+            "type": "integer",
+            "min": 1,
+            "max": 10,
+            "step": 1,
+            "description": "Constant term"
+          }
+        },
+        "answerSchema": {
+          "verbal": "string",
+          "expression": "string",
+          "result": "number"
+        },
+        "gradingRules": [
+          {
+            "partId": "verbal",
+            "ruleType": "exact_match",
+            "maxScore": 2
+          },
+          {
+            "partId": "expression",
+            "ruleType": "exact_match",
+            "maxScore": 2
+          },
+          {
+            "partId": "result",
+            "ruleType": "numeric_tolerance",
+            "tolerance": 0.01,
+            "maxScore": 1
+          }
+        ],
+        "replayPolicy": "unique_seeds"
+      },
       "reviewStatus": "draft",
       "metadata": {
         "course": "im1",
         "module": "1",
         "lesson": "2"
-      }
+      },
+      "generatorKey": "1-2-algebraic-verbal-translation"
     },
     {
       "nodeId": "math.im1.skill.1.3.identify-and-apply-the-reflexive-symmetric-and-transitive-pr",
@@ -71,21 +225,87 @@
         "guidedPractice": "fill-in-the-blank",
         "independentPractice": "fill-in-the-blank"
       },
-      "workedExampleSpec": {},
-      "guidedPracticeSpec": {},
-      "independentPracticeSpec": {},
-      "exceptions": [
-        {
-          "type": "generator",
-          "reason": "Generator not yet implemented for IM1 rollout"
-        }
-      ],
+      "workedExampleSpec": {
+        "prompt": "Identify the property of equality.\nIf a = b and b = c, then a = c. This is the ___",
+        "givens": [
+          "a = b",
+          "b = c"
+        ],
+        "steps": [
+          {
+            "description": "Recognize the pattern",
+            "expression": "a = b ∧ b = c → a = c",
+            "explanation": "Two equalities sharing a middle term imply the outer terms are equal."
+          },
+          {
+            "description": "Name the property",
+            "expression": "Transitive Property of Equality",
+            "explanation": "The Transitive Property states if a = b and b = c, then a = c."
+          }
+        ],
+        "explanation": "When two equalities share a common term, the Transitive Property lets us conclude the outer terms are equal."
+      },
+      "guidedPracticeSpec": {
+        "scaffoldedPrompt": "Identify which property of equality is being used in each scenario.",
+        "stepPrompts": [
+          "Read the scenario carefully",
+          "Compare to the definitions of reflexive, symmetric, and transitive",
+          "Select the matching property"
+        ],
+        "hints": [
+          "Reflexive: a = a (any quantity equals itself)",
+          "Symmetric: if a = b then b = a (flip sides)",
+          "Transitive: if a = b and b = c then a = c (chain)"
+        ],
+        "checksPerStep": [
+          {
+            "check": "Scenario pattern recognized"
+          },
+          {
+            "check": "Property definition matched"
+          },
+          {
+            "check": "Correct property name given"
+          }
+        ],
+        "revealPolicy": "one_at_a_time"
+      },
+      "independentPracticeSpec": {
+        "variantParameters": {
+          "x": {
+            "type": "integer",
+            "min": 1,
+            "max": 20,
+            "step": 1,
+            "description": "First value"
+          },
+          "y": {
+            "type": "integer",
+            "min": 1,
+            "max": 20,
+            "step": 1,
+            "description": "Second value"
+          }
+        },
+        "answerSchema": {
+          "property": "string"
+        },
+        "gradingRules": [
+          {
+            "partId": "property",
+            "ruleType": "exact_match",
+            "maxScore": 5
+          }
+        ],
+        "replayPolicy": "unique_seeds"
+      },
       "reviewStatus": "draft",
       "metadata": {
         "course": "im1",
         "module": "1",
         "lesson": "3"
-      }
+      },
+      "generatorKey": "1-3-properties-of-equality"
     },
     {
       "nodeId": "math.im1.skill.1.4.apply-the-distributive-property-to-rewrite-and-evaluate-nume",
@@ -100,21 +320,114 @@
         "guidedPractice": "step-by-step-solver",
         "independentPractice": "step-by-step-solver"
       },
-      "workedExampleSpec": {},
-      "guidedPracticeSpec": {},
-      "independentPracticeSpec": {},
-      "exceptions": [
-        {
-          "type": "generator",
-          "reason": "Generator not yet implemented for IM1 rollout"
-        }
-      ],
+      "workedExampleSpec": {
+        "prompt": "Apply the distributive property to rewrite and evaluate: 4 × (6 + 3)",
+        "givens": [
+          "4 × (6 + 3)"
+        ],
+        "steps": [
+          {
+            "description": "Identify the pattern",
+            "expression": "a × (b + c) = a×b + a×c",
+            "explanation": "The distributive property multiplies each term inside the parentheses."
+          },
+          {
+            "description": "Distribute",
+            "expression": "4×6 + 4×3",
+            "explanation": "Multiply 4 by each term inside."
+          },
+          {
+            "description": "Evaluate each term",
+            "expression": "24 + 12",
+            "explanation": "Compute the products."
+          },
+          {
+            "description": "Simplify",
+            "expression": "24 + 12 = 36",
+            "explanation": "Add the results."
+          }
+        ],
+        "explanation": "Using the distributive property, 4 × (6 + 3) = 4×6 + 4×3 = 24 + 12 = 36."
+      },
+      "guidedPracticeSpec": {
+        "scaffoldedPrompt": "Apply the distributive property to rewrite and evaluate the expression.",
+        "stepPrompts": [
+          "Identify the factor outside the parentheses",
+          "Multiply it by each term inside",
+          "Evaluate the resulting terms",
+          "Combine for the final answer"
+        ],
+        "hints": [
+          "a × (b + c) = a×b + a×c",
+          "Distribute the multiplication to each addend",
+          "Be careful with subtraction: a × (b - c) = a×b - a×c"
+        ],
+        "checksPerStep": [
+          {
+            "check": "Outside factor identified"
+          },
+          {
+            "check": "Each term multiplied correctly"
+          },
+          {
+            "check": "Products evaluated correctly"
+          },
+          {
+            "check": "Final sum/difference is correct"
+          }
+        ],
+        "revealPolicy": "one_at_a_time"
+      },
+      "independentPracticeSpec": {
+        "variantParameters": {
+          "a": {
+            "type": "integer",
+            "min": 2,
+            "max": 9,
+            "step": 1,
+            "description": "Distributing factor"
+          },
+          "b": {
+            "type": "integer",
+            "min": 2,
+            "max": 9,
+            "step": 1,
+            "description": "First term inside parentheses"
+          },
+          "c": {
+            "type": "integer",
+            "min": 2,
+            "max": 9,
+            "step": 1,
+            "description": "Second term inside parentheses"
+          }
+        },
+        "answerSchema": {
+          "result": "number",
+          "rewritten": "string"
+        },
+        "gradingRules": [
+          {
+            "partId": "result",
+            "ruleType": "numeric_tolerance",
+            "tolerance": 0.01,
+            "maxScore": 3
+          },
+          {
+            "partId": "rewritten",
+            "ruleType": "exact_match",
+            "maxScore": 2
+          }
+        ],
+        "replayPolicy": "unique_seeds"
+      },
       "reviewStatus": "draft",
       "metadata": {
         "course": "im1",
         "module": "1",
         "lesson": "4"
-      }
+      },
+      "generatorKey": "1-4-distributive-property"
     },
     {
       "nodeId": "math.im1.skill.1.5.write-absolute-value-expressions-that-model-real-world-dista",
@@ -129,21 +442,99 @@
         "guidedPractice": "comprehension-quiz",
         "independentPractice": "comprehension-quiz"
       },
-      "workedExampleSpec": {},
-      "guidedPracticeSpec": {},
-      "independentPracticeSpec": {},
-      "exceptions": [
-        {
-          "type": "generator",
-          "reason": "Generator not yet implemented for IM1 rollout"
-        }
-      ],
+      "workedExampleSpec": {
+        "prompt": "A measurement is supposed to be 50 units. The actual measurement is 47 units. Write an absolute value expression for the distance between the actual and target measurements, and evaluate it.",
+        "givens": [
+          "Target: 50 units",
+          "Actual: 47 units"
+        ],
+        "steps": [
+          {
+            "description": "Identify the two values",
+            "expression": "Target: 50, Actual: 47",
+            "explanation": "We need the distance between these two measurements."
+          },
+          {
+            "description": "Write the distance expression",
+            "expression": "|actual - target| = |47 - 50|",
+            "explanation": "Distance on a number line is the absolute difference."
+          },
+          {
+            "description": "Evaluate",
+            "expression": "|47 - 50| = |-3| = 3",
+            "explanation": "The absolute value of -3 is 3."
+          }
+        ],
+        "explanation": "The distance between 47 and 50 is |47 - 50| = 3 units."
+      },
+      "guidedPracticeSpec": {
+        "scaffoldedPrompt": "Write an absolute value expression to model the distance, then evaluate it.",
+        "stepPrompts": [
+          "Identify the two quantities being compared",
+          "Set up |a - b|",
+          "Evaluate the absolute value"
+        ],
+        "hints": [
+          "Distance = |a - b|",
+          "Absolute value makes negative results positive",
+          "You can also use |b - a| — same result"
+        ],
+        "checksPerStep": [
+          {
+            "check": "Two values identified"
+          },
+          {
+            "check": "Absolute value expression correctly formed"
+          },
+          {
+            "check": "Absolute value evaluated correctly"
+          }
+        ],
+        "revealPolicy": "one_at_a_time"
+      },
+      "independentPracticeSpec": {
+        "variantParameters": {
+          "target": {
+            "type": "integer",
+            "min": 10,
+            "max": 100,
+            "step": 1,
+            "description": "Target value"
+          },
+          "actual": {
+            "type": "integer",
+            "min": 5,
+            "max": 105,
+            "step": 1,
+            "description": "Actual value"
+          }
+        },
+        "answerSchema": {
+          "expression": "string",
+          "distance": "number"
+        },
+        "gradingRules": [
+          {
+            "partId": "expression",
+            "ruleType": "exact_match",
+            "maxScore": 3
+          },
+          {
+            "partId": "distance",
+            "ruleType": "numeric_tolerance",
+            "tolerance": 0.01,
+            "maxScore": 2
+          }
+        ],
+        "replayPolicy": "unique_seeds"
+      },
       "reviewStatus": "draft",
       "metadata": {
         "course": "im1",
         "module": "1",
         "lesson": "5"
-      }
+      },
+      "generatorKey": "1-5-absolute-value-distance"
     },
     {
       "nodeId": "math.im1.skill.1.6.use-ratios-and-percentages-as-metrics-to-model-real-world-si",
@@ -158,21 +549,114 @@
         "guidedPractice": "comprehension-quiz",
         "independentPractice": "comprehension-quiz"
       },
-      "workedExampleSpec": {},
-      "guidedPracticeSpec": {},
-      "independentPracticeSpec": {},
-      "exceptions": [
-        {
-          "type": "generator",
-          "reason": "Generator not yet implemented for IM1 rollout"
-        }
-      ],
+      "workedExampleSpec": {
+        "prompt": "In a class of 30 students, 18 passed the test. Express the ratio of students who passed to those who did not, and find the pass percentage.",
+        "givens": [
+          "Total: 30 students",
+          "Passed: 18 students"
+        ],
+        "steps": [
+          {
+            "description": "Find those who did not pass",
+            "expression": "30 - 18 = 12",
+            "explanation": "Subtract passed from total."
+          },
+          {
+            "description": "Write the ratio",
+            "expression": "18:12",
+            "explanation": "Ratio of passed to not passed."
+          },
+          {
+            "description": "Simplify",
+            "expression": "18:12 = 3:2",
+            "explanation": "Divide both by GCF 6."
+          },
+          {
+            "description": "Calculate percentage",
+            "expression": "(18/30) × 100 = 60%",
+            "explanation": "Divide part by whole, multiply by 100."
+          }
+        ],
+        "explanation": "The ratio is 3:2 and the pass percentage is 60%."
+      },
+      "guidedPracticeSpec": {
+        "scaffoldedPrompt": "Express the ratio and calculate the percentage for the given scenario.",
+        "stepPrompts": [
+          "Find the missing quantity (total - given)",
+          "Write the ratio",
+          "Simplify the ratio",
+          "Calculate the percentage"
+        ],
+        "hints": [
+          "Ratio compares two quantities",
+          "Simplify by dividing by the GCF",
+          "Percentage = (part/total) × 100"
+        ],
+        "checksPerStep": [
+          {
+            "check": "Missing quantity found correctly"
+          },
+          {
+            "check": "Ratio written in correct order"
+          },
+          {
+            "check": "Ratio simplified correctly"
+          },
+          {
+            "check": "Percentage calculated correctly"
+          }
+        ],
+        "revealPolicy": "one_at_a_time"
+      },
+      "independentPracticeSpec": {
+        "variantParameters": {
+          "part": {
+            "type": "integer",
+            "min": 5,
+            "max": 40,
+            "step": 1,
+            "description": "Part quantity"
+          },
+          "total": {
+            "type": "integer",
+            "min": 50,
+            "max": 200,
+            "step": 1,
+            "description": "Total quantity"
+          }
+        },
+        "answerSchema": {
+          "ratio": "string",
+          "percentage": "number",
+          "simplifiedRatio": "string"
+        },
+        "gradingRules": [
+          {
+            "partId": "ratio",
+            "ruleType": "exact_match",
+            "maxScore": 2
+          },
+          {
+            "partId": "percentage",
+            "ruleType": "numeric_tolerance",
+            "tolerance": 0.1,
+            "maxScore": 2
+          },
+          {
+            "partId": "simplifiedRatio",
+            "ruleType": "exact_match",
+            "maxScore": 1
+          }
+        ],
+        "replayPolicy": "unique_seeds"
+      },
       "reviewStatus": "draft",
       "metadata": {
         "course": "im1",
         "module": "1",
         "lesson": "6"
-      }
+      },
+      "generatorKey": "1-6-ratios-and-percentages"
     },
     {
       "nodeId": "math.im1.skill.10.1.differentiate-between-synthetic-geometry-and-analytic-geomet",
