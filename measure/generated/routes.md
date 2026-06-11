@@ -79,6 +79,7 @@
 | GET /curriculum | `apps/integrated-math-1/app/curriculum/page.tsx` | - |
 | GET  | `apps/integrated-math-1/app/page.tsx` | - |
 | GET /student/dashboard | `apps/integrated-math-1/app/student/dashboard/page.tsx` | - |
+| GET /student/practice | `apps/integrated-math-1/app/student/practice/page.tsx` | - |
 | GET /teacher/dashboard | `apps/integrated-math-1/app/teacher/dashboard/page.tsx` | - |
 | POST /api/auth/login | `apps/integrated-math-2/app/api/auth/login/route.ts` | - |
 | POST /api/auth/logout | `apps/integrated-math-2/app/api/auth/logout/route.ts` | - |
