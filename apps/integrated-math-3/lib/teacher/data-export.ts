@@ -1,3 +1,4 @@
+/** Escapes a value for safe inclusion in a CSV field, quoting when necessary. */
 function escapeCsvField(value: unknown): string {
   if (value == null) return "";
   const str = String(value);
@@ -7,6 +8,7 @@ function escapeCsvField(value: unknown): string {
   return str;
 }
 
+/** Converts an array of record objects into a CSV string with header row. */
 export function toCsv(data: Record<string, unknown>[]): string {
   if (data.length === 0) return "";
 
@@ -37,11 +39,13 @@ interface StudentExportData {
   rows: StudentExportLessonRow[];
 }
 
+/** Converts a millisecond timestamp to an ISO string, or empty string if null. */
 function formatTimestamp(ts: number | null): string {
   if (ts == null) return "";
   return new Date(ts).toISOString();
 }
 
+/** Formats student lesson progress rows into a flat record array suitable for CSV export. */
 export function formatStudentExport(data: StudentExportData): Record<string, unknown>[] {
   return data.rows.map((row) => ({
     studentName: row.studentName,
@@ -66,6 +70,7 @@ interface ClassExportStudentRow {
   averageScore: number | null;
 }
 
+/** Formats class-level student summary rows into a flat record array suitable for CSV export. */
 export function formatClassExport(rows: ClassExportStudentRow[]): Record<string, unknown>[] {
   return rows.map((row) => ({
     studentName: row.studentName,
@@ -100,6 +105,7 @@ export interface ResolvedExportScope {
   args: Record<string, unknown>;
 }
 
+/** Sanitizes a class name by trimming whitespace, replacing slashes with dashes, and collapsing spaces. */
 function sanitizeClassName(raw: string): string {
   return raw
     .trim()
@@ -108,6 +114,7 @@ function sanitizeClassName(raw: string): string {
     .trim();
 }
 
+/** Formats a date or timestamp as a UTC `YYYY-MM-DD` string. */
 function formatUtcDate(date: Date | number): string {
   const d = typeof date === "number" ? new Date(date) : date;
   const year = d.getUTCFullYear();
@@ -116,6 +123,7 @@ function formatUtcDate(date: Date | number): string {
   return `${year}-${month}-${day}`;
 }
 
+/** Builds a sanitized export filename from class name, dataset type, format, and date. */
 export function buildExportFilename(input: ExportFilenameInput): string {
   const { className, dataset, format, date } = input;
   const sanitized = sanitizeClassName(className);
@@ -124,6 +132,7 @@ export function buildExportFilename(input: ExportFilenameInput): string {
   return `${sanitized}-${dataset}-${dateStr}.${ext}`;
 }
 
+/** Resolves an export scope descriptor into a Convex query name and arguments. */
 export function resolveExportScope(scope: ExportScope): ResolvedExportScope {
   const { dataset } = scope;
   switch (dataset) {

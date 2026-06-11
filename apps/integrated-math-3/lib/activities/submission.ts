@@ -33,6 +33,7 @@ export interface SubmitActivityResultError {
 
 export type SubmitActivityResult = SubmitActivityResultSuccess | SubmitActivityResultError;
 
+/** Submits a practice activity to the server and returns a success or error result. */
 export async function submitActivity(input: SubmitActivityInput): Promise<SubmitActivityResult> {
   try {
     const envelope = buildPracticeSubmissionEnvelope({

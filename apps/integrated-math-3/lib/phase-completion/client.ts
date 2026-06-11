@@ -14,6 +14,7 @@ export class PhaseCompletionError extends Error {
   }
 }
 
+/** Checks whether an HTTP status code indicates a transient (retryable) error. */
 function isTransientStatus(status?: number): boolean {
   if (!status) return true;
   if (status >= 500 && status < 600) return true;
@@ -21,6 +22,7 @@ function isTransientStatus(status?: number): boolean {
   return false;
 }
 
+/** Extracts an error message string from an unknown payload, falling back to a default. */
 function extractMessage(payload: unknown, fallback: string): string {
   if (payload && typeof payload === 'object') {
     const record = payload as Record<string, unknown>;
@@ -32,6 +34,7 @@ function extractMessage(payload: unknown, fallback: string): string {
   return fallback;
 }
 
+/** Sends a phase-completion request to the API and returns the response. */
 export async function completePhaseRequest(
   payload: CompletePhaseRequest,
 ): Promise<CompletePhaseResponse> {
@@ -75,6 +78,7 @@ export class PhaseSkipError extends Error {
   }
 }
 
+/** Sends a phase-skip request to the API and returns the response. */
 export async function skipPhaseRequest(
   payload: SkipPhaseRequest,
 ): Promise<SkipPhaseResponse> {

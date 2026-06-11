@@ -86,20 +86,24 @@ const ALLOWED_COMPONENT_KEYS = new Set([
   'discriminant-analyzer',
 ]);
 
+/** Reads a UTF-8 text file and returns its contents as a string. */
 function readText(filePath: string): string {
   return fs.readFileSync(filePath, 'utf8');
 }
 
+/** Checks whether a file exists at the given path. */
 function exists(filePath: string): boolean {
   return fs.existsSync(filePath);
 }
 
+/** Strips backtick wrappers and em-dash placeholders from a markdown table cell. */
 function stripTicks(value: string): string {
   const trimmed = value.trim();
   if (trimmed === '—') return '';
   return trimmed.replace(/^`|`$/g, '');
 }
 
+/** Parses a single markdown table row into an array of trimmed cell values, or null if not a data row. */
 function parseMarkdownTableLine(line: string): string[] | null {
   const trimmed = line.trim();
   if (!trimmed.startsWith('|') || !trimmed.endsWith('|')) return null;
@@ -110,6 +114,7 @@ function parseMarkdownTableLine(line: string): string[] | null {
     .map((cell) => cell.trim());
 }
 
+/** Parses a class-period-plan markdown file into an array of structured planned-period records. */
 export function parseClassPeriodPlan(content: string, module: number): PlannedPeriod[] {
   return content
     .split(/\r?\n/)
@@ -128,6 +133,7 @@ export function parseClassPeriodPlan(content: string, module: number): PlannedPe
     }));
 }
 
+/** Parses the ALEKS SRS Practice Map section from a module overview markdown file. */
 export function parseAleksPracticeMap(content: string, module: number): AleksMapRow[] {
   const lines = content.split(/\r?\n/);
   const start = lines.findIndex((line) => /^## ALEKS SRS Practice Map/.test(line));
@@ -146,6 +152,7 @@ export function parseAleksPracticeMap(content: string, module: number): AleksMap
     }));
 }
 
+/** Returns sorted paths to all lesson source directories under the modules folder. */
 function lessonFiles(rootDir: string): string[] {
   const modulesDir = path.join(rootDir, 'curriculum', 'modules');
   return fs
@@ -155,6 +162,7 @@ function lessonFiles(rootDir: string): string[] {
     .map((name) => path.join(modulesDir, name));
 }
 
+/** Returns paths to all module overview markdown files. */
 function moduleOverviewFiles(rootDir: string): string[] {
   const modulesDir = path.join(rootDir, 'curriculum', 'modules');
   return fs
@@ -163,6 +171,7 @@ function moduleOverviewFiles(rootDir: string): string[] {
     .map((name) => path.join(modulesDir, name));
 }
 
+/** Returns sorted paths to all class-period-plan markdown files. */
 function planFiles(rootDir: string): string[] {
   return fs
     .readdirSync(path.join(rootDir, 'curriculum'))
@@ -171,23 +180,27 @@ function planFiles(rootDir: string): string[] {
     .map((name) => path.join(rootDir, 'curriculum', name));
 }
 
+/** Extracts the module number from a file path containing a `module-N` segment. */
 function moduleNumberFromPath(filePath: string): number {
   const match = filePath.match(/module-(\d+)/);
   return match ? Number(match[1]) : 0;
 }
 
+/** Resolves the measure directory by checking the monorepo root first, then falling back to the app root. */
 function resolveMeasureDir(appRoot: string): string {
   const candidate = path.join(appRoot, '..', '..', 'measure');
   if (fs.existsSync(path.join(candidate, 'course-objectives.md'))) return candidate;
   return path.join(appRoot, 'measure');
 }
 
+/** Counts the number of course objectives listed in `course-objectives.md`. */
 function parseObjectives(rootDir: string): number {
   const measureDir = resolveMeasureDir(rootDir);
   const filePath = path.join(measureDir, 'course-objectives.md');
   return (readText(filePath).match(/^\*\*\d+[a-z]\./gm) ?? []).length;
 }
 
+/** Parses all ALEKS module summaries and cross-references documented exceptions. */
 function parseAleksSummaries(rootDir: string) {
   const readmePath = path.join(rootDir, 'curriculum', 'aleks', 'README.md');
   const readme = exists(readmePath) ? readText(readmePath) : '';
@@ -223,6 +236,7 @@ function parseAleksSummaries(rootDir: string) {
     });
 }
 
+/** Loads the implementation exceptions JSON file, returning empty defaults when absent. */
 function loadExceptions(rootDir: string) {
   const filePath = path.join(rootDir, 'curriculum', 'implementation', 'exceptions.json');
   if (!exists(filePath)) return { aleksTopicGaps: [], lessonSourceExceptions: [] };
@@ -232,6 +246,7 @@ function loadExceptions(rootDir: string) {
   };
 }
 
+/** Validates lesson source files for required sections, heading hierarchy, and placeholder content. */
 function checkLessonSources(rootDir: string, checks: AuditCheck[]) {
   const files = lessonFiles(rootDir);
   const exceptions = loadExceptions(rootDir).lessonSourceExceptions ?? [];
@@ -298,6 +313,7 @@ function checkLessonSources(rootDir: string, checks: AuditCheck[]) {
   });
 }
 
+/** Validates class-period package artifacts and practice.v1 activity mappings against planned periods. */
 function checkImplementationArtifacts(rootDir: string, plannedPeriods: PlannedPeriod[], checks: AuditCheck[]) {
   const implementationDir = path.join(rootDir, 'curriculum', 'implementation');
   const packageDir = path.join(implementationDir, 'class-period-packages');
@@ -401,6 +417,7 @@ function checkImplementationArtifacts(rootDir: string, plannedPeriods: PlannedPe
   return { phasePackageCount: packages.length, activityMappingCount: activities.length };
 }
 
+/** Runs the full curriculum audit, producing a report with all checks and summary statistics. */
 export function runCurriculumAudit(rootDir = process.cwd()): CurriculumAuditReport {
   const checks: AuditCheck[] = [];
   const lessons = lessonFiles(rootDir);

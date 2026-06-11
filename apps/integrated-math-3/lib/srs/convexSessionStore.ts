@@ -57,6 +57,7 @@ export class ConvexSessionStore {
   }
 }
 
+/** Creates a Convex-backed session store instance for the given mutation context. */
 export function createConvexSessionStore(
   ctx: MutationCtx
 ): ConvexSessionStore {

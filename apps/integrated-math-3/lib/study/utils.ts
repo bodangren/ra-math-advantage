@@ -1,3 +1,4 @@
+/** Returns a new array with the same elements in Fisher-Yates shuffled order. */
 export function shuffleArray<T>(array: T[]): T[] {
   const shuffled = [...array];
   for (let i = shuffled.length - 1; i > 0; i--) {

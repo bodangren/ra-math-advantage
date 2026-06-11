@@ -38,6 +38,7 @@ export interface PlacementFlowOutcome {
   probesPerformed: number;
 }
 
+/** Orchestrates the new-student placement flow, running the adaptive traversal and persisting results. */
 export async function runNewStudentPlacementFlow(
   input: PlacementFlowInput,
 ): Promise<PlacementFlowOutcome> {

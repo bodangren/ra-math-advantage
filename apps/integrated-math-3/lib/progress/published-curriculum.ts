@@ -81,6 +81,7 @@ export interface LessonPhaseProgressStatusRow {
   timeSpentSeconds: number | null;
 }
 
+/** Finds the latest published lesson version from an array of lesson versions. */
 export function resolveLatestPublishedLessonVersion<T extends LessonVersionLike>(
   lessonVersions: readonly T[],
 ): T | null {
@@ -99,6 +100,7 @@ export function resolveLatestPublishedLessonVersion<T extends LessonVersionLike>
   return latestPublished;
 }
 
+/** Builds a map from lesson ID to its latest published version, optionally filtered by allowed lesson IDs. */
 export function buildLatestPublishedLessonVersionMap<T extends LessonVersionLike>(
   lessonVersions: readonly T[],
   lessonIds?: readonly string[],
@@ -124,6 +126,7 @@ export function buildLatestPublishedLessonVersionMap<T extends LessonVersionLike
   return versionsByLessonId;
 }
 
+/** Maps each lesson ID to its array of published phase version IDs. */
 export function buildPublishedLessonPhaseIdsByLessonId<
   TLessonVersion extends LessonVersionLike,
   TPhaseVersion extends PhaseVersionLike,
@@ -163,6 +166,7 @@ export function buildPublishedLessonPhaseIdsByLessonId<
   return phaseIdsByLessonId;
 }
 
+/** Builds a flat set of all published phase IDs across the given lessons. */
 export function buildPublishedPhaseIdSet<
   TLessonVersion extends LessonVersionLike,
   TPhaseVersion extends PhaseVersionLike,
@@ -186,6 +190,7 @@ export function buildPublishedPhaseIdSet<
   );
 }
 
+/** Computes a progress snapshot by counting completed phases against the active phase ID set. */
 export function buildPublishedProgressSnapshot({
   activePhaseIds,
   progressRows,
@@ -227,10 +232,12 @@ export function buildPublishedProgressSnapshot({
   };
 }
 
+/** Converts a millisecond timestamp to an ISO string, or null if not a valid number. */
 function toIsoString(timestamp?: number | null): string | null {
   return typeof timestamp === "number" ? new Date(timestamp).toISOString() : null;
 }
 
+/** Builds unit-grouped progress rows from lessons, versions, and progress data. */
 export function buildPublishedUnitProgressRows<
   TLesson extends LessonLike,
   TLessonVersion extends LessonVersionLike & {
@@ -324,6 +331,7 @@ export function buildPublishedUnitProgressRows<
   return [...units.values()].sort((a, b) => a.unitNumber - b.unitNumber);
 }
 
+/** Builds per-phase progress status rows for a single lesson. */
 export function buildLessonPhaseProgress<
   TPhase extends LessonPhaseLike,
   TProgressRow extends LessonPhaseProgressRow,

@@ -4,6 +4,7 @@ import {
   type StudentDashboardUnit,
 } from '@/lib/student/dashboard';
 
+/** Determines the phase number to land on when navigating to a lesson. */
 export function resolveLessonLandingPhase({
   totalPhases,
   completedPhaseNumbers,
@@ -26,6 +27,7 @@ export function resolveLessonLandingPhase({
   return totalPhases;
 }
 
+/** Builds the recommended next-lesson link for the continue-learning widget. */
 export function buildLessonContinueState(
   units: StudentDashboardUnit[],
   currentLessonSlug: string,

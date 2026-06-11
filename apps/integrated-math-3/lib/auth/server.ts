@@ -18,6 +18,7 @@ export async function getServerSessionClaims(): Promise<SessionClaims | null> {
   return verifySessionToken(token, getAuthJwtSecret());
 }
 
+/** Parses a cookie header string and extracts the value for the given key. */
 function getCookieValueFromHeader(cookieHeader: string | null, key: string): string | null {
   if (!cookieHeader) return null;
 
@@ -48,10 +49,12 @@ export async function getRequestSessionClaims(request: Request): Promise<Session
   return verifySessionToken(token, getAuthJwtSecret());
 }
 
+/** Creates a 401 Unauthorized JSON response with the given message. */
 function buildRequestUnauthorizedResponse(message = 'Unauthorized') {
   return NextResponse.json({ error: message }, { status: 401 });
 }
 
+/** Creates a 403 Forbidden JSON response with the given message. */
 function buildRequestForbiddenResponse(message = 'Forbidden') {
   return NextResponse.json({ error: message }, { status: 403 });
 }
@@ -112,6 +115,7 @@ export async function requireTeacherRequestClaims(
   return claimsOrResponse;
 }
 
+/** Builds a login redirect URL with the given path as the post-login redirect target. */
 function buildLoginRedirect(loginRedirectPath: string): string {
   return `/auth/login?redirect=${loginRedirectPath}`;
 }
@@ -177,6 +181,7 @@ export async function requireDeveloperRequestClaims(
   return claimsOrResponse;
 }
 
+/** Creates a 503 Service Unavailable JSON response with the given message. */
 function buildRequestServiceUnavailableResponse(message = 'Service unavailable') {
   return NextResponse.json({ error: message }, { status: 503 });
 }

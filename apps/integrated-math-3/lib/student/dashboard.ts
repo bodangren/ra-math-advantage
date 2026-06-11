@@ -48,11 +48,13 @@ export interface StudentDashboardViewModel {
   continueUrl: string | null;
 }
 
+/** Clamps a numeric value to the 0–100 integer percentage range. */
 function clampPercentage(value: number) {
   if (Number.isNaN(value)) return 0;
   return Math.max(0, Math.min(100, Math.round(value)));
 }
 
+/** Derives the lesson status from its phase completion counts. */
 function getLessonStatus(lesson: StudentDashboardLesson): LessonStatus {
   if (lesson.totalPhases > 0 && lesson.completedPhases >= lesson.totalPhases) {
     return 'completed';
@@ -65,6 +67,7 @@ function getLessonStatus(lesson: StudentDashboardLesson): LessonStatus {
   return 'not_started';
 }
 
+/** Converts a lesson to a dashboard action link, or null if completed. */
 function toLessonAction(lesson: StudentDashboardLesson): DashboardLessonAction | null {
   const status = getLessonStatus(lesson);
 
@@ -79,6 +82,7 @@ function toLessonAction(lesson: StudentDashboardLesson): DashboardLessonAction |
   };
 }
 
+/** Derives the unit status from its lessons and the next actionable lesson. */
 function getUnitStatus(
   lessons: StudentDashboardLesson[],
   completedLessons: number,
@@ -99,6 +103,7 @@ function getUnitStatus(
   return 'not_started';
 }
 
+/** Builds the full student dashboard view model with summary stats, unit views, and continue URL. */
 export function buildStudentDashboardViewModel(
   units: StudentDashboardUnit[],
 ): StudentDashboardViewModel {

@@ -2,6 +2,7 @@ import { buildGradebookCsv, type GradebookRow, type GradebookLesson, type Gradeb
 export { buildGradebookCsv };
 export type { GradebookRow, GradebookLesson, GradebookCsvOptions };
 
+/** Builds a gradebook CSV and triggers a browser download with the given filename. */
 export function downloadGradebookCsv(
   rows: GradebookRow[],
   lessons: GradebookLesson[],

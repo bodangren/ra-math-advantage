@@ -3,6 +3,7 @@ import type { ScheduledTerm, ReviewResult, ProficiencyBand } from './types';
 
 const fsrs = new FSRS({});
 
+/** Creates a new scheduled term with an initial FSRS card state for the given slug. */
 export function scheduleNewTerm(termSlug: string): ScheduledTerm {
   const card = createEmptyCard();
   const now = new Date();
@@ -15,6 +16,7 @@ export function scheduleNewTerm(termSlug: string): ScheduledTerm {
   };
 }
 
+/** Processes an SRS review, returning the updated FSRS state and mastery delta. */
 export function processReview(
   scheduledTerm: ScheduledTerm,
   rating: 'again' | 'hard' | 'good' | 'easy'
@@ -45,6 +47,7 @@ export function processReview(
   };
 }
 
+/** Filters scheduled terms to those due on or before the given timestamp. */
 export function getDueTerms(
   scheduledTerms: ScheduledTerm[],
   now: number = Date.now()
@@ -52,6 +55,7 @@ export function getDueTerms(
   return scheduledTerms.filter((term) => term.scheduledFor <= now);
 }
 
+/** Maps a mastery score to a discrete proficiency band. */
 export function proficiencyBand(masteryScore: number): ProficiencyBand {
   if (masteryScore === 0) return 'new';
   if (masteryScore < 0.3) return 'learning';
@@ -59,6 +63,7 @@ export function proficiencyBand(masteryScore: number): ProficiencyBand {
   return 'mastered';
 }
 
+/** Applies a mastery delta and clamps the result to the [0, 1] range. */
 export function updateMastery(currentScore: number, delta: number): number {
   const newScore = currentScore + delta;
   return Math.max(0, Math.min(1, newScore));

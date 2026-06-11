@@ -126,6 +126,7 @@ export class ConvexCardStore implements CardStore {
   }
 }
 
+/** Creates a Convex-backed card store instance for the given mutation context. */
 export function createConvexCardStore(
   ctx: MutationCtx
 ): ConvexCardStore {

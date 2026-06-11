@@ -46,6 +46,7 @@ export class ConvexReviewLogStore implements ReviewLogStore {
   }
 }
 
+/** Creates a Convex-backed review-log store instance for the given mutation context. */
 export function createConvexReviewLogStore(
   ctx: MutationCtx
 ): ConvexReviewLogStore {

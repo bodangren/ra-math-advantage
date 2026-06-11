@@ -3,6 +3,7 @@ import { redirect } from 'next/navigation';
 import { getServerSessionClaims } from '@/lib/auth/server';
 import type { SessionClaims } from '@math-platform/core-auth';
 
+/** Checks whether developer approval flows are enabled based on the NODE_ENV value. */
 export function isDevApprovalEnabledForRequest(env: Record<string, string | undefined> = process.env): boolean {
   const nodeEnv = env.NODE_ENV?.trim();
 
@@ -13,6 +14,7 @@ export function isDevApprovalEnabledForRequest(env: Record<string, string | unde
   return nodeEnv === 'development' || nodeEnv === 'test';
 }
 
+/** Requires an admin server session for developer pages, redirecting on failure. */
 export async function requireDeveloperSessionClaims(
   loginRedirectPath: string,
   unauthorizedRedirectPath = '/',
@@ -29,6 +31,7 @@ export async function requireDeveloperSessionClaims(
   return claims;
 }
 
+/** Returns admin session claims if dev approval is enabled, or null otherwise. */
 export async function requireDeveloperSessionClaimsOrRedirect(): Promise<SessionClaims | null> {
   if (!isDevApprovalEnabledForRequest()) {
     return null;
@@ -46,6 +49,7 @@ export async function requireDeveloperSessionClaimsOrRedirect(): Promise<Session
   return claims;
 }
 
+/** Builds a login redirect URL with the given path as the post-login target. */
 function buildLoginRedirect(loginRedirectPath: string): string {
   return `/auth/login?redirect=${loginRedirectPath}`;
 }

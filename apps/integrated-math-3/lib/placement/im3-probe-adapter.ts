@@ -23,6 +23,7 @@ export class Im3ProbeAdapterError extends Error {
   }
 }
 
+/** Creates a probe adapter that maps IM3 knowledge-node IDs to problem-bank entries. */
 export function createIm3ProbeAdapter(
   problemBank: ReadonlyArray<Im3ProblemEntry>,
   answerSource: Im3ProbeAnswerSource,
