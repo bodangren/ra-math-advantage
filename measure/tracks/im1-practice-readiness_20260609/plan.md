@@ -164,6 +164,7 @@ Verification gate each phase: correctness-QA harness + `tsc --noEmit` + boundary
     6. Confirm the session completes and the completion screen renders
   - **Status:** Deferred to Manual Verification role. Task 1 Green proves the route renders the queue for Module 1 via automated tests (6/6 passing). No new code or test infrastructure needed for this task.
   - **Gate impact:** The targeted Phase 4 test command (`bunx vitest run apps/integrated-math-1/__tests__/practice/vertical-slice.test.tsx`) passes with 6/6 tests. The root `npm test` runs knowledge-space-core tests (not IM1) — this is a pre-existing gate configuration issue, not a Phase 4 regression.
+  - **Adversarial audit follow-up:** Restored the required run artifact at `measure/runs/20260610T223323Z/im1-practice-readiness_20260609/phase-2-Phase_4_Vertical_Slice_to_a_Student_Route/adversarial/adversarial-result.json`. Supervisor gate evidence shows `npm test` passed (12 files / 233 tests), but this shell has no `npm`, `bun`, or `bunx`, so the focused Phase 4 rerun is recorded as a remaining verification blocker in the audit result.
 
 ## Phase 5 — Audit Refresh & Verification
 

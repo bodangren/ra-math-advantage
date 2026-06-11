@@ -1,0 +1,23 @@
+{
+  "status": "fail",
+  "summary": "Audit artifact restored after supervisor failure. Phase 4 route work and supervisor npm gate evidence were reviewed, but this shell has no npm/bun/bunx runner available to rerun the focused IM1 Phase 4 suite, so a blocking verification gap remains.",
+  "findings": [
+    "Unable to rerun focused Phase 4 checks locally because npm, bun, and bunx are unavailable in the execution shell."
+  ],
+  "evidence": [
+    "Reviewed measure/tracks/im1-practice-readiness_20260609/spec.md",
+    "Reviewed measure/tracks/im1-practice-readiness_20260609/plan.md Phase 4 lines 145-167",
+    "Reviewed measure/tracks/im1-practice-readiness_20260609/test-strategy.md",
+    "Reviewed changes since 89cbdff3798624b363f51f6069923b7f06de4deb via git diff --name-status 89cbdff3798624b363f51f6069923b7f06de4deb...HEAD",
+    "Reviewed apps/integrated-math-1/__tests__/practice/vertical-slice.test.tsx",
+    "Reviewed apps/integrated-math-1/app/student/practice/page.tsx",
+    "Reviewed apps/integrated-math-1/components/student/PracticeSessionProvider.tsx",
+    "Reviewed apps/integrated-math-1/convex/queue/queue.ts",
+    "Reviewed apps/integrated-math-1/convex/queue/sessions.ts",
+    "Supervisor gate log adversarial-attempt-2/gates.log: npm test passed; Test Files 12 passed (12), Tests 233 passed (233), EXIT_STATUS 0",
+    "Local command npm run ws:im1:test -- __tests__/practice/vertical-slice.test.tsx failed before test execution: npm: command not found",
+    "Local command npm test failed before test execution: npm: command not found",
+    "Local command bunx vitest run apps/integrated-math-1/__tests__/practice/vertical-slice.test.tsx failed before test execution: bunx: command not found",
+    "Local command command -v npm; command -v bun; command -v bunx returned no available runners"
+  ]
+}
