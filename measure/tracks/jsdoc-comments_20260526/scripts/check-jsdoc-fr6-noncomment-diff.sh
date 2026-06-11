@@ -74,13 +74,14 @@ if ! command -v git >/dev/null 2>&1; then
 fi
 
 cd "${REPO_ROOT}"
+read -r -a FR6_SCOPE_PATHS <<< "${FR6_SCOPE}"
 
 # Total non-comment +/- lines across all files in scope.
 # A line is treated as a JSDoc/comment line if its body (after the +/- prefix) is:
 #   - empty (only the +/- prefix)
 #   - a block-comment line: starts with optional whitespace then `*` or `//` or `/**` or `*/` or `/`
 # Everything else is a *source* change and counted as a violation.
-VIOLATION_LINES=$(git diff "${FR6_BASE}" -- "${FR6_SCOPE}" 2>/dev/null \
+VIOLATION_LINES=$(git diff "${FR6_BASE}" -- "${FR6_SCOPE_PATHS[@]}" 2>/dev/null \
     | grep -E '^[+-]' \
     | grep -vE '^[+-]{3}' \
     | grep -vE '^[+-]\s*$' \
@@ -101,7 +102,7 @@ if [ "${VIOLATION_LINES}" != "0" ]; then
         if [ "${count}" != "0" ]; then
             VIOLATING_FILES+=("${count} ${f}")
         fi
-    done < <(git diff --name-only "${FR6_BASE}" -- "${FR6_SCOPE}" 2>/dev/null)
+    done < <(git diff --name-only "${FR6_BASE}" -- "${FR6_SCOPE_PATHS[@]}" 2>/dev/null)
 fi
 
 if [ "${JSON_MODE}" = "1" ]; then

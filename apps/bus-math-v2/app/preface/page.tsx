@@ -13,9 +13,7 @@ export const dynamic = 'force-dynamic';
  *
  * @returns A Date object set to 2024-01-01T00:00:00.000Z.
  */
-function staticTimestamp(): Date {
-  return new Date('2024-01-01T00:00:00.000Z');
-}
+const staticTimestamp = () => new Date('2024-01-01T00:00:00.000Z');
 
 const introQuizActivity: ComprehensionCheckActivity = {
   id: 'preface-intro-quiz',
