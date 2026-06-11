@@ -59,10 +59,6 @@ own #2/#6, #3, and #5.
    *Consolidate shared auth onto `packages/core-auth`: promote BM2 `server.ts` local logic into the package (parameterized), thin the app wrappers, remove duplication/indirection. Audit #5.*
    *Link: [./tracks/unified-auth-monorepo_20260609/](./tracks/unified-auth-monorepo_20260609/)*
 
-- [x] **Track: IM1 Practice Readiness** — **COMPLETED**
-   *Took IM1 from 0% generator coverage to a working Module-1 vertical slice: coverage matrix landed; 6 deterministic Module-1 generators in `packages/math-content/src/problem-families/im1/` (all green at numSeeds=50); 6 STUB blueprints replaced with real worked/guided/independent specs; `/student/practice` route wired in apps/integrated-math-1; audit refreshed to 6/138 served with 132-skill long tail tracked in gap-queue + audit doc. Audit #2/#6 closed.*
-   *Link: [./archive/im1-practice-readiness_20260609/](./archive/im1-practice-readiness_20260609/)*
-
 - [ ] **Program: Skill Graph and Algorithmic Practice Rollout**
    *Before implementing any track in this program, read [Knowledge Space Architecture](./knowledge-space.md). Reusable packages own domain-neutral mechanisms only; proprietary math maps, English/GSE maps, standards catalogs, descriptors, and generated app outputs remain in app/domain content packages.*
    *Create a canonical directed weighted knowledge graph where skills are nodes and relationships are typed weighted edges, then project that graph into worked examples, guided practice, independent algorithmic practice, SRS inputs, teacher evidence, role-specific visualizations, and practice.v1 runtime activity maps.*
@@ -1018,6 +1014,10 @@ Sixteen candidate tracks identified from a full-roadmap review. Each is registry
 - [x] **Track: IM1/IM2 Standards Backfill** — **COMPLETED**
   *Author 77 IM1 and 41 IM2 competency-standard definitions, wire integrity checks into CI, resolve Tech Debt Registry items.*
   *Link: [./measure/archive/im1-im2-standards-backfill_20260605/](./measure/archive/im1-im2-standards-backfill_20260605/)*
+
+- [x] **Track: IM1 Practice Readiness** — **COMPLETED** (2026-06-11)
+  *Audit Remediation (2026-06-09) #2/#6. Took IM1 from 0% generator coverage to a working Module-1 vertical slice: coverage matrix landed; 6 deterministic Module-1 generators in `packages/math-content/src/problem-families/im1/` (all green at numSeeds=50); 6 STUB blueprints replaced with real worked/guided/independent specs; `/student/practice` route wired in apps/integrated-math-1; audit refreshed to 6/138 served with 132-skill long tail tracked in gap-queue + audit doc.*
+  *Link: [./archive/im1-practice-readiness_20260609/](./archive/im1-practice-readiness_20260609/)*
 
 ## Tech Debt Resolution (2026-04-29)
 
