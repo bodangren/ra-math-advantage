@@ -168,6 +168,133 @@ Verification gate each phase: correctness-QA harness + `tsc --noEmit` + boundary
 
 ## Phase 5 — Audit Refresh & Verification
 
-- [ ] Task: Update `skill-graph-im1-rollout-audit.md` with true coverage; track the long tail explicitly
-- [ ] Task: Final verification — QA harness, tsc, lint, doctor green
-- [ ] Task: Measure - User Manual Verification 'Phase 5'
+- [~] Task: Update `skill-graph-im1-rollout-audit.md` with true coverage; track the long tail explicitly
+  - Red-phase owned by MID (this attempt). Red test target:
+    `packages/math-content/src/problem-families/im1/__tests__/audit-diff.test.ts`
+    (per test-strategy §7 row Phase 5: "Targeted Red command:
+    `npm run -w packages/math-content test -- audit-diff` — Kind A
+    artifact paired with live-behavior proof").
+  - Red signal at HEAD: the audit doc still carries
+    `**Generated**: 2026-05-10` and `**0 of 138 skills (0%)**` and a
+    Module-1 row of `0/6 (0%)`. The new state is at least
+    `6/138 (≈4.3%)` with Module 1 at `6/6 (100%)`. The Red test asserts
+    (a) the doc's `Generated`/`Updated`/`Refreshed` timestamp is later
+    than `2026-05-10`, (b) the doc's generator-readiness ratio is
+    `≥ 6/138`, (c) the per-module Module-1 row reads `6/6`, (d) the
+    doc has a `Long tail` (or `Tracked long tail`) section that
+    accounts for the remaining 132 skills, and (e) the live-behavior
+    proof — IM1_GENERATORS registry + vertical-slice blueprint count
+    — agrees with the doc's numbers.
+  - Bounded scope (test-strategy §3 / §7): the file filter is a
+    `describe(...)` over the `audit-diff` filename; the targeted
+    command is `npm run -w packages/math-content test -- audit-diff`
+    (Kind A artifact + live-behavior proof). No full-suite smoke, no
+    watch mode.
+  - Boundary lint (test-strategy §4): the test lives under
+    `packages/math-content/src/problem-families/im1/__tests__/` and
+    reads the audit doc + rollout JSON from
+    `apps/integrated-math-1/curriculum/skill-graph/` and the
+    `measure/` root. Test files inside `__tests__/` reading data
+    files via `fs` is the established pattern (see
+    `coverage-matrix.test.ts` lines 65–78 and
+    `__tests__/exports.test.ts` precedent in test-strategy §2).
+- [~] Task: Final verification — QA harness, tsc, lint, doctor green
+  - Red-phase owned by MID (this attempt). The closeout gate per
+    test-strategy §7 row Phase 5 is
+    `npm test && npm run lint && npx tsc --noEmit && npm run doctor`.
+    The Red role owns the pre-conditions and a live-behavior QA
+    harness assertion; the Green role runs the aggregate and
+    updates the audit doc with a `Verification` section.
+  - Pre-conditions tested in `audit-diff.test.ts` (group "Closeout
+    gate — infrastructure liveness"): package.json scripts
+    (`lint`, `test`, `typecheck`, `doctor`) defined;
+    `measure/generated/architecture.json` and `routes.md` present
+    (doctor requires both); `scripts/check-monorepo-boundaries.mjs`
+    present; `scripts/monorepo-boundary-rules.json` present.
+  - Live-behavior QA harness assertion in the same file (group
+    "Closeout gate — QA harness live proof"): runs
+    `verifyGenerator(adapt(entry), { numSeeds: 50 })` against
+    every entry in `IM1_GENERATORS` and asserts the aggregate
+    verdict is `pass` with `failedChecks === 0`. This is the
+    live-behavior proof that the "QA harness" half of the closeout
+    gate is currently green for the IM1 track surface, matching
+    test-strategy §1 row Phase 5 ("doctor + qa-gate aggregate")
+    and test-strategy §2 ("Real IM1 generators register through a
+    single ci-gate.test.ts").
+  - Note on `tsc` and `lint` half: those run on the wider monorepo
+    surface. Phase 4 plan.md (line 153) recorded a pre-existing
+    red in `apps/integrated-math-1/__tests__/setup/convex-provider.test.ts`
+    (`getConvexUrl` finding) that is unrelated to Phase 5
+    (no Phase 4 or Phase 5 file imports `getConvexUrl`). A Phase 5
+    Red test that pins the wider-monorepo `tsc`/`lint` exit
+    status would fail because of that pre-existing finding,
+    which would be a false Red. The closeout-gate test therefore
+    targets (a) the IM1-track surface only (harness) and
+    (b) the doctor pre-conditions; the Green role runs the
+    full gate and triages any pre-existing findings before
+    claiming Phase 5 complete.
+- [~] Task: Measure - User Manual Verification 'Phase 5' [deferred — Manual Verification role]
+  - This task is the user-facing closeout (per the convention set
+    by Phase 1 Task 4 and Phase 4 Task 2). The Red role's
+    deliverable is the audit-diff Red test above plus the closeout
+    gate pre-conditions; the user runs the manual closeout
+    (reviewing the audit doc, the QA harness output, the
+    `tsc`/`lint`/`doctor` aggregate, and any drift between the
+    audit's claims and the live state). Marking [~] deferred to
+    the Manual Verification role mirrors the Phase 4 Task 2
+    handoff.
+
+### Phase 5 Red-phase aggregate (this attempt)
+
+- **Red test file** (new):
+  `packages/math-content/src/problem-families/im1/__tests__/audit-diff.test.ts`
+  (15 tests across 6 describe groups).
+- **Targeted Red command**:
+  `bunx vitest run packages/math-content/src/problem-families/im1/__tests__/audit-diff.test.ts`
+  (substitute for `npm run -w packages/math-content test -- audit-diff`
+  — this shell has no `npm`/`node`, only `bunx`; the
+  test-strategy §7 row Phase 5 "audit-diff" file-filter still
+  narrows to exactly the one new file, no full-suite smoke, no
+  watch mode).
+- **Result**: **Test Files 1 failed (1); Tests 9 failed | 6 passed (15); exit code 1; Duration 1.10s.**
+  The 9 failing tests are the Phase 5 Task 1 artifact/contract
+  assertions, each pinned to a specific missing or wrong line in
+  `measure/skill-graph-im1-rollout-audit.md`:
+  1. `the audit doc has been re-stamped past the original 2026-05-10 date` — found only `2026-05-10`.
+  2. `the audit doc no longer advertises the original Generated stamp as its sole timestamp` — `**Generated**: 2026-05-10` is still the only stamp.
+  3. `audit doc declares served count ≥ 6/138 (not the stale 0/138)` — doc still claims `0/138`.
+  4. `audit doc declares a non-zero "served" or "ready" ratio in the Generator Readiness section` — section reads `0 of 138 skills (0%)`.
+  5. `Module-by-Module Coverage table shows Module 1 with 6/6 readiness (not 0/6)` — Module-1 row still `0/6 (0%)`.
+  6. `audit doc contains an explicit "Long tail" / "Tracked long tail" section` — no such section.
+  7. `long-tail section accounts for the 132 skills outside the vertical slice` — no long-tail section to match.
+  8. `live IM1_GENERATORS registry count agrees with the doc's Generator Readiness served count` — registry=6, doc=0.
+  9. `live vertical-slice real-blueprint count agrees with the doc's Module-1 row` — live=6, doc=0.
+  The 6 passing tests are the Phase 5 Task 2 closeout-gate
+  pre-conditions + QA-harness live proof; they pass at HEAD
+  because (a) the closeout-gate infrastructure (`lint`/`test`/
+  `typecheck`/`doctor` scripts, `architecture.json`, `routes.md`,
+  boundary linter) is already in place, and (b) the IM1 QA
+  harness is already green for the 6 module-1 generators landed
+  in Phase 2 Green commit `9b90f867`. These are the
+  "already satisfied with evidence" assertions per the Red-phase
+  rule, not a false Red.
+- **build-graph protocol (AGENTS.md Graph-Aware Mode)**:
+  pre-Red `build-graph stats ./graph.db` → 13 625 nodes, 20 286
+  edges, 2 056 files; `build-graph search IM1_GENERATORS`,
+  `IM1_PROBLEM_FAMILIES`, `buildCoverageMatrix` all return
+  zero results — the graph was last regenerated on 2026-06-11
+  06:10 and does not yet reflect the Phase 2/3/4 IM1 module
+  additions. The test-strategy §6 + Phase 1 plan.md finding
+  (`callers IM3_PROBLEM_FAMILIES → none`) predicts this; the
+  new audit-diff test does not consume the graph (it reads the
+  audit doc + rollout JSON via `fs`, same pattern as
+  `coverage-matrix.test.ts` lines 65–78), so graph staleness
+  does not affect the Red signal. A follow-up
+  `build-graph update` for the IM1 files is a Green-role
+  concern.
+- **Pre-existing red noted in plan.md (Phase 4 line 153)**: the
+  `apps/integrated-math-1/__tests__/setup/convex-provider.test.ts`
+  `getConvexUrl` finding is unrelated to Phase 5. The new
+  audit-diff test deliberately does not pin the wider-monorepo
+  `tsc --noEmit` or `eslint .` exit status, so the test file
+  itself does not regress on that finding.
