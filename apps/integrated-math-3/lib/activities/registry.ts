@@ -1,4 +1,4 @@
-import { lazy } from 'react';
+import { lazy, type ComponentType } from 'react';
 import {
   registerActivity,
   getActivityComponent,
@@ -10,10 +10,11 @@ import {
 // All registrations go into the shared package registry.
 export { registerActivity, getActivityComponent, getRegisteredActivityKeys, clearActivityRegistry };
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+type ActivityComponent = ComponentType<any>;
+
 /** Placeholder component registered for activity keys that are not yet implemented. */
-function PlaceholderComponent() {
-  return null;
-}
+const PlaceholderComponent: ActivityComponent = () => null;
 
 const PLACEHOLDER_KEYS = [
   'equation-solver',

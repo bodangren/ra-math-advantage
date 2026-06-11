@@ -1,0 +1,20 @@
+{
+  "status": "fail",
+  "summary": "Phase 6 is not passable: adversarial FR-6 proof initially found a non-documentation refactor in registry.ts, and restoring the original declaration shape leaves the Phase 6 coverage guard failing because build-graph does not attach JSDoc to the internal const-arrow PlaceholderComponent.",
+  "findings": [
+    "Blocking: apps/integrated-math-3/lib/activities/registry.ts was changed from a typed const arrow component to a function declaration, violating spec FR-6's documentation-only constraint; the local audit fix restores the original declaration shape.",
+    "Blocking: after restoring FR-6 compliance, bash measure/tracks/jsdoc-comments_20260526/scripts/check-jsdoc-coverage-im3-lib.sh fails with 1 NULL internal function summary for PlaceholderComponent in apps/integrated-math-3/lib/activities/registry.ts.",
+    "Blocking: phase-6-red-baseline.md and plan.md claim all Phase 6 graph nodes are package_id='integrated-math-3', but live graph.db maps 109 of 119 apps/integrated-math-3/lib functions to package_id='root'. The current coverage guard passes by path rather than package isolation, so the scope-isolation evidence is false."
+  ],
+  "evidence": [
+    "Read measure/tracks/jsdoc-comments_20260526/spec.md, plan.md Phase 6, test-strategy.md, phase-6-red-baseline.md, phase-6-verification-report.md, and Phase 6 guard scripts.",
+    "git diff 7c2dfd05f6b6eb75091816b45c12d02c7cf055c3..HEAD -- apps/integrated-math-3/lib/activities/registry.ts showed ComponentType import/type alias removal and const-arrow PlaceholderComponent converted to function declaration.",
+    "FR6_BASE=7c2dfd05f6b6eb75091816b45c12d02c7cf055c3 FR6_SCOPE='apps/integrated-math-3/lib/' bash measure/tracks/jsdoc-comments_20260526/scripts/check-jsdoc-fr6-noncomment-diff.sh initially failed with 7 non-comment +/- lines in registry.ts.",
+    "After restoring registry.ts declaration shape and running build-graph update ./graph.db apps/integrated-math-3/lib/activities/registry.ts, the FR-6 guard passed with 0 non-comment +/- lines.",
+    "bash measure/tracks/jsdoc-comments_20260526/scripts/check-jsdoc-coverage-im3-lib.sh failed after the FR-6 fix: NULL summaries total 1, internal 1, file apps/integrated-math-3/lib/activities/registry.ts.",
+    "build-graph query ./graph.db \"SELECT file_path, name, line_start, summary, tags FROM nodes WHERE type='function' AND file_path LIKE '%/apps/integrated-math-3/lib/activities/registry.ts'\" returned PlaceholderComponent with summary NULL.",
+    "build-graph query ./graph.db \"SELECT package_id, COUNT(*) FROM nodes WHERE type='function' AND file_path LIKE '%/apps/integrated-math-3/lib/%' GROUP BY package_id\" returned integrated-math-3=10 and root=109.",
+    "bash measure/tracks/jsdoc-comments_20260526/scripts/check-jsdoc-line-length-im3-lib.sh passed with 0 violations; check-phase-verification-6.sh passed with approved automation fields.",
+    "npm test, npm run lint --workspace=apps/integrated-math-3, and npx tsc --noEmit -p apps/integrated-math-3/tsconfig.json could not run because npm and npx are not installed in PATH in this environment."
+  ]
+}
