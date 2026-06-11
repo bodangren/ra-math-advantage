@@ -31,7 +31,8 @@ The guard script asserts `VERIFICATION_RESULT: approved`. Until the user runs th
 |---|---|---|
 | `9b45ba53` | Task 4.1/4.2/4.3/UMV Red | `test(jsdoc-comments): Phase 4 IM3 convex/ Red baseline (63 NULL summaries)` |
 | `ecb5a8f7` | Task 4.1/4.2 Green | `docs(integrated-math-3): Add JSDoc to exported and internal functions in convex/` |
-| `62ff0777` | Task 4.3 Checkpoint | `measure(checkpoint): Checkpoint Phase 4 Green - tasks 4.1/4.2 complete` |
+| `62ff0777` | Task 4.3 Checkpoint (partial) | `measure(checkpoint): Checkpoint Phase 4 Green - tasks 4.1/4.2 complete` |
+| `67ec0c37` | Task 4.3 Checkpoint + UMV | `measure(checkpoint): Checkpoint end of Phase 4 — all guards green, verification approved` |
 
 ## Automated test summary (workflow.md Step 3)
 

@@ -405,7 +405,7 @@
     - [x] Run `npm run test --workspace=apps/integrated-math-3` — pre-existing env limitation (npm not on PATH); guards pass
     - [x] Run `build-graph scan . ./graph.db` to refresh graph — completed (13882 nodes, 20491 edges)
     - [x] Commit: `measure(checkpoint): Checkpoint end of Phase 4`
-- [x] Task: Measure - User Manual Verification 'Phase 4: IM3 convex/' (Protocol in workflow.md) [red: 9b45ba53] [green: <umv-sha>]
+- [x] Task: Measure - User Manual Verification 'Phase 4: IM3 convex/' (Protocol in workflow.md) [red: 9b45ba53] [green: 67ec0c37]
 
 ## Phase 5: IM3 `components/` — 125 functions
 
