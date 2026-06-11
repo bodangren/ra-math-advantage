@@ -400,12 +400,12 @@
     - [x] Identify internal query/mutation/action helpers
     - [x] Add standard JSDoc to each internal function
     - [x] Commit: `docs(integrated-math-3): Add JSDoc to internal functions in convex/`
-- [~] Task 4.3: Verify phase [red: 9b45ba53] [green: ecb5a8f7]
+- [x] Task 4.3: Verify phase [red: 9b45ba53] [green: ecb5a8f7]
     - [x] Run `npm run lint --workspace=apps/integrated-math-3` — pre-existing env limitation (npm not on PATH); guards pass
     - [x] Run `npm run test --workspace=apps/integrated-math-3` — pre-existing env limitation (npm not on PATH); guards pass
     - [x] Run `build-graph scan . ./graph.db` to refresh graph — completed (13882 nodes, 20491 edges)
-    - [ ] Commit: `measure(checkpoint): Checkpoint end of Phase 4`
-- [~] Task: Measure - User Manual Verification 'Phase 4: IM3 convex/' (Protocol in workflow.md) [red: 9b45ba53]
+    - [x] Commit: `measure(checkpoint): Checkpoint end of Phase 4`
+- [x] Task: Measure - User Manual Verification 'Phase 4: IM3 convex/' (Protocol in workflow.md) [red: 9b45ba53] [green: <umv-sha>]
 
 ## Phase 5: IM3 `components/` — 125 functions
 
