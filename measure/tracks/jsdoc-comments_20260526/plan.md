@@ -320,18 +320,18 @@
 >
 > **Plan-vs-graph scope delta:** plan heading quotes 253 functions; live graph reports 188 total (185 NULL). The delta reflects scope refinement since plan authorship (excluded `convex/_generated/`, `__tests__/`, `node_modules/`, etc., and excluded the 3 functions that are already documented). Live graph count is the acceptance source of truth per test-strategy.md §6.
 
-- [~] Task 3.1: Add JSDoc to exported functions in BM2 `app/`, `convex/`, `scripts/`, `other/` [red: a615f113]
-    - [ ] Identify exported functions across all remaining BM2 directories
-    - [ ] Add standard JSDoc to each exported function
-    - [ ] Commit: `docs(bus-math-v2): Add JSDoc to exported functions in app/convex/scripts/other/`
-- [~] Task 3.2: Add JSDoc to internal functions in BM2 `app/`, `convex/`, `scripts/`, `other/` [red: a615f113]
-    - [ ] Identify internal functions across all remaining BM2 directories
-    - [ ] Add standard JSDoc to each internal function
-    - [ ] Commit: `docs(bus-math-v2): Add JSDoc to internal functions in app/convex/scripts/other/`
+- [x] Task 3.1: Add JSDoc to exported functions in BM2 `app/`, `convex/`, `scripts/`, `other/` [red: a615f113] [green: 3854b648]
+    - [x] Identify exported functions across all remaining BM2 directories
+    - [x] Add standard JSDoc to each exported function
+    - [x] Commit: `docs(bus-math-v2): Add JSDoc to functions in app/convex/scripts/other/` (3854b648)
+- [x] Task 3.2: Add JSDoc to internal functions in BM2 `app/`, `convex/`, `scripts/`, `other/` [red: a615f113] [green: 3854b648]
+    - [x] Identify internal functions across all remaining BM2 directories
+    - [x] Add standard JSDoc to each internal function
+    - [x] Commit: `docs(bus-math-v2): Add JSDoc to functions in app/convex/scripts/other/` (3854b648)
 - [~] Task 3.3: Verify phase [red: a615f113]
-    - [ ] Run `npm run lint --workspace=apps/bus-math-v2`
+    - [x] Run `npm run lint --workspace=apps/bus-math-v2` — pre-existing errors only (ESLint config issue with pages directory)
     - [ ] Run `npm run test --workspace=apps/bus-math-v2`
-    - [ ] Run `build-graph scan . ./graph.db` to refresh graph
+    - [x] Run `build-graph scan . ./graph.db` to refresh graph — graph refreshed (13,882 nodes / 20,491 edges)
     - [ ] Commit: `measure(checkpoint): Checkpoint end of Phase 3`
 - [~] Task: Measure - User Manual Verification 'Phase 3: BM2 remaining dirs' (Protocol in workflow.md) [red: a615f113]
 >
