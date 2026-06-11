@@ -409,20 +409,24 @@
 
 ## Phase 5: IM3 `components/` — 125 functions
 
-- [ ] Task 5.1: Add JSDoc to exported functions in IM3 `components/`
+> **Red baseline:** 116 functions with NULL summaries (90 exported + 26 internal; 3 already documented). See [`phase-5-red-baseline.md`](./phase-5-red-baseline.md). Guards: `scripts/check-jsdoc-coverage-components-im3.sh`, `scripts/check-jsdoc-line-length-components-im3.sh`, `scripts/check-phase-verification-5.sh`. Plan-vs-graph scope delta documented in `phase-5-red-baseline.md` §"Plan-vs-graph scope delta".
+> **Red baseline (NFR-1 supplement):** 0 JSDoc lines currently exceed 120 chars in scope (the 3 already-documented functions all stay within the cap). The line-length guard is included from the start as a regression net — Green acceptance requires it to remain at 0 violations after Phase 5.
+> **Red baseline (Manual Verification supplement):** `VERIFICATION_RESULT: pending` in `phase-5-verification-report.md`. Guard script: `scripts/check-phase-verification-5.sh`. See `phase-5-red-baseline.md` §"User Manual Verification supplement".
+
+- [~] Task 5.1: Add JSDoc to exported functions in IM3 `components/` [red: <sha>]
     - [ ] Run `grep -rn "export function\|export async function\|export default function" apps/integrated-math-3/components/`
     - [ ] Add standard JSDoc to each exported function
     - [ ] Commit: `docs(integrated-math-3): Add JSDoc to exported functions in components/`
-- [ ] Task 5.2: Add JSDoc to internal functions in IM3 `components/`
+- [~] Task 5.2: Add JSDoc to internal functions in IM3 `components/` [red: <sha>]
     - [ ] Identify internal helper functions, event handlers, and callbacks
     - [ ] Add standard JSDoc to each internal function
     - [ ] Commit: `docs(integrated-math-3): Add JSDoc to internal functions in components/`
-- [ ] Task 5.3: Verify phase
+- [~] Task 5.3: Verify phase [red: <sha>]
     - [ ] Run `npm run lint --workspace=apps/integrated-math-3`
     - [ ] Run `npm run test --workspace=apps/integrated-math-3`
     - [ ] Run `build-graph scan . ./graph.db` to refresh graph
     - [ ] Commit: `measure(checkpoint): Checkpoint end of Phase 5`
-- [ ] Task: Measure - User Manual Verification 'Phase 5: IM3 components/' (Protocol in workflow.md)
+- [~] Task: Measure - User Manual Verification 'Phase 5: IM3 components/' (Protocol in workflow.md) [red: <sha>]
 
 ## Phase 6: IM3 `lib/` — 108 functions
 
