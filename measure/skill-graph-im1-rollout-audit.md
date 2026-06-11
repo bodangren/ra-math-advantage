@@ -158,5 +158,5 @@ Each long-tail skill retains its `.pending.test.ts` in `_pending/` until promote
 | `projection/srs-input.json` | 73 KB | 138 SRS entries |
 | `projection/teacher-evidence-map.json` | 136 KB | 77 standards + 138 skills coverage |
 | `standards-review-queue.json` | ~0 KB | Empty (no gaps) |
-| `generator-gap-queue.json` | 64 KB | 138 skills needing generators |
+| `generator-gap-queue.json` | 60 KB | 132 skills needing generators (6 Module-1 served, removed from queue) |
 | `component-gap-queue.json` | 18 KB | 42 component gaps |
