@@ -432,20 +432,27 @@
 
 ## Phase 6: IM3 `lib/` — 108 functions
 
-- [ ] Task 6.1: Add JSDoc to exported functions in IM3 `lib/`
-    - [ ] Run `grep -rn "export function\|export async function" apps/integrated-math-3/lib/`
-    - [ ] Add standard JSDoc to each exported function
+> **Red baseline:** 97 functions with NULL summaries (64 exported + 33 internal; 22 already documented). Live graph: 119 total functions, all under `package_id='integrated-math-3'` (scope-isolated). See [`phase-6-red-baseline.md`](./phase-6-red-baseline.md). Guards: `scripts/check-jsdoc-coverage-im3-lib.sh`, `scripts/check-jsdoc-line-length-im3-lib.sh`, `scripts/check-phase-verification-6.sh`.
+>
+> **Plan-vs-graph scope delta:** plan.md heading says "108 functions"; live graph reports 119 total / 97 NULL (per test-strategy.md §6, the live graph is the acceptance source of truth — the 11% delta reflects pre-spec scope refinement and does not change Phase 6 scope).
+>
+> **NFR-1 supplement:** 0 JSDoc lines currently exceed 120 chars in scope (the 22 already-documented functions all stay within the cap). The line-length guard is included from the start as a regression net — Green acceptance requires it to remain at 0 violations after Phase 6.
+
+- [~] Task 6.1: Add JSDoc to exported functions in IM3 `lib/` [red: <this-commit>]
+    - [ ] Run `grep -rn "export function\|export async function\|export const" apps/integrated-math-3/lib/`
+    - [ ] Add standard JSDoc to each exported function (64 NULL exported functions across 18 files; top concentration: `curriculum/audit.ts` 3, `convex/server.ts` 5, `progress/published-curriculum.ts` 7, `study/srs.ts` 5, `workbooks.client.ts` 7, `workbooks.ts` 3)
     - [ ] Commit: `docs(integrated-math-3): Add JSDoc to exported functions in lib/`
-- [ ] Task 6.2: Add JSDoc to internal functions in IM3 `lib/`
-    - [ ] Identify internal helper functions
+- [~] Task 6.2: Add JSDoc to internal functions in IM3 `lib/` [red: <this-commit>]
+    - [ ] Identify internal helper functions (33 NULL internal across 12 files; top concentration: `curriculum/audit.ts` 14, `auth/server.ts` 5, `student/dashboard.ts` 4, `teacher/data-export.ts` 4, `phase-completion/client.ts` 2, `convex/server.ts` 1, `progress/published-curriculum.ts` 1)
     - [ ] Add standard JSDoc to each internal function
     - [ ] Commit: `docs(integrated-math-3): Add JSDoc to internal functions in lib/`
-- [ ] Task 6.3: Verify phase
+- [~] Task 6.3: Verify phase [red: <this-commit>]
     - [ ] Run `npm run lint --workspace=apps/integrated-math-3`
     - [ ] Run `npm run test --workspace=apps/integrated-math-3`
     - [ ] Run `build-graph scan . ./graph.db` to refresh graph
+    - [ ] Run the 3 Phase 6 guards (`check-jsdoc-coverage-im3-lib.sh` + `check-jsdoc-line-length-im3-lib.sh` + `check-phase-verification-6.sh`) — all must PASS
     - [ ] Commit: `measure(checkpoint): Checkpoint end of Phase 6`
-- [ ] Task: Measure - User Manual Verification 'Phase 6: IM3 lib/' (Protocol in workflow.md)
+- [~] Task: Measure - User Manual Verification 'Phase 6: IM3 lib/' (Protocol in workflow.md) [red: <this-commit>]
 
 ## Phase 7: IM3 `app/`, `scripts/`, `other/` — 119 functions
 
