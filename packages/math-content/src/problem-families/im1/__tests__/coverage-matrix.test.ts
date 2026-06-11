@@ -210,9 +210,10 @@ describe('Coverage matrix — integration with rollout-audit (Phase 1, Task 1↔
     const audit = readFileSync(AUDIT_MD, 'utf-8');
     // The audit's "Total" row in the Module-by-Module Coverage table
     // is the canonical claim. We assert both the "| 138" token and
-    // the "0/138" readiness ratio to be robust to wording drift.
+    // a readiness ratio over 138 skills (Phase 5 refreshes the
+    // ratio from 0/138 to reflect implemented generators; FR5/AC4).
     expect(audit).toMatch(/Total\s*\|\s*\d+\s*\|\s*138\s*\|\s*401/);
-    expect(audit).toContain('0/138');
+    expect(audit).toMatch(/\d+\/138/);
   });
 
   it('matrix totalSkills agrees with the rollout nodes.json (kind === "skill")', () => {
