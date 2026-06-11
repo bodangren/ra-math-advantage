@@ -14,6 +14,11 @@ interface LandingUnit {
   description?: string | null;
 }
 
+/**
+ * Creates a Convex HTTP client for server-side use.
+ *
+ * @returns A new ConvexHttpClient instance configured with the project URL.
+ */
 function getConvexClient() {
   return new ConvexHttpClient(getConvexUrl());
 }
@@ -39,6 +44,9 @@ const outcomes = [
   },
 ];
 
+/**
+ * Page wrapper for the home/landing page.
+ */
 export default async function Home() {
   const convex = getConvexClient();
 

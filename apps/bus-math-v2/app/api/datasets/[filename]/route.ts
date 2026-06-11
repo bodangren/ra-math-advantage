@@ -3,6 +3,14 @@ import { NextRequest, NextResponse } from 'next/server';
 import path from 'path';
 import * as fs from 'fs';
 
+/**
+ * Serves a dataset CSV file by filename for authenticated users.
+ *
+ * @param request - The incoming Next.js request with session cookie.
+ * @param context - Route params containing the filename string.
+ * @returns A CSV file response with appropriate content headers.
+ * @throws Returns 400 for invalid filenames, 404 if file not found.
+ */
 export async function GET(
   request: NextRequest,
   context: { params: Promise<{ filename: string }> }

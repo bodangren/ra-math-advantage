@@ -8,6 +8,14 @@ import {
   STALE_ENTRY_THRESHOLD_MS,
 } from '@math-platform/rate-limiter';
 
+/**
+ * Checks and increments the login rate limit for a given IP hash,
+ * resetting the window if expired. Handles concurrent insert races.
+ *
+ * @param ctx - Mutation context with database access.
+ * @param args - Object containing the hashed IP address.
+ * @returns The rate limit result indicating allowed/denied status.
+ */
 export async function checkAndIncrementLoginRateLimitHandler(
   ctx: MutationCtx,
   args: { ipHash: string }
@@ -71,6 +79,14 @@ export const checkAndIncrementLoginRateLimit = internalMutation({
   handler: checkAndIncrementLoginRateLimitHandler,
 });
 
+/**
+ * Removes expired login rate limit entries older than the stale threshold.
+ * Requires admin authorization via authenticated identity.
+ *
+ * @param ctx - Mutation context with database and auth access.
+ * @returns An object with the count of deleted entries.
+ * @throws {Error} If the user is unauthenticated or not an admin.
+ */
 export async function cleanupStaleLoginRateLimitsHandler(ctx: MutationCtx) {
   const identity = await ctx.auth.getUserIdentity();
   if (!identity) throw new Error('Unauthenticated');

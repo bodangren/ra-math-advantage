@@ -15,6 +15,14 @@ const querySchema = z.object({
   studentId: z.string().trim().min(1, 'studentId is required'),
 });
 
+/**
+ * Returns an AI-generated error summary for a student's lesson submissions.
+ *
+ * @param request - The incoming request with lessonId and studentId query params.
+ * @returns A JSON response with deterministic and AI-generated summaries.
+ * @throws Returns 400 for invalid params, 403 for non-teachers,
+ *   404 if student/submissions not found, 500 on internal errors.
+ */
 export async function GET(request: Request) {
   try {
     const claims = await requireActiveTeacherRequestClaims(request);

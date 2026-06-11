@@ -6,6 +6,13 @@ import { fetchInternalQuery, internal } from '@/lib/convex/server';
 import { StudentCompetencyDetailGrid } from '@/components/teacher/StudentCompetencyDetailGrid';
 import type { StudentCompetencyDetail } from '@math-platform/teacher-reporting-core';
 
+/**
+ * Page wrapper for viewing a specific student's competency detail.
+ *
+ * @param props - The page props.
+ * @param props.params - The route parameters containing the student ID.
+ * @returns The student competency detail page or a redirect.
+ */
 export default async function TeacherStudentCompetencyPage({ params }: { params: { studentId: string } }) {
   const claims = await requireTeacherSessionClaims('/teacher/students/[studentId]/competency');
 

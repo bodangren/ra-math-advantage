@@ -4,6 +4,11 @@ import { fetchInternalQuery, internal } from '@/lib/convex/server';
 import type { CompetencyHeatmapResponse } from '@math-platform/teacher-reporting-core';
 import CompetencyHeatmapClient from './CompetencyHeatmapClient';
 
+/**
+ * Page wrapper for the teacher competency heatmap view.
+ *
+ * @returns The competency heatmap client component.
+ */
 export default async function TeacherCompetencyPage() {
   const claims = await requireTeacherSessionClaims('/teacher/competency');
 

@@ -34,10 +34,12 @@ const COMPLETION_QUEUE_KEY = 'completion-queue';
 const CURRENT_USER_KEY = 'completion-queue-user';
 const MAX_RETRY_COUNT = 3;
 
+/** Generates a random UUID for idempotent completion requests. */
 function generateIdempotencyKey(): string {
   return crypto.randomUUID();
 }
 
+/** Extracts the lesson slug from the current URL pathname if it matches the student lesson route. */
 function getLessonSlugFromPathname(): string | null {
   if (typeof window === 'undefined') return null;
 
@@ -51,6 +53,7 @@ function getLessonSlugFromPathname(): string | null {
   }
 }
 
+/** Reads the cached current user ID from localStorage. */
 function getCurrentUserId(): string | null {
   try {
     return localStorage.getItem(CURRENT_USER_KEY);
@@ -60,6 +63,7 @@ function getCurrentUserId(): string | null {
   }
 }
 
+/** Saves the given user ID to localStorage for queue ownership tracking. */
 function setCurrentUserId(userId: string): void {
   try {
     localStorage.setItem(CURRENT_USER_KEY, userId);
@@ -68,6 +72,7 @@ function setCurrentUserId(userId: string): void {
   }
 }
 
+/** Removes the offline completion queue from localStorage. */
 function clearCompletionQueue(): void {
   try {
     localStorage.removeItem(COMPLETION_QUEUE_KEY);
@@ -76,6 +81,12 @@ function clearCompletionQueue(): void {
   }
 }
 
+/**
+ * Reads the offline completion queue from localStorage, optionally filtered
+ * by user ID. Clears the queue if legacy items without userId are detected.
+ * @param userId - If provided, only returns completions for this user.
+ * @returns The filtered list of queued completions.
+ */
 function getCompletionQueue(userId?: string): QueuedCompletion[] {
   try {
     const stored = localStorage.getItem(COMPLETION_QUEUE_KEY);
@@ -101,6 +112,7 @@ function getCompletionQueue(userId?: string): QueuedCompletion[] {
   }
 }
 
+/** Persists the completion queue to localStorage. */
 function saveCompletionQueue(queue: QueuedCompletion[]): void {
   try {
     localStorage.setItem(COMPLETION_QUEUE_KEY, JSON.stringify(queue));
@@ -109,18 +121,27 @@ function saveCompletionQueue(queue: QueuedCompletion[]): void {
   }
 }
 
+/** Adds a completion to the offline queue in localStorage. */
 function enqueueCompletion(completion: QueuedCompletion): void {
   const queue = getCompletionQueue();
   queue.push(completion);
   saveCompletionQueue(queue);
 }
 
+/** Removes a completion from the offline queue by its idempotency key. */
 function dequeueCompletion(idempotencyKey: string): void {
   const queue = getCompletionQueue();
   const filtered = queue.filter((c) => c.idempotencyKey !== idempotencyKey);
   saveCompletionQueue(filtered);
 }
 
+/**
+ * Manages phase completion with an offline queue fallback. On success the
+ * phase is marked complete via the API; on failure the request is queued in
+ * localStorage and retried when the user returns.
+ * @param options - Lesson ID, phase number, phase type, and callbacks.
+ * @returns An object with `completePhase`, `isCompleting`, and `error`.
+ */
 export function usePhaseCompletion({
   lessonId,
   phaseNumber,

@@ -20,6 +20,14 @@ const requestSchema = z.object({
   students: z.array(studentSchema).min(1).max(100),
 });
 
+/**
+ * Creates multiple student accounts in bulk for the authenticated teacher.
+ *
+ * @param request - The incoming request with JSON body containing a students
+ *   array (up to 100 entries) with optional name and username fields.
+ * @returns A JSON response with totalCreated, organizationId, and student details.
+ * @throws Returns 400 for validation errors, 403 for non-teachers, 500 on errors.
+ */
 export async function POST(request: Request) {
   try {
     const claimsOrResponse = await requireActiveTeacherRequestClaims(request);

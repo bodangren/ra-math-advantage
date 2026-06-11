@@ -7,6 +7,14 @@ const draftSchema = z.object({
   draftData: z.array(z.array(z.any())),
 });
 
+/**
+ * Fetches the latest draft for a spreadsheet activity.
+ *
+ * @param request - The incoming request with session cookie.
+ * @param params - Route params containing the activityId string.
+ * @returns A JSON response with draftData and updatedAt, or null if no draft exists.
+ * @throws Returns 400 for invalid IDs, 500 on internal errors.
+ */
 export async function GET(
   request: Request,
   { params }: { params: Promise<{ activityId: string }> }
@@ -50,6 +58,15 @@ export async function GET(
   }
 }
 
+/**
+ * Creates or updates a draft submission for a spreadsheet activity.
+ *
+ * @param request - The incoming request with session cookie and JSON body
+ *   containing draftData (2D array of cell values).
+ * @param params - Route params containing the activityId string.
+ * @returns A JSON response with success flag and updatedAt timestamp.
+ * @throws Returns 400 for invalid payload, 500 on internal errors.
+ */
 export async function POST(
   request: Request,
   { params }: { params: Promise<{ activityId: string }> }

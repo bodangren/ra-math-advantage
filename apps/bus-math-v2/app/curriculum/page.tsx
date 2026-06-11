@@ -8,6 +8,9 @@ import type { UnitCurriculum } from "./types";
 
 export const dynamic = 'force-dynamic';
 
+/**
+ * Page wrapper for the curriculum overview page.
+ */
 export default async function CurriculumPage() {
   const convex = new ConvexHttpClient(getConvexUrl());
 
@@ -180,6 +183,14 @@ export default async function CurriculumPage() {
 /* ─────────────────────────────────────────────
  * Unit teaser card — light background variant
  * ─────────────────────────────────────────── */
+/**
+ * Teaser card for a unit on a light background.
+ *
+ * @param props - The component props.
+ * @param props.unit - The unit curriculum data to display.
+ * @param props.delay - Animation delay in milliseconds.
+ * @returns The unit teaser JSX element.
+ */
 function UnitTeaser({ unit, delay }: { unit: UnitCurriculum; delay: number }) {
   const deliverable = unit.lessons[0]?.description ?? unit.description;
 
@@ -217,6 +228,14 @@ function UnitTeaser({ unit, delay }: { unit: UnitCurriculum; delay: number }) {
 /* ─────────────────────────────────────────────
  * Unit teaser card — dark background variant
  * ─────────────────────────────────────────── */
+/**
+ * Teaser card for a unit on a dark background.
+ *
+ * @param props - The component props.
+ * @param props.unit - The unit curriculum data to display.
+ * @param props.delay - Animation delay in milliseconds.
+ * @returns The dark variant unit teaser JSX element.
+ */
 function UnitTeaserDark({ unit, delay }: { unit: UnitCurriculum; delay: number }) {
   const deliverable = unit.lessons[0]?.description ?? unit.description;
 

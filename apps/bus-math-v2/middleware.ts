@@ -5,6 +5,13 @@ import { SESSION_COOKIE_NAME, getAuthJwtSecret } from '@math-platform/core-auth/
 
 const DEV_COMPONENT_REVIEW_PATTERN = /^\/dev\/component-review/;
 
+/**
+ * Extracts a cookie value from a raw Cookie header string by key name.
+ *
+ * @param cookieHeader - The raw Cookie header value, or null.
+ * @param key - The cookie name to search for.
+ * @returns The decoded cookie value, or null if not found.
+ */
 function getCookieValueFromHeader(cookieHeader: string | null, key: string): string | null {
   if (!cookieHeader) return null;
 
@@ -25,6 +32,14 @@ function getCookieValueFromHeader(cookieHeader: string | null, key: string): str
   return null;
 }
 
+/**
+ * Next.js middleware that protects `/dev/component-review` routes by verifying
+ * the session token and requiring an admin role. Unauthenticated requests are
+ * redirected to the login page.
+ *
+ * @param request - The incoming Next.js request.
+ * @returns A NextResponse to continue, redirect, or reject the request.
+ */
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 

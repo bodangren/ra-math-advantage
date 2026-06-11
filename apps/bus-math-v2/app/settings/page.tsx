@@ -7,6 +7,9 @@ import { getServerSessionClaims } from "@/lib/auth/server";
 import { fetchInternalQuery, internal } from "@/lib/convex/server";
 import type { Id } from "@/convex/_generated/dataModel";
 
+/**
+ * Page wrapper for the user settings page.
+ */
 export default async function SettingsPage() {
   const claims = await getServerSessionClaims();
 

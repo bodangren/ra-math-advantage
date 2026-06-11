@@ -15,6 +15,12 @@ interface LoginBody {
   password?: string;
 }
 
+/**
+ * Extracts the client IP address from request headers.
+ *
+ * @param request - The incoming HTTP request.
+ * @returns The client IP from x-forwarded-for or x-real-ip, defaulting to 127.0.0.1.
+ */
 function getClientIp(request: Request): string {
   const forwardedFor = request.headers.get('x-forwarded-for');
   if (forwardedFor) {
@@ -27,6 +33,14 @@ function getClientIp(request: Request): string {
   return '127.0.0.1';
 }
 
+/**
+ * Authenticates a user by username/password and creates a session cookie.
+ *
+ * @param request - The incoming request with JSON body containing username and password.
+ * @returns A JSON response with ok: true on success.
+ * @throws Returns 400 for missing credentials, 401 for invalid credentials,
+ *   429 for rate limiting, 503 if auth service is unavailable.
+ */
 export async function POST(request: Request) {
   let body: LoginBody;
   try {

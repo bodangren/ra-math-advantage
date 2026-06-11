@@ -10,6 +10,14 @@ const querySchema = z.object({
   lessonId: z.string().trim().min(1, 'lessonId is required'),
 });
 
+/**
+ * Returns a deterministic error summary for a lesson's practice submissions.
+ *
+ * @param request - The incoming request with lessonId query param.
+ * @returns A JSON response with aggregated error summary data.
+ * @throws Returns 400 for invalid params, 403 for non-teachers,
+ *   404 if no submissions found, 500 on internal errors.
+ */
 export async function GET(request: Request) {
   try {
     const claims = await requireActiveTeacherRequestClaims(request);

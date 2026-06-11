@@ -14,6 +14,11 @@ import {
 } from "./component_approval_validators";
 import { computeComponentVersionHash } from "../lib/component-approval/version-hashes";
 
+/**
+ * Throws if the current authenticated user does not have the admin role.
+ * @param ctx - The Convex query or mutation context.
+ * @throws If the user is unauthenticated or not an admin.
+ */
 async function requireAdmin(ctx: QueryCtx | MutationCtx): Promise<void> {
   const identity = await ctx.auth.getUserIdentity();
   if (!identity) {
@@ -29,6 +34,12 @@ async function requireAdmin(ctx: QueryCtx | MutationCtx): Promise<void> {
   }
 }
 
+/**
+ * Fetches a single component approval record by type and ID.
+ * @param ctx - The Convex query context.
+ * @param args - The component type and component ID to look up.
+ * @returns The approval document, or null if not found.
+ */
 export async function getComponentApprovalHandler(
   ctx: QueryCtx,
   args: { componentType: "activity" | "example" | "practice"; componentId: string }
@@ -51,6 +62,12 @@ export const getComponentApproval = query({
   handler: getComponentApprovalHandler,
 });
 
+/**
+ * Computes the version hash for a component to detect source changes.
+ * @param _ctx - The Convex query context.
+ * @param args - The component type and component ID.
+ * @returns The version hash string, or null for example components.
+ */
 export async function getComponentVersionHashHandler(
   _ctx: QueryCtx,
   args: { componentType: "activity" | "example" | "practice"; componentId: string }
@@ -70,6 +87,15 @@ export const getComponentVersionHash = query({
   handler: getComponentVersionHashHandler,
 });
 
+/**
+ * Fetches the component review queue with optional type, status, and staleness
+ * filters.
+ * @param ctx - The Convex query context.
+ * @param args - Optional filters for componentType, approvalStatus,
+ *   and includeStale.
+ * @returns A list of approval records, optionally annotated with effective
+ *   staleness status.
+ */
 export async function getReviewQueueHandler(
   ctx: QueryCtx,
   args: {
@@ -147,6 +173,12 @@ export const getReviewQueue = query({
   handler: getReviewQueueHandler,
 });
 
+/**
+ * Fetches all reviews for a specific component, ordered newest first.
+ * @param ctx - The Convex query context.
+ * @param args - The component type and component ID.
+ * @returns A list of review documents.
+ */
 export async function getComponentReviewsHandler(
   ctx: QueryCtx,
   args: { componentType: "activity" | "example" | "practice"; componentId: string }
@@ -170,6 +202,17 @@ export const getComponentReviews = query({
   handler: getComponentReviewsHandler,
 });
 
+/**
+ * Submits a review for a component, creating a review record and upserting
+ * the corresponding approval status. Validates version hash match and
+ * requires improvement notes for negative statuses.
+ * @param ctx - The Convex mutation context.
+ * @param args - The component type, ID, version hash, status, summary,
+ *   improvement notes, and issue categories.
+ * @returns The newly created review ID.
+ * @throws If the component is an example, version hash mismatches, or
+ *   improvement notes are missing for negative statuses.
+ */
 export async function submitComponentReviewHandler(
   ctx: MutationCtx,
   args: {
@@ -291,6 +334,12 @@ export const submitComponentReview = mutation({
   handler: submitComponentReviewHandler,
 });
 
+/**
+ * Fetches all unresolved component reviews, optionally filtered by type.
+ * @param ctx - The Convex query context.
+ * @param args - Optional component type filter.
+ * @returns A list of review documents without a resolvedAt timestamp.
+ */
 export async function getUnresolvedReviewsHandler(
   ctx: QueryCtx,
   args: { componentType?: "activity" | "example" | "practice" }
@@ -319,6 +368,13 @@ export const getUnresolvedReviews = query({
   handler: getUnresolvedReviewsHandler,
 });
 
+/**
+ * Builds a summary of unresolved reviews grouped by component type and issue
+ * category, including counts, notes, and affected component IDs.
+ * @param ctx - The Convex query context.
+ * @param args - Optional component type filter.
+ * @returns A nested record keyed by type then category.
+ */
 export async function getAuditSummaryHandler(
   ctx: QueryCtx,
   args: { componentType?: "activity" | "example" | "practice" }
@@ -370,6 +426,13 @@ export const getAuditSummary = query({
   handler: getAuditSummaryHandler,
 });
 
+/**
+ * Marks a component review as resolved by setting resolvedAt and resolvedBy.
+ * @param ctx - The Convex mutation context.
+ * @param args - The review ID to resolve.
+ * @returns An object confirming success.
+ * @throws If the review or the admin profile is not found.
+ */
 export async function resolveReviewHandler(
   ctx: MutationCtx,
   args: { reviewId: Id<"componentReviews"> }

@@ -178,6 +178,11 @@ export const ensureProfileByUsername = internalMutation({
 
 type TeacherProfile = Doc<'profiles'>;
 
+/**
+ * Trims and caps an input string at 50 characters.
+ * @param value - The raw input string, or undefined.
+ * @returns The normalized string, or undefined if empty/missing.
+ */
 function normalizeInput(value?: string): string | undefined {
   if (!value || typeof value !== 'string') {
     return undefined;
@@ -187,6 +192,11 @@ function normalizeInput(value?: string): string | undefined {
   return normalized.length > 0 ? normalized : undefined;
 }
 
+/**
+ * Converts a string to a lowercase, underscore-separated, URL-safe slug.
+ * @param value - The raw string to slugify.
+ * @returns A slug string, or empty string if input is falsy.
+ */
 function slugify(value?: string): string {
   if (!value) return '';
   return value
@@ -199,12 +209,26 @@ function slugify(value?: string): string {
     .slice(0, 24);
 }
 
+/**
+ * Builds a display name from first and last name with capitalized initials,
+ * falling back to the provided fallback string if both are empty.
+ * @param firstName - The optional first name.
+ * @param lastName - The optional last name.
+ * @param fallback - The fallback display name.
+ * @returns The constructed display name.
+ */
 function buildDisplayName(firstName: string | undefined, lastName: string | undefined, fallback: string): string {
   const capitalize = (v: string) => (v ? v.charAt(0).toUpperCase() + v.slice(1) : '');
   const combined = [capitalize(firstName ?? ''), capitalize(lastName ?? '')].filter(Boolean).join(' ');
   return combined || fallback;
 }
 
+/**
+ * Safely casts a value to a Record, returning an empty object if the value
+ * is not a plain object.
+ * @param value - The value to cast.
+ * @returns The value as a record, or an empty object.
+ */
 function asMetadataRecord(value: unknown): Record<string, unknown> {
   if (typeof value !== 'object' || value === null || Array.isArray(value)) {
     return {};
@@ -212,6 +236,12 @@ function asMetadataRecord(value: unknown): Record<string, unknown> {
   return value as Record<string, unknown>;
 }
 
+/**
+ * Fetches a teacher profile by ID and validates it has a teacher or admin role.
+ * @param ctx - The Convex mutation context.
+ * @param teacherProfileId - The profile ID of the teacher.
+ * @returns An object indicating success with the teacher doc, or failure with reason.
+ */
 async function getTeacherProfile(ctx: MutationCtx, teacherProfileId: Id<'profiles'>) {
   const teacher = await ctx.db.get(teacherProfileId);
   if (!teacher) {
@@ -225,6 +255,13 @@ async function getTeacherProfile(ctx: MutationCtx, teacherProfileId: Id<'profile
   return { ok: true as const, teacher };
 }
 
+/**
+ * Fetches a student profile and validates it belongs to the teacher's organization.
+ * @param ctx - The Convex mutation context.
+ * @param studentProfileId - The profile ID of the student.
+ * @param teacher - The authenticated teacher profile.
+ * @returns An object indicating success with the student doc, or failure with reason.
+ */
 async function getStudentInTeacherOrg(
   ctx: MutationCtx,
   studentProfileId: Id<'profiles'>,
@@ -243,6 +280,14 @@ async function getStudentInTeacherOrg(
 // In high-collision environments (e.g., 100 students all named "john_smith") worst-case
 // is 50 reads/student → ~5,000 reads for a full batch. Convex does not support
 // multi-key index reads so sequential probing is currently unavoidable.
+/**
+ * Generates a unique username by probing the profiles index, appending a
+ * numeric suffix on collision. Falls back to a random token after 50 attempts.
+ * @param ctx - The Convex mutation context.
+ * @param opts - Optional preferred username, first name, and last name.
+ * @param reserved - A set of already-reserved usernames in the current batch.
+ * @returns A unique username string.
+ */
 async function generateUniqueUsername(
   ctx: MutationCtx,
   opts: { preferredUsername?: string; firstName?: string; lastName?: string },
@@ -273,6 +318,11 @@ async function generateUniqueUsername(
   return fallback;
 }
 
+/**
+ * Generates a random alphanumeric token using the password alphabet.
+ * @param length - The desired token length (default 8).
+ * @returns A random string of the specified length.
+ */
 function randomToken(length = 8): string {
   const bytes = crypto.getRandomValues(new Uint8Array(length));
   return Array.from(bytes, (byte) => PASSWORD_ALPHABET[byte % PASSWORD_ALPHABET.length]).join('');

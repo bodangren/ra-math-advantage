@@ -13,6 +13,12 @@ interface Props {
   params: Promise<{ componentId: string }>;
 }
 
+/**
+ * Harness page for testing example components in development. Displays the
+ * component version hash and a review checklist for manual verification.
+ *
+ * @param params - Route params containing the componentId to test.
+ */
 export default function ExampleHarnessPage({ params }: Props) {
   const { componentId } = use(params);
 

@@ -53,6 +53,14 @@ interface TeacherStudentDetailResponse {
   }>;
 }
 
+/**
+ * Student detail page for teachers showing progress, unit summaries,
+ * and the next recommended lesson for a specific student.
+ *
+ * @param props - The page props.
+ * @param props.params - Promise resolving to the route parameters containing studentId.
+ * @returns The student detail page element or a not-found/redirect response.
+ */
 export default async function TeacherStudentDetailPage({
   params,
 }: TeacherStudentDetailPageProps) {

@@ -25,6 +25,9 @@ const DiscriminantAnalyzerActivity = lazy(() =>
 
 let registered = false;
 
+/**
+ * Registers all blueprint activities with the runtime (idempotent).
+ */
 export function ensureActivitiesRegistered(): void {
   if (registered) return;
   registered = true;

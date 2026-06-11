@@ -24,10 +24,24 @@ const MockSubmissionContext = createContext<MockSubmissionContextValue>({
   isSubmitting: false,
 });
 
+/**
+ * Hook returning a mock submission object for preview purposes.
+ *
+ * @returns The mock submission context value with submit function and state.
+ */
 export function useMockSubmission() {
   return useContext(MockSubmissionContext);
 }
 
+/**
+ * Grades an answer locally for preview purposes using the specified rule.
+ *
+ * @param rawAnswer - The student's submitted answer.
+ * @param expected - The expected correct answer.
+ * @param rule - The grading rule to apply.
+ * @param tolerance - Optional numeric tolerance for numeric_tolerance rule.
+ * @returns True if the answer is correct under the given rule.
+ */
 function gradeAnswerLocally(
   rawAnswer: unknown,
   expected: unknown,
@@ -50,6 +64,13 @@ function gradeAnswerLocally(
   return false;
 }
 
+/**
+ * Builds renderer-specific component props from generator output for preview.
+ *
+ * @param rendererKey - The renderer component key (e.g. "graphing-explorer").
+ * @param generatorOutput - The raw generator output containing data and prompt.
+ * @returns A props object tailored to the specified renderer component.
+ */
 function buildComponentProps(
   rendererKey: string,
   generatorOutput: Record<string, unknown>,
@@ -75,6 +96,16 @@ function buildComponentProps(
   }
 }
 
+/**
+ * Renders a preview of an activity component with mock submission handling.
+ *
+ * @param props - The component props.
+ * @param props.state - Current harness state including generator output.
+ * @param props.selectedNode - The currently selected skill node, or null.
+ * @param props.selectedBlueprint - The blueprint for the selected node, or null.
+ * @param props.onIntercept - Callback invoked when a submission is intercepted.
+ * @returns The renderer preview JSX element.
+ */
 export function RendererPreview({ state, selectedNode, selectedBlueprint, onIntercept }: RendererPreviewProps) {
   useEffect(() => {
     ensureActivitiesRegistered();

@@ -10,6 +10,13 @@ interface CompetencyHeatmapClientProps {
   heatmapData: CompetencyHeatmapResponse;
 }
 
+/**
+ * Client component rendering the competency heatmap for a teacher's students.
+ *
+ * @param props - The component props.
+ * @param props.heatmapData - The heatmap response containing rows and standards.
+ * @returns The competency heatmap page element.
+ */
 export default function CompetencyHeatmapClient({ heatmapData }: CompetencyHeatmapClientProps) {
   const router = useRouter();
   const { rows, standards } = heatmapData;

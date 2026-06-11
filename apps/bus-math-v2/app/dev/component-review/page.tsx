@@ -14,6 +14,14 @@ import { computeComponentVersionHash } from '@/lib/component-approval/version-ha
 import { useQuery, useMutation } from 'convex/react';
 import { api } from '@/convex/_generated/api';
 
+/**
+ * Shell component that renders a modal dialog overlay with a title bar,
+ * close button, and content area.
+ *
+ * @param title - The dialog title displayed in the header.
+ * @param onClose - Callback invoked when the close button is clicked.
+ * @param children - Content to render inside the dialog body.
+ */
 function DialogShell({
   title,
   onClose,
@@ -62,6 +70,11 @@ const ISSUE_CATEGORIES = [
   'evidence_quality',
 ] as const;
 
+/**
+ * The component review queue page for developers. Lists all reviewable
+ * components with filtering by type and status, and provides a dialog
+ * for submitting reviews with issue categorization.
+ */
 export default function ComponentReviewQueuePage() {
   if (process.env.NODE_ENV !== 'development') {
     notFound();

@@ -3,6 +3,14 @@ import { requireActiveRequestSessionClaims } from '@/lib/auth/server';
 import { fetchInternalQuery, internal } from '@/lib/convex/server';
 import type { Id } from '@/convex/_generated/dataModel';
 
+/**
+ * Fetches a single activity by ID for the authenticated student, teacher, or admin.
+ *
+ * @param request - The incoming Next.js request with session cookie.
+ * @param params - Route params containing the activityId string.
+ * @returns A JSON response with the activity data, redacted for students.
+ * @throws Returns 403 if the user lacks access, 404 if not found, 500 on errors.
+ */
 export async function GET(
   request: NextRequest,
   { params }: { params: Promise<{ activityId: string }> }
@@ -62,6 +70,12 @@ export async function GET(
   }
 }
 
+/**
+ * Strips grading config and sensitive fields from an activity for student consumption.
+ *
+ * @param activity - The raw activity record to sanitize.
+ * @returns A copy of the activity with gradingConfig nulled and props redacted.
+ */
 function buildStudentSafeActivity(activity: Record<string, unknown>) {
   return {
     ...activity,
@@ -70,6 +84,12 @@ function buildStudentSafeActivity(activity: Record<string, unknown>) {
   };
 }
 
+/**
+ * Recursively removes sensitive keys like correctAnswer from a nested value.
+ *
+ * @param value - The value to sanitize (object, array, or primitive).
+ * @returns A deep copy with sensitive keys stripped.
+ */
 function redactSensitiveFields(value: unknown): unknown {
   if (Array.isArray(value)) {
     return value.map((item) => redactSensitiveFields(item));

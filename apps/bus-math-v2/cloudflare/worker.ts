@@ -18,6 +18,13 @@ type VinextHandler = (
 
 let cachedHandlerPromise: Promise<VinextHandler> | null = null;
 
+/**
+ * Loads and caches the Vinext request handler from the built server output,
+ * returning it on subsequent calls without re-importing.
+ *
+ * @returns A promise that resolves to the Vinext request handler function.
+ * @throws {TypeError} If the module does not export a function as default.
+ */
 async function loadVinextHandler(): Promise<VinextHandler> {
   cachedHandlerPromise ??= import('../dist/server/index.js').then((module) => {
     if (typeof module.default !== 'function') {

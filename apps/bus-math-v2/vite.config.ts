@@ -2,6 +2,12 @@ import "dotenv/config";
 import vinext from "vinext";
 import { defineConfig } from "vite";
 
+/**
+ * Loads and configures Vite plugins, including vinext and optionally the
+ * Cloudflare plugin if the package is available.
+ *
+ * @returns A promise that resolves to the array of Vite plugins.
+ */
 async function loadPlugins() {
   const plugins = [vinext()];
   try {

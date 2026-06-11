@@ -38,6 +38,12 @@ const metricCards = [
   },
 ] as const;
 
+/**
+ * Renders the student dashboard page showing course progress overview,
+ * metric cards, and per-unit lesson status.
+ *
+ * @returns The student dashboard page element.
+ */
 export default async function StudentDashboard() {
   const claims = await requireStudentSessionClaims("/student/dashboard");
 

@@ -3,6 +3,14 @@ import { NextRequest, NextResponse } from 'next/server';
 import path from 'path';
 import * as fs from 'fs';
 
+/**
+ * Serves a PDF file by name from the public/pdfs directory.
+ *
+ * @param request - The incoming Next.js request with session cookie.
+ * @param context - Route params containing the pdfName string.
+ * @returns A PDF file response with appropriate content headers.
+ * @throws Returns 400 for invalid names, 404 if file not found.
+ */
 export async function GET(
   request: NextRequest,
   context: { params: Promise<{ pdfName: string }> }

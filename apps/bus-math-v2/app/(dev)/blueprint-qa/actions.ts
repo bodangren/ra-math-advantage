@@ -10,6 +10,12 @@ export type { SkillNode, GraphData } from './types';
 
 const REPO_ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../../../../../');
 
+/**
+ * Fetches the build-graph knowledge graph data for the QA tool.
+ *
+ * @returns The graph data containing skill nodes and knowledge blueprints.
+ * @throws {Error} If the JSON files cannot be read or parsed.
+ */
 export async function fetchGraphData(): Promise<GraphData> {
   const skillGraphDir = path.join(REPO_ROOT, 'apps', 'integrated-math-3', 'curriculum', 'skill-graph');
 

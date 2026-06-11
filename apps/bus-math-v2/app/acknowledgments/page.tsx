@@ -3,6 +3,9 @@ import { ArrowRight } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Heart, Users } from 'lucide-react';
 
+/**
+ * Page wrapper for the acknowledgments page.
+ */
 export default function AcknowledgmentsPage() {
   const sections = [
     {

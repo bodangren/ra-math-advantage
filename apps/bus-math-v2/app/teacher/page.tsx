@@ -4,6 +4,11 @@ import { TeacherDashboardContent } from "@/components/teacher/TeacherDashboardCo
 import { fetchInternalQuery, internal } from "@/lib/convex/server";
 import type { StudentDashboardRow } from "@/lib/teacher/intervention";
 
+/**
+ * Page wrapper for the teacher dashboard showing students and course overview.
+ *
+ * @returns The teacher dashboard content component or a redirect.
+ */
 export default async function TeacherDashboardPage() {
   const claims = await requireTeacherSessionClaims("/teacher");
 

@@ -16,6 +16,14 @@ const requestSchema = z.object({
   username: z.string().trim().max(50).optional(),
 });
 
+/**
+ * Creates a single student account for the authenticated teacher.
+ *
+ * @param request - The incoming request with JSON body containing optional
+ *   firstName, lastName, displayName, and username fields.
+ * @returns A JSON response with the created student's details (status 201).
+ * @throws Returns 400 for validation errors, 403 for non-teachers, 500 on errors.
+ */
 export async function POST(request: Request) {
   try {
     const claimsOrResponse = await requireActiveTeacherRequestClaims(request);

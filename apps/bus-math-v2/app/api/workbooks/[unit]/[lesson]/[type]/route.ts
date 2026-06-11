@@ -3,6 +3,15 @@ import { NextRequest, NextResponse } from 'next/server';
 import path from 'path';
 import * as fs from 'fs';
 
+/**
+ * Serves a workbook Excel file by unit, lesson, and type (student or teacher).
+ *
+ * @param request - The incoming Next.js request with session cookie.
+ * @param context - Route params containing unit, lesson, and type strings.
+ * @returns An xlsx file response with appropriate content headers.
+ * @throws Returns 400 for invalid params, 403 for teacher-only access violations,
+ *   404 if file not found.
+ */
 export async function GET(
   request: NextRequest,
   context: { params: Promise<{ unit: string; lesson: string; type: 'student' | 'teacher' }> }

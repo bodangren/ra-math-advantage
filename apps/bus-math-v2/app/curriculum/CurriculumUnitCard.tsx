@@ -11,6 +11,13 @@ interface CurriculumUnitCardProps {
   unit: UnitCurriculum;
 }
 
+/**
+ * Card component displaying a curriculum unit with lessons and objectives.
+ *
+ * @param props - The component props.
+ * @param props.unit - The unit curriculum data to display.
+ * @returns The unit card JSX element.
+ */
 export function CurriculumUnitCard({ unit }: CurriculumUnitCardProps) {
   const router = useRouter();
   const firstLesson = unit.lessons[0];

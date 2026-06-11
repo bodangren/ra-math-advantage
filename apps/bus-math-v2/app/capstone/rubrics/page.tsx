@@ -1,5 +1,8 @@
 import Link from 'next/link';
 
+/**
+ * Page wrapper for the capstone rubrics page.
+ */
 export default function CapstoneRubricsPage() {
   return (
     <main className="flex-1 bg-background">

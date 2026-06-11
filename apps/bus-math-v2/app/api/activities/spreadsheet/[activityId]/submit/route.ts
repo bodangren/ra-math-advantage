@@ -29,6 +29,15 @@ const requestSchema = z.object({
 
 type RequestPayload = z.infer<typeof requestSchema>;
 
+/**
+ * Fetches submission history for a spreadsheet activity.
+ *
+ * @param request - The incoming request with session cookie and optional
+ *   studentId query param for teacher/admin cross-student access.
+ * @param params - Route params containing the activityId string.
+ * @returns A JSON response with submission data, attempts, and validation results.
+ * @throws Returns 400 for invalid IDs, 403 for forbidden access, 500 on errors.
+ */
 export async function GET(
   request: Request,
   { params }: { params: Promise<{ activityId: string }> }
@@ -135,6 +144,16 @@ export async function GET(
   }
 }
 
+/**
+ * Submits a final spreadsheet submission with optional AI feedback.
+ *
+ * @param request - The incoming request with session cookie and JSON body
+ *   containing spreadsheetData (2D array of cell values).
+ * @param params - Route params containing the activityId string.
+ * @returns A JSON response with validation results, attempt info, and
+ *   optional AI feedback and mastery update.
+ * @throws Returns 400/422 for validation errors, 404 if not found, 500 on errors.
+ */
 export async function POST(
   request: Request,
   { params }: { params: Promise<{ activityId: string }> }

@@ -17,6 +17,15 @@ const requestSchema = z
     path: ['displayName'],
   });
 
+/**
+ * Updates a student account's display name or active status.
+ *
+ * @param request - The incoming request with JSON body containing studentId
+ *   and optional displayName and/or deactivate fields.
+ * @returns A JSON response with the updated student details.
+ * @throws Returns 400 for validation errors, 403 for non-teachers,
+ *   404 if student not found, 500 on internal errors.
+ */
 export async function POST(request: Request) {
   try {
     const claimsOrResponse = await requireActiveTeacherRequestClaims(request);

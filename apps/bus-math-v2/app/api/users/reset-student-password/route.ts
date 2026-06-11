@@ -12,6 +12,14 @@ const requestSchema = z.object({
   studentId: z.string().trim().min(1, 'studentId is required'),
 });
 
+/**
+ * Resets a student's password and returns the new plaintext password.
+ *
+ * @param request - The incoming request with JSON body containing studentId.
+ * @returns A JSON response with studentId, username, displayName, and new password.
+ * @throws Returns 400 for validation errors, 403 for non-teachers,
+ *   404 if student not found, 500 on internal errors.
+ */
 export async function POST(request: Request) {
   try {
     const claimsOrResponse = await requireActiveTeacherRequestClaims(request);

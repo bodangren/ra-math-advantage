@@ -31,10 +31,21 @@ type CompleteActivityPayload = z.infer<typeof CompleteActivitySchema> &
 
 const REPLACEMENT_ENDPOINT = '/api/phases/complete';
 
+/**
+ * Type guard that checks whether a value is a plain object.
+ *
+ * @param value - The value to test.
+ * @returns True if the value is a non-null object.
+ */
 function isRecord(value: unknown): value is Record<string, unknown> {
   return typeof value === 'object' && value !== null;
 }
 
+/**
+ * Returns HTTP headers indicating this endpoint is deprecated.
+ *
+ * @returns Headers with Deprecation, Link, and X-Replacement-Endpoint values.
+ */
 function deprecationHeaders(): HeadersInit {
   return {
     Deprecation: 'true',
@@ -43,6 +54,13 @@ function deprecationHeaders(): HeadersInit {
   };
 }
 
+/**
+ * Computes time spent in seconds from completion data, defaulting to 0.
+ *
+ * @param completionData - Optional completion data object that may contain
+ *   timeSpent or timeSpentSeconds fields.
+ * @returns The clamped time spent in seconds (0–86400).
+ */
 function deriveTimeSpent(
   completionData: CompleteActivityPayload['completionData'],
 ): number {

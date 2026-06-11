@@ -11,6 +11,14 @@ const paramsSchema = z.object({
   lessonId: z.string().trim().min(1, 'Lesson identifier is required'),
 });
 
+/**
+ * Fetches lesson progress for the authenticated student.
+ *
+ * @param request - The incoming request with session cookie.
+ * @param params - Route params containing the lessonId string.
+ * @returns A JSON response with the lesson's phase progress data.
+ * @throws Returns 400 for invalid params, 404 if lesson not found, 500 on errors.
+ */
 export async function GET(
   request: Request,
   { params }: { params: Promise<{ lessonId: string }> }

@@ -22,6 +22,12 @@ const STALE_TIME = 60 * 1000; // 60 seconds
 // Simple in-memory cache
 const cache = new Map<string, { data: ProgressData; timestamp: number }>();
 
+/**
+ * Extracts the lesson slug from the current URL pathname by matching the
+ * `/student/lesson/:slug` pattern.
+ *
+ * @returns The decoded lesson slug, or null if not on a lesson page.
+ */
 function getLessonSlugFromPathname(): string | null {
   if (typeof window === 'undefined') return null;
 
@@ -41,6 +47,12 @@ type ProgressFetchResult = {
   payload: ProgressData | Record<string, unknown>;
 };
 
+/**
+ * Fetches lesson progress data from the API by lesson identifier (slug or ID).
+ *
+ * @param lessonIdentifier - The lesson slug or ID to fetch progress for.
+ * @returns A result object containing the fetch status and payload.
+ */
 async function fetchProgressByIdentifier(lessonIdentifier: string): Promise<ProgressFetchResult> {
   const response = await fetch(`/api/lessons/${encodeURIComponent(lessonIdentifier)}/progress`);
   const payload = await response.json().catch(() => ({}));
@@ -52,6 +64,15 @@ async function fetchProgressByIdentifier(lessonIdentifier: string): Promise<Prog
   };
 }
 
+/**
+ * React hook that tracks phase progress for a lesson, fetching data from
+ * the API with in-memory caching and automatic refetch on window focus.
+ *
+ * @param lessonId - The lesson identifier to fetch progress for, or undefined
+ *   to skip fetching.
+ * @returns An object containing progress data, loading/error states, and a
+ *   refetch function.
+ */
 export function usePhaseProgress(lessonId: string | undefined): UsePhaseProgressResult {
   const [data, setData] = useState<ProgressData | null>(null);
   const [isLoading, setIsLoading] = useState(true);

@@ -14,6 +14,15 @@ import type { ApiEndpoint, RateLimitConfig } from "@math-platform/rate-limiter";
 export const RATE_LIMIT_CONFIG = API_RATE_LIMIT_CONFIG;
 export type { ApiEndpoint };
 
+/**
+ * Checks and increments the API rate limit for a user and endpoint combination,
+ * resetting the window if expired. Logs violations when the limit is exceeded.
+ *
+ * @param ctx - Mutation context with database access.
+ * @param args - Object containing the user ID and API endpoint.
+ * @returns The rate limit result with allowed status, remaining count, and
+ *   window expiration.
+ */
 export async function checkAndIncrementApiRateLimitHandler(
   ctx: MutationCtx,
   args: { userId: Id<"profiles">; endpoint: ApiEndpoint }
@@ -124,6 +133,15 @@ export const getApiRateLimitStatus = internalQuery({
   },
 });
 
+/**
+ * Logs a rate limit violation event to stderr with structured JSON metadata
+ * including the user, endpoint, request count, and retry-after timing.
+ *
+ * @param userId - The profile ID of the user who exceeded the limit.
+ * @param endpoint - The API endpoint that was rate-limited.
+ * @param requestCount - The number of requests made in the current window.
+ * @param windowExpiresAt - Timestamp when the rate limit window expires.
+ */
 export async function logRateLimitViolation(
   userId: Id<"profiles">,
   endpoint: ApiEndpoint,
@@ -147,6 +165,13 @@ export async function logRateLimitViolation(
   );
 }
 
+/**
+ * Formats a 429 Too Many Requests response with a JSON error body and
+ * Retry-After header based on the window expiration time.
+ *
+ * @param windowExpiresAt - Timestamp when the rate limit window expires.
+ * @returns A Response object with status 429 and retry-after header.
+ */
 export function formatRateLimitError(windowExpiresAt: number): Response {
   const retryAfter = formatRetryAfter(windowExpiresAt);
   return new Response(JSON.stringify({ error: "Too many requests. Please try again later." }), {

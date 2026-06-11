@@ -1,5 +1,8 @@
 import Link from 'next/link';
 
+/**
+ * Page wrapper for the capstone guidelines page.
+ */
 export default function CapstoneGuidelinesPage() {
   return (
     <main className="flex-1 bg-background">

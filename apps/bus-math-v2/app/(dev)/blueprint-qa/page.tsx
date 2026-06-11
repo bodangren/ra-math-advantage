@@ -9,6 +9,9 @@ import { GeneratorPanel } from './components/GeneratorPanel';
 import { RendererPreview } from './components/RendererPreview';
 import type { KnowledgeBlueprint } from '@math-platform/knowledge-space-practice';
 
+/**
+ * Page wrapper for the blueprint QA harness (development only).
+ */
 export default function BlueprintQAPage() {
   if (process.env.NODE_ENV !== 'development') {
     notFound();

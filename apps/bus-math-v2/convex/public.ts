@@ -35,6 +35,13 @@ interface CapstoneUnitData {
   audience: string | null;
 }
 
+/**
+ * Checks whether a lesson is a capstone lesson by looking for the "capstone"
+ * tag in its metadata.
+ *
+ * @param lesson - A lesson object with optional metadata tags.
+ * @returns True if the lesson has the "capstone" tag.
+ */
 function isCapstoneLesson(lesson: { metadata?: { tags?: string[] | null } | null }) {
   return Boolean(lesson.metadata?.tags?.includes("capstone"));
 }

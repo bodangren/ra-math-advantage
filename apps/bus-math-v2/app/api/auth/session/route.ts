@@ -6,6 +6,12 @@ import { verifySessionToken } from '@/lib/auth/session';
 import { fetchInternalQuery, internal } from '@/lib/convex/server';
 import type { Id } from '@/convex/_generated/dataModel';
 
+/**
+ * Returns the current session status by verifying the session cookie.
+ *
+ * @returns A JSON response with authenticated flag and user/profile data,
+ *   or authenticated: false if no valid session exists.
+ */
 export async function GET() {
   try {
     const cookieStore = await cookies();

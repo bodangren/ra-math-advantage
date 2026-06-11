@@ -9,6 +9,12 @@ import { formatRateLimitError } from '@/convex/apiRateLimits';
 import type { Id } from '@/convex/_generated/dataModel';
 import { normalizePracticeSubmissionInput } from '@math-platform/practice-core/contract';
 
+/**
+ * Returns a 400 Bad Request JSON response with the given error details.
+ *
+ * @param details - A string error message or an object with error details.
+ * @returns A NextResponse with status 400 and the error payload.
+ */
 function buildBadRequest(details: Record<string, unknown> | string) {
   return NextResponse.json(
     typeof details === 'string'
@@ -21,6 +27,15 @@ function buildBadRequest(details: Record<string, unknown> | string) {
   );
 }
 
+/**
+ * Submits an assessment progress record and returns the scored result.
+ *
+ * @param request - The incoming request with JSON body containing activityId
+ *   and answers conforming to the practice submission contract.
+ * @returns A JSON response with score, maxScore, percentage, and feedback.
+ * @throws Returns 400 for invalid payloads, 404 if activity not found,
+ *   422 for scoring errors, 500 on internal errors.
+ */
 export async function POST(request: Request) {
   try {
     const claimsOrResponse = await requireActiveStudentRequestClaims(request);

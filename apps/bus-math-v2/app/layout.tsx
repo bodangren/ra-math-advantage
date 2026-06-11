@@ -18,6 +18,13 @@ export const metadata: Metadata = {
   authors: [{ name: "Daniel Bodanske" }],
 };
 
+/**
+ * Root layout wrapping all pages with providers and global chrome.
+ *
+ * @param props - The component props.
+ * @param props.children - The page content to render.
+ * @returns The root HTML layout element.
+ */
 export default function RootLayout({
   children,
 }: Readonly<{

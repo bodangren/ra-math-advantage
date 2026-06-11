@@ -20,6 +20,13 @@ type TeacherLessonQueryResult =
   | { status: 'not_found' }
   | ({ status: 'success' } & TeacherLessonMonitoringQueryData);
 
+/**
+ * Page wrapper for the teacher lesson monitoring view.
+ *
+ * @param props - The page props.
+ * @param props.params - Promise resolving to the route parameters containing unitNumber and lessonId.
+ * @returns The lesson plan page content or a not-found/redirect response.
+ */
 export default async function TeacherLessonPage({
   params,
 }: TeacherLessonPageProps) {

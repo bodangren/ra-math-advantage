@@ -12,6 +12,14 @@ interface WorkbookManifest {
   byCapstone: { student: boolean; teacher: boolean };
 }
 
+/**
+ * Scans the public workbooks directory for .xlsx files and builds a manifest
+ * mapping unit/lesson combinations and capstone files to student/teacher flags.
+ *
+ * @returns A workbook manifest with version, timestamp, file list, and
+ *   unit-lesson and capstone availability maps.
+ * @throws {Error} If the workbooks directory does not exist.
+ */
 function scanWorkbooks(): WorkbookManifest {
   if (!fs.existsSync(PUBLIC_WORKBOOKS_DIR)) {
     throw new Error(`Workbook directory not found: ${PUBLIC_WORKBOOKS_DIR}`);

@@ -106,6 +106,10 @@ import {
 import { generateMiniLedger } from '@/lib/practice/engine/mini-ledger';
 import { formatAccountingAmount } from '@/components/activities/shared/utils';
 
+/**
+ * Developer preview page that renders all practice families with guided and
+ * teacher-review states side by side, using deterministic mini-ledger data.
+ */
 export default function PracticePreviewPage() {
   if (process.env.NODE_ENV !== 'development') {
     notFound();

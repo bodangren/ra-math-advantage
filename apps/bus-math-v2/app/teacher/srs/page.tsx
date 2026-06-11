@@ -4,6 +4,11 @@ import { fetchInternalQuery, internal } from "@/lib/convex/server";
 import { TeacherSRSDashboardClient } from "@/components/teacher/srs/TeacherSRSDashboardClient";
 import type { Id } from "@/convex/_generated/dataModel";
 
+/**
+ * Page wrapper for the teacher spaced repetition system (SRS) view.
+ *
+ * @returns The SRS dashboard client component or a redirect.
+ */
 export default async function TeacherSRSPage() {
   const claims = await requireTeacherSessionClaims("/teacher/srs");
 

@@ -9,6 +9,14 @@ import {
   STALE_ENTRY_THRESHOLD_MS,
 } from "@math-platform/rate-limiter";
 
+/**
+ * Returns the current rate limit status for a given user, including remaining
+ * requests and window expiration.
+ *
+ * @param ctx - Query context with database access.
+ * @param args - Object containing the user's profile ID.
+ * @returns The rate limit status object for the user.
+ */
 export async function getRateLimitStatusHandler(
   ctx: { db: QueryCtx["db"] },
   args: { userId: Id<"profiles"> },
@@ -26,6 +34,14 @@ export const getRateLimitStatus = internalQuery({
   handler: getRateLimitStatusHandler,
 });
 
+/**
+ * Checks the current rate limit for a user and increments the counter,
+ * resetting the window if expired. Handles concurrent insert races.
+ *
+ * @param ctx - Mutation context with database access.
+ * @param args - Object containing the user's profile ID.
+ * @returns The rate limit check result indicating allowed/denied status.
+ */
 export async function checkAndIncrementRateLimitHandler(
   ctx: { db: MutationCtx["db"] },
   args: { userId: Id<"profiles"> },
@@ -80,6 +96,15 @@ export const checkAndIncrementRateLimit = internalMutation({
   handler: checkAndIncrementRateLimitHandler,
 });
 
+/**
+ * Removes expired rate limit entries older than the stale threshold.
+ * Requires admin authorization.
+ *
+ * @param ctx - Mutation context with database access.
+ * @param args - Object containing the admin user's profile ID.
+ * @returns An object with the count of deleted entries.
+ * @throws {ConvexError} If the user is not an admin.
+ */
 export async function cleanupStaleRateLimitsHandler(
   ctx: { db: MutationCtx["db"] },
   args: { userId: Id<"profiles"> },

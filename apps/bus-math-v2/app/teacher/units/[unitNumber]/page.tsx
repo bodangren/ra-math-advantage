@@ -11,6 +11,13 @@ interface PageProps {
   params: Promise<{ unitNumber: string }>;
 }
 
+/**
+ * Page wrapper for the unit-level gradebook showing student rows and lesson columns.
+ *
+ * @param props - The page props.
+ * @param props.params - Promise resolving to the route parameters containing unitNumber.
+ * @returns The unit gradebook page element or a not-found/redirect response.
+ */
 export default async function UnitGradebookPage({ params }: PageProps) {
   const { unitNumber: unitNumberParam } = await params;
   const unitNumber = parseInt(unitNumberParam, 10);

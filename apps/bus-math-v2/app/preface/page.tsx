@@ -8,7 +8,14 @@ export const dynamic = 'force-dynamic';
 
 /* ── Static activity data (preface-only, not curriculum content) ── */
 
-const staticTimestamp = () => new Date('2024-01-01T00:00:00.000Z');
+/**
+ * Returns a static ISO timestamp used for preface activity metadata.
+ *
+ * @returns A Date object set to 2024-01-01T00:00:00.000Z.
+ */
+function staticTimestamp(): Date {
+  return new Date('2024-01-01T00:00:00.000Z');
+}
 
 const introQuizActivity: ComprehensionCheckActivity = {
   id: 'preface-intro-quiz',
@@ -117,6 +124,9 @@ const valuePillars = [
   },
 ];
 
+/**
+ * Page wrapper for the preface/introduction page.
+ */
 export default function PrefacePage() {
   return (
     <main className="flex-1 bg-background">

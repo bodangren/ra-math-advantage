@@ -15,12 +15,26 @@ interface ChatbotRequest {
   question: string;
 }
 
+/**
+ * Sanitizes user chat input by stripping markdown special characters.
+ *
+ * @param input - The raw user input string.
+ * @returns The trimmed input with markdown characters removed.
+ */
 function sanitizeInput(input: string): string {
   return input
     .replace(/[#*`_~]/g, '')
     .trim();
 }
 
+/**
+ * Builds the chat message array for the AI tutoring model.
+ *
+ * @param context - Lesson context including title, unit, phase, objectives,
+ *   and content summary.
+ * @param question - The sanitized student question.
+ * @returns An array of system and user message objects for the AI provider.
+ */
 function buildMessages(
   context: {
     lessonTitle: string;
@@ -52,6 +66,15 @@ Lesson context:
   ];
 }
 
+/**
+ * Handles a chatbot message from the student, returning an AI-generated response.
+ *
+ * @param request - The incoming request with JSON body containing lessonId,
+ *   phaseNumber, and question.
+ * @returns A JSON response with the AI tutor's reply text.
+ * @throws Returns 400 for invalid input or injection attempts, 403 for
+ *   non-students, 429 for rate limits, 502 on AI provider errors.
+ */
 export async function POST(request: NextRequest) {
   const session = await requireActiveStudentRequestClaims(request);
   if (session instanceof Response) {

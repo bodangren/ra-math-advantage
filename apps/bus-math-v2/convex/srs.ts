@@ -18,6 +18,14 @@ const VALID_STATE_TRANSITIONS: Record<string, string[]> = {
   relearning: ['learning', 'review'],
 };
 
+/**
+ * Validates that an SRS state transition is allowed, ensuring reps increments
+ * by exactly 1, lapses does not decrease, and the target state is permitted.
+ *
+ * @param stateBefore - The card state before the transition.
+ * @param stateAfter - The card state after the transition.
+ * @throws {Error} If the transition violates any SRS invariants.
+ */
 function validateSrsTransition(
   stateBefore: {
     stability: number;
@@ -52,6 +60,15 @@ function validateSrsTransition(
   }
 }
 
+/**
+ * Verifies that the authenticated identity matches the given student profile,
+ * throwing if the email-to-username lookup does not resolve to the expected ID.
+ *
+ * @param ctx - Database context used to query the profiles table.
+ * @param identity - The authenticated user identity containing an email.
+ * @param studentId - The expected profile ID for the student.
+ * @throws {ConvexError} If the identity does not match the student.
+ */
 async function verifyStudentIdentity(
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   ctx: { db: { query: (table: 'profiles') => any } },
@@ -303,6 +320,14 @@ export const getSrsCard = query({
   },
 });
 
+/**
+ * Returns the teacher profile if the user has a teacher or admin role,
+ * or null if the user is not found or lacks the required role.
+ *
+ * @param ctx - Database context used to fetch the profile by ID.
+ * @param userId - The profile ID to look up.
+ * @returns The profile document if authorized, or null.
+ */
 async function getAuthorizedTeacher(
   ctx: { db: { get: (id: Id<'profiles'>) => Promise<Doc<'profiles'> | null> } },
   userId: Id<'profiles'>

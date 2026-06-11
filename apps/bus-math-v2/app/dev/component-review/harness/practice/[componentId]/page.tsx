@@ -15,6 +15,13 @@ interface Props {
   params: Promise<{ componentId: string }>;
 }
 
+/**
+ * Harness page for testing practice components in development. Provides
+ * controls for generating problems, submitting correct/wrong answers, and
+ * inspecting grading results and practice.v1 envelopes.
+ *
+ * @param params - Route params containing the componentId to test.
+ */
 export default function PracticeHarnessPage({ params }: Props) {
   const { componentId } = use(params);
 

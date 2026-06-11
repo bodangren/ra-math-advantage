@@ -13,6 +13,16 @@ interface GeneratorPanelProps {
   onUpdateState: (patch: Partial<HarnessState>) => void;
 }
 
+/**
+ * Panel for generating curriculum content in the blueprint QA tool.
+ *
+ * @param props - The component props.
+ * @param props.state - Current harness state including seed, difficulty, and mode.
+ * @param props.selectedNode - The currently selected skill node, or null.
+ * @param props.selectedBlueprint - The blueprint for the selected node, or null.
+ * @param props.onUpdateState - Callback to merge a partial state update.
+ * @returns The generator panel JSX element.
+ */
 export function GeneratorPanel({ state, selectedNode, selectedBlueprint, onUpdateState }: GeneratorPanelProps) {
   const debounceRef = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
   const [isGenerating, setIsGenerating] = useState(false);

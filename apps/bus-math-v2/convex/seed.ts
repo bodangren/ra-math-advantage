@@ -23,6 +23,7 @@ import {
 } from "../lib/curriculum/published-manifest";
 import { resolveLatestPublishedLessonVersion } from "../lib/progress/published-curriculum";
 
+/** Encodes a byte array to a base64url string without padding. */
 function base64UrlEncodeBytes(bytes: Uint8Array): string {
   let binary = "";
   for (let i = 0; i < bytes.length; i += 1) {
@@ -31,6 +32,13 @@ function base64UrlEncodeBytes(bytes: Uint8Array): string {
   return btoa(binary).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
 }
 
+/**
+ * Computes a PBKDF2-SHA256 hash of the given password and salt.
+ * @param password - The plaintext password to hash.
+ * @param salt - The salt string to use.
+ * @param iterations - The number of PBKDF2 iterations.
+ * @returns The derived key as a base64url-encoded string.
+ */
 async function pbkdf2Hash(password: string, salt: string, iterations: number): Promise<string> {
   const enc = new TextEncoder();
   const keyMaterial = await crypto.subtle.importKey(
@@ -48,6 +56,11 @@ async function pbkdf2Hash(password: string, salt: string, iterations: number): P
   return base64UrlEncodeBytes(new Uint8Array(derived));
 }
 
+/**
+ * Builds a deduplication signature string for a published activity.
+ * @param activity - An activity with componentKey, displayName, and description.
+ * @returns A "::-delimited" composite key for deduplication.
+ */
 function activitySignature(activity: Pick<PublishedActivity, "componentKey" | "displayName" | "description">) {
   return [
     activity.componentKey,
@@ -56,6 +69,15 @@ function activitySignature(activity: Pick<PublishedActivity, "componentKey" | "d
   ].join("::");
 }
 
+/**
+ * Upserts a competency standard by code, using an in-memory cache to avoid
+ * redundant inserts within the same seed run.
+ * @param ctx - The Convex mutation context.
+ * @param code - The unique competency standard code.
+ * @param now - The current timestamp in milliseconds.
+ * @param cache - An in-memory map of previously resolved standard IDs.
+ * @returns The Convex ID of the competency standard.
+ */
 async function ensureCompetencyStandard(
   ctx: MutationCtx,
   code: string,
@@ -90,6 +112,16 @@ async function ensureCompetencyStandard(
   return standardId;
 }
 
+/**
+ * Upserts an activity by component key and display name, patching existing
+ * records or inserting new ones with an in-memory signature cache.
+ * @param ctx - The Convex mutation context.
+ * @param activity - The published activity to upsert.
+ * @param now - The current timestamp in milliseconds.
+ * @param existingActivities - The existing activity docs from the database.
+ * @param cache - An in-memory map of previously resolved activity IDs.
+ * @returns The Convex ID of the activity.
+ */
 async function ensureActivity(
   ctx: MutationCtx,
   activity: PublishedActivity,
@@ -140,6 +172,12 @@ async function ensureActivity(
   return activityId;
 }
 
+/**
+ * Deletes all existing phase versions and their sections for a lesson version
+ * so they can be re-seeded from scratch.
+ * @param ctx - The Convex mutation context.
+ * @param lessonVersionId - The ID of the lesson version to clean.
+ */
 async function replaceLessonVersionPhases(
   ctx: MutationCtx,
   lessonVersionId: Id<"lesson_versions">,
@@ -163,6 +201,14 @@ async function replaceLessonVersionPhases(
   }
 }
 
+/**
+ * Replaces all lesson-standard links for a lesson version by deleting existing
+ * links and inserting the provided set.
+ * @param ctx - The Convex mutation context.
+ * @param lessonVersionId - The ID of the lesson version.
+ * @param standardIds - The standard IDs and primary flags to link.
+ * @param now - The current timestamp in milliseconds.
+ */
 async function replaceLessonStandards(
   ctx: MutationCtx,
   lessonVersionId: Id<"lesson_versions">,
@@ -188,6 +234,14 @@ async function replaceLessonStandards(
   }
 }
 
+/**
+ * Resolves activity references in section content by replacing logical activity
+ * keys with their actual Convex IDs from the mapping.
+ * @param section - The published section to normalize.
+ * @param activityIdByLogicalKey - Map from logical activity key to Convex ID.
+ * @returns The resolved section content object.
+ * @throws If a referenced activity key is missing from the mapping.
+ */
 function normalizeSectionContent(
   section: PublishedSection,
   activityIdByLogicalKey: Map<string, Id<"activities">>,
@@ -210,6 +264,17 @@ function normalizeSectionContent(
   return section.content;
 }
 
+/**
+ * Creates or updates a lesson and its version, standards, phases, and sections
+ * from a single published curriculum lesson entry.
+ * @param ctx - The Convex mutation context.
+ * @param lesson - The published curriculum lesson to upsert.
+ * @param now - The current timestamp in milliseconds.
+ * @param existingActivities - The existing activity docs from the database.
+ * @param standardCache - Cache of previously resolved competency standard IDs.
+ * @param activityCache - Cache of previously resolved activity IDs.
+ * @returns The Convex ID of the upserted lesson.
+ */
 async function upsertPublishedLesson(
   ctx: MutationCtx,
   lesson: PublishedCurriculumLesson,
@@ -322,6 +387,12 @@ async function upsertPublishedLesson(
   return lessonRow._id;
 }
 
+/**
+ * Seeds the full published curriculum from the manifest by upserting every
+ * lesson, its standards, activities, phases, and sections.
+ * @param ctx - The Convex mutation context.
+ * @returns A summary with status, lesson count, and seeded lesson IDs.
+ */
 async function seedPublishedCurriculumHandler(ctx: MutationCtx) {
   const now = Date.now();
   const seedPlan = buildPublishedCurriculumSeedPlan();
@@ -352,6 +423,12 @@ async function seedPublishedCurriculumHandler(ctx: MutationCtx) {
   };
 }
 
+/**
+ * Patches mismatched activity props for published lessons by comparing the
+ * seed plan against the database and updating any drifted records.
+ * @param ctx - The Convex mutation context.
+ * @returns A summary with status and the number of repaired activities.
+ */
 async function repairPublishedActivityPropsHandler(ctx: MutationCtx) {
   const now = Date.now();
   const seedPlan = buildPublishedCurriculumSeedPlan();
@@ -448,6 +525,11 @@ async function repairPublishedActivityPropsHandler(ctx: MutationCtx) {
   };
 }
 
+/**
+ * Throws if the current authenticated user is not an admin.
+ * @param ctx - The Convex mutation context.
+ * @throws If the user is unauthenticated or does not have admin role.
+ */
 async function requireAdmin(ctx: MutationCtx): Promise<void> {
   const identity = await ctx.auth.getUserIdentity();
   if (!identity) throw new Error("Unauthenticated");

@@ -13,6 +13,15 @@ const requestSchema = z.object({
   confirmPassword: z.string().min(1, "Password confirmation is required"),
 });
 
+/**
+ * Changes the authenticated user's password after verifying the current one.
+ *
+ * @param request - The incoming request with session cookie and JSON body
+ *   containing currentPassword, newPassword, and confirmPassword.
+ * @returns A JSON response confirming the password was updated.
+ * @throws Returns 400 for validation errors, 403 if current password is wrong,
+ *   404 if credential not found, 500 on internal errors.
+ */
 export async function POST(request: Request) {
   try {
     const claimsOrResponse = await requireActiveRequestSessionClaims(request);

@@ -22,6 +22,11 @@ interface CapstonePageData {
   capstone: CapstoneUnit | null;
 }
 
+/**
+ * Creates a Convex HTTP client for server-side queries.
+ *
+ * @returns A new ConvexHttpClient instance configured with the project URL.
+ */
 function getConvexClient() {
   return new ConvexHttpClient(getConvexUrl());
 }
@@ -56,6 +61,15 @@ function buildNarrativeArcs(units: CapstoneUnit[]) {
     .filter(Boolean) as { phase: string; headline: string; detail: string }[];
 }
 
+/**
+ * Renders a section header with label, title, and description.
+ *
+ * @param props - The component props.
+ * @param props.label - The small uppercase label above the title.
+ * @param props.title - The main heading text.
+ * @param props.description - Supporting description paragraph.
+ * @returns The section header JSX element.
+ */
 function SectionHeader({ label, title, description }: { label: string; title: string; description: string }) {
   return (
     <div className="text-center space-y-3">
@@ -68,6 +82,9 @@ function SectionHeader({ label, title, description }: { label: string; title: st
   );
 }
 
+/**
+ * Page wrapper for the capstone overview page.
+ */
 export default async function CapstonePage() {
   const convex = getConvexClient();
 

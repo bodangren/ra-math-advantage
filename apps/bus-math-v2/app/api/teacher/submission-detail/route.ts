@@ -10,6 +10,14 @@ const querySchema = z.object({
   lessonId: z.string().trim().min(1, 'lessonId is required'),
 });
 
+/**
+ * Fetches detailed submission data for a student's lesson.
+ *
+ * @param request - The incoming request with studentId and lessonId query params.
+ * @returns A JSON response with submission detail including phases and evidence.
+ * @throws Returns 400 for invalid params, 403 for non-teachers,
+ *   404 if student/lesson not found, 500 on internal errors.
+ */
 export async function GET(request: Request) {
   try {
     const claims = await requireActiveTeacherRequestClaims(request);

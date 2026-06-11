@@ -6,6 +6,11 @@ import { requireAdminRequestClaims } from '@/lib/auth/server';
 import { generatePasswordSalt, hashPassword } from '@/lib/auth/session';
 import { fetchInternalMutation, internal } from '@/lib/convex/server';
 
+/**
+ * Returns the list of demo user credentials with roles and passwords.
+ *
+ * @returns An array of demo user objects with username, role, and password.
+ */
 function getDemoUsers() {
   return [
     { username: 'demo_teacher', role: 'teacher' as const, password: process.env.DEMO_TEACHER_PASSWORD ?? 'demo123' },
@@ -14,6 +19,14 @@ function getDemoUsers() {
   ];
 }
 
+/**
+ * Ensures demo accounts exist in the database, creating or updating credentials.
+ *
+ * @param request - The incoming request requiring admin authentication.
+ * @returns A JSON response with per-user creation/update status.
+ * @throws Returns 403 if demo provisioning is disabled or user is not admin,
+ *   500 on internal errors.
+ */
 export async function POST(request: Request) {
   try {
     if (!isDemoProvisioningEnabled()) {

@@ -12,10 +12,23 @@ interface NodeListProps {
   onSelectNode: (id: string) => void;
 }
 
+/**
+ * Checks whether a node has a generator key directly or via its blueprint.
+ *
+ * @param node - The skill node to check.
+ * @param blueprintsByNodeId - Map of node IDs to their knowledge blueprints.
+ * @returns True if the node has a generator key.
+ */
 function hasGenerator(node: SkillNode, blueprintsByNodeId: Map<string, KnowledgeBlueprint>): boolean {
   return !!(node.generatorKey || blueprintsByNodeId.get(node.id)?.generatorKey);
 }
 
+/**
+ * Returns a human-readable label for a module node (e.g. "M1.L3").
+ *
+ * @param node - The skill node whose metadata contains module and lesson info.
+ * @returns The formatted module label, or an empty string if unavailable.
+ */
 function getModuleLabel(node: SkillNode): string {
   const mod = node.metadata?.module as string | undefined;
   const lesson = node.metadata?.lesson as string | undefined;
@@ -24,6 +37,16 @@ function getModuleLabel(node: SkillNode): string {
   return '';
 }
 
+/**
+ * Renders a searchable list of graph nodes with generator status indicators.
+ *
+ * @param props - The component props.
+ * @param props.nodes - All skill nodes from the graph.
+ * @param props.blueprintsByNodeId - Map of node IDs to knowledge blueprints.
+ * @param props.selectedNodeId - The ID of the currently selected node, or null.
+ * @param props.onSelectNode - Callback invoked when a node is selected.
+ * @returns The node list JSX element.
+ */
 export function NodeList({ nodes, blueprintsByNodeId, selectedNodeId, onSelectNode }: NodeListProps) {
   const [search, setSearch] = useState('');
 

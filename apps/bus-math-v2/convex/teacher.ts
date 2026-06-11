@@ -75,6 +75,11 @@ const DEFAULT_PHASE_NAMES: Record<number, string> = {
   6: 'Closing',
 };
 
+/**
+ * Sorts students alphabetically by display name, falling back to username.
+ * @param students - The student list to sort.
+ * @returns A new sorted array.
+ */
 function sortStudentsByName<
   T extends {
     username: string;
@@ -86,6 +91,12 @@ function sortStudentsByName<
   );
 }
 
+/**
+ * Returns the teacher profile if the user has a teacher or admin role.
+ * @param ctx - The Convex query context.
+ * @param userId - The profile ID to look up.
+ * @returns The profile document, or null if unauthorized.
+ */
 async function getAuthorizedTeacher(
   ctx: QueryCtx,
   userId: Id<"profiles">,
@@ -97,6 +108,12 @@ async function getAuthorizedTeacher(
   return teacher;
 }
 
+/**
+ * Fetches all student profiles in the given organization, sorted by name.
+ * @param ctx - The Convex query context.
+ * @param organizationId - The organization to query.
+ * @returns A sorted array of student profile documents.
+ */
 async function listOrganizationStudents(
   ctx: QueryCtx,
   organizationId: Id<"organizations">,
@@ -111,6 +128,12 @@ async function listOrganizationStudents(
   );
 }
 
+/**
+ * Returns the organization name, or a default string if not found.
+ * @param ctx - The Convex query context.
+ * @param organizationId - The organization to look up.
+ * @returns The organization name or "Your organization".
+ */
 async function getOrganizationName(
   ctx: QueryCtx,
   organizationId: Id<"organizations">,
@@ -119,6 +142,12 @@ async function getOrganizationName(
   return organization?.name ?? "Your organization";
 }
 
+/**
+ * Fetches the latest published version for each lesson.
+ * @param ctx - The Convex query context.
+ * @param lessonIds - Optional list of lesson IDs to filter.
+ * @returns An array of the latest published lesson version documents.
+ */
 async function listLatestPublishedLessonVersions(
   ctx: QueryCtx,
   lessonIds?: string[],
@@ -129,6 +158,11 @@ async function listLatestPublishedLessonVersions(
   ];
 }
 
+/**
+ * Returns the set of phase version IDs from all published lessons.
+ * @param ctx - The Convex query context.
+ * @returns A set of active phase version IDs.
+ */
 async function listActivePhaseIds(
   ctx: QueryCtx,
 ): Promise<Set<Id<"phase_versions">>> {
@@ -142,6 +176,13 @@ async function listActivePhaseIds(
   }) as Set<Id<"phase_versions">>;
 }
 
+/**
+ * Builds a progress snapshot for a student across all active phases.
+ * @param ctx - The Convex query context.
+ * @param studentId - The student profile ID.
+ * @param activePhaseIds - The set of currently active phase version IDs.
+ * @returns A snapshot with completed/total phases, percentage, and last active.
+ */
 async function buildStudentProgressSnapshot(
   ctx: QueryCtx,
   studentId: Id<"profiles">,
@@ -158,6 +199,12 @@ async function buildStudentProgressSnapshot(
   });
 }
 
+/**
+ * Assembles per-unit lesson progress rows for a student detail view.
+ * @param ctx - The Convex query context.
+ * @param studentId - The student profile ID.
+ * @returns An array of unit rows, each containing its lesson progress.
+ */
 async function listStudentDetailUnits(
   ctx: QueryCtx,
   studentId: Id<"profiles">,

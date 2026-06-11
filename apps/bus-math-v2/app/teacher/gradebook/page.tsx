@@ -6,6 +6,11 @@ import { fetchInternalQuery, internal } from '@/lib/convex/server';
 import { CourseOverviewGrid } from '@/components/teacher/CourseOverviewGrid';
 import type { CourseOverviewRow, UnitColumn } from '@math-platform/teacher-reporting-core';
 
+/**
+ * Course gradebook page for teachers showing all students and unit columns.
+ *
+ * @returns The course gradebook page element or a redirect.
+ */
 export default async function CourseGradebookPage() {
   const claims = await requireTeacherSessionClaims('/teacher/gradebook');
 

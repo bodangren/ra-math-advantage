@@ -15,6 +15,14 @@ interface Props {
   params: Promise<{ componentId: string }>;
 }
 
+/**
+ * Wrapper component that renders an activity component with an onSubmit
+ * handler injected into its props for testing submission behavior.
+ *
+ * @param Component - The activity component to render.
+ * @param props - Props to pass through to the activity component.
+ * @param onSubmit - Callback invoked when the activity submits.
+ */
 function ActivityWithSubmit({
   Component,
   props,
@@ -27,6 +35,13 @@ function ActivityWithSubmit({
   return <Component {...props} onSubmit={onSubmit} />;
 }
 
+/**
+ * Harness page for testing activity components in development. Renders the
+ * activity with controls for resetting, loading default props, and viewing
+ * submission results.
+ *
+ * @param params - Route params containing the componentId to test.
+ */
 export default function ActivityHarnessPage({ params }: Props) {
   const { componentId } = use(params);
 

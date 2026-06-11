@@ -27,6 +27,13 @@ interface LessonPageProps {
   }>;
 }
 
+/**
+ * Error component displayed when a lesson has no phases configured.
+ *
+ * @param props - The component props.
+ * @param props.lessonTitle - The title of the lesson with missing phases.
+ * @returns An error message with a link back to the dashboard.
+ */
 function NoPhaseError({ lessonTitle }: { lessonTitle: string }) {
   return (
     <div className="container mx-auto px-4 py-8">
@@ -47,6 +54,13 @@ function NoPhaseError({ lessonTitle }: { lessonTitle: string }) {
   );
 }
 
+/**
+ * Error component displayed when the access check for a lesson fails.
+ *
+ * @param props - The component props.
+ * @param props.lessonTitle - The title of the lesson that failed access verification.
+ * @returns An error message with a link back to the dashboard.
+ */
 function AccessCheckError({ lessonTitle }: { lessonTitle: string }) {
   return (
     <div className="container mx-auto px-4 py-8">
@@ -70,6 +84,15 @@ function AccessCheckError({ lessonTitle }: { lessonTitle: string }) {
   );
 }
 
+/**
+ * Lesson page for a student, resolving the lesson content, phase progress,
+ * and access checks before rendering the lesson renderer.
+ *
+ * @param props - The page props including route and search params.
+ * @param props.params - Promise resolving to the route parameters containing lessonSlug.
+ * @param props.searchParams - Promise resolving to query parameters including optional phase.
+ * @returns The lesson renderer component or an error/redirect.
+ */
 export default async function LessonPage({ params, searchParams }: LessonPageProps) {
   const { lessonSlug } = await params;
   const { phase: phaseParam } = await searchParams;

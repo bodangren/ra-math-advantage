@@ -21,6 +21,15 @@ const CompletePhaseSchema = z.object({
 
 type CompletePhasePayload = z.infer<typeof CompletePhaseSchema> & CompletePhaseRequest;
 
+/**
+ * Marks a lesson phase as complete for the authenticated student.
+ *
+ * @param request - The incoming request with JSON body containing lessonId,
+ *   phaseNumber, timeSpent, idempotencyKey, and optional linkedStandardId.
+ * @returns A JSON response with completion status, phaseId, and next phase info.
+ * @throws Returns 400 for validation errors, 403 for access violations,
+ *   404 if lesson/phase not found, 500 on internal errors.
+ */
 export async function POST(request: Request) {
   try {
     const claimsOrResponse = await requireActiveStudentRequestClaims(

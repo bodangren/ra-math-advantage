@@ -1,5 +1,11 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
+/**
+ * Displays an authentication error page with details from the URL search params.
+ *
+ * @param props - Component props containing search params with an error string.
+ * @returns The rendered error page.
+ */
 export default async function Page({
   searchParams,
 }: {
