@@ -77,9 +77,9 @@ import type { GeneratorOutput } from '@math-platform/knowledge-space-practice';
 
 const HERE = fileURLToPath(import.meta.url);
 const PKG_ROOT = resolve(HERE, '../../../../../../..');
-const GAP_QUEUE_JSON = resolve(
+const NODES_JSON = resolve(
   PKG_ROOT,
-  'apps/integrated-math-1/curriculum/skill-graph/generator-gap-queue.json',
+  'apps/integrated-math-1/curriculum/skill-graph/nodes.json',
 );
 const METADATA_JSON = resolve(
   PKG_ROOT,
@@ -122,10 +122,12 @@ function loadVerticalSliceSkillIds(): string[] {
     verticalSliceModule?: string;
   };
   const vsm = String(meta.verticalSliceModule);
-  const queue = JSON.parse(readFileSync(GAP_QUEUE_JSON, 'utf-8')) as {
-    queue: Array<{ nodeId: string; module: string }>;
+  const nodes = JSON.parse(readFileSync(NODES_JSON, 'utf-8')) as {
+    nodes: Array<{ id: string; kind: string; metadata?: { module?: string } }>;
   };
-  return queue.queue.filter((q) => q.module === vsm).map((q) => q.nodeId);
+  return nodes.nodes
+    .filter((n) => n.kind === 'skill' && n.metadata?.module === vsm)
+    .map((n) => n.id);
 }
 
 // ---------------------------------------------------------------------------

@@ -2,6 +2,8 @@ import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
+import { IM1_GENERATORS } from './generators';
+
 // ---------------------------------------------------------------------------
 // Types
 // ---------------------------------------------------------------------------
@@ -114,16 +116,17 @@ export function buildCoverageMatrix(): CoverageMatrix {
   const bpByNodeId = new Map<string, BlueprintEntry>(
     blueprints.blueprints.map((b) => [b.nodeId, b]),
   );
+  const servedNodeIds = new Set(
+    IM1_GENERATORS.flatMap((entry) => entry.nodeIds),
+  );
 
   const matrixSkills: CoverageMatrixSkillEntry[] = skills.map((skill) => {
     const gap = gapByNodeId.get(skill.id);
     const bp = bpByNodeId.get(skill.id);
     const module = skill.metadata?.module ?? '0';
-
-    // Phase 1 initial state: every skill is a gap with tier=none.
-    // Future phases will update status/tier as generators are implemented.
-    const status: CoverageStatus = 'gap';
-    const tier: CoverageMatrixSkillEntry['tier'] = 'none';
+    const isServed = servedNodeIds.has(skill.id);
+    const status: CoverageStatus = isServed ? 'served' : 'gap';
+    const tier: CoverageMatrixSkillEntry['tier'] = isServed ? 't17' : 'none';
 
     const rendererKey =
       gap?.rendererKey ?? bp?.rendererKey ?? 'unknown';
@@ -173,11 +176,13 @@ export function buildCoverageMatrix(): CoverageMatrix {
       newComponent: agg.newComponent,
     }));
 
-  const counts: CoverageMatrixCounts = {
-    served: 0,
-    gap: matrixSkills.length,
-    newComponent: 0,
-  };
+  const counts: CoverageMatrixCounts = matrixSkills.reduce(
+    (acc, skill) => {
+      acc[skill.status] += 1;
+      return acc;
+    },
+    { served: 0, gap: 0, newComponent: 0 } as CoverageMatrixCounts,
+  );
 
   return {
     version: 1,

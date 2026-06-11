@@ -157,6 +157,10 @@ const IM1_ROLLOUT_DIR = resolve(
   'apps/integrated-math-1/curriculum/skill-graph',
 );
 const BLUEPRINTS_JSON = resolve(IM1_ROLLOUT_DIR, 'blueprints.json');
+const GENERATOR_GAP_QUEUE_JSON = resolve(
+  IM1_ROLLOUT_DIR,
+  'generator-gap-queue.json',
+);
 const METADATA_JSON = resolve(
   PKG_ROOT,
   'measure/tracks/im1-practice-readiness_20260609/metadata.json',
@@ -430,6 +434,17 @@ describe('IM1 audit refresh — long-tail tracking section (Phase 5 Task 1)', ()
 // ---------------------------------------------------------------------------
 
 describe('IM1 audit refresh — live coverage vs. audit doc (Phase 5 Task 1)', () => {
+  it('live generator-gap-queue count agrees with the audit doc long-tail claim', () => {
+    const audit = loadAuditText();
+    const gapQueue = JSON.parse(readFileSync(GENERATOR_GAP_QUEUE_JSON, 'utf-8')) as {
+      queue: Array<{ nodeId: string }>;
+    };
+    const longTail = audit.match(/\b(\d+)\s+skills outside the vertical slice/i);
+    expect(longTail).not.toBeNull();
+    expect(Number(longTail![1])).toBe(gapQueue.queue.length);
+    expect(gapQueue.queue.length).toBe(132);
+  });
+
   it('live IM1_GENERATORS registry count agrees with the doc\'s Generator Readiness served count', () => {
     const audit = loadAuditText();
     const live = collectRegisteredGeneratorCount();

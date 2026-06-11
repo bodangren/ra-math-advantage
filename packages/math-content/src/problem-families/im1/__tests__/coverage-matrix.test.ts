@@ -226,18 +226,20 @@ describe('Coverage matrix — integration with rollout-audit (Phase 1, Task 1↔
     expect(matrix.totalSkills).toBe(skillCount);
   });
 
-  it('matrix skills join exhaustively with generator-gap-queue (no orphan skills)', () => {
+  it('gap skills join exhaustively with generator-gap-queue (no orphan or served skills)', () => {
     const matrix = buildCoverageMatrix();
     const gap = JSON.parse(readFileSync(GENERATOR_GAP_QUEUE_JSON, 'utf-8')) as {
       queue: Array<{ nodeId: string }>;
     };
-    const matrixIds = new Set(
-      (matrix.skills as CoverageMatrixSkillEntry[]).map((s) => s.skillId),
+    const gapSkillIds = new Set(
+      (matrix.skills as CoverageMatrixSkillEntry[])
+        .filter((s) => s.status === 'gap')
+        .map((s) => s.skillId),
     );
+    expect(gap.queue).toHaveLength(gapSkillIds.size);
     for (const entry of gap.queue) {
-      expect(matrixIds.has(entry.nodeId)).toBe(true);
+      expect(gapSkillIds.has(entry.nodeId)).toBe(true);
     }
-    expect(matrix.skills.length).toBe(gap.queue.length);
   });
 
   it('matrix skills join exhaustively with blueprints.json (138/138)', () => {
@@ -255,19 +257,32 @@ describe('Coverage matrix — integration with rollout-audit (Phase 1, Task 1↔
     expect(matched).toBe(138);
   });
 
-  it('initial matrix reflects 0% generator coverage (0 served, 138 gap, 0 newComponent)', () => {
-    // Audit (2026-05-10) says all 138 IM1 skills have a "Generator not yet
-    // implemented" exception. The initial matrix must mirror that.
+  it('matrix reflects refreshed generator coverage (6 served, 132 gap, 0 newComponent)', () => {
     const matrix = buildCoverageMatrix();
-    expect(matrix.counts.served).toBe(0);
-    expect(matrix.counts.gap).toBe(138);
+    expect(matrix.counts.served).toBe(6);
+    expect(matrix.counts.gap).toBe(132);
     expect(matrix.counts.newComponent).toBe(0);
   });
 
-  it('every initial skill is classified as a gap with tier="none"', () => {
+  it('served skills are exactly Module 1 vertical-slice skills with generator tier assigned', () => {
     const matrix = buildCoverageMatrix();
-    for (const s of matrix.skills as CoverageMatrixSkillEntry[]) {
-      expect(s.status as CoverageStatus).toBe('gap');
+    const served = (matrix.skills as CoverageMatrixSkillEntry[]).filter(
+      (s) => s.status === 'served',
+    );
+    expect(served).toHaveLength(6);
+    for (const s of served) {
+      expect(s.module).toBe('1');
+      expect(s.tier).not.toBe('none');
+    }
+  });
+
+  it('gap skills remain explicitly tracked with tier="none"', () => {
+    const matrix = buildCoverageMatrix();
+    const gaps = (matrix.skills as CoverageMatrixSkillEntry[]).filter(
+      (s) => s.status === 'gap',
+    );
+    expect(gaps).toHaveLength(132);
+    for (const s of gaps) {
       expect(s.tier).toBe('none');
     }
   });
