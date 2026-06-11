@@ -438,21 +438,31 @@
 >
 > **NFR-1 supplement:** 0 JSDoc lines currently exceed 120 chars in scope (the 22 already-documented functions all stay within the cap). The line-length guard is included from the start as a regression net — Green acceptance requires it to remain at 0 violations after Phase 6.
 
-- [~] Task 6.1: Add JSDoc to exported functions in IM3 `lib/` [red: <this-commit>]
+- [~] Task 6.1: Add JSDoc to exported functions in IM3 `lib/` [red: 5456acd7]
     - [ ] Run `grep -rn "export function\|export async function\|export const" apps/integrated-math-3/lib/`
     - [ ] Add standard JSDoc to each exported function (64 NULL exported functions across 18 files; top concentration: `curriculum/audit.ts` 3, `convex/server.ts` 5, `progress/published-curriculum.ts` 7, `study/srs.ts` 5, `workbooks.client.ts` 7, `workbooks.ts` 3)
     - [ ] Commit: `docs(integrated-math-3): Add JSDoc to exported functions in lib/`
-- [~] Task 6.2: Add JSDoc to internal functions in IM3 `lib/` [red: <this-commit>]
+- [~] Task 6.2: Add JSDoc to internal functions in IM3 `lib/` [red: 5456acd7]
     - [ ] Identify internal helper functions (33 NULL internal across 12 files; top concentration: `curriculum/audit.ts` 14, `auth/server.ts` 5, `student/dashboard.ts` 4, `teacher/data-export.ts` 4, `phase-completion/client.ts` 2, `convex/server.ts` 1, `progress/published-curriculum.ts` 1)
     - [ ] Add standard JSDoc to each internal function
     - [ ] Commit: `docs(integrated-math-3): Add JSDoc to internal functions in lib/`
-- [~] Task 6.3: Verify phase [red: <this-commit>]
+- [~] Task 6.3: Verify phase [red: 5456acd7]
     - [ ] Run `npm run lint --workspace=apps/integrated-math-3`
     - [ ] Run `npm run test --workspace=apps/integrated-math-3`
     - [ ] Run `build-graph scan . ./graph.db` to refresh graph
     - [ ] Run the 3 Phase 6 guards (`check-jsdoc-coverage-im3-lib.sh` + `check-jsdoc-line-length-im3-lib.sh` + `check-phase-verification-6.sh`) — all must PASS
     - [ ] Commit: `measure(checkpoint): Checkpoint end of Phase 6`
-- [~] Task: Measure - User Manual Verification 'Phase 6: IM3 lib/' (Protocol in workflow.md) [red: <this-commit>]
+- [~] Task: Measure - User Manual Verification 'Phase 6: IM3 lib/' (Protocol in workflow.md) [red: 5456acd7]
+
+> **Live Red re-verification (2026-06-12, MID at HEAD `5456acd7`):** Re-ran the three Phase 6 guards at the new HEAD (the Phase 6 Red baseline commit `5456acd7`, which only added the three guard scripts + `phase-6-red-baseline.md` + `phase-6-verification-report.md` + plan.md `[~]` markers; zero source-code edits in Phase 6 scope). **Targeted Red command (single, bounded — primary test):** `bash measure/tracks/jsdoc-comments_20260526/scripts/check-jsdoc-coverage-im3-lib.sh` → **FAIL (exit 1), 97 NULL summaries (64 exported + 33 internal)** — exact match to the `5456acd7` Red baseline. Companion guards: `check-jsdoc-line-length-im3-lib.sh` → **PASS (exit 0, 0 violations)** — regression net holds; `check-phase-verification-6.sh` → **FAIL (exit 1, `VERIFICATION_RESULT: pending`, 3 unfilled fields)** — genuine live Red. Direct cross-check via `build-graph query ./graph.db "SELECT COUNT(*) AS total, SUM(CASE WHEN summary IS NULL THEN 1 ELSE 0 END) AS null_count, SUM(CASE WHEN summary IS NULL AND tags LIKE '%exported%' THEN 1 ELSE 0 END) AS exported_null, SUM(CASE WHEN summary IS NOT NULL THEN 1 ELSE 0 END) AS documented FROM nodes WHERE type='function' AND file_path LIKE '%/apps/integrated-math-3/lib/%'"` → `total=119, null_count=97, exported_null=64, documented=22` — matches baseline. `package_id` cross-check: `SELECT package_id, COUNT(*) FROM nodes WHERE type='function' AND file_path LIKE '%/apps/integrated-math-3/lib/%' AND summary IS NULL GROUP BY package_id` → `integrated-math-3=97` (scope-isolated, no leakage). graph.db unchanged from the last scan (mtime 2026-06-12 06:55; no committed source edits in `5456acd7`). No new Red tests added — per test-strategy.md §1, the doc-only track bans new vitest files for doc text; the three executable guards in `measure/tracks/jsdoc-comments_20260526/scripts/` are the complete Red contract and they all execute correctly. Red contract holds at HEAD `5456acd7`; Phase 6 Red phase is satisfied by commit `5456acd7`.
+>
+> **Targeted Red command + fail count (per user rule "Record the command plus fail count in plan.md"):**
+> - **Command:** `bash measure/tracks/jsdoc-comments_20260526/scripts/check-jsdoc-coverage-im3-lib.sh`
+> - **Result:** **FAIL (exit 1)**
+> - **Fail count:** **97 NULL summaries (64 exported, 33 internal)** — exact mapping to Task 6.1 (64 exported NULLs) and Task 6.2 (33 internal NULLs)
+> - **Reproduce:** the guard runs `build-graph query ./graph.db "SELECT COUNT(*) FROM nodes WHERE type='function' AND file_path LIKE '%/apps/integrated-math-3/lib/%' AND summary IS NULL"` and asserts the count is 0
+>
+> **Task markers:** 6.1 [~], 6.2 [~], 6.3 [~], UMV [~] — all `red: 5456acd7` — awaiting Green author.
 
 ## Phase 7: IM3 `app/`, `scripts/`, `other/` — 119 functions
 
