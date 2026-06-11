@@ -320,20 +320,22 @@
 >
 > **Plan-vs-graph scope delta:** plan heading quotes 253 functions; live graph reports 188 total (185 NULL). The delta reflects scope refinement since plan authorship (excluded `convex/_generated/`, `__tests__/`, `node_modules/`, etc., and excluded the 3 functions that are already documented). Live graph count is the acceptance source of truth per test-strategy.md §6.
 
-- [~] Task 3.1: Add JSDoc to exported functions in BM2 `app/`, `convex/`, `scripts/`, `other/` [red: <sha>]
+- [~] Task 3.1: Add JSDoc to exported functions in BM2 `app/`, `convex/`, `scripts/`, `other/` [red: a615f113]
     - [ ] Identify exported functions across all remaining BM2 directories
     - [ ] Add standard JSDoc to each exported function
     - [ ] Commit: `docs(bus-math-v2): Add JSDoc to exported functions in app/convex/scripts/other/`
-- [~] Task 3.2: Add JSDoc to internal functions in BM2 `app/`, `convex/`, `scripts/`, `other/` [red: <sha>]
+- [~] Task 3.2: Add JSDoc to internal functions in BM2 `app/`, `convex/`, `scripts/`, `other/` [red: a615f113]
     - [ ] Identify internal functions across all remaining BM2 directories
     - [ ] Add standard JSDoc to each internal function
     - [ ] Commit: `docs(bus-math-v2): Add JSDoc to internal functions in app/convex/scripts/other/`
-- [~] Task 3.3: Verify phase [red: <sha>]
+- [~] Task 3.3: Verify phase [red: a615f113]
     - [ ] Run `npm run lint --workspace=apps/bus-math-v2`
     - [ ] Run `npm run test --workspace=apps/bus-math-v2`
     - [ ] Run `build-graph scan . ./graph.db` to refresh graph
     - [ ] Commit: `measure(checkpoint): Checkpoint end of Phase 3`
-- [~] Task: Measure - User Manual Verification 'Phase 3: BM2 remaining dirs' (Protocol in workflow.md) [red: <sha>]
+- [~] Task: Measure - User Manual Verification 'Phase 3: BM2 remaining dirs' (Protocol in workflow.md) [red: a615f113]
+>
+> **Live Red re-verification (2026-06-11, MID at HEAD `a615f113`):** Captured the Phase 3 Red baseline at this commit (the Red commit itself). **Targeted Red command (single, bounded — primary test):** `bash measure/tracks/jsdoc-comments_20260526/scripts/check-jsdoc-coverage-remaining.sh` → **FAIL (exit 1), 185 NULL summaries** (109 exported / 76 internal across 188 total functions in scope — matches the per-directory breakdown in `phase-3-red-baseline.md` §"Current state — Phase 3 scope"). The fail count is the genuine Red contract: 185 functions in `apps/bus-math-v2/{app,convex,scripts,hooks,middleware.ts,cloudflare,vite.config.ts}` lack JSDoc in source, not because a durable record is stale. Companion guards: `check-jsdoc-line-length-remaining.sh` → **PASS (exit 0, 0 violations)** — regression net holds (Phase 3's 3 already-documented functions all stay within the 120-char cap); `check-phase-verification-3.sh` → **FAIL (exit 1, `VERIFICATION_RESULT: pending`, 3 unfilled fields)**. Direct cross-check via `build-graph query ./graph.db "SELECT COUNT(*) AS total, SUM(CASE WHEN summary IS NULL THEN 1 ELSE 0 END) AS null_count, SUM(CASE WHEN summary IS NULL AND tags LIKE '%exported%' THEN 1 ELSE 0 END) AS exported_null FROM nodes WHERE type='function' AND (file_path LIKE '%/apps/bus-math-v2/app/%' OR file_path LIKE '%/apps/bus-math-v2/convex/%' OR file_path LIKE '%/apps/bus-math-v2/scripts/%' OR file_path LIKE '%/apps/bus-math-v2/hooks/%' OR file_path LIKE '%/apps/bus-math-v2/middleware%' OR file_path LIKE '%/apps/bus-math-v2/cloudflare/%' OR file_path LIKE '%/apps/bus-math-v2/vite.config%')"` → `total=188, null_count=185, exported_null=109` — matches the Red baseline. graph.db is fresh (mtime 2026-06-11 06:10, scanned <2h before this Red commit). No new Red tests added — per test-strategy.md §1, the doc-only track bans new vitest files for doc text; the three executable guards in `measure/tracks/jsdoc-comments_20260526/scripts/` are the complete Red contract and they all execute correctly. Red contract holds at HEAD `a615f113`; Phase 3 Red phase is satisfied by this commit.
 
 ## Phase 4: IM3 `convex/` — 146 functions
 
