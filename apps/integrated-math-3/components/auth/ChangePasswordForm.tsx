@@ -3,6 +3,11 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 
+/**
+ * Renders a password change form with validation and success/error feedback.
+ *
+ * @returns A client-side password change form.
+ */
 export function ChangePasswordForm() {
   const router = useRouter();
   const [currentPassword, setCurrentPassword] = useState('');

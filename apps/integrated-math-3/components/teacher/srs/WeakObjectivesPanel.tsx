@@ -34,6 +34,12 @@ const PRIORITY_COLORS: Record<ObjectivePriority, string> = {
   triaged: 'bg-muted text-muted-foreground',
 };
 
+/**
+ * Renders a color-coded horizontal progress bar for a proficiency percentage.
+ *
+ * @param props - Proficiency bar configuration.
+ * @returns A styled proficiency bar.
+ */
 function ProficiencyBar({ percent }: { percent: number }) {
   const getColor = (p: number) => {
     if (p >= 40) return 'bg-yellow-500';
@@ -56,6 +62,12 @@ function ProficiencyBar({ percent }: { percent: number }) {
   );
 }
 
+/**
+ * Renders a table of objectives below 50% proficiency with priority badges.
+ *
+ * @param props - Weak objectives panel configuration.
+ * @returns A styled weak objectives panel.
+ */
 export function WeakObjectivesPanel({
   objectives,
   isLoading = false,

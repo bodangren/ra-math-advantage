@@ -30,6 +30,12 @@ export interface InterventionActionsProps {
   onAddExtraCards?: (studentId: string, objectiveId: string) => Promise<void>;
 }
 
+/**
+ * Renders intervention action cards for priority toggle, reset cards, and extra cards.
+ *
+ * @param props - Intervention actions configuration.
+ * @returns A styled intervention actions panel.
+ */
 export function InterventionActions({
   onUpdatePriority,
   onResetCards,
@@ -218,6 +224,12 @@ export function InterventionActions({
   );
 }
 
+/**
+ * Renders a color-coded badge for an objective priority level.
+ *
+ * @param props - Priority badge configuration.
+ * @returns A styled priority badge.
+ */
 export function ObjectivePriorityBadge({ priority }: { priority: ObjectivePriority }) {
   const variants: Record<ObjectivePriority, string> = {
     essential: 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200',

@@ -169,17 +169,23 @@ const DropdownMenuSeparator = React.forwardRef<
 ));
 DropdownMenuSeparator.displayName = DropdownMenuPrimitive.Separator.displayName;
 
-const DropdownMenuShortcut = ({
+/**
+ * Renders a keyboard shortcut hint text styled for dropdown menus.
+ *
+ * @param props - HTML span attributes.
+ * @returns A styled shortcut span.
+ */
+function DropdownMenuShortcut({
   className,
   ...props
-}: React.HTMLAttributes<HTMLSpanElement>) => {
+}: React.HTMLAttributes<HTMLSpanElement>) {
   return (
     <span
       className={cn("ml-auto text-xs tracking-widest opacity-60", className)}
       {...props}
     />
   );
-};
+}
 DropdownMenuShortcut.displayName = "DropdownMenuShortcut";
 
 export {

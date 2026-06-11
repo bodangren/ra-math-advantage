@@ -9,12 +9,24 @@ interface GradebookGridProps {
   onCellClick?: (studentId: string, lessonId: string) => void;
 }
 
+/**
+ * Sorts gradebook rows alphabetically by display name.
+ *
+ * @param rows - Rows to sort.
+ * @returns Sorted rows array.
+ */
 function sortRowsByName(rows: GradebookRow[]): GradebookRow[] {
   return [...rows].sort((a, b) =>
     a.displayName.toLowerCase().localeCompare(b.displayName.toLowerCase()),
   );
 }
 
+/**
+ * Renders a gradebook table with student names as rows and lessons as columns.
+ *
+ * @param props - Gradebook grid configuration.
+ * @returns A styled gradebook grid.
+ */
 export function GradebookGrid({ rows, lessons, onCellClick }: GradebookGridProps) {
   if (rows.length === 0 || lessons.length === 0) {
     return (

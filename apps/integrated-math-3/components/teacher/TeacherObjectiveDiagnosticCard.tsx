@@ -21,6 +21,12 @@ const FLUENCY_CLASSES: Record<string, string> = {
   high: 'bg-green-100 text-green-700',
 };
 
+/**
+ * Renders a diagnostic card for a learning objective with proficiency and retention metrics.
+ *
+ * @param props - Teacher objective diagnostic card configuration.
+ * @returns A styled diagnostic card.
+ */
 export function TeacherObjectiveDiagnosticCard({ view }: TeacherObjectiveDiagnosticCardProps) {
   const labelText = view.proficiencyLabel
     .split('_')

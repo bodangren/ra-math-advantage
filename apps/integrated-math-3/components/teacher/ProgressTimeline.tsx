@@ -20,6 +20,12 @@ const STATUS_LABELS: Record<string, string> = {
   not_started: 'Not Started',
 };
 
+/**
+ * Renders a vertical timeline of phase progress with status badges.
+ *
+ * @param props - Progress timeline configuration.
+ * @returns A styled progress timeline.
+ */
 export function ProgressTimeline({ phases, totalTimeMinutes }: ProgressTimelineProps) {
   if (phases.length === 0) {
     return (

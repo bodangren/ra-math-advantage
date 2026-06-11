@@ -11,6 +11,12 @@ export interface UnitProgressCardProps {
   completedLessons: number;
 }
 
+/**
+ * Renders a unit progress card with title, progress bar, and completion status.
+ *
+ * @param props - Unit progress card configuration.
+ * @returns A styled unit progress card.
+ */
 export function UnitProgressCard({
   unitNumber,
   unitTitle,

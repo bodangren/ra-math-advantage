@@ -2,6 +2,11 @@
 
 import Link from 'next/link';
 
+/**
+ * Renders an empty state message when no practice items are due.
+ *
+ * @returns An empty state with dashboard link.
+ */
 export function EmptyPracticeState() {
   return (
     <div className="max-w-2xl mx-auto py-12 px-4 text-center">

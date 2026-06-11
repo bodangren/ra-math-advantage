@@ -28,6 +28,12 @@ interface PracticeTestEngineProps {
 
 type Phase = 'introduction' | 'assessment' | 'closing';
 
+/**
+ * Implements a three-phase practice test engine with lesson selection and scoring.
+ *
+ * @param props - Practice test engine configuration.
+ * @returns A practice test with introduction, assessment, and closing phases.
+ */
 export default function PracticeTestEngine({ moduleConfig, onComplete }: PracticeTestEngineProps) {
   const [currentPhase, setCurrentPhase] = useState<Phase>('introduction');
   const [selectedLessonIds, setSelectedLessonIds] = useState<string[]>(

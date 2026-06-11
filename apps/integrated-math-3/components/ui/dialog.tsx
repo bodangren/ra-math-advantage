@@ -13,6 +13,12 @@ export interface DialogProps {
   children: React.ReactNode;
 }
 
+/**
+ * Renders a native dialog modal with backdrop click-to-close and animated transitions.
+ *
+ * @param props - Dialog configuration.
+ * @returns A dialog element.
+ */
 export function Dialog({ open, onOpenChange, title, description, children }: DialogProps) {
   const dialogRef = useRef<HTMLDialogElement>(null);
 
@@ -90,6 +96,12 @@ export interface AlertDialogProps {
   variant?: 'default' | 'destructive';
 }
 
+/**
+ * Renders an alert dialog with confirm/cancel buttons and optional destructive variant.
+ *
+ * @param props - Alert dialog configuration.
+ * @returns A composed alert dialog.
+ */
 export function AlertDialog({
   open,
   onOpenChange,

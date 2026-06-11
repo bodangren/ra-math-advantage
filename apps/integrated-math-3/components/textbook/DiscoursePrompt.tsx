@@ -9,6 +9,12 @@ export interface DiscoursePromptProps {
   expandableArea?: React.ReactNode;
 }
 
+/**
+ * Renders a discourse prompt card with an optional expandable response area.
+ *
+ * @param props - Discourse prompt configuration.
+ * @returns A styled discourse prompt container.
+ */
 export function DiscoursePrompt({ prompt, title = 'Think About It', expandableArea }: DiscoursePromptProps) {
   const [isExpanded, setIsExpanded] = useState(false);
 

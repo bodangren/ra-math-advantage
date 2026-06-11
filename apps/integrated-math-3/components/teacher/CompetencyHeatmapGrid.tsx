@@ -10,12 +10,24 @@ interface CompetencyHeatmapGridProps {
   onCellClick?: (studentId: string, standardId: string) => void;
 }
 
+/**
+ * Sorts heatmap rows alphabetically by display name.
+ *
+ * @param rows - Rows to sort.
+ * @returns Sorted rows array.
+ */
 function sortRowsByName(rows: CompetencyHeatmapRow[]): CompetencyHeatmapRow[] {
   return [...rows].sort((a, b) =>
     a.displayName.toLowerCase().localeCompare(b.displayName.toLowerCase()),
   );
 }
 
+/**
+ * Renders a sortable heatmap table of student mastery per competency standard.
+ *
+ * @param props - Competency heatmap grid configuration.
+ * @returns A styled heatmap grid.
+ */
 export function CompetencyHeatmapGrid({
   rows,
   standards,

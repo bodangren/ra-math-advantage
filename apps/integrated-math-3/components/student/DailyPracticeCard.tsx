@@ -6,6 +6,12 @@ export interface DailyPracticeCardProps {
   lastPracticedAt: string | null;
 }
 
+/**
+ * Renders a dashboard card showing daily practice status, streak, and due items.
+ *
+ * @param props - Daily practice card configuration.
+ * @returns A styled practice card.
+ */
 export function DailyPracticeCard({
   dueCount,
   streak,

@@ -6,6 +6,11 @@ import { Button } from "@/components/ui/button";
 import { BookOpen } from "lucide-react";
 import { getModuleConfig } from "@/lib/practice-tests/question-banks";
 
+/**
+ * Renders a grid of module cards linking to individual practice test pages.
+ *
+ * @returns A practice test selection grid.
+ */
 export function PracticeTestSelection() {
   const modules = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 

@@ -21,6 +21,12 @@ const difficultyConfig = {
   },
 };
 
+/**
+ * Renders an example header with number, title, and optional difficulty badge.
+ *
+ * @param props - Example header configuration.
+ * @returns A styled example header.
+ */
 export function ExampleHeader({ number, title, difficulty }: ExampleHeaderProps) {
   const config = difficulty ? difficultyConfig[difficulty] : null;
 

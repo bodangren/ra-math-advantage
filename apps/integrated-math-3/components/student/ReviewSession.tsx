@@ -13,6 +13,12 @@ interface ReviewSessionProps {
   }) => void;
 }
 
+/**
+ * Renders an SRS review session with progress tracking and due-today messaging.
+ *
+ * @param props - Review session configuration.
+ * @returns A review session.
+ */
 export function ReviewSession({ terms, onComplete }: ReviewSessionProps) {
   const renderHeader = (currentIndex: number, total: number) => (
     <div

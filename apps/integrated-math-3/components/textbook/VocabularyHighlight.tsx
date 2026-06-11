@@ -9,6 +9,12 @@ export interface VocabularyHighlightProps {
   children?: React.ReactNode;
 }
 
+/**
+ * Renders an inline vocabulary term with a hoverable/clickable tooltip showing its definition.
+ *
+ * @param props - Vocabulary highlight configuration.
+ * @returns An interactive vocabulary highlight span.
+ */
 export function VocabularyHighlight({ term, definition, children }: VocabularyHighlightProps) {
   const [isOpen, setIsOpen] = useState(false);
   const termRef = useRef<HTMLSpanElement>(null);

@@ -22,6 +22,12 @@ export interface PhaseCompleteButtonProps {
   onStatusChange?: (status: ProgressStatus) => void;
 }
 
+/**
+ * Renders a button to mark a lesson phase as complete or skip it.
+ *
+ * @param props - Phase complete button configuration.
+ * @returns A phase completion button with loading states.
+ */
 export function PhaseCompleteButton({
   lessonId,
   phaseNumber,

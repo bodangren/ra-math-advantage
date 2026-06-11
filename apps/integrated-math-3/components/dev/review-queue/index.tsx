@@ -27,6 +27,11 @@ interface Filters {
   onlyStale: boolean;
 }
 
+/**
+ * Custom hook that fetches and manages the review queue with filtering.
+ *
+ * @returns Review queue data, filters, and review submission.
+ */
 export function useReviewQueueClient() {
   const [items, setItems] = useState<ReviewQueueItem[]>([]);
   const [loading, setLoading] = useState(true);
@@ -93,6 +98,12 @@ export function useReviewQueueClient() {
   return { items, loading, error, filters, setFilters, handleReviewSubmit };
 }
 
+/**
+ * Renders a filterable list of review queue items.
+ *
+ * @param props - Review queue list configuration.
+ * @returns A styled review queue list.
+ */
 export function ReviewQueueList({
   items,
   loading,
@@ -197,6 +208,12 @@ export function ReviewQueueList({
   );
 }
 
+/**
+ * Renders a review decision form with approve/reject buttons.
+ *
+ * @param props - Review decision panel configuration.
+ * @returns A styled review decision form.
+ */
 export function ReviewDecisionPanel({
   item,
   onSubmit,
@@ -369,6 +386,11 @@ export function ReviewDecisionPanel({
 
 type ReviewView = 'decision' | 'harness';
 
+/**
+ * Renders the full review queue page with list and decision panels.
+ *
+ * @returns A two-panel review queue page.
+ */
 export function ReviewQueueView() {
   const [selectedItem, setSelectedItem] = useState<ReviewQueueItem | null>(null);
   const [reviewView, setReviewView] = useState<ReviewView>('decision');
@@ -461,6 +483,12 @@ export function ReviewQueueView() {
   );
 }
 
+/**
+ * Renders the appropriate review harness for a selected queue item.
+ *
+ * @param props - Component harness panel configuration.
+ * @returns A review harness for the selected item.
+ */
 function ComponentHarnessPanel({ item, onCanApproveChange }: { item: ReviewQueueItem; onCanApproveChange: (canApprove: boolean) => void }) {
   const defaultActivityProps = {
     activityId: item.componentId,

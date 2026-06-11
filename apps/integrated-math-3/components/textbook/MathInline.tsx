@@ -6,6 +6,12 @@ export interface MathInlineProps {
   className?: string;
 }
 
+/**
+ * Renders an inline KaTeX math expression.
+ *
+ * @param props - Math inline configuration.
+ * @returns A span containing the rendered math.
+ */
 export function MathInline({ math, className = '' }: MathInlineProps) {
   return (
     <span className={`math-inline ${className}`}>

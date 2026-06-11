@@ -22,6 +22,12 @@ export interface LessonStepperProps {
   className?: string;
 }
 
+/**
+ * Renders a responsive horizontal stepper for navigating lesson phases.
+ *
+ * @param props - Lesson stepper configuration.
+ * @returns A phase navigation stepper.
+ */
 export function LessonStepper({ phases, currentPhase, onPhaseClick, className }: LessonStepperProps) {
   const handleClick = (phase: StepperPhase) => {
     if (phase.status !== 'locked') {
@@ -67,6 +73,12 @@ export function LessonStepper({ phases, currentPhase, onPhaseClick, className }:
   );
 }
 
+/**
+ * Renders a single stepper button with status-based styling and phase icon.
+ *
+ * @param props - Step button configuration.
+ * @returns A styled stepper button.
+ */
 function StepButton({
   phase,
   isCurrent,

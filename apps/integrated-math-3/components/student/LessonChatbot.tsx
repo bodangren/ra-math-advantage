@@ -13,6 +13,12 @@ interface LessonChatbotProps {
 
 type ChatState = 'closed' | 'open' | 'loading' | 'response' | 'error';
 
+/**
+ * Renders a floating chatbot widget for asking questions about the current lesson.
+ *
+ * @param props - Lesson chatbot configuration.
+ * @returns A floating chatbot panel.
+ */
 export function LessonChatbot({ lessonId, phaseNumber }: LessonChatbotProps) {
   const [chatState, setChatState] = useState<ChatState>('closed');
   const [question, setQuestion] = useState('');

@@ -10,6 +10,12 @@ export interface ReflectionCardProps {
   persistence: ReflectionDimension;
 }
 
+/**
+ * Renders a CAP (Courage, Adaptability, Persistence) reflection card with three dimension panels.
+ *
+ * @param props - Reflection card configuration with three dimension prompts.
+ * @returns A grid of three reflection dimension cards.
+ */
 export function ReflectionCard({ courage, adaptability, persistence }: ReflectionCardProps) {
   const dimensions = [
     {

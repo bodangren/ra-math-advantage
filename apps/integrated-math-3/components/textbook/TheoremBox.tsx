@@ -22,6 +22,12 @@ const variantStyles = {
   },
 };
 
+/**
+ * Renders a theorem box with variant-specific styling and optional icon.
+ *
+ * @param props - Theorem box configuration.
+ * @returns A styled theorem section.
+ */
 export function TheoremBox({ title, children, icon, variant = 'default' }: TheoremBoxProps) {
   const styles = variantStyles[variant];
 

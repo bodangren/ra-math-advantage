@@ -8,6 +8,12 @@ export interface ClassOverviewCardProps {
   upcomingAssignments: number;
 }
 
+/**
+ * Renders a card with three stat tiles for class overview metrics.
+ *
+ * @param props - Class overview card configuration.
+ * @returns A styled class overview card.
+ */
 export function ClassOverviewCard({
   totalStudents,
   averageProgress,

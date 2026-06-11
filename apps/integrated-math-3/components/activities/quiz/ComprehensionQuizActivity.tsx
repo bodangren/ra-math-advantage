@@ -9,6 +9,12 @@ export interface ActivityComponentProps {
   onComplete?: () => void;
 }
 
+/**
+ * Renders a comprehension quiz activity with sample questions across multiple formats.
+ *
+ * @param props - Activity configuration with mode and callbacks.
+ * @returns A comprehension quiz activity.
+ */
 export function ComprehensionQuizActivity({
   activityId,
   mode,

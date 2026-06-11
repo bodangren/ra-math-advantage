@@ -17,6 +17,12 @@ export interface StrugglingStudentsPanelProps {
   onStudentClick?: (studentId: string) => void;
 }
 
+/**
+ * Renders a single struggling student card with urgency metrics.
+ *
+ * @param props - Student card configuration.
+ * @returns A styled student card.
+ */
 function StudentCard({
   student,
   rank,
@@ -101,6 +107,12 @@ function StudentCard({
   );
 }
 
+/**
+ * Renders a list of struggling students ranked by urgency.
+ *
+ * @param props - Struggling students panel configuration.
+ * @returns A styled struggling students panel.
+ */
 export function StrugglingStudentsPanel({
   students,
   isLoading = false,

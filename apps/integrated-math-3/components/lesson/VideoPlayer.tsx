@@ -11,6 +11,12 @@ interface VideoPlayerProps {
   thumbnailUrl?: string;
 }
 
+/**
+ * Extracts a YouTube video ID from a watch, shortened, or embed URL.
+ *
+ * @param url - YouTube URL to parse.
+ * @returns The video ID or null if not found.
+ */
 function getYouTubeId(url: string): string | null {
   const match = url.match(
     /(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/embed\/)([^&\n?#]+)/,
@@ -18,6 +24,12 @@ function getYouTubeId(url: string): string | null {
   return match?.[1] ?? null;
 }
 
+/**
+ * Renders a lazy-loaded YouTube video player with duration display and transcript.
+ *
+ * @param props - Video player configuration.
+ * @returns A video player with play button and transcript.
+ */
 export function VideoPlayer({ videoUrl, duration, transcript }: VideoPlayerProps) {
   const [videoLoaded, setVideoLoaded] = useState(false);
   const [transcriptOpen, setTranscriptOpen] = useState(false);

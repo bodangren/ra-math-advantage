@@ -23,6 +23,12 @@ interface MatchingGameProps {
   }) => void;
 }
 
+/**
+ * Renders a memory-style matching game pairing glossary terms with definitions.
+ *
+ * @param props - Matching game configuration.
+ * @returns An interactive matching game.
+ */
 export function MatchingGame({ terms, onComplete }: MatchingGameProps) {
   const [cards, setCards] = useState<CardItem[]>([]);
   const [selectedId, setSelectedId] = useState<string | null>(null);

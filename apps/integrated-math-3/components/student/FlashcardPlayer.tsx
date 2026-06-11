@@ -13,6 +13,12 @@ interface FlashcardPlayerProps {
   }) => void;
 }
 
+/**
+ * Renders a flashcard review experience with term progress tracking.
+ *
+ * @param props - Flashcard player configuration.
+ * @returns A flashcard review session.
+ */
 export function FlashcardPlayer({ terms, onComplete }: FlashcardPlayerProps) {
   const renderHeader = (currentIndex: number, total: number) => (
     <div

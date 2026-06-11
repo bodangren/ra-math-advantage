@@ -39,6 +39,12 @@ const defaultSteps: AlgebraicStep[] = [
   },
 ];
 
+/**
+ * Renders a step-by-step algebraic solver activity with teaching, guided, and practice modes.
+ *
+ * @param props - Activity configuration with steps, problem type, and callbacks.
+ * @returns An interactive algebraic solver activity.
+ */
 export function StepByStepSolverActivity({
   activityId,
   mode,

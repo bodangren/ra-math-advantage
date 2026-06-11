@@ -15,6 +15,12 @@ const navItems = [
   { href: '/student/settings', label: 'Settings' },
 ];
 
+/**
+ * Renders a responsive sidebar navigation for the student section.
+ *
+ * @param props - Navigation configuration with active route.
+ * @returns A responsive navigation sidebar.
+ */
 export function StudentNavigation({ activeRoute }: StudentNavigationProps) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 

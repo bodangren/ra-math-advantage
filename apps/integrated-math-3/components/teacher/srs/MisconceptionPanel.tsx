@@ -23,6 +23,12 @@ const TIME_WINDOWS = [
   { label: '30 days', value: 30 },
 ];
 
+/**
+ * Renders a custom Recharts tooltip for misconception bar chart.
+ *
+ * @param props - Tooltip props from Recharts.
+ * @returns A styled misconception tooltip.
+ */
 function CustomTooltip({ active, payload }: { active?: boolean; payload?: Array<{ payload: MisconceptionView }> }) {
   if (!active || !payload || payload.length === 0) {
     return null;
@@ -43,6 +49,12 @@ function CustomTooltip({ active, payload }: { active?: boolean; payload?: Array<
   );
 }
 
+/**
+ * Renders a horizontal bar chart of top misconceptions with time-window selector.
+ *
+ * @param props - Misconception panel configuration.
+ * @returns A styled misconception chart panel.
+ */
 export function MisconceptionPanel({
   misconceptions,
   isLoading = false,

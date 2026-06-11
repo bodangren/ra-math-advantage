@@ -11,6 +11,12 @@ export interface LessonCardProps {
   href: string;
 }
 
+/**
+ * Renders a clickable lesson card with number, title, phase count, and completion status.
+ *
+ * @param props - Lesson card configuration.
+ * @returns A styled lesson card.
+ */
 export function LessonCard({
   lessonNumber,
   title,

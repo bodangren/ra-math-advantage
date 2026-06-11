@@ -4,6 +4,12 @@ export interface SubmissionFeedbackProps {
   isCorrect: boolean;
 }
 
+/**
+ * Renders an inline feedback banner showing correct or incorrect status.
+ *
+ * @param props - Submission feedback configuration.
+ * @returns A styled feedback banner.
+ */
 export function SubmissionFeedback({ isCorrect }: SubmissionFeedbackProps) {
   return (
     <div

@@ -70,6 +70,12 @@ export interface PhaseRendererProps {
 
 // ── Component ─────────────────────────────────────────────────────────────────
 
+/**
+ * Renders a phase's content sections (text, callout, video, activity, image) inside a PhaseContainer.
+ *
+ * @param props - Phase renderer configuration.
+ * @returns A rendered phase with all its sections.
+ */
 export function PhaseRenderer({
   phaseType,
   sections,
@@ -109,6 +115,12 @@ export function PhaseRenderer({
 
 // ── Per-section renderer ──────────────────────────────────────────────────────
 
+/**
+ * Renders the appropriate content block for a single section type.
+ *
+ * @param props - Section block configuration.
+ * @returns A rendered section block.
+ */
 function SectionBlock({
   section,
   lessonId,

@@ -25,6 +25,12 @@ interface PracticeReviewHarnessProps {
   onCanApproveChange?: (canApprove: boolean) => void;
 }
 
+/**
+ * Renders a dev harness for reviewing practice components with attempt simulation.
+ *
+ * @param props - Practice review harness configuration.
+ * @returns A dev review harness for practice.
+ */
 export function PracticeReviewHarness({
   componentKey,
   componentProps = {},
@@ -209,6 +215,12 @@ export function PracticeReviewHarness({
   );
 }
 
+/**
+ * Renders a single checklist item with check/circle icon.
+ *
+ * @param props - Check item configuration.
+ * @returns A styled checklist item.
+ */
 function CheckItem({ checked, label }: { checked: boolean; label: string }) {
   return (
     <label className="flex items-center gap-2">
@@ -220,6 +232,12 @@ function CheckItem({ checked, label }: { checked: boolean; label: string }) {
   );
 }
 
+/**
+ * Renders a placeholder preview of a practice component.
+ *
+ * @param props - Practice preview configuration.
+ * @returns A styled practice preview.
+ */
 function PracticePreview({
   componentKey,
   props,
@@ -247,6 +265,11 @@ function PracticePreview({
   );
 }
 
+/**
+ * Custom hook managing practice review state with a canApprove computed value.
+ *
+ * @returns Practice review state and controls.
+ */
 export function usePracticeReviewHarnessState() {
   const [submissions, setSubmissions] = useState<SubmissionEnvelope[]>([]);
   const [variantCount, setVariantCount] = useState(0);

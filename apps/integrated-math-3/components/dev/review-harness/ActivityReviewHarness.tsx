@@ -17,6 +17,12 @@ interface ActivityReviewHarnessProps {
   onCanApproveChange?: (canApprove: boolean) => void;
 }
 
+/**
+ * Renders a dev harness for reviewing activity components with mode switching.
+ *
+ * @param props - Activity review harness configuration.
+ * @returns A dev review harness for activities.
+ */
 export function ActivityReviewHarness({
   componentKey,
   activityId,
@@ -208,6 +214,12 @@ export function ActivityReviewHarness({
   );
 }
 
+/**
+ * Renders a single checkbox-style checklist item.
+ *
+ * @param props - Check item configuration.
+ * @returns A styled checklist item.
+ */
 function CheckItem({ checked, label }: { checked: boolean; label: string }) {
   return (
     <label className="flex items-center gap-2">
@@ -219,6 +231,12 @@ function CheckItem({ checked, label }: { checked: boolean; label: string }) {
   );
 }
 
+/**
+ * Renders a placeholder preview of an activity component.
+ *
+ * @param props - Activity preview configuration.
+ * @returns A styled activity preview.
+ */
 function ActivityPreview({
   componentKey,
   activityId,
@@ -264,6 +282,11 @@ function ActivityPreview({
   );
 }
 
+/**
+ * Custom hook managing activity review state with a canApprove computed value.
+ *
+ * @returns Activity review state and controls.
+ */
 export function useActivityReviewHarnessState() {
   const [callbacks, setCallbacks] = useState<ActivityCallback[]>([]);
   const [activeMode, setActiveMode] = useState<'teaching' | 'guided' | 'practice'>('teaching');

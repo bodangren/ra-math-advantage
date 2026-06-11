@@ -6,6 +6,12 @@ export interface DefinitionCardProps {
   relatedTerms?: string[];
 }
 
+/**
+ * Renders a vocabulary definition card with optional related terms.
+ *
+ * @param props - Definition card configuration.
+ * @returns A styled definition card.
+ */
 export function DefinitionCard({ term, definition, relatedTerms }: DefinitionCardProps) {
   return (
     <article className="rounded-lg border bg-card p-4 my-4 shadow-sm">

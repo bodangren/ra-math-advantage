@@ -36,6 +36,12 @@ const variantConfig = {
   },
 };
 
+/**
+ * Renders a callout box with variant-specific icon and styling (important, tip, remember, caution).
+ *
+ * @param props - Callout box configuration.
+ * @returns A styled callout aside.
+ */
 export function CalloutBox({ variant, title, children }: CalloutBoxProps) {
   const config = variantConfig[variant];
   const Icon = config.icon;

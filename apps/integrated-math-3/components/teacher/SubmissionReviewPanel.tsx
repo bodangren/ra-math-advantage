@@ -11,6 +11,12 @@ interface SubmissionReviewPanelProps {
   isOpen?: boolean;
 }
 
+/**
+ * Renders an expandable review panel showing submission evidence and error analysis.
+ *
+ * @param props - Submission review panel configuration.
+ * @returns A styled submission review panel.
+ */
 export function SubmissionReviewPanel({
   evidence,
   errorSummary,

@@ -50,6 +50,12 @@ const STATE_COLORS: Record<CardState, string> = {
   relearning: 'text-red-500 bg-red-50 dark:bg-red-950',
 };
 
+/**
+ * Renders a grid of card states with counts and retention for one objective.
+ *
+ * @param props - Card state grid configuration.
+ * @returns A styled card state grid.
+ */
 function CardStateGrid({ summary }: { summary: ObjectiveCardSummary }) {
   const states: { key: CardState; count: number; label: string }[] = [
     { key: 'new', count: summary.newCount, label: 'New' },
@@ -101,6 +107,12 @@ function CardStateGrid({ summary }: { summary: ObjectiveCardSummary }) {
   );
 }
 
+/**
+ * Renders a scrollable timeline of recent SRS review entries.
+ *
+ * @param props - Review timeline configuration.
+ * @returns A styled review timeline.
+ */
 function ReviewTimeline({ reviews }: { reviews: ReviewHistoryEntry[] }) {
   if (reviews.length === 0) {
     return (
@@ -152,6 +164,12 @@ function ReviewTimeline({ reviews }: { reviews: ReviewHistoryEntry[] }) {
   );
 }
 
+/**
+ * Renders a full SRS detail view for a student with card summaries and review history.
+ *
+ * @param props - Student SRS detail configuration.
+ * @returns A styled SRS detail view.
+ */
 export function StudentSrsDetail({
   studentName,
   cardSummary,

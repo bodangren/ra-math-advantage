@@ -21,6 +21,12 @@ const FLUENCY_CLASSES: Record<string, string> = {
   high: 'bg-green-100 text-green-700',
 };
 
+/**
+ * Renders a badge displaying student proficiency level and fluency confidence.
+ *
+ * @param props - Proficiency badge configuration.
+ * @returns A styled proficiency badge.
+ */
 export function ObjectiveProficiencyBadge({ view }: ObjectiveProficiencyBadgeProps) {
   const labelText = view.proficiencyLabel
     .split('_')

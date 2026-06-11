@@ -27,6 +27,12 @@ interface ExportPanelProps {
   onComplete?: () => void;
 }
 
+/**
+ * Renders a data export form for selecting dataset, format, and downloading exports.
+ *
+ * @param props - Export panel configuration.
+ * @returns A styled export form.
+ */
 export function ExportPanel({
   isTeacher,
   classId,

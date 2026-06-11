@@ -20,6 +20,12 @@ const borderColorMap: Record<string, string> = {
   'bg-gray-50':   'border-gray-200',
 };
 
+/**
+ * Renders a phase container with phase-type-specific background and border colors.
+ *
+ * @param props - Phase container configuration.
+ * @returns A styled phase section container.
+ */
 export function PhaseContainer({ phaseType, children }: PhaseContainerProps) {
   const { label, color, bgColor } = getPhaseDisplayInfo(phaseType);
   const borderColor = borderColorMap[bgColor] ?? 'border-border';

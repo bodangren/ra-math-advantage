@@ -11,6 +11,12 @@ export interface DiscriminantAnalyzerActivityProps extends DiscriminantAnalyzerP
   onComplete?: () => void;
 }
 
+/**
+ * Renders a discriminant analyzer activity for quadratic equations.
+ *
+ * @param props - Activity configuration with equation and coefficient data.
+ * @returns A discriminant analyzer activity.
+ */
 export function DiscriminantAnalyzerActivity({
   activityId,
   mode,

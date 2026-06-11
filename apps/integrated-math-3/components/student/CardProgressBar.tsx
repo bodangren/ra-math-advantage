@@ -5,6 +5,12 @@ export interface CardProgressBarProps {
   totalCount: number;
 }
 
+/**
+ * Renders an accessible progress bar showing current card position in a practice session.
+ *
+ * @param props - Progress bar configuration.
+ * @returns A styled progress bar.
+ */
 export function CardProgressBar({ currentIndex, totalCount }: CardProgressBarProps) {
   const currentCard = currentIndex + 1;
   const percentage = totalCount > 0 ? (currentCard / totalCount) * 100 : 0;

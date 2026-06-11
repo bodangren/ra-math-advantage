@@ -35,6 +35,12 @@ export interface LessonMetadataPanelProps {
   className?: string;
 }
 
+/**
+ * Renders a collapsible panel showing lesson objectives, vocabulary, and standards.
+ *
+ * @param props - Lesson metadata panel configuration.
+ * @returns A collapsible metadata panel.
+ */
 export function LessonMetadataPanel({
   metadata,
   defaultExpanded = false,

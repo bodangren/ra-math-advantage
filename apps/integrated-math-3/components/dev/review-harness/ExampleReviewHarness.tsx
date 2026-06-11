@@ -20,6 +20,12 @@ interface ReviewedModes {
   practice: boolean;
 }
 
+/**
+ * Renders a dev harness for reviewing example components with mode switching.
+ *
+ * @param props - Example review harness configuration.
+ * @returns A dev review harness for examples.
+ */
 export function ExampleReviewHarness({
   componentKey,
   steps,
@@ -165,6 +171,12 @@ export function ExampleReviewHarness({
   );
 }
 
+/**
+ * Renders a mode selection button with active/reviewed visual states.
+ *
+ * @param props - Mode button configuration.
+ * @returns A styled mode button.
+ */
 function ModeButton({
   mode,
   active,
@@ -193,6 +205,12 @@ function ModeButton({
   );
 }
 
+/**
+ * Renders a reviewed/pending status badge.
+ *
+ * @param props - Status badge configuration.
+ * @returns A styled status badge.
+ */
 function StatusBadge({ label, checked }: { label: string; checked: boolean }) {
   return (
     <span
@@ -205,6 +223,12 @@ function StatusBadge({ label, checked }: { label: string; checked: boolean }) {
   );
 }
 
+/**
+ * Renders a preview of an example component.
+ *
+ * @param props - Example preview configuration.
+ * @returns A styled example preview.
+ */
 function ExamplePreview({
   mode,
   steps,
@@ -244,6 +268,11 @@ function ExamplePreview({
   );
 }
 
+/**
+ * Custom hook managing example review state with a canApprove computed value.
+ *
+ * @returns Example review state and controls.
+ */
 export function useExampleReviewHarnessState() {
   const [reviewedModes, setReviewedModes] = useState<ReviewedModes>({
     teaching: false,

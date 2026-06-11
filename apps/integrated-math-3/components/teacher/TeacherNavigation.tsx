@@ -18,6 +18,12 @@ const navItems = [
   { href: '/teacher/settings', label: 'Settings' },
 ];
 
+/**
+ * Renders a responsive sidebar navigation for teacher pages.
+ *
+ * @param props - Navigation configuration with active route.
+ * @returns A responsive teacher navigation.
+ */
 export function TeacherNavigation({ activeRoute }: TeacherNavigationProps) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 

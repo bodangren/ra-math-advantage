@@ -25,6 +25,13 @@ const GAME_DURATION = 90;
 const INITIAL_LIVES = 3;
 const OPTIONS_COUNT = 4;
 
+/**
+ * Generates shuffled multiple-choice questions from glossary terms.
+ *
+ * @param terms - Glossary terms to use.
+ * @param count - Number of questions to generate.
+ * @returns Array of shuffled questions with options.
+ */
 function generateQuestions(terms: GlossaryTerm[], count: number): Question[] {
   const shuffledTerms = shuffleArray(terms);
   const selectedTerms = shuffledTerms.slice(0, Math.min(count, shuffledTerms.length));
@@ -46,6 +53,12 @@ function generateQuestions(terms: GlossaryTerm[], count: number): Question[] {
   });
 }
 
+/**
+ * Renders a timed speed-round quiz with lives, streaks, and 4-option multiple choice.
+ *
+ * @param props - Speed round game configuration.
+ * @returns An interactive speed round game.
+ */
 export function SpeedRoundGame({ terms, onComplete }: SpeedRoundGameProps) {
   const [questions, setQuestions] = useState<Question[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0);

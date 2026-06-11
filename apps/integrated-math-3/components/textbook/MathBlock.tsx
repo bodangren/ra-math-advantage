@@ -6,6 +6,12 @@ export interface MathBlockProps {
   className?: string;
 }
 
+/**
+ * Renders a block-level KaTeX math expression centered in its container.
+ *
+ * @param props - Math block configuration.
+ * @returns A div containing the rendered math.
+ */
 export function MathBlock({ math, className = '' }: MathBlockProps) {
   return (
     <div className={`math-block my-4 flex justify-center ${className}`}>

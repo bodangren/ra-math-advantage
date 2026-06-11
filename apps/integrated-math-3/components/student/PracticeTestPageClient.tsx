@@ -10,6 +10,12 @@ interface PracticeTestPageClientProps {
   moduleConfig: PracticeTestModuleConfig;
 }
 
+/**
+ * Client wrapper for practice test pages that tracks duration and reports results.
+ *
+ * @param props - Practice test page configuration.
+ * @returns A practice test page client.
+ */
 export function PracticeTestPageClient({ moduleConfig }: PracticeTestPageClientProps) {
   const startedAtRef = useRef<number>(Date.now());
 

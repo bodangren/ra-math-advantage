@@ -11,6 +11,12 @@ export interface ProgressCardProps {
   nextLessonHref?: string;
 }
 
+/**
+ * Renders a module progress card with percentage bar and next lesson link.
+ *
+ * @param props - Progress card configuration.
+ * @returns A styled progress card.
+ */
 export function ProgressCard({
   title,
   progress,

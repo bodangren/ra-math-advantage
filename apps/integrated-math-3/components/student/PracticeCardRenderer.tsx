@@ -18,6 +18,12 @@ export interface PracticeCardRendererProps {
   onComplete: () => void;
 }
 
+/**
+ * Renders a single practice card with progress bar and activity renderer.
+ *
+ * @param props - Practice card renderer configuration.
+ * @returns A practice card with submission handling.
+ */
 export function PracticeCardRenderer({
   queueItem,
   currentIndex,

@@ -11,6 +11,12 @@ export interface StudentRowProps {
   onMessage: (studentId: string) => void;
 }
 
+/**
+ * Renders a table row with student name, progress bar, and action buttons.
+ *
+ * @param props - Student row configuration.
+ * @returns A styled student table row.
+ */
 export function StudentRow({
   studentId,
   studentName,

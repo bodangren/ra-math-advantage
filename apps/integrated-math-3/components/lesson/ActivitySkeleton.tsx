@@ -6,6 +6,12 @@ interface ActivitySkeletonProps {
   className?: string;
 }
 
+/**
+ * Renders a skeleton loading placeholder for an activity.
+ *
+ * @param props - Optional className for the skeleton container.
+ * @returns A pulsing skeleton placeholder.
+ */
 export function ActivitySkeleton({ className }: ActivitySkeletonProps) {
   return (
     <div

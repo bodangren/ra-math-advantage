@@ -7,6 +7,12 @@ interface LessonSkeletonProps {
   className?: string;
 }
 
+/**
+ * Renders a skeleton loading placeholder for a lesson page.
+ *
+ * @param props - Skeleton configuration with optional phase count.
+ * @returns A pulsing lesson skeleton.
+ */
 export function LessonSkeleton({ phaseCount = 4, className }: LessonSkeletonProps) {
   return (
     <div className={cn('space-y-6', className)} data-testid="lesson-skeleton">

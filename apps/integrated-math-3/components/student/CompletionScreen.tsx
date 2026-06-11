@@ -8,6 +8,12 @@ interface CompletionScreenProps {
   totalCount: number;
 }
 
+/**
+ * Renders a completion message with checkmark and dashboard link after practice.
+ *
+ * @param props - Completion screen configuration.
+ * @returns A completion screen.
+ */
 export function CompletionScreen({ completedCount, totalCount }: CompletionScreenProps) {
   return (
     <div className="max-w-2xl mx-auto py-12 px-4 text-center">

@@ -21,6 +21,12 @@ export interface LessonPageLayoutProps {
   showTeacherPreviewBadge?: boolean;
 }
 
+/**
+ * Renders the full lesson page layout with sticky progress bar, header, phase sidebar, and content area.
+ *
+ * @param props - Lesson page layout configuration.
+ * @returns A responsive lesson page with sidebar navigation.
+ */
 export function LessonPageLayout({
   lessonTitle,
   moduleLabel,

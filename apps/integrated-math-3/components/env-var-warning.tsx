@@ -1,6 +1,11 @@
 import { Badge } from "./ui/badge";
 import { Button } from "./ui/button";
 
+/**
+ * Renders a warning badge when Supabase environment variables are missing.
+ *
+ * @returns An environment variable warning banner.
+ */
 export function EnvVarWarning() {
   return (
     <div className="flex gap-4 items-center">
