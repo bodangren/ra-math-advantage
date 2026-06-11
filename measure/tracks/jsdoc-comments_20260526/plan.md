@@ -413,20 +413,22 @@
 > **Red baseline (NFR-1 supplement):** 0 JSDoc lines currently exceed 120 chars in scope (the 3 already-documented functions all stay within the cap). The line-length guard is included from the start as a regression net — Green acceptance requires it to remain at 0 violations after Phase 5.
 > **Red baseline (Manual Verification supplement):** `VERIFICATION_RESULT: pending` in `phase-5-verification-report.md`. Guard script: `scripts/check-phase-verification-5.sh`. See `phase-5-red-baseline.md` §"User Manual Verification supplement".
 
-- [~] Task 5.1: Add JSDoc to exported functions in IM3 `components/` [red: <sha>]
+- [~] Task 5.1: Add JSDoc to exported functions in IM3 `components/` [red: 4ba1488a]
     - [ ] Run `grep -rn "export function\|export async function\|export default function" apps/integrated-math-3/components/`
     - [ ] Add standard JSDoc to each exported function
     - [ ] Commit: `docs(integrated-math-3): Add JSDoc to exported functions in components/`
-- [~] Task 5.2: Add JSDoc to internal functions in IM3 `components/` [red: <sha>]
+- [~] Task 5.2: Add JSDoc to internal functions in IM3 `components/` [red: 4ba1488a]
     - [ ] Identify internal helper functions, event handlers, and callbacks
     - [ ] Add standard JSDoc to each internal function
     - [ ] Commit: `docs(integrated-math-3): Add JSDoc to internal functions in components/`
-- [~] Task 5.3: Verify phase [red: <sha>]
+- [~] Task 5.3: Verify phase [red: 4ba1488a]
     - [ ] Run `npm run lint --workspace=apps/integrated-math-3`
     - [ ] Run `npm run test --workspace=apps/integrated-math-3`
     - [ ] Run `build-graph scan . ./graph.db` to refresh graph
     - [ ] Commit: `measure(checkpoint): Checkpoint end of Phase 5`
-- [~] Task: Measure - User Manual Verification 'Phase 5: IM3 components/' (Protocol in workflow.md) [red: <sha>]
+- [~] Task: Measure - User Manual Verification 'Phase 5: IM3 components/' (Protocol in workflow.md) [red: 4ba1488a]
+
+> **Live Red re-verification (2026-06-12, MID at HEAD `4ba1488a`):** Re-ran the three Phase 5 guards at the new HEAD (the Phase 5 Red baseline commit `4ba1488a`, which only added the three guard scripts + `phase-5-red-baseline.md` + `phase-5-verification-report.md` + plan.md `[~]` markers; zero source-code edits in Phase 5 scope). **Targeted Red command (single, bounded — primary test):** `bash measure/tracks/jsdoc-comments_20260526/scripts/check-jsdoc-coverage-components-im3.sh` → **FAIL (exit 1), 116 NULL summaries (90 exported + 26 internal)** — exact match to the `4ba1488a` Red baseline. Companion guards: `check-jsdoc-line-length-components-im3.sh` → **PASS (exit 0, 0 violations)** — regression net holds; `check-phase-verification-5.sh` → **FAIL (exit 1, `VERIFICATION_RESULT: pending`, 3 unfilled fields)** — genuine live Red. Direct cross-check via `build-graph query ./graph.db "SELECT COUNT(*) AS total, SUM(CASE WHEN summary IS NULL THEN 1 ELSE 0 END) AS null_count, SUM(CASE WHEN summary IS NULL AND tags LIKE '%exported%' THEN 1 ELSE 0 END) AS exported_null, SUM(CASE WHEN summary IS NOT NULL THEN 1 ELSE 0 END) AS documented FROM nodes WHERE type='function' AND file_path LIKE '%/apps/integrated-math-3/components/%'"` → `total=119, null_count=116, exported_null=90, documented=3` — matches baseline. graph.db unchanged from the last scan (mtime 2026-06-11 21:51; no committed source edits in `4ba1488a`). No new Red tests added — per test-strategy.md §1, the doc-only track bans new vitest files for doc text; the three executable guards in `measure/tracks/jsdoc-comments_20260526/scripts/` are the complete Red contract and they all execute correctly. Red contract holds at HEAD `4ba1488a`; Phase 5 Red phase is satisfied by commit `4ba1488a`.
 
 ## Phase 6: IM3 `lib/` — 108 functions
 
