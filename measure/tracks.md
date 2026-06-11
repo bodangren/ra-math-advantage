@@ -53,7 +53,7 @@ own #2/#6, #3, and #5.
 
 - [x] **Track: BM2 Drizzle Dead-Layer Removal** — **COMPLETED**
    *Finish the half-applied, build-breaking BM2 Drizzle prune: re-home the live zod schemas/types tangled into the deleted `lib/db/schema/*`, rewire ~15 importers, then drop the tables + `drizzle-*`/`postgres` deps cleanly. Audit #3.*
-   *Link: [./tracks/bm2-drizzle-removal_20260609/](./tracks/bm2-drizzle-removal_20260609/)*
+   *Link: [./measure/archive/bm2-drizzle-removal_20260609/](./measure/archive/bm2-drizzle-removal_20260609/)*
 
 - [ ] **Track: Unified Auth Across the Monorepo** — **PLANNED**
    *Consolidate shared auth onto `packages/core-auth`: promote BM2 `server.ts` local logic into the package (parameterized), thin the app wrappers, remove duplication/indirection. Audit #5.*
@@ -952,7 +952,7 @@ Sixteen candidate tracks identified from a full-roadmap review. Each is registry
 
 - [x] **Track: Measure Architecture Tooling** — **COMPLETED**
    *Build the real `generate` + `doctor` scripts and the `measure/generated/` facts (architecture.json, routes.md) so `/measure:doctor` stops HALTing. All 3 phases complete: generate script (architecture.json + routes.md), doctor script (boundary lint + freshness check + pass/fail exit), reconciliation (tech-debt resolved, phantom references updated). Verification: doctor green, BM2 tsc green, generate deterministic.*
-   *Link: [./tracks/measure-architecture-tooling_20260605/](./tracks/measure-architecture-tooling_20260605/)*
+   *Link: [./measure/archive/measure-architecture-tooling_20260605/](./measure/archive/measure-architecture-tooling_20260605/)*
 
 ### Tier 2 — Missing but high-leverage
 
