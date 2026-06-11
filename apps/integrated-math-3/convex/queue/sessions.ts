@@ -47,6 +47,12 @@ function isSameDay(a: number, b: number): boolean {
   );
 }
 
+/**
+ * Starts or resumes a daily SRS session for a student.
+ * @param ctx - The mutation context
+ * @param args - The student ID and optional date
+ * @returns The session and resolved practice queue
+ */
 export async function startDailySessionHandler(
   ctx: MutationCtx,
   args: { studentId: string; asOfDate?: string }
@@ -110,6 +116,12 @@ export const startDailySession = internalMutation({
   handler: startDailySessionHandler,
 });
 
+/**
+ * Retrieves the active daily session for a student, if one exists.
+ * @param ctx - The query context
+ * @param args - The student ID and optional date
+ * @returns The active session and queue, or null if no active session
+ */
 export async function getActiveSessionHandler(
   ctx: QueryCtx,
   args: { studentId: string; asOfDate?: string }
@@ -148,6 +160,13 @@ export const getActiveSession = internalQuery({
   handler: getActiveSessionHandler,
 });
 
+/**
+ * Completes a daily SRS session for a student.
+ * @param ctx - The mutation context
+ * @param args - The student ID and session ID
+ * @returns The completed session ID
+ * @throws Error if no active session is found
+ */
 export async function completeDailySessionHandler(
   ctx: MutationCtx,
   args: { studentId: string; sessionId: string }

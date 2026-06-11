@@ -384,6 +384,11 @@ async function generateUniqueUsername(
   return fallback;
 }
 
+/**
+ * Generates a cryptographically random token string.
+ * @param length - The number of characters in the token (default 8)
+ * @returns Random string from the password-safe alphabet
+ */
 function randomToken(length = 8): string {
   const bytes = crypto.getRandomValues(new Uint8Array(length));
   return Array.from(bytes, (byte) => PASSWORD_ALPHABET[byte % PASSWORD_ALPHABET.length]).join('');

@@ -7,6 +7,12 @@ import { ConvexReviewLogStore } from "../../lib/srs/convexReviewLogStore";
 import type { PracticeTimingBaseline } from "@math-platform/practice-core";
 import type { MutationCtx } from "../_generated/server";
 
+/**
+ * Looks up the problem family and objective for an activity.
+ * @param ctx - The mutation context
+ * @param activityId - The activity ID to look up
+ * @returns The problem family ID and objective ID, or null if not found
+ */
 async function lookupProblemFamily(
   ctx: MutationCtx,
   activityId: string
@@ -35,6 +41,12 @@ async function lookupProblemFamily(
   };
 }
 
+/**
+ * Looks up the timing baseline for a problem family.
+ * @param ctx - The mutation context
+ * @param problemFamilyId - The problem family ID to look up
+ * @returns The timing baseline, or null if not found
+ */
 async function lookupBaseline(
   ctx: MutationCtx,
   problemFamilyId: string
@@ -60,6 +72,12 @@ async function lookupBaseline(
   };
 }
 
+/**
+ * Processes a student submission through the SRS adapter.
+ * @param ctx - The mutation context
+ * @param args - The student ID, activity ID, and submission data
+ * @returns Result with card/review IDs, skip reason, or error message
+ */
 export async function processSubmissionSrsHandler(
   ctx: MutationCtx,
   args: {

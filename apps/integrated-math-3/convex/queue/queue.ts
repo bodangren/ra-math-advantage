@@ -11,6 +11,11 @@ export type ResolvedQueueItem = QueueItem & {
   props: Record<string, unknown>;
 };
 
+/**
+ * Maps a database SRS card to the contract format used by the queue builder.
+ * @param card - The raw database card object
+ * @returns The card in SrsCardState contract format
+ */
 function mapDbCardToContract(
   card: {
     _id: Id<"srs_cards">;
@@ -49,6 +54,12 @@ function mapDbCardToContract(
   };
 }
 
+/**
+ * Resolves queue items by enriching them with activity component data.
+ * @param ctx - The database query context
+ * @param items - The raw queue items from the SRS engine
+ * @returns Resolved queue items with componentKey and props
+ */
 async function resolveQueueItems(
   ctx: QueueDbContext,
   items: QueueItem[]
@@ -114,6 +125,12 @@ export interface QueueDbContext {
   db: Pick<QueryCtx["db"], "query" | "get">;
 }
 
+/**
+ * Builds and resolves the daily practice queue for a student.
+ * @param ctx - The database query context
+ * @param args - The student ID and optional date
+ * @returns Array of resolved queue items with component data
+ */
 export async function resolveDailyPracticeQueue(
   ctx: QueueDbContext,
   args: { studentId: string; asOfDate?: string }
@@ -170,6 +187,12 @@ export async function resolveDailyPracticeQueue(
   return resolveQueueItems(ctx, queueItems);
 }
 
+/**
+ * Retrieves the daily practice queue for a student.
+ * @param ctx - The query context
+ * @param args - The student ID and optional date
+ * @returns Array of resolved queue items with component data
+ */
 export async function getDailyPracticeQueueHandler(
   ctx: QueryCtx,
   args: { studentId: string; asOfDate?: string }

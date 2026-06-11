@@ -99,6 +99,11 @@ export interface LessonInfo {
   orderIndex: number;
 }
 
+/**
+ * Retrieves all available lessons for assignment.
+ * @param ctx - The query context
+ * @returns Array of lesson metadata
+ */
 export async function getAvailableLessonsHandler(
   ctx: QueryCtx,
 ): Promise<LessonInfo[]> {
@@ -128,6 +133,13 @@ export interface AssignLessonResult {
   alreadyExists?: boolean;
 }
 
+/**
+ * Assigns a lesson to a class owned by the teacher.
+ * @param ctx - The mutation context
+ * @param args - The teacher user ID, class ID, and lesson ID
+ * @returns Result indicating success and whether the assignment already existed
+ * @throws Error if the teacher does not own the class
+ */
 export async function assignLessonToClassHandler(
   ctx: MutationCtx,
   args: {
@@ -177,6 +189,13 @@ export interface UnassignLessonResult {
   wasDeleted?: boolean;
 }
 
+/**
+ * Unassigns a lesson from a class owned by the teacher.
+ * @param ctx - The mutation context
+ * @param args - The teacher user ID, class ID, and lesson ID
+ * @returns Result indicating success and whether the assignment was deleted
+ * @throws Error if the teacher does not own the class
+ */
 export async function unassignLessonFromClassHandler(
   ctx: MutationCtx,
   args: {

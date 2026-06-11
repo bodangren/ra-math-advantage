@@ -37,6 +37,11 @@ import {
 
 const VALID_PRIORITIES = new Set<string>(['essential', 'supporting', 'extension', 'triaged']);
 
+/**
+ * Validates and normalizes an objective priority string.
+ * @param value - The priority string to validate
+ * @returns A valid ObjectivePriority value, defaulting to 'essential'
+ */
 function validatePriority(value: string): ObjectivePriority {
   return VALID_PRIORITIES.has(value) ? (value as ObjectivePriority) : 'essential';
 }
@@ -318,6 +323,12 @@ async function preFetchTeacherClassData(
   };
 }
 
+/**
+ * Retrieves a single objective's proficiency for a student.
+ * @param ctx - The query context
+ * @param args - The student ID and optional objective ID
+ * @returns Objective proficiency result with evidence and retention metrics
+ */
 export async function getObjectiveProficiencyHandler(
   ctx: QueryCtx,
   args: { studentId: string; objectiveId?: string }
@@ -493,6 +504,16 @@ export const getObjectiveProficiency = internalQuery({
   handler: getObjectiveProficiencyHandler,
 });
 
+/**
+ * Computes proficiency for a single objective from SRS card data.
+ * @param ctx - The query context
+ * @param studentId - The student's profile ID
+ * @param objectiveId - The objective to compute proficiency for
+ * @param allCards - Pre-fetched SRS cards for the student
+ * @param allReviews - Pre-fetched review logs for the student
+ * @param preFetched - Optional pre-fetched data bundle for batch queries
+ * @returns Objective proficiency result with evidence and retention metrics
+ */
 async function computeProficiencyForObjective(
   ctx: QueryCtx,
   studentId: Id<"profiles">,
@@ -658,6 +679,12 @@ async function computeProficiencyForObjective(
   });
 }
 
+/**
+ * Retrieves the set of objective IDs a student has SRS cards for.
+ * @param ctx - The query context
+ * @param studentId - The student's profile ID
+ * @returns Array of objective ID strings
+ */
 async function getStudentObjectiveIds(
   ctx: QueryCtx,
   studentId: Id<"profiles">
@@ -676,6 +703,12 @@ async function getStudentObjectiveIds(
   return Array.from(objectiveIds);
 }
 
+/**
+ * Retrieves proficiency summary across all objectives for a student.
+ * @param ctx - The query context
+ * @param args - The student ID
+ * @returns Array of student proficiency views
+ */
 export async function getStudentProficiencySummaryHandler(
   ctx: QueryCtx,
   args: { studentId: string }
@@ -712,6 +745,12 @@ export const getStudentProficiencySummary = internalQuery({
   handler: getStudentProficiencySummaryHandler,
 });
 
+/**
+ * Retrieves teacher-facing proficiency data for all students in a class.
+ * @param ctx - The query context
+ * @param args - The class ID
+ * @returns Array of teacher proficiency views with per-objective aggregates
+ */
 export async function getTeacherClassProficiencyHandler(
   ctx: QueryCtx,
   args: { classId: string }

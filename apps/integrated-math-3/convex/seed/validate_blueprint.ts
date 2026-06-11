@@ -22,6 +22,11 @@ type ValidationInput = {
   objectivePolicies: { standardId: string }[];
 };
 
+/**
+ * Validates seed blueprint data integrity by checking foreign key references.
+ * @param input - The blueprint data to validate
+ * @returns Validation report with passed status and any violations
+ */
 export function runBlueprintValidation(input: ValidationInput): ValidationReport {
   const violations: ValidationViolation[] = [];
   let totalChecks = 0;

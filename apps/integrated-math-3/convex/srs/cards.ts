@@ -141,6 +141,11 @@ export const saveCard = internalMutation({
   handler: saveCardHandler,
 });
 
+/**
+ * Saves or updates multiple SRS cards in a single batch operation.
+ * @param ctx - The mutation context
+ * @param args - Object containing an array of card data to save
+ */
 export async function saveCardsHandler(
   ctx: MutationCtx,
   args: { cards: Array<{

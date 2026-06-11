@@ -120,6 +120,12 @@ function sortStudentsByName<
   );
 }
 
+/**
+ * Lists all student profiles in an organization, sorted by display name.
+ * @param ctx - The query context
+ * @param organizationId - The organization to list students for
+ * @returns Sorted array of student profiles
+ */
 async function listOrganizationStudents(
   ctx: QueryCtx,
   organizationId: Id<"organizations">,
@@ -134,6 +140,12 @@ async function listOrganizationStudents(
   );
 }
 
+/**
+ * Retrieves the display name of an organization.
+ * @param ctx - The query context
+ * @param organizationId - The organization to look up
+ * @returns The organization name or a default fallback
+ */
 async function getOrganizationName(
   ctx: QueryCtx,
   organizationId: Id<"organizations">,
@@ -142,6 +154,12 @@ async function getOrganizationName(
   return organization?.name ?? "Your organization";
 }
 
+/**
+ * Retrieves the latest published version for each lesson.
+ * @param ctx - The query context
+ * @param lessonIds - Optional filter to specific lesson IDs
+ * @returns Array of latest published lesson version documents
+ */
 async function listLatestPublishedLessonVersions(
   ctx: QueryCtx,
   lessonIds?: string[],
@@ -152,6 +170,11 @@ async function listLatestPublishedLessonVersions(
   ];
 }
 
+/**
+ * Retrieves the set of phase version IDs that belong to published lessons.
+ * @param ctx - The query context
+ * @returns Set of active phase version IDs
+ */
 async function listActivePhaseIds(
   ctx: QueryCtx,
 ): Promise<Set<Id<"phase_versions">>> {
@@ -168,6 +191,15 @@ async function listActivePhaseIds(
   }) as Set<Id<"phase_versions">>;
 }
 
+/**
+ * Builds a progress snapshot for a student from their progress rows.
+ * @param progressRows - The student's progress records
+ * @param activePhaseIds - Set of active phase version IDs
+ * @param phaseVersionLessonMap - Optional map from phase version to lesson version
+ * @param lessonVersionLessonMap - Optional map from lesson version to lesson
+ * @param lessonTitleMap - Optional map from lesson ID to title
+ * @returns Progress snapshot with completion stats and current lesson
+ */
 async function buildStudentProgressSnapshot(
   progressRows: readonly ProgressRowLike[],
   activePhaseIds: ReadonlySet<string>,
@@ -209,6 +241,12 @@ async function buildStudentProgressSnapshot(
   };
 }
 
+/**
+ * Lists all units with per-lesson progress detail for a student.
+ * @param ctx - The query context
+ * @param studentId - The student profile ID
+ * @returns Array of unit rows with nested lesson progress
+ */
 async function listStudentDetailUnits(
   ctx: QueryCtx,
   studentId: Id<"profiles">,
@@ -419,6 +457,12 @@ export const getTeacherCourseOverviewData = internalQuery({
   handler: async (ctx, args) => getTeacherCourseOverviewDataHandler(ctx, args),
 });
 
+/**
+ * Retrieves gradebook data for a teacher's students in a specific unit.
+ * @param ctx - The query context
+ * @param args - The teacher user ID and unit number
+ * @returns Gradebook rows and lesson metadata, or null if unauthorized
+ */
 export async function getTeacherGradebookDataHandler(
   ctx: QueryCtx,
   args: { userId: Id<"profiles">; unitNumber: number },
@@ -545,6 +589,12 @@ export const getTeacherGradebookData = internalQuery({
   handler: async (ctx, args) => getTeacherGradebookDataHandler(ctx, args),
 });
 
+/**
+ * Retrieves competency heatmap data for a teacher's organization.
+ * @param ctx - The query context
+ * @param args - The teacher user ID
+ * @returns Competency heatmap response with standards and student data, or null if unauthorized
+ */
 export async function getTeacherCompetencyHeatmapDataHandler(
   ctx: QueryCtx,
   args: { userId: Id<"profiles"> },
@@ -604,6 +654,12 @@ export const getTeacherCompetencyHeatmapData = internalQuery({
   handler: async (ctx, args) => getTeacherCompetencyHeatmapDataHandler(ctx, args),
 });
 
+/**
+ * Retrieves detailed competency data for a specific student.
+ * @param ctx - The query context
+ * @param args - The teacher user ID and student profile ID
+ * @returns Student competency detail with standards and lesson mappings, or null if unauthorized
+ */
 export async function getTeacherStudentCompetencyDetailHandler(
   ctx: QueryCtx,
   args: { userId: Id<"profiles">; studentId: Id<"profiles"> },
@@ -833,6 +889,12 @@ export const getTeacherLessonMonitoringData = internalQuery({
   },
 });
 
+/**
+ * Retrieves submission evidence detail for a student's lesson work.
+ * @param ctx - The query context
+ * @param args - The teacher user ID, student ID, lesson ID, and student display name
+ * @returns Submission detail with phases, evidence, and error summary, or null if unauthorized
+ */
 export async function getSubmissionDetailHandler(
   ctx: QueryCtx,
   args: { userId: Id<"profiles">; studentId: Id<"profiles">; lessonId: Id<"lessons">; studentName: string },

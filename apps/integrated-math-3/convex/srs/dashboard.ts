@@ -3,11 +3,22 @@ import { v } from "convex/values";
 import { Id } from "../_generated/dataModel";
 import { resolveDailyPracticeQueue } from "../queue/queue";
 
+/**
+ * Returns the UTC day start timestamp for a given timestamp.
+ * @param timestamp - The timestamp in milliseconds
+ * @returns The UTC midnight timestamp for that day
+ */
 export function getDayStart(timestamp: number): number {
   const d = new Date(timestamp);
   return Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate());
 }
 
+/**
+ * Calculates the current practice streak from completed session timestamps.
+ * @param completedSessionTimestamps - Array of completion timestamps in milliseconds
+ * @param now - The current timestamp in milliseconds
+ * @returns The number of consecutive days practiced
+ */
 export function calculateStreak(
   completedSessionTimestamps: number[],
   now: number
@@ -38,6 +49,12 @@ export function calculateStreak(
   return streak;
 }
 
+/**
+ * Retrieves practice statistics for a student including due count and streak.
+ * @param ctx - The query context
+ * @param args - The student ID and optional date
+ * @returns Object with dueCount, streak, and lastPracticedAt
+ */
 export async function getPracticeStatsHandler(
   ctx: QueryCtx,
   args: { studentId: string; asOfDate?: string }

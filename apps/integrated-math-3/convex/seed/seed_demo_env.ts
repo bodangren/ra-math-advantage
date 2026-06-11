@@ -3,6 +3,11 @@ import type { Id } from "../_generated/dataModel";
 
 const PASSWORD_HASH_ITERATIONS = 120000;
 
+/**
+ * Converts an ArrayBuffer to a URL-safe base64 string.
+ * @param buffer - The ArrayBuffer to encode
+ * @returns URL-safe base64 string without padding
+ */
 function arrayBufferToBase64Url(buffer: ArrayBuffer): string {
   const bytes = new Uint8Array(buffer);
   let binary = '';
@@ -12,6 +17,12 @@ function arrayBufferToBase64Url(buffer: ArrayBuffer): string {
   return btoa(binary).replace(/\+/g, '-').replace(/\//g, '_').replace(/=/g, '');
 }
 
+/**
+ * Hashes a password with a salt using PBKDF2-SHA256.
+ * @param password - The plaintext password
+ * @param salt - The salt string
+ * @returns The derived key as a URL-safe base64 string
+ */
 async function hashPassword(password: string, salt: string): Promise<string> {
   const encoder = new TextEncoder();
   const keyMaterial = await crypto.subtle.importKey(
@@ -36,6 +47,10 @@ async function hashPassword(password: string, salt: string): Promise<string> {
   return arrayBufferToBase64Url(derived);
 }
 
+/**
+ * Generates a cryptographically random salt.
+ * @returns URL-safe base64 string of 16 random bytes
+ */
 function generateSalt(): string {
   const bytes = crypto.getRandomValues(new Uint8Array(16));
   return arrayBufferToBase64Url(bytes.buffer);

@@ -34,6 +34,12 @@ type ListReviewQueueArgs = {
   onlyStale?: boolean;
 };
 
+/**
+ * Lists the component review queue with optional filtering.
+ * @param ctx - The query context
+ * @param args - Optional filters for component kind, status, and staleness
+ * @returns Array of review queue items
+ */
 export async function listReviewQueueHandler(
   ctx: QueryCtx,
   args: ListReviewQueueArgs,
@@ -146,6 +152,13 @@ type SubmitReviewArgs = {
   createdBy: Id<"profiles">;
 };
 
+/**
+ * Submits a review decision for a component.
+ * @param ctx - The mutation context
+ * @param args - The review data including component, status, and comment
+ * @returns Object with the review ID
+ * @throws Error if comment is missing for needs_changes/rejected, or activity not found
+ */
 export async function submitReviewHandler(ctx: MutationCtx, args: SubmitReviewArgs) {
   if ((args.status === "needs_changes" || args.status === "rejected") && !args.comment) {
     throw new Error("Comment is required for needs_changes or rejected status");
@@ -246,6 +259,11 @@ export const submitReview = internalMutation({
   handler: submitReviewHandler,
 });
 
+/**
+ * Retrieves unresolved review feedback for LLM audit context.
+ * @param ctx - The query context
+ * @returns Array of component reviews with needs_changes or rejected status
+ */
 export async function getAuditContextHandler(ctx: QueryCtx): Promise<Doc<"component_reviews">[]> {
   const needsChanges = await ctx.db
     .query("component_reviews")

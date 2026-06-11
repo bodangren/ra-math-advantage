@@ -90,6 +90,12 @@ type GetTermMasteryByUnitArgs = {
   moduleNumber: number;
 };
 
+/**
+ * Processes a spaced-repetition review for a glossary term.
+ * @param ctx - The mutation context
+ * @param args - The review data including term, rating, and FSRS state
+ * @returns Object with success status
+ */
 export async function processReviewHandler(
   ctx: MutationCtx,
   args: ProcessReviewArgs
@@ -215,6 +221,12 @@ export async function getTermMasteryByUnitHandler(
   return filtered;
 }
 
+/**
+ * Retrieves practice test results for a user, optionally filtered by module.
+ * @param ctx - The query context
+ * @param args - The user ID and optional module number filter
+ * @returns Array of practice test result documents
+ */
 export async function getPracticeTestResultsHandler(
   ctx: QueryCtx,
   args: GetPracticeTestResultsArgs
@@ -236,6 +248,12 @@ export async function getPracticeTestResultsHandler(
   return results;
 }
 
+/**
+ * Retrieves recent study sessions for a user.
+ * @param ctx - The query context
+ * @param args - The user ID and optional limit
+ * @returns Array of study session documents
+ */
 export async function getRecentStudySessionsHandler(
   ctx: QueryCtx,
   args: GetRecentStudySessionsArgs
@@ -311,6 +329,12 @@ export async function recordStudySessionHandler(
   return { sessionId };
 }
 
+/**
+ * Retrieves a single study session by its ID.
+ * @param ctx - The query context
+ * @param args - The session ID
+ * @returns The study session document, or null if not found
+ */
 export async function getStudySessionByIdHandler(
   ctx: QueryCtx,
   args: { sessionId: Id<"study_sessions"> }
@@ -319,6 +343,12 @@ export async function getStudySessionByIdHandler(
   return session;
 }
 
+/**
+ * Retrieves a single practice test result by its ID.
+ * @param ctx - The query context
+ * @param args - The result ID
+ * @returns The practice test result document, or null if not found
+ */
 export async function getPracticeTestResultByIdHandler(
   ctx: QueryCtx,
   args: { resultId: Id<"practice_test_results"> }
@@ -327,6 +357,12 @@ export async function getPracticeTestResultByIdHandler(
   return result;
 }
 
+/**
+ * Retrieves practice test results for a specific student, for teacher view.
+ * @param ctx - The query context
+ * @param args - The student ID and optional module number filter
+ * @returns Array of practice test result documents
+ */
 export async function getPracticeTestResultsForTeacherHandler(
   ctx: QueryCtx,
   args: { studentId: Id<"profiles">; moduleNumber?: number }
@@ -348,6 +384,12 @@ export async function getPracticeTestResultsForTeacherHandler(
   return results;
 }
 
+/**
+ * Retrieves study sessions for a specific student, for teacher view.
+ * @param ctx - The query context
+ * @param args - The student ID and optional activity type filter
+ * @returns Array of study session documents
+ */
 export async function getStudySessionsForTeacherHandler(
   ctx: QueryCtx,
   args: {

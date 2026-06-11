@@ -1,7 +1,19 @@
+/**
+ * Coerces a nullable string to a string or null.
+ * @param value - The value to coerce
+ * @returns The string value, or null if undefined/null
+ */
 export function coerceNullableString(value: string | null | undefined): string | null {
   return value ?? null;
 }
 
+/**
+ * Gets an existing map entry or creates one with the provided factory.
+ * @param map - The map to query
+ * @param key - The key to look up
+ * @param create - Factory function to create a new entry if missing
+ * @returns The existing or newly created entry
+ */
 export function getOrCreateMapEntry<K, V>(map: Map<K, V>, key: K, create: () => V): V {
   const existing = map.get(key);
   if (existing !== undefined) {
