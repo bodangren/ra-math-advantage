@@ -382,20 +382,24 @@
 
 ## Phase 4: IM3 `convex/` — 146 functions
 
-- [ ] Task 4.1: Add JSDoc to exported functions in IM3 `convex/`
+> **Red baseline (2026-06-11, MID at HEAD `f9435f67`):** 118 functions in scope, 63 with NULL summaries (42 exported + 21 internal). 55 functions already documented. See [`phase-4-red-baseline.md`](./phase-4-red-baseline.md). Guards: `scripts/check-jsdoc-coverage-convex-im3.sh`, `scripts/check-jsdoc-line-length-convex-im3.sh`, `scripts/check-phase-verification-4.sh`.
+>
+> **Plan-vs-graph scope delta:** plan heading quotes 146 functions; live graph reports 118 total (63 NULL). The delta reflects scope refinement since plan authorship (excluded `convex/_generated/`, `__tests__/`, `node_modules/`, etc., and excluded the 55 functions that are already documented). Live graph count is the acceptance source of truth per test-strategy.md §6.
+
+- [~] Task 4.1: Add JSDoc to exported functions in IM3 `convex/` [red: <pending-red-sha>]
     - [ ] Run `grep -rn "export function\|export async function\|export const" apps/integrated-math-3/convex/`
     - [ ] Add standard JSDoc to each exported function
     - [ ] Commit: `docs(integrated-math-3): Add JSDoc to exported functions in convex/`
-- [ ] Task 4.2: Add JSDoc to internal functions in IM3 `convex/`
+- [~] Task 4.2: Add JSDoc to internal functions in IM3 `convex/` [red: <pending-red-sha>]
     - [ ] Identify internal query/mutation/action helpers
     - [ ] Add standard JSDoc to each internal function
     - [ ] Commit: `docs(integrated-math-3): Add JSDoc to internal functions in convex/`
-- [ ] Task 4.3: Verify phase
+- [~] Task 4.3: Verify phase [red: <pending-red-sha>]
     - [ ] Run `npm run lint --workspace=apps/integrated-math-3`
     - [ ] Run `npm run test --workspace=apps/integrated-math-3`
     - [ ] Run `build-graph scan . ./graph.db` to refresh graph
     - [ ] Commit: `measure(checkpoint): Checkpoint end of Phase 4`
-- [ ] Task: Measure - User Manual Verification 'Phase 4: IM3 convex/' (Protocol in workflow.md)
+- [~] Task: Measure - User Manual Verification 'Phase 4: IM3 convex/' (Protocol in workflow.md) [red: <pending-red-sha>]
 
 ## Phase 5: IM3 `components/` — 125 functions
 
