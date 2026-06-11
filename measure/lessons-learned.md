@@ -40,9 +40,9 @@
 - (2026-04-29, review-30) When handler stores via DB document ID but returns caller-provided ID, downstream consumers get wrong reference. Always return the actual DB ID used for writes
 - (2026-04-29, review-31) Reverting N+1 "fix" — full table scans (`.collect()`) replace N indexed queries but are worse for large tables. Use `Promise.all` with per-student `.withIndex()` queries instead. `Array.includes()` → `Set.has()` for O(1) lookup in hot loops
 - (2026-05-03, tech-debt-cleanup) After a tech-debt resolution track, prune tech-debt.md aggressively — remove all Resolved items, keep only Open. Historical record lives in git history, not working memory.
-
 - (2026-05-10, edge-authoring) `validateKnowledgeSpace` treats the graph as a closed system — all referenced node IDs must exist in the nodes array. Standard, renderer, and generator nodes live in separate registries and will always produce dangling-edge errors when validated against course-only draft-nodes. Validation at the course level is meaningful only for structural edges (contains, appears_in_context, prerequisite_for); cross-vocabulary validation requires a merged registry.
 - (2026-05-10, edge-authoring) `import.meta.dirname` is undefined in CJS-mode tsx — always use `fileURLToPath(import.meta.url)` + `dirname()` for `__dirname`-equivalent in scripts.
+- (2026-06-11, im1-practice-readiness adversarial) When an audit doc claims "X served / Y long-tail", three artifacts must agree: (a) the live generator registry (`IM1_GENERATORS`), (b) the coverage-matrix builder output, and (c) the gap-queue JSON file. Phase 5 originally updated only the audit prose; adversarial commit 03ee50d7 caught coverage-matrix.ts still hardcoding all 138 as gaps and the gap-queue still listing the 6 served Module-1 skills. Add a Phase-5 contract test that cross-checks all three artifacts.
 
 ## Curriculum Authoring
 

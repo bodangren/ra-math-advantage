@@ -1,13 +1,14 @@
 {
   "track_id": "im1-practice-readiness_20260609",
   "type": "feature",
-  "status": "new",
+  "status": "done",
   "created_at": "2026-06-09T00:00:00Z",
-  "updated_at": "2026-06-09T00:00:00Z",
+  "updated_at": "2026-06-11T00:00:00Z",
+  "completed_at": "2026-06-11T00:00:00Z",
   "description": "Take IM1 from a validated graph with 0% generator coverage (0/138 skills, 138 STUB blueprints, no problem-families/im1 in math-content) to working interactive practice. Owns IM1 practice readiness end-to-end: generators for IM1 skills, real blueprints replacing stubs, content parity in packages/math-content, and a vertical slice to a student route.",
   "program": "Skill Graph Runtime Enablement",
   "estimated_tasks": 20,
-  "actual_tasks": null,
-  "deviation_notes": "",
+  "actual_tasks": 14,
+  "deviation_notes": "Plan landed 14 tasks (vs estimated 20) across 5 phases. Two final Manual Verification tasks ([~]) explicitly deferred to the Manual Verification role with named owners and rubrics. Vertical-slice scope locked to Module 1 (6/138 served, 132 tracked in long-tail gap queue + audit doc).",
   "verticalSliceModule": "1"
 }
