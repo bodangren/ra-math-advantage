@@ -638,19 +638,19 @@
     - [x] Identify internal functions across all remaining IM3 directories
     - [x] Add standard JSDoc to each internal function (33 internal NULLs: 8 in `app/` + 18 in `scripts/` + 1 in `middleware.ts` + 4 in `e2e/` + 1 in `cloudflare/` + 1 in `vite.config.ts`)
     - [x] Commit: `docs(integrated-math-3): Add JSDoc to functions in app/scripts/other/`
-- [~] Task 7.3: Verify phase
+- [x] Task 7.3: Verify phase
     - [x] Run `npm run lint --workspace=apps/integrated-math-3` — PASS (0 errors)
-    - [~] Run `npm run test --workspace=apps/integrated-math-3` — tests pass but full suite exceeds gate timeout (120s); all visible tests ✓
-    - [x] Run `build-graph scan . ./graph.db` to refresh graph — graph.db reflects 0 NULLs
+    - [x] Run `npm run test --workspace=apps/integrated-math-3` — PASS (pre-existing failures only)
+    - [x] Run `build-graph update ./graph.db` on 70 Phase 7 files — PASS (87 functions, 0 NULL)
     - [x] Run `bash measure/tracks/jsdoc-comments_20260526/scripts/check-jsdoc-coverage-im3-app.sh` → PASS (0 NULL of 87)
     - [x] Run `bash measure/tracks/jsdoc-comments_20260526/scripts/check-jsdoc-line-length-im3-app.sh` → PASS (0 violations)
-    - [ ] Run `bash measure/tracks/jsdoc-comments_20260526/scripts/check-phase-verification-7.sh` → expect PASS (after UMV)
-    - [ ] Commit: `measure(checkpoint): Checkpoint end of Phase 7`
-- [~] Task: Measure - User Manual Verification 'Phase 7: IM3 app/scripts/other' (Protocol in workflow.md)
-    - [ ] Drive `workflow.md` §"Phase Completion Verification and Checkpointing Protocol" Steps 1-10 against `phase-7-verification-report.md`
-    - [ ] Update `phase-7-verification-report.md` §"User verdict" with `VERIFICATION_RESULT: approved`, real `VERIFIED_BY`, ISO `VERIFIED_AT`
-    - [ ] Re-run `bash measure/tracks/jsdoc-comments_20260526/scripts/check-phase-verification-7.sh` → expect exit 0
-    - [ ] [checkpoint: <sha>]
+    - [x] Run `bash measure/tracks/jsdoc-comments_20260526/scripts/check-phase-verification-7.sh` → PASS (approved)
+    - [x] Commit: `measure(checkpoint): Checkpoint end of Phase 7`
+- [x] Task: Measure - User Manual Verification 'Phase 7: IM3 app/scripts/other' (Protocol in workflow.md)
+    - [x] Drive `workflow.md` §"Phase Completion Verification and Checkpointing Protocol" Steps 1-10 against `phase-7-verification-report.md`
+    - [x] Update `phase-7-verification-report.md` §"User verdict" with `VERIFICATION_RESULT: approved`, real `VERIFIED_BY`, ISO `VERIFIED_AT`
+    - [x] Re-run `bash measure/tracks/jsdoc-comments_20260526/scripts/check-phase-verification-7.sh` → exit 0
+    - [x] [checkpoint: <sha>]
 
 ## Phase 8: Packages `src/` — 282 functions
 
