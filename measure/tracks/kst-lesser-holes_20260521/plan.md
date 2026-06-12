@@ -64,10 +64,44 @@ root exports, and package subpath exports.
 
 ## Phase 2 — Level Projection
 
-- [ ] Task: Implement the Level Projection (TDD)
-    - [ ] Domain-supplied monotonic knowledge-state → display-level function; presentation-only
-    - [ ] IM3 instance derived from the existing CSV level mapping
+- [~] Task: Implement the Level Projection (TDD)  *(MID Red — 2026-06-13)*
+    - [~] Domain-supplied monotonic knowledge-state → display-level function; presentation-only
+    - [~] IM3 instance derived from the existing CSV level mapping
 - [ ] Task: Measure - User Manual Verification 'Phase 2' (Protocol in workflow.md)
+
+### Phase 2 — Red-phase evidence (MID handoff, 2026-06-13)
+
+Targeted Red commands and observed failures (both failing for the expected
+contract-gap reasons — missing implementation, not incidental fixture issues):
+
+| Command | Result | Failing tests |
+|---------|--------|---------------|
+| `node node_modules/vitest/vitest.mjs run packages/knowledge-space-core/src/__tests__/level-projection.test.ts --root packages/knowledge-space-core` | 7 failed / 7 total | All 7: `TypeError: projectDisplayLevel is not a function` — symbol is not yet exported from `../level-projection` (Phase 1 only added the type contract). Failing tests: (1) export contract, (2) arity=2 (presentation-only, no edges), (3) empty state → L1, (4) full mastery → L3, (5) avg=0.5 → L2, (6) does not mutate input state, (7) monotonicity. |
+| `node node_modules/vitest/vitest.mjs run apps/integrated-math-3/__tests__/level-projection.test.ts --root apps/integrated-math-3` | 1 failed suite (0 tests ran) | `Failed to resolve import "@/lib/level-projection/im3-level-projection" from "apps/integrated-math-3/__tests__/level-projection.test.ts"` — the IM3 instance module does not exist yet (and neither does the underlying `gse-to-im3-advantage.csv`). All 5 IM3 tests (export contract, empty-state anchor, bottom-level anchor, top-level anchor, monotonicity sweep) are blocked at file-load. |
+
+Red-signal interpretation:
+
+- The core test file fails 7/7 with the *exact* contract-gap message
+  (`projectDisplayLevel is not a function`), proving the export is missing
+  and not merely a TS type-check issue.
+- The IM3 test file fails at file-load (no test cases run) because the
+  module under test is missing entirely. This is the strongest Red signal
+  possible — there is no implementation to even invoke.
+
+Test-strategy §7 alignment:
+
+- Core: `npx vitest run packages/knowledge-space-core/src/__tests__/level-projection.test.ts` → 7/7 failed
+- IM3: `npx vitest run -t "IM3 level projection" --root apps/integrated-math-3` → file-load failure (filter resolves all 5 cases to the same suite)
+
+Files added by this Red commit (no other paths touched):
+
+- `packages/knowledge-space-core/src/__tests__/level-projection.test.ts` (new, 7 tests)
+- `apps/integrated-math-3/__tests__/level-projection.test.ts` (new, 5 tests)
+- `measure/tracks/kst-lesser-holes_20260521/plan.md` (Measure doc update only)
+
+Dirty worktree note: 376 unrelated paths in the worktree (JSDoc reverts
+across IM3 + other packages) are pre-existing and outside the scope of this
+track. They are preserved untouched.
 
 ## Phase 3 — progressTrend Fix
 
