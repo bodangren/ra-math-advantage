@@ -142,6 +142,11 @@ export type VerdictMap = ReadonlyMap<string, EdgeVerdicts>;
 // Observation Extraction (FR1)
 // ============================================
 
+/**
+ * Extract paired observations from a verdict map.
+ * @param verdicts - Per-student verdict map with optional A and B verdicts
+ * @returns Array of observations for students with both A and B verdicts
+ */
 export function extractObservations(verdicts: VerdictMap): CalibrationObservation[] {
   const observations: CalibrationObservation[] = [];
   for (const [studentId, v] of verdicts) {
@@ -156,6 +161,11 @@ export function extractObservations(verdicts: VerdictMap): CalibrationObservatio
 // Contingency Table (FR2)
 // ============================================
 
+/**
+ * Build a 2×2 contingency table from paired observations.
+ * @param observations - Array of paired A/B proficiency observations
+ * @returns Counts per quadrant of the contingency table
+ */
 export function buildContingencyTable(
   observations: ReadonlyArray<CalibrationObservation>,
 ): CalibrationContingencyTable {
@@ -174,12 +184,22 @@ export function buildContingencyTable(
   return table;
 }
 
+/**
+ * Compute necessity as 1 − P(proficient B | not proficient A).
+ * @param table - The 2×2 contingency table
+ * @returns Necessity score, or 0 when the not-proficient-A row is empty
+ */
 export function computeNecessity(table: CalibrationContingencyTable): number {
   const notProfA = table.notProficientAProficientB + table.notProficientANotProficientB;
   if (notProfA === 0) return 0;
   return table.notProficientAProficientB / notProfA;
 }
 
+/**
+ * Compute informativeness as P(profB | A) − P(profB | !A).
+ * @param table - The 2×2 contingency table
+ * @returns Informativeness (lift), or 0 when either row is empty
+ */
 export function computeInformativeness(table: CalibrationContingencyTable): number {
   const profA = table.proficientAProficientB + table.proficientANotProficientB;
   const notProfA = table.notProficientAProficientB + table.notProficientANotProficientB;
@@ -193,17 +213,36 @@ export function computeInformativeness(table: CalibrationContingencyTable): numb
 // Beta-Bernoulli Posterior (FR3)
 // ============================================
 
+/**
+ * Compute the Beta posterior mean α / (α + β).
+ * @param alpha - Beta distribution alpha parameter
+ * @param beta - Beta distribution beta parameter
+ * @returns Posterior mean, or 0 when both parameters are zero
+ */
 export function posteriorMean(alpha: number, beta: number): number {
   if (alpha + beta === 0) return 0;
   return alpha / (alpha + beta);
 }
 
+/**
+ * Compute the Beta posterior variance αβ / ((α+β)²(α+β+1)).
+ * @param alpha - Beta distribution alpha parameter
+ * @param beta - Beta distribution beta parameter
+ * @returns Posterior variance, or 0 when both parameters are zero
+ */
 export function posteriorVariance(alpha: number, beta: number): number {
   const ab = alpha + beta;
   if (ab === 0) return 0;
   return (alpha * beta) / (ab * ab * (ab + 1));
 }
 
+/**
+ * Update the Beta posterior with a single observation.
+ * @param state - Current calibration state
+ * @param observation - Paired A/B proficiency observation
+ * @param opts - Optional overrides including timestamp
+ * @returns New calibration state with updated alpha/beta
+ */
 export function updatePosterior(
   state: EdgeCalibration,
   observation: CalibrationObservation,
@@ -228,6 +267,13 @@ export function updatePosterior(
 // Recency Decay (FR4)
 // ============================================
 
+/**
+ * Apply exponential recency decay to the posterior parameters.
+ * @param state - Current calibration state
+ * @param lambda - Decay factor in (0, 1]; 1 = no decay
+ * @param now - Timestamp to set on the returned state
+ * @returns New calibration state with decayed alpha and beta
+ */
 export function applyDecay(
   state: EdgeCalibration,
   lambda: number,
@@ -245,6 +291,13 @@ export function applyDecay(
 // Variance Bucketing (FR3)
 // ============================================
 
+/**
+ * Map a posterior variance to a discrete confidence bucket.
+ * @param variance - Posterior variance value
+ * @param alpha - Optional alpha parameter to detect zero-evidence case
+ * @param beta - Optional beta parameter to detect zero-evidence case
+ * @returns Bucket label: 'none', 'low', 'medium', or 'high'
+ */
 export function bucketVariance(
   variance: number,
   alpha?: number,
@@ -280,6 +333,12 @@ export type ReviewQueueBuildOptions = {
 // Status Classification (FR5) — Confounding Guardrail
 // ============================================
 
+/**
+ * Classify calibration status with the confounding guardrail.
+ * @param verdicts - Per-student verdict map
+ * @param state - Current calibration state
+ * @returns Updated calibration with classified status
+ */
 export function classifyStatus(
   verdicts: VerdictMap,
   state: EdgeCalibration,
@@ -323,16 +382,32 @@ const DEFAULT_WEIGHT_THRESHOLD = 0.05;
 const DEFAULT_CONFIDENCE_THRESHOLD = 1.0;
 const MAX_CONFIDENCE_DISTANCE = 2;
 
+/**
+ * Map a confidence string to its ordinal rank.
+ * @param conf - Confidence label ('none', 'low', 'medium', 'high')
+ * @returns Numeric ordinal for comparison
+ */
 function confidenceOrdinal(conf: string): number {
   return CONFIDENCE_ORDINAL[conf] ?? 0;
 }
 
+/**
+ * Map a posterior mean to a confidence label.
+ * @param mean - Posterior mean in [0, 1]
+ * @returns Confidence label: 'low', 'medium', or 'high'
+ */
 function meanToConfidence(mean: number): string {
   if (mean < 0.33) return 'low';
   if (mean < 0.67) return 'medium';
   return 'high';
 }
 
+/**
+ * Build a review queue item if the calibrated posterior diverges from authored values.
+ * @param input - Edge calibration input with authored metadata
+ * @param opts - Optional thresholds and flags
+ * @returns Queue item when divergence exceeds thresholds, or null
+ */
 export function buildReviewQueueItem(
   input: ReviewQueueBuildInput,
   opts?: ReviewQueueBuildOptions,
@@ -373,6 +448,12 @@ export function buildReviewQueueItem(
   };
 }
 
+/**
+ * Build a batch review queue from multiple edge inputs.
+ * @param inputs - Array of edge calibration inputs
+ * @param opts - Optional thresholds and flags applied to all inputs
+ * @returns Array of queue items for edges that exceed divergence thresholds
+ */
 export function buildReviewQueue(
   inputs: ReadonlyArray<ReviewQueueBuildInput>,
   opts?: ReviewQueueBuildOptions,

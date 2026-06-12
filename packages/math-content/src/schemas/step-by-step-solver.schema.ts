@@ -42,6 +42,11 @@ export interface AlgebraicSubmissionInput {
   equation: string;
 }
 
+/**
+ * Build a practice.v1 submission from algebraic step-by-step solver input.
+ * @param input - Submission input with steps, hints, and problem metadata
+ * @returns Practice.v1 formatted submission object
+ */
 export function buildAlgebraicSubmission(input: AlgebraicSubmissionInput) {
   const {
     activityId,

@@ -78,22 +78,44 @@ const CONFIDENCE_PRIORITY: Record<ConfidenceLevel, number> = {
   low: 1,
 };
 
+/**
+ * Convert a standard code to its knowledge-space node ID.
+ * @param code - Standard code (e.g., "HSA-SSE.B.3")
+ * @param authority - Standards authority, defaults to "ccss"
+ * @returns Node ID string
+ */
 function standardCodeToNodeId(code: string, authority: string = 'ccss'): string {
   return buildStandardId(authority, code.toLowerCase().replace(/\./g, '-'));
 }
 
+/**
+ * Reconstruct a human-readable standard code from a node ID.
+ * @param nodeId - Standard node ID
+ * @returns Standard code string
+ */
 function standardCodeFromNodeId(nodeId: string): string {
   // math.standard.ccs.hsa-sse-b-3 → HSA-SSE.B.3 (reconstructed)
   const parts = nodeId.replace(/^math\.standard\./, '');
   return parts || nodeId;
 }
 
+/**
+ * Build a deterministic edge ID for an alignment relationship.
+ * @param sourceId - Source node ID
+ * @param targetId - Target standard node ID
+ * @returns Formatted alignment edge ID
+ */
 function buildAlignmentEdgeId(sourceId: string, targetId: string): string {
   const sourceKey = sourceId.replace(/^math\./, '').replace(/\./g, '-');
   const targetKey = targetId.replace(/^math\.standard\./, '').replace(/\./g, '-');
   return `math.alignment.${sourceKey}-to-${targetKey}`;
 }
 
+/**
+ * Build a standard knowledge-space node from a definition.
+ * @param def - Standard definition with code, description, and authority
+ * @returns Knowledge-space node for the standard
+ */
 function buildStandardNode(def: StandardDefinition): KnowledgeSpaceNode {
   const id = standardCodeToNodeId(def.code, def.authority);
   return {
@@ -113,6 +135,12 @@ function buildStandardNode(def: StandardDefinition): KnowledgeSpaceNode {
   };
 }
 
+/**
+ * Build a placeholder standard node for a missing definition.
+ * @param code - Standard code
+ * @param authority - Standards authority, defaults to "ccss"
+ * @returns Draft knowledge-space node marked as placeholder
+ */
 function buildPlaceholderStandardNode(code: string, authority: string = 'ccss'): KnowledgeSpaceNode {
   const id = standardCodeToNodeId(code, authority);
   return {
@@ -133,6 +161,12 @@ function buildPlaceholderStandardNode(code: string, authority: string = 'ccss'):
   };
 }
 
+/**
+ * Get possible lesson slug formats for a knowledge-space node.
+ * @param node - Knowledge-space node with module/lesson metadata
+ * @param course - Course identifier
+ * @returns Array of candidate lesson slug strings
+ */
 function getLessonSlugsForNode(node: KnowledgeSpaceNode, course: string): string[] {
   const module = String(node.metadata.module ?? '');
   const lesson = String(node.metadata.lesson ?? '');
@@ -150,6 +184,11 @@ function getLessonSlugsForNode(node: KnowledgeSpaceNode, course: string): string
   return slugs;
 }
 
+/**
+ * Extract meaningful keywords from text, filtering out stop words.
+ * @param text - Input text to tokenize
+ * @returns Array of lowercase keyword strings
+ */
 function skillKeywords(text: string): string[] {
   return text
     .toLowerCase()
@@ -165,6 +204,11 @@ const STOP_WORDS = new Set([
   'through', 'which', 'what', 'when', 'where', 'how', 'each', 'more',
 ]);
 
+/**
+ * Align skill nodes to standards using lesson mappings, family objectives, and heuristics.
+ * @param input - Alignment input with nodes, mappings, and standard definitions
+ * @returns Alignment result with edges, standard nodes, exceptions, and review queue
+ */
 export function alignSkillsToStandards(input: AlignmentInput): AlignmentResult {
   const {
     nodes,

@@ -27,6 +27,11 @@ const CANVAS_RANGE: [number, number] = [-10, 10];
 const CANVAS_WIDTH = 600;
 const CANVAS_HEIGHT = 400;
 
+/**
+ * Render an interactive x-intercept identification activity on a coordinate plane.
+ * @param props - The configuration including function expression and callbacks
+ * @returns The intercept identification component JSX
+ */
 export function InterceptIdentification({
   functionExpression,
   onInterceptIdentified,

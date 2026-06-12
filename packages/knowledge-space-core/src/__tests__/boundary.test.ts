@@ -15,6 +15,11 @@ const FORBIDDEN_IMPORT_PATTERNS: Array<{ pattern: RegExp; label: string }> = [
   { pattern: /from\s+['"]\s*\.\.\/math-content/, label: 'relative to math-content package' },
 ];
 
+/**
+ * Check source code for forbidden import patterns.
+ * @param source - The source code string to scan
+ * @returns Array of violations with the offending line and rule label
+ */
 function checkImports(source: string): Array<{ line: string; label: string }> {
   const violations: Array<{ line: string; label: string }> = [];
   const lines = source.split('\n');
@@ -30,6 +35,11 @@ function checkImports(source: string): Array<{ line: string; label: string }> {
 
 const PACKAGE_SRC = resolve(__dirname, '..');
 
+/**
+ * Recursively collect all non-test TypeScript files from a directory.
+ * @param dir - The directory to scan
+ * @returns Array of absolute file paths to .ts files (excluding test files)
+ */
 function collectTsFiles(dir: string): string[] {
   const files: string[] = [];
   for (const entry of readdirSync(dir)) {

@@ -14,6 +14,12 @@ import type { ProbeResult, ProbeAdapter, PlacementResult } from './placement';
 // Helpers
 // ---------------------------------------------------------------------------
 
+/**
+ * Create a skill node with default test metadata.
+ * @param id - The node ID
+ * @param metadata - Optional metadata overrides
+ * @returns A skill KnowledgeSpaceNode
+ */
 function makeSkill(id: string, metadata: Record<string, unknown> = {}): KnowledgeSpaceNode {
   return {
     id,
@@ -26,6 +32,12 @@ function makeSkill(id: string, metadata: Record<string, unknown> = {}): Knowledg
   };
 }
 
+/**
+ * Create a content_group node with default test metadata.
+ * @param id - The node ID
+ * @param metadata - Optional metadata overrides
+ * @returns A content_group KnowledgeSpaceNode
+ */
 function makeContentGroup(id: string, metadata: Record<string, unknown> = {}): KnowledgeSpaceNode {
   return {
     id,
@@ -38,6 +50,12 @@ function makeContentGroup(id: string, metadata: Record<string, unknown> = {}): K
   };
 }
 
+/**
+ * Create an instructional_unit node with default test metadata.
+ * @param id - The node ID
+ * @param metadata - Optional metadata overrides
+ * @returns An instructional_unit KnowledgeSpaceNode
+ */
 function makeLesson(id: string, metadata: Record<string, unknown> = {}): KnowledgeSpaceNode {
   return {
     id,
@@ -50,6 +68,11 @@ function makeLesson(id: string, metadata: Record<string, unknown> = {}): Knowled
   };
 }
 
+/**
+ * Create a domain node with default test metadata.
+ * @param id - The node ID
+ * @returns A domain KnowledgeSpaceNode
+ */
 function makeDomain(id: string): KnowledgeSpaceNode {
   return {
     id,
@@ -62,6 +85,13 @@ function makeDomain(id: string): KnowledgeSpaceNode {
   };
 }
 
+/**
+ * Create a prerequisite_for edge with default high confidence.
+ * @param sourceId - Source node ID
+ * @param targetId - Target node ID
+ * @param weight - Edge weight, defaults to 0.8
+ * @returns A prerequisite_for KnowledgeSpaceEdge
+ */
 function prereqEdge(
   sourceId: string,
   targetId: string,
@@ -206,6 +236,12 @@ export const syntheticCyclicPlacementGraph: KnowledgeSpace = Object.freeze({
 // Used to test degenerate chain probe count (worst case O(n)).
 // Pass-all walks the full chain; fail-all stops at n1.
 
+/**
+ * Build a linear prerequisite chain of N skill nodes for testing.
+ * @param length - Number of nodes in the chain (must be >= 1)
+ * @returns A knowledge space with a linear prerequisite chain
+ * @throws If length is less than 1
+ */
 export function buildLinearPlacementChain(length: number): KnowledgeSpace {
   if (length < 1) {
     throw new Error('buildLinearPlacementChain requires length >= 1');
@@ -245,6 +281,12 @@ export interface DeterministicProbeAdapterOptions {
   domain?: string;
 }
 
+/**
+ * Create a probe adapter with preset results and call tracking for testing.
+ * @param preset - Map of node IDs to expected probe results
+ * @param options - Optional default result and domain configuration
+ * @returns A deterministic probe adapter with call tracking
+ */
 export function createDeterministicProbeAdapter(
   preset: Record<string, ProbeResult>,
   options: DeterministicProbeAdapterOptions = {},
@@ -285,6 +327,11 @@ export interface MockPlacementResultOverrides {
   metadata?: Record<string, unknown>;
 }
 
+/**
+ * Create a mock placement result with optional field overrides.
+ * @param overrides - Optional overrides for nodeId, masteryEstimate, confidence, and metadata
+ * @returns A PlacementResult with defaults or overridden values
+ */
 export function createMockPlacementResult(
   overrides: MockPlacementResultOverrides = {},
 ): PlacementResult {

@@ -127,6 +127,11 @@ export const knowledgeSpaceEdgeSchema = z.object({
 // Node ID uniqueness constraint
 // ---------------------------------------------------------------------------
 
+/**
+ * Check for duplicate node IDs and add a Zod issue if found.
+ * @param nodes - Array of knowledge space nodes
+ * @param ctx - Zod refinement context for reporting issues
+ */
 function checkDuplicateNodeIds(
   nodes: KnowledgeSpaceNode[],
   ctx: z.RefinementCtx,
@@ -150,6 +155,12 @@ function checkDuplicateNodeIds(
 // Dangling edge detection
 // ---------------------------------------------------------------------------
 
+/**
+ * Check for edges referencing non-existent nodes and add a Zod issue if found.
+ * @param nodes - Array of knowledge space nodes
+ * @param edges - Array of knowledge space edges
+ * @param ctx - Zod refinement context for reporting issues
+ */
 function checkDanglingEdges(
   nodes: KnowledgeSpaceNode[],
   edges: KnowledgeSpaceEdge[],
@@ -180,6 +191,11 @@ function checkDanglingEdges(
 // Duplicate exact edge detection (same sourceId, targetId, type)
 // ---------------------------------------------------------------------------
 
+/**
+ * Check for duplicate edges (same sourceId, targetId, and type) and add a Zod issue if found.
+ * @param edges - Array of knowledge space edges
+ * @param ctx - Zod refinement context for reporting issues
+ */
 function checkDuplicateEdges(
   edges: KnowledgeSpaceEdge[],
   ctx: z.RefinementCtx,
@@ -218,6 +234,12 @@ const EDGE_ENDPOINT_RULES: EdgeSourceTargetConstraint[] = [
   { edgeType: 'contains', sourceKinds: ['domain', 'content_group', 'instructional_unit'], targetKinds: ['content_group', 'instructional_unit', 'worked_example', 'skill', 'concept', 'task_blueprint'] },
 ];
 
+/**
+ * Check edges against endpoint pairing rules and add a Zod issue for violations.
+ * @param nodes - Array of knowledge space nodes
+ * @param edges - Array of knowledge space edges
+ * @param ctx - Zod refinement context for reporting issues
+ */
 function checkEndpointPairings(
   nodes: KnowledgeSpaceNode[],
   edges: KnowledgeSpaceEdge[],

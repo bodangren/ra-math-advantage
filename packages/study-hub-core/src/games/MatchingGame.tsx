@@ -23,6 +23,10 @@ export interface MatchingGameProps {
   }) => void;
 }
 
+/**
+ * Render a card-matching memory game for vocabulary terms and definitions.
+ * @param props - Study terms and onComplete callback
+ */
 export function MatchingGame({ terms, onComplete }: MatchingGameProps) {
   const [cards, setCards] = useState<CardItem[]>([]);
   const [selectedId, setSelectedId] = useState<string | null>(null);

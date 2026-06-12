@@ -36,6 +36,11 @@ interface FitBState {
 
 const BLANK_REGEX = /\{\{blank:(\w+)\}\}/g;
 
+/**
+ * Parse a template string into text and blank segments.
+ * @param template - The template string with {{blank:id}} placeholders
+ * @returns Array of parsed text and blank segments
+ */
 function parseTemplate(template: string): Array<{ type: 'text' | 'blank'; value: string; blankId?: string }> {
   const parts: Array<{ type: 'text' | 'blank'; value: string; blankId?: string }> = [];
   let lastIndex = 0;
@@ -57,10 +62,21 @@ function parseTemplate(template: string): Array<{ type: 'text' | 'blank'; value:
   return parts;
 }
 
+/**
+ * Check if a user's answer matches the blank's correct answer.
+ * @param blank - The blank definition with the correct answer
+ * @param answer - The user's submitted answer
+ * @returns True if the answer is correct (case-insensitive)
+ */
 function isAnswerCorrect(blank: Blank, answer: string): boolean {
   return answer.trim().toLowerCase() === blank.correctAnswer.trim().toLowerCase();
 }
 
+/**
+ * Render a fill-in-the-blank activity with optional word bank support.
+ * @param props - The activity configuration including template, blanks, and mode
+ * @returns The fill-in-the-blank component JSX
+ */
 export function FillInTheBlank({
   activityId,
   mode,

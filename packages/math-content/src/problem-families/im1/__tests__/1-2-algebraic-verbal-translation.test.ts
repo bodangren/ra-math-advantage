@@ -28,6 +28,11 @@ const SKILL_ID =
   'math.im1.skill.1.2.translate-between-algebraic-expressions-and-verbal-expressio' as const;
 const RENDERER_KEY = 'step-by-step-solver' as const;
 
+/**
+ * Adapt an IM1 generator entry to the GeneratorLike interface for the QA harness.
+ * @param entry - IM1 generator entry to adapt
+ * @returns GeneratorLike-compatible object
+ */
 function adapt(entry: IM1GeneratorEntry): GeneratorLike {
   return {
     generate: (input) => {
@@ -49,6 +54,11 @@ function adapt(entry: IM1GeneratorEntry): GeneratorLike {
   };
 }
 
+/**
+ * Find the IM1 generator entry registered for the target skill ID.
+ * @returns Matching IM1 generator entry
+ * @throws Error if no generator is registered for the skill
+ */
 function findEntryForSkill(): IM1GeneratorEntry {
   for (const gen of IM1_GENERATORS as Iterable<IM1GeneratorEntry>) {
     if (gen.nodeIds.includes(SKILL_ID)) return gen;

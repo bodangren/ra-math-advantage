@@ -40,6 +40,10 @@ export interface StubGenerator {
   generate: (input: StubGeneratorInput) => StubGeneratorOutput;
 }
 
+/**
+ * Create a minimal well-formed deterministic stub generator for testing.
+ * @returns Stub generator that produces fixed-output contract-shaped objects
+ */
 export function createStubGenerator(): StubGenerator {
   return {
     generate: (input: StubGeneratorInput): StubGeneratorOutput => ({

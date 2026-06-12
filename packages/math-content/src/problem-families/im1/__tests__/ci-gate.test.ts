@@ -88,6 +88,11 @@ const METADATA_JSON = resolve(
 
 const REQUIRED_SEEDS = 50;
 
+/**
+ * Adapt an IM1 generator entry to the GeneratorLike interface for the QA harness.
+ * @param entry - IM1 generator entry to adapt
+ * @returns GeneratorLike-compatible object
+ */
 function adapt(entry: IM1GeneratorEntry): GeneratorLike {
   return {
     generate: (input) => {
@@ -109,6 +114,10 @@ function adapt(entry: IM1GeneratorEntry): GeneratorLike {
   };
 }
 
+/**
+ * Collect all registered IM1 generator entries into an array.
+ * @returns Array of IM1 generator entries
+ */
 function collectRegisteredEntries(): IM1GeneratorEntry[] {
   const entries: IM1GeneratorEntry[] = [];
   for (const gen of IM1_GENERATORS as Iterable<IM1GeneratorEntry>) {
@@ -117,6 +126,10 @@ function collectRegisteredEntries(): IM1GeneratorEntry[] {
   return entries;
 }
 
+/**
+ * Load skill IDs for the locked vertical-slice module from rollout nodes.
+ * @returns Array of skill node IDs in the vertical slice
+ */
 function loadVerticalSliceSkillIds(): string[] {
   const meta = JSON.parse(readFileSync(METADATA_JSON, 'utf-8')) as {
     verticalSliceModule?: string;

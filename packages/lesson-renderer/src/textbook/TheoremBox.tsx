@@ -22,6 +22,10 @@ const variantStyles = {
   },
 };
 
+/**
+ * Render a styled theorem or key-concept box.
+ * @param props - Title, children content, optional icon and variant
+ */
 export function TheoremBox({ title, children, icon, variant = 'default' }: TheoremBoxProps) {
   const styles = variantStyles[variant];
 

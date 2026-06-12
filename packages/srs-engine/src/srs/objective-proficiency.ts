@@ -126,6 +126,14 @@ export const PROFICIENCY_THRESHOLD_DEFAULTS: Record<
   triaged: { minProblemFamilies: 0, minCoverageThreshold: 0, minRetentionThreshold: 0 },
 };
 
+/**
+ * Resolve evidence confidence from count, retention, and coverage averages.
+ * @param evidenceCount - Number of problem families with evidence
+ * @param avgRetention - Average retention strength across families
+ * @param avgCoverage - Average practice coverage across families
+ * @param effectiveMinFamilies - Minimum families required by policy
+ * @returns Evidence confidence level
+ */
 function resolveEvidenceConfidence(
   evidenceCount: number,
   avgRetention: number,
@@ -145,6 +153,11 @@ function resolveEvidenceConfidence(
   return 'low';
 }
 
+/**
+ * Combine per-family fluency confidences into a single confidence level.
+ * @param fluencies - Array of confidence and timing-reliability pairs
+ * @returns Aggregated fluency confidence
+ */
 function combineFluencyConfidences(
   fluencies: { confidence: EvidenceConfidence; timingReliable: boolean }[]
 ): EvidenceConfidence {
@@ -246,6 +259,11 @@ export function computeObjectiveProficiency(input: ObjectiveProficiencyInput): O
   };
 }
 
+/**
+ * Derive student-facing guidance text from a proficiency result.
+ * @param result - Computed objective proficiency result
+ * @returns Human-readable guidance string for the student
+ */
 function deriveStudentGuidance(result: ObjectiveProficiencyResult): string {
   if (result.evidenceConfidence === 'none') {
     return 'Start practicing this objective to build your evidence.';
@@ -265,6 +283,11 @@ function deriveStudentGuidance(result: ObjectiveProficiencyResult): string {
   return 'Keep practicing to strengthen your mastery.';
 }
 
+/**
+ * Derive teacher-facing guidance text from a proficiency result.
+ * @param result - Computed objective proficiency result
+ * @returns Human-readable guidance string for the teacher
+ */
 function deriveTeacherGuidance(result: ObjectiveProficiencyResult): string {
   if (result.evidenceConfidence === 'none') {
     return 'No practice evidence yet. Student needs to engage with this objective.';

@@ -41,6 +41,11 @@ export const placementResultsSchema = z.array(placementResultSchema);
 // isPlacementResult — runtime type guard
 // ---------------------------------------------------------------------------
 
+/**
+ * Check whether a value conforms to the PlacementResult shape at runtime.
+ * @param value - The value to check
+ * @returns True if the value is a valid PlacementResult
+ */
 export function isPlacementResult(value: unknown): value is PlacementResult {
   if (value === null || typeof value !== 'object' || Array.isArray(value)) {
     return false;
@@ -76,6 +81,13 @@ export interface BuildSeedOptions {
   now?: number;
 }
 
+/**
+ * Enrich placement results with provenance metadata to create knowledge state seeds.
+ * @param results - Array of placement results to enrich
+ * @param options - Optional timestamp override
+ * @returns Array of KnowledgeStateSeed objects with source and timestamp
+ * @throws If any result has invalid confidence or masteryEstimate values
+ */
 export function buildKnowledgeStateSeed(
   results: ReadonlyArray<PlacementResult>,
   options: BuildSeedOptions = {},

@@ -25,6 +25,11 @@ export interface GenericEvidence {
 // Evidence → PracticeSubmissionPart[]
 // ---------------------------------------------------------------------------
 
+/**
+ * Convert generic evidence parts to practice.v1 submission parts.
+ * @param evidence - Generic evidence with parts and optional timing
+ * @returns Array of practice submission parts
+ */
 export function evidenceToPracticeV1(evidence: GenericEvidence): PracticeSubmissionPart[] {
   const wallClockMs = evidence.timing?.wallClockMs;
   const activeMs = evidence.timing?.activeTimeMs;

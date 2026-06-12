@@ -10,49 +10,77 @@ import type { KnowledgeSpaceNode, KnowledgeSpaceEdge } from '../types';
 // Helpers
 // ---------------------------------------------------------------------------
 
-const makeNode = (
+/**
+ * Create a knowledge space node with given kind and metadata for testing.
+ * @param id - The node ID
+ * @param kind - The node kind
+ * @param meta - Optional metadata record
+ * @returns A KnowledgeSpaceNode for test use
+ */
+function makeNode(
   id: string,
   kind: KnowledgeSpaceNode['kind'],
   meta: Record<string, unknown> = {},
-): KnowledgeSpaceNode => ({
-  id,
-  kind,
-  title: id.split('.').pop() ?? id,
-  domain: id.split('.').slice(0, 2).join('.'),
-  sourceRefs: ['synthetic'],
-  reviewStatus: 'draft',
-  metadata: meta,
-});
+): KnowledgeSpaceNode {
+  return {
+    id,
+    kind,
+    title: id.split('.').pop() ?? id,
+    domain: id.split('.').slice(0, 2).join('.'),
+    sourceRefs: ['synthetic'],
+    reviewStatus: 'draft',
+    metadata: meta,
+  };
+}
 
-const makeStandardNode = (id: string): KnowledgeSpaceNode => ({
-  id,
-  kind: 'standard',
-  title: id,
-  domain: 'math.standard',
-  sourceRefs: ['synthetic'],
-  reviewStatus: 'draft',
-  metadata: {},
-});
+/**
+ * Create a standard node for testing alignment edges.
+ * @param id - The standard node ID
+ * @returns A standard KnowledgeSpaceNode
+ */
+function makeStandardNode(id: string): KnowledgeSpaceNode {
+  return {
+    id,
+    kind: 'standard',
+    title: id,
+    domain: 'math.standard',
+    sourceRefs: ['synthetic'],
+    reviewStatus: 'draft',
+    metadata: {},
+  };
+}
 
-const makeEdge = (
+/**
+ * Create a knowledge space edge with given properties for testing.
+ * @param id - The edge ID
+ * @param type - The edge type
+ * @param sourceId - Source node ID
+ * @param targetId - Target node ID
+ * @param conf - Confidence level, defaults to 'high'
+ * @param meta - Optional metadata record
+ * @returns A KnowledgeSpaceEdge for test use
+ */
+function makeEdge(
   id: string,
   type: KnowledgeSpaceEdge['type'],
   sourceId: string,
   targetId: string,
   conf: KnowledgeSpaceEdge['confidence'] = 'high',
   meta?: Record<string, unknown>,
-): KnowledgeSpaceEdge => ({
-  id,
-  type,
-  sourceId,
-  targetId,
-  weight: 1.0,
-  confidence: conf,
-  reviewStatus: 'draft',
-  derived: true,
-  derivationMethod: 'synthetic',
-  metadata: meta,
-});
+): KnowledgeSpaceEdge {
+  return {
+    id,
+    type,
+    sourceId,
+    targetId,
+    weight: 1.0,
+    confidence: conf,
+    reviewStatus: 'draft',
+    derived: true,
+    derivationMethod: 'synthetic',
+    metadata: meta,
+  };
+}
 
 // ---------------------------------------------------------------------------
 // Phase 1.1 — Endpoint validation tests

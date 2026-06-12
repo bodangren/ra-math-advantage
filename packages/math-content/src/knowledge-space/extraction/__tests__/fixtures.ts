@@ -127,7 +127,7 @@ export const revealLessonSnippet = String.raw`
 
 ### Today's Vocabulary
 
-**vertex form** — A quadratic function written in the form ` + '`f(x) = a(x - h)^2 + k`' + String.raw`, where ` + '`(h, k)`' + String.raw` is the vertex.
+<b>vertex form</b> — A quadratic function written in the form ` + '`f(x) = a(x - h)^2 + k`' + String.raw`, where ` + '`(h, k)`' + String.raw` is the vertex.
 
 ### Learn Graphing Quadratic Functions
 

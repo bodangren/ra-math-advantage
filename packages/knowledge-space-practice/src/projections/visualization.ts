@@ -14,6 +14,15 @@ import type {
 // Node state helpers
 // ---------------------------------------------------------------------------
 
+/**
+ * Compute the mastery state of a node based on learner state and prerequisites.
+ * @param nodeId - The node ID to evaluate
+ * @param learnerState - Mapping of node IDs to mastery states
+ * @param nodeMap - Map of node IDs to node objects
+ * @param edges - Knowledge space edges
+ * @param masteredIds - Set of already mastered node IDs
+ * @returns Computed node state
+ */
 function computeNodeState(
   nodeId: string,
   learnerState: Record<string, 'mastered' | 'ready' | 'blocked' | 'review_due'>,
@@ -39,6 +48,12 @@ function computeNodeState(
   return 'unknown';
 }
 
+/**
+ * Convert a knowledge space node into a visual node representation.
+ * @param node - The knowledge space node
+ * @param state - Computed mastery state
+ * @returns Visual node for rendering
+ */
 function toVisualNode(
   node: KnowledgeSpaceNode,
   state: VisualNodeV1['state'],
@@ -53,6 +68,12 @@ function toVisualNode(
   };
 }
 
+/**
+ * Convert knowledge space edges into visual edges filtered by type.
+ * @param edges - Knowledge space edges
+ * @param edgeTypes - Edge types to include in the output
+ * @returns Filtered visual edges
+ */
 function toVisualEdges(
   edges: KnowledgeSpaceEdge[],
   edgeTypes: Array<'prerequisite' | 'supports' | 'extends'>,

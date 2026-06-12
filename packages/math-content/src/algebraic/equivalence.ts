@@ -51,6 +51,12 @@ export function checkEquivalence(expr1: string, expr2: string): boolean {
   return false;
 }
 
+/**
+ * Check if two expressions are equivalent by comparing sorted term lists.
+ * @param expr1 - First normalized expression
+ * @param expr2 - Second normalized expression
+ * @returns True if expressions have the same terms in any order
+ */
 function checkRearrangedTerms(expr1: string, expr2: string): boolean {
   const splitTerms = (expr: string) => {
     const terms = expr.split(/(?=[+-])/).filter(t => t.trim() !== '');
@@ -67,6 +73,12 @@ function checkRearrangedTerms(expr1: string, expr2: string): boolean {
   return JSON.stringify(terms1) === JSON.stringify(terms2);
 }
 
+/**
+ * Check polynomial equivalence via expansion and factoring.
+ * @param expr1 - First normalized expression
+ * @param expr2 - Second normalized expression
+ * @returns True if expressions are equivalent polynomial forms
+ */
 function checkPolynomialEquivalence(expr1: string, expr2: string): boolean {
   const expanded1 = expandPolynomial(expr1);
   const expanded2 = expandPolynomial(expr2);
@@ -84,6 +96,11 @@ function checkPolynomialEquivalence(expr1: string, expr2: string): boolean {
   return false;
 }
 
+/**
+ * Expand a factored polynomial expression into standard form.
+ * @param expr - Factored polynomial expression
+ * @returns Expanded polynomial string, or input if not expandable
+ */
 function expandPolynomial(expr: string): string {
   const perfectSquarePattern = /\(x([+-])(\d*\.?\d*)\)\^2/;
   const psMatch = expr.match(perfectSquarePattern);
@@ -155,6 +172,11 @@ function expandPolynomial(expr: string): string {
   return expr;
 }
 
+/**
+ * Factor a polynomial expression from standard form.
+ * @param expr - Polynomial in standard form (e.g., x^2+5x+6)
+ * @returns Factored form or input if not factorable
+ */
 function factorPolynomial(expr: string): string {
   const expandedPattern1 = /x\^2\+?(\-?\d*\.?\d*)x\+?(\-?\d*\.?\d*)/;
   const match1 = expr.match(expandedPattern1);
@@ -224,6 +246,11 @@ function factorPolynomial(expr: string): string {
   return expr;
 }
 
+/**
+ * Find all integer factors of a number (positive and negative).
+ * @param n - Number to factor
+ * @returns Sorted array of all integer factors
+ */
 function findFactors(n: number): number[] {
   const factors: number[] = [];
   const absN = Math.abs(n);
@@ -242,6 +269,12 @@ function findFactors(n: number): number[] {
   return factors.sort((a, b) => a - b);
 }
 
+/**
+ * Check equivalence of two complex number expressions.
+ * @param expr1 - First expression
+ * @param expr2 - Second expression
+ * @returns True if both expressions represent the same complex number
+ */
 function checkComplexNumberEquivalence(expr1: string, expr2: string): boolean {
   const complexPattern = /([+-]?\d*\.?\d*)\*?i\+?([+-]?\d*\.?\d*)|([+-]?\d*\.?\d*)\+?([+-]?\d*\.?\d*)\*?i/;
 
@@ -270,6 +303,12 @@ function checkComplexNumberEquivalence(expr1: string, expr2: string): boolean {
   return c1.real === c2.real && c1.imag === c2.imag;
 }
 
+/**
+ * Check equivalence of two fraction expressions.
+ * @param expr1 - First expression
+ * @param expr2 - Second expression
+ * @returns True if both expressions represent the same rational value
+ */
 function checkFractionEquivalence(expr1: string, expr2: string): boolean {
   const fractionPattern = /(\d+)\s*(\d+\/\d+)|(\d+)\/(\d+)/;
 
@@ -331,6 +370,12 @@ function checkFractionEquivalence(expr1: string, expr2: string): boolean {
   return Math.abs(f1.value - f2.value) < 0.0001;
 }
 
+/**
+ * Check equivalence of two radical expressions.
+ * @param expr1 - First expression
+ * @param expr2 - Second expression
+ * @returns True if both expressions represent the same radical value
+ */
 function checkRadicalEquivalence(expr1: string, expr2: string): boolean {
   const integerPattern = /^-?\d+$/;
   if (integerPattern.test(expr1) && integerPattern.test(expr2)) {

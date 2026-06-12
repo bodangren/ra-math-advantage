@@ -139,6 +139,10 @@ type Edge = {
 };
 type EdgesFile = { edges: Edge[] };
 
+/**
+ * Load the vertical-slice module ID from track metadata.
+ * @returns Module ID string
+ */
 function loadVerticalSliceModule(): string {
   const meta = JSON.parse(readFileSync(METADATA_JSON, 'utf-8')) as {
     verticalSliceModule?: string;
@@ -152,11 +156,19 @@ function loadVerticalSliceModule(): string {
   return vsm;
 }
 
+/**
+ * Load all blueprints from the IM1 rollout blueprints.json.
+ * @returns Array of rollout blueprints
+ */
 function loadBlueprints(): RolloutBlueprint[] {
   const file = JSON.parse(readFileSync(BLUEPRINTS_JSON, 'utf-8')) as BlueprintsFile;
   return file.blueprints;
 }
 
+/**
+ * Load the IM1 skill graph nodes and edges from rollout JSON files.
+ * @returns Object with nodes and edges arrays
+ */
 function loadGraph(): { nodes: Node[]; edges: Edge[] } {
   return {
     nodes: (JSON.parse(readFileSync(NODES_JSON, 'utf-8')) as NodesFile).nodes,
@@ -164,6 +176,10 @@ function loadGraph(): { nodes: Node[]; edges: Edge[] } {
   };
 }
 
+/**
+ * Load blueprints filtered to the locked vertical-slice module.
+ * @returns Array of blueprints for the vertical-slice module
+ */
 function loadVerticalSliceBlueprints(): RolloutBlueprint[] {
   const vsm = loadVerticalSliceModule();
   return loadBlueprints().filter(
@@ -171,6 +187,11 @@ function loadVerticalSliceBlueprints(): RolloutBlueprint[] {
   );
 }
 
+/**
+ * Check if a blueprint's exceptions array contains a STUB generator marker.
+ * @param exceptions - Blueprint exceptions array
+ * @returns True if a STUB exception is present
+ */
 function isStubException(exceptions: RolloutBlueprint['exceptions']): boolean {
   if (!Array.isArray(exceptions) || exceptions.length === 0) return false;
   return exceptions.some(
@@ -181,6 +202,11 @@ function isStubException(exceptions: RolloutBlueprint['exceptions']): boolean {
   );
 }
 
+/**
+ * Convert a rollout blueprint to the KnowledgeBlueprint schema shape.
+ * @param b - Rollout blueprint to convert
+ * @returns KnowledgeBlueprint-compatible object
+ */
 function asBlueprint(b: RolloutBlueprint): KnowledgeBlueprint {
   return {
     nodeId: b.nodeId,
@@ -197,6 +223,10 @@ function asBlueprint(b: RolloutBlueprint): KnowledgeBlueprint {
   };
 }
 
+/**
+ * Build a set of all registered IM1 generator skill ID keys and node IDs.
+ * @returns Set of registered identifier strings
+ */
 function registeredSkillIdKeys(): Set<string> {
   const set = new Set<string>();
   for (const entry of IM1_GENERATORS as Iterable<IM1GeneratorEntry>) {
@@ -206,6 +236,11 @@ function registeredSkillIdKeys(): Set<string> {
   return set;
 }
 
+/**
+ * Project activity map from blueprints using the production projector.
+ * @param blueprints - Array of rollout blueprints
+ * @returns Array of projected activities
+ */
 function projectionFor(blueprints: RolloutBlueprint[]): ProjectedActivity[] {
   const { nodes, edges } = loadGraph();
   return projectActivityMap(

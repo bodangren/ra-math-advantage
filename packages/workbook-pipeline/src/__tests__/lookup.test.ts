@@ -9,6 +9,12 @@ import {
   lessonHasAnyWorkbook,
 } from '../workbook-pipeline/lookup.js';
 
+/**
+ * Create a WorkbookManifest fixture for testing.
+ * @param units - Array of unit/lesson entries with student/teacher flags
+ * @param capstone - Capstone availability flags
+ * @returns A WorkbookManifest suitable for tests
+ */
 function createTestManifest(
   units: Array<{ unit: number; lesson: number; student: boolean; teacher: boolean }>,
   capstone: { student: boolean; teacher: boolean } = { student: false, teacher: false }

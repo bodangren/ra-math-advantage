@@ -11,6 +11,11 @@ export interface DiscriminantAnalyzerActivityProps extends DiscriminantAnalyzerP
   onComplete?: () => void;
 }
 
+/**
+ * Render a discriminant analyzer activity with submission handling.
+ * @param props - The activity configuration including equation, coefficients, and callbacks
+ * @returns The activity component JSX
+ */
 export function DiscriminantAnalyzerActivity({
   activityId,
   mode,

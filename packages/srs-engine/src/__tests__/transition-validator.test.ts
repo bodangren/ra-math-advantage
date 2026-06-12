@@ -4,6 +4,11 @@ import type { SrsCardState } from '../srs/contract';
 
 type PickState = Pick<SrsCardState, 'stability' | 'difficulty' | 'state' | 'reps' | 'lapses'>;
 
+/**
+ * Create a partial SRS card state with optional overrides.
+ * @param overrides - Partial state fields to override
+ * @returns Partial card state with sensible defaults
+ */
 function makeState(overrides: Partial<PickState> = {}): PickState {
   return {
     stability: 0,

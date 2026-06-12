@@ -37,17 +37,33 @@ export interface EquivalenceComponent {
 // Helpers
 // ---------------------------------------------------------------------------
 
+/**
+ * Extract a string value from a node's metadata by field name.
+ * @param node - The node to read metadata from
+ * @param field - The metadata field name
+ * @returns The string value, or undefined if missing or not a string
+ */
 function metaStr(node: KnowledgeSpaceNode, field: string): string | undefined {
   const v = node.metadata?.[field];
   return typeof v === 'string' ? v : undefined;
 }
 
+/**
+ * Extract the course-level prefix (first two dot-separated segments) from a node ID.
+ * @param nodeId - The full node ID string
+ * @returns The course prefix, e.g. "math.im1"
+ */
 function courseFromId(nodeId: string): string {
   // Extract course-level prefix: math.im1, math.im2, math.im3, math.precalc
   const parts = nodeId.split('.');
   return parts.slice(0, 2).join('.');
 }
 
+/**
+ * Normalize a title string for cross-course comparison by lowercasing and stripping special characters.
+ * @param title - The raw title string
+ * @returns Normalized lowercase underscore-separated string
+ */
 function normalizeTitle(title: string): string {
   return title
     .toLowerCase()
@@ -61,6 +77,12 @@ function normalizeTitle(title: string): string {
 // Endpoint validation
 // ---------------------------------------------------------------------------
 
+/**
+ * Validate that a cross-course edge has valid source and target endpoints.
+ * @param edge - The edge to validate
+ * @param nodes - The full set of knowledge space nodes
+ * @returns Validation result with reason if invalid
+ */
 export function validateCrossCourseEdges(
   edge: KnowledgeSpaceEdge,
   nodes: KnowledgeSpaceNode[],
@@ -158,6 +180,12 @@ function makeCandidate(
 // Matching: familyKey
 // ---------------------------------------------------------------------------
 
+/**
+ * Match cross-course equivalences using familyKey grouping and title bridging.
+ * @param courses - All courses with their nodes and edges
+ * @param standardLookup - Pre-built map of node IDs to their aligned standard IDs
+ * @returns Array of equivalence edge candidates from familyKey matching
+ */
 function matchByFamilyKey(
   courses: CrossCourseCourse[],
   standardLookup: Map<string, Set<string>>,
@@ -304,6 +332,12 @@ function matchByFamilyKey(
 // Matching: standard overlap
 // ---------------------------------------------------------------------------
 
+/**
+ * Match cross-course equivalences by shared standard alignment overlap.
+ * @param courses - All courses with their nodes and edges
+ * @param standardLookup - Pre-built map of node IDs to their aligned standard IDs
+ * @returns Array of equivalence edge candidates from standard overlap
+ */
 function matchByStandardOverlap(
   courses: CrossCourseCourse[],
   standardLookup: Map<string, Set<string>>,
@@ -395,6 +429,11 @@ function matchByStandardOverlap(
 // Matching: title/slug similarity
 // ---------------------------------------------------------------------------
 
+/**
+ * Match cross-course equivalences by normalized title and familyKey similarity.
+ * @param courses - All courses with their nodes and edges
+ * @returns Array of low-confidence equivalence edge candidates from title matching
+ */
 function matchByTitle(
   courses: CrossCourseCourse[],
 ): Omit<KnowledgeSpaceEdge, 'id'>[] {
@@ -490,6 +529,11 @@ function matchByTitle(
 // Connected components
 // ---------------------------------------------------------------------------
 
+/**
+ * Compute connected components of equivalent_to edges across courses.
+ * @param edges - All knowledge space edges
+ * @returns Array of equivalence component groups
+ */
 export function computeEquivalenceComponents(
   edges: KnowledgeSpaceEdge[],
 ): EquivalenceComponent[] {
@@ -560,6 +604,11 @@ export function computeEquivalenceComponents(
 // Public API
 // ---------------------------------------------------------------------------
 
+/**
+ * Find cross-course equivalence edges for a multi-course input.
+ * @param input - Cross-course input with courses and optional ID prefix
+ * @returns Array of equivalent_to edges linking nodes across courses
+ */
 export function findCrossCourseEquivalences(
   input: CrossCourseInput,
 ): KnowledgeSpaceEdge[] {

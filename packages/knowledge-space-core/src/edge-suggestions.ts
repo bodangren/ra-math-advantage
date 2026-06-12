@@ -22,10 +22,28 @@ export interface EdgeSuggestionInput {
 
 type EdgeCandidate = Omit<KnowledgeSpaceEdge, 'id'>;
 
+/**
+ * Build a deterministic sort key from an edge candidate's type, source, and target.
+ * @param e - The edge candidate to build a key for
+ * @returns Composite sort key string
+ */
 function sortKey(e: EdgeCandidate): string {
   return `${e.type}::${e.sourceId}::${e.targetId}`;
 }
 
+/**
+ * Create an edge candidate with all required fields and optional metadata.
+ * @param type - The edge type
+ * @param sourceId - Source node ID
+ * @param targetId - Target node ID
+ * @param weight - Edge weight between 0 and 1
+ * @param confidence - Confidence level for the edge
+ * @param derived - Whether the edge is derived
+ * @param derivationMethod - Method used to derive the edge
+ * @param rationale - Optional human-readable rationale
+ * @param metadata - Optional metadata record
+ * @returns A fully populated edge candidate
+ */
 function makeCandidate(
   type: KnowledgeSpaceEdge['type'],
   sourceId: string,
@@ -58,6 +76,13 @@ function makeCandidate(
 
 type NodesByModule = Map<string, KnowledgeSpaceNode[]>;
 
+/**
+ * Group nodes by a metadata-derived key, filtered to specific node kinds.
+ * @param nodes - All nodes to filter and group
+ * @param kinds - Node kinds to include
+ * @param keyFn - Function extracting the grouping key from a node
+ * @returns Map from key to arrays of matching nodes
+ */
 function groupByMeta(
   nodes: KnowledgeSpaceNode[],
   kinds: KnowledgeSpaceNode['kind'][],
@@ -75,6 +100,12 @@ function groupByMeta(
   return map;
 }
 
+/**
+ * Extract a string value from a node's metadata by field name.
+ * @param node - The node to read metadata from
+ * @param field - The metadata field name
+ * @returns The string value, or undefined if missing or not a string
+ */
 function metaStr(node: KnowledgeSpaceNode, field: string): string | undefined {
   const v = node.metadata?.[field];
   return typeof v === 'string' ? v : undefined;
@@ -84,6 +115,11 @@ function metaStr(node: KnowledgeSpaceNode, field: string): string | undefined {
 // Edge suggestion generators
 // ---------------------------------------------------------------------------
 
+/**
+ * Suggest contains edges based on hierarchical node relationships (domain, modules, lessons, skills).
+ * @param nodes - All nodes in the knowledge space
+ * @returns Array of containment edge candidates
+ */
 function suggestContainmentEdges(
   nodes: KnowledgeSpaceNode[],
 ): EdgeCandidate[] {
@@ -180,6 +216,11 @@ function suggestContainmentEdges(
   return candidates;
 }
 
+/**
+ * Suggest appears_in_context edges linking skills and examples to their lessons.
+ * @param nodes - All nodes in the knowledge space
+ * @returns Array of placement edge candidates
+ */
 function suggestPlacementEdges(
   nodes: KnowledgeSpaceNode[],
 ): EdgeCandidate[] {
@@ -249,6 +290,11 @@ function suggestPlacementEdges(
   return candidates;
 }
 
+/**
+ * Suggest low-confidence prerequisite_for edges based on lesson sequence ordering.
+ * @param nodes - All nodes in the knowledge space
+ * @returns Array of prerequisite edge candidates
+ */
 function suggestPrerequisiteEdges(
   nodes: KnowledgeSpaceNode[],
 ): EdgeCandidate[] {
@@ -308,6 +354,11 @@ function suggestPrerequisiteEdges(
   return candidates;
 }
 
+/**
+ * Suggest supports edges from concepts to skills within the same module.
+ * @param nodes - All nodes in the knowledge space
+ * @returns Array of support edge candidates
+ */
 function suggestSupportEdges(
   nodes: KnowledgeSpaceNode[],
 ): EdgeCandidate[] {
@@ -343,6 +394,11 @@ function suggestSupportEdges(
 // Task 2.5 — Intra-course equivalence suggestions
 // ---------------------------------------------------------------------------
 
+/**
+ * Suggest intra-course equivalent_to edges between concepts sharing a familyKey.
+ * @param nodes - All nodes in the knowledge space
+ * @returns Array of equivalence edge candidates
+ */
 function suggestEquivalenceEdges(
   nodes: KnowledgeSpaceNode[],
 ): EdgeCandidate[] {
@@ -378,6 +434,11 @@ function suggestEquivalenceEdges(
 // Public API
 // ---------------------------------------------------------------------------
 
+/**
+ * Generate deterministic edge suggestions from a set of knowledge-space nodes.
+ * @param input - Nodes, course prefix, and optional ID prefix
+ * @returns Deterministically ordered and deduplicated edge suggestions
+ */
 export function suggestEdges(input: EdgeSuggestionInput): KnowledgeSpaceEdge[] {
   const { nodes, coursePrefix } = input;
   const idPrefix = input.idPrefix ?? coursePrefix;

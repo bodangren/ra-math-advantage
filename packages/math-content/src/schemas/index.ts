@@ -23,6 +23,11 @@ export const SCHEMA_REGISTRY: Record<ActivityComponentKey, z.ZodSchema> = {
   'discriminant-analyzer': discriminantAnalyzerSchema,
 };
 
+/**
+ * Look up a Zod props schema by activity component key.
+ * @param key - Activity component key string
+ * @returns Matching Zod schema or undefined if not found
+ */
 export function getPropsSchema(key: string): z.ZodSchema | undefined {
   return SCHEMA_REGISTRY[key as ActivityComponentKey];
 }

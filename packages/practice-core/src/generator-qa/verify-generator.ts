@@ -66,6 +66,12 @@ export interface GeneratorLike<TOutput = unknown> {
 
 // ── Helpers ──────────────────────────────────────────────────────────
 
+/**
+ * Run the determinism check across all seeds.
+ * @param gen - Generator to test
+ * @param numSeeds - Number of seeds to test
+ * @returns Check result indicating pass or fail with message
+ */
 function runDeterminismCheck(gen: GeneratorLike<unknown>, numSeeds: number): VerifyGeneratorCheck {
   for (let i = 0; i < numSeeds; i++) {
     const input = { nodeId: 'test-node', seed: i, difficulty: 1 };
@@ -82,6 +88,13 @@ function runDeterminismCheck(gen: GeneratorLike<unknown>, numSeeds: number): Ver
   return { name: 'determinism', passed: true };
 }
 
+/**
+ * Run the unique-answer check across all seeds.
+ * @param gen - Generator to test
+ * @param numSeeds - Number of seeds to test
+ * @param oracle - Optional domain oracle to validate correct answers
+ * @returns Check result indicating pass or fail with message
+ */
 function runUniqueAnswerCheck(
   gen: GeneratorLike<unknown>,
   numSeeds: number,
@@ -118,6 +131,12 @@ function runUniqueAnswerCheck(
   return { name: 'unique-answer', passed: true };
 }
 
+/**
+ * Run the distractor validity check across all seeds.
+ * @param gen - Generator to test
+ * @param numSeeds - Number of seeds to test
+ * @returns Check result indicating pass or fail with message
+ */
 function runDistractorValidityCheck(gen: GeneratorLike<unknown>, numSeeds: number): VerifyGeneratorCheck {
   for (let i = 0; i < numSeeds; i++) {
     const input = { nodeId: 'test-node', seed: i, difficulty: 1 };
@@ -169,6 +188,12 @@ function runDistractorValidityCheck(gen: GeneratorLike<unknown>, numSeeds: numbe
   return { name: 'distractor-validity', passed: true };
 }
 
+/**
+ * Run the invariants check across all seeds.
+ * @param gen - Generator to test
+ * @param numSeeds - Number of seeds to test
+ * @returns Check result indicating pass or fail with message
+ */
 function runInvariantsCheck(gen: GeneratorLike<unknown>, numSeeds: number): VerifyGeneratorCheck {
   for (let i = 0; i < numSeeds; i++) {
     const input = { nodeId: 'test-node', seed: i, difficulty: 1 };
@@ -200,6 +225,12 @@ function runInvariantsCheck(gen: GeneratorLike<unknown>, numSeeds: number): Veri
 
 // ── Public API ───────────────────────────────────────────────────────
 
+/**
+ * Run all correctness checks against a generator and produce a report.
+ * @param gen - Generator to verify
+ * @param opts - Optional configuration for seeds and domain oracle
+ * @returns Verification report with verdict, checks, errors, and summary
+ */
 export function verifyGenerator(
   gen: GeneratorLike<unknown>,
   opts: VerifyGeneratorOptions = {},

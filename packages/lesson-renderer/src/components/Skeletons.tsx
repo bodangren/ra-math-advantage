@@ -7,6 +7,10 @@ interface LessonSkeletonProps {
   className?: string;
 }
 
+/**
+ * Render a loading skeleton placeholder for a lesson page.
+ * @param props - phaseCount and optional className
+ */
 export function LessonSkeleton({ phaseCount = 4, className }: LessonSkeletonProps) {
   return (
     <div className={cn('space-y-6', className)} data-testid="lesson-skeleton">
@@ -42,6 +46,10 @@ interface ActivitySkeletonProps {
   className?: string;
 }
 
+/**
+ * Render a loading skeleton placeholder for an activity card.
+ * @param props - Optional className
+ */
 export function ActivitySkeleton({ className }: ActivitySkeletonProps) {
   return (
     <div

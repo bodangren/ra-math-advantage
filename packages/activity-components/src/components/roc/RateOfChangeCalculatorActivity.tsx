@@ -11,6 +11,11 @@ export interface RateOfChangeCalculatorActivityProps extends RateOfChangeCalcula
   onComplete?: () => void;
 }
 
+/**
+ * Render a rate of change calculator activity with submission handling.
+ * @param props - The activity configuration including source type, data, and callbacks
+ * @returns The activity component JSX
+ */
 export function RateOfChangeCalculatorActivity({
   activityId,
   mode,

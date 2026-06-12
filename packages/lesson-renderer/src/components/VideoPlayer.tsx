@@ -10,6 +10,11 @@ interface VideoPlayerProps {
   thumbnailUrl?: string;
 }
 
+/**
+ * Extract the YouTube video ID from a URL.
+ * @param url - YouTube URL (watch, share, or embed format)
+ * @returns Video ID string or null if URL doesn't match
+ */
 function getYouTubeId(url: string): string | null {
   const match = url.match(
     /(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/embed\/)([^&\n?#]+)/,
@@ -17,6 +22,10 @@ function getYouTubeId(url: string): string | null {
   return match?.[1] ?? null;
 }
 
+/**
+ * Render an embedded video player with optional transcript toggle.
+ * @param props - Video URL, duration, optional transcript, and thumbnail
+ */
 export function VideoPlayer({ videoUrl, duration, transcript }: VideoPlayerProps) {
   const [videoLoaded, setVideoLoaded] = useState(false);
   const [transcriptOpen, setTranscriptOpen] = useState(false);

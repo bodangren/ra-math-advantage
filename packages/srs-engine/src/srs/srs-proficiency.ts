@@ -21,6 +21,12 @@ export type ProficiencyCardInput = {
 
 export type TimingBaselines = Record<string, PracticeTimingBaseline | undefined>;
 
+/**
+ * Derive fluency confidence from card timing data relative to baselines.
+ * @param cards - Array of card inputs for a problem family
+ * @param baselines - Timing baselines keyed by problem family ID
+ * @returns Confidence level, reliability flag, and baseline sample count
+ */
 function deriveFluencyConfidence(
   cards: ProficiencyCardInput[],
   baselines: TimingBaselines

@@ -18,6 +18,11 @@ interface TableRow {
   isEmpty: boolean;
 }
 
+/**
+ * Render an interactive table of values for evaluating a function.
+ * @param props - The configuration including x-values, function expression, and callbacks
+ * @returns The table of values component JSX
+ */
 export function InteractiveTableOfValues({
   xValues,
   functionExpression,

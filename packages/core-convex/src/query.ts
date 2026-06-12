@@ -106,6 +106,13 @@ export async function fetchInternalQuery<Query extends FunctionReference<'query'
   return client.query(ref as FunctionReference<'query'>, args) as Promise<FunctionReturnType<Query>>;
 }
 
+/**
+ * Call an internal Convex mutation with admin auth.
+ * @param ref - Mutation function reference
+ * @param args - Mutation arguments
+ * @param options - Options including convexUrl override
+ * @returns Mutation result
+ */
 export async function fetchInternalMutation<Mutation extends FunctionReference<'mutation', 'public' | 'internal'>>(
   ref: Mutation,
   args: FunctionArgs<Mutation>,

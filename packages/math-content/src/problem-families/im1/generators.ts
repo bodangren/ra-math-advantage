@@ -10,6 +10,11 @@ export interface IM1GeneratorEntry {
   generate: (input: GeneratorInput) => GeneratorOutput;
 }
 
+/**
+ * Create a seeded pseudo-random number generator.
+ * @param seed - Integer seed value
+ * @returns Function that returns the next random number in [0, 1)
+ */
 function seededRandom(seed: number): () => number {
   let s = seed | 0;
   return () => {

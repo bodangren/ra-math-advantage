@@ -17,7 +17,8 @@ export interface ResolveModeParams {
  *
  * Rules:
  * - Teacher and admin roles always get 'teaching' mode (role takes precedence over override)
- * - Student role: worked_example → 'guided', independent_practice → 'practice', assessment → 'practice', others → 'guided'
+ * - Student role: worked_example → 'guided', independent_practice → 'practice',
+ *   assessment → 'practice', others → 'guided'
  * - Activity-level override takes precedence over default phase-type resolution for students
  *
  * @param params - Object containing role, phaseType, and optional activityModeOverride

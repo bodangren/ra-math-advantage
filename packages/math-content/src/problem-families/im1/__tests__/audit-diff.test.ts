@@ -175,6 +175,11 @@ const MIN_VERTICAL_SLICE_GENERATORS = 6;
 
 type ScriptNames = ReadonlyArray<string>;
 
+/**
+ * Read script names from a package.json file.
+ * @param pkgJsonPath - Absolute path to package.json
+ * @returns Array of script names
+ */
 function readPkgScripts(pkgJsonPath: string): ScriptNames {
   const pkg = JSON.parse(readFileSync(pkgJsonPath, 'utf-8')) as {
     scripts?: Record<string, string>;
@@ -182,10 +187,18 @@ function readPkgScripts(pkgJsonPath: string): ScriptNames {
   return Object.keys(pkg.scripts ?? {});
 }
 
+/**
+ * Load the IM1 rollout audit markdown document.
+ * @returns Audit document text
+ */
 function loadAuditText(): string {
   return readFileSync(AUDIT_MD, 'utf-8');
 }
 
+/**
+ * Load the vertical-slice module ID from track metadata.
+ * @returns Module ID string
+ */
 function loadVerticalSliceModule(): string {
   const meta = JSON.parse(readFileSync(METADATA_JSON, 'utf-8')) as {
     verticalSliceModule?: string;
@@ -193,6 +206,10 @@ function loadVerticalSliceModule(): string {
   return String(meta.verticalSliceModule);
 }
 
+/**
+ * Count the total number of registered node IDs across all IM1 generators.
+ * @returns Total registered node ID count
+ */
 function collectRegisteredGeneratorCount(): number {
   let count = 0;
   for (const entry of IM1_GENERATORS as Iterable<IM1GeneratorEntry>) {
@@ -201,6 +218,10 @@ function collectRegisteredGeneratorCount(): number {
   return count;
 }
 
+/**
+ * Count vertical-slice blueprints that are real (not STUBs).
+ * @returns Number of non-STUB blueprints in the vertical slice
+ */
 function countVerticalSliceRealBlueprints(): number {
   const vsm = loadVerticalSliceModule();
   const file = JSON.parse(readFileSync(BLUEPRINTS_JSON, 'utf-8')) as {
@@ -221,6 +242,11 @@ function countVerticalSliceRealBlueprints(): number {
   }).length;
 }
 
+/**
+ * Adapt an IM1 generator entry to the GeneratorLike interface for the QA harness.
+ * @param entry - IM1 generator entry to adapt
+ * @returns GeneratorLike-compatible object
+ */
 function adapt(entry: IM1GeneratorEntry): GeneratorLike {
   return {
     generate: (input) => {

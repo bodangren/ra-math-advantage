@@ -35,6 +35,11 @@ export interface InventoryAssemblerInput {
 // Slug derivation
 // ---------------------------------------------------------------------------
 
+/**
+ * Convert text to a URL-friendly slug.
+ * @param text - Input text to slugify
+ * @returns Lowercase slug with hyphens
+ */
 function toSlug(text: string): string {
   return text
     .toLowerCase()
@@ -44,6 +49,11 @@ function toSlug(text: string): string {
     .replace(/^-|-$/g, '');
 }
 
+/**
+ * Sanitize a string for use as a knowledge-space ID segment.
+ * @param s - Raw string to sanitize
+ * @returns Lowercase alphanumeric-hyphen string, max 64 chars
+ */
 function sanitizeIdSegment(s: string): string {
   // Converts a string to a valid knowledge-space ID segment
   // Valid segment: starts with [a-z0-9], contains only [a-z0-9-]
@@ -55,11 +65,21 @@ function sanitizeIdSegment(s: string): string {
     .slice(0, 64);
 }
 
+/**
+ * Derive a skill slug from an objective description.
+ * @param objective - Objective text to convert
+ * @returns Slug string, max 60 characters
+ */
 function deriveSkillSlug(objective: string): string {
   // "Graph quadratic functions" → "graph-quadratic-functions"
   return toSlug(objective).slice(0, 60);
 }
 
+/**
+ * Pad a number to two digits with leading zeros.
+ * @param n - Number to pad
+ * @returns Zero-padded string
+ */
 function padNum(n: number): string {
   return String(n).padStart(2, '0');
 }
@@ -68,6 +88,11 @@ function padNum(n: number): string {
 // Assemble
 // ---------------------------------------------------------------------------
 
+/**
+ * Assemble a draft inventory of knowledge-space nodes from parsed curriculum data.
+ * @param input - Assembler input with course, module overview, and optional sources
+ * @returns Array of knowledge-space nodes sorted by ID
+ */
 export function assembleDraftInventory(
   input: InventoryAssemblerInput,
 ): KnowledgeSpaceNode[] {
@@ -239,6 +264,11 @@ export function assembleDraftInventory(
 // Helpers
 // ---------------------------------------------------------------------------
 
+/**
+ * Get the display name for a math course.
+ * @param course - Math course identifier
+ * @returns Human-readable course name
+ */
 function courseName(course: MathCourse): string {
   const names: Record<MathCourse, string> = {
     im1: 'Integrated Math 1',
@@ -249,6 +279,12 @@ function courseName(course: MathCourse): string {
   return names[course] || course;
 }
 
+/**
+ * Append a numeric suffix to a base string if it already exists in the used set.
+ * @param base - The desired string
+ * @param used - Set of already-used strings
+ * @returns A unique string, possibly with a numeric suffix
+ */
 function disambiguate(base: string, used: Set<string>): string {
   if (!used.has(base)) return base;
   let counter = 2;

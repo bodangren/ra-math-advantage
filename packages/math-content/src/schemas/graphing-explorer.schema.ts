@@ -36,6 +36,11 @@ export interface GraphingSubmissionInput {
   assessComparisonCorrectness?: () => boolean;
 }
 
+/**
+ * Build a practice.v1 submission from graphing explorer input.
+ * @param input - Submission input with points, intercepts, and assessment callbacks
+ * @returns Practice.v1 formatted submission object
+ */
 export function buildGraphingSubmission(input: GraphingSubmissionInput) {
   const {
     activityId,

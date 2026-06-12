@@ -19,6 +19,11 @@ export interface FillInTheBlankActivityProps {
   }>;
 }
 
+/**
+ * Render a fill-in-the-blank activity with submission handling.
+ * @param props - The activity configuration including template, blanks, and callbacks
+ * @returns The activity component JSX
+ */
 export function FillInTheBlankActivity({
   activityId,
   mode,

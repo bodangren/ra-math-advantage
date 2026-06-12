@@ -40,6 +40,11 @@ import {
 // Factories
 // ---------------------------------------------------------------------------
 
+/**
+ * Create a default EdgeCalibration with optional overrides.
+ * @param overrides - Partial calibration fields to override
+ * @returns EdgeCalibration with sensible defaults
+ */
 function makeCalibration(overrides: Partial<EdgeCalibration> = {}): EdgeCalibration {
   return {
     edgeId: 'edge.prereq.a-to-b',
@@ -51,10 +56,21 @@ function makeCalibration(overrides: Partial<EdgeCalibration> = {}): EdgeCalibrat
   };
 }
 
+/**
+ * Create a CalibrationObservation with the given verdicts.
+ * @param a - Proficiency verdict for A
+ * @param b - Proficiency verdict for B
+ * @returns CalibrationObservation with a fixed student ID
+ */
 function makeObs(a: boolean, b: boolean): CalibrationObservation {
   return { studentId: 's', a, b };
 }
 
+/**
+ * Create a default ReviewQueueBuildInput with optional overrides.
+ * @param overrides - Partial input fields to override
+ * @returns ReviewQueueBuildInput with sensible defaults
+ */
 function makeInput(overrides: Partial<ReviewQueueBuildInput> = {}): ReviewQueueBuildInput {
   return {
     edgeId: 'edge.prereq.a-to-b',

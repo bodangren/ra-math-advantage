@@ -1,6 +1,13 @@
 import type { WorkbookManifest } from './manifest.js';
 import { buildUnitLessonKey } from './manifest.js';
 
+/**
+ * Check whether a student workbook exists for a given unit and lesson.
+ * @param manifest - The workbook manifest to search
+ * @param unitNumber - The unit number
+ * @param lessonNumber - The lesson number
+ * @returns True if a student workbook is registered
+ */
 export function hasStudentWorkbook(
   manifest: WorkbookManifest,
   unitNumber: number,
@@ -11,6 +18,13 @@ export function hasStudentWorkbook(
   return entry?.student ?? false;
 }
 
+/**
+ * Check whether a teacher workbook exists for a given unit and lesson.
+ * @param manifest - The workbook manifest to search
+ * @param unitNumber - The unit number
+ * @param lessonNumber - The lesson number
+ * @returns True if a teacher workbook is registered
+ */
 export function hasTeacherWorkbook(
   manifest: WorkbookManifest,
   unitNumber: number,
@@ -21,6 +35,13 @@ export function hasTeacherWorkbook(
   return entry?.teacher ?? false;
 }
 
+/**
+ * Check whether any workbook (student or teacher) exists for a lesson.
+ * @param manifest - The workbook manifest to search
+ * @param unitNumber - The unit number
+ * @param lessonNumber - The lesson number
+ * @returns True if at least one workbook is registered
+ */
 export function lessonHasWorkbooks(
   manifest: WorkbookManifest,
   unitNumber: number,
@@ -30,18 +51,35 @@ export function lessonHasWorkbooks(
          hasTeacherWorkbook(manifest, unitNumber, lessonNumber);
 }
 
+/**
+ * Check whether a student capstone workbook exists.
+ * @param manifest - The workbook manifest to check
+ * @returns True if a student capstone workbook is registered
+ */
 export function hasCapstoneStudentWorkbook(
   manifest: WorkbookManifest
 ): boolean {
   return manifest.byCapstone.student;
 }
 
+/**
+ * Check whether a teacher capstone workbook exists.
+ * @param manifest - The workbook manifest to check
+ * @returns True if a teacher capstone workbook is registered
+ */
 export function hasCapstoneTeacherWorkbook(
   manifest: WorkbookManifest
 ): boolean {
   return manifest.byCapstone.teacher;
 }
 
+/**
+ * Check whether any workbook exists for a given unit and lesson.
+ * @param manifest - The workbook manifest to search
+ * @param unitNumber - The unit number
+ * @param lessonNumber - The lesson number
+ * @returns True if any workbook is registered for the lesson
+ */
 export function lessonHasAnyWorkbook(
   manifest: WorkbookManifest,
   unitNumber: number,

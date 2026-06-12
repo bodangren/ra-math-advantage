@@ -216,6 +216,10 @@ export function resolveOpenRouterProviderFromEnv(): ((prompt: string, abortSigna
   return cachedProvider;
 }
 
+/**
+ * Resolve OpenRouter multi-message provider from environment variables.
+ * @returns Messages provider function or null if OPENROUTER_API_KEY not set
+ */
 export function resolveOpenRouterProviderWithMessagesFromEnv(): ((messages: ChatMessage[], abortSignal?: AbortSignal) => Promise<string>) | null {
   const apiKey = process.env.OPENROUTER_API_KEY;
   if (!apiKey || apiKey.trim().length === 0) {

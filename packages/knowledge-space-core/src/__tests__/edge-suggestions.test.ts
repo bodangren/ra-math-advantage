@@ -6,34 +6,48 @@ import type { KnowledgeSpaceNode } from '../types';
 // Helpers
 // ---------------------------------------------------------------------------
 
-const makeNode = (
+/**
+ * Create a knowledge space node with given kind and metadata for testing.
+ * @param id - The node ID
+ * @param kind - The node kind
+ * @param meta - Optional metadata record
+ * @returns A KnowledgeSpaceNode for test use
+ */
+function makeNode(
   id: string,
   kind: KnowledgeSpaceNode['kind'],
   meta: Record<string, unknown> = {},
-): KnowledgeSpaceNode => ({
-  id,
-  kind,
-  title: id,
-  domain: 'math.test',
-  sourceRefs: ['synthetic'],
-  reviewStatus: 'draft',
-  metadata: meta,
-});
+): KnowledgeSpaceNode {
+  return {
+    id,
+    kind,
+    title: id,
+    domain: 'math.test',
+    sourceRefs: ['synthetic'],
+    reviewStatus: 'draft',
+    metadata: meta,
+  };
+}
 
 const COURSE_PREFIX = 'math.test';
 
-// Minimal synthetic hierarchy: 1 domain, 1 module, 2 lessons, 2 skills each
-const buildSyntheticNodes = (): KnowledgeSpaceNode[] => [
-  makeNode('math.test', 'domain'),
-  makeNode('math.test.module.1', 'content_group', { module: '1' }),
-  makeNode('math.test.lesson.1.1', 'instructional_unit', { module: '1', lesson: '1' }),
-  makeNode('math.test.lesson.1.2', 'instructional_unit', { module: '1', lesson: '2' }),
-  makeNode('math.test.skill.1.1.alpha', 'skill', { module: '1', lesson: '1' }),
-  makeNode('math.test.skill.1.1.beta', 'skill', { module: '1', lesson: '1' }),
-  makeNode('math.test.skill.1.2.gamma', 'skill', { module: '1', lesson: '2' }),
-  makeNode('math.test.example.1.1.001', 'worked_example', { module: '1', lesson: '1' }),
-  makeNode('math.test.example.1.2.001', 'worked_example', { module: '1', lesson: '2' }),
-];
+/**
+ * Build a minimal synthetic hierarchy for edge suggestion testing.
+ * @returns Array of nodes forming a domain with modules, lessons, and skills
+ */
+function buildSyntheticNodes(): KnowledgeSpaceNode[] {
+  return [
+    makeNode('math.test', 'domain'),
+    makeNode('math.test.module.1', 'content_group', { module: '1' }),
+    makeNode('math.test.lesson.1.1', 'instructional_unit', { module: '1', lesson: '1' }),
+    makeNode('math.test.lesson.1.2', 'instructional_unit', { module: '1', lesson: '2' }),
+    makeNode('math.test.skill.1.1.alpha', 'skill', { module: '1', lesson: '1' }),
+    makeNode('math.test.skill.1.1.beta', 'skill', { module: '1', lesson: '1' }),
+    makeNode('math.test.skill.1.2.gamma', 'skill', { module: '1', lesson: '2' }),
+    makeNode('math.test.example.1.1.001', 'worked_example', { module: '1', lesson: '1' }),
+    makeNode('math.test.example.1.2.001', 'worked_example', { module: '1', lesson: '2' }),
+  ];
+}
 
 // ---------------------------------------------------------------------------
 // Task 1.3 — Deterministic edge ordering

@@ -12,6 +12,11 @@ export interface ParsedWorkbookEntry {
   type: 'student' | 'teacher';
 }
 
+/**
+ * Parse a workbook filename into its unit, lesson, and type components.
+ * @param filename - The workbook filename to parse
+ * @returns Parsed entry or null if filename doesn't match expected pattern
+ */
 export function parseUnitLessonFilename(
   filename: string
 ): ParsedWorkbookEntry | null {
@@ -27,10 +32,20 @@ export function parseUnitLessonFilename(
   };
 }
 
+/**
+ * Check whether a filename matches the capstone workbook pattern.
+ * @param filename - The filename to test
+ * @returns True if filename starts with "capstone_" and ends with ".xlsx"
+ */
 export function isCapstoneFilename(filename: string): boolean {
   return /^capstone_.+\.xlsx$/.test(filename);
 }
 
+/**
+ * Determine whether a capstone filename is a student or teacher workbook.
+ * @param filename - The capstone filename to parse
+ * @returns 'student', 'teacher', or null if not a capstone file
+ */
 export function parseCapstoneType(
   filename: string
 ): 'student' | 'teacher' | null {
@@ -43,6 +58,12 @@ export function parseCapstoneType(
   return 'student';
 }
 
+/**
+ * Build a lookup key string from unit and lesson numbers.
+ * @param unitNumber - The unit number
+ * @param lessonNumber - The lesson number
+ * @returns Key string in the format "unitNumber-lessonNumber"
+ */
 export function buildUnitLessonKey(
   unitNumber: number,
   lessonNumber: number
@@ -50,6 +71,12 @@ export function buildUnitLessonKey(
   return `${unitNumber}-${lessonNumber}`;
 }
 
+/**
+ * Validate and parse an unknown value into a WorkbookManifest.
+ * @param value - The value to validate
+ * @returns Validated WorkbookManifest object
+ * @throws {TypeError} If the value doesn't conform to WorkbookManifest shape
+ */
 export function validateWorkbookManifest(value: unknown): WorkbookManifest {
   if (typeof value !== 'object' || value === null) {
     throw new TypeError('WorkbookManifest must be an object');

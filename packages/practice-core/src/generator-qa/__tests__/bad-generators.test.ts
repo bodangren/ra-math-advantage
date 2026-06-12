@@ -27,6 +27,12 @@ import {
 } from './fixtures/badGenerators';
 import { DEFAULT_NUM_SEEDS } from './fixtures/seedCorpus';
 
+/**
+ * Find a failed check with the given name in a verification report.
+ * @param report - Verification report to search
+ * @param name - Check name to find
+ * @returns The failed check, or undefined if not found
+ */
 function failedCheckNamed(
   report: ReturnType<typeof verifyGenerator>,
   name: string,
@@ -34,6 +40,12 @@ function failedCheckNamed(
   return report.checks.find((c) => c.name === name && !c.passed);
 }
 
+/**
+ * Assert that a report contains a readable failure for a named check.
+ * @param report - Verification report to inspect
+ * @param checkName - Name of the check expected to fail
+ * @param messagePattern - Regex the failure message must match
+ */
 function expectReadableFailure(
   report: ReturnType<typeof verifyGenerator>,
   checkName: string,

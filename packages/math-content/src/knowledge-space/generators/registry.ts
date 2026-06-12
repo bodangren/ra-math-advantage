@@ -23,6 +23,11 @@ export interface MathGenerator {
 // Deterministic generators for Module 1 pilot
 // ---------------------------------------------------------------------------
 
+/**
+ * Create a seeded pseudo-random number generator.
+ * @param seed - Integer seed value
+ * @returns Function that returns the next random number in [0, 1)
+ */
 function seededRandom(seed: number): () => number {
   let s = seed | 0;
   return () => {
@@ -240,6 +245,12 @@ const GENERATOR_REGISTRY: Record<string, MathGenerator> = {
 
 export const GENERATOR_KEYS = Object.keys(GENERATOR_REGISTRY) as string[];
 
+/**
+ * Look up a math generator by its key.
+ * @param key - Generator key string
+ * @returns The matching MathGenerator
+ * @throws Error if the key is not registered
+ */
 export function getGenerator(key: string): MathGenerator {
   const generator = GENERATOR_REGISTRY[key];
   if (!generator) {

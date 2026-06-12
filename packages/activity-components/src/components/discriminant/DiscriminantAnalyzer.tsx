@@ -17,10 +17,22 @@ interface DAState {
   submitted: boolean;
 }
 
+/**
+ * Compute the discriminant of a quadratic equation b² - 4ac.
+ * @param a - The coefficient of x²
+ * @param b - The coefficient of x
+ * @param c - The constant term
+ * @returns The discriminant value
+ */
 function computeDiscriminant(a: number, b: number, c: number): number {
   return b * b - 4 * a * c;
 }
 
+/**
+ * Classify the roots of a quadratic based on its discriminant.
+ * @param discriminant - The discriminant value (b² - 4ac)
+ * @returns A string describing the root type
+ */
 function classifyDiscriminant(discriminant: number): string {
   if (discriminant > 0) {
     return 'Two distinct real roots';
@@ -31,6 +43,12 @@ function classifyDiscriminant(discriminant: number): string {
   }
 }
 
+/**
+ * Extract quadratic coefficients from an equation string or provided values.
+ * @param equation - The equation string to parse (e.g., "2x² + 3x - 1")
+ * @param providedCoefficients - Optional pre-provided coefficients
+ * @returns The extracted a, b, c coefficients or null if parsing fails
+ */
 function extractCoefficients(
   equation: string,
   providedCoefficients?: { a: number; b: number; c: number }
@@ -54,6 +72,11 @@ function extractCoefficients(
   return { a, b, c };
 }
 
+/**
+ * Render a discriminant analyzer in teaching, guided, or practice mode.
+ * @param props - The analyzer configuration including mode, equation, and coefficients
+ * @returns The analyzer component JSX
+ */
 export function DiscriminantAnalyzer({
   mode,
   equation,

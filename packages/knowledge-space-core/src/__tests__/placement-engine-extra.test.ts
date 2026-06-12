@@ -34,6 +34,12 @@ import {
 
 // --- Helpers ---------------------------------------------------------------
 
+/**
+ * Create a knowledge space node with a given kind for testing.
+ * @param id - The node ID
+ * @param kind - The node kind, defaults to 'skill'
+ * @returns A KnowledgeSpaceNode for test use
+ */
 function makeNode(id: string, kind: KnowledgeSpaceNode['kind'] = 'skill'): KnowledgeSpaceNode {
   return {
     id,
@@ -46,6 +52,12 @@ function makeNode(id: string, kind: KnowledgeSpaceNode['kind'] = 'skill'): Knowl
   };
 }
 
+/**
+ * Create a prerequisite_for edge for testing.
+ * @param sourceId - Source node ID
+ * @param targetId - Target node ID
+ * @returns A prerequisite_for KnowledgeSpaceEdge
+ */
 function prereqEdge(
   sourceId: string,
   targetId: string,
@@ -62,6 +74,13 @@ function prereqEdge(
   };
 }
 
+/**
+ * Create a non-prerequisite edge of a given type for testing.
+ * @param type - The edge type (not prerequisite_for)
+ * @param sourceId - Source node ID
+ * @param targetId - Target node ID
+ * @returns A KnowledgeSpaceEdge of the specified non-prerequisite type
+ */
 function nonPrereqEdge(
   type: KnowledgeSpaceEdge['type'],
   sourceId: string,
@@ -79,6 +98,11 @@ function nonPrereqEdge(
   };
 }
 
+/**
+ * Extract node IDs from a placement traversal result for assertion.
+ * @param result - The traversal result containing placement results
+ * @returns Array of node ID strings
+ */
 function resultNodeIds(result: { results: PlacementResult[] }): string[] {
   return result.results.map((r) => r.nodeId);
 }
@@ -90,6 +114,10 @@ function resultNodeIds(result: { results: PlacementResult[] }): string[] {
 //   exactly once even if both paths are explored.
 // ---------------------------------------------------------------------------
 
+/**
+ * Build a 4-node diamond DAG (a→b, a→c, b→d, c→d) for convergent-path testing.
+ * @returns A knowledge space with a diamond prerequisite structure
+ */
 function buildDiamond(): KnowledgeSpace {
   return {
     nodes: [
@@ -158,6 +186,10 @@ describe('runPlacementTraversal — diamond / convergent DAGs', () => {
 //   either path but must not double-probe it.
 // ---------------------------------------------------------------------------
 
+/**
+ * Build a 4-node graph where a node has multiple prerequisites (a→c, b→c, c→d).
+ * @returns A knowledge space with multi-prerequisite structure
+ */
 function buildMultiPrereq(): KnowledgeSpace {
   return {
     nodes: [

@@ -47,6 +47,11 @@ const GENERATE_CANDIDATES = [
   'generate.js',
 ] as const;
 
+/**
+ * Find the first existing file from a list of candidate filenames in the scripts directory.
+ * @param candidates - Ordered list of filenames to check
+ * @returns The full path of the first existing file, or null if none found
+ */
 function findExisting(candidates: readonly string[]): string | null {
   for (const name of candidates) {
     const full = resolve(MEASURE_SCRIPTS_DIR, name);

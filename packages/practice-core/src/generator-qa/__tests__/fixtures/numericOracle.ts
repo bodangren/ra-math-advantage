@@ -27,13 +27,15 @@ export type NumericOracle = (
  * (verifies the harness accepts an injected oracle); real domain
  * oracles live in math-content.
  */
-export const wellFormedStubOracle: NumericOracle = (output) => {
+export function wellFormedStubOracle(
+  output: GeneratorCorrectnessContract,
+): boolean {
   const match = /f\((-?\d+)\)/.exec(String(output.problem));
   if (!match) return false;
   const seed = Number(match[1]);
   const expected = seed + 1;
   return output.correctAnswer === expected;
-};
+}
 
 /**
  * Returns the named error message a Phase-2 failure should produce.
@@ -42,6 +44,12 @@ export const wellFormedStubOracle: NumericOracle = (output) => {
  * phases agree on the contract — Green must emit messages that include
  * this substring (or the assertion in the corresponding test will
  * fail and signal a regression in error quality).
+ */
+/**
+ * Build the expected failure message substring for a property check.
+ * @param checkName - Name of the failing check
+ * @param detail - Detail string to include
+ * @returns Formatted failure message string
  */
 export function expectedPropertyFailureMessage(
   checkName: 'determinism' | 'unique-answer' | 'distractor-validity' | 'invariants',

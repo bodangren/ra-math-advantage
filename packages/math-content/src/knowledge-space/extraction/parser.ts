@@ -98,6 +98,12 @@ export interface PrecalcLessonExtract {
 // Markdown table parsing
 // ---------------------------------------------------------------------------
 
+/**
+ * Find the first markdown table under a section heading.
+ * @param text - Full markdown text to search
+ * @param sectionHeading - Section heading substring to match
+ * @returns Array of row objects keyed by header names
+ */
 function findSectionTable(
   text: string,
   sectionHeading: string,
@@ -132,6 +138,12 @@ function findSectionTable(
   return [];
 }
 
+/**
+ * Parse a markdown table starting at the given line index.
+ * @param lines - All lines of the markdown document
+ * @param startIdx - Index of the first line of the table
+ * @returns Array of row objects keyed by header names
+ */
 function parseTableFrom(
   lines: string[],
   startIdx: number,
@@ -174,6 +186,11 @@ function parseTableFrom(
   return rows;
 }
 
+/**
+ * Parse a numeric range string like "1-3" into an array of numbers.
+ * @param rangeStr - Range string in the form "N" or "N-M"
+ * @returns Array of numbers in the range
+ */
 function parseRange(rangeStr: string): number[] {
   // e.g., "1-3" → [1, 2, 3], "5" → [5]
   const match = rangeStr.match(/^(\d+)(?:-(\d+))?$/);
@@ -187,6 +204,11 @@ function parseRange(rangeStr: string): number[] {
   return result;
 }
 
+/**
+ * Parse a worked-examples table cell into structured example entries.
+ * @param cell - Cell text in the form "1-1, Examples 1-3 — Title"
+ * @returns Array of extracted worked examples
+ */
 function parseWorkedExamplesCell(cell: string): ExtractedWorkedExample[] {
   // "1-1, Examples 1-3 — Title One; Title Two; Title Three"
   if (!cell || cell === '—' || cell === '-') return [];
@@ -228,6 +250,11 @@ function parseWorkedExamplesCell(cell: string): ExtractedWorkedExample[] {
   return examples;
 }
 
+/**
+ * Parse an objective cell like "1a. Graph quadratic functions." into a structured object.
+ * @param cell - Objective cell text
+ * @returns Parsed objective or null if format doesn't match
+ */
 function parseObjectiveCell(cell: string): ExtractedObjective | null {
   // "1a. Graph quadratic functions."
   const match = cell.match(/^([\d]+[a-z]+)\.\s*(.+)$/i);
@@ -235,6 +262,11 @@ function parseObjectiveCell(cell: string): ExtractedObjective | null {
   return { code: match[1], description: match[2].replace(/\.$/, '') };
 }
 
+/**
+ * Parse an embedded objectives cell like "1c, 1g" into objective entries.
+ * @param cell - Comma-separated objective codes
+ * @returns Array of objectives with empty descriptions
+ */
 function parseEmbeddedObjectivesCell(
   cell: string,
 ): ExtractedObjective[] {
@@ -247,6 +279,11 @@ function parseEmbeddedObjectivesCell(
     .map((code) => ({ code, description: '' }));
 }
 
+/**
+ * Parse a lesson reference like "1-2" into module and lesson numbers.
+ * @param ref - Lesson reference string in "module-lesson" format
+ * @returns Parsed module and lesson numbers, or null if invalid
+ */
 function parseLessonRef(
   ref: string,
 ): { moduleNumber: number; lessonNumber: number } | null {
@@ -262,6 +299,11 @@ function parseLessonRef(
 // parseClassPeriodPlan
 // ---------------------------------------------------------------------------
 
+/**
+ * Parse a class period plan from curriculum markdown.
+ * @param markdown - Curriculum markdown containing a period-by-period plan table
+ * @returns Extracted lessons, examples, and module number
+ */
 export function parseClassPeriodPlan(markdown: string): ClassPeriodPlanExtract {
   const rows = findSectionTable(markdown, 'Period-by-Period Plan');
   const lessonsMap = new Map<string, ExtractedLesson>();
@@ -344,6 +386,11 @@ export function parseClassPeriodPlan(markdown: string): ClassPeriodPlanExtract {
 // parseModuleOverview
 // ---------------------------------------------------------------------------
 
+/**
+ * Parse a module overview from curriculum markdown.
+ * @param markdown - Curriculum markdown containing module overview sections
+ * @returns Extracted module metadata, lessons, and skills
+ */
 export function parseModuleOverview(markdown: string): ModuleOverviewExtract {
   const lines = markdown.split('\n');
   let moduleNumber = 1;
@@ -432,6 +479,11 @@ export function parseModuleOverview(markdown: string): ModuleOverviewExtract {
 // parseAleksRegistry
 // ---------------------------------------------------------------------------
 
+/**
+ * Parse an ALEKS problem-family registry from curriculum markdown.
+ * @param markdown - Curriculum markdown containing a registry table
+ * @returns Extracted problem family entries
+ */
 export function parseAleksRegistry(markdown: string): AleksRegistryExtract {
   const rows = findSectionTable(markdown, 'Registry');
   const families: ProblemFamilyEntry[] = [];
@@ -475,6 +527,11 @@ export function parseAleksRegistry(markdown: string): AleksRegistryExtract {
 // parseRevealLessonSource
 // ---------------------------------------------------------------------------
 
+/**
+ * Parse Reveal lesson source markdown into structured lesson and example data.
+ * @param markdown - Reveal-format markdown with lesson and example headings
+ * @returns Extracted lessons with their examples
+ */
 export function parseRevealLessonSource(
   markdown: string,
 ): RevealLessonSourceExtract {
@@ -541,6 +598,11 @@ export function parseRevealLessonSource(
 // parsePrecalcLesson
 // ---------------------------------------------------------------------------
 
+/**
+ * Parse a precalculus lesson markdown into structured data.
+ * @param markdown - Precalculus lesson markdown with worked examples
+ * @returns Extracted lesson metadata and examples
+ */
 export function parsePrecalcLesson(
   markdown: string,
 ): PrecalcLessonExtract {
@@ -658,6 +720,11 @@ export function parsePrecalcLesson(
 // Duplicate detection helpers
 // ---------------------------------------------------------------------------
 
+/**
+ * Find duplicate lesson references in a list of lessons.
+ * @param lessons - Array of objects with lessonRef strings
+ * @returns Sorted array of duplicate lesson refs
+ */
 export function collectDuplicateLessonRefs(
   lessons: { lessonRef: string }[],
 ): string[] {
@@ -673,6 +740,12 @@ export function collectDuplicateLessonRefs(
   return Array.from(dupes).sort();
 }
 
+/**
+ * Append a numeric suffix to a slug if it already exists in the used set.
+ * @param baseSlug - The desired slug
+ * @param usedSlugs - Set of already-used slugs
+ * @returns A unique slug, possibly with a numeric suffix
+ */
 export function disambiguateSkillSlug(
   baseSlug: string,
   usedSlugs: Set<string>,

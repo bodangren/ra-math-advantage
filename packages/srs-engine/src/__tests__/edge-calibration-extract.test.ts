@@ -26,6 +26,11 @@ type VerdictMap = ReadonlyMap<string, EdgeVerdicts>;
 // Factories
 // ---------------------------------------------------------------------------
 
+/**
+ * Create a VerdictMap from an array of entries.
+ * @param entries - Array of [studentId, verdicts] tuples
+ * @returns Readonly verdict map
+ */
 function makeVerdicts(
   entries: ReadonlyArray<readonly [string, EdgeVerdicts]>
 ): VerdictMap {

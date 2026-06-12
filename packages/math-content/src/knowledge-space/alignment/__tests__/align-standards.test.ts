@@ -5,6 +5,14 @@ import type { StandardDefinition, LessonStandardMapping, FamilyObjectiveMapping,
 import { alignSkillsToStandards } from '../align';
 import type { AlignmentResult } from '../align';
 
+/**
+ * Create a test skill knowledge-space node.
+ * @param course - Course identifier
+ * @param module - Module number
+ * @param lesson - Lesson number
+ * @param slug - Skill slug
+ * @returns Knowledge-space node for testing
+ */
 function makeSkill(course: string, module: string, lesson: string, slug: string): KnowledgeSpaceNode {
   return {
     id: buildSkillId(course as any, module, lesson, slug),
@@ -16,6 +24,14 @@ function makeSkill(course: string, module: string, lesson: string, slug: string)
   };
 }
 
+/**
+ * Create a test worked-example knowledge-space node.
+ * @param course - Course identifier
+ * @param module - Module number
+ * @param lesson - Lesson number
+ * @param index - Example index
+ * @returns Knowledge-space node for testing
+ */
 function makeExample(course: string, module: string, lesson: string, index: string): KnowledgeSpaceNode {
   return {
     id: buildWorkedExampleId(course as any, module, lesson, index),
@@ -27,6 +43,13 @@ function makeExample(course: string, module: string, lesson: string, index: stri
   };
 }
 
+/**
+ * Create a test standard knowledge-space node.
+ * @param authority - Standards authority
+ * @param code - Standard code
+ * @param description - Standard description
+ * @returns Knowledge-space node for testing
+ */
 function makeStandard(authority: string, code: string, description: string): KnowledgeSpaceNode {
   return {
     id: buildStandardId(authority, normalizeCode(code)),
@@ -38,10 +61,20 @@ function makeStandard(authority: string, code: string, description: string): Kno
   };
 }
 
+/**
+ * Normalize a standard code to lowercase with hyphens instead of dots.
+ * @param code - Standard code to normalize
+ * @returns Normalized code string
+ */
 function normalizeCode(code: string): string {
   return code.toLowerCase().replace(/\./g, '-');
 }
 
+/**
+ * Build a standard node ID for testing.
+ * @param code - Standard code
+ * @returns Normalized standard node ID
+ */
 function stdId(code: string): string {
   return buildStandardId('ccss', normalizeCode(code));
 }

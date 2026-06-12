@@ -12,6 +12,10 @@ interface BaseReviewSessionProps<T extends StudyTerm> {
   onComplete: (results: StudySessionResult) => void;
 }
 
+/**
+ * Render a generic flashcard-style review session with flip and rate interactions.
+ * @param props - Terms, header renderer, empty-state messages, and onComplete callback
+ */
 export function BaseReviewSession<T extends StudyTerm>({
   terms,
   renderHeader,

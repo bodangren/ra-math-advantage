@@ -4,6 +4,10 @@ export interface DefinitionCardProps {
   relatedTerms?: string[];
 }
 
+/**
+ * Render a definition card with term, definition, and optional related terms.
+ * @param props - Term name, definition text, and optional related terms list
+ */
 export function DefinitionCard({ term, definition, relatedTerms }: DefinitionCardProps) {
   return (
     <article className="rounded-lg border bg-card p-4 my-4 shadow-sm">

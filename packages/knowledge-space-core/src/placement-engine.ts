@@ -26,6 +26,11 @@ interface TraversalOptions {
 // Helpers
 // ---------------------------------------------------------------------------
 
+/**
+ * Build downstream and upstream adjacency lists from prerequisite_for edges.
+ * @param graph - The knowledge space graph
+ * @returns Object containing downstream and upstream adjacency maps
+ */
 function buildAdjacency(graph: KnowledgeSpace) {
   const downstream = new Map<string, string[]>();
   const upstream = new Map<string, string[]>();
@@ -46,6 +51,11 @@ function buildAdjacency(graph: KnowledgeSpace) {
 
 const VALID_PROBE_RESULTS: ReadonlySet<string> = new Set(['pass', 'fail', 'partial']);
 
+/**
+ * Assert that a value is a valid ProbeResult, throwing if not.
+ * @param value - The value to validate
+ * @throws If the value is not a valid ProbeResult string
+ */
 function validateProbeResult(value: unknown): asserts value is ProbeResult {
   if (typeof value !== 'string' || !VALID_PROBE_RESULTS.has(value)) {
     throw new Error(
@@ -54,6 +64,11 @@ function validateProbeResult(value: unknown): asserts value is ProbeResult {
   }
 }
 
+/**
+ * Compute mastery estimate and confidence from a probe result.
+ * @param result - The probe outcome (pass, fail, or partial)
+ * @returns Object with mastery estimate and confidence level
+ */
 function computeMastery(result: ProbeResult): { estimate: number; confidence: PlacementResult['confidence'] } {
   switch (result) {
     case 'pass':
@@ -65,6 +80,15 @@ function computeMastery(result: ProbeResult): { estimate: number; confidence: Pl
   }
 }
 
+/**
+ * Build the final PlacementEngineResult after the traversal loop completes.
+ * @param results - Accumulated placement results
+ * @param probesPerformed - Total number of probes executed
+ * @param queue - Remaining node IDs in the traversal queue
+ * @param visited - Set of already-visited node IDs
+ * @param maxProbes - The configured maximum probe count
+ * @returns Final engine result with convergence status
+ */
 function finalizeResult(
   results: PlacementResult[],
   probesPerformed: number,
@@ -94,6 +118,13 @@ function finalizeResult(
 // This allows callers to omit `await` for sync adapters while still
 // supporting fully-async adapters.
 
+/**
+ * Run an adaptive tree-walk placement traversal on a knowledge space graph.
+ * @param graph - The knowledge space to traverse
+ * @param adapter - Domain-specific probe adapter for evaluating nodes
+ * @param options - Optional start node and max probe count
+ * @returns Placement results with convergence status (may be a Promise if probes are async)
+ */
 export function runPlacementTraversal(
   graph: KnowledgeSpace,
   adapter: ProbeAdapter,

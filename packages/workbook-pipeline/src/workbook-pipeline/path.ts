@@ -1,13 +1,30 @@
 export type WorkbookType = 'student' | 'teacher';
 
+/**
+ * Format a unit number as a zero-padded two-digit string.
+ * @param unitNumber - The unit number to format
+ * @returns Zero-padded string (e.g., "01", "09")
+ */
 export function formatUnitNumber(unitNumber: number): string {
   return String(unitNumber).padStart(2, '0');
 }
 
+/**
+ * Format a lesson number as a zero-padded two-digit string.
+ * @param lessonNumber - The lesson number to format
+ * @returns Zero-padded string (e.g., "01", "09")
+ */
 export function formatLessonNumber(lessonNumber: number): string {
   return String(lessonNumber).padStart(2, '0');
 }
 
+/**
+ * Build a workbook filename from unit number, lesson number, and type.
+ * @param unitNumber - The unit number
+ * @param lessonNumber - The lesson number
+ * @param type - Workbook type ('student' or 'teacher')
+ * @returns Filename string (e.g., "unit_01_lesson_03_student.xlsx")
+ */
 export function buildWorkbookFilename(
   unitNumber: number,
   lessonNumber: number,
@@ -18,6 +35,13 @@ export function buildWorkbookFilename(
   return `unit_${unitStr}_lesson_${lessonStr}_${type}.xlsx`;
 }
 
+/**
+ * Build a public path for a workbook file.
+ * @param unitNumber - The unit number
+ * @param lessonNumber - The lesson number
+ * @param type - Workbook type ('student' or 'teacher')
+ * @returns Public path string (e.g., "/workbooks/unit_01_lesson_03_student.xlsx")
+ */
 export function buildWorkbookPublicPath(
   unitNumber: number,
   lessonNumber: number,
@@ -26,6 +50,12 @@ export function buildWorkbookPublicPath(
   return `/workbooks/${buildWorkbookFilename(unitNumber, lessonNumber, type)}`;
 }
 
+/**
+ * Build a capstone workbook filename.
+ * @param type - Workbook type ('student' or 'teacher')
+ * @param baseName - Base name for the capstone file
+ * @returns Filename string (e.g., "capstone_investor_ready_workbook.xlsx")
+ */
 export function buildCapstoneFilename(
   type: WorkbookType,
   baseName = 'investor_ready_workbook'
@@ -36,6 +66,12 @@ export function buildCapstoneFilename(
   return `capstone_${baseName}.xlsx`;
 }
 
+/**
+ * Build a public path for a capstone workbook file.
+ * @param type - Workbook type ('student' or 'teacher')
+ * @param baseName - Base name for the capstone file
+ * @returns Public path string
+ */
 export function buildCapstonePublicPath(
   type: WorkbookType,
   baseName = 'investor_ready_workbook'

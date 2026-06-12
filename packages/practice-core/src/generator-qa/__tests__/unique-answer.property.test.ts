@@ -24,6 +24,12 @@ import { createWrongAnswerGenerator } from './fixtures/badGenerators';
 import { wellFormedStubOracle } from './fixtures/numericOracle';
 import { DEFAULT_NUM_SEEDS, forEachSeed } from './fixtures/seedCorpus';
 
+/**
+ * Filter checks in a report by name.
+ * @param report - Verification report to search
+ * @param name - Check name to filter by
+ * @returns Array of matching checks
+ */
 function checksNamed(
   report: ReturnType<typeof verifyGenerator>,
   name: string,

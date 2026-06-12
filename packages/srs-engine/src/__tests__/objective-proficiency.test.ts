@@ -7,6 +7,11 @@ import {
   type ProblemFamilyEvidence,
 } from '../srs/objective-proficiency';
 
+/**
+ * Create a ProblemFamilyEvidence with optional overrides.
+ * @param overrides - Partial evidence fields to override
+ * @returns ProblemFamilyEvidence with sensible defaults
+ */
 function makeEvidence(
   overrides: Partial<ProblemFamilyEvidence> = {}
 ): ProblemFamilyEvidence {

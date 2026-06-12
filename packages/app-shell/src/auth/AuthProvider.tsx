@@ -42,6 +42,10 @@ interface AuthProviderProps {
   children: ReactNode;
 }
 
+/**
+ * Provide authentication context (user, profile, signIn, signOut) to children.
+ * @param props - Children to render within the auth context
+ */
 export function AuthProvider({ children }: AuthProviderProps) {
   const [loading, setLoading] = useState(true);
   const [profile, setProfile] = useState<Profile | null>(null);

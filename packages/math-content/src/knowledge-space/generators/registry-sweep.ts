@@ -81,6 +81,12 @@ function adaptToGeneratorLike(gen: MathGenerator): GeneratorLike {
 
 // ── Public API ────────────────────────────────────────────────────────
 
+/**
+ * Run the correctness QA harness against every generator in the registry.
+ * @param registry - Map of generator key to MathGenerator
+ * @param options - Optional configuration including debt log sink
+ * @returns Structured sweep report with per-key results and verdict
+ */
 export function runRegistrySweep(
   registry: Record<string, MathGenerator>,
   options?: RegistrySweepOptions,

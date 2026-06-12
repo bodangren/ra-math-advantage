@@ -31,6 +31,11 @@ interface QuizState {
   submitted: boolean;
 }
 
+/**
+ * Render a comprehension quiz with multiple question types.
+ * @param props - The quiz configuration including activity ID, mode, and questions
+ * @returns The quiz component JSX
+ */
 export function ComprehensionQuiz({
   activityId,
   mode,
@@ -317,6 +322,11 @@ interface QuestionProps {
   feedbackShown?: boolean;
 }
 
+/**
+ * Render a multiple choice question with selectable options.
+ * @param props - The question data and interaction handlers
+ * @returns The multiple choice question component JSX
+ */
 function MultipleChoiceQuestion({
   question,
   selectedAnswer,
@@ -356,6 +366,11 @@ function MultipleChoiceQuestion({
   );
 }
 
+/**
+ * Render a true/false question with two options.
+ * @param props - The question data and interaction handlers
+ * @returns The true/false question component JSX
+ */
 function TrueFalseQuestion({
   question,
   selectedAnswer,
@@ -395,6 +410,11 @@ function TrueFalseQuestion({
   );
 }
 
+/**
+ * Render a short answer question with a text input field.
+ * @param props - The question data, current value, and change handler
+ * @returns The short answer question component JSX
+ */
 function ShortAnswerQuestion({
   question,
   value,
@@ -422,6 +442,11 @@ function ShortAnswerQuestion({
   );
 }
 
+/**
+ * Render a select-all-that-apply question with checkboxes.
+ * @param props - The question data, selected answers, and interaction handlers
+ * @returns The select-all question component JSX
+ */
 function SelectAllQuestion({
   question,
   selectedAnswers,

@@ -20,6 +20,10 @@ const borderColorMap: Record<string, string> = {
   'bg-gray-50':   'border-gray-200',
 };
 
+/**
+ * Render a color-coded container for a lesson phase.
+ * @param props - Phase type and children content
+ */
 export function PhaseContainer({ phaseType, children }: PhaseContainerProps) {
   const { label, color, bgColor } = getPhaseDisplayInfo(phaseType);
   const borderColor = borderColorMap[bgColor] ?? 'border-border';

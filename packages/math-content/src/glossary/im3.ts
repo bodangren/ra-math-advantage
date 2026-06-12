@@ -763,6 +763,11 @@ export const GLOSSARY: GlossaryTerm[] = [
   },
 ];
 
+/**
+ * Find an IM3 glossary term by its slug.
+ * @param slug - Term slug to search for
+ * @returns Matching glossary term or undefined
+ */
 export function getGlossaryTermBySlug(slug: string): GlossaryTerm | undefined {
   return GLOSSARY.find((term) => term.slug === slug);
 }

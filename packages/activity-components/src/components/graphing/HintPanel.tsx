@@ -15,6 +15,11 @@ export interface HintPanelProps {
   readonly?: boolean;
 }
 
+/**
+ * Render a hint panel with buttons to reveal quadratic function properties.
+ * @param props - The configuration including function expression and hint callback
+ * @returns The hint panel component JSX
+ */
 export function HintPanel({
   functionExpression,
   onHintUsed,
