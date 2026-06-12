@@ -110,6 +110,15 @@ function getStepIcon(status: PhaseStatus) {
   }
 }
 
+/**
+ * Renders a single phase step button in the lesson stepper navigation.
+ *
+ * @param phase - The phase metadata (number, id, title, status) for this step.
+ * @param isCurrent - Whether this phase is the active step in the lesson.
+ * @param onClick - Click handler invoked when the user activates the button.
+ * @param compact - Render in compact size (smaller circle, hidden labels). Defaults to false.
+ * @returns A button element styled by phase status and clickability.
+ */
 function StepButton({ phase, isCurrent, onClick, compact = false }: StepButtonProps) {
   const isClickable = phase.status === 'completed' || phase.status === 'current' || phase.status === 'available';
   const isLocked = phase.status === 'locked';

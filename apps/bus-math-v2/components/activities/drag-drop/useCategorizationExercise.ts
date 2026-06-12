@@ -170,6 +170,15 @@ function reducer<T extends CategorizationItem>(state: State<T>, action: Action<T
   }
 }
 
+/**
+ * Build the initial categorization exercise state with optionally shuffled items
+ * and an empty placement map for each zone.
+ *
+ * @param items - The items the learner must categorize.
+ * @param zoneIds - The drop-zone identifiers that items can be placed into.
+ * @param shuffleItems - When true, randomize the order of available items.
+ * @returns A fresh `State<T>` with no placements, zero attempts, and zero score.
+ */
 function initState<T extends CategorizationItem>(items: T[], zoneIds: string[], shuffleItems: boolean): State<T> {
   return {
     availableItems: shuffleItems ? shuffle(items) : [...items],
