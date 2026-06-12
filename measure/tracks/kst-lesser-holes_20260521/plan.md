@@ -9,7 +9,7 @@ Depends on: Track 1. Independent of Tracks 2–7; run last in the program.
     - [x] Extend EdgeType union + Zod schemas; add §2.7 endpoint-pairing rule; extend validation
 - [x] Task: Define Level Projection and progressTrend history types [checkpoint: 6208449c]
     - [x] Level Projection function signature (knowledge state → display level); progressTrend window/history input types
-- [ ] Task: Measure - User Manual Verification 'Phase 1' (Protocol in workflow.md)
+- [x] Task: Measure - User Manual Verification 'Phase 1' (Protocol in workflow.md) [checkpoint: 32ce33e6]
 
 ### Phase 1 — Red-phase evidence (MID handoff, 2026-06-12)
 
