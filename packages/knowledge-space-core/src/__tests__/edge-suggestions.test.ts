@@ -6,13 +6,7 @@ import type { KnowledgeSpaceNode } from '../types';
 // Helpers
 // ---------------------------------------------------------------------------
 
-/**
- * Create a knowledge space node with given kind and metadata for testing.
- * @param id - The node ID
- * @param kind - The node kind
- * @param meta - Optional metadata record
- * @returns A KnowledgeSpaceNode for test use
- */
+/** Create a knowledge space node with given kind and metadata for testing. */
 function makeNode(
   id: string,
   kind: KnowledgeSpaceNode['kind'],
@@ -31,10 +25,7 @@ function makeNode(
 
 const COURSE_PREFIX = 'math.test';
 
-/**
- * Build a minimal synthetic hierarchy for edge suggestion testing.
- * @returns Array of nodes forming a domain with modules, lessons, and skills
- */
+/** Build a minimal synthetic hierarchy: 1 domain, 1 module, 2 lessons, 2 skills each. */
 function buildSyntheticNodes(): KnowledgeSpaceNode[] {
   return [
     makeNode('math.test', 'domain'),

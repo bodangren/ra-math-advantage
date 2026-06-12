@@ -45,12 +45,6 @@ export function wellFormedStubOracle(
  * this substring (or the assertion in the corresponding test will
  * fail and signal a regression in error quality).
  */
-/**
- * Build the expected failure message substring for a property check.
- * @param checkName - Name of the failing check
- * @param detail - Detail string to include
- * @returns Formatted failure message string
- */
 export function expectedPropertyFailureMessage(
   checkName: 'determinism' | 'unique-answer' | 'distractor-validity' | 'invariants',
   detail: string,

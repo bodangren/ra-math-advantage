@@ -10,13 +10,7 @@ import type { KnowledgeSpaceNode, KnowledgeSpaceEdge } from '../types';
 // Helpers
 // ---------------------------------------------------------------------------
 
-/**
- * Create a knowledge space node with given kind and metadata for testing.
- * @param id - The node ID
- * @param kind - The node kind
- * @param meta - Optional metadata record
- * @returns A KnowledgeSpaceNode for test use
- */
+/** Create a knowledge space node with given kind and metadata for testing. */
 function makeNode(
   id: string,
   kind: KnowledgeSpaceNode['kind'],
@@ -33,11 +27,7 @@ function makeNode(
   };
 }
 
-/**
- * Create a standard node for testing alignment edges.
- * @param id - The standard node ID
- * @returns A standard KnowledgeSpaceNode
- */
+/** Create a standard node for testing alignment edges. */
 function makeStandardNode(id: string): KnowledgeSpaceNode {
   return {
     id,
@@ -50,16 +40,7 @@ function makeStandardNode(id: string): KnowledgeSpaceNode {
   };
 }
 
-/**
- * Create a knowledge space edge with given properties for testing.
- * @param id - The edge ID
- * @param type - The edge type
- * @param sourceId - Source node ID
- * @param targetId - Target node ID
- * @param conf - Confidence level, defaults to 'high'
- * @param meta - Optional metadata record
- * @returns A KnowledgeSpaceEdge for test use
- */
+/** Create a knowledge space edge with given properties for testing. */
 function makeEdge(
   id: string,
   type: KnowledgeSpaceEdge['type'],
