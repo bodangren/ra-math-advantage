@@ -11,6 +11,15 @@ const changePasswordBodySchema = z.object({
   confirmPassword: z.string().min(1, 'Confirm password is required'),
 });
 
+/**
+ * Handles POST requests to change the authenticated user's password.
+ * Validates the current password, enforces password policy, hashes
+ * the new password, and updates it via Convex.
+ *
+ * @param request - The incoming request with a JSON body containing
+ *   currentPassword, newPassword, and confirmPassword.
+ * @returns A JSON response confirming the password change or an error.
+ */
 export async function POST(request: Request) {
   const claimsOrResponse = await requireActiveRequestSessionClaims(request);
   if (claimsOrResponse instanceof Response) {

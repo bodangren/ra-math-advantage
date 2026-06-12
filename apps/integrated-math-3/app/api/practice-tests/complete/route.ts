@@ -22,6 +22,15 @@ const completeSchema = z.object({
   path: ['score'],
 });
 
+/**
+ * Handles POST requests to record a completed practice test result.
+ * Validates the student session and test data, then persists the
+ * score, per-lesson breakdown, and duration via Convex.
+ *
+ * @param request - The incoming request with a JSON body containing
+ *   moduleNumber, score, questionCount, and per-lesson breakdown.
+ * @returns A JSON response with the saved test result or an error.
+ */
 export async function POST(request: Request) {
   const authResult = await requireStudentRequestClaims(request);
 

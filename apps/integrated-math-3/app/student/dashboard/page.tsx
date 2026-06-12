@@ -12,6 +12,12 @@ interface PageProps {
   searchParams: Promise<{ complete?: string }>;
 }
 
+/**
+ * Renders the student dashboard showing unit progress, daily practice card,
+ * and an optional module-completion celebration screen.
+ *
+ * @returns The rendered StudentDashboardPage JSX.
+ */
 export default async function StudentDashboardPage({ searchParams }: PageProps) {
   const params = await searchParams;
   const showModuleComplete = params.complete === 'module-1';

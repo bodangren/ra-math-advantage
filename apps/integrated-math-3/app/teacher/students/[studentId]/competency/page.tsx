@@ -10,6 +10,12 @@ interface PageProps {
   params: Promise<{ studentId: string }>;
 }
 
+/**
+ * Renders the per-student competency detail page for a teacher, showing
+ * mastery breakdowns across standards for a single student.
+ *
+ * @returns The rendered TeacherStudentCompetencyPage JSX.
+ */
 export default async function TeacherStudentCompetencyPage({ params }: PageProps) {
   const { studentId } = await params;
   const claims = await requireTeacherSessionClaims('/auth/login');

@@ -30,6 +30,13 @@ interface PageProps {
   searchParams: Promise<{ classId?: string }>;
 }
 
+/**
+ * Teacher lessons page showing available lessons grouped by unit,
+ * with per-class assignment toggles for each lesson.
+ *
+ * @param searchParams - URL search params with optional classId filter.
+ * @returns The rendered lessons page JSX.
+ */
 export default async function TeacherLessonsPage({ searchParams }: PageProps) {
   const claims = await requireTeacherSessionClaims('/auth/login');
   const params = await searchParams;
@@ -141,6 +148,15 @@ interface LessonAssignmentToggleProps {
   isAssigned: boolean;
 }
 
+/**
+ * Renders a toggle button that assigns or unassigns a lesson from a class.
+ * Uses a server action to persist the change and revalidates the page.
+ *
+ * @param classId - The class ID to assign/unassign the lesson to/from.
+ * @param lessonId - The lesson ID to toggle.
+ * @param isAssigned - Whether the lesson is currently assigned.
+ * @returns The toggle button JSX element.
+ */
 function LessonAssignmentToggle({ classId, lessonId, isAssigned }: LessonAssignmentToggleProps) {
   return (
     <form action={assignLessonToClassAction} className="flex items-center gap-2">
@@ -162,6 +178,14 @@ function LessonAssignmentToggle({ classId, lessonId, isAssigned }: LessonAssignm
   );
 }
 
+/**
+ * Server action that toggles a lesson assignment for a class.
+ * Assigns or unassigns the lesson based on the current state and
+ * revalidates the teacher lessons page.
+ *
+ * @param formData - FormData containing classId, lessonId, and isAssigned fields.
+ * @throws {Error} If the assignment mutation fails.
+ */
 async function assignLessonToClassAction(formData: FormData) {
   'use server';
   const { fetchInternalMutation } = await import('@/lib/convex/server');

@@ -15,6 +15,12 @@ interface MatchingPageClientProps {
   studentId: string;
 }
 
+/**
+ * Client-side matching game page where students match glossary terms to
+ * their definitions within a timed challenge.
+ *
+ * @returns The rendered MatchingPageClient JSX.
+ */
 export function MatchingPageClient({
   allTerms,
   moduleNumbers,

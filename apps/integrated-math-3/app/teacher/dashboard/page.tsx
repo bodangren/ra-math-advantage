@@ -25,6 +25,13 @@ interface TeacherDashboardData {
   students: StudentRow[];
 }
 
+/**
+ * Returns Tailwind CSS classes for a student's at-a-glance status badge,
+ * mapping each status to a color scheme.
+ *
+ * @param status - The student's current at-a-glance status.
+ * @returns A string of Tailwind CSS classes for the badge.
+ */
 function statusBadgeClass(status: AtGlanceStatus): string {
   switch (status) {
     case 'on-track':
@@ -36,6 +43,12 @@ function statusBadgeClass(status: AtGlanceStatus): string {
   }
 }
 
+/**
+ * Teacher dashboard page showing class overview, average progress,
+ * active-student count, and individual student rows with at-a-glance status.
+ *
+ * @returns The rendered teacher dashboard JSX.
+ */
 export default async function TeacherDashboardPage() {
   const claims = await requireTeacherSessionClaims('/auth/login');
 

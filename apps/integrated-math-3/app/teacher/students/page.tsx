@@ -63,6 +63,15 @@ const STATUS_COLORS: Record<string, string> = {
   'not-started': 'bg-muted text-muted-foreground',
 };
 
+/**
+ * Renders a single lesson progress card within the student detail view,
+ * showing completion percentage, phase counts, and a progress bar.
+ *
+ * @param lesson - The lesson data including progress metrics.
+ * @param index - The lesson's index position in the list.
+ * @param scrollTarget - The index of the lesson to highlight as the scroll target.
+ * @returns The lesson card JSX element.
+ */
 function LessonCard({
   lesson,
   index,
@@ -132,6 +141,15 @@ function LessonCard({
   );
 }
 
+/**
+ * Renders the full student detail view including a back link, summary
+ * stats, per-unit lesson progress cards, and a submission review panel.
+ * Displays an error message if the student data could not be loaded.
+ *
+ * @param detail - The student detail data from the server query.
+ * @param scrollTarget - The lesson index to scroll to on mount.
+ * @returns The student detail view JSX element.
+ */
 function StudentDetailView({
   detail,
   scrollTarget,
@@ -239,6 +257,13 @@ function StudentDetailView({
   );
 }
 
+/**
+ * Teacher students list page showing all enrolled students with
+ * progress summaries and a detail panel for the selected student.
+ *
+ * @param searchParams - URL search params with optional student ID and lesson.
+ * @returns The rendered students page JSX.
+ */
 export default async function StudentsPage({ searchParams }: PageProps) {
   const claims = await requireTeacherSessionClaims('/auth/login');
   const { id: selectedId, lesson: lessonParam } = await searchParams;

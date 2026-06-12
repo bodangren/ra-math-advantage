@@ -50,41 +50,105 @@ const implementationDir = path.join(rootDir, 'curriculum', 'implementation');
 const packageDir = path.join(implementationDir, 'class-period-packages');
 const practiceDir = path.join(implementationDir, 'practice-v1');
 
+/**
+ * Reads a UTF-8 text file from disk and returns its content as a string.
+ *
+ * @param filePath - Absolute or relative path to the text file.
+ * @returns The file content as a UTF-8 string.
+ * @throws {Error} If the file does not exist or cannot be read.
+ */
 function readText(filePath: string): string {
   return fs.readFileSync(filePath, 'utf8');
 }
 
+/**
+ * Serializes a value as formatted JSON and writes it to a file,
+ * creating parent directories as needed.
+ *
+ * @param filePath - Destination file path.
+ * @param value - The value to serialize as JSON.
+ * @throws {Error} If the directory cannot be created or the file cannot be written.
+ */
 function writeJson(filePath: string, value: unknown) {
   fs.mkdirSync(path.dirname(filePath), { recursive: true });
   fs.writeFileSync(filePath, JSON.stringify(value, null, 2) + '\n');
 }
 
+/**
+ * Writes a text string to a file, creating parent directories as needed.
+ *
+ * @param filePath - Destination file path.
+ * @param value - The text content to write.
+ * @throws {Error} If the directory cannot be created or the file cannot be written.
+ */
 function writeText(filePath: string, value: string) {
   fs.mkdirSync(path.dirname(filePath), { recursive: true });
   fs.writeFileSync(filePath, value);
 }
 
+/**
+ * Returns the file path for a module's class-period plan markdown file.
+ *
+ * @param module - The module number (1–9).
+ * @returns Absolute path to the module's class-period plan file.
+ */
 function planPath(module: number): string {
   return path.join(rootDir, 'curriculum', `module-${module}-class-period-plan.md`);
 }
 
+/**
+ * Generates a zero-padded period identifier string for a given module and period.
+ *
+ * @param module - The module number (1–9).
+ * @param period - The period number within the module.
+ * @returns A string like "m01-p03".
+ */
 function periodId(module: number, period: number): string {
   return `m${String(module).padStart(2, '0')}-p${String(period).padStart(2, '0')}`;
 }
 
+/**
+ * Extracts the objective code prefix (e.g. "3a") from an objective string
+ * that starts with a pattern like "3a. Solve …".
+ *
+ * @param objective - The raw objective string from the curriculum plan.
+ * @returns The extracted code prefix, or undefined if no match is found.
+ */
 function objectiveCode(objective: string): string | undefined {
   return objective.match(/^(\d+[a-z])\./)?.[1];
 }
 
+/**
+ * Strips the leading objective code prefix from an objective string,
+ * returning only the descriptive text.
+ *
+ * @param objective - The raw objective string (e.g. "3a. Solve quadratic equations").
+ * @returns The objective text without the code prefix.
+ */
 function objectiveText(objective: string): string {
   return objective.replace(/^\d+[a-z]\.\s*/, '').trim();
 }
 
+/**
+ * Extracts inline backtick-wrapped objective codes from a raw string value.
+ * Returns an empty array for missing or dash-only values.
+ *
+ * @param value - The raw embedded-objectives string from the curriculum plan.
+ * @returns An array of extracted objective code strings.
+ */
 function embeddedObjectives(value: string): string[] {
   if (!value || value === '—') return [];
   return [...value.matchAll(/`([^`]+)`/g)].map((match) => match[1]);
 }
 
+/**
+ * Converts a human-readable string into a URL-safe slug by lowercasing,
+ * removing backticks, replacing non-alphanumeric characters with hyphens,
+ * and truncating to 80 characters.
+ *
+ * @param value - The input string to slugify.
+ * @returns A lowercase, hyphen-separated slug.
+ */
 function slugify(value: string): string {
   return value
     .toLowerCase()
@@ -94,6 +158,14 @@ function slugify(value: string): string {
     .slice(0, 80);
 }
 
+/**
+ * Expands ALEKS reference strings that may contain ranges (e.g.
+ * "ALEKS M1-L2-03.01 through M1-L2-03.05") into individual topic
+ * identifiers, deduplicating the result.
+ *
+ * @param value - The raw ALEKS reference string from the curriculum plan.
+ * @returns An array of individual ALEKS topic identifiers.
+ */
 function expandAleksReferences(value: string): string[] {
   if (/No direct ALEKS|No additional direct ALEKS/i.test(value)) return [];
   const refs: string[] = [];
@@ -117,6 +189,14 @@ function expandAleksReferences(value: string): string[] {
   return [...new Set(refs)];
 }
 
+/**
+ * Maps a learning objective and module number to the most appropriate
+ * practice component key based on keyword heuristics.
+ *
+ * @param objective - The objective text to classify.
+ * @param module - The module number, used for module-specific overrides.
+ * @returns A component key string such as "graphing-explorer" or "comprehension-quiz".
+ */
 function componentKeyForObjective(objective: string, module: number): string {
   const lower = objective.toLowerCase();
   if (module === 8 || /distribution|sample|probability|z-values|confidence/.test(lower)) return 'statistical-explorer';
@@ -129,6 +209,14 @@ function componentKeyForObjective(objective: string, module: number): string {
   return 'comprehension-quiz';
 }
 
+/**
+ * Builds a class-period package for an instruction day, including daily
+ * phase descriptions, ALEKS/SRS practice references, and objective metadata.
+ *
+ * @param period - The parsed class-period plan entry.
+ * @param aleks - Array of ALEKS topic strings aligned to this period.
+ * @returns A fully populated PeriodPackage for an instruction day.
+ */
 function packageForInstruction(period: ReturnType<typeof parseClassPeriodPlan>[number], aleks: string[]): PeriodPackage {
   const code = objectiveCode(period.objective) ?? `m${period.module}p${period.period}`;
   const objective = objectiveText(period.objective);
@@ -163,6 +251,13 @@ function packageForInstruction(period: ReturnType<typeof parseClassPeriodPlan>[n
   };
 }
 
+/**
+ * Builds a class-period package for a non-instruction day (mastery, jigsaw,
+ * review, or test), populating the appropriate nonInstructionArtifact structure.
+ *
+ * @param period - The parsed class-period plan entry.
+ * @returns A PeriodPackage with day-type-specific artifact metadata.
+ */
 function packageForNonInstruction(period: ReturnType<typeof parseClassPeriodPlan>[number]): PeriodPackage {
   const id = periodId(period.module, period.period);
   const base = {
@@ -226,6 +321,16 @@ function packageForNonInstruction(period: ReturnType<typeof parseClassPeriodPlan
   };
 }
 
+/**
+ * Creates a single activity mapping for a class-period package, encoding
+ * the stable activity ID, component key, practice mode, and grading config.
+ *
+ * @param pkg - The class-period package to map.
+ * @param suffix - A suffix appended to the period ID to form the stable activity ID.
+ * @param mode - The practice mode (e.g. "worked_example", "assessment").
+ * @param componentKey - The practice component key to render.
+ * @returns An ActivityMapping describing the activity.
+ */
 function activityForPackage(pkg: PeriodPackage, suffix: string, mode: PracticeMode, componentKey: string): ActivityMapping {
   const objectiveCodes = pkg.objectiveCode ? [pkg.objectiveCode, ...(pkg.embeddedObjectives ?? [])] : [];
   return {
@@ -252,6 +357,14 @@ function activityForPackage(pkg: PeriodPackage, suffix: string, mode: PracticeMo
   };
 }
 
+/**
+ * Generates the full list of activity mappings for a class-period package,
+ * including worked examples, guided practice, independent practice, exit
+ * tickets, and SRS-aligned activities.
+ *
+ * @param pkg - The class-period package to map.
+ * @returns An array of ActivityMapping entries for the package.
+ */
 function activitiesForPackage(pkg: PeriodPackage): ActivityMapping[] {
   if (pkg.dayType !== 'instruction') {
     const key = pkg.dayType === 'test' ? 'tiered-assessment' : 'comprehension-quiz';
@@ -291,6 +404,12 @@ function activitiesForPackage(pkg: PeriodPackage): ActivityMapping[] {
   return activities;
 }
 
+/**
+ * Reads all 9 module class-period plans, parses them into packages,
+ * writes per-module JSON files, and returns the full package list.
+ *
+ * @returns An array of all generated PeriodPackage entries across all modules.
+ */
 function generatePackages() {
   const allPackages: PeriodPackage[] = [];
 
@@ -318,6 +437,10 @@ function generatePackages() {
   return allPackages;
 }
 
+/**
+ * Writes the curriculum exceptions JSON file documenting ALEKS topic gaps
+ * and lesson source exceptions across all modules.
+ */
 function generateExceptions() {
   writeJson(path.join(implementationDir, 'exceptions.json'), {
     schemaVersion: 'curriculum-exceptions.v1',
@@ -334,6 +457,10 @@ function generateExceptions() {
   });
 }
 
+/**
+ * Writes the implementation README.md file describing the generated
+ * curriculum artifacts, their schema, and how to validate them.
+ */
 function generateReadme() {
   writeText(
     path.join(implementationDir, 'README.md'),

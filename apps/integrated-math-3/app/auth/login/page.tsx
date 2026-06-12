@@ -4,6 +4,11 @@ import { useState, type FormEvent } from 'react';
 import Link from 'next/link';
 import { useAuth } from '@/components/auth/AuthProvider';
 
+/**
+ * Renders the login page with a username/password form and handles authentication.
+ *
+ * @returns The rendered login page JSX.
+ */
 export default function LoginPage() {
   const { signIn } = useAuth();
   const [username, setUsername] = useState('');

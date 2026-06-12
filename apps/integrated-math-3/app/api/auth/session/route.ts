@@ -4,6 +4,13 @@ import { NextResponse } from 'next/server';
 import { SESSION_COOKIE_NAME, getAuthJwtSecret, verifySessionToken } from '@math-platform/core-auth';
 import { fetchInternalQuery, internal } from '@/lib/convex/server';
 
+/**
+ * Handles GET requests to check the current authentication session.
+ * Reads the JWT session cookie, verifies it, and returns the user's
+ * profile data if authenticated, or { authenticated: false } otherwise.
+ *
+ * @returns A JSON response with session info or an unauthenticated status.
+ */
 export async function GET() {
   const cookieStore = await cookies();
   const token = cookieStore.get(SESSION_COOKIE_NAME)?.value;

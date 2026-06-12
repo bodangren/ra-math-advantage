@@ -16,6 +16,13 @@ interface ChatbotRequest {
   question: string;
 }
 
+/**
+ * Strips potentially dangerous characters and prompt-injection markers
+ * from user-supplied chatbot input before forwarding to the AI provider.
+ *
+ * @param input - The raw user question string.
+ * @returns The sanitized input safe for inclusion in an AI prompt.
+ */
 function sanitizeInput(input: string): string {
   return input
     .replace(/\r?\n/g, ' ')
@@ -27,6 +34,15 @@ function sanitizeInput(input: string): string {
     .trim();
 }
 
+/**
+ * Builds the system and user message array for the AI tutor, embedding
+ * the lesson context and the student's sanitized question.
+ *
+ * @param context - Assembled lesson context including title, unit, phase,
+ *   learning objectives, and content summary.
+ * @param question - The sanitized student question.
+ * @returns An array of chat messages for the AI provider.
+ */
 function buildMessages(
   context: {
     lessonTitle: string;
@@ -58,6 +74,15 @@ Lesson context:
   ];
 }
 
+/**
+ * Handles POST requests to the student lesson chatbot API.
+ * Validates the session, checks enrollment and rate limits,
+ * assembles lesson context, and returns an AI-generated response.
+ *
+ * @param request - The incoming Next.js request with a JSON body
+ *   containing lessonId, phaseNumber, and question.
+ * @returns A JSON response with the AI reply or an error.
+ */
 export async function POST(request: NextRequest) {
   const session = await getRequestSessionClaims(request);
   if (!session) {

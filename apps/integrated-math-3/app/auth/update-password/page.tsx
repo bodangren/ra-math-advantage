@@ -4,6 +4,11 @@ import { useState, type FormEvent } from 'react';
 import Link from 'next/link';
 import { useAuth } from '@/components/auth/AuthProvider';
 
+/**
+ * Renders the update-password page allowing authenticated users to change their password.
+ *
+ * @returns The rendered update password page JSX.
+ */
 export default function UpdatePasswordPage() {
   useAuth();
   const [newPassword, setNewPassword] = useState('');

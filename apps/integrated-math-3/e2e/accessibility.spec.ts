@@ -22,6 +22,13 @@ interface AxeViolation {
 
 // ── Helpers ────────────────────────────────────────────────────────────────────
 
+/**
+ * Formats a list of axe-core violations into a human-readable string
+ * grouped by severity, including help URLs and affected node HTML snippets.
+ *
+ * @param violations - The array of axe-core violation objects.
+ * @returns A formatted multi-line string for console output.
+ */
 function formatViolations(violations: AxeViolation[]): string {
   if (violations.length === 0) return '  (none)';
   return violations
@@ -38,6 +45,13 @@ function formatViolations(violations: AxeViolation[]): string {
     .join('\n\n');
 }
 
+/**
+ * Logs a structured accessibility audit summary to the console, breaking
+ * violations down by severity level (critical, serious, moderate, minor).
+ *
+ * @param route - The route path being audited.
+ * @param violations - The array of axe-core violation objects.
+ */
 function logResults(route: string, violations: AxeViolation[]) {
   const bySeverity = {
     critical: violations.filter((v) => v.impact === 'critical'),
@@ -74,6 +88,14 @@ function logResults(route: string, violations: AxeViolation[]) {
   console.log('');
 }
 
+/**
+ * Runs an axe-core WCAG 2.1 AA accessibility audit on the current page,
+ * logs the results, and returns violations filtered to critical/serious.
+ *
+ * @param page - The Playwright Page instance to audit.
+ * @param route - The route path being audited (for logging).
+ * @returns An object containing all violations and the critical/serious subset.
+ */
 async function runAxeAudit(page: Page, route: string) {
   const accessibilityScanResults = await new AxeBuilder({ page })
     .withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'best-practice'])

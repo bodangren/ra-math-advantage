@@ -2,6 +2,15 @@ import { NextResponse } from 'next/server';
 import { requireStudentRequestClaims } from '@/lib/auth/server';
 import { fetchInternalMutation, internal } from '@/lib/convex/server';
 
+/**
+ * Handles POST requests to mark a practice session as completed.
+ * Validates the student session and persists the completion
+ * event via Convex.
+ *
+ * @param request - The incoming request with a JSON body containing
+ *   the practice sessionId.
+ * @returns A JSON response confirming the completion or an error.
+ */
 export async function POST(request: Request) {
   const authResult = await requireStudentRequestClaims(request);
 

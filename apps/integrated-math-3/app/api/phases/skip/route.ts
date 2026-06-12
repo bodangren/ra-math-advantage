@@ -10,6 +10,14 @@ const skipPhaseBodySchema = z.object({
   idempotencyKey: z.string().min(1, 'idempotencyKey is required'),
 });
 
+/**
+ * Handles POST requests to skip a lesson phase. Validates the student
+ * session and request body, then records the skip via Convex.
+ *
+ * @param request - The incoming request with a JSON body containing
+ *   lessonId, phaseNumber, and idempotencyKey.
+ * @returns A JSON response confirming the phase skip or an error.
+ */
 export async function POST(request: Request) {
   const claimsOrResponse = await requireStudentRequestClaims(request);
   if (claimsOrResponse instanceof Response) {

@@ -32,6 +32,14 @@ const submitReviewBodySchema = z.object({
     .optional(),
 });
 
+/**
+ * Handles GET requests to list the developer review queue.
+ * Requires developer authentication; supports optional filtering
+ * by componentKind, status, and onlyStale query parameters.
+ *
+ * @param request - The incoming request with optional query parameters.
+ * @returns A JSON response with the filtered review queue items.
+ */
 export async function GET(request: Request) {
   const claimsOrResponse = await requireDeveloperRequestClaims(request);
   if (claimsOrResponse instanceof Response) {
@@ -64,6 +72,15 @@ export async function GET(request: Request) {
   }
 }
 
+/**
+ * Handles POST requests to submit a review decision for a component.
+ * Requires developer authentication; validates the request body against
+ * the submitReviewBodySchema and persists the review via Convex.
+ *
+ * @param request - The incoming request with a JSON body containing
+ *   componentKind, componentId, status, and optional metadata.
+ * @returns A JSON response with the created review record.
+ */
 export async function POST(request: Request) {
   const claimsOrResponse = await requireDeveloperRequestClaims(request);
   if (claimsOrResponse instanceof Response) {
@@ -116,6 +133,13 @@ export async function POST(request: Request) {
   }
 }
 
+/**
+ * Resolves a Convex profile ID from a Supabase user ID by querying
+ * the activities profile table.
+ *
+ * @param userId - The Supabase auth user ID.
+ * @returns The Convex profile ID, or null if no profile exists.
+ */
 async function resolveProfileId(userId: string): Promise<string | null> {
   const profile = await fetchInternalQuery(internal.activities.getProfileByUserId, { userId });
   return profile?.id ?? null;

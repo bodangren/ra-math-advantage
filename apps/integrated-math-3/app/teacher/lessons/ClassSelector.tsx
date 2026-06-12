@@ -12,10 +12,24 @@ interface ClassSelectorProps {
   selectedClassId: string | null;
 }
 
+/**
+ * Client component that renders a class selector dropdown for the teacher
+ * lessons page. Updates the URL search params when a different class is selected.
+ *
+ * @param classes - Array of class info objects with classId and className.
+ * @param selectedClassId - The currently selected class ID, or null.
+ * @returns The class selector dropdown JSX element.
+ */
 export function ClassSelector({ classes, selectedClassId }: ClassSelectorProps) {
   const router = useRouter();
   const searchParams = useSearchParams();
 
+  /**
+   * Handles class selection change by updating the URL search params
+   * to reflect the newly selected class ID.
+   *
+   * @param e - The select element change event.
+   */
   function handleChange(e: React.ChangeEvent<HTMLSelectElement>) {
     const classId = e.target.value;
     const params = new URLSearchParams(searchParams.toString());

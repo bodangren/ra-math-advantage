@@ -3,6 +3,11 @@ import { notFound } from 'next/navigation';
 import { isDevApprovalEnabledForRequest, requireDeveloperSessionClaims } from '@/lib/auth/developer';
 import { ReviewQueueView } from '@/components/dev/review-queue';
 
+/**
+ * Renders the developer-only component approval page for reviewing queued components.
+ *
+ * @returns The rendered component approval page JSX.
+ */
 export default async function ComponentApprovalPage() {
   if (!isDevApprovalEnabledForRequest()) {
     return notFound();

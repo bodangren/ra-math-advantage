@@ -2,6 +2,11 @@ import Link from 'next/link';
 import { requireServerSessionClaims } from '@/lib/auth/server';
 import { ChangePasswordForm } from '@/components/auth/ChangePasswordForm';
 
+/**
+ * Renders the settings page with a password change form for the authenticated user.
+ *
+ * @returns The rendered settings page JSX.
+ */
 export default async function SettingsPage() {
   const claims = await requireServerSessionClaims('/auth/login');
 

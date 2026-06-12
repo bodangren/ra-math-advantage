@@ -15,6 +15,12 @@ interface SpeedRoundPageClientProps {
   studentId: string;
 }
 
+/**
+ * Client-side speed round game page where students race to match glossary
+ * terms against the clock.
+ *
+ * @returns The rendered SpeedRoundPageClient JSX.
+ */
 export function SpeedRoundPageClient({
   allTerms,
   moduleNumbers,

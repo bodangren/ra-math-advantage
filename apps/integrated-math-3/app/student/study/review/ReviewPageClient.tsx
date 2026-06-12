@@ -18,12 +18,22 @@ interface DueTerm {
   scheduledFor: number;
 }
 
+/**
+ * Client-side spaced-repetition review page that loads due glossary terms
+ * and presents an interactive review session.
+ *
+ * @returns The rendered ReviewPageClient JSX.
+ */
 export function ReviewPageClient({ studentId }: ReviewPageClientProps) {
   const [dueTerms, setDueTerms] = useState<GlossaryTerm[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [showPlayer, setShowPlayer] = useState(false);
 
   useEffect(() => {
+    /**
+     * Loads due glossary terms from the server and filters them against
+     * the local glossary, then updates the dueTerms state.
+     */
     async function loadDueTerms() {
       try {
         const due: DueTerm[] = await fetchInternalQuery(

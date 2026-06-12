@@ -1,6 +1,11 @@
 import Link from 'next/link';
 import Image from 'next/image';
 
+/**
+ * Renders the landing page with a hero section and course entry point.
+ *
+ * @returns The rendered landing page JSX.
+ */
 export default function LandingPage() {
   return (
     <div className="min-h-screen bg-background">

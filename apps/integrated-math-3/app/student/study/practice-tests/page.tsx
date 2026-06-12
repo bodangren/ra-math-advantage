@@ -3,6 +3,12 @@ import { PracticeTestSelection } from '@/components/student/PracticeTestSelectio
 
 export const dynamic = 'force-dynamic';
 
+/**
+ * Renders the practice tests hub where students select a module to begin
+ * a practice test.
+ *
+ * @returns The rendered PracticeTestsHubPage JSX.
+ */
 export default async function PracticeTestsHubPage() {
   await requireStudentSessionClaims('/auth/login');
 

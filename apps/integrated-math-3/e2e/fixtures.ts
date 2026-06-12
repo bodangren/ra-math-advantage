@@ -5,6 +5,14 @@ const STUDENT_PASSWORD = 'Demo1234!';
 const TEACHER_USERNAME = 'teacher@demo';
 const TEACHER_PASSWORD = 'Demo1234!';
 
+/**
+ * Navigates to the login page, fills in credentials, submits the form,
+ * and waits for navigation to a role-specific dashboard.
+ *
+ * @param page - The Playwright Page instance.
+ * @param username - The username to fill in the login form.
+ * @param password - The password to fill in the login form.
+ */
 async function loginAs(page: Page, username: string, password: string): Promise<void> {
   await page.goto('/auth/login');
   await page.waitForLoadState('networkidle');

@@ -1,5 +1,10 @@
 import Link from 'next/link';
 
+/**
+ * Renders the account confirmation success page shown after email verification.
+ *
+ * @returns The rendered confirmation page JSX.
+ */
 export default function ConfirmPage() {
   return (
     <div className="space-y-4 text-center">

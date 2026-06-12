@@ -54,6 +54,13 @@ interface PageProps {
   searchParams: Promise<{ classId?: string }>;
 }
 
+/**
+ * Renders the teacher SRS dashboard page, showing spaced-repetition system
+ * health metrics, overdue cards, weak objectives, struggling students, and
+ * misconception data for the selected class.
+ *
+ * @returns The rendered SrsDashboardPage JSX.
+ */
 export default async function SrsDashboardPage({ searchParams }: PageProps) {
   const claims = await requireTeacherSessionClaims('/auth/login');
   const { classId: selectedClassId } = await searchParams;

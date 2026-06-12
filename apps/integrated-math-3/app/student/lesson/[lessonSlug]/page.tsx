@@ -27,6 +27,12 @@ interface PageProps {
   params: Promise<{ lessonSlug: string }>;
 }
 
+/**
+ * Renders an individual lesson page with its phase-based progression,
+ * fetching lesson data and phase sections from the server.
+ *
+ * @returns The rendered StudentLessonPage JSX.
+ */
 export default async function StudentLessonPage({ params }: PageProps) {
   const { lessonSlug } = await params;
   const claims = await requireStudentSessionClaims('/auth/login');

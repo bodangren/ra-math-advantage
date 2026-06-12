@@ -13,6 +13,12 @@ interface SessionData {
   queue: ResolvedQueueItem[];
 }
 
+/**
+ * Renders the daily SRS practice session page, fetching or creating an
+ * active session and displaying the practice session provider.
+ *
+ * @returns The rendered StudentPracticePage JSX.
+ */
 export default async function StudentPracticePage() {
   const claims = await requireStudentSessionClaims('/auth/login');
 

@@ -4,8 +4,15 @@ import { SESSION_COOKIE_NAME, getAuthJwtSecret, verifySessionToken } from '@math
 
 const DEV_COMPONENT_APPROVAL_PATTERN = /^\/dev\/component-approval/;
 
-// NOTE: This cookie parser is intentionally duplicated from lib/auth/server.ts
-// because middleware runs in Edge Runtime and cannot import Node.js modules.
+/**
+ * Extracts the value of a specific cookie key from a raw Cookie header
+ * string. Intentionally duplicated from lib/auth/server.ts because
+ * middleware runs in Edge Runtime and cannot import Node.js modules.
+ *
+ * @param cookieHeader - The raw Cookie header value, or null.
+ * @param key - The cookie name to look up.
+ * @returns The decoded cookie value, or null if not found.
+ */
 function getCookieValueFromHeader(cookieHeader: string | null, key: string): string | null {
   if (!cookieHeader) return null;
 
@@ -26,6 +33,14 @@ function getCookieValueFromHeader(cookieHeader: string | null, key: string): str
   return null;
 }
 
+/**
+ * Next.js middleware that gates access to /dev/component-approval routes.
+ * Redirects unauthenticated users to login and rejects non-admin roles
+ * with a 403 Forbidden response.
+ *
+ * @param request - The incoming Next.js request.
+ * @returns A Next.js response (redirect, 403, or pass-through).
+ */
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
