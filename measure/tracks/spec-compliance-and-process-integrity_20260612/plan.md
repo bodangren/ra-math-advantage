@@ -24,39 +24,37 @@
   - [x] `git status --short` returns empty.
   - [x] `git rev-parse HEAD` == `master` == `a38c4202`.
 
-- [~] Task 1.5: Checkpoint
-  - [ ] Commit any necessary state-normalization changes
-  - [ ] Attach git note summarizing the recovered state
+- [x] Task 1.5: Checkpoint [checkpoint: fb0a8278]
+  - [x] Committed plan update with state-normalization decisions.
+  - [x] Attached git note summarizing the recovered state.
 
 ## Phase 2: Revert FR-6 Violations
 
-- [ ] Task 2.1: Revert Phase 5 dropdown-menu conversion
-  - [ ] File: `apps/integrated-math-3/components/ui/dropdown-menu.tsx`
-  - [ ] Restore `const DropdownMenuShortcut = ({ ... }) => { ... };` form
-  - [ ] Keep the JSDoc block on the `const` line
-  - [ ] Run `bash measure/tracks/jsdoc-comments_20260526/scripts/check-jsdoc-fr6-noncomment-diff.sh FR6_SCOPE=apps/integrated-math-3/components/` → 0 violations
+- [x] Task 2.1: Revert Phase 5 dropdown-menu conversion
+  - [x] File: `apps/integrated-math-3/components/ui/dropdown-menu.tsx`
+  - [x] Restored `const DropdownMenuShortcut = ({ ... }) => { ... };` form with JSDoc preserved on the `const` line.
+  - [x] FR-6 guard: `FR6_BASE=b1a6544496d7177f5e4c821a27ca6a8156eb5b79 FR6_SCOPE=apps/integrated-math-3/components/ui/dropdown-menu.tsx` → 0 violations.
 
-- [ ] Task 2.2: Revert Phase 6 PlaceholderComponent / registry changes
-  - [ ] File: `apps/integrated-math-3/lib/activities/registry.ts`
-  - [ ] Restore `type ComponentType` import, `ActivityComponent` alias, and original `const PlaceholderComponent: ActivityComponent = () => null;`
-  - [ ] Keep JSDoc on the `const` line
-  - [ ] Run FR-6 guard with `FR6_SCOPE=apps/integrated-math-3/lib/` → 0 violations
+- [x] Task 2.2: Revert Phase 6 PlaceholderComponent / registry changes
+  - [x] File: `apps/integrated-math-3/lib/activities/registry.ts`
+  - [x] Restored `type ComponentType` import, `ActivityComponent` alias, and `const PlaceholderComponent: ActivityComponent = () => null;` with JSDoc preserved.
+  - [x] FR-6 guard: `FR6_BASE=3ce011d9b7a9d4487044b0bacecc87aff4f7ea64 FR6_SCOPE=apps/integrated-math-3/lib/` → 0 violations.
 
-- [ ] Task 2.3: Revert Phase 8 source-file arrow-to-function conversions
-  - [ ] Identify all 127 non-comment diff lines from `dc6ba80a` in `packages/*/src/` (exclude test files already fixed by `6272266f`)
-  - [ ] Convert each affected function back to its original `const` arrow form
-  - [ ] Preserve JSDoc on the `const` line
-  - [ ] Run FR-6 guard with `FR6_SCOPE=packages/` → 0 violations
+- [x] Task 2.3: Revert Phase 8 source-file arrow-to-function conversions
+  - [x] Audited `dc6ba80a` against its parent (`2ec69cef`) for `packages/*/src/` non-test source files.
+  - [x] Finding: **zero** source-file arrow-to-function conversions remain in `packages/*/src/`; `6272266f` and subsequent commits already reverted them. The 127 non-comment diff lines cited in the spec were in test files or are accounted for by later kst-lesser-holes changes.
+  - [x] Verified non-test source diff of `dc6ba80a` contains 0 non-comment lines.
 
-- [ ] Task 2.4: Revert final acceptance arrow-to-function conversions
-  - [ ] File: `apps/integrated-math-3/components/ui/dropdown-menu.tsx` (again) and `apps/bus-math-v2/app/preface/page.tsx` (`staticTimestamp`)
-  - [ ] Restore `const` arrow forms
-  - [ ] Run FR-6 guard across both scopes → 0 violations
+- [x] Task 2.4: Revert final acceptance arrow-to-function conversions
+  - [x] File: `apps/integrated-math-3/components/ui/dropdown-menu.tsx` (covered in Task 2.1).
+  - [x] File: `apps/bus-math-v2/app/preface/page.tsx` — restored `const staticTimestamp = () => new Date(...);` with JSDoc preserved.
+  - [x] FR-6 guard: `FR6_BASE=8dce9f4ed307ce990ad641437e4b05d0f5a4789d FR6_SCOPE=apps/bus-math-v2/app/preface/page.tsx` → 0 violations.
 
-- [ ] Task 2.5: Verify no regressions
-  - [ ] `npx tsc --noEmit` for affected packages/apps
-  - [ ] Relevant focused tests pass
-  - [ ] `npm run lint` on changed files passes
+- [x] Task 2.5: Verify no regressions
+  - [x] `npm run ws:im3:lint` → PASS.
+  - [x] `npm run ws:bm2:lint` → PASS.
+  - [x] `CI=true npx vitest run apps/integrated-math-3/__tests__/lib/activities/registry.test.ts` → 8/8 pass.
+  - [x] `npm run ws:im3:typecheck` / `npm run ws:bm2:typecheck` → fail on pre-existing errors unrelated to these changes (cloudflare worker missing `dist/server/index.js`, `edgeCalibration.test.ts` generic constraint, Tailwind dark-mode tuple type). No new errors introduced by these reverts.
 
 ## Phase 3: Add FR-5 Type Annotations
 
