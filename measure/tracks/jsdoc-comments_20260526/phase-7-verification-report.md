@@ -28,7 +28,7 @@ Allowed values: `pending` (Red — verification has not yet been performed), `ap
 |---|---|---|
 | `5cf742f5` | Task 7.1/7.2/7.3/UMV Red | `test(jsdoc-comments): Phase 7 IM3 app/scripts/other Red baseline (87 NULL summaries)` |
 | `f6419b12` | Task 7.1/7.2/7.3 Green | `docs(integrated-math-3): Add JSDoc to functions in app/scripts/other/` |
-| `<checkpoint-sha>` | Task 7.3 Checkpoint | `measure(checkpoint): Checkpoint end of Phase 7` |
+| `006668d0` | Task 7.3 Checkpoint | `measure(checkpoint): Checkpoint end of Phase 7` |
 
 ## Automated test summary (workflow.md Step 3)
 

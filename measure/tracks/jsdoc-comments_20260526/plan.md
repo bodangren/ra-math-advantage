@@ -650,7 +650,7 @@
     - [x] Drive `workflow.md` §"Phase Completion Verification and Checkpointing Protocol" Steps 1-10 against `phase-7-verification-report.md`
     - [x] Update `phase-7-verification-report.md` §"User verdict" with `VERIFICATION_RESULT: approved`, real `VERIFIED_BY`, ISO `VERIFIED_AT`
     - [x] Re-run `bash measure/tracks/jsdoc-comments_20260526/scripts/check-phase-verification-7.sh` → exit 0
-    - [x] [checkpoint: <sha>]
+    - [x] [checkpoint: 006668d0]
 
 ## Phase 8: Packages `src/` — 282 functions
 
