@@ -77,6 +77,7 @@ describe('contract — valid fixtures', () => {
       'supports',
       'extends',
       'equivalent_to',
+      'transfers_to',
       'common_misconception_with',
       'rendered_by',
       'generated_by',
@@ -97,8 +98,11 @@ describe('contract — valid fixtures', () => {
     const rendererNode: KnowledgeSpaceNode = { ...baseNode, id: 'test.renderer', kind: 'renderer' };
     const generatorNode: KnowledgeSpaceNode = { ...baseNode, id: 'test.generator', kind: 'generator' };
     const misconceptionNode: KnowledgeSpaceNode = { ...baseNode, id: 'test.misconception', kind: 'misconception' };
+    // Cross-domain skill nodes for transfers_to pairing rule (kst-srs.v2 §11.1: cross-domain)
+    const mathSkillNode: KnowledgeSpaceNode = { ...baseNode, id: 'test.math.skill', kind: 'skill', domain: 'math.im3' };
+    const englishSkillNode: KnowledgeSpaceNode = { ...baseNode, id: 'test.english.skill', kind: 'skill', domain: 'english.gse' };
 
-    const allNodes = [domainNode, cgNode, lessonNode, skillNode, conceptNode, exampleNode, bpNode, standardNode, rendererNode, generatorNode, misconceptionNode];
+    const allNodes = [domainNode, cgNode, lessonNode, skillNode, conceptNode, exampleNode, bpNode, standardNode, rendererNode, generatorNode, misconceptionNode, mathSkillNode, englishSkillNode];
 
     // Source/target pairs satisfying endpoint rules for constrained edge types
     const edgeCases: Record<string, { source: KnowledgeSpaceNode; target: KnowledgeSpaceNode }> = {
@@ -109,6 +113,7 @@ describe('contract — valid fixtures', () => {
       supports: { source: conceptNode, target: skillNode },
       extends: { source: skillNode, target: conceptNode },
       equivalent_to: { source: skillNode, target: conceptNode },
+      transfers_to: { source: mathSkillNode, target: englishSkillNode },
       common_misconception_with: { source: skillNode, target: misconceptionNode },
       rendered_by: { source: skillNode, target: rendererNode },
       generated_by: { source: skillNode, target: generatorNode },
