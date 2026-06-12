@@ -35,6 +35,7 @@ const edgeTypeSchema = z.enum([
   'supports',
   'extends',
   'equivalent_to',
+  'transfers_to',
   'common_misconception_with',
   'rendered_by',
   'generated_by',
@@ -224,12 +225,14 @@ type EdgeSourceTargetConstraint = {
   edgeType: EdgeType;
   sourceKinds?: NodeKind[];
   targetKinds: NodeKind[];
+  crossDomainOnly?: boolean;
 };
 
 const EDGE_ENDPOINT_RULES: EdgeSourceTargetConstraint[] = [
   { edgeType: 'rendered_by', sourceKinds: ['skill', 'worked_example', 'task_blueprint', 'concept'], targetKinds: ['renderer'] },
   { edgeType: 'generated_by', sourceKinds: ['skill', 'task_blueprint', 'concept'], targetKinds: ['generator'] },
   { edgeType: 'aligned_to_standard', sourceKinds: ['skill', 'worked_example', 'task_blueprint', 'concept'], targetKinds: ['standard'] },
+  { edgeType: 'transfers_to', sourceKinds: ['skill', 'concept'], targetKinds: ['skill', 'concept'], crossDomainOnly: true },
   { edgeType: 'common_misconception_with', targetKinds: ['misconception'] },
   { edgeType: 'contains', sourceKinds: ['domain', 'content_group', 'instructional_unit'], targetKinds: ['content_group', 'instructional_unit', 'worked_example', 'skill', 'concept', 'task_blueprint'] },
 ];
@@ -268,6 +271,15 @@ function checkEndpointPairings(
       ctx.addIssue({
         code: z.ZodIssueCode.custom,
         message: `Edge "${edge.id}" of type "${edge.type}" must originate from a node of kind ${rule.sourceKinds.join(' | ')}, but originates from "${sourceNode.kind}"`,
+        path: ['edges', i],
+      });
+      return;
+    }
+
+    if (rule.crossDomainOnly && sourceNode && targetNode && sourceNode.domain === targetNode.domain) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        message: `Edge "${edge.id}" of type "${edge.type}" must connect nodes in different domains, but both are in "${sourceNode.domain}"`,
         path: ['edges', i],
       });
       return;

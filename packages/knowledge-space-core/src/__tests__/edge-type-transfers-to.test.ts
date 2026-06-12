@@ -137,7 +137,7 @@ describe('EdgeType union — exhaustiveness (kst-srs.v2 §11.1)', () => {
 describe('zod — transfers_to edge type', () => {
   it('accepts a transfers_to edge (cross-domain skill → skill)', () => {
     const space: KnowledgeSpace = {
-      nodes: [mathSkillA, englishSkill, mathStandard, englishStandard],
+      nodes: [mathSkillA, mathSkillB, englishSkill, mathStandard, englishStandard],
       edges: [
         ...skillAlignments,
         makeEdge('edge.transfers-cross', 'transfers_to', mathSkillA.id, englishSkill.id),

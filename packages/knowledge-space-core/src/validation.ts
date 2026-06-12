@@ -20,12 +20,14 @@ type EdgeEndpointRule = {
   edgeType: EdgeType;
   sourceKinds?: NodeKind[];
   targetKinds: NodeKind[];
+  crossDomainOnly?: boolean;
 };
 
 const EDGE_ENDPOINT_RULES: EdgeEndpointRule[] = [
   { edgeType: 'rendered_by', sourceKinds: ['skill', 'worked_example', 'task_blueprint', 'concept'], targetKinds: ['renderer'] },
   { edgeType: 'generated_by', sourceKinds: ['skill', 'task_blueprint', 'concept'], targetKinds: ['generator'] },
   { edgeType: 'aligned_to_standard', sourceKinds: ['skill', 'worked_example', 'task_blueprint', 'concept'], targetKinds: ['standard'] },
+  { edgeType: 'transfers_to', sourceKinds: ['skill', 'concept'], targetKinds: ['skill', 'concept'], crossDomainOnly: true },
   { edgeType: 'common_misconception_with', targetKinds: ['misconception'] },
   { edgeType: 'contains', sourceKinds: ['domain', 'content_group', 'instructional_unit'], targetKinds: ['content_group', 'instructional_unit', 'worked_example', 'skill', 'concept', 'task_blueprint'] },
 ];
@@ -59,6 +61,13 @@ export function getInvalidEdgePairings(
       violations.push({
         edgeId: edge.id,
         message: `Edge "${edge.id}" of type "${edge.type}" must originate from a node of kind ${rule.sourceKinds.join(' | ')}, but originates from "${source.kind}"`,
+      });
+    }
+
+    if (rule.crossDomainOnly && source && target && source.domain === target.domain) {
+      violations.push({
+        edgeId: edge.id,
+        message: `Edge "${edge.id}" of type "${edge.type}" must connect nodes in different domains, but both are in "${source.domain}"`,
       });
     }
   }

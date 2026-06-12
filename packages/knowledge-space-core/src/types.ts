@@ -21,6 +21,7 @@ export type EdgeType =
   | 'supports'
   | 'extends'
   | 'equivalent_to'
+  | 'transfers_to'
   | 'common_misconception_with'
   | 'rendered_by'
   | 'generated_by'
