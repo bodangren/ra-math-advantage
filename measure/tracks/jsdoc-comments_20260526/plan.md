@@ -470,20 +470,43 @@
 
 ## Phase 7: IM3 `app/`, `scripts/`, `other/` — 119 functions
 
-- [ ] Task 7.1: Add JSDoc to exported functions in IM3 `app/`, `scripts/`, `other/`
-    - [ ] Identify exported functions across all remaining IM3 directories
-    - [ ] Add standard JSDoc to each exported function
+> **Red baseline:** 87 functions with NULL summaries (54 exported + 33 internal). See [`phase-7-red-baseline.md`](./phase-7-red-baseline.md). Guard scripts: `measure/tracks/jsdoc-comments_20260526/scripts/check-jsdoc-coverage-im3-app.sh`, `check-jsdoc-line-length-im3-app.sh`, `check-phase-verification-7.sh`. Plan-vs-graph delta: plan says 119, graph reports 87 (~27% delta, normal post-spec drift; IM3 has no `other/` directory so the heading maps to `app/` + `scripts/` + `middleware.ts` + `cloudflare/` + `e2e/` + `vite.config.ts`; the initial 119 likely included `convex/_generated/` or `__tests__/` functions that are out of scope). Use live graph counts (87) for acceptance, not the spec number.
+>
+> **Live Red re-verification (2026-06-12, MID at HEAD `043ceda6`):** Re-ran all 4 Phase 7 guards at the new HEAD. The worktree is **clean** (no dirty source files at MID start; `git status --porcelain` returns nothing). graph.db was refreshed mid-MID via `build-graph update` on the 26 Phase 6 Green files (Phase 6 was previously checkpointed at `b30a640e` but the graph was stale until this update). **Targeted Red command (single, bounded — primary test):** `bash measure/tracks/jsdoc-comments_20260526/scripts/check-jsdoc-coverage-im3-app.sh` → **FAIL (exit 1), 87 NULL summaries (54 exported + 33 internal)**. Breakdown by subscope: `app/` 61 NULL (53 exported + 8 internal), `scripts/` 18 NULL (0 exported + 18 internal, all in `generate-curriculum-remediation-artifacts.ts`), `middleware.ts` 2 NULL (1 exported + 1 internal), `cloudflare/worker.ts` 1 NULL, `e2e/` 4 NULL (3 in `accessibility.spec.ts` + 1 in `fixtures.ts`), `vite.config.ts` 1 NULL. **Fail count: 87 NULL summaries** — exact mapping to Task 7.1 (54 exported NULLs) and Task 7.2 (33 internal NULLs). Companion guards: `check-jsdoc-line-length-im3-app.sh` → **PASS (exit 0, 0 violations)** — regression net holds on the clean worktree; `check-phase-verification-7.sh` → **FAIL (exit 1, 3 unfilled fields)** — genuine live Red (`VERIFICATION_RESULT: pending` + placeholder `VERIFIED_BY` + placeholder `VERIFIED_AT`); `check-jsdoc-fr6-noncomment-diff.sh` (Phase 2 sibling, default scope `apps/bus-math-v2/components/`) → **PASS (exit 0, 0 violations)** — worktree matches HEAD, no in-flight Green work. Direct cross-check via `build-graph query ./graph.db "SELECT COUNT(*) AS total, SUM(CASE WHEN summary IS NULL THEN 1 ELSE 0 END) AS null_count, SUM(CASE WHEN summary IS NULL AND tags LIKE '%exported%' THEN 1 ELSE 0 END) AS exported_null, SUM(CASE WHEN summary IS NULL AND (tags NOT LIKE '%exported%' OR tags IS NULL) THEN 1 ELSE 0 END) AS internal_null FROM nodes WHERE type='function' AND (file_path LIKE '%/apps/integrated-math-3/app/%' OR file_path LIKE '%/apps/integrated-math-3/scripts/%' OR file_path LIKE '%/apps/integrated-math-3/middleware%' OR file_path LIKE '%/apps/integrated-math-3/cloudflare/%' OR file_path LIKE '%/apps/integrated-math-3/e2e/%' OR file_path LIKE '%/apps/integrated-math-3/vite.config%')"` → `total=87, null_count=87, exported_null=54, internal_null=33` — all match the per-file breakdown. No new Red tests added — per test-strategy.md §1, the doc-only track bans new vitest files for doc text; the 3 new executable guards in `scripts/` are the complete Phase 7 Red contract and they all execute correctly. Red contract holds at HEAD `043ceda6`; Phase 7 Red phase is satisfied by this commit (to be created).
+>
+> **Red contract summary:** 2 of 4 guards FAIL for genuine, non-stale, live-behavior reasons (coverage: 87 functions genuinely lack JSDoc; verification: artifact genuinely not produced). 2 of 4 guards PASS as regression nets (line-length: 0 violations on the clean worktree; FR-6: 0 violations since worktree matches HEAD). This is the **target Red state** for Phase 7: real live Red failures, not stale-record artifacts. The coverage guard's 87-NULL failure is the **single targeted Red command** per the user rule "Before writing tests, choose the single most targeted Red command you will run and make it bounded": it scopes to IM3 `app/scripts/other/` only, runs in <1s, and reports a clean breakdown of remaining work (54 exported for Task 7.1, 33 internal for Task 7.2).
+>
+> **Targeted Red command + fail count (per user rule "Record the command plus fail count in plan.md"):**
+> - **Command:** `bash measure/tracks/jsdoc-comments_20260526/scripts/check-jsdoc-coverage-im3-app.sh`
+> - **Result:** **FAIL (exit 1)**
+> - **Fail count:** **87 NULL summaries (54 exported, 33 internal)** — exact mapping to Task 7.1 (54 exported NULLs) and Task 7.2 (33 internal NULLs)
+> - **Reproduce:** the guard runs `build-graph query ./graph.db "SELECT COUNT(*) FROM nodes WHERE type='function' AND (file_path LIKE '%/apps/integrated-math-3/app/%' OR file_path LIKE '%/apps/integrated-math-3/scripts/%' OR file_path LIKE '%/apps/integrated-math-3/middleware%' OR file_path LIKE '%/apps/integrated-math-3/cloudflare/%' OR file_path LIKE '%/apps/integrated-math-3/e2e/%' OR file_path LIKE '%/apps/integrated-math-3/vite.config%') AND summary IS NULL"` and asserts the count is 0
+>
+> **MID dirty-worktree classification (2026-06-12, at HEAD `043ceda6`):** The worktree is **clean at MID start** — `git status --porcelain` returns nothing (zero modified + zero untracked paths). Phase 6 was completed and committed in `b30a640e` (Checkpoint) + `329070b6` (Green JSDoc additions in `apps/integrated-math-3/lib/`). No Green-author WIP for Phase 7 yet — the Green author will start work after this Red commit lands. graph.db is repo-root, treated as application territory (per phase-1-red-baseline.md line 19 / phase-7-red-baseline.md Boundary note): the `build-graph update` call mid-MID was a graph-refresh operation to bring the post-Phase-6 graph into sync with the source. The graph itself is unstaged and preserved as build artifact. **Gate posture:** with the clean worktree, the supervisor's `non_test_source_changes_since` function (per plan.md lines 113-135 forensics in Phase 2 history) returns empty for `git diff --name-only` and `git diff --name-only --cached`; the docs-only `plan.md` commit for this Red phase will be filtered out by the `measure/` skip predicate in the gate. Mid role owns only the Red contract; Green author remains the owner of implementation. No `git stash` bypass required for this attempt.
+>
+> **Task markers:** 7.1 [~], 7.2 [~], 7.3 [~], UMV [~] — all `red: <this-commit-sha>` — awaiting Green author.
+
+- [~] Task 7.1: Add JSDoc to exported functions in IM3 `app/`, `scripts/`, `other/`
+    - [x] Identify exported functions across all remaining IM3 directories
+    - [ ] Add standard JSDoc to each exported function (54 exported NULLs: 53 in `app/` + 1 in `middleware.ts`)
     - [ ] Commit: `docs(integrated-math-3): Add JSDoc to exported functions in app/scripts/other/`
-- [ ] Task 7.2: Add JSDoc to internal functions in IM3 `app/`, `scripts/`, `other/`
-    - [ ] Identify internal functions across all remaining IM3 directories
-    - [ ] Add standard JSDoc to each internal function
+- [~] Task 7.2: Add JSDoc to internal functions in IM3 `app/`, `scripts/`, `other/`
+    - [x] Identify internal functions across all remaining IM3 directories
+    - [ ] Add standard JSDoc to each internal function (33 internal NULLs: 8 in `app/` + 18 in `scripts/` + 1 in `middleware.ts` + 4 in `e2e/` + 1 in `cloudflare/` + 1 in `vite.config.ts`)
     - [ ] Commit: `docs(integrated-math-3): Add JSDoc to internal functions in app/scripts/other/`
-- [ ] Task 7.3: Verify phase
+- [~] Task 7.3: Verify phase
     - [ ] Run `npm run lint --workspace=apps/integrated-math-3`
     - [ ] Run `npm run test --workspace=apps/integrated-math-3`
     - [ ] Run `build-graph scan . ./graph.db` to refresh graph
+    - [ ] Run `bash measure/tracks/jsdoc-comments_20260526/scripts/check-jsdoc-coverage-im3-app.sh` → expect PASS (0 NULL of 87)
+    - [ ] Run `bash measure/tracks/jsdoc-comments_20260526/scripts/check-jsdoc-line-length-im3-app.sh` → expect PASS (0 violations)
+    - [ ] Run `bash measure/tracks/jsdoc-comments_20260526/scripts/check-phase-verification-7.sh` → expect PASS (after UMV)
     - [ ] Commit: `measure(checkpoint): Checkpoint end of Phase 7`
-- [ ] Task: Measure - User Manual Verification 'Phase 7: IM3 remaining dirs' (Protocol in workflow.md)
+- [~] Task: Measure - User Manual Verification 'Phase 7: IM3 app/scripts/other' (Protocol in workflow.md)
+    - [ ] Drive `workflow.md` §"Phase Completion Verification and Checkpointing Protocol" Steps 1-10 against `phase-7-verification-report.md`
+    - [ ] Update `phase-7-verification-report.md` §"User verdict" with `VERIFICATION_RESULT: approved`, real `VERIFIED_BY`, ISO `VERIFIED_AT`
+    - [ ] Re-run `bash measure/tracks/jsdoc-comments_20260526/scripts/check-phase-verification-7.sh` → expect exit 0
+    - [ ] [checkpoint: <sha>]
 
 ## Phase 8: Packages `src/` — 282 functions
 
