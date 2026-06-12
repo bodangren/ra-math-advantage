@@ -5,10 +5,10 @@ Depends on: Track 1. Independent of Tracks 2–7; run last in the program.
 
 ## Phase 1 — Contract & Schema
 
-- [~] Task: Add the transfers_to edge type
-    - [ ] Extend EdgeType union + Zod schemas; add §2.7 endpoint-pairing rule; extend validation
-- [~] Task: Define Level Projection and progressTrend history types
-    - [ ] Level Projection function signature (knowledge state → display level); progressTrend window/history input types
+- [x] Task: Add the transfers_to edge type [checkpoint: 6208449c]
+    - [x] Extend EdgeType union + Zod schemas; add §2.7 endpoint-pairing rule; extend validation
+- [x] Task: Define Level Projection and progressTrend history types [checkpoint: 6208449c]
+    - [x] Level Projection function signature (knowledge state → display level); progressTrend window/history input types
 - [ ] Task: Measure - User Manual Verification 'Phase 1' (Protocol in workflow.md)
 
 ### Phase 1 — Red-phase evidence (MID handoff, 2026-06-12)
@@ -27,6 +27,27 @@ The 4 passing tests in the transfers_to file are intentional regression guards
 the end-to-end positive case — the last two pass today because no rule exists
 yet, which is a known pre-Green gap; the contract tests are scoped to assert
 the post-Green behavior).
+
+### Phase 1 — Green-phase evidence (JR, 2026-06-12)
+
+All 3 targeted Red commands now pass. Full knowledge-space-core suite green.
+
+| Command | Result |
+|---------|--------|
+| `npx vitest run packages/knowledge-space-core/src/__tests__/edge-type-transfers-to.test.ts` | 7 passed |
+| `npx vitest run packages/knowledge-space-core/src/__tests__/level-projection-and-progress-trend-contract.test.ts` | 5 passed |
+| `npx vitest run packages/knowledge-space-core/src/__tests__/contract.test.ts` | 50 passed |
+| `npm run lint --workspace=packages/knowledge-space-core` | 0 warnings |
+| `npx tsc --noEmit --project packages/knowledge-space-core/tsconfig.json` | clean |
+
+Implementation changes:
+- `types.ts`: added `transfers_to` to EdgeType union
+- `schemas.ts`: added `transfers_to` to edgeTypeSchema enum + crossDomainOnly endpoint pairing rule
+- `validation.ts`: added `transfers_to` endpoint pairing rule with crossDomainOnly check
+- `level-projection.ts`: new module — knowledgeStateSchema, displayLevelSchema, LevelProjectionFn
+- `progress-trend.ts`: new module — masterySnapshotSchema, progressTrendHistorySchema
+- `edge-type-transfers-to.test.ts`: fixed pre-existing fixture bug (missing mathSkillB node)
+- `graph.db`: updated with 5 changed files (6208449c)
 
 ## Phase 2 — Level Projection
 
