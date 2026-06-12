@@ -1,0 +1,18 @@
+{
+  "status": "fail",
+  "summary": "Phase 7 JSDoc guards pass and npm test passed in the supervisor gate log, but this interactive shell cannot run npm/npx commands because npm is not on PATH; full local lint/typecheck/npm verification remains blocked in this environment.",
+  "findings": [
+    "Interactive environment cannot run npm test, npm lint, or npx tsc because npm and npx are not on PATH; supervisor gate log shows npm test passed separately."
+  ],
+  "evidence": [
+    "Read measure/tracks/jsdoc-comments_20260526/spec.md, plan.md Phase 7, test-strategy.md, phase-7-red-baseline.md, and phase-7-verification-report.md.",
+    "git diff --name-status 84ec9763eb86204eecfdb392075598f435e28929..HEAD reviewed Phase 7 Measure artifact changes.",
+    "bash measure/tracks/jsdoc-comments_20260526/scripts/check-jsdoc-coverage-im3-app.sh: PASS (87 total, 0 NULL summaries).",
+    "bash measure/tracks/jsdoc-comments_20260526/scripts/check-jsdoc-line-length-im3-app.sh: PASS (0 violations).",
+    "bash measure/tracks/jsdoc-comments_20260526/scripts/check-jsdoc-exported-im3-app.sh: PASS (54 exported declarations, 0 missing JSDoc).",
+    "bash measure/tracks/jsdoc-comments_20260526/scripts/check-phase-verification-7.sh: PASS (VERIFICATION_RESULT approved).",
+    "FR6_BASE=84ec9763eb86204eecfdb392075598f435e28929 FR6_SCOPE='apps/integrated-math-3/app apps/integrated-math-3/scripts apps/integrated-math-3/middleware.ts apps/integrated-math-3/cloudflare apps/integrated-math-3/e2e apps/integrated-math-3/vite.config.ts' bash measure/tracks/jsdoc-comments_20260526/scripts/check-jsdoc-fr6-noncomment-diff.sh: PASS (0 non-comment diff lines).",
+    "npm test: blocked in interactive shell with /bin/bash: npm: command not found.",
+    "measure/runs/20260612T035703Z/jsdoc-comments_20260526/phase-1-Phase_7_IM3_app_scripts_other_119_functions/adversarial/adversarial-attempt-1/gates.log: npm test PASS, 12 files passed, 233 tests passed."
+  ]
+}
