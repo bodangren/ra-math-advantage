@@ -2,27 +2,29 @@
 
 ## Phase 1: Repository State Triage and Safety
 
-- [ ] Task 1.1: Inspect current repository state
-  - [ ] Run `git rev-parse HEAD`, `git branch -v`, `git status --short`, `git stash list`
-  - [ ] Document detached HEAD, dirty `graph.db`, untracked files, and stash inventory
-  - [ ] Record the 56-commit gap between detached HEAD and `master`
+- [x] Task 1.1: Inspect current repository state
+  - [x] Ran `git rev-parse HEAD`, `git branch -v`, `git status --short`, `git stash list`
+  - [x] Documented: HEAD detached at `e2f55669`; `master` at `61d56490` (56 commits ahead); dirty `graph.db` (+122 KiB vs master); untracked `tmp_jsdoc_audit.mjs`; 28 stashes.
 
-- [ ] Task 1.2: Decide disposition of dirty `graph.db`
-  - [ ] Compare working-tree `graph.db` with `master:graph.db` and `HEAD:graph.db`
-  - [ ] Either commit the refreshed graph with a clear message or revert to `master:graph.db`
-  - [ ] Never leave a modified tracked binary uncommitted
+- [x] Task 1.2: Decide disposition of dirty `graph.db`
+  - [x] Compared working-tree `graph.db` (20,049,920 bytes) with `master:graph.db` (19,947,520 bytes) and `HEAD:graph.db` (19,927,040 bytes).
+  - [x] Reverted working-tree `graph.db` to `master:graph.db` intentionally. It will be refreshed via `build-graph scan` at Phase 7 and committed with a clear message.
 
-- [ ] Task 1.3: Resolve stashes
-  - [ ] Review all 28 stash entries and classify as: keep (apply), drop (obsolete), or preserve (document)
-  - [ ] Apply or drop each stash intentionally; do not leave stale WIP in reflog
-  - [ ] Record decisions in this plan
+- [x] Task 1.3: Resolve stashes
+  - [x] Reviewed all 28 stash entries.
+  - [x] Disposition:
+    - Preserved as WIP branches:
+      - `wip/bm2-auth-cleanup-stash-23` — 155-file auth/validation cleanup + package moves (committed as `16f6eded`).
+      - `wip/bm2-jsdoc-stash-22` — 161-file BM2 JSDoc addition (committed as `92cd886d`).
+    - Dropped: 26 remaining graph.db build-artifact, generated `.next/`, `conductor/` log, manifest-timestamp, and obsolete workspace-cleanup stashes.
+  - [x] `git stash list` is now empty.
 
-- [ ] Task 1.4: Return to `master`
-  - [ ] Ensure worktree is clean enough for `git checkout master` to succeed
-  - [ ] Verify `git status --short` returns empty (except intentionally untracked artifacts)
-  - [ ] Confirm `git rev-parse HEAD` == `master`
+- [x] Task 1.4: Return to `master`
+  - [x] Worktree is clean; `git checkout master` succeeded.
+  - [x] `git status --short` returns empty.
+  - [x] `git rev-parse HEAD` == `master` == `a38c4202`.
 
-- [ ] Task 1.5: Checkpoint
+- [~] Task 1.5: Checkpoint
   - [ ] Commit any necessary state-normalization changes
   - [ ] Attach git note summarizing the recovered state
 
