@@ -662,7 +662,7 @@
     - [x] Identify internal helper functions across all package `src/` dirs
     - [x] Add standard JSDoc to each internal function
     - [x] Commit: `docs(packages): Add JSDoc to internal functions in src/`
-- [x] Task 8.3: Verify phase [red: 2a132247] [green: dc6ba80a] [checkpoint: <sha>]
+- [x] Task 8.3: Verify phase [red: 2a132247] [green: dc6ba80a] [checkpoint: 893e1e25]
     - [x] Run `npm run lint` at repo root
     - [x] Run `npm run test` at repo root
     - [x] Run `build-graph scan . ./graph.db` to refresh graph — 13,880 nodes, 20,488 edges, 2,038 files; 514 functions, 0 NULL summaries
