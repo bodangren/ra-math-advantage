@@ -1,0 +1,12 @@
+{
+  "id": "spec-compliance-and-process-integrity_20260612",
+  "title": "Spec Compliance and Process Integrity Remediation",
+  "status": "in_progress",
+  "priority": "critical",
+  "created_at": "2026-06-12T20:30:00Z",
+  "source": "Adversarial review of commits from past 24 hours (kst-lesser-holes Phase 1, jsdoc-comments Phases 4-9)",
+  "dependencies": [
+    "jsdoc-comments_20260526",
+    "kst-lesser-holes_20260521"
+  ]
+}

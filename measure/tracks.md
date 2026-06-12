@@ -15,6 +15,10 @@ Dependencies:
 
 ## Active Tracks
 
+- [~] **Track: Spec Compliance and Process Integrity Remediation** — **CRITICAL / IN PROGRESS**
+   *Adversarial review of the past 24 hours found systematic spec violations, automation-self-approved "manual" verification, FR-6 source mutations, missing FR-5 type annotations, and a hazardous repository state (detached HEAD, 28 stashes, dirty graph.db). This track fixes every identified issue before any dependent track proceeds.*
+   *Link: [./tracks/spec-compliance-and-process-integrity_20260612/](./tracks/spec-compliance-and-process-integrity_20260612/)*
+
 - [ ] **Program: Knowledge Space Engine Alignment (kst-srs.v2)**
    *Bring the implementation into alignment with the `kst-srs.v2` specification. The KST packages (`knowledge-space-core`, `knowledge-space-practice`) implement the v1 contract but are wired into no production route; the SRS half is live but nothing converts proficiency output into a knowledge-space learner state. This program wires the KST pipeline end-to-end and adds the v2 improvements: time-aware mastery, weighted readiness, edge calibration, a next-skill planner, adaptive placement, the misconception remediation loop, and the practice-variant rename. Source: gse-knowledge-space `SPECIFICATION.md` (kst-srs.v2) + `IMPROVEMENT-PLAN.md`.*
    - [ ] **Track 1: Wire the KST Pipeline + v2 Mastery Model**
