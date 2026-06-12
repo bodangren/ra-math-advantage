@@ -21,6 +21,25 @@ export type { PrerequisiteCycle, CycleDetectionOptions } from './validation';
 export { knowledgeSpaceSchema, CORE_ID_PATTERN } from './schemas';
 
 export {
+  knowledgeStateSchema,
+  displayLevelSchema,
+} from './level-projection';
+export type {
+  KnowledgeState,
+  DisplayLevel,
+  LevelProjectionFn,
+} from './level-projection';
+
+export {
+  masterySnapshotSchema,
+  progressTrendHistorySchema,
+} from './progress-trend';
+export type {
+  MasterySnapshot,
+  ProgressTrendHistory,
+} from './progress-trend';
+
+export {
   validateKnowledgeSpace,
   getDanglingEdges,
   getDuplicateNodeIds,

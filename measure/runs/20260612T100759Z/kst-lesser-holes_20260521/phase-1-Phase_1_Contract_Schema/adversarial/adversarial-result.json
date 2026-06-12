@@ -1,0 +1,17 @@
+{
+  "status": "pass",
+  "summary": "Adversarial audit found and fixed one Phase 1 integration gap: new Level Projection and progressTrend contracts were not exported through the package public API. Added public API regression coverage and exported root/subpath contracts. Gate log shows npm test passed 15 files / 247 tests for packages/knowledge-space-core; type checks passed for edited files.",
+  "findings": [],
+  "evidence": [
+    "Reviewed spec: measure/tracks/kst-lesser-holes_20260521/spec.md",
+    "Reviewed plan: measure/tracks/kst-lesser-holes_20260521/plan.md",
+    "Reviewed test strategy: measure/tracks/kst-lesser-holes_20260521/test-strategy.md",
+    "Inspected changes since 58af84167df9fab0253aafc32232b1b31d0e64bf",
+    "Added packages/knowledge-space-core/src/__tests__/public-api-contract.test.ts",
+    "Updated packages/knowledge-space-core/src/index.ts root exports",
+    "Updated packages/knowledge-space-core/package.json subpath exports",
+    "Gate log: measure/runs/20260612T100759Z/kst-lesser-holes_20260521/phase-1-Phase_1_Contract_Schema/adversarial/adversarial-attempt-1/gates.log — npm test EXIT_STATUS 0, 15 files / 247 tests passed",
+    "type_check packages/knowledge-space-core/src/index.ts — pass",
+    "type_check packages/knowledge-space-core/src/__tests__/public-api-contract.test.ts — pass"
+  ]
+}

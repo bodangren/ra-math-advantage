@@ -10,6 +10,8 @@
     "./types": "./src/types.ts",
     "./schemas": "./src/schemas.ts",
     "./validation": "./src/validation.ts",
+    "./level-projection": "./src/level-projection.ts",
+    "./progress-trend": "./src/progress-trend.ts",
     "./adapters": "./src/adapters.ts",
     "./fixtures": "./src/fixtures.ts"
   },

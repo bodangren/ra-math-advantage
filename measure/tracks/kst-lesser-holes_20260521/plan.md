@@ -49,6 +49,19 @@ Implementation changes:
 - `edge-type-transfers-to.test.ts`: fixed pre-existing fixture bug (missing mathSkillB node)
 - `graph.db`: updated with 5 changed files (6208449c)
 
+### Phase 1 — Adversarial audit evidence (2026-06-12)
+
+Audit found a public API integration gap: Phase 1 added `level-projection.ts` and
+`progress-trend.ts` but did not expose them through the package root/subpath
+exports required by downstream packages. Added `public-api-contract.test.ts`,
+root exports, and package subpath exports.
+
+| Command | Result |
+|---------|--------|
+| `npm test` | pass — 15 files / 247 tests in `packages/knowledge-space-core` |
+| `type_check packages/knowledge-space-core/src/index.ts` | pass |
+| `type_check packages/knowledge-space-core/src/__tests__/public-api-contract.test.ts` | pass |
+
 ## Phase 2 — Level Projection
 
 - [ ] Task: Implement the Level Projection (TDD)
