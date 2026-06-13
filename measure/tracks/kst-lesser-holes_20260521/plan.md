@@ -64,7 +64,7 @@ root exports, and package subpath exports.
 
 ## Phase 2 — Level Projection
 
-- [x] Task: Implement the Level Projection (TDD)  *(JR Green — 2026-06-13)* [checkpoint: db03fb6f]
+- [x] Task: Implement the Level Projection (TDD)  *(JR Green — 2026-06-13)* [checkpoint: cfc4102f]
     - [x] Domain-supplied monotonic knowledge-state → display-level function; presentation-only
     - [x] IM3 instance derived from the existing CSV level mapping
 - [ ] Task: Measure - User Manual Verification 'Phase 2' (Protocol in workflow.md)
