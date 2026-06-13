@@ -972,7 +972,7 @@ Sixteen candidate tracks identified from a full-roadmap review. Each is registry
    *Instrument learning outcomes (retention curves, time-to-mastery, cohort comparison) and an A/B harness to measure whether the SRS/KST engine actually improves learning. Verified: no efficacy/experiment/cohort instrumentation exists. Closes the loop on which KST v2 improvements matter. Size: M–L. Depends on: KST pipeline wired (for KST-state signals). Readiness: partial now (SRS signals exist), full after KST T1.*
    *Link: [./tracks/learning-efficacy-analytics_20260605/](./tracks/learning-efficacy-analytics_20260605/)*
 
-- [ ] **Track: Load / Scale Testing** — **PLANNED**
+- [~] **Track: Load / Scale Testing** — **IN PROGRESS** (Phases 1–3 artifact/contract complete; UMV gate blocked on `$IM3_SCALE_URL` isolated deployment)
    *Proactive load harness simulating a 30-student class and a 1,000-student school against Convex, using `npx convex insights` to catch read/write-cost and N+1 regressions before production. 10+ prior tracks fixed N+1 reactively. Size: M. Depends on: none. Readiness: ready now.*
    *Link: [./tracks/load-scale-testing_20260605/](./tracks/load-scale-testing_20260605/)*
 
