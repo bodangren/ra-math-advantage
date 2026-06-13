@@ -23,6 +23,7 @@ export { knowledgeSpaceSchema, CORE_ID_PATTERN } from './schemas';
 export {
   knowledgeStateSchema,
   displayLevelSchema,
+  projectDisplayLevel,
 } from './level-projection';
 export type {
   KnowledgeState,
