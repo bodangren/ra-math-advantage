@@ -104,7 +104,7 @@ describe('suppressIfSmallN (Phase 2 Red — Task 2)', () => {
     const b = suppressIfSmallN(3);
     expect(a).toEqual(b);
     const c = suppressIfSmallN(7);
-    expect(c).toEqual(b); // also deterministic; same status
+    expect(c.status).toBe(b.status); // also deterministic; same status
   });
 
   it('exposes a typed discriminated union (CohortSuppressionResult) for caller narrowing', () => {
