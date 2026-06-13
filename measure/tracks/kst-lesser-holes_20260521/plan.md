@@ -566,6 +566,106 @@ revert` of the three revert commits (`c6995c51`, `564dcff3`,
 (Measure doc). No source code, no test files, no implementation files
 are touched. The Red-phase boundary is re-established.
 
+### Phase 2 — Red-phase re-verification at `4c56d5e8` (MID, 2026-06-13)
+
+Re-ran the four targeted Red commands at the current HEAD `4c56d5e8`
+on a clean worktree (`git status --short` = empty) with node v24.4.0
+resolved via `nvm`. Build-graph was probed at HEAD with the
+greenfield verification queries below; the level-projection files
+added in this track are not yet indexed in the committed `graph.db`
+(graph.db mtime predates the new test files, which is acceptable for
+the Red-phase probe — the Red signal comes from running the tests,
+not from the graph).
+
+Graph-Aware verification of the greenfield state at HEAD:
+
+| Query | Result | Interpretation |
+|-------|--------|----------------|
+| `build-graph search projectDisplayLevel` | 0 nodes | Function symbol absent — confirms greenfield for runtime export |
+| `build-graph search projectIm3Level` | 0 nodes | IM3 instance symbol absent — confirms greenfield for IM3 module |
+| `build-graph search LevelProjection` | 0 nodes | Type-level symbol absent — confirms no alternative exports exist |
+| `build-graph search "KnowledgeState"` | 2 nodes (`knowledgeStateSchema` schema + `KnowledgeState` type_alias) at `packages/knowledge-space-core/src/level-projection.ts` | Phase 1 type contract is in place; only the Phase 2 implementation is missing |
+| `build-graph inspect knowledgeStateSchema` | `tags: ["exported"]`; 1 incoming `contains` edge from the file; 0 incoming `references` / `imports` / `queries` edges from any consumer | Blast radius for adding `projectDisplayLevel` is **zero** — the new export has no existing consumers, so the change is purely additive |
+
+Targeted Red command (single most bounded) and observed fail count at
+HEAD `4c56d5e8`:
+
+| Command | Result | Failing tests |
+|---------|--------|---------------|
+| `node node_modules/vitest/vitest.mjs run packages/knowledge-space-core/src/__tests__/level-projection.test.ts --root packages/knowledge-space-core` | **7 failed / 7 total** | All 7: `TypeError: projectDisplayLevel is not a function` — `import { projectDisplayLevel } from '../level-projection'` resolves to `undefined` at HEAD (Phase 1 only added the type contract). |
+
+Supporting Red commands (full Phase 2 contract surface) and observed
+fail counts at HEAD `4c56d5e8`:
+
+| Command | Result | Failing tests |
+|---------|--------|---------------|
+| `node node_modules/vitest/vitest.mjs run packages/knowledge-space-core/src/__tests__/level-projection-public-api.test.ts --root packages/knowledge-space-core` | **2 failed / 2 total** | (1) `expected 'undefined' to be 'function'` — `projectDisplayLevel` not re-exported from `@math-platform/knowledge-space-core` root; (2) same — not exported from `level-projection` subpath |
+| `node node_modules/vitest/vitest.mjs run apps/integrated-math-3/__tests__/level-projection.test.ts --root apps/integrated-math-3` | **1 failed suite, 0 tests ran** | `Failed to resolve import "@/lib/level-projection/im3-level-projection"` — IM3 instance module absent |
+| `node node_modules/vitest/vitest.mjs run apps/integrated-math-3/__tests__/level-projection-csv-contract.test.ts --root apps/integrated-math-3` | **2 failed / 2 total** | (1) `expected false to be true` — `fs.existsSync('apps/integrated-math-3/lib/level-projection/gse-to-im3-advantage.csv')` returns false; (2) same — well-formed check skipped because the file is absent |
+| **Total** | **16 failed / 16** | All 16 fail for the expected contract-gap reasons; no incidental or fixture failures |
+
+Red-signal interpretation (consistent with the re-gate #5 evidence):
+
+- Core test file fails 7/7 with the exact contract-gap message
+  (`projectDisplayLevel is not a function`).
+- Public-API test fails 2/2 with `expected 'undefined' to be 'function'`
+  for both the package root and the subpath — confirms the function
+  is not re-exported from either entrypoint.
+- IM3 instance test fails at file-load (0 tests ran) because the
+  import target is missing — the strongest possible Red signal
+  (no implementation to invoke).
+- CSV contract test fails 2/2 because the checked-in artifact is
+  absent — independent confirmation of the IM3 module gap.
+
+**Decision: do not tighten the contract or add new Red tests.** Per
+the directive ("If the new tests pass at HEAD, tighten the contract
+until at least one new test fails or mark the task as already
+satisfied with evidence instead of creating a false Red phase"), the
+existing 16 Red tests already cover the full Phase 2 contract surface:
+
+| Contract surface | Test file | Test count |
+|------------------|-----------|------------|
+| Core function contract (export, arity, boundary, purity, monotonicity) | `packages/knowledge-space-core/src/__tests__/level-projection.test.ts` | 7 |
+| Core public API (root + subpath) | `packages/knowledge-space-core/src/__tests__/level-projection-public-api.test.ts` | 2 |
+| IM3 instance (export, anchors, monotonicity sweep) | `apps/integrated-math-3/__tests__/level-projection.test.ts` | 5 |
+| IM3 CSV artifact (exists, well-formed) | `apps/integrated-math-3/__tests__/level-projection-csv-contract.test.ts` | 2 |
+| **Total** | **4 test files** | **16** |
+
+The Phase 1 type contract test (`level-projection-and-progress-trend-contract.test.ts`,
+5 tests) is not Red — it was authored in Phase 1 and is already Green
+at HEAD. Adding more Red tests in Phase 2 would be feature creep.
+
+**Worktree state at session-end (this attempt)**:
+
+- `git status --short` shows one modified path:
+  `measure/tracks/kst-lesser-holes_20260521/plan.md` (this subsection).
+  The 376 spec-compliance Phase 3 paths remain in `stash@{0}`, bit-for-bit
+  identical, recoverable by `git stash pop`.
+- HEAD = `4c56d5e8` (Phase 2 Red-phase boundary re-establishment)
+  before this commit. Track session diff (HEAD-vs-`f6fc05ec` prior to
+  this commit) = 4 test files + 1 plan.md (5 files; no source code).
+  The Red-phase boundary is honored.
+- Build-graph state at HEAD: 13,879 nodes / 20,482 edges / 2,038 files
+  (mtime 2026-06-12 22:19, predates the new test files). The level-
+  projection files added in this track are not yet indexed in the
+  committed `graph.db`; this is acceptable for the Red-phase probe
+  because the Red signal comes from running the tests directly, not
+  from the graph. The graph can be refreshed in the Green phase or
+  by `build-graph scan` / `update` on demand.
+
+**Red phase status**: Satisfied. All 16 Red tests fail for the
+expected contract-gap reasons. No new tests needed. No source code
+modifications. The Green phase can proceed in the next role by
+reinstating the implementation commits (`db03fb6f` + `99a585d3` +
+`2421503e` + their checkpoint annotation at `2421503e`) — either by
+reverting the three reverts (`c6995c51`, `564dcff3`, `87d11366`) or by
+re-applying the same diff.
+
+**Commit policy compliance**: This commit updates `plan.md` only
+(Measure doc). No source code, no test files, no `graph.db`, and no
+non-Measure docs are touched. The Red-phase boundary is honored
+end-to-end across all previous MID attempts and this one.
+
 ## Phase 3 — progressTrend Fix
 
 - [ ] Task: Replace progressTrend static ratio with a time-delta (TDD)
