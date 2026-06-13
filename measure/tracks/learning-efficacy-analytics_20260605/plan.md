@@ -183,8 +183,8 @@ Verification:
 
 ## Phase 2 — Cohort Aggregation (Convex)
 
-- [~] Task: Batched aggregation queries by class/cohort + time window (TDD, no N+1)
-- [~] Task: Small-n suppression / privacy guardrails (TDD)
+- [x] Task: Batched aggregation queries by class/cohort + time window (TDD, no N+1) — `cdfdede2`
+- [x] Task: Small-n suppression / privacy guardrails (TDD) — `cdfdede2`
 - [ ] Task: Measure - User Manual Verification 'Phase 2' (Protocol in workflow.md)
 
 ### Phase 2 — Red Notes (MID role, 2026-06-13)
@@ -522,6 +522,40 @@ every assertion in the two suites passes — including the corrected
 inputs, the no-N+1 budget `<=6` over 25 students, the time-window
 inclusive-start/exclusive-end boundary, the privacy payload-key set
 guards, and the `MIN_COHORT_N` k-anonymity range `[5, 30]`.
+
+### Phase 2 — Green Run Log (JR role, 2026-06-13, commit `cdfdede2`)
+
+Implementation files created:
+- `apps/integrated-math-3/convex/efficacy/suppression.ts` — `MIN_COHORT_N` (10),
+  `suppressIfSmallN` predicate, `CohortSuppressionResult` discriminated union
+- `apps/integrated-math-3/convex/efficacy/cohort.ts` — `aggregateCohortMetricsHandler`
+  with batched queries (3 `db.query` calls: enrollments, cards, reviews — no N+1),
+  active-enrollment filter, time-window filtering (inclusive start, exclusive end),
+  retention + review-success metrics via `@math-platform/efficacy-core` reuse,
+  `cohort` `internalQuery` wrapper
+
+Data-type mapping: Convex schema uses `number` for `createdAt`/`updatedAt`/`reviewedAt`;
+`srs-engine` types expect `string` (ISO). Handler maps inline before passing to metric fns.
+
+Build-graph updated (2 files: 0 → 9 nodes, 0 → 11 edges).
+
+Targeted Red command re-run (single bounded run, no watch, CI=true):
+`CI=true npm run test --prefix apps/integrated-math-3 -- --run __tests__/convex/efficacy/`
+
+Result: `Test Files 2 passed (2)` · `Tests 18 passed (18)` — all Green.
+
+Full test suite (`CI=true npm test`): `262 passed (262)` — Green.
+
+TypeScript check (`npx tsc --noEmit`): implementation files clean (0 errors).
+Pre-existing errors in test file (4 in `cohort.test.ts`: module resolution for `@/` alias
+not in tsconfig, `SrsCardState.createdAt` number-vs-string in test fixtures, `MetricResult`
+vs `ReviewSuccessRate` property access) + 2 pre-existing in other files
+(`edgeCalibration.test.ts`, `tailwind.config.ts`). These are Red-phase test-file issues,
+not implementation regressions.
+
+Lint (`npm run lint`): 1 pre-existing warning in `cohort.test.ts:134` (`_fn` unused parameter
+in `makeFakeCtx` helper — Red-phase test file, not modified by Green). Implementation files
+clean.
 
 ## Phase 3 — Experiment Harness
 
