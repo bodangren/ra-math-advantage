@@ -22,8 +22,8 @@ const VALID_STATE_TRANSITIONS: Record<
 > = {
   new: ['learning', 'review'],
   learning: ['learning', 'review'],
-  review: ['learning', 'review'],
-  relearning: ['learning', 'review'],
+  review: ['learning', 'review', 'relearning'],
+  relearning: ['learning', 'review', 'relearning'],
 };
 
 /**

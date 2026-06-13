@@ -6,8 +6,8 @@ Verification: boundary lints + per-app lint/test + `tsc --noEmit`.
 
 ## Phase 1 — Metric Contracts & Pure Logic
 
-- [~] Task: Define outcome-metric contracts (retention, time-to-mastery, accuracy, review-success)
-- [~] Task: Implement pure metric functions from SRS card/review/submission fixtures (TDD)
+- [x] Task: Define outcome-metric contracts (retention, time-to-mastery, accuracy, review-success)
+- [x] Task: Implement pure metric functions from SRS card/review/submission fixtures (TDD)
 - [ ] Task: Measure - User Manual Verification 'Phase 1' (Protocol in workflow.md) — deferred (manual, not Red-phase)
 
 ### Phase 1 — Red Notes (MID role, 2026-06-13)
@@ -129,6 +129,38 @@ Files changed in attempt 3:
 - MODIFIED `measure/tracks/learning-efficacy-analytics_20260605/plan.md`
   (this Re-Verification subsection).
 No test files touched, no src/ files added, no build/runtime config touched.
+
+### Phase 1 — Green Run Log (JR role, 2026-06-13, commit `68ebd3cb`)
+
+Implementation files created:
+- `packages/efficacy-core/package.json` — workspace package config
+- `packages/efficacy-core/tsconfig.json` — extends root tsconfig
+- `packages/efficacy-core/vitest.config.ts` — test runner config
+- `packages/efficacy-core/src/contracts.ts` — EFFICACY_CONTRACT_VERSION + 4 Zod schemas + MetricResultSchema
+- `packages/efficacy-core/src/metrics/retention.ts` — computeRetentionCurve
+- `packages/efficacy-core/src/metrics/time-to-mastery.ts` — computeTimeToMastery
+- `packages/efficacy-core/src/metrics/accuracy.ts` — computeAccuracyTrend
+- `packages/efficacy-core/src/metrics/review-success.ts` — computeReviewSuccessRate
+- `packages/efficacy-core/src/index.ts` — barrel re-exports
+
+Bug fix in existing code:
+- `packages/srs-engine/src/srs/transition-validator.ts` — added `relearning` as valid
+  target from `review` and `relearning` states (FSRS produces these transitions on
+  card lapse; validator was overly restrictive).
+
+Build-graph updated locally (7 files: 5 → 35 nodes, 7 → 40 edges); graph.db
+not committed due to pre-commit hook policy (ALLOW_GRAPH_DB=1 required).
+
+Targeted Red command re-run (single bounded run, no watch, CI=true):
+`CI=true npx vitest run --dir packages/efficacy-core __tests__/metrics`
+
+Result: `Test Files  5 passed (5)` · `Tests  43 passed (43)` — all Green.
+
+Closeout gate (`npm test --prefix packages/efficacy-core`):
+`Test Files  5 passed (5)` · `Tests  43 passed (43)` — Green.
+
+TypeScript gate (`tsc --noEmit --project packages/efficacy-core/tsconfig.json`):
+Clean — no errors.
 
 ## Phase 2 — Cohort Aggregation (Convex)
 
