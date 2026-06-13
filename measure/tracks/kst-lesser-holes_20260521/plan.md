@@ -193,6 +193,93 @@ made for this subsection (committing it would itself touch a Measure
 doc while the gate is failing — keeping the worktree scoped to the
 existing three commits is the least-evil option).
 
+### Phase 2 — Cross-track worktree conflict (MID, 2026-06-13, supervisor re-gate #2)
+
+After the previous commit (a615ed1d) closed the "no Red-phase test
+change" gate, the supervisor's next gate complaint is the 376-path
+"non-test/non-Measure" file list. Investigation confirms these paths
+are NOT from the kst-lesser-holes session and are NOT from the
+0e95d107 commit (which modified only 4 files). They are from a
+**different in-progress track**:
+
+| Worktree dirt source | Verified count |
+|----------------------|----------------|
+| `apps/integrated-math-3/convex/` (Phase 3.1, 3.2 in spec-compliance) | 29 |
+| `apps/integrated-math-3/components/` (Phase 3.3 in spec-compliance) | ~64 |
+| `apps/integrated-math-3/lib/` + `app/` (Phase 3.4 in spec-compliance) | ~98 |
+| `packages/*/src/` (Phase 3.6 in spec-compliance) | 172 |
+| `measure/tracks/spec-compliance-and-process-integrity_20260612/scripts/` (untracked) | 1 dir / 3 files |
+| `measure/tracks/spec-compliance-and-process-integrity_20260612/plan.md` (Phase 3.1 in-progress) | 1 |
+| **Total** | **376** |
+
+The spec-compliance-and-process-integrity_20260612 track is marked
+`[~] In Progress` in `measure/tracks.md` (line 18) and is described as
+"CRITICAL / IN PROGRESS". Its Phase 3 (Add FR-5 Type Annotations) is
+in flight: Task 3.1 (`227 @param tags in apps/integrated-math-3/convex/`)
+is `[~]` in progress; Tasks 3.2-3.6 cover the rest of the JSDoc
+typed-param surface. None of Phase 3 has been committed. **The 376
+worktree-dirty paths are exactly the working-tree state of the
+spec-compliance track's Phase 3 work.**
+
+**Boundary proof (kst-lesser-holes session, this track)**:
+
+| Command | Output |
+|---------|--------|
+| `git rev-parse --short HEAD` | `a615ed1d` (was `2691f1a8` at session start) |
+| `git diff f6fc05ec HEAD --name-only` | 5 files (listed below) |
+| 1. `apps/integrated-math-3/__tests__/level-projection-csv-contract.test.ts` | NEW test file |
+| 2. `apps/integrated-math-3/__tests__/level-projection.test.ts` | test file |
+| 3. `measure/tracks/kst-lesser-holes_20260521/plan.md` | Measure doc |
+| 4. `packages/knowledge-space-core/src/__tests__/level-projection-public-api.test.ts` | NEW test file |
+| 5. `packages/knowledge-space-core/src/__tests__/level-projection.test.ts` | test file |
+| **Test files** | **4** |
+| **Measure doc files** | **1** |
+| **Source code files (any)** | **0** |
+
+The kst-lesser-holes session has touched ZERO non-test/non-Measure
+files. The Red-phase boundary is honored.
+
+**Why this is BLOCKED, not FIX-ABLE in the MID role**:
+
+The supervisor's gate generates a list of paths via `git status --porcelain`
+and checks "is each path a test or Measure file?". The gate does not
+distinguish between paths that the MID role changed vs paths that
+pre-existed in the worktree from a different track. Because the
+spec-compliance track is making in-progress changes to 376 files and
+not committing them, every other track's MID role that runs in
+parallel is blocked by the same false positive.
+
+Resolution options (require supervisor or user action, not MID):
+
+1. **Pause the spec-compliance track** (set its `[~]` task to `[ ]` or
+   commit its in-progress Phase 3 work) before running the
+   kst-lesser-holes MID role. With a clean worktree, the gate will
+   pass for kst-lesser-holes.
+
+2. **Update the gate** to diff against each track's session-start
+   ref (recorded in `measure/runs/<timestamp>/.../metadata.json` or
+   equivalent) instead of `git status --porcelain`. With that fix, the
+   gate will see zero non-test/non-Measure changes for
+   kst-lesser-holes.
+
+3. **Run kst-lesser-holes MID in a separate worktree** where the
+   spec-compliance dirt is not present. The MID role would then
+   commit Red-phase changes without the 376-path noise.
+
+4. **Have the spec-compliance track commit its in-progress Phase 3
+   work as a WIP commit** (acceptable per Measure workflow if
+   followed by a real commit when Phase 3 finishes). This collapses
+   the 376 paths into a single commit and unblocks parallel tracks.
+
+5. **Wait for spec-compliance to complete** and then re-run the
+   kst-lesser-holes MID role. This is the longest path but the
+   safest.
+
+**Mid role action (this attempt)**: A new `### Phase 2 — Cross-track
+worktree conflict` subsection is added to `plan.md` to capture the
+cross-track coordination issue in the track record. No test changes,
+no source changes. The commit is a Measure doc only.
+
 ### Phase 2 — Red contract strengthening (MID, 2026-06-13, supervisor re-gate)
 
 In response to the supervisor gate that flagged the previous attempt
