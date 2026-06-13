@@ -113,6 +113,15 @@ Verification: harness runs green; `tsc --noEmit` on TS helpers.
 - **graph.db updated** (pre-commit hook blocks graph.db commits): `build-graph update ./graph.db` added 50 nodes / 42 edges across 9 new files. Not committed per hook policy.
 - **Status of UMV task**: `[ ]` — live-behavior gate (`node apps/integrated-math-3/scripts/scale/run.mjs --paths=daily-practice,gradebook,heatmap,proficiency --once --deployment=$IM3_SCALE_URL`) requires isolated deployment not available in sandbox.
 
+### Phase 2 — Acceptance audit (phase_acceptance role, 2026-06-14)
+
+- **Two blocking issues found and fixed in commit `3986341b`.**
+- **Issue 1 — Shallow test: `malformed-missing-occ.json` fixture.** The fixture had `perFunction: []` (empty array), so `parseInsightsJson` threw on "perFunction must contain at least one entry" (line 50-53) *before* reaching the "missing occConflicts" validation (line 61-64) that the test `rejects input with a perFunction entry missing occConflicts` claimed to verify. Fixed by adding one `perFunction` entry that omits `occConflicts` — now the parser correctly reaches the OCC-missing check.
+- **Issue 2 — TypeScript error in `drivers.test.ts:135`.** `fake.calls[0]!.mutate` caused TS2339 because `FakeCall` type lacked a `mutate` field. Fixed by adding `mutate?: boolean` to the `FakeCall` type. This was a test-file-only type annotation gap; tests ran correctly via vitest/esbuild but `tsc --noEmit` flagged it.
+- **Re-verified Green after fixes.** Targeted Phase 2 run: **3 files passed, 71 tests passed, 0 failed** (20.58s). Phase 1 regression: **2 files passed, 79 tests passed, 0 failed** (56.52s). `tsc --noEmit`: 6 pre-existing errors only (edgeCalibration, cohort ×4, tailwind — all in tech-debt.md), 0 new errors.
+- **Status of UMV task**: unchanged — `[!]` BLOCKED, requires isolated `$IM3_SCALE_URL` deployment.
+- **Phase 2 acceptance status**: **PASS** — no blocking findings remain. Result written to `measure/runs/20260613T190158Z/load-scale-testing_20260605/phase-1-Phase_2_Hot-Path_Drivers_Cost_Capture/phase-acceptance/phase_acceptance-result.json`.
+
 ## Phase 3 — Budgets & CI
 
 - [ ] Task: Record baselines; define per-path budgets; harness fails on injected regression (proof test)
