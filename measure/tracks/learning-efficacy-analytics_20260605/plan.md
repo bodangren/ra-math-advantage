@@ -1094,7 +1094,7 @@ and ready to be flipped Green by the next role.
 
 ## Phase 4 — Efficacy View & Verification
 
-- [x] Task: Admin/teacher efficacy view rendering metrics + active experiments, role-gated (TDD on render/guard) — `b8b31fe3`
+- [~] Task: Admin/teacher efficacy view rendering metrics + active experiments, role-gated (TDD on render/guard) — Red: `b8b31fe3`, Green: `<pending>`
 - [ ] Task: Final verification — boundary lints, lint, tsc --noEmit, CI=true npm run test
 - [ ] Task: Measure - User Manual Verification 'Phase 4' (Protocol in workflow.md) — deferred (manual, not Red-phase)
 
@@ -1113,10 +1113,10 @@ commit `5a4fdfd2`.
 
 | Path | Classification | Action |
 |------|----------------|--------|
-| `M graph.db` (binary, +N bytes) | **Generated/ignorable** — build-graph SQLite artifact. Pre-commit hook gates via `ALLOW_GRAPH_DB=1`. | **Preserve dirty (do not stage).** |
+| `M graph.db` (binary, +N bytes) | **Generated/ignorable** — build-graph SQLite artifact. Pre-commit hook gates via `ALLOW_GRAPH_DB=1`. | **Discard via `git checkout -- graph.db`** to satisfy the supervisor's automated Red-phase boundary gate (no non-test/non-Measure dirty paths allowed at MID phase end). Re-generates from source on next `build-graph scan`/`update`; non-destructive. |
 
-**Unrelated user work:** none. The only dirty path is the generated
-`graph.db` artifact, preserved per protocol.
+**Unrelated user work:** none. The only dirty path was the generated
+`graph.db` artifact, which was discarded per the Red-phase boundary gate.
 
 **Build-Graph baseline** (graph.db mtime 2026-06-13, TypeScript project,
 no rescan needed — Phase 3 source delta is greenfield and contributes
@@ -1258,12 +1258,16 @@ Green/impl role must create:
 - ADDED `apps/integrated-math-3/__tests__/components/teacher/efficacy/EfficacyView.test.tsx` (new, 320 lines)
 - MODIFIED `measure/tracks/learning-efficacy-analytics_20260605/plan.md`
   (this Red Notes / Run Log subsection + the Phase 4 task checkbox
-  flipped to `[x]` with commit SHA `b8b31fe3`).
+  flipped to `[~]` with Red commit SHA `b8b31fe3`; the Green/impl role
+  will flip it to `[x]` once the implementation ships).
 
 **Out of scope for Red:** no `src/` files were created; no
 `package.json`, `vitest.config.ts`, `tsconfig.json`, or other
 build/runtime config was created or modified in `apps/integrated-math-3/`;
-no existing source was modified. The generated `graph.db` artifact is
-preserved dirty per the dirty-worktree protocol.
+no existing source was modified. The generated `graph.db` artifact was
+discarded via `git checkout -- graph.db` to satisfy the supervisor's
+automated Red-phase boundary gate (no non-test/non-Measure dirty paths
+allowed at MID phase end) — the graph re-generates from source on the
+next `build-graph scan`/`update`, so this is non-destructive.
 
 **Red-phase commit `b8b31fe3` is ready to hand off to Green/impl.**
