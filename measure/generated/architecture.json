@@ -55,6 +55,10 @@
       "path": "packages/core-convex"
     },
     {
+      "name": "efficacy-core",
+      "path": "packages/efficacy-core"
+    },
+    {
       "name": "graphing-core",
       "path": "packages/graphing-core"
     },

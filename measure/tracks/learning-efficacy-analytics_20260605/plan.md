@@ -183,9 +183,131 @@ Verification:
 
 ## Phase 2 — Cohort Aggregation (Convex)
 
-- [ ] Task: Batched aggregation queries by class/cohort + time window (TDD, no N+1)
-- [ ] Task: Small-n suppression / privacy guardrails (TDD)
+- [~] Task: Batched aggregation queries by class/cohort + time window (TDD, no N+1)
+- [~] Task: Small-n suppression / privacy guardrails (TDD)
 - [ ] Task: Measure - User Manual Verification 'Phase 2' (Protocol in workflow.md)
+
+### Phase 2 — Red Notes (MID role, 2026-06-13)
+
+**Worktree at MID start:** one dirty file —
+`measure/generated/architecture.json` — adds the `efficacy-core` package entry.
+**Classification:** generated/registrar doc, but the change is *direct evidence
+of the track's Phase 1 scaffolding* (adding `packages/efficacy-core` per
+test-strategy §1, the boundary-clean shared lib this phase's Red tests will
+consume). Folding into this Red commit per the MID dirty-worktree protocol
+with an explicit plan note.
+
+**Build-Graph baseline** (graph.db mtime 2026-06-13 14:51, TypeScript project,
+no rescan needed — `graph.db` is `<24h` old and the Phase 1 source delta was
+scanned into it by the JR role):
+- `build-graph search ./graph.db "cohort"` → 0 hits → greenfield (Phase 2 adds
+  all cohort symbols; blast radius = 0 outside the new `convex/efficacy/`
+  directory).
+- `build-graph search ./graph.db "efficacy"` → 0 hits → greenfield.
+- `build-graph search ./graph.db "suppression"` → 0 hits → greenfield.
+- `build-graph search ./graph.db "MIN_COHORT"` → 0 hits → greenfield.
+- `build-graph search ./graph.db "getPracticeStatsHandler"` →
+  `apps/integrated-math-3/convex/srs/dashboard.ts` (canonical Convex
+  handler-as-pure-fn pattern, mirrored by cohort tests).
+- `build-graph inspect ./graph.db "getPracticeStatsHandler"` shows the
+  signature `function getPracticeStatsHandler(ctx: QueryCtx, args: { ... })`
+  and an `internalQuery` export wrapper. Cohort handler tests follow the
+  same pattern: import the handler function directly, pass a fake `ctx`.
+- `build-graph search ./graph.db "by_student_and_reviewed_at"` →
+  `apps/integrated-math-3/convex/schema.ts:618` (the index the cohort
+  handler will use to filter reviews by `[studentId, reviewedAt]` range).
+- `build-graph search ./graph.db "by_class"` → 2 hits in
+  `apps/integrated-math-3/convex/schema.ts:266` (`class_enrollments.by_class`)
+  and `apps/integrated-math-3/convex/schema.ts:256` (`classes.by_teacher`).
+- Per-task graph protocol: the test files import from
+  `@/convex/efficacy/cohort` and `@/convex/efficacy/suppression` which
+  don't exist yet — pre-edit `build-graph inspect` skipped because
+  the symbols are greenfield (callers = 0 by construction); post-edit
+  `build-graph update` will be unnecessary for test files (no exports).
+
+**Red files added** (test files + Measure docs only — NO src/, NO
+build/runtime config; tests target handlers that don't yet exist so failure
+mode is "missing implementation" via the standard im3 test runner):
+
+- `apps/integrated-math-3/__tests__/convex/efficacy/cohort.test.ts` (Task 1)
+  — batched aggregation by class + time window; no N+1; calls into
+  `@math-platform/efficacy-core` metric fns; returns discriminated
+  `{ status: 'ok' | 'suppressed', ... }` union.
+- `apps/integrated-math-3/__tests__/convex/efficacy/suppression.test.ts`
+  (Task 2) — `MIN_COHORT_N` constant contract; `suppressIfSmallN` predicate
+  over boundary, zero, single, and above-threshold cohorts; privacy
+  guarantee that suppressed payloads carry `n` + `status` only (no
+  metric values, no PII).
+
+**Test-design constraints honored** (test-strategy §3, §6, §8):
+- Handler-as-pure-fn integration: tests import the handler function
+  directly with `import { aggregateCohortMetricsHandler } from
+  '@/convex/efficacy/cohort'`; pass a fake `ctx` with stubbed
+  `db.query(...).withIndex(...).collect()` (mirrors
+  `__tests__/convex/srs/dashboard.test.ts:108-154`).
+- N+1 detection: a small `countQueryCalls(mockCtx)` helper asserts the
+  total `db.query` invocation count is **bounded by a small constant
+  independent of class size** (3-4 reads: enrollments, cards, reviews,
+  submissions — never a per-student loop).
+- Suppression is a pure helper imported from a module the test imports
+  via `@/convex/efficacy/suppression` — no `ctx` mocking required, which
+  is the canonical "tiny in-test helper" pattern (test-strategy §3 item 4
+  is *Convex handler tests only*).
+- Boundary safety: time-window tests use `Date.UTC(...)` constants
+  pinned at fixture-build time (test-strategy §3 item 3).
+- Small-n contract: pinned boundary at `n === MIN_COHORT_N - 1` →
+  suppressed, `n === MIN_COHORT_N` → ok; `n === 0` and `n === 1` both
+  suppressed (single-student privacy guarantee from test-strategy §4).
+- No write paths: cohort tests never exercise `db.insert`/`db.patch` —
+  the handler is read-only by contract (test-strategy §5).
+
+**Targeted Red command** (single bounded run, no watch, no fall-through
+to the full app suite):
+`CI=true npx vitest run __tests__/convex/efficacy --dir apps/integrated-math-3`
+
+(The im3 vitest config `include: ['__tests__/**/*.test.{ts,tsx}']` picks up
+both new files; the `__tests__/convex/efficacy` path arg restricts to this
+phase's suites. No live Convex deploy, no Playwright, no full app suite.)
+
+### Phase 2 — Red Run Log
+
+Command (single bounded run, no watch, no fall-through, CI=true):
+`CI=true npx vitest run __tests__/convex/efficacy/` (from
+`apps/integrated-math-3`)
+
+Result at 2026-06-13 (MID attempt 1, pre-impl HEAD):
+- `Test Files  2 failed (2)` · `Tests  no tests`
+- Failure mode for every suite: vite `import-analysis` error —
+  `Failed to resolve import "@/convex/efficacy/cohort" from ...` and
+  `Failed to resolve import "@/convex/efficacy/suppression" from ...`.
+- 2 suites fail for the expected missing-implementation reason:
+  - `__tests__/convex/efficacy/cohort.test.ts`        → `@/convex/efficacy/cohort`
+  - `__tests__/convex/efficacy/suppression.test.ts`   → `@/convex/efficacy/suppression`
+- 0 false-pass tests, 0 stale-durable-record failures. This is the
+  canonical "missing implementation" Red state for handler-as-pure-fn
+  tests in this app (mirrors `__tests__/convex/srs/dashboard.test.ts`'s
+  error shape).
+
+This Red state is **not a fluke of stale fixtures or wrong command** —
+it is the contract-the-future-impl-must-satisfy pinned at HEAD. The
+next role (Green/impl) must create
+`apps/integrated-math-3/convex/efficacy/cohort.ts` (exporting
+`aggregateCohortMetricsHandler` and a `cohort` `internalQuery` wrapper)
+and `apps/integrated-math-3/convex/efficacy/suppression.ts` (exporting
+`MIN_COHORT_N`, `suppressIfSmallN`, `CohortSuppressionResult`) until
+every assertion in the two suites passes.
+
+Out of scope for Red: no `src/` files were created; no
+`package.json`, `vitest.config.ts`, `tsconfig.json`, or other
+build/runtime config was created or modified; no existing source was
+modified. The dirty `measure/generated/architecture.json` (efficacy-core
+package entry added by Phase 1) is track-relevant and folded into this
+Red commit per the MID dirty-worktree protocol.
+
+### Phase 2 — Supervisor-Gate Remediation (reserved)
+
+If the supervisor flags any Red-phase boundary violation, this section
+will record the remediation.
 
 ## Phase 3 — Experiment Harness
 
