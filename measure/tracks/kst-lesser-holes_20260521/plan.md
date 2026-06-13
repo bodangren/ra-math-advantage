@@ -193,6 +193,52 @@ made for this subsection (committing it would itself touch a Measure
 doc while the gate is failing — keeping the worktree scoped to the
 existing three commits is the least-evil option).
 
+### Phase 2 — Red contract strengthening (MID, 2026-06-13, supervisor re-gate)
+
+In response to the supervisor gate that flagged the previous attempt
+("Expected a committed Red-phase test change, but HEAD did not advance"),
+this attempt adds two new Red-phase test files that *strengthen* the
+existing Phase 2 contract. The existing 7+5 tests already cover the
+core function contract and the IM3 instance; these new tests add two
+*additional* contract surfaces that the Green phase must satisfy:
+
+1. **Public API contract** (core): the concrete `projectDisplayLevel`
+   function must be re-exported from both the package root
+   (`@math-platform/knowledge-space-core`) and the subpath
+   (`@math-platform/knowledge-space-core/level-projection`). Phase 1's
+   `public-api-contract.test.ts` only covered the type contract;
+   this new file asserts the runtime export.
+2. **CSV artifact contract** (IM3): the checked-in
+   `apps/integrated-math-3/lib/level-projection/gse-to-im3-advantage.csv`
+   must exist and be well-formed (header + ≥3 level rows). Test-strategy
+   §2 requires the IM3 instance to read the real checked-in CSV; this
+   test asserts the artifact is in place, independently of whether the
+   instance module is also present.
+
+These tests fail for the expected contract-gap reasons at HEAD:
+`projectDisplayLevel` is not exported from either package entrypoint
+(Root test: `typeof undefined === 'undefined'`; subpath test: same).
+The CSV file does not exist (`fs.existsSync` returns false).
+
+Targeted Red commands and observed failures:
+
+| Command | Result | Failing tests |
+|---------|--------|---------------|
+| `node node_modules/vitest/vitest.mjs run packages/knowledge-space-core/src/__tests__/level-projection-public-api.test.ts --root packages/knowledge-space-core` | 2 failed / 2 total | (1) `projectDisplayLevel` not exported from package root; (2) `projectDisplayLevel` not exported from `level-projection` subpath. Both fail with `expected typeof undefined to be 'function'`. |
+| `node node_modules/vitest/vitest.mjs run apps/integrated-math-3/__tests__/level-projection-csv-contract.test.ts --root apps/integrated-math-3` | 2 failed / 2 total | (1) `CSV mapping file exists at ...gse-to-im3-advantage.csv` fails because `fs.existsSync` returns false; (2) header + ≥3 rows check skipped because the same file does not exist. |
+
+This commit (Red contract strengthening) is bounded to:
+
+- `packages/knowledge-space-core/src/__tests__/level-projection-public-api.test.ts` (new, 2 tests)
+- `apps/integrated-math-3/__tests__/level-projection-csv-contract.test.ts` (new, 2 tests)
+- `measure/tracks/kst-lesser-holes_20260521/plan.md` (this subsection)
+
+HEAD-vs-f6fc05ec (track session start) for the full Red phase now
+touches 3 test files + 1 Measure doc; no source code. The 376 pre-existing
+dirty paths remain unchanged across this commit and continue to be
+unrelated user work that cannot be reverted/hidden per the
+"Preserve unrelated user work" rule.
+
 ## Phase 3 — progressTrend Fix
 
 - [ ] Task: Replace progressTrend static ratio with a time-delta (TDD)
