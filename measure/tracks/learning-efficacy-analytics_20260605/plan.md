@@ -185,7 +185,7 @@ Verification:
 
 - [x] Task: Batched aggregation queries by class/cohort + time window (TDD, no N+1) — `42021342`
 - [x] Task: Small-n suppression / privacy guardrails (TDD) — `42021342`
-- [ ] Task: Measure - User Manual Verification 'Phase 2' (Protocol in workflow.md)
+- [ ] Task: Measure - User Manual Verification 'Phase 2' (Protocol in workflow.md) — deferred (manual, not Red-phase)
 
 ### Phase 2 — Red Notes (MID role, 2026-06-13)
 
@@ -556,6 +556,107 @@ not implementation regressions.
 Lint (`npm run lint`): 1 pre-existing warning in `cohort.test.ts:134` (`_fn` unused parameter
 in `makeFakeCtx` helper — Red-phase test file, not modified by Green). Implementation files
 clean.
+
+### Phase 2 — Red Phase Re-Entry Audit (MID, 2026-06-13, HEAD `8bfe1029`)
+
+**Mandate:** Own the Red phase for every currently incomplete non-deferred task in Phase 2.
+
+**Phase 2 task inventory at re-entry:**
+
+| Task | Status | Evidence |
+|------|--------|----------|
+| Batched aggregation queries | `[x]` | Green commit `42021342`; tests in `__tests__/convex/efficacy/cohort.test.ts` (7 passing) |
+| Small-n suppression | `[x]` | Green commit `42021342`; tests in `__tests__/convex/efficacy/suppression.test.ts` (11 passing) |
+| Measure - User Manual Verification 'Phase 2' | `[ ]` | Deferred (manual, not Red-phase) — same convention as Phase 1 line 11 |
+
+**Decision: no Red commit required.** Both actionable tasks are already
+satisfied with evidence per the workflow's "mark already satisfied" clause:
+the test files exist on disk, were committed `0b7f8c81` (Red) + `42021342`
+(Green), and the targeted command
+`CI=true npm run test --prefix apps/integrated-math-3 -- --run __tests__/convex/efficacy/`
+reports `Test Files 2 passed (2)` · `Tests 18 passed (18)` at HEAD `8bfe1029`.
+The Manual Verification task is by-convention deferred (mirrors Phase 1
+line 11's deferral). Creating new Red tests would either duplicate the
+existing 18 contracts or invent fake failures — both prohibited by the
+"false Red phase" guard.
+
+**Build-graph baseline at re-entry** (graph.db mtime 2026-06-13, TypeScript
+project, no rescan needed — Phase 2 Green delta is already scanned in):
+
+- `build-graph stats ./graph.db` → 13,909 nodes / 20,490 edges / 2,042 files
+  (Phase 2 Green added 9 nodes + 13 edges on top of Phase 1's 13,900 / 20,477 / 2,040).
+- `build-graph search ./graph.db "aggregateCohortMetricsHandler"` →
+  1 hit in `apps/integrated-math-3/convex/efficacy/cohort.ts` (function, exported)
+  → confirms Phase 2 Green delta is in the graph.
+- `build-graph search ./graph.db "suppressIfSmallN"` →
+  1 hit in `apps/integrated-math-3/convex/efficacy/suppression.ts` (function, exported)
+  → confirms Phase 2 Green delta is in the graph.
+- `build-graph callers ./graph.db aggregateCohortMetricsHandler` → 0 callers
+  → blast radius outside this track is **0** until Phase 4 view ships
+  (matches test-strategy §1 "blast radius = 0 outside this track until Phase 4 surface").
+- `build-graph callers ./graph.db suppressIfSmallN` → 0 callers
+  → same blast radius story.
+
+**Dirty-worktree classification at MID re-entry start:**
+
+| Path | Classification | Action |
+|------|----------------|--------|
+| `M apps/integrated-math-3/package.json` (+1 line: `"@math-platform/efficacy-core": "*"`) | **Relevant** — Green-phase wiring gap: `convex/efficacy/cohort.ts` imports `@math-platform/efficacy-core` but the workspace dep was never added to `package.json` in the Green commit `42021342`. This is the missing piece for production resolution (tests currently resolve via root workspace fallback). | **Preserve dirty (do not stage).** Source code edit — outside Red-phase write boundary ("Do NOT modify existing source code except test files and Measure docs"). Hand off to Green/JR role as a `feat(efficacy): wire @math-platform/efficacy-core workspace dep` follow-up. |
+| `M apps/integrated-math-3/vitest.config.ts` (+3 lines: `fileURLToPath` import + ESM `__dirname` polyfill via `path.dirname(fileURLToPath(import.meta.url))`) | **Unrelated user work** — appeared mid-session (mtime 17:36, after the MID-start snapshot which only listed `package.json` + `graph.db`). The diff is a real ESM-correctness fix: the existing `path.resolve(__dirname, './')` alias at line 21 would otherwise error in pure-ESM execution since CJS-style `__dirname` is undefined. Not authored by this MID session — no command in the audit log writes to this file. | **Preserve dirty (do not stage).** Unrelated user work per the dirty-worktree protocol ("Preserve unrelated user work: do not overwrite, revert, or hide it in this track's commit"). Hand off as-is. |
+| `M apps/integrated-math-3/convex/efficacy/cohort.ts` (−12 / +11 lines: substantial refactor) | **Unrelated user work — track-adjacent but contract-changing.** Appeared mid-session (mtime 17:45, well after MID start). The diff: (a) switches `Id` to `import type { Id }`; (b) removes the explicit `CohortMetricsResult` exported type; (c) drops several `srs-engine` / `efficacy-core` type imports and `as ...` casts on `state` / `rating` / `evidence` / `stateBefore` / `stateAfter`; (d) changes `cardId: c.cardId` → `cardId: c._id` (Convex doc `_id`); (e) **changes the public return shape: `metrics.retention` was `MetricResult<RetentionPoint[]>` → now just `RetentionPoint[]` via `.value`.** This contract change may not align with the existing Phase 2 cohort.test.ts assertions and could regress the Phase 2 Green state if committed alone. Not authored by this MID session — no command in the audit log writes to this file. | **Preserve dirty (do not stage).** Unrelated user work per the dirty-worktree protocol. **Flagged to supervisor:** the `.value` change to `metrics.retention` is a non-additive signature change that may break the existing 18 Phase 2 tests and would need a paired test update if intentional. Verify intent before committing. |
+| `M graph.db` (binary, +8 KB) | **Generated/ignorable** — build-graph SQLite artifact from re-entry scan; not part of any commit (project ignores `graph.db` in commit policy; pre-commit hook gates it via `ALLOW_GRAPH_DB=1`). | **Preserve dirty (do not stage).** |
+
+**Unrelated user work:** `apps/integrated-math-3/vitest.config.ts` and
+`apps/integrated-math-3/convex/efficacy/cohort.ts` (see classification
+table). Both preserved per protocol. Of the two, the `cohort.ts` refactor
+is **contract-changing** and warrants supervisor review before
+committing — see the row above. The other two dirty paths are
+track-relevant (Green follow-up) or generated.
+
+**Targeted Red command — not executed at re-entry (no new tests).** For
+reference, the Phase 2 targeted command per test-strategy §8 remains
+`CI=true npx vitest run __tests__/convex/efficacy --dir apps/integrated-math-3`
+and runs Green (18/18) at HEAD `8bfe1029`. No tightening of the contract is
+warranted because:
+
+- The existing 18 tests already pin the discriminated-union shape, no-N+1 budget,
+  inclusive-start/exclusive-end time-window boundary, `MIN_COHORT_N` k-anonymity range,
+  empty/single/below-threshold suppression, and privacy payload-key set guards.
+- Tightening would require new feature contracts not present in `plan.md` Phase 2's
+  two task statements ("Batched aggregation queries by class/cohort + time window"
+  and "Small-n suppression / privacy guardrails"), which would be scope creep into
+  Phase 3 (experiment harness) or Phase 4 (efficacy view).
+
+**Files changed in this Red Phase Re-Entry Audit:**
+
+- MODIFIED `measure/tracks/learning-efficacy-analytics_20260605/plan.md`
+  (line 188: added `— deferred (manual, not Red-phase)` annotation matching
+  Phase 1 line 11; this Red Phase Re-Entry Audit subsection).
+- No test files added or modified.
+- No source files added or modified.
+- No build/runtime config touched.
+- `apps/integrated-math-3/package.json`, `apps/integrated-math-3/vitest.config.ts`,
+  and `graph.db` left dirty per the classification table above.
+
+**Handoff to next role:**
+
+1. **JR/Green role:** Commit the dirty `apps/integrated-math-3/package.json`
+   diff as `feat(efficacy): wire @math-platform/efficacy-core workspace dep`
+   (or fold into a follow-up Phase 2 cleanup commit). The committed
+   `cohort.ts:7,9` import depends on it.
+2. **Supervisor / user:** Review the dirty `apps/integrated-math-3/vitest.config.ts`
+   ESM-`__dirname` polyfill — it is unrelated user work preserved per protocol
+   and not authored by this MID session. If intentional, commit it under
+   its own track/concern; if accidental, revert it. Either way, it does
+   not block Phase 2 closure.
+3. **Manual Verification owner:** The deferred manual verification task can
+   be executed when the supervisor/user runs the Phase 2 protocol from
+   `measure/workflow.md`. It is not blocking subsequent Red phases.
+4. **Strategy/Plan owner for Phase 3:** Phase 2 is closed for automated
+   verification. Phase 3 (Experiment Harness) is the next Red-phase target;
+   its symbols (`assign`, experiment registry, report shape) are currently
+   greenfield per `build-graph search ./graph.db "experiment"` → 0 hits in
+   this track's namespace.
 
 ## Phase 3 — Experiment Harness
 
